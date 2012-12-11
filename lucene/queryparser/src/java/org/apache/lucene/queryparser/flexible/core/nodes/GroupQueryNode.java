@@ -216,6 +216,8 @@ operator|+
 literal|"\n</group>"
 return|;
 block|}
+annotation|@
+name|Override
 DECL|method|toQueryString
 specifier|public
 name|CharSequence

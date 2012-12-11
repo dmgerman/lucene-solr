@@ -462,6 +462,8 @@ argument_list|)
 expr_stmt|;
 block|}
 comment|/** Parses a query string, returning a {@link org.apache.lucene.queryparser.flexible.core.nodes.QueryNode}.      *  @param query  the query string to be parsed.      *  @throws ParseException if the parsing fails      */
+annotation|@
+name|Override
 DECL|method|parse
 specifier|public
 name|QueryNode

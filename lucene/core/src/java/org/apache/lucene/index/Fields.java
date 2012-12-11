@@ -59,6 +59,8 @@ name|Fields
 parameter_list|()
 block|{   }
 comment|/** Returns an iterator that will step through all fields    *  names.  This will not return null.  */
+annotation|@
+name|Override
 DECL|method|iterator
 specifier|public
 specifier|abstract

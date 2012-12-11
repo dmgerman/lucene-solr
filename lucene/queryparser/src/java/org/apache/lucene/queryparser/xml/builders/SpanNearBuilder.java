@@ -161,6 +161,8 @@ operator|=
 name|factory
 expr_stmt|;
 block|}
+annotation|@
+name|Override
 DECL|method|getSpanQuery
 specifier|public
 name|SpanQuery

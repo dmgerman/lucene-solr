@@ -107,6 +107,8 @@ name|String
 name|var2
 decl_stmt|;
 comment|//@Override
+annotation|@
+name|Override
 DECL|method|init
 specifier|public
 name|void
@@ -162,6 +164,8 @@ name|var2
 return|;
 block|}
 comment|//  @Override
+annotation|@
+name|Override
 DECL|method|onCommit
 specifier|public
 name|void
@@ -184,6 +188,8 @@ argument_list|)
 expr_stmt|;
 block|}
 comment|//  @Override
+annotation|@
+name|Override
 DECL|method|onInit
 specifier|public
 name|void

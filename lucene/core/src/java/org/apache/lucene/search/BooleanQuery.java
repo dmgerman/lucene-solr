@@ -499,6 +499,8 @@ name|clauses
 return|;
 block|}
 comment|/** Returns an iterator on the clauses in this query. It implements the {@link Iterable} interface to    * make it possible to do:    *<pre class="prettyprint">for (BooleanClause clause : booleanQuery) {}</pre>    */
+annotation|@
+name|Override
 DECL|method|iterator
 specifier|public
 specifier|final

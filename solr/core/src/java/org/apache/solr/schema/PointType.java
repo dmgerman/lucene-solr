@@ -1126,6 +1126,8 @@ name|bq
 return|;
 block|}
 comment|/**    * Calculates the range and creates a RangeQuery (bounding box) wrapped in a BooleanQuery (unless the dimension is 1, one range for every dimension, AND'd together by a Boolean    * @param parser The parser    * @param options The {@link org.apache.solr.search.SpatialOptions} for this filter.    * @return The Query representing the bounding box around the point.    */
+annotation|@
+name|Override
 DECL|method|createSpatialQuery
 specifier|public
 name|Query

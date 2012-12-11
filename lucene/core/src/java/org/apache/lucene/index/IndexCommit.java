@@ -237,6 +237,8 @@ parameter_list|()
 throws|throws
 name|IOException
 function_decl|;
+annotation|@
+name|Override
 DECL|method|compareTo
 specifier|public
 name|int

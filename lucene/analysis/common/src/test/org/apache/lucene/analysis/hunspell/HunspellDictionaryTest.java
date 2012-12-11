@@ -137,6 +137,8 @@ operator|=
 name|delegate
 expr_stmt|;
 block|}
+annotation|@
+name|Override
 DECL|method|read
 specifier|public
 name|int
@@ -152,6 +154,8 @@ name|read
 argument_list|()
 return|;
 block|}
+annotation|@
+name|Override
 DECL|method|hashCode
 specifier|public
 name|int
@@ -165,6 +169,8 @@ name|hashCode
 argument_list|()
 return|;
 block|}
+annotation|@
+name|Override
 DECL|method|read
 specifier|public
 name|int
@@ -186,6 +192,8 @@ name|b
 argument_list|)
 return|;
 block|}
+annotation|@
+name|Override
 DECL|method|equals
 specifier|public
 name|boolean
@@ -204,6 +212,8 @@ name|obj
 argument_list|)
 return|;
 block|}
+annotation|@
+name|Override
 DECL|method|read
 specifier|public
 name|int
@@ -235,6 +245,8 @@ name|len
 argument_list|)
 return|;
 block|}
+annotation|@
+name|Override
 DECL|method|skip
 specifier|public
 name|long
@@ -255,6 +267,8 @@ name|n
 argument_list|)
 return|;
 block|}
+annotation|@
+name|Override
 DECL|method|toString
 specifier|public
 name|String
@@ -268,6 +282,8 @@ name|toString
 argument_list|()
 return|;
 block|}
+annotation|@
+name|Override
 DECL|method|available
 specifier|public
 name|int
@@ -283,6 +299,8 @@ name|available
 argument_list|()
 return|;
 block|}
+annotation|@
+name|Override
 DECL|method|close
 specifier|public
 name|void
@@ -303,6 +321,8 @@ name|close
 argument_list|()
 expr_stmt|;
 block|}
+annotation|@
+name|Override
 DECL|method|mark
 specifier|public
 name|void
@@ -320,6 +340,8 @@ name|readlimit
 argument_list|)
 expr_stmt|;
 block|}
+annotation|@
+name|Override
 DECL|method|reset
 specifier|public
 name|void
@@ -334,6 +356,8 @@ name|reset
 argument_list|()
 expr_stmt|;
 block|}
+annotation|@
+name|Override
 DECL|method|markSupported
 specifier|public
 name|boolean

@@ -347,6 +347,8 @@ block|}
 block|}
 block|}
 comment|/* (non-Javadoc)    * @see org.apache.lucene.search.highlight.Scorer#init(org.apache.lucene.analysis.TokenStream)    */
+annotation|@
+name|Override
 DECL|method|init
 specifier|public
 name|TokenStream
@@ -372,6 +374,8 @@ literal|null
 return|;
 block|}
 comment|/*    * (non-Javadoc)    *     * @see    * org.apache.lucene.search.highlight.FragmentScorer#startFragment(org.apache    * .lucene.search.highlight.TextFragment)    */
+annotation|@
+name|Override
 DECL|method|startFragment
 specifier|public
 name|void
@@ -400,6 +404,8 @@ literal|0
 expr_stmt|;
 block|}
 comment|/* (non-Javadoc)    * @see org.apache.lucene.search.highlight.Scorer#getTokenScore()    */
+annotation|@
+name|Override
 DECL|method|getTokenScore
 specifier|public
 name|float
@@ -471,6 +477,8 @@ argument_list|()
 return|;
 block|}
 comment|/* (non-Javadoc)    * @see org.apache.lucene.search.highlight.Scorer#getFragmentScore()    */
+annotation|@
+name|Override
 DECL|method|getFragmentScore
 specifier|public
 name|float

@@ -91,6 +91,8 @@ name|resourceDescription
 expr_stmt|;
 block|}
 comment|/** Closes the stream to further operations. */
+annotation|@
+name|Override
 DECL|method|close
 specifier|public
 specifier|abstract

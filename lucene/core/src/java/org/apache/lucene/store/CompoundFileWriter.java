@@ -499,6 +499,8 @@ name|dataFileName
 return|;
 block|}
 comment|/**    * Closes all resources and writes the entry table    *     * @throws IllegalStateException    *           if close() had been called before or if no file has been added to    *           this object    */
+annotation|@
+name|Override
 DECL|method|close
 specifier|public
 name|void

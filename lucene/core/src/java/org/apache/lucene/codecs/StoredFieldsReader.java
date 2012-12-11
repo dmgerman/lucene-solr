@@ -87,6 +87,8 @@ parameter_list|)
 throws|throws
 name|IOException
 function_decl|;
+annotation|@
+name|Override
 DECL|method|clone
 specifier|public
 specifier|abstract

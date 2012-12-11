@@ -122,6 +122,8 @@ literal|1
 decl_stmt|;
 comment|//IndexReader.DEFAULT_TERMS_INDEX_DIVISOR;  Set this once Lucene makes this public.
 comment|/**    * Potentially initializes {@link #termInfosIndexDivisor}.  Overriding classes should call super.init() in order    * to make sure termInfosIndexDivisor is set.    *<p>    *<code>init</code> will be called just once, immediately after creation.    *<p>    * The args are user-level initialization parameters that may be specified    * when declaring an indexReaderFactory in solrconfig.xml    *    */
+annotation|@
+name|Override
 DECL|method|init
 specifier|public
 name|void

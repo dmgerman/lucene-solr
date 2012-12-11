@@ -54,6 +54,8 @@ argument_list|)
 expr_stmt|;
 block|}
 comment|/* (non-Javadoc)    * @see org.apache.lucene.search.vectorhighlight.FragListBuilder#createFieldFragList(FieldPhraseList fieldPhraseList, int fragCharSize)    */
+annotation|@
+name|Override
 DECL|method|createFieldFragList
 specifier|public
 name|FieldFragList

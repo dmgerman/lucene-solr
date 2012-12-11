@@ -263,6 +263,8 @@ expr_stmt|;
 comment|// always ignore "ignore_exception"
 block|}
 comment|/** Subclasses that override setUp can optionally call this method    * to log the fact that their setUp process has ended.    */
+annotation|@
+name|Override
 DECL|method|postSetUp
 specifier|public
 name|void
@@ -281,6 +283,8 @@ argument_list|)
 expr_stmt|;
 block|}
 comment|/** Subclasses that override tearDown can optionally call this method    * to log the fact that the tearDown process has started.  This is necessary    * since subclasses will want to call super.tearDown() at the *end* of their    * tearDown method.    */
+annotation|@
+name|Override
 DECL|method|preTearDown
 specifier|public
 name|void

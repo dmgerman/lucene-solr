@@ -162,6 +162,8 @@ argument_list|()
 return|;
 block|}
 comment|// This text representation is not re-parseable
+annotation|@
+name|Override
 DECL|method|toQueryString
 specifier|public
 name|CharSequence
@@ -269,6 +271,8 @@ return|return
 name|clone
 return|;
 block|}
+annotation|@
+name|Override
 DECL|method|getField
 specifier|public
 name|CharSequence
@@ -322,6 +326,8 @@ argument_list|()
 return|;
 block|}
 block|}
+annotation|@
+name|Override
 DECL|method|setField
 specifier|public
 name|void

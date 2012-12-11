@@ -231,6 +231,8 @@ operator|&
 literal|0xFFFFL
 return|;
 block|}
+annotation|@
+name|Override
 DECL|method|set
 specifier|public
 name|void
@@ -258,6 +260,8 @@ name|value
 argument_list|)
 expr_stmt|;
 block|}
+annotation|@
+name|Override
 DECL|method|ramBytesUsed
 specifier|public
 name|long
@@ -273,6 +277,8 @@ name|values
 argument_list|)
 return|;
 block|}
+annotation|@
+name|Override
 DECL|method|clear
 specifier|public
 name|void
@@ -426,6 +432,8 @@ return|return
 name|gets
 return|;
 block|}
+annotation|@
+name|Override
 DECL|method|set
 specifier|public
 name|int

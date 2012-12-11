@@ -124,6 +124,8 @@ name|NAME
 init|=
 literal|"prefix"
 decl_stmt|;
+annotation|@
+name|Override
 DECL|method|init
 specifier|public
 name|void

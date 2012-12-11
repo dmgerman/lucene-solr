@@ -165,6 +165,8 @@ literal|"Please process your documents as Unicode instead."
 argument_list|)
 throw|;
 block|}
+annotation|@
+name|Override
 DECL|method|create
 specifier|public
 name|GreekLowerCaseFilter
@@ -184,6 +186,8 @@ name|in
 argument_list|)
 return|;
 block|}
+annotation|@
+name|Override
 DECL|method|getMultiTermComponent
 specifier|public
 name|AbstractAnalysisFactory

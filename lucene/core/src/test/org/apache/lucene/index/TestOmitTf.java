@@ -230,6 +230,8 @@ name|SimpleSimilarity
 extends|extends
 name|TFIDFSimilarity
 block|{
+annotation|@
+name|Override
 DECL|method|queryNorm
 specifier|public
 name|float
@@ -243,6 +245,8 @@ return|return
 literal|1.0f
 return|;
 block|}
+annotation|@
+name|Override
 DECL|method|coord
 specifier|public
 name|float

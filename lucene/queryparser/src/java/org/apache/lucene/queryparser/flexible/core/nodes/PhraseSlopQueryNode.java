@@ -291,6 +291,8 @@ operator|+
 literal|"\n</phraseslop>"
 return|;
 block|}
+annotation|@
+name|Override
 DECL|method|toQueryString
 specifier|public
 name|CharSequence
@@ -358,6 +360,8 @@ return|return
 name|clone
 return|;
 block|}
+annotation|@
+name|Override
 DECL|method|getField
 specifier|public
 name|CharSequence
@@ -393,6 +397,8 @@ return|return
 literal|null
 return|;
 block|}
+annotation|@
+name|Override
 DECL|method|setField
 specifier|public
 name|void

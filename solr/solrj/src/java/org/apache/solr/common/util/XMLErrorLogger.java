@@ -147,6 +147,8 @@ name|log
 expr_stmt|;
 block|}
 comment|// ErrorHandler
+annotation|@
+name|Override
 DECL|method|warning
 specifier|public
 name|void
@@ -190,6 +192,8 @@ argument_list|()
 argument_list|)
 expr_stmt|;
 block|}
+annotation|@
+name|Override
 DECL|method|error
 specifier|public
 name|void
@@ -205,6 +209,8 @@ throw|throw
 name|e
 throw|;
 block|}
+annotation|@
+name|Override
 DECL|method|fatalError
 specifier|public
 name|void
@@ -221,6 +227,8 @@ name|e
 throw|;
 block|}
 comment|// ErrorListener
+annotation|@
+name|Override
 DECL|method|warning
 specifier|public
 name|void
@@ -241,6 +249,8 @@ argument_list|()
 argument_list|)
 expr_stmt|;
 block|}
+annotation|@
+name|Override
 DECL|method|error
 specifier|public
 name|void
@@ -256,6 +266,8 @@ throw|throw
 name|e
 throw|;
 block|}
+annotation|@
+name|Override
 DECL|method|fatalError
 specifier|public
 name|void
@@ -272,6 +284,8 @@ name|e
 throw|;
 block|}
 comment|// XMLReporter
+annotation|@
+name|Override
 DECL|method|report
 specifier|public
 name|void

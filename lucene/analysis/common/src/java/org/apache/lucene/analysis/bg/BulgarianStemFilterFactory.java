@@ -76,6 +76,8 @@ name|BulgarianStemFilterFactory
 extends|extends
 name|TokenFilterFactory
 block|{
+annotation|@
+name|Override
 DECL|method|create
 specifier|public
 name|TokenStream

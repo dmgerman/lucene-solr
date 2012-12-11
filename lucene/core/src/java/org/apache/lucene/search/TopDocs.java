@@ -293,6 +293,8 @@ expr_stmt|;
 block|}
 block|}
 comment|// Returns true if first is< second
+annotation|@
+name|Override
 DECL|method|lessThan
 specifier|public
 name|boolean
@@ -722,6 +724,8 @@ expr_stmt|;
 block|}
 block|}
 comment|// Returns true if first is< second
+annotation|@
+name|Override
 annotation|@
 name|SuppressWarnings
 argument_list|(

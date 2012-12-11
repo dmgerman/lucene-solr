@@ -2150,6 +2150,8 @@ name|pos
 operator|++
 expr_stmt|;
 block|}
+annotation|@
+name|Override
 DECL|method|hasNext
 specifier|public
 name|boolean
@@ -2252,6 +2254,8 @@ name|old
 return|;
 block|}
 comment|/** use nextCharArray() + currentValue() for better efficiency. */
+annotation|@
+name|Override
 DECL|method|next
 specifier|public
 name|Map
@@ -2278,6 +2282,8 @@ name|allowModify
 argument_list|)
 return|;
 block|}
+annotation|@
+name|Override
 DECL|method|remove
 specifier|public
 name|void
@@ -2342,6 +2348,8 @@ operator|=
 name|allowModify
 expr_stmt|;
 block|}
+annotation|@
+name|Override
 DECL|method|getKey
 specifier|public
 name|Object
@@ -2360,6 +2368,8 @@ name|clone
 argument_list|()
 return|;
 block|}
+annotation|@
+name|Override
 DECL|method|getValue
 specifier|public
 name|V
@@ -2373,6 +2383,8 @@ name|pos
 index|]
 return|;
 block|}
+annotation|@
+name|Override
 DECL|method|setValue
 specifier|public
 name|V

@@ -1229,6 +1229,8 @@ operator|=
 name|i
 expr_stmt|;
 block|}
+annotation|@
+name|Override
 DECL|method|hasNext
 specifier|public
 name|boolean
@@ -1243,6 +1245,8 @@ operator|!=
 literal|null
 return|;
 block|}
+annotation|@
+name|Override
 DECL|method|next
 specifier|public
 name|Entry
@@ -1323,6 +1327,8 @@ return|return
 name|e
 return|;
 block|}
+annotation|@
+name|Override
 DECL|method|remove
 specifier|public
 name|void

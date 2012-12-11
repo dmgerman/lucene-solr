@@ -2432,6 +2432,8 @@ argument_list|)
 throw|;
 block|}
 block|}
+annotation|@
+name|Override
 DECL|method|getValueSize
 specifier|public
 name|int

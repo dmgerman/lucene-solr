@@ -138,6 +138,8 @@ name|BoostingTermBuilder
 extends|extends
 name|SpanBuilderBase
 block|{
+annotation|@
+name|Override
 DECL|method|getSpanQuery
 specifier|public
 name|SpanQuery

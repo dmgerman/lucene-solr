@@ -217,6 +217,8 @@ name|solrCore
 expr_stmt|;
 block|}
 comment|/**    * Initializes the chain using the factories specified by the<code>PluginInfo</code>.    * if the chain includes the<code>RunUpdateProcessorFactory</code>, but     * does not include an implementation of the     *<code>DistributingUpdateProcessorFactory</code> interface, then an     * instance of<code>DistributedUpdateProcessorFactory</code> will be     * injected immediately prior to the<code>RunUpdateProcessorFactory</code>.    *    * @see DistributingUpdateProcessorFactory    * @see RunUpdateProcessorFactory    * @see DistributedUpdateProcessorFactory    */
+annotation|@
+name|Override
 DECL|method|init
 specifier|public
 name|void

@@ -221,6 +221,8 @@ name|queryScorer
 expr_stmt|;
 block|}
 comment|/* (non-Javadoc)    * @see org.apache.lucene.search.highlight.Fragmenter#isNewFragment()    */
+annotation|@
+name|Override
 DECL|method|isNewFragment
 specifier|public
 name|boolean
@@ -383,6 +385,8 @@ name|isNewFrag
 return|;
 block|}
 comment|/* (non-Javadoc)    * @see org.apache.lucene.search.highlight.Fragmenter#start(java.lang.String, org.apache.lucene.analysis.TokenStream)    */
+annotation|@
+name|Override
 DECL|method|start
 specifier|public
 name|void

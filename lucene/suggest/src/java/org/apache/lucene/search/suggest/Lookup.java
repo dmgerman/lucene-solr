@@ -208,6 +208,8 @@ name|value
 return|;
 block|}
 comment|/** Compare alphabetically. */
+annotation|@
+name|Override
 DECL|method|compareTo
 specifier|public
 name|int

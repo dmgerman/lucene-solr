@@ -79,6 +79,8 @@ specifier|private
 name|CharArraySet
 name|articles
 decl_stmt|;
+annotation|@
+name|Override
 DECL|method|inform
 specifier|public
 name|void
@@ -144,6 +146,8 @@ name|DEFAULT_ARTICLES
 expr_stmt|;
 block|}
 block|}
+annotation|@
+name|Override
 DECL|method|create
 specifier|public
 name|ElisionFilter

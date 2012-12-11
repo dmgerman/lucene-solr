@@ -285,6 +285,8 @@ literal|1
 return|;
 block|}
 comment|/** Frees persistent resources used by this Analyzer */
+annotation|@
+name|Override
 DECL|method|close
 specifier|public
 name|void
@@ -567,6 +569,8 @@ block|}
 block|}
 block|}
 comment|/**      * Closes the ReuseStrategy, freeing any resources      */
+annotation|@
+name|Override
 DECL|method|close
 specifier|public
 name|void

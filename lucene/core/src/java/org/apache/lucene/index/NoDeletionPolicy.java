@@ -58,6 +58,8 @@ parameter_list|()
 block|{
 comment|// keep private to avoid instantiation
 block|}
+annotation|@
+name|Override
 DECL|method|onCommit
 specifier|public
 name|void
@@ -72,6 +74,8 @@ argument_list|>
 name|commits
 parameter_list|)
 block|{}
+annotation|@
+name|Override
 DECL|method|onInit
 specifier|public
 name|void

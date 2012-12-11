@@ -4589,6 +4589,8 @@ operator|.
 name|SolrDocumentSource
 argument_list|()
 block|{
+annotation|@
+name|Override
 specifier|public
 name|SolrDocument
 name|retrieve

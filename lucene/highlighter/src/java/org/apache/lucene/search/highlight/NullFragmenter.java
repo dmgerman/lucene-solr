@@ -44,6 +44,8 @@ name|NullFragmenter
 implements|implements
 name|Fragmenter
 block|{
+annotation|@
+name|Override
 DECL|method|start
 specifier|public
 name|void
@@ -56,6 +58,8 @@ name|TokenStream
 name|tokenStream
 parameter_list|)
 block|{   }
+annotation|@
+name|Override
 DECL|method|isNewFragment
 specifier|public
 name|boolean

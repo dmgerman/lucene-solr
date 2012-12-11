@@ -118,6 +118,8 @@ literal|false
 argument_list|)
 return|;
 block|}
+annotation|@
+name|Override
 DECL|method|init
 specifier|public
 name|void

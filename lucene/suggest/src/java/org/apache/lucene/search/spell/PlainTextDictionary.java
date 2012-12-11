@@ -171,6 +171,8 @@ name|reader
 argument_list|)
 expr_stmt|;
 block|}
+annotation|@
+name|Override
 DECL|method|getWordsIterator
 specifier|public
 name|BytesRefIterator

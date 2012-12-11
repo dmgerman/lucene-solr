@@ -425,6 +425,8 @@ init|=
 literal|"fairnessPolicy"
 decl_stmt|;
 comment|/**    * Get {@link ShardHandler} that uses the default http client.    */
+annotation|@
+name|Override
 DECL|method|getShardHandler
 specifier|public
 name|ShardHandler
@@ -459,6 +461,8 @@ name|httpClient
 argument_list|)
 return|;
 block|}
+annotation|@
+name|Override
 DECL|method|init
 specifier|public
 name|void

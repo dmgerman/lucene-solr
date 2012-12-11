@@ -261,6 +261,8 @@ argument_list|)
 expr_stmt|;
 block|}
 comment|/* (non-Javadoc)    * @see org.apache.lucene.benchmark.quality.QualityQueryParser#parse(org.apache.lucene.benchmark.quality.QualityQuery)    */
+annotation|@
+name|Override
 DECL|method|parse
 specifier|public
 name|Query

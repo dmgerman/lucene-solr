@@ -58,6 +58,8 @@ name|HighlightingPluginBase
 implements|implements
 name|SolrFragListBuilder
 block|{
+annotation|@
+name|Override
 DECL|method|getFragListBuilder
 specifier|public
 name|FragListBuilder

@@ -500,6 +500,8 @@ operator|=
 name|docPartitionCategories
 expr_stmt|;
 block|}
+annotation|@
+name|Override
 DECL|method|init
 specifier|public
 name|boolean
@@ -520,6 +522,8 @@ operator|>
 name|part
 return|;
 block|}
+annotation|@
+name|Override
 DECL|method|nextCategory
 specifier|public
 name|long
@@ -565,6 +569,8 @@ operator|++
 index|]
 return|;
 block|}
+annotation|@
+name|Override
 DECL|method|skipTo
 specifier|public
 name|boolean

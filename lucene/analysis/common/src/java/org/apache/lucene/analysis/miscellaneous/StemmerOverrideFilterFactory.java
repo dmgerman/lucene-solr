@@ -113,6 +113,8 @@ specifier|private
 name|boolean
 name|ignoreCase
 decl_stmt|;
+annotation|@
+name|Override
 DECL|method|inform
 specifier|public
 name|void
@@ -269,6 +271,8 @@ return|return
 name|ignoreCase
 return|;
 block|}
+annotation|@
+name|Override
 DECL|method|create
 specifier|public
 name|TokenStream

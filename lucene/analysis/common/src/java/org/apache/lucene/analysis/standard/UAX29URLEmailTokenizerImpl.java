@@ -8483,6 +8483,8 @@ name|UAX29URLEmailTokenizer
 operator|.
 name|URL
 decl_stmt|;
+annotation|@
+name|Override
 DECL|method|yychar
 specifier|public
 specifier|final
@@ -8495,6 +8497,8 @@ name|yychar
 return|;
 block|}
 comment|/**    * Fills CharTermAttribute with the current token text.    */
+annotation|@
+name|Override
 DECL|method|getText
 specifier|public
 specifier|final
@@ -8847,6 +8851,8 @@ argument_list|()
 expr_stmt|;
 block|}
 comment|/**    * Resets the scanner to read from a new input stream.    * Does not close the old reader.    *    * All internal variables are reset, the old input stream     *<b>cannot</b> be reused (internal buffer is discarded and lost).    * Lexical state is set to<tt>ZZ_INITIAL</tt>.    *    * Internal scan buffer is resized down to its initial length, if it has grown.    *    * @param reader   the new input stream     */
+annotation|@
+name|Override
 DECL|method|yyreset
 specifier|public
 specifier|final
@@ -8989,6 +8995,8 @@ index|]
 return|;
 block|}
 comment|/**    * Returns the length of the matched text region.    */
+annotation|@
+name|Override
 DECL|method|yylength
 specifier|public
 specifier|final
@@ -9075,6 +9083,8 @@ name|number
 expr_stmt|;
 block|}
 comment|/**    * Resumes scanning until the next regular expression is matched,    * the end of input is encountered or an I/O-Error occurs.    *    * @return      the next token    * @exception   java.io.IOException  if any I/O-Error occurs    */
+annotation|@
+name|Override
 DECL|method|getNextToken
 specifier|public
 name|int

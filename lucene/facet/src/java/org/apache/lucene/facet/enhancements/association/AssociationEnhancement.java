@@ -349,6 +349,8 @@ return|return
 literal|false
 return|;
 block|}
+annotation|@
+name|Override
 DECL|method|generatesCategoryList
 specifier|public
 name|boolean
@@ -359,6 +361,8 @@ return|return
 literal|true
 return|;
 block|}
+annotation|@
+name|Override
 DECL|method|getCategoryListTermText
 specifier|public
 name|String
@@ -369,6 +373,8 @@ return|return
 name|CATEGORY_LIST_TERM_TEXT
 return|;
 block|}
+annotation|@
+name|Override
 DECL|method|getCategoryListTokenizer
 specifier|public
 name|CategoryListTokenizer
@@ -396,6 +402,8 @@ name|this
 argument_list|)
 return|;
 block|}
+annotation|@
+name|Override
 DECL|method|getCategoryTokenBytes
 specifier|public
 name|byte
@@ -550,6 +558,8 @@ return|return
 name|property
 return|;
 block|}
+annotation|@
+name|Override
 DECL|method|extractCategoryTokenData
 specifier|public
 name|Object
@@ -602,6 +612,8 @@ return|return
 name|i
 return|;
 block|}
+annotation|@
+name|Override
 DECL|method|getRetainableProperty
 specifier|public
 name|Class

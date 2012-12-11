@@ -105,6 +105,8 @@ operator|=
 name|inputIterable
 expr_stmt|;
 block|}
+annotation|@
+name|Override
 DECL|method|iterator
 specifier|public
 name|Iterator
@@ -177,6 +179,8 @@ name|CategoryAttributeImpl
 argument_list|()
 expr_stmt|;
 block|}
+annotation|@
+name|Override
 DECL|method|hasNext
 specifier|public
 name|boolean
@@ -192,6 +196,8 @@ name|hasNext
 argument_list|()
 return|;
 block|}
+annotation|@
+name|Override
 DECL|method|next
 specifier|public
 name|CategoryAttribute
@@ -218,6 +224,8 @@ operator|.
 name|categoryAttributeImpl
 return|;
 block|}
+annotation|@
+name|Override
 DECL|method|remove
 specifier|public
 name|void

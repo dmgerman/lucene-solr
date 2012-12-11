@@ -403,6 +403,8 @@ name|length
 argument_list|()
 expr_stmt|;
 block|}
+annotation|@
+name|Override
 DECL|method|char32At
 specifier|public
 name|int
@@ -427,6 +429,8 @@ name|pos
 argument_list|)
 return|;
 block|}
+annotation|@
+name|Override
 DECL|method|charAt
 specifier|public
 name|char
@@ -443,6 +447,8 @@ name|pos
 index|]
 return|;
 block|}
+annotation|@
+name|Override
 DECL|method|copy
 specifier|public
 name|void
@@ -497,6 +503,8 @@ name|start
 argument_list|)
 expr_stmt|;
 block|}
+annotation|@
+name|Override
 DECL|method|getChars
 specifier|public
 name|void
@@ -534,6 +542,8 @@ name|srcStart
 argument_list|)
 expr_stmt|;
 block|}
+annotation|@
+name|Override
 DECL|method|hasMetaData
 specifier|public
 name|boolean
@@ -544,6 +554,8 @@ return|return
 literal|false
 return|;
 block|}
+annotation|@
+name|Override
 DECL|method|length
 specifier|public
 name|int
@@ -554,6 +566,8 @@ return|return
 name|length
 return|;
 block|}
+annotation|@
+name|Override
 DECL|method|replace
 specifier|public
 name|void
@@ -615,6 +629,8 @@ name|newLength
 argument_list|)
 expr_stmt|;
 block|}
+annotation|@
+name|Override
 DECL|method|replace
 specifier|public
 name|void

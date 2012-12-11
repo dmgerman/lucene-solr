@@ -2993,6 +2993,8 @@ name|bytesUsed
 expr_stmt|;
 block|}
 comment|/* Allocate another int[] from the shared pool */
+annotation|@
+name|Override
 DECL|method|getIntBlock
 specifier|public
 name|int
@@ -3029,6 +3031,8 @@ return|return
 name|b
 return|;
 block|}
+annotation|@
+name|Override
 DECL|method|recycleIntBlocks
 specifier|public
 name|void

@@ -726,6 +726,8 @@ operator|=
 name|bytesUsed
 expr_stmt|;
 block|}
+annotation|@
+name|Override
 DECL|method|getIntBlock
 specifier|public
 name|int

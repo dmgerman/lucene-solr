@@ -112,6 +112,8 @@ name|NAME
 init|=
 literal|"query"
 decl_stmt|;
+annotation|@
+name|Override
 DECL|method|init
 specifier|public
 name|void

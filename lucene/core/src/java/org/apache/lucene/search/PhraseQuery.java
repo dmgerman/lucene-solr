@@ -863,6 +863,8 @@ literal|null
 expr_stmt|;
 block|}
 block|}
+annotation|@
+name|Override
 DECL|method|compareTo
 specifier|public
 name|int

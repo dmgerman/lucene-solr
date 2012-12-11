@@ -94,6 +94,8 @@ name|HighlightingPluginBase
 implements|implements
 name|SolrFormatter
 block|{
+annotation|@
+name|Override
 DECL|method|getFormatter
 specifier|public
 name|Formatter

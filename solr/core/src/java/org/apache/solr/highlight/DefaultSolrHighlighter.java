@@ -532,6 +532,8 @@ operator|=
 name|solrCore
 expr_stmt|;
 block|}
+annotation|@
+name|Override
 DECL|method|init
 specifier|public
 name|void
@@ -2998,6 +3000,8 @@ name|TextFragment
 argument_list|>
 argument_list|()
 block|{
+annotation|@
+name|Override
 specifier|public
 name|int
 name|compare

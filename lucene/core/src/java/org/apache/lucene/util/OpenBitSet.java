@@ -325,6 +325,8 @@ name|nWords
 expr_stmt|;
 block|}
 comment|/** Returns true or false for the specified bit index. */
+annotation|@
+name|Override
 DECL|method|get
 specifier|public
 name|boolean

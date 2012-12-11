@@ -69,6 +69,8 @@ throws|throws
 name|IOException
 function_decl|;
 comment|/** Close this MergeScheduler. */
+annotation|@
+name|Override
 DECL|method|close
 specifier|public
 specifier|abstract

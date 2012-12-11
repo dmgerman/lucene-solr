@@ -51,6 +51,8 @@ name|AbstractTestLZ4CompressionMode
 extends|extends
 name|AbstractTestCompressionMode
 block|{
+annotation|@
+name|Override
 DECL|method|test
 specifier|public
 name|byte

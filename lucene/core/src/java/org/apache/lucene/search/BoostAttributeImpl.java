@@ -52,6 +52,8 @@ name|boost
 init|=
 literal|1.0f
 decl_stmt|;
+annotation|@
+name|Override
 DECL|method|setBoost
 specifier|public
 name|void
@@ -68,6 +70,8 @@ operator|=
 name|boost
 expr_stmt|;
 block|}
+annotation|@
+name|Override
 DECL|method|getBoost
 specifier|public
 name|float

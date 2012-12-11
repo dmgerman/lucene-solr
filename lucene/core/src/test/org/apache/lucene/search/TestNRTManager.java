@@ -1885,6 +1885,8 @@ operator|new
 name|Thread
 argument_list|()
 block|{
+annotation|@
+name|Override
 specifier|public
 name|void
 name|run
@@ -2078,6 +2080,8 @@ operator|new
 name|Thread
 argument_list|()
 block|{
+annotation|@
+name|Override
 specifier|public
 name|void
 name|run
@@ -2222,6 +2226,8 @@ operator|=
 name|signal
 expr_stmt|;
 block|}
+annotation|@
+name|Override
 DECL|method|updateDocument
 specifier|public
 name|void

@@ -154,6 +154,8 @@ return|return
 name|len
 return|;
 block|}
+annotation|@
+name|Override
 DECL|method|length
 specifier|public
 name|int
@@ -176,6 +178,8 @@ operator|.
 name|length
 return|;
 block|}
+annotation|@
+name|Override
 DECL|method|append
 specifier|public
 name|Appendable
@@ -199,6 +203,8 @@ argument_list|()
 argument_list|)
 return|;
 block|}
+annotation|@
+name|Override
 DECL|method|append
 specifier|public
 name|Appendable
@@ -251,6 +257,8 @@ return|return
 name|this
 return|;
 block|}
+annotation|@
+name|Override
 DECL|method|append
 specifier|public
 name|Appendable
@@ -269,6 +277,8 @@ return|return
 name|this
 return|;
 block|}
+annotation|@
+name|Override
 DECL|method|charAt
 specifier|public
 name|char
@@ -305,6 +315,8 @@ operator|=
 name|ch
 expr_stmt|;
 block|}
+annotation|@
+name|Override
 DECL|method|subSequence
 specifier|public
 name|CharSequence
@@ -701,6 +713,8 @@ return|return
 name|newbuf
 return|;
 block|}
+annotation|@
+name|Override
 DECL|method|toString
 specifier|public
 name|String

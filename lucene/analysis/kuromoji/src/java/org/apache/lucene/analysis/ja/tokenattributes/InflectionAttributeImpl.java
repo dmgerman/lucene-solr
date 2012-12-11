@@ -103,6 +103,8 @@ specifier|private
 name|Token
 name|token
 decl_stmt|;
+annotation|@
+name|Override
 DECL|method|getInflectionType
 specifier|public
 name|String
@@ -122,6 +124,8 @@ name|getInflectionType
 argument_list|()
 return|;
 block|}
+annotation|@
+name|Override
 DECL|method|getInflectionForm
 specifier|public
 name|String
@@ -141,6 +145,8 @@ name|getInflectionForm
 argument_list|()
 return|;
 block|}
+annotation|@
+name|Override
 DECL|method|setToken
 specifier|public
 name|void

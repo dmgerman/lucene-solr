@@ -1366,6 +1366,8 @@ argument_list|)
 expr_stmt|;
 block|}
 comment|/**    * When index schema is informed, add dynamic fields.    *    * @param indexSchema The index schema.    */
+annotation|@
+name|Override
 DECL|method|inform
 specifier|public
 name|void
@@ -1391,6 +1393,8 @@ argument_list|)
 expr_stmt|;
 block|}
 comment|/**    * Load the currency config when resource loader initialized.    *    * @param resourceLoader The resource loader.    */
+annotation|@
+name|Override
 DECL|method|inform
 specifier|public
 name|void
@@ -1922,6 +1926,8 @@ name|parser
 argument_list|)
 expr_stmt|;
 block|}
+annotation|@
+name|Override
 DECL|method|getValues
 specifier|public
 name|FunctionValues
@@ -2124,6 +2130,8 @@ argument_list|)
 return|;
 block|}
 block|}
+annotation|@
+name|Override
 specifier|public
 name|long
 name|longVal
@@ -2370,6 +2378,8 @@ name|targetFractionDigits
 argument_list|)
 return|;
 block|}
+annotation|@
+name|Override
 specifier|public
 name|int
 name|intVal
@@ -2388,6 +2398,8 @@ name|doc
 argument_list|)
 return|;
 block|}
+annotation|@
+name|Override
 specifier|public
 name|double
 name|doubleVal
@@ -2406,6 +2418,8 @@ name|doc
 argument_list|)
 return|;
 block|}
+annotation|@
+name|Override
 specifier|public
 name|float
 name|floatVal
@@ -2424,6 +2438,8 @@ name|doc
 argument_list|)
 return|;
 block|}
+annotation|@
+name|Override
 specifier|public
 name|String
 name|strVal
@@ -2444,6 +2460,8 @@ argument_list|)
 argument_list|)
 return|;
 block|}
+annotation|@
+name|Override
 specifier|public
 name|String
 name|toString
@@ -2772,6 +2790,8 @@ name|ResourceLoader
 name|loader
 decl_stmt|;
 comment|/**    * Returns the currently known exchange rate between two currencies. If a direct rate has been loaded,    * it is used. Otherwise, if a rate is known to convert the target currency to the source, the inverse    * exchange rate is computed.    *    * @param sourceCurrencyCode The source currency being converted from.    * @param targetCurrencyCode The target currency being converted to.    * @return The exchange rate.    * @throws SolrException if the requested currency pair cannot be found    */
+annotation|@
+name|Override
 DECL|method|getExchangeRate
 specifier|public
 name|double
@@ -3108,6 +3128,8 @@ else|:
 literal|0
 return|;
 block|}
+annotation|@
+name|Override
 DECL|method|toString
 specifier|public
 name|String
@@ -4368,6 +4390,8 @@ name|targetCurrencyCode
 argument_list|)
 return|;
 block|}
+annotation|@
+name|Override
 DECL|method|toString
 specifier|public
 name|String

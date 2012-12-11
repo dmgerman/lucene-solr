@@ -294,6 +294,8 @@ name|ref
 return|;
 block|}
 comment|/**     *<p>     * Closes this ReferenceManager to prevent future {@link #acquire() acquiring}. A     * reference manager should be closed if the reference to the managed resource     * should be disposed or the application using the {@link ReferenceManager}     * is shutting down. The managed resource might not be released immediately,     * if the {@link ReferenceManager} user is holding on to a previously     * {@link #acquire() acquired} reference. The resource will be released once     * when the last reference is {@link #release(Object) released}. Those     * references can still be used as if the manager was still active.     *</p>     *<p>     * Applications should not {@link #acquire() acquire} new references from this     * manager once this method has been called. {@link #acquire() Acquiring} a     * resource on a closed {@link ReferenceManager} will throw an     * {@link AlreadyClosedException}.     *</p>     *      * @throws IOException     *           if the underlying reader of the current reference could not be closed    */
+annotation|@
+name|Override
 DECL|method|close
 specifier|public
 specifier|final

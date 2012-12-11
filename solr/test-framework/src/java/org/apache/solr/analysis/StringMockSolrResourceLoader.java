@@ -107,6 +107,8 @@ operator|=
 name|text
 expr_stmt|;
 block|}
+annotation|@
+name|Override
 DECL|method|newInstance
 specifier|public
 parameter_list|<
@@ -129,6 +131,8 @@ return|return
 literal|null
 return|;
 block|}
+annotation|@
+name|Override
 DECL|method|openResource
 specifier|public
 name|InputStream

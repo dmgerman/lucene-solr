@@ -156,6 +156,8 @@ name|image
 expr_stmt|;
 block|}
 comment|/**    * Returns the image.    */
+annotation|@
+name|Override
 DECL|method|toString
 specifier|public
 name|String

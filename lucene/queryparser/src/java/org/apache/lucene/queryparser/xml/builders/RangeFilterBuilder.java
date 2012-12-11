@@ -124,6 +124,8 @@ name|RangeFilterBuilder
 implements|implements
 name|FilterBuilder
 block|{
+annotation|@
+name|Override
 DECL|method|getFilter
 specifier|public
 name|Filter

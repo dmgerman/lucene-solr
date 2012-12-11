@@ -211,6 +211,8 @@ name|CONTENT_TYPE_PHP_UTF8
 init|=
 literal|"text/x-php-serialized;charset=UTF-8"
 decl_stmt|;
+annotation|@
+name|Override
 DECL|method|init
 specifier|public
 name|void
@@ -220,6 +222,8 @@ name|NamedList
 name|n
 parameter_list|)
 block|{   }
+annotation|@
+name|Override
 DECL|method|write
 specifier|public
 name|void
@@ -267,6 +271,8 @@ argument_list|()
 expr_stmt|;
 block|}
 block|}
+annotation|@
+name|Override
 DECL|method|getContentType
 specifier|public
 name|String
@@ -413,6 +419,8 @@ name|val
 argument_list|)
 expr_stmt|;
 block|}
+annotation|@
+name|Override
 DECL|method|writeStartDocumentList
 specifier|public
 name|void
@@ -512,6 +520,8 @@ name|size
 argument_list|)
 expr_stmt|;
 block|}
+annotation|@
+name|Override
 DECL|method|writeEndDocumentList
 specifier|public
 name|void

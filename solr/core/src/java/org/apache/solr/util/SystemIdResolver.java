@@ -295,6 +295,8 @@ operator|new
 name|URIResolver
 argument_list|()
 block|{
+annotation|@
+name|Override
 specifier|public
 name|Source
 name|resolve
@@ -376,6 +378,8 @@ operator|new
 name|XMLResolver
 argument_list|()
 block|{
+annotation|@
+name|Override
 specifier|public
 name|Object
 name|resolveEntity
@@ -539,6 +543,8 @@ name|uri
 return|;
 block|}
 comment|// *** EntityResolver(2) methods:
+annotation|@
+name|Override
 DECL|method|getExternalSubset
 specifier|public
 name|InputSource
@@ -555,6 +561,8 @@ return|return
 literal|null
 return|;
 block|}
+annotation|@
+name|Override
 DECL|method|resolveEntity
 specifier|public
 name|InputSource
@@ -742,6 +750,8 @@ literal|null
 return|;
 block|}
 block|}
+annotation|@
+name|Override
 DECL|method|resolveEntity
 specifier|public
 name|InputSource

@@ -163,6 +163,8 @@ argument_list|()
 argument_list|)
 return|;
 block|}
+annotation|@
+name|Override
 DECL|method|createSlicer
 specifier|public
 name|IndexInputSlicer

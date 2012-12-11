@@ -476,6 +476,8 @@ literal|false
 argument_list|)
 expr_stmt|;
 block|}
+annotation|@
+name|Override
 DECL|method|nextToken
 specifier|public
 name|short
@@ -596,6 +598,8 @@ operator|.
 name|TT_EOF
 return|;
 block|}
+annotation|@
+name|Override
 DECL|method|setTermBuffer
 specifier|public
 name|void
@@ -623,6 +627,8 @@ argument_list|()
 argument_list|)
 expr_stmt|;
 block|}
+annotation|@
+name|Override
 DECL|method|reset
 specifier|public
 name|void

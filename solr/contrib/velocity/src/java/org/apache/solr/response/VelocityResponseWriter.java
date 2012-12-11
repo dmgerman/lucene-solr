@@ -230,6 +230,8 @@ name|QueryResponseWriter
 block|{
 comment|// TODO: maybe pass this Logger to the template for logging from there?
 comment|//  private static final Logger log = LoggerFactory.getLogger(VelocityResponseWriter.class);
+annotation|@
+name|Override
 DECL|method|write
 specifier|public
 name|void
@@ -1453,6 +1455,8 @@ return|return
 name|template
 return|;
 block|}
+annotation|@
+name|Override
 DECL|method|getContentType
 specifier|public
 name|String
@@ -1545,6 +1549,8 @@ operator|+
 literal|"\"}"
 return|;
 block|}
+annotation|@
+name|Override
 DECL|method|init
 specifier|public
 name|void

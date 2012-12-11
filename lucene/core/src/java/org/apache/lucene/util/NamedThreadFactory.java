@@ -215,6 +215,8 @@ name|prefix
 return|;
 block|}
 comment|/**    * Creates a new {@link Thread}    *     * @see java.util.concurrent.ThreadFactory#newThread(java.lang.Runnable)    */
+annotation|@
+name|Override
 DECL|method|newThread
 specifier|public
 name|Thread

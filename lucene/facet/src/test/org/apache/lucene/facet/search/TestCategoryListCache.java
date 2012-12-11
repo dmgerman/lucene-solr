@@ -625,6 +625,8 @@ operator|new
 name|CategoryListIterator
 argument_list|()
 block|{
+annotation|@
+name|Override
 specifier|public
 name|boolean
 name|skipTo
@@ -644,6 +646,8 @@ name|docId
 argument_list|)
 return|;
 block|}
+annotation|@
+name|Override
 specifier|public
 name|long
 name|nextCategory
@@ -686,6 +690,8 @@ operator|+
 literal|1
 return|;
 block|}
+annotation|@
+name|Override
 specifier|public
 name|boolean
 name|init

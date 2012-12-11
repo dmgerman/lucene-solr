@@ -738,6 +738,8 @@ name|fillSortFields
 argument_list|)
 expr_stmt|;
 block|}
+annotation|@
+name|Override
 DECL|method|retrieveGroup
 specifier|protected
 name|SearchGroupDocs
@@ -766,6 +768,8 @@ argument_list|)
 argument_list|)
 return|;
 block|}
+annotation|@
+name|Override
 DECL|method|setDocValuesSources
 specifier|protected
 name|void
@@ -873,6 +877,8 @@ name|fillSortFields
 argument_list|)
 expr_stmt|;
 block|}
+annotation|@
+name|Override
 DECL|method|retrieveGroup
 specifier|protected
 name|SearchGroupDocs
@@ -901,6 +907,8 @@ argument_list|)
 argument_list|)
 return|;
 block|}
+annotation|@
+name|Override
 DECL|method|setDocValuesSources
 specifier|protected
 name|void
@@ -1018,6 +1026,8 @@ name|fillSortFields
 argument_list|)
 expr_stmt|;
 block|}
+annotation|@
+name|Override
 DECL|method|retrieveGroup
 specifier|protected
 name|SearchGroupDocs
@@ -1215,6 +1225,8 @@ name|length
 index|]
 expr_stmt|;
 block|}
+annotation|@
+name|Override
 DECL|method|retrieveGroup
 specifier|protected
 name|SearchGroupDocs

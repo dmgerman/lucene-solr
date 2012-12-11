@@ -60,6 +60,8 @@ operator|=
 name|bi
 expr_stmt|;
 block|}
+annotation|@
+name|Override
 DECL|method|findStartOffset
 specifier|public
 name|int
@@ -115,6 +117,8 @@ name|previous
 argument_list|()
 return|;
 block|}
+annotation|@
+name|Override
 DECL|method|findEndOffset
 specifier|public
 name|int

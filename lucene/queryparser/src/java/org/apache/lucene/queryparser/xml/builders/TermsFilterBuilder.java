@@ -254,6 +254,8 @@ name|analyzer
 expr_stmt|;
 block|}
 comment|/*     * (non-Javadoc)     *     * @see org.apache.lucene.xmlparser.FilterBuilder#process(org.w3c.dom.Element)     */
+annotation|@
+name|Override
 DECL|method|getFilter
 specifier|public
 name|Filter

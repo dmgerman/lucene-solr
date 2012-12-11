@@ -319,6 +319,8 @@ operator|new
 name|ContentStream
 argument_list|()
 block|{
+annotation|@
+name|Override
 specifier|public
 name|String
 name|getName
@@ -328,6 +330,8 @@ return|return
 literal|null
 return|;
 block|}
+annotation|@
+name|Override
 specifier|public
 name|String
 name|getSourceInfo
@@ -337,6 +341,8 @@ return|return
 literal|"javabin"
 return|;
 block|}
+annotation|@
+name|Override
 specifier|public
 name|String
 name|getContentType
@@ -346,6 +352,8 @@ return|return
 literal|"application/javabin"
 return|;
 block|}
+annotation|@
+name|Override
 specifier|public
 name|Long
 name|getSize
@@ -363,6 +371,8 @@ argument_list|()
 argument_list|)
 return|;
 block|}
+annotation|@
+name|Override
 specifier|public
 name|InputStream
 name|getStream
@@ -386,6 +396,8 @@ argument_list|()
 argument_list|)
 return|;
 block|}
+annotation|@
+name|Override
 specifier|public
 name|Reader
 name|getReader

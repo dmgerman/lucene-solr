@@ -152,6 +152,8 @@ expr_stmt|;
 comment|/* note uh: do not fetch the first char here,      *          because this might block the method!      */
 block|}
 comment|/**    * Reads the next char from the input stream.    * @return the next char or END_OF_STREAM if end of stream has been reached.    */
+annotation|@
+name|Override
 DECL|method|read
 specifier|public
 name|int
@@ -230,6 +232,8 @@ name|lastChar
 return|;
 block|}
 comment|/**    * Non-blocking reading of len chars into buffer buf starting    * at bufferposition off.    *     * performs an iteratative read on the underlying stream    * as long as the following conditions hold:    *   - less than len chars have been read    *   - end of stream has not been reached    *   - next read is not blocking    *     * @return nof chars actually read or END_OF_STREAM    */
+annotation|@
+name|Override
 DECL|method|read
 specifier|public
 name|int
@@ -466,6 +470,8 @@ argument_list|()
 return|;
 block|}
 comment|/**   * @return A String containing the contents of the line, not    *         including any line-termination characters, or null    *         if the end of the stream has been reached   */
+annotation|@
+name|Override
 DECL|method|readLine
 specifier|public
 name|String
@@ -625,6 +631,8 @@ argument_list|()
 return|;
 block|}
 comment|/**    * Skips char in the stream    *     * ATTENTION: invalidates the line-counter !!!!!    *     * @return nof skiped chars    */
+annotation|@
+name|Override
 DECL|method|skip
 specifier|public
 name|long
@@ -856,6 +864,8 @@ literal|1
 return|;
 block|}
 block|}
+annotation|@
+name|Override
 DECL|method|markSupported
 specifier|public
 name|boolean

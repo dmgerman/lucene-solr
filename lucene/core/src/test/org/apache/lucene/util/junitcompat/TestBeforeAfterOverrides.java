@@ -143,6 +143,8 @@ extends|extends
 name|Before2
 block|{
 annotation|@
+name|Override
+annotation|@
 name|Before
 DECL|method|before
 specifier|public

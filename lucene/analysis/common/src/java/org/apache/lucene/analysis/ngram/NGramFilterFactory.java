@@ -183,6 +183,8 @@ name|DEFAULT_MIN_NGRAM_SIZE
 operator|)
 expr_stmt|;
 block|}
+annotation|@
+name|Override
 DECL|method|create
 specifier|public
 name|NGramTokenFilter

@@ -174,6 +174,8 @@ name|this
 argument_list|)
 expr_stmt|;
 block|}
+annotation|@
+name|Override
 DECL|method|close
 specifier|public
 specifier|synchronized
@@ -219,6 +221,8 @@ argument_list|)
 throw|;
 block|}
 block|}
+annotation|@
+name|Override
 DECL|method|waiting
 specifier|public
 specifier|synchronized

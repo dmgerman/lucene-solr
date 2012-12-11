@@ -63,6 +63,8 @@ literal|2
 argument_list|)
 expr_stmt|;
 block|}
+annotation|@
+name|Override
 DECL|method|getDistance
 specifier|public
 name|float

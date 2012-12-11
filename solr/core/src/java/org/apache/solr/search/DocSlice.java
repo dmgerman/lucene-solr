@@ -139,6 +139,8 @@ operator|=
 name|maxScore
 expr_stmt|;
 block|}
+annotation|@
+name|Override
 DECL|method|subset
 specifier|public
 name|DocList
@@ -259,6 +261,8 @@ name|maxScore
 argument_list|)
 return|;
 block|}
+annotation|@
+name|Override
 DECL|method|hasScores
 specifier|public
 name|boolean
@@ -271,6 +275,8 @@ operator|!=
 literal|null
 return|;
 block|}
+annotation|@
+name|Override
 DECL|method|maxScore
 specifier|public
 name|float
@@ -281,6 +287,8 @@ return|return
 name|maxScore
 return|;
 block|}
+annotation|@
+name|Override
 DECL|method|offset
 specifier|public
 name|int
@@ -291,6 +299,8 @@ return|return
 name|offset
 return|;
 block|}
+annotation|@
+name|Override
 DECL|method|size
 specifier|public
 name|int
@@ -301,6 +311,8 @@ return|return
 name|len
 return|;
 block|}
+annotation|@
+name|Override
 DECL|method|matches
 specifier|public
 name|int
@@ -311,6 +323,8 @@ return|return
 name|matches
 return|;
 block|}
+annotation|@
+name|Override
 DECL|method|memSize
 specifier|public
 name|long
@@ -345,6 +359,8 @@ operator|+
 literal|24
 return|;
 block|}
+annotation|@
+name|Override
 DECL|method|exists
 specifier|public
 name|boolean
@@ -395,6 +411,8 @@ return|;
 block|}
 comment|// Hmmm, maybe I could have reused the scorer interface here...
 comment|// except that it carries Similarity baggage...
+annotation|@
+name|Override
 DECL|method|iterator
 specifier|public
 name|DocIterator
@@ -419,6 +437,8 @@ name|offset
 operator|+
 name|len
 decl_stmt|;
+annotation|@
+name|Override
 specifier|public
 name|boolean
 name|hasNext
@@ -430,6 +450,8 @@ operator|<
 name|end
 return|;
 block|}
+annotation|@
+name|Override
 specifier|public
 name|Integer
 name|next
@@ -441,6 +463,8 @@ argument_list|()
 return|;
 block|}
 comment|/**        * The remove  operation is not supported by this Iterator.        */
+annotation|@
+name|Override
 specifier|public
 name|void
 name|remove
@@ -454,6 +478,8 @@ literal|"The remove  operation is not supported by this Iterator."
 argument_list|)
 throw|;
 block|}
+annotation|@
+name|Override
 specifier|public
 name|int
 name|nextDoc
@@ -467,6 +493,8 @@ operator|++
 index|]
 return|;
 block|}
+annotation|@
+name|Override
 specifier|public
 name|float
 name|score

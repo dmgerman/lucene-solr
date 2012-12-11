@@ -257,6 +257,8 @@ literal|0L
 argument_list|)
 expr_stmt|;
 block|}
+annotation|@
+name|Override
 DECL|method|ramBytesUsed
 specifier|public
 name|long

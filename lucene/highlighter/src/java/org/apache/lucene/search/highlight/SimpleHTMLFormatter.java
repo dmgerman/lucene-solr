@@ -97,6 +97,8 @@ argument_list|)
 expr_stmt|;
 block|}
 comment|/* (non-Javadoc)    * @see org.apache.lucene.search.highlight.Formatter#highlightTerm(java.lang.String, org.apache.lucene.search.highlight.TokenGroup)    */
+annotation|@
+name|Override
 DECL|method|highlightTerm
 specifier|public
 name|String

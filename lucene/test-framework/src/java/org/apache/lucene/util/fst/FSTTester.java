@@ -1097,6 +1097,8 @@ operator|=
 name|output
 expr_stmt|;
 block|}
+annotation|@
+name|Override
 DECL|method|compareTo
 specifier|public
 name|int

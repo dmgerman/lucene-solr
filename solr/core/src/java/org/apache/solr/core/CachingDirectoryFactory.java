@@ -248,6 +248,8 @@ name|doneWithDir
 init|=
 literal|false
 decl_stmt|;
+annotation|@
+name|Override
 DECL|method|toString
 specifier|public
 name|String
@@ -866,6 +868,8 @@ expr_stmt|;
 block|}
 block|}
 block|}
+annotation|@
+name|Override
 DECL|method|create
 specifier|protected
 specifier|abstract
@@ -1162,6 +1166,8 @@ return|;
 block|}
 block|}
 comment|/*    * (non-Javadoc)    *     * @see    * org.apache.solr.core.DirectoryFactory#incRef(org.apache.lucene.store.Directory    * )    */
+annotation|@
+name|Override
 DECL|method|incRef
 specifier|public
 name|void
@@ -1210,6 +1216,8 @@ operator|++
 expr_stmt|;
 block|}
 block|}
+annotation|@
+name|Override
 DECL|method|init
 specifier|public
 name|void

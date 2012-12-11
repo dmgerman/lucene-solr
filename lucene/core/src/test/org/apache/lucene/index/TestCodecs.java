@@ -716,6 +716,8 @@ name|terms
 argument_list|)
 expr_stmt|;
 block|}
+annotation|@
+name|Override
 DECL|method|compareTo
 specifier|public
 name|int
@@ -991,6 +993,8 @@ operator|=
 name|positions
 expr_stmt|;
 block|}
+annotation|@
+name|Override
 DECL|method|compareTo
 specifier|public
 name|int

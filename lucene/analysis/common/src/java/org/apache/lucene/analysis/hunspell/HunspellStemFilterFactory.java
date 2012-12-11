@@ -257,6 +257,8 @@ init|=
 literal|false
 decl_stmt|;
 comment|/**    * Loads the hunspell dictionary and affix files defined in the configuration    *      * @param loader ResourceLoader used to load the files    */
+annotation|@
+name|Override
 DECL|method|inform
 specifier|public
 name|void
@@ -579,6 +581,8 @@ expr_stmt|;
 block|}
 block|}
 comment|/**    * Creates an instance of {@link org.apache.lucene.analysis.hunspell.HunspellStemFilter} that will filter the given    * TokenStream    *    * @param tokenStream TokenStream that will be filtered    * @return HunspellStemFilter that filters the TokenStream     */
+annotation|@
+name|Override
 DECL|method|create
 specifier|public
 name|TokenStream

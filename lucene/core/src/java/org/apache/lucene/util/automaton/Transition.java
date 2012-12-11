@@ -631,6 +631,8 @@ argument_list|<
 name|Transition
 argument_list|>
 block|{
+annotation|@
+name|Override
 DECL|method|compare
 specifier|public
 name|int
@@ -776,6 +778,8 @@ argument_list|<
 name|Transition
 argument_list|>
 block|{
+annotation|@
+name|Override
 DECL|method|compare
 specifier|public
 name|int

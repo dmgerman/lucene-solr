@@ -2505,6 +2505,8 @@ expr_stmt|;
 block|}
 block|}
 comment|/**    * Commits all changes to an index, waits for pending merges    * to complete, and closes all associated files.      *<p>    * This is a "slow graceful shutdown" which may take a long time    * especially if a big merge is pending: If you only want to close    * resources use {@link #rollback()}. If you only want to commit    * pending changes and close resources see {@link #close(boolean)}.    *<p>    * Note that this may be a costly    * operation, so, try to re-use a single writer instead of    * closing and opening a new one.  See {@link #commit()} for    * caveats about write caching done by some IO devices.    *    *<p> If an Exception is hit during close, eg due to disk    * full or some other reason, then both the on-disk index    * and the internal state of the IndexWriter instance will    * be consistent.  However, the close will not be complete    * even though part of it (flushing buffered documents)    * may have succeeded, so the write lock will still be    * held.</p>    *    *<p> If you can correct the underlying cause (eg free up    * some disk space) then you can call close() again.    * Failing that, if you want to force the write lock to be    * released (dangerous, because you may then lose buffered    * docs in the IndexWriter instance) then you can do    * something like this:</p>    *    *<pre class="prettyprint">    * try {    *   writer.close();    * } finally {    *   if (IndexWriter.isLocked(directory)) {    *     IndexWriter.unlock(directory);    *   }    * }    *</pre>    *    * after which, you must be certain not to use the writer    * instance anymore.</p>    *    *<p><b>NOTE</b>: if this method hits an OutOfMemoryError    * you should immediately close the writer, again.  See<a    * href="#OOME">above</a> for details.</p>    *    * @throws IOException if there is a low-level IO error    */
+annotation|@
+name|Override
 DECL|method|close
 specifier|public
 name|void
@@ -5319,6 +5321,8 @@ literal|0
 return|;
 block|}
 comment|/**    * Close the<code>IndexWriter</code> without committing    * any changes that have occurred since the last commit    * (or since it was opened, if commit hasn't been called).    * This removes any temporary files that had been created,    * after which the state of the index will be the same as    * it was when commit() was last called or when this    * writer was first opened.  This also clears a previous    * call to {@link #prepareCommit}.    * @throws IOException if there is a low-level IO error    */
+annotation|@
+name|Override
 DECL|method|rollback
 specifier|public
 name|void
@@ -7669,6 +7673,8 @@ throws|throws
 name|IOException
 block|{}
 comment|/**<p>Expert: prepare for commit.  This does the    *  first phase of 2-phase commit. This method does all    *  steps necessary to commit changes since this writer    *  was opened: flushes pending added and deleted docs,    *  syncs the index files, writes most of next segments_N    *  file.  After calling this you must call either {@link    *  #commit()} to finish the commit, or {@link    *  #rollback()} to revert the commit and undo all changes    *  done since the writer was opened.</p>    *    *<p>You can also just call {@link #commit()} directly    *  without prepareCommit first in which case that method    *  will internally call prepareCommit.    *    *<p><b>NOTE</b>: if this method hits an OutOfMemoryError    *  you should immediately close the writer.  See<a    *  href="#OOME">above</a> for details.</p>    */
+annotation|@
+name|Override
 DECL|method|prepareCommit
 specifier|public
 specifier|final
@@ -8080,6 +8086,8 @@ name|Object
 argument_list|()
 decl_stmt|;
 comment|/**    *<p>Commits all pending changes (added& deleted    * documents, segment merges, added    * indexes, etc.) to the index, and syncs all referenced    * index files, such that a reader will see the changes    * and the index updates will survive an OS or machine    * crash or power loss.  Note that this does not wait for    * any running background merges to finish.  This may be a    * costly operation, so you should test the cost in your    * application and do it only when really necessary.</p>    *    *<p> Note that this operation calls Directory.sync on    * the index files.  That call should not return until the    * file contents& metadata are on stable storage.  For    * FSDirectory, this calls the OS's fsync.  But, beware:    * some hardware devices may in fact cache writes even    * during fsync, and return before the bits are actually    * on stable storage, to give the appearance of faster    * performance.  If you have such a device, and it does    * not have a battery backup (for example) then on power    * loss it may still lose data.  Lucene cannot guarantee    * consistency on such devices.</p>    *    *<p><b>NOTE</b>: if this method hits an OutOfMemoryError    * you should immediately close the writer.  See<a    * href="#OOME">above</a> for details.</p>    *    * @see #prepareCommit    */
+annotation|@
+name|Override
 DECL|method|commit
 specifier|public
 specifier|final

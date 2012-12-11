@@ -562,6 +562,8 @@ name|type
 argument_list|)
 expr_stmt|;
 block|}
+annotation|@
+name|Override
 DECL|method|getDocGroupValue
 specifier|protected
 name|Long
@@ -580,6 +582,8 @@ name|doc
 argument_list|)
 return|;
 block|}
+annotation|@
+name|Override
 DECL|method|copyDocGroupValue
 specifier|protected
 name|Long
@@ -596,6 +600,8 @@ return|return
 name|groupValue
 return|;
 block|}
+annotation|@
+name|Override
 DECL|method|setDocValuesSources
 specifier|protected
 name|void
@@ -669,6 +675,8 @@ name|type
 argument_list|)
 expr_stmt|;
 block|}
+annotation|@
+name|Override
 DECL|method|getDocGroupValue
 specifier|protected
 name|Double
@@ -687,6 +695,8 @@ name|doc
 argument_list|)
 return|;
 block|}
+annotation|@
+name|Override
 DECL|method|copyDocGroupValue
 specifier|protected
 name|Double
@@ -703,6 +713,8 @@ return|return
 name|groupValue
 return|;
 block|}
+annotation|@
+name|Override
 DECL|method|setDocValuesSources
 specifier|protected
 name|void
@@ -786,6 +798,8 @@ name|type
 argument_list|)
 expr_stmt|;
 block|}
+annotation|@
+name|Override
 DECL|method|getDocGroupValue
 specifier|protected
 name|BytesRef
@@ -806,6 +820,8 @@ name|spare
 argument_list|)
 return|;
 block|}
+annotation|@
+name|Override
 DECL|method|copyDocGroupValue
 specifier|protected
 name|BytesRef

@@ -291,6 +291,8 @@ operator|.
 name|START_OF_HEADING_MARKER
 decl_stmt|;
 comment|/**    * {@inheritDoc}    */
+annotation|@
+name|Override
 DECL|method|constructRequest
 specifier|public
 name|ShardRequest

@@ -1012,6 +1012,8 @@ operator|new
 name|OutputStream
 argument_list|()
 block|{
+annotation|@
+name|Override
 specifier|public
 name|void
 name|write

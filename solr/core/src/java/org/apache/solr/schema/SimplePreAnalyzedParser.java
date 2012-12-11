@@ -412,6 +412,8 @@ name|clear
 argument_list|()
 expr_stmt|;
 block|}
+annotation|@
+name|Override
 DECL|method|toString
 specifier|public
 name|String
@@ -2294,6 +2296,8 @@ return|return
 name|resState
 return|;
 block|}
+annotation|@
+name|Override
 DECL|method|toFormattedString
 specifier|public
 name|String

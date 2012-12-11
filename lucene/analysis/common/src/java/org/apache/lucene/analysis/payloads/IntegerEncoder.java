@@ -60,6 +60,8 @@ name|AbstractEncoder
 implements|implements
 name|PayloadEncoder
 block|{
+annotation|@
+name|Override
 DECL|method|encode
 specifier|public
 name|BytesRef

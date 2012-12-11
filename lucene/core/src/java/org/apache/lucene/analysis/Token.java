@@ -557,6 +557,8 @@ name|end
 expr_stmt|;
 block|}
 comment|/**    * {@inheritDoc}    * @see PositionIncrementAttribute    */
+annotation|@
+name|Override
 DECL|method|setPositionIncrement
 specifier|public
 name|void
@@ -589,6 +591,8 @@ name|positionIncrement
 expr_stmt|;
 block|}
 comment|/**    * {@inheritDoc}    * @see PositionIncrementAttribute    */
+annotation|@
+name|Override
 DECL|method|getPositionIncrement
 specifier|public
 name|int
@@ -632,6 +636,8 @@ name|positionLength
 return|;
 block|}
 comment|/**    * {@inheritDoc}    * @see OffsetAttribute    */
+annotation|@
+name|Override
 DECL|method|startOffset
 specifier|public
 specifier|final
@@ -644,6 +650,8 @@ name|startOffset
 return|;
 block|}
 comment|/**    * {@inheritDoc}    * @see OffsetAttribute    */
+annotation|@
+name|Override
 DECL|method|endOffset
 specifier|public
 specifier|final
@@ -656,6 +664,8 @@ name|endOffset
 return|;
 block|}
 comment|/**    * {@inheritDoc}    * @see OffsetAttribute    */
+annotation|@
+name|Override
 DECL|method|setOffset
 specifier|public
 name|void
@@ -689,6 +699,8 @@ name|endOffset
 expr_stmt|;
 block|}
 comment|/**    * {@inheritDoc}    * @see TypeAttribute    */
+annotation|@
+name|Override
 DECL|method|type
 specifier|public
 specifier|final
@@ -701,6 +713,8 @@ name|type
 return|;
 block|}
 comment|/**    * {@inheritDoc}    * @see TypeAttribute    */
+annotation|@
+name|Override
 DECL|method|setType
 specifier|public
 specifier|final
@@ -719,6 +733,8 @@ name|type
 expr_stmt|;
 block|}
 comment|/**    * {@inheritDoc}    * @see FlagsAttribute    */
+annotation|@
+name|Override
 DECL|method|getFlags
 specifier|public
 name|int
@@ -730,6 +746,8 @@ name|flags
 return|;
 block|}
 comment|/**    * {@inheritDoc}    * @see FlagsAttribute    */
+annotation|@
+name|Override
 DECL|method|setFlags
 specifier|public
 name|void
@@ -747,6 +765,8 @@ name|flags
 expr_stmt|;
 block|}
 comment|/**    * {@inheritDoc}    * @see PayloadAttribute    */
+annotation|@
+name|Override
 DECL|method|getPayload
 specifier|public
 name|BytesRef
@@ -760,6 +780,8 @@ name|payload
 return|;
 block|}
 comment|/**    * {@inheritDoc}    * @see PayloadAttribute    */
+annotation|@
+name|Override
 DECL|method|setPayload
 specifier|public
 name|void

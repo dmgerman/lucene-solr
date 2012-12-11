@@ -588,6 +588,8 @@ argument_list|()
 argument_list|)
 expr_stmt|;
 block|}
+annotation|@
+name|Override
 DECL|method|collect
 specifier|public
 name|void
@@ -629,6 +631,8 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
+annotation|@
+name|Override
 DECL|method|getGroups
 specifier|public
 name|Collection
@@ -642,6 +646,8 @@ return|return
 name|groups
 return|;
 block|}
+annotation|@
+name|Override
 DECL|method|setDocValuesSources
 specifier|protected
 name|void
@@ -713,6 +719,8 @@ argument_list|()
 argument_list|)
 expr_stmt|;
 block|}
+annotation|@
+name|Override
 DECL|method|collect
 specifier|public
 name|void
@@ -754,6 +762,8 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
+annotation|@
+name|Override
 DECL|method|getGroups
 specifier|public
 name|Collection
@@ -767,6 +777,8 @@ return|return
 name|groups
 return|;
 block|}
+annotation|@
+name|Override
 DECL|method|setDocValuesSources
 specifier|protected
 name|void
@@ -848,6 +860,8 @@ argument_list|()
 argument_list|)
 expr_stmt|;
 block|}
+annotation|@
+name|Override
 DECL|method|collect
 specifier|public
 name|void
@@ -896,6 +910,8 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
+annotation|@
+name|Override
 DECL|method|getGroups
 specifier|public
 name|Collection
@@ -909,6 +925,8 @@ return|return
 name|groups
 return|;
 block|}
+annotation|@
+name|Override
 DECL|method|setDocValuesSources
 specifier|protected
 name|void
@@ -1012,6 +1030,8 @@ literal|1
 argument_list|)
 expr_stmt|;
 block|}
+annotation|@
+name|Override
 DECL|method|collect
 specifier|public
 name|void
@@ -1074,6 +1094,8 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
+annotation|@
+name|Override
 DECL|method|getGroups
 specifier|public
 name|Collection
@@ -1087,6 +1109,8 @@ return|return
 name|groups
 return|;
 block|}
+annotation|@
+name|Override
 DECL|method|setDocValuesSources
 specifier|protected
 name|void

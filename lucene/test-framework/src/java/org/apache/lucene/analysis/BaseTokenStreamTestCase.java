@@ -368,6 +368,8 @@ name|clearCalled
 init|=
 literal|false
 decl_stmt|;
+annotation|@
+name|Override
 DECL|method|getAndResetClearCalled
 specifier|public
 name|boolean

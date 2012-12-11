@@ -586,6 +586,8 @@ operator|new
 name|BlockReader
 argument_list|()
 block|{
+annotation|@
+name|Override
 specifier|public
 name|void
 name|seek
@@ -594,6 +596,8 @@ name|long
 name|pos
 parameter_list|)
 block|{}
+annotation|@
+name|Override
 specifier|public
 name|int
 name|readBlock

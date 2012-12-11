@@ -202,6 +202,8 @@ expr_stmt|;
 block|}
 block|}
 comment|/**    * Save the args and pass them to each standard handler    */
+annotation|@
+name|Override
 DECL|method|init
 specifier|public
 name|void
@@ -218,6 +220,8 @@ operator|=
 name|args
 expr_stmt|;
 block|}
+annotation|@
+name|Override
 DECL|method|inform
 specifier|public
 name|void
@@ -509,6 +513,8 @@ block|}
 block|}
 block|}
 block|}
+annotation|@
+name|Override
 DECL|method|handleRequest
 specifier|public
 name|void
@@ -536,6 +542,8 @@ argument_list|)
 throw|;
 block|}
 comment|//////////////////////// SolrInfoMBeans methods //////////////////////
+annotation|@
+name|Override
 DECL|method|getDescription
 specifier|public
 name|String
@@ -546,6 +554,8 @@ return|return
 literal|"Register Standard Admin Handlers"
 return|;
 block|}
+annotation|@
+name|Override
 DECL|method|getVersion
 specifier|public
 name|String
@@ -563,6 +573,8 @@ name|getSpecificationVersion
 argument_list|()
 return|;
 block|}
+annotation|@
+name|Override
 DECL|method|getSource
 specifier|public
 name|String
@@ -573,6 +585,8 @@ return|return
 literal|"$URL$"
 return|;
 block|}
+annotation|@
+name|Override
 DECL|method|getCategory
 specifier|public
 name|Category
@@ -585,6 +599,8 @@ operator|.
 name|QUERYHANDLER
 return|;
 block|}
+annotation|@
+name|Override
 DECL|method|getDocs
 specifier|public
 name|URL
@@ -596,6 +612,8 @@ return|return
 literal|null
 return|;
 block|}
+annotation|@
+name|Override
 DECL|method|getName
 specifier|public
 name|String
@@ -612,6 +630,8 @@ name|getName
 argument_list|()
 return|;
 block|}
+annotation|@
+name|Override
 DECL|method|getStatistics
 specifier|public
 name|NamedList

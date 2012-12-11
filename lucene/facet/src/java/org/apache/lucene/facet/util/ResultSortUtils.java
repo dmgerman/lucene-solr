@@ -638,6 +638,8 @@ operator|=
 name|accending
 expr_stmt|;
 block|}
+annotation|@
+name|Override
 DECL|method|insertWithOverflow
 specifier|public
 name|FacetResultNode
@@ -658,6 +660,8 @@ return|return
 literal|null
 return|;
 block|}
+annotation|@
+name|Override
 DECL|method|pop
 specifier|public
 name|FacetResultNode
@@ -683,6 +687,8 @@ name|FacetResultNode
 argument_list|>
 argument_list|()
 block|{
+annotation|@
+name|Override
 specifier|public
 name|int
 name|compare
@@ -764,6 +770,8 @@ literal|0
 argument_list|)
 return|;
 block|}
+annotation|@
+name|Override
 DECL|method|size
 specifier|public
 name|int
@@ -777,6 +785,8 @@ name|size
 argument_list|()
 return|;
 block|}
+annotation|@
+name|Override
 DECL|method|top
 specifier|public
 name|FacetResultNode
@@ -806,6 +816,8 @@ return|return
 literal|null
 return|;
 block|}
+annotation|@
+name|Override
 DECL|method|add
 specifier|public
 name|FacetResultNode
@@ -826,6 +838,8 @@ return|return
 literal|null
 return|;
 block|}
+annotation|@
+name|Override
 DECL|method|clear
 specifier|public
 name|void

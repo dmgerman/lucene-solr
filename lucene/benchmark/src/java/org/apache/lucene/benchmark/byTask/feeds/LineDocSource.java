@@ -239,6 +239,8 @@ name|header
 argument_list|)
 expr_stmt|;
 block|}
+annotation|@
+name|Override
 DECL|method|parseLine
 specifier|public
 name|void
@@ -598,6 +600,8 @@ expr_stmt|;
 block|}
 block|}
 block|}
+annotation|@
+name|Override
 DECL|method|parseLine
 specifier|public
 name|void

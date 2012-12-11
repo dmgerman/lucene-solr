@@ -276,6 +276,8 @@ operator|new
 name|InvocationHandler
 argument_list|()
 block|{
+annotation|@
+name|Override
 specifier|public
 name|Object
 name|invoke

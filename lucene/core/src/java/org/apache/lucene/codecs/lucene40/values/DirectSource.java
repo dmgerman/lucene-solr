@@ -547,6 +547,8 @@ literal|"ints are not supported"
 argument_list|)
 throw|;
 block|}
+annotation|@
+name|Override
 DECL|method|toDouble
 name|double
 name|toDouble
@@ -597,6 +599,8 @@ literal|"ints are not supported"
 argument_list|)
 throw|;
 block|}
+annotation|@
+name|Override
 DECL|method|toDouble
 name|double
 name|toDouble
@@ -648,6 +652,8 @@ name|readLong
 argument_list|()
 return|;
 block|}
+annotation|@
+name|Override
 DECL|method|toDouble
 name|double
 name|toDouble

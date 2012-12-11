@@ -167,6 +167,8 @@ name|String
 name|mapping
 decl_stmt|;
 comment|// TODO: this should use inputstreams from the loader, not File!
+annotation|@
+name|Override
 DECL|method|inform
 specifier|public
 name|void
@@ -328,6 +330,8 @@ expr_stmt|;
 block|}
 block|}
 block|}
+annotation|@
+name|Override
 DECL|method|create
 specifier|public
 name|Reader

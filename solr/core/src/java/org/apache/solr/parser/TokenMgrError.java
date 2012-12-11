@@ -387,6 +387,8 @@ operator|)
 return|;
 block|}
 comment|/**    * You can also modify the body of this method to customize your error messages.    * For example, cases like LOOP_DETECTED and INVALID_LEXICAL_STATE are not    * of end-users concern, so you can return something like :    *    *     "Internal Error : Please file a bug report .... "    *    * from this method for such cases in the release version of your parser.    */
+annotation|@
+name|Override
 DECL|method|getMessage
 specifier|public
 name|String

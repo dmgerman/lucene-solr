@@ -213,6 +213,8 @@ name|getRetainableProperty
 parameter_list|()
 function_decl|;
 comment|/**    * Category enhancements must override {@link Object#equals(Object)}, as it is    * used in    * {@link EnhancementsPayloadIterator#getCategoryData(CategoryEnhancement)}.    */
+annotation|@
+name|Override
 DECL|method|equals
 specifier|public
 name|boolean

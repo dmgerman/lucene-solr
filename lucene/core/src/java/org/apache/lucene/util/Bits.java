@@ -86,6 +86,8 @@ operator|=
 name|len
 expr_stmt|;
 block|}
+annotation|@
+name|Override
 DECL|method|get
 specifier|public
 name|boolean
@@ -99,6 +101,8 @@ return|return
 literal|true
 return|;
 block|}
+annotation|@
+name|Override
 DECL|method|length
 specifier|public
 name|int
@@ -139,6 +143,8 @@ operator|=
 name|len
 expr_stmt|;
 block|}
+annotation|@
+name|Override
 DECL|method|get
 specifier|public
 name|boolean
@@ -152,6 +158,8 @@ return|return
 literal|false
 return|;
 block|}
+annotation|@
+name|Override
 DECL|method|length
 specifier|public
 name|int

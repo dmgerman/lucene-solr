@@ -143,6 +143,8 @@ specifier|private
 name|FSTCompletion
 name|completionAlphabetical
 decl_stmt|;
+annotation|@
+name|Override
 DECL|method|setUp
 specifier|public
 name|void

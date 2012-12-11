@@ -148,6 +148,8 @@ operator|=
 name|config
 expr_stmt|;
 block|}
+annotation|@
+name|Override
 DECL|method|buildFieldConfig
 specifier|public
 name|void

@@ -105,6 +105,8 @@ name|rec
 parameter_list|)
 function_decl|;
 comment|/**    *<p>    * Returns an iterator, allowing callers to iterate through the entire cache    * in key, then insertion, order.    *</p>    */
+annotation|@
+name|Override
 DECL|method|iterator
 specifier|public
 name|Iterator

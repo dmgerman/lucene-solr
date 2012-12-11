@@ -219,6 +219,8 @@ name|utf8
 argument_list|)
 expr_stmt|;
 block|}
+annotation|@
+name|Override
 DECL|method|iterator
 specifier|public
 name|BytesRefIterator

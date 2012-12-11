@@ -200,6 +200,8 @@ operator|=
 name|sumArray
 expr_stmt|;
 block|}
+annotation|@
+name|Override
 DECL|method|aggregate
 specifier|public
 name|void
@@ -317,6 +319,8 @@ name|hashCode
 argument_list|()
 return|;
 block|}
+annotation|@
+name|Override
 DECL|method|setNextDoc
 specifier|public
 name|void

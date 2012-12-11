@@ -248,6 +248,8 @@ operator|&
 literal|0xff
 return|;
 block|}
+annotation|@
+name|Override
 DECL|method|readUnsignedByte
 specifier|public
 name|int
@@ -615,6 +617,8 @@ name|close
 argument_list|()
 expr_stmt|;
 block|}
+annotation|@
+name|Override
 DECL|method|readFully
 specifier|public
 name|void
@@ -639,6 +643,8 @@ name|length
 argument_list|)
 expr_stmt|;
 block|}
+annotation|@
+name|Override
 DECL|method|readFully
 specifier|public
 name|void
@@ -700,6 +706,8 @@ name|ret
 expr_stmt|;
 block|}
 block|}
+annotation|@
+name|Override
 DECL|method|skipBytes
 specifier|public
 name|int
@@ -801,6 +809,8 @@ return|return
 name|r
 return|;
 block|}
+annotation|@
+name|Override
 DECL|method|readBoolean
 specifier|public
 name|boolean
@@ -816,6 +826,8 @@ operator|==
 literal|1
 return|;
 block|}
+annotation|@
+name|Override
 DECL|method|readByte
 specifier|public
 name|byte
@@ -854,6 +866,8 @@ operator|++
 index|]
 return|;
 block|}
+annotation|@
+name|Override
 DECL|method|readShort
 specifier|public
 name|short
@@ -879,6 +893,8 @@ argument_list|()
 argument_list|)
 return|;
 block|}
+annotation|@
+name|Override
 DECL|method|readUnsignedShort
 specifier|public
 name|int
@@ -899,6 +915,8 @@ name|readUnsignedByte
 argument_list|()
 return|;
 block|}
+annotation|@
+name|Override
 DECL|method|readChar
 specifier|public
 name|char
@@ -924,6 +942,8 @@ argument_list|()
 argument_list|)
 return|;
 block|}
+annotation|@
+name|Override
 DECL|method|readInt
 specifier|public
 name|int
@@ -960,6 +980,8 @@ argument_list|()
 operator|)
 return|;
 block|}
+annotation|@
+name|Override
 DECL|method|readLong
 specifier|public
 name|long
@@ -1049,6 +1071,8 @@ argument_list|()
 operator|)
 return|;
 block|}
+annotation|@
+name|Override
 DECL|method|readFloat
 specifier|public
 name|float
@@ -1067,6 +1091,8 @@ argument_list|()
 argument_list|)
 return|;
 block|}
+annotation|@
+name|Override
 DECL|method|readDouble
 specifier|public
 name|double
@@ -1085,6 +1111,8 @@ argument_list|()
 argument_list|)
 return|;
 block|}
+annotation|@
+name|Override
 DECL|method|readLine
 specifier|public
 name|String
@@ -1099,6 +1127,8 @@ name|UnsupportedOperationException
 argument_list|()
 throw|;
 block|}
+annotation|@
+name|Override
 DECL|method|readUTF
 specifier|public
 name|String

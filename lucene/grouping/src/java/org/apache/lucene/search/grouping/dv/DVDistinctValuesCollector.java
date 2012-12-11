@@ -514,6 +514,8 @@ name|valueType
 argument_list|)
 expr_stmt|;
 block|}
+annotation|@
+name|Override
 DECL|method|getGroups
 specifier|public
 name|List
@@ -537,6 +539,8 @@ argument_list|()
 argument_list|)
 return|;
 block|}
+annotation|@
+name|Override
 DECL|method|setNextReader
 specifier|public
 name|void
@@ -705,6 +709,8 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
+annotation|@
+name|Override
 DECL|method|collect
 specifier|public
 name|void
@@ -831,6 +837,8 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
+annotation|@
+name|Override
 DECL|method|collect
 specifier|public
 name|void
@@ -967,6 +975,8 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
+annotation|@
+name|Override
 DECL|method|collect
 specifier|public
 name|void
@@ -1183,6 +1193,8 @@ name|length
 index|]
 expr_stmt|;
 block|}
+annotation|@
+name|Override
 DECL|method|getGroups
 specifier|public
 name|List
@@ -1196,6 +1208,8 @@ return|return
 name|groups
 return|;
 block|}
+annotation|@
+name|Override
 DECL|method|setNextReader
 specifier|public
 name|void
@@ -1392,6 +1406,8 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
+annotation|@
+name|Override
 DECL|method|collect
 specifier|public
 name|void

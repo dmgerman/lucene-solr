@@ -114,6 +114,8 @@ operator|=
 name|text
 expr_stmt|;
 block|}
+annotation|@
+name|Override
 DECL|method|newInstance
 specifier|public
 parameter_list|<
@@ -176,6 +178,8 @@ argument_list|)
 throw|;
 block|}
 block|}
+annotation|@
+name|Override
 DECL|method|openResource
 specifier|public
 name|InputStream

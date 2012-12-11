@@ -1667,6 +1667,8 @@ argument_list|()
 expr_stmt|;
 block|}
 comment|/**    * Free's resources associated with this searcher.    *    * In particular, the underlying reader and any cache's in use are closed.    */
+annotation|@
+name|Override
 DECL|method|close
 specifier|public
 name|void
@@ -2026,6 +2028,8 @@ operator|new
 name|CacheRegenerator
 argument_list|()
 block|{
+annotation|@
+name|Override
 specifier|public
 name|boolean
 name|regenerateItem
@@ -2104,6 +2108,8 @@ operator|new
 name|CacheRegenerator
 argument_list|()
 block|{
+annotation|@
+name|Override
 specifier|public
 name|boolean
 name|regenerateItem
@@ -2184,6 +2190,8 @@ operator|new
 name|CacheRegenerator
 argument_list|()
 block|{
+annotation|@
+name|Override
 specifier|public
 name|boolean
 name|regenerateItem
@@ -2451,6 +2459,8 @@ name|docID
 argument_list|)
 expr_stmt|;
 block|}
+annotation|@
+name|Override
 DECL|method|needsField
 specifier|public
 name|Status
@@ -9920,6 +9930,8 @@ block|}
 comment|/////////////////////////////////////////////////////////////////////
 comment|// SolrInfoMBean stuff: Statistics and Module Info
 comment|/////////////////////////////////////////////////////////////////////
+annotation|@
+name|Override
 DECL|method|getName
 specifier|public
 name|String
@@ -9935,6 +9947,8 @@ name|getName
 argument_list|()
 return|;
 block|}
+annotation|@
+name|Override
 DECL|method|getVersion
 specifier|public
 name|String
@@ -9947,6 +9961,8 @@ operator|.
 name|version
 return|;
 block|}
+annotation|@
+name|Override
 DECL|method|getDescription
 specifier|public
 name|String
@@ -9957,6 +9973,8 @@ return|return
 literal|"index searcher"
 return|;
 block|}
+annotation|@
+name|Override
 DECL|method|getCategory
 specifier|public
 name|Category
@@ -9969,6 +9987,8 @@ operator|.
 name|CORE
 return|;
 block|}
+annotation|@
+name|Override
 DECL|method|getSource
 specifier|public
 name|String
@@ -9979,6 +9999,8 @@ return|return
 literal|"$URL$"
 return|;
 block|}
+annotation|@
+name|Override
 DECL|method|getDocs
 specifier|public
 name|URL
@@ -9990,6 +10012,8 @@ return|return
 literal|null
 return|;
 block|}
+annotation|@
+name|Override
 DECL|method|getStatistics
 specifier|public
 name|NamedList

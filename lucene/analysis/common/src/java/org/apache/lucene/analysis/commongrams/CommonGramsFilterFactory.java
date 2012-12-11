@@ -108,6 +108,8 @@ name|TokenFilterFactory
 implements|implements
 name|ResourceLoaderAware
 block|{
+annotation|@
+name|Override
 DECL|method|inform
 specifier|public
 name|void
@@ -228,6 +230,8 @@ return|return
 name|commonWords
 return|;
 block|}
+annotation|@
+name|Override
 DECL|method|create
 specifier|public
 name|CommonGramsFilter

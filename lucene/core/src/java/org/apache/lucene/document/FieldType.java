@@ -373,6 +373,8 @@ literal|true
 expr_stmt|;
 block|}
 comment|/**    * {@inheritDoc}    *<p>    * The default is<code>false</code>.    * @see #setIndexed(boolean)    */
+annotation|@
+name|Override
 DECL|method|indexed
 specifier|public
 name|boolean
@@ -406,6 +408,8 @@ name|value
 expr_stmt|;
 block|}
 comment|/**    * {@inheritDoc}    *<p>    * The default is<code>false</code>.    * @see #setStored(boolean)    */
+annotation|@
+name|Override
 DECL|method|stored
 specifier|public
 name|boolean
@@ -439,6 +443,8 @@ name|value
 expr_stmt|;
 block|}
 comment|/**    * {@inheritDoc}    *<p>    * The default is<code>true</code>.    * @see #setTokenized(boolean)    */
+annotation|@
+name|Override
 DECL|method|tokenized
 specifier|public
 name|boolean
@@ -472,6 +478,8 @@ name|value
 expr_stmt|;
 block|}
 comment|/**    * {@inheritDoc}    *<p>    * The default is<code>false</code>.     * @see #setStoreTermVectors(boolean)    */
+annotation|@
+name|Override
 DECL|method|storeTermVectors
 specifier|public
 name|boolean
@@ -505,6 +513,8 @@ name|value
 expr_stmt|;
 block|}
 comment|/**    * {@inheritDoc}    *<p>    * The default is<code>false</code>.    * @see #setStoreTermVectorOffsets(boolean)    */
+annotation|@
+name|Override
 DECL|method|storeTermVectorOffsets
 specifier|public
 name|boolean
@@ -538,6 +548,8 @@ name|value
 expr_stmt|;
 block|}
 comment|/**    * {@inheritDoc}    *<p>    * The default is<code>false</code>.    * @see #setStoreTermVectorPositions(boolean)    */
+annotation|@
+name|Override
 DECL|method|storeTermVectorPositions
 specifier|public
 name|boolean
@@ -571,6 +583,8 @@ name|value
 expr_stmt|;
 block|}
 comment|/**    * {@inheritDoc}    *<p>    * The default is<code>false</code>.    * @see #setStoreTermVectorPayloads(boolean)     */
+annotation|@
+name|Override
 DECL|method|storeTermVectorPayloads
 specifier|public
 name|boolean
@@ -604,6 +618,8 @@ name|value
 expr_stmt|;
 block|}
 comment|/**    * {@inheritDoc}    *<p>    * The default is<code>false</code>.    * @see #setOmitNorms(boolean)    */
+annotation|@
+name|Override
 DECL|method|omitNorms
 specifier|public
 name|boolean
@@ -637,6 +653,8 @@ name|value
 expr_stmt|;
 block|}
 comment|/**    * {@inheritDoc}    *<p>    * The default is {@link IndexOptions#DOCS_AND_FREQS_AND_POSITIONS}.    * @see #setIndexOptions(org.apache.lucene.index.FieldInfo.IndexOptions)    */
+annotation|@
+name|Override
 DECL|method|indexOptions
 specifier|public
 name|IndexOptions

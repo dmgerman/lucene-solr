@@ -150,6 +150,8 @@ name|response
 parameter_list|)
 function_decl|;
 comment|/**<code>init</code> will be called just once, immediately after creation.    *<p>The args are user-level initialization parameters that    * may be specified when declaring a response writer in    * solrconfig.xml    */
+annotation|@
+name|Override
 DECL|method|init
 specifier|public
 name|void

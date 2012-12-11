@@ -84,6 +84,8 @@ name|escapeSyntaxParser
 parameter_list|)
 function_decl|;
 comment|/** for printing */
+annotation|@
+name|Override
 DECL|method|toString
 specifier|public
 name|String

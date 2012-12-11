@@ -1026,6 +1026,8 @@ argument_list|,
 literal|2
 argument_list|)
 block|{
+annotation|@
+name|Override
 specifier|public
 name|void
 name|handleError
@@ -1318,6 +1320,8 @@ argument_list|,
 literal|3
 argument_list|)
 block|{
+annotation|@
+name|Override
 specifier|public
 name|void
 name|handleError
@@ -1340,6 +1344,8 @@ block|}
 expr_stmt|;
 block|}
 block|}
+annotation|@
+name|Override
 DECL|method|safeStop
 specifier|public
 name|void
@@ -1364,6 +1370,8 @@ name|shutdown
 argument_list|()
 expr_stmt|;
 block|}
+annotation|@
+name|Override
 DECL|method|getFails
 specifier|public
 name|int
@@ -1380,6 +1388,8 @@ block|}
 block|}
 empty_stmt|;
 comment|// skip the randoms - they can deadlock...
+annotation|@
+name|Override
 DECL|method|indexr
 specifier|protected
 name|void

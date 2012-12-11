@@ -141,6 +141,8 @@ operator|)
 name|association
 return|;
 block|}
+annotation|@
+name|Override
 DECL|method|merge
 specifier|public
 name|void

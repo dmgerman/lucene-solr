@@ -1755,6 +1755,8 @@ name|executed
 init|=
 literal|false
 decl_stmt|;
+annotation|@
+name|Override
 DECL|method|onEvent
 specifier|public
 name|void
@@ -1786,6 +1788,8 @@ name|executed
 init|=
 literal|false
 decl_stmt|;
+annotation|@
+name|Override
 DECL|method|onEvent
 specifier|public
 name|void

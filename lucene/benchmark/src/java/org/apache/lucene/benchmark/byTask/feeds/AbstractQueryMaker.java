@@ -83,6 +83,8 @@ specifier|protected
 name|Config
 name|config
 decl_stmt|;
+annotation|@
+name|Override
 DECL|method|resetInputs
 specifier|public
 name|void
@@ -104,6 +106,8 @@ parameter_list|()
 throws|throws
 name|Exception
 function_decl|;
+annotation|@
+name|Override
 DECL|method|setConfig
 specifier|public
 name|void
@@ -127,6 +131,8 @@ name|prepareQueries
 argument_list|()
 expr_stmt|;
 block|}
+annotation|@
+name|Override
 DECL|method|printQueries
 specifier|public
 name|String
@@ -220,6 +226,8 @@ name|toString
 argument_list|()
 return|;
 block|}
+annotation|@
+name|Override
 DECL|method|makeQuery
 specifier|public
 name|Query
@@ -266,6 +274,8 @@ name|res
 return|;
 block|}
 comment|/*   *  (non-Javadoc)   * @see org.apache.lucene.benchmark.byTask.feeds.QueryMaker#makeQuery(int)   */
+annotation|@
+name|Override
 DECL|method|makeQuery
 specifier|public
 name|Query

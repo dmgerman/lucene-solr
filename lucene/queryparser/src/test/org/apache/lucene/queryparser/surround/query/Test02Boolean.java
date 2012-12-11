@@ -123,6 +123,8 @@ block|,
 literal|"a c e a b c"
 block|}
 decl_stmt|;
+annotation|@
+name|Override
 DECL|method|setUp
 specifier|public
 name|void

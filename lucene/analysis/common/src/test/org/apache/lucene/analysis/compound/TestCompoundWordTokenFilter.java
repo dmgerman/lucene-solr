@@ -1992,6 +1992,8 @@ operator|=
 literal|false
 expr_stmt|;
 block|}
+annotation|@
+name|Override
 DECL|method|getRetain
 specifier|public
 name|boolean
@@ -2002,6 +2004,8 @@ return|return
 name|retain
 return|;
 block|}
+annotation|@
+name|Override
 DECL|method|setRetain
 specifier|public
 name|void

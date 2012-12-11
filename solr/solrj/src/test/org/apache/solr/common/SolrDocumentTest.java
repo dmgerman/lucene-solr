@@ -1081,6 +1081,8 @@ operator|new
 name|Iterable
 argument_list|()
 block|{
+annotation|@
+name|Override
 specifier|public
 name|Iterator
 name|iterator

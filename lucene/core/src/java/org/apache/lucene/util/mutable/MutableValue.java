@@ -95,6 +95,8 @@ return|return
 name|exists
 return|;
 block|}
+annotation|@
+name|Override
 DECL|method|compareTo
 specifier|public
 name|int

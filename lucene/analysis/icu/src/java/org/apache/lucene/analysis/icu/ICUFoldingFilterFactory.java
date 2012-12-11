@@ -139,6 +139,8 @@ name|input
 argument_list|)
 return|;
 block|}
+annotation|@
+name|Override
 DECL|method|getMultiTermComponent
 specifier|public
 name|AbstractAnalysisFactory

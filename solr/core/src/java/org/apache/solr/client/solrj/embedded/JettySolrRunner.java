@@ -857,6 +857,8 @@ operator|.
 name|Listener
 argument_list|()
 block|{
+annotation|@
+name|Override
 specifier|public
 name|void
 name|lifeCycleStopping
@@ -873,6 +875,8 @@ literal|"hostPort"
 argument_list|)
 expr_stmt|;
 block|}
+annotation|@
+name|Override
 specifier|public
 name|void
 name|lifeCycleStopped
@@ -881,6 +885,8 @@ name|LifeCycle
 name|arg0
 parameter_list|)
 block|{}
+annotation|@
+name|Override
 specifier|public
 name|void
 name|lifeCycleStarting
@@ -909,6 +915,8 @@ argument_list|()
 expr_stmt|;
 block|}
 block|}
+annotation|@
+name|Override
 specifier|public
 name|void
 name|lifeCycleStarted
@@ -1024,6 +1032,8 @@ literal|"solr.solr.home"
 argument_list|)
 expr_stmt|;
 block|}
+annotation|@
+name|Override
 specifier|public
 name|void
 name|lifeCycleFailure
@@ -1661,6 +1671,8 @@ else|:
 name|name
 expr_stmt|;
 block|}
+annotation|@
+name|Override
 DECL|method|isDebugEnabled
 specifier|public
 name|boolean
@@ -1671,6 +1683,8 @@ return|return
 name|debug
 return|;
 block|}
+annotation|@
+name|Override
 DECL|method|setDebugEnabled
 specifier|public
 name|void
@@ -1685,6 +1699,8 @@ operator|=
 name|enabled
 expr_stmt|;
 block|}
+annotation|@
+name|Override
 DECL|method|debug
 specifier|public
 name|void
@@ -1697,6 +1713,8 @@ name|Throwable
 name|th
 parameter_list|)
 block|{   }
+annotation|@
+name|Override
 DECL|method|getLogger
 specifier|public
 name|Logger

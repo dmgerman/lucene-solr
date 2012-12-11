@@ -149,6 +149,8 @@ name|TERM_IN_BOOLEAN_QUERY_FLAG
 init|=
 literal|131072
 decl_stmt|;
+annotation|@
+name|Override
 DECL|method|init
 specifier|public
 name|void

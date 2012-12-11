@@ -273,6 +273,8 @@ return|return
 name|clone
 return|;
 block|}
+annotation|@
+name|Override
 DECL|method|getText
 specifier|public
 name|CharSequence
@@ -283,6 +285,8 @@ return|return
 name|text
 return|;
 block|}
+annotation|@
+name|Override
 DECL|method|setText
 specifier|public
 name|void
@@ -299,6 +303,8 @@ operator|=
 name|text
 expr_stmt|;
 block|}
+annotation|@
+name|Override
 DECL|method|getField
 specifier|public
 name|CharSequence
@@ -322,6 +328,8 @@ name|toString
 argument_list|()
 return|;
 block|}
+annotation|@
+name|Override
 DECL|method|setField
 specifier|public
 name|void
@@ -338,6 +346,8 @@ operator|=
 name|field
 expr_stmt|;
 block|}
+annotation|@
+name|Override
 DECL|method|toQueryString
 specifier|public
 name|CharSequence

@@ -54,6 +54,8 @@ name|TermVectorComponentDistributedTest
 extends|extends
 name|BaseDistributedSearchTestCase
 block|{
+annotation|@
+name|Override
 DECL|method|doTest
 specifier|public
 name|void

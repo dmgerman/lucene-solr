@@ -9815,6 +9815,8 @@ operator|new
 name|Callable
 argument_list|()
 block|{
+annotation|@
+name|Override
 specifier|public
 name|Object
 name|call
@@ -10724,6 +10726,8 @@ operator|new
 name|Callable
 argument_list|()
 block|{
+annotation|@
+name|Override
 specifier|public
 name|Object
 name|call

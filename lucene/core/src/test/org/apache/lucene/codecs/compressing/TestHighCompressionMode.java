@@ -26,6 +26,8 @@ name|TestHighCompressionMode
 extends|extends
 name|AbstractTestCompressionMode
 block|{
+annotation|@
+name|Override
 DECL|method|setUp
 specifier|public
 name|void

@@ -736,6 +736,8 @@ argument_list|)
 throw|;
 block|}
 block|}
+annotation|@
+name|Override
 DECL|method|inform
 specifier|public
 name|void

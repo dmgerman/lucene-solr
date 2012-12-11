@@ -3526,6 +3526,8 @@ expr_stmt|;
 block|}
 comment|/** Returns an<b>unmodifiable</b> {@link Iterator} of contained segments in order. */
 comment|// @Override (comment out until Java 6)
+annotation|@
+name|Override
 DECL|method|iterator
 specifier|public
 name|Iterator

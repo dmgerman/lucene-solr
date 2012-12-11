@@ -422,6 +422,8 @@ name|indexedForm
 argument_list|)
 return|;
 block|}
+annotation|@
+name|Override
 DECL|method|indexedToReadable
 specifier|public
 name|CharsRef

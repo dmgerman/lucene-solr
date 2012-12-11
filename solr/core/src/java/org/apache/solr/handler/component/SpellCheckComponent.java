@@ -3978,6 +3978,8 @@ return|return
 name|result
 return|;
 block|}
+annotation|@
+name|Override
 DECL|method|inform
 specifier|public
 name|void
@@ -4554,6 +4556,8 @@ operator|=
 name|buildOnOptimize
 expr_stmt|;
 block|}
+annotation|@
+name|Override
 DECL|method|init
 specifier|public
 name|void
@@ -4563,6 +4567,8 @@ name|NamedList
 name|args
 parameter_list|)
 block|{     }
+annotation|@
+name|Override
 DECL|method|newSearcher
 specifier|public
 name|void
@@ -4744,6 +4750,8 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
+annotation|@
+name|Override
 DECL|method|postCommit
 specifier|public
 name|void

@@ -123,6 +123,8 @@ throws|throws
 name|IOException
 function_decl|;
 comment|/** Create a clone that one caller at a time may use to    *  read term vectors. */
+annotation|@
+name|Override
 DECL|method|clone
 specifier|public
 specifier|abstract

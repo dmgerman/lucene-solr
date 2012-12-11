@@ -647,6 +647,8 @@ comment|// Writes the contents of buffer into the fields stream
 comment|// and adds a new entry for this document into the index
 comment|// stream.  This assumes the buffer was already written
 comment|// in the correct fields format.
+annotation|@
+name|Override
 DECL|method|startDocument
 specifier|public
 name|void
@@ -676,6 +678,8 @@ name|numStoredFields
 argument_list|)
 expr_stmt|;
 block|}
+annotation|@
+name|Override
 DECL|method|close
 specifier|public
 name|void
@@ -706,6 +710,8 @@ literal|null
 expr_stmt|;
 block|}
 block|}
+annotation|@
+name|Override
 DECL|method|abort
 specifier|public
 name|void
@@ -754,6 +760,8 @@ argument_list|)
 argument_list|)
 expr_stmt|;
 block|}
+annotation|@
+name|Override
 DECL|method|writeField
 specifier|public
 name|void

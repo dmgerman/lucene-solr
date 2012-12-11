@@ -40,6 +40,8 @@ block|{     }
 comment|//*****************************
 comment|// Compute Levenshtein distance: see org.apache.commons.lang.StringUtils#getLevenshteinDistance(String, String)
 comment|//*****************************
+annotation|@
+name|Override
 DECL|method|getDistance
 specifier|public
 name|float

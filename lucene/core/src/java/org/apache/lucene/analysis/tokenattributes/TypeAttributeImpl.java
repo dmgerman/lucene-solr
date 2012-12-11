@@ -81,6 +81,8 @@ operator|=
 name|type
 expr_stmt|;
 block|}
+annotation|@
+name|Override
 DECL|method|type
 specifier|public
 name|String
@@ -91,6 +93,8 @@ return|return
 name|type
 return|;
 block|}
+annotation|@
+name|Override
 DECL|method|setType
 specifier|public
 name|void

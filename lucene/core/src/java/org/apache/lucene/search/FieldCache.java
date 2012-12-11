@@ -426,6 +426,8 @@ operator|new
 name|ByteParser
 argument_list|()
 block|{
+annotation|@
+name|Override
 specifier|public
 name|byte
 name|parseByte
@@ -482,6 +484,8 @@ operator|new
 name|ShortParser
 argument_list|()
 block|{
+annotation|@
+name|Override
 specifier|public
 name|short
 name|parseShort
@@ -538,6 +542,8 @@ operator|new
 name|IntParser
 argument_list|()
 block|{
+annotation|@
+name|Override
 specifier|public
 name|int
 name|parseInt
@@ -594,6 +600,8 @@ operator|new
 name|FloatParser
 argument_list|()
 block|{
+annotation|@
+name|Override
 specifier|public
 name|float
 name|parseFloat
@@ -650,6 +658,8 @@ operator|new
 name|LongParser
 argument_list|()
 block|{
+annotation|@
+name|Override
 specifier|public
 name|long
 name|parseLong
@@ -706,6 +716,8 @@ operator|new
 name|DoubleParser
 argument_list|()
 block|{
+annotation|@
+name|Override
 specifier|public
 name|double
 name|parseDouble
@@ -762,6 +774,8 @@ operator|new
 name|IntParser
 argument_list|()
 block|{
+annotation|@
+name|Override
 specifier|public
 name|int
 name|parseInt
@@ -827,6 +841,8 @@ operator|new
 name|FloatParser
 argument_list|()
 block|{
+annotation|@
+name|Override
 specifier|public
 name|float
 name|parseFloat
@@ -897,6 +913,8 @@ operator|new
 name|LongParser
 argument_list|()
 block|{
+annotation|@
+name|Override
 specifier|public
 name|long
 name|parseLong
@@ -962,6 +980,8 @@ operator|new
 name|DoubleParser
 argument_list|()
 block|{
+annotation|@
+name|Override
 specifier|public
 name|double
 name|parseDouble

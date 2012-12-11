@@ -100,6 +100,8 @@ argument_list|>
 name|getGroups
 parameter_list|()
 function_decl|;
+annotation|@
+name|Override
 DECL|method|acceptsDocsOutOfOrder
 specifier|public
 name|boolean
@@ -110,6 +112,8 @@ return|return
 literal|true
 return|;
 block|}
+annotation|@
+name|Override
 DECL|method|setScorer
 specifier|public
 name|void

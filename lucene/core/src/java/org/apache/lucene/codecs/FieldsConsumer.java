@@ -143,6 +143,8 @@ throws|throws
 name|IOException
 function_decl|;
 comment|/** Called when we are done adding everything. */
+annotation|@
+name|Override
 DECL|method|close
 specifier|public
 specifier|abstract

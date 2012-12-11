@@ -346,6 +346,8 @@ return|return
 name|bytes
 return|;
 block|}
+annotation|@
+name|Override
 DECL|method|setBytesRef
 specifier|public
 name|void

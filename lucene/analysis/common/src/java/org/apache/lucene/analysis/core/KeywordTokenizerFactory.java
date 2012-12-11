@@ -72,6 +72,8 @@ name|KeywordTokenizerFactory
 extends|extends
 name|TokenizerFactory
 block|{
+annotation|@
+name|Override
 DECL|method|create
 specifier|public
 name|KeywordTokenizer

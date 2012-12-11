@@ -212,6 +212,8 @@ expr_stmt|;
 block|}
 block|}
 comment|/**    * Split the input using configured pattern    */
+annotation|@
+name|Override
 DECL|method|create
 specifier|public
 name|Tokenizer

@@ -267,6 +267,8 @@ argument_list|,
 name|next
 argument_list|)
 block|{
+annotation|@
+name|Override
 specifier|protected
 name|SolrInputField
 name|mutate
@@ -359,6 +361,8 @@ operator|.
 name|FieldNameSelector
 argument_list|()
 block|{
+annotation|@
+name|Override
 specifier|public
 name|boolean
 name|shouldMutate

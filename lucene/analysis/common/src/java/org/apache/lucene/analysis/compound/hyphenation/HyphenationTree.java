@@ -1747,6 +1747,8 @@ return|;
 block|}
 block|}
 comment|/**    * Add a character class to the tree. It is used by    * {@link PatternParser PatternParser} as callback to add character classes.    * Character classes define the valid word characters for hyphenation. If a    * word contains a character not defined in any of the classes, it is not    * hyphenated. It also defines a way to normalize the characters in order to    * compare them with the stored patterns. Usually pattern files use only lower    * case characters, in this case a class for letter 'a', for example, should    * be defined as "aA", the first character being the normalization char.    */
+annotation|@
+name|Override
 DECL|method|addClass
 specifier|public
 name|void
@@ -1838,6 +1840,8 @@ block|}
 block|}
 block|}
 comment|/**    * Add an exception to the tree. It is used by    * {@link PatternParser PatternParser} class as callback to store the    * hyphenation exceptions.    *     * @param word normalized word    * @param hyphenatedword a vector of alternating strings and    *        {@link Hyphen hyphen} objects.    */
+annotation|@
+name|Override
 DECL|method|addException
 specifier|public
 name|void
@@ -1864,6 +1868,8 @@ argument_list|)
 expr_stmt|;
 block|}
 comment|/**    * Add a pattern to the tree. Mainly, to be used by    * {@link PatternParser PatternParser} class as callback to add a pattern to    * the tree.    *     * @param pattern the hyphenation pattern    * @param ivalue interletter weight values indicating the desirability and    *        priority of hyphenating at a given point within the pattern. It    *        should contain only digit characters. (i.e. '0' to '9').    */
+annotation|@
+name|Override
 DECL|method|addPattern
 specifier|public
 name|void

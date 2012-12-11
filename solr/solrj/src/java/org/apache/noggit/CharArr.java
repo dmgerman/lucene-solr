@@ -275,6 +275,8 @@ operator|-
 name|start
 return|;
 block|}
+annotation|@
+name|Override
 DECL|method|length
 specifier|public
 name|int
@@ -298,6 +300,8 @@ operator|.
 name|length
 return|;
 block|}
+annotation|@
+name|Override
 DECL|method|charAt
 specifier|public
 name|char
@@ -316,6 +320,8 @@ name|index
 index|]
 return|;
 block|}
+annotation|@
+name|Override
 DECL|method|subSequence
 specifier|public
 name|CharArr
@@ -799,6 +805,8 @@ return|return
 name|newbuf
 return|;
 block|}
+annotation|@
+name|Override
 DECL|method|toString
 specifier|public
 name|String
@@ -918,6 +926,8 @@ return|;
 comment|// or -1?
 block|}
 comment|//////////////// Appendable methods /////////////
+annotation|@
+name|Override
 DECL|method|append
 specifier|public
 specifier|final
@@ -944,6 +954,8 @@ argument_list|()
 argument_list|)
 return|;
 block|}
+annotation|@
+name|Override
 DECL|method|append
 specifier|public
 name|Appendable
@@ -980,6 +992,8 @@ return|return
 literal|null
 return|;
 block|}
+annotation|@
+name|Override
 DECL|method|append
 specifier|public
 specifier|final
@@ -1028,6 +1042,8 @@ literal|0
 argument_list|)
 expr_stmt|;
 block|}
+annotation|@
+name|Override
 DECL|method|unsafeWrite
 specifier|public
 name|void
@@ -1037,6 +1053,8 @@ name|char
 name|b
 parameter_list|)
 block|{}
+annotation|@
+name|Override
 DECL|method|unsafeWrite
 specifier|public
 name|void
@@ -1053,6 +1071,8 @@ name|int
 name|len
 parameter_list|)
 block|{}
+annotation|@
+name|Override
 DECL|method|unsafeWrite
 specifier|public
 name|void
@@ -1062,6 +1082,8 @@ name|int
 name|b
 parameter_list|)
 block|{}
+annotation|@
+name|Override
 DECL|method|write
 specifier|public
 name|void
@@ -1071,6 +1093,8 @@ name|char
 name|b
 parameter_list|)
 block|{}
+annotation|@
+name|Override
 DECL|method|write
 specifier|public
 name|void
@@ -1087,6 +1111,8 @@ name|int
 name|len
 parameter_list|)
 block|{}
+annotation|@
+name|Override
 DECL|method|reserve
 specifier|public
 name|void
@@ -1096,6 +1122,8 @@ name|int
 name|num
 parameter_list|)
 block|{}
+annotation|@
+name|Override
 DECL|method|resize
 specifier|protected
 name|void
@@ -1105,6 +1133,8 @@ name|int
 name|len
 parameter_list|)
 block|{}
+annotation|@
+name|Override
 DECL|method|append
 specifier|public
 name|Appendable
@@ -1126,6 +1156,8 @@ return|return
 name|this
 return|;
 block|}
+annotation|@
+name|Override
 DECL|method|charAt
 specifier|public
 name|char
@@ -1139,6 +1171,8 @@ return|return
 literal|0
 return|;
 block|}
+annotation|@
+name|Override
 DECL|method|write
 specifier|public
 name|void
@@ -1197,6 +1231,8 @@ operator|=
 name|in
 expr_stmt|;
 block|}
+annotation|@
+name|Override
 DECL|method|read
 specifier|public
 name|int
@@ -1229,6 +1265,8 @@ operator|++
 index|]
 return|;
 block|}
+annotation|@
+name|Override
 DECL|method|read
 specifier|public
 name|int
@@ -1296,6 +1334,8 @@ operator|-
 literal|1
 return|;
 block|}
+annotation|@
+name|Override
 DECL|method|fill
 specifier|public
 name|int

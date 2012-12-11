@@ -639,6 +639,8 @@ name|name
 expr_stmt|;
 block|}
 annotation|@
+name|Override
+annotation|@
 name|SuppressWarnings
 argument_list|(
 literal|"unchecked"
@@ -688,6 +690,8 @@ operator|!=
 literal|null
 operator|)
 decl_stmt|;
+annotation|@
+name|Override
 specifier|public
 name|boolean
 name|hasNext
@@ -697,6 +701,8 @@ return|return
 name|nxt
 return|;
 block|}
+annotation|@
+name|Override
 specifier|public
 name|Object
 name|next
@@ -710,6 +716,8 @@ return|return
 name|value
 return|;
 block|}
+annotation|@
+name|Override
 specifier|public
 name|void
 name|remove

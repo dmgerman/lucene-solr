@@ -4196,6 +4196,8 @@ argument_list|)
 expr_stmt|;
 block|}
 comment|/**    * Compares this CategoryPath with the other CategoryPath for lexicographic    * order.     * Returns a negative integer, zero, or a positive integer as this    * CategoryPath lexicographically precedes, equals to, or lexicographically follows     * the other CategoryPath.    */
+annotation|@
+name|Override
 DECL|method|compareTo
 specifier|public
 name|int
