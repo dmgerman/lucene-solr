@@ -572,7 +572,7 @@ name|this
 argument_list|(
 name|field
 argument_list|,
-name|DEFAULT_MAX_LENGTH
+name|maxLength
 argument_list|,
 name|BreakIterator
 operator|.
@@ -1233,7 +1233,6 @@ argument_list|()
 index|]
 expr_stmt|;
 block|}
-empty_stmt|;
 name|Passage
 name|passages
 index|[]
@@ -2213,9 +2212,19 @@ block|}
 else|else
 block|{
 return|return
+name|Long
+operator|.
+name|signum
+argument_list|(
+operator|(
+operator|(
+name|long
+operator|)
 name|off
+operator|)
 operator|-
 name|otherOff
+argument_list|)
 return|;
 block|}
 block|}
