@@ -632,7 +632,9 @@ literal|null
 argument_list|,
 name|de
 argument_list|,
-literal|0
+name|DocsEnum
+operator|.
+name|FLAG_NONE
 argument_list|)
 expr_stmt|;
 name|assertTrue
@@ -1051,7 +1053,9 @@ literal|null
 argument_list|,
 name|de
 argument_list|,
-literal|0
+name|DocsEnum
+operator|.
+name|FLAG_NONE
 argument_list|)
 expr_stmt|;
 name|assertTrue

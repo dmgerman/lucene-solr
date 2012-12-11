@@ -2905,7 +2905,9 @@ literal|null
 argument_list|,
 name|docsEnum
 argument_list|,
-literal|0
+name|DocsEnum
+operator|.
+name|FLAG_NONE
 argument_list|)
 expr_stmt|;
 name|boolean
@@ -3315,7 +3317,9 @@ literal|null
 argument_list|,
 name|docs
 argument_list|,
-literal|0
+name|DocsEnum
+operator|.
+name|FLAG_NONE
 argument_list|)
 expr_stmt|;
 name|ordinalMap

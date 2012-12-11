@@ -797,7 +797,9 @@ argument_list|)
 argument_list|,
 literal|null
 argument_list|,
-literal|0
+name|DocsEnum
+operator|.
+name|FLAG_NONE
 argument_list|)
 decl_stmt|;
 name|int

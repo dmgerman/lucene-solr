@@ -4188,7 +4188,9 @@ literal|null
 argument_list|,
 name|docs
 argument_list|,
-literal|0
+name|DocsEnum
+operator|.
+name|FLAG_NONE
 argument_list|)
 decl_stmt|;
 name|docCount
@@ -4786,7 +4788,9 @@ name|liveDocs
 argument_list|,
 name|docs
 argument_list|,
-literal|0
+name|DocsEnum
+operator|.
+name|FLAG_NONE
 argument_list|)
 expr_stmt|;
 specifier|final
@@ -5198,7 +5202,9 @@ literal|null
 argument_list|,
 literal|null
 argument_list|,
-literal|0
+name|DocsEnum
+operator|.
+name|FLAG_NONE
 argument_list|)
 decl_stmt|;
 name|int
@@ -5496,7 +5502,9 @@ name|liveDocs
 argument_list|,
 name|docs
 argument_list|,
-literal|0
+name|DocsEnum
+operator|.
+name|FLAG_NONE
 argument_list|)
 expr_stmt|;
 if|if
@@ -5609,7 +5617,9 @@ literal|null
 argument_list|,
 name|docs
 argument_list|,
-literal|0
+name|DocsEnum
+operator|.
+name|FLAG_NONE
 argument_list|)
 expr_stmt|;
 if|if

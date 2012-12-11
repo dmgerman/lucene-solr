@@ -2009,7 +2009,9 @@ argument_list|()
 argument_list|,
 name|docs
 argument_list|,
-literal|0
+name|DocsEnum
+operator|.
+name|FLAG_NONE
 argument_list|)
 decl_stmt|;
 comment|//System.out.println("BDS: got docsEnum=" + docsEnum);

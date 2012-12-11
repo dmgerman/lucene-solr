@@ -1157,7 +1157,9 @@ name|acceptDocs
 argument_list|,
 name|reuse
 argument_list|,
-literal|0
+name|DocsEnum
+operator|.
+name|FLAG_NONE
 argument_list|)
 expr_stmt|;
 block|}
@@ -1477,7 +1479,9 @@ name|acceptDocs
 argument_list|,
 name|reuse
 argument_list|,
-literal|0
+name|DocsEnum
+operator|.
+name|FLAG_NONE
 argument_list|)
 expr_stmt|;
 block|}
@@ -1717,7 +1721,9 @@ name|acceptDocs
 argument_list|,
 name|docsEnum
 argument_list|,
-literal|0
+name|DocsEnum
+operator|.
+name|FLAG_NONE
 argument_list|)
 expr_stmt|;
 name|float
@@ -1974,7 +1980,9 @@ name|acceptDocs
 argument_list|,
 name|docsEnum
 argument_list|,
-literal|0
+name|DocsEnum
+operator|.
+name|FLAG_NONE
 argument_list|)
 expr_stmt|;
 name|float

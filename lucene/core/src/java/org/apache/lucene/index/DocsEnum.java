@@ -85,6 +85,16 @@ name|DocsEnum
 extends|extends
 name|DocIdSetIterator
 block|{
+comment|/**    * Flag to pass to {@link TermsEnum#docs(Bits,DocsEnum,int)} if you don't    * require term frequencies in the returned enum. When passed to    * {@link TermsEnum#docsAndPositions(Bits,DocsAndPositionsEnum,int)} means    * that no offsets and payloads will be returned.    */
+DECL|field|FLAG_NONE
+specifier|public
+specifier|static
+specifier|final
+name|int
+name|FLAG_NONE
+init|=
+literal|0x0
+decl_stmt|;
 comment|/** Flag to pass to {@link TermsEnum#docs(Bits,DocsEnum,int)}    *  if you require term frequencies in the returned enum. */
 DECL|field|FLAG_FREQS
 specifier|public
