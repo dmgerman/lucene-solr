@@ -1252,6 +1252,14 @@ argument_list|)
 throw|;
 block|}
 block|}
+name|this
+operator|.
+name|wait
+argument_list|(
+literal|300
+argument_list|)
+expr_stmt|;
+comment|// always 100ms - can take a moment for our cores to come up
 block|}
 name|System
 operator|.
