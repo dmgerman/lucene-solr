@@ -1557,18 +1557,17 @@ name|purpose
 operator|=
 literal|1
 expr_stmt|;
-comment|// TODO: this does not work if original url had _ in it
-comment|// We should have a master list
 name|String
 name|replica
 init|=
-name|nodeName
+name|zkStateReader
 operator|.
-name|replaceAll
+name|getZkClient
+argument_list|()
+operator|.
+name|getBaseUrlForNodeName
 argument_list|(
-literal|"_"
-argument_list|,
-literal|"/"
+name|nodeName
 argument_list|)
 decl_stmt|;
 if|if

@@ -2236,7 +2236,7 @@ argument_list|(
 name|getSolrHome
 argument_list|()
 argument_list|,
-literal|"/solr"
+name|context
 argument_list|,
 literal|0
 argument_list|,
