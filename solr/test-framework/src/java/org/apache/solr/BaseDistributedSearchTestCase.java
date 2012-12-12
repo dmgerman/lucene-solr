@@ -657,16 +657,30 @@ comment|// we got 'lucky' and still just have the root context,
 comment|// NOOP: don't try to add a subdir to nothing (ie "//" is bad)
 block|}
 block|}
+comment|// paranoia, we *really* don't want to ever get "//" in a path...
+specifier|final
+name|String
+name|hc
+init|=
+name|hostContext
+operator|.
+name|toString
+argument_list|()
+operator|.
+name|replaceAll
+argument_list|(
+literal|"\\/+"
+argument_list|,
+literal|"/"
+argument_list|)
+decl_stmt|;
 name|log
 operator|.
 name|info
 argument_list|(
 literal|"Setting hostContext system property: "
 operator|+
-name|hostContext
-operator|.
-name|toString
-argument_list|()
+name|hc
 argument_list|)
 expr_stmt|;
 name|System
@@ -675,10 +689,7 @@ name|setProperty
 argument_list|(
 literal|"hostContext"
 argument_list|,
-name|hostContext
-operator|.
-name|toString
-argument_list|()
+name|hc
 argument_list|)
 expr_stmt|;
 block|}
