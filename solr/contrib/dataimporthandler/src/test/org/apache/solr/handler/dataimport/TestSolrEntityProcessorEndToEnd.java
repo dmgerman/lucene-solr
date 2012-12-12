@@ -299,7 +299,7 @@ operator|.
 name|class
 argument_list|)
 decl_stmt|;
-comment|//rivate static final String SOLR_SOURCE_URL = "http://127.0.0.1:8983/solr";
+comment|//private static final String SOLR_SOURCE_URL = "http://127.0.0.1:8983/solr";
 DECL|field|SOLR_CONFIG
 specifier|private
 specifier|static
@@ -325,7 +325,13 @@ specifier|final
 name|String
 name|SOLR_HOME
 init|=
+name|getFile
+argument_list|(
 literal|"dih/solr"
+argument_list|)
+operator|.
+name|getAbsolutePath
+argument_list|()
 decl_stmt|;
 DECL|field|CONF_DIR
 specifier|private
@@ -334,13 +340,7 @@ specifier|final
 name|String
 name|CONF_DIR
 init|=
-literal|"dih"
-operator|+
-name|File
-operator|.
-name|separator
-operator|+
-literal|"solr"
+name|SOLR_HOME
 operator|+
 name|File
 operator|.
