@@ -286,6 +286,19 @@ parameter_list|)
 throws|throws
 name|IOException
 function_decl|;
+comment|/**    * This remove is special in that it may be called even after    * the factory has been closed. Remove only makes sense for    * peristent directory factories.    *     * @param path to remove    * @throws IOException If there is a low-level I/O error.    */
+DECL|method|remove
+specifier|public
+specifier|abstract
+name|void
+name|remove
+parameter_list|(
+name|String
+name|path
+parameter_list|)
+throws|throws
+name|IOException
+function_decl|;
 comment|/**    * Override for more efficient moves.    *     * @throws IOException If there is a low-level I/O error.    */
 DECL|method|move
 specifier|public
