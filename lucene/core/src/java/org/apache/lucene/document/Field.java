@@ -1054,7 +1054,7 @@ throw|throw
 operator|new
 name|IllegalArgumentException
 argument_list|(
-literal|"cannot set a Reader value on an indexed field"
+literal|"cannot set a BytesRef value on an indexed field"
 argument_list|)
 throw|;
 block|}
