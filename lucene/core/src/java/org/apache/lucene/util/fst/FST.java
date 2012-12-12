@@ -6366,7 +6366,6 @@ expr_stmt|;
 block|}
 comment|/** Expert: creates an FST by packing this one.  This    *  process requires substantial additional RAM (currently    *  up to ~8 bytes per node depending on    *<code>acceptableOverheadRatio</code>), but then should    *  produce a smaller FST.    *    *<p>The implementation of this method uses ideas from    *<a target="_blank" href="http://www.cs.put.poznan.pl/dweiss/site/publications/download/fsacomp.pdf">Smaller Representation of Finite State Automata</a>,    *  which describes techniques to reduce the size of a FST.    *  However, this is not a strict implementation of the    *  algorithms described in this paper.    */
 DECL|method|pack
-specifier|public
 name|FST
 argument_list|<
 name|T

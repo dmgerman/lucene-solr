@@ -1552,7 +1552,7 @@ name|separatorChar
 argument_list|)
 return|;
 block|}
-comment|/**    * Write dictionary in file    * Dictionary format is:    * [Size of dictionary(int)], [entry:{left id(short)}{right id(short)}{word cost(short)}{length of pos info(short)}{pos info(char)}], [entry...], [entry...].....    * @throws IOException    */
+comment|/**    * Write dictionary in file    * Dictionary format is:    * [Size of dictionary(int)], [entry:{left id(short)}{right id(short)}{word cost(short)}{length of pos info(short)}{pos info(char)}], [entry...], [entry...].....    * @throws IOException if an I/O error occurs writing the dictionary files    */
 DECL|method|write
 specifier|public
 name|void
