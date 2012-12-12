@@ -536,6 +536,12 @@ specifier|final
 name|String
 name|segment
 decl_stmt|;
+DECL|field|segmentSuffix
+specifier|private
+specifier|final
+name|String
+name|segmentSuffix
+decl_stmt|;
 DECL|field|indexWriter
 specifier|private
 name|CompressingStoredFieldsIndexWriter
@@ -643,6 +649,12 @@ operator|=
 name|si
 operator|.
 name|name
+expr_stmt|;
+name|this
+operator|.
+name|segmentSuffix
+operator|=
+name|segmentSuffix
 expr_stmt|;
 name|this
 operator|.
@@ -1830,7 +1842,7 @@ name|segmentFileName
 argument_list|(
 name|segment
 argument_list|,
-literal|""
+name|segmentSuffix
 argument_list|,
 name|FIELDS_EXTENSION
 argument_list|)
@@ -1841,7 +1853,7 @@ name|segmentFileName
 argument_list|(
 name|segment
 argument_list|,
-literal|""
+name|segmentSuffix
 argument_list|,
 name|FIELDS_INDEX_EXTENSION
 argument_list|)
