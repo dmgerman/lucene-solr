@@ -238,16 +238,6 @@ begin_import
 import|import
 name|org
 operator|.
-name|junit
-operator|.
-name|Ignore
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
 name|slf4j
 operator|.
 name|Logger
@@ -348,6 +338,15 @@ operator|+
 name|File
 operator|.
 name|separator
+decl_stmt|;
+DECL|field|DEAD_SOLR_SERVER
+specifier|private
+specifier|static
+specifier|final
+name|String
+name|DEAD_SOLR_SERVER
+init|=
+literal|"http://[ff01::114]:33332/solr"
 decl_stmt|;
 DECL|field|DB_DOCS
 specifier|private
@@ -553,7 +552,7 @@ name|String
 name|options
 parameter_list|,
 name|boolean
-name|useFakeUrl
+name|useDeadServer
 parameter_list|)
 block|{
 return|return
@@ -566,9 +565,9 @@ operator|+
 literal|"   url='"
 operator|+
 operator|(
-name|useFakeUrl
+name|useDeadServer
 condition|?
-literal|"http://[ff01::114]:33332/solr"
+name|DEAD_SOLR_SERVER
 else|:
 name|getSourceUrl
 argument_list|()
@@ -1189,38 +1188,6 @@ name|void
 name|testFullImportWrongSolrUrl
 parameter_list|()
 block|{
-try|try
-block|{
-name|jetty
-operator|.
-name|stop
-argument_list|()
-expr_stmt|;
-block|}
-catch|catch
-parameter_list|(
-name|Exception
-name|e
-parameter_list|)
-block|{
-name|LOG
-operator|.
-name|error
-argument_list|(
-literal|"Error stopping jetty"
-argument_list|,
-name|e
-argument_list|)
-expr_stmt|;
-name|fail
-argument_list|(
-name|e
-operator|.
-name|getMessage
-argument_list|()
-argument_list|)
-expr_stmt|;
-block|}
 name|assertQ
 argument_list|(
 name|req
@@ -1240,6 +1207,7 @@ argument_list|(
 literal|"query='*:*' rows='2' fl='id,desc' onError='skip'"
 argument_list|,
 literal|true
+comment|/* use dead server */
 argument_list|)
 argument_list|)
 expr_stmt|;
