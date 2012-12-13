@@ -5564,10 +5564,66 @@ operator|)
 operator|+
 literal|1
 decl_stmt|;
+name|CloudSolrServer
+name|client
+init|=
+literal|null
+decl_stmt|;
+try|try
+block|{
+if|if
+condition|(
+name|i
+operator|==
+literal|0
+condition|)
+block|{
+comment|// Test if we can create a collection through CloudSolrServer where
+comment|// you havnt set default-collection
+comment|// This is nice because you want to be able to create you first
+comment|// collection using CloudSolrServer, and in such case there is
+comment|// nothing reasonable to set as default-collection
+name|client
+operator|=
+name|createCloudClient
+argument_list|(
+literal|null
+argument_list|)
+expr_stmt|;
+block|}
+elseif|else
+if|if
+condition|(
+name|i
+operator|==
+literal|1
+condition|)
+block|{
+comment|// Test if we can create a collection through CloudSolrServer where
+comment|// you have set default-collection to a non-existing collection
+comment|// This is nice because you want to be able to create you first
+comment|// collection using CloudSolrServer, and in such case there is
+comment|// nothing reasonable to set as default-collection, but you might want
+comment|// to use the same CloudSolrServer throughout the entire
+comment|// lifetime of your client-application, so it is nice to be able to
+comment|// set a default-collection on this CloudSolrServer once and for all
+comment|// and use this CloudSolrServer to create the collection
+name|client
+operator|=
+name|createCloudClient
+argument_list|(
+literal|"awholynewcollection_"
+operator|+
+name|i
+argument_list|)
+expr_stmt|;
+block|}
 name|createCollection
 argument_list|(
 name|collectionInfos
 argument_list|,
+literal|"awholynewcollection_"
+operator|+
 name|i
 argument_list|,
 name|numShards
@@ -5575,8 +5631,25 @@ argument_list|,
 name|replicationFactor
 argument_list|,
 name|maxShardsPerNode
+argument_list|,
+name|client
 argument_list|)
 expr_stmt|;
+block|}
+finally|finally
+block|{
+if|if
+condition|(
+name|client
+operator|!=
+literal|null
+condition|)
+name|client
+operator|.
+name|shutdown
+argument_list|()
+expr_stmt|;
+block|}
 block|}
 name|Set
 argument_list|<
@@ -6391,10 +6464,24 @@ argument_list|>
 argument_list|>
 argument_list|()
 expr_stmt|;
+name|CloudSolrServer
+name|client
+init|=
+name|createCloudClient
+argument_list|(
+literal|"awholynewcollection_"
+operator|+
+name|cnt
+argument_list|)
+decl_stmt|;
+try|try
+block|{
 name|createCollection
 argument_list|(
 name|collectionInfos
 argument_list|,
+literal|"awholynewcollection_"
+operator|+
 name|cnt
 argument_list|,
 name|numShards
@@ -6402,8 +6489,19 @@ argument_list|,
 name|replicationFactor
 argument_list|,
 name|maxShardsPerNode
+argument_list|,
+name|client
 argument_list|)
 expr_stmt|;
+block|}
+finally|finally
+block|{
+name|client
+operator|.
+name|shutdown
+argument_list|()
+expr_stmt|;
+block|}
 comment|// TODO: REMOVE THE SLEEP IN THE METHOD CALL WHEN WE HAVE COLLECTION API
 comment|// RESPONSES
 name|checkCollectionIsNotCreated
@@ -6440,17 +6538,20 @@ argument_list|>
 argument_list|>
 name|collectionInfos
 parameter_list|,
-name|int
-name|i
+name|String
+name|collectionName
 parameter_list|,
 name|int
 name|numShards
 parameter_list|,
 name|int
-name|numReplica
+name|numReplicas
 parameter_list|,
 name|int
 name|maxShardsPerNode
+parameter_list|,
+name|SolrServer
+name|client
 parameter_list|)
 throws|throws
 name|SolrServerException
@@ -6497,7 +6598,7 @@ name|OverseerCollectionProcessor
 operator|.
 name|REPLICATION_FACTOR
 argument_list|,
-name|numReplica
+name|numReplicas
 argument_list|)
 expr_stmt|;
 name|params
@@ -6511,13 +6612,6 @@ argument_list|,
 name|maxShardsPerNode
 argument_list|)
 expr_stmt|;
-name|String
-name|collectionName
-init|=
-literal|"awholynewcollection_"
-operator|+
-name|i
-decl_stmt|;
 name|int
 name|clientIndex
 init|=
@@ -6553,7 +6647,7 @@ name|list
 operator|.
 name|add
 argument_list|(
-name|numReplica
+name|numReplicas
 argument_list|)
 expr_stmt|;
 name|list
@@ -6597,6 +6691,13 @@ argument_list|(
 literal|"/admin/collections"
 argument_list|)
 expr_stmt|;
+if|if
+condition|(
+name|client
+operator|==
+literal|null
+condition|)
+block|{
 specifier|final
 name|String
 name|baseUrl
@@ -6658,6 +6759,17 @@ argument_list|(
 name|request
 argument_list|)
 expr_stmt|;
+block|}
+else|else
+block|{
+name|client
+operator|.
+name|request
+argument_list|(
+name|request
+argument_list|)
+expr_stmt|;
+block|}
 block|}
 DECL|method|waitForReloads
 specifier|private
