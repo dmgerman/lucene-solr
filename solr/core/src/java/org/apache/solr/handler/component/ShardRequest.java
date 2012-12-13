@@ -182,6 +182,15 @@ name|PURPOSE_GET_TOP_GROUPS
 init|=
 literal|0x800
 decl_stmt|;
+DECL|field|PURPOSE_GET_MLT_RESULTS
+specifier|public
+specifier|final
+specifier|static
+name|int
+name|PURPOSE_GET_MLT_RESULTS
+init|=
+literal|0x1000
+decl_stmt|;
 DECL|field|purpose
 specifier|public
 name|int
