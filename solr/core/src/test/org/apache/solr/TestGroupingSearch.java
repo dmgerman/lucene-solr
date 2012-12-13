@@ -3405,6 +3405,47 @@ operator|+
 literal|"'doclist':{'numFound':4,'start':0,'docs':[{'id':'3'},{'id':'4'},{'id':'2'}]}}}"
 argument_list|)
 expr_stmt|;
+comment|// group.query that matches nothing
+name|assertJQ
+argument_list|(
+name|req
+argument_list|(
+literal|"fq"
+argument_list|,
+name|filt
+argument_list|,
+literal|"q"
+argument_list|,
+literal|"{!func}"
+operator|+
+name|f2
+argument_list|,
+literal|"group"
+argument_list|,
+literal|"true"
+argument_list|,
+literal|"group.query"
+argument_list|,
+literal|"id:[2 TO 5]"
+argument_list|,
+literal|"group.query"
+argument_list|,
+literal|"id:1000"
+argument_list|,
+literal|"fl"
+argument_list|,
+literal|"id"
+argument_list|,
+literal|"group.limit"
+argument_list|,
+literal|"3"
+argument_list|)
+argument_list|,
+literal|"/grouped/id:[2 TO 5]=={'matches':10,'doclist':{'numFound':4,'start':0,'docs':[{'id':'3'},{'id':'4'},{'id':'2'}]}}"
+argument_list|,
+literal|"/grouped/id:1000=={'matches':10,'doclist':{'numFound':0,'start':0,'docs':[]}}"
+argument_list|)
+expr_stmt|;
 comment|// group.query and offset
 name|assertJQ
 argument_list|(

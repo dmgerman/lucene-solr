@@ -1811,6 +1811,113 @@ operator|+
 literal|" asc, id asc"
 argument_list|)
 expr_stmt|;
+comment|// SOLR-4150: what if group.query has no matches,
+comment|// or only matches on one shard
+name|query
+argument_list|(
+literal|"q"
+argument_list|,
+literal|"*:*"
+argument_list|,
+literal|"rows"
+argument_list|,
+literal|100
+argument_list|,
+literal|"fl"
+argument_list|,
+literal|"id,"
+operator|+
+name|i1
+argument_list|,
+literal|"group"
+argument_list|,
+literal|"true"
+argument_list|,
+literal|"group.query"
+argument_list|,
+name|t1
+operator|+
+literal|":kings OR "
+operator|+
+name|t1
+operator|+
+literal|":eggs"
+argument_list|,
+literal|"group.query"
+argument_list|,
+literal|"id:5"
+argument_list|,
+comment|// single doc, so only one shard will have it
+literal|"group.limit"
+argument_list|,
+literal|10
+argument_list|,
+literal|"sort"
+argument_list|,
+name|i1
+operator|+
+literal|" asc, id asc"
+argument_list|)
+expr_stmt|;
+name|handle
+operator|.
+name|put
+argument_list|(
+name|t1
+operator|+
+literal|":this_will_never_match"
+argument_list|,
+name|SKIP
+argument_list|)
+expr_stmt|;
+comment|// :TODO: SOLR-4181
+name|query
+argument_list|(
+literal|"q"
+argument_list|,
+literal|"*:*"
+argument_list|,
+literal|"rows"
+argument_list|,
+literal|100
+argument_list|,
+literal|"fl"
+argument_list|,
+literal|"id,"
+operator|+
+name|i1
+argument_list|,
+literal|"group"
+argument_list|,
+literal|"true"
+argument_list|,
+literal|"group.query"
+argument_list|,
+name|t1
+operator|+
+literal|":kings OR "
+operator|+
+name|t1
+operator|+
+literal|":eggs"
+argument_list|,
+literal|"group.query"
+argument_list|,
+name|t1
+operator|+
+literal|":this_will_never_match"
+argument_list|,
+literal|"group.limit"
+argument_list|,
+literal|10
+argument_list|,
+literal|"sort"
+argument_list|,
+name|i1
+operator|+
+literal|" asc, id asc"
+argument_list|)
+expr_stmt|;
 comment|// SOLR-3109
 name|query
 argument_list|(
