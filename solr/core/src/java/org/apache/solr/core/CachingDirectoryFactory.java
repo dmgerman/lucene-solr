@@ -760,6 +760,19 @@ init|(
 name|this
 init|)
 block|{
+if|if
+condition|(
+name|closed
+condition|)
+block|{
+throw|throw
+operator|new
+name|RuntimeException
+argument_list|(
+literal|"Already closed"
+argument_list|)
+throw|;
+block|}
 name|CacheValue
 name|cacheValue
 init|=
