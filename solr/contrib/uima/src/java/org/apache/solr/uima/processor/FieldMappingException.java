@@ -23,6 +23,11 @@ comment|/**  * Exception thrown when an error happening while mapping UIMA CAS m
 end_comment
 
 begin_class
+annotation|@
+name|SuppressWarnings
+argument_list|(
+literal|"serial"
+argument_list|)
 DECL|class|FieldMappingException
 specifier|public
 class|class
