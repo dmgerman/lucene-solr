@@ -1346,26 +1346,6 @@ throw|throw
 name|e
 throw|;
 block|}
-if|if
-condition|(
-name|Constants
-operator|.
-name|JAVA_VENDOR
-operator|.
-name|startsWith
-argument_list|(
-literal|"IBM"
-argument_list|)
-condition|)
-block|{
-throw|throw
-operator|new
-name|AssumptionViolatedException
-argument_list|(
-literal|"refusing to execute on broken jvm"
-argument_list|)
-throw|;
-block|}
 block|}
 comment|/**    * Check codec restrictions.    *     * @throws AssumptionViolatedException if the class does not work with a given codec.    */
 DECL|method|checkCodecRestrictions
