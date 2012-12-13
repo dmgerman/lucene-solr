@@ -231,12 +231,7 @@ annotation|@
 name|Override
 DECL|method|getRetainableProperty
 specifier|public
-name|Class
-argument_list|<
-name|?
-extends|extends
 name|CategoryProperty
-argument_list|>
 name|getRetainableProperty
 parameter_list|()
 block|{

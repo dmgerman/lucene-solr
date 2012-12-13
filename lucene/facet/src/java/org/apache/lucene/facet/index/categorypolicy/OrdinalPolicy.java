@@ -36,24 +36,6 @@ name|lucene
 operator|.
 name|facet
 operator|.
-name|index
-operator|.
-name|streaming
-operator|.
-name|CategoryParentsStream
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|facet
-operator|.
 name|search
 operator|.
 name|FacetsAccumulator
@@ -97,7 +79,7 @@ comment|/*  * Licensed to the Apache Software Foundation (ASF) under one or more
 end_comment
 
 begin_comment
-comment|/**  * Filtering category ordinals in {@link CategoryParentsStream}, where a given  * category ordinal is added to the stream, and than its parents are being added  * one after the other using {@link TaxonomyWriter#getParent(int)}.<br>  * That loop should have a stop point - the default approach (excluding the  * ROOT) is implemented in {@link OrdinalPolicy#ALL_PARENTS}.  *   * @lucene.experimental  */
+comment|/**  * A policy for adding category parent ordinals to the list of ordinals that are  * encoded for a given document. The default {@link #ALL_PARENTS} policy always  * adds all parents, where {@link #NO_PARENTS} never adds any parents.  *   * @lucene.experimental  */
 end_comment
 
 begin_interface

@@ -547,11 +547,6 @@ name|sParams
 init|=
 operator|new
 name|FacetSearchParams
-argument_list|()
-decl_stmt|;
-name|sParams
-operator|.
-name|addFacetRequest
 argument_list|(
 operator|new
 name|ScoreFacetRequest
@@ -565,7 +560,7 @@ argument_list|,
 literal|10
 argument_list|)
 argument_list|)
-expr_stmt|;
+decl_stmt|;
 name|DirectoryReader
 name|r
 init|=

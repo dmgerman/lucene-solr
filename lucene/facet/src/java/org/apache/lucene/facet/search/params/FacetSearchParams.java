@@ -22,7 +22,7 @@ name|java
 operator|.
 name|util
 operator|.
-name|ArrayList
+name|Arrays
 import|;
 end_import
 
@@ -33,24 +33,6 @@ operator|.
 name|util
 operator|.
 name|List
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|facet
-operator|.
-name|index
-operator|.
-name|params
-operator|.
-name|DefaultFacetIndexingParams
 import|;
 end_import
 
@@ -90,30 +72,12 @@ name|CategoryListCache
 import|;
 end_import
 
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|facet
-operator|.
-name|search
-operator|.
-name|results
-operator|.
-name|FacetResult
-import|;
-end_import
-
 begin_comment
 comment|/*  * Licensed to the Apache Software Foundation (ASF) under one or more  * contributor license agreements.  See the NOTICE file distributed with  * this work for additional information regarding copyright ownership.  * The ASF licenses this file to You under the Apache License, Version 2.0  * (the "License"); you may not use this file except in compliance with  * the License.  You may obtain a copy of the License at  *  *     http://www.apache.org/licenses/LICENSE-2.0  *  * Unless required by applicable law or agreed to in writing, software  * distributed under the License is distributed on an "AS IS" BASIS,  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.  * See the License for the specific language governing permissions and  * limitations under the License.  */
 end_comment
 
 begin_comment
-comment|/**  * Faceted search parameters indicate for which facets should info be gathered.  *<p>  * The contained facet requests define for which facets should info be gathered.  *<p>  * Contained faceted indexing parameters provide required info on how  * to read and interpret the underlying faceted information in the search index.     *   * @lucene.experimental  */
+comment|/**  * Defines parameters that are needed for faceted search. The list of  * {@link FacetRequest facet requests} denotes the facets for which aggregated  * should be done.  *<p>  * One can pass {@link FacetIndexingParams} in order to tell the search code how  * to read the facets information. Note that you must use the same  * {@link FacetIndexingParams} that were used for indexing.  *   * @lucene.experimental  */
 end_comment
 
 begin_class
@@ -137,56 +101,117 @@ name|FacetRequest
 argument_list|>
 name|facetRequests
 decl_stmt|;
-DECL|field|clCache
-specifier|private
-name|CategoryListCache
-name|clCache
-init|=
-literal|null
-decl_stmt|;
-comment|/**    * Construct with specific faceted indexing parameters.    * It is important to know the indexing parameters so as to e.g.     * read facets data correctly from the index.    * {@link #addFacetRequest(FacetRequest)} must be called at least once     * for this faceted search to find any faceted result.    * @param indexingParams Indexing faceted parameters which were used at indexing time.    * @see #addFacetRequest(FacetRequest)    */
+comment|/**    * Initializes with the given {@link FacetRequest requests} and default    * {@link FacetIndexingParams#ALL_PARENTS}. If you used a different    * {@link FacetIndexingParams}, you should use    * {@link #FacetSearchParams(List, FacetIndexingParams)}.    */
 DECL|method|FacetSearchParams
 specifier|public
 name|FacetSearchParams
 parameter_list|(
+name|FacetRequest
+modifier|...
+name|facetRequests
+parameter_list|)
+block|{
+name|this
+argument_list|(
+name|Arrays
+operator|.
+name|asList
+argument_list|(
+name|facetRequests
+argument_list|)
+argument_list|,
+name|FacetIndexingParams
+operator|.
+name|ALL_PARENTS
+argument_list|)
+expr_stmt|;
+block|}
+comment|/**    * Initializes with the given {@link FacetRequest requests} and default    * {@link FacetIndexingParams#ALL_PARENTS}. If you used a different    * {@link FacetIndexingParams}, you should use    * {@link #FacetSearchParams(List, FacetIndexingParams)}.    */
+DECL|method|FacetSearchParams
+specifier|public
+name|FacetSearchParams
+parameter_list|(
+name|List
+argument_list|<
+name|FacetRequest
+argument_list|>
+name|facetRequests
+parameter_list|)
+block|{
+name|this
+argument_list|(
+name|facetRequests
+argument_list|,
+name|FacetIndexingParams
+operator|.
+name|ALL_PARENTS
+argument_list|)
+expr_stmt|;
+block|}
+comment|/**    * Initilizes with the given {@link FacetRequest requests} and    * {@link FacetIndexingParams}.    */
+DECL|method|FacetSearchParams
+specifier|public
+name|FacetSearchParams
+parameter_list|(
+name|List
+argument_list|<
+name|FacetRequest
+argument_list|>
+name|facetRequests
+parameter_list|,
 name|FacetIndexingParams
 name|indexingParams
 parameter_list|)
 block|{
+if|if
+condition|(
+name|facetRequests
+operator|==
+literal|null
+operator|||
+name|facetRequests
+operator|.
+name|size
+argument_list|()
+operator|==
+literal|0
+condition|)
+block|{
+throw|throw
+operator|new
+name|IllegalArgumentException
+argument_list|(
+literal|"at least one FacetRequest must be defined"
+argument_list|)
+throw|;
+block|}
 name|this
 operator|.
 name|indexingParams
 operator|=
 name|indexingParams
 expr_stmt|;
+name|this
+operator|.
 name|facetRequests
 operator|=
-operator|new
-name|ArrayList
-argument_list|<
-name|FacetRequest
-argument_list|>
-argument_list|()
+name|facetRequests
 expr_stmt|;
 block|}
-comment|/**    * Construct with default faceted indexing parameters.    * Usage of this constructor is valid only if also during indexing the     * default faceted indexing parameters were used.       * {@link #addFacetRequest(FacetRequest)} must be called at least once     * for this faceted search to find any faceted result.    * @see #addFacetRequest(FacetRequest)    */
-DECL|method|FacetSearchParams
+comment|/**    * Returns the {@link CategoryListCache}. By default returns {@code null}, you    * should override if you want to use a cache.    */
+DECL|method|getCategoryListCache
 specifier|public
-name|FacetSearchParams
+name|CategoryListCache
+name|getCategoryListCache
 parameter_list|()
 block|{
-name|this
-argument_list|(
-operator|new
-name|DefaultFacetIndexingParams
-argument_list|()
-argument_list|)
-expr_stmt|;
+return|return
+literal|null
+return|;
 block|}
-comment|/**    * A list of {@link FacetRequest} objects, determining what to count.    * If the returned collection is empty, the faceted search will return no facet results!    */
+comment|/**    * Returns the {@link FacetIndexingParams} that were passed to the    * constructor.    */
 DECL|method|getFacetIndexingParams
 specifier|public
-specifier|final
 name|FacetIndexingParams
 name|getFacetIndexingParams
 parameter_list|()
@@ -195,10 +220,9 @@ return|return
 name|indexingParams
 return|;
 block|}
-comment|/**    * Parameters which controlled the indexing of facets, and which are also    * needed during search.    */
+comment|/**    * Returns the list of {@link FacetRequest facet requests} that were passed to    * the constructor.    */
 DECL|method|getFacetRequests
 specifier|public
-specifier|final
 name|List
 argument_list|<
 name|FacetRequest
@@ -209,39 +233,6 @@ block|{
 return|return
 name|facetRequests
 return|;
-block|}
-comment|/**    * Add a facet request to apply for this faceted search.    * This method must be called at least once for faceted search     * to find any faceted result.<br>    * NOTE: The order of addition implies the order of the {@link FacetResult}s    * @param facetRequest facet request to be added.    */
-DECL|method|addFacetRequest
-specifier|public
-name|void
-name|addFacetRequest
-parameter_list|(
-name|FacetRequest
-name|facetRequest
-parameter_list|)
-block|{
-if|if
-condition|(
-name|facetRequest
-operator|==
-literal|null
-condition|)
-block|{
-throw|throw
-operator|new
-name|IllegalArgumentException
-argument_list|(
-literal|"Provided facetRequest must not be null"
-argument_list|)
-throw|;
-block|}
-name|facetRequests
-operator|.
-name|add
-argument_list|(
-name|facetRequest
-argument_list|)
-expr_stmt|;
 block|}
 annotation|@
 name|Override
@@ -335,34 +326,6 @@ operator|.
 name|toString
 argument_list|()
 return|;
-block|}
-comment|/**    * @return the cldCache in effect    */
-DECL|method|getClCache
-specifier|public
-name|CategoryListCache
-name|getClCache
-parameter_list|()
-block|{
-return|return
-name|clCache
-return|;
-block|}
-comment|/**    * Set Cached Category Lists data to be used in Faceted search.    * @param clCache the cldCache to set    */
-DECL|method|setClCache
-specifier|public
-name|void
-name|setClCache
-parameter_list|(
-name|CategoryListCache
-name|clCache
-parameter_list|)
-block|{
-name|this
-operator|.
-name|clCache
-operator|=
-name|clCache
-expr_stmt|;
 block|}
 block|}
 end_class

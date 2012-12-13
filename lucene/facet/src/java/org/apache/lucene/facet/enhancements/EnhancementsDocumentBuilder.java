@@ -237,12 +237,7 @@ parameter_list|)
 block|{
 name|List
 argument_list|<
-name|Class
-argument_list|<
-name|?
-extends|extends
 name|CategoryProperty
-argument_list|>
 argument_list|>
 name|toRetainList
 init|=
@@ -278,12 +273,7 @@ argument_list|)
 decl_stmt|;
 for|for
 control|(
-name|Class
-argument_list|<
-name|?
-extends|extends
 name|CategoryProperty
-argument_list|>
 name|toRetain
 range|:
 name|toRetainList
@@ -294,6 +284,9 @@ operator|.
 name|addRetainableProperty
 argument_list|(
 name|toRetain
+operator|.
+name|getClass
+argument_list|()
 argument_list|)
 expr_stmt|;
 block|}

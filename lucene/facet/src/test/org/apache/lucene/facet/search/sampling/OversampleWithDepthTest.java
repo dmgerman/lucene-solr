@@ -536,13 +536,6 @@ argument_list|(
 name|taxoDir
 argument_list|)
 decl_stmt|;
-name|FacetSearchParams
-name|fsp
-init|=
-operator|new
-name|FacetSearchParams
-argument_list|()
-decl_stmt|;
 name|CountFacetRequest
 name|facetRequest
 init|=
@@ -575,13 +568,15 @@ operator|.
 name|PER_NODE_IN_TREE
 argument_list|)
 expr_stmt|;
+name|FacetSearchParams
 name|fsp
-operator|.
-name|addFacetRequest
+init|=
+operator|new
+name|FacetSearchParams
 argument_list|(
 name|facetRequest
 argument_list|)
-expr_stmt|;
+decl_stmt|;
 comment|// Craft sampling params to enforce sampling
 specifier|final
 name|SamplingParams

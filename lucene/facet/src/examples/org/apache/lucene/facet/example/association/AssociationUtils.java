@@ -102,7 +102,7 @@ name|enhancements
 operator|.
 name|params
 operator|.
-name|DefaultEnhancementsIndexingParams
+name|EnhancementsIndexingParams
 import|;
 end_import
 
@@ -264,11 +264,11 @@ DECL|field|assocIndexingParams
 specifier|public
 specifier|static
 specifier|final
-name|DefaultEnhancementsIndexingParams
+name|EnhancementsIndexingParams
 name|assocIndexingParams
 init|=
 operator|new
-name|DefaultEnhancementsIndexingParams
+name|EnhancementsIndexingParams
 argument_list|(
 operator|new
 name|AssociationEnhancement

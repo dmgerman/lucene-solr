@@ -159,10 +159,10 @@ comment|/*  * Licensed to the Apache Software Foundation (ASF) under one or more
 end_comment
 
 begin_class
-DECL|class|DefaultFacetIndexingParamsTest
+DECL|class|FacetIndexingParamsTest
 specifier|public
 class|class
-name|DefaultFacetIndexingParamsTest
+name|FacetIndexingParamsTest
 extends|extends
 name|LuceneTestCase
 block|{
@@ -177,9 +177,9 @@ block|{
 name|FacetIndexingParams
 name|dfip
 init|=
-operator|new
-name|DefaultFacetIndexingParams
-argument_list|()
+name|FacetIndexingParams
+operator|.
+name|ALL_PARENTS
 decl_stmt|;
 name|assertNotNull
 argument_list|(
@@ -448,7 +448,7 @@ name|FacetIndexingParams
 name|dfip
 init|=
 operator|new
-name|DefaultFacetIndexingParams
+name|FacetIndexingParams
 argument_list|(
 name|clp
 argument_list|)
@@ -490,9 +490,9 @@ block|{
 name|FacetIndexingParams
 name|dfip
 init|=
-operator|new
-name|DefaultFacetIndexingParams
-argument_list|()
+name|FacetIndexingParams
+operator|.
+name|ALL_PARENTS
 decl_stmt|;
 comment|// check path policy
 name|CategoryPath

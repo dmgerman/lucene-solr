@@ -512,11 +512,6 @@ name|fsp
 init|=
 operator|new
 name|FacetSearchParams
-argument_list|()
-decl_stmt|;
-name|fsp
-operator|.
-name|addFacetRequest
 argument_list|(
 operator|new
 name|CountFacetRequest
@@ -530,7 +525,7 @@ argument_list|,
 name|NUM_DOCS
 argument_list|)
 argument_list|)
-expr_stmt|;
+decl_stmt|;
 name|FacetsCollector
 name|collector
 init|=

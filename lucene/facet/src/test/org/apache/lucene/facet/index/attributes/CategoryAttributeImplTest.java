@@ -292,18 +292,18 @@ name|ca
 operator|.
 name|addProperty
 argument_list|(
-operator|new
 name|DummyProperty
-argument_list|()
+operator|.
+name|INSTANCE
 argument_list|)
 expr_stmt|;
 name|assertEquals
 argument_list|(
 literal|"DummyProperty should be in properties"
 argument_list|,
-operator|new
 name|DummyProperty
-argument_list|()
+operator|.
+name|INSTANCE
 argument_list|,
 name|ca
 operator|.
@@ -341,9 +341,9 @@ name|ca
 operator|.
 name|addProperty
 argument_list|(
-operator|new
 name|DummyProperty
-argument_list|()
+operator|.
+name|INSTANCE
 argument_list|)
 expr_stmt|;
 block|}
@@ -389,18 +389,18 @@ name|ca
 operator|.
 name|addProperty
 argument_list|(
-operator|new
 name|DummyProperty
-argument_list|()
+operator|.
+name|INSTANCE
 argument_list|)
 expr_stmt|;
 name|assertEquals
 argument_list|(
 literal|"DummyProperty should be in properties"
 argument_list|,
-operator|new
 name|DummyProperty
-argument_list|()
+operator|.
+name|INSTANCE
 argument_list|,
 name|ca
 operator|.
@@ -451,9 +451,9 @@ name|ca
 operator|.
 name|addProperty
 argument_list|(
-operator|new
 name|DummyProperty
-argument_list|()
+operator|.
+name|INSTANCE
 argument_list|)
 expr_stmt|;
 name|List
@@ -506,9 +506,9 @@ name|assertEquals
 argument_list|(
 literal|"DummyProperty should be in properties"
 argument_list|,
-operator|new
 name|DummyProperty
-argument_list|()
+operator|.
+name|INSTANCE
 argument_list|,
 name|ca
 operator|.
@@ -531,9 +531,9 @@ name|assertEquals
 argument_list|(
 literal|"DummyProperty should be in properties"
 argument_list|,
-operator|new
 name|DummyProperty
-argument_list|()
+operator|.
+name|INSTANCE
 argument_list|,
 name|ca
 operator|.
@@ -611,9 +611,9 @@ name|ca1
 operator|.
 name|addProperty
 argument_list|(
-operator|new
 name|DummyProperty
-argument_list|()
+operator|.
+name|INSTANCE
 argument_list|)
 expr_stmt|;
 name|CategoryAttribute

@@ -203,12 +203,7 @@ parameter_list|)
 function_decl|;
 comment|/**    * Get a {@link CategoryProperty} class to be retained when creating    * {@link CategoryParentsStream}.    *     * @return the {@link CategoryProperty} class to be retained when creating    *         {@link CategoryParentsStream}, or {@code null} if there is no such    *         property.    */
 DECL|method|getRetainableProperty
-name|Class
-argument_list|<
-name|?
-extends|extends
 name|CategoryProperty
-argument_list|>
 name|getRetainableProperty
 parameter_list|()
 function_decl|;
