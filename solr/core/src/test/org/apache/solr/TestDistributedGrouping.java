@@ -1918,6 +1918,87 @@ operator|+
 literal|" asc, id asc"
 argument_list|)
 expr_stmt|;
+comment|// SOLR-4164: main query matches nothing, or only matches on one shard
+name|query
+argument_list|(
+literal|"q"
+argument_list|,
+literal|"bogus_s:nothing"
+argument_list|,
+comment|// no docs match
+literal|"group"
+argument_list|,
+literal|"true"
+argument_list|,
+literal|"group.query"
+argument_list|,
+name|t1
+operator|+
+literal|":this_will_never_match"
+argument_list|,
+literal|"group.field"
+argument_list|,
+name|i1
+argument_list|,
+literal|"fl"
+argument_list|,
+literal|"id"
+argument_list|,
+literal|"group.limit"
+argument_list|,
+literal|"2"
+argument_list|,
+literal|"group.format"
+argument_list|,
+literal|"simple"
+argument_list|)
+expr_stmt|;
+name|query
+argument_list|(
+literal|"q"
+argument_list|,
+literal|"id:5"
+argument_list|,
+comment|// one doc matches, so only one shard
+literal|"rows"
+argument_list|,
+literal|100
+argument_list|,
+literal|"fl"
+argument_list|,
+literal|"id,"
+operator|+
+name|i1
+argument_list|,
+literal|"group"
+argument_list|,
+literal|"true"
+argument_list|,
+literal|"group.query"
+argument_list|,
+name|t1
+operator|+
+literal|":kings OR "
+operator|+
+name|t1
+operator|+
+literal|":eggs"
+argument_list|,
+literal|"group.field"
+argument_list|,
+name|i1
+argument_list|,
+literal|"group.limit"
+argument_list|,
+literal|10
+argument_list|,
+literal|"sort"
+argument_list|,
+name|i1
+operator|+
+literal|" asc, id asc"
+argument_list|)
+expr_stmt|;
 comment|// SOLR-3109
 name|query
 argument_list|(
