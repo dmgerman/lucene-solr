@@ -1498,6 +1498,11 @@ name|docCount
 init|=
 literal|0
 decl_stmt|;
+name|boolean
+name|allDocsIndexed
+init|=
+literal|false
+decl_stmt|;
 try|try
 block|{
 for|for
@@ -1557,42 +1562,6 @@ operator|!
 name|aborting
 condition|)
 block|{
-comment|// One of the documents hit a non-aborting
-comment|// exception (eg something happened during
-comment|// analysis).  We now go and mark any docs
-comment|// from this batch that we had already indexed
-comment|// as deleted:
-name|int
-name|docID
-init|=
-name|docState
-operator|.
-name|docID
-decl_stmt|;
-specifier|final
-name|int
-name|endDocID
-init|=
-name|docID
-operator|-
-name|docCount
-decl_stmt|;
-while|while
-condition|(
-name|docID
-operator|>
-name|endDocID
-condition|)
-block|{
-name|deleteDocID
-argument_list|(
-name|docID
-argument_list|)
-expr_stmt|;
-name|docID
-operator|--
-expr_stmt|;
-block|}
 comment|// Incr here because finishDocument will not
 comment|// be called (because an exc is being thrown):
 name|numDocsInRAM
@@ -1642,6 +1611,10 @@ literal|null
 argument_list|)
 expr_stmt|;
 block|}
+name|allDocsIndexed
+operator|=
+literal|true
+expr_stmt|;
 comment|// Apply delTerm only after all indexing has
 comment|// succeeded, but apply it only to docs prior to when
 comment|// this batch started:
@@ -1686,6 +1659,49 @@ block|}
 block|}
 finally|finally
 block|{
+if|if
+condition|(
+operator|!
+name|allDocsIndexed
+operator|&&
+operator|!
+name|aborting
+condition|)
+block|{
+comment|// the iterator threw an exception that is not aborting
+comment|// go and mark all docs from this block as deleted
+name|int
+name|docID
+init|=
+name|numDocsInRAM
+operator|-
+literal|1
+decl_stmt|;
+specifier|final
+name|int
+name|endDocID
+init|=
+name|docID
+operator|-
+name|docCount
+decl_stmt|;
+while|while
+condition|(
+name|docID
+operator|>
+name|endDocID
+condition|)
+block|{
+name|deleteDocID
+argument_list|(
+name|docID
+argument_list|)
+expr_stmt|;
+name|docID
+operator|--
+expr_stmt|;
+block|}
+block|}
 name|docState
 operator|.
 name|clear
