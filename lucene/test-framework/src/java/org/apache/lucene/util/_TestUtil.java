@@ -5844,6 +5844,26 @@ operator|!=
 literal|null
 return|;
 block|}
+comment|// nocommit remove this once all codecs support simple norms!!
+DECL|method|canUseSimpleNorms
+specifier|public
+specifier|static
+name|boolean
+name|canUseSimpleNorms
+parameter_list|()
+block|{
+return|return
+name|Codec
+operator|.
+name|getDefault
+argument_list|()
+operator|.
+name|simpleNormsFormat
+argument_list|()
+operator|!=
+literal|null
+return|;
+block|}
 DECL|method|anyFilesExceptWriteLock
 specifier|public
 specifier|static

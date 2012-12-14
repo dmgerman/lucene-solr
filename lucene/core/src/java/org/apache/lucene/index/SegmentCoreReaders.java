@@ -1243,6 +1243,12 @@ return|;
 block|}
 if|if
 condition|(
+operator|!
+name|fi
+operator|.
+name|isIndexed
+argument_list|()
+operator|||
 name|fi
 operator|.
 name|omitsNorms

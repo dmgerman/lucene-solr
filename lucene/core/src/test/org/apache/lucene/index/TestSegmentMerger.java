@@ -182,6 +182,16 @@ name|PackedInts
 import|;
 end_import
 
+begin_import
+import|import
+name|org
+operator|.
+name|junit
+operator|.
+name|Assume
+import|;
+end_import
+
 begin_class
 DECL|class|TestSegmentMerger
 specifier|public
@@ -449,6 +459,16 @@ parameter_list|()
 throws|throws
 name|IOException
 block|{
+name|Assume
+operator|.
+name|assumeTrue
+argument_list|(
+name|_TestUtil
+operator|.
+name|canUseSimpleNorms
+argument_list|()
+argument_list|)
+expr_stmt|;
 specifier|final
 name|Codec
 name|codec

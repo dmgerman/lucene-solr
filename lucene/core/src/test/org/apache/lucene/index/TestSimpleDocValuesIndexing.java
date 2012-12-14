@@ -113,6 +113,8 @@ operator|.
 name|util
 operator|.
 name|Map
+operator|.
+name|Entry
 import|;
 end_import
 
@@ -123,8 +125,6 @@ operator|.
 name|util
 operator|.
 name|Map
-operator|.
-name|Entry
 import|;
 end_import
 
@@ -403,22 +403,8 @@ operator|.
 name|DocValues
 operator|.
 name|SourceCache
-import|;
-end_import
-
-begin_import
-import|import
-name|org
 operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|index
-operator|.
-name|DocValues
-operator|.
-name|Type
+name|DirectSourceCache
 import|;
 end_import
 
@@ -435,8 +421,22 @@ operator|.
 name|DocValues
 operator|.
 name|SourceCache
+import|;
+end_import
+
+begin_import
+import|import
+name|org
 operator|.
-name|DirectSourceCache
+name|apache
+operator|.
+name|lucene
+operator|.
+name|index
+operator|.
+name|DocValues
+operator|.
+name|Type
 import|;
 end_import
 
@@ -622,6 +622,16 @@ name|_TestUtil
 import|;
 end_import
 
+begin_import
+import|import
+name|org
+operator|.
+name|junit
+operator|.
+name|Assume
+import|;
+end_import
+
 begin_comment
 comment|/**  *   * Tests DocValues integration into IndexWriter& Codecs  *   */
 end_comment
@@ -644,6 +654,16 @@ parameter_list|()
 throws|throws
 name|IOException
 block|{
+name|Assume
+operator|.
+name|assumeTrue
+argument_list|(
+name|_TestUtil
+operator|.
+name|canUseSimpleDV
+argument_list|()
+argument_list|)
+expr_stmt|;
 name|Directory
 name|dir
 init|=
@@ -934,25 +954,18 @@ name|search
 operator|.
 name|scoreDocs
 decl_stmt|;
-name|DocValues
+name|NumericDocValues
 name|docValues
 init|=
-name|MultiDocValues
-operator|.
-name|getDocValues
+name|getOnlySegmentReader
 argument_list|(
 name|reader
-argument_list|,
+argument_list|)
+operator|.
+name|getNumericDocValues
+argument_list|(
 literal|"docId"
 argument_list|)
-decl_stmt|;
-name|Source
-name|source
-init|=
-name|docValues
-operator|.
-name|getSource
-argument_list|()
 decl_stmt|;
 for|for
 control|(
@@ -987,9 +1000,9 @@ name|assertEquals
 argument_list|(
 name|i
 argument_list|,
-name|source
+name|docValues
 operator|.
-name|getInt
+name|get
 argument_list|(
 name|scoreDocs
 index|[

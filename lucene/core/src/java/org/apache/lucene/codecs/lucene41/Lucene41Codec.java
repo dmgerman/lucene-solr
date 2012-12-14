@@ -278,24 +278,6 @@ name|lucene
 operator|.
 name|codecs
 operator|.
-name|lucene41
-operator|.
-name|values
-operator|.
-name|Lucene41DocValuesFormat
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|codecs
-operator|.
 name|perfield
 operator|.
 name|PerFieldDocValuesFormat
@@ -661,6 +643,7 @@ argument_list|(
 literal|"Memory"
 argument_list|)
 decl_stmt|;
+comment|// nocommit need simpleNormsFormat
 block|}
 end_class
 
