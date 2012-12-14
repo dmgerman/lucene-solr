@@ -1191,7 +1191,7 @@ block|}
 block|}
 block|}
 block|}
-comment|/**    * Returns true iff {@link Similarity#coord(int,int)} is disabled in scoring    * for the high and low frequency query instance. The top level query will    * always disable coords.    *     * @see #CommonTermsQuery(Occur, Occur, float, boolean)    */
+comment|/**    * Returns true iff {@link Similarity#coord(int,int)} is disabled in scoring    * for the high and low frequency query instance. The top level query will    * always disable coords.    */
 DECL|method|isCoordDisabled
 specifier|public
 name|boolean
