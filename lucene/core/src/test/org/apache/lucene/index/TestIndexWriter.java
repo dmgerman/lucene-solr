@@ -13668,6 +13668,10 @@ block|{
 if|if
 condition|(
 name|liveDocs
+operator|==
+literal|null
+operator|||
+name|liveDocs
 operator|.
 name|get
 argument_list|(
