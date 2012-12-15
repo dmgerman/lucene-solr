@@ -816,8 +816,8 @@ specifier|final
 name|DistributedQueue
 name|overseerCollectionQueue
 decl_stmt|;
-comment|// package private for tests
 DECL|field|CONFIGS_ZKNODE
+specifier|public
 specifier|static
 specifier|final
 name|String
@@ -997,6 +997,12 @@ DECL|field|clientTimeout
 specifier|private
 name|int
 name|clientTimeout
+decl_stmt|;
+DECL|field|isClosed
+specifier|private
+specifier|volatile
+name|boolean
+name|isClosed
 decl_stmt|;
 DECL|method|ZkController
 specifier|public
@@ -1493,7 +1499,9 @@ name|cmdExecutor
 operator|=
 operator|new
 name|ZkCmdExecutor
-argument_list|()
+argument_list|(
+name|zkClientTimeout
+argument_list|)
 expr_stmt|;
 name|leaderElector
 operator|=
@@ -1611,6 +1619,13 @@ name|Exception
 name|e
 parameter_list|)
 block|{
+if|if
+condition|(
+name|isClosed
+condition|)
+block|{
+return|return;
+block|}
 try|try
 block|{
 name|Thread
@@ -1695,6 +1710,13 @@ argument_list|,
 name|e
 argument_list|)
 expr_stmt|;
+if|if
+condition|(
+name|isClosed
+condition|)
+block|{
+return|return;
+block|}
 try|try
 block|{
 name|Thread
@@ -1779,6 +1801,12 @@ name|void
 name|close
 parameter_list|()
 block|{
+name|this
+operator|.
+name|isClosed
+operator|=
+literal|true
+expr_stmt|;
 if|if
 condition|(
 name|cmdDistribExecutor
