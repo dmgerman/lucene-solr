@@ -130,6 +130,18 @@ end_import
 
 begin_import
 import|import
+name|javax
+operator|.
+name|xml
+operator|.
+name|parsers
+operator|.
+name|ParserConfigurationException
+import|;
+end_import
+
+begin_import
+import|import
 name|org
 operator|.
 name|apache
@@ -719,18 +731,6 @@ operator|.
 name|sax
 operator|.
 name|SAXException
-import|;
-end_import
-
-begin_import
-import|import
-name|javax
-operator|.
-name|xml
-operator|.
-name|parsers
-operator|.
-name|ParserConfigurationException
 import|;
 end_import
 
@@ -5007,6 +5007,28 @@ name|live
 argument_list|)
 throw|;
 block|}
+comment|// solrcloud_debug
+comment|//        try {;
+comment|//        LocalSolrQueryRequest r = new LocalSolrQueryRequest(core, new
+comment|//        ModifiableSolrParams());
+comment|//        CommitUpdateCommand commitCmd = new CommitUpdateCommand(r, false);
+comment|//        commitCmd.softCommit = true;
+comment|//        core.getUpdateHandler().commit(commitCmd);
+comment|//        RefCounted<SolrIndexSearcher> searchHolder =
+comment|//        core.getNewestSearcher(false);
+comment|//        SolrIndexSearcher searcher = searchHolder.get();
+comment|//        try {
+comment|//        System.out.println(core.getCoreDescriptor().getCoreContainer().getZkController().getNodeName()
+comment|//        + " to replicate "
+comment|//        + searcher.search(new MatchAllDocsQuery(), 1).totalHits + " gen:" +
+comment|//        core.getDeletionPolicy().getLatestCommit().getGeneration() + " data:" +
+comment|//        core.getDataDir());
+comment|//        } finally {
+comment|//        searchHolder.decref();
+comment|//        }
+comment|//        } catch (Exception e) {
+comment|//
+comment|//        }
 block|}
 finally|finally
 block|{
@@ -5032,28 +5054,6 @@ literal|1000
 argument_list|)
 expr_stmt|;
 block|}
-comment|// solrcloud_debug
-comment|// try {;
-comment|// LocalSolrQueryRequest r = new LocalSolrQueryRequest(core, new
-comment|// ModifiableSolrParams());
-comment|// CommitUpdateCommand commitCmd = new CommitUpdateCommand(r, false);
-comment|// commitCmd.softCommit = true;
-comment|// core.getUpdateHandler().commit(commitCmd);
-comment|// RefCounted<SolrIndexSearcher> searchHolder =
-comment|// core.getNewestSearcher(false);
-comment|// SolrIndexSearcher searcher = searchHolder.get();
-comment|// try {
-comment|// System.out.println(core.getCoreDescriptor().getCoreContainer().getZkController().getNodeName()
-comment|// + " to replicate "
-comment|// + searcher.search(new MatchAllDocsQuery(), 1).totalHits + " gen:" +
-comment|// core.getDeletionPolicy().getLatestCommit().getGeneration() + " data:" +
-comment|// core.getDataDir());
-comment|// } finally {
-comment|// searchHolder.decref();
-comment|// }
-comment|// } catch (Exception e) {
-comment|//
-comment|// }
 block|}
 DECL|method|getCoreStatus
 specifier|protected
