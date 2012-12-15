@@ -548,6 +548,11 @@ block|{
 comment|// no base token (stem) on a line
 block|}
 block|}
+name|in
+operator|.
+name|close
+argument_list|()
+expr_stmt|;
 name|Optimizer
 name|o
 init|=
