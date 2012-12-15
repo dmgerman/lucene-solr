@@ -286,7 +286,7 @@ parameter_list|)
 throws|throws
 name|IOException
 function_decl|;
-comment|/**    * This remove is special in that it may be called even after    * the factory has been closed. Remove only makes sense for    * peristent directory factories.    *     * @param path to remove    * @throws IOException If there is a low-level I/O error.    */
+comment|/**    * This remove is special in that it may be called even after    * the factory has been closed. Remove only makes sense for    * persistent directory factories.    *     * @param path to remove    * @throws IOException If there is a low-level I/O error.    */
 DECL|method|remove
 specifier|public
 specifier|abstract
@@ -386,6 +386,14 @@ parameter_list|(
 name|Directory
 name|directory
 parameter_list|)
+function_decl|;
+comment|/**    * @return true if data is kept after close.    */
+DECL|method|isPersistent
+specifier|public
+specifier|abstract
+name|boolean
+name|isPersistent
+parameter_list|()
 function_decl|;
 comment|/**    * Releases the Directory so that it may be closed when it is no longer    * referenced.    *     * @throws IOException If there is a low-level I/O error.    */
 DECL|method|release

@@ -139,6 +139,16 @@ return|;
 block|}
 block|}
 block|}
+DECL|method|isPersistent
+specifier|public
+name|boolean
+name|isPersistent
+parameter_list|()
+block|{
+return|return
+literal|false
+return|;
+block|}
 annotation|@
 name|Override
 DECL|method|remove

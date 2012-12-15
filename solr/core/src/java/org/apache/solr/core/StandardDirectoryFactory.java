@@ -154,6 +154,16 @@ name|getCanonicalPath
 argument_list|()
 return|;
 block|}
+DECL|method|isPersistent
+specifier|public
+name|boolean
+name|isPersistent
+parameter_list|()
+block|{
+return|return
+literal|true
+return|;
+block|}
 annotation|@
 name|Override
 DECL|method|remove
