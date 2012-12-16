@@ -3811,6 +3811,13 @@ name|shouldRefreshReaderManager
 operator|=
 literal|true
 expr_stmt|;
+name|initReaderManager
+argument_list|()
+expr_stmt|;
+comment|// ensure that it's initialized
+name|refreshReaderManager
+argument_list|()
+expr_stmt|;
 name|nextID
 operator|=
 name|indexWriter

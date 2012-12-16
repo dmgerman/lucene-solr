@@ -126,6 +126,26 @@ name|facet
 operator|.
 name|taxonomy
 operator|.
+name|directory
+operator|.
+name|DirectoryTaxonomyWriter
+operator|.
+name|MemoryOrdinalMap
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|facet
+operator|.
+name|taxonomy
+operator|.
 name|writercache
 operator|.
 name|TaxonomyWriterCache
@@ -2079,6 +2099,9 @@ argument_list|(
 name|input
 argument_list|)
 decl_stmt|;
+name|int
+name|ordA
+init|=
 name|taxoWriter
 operator|.
 name|addCategory
@@ -2089,7 +2112,7 @@ argument_list|(
 literal|"a"
 argument_list|)
 argument_list|)
-expr_stmt|;
+decl_stmt|;
 name|taxoWriter
 operator|.
 name|close
@@ -2110,7 +2133,7 @@ name|dir
 argument_list|)
 expr_stmt|;
 name|int
-name|ordinal
+name|ordB
 init|=
 name|taxoWriter
 operator|.
@@ -2155,9 +2178,52 @@ argument_list|(
 name|input
 argument_list|)
 expr_stmt|;
+comment|// LUCENE-4633: make sure that category "a" is not added again in any case
+name|taxoWriter
+operator|.
+name|addTaxonomy
+argument_list|(
+name|input
+argument_list|,
+operator|new
+name|MemoryOrdinalMap
+argument_list|()
+argument_list|)
+expr_stmt|;
+name|assertEquals
+argument_list|(
+literal|"no categories should have been added"
+argument_list|,
+literal|2
+argument_list|,
+name|taxoWriter
+operator|.
+name|getSize
+argument_list|()
+argument_list|)
+expr_stmt|;
+comment|// root + 'a'
+name|assertEquals
+argument_list|(
+literal|"category 'a' received new ordinal?"
+argument_list|,
+name|ordA
+argument_list|,
+name|taxoWriter
+operator|.
+name|addCategory
+argument_list|(
+operator|new
+name|CategoryPath
+argument_list|(
+literal|"a"
+argument_list|)
+argument_list|)
+argument_list|)
+expr_stmt|;
 comment|// add the same category again -- it should not receive the same ordinal !
 name|int
-name|newOrdinal
+name|newOrdB
 init|=
 name|taxoWriter
 operator|.
@@ -2174,9 +2240,9 @@ name|assertNotSame
 argument_list|(
 literal|"new ordinal cannot be the original ordinal"
 argument_list|,
-name|ordinal
+name|ordB
 argument_list|,
-name|newOrdinal
+name|newOrdB
 argument_list|)
 expr_stmt|;
 name|assertEquals
@@ -2185,7 +2251,7 @@ literal|"ordinal should have been 2 since only one category was added by replace
 argument_list|,
 literal|2
 argument_list|,
-name|newOrdinal
+name|newOrdB
 argument_list|)
 expr_stmt|;
 name|taxoWriter
