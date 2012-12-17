@@ -538,6 +538,10 @@ expr_stmt|;
 if|if
 condition|(
 name|initArgs
+operator|!=
+literal|null
+operator|&&
+name|initArgs
 operator|.
 name|size
 argument_list|()

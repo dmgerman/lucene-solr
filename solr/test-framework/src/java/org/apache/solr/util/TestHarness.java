@@ -1046,6 +1046,11 @@ name|CoreContainer
 operator|.
 name|DEFAULT_DEFAULT_CORE_NAME
 expr_stmt|;
+name|initShardHandler
+argument_list|(
+literal|null
+argument_list|)
+expr_stmt|;
 name|initZooKeeper
 argument_list|(
 name|System

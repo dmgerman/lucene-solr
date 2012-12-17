@@ -1968,6 +1968,14 @@ argument_list|(
 name|DEFAULT_CONNECTION_TIMEOUT
 argument_list|)
 expr_stmt|;
+empty_stmt|;
+name|s
+operator|.
+name|setSoTimeout
+argument_list|(
+literal|30000
+argument_list|)
+expr_stmt|;
 name|s
 operator|.
 name|setDefaultMaxConnectionsPerHost
