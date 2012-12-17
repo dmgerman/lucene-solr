@@ -5585,7 +5585,7 @@ literal|"*:*"
 argument_list|,
 literal|"fl"
 argument_list|,
-literal|"id,_version_"
+literal|"id"
 argument_list|,
 literal|"rows"
 argument_list|,
