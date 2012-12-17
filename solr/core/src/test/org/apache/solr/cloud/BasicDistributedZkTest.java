@@ -5809,14 +5809,14 @@ name|collectionClient
 operator|.
 name|setConnectionTimeout
 argument_list|(
-literal|15000
+literal|20000
 argument_list|)
 expr_stmt|;
 name|collectionClient
 operator|.
 name|setSoTimeout
 argument_list|(
-literal|45000
+literal|60000
 argument_list|)
 expr_stmt|;
 comment|// poll for a second - it can take a moment before we are ready to serve
