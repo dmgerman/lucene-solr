@@ -5816,7 +5816,7 @@ name|collectionClient
 operator|.
 name|setSoTimeout
 argument_list|(
-literal|30000
+literal|45000
 argument_list|)
 expr_stmt|;
 comment|// poll for a second - it can take a moment before we are ready to serve
