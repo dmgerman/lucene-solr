@@ -485,6 +485,13 @@ name|PluginInfo
 name|ulogPluginInfo
 parameter_list|)
 block|{
+if|if
+condition|(
+name|ulogPluginInfo
+operator|==
+literal|null
+condition|)
+return|return;
 name|File
 name|tlogDir
 init|=
@@ -492,6 +499,8 @@ name|UpdateLog
 operator|.
 name|getTlogDir
 argument_list|(
+name|core
+argument_list|,
 name|ulogPluginInfo
 argument_list|)
 decl_stmt|;
