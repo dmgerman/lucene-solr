@@ -1976,6 +1976,13 @@ argument_list|(
 literal|"collection1"
 argument_list|)
 decl_stmt|;
+if|if
+condition|(
+name|slices
+operator|!=
+literal|null
+condition|)
+block|{
 for|for
 control|(
 name|String
@@ -2010,6 +2017,7 @@ operator|==
 name|cloudStateSliceCount
 condition|)
 break|break;
+block|}
 name|Thread
 operator|.
 name|sleep
