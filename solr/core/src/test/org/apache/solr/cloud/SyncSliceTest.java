@@ -1063,6 +1063,13 @@ block|}
 name|commit
 argument_list|()
 expr_stmt|;
+name|Thread
+operator|.
+name|sleep
+argument_list|(
+literal|100
+argument_list|)
+expr_stmt|;
 name|waitForRecoveriesToFinish
 argument_list|(
 literal|false
@@ -1080,6 +1087,8 @@ argument_list|)
 expr_stmt|;
 name|assertNotNull
 argument_list|(
+literal|"shard1 shoul have just been set up to be inconsistent - but it's still consistent"
+argument_list|,
 name|shardFailMessage
 argument_list|)
 expr_stmt|;
