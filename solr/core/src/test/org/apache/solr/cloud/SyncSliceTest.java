@@ -599,6 +599,8 @@ argument_list|(
 literal|"shard1"
 argument_list|,
 literal|true
+argument_list|,
+literal|false
 argument_list|)
 decl_stmt|;
 name|assertNotNull
@@ -1083,6 +1085,8 @@ argument_list|(
 literal|"shard1"
 argument_list|,
 literal|true
+argument_list|,
+literal|false
 argument_list|)
 expr_stmt|;
 name|assertNotNull
