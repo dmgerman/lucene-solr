@@ -83,6 +83,7 @@ operator|.
 name|class
 argument_list|)
 decl_stmt|;
+comment|// really? lucene/solr do not like to be interrupted
 DECL|method|shutdownNowAndAwaitTermination
 specifier|public
 specifier|static

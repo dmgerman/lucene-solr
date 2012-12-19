@@ -889,7 +889,7 @@ try|try
 block|{
 name|ExecutorUtil
 operator|.
-name|shutdownNowAndAwaitTermination
+name|shutdownAndAwaitTermination
 argument_list|(
 name|commExecutor
 argument_list|)
