@@ -5507,7 +5507,7 @@ decl_stmt|;
 name|int
 name|retryCount
 init|=
-literal|120
+literal|320
 decl_stmt|;
 while|while
 condition|(
@@ -5548,7 +5548,7 @@ name|Thread
 operator|.
 name|sleep
 argument_list|(
-literal|500
+literal|1000
 argument_list|)
 expr_stmt|;
 block|}

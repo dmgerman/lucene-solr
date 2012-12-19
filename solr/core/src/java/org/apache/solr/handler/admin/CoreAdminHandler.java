@@ -4641,6 +4641,8 @@ throws|throws
 name|IOException
 throws|,
 name|InterruptedException
+throws|,
+name|KeeperException
 block|{
 specifier|final
 name|SolrParams
@@ -4843,6 +4845,32 @@ operator|.
 name|getCloudDescriptor
 argument_list|()
 decl_stmt|;
+if|if
+condition|(
+name|retry
+operator|==
+literal|15
+operator|||
+name|retry
+operator|==
+literal|60
+condition|)
+block|{
+comment|// force a cluster state update
+name|coreContainer
+operator|.
+name|getZkController
+argument_list|()
+operator|.
+name|getZkStateReader
+argument_list|()
+operator|.
+name|updateClusterState
+argument_list|(
+literal|true
+argument_list|)
+expr_stmt|;
+block|}
 name|ClusterState
 name|clusterState
 init|=
@@ -4978,7 +5006,7 @@ condition|(
 name|retry
 operator|++
 operator|==
-literal|30
+literal|120
 condition|)
 block|{
 throw|throw
@@ -4997,7 +5025,7 @@ literal|" for "
 operator|+
 name|nodeName
 operator|+
-literal|" but I still do not see the request state. I see state: "
+literal|" but I still do not see the requested state. I see state: "
 operator|+
 name|state
 operator|+
