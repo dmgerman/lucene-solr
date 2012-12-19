@@ -1012,7 +1012,7 @@ expr_stmt|;
 comment|// skip list should be
 comment|//System.out.println("leader:" + leaderJetty.url);
 comment|//System.out.println("skip list:" + skipServers);
-comment|// we are skipping  one nodes
+comment|// we are skipping  2 nodes
 name|assertEquals
 argument_list|(
 literal|2
@@ -1069,7 +1069,7 @@ name|Thread
 operator|.
 name|sleep
 argument_list|(
-literal|100
+literal|1000
 argument_list|)
 expr_stmt|;
 name|waitForRecoveriesToFinish
@@ -1089,9 +1089,36 @@ argument_list|,
 literal|false
 argument_list|)
 expr_stmt|;
+if|if
+condition|(
+name|shardFailMessage
+operator|==
+literal|null
+condition|)
+block|{
+comment|// try again
+name|Thread
+operator|.
+name|sleep
+argument_list|(
+literal|3000
+argument_list|)
+expr_stmt|;
+name|shardFailMessage
+operator|=
+name|checkShardConsistency
+argument_list|(
+literal|"shard1"
+argument_list|,
+literal|true
+argument_list|,
+literal|false
+argument_list|)
+expr_stmt|;
+block|}
 name|assertNotNull
 argument_list|(
-literal|"shard1 shoul have just been set up to be inconsistent - but it's still consistent"
+literal|"shard1 should have just been set up to be inconsistent - but it's still consistent"
 argument_list|,
 name|shardFailMessage
 argument_list|)
