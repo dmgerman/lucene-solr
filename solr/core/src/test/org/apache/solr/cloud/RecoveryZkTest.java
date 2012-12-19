@@ -357,6 +357,18 @@ argument_list|(
 literal|500
 argument_list|)
 expr_stmt|;
+name|waitForThingsToLevelOut
+argument_list|(
+literal|30
+argument_list|)
+expr_stmt|;
+name|Thread
+operator|.
+name|sleep
+argument_list|(
+literal|1000
+argument_list|)
+expr_stmt|;
 name|waitForRecoveriesToFinish
 argument_list|(
 name|DEFAULT_COLLECTION
@@ -367,9 +379,6 @@ literal|false
 argument_list|,
 literal|true
 argument_list|)
-expr_stmt|;
-name|commit
-argument_list|()
 expr_stmt|;
 comment|// test that leader and replica have same doc count
 name|checkShardConsistency
