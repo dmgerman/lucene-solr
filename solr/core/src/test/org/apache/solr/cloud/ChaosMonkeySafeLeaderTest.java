@@ -461,6 +461,13 @@ argument_list|)
 expr_stmt|;
 block|}
 comment|// try and wait for any replications and what not to finish...
+name|Thread
+operator|.
+name|sleep
+argument_list|(
+literal|2000
+argument_list|)
+expr_stmt|;
 name|waitForThingsToLevelOut
 argument_list|(
 name|Integer
