@@ -1905,6 +1905,18 @@ name|v
 argument_list|)
 expr_stmt|;
 block|}
+else|else
+block|{
+throw|throw
+operator|new
+name|IllegalArgumentException
+argument_list|(
+literal|"cannot set compound file for MergePolicy "
+operator|+
+name|mp
+argument_list|)
+throw|;
+block|}
 block|}
 comment|/** start and end are BOTH inclusive */
 DECL|method|nextInt

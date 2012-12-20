@@ -1207,9 +1207,6 @@ name|ent
 operator|.
 name|getValue
 argument_list|()
-operator|.
-name|clone
-argument_list|()
 decl_stmt|;
 name|formats
 operator|.
