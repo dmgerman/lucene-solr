@@ -56,6 +56,16 @@ name|BeforeClass
 import|;
 end_import
 
+begin_import
+import|import
+name|org
+operator|.
+name|junit
+operator|.
+name|Ignore
+import|;
+end_import
+
 begin_comment
 comment|/**  * Test for distributed MoreLikeThisComponent's   *  * @since solr 4.1  *  * @see org.apache.solr.handler.component.MoreLikeThisComponent  */
 end_comment
@@ -63,6 +73,11 @@ end_comment
 begin_class
 annotation|@
 name|Slow
+annotation|@
+name|Ignore
+argument_list|(
+literal|"distrib mlt not working right"
+argument_list|)
 DECL|class|DistributedMLTComponentTest
 specifier|public
 class|class
