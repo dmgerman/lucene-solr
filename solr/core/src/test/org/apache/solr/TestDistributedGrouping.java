@@ -225,6 +225,16 @@ argument_list|,
 name|SKIPVAL
 argument_list|)
 expr_stmt|;
+name|handle
+operator|.
+name|put
+argument_list|(
+literal|"grouped"
+argument_list|,
+name|UNORDERED
+argument_list|)
+expr_stmt|;
+comment|// distrib grouping doesn't guarantee order of top level group commands
 comment|// Test distributed grouping with empty indices
 name|query
 argument_list|(
