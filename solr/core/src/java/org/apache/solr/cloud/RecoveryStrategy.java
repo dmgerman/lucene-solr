@@ -2053,6 +2053,41 @@ operator|.
 name|RECOVERING
 argument_list|)
 expr_stmt|;
+name|sendPrepRecoveryCmd
+argument_list|(
+name|leaderBaseUrl
+argument_list|,
+name|leaderCoreName
+argument_list|)
+expr_stmt|;
+comment|// we wait a bit so that any updates on the leader
+comment|// that started before they saw recovering state
+comment|// are sure to have finished
+try|try
+block|{
+name|Thread
+operator|.
+name|sleep
+argument_list|(
+literal|2000
+argument_list|)
+expr_stmt|;
+block|}
+catch|catch
+parameter_list|(
+name|InterruptedException
+name|e
+parameter_list|)
+block|{
+name|Thread
+operator|.
+name|currentThread
+argument_list|()
+operator|.
+name|interrupt
+argument_list|()
+expr_stmt|;
+block|}
 comment|// first thing we just try to sync
 if|if
 condition|(
@@ -2225,41 +2260,6 @@ operator|+
 name|coreName
 argument_list|)
 expr_stmt|;
-name|sendPrepRecoveryCmd
-argument_list|(
-name|leaderBaseUrl
-argument_list|,
-name|leaderCoreName
-argument_list|)
-expr_stmt|;
-comment|// we wait a bit so that any updates on the leader
-comment|// that started before they saw recovering state
-comment|// are sure to have finished
-try|try
-block|{
-name|Thread
-operator|.
-name|sleep
-argument_list|(
-literal|2000
-argument_list|)
-expr_stmt|;
-block|}
-catch|catch
-parameter_list|(
-name|InterruptedException
-name|e
-parameter_list|)
-block|{
-name|Thread
-operator|.
-name|currentThread
-argument_list|()
-operator|.
-name|interrupt
-argument_list|()
-expr_stmt|;
-block|}
 name|log
 operator|.
 name|info
