@@ -2512,18 +2512,10 @@ operator|.
 name|node
 operator|instanceof
 name|RetryNode
-operator|||
-name|error
-operator|.
-name|e
-operator|instanceof
-name|SolrException
 condition|)
 block|{
 comment|// we don't try to force a leader to recover
 comment|// when we cannot forward to it
-comment|// and we assume SolrException means
-comment|// the node went down
 continue|continue;
 block|}
 comment|// TODO: we should force their state to recovering ??
