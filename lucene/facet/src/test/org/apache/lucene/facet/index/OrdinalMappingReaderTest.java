@@ -357,10 +357,10 @@ comment|/*  * Licensed to the Apache Software Foundation (ASF) under one or more
 end_comment
 
 begin_class
-DECL|class|FacetsPayloadProcessorProviderTest
+DECL|class|OrdinalMappingReaderTest
 specifier|public
 class|class
-name|FacetsPayloadProcessorProviderTest
+name|OrdinalMappingReaderTest
 extends|extends
 name|LuceneTestCase
 block|{
