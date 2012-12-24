@@ -722,22 +722,26 @@ expr_stmt|;
 block|}
 if|if
 condition|(
-name|IndexWriter
+name|writeLock
+operator|!=
+literal|null
+operator|&&
+name|writeLock
 operator|.
 name|isLocked
-argument_list|(
-name|directory
-argument_list|)
+argument_list|()
 condition|)
 block|{
 try|try
 block|{
-name|IndexWriter
+comment|// we go right to the lock because
+comment|// IndexWriter#unlock(Directory) does
+comment|// not work well in this case with
+comment|// native locks
+name|writeLock
 operator|.
-name|unlock
-argument_list|(
-name|directory
-argument_list|)
+name|release
+argument_list|()
 expr_stmt|;
 block|}
 catch|catch
