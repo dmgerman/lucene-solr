@@ -438,6 +438,20 @@ name|BytesRef
 import|;
 end_import
 
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|util
+operator|.
+name|UnicodeUtil
+import|;
+end_import
+
 begin_comment
 comment|/**  * Simple highlighter that does not analyze fields nor use  * term vectors. Instead it requires   * {@link IndexOptions#DOCS_AND_FREQS_AND_POSITIONS_AND_OFFSETS}.  *   * This is thread-safe, and can be used across different readers.  *<pre class="prettyprint">  *   // configure field with offsets at index time  *   FieldType offsetsType = new FieldType(TextField.TYPE_STORED);  *   offsetsType.setIndexOptions(IndexOptions.DOCS_AND_FREQS_AND_POSITIONS_AND_OFFSETS);  *   Field body = new Field("body", "foobar", offsetsType);  *  *   // retrieve highlights at query time   *   PostingsHighlighter highlighter = new PostingsHighlighter("body");  *   Query query = new TermQuery(new Term("body", "highlighting"));  *   TopDocs topDocs = searcher.search(query, n);  *   String highlights[] = highlighter.highlight(query, searcher, topDocs);  *</pre>  * @lucene.experimental  */
 end_comment
@@ -476,28 +490,6 @@ name|int
 name|DEFAULT_MAX_LENGTH
 init|=
 literal|10000
-decl_stmt|;
-comment|// this looks bogus, but its not. we are dealing with characters :)
-DECL|field|ceilingBytes
-specifier|private
-specifier|static
-specifier|final
-name|BytesRef
-name|ceilingBytes
-init|=
-operator|new
-name|BytesRef
-argument_list|(
-operator|new
-name|byte
-index|[]
-block|{
-operator|(
-name|byte
-operator|)
-literal|0xff
-block|}
-argument_list|)
 decl_stmt|;
 DECL|field|field
 specifier|private
@@ -679,7 +671,9 @@ name|Term
 argument_list|(
 name|field
 argument_list|,
-name|ceilingBytes
+name|UnicodeUtil
+operator|.
+name|BIG_TERM
 argument_list|)
 expr_stmt|;
 block|}
