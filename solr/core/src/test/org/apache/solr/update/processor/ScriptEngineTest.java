@@ -28,6 +28,20 @@ name|lucene
 operator|.
 name|util
 operator|.
+name|Constants
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|util
+operator|.
 name|LuceneTestCase
 import|;
 end_import
@@ -130,6 +144,15 @@ parameter_list|()
 throws|throws
 name|Exception
 block|{
+name|assumeFalse
+argument_list|(
+literal|"https://twitter.com/UweSays/status/260487231880433664 / SOLR-4233: OS X bogusly starts AWT!"
+argument_list|,
+name|Constants
+operator|.
+name|MAC_OS_X
+argument_list|)
+expr_stmt|;
 name|Assume
 operator|.
 name|assumeNotNull
