@@ -18,34 +18,6 @@ begin_comment
 comment|/*  * Licensed to the Apache Software Foundation (ASF) under one or more  * contributor license agreements.  See the NOTICE file distributed with  * this work for additional information regarding copyright ownership.  * The ASF licenses this file to You under the Apache License, Version 2.0  * (the "License"); you may not use this file except in compliance with  * the License.  You may obtain a copy of the License at  *  *     http://www.apache.org/licenses/LICENSE-2.0  *  * Unless required by applicable law or agreed to in writing, software  * distributed under the License is distributed on an "AS IS" BASIS,  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.  * See the License for the specific language governing permissions and  * limitations under the License.  */
 end_comment
 
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|search
-operator|.
-name|CollectionStatistics
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|search
-operator|.
-name|TermStatistics
-import|;
-end_import
-
 begin_comment
 comment|/**   * Used for ranking passages.  *<p>  * Each passage is scored as a miniature document within the document.  * The final score is computed as {@link #norm} *&sum; ({@link #weight} * {@link #tf}).  * The default implementation is {@link #norm} * BM25.  * @lucene.experimental  */
 end_comment
@@ -87,35 +59,30 @@ name|pivot
 init|=
 literal|87f
 decl_stmt|;
-comment|/**    * Computes term importance, given its collection-wide statistics.    *     * @param collectionStats statistics for the collection    * @param termStats statistics for the term    * @return term importance    */
+comment|/**    * Computes term importance, given its in-document statistics.    *     * @param contentLength length of document in characters    * @param totalTermFreq number of time term occurs in document    * @return term importance    */
 DECL|method|weight
 specifier|public
 name|float
 name|weight
 parameter_list|(
-name|CollectionStatistics
-name|collectionStats
+name|int
+name|contentLength
 parameter_list|,
-name|TermStatistics
-name|termStats
+name|int
+name|totalTermFreq
 parameter_list|)
 block|{
-name|long
+comment|// approximate #docs from content length
+name|float
 name|numDocs
 init|=
-name|collectionStats
-operator|.
-name|maxDoc
-argument_list|()
+literal|1
+operator|+
+name|contentLength
+operator|/
+name|pivot
 decl_stmt|;
-name|long
-name|docFreq
-init|=
-name|termStats
-operator|.
-name|docFreq
-argument_list|()
-decl_stmt|;
+comment|// numDocs not numDocs - docFreq (ala DFR), since we approximate numDocs
 return|return
 operator|(
 name|k1
@@ -134,14 +101,12 @@ literal|1
 operator|+
 operator|(
 name|numDocs
-operator|-
-name|docFreq
 operator|+
 literal|0.5D
 operator|)
 operator|/
 operator|(
-name|docFreq
+name|totalTermFreq
 operator|+
 literal|0.5D
 operator|)
