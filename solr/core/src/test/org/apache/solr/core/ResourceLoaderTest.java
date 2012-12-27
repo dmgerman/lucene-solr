@@ -18,20 +18,6 @@ end_package
 
 begin_import
 import|import
-name|com
-operator|.
-name|carrotsearch
-operator|.
-name|randomizedtesting
-operator|.
-name|annotations
-operator|.
-name|ThreadLeakFilters
-import|;
-end_import
-
-begin_import
-import|import
 name|junit
 operator|.
 name|framework
@@ -83,18 +69,6 @@ operator|.
 name|ngram
 operator|.
 name|NGramFilterFactory
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|solr
-operator|.
-name|SolrIgnoredThreadsFilter
 import|;
 end_import
 
@@ -243,21 +217,6 @@ import|;
 end_import
 
 begin_class
-annotation|@
-name|ThreadLeakFilters
-argument_list|(
-name|defaultFilters
-operator|=
-literal|true
-argument_list|,
-name|filters
-operator|=
-block|{
-name|SolrIgnoredThreadsFilter
-operator|.
-name|class
-block|}
-argument_list|)
 DECL|class|ResourceLoaderTest
 specifier|public
 class|class

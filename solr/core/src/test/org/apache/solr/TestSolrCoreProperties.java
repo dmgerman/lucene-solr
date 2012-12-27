@@ -16,20 +16,6 @@ end_package
 
 begin_import
 import|import
-name|com
-operator|.
-name|carrotsearch
-operator|.
-name|randomizedtesting
-operator|.
-name|annotations
-operator|.
-name|ThreadLeakFilters
-import|;
-end_import
-
-begin_import
-import|import
 name|org
 operator|.
 name|apache
@@ -197,21 +183,6 @@ comment|/**  *<p> Test for Loading core properties from a properties file</p>  *
 end_comment
 
 begin_class
-annotation|@
-name|ThreadLeakFilters
-argument_list|(
-name|defaultFilters
-operator|=
-literal|true
-argument_list|,
-name|filters
-operator|=
-block|{
-name|SolrIgnoredThreadsFilter
-operator|.
-name|class
-block|}
-argument_list|)
 DECL|class|TestSolrCoreProperties
 specifier|public
 class|class
