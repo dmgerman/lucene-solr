@@ -3000,20 +3000,6 @@ block|{
 comment|// Ignore; this file is only used in a retry
 comment|// fallback on init.
 block|}
-if|if
-condition|(
-name|t
-operator|instanceof
-name|ThreadInterruptedException
-condition|)
-block|{
-throw|throw
-operator|(
-name|ThreadInterruptedException
-operator|)
-name|t
-throw|;
-block|}
 block|}
 block|}
 comment|/** Writes& syncs to the Directory dir, taking care to    *  remove the segments file on exception    *<p>    *  Note: {@link #changed()} should be called prior to this    *  method if changes have been made to this {@link SegmentInfos} instance    *</p>      **/
