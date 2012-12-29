@@ -1497,6 +1497,11 @@ argument_list|()
 decl_stmt|;
 if|if
 condition|(
+name|isClosed
+condition|)
+return|return;
+if|if
+condition|(
 name|descriptors
 operator|!=
 literal|null
