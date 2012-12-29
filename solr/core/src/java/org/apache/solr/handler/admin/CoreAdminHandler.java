@@ -5035,6 +5035,26 @@ name|live
 argument_list|)
 throw|;
 block|}
+if|if
+condition|(
+name|coreContainer
+operator|.
+name|isShutDown
+argument_list|()
+condition|)
+block|{
+throw|throw
+operator|new
+name|SolrException
+argument_list|(
+name|ErrorCode
+operator|.
+name|BAD_REQUEST
+argument_list|,
+literal|"Solr is shutting down"
+argument_list|)
+throw|;
+block|}
 comment|// solrcloud_debug
 comment|//        try {;
 comment|//        LocalSolrQueryRequest r = new LocalSolrQueryRequest(core, new
