@@ -3308,7 +3308,8 @@ argument_list|)
 throw|;
 block|}
 comment|// in this case, we want to wait for the leader as long as the leader might
-comment|// wait for a vote, at least
+comment|// wait for a vote, at least - but also long enough that a large cluster has
+comment|// time to get its act together
 name|String
 name|leaderUrl
 init|=
@@ -3323,7 +3324,7 @@ argument_list|(
 name|leaderVoteWait
 argument_list|)
 operator|+
-literal|1000
+literal|600000
 argument_list|)
 decl_stmt|;
 name|String
@@ -3609,7 +3610,7 @@ name|collection
 argument_list|,
 name|shardId
 argument_list|,
-literal|30000
+name|timeoutms
 argument_list|)
 decl_stmt|;
 name|int
@@ -3680,7 +3681,7 @@ name|collection
 argument_list|,
 name|shardId
 argument_list|,
-literal|30000
+name|timeoutms
 argument_list|)
 expr_stmt|;
 name|leaderUrl

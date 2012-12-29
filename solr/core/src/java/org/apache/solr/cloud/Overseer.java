@@ -384,7 +384,7 @@ specifier|final
 name|int
 name|STATE_UPDATE_DELAY
 init|=
-literal|500
+literal|1500
 decl_stmt|;
 comment|// delay between cloud state updates
 DECL|field|log
