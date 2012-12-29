@@ -756,20 +756,6 @@ name|solr
 operator|.
 name|util
 operator|.
-name|AdjustableSemaphore
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|solr
-operator|.
-name|util
-operator|.
 name|DOMUtil
 import|;
 end_import
@@ -1088,14 +1074,14 @@ name|CORE_LOADONSTARTUP
 init|=
 literal|"loadOnStartup"
 decl_stmt|;
-DECL|field|CORE_SWAPPABLE
+DECL|field|CORE_TRANSIENT
 specifier|private
 specifier|static
 specifier|final
 name|String
-name|CORE_SWAPPABLE
+name|CORE_TRANSIENT
 init|=
-literal|"swappable"
+literal|"transient"
 decl_stmt|;
 DECL|field|cores
 specifier|protected
@@ -1118,7 +1104,7 @@ argument_list|>
 argument_list|()
 decl_stmt|;
 comment|// For "permanent" cores
-DECL|field|swappableCores
+DECL|field|transientCores
 specifier|protected
 name|Map
 argument_list|<
@@ -1126,7 +1112,7 @@ name|String
 argument_list|,
 name|SolrCore
 argument_list|>
-name|swappableCores
+name|transientCores
 init|=
 operator|new
 name|LinkedHashMap
@@ -1379,16 +1365,16 @@ name|distribUpdateSoTimeout
 init|=
 literal|0
 decl_stmt|;
-DECL|field|swappableCacheSize
+DECL|field|transientCacheSize
 specifier|protected
 name|int
-name|swappableCacheSize
+name|transientCacheSize
 init|=
 name|Integer
 operator|.
 name|MAX_VALUE
 decl_stmt|;
-comment|// Use as a flag too, if swappableCacheSize set in solr.xml this will be changed
+comment|// Use as a flag too, if transientCacheSize set in solr.xml this will be changed
 DECL|field|coreLoadThreads
 specifier|private
 name|int
@@ -2425,7 +2411,7 @@ return|return
 name|p
 return|;
 block|}
-comment|// Trivial helper method for load, note it implements LRU on swappable cores
+comment|// Trivial helper method for load, note it implements LRU on transient cores
 DECL|method|allocateLazyCores
 specifier|private
 name|void
@@ -2435,13 +2421,13 @@ name|Config
 name|cfg
 parameter_list|)
 block|{
-name|swappableCacheSize
+name|transientCacheSize
 operator|=
 name|cfg
 operator|.
 name|getInt
 argument_list|(
-literal|"solr/cores/@swappableCacheSize"
+literal|"solr/cores/@transientCacheSize"
 argument_list|,
 name|Integer
 operator|.
@@ -2450,14 +2436,14 @@ argument_list|)
 expr_stmt|;
 if|if
 condition|(
-name|swappableCacheSize
+name|transientCacheSize
 operator|!=
 name|Integer
 operator|.
 name|MAX_VALUE
 condition|)
 block|{
-name|swappableCores
+name|transientCores
 operator|=
 operator|new
 name|LinkedHashMap
@@ -2467,7 +2453,7 @@ argument_list|,
 name|SolrCore
 argument_list|>
 argument_list|(
-name|swappableCacheSize
+name|transientCacheSize
 argument_list|,
 literal|0.75f
 argument_list|,
@@ -2496,7 +2482,7 @@ condition|(
 name|size
 argument_list|()
 operator|>
-name|swappableCacheSize
+name|transientCacheSize
 condition|)
 block|{
 name|eldest
@@ -3807,7 +3793,7 @@ name|getAttr
 argument_list|(
 name|node
 argument_list|,
-name|CORE_SWAPPABLE
+name|CORE_TRANSIENT
 argument_list|,
 literal|null
 argument_list|)
@@ -3821,7 +3807,7 @@ condition|)
 block|{
 name|p
 operator|.
-name|setSwappable
+name|setTransient
 argument_list|(
 operator|(
 literal|"true"
@@ -3892,7 +3878,7 @@ if|if
 condition|(
 name|p
 operator|.
-name|isSwappable
+name|isTransient
 argument_list|()
 condition|)
 block|{
@@ -3971,7 +3957,7 @@ expr_stmt|;
 block|}
 else|else
 block|{
-comment|// Store it away for later use. includes non-swappable but not
+comment|// Store it away for later use. includes non-transient but not
 comment|// loaded at startup cores.
 name|dynamicDescriptors
 operator|.
@@ -4545,7 +4531,7 @@ expr_stmt|;
 block|}
 synchronized|synchronized
 init|(
-name|swappableCores
+name|transientCores
 init|)
 block|{
 for|for
@@ -4553,7 +4539,7 @@ control|(
 name|SolrCore
 name|core
 range|:
-name|swappableCores
+name|transientCores
 operator|.
 name|values
 argument_list|()
@@ -4586,7 +4572,7 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
-name|swappableCores
+name|transientCores
 operator|.
 name|clear
 argument_list|()
@@ -4815,7 +4801,7 @@ block|{
 return|return
 name|registerCore
 argument_list|(
-name|swappableCores
+name|transientCores
 argument_list|,
 name|name
 argument_list|,
@@ -6111,7 +6097,7 @@ expr_stmt|;
 block|}
 synchronized|synchronized
 init|(
-name|swappableCores
+name|transientCores
 init|)
 block|{
 name|lst
@@ -6120,7 +6106,7 @@ name|addAll
 argument_list|(
 name|this
 operator|.
-name|swappableCores
+name|transientCores
 operator|.
 name|keySet
 argument_list|()
@@ -6205,7 +6191,7 @@ block|}
 block|}
 synchronized|synchronized
 init|(
-name|swappableCores
+name|transientCores
 init|)
 block|{
 for|for
@@ -6220,7 +6206,7 @@ name|SolrCore
 argument_list|>
 name|entry
 range|:
-name|swappableCores
+name|transientCores
 operator|.
 name|entrySet
 argument_list|()
@@ -7078,16 +7064,16 @@ condition|)
 return|return
 literal|null
 return|;
-comment|// Nobody even tried to define any swappable cores, so we're done.
-comment|// Now look for already loaded swappable cores.
+comment|// Nobody even tried to define any transient cores, so we're done.
+comment|// Now look for already loaded transient cores.
 synchronized|synchronized
 init|(
-name|swappableCores
+name|transientCores
 init|)
 block|{
 name|core
 operator|=
-name|swappableCores
+name|transientCores
 operator|.
 name|get
 argument_list|(
@@ -7128,7 +7114,7 @@ operator|==
 literal|null
 condition|)
 block|{
-comment|//Nope, no swappable core with this name
+comment|//Nope, no transient core with this name
 return|return
 literal|null
 return|;
@@ -7152,7 +7138,7 @@ if|if
 condition|(
 name|desc
 operator|.
-name|isSwappable
+name|isTransient
 argument_list|()
 condition|)
 block|{
@@ -7165,7 +7151,7 @@ argument_list|,
 literal|false
 argument_list|)
 expr_stmt|;
-comment|// This is a swappable core
+comment|// This is a transient core
 block|}
 else|else
 block|{
@@ -7586,7 +7572,7 @@ expr_stmt|;
 block|}
 if|if
 condition|(
-name|swappableCacheSize
+name|transientCacheSize
 operator|!=
 name|Integer
 operator|.
@@ -7597,13 +7583,13 @@ name|coresAttribs
 operator|.
 name|put
 argument_list|(
-literal|"swappableCacheSize"
+literal|"transientCacheSize"
 argument_list|,
 name|Integer
 operator|.
 name|toString
 argument_list|(
-name|swappableCacheSize
+name|transientCacheSize
 argument_list|)
 argument_list|)
 expr_stmt|;
@@ -8079,7 +8065,7 @@ name|coreAttribs
 argument_list|,
 name|coreNode
 argument_list|,
-name|CORE_SWAPPABLE
+name|CORE_TRANSIENT
 argument_list|,
 name|Boolean
 operator|.
@@ -8087,7 +8073,7 @@ name|toString
 argument_list|(
 name|dcore
 operator|.
-name|isSwappable
+name|isTransient
 argument_list|()
 argument_list|)
 argument_list|,

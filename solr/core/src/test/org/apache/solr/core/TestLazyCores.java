@@ -601,14 +601,14 @@ argument_list|)
 decl_stmt|;
 name|assertFalse
 argument_list|(
-literal|"core1 should not be swappable"
+literal|"core1 should not be transient"
 argument_list|,
 name|core1
 operator|.
 name|getCoreDescriptor
 argument_list|()
 operator|.
-name|isSwappable
+name|isTransient
 argument_list|()
 argument_list|)
 expr_stmt|;
@@ -645,14 +645,14 @@ argument_list|)
 decl_stmt|;
 name|assertTrue
 argument_list|(
-literal|"core2 should not be swappable"
+literal|"core2 should not be transient"
 argument_list|,
 name|core2
 operator|.
 name|getCoreDescriptor
 argument_list|()
 operator|.
-name|isSwappable
+name|isTransient
 argument_list|()
 argument_list|)
 expr_stmt|;
@@ -681,14 +681,14 @@ argument_list|)
 decl_stmt|;
 name|assertTrue
 argument_list|(
-literal|"core3 should not be swappable"
+literal|"core3 should not be transient"
 argument_list|,
 name|core3
 operator|.
 name|getCoreDescriptor
 argument_list|()
 operator|.
-name|isSwappable
+name|isTransient
 argument_list|()
 argument_list|)
 expr_stmt|;
@@ -717,14 +717,14 @@ argument_list|)
 decl_stmt|;
 name|assertFalse
 argument_list|(
-literal|"core4 should not be swappable"
+literal|"core4 should not be transient"
 argument_list|,
 name|core4
 operator|.
 name|getCoreDescriptor
 argument_list|()
 operator|.
-name|isSwappable
+name|isTransient
 argument_list|()
 argument_list|)
 expr_stmt|;
@@ -753,14 +753,14 @@ argument_list|)
 decl_stmt|;
 name|assertFalse
 argument_list|(
-literal|"core5 should not be swappable"
+literal|"core5 should not be transient"
 argument_list|,
 name|core5
 operator|.
 name|getCoreDescriptor
 argument_list|()
 operator|.
-name|isSwappable
+name|isTransient
 argument_list|()
 argument_list|)
 expr_stmt|;
@@ -1805,25 +1805,25 @@ name|LOTS_SOLR_XML
 init|=
 literal|"<solr persistent=\"false\"> "
 operator|+
-literal|"<cores adminPath=\"/admin/cores\" defaultCoreName=\"collectionLazy2\" swappableCacheSize=\"4\">  "
+literal|"<cores adminPath=\"/admin/cores\" defaultCoreName=\"collectionLazy2\" transientCacheSize=\"4\">  "
 operator|+
 literal|"<core name=\"collection1\" instanceDir=\"collection1\" /> "
 operator|+
-literal|"<core name=\"collectionLazy2\" instanceDir=\"collection2\" swappable=\"true\" loadOnStartup=\"true\"  /> "
+literal|"<core name=\"collectionLazy2\" instanceDir=\"collection2\" transient=\"true\" loadOnStartup=\"true\"  /> "
 operator|+
-literal|"<core name=\"collectionLazy3\" instanceDir=\"collection3\" swappable=\"on\" loadOnStartup=\"false\"/> "
+literal|"<core name=\"collectionLazy3\" instanceDir=\"collection3\" transient=\"on\" loadOnStartup=\"false\"/> "
 operator|+
-literal|"<core name=\"collectionLazy4\" instanceDir=\"collection4\" swappable=\"false\" loadOnStartup=\"false\"/> "
+literal|"<core name=\"collectionLazy4\" instanceDir=\"collection4\" transient=\"false\" loadOnStartup=\"false\"/> "
 operator|+
-literal|"<core name=\"collectionLazy5\" instanceDir=\"collection5\" swappable=\"false\" loadOnStartup=\"true\"/> "
+literal|"<core name=\"collectionLazy5\" instanceDir=\"collection5\" transient=\"false\" loadOnStartup=\"true\"/> "
 operator|+
-literal|"<core name=\"collectionLazy6\" instanceDir=\"collection6\" swappable=\"true\" loadOnStartup=\"false\" /> "
+literal|"<core name=\"collectionLazy6\" instanceDir=\"collection6\" transient=\"true\" loadOnStartup=\"false\" /> "
 operator|+
-literal|"<core name=\"collectionLazy7\" instanceDir=\"collection7\" swappable=\"true\" loadOnStartup=\"false\" /> "
+literal|"<core name=\"collectionLazy7\" instanceDir=\"collection7\" transient=\"true\" loadOnStartup=\"false\" /> "
 operator|+
-literal|"<core name=\"collectionLazy8\" instanceDir=\"collection8\" swappable=\"true\" loadOnStartup=\"false\" /> "
+literal|"<core name=\"collectionLazy8\" instanceDir=\"collection8\" transient=\"true\" loadOnStartup=\"false\" /> "
 operator|+
-literal|"<core name=\"collectionLazy9\" instanceDir=\"collection9\" swappable=\"true\" loadOnStartup=\"false\" /> "
+literal|"<core name=\"collectionLazy9\" instanceDir=\"collection9\" transient=\"true\" loadOnStartup=\"false\" /> "
 operator|+
 literal|"</cores> "
 operator|+
