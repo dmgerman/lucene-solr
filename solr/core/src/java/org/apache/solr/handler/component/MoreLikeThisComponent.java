@@ -530,7 +530,7 @@ name|MoreLikeThisParams
 operator|.
 name|DOC_COUNT
 argument_list|,
-literal|20
+literal|5
 argument_list|)
 decl_stmt|;
 if|if
@@ -1112,7 +1112,7 @@ name|MoreLikeThisParams
 operator|.
 name|DOC_COUNT
 argument_list|,
-literal|20
+literal|5
 argument_list|)
 decl_stmt|;
 name|String
@@ -1983,6 +1983,7 @@ argument_list|,
 literal|20
 argument_list|)
 decl_stmt|;
+comment|// overrequest
 name|s
 operator|.
 name|params
@@ -2298,7 +2299,7 @@ name|MoreLikeThisParams
 operator|.
 name|DOC_COUNT
 argument_list|,
-literal|20
+literal|5
 argument_list|)
 decl_stmt|;
 name|DocListAndSet
