@@ -355,6 +355,11 @@ name|sliceCount
 argument_list|)
 argument_list|)
 expr_stmt|;
+name|useFactory
+argument_list|(
+literal|"solr.StandardDirectoryFactory"
+argument_list|)
+expr_stmt|;
 block|}
 annotation|@
 name|Override
