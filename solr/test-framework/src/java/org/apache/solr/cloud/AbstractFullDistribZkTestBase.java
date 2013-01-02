@@ -6576,6 +6576,16 @@ argument_list|(
 literal|")"
 argument_list|)
 expr_stmt|;
+if|if
+condition|(
+name|ids
+operator|.
+name|length
+argument_list|()
+operator|>
+literal|0
+condition|)
+block|{
 comment|// get versions for those ids that don't match
 name|q
 operator|=
@@ -6605,7 +6615,8 @@ argument_list|,
 literal|"checkShardConsistency(vsControl)/getVers"
 argument_list|)
 expr_stmt|;
-comment|// add a tag to aid in debugging via logs
+comment|// add a tag to aid in
+comment|// debugging via logs
 name|SolrDocumentList
 name|a
 init|=
@@ -6645,6 +6656,7 @@ operator|+
 name|b
 argument_list|)
 expr_stmt|;
+block|}
 name|fail
 argument_list|(
 name|msg
