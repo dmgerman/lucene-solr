@@ -946,7 +946,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
-name|RuntimeException
+name|IOException
 name|e
 parameter_list|)
 block|{
@@ -963,28 +963,6 @@ operator|+
 name|resource
 operator|+
 literal|" from Carrot JAR."
-argument_list|)
-expr_stmt|;
-return|return
-operator|new
-name|IResource
-index|[]
-block|{}
-return|;
-block|}
-catch|catch
-parameter_list|(
-name|IOException
-name|e
-parameter_list|)
-block|{
-name|log
-operator|.
-name|warn
-argument_list|(
-literal|"Could not read Solr resource "
-operator|+
-name|resourceName
 argument_list|)
 expr_stmt|;
 return|return
