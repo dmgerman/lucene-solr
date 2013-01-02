@@ -975,7 +975,7 @@ literal|"1000"
 argument_list|,
 literal|"fq"
 argument_list|,
-literal|"{!field needScore=false f="
+literal|"{!field f="
 operator|+
 name|fieldName
 operator|+
@@ -1159,6 +1159,8 @@ name|count
 operator|+
 literal|"]"
 expr_stmt|;
+comment|//Test using the Solr 4 syntax
+block|{
 comment|//never actually need the score but lets test
 name|String
 name|score
@@ -1307,6 +1309,56 @@ name|tests
 argument_list|)
 expr_stmt|;
 block|}
+comment|//Test using the Solr 3 syntax
+block|{
+name|assertQ
+argument_list|(
+name|req
+argument_list|(
+literal|"fl"
+argument_list|,
+literal|"id"
+argument_list|,
+literal|"q"
+argument_list|,
+literal|"*:*"
+argument_list|,
+literal|"rows"
+argument_list|,
+literal|"1000"
+argument_list|,
+literal|"fq"
+argument_list|,
+literal|"{!"
+operator|+
+operator|(
+name|exact
+condition|?
+literal|"geofilt"
+else|:
+literal|"bbox"
+operator|)
+operator|+
+literal|" sfield="
+operator|+
+name|fieldName
+operator|+
+literal|" pt='"
+operator|+
+name|ptStr
+operator|+
+literal|"' d="
+operator|+
+name|distKM
+operator|+
+literal|"}"
+argument_list|)
+argument_list|,
+name|tests
+argument_list|)
+expr_stmt|;
+block|}
+block|}
 annotation|@
 name|Test
 DECL|method|testRangeSyntax
@@ -1329,14 +1381,18 @@ name|count
 init|=
 literal|1
 decl_stmt|;
-name|boolean
-name|needScore
+name|String
+name|score
 init|=
 name|random
 argument_list|()
 operator|.
 name|nextBoolean
 argument_list|()
+condition|?
+literal|"none"
+else|:
+literal|"distance"
 decl_stmt|;
 comment|//never actually need the score but lets test
 name|assertQ
@@ -1357,9 +1413,9 @@ literal|"1000"
 argument_list|,
 literal|"fq"
 argument_list|,
-literal|"{! needScore="
+literal|"{! score="
 operator|+
-name|needScore
+name|score
 operator|+
 literal|" df="
 operator|+
