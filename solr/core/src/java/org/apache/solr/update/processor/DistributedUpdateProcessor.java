@@ -2561,14 +2561,14 @@ name|server
 operator|.
 name|setSoTimeout
 argument_list|(
-literal|5000
+literal|15000
 argument_list|)
 expr_stmt|;
 name|server
 operator|.
 name|setConnectionTimeout
 argument_list|(
-literal|5000
+literal|15000
 argument_list|)
 expr_stmt|;
 name|RequestRecovery
