@@ -432,6 +432,8 @@ init|=
 operator|new
 name|StopableIndexingThread
 argument_list|(
+literal|10000
+operator|+
 name|i
 operator|*
 literal|50000
