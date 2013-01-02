@@ -6537,6 +6537,11 @@ literal|"cloudDocList"
 argument_list|)
 decl_stmt|;
 comment|// get versions for the mismatched ids
+name|boolean
+name|foundId
+init|=
+literal|false
+decl_stmt|;
 name|StringBuilder
 name|ids
 init|=
@@ -6568,6 +6573,10 @@ literal|"id"
 argument_list|)
 argument_list|)
 expr_stmt|;
+name|foundId
+operator|=
+literal|true
+expr_stmt|;
 block|}
 name|ids
 operator|.
@@ -6578,12 +6587,7 @@ argument_list|)
 expr_stmt|;
 if|if
 condition|(
-name|ids
-operator|.
-name|length
-argument_list|()
-operator|>
-literal|0
+name|foundId
 condition|)
 block|{
 comment|// get versions for those ids that don't match
