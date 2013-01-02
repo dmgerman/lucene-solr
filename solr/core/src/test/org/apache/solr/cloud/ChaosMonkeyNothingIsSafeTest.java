@@ -754,7 +754,21 @@ name|FullThrottleStopableIndexingThread
 operator|)
 condition|)
 block|{
-comment|//assertEquals(0, ((StopableIndexingThread) indexThread).getFails());
+name|assertEquals
+argument_list|(
+literal|0
+argument_list|,
+operator|(
+operator|(
+name|StopableIndexingThread
+operator|)
+name|indexThread
+operator|)
+operator|.
+name|getFails
+argument_list|()
+argument_list|)
+expr_stmt|;
 block|}
 block|}
 comment|// try and wait for any replications and what not to finish...
