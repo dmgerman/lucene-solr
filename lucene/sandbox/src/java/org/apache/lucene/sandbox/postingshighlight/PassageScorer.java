@@ -19,7 +19,7 @@ comment|/*  * Licensed to the Apache Software Foundation (ASF) under one or more
 end_comment
 
 begin_comment
-comment|/**   * Used for ranking passages.  *<p>  * Each passage is scored as a miniature document within the document.  * The final score is computed as {@link #norm} *&sum; ({@link #weight} * {@link #tf}).  * The default implementation is {@link #norm} * BM25.  * @lucene.experimental  */
+comment|/**   * Ranks passages found by {@link PostingsHighlighter}.  *<p>  * Each passage is scored as a miniature document within the document.  * The final score is computed as {@link #norm} *&sum; ({@link #weight} * {@link #tf}).  * The default implementation is {@link #norm} * BM25.  * @lucene.experimental  */
 end_comment
 
 begin_class

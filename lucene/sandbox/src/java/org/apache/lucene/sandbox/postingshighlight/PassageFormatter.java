@@ -19,7 +19,7 @@ comment|/*  * Licensed to the Apache Software Foundation (ASF) under one or more
 end_comment
 
 begin_comment
-comment|/**  * Constructs a formatted passage.  *<p>  * The default implementation marks the query terms as bold, and places  * ellipses between unconnected passages.  * @lucene.experimental  */
+comment|/**  * Creates a formatted snippet from the top passages.  *<p>  * The default implementation marks the query terms as bold, and places  * ellipses between unconnected passages.  * @lucene.experimental  */
 end_comment
 
 begin_class
@@ -28,7 +28,7 @@ specifier|public
 class|class
 name|PassageFormatter
 block|{
-comment|/**    * @return formatted highlight    */
+comment|/**    * Formats the top<code>passages</code> from<code>content</code>    * into a human-readable text snippet.    *     * @param passages top-N passages for the field. Note these are sorted in    *        the order that they appear in the document for convenience.    * @param content content for the field.    * @return formatted highlight    */
 DECL|method|format
 specifier|public
 name|String
