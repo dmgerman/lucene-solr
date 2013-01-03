@@ -316,6 +316,20 @@ name|solr
 operator|.
 name|core
 operator|.
+name|Diagnostics
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|solr
+operator|.
+name|core
+operator|.
 name|SolrCore
 import|;
 end_import
@@ -1946,6 +1960,15 @@ argument_list|)
 throw|;
 block|}
 block|}
+DECL|field|testing_errorHook
+specifier|public
+specifier|static
+name|Diagnostics
+operator|.
+name|Callable
+name|testing_errorHook
+decl_stmt|;
+comment|// called on error when forwarding request.  Currently data=[this, Request]
 DECL|method|checkResponses
 name|void
 name|checkResponses
@@ -2022,6 +2045,23 @@ literal|0
 condition|)
 block|{
 comment|// error during request
+if|if
+condition|(
+name|testing_errorHook
+operator|!=
+literal|null
+condition|)
+name|Diagnostics
+operator|.
+name|call
+argument_list|(
+name|testing_errorHook
+argument_list|,
+name|this
+argument_list|,
+name|sreq
+argument_list|)
+expr_stmt|;
 comment|// if there is a retry url, we want to retry...
 name|boolean
 name|isRetry
