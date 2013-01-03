@@ -265,6 +265,9 @@ class|class
 name|SimpleNaiveBayesClassifier
 implements|implements
 name|Classifier
+argument_list|<
+name|BytesRef
+argument_list|>
 block|{
 DECL|field|atomicReader
 specifier|private
@@ -491,6 +494,9 @@ name|Override
 DECL|method|assignClass
 specifier|public
 name|ClassificationResult
+argument_list|<
+name|BytesRef
+argument_list|>
 name|assignClass
 parameter_list|(
 name|String
@@ -519,10 +525,12 @@ name|max
 init|=
 literal|0d
 decl_stmt|;
-name|String
+name|BytesRef
 name|foundClass
 init|=
-literal|null
+operator|new
+name|BytesRef
+argument_list|()
 decl_stmt|;
 name|Terms
 name|terms
@@ -603,7 +611,7 @@ name|foundClass
 operator|=
 name|next
 operator|.
-name|utf8ToString
+name|clone
 argument_list|()
 expr_stmt|;
 block|}
@@ -611,6 +619,9 @@ block|}
 return|return
 operator|new
 name|ClassificationResult
+argument_list|<
+name|BytesRef
+argument_list|>
 argument_list|(
 name|foundClass
 argument_list|,
