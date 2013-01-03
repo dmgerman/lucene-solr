@@ -7735,7 +7735,7 @@ name|numInterrupts
 init|=
 name|atLeast
 argument_list|(
-literal|3000
+literal|300
 argument_list|)
 decl_stmt|;
 name|int
