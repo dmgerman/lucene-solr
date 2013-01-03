@@ -90,6 +90,20 @@ name|apache
 operator|.
 name|lucene
 operator|.
+name|store
+operator|.
+name|TrackingDirectoryWrapper
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
 name|util
 operator|.
 name|Bits
@@ -713,6 +727,10 @@ parameter_list|()
 throws|throws
 name|IOException
 block|{
+comment|// TODO: can we somehow use IOUtils here...?  problem is
+comment|// we are calling .decRef not .close)...
+try|try
+block|{
 if|if
 condition|(
 name|reader
@@ -721,16 +739,25 @@ literal|null
 condition|)
 block|{
 comment|//System.out.println("  pool.drop info=" + info + " rc=" + reader.getRefCount());
+try|try
+block|{
 name|reader
 operator|.
 name|decRef
 argument_list|()
 expr_stmt|;
+block|}
+finally|finally
+block|{
 name|reader
 operator|=
 literal|null
 expr_stmt|;
 block|}
+block|}
+block|}
+finally|finally
+block|{
 if|if
 condition|(
 name|mergeReader
@@ -739,15 +766,22 @@ literal|null
 condition|)
 block|{
 comment|//System.out.println("  pool.drop info=" + info + " merge rc=" + mergeReader.getRefCount());
+try|try
+block|{
 name|mergeReader
 operator|.
 name|decRef
 argument_list|()
 expr_stmt|;
+block|}
+finally|finally
+block|{
 name|mergeReader
 operator|=
 literal|null
 expr_stmt|;
+block|}
+block|}
 block|}
 name|decRef
 argument_list|()
@@ -1050,9 +1084,28 @@ operator|.
 name|getDocCount
 argument_list|()
 assert|;
+comment|// Do this so we can delete any created files on
+comment|// exception; this saves all codecs from having to do
+comment|// it:
+name|TrackingDirectoryWrapper
+name|trackingDir
+init|=
+operator|new
+name|TrackingDirectoryWrapper
+argument_list|(
+name|dir
+argument_list|)
+decl_stmt|;
 comment|// We can write directly to the actual name (vs to a
 comment|// .tmp& renaming it) because the file is not live
 comment|// until segments file is written:
+name|boolean
+name|success
+init|=
+literal|false
+decl_stmt|;
+try|try
+block|{
 name|info
 operator|.
 name|info
@@ -1070,7 +1123,7 @@ name|MutableBits
 operator|)
 name|liveDocs
 argument_list|,
-name|dir
+name|trackingDir
 argument_list|,
 name|info
 argument_list|,
@@ -1081,8 +1134,61 @@ operator|.
 name|DEFAULT
 argument_list|)
 expr_stmt|;
+name|success
+operator|=
+literal|true
+expr_stmt|;
+block|}
+finally|finally
+block|{
+if|if
+condition|(
+operator|!
+name|success
+condition|)
+block|{
+comment|// Advance only the nextWriteDelGen so that a 2nd
+comment|// attempt to write will write to a new file
+name|info
+operator|.
+name|advanceNextWriteDelGen
+argument_list|()
+expr_stmt|;
+comment|// Delete any partially created file(s):
+for|for
+control|(
+name|String
+name|fileName
+range|:
+name|trackingDir
+operator|.
+name|getCreatedFiles
+argument_list|()
+control|)
+block|{
+try|try
+block|{
+name|dir
+operator|.
+name|deleteFile
+argument_list|(
+name|fileName
+argument_list|)
+expr_stmt|;
+block|}
+catch|catch
+parameter_list|(
+name|Throwable
+name|t
+parameter_list|)
+block|{
+comment|// Ignore so we throw only the first exc
+block|}
+block|}
+block|}
+block|}
 comment|// If we hit an exc in the line above (eg disk full)
-comment|// then info remains pointing to the previous
+comment|// then info's delGen remains pointing to the previous
 comment|// (successfully written) del docs:
 name|info
 operator|.

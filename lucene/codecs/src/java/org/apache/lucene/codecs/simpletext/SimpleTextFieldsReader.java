@@ -90,16 +90,6 @@ end_import
 
 begin_import
 import|import
-name|java
-operator|.
-name|util
-operator|.
-name|TreeSet
-import|;
-end_import
-
-begin_import
-import|import
 name|org
 operator|.
 name|apache
@@ -151,6 +141,8 @@ operator|.
 name|index
 operator|.
 name|FieldInfo
+operator|.
+name|IndexOptions
 import|;
 end_import
 
@@ -165,8 +157,6 @@ operator|.
 name|index
 operator|.
 name|FieldInfo
-operator|.
-name|IndexOptions
 import|;
 end_import
 
@@ -293,6 +283,20 @@ operator|.
 name|util
 operator|.
 name|CharsRef
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|util
+operator|.
+name|IOUtils
 import|;
 end_import
 
@@ -578,6 +582,12 @@ parameter_list|)
 throws|throws
 name|IOException
 block|{
+name|fieldInfos
+operator|=
+name|state
+operator|.
+name|fieldInfos
+expr_stmt|;
 name|in
 operator|=
 name|state
@@ -606,12 +616,13 @@ operator|.
 name|context
 argument_list|)
 expr_stmt|;
-name|fieldInfos
-operator|=
-name|state
-operator|.
-name|fieldInfos
-expr_stmt|;
+name|boolean
+name|success
+init|=
+literal|false
+decl_stmt|;
+try|try
+block|{
 name|fields
 operator|=
 name|readFields
@@ -622,6 +633,28 @@ name|clone
 argument_list|()
 argument_list|)
 expr_stmt|;
+name|success
+operator|=
+literal|true
+expr_stmt|;
+block|}
+finally|finally
+block|{
+if|if
+condition|(
+operator|!
+name|success
+condition|)
+block|{
+name|IOUtils
+operator|.
+name|closeWhileHandlingException
+argument_list|(
+name|this
+argument_list|)
+expr_stmt|;
+block|}
+block|}
 block|}
 DECL|method|readFields
 specifier|private
