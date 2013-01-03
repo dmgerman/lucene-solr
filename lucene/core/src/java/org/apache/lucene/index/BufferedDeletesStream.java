@@ -763,6 +763,13 @@ argument_list|()
 argument_list|)
 expr_stmt|;
 block|}
+specifier|final
+name|long
+name|gen
+init|=
+name|nextGen
+operator|++
+decl_stmt|;
 name|List
 argument_list|<
 name|SegmentInfoPerCommit
@@ -1224,7 +1231,7 @@ name|info
 operator|.
 name|setBufferedDeletesGen
 argument_list|(
-name|nextGen
+name|gen
 argument_list|)
 expr_stmt|;
 block|}
@@ -1462,7 +1469,7 @@ name|info
 operator|.
 name|setBufferedDeletesGen
 argument_list|(
-name|nextGen
+name|gen
 argument_list|)
 expr_stmt|;
 name|infosIDX
@@ -1512,8 +1519,7 @@ name|ApplyDeletesResult
 argument_list|(
 name|anyNewDeletes
 argument_list|,
-name|nextGen
-operator|++
+name|gen
 argument_list|,
 name|allDeleted
 argument_list|)

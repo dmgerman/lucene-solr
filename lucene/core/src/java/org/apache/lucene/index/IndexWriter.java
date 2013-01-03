@@ -1313,6 +1313,11 @@ parameter_list|)
 throws|throws
 name|IOException
 block|{
+name|Throwable
+name|priorE
+init|=
+literal|null
+decl_stmt|;
 specifier|final
 name|Iterator
 argument_list|<
@@ -1355,6 +1360,8 @@ operator|.
 name|getValue
 argument_list|()
 decl_stmt|;
+try|try
+block|{
 if|if
 condition|(
 name|doSave
@@ -1388,6 +1395,26 @@ literal|false
 argument_list|)
 expr_stmt|;
 block|}
+block|}
+catch|catch
+parameter_list|(
+name|Throwable
+name|t
+parameter_list|)
+block|{
+if|if
+condition|(
+name|priorE
+operator|!=
+literal|null
+condition|)
+block|{
+name|priorE
+operator|=
+name|t
+expr_stmt|;
+block|}
+block|}
 comment|// Important to remove as-we-go, not with .clear()
 comment|// in the end, in case we hit an exception;
 comment|// otherwise we could over-decref if close() is
@@ -1401,11 +1428,33 @@ comment|// NOTE: it is allowed that these decRefs do not
 comment|// actually close the SRs; this happens when a
 comment|// near real-time reader is kept open after the
 comment|// IndexWriter instance is closed:
+try|try
+block|{
 name|rld
 operator|.
 name|dropReaders
 argument_list|()
 expr_stmt|;
+block|}
+catch|catch
+parameter_list|(
+name|Throwable
+name|t
+parameter_list|)
+block|{
+if|if
+condition|(
+name|priorE
+operator|!=
+literal|null
+condition|)
+block|{
+name|priorE
+operator|=
+name|t
+expr_stmt|;
+block|}
+block|}
 block|}
 assert|assert
 name|readerMap
@@ -1415,6 +1464,21 @@ argument_list|()
 operator|==
 literal|0
 assert|;
+if|if
+condition|(
+name|priorE
+operator|!=
+literal|null
+condition|)
+block|{
+throw|throw
+operator|new
+name|RuntimeException
+argument_list|(
+name|priorE
+argument_list|)
+throw|;
+block|}
 block|}
 comment|/**      * Commit live docs changes for the segment readers for      * the provided infos.      *      * @throws IOException If there is a low-level I/O error      */
 DECL|method|commit
@@ -9519,25 +9583,6 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
-comment|// If new deletes were applied while we were merging
-comment|// (which happens if eg commit() or getReader() is
-comment|// called during our merge), then it better be the case
-comment|// that the delGen has increased for all our merged
-comment|// segments:
-assert|assert
-name|mergedDeletes
-operator|==
-literal|null
-operator|||
-name|minGen
-operator|>
-name|merge
-operator|.
-name|info
-operator|.
-name|getBufferedDeletesGen
-argument_list|()
-assert|;
 name|merge
 operator|.
 name|info

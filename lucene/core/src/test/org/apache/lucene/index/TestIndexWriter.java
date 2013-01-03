@@ -370,20 +370,6 @@ name|lucene
 operator|.
 name|search
 operator|.
-name|MatchAllDocsQuery
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|search
-operator|.
 name|ScoreDoc
 import|;
 end_import
@@ -7323,16 +7309,10 @@ operator|==
 literal|0
 condition|)
 block|{
-comment|// TODO: deleteAll has bugs when dropping its readers! w.deleteAll();
-comment|// this is hiding the bugs to stop the jenkins madness!!!!
 name|w
 operator|.
-name|deleteDocuments
-argument_list|(
-operator|new
-name|MatchAllDocsQuery
+name|deleteAll
 argument_list|()
-argument_list|)
 expr_stmt|;
 block|}
 elseif|else
@@ -7407,11 +7387,44 @@ name|nextBoolean
 argument_list|()
 argument_list|)
 expr_stmt|;
-comment|// TODO: more bugs!
-comment|// if (random.nextBoolean()&& r.maxDoc()> 0) {
-comment|//  int docid = random.nextInt(r.maxDoc());
-comment|//  w.tryDeleteDocument(r, docid);
-comment|//}
+if|if
+condition|(
+name|random
+operator|.
+name|nextBoolean
+argument_list|()
+operator|&&
+name|r
+operator|.
+name|maxDoc
+argument_list|()
+operator|>
+literal|0
+condition|)
+block|{
+name|int
+name|docid
+init|=
+name|random
+operator|.
+name|nextInt
+argument_list|(
+name|r
+operator|.
+name|maxDoc
+argument_list|()
+argument_list|)
+decl_stmt|;
+name|w
+operator|.
+name|tryDeleteDocument
+argument_list|(
+name|r
+argument_list|,
+name|docid
+argument_list|)
+expr_stmt|;
+block|}
 block|}
 finally|finally
 block|{
