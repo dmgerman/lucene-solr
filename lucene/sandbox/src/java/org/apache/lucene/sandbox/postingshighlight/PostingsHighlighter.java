@@ -1593,9 +1593,13 @@ block|{
 continue|continue;
 comment|// term not found
 block|}
-name|DocsAndPositionsEnum
-name|de2
-init|=
+name|de
+operator|=
+name|postings
+index|[
+name|i
+index|]
+operator|=
 name|termsEnum
 operator|.
 name|docsAndPositions
@@ -1608,27 +1612,26 @@ name|DocsAndPositionsEnum
 operator|.
 name|FLAG_OFFSETS
 argument_list|)
-decl_stmt|;
+expr_stmt|;
 if|if
 condition|(
-name|de2
+name|de
 operator|==
 literal|null
 condition|)
 block|{
-continue|continue;
-block|}
-else|else
-block|{
-name|de
-operator|=
-name|postings
-index|[
-name|i
-index|]
-operator|=
-name|de2
-expr_stmt|;
+comment|// no positions available
+throw|throw
+operator|new
+name|IllegalArgumentException
+argument_list|(
+literal|"field '"
+operator|+
+name|field
+operator|+
+literal|"' was indexed without offsets, cannot highlight"
+argument_list|)
+throw|;
 block|}
 name|pDoc
 operator|=
