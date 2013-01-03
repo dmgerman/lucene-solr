@@ -22,6 +22,16 @@ name|java
 operator|.
 name|io
 operator|.
+name|Closeable
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
+name|io
+operator|.
 name|FileNotFoundException
 import|;
 end_import
@@ -173,6 +183,8 @@ DECL|class|IndexFileDeleter
 specifier|final
 class|class
 name|IndexFileDeleter
+implements|implements
+name|Closeable
 block|{
 comment|/* Files that we tried to delete but failed (likely    * because they are open and we are running on Windows),    * so we will retry them again later: */
 DECL|field|deletable
