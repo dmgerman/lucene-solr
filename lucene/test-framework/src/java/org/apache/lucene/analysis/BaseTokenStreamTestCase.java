@@ -545,6 +545,20 @@ operator|.
 name|class
 argument_list|)
 decl_stmt|;
+name|CharTermAttribute
+name|termAtt
+init|=
+literal|null
+decl_stmt|;
+if|if
+condition|(
+name|output
+operator|.
+name|length
+operator|>
+literal|0
+condition|)
+block|{
 name|assertTrue
 argument_list|(
 literal|"has no CharTermAttribute"
@@ -559,9 +573,8 @@ name|class
 argument_list|)
 argument_list|)
 expr_stmt|;
-name|CharTermAttribute
 name|termAtt
-init|=
+operator|=
 name|ts
 operator|.
 name|getAttribute
@@ -570,7 +583,8 @@ name|CharTermAttribute
 operator|.
 name|class
 argument_list|)
-decl_stmt|;
+expr_stmt|;
+block|}
 name|OffsetAttribute
 name|offsetAtt
 init|=
@@ -4473,10 +4487,9 @@ else|:
 name|reader
 argument_list|)
 decl_stmt|;
-name|assertTrue
-argument_list|(
-literal|"has no CharTermAttribute"
-argument_list|,
+name|CharTermAttribute
+name|termAtt
+init|=
 name|ts
 operator|.
 name|hasAttribute
@@ -4485,11 +4498,7 @@ name|CharTermAttribute
 operator|.
 name|class
 argument_list|)
-argument_list|)
-expr_stmt|;
-name|CharTermAttribute
-name|termAtt
-init|=
+condition|?
 name|ts
 operator|.
 name|getAttribute
@@ -4498,6 +4507,8 @@ name|CharTermAttribute
 operator|.
 name|class
 argument_list|)
+else|:
+literal|null
 decl_stmt|;
 name|OffsetAttribute
 name|offsetAtt
@@ -4683,6 +4694,13 @@ name|incrementToken
 argument_list|()
 condition|)
 block|{
+name|assertNotNull
+argument_list|(
+literal|"has no CharTermAttribute"
+argument_list|,
+name|termAtt
+argument_list|)
+expr_stmt|;
 name|tokens
 operator|.
 name|add
