@@ -40,9 +40,9 @@ name|lucene
 operator|.
 name|facet
 operator|.
-name|index
+name|associations
 operator|.
-name|CategoryContainer
+name|CategoryAssociationsContainer
 import|;
 end_import
 
@@ -59,14 +59,14 @@ name|FacetSource
 extends|extends
 name|ContentItemsSource
 block|{
-comment|/** Returns the next {@link CategoryContainer facets content item}.     * Implementations must account for multi-threading, as multiple threads     * can call this method simultaneously.     */
+comment|/**    * Returns the next {@link CategoryAssociationsContainer facets content item}.    * Implementations must account for multi-threading, as multiple threads can    * call this method simultaneously.    */
 DECL|method|getNextFacets
 specifier|public
 specifier|abstract
-name|CategoryContainer
+name|CategoryAssociationsContainer
 name|getNextFacets
 parameter_list|(
-name|CategoryContainer
+name|CategoryAssociationsContainer
 name|facets
 parameter_list|)
 throws|throws

@@ -108,7 +108,7 @@ name|facet
 operator|.
 name|index
 operator|.
-name|CategoryDocumentBuilder
+name|FacetFields
 import|;
 end_import
 
@@ -649,11 +649,11 @@ argument_list|()
 block|{
 specifier|private
 specifier|final
-name|CategoryDocumentBuilder
-name|cdb
+name|FacetFields
+name|facetFields
 init|=
 operator|new
-name|CategoryDocumentBuilder
+name|FacetFields
 argument_list|(
 name|tw
 argument_list|)
@@ -781,18 +781,13 @@ name|level
 expr_stmt|;
 block|}
 block|}
-name|cdb
+name|facetFields
 operator|.
-name|setCategoryPaths
-argument_list|(
-name|cats
-argument_list|)
-expr_stmt|;
-name|cdb
-operator|.
-name|build
+name|addFields
 argument_list|(
 name|doc
+argument_list|,
+name|cats
 argument_list|)
 expr_stmt|;
 name|iw

@@ -74,7 +74,7 @@ name|facet
 operator|.
 name|index
 operator|.
-name|CategoryDocumentBuilder
+name|FacetFields
 import|;
 end_import
 
@@ -336,7 +336,7 @@ name|writer
 decl_stmt|;
 DECL|field|docBuilder
 specifier|private
-name|CategoryDocumentBuilder
+name|FacetFields
 name|docBuilder
 decl_stmt|;
 DECL|method|add
@@ -395,16 +395,11 @@ expr_stmt|;
 block|}
 name|docBuilder
 operator|.
-name|setCategoryPaths
-argument_list|(
-name|paths
-argument_list|)
-expr_stmt|;
-name|docBuilder
-operator|.
-name|build
+name|addFields
 argument_list|(
 name|doc
+argument_list|,
+name|paths
 argument_list|)
 expr_stmt|;
 name|writer
@@ -467,7 +462,7 @@ comment|// fields:
 name|docBuilder
 operator|=
 operator|new
-name|CategoryDocumentBuilder
+name|FacetFields
 argument_list|(
 name|taxoWriter
 argument_list|)

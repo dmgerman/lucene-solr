@@ -86,64 +86,6 @@ name|apache
 operator|.
 name|lucene
 operator|.
-name|index
-operator|.
-name|IndexWriter
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|index
-operator|.
-name|IndexWriterConfig
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|index
-operator|.
-name|IndexWriterConfig
-operator|.
-name|OpenMode
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|store
-operator|.
-name|Directory
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
 name|facet
 operator|.
 name|example
@@ -164,7 +106,7 @@ name|facet
 operator|.
 name|index
 operator|.
-name|CategoryDocumentBuilder
+name|FacetFields
 import|;
 end_import
 
@@ -218,6 +160,64 @@ name|DirectoryTaxonomyWriter
 import|;
 end_import
 
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|index
+operator|.
+name|IndexWriter
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|index
+operator|.
+name|IndexWriterConfig
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|index
+operator|.
+name|IndexWriterConfig
+operator|.
+name|OpenMode
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|store
+operator|.
+name|Directory
+import|;
+end_import
+
 begin_comment
 comment|/*  * Licensed to the Apache Software Foundation (ASF) under one or more  * contributor license agreements.  See the NOTICE file distributed with  * this work for additional information regarding copyright ownership.  * The ASF licenses this file to You under the Apache License, Version 2.0  * (the "License"); you may not use this file except in compliance with  * the License.  You may obtain a copy of the License at  *  *     http://www.apache.org/licenses/LICENSE-2.0  *  * Unless required by applicable law or agreed to in writing, software  * distributed under the License is distributed on an "AS IS" BASIS,  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.  * See the License for the specific language governing permissions and  * limitations under the License.  */
 end_comment
@@ -249,6 +249,7 @@ throws|throws
 name|Exception
 block|{
 comment|// create and open an index writer
+specifier|final
 name|IndexWriter
 name|iw
 init|=
@@ -271,6 +272,7 @@ argument_list|)
 argument_list|)
 decl_stmt|;
 comment|// create and open a taxonomy writer
+specifier|final
 name|TaxonomyWriter
 name|taxo
 init|=
@@ -282,6 +284,17 @@ argument_list|,
 name|OpenMode
 operator|.
 name|CREATE
+argument_list|)
+decl_stmt|;
+comment|// FacetFields adds the categories to the document in addFields()
+specifier|final
+name|FacetFields
+name|facetFields
+init|=
+operator|new
+name|FacetFields
+argument_list|(
+name|taxo
 argument_list|)
 decl_stmt|;
 comment|// loop over  sample documents
@@ -331,22 +344,6 @@ name|categories
 index|[
 name|docNum
 index|]
-argument_list|)
-decl_stmt|;
-comment|// we do not alter indexing parameters!
-comment|// a category document builder will add the categories to a document once build() is called
-name|CategoryDocumentBuilder
-name|categoryDocBuilder
-init|=
-operator|new
-name|CategoryDocumentBuilder
-argument_list|(
-name|taxo
-argument_list|)
-operator|.
-name|setCategoryPaths
-argument_list|(
-name|facetList
 argument_list|)
 decl_stmt|;
 comment|// create a plain Lucene document and add some regular Lucene fields to it
@@ -409,13 +406,14 @@ name|NO
 argument_list|)
 argument_list|)
 expr_stmt|;
-comment|// invoke the category document builder for adding categories to the document and,
-comment|// as required, to the taxonomy index
-name|categoryDocBuilder
+comment|// add the facet fields to the document
+name|facetFields
 operator|.
-name|build
+name|addFields
 argument_list|(
 name|doc
+argument_list|,
+name|facetList
 argument_list|)
 expr_stmt|;
 comment|// finally add the document to the index

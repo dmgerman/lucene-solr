@@ -68,9 +68,9 @@ name|lucene
 operator|.
 name|facet
 operator|.
-name|index
+name|associations
 operator|.
-name|CategoryContainer
+name|CategoryAssociationsContainer
 import|;
 end_import
 
@@ -133,10 +133,10 @@ annotation|@
 name|Override
 DECL|method|getNextFacets
 specifier|public
-name|CategoryContainer
+name|CategoryAssociationsContainer
 name|getNextFacets
 parameter_list|(
-name|CategoryContainer
+name|CategoryAssociationsContainer
 name|facets
 parameter_list|)
 throws|throws
@@ -154,7 +154,7 @@ block|{
 name|facets
 operator|=
 operator|new
-name|CategoryContainer
+name|CategoryAssociationsContainer
 argument_list|()
 expr_stmt|;
 block|}
@@ -256,9 +256,11 @@ expr_stmt|;
 block|}
 name|facets
 operator|.
-name|addCategory
+name|setAssociation
 argument_list|(
 name|cp
+argument_list|,
+literal|null
 argument_list|)
 expr_stmt|;
 name|addBytes

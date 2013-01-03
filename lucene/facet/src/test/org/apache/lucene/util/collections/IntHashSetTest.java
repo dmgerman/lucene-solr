@@ -656,11 +656,6 @@ name|size
 argument_list|()
 argument_list|)
 expr_stmt|;
-name|int
-name|i
-init|=
-literal|0
-decl_stmt|;
 for|for
 control|(
 name|int
@@ -678,9 +673,6 @@ argument_list|(
 name|value
 argument_list|)
 argument_list|)
-expr_stmt|;
-name|i
-operator|++
 expr_stmt|;
 block|}
 block|}
