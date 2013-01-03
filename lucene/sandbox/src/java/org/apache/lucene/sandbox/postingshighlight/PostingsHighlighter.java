@@ -397,7 +397,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Simple highlighter that does not analyze fields nor use  * term vectors. Instead it requires   * {@link IndexOptions#DOCS_AND_FREQS_AND_POSITIONS_AND_OFFSETS}.  *   * This is thread-safe, and can be used across different readers.  *<pre class="prettyprint">  *   // configure field with offsets at index time  *   FieldType offsetsType = new FieldType(TextField.TYPE_STORED);  *   offsetsType.setIndexOptions(IndexOptions.DOCS_AND_FREQS_AND_POSITIONS_AND_OFFSETS);  *   Field body = new Field("body", "foobar", offsetsType);  *  *   // retrieve highlights at query time   *   PostingsHighlighter highlighter = new PostingsHighlighter();  *   Query query = new TermQuery(new Term("body", "highlighting"));  *   TopDocs topDocs = searcher.search(query, n);  *   String highlights[] = highlighter.highlight("body", query, searcher, topDocs);  *</pre>  * @lucene.experimental  */
+comment|/**  * Simple highlighter that does not analyze fields nor use  * term vectors. Instead it requires   * {@link IndexOptions#DOCS_AND_FREQS_AND_POSITIONS_AND_OFFSETS}.  *<p>  * PostingsHighlighter treats the single original document as the whole corpus, and then scores individual  * passages as if they were documents in this corpus. It uses a {@link BreakIterator} to find   * passages in the text; by default it breaks using {@link BreakIterator#getSentenceInstance(Locale)   * getSentenceInstance(Locale.ROOT)}. It then iterates in parallel (merge sorting by offset) through   * the positions of all terms from the query, coalescing those hits that occur in a single passage   * into a {@link Passage}, and then scores each Passage using a separate {@link PassageScorer}.   * Passages are finally formatted into highlighted snippets with a {@link PassageFormatter}.  *<p>  *<b>WARNING</b>: The code is very new and may still have some exciting bugs! This is why   * it's located under Lucene's sandbox module.   *<p>  * Example usage:  *<pre class="prettyprint">  *   // configure field with offsets at index time  *   FieldType offsetsType = new FieldType(TextField.TYPE_STORED);  *   offsetsType.setIndexOptions(IndexOptions.DOCS_AND_FREQS_AND_POSITIONS_AND_OFFSETS);  *   Field body = new Field("body", "foobar", offsetsType);  *  *   // retrieve highlights at query time   *   PostingsHighlighter highlighter = new PostingsHighlighter();  *   Query query = new TermQuery(new Term("body", "highlighting"));  *   TopDocs topDocs = searcher.search(query, n);  *   String highlights[] = highlighter.highlight("body", query, searcher, topDocs);  *</pre>  *<p>  * This is thread-safe, and can be used across different readers.  * @lucene.experimental  */
 end_comment
 
 begin_class
@@ -541,6 +541,27 @@ literal|"maxLength must be< Integer.MAX_VALUE"
 argument_list|)
 throw|;
 block|}
+if|if
+condition|(
+name|breakIterator
+operator|==
+literal|null
+operator|||
+name|scorer
+operator|==
+literal|null
+operator|||
+name|formatter
+operator|==
+literal|null
+condition|)
+block|{
+throw|throw
+operator|new
+name|NullPointerException
+argument_list|()
+throw|;
+block|}
 name|this
 operator|.
 name|maxLength
@@ -664,7 +685,7 @@ name|field
 argument_list|)
 return|;
 block|}
-comment|/**    * Highlights the top passages from multiple fields.    *<p>    * Conceptually, this behaves as a more efficent form of:    *<pre class="prettyprint">    * Map m = new HashMap();    * for (String field : fields) {    *   m.put(field, highlight(field, query, searcher, topDocs));    * }    * return m;    *</pre>    *     * @param fields field names to highlight.     *        Must have a stored string value and also be indexed with offsets.    * @param query query to highlight.    * @param searcher searcher that was previously used to execute the query.    * @param topDocs TopDocs containing the summary result documents to highlight.    * @return Map keyed on field name, containing the array of formatted snippets     *         corresponding to the documents in<code>topDocs</code>.     *         If no highlights were found for a document, its value is<code>null</code>.    * @throws IOException if an I/O error occurred during processing    * @throws IllegalArgumentException if<code>field</code> was indexed without     *         {@link IndexOptions#DOCS_AND_FREQS_AND_POSITIONS_AND_OFFSETS}    */
+comment|/**    * Highlights the top passages from multiple fields.    *<p>    * Conceptually, this behaves as a more efficient form of:    *<pre class="prettyprint">    * Map m = new HashMap();    * for (String field : fields) {    *   m.put(field, highlight(field, query, searcher, topDocs));    * }    * return m;    *</pre>    *     * @param fields field names to highlight.     *        Must have a stored string value and also be indexed with offsets.    * @param query query to highlight.    * @param searcher searcher that was previously used to execute the query.    * @param topDocs TopDocs containing the summary result documents to highlight.    * @return Map keyed on field name, containing the array of formatted snippets     *         corresponding to the documents in<code>topDocs</code>.     *         If no highlights were found for a document, its value is<code>null</code>.    * @throws IOException if an I/O error occurred during processing    * @throws IllegalArgumentException if<code>field</code> was indexed without     *         {@link IndexOptions#DOCS_AND_FREQS_AND_POSITIONS_AND_OFFSETS}    */
 DECL|method|highlightFields
 specifier|public
 name|Map
