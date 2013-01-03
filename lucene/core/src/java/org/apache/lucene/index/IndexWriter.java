@@ -836,9 +836,10 @@ name|poolReaders
 operator|=
 literal|true
 expr_stmt|;
-specifier|final
 name|DirectoryReader
 name|r
+init|=
+literal|null
 decl_stmt|;
 name|doBeforeFlush
 argument_list|()
@@ -849,6 +850,13 @@ init|=
 literal|false
 decl_stmt|;
 comment|/*      * for releasing a NRT reader we must ensure that       * DW doesn't add any segments or deletes until we are      * done with creating the NRT DirectoryReader.       * We release the two stage full flush after we are done opening the      * directory reader!      */
+name|boolean
+name|success2
+init|=
+literal|false
+decl_stmt|;
+try|try
+block|{
 synchronized|synchronized
 init|(
 name|fullFlushLock
@@ -1048,6 +1056,28 @@ operator|+
 literal|" msec"
 argument_list|)
 expr_stmt|;
+block|}
+name|success2
+operator|=
+literal|true
+expr_stmt|;
+block|}
+finally|finally
+block|{
+if|if
+condition|(
+operator|!
+name|success2
+condition|)
+block|{
+name|IOUtils
+operator|.
+name|closeWhileHandlingException
+argument_list|(
+name|r
+argument_list|)
+expr_stmt|;
+block|}
 block|}
 return|return
 name|r
