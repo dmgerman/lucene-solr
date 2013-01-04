@@ -2689,7 +2689,16 @@ name|toString
 argument_list|()
 argument_list|)
 expr_stmt|;
-comment|// params.set("peersync",true); // debugging
+name|params
+operator|.
+name|set
+argument_list|(
+literal|"peersync"
+argument_list|,
+literal|true
+argument_list|)
+expr_stmt|;
+comment|// debugging
 name|SolrQueryRequest
 name|req
 init|=
@@ -2710,6 +2719,7 @@ operator|new
 name|SolrQueryResponse
 argument_list|()
 decl_stmt|;
+comment|// TODO: use the standard update processor chain now that it has support to skip processors before the DistributedUpdateProcessor?
 name|RunUpdateProcessorFactory
 name|runFac
 init|=
