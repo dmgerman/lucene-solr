@@ -24,6 +24,20 @@ name|lucene
 operator|.
 name|analysis
 operator|.
+name|TokenStream
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|analysis
+operator|.
 name|tokenattributes
 operator|.
 name|OffsetAttribute
@@ -127,6 +141,16 @@ operator|.
 name|junit
 operator|.
 name|Test
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
+name|io
+operator|.
+name|StringReader
 import|;
 end_import
 
@@ -341,7 +365,7 @@ name|precStep
 init|=
 operator|(
 operator|(
-name|TrieType
+name|TrieField
 operator|)
 name|type
 operator|)
