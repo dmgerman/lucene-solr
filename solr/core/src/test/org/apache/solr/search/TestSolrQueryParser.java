@@ -377,8 +377,7 @@ parameter_list|()
 throws|throws
 name|Exception
 block|{
-comment|// This query doesn't match anything, testing
-comment|// to make sure that SOLR-4121 is not a problem.
+comment|// At one point, balanced quotes messed up the parser(SOLR-4121)
 name|assertJQ
 argument_list|(
 name|req
