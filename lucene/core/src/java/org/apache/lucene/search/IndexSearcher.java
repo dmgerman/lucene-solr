@@ -709,7 +709,7 @@ return|return
 name|reader
 return|;
 block|}
-comment|/** Sugar for<code>.getIndexReader().document(docID)</code> */
+comment|/**     * Sugar for<code>.getIndexReader().document(docID)</code>     * @see IndexReader#document(int)     */
 DECL|method|doc
 specifier|public
 name|StoredDocument
@@ -730,7 +730,7 @@ name|docID
 argument_list|)
 return|;
 block|}
-comment|/** Sugar for<code>.getIndexReader().document(docID, fieldVisitor)</code> */
+comment|/**     * Sugar for<code>.getIndexReader().document(docID, fieldVisitor)</code>    * @see IndexReader#document(int, StoredFieldVisitor)     */
 DECL|method|doc
 specifier|public
 name|void
@@ -755,7 +755,7 @@ name|fieldVisitor
 argument_list|)
 expr_stmt|;
 block|}
-comment|/** Sugar for<code>.getIndexReader().document(docID, fieldsToLoad)</code> */
+comment|/**     * Sugar for<code>.getIndexReader().document(docID, fieldsToLoad)</code>    * @see IndexReader#document(int, Set)     */
 DECL|method|document
 specifier|public
 specifier|final
