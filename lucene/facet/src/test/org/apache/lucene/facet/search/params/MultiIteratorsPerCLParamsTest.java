@@ -1560,10 +1560,10 @@ name|CategoryPath
 argument_list|(
 name|requestedPath
 operator|.
-name|getComponent
-argument_list|(
+name|components
+index|[
 literal|0
-argument_list|)
+index|]
 argument_list|)
 decl_stmt|;
 name|parentOrdinal

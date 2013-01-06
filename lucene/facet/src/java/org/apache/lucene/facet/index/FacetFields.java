@@ -702,18 +702,11 @@ name|list
 argument_list|)
 expr_stmt|;
 block|}
-comment|// DrillDownStream modifies the CategoryPath by calling trim(). That means
-comment|// that the source category, as the app ses it, is modified. While for
-comment|// most apps this is not a problem, we need to protect against it. If
-comment|// CategoryPath will be made immutable, we can stop cloning.
 name|list
 operator|.
 name|add
 argument_list|(
 name|cp
-operator|.
-name|clone
-argument_list|()
 argument_list|)
 expr_stmt|;
 block|}

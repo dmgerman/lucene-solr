@@ -142,7 +142,7 @@ operator|new
 name|FacetIndexingParams
 argument_list|()
 decl_stmt|;
-comment|/**    * The default delimiter with which {@link CategoryPath#getComponent(int)    * components} are concatenated when written to the index, e.g. as drill-down    * terms. If you choose to override it by overiding    * {@link #getFacetDelimChar()}, you should make sure that you return a    * character that's not found in any path component.    */
+comment|/**    * The default delimiter with which {@link CategoryPath#components} are    * concatenated when written to the index, e.g. as drill-down terms. If you    * choose to override it by overiding {@link #getFacetDelimChar()}, you should    * make sure that you return a character that's not found in any path    * component.    */
 DECL|field|DEFAULT_FACET_DELIM_CHAR
 specifier|public
 specifier|static
@@ -228,7 +228,7 @@ return|return
 name|clParams
 return|;
 block|}
-comment|/**    * Copies the text required to execute a drill-down query on the given    * category to the given {@code char[]}, and returns the number of characters    * that were written.    *<p>    *<b>NOTE:</b> You should make sure that the {@code char[]} is large enough,    * by e.g. calling {@link CategoryPath#charsNeededForFullPath()}.    */
+comment|/**    * Copies the text required to execute a drill-down query on the given    * category to the given {@code char[]}, and returns the number of characters    * that were written.    *<p>    *<b>NOTE:</b> You should make sure that the {@code char[]} is large enough,    * by e.g. calling {@link CategoryPath#fullPathLength()}.    */
 DECL|method|drillDownTermText
 specifier|public
 name|int
@@ -245,14 +245,11 @@ block|{
 return|return
 name|path
 operator|.
-name|copyToCharArray
+name|copyFullPath
 argument_list|(
 name|buffer
 argument_list|,
 literal|0
-argument_list|,
-operator|-
-literal|1
 argument_list|,
 name|getFacetDelimChar
 argument_list|()

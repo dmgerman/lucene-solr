@@ -246,7 +246,7 @@ name|char
 index|[
 name|path
 operator|.
-name|charsNeededForFullPath
+name|fullPathLength
 argument_list|()
 index|]
 decl_stmt|;

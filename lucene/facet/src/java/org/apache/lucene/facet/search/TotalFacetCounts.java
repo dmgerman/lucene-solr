@@ -924,9 +924,9 @@ block|{
 operator|new
 name|CountFacetRequest
 argument_list|(
-operator|new
 name|CategoryPath
-argument_list|()
+operator|.
+name|EMPTY
 argument_list|,
 literal|1
 argument_list|)

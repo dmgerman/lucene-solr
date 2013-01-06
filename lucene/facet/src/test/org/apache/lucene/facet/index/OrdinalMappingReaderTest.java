@@ -605,10 +605,10 @@ operator|.
 name|getLabel
 argument_list|()
 operator|.
-name|getComponent
-argument_list|(
+name|components
+index|[
 literal|1
-argument_list|)
+index|]
 argument_list|)
 decl_stmt|;
 comment|//System.out.println(label + ": " + weight);

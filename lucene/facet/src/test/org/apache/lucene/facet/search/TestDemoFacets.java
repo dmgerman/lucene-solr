@@ -837,10 +837,10 @@ operator|.
 name|getLabel
 argument_list|()
 operator|.
-name|getComponent
-argument_list|(
+name|components
+index|[
 name|depth
-argument_list|)
+index|]
 operator|+
 literal|" ("
 operator|+

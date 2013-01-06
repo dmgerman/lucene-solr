@@ -111,7 +111,7 @@ name|CategoryListParams
 argument_list|>
 name|clParamsMap
 decl_stmt|;
-comment|/**    * Initializes a new instance with the given dimension-to-params mapping. The    * dimension is considered as what's returned by    * {@link CategoryPath#getComponent(int) cp.getComponent(0)}.    *     *<p>    *<b>NOTE:</b> for any dimension whose {@link CategoryListParams} is not    * defined in the mapping, a default {@link CategoryListParams} will be used.    *     * @see #PerDimensionIndexingParams(Map, CategoryListParams)    */
+comment|/**    * Initializes a new instance with the given dimension-to-params mapping. The    * dimension is considered as what's returned by    * {@link CategoryPath#components cp.components[0]}.    *     *<p>    *<b>NOTE:</b> for any dimension whose {@link CategoryListParams} is not    * defined in the mapping, a default {@link CategoryListParams} will be used.    *     * @see #PerDimensionIndexingParams(Map, CategoryListParams)    */
 DECL|method|PerDimensionIndexingParams
 specifier|public
 name|PerDimensionIndexingParams
@@ -191,10 +191,10 @@ operator|.
 name|getKey
 argument_list|()
 operator|.
-name|getComponent
-argument_list|(
+name|components
+index|[
 literal|0
-argument_list|)
+index|]
 argument_list|,
 name|e
 operator|.
@@ -273,10 +273,10 @@ name|get
 argument_list|(
 name|category
 operator|.
-name|getComponent
-argument_list|(
+name|components
+index|[
 literal|0
-argument_list|)
+index|]
 argument_list|)
 decl_stmt|;
 if|if
