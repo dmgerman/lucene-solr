@@ -1589,6 +1589,41 @@ argument_list|,
 literal|"/response/docs/[1]/score==0.19970943"
 argument_list|)
 expr_stmt|;
+comment|//score by distance and don't filter
+name|assertJQ
+argument_list|(
+name|req
+argument_list|(
+comment|//circle radius is small and shouldn't match either, but we disable filtering
+literal|"q"
+argument_list|,
+literal|"{! score=distance filter=false}"
+operator|+
+name|fieldName
+operator|+
+literal|":\"Intersects(Circle(3,4 d=0.000001))\""
+argument_list|,
+literal|"fl"
+argument_list|,
+literal|"id,score"
+argument_list|,
+literal|"sort"
+argument_list|,
+literal|"score asc"
+argument_list|)
+comment|//want ascending due to increasing distance
+argument_list|,
+literal|1e-3
+argument_list|,
+literal|"/response/docs/[0]/id=='100'"
+argument_list|,
+literal|"/response/docs/[0]/score==2.827493"
+argument_list|,
+literal|"/response/docs/[1]/id=='101'"
+argument_list|,
+literal|"/response/docs/[1]/score==5.089807"
+argument_list|)
+expr_stmt|;
 comment|//query again with the query point closer to #101, and check the new ordering
 name|assertJQ
 argument_list|(
