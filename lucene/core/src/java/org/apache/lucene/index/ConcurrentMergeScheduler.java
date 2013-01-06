@@ -139,37 +139,16 @@ comment|// once.  When there are more merges then this, we
 comment|// forcefully pause the larger ones, letting the smaller
 comment|// ones run, up until maxMergeCount merges at which point
 comment|// we forcefully pause incoming threads (that presumably
-comment|// are the ones causing so much merging).  We dynamically
-comment|// default this from 1 to 3, depending on how many cores
-comment|// you have:
+comment|// are the ones causing so much merging).  We default to 1
+comment|// here: tests on spinning-magnet drives showed slower
+comment|// indexing perf if more than one merge thread runs at
+comment|// once (though on an SSD it was faster):
 DECL|field|maxThreadCount
 specifier|private
 name|int
 name|maxThreadCount
 init|=
-name|Math
-operator|.
-name|max
-argument_list|(
 literal|1
-argument_list|,
-name|Math
-operator|.
-name|min
-argument_list|(
-literal|3
-argument_list|,
-name|Runtime
-operator|.
-name|getRuntime
-argument_list|()
-operator|.
-name|availableProcessors
-argument_list|()
-operator|/
-literal|2
-argument_list|)
-argument_list|)
 decl_stmt|;
 comment|// Max number of merges we accept before forcefully
 comment|// throttling the incoming threads
@@ -178,8 +157,6 @@ specifier|private
 name|int
 name|maxMergeCount
 init|=
-name|maxThreadCount
-operator|+
 literal|2
 decl_stmt|;
 comment|/** {@link Directory} that holds the index. */
