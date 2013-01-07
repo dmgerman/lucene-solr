@@ -378,16 +378,6 @@ name|LuceneTestCase
 import|;
 end_import
 
-begin_import
-import|import
-name|org
-operator|.
-name|junit
-operator|.
-name|Ignore
-import|;
-end_import
-
 begin_comment
 comment|/**  * A very simple demo used in the API documentation (src/java/overview.html).  *  * Please try to keep src/java/overview.html up-to-date when making changes  * to this class.  */
 end_comment
@@ -4931,15 +4921,6 @@ argument_list|(
 literal|"dv"
 argument_list|)
 decl_stmt|;
-name|assertTrue
-argument_list|(
-name|dv
-operator|.
-name|isFixedLength
-argument_list|()
-argument_list|)
-expr_stmt|;
-comment|// "hello world 1" length == "hello world 2" length
 name|assertEquals
 argument_list|(
 literal|2
