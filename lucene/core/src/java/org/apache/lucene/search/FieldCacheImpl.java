@@ -6539,30 +6539,6 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
-annotation|@
-name|Override
-DECL|method|isFixedLength
-specifier|public
-name|boolean
-name|isFixedLength
-parameter_list|()
-block|{
-return|return
-name|isFixedLength
-return|;
-block|}
-annotation|@
-name|Override
-DECL|method|maxLength
-specifier|public
-name|int
-name|maxLength
-parameter_list|()
-block|{
-return|return
-name|maxLength
-return|;
-block|}
 block|}
 comment|// TODO: this if DocTermsIndex was already created, we
 comment|// should share it...

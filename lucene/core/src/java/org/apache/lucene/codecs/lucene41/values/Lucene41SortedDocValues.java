@@ -849,13 +849,13 @@ operator|.
 name|getFilePointer
 argument_list|()
 expr_stmt|;
+comment|//if (size == Lucene41BinaryDocValuesConsumer.VALUE_SIZE_VAR) {
 if|if
 condition|(
 name|size
 operator|==
-name|Lucene41BinaryDocValuesConsumer
-operator|.
-name|VALUE_SIZE_VAR
+operator|-
+literal|1
 condition|)
 block|{
 name|offsetIn
