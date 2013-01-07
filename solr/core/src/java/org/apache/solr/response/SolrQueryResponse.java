@@ -64,6 +64,20 @@ end_import
 
 begin_import
 import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|solr
+operator|.
+name|search
+operator|.
+name|SolrReturnFields
+import|;
+end_import
+
+begin_import
+import|import
 name|java
 operator|.
 name|util
@@ -200,7 +214,7 @@ block|{
 name|returnFields
 operator|=
 operator|new
-name|ReturnFields
+name|SolrReturnFields
 argument_list|()
 expr_stmt|;
 comment|// by default return everything

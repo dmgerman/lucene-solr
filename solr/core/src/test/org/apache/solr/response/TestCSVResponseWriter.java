@@ -104,6 +104,20 @@ begin_import
 import|import
 name|org
 operator|.
+name|apache
+operator|.
+name|solr
+operator|.
+name|search
+operator|.
+name|SolrReturnFields
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
 name|junit
 operator|.
 name|*
@@ -1078,7 +1092,7 @@ operator|.
 name|setReturnFields
 argument_list|(
 operator|new
-name|ReturnFields
+name|SolrReturnFields
 argument_list|(
 literal|"id,foo_s"
 argument_list|,
@@ -1120,7 +1134,7 @@ operator|.
 name|setReturnFields
 argument_list|(
 operator|new
-name|ReturnFields
+name|SolrReturnFields
 argument_list|(
 literal|"id,score,foo_s"
 argument_list|,
@@ -1161,7 +1175,7 @@ operator|.
 name|setReturnFields
 argument_list|(
 operator|new
-name|ReturnFields
+name|SolrReturnFields
 argument_list|(
 literal|"*"
 argument_list|,
@@ -1206,7 +1220,7 @@ operator|.
 name|setReturnFields
 argument_list|(
 operator|new
-name|ReturnFields
+name|SolrReturnFields
 argument_list|(
 literal|"*,score"
 argument_list|,
@@ -1275,7 +1289,7 @@ operator|.
 name|setReturnFields
 argument_list|(
 operator|new
-name|ReturnFields
+name|SolrReturnFields
 argument_list|(
 literal|"id,foo*"
 argument_list|,
@@ -1319,7 +1333,7 @@ operator|.
 name|setReturnFields
 argument_list|(
 operator|new
-name|ReturnFields
+name|SolrReturnFields
 argument_list|(
 literal|"id,*_d*"
 argument_list|,
