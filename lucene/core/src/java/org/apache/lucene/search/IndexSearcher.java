@@ -756,11 +756,10 @@ argument_list|)
 expr_stmt|;
 block|}
 comment|/**     * Sugar for<code>.getIndexReader().document(docID, fieldsToLoad)</code>    * @see IndexReader#document(int, Set)     */
-DECL|method|document
+DECL|method|doc
 specifier|public
-specifier|final
 name|StoredDocument
-name|document
+name|doc
 parameter_list|(
 name|int
 name|docID
