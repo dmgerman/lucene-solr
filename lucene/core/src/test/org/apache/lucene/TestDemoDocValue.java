@@ -4054,6 +4054,14 @@ argument_list|(
 literal|"dv"
 argument_list|)
 decl_stmt|;
+name|assertFalse
+argument_list|(
+name|dv
+operator|.
+name|isFixedLength
+argument_list|()
+argument_list|)
+expr_stmt|;
 name|BytesRef
 name|scratch
 init|=
