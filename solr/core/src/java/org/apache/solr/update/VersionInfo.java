@@ -397,7 +397,7 @@ literal|" ("
 operator|+
 name|VERSION_FIELD
 operator|+
-literal|" is not multiValued"
+literal|" is multiValued"
 argument_list|)
 throw|;
 block|}
