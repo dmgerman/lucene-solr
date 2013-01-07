@@ -1311,7 +1311,7 @@ name|decode
 argument_list|(
 name|kv
 argument_list|,
-literal|"UTF-8"
+name|charset
 argument_list|)
 decl_stmt|;
 name|MultiMapSolrParams
