@@ -192,7 +192,7 @@ operator|-
 literal|1
 operator|)
 decl_stmt|;
-comment|/** Default buffer size before writing to disk (256 MB);    *  larger means less IO load but more RAM and direct    *  buffer storage space consumed during merging. */
+comment|/** Default buffer size before writing to disk (256 KB);    *  larger means less IO load but more RAM and direct    *  buffer storage space consumed during merging. */
 DECL|field|DEFAULT_MERGE_BUFFER_SIZE
 specifier|public
 specifier|final
