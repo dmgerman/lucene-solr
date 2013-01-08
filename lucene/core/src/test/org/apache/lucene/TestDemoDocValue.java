@@ -395,8 +395,6 @@ literal|"Asserting"
 block|,
 literal|"Direct"
 block|,
-literal|"Memory"
-block|,
 literal|"MockRandom"
 block|,
 literal|"Lucene40"
