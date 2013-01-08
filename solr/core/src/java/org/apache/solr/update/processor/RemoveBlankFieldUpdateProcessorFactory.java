@@ -63,7 +63,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Removes any values found which are CharSequence with a length of 0.   * (ie: empty strings)   *<p>  * By default this processor applies itself to all fields.  *</p>  *  *<p>  * For example, with the configuration listed below, blank strings will be   * removed from all fields except those whose name ends with   * "<code>_literal</code>".  *</p>  *  *<pre class="prettyprint">  *&lt;processor class="solr.RemoveBlankFieldUpdateProcessorFactory"&gt;  *&lt;lst name="exclude"&gt;  *&lt;str name="fieldRegex"&gt;.*_literal&lt;/str&gt;  *&lt;/lst&gt;  *&lt;/processor&gt;  *</pre>  *  */
+comment|/**  * Removes any values found which are CharSequence with a length of 0.   * (ie: empty strings)   *<p>  * By default this processor applies itself to all fields.  *</p>  *  *<p>  * For example, with the configuration listed below, blank strings will be   * removed from all fields except those whose name ends with   * "<code>_literal</code>".  *</p>  *  *<pre class="prettyprint">  *&lt;processor class="solr.RemoveBlankFieldUpdateProcessorFactory"&gt;  *&lt;lst name="exclude"&gt;  *&lt;str name="fieldRegex"&gt;.*_literal&lt;/str&gt;  *&lt;/lst&gt;  *&lt;/processor&gt;</pre>  *  */
 end_comment
 
 begin_class

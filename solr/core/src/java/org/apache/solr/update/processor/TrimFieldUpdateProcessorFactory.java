@@ -63,7 +63,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Trims leading and trailing whitespace from any CharSequence values   * found in fields matching the specified conditions and returns the   * resulting String.  *<p>  * By default this processor matches all fields  *</p>  *  *<p>For example, with the configuration listed all String field values   * will have leading and trailing spaces removed except for fields whose   * named ends with "<code>_literal</code>".  *</p>  *<pre class="prettyprint">  *&lt;processor class="solr.TrimFieldUpdateProcessorFactory"&gt;  *&lt;lst name="exclude"&gt;  *&lt;str name="fieldRegex"&gt;.*_literal&lt;/str&gt;  *&lt;/lst&gt;  *&lt;/processor&gt;  *</pre>  */
+comment|/**  * Trims leading and trailing whitespace from any CharSequence values   * found in fields matching the specified conditions and returns the   * resulting String.  *<p>  * By default this processor matches all fields  *</p>  *  *<p>For example, with the configuration listed all String field values   * will have leading and trailing spaces removed except for fields whose   * named ends with "<code>_literal</code>".  *</p>  *<pre class="prettyprint">  *&lt;processor class="solr.TrimFieldUpdateProcessorFactory"&gt;  *&lt;lst name="exclude"&gt;  *&lt;str name="fieldRegex"&gt;.*_literal&lt;/str&gt;  *&lt;/lst&gt;  *&lt;/processor&gt;</pre>  */
 end_comment
 
 begin_class

@@ -107,7 +107,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Truncates any CharSequence values found in fields matching the specified   * conditions to a maximum character length.  *<p>  * By default this processor matches no fields  *</p>  *  *<p>For example, with the configuration listed below any documents   * containing a String in any field declared in the schema using   *<code>StrField</code> will be truncated to no more then 100 characters  *</p>  *<pre class="prettyprint">  *&lt;processor class="solr.TruncateFieldUpdateProcessorFactory"&gt;  *&lt;str name="typeClass"&gt;solr.StrField&lt;/str&gt;  *&lt;int name="maxLength"&gt;100&lt;/int&gt;  *&lt;/processor&gt;  *</pre>  */
+comment|/**  * Truncates any CharSequence values found in fields matching the specified   * conditions to a maximum character length.  *<p>  * By default this processor matches no fields  *</p>  *  *<p>For example, with the configuration listed below any documents   * containing a String in any field declared in the schema using   *<code>StrField</code> will be truncated to no more then 100 characters  *</p>  *<pre class="prettyprint">  *&lt;processor class="solr.TruncateFieldUpdateProcessorFactory"&gt;  *&lt;str name="typeClass"&gt;solr.StrField&lt;/str&gt;  *&lt;int name="maxLength"&gt;100&lt;/int&gt;  *&lt;/processor&gt;</pre>  */
 end_comment
 
 begin_class
