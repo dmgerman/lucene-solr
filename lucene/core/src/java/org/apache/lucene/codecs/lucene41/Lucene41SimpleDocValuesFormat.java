@@ -2336,7 +2336,7 @@ name|getValueCount
 parameter_list|()
 block|{
 return|return
-name|ordinals
+name|binary
 operator|.
 name|size
 argument_list|()
@@ -2350,7 +2350,7 @@ name|size
 parameter_list|()
 block|{
 return|return
-name|binary
+name|ordinals
 operator|.
 name|size
 argument_list|()
