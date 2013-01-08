@@ -640,7 +640,7 @@ name|SimpleDocValuesFormat
 operator|.
 name|forName
 argument_list|(
-literal|"Memory"
+literal|"Lucene41"
 argument_list|)
 decl_stmt|;
 comment|// nocommit need simpleNormsFormat
