@@ -3728,8 +3728,12 @@ argument_list|,
 name|shardId
 argument_list|,
 name|timeoutms
+operator|*
+literal|2
 argument_list|)
 decl_stmt|;
+comment|// since we found it in zk, we are willing to
+comment|// wait a while to find it in state
 name|int
 name|tries
 init|=
