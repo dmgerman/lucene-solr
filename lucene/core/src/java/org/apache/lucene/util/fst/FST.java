@@ -629,6 +629,10 @@ name|T
 argument_list|>
 name|outputs
 decl_stmt|;
+comment|// Used for the BIT_TARGET_NEXT optimization (whereby
+comment|// instead of storing the address of the target node for
+comment|// a given arc, we mark a single bit noting that the next
+comment|// node in the byte[] is the target node):
 DECL|field|lastFrozenNode
 specifier|private
 name|int
@@ -681,10 +685,9 @@ literal|1
 decl_stmt|;
 DECL|field|allowArrayArcs
 specifier|private
+specifier|final
 name|boolean
 name|allowArrayArcs
-init|=
-literal|true
 decl_stmt|;
 DECL|field|cachedRootArcs
 specifier|private
@@ -1117,6 +1120,9 @@ name|willPackFST
 parameter_list|,
 name|float
 name|acceptableOverheadRatio
+parameter_list|,
+name|boolean
+name|allowArrayArcs
 parameter_list|)
 block|{
 name|this
@@ -1130,6 +1136,12 @@ operator|.
 name|outputs
 operator|=
 name|outputs
+expr_stmt|;
+name|this
+operator|.
+name|allowArrayArcs
+operator|=
+name|allowArrayArcs
 expr_stmt|;
 name|bytes
 operator|=
@@ -1496,6 +1508,13 @@ argument_list|()
 expr_stmt|;
 name|cacheRootArcs
 argument_list|()
+expr_stmt|;
+comment|// NOTE: bogus because this is only used during
+comment|// building; we need to break out mutable FST from
+comment|// immutable
+name|allowArrayArcs
+operator|=
+literal|false
 expr_stmt|;
 block|}
 DECL|method|getInputType
@@ -5550,20 +5569,6 @@ return|return
 name|arcWithOutputCount
 return|;
 block|}
-DECL|method|setAllowArrayArcs
-specifier|public
-name|void
-name|setAllowArrayArcs
-parameter_list|(
-name|boolean
-name|v
-parameter_list|)
-block|{
-name|allowArrayArcs
-operator|=
-name|v
-expr_stmt|;
-block|}
 comment|/**    * Nodes will be expanded if their depth (distance from the root node) is    *&lt;= this value and their number of arcs is&gt;=    * {@link #FIXED_ARRAY_NUM_ARCS_SHALLOW}.    *     *<p>    * Fixed array consumes more RAM but enables binary search on the arcs    * (instead of a linear scan) on lookup by arc label.    *     * @return<code>true</code> if<code>node</code> should be stored in an    *         expanded (array) form.    *     * @see #FIXED_ARRAY_NUM_ARCS_DEEP    * @see Builder.UnCompiledNode#depth    */
 DECL|method|shouldExpand
 specifier|private
@@ -6344,6 +6349,13 @@ operator|=
 operator|new
 name|DefaultBytesWriter
 argument_list|()
+expr_stmt|;
+comment|// NOTE: bogus because this is only used during
+comment|// building; we need to break out mutable FST from
+comment|// immutable
+name|allowArrayArcs
+operator|=
+literal|false
 expr_stmt|;
 block|}
 comment|/** Expert: creates an FST by packing this one.  This    *  process requires substantial additional RAM (currently    *  up to ~8 bytes per node depending on    *<code>acceptableOverheadRatio</code>), but then should    *  produce a smaller FST.    *    *<p>The implementation of this method uses ideas from    *<a target="_blank" href="http://www.cs.put.poznan.pl/dweiss/site/publications/download/fsacomp.pdf">Smaller Representation of Finite State Automata</a>,    *  which describes techniques to reduce the size of a FST.    *  However, this is not a strict implementation of the    *  algorithms described in this paper.    */
