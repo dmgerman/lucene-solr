@@ -612,12 +612,6 @@ name|byte
 index|[]
 name|bytes
 decl_stmt|;
-DECL|field|byteUpto
-name|int
-name|byteUpto
-init|=
-literal|0
-decl_stmt|;
 DECL|field|startNode
 specifier|private
 name|int
