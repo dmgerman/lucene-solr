@@ -272,6 +272,8 @@ name|UIMABaseAnalyzer
 name|analyzer
 decl_stmt|;
 annotation|@
+name|Override
+annotation|@
 name|Before
 DECL|method|setUp
 specifier|public
@@ -297,6 +299,8 @@ literal|"org.apache.uima.TokenAnnotation"
 argument_list|)
 expr_stmt|;
 block|}
+annotation|@
+name|Override
 annotation|@
 name|After
 DECL|method|tearDown

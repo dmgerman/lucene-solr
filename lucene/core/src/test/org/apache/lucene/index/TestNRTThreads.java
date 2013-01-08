@@ -460,6 +460,8 @@ specifier|private
 name|IndexSearcher
 name|fixedSearcher
 decl_stmt|;
+annotation|@
+name|Override
 DECL|method|getCurrentSearcher
 specifier|protected
 name|IndexSearcher

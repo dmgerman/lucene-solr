@@ -631,6 +631,8 @@ name|fieldHeader
 expr_stmt|;
 block|}
 comment|/**      * TODO..      * @see java.lang.Object#equals(java.lang.Object)      */
+annotation|@
+name|Override
 DECL|method|equals
 specifier|public
 name|boolean

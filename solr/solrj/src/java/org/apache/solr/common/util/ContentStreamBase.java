@@ -676,6 +676,8 @@ return|;
 block|}
 block|}
 comment|/**    * Base reader implementation.  If the contentType declares a     * charset use it, otherwise use "utf-8".    */
+annotation|@
+name|Override
 DECL|method|getReader
 specifier|public
 name|Reader
@@ -720,6 +722,8 @@ block|}
 comment|//------------------------------------------------------------------
 comment|// Getters / Setters for overrideable attributes
 comment|//------------------------------------------------------------------
+annotation|@
+name|Override
 DECL|method|getContentType
 specifier|public
 name|String
@@ -746,6 +750,8 @@ operator|=
 name|contentType
 expr_stmt|;
 block|}
+annotation|@
+name|Override
 DECL|method|getName
 specifier|public
 name|String
@@ -772,6 +778,8 @@ operator|=
 name|name
 expr_stmt|;
 block|}
+annotation|@
+name|Override
 DECL|method|getSize
 specifier|public
 name|Long
@@ -798,6 +806,8 @@ operator|=
 name|size
 expr_stmt|;
 block|}
+annotation|@
+name|Override
 DECL|method|getSourceInfo
 specifier|public
 name|String

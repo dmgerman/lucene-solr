@@ -840,7 +840,7 @@ argument_list|(
 literal|"stc"
 argument_list|)
 argument_list|,
-literal|1
+literal|2
 argument_list|)
 expr_stmt|;
 block|}

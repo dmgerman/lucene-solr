@@ -105,6 +105,8 @@ extends|,
 name|NamedListInitializedPlugin
 block|{
 comment|/**<code>init</code> will be called just once, immediately after creation.    *<p>The args are user-level initialization parameters that    * may be specified when declaring a request handler in    * solrconfig.xml    */
+annotation|@
+name|Override
 DECL|method|init
 specifier|public
 name|void

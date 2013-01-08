@@ -22,18 +22,6 @@ begin_import
 import|import
 name|java
 operator|.
-name|lang
-operator|.
-name|reflect
-operator|.
-name|Modifier
-import|;
-end_import
-
-begin_import
-import|import
-name|java
-operator|.
 name|io
 operator|.
 name|Reader
@@ -54,9 +42,11 @@ begin_import
 import|import
 name|java
 operator|.
-name|util
+name|lang
 operator|.
-name|ArrayList
+name|reflect
+operator|.
+name|Modifier
 import|;
 end_import
 
@@ -96,16 +86,6 @@ name|java
 operator|.
 name|util
 operator|.
-name|Map
-import|;
-end_import
-
-begin_import
-import|import
-name|java
-operator|.
-name|util
-operator|.
 name|Set
 import|;
 end_import
@@ -135,20 +115,6 @@ operator|.
 name|analysis
 operator|.
 name|CharFilter
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|analysis
-operator|.
-name|EmptyTokenizer
 import|;
 end_import
 
@@ -288,20 +254,6 @@ name|lucene
 operator|.
 name|analysis
 operator|.
-name|Tokenizer
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|analysis
-operator|.
 name|TokenStream
 import|;
 end_import
@@ -316,7 +268,7 @@ name|lucene
 operator|.
 name|analysis
 operator|.
-name|ValidatingTokenFilter
+name|Tokenizer
 import|;
 end_import
 
@@ -330,9 +282,7 @@ name|lucene
 operator|.
 name|analysis
 operator|.
-name|core
-operator|.
-name|TestRandomChains
+name|ValidatingTokenFilter
 import|;
 end_import
 
@@ -580,10 +530,6 @@ operator|.
 name|class
 argument_list|,
 name|MockVariableLengthPayloadFilter
-operator|.
-name|class
-argument_list|,
-name|EmptyTokenizer
 operator|.
 name|class
 argument_list|,

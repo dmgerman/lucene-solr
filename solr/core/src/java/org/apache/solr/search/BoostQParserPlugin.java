@@ -170,6 +170,8 @@ name|BOOSTFUNC
 init|=
 literal|"b"
 decl_stmt|;
+annotation|@
+name|Override
 DECL|method|init
 specifier|public
 name|void

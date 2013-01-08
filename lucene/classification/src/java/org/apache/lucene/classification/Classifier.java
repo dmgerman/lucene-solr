@@ -55,7 +55,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * A classifier, see<code>http://en.wikipedia.org/wiki/Classifier_(mathematics)</code>  * @lucene.experimental  */
+comment|/**  * A classifier, see<code>http://en.wikipedia.org/wiki/Classifier_(mathematics)</code>, which assign classes of type  *<code>T</code>  * @lucene.experimental  */
 end_comment
 
 begin_interface
@@ -63,11 +63,17 @@ DECL|interface|Classifier
 specifier|public
 interface|interface
 name|Classifier
+parameter_list|<
+name|T
+parameter_list|>
 block|{
-comment|/**    * Assign a class (with score) to the given text String    * @param text a String containing text to be classified    * @return a {@link ClassificationResult} holding assigned class and score    * @throws IOException If there is a low-level I/O error.    */
+comment|/**    * Assign a class (with score) to the given text String    * @param text a String containing text to be classified    * @return a {@link ClassificationResult} holding assigned class of type<code>T</code> and score    * @throws IOException If there is a low-level I/O error.    */
 DECL|method|assignClass
 specifier|public
 name|ClassificationResult
+argument_list|<
+name|T
+argument_list|>
 name|assignClass
 parameter_list|(
 name|String

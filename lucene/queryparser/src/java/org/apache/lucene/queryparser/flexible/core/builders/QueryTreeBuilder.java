@@ -701,6 +701,8 @@ literal|null
 return|;
 block|}
 comment|/**    * Builds some kind of object from a query tree. Each node in the query tree    * is built using an specific builder associated to it.    *     * @param queryNode the query tree root node    *     * @return the built object    *     * @throws QueryNodeException if some node builder throws a    *         {@link QueryNodeException} or if there is a node which had no    *         builder associated to it    */
+annotation|@
+name|Override
 DECL|method|build
 specifier|public
 name|Object

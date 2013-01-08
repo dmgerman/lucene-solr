@@ -79,6 +79,8 @@ name|DefaultSimilarity
 parameter_list|()
 block|{}
 comment|/** Implemented as<code>overlap / maxOverlap</code>. */
+annotation|@
+name|Override
 DECL|method|coord
 specifier|public
 name|float
@@ -101,6 +103,8 @@ name|maxOverlap
 return|;
 block|}
 comment|/** Implemented as<code>1/sqrt(sumOfSquaredWeights)</code>. */
+annotation|@
+name|Override
 DECL|method|queryNorm
 specifier|public
 name|float

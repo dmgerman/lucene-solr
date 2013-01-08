@@ -215,6 +215,8 @@ argument_list|()
 expr_stmt|;
 block|}
 block|}
+annotation|@
+name|Override
 DECL|method|create
 specifier|public
 name|EdgeNGramTokenFilter

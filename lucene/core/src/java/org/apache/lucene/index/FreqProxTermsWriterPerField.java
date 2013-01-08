@@ -374,6 +374,8 @@ name|void
 name|skippingLongTerm
 parameter_list|()
 block|{}
+annotation|@
+name|Override
 DECL|method|compareTo
 specifier|public
 name|int

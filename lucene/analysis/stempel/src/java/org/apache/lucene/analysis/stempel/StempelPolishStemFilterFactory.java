@@ -134,6 +134,8 @@ specifier|public
 name|StempelPolishStemFilterFactory
 parameter_list|()
 block|{}
+annotation|@
+name|Override
 DECL|method|create
 specifier|public
 name|TokenStream

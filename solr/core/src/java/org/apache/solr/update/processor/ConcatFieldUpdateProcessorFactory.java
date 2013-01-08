@@ -175,7 +175,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Concatenates multiple values for fields matching the specified   * conditions using a configurable<code>delimiter</code> which defaults   * to "<code>,</code>".  *<p>  * By default, this processor concatenates the values for any field name   * which according to the schema is<code>multiValued="false"</code>   * and uses<code>TextField</code> or<code>StrField</code>  *</p>  *   *<p>  * For example, in the configuration below, any "single valued" string and   * text field which is found to contain multiple values<i>except</i> for   * the<code>primary_author</code> field will be concatenated using the   * string "<code>;</code>" as a delimeter.  For the   *<code>primary_author</code> field, the multiple values will be left   * alone for<code>FirstFieldValueUpdateProcessorFactory</code> to deal with.  *</p>  *  *<pre class="prettyprint">  *&lt;updateRequestProcessorChain&gt;  *&lt;processor class="solr.ConcatFieldUpdateProcessorFactory"&gt;  *&lt;str name="delimiter"&gt;;&lt;/str&gt;  *&lt;lst name="exclude"&gt;  *&lt;str name="fieldName"&gt;primary_author&lt;/str&gt;  *&lt;/lst&gt;  *&lt;/processor&gt;  *&lt;processor class="solr.FirstFieldValueUpdateProcessorFactory"&gt;  *&lt;str name="fieldName"&gt;primary_author&lt;/str&gt;  *&lt;/processor&gt;  *&lt;/updateRequestProcessorChain&gt;  *</pre>  */
+comment|/**  * Concatenates multiple values for fields matching the specified   * conditions using a configurable<code>delimiter</code> which defaults   * to "<code>,</code>".  *<p>  * By default, this processor concatenates the values for any field name   * which according to the schema is<code>multiValued="false"</code>   * and uses<code>TextField</code> or<code>StrField</code>  *</p>  *   *<p>  * For example, in the configuration below, any "single valued" string and   * text field which is found to contain multiple values<i>except</i> for   * the<code>primary_author</code> field will be concatenated using the   * string "<code>;</code>" as a delimeter.  For the   *<code>primary_author</code> field, the multiple values will be left   * alone for<code>FirstFieldValueUpdateProcessorFactory</code> to deal with.  *</p>  *  *<pre class="prettyprint">  *&lt;processor class="solr.ConcatFieldUpdateProcessorFactory"&gt;  *&lt;str name="delimiter"&gt;;&lt;/str&gt;  *&lt;lst name="exclude"&gt;  *&lt;str name="fieldName"&gt;primary_author&lt;/str&gt;  *&lt;/lst&gt;  *&lt;/processor&gt;  *&lt;processor class="solr.FirstFieldValueUpdateProcessorFactory"&gt;  *&lt;str name="fieldName"&gt;primary_author&lt;/str&gt;  *&lt;/processor&gt;</pre>  */
 end_comment
 
 begin_class
@@ -267,6 +267,8 @@ argument_list|,
 name|next
 argument_list|)
 block|{
+annotation|@
+name|Override
 specifier|protected
 name|SolrInputField
 name|mutate
@@ -359,6 +361,8 @@ operator|.
 name|FieldNameSelector
 argument_list|()
 block|{
+annotation|@
+name|Override
 specifier|public
 name|boolean
 name|shouldMutate

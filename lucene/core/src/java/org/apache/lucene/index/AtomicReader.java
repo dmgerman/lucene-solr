@@ -217,6 +217,8 @@ return|;
 block|}
 block|}
 comment|/** Returns the number of documents containing the term    *<code>t</code>.  This method returns 0 if the term or    * field does not exists.  This method does not take into    * account deleted documents that have not yet been merged    * away. */
+annotation|@
+name|Override
 DECL|method|totalTermFreq
 specifier|public
 specifier|final

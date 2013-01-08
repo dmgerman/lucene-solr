@@ -853,14 +853,10 @@ name|tw
 operator|.
 name|addCategory
 argument_list|(
-operator|new
-name|CategoryPath
-argument_list|(
 name|cp
 index|[
 name|j
 index|]
-argument_list|)
 argument_list|)
 expr_stmt|;
 block|}

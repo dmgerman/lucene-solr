@@ -143,6 +143,8 @@ name|queryID
 return|;
 block|}
 comment|/* for a nicer sort of input queries before running them.    * Try first as ints, fall back to string if not int. */
+annotation|@
+name|Override
 DECL|method|compareTo
 specifier|public
 name|int

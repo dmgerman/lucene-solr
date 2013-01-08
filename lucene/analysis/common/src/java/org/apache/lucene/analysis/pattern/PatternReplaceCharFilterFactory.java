@@ -169,6 +169,8 @@ literal|""
 expr_stmt|;
 comment|// TODO: throw exception if you set maxBlockChars or blockDelimiters ?
 block|}
+annotation|@
+name|Override
 DECL|method|create
 specifier|public
 name|CharFilter

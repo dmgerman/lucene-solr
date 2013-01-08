@@ -234,6 +234,8 @@ operator|=
 name|message
 expr_stmt|;
 block|}
+annotation|@
+name|Override
 DECL|method|getMessageObject
 specifier|public
 name|Message

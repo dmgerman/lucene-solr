@@ -683,6 +683,8 @@ argument_list|<
 name|Token
 argument_list|>
 block|{
+annotation|@
+name|Override
 DECL|method|compare
 specifier|public
 name|int

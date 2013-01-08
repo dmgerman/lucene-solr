@@ -2159,6 +2159,8 @@ name|index
 expr_stmt|;
 block|}
 comment|// Sorts largest to smallest
+annotation|@
+name|Override
 DECL|method|compareTo
 specifier|public
 name|int

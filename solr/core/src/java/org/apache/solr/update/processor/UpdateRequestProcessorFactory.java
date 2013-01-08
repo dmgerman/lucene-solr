@@ -121,6 +121,8 @@ name|UpdateRequestProcessorFactory
 implements|implements
 name|NamedListInitializedPlugin
 block|{
+annotation|@
+name|Override
 DECL|method|init
 specifier|public
 name|void

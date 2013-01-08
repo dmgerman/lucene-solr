@@ -910,6 +910,8 @@ name|hasDeletions
 parameter_list|()
 function_decl|;
 comment|/**    * Closes files associated with this index.    * Also saves any new deletions to disk.    * No other methods should be called after this has been called.    * @throws IOException if there is a low-level IO error    */
+annotation|@
+name|Override
 DECL|method|close
 specifier|public
 specifier|final

@@ -316,6 +316,8 @@ throws|throws
 name|IOException
 block|{}
 comment|/** Releases resources associated with this stream. */
+annotation|@
+name|Override
 DECL|method|close
 specifier|public
 name|void

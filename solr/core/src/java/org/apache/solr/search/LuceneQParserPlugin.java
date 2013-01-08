@@ -152,6 +152,8 @@ name|NAME
 init|=
 literal|"lucene"
 decl_stmt|;
+annotation|@
+name|Override
 DECL|method|init
 specifier|public
 name|void

@@ -95,6 +95,8 @@ name|SpanBuilderBase
 implements|implements
 name|SpanQueryBuilder
 block|{
+annotation|@
+name|Override
 DECL|method|getQuery
 specifier|public
 name|Query

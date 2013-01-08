@@ -350,13 +350,54 @@ operator|.
 name|join
 argument_list|()
 expr_stmt|;
-name|commit
-argument_list|()
+name|Thread
+operator|.
+name|sleep
+argument_list|(
+literal|500
+argument_list|)
+expr_stmt|;
+name|waitForThingsToLevelOut
+argument_list|(
+literal|30
+argument_list|)
+expr_stmt|;
+name|Thread
+operator|.
+name|sleep
+argument_list|(
+literal|1000
+argument_list|)
+expr_stmt|;
+name|waitForThingsToLevelOut
+argument_list|(
+literal|30
+argument_list|)
+expr_stmt|;
+name|Thread
+operator|.
+name|sleep
+argument_list|(
+literal|1000
+argument_list|)
+expr_stmt|;
+name|waitForRecoveriesToFinish
+argument_list|(
+name|DEFAULT_COLLECTION
+argument_list|,
+name|zkStateReader
+argument_list|,
+literal|false
+argument_list|,
+literal|true
+argument_list|)
 expr_stmt|;
 comment|// test that leader and replica have same doc count
 name|checkShardConsistency
 argument_list|(
 literal|"shard1"
+argument_list|,
+literal|false
 argument_list|,
 literal|false
 argument_list|)
@@ -456,6 +497,8 @@ expr_stmt|;
 comment|// won't always pass yet...
 comment|//query("q", "*:*", "sort", "id desc");
 block|}
+annotation|@
+name|Override
 DECL|method|indexDoc
 specifier|protected
 name|void
@@ -526,6 +569,8 @@ argument_list|()
 expr_stmt|;
 block|}
 comment|// skip the randoms - they can deadlock...
+annotation|@
+name|Override
 DECL|method|indexr
 specifier|protected
 name|void

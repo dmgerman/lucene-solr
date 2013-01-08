@@ -200,7 +200,7 @@ name|pool
 operator|.
 name|awaitTermination
 argument_list|(
-literal|60
+literal|30
 argument_list|,
 name|TimeUnit
 operator|.

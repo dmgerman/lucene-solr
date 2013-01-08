@@ -1197,7 +1197,7 @@ block|}
 name|writer
 operator|=
 operator|new
-name|BytesWriter
+name|DefaultBytesWriter
 argument_list|()
 expr_stmt|;
 name|emptyOutput
@@ -1605,7 +1605,8 @@ name|byte
 index|[
 name|writer
 operator|.
-name|posWrite
+name|getPosition
+argument_list|()
 index|]
 decl_stmt|;
 name|System
@@ -1622,7 +1623,8 @@ literal|0
 argument_list|,
 name|writer
 operator|.
-name|posWrite
+name|getPosition
+argument_list|()
 argument_list|)
 expr_stmt|;
 name|bytes
@@ -1877,7 +1879,8 @@ name|posSave
 init|=
 name|writer
 operator|.
-name|posWrite
+name|getPosition
+argument_list|()
 decl_stmt|;
 name|outputs
 operator|.
@@ -1895,7 +1898,8 @@ name|byte
 index|[
 name|writer
 operator|.
-name|posWrite
+name|getPosition
+argument_list|()
 operator|-
 name|posSave
 index|]
@@ -1914,7 +1918,8 @@ init|=
 operator|(
 name|writer
 operator|.
-name|posWrite
+name|getPosition
+argument_list|()
 operator|-
 name|posSave
 operator|)
@@ -1955,7 +1960,8 @@ name|bytes
 index|[
 name|writer
 operator|.
-name|posWrite
+name|getPosition
+argument_list|()
 operator|-
 name|upto
 operator|-
@@ -1966,7 +1972,8 @@ name|bytes
 index|[
 name|writer
 operator|.
-name|posWrite
+name|getPosition
+argument_list|()
 operator|-
 name|upto
 operator|-
@@ -1994,16 +2001,18 @@ literal|0
 argument_list|,
 name|writer
 operator|.
-name|posWrite
+name|getPosition
+argument_list|()
 operator|-
 name|posSave
 argument_list|)
 expr_stmt|;
 name|writer
 operator|.
-name|posWrite
-operator|=
+name|setPosition
+argument_list|(
 name|posSave
+argument_list|)
 expr_stmt|;
 block|}
 DECL|method|save
@@ -2693,7 +2702,8 @@ name|startAddress
 init|=
 name|writer
 operator|.
-name|posWrite
+name|getPosition
+argument_list|()
 decl_stmt|;
 comment|//System.out.println("  startAddr=" + startAddress);
 specifier|final
@@ -2774,7 +2784,8 @@ name|fixedArrayStart
 operator|=
 name|writer
 operator|.
-name|posWrite
+name|getPosition
+argument_list|()
 expr_stmt|;
 comment|//System.out.println("  do fixed arcs array arcsStart=" + fixedArrayStart);
 block|}
@@ -2806,7 +2817,8 @@ name|lastArcStart
 init|=
 name|writer
 operator|.
-name|posWrite
+name|getPosition
+argument_list|()
 decl_stmt|;
 name|int
 name|maxBytesPerArc
@@ -3108,7 +3120,8 @@ index|]
 operator|=
 name|writer
 operator|.
-name|posWrite
+name|getPosition
+argument_list|()
 operator|-
 name|lastArcStart
 expr_stmt|;
@@ -3116,7 +3129,8 @@ name|lastArcStart
 operator|=
 name|writer
 operator|.
-name|posWrite
+name|getPosition
+argument_list|()
 expr_stmt|;
 name|maxBytesPerArc
 operator|=
@@ -3267,7 +3281,8 @@ name|srcPos
 init|=
 name|writer
 operator|.
-name|posWrite
+name|getPosition
+argument_list|()
 decl_stmt|;
 name|int
 name|destPos
@@ -3282,9 +3297,10 @@ name|maxBytesPerArc
 decl_stmt|;
 name|writer
 operator|.
-name|posWrite
-operator|=
+name|setPosition
+argument_list|(
 name|destPos
+argument_list|)
 expr_stmt|;
 for|for
 control|(
@@ -3388,7 +3404,8 @@ name|endAddress
 init|=
 name|writer
 operator|.
-name|posWrite
+name|getPosition
+argument_list|()
 operator|-
 literal|1
 decl_stmt|;
@@ -4375,6 +4392,9 @@ name|END_LABEL
 condition|)
 block|{
 comment|//System.out.println("    nextArc fake " + arc.nextArc);
+name|int
+name|pos
+init|=
 name|in
 operator|.
 name|pos
@@ -4385,17 +4405,15 @@ name|arc
 operator|.
 name|nextArc
 argument_list|)
-expr_stmt|;
+decl_stmt|;
 specifier|final
 name|byte
 name|b
 init|=
-name|bytes
-index|[
 name|in
 operator|.
-name|pos
-index|]
+name|readByte
+argument_list|()
 decl_stmt|;
 if|if
 condition|(
@@ -4405,13 +4423,6 @@ name|ARCS_AS_FIXED_ARRAY
 condition|)
 block|{
 comment|//System.out.println("    nextArc fake array");
-name|in
-operator|.
-name|skip
-argument_list|(
-literal|1
-argument_list|)
-expr_stmt|;
 name|in
 operator|.
 name|readVInt
@@ -4436,6 +4447,15 @@ name|readInt
 argument_list|()
 expr_stmt|;
 block|}
+block|}
+else|else
+block|{
+name|in
+operator|.
+name|pos
+operator|=
+name|pos
+expr_stmt|;
 block|}
 block|}
 else|else
@@ -5601,20 +5621,46 @@ name|FIXED_ARRAY_NUM_ARCS_DEEP
 operator|)
 return|;
 block|}
-comment|// Non-static: writes to FST's byte[]
 DECL|class|BytesWriter
+specifier|static
+specifier|abstract
 class|class
 name|BytesWriter
 extends|extends
 name|DataOutput
 block|{
+DECL|method|setPosition
+specifier|public
+specifier|abstract
+name|void
+name|setPosition
+parameter_list|(
+name|int
+name|posWrite
+parameter_list|)
+function_decl|;
+DECL|method|getPosition
+specifier|public
+specifier|abstract
+name|int
+name|getPosition
+parameter_list|()
+function_decl|;
+block|}
+comment|// Non-static: writes to FST's byte[]
+DECL|class|DefaultBytesWriter
+class|class
+name|DefaultBytesWriter
+extends|extends
+name|BytesWriter
+block|{
 DECL|field|posWrite
 name|int
 name|posWrite
 decl_stmt|;
-DECL|method|BytesWriter
+DECL|method|DefaultBytesWriter
 specifier|public
-name|BytesWriter
+name|DefaultBytesWriter
 parameter_list|()
 block|{
 comment|// pad: ensure no node gets address 0 which is reserved to mean
@@ -5698,10 +5744,24 @@ operator|=
 name|b
 expr_stmt|;
 block|}
-DECL|method|setPosWrite
+annotation|@
+name|Override
+DECL|method|getPosition
+specifier|public
+name|int
+name|getPosition
+parameter_list|()
+block|{
+return|return
+name|posWrite
+return|;
+block|}
+annotation|@
+name|Override
+DECL|method|setPosition
 specifier|public
 name|void
-name|setPosWrite
+name|setPosition
 parameter_list|(
 name|int
 name|posWrite
@@ -6029,6 +6089,8 @@ index|]
 expr_stmt|;
 block|}
 block|}
+annotation|@
+name|Override
 DECL|method|skip
 specifier|public
 name|void
@@ -6043,6 +6105,8 @@ operator|-=
 name|count
 expr_stmt|;
 block|}
+annotation|@
+name|Override
 DECL|method|skip
 specifier|public
 name|void
@@ -6147,6 +6211,8 @@ operator|+=
 name|len
 expr_stmt|;
 block|}
+annotation|@
+name|Override
 DECL|method|skip
 specifier|public
 name|void
@@ -6161,6 +6227,8 @@ operator|+=
 name|count
 expr_stmt|;
 block|}
+annotation|@
+name|Override
 DECL|method|skip
 specifier|public
 name|void
@@ -6292,13 +6360,12 @@ expr_stmt|;
 name|writer
 operator|=
 operator|new
-name|BytesWriter
+name|DefaultBytesWriter
 argument_list|()
 expr_stmt|;
 block|}
 comment|/** Expert: creates an FST by packing this one.  This    *  process requires substantial additional RAM (currently    *  up to ~8 bytes per node depending on    *<code>acceptableOverheadRatio</code>), but then should    *  produce a smaller FST.    *    *<p>The implementation of this method uses ideas from    *<a target="_blank" href="http://www.cs.put.poznan.pl/dweiss/site/publications/download/fsacomp.pdf">Smaller Representation of Finite State Automata</a>,    *  which describes techniques to reduce the size of a FST.    *  However, this is not a strict implementation of the    *  algorithms described in this paper.    */
 DECL|method|pack
-specifier|public
 name|FST
 argument_list|<
 name|T
@@ -6697,9 +6764,10 @@ literal|false
 decl_stmt|;
 name|writer
 operator|.
-name|posWrite
-operator|=
+name|setPosition
+argument_list|(
 literal|0
+argument_list|)
 expr_stmt|;
 comment|// Skip 0 byte since 0 is reserved target:
 name|writer
@@ -6780,7 +6848,8 @@ name|address
 init|=
 name|writer
 operator|.
-name|posWrite
+name|getPosition
+argument_list|()
 decl_stmt|;
 comment|//System.out.println("  node: " + node + " address=" + address);
 if|if
@@ -6941,7 +7010,8 @@ name|arcStartPos
 init|=
 name|writer
 operator|.
-name|posWrite
+name|getPosition
+argument_list|()
 decl_stmt|;
 name|nodeArcCount
 operator|++
@@ -7159,7 +7229,8 @@ name|addressError
 operator|-
 name|writer
 operator|.
-name|posWrite
+name|getPosition
+argument_list|()
 operator|-
 literal|2
 decl_stmt|;
@@ -7298,7 +7369,8 @@ name|addressError
 operator|-
 name|writer
 operator|.
-name|posWrite
+name|getPosition
+argument_list|()
 decl_stmt|;
 if|if
 condition|(
@@ -7396,7 +7468,8 @@ name|arcBytes
 init|=
 name|writer
 operator|.
-name|posWrite
+name|getPosition
+argument_list|()
 operator|-
 name|arcStartPos
 decl_stmt|;
@@ -7421,7 +7494,7 @@ comment|// bytes:
 comment|//wasted += bytesPerArc - arcBytes;
 name|writer
 operator|.
-name|setPosWrite
+name|setPosition
 argument_list|(
 name|arcStartPos
 operator|+
@@ -7485,9 +7558,10 @@ name|maxBytesPerArc
 expr_stmt|;
 name|writer
 operator|.
-name|posWrite
-operator|=
+name|setPosition
+argument_list|(
 name|address
+argument_list|)
 expr_stmt|;
 name|nodeArcCount
 operator|=
@@ -7716,7 +7790,8 @@ name|byte
 index|[
 name|writer
 operator|.
-name|posWrite
+name|getPosition
+argument_list|()
 index|]
 decl_stmt|;
 comment|//System.out.println("resize " + fst.bytes.length + " down to " + writer.posWrite);
@@ -7736,7 +7811,8 @@ literal|0
 argument_list|,
 name|writer
 operator|.
-name|posWrite
+name|getPosition
+argument_list|()
 argument_list|)
 expr_stmt|;
 name|fst

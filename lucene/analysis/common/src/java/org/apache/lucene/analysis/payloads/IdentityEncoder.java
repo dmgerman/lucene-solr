@@ -110,6 +110,8 @@ operator|=
 name|charset
 expr_stmt|;
 block|}
+annotation|@
+name|Override
 DECL|method|encode
 specifier|public
 name|BytesRef

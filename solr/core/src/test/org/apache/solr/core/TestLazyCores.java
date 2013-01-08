@@ -560,38 +560,35 @@ argument_list|()
 decl_stmt|;
 try|try
 block|{
-comment|// NOTE: the way this works, this should not assert, however if it's put after the getCore on this collection,
-comment|// that will cause the core to be loaded and this test will fail.
-name|Collection
-argument_list|<
-name|String
-argument_list|>
-name|names
-init|=
+comment|// NOTE: This checks the initial state for loading, no need to do this elsewhere.
+name|checkInCores
+argument_list|(
 name|cc
-operator|.
-name|getCoreNames
-argument_list|()
-decl_stmt|;
-for|for
-control|(
-name|String
-name|name
-range|:
-name|names
-control|)
-block|{
-name|assertFalse
-argument_list|(
+argument_list|,
+literal|"collection1"
+argument_list|,
 literal|"collectionLazy2"
-operator|.
-name|equals
-argument_list|(
-name|name
-argument_list|)
+argument_list|,
+literal|"collectionLazy5"
 argument_list|)
 expr_stmt|;
-block|}
+name|checkNotInCores
+argument_list|(
+name|cc
+argument_list|,
+literal|"collectionLazy3"
+argument_list|,
+literal|"collectionLazy4"
+argument_list|,
+literal|"collectionLazy6"
+argument_list|,
+literal|"collectionLazy7"
+argument_list|,
+literal|"collectionLazy8"
+argument_list|,
+literal|"collectionLazy9"
+argument_list|)
+expr_stmt|;
 name|SolrCore
 name|core1
 init|=
@@ -604,14 +601,14 @@ argument_list|)
 decl_stmt|;
 name|assertFalse
 argument_list|(
-literal|"core1 should not be swappable"
+literal|"core1 should not be transient"
 argument_list|,
 name|core1
 operator|.
 name|getCoreDescriptor
 argument_list|()
 operator|.
-name|isSwappable
+name|isTransient
 argument_list|()
 argument_list|)
 expr_stmt|;
@@ -648,20 +645,20 @@ argument_list|)
 decl_stmt|;
 name|assertTrue
 argument_list|(
-literal|"core2 should not be swappable"
+literal|"core2 should not be transient"
 argument_list|,
 name|core2
 operator|.
 name|getCoreDescriptor
 argument_list|()
 operator|.
-name|isSwappable
+name|isTransient
 argument_list|()
 argument_list|)
 expr_stmt|;
-name|assertFalse
+name|assertTrue
 argument_list|(
-literal|"core2 should not be loadable"
+literal|"core2 should be loadable"
 argument_list|,
 name|core2
 operator|.
@@ -684,14 +681,14 @@ argument_list|)
 decl_stmt|;
 name|assertTrue
 argument_list|(
-literal|"core3 should not be swappable"
+literal|"core3 should not be transient"
 argument_list|,
 name|core3
 operator|.
 name|getCoreDescriptor
 argument_list|()
 operator|.
-name|isSwappable
+name|isTransient
 argument_list|()
 argument_list|)
 expr_stmt|;
@@ -720,14 +717,14 @@ argument_list|)
 decl_stmt|;
 name|assertFalse
 argument_list|(
-literal|"core4 should not be swappable"
+literal|"core4 should not be transient"
 argument_list|,
 name|core4
 operator|.
 name|getCoreDescriptor
 argument_list|()
 operator|.
-name|isSwappable
+name|isTransient
 argument_list|()
 argument_list|)
 expr_stmt|;
@@ -756,14 +753,14 @@ argument_list|)
 decl_stmt|;
 name|assertFalse
 argument_list|(
-literal|"core5 should not be swappable"
+literal|"core5 should not be transient"
 argument_list|,
 name|core5
 operator|.
 name|getCoreDescriptor
 argument_list|()
 operator|.
-name|isSwappable
+name|isTransient
 argument_list|()
 argument_list|)
 expr_stmt|;
@@ -835,27 +832,27 @@ argument_list|()
 decl_stmt|;
 try|try
 block|{
-comment|// Make sure Lazy2 isn't loaded.
+comment|// Make sure Lazy4 isn't loaded. Should be loaded on the get
 name|checkNotInCores
 argument_list|(
 name|cc
 argument_list|,
-literal|"collectionLazy2"
+literal|"collectionLazy4"
 argument_list|)
 expr_stmt|;
 name|SolrCore
-name|core2
+name|core4
 init|=
 name|cc
 operator|.
 name|getCore
 argument_list|(
-literal|"collectionLazy2"
+literal|"collectionLazy4"
 argument_list|)
 decl_stmt|;
 name|addLazy
 argument_list|(
-name|core2
+name|core4
 argument_list|,
 literal|"id"
 argument_list|,
@@ -864,7 +861,7 @@ argument_list|)
 expr_stmt|;
 name|addLazy
 argument_list|(
-name|core2
+name|core4
 argument_list|,
 literal|"id"
 argument_list|,
@@ -877,7 +874,7 @@ argument_list|)
 expr_stmt|;
 name|addLazy
 argument_list|(
-name|core2
+name|core4
 argument_list|,
 literal|"id"
 argument_list|,
@@ -890,7 +887,7 @@ argument_list|)
 expr_stmt|;
 name|addLazy
 argument_list|(
-name|core2
+name|core4
 argument_list|,
 literal|"id"
 argument_list|,
@@ -903,7 +900,7 @@ argument_list|)
 expr_stmt|;
 name|addLazy
 argument_list|(
-name|core2
+name|core4
 argument_list|,
 literal|"id"
 argument_list|,
@@ -916,7 +913,7 @@ argument_list|)
 expr_stmt|;
 name|addLazy
 argument_list|(
-name|core2
+name|core4
 argument_list|,
 literal|"id"
 argument_list|,
@@ -929,7 +926,7 @@ argument_list|)
 expr_stmt|;
 name|addLazy
 argument_list|(
-name|core2
+name|core4
 argument_list|,
 literal|"id"
 argument_list|,
@@ -945,7 +942,7 @@ name|req
 init|=
 name|makeReq
 argument_list|(
-name|core2
+name|core4
 argument_list|)
 decl_stmt|;
 name|CommitUpdateCommand
@@ -959,7 +956,7 @@ argument_list|,
 literal|false
 argument_list|)
 decl_stmt|;
-name|core2
+name|core4
 operator|.
 name|getUpdateHandler
 argument_list|()
@@ -975,7 +972,7 @@ name|SolrIndexSearcher
 argument_list|>
 name|holder
 init|=
-name|core2
+name|core4
 operator|.
 name|getSearcher
 argument_list|()
@@ -995,7 +992,7 @@ literal|"test prefix query"
 argument_list|,
 name|makeReq
 argument_list|(
-name|core2
+name|core4
 argument_list|,
 literal|"q"
 argument_list|,
@@ -1011,7 +1008,7 @@ literal|"test raw query"
 argument_list|,
 name|makeReq
 argument_list|(
-name|core2
+name|core4
 argument_list|,
 literal|"q"
 argument_list|,
@@ -1044,7 +1041,7 @@ literal|"test raw query"
 argument_list|,
 name|makeReq
 argument_list|(
-name|core2
+name|core4
 argument_list|,
 literal|"q"
 argument_list|,
@@ -1060,7 +1057,7 @@ literal|"test raw query"
 argument_list|,
 name|makeReq
 argument_list|(
-name|core2
+name|core4
 argument_list|,
 literal|"q"
 argument_list|,
@@ -1074,7 +1071,7 @@ name|checkInCores
 argument_list|(
 name|cc
 argument_list|,
-literal|"collectionLazy2"
+literal|"collectionLazy4"
 argument_list|)
 expr_stmt|;
 name|searcher
@@ -1082,7 +1079,7 @@ operator|.
 name|close
 argument_list|()
 expr_stmt|;
-name|core2
+name|core4
 operator|.
 name|close
 argument_list|()
@@ -1115,6 +1112,35 @@ argument_list|()
 decl_stmt|;
 try|try
 block|{
+comment|// First check that all the cores that should be loaded at startup actually are.
+name|checkInCores
+argument_list|(
+name|cc
+argument_list|,
+literal|"collection1"
+argument_list|,
+literal|"collectionLazy2"
+argument_list|,
+literal|"collectionLazy5"
+argument_list|)
+expr_stmt|;
+name|checkNotInCores
+argument_list|(
+name|cc
+argument_list|,
+literal|"collectionLazy3"
+argument_list|,
+literal|"collectionLazy4"
+argument_list|,
+literal|"collectionLazy6"
+argument_list|,
+literal|"collectionLazy7"
+argument_list|,
+literal|"collectionLazy8"
+argument_list|,
+literal|"collectionLazy9"
+argument_list|)
+expr_stmt|;
 comment|// By putting these in non-alpha order, we're also checking that we're  not just seeing an artifact.
 name|SolrCore
 name|core1
@@ -1127,7 +1153,7 @@ literal|"collection1"
 argument_list|)
 decl_stmt|;
 name|SolrCore
-name|core2
+name|core3
 init|=
 name|cc
 operator|.
@@ -1147,7 +1173,7 @@ literal|"collectionLazy4"
 argument_list|)
 decl_stmt|;
 name|SolrCore
-name|core3
+name|core2
 init|=
 name|cc
 operator|.
@@ -1779,25 +1805,25 @@ name|LOTS_SOLR_XML
 init|=
 literal|"<solr persistent=\"false\"> "
 operator|+
-literal|"<cores adminPath=\"/admin/cores\" defaultCoreName=\"collectionLazy2\" swappableCacheSize=\"4\">  "
+literal|"<cores adminPath=\"/admin/cores\" defaultCoreName=\"collectionLazy2\" transientCacheSize=\"4\">  "
 operator|+
 literal|"<core name=\"collection1\" instanceDir=\"collection1\" /> "
 operator|+
-literal|"<core name=\"collectionLazy2\" instanceDir=\"collection2\" swappable=\"true\" loadOnStartup=\"false\"  /> "
+literal|"<core name=\"collectionLazy2\" instanceDir=\"collection2\" transient=\"true\" loadOnStartup=\"true\"  /> "
 operator|+
-literal|"<core name=\"collectionLazy3\" instanceDir=\"collection3\" swappable=\"on\" loadOnStartup=\"false\"/> "
+literal|"<core name=\"collectionLazy3\" instanceDir=\"collection3\" transient=\"on\" loadOnStartup=\"false\"/> "
 operator|+
-literal|"<core name=\"collectionLazy4\" instanceDir=\"collection4\" swappable=\"false\" loadOnStartup=\"false\"/> "
+literal|"<core name=\"collectionLazy4\" instanceDir=\"collection4\" transient=\"false\" loadOnStartup=\"false\"/> "
 operator|+
-literal|"<core name=\"collectionLazy5\" instanceDir=\"collection5\" swappable=\"false\" loadOnStartup=\"true\"/> "
+literal|"<core name=\"collectionLazy5\" instanceDir=\"collection5\" transient=\"false\" loadOnStartup=\"true\"/> "
 operator|+
-literal|"<core name=\"collectionLazy6\" instanceDir=\"collection6\" swappable=\"true\" loadOnStartup=\"false\" /> "
+literal|"<core name=\"collectionLazy6\" instanceDir=\"collection6\" transient=\"true\" loadOnStartup=\"false\" /> "
 operator|+
-literal|"<core name=\"collectionLazy7\" instanceDir=\"collection7\" swappable=\"true\" loadOnStartup=\"false\" /> "
+literal|"<core name=\"collectionLazy7\" instanceDir=\"collection7\" transient=\"true\" loadOnStartup=\"false\" /> "
 operator|+
-literal|"<core name=\"collectionLazy8\" instanceDir=\"collection8\" swappable=\"true\" loadOnStartup=\"false\" /> "
+literal|"<core name=\"collectionLazy8\" instanceDir=\"collection8\" transient=\"true\" loadOnStartup=\"false\" /> "
 operator|+
-literal|"<core name=\"collectionLazy9\" instanceDir=\"collection9\" swappable=\"true\" loadOnStartup=\"false\" /> "
+literal|"<core name=\"collectionLazy9\" instanceDir=\"collection9\" transient=\"true\" loadOnStartup=\"false\" /> "
 operator|+
 literal|"</cores> "
 operator|+

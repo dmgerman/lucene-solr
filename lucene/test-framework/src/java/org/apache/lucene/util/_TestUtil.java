@@ -1028,7 +1028,17 @@ specifier|public
 class|class
 name|_TestUtil
 block|{
-comment|/** Returns temp dir, based on String arg in its name;    *  does not create the directory. */
+comment|// the max number of retries we're going to do in getTempDir
+DECL|field|GET_TEMP_DIR_RETRY_THRESHOLD
+specifier|private
+specifier|static
+specifier|final
+name|int
+name|GET_TEMP_DIR_RETRY_THRESHOLD
+init|=
+literal|1000
+decl_stmt|;
+comment|/**    * Returns a temp directory, based on the given description. Creates the    * directory.    */
 DECL|method|getTempDir
 specifier|public
 specifier|static
@@ -1039,13 +1049,63 @@ name|String
 name|desc
 parameter_list|)
 block|{
-try|try
+if|if
+condition|(
+name|desc
+operator|.
+name|length
+argument_list|()
+operator|<
+literal|3
+condition|)
 block|{
+throw|throw
+operator|new
+name|IllegalArgumentException
+argument_list|(
+literal|"description must be at least 3 characters"
+argument_list|)
+throw|;
+block|}
+comment|// always pull a long from master random. that way, the randomness of the test
+comment|// is not affected by whether it initialized the counter (in genTempFile) or not.
+comment|// note that the Random used by genTempFile is *not* the master Random, and therefore
+comment|// does not affect the randomness of the test.
+specifier|final
+name|Random
+name|random
+init|=
+operator|new
+name|Random
+argument_list|(
+name|RandomizedContext
+operator|.
+name|current
+argument_list|()
+operator|.
+name|getRandom
+argument_list|()
+operator|.
+name|nextLong
+argument_list|()
+argument_list|)
+decl_stmt|;
+name|int
+name|attempt
+init|=
+literal|0
+decl_stmt|;
 name|File
 name|f
-init|=
-name|createTempFile
+decl_stmt|;
+do|do
+block|{
+name|f
+operator|=
+name|genTempFile
 argument_list|(
+name|random
+argument_list|,
 name|desc
 argument_list|,
 literal|"tmp"
@@ -1054,12 +1114,39 @@ name|LuceneTestCase
 operator|.
 name|TEMP_DIR
 argument_list|)
-decl_stmt|;
+expr_stmt|;
+block|}
+do|while
+condition|(
+operator|!
 name|f
 operator|.
-name|delete
+name|mkdir
 argument_list|()
-expr_stmt|;
+operator|&&
+operator|(
+name|attempt
+operator|++
+operator|)
+operator|<
+name|GET_TEMP_DIR_RETRY_THRESHOLD
+condition|)
+do|;
+if|if
+condition|(
+name|attempt
+operator|>
+name|GET_TEMP_DIR_RETRY_THRESHOLD
+condition|)
+block|{
+throw|throw
+operator|new
+name|RuntimeException
+argument_list|(
+literal|"failed to get a temporary dir too many times. check your temp directory and consider manually cleaning it."
+argument_list|)
+throw|;
+block|}
 name|LuceneTestCase
 operator|.
 name|closeAfterSuite
@@ -1078,21 +1165,6 @@ expr_stmt|;
 return|return
 name|f
 return|;
-block|}
-catch|catch
-parameter_list|(
-name|IOException
-name|e
-parameter_list|)
-block|{
-throw|throw
-operator|new
-name|RuntimeException
-argument_list|(
-name|e
-argument_list|)
-throw|;
-block|}
 block|}
 comment|/**    * Deletes a directory and everything underneath it.    */
 DECL|method|rmDir
@@ -6150,6 +6222,8 @@ operator|new
 name|AttributeReflector
 argument_list|()
 block|{
+annotation|@
+name|Override
 specifier|public
 name|void
 name|reflect
@@ -6277,7 +6351,6 @@ parameter_list|)
 throws|throws
 name|IOException
 block|{
-comment|// Force a prefix null check first
 if|if
 condition|(
 name|prefix
@@ -6292,7 +6365,7 @@ throw|throw
 operator|new
 name|IllegalArgumentException
 argument_list|(
-literal|"prefix must be 3"
+literal|"prefix must be at least 3 characters"
 argument_list|)
 throw|;
 block|}
@@ -6307,12 +6380,10 @@ literal|".tmp"
 else|:
 name|suffix
 decl_stmt|;
-name|File
-name|result
-decl_stmt|;
-comment|// just pull one long always: we don't want to rely upon what may or may not
-comment|// already exist. otherwise tests might not reproduce, depending on when you last
-comment|// ran 'ant clean'
+comment|// always pull a long from master random. that way, the randomness of the test
+comment|// is not affected by whether it initialized the counter (in genTempFile) or not.
+comment|// note that the Random used by genTempFile is *not* the master Random, and therefore
+comment|// does not affect the randomness of the test.
 specifier|final
 name|Random
 name|random
@@ -6331,6 +6402,9 @@ operator|.
 name|nextLong
 argument_list|()
 argument_list|)
+decl_stmt|;
+name|File
+name|result
 decl_stmt|;
 do|do
 block|{
@@ -6361,39 +6435,29 @@ return|return
 name|result
 return|;
 block|}
+comment|/* identify for differnt VM processes */
+DECL|field|counterBase
+specifier|private
+specifier|static
+name|String
+name|counterBase
+decl_stmt|;
 comment|/* Temp file counter */
 DECL|field|counter
 specifier|private
 specifier|static
 name|int
 name|counter
-init|=
-literal|0
 decl_stmt|;
-comment|/* identify for differnt VM processes */
-DECL|field|counterBase
+DECL|field|counterLock
 specifier|private
 specifier|static
-name|int
-name|counterBase
-init|=
-literal|0
-decl_stmt|;
-DECL|class|TempFileLocker
-specifier|private
-specifier|static
-class|class
-name|TempFileLocker
-block|{}
-empty_stmt|;
-DECL|field|tempFileLocker
-specifier|private
-specifier|static
-name|TempFileLocker
-name|tempFileLocker
+specifier|final
+name|Object
+name|counterLock
 init|=
 operator|new
-name|TempFileLocker
+name|Object
 argument_list|()
 decl_stmt|;
 DECL|method|genTempFile
@@ -6415,48 +6479,41 @@ name|File
 name|directory
 parameter_list|)
 block|{
+specifier|final
 name|int
 name|identify
-init|=
-literal|0
 decl_stmt|;
 synchronized|synchronized
 init|(
-name|tempFileLocker
+name|counterLock
 init|)
 block|{
 if|if
 condition|(
-name|counter
+name|counterBase
 operator|==
-literal|0
+literal|null
 condition|)
 block|{
-name|int
-name|newInt
-init|=
+comment|// init once
+name|counter
+operator|=
 name|random
 operator|.
 name|nextInt
 argument_list|()
-decl_stmt|;
-name|counter
-operator|=
-operator|(
-operator|(
-name|newInt
-operator|/
-literal|65535
-operator|)
 operator|&
 literal|0xFFFF
-operator|)
-operator|+
-literal|0x2710
 expr_stmt|;
+comment|// up to five digits number
 name|counterBase
 operator|=
+name|Integer
+operator|.
+name|toString
+argument_list|(
 name|counter
+argument_list|)
 expr_stmt|;
 block|}
 name|identify

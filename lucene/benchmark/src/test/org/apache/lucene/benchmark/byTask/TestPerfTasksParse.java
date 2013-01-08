@@ -674,6 +674,8 @@ name|MockContentSource
 extends|extends
 name|ContentSource
 block|{
+annotation|@
+name|Override
 DECL|method|getNextDocData
 specifier|public
 name|DocData
@@ -691,6 +693,8 @@ return|return
 name|docData
 return|;
 block|}
+annotation|@
+name|Override
 DECL|method|close
 specifier|public
 name|void
@@ -708,6 +712,8 @@ name|MockQueryMaker
 extends|extends
 name|AbstractQueryMaker
 block|{
+annotation|@
+name|Override
 DECL|method|prepareQueries
 specifier|protected
 name|Query
@@ -774,6 +780,8 @@ operator|new
 name|FileFilter
 argument_list|()
 block|{
+annotation|@
+name|Override
 specifier|public
 name|boolean
 name|accept

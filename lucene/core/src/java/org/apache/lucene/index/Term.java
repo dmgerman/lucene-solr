@@ -349,6 +349,8 @@ name|result
 return|;
 block|}
 comment|/** Compares two terms, returning a negative integer if this     term belongs before the argument, zero if this term is equal to the     argument, and a positive integer if this term belongs after the argument.      The ordering of terms is first by field, then by text.*/
+annotation|@
+name|Override
 DECL|method|compareTo
 specifier|public
 specifier|final

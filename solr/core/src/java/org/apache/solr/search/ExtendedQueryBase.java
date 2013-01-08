@@ -135,6 +135,8 @@ operator|=
 name|cost
 expr_stmt|;
 block|}
+annotation|@
+name|Override
 DECL|method|getCost
 specifier|public
 name|int

@@ -104,6 +104,8 @@ name|UIMATypeAwareAnalyzer
 name|analyzer
 decl_stmt|;
 annotation|@
+name|Override
+annotation|@
 name|Before
 DECL|method|setUp
 specifier|public
@@ -131,6 +133,8 @@ literal|"posTag"
 argument_list|)
 expr_stmt|;
 block|}
+annotation|@
+name|Override
 annotation|@
 name|After
 DECL|method|tearDown

@@ -144,6 +144,8 @@ name|message
 expr_stmt|;
 block|}
 comment|/*    * (non-Javadoc)    *     * @see org.apache.lucene.messages.NLSException#getMessageObject()    */
+annotation|@
+name|Override
 DECL|method|getMessageObject
 specifier|public
 name|Message

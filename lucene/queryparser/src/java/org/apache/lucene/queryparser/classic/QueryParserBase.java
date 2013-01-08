@@ -665,6 +665,8 @@ throw|;
 block|}
 block|}
 comment|/**    * @return Returns the analyzer.    */
+annotation|@
+name|Override
 DECL|method|getAnalyzer
 specifier|public
 name|Analyzer
@@ -717,6 +719,8 @@ name|value
 expr_stmt|;
 block|}
 comment|/**    * Get the minimal similarity for fuzzy queries.    */
+annotation|@
+name|Override
 DECL|method|getFuzzyMinSim
 specifier|public
 name|float
@@ -728,6 +732,8 @@ name|fuzzyMinSim
 return|;
 block|}
 comment|/**    * Set the minimum similarity for fuzzy queries.    * Default is 2f.    */
+annotation|@
+name|Override
 DECL|method|setFuzzyMinSim
 specifier|public
 name|void
@@ -745,6 +751,8 @@ name|fuzzyMinSim
 expr_stmt|;
 block|}
 comment|/**    * Get the prefix length for fuzzy queries.    * @return Returns the fuzzyPrefixLength.    */
+annotation|@
+name|Override
 DECL|method|getFuzzyPrefixLength
 specifier|public
 name|int
@@ -756,6 +764,8 @@ name|fuzzyPrefixLength
 return|;
 block|}
 comment|/**    * Set the prefix length for fuzzy queries. Default is 0.    * @param fuzzyPrefixLength The fuzzyPrefixLength to set.    */
+annotation|@
+name|Override
 DECL|method|setFuzzyPrefixLength
 specifier|public
 name|void
@@ -773,6 +783,8 @@ name|fuzzyPrefixLength
 expr_stmt|;
 block|}
 comment|/**    * Sets the default slop for phrases.  If zero, then exact phrase matches    * are required.  Default value is zero.    */
+annotation|@
+name|Override
 DECL|method|setPhraseSlop
 specifier|public
 name|void
@@ -790,6 +802,8 @@ name|phraseSlop
 expr_stmt|;
 block|}
 comment|/**    * Gets the default slop for phrases.    */
+annotation|@
+name|Override
 DECL|method|getPhraseSlop
 specifier|public
 name|int
@@ -801,6 +815,8 @@ name|phraseSlop
 return|;
 block|}
 comment|/**    * Set to<code>true</code> to allow leading wildcard characters.    *<p>    * When set,<code>*</code> or<code>?</code> are allowed as    * the first character of a PrefixQuery and WildcardQuery.    * Note that this can produce very slow    * queries on big indexes.    *<p>    * Default: false.    */
+annotation|@
+name|Override
 DECL|method|setAllowLeadingWildcard
 specifier|public
 name|void
@@ -818,6 +834,8 @@ name|allowLeadingWildcard
 expr_stmt|;
 block|}
 comment|/**    * @see #setAllowLeadingWildcard(boolean)    */
+annotation|@
+name|Override
 DECL|method|getAllowLeadingWildcard
 specifier|public
 name|boolean
@@ -829,6 +847,8 @@ name|allowLeadingWildcard
 return|;
 block|}
 comment|/**    * Set to<code>true</code> to enable position increments in result query.    *<p>    * When set, result phrase and multi-phrase queries will    * be aware of position increments.    * Useful when e.g. a StopFilter increases the position increment of    * the token that follows an omitted token.    *<p>    * Default: true.    */
+annotation|@
+name|Override
 DECL|method|setEnablePositionIncrements
 specifier|public
 name|void
@@ -846,6 +866,8 @@ name|enable
 expr_stmt|;
 block|}
 comment|/**    * @see #setEnablePositionIncrements(boolean)    */
+annotation|@
+name|Override
 DECL|method|getEnablePositionIncrements
 specifier|public
 name|boolean
@@ -885,6 +907,8 @@ name|operator
 return|;
 block|}
 comment|/**    * Whether terms of wildcard, prefix, fuzzy and range queries are to be automatically    * lower-cased or not.  Default is<code>true</code>.    */
+annotation|@
+name|Override
 DECL|method|setLowercaseExpandedTerms
 specifier|public
 name|void
@@ -902,6 +926,8 @@ name|lowercaseExpandedTerms
 expr_stmt|;
 block|}
 comment|/**    * @see #setLowercaseExpandedTerms(boolean)    */
+annotation|@
+name|Override
 DECL|method|getLowercaseExpandedTerms
 specifier|public
 name|boolean
@@ -913,6 +939,8 @@ name|lowercaseExpandedTerms
 return|;
 block|}
 comment|/**    * By default QueryParser uses {@link org.apache.lucene.search.MultiTermQuery#CONSTANT_SCORE_AUTO_REWRITE_DEFAULT}    * when creating a PrefixQuery, WildcardQuery or RangeQuery. This implementation is generally preferable because it    * a) Runs faster b) Does not have the scarcity of terms unduly influence score    * c) avoids any "TooManyBooleanClauses" exception.    * However, if your application really needs to use the    * old-fashioned BooleanQuery expansion rewriting and the above    * points are not relevant then use this to change    * the rewrite method.    */
+annotation|@
+name|Override
 DECL|method|setMultiTermRewriteMethod
 specifier|public
 name|void
@@ -930,6 +958,8 @@ name|method
 expr_stmt|;
 block|}
 comment|/**    * @see #setMultiTermRewriteMethod    */
+annotation|@
+name|Override
 DECL|method|getMultiTermRewriteMethod
 specifier|public
 name|MultiTermQuery
@@ -943,6 +973,8 @@ name|multiTermRewriteMethod
 return|;
 block|}
 comment|/**    * Set locale used by date range parsing, lowercasing, and other    * locale-sensitive operations.    */
+annotation|@
+name|Override
 DECL|method|setLocale
 specifier|public
 name|void
@@ -960,6 +992,8 @@ name|locale
 expr_stmt|;
 block|}
 comment|/**    * Returns current locale, allowing access by subclasses.    */
+annotation|@
+name|Override
 DECL|method|getLocale
 specifier|public
 name|Locale
@@ -970,6 +1004,8 @@ return|return
 name|locale
 return|;
 block|}
+annotation|@
+name|Override
 DECL|method|setTimeZone
 specifier|public
 name|void
@@ -986,6 +1022,8 @@ operator|=
 name|timeZone
 expr_stmt|;
 block|}
+annotation|@
+name|Override
 DECL|method|getTimeZone
 specifier|public
 name|TimeZone
@@ -997,6 +1035,8 @@ name|timeZone
 return|;
 block|}
 comment|/**    * Sets the default date resolution used by RangeQueries for fields for which no    * specific date resolutions has been set. Field specific resolutions can be set    * with {@link #setDateResolution(String, org.apache.lucene.document.DateTools.Resolution)}.    *    * @param dateResolution the default date resolution to set    */
+annotation|@
+name|Override
 DECL|method|setDateResolution
 specifier|public
 name|void

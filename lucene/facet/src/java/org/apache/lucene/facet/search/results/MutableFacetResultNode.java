@@ -421,6 +421,8 @@ argument_list|()
 return|;
 block|}
 comment|/*    * (non-Javadoc)    *     * @see    * org.apache.lucene.facet.search.results2.FacetResultNode#toString(java.lang.    * String)    */
+annotation|@
+name|Override
 DECL|method|toString
 specifier|public
 name|String
@@ -596,6 +598,8 @@ name|toString
 argument_list|()
 return|;
 block|}
+annotation|@
+name|Override
 DECL|method|getOrdinal
 specifier|public
 specifier|final
@@ -607,6 +611,8 @@ return|return
 name|ordinal
 return|;
 block|}
+annotation|@
+name|Override
 DECL|method|getLabel
 specifier|public
 specifier|final
@@ -635,6 +641,8 @@ operator|=
 name|label
 expr_stmt|;
 block|}
+annotation|@
+name|Override
 DECL|method|getValue
 specifier|public
 specifier|final
@@ -647,6 +655,8 @@ name|value
 return|;
 block|}
 comment|/**    * Set the value of this result.    *     * @param value    *          the value to set    * @see #getValue()    */
+annotation|@
+name|Override
 DECL|method|setValue
 specifier|public
 name|void
@@ -680,6 +690,8 @@ operator|+=
 name|addedValue
 expr_stmt|;
 block|}
+annotation|@
+name|Override
 DECL|method|getResidue
 specifier|public
 specifier|final
@@ -725,6 +737,8 @@ operator|+=
 name|addedResidue
 expr_stmt|;
 block|}
+annotation|@
+name|Override
 DECL|method|getSubResults
 specifier|public
 specifier|final
@@ -969,6 +983,8 @@ argument_list|)
 expr_stmt|;
 block|}
 comment|/*    * (non-Javadoc)    *     * @see    * org.apache.lucene.facet.search.results.FacetResultNode#getLabel(org.apache.lucene    * .facet.taxonomy.TaxonomyReader)    */
+annotation|@
+name|Override
 DECL|method|getLabel
 specifier|public
 specifier|final
@@ -1003,6 +1019,8 @@ name|label
 return|;
 block|}
 comment|/*    * (non-Javadoc)    *     * @see org.apache.lucene.facet.search.results.FacetResultNode#getNumSubResults()    */
+annotation|@
+name|Override
 DECL|method|getNumSubResults
 specifier|public
 specifier|final

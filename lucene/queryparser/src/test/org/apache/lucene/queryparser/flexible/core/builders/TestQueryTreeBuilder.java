@@ -212,6 +212,8 @@ name|DummyBuilder
 implements|implements
 name|QueryBuilder
 block|{
+annotation|@
+name|Override
 DECL|method|build
 specifier|public
 name|Object

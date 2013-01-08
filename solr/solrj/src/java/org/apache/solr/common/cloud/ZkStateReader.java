@@ -836,10 +836,6 @@ DECL|field|cmdExecutor
 specifier|private
 name|ZkCmdExecutor
 name|cmdExecutor
-init|=
-operator|new
-name|ZkCmdExecutor
-argument_list|()
 decl_stmt|;
 DECL|method|ZkStateReader
 specifier|public
@@ -854,6 +850,14 @@ operator|.
 name|zkClient
 operator|=
 name|zkClient
+expr_stmt|;
+name|initZkCmdExecutor
+argument_list|(
+name|zkClient
+operator|.
+name|getZkClientTimeout
+argument_list|()
+argument_list|)
 expr_stmt|;
 block|}
 DECL|method|ZkStateReader
@@ -880,6 +884,11 @@ name|closeClient
 operator|=
 literal|true
 expr_stmt|;
+name|initZkCmdExecutor
+argument_list|(
+name|zkClientTimeout
+argument_list|)
+expr_stmt|;
 name|zkClient
 operator|=
 operator|new
@@ -896,6 +905,8 @@ operator|new
 name|OnReconnect
 argument_list|()
 block|{
+annotation|@
+name|Override
 specifier|public
 name|void
 name|command
@@ -984,6 +995,25 @@ throw|;
 block|}
 block|}
 block|}
+argument_list|)
+expr_stmt|;
+block|}
+DECL|method|initZkCmdExecutor
+specifier|private
+name|void
+name|initZkCmdExecutor
+parameter_list|(
+name|int
+name|zkClientTimeout
+parameter_list|)
+block|{
+comment|// we must retry at least as long as the session timeout
+name|cmdExecutor
+operator|=
+operator|new
+name|ZkCmdExecutor
+argument_list|(
+name|zkClientTimeout
 argument_list|)
 expr_stmt|;
 block|}
@@ -1829,6 +1859,8 @@ operator|new
 name|Runnable
 argument_list|()
 block|{
+annotation|@
+name|Override
 specifier|public
 name|void
 name|run
@@ -2181,7 +2213,7 @@ init|=
 operator|new
 name|ZkCoreNodeProps
 argument_list|(
-name|getLeaderProps
+name|getLeaderRetry
 argument_list|(
 name|collection
 argument_list|,
@@ -2199,10 +2231,10 @@ argument_list|()
 return|;
 block|}
 comment|/**    * Get shard leader properties, with retry if none exist.    */
-DECL|method|getLeaderProps
+DECL|method|getLeaderRetry
 specifier|public
 name|Replica
-name|getLeaderProps
+name|getLeaderRetry
 parameter_list|(
 name|String
 name|collection
@@ -2214,7 +2246,7 @@ throws|throws
 name|InterruptedException
 block|{
 return|return
-name|getLeaderProps
+name|getLeaderRetry
 argument_list|(
 name|collection
 argument_list|,
@@ -2225,10 +2257,10 @@ argument_list|)
 return|;
 block|}
 comment|/**    * Get shard leader properties, with retry if none exist.    */
-DECL|method|getLeaderProps
+DECL|method|getLeaderRetry
 specifier|public
 name|Replica
-name|getLeaderProps
+name|getLeaderRetry
 parameter_list|(
 name|String
 name|collection

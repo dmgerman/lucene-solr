@@ -861,6 +861,8 @@ name|id
 argument_list|)
 return|;
 block|}
+annotation|@
+name|Override
 DECL|method|onCommit
 specifier|public
 specifier|synchronized
@@ -903,6 +905,8 @@ literal|1
 argument_list|)
 expr_stmt|;
 block|}
+annotation|@
+name|Override
 DECL|method|onInit
 specifier|public
 specifier|synchronized

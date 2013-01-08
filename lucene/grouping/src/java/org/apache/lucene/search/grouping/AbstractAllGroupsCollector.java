@@ -123,6 +123,8 @@ name|getGroups
 parameter_list|()
 function_decl|;
 comment|// Empty not necessary
+annotation|@
+name|Override
 DECL|method|setScorer
 specifier|public
 name|void
@@ -134,6 +136,8 @@ parameter_list|)
 throws|throws
 name|IOException
 block|{}
+annotation|@
+name|Override
 DECL|method|acceptsDocsOutOfOrder
 specifier|public
 name|boolean

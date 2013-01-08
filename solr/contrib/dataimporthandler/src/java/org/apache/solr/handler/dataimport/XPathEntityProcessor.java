@@ -1951,6 +1951,8 @@ name|Handler
 argument_list|()
 block|{
 annotation|@
+name|Override
+annotation|@
 name|SuppressWarnings
 argument_list|(
 literal|"unchecked"
@@ -2748,6 +2750,8 @@ name|Handler
 argument_list|()
 block|{
 annotation|@
+name|Override
+annotation|@
 name|SuppressWarnings
 argument_list|(
 literal|"unchecked"
@@ -2985,6 +2989,8 @@ name|count
 init|=
 literal|0
 decl_stmt|;
+annotation|@
+name|Override
 specifier|public
 name|boolean
 name|hasNext
@@ -2998,6 +3004,8 @@ name|get
 argument_list|()
 return|;
 block|}
+annotation|@
+name|Override
 specifier|public
 name|Map
 argument_list|<
@@ -3202,6 +3210,8 @@ operator|=
 name|row
 return|;
 block|}
+annotation|@
+name|Override
 specifier|public
 name|void
 name|remove

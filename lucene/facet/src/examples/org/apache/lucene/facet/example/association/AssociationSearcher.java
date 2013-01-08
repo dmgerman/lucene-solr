@@ -100,7 +100,7 @@ name|search
 operator|.
 name|params
 operator|.
-name|association
+name|associations
 operator|.
 name|AssociationFloatSumFacetRequest
 import|;
@@ -120,7 +120,7 @@ name|search
 operator|.
 name|params
 operator|.
-name|association
+name|associations
 operator|.
 name|AssociationIntSumFacetRequest
 import|;
@@ -276,9 +276,7 @@ name|indexReader
 argument_list|,
 name|taxo
 argument_list|,
-name|AssociationUtils
-operator|.
-name|assocIndexingParams
+literal|null
 argument_list|,
 name|facetRequest
 argument_list|)
@@ -366,9 +364,7 @@ name|indexReader
 argument_list|,
 name|taxo
 argument_list|,
-name|AssociationUtils
-operator|.
-name|assocIndexingParams
+literal|null
 argument_list|,
 name|facetRequest
 argument_list|)

@@ -54,12 +54,12 @@ specifier|protected
 name|int
 name|counter
 decl_stmt|;
-DECL|field|InvalidOrdinal
+DECL|field|INVALID_ORDINAL
 specifier|public
 specifier|static
 specifier|final
 name|int
-name|InvalidOrdinal
+name|INVALID_ORDINAL
 init|=
 operator|-
 literal|2
@@ -105,24 +105,7 @@ name|int
 name|ordinal
 parameter_list|)
 function_decl|;
-comment|/**    * Adds a new label if its not yet in the table.    * Throws an {@link IllegalArgumentException} if the same label with    * a different ordinal was previoulsy added to this table.    */
-DECL|method|addLabel
-specifier|public
-specifier|abstract
-name|void
-name|addLabel
-parameter_list|(
-name|CategoryPath
-name|label
-parameter_list|,
-name|int
-name|prefixLen
-parameter_list|,
-name|int
-name|ordinal
-parameter_list|)
-function_decl|;
-comment|/**    * @return the ordinal assigned to the given label,     * or {@link #InvalidOrdinal} if the label cannot be found in this table.    */
+comment|/**    * @return the ordinal assigned to the given label,     * or {@link #INVALID_ORDINAL} if the label cannot be found in this table.    */
 DECL|method|getOrdinal
 specifier|public
 specifier|abstract
@@ -131,20 +114,6 @@ name|getOrdinal
 parameter_list|(
 name|CategoryPath
 name|label
-parameter_list|)
-function_decl|;
-comment|/**    * @return the ordinal assigned to the given label,     * or {@link #InvalidOrdinal} if the label cannot be found in this table.    */
-DECL|method|getOrdinal
-specifier|public
-specifier|abstract
-name|int
-name|getOrdinal
-parameter_list|(
-name|CategoryPath
-name|label
-parameter_list|,
-name|int
-name|prefixLen
 parameter_list|)
 function_decl|;
 block|}

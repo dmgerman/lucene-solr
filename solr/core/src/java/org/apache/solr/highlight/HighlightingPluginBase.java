@@ -164,6 +164,8 @@ block|}
 block|}
 block|}
 comment|//////////////////////// SolrInfoMBeans methods //////////////////////
+annotation|@
+name|Override
 DECL|method|getName
 specifier|public
 name|String
@@ -180,6 +182,8 @@ name|getName
 argument_list|()
 return|;
 block|}
+annotation|@
+name|Override
 DECL|method|getDescription
 specifier|public
 specifier|abstract
@@ -187,6 +191,8 @@ name|String
 name|getDescription
 parameter_list|()
 function_decl|;
+annotation|@
+name|Override
 DECL|method|getSource
 specifier|public
 specifier|abstract
@@ -194,6 +200,8 @@ name|String
 name|getSource
 parameter_list|()
 function_decl|;
+annotation|@
+name|Override
 DECL|method|getVersion
 specifier|public
 name|String
@@ -211,6 +219,8 @@ name|getSpecificationVersion
 argument_list|()
 return|;
 block|}
+annotation|@
+name|Override
 DECL|method|getCategory
 specifier|public
 name|Category
@@ -223,6 +233,8 @@ operator|.
 name|HIGHLIGHTING
 return|;
 block|}
+annotation|@
+name|Override
 DECL|method|getDocs
 specifier|public
 name|URL
@@ -235,6 +247,8 @@ literal|null
 return|;
 comment|// this can be overridden, but not required
 block|}
+annotation|@
+name|Override
 DECL|method|getStatistics
 specifier|public
 name|NamedList

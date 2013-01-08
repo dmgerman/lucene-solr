@@ -164,6 +164,8 @@ operator|.
 name|keyword
 return|;
 block|}
+annotation|@
+name|Override
 DECL|method|isKeyword
 specifier|public
 name|boolean
@@ -174,6 +176,8 @@ return|return
 name|keyword
 return|;
 block|}
+annotation|@
+name|Override
 DECL|method|setKeyword
 specifier|public
 name|void

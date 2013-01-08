@@ -259,7 +259,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * An abstract SpatialStrategy based on {@link SpatialPrefixTree}. The two  * subclasses are {@link RecursivePrefixTreeStrategy} and {@link  * TermQueryPrefixTreeStrategy}.  This strategy is most effective as a fast  * approximate spatial search filter.  *  *<h4>Characteristics:</h4>  *<ul>  *<li>Can index any shape; however only {@link RecursivePrefixTreeStrategy}  * can effectively search non-point shapes.<em>Not tested.</em></li>  *<li>Can index a variable number of shapes per field value. This strategy  * can do it via multiple calls to {@link #createIndexableFields(com.spatial4j.core.shape.Shape)}  * for a document or by giving it some sort of Shape aggregate (e.g. JTS  * WKT MultiPoint).  The shape's boundary is approximated to a grid precision.  *</li>  *<li>Can query with any shape.  The shape's boundary is approximated to a grid  * precision.</li>  *<li>Only {@link org.apache.lucene.spatial.query.SpatialOperation#Intersects}  * is supported.  If only points are indexed then this is effectively equivalent  * to IsWithin.</li>  *<li>The strategy supports {@link #makeDistanceValueSource(com.spatial4j.core.shape.Point)}  * even for multi-valued data.  However,<em>it will likely be removed in the  * future</em> in lieu of using another strategy with a more scalable  * implementation.  Use of this call is the only  * circumstance in which a cache is used.  The cache is simple but as such  * it doesn't scale to large numbers of points nor is it real-time-search  * friendly.</li>  *</ul>  *  *<h4>Implementation:</h4>  * The {@link SpatialPrefixTree} does most of the work, for example returning  * a list of terms representing grids of various sizes for a supplied shape.  * An important  * configuration item is {@link #setDistErrPct(double)} which balances  * shape precision against scalability.  See those javadocs.  *  * @lucene.internal  */
+comment|/**  * An abstract SpatialStrategy based on {@link SpatialPrefixTree}. The two  * subclasses are {@link RecursivePrefixTreeStrategy} and {@link  * TermQueryPrefixTreeStrategy}.  This strategy is most effective as a fast  * approximate spatial search filter.  *  *<h4>Characteristics:</h4>  *<ul>  *<li>Can index any shape; however only {@link RecursivePrefixTreeStrategy}  * can effectively search non-point shapes.</li>  *<li>Can index a variable number of shapes per field value. This strategy  * can do it via multiple calls to {@link #createIndexableFields(com.spatial4j.core.shape.Shape)}  * for a document or by giving it some sort of Shape aggregate (e.g. JTS  * WKT MultiPoint).  The shape's boundary is approximated to a grid precision.  *</li>  *<li>Can query with any shape.  The shape's boundary is approximated to a grid  * precision.</li>  *<li>Only {@link org.apache.lucene.spatial.query.SpatialOperation#Intersects}  * is supported.  If only points are indexed then this is effectively equivalent  * to IsWithin.</li>  *<li>The strategy supports {@link #makeDistanceValueSource(com.spatial4j.core.shape.Point)}  * even for multi-valued data, so long as the indexed data is all points; the  * behavior is undefined otherwise.  However,<em>it will likely be removed in  * the future</em> in lieu of using another strategy with a more scalable  * implementation.  Use of this call is the only  * circumstance in which a cache is used.  The cache is simple but as such  * it doesn't scale to large numbers of points nor is it real-time-search  * friendly.</li>  *</ul>  *  *<h4>Implementation:</h4>  * The {@link SpatialPrefixTree} does most of the work, for example returning  * a list of terms representing grids of various sizes for a supplied shape.  * An important  * configuration item is {@link #setDistErrPct(double)} which balances  * shape precision against scalability.  See those javadocs.  *  * @lucene.internal  */
 end_comment
 
 begin_class
@@ -462,54 +462,6 @@ literal|true
 argument_list|)
 decl_stmt|;
 comment|//true=intermediates cells
-comment|//If shape isn't a point, add a full-resolution center-point so that
-comment|// PointPrefixTreeFieldCacheProvider has the center-points.
-comment|//TODO index each point of a multi-point or other aggregate.
-comment|//TODO remove this once support for a distance ValueSource is removed.
-if|if
-condition|(
-operator|!
-operator|(
-name|shape
-operator|instanceof
-name|Point
-operator|)
-condition|)
-block|{
-name|Point
-name|ctr
-init|=
-name|shape
-operator|.
-name|getCenter
-argument_list|()
-decl_stmt|;
-comment|//TODO should be smarter; don't index 2 tokens for this in CellTokenStream. Harmless though.
-name|cells
-operator|.
-name|add
-argument_list|(
-name|grid
-operator|.
-name|getNodes
-argument_list|(
-name|ctr
-argument_list|,
-name|grid
-operator|.
-name|getMaxLevels
-argument_list|()
-argument_list|,
-literal|false
-argument_list|)
-operator|.
-name|get
-argument_list|(
-literal|0
-argument_list|)
-argument_list|)
-expr_stmt|;
-block|}
 comment|//TODO is CellTokenStream supposed to be re-used somehow? see Uwe's comments:
 comment|//  http://code.google.com/p/lucene-spatial-playground/issues/detail?id=4
 name|Field

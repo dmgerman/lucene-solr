@@ -494,6 +494,8 @@ operator|new
 name|ScoredDocIDs
 argument_list|()
 block|{
+annotation|@
+name|Override
 specifier|public
 name|DocIdSet
 name|getDocIDs
@@ -618,6 +620,8 @@ block|}
 block|}
 return|;
 block|}
+annotation|@
+name|Override
 specifier|public
 name|ScoredDocIDsIterator
 name|iterator
@@ -634,6 +638,8 @@ init|=
 operator|-
 literal|1
 decl_stmt|;
+annotation|@
+name|Override
 specifier|public
 name|boolean
 name|next
@@ -646,6 +652,8 @@ operator|<
 name|size
 return|;
 block|}
+annotation|@
+name|Override
 specifier|public
 name|float
 name|getScore
@@ -658,6 +666,8 @@ name|next
 index|]
 return|;
 block|}
+annotation|@
+name|Override
 specifier|public
 name|int
 name|getDocID
@@ -673,6 +683,8 @@ block|}
 block|}
 return|;
 block|}
+annotation|@
+name|Override
 specifier|public
 name|int
 name|size
@@ -751,6 +763,8 @@ init|=
 operator|-
 literal|1
 decl_stmt|;
+annotation|@
+name|Override
 specifier|public
 name|DocIdSet
 name|getDocIDs
@@ -760,6 +774,8 @@ return|return
 name|docIdSet
 return|;
 block|}
+annotation|@
+name|Override
 specifier|public
 name|ScoredDocIDsIterator
 name|iterator
@@ -781,6 +797,8 @@ operator|new
 name|ScoredDocIDsIterator
 argument_list|()
 block|{
+annotation|@
+name|Override
 specifier|public
 name|boolean
 name|next
@@ -814,6 +832,8 @@ argument_list|)
 throw|;
 block|}
 block|}
+annotation|@
+name|Override
 specifier|public
 name|float
 name|getScore
@@ -823,6 +843,8 @@ return|return
 name|DEFAULT_SCORE
 return|;
 block|}
+annotation|@
+name|Override
 specifier|public
 name|int
 name|getDocID
@@ -838,6 +860,8 @@ block|}
 block|}
 return|;
 block|}
+annotation|@
+name|Override
 specifier|public
 name|int
 name|size
@@ -934,6 +958,8 @@ name|maxDoc
 argument_list|()
 expr_stmt|;
 block|}
+annotation|@
+name|Override
 DECL|method|size
 specifier|public
 name|int
@@ -944,6 +970,8 @@ return|return
 name|maxDoc
 return|;
 block|}
+annotation|@
+name|Override
 DECL|method|getDocIDs
 specifier|public
 name|DocIdSet
@@ -1056,6 +1084,8 @@ block|}
 block|}
 return|;
 block|}
+annotation|@
+name|Override
 DECL|method|iterator
 specifier|public
 name|ScoredDocIDsIterator
@@ -1079,6 +1109,8 @@ operator|new
 name|ScoredDocIDsIterator
 argument_list|()
 block|{
+annotation|@
+name|Override
 specifier|public
 name|boolean
 name|next
@@ -1109,6 +1141,8 @@ literal|false
 return|;
 block|}
 block|}
+annotation|@
+name|Override
 specifier|public
 name|float
 name|getScore
@@ -1118,6 +1152,8 @@ return|return
 name|DEFAULT_SCORE
 return|;
 block|}
+annotation|@
+name|Override
 specifier|public
 name|int
 name|getDocID
@@ -1193,6 +1229,8 @@ operator|=
 name|reader
 expr_stmt|;
 block|}
+annotation|@
+name|Override
 DECL|method|size
 specifier|public
 name|int
@@ -1206,6 +1244,8 @@ name|numDocs
 argument_list|()
 return|;
 block|}
+annotation|@
+name|Override
 DECL|method|getDocIDs
 specifier|public
 name|DocIdSet
@@ -1346,6 +1386,8 @@ block|}
 block|}
 return|;
 block|}
+annotation|@
+name|Override
 DECL|method|iterator
 specifier|public
 name|ScoredDocIDsIterator
@@ -1369,6 +1411,8 @@ operator|new
 name|ScoredDocIDsIterator
 argument_list|()
 block|{
+annotation|@
+name|Override
 specifier|public
 name|boolean
 name|next
@@ -1399,6 +1443,8 @@ literal|false
 return|;
 block|}
 block|}
+annotation|@
+name|Override
 specifier|public
 name|float
 name|getScore
@@ -1408,6 +1454,8 @@ return|return
 name|DEFAULT_SCORE
 return|;
 block|}
+annotation|@
+name|Override
 specifier|public
 name|int
 name|getDocID

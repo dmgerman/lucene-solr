@@ -3651,6 +3651,8 @@ name|IdentityRegenerator
 implements|implements
 name|CacheRegenerator
 block|{
+annotation|@
+name|Override
 DECL|method|regenerateItem
 specifier|public
 name|boolean

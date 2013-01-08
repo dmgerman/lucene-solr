@@ -126,6 +126,8 @@ name|StandardQueryBuilder
 extends|extends
 name|QueryBuilder
 block|{
+annotation|@
+name|Override
 DECL|method|build
 specifier|public
 name|Query

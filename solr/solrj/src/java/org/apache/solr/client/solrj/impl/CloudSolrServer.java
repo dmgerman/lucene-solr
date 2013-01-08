@@ -985,6 +985,92 @@ name|ModifiableSolrParams
 argument_list|()
 expr_stmt|;
 block|}
+name|List
+argument_list|<
+name|String
+argument_list|>
+name|theUrlList
+init|=
+operator|new
+name|ArrayList
+argument_list|<
+name|String
+argument_list|>
+argument_list|()
+decl_stmt|;
+if|if
+condition|(
+name|request
+operator|.
+name|getPath
+argument_list|()
+operator|.
+name|equals
+argument_list|(
+literal|"/admin/collections"
+argument_list|)
+condition|)
+block|{
+name|Set
+argument_list|<
+name|String
+argument_list|>
+name|liveNodes
+init|=
+name|clusterState
+operator|.
+name|getLiveNodes
+argument_list|()
+decl_stmt|;
+for|for
+control|(
+name|String
+name|liveNode
+range|:
+name|liveNodes
+control|)
+block|{
+name|int
+name|splitPointBetweenHostPortAndContext
+init|=
+name|liveNode
+operator|.
+name|indexOf
+argument_list|(
+literal|"_"
+argument_list|)
+decl_stmt|;
+name|theUrlList
+operator|.
+name|add
+argument_list|(
+literal|"http://"
+operator|+
+name|liveNode
+operator|.
+name|substring
+argument_list|(
+literal|0
+argument_list|,
+name|splitPointBetweenHostPortAndContext
+argument_list|)
+operator|+
+literal|"/"
+operator|+
+name|liveNode
+operator|.
+name|substring
+argument_list|(
+name|splitPointBetweenHostPortAndContext
+operator|+
+literal|1
+argument_list|)
+argument_list|)
+expr_stmt|;
+block|}
+block|}
+else|else
+block|{
 name|String
 name|collection
 init|=
@@ -1030,9 +1116,11 @@ argument_list|,
 literal|true
 argument_list|)
 decl_stmt|;
-comment|// TODO: not a big deal because of the caching, but we could avoid looking at every shard
+comment|// TODO: not a big deal because of the caching, but we could avoid looking
+comment|// at every shard
 comment|// when getting leaders if we tweaked some things
-comment|// Retrieve slices from the cloud state and, for each collection specified,
+comment|// Retrieve slices from the cloud state and, for each collection
+comment|// specified,
 comment|// add it to the Map of slices.
 name|Map
 argument_list|<
@@ -1088,12 +1176,6 @@ name|clusterState
 operator|.
 name|getLiveNodes
 argument_list|()
-decl_stmt|;
-name|List
-argument_list|<
-name|String
-argument_list|>
-name|theUrlList
 decl_stmt|;
 synchronized|synchronized
 init|(
@@ -1513,7 +1595,9 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
-comment|// System.out.println("########################## MAKING REQUEST TO " + theUrlList);
+block|}
+comment|// System.out.println("########################## MAKING REQUEST TO " +
+comment|// theUrlList);
 name|LBHttpSolrServer
 operator|.
 name|Req

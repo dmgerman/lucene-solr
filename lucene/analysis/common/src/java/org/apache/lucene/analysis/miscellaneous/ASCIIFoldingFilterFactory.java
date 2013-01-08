@@ -110,6 +110,8 @@ name|TokenFilterFactory
 implements|implements
 name|MultiTermAwareComponent
 block|{
+annotation|@
+name|Override
 DECL|method|create
 specifier|public
 name|ASCIIFoldingFilter

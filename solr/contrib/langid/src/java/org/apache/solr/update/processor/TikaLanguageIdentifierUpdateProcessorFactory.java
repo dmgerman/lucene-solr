@@ -153,6 +153,8 @@ specifier|protected
 name|SolrParams
 name|invariants
 decl_stmt|;
+annotation|@
+name|Override
 DECL|method|inform
 specifier|public
 name|void
@@ -163,6 +165,8 @@ name|core
 parameter_list|)
 block|{   }
 comment|/**    * The UpdateRequestProcessor may be initialized in solrconfig.xml similarly    * to a RequestHandler, with defaults, appends and invariants.    * @param args a NamedList with the configuration parameters     */
+annotation|@
+name|Override
 annotation|@
 name|SuppressWarnings
 argument_list|(

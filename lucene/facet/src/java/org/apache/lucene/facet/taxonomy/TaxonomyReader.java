@@ -416,7 +416,7 @@ parameter_list|)
 throws|throws
 name|IOException
 function_decl|;
-comment|/**    * Returns the path name of the category with the given ordinal. The path is    * returned as a new CategoryPath object - to reuse an existing object, use    * {@link #getPath(int, CategoryPath)}.    *     * @return a {@link CategoryPath} with the required path, or {@code null} if    *         the given ordinal is unknown to the taxonomy.    */
+comment|/** Returns the path name of the category with the given ordinal. */
 DECL|method|getPath
 specifier|public
 specifier|abstract
@@ -425,22 +425,6 @@ name|getPath
 parameter_list|(
 name|int
 name|ordinal
-parameter_list|)
-throws|throws
-name|IOException
-function_decl|;
-comment|/**    * Same as {@link #getPath(int)}, only reuses the given {@link CategoryPath}    * instances.    */
-DECL|method|getPath
-specifier|public
-specifier|abstract
-name|boolean
-name|getPath
-parameter_list|(
-name|int
-name|ordinal
-parameter_list|,
-name|CategoryPath
-name|result
 parameter_list|)
 throws|throws
 name|IOException

@@ -730,7 +730,6 @@ block|}
 block|}
 comment|/**    * Read values that have been written using variable-length encoding instead of bit-packing.    */
 DECL|method|readVIntBlock
-specifier|private
 specifier|static
 name|void
 name|readVIntBlock

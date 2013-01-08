@@ -34,6 +34,22 @@ name|apache
 operator|.
 name|lucene
 operator|.
+name|index
+operator|.
+name|FieldInfo
+operator|.
+name|IndexOptions
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
 name|search
 operator|.
 name|DocIdSetIterator
@@ -85,6 +101,16 @@ name|DocsEnum
 extends|extends
 name|DocIdSetIterator
 block|{
+comment|/**    * Flag to pass to {@link TermsEnum#docs(Bits,DocsEnum,int)} if you don't    * require term frequencies in the returned enum. When passed to    * {@link TermsEnum#docsAndPositions(Bits,DocsAndPositionsEnum,int)} means    * that no offsets and payloads will be returned.    */
+DECL|field|FLAG_NONE
+specifier|public
+specifier|static
+specifier|final
+name|int
+name|FLAG_NONE
+init|=
+literal|0x0
+decl_stmt|;
 comment|/** Flag to pass to {@link TermsEnum#docs(Bits,DocsEnum,int)}    *  if you require term frequencies in the returned enum. */
 DECL|field|FLAG_FREQS
 specifier|public
@@ -108,7 +134,7 @@ specifier|protected
 name|DocsEnum
 parameter_list|()
 block|{   }
-comment|/** Returns term frequency in the current document.  Do    *  not call this before {@link #nextDoc} is first called,    *  nor after {@link #nextDoc} returns NO_MORE_DOCS.     **/
+comment|/**    * Returns term frequency in the current document, or 1 if the field was    * indexed with {@link IndexOptions#DOCS_ONLY}. Do not call this before    * {@link #nextDoc} is first called, nor after {@link #nextDoc} returns    * {@link DocIdSetIterator#NO_MORE_DOCS}.    *     *<p>    *<b>NOTE:</b> if the {@link DocsEnum} was obtain with {@link #FLAG_NONE},    * the result of this method is undefined.    */
 DECL|method|freq
 specifier|public
 specifier|abstract

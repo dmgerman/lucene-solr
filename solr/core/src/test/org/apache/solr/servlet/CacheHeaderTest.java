@@ -1458,9 +1458,13 @@ name|f
 init|=
 name|_TestUtil
 operator|.
-name|getTempDir
+name|createTempFile
 argument_list|(
 literal|"cachetest_csv"
+argument_list|,
+literal|null
+argument_list|,
+name|TEMP_DIR
 argument_list|)
 decl_stmt|;
 name|Writer

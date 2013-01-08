@@ -320,10 +320,6 @@ DECL|field|zkCmdExecutor
 specifier|private
 name|ZkCmdExecutor
 name|zkCmdExecutor
-init|=
-operator|new
-name|ZkCmdExecutor
-argument_list|()
 decl_stmt|;
 DECL|method|LeaderElector
 specifier|public
@@ -338,6 +334,26 @@ operator|.
 name|zkClient
 operator|=
 name|zkClient
+expr_stmt|;
+name|zkCmdExecutor
+operator|=
+operator|new
+name|ZkCmdExecutor
+argument_list|(
+call|(
+name|int
+call|)
+argument_list|(
+name|zkClient
+operator|.
+name|getZkClientTimeout
+argument_list|()
+operator|/
+literal|1000.0
+operator|+
+literal|3000
+argument_list|)
+argument_list|)
 expr_stmt|;
 block|}
 comment|/**    * Check if the candidate with the given n_* sequence number is the leader.    * If it is, set the leaderId on the leader zk node. If it is not, start    * watching the candidate that is in line before this one - if it goes down, check    * if this candidate is the leader again.    *    * @param replacement has someone else been the leader already?    */

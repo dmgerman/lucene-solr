@@ -257,6 +257,8 @@ expr_stmt|;
 block|}
 block|}
 comment|/** Closes the store. */
+annotation|@
+name|Override
 DECL|method|close
 specifier|public
 specifier|abstract

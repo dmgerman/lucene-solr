@@ -487,6 +487,8 @@ argument_list|)
 return|;
 block|}
 comment|/**    * Returns an iterator over the document analyses map.    *    * @return An iterator over the document analyses map.    */
+annotation|@
+name|Override
 DECL|method|iterator
 specifier|public
 name|Iterator
@@ -639,6 +641,8 @@ argument_list|)
 return|;
 block|}
 comment|/**      * Returns an iterator over the field analyses map.      *      * @return An iterator over the field analyses map.      */
+annotation|@
+name|Override
 DECL|method|iterator
 specifier|public
 name|Iterator

@@ -149,6 +149,8 @@ operator|=
 name|factory
 expr_stmt|;
 block|}
+annotation|@
+name|Override
 DECL|method|getQuery
 specifier|public
 name|Query

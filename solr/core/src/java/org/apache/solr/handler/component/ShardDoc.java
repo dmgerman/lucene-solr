@@ -1040,6 +1040,8 @@ name|orderInShard
 argument_list|)
 return|;
 block|}
+annotation|@
+name|Override
 DECL|method|compare
 specifier|public
 name|int
@@ -1072,6 +1074,8 @@ operator|new
 name|Comparator
 argument_list|()
 block|{
+annotation|@
+name|Override
 specifier|public
 specifier|final
 name|int

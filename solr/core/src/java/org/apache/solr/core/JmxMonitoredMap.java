@@ -1022,6 +1022,8 @@ operator|=
 name|coreHashCode
 expr_stmt|;
 block|}
+annotation|@
+name|Override
 DECL|method|getMBeanInfo
 specifier|public
 name|MBeanInfo
@@ -1425,6 +1427,8 @@ return|return
 literal|null
 return|;
 block|}
+annotation|@
+name|Override
 DECL|method|getAttribute
 specifier|public
 name|Object
@@ -1620,6 +1624,8 @@ return|return
 literal|null
 return|;
 block|}
+annotation|@
+name|Override
 DECL|method|getAttributes
 specifier|public
 name|AttributeList
@@ -1685,6 +1691,8 @@ return|return
 name|list
 return|;
 block|}
+annotation|@
+name|Override
 DECL|method|setAttribute
 specifier|public
 name|void
@@ -1710,6 +1718,8 @@ literal|"Operation not Supported"
 argument_list|)
 throw|;
 block|}
+annotation|@
+name|Override
 DECL|method|setAttributes
 specifier|public
 name|AttributeList
@@ -1727,6 +1737,8 @@ literal|"Operation not Supported"
 argument_list|)
 throw|;
 block|}
+annotation|@
+name|Override
 DECL|method|invoke
 specifier|public
 name|Object

@@ -72,6 +72,8 @@ name|LegacyHTMLStripCharFilterFactory
 extends|extends
 name|CharFilterFactory
 block|{
+annotation|@
+name|Override
 DECL|method|create
 specifier|public
 name|LegacyHTMLStripCharFilter

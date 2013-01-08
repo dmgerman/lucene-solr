@@ -17,7 +17,7 @@ package|;
 end_package
 
 begin_comment
-comment|/**  * The result of a call to {@link Classifier#assignClass(String)} holding an assigned class and a score.  * @lucene.experimental  */
+comment|/**  * The result of a call to {@link Classifier#assignClass(String)} holding an assigned class of type<code>T</code> and a score.  * @lucene.experimental  */
 end_comment
 
 begin_class
@@ -25,10 +25,13 @@ DECL|class|ClassificationResult
 specifier|public
 class|class
 name|ClassificationResult
+parameter_list|<
+name|T
+parameter_list|>
 block|{
 DECL|field|assignedClass
 specifier|private
-name|String
+name|T
 name|assignedClass
 decl_stmt|;
 DECL|field|score
@@ -36,12 +39,12 @@ specifier|private
 name|double
 name|score
 decl_stmt|;
-comment|/**    * Constructor    * @param assignedClass the class<code>String</code> assigned by a {@link Classifier}    * @param score the score for the assignedClass as a<code>double</code>    */
+comment|/**    * Constructor    * @param assignedClass the class<code>T</code> assigned by a {@link Classifier}    * @param score the score for the assignedClass as a<code>double</code>    */
 DECL|method|ClassificationResult
 specifier|public
 name|ClassificationResult
 parameter_list|(
-name|String
+name|T
 name|assignedClass
 parameter_list|,
 name|double
@@ -61,10 +64,10 @@ operator|=
 name|score
 expr_stmt|;
 block|}
-comment|/**    * retrieve the result class    * @return a<code>String</code> representing an assigned class    */
+comment|/**    * retrieve the result class    * @return a<code>T</code> representing an assigned class    */
 DECL|method|getAssignedClass
 specifier|public
-name|String
+name|T
 name|getAssignedClass
 parameter_list|()
 block|{

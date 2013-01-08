@@ -75,6 +75,8 @@ name|competitiveTerm
 init|=
 literal|null
 decl_stmt|;
+annotation|@
+name|Override
 DECL|method|setMaxNonCompetitiveBoost
 specifier|public
 name|void
@@ -92,6 +94,8 @@ operator|=
 name|maxNonCompetitiveBoost
 expr_stmt|;
 block|}
+annotation|@
+name|Override
 DECL|method|getMaxNonCompetitiveBoost
 specifier|public
 name|float
@@ -102,6 +106,8 @@ return|return
 name|maxNonCompetitiveBoost
 return|;
 block|}
+annotation|@
+name|Override
 DECL|method|setCompetitiveTerm
 specifier|public
 name|void
@@ -119,6 +125,8 @@ operator|=
 name|competitiveTerm
 expr_stmt|;
 block|}
+annotation|@
+name|Override
 DECL|method|getCompetitiveTerm
 specifier|public
 name|BytesRef

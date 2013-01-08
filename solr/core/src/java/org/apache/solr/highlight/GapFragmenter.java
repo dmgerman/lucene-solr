@@ -152,6 +152,8 @@ name|HighlightingPluginBase
 implements|implements
 name|SolrFragmenter
 block|{
+annotation|@
+name|Override
 DECL|method|getFragmenter
 specifier|public
 name|Fragmenter

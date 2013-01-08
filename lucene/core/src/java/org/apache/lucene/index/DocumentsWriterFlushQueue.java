@@ -686,6 +686,8 @@ name|frozenDeletes
 argument_list|)
 expr_stmt|;
 block|}
+annotation|@
+name|Override
 DECL|method|publish
 specifier|protected
 name|void
@@ -718,6 +720,8 @@ name|frozenDeletes
 argument_list|)
 expr_stmt|;
 block|}
+annotation|@
+name|Override
 DECL|method|canPublish
 specifier|protected
 name|boolean
@@ -763,6 +767,8 @@ name|frozenDeletes
 argument_list|)
 expr_stmt|;
 block|}
+annotation|@
+name|Override
 DECL|method|publish
 specifier|protected
 name|void
@@ -830,6 +836,8 @@ operator|=
 literal|true
 expr_stmt|;
 block|}
+annotation|@
+name|Override
 DECL|method|canPublish
 specifier|protected
 name|boolean

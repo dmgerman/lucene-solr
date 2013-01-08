@@ -50,6 +50,16 @@ name|java
 operator|.
 name|util
 operator|.
+name|HashSet
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
+name|util
+operator|.
 name|List
 import|;
 end_import
@@ -277,17 +287,11 @@ name|getName
 argument_list|()
 argument_list|)
 decl_stmt|;
-DECL|field|intArrayAllocator
+DECL|field|facetArrays
 specifier|protected
 specifier|final
-name|IntArrayAllocator
-name|intArrayAllocator
-decl_stmt|;
-DECL|field|floatArrayAllocator
-specifier|protected
-specifier|final
-name|FloatArrayAllocator
-name|floatArrayAllocator
+name|FacetArrays
+name|facetArrays
 decl_stmt|;
 DECL|field|partitionSize
 specifier|protected
@@ -327,11 +331,8 @@ parameter_list|,
 name|TaxonomyReader
 name|taxonomyReader
 parameter_list|,
-name|IntArrayAllocator
-name|intArrayAllocator
-parameter_list|,
-name|FloatArrayAllocator
-name|floatArrayAllocator
+name|FacetArrays
+name|facetArrays
 parameter_list|)
 block|{
 name|super
@@ -343,67 +344,26 @@ argument_list|,
 name|taxonomyReader
 argument_list|)
 expr_stmt|;
-name|int
-name|realPartitionSize
-init|=
-name|intArrayAllocator
+if|if
+condition|(
+name|facetArrays
 operator|==
 literal|null
-operator|||
-name|floatArrayAllocator
-operator|==
-literal|null
-condition|?
-name|PartitionsUtils
-operator|.
-name|partitionSize
+condition|)
+block|{
+throw|throw
+operator|new
+name|IllegalArgumentException
 argument_list|(
-name|searchParams
-argument_list|,
-name|taxonomyReader
+literal|"facetArrays cannot be null"
 argument_list|)
-else|:
-operator|-
-literal|1
-decl_stmt|;
-comment|// -1 if not needed.
+throw|;
+block|}
 name|this
 operator|.
-name|intArrayAllocator
+name|facetArrays
 operator|=
-name|intArrayAllocator
-operator|!=
-literal|null
-condition|?
-name|intArrayAllocator
-comment|// create a default one if null was provided
-else|:
-operator|new
-name|IntArrayAllocator
-argument_list|(
-name|realPartitionSize
-argument_list|,
-literal|1
-argument_list|)
-expr_stmt|;
-name|this
-operator|.
-name|floatArrayAllocator
-operator|=
-name|floatArrayAllocator
-operator|!=
-literal|null
-condition|?
-name|floatArrayAllocator
-comment|// create a default one if null provided
-else|:
-operator|new
-name|FloatArrayAllocator
-argument_list|(
-name|realPartitionSize
-argument_list|,
-literal|1
-argument_list|)
+name|facetArrays
 expr_stmt|;
 comment|// can only be computed later when docids size is known
 name|isUsingComplements
@@ -417,6 +377,9 @@ operator|.
 name|partitionSize
 argument_list|(
 name|searchParams
+operator|.
+name|getFacetIndexingParams
+argument_list|()
 argument_list|,
 name|taxonomyReader
 argument_list|)
@@ -472,9 +435,21 @@ name|indexReader
 argument_list|,
 name|taxonomyReader
 argument_list|,
-literal|null
+operator|new
+name|FacetArrays
+argument_list|(
+name|PartitionsUtils
+operator|.
+name|partitionSize
+argument_list|(
+name|searchParams
+operator|.
+name|getFacetIndexingParams
+argument_list|()
 argument_list|,
-literal|null
+name|taxonomyReader
+argument_list|)
+argument_list|)
 argument_list|)
 expr_stmt|;
 block|}
@@ -537,7 +512,7 @@ argument_list|()
 argument_list|,
 name|searchParams
 operator|.
-name|getClCache
+name|getCategoryListCache
 argument_list|()
 argument_list|)
 expr_stmt|;
@@ -657,29 +632,14 @@ name|e
 parameter_list|)
 block|{
 comment|// give up: this should not happen!
-name|IOException
-name|ioEx
-init|=
+throw|throw
 operator|new
 name|IOException
 argument_list|(
-literal|"PANIC: Got unexpected exception while trying to get/calculate total counts: "
-operator|+
-name|e
-operator|.
-name|getMessage
-argument_list|()
-argument_list|)
-decl_stmt|;
-name|ioEx
-operator|.
-name|initCause
-argument_list|(
+literal|"PANIC: Got unexpected exception while trying to get/calculate total counts"
+argument_list|,
 name|e
 argument_list|)
-expr_stmt|;
-throw|throw
-name|ioEx
 throw|;
 block|}
 block|}
@@ -690,17 +650,6 @@ argument_list|(
 name|docids
 argument_list|)
 expr_stmt|;
-name|FacetArrays
-name|facetArrays
-init|=
-operator|new
-name|FacetArrays
-argument_list|(
-name|intArrayAllocator
-argument_list|,
-name|floatArrayAllocator
-argument_list|)
-decl_stmt|;
 name|HashMap
 argument_list|<
 name|FacetRequest
@@ -753,11 +702,23 @@ operator|*
 name|partitionSize
 decl_stmt|;
 comment|// for each partition we go over all requests and handle
-comment|// each, where
-comment|// the request maintains the merged result.
-comment|// In this implementation merges happen after each
-comment|// partition,
+comment|// each, where the request maintains the merged result.
+comment|// In this implementation merges happen after each partition,
 comment|// but other impl could merge only at the end.
+specifier|final
+name|HashSet
+argument_list|<
+name|FacetRequest
+argument_list|>
+name|handledRequests
+init|=
+operator|new
+name|HashSet
+argument_list|<
+name|FacetRequest
+argument_list|>
+argument_list|()
+decl_stmt|;
 for|for
 control|(
 name|FacetRequest
@@ -768,6 +729,17 @@ operator|.
 name|getFacetRequests
 argument_list|()
 control|)
+block|{
+comment|// Handle and merge only facet requests which were not already handled.
+if|if
+condition|(
+name|handledRequests
+operator|.
+name|add
+argument_list|(
+name|fr
+argument_list|)
+condition|)
 block|{
 name|FacetResultsHandler
 name|frHndlr
@@ -829,6 +801,7 @@ argument_list|,
 name|res4fr
 argument_list|)
 expr_stmt|;
+block|}
 block|}
 block|}
 block|}
@@ -1206,7 +1179,7 @@ init|=
 name|getTotalCountsFactor
 argument_list|()
 decl_stmt|;
-comment|// fix total counts, but only if the effect of this would be meaningfull.
+comment|// fix total counts, but only if the effect of this would be meaningful.
 if|if
 condition|(
 name|totalCountsFactor

@@ -1630,6 +1630,8 @@ name|i
 init|=
 literal|0
 decl_stmt|;
+annotation|@
+name|Override
 specifier|public
 name|boolean
 name|hasNext
@@ -1641,6 +1643,8 @@ operator|<
 name|upto
 return|;
 block|}
+annotation|@
+name|Override
 specifier|public
 name|ThreadState
 name|next
@@ -1656,6 +1660,8 @@ operator|++
 argument_list|)
 return|;
 block|}
+annotation|@
+name|Override
 specifier|public
 name|void
 name|remove

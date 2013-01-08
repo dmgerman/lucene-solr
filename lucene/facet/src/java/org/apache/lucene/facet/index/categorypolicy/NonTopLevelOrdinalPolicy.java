@@ -84,6 +84,8 @@ literal|null
 expr_stmt|;
 block|}
 comment|/**     * @param taxonomyWriter    *            A relevant taxonomyWriter object, with which ordinals sent to    *            {@link #shouldAdd(int)} are examined.    */
+annotation|@
+name|Override
 DECL|method|init
 specifier|public
 name|void
@@ -101,6 +103,8 @@ name|taxonomyWriter
 expr_stmt|;
 block|}
 comment|/**    * Filters out ordinal which are ROOT or who's parent is ROOT. In order to    * determine if a parent is root, there's a need for    * {@link TaxonomyWriter#getParent(int)}.    */
+annotation|@
+name|Override
 DECL|method|shouldAdd
 specifier|public
 name|boolean

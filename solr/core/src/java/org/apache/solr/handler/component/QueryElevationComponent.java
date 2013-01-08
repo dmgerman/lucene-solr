@@ -1065,6 +1065,8 @@ name|args
 argument_list|)
 expr_stmt|;
 block|}
+annotation|@
+name|Override
 DECL|method|inform
 specifier|public
 name|void
@@ -3638,7 +3640,9 @@ name|liveDocs
 argument_list|,
 name|docsEnum
 argument_list|,
-literal|0
+name|DocsEnum
+operator|.
+name|FLAG_NONE
 argument_list|)
 expr_stmt|;
 if|if

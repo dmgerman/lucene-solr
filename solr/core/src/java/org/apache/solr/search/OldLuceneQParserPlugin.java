@@ -82,6 +82,8 @@ name|NAME
 init|=
 literal|"lucenePlusSort"
 decl_stmt|;
+annotation|@
+name|Override
 DECL|method|init
 specifier|public
 name|void

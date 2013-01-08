@@ -326,6 +326,8 @@ block|}
 comment|//QUESTION: Should we do a fast and crude one?  Or actually check distances
 comment|//Fast and crude could use EdgeNGrams, but that would require a different
 comment|//encoding.  Plus there are issues around the Equator/Prime Meridian
+annotation|@
+name|Override
 DECL|method|createSpatialQuery
 specifier|public
 name|Query

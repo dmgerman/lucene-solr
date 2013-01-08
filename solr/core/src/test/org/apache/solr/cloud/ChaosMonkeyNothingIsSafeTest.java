@@ -52,11 +52,13 @@ name|org
 operator|.
 name|apache
 operator|.
-name|http
+name|lucene
 operator|.
-name|client
+name|util
 operator|.
-name|HttpClient
+name|LuceneTestCase
+operator|.
+name|BadApple
 import|;
 end_import
 
@@ -73,6 +75,20 @@ operator|.
 name|LuceneTestCase
 operator|.
 name|Slow
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|http
+operator|.
+name|client
+operator|.
+name|HttpClient
 import|;
 end_import
 
@@ -236,16 +252,6 @@ begin_import
 import|import
 name|org
 operator|.
-name|junit
-operator|.
-name|Ignore
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
 name|slf4j
 operator|.
 name|Logger
@@ -266,10 +272,7 @@ begin_class
 annotation|@
 name|Slow
 annotation|@
-name|Ignore
-argument_list|(
-literal|"ignore while investigating jenkins fails"
-argument_list|)
+name|BadApple
 DECL|class|ChaosMonkeyNothingIsSafeTest
 specifier|public
 class|class
@@ -352,6 +355,11 @@ name|sliceCount
 argument_list|)
 argument_list|)
 expr_stmt|;
+name|useFactory
+argument_list|(
+literal|"solr.StandardDirectoryFactory"
+argument_list|)
+expr_stmt|;
 block|}
 annotation|@
 name|Override
@@ -391,11 +399,35 @@ argument_list|()
 expr_stmt|;
 name|sliceCount
 operator|=
-literal|1
+name|Integer
+operator|.
+name|parseInt
+argument_list|(
+name|System
+operator|.
+name|getProperty
+argument_list|(
+literal|"solr.tests.cloud.cm.slicecount"
+argument_list|,
+literal|"2"
+argument_list|)
+argument_list|)
 expr_stmt|;
 name|shardCount
 operator|=
-literal|7
+name|Integer
+operator|.
+name|parseInt
+argument_list|(
+name|System
+operator|.
+name|getProperty
+argument_list|(
+literal|"solr.tests.cloud.cm.shardcount"
+argument_list|,
+literal|"7"
+argument_list|)
+argument_list|)
 expr_stmt|;
 block|}
 annotation|@
@@ -464,7 +496,7 @@ control|)
 block|{
 name|zkStateReader
 operator|.
-name|getLeaderProps
+name|getLeaderRetry
 argument_list|(
 name|DEFAULT_COLLECTION
 argument_list|,
@@ -699,32 +731,13 @@ name|join
 argument_list|()
 expr_stmt|;
 block|}
-comment|// we expect full throttle fails, but not cloud client...
-for|for
-control|(
-name|StopableThread
-name|indexThread
-range|:
-name|threads
-control|)
-block|{
-if|if
-condition|(
-name|indexThread
-operator|instanceof
-name|StopableIndexingThread
-operator|&&
-operator|!
-operator|(
-name|indexThread
-operator|instanceof
-name|FullThrottleStopableIndexingThread
-operator|)
-condition|)
-block|{
-comment|//assertEquals(0, ((StopableIndexingThread) indexThread).getFails());
-block|}
-block|}
+comment|// we expect full throttle fails, but cloud client should not easily fail
+comment|// but it's allowed to fail and sometimes does, so commented out for now
+comment|//       for (StopableThread indexThread : threads) {
+comment|//         if (indexThread instanceof StopableIndexingThread&& !(indexThread instanceof FullThrottleStopableIndexingThread)) {
+comment|//           assertEquals(0, ((StopableIndexingThread) indexThread).getFails());
+comment|//         }
+comment|//       }
 comment|// try and wait for any replications and what not to finish...
 name|Thread
 operator|.
@@ -760,7 +773,7 @@ control|)
 block|{
 name|zkStateReader
 operator|.
-name|getLeaderProps
+name|getLeaderRetry
 argument_list|(
 name|DEFAULT_COLLECTION
 argument_list|,
@@ -999,6 +1012,24 @@ name|clients
 operator|=
 name|clients
 expr_stmt|;
+name|HttpClientUtil
+operator|.
+name|setConnectionTimeout
+argument_list|(
+name|httpClient
+argument_list|,
+literal|15000
+argument_list|)
+expr_stmt|;
+name|HttpClientUtil
+operator|.
+name|setSoTimeout
+argument_list|(
+name|httpClient
+argument_list|,
+literal|15000
+argument_list|)
+expr_stmt|;
 name|suss
 operator|=
 operator|new
@@ -1026,6 +1057,8 @@ argument_list|,
 literal|2
 argument_list|)
 block|{
+annotation|@
+name|Override
 specifier|public
 name|void
 name|handleError
@@ -1318,6 +1351,8 @@ argument_list|,
 literal|3
 argument_list|)
 block|{
+annotation|@
+name|Override
 specifier|public
 name|void
 name|handleError
@@ -1340,6 +1375,8 @@ block|}
 expr_stmt|;
 block|}
 block|}
+annotation|@
+name|Override
 DECL|method|safeStop
 specifier|public
 name|void
@@ -1364,6 +1401,8 @@ name|shutdown
 argument_list|()
 expr_stmt|;
 block|}
+annotation|@
+name|Override
 DECL|method|getFails
 specifier|public
 name|int
@@ -1380,6 +1419,8 @@ block|}
 block|}
 empty_stmt|;
 comment|// skip the randoms - they can deadlock...
+annotation|@
+name|Override
 DECL|method|indexr
 specifier|protected
 name|void

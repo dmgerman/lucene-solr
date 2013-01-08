@@ -138,6 +138,8 @@ operator|+
 literal|"-thread-"
 expr_stmt|;
 block|}
+annotation|@
+name|Override
 DECL|method|newThread
 specifier|public
 name|Thread

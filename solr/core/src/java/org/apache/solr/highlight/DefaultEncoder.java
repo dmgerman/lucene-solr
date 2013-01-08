@@ -62,6 +62,8 @@ name|HighlightingPluginBase
 implements|implements
 name|SolrEncoder
 block|{
+annotation|@
+name|Override
 DECL|method|getEncoder
 specifier|public
 name|Encoder

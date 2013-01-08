@@ -139,6 +139,7 @@ specifier|final
 name|Integer
 name|replicationFactor
 decl_stmt|;
+comment|// FUTURE: optional per-slice override of the collection replicationFactor
 DECL|field|replicas
 specifier|private
 specifier|final

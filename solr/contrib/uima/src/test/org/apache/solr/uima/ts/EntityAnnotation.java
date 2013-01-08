@@ -118,6 +118,8 @@ init|=
 name|typeIndexID
 decl_stmt|;
 comment|/** @generated  */
+annotation|@
+name|Override
 DECL|method|getTypeIndexID
 specifier|public
 name|int

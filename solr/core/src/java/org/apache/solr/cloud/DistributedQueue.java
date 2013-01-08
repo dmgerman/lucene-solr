@@ -723,6 +723,8 @@ specifier|public
 name|LatchChildWatcher
 parameter_list|()
 block|{}
+annotation|@
+name|Override
 DECL|method|process
 specifier|public
 name|void

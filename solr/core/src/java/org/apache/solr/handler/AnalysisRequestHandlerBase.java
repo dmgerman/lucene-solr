@@ -1245,6 +1245,8 @@ name|AttributeSource
 argument_list|>
 argument_list|()
 block|{
+annotation|@
+name|Override
 specifier|public
 name|int
 name|compare
@@ -1556,6 +1558,8 @@ operator|new
 name|AttributeReflector
 argument_list|()
 block|{
+annotation|@
+name|Override
 specifier|public
 name|void
 name|reflect
@@ -2059,6 +2063,8 @@ name|cachedPositions
 init|=
 literal|null
 decl_stmt|;
+annotation|@
+name|Override
 DECL|method|freezeStage
 specifier|public
 name|void
@@ -2085,6 +2091,8 @@ operator|=
 literal|null
 expr_stmt|;
 block|}
+annotation|@
+name|Override
 DECL|method|setActPosition
 specifier|public
 name|void
@@ -2107,6 +2115,8 @@ operator|=
 literal|null
 expr_stmt|;
 block|}
+annotation|@
+name|Override
 DECL|method|getPositions
 specifier|public
 name|int
@@ -2137,6 +2147,8 @@ return|return
 name|cachedPositions
 return|;
 block|}
+annotation|@
+name|Override
 DECL|method|reset
 specifier|public
 name|void

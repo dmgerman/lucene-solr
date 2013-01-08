@@ -194,6 +194,8 @@ return|return
 name|term
 return|;
 block|}
+annotation|@
+name|Override
 DECL|method|setRegexImplementation
 specifier|public
 name|void
@@ -210,6 +212,8 @@ operator|=
 name|impl
 expr_stmt|;
 block|}
+annotation|@
+name|Override
 DECL|method|getRegexImplementation
 specifier|public
 name|RegexCapabilities

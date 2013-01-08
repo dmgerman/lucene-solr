@@ -26,6 +26,8 @@ name|TestFastCompressionMode
 extends|extends
 name|AbstractTestLZ4CompressionMode
 block|{
+annotation|@
+name|Override
 DECL|method|setUp
 specifier|public
 name|void

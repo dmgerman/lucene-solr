@@ -103,6 +103,8 @@ specifier|private
 name|Token
 name|token
 decl_stmt|;
+annotation|@
+name|Override
 DECL|method|getPartOfSpeech
 specifier|public
 name|String
@@ -122,6 +124,8 @@ name|getPartOfSpeech
 argument_list|()
 return|;
 block|}
+annotation|@
+name|Override
 DECL|method|setToken
 specifier|public
 name|void

@@ -185,6 +185,19 @@ operator|new
 name|IntsRef
 argument_list|()
 decl_stmt|;
+comment|// for packing
+DECL|field|doPackFST
+specifier|private
+specifier|final
+name|boolean
+name|doPackFST
+decl_stmt|;
+DECL|field|acceptableOverheadRatio
+specifier|private
+specifier|final
+name|float
+name|acceptableOverheadRatio
+decl_stmt|;
 comment|// NOTE: cutting this over to ArrayList instead loses ~6%
 comment|// in build performance on 9.8M Wikipedia terms; so we
 comment|// left this as an array:
@@ -354,7 +367,7 @@ name|DEFAULT
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**    * Instantiates an FST/FSA builder with all the possible tuning and construction    * tweaks. Read parameter documentation carefully.    *     * @param inputType     *    The input type (transition labels). Can be anything from {@link INPUT_TYPE}    *    enumeration. Shorter types will consume less memory. Strings (character sequences) are     *    represented as {@link INPUT_TYPE#BYTE4} (full unicode codepoints).     *         * @param minSuffixCount1    *    If pruning the input graph during construction, this threshold is used for telling    *    if a node is kept or pruned. If transition_count(node)&gt;= minSuffixCount1, the node    *    is kept.     *        * @param minSuffixCount2    *    (Note: only Mike McCandless knows what this one is really doing...)     *     * @param doShareSuffix     *    If<code>true</code>, the shared suffixes will be compacted into unique paths.    *    This requires an additional hash map for lookups in memory. Setting this parameter to    *<code>false</code> creates a single path for all input sequences. This will result in a larger    *    graph, but may require less memory and will speed up construction.      *    * @param doShareNonSingletonNodes    *    Only used if doShareSuffix is true.  Set this to    *    true to ensure FST is fully minimal, at cost of more    *    CPU and more RAM during building.    *    * @param shareMaxTailLength    *    Only used if doShareSuffix is true.  Set this to    *    Integer.MAX_VALUE to ensure FST is fully minimal, at cost of more    *    CPU and more RAM during building.    *    * @param outputs The output type for each input sequence. Applies only if building an FST. For    *    FSA, use {@link NoOutputs#getSingleton()} and {@link NoOutputs#getNoOutput()} as the    *    singleton output object.    *    * @param willPackFST Pass true if you will pack the FST before saving.  This    *    causes the FST to create additional data structures internally to enable packing, but    *    it means the resulting FST cannot be saved until it    *    is packed using {@link FST#pack(int, int, float)}    *    * @param acceptableOverheadRatio How to trade speed for space when building the FST. This option    *    is only relevant when willPackFST is true. @see PackedInts#getMutable(int, int, float)    */
+comment|/**    * Instantiates an FST/FSA builder with all the possible tuning and construction    * tweaks. Read parameter documentation carefully.    *     * @param inputType     *    The input type (transition labels). Can be anything from {@link INPUT_TYPE}    *    enumeration. Shorter types will consume less memory. Strings (character sequences) are     *    represented as {@link INPUT_TYPE#BYTE4} (full unicode codepoints).     *         * @param minSuffixCount1    *    If pruning the input graph during construction, this threshold is used for telling    *    if a node is kept or pruned. If transition_count(node)&gt;= minSuffixCount1, the node    *    is kept.     *        * @param minSuffixCount2    *    (Note: only Mike McCandless knows what this one is really doing...)     *     * @param doShareSuffix     *    If<code>true</code>, the shared suffixes will be compacted into unique paths.    *    This requires an additional hash map for lookups in memory. Setting this parameter to    *<code>false</code> creates a single path for all input sequences. This will result in a larger    *    graph, but may require less memory and will speed up construction.      *    * @param doShareNonSingletonNodes    *    Only used if doShareSuffix is true.  Set this to    *    true to ensure FST is fully minimal, at cost of more    *    CPU and more RAM during building.    *    * @param shareMaxTailLength    *    Only used if doShareSuffix is true.  Set this to    *    Integer.MAX_VALUE to ensure FST is fully minimal, at cost of more    *    CPU and more RAM during building.    *    * @param outputs The output type for each input sequence. Applies only if building an FST. For    *    FSA, use {@link NoOutputs#getSingleton()} and {@link NoOutputs#getNoOutput()} as the    *    singleton output object.    *    * @param doPackFST Pass true to create a packed FST.    *     * @param acceptableOverheadRatio How to trade speed for space when building the FST. This option    *    is only relevant when doPackFST is true. @see PackedInts#getMutable(int, int, float)    */
 DECL|method|Builder
 specifier|public
 name|Builder
@@ -392,7 +405,7 @@ argument_list|>
 name|freezeTail
 parameter_list|,
 name|boolean
-name|willPackFST
+name|doPackFST
 parameter_list|,
 name|float
 name|acceptableOverheadRatio
@@ -428,6 +441,18 @@ name|shareMaxTailLength
 operator|=
 name|shareMaxTailLength
 expr_stmt|;
+name|this
+operator|.
+name|doPackFST
+operator|=
+name|doPackFST
+expr_stmt|;
+name|this
+operator|.
+name|acceptableOverheadRatio
+operator|=
+name|acceptableOverheadRatio
+expr_stmt|;
 name|fst
 operator|=
 operator|new
@@ -440,7 +465,7 @@ name|inputType
 argument_list|,
 name|outputs
 argument_list|,
-name|willPackFST
+name|doPackFST
 argument_list|,
 name|acceptableOverheadRatio
 argument_list|)
@@ -1983,9 +2008,42 @@ operator|.
 name|node
 argument_list|)
 expr_stmt|;
+if|if
+condition|(
+name|doPackFST
+condition|)
+block|{
+return|return
+name|fst
+operator|.
+name|pack
+argument_list|(
+literal|3
+argument_list|,
+name|Math
+operator|.
+name|max
+argument_list|(
+literal|10
+argument_list|,
+name|fst
+operator|.
+name|getNodeCount
+argument_list|()
+operator|/
+literal|4
+argument_list|)
+argument_list|,
+name|acceptableOverheadRatio
+argument_list|)
+return|;
+block|}
+else|else
+block|{
 return|return
 name|fst
 return|;
+block|}
 block|}
 DECL|method|compileAllTargets
 specifier|private
@@ -2173,6 +2231,8 @@ DECL|field|node
 name|int
 name|node
 decl_stmt|;
+annotation|@
+name|Override
 DECL|method|isCompiled
 specifier|public
 name|boolean
@@ -2315,6 +2375,8 @@ operator|=
 name|depth
 expr_stmt|;
 block|}
+annotation|@
+name|Override
 DECL|method|isCompiled
 specifier|public
 name|boolean

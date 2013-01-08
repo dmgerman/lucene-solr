@@ -81,19 +81,6 @@ name|CategoryPath
 name|categoryPath
 parameter_list|)
 function_decl|;
-comment|/**    * Like {@link #get(CategoryPath)}, but for a given prefix of the    * category path.    *<P>     * If the given length is negative or bigger than the path's actual    * length, the full path is taken.     */
-DECL|method|get
-specifier|public
-name|int
-name|get
-parameter_list|(
-name|CategoryPath
-name|categoryPath
-parameter_list|,
-name|int
-name|length
-parameter_list|)
-function_decl|;
 comment|/**    * Add a category to the cache, with the given ordinal as the value.    *<P>    * If the implementation keeps only a partial cache (e.g., an LRU cache)    * and finds that its cache is full, it should clear up part of the cache    * and return<code>true</code>. Otherwise, it should return    *<code>false</code>.    *<P>    * The reason why the caller needs to know if part of the cache was    * cleared is that in that case it will have to commit its on-disk index    * (so that all the latest category additions can be searched on disk, if    * we can't rely on the cache to contain them).    *<P>    * Ordinals should be non-negative. Currently there is no defined way to    * specify that a cache should remember a category does NOT exist.    * It doesn't really matter, because normally the next thing we do after    * finding that a category does not exist is to add it.    */
 DECL|method|put
 specifier|public
@@ -102,22 +89,6 @@ name|put
 parameter_list|(
 name|CategoryPath
 name|categoryPath
-parameter_list|,
-name|int
-name|ordinal
-parameter_list|)
-function_decl|;
-comment|/**    * Like {@link #put(CategoryPath, int)}, but for a given prefix of the    * category path.     *<P>     * If the given length is negative or bigger than the path's actual    * length, the full path is taken.     */
-DECL|method|put
-specifier|public
-name|boolean
-name|put
-parameter_list|(
-name|CategoryPath
-name|categoryPath
-parameter_list|,
-name|int
-name|prefixLen
 parameter_list|,
 name|int
 name|ordinal

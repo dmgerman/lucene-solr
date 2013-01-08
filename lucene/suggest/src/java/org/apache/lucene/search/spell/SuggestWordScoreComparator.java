@@ -49,6 +49,8 @@ specifier|public
 name|SuggestWordScoreComparator
 parameter_list|()
 block|{}
+annotation|@
+name|Override
 DECL|method|compare
 specifier|public
 name|int

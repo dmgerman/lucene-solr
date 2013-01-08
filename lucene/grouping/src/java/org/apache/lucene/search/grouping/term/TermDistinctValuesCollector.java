@@ -316,6 +316,8 @@ name|length
 index|]
 expr_stmt|;
 block|}
+annotation|@
+name|Override
 DECL|method|collect
 specifier|public
 name|void
@@ -544,6 +546,8 @@ operator|<
 literal|0
 return|;
 block|}
+annotation|@
+name|Override
 DECL|method|getGroups
 specifier|public
 name|List
@@ -557,6 +561,8 @@ return|return
 name|groups
 return|;
 block|}
+annotation|@
+name|Override
 DECL|method|setNextReader
 specifier|public
 name|void

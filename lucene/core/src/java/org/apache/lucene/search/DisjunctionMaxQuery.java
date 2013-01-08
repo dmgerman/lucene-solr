@@ -248,6 +248,8 @@ argument_list|)
 expr_stmt|;
 block|}
 comment|/** @return An {@code Iterator<Query>} over the disjuncts */
+annotation|@
+name|Override
 DECL|method|iterator
 specifier|public
 name|Iterator

@@ -130,6 +130,8 @@ name|SpanQueryBuilder
 argument_list|>
 argument_list|()
 decl_stmt|;
+annotation|@
+name|Override
 DECL|method|getQuery
 specifier|public
 name|Query
@@ -170,6 +172,8 @@ name|builder
 argument_list|)
 expr_stmt|;
 block|}
+annotation|@
+name|Override
 DECL|method|getSpanQuery
 specifier|public
 name|SpanQuery

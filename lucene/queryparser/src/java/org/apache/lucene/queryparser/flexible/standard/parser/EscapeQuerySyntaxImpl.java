@@ -1011,6 +1011,8 @@ return|return
 name|buffer
 return|;
 block|}
+annotation|@
+name|Override
 DECL|method|escape
 specifier|public
 name|CharSequence

@@ -155,6 +155,8 @@ operator|=
 name|queryConfigHandler
 expr_stmt|;
 block|}
+annotation|@
+name|Override
 DECL|method|process
 specifier|public
 name|QueryNode
@@ -395,6 +397,8 @@ name|list
 return|;
 block|}
 comment|/**    * For reference about this method check:    * {@link QueryNodeProcessor#setQueryConfigHandler(QueryConfigHandler)}.    *     * @param queryConfigHandler    *          the query configuration handler to be set.    *     * @see QueryNodeProcessor#getQueryConfigHandler()    * @see QueryConfigHandler    */
+annotation|@
+name|Override
 DECL|method|setQueryConfigHandler
 specifier|public
 name|void
@@ -412,6 +416,8 @@ name|queryConfigHandler
 expr_stmt|;
 block|}
 comment|/**    * For reference about this method check:    * {@link QueryNodeProcessor#getQueryConfigHandler()}.    *     * @return QueryConfigHandler the query configuration handler to be set.    *     * @see QueryNodeProcessor#setQueryConfigHandler(QueryConfigHandler)    * @see QueryConfigHandler    */
+annotation|@
+name|Override
 DECL|method|getQueryConfigHandler
 specifier|public
 name|QueryConfigHandler

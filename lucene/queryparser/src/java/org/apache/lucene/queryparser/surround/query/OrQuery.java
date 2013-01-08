@@ -154,6 +154,8 @@ name|SHOULD
 argument_list|)
 return|;
 block|}
+annotation|@
+name|Override
 DECL|method|distanceSubQueryNotAllowed
 specifier|public
 name|String
@@ -233,6 +235,8 @@ return|return
 literal|null
 return|;
 block|}
+annotation|@
+name|Override
 DECL|method|addSpanQueries
 specifier|public
 name|void

@@ -164,6 +164,8 @@ name|UUIDUpdateProcessorFactory
 extends|extends
 name|AbstractDefaultValueUpdateProcessorFactory
 block|{
+annotation|@
+name|Override
 DECL|method|getInstance
 specifier|public
 name|UpdateRequestProcessor
@@ -188,6 +190,8 @@ argument_list|,
 name|next
 argument_list|)
 block|{
+annotation|@
+name|Override
 specifier|public
 name|Object
 name|getDefaultValue

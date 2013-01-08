@@ -206,6 +206,8 @@ operator|new
 name|DocValuesPuller
 argument_list|()
 block|{
+annotation|@
+name|Override
 specifier|public
 name|DocValues
 name|pull
@@ -228,6 +230,8 @@ name|field
 argument_list|)
 return|;
 block|}
+annotation|@
+name|Override
 specifier|public
 name|boolean
 name|stopLoadingOnNull
@@ -1242,6 +1246,8 @@ operator|=
 name|direct
 expr_stmt|;
 block|}
+annotation|@
+name|Override
 DECL|method|getInt
 specifier|public
 name|long
@@ -1428,6 +1434,8 @@ name|start
 return|;
 block|}
 block|}
+annotation|@
+name|Override
 DECL|method|getFloat
 specifier|public
 name|double
@@ -1455,6 +1463,8 @@ name|doc
 argument_list|)
 return|;
 block|}
+annotation|@
+name|Override
 DECL|method|getBytes
 specifier|public
 name|BytesRef
@@ -1862,6 +1872,8 @@ return|return
 name|docBases
 return|;
 block|}
+annotation|@
+name|Override
 DECL|method|hasArray
 specifier|public
 name|boolean

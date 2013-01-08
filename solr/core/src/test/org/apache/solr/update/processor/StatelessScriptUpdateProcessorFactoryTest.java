@@ -373,6 +373,8 @@ operator|new
 name|ScriptEngineCustomizer
 argument_list|()
 block|{
+annotation|@
+name|Override
 specifier|public
 name|void
 name|customize
@@ -608,6 +610,8 @@ operator|new
 name|ScriptEngineCustomizer
 argument_list|()
 block|{
+annotation|@
+name|Override
 specifier|public
 name|void
 name|customize

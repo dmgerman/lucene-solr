@@ -777,19 +777,24 @@ literal|true
 argument_list|)
 condition|)
 block|{
-throw|throw
+name|rsp
+operator|.
+name|setException
+argument_list|(
 operator|new
 name|SolrException
 argument_list|(
 name|ErrorCode
 operator|.
-name|BAD_REQUEST
+name|NOT_FOUND
 argument_list|,
 literal|"Can not find: "
 operator|+
 name|adminFile
 argument_list|)
-throw|;
+argument_list|)
+expr_stmt|;
+return|return;
 block|}
 comment|// Show a directory listing
 name|List
@@ -1146,7 +1151,10 @@ name|URISyntaxException
 name|e
 parameter_list|)
 block|{
-throw|throw
+name|rsp
+operator|.
+name|setException
+argument_list|(
 operator|new
 name|SolrException
 argument_list|(
@@ -1155,8 +1163,12 @@ operator|.
 name|FORBIDDEN
 argument_list|,
 literal|"Can not access configuration directory!"
+argument_list|,
+name|e
 argument_list|)
-throw|;
+argument_list|)
+expr_stmt|;
+return|return;
 block|}
 block|}
 name|String
@@ -1288,13 +1300,16 @@ name|exists
 argument_list|()
 condition|)
 block|{
-throw|throw
+name|rsp
+operator|.
+name|setException
+argument_list|(
 operator|new
 name|SolrException
 argument_list|(
 name|ErrorCode
 operator|.
-name|BAD_REQUEST
+name|NOT_FOUND
 argument_list|,
 literal|"Can not find: "
 operator|+
@@ -1312,7 +1327,9 @@ argument_list|()
 operator|+
 literal|"]"
 argument_list|)
-throw|;
+argument_list|)
+expr_stmt|;
+return|return;
 block|}
 if|if
 condition|(
@@ -1328,13 +1345,16 @@ name|isHidden
 argument_list|()
 condition|)
 block|{
-throw|throw
+name|rsp
+operator|.
+name|setException
+argument_list|(
 operator|new
 name|SolrException
 argument_list|(
 name|ErrorCode
 operator|.
-name|BAD_REQUEST
+name|NOT_FOUND
 argument_list|,
 literal|"Can not show: "
 operator|+
@@ -1352,7 +1372,9 @@ argument_list|()
 operator|+
 literal|"]"
 argument_list|)
-throw|;
+argument_list|)
+expr_stmt|;
+return|return;
 block|}
 comment|// Show a directory listing
 if|if

@@ -1494,7 +1494,7 @@ name|props
 init|=
 name|reader
 operator|.
-name|getLeaderProps
+name|getLeaderRetry
 argument_list|(
 literal|"collection1"
 argument_list|,

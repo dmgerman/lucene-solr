@@ -277,6 +277,8 @@ name|defaultFieldNames
 expr_stmt|;
 block|}
 comment|/* (non-Javadoc)     * @see org.apache.lucene.xmlparser.QueryObjectBuilder#process(org.w3c.dom.Element)     */
+annotation|@
+name|Override
 DECL|method|getQuery
 specifier|public
 name|Query

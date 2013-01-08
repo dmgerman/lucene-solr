@@ -783,6 +783,8 @@ name|recoveringAfterStartup
 expr_stmt|;
 block|}
 comment|// make sure any threads stop retrying
+annotation|@
+name|Override
 DECL|method|close
 specifier|public
 name|void
@@ -1125,7 +1127,7 @@ name|server
 operator|.
 name|setSoTimeout
 argument_list|(
-literal|30000
+literal|60000
 argument_list|)
 expr_stmt|;
 name|UpdateRequest
@@ -1234,7 +1236,7 @@ name|server
 operator|.
 name|setSoTimeout
 argument_list|(
-literal|45000
+literal|120000
 argument_list|)
 expr_stmt|;
 name|WaitForState
@@ -1902,7 +1904,7 @@ name|leaderprops
 init|=
 name|zkStateReader
 operator|.
-name|getLeaderProps
+name|getLeaderRetry
 argument_list|(
 name|cloudDesc
 operator|.
@@ -2051,6 +2053,41 @@ operator|.
 name|RECOVERING
 argument_list|)
 expr_stmt|;
+name|sendPrepRecoveryCmd
+argument_list|(
+name|leaderBaseUrl
+argument_list|,
+name|leaderCoreName
+argument_list|)
+expr_stmt|;
+comment|// we wait a bit so that any updates on the leader
+comment|// that started before they saw recovering state
+comment|// are sure to have finished
+try|try
+block|{
+name|Thread
+operator|.
+name|sleep
+argument_list|(
+literal|2000
+argument_list|)
+expr_stmt|;
+block|}
+catch|catch
+parameter_list|(
+name|InterruptedException
+name|e
+parameter_list|)
+block|{
+name|Thread
+operator|.
+name|currentThread
+argument_list|()
+operator|.
+name|interrupt
+argument_list|()
+expr_stmt|;
+block|}
 comment|// first thing we just try to sync
 if|if
 condition|(
@@ -2223,41 +2260,6 @@ operator|+
 name|coreName
 argument_list|)
 expr_stmt|;
-name|sendPrepRecoveryCmd
-argument_list|(
-name|leaderBaseUrl
-argument_list|,
-name|leaderCoreName
-argument_list|)
-expr_stmt|;
-comment|// we wait a bit so that any updates on the leader
-comment|// that started before they saw recovering state
-comment|// are sure to have finished
-try|try
-block|{
-name|Thread
-operator|.
-name|sleep
-argument_list|(
-literal|2000
-argument_list|)
-expr_stmt|;
-block|}
-catch|catch
-parameter_list|(
-name|InterruptedException
-name|e
-parameter_list|)
-block|{
-name|Thread
-operator|.
-name|currentThread
-argument_list|()
-operator|.
-name|interrupt
-argument_list|()
-expr_stmt|;
-block|}
 name|log
 operator|.
 name|info
@@ -2838,6 +2840,8 @@ return|return
 name|future
 return|;
 block|}
+annotation|@
+name|Override
 DECL|method|isClosed
 specifier|public
 name|boolean

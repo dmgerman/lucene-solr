@@ -22,6 +22,16 @@ name|java
 operator|.
 name|util
 operator|.
+name|ArrayList
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
+name|util
+operator|.
 name|List
 import|;
 end_import
@@ -235,6 +245,24 @@ operator|.
 name|params
 operator|.
 name|CountFacetRequest
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|facet
+operator|.
+name|search
+operator|.
+name|params
+operator|.
+name|FacetRequest
 import|;
 end_import
 
@@ -487,18 +515,22 @@ literal|true
 argument_list|)
 decl_stmt|;
 comment|// Faceted search parameters indicate which facets are we interested in
-name|FacetSearchParams
-name|facetSearchParams
+name|List
+argument_list|<
+name|FacetRequest
+argument_list|>
+name|facetRequests
 init|=
 operator|new
-name|FacetSearchParams
-argument_list|(
-name|iParams
-argument_list|)
+name|ArrayList
+argument_list|<
+name|FacetRequest
+argument_list|>
+argument_list|()
 decl_stmt|;
-name|facetSearchParams
+name|facetRequests
 operator|.
-name|addFacetRequest
+name|add
 argument_list|(
 operator|new
 name|CountFacetRequest
@@ -513,9 +545,9 @@ literal|10
 argument_list|)
 argument_list|)
 expr_stmt|;
-name|facetSearchParams
+name|facetRequests
 operator|.
-name|addFacetRequest
+name|add
 argument_list|(
 operator|new
 name|CountFacetRequest
@@ -532,9 +564,9 @@ literal|10
 argument_list|)
 argument_list|)
 expr_stmt|;
-name|facetSearchParams
+name|facetRequests
 operator|.
-name|addFacetRequest
+name|add
 argument_list|(
 operator|new
 name|CountFacetRequest
@@ -551,6 +583,17 @@ literal|10
 argument_list|)
 argument_list|)
 expr_stmt|;
+name|FacetSearchParams
+name|facetSearchParams
+init|=
+operator|new
+name|FacetSearchParams
+argument_list|(
+name|facetRequests
+argument_list|,
+name|iParams
+argument_list|)
+decl_stmt|;
 comment|// Facets collector is the simplest interface for faceted search.
 comment|// It provides faceted search functions that are sufficient to many
 comment|// application,

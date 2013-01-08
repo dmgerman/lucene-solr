@@ -97,6 +97,8 @@ operator|=
 literal|""
 expr_stmt|;
 block|}
+annotation|@
+name|Override
 DECL|method|setUniqueField
 specifier|public
 name|void
@@ -113,6 +115,8 @@ operator|=
 name|uniqueField
 expr_stmt|;
 block|}
+annotation|@
+name|Override
 DECL|method|getUniqueField
 specifier|public
 name|CharSequence

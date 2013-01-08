@@ -86,6 +86,20 @@ begin_import
 import|import
 name|org
 operator|.
+name|apache
+operator|.
+name|solr
+operator|.
+name|common
+operator|.
+name|SolrException
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
 name|junit
 operator|.
 name|Before
@@ -216,6 +230,8 @@ argument_list|)
 expr_stmt|;
 block|}
 annotation|@
+name|Override
+annotation|@
 name|Before
 DECL|method|setUp
 specifier|public
@@ -239,6 +255,149 @@ name|commit
 argument_list|()
 argument_list|)
 expr_stmt|;
+block|}
+annotation|@
+name|Test
+DECL|method|testBadShapeParse400
+specifier|public
+name|void
+name|testBadShapeParse400
+parameter_list|()
+block|{
+name|assertQEx
+argument_list|(
+literal|null
+argument_list|,
+name|req
+argument_list|(
+literal|"fl"
+argument_list|,
+literal|"id,"
+operator|+
+name|fieldName
+argument_list|,
+literal|"q"
+argument_list|,
+literal|"*:*"
+argument_list|,
+literal|"rows"
+argument_list|,
+literal|"1000"
+argument_list|,
+literal|"fq"
+argument_list|,
+literal|"{!field f="
+operator|+
+name|fieldName
+operator|+
+literal|"}Intersects(NonexistentShape(89.9,-130 d=9))"
+argument_list|)
+argument_list|,
+literal|400
+argument_list|)
+expr_stmt|;
+name|assertQEx
+argument_list|(
+literal|null
+argument_list|,
+name|req
+argument_list|(
+literal|"fl"
+argument_list|,
+literal|"id,"
+operator|+
+name|fieldName
+argument_list|,
+literal|"q"
+argument_list|,
+literal|"*:*"
+argument_list|,
+literal|"rows"
+argument_list|,
+literal|"1000"
+argument_list|,
+literal|"fq"
+argument_list|,
+literal|"{!field f="
+operator|+
+name|fieldName
+operator|+
+literal|"}Intersects(NonexistentShape(89.9,-130 d=9"
+argument_list|)
+argument_list|,
+literal|400
+argument_list|)
+expr_stmt|;
+comment|//missing parens
+name|assertQEx
+argument_list|(
+literal|null
+argument_list|,
+name|req
+argument_list|(
+literal|"fl"
+argument_list|,
+literal|"id,"
+operator|+
+name|fieldName
+argument_list|,
+literal|"q"
+argument_list|,
+literal|"*:*"
+argument_list|,
+literal|"rows"
+argument_list|,
+literal|"1000"
+argument_list|,
+literal|"fq"
+argument_list|,
+literal|"{!field f="
+operator|+
+name|fieldName
+operator|+
+literal|"}Intersectssss"
+argument_list|)
+argument_list|,
+literal|400
+argument_list|)
+expr_stmt|;
+try|try
+block|{
+name|assertU
+argument_list|(
+name|adoc
+argument_list|(
+literal|"id"
+argument_list|,
+literal|"-1"
+argument_list|,
+name|fieldName
+argument_list|,
+literal|"NonexistentShape"
+argument_list|)
+argument_list|)
+expr_stmt|;
+name|fail
+argument_list|()
+expr_stmt|;
+block|}
+catch|catch
+parameter_list|(
+name|SolrException
+name|e
+parameter_list|)
+block|{
+name|assertEquals
+argument_list|(
+literal|400
+argument_list|,
+name|e
+operator|.
+name|code
+argument_list|()
+argument_list|)
+expr_stmt|;
+block|}
 block|}
 DECL|method|setupDocs
 specifier|private
@@ -816,7 +975,7 @@ literal|"1000"
 argument_list|,
 literal|"fq"
 argument_list|,
-literal|"{!field needScore=false f="
+literal|"{!field f="
 operator|+
 name|fieldName
 operator|+
@@ -1000,6 +1159,8 @@ name|count
 operator|+
 literal|"]"
 expr_stmt|;
+comment|//Test using the Solr 4 syntax
+block|{
 comment|//never actually need the score but lets test
 name|String
 name|score
@@ -1148,6 +1309,56 @@ name|tests
 argument_list|)
 expr_stmt|;
 block|}
+comment|//Test using the Solr 3 syntax
+block|{
+name|assertQ
+argument_list|(
+name|req
+argument_list|(
+literal|"fl"
+argument_list|,
+literal|"id"
+argument_list|,
+literal|"q"
+argument_list|,
+literal|"*:*"
+argument_list|,
+literal|"rows"
+argument_list|,
+literal|"1000"
+argument_list|,
+literal|"fq"
+argument_list|,
+literal|"{!"
+operator|+
+operator|(
+name|exact
+condition|?
+literal|"geofilt"
+else|:
+literal|"bbox"
+operator|)
+operator|+
+literal|" sfield="
+operator|+
+name|fieldName
+operator|+
+literal|" pt='"
+operator|+
+name|ptStr
+operator|+
+literal|"' d="
+operator|+
+name|distKM
+operator|+
+literal|"}"
+argument_list|)
+argument_list|,
+name|tests
+argument_list|)
+expr_stmt|;
+block|}
+block|}
 annotation|@
 name|Test
 DECL|method|testRangeSyntax
@@ -1170,14 +1381,18 @@ name|count
 init|=
 literal|1
 decl_stmt|;
-name|boolean
-name|needScore
+name|String
+name|score
 init|=
 name|random
 argument_list|()
 operator|.
 name|nextBoolean
 argument_list|()
+condition|?
+literal|"none"
+else|:
+literal|"distance"
 decl_stmt|;
 comment|//never actually need the score but lets test
 name|assertQ
@@ -1198,9 +1413,9 @@ literal|"1000"
 argument_list|,
 literal|"fq"
 argument_list|,
-literal|"{! needScore="
+literal|"{! score="
 operator|+
-name|needScore
+name|score
 operator|+
 literal|" df="
 operator|+
@@ -1372,6 +1587,41 @@ argument_list|,
 literal|"/response/docs/[1]/id=='101'"
 argument_list|,
 literal|"/response/docs/[1]/score==0.19970943"
+argument_list|)
+expr_stmt|;
+comment|//score by distance and don't filter
+name|assertJQ
+argument_list|(
+name|req
+argument_list|(
+comment|//circle radius is small and shouldn't match either, but we disable filtering
+literal|"q"
+argument_list|,
+literal|"{! score=distance filter=false}"
+operator|+
+name|fieldName
+operator|+
+literal|":\"Intersects(Circle(3,4 d=0.000001))\""
+argument_list|,
+literal|"fl"
+argument_list|,
+literal|"id,score"
+argument_list|,
+literal|"sort"
+argument_list|,
+literal|"score asc"
+argument_list|)
+comment|//want ascending due to increasing distance
+argument_list|,
+literal|1e-3
+argument_list|,
+literal|"/response/docs/[0]/id=='100'"
+argument_list|,
+literal|"/response/docs/[0]/score==2.827493"
+argument_list|,
+literal|"/response/docs/[1]/id=='101'"
+argument_list|,
+literal|"/response/docs/[1]/score==5.089807"
 argument_list|)
 expr_stmt|;
 comment|//query again with the query point closer to #101, and check the new ordering

@@ -630,6 +630,8 @@ throw|;
 block|}
 block|}
 comment|/**    * Closes the underlying {@link org.apache.lucene.store.IndexInput} streams.    * This means that the Fields values will not be accessible.    *    * @throws IOException If an I/O error occurs    */
+annotation|@
+name|Override
 DECL|method|close
 specifier|public
 specifier|final

@@ -131,7 +131,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Strips all HTML Markup in any CharSequence values   * found in fields matching the specified conditions.  *<p>  * By default this processor matches no fields  *</p>  *  *<p>For example, with the configuration listed below any documents   * containing HTML markup in any field declared in the schema using   *<code>StrField</code> will have that HTML striped away.  *</p>  *<pre class="prettyprint">  *&lt;processor class="solr.HTMLStripFieldUpdateProcessorFactory"&gt;  *&lt;str name="typeClass"&gt;solr.StrField&lt;/str&gt;  *&lt;/processor&gt;  *</pre>  */
+comment|/**  * Strips all HTML Markup in any CharSequence values   * found in fields matching the specified conditions.  *<p>  * By default this processor matches no fields  *</p>  *  *<p>For example, with the configuration listed below any documents   * containing HTML markup in any field declared in the schema using   *<code>StrField</code> will have that HTML striped away.  *</p>  *<pre class="prettyprint">  *&lt;processor class="solr.HTMLStripFieldUpdateProcessorFactory"&gt;  *&lt;str name="typeClass"&gt;solr.StrField&lt;/str&gt;  *&lt;/processor&gt;</pre>  */
 end_comment
 
 begin_class
@@ -190,6 +190,8 @@ argument_list|,
 name|next
 argument_list|)
 block|{
+annotation|@
+name|Override
 specifier|protected
 name|Object
 name|mutateValue

@@ -103,13 +103,6 @@ name|threadName
 operator|.
 name|startsWith
 argument_list|(
-literal|"metrics-"
-argument_list|)
-operator|||
-name|threadName
-operator|.
-name|startsWith
-argument_list|(
 literal|"cmdDistribExecutor-"
 argument_list|)
 operator|||

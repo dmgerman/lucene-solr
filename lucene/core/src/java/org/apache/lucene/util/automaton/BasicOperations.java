@@ -2675,6 +2675,8 @@ operator|new
 name|TransitionList
 argument_list|()
 decl_stmt|;
+annotation|@
+name|Override
 DECL|method|compareTo
 specifier|public
 name|int

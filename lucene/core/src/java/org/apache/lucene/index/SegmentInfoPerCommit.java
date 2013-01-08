@@ -90,6 +90,13 @@ specifier|private
 name|long
 name|delGen
 decl_stmt|;
+comment|// Normally 1+delGen, unless an exception was hit on last
+comment|// attempt to write:
+DECL|field|nextWriteDelGen
+specifier|private
+name|long
+name|nextWriteDelGen
+decl_stmt|;
 DECL|field|sizeInBytes
 specifier|private
 specifier|volatile
@@ -132,12 +139,6 @@ name|delGen
 operator|=
 name|delGen
 expr_stmt|;
-block|}
-DECL|method|advanceDelGen
-name|void
-name|advanceDelGen
-parameter_list|()
-block|{
 if|if
 condition|(
 name|delGen
@@ -146,21 +147,51 @@ operator|-
 literal|1
 condition|)
 block|{
-name|delGen
+name|nextWriteDelGen
 operator|=
 literal|1
 expr_stmt|;
 block|}
 else|else
 block|{
+name|nextWriteDelGen
+operator|=
 name|delGen
-operator|++
+operator|+
+literal|1
 expr_stmt|;
 block|}
+block|}
+comment|/** Called when we succeed in writing deletes */
+DECL|method|advanceDelGen
+name|void
+name|advanceDelGen
+parameter_list|()
+block|{
+name|delGen
+operator|=
+name|nextWriteDelGen
+expr_stmt|;
+name|nextWriteDelGen
+operator|=
+name|delGen
+operator|+
+literal|1
+expr_stmt|;
 name|sizeInBytes
 operator|=
 operator|-
 literal|1
+expr_stmt|;
+block|}
+comment|/** Called if there was an exception while writing    *  deletes, so that we don't try to write to the same    *  file more than once. */
+DECL|method|advanceNextWriteDelGen
+name|void
+name|advanceNextWriteDelGen
+parameter_list|()
+block|{
+name|nextWriteDelGen
+operator|++
 expr_stmt|;
 block|}
 comment|/** Returns total size in bytes of all files for this    *  segment. */
@@ -360,26 +391,9 @@ name|long
 name|getNextDelGen
 parameter_list|()
 block|{
-if|if
-condition|(
-name|delGen
-operator|==
-operator|-
-literal|1
-condition|)
-block|{
 return|return
-literal|1
+name|nextWriteDelGen
 return|;
-block|}
-else|else
-block|{
-return|return
-name|delGen
-operator|+
-literal|1
-return|;
-block|}
 block|}
 comment|/**    * Returns generation number of the live docs file     * or -1 if there are no deletes yet.    */
 DECL|method|getDelGen
@@ -501,7 +515,9 @@ name|SegmentInfoPerCommit
 name|clone
 parameter_list|()
 block|{
-return|return
+name|SegmentInfoPerCommit
+name|other
+init|=
 operator|new
 name|SegmentInfoPerCommit
 argument_list|(
@@ -511,6 +527,19 @@ name|delCount
 argument_list|,
 name|delGen
 argument_list|)
+decl_stmt|;
+comment|// Not clear that we need to carry over nextWriteDelGen
+comment|// (i.e. do we ever clone after a failed write and
+comment|// before the next successful write?), but just do it to
+comment|// be safe:
+name|other
+operator|.
+name|nextWriteDelGen
+operator|=
+name|nextWriteDelGen
+expr_stmt|;
+return|return
+name|other
 return|;
 block|}
 block|}

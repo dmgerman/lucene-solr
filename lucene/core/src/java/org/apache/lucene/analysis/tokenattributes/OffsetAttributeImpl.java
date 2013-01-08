@@ -64,6 +64,8 @@ specifier|public
 name|OffsetAttributeImpl
 parameter_list|()
 block|{}
+annotation|@
+name|Override
 DECL|method|startOffset
 specifier|public
 name|int
@@ -74,6 +76,8 @@ return|return
 name|startOffset
 return|;
 block|}
+annotation|@
+name|Override
 DECL|method|setOffset
 specifier|public
 name|void
@@ -131,6 +135,8 @@ operator|=
 name|endOffset
 expr_stmt|;
 block|}
+annotation|@
+name|Override
 DECL|method|endOffset
 specifier|public
 name|int

@@ -216,6 +216,8 @@ operator|&
 literal|0xFFL
 return|;
 block|}
+annotation|@
+name|Override
 DECL|method|set
 specifier|public
 name|void
@@ -281,6 +283,8 @@ name|values
 argument_list|)
 return|;
 block|}
+annotation|@
+name|Override
 DECL|method|clear
 specifier|public
 name|void
@@ -434,6 +438,8 @@ return|return
 name|gets
 return|;
 block|}
+annotation|@
+name|Override
 DECL|method|set
 specifier|public
 name|int

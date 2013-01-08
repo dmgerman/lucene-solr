@@ -366,7 +366,7 @@ name|ReturnFields
 name|rf
 init|=
 operator|new
-name|ReturnFields
+name|SolrReturnFields
 argument_list|(
 name|req
 argument_list|(
@@ -465,7 +465,7 @@ expr_stmt|;
 name|rf
 operator|=
 operator|new
-name|ReturnFields
+name|SolrReturnFields
 argument_list|(
 name|req
 argument_list|(
@@ -564,7 +564,7 @@ expr_stmt|;
 name|rf
 operator|=
 operator|new
-name|ReturnFields
+name|SolrReturnFields
 argument_list|(
 name|req
 argument_list|(
@@ -663,7 +663,7 @@ expr_stmt|;
 name|rf
 operator|=
 operator|new
-name|ReturnFields
+name|SolrReturnFields
 argument_list|(
 name|req
 argument_list|(
@@ -772,7 +772,7 @@ name|ReturnFields
 name|rf
 init|=
 operator|new
-name|ReturnFields
+name|SolrReturnFields
 argument_list|(
 name|req
 argument_list|(
@@ -819,7 +819,7 @@ expr_stmt|;
 name|rf
 operator|=
 operator|new
-name|ReturnFields
+name|SolrReturnFields
 argument_list|(
 name|req
 argument_list|(
@@ -867,7 +867,7 @@ comment|// Check that we want wildcards
 name|rf
 operator|=
 operator|new
-name|ReturnFields
+name|SolrReturnFields
 argument_list|(
 name|req
 argument_list|(
@@ -960,7 +960,7 @@ name|ReturnFields
 name|rf
 init|=
 operator|new
-name|ReturnFields
+name|SolrReturnFields
 argument_list|(
 name|req
 argument_list|(
@@ -1077,7 +1077,7 @@ name|ReturnFields
 name|rf
 init|=
 operator|new
-name|ReturnFields
+name|SolrReturnFields
 argument_list|(
 name|req
 argument_list|(
@@ -1163,7 +1163,7 @@ name|ReturnFields
 name|rf
 init|=
 operator|new
-name|ReturnFields
+name|SolrReturnFields
 argument_list|(
 name|req
 argument_list|(
@@ -1215,7 +1215,7 @@ expr_stmt|;
 name|rf
 operator|=
 operator|new
-name|ReturnFields
+name|SolrReturnFields
 argument_list|(
 name|req
 argument_list|(
@@ -1277,7 +1277,7 @@ expr_stmt|;
 name|rf
 operator|=
 operator|new
-name|ReturnFields
+name|SolrReturnFields
 argument_list|(
 name|req
 argument_list|(
@@ -1339,7 +1339,7 @@ expr_stmt|;
 name|rf
 operator|=
 operator|new
-name|ReturnFields
+name|SolrReturnFields
 argument_list|(
 name|req
 argument_list|(
@@ -1401,7 +1401,7 @@ expr_stmt|;
 name|rf
 operator|=
 operator|new
-name|ReturnFields
+name|SolrReturnFields
 argument_list|(
 name|req
 argument_list|(
@@ -1468,7 +1468,7 @@ expr_stmt|;
 name|rf
 operator|=
 operator|new
-name|ReturnFields
+name|SolrReturnFields
 argument_list|(
 name|req
 argument_list|(
@@ -1525,7 +1525,7 @@ name|ReturnFields
 name|rf
 init|=
 operator|new
-name|ReturnFields
+name|SolrReturnFields
 argument_list|(
 name|req
 argument_list|(
@@ -1636,7 +1636,7 @@ expr_stmt|;
 name|rf
 operator|=
 operator|new
-name|ReturnFields
+name|SolrReturnFields
 argument_list|(
 name|req
 argument_list|(
@@ -1788,7 +1788,7 @@ name|ReturnFields
 name|rf
 init|=
 operator|new
-name|ReturnFields
+name|SolrReturnFields
 argument_list|(
 name|req
 argument_list|(
@@ -1847,7 +1847,7 @@ name|ReturnFields
 name|rf
 init|=
 operator|new
-name|ReturnFields
+name|SolrReturnFields
 argument_list|(
 name|req
 argument_list|(
@@ -1896,7 +1896,7 @@ expr_stmt|;
 name|rf
 operator|=
 operator|new
-name|ReturnFields
+name|SolrReturnFields
 argument_list|(
 name|req
 argument_list|(
@@ -1955,7 +1955,7 @@ expr_stmt|;
 name|rf
 operator|=
 operator|new
-name|ReturnFields
+name|SolrReturnFields
 argument_list|(
 name|req
 argument_list|(
@@ -2024,7 +2024,7 @@ name|ReturnFields
 name|rf
 init|=
 operator|new
-name|ReturnFields
+name|SolrReturnFields
 argument_list|(
 name|req
 argument_list|(
@@ -2220,7 +2220,7 @@ name|ReturnFields
 name|rf
 init|=
 operator|new
-name|ReturnFields
+name|SolrReturnFields
 argument_list|(
 name|req
 argument_list|(

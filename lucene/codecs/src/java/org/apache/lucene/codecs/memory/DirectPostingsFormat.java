@@ -3386,6 +3386,8 @@ operator|-
 literal|1
 expr_stmt|;
 block|}
+annotation|@
+name|Override
 DECL|method|getComparator
 specifier|public
 name|Comparator
@@ -5208,6 +5210,8 @@ comment|//   System.out.println("  loop end; return termOrd=" + termOrd + " stat
 comment|// }
 block|}
 block|}
+annotation|@
+name|Override
 DECL|method|getComparator
 specifier|public
 name|Comparator

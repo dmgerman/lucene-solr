@@ -2291,6 +2291,8 @@ block|}
 block|}
 block|}
 comment|/**    * Close this writer.    * @see IndexWriter#close()    */
+annotation|@
+name|Override
 DECL|method|close
 specifier|public
 name|void

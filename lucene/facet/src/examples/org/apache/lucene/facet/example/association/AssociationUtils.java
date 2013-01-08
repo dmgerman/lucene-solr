@@ -26,11 +26,9 @@ name|lucene
 operator|.
 name|facet
 operator|.
-name|enhancements
+name|associations
 operator|.
-name|association
-operator|.
-name|AssociationEnhancement
+name|CategoryAssociation
 import|;
 end_import
 
@@ -44,11 +42,9 @@ name|lucene
 operator|.
 name|facet
 operator|.
-name|enhancements
+name|associations
 operator|.
-name|association
-operator|.
-name|AssociationFloatProperty
+name|CategoryFloatAssociation
 import|;
 end_import
 
@@ -62,47 +58,9 @@ name|lucene
 operator|.
 name|facet
 operator|.
-name|enhancements
+name|associations
 operator|.
-name|association
-operator|.
-name|AssociationIntProperty
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|facet
-operator|.
-name|enhancements
-operator|.
-name|association
-operator|.
-name|AssociationProperty
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|facet
-operator|.
-name|enhancements
-operator|.
-name|params
-operator|.
-name|DefaultEnhancementsIndexingParams
+name|CategoryIntAssociation
 import|;
 end_import
 
@@ -204,7 +162,7 @@ decl_stmt|;
 DECL|field|associations
 specifier|public
 specifier|static
-name|AssociationProperty
+name|CategoryAssociation
 index|[]
 index|[]
 name|associations
@@ -214,14 +172,14 @@ comment|// Doc #1 associations
 block|{
 comment|/* 3 occurrences for tag 'lucene' */
 operator|new
-name|AssociationIntProperty
+name|CategoryIntAssociation
 argument_list|(
 literal|3
 argument_list|)
 block|,
 comment|/* 87% confidence level of genre 'computing' */
 operator|new
-name|AssociationFloatProperty
+name|CategoryFloatAssociation
 argument_list|(
 literal|0.87f
 argument_list|)
@@ -231,49 +189,33 @@ comment|// Doc #2 associations
 block|{
 comment|/* 1 occurrence for tag 'lucene' */
 operator|new
-name|AssociationIntProperty
+name|CategoryIntAssociation
 argument_list|(
 literal|1
 argument_list|)
 block|,
 comment|/* 2 occurrences for tag 'solr' */
 operator|new
-name|AssociationIntProperty
+name|CategoryIntAssociation
 argument_list|(
 literal|2
 argument_list|)
 block|,
 comment|/* 75% confidence level of genre 'computing' */
 operator|new
-name|AssociationFloatProperty
+name|CategoryFloatAssociation
 argument_list|(
 literal|0.75f
 argument_list|)
 block|,
 comment|/* 34% confidence level of genre 'software' */
 operator|new
-name|AssociationFloatProperty
+name|CategoryFloatAssociation
 argument_list|(
 literal|0.34f
 argument_list|)
 block|,     }
 block|}
-decl_stmt|;
-comment|/**    * Indexing Params: the indexing params to use when dealing with    * associations.    */
-DECL|field|assocIndexingParams
-specifier|public
-specifier|static
-specifier|final
-name|DefaultEnhancementsIndexingParams
-name|assocIndexingParams
-init|=
-operator|new
-name|DefaultEnhancementsIndexingParams
-argument_list|(
-operator|new
-name|AssociationEnhancement
-argument_list|()
-argument_list|)
 decl_stmt|;
 block|}
 end_class

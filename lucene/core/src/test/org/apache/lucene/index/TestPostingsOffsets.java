@@ -415,6 +415,8 @@ DECL|field|iwc
 name|IndexWriterConfig
 name|iwc
 decl_stmt|;
+annotation|@
+name|Override
 DECL|method|setUp
 specifier|public
 name|void

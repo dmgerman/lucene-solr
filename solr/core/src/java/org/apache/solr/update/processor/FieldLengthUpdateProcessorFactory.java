@@ -77,7 +77,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Replaces any CharSequence values found in fields matching the specified   * conditions with the lengths of those CharSequences (as an Integer).  *<p>  * By default, this processor matches no fields.  *</p>  *<p>For example, with the configuration listed below any documents   * containing  String values (such as "<code>abcdef</code>" or   * "<code>xyz</code>") in a field declared in the schema using   *<code>TrieIntField</code> or<code>TrieLongField</code>   * would have those Strings replaced with the length of those fields as an   * Integer   * (ie:<code>6</code> and<code>3</code> respectively)  *</p>  *<pre class="prettyprint">  *&lt;processor class="solr.FieldLengthUpdateProcessorFactory"&gt;  *&lt;arr name="typeClass"&gt;  *&lt;str&gt;solr.TrieIntField&lt;/str&gt;  *&lt;str&gt;solr.TrieLongField&lt;/str&gt;  *&lt;/arr&gt;  *&lt;/processor&gt;  *</pre>  */
+comment|/**  * Replaces any CharSequence values found in fields matching the specified   * conditions with the lengths of those CharSequences (as an Integer).  *<p>  * By default, this processor matches no fields.  *</p>  *<p>For example, with the configuration listed below any documents   * containing  String values (such as "<code>abcdef</code>" or   * "<code>xyz</code>") in a field declared in the schema using   *<code>TrieIntField</code> or<code>TrieLongField</code>   * would have those Strings replaced with the length of those fields as an   * Integer   * (ie:<code>6</code> and<code>3</code> respectively)  *</p>  *<pre class="prettyprint">  *&lt;processor class="solr.FieldLengthUpdateProcessorFactory"&gt;  *&lt;arr name="typeClass"&gt;  *&lt;str&gt;solr.TrieIntField&lt;/str&gt;  *&lt;str&gt;solr.TrieLongField&lt;/str&gt;  *&lt;/arr&gt;  *&lt;/processor&gt;</pre>  */
 end_comment
 
 begin_class
@@ -161,6 +161,8 @@ argument_list|,
 name|next
 argument_list|)
 block|{
+annotation|@
+name|Override
 specifier|protected
 name|Object
 name|mutateValue

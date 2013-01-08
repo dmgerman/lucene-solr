@@ -163,6 +163,8 @@ argument_list|>
 name|mockParams
 decl_stmt|;
 annotation|@
+name|Override
+annotation|@
 name|Before
 DECL|method|setUp
 specifier|public

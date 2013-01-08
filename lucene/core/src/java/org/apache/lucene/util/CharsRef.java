@@ -419,6 +419,8 @@ return|;
 block|}
 block|}
 comment|/** Signed int order comparison */
+annotation|@
+name|Override
 DECL|method|compareTo
 specifier|public
 name|int
@@ -784,6 +786,8 @@ name|length
 argument_list|)
 return|;
 block|}
+annotation|@
+name|Override
 DECL|method|length
 specifier|public
 name|int
@@ -794,6 +798,8 @@ return|return
 name|length
 return|;
 block|}
+annotation|@
+name|Override
 DECL|method|charAt
 specifier|public
 name|char
@@ -830,6 +836,8 @@ name|index
 index|]
 return|;
 block|}
+annotation|@
+name|Override
 DECL|method|subSequence
 specifier|public
 name|CharSequence
@@ -935,6 +943,8 @@ name|UTF16SortedAsUTF8Comparator
 parameter_list|()
 block|{}
 empty_stmt|;
+annotation|@
+name|Override
 DECL|method|compare
 specifier|public
 name|int

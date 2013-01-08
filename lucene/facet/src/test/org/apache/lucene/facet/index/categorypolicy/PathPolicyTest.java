@@ -128,9 +128,9 @@ comment|// check path policy
 name|CategoryPath
 name|cp
 init|=
-operator|new
 name|CategoryPath
-argument_list|()
+operator|.
+name|EMPTY
 decl_stmt|;
 name|PathPolicy
 name|pathPolicy
@@ -508,9 +508,9 @@ name|pathPolicy
 operator|.
 name|shouldAdd
 argument_list|(
-operator|new
 name|CategoryPath
-argument_list|()
+operator|.
+name|EMPTY
 argument_list|)
 argument_list|)
 expr_stmt|;

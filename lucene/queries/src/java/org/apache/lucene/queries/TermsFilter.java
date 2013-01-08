@@ -1002,7 +1002,9 @@ name|acceptDocs
 argument_list|,
 name|docs
 argument_list|,
-literal|0
+name|DocsEnum
+operator|.
+name|FLAG_NONE
 argument_list|)
 expr_stmt|;
 comment|// no freq since we don't need them

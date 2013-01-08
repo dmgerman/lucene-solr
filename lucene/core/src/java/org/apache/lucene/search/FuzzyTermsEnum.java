@@ -2082,6 +2082,8 @@ name|CompiledAutomaton
 argument_list|>
 argument_list|()
 decl_stmt|;
+annotation|@
+name|Override
 DECL|method|automata
 specifier|public
 name|List

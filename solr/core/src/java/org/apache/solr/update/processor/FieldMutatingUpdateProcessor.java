@@ -593,6 +593,8 @@ operator|new
 name|FieldNameSelector
 argument_list|()
 block|{
+annotation|@
+name|Override
 specifier|public
 name|boolean
 name|shouldMutate
@@ -620,6 +622,8 @@ operator|new
 name|FieldNameSelector
 argument_list|()
 block|{
+annotation|@
+name|Override
 specifier|public
 name|boolean
 name|shouldMutate
@@ -685,6 +689,8 @@ operator|new
 name|FieldNameSelector
 argument_list|()
 block|{
+annotation|@
+name|Override
 specifier|public
 name|boolean
 name|shouldMutate
@@ -712,6 +718,8 @@ operator|new
 name|FieldNameSelector
 argument_list|()
 block|{
+annotation|@
+name|Override
 specifier|public
 name|boolean
 name|shouldMutate
@@ -1015,6 +1023,8 @@ operator|=
 name|regexes
 expr_stmt|;
 block|}
+annotation|@
+name|Override
 DECL|method|shouldMutate
 specifier|public
 name|boolean

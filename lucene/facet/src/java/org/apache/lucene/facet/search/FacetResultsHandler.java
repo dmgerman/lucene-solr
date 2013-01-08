@@ -286,8 +286,7 @@ name|partitionSize
 init|=
 name|facetArrays
 operator|.
-name|getArraysLength
-argument_list|()
+name|arrayLength
 decl_stmt|;
 return|return
 name|ordinal

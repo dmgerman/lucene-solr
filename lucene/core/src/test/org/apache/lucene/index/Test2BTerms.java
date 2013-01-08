@@ -479,6 +479,8 @@ name|AttributeImpl
 implements|implements
 name|TermToBytesRefAttribute
 block|{
+annotation|@
+name|Override
 DECL|method|fillBytesRef
 specifier|public
 name|int
@@ -492,6 +494,8 @@ name|hashCode
 argument_list|()
 return|;
 block|}
+annotation|@
+name|Override
 DECL|method|getBytesRef
 specifier|public
 name|BytesRef

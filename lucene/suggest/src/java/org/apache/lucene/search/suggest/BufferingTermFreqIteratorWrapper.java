@@ -247,6 +247,8 @@ argument_list|()
 expr_stmt|;
 block|}
 block|}
+annotation|@
+name|Override
 DECL|method|weight
 specifier|public
 name|long

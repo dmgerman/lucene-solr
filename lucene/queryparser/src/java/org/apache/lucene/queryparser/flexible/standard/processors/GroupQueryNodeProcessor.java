@@ -390,6 +390,8 @@ parameter_list|()
 block|{
 comment|// empty constructor
 block|}
+annotation|@
+name|Override
 DECL|method|process
 specifier|public
 name|QueryNode
@@ -995,6 +997,8 @@ literal|false
 expr_stmt|;
 block|}
 block|}
+annotation|@
+name|Override
 DECL|method|getQueryConfigHandler
 specifier|public
 name|QueryConfigHandler
@@ -1007,6 +1011,8 @@ operator|.
 name|queryConfig
 return|;
 block|}
+annotation|@
+name|Override
 DECL|method|setQueryConfigHandler
 specifier|public
 name|void

@@ -543,6 +543,8 @@ name|BLOOM_CODEC_NAME
 argument_list|)
 expr_stmt|;
 block|}
+annotation|@
+name|Override
 DECL|method|fieldsConsumer
 specifier|public
 name|FieldsConsumer
@@ -594,6 +596,8 @@ name|delegatePostingsFormat
 argument_list|)
 return|;
 block|}
+annotation|@
+name|Override
 DECL|method|fieldsProducer
 specifier|public
 name|FieldsProducer
@@ -837,6 +841,8 @@ expr_stmt|;
 block|}
 block|}
 block|}
+annotation|@
+name|Override
 DECL|method|iterator
 specifier|public
 name|Iterator
@@ -853,6 +859,8 @@ name|iterator
 argument_list|()
 return|;
 block|}
+annotation|@
+name|Override
 DECL|method|close
 specifier|public
 name|void
@@ -867,6 +875,8 @@ name|close
 argument_list|()
 expr_stmt|;
 block|}
+annotation|@
+name|Override
 DECL|method|terms
 specifier|public
 name|Terms
@@ -938,6 +948,8 @@ argument_list|)
 return|;
 block|}
 block|}
+annotation|@
+name|Override
 DECL|method|size
 specifier|public
 name|int
@@ -2022,6 +2034,8 @@ operator|=
 name|bloomFilter
 expr_stmt|;
 block|}
+annotation|@
+name|Override
 DECL|method|startTerm
 specifier|public
 name|PostingsConsumer
@@ -2042,6 +2056,8 @@ name|text
 argument_list|)
 return|;
 block|}
+annotation|@
+name|Override
 DECL|method|finishTerm
 specifier|public
 name|void
@@ -2084,6 +2100,8 @@ name|stats
 argument_list|)
 expr_stmt|;
 block|}
+annotation|@
+name|Override
 DECL|method|finish
 specifier|public
 name|void
@@ -2113,6 +2131,8 @@ name|docCount
 argument_list|)
 expr_stmt|;
 block|}
+annotation|@
+name|Override
 DECL|method|getComparator
 specifier|public
 name|Comparator

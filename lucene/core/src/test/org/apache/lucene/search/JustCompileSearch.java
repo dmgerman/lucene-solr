@@ -322,6 +322,8 @@ name|FieldCache
 operator|.
 name|LongParser
 block|{
+annotation|@
+name|Override
 DECL|method|parseLong
 specifier|public
 name|long
@@ -350,6 +352,8 @@ name|FieldCache
 operator|.
 name|DoubleParser
 block|{
+annotation|@
+name|Override
 DECL|method|parseDouble
 specifier|public
 name|double

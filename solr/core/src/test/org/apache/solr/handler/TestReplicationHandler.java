@@ -793,6 +793,8 @@ expr_stmt|;
 block|}
 block|}
 annotation|@
+name|Override
+annotation|@
 name|After
 DECL|method|tearDown
 specifier|public
@@ -926,6 +928,20 @@ argument_list|(
 name|url
 argument_list|)
 decl_stmt|;
+name|s
+operator|.
+name|setConnectionTimeout
+argument_list|(
+literal|15000
+argument_list|)
+expr_stmt|;
+name|s
+operator|.
+name|setSoTimeout
+argument_list|(
+literal|60000
+argument_list|)
+expr_stmt|;
 name|s
 operator|.
 name|setDefaultMaxConnectionsPerHost
@@ -1169,7 +1185,7 @@ name|expectedDocCount
 operator|&&
 name|timeSlept
 operator|<
-literal|30000
+literal|45000
 condition|)
 do|;
 return|return
@@ -5366,6 +5382,8 @@ operator|new
 name|FilenameFilter
 argument_list|()
 block|{
+annotation|@
+name|Override
 specifier|public
 name|boolean
 name|accept

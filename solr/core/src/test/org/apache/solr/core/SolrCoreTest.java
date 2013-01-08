@@ -1086,6 +1086,8 @@ name|xint
 parameter_list|)
 block|{           }
 block|}
+annotation|@
+name|Override
 specifier|public
 name|Integer
 name|call
@@ -1398,10 +1400,7 @@ name|get
 argument_list|(
 name|SpellCheckComponent
 operator|.
-name|class
-operator|.
-name|getName
-argument_list|()
+name|COMPONENT_NAME
 argument_list|)
 decl_stmt|;
 name|assertNotNull
@@ -1420,10 +1419,7 @@ name|get
 argument_list|(
 name|QueryComponent
 operator|.
-name|class
-operator|.
-name|getName
-argument_list|()
+name|COMPONENT_NAME
 argument_list|)
 expr_stmt|;
 name|assertNotNull
@@ -1469,6 +1465,8 @@ name|closed
 init|=
 literal|false
 decl_stmt|;
+annotation|@
+name|Override
 DECL|method|inform
 specifier|public
 name|void

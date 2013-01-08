@@ -523,6 +523,8 @@ name|sb
 return|;
 block|}
 comment|/**      * Converts the contents of the buffer into a StringBuffer.      * This method involves copying the new data once!      */
+annotation|@
+name|Override
 DECL|method|toString
 specifier|public
 name|String

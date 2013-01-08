@@ -2687,6 +2687,8 @@ block|{
 name|int
 name|docBase
 decl_stmt|;
+annotation|@
+name|Override
 specifier|public
 name|void
 name|collect
@@ -2714,6 +2716,8 @@ name|doc
 argument_list|)
 expr_stmt|;
 block|}
+annotation|@
+name|Override
 specifier|public
 name|void
 name|setNextReader
@@ -2736,6 +2740,8 @@ name|context
 argument_list|)
 expr_stmt|;
 block|}
+annotation|@
+name|Override
 specifier|public
 name|void
 name|setScorer
@@ -2754,6 +2760,8 @@ name|scorer
 argument_list|)
 expr_stmt|;
 block|}
+annotation|@
+name|Override
 specifier|public
 name|boolean
 name|acceptsDocsOutOfOrder
@@ -4064,6 +4072,8 @@ operator|.
 name|TermOrdsIterator
 name|reuse
 decl_stmt|;
+annotation|@
+name|Override
 specifier|public
 name|void
 name|collect
@@ -4236,6 +4246,8 @@ name|length
 condition|)
 do|;
 block|}
+annotation|@
+name|Override
 specifier|public
 name|void
 name|setNextReader
@@ -4279,6 +4291,8 @@ operator|=
 literal|null
 expr_stmt|;
 block|}
+annotation|@
+name|Override
 specifier|public
 name|void
 name|setScorer
@@ -4294,6 +4308,8 @@ operator|=
 name|scorer
 expr_stmt|;
 block|}
+annotation|@
+name|Override
 specifier|public
 name|boolean
 name|acceptsDocsOutOfOrder
@@ -4346,6 +4362,8 @@ operator|new
 name|BytesRef
 argument_list|()
 decl_stmt|;
+annotation|@
+name|Override
 specifier|public
 name|void
 name|collect
@@ -4430,6 +4448,8 @@ argument_list|()
 argument_list|)
 expr_stmt|;
 block|}
+annotation|@
+name|Override
 specifier|public
 name|void
 name|setNextReader
@@ -4457,6 +4477,8 @@ name|fromField
 argument_list|)
 expr_stmt|;
 block|}
+annotation|@
+name|Override
 specifier|public
 name|void
 name|setScorer
@@ -4472,6 +4494,8 @@ operator|=
 name|scorer
 expr_stmt|;
 block|}
+annotation|@
+name|Override
 specifier|public
 name|boolean
 name|acceptsDocsOutOfOrder
@@ -4623,7 +4647,9 @@ argument_list|()
 argument_list|,
 name|docsEnum
 argument_list|,
-literal|0
+name|DocsEnum
+operator|.
+name|FLAG_NONE
 argument_list|)
 expr_stmt|;
 name|JoinScore
@@ -4720,6 +4746,8 @@ specifier|private
 name|int
 name|docBase
 decl_stmt|;
+annotation|@
+name|Override
 specifier|public
 name|void
 name|collect
@@ -4881,6 +4909,8 @@ name|length
 condition|)
 do|;
 block|}
+annotation|@
+name|Override
 specifier|public
 name|void
 name|setNextReader
@@ -4930,6 +4960,8 @@ operator|=
 literal|null
 expr_stmt|;
 block|}
+annotation|@
+name|Override
 specifier|public
 name|boolean
 name|acceptsDocsOutOfOrder
@@ -4939,6 +4971,8 @@ return|return
 literal|false
 return|;
 block|}
+annotation|@
+name|Override
 specifier|public
 name|void
 name|setScorer
@@ -4983,6 +5017,8 @@ operator|new
 name|BytesRef
 argument_list|()
 decl_stmt|;
+annotation|@
+name|Override
 specifier|public
 name|void
 name|collect
@@ -5031,6 +5067,8 @@ name|joinScore
 argument_list|)
 expr_stmt|;
 block|}
+annotation|@
+name|Override
 specifier|public
 name|void
 name|setNextReader
@@ -5064,6 +5102,8 @@ operator|.
 name|docBase
 expr_stmt|;
 block|}
+annotation|@
+name|Override
 specifier|public
 name|boolean
 name|acceptsDocsOutOfOrder
@@ -5073,6 +5113,8 @@ return|return
 literal|false
 return|;
 block|}
+annotation|@
+name|Override
 specifier|public
 name|void
 name|setScorer
@@ -5226,6 +5268,8 @@ argument_list|>
 argument_list|>
 argument_list|()
 block|{
+annotation|@
+name|Override
 specifier|public
 name|int
 name|compare

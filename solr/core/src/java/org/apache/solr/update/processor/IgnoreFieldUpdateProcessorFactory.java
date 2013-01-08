@@ -119,7 +119,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Ignores&amp; removes fields matching the specified   * conditions from any document being added to the index.  *  *<p>  * By default, this processor ignores any field name which does not   * exist according to the schema    *</p>  *   *<p>  * For example, in the configuration below, any field name which would cause   * an error because it does not exist, or match a dynamicField, in the   * schema.xml would be silently removed from any added documents...  *</p>  *  *<pre class="prettyprint">  *&lt;updateRequestProcessorChain&gt;  *&lt;processor class="solr.IgnoreFieldUpdateProcessorFactory" /&gt;  *&lt;/updateRequestProcessorChain&gt;  *</pre>  *  *<p>  * In this second example, any field name ending in "_raw" found in a   * document being added would be removed...  *</p>  *<pre class="prettyprint">  *&lt;updateRequestProcessorChain&gt;  *&lt;processor class="solr.IgnoreFieldUpdateProcessorFactory"&gt;  *&lt;str name="fieldRegex"&gt;.*_raw&lt;/str&gt;  *&lt;/processor&gt;  *&lt;/updateRequestProcessorChain&gt;  *</pre>  */
+comment|/**  * Ignores&amp; removes fields matching the specified   * conditions from any document being added to the index.  *  *<p>  * By default, this processor ignores any field name which does not   * exist according to the schema    *</p>  *   *<p>  * For example, in the configuration below, any field name which would cause   * an error because it does not exist, or match a dynamicField, in the   * schema.xml would be silently removed from any added documents...  *</p>  *  *<pre class="prettyprint">  *&lt;processor class="solr.IgnoreFieldUpdateProcessorFactory" /&gt;</pre>  *  *<p>  * In this second example, any field name ending in "_raw" found in a   * document being added would be removed...  *</p>  *<pre class="prettyprint">  *&lt;processor class="solr.IgnoreFieldUpdateProcessorFactory"&gt;  *&lt;str name="fieldRegex"&gt;.*_raw&lt;/str&gt;  *&lt;/processor&gt;</pre>  */
 end_comment
 
 begin_class
@@ -158,6 +158,8 @@ argument_list|,
 name|next
 argument_list|)
 block|{
+annotation|@
+name|Override
 specifier|protected
 name|SolrInputField
 name|mutate
@@ -204,6 +206,8 @@ operator|.
 name|FieldNameSelector
 argument_list|()
 block|{
+annotation|@
+name|Override
 specifier|public
 name|boolean
 name|shouldMutate

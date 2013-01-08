@@ -103,10 +103,13 @@ name|Long
 argument_list|(
 name|name
 operator|.
-name|longHashCode
+name|subpath
 argument_list|(
 name|prefixLen
 argument_list|)
+operator|.
+name|longHashCode
+argument_list|()
 argument_list|)
 return|;
 block|}
