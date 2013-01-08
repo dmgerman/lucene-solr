@@ -508,6 +508,13 @@ name|ReplicationHandler
 name|replicationHandler
 parameter_list|)
 block|{
+name|LOG
+operator|.
+name|info
+argument_list|(
+literal|"Creating backup snapshot..."
+argument_list|)
+expr_stmt|;
 name|NamedList
 argument_list|<
 name|Object
@@ -675,7 +682,7 @@ name|get
 argument_list|(
 name|solrCore
 operator|.
-name|getIndexDir
+name|getNewIndexDir
 argument_list|()
 argument_list|,
 name|solrCore
