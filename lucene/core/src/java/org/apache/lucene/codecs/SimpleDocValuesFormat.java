@@ -118,7 +118,6 @@ name|String
 name|name
 decl_stmt|;
 comment|/**    * Creates a new docvalues format.    *<p>    * The provided name will be written into the index segment in some configurations    * (such as when using {@code PerFieldDocValuesFormat}): in such configurations,    * for the segment to be read this class should be registered with Java's    * SPI mechanism (registered in META-INF/ of your jar file, etc).    * @param name must be all ascii alphanumeric, and less than 128 characters in length.    */
-comment|// nocommit: @code -> @link
 DECL|method|SimpleDocValuesFormat
 specifier|protected
 name|SimpleDocValuesFormat
@@ -153,7 +152,6 @@ parameter_list|)
 throws|throws
 name|IOException
 function_decl|;
-comment|// nocommit do this:
 DECL|method|fieldsProducer
 specifier|public
 specifier|abstract

@@ -4135,10 +4135,6 @@ name|close
 argument_list|()
 expr_stmt|;
 block|}
-comment|// nocommit tests should fail if a codec makes the [easy]
-comment|// mistake of NOT opening all files when SimpleDVProducer
-comment|// is created ... frist cut of Lucene41 had this bug but
-comment|// no tests failed!?
 DECL|method|testDemoSortedBytes
 specifier|public
 name|void

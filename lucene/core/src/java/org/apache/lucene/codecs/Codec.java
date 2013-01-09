@@ -170,15 +170,11 @@ function_decl|;
 comment|/** Encodes/decodes streaming docvalues */
 DECL|method|simpleDocValuesFormat
 specifier|public
+specifier|abstract
 name|SimpleDocValuesFormat
 name|simpleDocValuesFormat
 parameter_list|()
-block|{
-comment|// nocommit make this abstract
-return|return
-literal|null
-return|;
-block|}
+function_decl|;
 comment|/** Encodes/decodes stored fields */
 DECL|method|storedFieldsFormat
 specifier|public
