@@ -882,9 +882,9 @@ name|offset
 operator|+
 name|start
 argument_list|,
-name|offset
-operator|+
 name|end
+operator|-
+name|start
 argument_list|)
 return|;
 block|}
