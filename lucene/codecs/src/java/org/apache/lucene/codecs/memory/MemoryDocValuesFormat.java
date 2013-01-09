@@ -224,6 +224,10 @@ begin_comment
 comment|/** Indexes doc values to disk and loads them in RAM at  *  search time. */
 end_comment
 
+begin_comment
+comment|// nocommit: nuke this wrapper and just make a nice impl (e.g. FST for sortedbytes)
+end_comment
+
 begin_class
 DECL|class|MemoryDocValuesFormat
 specifier|public
@@ -267,6 +271,8 @@ literal|"dat"
 argument_list|)
 return|;
 block|}
+comment|// nocommit the get's of this thing need to use a map. its returning new ram instances
+comment|// per-thread!
 annotation|@
 name|Override
 DECL|method|fieldsProducer
@@ -932,18 +938,6 @@ name|maxDoc
 return|;
 block|}
 block|}
-return|;
-block|}
-annotation|@
-name|Override
-specifier|public
-name|SimpleDVProducer
-name|clone
-parameter_list|()
-block|{
-comment|// We are already thread-safe:
-return|return
-name|this
 return|;
 block|}
 annotation|@
