@@ -383,24 +383,14 @@ comment|/**  * A very simple demo used in the API documentation (src/java/overvi
 end_comment
 
 begin_comment
-comment|// nocommit don't suppress any:
+comment|// nocommit
 end_comment
 
 begin_class
 annotation|@
 name|SuppressCodecs
 argument_list|(
-block|{
-literal|"Asserting"
-block|,
-literal|"Direct"
-block|,
-literal|"MockRandom"
-block|,
 literal|"Lucene40"
-block|,
-literal|"Compressing"
-block|}
 argument_list|)
 DECL|class|TestDemoDocValue
 specifier|public
@@ -3832,7 +3822,6 @@ operator|.
 name|close
 argument_list|()
 expr_stmt|;
-comment|//nocommit fails with Lucene41 Codec since "dv" is created with var len but is in fact fixed len
 block|}
 DECL|method|testBytesTwoDocumentsMerged
 specifier|public
@@ -5776,7 +5765,6 @@ name|close
 argument_list|()
 expr_stmt|;
 block|}
-comment|// nocommit: fix e.g. Lucene41's impl to actually handle suffixes correctly
 comment|// nocommit: if we are going to pass down suffixes to segmentread/writestate,
 comment|// then they should be respected by *all* codec apis!
 DECL|method|testDemoTwoFieldsTwoFormats
