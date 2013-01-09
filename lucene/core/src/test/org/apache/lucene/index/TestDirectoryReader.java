@@ -4198,19 +4198,6 @@ literal|null
 condition|)
 block|{
 comment|// todo: generalize this (like TestDuelingCodecs assert)
-name|assertEquals
-argument_list|(
-name|norms1
-operator|.
-name|size
-argument_list|()
-argument_list|,
-name|norms2
-operator|.
-name|size
-argument_list|()
-argument_list|)
-expr_stmt|;
 for|for
 control|(
 name|int
@@ -4220,9 +4207,9 @@ literal|0
 init|;
 name|i
 operator|<
-name|norms1
+name|index1
 operator|.
-name|size
+name|maxDoc
 argument_list|()
 condition|;
 name|i

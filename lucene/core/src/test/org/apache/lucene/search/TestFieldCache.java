@@ -1961,27 +1961,6 @@ literal|"theRandomUnicodeString"
 argument_list|)
 argument_list|)
 expr_stmt|;
-name|assertTrue
-argument_list|(
-literal|"doubles Size: "
-operator|+
-name|termsIndex
-operator|.
-name|size
-argument_list|()
-operator|+
-literal|" is not: "
-operator|+
-name|NUM_DOCS
-argument_list|,
-name|termsIndex
-operator|.
-name|size
-argument_list|()
-operator|==
-name|NUM_DOCS
-argument_list|)
-expr_stmt|;
 specifier|final
 name|BytesRef
 name|br
@@ -2281,27 +2260,6 @@ name|reader
 argument_list|,
 literal|"theRandomUnicodeString"
 argument_list|)
-argument_list|)
-expr_stmt|;
-name|assertTrue
-argument_list|(
-literal|"doubles Size: "
-operator|+
-name|terms
-operator|.
-name|size
-argument_list|()
-operator|+
-literal|" is not: "
-operator|+
-name|NUM_DOCS
-argument_list|,
-name|terms
-operator|.
-name|size
-argument_list|()
-operator|==
-name|NUM_DOCS
 argument_list|)
 expr_stmt|;
 for|for

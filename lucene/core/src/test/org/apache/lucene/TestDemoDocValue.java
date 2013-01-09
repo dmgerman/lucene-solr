@@ -4899,16 +4899,6 @@ argument_list|)
 decl_stmt|;
 name|assertEquals
 argument_list|(
-literal|3
-argument_list|,
-name|dv
-operator|.
-name|size
-argument_list|()
-argument_list|)
-expr_stmt|;
-name|assertEquals
-argument_list|(
 literal|2
 argument_list|,
 name|dv
