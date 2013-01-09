@@ -1340,10 +1340,9 @@ parameter_list|)
 throws|throws
 name|IOException
 block|{
-comment|// nocommit: ugly hack to nuke size()
 specifier|final
-name|BinaryEntry
-name|binaryEntry
+name|int
+name|valueCount
 init|=
 name|binaries
 operator|.
@@ -1353,6 +1352,8 @@ name|field
 operator|.
 name|number
 argument_list|)
+operator|.
+name|count
 decl_stmt|;
 specifier|final
 name|BinaryDocValues
@@ -1439,9 +1440,7 @@ name|getValueCount
 parameter_list|()
 block|{
 return|return
-name|binaryEntry
-operator|.
-name|count
+name|valueCount
 return|;
 block|}
 block|}
