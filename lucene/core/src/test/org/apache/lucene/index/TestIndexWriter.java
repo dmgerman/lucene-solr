@@ -7928,6 +7928,7 @@ throw|;
 block|}
 block|}
 block|}
+comment|//nocommit: make this tests DV2.0
 DECL|method|testThreadInterruptDeadlock
 specifier|public
 name|void

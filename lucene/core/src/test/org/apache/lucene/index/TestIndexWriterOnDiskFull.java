@@ -258,6 +258,10 @@ begin_comment
 comment|/**  * Tests for IndexWriter when the disk runs out of space  */
 end_comment
 
+begin_comment
+comment|//nocommit: make sure disk full etc tests here test DV2.0
+end_comment
+
 begin_class
 DECL|class|TestIndexWriterOnDiskFull
 specifier|public

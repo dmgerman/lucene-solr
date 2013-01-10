@@ -352,6 +352,10 @@ begin_comment
 comment|/**  * MultiThreaded IndexWriter tests  */
 end_comment
 
+begin_comment
+comment|// nocommit: make sure disk full etc tests here test DV2.0
+end_comment
+
 begin_class
 annotation|@
 name|Slow
