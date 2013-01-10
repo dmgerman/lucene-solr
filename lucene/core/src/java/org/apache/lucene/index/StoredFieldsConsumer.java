@@ -413,6 +413,11 @@ expr_stmt|;
 name|lastDocID
 operator|++
 expr_stmt|;
+name|fieldsWriter
+operator|.
+name|finishDocument
+argument_list|()
+expr_stmt|;
 block|}
 block|}
 DECL|method|finishDocument
@@ -495,6 +500,11 @@ index|]
 argument_list|)
 expr_stmt|;
 block|}
+name|fieldsWriter
+operator|.
+name|finishDocument
+argument_list|()
+expr_stmt|;
 name|lastDocID
 operator|++
 expr_stmt|;
