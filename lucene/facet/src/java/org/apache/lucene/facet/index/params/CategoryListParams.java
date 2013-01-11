@@ -92,7 +92,7 @@ name|facet
 operator|.
 name|search
 operator|.
-name|PayloadIntDecodingIterator
+name|PayloadCategoryListIteraor
 import|;
 end_import
 
@@ -478,7 +478,7 @@ argument_list|)
 decl_stmt|;
 return|return
 operator|new
-name|PayloadIntDecodingIterator
+name|PayloadCategoryListIteraor
 argument_list|(
 name|reader
 argument_list|,

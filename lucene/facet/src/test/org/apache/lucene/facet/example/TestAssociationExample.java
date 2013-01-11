@@ -68,7 +68,7 @@ name|example
 operator|.
 name|association
 operator|.
-name|AssociationMain
+name|CategoryAssociationsMain
 import|;
 end_import
 
@@ -147,7 +147,7 @@ block|{
 name|assertExampleResult
 argument_list|(
 operator|new
-name|AssociationMain
+name|CategoryAssociationsMain
 argument_list|()
 operator|.
 name|runSumIntAssociationSample
@@ -159,7 +159,7 @@ expr_stmt|;
 name|assertExampleResult
 argument_list|(
 operator|new
-name|AssociationMain
+name|CategoryAssociationsMain
 argument_list|()
 operator|.
 name|runSumFloatAssociationSample

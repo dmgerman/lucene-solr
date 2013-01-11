@@ -16,11 +16,29 @@ end_package
 
 begin_import
 import|import
-name|java
+name|org
 operator|.
-name|io
+name|apache
 operator|.
-name|IOException
+name|lucene
+operator|.
+name|util
+operator|.
+name|BytesRef
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|util
+operator|.
+name|IntsRef
 import|;
 end_import
 
@@ -29,7 +47,7 @@ comment|/*  * Licensed to the Apache Software Foundation (ASF) under one or more
 end_comment
 
 begin_comment
-comment|/**  * A {@link ChunksIntEncoder} which encodes data in chunks of 8. Every group starts with a single  * byte (called indicator) which represents 8 - 1 bit flags, where the value:  *<ul>  *<li>1 means the encoded value is '1'  *<li>0 means the value is encoded using {@link VInt8IntEncoder}, and the  * encoded bytes follow the indicator.<br>  * Since value 0 is illegal, and 1 is encoded in the indicator, the actual  * value that is encoded is<code>value-2</code>, which saves some more bits.  *</ul>  * Encoding example:  *<ul>  *<li>Original values: 6, 16, 5, 9, 7, 1  *<li>After sorting: 1, 5, 6, 7, 9, 16  *<li>D-Gap computing: 1, 4, 1, 1, 2, 5 (so far - done by  * {@link DGapIntEncoder})  *<li>Encoding: 1,0,1,1,0,0,0,0 as the indicator, by 2 (4-2), 0 (2-2), 3 (5-2).  *<li>Binary encode:<u>0 | 0 | 0 | 0 | 1 | 1 | 0 | 1</u> 00000010 00000000  * 00000011 (indicator is<u>underlined</u>).<br>  *<b>NOTE:</b> the order of the values in the indicator is lsb&rArr; msb,  * which allows for more efficient decoding.  *</ul>  *   * @lucene.experimental  */
+comment|/**  * A {@link ChunksIntEncoder} which encodes data in chunks of 8. Every group  * starts with a single byte (called indicator) which represents 8 - 1 bit  * flags, where the value:  *<ul>  *<li>1 means the encoded value is '1'  *<li>0 means the value is encoded using {@link VInt8IntEncoder}, and the  * encoded bytes follow the indicator.<br>  * Since value 0 is illegal, and 1 is encoded in the indicator, the actual value  * that is encoded is<code>value-2</code>, which saves some more bits.  *</ul>  * Encoding example:  *<ul>  *<li>Original values: 6, 16, 5, 9, 7, 1  *<li>After sorting: 1, 5, 6, 7, 9, 16  *<li>D-Gap computing: 1, 4, 1, 1, 2, 5 (so far - done by  * {@link DGapIntEncoder})  *<li>Encoding: 1,0,1,1,0,0,0,0 as the indicator, by 2 (4-2), 0 (2-2), 3 (5-2).  *<li>Binary encode:<u>0 | 0 | 0 | 0 | 1 | 1 | 0 | 1</u> 00000010 00000000  * 00000011 (indicator is<u>underlined</u>).<br>  *<b>NOTE:</b> the order of the values in the indicator is lsb&rArr; msb,  * which allows for more efficient decoding.  *</ul>  *   * @lucene.experimental  */
 end_comment
 
 begin_class
@@ -40,13 +58,14 @@ name|EightFlagsIntEncoder
 extends|extends
 name|ChunksIntEncoder
 block|{
-comment|/**    * Holds all combinations of<i>indicator</i> flags for fast encoding (saves    * time on bit manipulation at encode time)    */
-DECL|field|encodeTable
+comment|/*    * Holds all combinations of<i>indicator</i> flags for fast encoding (saves    * time on bit manipulation at encode time)    */
+DECL|field|ENCODE_TABLE
 specifier|private
 specifier|static
+specifier|final
 name|byte
 index|[]
-name|encodeTable
+name|ENCODE_TABLE
 init|=
 operator|new
 name|byte
@@ -85,27 +104,58 @@ expr_stmt|;
 block|}
 annotation|@
 name|Override
-DECL|method|encode
-specifier|public
+DECL|method|doEncode
+specifier|protected
 name|void
-name|encode
+name|doEncode
 parameter_list|(
+name|IntsRef
+name|values
+parameter_list|,
+name|BytesRef
+name|buf
+parameter_list|,
 name|int
-name|data
+name|upto
 parameter_list|)
-throws|throws
-name|IOException
 block|{
+for|for
+control|(
+name|int
+name|i
+init|=
+name|values
+operator|.
+name|offset
+init|;
+name|i
+operator|<
+name|upto
+condition|;
+name|i
+operator|++
+control|)
+block|{
+name|int
+name|value
+init|=
+name|values
+operator|.
+name|ints
+index|[
+name|i
+index|]
+decl_stmt|;
 if|if
 condition|(
-name|data
+name|value
 operator|==
 literal|1
 condition|)
 block|{
 name|indicator
 operator||=
-name|encodeTable
+name|ENCODE_TABLE
 index|[
 name|ordinal
 index|]
@@ -114,12 +164,16 @@ block|}
 else|else
 block|{
 name|encodeQueue
+operator|.
+name|ints
 index|[
-name|encodeQueueSize
+name|encodeQueue
+operator|.
+name|length
 operator|++
 index|]
 operator|=
-name|data
+name|value
 operator|-
 literal|2
 expr_stmt|;
@@ -127,20 +181,33 @@ block|}
 operator|++
 name|ordinal
 expr_stmt|;
-comment|// If 8 values were encoded thus far, 'flush' them including the indicator.
+comment|// encode the chunk and the indicator
 if|if
 condition|(
-operator|(
 name|ordinal
-operator|&
-literal|0x7
-operator|)
 operator|==
+literal|8
+condition|)
+block|{
+name|encodeChunk
+argument_list|(
+name|buf
+argument_list|)
+expr_stmt|;
+block|}
+block|}
+comment|// encode remaining values
+if|if
+condition|(
+name|ordinal
+operator|!=
 literal|0
 condition|)
 block|{
 name|encodeChunk
-argument_list|()
+argument_list|(
+name|buf
+argument_list|)
 expr_stmt|;
 block|}
 block|}
@@ -167,14 +234,7 @@ name|toString
 parameter_list|()
 block|{
 return|return
-literal|"EightFlags ("
-operator|+
-name|encoder
-operator|.
-name|toString
-argument_list|()
-operator|+
-literal|")"
+literal|"EightFlags (VInt)"
 return|;
 block|}
 block|}

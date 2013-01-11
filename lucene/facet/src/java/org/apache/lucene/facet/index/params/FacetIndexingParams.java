@@ -214,7 +214,7 @@ operator|=
 name|categoryListParams
 expr_stmt|;
 block|}
-comment|/**    * The name of the category list to put this category in, or {@code null} if    * this category should not be aggregatable.    *<p>    * By default, all categories are written to the same category list, but    * applications which know in advance that in some situations only parts of    * the category hierarchy needs to be counted can divide the categories into    * two or more different category lists.    *<p>    * If {@code null} is returned for a category, it means that this category    * should not appear in any category list, and thus weights for it cannot be    * aggregated. This category can still be used for drill-down, even though the    * its weight is unknown.    *     * @see PerDimensionIndexingParams    */
+comment|/**    * Returns the {@link CategoryListParams} for this {@link CategoryPath}. The    * default implementation returns the same {@link CategoryListParams} for all    * categories (even if {@code category} is {@code null}).    *     * @see PerDimensionIndexingParams    */
 DECL|method|getCategoryListParams
 specifier|public
 name|CategoryListParams

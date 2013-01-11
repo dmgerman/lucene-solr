@@ -165,7 +165,7 @@ comment|/*  * Licensed to the Apache Software Foundation (ASF) under one or more
 end_comment
 
 begin_comment
-comment|/**  * A utility class for iterating through a posting list of a given term and  * retrieving the payload of the first position in every document. For  * efficiency, this class does not check if documents passed to  * {@link #setdoc(int)} are deleted, since it is usually used to iterate on  * payloads of documents that matched a query. If you need to skip over deleted  * documents, you should do so before calling {@link #setdoc(int)}.  *   * @lucene.experimental  */
+comment|/**  * A utility class for iterating through a posting list of a given term and  * retrieving the payload of the first position in every document. For  * efficiency, this class does not check if documents passed to  * {@link #getPayload(int)} are deleted, since it is usually used to iterate on  * payloads of documents that matched a query. If you need to skip over deleted  * documents, you should do so before calling {@link #getPayload(int)}.  *   * @lucene.experimental  */
 end_comment
 
 begin_class
@@ -392,7 +392,7 @@ block|}
 block|}
 block|}
 block|}
-comment|/**    * Initialize the iterator. Should be done before the first call to    * {@link #setdoc(int)}. Returns {@code false} if no category list is found,    * or the category list has no documents.    */
+comment|/**    * Initialize the iterator. Should be done before the first call to    * {@link #getPayload(int)}. Returns {@code false} if no category list is    * found, or the category list has no documents.    */
 DECL|method|init
 specifier|public
 name|boolean
@@ -408,14 +408,14 @@ return|return
 name|hasMore
 return|;
 block|}
-comment|/**    * Skip forward to document docId. Return true if this document exists and    * has any payload.    *<P>    * Users should call this method with increasing docIds, and implementations    * can assume that this is the case.    */
-DECL|method|setdoc
+comment|/**    * Returns the {@link BytesRef payload} of the given document, or {@code null}    * if the document does not exist, there are no more documents in the posting    * list, or the document exists but has not payload. You should call    * {@link #init()} before the first call to this method.    */
+DECL|method|getPayload
 specifier|public
-name|boolean
-name|setdoc
+name|BytesRef
+name|getPayload
 parameter_list|(
 name|int
-name|docId
+name|docID
 parameter_list|)
 throws|throws
 name|IOException
@@ -427,14 +427,14 @@ name|hasMore
 condition|)
 block|{
 return|return
-literal|false
+literal|null
 return|;
 block|}
 comment|// re-basing docId->localDocID is done fewer times than currentDoc->globalDoc
 name|int
 name|localDocID
 init|=
-name|docId
+name|docID
 operator|-
 name|curDocBase
 decl_stmt|;
@@ -447,7 +447,7 @@ condition|)
 block|{
 comment|// document does not exist
 return|return
-literal|false
+literal|null
 return|;
 block|}
 if|if
@@ -484,7 +484,7 @@ expr_stmt|;
 comment|// also updates curDocID
 name|localDocID
 operator|=
-name|docId
+name|docID
 operator|-
 name|curDocBase
 expr_stmt|;
@@ -513,7 +513,7 @@ name|localDocID
 condition|)
 block|{
 return|return
-literal|false
+literal|null
 return|;
 block|}
 block|}
@@ -571,27 +571,11 @@ operator|+
 name|curDocBase
 operator|)
 assert|;
-name|data
-operator|=
+return|return
 name|currentDPE
 operator|.
 name|getPayload
 argument_list|()
-expr_stmt|;
-return|return
-name|data
-operator|!=
-literal|null
-return|;
-block|}
-DECL|method|getPayload
-specifier|public
-name|BytesRef
-name|getPayload
-parameter_list|()
-block|{
-return|return
-name|data
 return|;
 block|}
 block|}

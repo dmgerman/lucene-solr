@@ -26,6 +26,20 @@ name|IOException
 import|;
 end_import
 
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|util
+operator|.
+name|IntsRef
+import|;
+end_import
+
 begin_comment
 comment|/*  * Licensed to the Apache Software Foundation (ASF) under one or more  * contributor license agreements.  See the NOTICE file distributed with  * this work for additional information regarding copyright ownership.  * The ASF licenses this file to You under the Apache License, Version 2.0  * (the "License"); you may not use this file except in compliance with  * the License.  You may obtain a copy of the License at  *  *     http://www.apache.org/licenses/LICENSE-2.0  *  * Unless required by applicable law or agreed to in writing, software  * distributed under the License is distributed on an "AS IS" BASIS,  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.  * See the License for the specific language governing permissions and  * limitations under the License.  */
 end_comment
@@ -40,28 +54,23 @@ specifier|public
 interface|interface
 name|Aggregator
 block|{
-comment|/**    * Specify the document (and its score in the search) that the following    * {@link #aggregate(int)} calls will pertain to.    */
-DECL|method|setNextDoc
-name|void
-name|setNextDoc
-parameter_list|(
-name|int
-name|docid
-parameter_list|,
-name|float
-name|score
-parameter_list|)
-throws|throws
-name|IOException
-function_decl|;
-comment|/**    * Collect (and do whatever an implementation deems appropriate) the    * category given by its ordinal. This category belongs to a document    * given earlier by {@link #setNextDoc(int, float)}.    */
+comment|/**    * Aggregate the ordinals of the given document ID (and its score). The given    * ordinals offset is always zero.    */
 DECL|method|aggregate
+specifier|public
 name|void
 name|aggregate
 parameter_list|(
 name|int
-name|ordinal
+name|docID
+parameter_list|,
+name|float
+name|score
+parameter_list|,
+name|IntsRef
+name|ordinals
 parameter_list|)
+throws|throws
+name|IOException
 function_decl|;
 block|}
 end_interface

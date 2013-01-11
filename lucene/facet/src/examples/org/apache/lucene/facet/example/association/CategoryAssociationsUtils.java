@@ -89,10 +89,10 @@ comment|/**  * @lucene.experimental  */
 end_comment
 
 begin_class
-DECL|class|AssociationUtils
+DECL|class|CategoryAssociationsUtils
 specifier|public
 class|class
-name|AssociationUtils
+name|CategoryAssociationsUtils
 block|{
 comment|/**    * Categories: categories[D][N] == category-path with association no. N for    * document no. D.    */
 DECL|field|categories
