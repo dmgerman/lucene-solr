@@ -330,20 +330,6 @@ argument_list|(
 name|fieldState
 argument_list|)
 decl_stmt|;
-if|if
-condition|(
-name|norm
-operator|!=
-operator|-
-literal|1
-condition|)
-block|{
-comment|// nocommit is -1 really a safe "not set" value!?
-comment|// nocommit shouldn't we require that it's either
-comment|// all -1's or none?  a sim can't not compute norms
-comment|// for only some docs?  hmm unless the field is
-comment|// missing for this doc... but then finish() isn't
-comment|// called?
 name|simpleNormsWriter
 operator|.
 name|addValue
@@ -355,7 +341,6 @@ argument_list|,
 name|norm
 argument_list|)
 expr_stmt|;
-block|}
 block|}
 block|}
 DECL|method|flush
