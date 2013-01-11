@@ -312,9 +312,15 @@ name|ensureOpen
 argument_list|()
 expr_stmt|;
 return|return
-literal|null
+name|MultiSimpleDocValues
+operator|.
+name|simpleNumericValues
+argument_list|(
+name|in
+argument_list|,
+name|field
+argument_list|)
 return|;
-comment|// nocommit: UOE
 block|}
 annotation|@
 name|Override
@@ -333,9 +339,15 @@ name|ensureOpen
 argument_list|()
 expr_stmt|;
 return|return
-literal|null
+name|MultiSimpleDocValues
+operator|.
+name|simpleBinaryValues
+argument_list|(
+name|in
+argument_list|,
+name|field
+argument_list|)
 return|;
-comment|// nocommit: UOE
 block|}
 annotation|@
 name|Override
@@ -354,9 +366,15 @@ name|ensureOpen
 argument_list|()
 expr_stmt|;
 return|return
-literal|null
+name|MultiSimpleDocValues
+operator|.
+name|simpleSortedValues
+argument_list|(
+name|in
+argument_list|,
+name|field
+argument_list|)
 return|;
-comment|// nocommit: UOE
 block|}
 annotation|@
 name|Override
@@ -435,7 +453,7 @@ argument_list|()
 expr_stmt|;
 comment|// nocommit hmm
 return|return
-name|MultiDocValues
+name|MultiSimpleDocValues
 operator|.
 name|simpleNormValues
 argument_list|(
