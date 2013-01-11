@@ -385,6 +385,7 @@ expr_stmt|;
 block|}
 comment|// static to share with distrib test
 DECL|method|buildZooKeeper
+specifier|public
 specifier|static
 name|void
 name|buildZooKeeper
