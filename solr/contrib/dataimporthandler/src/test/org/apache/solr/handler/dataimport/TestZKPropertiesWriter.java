@@ -268,15 +268,6 @@ parameter_list|()
 throws|throws
 name|Exception
 block|{
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"Initializing DIH ZK stuff"
-argument_list|)
-expr_stmt|;
 name|createTempDir
 argument_list|()
 expr_stmt|;
