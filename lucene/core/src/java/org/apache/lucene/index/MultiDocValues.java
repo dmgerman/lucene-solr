@@ -3123,10 +3123,7 @@ literal|true
 expr_stmt|;
 block|}
 block|}
-assert|assert
-name|anyReal
-assert|;
-comment|// nocommit: is this assert safe?
+comment|// assert anyReal; // nocommit: unsafe until 4.0 is done
 return|return
 operator|new
 name|NumericDocValues
