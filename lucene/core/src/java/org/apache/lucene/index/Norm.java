@@ -451,33 +451,6 @@ name|norm
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**    * Sets a packed long norm value.    * @lucene.experimental    */
-DECL|method|setPackedLong
-specifier|public
-name|void
-name|setPackedLong
-parameter_list|(
-name|long
-name|norm
-parameter_list|)
-block|{
-name|setType
-argument_list|(
-name|Type
-operator|.
-name|VAR_INTS
-argument_list|)
-expr_stmt|;
-name|this
-operator|.
-name|field
-operator|.
-name|setLongValue
-argument_list|(
-name|norm
-argument_list|)
-expr_stmt|;
-block|}
 comment|/**    * Sets a byte norm value    */
 DECL|method|setByte
 specifier|public
