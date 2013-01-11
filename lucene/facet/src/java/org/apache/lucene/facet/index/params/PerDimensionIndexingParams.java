@@ -245,7 +245,7 @@ return|return
 name|vals
 return|;
 block|}
-comment|/**    * Returns the {@link CategoryListParams} for the corresponding dimension    * which is returned by {@code category.getComponent(0)}.    */
+comment|/**    * Returns the {@link CategoryListParams} for the corresponding dimension    * which is returned by {@code category.getComponent(0)}. If {@code category}    * is {@code null}, or was not specified in the map given to the constructor,    * returns the default {@link CategoryListParams}.    */
 annotation|@
 name|Override
 DECL|method|getCategoryListParams

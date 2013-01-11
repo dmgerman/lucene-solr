@@ -203,10 +203,10 @@ comment|/**  * AssociationSearcher searches index with facets, evaluating the fa
 end_comment
 
 begin_class
-DECL|class|AssociationSearcher
+DECL|class|CategoryAssociationsSearcher
 specifier|public
 class|class
-name|AssociationSearcher
+name|CategoryAssociationsSearcher
 block|{
 comment|/** Search an index with a sum of int-association. */
 DECL|method|searchSumIntAssociation

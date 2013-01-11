@@ -48,10 +48,17 @@ end_comment
 
 begin_class
 DECL|class|Compressor
+specifier|public
 specifier|abstract
 class|class
 name|Compressor
 block|{
+comment|/** Sole constructor, typically called from sub-classes. */
+DECL|method|Compressor
+specifier|protected
+name|Compressor
+parameter_list|()
+block|{}
 comment|/**    * Compress bytes into<code>out</code>. It it the responsibility of the    * compressor to add all necessary information so that a {@link Decompressor}    * will know when to stop decompressing bytes from the stream.    */
 DECL|method|compress
 specifier|public

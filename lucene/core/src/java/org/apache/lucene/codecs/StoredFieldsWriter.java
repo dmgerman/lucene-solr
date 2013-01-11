@@ -166,6 +166,15 @@ parameter_list|)
 throws|throws
 name|IOException
 function_decl|;
+comment|/** Called when a document and all its fields have been added. */
+DECL|method|finishDocument
+specifier|public
+name|void
+name|finishDocument
+parameter_list|()
+throws|throws
+name|IOException
+block|{}
 comment|/** Writes a single stored field. */
 DECL|method|writeField
 specifier|public
@@ -403,6 +412,9 @@ name|field
 argument_list|)
 expr_stmt|;
 block|}
+name|finishDocument
+argument_list|()
+expr_stmt|;
 block|}
 annotation|@
 name|Override

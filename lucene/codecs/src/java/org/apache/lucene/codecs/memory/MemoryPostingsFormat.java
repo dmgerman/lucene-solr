@@ -780,6 +780,8 @@ argument_list|,
 name|doPackFST
 argument_list|,
 name|acceptableOverheadRatio
+argument_list|,
+literal|true
 argument_list|)
 expr_stmt|;
 block|}

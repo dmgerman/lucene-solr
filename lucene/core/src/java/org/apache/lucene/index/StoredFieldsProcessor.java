@@ -421,6 +421,11 @@ expr_stmt|;
 name|lastDocID
 operator|++
 expr_stmt|;
+name|fieldsWriter
+operator|.
+name|finishDocument
+argument_list|()
+expr_stmt|;
 block|}
 block|}
 annotation|@
@@ -505,6 +510,11 @@ index|]
 argument_list|)
 expr_stmt|;
 block|}
+name|fieldsWriter
+operator|.
+name|finishDocument
+argument_list|()
+expr_stmt|;
 name|lastDocID
 operator|++
 expr_stmt|;

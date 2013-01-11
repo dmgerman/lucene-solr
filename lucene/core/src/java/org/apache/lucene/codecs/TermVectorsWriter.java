@@ -256,6 +256,16 @@ parameter_list|)
 throws|throws
 name|IOException
 function_decl|;
+comment|/** Called after a doc and all its fields have been added. */
+DECL|method|finishDocument
+specifier|public
+name|void
+name|finishDocument
+parameter_list|()
+throws|throws
+name|IOException
+block|{}
+empty_stmt|;
 comment|/** Called before writing the terms of the field.    *  {@link #startTerm(BytesRef, int)} will be called<code>numTerms</code> times. */
 DECL|method|startField
 specifier|public
@@ -281,6 +291,16 @@ parameter_list|)
 throws|throws
 name|IOException
 function_decl|;
+comment|/** Called after a field and all its terms have been added. */
+DECL|method|finishField
+specifier|public
+name|void
+name|finishField
+parameter_list|()
+throws|throws
+name|IOException
+block|{}
+empty_stmt|;
 comment|/** Adds a term and its term frequency<code>freq</code>.    * If this field has positions and/or offsets enabled, then    * {@link #addPosition(int, int, int, BytesRef)} will be called     *<code>freq</code> times respectively.    */
 DECL|method|startTerm
 specifier|public
@@ -297,6 +317,15 @@ parameter_list|)
 throws|throws
 name|IOException
 function_decl|;
+comment|/** Called after a term and all its positions have been added. */
+DECL|method|finishTerm
+specifier|public
+name|void
+name|finishTerm
+parameter_list|()
+throws|throws
+name|IOException
+block|{}
 comment|/** Adds a term position and offsets */
 DECL|method|addPosition
 specifier|public
@@ -763,6 +792,9 @@ argument_list|(
 literal|0
 argument_list|)
 expr_stmt|;
+name|finishDocument
+argument_list|()
+expr_stmt|;
 return|return;
 block|}
 name|int
@@ -1175,18 +1207,27 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
+name|finishTerm
+argument_list|()
+expr_stmt|;
 block|}
 assert|assert
 name|termCount
 operator|==
 name|numTerms
 assert|;
+name|finishField
+argument_list|()
+expr_stmt|;
 block|}
 assert|assert
 name|fieldCount
 operator|==
 name|numFields
 assert|;
+name|finishDocument
+argument_list|()
+expr_stmt|;
 block|}
 comment|/** Return the BytesRef Comparator used to sort terms    *  before feeding to this API. */
 DECL|method|getComparator

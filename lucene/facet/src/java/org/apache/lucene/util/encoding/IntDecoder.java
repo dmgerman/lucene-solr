@@ -16,21 +16,29 @@ end_package
 
 begin_import
 import|import
-name|java
+name|org
 operator|.
-name|io
+name|apache
 operator|.
-name|IOException
+name|lucene
+operator|.
+name|util
+operator|.
+name|BytesRef
 import|;
 end_import
 
 begin_import
 import|import
-name|java
+name|org
 operator|.
-name|io
+name|apache
 operator|.
-name|InputStream
+name|lucene
+operator|.
+name|util
+operator|.
+name|IntsRef
 import|;
 end_import
 
@@ -39,7 +47,7 @@ comment|/*  * Licensed to the Apache Software Foundation (ASF) under one or more
 end_comment
 
 begin_comment
-comment|/**  * Decodes integers from a set {@link InputStream}. For re-usability, the  * decoder's input stream can be set by ({@link #reInit(InputStream)}).  * By design, Decoders are NOT thread-safe.  *   * @lucene.experimental  */
+comment|/**  * Decodes integers from a set {@link BytesRef}.  *   * @lucene.experimental  */
 end_comment
 
 begin_class
@@ -49,49 +57,101 @@ specifier|abstract
 class|class
 name|IntDecoder
 block|{
-comment|/** A special long value which is used to indicate end-of-stream has reached. */
-DECL|field|EOS
-specifier|public
-specifier|static
-specifier|final
-name|long
-name|EOS
-init|=
-literal|0x100000000L
-decl_stmt|;
-comment|/** Input stream from which the encoded bytes are read */
-DECL|field|in
+comment|/**    * Performs the actual decoding. Values should be read from    * {@link BytesRef#offset} up to {@code upto}. Also, {@code values} offset and    * length are set to 0 and the encoder is expected to update    * {@link IntsRef#length}, but not {@link IntsRef#offset}.    *     *<p>    *<b>NOTE:</b> it is ok to use the buffer's offset as the current position in    * the buffer (and modify it), it will be reset by    * {@link #decode(BytesRef, IntsRef)}.    */
+DECL|method|doDecode
 specifier|protected
-name|InputStream
-name|in
-decl_stmt|;
-comment|/** Sets the input stream from which the encoded data is read. */
-DECL|method|reInit
-specifier|public
+specifier|abstract
 name|void
-name|reInit
+name|doDecode
 parameter_list|(
-name|InputStream
-name|in
+name|BytesRef
+name|buf
+parameter_list|,
+name|IntsRef
+name|values
+parameter_list|,
+name|int
+name|upto
 parameter_list|)
+function_decl|;
+comment|/**    * Called before {@link #doDecode(BytesRef, IntsRef, int)} so that decoders    * can reset their state.    */
+DECL|method|reset
+specifier|protected
+name|void
+name|reset
+parameter_list|()
 block|{
-name|this
-operator|.
-name|in
-operator|=
-name|in
-expr_stmt|;
+comment|// do nothing by default
 block|}
-comment|/**    * Decodes data received from the input stream, and returns one decoded    * integer. If end of stream is reached, {@link #EOS} is returned.    *     * @return one decoded integer as long or {@link #EOS} if end-of-stream    *         reached.    * @throws IOException if an I/O error occurs    */
+comment|/**    * Decodes the values from the buffer into the given {@link IntsRef}. Note    * that {@code values.offset} and {@code values.length} are set to 0.    */
 DECL|method|decode
 specifier|public
-specifier|abstract
-name|long
+specifier|final
+name|void
 name|decode
-parameter_list|()
-throws|throws
-name|IOException
-function_decl|;
+parameter_list|(
+name|BytesRef
+name|buf
+parameter_list|,
+name|IntsRef
+name|values
+parameter_list|)
+block|{
+name|values
+operator|.
+name|offset
+operator|=
+name|values
+operator|.
+name|length
+operator|=
+literal|0
+expr_stmt|;
+comment|// must do that because we cannot grow() them otherwise
+comment|// some decoders may use the buffer's offset as a position index, so save
+comment|// current offset.
+name|int
+name|bufOffset
+init|=
+name|buf
+operator|.
+name|offset
+decl_stmt|;
+name|reset
+argument_list|()
+expr_stmt|;
+name|doDecode
+argument_list|(
+name|buf
+argument_list|,
+name|values
+argument_list|,
+name|buf
+operator|.
+name|offset
+operator|+
+name|buf
+operator|.
+name|length
+argument_list|)
+expr_stmt|;
+assert|assert
+name|values
+operator|.
+name|offset
+operator|==
+literal|0
+operator|:
+literal|"offset should not have been modified by the decoder."
+assert|;
+comment|// fix offset
+name|buf
+operator|.
+name|offset
+operator|=
+name|bufOffset
+expr_stmt|;
+block|}
 block|}
 end_class
 

@@ -113,10 +113,10 @@ comment|/**  * Driver for the simple sample.  *   * @lucene.experimental  */
 end_comment
 
 begin_class
-DECL|class|AssociationMain
+DECL|class|CategoryAssociationsMain
 specifier|public
 class|class
-name|AssociationMain
+name|CategoryAssociationsMain
 block|{
 comment|/**    * Driver for the simple sample.    * @throws Exception on error (no detailed exception handling here for sample simplicity    */
 DECL|method|main
@@ -133,14 +133,14 @@ throws|throws
 name|Exception
 block|{
 operator|new
-name|AssociationMain
+name|CategoryAssociationsMain
 argument_list|()
 operator|.
 name|runSumIntAssociationSample
 argument_list|()
 expr_stmt|;
 operator|new
-name|AssociationMain
+name|CategoryAssociationsMain
 argument_list|()
 operator|.
 name|runSumFloatAssociationSample
@@ -186,7 +186,7 @@ argument_list|(
 literal|"index the sample documents..."
 argument_list|)
 expr_stmt|;
-name|AssociationIndexer
+name|CategoryAssociationsIndexer
 operator|.
 name|index
 argument_list|(
@@ -208,7 +208,7 @@ name|FacetResult
 argument_list|>
 name|facetRes
 init|=
-name|AssociationSearcher
+name|CategoryAssociationsSearcher
 operator|.
 name|searchSumIntAssociation
 argument_list|(
@@ -267,7 +267,7 @@ argument_list|(
 literal|"index the sample documents..."
 argument_list|)
 expr_stmt|;
-name|AssociationIndexer
+name|CategoryAssociationsIndexer
 operator|.
 name|index
 argument_list|(
@@ -289,7 +289,7 @@ name|FacetResult
 argument_list|>
 name|facetRes
 init|=
-name|AssociationSearcher
+name|CategoryAssociationsSearcher
 operator|.
 name|searchSumFloatAssociation
 argument_list|(

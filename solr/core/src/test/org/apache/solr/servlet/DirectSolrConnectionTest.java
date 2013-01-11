@@ -18,6 +18,16 @@ end_package
 
 begin_import
 import|import
+name|java
+operator|.
+name|net
+operator|.
+name|URLEncoder
+import|;
+end_import
+
+begin_import
+import|import
 name|org
 operator|.
 name|apache
@@ -236,7 +246,14 @@ name|STREAM_BODY
 operator|+
 literal|"="
 operator|+
+name|URLEncoder
+operator|.
+name|encode
+argument_list|(
 name|cmd
+argument_list|,
+literal|"UTF-8"
+argument_list|)
 argument_list|,
 literal|null
 argument_list|)

@@ -868,7 +868,7 @@ operator|.
 name|SELECT_ALL_FIELDS
 return|;
 block|}
-comment|/**    * Removes all instance of the key from NamedList, returning the Set of     * Strings that key refered to.  Throws an error if the key didn't refer     * to one or more strings (or arrays of strings)    * @exception SolrException invalid arr/str structure.    */
+comment|/**    * Removes all instance of the key from NamedList, returning the Set of     * Strings that key referred to.  Throws an error if the key didn't refer    * to one or more strings (or arrays of strings)    * @exception SolrException invalid arr/str structure.    */
 DECL|method|oneOrMany
 specifier|public
 specifier|static

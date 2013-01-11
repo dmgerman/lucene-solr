@@ -2885,7 +2885,7 @@ argument_list|(
 literal|"\\s+[+-](?:\\s*[+-]+)+"
 argument_list|)
 decl_stmt|;
-comment|/**    * Strips operators that are used illegally, otherwise reuturns it's    * input.  Some examples of illegal user queries are: "chocolate +-    * chip", "chocolate - - chip", and "chocolate chip -".    */
+comment|/**    * Strips operators that are used illegally, otherwise returns its    * input.  Some examples of illegal user queries are: "chocolate +-    * chip", "chocolate - - chip", and "chocolate chip -".    */
 DECL|method|stripIllegalOperators
 specifier|public
 specifier|static
