@@ -4173,6 +4173,31 @@ block|{
 break|break;
 block|}
 block|}
+name|long
+name|t
+init|=
+name|System
+operator|.
+name|currentTimeMillis
+argument_list|()
+operator|-
+name|tStart
+decl_stmt|;
+name|System
+operator|.
+name|out
+operator|.
+name|println
+argument_list|(
+operator|(
+name|t
+operator|/
+literal|1000.0
+operator|)
+operator|+
+literal|" sec to build"
+argument_list|)
+expr_stmt|;
 assert|assert
 name|builder
 operator|.
@@ -4372,6 +4397,7 @@ condition|)
 block|{
 return|return;
 block|}
+comment|/*         IndexInput in = dir.openInput("fst.bin", IOContext.DEFAULT);         fst = new FST<T>(in, outputs);         in.close();         */
 name|System
 operator|.
 name|out
@@ -4773,7 +4799,7 @@ expr_stmt|;
 block|}
 block|}
 block|}
-comment|// java -cp build/classes/test:build/classes/test-framework:build/classes/java:lib/junit-4.10.jar org.apache.lucene.util.fst.TestFSTs /x/tmp/allTerms3.txt out
+comment|// java -cp ../build/codecs/classes/java:../test-framework/lib/randomizedtesting-runner-2.0.8.jar:../build/core/classes/test:../build/core/classes/test-framework:../build/core/classes/java:../build/test-framework/classes/java:../test-framework/lib/junit-4.10.jar org.apache.lucene.util.fst.TestFSTs /xold/tmp/allTerms3.txt out
 DECL|method|main
 specifier|public
 specifier|static
@@ -7690,8 +7716,6 @@ name|childCount
 init|=
 literal|0
 decl_stmt|;
-name|FST
-operator|.
 name|BytesReader
 name|fstReader
 init|=
