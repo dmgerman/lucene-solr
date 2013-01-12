@@ -118,6 +118,10 @@ name|Map
 import|;
 end_import
 
+begin_comment
+comment|/* import java.io.Writer; import java.io.OutputStreamWriter; import java.io.FileOutputStream; */
+end_comment
+
 begin_import
 import|import
 name|org
@@ -562,6 +566,16 @@ name|VERSION_PACKED
 init|=
 literal|3
 decl_stmt|;
+comment|/** Changed from int to vInt for encoding arc targets. */
+DECL|field|VERSION_VINT_TARGET
+specifier|private
+specifier|final
+specifier|static
+name|int
+name|VERSION_VINT_TARGET
+init|=
+literal|4
+decl_stmt|;
 DECL|field|VERSION_CURRENT
 specifier|private
 specifier|final
@@ -569,7 +583,7 @@ specifier|static
 name|int
 name|VERSION_CURRENT
 init|=
-name|VERSION_PACKED
+name|VERSION_VINT_TARGET
 decl_stmt|;
 comment|// Never serialized; just used to represent the virtual
 comment|// final node w/ no arcs:
@@ -1089,6 +1103,12 @@ specifier|private
 name|GrowableWriter
 name|inCounts
 decl_stmt|;
+DECL|field|version
+specifier|private
+specifier|final
+name|int
+name|version
+decl_stmt|;
 comment|// make a new empty FST, for building; Builder invokes
 comment|// this ctor
 DECL|method|FST
@@ -1130,6 +1150,10 @@ operator|.
 name|allowArrayArcs
 operator|=
 name|allowArrayArcs
+expr_stmt|;
+name|version
+operator|=
+name|VERSION_CURRENT
 expr_stmt|;
 comment|// 32 KB blocks:
 name|bytes
@@ -1238,6 +1262,8 @@ name|outputs
 expr_stmt|;
 comment|// NOTE: only reads most recent format; we don't have
 comment|// back-compat promise for FSTs (they are experimental):
+name|version
+operator|=
 name|CodecUtil
 operator|.
 name|checkHeader
@@ -1248,7 +1274,7 @@ name|FILE_FORMAT_NAME
 argument_list|,
 name|VERSION_PACKED
 argument_list|,
-name|VERSION_PACKED
+name|VERSION_VINT_TARGET
 argument_list|)
 expr_stmt|;
 name|packed
@@ -1506,6 +1532,7 @@ name|allowArrayArcs
 operator|=
 literal|false
 expr_stmt|;
+comment|/*     if (bytes.length == 665) {       Writer w = new OutputStreamWriter(new FileOutputStream("out.dot"), "UTF-8");       Util.toDot(this, w, false, false);       w.close();       System.out.println("Wrote FST to out.dot");     }     */
 block|}
 DECL|method|getInputType
 specifier|public
@@ -3065,7 +3092,7 @@ assert|;
 comment|//System.out.println("    write target");
 name|bytes
 operator|.
-name|writeInt
+name|writeVInt
 argument_list|(
 name|target
 operator|.
@@ -3769,8 +3796,7 @@ name|BIT_TARGET_NEXT
 argument_list|)
 condition|)
 block|{           }
-else|else
-block|{
+elseif|else
 if|if
 condition|(
 name|packed
@@ -3784,14 +3810,11 @@ expr_stmt|;
 block|}
 else|else
 block|{
-name|in
-operator|.
-name|skipBytes
+name|readUnpackedNodeTarget
 argument_list|(
-literal|4
+name|in
 argument_list|)
 expr_stmt|;
-block|}
 block|}
 name|arc
 operator|.
@@ -3839,6 +3862,49 @@ return|return
 name|arc
 return|;
 block|}
+block|}
+DECL|method|readUnpackedNodeTarget
+specifier|private
+name|int
+name|readUnpackedNodeTarget
+parameter_list|(
+name|BytesReader
+name|in
+parameter_list|)
+throws|throws
+name|IOException
+block|{
+name|int
+name|target
+decl_stmt|;
+if|if
+condition|(
+name|version
+operator|<
+name|VERSION_VINT_TARGET
+condition|)
+block|{
+name|target
+operator|=
+name|in
+operator|.
+name|readInt
+argument_list|()
+expr_stmt|;
+block|}
+else|else
+block|{
+name|target
+operator|=
+name|in
+operator|.
+name|readVInt
+argument_list|()
+expr_stmt|;
+block|}
+return|return
+name|target
+return|;
 block|}
 comment|/**    * Follow the<code>follow</code> arc and read the first arc of its target;    * this changes the provided<code>arc</code> (2nd arg) in-place and returns    * it.    *     * @return Returns the second argument (<code>arc</code>).    */
 DECL|method|readFirstTargetArc
@@ -4301,12 +4367,13 @@ operator|==
 name|ARCS_AS_FIXED_ARRAY
 condition|)
 block|{
-comment|//System.out.println("    nextArc fake array");
+comment|//System.out.println("    nextArc fixed array");
 name|in
 operator|.
 name|readVInt
 argument_list|()
 expr_stmt|;
+comment|// Skip bytesPerArc:
 if|if
 condition|(
 name|packed
@@ -4828,10 +4895,10 @@ name|arc
 operator|.
 name|target
 operator|=
+name|readUnpackedNodeTarget
+argument_list|(
 name|in
-operator|.
-name|readInt
-argument_list|()
+argument_list|)
 expr_stmt|;
 block|}
 name|arc
@@ -5405,10 +5472,10 @@ expr_stmt|;
 block|}
 else|else
 block|{
+name|readUnpackedNodeTarget
+argument_list|(
 name|in
-operator|.
-name|readInt
-argument_list|()
+argument_list|)
 expr_stmt|;
 block|}
 block|}
@@ -5709,6 +5776,10 @@ argument_list|>
 name|outputs
 parameter_list|)
 block|{
+name|version
+operator|=
+name|VERSION_CURRENT
+expr_stmt|;
 name|packed
 operator|=
 literal|true
