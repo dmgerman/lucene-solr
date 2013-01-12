@@ -6763,6 +6763,11 @@ operator|=
 literal|0
 expr_stmt|;
 block|}
+assert|assert
+name|flags
+operator|!=
+name|ARCS_AS_FIXED_ARRAY
+assert|;
 name|buffer
 operator|.
 name|writeByte
