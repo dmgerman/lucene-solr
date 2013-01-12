@@ -146,6 +146,20 @@ name|lucene
 operator|.
 name|store
 operator|.
+name|ByteArrayDataOutput
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|store
+operator|.
 name|DataInput
 import|;
 end_import
@@ -566,7 +580,7 @@ name|VERSION_PACKED
 init|=
 literal|3
 decl_stmt|;
-comment|/** Changed from int to vInt for encoding arc targets. */
+comment|/** Changed from int to vInt for encoding arc targets.     *  Also changed maxBytesPerArc from int to vInt in the array case. */
 DECL|field|VERSION_VINT_TARGET
 specifier|private
 specifier|final
@@ -2687,6 +2701,7 @@ name|NON_FINAL_END_NODE
 return|;
 block|}
 block|}
+specifier|final
 name|int
 name|startAddress
 init|=
@@ -2696,7 +2711,6 @@ name|getPosition
 argument_list|()
 decl_stmt|;
 comment|//System.out.println("  startAddr=" + startAddress);
-specifier|final
 name|boolean
 name|doFixedArray
 init|=
@@ -2704,10 +2718,6 @@ name|shouldExpand
 argument_list|(
 name|nodeIn
 argument_list|)
-decl_stmt|;
-specifier|final
-name|int
-name|fixedArrayStart
 decl_stmt|;
 if|if
 condition|(
@@ -2744,48 +2754,6 @@ argument_list|)
 index|]
 expr_stmt|;
 block|}
-comment|// write a "false" first arc:
-name|bytes
-operator|.
-name|writeByte
-argument_list|(
-name|ARCS_AS_FIXED_ARRAY
-argument_list|)
-expr_stmt|;
-name|bytes
-operator|.
-name|writeVInt
-argument_list|(
-name|nodeIn
-operator|.
-name|numArcs
-argument_list|)
-expr_stmt|;
-comment|// placeholder -- we'll come back and write the number
-comment|// of bytes per arc (int) here:
-comment|// TODO: we could make this a vInt instead
-name|bytes
-operator|.
-name|writeInt
-argument_list|(
-literal|0
-argument_list|)
-expr_stmt|;
-name|fixedArrayStart
-operator|=
-name|bytes
-operator|.
-name|getPosition
-argument_list|()
-expr_stmt|;
-comment|//System.out.println("  do fixed arcs array arcsStart=" + fixedArrayStart);
-block|}
-else|else
-block|{
-name|fixedArrayStart
-operator|=
-literal|0
-expr_stmt|;
 block|}
 name|arcCount
 operator|+=
@@ -3143,15 +3111,20 @@ expr_stmt|;
 comment|//System.out.println("    bytes=" + bytesPerArc[arcIdx]);
 block|}
 block|}
-comment|// TODO: if arc'd arrays will be "too wasteful" by some
-comment|// measure, eg if arcs have vastly different sized
-comment|// outputs, then we should selectively disable array for
-comment|// such cases
+comment|// TODO: try to avoid wasteful cases: disable doFixedArray in that case
+comment|/*       *       * LUCENE-4682: what is a fair heuristic here?      * It could involve some of these:      * 1. how "busy" the node is: nodeIn.inputCount relative to frontier[0].inputCount?      * 2. how much binSearch saves over scan: nodeIn.numArcs      * 3. waste: numBytes vs numBytesExpanded      *       * the one below just looks at #3     if (doFixedArray) {       // rough heuristic: make this 1.25 "waste factor" a parameter to the phd ctor????       int numBytes = lastArcStart - startAddress;       int numBytesExpanded = maxBytesPerArc * nodeIn.numArcs;       if (numBytesExpanded> numBytes*1.25) {         doFixedArray = false;       }     }     */
 if|if
 condition|(
 name|doFixedArray
 condition|)
 block|{
+specifier|final
+name|int
+name|MAX_HEADER_SIZE
+init|=
+literal|11
+decl_stmt|;
+comment|// header(byte) + numArcs(vint) + numBytes(vint)
 assert|assert
 name|maxBytesPerArc
 operator|>
@@ -3159,24 +3132,14 @@ literal|0
 assert|;
 comment|// 2nd pass just "expands" all arcs to take up a fixed
 comment|// byte size
-specifier|final
-name|int
-name|sizeNeeded
-init|=
-name|fixedArrayStart
-operator|+
-name|nodeIn
-operator|.
-name|numArcs
-operator|*
-name|maxBytesPerArc
-decl_stmt|;
 assert|assert
 operator|(
 operator|(
 name|long
 operator|)
-name|fixedArrayStart
+name|startAddress
+operator|+
+name|MAX_HEADER_SIZE
 operator|)
 operator|+
 operator|(
@@ -3197,18 +3160,67 @@ operator|:
 literal|"FST too large (> 2.1 GB)"
 assert|;
 comment|//System.out.println("write int @pos=" + (fixedArrayStart-4) + " numArcs=" + nodeIn.numArcs);
-comment|// TODO: we could make this a vInt instead
-name|bytes
-operator|.
-name|writeInt
+comment|// create the header
+comment|// TODO: clean this up: or just rewind+reuse and deal with it
+name|byte
+name|header
+index|[]
+init|=
+operator|new
+name|byte
+index|[
+name|MAX_HEADER_SIZE
+index|]
+decl_stmt|;
+name|ByteArrayDataOutput
+name|bad
+init|=
+operator|new
+name|ByteArrayDataOutput
 argument_list|(
-name|fixedArrayStart
-operator|-
-literal|4
-argument_list|,
+name|header
+argument_list|)
+decl_stmt|;
+comment|// write a "false" first arc:
+name|bad
+operator|.
+name|writeByte
+argument_list|(
+name|ARCS_AS_FIXED_ARRAY
+argument_list|)
+expr_stmt|;
+name|bad
+operator|.
+name|writeVInt
+argument_list|(
+name|nodeIn
+operator|.
+name|numArcs
+argument_list|)
+expr_stmt|;
+name|bad
+operator|.
+name|writeVInt
+argument_list|(
 name|maxBytesPerArc
 argument_list|)
 expr_stmt|;
+name|int
+name|headerLen
+init|=
+name|bad
+operator|.
+name|getPosition
+argument_list|()
+decl_stmt|;
+specifier|final
+name|int
+name|fixedArrayStart
+init|=
+name|startAddress
+operator|+
+name|headerLen
+decl_stmt|;
 comment|// expand the arcs in place, backwards
 name|int
 name|srcPos
@@ -3340,6 +3352,20 @@ expr_stmt|;
 block|}
 block|}
 block|}
+comment|// now write the header
+name|bytes
+operator|.
+name|writeBytes
+argument_list|(
+name|startAddress
+argument_list|,
+name|header
+argument_list|,
+literal|0
+argument_list|,
+name|headerLen
+argument_list|)
+expr_stmt|;
 block|}
 specifier|final
 name|int
@@ -3662,6 +3688,10 @@ expr_stmt|;
 if|if
 condition|(
 name|packed
+operator|||
+name|version
+operator|>=
+name|VERSION_VINT_TARGET
 condition|)
 block|{
 name|arc
@@ -4099,6 +4129,10 @@ expr_stmt|;
 if|if
 condition|(
 name|packed
+operator|||
+name|version
+operator|>=
+name|VERSION_VINT_TARGET
 condition|)
 block|{
 name|arc
@@ -4376,6 +4410,10 @@ comment|// Skip bytesPerArc:
 if|if
 condition|(
 name|packed
+operator|||
+name|version
+operator|>=
+name|VERSION_VINT_TARGET
 condition|)
 block|{
 name|in
@@ -5141,6 +5179,10 @@ expr_stmt|;
 if|if
 condition|(
 name|packed
+operator|||
+name|version
+operator|>=
+name|VERSION_VINT_TARGET
 condition|)
 block|{
 name|arc
