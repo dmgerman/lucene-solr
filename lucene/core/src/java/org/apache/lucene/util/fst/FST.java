@@ -615,7 +615,6 @@ name|T
 name|emptyOutput
 decl_stmt|;
 DECL|field|bytes
-specifier|private
 specifier|final
 name|BytesStore
 name|bytes

@@ -496,6 +496,15 @@ name|T
 argument_list|>
 argument_list|(
 name|fst
+argument_list|,
+name|fst
+operator|.
+name|bytes
+operator|.
+name|getReverseReader
+argument_list|(
+literal|false
+argument_list|)
 argument_list|)
 expr_stmt|;
 block|}
