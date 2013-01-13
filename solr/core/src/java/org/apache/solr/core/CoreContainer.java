@@ -8965,7 +8965,11 @@ literal|"<cores adminPath=\"/admin/cores\" defaultCoreName=\""
 operator|+
 name|DEFAULT_DEFAULT_CORE_NAME
 operator|+
-literal|"\">\n"
+literal|"\""
+operator|+
+literal|" host=\"${host:}\" hostPort=\"${hostPort:}\" hostContext=\"${hostContext:}\" zkClientTimeout=\"${zkClientTimeout:15000}\""
+operator|+
+literal|">\n"
 operator|+
 literal|"<core name=\""
 operator|+
