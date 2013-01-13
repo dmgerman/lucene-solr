@@ -46,6 +46,22 @@ end_import
 
 begin_import
 import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|solr
+operator|.
+name|core
+operator|.
+name|DirectoryFactory
+operator|.
+name|DirContext
+import|;
+end_import
+
+begin_import
+import|import
 name|java
 operator|.
 name|io
@@ -85,6 +101,9 @@ name|create
 parameter_list|(
 name|String
 name|path
+parameter_list|,
+name|DirContext
+name|dirContext
 parameter_list|)
 throws|throws
 name|IOException

@@ -959,6 +959,22 @@ operator|.
 name|core
 operator|.
 name|DirectoryFactory
+operator|.
+name|DirContext
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|solr
+operator|.
+name|core
+operator|.
+name|DirectoryFactory
 import|;
 end_import
 
@@ -2717,6 +2733,10 @@ name|get
 argument_list|(
 name|tmpIndex
 argument_list|,
+name|DirContext
+operator|.
+name|DEFAULT
+argument_list|,
 name|core
 operator|.
 name|getSolrConfig
@@ -2745,6 +2765,10 @@ operator|.
 name|get
 argument_list|(
 name|indexDirPath
+argument_list|,
+name|DirContext
+operator|.
+name|DEFAULT
 argument_list|,
 name|core
 operator|.
@@ -3598,6 +3622,10 @@ name|solrCore
 operator|.
 name|getDataDir
 argument_list|()
+argument_list|,
+name|DirContext
+operator|.
+name|META_DATA
 argument_list|,
 name|solrCore
 operator|.
@@ -4800,6 +4828,10 @@ name|get
 argument_list|(
 name|indexDir
 argument_list|,
+name|DirContext
+operator|.
+name|DEFAULT
+argument_list|,
 name|solrCore
 operator|.
 name|getSolrConfig
@@ -5489,6 +5521,10 @@ name|solrCore
 operator|.
 name|getDataDir
 argument_list|()
+argument_list|,
+name|DirContext
+operator|.
+name|META_DATA
 argument_list|,
 name|solrCore
 operator|.
