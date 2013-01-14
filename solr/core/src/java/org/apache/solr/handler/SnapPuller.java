@@ -2687,6 +2687,13 @@ argument_list|)
 operator|>=
 name|latestVersion
 operator|||
+name|commit
+operator|.
+name|getGeneration
+argument_list|()
+operator|>=
+name|latestGeneration
+operator|||
 name|forceReplication
 decl_stmt|;
 name|String
