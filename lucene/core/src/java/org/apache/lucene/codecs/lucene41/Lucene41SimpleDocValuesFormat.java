@@ -99,10 +99,10 @@ import|;
 end_import
 
 begin_class
-DECL|class|Lucene41SimpleNormsFormat
+DECL|class|Lucene41SimpleDocValuesFormat
 specifier|public
 class|class
-name|Lucene41SimpleNormsFormat
+name|Lucene41SimpleDocValuesFormat
 extends|extends
 name|SimpleNormsFormat
 block|{
@@ -171,7 +171,7 @@ specifier|final
 name|String
 name|DATA_CODEC
 init|=
-literal|"Lucene41NormsData"
+literal|"Lucene41DocValuesData"
 decl_stmt|;
 DECL|field|DATA_EXTENSION
 specifier|private
@@ -180,7 +180,7 @@ specifier|final
 name|String
 name|DATA_EXTENSION
 init|=
-literal|"nvd"
+literal|"dvd"
 decl_stmt|;
 DECL|field|METADATA_CODEC
 specifier|private
@@ -189,7 +189,7 @@ specifier|final
 name|String
 name|METADATA_CODEC
 init|=
-literal|"Lucene41NormsMetadata"
+literal|"Lucene41DocValuesMetadata"
 decl_stmt|;
 DECL|field|METADATA_EXTENSION
 specifier|private
@@ -198,7 +198,7 @@ specifier|final
 name|String
 name|METADATA_EXTENSION
 init|=
-literal|"nvm"
+literal|"dvm"
 decl_stmt|;
 block|}
 end_class

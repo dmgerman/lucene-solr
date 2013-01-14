@@ -332,7 +332,7 @@ name|state
 operator|.
 name|segmentSuffix
 argument_list|,
-literal|"dvm"
+literal|"ddvm"
 argument_list|)
 decl_stmt|;
 comment|// read in the entries from the metadata file.
@@ -468,7 +468,7 @@ name|state
 operator|.
 name|segmentSuffix
 argument_list|,
-literal|"dvd"
+literal|"ddvd"
 argument_list|)
 decl_stmt|;
 name|data
