@@ -110,6 +110,22 @@ name|NamedList
 import|;
 end_import
 
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|solr
+operator|.
+name|core
+operator|.
+name|DirectoryFactory
+operator|.
+name|DirContext
+import|;
+end_import
+
 begin_comment
 comment|/**  * Factory to instantiate {@link org.apache.lucene.store.NRTCachingDirectory}  */
 end_comment
@@ -222,6 +238,9 @@ name|create
 parameter_list|(
 name|String
 name|path
+parameter_list|,
+name|DirContext
+name|dirContext
 parameter_list|)
 throws|throws
 name|IOException

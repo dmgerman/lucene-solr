@@ -1233,14 +1233,18 @@ name|getProperty
 argument_list|(
 literal|"url"
 argument_list|,
+name|DEFAULT_POST_URL
+argument_list|)
+expr_stmt|;
+name|urlStr
+operator|=
 name|SimplePostTool
 operator|.
 name|appendParam
 argument_list|(
-name|DEFAULT_POST_URL
+name|urlStr
 argument_list|,
 name|params
-argument_list|)
 argument_list|)
 expr_stmt|;
 name|URL
@@ -4502,7 +4506,7 @@ parameter_list|)
 block|{
 name|warn
 argument_list|(
-literal|"An error occured posting data to "
+literal|"An error occurred posting data to "
 operator|+
 name|url
 operator|+

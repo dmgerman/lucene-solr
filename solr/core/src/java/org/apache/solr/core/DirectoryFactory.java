@@ -191,6 +191,18 @@ literal|1000
 argument_list|)
 argument_list|)
 decl_stmt|;
+comment|// hint about what the directory contains - default is index directory
+DECL|enum|DirContext
+DECL|enum constant|DEFAULT
+DECL|enum constant|META_DATA
+specifier|public
+enum|enum
+name|DirContext
+block|{
+name|DEFAULT
+block|,
+name|META_DATA
+block|}
 DECL|field|log
 specifier|private
 specifier|static
@@ -258,6 +270,9 @@ name|create
 parameter_list|(
 name|String
 name|path
+parameter_list|,
+name|DirContext
+name|dirContext
 parameter_list|)
 throws|throws
 name|IOException
@@ -351,6 +366,9 @@ parameter_list|(
 name|String
 name|path
 parameter_list|,
+name|DirContext
+name|dirContext
+parameter_list|,
 name|String
 name|rawLockType
 parameter_list|)
@@ -366,6 +384,9 @@ name|get
 parameter_list|(
 name|String
 name|path
+parameter_list|,
+name|DirContext
+name|dirContext
 parameter_list|,
 name|String
 name|rawLockType

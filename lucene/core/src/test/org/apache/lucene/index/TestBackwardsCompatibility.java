@@ -721,6 +721,7 @@ comment|// files to your trunk checkout and add them to the
 comment|// oldNames array.
 comment|/*   public void testCreateCFS() throws IOException {     createIndex("index.cfs", true, false);   }    public void testCreateNoCFS() throws IOException {     createIndex("index.nocfs", false, false);   }   */
 comment|/*   // These are only needed for the special upgrade test to verify   // that also single-segment indexes are correctly upgraded by IndexUpgrader.   // You don't need them to be build for non-4.0 (the test is happy with just one   // "old" segment format, version is unimportant:      public void testCreateSingleSegmentCFS() throws IOException {     createIndex("index.singlesegment.cfs", true, true);   }    public void testCreateSingleSegmentNoCFS() throws IOException {     createIndex("index.singlesegment.nocfs", false, true);   }  */
+comment|/*   public void testCreateMoreTermsIndex() throws Exception {     // we use a real directory name that is not cleaned up,     // because this method is only used to create backwards     // indexes:     File indexDir = new File("moreterms");     _TestUtil.rmDir(indexDir);     Directory dir = newFSDirectory(indexDir);      LogByteSizeMergePolicy mp = new LogByteSizeMergePolicy();     mp.setUseCompoundFile(false);     mp.setNoCFSRatio(1.0);     mp.setMaxCFSSegmentSizeMB(Double.POSITIVE_INFINITY);     // TODO: remove randomness     IndexWriterConfig conf = new IndexWriterConfig(TEST_VERSION_CURRENT, new MockAnalyzer(random()))       .setMergePolicy(mp);     conf.setCodec(Codec.forName("Lucene40"));     IndexWriter writer = new IndexWriter(dir, conf);     LineFileDocs docs = new LineFileDocs(null, true);     for(int i=0;i<50;i++) {       writer.addDocument(docs.nextDoc());     }     writer.close();     dir.close();      // Gives you time to copy the index out!: (there is also     // a test option to not remove temp dir...):     Thread.sleep(100000);   }   */
 DECL|field|oldNames
 specifier|final
 specifier|static
@@ -5908,6 +5909,67 @@ name|close
 argument_list|()
 expr_stmt|;
 block|}
+block|}
+DECL|field|moreTermsIndex
+specifier|public
+specifier|static
+specifier|final
+name|String
+name|moreTermsIndex
+init|=
+literal|"moreterms.40.zip"
+decl_stmt|;
+DECL|method|testMoreTerms
+specifier|public
+name|void
+name|testMoreTerms
+parameter_list|()
+throws|throws
+name|Exception
+block|{
+name|File
+name|oldIndexDir
+init|=
+name|_TestUtil
+operator|.
+name|getTempDir
+argument_list|(
+literal|"moreterms"
+argument_list|)
+decl_stmt|;
+name|_TestUtil
+operator|.
+name|unzip
+argument_list|(
+name|getDataFile
+argument_list|(
+name|moreTermsIndex
+argument_list|)
+argument_list|,
+name|oldIndexDir
+argument_list|)
+expr_stmt|;
+name|Directory
+name|dir
+init|=
+name|newFSDirectory
+argument_list|(
+name|oldIndexDir
+argument_list|)
+decl_stmt|;
+comment|// TODO: more tests
+name|_TestUtil
+operator|.
+name|checkIndex
+argument_list|(
+name|dir
+argument_list|)
+expr_stmt|;
+name|dir
+operator|.
+name|close
+argument_list|()
+expr_stmt|;
 block|}
 block|}
 end_class

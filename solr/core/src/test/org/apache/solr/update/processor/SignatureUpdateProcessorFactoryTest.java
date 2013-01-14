@@ -406,6 +406,7 @@ expr_stmt|;
 comment|// set the default that most tests expect
 block|}
 DECL|method|checkNumDocs
+specifier|static
 name|void
 name|checkNumDocs
 parameter_list|(
@@ -1984,6 +1985,28 @@ name|addDoc
 parameter_list|(
 name|String
 name|doc
+parameter_list|)
+throws|throws
+name|Exception
+block|{
+name|addDoc
+argument_list|(
+name|doc
+argument_list|,
+name|chain
+argument_list|)
+expr_stmt|;
+block|}
+DECL|method|addDoc
+specifier|static
+name|void
+name|addDoc
+parameter_list|(
+name|String
+name|doc
+parameter_list|,
+name|String
+name|chain
 parameter_list|)
 throws|throws
 name|Exception

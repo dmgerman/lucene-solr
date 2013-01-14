@@ -43,6 +43,8 @@ operator|.
 name|fst
 operator|.
 name|FST
+operator|.
+name|Arc
 import|;
 end_import
 
@@ -59,8 +61,6 @@ operator|.
 name|fst
 operator|.
 name|FST
-operator|.
-name|Arc
 import|;
 end_import
 
@@ -162,7 +162,11 @@ block|}
 annotation|@
 name|SuppressWarnings
 argument_list|(
+block|{
+literal|"rawtypes"
+block|,
 literal|"unchecked"
+block|}
 argument_list|)
 DECL|method|cacheRootArcs
 specifier|private

@@ -82,20 +82,6 @@ name|lucene
 operator|.
 name|index
 operator|.
-name|DocsEnum
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|index
-operator|.
 name|FieldInfo
 import|;
 end_import
@@ -336,6 +322,22 @@ name|Util
 import|;
 end_import
 
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|util
+operator|.
+name|packed
+operator|.
+name|PackedInts
+import|;
+end_import
+
 begin_comment
 comment|/*   TODO:        - Currently there is a one-to-one mapping of indexed       term to term block, but we could decouple the two, ie,       put more terms into the index than there are blocks.       The index would take up more RAM but then it'd be able       to avoid seeking more often and could make PK/FuzzyQ       faster if the additional indexed terms could store       the offset into the terms block.      - The blocks are not written in true depth-first       order, meaning if you just next() the file pointer will       sometimes jump backwards.  For example, block foo* will       be written before block f* because it finished before.       This could possibly hurt performance if the terms dict is       not hot, since OSs anticipate sequential file access.  We       could fix the writer to re-order the blocks as a 2nd       pass.      - Each block encodes the term suffixes packed       sequentially using a separate vInt per term, which is       1) wasteful and 2) slow (must linear scan to find a       particular suffix).  We should instead 1) make       random-access array so we can directly access the Nth       suffix, and 2) bulk-encode this array using bulk int[]       codecs; then at search time we can binary search when       we seek a particular term. */
 end_comment
@@ -373,15 +375,7 @@ init|=
 literal|48
 decl_stmt|;
 comment|//public final static boolean DEBUG = false;
-DECL|field|SAVE_DOT_FILES
-specifier|private
-specifier|final
-specifier|static
-name|boolean
-name|SAVE_DOT_FILES
-init|=
-literal|false
-decl_stmt|;
+comment|//private final static boolean SAVE_DOT_FILES = false;
 DECL|field|OUTPUT_FLAGS_NUM_BITS
 specifier|static
 specifier|final
@@ -1603,7 +1597,13 @@ literal|null
 argument_list|,
 literal|false
 argument_list|,
+name|PackedInts
+operator|.
+name|COMPACT
+argument_list|,
 literal|true
+argument_list|,
+literal|15
 argument_list|)
 decl_stmt|;
 comment|//if (DEBUG) {
@@ -3999,7 +3999,13 @@ argument_list|()
 argument_list|,
 literal|false
 argument_list|,
+name|PackedInts
+operator|.
+name|COMPACT
+argument_list|,
 literal|true
+argument_list|,
+literal|15
 argument_list|)
 expr_stmt|;
 name|postingsWriter

@@ -68,16 +68,6 @@ end_import
 
 begin_import
 import|import
-name|java
-operator|.
-name|util
-operator|.
-name|NoSuchElementException
-import|;
-end_import
-
-begin_import
-import|import
 name|org
 operator|.
 name|apache
@@ -87,22 +77,6 @@ operator|.
 name|common
 operator|.
 name|SolrException
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|solr
-operator|.
-name|common
-operator|.
-name|cloud
-operator|.
-name|ClusterState
 import|;
 end_import
 
@@ -134,7 +108,7 @@ name|common
 operator|.
 name|cloud
 operator|.
-name|DocCollection
+name|ClusterState
 import|;
 end_import
 
@@ -150,7 +124,7 @@ name|common
 operator|.
 name|cloud
 operator|.
-name|DocRouter
+name|DocCollection
 import|;
 end_import
 
@@ -279,22 +253,6 @@ operator|.
 name|cloud
 operator|.
 name|ZkStateReader
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|solr
-operator|.
-name|common
-operator|.
-name|cloud
-operator|.
-name|ZooKeeperException
 import|;
 end_import
 
@@ -541,7 +499,9 @@ name|getUpdateLock
 argument_list|()
 init|)
 block|{
-comment|//XXX this only protects against edits inside single node
+comment|// XXX this only protects
+comment|// against edits inside single
+comment|// node
 try|try
 block|{
 name|byte
@@ -676,54 +636,28 @@ operator|.
 name|Code
 operator|.
 name|SESSIONEXPIRED
-operator|||
-name|e
-operator|.
-name|code
-argument_list|()
-operator|==
-name|KeeperException
-operator|.
-name|Code
-operator|.
-name|CONNECTIONLOSS
 condition|)
 block|{
 name|log
 operator|.
 name|warn
 argument_list|(
-literal|"Solr cannot talk to ZK"
+literal|"Solr cannot talk to ZK, exiting Overseer work queue loop"
+argument_list|,
+name|e
 argument_list|)
 expr_stmt|;
 return|return;
 block|}
-name|SolrException
+name|log
 operator|.
-name|log
+name|error
 argument_list|(
-name|log
-argument_list|,
-literal|""
+literal|"Exception in Overseer work queue loop"
 argument_list|,
 name|e
 argument_list|)
 expr_stmt|;
-throw|throw
-operator|new
-name|ZooKeeperException
-argument_list|(
-name|SolrException
-operator|.
-name|ErrorCode
-operator|.
-name|SERVER_ERROR
-argument_list|,
-literal|""
-argument_list|,
-name|e
-argument_list|)
-throw|;
 block|}
 catch|catch
 parameter_list|(
@@ -740,6 +674,22 @@ name|interrupt
 argument_list|()
 expr_stmt|;
 return|return;
+block|}
+catch|catch
+parameter_list|(
+name|Exception
+name|e
+parameter_list|)
+block|{
+name|log
+operator|.
+name|error
+argument_list|(
+literal|"Exception in Overseer work queue loop"
+argument_list|,
+name|e
+argument_list|)
+expr_stmt|;
 block|}
 block|}
 block|}
@@ -911,54 +861,28 @@ operator|.
 name|Code
 operator|.
 name|SESSIONEXPIRED
-operator|||
-name|e
-operator|.
-name|code
-argument_list|()
-operator|==
-name|KeeperException
-operator|.
-name|Code
-operator|.
-name|CONNECTIONLOSS
 condition|)
 block|{
 name|log
 operator|.
 name|warn
 argument_list|(
-literal|"Overseer cannot talk to ZK"
+literal|"Solr cannot talk to ZK, exiting Overseer main queue loop"
+argument_list|,
+name|e
 argument_list|)
 expr_stmt|;
 return|return;
 block|}
-name|SolrException
+name|log
 operator|.
-name|log
+name|error
 argument_list|(
-name|log
-argument_list|,
-literal|""
+literal|"Exception in Overseer main queue loop"
 argument_list|,
 name|e
 argument_list|)
 expr_stmt|;
-throw|throw
-operator|new
-name|ZooKeeperException
-argument_list|(
-name|SolrException
-operator|.
-name|ErrorCode
-operator|.
-name|SERVER_ERROR
-argument_list|,
-literal|""
-argument_list|,
-name|e
-argument_list|)
-throw|;
 block|}
 catch|catch
 parameter_list|(
@@ -975,6 +899,22 @@ name|interrupt
 argument_list|()
 expr_stmt|;
 return|return;
+block|}
+catch|catch
+parameter_list|(
+name|Exception
+name|e
+parameter_list|)
+block|{
+name|log
+operator|.
+name|error
+argument_list|(
+literal|"Exception in Overseer main queue loop"
+argument_list|,
+name|e
+argument_list|)
+expr_stmt|;
 block|}
 block|}
 try|try

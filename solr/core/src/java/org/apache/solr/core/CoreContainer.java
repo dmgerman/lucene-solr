@@ -8965,13 +8965,17 @@ literal|"<cores adminPath=\"/admin/cores\" defaultCoreName=\""
 operator|+
 name|DEFAULT_DEFAULT_CORE_NAME
 operator|+
-literal|"\">\n"
+literal|"\""
+operator|+
+literal|" host=\"${host:}\" hostPort=\"${hostPort:}\" hostContext=\"${hostContext:}\" zkClientTimeout=\"${zkClientTimeout:15000}\""
+operator|+
+literal|">\n"
 operator|+
 literal|"<core name=\""
 operator|+
 name|DEFAULT_DEFAULT_CORE_NAME
 operator|+
-literal|"\" shard=\"${shard:}\" instanceDir=\"collection1\" />\n"
+literal|"\" shard=\"${shard:}\" collection=\"${collection:}\" instanceDir=\"collection1\" />\n"
 operator|+
 literal|"</cores>\n"
 operator|+

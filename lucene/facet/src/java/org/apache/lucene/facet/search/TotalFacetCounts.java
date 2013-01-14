@@ -1095,8 +1095,6 @@ name|clCache
 argument_list|,
 name|clp
 argument_list|,
-name|indexReader
-argument_list|,
 name|partition
 argument_list|)
 decl_stmt|;
@@ -1164,9 +1162,6 @@ parameter_list|,
 name|CategoryListParams
 name|clp
 parameter_list|,
-name|IndexReader
-name|indexReader
-parameter_list|,
 name|int
 name|partition
 parameter_list|)
@@ -1212,8 +1207,6 @@ name|clp
 operator|.
 name|createCategoryListIterator
 argument_list|(
-name|indexReader
-argument_list|,
 name|partition
 argument_list|)
 return|;

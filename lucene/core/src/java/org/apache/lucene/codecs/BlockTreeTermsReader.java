@@ -1483,19 +1483,19 @@ block|{
 comment|/** How many nodes in the index FST. */
 DECL|field|indexNodeCount
 specifier|public
-name|int
+name|long
 name|indexNodeCount
 decl_stmt|;
 comment|/** How many arcs in the index FST. */
 DECL|field|indexArcCount
 specifier|public
-name|int
+name|long
 name|indexArcCount
 decl_stmt|;
 comment|/** Byte size of the index. */
 DECL|field|indexNumBytes
 specifier|public
-name|int
+name|long
 name|indexNumBytes
 decl_stmt|;
 comment|/** Total number of terms in the field. */

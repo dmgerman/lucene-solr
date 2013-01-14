@@ -68,6 +68,22 @@ name|LuceneTestCase
 import|;
 end_import
 
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|solr
+operator|.
+name|core
+operator|.
+name|DirectoryFactory
+operator|.
+name|DirContext
+import|;
+end_import
+
 begin_comment
 comment|/**  * Test-case for RAMDirectoryFactory  */
 end_comment
@@ -126,6 +142,9 @@ name|create
 parameter_list|(
 name|String
 name|path
+parameter_list|,
+name|DirContext
+name|dirContext
 parameter_list|)
 block|{
 return|return
@@ -148,6 +167,10 @@ name|get
 argument_list|(
 name|path
 argument_list|,
+name|DirContext
+operator|.
+name|DEFAULT
+argument_list|,
 literal|null
 argument_list|)
 decl_stmt|;
@@ -159,6 +182,10 @@ operator|.
 name|get
 argument_list|(
 name|path
+argument_list|,
+name|DirContext
+operator|.
+name|DEFAULT
 argument_list|,
 literal|null
 argument_list|)
@@ -212,6 +239,10 @@ operator|.
 name|get
 argument_list|(
 literal|"/fake/path"
+argument_list|,
+name|DirContext
+operator|.
+name|DEFAULT
 argument_list|,
 literal|null
 argument_list|)

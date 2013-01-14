@@ -26,16 +26,6 @@ end_import
 
 begin_import
 import|import
-name|java
-operator|.
-name|util
-operator|.
-name|Iterator
-import|;
-end_import
-
-begin_import
-import|import
 name|org
 operator|.
 name|apache
@@ -73,20 +63,6 @@ operator|.
 name|index
 operator|.
 name|Fields
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|index
-operator|.
-name|IndexReader
 import|;
 end_import
 
@@ -174,20 +150,15 @@ specifier|public
 class|class
 name|PayloadIterator
 block|{
-DECL|field|data
-specifier|protected
-name|BytesRef
-name|data
-decl_stmt|;
 DECL|field|reuseTE
 specifier|private
 name|TermsEnum
 name|reuseTE
 decl_stmt|;
-DECL|field|currentDPE
+DECL|field|dpe
 specifier|private
 name|DocsAndPositionsEnum
-name|currentDPE
+name|dpe
 decl_stmt|;
 DECL|field|hasMore
 specifier|private
@@ -195,21 +166,9 @@ name|boolean
 name|hasMore
 decl_stmt|;
 DECL|field|curDocID
-DECL|field|curDocBase
 specifier|private
 name|int
 name|curDocID
-decl_stmt|,
-name|curDocBase
-decl_stmt|;
-DECL|field|leaves
-specifier|private
-specifier|final
-name|Iterator
-argument_list|<
-name|AtomicReaderContext
-argument_list|>
-name|leaves
 decl_stmt|;
 DECL|field|term
 specifier|private
@@ -221,25 +180,12 @@ DECL|method|PayloadIterator
 specifier|public
 name|PayloadIterator
 parameter_list|(
-name|IndexReader
-name|indexReader
-parameter_list|,
 name|Term
 name|term
 parameter_list|)
 throws|throws
 name|IOException
 block|{
-name|leaves
-operator|=
-name|indexReader
-operator|.
-name|leaves
-argument_list|()
-operator|.
-name|iterator
-argument_list|()
-expr_stmt|;
 name|this
 operator|.
 name|term
@@ -247,11 +193,15 @@ operator|=
 name|term
 expr_stmt|;
 block|}
-DECL|method|nextSegment
-specifier|private
-name|void
-name|nextSegment
-parameter_list|()
+comment|/**    * Sets the {@link AtomicReaderContext} for which {@link #getPayload(int)}    * calls will be made. Returns true iff this reader has payload for any of the    * documents belonging to the {@link Term} given to the constructor.    */
+DECL|method|setNextReader
+specifier|public
+name|boolean
+name|setNextReader
+parameter_list|(
+name|AtomicReaderContext
+name|context
+parameter_list|)
 throws|throws
 name|IOException
 block|{
@@ -259,32 +209,10 @@ name|hasMore
 operator|=
 literal|false
 expr_stmt|;
-while|while
-condition|(
-name|leaves
-operator|.
-name|hasNext
-argument_list|()
-condition|)
-block|{
-name|AtomicReaderContext
-name|ctx
-init|=
-name|leaves
-operator|.
-name|next
-argument_list|()
-decl_stmt|;
-name|curDocBase
-operator|=
-name|ctx
-operator|.
-name|docBase
-expr_stmt|;
 name|Fields
 name|fields
 init|=
-name|ctx
+name|context
 operator|.
 name|reader
 argument_list|()
@@ -346,7 +274,7 @@ block|{
 comment|// this class is usually used to iterate on whatever a Query matched
 comment|// if it didn't match deleted documents, we won't receive them. if it
 comment|// did, we should iterate on them too, therefore we pass liveDocs=null
-name|currentDPE
+name|dpe
 operator|=
 name|reuseTE
 operator|.
@@ -354,7 +282,7 @@ name|docsAndPositions
 argument_list|(
 literal|null
 argument_list|,
-name|currentDPE
+name|dpe
 argument_list|,
 name|DocsAndPositionsEnum
 operator|.
@@ -363,14 +291,14 @@ argument_list|)
 expr_stmt|;
 if|if
 condition|(
-name|currentDPE
+name|dpe
 operator|!=
 literal|null
 operator|&&
 operator|(
 name|curDocID
 operator|=
-name|currentDPE
+name|dpe
 operator|.
 name|nextDoc
 argument_list|()
@@ -385,30 +313,15 @@ name|hasMore
 operator|=
 literal|true
 expr_stmt|;
-break|break;
 block|}
 block|}
 block|}
 block|}
-block|}
-block|}
-comment|/**    * Initialize the iterator. Should be done before the first call to    * {@link #getPayload(int)}. Returns {@code false} if no category list is    * found, or the category list has no documents.    */
-DECL|method|init
-specifier|public
-name|boolean
-name|init
-parameter_list|()
-throws|throws
-name|IOException
-block|{
-name|nextSegment
-argument_list|()
-expr_stmt|;
 return|return
 name|hasMore
 return|;
 block|}
-comment|/**    * Returns the {@link BytesRef payload} of the given document, or {@code null}    * if the document does not exist, there are no more documents in the posting    * list, or the document exists but has not payload. You should call    * {@link #init()} before the first call to this method.    */
+comment|/**    * Returns the {@link BytesRef payload} of the given document, or {@code null}    * if the document does not exist, there are no more documents in the posting    * list, or the document exists but has not payload. The given document IDs    * are treated as local to the reader given to    * {@link #setNextReader(AtomicReaderContext)}.    */
 DECL|method|getPayload
 specifier|public
 name|BytesRef
@@ -430,19 +343,11 @@ return|return
 literal|null
 return|;
 block|}
-comment|// re-basing docId->localDocID is done fewer times than currentDoc->globalDoc
-name|int
-name|localDocID
-init|=
-name|docID
-operator|-
-name|curDocBase
-decl_stmt|;
 if|if
 condition|(
 name|curDocID
 operator|>
-name|localDocID
+name|docID
 condition|)
 block|{
 comment|// document does not exist
@@ -454,64 +359,41 @@ if|if
 condition|(
 name|curDocID
 operator|<
-name|localDocID
+name|docID
 condition|)
 block|{
-comment|// look for the document either in that segment, or others
-while|while
-condition|(
-name|hasMore
-operator|&&
-operator|(
 name|curDocID
 operator|=
-name|currentDPE
+name|dpe
 operator|.
 name|advance
 argument_list|(
-name|localDocID
+name|docID
 argument_list|)
-operator|)
+expr_stmt|;
+if|if
+condition|(
+name|curDocID
+operator|!=
+name|docID
+condition|)
+block|{
+comment|// requested document does not have a payload
+if|if
+condition|(
+name|curDocID
 operator|==
 name|DocIdSetIterator
 operator|.
 name|NO_MORE_DOCS
 condition|)
 block|{
-name|nextSegment
-argument_list|()
-expr_stmt|;
-comment|// also updates curDocID
-name|localDocID
-operator|=
-name|docID
-operator|-
-name|curDocBase
-expr_stmt|;
-comment|// nextSegment advances to nextDoc, so check if we still need to advance
-if|if
-condition|(
-name|curDocID
-operator|>=
-name|localDocID
-condition|)
-block|{
-break|break;
-block|}
-block|}
-comment|// we break from the above loop when:
-comment|// 1. we iterated over all segments (hasMore=false)
-comment|// 2. current segment advanced to a doc, either requested or higher
-if|if
-condition|(
-operator|!
+comment|// no more docs in this reader
 name|hasMore
-operator|||
-name|curDocID
-operator|!=
-name|localDocID
-condition|)
-block|{
+operator|=
+literal|false
+expr_stmt|;
+block|}
 return|return
 literal|null
 return|;
@@ -519,7 +401,7 @@ block|}
 block|}
 comment|// we're on the document
 assert|assert
-name|currentDPE
+name|dpe
 operator|.
 name|freq
 argument_list|()
@@ -528,7 +410,7 @@ literal|1
 operator|:
 literal|"expecting freq=1 (got "
 operator|+
-name|currentDPE
+name|dpe
 operator|.
 name|freq
 argument_list|()
@@ -539,16 +421,12 @@ name|term
 operator|+
 literal|" doc="
 operator|+
-operator|(
 name|curDocID
-operator|+
-name|curDocBase
-operator|)
 assert|;
 name|int
 name|pos
 init|=
-name|currentDPE
+name|dpe
 operator|.
 name|nextPosition
 argument_list|()
@@ -565,14 +443,10 @@ name|term
 operator|+
 literal|" doc="
 operator|+
-operator|(
 name|curDocID
-operator|+
-name|curDocBase
-operator|)
 assert|;
 return|return
-name|currentDPE
+name|dpe
 operator|.
 name|getPayload
 argument_list|()

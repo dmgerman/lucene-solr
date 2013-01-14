@@ -34,20 +34,6 @@ name|apache
 operator|.
 name|lucene
 operator|.
-name|index
-operator|.
-name|IndexReader
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
 name|facet
 operator|.
 name|index
@@ -170,7 +156,7 @@ name|search
 operator|.
 name|cache
 operator|.
-name|CategoryListData
+name|CategoryListCache
 import|;
 end_import
 
@@ -188,7 +174,7 @@ name|search
 operator|.
 name|cache
 operator|.
-name|CategoryListCache
+name|CategoryListData
 import|;
 end_import
 
@@ -810,7 +796,7 @@ return|return
 literal|false
 return|;
 block|}
-comment|/**    * Create an aggregator for this facet request. Aggregator action depends on    * request definition. For a count request, it will usually increment the    * count for that facet.    *     * @param useComplements    *          whether the complements optimization is being used for current    *          computation.    * @param arrays    *          provider for facet arrays in use for current computation.    * @param indexReader    *          index reader in effect.    * @param taxonomy    *          reader of taxonomy in effect.    * @throws IOException If there is a low-level I/O error.    */
+comment|/**    * Create an aggregator for this facet request. Aggregator action depends on    * request definition. For a count request, it will usually increment the    * count for that facet.    *     * @param useComplements    *          whether the complements optimization is being used for current    *          computation.    * @param arrays    *          provider for facet arrays in use for current computation.    * @param taxonomy    *          reader of taxonomy in effect.    * @throws IOException If there is a low-level I/O error.    */
 DECL|method|createAggregator
 specifier|public
 specifier|abstract
@@ -823,24 +809,18 @@ parameter_list|,
 name|FacetArrays
 name|arrays
 parameter_list|,
-name|IndexReader
-name|indexReader
-parameter_list|,
 name|TaxonomyReader
 name|taxonomy
 parameter_list|)
 throws|throws
 name|IOException
 function_decl|;
-comment|/**    * Create the category list iterator for the specified partition.    * If a non null cache is provided which contains the required data,     * use it for the iteration.    */
+comment|/**    * Create the category list iterator for the specified partition. If a non    * null cache is provided which contains the required data, use it for the    * iteration.    */
 DECL|method|createCategoryListIterator
 specifier|public
 name|CategoryListIterator
 name|createCategoryListIterator
 parameter_list|(
-name|IndexReader
-name|reader
-parameter_list|,
 name|TaxonomyReader
 name|taxo
 parameter_list|,
@@ -913,8 +893,6 @@ name|clParams
 operator|.
 name|createCategoryListIterator
 argument_list|(
-name|reader
-argument_list|,
 name|partition
 argument_list|)
 return|;
