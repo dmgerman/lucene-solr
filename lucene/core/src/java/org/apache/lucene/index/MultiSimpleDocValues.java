@@ -1029,6 +1029,31 @@ literal|null
 return|;
 comment|// lie
 block|}
+annotation|@
+name|Override
+specifier|public
+name|int
+name|numDocs
+parameter_list|()
+block|{
+return|return
+name|maxDoc
+argument_list|()
+return|;
+comment|// lie
+block|}
+annotation|@
+name|Override
+specifier|public
+name|boolean
+name|hasDeletions
+parameter_list|()
+block|{
+return|return
+literal|false
+return|;
+comment|// lie
+block|}
 block|}
 argument_list|)
 expr_stmt|;

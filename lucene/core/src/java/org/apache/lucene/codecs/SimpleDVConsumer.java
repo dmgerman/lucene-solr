@@ -1165,6 +1165,11 @@ operator|.
 name|getLiveDocs
 argument_list|()
 decl_stmt|;
+assert|assert
+name|liveDocs
+operator|!=
+literal|null
+assert|;
 for|for
 control|(
 name|int
