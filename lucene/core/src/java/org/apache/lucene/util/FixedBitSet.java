@@ -96,6 +96,7 @@ name|bits
 decl_stmt|;
 DECL|field|numBits
 specifier|private
+specifier|final
 name|int
 name|numBits
 decl_stmt|;

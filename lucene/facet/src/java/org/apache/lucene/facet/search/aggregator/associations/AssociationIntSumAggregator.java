@@ -106,7 +106,7 @@ name|lucene
 operator|.
 name|index
 operator|.
-name|IndexReader
+name|AtomicReaderContext
 import|;
 end_import
 
@@ -179,9 +179,6 @@ DECL|method|AssociationIntSumAggregator
 specifier|public
 name|AssociationIntSumAggregator
 parameter_list|(
-name|IndexReader
-name|reader
-parameter_list|,
 name|int
 index|[]
 name|sumArray
@@ -198,8 +195,6 @@ operator|.
 name|field
 argument_list|()
 argument_list|,
-name|reader
-argument_list|,
 name|sumArray
 argument_list|)
 expr_stmt|;
@@ -210,9 +205,6 @@ name|AssociationIntSumAggregator
 parameter_list|(
 name|String
 name|field
-parameter_list|,
-name|IndexReader
-name|reader
 parameter_list|,
 name|int
 index|[]
@@ -232,8 +224,6 @@ operator|=
 operator|new
 name|IntAssociationsPayloadIterator
 argument_list|(
-name|reader
-argument_list|,
 name|field
 argument_list|,
 operator|new
@@ -407,6 +397,28 @@ name|field
 operator|.
 name|hashCode
 argument_list|()
+return|;
+block|}
+annotation|@
+name|Override
+DECL|method|setNextReader
+specifier|public
+name|boolean
+name|setNextReader
+parameter_list|(
+name|AtomicReaderContext
+name|context
+parameter_list|)
+throws|throws
+name|IOException
+block|{
+return|return
+name|associations
+operator|.
+name|setNextReader
+argument_list|(
+name|context
+argument_list|)
 return|;
 block|}
 block|}

@@ -44,34 +44,6 @@ name|apache
 operator|.
 name|lucene
 operator|.
-name|index
-operator|.
-name|IndexReader
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|index
-operator|.
-name|Term
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
 name|facet
 operator|.
 name|search
@@ -106,9 +78,9 @@ name|lucene
 operator|.
 name|facet
 operator|.
-name|search
+name|util
 operator|.
-name|TotalFacetCounts
+name|PartitionsUtils
 import|;
 end_import
 
@@ -120,11 +92,9 @@ name|apache
 operator|.
 name|lucene
 operator|.
-name|facet
+name|index
 operator|.
-name|util
-operator|.
-name|PartitionsUtils
+name|Term
 import|;
 end_import
 
@@ -344,7 +314,6 @@ argument_list|)
 argument_list|)
 return|;
 block|}
-comment|/**    * Equality is defined by the 'term' that defines this category list.      * Sub-classes should override this method if a more complex calculation    * is needed to ensure equality.     */
 annotation|@
 name|Override
 DECL|method|equals
@@ -420,7 +389,6 @@ name|term
 argument_list|)
 return|;
 block|}
-comment|/**    * Hashcode is similar to {@link #equals(Object)}, in that it uses    * the term that defines this category list to derive the hashcode.    * Subclasses need to ensure that equality/hashcode is correctly defined,    * or there could be side-effects in the {@link TotalFacetCounts} caching     * mechanism (as the filename for a Total Facet Counts array cache     * is dependent on the hashCode, so it should consistently return the same    * hash for identity).    */
 annotation|@
 name|Override
 DECL|method|hashCode
@@ -435,15 +403,12 @@ operator|.
 name|hashCode
 return|;
 block|}
-comment|/**    * Create the category list iterator for the specified partition.    */
+comment|/** Create the {@link CategoryListIterator} for the specified partition. */
 DECL|method|createCategoryListIterator
 specifier|public
 name|CategoryListIterator
 name|createCategoryListIterator
 parameter_list|(
-name|IndexReader
-name|reader
-parameter_list|,
 name|int
 name|partition
 parameter_list|)
@@ -480,8 +445,6 @@ return|return
 operator|new
 name|PayloadCategoryListIteraor
 argument_list|(
-name|reader
-argument_list|,
 name|payloadTerm
 argument_list|,
 name|createEncoder

@@ -50,7 +50,7 @@ name|lucene
 operator|.
 name|index
 operator|.
-name|IndexReader
+name|AtomicReaderContext
 import|;
 end_import
 
@@ -141,9 +141,6 @@ DECL|method|AssociationsPayloadIterator
 specifier|public
 name|AssociationsPayloadIterator
 parameter_list|(
-name|IndexReader
-name|reader
-parameter_list|,
 name|String
 name|field
 parameter_list|,
@@ -158,8 +155,6 @@ operator|=
 operator|new
 name|PayloadIterator
 argument_list|(
-name|reader
-argument_list|,
 operator|new
 name|Term
 argument_list|(
@@ -172,19 +167,38 @@ argument_list|()
 argument_list|)
 argument_list|)
 expr_stmt|;
-name|hasAssociations
-operator|=
-name|pi
-operator|.
-name|init
-argument_list|()
-expr_stmt|;
 name|this
 operator|.
 name|association
 operator|=
 name|association
 expr_stmt|;
+block|}
+comment|/**    * Sets the {@link AtomicReaderContext} for which {@link #setNextDoc(int)}    * calls will be made. Returns true iff this reader has associations for any    * of the documents belonging to the association given to the constructor.    */
+DECL|method|setNextReader
+specifier|public
+specifier|final
+name|boolean
+name|setNextReader
+parameter_list|(
+name|AtomicReaderContext
+name|context
+parameter_list|)
+throws|throws
+name|IOException
+block|{
+name|hasAssociations
+operator|=
+name|pi
+operator|.
+name|setNextReader
+argument_list|(
+name|context
+argument_list|)
+expr_stmt|;
+return|return
+name|hasAssociations
+return|;
 block|}
 comment|/**    * Skip to the requested document. Returns true iff the document has category    * association values and they were read successfully. Associations are    * handled through {@link #handleAssociation(int, CategoryAssociation)} by    * extending classes.    */
 DECL|method|setNextDoc
