@@ -1,6 +1,6 @@
 begin_unit|revision:0.9.5;language:Java;cregit-version:0.0.1
 begin_package
-DECL|package|org.apache.lucene.codecs.lucene41
+DECL|package|org.apache.lucene.codecs.diskdv
 package|package
 name|org
 operator|.
@@ -10,7 +10,7 @@ name|lucene
 operator|.
 name|codecs
 operator|.
-name|lucene41
+name|diskdv
 package|;
 end_package
 
@@ -107,21 +107,21 @@ comment|/**  * Internally there are only 2 field types:  * BINARY: a big byte[] 
 end_comment
 
 begin_class
-DECL|class|Lucene41SimpleDocValuesFormat
+DECL|class|DiskDocValuesFormat
 specifier|public
 class|class
-name|Lucene41SimpleDocValuesFormat
+name|DiskDocValuesFormat
 extends|extends
 name|SimpleDocValuesFormat
 block|{
-DECL|method|Lucene41SimpleDocValuesFormat
+DECL|method|DiskDocValuesFormat
 specifier|public
-name|Lucene41SimpleDocValuesFormat
+name|DiskDocValuesFormat
 parameter_list|()
 block|{
 name|super
 argument_list|(
-literal|"Lucene41"
+literal|"Disk"
 argument_list|)
 expr_stmt|;
 block|}
@@ -140,7 +140,7 @@ name|IOException
 block|{
 return|return
 operator|new
-name|Lucene41SimpleDocValuesConsumer
+name|DiskDocValuesConsumer
 argument_list|(
 name|state
 argument_list|)
@@ -161,7 +161,7 @@ name|IOException
 block|{
 return|return
 operator|new
-name|Lucene41SimpleDocValuesProducer
+name|DiskDocValuesProducer
 argument_list|(
 name|state
 argument_list|)
@@ -173,7 +173,7 @@ specifier|final
 name|String
 name|DATA_CODEC
 init|=
-literal|"Lucene41DocValuesData"
+literal|"DiskDocValuesData"
 decl_stmt|;
 DECL|field|METADATA_CODEC
 specifier|static
@@ -181,7 +181,7 @@ specifier|final
 name|String
 name|METADATA_CODEC
 init|=
-literal|"Lucene41DocValuesMetadata"
+literal|"DiskDocValuesMetadata"
 decl_stmt|;
 DECL|field|VERSION_START
 specifier|static

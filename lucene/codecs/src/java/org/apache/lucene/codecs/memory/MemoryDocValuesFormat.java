@@ -225,7 +225,7 @@ comment|/** Indexes doc values to disk and loads them in RAM at  *  search time.
 end_comment
 
 begin_comment
-comment|// nocommit: nuke this wrapper and just make a nice impl (e.g. FST for sortedbytes)
+comment|// nocommit: nuke this wrapper and just make a nice impl for 4.1 (e.g. FST for sortedbytes)
 end_comment
 
 begin_class

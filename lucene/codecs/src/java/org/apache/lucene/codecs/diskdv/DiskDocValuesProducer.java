@@ -1,6 +1,6 @@
 begin_unit|revision:0.9.5;language:Java;cregit-version:0.0.1
 begin_package
-DECL|package|org.apache.lucene.codecs.lucene41
+DECL|package|org.apache.lucene.codecs.diskdv
 package|package
 name|org
 operator|.
@@ -10,7 +10,7 @@ name|lucene
 operator|.
 name|codecs
 operator|.
-name|lucene41
+name|diskdv
 package|;
 end_package
 
@@ -261,9 +261,9 @@ import|;
 end_import
 
 begin_class
-DECL|class|Lucene41SimpleDocValuesProducer
+DECL|class|DiskDocValuesProducer
 class|class
-name|Lucene41SimpleDocValuesProducer
+name|DiskDocValuesProducer
 extends|extends
 name|SimpleDVProducer
 block|{
@@ -306,8 +306,8 @@ specifier|final
 name|IndexInput
 name|data
 decl_stmt|;
-DECL|method|Lucene41SimpleDocValuesProducer
-name|Lucene41SimpleDocValuesProducer
+DECL|method|DiskDocValuesProducer
+name|DiskDocValuesProducer
 parameter_list|(
 name|SegmentReadState
 name|state
@@ -365,15 +365,15 @@ name|checkHeader
 argument_list|(
 name|in
 argument_list|,
-name|Lucene41SimpleDocValuesFormat
+name|DiskDocValuesFormat
 operator|.
 name|METADATA_CODEC
 argument_list|,
-name|Lucene41SimpleDocValuesFormat
+name|DiskDocValuesFormat
 operator|.
 name|VERSION_START
 argument_list|,
-name|Lucene41SimpleDocValuesFormat
+name|DiskDocValuesFormat
 operator|.
 name|VERSION_START
 argument_list|)
@@ -492,15 +492,15 @@ name|checkHeader
 argument_list|(
 name|data
 argument_list|,
-name|Lucene41SimpleDocValuesFormat
+name|DiskDocValuesFormat
 operator|.
 name|DATA_CODEC
 argument_list|,
-name|Lucene41SimpleDocValuesFormat
+name|DiskDocValuesFormat
 operator|.
 name|VERSION_START
 argument_list|,
-name|Lucene41SimpleDocValuesFormat
+name|DiskDocValuesFormat
 operator|.
 name|VERSION_START
 argument_list|)
