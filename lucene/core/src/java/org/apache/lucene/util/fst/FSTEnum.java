@@ -199,9 +199,7 @@ operator|=
 name|fst
 operator|.
 name|getBytesReader
-argument_list|(
-literal|0
-argument_list|)
+argument_list|()
 expr_stmt|;
 name|NO_OUTPUT
 operator|=
@@ -557,9 +555,7 @@ init|=
 name|fst
 operator|.
 name|getBytesReader
-argument_list|(
-literal|0
-argument_list|)
+argument_list|()
 decl_stmt|;
 name|int
 name|low
@@ -1198,9 +1194,7 @@ init|=
 name|fst
 operator|.
 name|getBytesReader
-argument_list|(
-literal|0
-argument_list|)
+argument_list|()
 decl_stmt|;
 name|int
 name|low
@@ -1917,9 +1911,7 @@ init|=
 name|fst
 operator|.
 name|getBytesReader
-argument_list|(
-literal|0
-argument_list|)
+argument_list|()
 decl_stmt|;
 while|while
 condition|(

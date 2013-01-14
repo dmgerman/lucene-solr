@@ -4158,9 +4158,7 @@ operator|=
 name|index
 operator|.
 name|getBytesReader
-argument_list|(
-literal|0
-argument_list|)
+argument_list|()
 expr_stmt|;
 block|}
 comment|// TODO: if the automaton is "smallish" we really
@@ -6309,9 +6307,7 @@ operator|=
 name|index
 operator|.
 name|getBytesReader
-argument_list|(
-literal|0
-argument_list|)
+argument_list|()
 expr_stmt|;
 block|}
 comment|// Init w/ root block; don't use index since it may
