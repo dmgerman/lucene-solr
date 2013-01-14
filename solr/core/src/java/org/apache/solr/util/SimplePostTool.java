@@ -4506,7 +4506,7 @@ parameter_list|)
 block|{
 name|warn
 argument_list|(
-literal|"An error occured posting data to "
+literal|"An error occurred posting data to "
 operator|+
 name|url
 operator|+
