@@ -48,6 +48,16 @@ name|CORE
 init|=
 literal|"core"
 decl_stmt|;
+comment|/** Should the STATUS request include index info **/
+DECL|field|INDEX_INFO
+specifier|public
+specifier|final
+specifier|static
+name|String
+name|INDEX_INFO
+init|=
+literal|"indexInfo"
+decl_stmt|;
 comment|/** Persistent -- should it save the cores state? **/
 DECL|field|PERSISTENT
 specifier|public
