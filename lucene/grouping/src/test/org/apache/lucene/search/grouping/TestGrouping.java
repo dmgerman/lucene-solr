@@ -5340,7 +5340,8 @@ decl_stmt|;
 do|do
 block|{
 comment|// B/c of DV based impl we can't see the difference between an empty string and a null value.
-comment|// For that reason we don't generate empty string groups.
+comment|// For that reason we don't generate empty string
+comment|// groups.
 name|randomValue
 operator|=
 name|_TestUtil
@@ -6141,6 +6142,23 @@ argument_list|)
 decl_stmt|;
 if|if
 condition|(
+name|VERBOSE
+condition|)
+block|{
+name|System
+operator|.
+name|out
+operator|.
+name|println
+argument_list|(
+literal|"\nTEST: searcher="
+operator|+
+name|s
+argument_list|)
+expr_stmt|;
+block|}
+if|if
+condition|(
 name|SlowCompositeReaderWrapper
 operator|.
 name|class
@@ -6279,7 +6297,6 @@ name|doc
 argument_list|)
 argument_list|)
 expr_stmt|;
-comment|//System.out.println("  score=" + hit.score + " id=" + docIDToID.get(hit.doc));
 block|}
 block|}
 for|for
@@ -9331,6 +9348,8 @@ name|subSearchers
 index|[
 name|shardIDX
 index|]
+operator|+
+literal|" totalGroupedHitCount=?"
 operator|+
 literal|" "
 operator|+

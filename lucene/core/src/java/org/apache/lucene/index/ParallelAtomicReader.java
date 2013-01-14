@@ -1396,7 +1396,9 @@ argument_list|(
 name|field
 argument_list|)
 decl_stmt|;
-return|return
+name|NumericDocValues
+name|values
+init|=
 name|reader
 operator|==
 literal|null
@@ -1409,6 +1411,9 @@ name|simpleNormValues
 argument_list|(
 name|field
 argument_list|)
+decl_stmt|;
+return|return
+name|values
 return|;
 block|}
 block|}
