@@ -367,7 +367,7 @@ comment|// (FSTEnum, Util) have problems with this!!
 end_comment
 
 begin_comment
-comment|/** Represents an finite state machine (FST), using a  *  compact byte[] format.  *<p> The format is similar to what's used by Morfologik  *  (http://sourceforge.net/projects/morfologik).  *    *<p> See the {@link org.apache.lucene.util.fst package  *      documentation} for some simple examples.  *<p><b>NOTE</b>: the FST cannot be larger than ~2.1 GB  *  because it uses int to address the byte[].  *  * @lucene.experimental  */
+comment|/** Represents an finite state machine (FST), using a  *  compact byte[] format.  *<p> The format is similar to what's used by Morfologik  *  (http://sourceforge.net/projects/morfologik).  *    *<p> See the {@link org.apache.lucene.util.fst package  *      documentation} for some simple examples.  *  * @lucene.experimental  */
 end_comment
 
 begin_class
@@ -605,7 +605,7 @@ DECL|field|FINAL_END_NODE
 specifier|private
 specifier|final
 specifier|static
-name|int
+name|long
 name|FINAL_END_NODE
 init|=
 operator|-
@@ -617,7 +617,7 @@ DECL|field|NON_FINAL_END_NODE
 specifier|private
 specifier|final
 specifier|static
-name|int
+name|long
 name|NON_FINAL_END_NODE
 init|=
 literal|0
@@ -635,7 +635,7 @@ name|bytes
 decl_stmt|;
 DECL|field|startNode
 specifier|private
-name|int
+name|long
 name|startNode
 init|=
 operator|-
@@ -656,7 +656,7 @@ comment|// a given arc, we mark a single bit noting that the next
 comment|// node in the byte[] is the target node):
 DECL|field|lastFrozenNode
 specifier|private
-name|int
+name|long
 name|lastFrozenNode
 decl_stmt|;
 DECL|field|NO_OUTPUT
@@ -667,17 +667,17 @@ name|NO_OUTPUT
 decl_stmt|;
 DECL|field|nodeCount
 specifier|public
-name|int
+name|long
 name|nodeCount
 decl_stmt|;
 DECL|field|arcCount
 specifier|public
-name|int
+name|long
 name|arcCount
 decl_stmt|;
 DECL|field|arcWithOutputCount
 specifier|public
-name|int
+name|long
 name|arcWithOutputCount
 decl_stmt|;
 DECL|field|packed
@@ -743,13 +743,13 @@ decl_stmt|;
 comment|// From node (ord or address); currently only used when
 comment|// building an FST w/ willPackFST=true:
 DECL|field|node
-name|int
+name|long
 name|node
 decl_stmt|;
 comment|/** To node (ord or address) */
 DECL|field|target
 specifier|public
-name|int
+name|long
 name|target
 decl_stmt|;
 DECL|field|flags
@@ -763,12 +763,12 @@ name|nextFinalOutput
 decl_stmt|;
 comment|// address (into the byte[]), or ord/address if label == END_LABEL
 DECL|field|nextArc
-name|int
+name|long
 name|nextArc
 decl_stmt|;
 comment|// This is non-zero if current arcs are fixed array:
 DECL|field|posArcsStart
-name|int
+name|long
 name|posArcsStart
 decl_stmt|;
 DECL|field|bytesPerArc
@@ -1144,6 +1144,9 @@ name|acceptableOverheadRatio
 parameter_list|,
 name|boolean
 name|allowArrayArcs
+parameter_list|,
+name|int
+name|bytesPageBits
 parameter_list|)
 block|{
 name|this
@@ -1174,7 +1177,7 @@ operator|=
 operator|new
 name|BytesStore
 argument_list|(
-literal|15
+name|bytesPageBits
 argument_list|)
 expr_stmt|;
 comment|// pad: ensure no node gets address 0 which is reserved to mean
@@ -1489,21 +1492,21 @@ name|nodeCount
 operator|=
 name|in
 operator|.
-name|readVInt
+name|readVLong
 argument_list|()
 expr_stmt|;
 name|arcCount
 operator|=
 name|in
 operator|.
-name|readVInt
+name|readVLong
 argument_list|()
 expr_stmt|;
 name|arcWithOutputCount
 operator|=
 name|in
 operator|.
-name|readVInt
+name|readVLong
 argument_list|()
 expr_stmt|;
 name|int
@@ -1560,11 +1563,11 @@ block|}
 comment|/** Returns bytes used to represent the FST */
 DECL|method|sizeInBytes
 specifier|public
-name|int
+name|long
 name|sizeInBytes
 parameter_list|()
 block|{
-name|int
+name|long
 name|size
 init|=
 name|bytes
@@ -1616,28 +1619,12 @@ DECL|method|finish
 name|void
 name|finish
 parameter_list|(
-name|int
+name|long
 name|startNode
 parameter_list|)
 throws|throws
 name|IOException
 block|{
-if|if
-condition|(
-name|startNode
-operator|==
-name|FINAL_END_NODE
-operator|&&
-name|emptyOutput
-operator|!=
-literal|null
-condition|)
-block|{
-name|startNode
-operator|=
-literal|0
-expr_stmt|;
-block|}
 if|if
 condition|(
 name|this
@@ -1656,6 +1643,22 @@ literal|"already finished"
 argument_list|)
 throw|;
 block|}
+if|if
+condition|(
+name|startNode
+operator|==
+name|FINAL_END_NODE
+operator|&&
+name|emptyOutput
+operator|!=
+literal|null
+condition|)
+block|{
+name|startNode
+operator|=
+literal|0
+expr_stmt|;
+block|}
 name|this
 operator|.
 name|startNode
@@ -1673,10 +1676,10 @@ expr_stmt|;
 block|}
 DECL|method|getNodeAddress
 specifier|private
-name|int
+name|long
 name|getNodeAddress
 parameter_list|(
-name|int
+name|long
 name|node
 parameter_list|)
 block|{
@@ -1689,13 +1692,13 @@ condition|)
 block|{
 comment|// Deref
 return|return
-operator|(
-name|int
-operator|)
 name|nodeAddress
 operator|.
 name|get
 argument_list|(
+operator|(
+name|int
+operator|)
 name|node
 argument_list|)
 return|;
@@ -2245,33 +2248,33 @@ expr_stmt|;
 block|}
 name|out
 operator|.
-name|writeVInt
+name|writeVLong
 argument_list|(
 name|startNode
 argument_list|)
 expr_stmt|;
 name|out
 operator|.
-name|writeVInt
+name|writeVLong
 argument_list|(
 name|nodeCount
 argument_list|)
 expr_stmt|;
 name|out
 operator|.
-name|writeVInt
+name|writeVLong
 argument_list|(
 name|arcCount
 argument_list|)
 expr_stmt|;
 name|out
 operator|.
-name|writeVInt
+name|writeVLong
 argument_list|(
 name|arcWithOutputCount
 argument_list|)
 expr_stmt|;
-name|int
+name|long
 name|numBytes
 init|=
 name|bytes
@@ -2281,7 +2284,7 @@ argument_list|()
 decl_stmt|;
 name|out
 operator|.
-name|writeVInt
+name|writeVLong
 argument_list|(
 name|numBytes
 argument_list|)
@@ -2659,7 +2662,7 @@ block|}
 comment|// serializes new node by appending its bytes to the end
 comment|// of the current byte[]
 DECL|method|addNode
-name|int
+name|long
 name|addNode
 parameter_list|(
 name|Builder
@@ -2702,7 +2705,7 @@ return|;
 block|}
 block|}
 specifier|final
-name|int
+name|long
 name|startAddress
 init|=
 name|bytes
@@ -2711,6 +2714,7 @@ name|getPosition
 argument_list|()
 decl_stmt|;
 comment|//System.out.println("  startAddr=" + startAddress);
+specifier|final
 name|boolean
 name|doFixedArray
 init|=
@@ -2771,7 +2775,7 @@ name|numArcs
 operator|-
 literal|1
 decl_stmt|;
-name|int
+name|long
 name|lastArcStart
 init|=
 name|bytes
@@ -2938,6 +2942,9 @@ name|inCounts
 operator|.
 name|set
 argument_list|(
+operator|(
+name|int
+operator|)
 name|target
 operator|.
 name|node
@@ -2946,6 +2953,9 @@ name|inCounts
 operator|.
 name|get
 argument_list|(
+operator|(
+name|int
+operator|)
 name|target
 operator|.
 name|node
@@ -3059,7 +3069,7 @@ assert|;
 comment|//System.out.println("    write target");
 name|bytes
 operator|.
-name|writeVInt
+name|writeVLong
 argument_list|(
 name|target
 operator|.
@@ -3080,12 +3090,17 @@ index|[
 name|arcIdx
 index|]
 operator|=
+call|(
+name|int
+call|)
+argument_list|(
 name|bytes
 operator|.
 name|getPosition
 argument_list|()
 operator|-
 name|lastArcStart
+argument_list|)
 expr_stmt|;
 name|lastArcStart
 operator|=
@@ -3132,33 +3147,6 @@ literal|0
 assert|;
 comment|// 2nd pass just "expands" all arcs to take up a fixed
 comment|// byte size
-assert|assert
-operator|(
-operator|(
-name|long
-operator|)
-name|startAddress
-operator|+
-name|MAX_HEADER_SIZE
-operator|)
-operator|+
-operator|(
-operator|(
-name|long
-operator|)
-name|nodeIn
-operator|.
-name|numArcs
-operator|)
-operator|*
-name|maxBytesPerArc
-operator|<
-name|Integer
-operator|.
-name|MAX_VALUE
-operator|:
-literal|"FST too large (> 2.1 GB)"
-assert|;
 comment|//System.out.println("write int @pos=" + (fixedArrayStart-4) + " numArcs=" + nodeIn.numArcs);
 comment|// create the header
 comment|// TODO: clean this up: or just rewind+reuse and deal with it
@@ -3214,7 +3202,7 @@ name|getPosition
 argument_list|()
 decl_stmt|;
 specifier|final
-name|int
+name|long
 name|fixedArrayStart
 init|=
 name|startAddress
@@ -3222,7 +3210,7 @@ operator|+
 name|headerLen
 decl_stmt|;
 comment|// expand the arcs in place, backwards
-name|int
+name|long
 name|srcPos
 init|=
 name|bytes
@@ -3230,7 +3218,7 @@ operator|.
 name|getPosition
 argument_list|()
 decl_stmt|;
-name|int
+name|long
 name|destPos
 init|=
 name|fixedArrayStart
@@ -3257,9 +3245,14 @@ name|bytes
 operator|.
 name|skipBytes
 argument_list|(
+call|(
+name|int
+call|)
+argument_list|(
 name|destPos
 operator|-
 name|srcPos
+argument_list|)
 argument_list|)
 expr_stmt|;
 for|for
@@ -3368,7 +3361,7 @@ argument_list|)
 expr_stmt|;
 block|}
 specifier|final
-name|int
+name|long
 name|thisNodeAddress
 init|=
 name|bytes
@@ -3387,11 +3380,34 @@ argument_list|,
 name|thisNodeAddress
 argument_list|)
 expr_stmt|;
+comment|// PackedInts uses int as the index, so we cannot handle
+comment|//> 2.1B nodes when packing:
+if|if
+condition|(
+name|nodeAddress
+operator|!=
+literal|null
+operator|&&
+name|nodeCount
+operator|==
+name|Integer
+operator|.
+name|MAX_VALUE
+condition|)
+block|{
+throw|throw
+operator|new
+name|IllegalStateException
+argument_list|(
+literal|"cannot create a packed FST with more than 2.1 billion nodes"
+argument_list|)
+throw|;
+block|}
 name|nodeCount
 operator|++
 expr_stmt|;
 specifier|final
-name|int
+name|long
 name|node
 decl_stmt|;
 if|if
@@ -3404,6 +3420,9 @@ block|{
 comment|// Nodes are addressed by 1+ord:
 if|if
 condition|(
+operator|(
+name|int
+operator|)
 name|nodeCount
 operator|==
 name|nodeAddress
@@ -3465,6 +3484,9 @@ name|nodeAddress
 operator|.
 name|set
 argument_list|(
+operator|(
+name|int
+operator|)
 name|nodeCount
 argument_list|,
 name|thisNodeAddress
@@ -3833,7 +3855,7 @@ condition|)
 block|{
 name|in
 operator|.
-name|readVInt
+name|readVLong
 argument_list|()
 expr_stmt|;
 block|}
@@ -3894,7 +3916,7 @@ block|}
 block|}
 DECL|method|readUnpackedNodeTarget
 specifier|private
-name|int
+name|long
 name|readUnpackedNodeTarget
 parameter_list|(
 name|BytesReader
@@ -3903,7 +3925,7 @@ parameter_list|)
 throws|throws
 name|IOException
 block|{
-name|int
+name|long
 name|target
 decl_stmt|;
 if|if
@@ -3927,7 +3949,7 @@ name|target
 operator|=
 name|in
 operator|.
-name|readVInt
+name|readVLong
 argument_list|()
 expr_stmt|;
 block|}
@@ -4064,7 +4086,7 @@ name|T
 argument_list|>
 name|readFirstRealTargetArc
 parameter_list|(
-name|int
+name|long
 name|node
 parameter_list|,
 name|Arc
@@ -4081,7 +4103,7 @@ throws|throws
 name|IOException
 block|{
 specifier|final
-name|int
+name|long
 name|address
 init|=
 name|getNodeAddress
@@ -4367,7 +4389,7 @@ condition|)
 block|{
 comment|//System.out.println("    nextArc fake " +
 comment|//arc.nextArc);
-name|int
+name|long
 name|pos
 init|=
 name|getNodeAddress
@@ -4848,7 +4870,7 @@ name|packed
 condition|)
 block|{
 specifier|final
-name|int
+name|long
 name|pos
 init|=
 name|in
@@ -4857,12 +4879,12 @@ name|getPosition
 argument_list|()
 decl_stmt|;
 specifier|final
-name|int
+name|long
 name|code
 init|=
 name|in
 operator|.
-name|readVInt
+name|readVLong
 argument_list|()
 decl_stmt|;
 if|if
@@ -4902,13 +4924,13 @@ name|arc
 operator|.
 name|target
 operator|=
-operator|(
-name|int
-operator|)
 name|nodeRefToAddress
 operator|.
 name|get
 argument_list|(
+operator|(
+name|int
+operator|)
 name|code
 argument_list|)
 expr_stmt|;
@@ -5507,7 +5529,7 @@ condition|)
 block|{
 name|in
 operator|.
-name|readVInt
+name|readVLong
 argument_list|()
 expr_stmt|;
 block|}
@@ -5536,7 +5558,7 @@ block|}
 block|}
 DECL|method|getNodeCount
 specifier|public
-name|int
+name|long
 name|getNodeCount
 parameter_list|()
 block|{
@@ -5549,7 +5571,7 @@ return|;
 block|}
 DECL|method|getArcCount
 specifier|public
-name|int
+name|long
 name|getArcCount
 parameter_list|()
 block|{
@@ -5559,7 +5581,7 @@ return|;
 block|}
 DECL|method|getArcWithOutputCount
 specifier|public
-name|int
+name|long
 name|getArcWithOutputCount
 parameter_list|()
 block|{
@@ -5606,32 +5628,6 @@ name|FIXED_ARRAY_NUM_ARCS_DEEP
 operator|)
 return|;
 block|}
-DECL|class|BytesWriter
-specifier|static
-specifier|abstract
-class|class
-name|BytesWriter
-extends|extends
-name|DataOutput
-block|{
-DECL|method|setPosition
-specifier|public
-specifier|abstract
-name|void
-name|setPosition
-parameter_list|(
-name|int
-name|posWrite
-parameter_list|)
-function_decl|;
-DECL|method|getPosition
-specifier|public
-specifier|abstract
-name|int
-name|getPosition
-parameter_list|()
-function_decl|;
-block|}
 comment|/** Returns a {@link BytesReader} for this FST, positioned at    *  position 0. */
 DECL|method|getBytesReader
 specifier|public
@@ -5652,7 +5648,7 @@ specifier|public
 name|BytesReader
 name|getBytesReader
 parameter_list|(
-name|int
+name|long
 name|pos
 parameter_list|)
 block|{
@@ -5716,7 +5712,7 @@ comment|/** Get current read position. */
 DECL|method|getPosition
 specifier|public
 specifier|abstract
-name|int
+name|long
 name|getPosition
 parameter_list|()
 function_decl|;
@@ -5727,7 +5723,7 @@ specifier|abstract
 name|void
 name|setPosition
 parameter_list|(
-name|int
+name|long
 name|pos
 parameter_list|)
 function_decl|;
@@ -5815,6 +5811,9 @@ argument_list|<
 name|T
 argument_list|>
 name|outputs
+parameter_list|,
+name|int
+name|bytesPageBits
 parameter_list|)
 block|{
 name|version
@@ -5831,13 +5830,12 @@ name|inputType
 operator|=
 name|inputType
 expr_stmt|;
-comment|// 32 KB blocks:
 name|bytes
 operator|=
 operator|new
 name|BytesStore
 argument_list|(
-literal|15
+name|bytesPageBits
 argument_list|)
 expr_stmt|;
 name|this
@@ -5881,6 +5879,8 @@ parameter_list|)
 throws|throws
 name|IOException
 block|{
+comment|// NOTE: maxDerefNodes is intentionally int: we cannot
+comment|// support> 2.1B deref nodes
 comment|// TODO: other things to try
 comment|//   - renumber the nodes to get more next / better locality?
 comment|//   - allow multiple input labels on an arc, so
@@ -6160,9 +6160,14 @@ name|getPosition
 argument_list|()
 argument_list|)
 argument_list|,
+call|(
+name|int
+call|)
+argument_list|(
 literal|1
 operator|+
 name|nodeCount
+argument_list|)
 argument_list|,
 name|acceptableOverheadRatio
 argument_list|)
@@ -6254,6 +6259,11 @@ argument_list|(
 name|inputType
 argument_list|,
 name|outputs
+argument_list|,
+name|bytes
+operator|.
+name|getBlockBits
+argument_list|()
 argument_list|)
 expr_stmt|;
 specifier|final
@@ -6308,7 +6318,7 @@ name|changedCount
 init|=
 literal|0
 decl_stmt|;
-name|int
+name|long
 name|addressError
 init|=
 literal|0
@@ -6322,6 +6332,9 @@ control|(
 name|int
 name|node
 init|=
+operator|(
+name|int
+operator|)
 name|nodeCount
 init|;
 name|node
@@ -6338,7 +6351,7 @@ name|nodeCount
 operator|++
 expr_stmt|;
 specifier|final
-name|int
+name|long
 name|address
 init|=
 name|writer
@@ -6363,9 +6376,6 @@ name|addressError
 operator|=
 name|address
 operator|-
-operator|(
-name|int
-operator|)
 name|newNodeAddress
 operator|.
 name|get
@@ -6501,7 +6511,7 @@ block|{
 comment|// iterate over all arcs for this node
 comment|//System.out.println("    cycle next arc");
 specifier|final
-name|int
+name|long
 name|arcStartPos
 init|=
 name|writer
@@ -6630,11 +6640,7 @@ name|BIT_ARC_HAS_OUTPUT
 expr_stmt|;
 block|}
 specifier|final
-name|Integer
-name|ptr
-decl_stmt|;
-specifier|final
-name|int
+name|long
 name|absPtr
 decl_stmt|;
 specifier|final
@@ -6659,8 +6665,10 @@ condition|(
 name|doWriteTarget
 condition|)
 block|{
+specifier|final
+name|Integer
 name|ptr
-operator|=
+init|=
 name|topNodeMap
 operator|.
 name|get
@@ -6669,7 +6677,7 @@ name|arc
 operator|.
 name|target
 argument_list|)
-expr_stmt|;
+decl_stmt|;
 if|if
 condition|(
 name|ptr
@@ -6691,13 +6699,13 @@ operator|.
 name|size
 argument_list|()
 operator|+
-operator|(
-name|int
-operator|)
 name|newNodeAddress
 operator|.
 name|get
 argument_list|(
+operator|(
+name|int
+operator|)
 name|arc
 operator|.
 name|target
@@ -6706,17 +6714,16 @@ operator|+
 name|addressError
 expr_stmt|;
 block|}
-name|int
+name|long
 name|delta
 init|=
-call|(
-name|int
-call|)
-argument_list|(
 name|newNodeAddress
 operator|.
 name|get
 argument_list|(
+operator|(
+name|int
+operator|)
 name|arc
 operator|.
 name|target
@@ -6730,7 +6737,6 @@ name|getPosition
 argument_list|()
 operator|-
 literal|2
-argument_list|)
 decl_stmt|;
 if|if
 condition|(
@@ -6764,10 +6770,6 @@ block|}
 block|}
 else|else
 block|{
-name|ptr
-operator|=
-literal|null
-expr_stmt|;
 name|absPtr
 operator|=
 literal|0
@@ -6855,17 +6857,16 @@ condition|(
 name|doWriteTarget
 condition|)
 block|{
-name|int
+name|long
 name|delta
 init|=
-call|(
-name|int
-call|)
-argument_list|(
 name|newNodeAddress
 operator|.
 name|get
 argument_list|(
+operator|(
+name|int
+operator|)
 name|arc
 operator|.
 name|target
@@ -6877,7 +6878,6 @@ name|writer
 operator|.
 name|getPosition
 argument_list|()
-argument_list|)
 decl_stmt|;
 if|if
 condition|(
@@ -6909,7 +6909,7 @@ block|{
 comment|//System.out.println("        delta");
 name|writer
 operator|.
-name|writeVInt
+name|writeVLong
 argument_list|(
 name|delta
 argument_list|)
@@ -6930,7 +6930,7 @@ block|{
 comment|/*                 if (ptr != null) {                   System.out.println("        deref");                 } else {                   System.out.println("        abs");                 }                 */
 name|writer
 operator|.
-name|writeVInt
+name|writeVLong
 argument_list|(
 name|absPtr
 argument_list|)
@@ -6973,12 +6973,17 @@ specifier|final
 name|int
 name|arcBytes
 init|=
+call|(
+name|int
+call|)
+argument_list|(
 name|writer
 operator|.
 name|getPosition
 argument_list|()
 operator|-
 name|arcStartPos
+argument_list|)
 decl_stmt|;
 comment|//System.out.println("  " + arcBytes + " bytes");
 name|maxBytesPerArc
@@ -7003,6 +7008,10 @@ name|writer
 operator|.
 name|skipBytes
 argument_list|(
+call|(
+name|int
+call|)
+argument_list|(
 name|arcStartPos
 operator|+
 name|bytesPerArc
@@ -7011,6 +7020,7 @@ name|writer
 operator|.
 name|getPosition
 argument_list|()
+argument_list|)
 argument_list|)
 expr_stmt|;
 block|}
@@ -7126,7 +7136,7 @@ literal|0
 decl_stmt|;
 for|for
 control|(
-name|int
+name|long
 name|key
 range|:
 name|topNodeMap
@@ -7147,6 +7157,9 @@ name|newNodeAddress
 operator|.
 name|get
 argument_list|(
+operator|(
+name|int
+operator|)
 name|key
 argument_list|)
 argument_list|)
@@ -7225,13 +7238,13 @@ name|fst
 operator|.
 name|startNode
 operator|=
-operator|(
-name|int
-operator|)
 name|newNodeAddress
 operator|.
 name|get
 argument_list|(
+operator|(
+name|int
+operator|)
 name|startNode
 argument_list|)
 expr_stmt|;
