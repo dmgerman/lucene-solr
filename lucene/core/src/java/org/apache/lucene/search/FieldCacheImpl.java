@@ -6487,8 +6487,26 @@ operator|.
 name|field
 argument_list|)
 decl_stmt|;
-comment|// TODO: would be nice to fallback to SortedDV if it's
-comment|// available but BinaryDV isn't?
+if|if
+condition|(
+name|valuesIn
+operator|==
+literal|null
+condition|)
+block|{
+comment|// nocommit is this auto-fallback ... OK?
+name|valuesIn
+operator|=
+name|reader
+operator|.
+name|getSortedDocValues
+argument_list|(
+name|key
+operator|.
+name|field
+argument_list|)
+expr_stmt|;
+block|}
 if|if
 condition|(
 name|valuesIn
