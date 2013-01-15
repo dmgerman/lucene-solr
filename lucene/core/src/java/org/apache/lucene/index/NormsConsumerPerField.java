@@ -197,6 +197,17 @@ operator|==
 literal|null
 condition|)
 block|{
+name|fieldInfo
+operator|.
+name|setNormValueType
+argument_list|(
+name|FieldInfo
+operator|.
+name|DocValuesType
+operator|.
+name|NUMERIC
+argument_list|)
+expr_stmt|;
 name|consumer
 operator|=
 operator|new
