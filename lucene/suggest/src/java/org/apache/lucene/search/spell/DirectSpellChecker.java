@@ -20,76 +20,6 @@ end_comment
 
 begin_import
 import|import
-name|java
-operator|.
-name|io
-operator|.
-name|IOException
-import|;
-end_import
-
-begin_import
-import|import
-name|java
-operator|.
-name|util
-operator|.
-name|Collection
-import|;
-end_import
-
-begin_import
-import|import
-name|java
-operator|.
-name|util
-operator|.
-name|Collections
-import|;
-end_import
-
-begin_import
-import|import
-name|java
-operator|.
-name|util
-operator|.
-name|Comparator
-import|;
-end_import
-
-begin_import
-import|import
-name|java
-operator|.
-name|util
-operator|.
-name|HashSet
-import|;
-end_import
-
-begin_import
-import|import
-name|java
-operator|.
-name|util
-operator|.
-name|Locale
-import|;
-end_import
-
-begin_import
-import|import
-name|java
-operator|.
-name|util
-operator|.
-name|PriorityQueue
-import|;
-end_import
-
-begin_import
-import|import
 name|org
 operator|.
 name|apache
@@ -154,7 +84,7 @@ name|lucene
 operator|.
 name|search
 operator|.
-name|FuzzyTermsEnum
+name|BoostAttribute
 import|;
 end_import
 
@@ -168,7 +98,7 @@ name|lucene
 operator|.
 name|search
 operator|.
-name|BoostAttribute
+name|FuzzyTermsEnum
 import|;
 end_import
 
@@ -272,6 +202,76 @@ name|LevenshteinAutomata
 import|;
 end_import
 
+begin_import
+import|import
+name|java
+operator|.
+name|io
+operator|.
+name|IOException
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
+name|util
+operator|.
+name|Collection
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
+name|util
+operator|.
+name|Collections
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
+name|util
+operator|.
+name|Comparator
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
+name|util
+operator|.
+name|HashSet
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
+name|util
+operator|.
+name|Locale
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
+name|util
+operator|.
+name|PriorityQueue
+import|;
+end_import
+
 begin_comment
 comment|/**  * Simple automaton-based spellchecker.  *<p>  * Candidates are presented directly from the term dictionary, based on  * Levenshtein distance. This is an alternative to {@link SpellChecker}  * if you are using an edit-distance-like metric such as Levenshtein  * or {@link JaroWinklerDistance}.  *<p>  * A practical benefit of this spellchecker is that it requires no additional  * datastructures (neither in RAM nor on disk) to do its work.  *   * @see LevenshteinAutomata  * @see FuzzyTermsEnum  *   * @lucene.experimental  */
 end_comment
@@ -296,7 +296,7 @@ argument_list|()
 decl_stmt|;
 comment|/** maximum edit distance for candidate terms */
 DECL|field|maxEdits
-specifier|private
+specifier|protected
 name|int
 name|maxEdits
 init|=
@@ -306,7 +306,7 @@ name|MAXIMUM_SUPPORTED_DISTANCE
 decl_stmt|;
 comment|/** minimum prefix for candidate terms */
 DECL|field|minPrefix
-specifier|private
+specifier|protected
 name|int
 name|minPrefix
 init|=
@@ -314,7 +314,7 @@ literal|1
 decl_stmt|;
 comment|/** maximum number of top-N inspections per suggestion */
 DECL|field|maxInspections
-specifier|private
+specifier|protected
 name|int
 name|maxInspections
 init|=
@@ -322,7 +322,7 @@ literal|5
 decl_stmt|;
 comment|/** minimum accuracy for a term to match */
 DECL|field|accuracy
-specifier|private
+specifier|protected
 name|float
 name|accuracy
 init|=
@@ -332,7 +332,7 @@ name|DEFAULT_ACCURACY
 decl_stmt|;
 comment|/** value in [0..1] (or absolute number>=1) representing the minimum     * number of documents (of the total) where a term should appear. */
 DECL|field|thresholdFrequency
-specifier|private
+specifier|protected
 name|float
 name|thresholdFrequency
 init|=
@@ -340,7 +340,7 @@ literal|0f
 decl_stmt|;
 comment|/** minimum length of a query word to return suggestions */
 DECL|field|minQueryLength
-specifier|private
+specifier|protected
 name|int
 name|minQueryLength
 init|=
@@ -348,7 +348,7 @@ literal|4
 decl_stmt|;
 comment|/** value in [0..1] (or absolute number>=1) representing the maximum    *  number of documents (of the total) a query term can appear in to    *  be corrected. */
 DECL|field|maxQueryFrequency
-specifier|private
+specifier|protected
 name|float
 name|maxQueryFrequency
 init|=
@@ -356,7 +356,7 @@ literal|0.01f
 decl_stmt|;
 comment|/** true if the spellchecker should lowercase terms */
 DECL|field|lowerCaseTerms
-specifier|private
+specifier|protected
 name|boolean
 name|lowerCaseTerms
 init|=
@@ -364,7 +364,7 @@ literal|true
 decl_stmt|;
 comment|/** the comparator to use */
 DECL|field|comparator
-specifier|private
+specifier|protected
 name|Comparator
 argument_list|<
 name|SuggestWord
@@ -377,7 +377,7 @@ name|DEFAULT_COMPARATOR
 decl_stmt|;
 comment|/** the string distance to use */
 DECL|field|distance
-specifier|private
+specifier|protected
 name|StringDistance
 name|distance
 init|=
@@ -1309,7 +1309,7 @@ name|suggestions
 return|;
 block|}
 DECL|method|suggestSimilar
-specifier|private
+specifier|protected
 name|Collection
 argument_list|<
 name|ScoreTerm
@@ -1709,7 +1709,7 @@ name|stQueue
 return|;
 block|}
 DECL|class|ScoreTerm
-specifier|private
+specifier|protected
 specifier|static
 class|class
 name|ScoreTerm
