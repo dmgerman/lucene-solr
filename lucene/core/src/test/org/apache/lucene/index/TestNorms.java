@@ -698,14 +698,8 @@ argument_list|)
 decl_stmt|;
 name|assertEquals
 argument_list|(
-operator|(
-name|byte
-operator|)
 name|expected
 argument_list|,
-operator|(
-name|byte
-operator|)
 name|normValues
 operator|.
 name|get
