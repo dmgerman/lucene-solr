@@ -717,14 +717,22 @@ name|TestBackwardsCompatibility
 extends|extends
 name|LuceneTestCase
 block|{
-comment|// Uncomment these cases& run them on an older Lucene
-comment|// version, to generate an index to test backwards
-comment|// compatibility.  Then, cd to build/test/index.cfs and
-comment|// run "zip index.<VERSION>.cfs.zip *"; cd to
-comment|// build/test/index.nocfs and run "zip
-comment|// index.<VERSION>.nocfs.zip *".  Then move those 2 zip
-comment|// files to your trunk checkout and add them to the
-comment|// oldNames array.
+comment|// Uncomment these cases& run them on an older Lucene version,
+comment|// to generate indexes to test backwards compatibility.  These
+comment|// indexes will be created under directory /tmp/idx/.
+comment|//
+comment|// However, you must first disable the Lucene TestSecurityManager,
+comment|// which will otherwise disallow writing outside of the build/
+comment|// directory - to do this, comment out the "java.security.manager"
+comment|//<sysproperty> under the "test-macro"<macrodef>.
+comment|//
+comment|// Zip up the generated indexes:
+comment|//
+comment|//    cd /tmp/idx/index.cfs   ; zip index.<VERSION>.cfs.zip *
+comment|//    cd /tmp/idx/index.nocfs ; zip index.<VERSION>.nocfs.zip *
+comment|//
+comment|// Then move those 2 zip files to your trunk checkout and add them
+comment|// to the oldNames array.
 comment|/*   public void testCreateCFS() throws IOException {     createIndex("index.cfs", true, false);   }    public void testCreateNoCFS() throws IOException {     createIndex("index.nocfs", false, false);   }   */
 comment|/*   // These are only needed for the special upgrade test to verify   // that also single-segment indexes are correctly upgraded by IndexUpgrader.   // You don't need them to be build for non-4.0 (the test is happy with just one   // "old" segment format, version is unimportant:      public void testCreateSingleSegmentCFS() throws IOException {     createIndex("index.singlesegment.cfs", true, true);   }    public void testCreateSingleSegmentNoCFS() throws IOException {     createIndex("index.singlesegment.nocfs", false, true);   }  */
 comment|/*   public void testCreateMoreTermsIndex() throws Exception {     // we use a real directory name that is not cleaned up,     // because this method is only used to create backwards     // indexes:     File indexDir = new File("moreterms");     _TestUtil.rmDir(indexDir);     Directory dir = newFSDirectory(indexDir);      LogByteSizeMergePolicy mp = new LogByteSizeMergePolicy();     mp.setUseCompoundFile(false);     mp.setNoCFSRatio(1.0);     mp.setMaxCFSSegmentSizeMB(Double.POSITIVE_INFINITY);     // TODO: remove randomness     IndexWriterConfig conf = new IndexWriterConfig(TEST_VERSION_CURRENT, new MockAnalyzer(random()))       .setMergePolicy(mp);     conf.setCodec(Codec.forName("Lucene40"));     IndexWriter writer = new IndexWriter(dir, conf);     LineFileDocs docs = new LineFileDocs(null, true);     for(int i=0;i<50;i++) {       writer.addDocument(docs.nextDoc());     }     writer.close();     dir.close();      // Gives you time to copy the index out!: (there is also     // a test option to not remove temp dir...):     Thread.sleep(100000);   }   */
@@ -739,6 +747,10 @@ block|{
 literal|"40.cfs"
 block|,
 literal|"40.nocfs"
+block|,
+literal|"41.cfs"
+block|,
+literal|"41.nocfs"
 block|,   }
 decl_stmt|;
 DECL|field|unsupportedNames
@@ -3527,7 +3539,7 @@ init|=
 operator|new
 name|File
 argument_list|(
-literal|"/tmp/4x"
+literal|"/tmp/idx"
 argument_list|,
 name|dirName
 argument_list|)
