@@ -26,7 +26,7 @@ name|lucene
 operator|.
 name|index
 operator|.
-name|DocValues
+name|FieldInfo
 import|;
 end_import
 
@@ -45,7 +45,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  *<p>  * Field that stores  * a per-document {@link BytesRef} value, indexed for  * sorting.  Here's an example usage:  *   *<pre class="prettyprint">  *   document.add(new SortedBytesDocValuesField(name, new BytesRef("hello")));  *</pre>  *   *<p>  * If you also need to store the value, you should add a  * separate {@link StoredField} instance.  *   * @see DocValues  * */
+comment|/**  *<p>  * Field that stores  * a per-document {@link BytesRef} value, indexed for  * sorting.  Here's an example usage:  *   *<pre class="prettyprint">  *   document.add(new SortedBytesDocValuesField(name, new BytesRef("hello")));  *</pre>  *   *<p>  * If you also need to store the value, you should add a  * separate {@link StoredField} instance.  *   * */
 end_comment
 
 begin_class
@@ -56,14 +56,13 @@ name|SortedBytesDocValuesField
 extends|extends
 name|StoredField
 block|{
-comment|// TODO: ideally indexer figures out var vs fixed on its own!?
 comment|/**    * Type for sorted bytes DocValues: all with the same length    */
-DECL|field|TYPE_FIXED_LEN
+DECL|field|TYPE
 specifier|public
 specifier|static
 specifier|final
 name|FieldType
-name|TYPE_FIXED_LEN
+name|TYPE
 init|=
 operator|new
 name|FieldType
@@ -71,55 +70,24 @@ argument_list|()
 decl_stmt|;
 static|static
 block|{
-name|TYPE_FIXED_LEN
+name|TYPE
 operator|.
 name|setDocValueType
 argument_list|(
-name|DocValues
+name|FieldInfo
 operator|.
-name|Type
+name|DocValuesType
 operator|.
-name|BYTES_FIXED_SORTED
+name|SORTED
 argument_list|)
 expr_stmt|;
-name|TYPE_FIXED_LEN
+name|TYPE
 operator|.
 name|freeze
 argument_list|()
 expr_stmt|;
 block|}
-comment|/**    * Type for sorted bytes DocValues: can have variable lengths    */
-DECL|field|TYPE_VAR_LEN
-specifier|public
-specifier|static
-specifier|final
-name|FieldType
-name|TYPE_VAR_LEN
-init|=
-operator|new
-name|FieldType
-argument_list|()
-decl_stmt|;
-static|static
-block|{
-name|TYPE_VAR_LEN
-operator|.
-name|setDocValueType
-argument_list|(
-name|DocValues
-operator|.
-name|Type
-operator|.
-name|BYTES_VAR_SORTED
-argument_list|)
-expr_stmt|;
-name|TYPE_VAR_LEN
-operator|.
-name|freeze
-argument_list|()
-expr_stmt|;
-block|}
-comment|/**    * Create a new variable-length sorted DocValues field.    *<p>    * This calls     * {@link SortedBytesDocValuesField#SortedBytesDocValuesField(String, BytesRef, boolean)    *  SortedBytesDocValuesField(name, bytes, false}, meaning by default    * it allows for values of different lengths. If your values are all     * the same length, use that constructor instead.    * @param name field name    * @param bytes binary content    * @throws IllegalArgumentException if the field name is null    */
+comment|/**    * Create a new sorted DocValues field.    * @param name field name    * @param bytes binary content    * @throws IllegalArgumentException if the field name is null    */
 DECL|method|SortedBytesDocValuesField
 specifier|public
 name|SortedBytesDocValuesField
@@ -131,17 +99,21 @@ name|BytesRef
 name|bytes
 parameter_list|)
 block|{
-name|this
+name|super
 argument_list|(
 name|name
 argument_list|,
-name|bytes
-argument_list|,
-literal|false
+name|TYPE
 argument_list|)
+expr_stmt|;
+name|fieldsData
+operator|=
+name|bytes
 expr_stmt|;
 block|}
 comment|/**    * Create a new fixed or variable length sorted DocValues field.    * @param name field name    * @param bytes binary content    * @param isFixedLength true if all values have the same length.    * @throws IllegalArgumentException if the field name is null    */
+annotation|@
+name|Deprecated
 DECL|method|SortedBytesDocValuesField
 specifier|public
 name|SortedBytesDocValuesField
@@ -160,11 +132,7 @@ name|super
 argument_list|(
 name|name
 argument_list|,
-name|isFixedLength
-condition|?
-name|TYPE_FIXED_LEN
-else|:
-name|TYPE_VAR_LEN
+name|TYPE
 argument_list|)
 expr_stmt|;
 name|fieldsData

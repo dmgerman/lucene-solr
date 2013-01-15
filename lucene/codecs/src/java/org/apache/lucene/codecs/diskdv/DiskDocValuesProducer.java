@@ -114,7 +114,7 @@ name|lucene
 operator|.
 name|index
 operator|.
-name|DocValues
+name|FieldInfo
 import|;
 end_import
 
@@ -129,6 +129,8 @@ operator|.
 name|index
 operator|.
 name|FieldInfo
+operator|.
+name|DocValuesType
 import|;
 end_import
 
@@ -536,9 +538,7 @@ operator|-
 literal|1
 condition|)
 block|{
-name|DocValues
-operator|.
-name|Type
+name|DocValuesType
 name|type
 init|=
 name|infos
@@ -553,19 +553,11 @@ argument_list|()
 decl_stmt|;
 if|if
 condition|(
-name|DocValues
-operator|.
-name|isNumber
-argument_list|(
 name|type
-argument_list|)
-operator|||
-name|DocValues
+operator|==
+name|DocValuesType
 operator|.
-name|isFloat
-argument_list|(
-name|type
-argument_list|)
+name|NUMERIC
 condition|)
 block|{
 name|numerics
@@ -584,12 +576,11 @@ block|}
 elseif|else
 if|if
 condition|(
-name|DocValues
-operator|.
-name|isBytes
-argument_list|(
 name|type
-argument_list|)
+operator|==
+name|DocValuesType
+operator|.
+name|BINARY
 condition|)
 block|{
 name|BinaryEntry
@@ -660,12 +651,11 @@ block|}
 elseif|else
 if|if
 condition|(
-name|DocValues
-operator|.
-name|isSortedBytes
-argument_list|(
 name|type
-argument_list|)
+operator|==
+name|DocValuesType
+operator|.
+name|SORTED
 condition|)
 block|{
 name|BinaryEntry

@@ -170,16 +170,6 @@ name|_TestUtil
 import|;
 end_import
 
-begin_import
-import|import
-name|org
-operator|.
-name|junit
-operator|.
-name|Assume
-import|;
-end_import
-
 begin_comment
 comment|/**  * Tests the maxTermFrequency statistic in FieldInvertState  */
 end_comment
@@ -393,17 +383,6 @@ parameter_list|()
 throws|throws
 name|Exception
 block|{
-comment|// nocommit remove
-name|Assume
-operator|.
-name|assumeTrue
-argument_list|(
-name|_TestUtil
-operator|.
-name|canUseSimpleNorms
-argument_list|()
-argument_list|)
-expr_stmt|;
 name|NumericDocValues
 name|fooNorms
 init|=

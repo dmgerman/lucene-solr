@@ -3970,16 +3970,6 @@ parameter_list|)
 throws|throws
 name|IOException
 block|{
-name|Assume
-operator|.
-name|assumeTrue
-argument_list|(
-name|_TestUtil
-operator|.
-name|canUseSimpleNorms
-argument_list|()
-argument_list|)
-expr_stmt|;
 name|assertEquals
 argument_list|(
 literal|"IndexReaders have different values for numDocs."

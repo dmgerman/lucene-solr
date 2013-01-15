@@ -62,7 +62,7 @@ name|lucene
 operator|.
 name|index
 operator|.
-name|DocValues
+name|FieldInfo
 import|;
 end_import
 
@@ -77,6 +77,8 @@ operator|.
 name|index
 operator|.
 name|FieldInfo
+operator|.
+name|DocValuesType
 import|;
 end_import
 
@@ -1017,9 +1019,7 @@ specifier|static
 name|String
 name|getDocValuesType
 parameter_list|(
-name|DocValues
-operator|.
-name|Type
+name|DocValuesType
 name|type
 parameter_list|)
 block|{

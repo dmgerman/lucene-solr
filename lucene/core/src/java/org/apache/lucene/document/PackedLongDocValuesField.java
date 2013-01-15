@@ -26,20 +26,6 @@ name|lucene
 operator|.
 name|index
 operator|.
-name|DocValues
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|index
-operator|.
 name|AtomicReader
 import|;
 end_import
@@ -49,48 +35,19 @@ comment|// javadocs
 end_comment
 
 begin_comment
-comment|/**  *<p>  * Field that stores a per-document<code>long</code> value   * for scoring, sorting or value retrieval.  The values are   * encoded in the index an in RAM (when loaded via   * {@link AtomicReader#docValues})  * using packed ints. Here's an example usage:  *   *<pre class="prettyprint">  *   document.add(new PackedLongDocValuesField(name, 22L));  *</pre>  *   *<p>  * If you also need to store the value, you should add a  * separate {@link StoredField} instance.  *   * @see DocValues  * */
+comment|/**  *<p>  * Field that stores a per-document<code>long</code> value   * for scoring, sorting or value retrieval.  The values are   * encoded in the index an in RAM (when loaded via   * {@link AtomicReader#getNumericDocValues(String)})  * using packed ints. Here's an example usage:  *   *<pre class="prettyprint">  *   document.add(new PackedLongDocValuesField(name, 22L));  *</pre>  *   *<p>  * If you also need to store the value, you should add a  * separate {@link StoredField} instance.  *   * */
 end_comment
 
 begin_class
+annotation|@
+name|Deprecated
 DECL|class|PackedLongDocValuesField
 specifier|public
 class|class
 name|PackedLongDocValuesField
 extends|extends
-name|StoredField
+name|LongDocValuesField
 block|{
-comment|/**    * Type for packed long DocValues.    */
-DECL|field|TYPE
-specifier|public
-specifier|static
-specifier|final
-name|FieldType
-name|TYPE
-init|=
-operator|new
-name|FieldType
-argument_list|()
-decl_stmt|;
-static|static
-block|{
-name|TYPE
-operator|.
-name|setDocValueType
-argument_list|(
-name|DocValues
-operator|.
-name|Type
-operator|.
-name|VAR_INTS
-argument_list|)
-expr_stmt|;
-name|TYPE
-operator|.
-name|freeze
-argument_list|()
-expr_stmt|;
-block|}
 comment|/**     * Creates a new DocValues field with the specified long value     * @param name field name    * @param value 64-bit long value    * @throws IllegalArgumentException if the field name is null    */
 DECL|method|PackedLongDocValuesField
 specifier|public
@@ -107,15 +64,6 @@ name|super
 argument_list|(
 name|name
 argument_list|,
-name|TYPE
-argument_list|)
-expr_stmt|;
-name|fieldsData
-operator|=
-name|Long
-operator|.
-name|valueOf
-argument_list|(
 name|value
 argument_list|)
 expr_stmt|;

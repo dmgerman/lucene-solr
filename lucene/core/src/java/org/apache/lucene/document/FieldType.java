@@ -44,7 +44,9 @@ name|lucene
 operator|.
 name|index
 operator|.
-name|DocValues
+name|FieldInfo
+operator|.
+name|DocValuesType
 import|;
 end_import
 
@@ -217,9 +219,7 @@ name|PRECISION_STEP_DEFAULT
 decl_stmt|;
 DECL|field|docValueType
 specifier|private
-name|DocValues
-operator|.
-name|Type
+name|DocValuesType
 name|docValueType
 decl_stmt|;
 comment|/**    * Create a new mutable FieldType with all of the properties from<code>ref</code>    */
@@ -1017,14 +1017,12 @@ argument_list|()
 return|;
 block|}
 comment|/* from StorableFieldType */
-comment|/**    * {@inheritDoc}    *<p>    * The default is<code>null</code> (no docValues)     * @see #setDocValueType(DocValues.Type)    */
+comment|/**    * {@inheritDoc}    *<p>    * The default is<code>null</code> (no docValues)     * @see #setDocValueType(DocValuesType)    */
 annotation|@
 name|Override
 DECL|method|docValueType
 specifier|public
-name|DocValues
-operator|.
-name|Type
+name|DocValuesType
 name|docValueType
 parameter_list|()
 block|{
@@ -1032,15 +1030,13 @@ return|return
 name|docValueType
 return|;
 block|}
-comment|/**    * Set's the field's DocValues.Type    * @param type DocValues type, or null if no DocValues should be stored.    * @throws IllegalStateException if this FieldType is frozen against    *         future modifications.    * @see #docValueType()    */
+comment|/**    * Set's the field's DocValuesType    * @param type DocValues type, or null if no DocValues should be stored.    * @throws IllegalStateException if this FieldType is frozen against    *         future modifications.    * @see #docValueType()    */
 DECL|method|setDocValueType
 specifier|public
 name|void
 name|setDocValueType
 parameter_list|(
-name|DocValues
-operator|.
-name|Type
+name|DocValuesType
 name|type
 parameter_list|)
 block|{

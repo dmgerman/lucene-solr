@@ -654,16 +654,6 @@ parameter_list|()
 throws|throws
 name|IOException
 block|{
-name|Assume
-operator|.
-name|assumeTrue
-argument_list|(
-name|_TestUtil
-operator|.
-name|canUseSimpleDV
-argument_list|()
-argument_list|)
-expr_stmt|;
 name|Directory
 name|dir
 init|=

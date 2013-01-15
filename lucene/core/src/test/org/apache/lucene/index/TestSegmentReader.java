@@ -1084,7 +1084,7 @@ name|assertEquals
 argument_list|(
 name|reader
 operator|.
-name|normValues
+name|simpleNormValues
 argument_list|(
 name|f
 operator|.
@@ -1108,7 +1108,7 @@ name|assertEquals
 argument_list|(
 name|reader
 operator|.
-name|normValues
+name|simpleNormValues
 argument_list|(
 name|f
 operator|.
@@ -1136,7 +1136,7 @@ if|if
 condition|(
 name|reader
 operator|.
-name|normValues
+name|simpleNormValues
 argument_list|(
 name|f
 operator|.

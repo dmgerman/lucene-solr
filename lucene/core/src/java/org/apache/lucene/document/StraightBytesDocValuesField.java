@@ -24,20 +24,6 @@ name|apache
 operator|.
 name|lucene
 operator|.
-name|index
-operator|.
-name|DocValues
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
 name|util
 operator|.
 name|BytesRef
@@ -45,80 +31,19 @@ import|;
 end_import
 
 begin_comment
-comment|/**  *<p>  * Field that stores  * a per-document {@link BytesRef} value.  The values are  * stored directly with no sharing, which is a good fit when  * the fields don't share (many) values, such as a title  * field.  If values may be shared it's better to use {@link  * DerefBytesDocValuesField}.  Here's an example usage:  *   *<pre class="prettyprint">  *   document.add(new StraightBytesDocValuesField(name, new BytesRef("hello")));  *</pre>  *   *<p>  * If you also need to store the value, you should add a  * separate {@link StoredField} instance.  *   * @see DocValues  * */
+comment|/**  *<p>  * Field that stores  * a per-document {@link BytesRef} value.  The values are  * stored directly with no sharing, which is a good fit when  * the fields don't share (many) values, such as a title  * field.  If values may be shared it's better to use {@link  * DerefBytesDocValuesField}.  Here's an example usage:  *   *<pre class="prettyprint">  *   document.add(new StraightBytesDocValuesField(name, new BytesRef("hello")));  *</pre>  *   *<p>  * If you also need to store the value, you should add a  * separate {@link StoredField} instance.  *   * */
 end_comment
 
 begin_class
+annotation|@
+name|Deprecated
 DECL|class|StraightBytesDocValuesField
 specifier|public
 class|class
 name|StraightBytesDocValuesField
 extends|extends
-name|StoredField
+name|BinaryDocValuesField
 block|{
-comment|// TODO: ideally indexer figures out var vs fixed on its own!?
-comment|/**    * Type for direct bytes DocValues: all with the same length    */
-DECL|field|TYPE_FIXED_LEN
-specifier|public
-specifier|static
-specifier|final
-name|FieldType
-name|TYPE_FIXED_LEN
-init|=
-operator|new
-name|FieldType
-argument_list|()
-decl_stmt|;
-static|static
-block|{
-name|TYPE_FIXED_LEN
-operator|.
-name|setDocValueType
-argument_list|(
-name|DocValues
-operator|.
-name|Type
-operator|.
-name|BYTES_FIXED_STRAIGHT
-argument_list|)
-expr_stmt|;
-name|TYPE_FIXED_LEN
-operator|.
-name|freeze
-argument_list|()
-expr_stmt|;
-block|}
-comment|/**    * Type for direct bytes DocValues: can have variable lengths    */
-DECL|field|TYPE_VAR_LEN
-specifier|public
-specifier|static
-specifier|final
-name|FieldType
-name|TYPE_VAR_LEN
-init|=
-operator|new
-name|FieldType
-argument_list|()
-decl_stmt|;
-static|static
-block|{
-name|TYPE_VAR_LEN
-operator|.
-name|setDocValueType
-argument_list|(
-name|DocValues
-operator|.
-name|Type
-operator|.
-name|BYTES_VAR_STRAIGHT
-argument_list|)
-expr_stmt|;
-name|TYPE_VAR_LEN
-operator|.
-name|freeze
-argument_list|()
-expr_stmt|;
-block|}
 comment|/**    * Create a new variable-length direct DocValues field.    *<p>    * This calls     * {@link StraightBytesDocValuesField#StraightBytesDocValuesField(String, BytesRef, boolean)    *  StraightBytesDocValuesField(name, bytes, false}, meaning by default    * it allows for values of different lengths. If your values are all     * the same length, use that constructor instead.    * @param name field name    * @param bytes binary content    * @throws IllegalArgumentException if the field name is null    */
 DECL|method|StraightBytesDocValuesField
 specifier|public
@@ -135,12 +60,8 @@ name|super
 argument_list|(
 name|name
 argument_list|,
-name|TYPE_VAR_LEN
-argument_list|)
-expr_stmt|;
-name|fieldsData
-operator|=
 name|bytes
+argument_list|)
 expr_stmt|;
 block|}
 comment|/**    * Create a new fixed or variable length direct DocValues field.    *<p>    * @param name field name    * @param bytes binary content    * @param isFixedLength true if all values have the same length.    * @throws IllegalArgumentException if the field name is null    */
@@ -162,16 +83,8 @@ name|super
 argument_list|(
 name|name
 argument_list|,
-name|isFixedLength
-condition|?
-name|TYPE_FIXED_LEN
-else|:
-name|TYPE_VAR_LEN
-argument_list|)
-expr_stmt|;
-name|fieldsData
-operator|=
 name|bytes
+argument_list|)
 expr_stmt|;
 block|}
 block|}

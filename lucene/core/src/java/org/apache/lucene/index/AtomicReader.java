@@ -570,19 +570,6 @@ return|return
 literal|null
 return|;
 block|}
-comment|/**    * Returns {@link DocValues} for this field.    * This method may return null if the reader has no per-document    * values stored.    */
-DECL|method|docValues
-specifier|public
-specifier|abstract
-name|DocValues
-name|docValues
-parameter_list|(
-name|String
-name|field
-parameter_list|)
-throws|throws
-name|IOException
-function_decl|;
 comment|/** Returns {@link NumericDocValues} for this field, or    *  null if no {@link NumericDocValues} were indexed for    *  this field.  The returned instance should only be    *  used by a single thread. */
 DECL|method|getNumericDocValues
 specifier|public
@@ -615,19 +602,6 @@ specifier|public
 specifier|abstract
 name|SortedDocValues
 name|getSortedDocValues
-parameter_list|(
-name|String
-name|field
-parameter_list|)
-throws|throws
-name|IOException
-function_decl|;
-comment|/**    * Returns {@link DocValues} for this field's normalization values.    * This method may return null if the field has no norms.    */
-DECL|method|normValues
-specifier|public
-specifier|abstract
-name|DocValues
-name|normValues
 parameter_list|(
 name|String
 name|field

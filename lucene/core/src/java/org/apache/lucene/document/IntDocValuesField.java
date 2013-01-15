@@ -26,12 +26,12 @@ name|lucene
 operator|.
 name|index
 operator|.
-name|DocValues
+name|FieldInfo
 import|;
 end_import
 
 begin_comment
-comment|/**  *<p>  * Field that stores a per-document<code>int</code> value for scoring,   * sorting or value retrieval. Here's an example usage:  *   *<pre class="prettyprint">  *   document.add(new IntDocValuesField(name, 22));  *</pre>  *   *<p>  * If you also need to store the value, you should add a  * separate {@link StoredField} instance.  * @see DocValues  * */
+comment|/**  *<p>  * Field that stores a per-document<code>int</code> value for scoring,   * sorting or value retrieval. Here's an example usage:  *   *<pre class="prettyprint">  *   document.add(new IntDocValuesField(name, 22));  *</pre>  *   *<p>  * If you also need to store the value, you should add a  * separate {@link StoredField} instance.  * */
 end_comment
 
 begin_class
@@ -60,11 +60,11 @@ name|TYPE
 operator|.
 name|setDocValueType
 argument_list|(
-name|DocValues
+name|FieldInfo
 operator|.
-name|Type
+name|DocValuesType
 operator|.
-name|FIXED_INTS_32
+name|NUMERIC
 argument_list|)
 expr_stmt|;
 name|TYPE

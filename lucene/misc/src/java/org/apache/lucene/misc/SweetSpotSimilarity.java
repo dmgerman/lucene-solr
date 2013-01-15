@@ -46,20 +46,6 @@ name|FieldInvertState
 import|;
 end_import
 
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|index
-operator|.
-name|Norm
-import|;
-end_import
-
 begin_comment
 comment|/**  * A similarity with a lengthNorm that provides for a "plateau" of  * equally good lengths, and tf helper functions.  *  *<p>  * For lengthNorm, A global min/max can be specified to define the  * plateau of lengths that should all have a norm of 1.0.  * Below the min, and above the max the lengthNorm drops off in a  * sqrt function.  *</p>  *<p>  * A per field min/max can be specified if different fields have  * different sweet spots.  *</p>  *  *<p>  * For tf, baselineTf and hyperbolicTf functions are provided, which  * subclasses can choose between.  *</p>  *  * @see<a href="doc-files/ss.gnuplot">A Gnuplot file used to generate some of the visualizations refrenced from each function.</a>   */
 end_comment
