@@ -197,6 +197,8 @@ operator|==
 literal|null
 condition|)
 block|{
+comment|// nocommit wrongish?  what about the
+comment|// only-doc-with-norms-enabled-hits-exc case?
 name|fieldInfo
 operator|.
 name|setNormValueType
@@ -272,7 +274,9 @@ literal|null
 condition|)
 block|{
 return|return;
-comment|// null type - not omitted but not written
+comment|// null type - not omitted but not written -
+comment|// nocommit meaning the only docs that had
+comment|// norms hit exceptions?
 block|}
 name|consumer
 operator|.
