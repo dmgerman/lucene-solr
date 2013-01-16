@@ -78,6 +78,26 @@ name|aggregator
 operator|.
 name|associations
 operator|.
+name|AssociationFloatSumAggregator
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|facet
+operator|.
+name|search
+operator|.
+name|aggregator
+operator|.
+name|associations
+operator|.
 name|AssociationIntSumAggregator
 import|;
 end_import
@@ -137,7 +157,7 @@ comment|/*  * Licensed to the Apache Software Foundation (ASF) under one or more
 end_comment
 
 begin_comment
-comment|/**  * A {@link FacetRequest} for weighting facets according to their integer  * association by summing the association values.  *   * @lucene.experimental  */
+comment|/**  * A {@link FacetRequest} for weighting facets according to their integer  * association by summing the association values. Note that this class caches  * the associations data in-memory by default. You can override  * {@link #createAggregator(boolean, FacetArrays, TaxonomyReader)} to return an  * {@link AssociationFloatSumAggregator} which does otherwise.  *   * @lucene.experimental  */
 end_comment
 
 begin_class

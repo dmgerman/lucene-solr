@@ -241,8 +241,7 @@ name|getOrdinal
 argument_list|(
 name|facetRequest
 operator|.
-name|getCategoryPath
-argument_list|()
+name|categoryPath
 argument_list|)
 decl_stmt|;
 if|if
@@ -381,8 +380,7 @@ name|getOrdinal
 argument_list|(
 name|facetRequest
 operator|.
-name|getCategoryPath
-argument_list|()
+name|categoryPath
 argument_list|)
 decl_stmt|;
 name|MutableFacetResultNode
