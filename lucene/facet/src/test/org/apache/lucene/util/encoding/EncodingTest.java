@@ -412,6 +412,22 @@ literal|100
 argument_list|)
 decl_stmt|;
 comment|// some initial capacity - decoders should grow the int[]
+for|for
+control|(
+name|int
+name|i
+init|=
+literal|0
+init|;
+name|i
+operator|<
+literal|2
+condition|;
+name|i
+operator|++
+control|)
+block|{
+comment|// run 2 iterations to catch encoders/decoders which don't reset properly
 name|encoding
 argument_list|(
 name|encoder
@@ -443,6 +459,7 @@ name|values
 argument_list|)
 argument_list|)
 expr_stmt|;
+block|}
 block|}
 DECL|method|encoding
 specifier|private

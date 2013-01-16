@@ -57,36 +57,10 @@ specifier|abstract
 class|class
 name|IntDecoder
 block|{
-comment|/**    * Performs the actual decoding. Values should be read from    * {@link BytesRef#offset} up to {@code upto}. Also, {@code values} offset and    * length are set to 0 and the encoder is expected to update    * {@link IntsRef#length}, but not {@link IntsRef#offset}.    *     *<p>    *<b>NOTE:</b> it is ok to use the buffer's offset as the current position in    * the buffer (and modify it), it will be reset by    * {@link #decode(BytesRef, IntsRef)}.    */
-DECL|method|doDecode
-specifier|protected
-specifier|abstract
-name|void
-name|doDecode
-parameter_list|(
-name|BytesRef
-name|buf
-parameter_list|,
-name|IntsRef
-name|values
-parameter_list|,
-name|int
-name|upto
-parameter_list|)
-function_decl|;
-comment|/**    * Called before {@link #doDecode(BytesRef, IntsRef, int)} so that decoders    * can reset their state.    */
-DECL|method|reset
-specifier|protected
-name|void
-name|reset
-parameter_list|()
-block|{
-comment|// do nothing by default
-block|}
 comment|/**    * Decodes the values from the buffer into the given {@link IntsRef}. Note    * that {@code values.offset} and {@code values.length} are set to 0.    */
 DECL|method|decode
 specifier|public
-specifier|final
+specifier|abstract
 name|void
 name|decode
 parameter_list|(
@@ -96,62 +70,7 @@ parameter_list|,
 name|IntsRef
 name|values
 parameter_list|)
-block|{
-name|values
-operator|.
-name|offset
-operator|=
-name|values
-operator|.
-name|length
-operator|=
-literal|0
-expr_stmt|;
-comment|// must do that because we cannot grow() them otherwise
-comment|// some decoders may use the buffer's offset as a position index, so save
-comment|// current offset.
-name|int
-name|bufOffset
-init|=
-name|buf
-operator|.
-name|offset
-decl_stmt|;
-name|reset
-argument_list|()
-expr_stmt|;
-name|doDecode
-argument_list|(
-name|buf
-argument_list|,
-name|values
-argument_list|,
-name|buf
-operator|.
-name|offset
-operator|+
-name|buf
-operator|.
-name|length
-argument_list|)
-expr_stmt|;
-assert|assert
-name|values
-operator|.
-name|offset
-operator|==
-literal|0
-operator|:
-literal|"offset should not have been modified by the decoder."
-assert|;
-comment|// fix offset
-name|buf
-operator|.
-name|offset
-operator|=
-name|bufOffset
-expr_stmt|;
-block|}
+function_decl|;
 block|}
 end_class
 
