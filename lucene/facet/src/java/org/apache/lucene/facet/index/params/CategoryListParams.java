@@ -96,7 +96,7 @@ name|util
 operator|.
 name|encoding
 operator|.
-name|DGapIntEncoder
+name|DGapVInt8IntEncoder
 import|;
 end_import
 
@@ -161,22 +161,6 @@ operator|.
 name|encoding
 operator|.
 name|UniqueValuesIntEncoder
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|util
-operator|.
-name|encoding
-operator|.
-name|VInt8IntEncoder
 import|;
 end_import
 
@@ -272,12 +256,8 @@ operator|new
 name|UniqueValuesIntEncoder
 argument_list|(
 operator|new
-name|DGapIntEncoder
-argument_list|(
-operator|new
-name|VInt8IntEncoder
+name|DGapVInt8IntEncoder
 argument_list|()
-argument_list|)
 argument_list|)
 argument_list|)
 return|;
