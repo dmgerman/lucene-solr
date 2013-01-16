@@ -1721,31 +1721,42 @@ argument_list|<
 name|ScoreTerm
 argument_list|>
 block|{
+comment|/**      * The actual spellcheck correction.      */
 DECL|field|term
 specifier|public
 name|BytesRef
 name|term
 decl_stmt|;
+comment|/**      * The boost representing the similarity from the FuzzyTermsEnum (internal similarity score)      */
 DECL|field|boost
 specifier|public
 name|float
 name|boost
 decl_stmt|;
+comment|/**      * The df of the spellcheck correction.      */
 DECL|field|docfreq
 specifier|public
 name|int
 name|docfreq
 decl_stmt|;
+comment|/**      * The spellcheck correction represented as string, can be<code>null</code>.      */
 DECL|field|termAsString
 specifier|public
 name|String
 name|termAsString
 decl_stmt|;
+comment|/**      * The similarity score.      */
 DECL|field|score
 specifier|public
 name|float
 name|score
 decl_stmt|;
+comment|/**      * Constructor.      */
+DECL|method|ScoreTerm
+specifier|public
+name|ScoreTerm
+parameter_list|()
+block|{     }
 annotation|@
 name|Override
 DECL|method|compareTo
