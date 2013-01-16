@@ -281,7 +281,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  *   *<code>HighFreqTerms</code> class extracts the top n most frequent terms  * (by document frequency ) from an existing Lucene index and reports their document frequencey.  * If the -t flag is  and reports both their document frequency and their total tf (total number of occurences)   * in order of highest total tf  */
+comment|/**  *<code>HighFreqTerms</code> class extracts the top n most frequent terms  * (by document frequency) from an existing Lucene index and reports their  * document frequency.  *<p>  * If the -t flag is given, both document frequency and total tf (total  * number of occurrences) are reported, ordered by descending total tf.  *  */
 end_comment
 
 begin_class
