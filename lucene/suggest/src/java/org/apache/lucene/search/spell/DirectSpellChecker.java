@@ -296,7 +296,7 @@ argument_list|()
 decl_stmt|;
 comment|/** maximum edit distance for candidate terms */
 DECL|field|maxEdits
-specifier|protected
+specifier|public
 name|int
 name|maxEdits
 init|=
@@ -306,7 +306,7 @@ name|MAXIMUM_SUPPORTED_DISTANCE
 decl_stmt|;
 comment|/** minimum prefix for candidate terms */
 DECL|field|minPrefix
-specifier|protected
+specifier|public
 name|int
 name|minPrefix
 init|=
@@ -314,7 +314,7 @@ literal|1
 decl_stmt|;
 comment|/** maximum number of top-N inspections per suggestion */
 DECL|field|maxInspections
-specifier|protected
+specifier|public
 name|int
 name|maxInspections
 init|=
@@ -322,7 +322,7 @@ literal|5
 decl_stmt|;
 comment|/** minimum accuracy for a term to match */
 DECL|field|accuracy
-specifier|protected
+specifier|public
 name|float
 name|accuracy
 init|=
@@ -332,7 +332,7 @@ name|DEFAULT_ACCURACY
 decl_stmt|;
 comment|/** value in [0..1] (or absolute number>=1) representing the minimum     * number of documents (of the total) where a term should appear. */
 DECL|field|thresholdFrequency
-specifier|protected
+specifier|public
 name|float
 name|thresholdFrequency
 init|=
@@ -340,7 +340,7 @@ literal|0f
 decl_stmt|;
 comment|/** minimum length of a query word to return suggestions */
 DECL|field|minQueryLength
-specifier|protected
+specifier|public
 name|int
 name|minQueryLength
 init|=
@@ -348,7 +348,7 @@ literal|4
 decl_stmt|;
 comment|/** value in [0..1] (or absolute number>=1) representing the maximum    *  number of documents (of the total) a query term can appear in to    *  be corrected. */
 DECL|field|maxQueryFrequency
-specifier|protected
+specifier|public
 name|float
 name|maxQueryFrequency
 init|=
@@ -356,7 +356,7 @@ literal|0.01f
 decl_stmt|;
 comment|/** true if the spellchecker should lowercase terms */
 DECL|field|lowerCaseTerms
-specifier|protected
+specifier|public
 name|boolean
 name|lowerCaseTerms
 init|=
@@ -364,7 +364,7 @@ literal|true
 decl_stmt|;
 comment|/** the comparator to use */
 DECL|field|comparator
-specifier|protected
+specifier|public
 name|Comparator
 argument_list|<
 name|SuggestWord
@@ -377,7 +377,7 @@ name|DEFAULT_COMPARATOR
 decl_stmt|;
 comment|/** the string distance to use */
 DECL|field|distance
-specifier|protected
+specifier|public
 name|StringDistance
 name|distance
 init|=
@@ -1308,6 +1308,7 @@ return|return
 name|suggestions
 return|;
 block|}
+comment|/**    * Provide spelling corrections based on several parameters.    *    * @param term The term to suggest spelling corrections for    * @param numSug The maximum number of spelling corrections    * @param ir The index reader to fetch the candidate spelling corrections from    * @param docfreq The minimum document frequency a potential suggestion need to have in order to be included    * @param editDistance The maximum edit distance candidates are allowed to have    * @param accuracy The minimum accuracy a suggested spelling correction needs to have in order to be included    * @param spare a chars scratch    * @return a collection of spelling corrections sorted by<code>ScoreTerm</code>'s natural order.    * @throws IOException If I/O related errors occur    */
 DECL|method|suggestSimilar
 specifier|protected
 name|Collection
@@ -1708,6 +1709,7 @@ return|return
 name|stQueue
 return|;
 block|}
+comment|/**    * Holds a spelling correction for internal usage inside {@link DirectSpellChecker}.    */
 DECL|class|ScoreTerm
 specifier|protected
 specifier|static
