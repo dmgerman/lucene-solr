@@ -1577,8 +1577,6 @@ argument_list|)
 decl_stmt|;
 name|doDefensiveChecks
 argument_list|(
-name|shardId
-argument_list|,
 name|phase
 argument_list|)
 expr_stmt|;
@@ -1856,9 +1854,6 @@ specifier|private
 name|void
 name|doDefensiveChecks
 parameter_list|(
-name|String
-name|shardId
-parameter_list|,
 name|DistribPhase
 name|phase
 parameter_list|)
