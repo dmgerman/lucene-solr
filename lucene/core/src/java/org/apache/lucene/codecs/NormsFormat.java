@@ -22,16 +22,6 @@ name|java
 operator|.
 name|io
 operator|.
-name|Closeable
-import|;
-end_import
-
-begin_import
-import|import
-name|java
-operator|.
-name|io
-operator|.
 name|IOException
 import|;
 end_import
@@ -46,7 +36,7 @@ name|lucene
 operator|.
 name|index
 operator|.
-name|BinaryDocValues
+name|SegmentReadState
 import|;
 end_import
 
@@ -60,95 +50,49 @@ name|lucene
 operator|.
 name|index
 operator|.
-name|FieldInfo
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|index
-operator|.
-name|NumericDocValues
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|index
-operator|.
-name|SortedDocValues
+name|SegmentWriteState
 import|;
 end_import
 
 begin_comment
-comment|// nocommit add javadocs stating that this must open all
-end_comment
-
-begin_comment
-comment|// necessary files "on init", not later eg in .getXXX, else
-end_comment
-
-begin_comment
-comment|// an IW that deletes a commit will cause an SR to hit
-end_comment
-
-begin_comment
-comment|// exceptions....
+comment|/**  * format for normalization factors  */
 end_comment
 
 begin_class
-DECL|class|SimpleDVProducer
+DECL|class|NormsFormat
 specifier|public
 specifier|abstract
 class|class
-name|SimpleDVProducer
-implements|implements
-name|Closeable
+name|NormsFormat
 block|{
-DECL|method|getNumeric
+comment|/** Sole constructor. (For invocation by subclass     *  constructors, typically implicit.) */
+DECL|method|NormsFormat
+specifier|protected
+name|NormsFormat
+parameter_list|()
+block|{   }
+comment|/** Returns a {@link DocValuesConsumer} to write norms to the    *  index. */
+DECL|method|normsConsumer
 specifier|public
 specifier|abstract
-name|NumericDocValues
-name|getNumeric
+name|DocValuesConsumer
+name|normsConsumer
 parameter_list|(
-name|FieldInfo
-name|field
+name|SegmentWriteState
+name|state
 parameter_list|)
 throws|throws
 name|IOException
 function_decl|;
-DECL|method|getBinary
+comment|/** Returns a {@link DocValuesProducer} to read norms from the    *  index. */
+DECL|method|normsProducer
 specifier|public
 specifier|abstract
-name|BinaryDocValues
-name|getBinary
+name|DocValuesProducer
+name|normsProducer
 parameter_list|(
-name|FieldInfo
-name|field
-parameter_list|)
-throws|throws
-name|IOException
-function_decl|;
-DECL|method|getSorted
-specifier|public
-specifier|abstract
-name|SortedDocValues
-name|getSorted
-parameter_list|(
-name|FieldInfo
-name|field
+name|SegmentReadState
+name|state
 parameter_list|)
 throws|throws
 name|IOException

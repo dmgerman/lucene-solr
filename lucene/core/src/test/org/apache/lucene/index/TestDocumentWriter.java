@@ -715,7 +715,7 @@ operator|==
 operator|(
 name|reader
 operator|.
-name|simpleNormValues
+name|getNormValues
 argument_list|(
 name|fi
 operator|.

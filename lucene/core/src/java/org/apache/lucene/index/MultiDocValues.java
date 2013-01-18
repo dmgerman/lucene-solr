@@ -165,17 +165,17 @@ comment|// nocommit move this back to test-framework!!!
 end_comment
 
 begin_class
-DECL|class|MultiSimpleDocValues
+DECL|class|MultiDocValues
 specifier|public
 class|class
-name|MultiSimpleDocValues
+name|MultiDocValues
 block|{
 comment|// moved to src/java so SlowWrapper can use it... uggggggh
-DECL|method|simpleNormValues
+DECL|method|getNormValues
 specifier|public
 specifier|static
 name|NumericDocValues
-name|simpleNormValues
+name|getNormValues
 parameter_list|(
 specifier|final
 name|IndexReader
@@ -221,7 +221,7 @@ operator|.
 name|reader
 argument_list|()
 operator|.
-name|simpleNormValues
+name|getNormValues
 argument_list|(
 name|field
 argument_list|)
@@ -281,7 +281,7 @@ operator|.
 name|reader
 argument_list|()
 operator|.
-name|simpleNormValues
+name|getNormValues
 argument_list|(
 name|field
 argument_list|)
@@ -344,7 +344,7 @@ operator|.
 name|reader
 argument_list|()
 operator|.
-name|simpleNormValues
+name|getNormValues
 argument_list|(
 name|field
 argument_list|)
@@ -400,11 +400,11 @@ block|}
 block|}
 return|;
 block|}
-DECL|method|simpleNumericValues
+DECL|method|getNumericValues
 specifier|public
 specifier|static
 name|NumericDocValues
-name|simpleNumericValues
+name|getNumericValues
 parameter_list|(
 specifier|final
 name|IndexReader
@@ -607,11 +607,11 @@ block|}
 return|;
 block|}
 block|}
-DECL|method|simpleBinaryValues
+DECL|method|getBinaryValues
 specifier|public
 specifier|static
 name|BinaryDocValues
-name|simpleBinaryValues
+name|getBinaryValues
 parameter_list|(
 specifier|final
 name|IndexReader
@@ -829,11 +829,11 @@ block|}
 return|;
 block|}
 block|}
-DECL|method|simpleSortedValues
+DECL|method|getSortedValues
 specifier|public
 specifier|static
 name|SortedDocValues
-name|simpleSortedValues
+name|getSortedValues
 parameter_list|(
 specifier|final
 name|IndexReader

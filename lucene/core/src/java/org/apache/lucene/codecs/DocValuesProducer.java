@@ -22,6 +22,16 @@ name|java
 operator|.
 name|io
 operator|.
+name|Closeable
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
+name|io
+operator|.
 name|IOException
 import|;
 end_import
@@ -36,7 +46,7 @@ name|lucene
 operator|.
 name|index
 operator|.
-name|SegmentReadState
+name|BinaryDocValues
 import|;
 end_import
 
@@ -50,49 +60,95 @@ name|lucene
 operator|.
 name|index
 operator|.
-name|SegmentWriteState
+name|FieldInfo
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|index
+operator|.
+name|NumericDocValues
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|index
+operator|.
+name|SortedDocValues
 import|;
 end_import
 
 begin_comment
-comment|/**  * format for normalization factors  */
+comment|// nocommit add javadocs stating that this must open all
+end_comment
+
+begin_comment
+comment|// necessary files "on init", not later eg in .getXXX, else
+end_comment
+
+begin_comment
+comment|// an IW that deletes a commit will cause an SR to hit
+end_comment
+
+begin_comment
+comment|// exceptions....
 end_comment
 
 begin_class
-DECL|class|SimpleNormsFormat
+DECL|class|DocValuesProducer
 specifier|public
 specifier|abstract
 class|class
-name|SimpleNormsFormat
+name|DocValuesProducer
+implements|implements
+name|Closeable
 block|{
-comment|/** Sole constructor. (For invocation by subclass     *  constructors, typically implicit.) */
-DECL|method|SimpleNormsFormat
-specifier|protected
-name|SimpleNormsFormat
-parameter_list|()
-block|{   }
-comment|/** Returns a {@link SimpleDVConsumer} to write norms to the    *  index. */
-DECL|method|normsConsumer
+DECL|method|getNumeric
 specifier|public
 specifier|abstract
-name|SimpleDVConsumer
-name|normsConsumer
+name|NumericDocValues
+name|getNumeric
 parameter_list|(
-name|SegmentWriteState
-name|state
+name|FieldInfo
+name|field
 parameter_list|)
 throws|throws
 name|IOException
 function_decl|;
-comment|/** Returns a {@link SimpleDVProducer} to read norms from the    *  index. */
-DECL|method|normsProducer
+DECL|method|getBinary
 specifier|public
 specifier|abstract
-name|SimpleDVProducer
-name|normsProducer
+name|BinaryDocValues
+name|getBinary
 parameter_list|(
-name|SegmentReadState
-name|state
+name|FieldInfo
+name|field
+parameter_list|)
+throws|throws
+name|IOException
+function_decl|;
+DECL|method|getSorted
+specifier|public
+specifier|abstract
+name|SortedDocValues
+name|getSorted
+parameter_list|(
+name|FieldInfo
+name|field
 parameter_list|)
 throws|throws
 name|IOException

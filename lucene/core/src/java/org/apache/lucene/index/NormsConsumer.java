@@ -46,7 +46,7 @@ name|lucene
 operator|.
 name|codecs
 operator|.
-name|SimpleDVConsumer
+name|DocValuesConsumer
 import|;
 end_import
 
@@ -60,7 +60,7 @@ name|lucene
 operator|.
 name|codecs
 operator|.
-name|SimpleNormsFormat
+name|NormsFormat
 import|;
 end_import
 
@@ -143,7 +143,7 @@ name|success
 init|=
 literal|false
 decl_stmt|;
-name|SimpleDVConsumer
+name|DocValuesConsumer
 name|normsConsumer
 init|=
 literal|null
@@ -160,7 +160,7 @@ name|hasNorms
 argument_list|()
 condition|)
 block|{
-name|SimpleNormsFormat
+name|NormsFormat
 name|normsFormat
 init|=
 name|state
@@ -170,7 +170,7 @@ operator|.
 name|getCodec
 argument_list|()
 operator|.
-name|simpleNormsFormat
+name|normsFormat
 argument_list|()
 decl_stmt|;
 assert|assert

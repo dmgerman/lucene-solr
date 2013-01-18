@@ -98,7 +98,7 @@ name|lucene
 operator|.
 name|codecs
 operator|.
-name|SimpleDocValuesFormat
+name|DocValuesFormat
 import|;
 end_import
 
@@ -112,7 +112,7 @@ name|lucene
 operator|.
 name|codecs
 operator|.
-name|SimpleNormsFormat
+name|NormsFormat
 import|;
 end_import
 
@@ -210,11 +210,11 @@ decl_stmt|;
 DECL|field|simpleNormsFormat
 specifier|private
 specifier|final
-name|SimpleNormsFormat
+name|NormsFormat
 name|simpleNormsFormat
 init|=
 operator|new
-name|SimpleTextSimpleNormsFormat
+name|SimpleTextNormsFormat
 argument_list|()
 decl_stmt|;
 DECL|field|liveDocs
@@ -231,11 +231,11 @@ comment|// nocommit rename
 DECL|field|simpleDVFormat
 specifier|private
 specifier|final
-name|SimpleDocValuesFormat
+name|DocValuesFormat
 name|simpleDVFormat
 init|=
 operator|new
-name|SimpleTextSimpleDocValuesFormat
+name|SimpleTextDocValuesFormat
 argument_list|()
 decl_stmt|;
 DECL|method|SimpleTextCodec
@@ -311,10 +311,10 @@ return|;
 block|}
 annotation|@
 name|Override
-DECL|method|simpleNormsFormat
+DECL|method|normsFormat
 specifier|public
-name|SimpleNormsFormat
-name|simpleNormsFormat
+name|NormsFormat
+name|normsFormat
 parameter_list|()
 block|{
 return|return
@@ -335,10 +335,10 @@ return|;
 block|}
 annotation|@
 name|Override
-DECL|method|simpleDocValuesFormat
+DECL|method|docValuesFormat
 specifier|public
-name|SimpleDocValuesFormat
-name|simpleDocValuesFormat
+name|DocValuesFormat
+name|docValuesFormat
 parameter_list|()
 block|{
 return|return

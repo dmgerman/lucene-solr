@@ -116,7 +116,7 @@ name|lucene
 operator|.
 name|codecs
 operator|.
-name|SimpleDVConsumer
+name|DocValuesConsumer
 import|;
 end_import
 
@@ -130,7 +130,7 @@ name|lucene
 operator|.
 name|codecs
 operator|.
-name|SimpleDVProducer
+name|DocValuesProducer
 import|;
 end_import
 
@@ -144,7 +144,7 @@ name|lucene
 operator|.
 name|codecs
 operator|.
-name|SimpleDocValuesFormat
+name|DocValuesFormat
 import|;
 end_import
 
@@ -271,7 +271,7 @@ specifier|abstract
 class|class
 name|PerFieldDocValuesFormat
 extends|extends
-name|SimpleDocValuesFormat
+name|DocValuesFormat
 block|{
 comment|/** Name of this {@link PostingsFormat}. */
 DECL|field|PER_FIELD_NAME
@@ -334,7 +334,7 @@ name|Override
 DECL|method|fieldsConsumer
 specifier|public
 specifier|final
-name|SimpleDVConsumer
+name|DocValuesConsumer
 name|fieldsConsumer
 parameter_list|(
 name|SegmentWriteState
@@ -359,7 +359,7 @@ implements|implements
 name|Closeable
 block|{
 DECL|field|consumer
-name|SimpleDVConsumer
+name|DocValuesConsumer
 name|consumer
 decl_stmt|;
 DECL|field|suffix
@@ -388,14 +388,14 @@ specifier|private
 class|class
 name|FieldsWriter
 extends|extends
-name|SimpleDVConsumer
+name|DocValuesConsumer
 block|{
 DECL|field|formats
 specifier|private
 specifier|final
 name|Map
 argument_list|<
-name|SimpleDocValuesFormat
+name|DocValuesFormat
 argument_list|,
 name|SimpleDVConsumerAndSuffix
 argument_list|>
@@ -404,7 +404,7 @@ init|=
 operator|new
 name|HashMap
 argument_list|<
-name|SimpleDocValuesFormat
+name|DocValuesFormat
 argument_list|,
 name|SimpleDVConsumerAndSuffix
 argument_list|>
@@ -555,7 +555,7 @@ expr_stmt|;
 block|}
 DECL|method|getInstance
 specifier|private
-name|SimpleDVConsumer
+name|DocValuesConsumer
 name|getInstance
 parameter_list|(
 name|FieldInfo
@@ -565,7 +565,7 @@ throws|throws
 name|IOException
 block|{
 specifier|final
-name|SimpleDocValuesFormat
+name|DocValuesFormat
 name|format
 init|=
 name|getDocValuesFormatForField
@@ -902,7 +902,7 @@ specifier|private
 class|class
 name|FieldsReader
 extends|extends
-name|SimpleDVProducer
+name|DocValuesProducer
 block|{
 DECL|field|fields
 specifier|private
@@ -911,7 +911,7 @@ name|Map
 argument_list|<
 name|String
 argument_list|,
-name|SimpleDVProducer
+name|DocValuesProducer
 argument_list|>
 name|fields
 init|=
@@ -920,7 +920,7 @@ name|TreeMap
 argument_list|<
 name|String
 argument_list|,
-name|SimpleDVProducer
+name|DocValuesProducer
 argument_list|>
 argument_list|()
 decl_stmt|;
@@ -931,7 +931,7 @@ name|Map
 argument_list|<
 name|String
 argument_list|,
-name|SimpleDVProducer
+name|DocValuesProducer
 argument_list|>
 name|formats
 init|=
@@ -940,7 +940,7 @@ name|HashMap
 argument_list|<
 name|String
 argument_list|,
-name|SimpleDVProducer
+name|DocValuesProducer
 argument_list|>
 argument_list|()
 decl_stmt|;
@@ -1025,10 +1025,10 @@ name|suffix
 operator|!=
 literal|null
 assert|;
-name|SimpleDocValuesFormat
+name|DocValuesFormat
 name|format
 init|=
-name|SimpleDocValuesFormat
+name|DocValuesFormat
 operator|.
 name|forName
 argument_list|(
@@ -1130,18 +1130,18 @@ parameter_list|)
 block|{
 name|Map
 argument_list|<
-name|SimpleDVProducer
+name|DocValuesProducer
 argument_list|,
-name|SimpleDVProducer
+name|DocValuesProducer
 argument_list|>
 name|oldToNew
 init|=
 operator|new
 name|IdentityHashMap
 argument_list|<
-name|SimpleDVProducer
+name|DocValuesProducer
 argument_list|,
-name|SimpleDVProducer
+name|DocValuesProducer
 argument_list|>
 argument_list|()
 decl_stmt|;
@@ -1154,7 +1154,7 @@ name|Entry
 argument_list|<
 name|String
 argument_list|,
-name|SimpleDVProducer
+name|DocValuesProducer
 argument_list|>
 name|ent
 range|:
@@ -1166,7 +1166,7 @@ name|entrySet
 argument_list|()
 control|)
 block|{
-name|SimpleDVProducer
+name|DocValuesProducer
 name|values
 init|=
 name|ent
@@ -1208,7 +1208,7 @@ name|Entry
 argument_list|<
 name|String
 argument_list|,
-name|SimpleDVProducer
+name|DocValuesProducer
 argument_list|>
 name|ent
 range|:
@@ -1220,7 +1220,7 @@ name|entrySet
 argument_list|()
 control|)
 block|{
-name|SimpleDVProducer
+name|DocValuesProducer
 name|producer
 init|=
 name|oldToNew
@@ -1265,7 +1265,7 @@ parameter_list|)
 throws|throws
 name|IOException
 block|{
-name|SimpleDVProducer
+name|DocValuesProducer
 name|producer
 init|=
 name|fields
@@ -1305,7 +1305,7 @@ parameter_list|)
 throws|throws
 name|IOException
 block|{
-name|SimpleDVProducer
+name|DocValuesProducer
 name|producer
 init|=
 name|fields
@@ -1345,7 +1345,7 @@ parameter_list|)
 throws|throws
 name|IOException
 block|{
-name|SimpleDVProducer
+name|DocValuesProducer
 name|producer
 init|=
 name|fields
@@ -1397,7 +1397,7 @@ annotation|@
 name|Override
 DECL|method|clone
 specifier|public
-name|SimpleDVProducer
+name|DocValuesProducer
 name|clone
 parameter_list|()
 block|{
@@ -1415,7 +1415,7 @@ name|Override
 DECL|method|fieldsProducer
 specifier|public
 specifier|final
-name|SimpleDVProducer
+name|DocValuesProducer
 name|fieldsProducer
 parameter_list|(
 name|SegmentReadState
@@ -1436,7 +1436,7 @@ comment|/**     * Returns the doc values format that should be used for writing 
 DECL|method|getDocValuesFormatForField
 specifier|public
 specifier|abstract
-name|SimpleDocValuesFormat
+name|DocValuesFormat
 name|getDocValuesFormatForField
 parameter_list|(
 name|String

@@ -684,7 +684,7 @@ operator|.
 name|reader
 argument_list|()
 operator|.
-name|simpleNormValues
+name|getNormValues
 argument_list|(
 name|idfstats
 operator|.
@@ -729,7 +729,7 @@ operator|.
 name|reader
 argument_list|()
 operator|.
-name|simpleNormValues
+name|getNormValues
 argument_list|(
 name|idfstats
 operator|.

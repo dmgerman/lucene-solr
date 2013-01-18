@@ -130,7 +130,7 @@ name|lucene
 operator|.
 name|codecs
 operator|.
-name|SimpleDocValuesFormat
+name|DocValuesFormat
 import|;
 end_import
 
@@ -402,7 +402,7 @@ name|codecs
 operator|.
 name|simpletext
 operator|.
-name|SimpleTextSimpleDocValuesFormat
+name|SimpleTextDocValuesFormat
 import|;
 end_import
 
@@ -467,14 +467,14 @@ DECL|field|dvFormats
 specifier|private
 name|List
 argument_list|<
-name|SimpleDocValuesFormat
+name|DocValuesFormat
 argument_list|>
 name|dvFormats
 init|=
 operator|new
 name|ArrayList
 argument_list|<
-name|SimpleDocValuesFormat
+name|DocValuesFormat
 argument_list|>
 argument_list|()
 decl_stmt|;
@@ -544,7 +544,7 @@ name|Map
 argument_list|<
 name|String
 argument_list|,
-name|SimpleDocValuesFormat
+name|DocValuesFormat
 argument_list|>
 name|previousDVMappings
 init|=
@@ -557,7 +557,7 @@ name|HashMap
 argument_list|<
 name|String
 argument_list|,
-name|SimpleDocValuesFormat
+name|DocValuesFormat
 argument_list|>
 argument_list|()
 argument_list|)
@@ -695,14 +695,14 @@ annotation|@
 name|Override
 DECL|method|getDocValuesFormatForField
 specifier|public
-name|SimpleDocValuesFormat
+name|DocValuesFormat
 name|getDocValuesFormatForField
 parameter_list|(
 name|String
 name|name
 parameter_list|)
 block|{
-name|SimpleDocValuesFormat
+name|DocValuesFormat
 name|codec
 init|=
 name|previousDVMappings
@@ -747,7 +747,7 @@ if|if
 condition|(
 name|codec
 operator|instanceof
-name|SimpleTextSimpleDocValuesFormat
+name|SimpleTextDocValuesFormat
 operator|&&
 name|perFieldSeed
 operator|%
@@ -1086,7 +1086,7 @@ name|DiskDocValuesFormat
 argument_list|()
 argument_list|,
 operator|new
-name|SimpleTextSimpleDocValuesFormat
+name|SimpleTextDocValuesFormat
 argument_list|()
 argument_list|,
 operator|new
@@ -1219,14 +1219,14 @@ name|String
 argument_list|>
 name|avoidCodecs
 parameter_list|,
-name|SimpleDocValuesFormat
+name|DocValuesFormat
 modifier|...
 name|docvalues
 parameter_list|)
 block|{
 for|for
 control|(
-name|SimpleDocValuesFormat
+name|DocValuesFormat
 name|d
 range|:
 name|docvalues

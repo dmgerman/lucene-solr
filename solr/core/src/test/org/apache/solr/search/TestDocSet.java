@@ -1754,7 +1754,7 @@ annotation|@
 name|Override
 specifier|public
 name|NumericDocValues
-name|simpleNormValues
+name|getNormValues
 parameter_list|(
 name|String
 name|field

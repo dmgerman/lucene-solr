@@ -160,11 +160,11 @@ name|postingsFormat
 parameter_list|()
 function_decl|;
 comment|/** Encodes/decodes docvalues */
-DECL|method|simpleDocValuesFormat
+DECL|method|docValuesFormat
 specifier|public
 specifier|abstract
-name|SimpleDocValuesFormat
-name|simpleDocValuesFormat
+name|DocValuesFormat
+name|docValuesFormat
 parameter_list|()
 function_decl|;
 comment|/** Encodes/decodes stored fields */
@@ -200,11 +200,11 @@ name|segmentInfoFormat
 parameter_list|()
 function_decl|;
 comment|/** Encodes/decodes document normalization values */
-DECL|method|simpleNormsFormat
+DECL|method|normsFormat
 specifier|public
 specifier|abstract
-name|SimpleNormsFormat
-name|simpleNormsFormat
+name|NormsFormat
+name|normsFormat
 parameter_list|()
 function_decl|;
 comment|/** Encodes/decodes live docs */

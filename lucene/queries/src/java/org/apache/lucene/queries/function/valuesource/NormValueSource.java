@@ -305,7 +305,7 @@ operator|.
 name|reader
 argument_list|()
 operator|.
-name|simpleNormValues
+name|getNormValues
 argument_list|(
 name|field
 argument_list|)

@@ -79,11 +79,11 @@ import|;
 end_import
 
 begin_class
-DECL|class|SimpleDocValuesFormat
+DECL|class|DocValuesFormat
 specifier|public
 specifier|abstract
 class|class
-name|SimpleDocValuesFormat
+name|DocValuesFormat
 implements|implements
 name|NamedSPILoader
 operator|.
@@ -95,17 +95,17 @@ specifier|static
 specifier|final
 name|NamedSPILoader
 argument_list|<
-name|SimpleDocValuesFormat
+name|DocValuesFormat
 argument_list|>
 name|loader
 init|=
 operator|new
 name|NamedSPILoader
 argument_list|<
-name|SimpleDocValuesFormat
+name|DocValuesFormat
 argument_list|>
 argument_list|(
-name|SimpleDocValuesFormat
+name|DocValuesFormat
 operator|.
 name|class
 argument_list|)
@@ -118,9 +118,9 @@ name|String
 name|name
 decl_stmt|;
 comment|/**    * Creates a new docvalues format.    *<p>    * The provided name will be written into the index segment in some configurations    * (such as when using {@code PerFieldDocValuesFormat}): in such configurations,    * for the segment to be read this class should be registered with Java's    * SPI mechanism (registered in META-INF/ of your jar file, etc).    * @param name must be all ascii alphanumeric, and less than 128 characters in length.    */
-DECL|method|SimpleDocValuesFormat
+DECL|method|DocValuesFormat
 specifier|protected
-name|SimpleDocValuesFormat
+name|DocValuesFormat
 parameter_list|(
 name|String
 name|name
@@ -143,7 +143,7 @@ block|}
 DECL|method|fieldsConsumer
 specifier|public
 specifier|abstract
-name|SimpleDVConsumer
+name|DocValuesConsumer
 name|fieldsConsumer
 parameter_list|(
 name|SegmentWriteState
@@ -155,7 +155,7 @@ function_decl|;
 DECL|method|fieldsProducer
 specifier|public
 specifier|abstract
-name|SimpleDVProducer
+name|DocValuesProducer
 name|fieldsProducer
 parameter_list|(
 name|SegmentReadState
@@ -197,7 +197,7 @@ comment|/** looks up a format by name */
 DECL|method|forName
 specifier|public
 specifier|static
-name|SimpleDocValuesFormat
+name|DocValuesFormat
 name|forName
 parameter_list|(
 name|String

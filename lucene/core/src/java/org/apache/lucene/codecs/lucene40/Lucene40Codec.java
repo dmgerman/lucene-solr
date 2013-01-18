@@ -112,7 +112,7 @@ name|lucene
 operator|.
 name|codecs
 operator|.
-name|SimpleDocValuesFormat
+name|DocValuesFormat
 import|;
 end_import
 
@@ -126,7 +126,7 @@ name|lucene
 operator|.
 name|codecs
 operator|.
-name|SimpleNormsFormat
+name|NormsFormat
 import|;
 end_import
 
@@ -381,10 +381,10 @@ comment|// nocommit need a read-only Lucene40SimpleDVFormat
 DECL|field|defaultDVFormat
 specifier|private
 specifier|final
-name|SimpleDocValuesFormat
+name|DocValuesFormat
 name|defaultDVFormat
 init|=
-name|SimpleDocValuesFormat
+name|DocValuesFormat
 operator|.
 name|forName
 argument_list|(
@@ -393,10 +393,10 @@ argument_list|)
 decl_stmt|;
 annotation|@
 name|Override
-DECL|method|simpleDocValuesFormat
+DECL|method|docValuesFormat
 specifier|public
-name|SimpleDocValuesFormat
-name|simpleDocValuesFormat
+name|DocValuesFormat
+name|docValuesFormat
 parameter_list|()
 block|{
 comment|// nocommit
@@ -408,7 +408,7 @@ comment|// nocommit need a read-only Lucene40SimpleNormsFormat:
 DECL|field|simpleNormsFormat
 specifier|private
 specifier|final
-name|SimpleNormsFormat
+name|NormsFormat
 name|simpleNormsFormat
 init|=
 operator|new
@@ -417,10 +417,10 @@ argument_list|()
 decl_stmt|;
 annotation|@
 name|Override
-DECL|method|simpleNormsFormat
+DECL|method|normsFormat
 specifier|public
-name|SimpleNormsFormat
-name|simpleNormsFormat
+name|NormsFormat
+name|normsFormat
 parameter_list|()
 block|{
 return|return

@@ -386,9 +386,9 @@ block|{
 name|NumericDocValues
 name|fooNorms
 init|=
-name|MultiSimpleDocValues
+name|MultiDocValues
 operator|.
-name|simpleNormValues
+name|getNormValues
 argument_list|(
 name|reader
 argument_list|,

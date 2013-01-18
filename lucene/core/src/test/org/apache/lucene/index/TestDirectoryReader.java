@@ -4155,9 +4155,9 @@ decl_stmt|;
 name|NumericDocValues
 name|norms1
 init|=
-name|MultiSimpleDocValues
+name|MultiDocValues
 operator|.
-name|simpleNormValues
+name|getNormValues
 argument_list|(
 name|index1
 argument_list|,
@@ -4167,9 +4167,9 @@ decl_stmt|;
 name|NumericDocValues
 name|norms2
 init|=
-name|MultiSimpleDocValues
+name|MultiDocValues
 operator|.
-name|simpleNormValues
+name|getNormValues
 argument_list|(
 name|index2
 argument_list|,

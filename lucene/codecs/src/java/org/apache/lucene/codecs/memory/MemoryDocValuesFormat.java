@@ -38,7 +38,7 @@ name|lucene
 operator|.
 name|codecs
 operator|.
-name|SimpleDVConsumer
+name|DocValuesConsumer
 import|;
 end_import
 
@@ -52,7 +52,7 @@ name|lucene
 operator|.
 name|codecs
 operator|.
-name|SimpleDVProducer
+name|DocValuesProducer
 import|;
 end_import
 
@@ -66,7 +66,7 @@ name|lucene
 operator|.
 name|codecs
 operator|.
-name|SimpleDocValuesFormat
+name|DocValuesFormat
 import|;
 end_import
 
@@ -82,7 +82,7 @@ name|codecs
 operator|.
 name|simpletext
 operator|.
-name|SimpleTextSimpleDocValuesFormat
+name|SimpleTextDocValuesFormat
 operator|.
 name|SimpleTextDocValuesReader
 import|;
@@ -100,7 +100,7 @@ name|codecs
 operator|.
 name|simpletext
 operator|.
-name|SimpleTextSimpleDocValuesFormat
+name|SimpleTextDocValuesFormat
 operator|.
 name|SimpleTextDocValuesWriter
 import|;
@@ -234,7 +234,7 @@ specifier|public
 class|class
 name|MemoryDocValuesFormat
 extends|extends
-name|SimpleDocValuesFormat
+name|DocValuesFormat
 block|{
 DECL|method|MemoryDocValuesFormat
 specifier|public
@@ -251,7 +251,7 @@ annotation|@
 name|Override
 DECL|method|fieldsConsumer
 specifier|public
-name|SimpleDVConsumer
+name|DocValuesConsumer
 name|fieldsConsumer
 parameter_list|(
 name|SegmentWriteState
@@ -277,7 +277,7 @@ annotation|@
 name|Override
 DECL|method|fieldsProducer
 specifier|public
-name|SimpleDVProducer
+name|DocValuesProducer
 name|fieldsProducer
 parameter_list|(
 name|SegmentReadState
@@ -298,7 +298,7 @@ name|getDocCount
 argument_list|()
 decl_stmt|;
 specifier|final
-name|SimpleDVProducer
+name|DocValuesProducer
 name|producer
 init|=
 operator|new
@@ -311,7 +311,7 @@ argument_list|)
 decl_stmt|;
 return|return
 operator|new
-name|SimpleDVProducer
+name|DocValuesProducer
 argument_list|()
 block|{
 annotation|@

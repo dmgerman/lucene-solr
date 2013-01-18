@@ -77,7 +77,7 @@ comment|// javadoc
 end_comment
 
 begin_comment
-comment|/**  * This class forces a composite reader (eg a {@link  * MultiReader} or {@link DirectoryReader}) to emulate an  * atomic reader.  This requires implementing the postings  * APIs on-the-fly, using the static methods in {@link  * MultiFields}, {@link MultiSimpleDocValues}, by stepping through  * the sub-readers to merge fields/terms, appending docs, etc.  *  *<p><b>NOTE</b>: this class almost always results in a  * performance hit.  If this is important to your use case,  * you'll get better performance by gathering the sub readers using  * {@link IndexReader#getContext()} to get the  * atomic leaves and then operate per-AtomicReader,  * instead of using this class.  */
+comment|/**  * This class forces a composite reader (eg a {@link  * MultiReader} or {@link DirectoryReader}) to emulate an  * atomic reader.  This requires implementing the postings  * APIs on-the-fly, using the static methods in {@link  * MultiFields}, {@link MultiDocValues}, by stepping through  * the sub-readers to merge fields/terms, appending docs, etc.  *  *<p><b>NOTE</b>: this class almost always results in a  * performance hit.  If this is important to your use case,  * you'll get better performance by gathering the sub readers using  * {@link IndexReader#getContext()} to get the  * atomic leaves and then operate per-AtomicReader,  * instead of using this class.  */
 end_comment
 
 begin_class
@@ -245,9 +245,9 @@ name|ensureOpen
 argument_list|()
 expr_stmt|;
 return|return
-name|MultiSimpleDocValues
+name|MultiDocValues
 operator|.
-name|simpleNumericValues
+name|getNumericValues
 argument_list|(
 name|in
 argument_list|,
@@ -272,9 +272,9 @@ name|ensureOpen
 argument_list|()
 expr_stmt|;
 return|return
-name|MultiSimpleDocValues
+name|MultiDocValues
 operator|.
-name|simpleBinaryValues
+name|getBinaryValues
 argument_list|(
 name|in
 argument_list|,
@@ -299,9 +299,9 @@ name|ensureOpen
 argument_list|()
 expr_stmt|;
 return|return
-name|MultiSimpleDocValues
+name|MultiDocValues
 operator|.
-name|simpleSortedValues
+name|getSortedValues
 argument_list|(
 name|in
 argument_list|,
@@ -311,10 +311,10 @@ return|;
 block|}
 annotation|@
 name|Override
-DECL|method|simpleNormValues
+DECL|method|getNormValues
 specifier|public
 name|NumericDocValues
-name|simpleNormValues
+name|getNormValues
 parameter_list|(
 name|String
 name|field
@@ -327,9 +327,9 @@ argument_list|()
 expr_stmt|;
 comment|// nocommit hmm
 return|return
-name|MultiSimpleDocValues
+name|MultiDocValues
 operator|.
-name|simpleNormValues
+name|getNormValues
 argument_list|(
 name|in
 argument_list|,

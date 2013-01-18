@@ -1687,9 +1687,9 @@ comment|// todo: generalize
 name|NumericDocValues
 name|norms1
 init|=
-name|MultiSimpleDocValues
+name|MultiDocValues
 operator|.
-name|simpleNormValues
+name|getNormValues
 argument_list|(
 name|ir1
 argument_list|,
@@ -1720,7 +1720,7 @@ argument_list|(
 name|ir2
 argument_list|)
 operator|.
-name|simpleNormValues
+name|getNormValues
 argument_list|(
 name|field
 argument_list|)

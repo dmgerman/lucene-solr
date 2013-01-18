@@ -1074,7 +1074,7 @@ name|assertEquals
 argument_list|(
 name|reader
 operator|.
-name|simpleNormValues
+name|getNormValues
 argument_list|(
 name|f
 operator|.
@@ -1098,7 +1098,7 @@ name|assertEquals
 argument_list|(
 name|reader
 operator|.
-name|simpleNormValues
+name|getNormValues
 argument_list|(
 name|f
 operator|.
@@ -1126,7 +1126,7 @@ if|if
 condition|(
 name|reader
 operator|.
-name|simpleNormValues
+name|getNormValues
 argument_list|(
 name|f
 operator|.
@@ -1141,9 +1141,9 @@ comment|// test for norms of null
 name|NumericDocValues
 name|norms
 init|=
-name|MultiSimpleDocValues
+name|MultiDocValues
 operator|.
-name|simpleNormValues
+name|getNormValues
 argument_list|(
 name|reader
 argument_list|,

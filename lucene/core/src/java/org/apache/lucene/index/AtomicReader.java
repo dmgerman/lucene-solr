@@ -611,11 +611,11 @@ name|IOException
 function_decl|;
 comment|// nocommit document that these are thread-private:
 comment|/** Returns {@link NumericDocValues} representing norms    *  for this field, or null if no {@link NumericDocValues}    *  were indexed. */
-DECL|method|simpleNormValues
+DECL|method|getNormValues
 specifier|public
 specifier|abstract
 name|NumericDocValues
-name|simpleNormValues
+name|getNormValues
 parameter_list|(
 name|String
 name|field

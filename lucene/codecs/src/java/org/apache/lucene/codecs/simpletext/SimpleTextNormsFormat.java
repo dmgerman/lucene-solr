@@ -48,7 +48,7 @@ name|lucene
 operator|.
 name|codecs
 operator|.
-name|SimpleDVConsumer
+name|DocValuesConsumer
 import|;
 end_import
 
@@ -62,7 +62,7 @@ name|lucene
 operator|.
 name|codecs
 operator|.
-name|SimpleDVProducer
+name|DocValuesProducer
 import|;
 end_import
 
@@ -76,7 +76,7 @@ name|lucene
 operator|.
 name|codecs
 operator|.
-name|SimpleNormsFormat
+name|NormsFormat
 import|;
 end_import
 
@@ -92,7 +92,7 @@ name|codecs
 operator|.
 name|simpletext
 operator|.
-name|SimpleTextSimpleDocValuesFormat
+name|SimpleTextDocValuesFormat
 operator|.
 name|SimpleTextDocValuesReader
 import|;
@@ -110,7 +110,7 @@ name|codecs
 operator|.
 name|simpletext
 operator|.
-name|SimpleTextSimpleDocValuesFormat
+name|SimpleTextDocValuesFormat
 operator|.
 name|SimpleTextDocValuesWriter
 import|;
@@ -205,12 +205,12 @@ comment|/**  * plain-text norms format.  *<p>  *<b><font color="red">FOR RECREAT
 end_comment
 
 begin_class
-DECL|class|SimpleTextSimpleNormsFormat
+DECL|class|SimpleTextNormsFormat
 specifier|public
 class|class
-name|SimpleTextSimpleNormsFormat
+name|SimpleTextNormsFormat
 extends|extends
-name|SimpleNormsFormat
+name|NormsFormat
 block|{
 comment|// nocommit put back to len once we replace current norms format:
 DECL|field|NORMS_SEG_EXTENSION
@@ -226,7 +226,7 @@ annotation|@
 name|Override
 DECL|method|normsConsumer
 specifier|public
-name|SimpleDVConsumer
+name|DocValuesConsumer
 name|normsConsumer
 parameter_list|(
 name|SegmentWriteState
@@ -247,7 +247,7 @@ annotation|@
 name|Override
 DECL|method|normsProducer
 specifier|public
-name|SimpleDVProducer
+name|DocValuesProducer
 name|normsProducer
 parameter_list|(
 name|SegmentReadState

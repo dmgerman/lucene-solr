@@ -62,7 +62,7 @@ name|lucene
 operator|.
 name|codecs
 operator|.
-name|SimpleDocValuesFormat
+name|DocValuesFormat
 import|;
 end_import
 
@@ -5790,10 +5790,10 @@ argument_list|)
 decl_stmt|;
 comment|// TODO: Fix the CFS/suffixing of Lucene41DocValues so it actually works with this
 specifier|final
-name|SimpleDocValuesFormat
+name|DocValuesFormat
 name|fast
 init|=
-name|SimpleDocValuesFormat
+name|DocValuesFormat
 operator|.
 name|forName
 argument_list|(
@@ -5801,10 +5801,10 @@ literal|"Memory"
 argument_list|)
 decl_stmt|;
 specifier|final
-name|SimpleDocValuesFormat
+name|DocValuesFormat
 name|slow
 init|=
-name|SimpleDocValuesFormat
+name|DocValuesFormat
 operator|.
 name|forName
 argument_list|(
@@ -5822,7 +5822,7 @@ block|{
 annotation|@
 name|Override
 specifier|public
-name|SimpleDocValuesFormat
+name|DocValuesFormat
 name|getDocValuesFormatForField
 parameter_list|(
 name|String

@@ -72,7 +72,7 @@ name|lucene
 operator|.
 name|codecs
 operator|.
-name|SimpleDVProducer
+name|DocValuesProducer
 import|;
 end_import
 
@@ -267,7 +267,7 @@ DECL|class|DiskDocValuesProducer
 class|class
 name|DiskDocValuesProducer
 extends|extends
-name|SimpleDVProducer
+name|DocValuesProducer
 block|{
 DECL|field|numerics
 specifier|private

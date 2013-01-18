@@ -56,7 +56,7 @@ name|lucene
 operator|.
 name|codecs
 operator|.
-name|SimpleDVConsumer
+name|DocValuesConsumer
 import|;
 end_import
 
@@ -70,7 +70,7 @@ name|lucene
 operator|.
 name|codecs
 operator|.
-name|SimpleDocValuesFormat
+name|DocValuesFormat
 import|;
 end_import
 
@@ -444,7 +444,7 @@ name|isEmpty
 argument_list|()
 condition|)
 block|{
-name|SimpleDocValuesFormat
+name|DocValuesFormat
 name|fmt
 init|=
 name|state
@@ -454,7 +454,7 @@ operator|.
 name|getCodec
 argument_list|()
 operator|.
-name|simpleDocValuesFormat
+name|docValuesFormat
 argument_list|()
 decl_stmt|;
 comment|// nocommit once we make
@@ -469,7 +469,7 @@ condition|)
 block|{
 return|return;
 block|}
-name|SimpleDVConsumer
+name|DocValuesConsumer
 name|dvConsumer
 init|=
 name|fmt
