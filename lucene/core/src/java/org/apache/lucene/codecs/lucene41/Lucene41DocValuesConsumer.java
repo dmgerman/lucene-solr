@@ -305,9 +305,9 @@ comment|/**  * Writes numbers one of two ways:  * 1. packed ints as deltas from 
 end_comment
 
 begin_class
-DECL|class|Lucene41SimpleDocValuesConsumer
+DECL|class|Lucene41DocValuesConsumer
 class|class
-name|Lucene41SimpleDocValuesConsumer
+name|Lucene41DocValuesConsumer
 extends|extends
 name|DocValuesConsumer
 block|{
@@ -359,8 +359,8 @@ name|data
 decl_stmt|,
 name|meta
 decl_stmt|;
-DECL|method|Lucene41SimpleDocValuesConsumer
-name|Lucene41SimpleDocValuesConsumer
+DECL|method|Lucene41DocValuesConsumer
+name|Lucene41DocValuesConsumer
 parameter_list|(
 name|SegmentWriteState
 name|state

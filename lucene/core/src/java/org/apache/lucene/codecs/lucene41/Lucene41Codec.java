@@ -558,7 +558,7 @@ name|NormsFormat
 name|simpleNormsFormat
 init|=
 operator|new
-name|Lucene41SimpleNormsFormat
+name|Lucene41NormsFormat
 argument_list|()
 decl_stmt|;
 annotation|@

@@ -66,7 +66,7 @@ name|lucene
 operator|.
 name|codecs
 operator|.
-name|DocValuesFormat
+name|NormsFormat
 import|;
 end_import
 
@@ -99,30 +99,19 @@ import|;
 end_import
 
 begin_class
-DECL|class|Lucene41SimpleDocValuesFormat
+DECL|class|Lucene41NormsFormat
 specifier|public
 class|class
-name|Lucene41SimpleDocValuesFormat
+name|Lucene41NormsFormat
 extends|extends
-name|DocValuesFormat
+name|NormsFormat
 block|{
-DECL|method|Lucene41SimpleDocValuesFormat
-specifier|public
-name|Lucene41SimpleDocValuesFormat
-parameter_list|()
-block|{
-name|super
-argument_list|(
-literal|"Lucene41"
-argument_list|)
-expr_stmt|;
-block|}
 annotation|@
 name|Override
-DECL|method|fieldsConsumer
+DECL|method|normsConsumer
 specifier|public
 name|DocValuesConsumer
-name|fieldsConsumer
+name|normsConsumer
 parameter_list|(
 name|SegmentWriteState
 name|state
@@ -132,7 +121,7 @@ name|IOException
 block|{
 return|return
 operator|new
-name|Lucene41SimpleDocValuesConsumer
+name|Lucene41DocValuesConsumer
 argument_list|(
 name|state
 argument_list|,
@@ -148,10 +137,10 @@ return|;
 block|}
 annotation|@
 name|Override
-DECL|method|fieldsProducer
+DECL|method|normsProducer
 specifier|public
 name|DocValuesProducer
-name|fieldsProducer
+name|normsProducer
 parameter_list|(
 name|SegmentReadState
 name|state
@@ -161,7 +150,7 @@ name|IOException
 block|{
 return|return
 operator|new
-name|Lucene41SimpleDocValuesProducer
+name|Lucene41DocValuesProducer
 argument_list|(
 name|state
 argument_list|,
@@ -182,7 +171,7 @@ specifier|final
 name|String
 name|DATA_CODEC
 init|=
-literal|"Lucene41DocValuesData"
+literal|"Lucene41NormsData"
 decl_stmt|;
 DECL|field|DATA_EXTENSION
 specifier|private
@@ -191,7 +180,7 @@ specifier|final
 name|String
 name|DATA_EXTENSION
 init|=
-literal|"dvd"
+literal|"nvd"
 decl_stmt|;
 DECL|field|METADATA_CODEC
 specifier|private
@@ -200,7 +189,7 @@ specifier|final
 name|String
 name|METADATA_CODEC
 init|=
-literal|"Lucene41DocValuesMetadata"
+literal|"Lucene41NormsMetadata"
 decl_stmt|;
 DECL|field|METADATA_EXTENSION
 specifier|private
@@ -209,7 +198,7 @@ specifier|final
 name|String
 name|METADATA_EXTENSION
 init|=
-literal|"dvm"
+literal|"nvm"
 decl_stmt|;
 block|}
 end_class
