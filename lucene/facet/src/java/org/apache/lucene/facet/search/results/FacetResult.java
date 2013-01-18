@@ -99,7 +99,7 @@ operator|=
 name|numValidDescendants
 expr_stmt|;
 block|}
-comment|/**    * Facet result node matching the root of the {@link #getFacetRequest() facet request}.    * @see #getFacetRequest()    * @see FacetRequest#getCategoryPath()    */
+comment|/**    * Facet result node matching the root of the {@link #getFacetRequest() facet request}.    * @see #getFacetRequest()    * @see FacetRequest#categoryPath    */
 DECL|method|getFacetResultNode
 specifier|public
 specifier|final

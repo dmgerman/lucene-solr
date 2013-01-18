@@ -56,7 +56,7 @@ name|facet
 operator|.
 name|associations
 operator|.
-name|FloatAssociationsPayloadIterator
+name|FloatAssociationsIterator
 import|;
 end_import
 
@@ -172,7 +172,7 @@ decl_stmt|;
 DECL|field|associations
 specifier|protected
 specifier|final
-name|FloatAssociationsPayloadIterator
+name|FloatAssociationsIterator
 name|associations
 decl_stmt|;
 DECL|method|AssociationFloatSumAggregator
@@ -190,10 +190,7 @@ name|this
 argument_list|(
 name|CategoryListParams
 operator|.
-name|DEFAULT_TERM
-operator|.
-name|field
-argument_list|()
+name|DEFAULT_FIELD
 argument_list|,
 name|sumArray
 argument_list|)
@@ -222,7 +219,7 @@ expr_stmt|;
 name|associations
 operator|=
 operator|new
-name|FloatAssociationsPayloadIterator
+name|FloatAssociationsIterator
 argument_list|(
 name|field
 argument_list|,

@@ -75,15 +75,15 @@ comment|/*  * Licensed to the Apache Software Foundation (ASF) under one or more
 end_comment
 
 begin_comment
-comment|/**  * Decodes values encoded by {@link VInt8IntEncoder}.  *   * @lucene.experimental  */
+comment|/**  * Decodes values encoded by {@link DGapVInt8IntDecoder}.  *   * @lucene.experimental  */
 end_comment
 
 begin_class
-DECL|class|VInt8IntDecoder
+DECL|class|DGapVInt8IntDecoder
 specifier|public
 specifier|final
 class|class
-name|VInt8IntDecoder
+name|DGapVInt8IntDecoder
 extends|extends
 name|IntDecoder
 block|{
@@ -174,6 +174,11 @@ name|buf
 operator|.
 name|offset
 decl_stmt|;
+name|int
+name|prev
+init|=
+literal|0
+decl_stmt|;
 while|while
 condition|(
 name|offset
@@ -206,9 +211,9 @@ index|[
 name|values
 operator|.
 name|length
-operator|++
 index|]
 operator|=
+operator|(
 operator|(
 name|value
 operator|<<
@@ -216,10 +221,29 @@ literal|7
 operator|)
 operator||
 name|b
+operator|)
+operator|+
+name|prev
 expr_stmt|;
 name|value
 operator|=
 literal|0
+expr_stmt|;
+name|prev
+operator|=
+name|values
+operator|.
+name|ints
+index|[
+name|values
+operator|.
+name|length
+index|]
+expr_stmt|;
+name|values
+operator|.
+name|length
+operator|++
 expr_stmt|;
 block|}
 else|else
@@ -250,7 +274,7 @@ name|toString
 parameter_list|()
 block|{
 return|return
-literal|"VInt8"
+literal|"DGapVInt8"
 return|;
 block|}
 block|}

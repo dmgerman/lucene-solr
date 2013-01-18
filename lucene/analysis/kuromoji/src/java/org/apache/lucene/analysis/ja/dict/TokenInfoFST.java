@@ -255,9 +255,7 @@ init|=
 name|fst
 operator|.
 name|getBytesReader
-argument_list|(
-literal|0
-argument_list|)
+argument_list|()
 decl_stmt|;
 comment|// TODO: jump to 3040, readNextRealArc to ceiling? (just be careful we don't add bugs)
 for|for
@@ -471,18 +469,13 @@ name|FST
 operator|.
 name|BytesReader
 name|getBytesReader
-parameter_list|(
-name|int
-name|pos
-parameter_list|)
+parameter_list|()
 block|{
 return|return
 name|fst
 operator|.
 name|getBytesReader
-argument_list|(
-name|pos
-argument_list|)
+argument_list|()
 return|;
 block|}
 comment|/** @lucene.internal for testing only */

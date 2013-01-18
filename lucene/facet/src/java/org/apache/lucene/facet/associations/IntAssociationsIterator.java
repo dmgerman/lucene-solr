@@ -45,16 +45,16 @@ comment|/*  * Licensed to the Apache Software Foundation (ASF) under one or more
 end_comment
 
 begin_comment
-comment|/**  * An {@link AssociationsPayloadIterator} over integer association values.  *   * @lucene.experimental  */
+comment|/**  * An {@link AssociationsIterator} over integer association values.  *   * @lucene.experimental  */
 end_comment
 
 begin_class
-DECL|class|IntAssociationsPayloadIterator
+DECL|class|IntAssociationsIterator
 specifier|public
 class|class
-name|IntAssociationsPayloadIterator
+name|IntAssociationsIterator
 extends|extends
-name|AssociationsPayloadIterator
+name|AssociationsIterator
 argument_list|<
 name|CategoryIntAssociation
 argument_list|>
@@ -69,9 +69,10 @@ operator|new
 name|IntToIntMap
 argument_list|()
 decl_stmt|;
-DECL|method|IntAssociationsPayloadIterator
+comment|/**    * Constructs a new {@link IntAssociationsIterator}.    */
+DECL|method|IntAssociationsIterator
 specifier|public
-name|IntAssociationsPayloadIterator
+name|IntAssociationsIterator
 parameter_list|(
 name|String
 name|field

@@ -28,24 +28,6 @@ name|index
 operator|.
 name|params
 operator|.
-name|CategoryListParams
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|facet
-operator|.
-name|index
-operator|.
-name|params
-operator|.
 name|FacetIndexingParams
 import|;
 end_import
@@ -81,36 +63,16 @@ specifier|final
 class|class
 name|PartitionsUtils
 block|{
-comment|/**    * Get the offset for a given partition.  That is, what is the minimum number an    * ordinal could be for a particular partition.     */
-DECL|method|partitionOffset
+comment|/** The prefix that is added to the name of the partition. */
+DECL|field|PART_NAME_PREFIX
 specifier|public
-specifier|final
 specifier|static
-name|int
-name|partitionOffset
-parameter_list|(
-name|FacetIndexingParams
-name|iParams
-parameter_list|,
-name|int
-name|partitionNumber
-parameter_list|,
 specifier|final
-name|TaxonomyReader
-name|taxonomyReader
-parameter_list|)
-block|{
-return|return
-name|partitionNumber
-operator|*
-name|partitionSize
-argument_list|(
-name|iParams
-argument_list|,
-name|taxonomyReader
-argument_list|)
-return|;
-block|}
+name|String
+name|PART_NAME_PREFIX
+init|=
+literal|"$part"
+decl_stmt|;
 comment|/**    * Get the partition size in this parameter, or return the size of the taxonomy, which    * is smaller.  (Guarantees usage of as little memory as possible at search time).    */
 DECL|method|partitionSize
 specifier|public
@@ -179,9 +141,6 @@ parameter_list|(
 name|FacetIndexingParams
 name|iParams
 parameter_list|,
-name|CategoryListParams
-name|clParams
-parameter_list|,
 name|int
 name|ordinal
 parameter_list|)
@@ -199,13 +158,11 @@ decl_stmt|;
 return|return
 name|partitionName
 argument_list|(
-name|clParams
-argument_list|,
 name|partition
 argument_list|)
 return|;
 block|}
-comment|/**     * Partition name by its number    */
+comment|/** Partition name by its number */
 DECL|method|partitionName
 specifier|public
 specifier|final
@@ -213,24 +170,12 @@ specifier|static
 name|String
 name|partitionName
 parameter_list|(
-name|CategoryListParams
-name|clParams
-parameter_list|,
 name|int
 name|partition
 parameter_list|)
 block|{
-name|String
-name|term
-init|=
-name|clParams
-operator|.
-name|getTerm
-argument_list|()
-operator|.
-name|text
-argument_list|()
-decl_stmt|;
+comment|// TODO would be good if this method isn't called when partitions are not enabled.
+comment|// perhaps through some specialization code.
 if|if
 condition|(
 name|partition
@@ -238,15 +183,21 @@ operator|==
 literal|0
 condition|)
 block|{
+comment|// since regular faceted search code goes through this method too,
+comment|// return the same value for partition 0 and when there are no partitions
 return|return
-name|term
+literal|""
 return|;
-comment|// for backwards compatibility we do not add a partition number in this case
 block|}
 return|return
-name|term
+name|PART_NAME_PREFIX
 operator|+
+name|Integer
+operator|.
+name|toString
+argument_list|(
 name|partition
+argument_list|)
 return|;
 block|}
 block|}

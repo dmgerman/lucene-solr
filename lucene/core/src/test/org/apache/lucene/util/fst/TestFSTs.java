@@ -7763,9 +7763,7 @@ init|=
 name|fst
 operator|.
 name|getBytesReader
-argument_list|(
-literal|0
-argument_list|)
+argument_list|()
 decl_stmt|;
 for|for
 control|(
@@ -8897,9 +8895,7 @@ argument_list|,
 name|fst
 operator|.
 name|getBytesReader
-argument_list|(
-literal|0
-argument_list|)
+argument_list|()
 argument_list|)
 decl_stmt|;
 name|assertEquals
@@ -8942,9 +8938,7 @@ argument_list|,
 name|fst
 operator|.
 name|getBytesReader
-argument_list|(
-literal|0
-argument_list|)
+argument_list|()
 argument_list|)
 expr_stmt|;
 name|assertEquals
@@ -10063,9 +10057,7 @@ init|=
 name|fst
 operator|.
 name|getBytesReader
-argument_list|(
-literal|0
-argument_list|)
+argument_list|()
 decl_stmt|;
 comment|//System.out.println("testing: " + allPrefixes.size() + " prefixes");
 for|for
@@ -10937,9 +10929,7 @@ init|=
 name|fst
 operator|.
 name|getBytesReader
-argument_list|(
-literal|0
-argument_list|)
+argument_list|()
 decl_stmt|;
 comment|//System.out.println("testing: " + allPrefixes.size() + " prefixes");
 for|for

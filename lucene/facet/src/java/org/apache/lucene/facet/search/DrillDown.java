@@ -265,11 +265,7 @@ name|Term
 argument_list|(
 name|clp
 operator|.
-name|getTerm
-argument_list|()
-operator|.
 name|field
-argument_list|()
 argument_list|,
 name|String
 operator|.

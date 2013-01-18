@@ -332,7 +332,7 @@ argument_list|)
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**    * Calls {@link #FuzzyQuery(Term, int, int, int, boolean)     * FuzzyQuery(term, minimumSimilarity, prefixLength, defaultMaxExpansions, defaultTranspositions)}.    */
+comment|/**    * Calls {@link #FuzzyQuery(Term, int, int, int, boolean)     * FuzzyQuery(term, maxEdits, prefixLength, defaultMaxExpansions, defaultTranspositions)}.    */
 DECL|method|FuzzyQuery
 specifier|public
 name|FuzzyQuery

@@ -52,20 +52,6 @@ operator|=
 name|encoder
 expr_stmt|;
 block|}
-annotation|@
-name|Override
-DECL|method|reset
-specifier|public
-name|void
-name|reset
-parameter_list|()
-block|{
-name|encoder
-operator|.
-name|reset
-argument_list|()
-expr_stmt|;
-block|}
 block|}
 end_class
 

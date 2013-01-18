@@ -86,20 +86,6 @@ name|apache
 operator|.
 name|lucene
 operator|.
-name|index
-operator|.
-name|IndexReader
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
 name|facet
 operator|.
 name|index
@@ -138,11 +124,9 @@ name|lucene
 operator|.
 name|facet
 operator|.
-name|search
+name|taxonomy
 operator|.
-name|cache
-operator|.
-name|CategoryListCache
+name|TaxonomyReader
 import|;
 end_import
 
@@ -154,11 +138,9 @@ name|apache
 operator|.
 name|lucene
 operator|.
-name|facet
+name|index
 operator|.
-name|taxonomy
-operator|.
-name|TaxonomyReader
+name|IndexReader
 import|;
 end_import
 
@@ -259,7 +241,7 @@ specifier|private
 name|TotalFacetCountsCache
 parameter_list|()
 block|{   }
-comment|/**    * Get the total facet counts for a reader/taxonomy pair and facet indexing parameters.    * If not in cache, computed here and added to the cache for later use.    * @param indexReader the documents index    * @param taxonomy the taxonomy index    * @param facetIndexingParams facet indexing parameters    * @param clCache category list cache for faster computation, can be null     * @return the total facet counts.    */
+comment|/**    * Get the total facet counts for a reader/taxonomy pair and facet indexing    * parameters. If not in cache, computed here and added to the cache for later    * use.    *     * @param indexReader    *          the documents index    * @param taxonomy    *          the taxonomy index    * @param facetIndexingParams    *          facet indexing parameters    * @return the total facet counts.    */
 DECL|method|getTotalCounts
 specifier|public
 name|TotalFacetCounts
@@ -273,9 +255,6 @@ name|taxonomy
 parameter_list|,
 name|FacetIndexingParams
 name|facetIndexingParams
-parameter_list|,
-name|CategoryListCache
-name|clCache
 parameter_list|)
 throws|throws
 name|IOException
@@ -326,8 +305,6 @@ return|return
 name|computeAndCache
 argument_list|(
 name|key
-argument_list|,
-name|clCache
 argument_list|)
 return|;
 block|}
@@ -422,9 +399,6 @@ name|computeAndCache
 parameter_list|(
 name|TFCKey
 name|key
-parameter_list|,
-name|CategoryListCache
-name|clCache
 parameter_list|)
 throws|throws
 name|IOException
@@ -463,8 +437,6 @@ argument_list|,
 name|key
 operator|.
 name|facetIndexingParams
-argument_list|,
-name|clCache
 argument_list|)
 expr_stmt|;
 name|lruKeys
@@ -491,7 +463,7 @@ return|return
 name|tfc
 return|;
 block|}
-comment|/**    * Load {@link TotalFacetCounts} matching input parameters from the provided outputFile     * and add them into the cache for the provided indexReader, taxonomy, and facetIndexingParams.    * If a {@link TotalFacetCounts} for these parameters already exists in the cache, it will be    * replaced by the loaded one.    * @param inputFile file from which to read the data     * @param indexReader the documents index    * @param taxonomy the taxonomy index    * @param facetIndexingParams the facet indexing parameters    * @throws IOException on error    * @see #store(File, IndexReader, TaxonomyReader, FacetIndexingParams, CategoryListCache)    */
+comment|/**    * Load {@link TotalFacetCounts} matching input parameters from the provided    * outputFile and add them into the cache for the provided indexReader,    * taxonomy, and facetIndexingParams. If a {@link TotalFacetCounts} for these    * parameters already exists in the cache, it will be replaced by the loaded    * one.    *     * @param inputFile    *          file from which to read the data    * @param indexReader    *          the documents index    * @param taxonomy    *          the taxonomy index    * @param facetIndexingParams    *          the facet indexing parameters    * @throws IOException    *           on error    */
 DECL|method|load
 specifier|public
 specifier|synchronized
@@ -589,7 +561,7 @@ name|key
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**    * Store the {@link TotalFacetCounts} matching input parameters into the provided outputFile,    * making them available for a later call to {@link #load(File, IndexReader, TaxonomyReader, FacetIndexingParams)}.    * If these {@link TotalFacetCounts} are available in the cache, they are used. But if they are    * not in the cache, this call will first compute them (which will also add them to the cache).     * @param outputFile file to store in.    * @param indexReader the documents index    * @param taxonomy the taxonomy index    * @param facetIndexingParams the facet indexing parameters    * @param clCache category list cache for faster computation, can be null    * @throws IOException on error    * @see #load(File, IndexReader, TaxonomyReader, FacetIndexingParams)    * @see #getTotalCounts(IndexReader, TaxonomyReader, FacetIndexingParams, CategoryListCache)    */
+comment|/**    * Store the {@link TotalFacetCounts} matching input parameters into the    * provided outputFile, making them available for a later call to    * {@link #load(File, IndexReader, TaxonomyReader, FacetIndexingParams)}. If    * these {@link TotalFacetCounts} are available in the cache, they are used.    * But if they are not in the cache, this call will first compute them (which    * will also add them to the cache).    *     * @param outputFile    *          file to store in.    * @param indexReader    *          the documents index    * @param taxonomy    *          the taxonomy index    * @param facetIndexingParams    *          the facet indexing parameters    * @throws IOException    *           on error    * @see #load(File, IndexReader, TaxonomyReader, FacetIndexingParams)    */
 DECL|method|store
 specifier|public
 name|void
@@ -606,9 +578,6 @@ name|taxonomy
 parameter_list|,
 name|FacetIndexingParams
 name|facetIndexingParams
-parameter_list|,
-name|CategoryListCache
-name|clCache
 parameter_list|)
 throws|throws
 name|IOException
@@ -687,8 +656,6 @@ argument_list|,
 name|taxonomy
 argument_list|,
 name|facetIndexingParams
-argument_list|,
-name|clCache
 argument_list|)
 decl_stmt|;
 name|TotalFacetCounts

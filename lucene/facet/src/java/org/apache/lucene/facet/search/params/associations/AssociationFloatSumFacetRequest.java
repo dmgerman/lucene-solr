@@ -137,7 +137,7 @@ comment|/*  * Licensed to the Apache Software Foundation (ASF) under one or more
 end_comment
 
 begin_comment
-comment|/**  * A {@link FacetRequest} for weighting facets according to their float  * association by summing the association values.  *   * @lucene.experimental  */
+comment|/**  * A {@link FacetRequest} for weighting facets according to their float  * association by summing the association values. Note that this class caches  * the associations data in-memory by default. You can override  * {@link #createAggregator(boolean, FacetArrays, TaxonomyReader)} to return an  * {@link AssociationFloatSumAggregator} which does otherwise.  *   * @lucene.experimental  */
 end_comment
 
 begin_class

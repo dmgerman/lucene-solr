@@ -62,36 +62,10 @@ specifier|public
 name|IntEncoder
 parameter_list|()
 block|{}
-comment|/**    * Performs the actual encoding. Values should be read from    * {@link IntsRef#offset} up to {@code upto}. Also, it is guaranteed that    * {@code buf's} offset and length are set to 0 and the encoder is expected to    * update {@link BytesRef#length}, but not {@link BytesRef#offset}.    */
-DECL|method|doEncode
-specifier|protected
-specifier|abstract
-name|void
-name|doEncode
-parameter_list|(
-name|IntsRef
-name|values
-parameter_list|,
-name|BytesRef
-name|buf
-parameter_list|,
-name|int
-name|upto
-parameter_list|)
-function_decl|;
-comment|/**    * Called before {@link #doEncode(IntsRef, BytesRef, int)} so that encoders    * can reset their state.    */
-DECL|method|reset
-specifier|protected
-name|void
-name|reset
-parameter_list|()
-block|{
-comment|// do nothing by default
-block|}
 comment|/**    * Encodes the values to the given buffer. Note that the buffer's offset and    * length are set to 0.    */
 DECL|method|encode
 specifier|public
-specifier|final
+specifier|abstract
 name|void
 name|encode
 parameter_list|(
@@ -101,45 +75,7 @@ parameter_list|,
 name|BytesRef
 name|buf
 parameter_list|)
-block|{
-name|buf
-operator|.
-name|offset
-operator|=
-name|buf
-operator|.
-name|length
-operator|=
-literal|0
-expr_stmt|;
-name|reset
-argument_list|()
-expr_stmt|;
-name|doEncode
-argument_list|(
-name|values
-argument_list|,
-name|buf
-argument_list|,
-name|values
-operator|.
-name|offset
-operator|+
-name|values
-operator|.
-name|length
-argument_list|)
-expr_stmt|;
-assert|assert
-name|buf
-operator|.
-name|offset
-operator|==
-literal|0
-operator|:
-literal|"offset should not have been modified by the encoder."
-assert|;
-block|}
+function_decl|;
 comment|/**    * Returns an {@link IntDecoder} which can decode the values that were encoded    * with this encoder.    */
 DECL|method|createMatchingDecoder
 specifier|public

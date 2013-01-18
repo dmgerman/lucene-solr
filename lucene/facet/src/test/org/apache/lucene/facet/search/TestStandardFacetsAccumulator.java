@@ -816,6 +816,16 @@ literal|true
 argument_list|)
 expr_stmt|;
 comment|// 6th segment, with content, with categories
+name|indexTwoDocs
+argument_list|(
+name|indexWriter
+argument_list|,
+literal|null
+argument_list|,
+literal|true
+argument_list|)
+expr_stmt|;
+comment|// 7th segment, with content, no categories
 name|IOUtils
 operator|.
 name|close

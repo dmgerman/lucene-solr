@@ -45,16 +45,16 @@ comment|/*  * Licensed to the Apache Software Foundation (ASF) under one or more
 end_comment
 
 begin_comment
-comment|/**  * An {@link AssociationsPayloadIterator} over integer association values.  *   * @lucene.experimental  */
+comment|/**  * An {@link AssociationsIterator} over integer association values.  *   * @lucene.experimental  */
 end_comment
 
 begin_class
-DECL|class|FloatAssociationsPayloadIterator
+DECL|class|FloatAssociationsIterator
 specifier|public
 class|class
-name|FloatAssociationsPayloadIterator
+name|FloatAssociationsIterator
 extends|extends
-name|AssociationsPayloadIterator
+name|AssociationsIterator
 argument_list|<
 name|CategoryFloatAssociation
 argument_list|>
@@ -69,9 +69,10 @@ operator|new
 name|IntToFloatMap
 argument_list|()
 decl_stmt|;
-DECL|method|FloatAssociationsPayloadIterator
+comment|/**    * Constructs a new {@link FloatAssociationsIterator}.    */
+DECL|method|FloatAssociationsIterator
 specifier|public
-name|FloatAssociationsPayloadIterator
+name|FloatAssociationsIterator
 parameter_list|(
 name|String
 name|field
