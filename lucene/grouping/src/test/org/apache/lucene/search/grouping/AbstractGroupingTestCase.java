@@ -87,6 +87,7 @@ name|random
 argument_list|()
 argument_list|)
 expr_stmt|;
+comment|//randomValue = _TestUtil.randomSimpleString(random());
 block|}
 do|while
 condition|(

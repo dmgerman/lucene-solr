@@ -690,12 +690,32 @@ expr_stmt|;
 block|}
 else|else
 block|{
+comment|// nocommit is this the right way... else caller can
+comment|// pass this spare down to DiskDV, which will then
+comment|// "use" our byte[] ...
+name|spare
+operator|.
+name|bytes
+operator|=
+name|BytesRef
+operator|.
+name|EMPTY_BYTES
+expr_stmt|;
 return|return
 name|mid
 return|;
 comment|// key found
 block|}
 block|}
+comment|// nocommit is this the right way...
+name|spare
+operator|.
+name|bytes
+operator|=
+name|BytesRef
+operator|.
+name|EMPTY_BYTES
+expr_stmt|;
 return|return
 operator|-
 operator|(

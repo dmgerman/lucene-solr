@@ -523,7 +523,6 @@ return|;
 block|}
 block|}
 decl_stmt|;
-comment|// nocommit norms too
 DECL|field|coreClosedListeners
 specifier|private
 specifier|final
@@ -736,6 +735,14 @@ comment|// ask codec for its Norms:
 comment|// TODO: since we don't write any norms file if there are no norms,
 comment|// kinda jaky to assume the codec handles the case of no norms file at all gracefully?!
 comment|// nocommit shouldn't need null check:
+assert|assert
+name|codec
+operator|.
+name|docValuesFormat
+argument_list|()
+operator|!=
+literal|null
+assert|;
 if|if
 condition|(
 name|codec
@@ -1264,6 +1271,11 @@ return|return
 literal|null
 return|;
 block|}
+assert|assert
+name|simpleDVProducer
+operator|!=
+literal|null
+assert|;
 comment|// nocommit change to assert != null!!
 if|if
 condition|(

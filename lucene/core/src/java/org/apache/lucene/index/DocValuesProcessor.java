@@ -182,7 +182,10 @@ DECL|method|finishDocument
 name|void
 name|finishDocument
 parameter_list|()
-block|{   }
+block|{
+comment|// nocommit catch missing DV fields here?  else we have
+comment|// null/"" depending on how docs landed in segments?
+block|}
 annotation|@
 name|Override
 DECL|method|addField

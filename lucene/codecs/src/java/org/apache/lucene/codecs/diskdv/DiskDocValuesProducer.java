@@ -1121,6 +1121,8 @@ if|if
 condition|(
 name|result
 operator|.
+name|bytes
+operator|.
 name|length
 operator|<
 name|bytes
@@ -1306,6 +1308,8 @@ expr_stmt|;
 if|if
 condition|(
 name|result
+operator|.
+name|bytes
 operator|.
 name|length
 operator|<
