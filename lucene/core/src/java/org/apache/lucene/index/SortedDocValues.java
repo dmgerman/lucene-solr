@@ -157,6 +157,12 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
+comment|// nocommit make this final, and impl seekExact(term) to
+comment|// fwd to lookupTerm
+comment|// nocommit should we nuke this?  the iterator can be
+comment|// efficiently built "on top" since ord is part of the
+comment|// API?  why must it be impl'd here...?
+comment|// SortedDocValuesTermsEnum.
 DECL|method|getTermsEnum
 specifier|public
 name|TermsEnum
@@ -599,6 +605,8 @@ block|}
 block|}
 decl_stmt|;
 comment|/** If {@code key} exists, returns its ordinal, else    *  returns {@code -insertionPoint-1}, like {@code    *  Arrays.binarySearch}.    *    *  @param key Key to look up    *  @param spare Spare BytesRef    **/
+comment|// nocommit make this protected so codecs can impl better
+comment|// version ...
 DECL|method|lookupTerm
 specifier|public
 name|int

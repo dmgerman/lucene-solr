@@ -142,53 +142,21 @@ name|lucene
 operator|.
 name|index
 operator|.
+name|BinaryDocValues
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|index
+operator|.
 name|DirectoryReader
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|index
-operator|.
-name|DocValues
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|index
-operator|.
-name|DocValues
-operator|.
-name|Source
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|index
-operator|.
-name|DocValues
-operator|.
-name|Type
 import|;
 end_import
 
@@ -347,7 +315,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * A {@link FilterAtomicReader} for migrating a facets index which encodes  * category ordinals in a payload to {@link DocValues}. To migrate the index,  * you should build a mapping from a field (String) to term ({@link Term}),  * which denotes under which DocValues field to put the data encoded in the  * matching term's payload. You can follow the code example below to migrate an  * existing index:  *   *<pre class="prettyprint">  * // Add the index and migrate payload to DocValues on the go  * DirectoryReader reader = DirectoryReader.open(oldDir);  * IndexWriterConfig conf = new IndexWriterConfig(VER, ANALYZER);  * IndexWriter writer = new IndexWriter(newDir, conf);  * List&lt;AtomicReaderContext&gt; leaves = reader.leaves();  * AtomicReader wrappedLeaves[] = new AtomicReader[leaves.size()];  * for (int i = 0; i&lt; leaves.size(); i++) {  *   wrappedLeaves[i] = new FacetPayloadMigrationReader(leaves.get(i).reader(),  *       fieldTerms);  * }  * writer.addIndexes(new MultiReader(wrappedLeaves));  * writer.commit();  *</pre>  *   *<p>  *<b>NOTE:</b> to build the field-to-term map you can use  * {@link #buildFieldTermsMap(Directory, FacetIndexingParams)}, as long as the  * index to migrate contains the ordinals payload under  * {@link #PAYLOAD_TERM_TEXT}.  *   * @lucene.experimental  */
+comment|/**  * A {@link FilterAtomicReader} for migrating a facets index which encodes  * category ordinals in a payload to {@link BinaryDocValues}. To migrate the index,  * you should build a mapping from a field (String) to term ({@link Term}),  * which denotes under which BinaryDocValues field to put the data encoded in the  * matching term's payload. You can follow the code example below to migrate an  * existing index:  *   *<pre class="prettyprint">  * // Add the index and migrate payload to DocValues on the go  * DirectoryReader reader = DirectoryReader.open(oldDir);  * IndexWriterConfig conf = new IndexWriterConfig(VER, ANALYZER);  * IndexWriter writer = new IndexWriter(newDir, conf);  * List&lt;AtomicReaderContext&gt; leaves = reader.leaves();  * AtomicReader wrappedLeaves[] = new AtomicReader[leaves.size()];  * for (int i = 0; i&lt; leaves.size(); i++) {  *   wrappedLeaves[i] = new FacetPayloadMigrationReader(leaves.get(i).reader(),  *       fieldTerms);  * }  * writer.addIndexes(new MultiReader(wrappedLeaves));  * writer.commit();  *</pre>  *   *<p>  *<b>NOTE:</b> to build the field-to-term map you can use  * {@link #buildFieldTermsMap(Directory, FacetIndexingParams)}, as long as the  * index to migrate contains the ordinals payload under  * {@link #PAYLOAD_TERM_TEXT}.  *   * @lucene.experimental  */
 end_comment
 
 begin_class
