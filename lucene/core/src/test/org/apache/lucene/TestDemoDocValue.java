@@ -382,16 +382,7 @@ begin_comment
 comment|/**  * A very simple demo used in the API documentation (src/java/overview.html).  *  * Please try to keep src/java/overview.html up-to-date when making changes  * to this class.  */
 end_comment
 
-begin_comment
-comment|// nocommit
-end_comment
-
 begin_class
-annotation|@
-name|SuppressCodecs
-argument_list|(
-literal|"Lucene40"
-argument_list|)
 DECL|class|TestDemoDocValue
 specifier|public
 class|class
