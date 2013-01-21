@@ -244,7 +244,6 @@ argument_list|)
 expr_stmt|;
 block|}
 DECL|field|out
-specifier|final
 name|DataOutput
 name|out
 decl_stmt|;
@@ -288,11 +287,10 @@ argument_list|(
 name|blockSize
 argument_list|)
 expr_stmt|;
-name|this
-operator|.
+name|reset
+argument_list|(
 name|out
-operator|=
-name|out
+argument_list|)
 expr_stmt|;
 name|values
 operator|=
@@ -301,6 +299,28 @@ name|long
 index|[
 name|blockSize
 index|]
+expr_stmt|;
+block|}
+comment|/** Reset this writer to wrap<code>out</code>. The block size remains unchanged. */
+DECL|method|reset
+specifier|public
+name|void
+name|reset
+parameter_list|(
+name|DataOutput
+name|out
+parameter_list|)
+block|{
+assert|assert
+name|out
+operator|!=
+literal|null
+assert|;
+name|this
+operator|.
+name|out
+operator|=
+name|out
 expr_stmt|;
 name|off
 operator|=
@@ -375,7 +395,7 @@ operator|++
 name|ord
 expr_stmt|;
 block|}
-comment|/** Flush all buffered data to disk. This instance is not usable anymore    *  after this method has been called. */
+comment|/** Flush all buffered data to disk. This instance is not usable anymore    *  after this method has been called until {@link #reset(DataOutput)} has    *  been called. */
 DECL|method|finish
 specifier|public
 name|void
