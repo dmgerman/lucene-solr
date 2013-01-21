@@ -142,6 +142,15 @@ modifier|...
 name|components
 parameter_list|)
 block|{
+assert|assert
+name|components
+operator|.
+name|length
+operator|>
+literal|0
+operator|:
+literal|"use CategoryPath.EMPTY to create an empty path"
+assert|;
 name|this
 operator|.
 name|components
