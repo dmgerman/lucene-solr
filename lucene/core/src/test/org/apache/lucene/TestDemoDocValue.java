@@ -5779,7 +5779,6 @@ argument_list|,
 name|analyzer
 argument_list|)
 decl_stmt|;
-comment|// TODO: Fix the CFS/suffixing of Lucene41DocValues so it actually works with this
 specifier|final
 name|DocValuesFormat
 name|fast
@@ -5788,7 +5787,7 @@ name|DocValuesFormat
 operator|.
 name|forName
 argument_list|(
-literal|"Memory"
+literal|"Lucene41"
 argument_list|)
 decl_stmt|;
 specifier|final

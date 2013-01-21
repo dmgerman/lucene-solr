@@ -377,7 +377,7 @@ return|return
 name|infosFormat
 return|;
 block|}
-comment|// nocommit need a read-only Lucene40SimpleDVFormat
+comment|// nocommit need a read-only Lucene40DVFormat / read-write in the impersonator
 DECL|field|defaultDVFormat
 specifier|private
 specifier|final
@@ -404,7 +404,7 @@ return|return
 name|defaultDVFormat
 return|;
 block|}
-comment|// nocommit need a read-only Lucene40SimpleNormsFormat:
+comment|// nocommit need a read-only Lucene40NormsFormat / read-write in the impersonator
 DECL|field|simpleNormsFormat
 specifier|private
 specifier|final

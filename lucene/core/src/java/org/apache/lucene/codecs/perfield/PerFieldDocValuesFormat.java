@@ -351,10 +351,10 @@ name|state
 argument_list|)
 return|;
 block|}
-DECL|class|SimpleDVConsumerAndSuffix
+DECL|class|ConsumerAndSuffix
 specifier|static
 class|class
-name|SimpleDVConsumerAndSuffix
+name|ConsumerAndSuffix
 implements|implements
 name|Closeable
 block|{
@@ -397,7 +397,7 @@ name|Map
 argument_list|<
 name|DocValuesFormat
 argument_list|,
-name|SimpleDVConsumerAndSuffix
+name|ConsumerAndSuffix
 argument_list|>
 name|formats
 init|=
@@ -406,7 +406,7 @@ name|HashMap
 argument_list|<
 name|DocValuesFormat
 argument_list|,
-name|SimpleDVConsumerAndSuffix
+name|ConsumerAndSuffix
 argument_list|>
 argument_list|()
 decl_stmt|;
@@ -633,7 +633,7 @@ assert|;
 name|Integer
 name|suffix
 decl_stmt|;
-name|SimpleDVConsumerAndSuffix
+name|ConsumerAndSuffix
 name|consumer
 init|=
 name|formats
@@ -721,7 +721,7 @@ decl_stmt|;
 name|consumer
 operator|=
 operator|new
-name|SimpleDVConsumerAndSuffix
+name|ConsumerAndSuffix
 argument_list|()
 expr_stmt|;
 name|consumer
