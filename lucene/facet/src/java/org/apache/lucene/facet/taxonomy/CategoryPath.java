@@ -91,6 +91,34 @@ name|int
 name|prefixLen
 parameter_list|)
 block|{
+comment|// while the code which calls this method is safe, at some point a test
+comment|// tripped on AIOOBE in toString, but we failed to reproduce. adding the
+comment|// assert as a safety check.
+assert|assert
+name|prefixLen
+operator|>
+literal|0
+operator|&&
+name|prefixLen
+operator|<=
+name|copyFrom
+operator|.
+name|components
+operator|.
+name|length
+operator|:
+literal|"prefixLen cannot be negative nor larger than the given components' length: prefixLen="
+operator|+
+name|prefixLen
+operator|+
+literal|" components.length="
+operator|+
+name|copyFrom
+operator|.
+name|components
+operator|.
+name|length
+assert|;
 name|this
 operator|.
 name|components
