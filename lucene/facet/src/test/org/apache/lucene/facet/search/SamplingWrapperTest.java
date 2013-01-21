@@ -149,7 +149,7 @@ name|searchParams
 parameter_list|)
 block|{
 name|FacetsAccumulator
-name|fExtrctr
+name|fa
 init|=
 operator|new
 name|StandardFacetsAccumulator
@@ -165,7 +165,7 @@ return|return
 operator|new
 name|SamplingWrapper
 argument_list|(
-name|fExtrctr
+name|fa
 argument_list|,
 name|sampler
 argument_list|)

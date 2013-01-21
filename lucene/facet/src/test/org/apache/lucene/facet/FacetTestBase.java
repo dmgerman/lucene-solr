@@ -1277,14 +1277,9 @@ return|return
 operator|new
 name|FacetSearchParams
 argument_list|(
-name|Arrays
-operator|.
-name|asList
-argument_list|(
-name|facetRequests
-argument_list|)
-argument_list|,
 name|iParams
+argument_list|,
+name|facetRequests
 argument_list|)
 return|;
 block|}

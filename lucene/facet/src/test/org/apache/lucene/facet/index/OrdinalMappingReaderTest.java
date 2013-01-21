@@ -529,8 +529,9 @@ decl_stmt|;
 name|FacetsCollector
 name|collector
 init|=
-operator|new
 name|FacetsCollector
+operator|.
+name|create
 argument_list|(
 name|fsp
 argument_list|,

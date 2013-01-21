@@ -320,8 +320,7 @@ name|freq
 range|:
 name|searchParams
 operator|.
-name|getFacetRequests
-argument_list|()
+name|facetRequests
 control|)
 block|{
 if|if

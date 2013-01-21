@@ -589,7 +589,7 @@ name|FacetsCollector
 name|fc
 init|=
 operator|new
-name|FacetsCollector
+name|StandardFacetsCollector
 argument_list|(
 name|sParams
 argument_list|,
@@ -1131,7 +1131,7 @@ name|FacetsCollector
 name|fc
 init|=
 operator|new
-name|FacetsCollector
+name|StandardFacetsCollector
 argument_list|(
 name|sParams
 argument_list|,
@@ -1268,7 +1268,7 @@ name|FacetsCollector
 name|fc2
 init|=
 operator|new
-name|FacetsCollector
+name|StandardFacetsCollector
 argument_list|(
 name|sParams2
 argument_list|,
@@ -1470,8 +1470,9 @@ decl_stmt|;
 name|FacetsCollector
 name|fc
 init|=
-operator|new
 name|FacetsCollector
+operator|.
+name|create
 argument_list|(
 name|sParams
 argument_list|,
