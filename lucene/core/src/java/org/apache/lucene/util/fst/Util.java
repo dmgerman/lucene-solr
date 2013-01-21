@@ -545,8 +545,7 @@ name|result
 argument_list|)
 return|;
 block|}
-comment|/** Expert: like {@link Util#getByOutput(FST, long)} except reusing */
-comment|// nocommit
+comment|/**     * Expert: like {@link Util#getByOutput(FST, long)} except reusing     * BytesReader, initial and scratch Arc, and result.    */
 DECL|method|getByOutput
 specifier|public
 specifier|static

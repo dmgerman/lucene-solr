@@ -2969,7 +2969,7 @@ name|hasNorms
 argument_list|()
 condition|)
 block|{
-name|checkSimpleNorms
+name|checkNorms
 argument_list|(
 name|info
 argument_list|,
@@ -6444,7 +6444,7 @@ operator|.
 name|totalValueFields
 operator|++
 expr_stmt|;
-name|checkSimpleDocValues
+name|checkDocValues
 argument_list|(
 name|fieldInfo
 argument_list|,
@@ -6595,16 +6595,6 @@ name|BinaryDocValues
 name|dv
 parameter_list|)
 block|{
-comment|// nocommit remove this:
-if|if
-condition|(
-name|dv
-operator|==
-literal|null
-condition|)
-block|{
-return|return;
-block|}
 comment|// nocommit what else to check ...
 name|BytesRef
 name|scratch
@@ -6658,16 +6648,6 @@ name|SortedDocValues
 name|dv
 parameter_list|)
 block|{
-comment|// nocommit remove this:
-if|if
-condition|(
-name|dv
-operator|==
-literal|null
-condition|)
-block|{
-return|return;
-block|}
 name|checkBinaryDocValues
 argument_list|(
 name|fieldName
@@ -6937,16 +6917,6 @@ name|NumericDocValues
 name|ndv
 parameter_list|)
 block|{
-comment|// nocommit remove this:
-if|if
-condition|(
-name|ndv
-operator|==
-literal|null
-condition|)
-block|{
-return|return;
-block|}
 comment|// nocommit what else to check!
 for|for
 control|(
@@ -6975,12 +6945,11 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
-comment|// nocommit
-DECL|method|checkSimpleDocValues
-specifier|public
+DECL|method|checkDocValues
+specifier|private
 specifier|static
 name|void
-name|checkSimpleDocValues
+name|checkDocValues
 parameter_list|(
 name|FieldInfo
 name|fi
@@ -6994,43 +6963,6 @@ parameter_list|)
 throws|throws
 name|Exception
 block|{
-comment|// nocommit: just for debugging
-name|Map
-argument_list|<
-name|String
-argument_list|,
-name|String
-argument_list|>
-name|atts
-init|=
-name|fi
-operator|.
-name|attributes
-argument_list|()
-decl_stmt|;
-if|if
-condition|(
-name|atts
-operator|!=
-literal|null
-condition|)
-block|{
-name|msg
-argument_list|(
-name|infoStream
-argument_list|,
-literal|"  field: "
-operator|+
-name|fi
-operator|.
-name|name
-operator|+
-literal|": "
-operator|+
-name|atts
-argument_list|)
-expr_stmt|;
-block|}
 switch|switch
 condition|(
 name|fi
@@ -7113,12 +7045,11 @@ argument_list|()
 throw|;
 block|}
 block|}
-comment|// nocommit
-DECL|method|checkSimpleNorms
-specifier|public
+DECL|method|checkNorms
+specifier|private
 specifier|static
 name|void
-name|checkSimpleNorms
+name|checkNorms
 parameter_list|(
 name|FieldInfo
 name|fi
