@@ -205,8 +205,7 @@ name|term
 argument_list|(
 name|sParams
 operator|.
-name|getFacetIndexingParams
-argument_list|()
+name|indexingParams
 argument_list|,
 name|path
 argument_list|)
@@ -482,8 +481,7 @@ name|query
 argument_list|(
 name|sParams
 operator|.
-name|getFacetIndexingParams
-argument_list|()
+name|indexingParams
 argument_list|,
 name|baseQuery
 argument_list|,

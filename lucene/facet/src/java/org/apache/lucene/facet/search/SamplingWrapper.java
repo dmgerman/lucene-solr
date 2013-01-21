@@ -141,7 +141,7 @@ comment|/*  * Licensed to the Apache Software Foundation (ASF) under one or more
 end_comment
 
 begin_comment
-comment|/**  * Wrap any Facets Accumulator with sampling.  *<p>  * Note: Sampling accumulation (Accumulation over a sampled-set of the results),  * does not guarantee accurate values for  * {@link FacetResult#getNumValidDescendants()}&  * {@link FacetResultNode#getResidue()}.  *   * @lucene.experimental  */
+comment|/**  * Wrap any Facets Accumulator with sampling.  *<p>  * Note: Sampling accumulation (Accumulation over a sampled-set of the results),  * does not guarantee accurate values for  * {@link FacetResult#getNumValidDescendants()} and  * {@link FacetResultNode#residue}.  *   * @lucene.experimental  */
 end_comment
 
 begin_class

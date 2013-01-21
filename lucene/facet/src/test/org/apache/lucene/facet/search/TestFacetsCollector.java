@@ -44,9 +44,7 @@ name|lucene
 operator|.
 name|analysis
 operator|.
-name|core
-operator|.
-name|KeywordAnalyzer
+name|MockAnalyzer
 import|;
 end_import
 
@@ -439,8 +437,11 @@ argument_list|(
 name|TEST_VERSION_CURRENT
 argument_list|,
 operator|new
-name|KeywordAnalyzer
+name|MockAnalyzer
+argument_list|(
+name|random
 argument_list|()
+argument_list|)
 argument_list|)
 argument_list|)
 decl_stmt|;
@@ -572,8 +573,9 @@ decl_stmt|;
 name|FacetsCollector
 name|fc
 init|=
-operator|new
 name|FacetsCollector
+operator|.
+name|create
 argument_list|(
 name|sParams
 argument_list|,
@@ -640,8 +642,7 @@ operator|.
 name|getFacetResultNode
 argument_list|()
 operator|.
-name|getValue
-argument_list|()
+name|value
 decl_stmt|;
 name|double
 name|expected

@@ -376,8 +376,7 @@ name|frn
 range|:
 name|facetResNode
 operator|.
-name|getSubResults
-argument_list|()
+name|subResults
 control|)
 block|{
 name|fixResultNode
@@ -408,17 +407,36 @@ comment|// TODO (Facet): change from void to return the new, smaller docSet, and
 comment|// that for the children, as this will make their intersection ops faster.
 comment|// can do this only when the new set is "sufficiently" smaller.
 comment|/* We need the category's path name in order to do its recounting.      * If it is missing, because the option to label only part of the      * facet results was exercise, we need to calculate them anyway, so      * in essence sampling with recounting spends some extra cycles for      * labeling results for which labels are not required. */
+if|if
+condition|(
+name|fresNode
+operator|.
+name|label
+operator|==
+literal|null
+condition|)
+block|{
+name|fresNode
+operator|.
+name|label
+operator|=
+name|taxonomyReader
+operator|.
+name|getPath
+argument_list|(
+name|fresNode
+operator|.
+name|ordinal
+argument_list|)
+expr_stmt|;
+block|}
 name|CategoryPath
 name|catPath
 init|=
 name|fresNode
 operator|.
-name|getLabel
-argument_list|(
-name|taxonomyReader
-argument_list|)
+name|label
 decl_stmt|;
-comment|// force labeling
 name|Term
 name|drillDownTerm
 init|=
@@ -476,10 +494,9 @@ argument_list|)
 decl_stmt|;
 name|fresNode
 operator|.
-name|setValue
-argument_list|(
+name|value
+operator|=
 name|updatedCount
-argument_list|)
 expr_stmt|;
 block|}
 comment|/**    * Count the size of the intersection between two lists: a TermDocs (list of    * documents in a certain category) and a DocIdSetIterator (list of documents    * matching a query).    */

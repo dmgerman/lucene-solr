@@ -323,16 +323,6 @@ name|numchars
 argument_list|)
 argument_list|)
 expr_stmt|;
-name|CategoryListParams
-name|clParams
-init|=
-name|dfip
-operator|.
-name|getCategoryListParams
-argument_list|(
-literal|null
-argument_list|)
-decl_stmt|;
 name|assertEquals
 argument_list|(
 literal|"partition for all ordinals is the first"
@@ -538,6 +528,8 @@ name|nextInt
 argument_list|(
 literal|10
 argument_list|)
+operator|+
+literal|1
 decl_stmt|;
 name|String
 index|[]

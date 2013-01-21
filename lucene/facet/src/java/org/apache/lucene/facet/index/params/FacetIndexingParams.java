@@ -130,7 +130,7 @@ operator|new
 name|CategoryListParams
 argument_list|()
 decl_stmt|;
-comment|/**    * A {@link FacetIndexingParams} which fixes {@link OrdinalPolicy} to    * {@link OrdinalPolicy#NO_PARENTS}. This is a singleton equivalent to new    * {@link #FacetIndexingParams()}.    */
+comment|/**    * A {@link FacetIndexingParams} which fixes {@link OrdinalPolicy} to    * {@link OrdinalPolicy#ALL_PARENTS}. This is a singleton equivalent to new    * {@link #FacetIndexingParams()}.    */
 DECL|field|ALL_PARENTS
 specifier|public
 specifier|static

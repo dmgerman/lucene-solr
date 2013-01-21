@@ -535,21 +535,17 @@ init|=
 operator|new
 name|FacetSearchParams
 argument_list|(
-name|Arrays
-operator|.
-name|asList
-argument_list|(
-name|facetRequests
-argument_list|)
-argument_list|,
 name|indexingParams
+argument_list|,
+name|facetRequests
 argument_list|)
 decl_stmt|;
 name|FacetsCollector
 name|facetsCollector
 init|=
-operator|new
 name|FacetsCollector
+operator|.
+name|create
 argument_list|(
 name|facetSearchParams
 argument_list|,
@@ -728,8 +724,7 @@ operator|.
 name|getFacetResultNode
 argument_list|()
 operator|.
-name|getSubResults
-argument_list|()
+name|subResults
 operator|.
 name|iterator
 argument_list|()
@@ -748,8 +743,7 @@ operator|.
 name|next
 argument_list|()
 operator|.
-name|getLabel
-argument_list|()
+name|label
 decl_stmt|;
 comment|// drill-down preparation: turn the base query into a drill-down query for the category of interest
 name|Query

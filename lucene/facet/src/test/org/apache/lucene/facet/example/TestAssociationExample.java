@@ -255,8 +255,7 @@ operator|.
 name|getFacetResultNode
 argument_list|()
 operator|.
-name|getSubResults
-argument_list|()
+name|subResults
 decl_stmt|;
 name|int
 name|i
@@ -277,8 +276,7 @@ literal|"Wrong result for facet "
 operator|+
 name|fResNode
 operator|.
-name|getLabel
-argument_list|()
+name|label
 argument_list|,
 name|expectedResults
 index|[
@@ -288,8 +286,7 @@ index|]
 argument_list|,
 name|fResNode
 operator|.
-name|getValue
-argument_list|()
+name|value
 argument_list|,
 literal|1E
 operator|-

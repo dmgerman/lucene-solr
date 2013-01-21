@@ -32,6 +32,16 @@ end_import
 
 begin_import
 import|import
+name|java
+operator|.
+name|util
+operator|.
+name|List
+import|;
+end_import
+
+begin_import
+import|import
 name|org
 operator|.
 name|apache
@@ -40,9 +50,9 @@ name|lucene
 operator|.
 name|facet
 operator|.
-name|associations
+name|taxonomy
 operator|.
-name|CategoryAssociationsContainer
+name|CategoryPath
 import|;
 end_import
 
@@ -59,14 +69,17 @@ name|FacetSource
 extends|extends
 name|ContentItemsSource
 block|{
-comment|/**    * Returns the next {@link CategoryAssociationsContainer facets content item}.    * Implementations must account for multi-threading, as multiple threads can    * call this method simultaneously.    */
+comment|/**    * Fills the next facets content items in the given list. Implementations must    * account for multi-threading, as multiple threads can call this method    * simultaneously.    */
 DECL|method|getNextFacets
 specifier|public
 specifier|abstract
-name|CategoryAssociationsContainer
+name|void
 name|getNextFacets
 parameter_list|(
-name|CategoryAssociationsContainer
+name|List
+argument_list|<
+name|CategoryPath
+argument_list|>
 name|facets
 parameter_list|)
 throws|throws

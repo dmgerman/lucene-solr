@@ -529,8 +529,9 @@ decl_stmt|;
 name|FacetsCollector
 name|collector
 init|=
-operator|new
 name|FacetsCollector
+operator|.
+name|create
 argument_list|(
 name|fsp
 argument_list|,
@@ -578,8 +579,7 @@ name|facet
 range|:
 name|node
 operator|.
-name|getSubResults
-argument_list|()
+name|subResults
 control|)
 block|{
 name|int
@@ -590,8 +590,7 @@ name|int
 operator|)
 name|facet
 operator|.
-name|getValue
-argument_list|()
+name|value
 decl_stmt|;
 name|int
 name|label
@@ -602,8 +601,7 @@ name|parseInt
 argument_list|(
 name|facet
 operator|.
-name|getLabel
-argument_list|()
+name|label
 operator|.
 name|components
 index|[

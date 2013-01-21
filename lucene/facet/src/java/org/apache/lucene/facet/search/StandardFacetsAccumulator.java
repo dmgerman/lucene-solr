@@ -434,8 +434,7 @@ name|partitionSize
 argument_list|(
 name|searchParams
 operator|.
-name|getFacetIndexingParams
-argument_list|()
+name|indexingParams
 argument_list|,
 name|taxonomyReader
 argument_list|)
@@ -500,8 +499,7 @@ name|partitionSize
 argument_list|(
 name|searchParams
 operator|.
-name|getFacetIndexingParams
-argument_list|()
+name|indexingParams
 argument_list|,
 name|taxonomyReader
 argument_list|)
@@ -563,8 +561,7 @@ name|taxonomyReader
 argument_list|,
 name|searchParams
 operator|.
-name|getFacetIndexingParams
-argument_list|()
+name|indexingParams
 argument_list|)
 expr_stmt|;
 if|if
@@ -777,8 +774,7 @@ name|fr
 range|:
 name|searchParams
 operator|.
-name|getFacetRequests
-argument_list|()
+name|facetRequests
 control|)
 block|{
 comment|// Handle and merge only facet requests which were not already handled.
@@ -885,8 +881,7 @@ name|fr
 range|:
 name|searchParams
 operator|.
-name|getFacetRequests
-argument_list|()
+name|facetRequests
 control|)
 block|{
 name|FacetResultsHandler
@@ -1485,8 +1480,7 @@ name|indexingParams
 init|=
 name|searchParams
 operator|.
-name|getFacetIndexingParams
-argument_list|()
+name|indexingParams
 decl_stmt|;
 for|for
 control|(
@@ -1495,8 +1489,7 @@ name|facetRequest
 range|:
 name|searchParams
 operator|.
-name|getFacetRequests
-argument_list|()
+name|facetRequests
 control|)
 block|{
 name|Aggregator

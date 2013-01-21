@@ -1482,8 +1482,7 @@ index|]
 argument_list|,
 name|resNode
 operator|.
-name|getLabel
-argument_list|()
+name|label
 operator|.
 name|toString
 argument_list|()
@@ -1500,8 +1499,7 @@ index|]
 argument_list|,
 name|resNode
 operator|.
-name|getValue
-argument_list|()
+name|value
 argument_list|,
 literal|0.0
 argument_list|)
@@ -1514,7 +1512,9 @@ literal|0
 argument_list|,
 name|resNode
 operator|.
-name|getNumSubResults
+name|subResults
+operator|.
+name|size
 argument_list|()
 argument_list|)
 expr_stmt|;

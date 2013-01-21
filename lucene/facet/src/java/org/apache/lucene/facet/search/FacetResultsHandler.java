@@ -213,7 +213,7 @@ parameter_list|)
 throws|throws
 name|IOException
 function_decl|;
-comment|/**    * Perform any rearrangement as required on a facet result that has changed after    * it was rendered.    *<P>    * Possible use case: a sampling facets accumulator invoked another     * other facets accumulator on a sample set of documents, obtained    * rendered facet results, fixed their counts, and now it is needed     * to sort the results differently according to the fixed counts.     * @param facetResult result to be rearranged.    * @see FacetResultNode#setValue(double)    */
+comment|/**    * Perform any rearrangement as required on a facet result that has changed after    * it was rendered.    *<P>    * Possible use case: a sampling facets accumulator invoked another     * other facets accumulator on a sample set of documents, obtained    * rendered facet results, fixed their counts, and now it is needed     * to sort the results differently according to the fixed counts.     * @param facetResult result to be rearranged.    * @see FacetResultNode#value    */
 DECL|method|rearrangeFacetResult
 specifier|public
 specifier|abstract
