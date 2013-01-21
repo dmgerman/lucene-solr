@@ -282,10 +282,6 @@ begin_comment
 comment|/**  * Tests IndexSearcher's searchAfter() method  */
 end_comment
 
-begin_comment
-comment|// nocommit fail w/ OOME?: ant test  -Dtestcase=TestSearchAfter -Dtests.method=testQueries -Dtests.seed=98B4DA915983D1AE -Dtests.slow=true -Dtests.locale=sr -Dtests.timezone=Etc/GMT+2 -Dtests.file.encoding=UTF-8
-end_comment
-
 begin_class
 DECL|class|TestSearchAfter
 specifier|public
