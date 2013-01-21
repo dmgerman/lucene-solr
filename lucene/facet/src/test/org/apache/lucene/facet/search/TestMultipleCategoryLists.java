@@ -2002,8 +2002,7 @@ name|subResults
 init|=
 name|resNode
 operator|.
-name|getSubResults
-argument_list|()
+name|subResults
 decl_stmt|;
 name|Iterator
 argument_list|<
@@ -2071,8 +2070,7 @@ name|subResults
 operator|=
 name|resNode
 operator|.
-name|getSubResults
-argument_list|()
+name|subResults
 expr_stmt|;
 name|subIter
 operator|=
@@ -2194,8 +2192,7 @@ name|subResults
 operator|=
 name|resNode
 operator|.
-name|getSubResults
-argument_list|()
+name|subResults
 expr_stmt|;
 name|subIter
 operator|=
@@ -2269,8 +2266,7 @@ name|subResults
 operator|=
 name|resNode
 operator|.
-name|getSubResults
-argument_list|()
+name|subResults
 expr_stmt|;
 name|subIter
 operator|=
@@ -2635,8 +2631,7 @@ literal|"Label of subresult "
 operator|+
 name|sub
 operator|.
-name|getLabel
-argument_list|()
+name|label
 operator|+
 literal|" was incorrect"
 argument_list|,
@@ -2644,8 +2639,7 @@ name|label
 argument_list|,
 name|sub
 operator|.
-name|getLabel
-argument_list|()
+name|label
 operator|.
 name|toString
 argument_list|()
@@ -2657,8 +2651,7 @@ literal|"Value for "
 operator|+
 name|sub
 operator|.
-name|getLabel
-argument_list|()
+name|label
 operator|+
 literal|" subresult was incorrect"
 argument_list|,
@@ -2666,8 +2659,7 @@ name|value
 argument_list|,
 name|sub
 operator|.
-name|getValue
-argument_list|()
+name|value
 argument_list|,
 literal|0.0
 argument_list|)

@@ -146,24 +146,6 @@ name|lucene
 operator|.
 name|facet
 operator|.
-name|search
-operator|.
-name|results
-operator|.
-name|MutableFacetResultNode
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|facet
-operator|.
 name|taxonomy
 operator|.
 name|TaxonomyReader
@@ -239,7 +221,7 @@ comment|/*  * Licensed to the Apache Software Foundation (ASF) under one or more
 end_comment
 
 begin_comment
-comment|/**  * Generates {@link FacetResult} from the count arrays aggregated for a  * particular {@link FacetRequest}. The generated {@link FacetResult} is a  * subtree of the taxonomy tree. Its root node,  * {@link FacetResult#getFacetResultNode()}, is the facet specified by  * {@link FacetRequest#categoryPath}, and the enumerated children,  * {@link FacetResultNode#getSubResults()}, of each node in that  * {@link FacetResult} are the top K ( = {@link FacetRequest#getNumResults()})  * among its children in the taxonomy. Top in the sense  * {@link FacetRequest#getSortBy()}, which can be by the values aggregated in  * the count arrays, or by ordinal numbers; also specified is the sort order,  * {@link FacetRequest#getSortOrder()}, ascending or descending, of these values  * or ordinals before their top K are selected. The depth (number of levels  * excluding the root) of the {@link FacetResult} tree is specified by  * {@link FacetRequest#getDepth()}.  *<p>  * Because the number of selected children of each node is restricted, and not  * the overall number of nodes in the {@link FacetResult}, facets not selected  * into {@link FacetResult} might have better values, or ordinals, (typically,  * higher counts), than facets that are selected into the {@link FacetResult}.  *<p>  * The generated {@link FacetResult} also provides with  * {@link FacetResult#getNumValidDescendants()}, which returns the total number  * of facets that are descendants of the root node, no deeper than  * {@link FacetRequest#getDepth()}, and which have valid value. The rootnode  * itself is not counted here. Valid value is determined by the  * {@link FacetResultsHandler}. {@link TopKInEachNodeHandler} defines valid as  * != 0.  *<p>  *<b>NOTE:</b> this code relies on the assumption that  * {@link TaxonomyReader#INVALID_ORDINAL} == -1, a smaller value than any valid  * ordinal.  *   * @lucene.experimental  */
+comment|/**  * Generates {@link FacetResult} from the count arrays aggregated for a  * particular {@link FacetRequest}. The generated {@link FacetResult} is a  * subtree of the taxonomy tree. Its root node,  * {@link FacetResult#getFacetResultNode()}, is the facet specified by  * {@link FacetRequest#categoryPath}, and the enumerated children,  * {@link FacetResultNode#subResults}, of each node in that  * {@link FacetResult} are the top K ( = {@link FacetRequest#getNumResults()})  * among its children in the taxonomy. Top in the sense  * {@link FacetRequest#getSortBy()}, which can be by the values aggregated in  * the count arrays, or by ordinal numbers; also specified is the sort order,  * {@link FacetRequest#getSortOrder()}, ascending or descending, of these values  * or ordinals before their top K are selected. The depth (number of levels  * excluding the root) of the {@link FacetResult} tree is specified by  * {@link FacetRequest#getDepth()}.  *<p>  * Because the number of selected children of each node is restricted, and not  * the overall number of nodes in the {@link FacetResult}, facets not selected  * into {@link FacetResult} might have better values, or ordinals, (typically,  * higher counts), than facets that are selected into the {@link FacetResult}.  *<p>  * The generated {@link FacetResult} also provides with  * {@link FacetResult#getNumValidDescendants()}, which returns the total number  * of facets that are descendants of the root node, no deeper than  * {@link FacetRequest#getDepth()}, and which have valid value. The rootnode  * itself is not counted here. Valid value is determined by the  * {@link FacetResultsHandler}. {@link TopKInEachNodeHandler} defines valid as  * != 0.  *<p>  *<b>NOTE:</b> this code relies on the assumption that  * {@link TaxonomyReader#INVALID_ORDINAL} == -1, a smaller value than any valid  * ordinal.  *   * @lucene.experimental  */
 end_comment
 
 begin_class
@@ -2110,23 +2092,19 @@ name|leftGoesNow
 argument_list|(
 name|arg2
 operator|.
-name|getOrdinal
-argument_list|()
+name|ordinal
 argument_list|,
 name|arg2
 operator|.
-name|getValue
-argument_list|()
+name|value
 argument_list|,
 name|arg1
 operator|.
-name|getOrdinal
-argument_list|()
+name|ordinal
 argument_list|,
 name|arg1
 operator|.
-name|getValue
-argument_list|()
+name|value
 argument_list|)
 return|;
 block|}
@@ -2701,28 +2679,18 @@ return|return;
 block|}
 name|node
 operator|.
-name|getLabel
-argument_list|(
-name|this
-operator|.
+name|label
+operator|=
 name|taxonomyReader
-argument_list|)
-expr_stmt|;
-comment|// attach a label -- category path -- to the node
-if|if
-condition|(
-literal|null
-operator|==
+operator|.
+name|getPath
+argument_list|(
 name|node
 operator|.
-name|getSubResults
-argument_list|()
-condition|)
-block|{
-return|return;
-comment|// if node has no children -- done
-block|}
-comment|// otherwise, label the first numToLabel of these children, and recursively -- their children.
+name|ordinal
+argument_list|)
+expr_stmt|;
+comment|// label the first numToLabel of these children, and recursively -- their children.
 name|int
 name|numLabeled
 init|=
@@ -2735,8 +2703,7 @@ name|frn
 range|:
 name|node
 operator|.
-name|getSubResults
-argument_list|()
+name|subResults
 control|)
 block|{
 comment|// go over the children of node from first to last, no more than numToLable of them
@@ -2797,18 +2764,14 @@ name|getSuitableACComparator
 argument_list|()
 argument_list|)
 decl_stmt|;
-name|MutableFacetResultNode
+name|FacetResultNode
 name|topFrn
 init|=
-operator|(
-name|MutableFacetResultNode
-operator|)
 name|facetResult
 operator|.
 name|getFacetResultNode
 argument_list|()
 decl_stmt|;
-comment|// safe cast
 name|rearrangeChilrenOfNode
 argument_list|(
 name|topFrn
@@ -2848,8 +2811,7 @@ name|frn
 range|:
 name|node
 operator|.
-name|getSubResults
-argument_list|()
+name|subResults
 control|)
 block|{
 name|nodesHeap
@@ -2906,17 +2868,11 @@ argument_list|()
 argument_list|)
 expr_stmt|;
 block|}
-operator|(
-operator|(
-name|MutableFacetResultNode
-operator|)
 name|node
-operator|)
 operator|.
-name|setSubResults
-argument_list|(
 name|subResults
-argument_list|)
+operator|=
+name|subResults
 expr_stmt|;
 for|for
 control|(
@@ -2925,8 +2881,7 @@ name|frn
 range|:
 name|node
 operator|.
-name|getSubResults
-argument_list|()
+name|subResults
 control|)
 block|{
 name|rearrangeChilrenOfNode
@@ -3017,7 +2972,7 @@ operator|.
 name|rootNodeValue
 expr_stmt|;
 block|}
-name|MutableFacetResultNode
+name|FacetResultNode
 name|root
 init|=
 name|generateNode
@@ -3049,7 +3004,7 @@ return|;
 block|}
 DECL|method|generateNode
 specifier|private
-name|MutableFacetResultNode
+name|FacetResultNode
 name|generateNode
 parameter_list|(
 name|int
@@ -3065,11 +3020,11 @@ argument_list|>
 name|mapToAACOs
 parameter_list|)
 block|{
-name|MutableFacetResultNode
+name|FacetResultNode
 name|node
 init|=
 operator|new
-name|MutableFacetResultNode
+name|FacetResultNode
 argument_list|(
 name|ordinal
 argument_list|,
@@ -3156,19 +3111,17 @@ expr_stmt|;
 block|}
 name|node
 operator|.
-name|setSubResults
-argument_list|(
+name|subResults
+operator|=
 name|list
-argument_list|)
 expr_stmt|;
 name|node
 operator|.
-name|setResidue
-argument_list|(
+name|residue
+operator|=
 name|aaco
 operator|.
 name|residue
-argument_list|)
 expr_stmt|;
 return|return
 name|node

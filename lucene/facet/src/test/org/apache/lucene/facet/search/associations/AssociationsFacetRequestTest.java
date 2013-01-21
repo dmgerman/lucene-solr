@@ -880,8 +880,7 @@ operator|.
 name|getFacetResultNode
 argument_list|()
 operator|.
-name|getValue
-argument_list|()
+name|value
 argument_list|)
 expr_stmt|;
 name|assertEquals
@@ -903,8 +902,7 @@ operator|.
 name|getFacetResultNode
 argument_list|()
 operator|.
-name|getValue
-argument_list|()
+name|value
 argument_list|)
 expr_stmt|;
 name|taxo
@@ -1042,8 +1040,7 @@ operator|.
 name|getFacetResultNode
 argument_list|()
 operator|.
-name|getValue
-argument_list|()
+name|value
 argument_list|,
 literal|0.00001
 argument_list|)
@@ -1067,8 +1064,7 @@ operator|.
 name|getFacetResultNode
 argument_list|()
 operator|.
-name|getValue
-argument_list|()
+name|value
 argument_list|,
 literal|0.00001
 argument_list|)

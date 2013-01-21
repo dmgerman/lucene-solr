@@ -595,7 +595,7 @@ comment|// succeeded
 block|}
 catch|catch
 parameter_list|(
-name|NotSameResultError
+name|AssertionError
 name|e
 parameter_list|)
 block|{

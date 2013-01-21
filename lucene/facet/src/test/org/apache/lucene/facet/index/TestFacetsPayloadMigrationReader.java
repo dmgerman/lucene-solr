@@ -2284,8 +2284,7 @@ name|dim
 init|=
 name|node
 operator|.
-name|getLabel
-argument_list|()
+name|label
 operator|.
 name|components
 index|[
@@ -2313,8 +2312,7 @@ name|int
 operator|)
 name|node
 operator|.
-name|getValue
-argument_list|()
+name|value
 argument_list|)
 expr_stmt|;
 block|}
@@ -2528,8 +2526,7 @@ name|int
 operator|)
 name|rootNode
 operator|.
-name|getValue
-argument_list|()
+name|value
 argument_list|)
 expr_stmt|;
 block|}

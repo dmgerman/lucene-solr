@@ -666,8 +666,7 @@ name|node
 range|:
 name|rootNode
 operator|.
-name|getSubResults
-argument_list|()
+name|subResults
 control|)
 block|{
 name|assertTrue
@@ -676,14 +675,15 @@ literal|"node "
 operator|+
 name|node
 operator|.
-name|getLabel
-argument_list|()
+name|label
 operator|+
 literal|" should have had children as the requested depth was '2'"
 argument_list|,
 name|node
 operator|.
-name|getNumSubResults
+name|subResults
+operator|.
+name|size
 argument_list|()
 operator|>
 literal|0

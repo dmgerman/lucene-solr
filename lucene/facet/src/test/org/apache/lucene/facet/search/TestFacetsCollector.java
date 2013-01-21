@@ -640,8 +640,7 @@ operator|.
 name|getFacetResultNode
 argument_list|()
 operator|.
-name|getValue
-argument_list|()
+name|value
 decl_stmt|;
 name|double
 name|expected
