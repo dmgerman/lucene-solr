@@ -3771,16 +3771,24 @@ condition|)
 block|{
 comment|// If you index as sorted source you can still sort by
 comment|// value instead:
-comment|// nocommit re-enable?  we need to fix FC.getTerms to
-comment|// "fallback" to getTermsIndex if the sorted DV is
-comment|// available
-comment|//return random().nextBoolean() ? SortField.Type.STRING : SortField.Type.STRING_VAL;
 return|return
+name|random
+argument_list|()
+operator|.
+name|nextBoolean
+argument_list|()
+condition|?
 name|SortField
 operator|.
 name|Type
 operator|.
 name|STRING
+else|:
+name|SortField
+operator|.
+name|Type
+operator|.
+name|STRING_VAL
 return|;
 block|}
 else|else
