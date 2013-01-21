@@ -82,6 +82,20 @@ name|lucene
 operator|.
 name|document
 operator|.
+name|BinaryDocValuesField
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|document
+operator|.
 name|Document
 import|;
 end_import
@@ -96,7 +110,7 @@ name|lucene
 operator|.
 name|document
 operator|.
-name|PackedLongDocValuesField
+name|LongDocValuesField
 import|;
 end_import
 
@@ -111,20 +125,6 @@ operator|.
 name|document
 operator|.
 name|SortedBytesDocValuesField
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|document
-operator|.
-name|StraightBytesDocValuesField
 import|;
 end_import
 
@@ -247,7 +247,6 @@ argument_list|()
 argument_list|)
 argument_list|)
 decl_stmt|;
-comment|// nocommit binary, sorted too
 specifier|final
 name|List
 argument_list|<
@@ -335,7 +334,7 @@ operator|.
 name|add
 argument_list|(
 operator|new
-name|PackedLongDocValuesField
+name|LongDocValuesField
 argument_list|(
 literal|"number"
 argument_list|,
@@ -363,7 +362,7 @@ operator|.
 name|add
 argument_list|(
 operator|new
-name|StraightBytesDocValuesField
+name|BinaryDocValuesField
 argument_list|(
 literal|"bytes"
 argument_list|,
