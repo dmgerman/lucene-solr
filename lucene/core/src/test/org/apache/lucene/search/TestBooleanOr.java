@@ -1047,7 +1047,6 @@ init|=
 name|newDirectory
 argument_list|()
 decl_stmt|;
-comment|// nocommit remove SMS:
 name|RandomIndexWriter
 name|riw
 init|=
@@ -1069,13 +1068,6 @@ argument_list|(
 name|random
 argument_list|()
 argument_list|)
-argument_list|)
-operator|.
-name|setMergeScheduler
-argument_list|(
-operator|new
-name|SerialMergeScheduler
-argument_list|()
 argument_list|)
 argument_list|)
 decl_stmt|;

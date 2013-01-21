@@ -1500,14 +1500,6 @@ argument_list|(
 literal|2
 argument_list|)
 argument_list|)
-operator|.
-name|setMergeScheduler
-argument_list|(
-operator|new
-name|SerialMergeScheduler
-argument_list|()
-argument_list|)
-comment|// nocommit
 argument_list|)
 decl_stmt|;
 name|StringBuilder

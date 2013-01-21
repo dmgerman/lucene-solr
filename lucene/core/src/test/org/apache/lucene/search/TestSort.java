@@ -658,18 +658,7 @@ begin_comment
 comment|/**  * Unit tests for sorting code.  *  *<p>Created: Feb 17, 2004 4:55:10 PM  *  * @since   lucene 1.4  */
 end_comment
 
-begin_comment
-comment|// nocommit unsuppress this once Lucene40 impls DV 2.0:
-end_comment
-
 begin_class
-annotation|@
-name|SuppressCodecs
-argument_list|(
-block|{
-literal|"Lucene40"
-block|}
-argument_list|)
 DECL|class|TestSort
 specifier|public
 class|class
@@ -2128,17 +2117,12 @@ operator|.
 name|close
 argument_list|()
 expr_stmt|;
-comment|// nocommit back to newSearcher(true)? problem is this
-comment|// sometimes uses slow reader wrapper which does not
-comment|// provide DV 2.0
 name|IndexSearcher
 name|s
 init|=
 name|newSearcher
 argument_list|(
 name|reader
-argument_list|,
-literal|false
 argument_list|)
 decl_stmt|;
 return|return
@@ -2760,17 +2744,12 @@ argument_list|(
 name|indexStore
 argument_list|)
 decl_stmt|;
-comment|// nocommit back to newSearcher(true)? problem is this
-comment|// sometimes uses slow reader wrapper which does not
-comment|// provide DV 2.0
 name|IndexSearcher
 name|searcher
 init|=
 name|newSearcher
 argument_list|(
 name|reader
-argument_list|,
-literal|false
 argument_list|)
 decl_stmt|;
 comment|/*     for(int docID=0;docID<reader.maxDoc();docID++) {       StoredDocument doc = reader.document(docID);       String s = doc.get("tracer");       TopDocs hits = searcher.search(new TermQuery(new Term("string", s)), NUM_STRINGS);       System.out.println("string=" + s + " has " + hits.totalHits + " docs");       boolean found = false;       for(int hit=0;!found&& hit<hits.totalHits;hit++) {         if (hits.scoreDocs[hit].doc == docID) {           found = true;           break;         }       }       assertTrue(found);       s = doc.get("tracer2");       hits = searcher.search(new TermQuery(new Term("string2", s)), NUM_STRINGS);       System.out.println("string2=" + s + " has " + hits.totalHits + " docs");       found = false;       for(int hit=0;!found&& hit<hits.totalHits;hit++) {         if (hits.scoreDocs[hit].doc == docID) {           found = true;           break;         }       }       assertTrue(found);     }     */
