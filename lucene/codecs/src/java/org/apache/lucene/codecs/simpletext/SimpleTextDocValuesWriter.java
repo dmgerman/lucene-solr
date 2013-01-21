@@ -233,6 +233,18 @@ argument_list|(
 literal|"field "
 argument_list|)
 decl_stmt|;
+DECL|field|TYPE
+specifier|final
+specifier|static
+name|BytesRef
+name|TYPE
+init|=
+operator|new
+name|BytesRef
+argument_list|(
+literal|"  type "
+argument_list|)
+decl_stmt|;
 comment|// used for numerics
 DECL|field|MINVALUE
 specifier|final
@@ -327,12 +339,6 @@ specifier|final
 name|int
 name|numDocs
 decl_stmt|;
-comment|// nocommit
-DECL|field|isNorms
-specifier|final
-name|boolean
-name|isNorms
-decl_stmt|;
 DECL|field|fieldsSeen
 specifier|private
 specifier|final
@@ -403,15 +409,6 @@ operator|.
 name|getDocCount
 argument_list|()
 expr_stmt|;
-name|isNorms
-operator|=
-name|ext
-operator|.
-name|equals
-argument_list|(
-literal|"len"
-argument_list|)
-expr_stmt|;
 block|}
 comment|// for asserting
 DECL|method|fieldSeen
@@ -476,12 +473,40 @@ operator|.
 name|name
 argument_list|)
 assert|;
-comment|// nocommit: this must be multiple asserts
-comment|//assert (field.getDocValuesType() != null&& (DocValues.isNumber(field.getDocValuesType()) || DocValues.isFloat(field.getDocValuesType()))) ||
-comment|//  (field.getNormType() != null&& (DocValues.isNumber(field.getNormType()) || DocValues.isFloat(field.getNormType()))): "field=" + field.name;
+assert|assert
+operator|(
+name|field
+operator|.
+name|getDocValuesType
+argument_list|()
+operator|==
+name|FieldInfo
+operator|.
+name|DocValuesType
+operator|.
+name|NUMERIC
+operator|||
+name|field
+operator|.
+name|getNormType
+argument_list|()
+operator|==
+name|FieldInfo
+operator|.
+name|DocValuesType
+operator|.
+name|NUMERIC
+operator|)
+assert|;
 name|writeFieldEntry
 argument_list|(
 name|field
+argument_list|,
+name|FieldInfo
+operator|.
+name|DocValuesType
+operator|.
+name|NUMERIC
 argument_list|)
 expr_stmt|;
 comment|// first pass to find min/max
@@ -848,10 +873,6 @@ name|DocValuesType
 operator|.
 name|BINARY
 assert|;
-assert|assert
-operator|!
-name|isNorms
-assert|;
 name|int
 name|maxLength
 init|=
@@ -882,6 +903,12 @@ block|}
 name|writeFieldEntry
 argument_list|(
 name|field
+argument_list|,
+name|FieldInfo
+operator|.
+name|DocValuesType
+operator|.
+name|BINARY
 argument_list|)
 expr_stmt|;
 comment|// write maxLength
@@ -1168,13 +1195,15 @@ name|DocValuesType
 operator|.
 name|SORTED
 assert|;
-assert|assert
-operator|!
-name|isNorms
-assert|;
 name|writeFieldEntry
 argument_list|(
 name|field
+argument_list|,
+name|FieldInfo
+operator|.
+name|DocValuesType
+operator|.
+name|SORTED
 argument_list|)
 expr_stmt|;
 name|int
@@ -1631,6 +1660,11 @@ name|writeFieldEntry
 parameter_list|(
 name|FieldInfo
 name|field
+parameter_list|,
+name|FieldInfo
+operator|.
+name|DocValuesType
+name|type
 parameter_list|)
 throws|throws
 name|IOException
@@ -1653,6 +1687,36 @@ argument_list|,
 name|field
 operator|.
 name|name
+argument_list|,
+name|scratch
+argument_list|)
+expr_stmt|;
+name|SimpleTextUtil
+operator|.
+name|writeNewline
+argument_list|(
+name|data
+argument_list|)
+expr_stmt|;
+name|SimpleTextUtil
+operator|.
+name|write
+argument_list|(
+name|data
+argument_list|,
+name|TYPE
+argument_list|)
+expr_stmt|;
+name|SimpleTextUtil
+operator|.
+name|write
+argument_list|(
+name|data
+argument_list|,
+name|type
+operator|.
+name|toString
+argument_list|()
 argument_list|,
 name|scratch
 argument_list|)
