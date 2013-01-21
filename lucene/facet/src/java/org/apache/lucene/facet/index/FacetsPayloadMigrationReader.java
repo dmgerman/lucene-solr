@@ -935,7 +935,7 @@ name|Term
 argument_list|>
 name|fieldTerms
 decl_stmt|;
-comment|/**    * Wraps an {@link AtomicReader} and migrates the payload to {@link DocValues}    * fields by using the given mapping.    */
+comment|/**    * Wraps an {@link AtomicReader} and migrates the payload to {@link BinaryDocValues}    * fields by using the given mapping.    */
 DECL|method|FacetsPayloadMigrationReader
 specifier|public
 name|FacetsPayloadMigrationReader

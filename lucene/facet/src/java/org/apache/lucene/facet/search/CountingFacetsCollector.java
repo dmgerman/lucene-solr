@@ -413,7 +413,7 @@ comment|/*  * Licensed to the Apache Software Foundation (ASF) under one or more
 end_comment
 
 begin_comment
-comment|/**  * A {@link Collector} which counts facets associated with matching documents.  * This {@link Collector} can be used only in the following conditions:  *<ul>  *<li>All {@link FacetRequest requests} must be {@link CountFacetRequest}, with  * their {@link FacetRequest#getDepth() depth} equals to 1, and  * {@link FacetRequest#getNumLabel()} must be&ge; than  * {@link FacetRequest#getNumResults()}. Also, their sorting options must be  * {@link SortOrder#DESCENDING} and {@link SortBy#VALUE} (although ties are  * broken by ordinals).  *<li>Partitions should be disabled (  * {@link FacetIndexingParams#getPartitionSize()} should return  * Integer.MAX_VALUE).  *<li>There can be only one {@link CategoryListParams} in the  * {@link FacetIndexingParams}, with {@link DGapVInt8IntDecoder}.  *</ul>  *   *<p>  *<b>NOTE:</b> this colletro uses {@link DocValues#getSource()} by default,  * which pre-loads the values into memory. If your application cannot afford the  * RAM, you should use  * {@link #CountingFacetsCollector(FacetSearchParams, TaxonomyReader, FacetArrays, boolean)}  * and specify to use a direct source (corresponds to  * {@link DocValues#getDirectSource()}).  *   *<p>  *<b>NOTE:</b> this collector supports category lists that were indexed with  * {@link OrdinalPolicy#NO_PARENTS}, by counting up the parents too, after  * resolving the leafs counts. Note though that it is your responsibility to  * guarantee that indeed a document wasn't indexed with two categories that  * share a common parent, or otherwise the parent's count will be wrong.  *   * @lucene.experimental  */
+comment|/**  * A {@link Collector} which counts facets associated with matching documents.  * This {@link Collector} can be used only in the following conditions:  *<ul>  *<li>All {@link FacetRequest requests} must be {@link CountFacetRequest}, with  * their {@link FacetRequest#getDepth() depth} equals to 1, and  * {@link FacetRequest#getNumLabel()} must be&ge; than  * {@link FacetRequest#getNumResults()}. Also, their sorting options must be  * {@link SortOrder#DESCENDING} and {@link SortBy#VALUE} (although ties are  * broken by ordinals).  *<li>Partitions should be disabled (  * {@link FacetIndexingParams#getPartitionSize()} should return  * Integer.MAX_VALUE).  *<li>There can be only one {@link CategoryListParams} in the  * {@link FacetIndexingParams}, with {@link DGapVInt8IntDecoder}.  *</ul>  *   *<p>  *<b>NOTE:</b> this collector uses {@link BinaryDocValues} by default,  * which pre-loads the values into memory. If your application cannot afford the  * RAM, you should pick a codec which keeps the values (or parts of them) on disk.  *   *<p>  *<b>NOTE:</b> this collector supports category lists that were indexed with  * {@link OrdinalPolicy#NO_PARENTS}, by counting up the parents too, after  * resolving the leafs counts. Note though that it is your responsibility to  * guarantee that indeed a document wasn't indexed with two categories that  * share a common parent, or otherwise the parent's count will be wrong.  *   * @lucene.experimental  */
 end_comment
 
 begin_class
@@ -466,12 +466,6 @@ specifier|private
 specifier|final
 name|String
 name|facetsField
-decl_stmt|;
-DECL|field|useDirectSource
-specifier|private
-specifier|final
-name|boolean
-name|useDirectSource
 decl_stmt|;
 DECL|field|matchingDocs
 specifier|private
@@ -528,8 +522,6 @@ operator|.
 name|getSize
 argument_list|()
 argument_list|)
-argument_list|,
-literal|false
 argument_list|)
 expr_stmt|;
 block|}
@@ -545,9 +537,6 @@ name|taxoReader
 parameter_list|,
 name|FacetArrays
 name|facetArrays
-parameter_list|,
-name|boolean
-name|useDirectSource
 parameter_list|)
 block|{
 assert|assert
@@ -616,12 +605,6 @@ literal|null
 argument_list|)
 operator|.
 name|field
-expr_stmt|;
-name|this
-operator|.
-name|useDirectSource
-operator|=
-name|useDirectSource
 expr_stmt|;
 block|}
 comment|/**    * Asserts that this {@link FacetsCollector} can handle the given    * {@link FacetSearchParams}. Returns {@code null} if true, otherwise an error    * message.    */
