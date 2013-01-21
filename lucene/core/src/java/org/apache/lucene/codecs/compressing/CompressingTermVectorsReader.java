@@ -586,7 +586,7 @@ name|util
 operator|.
 name|packed
 operator|.
-name|BlockPackedReader
+name|BlockPackedReaderIterator
 import|;
 end_import
 
@@ -675,7 +675,7 @@ decl_stmt|;
 DECL|field|reader
 specifier|private
 specifier|final
-name|BlockPackedReader
+name|BlockPackedReaderIterator
 name|reader
 decl_stmt|;
 comment|// used by clone
@@ -765,7 +765,7 @@ operator|.
 name|reader
 operator|=
 operator|new
-name|BlockPackedReader
+name|BlockPackedReaderIterator
 argument_list|(
 name|vectorsStream
 argument_list|,
@@ -1003,7 +1003,7 @@ operator|.
 name|reader
 operator|=
 operator|new
-name|BlockPackedReader
+name|BlockPackedReaderIterator
 argument_list|(
 name|vectorsStream
 argument_list|,

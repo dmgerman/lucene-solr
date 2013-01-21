@@ -53,7 +53,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * A writer for large sequences of longs.  *<p>  * The sequence is divided into fixed-size blocks and for each block, the  * difference between each value and the minimum value of the block is encoded  * using as few bits as possible. Memory usage of this class is proportional to  * the block size. Each block has an overhead between 1 and 10 bytes to store  * the minimum value and the number of bits per value of the block.  * @see BlockPackedReader  * @lucene.internal  */
+comment|/**  * A writer for large sequences of longs.  *<p>  * The sequence is divided into fixed-size blocks and for each block, the  * difference between each value and the minimum value of the block is encoded  * using as few bits as possible. Memory usage of this class is proportional to  * the block size. Each block has an overhead between 1 and 10 bytes to store  * the minimum value and the number of bits per value of the block.  * @see BlockPackedReaderIterator  * @lucene.internal  */
 end_comment
 
 begin_class
@@ -132,8 +132,31 @@ block|}
 if|if
 condition|(
 name|blockSize
-operator|%
+operator|<
 literal|64
+condition|)
+block|{
+throw|throw
+operator|new
+name|IllegalArgumentException
+argument_list|(
+literal|"blockSize must be>= 64, got "
+operator|+
+name|blockSize
+argument_list|)
+throw|;
+block|}
+if|if
+condition|(
+operator|(
+name|blockSize
+operator|&
+operator|(
+name|blockSize
+operator|-
+literal|1
+operator|)
+operator|)
 operator|!=
 literal|0
 condition|)
@@ -142,7 +165,7 @@ throw|throw
 operator|new
 name|IllegalArgumentException
 argument_list|(
-literal|"blockSize must be a multiple of 64, got "
+literal|"blockSize must be a power of two, got "
 operator|+
 name|blockSize
 argument_list|)
