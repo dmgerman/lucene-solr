@@ -1,6 +1,6 @@
 begin_unit|revision:0.9.5;language:Java;cregit-version:0.0.1
 begin_package
-DECL|package|org.apache.lucene.codecs.lucene41
+DECL|package|org.apache.lucene.codecs.lucene42
 package|package
 name|org
 operator|.
@@ -10,7 +10,7 @@ name|lucene
 operator|.
 name|codecs
 operator|.
-name|lucene41
+name|lucene42
 package|;
 end_package
 
@@ -185,20 +185,6 @@ operator|.
 name|index
 operator|.
 name|SortedDocValues
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|index
-operator|.
-name|TermsEnum
 import|;
 end_import
 
@@ -393,9 +379,9 @@ import|;
 end_import
 
 begin_class
-DECL|class|Lucene41DocValuesProducer
+DECL|class|Lucene42DocValuesProducer
 class|class
-name|Lucene41DocValuesProducer
+name|Lucene42DocValuesProducer
 extends|extends
 name|DocValuesProducer
 block|{
@@ -508,8 +494,8 @@ argument_list|>
 argument_list|>
 argument_list|()
 decl_stmt|;
-DECL|method|Lucene41DocValuesProducer
-name|Lucene41DocValuesProducer
+DECL|method|Lucene42DocValuesProducer
+name|Lucene42DocValuesProducer
 parameter_list|(
 name|SegmentReadState
 name|state
@@ -581,11 +567,11 @@ name|in
 argument_list|,
 name|metaCodec
 argument_list|,
-name|Lucene41DocValuesConsumer
+name|Lucene42DocValuesConsumer
 operator|.
 name|VERSION_START
 argument_list|,
-name|Lucene41DocValuesConsumer
+name|Lucene42DocValuesConsumer
 operator|.
 name|VERSION_START
 argument_list|)
@@ -706,11 +692,11 @@ name|data
 argument_list|,
 name|dataCodec
 argument_list|,
-name|Lucene41DocValuesConsumer
+name|Lucene42DocValuesConsumer
 operator|.
 name|VERSION_START
 argument_list|,
-name|Lucene41DocValuesConsumer
+name|Lucene42DocValuesConsumer
 operator|.
 name|VERSION_START
 argument_list|)
@@ -758,7 +744,7 @@ if|if
 condition|(
 name|fieldType
 operator|==
-name|Lucene41DocValuesConsumer
+name|Lucene42DocValuesConsumer
 operator|.
 name|NUMBER
 condition|)
@@ -805,7 +791,7 @@ if|if
 condition|(
 name|fieldType
 operator|==
-name|Lucene41DocValuesConsumer
+name|Lucene42DocValuesConsumer
 operator|.
 name|BYTES
 condition|)
@@ -868,7 +854,7 @@ if|if
 condition|(
 name|fieldType
 operator|==
-name|Lucene41DocValuesConsumer
+name|Lucene42DocValuesConsumer
 operator|.
 name|FST
 condition|)

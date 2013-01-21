@@ -50,7 +50,7 @@ name|lucene
 operator|.
 name|codecs
 operator|.
-name|Codec
+name|CodecUtil
 import|;
 end_import
 
@@ -64,7 +64,9 @@ name|lucene
 operator|.
 name|codecs
 operator|.
-name|CodecUtil
+name|lucene42
+operator|.
+name|Lucene42Codec
 import|;
 end_import
 
@@ -222,16 +224,6 @@ name|_TestUtil
 import|;
 end_import
 
-begin_import
-import|import
-name|org
-operator|.
-name|junit
-operator|.
-name|Ignore
-import|;
-end_import
-
 begin_comment
 comment|/**  * Test that a plain default puts codec headers in all files.  */
 end_comment
@@ -277,12 +269,9 @@ name|conf
 operator|.
 name|setCodec
 argument_list|(
-name|Codec
-operator|.
-name|forName
-argument_list|(
-literal|"Lucene41"
-argument_list|)
+operator|new
+name|Lucene42Codec
+argument_list|()
 argument_list|)
 expr_stmt|;
 comment|// riw should sometimes create docvalues fields, etc

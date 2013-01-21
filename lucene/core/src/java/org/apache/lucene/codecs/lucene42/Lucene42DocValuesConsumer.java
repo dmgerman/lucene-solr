@@ -1,6 +1,6 @@
 begin_unit|revision:0.9.5;language:Java;cregit-version:0.0.1
 begin_package
-DECL|package|org.apache.lucene.codecs.lucene41
+DECL|package|org.apache.lucene.codecs.lucene42
 package|package
 name|org
 operator|.
@@ -10,7 +10,7 @@ name|lucene
 operator|.
 name|codecs
 operator|.
-name|lucene41
+name|lucene42
 package|;
 end_package
 
@@ -282,14 +282,32 @@ name|PackedInts
 import|;
 end_import
 
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|util
+operator|.
+name|packed
+operator|.
+name|PackedInts
+operator|.
+name|FormatAndBits
+import|;
+end_import
+
 begin_comment
 comment|/**  * Writes numbers one of two ways:  * 1. packed ints as deltas from minValue  * 2. packed ints as ordinals to a table (if the number of values is small, e.g.<= 256)  *   * the latter is typically much smaller with lucene's sims, as only some byte values are used,  * but its often a nonlinear mapping, especially if you dont use crazy boosts.  */
 end_comment
 
 begin_class
-DECL|class|Lucene41DocValuesConsumer
+DECL|class|Lucene42DocValuesConsumer
 class|class
-name|Lucene41DocValuesConsumer
+name|Lucene42DocValuesConsumer
 extends|extends
 name|DocValuesConsumer
 block|{
@@ -341,8 +359,8 @@ name|data
 decl_stmt|,
 name|meta
 decl_stmt|;
-DECL|method|Lucene41DocValuesConsumer
-name|Lucene41DocValuesConsumer
+DECL|method|Lucene42DocValuesConsumer
+name|Lucene42DocValuesConsumer
 parameter_list|(
 name|SegmentWriteState
 name|state
@@ -945,6 +963,22 @@ argument_list|(
 name|minValue
 argument_list|)
 expr_stmt|;
+name|FormatAndBits
+name|formatAndBits
+init|=
+name|PackedInts
+operator|.
+name|fastestFormatAndBits
+argument_list|(
+name|count
+argument_list|,
+name|bitsPerValue
+argument_list|,
+name|PackedInts
+operator|.
+name|COMPACT
+argument_list|)
+decl_stmt|;
 specifier|final
 name|PackedInts
 operator|.
@@ -959,11 +993,11 @@ name|data
 argument_list|,
 name|count
 argument_list|,
+name|formatAndBits
+operator|.
 name|bitsPerValue
 argument_list|,
-name|PackedInts
-operator|.
-name|COMPACT
+literal|0
 argument_list|)
 decl_stmt|;
 for|for

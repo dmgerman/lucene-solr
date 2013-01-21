@@ -232,9 +232,9 @@ name|lucene
 operator|.
 name|codecs
 operator|.
-name|perfield
+name|lucene42
 operator|.
-name|PerFieldDocValuesFormat
+name|Lucene42NormsFormat
 import|;
 end_import
 
@@ -259,15 +259,7 @@ comment|/**  * Implements the Lucene 4.1 index format, with configurable per-fie
 end_comment
 
 begin_comment
-comment|// NOTE: if we make largish changes in a minor release, easier to just make Lucene42Codec or whatever
-end_comment
-
-begin_comment
-comment|// if they are backwards compatible or smallish we can probably do the backwards in the postingsreader
-end_comment
-
-begin_comment
-comment|// (it writes a minor version, etc).
+comment|// nocommit: make readonly
 end_comment
 
 begin_class
@@ -354,39 +346,6 @@ operator|.
 name|this
 operator|.
 name|getPostingsFormatForField
-argument_list|(
-name|field
-argument_list|)
-return|;
-block|}
-block|}
-decl_stmt|;
-DECL|field|simpleDocValuesFormat
-specifier|private
-specifier|final
-name|DocValuesFormat
-name|simpleDocValuesFormat
-init|=
-operator|new
-name|PerFieldDocValuesFormat
-argument_list|()
-block|{
-annotation|@
-name|Override
-specifier|public
-name|DocValuesFormat
-name|getDocValuesFormatForField
-parameter_list|(
-name|String
-name|field
-parameter_list|)
-block|{
-return|return
-name|Lucene41Codec
-operator|.
-name|this
-operator|.
-name|getDocValuesFormatForField
 argument_list|(
 name|field
 argument_list|)
@@ -498,30 +457,17 @@ return|return
 name|defaultFormat
 return|;
 block|}
-comment|/** Returns the docvalues format that should be used for writing     *  new segments of<code>field</code>.    *      *  The default implementation always returns "Lucene41"    */
-DECL|method|getDocValuesFormatForField
-specifier|public
-name|DocValuesFormat
-name|getDocValuesFormatForField
-parameter_list|(
-name|String
-name|field
-parameter_list|)
-block|{
-return|return
-name|defaultDVFormat
-return|;
-block|}
 annotation|@
 name|Override
 DECL|method|docValuesFormat
 specifier|public
+specifier|final
 name|DocValuesFormat
 name|docValuesFormat
 parameter_list|()
 block|{
 return|return
-name|simpleDocValuesFormat
+name|dvFormat
 return|;
 block|}
 DECL|field|defaultFormat
@@ -538,39 +484,41 @@ literal|"Lucene41"
 argument_list|)
 decl_stmt|;
 comment|// nocommit
-DECL|field|defaultDVFormat
+DECL|field|dvFormat
 specifier|private
 specifier|final
 name|DocValuesFormat
-name|defaultDVFormat
+name|dvFormat
 init|=
 name|DocValuesFormat
 operator|.
 name|forName
 argument_list|(
-literal|"Lucene41"
+literal|"Lucene42"
 argument_list|)
 decl_stmt|;
-DECL|field|simpleNormsFormat
+comment|// nocommit
+DECL|field|normsFormat
 specifier|private
 specifier|final
 name|NormsFormat
-name|simpleNormsFormat
+name|normsFormat
 init|=
 operator|new
-name|Lucene41NormsFormat
+name|Lucene42NormsFormat
 argument_list|()
 decl_stmt|;
 annotation|@
 name|Override
 DECL|method|normsFormat
 specifier|public
+specifier|final
 name|NormsFormat
 name|normsFormat
 parameter_list|()
 block|{
 return|return
-name|simpleNormsFormat
+name|normsFormat
 return|;
 block|}
 block|}

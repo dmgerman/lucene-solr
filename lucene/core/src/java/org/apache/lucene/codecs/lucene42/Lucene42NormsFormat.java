@@ -1,6 +1,6 @@
 begin_unit|revision:0.9.5;language:Java;cregit-version:0.0.1
 begin_package
-DECL|package|org.apache.lucene.codecs.lucene41
+DECL|package|org.apache.lucene.codecs.lucene42
 package|package
 name|org
 operator|.
@@ -10,7 +10,7 @@ name|lucene
 operator|.
 name|codecs
 operator|.
-name|lucene41
+name|lucene42
 package|;
 end_package
 
@@ -99,10 +99,10 @@ import|;
 end_import
 
 begin_class
-DECL|class|Lucene41NormsFormat
+DECL|class|Lucene42NormsFormat
 specifier|public
 class|class
-name|Lucene41NormsFormat
+name|Lucene42NormsFormat
 extends|extends
 name|NormsFormat
 block|{
@@ -121,7 +121,7 @@ name|IOException
 block|{
 return|return
 operator|new
-name|Lucene41DocValuesConsumer
+name|Lucene42DocValuesConsumer
 argument_list|(
 name|state
 argument_list|,
@@ -150,7 +150,7 @@ name|IOException
 block|{
 return|return
 operator|new
-name|Lucene41DocValuesProducer
+name|Lucene42DocValuesProducer
 argument_list|(
 name|state
 argument_list|,

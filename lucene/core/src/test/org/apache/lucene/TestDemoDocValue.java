@@ -76,9 +76,9 @@ name|lucene
 operator|.
 name|codecs
 operator|.
-name|lucene41
+name|lucene42
 operator|.
-name|Lucene41Codec
+name|Lucene42Codec
 import|;
 end_import
 
@@ -345,22 +345,6 @@ operator|.
 name|util
 operator|.
 name|BytesRef
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|util
-operator|.
-name|LuceneTestCase
-operator|.
-name|SuppressCodecs
 import|;
 end_import
 
@@ -5787,7 +5771,7 @@ name|DocValuesFormat
 operator|.
 name|forName
 argument_list|(
-literal|"Lucene41"
+literal|"Lucene42"
 argument_list|)
 decl_stmt|;
 specifier|final
@@ -5806,7 +5790,7 @@ operator|.
 name|setCodec
 argument_list|(
 operator|new
-name|Lucene41Codec
+name|Lucene42Codec
 argument_list|()
 block|{
 annotation|@
