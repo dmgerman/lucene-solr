@@ -3184,7 +3184,7 @@ case|:
 name|valuesField
 operator|=
 operator|new
-name|PackedLongDocValuesField
+name|NumericDocValuesField
 argument_list|(
 name|dvField
 argument_list|,
@@ -3204,7 +3204,7 @@ case|:
 name|valuesField
 operator|=
 operator|new
-name|StraightBytesDocValuesField
+name|BinaryDocValuesField
 argument_list|(
 name|dvField
 argument_list|,
@@ -3222,7 +3222,7 @@ case|:
 name|valuesField
 operator|=
 operator|new
-name|SortedBytesDocValuesField
+name|SortedDocValuesField
 argument_list|(
 name|dvField
 argument_list|,

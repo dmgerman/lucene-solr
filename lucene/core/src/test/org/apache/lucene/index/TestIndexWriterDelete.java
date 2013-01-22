@@ -190,7 +190,7 @@ name|lucene
 operator|.
 name|document
 operator|.
-name|LongDocValuesField
+name|NumericDocValuesField
 import|;
 end_import
 
@@ -2488,7 +2488,7 @@ operator|.
 name|add
 argument_list|(
 operator|new
-name|LongDocValuesField
+name|NumericDocValuesField
 argument_list|(
 literal|"dv"
 argument_list|,
@@ -2610,7 +2610,7 @@ operator|.
 name|add
 argument_list|(
 operator|new
-name|LongDocValuesField
+name|NumericDocValuesField
 argument_list|(
 literal|"dv"
 argument_list|,
@@ -2861,7 +2861,7 @@ operator|.
 name|add
 argument_list|(
 operator|new
-name|LongDocValuesField
+name|NumericDocValuesField
 argument_list|(
 literal|"dv"
 argument_list|,
@@ -3290,7 +3290,7 @@ operator|.
 name|add
 argument_list|(
 operator|new
-name|LongDocValuesField
+name|NumericDocValuesField
 argument_list|(
 literal|"dv"
 argument_list|,

@@ -94,7 +94,7 @@ name|lucene
 operator|.
 name|document
 operator|.
-name|IntDocValuesField
+name|NumericDocValuesField
 import|;
 end_import
 
@@ -108,21 +108,7 @@ name|lucene
 operator|.
 name|document
 operator|.
-name|LongDocValuesField
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|document
-operator|.
-name|SortedBytesDocValuesField
+name|SortedDocValuesField
 import|;
 end_import
 
@@ -384,7 +370,7 @@ name|Field
 name|id
 init|=
 operator|new
-name|IntDocValuesField
+name|NumericDocValuesField
 argument_list|(
 literal|"id"
 argument_list|,
@@ -422,7 +408,7 @@ case|:
 name|f
 operator|=
 operator|new
-name|SortedBytesDocValuesField
+name|SortedDocValuesField
 argument_list|(
 literal|"dv"
 argument_list|,
@@ -438,7 +424,7 @@ case|:
 name|f
 operator|=
 operator|new
-name|LongDocValuesField
+name|NumericDocValuesField
 argument_list|(
 literal|"dv"
 argument_list|,

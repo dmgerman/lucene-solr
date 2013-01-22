@@ -84,7 +84,7 @@ name|lucene
 operator|.
 name|document
 operator|.
-name|SortedBytesDocValuesField
+name|SortedDocValuesField
 import|;
 end_import
 
@@ -1478,7 +1478,7 @@ operator|.
 name|add
 argument_list|(
 operator|new
-name|SortedBytesDocValuesField
+name|SortedDocValuesField
 argument_list|(
 name|groupField
 argument_list|,

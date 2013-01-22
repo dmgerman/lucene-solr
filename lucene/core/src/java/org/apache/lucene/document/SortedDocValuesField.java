@@ -30,19 +30,33 @@ name|FieldInfo
 import|;
 end_import
 
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|util
+operator|.
+name|BytesRef
+import|;
+end_import
+
 begin_comment
-comment|/**  *<p>  * Field that stores a per-document<code>short</code> value for scoring,   * sorting or value retrieval. Here's an example usage:  *   *<pre class="prettyprint">  *   document.add(new ShortDocValuesField(name, (short) 22));  *</pre>  *   *<p>  * If you also need to store the value, you should add a  * separate {@link StoredField} instance.  *   * */
+comment|/**  *<p>  * Field that stores  * a per-document {@link BytesRef} value, indexed for  * sorting.  Here's an example usage:  *   *<pre class="prettyprint">  *   document.add(new SortedBytesDocValuesField(name, new BytesRef("hello")));  *</pre>  *   *<p>  * If you also need to store the value, you should add a  * separate {@link StoredField} instance.  *   * */
 end_comment
 
 begin_class
-DECL|class|ShortDocValuesField
+DECL|class|SortedDocValuesField
 specifier|public
 class|class
-name|ShortDocValuesField
+name|SortedDocValuesField
 extends|extends
 name|StoredField
 block|{
-comment|/**    * Type for 16-bit short DocValues.    */
+comment|/**    * Type for sorted bytes DocValues    */
 DECL|field|TYPE
 specifier|public
 specifier|static
@@ -64,7 +78,7 @@ name|FieldInfo
 operator|.
 name|DocValuesType
 operator|.
-name|NUMERIC
+name|SORTED
 argument_list|)
 expr_stmt|;
 name|TYPE
@@ -73,16 +87,16 @@ name|freeze
 argument_list|()
 expr_stmt|;
 block|}
-comment|/**     * Creates a new DocValues field with the specified 16-bit short value     * @param name field name    * @param value 16-bit short value    * @throws IllegalArgumentException if the field name is null    */
-DECL|method|ShortDocValuesField
+comment|/**    * Create a new sorted DocValues field.    * @param name field name    * @param bytes binary content    * @throws IllegalArgumentException if the field name is null    */
+DECL|method|SortedDocValuesField
 specifier|public
-name|ShortDocValuesField
+name|SortedDocValuesField
 parameter_list|(
 name|String
 name|name
 parameter_list|,
-name|short
-name|value
+name|BytesRef
+name|bytes
 parameter_list|)
 block|{
 name|super
@@ -94,12 +108,7 @@ argument_list|)
 expr_stmt|;
 name|fieldsData
 operator|=
-name|Short
-operator|.
-name|valueOf
-argument_list|(
-name|value
-argument_list|)
+name|bytes
 expr_stmt|;
 block|}
 block|}

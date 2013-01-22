@@ -354,34 +354,6 @@ name|lucene
 operator|.
 name|document
 operator|.
-name|ByteDocValuesField
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|document
-operator|.
-name|DerefBytesDocValuesField
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|document
-operator|.
 name|Document
 import|;
 end_import
@@ -410,7 +382,7 @@ name|lucene
 operator|.
 name|document
 operator|.
-name|LongDocValuesField
+name|NumericDocValuesField
 import|;
 end_import
 
@@ -424,7 +396,7 @@ name|lucene
 operator|.
 name|document
 operator|.
-name|SortedBytesDocValuesField
+name|SortedDocValuesField
 import|;
 end_import
 
@@ -6733,7 +6705,7 @@ case|:
 name|field2
 operator|=
 operator|new
-name|LongDocValuesField
+name|NumericDocValuesField
 argument_list|(
 name|field1
 operator|.
@@ -6776,7 +6748,7 @@ case|:
 name|field2
 operator|=
 operator|new
-name|SortedBytesDocValuesField
+name|SortedDocValuesField
 argument_list|(
 name|field1
 operator|.

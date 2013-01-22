@@ -1039,20 +1039,14 @@ literal|false
 operator|)
 condition|)
 block|{
-comment|// the user wired postings or DV
+comment|// the user wired postings or DV: this is messy
+comment|// refactor into RandomCodec....
 specifier|final
 name|PostingsFormat
 name|format
 decl_stmt|;
 if|if
 condition|(
-literal|"MockRandom"
-operator|.
-name|equals
-argument_list|(
-name|TEST_POSTINGSFORMAT
-argument_list|)
-operator|||
 literal|"random"
 operator|.
 name|equals
@@ -1063,10 +1057,11 @@ condition|)
 block|{
 name|format
 operator|=
-operator|new
-name|MockRandomPostingsFormat
+name|PostingsFormat
+operator|.
+name|forName
 argument_list|(
-name|random
+literal|"Lucene41"
 argument_list|)
 expr_stmt|;
 block|}

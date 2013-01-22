@@ -209,22 +209,6 @@ operator|.
 name|util
 operator|.
 name|LuceneTestCase
-operator|.
-name|SuppressCodecs
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|util
-operator|.
-name|LuceneTestCase
 import|;
 end_import
 
@@ -314,7 +298,7 @@ name|FloatDocValuesField
 argument_list|(
 literal|"foo_boost"
 argument_list|,
-literal|0.0f
+literal|0.0F
 argument_list|)
 decl_stmt|;
 name|doc

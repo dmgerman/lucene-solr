@@ -36,6 +36,20 @@ name|lucene
 operator|.
 name|document
 operator|.
+name|BinaryDocValuesField
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|document
+operator|.
 name|Document
 import|;
 end_import
@@ -106,20 +120,6 @@ name|lucene
 operator|.
 name|document
 operator|.
-name|IntDocValuesField
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|document
-operator|.
 name|IntField
 import|;
 end_import
@@ -148,7 +148,7 @@ name|lucene
 operator|.
 name|document
 operator|.
-name|SortedBytesDocValuesField
+name|NumericDocValuesField
 import|;
 end_import
 
@@ -162,7 +162,7 @@ name|lucene
 operator|.
 name|document
 operator|.
-name|StraightBytesDocValuesField
+name|SortedDocValuesField
 import|;
 end_import
 
@@ -644,7 +644,7 @@ operator|.
 name|add
 argument_list|(
 operator|new
-name|IntDocValuesField
+name|NumericDocValuesField
 argument_list|(
 literal|"intdocvalues"
 argument_list|,
@@ -678,7 +678,7 @@ operator|.
 name|add
 argument_list|(
 operator|new
-name|SortedBytesDocValuesField
+name|SortedDocValuesField
 argument_list|(
 literal|"sortedbytesdocvalues"
 argument_list|,
@@ -701,7 +701,7 @@ operator|.
 name|add
 argument_list|(
 operator|new
-name|SortedBytesDocValuesField
+name|SortedDocValuesField
 argument_list|(
 literal|"sortedbytesdocvaluesval"
 argument_list|,
@@ -724,7 +724,7 @@ operator|.
 name|add
 argument_list|(
 operator|new
-name|StraightBytesDocValuesField
+name|BinaryDocValuesField
 argument_list|(
 literal|"straightbytesdocvalues"
 argument_list|,

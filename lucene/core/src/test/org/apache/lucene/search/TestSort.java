@@ -170,35 +170,7 @@ name|lucene
 operator|.
 name|document
 operator|.
-name|DerefBytesDocValuesField
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|document
-operator|.
 name|Document
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|document
-operator|.
-name|DoubleDocValuesField
 import|;
 end_import
 
@@ -254,7 +226,7 @@ name|lucene
 operator|.
 name|document
 operator|.
-name|PackedLongDocValuesField
+name|NumericDocValuesField
 import|;
 end_import
 
@@ -268,21 +240,7 @@ name|lucene
 operator|.
 name|document
 operator|.
-name|SortedBytesDocValuesField
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|document
-operator|.
-name|StraightBytesDocValuesField
+name|SortedDocValuesField
 import|;
 end_import
 
@@ -583,22 +541,6 @@ operator|.
 name|util
 operator|.
 name|FixedBitSet
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|util
-operator|.
-name|LuceneTestCase
-operator|.
-name|SuppressCodecs
 import|;
 end_import
 
@@ -1573,7 +1515,7 @@ operator|.
 name|add
 argument_list|(
 operator|new
-name|PackedLongDocValuesField
+name|NumericDocValuesField
 argument_list|(
 literal|"int_dv"
 argument_list|,
@@ -1707,7 +1649,7 @@ operator|.
 name|add
 argument_list|(
 operator|new
-name|SortedBytesDocValuesField
+name|SortedDocValuesField
 argument_list|(
 literal|"string_dv"
 argument_list|,
@@ -1919,10 +1861,14 @@ operator|.
 name|add
 argument_list|(
 operator|new
-name|DoubleDocValuesField
+name|NumericDocValuesField
 argument_list|(
 literal|"double_dv"
 argument_list|,
+name|Double
+operator|.
+name|doubleToRawLongBits
+argument_list|(
 name|Double
 operator|.
 name|parseDouble
@@ -1934,6 +1880,7 @@ index|]
 index|[
 literal|8
 index|]
+argument_list|)
 argument_list|)
 argument_list|)
 argument_list|)
@@ -2316,7 +2263,7 @@ operator|.
 name|add
 argument_list|(
 operator|new
-name|SortedBytesDocValuesField
+name|SortedDocValuesField
 argument_list|(
 literal|"string_dv"
 argument_list|,
@@ -2336,7 +2283,7 @@ operator|.
 name|add
 argument_list|(
 operator|new
-name|DerefBytesDocValuesField
+name|BinaryDocValuesField
 argument_list|(
 literal|"string_dv"
 argument_list|,
@@ -2395,7 +2342,7 @@ operator|.
 name|add
 argument_list|(
 operator|new
-name|SortedBytesDocValuesField
+name|SortedDocValuesField
 argument_list|(
 literal|"string2_dv"
 argument_list|,
@@ -2415,7 +2362,7 @@ operator|.
 name|add
 argument_list|(
 operator|new
-name|DerefBytesDocValuesField
+name|BinaryDocValuesField
 argument_list|(
 literal|"string2_dv"
 argument_list|,
@@ -2545,7 +2492,7 @@ operator|.
 name|add
 argument_list|(
 operator|new
-name|SortedBytesDocValuesField
+name|SortedDocValuesField
 argument_list|(
 literal|"string_fixed_dv"
 argument_list|,
@@ -2554,8 +2501,6 @@ name|BytesRef
 argument_list|(
 name|numFixed
 argument_list|)
-argument_list|,
-literal|true
 argument_list|)
 argument_list|)
 expr_stmt|;
@@ -2567,7 +2512,7 @@ operator|.
 name|add
 argument_list|(
 operator|new
-name|DerefBytesDocValuesField
+name|BinaryDocValuesField
 argument_list|(
 literal|"string_fixed_dv"
 argument_list|,
@@ -2576,8 +2521,6 @@ name|BytesRef
 argument_list|(
 name|numFixed
 argument_list|)
-argument_list|,
-literal|true
 argument_list|)
 argument_list|)
 expr_stmt|;
@@ -2623,7 +2566,7 @@ operator|.
 name|add
 argument_list|(
 operator|new
-name|SortedBytesDocValuesField
+name|SortedDocValuesField
 argument_list|(
 literal|"string2_fixed_dv"
 argument_list|,
@@ -2632,8 +2575,6 @@ name|BytesRef
 argument_list|(
 name|num2Fixed
 argument_list|)
-argument_list|,
-literal|true
 argument_list|)
 argument_list|)
 expr_stmt|;
@@ -2645,7 +2586,7 @@ operator|.
 name|add
 argument_list|(
 operator|new
-name|DerefBytesDocValuesField
+name|BinaryDocValuesField
 argument_list|(
 literal|"string2_fixed_dv"
 argument_list|,
@@ -2654,8 +2595,6 @@ name|BytesRef
 argument_list|(
 name|num2Fixed
 argument_list|)
-argument_list|,
-literal|true
 argument_list|)
 argument_list|)
 expr_stmt|;
@@ -11435,7 +11374,7 @@ operator|.
 name|add
 argument_list|(
 operator|new
-name|SortedBytesDocValuesField
+name|SortedDocValuesField
 argument_list|(
 literal|"stringdv"
 argument_list|,
@@ -11466,7 +11405,7 @@ operator|.
 name|add
 argument_list|(
 operator|new
-name|PackedLongDocValuesField
+name|NumericDocValuesField
 argument_list|(
 literal|"id"
 argument_list|,

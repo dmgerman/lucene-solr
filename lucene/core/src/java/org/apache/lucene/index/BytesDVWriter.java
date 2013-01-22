@@ -17,6 +17,22 @@ comment|/*  * Licensed to the Apache Software Foundation (ASF) under one or more
 end_comment
 
 begin_import
+import|import static
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|util
+operator|.
+name|ByteBlockPool
+operator|.
+name|BYTE_BLOCK_SIZE
+import|;
+end_import
+
+begin_import
 import|import
 name|java
 operator|.
@@ -220,6 +236,39 @@ operator|.
 name|name
 operator|+
 literal|")"
+argument_list|)
+throw|;
+block|}
+if|if
+condition|(
+name|value
+operator|.
+name|length
+operator|>
+operator|(
+name|BYTE_BLOCK_SIZE
+operator|-
+literal|2
+operator|)
+condition|)
+block|{
+throw|throw
+operator|new
+name|IllegalArgumentException
+argument_list|(
+literal|"DocValuesField \""
+operator|+
+name|fieldInfo
+operator|.
+name|name
+operator|+
+literal|"\" is too large, must be<= "
+operator|+
+operator|(
+name|BYTE_BLOCK_SIZE
+operator|-
+literal|2
+operator|)
 argument_list|)
 throw|;
 block|}

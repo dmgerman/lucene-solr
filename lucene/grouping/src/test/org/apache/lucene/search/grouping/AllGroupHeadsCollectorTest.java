@@ -1881,7 +1881,7 @@ case|:
 name|valuesField
 operator|=
 operator|new
-name|StraightBytesDocValuesField
+name|BinaryDocValuesField
 argument_list|(
 literal|"group_dv"
 argument_list|,
@@ -1897,7 +1897,7 @@ case|:
 name|valuesField
 operator|=
 operator|new
-name|SortedBytesDocValuesField
+name|SortedDocValuesField
 argument_list|(
 literal|"group_dv"
 argument_list|,
@@ -4264,7 +4264,7 @@ case|:
 name|valuesField
 operator|=
 operator|new
-name|StraightBytesDocValuesField
+name|BinaryDocValuesField
 argument_list|(
 name|groupField
 operator|+
@@ -4284,7 +4284,7 @@ case|:
 name|valuesField
 operator|=
 operator|new
-name|SortedBytesDocValuesField
+name|SortedDocValuesField
 argument_list|(
 name|groupField
 operator|+

@@ -31,18 +31,18 @@ import|;
 end_import
 
 begin_comment
-comment|/**  *<p>  * Field that stores a per-document<code>int</code> value for scoring,   * sorting or value retrieval. Here's an example usage:  *   *<pre class="prettyprint">  *   document.add(new IntDocValuesField(name, 22));  *</pre>  *   *<p>  * If you also need to store the value, you should add a  * separate {@link StoredField} instance.  * */
+comment|/**  *<p>  * Field that stores a per-document<code>long</code> value for scoring,   * sorting or value retrieval. Here's an example usage:  *   *<pre class="prettyprint">  *   document.add(new LongDocValuesField(name, 22L));  *</pre>  *   *<p>  * If you also need to store the value, you should add a  * separate {@link StoredField} instance.  * */
 end_comment
 
 begin_class
-DECL|class|IntDocValuesField
+DECL|class|NumericDocValuesField
 specifier|public
 class|class
-name|IntDocValuesField
+name|NumericDocValuesField
 extends|extends
 name|StoredField
 block|{
-comment|/**    * Type for 32-bit integer DocValues.    */
+comment|/**    * Type for numeric DocValues.    */
 DECL|field|TYPE
 specifier|public
 specifier|static
@@ -73,15 +73,15 @@ name|freeze
 argument_list|()
 expr_stmt|;
 block|}
-comment|/**     * Creates a new DocValues field with the specified 32-bit integer value     * @param name field name    * @param value 32-bit integer value    * @throws IllegalArgumentException if the field name is null    */
-DECL|method|IntDocValuesField
+comment|/**     * Creates a new DocValues field with the specified 64-bit long value     * @param name field name    * @param value 64-bit long value    * @throws IllegalArgumentException if the field name is null    */
+DECL|method|NumericDocValuesField
 specifier|public
-name|IntDocValuesField
+name|NumericDocValuesField
 parameter_list|(
 name|String
 name|name
 parameter_list|,
-name|int
+name|long
 name|value
 parameter_list|)
 block|{
@@ -94,7 +94,7 @@ argument_list|)
 expr_stmt|;
 name|fieldsData
 operator|=
-name|Integer
+name|Long
 operator|.
 name|valueOf
 argument_list|(
