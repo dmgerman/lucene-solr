@@ -375,19 +375,16 @@ return|return
 name|infosFormat
 return|;
 block|}
-comment|// nocommit need a read-only Lucene40DVFormat / read-write in the impersonator
+comment|//nocommit need a read-only Lucene40DocValuesFormat / read-write in the impersonator
 DECL|field|defaultDVFormat
 specifier|private
 specifier|final
 name|DocValuesFormat
 name|defaultDVFormat
 init|=
-name|DocValuesFormat
-operator|.
-name|forName
-argument_list|(
-literal|"Disk"
-argument_list|)
+operator|new
+name|Lucene40DocValuesFormat
+argument_list|()
 decl_stmt|;
 annotation|@
 name|Override
@@ -398,7 +395,6 @@ name|DocValuesFormat
 name|docValuesFormat
 parameter_list|()
 block|{
-comment|// nocommit
 return|return
 name|defaultDVFormat
 return|;
@@ -411,7 +407,7 @@ name|NormsFormat
 name|normsFormat
 init|=
 operator|new
-name|Lucene42NormsFormat
+name|Lucene40NormsFormat
 argument_list|()
 decl_stmt|;
 annotation|@
