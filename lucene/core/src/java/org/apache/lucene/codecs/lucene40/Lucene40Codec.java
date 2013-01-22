@@ -211,7 +211,6 @@ annotation|@
 name|Deprecated
 DECL|class|Lucene40Codec
 specifier|public
-specifier|final
 class|class
 name|Lucene40Codec
 extends|extends
@@ -355,7 +354,6 @@ annotation|@
 name|Override
 DECL|method|fieldInfosFormat
 specifier|public
-specifier|final
 name|FieldInfosFormat
 name|fieldInfosFormat
 parameter_list|()

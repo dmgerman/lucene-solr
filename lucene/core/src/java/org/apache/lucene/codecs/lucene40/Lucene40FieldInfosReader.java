@@ -221,10 +221,12 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Lucene 4.0 FieldInfos reader.  *   * @lucene.experimental  * @see Lucene40FieldInfosFormat  */
+comment|/**  * Lucene 4.0 FieldInfos reader.  *   * @lucene.experimental  * @see Lucene40FieldInfosFormat  * @deprecated Only for reading old 4.0 and 4.1 segments  */
 end_comment
 
 begin_class
+annotation|@
+name|Deprecated
 DECL|class|Lucene40FieldInfosReader
 specifier|public
 class|class
@@ -269,7 +271,7 @@ name|segmentName
 argument_list|,
 literal|""
 argument_list|,
-name|Lucene40FieldInfosWriter
+name|Lucene40FieldInfosFormat
 operator|.
 name|FIELD_INFOS_EXTENSION
 argument_list|)
@@ -299,15 +301,15 @@ name|checkHeader
 argument_list|(
 name|input
 argument_list|,
-name|Lucene40FieldInfosWriter
+name|Lucene40FieldInfosFormat
 operator|.
 name|CODEC_NAME
 argument_list|,
-name|Lucene40FieldInfosWriter
+name|Lucene40FieldInfosFormat
 operator|.
 name|FORMAT_START
 argument_list|,
-name|Lucene40FieldInfosWriter
+name|Lucene40FieldInfosFormat
 operator|.
 name|FORMAT_CURRENT
 argument_list|)
@@ -378,7 +380,7 @@ init|=
 operator|(
 name|bits
 operator|&
-name|Lucene40FieldInfosWriter
+name|Lucene40FieldInfosFormat
 operator|.
 name|IS_INDEXED
 operator|)
@@ -391,7 +393,7 @@ init|=
 operator|(
 name|bits
 operator|&
-name|Lucene40FieldInfosWriter
+name|Lucene40FieldInfosFormat
 operator|.
 name|STORE_TERMVECTOR
 operator|)
@@ -404,7 +406,7 @@ init|=
 operator|(
 name|bits
 operator|&
-name|Lucene40FieldInfosWriter
+name|Lucene40FieldInfosFormat
 operator|.
 name|OMIT_NORMS
 operator|)
@@ -417,7 +419,7 @@ init|=
 operator|(
 name|bits
 operator|&
-name|Lucene40FieldInfosWriter
+name|Lucene40FieldInfosFormat
 operator|.
 name|STORE_PAYLOADS
 operator|)
@@ -445,7 +447,7 @@ condition|(
 operator|(
 name|bits
 operator|&
-name|Lucene40FieldInfosWriter
+name|Lucene40FieldInfosFormat
 operator|.
 name|OMIT_TERM_FREQ_AND_POSITIONS
 operator|)
@@ -466,7 +468,7 @@ condition|(
 operator|(
 name|bits
 operator|&
-name|Lucene40FieldInfosWriter
+name|Lucene40FieldInfosFormat
 operator|.
 name|OMIT_POSITIONS
 operator|)
@@ -487,7 +489,7 @@ condition|(
 operator|(
 name|bits
 operator|&
-name|Lucene40FieldInfosWriter
+name|Lucene40FieldInfosFormat
 operator|.
 name|STORE_OFFSETS_IN_POSTINGS
 operator|)
@@ -714,6 +716,7 @@ expr_stmt|;
 block|}
 block|}
 block|}
+comment|// nocommit: this is not actually how 4.0 was encoded
 DECL|method|getDocValuesTypeFake
 specifier|private
 specifier|static

@@ -543,7 +543,6 @@ annotation|@
 name|Override
 DECL|method|fieldInfosFormat
 specifier|public
-specifier|final
 name|FieldInfosFormat
 name|fieldInfosFormat
 parameter_list|()

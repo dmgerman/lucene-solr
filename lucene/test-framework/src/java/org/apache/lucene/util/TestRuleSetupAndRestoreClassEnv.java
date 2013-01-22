@@ -208,6 +208,22 @@ name|codecs
 operator|.
 name|lucene40
 operator|.
+name|Lucene40RWCodec
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|codecs
+operator|.
+name|lucene40
+operator|.
 name|Lucene40RWPostingsFormat
 import|;
 end_import
@@ -937,6 +953,13 @@ argument_list|(
 literal|"Lucene40"
 argument_list|)
 expr_stmt|;
+assert|assert
+name|codec
+operator|instanceof
+name|Lucene40RWCodec
+operator|:
+literal|"fix your classpath to have tests-framework.jar before lucene-core.jar"
+assert|;
 assert|assert
 operator|(
 name|PostingsFormat
