@@ -294,16 +294,6 @@ end_import
 
 begin_import
 import|import
-name|org
-operator|.
-name|junit
-operator|.
-name|Ignore
-import|;
-end_import
-
-begin_import
-import|import
 name|com
 operator|.
 name|carrotsearch
@@ -502,7 +492,7 @@ control|)
 block|{
 name|id
 operator|.
-name|setIntValue
+name|setLongValue
 argument_list|(
 name|i
 argument_list|)
@@ -518,6 +508,8 @@ case|:
 case|case
 name|BINARY
 case|:
+do|do
+block|{
 name|vals
 index|[
 name|i
@@ -533,6 +525,23 @@ argument_list|,
 literal|20
 argument_list|)
 expr_stmt|;
+block|}
+do|while
+condition|(
+operator|(
+operator|(
+name|String
+operator|)
+name|vals
+index|[
+name|i
+index|]
+operator|)
+operator|.
+name|isEmpty
+argument_list|()
+condition|)
+do|;
 name|f
 operator|.
 name|setBytesValue
@@ -828,15 +837,6 @@ name|bytes
 argument_list|)
 argument_list|)
 expr_stmt|;
-name|assertEquals
-argument_list|(
-literal|8
-argument_list|,
-name|bytes
-operator|.
-name|length
-argument_list|)
-expr_stmt|;
 block|}
 else|else
 block|{
@@ -1001,12 +1001,6 @@ name|close
 argument_list|()
 expr_stmt|;
 block|}
-comment|// nocommit
-annotation|@
-name|Ignore
-argument_list|(
-literal|"fix this test"
-argument_list|)
 DECL|method|test
 specifier|public
 name|void
