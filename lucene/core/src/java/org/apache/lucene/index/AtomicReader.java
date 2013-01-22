@@ -609,8 +609,7 @@ parameter_list|)
 throws|throws
 name|IOException
 function_decl|;
-comment|// nocommit document that these are thread-private:
-comment|/** Returns {@link NumericDocValues} representing norms    *  for this field, or null if no {@link NumericDocValues}    *  were indexed. */
+comment|/** Returns {@link NumericDocValues} representing norms    *  for this field, or null if no {@link NumericDocValues}    *  were indexed. The returned instance should only be    *  used by a single thread. */
 DECL|method|getNormValues
 specifier|public
 specifier|abstract

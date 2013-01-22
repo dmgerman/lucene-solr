@@ -229,9 +229,6 @@ name|DocValuesConsumer
 implements|implements
 name|Closeable
 block|{
-comment|// TODO: are any of these params too "infringing" on codec?
-comment|// we want codec to get necessary stuff from IW, but trading off against merge complexity.
-comment|// nocommit should we pass SegmentWriteState...?
 DECL|method|addNumericField
 specifier|public
 specifier|abstract

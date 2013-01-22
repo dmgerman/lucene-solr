@@ -30,6 +30,10 @@ name|BytesRef
 import|;
 end_import
 
+begin_comment
+comment|/**  * A per-document byte[] with presorted values.  *<p>  * Per-Document values in a SortedDocValues are deduplicated, dereferenced,  * and sorted into a dictionary of unique values. A pointer to the  * dictionary value (ordinal) can be retrieved for each document. Ordinals  * are dense and in increasing sorted order.  */
+end_comment
+
 begin_class
 DECL|class|SortedDocValues
 specifier|public
@@ -39,6 +43,7 @@ name|SortedDocValues
 extends|extends
 name|BinaryDocValues
 block|{
+comment|/**    * Returns the ordinal for the specified docID.    * @param  docID document ID to lookup    * @return ordinal for the document: this is dense, starts at 0, then    *         increments by 1 for the next value in sorted order.     */
 DECL|method|getOrd
 specifier|public
 specifier|abstract
@@ -49,6 +54,7 @@ name|int
 name|docID
 parameter_list|)
 function_decl|;
+comment|/** Retrieves the value for the specified ordinal.    * @param ord ordinal to lookup    * @param result will be populated with the ordinal's value    * @see #getOrd(int)     */
 DECL|method|lookupOrd
 specifier|public
 specifier|abstract
@@ -62,6 +68,7 @@ name|BytesRef
 name|result
 parameter_list|)
 function_decl|;
+comment|/**    * Returns the number of unique values.    * @return number of unique values in this SortedDocValues. This is    *         also equivalent to one plus the maximum ordinal.    */
 DECL|method|getValueCount
 specifier|public
 specifier|abstract
@@ -123,6 +130,7 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
+comment|/** An empty SortedDocValues which returns empty bytes for every document */
 DECL|field|EMPTY
 specifier|public
 specifier|static

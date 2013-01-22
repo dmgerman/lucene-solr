@@ -894,9 +894,6 @@ argument_list|)
 throw|;
 block|}
 block|}
-comment|// nocommit what if SimpleNormsFormat wants to use this
-comment|// ...?  we have a "boolean isNorms" issue...?  I guess we
-comment|// just need to make a PerFieldNormsFormat?
 DECL|class|FieldsReader
 specifier|private
 class|class
