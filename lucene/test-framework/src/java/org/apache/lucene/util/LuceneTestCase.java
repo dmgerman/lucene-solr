@@ -1036,6 +1036,23 @@ argument_list|,
 literal|"random"
 argument_list|)
 decl_stmt|;
+comment|/** Gets the docValuesFormat to run tests with */
+DECL|field|TEST_DOCVALUESFORMAT
+specifier|public
+specifier|static
+specifier|final
+name|String
+name|TEST_DOCVALUESFORMAT
+init|=
+name|System
+operator|.
+name|getProperty
+argument_list|(
+literal|"tests.docvaluesformat"
+argument_list|,
+literal|"random"
+argument_list|)
+decl_stmt|;
 comment|/** Gets the directory to run tests with */
 DECL|field|TEST_DIRECTORY
 specifier|public
