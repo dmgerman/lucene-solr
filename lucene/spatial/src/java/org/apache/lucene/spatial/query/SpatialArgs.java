@@ -154,7 +154,7 @@ operator|=
 name|shape
 expr_stmt|;
 block|}
-comment|/**    * Computes the distance given a shape and the {@code distErrPct}.  The    * algorithm is the fraction of the distance from the center of the query    * shape to its furthest bounding box corner.    *    * @param shape Mandatory.    * @param distErrPct 0 to 0.5    * @param ctx Mandatory    * @return A distance (in degrees).    */
+comment|/**    * Computes the distance given a shape and the {@code distErrPct}.  The    * algorithm is the fraction of the distance from the center of the query    * shape to its closest bounding box corner.    *    * @param shape Mandatory.    * @param distErrPct 0 to 0.5    * @param ctx Mandatory    * @return A distance (in degrees).    */
 DECL|method|calcDistanceFromErrPct
 specifier|public
 specifier|static
@@ -217,8 +217,39 @@ operator|.
 name|getBoundingBox
 argument_list|()
 decl_stmt|;
-comment|//The diagonal distance should be the same computed from any opposite corner,
-comment|// and this is the longest distance that might be occurring within the shape.
+comment|//Compute the distance from the center to a corner.  Because the distance
+comment|// to a bottom corner vs a top corner can vary in a geospatial scenario,
+comment|// take the closest one (greater precision).
+name|Point
+name|ctr
+init|=
+name|bbox
+operator|.
+name|getCenter
+argument_list|()
+decl_stmt|;
+name|double
+name|y
+init|=
+operator|(
+name|ctr
+operator|.
+name|getY
+argument_list|()
+operator|>=
+literal|0
+condition|?
+name|bbox
+operator|.
+name|getMaxY
+argument_list|()
+else|:
+name|bbox
+operator|.
+name|getMinY
+argument_list|()
+operator|)
+decl_stmt|;
 name|double
 name|diagonalDist
 init|=
@@ -229,36 +260,18 @@ argument_list|()
 operator|.
 name|distance
 argument_list|(
-name|ctx
-operator|.
-name|makePoint
-argument_list|(
-name|bbox
-operator|.
-name|getMinX
-argument_list|()
-argument_list|,
-name|bbox
-operator|.
-name|getMinY
-argument_list|()
-argument_list|)
+name|ctr
 argument_list|,
 name|bbox
 operator|.
 name|getMaxX
 argument_list|()
 argument_list|,
-name|bbox
-operator|.
-name|getMaxY
-argument_list|()
+name|y
 argument_list|)
 decl_stmt|;
 return|return
 name|diagonalDist
-operator|*
-literal|0.5
 operator|*
 name|distErrPct
 return|;
