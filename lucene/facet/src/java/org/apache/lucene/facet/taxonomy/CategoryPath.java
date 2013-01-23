@@ -14,6 +14,20 @@ name|taxonomy
 package|;
 end_package
 
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|util
+operator|.
+name|Constants
+import|;
+end_import
+
 begin_comment
 comment|/*  * Licensed to the Apache Software Foundation (ASF) under one or more  * contributor license agreements.  See the NOTICE file distributed with  * this work for additional information regarding copyright ownership.  * The ASF licenses this file to You under the Apache License, Version 2.0  * (the "License"); you may not use this file except in compliance with  * the License.  You may obtain a copy of the License at  *  *     http://www.apache.org/licenses/LICENSE-2.0  *  * Unless required by applicable law or agreed to in writing, software  * distributed under the License is distributed on an "AS IS" BASIS,  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.  * See the License for the specific language governing permissions and  * limitations under the License.  */
 end_comment
@@ -33,6 +47,28 @@ argument_list|<
 name|CategoryPath
 argument_list|>
 block|{
+comment|// TODO: revisit when IBM releases Java 7 newer than SR3 (with a fix)
+comment|// to validate, run e.g. TestAssociationExample with -Dtests.iters=1000
+DECL|field|IS_J9_JAVA7
+specifier|private
+specifier|static
+specifier|final
+name|boolean
+name|IS_J9_JAVA7
+init|=
+name|Constants
+operator|.
+name|JRE_IS_MINIMUM_JAVA7
+operator|&&
+name|Constants
+operator|.
+name|JVM_VENDOR
+operator|.
+name|contains
+argument_list|(
+literal|"IBM"
+argument_list|)
+decl_stmt|;
 comment|/** An empty {@link CategoryPath} */
 DECL|field|EMPTY
 specifier|public
@@ -84,9 +120,11 @@ DECL|method|CategoryPath
 specifier|private
 name|CategoryPath
 parameter_list|(
+specifier|final
 name|CategoryPath
 name|copyFrom
 parameter_list|,
+specifier|final
 name|int
 name|prefixLen
 parameter_list|)
@@ -137,6 +175,7 @@ DECL|method|CategoryPath
 specifier|public
 name|CategoryPath
 parameter_list|(
+specifier|final
 name|String
 modifier|...
 name|components
@@ -151,12 +190,56 @@ literal|0
 operator|:
 literal|"use CategoryPath.EMPTY to create an empty path"
 assert|;
+if|if
+condition|(
+name|IS_J9_JAVA7
+condition|)
+block|{
+comment|// On IBM J9 Java 1.7.0, if we do 'this.components = components', then
+comment|// at some point its length becomes 0 ... quite unexpectedly. If JIT is
+comment|// disabled, it doesn't happen. This bypasses the bug by copying the
+comment|// array (note, Arrays.copyOf did not help either!).
+name|this
+operator|.
+name|components
+operator|=
+operator|new
+name|String
+index|[
+name|components
+operator|.
+name|length
+index|]
+expr_stmt|;
+name|System
+operator|.
+name|arraycopy
+argument_list|(
+name|components
+argument_list|,
+literal|0
+argument_list|,
+name|this
+operator|.
+name|components
+argument_list|,
+literal|0
+argument_list|,
+name|components
+operator|.
+name|length
+argument_list|)
+expr_stmt|;
+block|}
+else|else
+block|{
 name|this
 operator|.
 name|components
 operator|=
 name|components
 expr_stmt|;
+block|}
 name|length
 operator|=
 name|components
@@ -169,9 +252,11 @@ DECL|method|CategoryPath
 specifier|public
 name|CategoryPath
 parameter_list|(
+specifier|final
 name|String
 name|pathString
 parameter_list|,
+specifier|final
 name|char
 name|delimiter
 parameter_list|)
@@ -737,6 +822,7 @@ specifier|public
 name|CategoryPath
 name|subpath
 parameter_list|(
+specifier|final
 name|int
 name|length
 parameter_list|)
