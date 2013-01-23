@@ -180,6 +180,21 @@ name|CategoryListParams
 implements|implements
 name|Serializable
 block|{
+comment|/** OrdinalPolicy defines which ordinals are encoded for every document. */
+DECL|enum|OrdinalPolicy
+specifier|public
+specifier|static
+enum|enum
+name|OrdinalPolicy
+block|{
+comment|/**      * Encodes only the ordinal of leaf nodes. That is, the category A/B/C will      * not encode the ordinals of A and A/B.      *       *<p>      *<b>NOTE:</b> this {@link OrdinalPolicy} requires a special collector or      * accumulator, which will fix the parents' counts, unless you are not      * interested in the parents counts.      */
+DECL|enum constant|NO_PARENTS
+name|NO_PARENTS
+block|,
+comment|/**      * Encodes the ordinals of all path components. That is, the category A/B/C      * will encode the ordinals of A and A/B as well. This is the default      * {@link OrdinalPolicy}.      */
+DECL|enum constant|ALL_PARENTS
+name|ALL_PARENTS
+block|}
 comment|/** The default field used to store the facets information. */
 DECL|field|DEFAULT_FIELD
 specifier|public
@@ -189,6 +204,18 @@ name|String
 name|DEFAULT_FIELD
 init|=
 literal|"$facets"
+decl_stmt|;
+comment|/**    * The default {@link OrdinalPolicy} that's used when encoding a document's    * category ordinals.    */
+DECL|field|DEFAULT_ORDINAL_POLICY
+specifier|public
+specifier|static
+specifier|final
+name|OrdinalPolicy
+name|DEFAULT_ORDINAL_POLICY
+init|=
+name|OrdinalPolicy
+operator|.
+name|ALL_PARENTS
 decl_stmt|;
 DECL|field|field
 specifier|public
@@ -390,6 +417,17 @@ operator|.
 name|createMatchingDecoder
 argument_list|()
 argument_list|)
+return|;
+block|}
+comment|/** Returns the {@link OrdinalPolicy} to use for this {@link CategoryListParams}. */
+DECL|method|getOrdinalPolicy
+specifier|public
+name|OrdinalPolicy
+name|getOrdinalPolicy
+parameter_list|()
+block|{
+return|return
+name|DEFAULT_ORDINAL_POLICY
 return|;
 block|}
 block|}
