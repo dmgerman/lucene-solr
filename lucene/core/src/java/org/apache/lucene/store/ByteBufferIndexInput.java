@@ -1314,6 +1314,13 @@ decl_stmt|;
 name|unsetBuffers
 argument_list|()
 expr_stmt|;
+name|clones
+operator|.
+name|remove
+argument_list|(
+name|this
+argument_list|)
+expr_stmt|;
 if|if
 condition|(
 name|isClone
