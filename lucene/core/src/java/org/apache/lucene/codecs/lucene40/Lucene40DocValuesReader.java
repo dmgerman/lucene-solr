@@ -529,7 +529,6 @@ operator|new
 name|AssertionError
 argument_list|()
 throw|;
-comment|// nocommit, implement the other types
 block|}
 name|numericInstances
 operator|.
