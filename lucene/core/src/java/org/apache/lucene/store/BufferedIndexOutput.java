@@ -39,6 +39,7 @@ name|BufferedIndexOutput
 extends|extends
 name|IndexOutput
 block|{
+comment|/** The default buffer size in bytes ({@value #DEFAULT_BUFFER_SIZE}). */
 DECL|field|DEFAULT_BUFFER_SIZE
 specifier|public
 specifier|static
@@ -77,7 +78,7 @@ init|=
 literal|0
 decl_stmt|;
 comment|// position in buffer
-comment|/**    * Creates a new {@link BufferedIndexOutput} with the default buffer size    * {@value BufferedIndexOutput#DEFAULT_BUFFER_SIZE}    */
+comment|/**    * Creates a new {@link BufferedIndexOutput} with the default buffer size    * ({@value #DEFAULT_BUFFER_SIZE} bytes see {@link #DEFAULT_BUFFER_SIZE})    */
 DECL|method|BufferedIndexOutput
 specifier|public
 name|BufferedIndexOutput
