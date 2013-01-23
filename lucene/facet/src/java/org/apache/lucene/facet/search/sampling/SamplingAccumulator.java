@@ -190,24 +190,6 @@ name|facet
 operator|.
 name|search
 operator|.
-name|results
-operator|.
-name|FacetResultNode
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|facet
-operator|.
-name|search
-operator|.
 name|sampling
 operator|.
 name|Sampler
@@ -251,7 +233,7 @@ comment|/*  * Licensed to the Apache Software Foundation (ASF) under one or more
 end_comment
 
 begin_comment
-comment|/**  * Facets accumulation with sampling.<br>  *<p>  * Note two major differences between this class and {@link SamplingWrapper}:  *<ol>  *<li>Latter can wrap any other {@link FacetsAccumulator} while this class  * directly extends {@link StandardFacetsAccumulator}.</li>  *<li>This class can effectively apply sampling on the complement set of  * matching document, thereby working efficiently with the complement  * optimization - see {@link FacetsAccumulator#getComplementThreshold()}.</li>  *</ol>  *<p>  * Note: Sampling accumulation (Accumulation over a sampled-set of the results),  * does not guarantee accurate values for  * {@link FacetResult#getNumValidDescendants()}&  * {@link FacetResultNode#residue}.  *   * @see Sampler  * @lucene.experimental  */
+comment|/**  * Facets accumulation with sampling.<br>  *<p>  * Note two major differences between this class and {@link SamplingWrapper}:  *<ol>  *<li>Latter can wrap any other {@link FacetsAccumulator} while this class  * directly extends {@link StandardFacetsAccumulator}.</li>  *<li>This class can effectively apply sampling on the complement set of  * matching document, thereby working efficiently with the complement  * optimization - see {@link FacetsAccumulator#getComplementThreshold()}.</li>  *</ol>  *<p>  * Note: Sampling accumulation (Accumulation over a sampled-set of the results),  * does not guarantee accurate values for  * {@link FacetResult#getNumValidDescendants()}.  *   * @see Sampler  * @lucene.experimental  */
 end_comment
 
 begin_class
