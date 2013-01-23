@@ -52,7 +52,7 @@ name|lucene
 operator|.
 name|codecs
 operator|.
-name|DocValuesFormat
+name|DocValuesProducer
 import|;
 end_import
 
@@ -66,21 +66,9 @@ name|lucene
 operator|.
 name|codecs
 operator|.
-name|DocValuesProducer
-import|;
-end_import
-
-begin_import
-import|import
-name|org
+name|lucene42
 operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|index
-operator|.
-name|IndexFileNames
+name|Lucene42DocValuesFormat
 import|;
 end_import
 
@@ -113,32 +101,21 @@ import|;
 end_import
 
 begin_comment
-comment|// NOTE: not registered in SPI, doesnt respect segment suffix, etc
+comment|// nocommit: still a lie, but allows javadocs @links to work
 end_comment
 
 begin_comment
-comment|// for back compat only!
+comment|// nocommit: make read-only and move to impersonator
 end_comment
 
 begin_class
-DECL|class|Lucene40DocValuesFormat
+DECL|class|Lucene40LyingDocValuesFormat
 specifier|public
 class|class
-name|Lucene40DocValuesFormat
+name|Lucene40LyingDocValuesFormat
 extends|extends
-name|DocValuesFormat
+name|Lucene42DocValuesFormat
 block|{
-DECL|method|Lucene40DocValuesFormat
-specifier|public
-name|Lucene40DocValuesFormat
-parameter_list|()
-block|{
-name|super
-argument_list|(
-literal|"Lucene40"
-argument_list|)
-expr_stmt|;
-block|}
 annotation|@
 name|Override
 DECL|method|fieldsConsumer
@@ -173,81 +150,15 @@ parameter_list|)
 throws|throws
 name|IOException
 block|{
-name|String
-name|filename
-init|=
-name|IndexFileNames
-operator|.
-name|segmentFileName
-argument_list|(
-name|state
-operator|.
-name|segmentInfo
-operator|.
-name|name
-argument_list|,
-literal|"dv"
-argument_list|,
-name|IndexFileNames
-operator|.
-name|COMPOUND_FILE_EXTENSION
-argument_list|)
-decl_stmt|;
 return|return
-operator|new
-name|Lucene40DocValuesReader
+name|super
+operator|.
+name|fieldsProducer
 argument_list|(
 name|state
-argument_list|,
-name|filename
-argument_list|,
-name|Lucene40FieldInfosReader
-operator|.
-name|LEGACY_DV_TYPE_KEY
 argument_list|)
 return|;
 block|}
-comment|// constants for VAR_INTS
-DECL|field|VAR_INTS_CODEC_NAME
-specifier|static
-specifier|final
-name|String
-name|VAR_INTS_CODEC_NAME
-init|=
-literal|"PackedInts"
-decl_stmt|;
-DECL|field|VAR_INTS_VERSION_START
-specifier|static
-specifier|final
-name|int
-name|VAR_INTS_VERSION_START
-init|=
-literal|0
-decl_stmt|;
-DECL|field|VAR_INTS_VERSION_CURRENT
-specifier|static
-specifier|final
-name|int
-name|VAR_INTS_VERSION_CURRENT
-init|=
-name|VAR_INTS_VERSION_START
-decl_stmt|;
-DECL|field|VAR_INTS_PACKED
-specifier|static
-specifier|final
-name|byte
-name|VAR_INTS_PACKED
-init|=
-literal|0x00
-decl_stmt|;
-DECL|field|VAR_INTS_FIXED_64
-specifier|static
-specifier|final
-name|byte
-name|VAR_INTS_FIXED_64
-init|=
-literal|0x01
-decl_stmt|;
 block|}
 end_class
 
