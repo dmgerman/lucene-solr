@@ -7024,8 +7024,29 @@ name|getValueCount
 argument_list|()
 condition|)
 block|{
-comment|// nocommit: looks like maybe a bug in 4.0 indexes? dig on this (and think if we can correct it somehow...)
-comment|// throw new RuntimeException("dv for field: " + fieldName + " has holes in its ords, valueCount=" + dv.getValueCount() + " but only used: " + seenOrds.cardinality());
+throw|throw
+operator|new
+name|RuntimeException
+argument_list|(
+literal|"dv for field: "
+operator|+
+name|fieldName
+operator|+
+literal|" has holes in its ords, valueCount="
+operator|+
+name|dv
+operator|.
+name|getValueCount
+argument_list|()
+operator|+
+literal|" but only used: "
+operator|+
+name|seenOrds
+operator|.
+name|cardinality
+argument_list|()
+argument_list|)
+throw|;
 block|}
 name|BytesRef
 name|lastValue
