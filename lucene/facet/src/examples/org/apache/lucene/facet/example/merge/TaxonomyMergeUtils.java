@@ -276,7 +276,7 @@ specifier|public
 class|class
 name|TaxonomyMergeUtils
 block|{
-comment|/**    * Merges the given taxonomy and index directories. Note that this method    * opens {@link DirectoryTaxonomyWriter} and {@link IndexWriter} on the    * respective destination indexes. Therefore if you have a writer open on any    * of them, it should be closed, or you should use    * {@link #merge(Directory, Directory, IndexWriter, DirectoryTaxonomyWriter)}    * instead.    *     * @see #merge(Directory, Directory, IndexWriter, DirectoryTaxonomyWriter)    */
+comment|/**    * Merges the given taxonomy and index directories. Note that this method    * opens {@link DirectoryTaxonomyWriter} and {@link IndexWriter} on the    * respective destination indexes. Therefore if you have a writer open on any    * of them, it should be closed, or you should use    * {@link #merge(Directory, Directory, IndexWriter, DirectoryTaxonomyWriter, FacetIndexingParams)}    * instead.    *     * @see #merge(Directory, Directory, IndexWriter, DirectoryTaxonomyWriter, FacetIndexingParams)    */
 DECL|method|merge
 specifier|public
 specifier|static
@@ -294,6 +294,9 @@ name|destIndexDir
 parameter_list|,
 name|Directory
 name|destTaxDir
+parameter_list|,
+name|FacetIndexingParams
+name|params
 parameter_list|)
 throws|throws
 name|IOException
@@ -339,6 +342,8 @@ argument_list|,
 name|destIndexWriter
 argument_list|,
 name|destTaxWriter
+argument_list|,
+name|params
 argument_list|)
 expr_stmt|;
 name|destTaxWriter
@@ -352,7 +357,7 @@ name|close
 argument_list|()
 expr_stmt|;
 block|}
-comment|/**    * Merges the given taxonomy and index directories and commits the changes to    * the given writers. This method uses {@link MemoryOrdinalMap} to store the    * mapped ordinals. If you cannot afford the memory, you can use    * {@link #merge(Directory, Directory, DirectoryTaxonomyWriter.OrdinalMap, IndexWriter, DirectoryTaxonomyWriter)}    * by passing {@link DiskOrdinalMap}.    *     * @see #merge(Directory, Directory, DirectoryTaxonomyWriter.OrdinalMap, IndexWriter, DirectoryTaxonomyWriter)    */
+comment|/**    * Merges the given taxonomy and index directories and commits the changes to    * the given writers. This method uses {@link MemoryOrdinalMap} to store the    * mapped ordinals. If you cannot afford the memory, you can use    * {@link #merge(Directory, Directory, DirectoryTaxonomyWriter.OrdinalMap, IndexWriter, DirectoryTaxonomyWriter, FacetIndexingParams)}    * by passing {@link DiskOrdinalMap}.    *     * @see #merge(Directory, Directory, DirectoryTaxonomyWriter.OrdinalMap,    *      IndexWriter, DirectoryTaxonomyWriter, FacetIndexingParams)    */
 DECL|method|merge
 specifier|public
 specifier|static
@@ -370,6 +375,9 @@ name|destIndexWriter
 parameter_list|,
 name|DirectoryTaxonomyWriter
 name|destTaxWriter
+parameter_list|,
+name|FacetIndexingParams
+name|params
 parameter_list|)
 throws|throws
 name|IOException
@@ -387,6 +395,8 @@ argument_list|,
 name|destIndexWriter
 argument_list|,
 name|destTaxWriter
+argument_list|,
+name|params
 argument_list|)
 expr_stmt|;
 block|}
@@ -411,6 +421,9 @@ name|destIndexWriter
 parameter_list|,
 name|DirectoryTaxonomyWriter
 name|destTaxWriter
+parameter_list|,
+name|FacetIndexingParams
+name|params
 parameter_list|)
 throws|throws
 name|IOException
@@ -433,13 +446,6 @@ name|map
 operator|.
 name|getMap
 argument_list|()
-decl_stmt|;
-name|FacetIndexingParams
-name|params
-init|=
-name|FacetIndexingParams
-operator|.
-name|ALL_PARENTS
 decl_stmt|;
 name|DirectoryReader
 name|reader

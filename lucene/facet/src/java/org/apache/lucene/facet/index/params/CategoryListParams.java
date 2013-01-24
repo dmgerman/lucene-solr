@@ -430,6 +430,30 @@ return|return
 name|DEFAULT_ORDINAL_POLICY
 return|;
 block|}
+annotation|@
+name|Override
+DECL|method|toString
+specifier|public
+name|String
+name|toString
+parameter_list|()
+block|{
+return|return
+literal|"field="
+operator|+
+name|field
+operator|+
+literal|" encoder="
+operator|+
+name|createEncoder
+argument_list|()
+operator|+
+literal|" ordinalPolicy="
+operator|+
+name|getOrdinalPolicy
+argument_list|()
+return|;
+block|}
 block|}
 end_class
 

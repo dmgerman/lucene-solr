@@ -24,9 +24,9 @@ name|apache
 operator|.
 name|lucene
 operator|.
-name|util
+name|facet
 operator|.
-name|LuceneTestCase
+name|FacetTestCase
 import|;
 end_import
 
@@ -50,7 +50,7 @@ specifier|public
 class|class
 name|FacetSearchParamsTest
 extends|extends
-name|LuceneTestCase
+name|FacetTestCase
 block|{
 annotation|@
 name|Test

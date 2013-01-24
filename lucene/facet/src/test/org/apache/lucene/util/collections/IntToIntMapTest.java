@@ -16,16 +16,6 @@ end_package
 
 begin_import
 import|import
-name|org
-operator|.
-name|junit
-operator|.
-name|Test
-import|;
-end_import
-
-begin_import
-import|import
 name|java
 operator|.
 name|util
@@ -52,9 +42,9 @@ name|apache
 operator|.
 name|lucene
 operator|.
-name|util
+name|facet
 operator|.
-name|LuceneTestCase
+name|FacetTestCase
 import|;
 end_import
 
@@ -62,31 +52,9 @@ begin_import
 import|import
 name|org
 operator|.
-name|apache
+name|junit
 operator|.
-name|lucene
-operator|.
-name|util
-operator|.
-name|collections
-operator|.
-name|IntIterator
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|util
-operator|.
-name|collections
-operator|.
-name|IntToIntMap
+name|Test
 import|;
 end_import
 
@@ -100,7 +68,7 @@ specifier|public
 class|class
 name|IntToIntMapTest
 extends|extends
-name|LuceneTestCase
+name|FacetTestCase
 block|{
 DECL|method|assertGround
 specifier|private

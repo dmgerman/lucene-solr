@@ -607,20 +607,6 @@ operator|.
 name|util
 operator|.
 name|LuceneTestCase
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|util
-operator|.
-name|LuceneTestCase
 operator|.
 name|SuppressCodecs
 import|;
@@ -678,7 +664,7 @@ specifier|abstract
 class|class
 name|FacetTestBase
 extends|extends
-name|LuceneTestCase
+name|FacetTestCase
 block|{
 comment|/** Holds a search and taxonomy Directories pair. */
 DECL|class|SearchTaxoDirPair
@@ -1229,7 +1215,7 @@ name|analyzer
 argument_list|)
 return|;
 block|}
-comment|/** Returns a default facet indexing params */
+comment|/** Returns a {@link FacetIndexingParams} per the given partition size. */
 DECL|method|getFacetIndexingParams
 specifier|protected
 name|FacetIndexingParams
@@ -1240,6 +1226,8 @@ name|int
 name|partSize
 parameter_list|)
 block|{
+comment|// several of our encoders don't support the value 0,
+comment|// which is one of the values encoded when dealing w/ partitions.
 return|return
 operator|new
 name|FacetIndexingParams
