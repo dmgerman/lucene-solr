@@ -6633,6 +6633,28 @@ name|getComparator
 argument_list|()
 decl_stmt|;
 name|int
+name|maxOrd
+init|=
+name|sortedValues
+operator|.
+name|getValueCount
+argument_list|()
+operator|-
+literal|1
+decl_stmt|;
+name|FixedBitSet
+name|seenOrds
+init|=
+operator|new
+name|FixedBitSet
+argument_list|(
+name|sortedValues
+operator|.
+name|getValueCount
+argument_list|()
+argument_list|)
+decl_stmt|;
+name|int
 name|lastOrd
 init|=
 operator|-
@@ -6678,7 +6700,7 @@ literal|0
 operator|||
 name|ord
 argument_list|>
-name|expectedDocs
+name|maxOrd
 condition|)
 block|{
 throw|throw
@@ -6793,6 +6815,31 @@ name|lastBytes
 operator|=
 name|bytes
 expr_stmt|;
+name|seenOrds
+operator|.
+name|set
+argument_list|(
+name|ord
+argument_list|)
+expr_stmt|;
+block|}
+if|if
+condition|(
+name|seenOrds
+operator|.
+name|cardinality
+argument_list|()
+operator|!=
+name|sortedValues
+operator|.
+name|getValueCount
+argument_list|()
+condition|)
+block|{
+comment|// TODO: find the bug here and figure out a workaround (we can implement in LUCENE-4547's back compat layer maybe)
+comment|// basically ord 0 is unused by any docs: so the sortedbytes ords are all off-by-one
+comment|// does it always happen? e.g. maybe only if there are missing values? or a bug in its merge optimizations?
+comment|// throw new RuntimeException("dv for field: " + fieldName + " has holes in its ords, valueCount=" + sortedValues.getValueCount() + " but only used: " + seenOrds.cardinality());
 block|}
 block|}
 block|}
