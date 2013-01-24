@@ -97,7 +97,7 @@ name|fieldState
 decl_stmt|;
 DECL|field|consumer
 specifier|private
-name|NumberDVWriter
+name|NumericDocValuesWriter
 name|consumer
 decl_stmt|;
 DECL|method|NormsConsumerPerField
@@ -213,7 +213,7 @@ expr_stmt|;
 name|consumer
 operator|=
 operator|new
-name|NumberDVWriter
+name|NumericDocValuesWriter
 argument_list|(
 name|fieldInfo
 argument_list|,

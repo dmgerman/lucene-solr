@@ -552,7 +552,7 @@ operator|.
 name|name
 argument_list|)
 decl_stmt|;
-name|BytesDVWriter
+name|BinaryDocValuesWriter
 name|binaryWriter
 decl_stmt|;
 if|if
@@ -565,7 +565,7 @@ block|{
 name|binaryWriter
 operator|=
 operator|new
-name|BytesDVWriter
+name|BinaryDocValuesWriter
 argument_list|(
 name|fieldInfo
 argument_list|,
@@ -591,7 +591,7 @@ operator|!
 operator|(
 name|writer
 operator|instanceof
-name|BytesDVWriter
+name|BinaryDocValuesWriter
 operator|)
 condition|)
 block|{
@@ -621,7 +621,7 @@ block|{
 name|binaryWriter
 operator|=
 operator|(
-name|BytesDVWriter
+name|BinaryDocValuesWriter
 operator|)
 name|writer
 expr_stmt|;
@@ -662,7 +662,7 @@ operator|.
 name|name
 argument_list|)
 decl_stmt|;
-name|SortedBytesDVWriter
+name|SortedDocValuesWriter
 name|sortedWriter
 decl_stmt|;
 if|if
@@ -675,7 +675,7 @@ block|{
 name|sortedWriter
 operator|=
 operator|new
-name|SortedBytesDVWriter
+name|SortedDocValuesWriter
 argument_list|(
 name|fieldInfo
 argument_list|,
@@ -701,7 +701,7 @@ operator|!
 operator|(
 name|writer
 operator|instanceof
-name|SortedBytesDVWriter
+name|SortedDocValuesWriter
 operator|)
 condition|)
 block|{
@@ -731,7 +731,7 @@ block|{
 name|sortedWriter
 operator|=
 operator|(
-name|SortedBytesDVWriter
+name|SortedDocValuesWriter
 operator|)
 name|writer
 expr_stmt|;
@@ -772,7 +772,7 @@ operator|.
 name|name
 argument_list|)
 decl_stmt|;
-name|NumberDVWriter
+name|NumericDocValuesWriter
 name|numericWriter
 decl_stmt|;
 if|if
@@ -785,7 +785,7 @@ block|{
 name|numericWriter
 operator|=
 operator|new
-name|NumberDVWriter
+name|NumericDocValuesWriter
 argument_list|(
 name|fieldInfo
 argument_list|,
@@ -811,7 +811,7 @@ operator|!
 operator|(
 name|writer
 operator|instanceof
-name|NumberDVWriter
+name|NumericDocValuesWriter
 operator|)
 condition|)
 block|{
@@ -841,7 +841,7 @@ block|{
 name|numericWriter
 operator|=
 operator|(
-name|NumberDVWriter
+name|NumericDocValuesWriter
 operator|)
 name|writer
 expr_stmt|;
@@ -869,7 +869,7 @@ if|if
 condition|(
 name|obj
 operator|instanceof
-name|BytesDVWriter
+name|BinaryDocValuesWriter
 condition|)
 block|{
 return|return
@@ -881,7 +881,7 @@ if|if
 condition|(
 name|obj
 operator|instanceof
-name|NumberDVWriter
+name|NumericDocValuesWriter
 condition|)
 block|{
 return|return
@@ -893,7 +893,7 @@ block|{
 assert|assert
 name|obj
 operator|instanceof
-name|SortedBytesDVWriter
+name|SortedDocValuesWriter
 assert|;
 return|return
 literal|"sorted"

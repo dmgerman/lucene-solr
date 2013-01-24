@@ -170,18 +170,10 @@ begin_comment
 comment|/** Buffers up pending byte[] per doc, deref and sorting via  *  int ord, then flushes when segment flushes. */
 end_comment
 
-begin_comment
-comment|// nocommit name?
-end_comment
-
-begin_comment
-comment|// nocommit make this a consumer in the chain?
-end_comment
-
 begin_class
-DECL|class|SortedBytesDVWriter
+DECL|class|SortedDocValuesWriter
 class|class
-name|SortedBytesDVWriter
+name|SortedDocValuesWriter
 extends|extends
 name|DocValuesWriter
 block|{
@@ -245,9 +237,9 @@ name|DEFAULT_PENDING_SIZE
 init|=
 literal|16
 decl_stmt|;
-DECL|method|SortedBytesDVWriter
+DECL|method|SortedDocValuesWriter
 specifier|public
-name|SortedBytesDVWriter
+name|SortedDocValuesWriter
 parameter_list|(
 name|FieldInfo
 name|fieldInfo
@@ -356,18 +348,17 @@ operator|==
 literal|null
 condition|)
 block|{
-comment|// nocommit improve message
 throw|throw
 operator|new
 name|IllegalArgumentException
 argument_list|(
-literal|"null sortedValue not allowed (field="
+literal|"field \""
 operator|+
 name|fieldInfo
 operator|.
 name|name
 operator|+
-literal|")"
+literal|"\": null value not allowed"
 argument_list|)
 throw|;
 block|}
@@ -896,8 +887,7 @@ block|}
 name|docUpto
 operator|++
 expr_stmt|;
-comment|// nocommit make
-comment|// resuable Number?
+comment|// TODO: make reusable Number
 return|return
 name|ordMap
 index|[
@@ -919,19 +909,19 @@ operator|-
 name|sortedValueRamUsage
 argument_list|)
 expr_stmt|;
-name|reset
-argument_list|()
-expr_stmt|;
+comment|// nocommit
+comment|//reset();
 block|}
+annotation|@
+name|Override
 DECL|method|abort
 specifier|public
 name|void
 name|abort
 parameter_list|()
 block|{
-name|reset
-argument_list|()
-expr_stmt|;
+comment|// nocommit
+comment|//reset();
 block|}
 DECL|method|reset
 specifier|private
@@ -939,43 +929,8 @@ name|void
 name|reset
 parameter_list|()
 block|{
-name|iwBytesUsed
-operator|.
-name|addAndGet
-argument_list|(
-operator|(
-name|pending
-operator|.
-name|length
-operator|-
-name|DEFAULT_PENDING_SIZE
-operator|)
-operator|*
-name|RamUsageEstimator
-operator|.
-name|NUM_BYTES_INT
-argument_list|)
-expr_stmt|;
-name|pending
-operator|=
-name|ArrayUtil
-operator|.
-name|shrink
-argument_list|(
-name|pending
-argument_list|,
-name|DEFAULT_PENDING_SIZE
-argument_list|)
-expr_stmt|;
-name|pendingIndex
-operator|=
-literal|0
-expr_stmt|;
-name|hash
-operator|.
-name|clear
-argument_list|()
-expr_stmt|;
+comment|// nocommit
+comment|/*     iwBytesUsed.addAndGet((pending.length - DEFAULT_PENDING_SIZE) * RamUsageEstimator.NUM_BYTES_INT);     pending = ArrayUtil.shrink(pending, DEFAULT_PENDING_SIZE);     pendingIndex = 0;     hash.clear();     */
 block|}
 block|}
 end_class
