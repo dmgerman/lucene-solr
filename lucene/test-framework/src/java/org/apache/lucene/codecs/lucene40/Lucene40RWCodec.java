@@ -124,6 +124,7 @@ return|;
 block|}
 block|}
 decl_stmt|;
+comment|//private final DocValuesFormat docValues = new Lucene40RWDocValuesFormat();
 DECL|field|docValues
 specifier|private
 specifier|final
