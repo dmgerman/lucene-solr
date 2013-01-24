@@ -138,7 +138,7 @@ name|codecs
 operator|.
 name|lucene40
 operator|.
-name|Lucene40LyingRWDocValuesFormat
+name|Lucene40RWDocValuesFormat
 import|;
 end_import
 
@@ -218,7 +218,7 @@ name|DocValuesFormat
 name|docValues
 init|=
 operator|new
-name|Lucene40LyingRWDocValuesFormat
+name|Lucene40RWDocValuesFormat
 argument_list|()
 decl_stmt|;
 DECL|field|norms

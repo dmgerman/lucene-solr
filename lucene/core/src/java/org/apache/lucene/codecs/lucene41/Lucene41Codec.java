@@ -226,7 +226,7 @@ name|codecs
 operator|.
 name|lucene40
 operator|.
-name|Lucene40LyingDocValuesFormat
+name|Lucene40DocValuesFormat
 import|;
 end_import
 
@@ -639,7 +639,7 @@ name|DocValuesFormat
 name|dvFormat
 init|=
 operator|new
-name|Lucene40LyingDocValuesFormat
+name|Lucene40DocValuesFormat
 argument_list|()
 decl_stmt|;
 DECL|field|normsFormat

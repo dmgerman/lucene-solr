@@ -124,7 +124,6 @@ return|;
 block|}
 block|}
 decl_stmt|;
-comment|//private final DocValuesFormat docValues = new Lucene40RWDocValuesFormat();
 DECL|field|docValues
 specifier|private
 specifier|final
@@ -132,7 +131,7 @@ name|DocValuesFormat
 name|docValues
 init|=
 operator|new
-name|Lucene40LyingRWDocValuesFormat
+name|Lucene40RWDocValuesFormat
 argument_list|()
 decl_stmt|;
 DECL|field|norms
