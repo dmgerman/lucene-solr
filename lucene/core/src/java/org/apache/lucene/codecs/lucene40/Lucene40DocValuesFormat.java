@@ -298,6 +298,31 @@ name|FLOATS_VERSION_CURRENT
 init|=
 name|FLOATS_VERSION_START
 decl_stmt|;
+comment|// constants for BYTES_FIXED_STRAIGHT
+DECL|field|BYTES_FIXED_STRAIGHT_CODEC_NAME
+specifier|static
+specifier|final
+name|String
+name|BYTES_FIXED_STRAIGHT_CODEC_NAME
+init|=
+literal|"FixedStraightBytes"
+decl_stmt|;
+DECL|field|BYTES_FIXED_STRAIGHT_VERSION_START
+specifier|static
+specifier|final
+name|int
+name|BYTES_FIXED_STRAIGHT_VERSION_START
+init|=
+literal|0
+decl_stmt|;
+DECL|field|BYTES_FIXED_STRAIGHT_VERSION_CURRENT
+specifier|static
+specifier|final
+name|int
+name|BYTES_FIXED_STRAIGHT_VERSION_CURRENT
+init|=
+name|BYTES_FIXED_STRAIGHT_VERSION_START
+decl_stmt|;
 block|}
 end_class
 
