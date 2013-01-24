@@ -34,10 +34,6 @@ begin_comment
 comment|/**  * TestExplanations subclass focusing on basic query types  */
 end_comment
 
-begin_comment
-comment|// nocommit: WTF ant test  -Dtestcase=TestSimpleExplanations -Dtests.method=testFQ2 -Dtests.seed=ED13809D5BBA6703 -Dtests.slow=true -Dtests.locale=fr_CH -Dtests.timezone=Brazil/Acre -Dtests.file.encoding=US-ASCII
-end_comment
-
 begin_class
 DECL|class|TestSimpleExplanations
 specifier|public
