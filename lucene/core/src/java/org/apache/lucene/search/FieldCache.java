@@ -1136,7 +1136,7 @@ return|;
 block|}
 block|}
 decl_stmt|;
-comment|/** Checks the internal cache for an appropriate entry, and if none is found,    * reads the terms in<code>field</code> and returns a bit set at the size of    *<code>reader.maxDoc()</code>, with turned on bits for each docid that     * does have a value for this field.    */
+comment|/** Checks the internal cache for an appropriate entry, and if none is found,    *  reads the terms in<code>field</code> and returns a bit set at the size of    *<code>reader.maxDoc()</code>, with turned on bits for each docid that     *  does have a value for this field.  Note that if the field was only indexed    *  as DocValues then this method will not work (it will return a Bits stating    *  that no documents contain the field).    */
 DECL|method|getDocsWithField
 specifier|public
 name|Bits
