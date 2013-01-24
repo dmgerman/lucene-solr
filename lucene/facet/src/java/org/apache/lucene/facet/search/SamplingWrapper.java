@@ -92,24 +92,6 @@ name|facet
 operator|.
 name|search
 operator|.
-name|results
-operator|.
-name|FacetResultNode
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|facet
-operator|.
-name|search
-operator|.
 name|sampling
 operator|.
 name|Sampler
@@ -141,7 +123,7 @@ comment|/*  * Licensed to the Apache Software Foundation (ASF) under one or more
 end_comment
 
 begin_comment
-comment|/**  * Wrap any Facets Accumulator with sampling.  *<p>  * Note: Sampling accumulation (Accumulation over a sampled-set of the results),  * does not guarantee accurate values for  * {@link FacetResult#getNumValidDescendants()} and  * {@link FacetResultNode#residue}.  *   * @lucene.experimental  */
+comment|/**  * Wrap any Facets Accumulator with sampling.  *<p>  * Note: Sampling accumulation (Accumulation over a sampled-set of the results),  * does not guarantee accurate values for  * {@link FacetResult#getNumValidDescendants()}.  *   * @lucene.experimental  */
 end_comment
 
 begin_class

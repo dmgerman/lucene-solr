@@ -780,14 +780,7 @@ index|]
 expr_stmt|;
 block|}
 comment|// now it is inside. Run it and all its siblings inside the partition through a heap
-comment|// and in doing so, count them, find best K, and sum into residue
-name|double
-name|residue
-init|=
-literal|0f
-decl_stmt|;
-comment|// the sum of all the siblings from this partition that do not make
-comment|// it to top K
+comment|// and in doing so, count them, find best K
 name|pq
 operator|.
 name|clear
@@ -875,14 +868,6 @@ operator|!=
 name|ac
 condition|)
 block|{
-name|residue
-operator|+=
-name|ac
-operator|.
-name|value
-expr_stmt|;
-comment|// TODO (Facet): could it be that we need to do something
-comment|// else, not add, depending on the aggregator?
 comment|/* when a facet is excluded from top K, because already in this partition it has                * K better siblings, it is only recursed for count only.                */
 comment|// update totalNumOfDescendants by the now excluded node and all its descendants
 name|totalNumOfDescendantsConsidered
@@ -1043,8 +1028,6 @@ argument_list|(
 name|ords
 argument_list|,
 name|vals
-argument_list|,
-name|residue
 argument_list|)
 argument_list|)
 expr_stmt|;
@@ -1542,8 +1525,7 @@ operator|.
 name|keyIterator
 argument_list|()
 decl_stmt|;
-comment|//iterate over all ordinals in tfr that are maps to their children (and the residue over
-comment|// non included chilren)
+comment|//iterate over all ordinals in tfr that are maps to their children
 while|while
 condition|(
 name|tfrIntIterator
@@ -1657,17 +1639,6 @@ name|double
 index|[
 name|resLength
 index|]
-decl_stmt|;
-name|double
-name|resResidue
-init|=
-name|tmpToReturnAACO
-operator|.
-name|residue
-operator|+
-name|tfrAACO
-operator|.
-name|residue
 decl_stmt|;
 name|int
 name|indexIntoTmpToReturn
@@ -1883,50 +1854,6 @@ block|}
 comment|// end of merge of best kids of tfrkey that appear in tmpToReturn and its kids that appear in tfr
 comment|// altogether yielding no more that best K kids for tfrkey, not to appear in the new shape of
 comment|// tmpToReturn
-while|while
-condition|(
-name|indexIntoTmpToReturn
-operator|<
-name|tmpToReturnAACO
-operator|.
-name|ordinals
-operator|.
-name|length
-condition|)
-block|{
-name|resResidue
-operator|+=
-name|tmpToReturnAACO
-operator|.
-name|values
-index|[
-name|indexIntoTmpToReturn
-operator|++
-index|]
-expr_stmt|;
-block|}
-while|while
-condition|(
-name|indexIntoTFR
-operator|<
-name|tfrAACO
-operator|.
-name|ordinals
-operator|.
-name|length
-condition|)
-block|{
-name|resResidue
-operator|+=
-name|tfrAACO
-operator|.
-name|values
-index|[
-name|indexIntoTFR
-operator|++
-index|]
-expr_stmt|;
-block|}
 comment|//update the list of best kids of tfrkey as appear in tmpToReturn
 name|tmpToReturnMapToACCOs
 operator|.
@@ -1940,13 +1867,11 @@ argument_list|(
 name|resOrds
 argument_list|,
 name|resVals
-argument_list|,
-name|resResidue
 argument_list|)
 argument_list|)
 expr_stmt|;
 block|}
-comment|// endof need to merge both AACO -- children and residue for same ordinal
+comment|// endof need to merge both AACO -- children for same ordinal
 block|}
 comment|// endof loop over all ordinals in tfr
 block|}
@@ -2551,7 +2476,7 @@ name|val
 expr_stmt|;
 block|}
 block|}
-comment|/**    * Maintains an array of<code>AggregatedCategory</code>. For space consideration, this is implemented as     * a pair of arrays,<i>ordinals</i> and<i>values</i>, rather than one array of pairs.    * Enumerated in<i>ordinals</i> are siblings,      * potential nodes of the {@link FacetResult} tree      * (i.e., the descendants of the root node, no deeper than the specified depth).    * No more than K ( = {@link FacetRequest#getNumResults()})     * siblings are enumerated, and      *<i>residue</i> holds the sum of values of the siblings rejected from the     * enumerated top K.    * @lucene.internal    */
+comment|/**    * Maintains an array of<code>AggregatedCategory</code>. For space consideration, this is implemented as     * a pair of arrays,<i>ordinals</i> and<i>values</i>, rather than one array of pairs.    * Enumerated in<i>ordinals</i> are siblings,      * potential nodes of the {@link FacetResult} tree      * (i.e., the descendants of the root node, no deeper than the specified depth).    * No more than K ( = {@link FacetRequest#getNumResults()})     * siblings are enumerated.    * @lucene.internal    */
 DECL|class|AACO
 specifier|protected
 specifier|static
@@ -2571,11 +2496,6 @@ index|[]
 name|values
 decl_stmt|;
 comment|// the respective values for these children
-DECL|field|residue
-name|double
-name|residue
-decl_stmt|;
-comment|// sum of values of all other children, that did not get into top K
 DECL|method|AACO
 name|AACO
 parameter_list|(
@@ -2586,9 +2506,6 @@ parameter_list|,
 name|double
 index|[]
 name|vals
-parameter_list|,
-name|double
-name|r
 parameter_list|)
 block|{
 name|this
@@ -2602,12 +2519,6 @@ operator|.
 name|values
 operator|=
 name|vals
-expr_stmt|;
-name|this
-operator|.
-name|residue
-operator|=
-name|r
 expr_stmt|;
 block|}
 block|}
@@ -3114,14 +3025,6 @@ operator|.
 name|subResults
 operator|=
 name|list
-expr_stmt|;
-name|node
-operator|.
-name|residue
-operator|=
-name|aaco
-operator|.
-name|residue
 expr_stmt|;
 return|return
 name|node

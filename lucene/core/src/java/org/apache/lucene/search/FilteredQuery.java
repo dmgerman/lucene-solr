@@ -1451,6 +1451,8 @@ argument_list|(
 name|queryRewritten
 argument_list|,
 name|filter
+argument_list|,
+name|strategy
 argument_list|)
 decl_stmt|;
 name|rewritten
@@ -1497,6 +1499,19 @@ parameter_list|()
 block|{
 return|return
 name|filter
+return|;
+block|}
+comment|/** Returns this FilteredQuery's {@link FilterStrategy} */
+DECL|method|getFilterStrategy
+specifier|public
+name|FilterStrategy
+name|getFilterStrategy
+parameter_list|()
+block|{
+return|return
+name|this
+operator|.
+name|strategy
 return|;
 block|}
 comment|// inherit javadoc

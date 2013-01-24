@@ -39,13 +39,21 @@ name|BufferedIndexOutput
 extends|extends
 name|IndexOutput
 block|{
-DECL|field|BUFFER_SIZE
+comment|/** The default buffer size in bytes ({@value #DEFAULT_BUFFER_SIZE}). */
+DECL|field|DEFAULT_BUFFER_SIZE
+specifier|public
 specifier|static
 specifier|final
 name|int
-name|BUFFER_SIZE
+name|DEFAULT_BUFFER_SIZE
 init|=
 literal|16384
+decl_stmt|;
+DECL|field|bufferSize
+specifier|private
+specifier|final
+name|int
+name|bufferSize
 decl_stmt|;
 DECL|field|buffer
 specifier|private
@@ -53,12 +61,6 @@ specifier|final
 name|byte
 index|[]
 name|buffer
-init|=
-operator|new
-name|byte
-index|[
-name|BUFFER_SIZE
-index|]
 decl_stmt|;
 DECL|field|bufferStart
 specifier|private
@@ -76,6 +78,61 @@ init|=
 literal|0
 decl_stmt|;
 comment|// position in buffer
+comment|/**    * Creates a new {@link BufferedIndexOutput} with the default buffer size    * ({@value #DEFAULT_BUFFER_SIZE} bytes see {@link #DEFAULT_BUFFER_SIZE})    */
+DECL|method|BufferedIndexOutput
+specifier|public
+name|BufferedIndexOutput
+parameter_list|()
+block|{
+name|this
+argument_list|(
+name|DEFAULT_BUFFER_SIZE
+argument_list|)
+expr_stmt|;
+block|}
+comment|/**    * Creates a new {@link BufferedIndexOutput} with the given buffer size.     * @param bufferSize the buffer size in bytes used to buffer writes internally.    * @throws IllegalArgumentException if the given buffer size is less or equal to<tt>0</tt>    */
+DECL|method|BufferedIndexOutput
+specifier|public
+name|BufferedIndexOutput
+parameter_list|(
+name|int
+name|bufferSize
+parameter_list|)
+block|{
+if|if
+condition|(
+name|bufferSize
+operator|<=
+literal|0
+condition|)
+block|{
+throw|throw
+operator|new
+name|IllegalArgumentException
+argument_list|(
+literal|"bufferSize must be greater than 0 (got "
+operator|+
+name|bufferSize
+operator|+
+literal|")"
+argument_list|)
+throw|;
+block|}
+name|this
+operator|.
+name|bufferSize
+operator|=
+name|bufferSize
+expr_stmt|;
+name|buffer
+operator|=
+operator|new
+name|byte
+index|[
+name|bufferSize
+index|]
+expr_stmt|;
+block|}
 annotation|@
 name|Override
 DECL|method|writeByte
@@ -93,7 +150,7 @@ if|if
 condition|(
 name|bufferPosition
 operator|>=
-name|BUFFER_SIZE
+name|bufferSize
 condition|)
 name|flush
 argument_list|()
@@ -130,7 +187,7 @@ block|{
 name|int
 name|bytesLeft
 init|=
-name|BUFFER_SIZE
+name|bufferSize
 operator|-
 name|bufferPosition
 decl_stmt|;
@@ -165,7 +222,7 @@ expr_stmt|;
 comment|// if the buffer is full, flush it
 if|if
 condition|(
-name|BUFFER_SIZE
+name|bufferSize
 operator|-
 name|bufferPosition
 operator|==
@@ -182,7 +239,7 @@ if|if
 condition|(
 name|length
 operator|>
-name|BUFFER_SIZE
+name|bufferSize
 condition|)
 block|{
 comment|// we flush the buffer
@@ -273,7 +330,7 @@ expr_stmt|;
 comment|// if the buffer is full, flush it
 name|bytesLeft
 operator|=
-name|BUFFER_SIZE
+name|bufferSize
 operator|-
 name|bufferPosition
 expr_stmt|;
@@ -289,7 +346,7 @@ argument_list|()
 expr_stmt|;
 name|bytesLeft
 operator|=
-name|BUFFER_SIZE
+name|bufferSize
 expr_stmt|;
 block|}
 block|}

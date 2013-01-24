@@ -171,12 +171,6 @@ specifier|public
 name|double
 name|value
 decl_stmt|;
-comment|/**    * The total value of screened out sub results. If only part of the results    * were returned (usually because only the top-K categories are requested),    * then this provides information on "what else is there under this result     * node".    */
-DECL|field|residue
-specifier|public
-name|double
-name|residue
-decl_stmt|;
 comment|/**    * The sub-results of this result. If {@link FacetRequest#getResultMode()} is    * {@link ResultMode#PER_NODE_IN_TREE}, every sub result denotes an immediate    * child of this node. Otherwise, it is a descendant of any level.    *<p>    *<b>NOTE:</b> this member should not be {@code null}. To denote that a    * result does not have sub results, set it to {@link #EMPTY_SUB_RESULTS} (or    * don't modify it).    */
 DECL|field|subResults
 specifier|public
@@ -313,31 +307,6 @@ argument_list|(
 literal|")"
 argument_list|)
 expr_stmt|;
-if|if
-condition|(
-name|residue
-operator|>
-literal|0
-condition|)
-block|{
-name|sb
-operator|.
-name|append
-argument_list|(
-literal|" (residue="
-argument_list|)
-operator|.
-name|append
-argument_list|(
-name|residue
-argument_list|)
-operator|.
-name|append
-argument_list|(
-literal|")"
-argument_list|)
-expr_stmt|;
-block|}
 for|for
 control|(
 name|FacetResultNode
