@@ -32,6 +32,16 @@ name|java
 operator|.
 name|util
 operator|.
+name|ServiceLoader
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
+name|util
+operator|.
 name|Set
 import|;
 end_import
@@ -77,6 +87,10 @@ operator|.
 name|NamedSPILoader
 import|;
 end_import
+
+begin_comment
+comment|/**   * Encodes/decodes per-document values.  *<p>  * Note, when extending this class, the name ({@link #getName}) may  * written into the index in certain configurations. In order for the segment   * to be read, the name must resolve to your implementation via {@link #forName(String)}.  * This method uses Java's   * {@link ServiceLoader Service Provider Interface} (SPI) to resolve format names.  *<p>  * If you implement your own format, make sure that it has a no-arg constructor  * so SPI can load it.  * @see ServiceLoader  * @lucene.experimental */
+end_comment
 
 begin_class
 DECL|class|DocValuesFormat

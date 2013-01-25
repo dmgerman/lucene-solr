@@ -156,6 +156,20 @@ name|lucene
 operator|.
 name|index
 operator|.
+name|SegmentWriteState
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|index
+operator|.
 name|SortedDocValues
 import|;
 end_import
@@ -217,7 +231,7 @@ import|;
 end_import
 
 begin_comment
-comment|// prototype streaming DV api
+comment|/**   * Abstract API that consumes numeric, binary and  * sorted docvalues.  Concrete implementations of this  * actually do "something" with the docvalues (write it into  * the index in a specific format).  *<p>  * The lifecycle is:  *<ol>  *<li>DocValuesConsumer is created by   *       {@link DocValuesFormat#fieldsConsumer(SegmentWriteState)} or  *       {@link NormsFormat#normsConsumer(SegmentWriteState)}.  *<li>{@link #addNumericField}, {@link #addBinaryField},  *       or {@link #addSortedField} are called for each Numeric,  *       Binary, or Sorted docvalues field. The API is a "pull" rather  *       than "push", and the implementation is free to iterate over the   *       values multiple times ({@link Iterable#iterator()}).  *<li>After all fields are added, the consumer is {@link #close}d.  *</ol>  *  * @lucene.experimental  */
 end_comment
 
 begin_class
@@ -229,6 +243,7 @@ name|DocValuesConsumer
 implements|implements
 name|Closeable
 block|{
+comment|/**    * Writes numeric docvalues for a field.    * @param field field information    * @param values Iterable of numeric values (one for each document).    * @throws IOException if an I/O error occurred.    */
 DECL|method|addNumericField
 specifier|public
 specifier|abstract
@@ -247,6 +262,7 @@ parameter_list|)
 throws|throws
 name|IOException
 function_decl|;
+comment|/**    * Writes binary docvalues for a field.    * @param field field information    * @param values Iterable of binary values (one for each document).    * @throws IOException if an I/O error occurred.    */
 DECL|method|addBinaryField
 specifier|public
 specifier|abstract
@@ -265,6 +281,7 @@ parameter_list|)
 throws|throws
 name|IOException
 function_decl|;
+comment|/**    * Writes pre-sorted binary docvalues for a field.    * @param field field information    * @param values Iterable of binary values in sorted order (deduplicated).    * @param docToOrd Iterable of ordinals (one for each document).    * @throws IOException if an I/O error occurred.    */
 DECL|method|addSortedField
 specifier|public
 specifier|abstract
@@ -289,7 +306,7 @@ parameter_list|)
 throws|throws
 name|IOException
 function_decl|;
-comment|// dead simple impl: codec can optimize
+comment|/**    * Merges the numeric docvalues from<code>toMerge</code>.    *<p>    * The default implementation calls {@link #addNumericField}, passing    * an Iterable that merges and filters deleted documents on the fly.    */
 DECL|method|mergeNumericField
 specifier|public
 name|void
@@ -555,7 +572,7 @@ block|}
 argument_list|)
 expr_stmt|;
 block|}
-comment|// dead simple impl: codec can optimize
+comment|/**    * Merges the binary docvalues from<code>toMerge</code>.    *<p>    * The default implementation calls {@link #addBinaryField}, passing    * an Iterable that merges and filters deleted documents on the fly.    */
 DECL|method|mergeBinaryField
 specifier|public
 name|void
@@ -1386,6 +1403,7 @@ expr_stmt|;
 block|}
 comment|/*     public void finish(SortedDocValuesConsumer consumer) throws IOException {        // Third pass: write merged result       for(BytesRef term : mergedTerms) {         consumer.addValue(term);       }        for(SegmentState segState : segStates) {         Bits liveDocs = segState.reader.getLiveDocs();         int maxDoc = segState.reader.maxDoc();         for(int docID=0;docID<maxDoc;docID++) {           if (liveDocs == null || liveDocs.get(docID)) {             int segOrd = segState.values.getOrd(docID);             int mergedOrd = segState.segOrdToMergedOrd[segOrd];             consumer.addDoc(mergedOrd);           }         }       }     }     */
 block|}
+comment|/**    * Merges the sorted docvalues from<code>toMerge</code>.    *<p>    * The default implementation calls {@link #addSortedField}, passing    * an Iterable that merges ordinals and values and filters deleted documents .    */
 DECL|method|mergeSortedField
 specifier|public
 name|void
