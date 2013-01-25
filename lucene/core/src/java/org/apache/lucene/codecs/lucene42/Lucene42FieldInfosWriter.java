@@ -192,7 +192,7 @@ end_comment
 
 begin_class
 DECL|class|Lucene42FieldInfosWriter
-specifier|public
+specifier|final
 class|class
 name|Lucene42FieldInfosWriter
 extends|extends

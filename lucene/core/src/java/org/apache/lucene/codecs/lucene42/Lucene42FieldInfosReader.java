@@ -226,7 +226,7 @@ end_comment
 
 begin_class
 DECL|class|Lucene42FieldInfosReader
-specifier|public
+specifier|final
 class|class
 name|Lucene42FieldInfosReader
 extends|extends

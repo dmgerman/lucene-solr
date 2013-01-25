@@ -228,7 +228,6 @@ begin_class
 annotation|@
 name|Deprecated
 DECL|class|Lucene40FieldInfosReader
-specifier|public
 class|class
 name|Lucene40FieldInfosReader
 extends|extends
