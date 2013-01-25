@@ -4500,11 +4500,17 @@ block|{
 name|Object
 name|o
 init|=
+literal|null
+decl_stmt|;
+try|try
+block|{
+name|o
+operator|=
 name|reader
 operator|.
 name|next
 argument_list|()
-decl_stmt|;
+expr_stmt|;
 if|if
 condition|(
 name|o
@@ -4512,8 +4518,6 @@ operator|==
 literal|null
 condition|)
 break|break;
-try|try
-block|{
 comment|// should currently be a List<Oper,Ver,Doc/Id>
 name|List
 name|entry
