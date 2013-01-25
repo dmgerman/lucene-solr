@@ -2513,8 +2513,23 @@ annotation|@
 name|Override
 specifier|public
 name|void
-name|afterRefresh
+name|beforeRefresh
 parameter_list|()
+block|{       }
+annotation|@
+name|Override
+specifier|public
+name|void
+name|afterRefresh
+parameter_list|(
+name|boolean
+name|didRefresh
+parameter_list|)
+block|{
+if|if
+condition|(
+name|didRefresh
+condition|)
 block|{
 name|afterRefreshCalled
 operator|.
@@ -2523,6 +2538,7 @@ argument_list|(
 literal|true
 argument_list|)
 expr_stmt|;
+block|}
 block|}
 block|}
 argument_list|)
