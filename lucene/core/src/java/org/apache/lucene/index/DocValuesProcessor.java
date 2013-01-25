@@ -140,8 +140,9 @@ name|DocValuesProcessor
 extends|extends
 name|StoredFieldsConsumer
 block|{
-comment|// nocommit wasteful we also keep a map ... double the
-comment|// hash lookups ... would be better if DFP had "the one map"?
+comment|// TODO: somewhat wasteful we also keep a map here; would
+comment|// be more efficient if we could "reuse" the map/hash
+comment|// lookup DocFieldProcessor already did "above"
 DECL|field|writers
 specifier|private
 specifier|final

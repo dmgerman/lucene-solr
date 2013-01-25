@@ -419,7 +419,7 @@ name|nextIsSet
 operator|=
 literal|false
 expr_stmt|;
-comment|// nocommit make a mutable number
+comment|// TODO: make a mutable number
 return|return
 name|nextValue
 return|;
@@ -689,7 +689,7 @@ name|nextIsSet
 operator|=
 literal|false
 expr_stmt|;
-comment|// nocommit make a mutable number
+comment|// TODO: make a mutable number
 return|return
 name|nextValue
 return|;

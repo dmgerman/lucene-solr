@@ -207,24 +207,16 @@ parameter_list|()
 throws|throws
 name|IOException
 block|{
-comment|// nocommit must this be a try/finally...?  i'd prefer
-comment|// not ...
-try|try
-block|{
 name|first
 operator|.
 name|finishDocument
 argument_list|()
 expr_stmt|;
-block|}
-finally|finally
-block|{
 name|second
 operator|.
 name|finishDocument
 argument_list|()
 expr_stmt|;
-block|}
 block|}
 block|}
 end_class
