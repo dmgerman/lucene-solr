@@ -5363,6 +5363,52 @@ return|;
 block|}
 else|else
 block|{
+specifier|final
+name|FieldInfo
+name|info
+init|=
+name|reader
+operator|.
+name|getFieldInfos
+argument_list|()
+operator|.
+name|fieldInfo
+argument_list|(
+name|field
+argument_list|)
+decl_stmt|;
+if|if
+condition|(
+name|info
+operator|!=
+literal|null
+operator|&&
+operator|!
+name|info
+operator|.
+name|isIndexed
+argument_list|()
+operator|&&
+name|info
+operator|.
+name|hasDocValues
+argument_list|()
+condition|)
+block|{
+comment|// we don't try to build a sorted instance from numeric/binary doc
+comment|// values because dedup can be very costly
+throw|throw
+operator|new
+name|IllegalArgumentException
+argument_list|(
+literal|"Cannot get terms index for \""
+operator|+
+name|field
+operator|+
+literal|"\": it isn't indexed and doesn't have sorted doc values"
+argument_list|)
+throw|;
+block|}
 return|return
 operator|(
 name|SortedDocValues
