@@ -250,6 +250,9 @@ operator|)
 decl_stmt|;
 if|if
 condition|(
+operator|(
+name|long
+operator|)
 name|numBlocks
 operator|*
 name|blockSize
