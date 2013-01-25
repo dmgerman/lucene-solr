@@ -112,7 +112,27 @@ name|SegmentWriteState
 import|;
 end_import
 
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|store
+operator|.
+name|CompoundFileDirectory
+import|;
+end_import
+
+begin_comment
+comment|/**  * Lucene 4.0 Norms Format.  *<p>  * Files:  *<ul>  *<li><tt>.nrm.cfs</tt>: {@link CompoundFileDirectory compound container}</li>  *<li><tt>.nrm.cfe</tt>: {@link CompoundFileDirectory compound entries}</li>  *</ul>  * Norms are implemented as DocValues, so other than file extension, norms are   * written exactly the same way as {@link Lucene40DocValuesFormat DocValues}.  *   * @see Lucene40DocValuesFormat  * @lucene.experimental  * @deprecated Only for reading old 4.0 and 4.1 segments  */
+end_comment
+
 begin_class
+annotation|@
+name|Deprecated
 DECL|class|Lucene40NormsFormat
 specifier|public
 class|class
@@ -120,6 +140,12 @@ name|Lucene40NormsFormat
 extends|extends
 name|NormsFormat
 block|{
+comment|/** Sole constructor. */
+DECL|method|Lucene40NormsFormat
+specifier|public
+name|Lucene40NormsFormat
+parameter_list|()
+block|{}
 annotation|@
 name|Override
 DECL|method|normsConsumer
