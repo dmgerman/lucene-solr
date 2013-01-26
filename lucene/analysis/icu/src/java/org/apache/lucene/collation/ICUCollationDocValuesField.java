@@ -52,6 +52,20 @@ name|apache
 operator|.
 name|lucene
 operator|.
+name|search
+operator|.
+name|FieldCacheRangeFilter
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
 name|util
 operator|.
 name|BytesRef
@@ -87,7 +101,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * nocommit  */
+comment|/**  * Indexes collation keys as a single-valued {@link SortedDocValuesField}.  *<p>  * This is more efficient that {@link ICUCollationKeyAnalyzer} if the field   * only has one value: no uninversion is necessary to sort on the field,   * locale-sensitive range queries can still work via {@link FieldCacheRangeFilter},   * and the underlying data structures built at index-time are likely more efficient   * and use less memory than FieldCache.  */
 end_comment
 
 begin_class
@@ -131,6 +145,9 @@ operator|new
 name|RawCollationKey
 argument_list|()
 decl_stmt|;
+comment|/**    * Create a new ICUCollationDocValuesField.    *<p>    * NOTE: you should not create a new one for each document, instead    * just make one and reuse it during your indexing process, setting    * the value via {@link #setStringValue(String)}.    * @param name field name    * @param collator Collator for generating collation keys.    */
+comment|// TODO: can we make this trap-free? maybe just synchronize on the collator
+comment|// instead?
 DECL|method|ICUCollationDocValuesField
 specifier|public
 name|ICUCollationDocValuesField
@@ -199,6 +216,8 @@ return|return
 name|name
 return|;
 block|}
+annotation|@
+name|Override
 DECL|method|setStringValue
 specifier|public
 name|void
@@ -252,7 +271,7 @@ return|return
 name|bytes
 return|;
 block|}
-comment|// nocommit: make this thing trap-free
+comment|// nocommit: UOE the other field methods? or set to empty bytesref initially so this just works...
 block|}
 end_class
 

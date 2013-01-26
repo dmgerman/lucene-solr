@@ -154,6 +154,7 @@ operator|=
 name|name
 expr_stmt|;
 block|}
+comment|/** Returns a {@link DocValuesConsumer} to write docvalues to the    *  index. */
 DECL|method|fieldsConsumer
 specifier|public
 specifier|abstract
@@ -166,6 +167,7 @@ parameter_list|)
 throws|throws
 name|IOException
 function_decl|;
+comment|/**     * Returns a {@link DocValuesProducer} to read docvalues from the index.     *<p>    * NOTE: by the time this call returns, it must hold open any files it will     * need to use; else, those files may be deleted. Additionally, required files     * may be deleted during the execution of this call before there is a chance     * to open them. Under these circumstances an IOException should be thrown by     * the implementation. IOExceptions are expected and will automatically cause     * a retry of the segment opening logic with the newly revised segments.    */
 DECL|method|fieldsProducer
 specifier|public
 specifier|abstract

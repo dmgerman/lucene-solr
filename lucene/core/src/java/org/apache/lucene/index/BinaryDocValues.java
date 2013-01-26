@@ -41,6 +41,12 @@ specifier|abstract
 class|class
 name|BinaryDocValues
 block|{
+comment|/** Sole constructor. (For invocation by subclass     * constructors, typically implicit.) */
+DECL|method|BinaryDocValues
+specifier|protected
+name|BinaryDocValues
+parameter_list|()
+block|{}
 comment|/** Lookup the value for document.    *    *<p><b>NOTE</b>: you should not share the provided    *  {@link BytesRef} result with other doc values sources    *  (other BinaryDocValues or SortedDocValues): a single    *  "private" instance should be used for each source. */
 DECL|method|get
 specifier|public

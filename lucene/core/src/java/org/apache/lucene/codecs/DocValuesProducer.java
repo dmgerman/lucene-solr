@@ -93,19 +93,7 @@ import|;
 end_import
 
 begin_comment
-comment|// nocommit add javadocs stating that this must open all
-end_comment
-
-begin_comment
-comment|// necessary files "on init", not later eg in .getXXX, else
-end_comment
-
-begin_comment
-comment|// an IW that deletes a commit will cause an SR to hit
-end_comment
-
-begin_comment
-comment|// exceptions....
+comment|/** Abstract API that produces numeric, binary and  * sorted docvalues.  *  * @lucene.experimental  */
 end_comment
 
 begin_class
@@ -117,6 +105,13 @@ name|DocValuesProducer
 implements|implements
 name|Closeable
 block|{
+comment|/** Sole constructor. (For invocation by subclass     *  constructors, typically implicit.) */
+DECL|method|DocValuesProducer
+specifier|protected
+name|DocValuesProducer
+parameter_list|()
+block|{}
+comment|/** Returns {@link NumericDocValues} for this field.    *  The returned instance need not be thread-safe: it will only be    *  used by a single thread. */
 DECL|method|getNumeric
 specifier|public
 specifier|abstract
@@ -129,6 +124,7 @@ parameter_list|)
 throws|throws
 name|IOException
 function_decl|;
+comment|/** Returns {@link BinaryDocValues} for this field.    *  The returned instance need not be thread-safe: it will only be    *  used by a single thread. */
 DECL|method|getBinary
 specifier|public
 specifier|abstract
@@ -141,6 +137,7 @@ parameter_list|)
 throws|throws
 name|IOException
 function_decl|;
+comment|/** Returns {@link SortedDocValues} for this field.    *  The returned instance need not be thread-safe: it will only be    *  used by a single thread. */
 DECL|method|getSorted
 specifier|public
 specifier|abstract

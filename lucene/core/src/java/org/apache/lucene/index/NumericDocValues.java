@@ -27,6 +27,12 @@ specifier|abstract
 class|class
 name|NumericDocValues
 block|{
+comment|/** Sole constructor. (For invocation by subclass     * constructors, typically implicit.) */
+DECL|method|NumericDocValues
+specifier|protected
+name|NumericDocValues
+parameter_list|()
+block|{}
 comment|/**    * Returns the numeric value for the specified document ID.    * @param docID document ID to lookup    * @return numeric value    */
 DECL|method|get
 specifier|public

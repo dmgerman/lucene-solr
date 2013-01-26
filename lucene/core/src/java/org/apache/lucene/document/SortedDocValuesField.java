@@ -45,7 +45,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  *<p>  * Field that stores  * a per-document {@link BytesRef} value, indexed for  * sorting.  Here's an example usage:  *   *<pre class="prettyprint">  *   document.add(new SortedBytesDocValuesField(name, new BytesRef("hello")));  *</pre>  *   *<p>  * If you also need to store the value, you should add a  * separate {@link StoredField} instance.  *   * */
+comment|/**  *<p>  * Field that stores  * a per-document {@link BytesRef} value, indexed for  * sorting.  Here's an example usage:  *   *<pre class="prettyprint">  *   document.add(new SortedDocValuesField(name, new BytesRef("hello")));  *</pre>  *   *<p>  * If you also need to store the value, you should add a  * separate {@link StoredField} instance.  *   * */
 end_comment
 
 begin_class

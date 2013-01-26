@@ -43,6 +43,12 @@ name|SortedDocValues
 extends|extends
 name|BinaryDocValues
 block|{
+comment|/** Sole constructor. (For invocation by subclass     * constructors, typically implicit.) */
+DECL|method|SortedDocValues
+specifier|protected
+name|SortedDocValues
+parameter_list|()
+block|{}
 comment|/**    * Returns the ordinal for the specified docID.    * @param  docID document ID to lookup    * @return ordinal for the document: this is dense, starts at 0, then    *         increments by 1 for the next value in sorted order.     */
 DECL|method|getOrd
 specifier|public

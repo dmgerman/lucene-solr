@@ -100,6 +100,7 @@ operator|new
 name|BytesRef
 argument_list|()
 decl_stmt|;
+comment|/** Creates a new TermsEnum over the provided values */
 DECL|method|SortedDocValuesTermsEnum
 specifier|public
 name|SortedDocValuesTermsEnum

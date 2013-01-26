@@ -31,7 +31,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  *<p>  * Field that stores a per-document<code>long</code> value for scoring,   * sorting or value retrieval. Here's an example usage:  *   *<pre class="prettyprint">  *   document.add(new LongDocValuesField(name, 22L));  *</pre>  *   *<p>  * If you also need to store the value, you should add a  * separate {@link StoredField} instance.  * */
+comment|/**  *<p>  * Field that stores a per-document<code>long</code> value for scoring,   * sorting or value retrieval. Here's an example usage:  *   *<pre class="prettyprint">  *   document.add(new NumericDocValuesField(name, 22L));  *</pre>  *   *<p>  * If you also need to store the value, you should add a  * separate {@link StoredField} instance.  * */
 end_comment
 
 begin_class
