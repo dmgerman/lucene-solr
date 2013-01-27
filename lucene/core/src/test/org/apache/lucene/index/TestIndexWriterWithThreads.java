@@ -2062,6 +2062,9 @@ name|trace
 index|[
 name|i
 index|]
+operator|.
+name|getMethodName
+argument_list|()
 argument_list|)
 condition|)
 block|{
