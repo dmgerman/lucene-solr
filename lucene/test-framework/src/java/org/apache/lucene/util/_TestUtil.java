@@ -6698,7 +6698,6 @@ condition|(
 name|dvType
 condition|)
 block|{
-comment|// nocommit: not quite right!
 case|case
 name|NUMERIC
 case|:

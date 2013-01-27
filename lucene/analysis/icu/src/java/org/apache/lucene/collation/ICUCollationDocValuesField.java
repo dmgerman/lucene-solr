@@ -203,6 +203,11 @@ name|e
 argument_list|)
 throw|;
 block|}
+name|fieldsData
+operator|=
+name|bytes
+expr_stmt|;
+comment|// so wrong setters cannot be called
 block|}
 annotation|@
 name|Override
@@ -259,19 +264,6 @@ operator|.
 name|size
 expr_stmt|;
 block|}
-annotation|@
-name|Override
-DECL|method|binaryValue
-specifier|public
-name|BytesRef
-name|binaryValue
-parameter_list|()
-block|{
-return|return
-name|bytes
-return|;
-block|}
-comment|// nocommit: UOE the other field methods? or set to empty bytesref initially so this just works...
 block|}
 end_class
 
