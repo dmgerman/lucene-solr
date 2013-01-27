@@ -148,6 +148,17 @@ operator|new
 name|BytesRef
 argument_list|()
 decl_stmt|;
+DECL|field|iwBytesUsed
+specifier|private
+specifier|final
+name|Counter
+name|iwBytesUsed
+decl_stmt|;
+DECL|field|bytesUsed
+specifier|private
+name|long
+name|bytesUsed
+decl_stmt|;
 comment|// nocommit this needs to update bytesUsed?
 DECL|method|BinaryDocValuesWriter
 specifier|public
@@ -157,7 +168,7 @@ name|FieldInfo
 name|fieldInfo
 parameter_list|,
 name|Counter
-name|counter
+name|iwBytesUsed
 parameter_list|)
 block|{
 name|this
@@ -173,7 +184,27 @@ operator|=
 operator|new
 name|BytesRefArray
 argument_list|(
-name|counter
+name|iwBytesUsed
+argument_list|)
+expr_stmt|;
+name|bytesUsed
+operator|=
+name|bytesRefArray
+operator|.
+name|bytesUsed
+argument_list|()
+expr_stmt|;
+name|this
+operator|.
+name|iwBytesUsed
+operator|=
+name|iwBytesUsed
+expr_stmt|;
+name|iwBytesUsed
+operator|.
+name|addAndGet
+argument_list|(
+name|bytesUsed
 argument_list|)
 expr_stmt|;
 block|}
@@ -292,6 +323,38 @@ name|append
 argument_list|(
 name|value
 argument_list|)
+expr_stmt|;
+name|updateBytesUsed
+argument_list|()
+expr_stmt|;
+block|}
+DECL|method|updateBytesUsed
+specifier|private
+name|void
+name|updateBytesUsed
+parameter_list|()
+block|{
+specifier|final
+name|long
+name|newBytesUsed
+init|=
+name|bytesRefArray
+operator|.
+name|bytesUsed
+argument_list|()
+decl_stmt|;
+name|iwBytesUsed
+operator|.
+name|addAndGet
+argument_list|(
+name|newBytesUsed
+operator|-
+name|bytesUsed
+argument_list|)
+expr_stmt|;
+name|bytesUsed
+operator|=
+name|newBytesUsed
 expr_stmt|;
 block|}
 annotation|@
@@ -448,8 +511,6 @@ block|}
 block|}
 argument_list|)
 expr_stmt|;
-comment|// nocommit
-comment|//reset();
 block|}
 annotation|@
 name|Override
@@ -458,19 +519,7 @@ specifier|public
 name|void
 name|abort
 parameter_list|()
-block|{
-comment|// nocommit
-comment|//reset();
-block|}
-DECL|method|reset
-specifier|private
-name|void
-name|reset
-parameter_list|()
-block|{
-comment|// nocommit
-comment|//bytesRefArray.clear();
-block|}
+block|{   }
 block|}
 end_class
 
