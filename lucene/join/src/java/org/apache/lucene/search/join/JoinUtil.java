@@ -146,6 +146,8 @@ name|TermsQuery
 argument_list|(
 name|toField
 argument_list|,
+name|fromQuery
+argument_list|,
 name|termsCollector
 operator|.
 name|getCollectorTerms
