@@ -372,7 +372,7 @@ name|toString
 parameter_list|()
 block|{
 return|return
-literal|"FourFlags(VInt8)"
+literal|"FourFlags(VInt)"
 return|;
 block|}
 block|}

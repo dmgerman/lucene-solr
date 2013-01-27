@@ -171,7 +171,7 @@ name|SHIFT_START_LONG
 init|=
 literal|0x20
 decl_stmt|;
-comment|/**    * The maximum term length (used for<code>byte[]</code> buffer size)    * for encoding<code>long</code> values.    * @see #longToPrefixCoded(long,int,BytesRef)    */
+comment|/**    * The maximum term length (used for<code>byte[]</code> buffer size)    * for encoding<code>long</code> values.    * @see #longToPrefixCodedBytes    */
 DECL|field|BUF_SIZE_LONG
 specifier|public
 specifier|static
@@ -195,7 +195,7 @@ name|SHIFT_START_INT
 init|=
 literal|0x60
 decl_stmt|;
-comment|/**    * The maximum term length (used for<code>byte[]</code> buffer size)    * for encoding<code>int</code> values.    * @see #intToPrefixCoded(int,int,BytesRef)    */
+comment|/**    * The maximum term length (used for<code>byte[]</code> buffer size)    * for encoding<code>int</code> values.    * @see #intToPrefixCodedBytes    */
 DECL|field|BUF_SIZE_INT
 specifier|public
 specifier|static
@@ -229,16 +229,90 @@ name|BytesRef
 name|bytes
 parameter_list|)
 block|{
+name|longToPrefixCodedBytes
+argument_list|(
+name|val
+argument_list|,
+name|shift
+argument_list|,
+name|bytes
+argument_list|)
+expr_stmt|;
+return|return
+name|bytes
+operator|.
+name|hashCode
+argument_list|()
+return|;
+block|}
+comment|/**    * Returns prefix coded bits after reducing the precision by<code>shift</code> bits.    * This is method is used by {@link NumericTokenStream}.    * After encoding, {@code bytes.offset} will always be 0.    * @param val the numeric value    * @param shift how many bits to strip from the right    * @param bytes will contain the encoded value    * @return the hash code for indexing (TermsHash)    */
+DECL|method|intToPrefixCoded
+specifier|public
+specifier|static
+name|int
+name|intToPrefixCoded
+parameter_list|(
+specifier|final
+name|int
+name|val
+parameter_list|,
+specifier|final
+name|int
+name|shift
+parameter_list|,
+specifier|final
+name|BytesRef
+name|bytes
+parameter_list|)
+block|{
+name|intToPrefixCodedBytes
+argument_list|(
+name|val
+argument_list|,
+name|shift
+argument_list|,
+name|bytes
+argument_list|)
+expr_stmt|;
+return|return
+name|bytes
+operator|.
+name|hashCode
+argument_list|()
+return|;
+block|}
+comment|/**    * Returns prefix coded bits after reducing the precision by<code>shift</code> bits.    * This is method is used by {@link NumericTokenStream}.    * After encoding, {@code bytes.offset} will always be 0.    * @param val the numeric value    * @param shift how many bits to strip from the right    * @param bytes will contain the encoded value    */
+DECL|method|longToPrefixCodedBytes
+specifier|public
+specifier|static
+name|void
+name|longToPrefixCodedBytes
+parameter_list|(
+specifier|final
+name|long
+name|val
+parameter_list|,
+specifier|final
+name|int
+name|shift
+parameter_list|,
+specifier|final
+name|BytesRef
+name|bytes
+parameter_list|)
+block|{
 if|if
 condition|(
+operator|(
 name|shift
-operator|>
-literal|63
-operator|||
-name|shift
-operator|<
+operator|&
+operator|~
+literal|0x3f
+operator|)
+operator|!=
 literal|0
 condition|)
+comment|// ensure shift is 0..63
 throw|throw
 operator|new
 name|IllegalArgumentException
@@ -247,20 +321,25 @@ literal|"Illegal shift value, must be 0..63"
 argument_list|)
 throw|;
 name|int
-name|hash
-decl_stmt|,
 name|nChars
 init|=
+operator|(
+operator|(
 operator|(
 literal|63
 operator|-
 name|shift
 operator|)
-operator|/
-literal|7
+operator|*
+literal|37
+operator|)
+operator|>>
+literal|8
+operator|)
 operator|+
 literal|1
 decl_stmt|;
+comment|// i/7 is the same as (i*37)>>8 for i in 0..63
 name|bytes
 operator|.
 name|offset
@@ -275,6 +354,7 @@ name|nChars
 operator|+
 literal|1
 expr_stmt|;
+comment|// one extra for the byte that contains the shift info
 if|if
 condition|(
 name|bytes
@@ -290,13 +370,17 @@ condition|)
 block|{
 name|bytes
 operator|.
-name|grow
-argument_list|(
+name|bytes
+operator|=
+operator|new
+name|byte
+index|[
 name|NumericUtils
 operator|.
 name|BUF_SIZE_LONG
-argument_list|)
+index|]
 expr_stmt|;
+comment|// use the max
 block|}
 name|bytes
 operator|.
@@ -309,13 +393,9 @@ call|(
 name|byte
 call|)
 argument_list|(
-name|hash
-operator|=
-operator|(
 name|SHIFT_START_LONG
 operator|+
 name|shift
-operator|)
 argument_list|)
 expr_stmt|;
 name|long
@@ -360,48 +440,13 @@ operator|>>>=
 literal|7
 expr_stmt|;
 block|}
-comment|// calculate hash
-for|for
-control|(
-name|int
-name|i
-init|=
-literal|1
-init|;
-name|i
-operator|<
-name|bytes
-operator|.
-name|length
-condition|;
-name|i
-operator|++
-control|)
-block|{
-name|hash
-operator|=
-literal|31
-operator|*
-name|hash
-operator|+
-name|bytes
-operator|.
-name|bytes
-index|[
-name|i
-index|]
-expr_stmt|;
 block|}
-return|return
-name|hash
-return|;
-block|}
-comment|/**    * Returns prefix coded bits after reducing the precision by<code>shift</code> bits.    * This is method is used by {@link NumericTokenStream}.    * After encoding, {@code bytes.offset} will always be 0.     * @param val the numeric value    * @param shift how many bits to strip from the right    * @param bytes will contain the encoded value    * @return the hash code for indexing (TermsHash)    */
-DECL|method|intToPrefixCoded
+comment|/**    * Returns prefix coded bits after reducing the precision by<code>shift</code> bits.    * This is method is used by {@link NumericTokenStream}.    * After encoding, {@code bytes.offset} will always be 0.     * @param val the numeric value    * @param shift how many bits to strip from the right    * @param bytes will contain the encoded value    */
+DECL|method|intToPrefixCodedBytes
 specifier|public
 specifier|static
-name|int
-name|intToPrefixCoded
+name|void
+name|intToPrefixCodedBytes
 parameter_list|(
 specifier|final
 name|int
@@ -418,14 +463,16 @@ parameter_list|)
 block|{
 if|if
 condition|(
+operator|(
 name|shift
-operator|>
-literal|31
-operator|||
-name|shift
-operator|<
+operator|&
+operator|~
+literal|0x1f
+operator|)
+operator|!=
 literal|0
 condition|)
+comment|// ensure shift is 0..31
 throw|throw
 operator|new
 name|IllegalArgumentException
@@ -434,20 +481,25 @@ literal|"Illegal shift value, must be 0..31"
 argument_list|)
 throw|;
 name|int
-name|hash
-decl_stmt|,
 name|nChars
 init|=
+operator|(
+operator|(
 operator|(
 literal|31
 operator|-
 name|shift
 operator|)
-operator|/
-literal|7
+operator|*
+literal|37
+operator|)
+operator|>>
+literal|8
+operator|)
 operator|+
 literal|1
 decl_stmt|;
+comment|// i/7 is the same as (i*37)>>8 for i in 0..63
 name|bytes
 operator|.
 name|offset
@@ -462,6 +514,7 @@ name|nChars
 operator|+
 literal|1
 expr_stmt|;
+comment|// one extra for the byte that contains the shift info
 if|if
 condition|(
 name|bytes
@@ -477,13 +530,17 @@ condition|)
 block|{
 name|bytes
 operator|.
-name|grow
-argument_list|(
+name|bytes
+operator|=
+operator|new
+name|byte
+index|[
 name|NumericUtils
 operator|.
-name|BUF_SIZE_INT
-argument_list|)
+name|BUF_SIZE_LONG
+index|]
 expr_stmt|;
+comment|// use the max
 block|}
 name|bytes
 operator|.
@@ -496,13 +553,9 @@ call|(
 name|byte
 call|)
 argument_list|(
-name|hash
-operator|=
-operator|(
 name|SHIFT_START_INT
 operator|+
 name|shift
-operator|)
 argument_list|)
 expr_stmt|;
 name|int
@@ -547,41 +600,6 @@ operator|>>>=
 literal|7
 expr_stmt|;
 block|}
-comment|// calculate hash
-for|for
-control|(
-name|int
-name|i
-init|=
-literal|1
-init|;
-name|i
-operator|<
-name|bytes
-operator|.
-name|length
-condition|;
-name|i
-operator|++
-control|)
-block|{
-name|hash
-operator|=
-literal|31
-operator|*
-name|hash
-operator|+
-name|bytes
-operator|.
-name|bytes
-index|[
-name|i
-index|]
-expr_stmt|;
-block|}
-return|return
-name|hash
-return|;
 block|}
 comment|/**    * Returns the shift value from a prefix encoded {@code long}.    * @throws NumberFormatException if the supplied {@link BytesRef} is    * not correctly prefix encoded.    */
 DECL|method|getPrefixCodedLongShift
@@ -683,7 +701,7 @@ return|return
 name|shift
 return|;
 block|}
-comment|/**    * Returns a long from prefixCoded bytes.    * Rightmost bits will be zero for lower precision codes.    * This method can be used to decode a term's value.    * @throws NumberFormatException if the supplied {@link BytesRef} is    * not correctly prefix encoded.    * @see #longToPrefixCoded(long,int,BytesRef)    */
+comment|/**    * Returns a long from prefixCoded bytes.    * Rightmost bits will be zero for lower precision codes.    * This method can be used to decode a term's value.    * @throws NumberFormatException if the supplied {@link BytesRef} is    * not correctly prefix encoded.    * @see #longToPrefixCodedBytes    */
 DECL|method|prefixCodedToLong
 specifier|public
 specifier|static
@@ -798,7 +816,7 @@ operator|^
 literal|0x8000000000000000L
 return|;
 block|}
-comment|/**    * Returns an int from prefixCoded bytes.    * Rightmost bits will be zero for lower precision codes.    * This method can be used to decode a term's value.    * @throws NumberFormatException if the supplied {@link BytesRef} is    * not correctly prefix encoded.    * @see #intToPrefixCoded(int,int,BytesRef)    */
+comment|/**    * Returns an int from prefixCoded bytes.    * Rightmost bits will be zero for lower precision codes.    * This method can be used to decode a term's value.    * @throws NumberFormatException if the supplied {@link BytesRef} is    * not correctly prefix encoded.    * @see #intToPrefixCodedBytes    */
 DECL|method|prefixCodedToInt
 specifier|public
 specifier|static
@@ -1528,7 +1546,7 @@ argument_list|(
 name|BUF_SIZE_LONG
 argument_list|)
 decl_stmt|;
-name|longToPrefixCoded
+name|longToPrefixCodedBytes
 argument_list|(
 name|min
 argument_list|,
@@ -1537,7 +1555,7 @@ argument_list|,
 name|minBytes
 argument_list|)
 expr_stmt|;
-name|longToPrefixCoded
+name|longToPrefixCodedBytes
 argument_list|(
 name|max
 argument_list|,
@@ -1619,7 +1637,7 @@ argument_list|(
 name|BUF_SIZE_INT
 argument_list|)
 decl_stmt|;
-name|intToPrefixCoded
+name|intToPrefixCodedBytes
 argument_list|(
 name|min
 argument_list|,
@@ -1628,7 +1646,7 @@ argument_list|,
 name|minBytes
 argument_list|)
 expr_stmt|;
-name|intToPrefixCoded
+name|intToPrefixCodedBytes
 argument_list|(
 name|max
 argument_list|,

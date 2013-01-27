@@ -28,16 +28,6 @@ end_import
 
 begin_import
 import|import
-name|java
-operator|.
-name|io
-operator|.
-name|Serializable
-import|;
-end_import
-
-begin_import
-import|import
 name|org
 operator|.
 name|apache
@@ -177,8 +167,6 @@ DECL|class|CategoryListParams
 specifier|public
 class|class
 name|CategoryListParams
-implements|implements
-name|Serializable
 block|{
 comment|/** OrdinalPolicy defines which ordinals are encoded for every document. */
 DECL|enum|OrdinalPolicy
@@ -428,6 +416,30 @@ parameter_list|()
 block|{
 return|return
 name|DEFAULT_ORDINAL_POLICY
+return|;
+block|}
+annotation|@
+name|Override
+DECL|method|toString
+specifier|public
+name|String
+name|toString
+parameter_list|()
+block|{
+return|return
+literal|"field="
+operator|+
+name|field
+operator|+
+literal|" encoder="
+operator|+
+name|createEncoder
+argument_list|()
+operator|+
+literal|" ordinalPolicy="
+operator|+
+name|getOrdinalPolicy
+argument_list|()
 return|;
 block|}
 block|}

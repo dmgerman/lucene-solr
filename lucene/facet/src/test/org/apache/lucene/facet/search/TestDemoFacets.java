@@ -92,6 +92,20 @@ name|lucene
 operator|.
 name|facet
 operator|.
+name|FacetTestCase
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|facet
+operator|.
 name|FacetTestUtils
 import|;
 end_import
@@ -328,9 +342,11 @@ name|apache
 operator|.
 name|lucene
 operator|.
-name|store
+name|search
 operator|.
-name|Directory
+name|BooleanClause
+operator|.
+name|Occur
 import|;
 end_import
 
@@ -342,9 +358,9 @@ name|apache
 operator|.
 name|lucene
 operator|.
-name|util
+name|store
 operator|.
-name|LuceneTestCase
+name|Directory
 import|;
 end_import
 
@@ -354,7 +370,7 @@ specifier|public
 class|class
 name|TestDemoFacets
 extends|extends
-name|LuceneTestCase
+name|FacetTestCase
 block|{
 DECL|field|taxoWriter
 specifier|private
@@ -366,10 +382,10 @@ specifier|private
 name|RandomIndexWriter
 name|writer
 decl_stmt|;
-DECL|field|docBuilder
+DECL|field|facetFields
 specifier|private
 name|FacetFields
-name|docBuilder
+name|facetFields
 decl_stmt|;
 DECL|method|add
 specifier|private
@@ -425,7 +441,7 @@ argument_list|)
 argument_list|)
 expr_stmt|;
 block|}
-name|docBuilder
+name|facetFields
 operator|.
 name|addFields
 argument_list|(
@@ -491,7 +507,7 @@ argument_list|)
 expr_stmt|;
 comment|// Reused across documents, to add the necessary facet
 comment|// fields:
-name|docBuilder
+name|facetFields
 operator|=
 operator|new
 name|FacetFields
@@ -718,6 +734,10 @@ argument_list|,
 operator|new
 name|MatchAllDocsQuery
 argument_list|()
+argument_list|,
+name|Occur
+operator|.
+name|MUST
 argument_list|,
 operator|new
 name|CategoryPath

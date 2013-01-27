@@ -62,6 +62,20 @@ name|lucene
 operator|.
 name|facet
 operator|.
+name|FacetTestCase
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|facet
+operator|.
 name|taxonomy
 operator|.
 name|CategoryPath
@@ -138,7 +152,9 @@ name|lucene
 operator|.
 name|index
 operator|.
-name|LogByteSizeMergePolicy
+name|IndexWriterConfig
+operator|.
+name|OpenMode
 import|;
 end_import
 
@@ -152,9 +168,7 @@ name|lucene
 operator|.
 name|index
 operator|.
-name|IndexWriterConfig
-operator|.
-name|OpenMode
+name|LogByteSizeMergePolicy
 import|;
 end_import
 
@@ -232,20 +246,6 @@ begin_import
 import|import
 name|org
 operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|util
-operator|.
-name|LuceneTestCase
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
 name|junit
 operator|.
 name|Test
@@ -262,7 +262,7 @@ specifier|public
 class|class
 name|TestDirectoryTaxonomyReader
 extends|extends
-name|LuceneTestCase
+name|FacetTestCase
 block|{
 annotation|@
 name|Test

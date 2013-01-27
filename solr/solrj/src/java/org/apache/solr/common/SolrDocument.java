@@ -346,7 +346,7 @@ name|value
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**    * This will add a field to the document.  If fields already exist with this    * name it will append value to the collection. If the value is Collection,    * each value will be added independently.    */
+comment|/**    * This will add a field to the document.  If fields already exist with this    * name it will append value to the collection. If the value is Collection,    * each value will be added independently.     *     * The class type of value and the name parameter should match schema.xml.     * schema.xml can be found in conf directory under the solr home by default.    *     * @param name Name of the field, should match one of the field names defined under "fields" tag in schema.xml.    * @param value Value of the field, should be of same class type as defined by "type" attribute of the corresponding field in schema.xml.     */
 annotation|@
 name|SuppressWarnings
 argument_list|(

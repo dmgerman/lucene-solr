@@ -148,6 +148,10 @@ begin_comment
 comment|/** Prints how many ords are under each dimension. */
 end_comment
 
+begin_comment
+comment|// java -cp ../build/core/classes/java:../build/facet/classes/java org.apache.lucene.facet.util.PrintTaxonomyStats -printTree /s2/scratch/indices/wikibig.trunk.noparents.facets.Lucene41.nd1M/facets
+end_comment
+
 begin_class
 DECL|class|PrintTaxonomyStats
 specifier|public

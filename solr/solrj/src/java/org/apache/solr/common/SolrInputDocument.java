@@ -179,7 +179,7 @@ block|}
 comment|///////////////////////////////////////////////////////////////////
 comment|// Add / Set fields
 comment|///////////////////////////////////////////////////////////////////
-comment|/**     * Add a field with implied null value for boost.    *     * @see #addField(String, Object, float)    * @param name name of the field to add    * @param value value of the field    */
+comment|/**     * Add a field with implied null value for boost.    *     * The class type of value and the name parameter should match schema.xml.     * schema.xml can be found in conf directory under the solr home by default.    *     * @param name Name of the field, should match one of the field names defined under "fields" tag in schema.xml.    * @param value Value of the field, should be of same class type as defined by "type" attribute of the corresponding field in schema.xml.     * @see #addField(String, Object, float)    */
 DECL|method|addField
 specifier|public
 name|void
@@ -364,7 +364,7 @@ name|boost
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**    * Adds a field with the given name, value and boost.  If a field with the    * name already exists, then the given value is appended to the value of that    * field, with the new boost. If the value is a collection, then each of its    * values will be added to the field.    *    * @param name Name of the field to add    * @param value Value of the field    * @param boost Boost value for the field    */
+comment|/**    * Adds a field with the given name, value and boost.  If a field with the    * name already exists, then the given value is appended to the value of that    * field, with the new boost. If the value is a collection, then each of its    * values will be added to the field.    *    * The class type of value and the name parameter should match schema.xml.     * schema.xml can be found in conf directory under the solr home by default.    *     * @param name Name of the field, should match one of the field names defined under "fields" tag in schema.xml.    * @param value Value of the field, should be of same class type as defined by "type" attribute of the corresponding field in schema.xml.     * @param boost Boost value for the field    */
 DECL|method|addField
 specifier|public
 name|void
