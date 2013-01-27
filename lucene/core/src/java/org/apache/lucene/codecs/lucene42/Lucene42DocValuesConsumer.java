@@ -974,8 +974,6 @@ parameter_list|()
 throws|throws
 name|IOException
 block|{
-comment|// nocommit: just write this to a RAMfile or something and flush it here, with #fields first.
-comment|// this meta is a tiny file so this hurts nobody
 name|boolean
 name|success
 init|=
@@ -998,6 +996,7 @@ operator|-
 literal|1
 argument_list|)
 expr_stmt|;
+comment|// write EOF marker
 block|}
 name|success
 operator|=

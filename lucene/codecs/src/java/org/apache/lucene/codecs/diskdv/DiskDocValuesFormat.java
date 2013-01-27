@@ -99,16 +99,13 @@ import|;
 end_import
 
 begin_comment
-comment|// nocommit fix this
-end_comment
-
-begin_comment
-comment|/**  * Internally there are only 2 field types:  * BINARY: a big byte[]  * NUMERIC: packed ints  *  * NumericField = NUMERIC  * fixedLength BinaryField = BINARY  * variableLength BinaryField = BINARY + NUMERIC (addresses)  * fixedLength SortedField = BINARY + NUMERIC (ords)  * variableLength SortedField = BINARY + NUMERIC (addresses) + NUMERIC (ords)   */
+comment|/**  * DocValues format that keeps everything on disk.  *<p>  * Internally there are only 2 field types:  *<ul>  *<li>BINARY: a big byte[].  *<li>NUMERIC: packed ints  *</ul>  * SORTED is encoded as BINARY + NUMERIC  *<p>  * NOTE: Don't use this format in production (its not very efficient).  * Most likely you would want some parts in RAM, other parts on disk.   *<p>  * @lucene.experimental  */
 end_comment
 
 begin_class
 DECL|class|DiskDocValuesFormat
 specifier|public
+specifier|final
 class|class
 name|DiskDocValuesFormat
 extends|extends
