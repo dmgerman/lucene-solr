@@ -202,6 +202,9 @@ block|}
 block|}
 decl_stmt|;
 comment|/** If {@code key} exists, returns its ordinal, else    *  returns {@code -insertionPoint-1}, like {@code    *  Arrays.binarySearch}.    *    *  @param key Key to look up    *  @param spare Spare BytesRef    **/
+comment|// nocommit: what does spare mean? its no spare: because people rely upon its return value!
+comment|// if its 'result' then the parameter and javadoc needs changing, otherwise things need fixing
+comment|// unconditionally set its value to "NONSENSE" bytes to see the bugs!
 DECL|method|lookupTerm
 specifier|public
 name|int
@@ -293,9 +296,8 @@ expr_stmt|;
 block|}
 else|else
 block|{
-comment|// nocommit is this the right way... else caller can
-comment|// pass this spare down to DiskDV, which will then
-comment|// "use" our byte[] ...
+comment|// nocommit: we shouldnt have to set spare at all if its actually a spare, but its not!
+comment|// ant test  -Dtestcase=TestFieldCacheRewriteMethod -Dtests.method=testRegexps -Dtests.seed=AFC4A08B212CE143 -Dtests.slow=true -Dtests.locale=th -Dtests.timezone=Canada/Mountain -Dtests.file.encoding=ISO-8859-1
 name|spare
 operator|.
 name|bytes
@@ -322,7 +324,8 @@ return|;
 comment|// key found
 block|}
 block|}
-comment|// nocommit is this the right way...
+comment|// nocommit: we shouldnt have to set spare at all if its actually a spare, but its not!
+comment|// ant test  -Dtestcase=TestFieldCacheRewriteMethod -Dtests.method=testRegexps -Dtests.seed=AFC4A08B212CE143 -Dtests.slow=true -Dtests.locale=th -Dtests.timezone=Canada/Mountain -Dtests.file.encoding=ISO-8859-1
 name|spare
 operator|.
 name|bytes

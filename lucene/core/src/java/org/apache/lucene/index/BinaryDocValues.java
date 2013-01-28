@@ -47,7 +47,7 @@ specifier|protected
 name|BinaryDocValues
 parameter_list|()
 block|{}
-comment|/** Lookup the value for document.    *    *<p><b>NOTE</b>: you should not share the provided    *  {@link BytesRef} result with other doc values sources    *  (other BinaryDocValues or SortedDocValues): a single    *  "private" instance should be used for each source. */
+comment|/** Lookup the value for document. */
 DECL|method|get
 specifier|public
 specifier|abstract
