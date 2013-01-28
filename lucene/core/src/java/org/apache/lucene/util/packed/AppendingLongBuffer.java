@@ -565,8 +565,6 @@ name|k
 operator|<
 name|MAX_PENDING_COUNT
 condition|;
-operator|++
-name|k
 control|)
 block|{
 name|k
@@ -630,9 +628,15 @@ name|vOff
 operator|<
 name|valuesOff
 operator|||
+operator|(
+name|vOff
+operator|==
+name|valuesOff
+operator|&&
 name|pOff
 operator|<
 name|pendingOff
+operator|)
 return|;
 block|}
 comment|/** Return the next long in the buffer. */
