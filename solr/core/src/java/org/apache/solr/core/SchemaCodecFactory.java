@@ -220,7 +220,7 @@ name|field
 argument_list|)
 return|;
 block|}
-comment|// nocommit: dv too
+comment|// TODO: when dv support is added to solr, add it here too
 block|}
 expr_stmt|;
 block|}

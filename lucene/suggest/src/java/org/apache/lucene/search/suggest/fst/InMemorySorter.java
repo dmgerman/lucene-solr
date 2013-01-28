@@ -72,6 +72,20 @@ name|BytesRefArray
 import|;
 end_import
 
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|util
+operator|.
+name|Counter
+import|;
+end_import
+
 begin_comment
 comment|/**  * An {@link BytesRefSorter} that keeps all the entries in memory.  * @lucene.experimental  * @lucene.internal  */
 end_comment
@@ -93,7 +107,12 @@ name|buffer
 init|=
 operator|new
 name|BytesRefArray
+argument_list|(
+name|Counter
+operator|.
+name|newCounter
 argument_list|()
+argument_list|)
 decl_stmt|;
 DECL|field|closed
 specifier|private

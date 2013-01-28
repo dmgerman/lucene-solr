@@ -133,7 +133,12 @@ name|list
 init|=
 operator|new
 name|BytesRefArray
+argument_list|(
+name|Counter
+operator|.
+name|newCounter
 argument_list|()
+argument_list|)
 decl_stmt|;
 name|List
 argument_list|<
@@ -424,7 +429,12 @@ name|list
 init|=
 operator|new
 name|BytesRefArray
+argument_list|(
+name|Counter
+operator|.
+name|newCounter
 argument_list|()
+argument_list|)
 decl_stmt|;
 name|List
 argument_list|<

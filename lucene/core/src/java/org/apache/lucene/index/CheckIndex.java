@@ -6614,7 +6614,6 @@ name|BinaryDocValues
 name|dv
 parameter_list|)
 block|{
-comment|// nocommit what else to check ...
 name|BytesRef
 name|scratch
 init|=
@@ -7155,7 +7154,6 @@ name|NumericDocValues
 name|ndv
 parameter_list|)
 block|{
-comment|// nocommit what else to check!
 for|for
 control|(
 name|int

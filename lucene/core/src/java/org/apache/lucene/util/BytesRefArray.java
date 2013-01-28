@@ -85,23 +85,6 @@ specifier|final
 name|Counter
 name|bytesUsed
 decl_stmt|;
-comment|/**    * Creates a new {@link BytesRefArray}    */
-DECL|method|BytesRefArray
-specifier|public
-name|BytesRefArray
-parameter_list|()
-block|{
-name|this
-argument_list|(
-name|Counter
-operator|.
-name|newCounter
-argument_list|(
-literal|false
-argument_list|)
-argument_list|)
-expr_stmt|;
-block|}
 comment|/**    * Creates a new {@link BytesRefArray} with a counter to track allocated bytes    */
 DECL|method|BytesRefArray
 specifier|public
@@ -360,20 +343,6 @@ operator|+
 name|lastElement
 argument_list|)
 throw|;
-block|}
-comment|/**    * Returns the number internally used bytes to hold the appended bytes in    * memory    *     * @return the number internally used bytes to hold the appended bytes in    *         memory    */
-DECL|method|bytesUsed
-specifier|public
-name|long
-name|bytesUsed
-parameter_list|()
-block|{
-return|return
-name|bytesUsed
-operator|.
-name|get
-argument_list|()
-return|;
 block|}
 DECL|method|sort
 specifier|private

@@ -1408,8 +1408,6 @@ name|ord
 argument_list|)
 expr_stmt|;
 block|}
-comment|// nocommit: can/should we make override merge + make it smarter to pull the values
-comment|// directly from disk for fields that arent already loaded up in ram?
 block|}
 end_class
 
