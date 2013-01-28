@@ -400,9 +400,7 @@ block|,
 name|DocValuesType
 operator|.
 name|SORTED
-block|,
-comment|// nocommit DocValues.Type.FLOAT_64,
-block|}
+block|,     }
 decl_stmt|;
 name|Directory
 name|dir

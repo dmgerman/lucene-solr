@@ -4202,7 +4202,6 @@ return|return
 name|collector
 return|;
 block|}
-comment|// nocommit: isnt this method elsehwere in this test? either deja-vu or i fixed one just like it a few hundred lines back
 DECL|method|addGroupField
 specifier|private
 name|void
