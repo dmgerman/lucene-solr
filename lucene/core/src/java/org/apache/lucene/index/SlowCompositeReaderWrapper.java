@@ -325,7 +325,6 @@ block|{
 name|ensureOpen
 argument_list|()
 expr_stmt|;
-comment|// nocommit hmm
 return|return
 name|MultiDocValues
 operator|.
