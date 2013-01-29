@@ -167,7 +167,7 @@ argument_list|)
 annotation|@
 name|Ignore
 argument_list|(
-literal|"probably very slow"
+literal|"takes ~ 30 minutes"
 argument_list|)
 DECL|class|Test2BDocValues
 specifier|public
