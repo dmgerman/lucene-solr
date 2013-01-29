@@ -2145,7 +2145,6 @@ argument_list|)
 expr_stmt|;
 block|}
 comment|// seek the enum around (note this isn't a great test here)
-comment|// nocommit
 name|int
 name|num
 init|=
