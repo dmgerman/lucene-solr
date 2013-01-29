@@ -309,7 +309,7 @@ name|iterations
 operator|*
 name|decoder
 operator|.
-name|valueCount
+name|byteValueCount
 argument_list|()
 argument_list|)
 expr_stmt|;
@@ -349,7 +349,7 @@ name|BLOCK_SIZE
 operator|/
 name|decoder
 operator|.
-name|valueCount
+name|byteValueCount
 argument_list|()
 argument_list|)
 return|;
@@ -931,7 +931,7 @@ name|iters
 operator|*
 name|encoder
 operator|.
-name|valueCount
+name|byteValueCount
 argument_list|()
 operator|>=
 name|BLOCK_SIZE
@@ -946,16 +946,12 @@ name|numBits
 index|]
 decl_stmt|;
 assert|assert
-operator|(
 name|iters
 operator|*
 name|encoder
 operator|.
-name|blockCount
+name|byteBlockCount
 argument_list|()
-operator|)
-operator|<<
-literal|3
 operator|>=
 name|encodedSize
 assert|;
@@ -1105,7 +1101,7 @@ name|iters
 operator|*
 name|decoder
 operator|.
-name|valueCount
+name|byteValueCount
 argument_list|()
 operator|>=
 name|BLOCK_SIZE

@@ -1062,16 +1062,28 @@ specifier|static
 interface|interface
 name|Decoder
 block|{
-comment|/**      * The minimum number of long blocks to decode in a single call.      */
-DECL|method|blockCount
+comment|/**      * The minimum number of long blocks to encode in a single iteration, when      * using long encoding.      */
+DECL|method|longBlockCount
 name|int
-name|blockCount
+name|longBlockCount
 parameter_list|()
 function_decl|;
-comment|/**      * The number of values that can be stored in<code>blockCount()</code> long      * blocks.      */
-DECL|method|valueCount
+comment|/**      * The number of values that can be stored in {@link #longBlockCount()} long      * blocks.      */
+DECL|method|longValueCount
 name|int
-name|valueCount
+name|longValueCount
+parameter_list|()
+function_decl|;
+comment|/**      * The minimum number of byte blocks to encode in a single iteration, when      * using byte encoding.      */
+DECL|method|byteBlockCount
+name|int
+name|byteBlockCount
+parameter_list|()
+function_decl|;
+comment|/**      * The number of values that can be stored in {@link #byteBlockCount()} byte      * blocks.      */
+DECL|method|byteValueCount
+name|int
+name|byteValueCount
 parameter_list|()
 function_decl|;
 comment|/**      * Read<code>iterations * blockCount()</code> blocks from<code>blocks</code>,      * decode them and write<code>iterations * valueCount()</code> values into      *<code>values</code>.      *      * @param blocks       the long blocks that hold packed integer values      * @param blocksOffset the offset where to start reading blocks      * @param values       the values buffer      * @param valuesOffset the offset where to start writing values      * @param iterations   controls how much data to decode      */
@@ -1174,16 +1186,28 @@ specifier|static
 interface|interface
 name|Encoder
 block|{
-comment|/**      * The minimum number of long blocks to encode in a single call.      */
-DECL|method|blockCount
+comment|/**      * The minimum number of long blocks to encode in a single iteration, when      * using long encoding.      */
+DECL|method|longBlockCount
 name|int
-name|blockCount
+name|longBlockCount
 parameter_list|()
 function_decl|;
-comment|/**      * The number of values that can be stored in<code>blockCount()</code> long      * blocks.      */
-DECL|method|valueCount
+comment|/**      * The number of values that can be stored in {@link #longBlockCount()} long      * blocks.      */
+DECL|method|longValueCount
 name|int
-name|valueCount
+name|longValueCount
+parameter_list|()
+function_decl|;
+comment|/**      * The minimum number of byte blocks to encode in a single iteration, when      * using byte encoding.      */
+DECL|method|byteBlockCount
+name|int
+name|byteBlockCount
+parameter_list|()
+function_decl|;
+comment|/**      * The number of values that can be stored in {@link #byteBlockCount()} byte      * blocks.      */
+DECL|method|byteValueCount
+name|int
+name|byteValueCount
 parameter_list|()
 function_decl|;
 comment|/**      * Read<code>iterations * valueCount()</code> values from<code>values</code>,      * encode them and write<code>iterations * blockCount()</code> blocks into      *<code>blocks</code>.      *      * @param blocks       the long blocks that hold packed integer values      * @param blocksOffset the offset where to start writing blocks      * @param values       the values buffer      * @param valuesOffset the offset where to start reading values      * @param iterations   controls how much data to encode      */

@@ -446,7 +446,7 @@ decl_stmt|;
 assert|assert
 name|decoder
 operator|.
-name|blockCount
+name|longBlockCount
 argument_list|()
 operator|==
 literal|1
@@ -454,7 +454,7 @@ assert|;
 assert|assert
 name|decoder
 operator|.
-name|valueCount
+name|longValueCount
 argument_list|()
 operator|==
 name|valuesPerBlock
@@ -721,7 +721,7 @@ decl_stmt|;
 assert|assert
 name|op
 operator|.
-name|blockCount
+name|longBlockCount
 argument_list|()
 operator|==
 literal|1
@@ -729,7 +729,7 @@ assert|;
 assert|assert
 name|op
 operator|.
-name|valueCount
+name|longValueCount
 argument_list|()
 operator|==
 name|valuesPerBlock

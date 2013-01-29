@@ -184,13 +184,11 @@ operator|=
 operator|new
 name|byte
 index|[
-literal|8
-operator|*
 name|iterations
 operator|*
 name|encoder
 operator|.
-name|blockCount
+name|byteBlockCount
 argument_list|()
 index|]
 expr_stmt|;
@@ -203,7 +201,7 @@ name|iterations
 operator|*
 name|encoder
 operator|.
-name|valueCount
+name|byteValueCount
 argument_list|()
 index|]
 expr_stmt|;
