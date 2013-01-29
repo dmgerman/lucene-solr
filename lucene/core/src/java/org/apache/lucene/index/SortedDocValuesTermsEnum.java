@@ -145,7 +145,6 @@ argument_list|,
 name|term
 argument_list|)
 decl_stmt|;
-comment|// nocommit>= 0!?
 if|if
 condition|(
 name|ord
@@ -203,7 +202,7 @@ return|;
 block|}
 else|else
 block|{
-comment|// nocommit hmm can we avoid this "extra" lookup?:
+comment|// TODO: hmm can we avoid this "extra" lookup?:
 name|values
 operator|.
 name|lookupOrd
