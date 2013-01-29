@@ -574,6 +574,37 @@ name|DocValuesType
 name|type
 parameter_list|)
 block|{
+if|if
+condition|(
+name|docValueType
+operator|!=
+literal|null
+operator|&&
+name|docValueType
+operator|!=
+name|type
+condition|)
+block|{
+throw|throw
+operator|new
+name|IllegalArgumentException
+argument_list|(
+literal|"cannot change DocValues type from "
+operator|+
+name|docValueType
+operator|+
+literal|" to "
+operator|+
+name|type
+operator|+
+literal|" for field \""
+operator|+
+name|name
+operator|+
+literal|"\""
+argument_list|)
+throw|;
+block|}
 name|docValueType
 operator|=
 name|type
