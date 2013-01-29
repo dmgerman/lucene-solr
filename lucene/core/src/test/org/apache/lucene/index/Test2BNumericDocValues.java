@@ -169,10 +169,10 @@ name|Ignore
 argument_list|(
 literal|"takes ~ 30 minutes"
 argument_list|)
-DECL|class|Test2BDocValues
+DECL|class|Test2BNumericDocValues
 specifier|public
 class|class
-name|Test2BDocValues
+name|Test2BNumericDocValues
 extends|extends
 name|LuceneTestCase
 block|{
