@@ -80,6 +80,16 @@ end_import
 
 begin_import
 import|import
+name|java
+operator|.
+name|util
+operator|.
+name|Map
+import|;
+end_import
+
+begin_import
+import|import
 name|org
 operator|.
 name|apache
@@ -268,6 +278,24 @@ name|byTask
 operator|.
 name|utils
 operator|.
+name|AnalyzerFactory
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|benchmark
+operator|.
+name|byTask
+operator|.
+name|utils
+operator|.
 name|Config
 import|;
 end_import
@@ -421,7 +449,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Data maintained by a performance test run.  *<p>  * Data includes:  *<ul>  *<li>Configuration.  *<li>Directory, Writer, Reader.  *<li>Taxonomy Directory, Writer, Reader.  *<li>DocMaker, FacetSource and a few instances of QueryMaker.  *<li>Analyzer.  *<li>Statistics data which updated during the run.  *</ul>  * Config properties:  *<ul>  *<li><b>work.dir</b>=&lt;path to root of docs and index dirs| Default: work&gt;  *<li><b>analyzer</b>=&lt;class name for analyzer| Default: StandardAnalyzer&gt;  *<li><b>doc.maker</b>=&lt;class name for doc-maker| Default: DocMaker&gt;  *<li><b>facet.source</b>=&lt;class name for facet-source| Default: RandomFacetSource&gt;  *<li><b>query.maker</b>=&lt;class name for query-maker| Default: SimpleQueryMaker&gt;  *<li><b>log.queries</b>=&lt;whether queries should be printed| Default: false&gt;  *<li><b>directory</b>=&lt;type of directory to use for the index| Default: RAMDirectory&gt;  *<li><b>taxonomy.directory</b>=&lt;type of directory for taxonomy index| Default: RAMDirectory&gt;  *</ul>  */
+comment|/**  * Data maintained by a performance test run.  *<p>  * Data includes:  *<ul>  *<li>Configuration.  *<li>Directory, Writer, Reader.  *<li>Taxonomy Directory, Writer, Reader.  *<li>DocMaker, FacetSource and a few instances of QueryMaker.  *<li>Named AnalysisFactories.  *<li>Analyzer.  *<li>Statistics data which updated during the run.  *</ul>  * Config properties:  *<ul>  *<li><b>work.dir</b>=&lt;path to root of docs and index dirs| Default: work&gt;  *<li><b>analyzer</b>=&lt;class name for analyzer| Default: StandardAnalyzer&gt;  *<li><b>doc.maker</b>=&lt;class name for doc-maker| Default: DocMaker&gt;  *<li><b>facet.source</b>=&lt;class name for facet-source| Default: RandomFacetSource&gt;  *<li><b>query.maker</b>=&lt;class name for query-maker| Default: SimpleQueryMaker&gt;  *<li><b>log.queries</b>=&lt;whether queries should be printed| Default: false&gt;  *<li><b>directory</b>=&lt;type of directory to use for the index| Default: RAMDirectory&gt;  *<li><b>taxonomy.directory</b>=&lt;type of directory for taxonomy index| Default: RAMDirectory&gt;  *</ul>  */
 end_comment
 
 begin_class
@@ -444,6 +472,25 @@ DECL|field|directory
 specifier|private
 name|Directory
 name|directory
+decl_stmt|;
+DECL|field|analyzerFactories
+specifier|private
+name|Map
+argument_list|<
+name|String
+argument_list|,
+name|AnalyzerFactory
+argument_list|>
+name|analyzerFactories
+init|=
+operator|new
+name|HashMap
+argument_list|<
+name|String
+argument_list|,
+name|AnalyzerFactory
+argument_list|>
+argument_list|()
 decl_stmt|;
 DECL|field|analyzer
 specifier|private
@@ -1469,7 +1516,7 @@ operator|=
 name|indexWriter
 expr_stmt|;
 block|}
-comment|/**    * @return Returns the anlyzer.    */
+comment|/**    * @return Returns the analyzer.    */
 DECL|method|getAnalyzer
 specifier|public
 name|Analyzer
@@ -1696,6 +1743,21 @@ expr_stmt|;
 block|}
 return|return
 name|qm
+return|;
+block|}
+DECL|method|getAnalyzerFactories
+specifier|public
+name|Map
+argument_list|<
+name|String
+argument_list|,
+name|AnalyzerFactory
+argument_list|>
+name|getAnalyzerFactories
+parameter_list|()
+block|{
+return|return
+name|analyzerFactories
 return|;
 block|}
 block|}

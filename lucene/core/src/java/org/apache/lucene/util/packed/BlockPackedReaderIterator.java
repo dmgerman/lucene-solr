@@ -1151,7 +1151,7 @@ name|blockSize
 operator|/
 name|decoder
 operator|.
-name|valueCount
+name|byteValueCount
 argument_list|()
 decl_stmt|;
 specifier|final
@@ -1160,11 +1160,9 @@ name|blocksSize
 init|=
 name|iterations
 operator|*
-literal|8
-operator|*
 name|decoder
 operator|.
-name|blockCount
+name|byteBlockCount
 argument_list|()
 decl_stmt|;
 if|if

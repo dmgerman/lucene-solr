@@ -44,18 +44,6 @@ argument_list|(
 literal|6
 argument_list|)
 expr_stmt|;
-assert|assert
-name|blockCount
-argument_list|()
-operator|==
-literal|3
-assert|;
-assert|assert
-name|valueCount
-argument_list|()
-operator|==
-literal|32
-assert|;
 block|}
 annotation|@
 name|Override
@@ -779,8 +767,6 @@ literal|0
 init|;
 name|i
 operator|<
-literal|8
-operator|*
 name|iterations
 condition|;
 operator|++
@@ -1451,8 +1437,6 @@ literal|0
 init|;
 name|i
 operator|<
-literal|8
-operator|*
 name|iterations
 condition|;
 operator|++
