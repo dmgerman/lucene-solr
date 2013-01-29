@@ -219,6 +219,7 @@ extends|extends
 name|LuceneTestCase
 block|{
 comment|// indexes Integer.MAX_VALUE docs with a fixed binary field
+comment|// nocommit: broken ram accounting? ant test  -Dtestcase=Test2BBinaryDocValues -Dtests.method=testFixedBinary -Dtests.seed=5554AA830176B848 -Dtests.slow=true -Dtests.docvaluesformat=Disk -Dtests.locale=sr_RS_#Latn -Dtests.timezone=Africa/Luanda -Dtests.file.encoding=UTF-8
 DECL|method|testFixedBinary
 specifier|public
 name|void
