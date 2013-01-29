@@ -2445,6 +2445,8 @@ operator|new
 name|FieldNumbers
 argument_list|()
 decl_stmt|;
+comment|// nocommit for a 4.0 index that has inconsistent DV
+comment|// types ... this will throw exc on init of IW?
 for|for
 control|(
 name|SegmentInfoPerCommit

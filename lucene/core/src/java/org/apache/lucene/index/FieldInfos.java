@@ -954,6 +954,7 @@ return|;
 block|}
 comment|/**      * Sets the given field number and name if not yet set.       */
 comment|// nocommit: why is docvalues involved with global field numbers?
+comment|// nocommit: and is it even tested...
 DECL|method|setIfNotSet
 specifier|synchronized
 name|void
@@ -1003,7 +1004,7 @@ name|docValuesType
 operator|.
 name|containsKey
 argument_list|(
-name|fieldName
+name|dvType
 argument_list|)
 condition|)
 block|{
@@ -1037,6 +1038,7 @@ expr_stmt|;
 block|}
 else|else
 block|{
+comment|// nocommit should this be a real check?
 assert|assert
 name|containsConsistent
 argument_list|(
@@ -1503,57 +1505,6 @@ operator|!=
 literal|null
 condition|)
 block|{
-name|DocValuesType
-name|currentDVType
-init|=
-name|fi
-operator|.
-name|getDocValuesType
-argument_list|()
-decl_stmt|;
-if|if
-condition|(
-name|currentDVType
-operator|==
-literal|null
-condition|)
-block|{
-name|fi
-operator|.
-name|setDocValuesType
-argument_list|(
-name|docValues
-argument_list|)
-expr_stmt|;
-block|}
-elseif|else
-if|if
-condition|(
-name|currentDVType
-operator|!=
-name|docValues
-condition|)
-block|{
-throw|throw
-operator|new
-name|IllegalArgumentException
-argument_list|(
-literal|"cannot change DocValues type from "
-operator|+
-name|currentDVType
-operator|+
-literal|" to "
-operator|+
-name|docValues
-operator|+
-literal|" for field \""
-operator|+
-name|name
-operator|+
-literal|"\""
-argument_list|)
-throw|;
-block|}
 name|fi
 operator|.
 name|setDocValuesType
@@ -1575,57 +1526,6 @@ operator|!=
 literal|null
 condition|)
 block|{
-name|DocValuesType
-name|currentDVType
-init|=
-name|fi
-operator|.
-name|getNormType
-argument_list|()
-decl_stmt|;
-if|if
-condition|(
-name|currentDVType
-operator|==
-literal|null
-condition|)
-block|{
-name|fi
-operator|.
-name|setNormValueType
-argument_list|(
-name|docValues
-argument_list|)
-expr_stmt|;
-block|}
-elseif|else
-if|if
-condition|(
-name|currentDVType
-operator|!=
-name|normType
-condition|)
-block|{
-throw|throw
-operator|new
-name|IllegalArgumentException
-argument_list|(
-literal|"cannot change Norm type from "
-operator|+
-name|currentDVType
-operator|+
-literal|" to "
-operator|+
-name|normType
-operator|+
-literal|" for field \""
-operator|+
-name|name
-operator|+
-literal|"\""
-argument_list|)
-throw|;
-block|}
 name|fi
 operator|.
 name|setNormValueType

@@ -714,6 +714,37 @@ name|DocValuesType
 name|type
 parameter_list|)
 block|{
+if|if
+condition|(
+name|normType
+operator|!=
+literal|null
+operator|&&
+name|normType
+operator|!=
+name|type
+condition|)
+block|{
+throw|throw
+operator|new
+name|IllegalArgumentException
+argument_list|(
+literal|"cannot change Norm type from "
+operator|+
+name|normType
+operator|+
+literal|" to "
+operator|+
+name|type
+operator|+
+literal|" for field \""
+operator|+
+name|name
+operator|+
+literal|"\""
+argument_list|)
+throw|;
+block|}
 name|normType
 operator|=
 name|type
