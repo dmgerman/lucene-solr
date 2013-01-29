@@ -4784,7 +4784,15 @@ argument_list|()
 operator|.
 name|getAbsolutePath
 argument_list|()
+operator|.
+name|replaceAll
+argument_list|(
+literal|"\\\\"
+argument_list|,
+literal|"/"
+argument_list|)
 block|,
+comment|// Fix Windows path
 literal|"content.source.forever=false"
 block|,
 literal|"directory=RAMDirectory"
