@@ -162,6 +162,21 @@ name|offset
 operator|=
 literal|0
 expr_stmt|;
+comment|// nocommit is there cleaner way ...
+comment|// term.bytes may be pointing to codec-private byte[]
+comment|// storage, so we must force new byte[] allocation:
+name|term
+operator|.
+name|bytes
+operator|=
+operator|new
+name|byte
+index|[
+name|text
+operator|.
+name|length
+index|]
+expr_stmt|;
 name|term
 operator|.
 name|copyBytes
@@ -255,13 +270,6 @@ operator|>=
 literal|0
 condition|)
 block|{
-name|term
-operator|.
-name|copyBytes
-argument_list|(
-name|text
-argument_list|)
-expr_stmt|;
 name|currentOrd
 operator|=
 name|ord

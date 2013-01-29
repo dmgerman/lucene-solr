@@ -296,56 +296,12 @@ expr_stmt|;
 block|}
 else|else
 block|{
-comment|// nocommit: we shouldnt have to set spare at all if its actually a spare, but its not!
-comment|// ant test  -Dtestcase=TestFieldCacheRewriteMethod -Dtests.method=testRegexps -Dtests.seed=AFC4A08B212CE143 -Dtests.slow=true -Dtests.locale=th -Dtests.timezone=Canada/Mountain -Dtests.file.encoding=ISO-8859-1
-name|spare
-operator|.
-name|bytes
-operator|=
-name|BytesRef
-operator|.
-name|EMPTY_BYTES
-expr_stmt|;
-name|spare
-operator|.
-name|offset
-operator|=
-literal|0
-expr_stmt|;
-name|spare
-operator|.
-name|length
-operator|=
-literal|0
-expr_stmt|;
 return|return
 name|mid
 return|;
 comment|// key found
 block|}
 block|}
-comment|// nocommit: we shouldnt have to set spare at all if its actually a spare, but its not!
-comment|// ant test  -Dtestcase=TestFieldCacheRewriteMethod -Dtests.method=testRegexps -Dtests.seed=AFC4A08B212CE143 -Dtests.slow=true -Dtests.locale=th -Dtests.timezone=Canada/Mountain -Dtests.file.encoding=ISO-8859-1
-name|spare
-operator|.
-name|bytes
-operator|=
-name|BytesRef
-operator|.
-name|EMPTY_BYTES
-expr_stmt|;
-name|spare
-operator|.
-name|offset
-operator|=
-literal|0
-expr_stmt|;
-name|spare
-operator|.
-name|length
-operator|=
-literal|0
-expr_stmt|;
 return|return
 operator|-
 operator|(
