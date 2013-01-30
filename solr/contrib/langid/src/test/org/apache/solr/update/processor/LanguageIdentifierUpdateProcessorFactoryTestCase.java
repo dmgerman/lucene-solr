@@ -722,11 +722,11 @@ argument_list|)
 expr_stmt|;
 name|parameters
 operator|.
-name|add
+name|set
 argument_list|(
 literal|"langid.enforceSchema"
 argument_list|,
-literal|"true"
+literal|"false"
 argument_list|)
 expr_stmt|;
 name|liProcessor
@@ -806,7 +806,38 @@ literal|"ko"
 argument_list|)
 argument_list|)
 expr_stmt|;
-comment|// Prove support for other mapping regex
+comment|// Test that enforceSchema correctly catches illegal field and returns null
+name|parameters
+operator|.
+name|set
+argument_list|(
+literal|"langid.enforceSchema"
+argument_list|,
+literal|"true"
+argument_list|)
+expr_stmt|;
+name|liProcessor
+operator|=
+name|createLangIdProcessor
+argument_list|(
+name|parameters
+argument_list|)
+expr_stmt|;
+name|assertEquals
+argument_list|(
+literal|null
+argument_list|,
+name|liProcessor
+operator|.
+name|getMappedField
+argument_list|(
+literal|"inputfield"
+argument_list|,
+literal|"sv"
+argument_list|)
+argument_list|)
+expr_stmt|;
+comment|// Prove support for other mapping regex, still with enforceSchema=true
 name|parameters
 operator|.
 name|add
@@ -822,7 +853,7 @@ name|add
 argument_list|(
 literal|"langid.map.replace"
 argument_list|,
-literal|"$1_{lang}Text"
+literal|"$1_{lang}_s"
 argument_list|)
 expr_stmt|;
 name|liProcessor
@@ -834,7 +865,7 @@ argument_list|)
 expr_stmt|;
 name|assertEquals
 argument_list|(
-literal|"title_noText"
+literal|"title_no_s"
 argument_list|,
 name|liProcessor
 operator|.
@@ -848,7 +879,7 @@ argument_list|)
 expr_stmt|;
 name|assertEquals
 argument_list|(
-literal|"body_svText"
+literal|"body_sv_s"
 argument_list|,
 name|liProcessor
 operator|.
