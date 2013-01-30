@@ -894,6 +894,10 @@ specifier|static
 class|class
 name|SegmentState
 block|{
+DECL|field|segmentID
+name|int
+name|segmentID
+decl_stmt|;
 DECL|field|reader
 name|AtomicReader
 name|reader
@@ -1119,6 +1123,12 @@ argument_list|()
 decl_stmt|;
 name|state
 operator|.
+name|segmentID
+operator|=
+name|readerIDX
+expr_stmt|;
+name|state
+operator|.
 name|reader
 operator|=
 name|reader
@@ -1294,6 +1304,19 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
+name|int
+name|lastOrds
+index|[]
+init|=
+operator|new
+name|int
+index|[
+name|segStates
+operator|.
+name|size
+argument_list|()
+index|]
+decl_stmt|;
 name|BytesRef
 name|lastTerm
 init|=
@@ -1339,6 +1362,42 @@ name|scratch
 argument_list|)
 condition|)
 block|{
+comment|// a new unique term: record its segment ID / sourceOrd pair
+name|int
+name|readerId
+init|=
+name|top
+operator|.
+name|segmentID
+decl_stmt|;
+name|int
+name|sourceOrd
+init|=
+name|top
+operator|.
+name|ord
+decl_stmt|;
+comment|// nocommit: do this
+comment|//   ordToReaderID.add(readerId);
+name|int
+name|delta
+init|=
+name|sourceOrd
+operator|-
+name|lastOrds
+index|[
+name|readerId
+index|]
+decl_stmt|;
+name|lastOrds
+index|[
+name|readerId
+index|]
+operator|=
+name|sourceOrd
+expr_stmt|;
+comment|// nocommit: do this
+comment|//   top.ordDeltas.add(delta);
 name|lastTerm
 operator|=
 name|BytesRef
@@ -1405,6 +1464,22 @@ name|numMergedTerms
 operator|=
 name|ord
 expr_stmt|;
+comment|// clear our bitsets for GC: we dont need them anymore (e.g. while flushing merged stuff to codec)
+for|for
+control|(
+name|SegmentState
+name|state
+range|:
+name|segStates
+control|)
+block|{
+name|state
+operator|.
+name|liveTerms
+operator|=
+literal|null
+expr_stmt|;
+block|}
 block|}
 comment|/*     public void finish(SortedDocValuesConsumer consumer) throws IOException {        // Third pass: write merged result       for(BytesRef term : mergedTerms) {         consumer.addValue(term);       }        for(SegmentState segState : segStates) {         Bits liveDocs = segState.reader.getLiveDocs();         int maxDoc = segState.reader.maxDoc();         for(int docID=0;docID<maxDoc;docID++) {           if (liveDocs == null || liveDocs.get(docID)) {             int segOrd = segState.values.getOrd(docID);             int mergedOrd = segState.segOrdToMergedOrd[segOrd];             consumer.addDoc(mergedOrd);           }         }       }     }     */
 block|}
