@@ -2052,8 +2052,6 @@ argument_list|)
 expr_stmt|;
 name|tvfFP
 operator|=
-literal|1
-operator|+
 name|tvfFPStart
 expr_stmt|;
 name|positions
