@@ -46,6 +46,24 @@ name|lucene
 operator|.
 name|facet
 operator|.
+name|index
+operator|.
+name|params
+operator|.
+name|FacetIndexingParams
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|facet
+operator|.
 name|search
 operator|.
 name|BaseTestTopK
@@ -335,8 +353,8 @@ parameter_list|(
 name|int
 name|numResults
 parameter_list|,
-name|int
-name|partitionSize
+name|FacetIndexingParams
+name|fip
 parameter_list|)
 block|{
 name|FacetSearchParams
@@ -348,7 +366,7 @@ name|searchParamsWithRequests
 argument_list|(
 name|numResults
 argument_list|,
-name|partitionSize
+name|fip
 argument_list|)
 decl_stmt|;
 for|for
@@ -445,9 +463,21 @@ control|)
 block|{
 try|try
 block|{
-name|initIndex
+comment|// complements return counts for all ordinals, so force ALL_PARENTS indexing
+comment|// so that it's easier to compare
+name|FacetIndexingParams
+name|fip
+init|=
+name|getFacetIndexingParams
 argument_list|(
 name|partitionSize
+argument_list|,
+literal|true
+argument_list|)
+decl_stmt|;
+name|initIndex
+argument_list|(
+name|fip
 argument_list|)
 expr_stmt|;
 comment|// Get all of the documents and run the query, then do different
@@ -490,7 +520,7 @@ name|searchParamsWithRequests
 argument_list|(
 name|K
 argument_list|,
-name|partitionSize
+name|fip
 argument_list|)
 decl_stmt|;
 name|FacetsCollector
@@ -541,7 +571,7 @@ name|searchParamsWithRequests
 argument_list|(
 name|K
 argument_list|,
-name|partitionSize
+name|fip
 argument_list|)
 decl_stmt|;
 comment|// try several times in case of failure, because the test has a chance to fail

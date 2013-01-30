@@ -354,6 +354,7 @@ parameter_list|)
 throws|throws
 name|IOException
 block|{
+comment|// TODO use BitsFilteredDocIdSet?
 comment|// If there are no deleted docs
 if|if
 condition|(

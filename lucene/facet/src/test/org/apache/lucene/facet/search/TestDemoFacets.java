@@ -671,7 +671,7 @@ argument_list|)
 expr_stmt|;
 name|assertEquals
 argument_list|(
-literal|"Publish Date (5)\n  2012 (2)\n  2010 (2)\n  1999 (1)\n"
+literal|"Publish Date (0)\n  2012 (2)\n  2010 (2)\n  1999 (1)\n"
 argument_list|,
 name|FacetTestUtils
 operator|.
@@ -688,7 +688,7 @@ argument_list|)
 expr_stmt|;
 name|assertEquals
 argument_list|(
-literal|"Author (5)\n  Lisa (2)\n  Frank (1)\n  Susan (1)\n  Bob (1)\n"
+literal|"Author (0)\n  Lisa (2)\n  Frank (1)\n  Susan (1)\n  Bob (1)\n"
 argument_list|,
 name|FacetTestUtils
 operator|.
@@ -792,7 +792,7 @@ argument_list|)
 expr_stmt|;
 name|assertEquals
 argument_list|(
-literal|"Author (2)\n  Lisa (1)\n  Bob (1)\n"
+literal|"Author (0)\n  Lisa (1)\n  Bob (1)\n"
 argument_list|,
 name|FacetTestUtils
 operator|.
