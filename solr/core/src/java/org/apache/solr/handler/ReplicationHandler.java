@@ -306,6 +306,20 @@ name|apache
 operator|.
 name|lucene
 operator|.
+name|index
+operator|.
+name|IndexWriter
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
 name|store
 operator|.
 name|Directory
@@ -6017,9 +6031,31 @@ comment|// always saves the last commit point (and the last optimized commit poi
 comment|/***               if(indexCommitPoint != null){                 core.getDeletionPolicy().saveCommitPoint(indexCommitPoint.getGeneration());               }               ***/
 block|}
 block|}
-comment|// reboot the writer on the new index
-comment|// TODO: perhaps this is no longer necessary then?
-comment|// core.getUpdateHandler().newIndexWriter(true);
+comment|// ensure the writer is init'd so that we have a list of commit points
+name|RefCounted
+argument_list|<
+name|IndexWriter
+argument_list|>
+name|iw
+init|=
+name|core
+operator|.
+name|getUpdateHandler
+argument_list|()
+operator|.
+name|getSolrCoreState
+argument_list|()
+operator|.
+name|getIndexWriter
+argument_list|(
+name|core
+argument_list|)
+decl_stmt|;
+name|iw
+operator|.
+name|decref
+argument_list|()
+expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
