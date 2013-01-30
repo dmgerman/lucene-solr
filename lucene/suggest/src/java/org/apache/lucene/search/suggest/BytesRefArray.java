@@ -330,7 +330,7 @@ expr_stmt|;
 block|}
 name|pool
 operator|.
-name|copy
+name|append
 argument_list|(
 name|bytes
 argument_list|)
@@ -416,7 +416,7 @@ name|offset
 decl_stmt|;
 name|pool
 operator|.
-name|copyFrom
+name|readBytes
 argument_list|(
 name|spare
 argument_list|,
