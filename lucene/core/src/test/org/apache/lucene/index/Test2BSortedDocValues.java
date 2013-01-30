@@ -615,6 +615,8 @@ block|}
 comment|// indexes Integer.MAX_VALUE docs with a fixed binary field
 comment|// nocommit: this must be some kind of worst case for BytesRefHash / its hash fn...
 comment|// or there is some other perf bug...VERY slow!
+comment|// if you cut this test to use random.nextBytes its much faster, but still quite slow...
+comment|// and its not unrealistic for users to index something thats already in sorted order?
 DECL|method|test2BOrds
 specifier|public
 name|void
