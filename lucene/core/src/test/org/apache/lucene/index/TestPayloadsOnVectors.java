@@ -1747,11 +1747,15 @@ index|[
 name|i
 index|]
 operator|=
-name|random
-argument_list|()
+name|_TestUtil
 operator|.
 name|nextInt
 argument_list|(
+name|random
+argument_list|()
+argument_list|,
+literal|1
+argument_list|,
 literal|1
 operator|<<
 literal|18
