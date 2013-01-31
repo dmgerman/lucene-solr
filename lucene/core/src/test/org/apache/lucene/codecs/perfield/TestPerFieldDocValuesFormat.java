@@ -470,8 +470,8 @@ name|codec
 return|;
 block|}
 comment|// just a simple trivial test
-comment|// nocommit: if we are going to pass down suffixes to segmentread/writestate,
-comment|// then they should be respected by *all* codec apis!
+comment|// TODO: we should come up with a test that somehow checks that segment suffix
+comment|// is respected by all codec apis (not just docvalues and postings)
 DECL|method|testTwoFieldsTwoFormats
 specifier|public
 name|void

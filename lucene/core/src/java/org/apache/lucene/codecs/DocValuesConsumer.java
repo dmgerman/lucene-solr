@@ -1250,8 +1250,8 @@ expr_stmt|;
 block|}
 block|}
 block|}
-comment|// nocommit we can unload the bits to disk to reduce
-comment|// transient ram spike...
+comment|// TODO: we can unload the bits/packed ints to disk to reduce
+comment|// transient ram spike... most of these just require iterators
 block|}
 comment|// Second pass: merge only the live terms
 name|TermMergeQueue
@@ -1399,6 +1399,13 @@ argument_list|(
 name|delta
 argument_list|)
 expr_stmt|;
+if|if
+condition|(
+name|lastTerm
+operator|==
+literal|null
+condition|)
+block|{
 name|lastTerm
 operator|=
 name|BytesRef
@@ -1410,6 +1417,19 @@ operator|.
 name|scratch
 argument_list|)
 expr_stmt|;
+block|}
+else|else
+block|{
+name|lastTerm
+operator|.
+name|copyBytes
+argument_list|(
+name|top
+operator|.
+name|scratch
+argument_list|)
+expr_stmt|;
+block|}
 name|ord
 operator|++
 expr_stmt|;
@@ -1500,7 +1520,6 @@ literal|null
 expr_stmt|;
 block|}
 block|}
-comment|/*     public void finish(SortedDocValuesConsumer consumer) throws IOException {        // Third pass: write merged result       for(BytesRef term : mergedTerms) {         consumer.addValue(term);       }        for(SegmentState segState : segStates) {         Bits liveDocs = segState.reader.getLiveDocs();         int maxDoc = segState.reader.maxDoc();         for(int docID=0;docID<maxDoc;docID++) {           if (liveDocs == null || liveDocs.get(docID)) {             int segOrd = segState.values.getOrd(docID);             int mergedOrd = segState.segOrdToMergedOrd[segOrd];             consumer.addDoc(mergedOrd);           }         }       }     }     */
 block|}
 comment|/**    * Merges the sorted docvalues from<code>toMerge</code>.    *<p>    * The default implementation calls {@link #addSortedField}, passing    * an Iterable that merges ordinals and values and filters deleted documents .    */
 DECL|method|mergeSortedField
@@ -1886,7 +1905,7 @@ name|nextIsSet
 operator|=
 literal|false
 expr_stmt|;
-comment|// nocommit make a mutable number
+comment|// TODO make a mutable number
 return|return
 name|nextValue
 return|;
