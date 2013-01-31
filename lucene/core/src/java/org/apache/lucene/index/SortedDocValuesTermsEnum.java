@@ -141,8 +141,6 @@ operator|.
 name|lookupTerm
 argument_list|(
 name|text
-argument_list|,
-name|term
 argument_list|)
 decl_stmt|;
 if|if
@@ -162,7 +160,7 @@ name|offset
 operator|=
 literal|0
 expr_stmt|;
-comment|// nocommit is there cleaner way ...
+comment|// TODO: is there a cleaner way?
 comment|// term.bytes may be pointing to codec-private byte[]
 comment|// storage, so we must force new byte[] allocation:
 name|term
@@ -259,8 +257,6 @@ operator|.
 name|lookupTerm
 argument_list|(
 name|text
-argument_list|,
-name|term
 argument_list|)
 decl_stmt|;
 if|if

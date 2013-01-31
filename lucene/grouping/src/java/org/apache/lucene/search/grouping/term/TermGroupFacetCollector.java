@@ -190,15 +190,6 @@ specifier|final
 name|SentinelIntSet
 name|segmentGroupedFacetHits
 decl_stmt|;
-DECL|field|spare
-specifier|final
-name|BytesRef
-name|spare
-init|=
-operator|new
-name|BytesRef
-argument_list|()
-decl_stmt|;
 DECL|field|groupFieldTermsIndex
 name|SortedDocValues
 name|groupFieldTermsIndex
@@ -637,8 +628,6 @@ argument_list|(
 name|groupedFacetHit
 operator|.
 name|facetValue
-argument_list|,
-name|spare
 argument_list|)
 decl_stmt|;
 if|if
@@ -675,8 +664,6 @@ argument_list|(
 name|groupedFacetHit
 operator|.
 name|groupValue
-argument_list|,
-name|spare
 argument_list|)
 decl_stmt|;
 if|if
@@ -732,8 +719,6 @@ operator|.
 name|lookupTerm
 argument_list|(
 name|facetPrefix
-argument_list|,
-name|spare
 argument_list|)
 expr_stmt|;
 if|if
@@ -778,8 +763,6 @@ operator|.
 name|lookupTerm
 argument_list|(
 name|facetEndPrefix
-argument_list|,
-name|spare
 argument_list|)
 expr_stmt|;
 assert|assert
@@ -1528,8 +1511,6 @@ argument_list|(
 name|groupedFacetHit
 operator|.
 name|groupValue
-argument_list|,
-name|spare
 argument_list|)
 decl_stmt|;
 if|if

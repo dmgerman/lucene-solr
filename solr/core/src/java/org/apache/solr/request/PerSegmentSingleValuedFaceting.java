@@ -1392,8 +1392,6 @@ operator|.
 name|lookupTerm
 argument_list|(
 name|prefixRef
-argument_list|,
-name|tempBR
 argument_list|)
 expr_stmt|;
 if|if
@@ -1426,8 +1424,6 @@ operator|.
 name|lookupTerm
 argument_list|(
 name|prefixRef
-argument_list|,
-name|tempBR
 argument_list|)
 expr_stmt|;
 assert|assert

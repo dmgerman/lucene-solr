@@ -2818,6 +2818,14 @@ argument_list|)
 decl_stmt|;
 specifier|final
 name|BytesRef
+name|br
+init|=
+operator|new
+name|BytesRef
+argument_list|()
+decl_stmt|;
+specifier|final
+name|BytesRef
 name|prefixRef
 decl_stmt|;
 if|if
@@ -2863,14 +2871,6 @@ name|prefix
 argument_list|)
 expr_stmt|;
 block|}
-specifier|final
-name|BytesRef
-name|br
-init|=
-operator|new
-name|BytesRef
-argument_list|()
-decl_stmt|;
 name|int
 name|startTermIndex
 decl_stmt|,
@@ -2890,8 +2890,6 @@ operator|.
 name|lookupTerm
 argument_list|(
 name|prefixRef
-argument_list|,
-name|br
 argument_list|)
 expr_stmt|;
 if|if
@@ -2923,8 +2921,6 @@ operator|.
 name|lookupTerm
 argument_list|(
 name|prefixRef
-argument_list|,
-name|br
 argument_list|)
 expr_stmt|;
 assert|assert

@@ -1558,8 +1558,6 @@ argument_list|(
 name|collectedGroup
 operator|.
 name|groupValue
-argument_list|,
-name|scratchBytesRef
 argument_list|)
 expr_stmt|;
 block|}
@@ -1666,8 +1664,6 @@ name|sortValues
 index|[
 name|i
 index|]
-argument_list|,
-name|scratchBytesRef
 argument_list|)
 expr_stmt|;
 block|}
@@ -2622,8 +2618,6 @@ argument_list|(
 name|collectedGroup
 operator|.
 name|groupValue
-argument_list|,
-name|scratchBytesRef
 argument_list|)
 expr_stmt|;
 block|}
@@ -2712,8 +2706,6 @@ name|sortValues
 index|[
 name|i
 index|]
-argument_list|,
-name|scratchBytesRef
 argument_list|)
 expr_stmt|;
 block|}
@@ -3483,8 +3475,6 @@ argument_list|(
 name|collectedGroup
 operator|.
 name|groupValue
-argument_list|,
-name|scratchBytesRef
 argument_list|)
 expr_stmt|;
 block|}

@@ -394,14 +394,6 @@ name|field
 argument_list|)
 decl_stmt|;
 specifier|final
-name|BytesRef
-name|spare
-init|=
-operator|new
-name|BytesRef
-argument_list|()
-decl_stmt|;
-specifier|final
 name|int
 name|lowerPoint
 init|=
@@ -421,8 +413,6 @@ name|BytesRef
 argument_list|(
 name|lowerVal
 argument_list|)
-argument_list|,
-name|spare
 argument_list|)
 decl_stmt|;
 specifier|final
@@ -445,8 +435,6 @@ name|BytesRef
 argument_list|(
 name|upperVal
 argument_list|)
-argument_list|,
-name|spare
 argument_list|)
 decl_stmt|;
 specifier|final
@@ -742,14 +730,6 @@ name|field
 argument_list|)
 decl_stmt|;
 specifier|final
-name|BytesRef
-name|spare
-init|=
-operator|new
-name|BytesRef
-argument_list|()
-decl_stmt|;
-specifier|final
 name|int
 name|lowerPoint
 init|=
@@ -765,8 +745,6 @@ operator|.
 name|lookupTerm
 argument_list|(
 name|lowerVal
-argument_list|,
-name|spare
 argument_list|)
 decl_stmt|;
 specifier|final
@@ -785,8 +763,6 @@ operator|.
 name|lookupTerm
 argument_list|(
 name|upperVal
-argument_list|,
-name|spare
 argument_list|)
 decl_stmt|;
 specifier|final

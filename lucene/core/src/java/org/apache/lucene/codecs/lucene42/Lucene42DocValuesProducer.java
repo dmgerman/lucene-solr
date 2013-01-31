@@ -1870,9 +1870,6 @@ name|lookupTerm
 parameter_list|(
 name|BytesRef
 name|key
-parameter_list|,
-name|BytesRef
-name|spare
 parameter_list|)
 block|{
 try|try

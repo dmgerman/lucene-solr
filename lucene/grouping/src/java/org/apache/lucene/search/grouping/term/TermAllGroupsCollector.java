@@ -196,16 +196,6 @@ specifier|private
 name|SortedDocValues
 name|index
 decl_stmt|;
-DECL|field|spareBytesRef
-specifier|private
-specifier|final
-name|BytesRef
-name|spareBytesRef
-init|=
-operator|new
-name|BytesRef
-argument_list|()
-decl_stmt|;
 comment|/**    * Expert: Constructs a {@link AbstractAllGroupsCollector}    *    * @param groupField  The field to group by    * @param initialSize The initial allocation size of the    *                    internal int set and group list    *                    which should roughly match the total    *                    number of expected unique groups. Be aware that the    *                    heap usage is 4 bytes * initialSize.    */
 DECL|method|TermAllGroupsCollector
 specifier|public
@@ -432,8 +422,6 @@ operator|.
 name|lookupTerm
 argument_list|(
 name|countedGroup
-argument_list|,
-name|spareBytesRef
 argument_list|)
 decl_stmt|;
 if|if
