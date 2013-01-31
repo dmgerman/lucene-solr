@@ -969,20 +969,6 @@ argument_list|()
 decl_stmt|;
 name|assertEquals
 argument_list|(
-literal|"wrong weight for \"A\""
-argument_list|,
-literal|4
-argument_list|,
-operator|(
-name|int
-operator|)
-name|frn
-operator|.
-name|value
-argument_list|)
-expr_stmt|;
-name|assertEquals
-argument_list|(
 literal|"wrong number of children"
 argument_list|,
 literal|2

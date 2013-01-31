@@ -165,7 +165,7 @@ name|FacetsCollector
 extends|extends
 name|Collector
 block|{
-comment|/**    * Returns the most optimized {@link FacetsCollector} for the given search    * parameters. The returned {@link FacetsCollector} is guaranteed to satisfy    * the requested parameters.    */
+comment|/**    * Returns the most optimized {@link FacetsCollector} for the given search    * parameters. The returned {@link FacetsCollector} is guaranteed to satisfy    * the requested parameters.    *     * @throws IllegalArgumentException    *           if there is no built-in collector that can satisfy the search    *           parameters.    */
 DECL|method|create
 specifier|public
 specifier|static
@@ -204,6 +204,18 @@ name|taxoReader
 argument_list|)
 return|;
 block|}
+if|if
+condition|(
+name|StandardFacetsCollector
+operator|.
+name|assertParams
+argument_list|(
+name|fsp
+argument_list|)
+operator|==
+literal|null
+condition|)
+block|{
 return|return
 operator|new
 name|StandardFacetsCollector
@@ -215,6 +227,14 @@ argument_list|,
 name|taxoReader
 argument_list|)
 return|;
+block|}
+throw|throw
+operator|new
+name|IllegalArgumentException
+argument_list|(
+literal|"None of the built-in FacetsCollectors can handle the given search params"
+argument_list|)
+throw|;
 block|}
 comment|/**    * Returns a {@link FacetResult} per {@link FacetRequest} set in    * {@link FacetSearchParams}. Note that if one of the {@link FacetRequest    * requests} is for a {@link CategoryPath} that does not exist in the taxonomy,    * no matching {@link FacetResult} will be returned.    */
 DECL|method|getFacetResults
