@@ -1196,6 +1196,8 @@ name|long
 name|millis
 parameter_list|)
 block|{
+comment|// TODO: if the intent is user-display: this should use SimpleDateFormat
+comment|// or similar instead of homemade formatting.
 name|long
 name|hours
 init|=
@@ -1249,6 +1251,11 @@ name|String
 operator|.
 name|format
 argument_list|(
+name|Locale
+operator|.
+name|getDefault
+argument_list|()
+argument_list|,
 literal|"Time taken: %02d:%02d:%02d.%03d"
 argument_list|,
 name|hours
@@ -1280,6 +1287,11 @@ name|String
 operator|.
 name|format
 argument_list|(
+name|Locale
+operator|.
+name|getDefault
+argument_list|()
+argument_list|,
 literal|"Time taken: %02d:%02d.%03d"
 argument_list|,
 name|minutes
@@ -1303,6 +1315,11 @@ name|String
 operator|.
 name|format
 argument_list|(
+name|Locale
+operator|.
+name|getDefault
+argument_list|()
+argument_list|,
 literal|"Time taken: %d.%03ds"
 argument_list|,
 name|seconds
