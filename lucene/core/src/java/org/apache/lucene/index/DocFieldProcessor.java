@@ -1200,20 +1200,33 @@ block|}
 block|}
 else|else
 block|{
-comment|// nocommit this is wasteful: it's another hash lookup
-comment|// by field name; can we just do fp.fieldInfo.update
-comment|// directly?
-name|fieldInfos
-operator|.
-name|addOrUpdate
-argument_list|(
+comment|// nocommit: dangerous: maybe FI.update()/FI ctor()/FIS.addOrUpdate need only take FT
+comment|// instead of a thousand parameters? Surely we can make this better... like:
+comment|// fp.fieldInfo.update(ft);
 name|fp
 operator|.
 name|fieldInfo
 operator|.
-name|name
+name|update
+argument_list|(
+name|ft
+operator|.
+name|indexed
+argument_list|()
+argument_list|,
+literal|false
 argument_list|,
 name|ft
+operator|.
+name|omitNorms
+argument_list|()
+argument_list|,
+literal|false
+argument_list|,
+name|ft
+operator|.
+name|indexOptions
+argument_list|()
 argument_list|)
 expr_stmt|;
 block|}
