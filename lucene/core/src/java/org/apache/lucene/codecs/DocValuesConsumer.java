@@ -1012,20 +1012,6 @@ return|return
 name|scratch
 return|;
 block|}
-else|else
-block|{
-comment|// Skip "deleted" terms (ie, terms that were not
-comment|// referenced by any live docs): nocommit: why?!
-name|values
-operator|.
-name|lookupOrd
-argument_list|(
-name|ord
-argument_list|,
-name|scratch
-argument_list|)
-expr_stmt|;
-block|}
 block|}
 return|return
 literal|null
