@@ -935,14 +935,6 @@ operator|new
 name|BytesRef
 argument_list|()
 decl_stmt|;
-DECL|field|lastOrd
-name|int
-name|lastOrd
-init|=
-operator|-
-literal|1
-decl_stmt|;
-comment|// last REAL ord we looked up: nocommit: clean this up
 DECL|field|ordDeltas
 name|AppendingLongBuffer
 name|ordDeltas
@@ -1003,10 +995,6 @@ name|ord
 argument_list|,
 name|scratch
 argument_list|)
-expr_stmt|;
-name|lastOrd
-operator|=
-name|ord
 expr_stmt|;
 return|return
 name|scratch
@@ -1398,7 +1386,7 @@ name|sourceOrd
 init|=
 name|top
 operator|.
-name|lastOrd
+name|ord
 decl_stmt|;
 name|int
 name|delta
