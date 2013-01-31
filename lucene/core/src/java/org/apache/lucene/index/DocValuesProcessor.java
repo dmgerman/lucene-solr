@@ -197,10 +197,7 @@ DECL|method|finishDocument
 name|void
 name|finishDocument
 parameter_list|()
-block|{
-comment|// nocommit catch missing DV fields here?  else we have
-comment|// null/"" depending on how docs landed in segments?
-block|}
+block|{   }
 annotation|@
 name|Override
 DECL|method|addField
@@ -218,7 +215,6 @@ name|FieldInfo
 name|fieldInfo
 parameter_list|)
 block|{
-comment|// nocommit: these checks are duplicated everywhere
 specifier|final
 name|DocValuesType
 name|dvType
@@ -443,6 +439,10 @@ name|dvConsumer
 argument_list|)
 expr_stmt|;
 block|}
+comment|// TODO: catch missing DV fields here?  else we have
+comment|// null/"" depending on how docs landed in segments?
+comment|// but we can't detect all cases, and we should leave
+comment|// this behavior undefined. dv is not "schemaless": its column-stride.
 name|writers
 operator|.
 name|clear
