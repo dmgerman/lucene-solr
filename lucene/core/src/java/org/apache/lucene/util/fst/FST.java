@@ -118,10 +118,6 @@ name|Map
 import|;
 end_import
 
-begin_comment
-comment|/* import java.io.Writer; import java.io.OutputStreamWriter; import java.io.FileOutputStream; */
-end_comment
-
 begin_import
 import|import
 name|org
@@ -244,6 +240,20 @@ name|lucene
 operator|.
 name|util
 operator|.
+name|Constants
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|util
+operator|.
 name|IOUtils
 import|;
 end_import
@@ -325,6 +335,14 @@ operator|.
 name|PackedInts
 import|;
 end_import
+
+begin_comment
+comment|//import java.io.Writer;
+end_comment
+
+begin_comment
+comment|//import java.io.OutputStreamWriter;
+end_comment
 
 begin_comment
 comment|// TODO: break this into WritableFST and ReadOnlyFST.. then
@@ -1171,7 +1189,6 @@ name|version
 operator|=
 name|VERSION_CURRENT
 expr_stmt|;
-comment|// 32 KB blocks:
 name|bytes
 operator|=
 operator|new
@@ -1253,6 +1270,21 @@ operator|=
 literal|null
 expr_stmt|;
 block|}
+DECL|field|DEFAULT_MAX_BLOCK_BITS
+specifier|public
+specifier|static
+specifier|final
+name|int
+name|DEFAULT_MAX_BLOCK_BITS
+init|=
+name|Constants
+operator|.
+name|JRE_IS_64BIT
+condition|?
+literal|30
+else|:
+literal|28
+decl_stmt|;
 comment|/** Load a previously saved FST. */
 DECL|method|FST
 specifier|public
@@ -1271,11 +1303,62 @@ throws|throws
 name|IOException
 block|{
 name|this
+argument_list|(
+name|in
+argument_list|,
+name|outputs
+argument_list|,
+name|DEFAULT_MAX_BLOCK_BITS
+argument_list|)
+expr_stmt|;
+block|}
+comment|/** Load a previously saved FST; maxBlockBits allows you to    *  control the size of the byte[] pages used to hold the FST bytes. */
+DECL|method|FST
+specifier|public
+name|FST
+parameter_list|(
+name|DataInput
+name|in
+parameter_list|,
+name|Outputs
+argument_list|<
+name|T
+argument_list|>
+name|outputs
+parameter_list|,
+name|int
+name|maxBlockBits
+parameter_list|)
+throws|throws
+name|IOException
+block|{
+name|this
 operator|.
 name|outputs
 operator|=
 name|outputs
 expr_stmt|;
+if|if
+condition|(
+name|maxBlockBits
+argument_list|<
+literal|1
+operator|||
+name|maxBlockBits
+argument_list|>
+literal|30
+condition|)
+block|{
+throw|throw
+operator|new
+name|IllegalArgumentException
+argument_list|(
+literal|"maxBlockBits should be 1 .. 30; got "
+operator|+
+name|maxBlockBits
+argument_list|)
+throw|;
+block|}
 comment|// NOTE: only reads most recent format; we don't have
 comment|// back-compat promise for FSTs (they are experimental):
 name|version
@@ -1485,7 +1568,7 @@ name|startNode
 operator|=
 name|in
 operator|.
-name|readVInt
+name|readVLong
 argument_list|()
 expr_stmt|;
 name|nodeCount
@@ -1509,12 +1592,12 @@ operator|.
 name|readVLong
 argument_list|()
 expr_stmt|;
-name|int
+name|long
 name|numBytes
 init|=
 name|in
 operator|.
-name|readVInt
+name|readVLong
 argument_list|()
 decl_stmt|;
 name|bytes
@@ -1526,9 +1609,9 @@ name|in
 argument_list|,
 name|numBytes
 argument_list|,
-name|Integer
-operator|.
-name|MAX_VALUE
+literal|1
+operator|<<
+name|maxBlockBits
 argument_list|)
 expr_stmt|;
 name|NO_OUTPUT
