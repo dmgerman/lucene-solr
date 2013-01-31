@@ -201,10 +201,7 @@ return|;
 block|}
 block|}
 decl_stmt|;
-comment|/** If {@code key} exists, returns its ordinal, else    *  returns {@code -insertionPoint-1}, like {@code    *  Arrays.binarySearch}.    *    *  @param key Key to look up    *  @param spare Spare BytesRef    **/
-comment|// nocommit: what does spare mean? its no spare: because people rely upon its return value!
-comment|// if its 'result' then the parameter and javadoc needs changing, otherwise things need fixing
-comment|// unconditionally set its value to "NONSENSE" bytes to see the bugs!
+comment|/** If {@code key} exists, returns its ordinal, else    *  returns {@code -insertionPoint-1}, like {@code    *  Arrays.binarySearch}.    *    *  @param key Key to look up    **/
 DECL|method|lookupTerm
 specifier|public
 name|int
