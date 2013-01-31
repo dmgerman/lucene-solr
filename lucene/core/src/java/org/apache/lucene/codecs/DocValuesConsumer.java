@@ -1109,7 +1109,6 @@ argument_list|(
 name|readerIDX
 argument_list|)
 decl_stmt|;
-comment|// nocommit what if this is null...?  need default source?
 name|int
 name|maxDoc
 init|=
