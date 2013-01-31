@@ -943,14 +943,18 @@ operator|new
 name|AppendingLongBuffer
 argument_list|()
 decl_stmt|;
-comment|// nocommit can we factor out the compressed fields
-comment|// compression?  ie we have a good idea "roughly" what
+comment|// TODO: use another scheme?
+comment|// currently we +/- delta merged-ord from segment-ord (is this good? makes sense to me?)
+comment|// but we have a good idea "roughly" what
 comment|// the ord should be (linear projection) so we only
 comment|// need to encode the delta from that ...:
 DECL|field|segOrdToMergedOrd
-name|int
-index|[]
+name|AppendingLongBuffer
 name|segOrdToMergedOrd
+init|=
+operator|new
+name|AppendingLongBuffer
+argument_list|()
 decl_stmt|;
 DECL|method|nextTerm
 specifier|public
@@ -1280,24 +1284,6 @@ operator|!=
 literal|null
 condition|)
 block|{
-comment|// nocommit we could defer this to 3rd pass (and
-comment|// reduce transient RAM spike) but then
-comment|// we'd spend more effort computing the mapping...:
-name|segState
-operator|.
-name|segOrdToMergedOrd
-operator|=
-operator|new
-name|int
-index|[
-name|segState
-operator|.
-name|values
-operator|.
-name|getValueCount
-argument_list|()
-index|]
-expr_stmt|;
 name|q
 operator|.
 name|add
@@ -1428,19 +1414,46 @@ name|ord
 operator|++
 expr_stmt|;
 block|}
-name|top
-operator|.
-name|segOrdToMergedOrd
-index|[
-name|top
-operator|.
-name|ord
-index|]
-operator|=
+name|long
+name|signedDelta
+init|=
+operator|(
 name|ord
 operator|-
 literal|1
+operator|)
+operator|-
+name|top
+operator|.
+name|ord
+decl_stmt|;
+comment|// global ord space - segment ord space
+comment|// fill in any holes for unused ords, then finally the value we want (segOrdToMergedOrd[top.ord])
+comment|// TODO: is there a better way...
+while|while
+condition|(
+name|top
+operator|.
+name|segOrdToMergedOrd
+operator|.
+name|size
+argument_list|()
+operator|<=
+name|top
+operator|.
+name|ord
+condition|)
+block|{
+name|top
+operator|.
+name|segOrdToMergedOrd
+operator|.
+name|add
+argument_list|(
+name|signedDelta
+argument_list|)
 expr_stmt|;
+block|}
 if|if
 condition|(
 name|top
@@ -1994,12 +2007,21 @@ argument_list|)
 decl_stmt|;
 name|nextValue
 operator|=
+call|(
+name|int
+call|)
+argument_list|(
+name|segOrd
+operator|+
 name|currentReader
 operator|.
 name|segOrdToMergedOrd
-index|[
+operator|.
+name|get
+argument_list|(
 name|segOrd
-index|]
+argument_list|)
+argument_list|)
 expr_stmt|;
 name|docIDUpto
 operator|++
