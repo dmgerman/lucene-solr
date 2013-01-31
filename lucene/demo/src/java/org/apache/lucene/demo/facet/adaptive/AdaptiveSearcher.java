@@ -336,6 +336,12 @@ specifier|public
 class|class
 name|AdaptiveSearcher
 block|{
+comment|/** No instance */
+DECL|method|AdaptiveSearcher
+specifier|private
+name|AdaptiveSearcher
+parameter_list|()
+block|{}
 comment|/**    * Search with facets through the {@link AdaptiveFacetsAccumulator}     * @param indexDir Directory of the search index.    * @param taxoDir Directory of the taxonomy index.    * @throws Exception on error (no detailed exception handling here for sample simplicity    * @return facet results    */
 DECL|method|searchWithFacets
 specifier|public

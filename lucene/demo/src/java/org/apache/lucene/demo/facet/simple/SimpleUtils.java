@@ -92,6 +92,12 @@ specifier|public
 class|class
 name|SimpleUtils
 block|{
+comment|/** No instance */
+DECL|method|SimpleUtils
+specifier|private
+name|SimpleUtils
+parameter_list|()
+block|{}
 comment|/**     * Documents text field.    */
 DECL|field|TEXT
 specifier|public

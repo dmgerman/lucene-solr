@@ -85,7 +85,7 @@ comment|/*  * Licensed to the Apache Software Foundation (ASF) under one or more
 end_comment
 
 begin_comment
-comment|/**  * @lucene.experimental  */
+comment|/**  * Categories for the facet examples  * @lucene.experimental  */
 end_comment
 
 begin_class
@@ -94,6 +94,12 @@ specifier|public
 class|class
 name|CategoryAssociationsUtils
 block|{
+comment|/** No instance */
+DECL|method|CategoryAssociationsUtils
+specifier|private
+name|CategoryAssociationsUtils
+parameter_list|()
+block|{}
 comment|/**    * Categories: categories[D][N] == category-path with association no. N for    * document no. D.    */
 DECL|field|categories
 specifier|public
@@ -159,6 +165,7 @@ argument_list|)
 block|}
 block|}
 decl_stmt|;
+comment|/**    * Associations (occurrences/confidence levels) for {@link #categories}    */
 DECL|field|associations
 specifier|public
 specifier|static

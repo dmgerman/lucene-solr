@@ -109,7 +109,7 @@ comment|/*  * Licensed to the Apache Software Foundation (ASF) under one or more
 end_comment
 
 begin_comment
-comment|/**  * @lucene.experimental  */
+comment|/**  * Driver for the multi sample.  *   * @lucene.experimental  */
 end_comment
 
 begin_class
@@ -118,7 +118,13 @@ specifier|public
 class|class
 name|MultiCLMain
 block|{
-comment|/**    * Driver for the multi sample.    *     * @throws Exception    *             on error (no detailed exception handling here for sample    *             simplicity    */
+comment|/** Sole constructor. */
+DECL|method|MultiCLMain
+specifier|public
+name|MultiCLMain
+parameter_list|()
+block|{}
+comment|/**    * Executes the multi sample.    *     * @throws Exception    *             on error (no detailed exception handling here for sample    *             simplicity    */
 DECL|method|main
 specifier|public
 specifier|static
@@ -147,6 +153,7 @@ literal|"DONE"
 argument_list|)
 expr_stmt|;
 block|}
+comment|/** Runs the multi sample and returns the facet results */
 DECL|method|runSample
 specifier|public
 name|ExampleResult

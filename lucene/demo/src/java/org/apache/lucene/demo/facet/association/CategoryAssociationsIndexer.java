@@ -262,6 +262,12 @@ specifier|public
 class|class
 name|CategoryAssociationsIndexer
 block|{
+comment|/** No instance. */
+DECL|method|CategoryAssociationsIndexer
+specifier|private
+name|CategoryAssociationsIndexer
+parameter_list|()
+block|{}
 comment|/**    * Create an index, and adds to it sample documents and categories.    *     * @param indexDir    *            Directory in which the index should be created.    * @param taxoDir    *            Directory in which the taxonomy index should be created.    * @throws Exception    *             on error (no detailed exception handling here for sample    *             simplicity    */
 DECL|method|index
 specifier|public

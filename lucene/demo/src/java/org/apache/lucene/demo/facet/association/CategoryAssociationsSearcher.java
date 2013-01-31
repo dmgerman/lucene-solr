@@ -208,6 +208,12 @@ specifier|public
 class|class
 name|CategoryAssociationsSearcher
 block|{
+comment|/** No instantiation */
+DECL|method|CategoryAssociationsSearcher
+specifier|private
+name|CategoryAssociationsSearcher
+parameter_list|()
+block|{}
 comment|/** Search an index with a sum of int-association. */
 DECL|method|searchSumIntAssociation
 specifier|public

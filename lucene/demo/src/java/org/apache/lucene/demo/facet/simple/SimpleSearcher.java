@@ -352,6 +352,12 @@ specifier|public
 class|class
 name|SimpleSearcher
 block|{
+comment|/** No instance */
+DECL|method|SimpleSearcher
+specifier|private
+name|SimpleSearcher
+parameter_list|()
+block|{}
 comment|/**    * Search an index with facets.    * @param indexReader index reader.    * @param taxoReader taxonomy reader.    * @throws Exception on error (no detailed exception handling here for sample simplicity    * @return facet results    */
 DECL|method|searchWithFacets
 specifier|public

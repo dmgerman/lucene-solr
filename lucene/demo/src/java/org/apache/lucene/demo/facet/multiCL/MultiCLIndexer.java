@@ -332,7 +332,13 @@ specifier|public
 class|class
 name|MultiCLIndexer
 block|{
-comment|// Number of documents to index
+comment|/** No instance */
+DECL|method|MultiCLIndexer
+specifier|private
+name|MultiCLIndexer
+parameter_list|()
+block|{}
+comment|/** Number of documents to index */
 DECL|field|NUM_DOCS
 specifier|public
 specifier|static
@@ -341,7 +347,7 @@ name|NUM_DOCS
 init|=
 literal|100
 decl_stmt|;
-comment|// Number of facets to add per document
+comment|/** Number of facets to add per document */
 DECL|field|NUM_FACETS_PER_DOC
 specifier|public
 specifier|static
@@ -350,7 +356,7 @@ name|NUM_FACETS_PER_DOC
 init|=
 literal|10
 decl_stmt|;
-comment|// Number of tokens in title
+comment|/** Number of tokens in title */
 DECL|field|TITLE_LENGTH
 specifier|public
 specifier|static
@@ -359,7 +365,7 @@ name|TITLE_LENGTH
 init|=
 literal|5
 decl_stmt|;
-comment|// Number of tokens in text
+comment|/** Number of tokens in text */
 DECL|field|TEXT_LENGTH
 specifier|public
 specifier|static
@@ -401,7 +407,7 @@ literal|"reprehenderit qui in ea voluptate velit esse quam nihil molestiae "
 operator|+
 literal|"consequatur vel illum qui dolorem eum fugiat quo voluptas nulla pariatur"
 decl_stmt|;
-comment|// PerDimensionIndexingParams for multiple category lists
+comment|/** PerDimensionIndexingParams for multiple category lists */
 DECL|field|MULTI_IPARAMS
 specifier|public
 specifier|static
@@ -1097,6 +1103,7 @@ literal|" facets."
 argument_list|)
 expr_stmt|;
 block|}
+comment|/** Driver for the example */
 DECL|method|main
 specifier|public
 specifier|static

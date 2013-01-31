@@ -366,6 +366,12 @@ specifier|public
 class|class
 name|MultiCLSearcher
 block|{
+comment|/** No instance */
+DECL|method|MultiCLSearcher
+specifier|private
+name|MultiCLSearcher
+parameter_list|()
+block|{}
 comment|/**    * Search an index with facets.    *     * @param indexDir    *            Directory of the search index.    * @param taxoDir    *            Directory of the taxonomy index.    * @throws Exception    *             on error (no detailed exception handling here for sample    *             simplicity    * @return facet results    */
 DECL|method|searchWithFacets
 specifier|public
@@ -439,6 +445,7 @@ return|return
 name|results
 return|;
 block|}
+comment|/**    * Search an index with facets.    *     * @param indexReader    *            Reader over the search index.    * @param taxo    *            taxonomy reader.    * @throws Exception    *             on error (no detailed exception handling here for sample    *             simplicity    * @return facet results    */
 DECL|method|searchWithFacets
 specifier|public
 specifier|static

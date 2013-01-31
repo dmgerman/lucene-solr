@@ -180,6 +180,12 @@ specifier|public
 class|class
 name|SimpleMain
 block|{
+comment|/** Sole constructor */
+DECL|method|SimpleMain
+specifier|public
+name|SimpleMain
+parameter_list|()
+block|{}
 comment|/**    * Driver for the simple sample.    * @throws Exception on error (no detailed exception handling here for sample simplicity    */
 DECL|method|main
 specifier|public
@@ -219,6 +225,7 @@ literal|"DONE"
 argument_list|)
 expr_stmt|;
 block|}
+comment|/** Runs the simple sample and returns the facet results */
 DECL|method|runSimple
 specifier|public
 name|ExampleResult
@@ -330,6 +337,7 @@ return|return
 name|res
 return|;
 block|}
+comment|/** Runs the simple sample and returns drilldown results */
 DECL|method|runDrillDown
 specifier|public
 name|ExampleResult

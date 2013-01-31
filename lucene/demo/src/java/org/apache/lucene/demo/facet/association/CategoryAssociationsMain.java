@@ -118,6 +118,12 @@ specifier|public
 class|class
 name|CategoryAssociationsMain
 block|{
+comment|/** Sole constructor. */
+DECL|method|CategoryAssociationsMain
+specifier|public
+name|CategoryAssociationsMain
+parameter_list|()
+block|{}
 comment|/**    * Driver for the simple sample.    * @throws Exception on error (no detailed exception handling here for sample simplicity    */
 DECL|method|main
 specifier|public
@@ -154,6 +160,7 @@ literal|"DONE"
 argument_list|)
 expr_stmt|;
 block|}
+comment|/**    * Runs the example demonstrating sum of int-association.    */
 DECL|method|runSumIntAssociationSample
 specifier|public
 name|ExampleResult
@@ -235,6 +242,7 @@ return|return
 name|res
 return|;
 block|}
+comment|/**    * Runs the example demonstrating sum of float-association.    */
 DECL|method|runSumFloatAssociationSample
 specifier|public
 name|ExampleResult

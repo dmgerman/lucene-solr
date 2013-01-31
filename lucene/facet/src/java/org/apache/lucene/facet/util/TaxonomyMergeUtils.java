@@ -263,7 +263,7 @@ comment|/*  * Licensed to the Apache Software Foundation (ASF) under one or more
 end_comment
 
 begin_comment
-comment|/**  * @lucene.experimental  */
+comment|/**  * Utility methods for merging index and taxonomy directories.  * @lucene.experimental  */
 end_comment
 
 begin_class
