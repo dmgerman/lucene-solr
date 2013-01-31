@@ -403,7 +403,6 @@ return|;
 block|}
 comment|/**    * Returns the ords array in arbitrary order. Valid ords start at offset of 0    * and end at a limit of {@link #size()} - 1    *<p>    * Note: This is a destructive operation. {@link #clear()} must be called in    * order to reuse this {@link BytesRefHash} instance.    *</p>    */
 DECL|method|compact
-specifier|private
 name|int
 index|[]
 name|compact

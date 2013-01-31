@@ -2674,7 +2674,7 @@ argument_list|)
 throw|;
 block|}
 block|}
-comment|//nocommit javadoc
+comment|/**    * Expert: Restore a {@link Reader} from a stream without reading metadata at    * the beginning of the stream. This method is useful to restore data when    * metadata has been previously read using {@link #readHeader(DataInput)}.    *    * @param in           the stream to read data from, positioned at the beginning of the packed values    * @param header       metadata result from<code>readHeader()</code>    * @return             a Reader    * @throws IOException If there is a low-level I/O error    * @see #readHeader(DataInput)    * @lucene.internal    */
 DECL|method|getReaderNoHeader
 specifier|public
 specifier|static
@@ -3151,7 +3151,7 @@ argument_list|)
 throw|;
 block|}
 block|}
-comment|//nocommit javadoc
+comment|/**    * Expert: Construct a direct {@link Reader} from an {@link IndexInput}     * without reading metadata at the beginning of the stream. This method is     * useful to restore data when metadata has been previously read using     * {@link #readHeader(DataInput)}.    *    * @param in           the stream to read data from, positioned at the beginning of the packed values    * @param header       metadata result from<code>readHeader()</code>    * @return             a Reader    * @throws IOException If there is a low-level I/O error    * @see #readHeader(DataInput)    * @lucene.internal    */
 DECL|method|getDirectReaderNoHeader
 specifier|public
 specifier|static
@@ -3893,14 +3893,14 @@ expr_stmt|;
 block|}
 block|}
 block|}
-comment|//nocommit javadoc
+comment|/**    * Expert: reads only the metadata from a stream. This is useful to later    * restore a stream or open a direct reader via     * {@link #getReaderNoHeader(DataInput, Header)}    * or {@link #getDirectReaderNoHeader(IndexInput, Header)}.    * @param    in the stream to read data    * @return   packed integer metadata.    * @throws   IOException If there is a low-level I/O error    * @see #getReaderNoHeader(DataInput, Header)    * @see #getDirectReaderNoHeader(IndexInput, Header)    */
 DECL|method|readHeader
 specifier|public
 specifier|static
 name|Header
 name|readHeader
 parameter_list|(
-name|IndexInput
+name|DataInput
 name|in
 parameter_list|)
 throws|throws
