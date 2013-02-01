@@ -709,6 +709,9 @@ name|Integer
 argument_list|>
 name|nameToNumber
 decl_stmt|;
+comment|// We use this to enforce that a given field never
+comment|// changes DV type, even across segments / IndexWriter
+comment|// sessions:
 DECL|field|docValuesType
 specifier|private
 specifier|final
@@ -720,6 +723,9 @@ name|DocValuesType
 argument_list|>
 name|docValuesType
 decl_stmt|;
+comment|// TODO: we should similarly catch an attempt to turn
+comment|// norms back on after they were already ommitted; today
+comment|// we silently discard the norm but this is badly trappy
 DECL|field|lowestUnassignedFieldNumber
 specifier|private
 name|int
@@ -952,10 +958,8 @@ name|intValue
 argument_list|()
 return|;
 block|}
-comment|/**      * Sets the given field number and name if not yet set.       */
-comment|// nocommit: why is docvalues involved with global field numbers?
-comment|// nocommit: and is it even tested...
-comment|/*     synchronized void setIfNotSet(int fieldNumber, String fieldName, DocValuesType dvType) {       final Integer boxedFieldNumber = Integer.valueOf(fieldNumber);       if (!numberToName.containsKey(boxedFieldNumber)&& !nameToNumber.containsKey(fieldName)&& !docValuesType.containsKey(dvType)) {         numberToName.put(boxedFieldNumber, fieldName);         nameToNumber.put(fieldName, boxedFieldNumber);         docValuesType.put(fieldName, dvType);       } else {         // nocommit should this be a real check?         assert containsConsistent(boxedFieldNumber, fieldName, dvType);       }     }     */
+comment|// nocommit: do we need better tests for attempt to
+comment|// change doc value type across segments...
 comment|// used by assert
 DECL|method|containsConsistent
 specifier|synchronized
