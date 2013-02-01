@@ -1622,7 +1622,7 @@ argument_list|>
 argument_list|()
 argument_list|)
 decl_stmt|;
-comment|// Add a single document with commitWithin == 1 second
+comment|// Add a single document with commitWithin == 2 second
 name|SolrQueryResponse
 name|rsp
 init|=
