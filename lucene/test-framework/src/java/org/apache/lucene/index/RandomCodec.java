@@ -148,22 +148,6 @@ name|codecs
 operator|.
 name|lucene41
 operator|.
-name|Lucene41Codec
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|codecs
-operator|.
-name|lucene41
-operator|.
 name|Lucene41PostingsFormat
 import|;
 end_import
@@ -181,6 +165,22 @@ operator|.
 name|lucene41ords
 operator|.
 name|Lucene41WithOrds
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|codecs
+operator|.
+name|lucene42
+operator|.
+name|Lucene42Codec
 import|;
 end_import
 
@@ -382,7 +382,7 @@ specifier|public
 class|class
 name|RandomCodec
 extends|extends
-name|Lucene41Codec
+name|Lucene42Codec
 block|{
 comment|/** Shuffled list of postings formats to use for new mappings */
 DECL|field|formats
