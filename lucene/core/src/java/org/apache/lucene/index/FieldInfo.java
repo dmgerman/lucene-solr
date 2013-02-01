@@ -37,6 +37,10 @@ import|;
 end_import
 
 begin_comment
+comment|// nocommit fails if you repeat: TestDocValuesWithThreads.test2 -seed A765AB92D216E371
+end_comment
+
+begin_comment
 comment|/**  *  Access to the Field Info file that describes document fields and whether or  *  not they are indexed. Each segment has a separate Field Info file. Objects  *  of this class are thread-safe for multiple readers, but only one thread can  *  be adding documents at a time, with no other reader or writer threads  *  accessing this object.  **/
 end_comment
 
@@ -383,6 +387,37 @@ block|}
 return|return
 literal|true
 return|;
+block|}
+DECL|method|update
+name|void
+name|update
+parameter_list|(
+name|IndexableFieldType
+name|ft
+parameter_list|)
+block|{
+name|update
+argument_list|(
+name|ft
+operator|.
+name|indexed
+argument_list|()
+argument_list|,
+literal|false
+argument_list|,
+name|ft
+operator|.
+name|omitNorms
+argument_list|()
+argument_list|,
+literal|false
+argument_list|,
+name|ft
+operator|.
+name|indexOptions
+argument_list|()
+argument_list|)
+expr_stmt|;
 block|}
 comment|// should only be called by FieldInfos#addOrUpdate
 DECL|method|update
