@@ -134,8 +134,14 @@ name|PackedInts
 import|;
 end_import
 
+begin_comment
+comment|/**  * Random-access reader for {@link CompressingStoredFieldsIndexWriter}.  * @lucene.internal  */
+end_comment
+
 begin_class
 DECL|class|CompressingStoredFieldsIndexReader
+specifier|public
+specifier|final
 class|class
 name|CompressingStoredFieldsIndexReader
 implements|implements
