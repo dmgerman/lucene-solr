@@ -5433,7 +5433,7 @@ condition|)
 block|{
 throw|throw
 operator|new
-name|AssertionError
+name|RuntimeException
 argument_list|(
 literal|"One thread threw an exception"
 argument_list|,
