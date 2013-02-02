@@ -958,8 +958,6 @@ name|intValue
 argument_list|()
 return|;
 block|}
-comment|// nocommit: do we need better tests for attempt to
-comment|// change doc value type across segments...
 comment|// used by assert
 DECL|method|containsConsistent
 specifier|synchronized
