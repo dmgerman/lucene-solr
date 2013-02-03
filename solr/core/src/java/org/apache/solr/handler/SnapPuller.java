@@ -748,22 +748,6 @@ name|client
 operator|.
 name|solrj
 operator|.
-name|SolrServer
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|solr
-operator|.
-name|client
-operator|.
-name|solrj
-operator|.
 name|SolrServerException
 import|;
 end_import
@@ -959,8 +943,6 @@ operator|.
 name|core
 operator|.
 name|DirectoryFactory
-operator|.
-name|DirContext
 import|;
 end_import
 
@@ -975,6 +957,8 @@ operator|.
 name|core
 operator|.
 name|DirectoryFactory
+operator|.
+name|DirContext
 import|;
 end_import
 
@@ -2006,7 +1990,7 @@ argument_list|(
 name|params
 argument_list|)
 decl_stmt|;
-name|SolrServer
+name|HttpSolrServer
 name|server
 init|=
 operator|new
@@ -2018,6 +2002,20 @@ name|myHttpClient
 argument_list|)
 decl_stmt|;
 comment|//XXX modify to use shardhandler
+name|server
+operator|.
+name|setSoTimeout
+argument_list|(
+literal|60000
+argument_list|)
+expr_stmt|;
+name|server
+operator|.
+name|setConnectionTimeout
+argument_list|(
+literal|15000
+argument_list|)
+expr_stmt|;
 try|try
 block|{
 return|return
@@ -2117,7 +2115,7 @@ argument_list|(
 name|params
 argument_list|)
 decl_stmt|;
-name|SolrServer
+name|HttpSolrServer
 name|server
 init|=
 operator|new
@@ -2129,6 +2127,20 @@ name|myHttpClient
 argument_list|)
 decl_stmt|;
 comment|//XXX modify to use shardhandler
+name|server
+operator|.
+name|setSoTimeout
+argument_list|(
+literal|60000
+argument_list|)
+expr_stmt|;
+name|server
+operator|.
+name|setConnectionTimeout
+argument_list|(
+literal|15000
+argument_list|)
+expr_stmt|;
 try|try
 block|{
 name|NamedList
@@ -7527,7 +7539,7 @@ parameter_list|()
 throws|throws
 name|IOException
 block|{
-name|SolrServer
+name|HttpSolrServer
 name|s
 init|=
 operator|new
@@ -7541,6 +7553,20 @@ literal|null
 argument_list|)
 decl_stmt|;
 comment|//XXX use shardhandler
+name|s
+operator|.
+name|setSoTimeout
+argument_list|(
+literal|60000
+argument_list|)
+expr_stmt|;
+name|s
+operator|.
+name|setConnectionTimeout
+argument_list|(
+literal|15000
+argument_list|)
+expr_stmt|;
 name|ModifiableSolrParams
 name|params
 init|=
@@ -8753,7 +8779,7 @@ parameter_list|()
 throws|throws
 name|IOException
 block|{
-name|SolrServer
+name|HttpSolrServer
 name|s
 init|=
 operator|new
@@ -8767,6 +8793,20 @@ literal|null
 argument_list|)
 decl_stmt|;
 comment|//XXX use shardhandler
+name|s
+operator|.
+name|setSoTimeout
+argument_list|(
+literal|60000
+argument_list|)
+expr_stmt|;
+name|s
+operator|.
+name|setConnectionTimeout
+argument_list|(
+literal|15000
+argument_list|)
+expr_stmt|;
 name|ModifiableSolrParams
 name|params
 init|=
@@ -9044,7 +9084,7 @@ argument_list|,
 literal|"/replication"
 argument_list|)
 expr_stmt|;
-name|SolrServer
+name|HttpSolrServer
 name|server
 init|=
 operator|new
@@ -9056,6 +9096,20 @@ name|myHttpClient
 argument_list|)
 decl_stmt|;
 comment|//XXX use shardhandler
+name|server
+operator|.
+name|setSoTimeout
+argument_list|(
+literal|60000
+argument_list|)
+expr_stmt|;
+name|server
+operator|.
+name|setConnectionTimeout
+argument_list|(
+literal|15000
+argument_list|)
+expr_stmt|;
 name|QueryRequest
 name|request
 init|=
