@@ -3972,6 +3972,20 @@ operator|+
 literal|"/unloadcollection3"
 argument_list|)
 decl_stmt|;
+name|addClient
+operator|.
+name|setConnectionTimeout
+argument_list|(
+literal|15000
+argument_list|)
+expr_stmt|;
+name|addClient
+operator|.
+name|setSoTimeout
+argument_list|(
+literal|30000
+argument_list|)
+expr_stmt|;
 comment|// add a few docs
 for|for
 control|(
