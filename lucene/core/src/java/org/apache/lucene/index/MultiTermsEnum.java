@@ -2400,7 +2400,6 @@ return|;
 block|}
 block|}
 DECL|class|TermsEnumWithSlice
-specifier|private
 specifier|final
 specifier|static
 class|class
