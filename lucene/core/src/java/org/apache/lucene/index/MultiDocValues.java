@@ -1117,7 +1117,6 @@ block|}
 block|}
 comment|/** maps per-segment ordinals to/from global ordinal space */
 comment|// TODO: use more efficient packed ints structures (these are all positive values!)
-comment|// nocommit: cache this in SlowWrapper, it can create MultiSortedDV with it directly.
 DECL|class|OrdinalMap
 specifier|static
 class|class
