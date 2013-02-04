@@ -736,7 +736,6 @@ name|checkConsistency
 argument_list|()
 assert|;
 block|}
-comment|// nocommit type is always number?  should we remove this?
 DECL|method|setNormValueType
 name|void
 name|setNormValueType
