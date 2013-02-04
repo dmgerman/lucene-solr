@@ -1093,11 +1093,11 @@ return|;
 block|}
 else|else
 block|{
-name|OrdinalMapping
+name|OrdinalMap
 name|mapping
 init|=
 operator|new
-name|OrdinalMapping
+name|OrdinalMap
 argument_list|(
 name|values
 argument_list|)
@@ -1118,10 +1118,10 @@ block|}
 comment|/** maps per-segment ordinals to/from global ordinal space */
 comment|// TODO: use more efficient packed ints structures (these are all positive values!)
 comment|// nocommit: cache this in SlowWrapper, it can create MultiSortedDV with it directly.
-DECL|class|OrdinalMapping
+DECL|class|OrdinalMap
 specifier|static
 class|class
-name|OrdinalMapping
+name|OrdinalMap
 block|{
 comment|// globalOrd -> (globalOrd - segmentOrd)
 DECL|field|globalOrdDeltas
@@ -1142,8 +1142,8 @@ name|AppendingLongBuffer
 name|ordDeltas
 index|[]
 decl_stmt|;
-DECL|method|OrdinalMapping
-name|OrdinalMapping
+DECL|method|OrdinalMap
+name|OrdinalMap
 parameter_list|(
 name|SortedDocValues
 name|subs
@@ -1360,6 +1360,21 @@ index|]
 operator|.
 name|index
 decl_stmt|;
+name|int
+name|delta
+init|=
+name|globalOrd
+operator|-
+name|segmentOrds
+index|[
+name|subIndex
+index|]
+decl_stmt|;
+assert|assert
+name|delta
+operator|>=
+literal|0
+assert|;
 comment|// for each unique term, just mark the first subindex/delta where it occurs
 if|if
 condition|(
@@ -1379,12 +1394,7 @@ name|globalOrdDeltas
 operator|.
 name|add
 argument_list|(
-name|globalOrd
-operator|-
-name|segmentOrds
-index|[
-name|subIndex
-index|]
+name|delta
 argument_list|)
 expr_stmt|;
 block|}
@@ -1396,12 +1406,7 @@ index|]
 operator|.
 name|add
 argument_list|(
-name|globalOrd
-operator|-
-name|segmentOrds
-index|[
-name|subIndex
-index|]
+name|delta
 argument_list|)
 expr_stmt|;
 name|segmentOrds
@@ -1417,7 +1422,7 @@ expr_stmt|;
 block|}
 block|}
 block|}
-comment|/** implements SortedDocValues over n subs, using a SortedBytesMapping */
+comment|/** implements SortedDocValues over n subs, using an OrdinalMap */
 DECL|class|MultiSortedDocValues
 specifier|static
 class|class
@@ -1439,7 +1444,7 @@ index|[]
 decl_stmt|;
 DECL|field|mapping
 specifier|final
-name|OrdinalMapping
+name|OrdinalMap
 name|mapping
 decl_stmt|;
 DECL|method|MultiSortedDocValues
@@ -1453,7 +1458,7 @@ name|int
 name|docStarts
 index|[]
 parameter_list|,
-name|OrdinalMapping
+name|OrdinalMap
 name|mapping
 parameter_list|)
 throws|throws
