@@ -234,17 +234,12 @@ name|field
 argument_list|)
 decl_stmt|;
 comment|// To be sorted or not to be sorted, that is the question
-comment|// nocommit: do it cleaner?
+comment|// TODO: do it cleaner?
 if|if
 condition|(
 name|fieldInfo
 operator|!=
 literal|null
-operator|&&
-name|fieldInfo
-operator|.
-name|hasDocValues
-argument_list|()
 operator|&&
 name|fieldInfo
 operator|.
