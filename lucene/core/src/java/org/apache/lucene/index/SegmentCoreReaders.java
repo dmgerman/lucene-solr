@@ -1282,9 +1282,9 @@ return|return
 name|dvs
 return|;
 block|}
-DECL|method|getSimpleNormValues
+DECL|method|getNormValues
 name|NumericDocValues
-name|getSimpleNormValues
+name|getNormValues
 parameter_list|(
 name|String
 name|field
