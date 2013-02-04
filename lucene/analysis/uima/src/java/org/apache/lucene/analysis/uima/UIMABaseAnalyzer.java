@@ -42,6 +42,16 @@ name|Reader
 import|;
 end_import
 
+begin_import
+import|import
+name|java
+operator|.
+name|util
+operator|.
+name|Map
+import|;
+end_import
+
 begin_comment
 comment|/**  * An {@link Analyzer} which use the {@link UIMAAnnotationsTokenizer} for creating tokens  */
 end_comment
@@ -67,6 +77,17 @@ specifier|final
 name|String
 name|tokenType
 decl_stmt|;
+DECL|field|configurationParameters
+specifier|private
+specifier|final
+name|Map
+argument_list|<
+name|String
+argument_list|,
+name|Object
+argument_list|>
+name|configurationParameters
+decl_stmt|;
 DECL|method|UIMABaseAnalyzer
 specifier|public
 name|UIMABaseAnalyzer
@@ -76,6 +97,14 @@ name|descriptorPath
 parameter_list|,
 name|String
 name|tokenType
+parameter_list|,
+name|Map
+argument_list|<
+name|String
+argument_list|,
+name|Object
+argument_list|>
+name|configurationParameters
 parameter_list|)
 block|{
 name|this
@@ -89,6 +118,12 @@ operator|.
 name|tokenType
 operator|=
 name|tokenType
+expr_stmt|;
+name|this
+operator|.
+name|configurationParameters
+operator|=
+name|configurationParameters
 expr_stmt|;
 block|}
 annotation|@
@@ -115,6 +150,8 @@ argument_list|(
 name|descriptorPath
 argument_list|,
 name|tokenType
+argument_list|,
+name|configurationParameters
 argument_list|,
 name|reader
 argument_list|)

@@ -130,6 +130,8 @@ argument_list|,
 literal|"org.apache.uima.TokenAnnotation"
 argument_list|,
 literal|"posTag"
+argument_list|,
+literal|null
 argument_list|)
 expr_stmt|;
 block|}
@@ -255,6 +257,8 @@ argument_list|,
 literal|"org.apache.lucene.uima.ts.TokenAnnotation"
 argument_list|,
 literal|"pos"
+argument_list|,
+literal|null
 argument_list|)
 argument_list|,
 literal|100

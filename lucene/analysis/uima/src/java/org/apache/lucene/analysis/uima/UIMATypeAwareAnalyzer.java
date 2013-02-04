@@ -42,6 +42,16 @@ name|Reader
 import|;
 end_import
 
+begin_import
+import|import
+name|java
+operator|.
+name|util
+operator|.
+name|Map
+import|;
+end_import
+
 begin_comment
 comment|/**  * {@link Analyzer} which uses the {@link UIMATypeAwareAnnotationsTokenizer} for the tokenization phase  */
 end_comment
@@ -73,6 +83,17 @@ specifier|final
 name|String
 name|featurePath
 decl_stmt|;
+DECL|field|configurationParameters
+specifier|private
+specifier|final
+name|Map
+argument_list|<
+name|String
+argument_list|,
+name|Object
+argument_list|>
+name|configurationParameters
+decl_stmt|;
 DECL|method|UIMATypeAwareAnalyzer
 specifier|public
 name|UIMATypeAwareAnalyzer
@@ -85,6 +106,14 @@ name|tokenType
 parameter_list|,
 name|String
 name|featurePath
+parameter_list|,
+name|Map
+argument_list|<
+name|String
+argument_list|,
+name|Object
+argument_list|>
+name|configurationParameters
 parameter_list|)
 block|{
 name|this
@@ -104,6 +133,12 @@ operator|.
 name|featurePath
 operator|=
 name|featurePath
+expr_stmt|;
+name|this
+operator|.
+name|configurationParameters
+operator|=
+name|configurationParameters
 expr_stmt|;
 block|}
 annotation|@
@@ -132,6 +167,8 @@ argument_list|,
 name|tokenType
 argument_list|,
 name|featurePath
+argument_list|,
+name|configurationParameters
 argument_list|,
 name|reader
 argument_list|)

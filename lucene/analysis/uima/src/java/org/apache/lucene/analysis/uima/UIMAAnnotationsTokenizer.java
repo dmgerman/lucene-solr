@@ -128,6 +128,16 @@ name|Reader
 import|;
 end_import
 
+begin_import
+import|import
+name|java
+operator|.
+name|util
+operator|.
+name|Map
+import|;
+end_import
+
 begin_comment
 comment|/**  * a {@link Tokenizer} which creates tokens from UIMA Annotations  */
 end_comment
@@ -176,6 +186,14 @@ parameter_list|,
 name|String
 name|tokenType
 parameter_list|,
+name|Map
+argument_list|<
+name|String
+argument_list|,
+name|Object
+argument_list|>
+name|configurationParameters
+parameter_list|,
 name|Reader
 name|input
 parameter_list|)
@@ -185,6 +203,8 @@ argument_list|(
 name|input
 argument_list|,
 name|descriptorPath
+argument_list|,
+name|configurationParameters
 argument_list|)
 expr_stmt|;
 name|this
