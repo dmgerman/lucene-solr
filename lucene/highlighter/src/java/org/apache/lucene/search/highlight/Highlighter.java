@@ -628,15 +628,6 @@ argument_list|)
 decl_stmt|;
 name|tokenStream
 operator|.
-name|addAttribute
-argument_list|(
-name|PositionIncrementAttribute
-operator|.
-name|class
-argument_list|)
-expr_stmt|;
-name|tokenStream
-operator|.
 name|reset
 argument_list|()
 expr_stmt|;
