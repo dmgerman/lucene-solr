@@ -407,6 +407,16 @@ operator|)
 operator|.
 name|mapping
 expr_stmt|;
+if|if
+condition|(
+name|map
+operator|.
+name|owner
+operator|==
+name|getCoreCacheKey
+argument_list|()
+condition|)
+block|{
 name|cachedOrdMaps
 operator|.
 name|put
@@ -417,27 +427,11 @@ name|map
 argument_list|)
 expr_stmt|;
 block|}
+block|}
 return|return
 name|dv
 return|;
 block|}
-block|}
-if|if
-condition|(
-literal|true
-condition|)
-block|{
-comment|// nocommit
-return|return
-name|MultiDocValues
-operator|.
-name|getSortedValues
-argument_list|(
-name|in
-argument_list|,
-name|field
-argument_list|)
-return|;
 block|}
 comment|// cached multi dv
 assert|assert

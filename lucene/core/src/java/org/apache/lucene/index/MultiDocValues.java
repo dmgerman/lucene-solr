@@ -1099,6 +1099,11 @@ init|=
 operator|new
 name|OrdinalMap
 argument_list|(
+name|r
+operator|.
+name|getCoreCacheKey
+argument_list|()
+argument_list|,
 name|values
 argument_list|)
 decl_stmt|;
@@ -1122,6 +1127,12 @@ specifier|static
 class|class
 name|OrdinalMap
 block|{
+comment|// cache key of whoever asked for this aweful thing
+DECL|field|owner
+specifier|final
+name|Object
+name|owner
+decl_stmt|;
 comment|// globalOrd -> (globalOrd - segmentOrd)
 DECL|field|globalOrdDeltas
 specifier|final
@@ -1144,6 +1155,9 @@ decl_stmt|;
 DECL|method|OrdinalMap
 name|OrdinalMap
 parameter_list|(
+name|Object
+name|owner
+parameter_list|,
 name|SortedDocValues
 name|subs
 index|[]
@@ -1153,6 +1167,12 @@ name|IOException
 block|{
 comment|// create the ordinal mappings by pulling a termsenum over each sub's
 comment|// unique terms, and walking a multitermsenum over those
+name|this
+operator|.
+name|owner
+operator|=
+name|owner
+expr_stmt|;
 name|globalOrdDeltas
 operator|=
 operator|new
