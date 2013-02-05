@@ -1592,6 +1592,13 @@ name|ord
 argument_list|)
 argument_list|)
 decl_stmt|;
+assert|assert
+name|subIndex
+operator|<
+name|values
+operator|.
+name|length
+assert|;
 name|values
 index|[
 name|subIndex

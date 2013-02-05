@@ -422,6 +422,23 @@ name|dv
 return|;
 block|}
 block|}
+if|if
+condition|(
+literal|true
+condition|)
+block|{
+comment|// nocommit
+return|return
+name|MultiDocValues
+operator|.
+name|getSortedValues
+argument_list|(
+name|in
+argument_list|,
+name|field
+argument_list|)
+return|;
+block|}
 comment|// cached multi dv
 assert|assert
 name|map
