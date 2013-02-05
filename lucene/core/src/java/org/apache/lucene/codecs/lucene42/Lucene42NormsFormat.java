@@ -98,8 +98,24 @@ name|SegmentWriteState
 import|;
 end_import
 
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|util
+operator|.
+name|packed
+operator|.
+name|PackedInts
+import|;
+end_import
+
 begin_comment
-comment|/**  * Lucene 4.2 score normalization format.  *<p>  * NOTE: this uses the same format as {@link Lucene42DocValuesFormat}  * Numeric DocValues, but with different file extensions.  *<p>  * Files:  *<ul>  *<li><tt>.nvd</tt>: DocValues data</li>  *<li><tt>.nvm</tt>: DocValues metadata</li>  *</ul>  * @see Lucene42DocValuesFormat  */
+comment|/**  * Lucene 4.2 score normalization format.  *<p>  * NOTE: this uses the same format as {@link Lucene42DocValuesFormat}  * Numeric DocValues, but with different file extensions, and passing  * {@link PackedInts#FASTEST} for uncompressed encoding: trading off  * space for performance.  *<p>  * Files:  *<ul>  *<li><tt>.nvd</tt>: DocValues data</li>  *<li><tt>.nvm</tt>: DocValues metadata</li>  *</ul>  * @see Lucene42DocValuesFormat  */
 end_comment
 
 begin_class
@@ -130,6 +146,7 @@ parameter_list|)
 throws|throws
 name|IOException
 block|{
+comment|// note: we choose FASTEST here (otherwise our norms are half as big but 15% slower than previous lucene)
 return|return
 operator|new
 name|Lucene42DocValuesConsumer
@@ -143,6 +160,10 @@ argument_list|,
 name|METADATA_CODEC
 argument_list|,
 name|METADATA_EXTENSION
+argument_list|,
+name|PackedInts
+operator|.
+name|FASTEST
 argument_list|)
 return|;
 block|}

@@ -765,27 +765,6 @@ specifier|final
 name|NumericDocValues
 name|norms
 decl_stmt|;
-DECL|field|SCORE_CACHE_SIZE
-specifier|private
-specifier|static
-specifier|final
-name|int
-name|SCORE_CACHE_SIZE
-init|=
-literal|32
-decl_stmt|;
-DECL|field|scoreCache
-specifier|private
-name|float
-index|[]
-name|scoreCache
-init|=
-operator|new
-name|float
-index|[
-name|SCORE_CACHE_SIZE
-index|]
-decl_stmt|;
 DECL|method|ExactTFIDFDocScorer
 name|ExactTFIDFDocScorer
 parameter_list|(
@@ -818,32 +797,6 @@ name|norms
 operator|=
 name|norms
 expr_stmt|;
-for|for
-control|(
-name|int
-name|i
-init|=
-literal|0
-init|;
-name|i
-operator|<
-name|SCORE_CACHE_SIZE
-condition|;
-name|i
-operator|++
-control|)
-name|scoreCache
-index|[
-name|i
-index|]
-operator|=
-name|tf
-argument_list|(
-name|i
-argument_list|)
-operator|*
-name|weightValue
-expr_stmt|;
 block|}
 annotation|@
 name|Override
@@ -863,18 +816,6 @@ specifier|final
 name|float
 name|raw
 init|=
-comment|// compute tf(f)*weight
-name|freq
-operator|<
-name|SCORE_CACHE_SIZE
-comment|// check cache
-condition|?
-name|scoreCache
-index|[
-name|freq
-index|]
-comment|// cache hit
-else|:
 name|tf
 argument_list|(
 name|freq
@@ -882,7 +823,7 @@ argument_list|)
 operator|*
 name|weightValue
 decl_stmt|;
-comment|// cache miss
+comment|// compute tf(f)*weight
 return|return
 name|norms
 operator|==
