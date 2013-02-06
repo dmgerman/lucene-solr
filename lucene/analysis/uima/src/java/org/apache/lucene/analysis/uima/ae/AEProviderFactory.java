@@ -53,8 +53,13 @@ block|{
 DECL|field|instance
 specifier|private
 specifier|static
+specifier|final
 name|AEProviderFactory
 name|instance
+init|=
+operator|new
+name|AEProviderFactory
+argument_list|()
 decl_stmt|;
 DECL|field|providerCache
 specifier|private
@@ -90,25 +95,11 @@ name|AEProviderFactory
 name|getInstance
 parameter_list|()
 block|{
-if|if
-condition|(
-name|instance
-operator|==
-literal|null
-condition|)
-block|{
-name|instance
-operator|=
-operator|new
-name|AEProviderFactory
-argument_list|()
-expr_stmt|;
-block|}
 return|return
 name|instance
 return|;
 block|}
-comment|/**    * @param keyPrefix a prefix of the key used to cache the AEProvider    * @param aePath the AnalysisEngine descriptor path    * @param runtimeParameters map of runtime parameters to configure inside the AnalysisEngine    * @return AEProvider    */
+comment|/**    * @param keyPrefix         a prefix of the key used to cache the AEProvider    * @param aePath            the AnalysisEngine descriptor path    * @param runtimeParameters map of runtime parameters to configure inside the AnalysisEngine    * @return AEProvider    */
 DECL|method|getAEProvider
 specifier|public
 specifier|synchronized
@@ -248,7 +239,7 @@ literal|null
 argument_list|)
 return|;
 block|}
-comment|/**    * @param aePath the AnalysisEngine descriptor path    * @param runtimeParameters map of runtime parameters to configure inside the AnalysisEngine    * @return AEProvider    */
+comment|/**    * @param aePath            the AnalysisEngine descriptor path    * @param runtimeParameters map of runtime parameters to configure inside the AnalysisEngine    * @return AEProvider    */
 DECL|method|getAEProvider
 specifier|public
 specifier|synchronized
