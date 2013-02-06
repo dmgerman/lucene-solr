@@ -6349,6 +6349,23 @@ control|)
 block|{
 try|try
 block|{
+if|if
+condition|(
+name|isClosed
+condition|)
+block|{
+throw|throw
+operator|new
+name|SolrException
+argument_list|(
+name|ErrorCode
+operator|.
+name|SERVICE_UNAVAILABLE
+argument_list|,
+literal|"We have been closed"
+argument_list|)
+throw|;
+block|}
 comment|// go straight to zk, not the cloud state - we must have current info
 name|leaderProps
 operator|=
