@@ -1327,7 +1327,7 @@ operator|.
 name|currentTimeMillis
 argument_list|()
 operator|-
-literal|100
+literal|200
 decl_stmt|;
 comment|// minus a tad of slop
 name|long
