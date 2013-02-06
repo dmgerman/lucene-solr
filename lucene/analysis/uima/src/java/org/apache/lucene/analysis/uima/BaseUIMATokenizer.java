@@ -156,6 +156,26 @@ name|Reader
 import|;
 end_import
 
+begin_import
+import|import
+name|java
+operator|.
+name|util
+operator|.
+name|HashMap
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
+name|util
+operator|.
+name|Map
+import|;
+end_import
+
 begin_comment
 comment|/**  * Abstract base implementation of a {@link Tokenizer} which is able to analyze the given input with a  * UIMA {@link AnalysisEngine}  */
 end_comment
@@ -198,6 +218,14 @@ name|reader
 parameter_list|,
 name|String
 name|descriptorPath
+parameter_list|,
+name|Map
+argument_list|<
+name|String
+argument_list|,
+name|Object
+argument_list|>
+name|configurationParameters
 parameter_list|)
 block|{
 name|super
@@ -216,7 +244,11 @@ argument_list|()
 operator|.
 name|getAEProvider
 argument_list|(
+literal|null
+argument_list|,
 name|descriptorPath
+argument_list|,
+name|configurationParameters
 argument_list|)
 operator|.
 name|getAE
