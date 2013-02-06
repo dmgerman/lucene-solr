@@ -2329,8 +2329,8 @@ operator|&&
 name|dff
 operator|.
 name|initialMincount
-operator|==
-literal|0
+operator|<=
+literal|1
 condition|)
 continue|continue;
 comment|// only other case where index-sort doesn't need refinement is if minCount==0
@@ -2339,8 +2339,8 @@ condition|(
 name|dff
 operator|.
 name|minCount
-operator|==
-literal|0
+operator|<=
+literal|1
 operator|&&
 name|dff
 operator|.
