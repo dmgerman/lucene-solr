@@ -570,12 +570,12 @@ return|return
 literal|null
 return|;
 block|}
-comment|/**    * Returns {@link DocValues} for this field.    * This method may return null if the reader has no per-document    * values stored.    */
-DECL|method|docValues
+comment|/** Returns {@link NumericDocValues} for this field, or    *  null if no {@link NumericDocValues} were indexed for    *  this field.  The returned instance should only be    *  used by a single thread. */
+DECL|method|getNumericDocValues
 specifier|public
 specifier|abstract
-name|DocValues
-name|docValues
+name|NumericDocValues
+name|getNumericDocValues
 parameter_list|(
 name|String
 name|field
@@ -583,12 +583,38 @@ parameter_list|)
 throws|throws
 name|IOException
 function_decl|;
-comment|/**    * Returns {@link DocValues} for this field's normalization values.    * This method may return null if the field has no norms.    */
-DECL|method|normValues
+comment|/** Returns {@link BinaryDocValues} for this field, or    *  null if no {@link BinaryDocValues} were indexed for    *  this field.  The returned instance should only be    *  used by a single thread. */
+DECL|method|getBinaryDocValues
 specifier|public
 specifier|abstract
-name|DocValues
-name|normValues
+name|BinaryDocValues
+name|getBinaryDocValues
+parameter_list|(
+name|String
+name|field
+parameter_list|)
+throws|throws
+name|IOException
+function_decl|;
+comment|/** Returns {@link SortedDocValues} for this field, or    *  null if no {@link SortedDocValues} were indexed for    *  this field.  The returned instance should only be    *  used by a single thread. */
+DECL|method|getSortedDocValues
+specifier|public
+specifier|abstract
+name|SortedDocValues
+name|getSortedDocValues
+parameter_list|(
+name|String
+name|field
+parameter_list|)
+throws|throws
+name|IOException
+function_decl|;
+comment|/** Returns {@link NumericDocValues} representing norms    *  for this field, or null if no {@link NumericDocValues}    *  were indexed. The returned instance should only be    *  used by a single thread. */
+DECL|method|getNormValues
+specifier|public
+specifier|abstract
+name|NumericDocValues
+name|getNormValues
 parameter_list|(
 name|String
 name|field

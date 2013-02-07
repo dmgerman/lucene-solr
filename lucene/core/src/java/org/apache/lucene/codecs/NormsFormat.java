@@ -36,7 +36,7 @@ name|lucene
 operator|.
 name|index
 operator|.
-name|PerDocWriteState
+name|SegmentReadState
 import|;
 end_import
 
@@ -50,12 +50,12 @@ name|lucene
 operator|.
 name|index
 operator|.
-name|SegmentReadState
+name|SegmentWriteState
 import|;
 end_import
 
 begin_comment
-comment|/**  * format for normalization factors  */
+comment|/**  * Encodes/decodes per-document score normalization values.  */
 end_comment
 
 begin_class
@@ -71,25 +71,25 @@ specifier|protected
 name|NormsFormat
 parameter_list|()
 block|{   }
-comment|/** Returns a {@link PerDocConsumer} to write norms to the    *  index. */
-DECL|method|docsConsumer
+comment|/** Returns a {@link DocValuesConsumer} to write norms to the    *  index. */
+DECL|method|normsConsumer
 specifier|public
 specifier|abstract
-name|PerDocConsumer
-name|docsConsumer
+name|DocValuesConsumer
+name|normsConsumer
 parameter_list|(
-name|PerDocWriteState
+name|SegmentWriteState
 name|state
 parameter_list|)
 throws|throws
 name|IOException
 function_decl|;
-comment|/** Returns a {@link PerDocProducer} to read norms from the    *  index. */
-DECL|method|docsProducer
+comment|/**     * Returns a {@link DocValuesProducer} to read norms from the index.     *<p>    * NOTE: by the time this call returns, it must hold open any files it will     * need to use; else, those files may be deleted. Additionally, required files     * may be deleted during the execution of this call before there is a chance     * to open them. Under these circumstances an IOException should be thrown by     * the implementation. IOExceptions are expected and will automatically cause     * a retry of the segment opening logic with the newly revised segments.    */
+DECL|method|normsProducer
 specifier|public
 specifier|abstract
-name|PerDocProducer
-name|docsProducer
+name|DocValuesProducer
+name|normsProducer
 parameter_list|(
 name|SegmentReadState
 name|state

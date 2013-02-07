@@ -216,8 +216,6 @@ name|search
 operator|.
 name|suggest
 operator|.
-name|fst
-operator|.
 name|Sort
 import|;
 end_import

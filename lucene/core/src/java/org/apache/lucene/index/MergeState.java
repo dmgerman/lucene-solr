@@ -906,12 +906,6 @@ specifier|public
 name|InfoStream
 name|infoStream
 decl_stmt|;
-comment|/** Current field being merged. */
-DECL|field|fieldInfo
-specifier|public
-name|FieldInfo
-name|fieldInfo
-decl_stmt|;
 comment|// TODO: get rid of this? it tells you which segments are 'aligned' (e.g. for bulk merging)
 comment|// but is this really so expensive to compute again in different components, versus once in SM?
 comment|/** {@link SegmentReader}s that have identical field    * name/number mapping, so their stored fields and term    * vectors may be bulk merged. */

@@ -2313,9 +2313,10 @@ init|=
 literal|null
 decl_stmt|;
 specifier|final
-name|int
+name|FieldCache
+operator|.
+name|Ints
 name|docIDToID
-index|[]
 init|=
 name|FieldCache
 operator|.
@@ -2412,12 +2413,14 @@ operator|.
 name|get
 argument_list|(
 name|docIDToID
-index|[
+operator|.
+name|get
+argument_list|(
 name|doc
-index|]
+argument_list|)
 argument_list|)
 decl_stmt|;
-comment|//System.out.println("      doc=" + docIDToID[doc] + " docID=" + doc + " " + expected.size() + " freq");
+comment|//System.out.println("      doc=" + docIDToID.get(doc) + " docID=" + doc + " " + expected.size() + " freq");
 name|assertNotNull
 argument_list|(
 name|expected
@@ -2492,12 +2495,14 @@ operator|.
 name|get
 argument_list|(
 name|docIDToID
-index|[
+operator|.
+name|get
+argument_list|(
 name|doc
-index|]
+argument_list|)
 argument_list|)
 decl_stmt|;
-comment|//System.out.println("      doc=" + docIDToID[doc] + " " + expected.size() + " freq");
+comment|//System.out.println("      doc=" + docIDToID.get(doc) + " " + expected.size() + " freq");
 name|assertNotNull
 argument_list|(
 name|expected
@@ -2600,12 +2605,14 @@ operator|.
 name|get
 argument_list|(
 name|docIDToID
-index|[
+operator|.
+name|get
+argument_list|(
 name|doc
-index|]
+argument_list|)
 argument_list|)
 decl_stmt|;
-comment|//System.out.println("      doc=" + docIDToID[doc] + " " + expected.size() + " freq");
+comment|//System.out.println("      doc=" + docIDToID.get(doc) + " " + expected.size() + " freq");
 name|assertNotNull
 argument_list|(
 name|expected

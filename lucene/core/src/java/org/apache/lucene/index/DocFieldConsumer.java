@@ -69,13 +69,6 @@ name|void
 name|abort
 parameter_list|()
 function_decl|;
-comment|/** Called when DocumentsWriterPerThread is using too much RAM.    *  The consumer should free RAM, if possible, returning    *  true if any RAM was in fact freed. */
-DECL|method|freeRAM
-specifier|abstract
-name|boolean
-name|freeRAM
-parameter_list|()
-function_decl|;
 DECL|method|startDocument
 specifier|abstract
 name|void

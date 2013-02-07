@@ -124,11 +124,25 @@ name|search
 operator|.
 name|suggest
 operator|.
-name|fst
+name|Sort
+import|;
+end_import
+
+begin_import
+import|import
+name|org
 operator|.
-name|FSTCompletion
+name|apache
 operator|.
-name|Completion
+name|lucene
+operator|.
+name|search
+operator|.
+name|suggest
+operator|.
+name|Sort
+operator|.
+name|SortInfo
 import|;
 end_import
 
@@ -146,9 +160,9 @@ name|suggest
 operator|.
 name|fst
 operator|.
-name|Sort
+name|FSTCompletion
 operator|.
-name|SortInfo
+name|Completion
 import|;
 end_import
 

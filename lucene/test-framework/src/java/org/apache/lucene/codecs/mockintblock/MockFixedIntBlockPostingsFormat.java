@@ -853,7 +853,7 @@ name|SepPostingsReader
 argument_list|(
 name|state
 operator|.
-name|dir
+name|directory
 argument_list|,
 name|state
 operator|.
@@ -895,7 +895,7 @@ name|FixedGapTermsIndexReader
 argument_list|(
 name|state
 operator|.
-name|dir
+name|directory
 argument_list|,
 name|state
 operator|.
@@ -961,7 +961,7 @@ name|indexReader
 argument_list|,
 name|state
 operator|.
-name|dir
+name|directory
 argument_list|,
 name|state
 operator|.

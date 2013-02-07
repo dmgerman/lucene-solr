@@ -154,6 +154,16 @@ name|_TestUtil
 import|;
 end_import
 
+begin_import
+import|import
+name|org
+operator|.
+name|junit
+operator|.
+name|Assume
+import|;
+end_import
+
 begin_class
 DECL|class|TestSegmentReader
 specifier|public
@@ -1064,7 +1074,7 @@ name|assertEquals
 argument_list|(
 name|reader
 operator|.
-name|normValues
+name|getNormValues
 argument_list|(
 name|f
 operator|.
@@ -1088,7 +1098,7 @@ name|assertEquals
 argument_list|(
 name|reader
 operator|.
-name|normValues
+name|getNormValues
 argument_list|(
 name|f
 operator|.
@@ -1116,7 +1126,7 @@ if|if
 condition|(
 name|reader
 operator|.
-name|normValues
+name|getNormValues
 argument_list|(
 name|f
 operator|.
@@ -1128,12 +1138,12 @@ literal|null
 condition|)
 block|{
 comment|// test for norms of null
-name|DocValues
+name|NumericDocValues
 name|norms
 init|=
 name|MultiDocValues
 operator|.
-name|getNormDocValues
+name|getNormValues
 argument_list|(
 name|reader
 argument_list|,

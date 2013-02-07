@@ -1297,6 +1297,32 @@ block|{
 return|return
 name|RamUsageEstimator
 operator|.
+name|alignObjectSize
+argument_list|(
+name|RamUsageEstimator
+operator|.
+name|NUM_BYTES_OBJECT_HEADER
+operator|+
+literal|3
+operator|*
+name|RamUsageEstimator
+operator|.
+name|NUM_BYTES_INT
+comment|// bpvMinusBlockSize,valueCount,bitsPerValue
+operator|+
+name|RamUsageEstimator
+operator|.
+name|NUM_BYTES_LONG
+comment|// maskRight
+operator|+
+name|RamUsageEstimator
+operator|.
+name|NUM_BYTES_OBJECT_REF
+argument_list|)
+comment|// blocks ref
+operator|+
+name|RamUsageEstimator
+operator|.
 name|sizeOf
 argument_list|(
 name|blocks

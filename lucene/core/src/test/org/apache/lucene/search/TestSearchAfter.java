@@ -36,6 +36,20 @@ name|lucene
 operator|.
 name|document
 operator|.
+name|BinaryDocValuesField
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|document
+operator|.
 name|Document
 import|;
 end_import
@@ -106,20 +120,6 @@ name|lucene
 operator|.
 name|document
 operator|.
-name|IntDocValuesField
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|document
-operator|.
 name|IntField
 import|;
 end_import
@@ -148,7 +148,7 @@ name|lucene
 operator|.
 name|document
 operator|.
-name|SortedBytesDocValuesField
+name|NumericDocValuesField
 import|;
 end_import
 
@@ -162,7 +162,7 @@ name|lucene
 operator|.
 name|document
 operator|.
-name|StraightBytesDocValuesField
+name|SortedDocValuesField
 import|;
 end_import
 
@@ -305,27 +305,6 @@ specifier|private
 name|IndexSearcher
 name|searcher
 decl_stmt|;
-DECL|method|useDocValues
-specifier|private
-specifier|static
-name|SortField
-name|useDocValues
-parameter_list|(
-name|SortField
-name|field
-parameter_list|)
-block|{
-name|field
-operator|.
-name|setUseIndexValues
-argument_list|(
-literal|true
-argument_list|)
-expr_stmt|;
-return|return
-name|field
-return|;
-block|}
 annotation|@
 name|Override
 DECL|method|setUp
@@ -665,7 +644,7 @@ operator|.
 name|add
 argument_list|(
 operator|new
-name|IntDocValuesField
+name|NumericDocValuesField
 argument_list|(
 literal|"intdocvalues"
 argument_list|,
@@ -699,7 +678,7 @@ operator|.
 name|add
 argument_list|(
 operator|new
-name|SortedBytesDocValuesField
+name|SortedDocValuesField
 argument_list|(
 literal|"sortedbytesdocvalues"
 argument_list|,
@@ -722,7 +701,7 @@ operator|.
 name|add
 argument_list|(
 operator|new
-name|SortedBytesDocValuesField
+name|SortedDocValuesField
 argument_list|(
 literal|"sortedbytesdocvaluesval"
 argument_list|,
@@ -745,7 +724,7 @@ operator|.
 name|add
 argument_list|(
 operator|new
-name|StraightBytesDocValuesField
+name|BinaryDocValuesField
 argument_list|(
 literal|"straightbytesdocvalues"
 argument_list|,
@@ -1303,8 +1282,6 @@ operator|new
 name|SortField
 index|[]
 block|{
-name|useDocValues
-argument_list|(
 operator|new
 name|SortField
 argument_list|(
@@ -1318,7 +1295,6 @@ name|INT
 argument_list|,
 name|reversed
 argument_list|)
-argument_list|)
 block|}
 argument_list|)
 argument_list|)
@@ -1336,8 +1312,6 @@ operator|new
 name|SortField
 index|[]
 block|{
-name|useDocValues
-argument_list|(
 operator|new
 name|SortField
 argument_list|(
@@ -1351,7 +1325,6 @@ name|FLOAT
 argument_list|,
 name|reversed
 argument_list|)
-argument_list|)
 block|}
 argument_list|)
 argument_list|)
@@ -1369,8 +1342,6 @@ operator|new
 name|SortField
 index|[]
 block|{
-name|useDocValues
-argument_list|(
 operator|new
 name|SortField
 argument_list|(
@@ -1384,7 +1355,6 @@ name|STRING
 argument_list|,
 name|reversed
 argument_list|)
-argument_list|)
 block|}
 argument_list|)
 argument_list|)
@@ -1402,8 +1372,6 @@ operator|new
 name|SortField
 index|[]
 block|{
-name|useDocValues
-argument_list|(
 operator|new
 name|SortField
 argument_list|(
@@ -1417,7 +1385,6 @@ name|STRING_VAL
 argument_list|,
 name|reversed
 argument_list|)
-argument_list|)
 block|}
 argument_list|)
 argument_list|)
@@ -1435,8 +1402,6 @@ operator|new
 name|SortField
 index|[]
 block|{
-name|useDocValues
-argument_list|(
 operator|new
 name|SortField
 argument_list|(
@@ -1449,7 +1414,6 @@ operator|.
 name|STRING_VAL
 argument_list|,
 name|reversed
-argument_list|)
 argument_list|)
 block|}
 argument_list|)

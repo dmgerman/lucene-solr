@@ -64,7 +64,7 @@ parameter_list|()
 block|{
 return|return
 operator|new
-name|Lucene40Codec
+name|Lucene40RWCodec
 argument_list|()
 return|;
 block|}

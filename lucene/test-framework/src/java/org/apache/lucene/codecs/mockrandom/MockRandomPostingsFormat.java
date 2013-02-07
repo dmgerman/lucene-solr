@@ -1930,7 +1930,7 @@ name|in
 init|=
 name|state
 operator|.
-name|dir
+name|directory
 operator|.
 name|openInput
 argument_list|(
@@ -2066,7 +2066,7 @@ name|SepPostingsReader
 argument_list|(
 name|state
 operator|.
-name|dir
+name|directory
 argument_list|,
 name|state
 operator|.
@@ -2118,7 +2118,7 @@ name|Lucene41PostingsReader
 argument_list|(
 name|state
 operator|.
-name|dir
+name|directory
 argument_list|,
 name|state
 operator|.
@@ -2233,7 +2233,7 @@ name|BlockTreeTermsReader
 argument_list|(
 name|state
 operator|.
-name|dir
+name|directory
 argument_list|,
 name|state
 operator|.
@@ -2382,7 +2382,7 @@ name|FixedGapTermsIndexReader
 argument_list|(
 name|state
 operator|.
-name|dir
+name|directory
 argument_list|,
 name|state
 operator|.
@@ -2483,7 +2483,7 @@ name|VariableGapTermsIndexReader
 argument_list|(
 name|state
 operator|.
-name|dir
+name|directory
 argument_list|,
 name|state
 operator|.
@@ -2559,7 +2559,7 @@ name|indexReader
 argument_list|,
 name|state
 operator|.
-name|dir
+name|directory
 argument_list|,
 name|state
 operator|.

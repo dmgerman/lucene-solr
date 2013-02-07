@@ -1561,8 +1561,9 @@ argument_list|()
 expr_stmt|;
 comment|// NOTE: intentional insanity!!
 specifier|final
-name|int
-index|[]
+name|FieldCache
+operator|.
+name|Ints
 name|docIDToID
 init|=
 name|FieldCache
@@ -2354,9 +2355,11 @@ expr_stmt|;
 name|assertEquals
 argument_list|(
 name|docIDToID
-index|[
+operator|.
+name|get
+argument_list|(
 name|docID
-index|]
+argument_list|)
 argument_list|,
 name|termToID
 operator|.

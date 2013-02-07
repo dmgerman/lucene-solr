@@ -36,22 +36,6 @@ name|Map
 import|;
 end_import
 
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|index
-operator|.
-name|DocValues
-operator|.
-name|Type
-import|;
-end_import
-
 begin_comment
 comment|/**  *  Access to the Field Info file that describes document fields and whether or  *  not they are indexed. Each segment has a separate Field Info file. Objects  *  of this class are thread-safe for multiple readers, but only one thread can  *  be adding documents at a time, with no other reader or writer threads  *  accessing this object.  **/
 end_comment
@@ -84,9 +68,7 @@ name|indexed
 decl_stmt|;
 DECL|field|docValueType
 specifier|private
-name|DocValues
-operator|.
-name|Type
+name|DocValuesType
 name|docValueType
 decl_stmt|;
 comment|// True if any document indexed term vectors
@@ -97,9 +79,7 @@ name|storeTermVector
 decl_stmt|;
 DECL|field|normType
 specifier|private
-name|DocValues
-operator|.
-name|Type
+name|DocValuesType
 name|normType
 decl_stmt|;
 DECL|field|omitNorms
@@ -157,6 +137,26 @@ DECL|enum constant|DOCS_AND_FREQS_AND_POSITIONS_AND_OFFSETS
 name|DOCS_AND_FREQS_AND_POSITIONS_AND_OFFSETS
 block|,   }
 empty_stmt|;
+comment|/**    * DocValues types.    * Note that DocValues is strongly typed, so a field cannot have different types    * across different documents.    */
+DECL|enum|DocValuesType
+specifier|public
+specifier|static
+enum|enum
+name|DocValuesType
+block|{
+comment|/**       * A per-document Number      */
+DECL|enum constant|NUMERIC
+name|NUMERIC
+block|,
+comment|/**      * A per-document byte[].      */
+DECL|enum constant|BINARY
+name|BINARY
+block|,
+comment|/**       * A pre-sorted byte[]. Fields with this type only store distinct byte values       * and store an additional offset pointer per document to dereference the shared       * byte[]. The stored byte[] is presorted and allows access via document id,       * ordinal and by-value.      */
+DECL|enum constant|SORTED
+name|SORTED
+block|}
+empty_stmt|;
 comment|/**    * Sole Constructor.    *    * @lucene.experimental    */
 DECL|method|FieldInfo
 specifier|public
@@ -183,14 +183,10 @@ parameter_list|,
 name|IndexOptions
 name|indexOptions
 parameter_list|,
-name|DocValues
-operator|.
-name|Type
+name|DocValuesType
 name|docValues
 parameter_list|,
-name|DocValues
-operator|.
-name|Type
+name|DocValuesType
 name|normsType
 parameter_list|,
 name|Map
@@ -388,6 +384,37 @@ return|return
 literal|true
 return|;
 block|}
+DECL|method|update
+name|void
+name|update
+parameter_list|(
+name|IndexableFieldType
+name|ft
+parameter_list|)
+block|{
+name|update
+argument_list|(
+name|ft
+operator|.
+name|indexed
+argument_list|()
+argument_list|,
+literal|false
+argument_list|,
+name|ft
+operator|.
+name|omitNorms
+argument_list|()
+argument_list|,
+literal|false
+argument_list|,
+name|ft
+operator|.
+name|indexOptions
+argument_list|()
+argument_list|)
+expr_stmt|;
+block|}
 comment|// should only be called by FieldInfos#addOrUpdate
 DECL|method|update
 name|void
@@ -409,6 +436,7 @@ name|IndexOptions
 name|indexOptions
 parameter_list|)
 block|{
+comment|//System.out.println("FI.update field=" + name + " indexed=" + indexed + " omitNorms=" + omitNorms + " this.omitNorms=" + this.omitNorms);
 if|if
 condition|(
 name|this
@@ -573,12 +601,41 @@ DECL|method|setDocValuesType
 name|void
 name|setDocValuesType
 parameter_list|(
-name|DocValues
-operator|.
-name|Type
+name|DocValuesType
 name|type
 parameter_list|)
 block|{
+if|if
+condition|(
+name|docValueType
+operator|!=
+literal|null
+operator|&&
+name|docValueType
+operator|!=
+name|type
+condition|)
+block|{
+throw|throw
+operator|new
+name|IllegalArgumentException
+argument_list|(
+literal|"cannot change DocValues type from "
+operator|+
+name|docValueType
+operator|+
+literal|" to "
+operator|+
+name|type
+operator|+
+literal|" for field \""
+operator|+
+name|name
+operator|+
+literal|"\""
+argument_list|)
+throw|;
+block|}
 name|docValueType
 operator|=
 name|type
@@ -612,12 +669,10 @@ operator|!=
 literal|null
 return|;
 block|}
-comment|/**    * Returns {@link DocValues.Type} of the docValues. this may be null if the field has no docvalues.    */
+comment|/**    * Returns {@link DocValuesType} of the docValues. this may be null if the field has no docvalues.    */
 DECL|method|getDocValuesType
 specifier|public
-name|DocValues
-operator|.
-name|Type
+name|DocValuesType
 name|getDocValuesType
 parameter_list|()
 block|{
@@ -625,12 +680,10 @@ return|return
 name|docValueType
 return|;
 block|}
-comment|/**    * Returns {@link DocValues.Type} of the norm. this may be null if the field has no norms.    */
+comment|/**    * Returns {@link DocValuesType} of the norm. this may be null if the field has no norms.    */
 DECL|method|getNormType
 specifier|public
-name|DocValues
-operator|.
-name|Type
+name|DocValuesType
 name|getNormType
 parameter_list|()
 block|{
@@ -687,10 +740,41 @@ DECL|method|setNormValueType
 name|void
 name|setNormValueType
 parameter_list|(
-name|Type
+name|DocValuesType
 name|type
 parameter_list|)
 block|{
+if|if
+condition|(
+name|normType
+operator|!=
+literal|null
+operator|&&
+name|normType
+operator|!=
+name|type
+condition|)
+block|{
+throw|throw
+operator|new
+name|IllegalArgumentException
+argument_list|(
+literal|"cannot change Norm type from "
+operator|+
+name|normType
+operator|+
+literal|" to "
+operator|+
+name|type
+operator|+
+literal|" for field \""
+operator|+
+name|name
+operator|+
+literal|"\""
+argument_list|)
+throw|;
+block|}
 name|normType
 operator|=
 name|type

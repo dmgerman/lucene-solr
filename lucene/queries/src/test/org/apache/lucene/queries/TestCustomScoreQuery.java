@@ -907,8 +907,9 @@ throws|throws
 name|IOException
 block|{
 specifier|final
-name|int
-index|[]
+name|FieldCache
+operator|.
+name|Ints
 name|values
 init|=
 name|FieldCache
@@ -965,9 +966,11 @@ argument_list|)
 expr_stmt|;
 return|return
 name|values
-index|[
+operator|.
+name|get
+argument_list|(
 name|doc
-index|]
+argument_list|)
 return|;
 block|}
 block|}

@@ -46,6 +46,22 @@ name|index
 operator|.
 name|FieldInfo
 operator|.
+name|DocValuesType
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|index
+operator|.
+name|FieldInfo
+operator|.
 name|IndexOptions
 import|;
 end_import
@@ -123,12 +139,10 @@ name|IndexOptions
 name|indexOptions
 parameter_list|()
 function_decl|;
-comment|/**     * DocValues {@link DocValues.Type}: if non-null then the field's value    * will be indexed into docValues.    */
+comment|/**     * DocValues {@link DocValuesType}: if non-null then the field's value    * will be indexed into docValues.    */
 DECL|method|docValueType
 specifier|public
-name|DocValues
-operator|.
-name|Type
+name|DocValuesType
 name|docValueType
 parameter_list|()
 function_decl|;

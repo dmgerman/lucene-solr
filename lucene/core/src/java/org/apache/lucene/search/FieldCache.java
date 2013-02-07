@@ -64,7 +64,7 @@ name|lucene
 operator|.
 name|document
 operator|.
-name|IntField
+name|DoubleField
 import|;
 end_import
 
@@ -100,7 +100,7 @@ name|lucene
 operator|.
 name|document
 operator|.
-name|LongField
+name|IntField
 import|;
 end_import
 
@@ -118,13 +118,41 @@ name|lucene
 operator|.
 name|document
 operator|.
-name|DoubleField
+name|LongField
 import|;
 end_import
 
 begin_comment
 comment|// for javadocs
 end_comment
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|index
+operator|.
+name|AtomicReader
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|index
+operator|.
+name|BinaryDocValues
+import|;
+end_import
 
 begin_import
 import|import
@@ -150,7 +178,7 @@ name|lucene
 operator|.
 name|index
 operator|.
-name|AtomicReader
+name|SortedDocValues
 import|;
 end_import
 
@@ -238,24 +266,8 @@ name|RamUsageEstimator
 import|;
 end_import
 
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|util
-operator|.
-name|packed
-operator|.
-name|PackedInts
-import|;
-end_import
-
 begin_comment
-comment|/**  * Expert: Maintains caches of term values.  *  *<p>Created: May 19, 2004 11:13:14 AM  *  * @since   lucene 1.4  * @see org.apache.lucene.util.FieldCacheSanityChecker  */
+comment|/**  * Expert: Maintains caches of term values.  *  *<p>Created: May 19, 2004 11:13:14 AM  *  * @since   lucene 1.4  * @see org.apache.lucene.util.FieldCacheSanityChecker  *  * @lucene.internal  */
 end_comment
 
 begin_interface
@@ -264,6 +276,126 @@ specifier|public
 interface|interface
 name|FieldCache
 block|{
+comment|/** Field values as 8-bit signed bytes */
+DECL|class|Bytes
+specifier|public
+specifier|static
+specifier|abstract
+class|class
+name|Bytes
+block|{
+comment|/** Return a single Byte representation of this field's value. */
+DECL|method|get
+specifier|public
+specifier|abstract
+name|byte
+name|get
+parameter_list|(
+name|int
+name|docID
+parameter_list|)
+function_decl|;
+block|}
+comment|/** Field values as 16-bit signed shorts */
+DECL|class|Shorts
+specifier|public
+specifier|static
+specifier|abstract
+class|class
+name|Shorts
+block|{
+comment|/** Return a short representation of this field's value. */
+DECL|method|get
+specifier|public
+specifier|abstract
+name|short
+name|get
+parameter_list|(
+name|int
+name|docID
+parameter_list|)
+function_decl|;
+block|}
+comment|/** Field values as 32-bit signed integers */
+DECL|class|Ints
+specifier|public
+specifier|static
+specifier|abstract
+class|class
+name|Ints
+block|{
+comment|/** Return an integer representation of this field's value. */
+DECL|method|get
+specifier|public
+specifier|abstract
+name|int
+name|get
+parameter_list|(
+name|int
+name|docID
+parameter_list|)
+function_decl|;
+block|}
+comment|/** Field values as 32-bit signed long integers */
+DECL|class|Longs
+specifier|public
+specifier|static
+specifier|abstract
+class|class
+name|Longs
+block|{
+comment|/** Return an long representation of this field's value. */
+DECL|method|get
+specifier|public
+specifier|abstract
+name|long
+name|get
+parameter_list|(
+name|int
+name|docID
+parameter_list|)
+function_decl|;
+block|}
+comment|/** Field values as 32-bit floats */
+DECL|class|Floats
+specifier|public
+specifier|static
+specifier|abstract
+class|class
+name|Floats
+block|{
+comment|/** Return an float representation of this field's value. */
+DECL|method|get
+specifier|public
+specifier|abstract
+name|float
+name|get
+parameter_list|(
+name|int
+name|docID
+parameter_list|)
+function_decl|;
+block|}
+comment|/** Field values as 64-bit doubles */
+DECL|class|Doubles
+specifier|public
+specifier|static
+specifier|abstract
+class|class
+name|Doubles
+block|{
+comment|/** Return an double representation of this field's value. */
+DECL|method|get
+specifier|public
+specifier|abstract
+name|double
+name|get
+parameter_list|(
+name|int
+name|docID
+parameter_list|)
+function_decl|;
+block|}
 comment|/**    * Placeholder indicating creation of this cache is currently in-progress.    */
 DECL|class|CreationPlaceholder
 specifier|public
@@ -399,7 +531,7 @@ name|DoubleParser
 extends|extends
 name|Parser
 block|{
-comment|/** Return an long representation of this field's value. */
+comment|/** Return an double representation of this field's value. */
 DECL|method|parseDouble
 specifier|public
 name|double
@@ -1213,7 +1345,7 @@ return|;
 block|}
 block|}
 decl_stmt|;
-comment|/** Checks the internal cache for an appropriate entry, and if none is found,    * reads the terms in<code>field</code> and returns a bit set at the size of    *<code>reader.maxDoc()</code>, with turned on bits for each docid that     * does have a value for this field.    */
+comment|/** Checks the internal cache for an appropriate entry, and if none is found,    *  reads the terms in<code>field</code> and returns a bit set at the size of    *<code>reader.maxDoc()</code>, with turned on bits for each docid that     *  does have a value for this field.  Note that if the field was only indexed    *  as DocValues then this method will not work (it will return a Bits stating    *  that no documents contain the field).    */
 DECL|method|getDocsWithField
 specifier|public
 name|Bits
@@ -1231,8 +1363,7 @@ function_decl|;
 comment|/** Checks the internal cache for an appropriate entry, and if none is    * found, reads the terms in<code>field</code> as a single byte and returns an array    * of size<code>reader.maxDoc()</code> of the value each document    * has in the given field.    * @param reader  Used to get field values.    * @param field   Which field contains the single byte values.    * @param setDocsWithField  If true then {@link #getDocsWithField} will    *        also be computed and stored in the FieldCache.    * @return The values in the given field for each document.    * @throws IOException  If any error occurs.    */
 DECL|method|getBytes
 specifier|public
-name|byte
-index|[]
+name|Bytes
 name|getBytes
 parameter_list|(
 name|AtomicReader
@@ -1250,8 +1381,7 @@ function_decl|;
 comment|/** Checks the internal cache for an appropriate entry, and if none is found,    * reads the terms in<code>field</code> as bytes and returns an array of    * size<code>reader.maxDoc()</code> of the value each document has in the    * given field.    * @param reader  Used to get field values.    * @param field   Which field contains the bytes.    * @param parser  Computes byte for string values.    * @param setDocsWithField  If true then {@link #getDocsWithField} will    *        also be computed and stored in the FieldCache.    * @return The values in the given field for each document.    * @throws IOException  If any error occurs.    */
 DECL|method|getBytes
 specifier|public
-name|byte
-index|[]
+name|Bytes
 name|getBytes
 parameter_list|(
 name|AtomicReader
@@ -1272,8 +1402,7 @@ function_decl|;
 comment|/** Checks the internal cache for an appropriate entry, and if none is    * found, reads the terms in<code>field</code> as shorts and returns an array    * of size<code>reader.maxDoc()</code> of the value each document    * has in the given field.    * @param reader  Used to get field values.    * @param field   Which field contains the shorts.    * @param setDocsWithField  If true then {@link #getDocsWithField} will    *        also be computed and stored in the FieldCache.    * @return The values in the given field for each document.    * @throws IOException  If any error occurs.    */
 DECL|method|getShorts
 specifier|public
-name|short
-index|[]
+name|Shorts
 name|getShorts
 parameter_list|(
 name|AtomicReader
@@ -1291,8 +1420,7 @@ function_decl|;
 comment|/** Checks the internal cache for an appropriate entry, and if none is found,    * reads the terms in<code>field</code> as shorts and returns an array of    * size<code>reader.maxDoc()</code> of the value each document has in the    * given field.    * @param reader  Used to get field values.    * @param field   Which field contains the shorts.    * @param parser  Computes short for string values.    * @param setDocsWithField  If true then {@link #getDocsWithField} will    *        also be computed and stored in the FieldCache.    * @return The values in the given field for each document.    * @throws IOException  If any error occurs.    */
 DECL|method|getShorts
 specifier|public
-name|short
-index|[]
+name|Shorts
 name|getShorts
 parameter_list|(
 name|AtomicReader
@@ -1313,8 +1441,7 @@ function_decl|;
 comment|/** Checks the internal cache for an appropriate entry, and if none is    * found, reads the terms in<code>field</code> as integers and returns an array    * of size<code>reader.maxDoc()</code> of the value each document    * has in the given field.    * @param reader  Used to get field values.    * @param field   Which field contains the integers.    * @param setDocsWithField  If true then {@link #getDocsWithField} will    *        also be computed and stored in the FieldCache.    * @return The values in the given field for each document.    * @throws IOException  If any error occurs.    */
 DECL|method|getInts
 specifier|public
-name|int
-index|[]
+name|Ints
 name|getInts
 parameter_list|(
 name|AtomicReader
@@ -1332,8 +1459,7 @@ function_decl|;
 comment|/** Checks the internal cache for an appropriate entry, and if none is found,    * reads the terms in<code>field</code> as integers and returns an array of    * size<code>reader.maxDoc()</code> of the value each document has in the    * given field.    * @param reader  Used to get field values.    * @param field   Which field contains the integers.    * @param parser  Computes integer for string values.    * @param setDocsWithField  If true then {@link #getDocsWithField} will    *        also be computed and stored in the FieldCache.    * @return The values in the given field for each document.    * @throws IOException  If any error occurs.    */
 DECL|method|getInts
 specifier|public
-name|int
-index|[]
+name|Ints
 name|getInts
 parameter_list|(
 name|AtomicReader
@@ -1354,8 +1480,7 @@ function_decl|;
 comment|/** Checks the internal cache for an appropriate entry, and if    * none is found, reads the terms in<code>field</code> as floats and returns an array    * of size<code>reader.maxDoc()</code> of the value each document    * has in the given field.    * @param reader  Used to get field values.    * @param field   Which field contains the floats.    * @param setDocsWithField  If true then {@link #getDocsWithField} will    *        also be computed and stored in the FieldCache.    * @return The values in the given field for each document.    * @throws IOException  If any error occurs.    */
 DECL|method|getFloats
 specifier|public
-name|float
-index|[]
+name|Floats
 name|getFloats
 parameter_list|(
 name|AtomicReader
@@ -1373,8 +1498,7 @@ function_decl|;
 comment|/** Checks the internal cache for an appropriate entry, and if    * none is found, reads the terms in<code>field</code> as floats and returns an array    * of size<code>reader.maxDoc()</code> of the value each document    * has in the given field.    * @param reader  Used to get field values.    * @param field   Which field contains the floats.    * @param parser  Computes float for string values.    * @param setDocsWithField  If true then {@link #getDocsWithField} will    *        also be computed and stored in the FieldCache.    * @return The values in the given field for each document.    * @throws IOException  If any error occurs.    */
 DECL|method|getFloats
 specifier|public
-name|float
-index|[]
+name|Floats
 name|getFloats
 parameter_list|(
 name|AtomicReader
@@ -1395,8 +1519,7 @@ function_decl|;
 comment|/**    * Checks the internal cache for an appropriate entry, and if none is    * found, reads the terms in<code>field</code> as longs and returns an array    * of size<code>reader.maxDoc()</code> of the value each document    * has in the given field.    *    * @param reader Used to get field values.    * @param field  Which field contains the longs.    * @param setDocsWithField  If true then {@link #getDocsWithField} will    *        also be computed and stored in the FieldCache.    * @return The values in the given field for each document.    * @throws java.io.IOException If any error occurs.    */
 DECL|method|getLongs
 specifier|public
-name|long
-index|[]
+name|Longs
 name|getLongs
 parameter_list|(
 name|AtomicReader
@@ -1414,8 +1537,7 @@ function_decl|;
 comment|/**    * Checks the internal cache for an appropriate entry, and if none is found,    * reads the terms in<code>field</code> as longs and returns an array of    * size<code>reader.maxDoc()</code> of the value each document has in the    * given field.    *    * @param reader Used to get field values.    * @param field  Which field contains the longs.    * @param parser Computes integer for string values.    * @param setDocsWithField  If true then {@link #getDocsWithField} will    *        also be computed and stored in the FieldCache.    * @return The values in the given field for each document.    * @throws IOException If any error occurs.    */
 DECL|method|getLongs
 specifier|public
-name|long
-index|[]
+name|Longs
 name|getLongs
 parameter_list|(
 name|AtomicReader
@@ -1436,8 +1558,7 @@ function_decl|;
 comment|/**    * Checks the internal cache for an appropriate entry, and if none is    * found, reads the terms in<code>field</code> as integers and returns an array    * of size<code>reader.maxDoc()</code> of the value each document    * has in the given field.    *    * @param reader Used to get field values.    * @param field  Which field contains the doubles.    * @param setDocsWithField  If true then {@link #getDocsWithField} will    *        also be computed and stored in the FieldCache.    * @return The values in the given field for each document.    * @throws IOException If any error occurs.    */
 DECL|method|getDoubles
 specifier|public
-name|double
-index|[]
+name|Doubles
 name|getDoubles
 parameter_list|(
 name|AtomicReader
@@ -1455,8 +1576,7 @@ function_decl|;
 comment|/**    * Checks the internal cache for an appropriate entry, and if none is found,    * reads the terms in<code>field</code> as doubles and returns an array of    * size<code>reader.maxDoc()</code> of the value each document has in the    * given field.    *    * @param reader Used to get field values.    * @param field  Which field contains the doubles.    * @param parser Computes integer for string values.    * @param setDocsWithField  If true then {@link #getDocsWithField} will    *        also be computed and stored in the FieldCache.    * @return The values in the given field for each document.    * @throws IOException If any error occurs.    */
 DECL|method|getDoubles
 specifier|public
-name|double
-index|[]
+name|Doubles
 name|getDoubles
 parameter_list|(
 name|AtomicReader
@@ -1474,52 +1594,10 @@ parameter_list|)
 throws|throws
 name|IOException
 function_decl|;
-comment|/** Returned by {@link #getTerms} */
-DECL|class|DocTerms
-specifier|public
-specifier|abstract
-specifier|static
-class|class
-name|DocTerms
-block|{
-comment|/** The BytesRef argument must not be null; the method      *  returns the same BytesRef, or an empty (length=0)      *  BytesRef if the doc did not have this field or was      *  deleted. */
-DECL|method|getTerm
-specifier|public
-specifier|abstract
-name|BytesRef
-name|getTerm
-parameter_list|(
-name|int
-name|docID
-parameter_list|,
-name|BytesRef
-name|ret
-parameter_list|)
-function_decl|;
-comment|/** Returns true if this doc has this field and is not      *  deleted. */
-DECL|method|exists
-specifier|public
-specifier|abstract
-name|boolean
-name|exists
-parameter_list|(
-name|int
-name|docID
-parameter_list|)
-function_decl|;
-comment|/** Number of documents */
-DECL|method|size
-specifier|public
-specifier|abstract
-name|int
-name|size
-parameter_list|()
-function_decl|;
-block|}
-comment|/** Checks the internal cache for an appropriate entry, and if none    * is found, reads the term values in<code>field</code>    * and returns a {@link DocTerms} instance, providing a    * method to retrieve the term (as a BytesRef) per document.    * @param reader  Used to get field values.    * @param field   Which field contains the strings.    * @return The values in the given field for each document.    * @throws IOException  If any error occurs.    */
+comment|/** Checks the internal cache for an appropriate entry, and if none    * is found, reads the term values in<code>field</code>    * and returns a {@link BinaryDocValues} instance, providing a    * method to retrieve the term (as a BytesRef) per document.    * @param reader  Used to get field values.    * @param field   Which field contains the strings.    * @return The values in the given field for each document.    * @throws IOException  If any error occurs.    */
 DECL|method|getTerms
 specifier|public
-name|DocTerms
+name|BinaryDocValues
 name|getTerms
 parameter_list|(
 name|AtomicReader
@@ -1534,7 +1612,7 @@ function_decl|;
 comment|/** Expert: just like {@link #getTerms(AtomicReader,String)},    *  but you can specify whether more RAM should be consumed in exchange for    *  faster lookups (default is "true").  Note that the    *  first call for a given reader and field "wins",    *  subsequent calls will share the same cache entry. */
 DECL|method|getTerms
 specifier|public
-name|DocTerms
+name|BinaryDocValues
 name|getTerms
 parameter_list|(
 name|AtomicReader
@@ -1549,212 +1627,10 @@ parameter_list|)
 throws|throws
 name|IOException
 function_decl|;
-comment|/** Returned by {@link #getTermsIndex} */
-DECL|class|DocTermsIndex
-specifier|public
-specifier|abstract
-specifier|static
-class|class
-name|DocTermsIndex
-block|{
-DECL|method|binarySearchLookup
-specifier|public
-name|int
-name|binarySearchLookup
-parameter_list|(
-name|BytesRef
-name|key
-parameter_list|,
-name|BytesRef
-name|spare
-parameter_list|)
-block|{
-comment|// this special case is the reason that Arrays.binarySearch() isn't useful.
-if|if
-condition|(
-name|key
-operator|==
-literal|null
-condition|)
-return|return
-literal|0
-return|;
-name|int
-name|low
-init|=
-literal|1
-decl_stmt|;
-name|int
-name|high
-init|=
-name|numOrd
-argument_list|()
-operator|-
-literal|1
-decl_stmt|;
-while|while
-condition|(
-name|low
-operator|<=
-name|high
-condition|)
-block|{
-name|int
-name|mid
-init|=
-operator|(
-name|low
-operator|+
-name|high
-operator|)
-operator|>>>
-literal|1
-decl_stmt|;
-name|int
-name|cmp
-init|=
-name|lookup
-argument_list|(
-name|mid
-argument_list|,
-name|spare
-argument_list|)
-operator|.
-name|compareTo
-argument_list|(
-name|key
-argument_list|)
-decl_stmt|;
-if|if
-condition|(
-name|cmp
-operator|<
-literal|0
-condition|)
-name|low
-operator|=
-name|mid
-operator|+
-literal|1
-expr_stmt|;
-elseif|else
-if|if
-condition|(
-name|cmp
-operator|>
-literal|0
-condition|)
-name|high
-operator|=
-name|mid
-operator|-
-literal|1
-expr_stmt|;
-else|else
-return|return
-name|mid
-return|;
-comment|// key found
-block|}
-return|return
-operator|-
-operator|(
-name|low
-operator|+
-literal|1
-operator|)
-return|;
-comment|// key not found.
-block|}
-comment|/** The BytesRef argument must not be null; the method      *  returns the same BytesRef, or an empty (length=0)      *  BytesRef if this ord is the null ord (0). */
-DECL|method|lookup
-specifier|public
-specifier|abstract
-name|BytesRef
-name|lookup
-parameter_list|(
-name|int
-name|ord
-parameter_list|,
-name|BytesRef
-name|reuse
-parameter_list|)
-function_decl|;
-comment|/** Convenience method, to lookup the Term for a doc.      *  If this doc is deleted or did not have this field,      *  this will return an empty (length=0) BytesRef. */
-DECL|method|getTerm
-specifier|public
-name|BytesRef
-name|getTerm
-parameter_list|(
-name|int
-name|docID
-parameter_list|,
-name|BytesRef
-name|reuse
-parameter_list|)
-block|{
-return|return
-name|lookup
-argument_list|(
-name|getOrd
-argument_list|(
-name|docID
-argument_list|)
-argument_list|,
-name|reuse
-argument_list|)
-return|;
-block|}
-comment|/** Returns sort ord for this document.  Ord 0 is      *  reserved for docs that are deleted or did not have      *  this field.  */
-DECL|method|getOrd
-specifier|public
-specifier|abstract
-name|int
-name|getOrd
-parameter_list|(
-name|int
-name|docID
-parameter_list|)
-function_decl|;
-comment|/** Returns total unique ord count; this includes +1 for      *  the null ord (always 0). */
-DECL|method|numOrd
-specifier|public
-specifier|abstract
-name|int
-name|numOrd
-parameter_list|()
-function_decl|;
-comment|/** Number of documents */
-DECL|method|size
-specifier|public
-specifier|abstract
-name|int
-name|size
-parameter_list|()
-function_decl|;
-comment|/** Returns a TermsEnum that can iterate over the values in this index entry */
-DECL|method|getTermsEnum
-specifier|public
-specifier|abstract
-name|TermsEnum
-name|getTermsEnum
-parameter_list|()
-function_decl|;
-comment|/** @lucene.internal */
-DECL|method|getDocToOrd
-specifier|public
-specifier|abstract
-name|PackedInts
-operator|.
-name|Reader
-name|getDocToOrd
-parameter_list|()
-function_decl|;
-block|}
-comment|/** Checks the internal cache for an appropriate entry, and if none    * is found, reads the term values in<code>field</code>    * and returns a {@link DocTerms} instance, providing a    * method to retrieve the term (as a BytesRef) per document.    * @param reader  Used to get field values.    * @param field   Which field contains the strings.    * @return The values in the given field for each document.    * @throws IOException  If any error occurs.    */
+comment|/** Checks the internal cache for an appropriate entry, and if none    * is found, reads the term values in<code>field</code>    * and returns a {@link SortedDocValues} instance,    * providing methods to retrieve sort ordinals and terms    * (as a ByteRef) per document.    * @param reader  Used to get field values.    * @param field   Which field contains the strings.    * @return The values in the given field for each document.    * @throws IOException  If any error occurs.    */
 DECL|method|getTermsIndex
 specifier|public
-name|DocTermsIndex
+name|SortedDocValues
 name|getTermsIndex
 parameter_list|(
 name|AtomicReader
@@ -1769,7 +1645,7 @@ function_decl|;
 comment|/** Expert: just like {@link    *  #getTermsIndex(AtomicReader,String)}, but you can specify    *  whether more RAM should be consumed in exchange for    *  faster lookups (default is "true").  Note that the    *  first call for a given reader and field "wins",    *  subsequent calls will share the same cache entry. */
 DECL|method|getTermsIndex
 specifier|public
-name|DocTermsIndex
+name|SortedDocValues
 name|getTermsIndex
 parameter_list|(
 name|AtomicReader
@@ -1802,72 +1678,154 @@ function_decl|;
 comment|/**    * EXPERT: A unique Identifier/Description for each item in the FieldCache.     * Can be useful for logging/debugging.    * @lucene.experimental    */
 DECL|class|CacheEntry
 specifier|public
-specifier|static
-specifier|abstract
+specifier|final
 class|class
 name|CacheEntry
 block|{
+DECL|field|readerKey
+specifier|private
+specifier|final
+name|Object
+name|readerKey
+decl_stmt|;
+DECL|field|fieldName
+specifier|private
+specifier|final
+name|String
+name|fieldName
+decl_stmt|;
+DECL|field|cacheType
+specifier|private
+specifier|final
+name|Class
+argument_list|<
+name|?
+argument_list|>
+name|cacheType
+decl_stmt|;
+DECL|field|custom
+specifier|private
+specifier|final
+name|Object
+name|custom
+decl_stmt|;
+DECL|field|value
+specifier|private
+specifier|final
+name|Object
+name|value
+decl_stmt|;
+DECL|field|size
+specifier|private
+name|String
+name|size
+decl_stmt|;
+DECL|method|CacheEntry
+specifier|public
+name|CacheEntry
+parameter_list|(
+name|Object
+name|readerKey
+parameter_list|,
+name|String
+name|fieldName
+parameter_list|,
+name|Class
+argument_list|<
+name|?
+argument_list|>
+name|cacheType
+parameter_list|,
+name|Object
+name|custom
+parameter_list|,
+name|Object
+name|value
+parameter_list|)
+block|{
+name|this
+operator|.
+name|readerKey
+operator|=
+name|readerKey
+expr_stmt|;
+name|this
+operator|.
+name|fieldName
+operator|=
+name|fieldName
+expr_stmt|;
+name|this
+operator|.
+name|cacheType
+operator|=
+name|cacheType
+expr_stmt|;
+name|this
+operator|.
+name|custom
+operator|=
+name|custom
+expr_stmt|;
+name|this
+operator|.
+name|value
+operator|=
+name|value
+expr_stmt|;
+block|}
 DECL|method|getReaderKey
 specifier|public
-specifier|abstract
 name|Object
 name|getReaderKey
 parameter_list|()
-function_decl|;
+block|{
+return|return
+name|readerKey
+return|;
+block|}
 DECL|method|getFieldName
 specifier|public
-specifier|abstract
 name|String
 name|getFieldName
 parameter_list|()
-function_decl|;
+block|{
+return|return
+name|fieldName
+return|;
+block|}
 DECL|method|getCacheType
 specifier|public
-specifier|abstract
 name|Class
 argument_list|<
 name|?
 argument_list|>
 name|getCacheType
 parameter_list|()
-function_decl|;
+block|{
+return|return
+name|cacheType
+return|;
+block|}
 DECL|method|getCustom
 specifier|public
-specifier|abstract
 name|Object
 name|getCustom
 parameter_list|()
-function_decl|;
+block|{
+return|return
+name|custom
+return|;
+block|}
 DECL|method|getValue
 specifier|public
-specifier|abstract
 name|Object
 name|getValue
 parameter_list|()
-function_decl|;
-DECL|field|size
-specifier|private
-name|String
-name|size
-init|=
-literal|null
-decl_stmt|;
-DECL|method|setEstimatedSize
-specifier|protected
-specifier|final
-name|void
-name|setEstimatedSize
-parameter_list|(
-name|String
-name|size
-parameter_list|)
 block|{
-name|this
-operator|.
-name|size
-operator|=
-name|size
-expr_stmt|;
+return|return
+name|value
+return|;
 block|}
 comment|/**       * Computes (and stores) the estimated size of the cache Value       * @see #getEstimatedSize      */
 DECL|method|estimateSize
@@ -1877,7 +1835,7 @@ name|estimateSize
 parameter_list|()
 block|{
 name|long
-name|size
+name|bytesUsed
 init|=
 name|RamUsageEstimator
 operator|.
@@ -1887,21 +1845,19 @@ name|getValue
 argument_list|()
 argument_list|)
 decl_stmt|;
-name|setEstimatedSize
-argument_list|(
+name|size
+operator|=
 name|RamUsageEstimator
 operator|.
 name|humanReadableUnits
 argument_list|(
-name|size
-argument_list|)
+name|bytesUsed
 argument_list|)
 expr_stmt|;
 block|}
 comment|/**      * The most recently estimated size of the value, null unless       * estimateSize has been called.      */
 DECL|method|getEstimatedSize
 specifier|public
-specifier|final
 name|String
 name|getEstimatedSize
 parameter_list|()

@@ -22,6 +22,16 @@ end_comment
 
 begin_import
 import|import
+name|java
+operator|.
+name|io
+operator|.
+name|IOException
+import|;
+end_import
+
+begin_import
+import|import
 name|org
 operator|.
 name|apache
@@ -31,6 +41,20 @@ operator|.
 name|index
 operator|.
 name|AtomicReaderContext
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|index
+operator|.
+name|SortedDocValues
 import|;
 end_import
 
@@ -92,18 +116,8 @@ name|BytesRef
 import|;
 end_import
 
-begin_import
-import|import
-name|java
-operator|.
-name|io
-operator|.
-name|IOException
-import|;
-end_import
-
 begin_comment
-comment|/**  * Concrete implementation of {@link org.apache.lucene.search.grouping.AbstractFirstPassGroupingCollector} that groups based on  * field values and more specifically uses {@link org.apache.lucene.search.FieldCache.DocTermsIndex}  * to collect groups.  *  * @lucene.experimental  */
+comment|/**  * Concrete implementation of {@link org.apache.lucene.search.grouping.AbstractFirstPassGroupingCollector} that groups based on  * field values and more specifically uses {@link org.apache.lucene.index.SortedDocValues}  * to collect groups.  *  * @lucene.experimental  */
 end_comment
 
 begin_class
@@ -129,9 +143,7 @@ argument_list|()
 decl_stmt|;
 DECL|field|index
 specifier|private
-name|FieldCache
-operator|.
-name|DocTermsIndex
+name|SortedDocValues
 name|index
 decl_stmt|;
 DECL|field|groupField
@@ -192,22 +204,33 @@ argument_list|(
 name|doc
 argument_list|)
 decl_stmt|;
-return|return
+if|if
+condition|(
 name|ord
 operator|==
-literal|0
-condition|?
+operator|-
+literal|1
+condition|)
+block|{
+return|return
 literal|null
-else|:
+return|;
+block|}
+else|else
+block|{
 name|index
 operator|.
-name|lookup
+name|lookupOrd
 argument_list|(
 name|ord
 argument_list|,
 name|scratchBytesRef
 argument_list|)
+expr_stmt|;
+return|return
+name|scratchBytesRef
 return|;
+block|}
 block|}
 annotation|@
 name|Override

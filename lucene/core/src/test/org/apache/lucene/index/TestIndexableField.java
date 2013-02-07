@@ -108,9 +108,9 @@ name|lucene
 operator|.
 name|index
 operator|.
-name|DocValues
+name|FieldInfo
 operator|.
-name|Type
+name|DocValuesType
 import|;
 end_import
 
@@ -449,7 +449,7 @@ block|}
 annotation|@
 name|Override
 specifier|public
-name|Type
+name|DocValuesType
 name|docValueType
 parameter_list|()
 block|{

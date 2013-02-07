@@ -229,7 +229,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Enables per field format support.  *<p>  * Note, when extending this class, the name ({@link #getName}) is   * written into the index. In order for the field to be read, the  * name must resolve to your implementation via {@link #forName(String)}.  * This method uses Java's   * {@link ServiceLoader Service Provider Interface} to resolve format names.  *<p>  * Files written by each posting format have an additional suffix containing the   * format name. For example, in a per-field configuration instead of<tt>_1.prx</tt>   * filenames would look like<tt>_1_Lucene40_0.prx</tt>.  * @see ServiceLoader  * @lucene.experimental  */
+comment|/**  * Enables per field postings support.  *<p>  * Note, when extending this class, the name ({@link #getName}) is   * written into the index. In order for the field to be read, the  * name must resolve to your implementation via {@link #forName(String)}.  * This method uses Java's   * {@link ServiceLoader Service Provider Interface} to resolve format names.  *<p>  * Files written by each posting format have an additional suffix containing the   * format name. For example, in a per-field configuration instead of<tt>_1.prx</tt>   * filenames would look like<tt>_1_Lucene40_0.prx</tt>.  * @see ServiceLoader  * @lucene.experimental  */
 end_comment
 
 begin_class

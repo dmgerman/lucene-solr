@@ -284,6 +284,9 @@ parameter_list|(
 name|MergeState
 name|mergeState
 parameter_list|,
+name|IndexOptions
+name|indexOptions
+parameter_list|,
 name|TermsEnum
 name|termsEnum
 parameter_list|)
@@ -326,16 +329,6 @@ operator|.
 name|getDocCount
 argument_list|()
 argument_list|)
-decl_stmt|;
-name|IndexOptions
-name|indexOptions
-init|=
-name|mergeState
-operator|.
-name|fieldInfo
-operator|.
-name|getIndexOptions
-argument_list|()
 decl_stmt|;
 if|if
 condition|(
@@ -438,6 +431,8 @@ operator|.
 name|merge
 argument_list|(
 name|mergeState
+argument_list|,
+name|indexOptions
 argument_list|,
 name|docsEnum
 argument_list|,
@@ -601,6 +596,8 @@ operator|.
 name|merge
 argument_list|(
 name|mergeState
+argument_list|,
+name|indexOptions
 argument_list|,
 name|docsAndFreqsEnum
 argument_list|,
@@ -768,6 +765,8 @@ name|merge
 argument_list|(
 name|mergeState
 argument_list|,
+name|indexOptions
+argument_list|,
 name|postingsEnum
 argument_list|,
 name|visitedDocs
@@ -928,6 +927,8 @@ operator|.
 name|merge
 argument_list|(
 name|mergeState
+argument_list|,
+name|indexOptions
 argument_list|,
 name|postingsEnum
 argument_list|,
