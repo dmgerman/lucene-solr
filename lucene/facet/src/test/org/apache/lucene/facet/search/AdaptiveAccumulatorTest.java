@@ -132,7 +132,7 @@ annotation|@
 name|Override
 DECL|method|getSamplingAccumulator
 specifier|protected
-name|FacetsAccumulator
+name|StandardFacetsAccumulator
 name|getSamplingAccumulator
 parameter_list|(
 name|Sampler

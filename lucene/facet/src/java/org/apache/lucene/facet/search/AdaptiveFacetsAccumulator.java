@@ -268,7 +268,7 @@ parameter_list|)
 throws|throws
 name|IOException
 block|{
-name|FacetsAccumulator
+name|StandardFacetsAccumulator
 name|delegee
 init|=
 name|appropriateFacetCountingAccumulator
@@ -304,7 +304,7 @@ block|}
 comment|/**    * Compute the appropriate facet accumulator to use.    * If no special/clever adaptation is possible/needed return this (self).    */
 DECL|method|appropriateFacetCountingAccumulator
 specifier|private
-name|FacetsAccumulator
+name|StandardFacetsAccumulator
 name|appropriateFacetCountingAccumulator
 parameter_list|(
 name|ScoredDocIDs

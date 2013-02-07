@@ -883,20 +883,6 @@ argument_list|)
 argument_list|,
 literal|10
 argument_list|)
-block|{
-annotation|@
-name|Override
-specifier|public
-name|boolean
-name|supportsComplements
-parameter_list|()
-block|{
-return|return
-literal|false
-return|;
-comment|// disable complements
-block|}
-block|}
 decl_stmt|;
 name|FacetSearchParams
 name|fsp
@@ -912,8 +898,9 @@ decl_stmt|;
 name|FacetsCollector
 name|fc
 init|=
-operator|new
-name|StandardFacetsCollector
+name|FacetsCollector
+operator|.
+name|create
 argument_list|(
 name|fsp
 argument_list|,

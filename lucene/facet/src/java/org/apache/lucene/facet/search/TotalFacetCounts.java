@@ -939,8 +939,8 @@ name|DUMMY_REQ
 argument_list|)
 decl_stmt|;
 comment|//createAllListsSearchParams(facetIndexingParams,  this.totalCounts);
-name|FacetsAccumulator
-name|fe
+name|StandardFacetsAccumulator
+name|sfa
 init|=
 operator|new
 name|StandardFacetsAccumulator
@@ -1033,16 +1033,16 @@ return|;
 block|}
 block|}
 decl_stmt|;
-name|fe
+name|sfa
 operator|.
 name|setComplementThreshold
 argument_list|(
-name|FacetsAccumulator
+name|StandardFacetsAccumulator
 operator|.
 name|DISABLE_COMPLEMENT
 argument_list|)
 expr_stmt|;
-name|fe
+name|sfa
 operator|.
 name|accumulate
 argument_list|(

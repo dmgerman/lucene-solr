@@ -56,9 +56,11 @@ name|lucene
 operator|.
 name|facet
 operator|.
+name|partitions
+operator|.
 name|search
 operator|.
-name|FacetArrays
+name|PartitionsFacetResultsHandler
 import|;
 end_import
 
@@ -74,7 +76,7 @@ name|facet
 operator|.
 name|search
 operator|.
-name|FacetResultsHandler
+name|FacetArrays
 import|;
 end_import
 
@@ -233,7 +235,7 @@ comment|/*  * Licensed to the Apache Software Foundation (ASF) under one or more
 end_comment
 
 begin_comment
-comment|/**  * Facets accumulation with sampling.<br>  *<p>  * Note two major differences between this class and {@link SamplingWrapper}:  *<ol>  *<li>Latter can wrap any other {@link FacetsAccumulator} while this class  * directly extends {@link StandardFacetsAccumulator}.</li>  *<li>This class can effectively apply sampling on the complement set of  * matching document, thereby working efficiently with the complement  * optimization - see {@link FacetsAccumulator#getComplementThreshold()}.</li>  *</ol>  *<p>  * Note: Sampling accumulation (Accumulation over a sampled-set of the results),  * does not guarantee accurate values for  * {@link FacetResult#getNumValidDescendants()}.  *   * @see Sampler  * @lucene.experimental  */
+comment|/**  * Facets accumulation with sampling.<br>  *<p>  * Note two major differences between this class and {@link SamplingWrapper}:  *<ol>  *<li>Latter can wrap any other {@link FacetsAccumulator} while this class  * directly extends {@link StandardFacetsAccumulator}.</li>  *<li>This class can effectively apply sampling on the complement set of  * matching document, thereby working efficiently with the complement  * optimization - see {@link StandardFacetsAccumulator#getComplementThreshold()}  * .</li>  *</ol>  *<p>  * Note: Sampling accumulation (Accumulation over a sampled-set of the results),  * does not guarantee accurate values for  * {@link FacetResult#getNumValidDescendants()}.  *   * @see Sampler  * @lucene.experimental  */
 end_comment
 
 begin_class
@@ -346,19 +348,6 @@ parameter_list|)
 throws|throws
 name|IOException
 block|{
-comment|// first let delegee accumulate without labeling at all (though
-comment|// currently it doesn't matter because we have to label all returned anyhow)
-name|boolean
-name|origAllowLabeling
-init|=
-name|isAllowLabeling
-argument_list|()
-decl_stmt|;
-name|setAllowLabeling
-argument_list|(
-literal|false
-argument_list|)
-expr_stmt|;
 comment|// Replacing the original searchParams with the over-sampled
 name|FacetSearchParams
 name|original
@@ -387,11 +376,6 @@ argument_list|(
 name|docids
 argument_list|)
 decl_stmt|;
-name|setAllowLabeling
-argument_list|(
-name|origAllowLabeling
-argument_list|)
-expr_stmt|;
 name|List
 argument_list|<
 name|FacetResult
@@ -414,17 +398,15 @@ name|sampleRes
 control|)
 block|{
 comment|// for sure fres is not null because this is guaranteed by the delegee.
-name|FacetResultsHandler
+name|PartitionsFacetResultsHandler
 name|frh
 init|=
+name|createFacetResultsHandler
+argument_list|(
 name|fres
 operator|.
 name|getFacetRequest
 argument_list|()
-operator|.
-name|createFacetResultsHandler
-argument_list|(
-name|taxonomyReader
 argument_list|)
 decl_stmt|;
 comment|// fix the result of current request
@@ -455,7 +437,7 @@ argument_list|(
 name|fres
 argument_list|)
 expr_stmt|;
-comment|// let delegee's handler do any
+comment|// let delegee's handler do any arranging it needs to
 comment|// Using the sampler to trim the extra (over-sampled) results
 name|fres
 operator|=
@@ -466,14 +448,7 @@ argument_list|(
 name|fres
 argument_list|)
 expr_stmt|;
-comment|// arranging it needs to
 comment|// final labeling if allowed (because labeling is a costly operation)
-if|if
-condition|(
-name|isAllowLabeling
-argument_list|()
-condition|)
-block|{
 name|frh
 operator|.
 name|labelResult
@@ -481,7 +456,6 @@ argument_list|(
 name|fres
 argument_list|)
 expr_stmt|;
-block|}
 name|fixedRes
 operator|.
 name|add

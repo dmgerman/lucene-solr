@@ -70,38 +70,6 @@ name|facet
 operator|.
 name|search
 operator|.
-name|TopKFacetResultsHandler
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|facet
-operator|.
-name|search
-operator|.
-name|TopKInEachNodeHandler
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|facet
-operator|.
-name|search
-operator|.
 name|aggregator
 operator|.
 name|Aggregator
@@ -154,9 +122,62 @@ specifier|public
 specifier|abstract
 class|class
 name|FacetRequest
-implements|implements
-name|Cloneable
 block|{
+comment|/**    * Result structure manner of applying request's limits such as    * {@link FacetRequest#getNumLabel()} and {@link FacetRequest#numResults}.    * Only relevant when {@link FacetRequest#getDepth()} is&gt; 1.    */
+DECL|enum|ResultMode
+specifier|public
+enum|enum
+name|ResultMode
+block|{
+comment|/** Limits are applied per node, and the result has a full tree structure. */
+DECL|enum constant|PER_NODE_IN_TREE
+name|PER_NODE_IN_TREE
+block|,
+comment|/** Limits are applied globally, on total number of results, and the result has a flat structure. */
+DECL|enum constant|GLOBAL_FLAT
+name|GLOBAL_FLAT
+block|}
+comment|/**    * Specifies which array of {@link FacetArrays} should be used to resolve    * values. When set to {@link #INT} or {@link #FLOAT}, allows creating an    * optimized {@link FacetResultsHandler}, which does not call    * {@link FacetRequest#getValueOf(FacetArrays, int)} for every ordinals.    *<p>    * If set to {@link #BOTH}, the {@link FacetResultsHandler} will use    * {@link FacetRequest#getValueOf(FacetArrays, int)} to resolve ordinal    * values, although it is recommended that you consider writing a specialized    * {@link FacetResultsHandler}.    */
+DECL|enum|FacetArraysSource
+DECL|enum constant|INT
+DECL|enum constant|FLOAT
+DECL|enum constant|BOTH
+specifier|public
+enum|enum
+name|FacetArraysSource
+block|{
+name|INT
+block|,
+name|FLOAT
+block|,
+name|BOTH
+block|}
+comment|/** Sort options for facet results. */
+DECL|enum|SortBy
+specifier|public
+enum|enum
+name|SortBy
+block|{
+comment|/** sort by category ordinal with the taxonomy */
+DECL|enum constant|ORDINAL
+name|ORDINAL
+block|,
+comment|/** sort by computed category value */
+DECL|enum constant|VALUE
+name|VALUE
+block|}
+comment|/** Requested sort order for the results. */
+DECL|enum|SortOrder
+DECL|enum constant|ASCENDING
+DECL|enum constant|DESCENDING
+specifier|public
+enum|enum
+name|SortOrder
+block|{
+name|ASCENDING
+block|,
+name|DESCENDING
+block|}
 comment|/**    * Default depth for facets accumulation.    * @see #getDepth()    */
 DECL|field|DEFAULT_DEPTH
 specifier|public
@@ -198,7 +219,7 @@ name|CategoryPath
 name|categoryPath
 decl_stmt|;
 DECL|field|numResults
-specifier|private
+specifier|public
 specifier|final
 name|int
 name|numResults
@@ -321,316 +342,25 @@ operator|.
 name|numResults
 expr_stmt|;
 block|}
-annotation|@
-name|Override
-DECL|method|clone
+comment|/**    * Create an aggregator for this facet request. Aggregator action depends on    * request definition. For a count request, it will usually increment the    * count for that facet.    *     * @param useComplements    *          whether the complements optimization is being used for current    *          computation.    * @param arrays    *          provider for facet arrays in use for current computation.    * @param taxonomy    *          reader of taxonomy in effect.    * @throws IOException If there is a low-level I/O error.    */
+DECL|method|createAggregator
 specifier|public
-name|FacetRequest
-name|clone
-parameter_list|()
-throws|throws
-name|CloneNotSupportedException
-block|{
-comment|// Overridden to make it public
-return|return
-operator|(
-name|FacetRequest
-operator|)
-name|super
-operator|.
-name|clone
-argument_list|()
-return|;
-block|}
-DECL|method|setNumLabel
-specifier|public
-name|void
-name|setNumLabel
+specifier|abstract
+name|Aggregator
+name|createAggregator
 parameter_list|(
-name|int
-name|numLabel
-parameter_list|)
-block|{
-name|this
-operator|.
-name|numLabel
-operator|=
-name|numLabel
-expr_stmt|;
-block|}
-DECL|method|setDepth
-specifier|public
-name|void
-name|setDepth
-parameter_list|(
-name|int
-name|depth
-parameter_list|)
-block|{
-name|this
-operator|.
-name|depth
-operator|=
-name|depth
-expr_stmt|;
-block|}
-DECL|method|setSortOrder
-specifier|public
-name|void
-name|setSortOrder
-parameter_list|(
-name|SortOrder
-name|sortOrder
-parameter_list|)
-block|{
-name|this
-operator|.
-name|sortOrder
-operator|=
-name|sortOrder
-expr_stmt|;
-block|}
-DECL|method|setSortBy
-specifier|public
-name|void
-name|setSortBy
-parameter_list|(
-name|SortBy
-name|sortBy
-parameter_list|)
-block|{
-name|this
-operator|.
-name|sortBy
-operator|=
-name|sortBy
-expr_stmt|;
-block|}
-comment|/**    * How deeply to look under the given category. If the depth is 0,    * only the category itself is counted. If the depth is 1, its immediate    * children are also counted, and so on. If the depth is Integer.MAX_VALUE,    * all the category's descendants are counted.<br>    * TODO (Facet): add AUTO_EXPAND option      */
-DECL|method|getDepth
-specifier|public
-specifier|final
-name|int
-name|getDepth
-parameter_list|()
-block|{
-return|return
-name|depth
-return|;
-block|}
-comment|/**    * If getNumLabel()&lt; getNumResults(), only the first getNumLabel() results    * will have their category paths calculated, and the rest will only be    * available as ordinals (category numbers) and will have null paths.    *<P>    * If Integer.MAX_VALUE is specified, all results are labled.    *<P>    * The purpose of this parameter is to avoid having to run the whole faceted    * search again when the user asks for more values for the facet; The    * application can ask (getNumResults()) for more values than it needs to    * show, but keep getNumLabel() only the number it wants to immediately show.    * The slow-down caused by finding more values is negligible, because the    * slowest part - finding the categories' paths, is avoided.    *<p>    * Depending on the {@link #getResultMode() LimitsMode}, this limit is applied    * globally or per results node. In the global mode, if this limit is 3, only    * 3 top results would be labeled. In the per-node mode, if this limit is 3, 3    * top children of {@link #categoryPath the target category} would be labeled,    * as well as 3 top children of each of them, and so forth, until the depth    * defined by {@link #getDepth()}.    *     * @see #getResultMode()    */
-DECL|method|getNumLabel
-specifier|public
-specifier|final
-name|int
-name|getNumLabel
-parameter_list|()
-block|{
-return|return
-name|numLabel
-return|;
-block|}
-comment|/**    * The number of sub-categories to return (at most). If the sub-categories are    * returned.    *<p>    * If Integer.MAX_VALUE is specified, all sub-categories are returned.    *<p>    * Depending on the {@link #getResultMode() LimitsMode}, this limit is applied    * globally or per results node. In the global mode, if this limit is 3, only    * 3 top results would be computed. In the per-node mode, if this limit is 3,    * 3 top children of {@link #categoryPath the target category} would be    * returned, as well as 3 top children of each of them, and so forth, until    * the depth defined by {@link #getDepth()}.    *     * @see #getResultMode()    */
-DECL|method|getNumResults
-specifier|public
-specifier|final
-name|int
-name|getNumResults
-parameter_list|()
-block|{
-return|return
-name|numResults
-return|;
-block|}
-comment|/**    * Sort options for facet results.    */
-DECL|enum|SortBy
-specifier|public
-enum|enum
-name|SortBy
-block|{
-comment|/** sort by category ordinal with the taxonomy */
-DECL|enum constant|ORDINAL
-name|ORDINAL
-block|,
-comment|/** sort by computed category value */
-DECL|enum constant|VALUE
-name|VALUE
-block|}
-comment|/** Specify how should results be sorted. */
-DECL|method|getSortBy
-specifier|public
-specifier|final
-name|SortBy
-name|getSortBy
-parameter_list|()
-block|{
-return|return
-name|sortBy
-return|;
-block|}
-comment|/** Requested sort order for the results. */
-DECL|enum|SortOrder
-DECL|enum constant|ASCENDING
-DECL|enum constant|DESCENDING
-specifier|public
-enum|enum
-name|SortOrder
-block|{
-name|ASCENDING
-block|,
-name|DESCENDING
-block|}
-comment|/** Return the requested order of results. */
-DECL|method|getSortOrder
-specifier|public
-specifier|final
-name|SortOrder
-name|getSortOrder
-parameter_list|()
-block|{
-return|return
-name|sortOrder
-return|;
-block|}
-annotation|@
-name|Override
-DECL|method|toString
-specifier|public
-name|String
-name|toString
-parameter_list|()
-block|{
-return|return
-name|categoryPath
-operator|.
-name|toString
-argument_list|()
-operator|+
-literal|" nRes="
-operator|+
-name|numResults
-operator|+
-literal|" nLbl="
-operator|+
-name|numLabel
-return|;
-block|}
-comment|/**    * Creates a new {@link FacetResultsHandler} that matches the request logic    * and current settings, such as {@link #getDepth() depth},    * {@link #getResultMode() limits-mode}, etc, as well as the passed in    * {@link TaxonomyReader}.    *     * @param taxonomyReader taxonomy reader is needed e.g. for knowing the    *        taxonomy size.    */
-DECL|method|createFacetResultsHandler
-specifier|public
-name|FacetResultsHandler
-name|createFacetResultsHandler
-parameter_list|(
+name|boolean
+name|useComplements
+parameter_list|,
+name|FacetArrays
+name|arrays
+parameter_list|,
 name|TaxonomyReader
-name|taxonomyReader
+name|taxonomy
 parameter_list|)
-block|{
-try|try
-block|{
-if|if
-condition|(
-name|resultMode
-operator|==
-name|ResultMode
-operator|.
-name|PER_NODE_IN_TREE
-condition|)
-block|{
-return|return
-operator|new
-name|TopKInEachNodeHandler
-argument_list|(
-name|taxonomyReader
-argument_list|,
-name|clone
-argument_list|()
-argument_list|)
-return|;
-block|}
-return|return
-operator|new
-name|TopKFacetResultsHandler
-argument_list|(
-name|taxonomyReader
-argument_list|,
-name|clone
-argument_list|()
-argument_list|)
-return|;
-block|}
-catch|catch
-parameter_list|(
-name|CloneNotSupportedException
-name|e
-parameter_list|)
-block|{
-comment|// Shouldn't happen since we implement Cloneable. If it does happen, it is
-comment|// probably because the class was changed to not implement Cloneable
-comment|// anymore.
-throw|throw
-operator|new
-name|RuntimeException
-argument_list|(
-name|e
-argument_list|)
-throw|;
-block|}
-block|}
-comment|/**    * Result structure manner of applying request's limits such as     * {@link #getNumLabel()} and    * {@link #getNumResults()}.    */
-DECL|enum|ResultMode
-specifier|public
-enum|enum
-name|ResultMode
-block|{
-comment|/** Limits are applied per node, and the result has a full tree structure. */
-DECL|enum constant|PER_NODE_IN_TREE
-name|PER_NODE_IN_TREE
-block|,
-comment|/** Limits are applied globally, on total number of results, and the result has a flat structure. */
-DECL|enum constant|GLOBAL_FLAT
-name|GLOBAL_FLAT
-block|}
-comment|/** Return the requested result mode. */
-DECL|method|getResultMode
-specifier|public
-specifier|final
-name|ResultMode
-name|getResultMode
-parameter_list|()
-block|{
-return|return
-name|resultMode
-return|;
-block|}
-comment|/**    * @param resultMode the resultMode to set    * @see #getResultMode()    */
-DECL|method|setResultMode
-specifier|public
-name|void
-name|setResultMode
-parameter_list|(
-name|ResultMode
-name|resultMode
-parameter_list|)
-block|{
-name|this
-operator|.
-name|resultMode
-operator|=
-name|resultMode
-expr_stmt|;
-block|}
-annotation|@
-name|Override
-DECL|method|hashCode
-specifier|public
-name|int
-name|hashCode
-parameter_list|()
-block|{
-return|return
-name|hashCode
-return|;
-block|}
+throws|throws
+name|IOException
+function_decl|;
 annotation|@
 name|Override
 DECL|method|equals
@@ -714,26 +444,79 @@ return|return
 literal|false
 return|;
 block|}
-comment|/**    * Create an aggregator for this facet request. Aggregator action depends on    * request definition. For a count request, it will usually increment the    * count for that facet.    *     * @param useComplements    *          whether the complements optimization is being used for current    *          computation.    * @param arrays    *          provider for facet arrays in use for current computation.    * @param taxonomy    *          reader of taxonomy in effect.    * @throws IOException If there is a low-level I/O error.    */
-DECL|method|createAggregator
+comment|/**    * How deeply to look under the given category. If the depth is 0,    * only the category itself is counted. If the depth is 1, its immediate    * children are also counted, and so on. If the depth is Integer.MAX_VALUE,    * all the category's descendants are counted.<br>    */
+DECL|method|getDepth
+specifier|public
+specifier|final
+name|int
+name|getDepth
+parameter_list|()
+block|{
+comment|// TODO add AUTO_EXPAND option
+return|return
+name|depth
+return|;
+block|}
+comment|/**    * Returns the {@link FacetArraysSource} this {@link FacetRequest} uses in    * {@link #getValueOf(FacetArrays, int)}.    */
+DECL|method|getFacetArraysSource
 specifier|public
 specifier|abstract
-name|Aggregator
-name|createAggregator
-parameter_list|(
-name|boolean
-name|useComplements
-parameter_list|,
-name|FacetArrays
-name|arrays
-parameter_list|,
-name|TaxonomyReader
-name|taxonomy
-parameter_list|)
-throws|throws
-name|IOException
+name|FacetArraysSource
+name|getFacetArraysSource
+parameter_list|()
 function_decl|;
+comment|/**    * If getNumLabel()&lt; getNumResults(), only the first getNumLabel() results    * will have their category paths calculated, and the rest will only be    * available as ordinals (category numbers) and will have null paths.    *<P>    * If Integer.MAX_VALUE is specified, all results are labled.    *<P>    * The purpose of this parameter is to avoid having to run the whole faceted    * search again when the user asks for more values for the facet; The    * application can ask (getNumResults()) for more values than it needs to    * show, but keep getNumLabel() only the number it wants to immediately show.    * The slow-down caused by finding more values is negligible, because the    * slowest part - finding the categories' paths, is avoided.    *<p>    * Depending on the {@link #getResultMode() LimitsMode}, this limit is applied    * globally or per results node. In the global mode, if this limit is 3, only    * 3 top results would be labeled. In the per-node mode, if this limit is 3, 3    * top children of {@link #categoryPath the target category} would be labeled,    * as well as 3 top children of each of them, and so forth, until the depth    * defined by {@link #getDepth()}.    *     * @see #getResultMode()    */
+DECL|method|getNumLabel
+specifier|public
+specifier|final
+name|int
+name|getNumLabel
+parameter_list|()
+block|{
+return|return
+name|numLabel
+return|;
+block|}
+comment|/** Return the requested result mode. */
+DECL|method|getResultMode
+specifier|public
+specifier|final
+name|ResultMode
+name|getResultMode
+parameter_list|()
+block|{
+return|return
+name|resultMode
+return|;
+block|}
+comment|/** Specify how should results be sorted. */
+DECL|method|getSortBy
+specifier|public
+specifier|final
+name|SortBy
+name|getSortBy
+parameter_list|()
+block|{
+return|return
+name|sortBy
+return|;
+block|}
+comment|/** Return the requested order of results. */
+DECL|method|getSortOrder
+specifier|public
+specifier|final
+name|SortOrder
+name|getSortOrder
+parameter_list|()
+block|{
+return|return
+name|sortOrder
+return|;
+block|}
 comment|/**    * Return the value of a category used for facets computations for this    * request. For a count request this would be the count for that facet, i.e.    * an integer number. but for other requests this can be the result of a more    * complex operation, and the result can be any double precision number.    * Having this method with a general name<b>value</b> which is double    * precision allows to have more compact API and code for handling counts and    * perhaps other requests (such as for associations) very similarly, and by    * the same code and API, avoiding code duplication.    *     * @param arrays    *          provider for facet arrays in use for current computation.    * @param idx    *          an index into the count arrays now in effect in    *<code>arrays</code>. E.g., for ordinal number<i>n</i>, with    *          partition, of size<i>partitionSize</i>, now covering<i>n</i>,    *<code>getValueOf</code> would be invoked with<code>idx</code>    *          being<i>n</i> %<i>partitionSize</i>.    */
+comment|// TODO perhaps instead of getValueOf we can have a postProcess(FacetArrays)
+comment|// That, together with getFacetArraysSource should allow ResultHandlers to
+comment|// efficiently obtain the values from the arrays directly
 DECL|method|getValueOf
 specifier|public
 specifier|abstract
@@ -747,26 +530,122 @@ name|int
 name|idx
 parameter_list|)
 function_decl|;
-comment|/**    * Indicates whether this facet request is eligible for applying the complements optimization.    */
-DECL|method|supportsComplements
+annotation|@
+name|Override
+DECL|method|hashCode
 specifier|public
-name|boolean
-name|supportsComplements
+name|int
+name|hashCode
 parameter_list|()
 block|{
 return|return
-literal|false
+name|hashCode
 return|;
-comment|// by default: no
 block|}
-comment|/** Indicates whether the results of this request depends on each result document's score */
-DECL|method|requireDocumentScore
+DECL|method|setDepth
 specifier|public
-specifier|abstract
-name|boolean
-name|requireDocumentScore
+name|void
+name|setDepth
+parameter_list|(
+name|int
+name|depth
+parameter_list|)
+block|{
+name|this
+operator|.
+name|depth
+operator|=
+name|depth
+expr_stmt|;
+block|}
+DECL|method|setNumLabel
+specifier|public
+name|void
+name|setNumLabel
+parameter_list|(
+name|int
+name|numLabel
+parameter_list|)
+block|{
+name|this
+operator|.
+name|numLabel
+operator|=
+name|numLabel
+expr_stmt|;
+block|}
+comment|/**    * @param resultMode the resultMode to set    * @see #getResultMode()    */
+DECL|method|setResultMode
+specifier|public
+name|void
+name|setResultMode
+parameter_list|(
+name|ResultMode
+name|resultMode
+parameter_list|)
+block|{
+name|this
+operator|.
+name|resultMode
+operator|=
+name|resultMode
+expr_stmt|;
+block|}
+DECL|method|setSortBy
+specifier|public
+name|void
+name|setSortBy
+parameter_list|(
+name|SortBy
+name|sortBy
+parameter_list|)
+block|{
+name|this
+operator|.
+name|sortBy
+operator|=
+name|sortBy
+expr_stmt|;
+block|}
+DECL|method|setSortOrder
+specifier|public
+name|void
+name|setSortOrder
+parameter_list|(
+name|SortOrder
+name|sortOrder
+parameter_list|)
+block|{
+name|this
+operator|.
+name|sortOrder
+operator|=
+name|sortOrder
+expr_stmt|;
+block|}
+annotation|@
+name|Override
+DECL|method|toString
+specifier|public
+name|String
+name|toString
 parameter_list|()
-function_decl|;
+block|{
+return|return
+name|categoryPath
+operator|.
+name|toString
+argument_list|()
+operator|+
+literal|" nRes="
+operator|+
+name|numResults
+operator|+
+literal|" nLbl="
+operator|+
+name|numLabel
+return|;
+block|}
 block|}
 end_class
 

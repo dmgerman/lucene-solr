@@ -83,7 +83,7 @@ name|FacetRequest
 argument_list|>
 name|facetRequests
 decl_stmt|;
-comment|/**    * Initializes with the given {@link FacetRequest requests} and default    * {@link FacetIndexingParams#ALL_PARENTS}. If you used a different    * {@link FacetIndexingParams}, you should use    * {@link #FacetSearchParams(List, FacetIndexingParams)}.    */
+comment|/**    * Initializes with the given {@link FacetRequest requests} and default    * {@link FacetIndexingParams#ALL_PARENTS}. If you used a different    * {@link FacetIndexingParams}, you should use    * {@link #FacetSearchParams(FacetIndexingParams, List)}.    */
 DECL|method|FacetSearchParams
 specifier|public
 name|FacetSearchParams
@@ -95,20 +95,20 @@ parameter_list|)
 block|{
 name|this
 argument_list|(
+name|FacetIndexingParams
+operator|.
+name|ALL_PARENTS
+argument_list|,
 name|Arrays
 operator|.
 name|asList
 argument_list|(
 name|facetRequests
 argument_list|)
-argument_list|,
-name|FacetIndexingParams
-operator|.
-name|ALL_PARENTS
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**    * Initializes with the given {@link FacetRequest requests} and default    * {@link FacetIndexingParams#ALL_PARENTS}. If you used a different    * {@link FacetIndexingParams}, you should use    * {@link #FacetSearchParams(List, FacetIndexingParams)}.    */
+comment|/**    * Initializes with the given {@link FacetRequest requests} and default    * {@link FacetIndexingParams#ALL_PARENTS}. If you used a different    * {@link FacetIndexingParams}, you should use    * {@link #FacetSearchParams(FacetIndexingParams, List)}.    */
 DECL|method|FacetSearchParams
 specifier|public
 name|FacetSearchParams
@@ -122,11 +122,11 @@ parameter_list|)
 block|{
 name|this
 argument_list|(
-name|facetRequests
-argument_list|,
 name|FacetIndexingParams
 operator|.
 name|ALL_PARENTS
+argument_list|,
+name|facetRequests
 argument_list|)
 expr_stmt|;
 block|}
@@ -145,14 +145,14 @@ parameter_list|)
 block|{
 name|this
 argument_list|(
+name|indexingParams
+argument_list|,
 name|Arrays
 operator|.
 name|asList
 argument_list|(
 name|facetRequests
 argument_list|)
-argument_list|,
-name|indexingParams
 argument_list|)
 expr_stmt|;
 block|}
@@ -161,14 +161,14 @@ DECL|method|FacetSearchParams
 specifier|public
 name|FacetSearchParams
 parameter_list|(
+name|FacetIndexingParams
+name|indexingParams
+parameter_list|,
 name|List
 argument_list|<
 name|FacetRequest
 argument_list|>
 name|facetRequests
-parameter_list|,
-name|FacetIndexingParams
-name|indexingParams
 parameter_list|)
 block|{
 if|if
@@ -215,10 +215,10 @@ name|toString
 parameter_list|()
 block|{
 specifier|final
-name|char
-name|TAB
+name|String
+name|INDENT
 init|=
-literal|'\t'
+literal|"  "
 decl_stmt|;
 specifier|final
 name|char
@@ -244,7 +244,7 @@ argument_list|)
 operator|.
 name|append
 argument_list|(
-name|TAB
+name|INDENT
 argument_list|)
 operator|.
 name|append
@@ -281,7 +281,7 @@ argument_list|)
 operator|.
 name|append
 argument_list|(
-name|TAB
+name|INDENT
 argument_list|)
 operator|.
 name|append

@@ -113,7 +113,7 @@ operator|.
 name|rootNode
 return|;
 block|}
-comment|/**    * Number of descendants of {@link #getFacetResultNode() root facet result node},     * up till the requested depth, which are valid by the     * {@link FacetRequest#createFacetResultsHandler(org.apache.lucene.facet.taxonomy.TaxonomyReader)    * results handler in effect}. Typically -- have value != 0.    * This number does not include the root node.     * @see #getFacetRequest()    * @see FacetRequest#getDepth()    */
+comment|/**    * Number of descendants of {@link #getFacetResultNode() root facet result    * node}, up till the requested depth. Typically -- have value != 0. This    * number does not include the root node.    *     * @see #getFacetRequest()    * @see FacetRequest#getDepth()    */
 DECL|method|getNumValidDescendants
 specifier|public
 specifier|final

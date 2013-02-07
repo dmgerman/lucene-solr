@@ -1462,9 +1462,9 @@ return|return
 operator|new
 name|FacetSearchParams
 argument_list|(
-name|facetRequests
-argument_list|,
 name|iParams
+argument_list|,
+name|facetRequests
 argument_list|)
 return|;
 block|}
@@ -2066,8 +2066,7 @@ name|topResNode
 argument_list|,
 name|freq
 operator|.
-name|getNumResults
-argument_list|()
+name|numResults
 argument_list|)
 expr_stmt|;
 block|}

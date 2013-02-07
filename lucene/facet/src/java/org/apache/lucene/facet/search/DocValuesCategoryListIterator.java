@@ -298,6 +298,13 @@ parameter_list|)
 throws|throws
 name|IOException
 block|{
+assert|assert
+name|current
+operator|!=
+literal|null
+operator|:
+literal|"don't call this if setNextReader returned false"
+assert|;
 name|current
 operator|.
 name|get

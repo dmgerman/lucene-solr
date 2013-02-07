@@ -596,9 +596,9 @@ init|=
 operator|new
 name|FacetSearchParams
 argument_list|(
-name|facetRequests
-argument_list|,
 name|iParams
+argument_list|,
+name|facetRequests
 argument_list|)
 decl_stmt|;
 comment|// Facets collector is the simplest interface for faceted search.

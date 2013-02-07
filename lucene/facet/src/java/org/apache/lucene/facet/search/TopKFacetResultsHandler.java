@@ -44,6 +44,42 @@ name|lucene
 operator|.
 name|facet
 operator|.
+name|partitions
+operator|.
+name|search
+operator|.
+name|IntermediateFacetResult
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|facet
+operator|.
+name|partitions
+operator|.
+name|search
+operator|.
+name|PartitionsFacetResultsHandler
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|facet
+operator|.
 name|search
 operator|.
 name|params
@@ -85,24 +121,6 @@ operator|.
 name|results
 operator|.
 name|FacetResultNode
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|facet
-operator|.
-name|search
-operator|.
-name|results
-operator|.
-name|IntermediateFacetResult
 import|;
 end_import
 
@@ -161,7 +179,7 @@ comment|/*  * Licensed to the Apache Software Foundation (ASF) under one or more
 end_comment
 
 begin_comment
-comment|/**   * Generate Top-K results for a particular FacetRequest.  *<p>  * K is global (among all results) and is defined by {@link FacetRequest#getNumResults()}.  *<p>   * Note: Values of 0 (Zero) are ignored by this results handler.  *   * @lucene.experimental  */
+comment|/**  * Generate Top-K results for a particular {@link FacetRequest}. K is global  * (among all results) and is defined by {@link FacetRequest#numResults}.  *   * @lucene.experimental  */
 end_comment
 
 begin_class
@@ -170,9 +188,9 @@ specifier|public
 class|class
 name|TopKFacetResultsHandler
 extends|extends
-name|FacetResultsHandler
+name|PartitionsFacetResultsHandler
 block|{
-comment|/**    * Construct top-K results handler.      * @param taxonomyReader taxonomy reader    * @param facetRequest facet request being served    */
+comment|/**    * Construct top-K results handler.    *     * @param taxonomyReader    *          taxonomy reader    * @param facetRequest    *          facet request being served    */
 DECL|method|TopKFacetResultsHandler
 specifier|public
 name|TopKFacetResultsHandler
@@ -182,6 +200,9 @@ name|taxonomyReader
 parameter_list|,
 name|FacetRequest
 name|facetRequest
+parameter_list|,
+name|FacetArrays
+name|facetArrays
 parameter_list|)
 block|{
 name|super
@@ -189,6 +210,8 @@ argument_list|(
 name|taxonomyReader
 argument_list|,
 name|facetRequest
+argument_list|,
+name|facetArrays
 argument_list|)
 expr_stmt|;
 block|}
@@ -200,9 +223,6 @@ specifier|public
 name|IntermediateFacetResult
 name|fetchPartitionResult
 parameter_list|(
-name|FacetArrays
-name|facetArrays
-parameter_list|,
 name|int
 name|offset
 parameter_list|)
@@ -307,8 +327,6 @@ argument_list|,
 name|heap
 argument_list|,
 name|parentResultNode
-argument_list|,
-name|facetArrays
 argument_list|,
 name|offset
 argument_list|)
@@ -521,9 +539,6 @@ name|pq
 parameter_list|,
 name|FacetResultNode
 name|parentResultNode
-parameter_list|,
-name|FacetArrays
-name|facetArrays
 parameter_list|,
 name|int
 name|offset

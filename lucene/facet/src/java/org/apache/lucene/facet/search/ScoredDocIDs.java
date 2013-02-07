@@ -43,7 +43,7 @@ comment|/*  * Licensed to the Apache Software Foundation (ASF) under one or more
 end_comment
 
 begin_comment
-comment|/**  * Document IDs with scores for each, driving facets accumulation. Document  * scores are optionally used in the process of facets scoring.  *   * @see FacetsAccumulator#accumulate(ScoredDocIDs)  * @lucene.experimental  */
+comment|/**  * Document IDs with scores for each, driving facets accumulation. Document  * scores are optionally used in the process of facets scoring.  *   * @see StandardFacetsAccumulator#accumulate(ScoredDocIDs)  * @lucene.experimental  */
 end_comment
 
 begin_interface

@@ -163,8 +163,7 @@ name|nresults
 init|=
 name|facetRequest
 operator|.
-name|getNumResults
-argument_list|()
+name|numResults
 decl_stmt|;
 name|boolean
 name|accending

@@ -159,7 +159,7 @@ specifier|public
 name|int
 name|ordinal
 decl_stmt|;
-comment|/**    * The {@link CategoryPath label} of this result. May be {@code null} if not    * computed, in which case use {@link TaxonomyReader#getPath(int)} to label    * it.    *<p>    *<b>NOTE:</b> by default, all nodes are labeled. Only when    * {@link FacetRequest#getNumLabel()}&lt;    * {@link FacetRequest#getNumResults()} there will be unlabeled nodes.    */
+comment|/**    * The {@link CategoryPath label} of this result. May be {@code null} if not    * computed, in which case use {@link TaxonomyReader#getPath(int)} to label    * it.    *<p>    *<b>NOTE:</b> by default, all nodes are labeled. Only when    * {@link FacetRequest#getNumLabel()}&lt;    * {@link FacetRequest#numResults} there will be unlabeled nodes.    */
 DECL|field|label
 specifier|public
 name|CategoryPath
