@@ -988,6 +988,23 @@ argument_list|(
 literal|false
 argument_list|)
 expr_stmt|;
+name|Thread
+operator|.
+name|sleep
+argument_list|(
+literal|3000
+argument_list|)
+expr_stmt|;
+name|waitForThingsToLevelOut
+argument_list|(
+literal|15
+argument_list|)
+expr_stmt|;
+name|waitForRecoveriesToFinish
+argument_list|(
+literal|false
+argument_list|)
+expr_stmt|;
 name|skipServers
 operator|=
 name|getRandomOtherJetty
@@ -1085,7 +1102,7 @@ argument_list|()
 expr_stmt|;
 name|assertNotNull
 argument_list|(
-literal|"shard1 should have just been set up to be inconsistent - but it's still consistent"
+literal|"Test Setup Failure: shard1 should have just been set up to be inconsistent - but it's still consistent"
 argument_list|,
 name|shardFailMessage
 argument_list|)
