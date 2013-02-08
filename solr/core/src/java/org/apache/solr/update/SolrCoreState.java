@@ -28,6 +28,20 @@ end_import
 
 begin_import
 import|import
+name|java
+operator|.
+name|util
+operator|.
+name|concurrent
+operator|.
+name|locks
+operator|.
+name|Lock
+import|;
+end_import
+
+begin_import
+import|import
 name|org
 operator|.
 name|apache
@@ -127,6 +141,13 @@ return|return
 name|deleteLock
 return|;
 block|}
+DECL|method|getCommitLock
+specifier|public
+specifier|abstract
+name|Lock
+name|getCommitLock
+parameter_list|()
+function_decl|;
 comment|/**    * Force the creation of a new IndexWriter using the settings from the given    * SolrCore.    *     * @param rollback close IndexWriter if false, else rollback    * @throws IOException If there is a low-level I/O error.    */
 DECL|method|newIndexWriter
 specifier|public
