@@ -17,19 +17,19 @@ comment|/*  * Licensed to the Apache Software Foundation (ASF) under one or more
 end_comment
 
 begin_comment
-comment|/** ignore me: I workaround bugs in oracle's javadoc */
+comment|/**  * Required so that userguide files are copied as part of javadocs generation.  * Otherwise, if the root facet package contains no classes, doc-files aren't  * copied.  */
 end_comment
 
 begin_class
-DECL|class|Dummy
+DECL|class|FacetPackage
 specifier|public
+specifier|final
 class|class
-name|Dummy
+name|FacetPackage
 block|{
-comment|// TODO: better way to workaround this?
-DECL|method|Dummy
+DECL|method|FacetPackage
 specifier|private
-name|Dummy
+name|FacetPackage
 parameter_list|()
 block|{}
 block|}
