@@ -144,8 +144,6 @@ name|lucene
 operator|.
 name|facet
 operator|.
-name|index
-operator|.
 name|params
 operator|.
 name|CategoryListParams
@@ -161,8 +159,6 @@ operator|.
 name|lucene
 operator|.
 name|facet
-operator|.
-name|index
 operator|.
 name|params
 operator|.

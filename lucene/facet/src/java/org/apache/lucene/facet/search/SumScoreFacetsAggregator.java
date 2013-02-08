@@ -34,8 +34,6 @@ name|lucene
 operator|.
 name|facet
 operator|.
-name|index
-operator|.
 name|params
 operator|.
 name|CategoryListParams
@@ -358,6 +356,9 @@ specifier|public
 name|void
 name|rollupValues
 parameter_list|(
+name|FacetRequest
+name|fr
+parameter_list|,
 name|int
 name|ordinal
 parameter_list|,

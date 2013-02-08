@@ -54,8 +54,6 @@ name|lucene
 operator|.
 name|facet
 operator|.
-name|search
-operator|.
 name|params
 operator|.
 name|FacetSearchParams
@@ -72,8 +70,6 @@ name|lucene
 operator|.
 name|facet
 operator|.
-name|search
-operator|.
 name|sampling
 operator|.
 name|BaseSampleTestTopK
@@ -89,8 +85,6 @@ operator|.
 name|lucene
 operator|.
 name|facet
-operator|.
-name|search
 operator|.
 name|sampling
 operator|.

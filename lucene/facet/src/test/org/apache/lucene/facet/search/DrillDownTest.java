@@ -164,8 +164,6 @@ name|lucene
 operator|.
 name|facet
 operator|.
-name|index
-operator|.
 name|params
 operator|.
 name|CategoryListParams
@@ -182,8 +180,6 @@ name|lucene
 operator|.
 name|facet
 operator|.
-name|index
-operator|.
 name|params
 operator|.
 name|FacetIndexingParams
@@ -199,8 +195,6 @@ operator|.
 name|lucene
 operator|.
 name|facet
-operator|.
-name|index
 operator|.
 name|params
 operator|.

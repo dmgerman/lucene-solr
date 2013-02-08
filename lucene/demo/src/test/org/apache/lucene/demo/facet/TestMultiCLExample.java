@@ -104,8 +104,6 @@ name|facet
 operator|.
 name|search
 operator|.
-name|results
-operator|.
 name|FacetResult
 import|;
 end_import
@@ -121,8 +119,6 @@ operator|.
 name|facet
 operator|.
 name|search
-operator|.
-name|results
 operator|.
 name|FacetResultNode
 import|;

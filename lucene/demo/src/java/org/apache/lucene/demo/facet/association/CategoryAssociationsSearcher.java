@@ -96,10 +96,6 @@ name|lucene
 operator|.
 name|facet
 operator|.
-name|search
-operator|.
-name|params
-operator|.
 name|associations
 operator|.
 name|AssociationFloatSumFacetRequest
@@ -115,10 +111,6 @@ operator|.
 name|lucene
 operator|.
 name|facet
-operator|.
-name|search
-operator|.
-name|params
 operator|.
 name|associations
 operator|.
@@ -137,8 +129,6 @@ operator|.
 name|facet
 operator|.
 name|search
-operator|.
-name|results
 operator|.
 name|FacetResult
 import|;
