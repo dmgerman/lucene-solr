@@ -72,7 +72,7 @@ name|facet
 operator|.
 name|search
 operator|.
-name|DrillDown
+name|DrillDownQuery
 import|;
 end_import
 
@@ -243,7 +243,7 @@ argument_list|,
 name|expectedDDText
 argument_list|)
 argument_list|,
-name|DrillDown
+name|DrillDownQuery
 operator|.
 name|term
 argument_list|(

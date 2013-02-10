@@ -112,7 +112,7 @@ name|facet
 operator|.
 name|search
 operator|.
-name|DrillDown
+name|DrillDownQuery
 import|;
 end_import
 
@@ -237,22 +237,6 @@ operator|.
 name|index
 operator|.
 name|Term
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|search
-operator|.
-name|BooleanClause
-operator|.
-name|Occur
 import|;
 end_import
 
@@ -746,24 +730,24 @@ operator|.
 name|label
 decl_stmt|;
 comment|// drill-down preparation: turn the base query into a drill-down query for the category of interest
-name|Query
+name|DrillDownQuery
 name|q2
 init|=
-name|DrillDown
-operator|.
-name|query
+operator|new
+name|DrillDownQuery
 argument_list|(
 name|indexingParams
 argument_list|,
 name|baseQuery
-argument_list|,
-name|Occur
-operator|.
-name|MUST
-argument_list|,
-name|categoryOfInterest
 argument_list|)
 decl_stmt|;
+name|q2
+operator|.
+name|add
+argument_list|(
+name|categoryOfInterest
+argument_list|)
+expr_stmt|;
 comment|// that's it - search with the new query and we're done!
 comment|// only documents both matching the base query AND containing the
 comment|// category of interest will contribute to the new accumulation
