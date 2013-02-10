@@ -859,14 +859,6 @@ name|getResultMode
 argument_list|()
 argument_list|)
 expr_stmt|;
-name|setSortBy
-argument_list|(
-name|orig
-operator|.
-name|getSortBy
-argument_list|()
-argument_list|)
-expr_stmt|;
 name|setSortOrder
 argument_list|(
 name|orig

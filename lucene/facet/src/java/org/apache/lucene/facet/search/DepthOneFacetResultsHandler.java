@@ -78,24 +78,6 @@ name|search
 operator|.
 name|FacetRequest
 operator|.
-name|SortBy
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|facet
-operator|.
-name|search
-operator|.
-name|FacetRequest
-operator|.
 name|SortOrder
 import|;
 end_import
@@ -317,18 +299,6 @@ operator|.
 name|DESCENDING
 operator|:
 literal|"this handler always sorts results in descending order"
-assert|;
-assert|assert
-name|facetRequest
-operator|.
-name|getSortBy
-argument_list|()
-operator|==
-name|SortBy
-operator|.
-name|VALUE
-operator|:
-literal|"this handler always sorts results by value"
 assert|;
 block|}
 comment|/** Returnt the value of the requested ordinal. Called once for the result root. */
