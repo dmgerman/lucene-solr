@@ -344,6 +344,22 @@ name|_TestUtil
 import|;
 end_import
 
+begin_import
+import|import static
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|index
+operator|.
+name|SortedSetDocValues
+operator|.
+name|NO_MORE_ORDS
+import|;
+end_import
+
 begin_comment
 comment|/**  * A very simple demo used in the API documentation (src/java/overview.html).  *  * Please try to keep src/java/overview.html up-to-date when making changes  * to this class.  */
 end_comment
@@ -433,25 +449,12 @@ parameter_list|()
 throws|throws
 name|IOException
 block|{
-name|Analyzer
-name|analyzer
-init|=
-operator|new
-name|MockAnalyzer
-argument_list|(
-name|random
-argument_list|()
-argument_list|)
-decl_stmt|;
-comment|// Store the index in memory:
 name|Directory
 name|directory
 init|=
 name|newDirectory
 argument_list|()
 decl_stmt|;
-comment|// To store an index on disk, use this instead:
-comment|// Directory directory = FSDirectory.open(new File("/tmp/testindex"));
 name|RandomIndexWriter
 name|iwriter
 init|=
@@ -462,8 +465,6 @@ name|random
 argument_list|()
 argument_list|,
 name|directory
-argument_list|,
-name|analyzer
 argument_list|)
 decl_stmt|;
 name|Document
@@ -497,23 +498,19 @@ argument_list|(
 name|doc
 argument_list|)
 expr_stmt|;
+name|DirectoryReader
+name|ireader
+init|=
+name|iwriter
+operator|.
+name|getReader
+argument_list|()
+decl_stmt|;
 name|iwriter
 operator|.
 name|close
 argument_list|()
 expr_stmt|;
-comment|// Now search the index:
-name|DirectoryReader
-name|ireader
-init|=
-name|DirectoryReader
-operator|.
-name|open
-argument_list|(
-name|directory
-argument_list|)
-decl_stmt|;
-comment|// read-only=true
 name|SortedSetDocValues
 name|dv
 init|=
@@ -546,8 +543,6 @@ argument_list|)
 expr_stmt|;
 name|assertEquals
 argument_list|(
-name|SortedSetDocValues
-operator|.
 name|NO_MORE_ORDS
 argument_list|,
 name|dv
@@ -602,6 +597,12 @@ parameter_list|()
 throws|throws
 name|IOException
 block|{
+name|Directory
+name|directory
+init|=
+name|newDirectory
+argument_list|()
+decl_stmt|;
 name|Analyzer
 name|analyzer
 init|=
@@ -612,15 +613,6 @@ name|random
 argument_list|()
 argument_list|)
 decl_stmt|;
-comment|// Store the index in memory:
-name|Directory
-name|directory
-init|=
-name|newDirectory
-argument_list|()
-decl_stmt|;
-comment|// To store an index on disk, use this instead:
-comment|// Directory directory = FSDirectory.open(new File("/tmp/testindex"));
 name|IndexWriterConfig
 name|iwconfig
 init|=
@@ -726,23 +718,19 @@ argument_list|(
 literal|1
 argument_list|)
 expr_stmt|;
+name|DirectoryReader
+name|ireader
+init|=
+name|iwriter
+operator|.
+name|getReader
+argument_list|()
+decl_stmt|;
 name|iwriter
 operator|.
 name|close
 argument_list|()
 expr_stmt|;
-comment|// Now search the index:
-name|DirectoryReader
-name|ireader
-init|=
-name|DirectoryReader
-operator|.
-name|open
-argument_list|(
-name|directory
-argument_list|)
-decl_stmt|;
-comment|// read-only=true
 name|SortedSetDocValues
 name|dv
 init|=
@@ -756,6 +744,16 @@ argument_list|(
 literal|"field"
 argument_list|)
 decl_stmt|;
+name|assertEquals
+argument_list|(
+literal|2
+argument_list|,
+name|dv
+operator|.
+name|getValueCount
+argument_list|()
+argument_list|)
+expr_stmt|;
 name|dv
 operator|.
 name|setDocument
@@ -775,8 +773,6 @@ argument_list|)
 expr_stmt|;
 name|assertEquals
 argument_list|(
-name|SortedSetDocValues
-operator|.
 name|NO_MORE_ORDS
 argument_list|,
 name|dv
@@ -831,8 +827,6 @@ argument_list|)
 expr_stmt|;
 name|assertEquals
 argument_list|(
-name|SortedSetDocValues
-operator|.
 name|NO_MORE_ORDS
 argument_list|,
 name|dv
@@ -861,16 +855,6 @@ argument_list|,
 name|bytes
 argument_list|)
 expr_stmt|;
-name|assertEquals
-argument_list|(
-literal|2
-argument_list|,
-name|dv
-operator|.
-name|getValueCount
-argument_list|()
-argument_list|)
-expr_stmt|;
 name|ireader
 operator|.
 name|close
@@ -890,25 +874,12 @@ parameter_list|()
 throws|throws
 name|IOException
 block|{
-name|Analyzer
-name|analyzer
-init|=
-operator|new
-name|MockAnalyzer
-argument_list|(
-name|random
-argument_list|()
-argument_list|)
-decl_stmt|;
-comment|// Store the index in memory:
 name|Directory
 name|directory
 init|=
 name|newDirectory
 argument_list|()
 decl_stmt|;
-comment|// To store an index on disk, use this instead:
-comment|// Directory directory = FSDirectory.open(new File("/tmp/testindex"));
 name|RandomIndexWriter
 name|iwriter
 init|=
@@ -919,8 +890,6 @@ name|random
 argument_list|()
 argument_list|,
 name|directory
-argument_list|,
-name|analyzer
 argument_list|)
 decl_stmt|;
 name|Document
@@ -971,23 +940,19 @@ argument_list|(
 name|doc
 argument_list|)
 expr_stmt|;
+name|DirectoryReader
+name|ireader
+init|=
+name|iwriter
+operator|.
+name|getReader
+argument_list|()
+decl_stmt|;
 name|iwriter
 operator|.
 name|close
 argument_list|()
 expr_stmt|;
-comment|// Now search the index:
-name|DirectoryReader
-name|ireader
-init|=
-name|DirectoryReader
-operator|.
-name|open
-argument_list|(
-name|directory
-argument_list|)
-decl_stmt|;
-comment|// read-only=true
 name|SortedSetDocValues
 name|dv
 init|=
@@ -1030,8 +995,6 @@ argument_list|)
 expr_stmt|;
 name|assertEquals
 argument_list|(
-name|SortedSetDocValues
-operator|.
 name|NO_MORE_ORDS
 argument_list|,
 name|dv
@@ -1106,25 +1069,12 @@ parameter_list|()
 throws|throws
 name|IOException
 block|{
-name|Analyzer
-name|analyzer
-init|=
-operator|new
-name|MockAnalyzer
-argument_list|(
-name|random
-argument_list|()
-argument_list|)
-decl_stmt|;
-comment|// Store the index in memory:
 name|Directory
 name|directory
 init|=
 name|newDirectory
 argument_list|()
 decl_stmt|;
-comment|// To store an index on disk, use this instead:
-comment|// Directory directory = FSDirectory.open(new File("/tmp/testindex"));
 name|RandomIndexWriter
 name|iwriter
 init|=
@@ -1135,8 +1085,6 @@ name|random
 argument_list|()
 argument_list|,
 name|directory
-argument_list|,
-name|analyzer
 argument_list|)
 decl_stmt|;
 name|Document
@@ -1187,23 +1135,19 @@ argument_list|(
 name|doc
 argument_list|)
 expr_stmt|;
+name|DirectoryReader
+name|ireader
+init|=
+name|iwriter
+operator|.
+name|getReader
+argument_list|()
+decl_stmt|;
 name|iwriter
 operator|.
 name|close
 argument_list|()
 expr_stmt|;
-comment|// Now search the index:
-name|DirectoryReader
-name|ireader
-init|=
-name|DirectoryReader
-operator|.
-name|open
-argument_list|(
-name|directory
-argument_list|)
-decl_stmt|;
-comment|// read-only=true
 name|SortedSetDocValues
 name|dv
 init|=
@@ -1246,8 +1190,6 @@ argument_list|)
 expr_stmt|;
 name|assertEquals
 argument_list|(
-name|SortedSetDocValues
-operator|.
 name|NO_MORE_ORDS
 argument_list|,
 name|dv
@@ -1322,6 +1264,12 @@ parameter_list|()
 throws|throws
 name|IOException
 block|{
+name|Directory
+name|directory
+init|=
+name|newDirectory
+argument_list|()
+decl_stmt|;
 name|Analyzer
 name|analyzer
 init|=
@@ -1332,15 +1280,6 @@ name|random
 argument_list|()
 argument_list|)
 decl_stmt|;
-comment|// Store the index in memory:
-name|Directory
-name|directory
-init|=
-name|newDirectory
-argument_list|()
-decl_stmt|;
-comment|// To store an index on disk, use this instead:
-comment|// Directory directory = FSDirectory.open(new File("/tmp/testindex"));
 name|IndexWriterConfig
 name|iwconfig
 init|=
@@ -1480,23 +1419,19 @@ argument_list|(
 literal|1
 argument_list|)
 expr_stmt|;
+name|DirectoryReader
+name|ireader
+init|=
+name|iwriter
+operator|.
+name|getReader
+argument_list|()
+decl_stmt|;
 name|iwriter
 operator|.
 name|close
 argument_list|()
 expr_stmt|;
-comment|// Now search the index:
-name|DirectoryReader
-name|ireader
-init|=
-name|DirectoryReader
-operator|.
-name|open
-argument_list|(
-name|directory
-argument_list|)
-decl_stmt|;
-comment|// read-only=true
 name|SortedSetDocValues
 name|dv
 init|=
@@ -1549,8 +1484,6 @@ argument_list|)
 expr_stmt|;
 name|assertEquals
 argument_list|(
-name|SortedSetDocValues
-operator|.
 name|NO_MORE_ORDS
 argument_list|,
 name|dv
@@ -1588,8 +1521,6 @@ argument_list|)
 expr_stmt|;
 name|assertEquals
 argument_list|(
-name|SortedSetDocValues
-operator|.
 name|NO_MORE_ORDS
 argument_list|,
 name|dv
@@ -1684,6 +1615,12 @@ parameter_list|()
 throws|throws
 name|IOException
 block|{
+name|Directory
+name|directory
+init|=
+name|newDirectory
+argument_list|()
+decl_stmt|;
 name|Analyzer
 name|analyzer
 init|=
@@ -1694,15 +1631,6 @@ name|random
 argument_list|()
 argument_list|)
 decl_stmt|;
-comment|// Store the index in memory:
-name|Directory
-name|directory
-init|=
-name|newDirectory
-argument_list|()
-decl_stmt|;
-comment|// To store an index on disk, use this instead:
-comment|// Directory directory = FSDirectory.open(new File("/tmp/testindex"));
 name|IndexWriterConfig
 name|iwconfig
 init|=
@@ -1786,23 +1714,19 @@ argument_list|(
 literal|1
 argument_list|)
 expr_stmt|;
+name|DirectoryReader
+name|ireader
+init|=
+name|iwriter
+operator|.
+name|getReader
+argument_list|()
+decl_stmt|;
 name|iwriter
 operator|.
 name|close
 argument_list|()
 expr_stmt|;
-comment|// Now search the index:
-name|DirectoryReader
-name|ireader
-init|=
-name|DirectoryReader
-operator|.
-name|open
-argument_list|(
-name|directory
-argument_list|)
-decl_stmt|;
-comment|// read-only=true
 name|SortedSetDocValues
 name|dv
 init|=
@@ -1816,6 +1740,16 @@ argument_list|(
 literal|"field"
 argument_list|)
 decl_stmt|;
+name|assertEquals
+argument_list|(
+literal|1
+argument_list|,
+name|dv
+operator|.
+name|getValueCount
+argument_list|()
+argument_list|)
+expr_stmt|;
 name|dv
 operator|.
 name|setDocument
@@ -1835,8 +1769,6 @@ argument_list|)
 expr_stmt|;
 name|assertEquals
 argument_list|(
-name|SortedSetDocValues
-operator|.
 name|NO_MORE_ORDS
 argument_list|,
 name|dv
@@ -1870,16 +1802,6 @@ literal|"hello"
 argument_list|)
 argument_list|,
 name|bytes
-argument_list|)
-expr_stmt|;
-name|assertEquals
-argument_list|(
-literal|1
-argument_list|,
-name|dv
-operator|.
-name|getValueCount
-argument_list|()
 argument_list|)
 expr_stmt|;
 name|ireader
@@ -1901,6 +1823,12 @@ parameter_list|()
 throws|throws
 name|IOException
 block|{
+name|Directory
+name|directory
+init|=
+name|newDirectory
+argument_list|()
+decl_stmt|;
 name|Analyzer
 name|analyzer
 init|=
@@ -1911,15 +1839,6 @@ name|random
 argument_list|()
 argument_list|)
 decl_stmt|;
-comment|// Store the index in memory:
-name|Directory
-name|directory
-init|=
-name|newDirectory
-argument_list|()
-decl_stmt|;
-comment|// To store an index on disk, use this instead:
-comment|// Directory directory = FSDirectory.open(new File("/tmp/testindex"));
 name|IndexWriterConfig
 name|iwconfig
 init|=
@@ -2008,23 +1927,19 @@ argument_list|(
 literal|1
 argument_list|)
 expr_stmt|;
+name|DirectoryReader
+name|ireader
+init|=
+name|iwriter
+operator|.
+name|getReader
+argument_list|()
+decl_stmt|;
 name|iwriter
 operator|.
 name|close
 argument_list|()
 expr_stmt|;
-comment|// Now search the index:
-name|DirectoryReader
-name|ireader
-init|=
-name|DirectoryReader
-operator|.
-name|open
-argument_list|(
-name|directory
-argument_list|)
-decl_stmt|;
-comment|// read-only=true
 name|SortedSetDocValues
 name|dv
 init|=
@@ -2038,6 +1953,16 @@ argument_list|(
 literal|"field"
 argument_list|)
 decl_stmt|;
+name|assertEquals
+argument_list|(
+literal|1
+argument_list|,
+name|dv
+operator|.
+name|getValueCount
+argument_list|()
+argument_list|)
+expr_stmt|;
 name|dv
 operator|.
 name|setDocument
@@ -2057,8 +1982,6 @@ argument_list|)
 expr_stmt|;
 name|assertEquals
 argument_list|(
-name|SortedSetDocValues
-operator|.
 name|NO_MORE_ORDS
 argument_list|,
 name|dv
@@ -2092,16 +2015,6 @@ literal|"hello"
 argument_list|)
 argument_list|,
 name|bytes
-argument_list|)
-expr_stmt|;
-name|assertEquals
-argument_list|(
-literal|1
-argument_list|,
-name|dv
-operator|.
-name|getValueCount
-argument_list|()
 argument_list|)
 expr_stmt|;
 name|ireader
@@ -2123,6 +2036,12 @@ parameter_list|()
 throws|throws
 name|IOException
 block|{
+name|Directory
+name|directory
+init|=
+name|newDirectory
+argument_list|()
+decl_stmt|;
 name|Analyzer
 name|analyzer
 init|=
@@ -2133,15 +2052,6 @@ name|random
 argument_list|()
 argument_list|)
 decl_stmt|;
-comment|// Store the index in memory:
-name|Directory
-name|directory
-init|=
-name|newDirectory
-argument_list|()
-decl_stmt|;
-comment|// To store an index on disk, use this instead:
-comment|// Directory directory = FSDirectory.open(new File("/tmp/testindex"));
 name|IndexWriterConfig
 name|iwconfig
 init|=
@@ -2225,23 +2135,19 @@ argument_list|(
 literal|1
 argument_list|)
 expr_stmt|;
+name|DirectoryReader
+name|ireader
+init|=
+name|iwriter
+operator|.
+name|getReader
+argument_list|()
+decl_stmt|;
 name|iwriter
 operator|.
 name|close
 argument_list|()
 expr_stmt|;
-comment|// Now search the index:
-name|DirectoryReader
-name|ireader
-init|=
-name|DirectoryReader
-operator|.
-name|open
-argument_list|(
-name|directory
-argument_list|)
-decl_stmt|;
-comment|// read-only=true
 name|SortedSetDocValues
 name|dv
 init|=
@@ -2255,6 +2161,16 @@ argument_list|(
 literal|"field"
 argument_list|)
 decl_stmt|;
+name|assertEquals
+argument_list|(
+literal|1
+argument_list|,
+name|dv
+operator|.
+name|getValueCount
+argument_list|()
+argument_list|)
+expr_stmt|;
 name|dv
 operator|.
 name|setDocument
@@ -2274,8 +2190,6 @@ argument_list|)
 expr_stmt|;
 name|assertEquals
 argument_list|(
-name|SortedSetDocValues
-operator|.
 name|NO_MORE_ORDS
 argument_list|,
 name|dv
@@ -2311,16 +2225,6 @@ argument_list|,
 name|bytes
 argument_list|)
 expr_stmt|;
-name|assertEquals
-argument_list|(
-literal|1
-argument_list|,
-name|dv
-operator|.
-name|getValueCount
-argument_list|()
-argument_list|)
-expr_stmt|;
 name|ireader
 operator|.
 name|close
@@ -2340,6 +2244,12 @@ parameter_list|()
 throws|throws
 name|IOException
 block|{
+name|Directory
+name|directory
+init|=
+name|newDirectory
+argument_list|()
+decl_stmt|;
 name|Analyzer
 name|analyzer
 init|=
@@ -2350,15 +2260,6 @@ name|random
 argument_list|()
 argument_list|)
 decl_stmt|;
-comment|// Store the index in memory:
-name|Directory
-name|directory
-init|=
-name|newDirectory
-argument_list|()
-decl_stmt|;
-comment|// To store an index on disk, use this instead:
-comment|// Directory directory = FSDirectory.open(new File("/tmp/testindex"));
 name|IndexWriterConfig
 name|iwconfig
 init|=
@@ -2447,23 +2348,19 @@ argument_list|(
 literal|1
 argument_list|)
 expr_stmt|;
+name|DirectoryReader
+name|ireader
+init|=
+name|iwriter
+operator|.
+name|getReader
+argument_list|()
+decl_stmt|;
 name|iwriter
 operator|.
 name|close
 argument_list|()
 expr_stmt|;
-comment|// Now search the index:
-name|DirectoryReader
-name|ireader
-init|=
-name|DirectoryReader
-operator|.
-name|open
-argument_list|(
-name|directory
-argument_list|)
-decl_stmt|;
-comment|// read-only=true
 name|SortedSetDocValues
 name|dv
 init|=
@@ -2477,6 +2374,16 @@ argument_list|(
 literal|"field"
 argument_list|)
 decl_stmt|;
+name|assertEquals
+argument_list|(
+literal|1
+argument_list|,
+name|dv
+operator|.
+name|getValueCount
+argument_list|()
+argument_list|)
+expr_stmt|;
 name|dv
 operator|.
 name|setDocument
@@ -2496,8 +2403,6 @@ argument_list|)
 expr_stmt|;
 name|assertEquals
 argument_list|(
-name|SortedSetDocValues
-operator|.
 name|NO_MORE_ORDS
 argument_list|,
 name|dv
@@ -2531,16 +2436,6 @@ literal|"hello"
 argument_list|)
 argument_list|,
 name|bytes
-argument_list|)
-expr_stmt|;
-name|assertEquals
-argument_list|(
-literal|1
-argument_list|,
-name|dv
-operator|.
-name|getValueCount
-argument_list|()
 argument_list|)
 expr_stmt|;
 name|ireader
@@ -3033,6 +2928,11 @@ name|j
 operator|++
 control|)
 block|{
+assert|assert
+name|docValues
+operator|!=
+literal|null
+assert|;
 name|long
 name|ord
 init|=
@@ -3044,8 +2944,6 @@ decl_stmt|;
 assert|assert
 name|ord
 operator|!=
-name|SortedSetDocValues
-operator|.
 name|NO_MORE_ORDS
 assert|;
 name|docValues
@@ -3081,8 +2979,6 @@ operator|.
 name|nextOrd
 argument_list|()
 operator|==
-name|SortedSetDocValues
-operator|.
 name|NO_MORE_ORDS
 assert|;
 block|}
