@@ -47,22 +47,37 @@ specifier|protected
 name|SortedSetDocValues
 parameter_list|()
 block|{}
-comment|/**    * Returns an iterator over the ordinals for the specified docID.    * @param  docID document ID to lookup    * @return iterator over ordinals for the document: these are dense,     *         start at 0, then increment by 1 for the next value in sorted order.     */
-comment|// nocommit: can we think of a better api? this asks for reuse bugs etc.
-DECL|method|getOrds
+DECL|field|NO_MORE_ORDS
+specifier|public
+specifier|static
+specifier|final
+name|long
+name|NO_MORE_ORDS
+init|=
+name|Long
+operator|.
+name|MAX_VALUE
+decl_stmt|;
+comment|/**     * Returns the next ordinal for the current document (previously    * set by {@link #setDocument(int)}.    * @return next ordinal for the document, or {@link #NO_MORE_ORDS}.     *         ordinals are dense, start at 0, then increment by 1 for     *         the next value in sorted order.     */
+DECL|method|nextOrd
 specifier|public
 specifier|abstract
-name|OrdIterator
-name|getOrds
+name|long
+name|nextOrd
+parameter_list|()
+function_decl|;
+comment|/**     * Sets iteration to the specified docID     * @param docID document ID     */
+DECL|method|setDocument
+specifier|public
+specifier|abstract
+name|void
+name|setDocument
 parameter_list|(
 name|int
 name|docID
-parameter_list|,
-name|OrdIterator
-name|reuse
 parameter_list|)
 function_decl|;
-comment|/** Retrieves the value for the specified ordinal.    * @param ord ordinal to lookup    * @param result will be populated with the ordinal's value    * @see #getOrds    */
+comment|/** Retrieves the value for the specified ordinal.    * @param ord ordinal to lookup    * @param result will be populated with the ordinal's value    * @see #nextOrd    */
 DECL|method|lookupOrd
 specifier|public
 specifier|abstract
@@ -84,7 +99,7 @@ name|long
 name|getValueCount
 parameter_list|()
 function_decl|;
-comment|/** An empty SortedDocValues which returns {@link OrdIterator#EMPTY} for every document */
+comment|/** An empty SortedDocValues which returns {@link #NO_MORE_ORDS} for every document */
 DECL|field|EMPTY
 specifier|public
 specifier|static
@@ -99,22 +114,24 @@ block|{
 annotation|@
 name|Override
 specifier|public
-name|OrdIterator
-name|getOrds
+name|long
+name|nextOrd
+parameter_list|()
+block|{
+return|return
+name|NO_MORE_ORDS
+return|;
+block|}
+annotation|@
+name|Override
+specifier|public
+name|void
+name|setDocument
 parameter_list|(
 name|int
 name|docID
-parameter_list|,
-name|OrdIterator
-name|reuse
 parameter_list|)
-block|{
-return|return
-name|OrdIterator
-operator|.
-name|EMPTY
-return|;
-block|}
+block|{}
 annotation|@
 name|Override
 specifier|public
@@ -258,60 +275,6 @@ literal|1
 operator|)
 return|;
 comment|// key not found.
-block|}
-comment|/** An iterator over the ordinals in a document (in increasing order) */
-DECL|class|OrdIterator
-specifier|public
-specifier|static
-specifier|abstract
-class|class
-name|OrdIterator
-block|{
-comment|/** Indicates enumeration has ended: no more ordinals for this document */
-DECL|field|NO_MORE_ORDS
-specifier|public
-specifier|static
-specifier|final
-name|long
-name|NO_MORE_ORDS
-init|=
-name|Long
-operator|.
-name|MAX_VALUE
-decl_stmt|;
-comment|/** An iterator that always returns {@link #NO_MORE_ORDS} */
-DECL|field|EMPTY
-specifier|public
-specifier|static
-specifier|final
-name|OrdIterator
-name|EMPTY
-init|=
-operator|new
-name|OrdIterator
-argument_list|()
-block|{
-annotation|@
-name|Override
-specifier|public
-name|long
-name|nextOrd
-parameter_list|()
-block|{
-return|return
-name|NO_MORE_ORDS
-return|;
-block|}
-block|}
-decl_stmt|;
-comment|/** Returns next ordinal, or {@link #NO_MORE_ORDS} */
-DECL|method|nextOrd
-specifier|public
-specifier|abstract
-name|long
-name|nextOrd
-parameter_list|()
-function_decl|;
 block|}
 block|}
 end_class
