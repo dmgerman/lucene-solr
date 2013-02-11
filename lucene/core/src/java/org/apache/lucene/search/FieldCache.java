@@ -192,6 +192,20 @@ name|lucene
 operator|.
 name|index
 operator|.
+name|SortedSetDocValues
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|index
+operator|.
 name|Terms
 import|;
 end_import
@@ -1663,7 +1677,7 @@ function_decl|;
 comment|/**    * Checks the internal cache for an appropriate entry, and if none is found, reads the term values    * in<code>field</code> and returns a {@link DocTermOrds} instance, providing a method to retrieve    * the terms (as ords) per document.    *    * @param reader  Used to build a {@link DocTermOrds} instance    * @param field   Which field contains the strings.    * @return a {@link DocTermOrds} instance    * @throws IOException  If any error occurs.    */
 DECL|method|getDocTermOrds
 specifier|public
-name|DocTermOrds
+name|SortedSetDocValues
 name|getDocTermOrds
 parameter_list|(
 name|AtomicReader

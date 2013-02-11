@@ -1122,8 +1122,17 @@ parameter_list|)
 throws|throws
 name|IOException
 block|{
-name|fromDocTermOrds
-operator|=
+comment|// nocommit: cut over
+name|DocTermOrds
+operator|.
+name|Iterator
+name|iterator
+init|=
+operator|(
+name|DocTermOrds
+operator|.
+name|Iterator
+operator|)
 name|FieldCache
 operator|.
 name|DEFAULT
@@ -1137,6 +1146,13 @@ argument_list|()
 argument_list|,
 name|field
 argument_list|)
+decl_stmt|;
+name|fromDocTermOrds
+operator|=
+name|iterator
+operator|.
+name|getParent
+argument_list|()
 expr_stmt|;
 name|docTermsEnum
 operator|=
