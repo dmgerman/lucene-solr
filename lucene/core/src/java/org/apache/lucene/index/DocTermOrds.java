@@ -3399,6 +3399,20 @@ parameter_list|)
 throws|throws
 name|IOException
 block|{
+if|if
+condition|(
+name|isEmpty
+argument_list|()
+condition|)
+block|{
+return|return
+name|SortedSetDocValues
+operator|.
+name|EMPTY
+return|;
+block|}
+else|else
+block|{
 return|return
 operator|new
 name|Iterator
@@ -3406,6 +3420,7 @@ argument_list|(
 name|termsEnum
 argument_list|)
 return|;
+block|}
 block|}
 comment|// nocommit: make private (just public to enable hack to cutover gradually)
 DECL|class|Iterator
