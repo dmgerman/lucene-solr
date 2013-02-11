@@ -92,6 +92,20 @@ name|SortedDocValues
 import|;
 end_import
 
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|index
+operator|.
+name|SortedSetDocValues
+import|;
+end_import
+
 begin_comment
 comment|/** Abstract API that produces numeric, binary and  * sorted docvalues.  *  * @lucene.experimental  */
 end_comment
@@ -143,6 +157,19 @@ specifier|public
 specifier|abstract
 name|SortedDocValues
 name|getSorted
+parameter_list|(
+name|FieldInfo
+name|field
+parameter_list|)
+throws|throws
+name|IOException
+function_decl|;
+comment|/** Returns {@link SortedSetDocValues} for this field.    *  The returned instance need not be thread-safe: it will only be    *  used by a single thread. */
+DECL|method|getSortedSet
+specifier|public
+specifier|abstract
+name|SortedSetDocValues
+name|getSortedSet
 parameter_list|(
 name|FieldInfo
 name|field

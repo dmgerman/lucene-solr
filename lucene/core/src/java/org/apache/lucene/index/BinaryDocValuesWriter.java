@@ -470,6 +470,9 @@ specifier|final
 name|int
 name|size
 init|=
+operator|(
+name|int
+operator|)
 name|lengths
 operator|.
 name|size

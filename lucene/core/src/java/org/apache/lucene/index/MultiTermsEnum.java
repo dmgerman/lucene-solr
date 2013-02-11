@@ -2412,7 +2412,6 @@ name|ReaderSlice
 name|subSlice
 decl_stmt|;
 DECL|field|terms
-specifier|private
 name|TermsEnum
 name|terms
 decl_stmt|;

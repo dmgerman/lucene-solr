@@ -609,6 +609,19 @@ parameter_list|)
 throws|throws
 name|IOException
 function_decl|;
+comment|/** Returns {@link SortedSetDocValues} for this field, or    *  null if no {@link SortedSetDocValues} were indexed for    *  this field.  The returned instance should only be    *  used by a single thread. */
+DECL|method|getSortedSetDocValues
+specifier|public
+specifier|abstract
+name|SortedSetDocValues
+name|getSortedSetDocValues
+parameter_list|(
+name|String
+name|field
+parameter_list|)
+throws|throws
+name|IOException
+function_decl|;
 comment|/** Returns {@link NumericDocValues} representing norms    *  for this field, or null if no {@link NumericDocValues}    *  were indexed. The returned instance should only be    *  used by a single thread. */
 DECL|method|getNormValues
 specifier|public
