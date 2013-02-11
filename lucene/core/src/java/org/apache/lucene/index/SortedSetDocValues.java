@@ -48,6 +48,7 @@ name|SortedSetDocValues
 parameter_list|()
 block|{}
 comment|/**    * Returns an iterator over the ordinals for the specified docID.    * @param  docID document ID to lookup    * @return iterator over ordinals for the document: these are dense,     *         start at 0, then increment by 1 for the next value in sorted order.     */
+comment|// nocommit: can we think of a better api? this asks for reuse bugs etc.
 DECL|method|getOrds
 specifier|public
 specifier|abstract

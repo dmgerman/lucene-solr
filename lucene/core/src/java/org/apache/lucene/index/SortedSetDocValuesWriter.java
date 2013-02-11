@@ -1229,7 +1229,7 @@ name|NoSuchElementException
 argument_list|()
 throw|;
 block|}
-if|if
+while|while
 condition|(
 name|currentUpto
 operator|==
