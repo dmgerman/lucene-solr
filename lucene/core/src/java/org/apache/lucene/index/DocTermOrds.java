@@ -3422,9 +3422,8 @@ argument_list|)
 return|;
 block|}
 block|}
-comment|// nocommit: make private (just public to enable hack to cutover gradually)
 DECL|class|Iterator
-specifier|public
+specifier|private
 class|class
 name|Iterator
 extends|extends
@@ -3659,19 +3658,6 @@ block|{
 return|return
 name|numTerms
 argument_list|()
-return|;
-block|}
-comment|// nocommit: just a hack for gradual cutover
-DECL|method|getParent
-specifier|public
-name|DocTermOrds
-name|getParent
-parameter_list|()
-block|{
-return|return
-name|DocTermOrds
-operator|.
-name|this
 return|;
 block|}
 block|}
