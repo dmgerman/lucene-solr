@@ -258,7 +258,6 @@ block|}
 comment|/**    * Create an aggregator for this facet request. Aggregator action depends on    * request definition. For a count request, it will usually increment the    * count for that facet.    *     * @param useComplements    *          whether the complements optimization is being used for current    *          computation.    * @param arrays    *          provider for facet arrays in use for current computation.    * @param taxonomy    *          reader of taxonomy in effect.    * @throws IOException If there is a low-level I/O error.    */
 DECL|method|createAggregator
 specifier|public
-specifier|abstract
 name|Aggregator
 name|createAggregator
 parameter_list|(
@@ -273,7 +272,17 @@ name|taxonomy
 parameter_list|)
 throws|throws
 name|IOException
-function_decl|;
+block|{
+throw|throw
+operator|new
+name|UnsupportedOperationException
+argument_list|(
+literal|"this FacetRequest does not support this type of Aggregator anymore; "
+operator|+
+literal|"you should override FacetsAccumulator to return the proper FacetsAggregator"
+argument_list|)
+throw|;
+block|}
 annotation|@
 name|Override
 DECL|method|equals
