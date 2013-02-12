@@ -1524,6 +1524,13 @@ operator|.
 name|finish
 argument_list|()
 decl_stmt|;
+if|if
+condition|(
+name|fst
+operator|!=
+literal|null
+condition|)
+block|{
 name|fst
 operator|.
 name|save
@@ -1531,6 +1538,7 @@ argument_list|(
 name|data
 argument_list|)
 expr_stmt|;
+block|}
 name|meta
 operator|.
 name|writeVLong
