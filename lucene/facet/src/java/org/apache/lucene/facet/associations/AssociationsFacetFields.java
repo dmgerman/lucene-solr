@@ -277,7 +277,7 @@ name|freeze
 argument_list|()
 expr_stmt|;
 block|}
-comment|/**    * Constructs a new instance with the {@link FacetIndexingParams#ALL_PARENTS    * default} facet indexing params.    *     * @param taxonomyWriter    *          used to resolve given categories to ordinals    */
+comment|/**    * Constructs a new instance with the {@link FacetIndexingParams#DEFAULT    * default} facet indexing params.    *     * @param taxonomyWriter    *          used to resolve given categories to ordinals    */
 DECL|method|AssociationsFacetFields
 specifier|public
 name|AssociationsFacetFields

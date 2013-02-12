@@ -262,7 +262,7 @@ name|ordinalMap
 argument_list|,
 name|FacetIndexingParams
 operator|.
-name|ALL_PARENTS
+name|DEFAULT
 argument_list|)
 expr_stmt|;
 block|}

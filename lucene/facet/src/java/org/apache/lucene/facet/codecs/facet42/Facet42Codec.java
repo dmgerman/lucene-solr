@@ -150,7 +150,7 @@ literal|"Lucene42"
 argument_list|)
 decl_stmt|;
 comment|// must have that for SPI purposes
-comment|/** Default constructor, uses {@link FacetIndexingParams#ALL_PARENTS}. */
+comment|/** Default constructor, uses {@link FacetIndexingParams#DEFAULT}. */
 DECL|method|Facet42Codec
 specifier|public
 name|Facet42Codec
@@ -160,7 +160,7 @@ name|this
 argument_list|(
 name|FacetIndexingParams
 operator|.
-name|ALL_PARENTS
+name|DEFAULT
 argument_list|)
 expr_stmt|;
 block|}

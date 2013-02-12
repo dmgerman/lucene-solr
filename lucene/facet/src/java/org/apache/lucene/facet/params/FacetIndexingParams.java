@@ -44,24 +44,6 @@ name|lucene
 operator|.
 name|facet
 operator|.
-name|params
-operator|.
-name|CategoryListParams
-operator|.
-name|OrdinalPolicy
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|facet
-operator|.
 name|search
 operator|.
 name|FacetArrays
@@ -110,13 +92,13 @@ operator|new
 name|CategoryListParams
 argument_list|()
 decl_stmt|;
-comment|/**    * A {@link FacetIndexingParams} which fixes a single    * {@link CategoryListParams} with {@link OrdinalPolicy#ALL_PARENTS}.    */
-DECL|field|ALL_PARENTS
+comment|/**    * A {@link FacetIndexingParams} which fixes a single    * {@link CategoryListParams} with    * {@link CategoryListParams#DEFAULT_ORDINAL_POLICY}.    */
+DECL|field|DEFAULT
 specifier|public
 specifier|static
 specifier|final
 name|FacetIndexingParams
-name|ALL_PARENTS
+name|DEFAULT
 init|=
 operator|new
 name|FacetIndexingParams
@@ -148,7 +130,7 @@ specifier|final
 name|CategoryListParams
 name|clParams
 decl_stmt|;
-comment|/**    * Initializes new default params. You should use this constructor only if you    * intend to override any of the getters, otherwise you can use    * {@link #ALL_PARENTS} to save unnecessary object allocations.    */
+comment|/**    * Initializes new default params. You should use this constructor only if you    * intend to override any of the getters, otherwise you can use    * {@link #DEFAULT} to save unnecessary object allocations.    */
 DECL|method|FacetIndexingParams
 specifier|public
 name|FacetIndexingParams
