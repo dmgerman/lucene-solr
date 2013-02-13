@@ -2434,8 +2434,40 @@ argument_list|,
 literal|"theRandomUnicodeMultiValuedField"
 argument_list|)
 decl_stmt|;
-comment|// nocommit: test this with reflection or something, that its really from the same DTO
-comment|// assertSame("Second request to cache return same DocTermOrds", termOrds, cache.getDocTermOrds(reader, "theRandomUnicodeMultiValuedField"));
+name|int
+name|numEntries
+init|=
+name|cache
+operator|.
+name|getCacheEntries
+argument_list|()
+operator|.
+name|length
+decl_stmt|;
+comment|// ask for it again, and check that we didnt create any additional entries:
+name|termOrds
+operator|=
+name|cache
+operator|.
+name|getDocTermOrds
+argument_list|(
+name|reader
+argument_list|,
+literal|"theRandomUnicodeMultiValuedField"
+argument_list|)
+expr_stmt|;
+name|assertEquals
+argument_list|(
+name|numEntries
+argument_list|,
+name|cache
+operator|.
+name|getCacheEntries
+argument_list|()
+operator|.
+name|length
+argument_list|)
+expr_stmt|;
 for|for
 control|(
 name|int
@@ -2560,7 +2592,6 @@ argument_list|)
 expr_stmt|;
 block|}
 comment|// test bad field
-comment|// nocommit: what exactly does this test?
 name|termOrds
 operator|=
 name|cache
@@ -2570,6 +2601,16 @@ argument_list|(
 name|reader
 argument_list|,
 literal|"bogusfield"
+argument_list|)
+expr_stmt|;
+name|assertTrue
+argument_list|(
+name|termOrds
+operator|.
+name|getValueCount
+argument_list|()
+operator|==
+literal|0
 argument_list|)
 expr_stmt|;
 name|FieldCache

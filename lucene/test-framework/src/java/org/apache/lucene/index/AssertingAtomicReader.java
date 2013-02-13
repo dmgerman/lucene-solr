@@ -2377,14 +2377,14 @@ argument_list|()
 decl_stmt|;
 assert|assert
 name|ord
-operator|==
-name|NO_MORE_ORDS
-operator|||
-name|ord
 operator|<
 name|valueCount
 assert|;
 assert|assert
+name|ord
+operator|==
+name|NO_MORE_ORDS
+operator|||
 name|ord
 operator|>
 name|lastOrd
@@ -2435,7 +2435,7 @@ expr_stmt|;
 name|lastOrd
 operator|=
 operator|-
-literal|1
+literal|2
 expr_stmt|;
 block|}
 annotation|@

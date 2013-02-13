@@ -208,6 +208,20 @@ name|lucene
 operator|.
 name|index
 operator|.
+name|SingletonSortedSetDocValues
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|index
+operator|.
 name|SortedDocValues
 import|;
 end_import
@@ -6617,6 +6631,8 @@ argument_list|)
 return|;
 block|}
 block|}
+comment|// TODO: this if DocTermsIndex was already created, we
+comment|// should share it...
 DECL|method|getDocTermOrds
 specifier|public
 name|SortedSetDocValues
@@ -6652,8 +6668,31 @@ return|return
 name|dv
 return|;
 block|}
-comment|// nocommit: actually if they have a SortedDV (either indexed as DV or cached), we should return an impl
-comment|// over that: its like a specialized single-value case of this thing...
+name|SortedDocValues
+name|sdv
+init|=
+name|reader
+operator|.
+name|getSortedDocValues
+argument_list|(
+name|field
+argument_list|)
+decl_stmt|;
+if|if
+condition|(
+name|sdv
+operator|!=
+literal|null
+condition|)
+block|{
+return|return
+operator|new
+name|SingletonSortedSetDocValues
+argument_list|(
+name|sdv
+argument_list|)
+return|;
+block|}
 name|DocTermOrds
 name|dto
 init|=
@@ -6739,7 +6778,6 @@ parameter_list|)
 throws|throws
 name|IOException
 block|{
-comment|// No DocValues impl yet (DocValues are single valued...):
 return|return
 operator|new
 name|DocTermOrds

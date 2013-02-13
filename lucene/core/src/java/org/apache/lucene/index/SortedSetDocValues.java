@@ -54,9 +54,8 @@ specifier|final
 name|long
 name|NO_MORE_ORDS
 init|=
-name|Long
-operator|.
-name|MAX_VALUE
+operator|-
+literal|1
 decl_stmt|;
 comment|/**     * Returns the next ordinal for the current document (previously    * set by {@link #setDocument(int)}.    * @return next ordinal for the document, or {@link #NO_MORE_ORDS}.     *         ordinals are dense, start at 0, then increment by 1 for     *         the next value in sorted order.     */
 DECL|method|nextOrd
