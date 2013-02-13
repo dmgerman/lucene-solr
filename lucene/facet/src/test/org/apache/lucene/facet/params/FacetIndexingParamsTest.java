@@ -157,7 +157,7 @@ name|dfip
 init|=
 name|FacetIndexingParams
 operator|.
-name|ALL_PARENTS
+name|DEFAULT
 decl_stmt|;
 name|assertNotNull
 argument_list|(

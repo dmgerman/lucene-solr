@@ -98,22 +98,6 @@ name|facet
 operator|.
 name|index
 operator|.
-name|CountingListBuilder
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|facet
-operator|.
-name|index
-operator|.
 name|DrillDownStream
 import|;
 end_import
@@ -293,7 +277,7 @@ name|freeze
 argument_list|()
 expr_stmt|;
 block|}
-comment|/**    * Constructs a new instance with the {@link FacetIndexingParams#ALL_PARENTS    * default} facet indexing params.    *     * @param taxonomyWriter    *          used to resolve given categories to ordinals    */
+comment|/**    * Constructs a new instance with the {@link FacetIndexingParams#DEFAULT    * default} facet indexing params.    *     * @param taxonomyWriter    *          used to resolve given categories to ordinals    */
 DECL|method|AssociationsFacetFields
 specifier|public
 name|AssociationsFacetFields
@@ -494,30 +478,7 @@ operator|)
 name|categories
 argument_list|)
 decl_stmt|;
-name|CountingListBuilder
-name|counting
-init|=
-operator|new
-name|CountingListBuilder
-argument_list|(
-name|categoryListParams
-argument_list|,
-name|indexingParams
-argument_list|,
-name|taxonomyWriter
-argument_list|)
-decl_stmt|;
-comment|// CountingListBuilder modifies the ordinals array, by e.g. adding parent ordinals, sorting etc.
-comment|// Therefore first build the associations list and only afterwards the counting list.
-specifier|final
-name|Map
-argument_list|<
-name|String
-argument_list|,
-name|BytesRef
-argument_list|>
-name|res
-init|=
+return|return
 name|associations
 operator|.
 name|build
@@ -526,23 +487,6 @@ name|ordinals
 argument_list|,
 name|categories
 argument_list|)
-decl_stmt|;
-name|res
-operator|.
-name|putAll
-argument_list|(
-name|counting
-operator|.
-name|build
-argument_list|(
-name|ordinals
-argument_list|,
-name|categories
-argument_list|)
-argument_list|)
-expr_stmt|;
-return|return
-name|res
 return|;
 block|}
 annotation|@

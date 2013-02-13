@@ -1327,7 +1327,7 @@ name|slowTaxoReader
 argument_list|,
 name|FacetIndexingParams
 operator|.
-name|ALL_PARENTS
+name|DEFAULT
 argument_list|)
 expr_stmt|;
 block|}
@@ -1601,7 +1601,7 @@ name|iParams
 init|=
 name|FacetIndexingParams
 operator|.
-name|ALL_PARENTS
+name|DEFAULT
 decl_stmt|;
 comment|// Add a facet to the index
 name|addFacets
@@ -2428,7 +2428,7 @@ name|iParams
 init|=
 name|FacetIndexingParams
 operator|.
-name|ALL_PARENTS
+name|DEFAULT
 decl_stmt|;
 comment|// Add documents and facets
 for|for
@@ -2703,7 +2703,7 @@ name|iParams
 init|=
 name|FacetIndexingParams
 operator|.
-name|ALL_PARENTS
+name|DEFAULT
 decl_stmt|;
 comment|// Add a facet to the index
 name|addFacets

@@ -16,32 +16,6 @@ end_package
 
 begin_import
 import|import
-name|java
-operator|.
-name|io
-operator|.
-name|IOException
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|facet
-operator|.
-name|search
-operator|.
-name|Aggregator
-import|;
-end_import
-
-begin_import
-import|import
 name|org
 operator|.
 name|apache
@@ -88,28 +62,12 @@ name|CategoryPath
 import|;
 end_import
 
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|facet
-operator|.
-name|taxonomy
-operator|.
-name|TaxonomyReader
-import|;
-end_import
-
 begin_comment
 comment|/*  * Licensed to the Apache Software Foundation (ASF) under one or more  * contributor license agreements.  See the NOTICE file distributed with  * this work for additional information regarding copyright ownership.  * The ASF licenses this file to You under the Apache License, Version 2.0  * (the "License"); you may not use this file except in compliance with  * the License.  You may obtain a copy of the License at  *  *     http://www.apache.org/licenses/LICENSE-2.0  *  * Unless required by applicable law or agreed to in writing, software  * distributed under the License is distributed on an "AS IS" BASIS,  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.  * See the License for the specific language governing permissions and  * limitations under the License.  */
 end_comment
 
 begin_comment
-comment|/**  * A {@link FacetRequest} for weighting facets according to their float  * association by summing the association values. Note that this class caches  * the associations data in-memory by default. You can override  * {@link #createAggregator(boolean, FacetArrays, TaxonomyReader)} to return an  * {@link AssociationFloatSumAggregator} which does otherwise.  *   * @lucene.experimental  */
+comment|/**  * A {@link FacetRequest} for weighting facets according to their float  * association by summing the association values.  *   * @lucene.experimental  */
 end_comment
 
 begin_class
@@ -139,42 +97,6 @@ argument_list|,
 name|num
 argument_list|)
 expr_stmt|;
-block|}
-annotation|@
-name|Override
-DECL|method|createAggregator
-specifier|public
-name|Aggregator
-name|createAggregator
-parameter_list|(
-name|boolean
-name|useComplements
-parameter_list|,
-name|FacetArrays
-name|arrays
-parameter_list|,
-name|TaxonomyReader
-name|taxonomy
-parameter_list|)
-throws|throws
-name|IOException
-block|{
-assert|assert
-operator|!
-name|useComplements
-operator|:
-literal|"complements are not supported by this FacetRequest"
-assert|;
-return|return
-operator|new
-name|AssociationFloatSumAggregator
-argument_list|(
-name|arrays
-operator|.
-name|getFloatArray
-argument_list|()
-argument_list|)
-return|;
 block|}
 annotation|@
 name|Override

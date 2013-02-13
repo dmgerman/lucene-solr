@@ -383,7 +383,7 @@ specifier|final
 name|FacetIndexingParams
 name|indexingParams
 decl_stmt|;
-comment|/**    * Constructs a new instance with the {@link FacetIndexingParams#ALL_PARENTS    * default} facet indexing params.    *     * @param taxonomyWriter    *          used to resolve given categories to ordinals    */
+comment|/**    * Constructs a new instance with the {@link FacetIndexingParams#DEFAULT    * default} facet indexing params.    *     * @param taxonomyWriter    *          used to resolve given categories to ordinals    */
 DECL|method|FacetFields
 specifier|public
 name|FacetFields
@@ -398,7 +398,7 @@ name|taxonomyWriter
 argument_list|,
 name|FacetIndexingParams
 operator|.
-name|ALL_PARENTS
+name|DEFAULT
 argument_list|)
 expr_stmt|;
 block|}
