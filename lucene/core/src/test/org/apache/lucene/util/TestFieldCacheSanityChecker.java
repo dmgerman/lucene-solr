@@ -986,7 +986,7 @@ name|getTerms
 argument_list|(
 name|readerA
 argument_list|,
-literal|"theString"
+literal|"theInt"
 argument_list|)
 expr_stmt|;
 name|cache
@@ -995,7 +995,7 @@ name|getTerms
 argument_list|(
 name|readerB
 argument_list|,
-literal|"theString"
+literal|"theInt"
 argument_list|)
 expr_stmt|;
 name|cache
@@ -1004,7 +1004,7 @@ name|getTerms
 argument_list|(
 name|readerX
 argument_list|,
-literal|"theString"
+literal|"theInt"
 argument_list|)
 expr_stmt|;
 name|cache
