@@ -42,16 +42,6 @@ name|java
 operator|.
 name|util
 operator|.
-name|Collections
-import|;
-end_import
-
-begin_import
-import|import
-name|java
-operator|.
-name|util
-operator|.
 name|List
 import|;
 end_import
@@ -181,10 +171,17 @@ comment|// used by IndexWriter
 comment|/** Estimated size in bytes of the merged segment. */
 DECL|field|estimatedMergeBytes
 specifier|public
+specifier|volatile
 name|long
 name|estimatedMergeBytes
 decl_stmt|;
 comment|// used by IndexWriter
+comment|// Sum of sizeInBytes of all SegmentInfos; set by IW.mergeInit
+DECL|field|totalMergeBytes
+specifier|volatile
+name|long
+name|totalMergeBytes
+decl_stmt|;
 DECL|field|readers
 name|List
 argument_list|<
@@ -603,7 +600,7 @@ name|toString
 argument_list|()
 return|;
 block|}
-comment|/**      * Returns the total size in bytes of this merge. Note that this does not      * indicate the size of the merged segment, but the input total size.      * */
+comment|/**      * Returns the total size in bytes of this merge. Note that this does not      * indicate the size of the merged segment, but the      * input total size. This is only set once the merge is      * initialized by IndexWriter.      */
 DECL|method|totalBytesSize
 specifier|public
 name|long
@@ -612,31 +609,8 @@ parameter_list|()
 throws|throws
 name|IOException
 block|{
-name|long
-name|total
-init|=
-literal|0
-decl_stmt|;
-for|for
-control|(
-name|SegmentInfoPerCommit
-name|info
-range|:
-name|segments
-control|)
-block|{
-name|total
-operator|+=
-name|info
-operator|.
-name|info
-operator|.
-name|sizeInBytes
-argument_list|()
-expr_stmt|;
-block|}
 return|return
-name|total
+name|totalMergeBytes
 return|;
 block|}
 comment|/**      * Returns the total number of documents that are included with this merge.      * Note that this does not indicate the number of documents after the merge.      * */

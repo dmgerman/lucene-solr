@@ -6659,8 +6659,6 @@ argument_list|()
 argument_list|,
 name|info
 operator|.
-name|info
-operator|.
 name|sizeInBytes
 argument_list|()
 argument_list|,
@@ -11436,8 +11434,6 @@ name|estimatedMergeBytes
 operator|+=
 name|info
 operator|.
-name|info
-operator|.
 name|sizeInBytes
 argument_list|()
 operator|*
@@ -11446,6 +11442,15 @@ literal|1.0
 operator|-
 name|delRatio
 operator|)
+expr_stmt|;
+name|merge
+operator|.
+name|totalMergeBytes
+operator|+=
+name|info
+operator|.
+name|sizeInBytes
+argument_list|()
 expr_stmt|;
 block|}
 block|}
@@ -13057,8 +13062,6 @@ argument_list|,
 literal|"merged segment size=%.3f MB vs estimate=%.3f MB"
 argument_list|,
 name|merge
-operator|.
-name|info
 operator|.
 name|info
 operator|.
