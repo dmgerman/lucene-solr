@@ -145,8 +145,11 @@ argument_list|(
 name|grid
 argument_list|,
 name|fieldName
+argument_list|,
+literal|true
 argument_list|)
 expr_stmt|;
+comment|//simplify indexed cells
 name|prefixGridScanLevel
 operator|=
 name|grid

@@ -434,7 +434,7 @@ block|}
 block|}
 decl_stmt|;
 block|}
-comment|/** Field values as 32-bit signed long integers */
+comment|/** Field values as 64-bit signed long integers */
 DECL|class|Longs
 specifier|public
 specifier|static

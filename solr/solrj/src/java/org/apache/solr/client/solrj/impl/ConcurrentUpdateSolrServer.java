@@ -572,7 +572,7 @@ specifier|final
 name|int
 name|threadCount
 decl_stmt|;
-comment|/**    * Uses an internal ThreadSafeClientConnManager to manage http    * connections.    *     * @param solrServerUrl    *          The Solr server URL    * @param queueSize    *          The buffer size before the documents are sent to the server    * @param threadCount    *          The number of background threads used to empty the queue    */
+comment|/**    * Uses an internaly managed HttpClient instance.    *     * @param solrServerUrl    *          The Solr server URL    * @param queueSize    *          The buffer size before the documents are sent to the server    * @param threadCount    *          The number of background threads used to empty the queue    */
 DECL|method|ConcurrentUpdateSolrServer
 specifier|public
 name|ConcurrentUpdateSolrServer
@@ -599,7 +599,7 @@ name|threadCount
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**    * Uses the supplied HttpClient to send documents to the Solr server, the    * HttpClient should be instantiated using a     * ThreadSafeClientConnManager.    */
+comment|/**    * Uses the supplied HttpClient to send documents to the Solr server.    */
 DECL|method|ConcurrentUpdateSolrServer
 specifier|public
 name|ConcurrentUpdateSolrServer

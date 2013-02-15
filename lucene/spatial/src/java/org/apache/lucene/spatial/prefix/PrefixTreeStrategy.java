@@ -297,6 +297,12 @@ name|PointPrefixTreeFieldCacheProvider
 argument_list|>
 argument_list|()
 decl_stmt|;
+DECL|field|simplifyIndexedCells
+specifier|protected
+specifier|final
+name|boolean
+name|simplifyIndexedCells
+decl_stmt|;
 DECL|field|defaultFieldValuesArrayLen
 specifier|protected
 name|int
@@ -323,6 +329,9 @@ name|grid
 parameter_list|,
 name|String
 name|fieldName
+parameter_list|,
+name|boolean
+name|simplifyIndexedCells
 parameter_list|)
 block|{
 name|super
@@ -340,6 +349,12 @@ operator|.
 name|grid
 operator|=
 name|grid
+expr_stmt|;
+name|this
+operator|.
+name|simplifyIndexedCells
+operator|=
+name|simplifyIndexedCells
 expr_stmt|;
 block|}
 comment|/**    * A memory hint used by {@link #makeDistanceValueSource(com.spatial4j.core.shape.Point)}    * for how big the initial size of each Document's array should be. The    * default is 2.  Set this to slightly more than the default expected number    * of points per document.    */
@@ -459,9 +474,11 @@ argument_list|,
 name|detailLevel
 argument_list|,
 literal|true
+argument_list|,
+name|simplifyIndexedCells
 argument_list|)
 decl_stmt|;
-comment|//true=intermediates cells
+comment|//intermediates cells
 comment|//TODO is CellTokenStream supposed to be re-used somehow? see Uwe's comments:
 comment|//  http://code.google.com/p/lucene-spatial-playground/issues/detail?id=4
 name|Field
