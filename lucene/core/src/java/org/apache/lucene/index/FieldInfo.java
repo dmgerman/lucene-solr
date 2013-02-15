@@ -156,7 +156,7 @@ comment|/**       * A pre-sorted byte[]. Fields with this type only store distin
 DECL|enum constant|SORTED
 name|SORTED
 block|,
-comment|/**       * A pre-sorted Set<byte[]>. Fields with this type only store distinct byte values       * and store additional offset pointers per document to dereference the shared       * byte[]s. The stored byte[] is presorted and allows access via document id,       * ordinal and by-value.      */
+comment|/**       * A pre-sorted Set&lt;byte[]&gt;. Fields with this type only store distinct byte values       * and store additional offset pointers per document to dereference the shared       * byte[]s. The stored byte[] is presorted and allows access via document id,       * ordinal and by-value.      */
 DECL|enum constant|SORTED_SET
 name|SORTED_SET
 block|}

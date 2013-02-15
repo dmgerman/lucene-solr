@@ -47,6 +47,7 @@ specifier|protected
 name|SortedSetDocValues
 parameter_list|()
 block|{}
+comment|/** When returned by {@link #nextOrd()} it means there are no more     * ordinals for the document.    */
 DECL|field|NO_MORE_ORDS
 specifier|public
 specifier|static
