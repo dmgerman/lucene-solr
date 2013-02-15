@@ -302,7 +302,7 @@ name|lucene
 operator|.
 name|util
 operator|.
-name|FixedBitSet
+name|OpenBitSet
 import|;
 end_import
 
@@ -1092,11 +1092,11 @@ expr_stmt|;
 block|}
 else|else
 block|{
-name|FixedBitSet
+name|OpenBitSet
 name|bitset
 init|=
 operator|new
-name|FixedBitSet
+name|OpenBitSet
 argument_list|(
 name|dv
 operator|.
@@ -1695,34 +1695,12 @@ expr_stmt|;
 block|}
 else|else
 block|{
-comment|// nocommit: need a "pagedbits"
-if|if
-condition|(
-name|dv
-operator|.
-name|getValueCount
-argument_list|()
-operator|>
-name|Integer
-operator|.
-name|MAX_VALUE
-condition|)
-block|{
-throw|throw
-operator|new
-name|UnsupportedOperationException
-argument_list|()
-throw|;
-block|}
-name|FixedBitSet
+name|OpenBitSet
 name|bitset
 init|=
 operator|new
-name|FixedBitSet
+name|OpenBitSet
 argument_list|(
-operator|(
-name|int
-operator|)
 name|dv
 operator|.
 name|getValueCount
@@ -1787,13 +1765,9 @@ name|bitset
 operator|.
 name|set
 argument_list|(
-operator|(
-name|int
-operator|)
 name|ord
 argument_list|)
 expr_stmt|;
-comment|// nocommit
 block|}
 block|}
 block|}
@@ -2549,7 +2523,7 @@ block|}
 argument_list|)
 expr_stmt|;
 block|}
-comment|// nocommit: need a "pagedbits"
+comment|// TODO: seek-by-ord to nextSetBit
 DECL|class|BitsFilteredTermsEnum
 specifier|static
 class|class
@@ -2559,7 +2533,7 @@ name|FilteredTermsEnum
 block|{
 DECL|field|liveTerms
 specifier|final
-name|Bits
+name|OpenBitSet
 name|liveTerms
 decl_stmt|;
 DECL|method|BitsFilteredTermsEnum
@@ -2568,7 +2542,7 @@ parameter_list|(
 name|TermsEnum
 name|in
 parameter_list|,
-name|Bits
+name|OpenBitSet
 name|liveTerms
 parameter_list|)
 block|{
@@ -2611,9 +2585,6 @@ name|liveTerms
 operator|.
 name|get
 argument_list|(
-operator|(
-name|int
-operator|)
 name|ord
 argument_list|()
 argument_list|)

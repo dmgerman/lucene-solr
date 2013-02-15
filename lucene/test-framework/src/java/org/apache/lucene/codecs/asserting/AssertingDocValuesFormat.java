@@ -246,6 +246,20 @@ name|FixedBitSet
 import|;
 end_import
 
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|util
+operator|.
+name|OpenBitSet
+import|;
+end_import
+
 begin_comment
 comment|/**  * Just like {@link Lucene42DocValuesFormat} but with additional asserts.  */
 end_comment
@@ -844,16 +858,12 @@ name|ordCount
 init|=
 literal|0
 decl_stmt|;
-comment|// nocommit
-name|FixedBitSet
+name|OpenBitSet
 name|seenOrds
 init|=
 operator|new
-name|FixedBitSet
+name|OpenBitSet
 argument_list|(
-operator|(
-name|int
-operator|)
 name|valueCount
 argument_list|)
 decl_stmt|;
@@ -969,13 +979,9 @@ name|seenOrds
 operator|.
 name|set
 argument_list|(
-operator|(
-name|int
-operator|)
 name|ord
 argument_list|)
 expr_stmt|;
-comment|// nocommit
 name|lastOrd
 operator|=
 name|ord

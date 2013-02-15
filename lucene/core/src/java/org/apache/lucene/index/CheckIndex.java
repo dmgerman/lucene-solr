@@ -332,6 +332,20 @@ name|lucene
 operator|.
 name|util
 operator|.
+name|OpenBitSet
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|util
+operator|.
 name|StringHelper
 import|;
 end_import
@@ -6960,16 +6974,12 @@ argument_list|()
 operator|-
 literal|1
 decl_stmt|;
-comment|// nocommit
-name|FixedBitSet
+name|OpenBitSet
 name|seenOrds
 init|=
 operator|new
-name|FixedBitSet
+name|OpenBitSet
 argument_list|(
-operator|(
-name|int
-operator|)
 name|dv
 operator|.
 name|getValueCount
@@ -7093,14 +7103,10 @@ argument_list|,
 name|ord
 argument_list|)
 expr_stmt|;
-comment|// nocommit
 name|seenOrds
 operator|.
 name|set
 argument_list|(
-operator|(
-name|int
-operator|)
 name|ord
 argument_list|)
 expr_stmt|;
