@@ -1274,7 +1274,7 @@ literal|"Operation "
 operator|+
 name|operation
 operator|+
-literal|" cause exception:"
+literal|" caused exception:"
 argument_list|,
 name|ex
 argument_list|)
