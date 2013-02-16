@@ -2286,7 +2286,7 @@ return|;
 block|}
 comment|/** Iterates over the ords for a single document. */
 DECL|class|TermOrdsIterator
-specifier|public
+specifier|private
 class|class
 name|TermOrdsIterator
 block|{
