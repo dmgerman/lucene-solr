@@ -356,6 +356,10 @@ begin_comment
 comment|// nocommit: should only be Lucene40 and Lucene41
 end_comment
 
+begin_comment
+comment|// nocommit: move to BaseDocValuesTestCase, but allow these to be assume()d (for 4.0 and 4.1)
+end_comment
+
 begin_class
 annotation|@
 name|SuppressCodecs
@@ -366,8 +370,6 @@ block|,
 literal|"Lucene41"
 block|,
 literal|"SimpleText"
-block|,
-literal|"CheapBastard"
 block|}
 argument_list|)
 DECL|class|TestDemoDocValue
@@ -377,10 +379,10 @@ name|TestDemoDocValue
 extends|extends
 name|LuceneTestCase
 block|{
-DECL|method|testOneValue
+DECL|method|testSortedSetOneValue
 specifier|public
 name|void
-name|testOneValue
+name|testSortedSetOneValue
 parameter_list|()
 throws|throws
 name|IOException
@@ -525,10 +527,10 @@ name|close
 argument_list|()
 expr_stmt|;
 block|}
-DECL|method|testTwoDocumentsMerged
+DECL|method|testSortedSetTwoDocumentsMerged
 specifier|public
 name|void
-name|testTwoDocumentsMerged
+name|testSortedSetTwoDocumentsMerged
 parameter_list|()
 throws|throws
 name|IOException
@@ -802,10 +804,10 @@ name|close
 argument_list|()
 expr_stmt|;
 block|}
-DECL|method|testTwoValues
+DECL|method|testSortedSetTwoValues
 specifier|public
 name|void
-name|testTwoValues
+name|testSortedSetTwoValues
 parameter_list|()
 throws|throws
 name|IOException
@@ -997,10 +999,10 @@ name|close
 argument_list|()
 expr_stmt|;
 block|}
-DECL|method|testTwoValuesUnordered
+DECL|method|testSortedSetTwoValuesUnordered
 specifier|public
 name|void
-name|testTwoValuesUnordered
+name|testSortedSetTwoValuesUnordered
 parameter_list|()
 throws|throws
 name|IOException
@@ -1192,10 +1194,10 @@ name|close
 argument_list|()
 expr_stmt|;
 block|}
-DECL|method|testThreeValuesTwoDocs
+DECL|method|testSortedSetThreeValuesTwoDocs
 specifier|public
 name|void
-name|testThreeValuesTwoDocs
+name|testSortedSetThreeValuesTwoDocs
 parameter_list|()
 throws|throws
 name|IOException
@@ -1543,10 +1545,10 @@ name|close
 argument_list|()
 expr_stmt|;
 block|}
-DECL|method|testTwoDocumentsLastMissing
+DECL|method|testSortedSetTwoDocumentsLastMissing
 specifier|public
 name|void
-name|testTwoDocumentsLastMissing
+name|testSortedSetTwoDocumentsLastMissing
 parameter_list|()
 throws|throws
 name|IOException
@@ -1751,10 +1753,10 @@ name|close
 argument_list|()
 expr_stmt|;
 block|}
-DECL|method|testTwoDocumentsLastMissingMerge
+DECL|method|testSortedSetTwoDocumentsLastMissingMerge
 specifier|public
 name|void
-name|testTwoDocumentsLastMissingMerge
+name|testSortedSetTwoDocumentsLastMissingMerge
 parameter_list|()
 throws|throws
 name|IOException
@@ -1964,10 +1966,10 @@ name|close
 argument_list|()
 expr_stmt|;
 block|}
-DECL|method|testTwoDocumentsFirstMissing
+DECL|method|testSortedSetTwoDocumentsFirstMissing
 specifier|public
 name|void
-name|testTwoDocumentsFirstMissing
+name|testSortedSetTwoDocumentsFirstMissing
 parameter_list|()
 throws|throws
 name|IOException
@@ -2172,10 +2174,10 @@ name|close
 argument_list|()
 expr_stmt|;
 block|}
-DECL|method|testTwoDocumentsFirstMissingMerge
+DECL|method|testSortedSetTwoDocumentsFirstMissingMerge
 specifier|public
 name|void
-name|testTwoDocumentsFirstMissingMerge
+name|testSortedSetTwoDocumentsFirstMissingMerge
 parameter_list|()
 throws|throws
 name|IOException
@@ -2385,10 +2387,10 @@ name|close
 argument_list|()
 expr_stmt|;
 block|}
-DECL|method|testMergeAwayAllValues
+DECL|method|testSortedSetMergeAwayAllValues
 specifier|public
 name|void
-name|testMergeAwayAllValues
+name|testSortedSetMergeAwayAllValues
 parameter_list|()
 throws|throws
 name|IOException

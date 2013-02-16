@@ -2104,6 +2104,17 @@ argument_list|,
 literal|false
 argument_list|)
 expr_stmt|;
+name|ordIndexInstances
+operator|.
+name|put
+argument_list|(
+name|field
+operator|.
+name|number
+argument_list|,
+name|ordIndexInstance
+argument_list|)
+expr_stmt|;
 block|}
 name|ordIndex
 operator|=
