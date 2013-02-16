@@ -1400,11 +1400,6 @@ name|printLayout
 argument_list|()
 expr_stmt|;
 block|}
-name|zkServer
-operator|.
-name|shutdown
-argument_list|()
-expr_stmt|;
 name|System
 operator|.
 name|clearProperty
@@ -1460,6 +1455,11 @@ expr_stmt|;
 name|super
 operator|.
 name|tearDown
+argument_list|()
+expr_stmt|;
+name|zkServer
+operator|.
+name|shutdown
 argument_list|()
 expr_stmt|;
 block|}
