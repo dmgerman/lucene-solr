@@ -257,6 +257,16 @@ name|void
 name|afterSuperClass
 parameter_list|()
 block|{        }
+DECL|method|getCloudSolrConfig
+specifier|protected
+name|String
+name|getCloudSolrConfig
+parameter_list|()
+block|{
+return|return
+literal|"solrconfig.xml"
+return|;
+block|}
 annotation|@
 name|Override
 DECL|method|getSolrHome

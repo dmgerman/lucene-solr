@@ -1569,6 +1569,12 @@ literal|true
 operator|&&
 operator|!
 name|isClosed
+operator|&&
+operator|!
+name|cc
+operator|.
+name|isShutDown
+argument_list|()
 condition|)
 block|{
 comment|// wait for everyone to be up

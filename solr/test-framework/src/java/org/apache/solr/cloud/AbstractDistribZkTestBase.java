@@ -406,7 +406,8 @@ operator|.
 name|getZkAddress
 argument_list|()
 argument_list|,
-literal|"solrconfig.xml"
+name|getCloudSolrConfig
+argument_list|()
 argument_list|,
 name|schema
 argument_list|)
@@ -430,6 +431,16 @@ argument_list|,
 literal|"proptwo"
 argument_list|)
 expr_stmt|;
+block|}
+DECL|method|getCloudSolrConfig
+specifier|protected
+name|String
+name|getCloudSolrConfig
+parameter_list|()
+block|{
+return|return
+literal|"solrconfig-tlog.xml"
+return|;
 block|}
 annotation|@
 name|Override
