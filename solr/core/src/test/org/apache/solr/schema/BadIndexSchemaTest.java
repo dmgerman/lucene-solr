@@ -30,18 +30,6 @@ name|AbstractBadConfigTestBase
 import|;
 end_import
 
-begin_import
-import|import
-name|java
-operator|.
-name|util
-operator|.
-name|regex
-operator|.
-name|Pattern
-import|;
-end_import
-
 begin_class
 DECL|class|BadIndexSchemaTest
 specifier|public
@@ -289,6 +277,38 @@ argument_list|(
 literal|"bad-schema-codec-global-vs-ft-mismatch.xml"
 argument_list|,
 literal|"codec does not support"
+argument_list|)
+expr_stmt|;
+block|}
+DECL|method|testDocValuesNotRequiredNoDefault
+specifier|public
+name|void
+name|testDocValuesNotRequiredNoDefault
+parameter_list|()
+throws|throws
+name|Exception
+block|{
+name|doTest
+argument_list|(
+literal|"bad-schema-docValues-not-required-no-default.xml"
+argument_list|,
+literal|"has no default value and is not required"
+argument_list|)
+expr_stmt|;
+block|}
+DECL|method|testDocValuesUnsupported
+specifier|public
+name|void
+name|testDocValuesUnsupported
+parameter_list|()
+throws|throws
+name|Exception
+block|{
+name|doTest
+argument_list|(
+literal|"bad-schema-unsupported-docValues.xml"
+argument_list|,
+literal|"does not support doc values"
 argument_list|)
 expr_stmt|;
 block|}

@@ -22,9 +22,49 @@ begin_import
 import|import
 name|java
 operator|.
+name|io
+operator|.
+name|IOException
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
 name|util
 operator|.
 name|Map
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|index
+operator|.
+name|AtomicReaderContext
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|queries
+operator|.
+name|function
+operator|.
+name|FunctionValues
 import|;
 end_import
 
@@ -58,8 +98,26 @@ name|NamedList
 import|;
 end_import
 
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|solr
+operator|.
+name|schema
+operator|.
+name|FieldType
+import|;
+end_import
+
 begin_comment
 comment|/**  * StatsValue defines the interface for the collection of statistical values about fields and facets.  */
+end_comment
+
+begin_comment
+comment|// TODO: should implement Collector?
 end_comment
 
 begin_interface
@@ -77,13 +135,13 @@ name|NamedList
 name|stv
 parameter_list|)
 function_decl|;
-comment|/**    * Accumulate the values based on the given value    *    * @param value Value to use to accumulate the current values    */
+comment|/** Accumulate the value associated with<code>docID</code>.    *  @see #setNextReader(AtomicReaderContext) */
 DECL|method|accumulate
 name|void
 name|accumulate
 parameter_list|(
-name|BytesRef
-name|value
+name|int
+name|docID
 parameter_list|)
 function_decl|;
 comment|/**    * Accumulate the values based on the given value    *    * @param value Value to use to accumulate the current values    * @param count number of times to accumulate this value    */
@@ -138,6 +196,17 @@ name|?
 argument_list|>
 name|getStatsValues
 parameter_list|()
+function_decl|;
+comment|/** Set the context for {@link #accumulate(int)}. */
+DECL|method|setNextReader
+name|void
+name|setNextReader
+parameter_list|(
+name|AtomicReaderContext
+name|ctx
+parameter_list|)
+throws|throws
+name|IOException
 function_decl|;
 block|}
 end_interface

@@ -18,17 +18,11 @@ end_comment
 
 begin_import
 import|import
-name|org
+name|java
 operator|.
-name|apache
+name|util
 operator|.
-name|lucene
-operator|.
-name|queries
-operator|.
-name|function
-operator|.
-name|ValueSource
+name|List
 import|;
 end_import
 
@@ -40,9 +34,11 @@ name|apache
 operator|.
 name|lucene
 operator|.
-name|index
+name|queries
 operator|.
-name|IndexableField
+name|function
+operator|.
+name|ValueSource
 import|;
 end_import
 
@@ -512,8 +508,10 @@ index|[
 literal|1
 index|]
 decl_stmt|;
+name|List
+argument_list|<
 name|StorableField
-index|[]
+argument_list|>
 name|fields
 init|=
 name|home
@@ -529,7 +527,8 @@ name|assertEquals
 argument_list|(
 name|fields
 operator|.
-name|length
+name|size
+argument_list|()
 argument_list|,
 literal|3
 argument_list|)
@@ -555,9 +554,11 @@ name|boolean
 name|hasValue
 init|=
 name|fields
-index|[
+operator|.
+name|get
+argument_list|(
 name|i
-index|]
+argument_list|)
 operator|.
 name|binaryValue
 argument_list|()
@@ -565,9 +566,11 @@ operator|!=
 literal|null
 operator|||
 name|fields
-index|[
+operator|.
+name|get
+argument_list|(
 name|i
-index|]
+argument_list|)
 operator|.
 name|stringValue
 argument_list|()
@@ -575,9 +578,11 @@ operator|!=
 literal|null
 operator|||
 name|fields
-index|[
+operator|.
+name|get
+argument_list|(
 name|i
-index|]
+argument_list|)
 operator|.
 name|numericValue
 argument_list|()
@@ -589,9 +594,11 @@ argument_list|(
 literal|"Doesn't have a value: "
 operator|+
 name|fields
-index|[
+operator|.
+name|get
+argument_list|(
 name|i
-index|]
+argument_list|)
 argument_list|,
 name|hasValue
 argument_list|)
@@ -627,7 +634,8 @@ name|assertEquals
 argument_list|(
 name|fields
 operator|.
-name|length
+name|size
+argument_list|()
 argument_list|,
 literal|2
 argument_list|)
