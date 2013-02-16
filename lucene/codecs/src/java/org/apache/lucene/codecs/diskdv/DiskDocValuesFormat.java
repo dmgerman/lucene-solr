@@ -261,6 +261,15 @@ name|SORTED
 init|=
 literal|2
 decl_stmt|;
+DECL|field|SORTED_SET
+specifier|public
+specifier|static
+specifier|final
+name|byte
+name|SORTED_SET
+init|=
+literal|3
+decl_stmt|;
 block|}
 end_class
 
