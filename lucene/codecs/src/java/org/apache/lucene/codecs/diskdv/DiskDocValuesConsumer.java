@@ -854,6 +854,7 @@ name|values
 argument_list|)
 expr_stmt|;
 comment|// write the stream of ords as a numeric field
+comment|// NOTE: we could return an iterator that delta-encodes these within a doc
 name|addNumericField
 argument_list|(
 name|field
