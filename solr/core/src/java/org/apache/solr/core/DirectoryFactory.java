@@ -314,7 +314,7 @@ parameter_list|)
 throws|throws
 name|IOException
 function_decl|;
-comment|/**    * Override for more efficient moves.    *     * @throws IOException If there is a low-level I/O error.    */
+comment|/**    * Override for more efficient moves.    *     * Intended for use with replication - use    * carefully - some Directory wrappers will    * cache files for example.    *     * @throws IOException If there is a low-level I/O error.    */
 DECL|method|move
 specifier|public
 name|void
