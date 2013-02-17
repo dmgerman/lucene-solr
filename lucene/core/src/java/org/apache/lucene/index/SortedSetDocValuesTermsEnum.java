@@ -68,14 +68,6 @@ begin_comment
 comment|/** Implements a {@link TermsEnum} wrapping a provided  * {@link SortedSetDocValues}. */
 end_comment
 
-begin_comment
-comment|// nocommit: if we are ok with ords being 'long' for SortedDocValues,
-end_comment
-
-begin_comment
-comment|// then we don't need this...
-end_comment
-
 begin_class
 DECL|class|SortedSetDocValuesTermsEnum
 specifier|public
