@@ -698,7 +698,7 @@ name|get
 argument_list|(
 name|solrCore
 operator|.
-name|getNewIndexDir
+name|getIndexDir
 argument_list|()
 argument_list|,
 name|DirContext
