@@ -5771,18 +5771,20 @@ expr_stmt|;
 block|}
 if|if
 condition|(
+name|rarely
+argument_list|()
+operator|&&
 name|r
 operator|instanceof
 name|AtomicReader
 condition|)
 block|{
+comment|// TODO: not useful to check DirectoryReader (redundant with checkindex)
+comment|// but maybe sometimes run this on the other crazy readers maybeWrapReader creates?
 name|_TestUtil
 operator|.
 name|checkReader
 argument_list|(
-operator|(
-name|AtomicReader
-operator|)
 name|r
 argument_list|)
 expr_stmt|;
