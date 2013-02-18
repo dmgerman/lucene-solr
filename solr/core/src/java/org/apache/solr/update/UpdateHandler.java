@@ -595,14 +595,10 @@ operator|!
 name|s
 condition|)
 block|{
-throw|throw
-operator|new
-name|SolrException
-argument_list|(
-name|ErrorCode
+name|log
 operator|.
-name|SERVER_ERROR
-argument_list|,
+name|error
+argument_list|(
 literal|"Could not remove tlog file:"
 operator|+
 name|f
@@ -610,7 +606,8 @@ operator|.
 name|getAbsolutePath
 argument_list|()
 argument_list|)
-throw|;
+expr_stmt|;
+comment|//throw new SolrException(ErrorCode.SERVER_ERROR, "Could not remove tlog file:" + f.getAbsolutePath());
 block|}
 block|}
 block|}
