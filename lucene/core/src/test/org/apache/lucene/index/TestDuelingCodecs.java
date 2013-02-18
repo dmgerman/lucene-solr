@@ -627,6 +627,21 @@ operator|.
 name|close
 argument_list|()
 expr_stmt|;
+comment|// check that our readers are valid
+name|_TestUtil
+operator|.
+name|checkReader
+argument_list|(
+name|leftReader
+argument_list|)
+expr_stmt|;
+name|_TestUtil
+operator|.
+name|checkReader
+argument_list|(
+name|rightReader
+argument_list|)
+expr_stmt|;
 name|info
 operator|=
 literal|"left: "
