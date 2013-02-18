@@ -255,6 +255,7 @@ end_comment
 begin_class
 DECL|class|FacetTestCase
 specifier|public
+specifier|abstract
 class|class
 name|FacetTestCase
 extends|extends
