@@ -286,11 +286,13 @@ comment|// setup the server...
 name|String
 name|url
 init|=
-literal|"http://127.0.0.1:"
-operator|+
-name|port
-operator|+
-name|context
+name|jetty
+operator|.
+name|getBaseUrl
+argument_list|()
+operator|.
+name|toString
+argument_list|()
 decl_stmt|;
 comment|// smaller queue size hits locks more often
 name|ConcurrentUpdateSolrServer
@@ -397,11 +399,13 @@ init|=
 operator|new
 name|ConcurrentUpdateSolrServer
 argument_list|(
-literal|"http://127.0.0.1:"
-operator|+
-name|port
-operator|+
-name|context
+name|jetty
+operator|.
+name|getBaseUrl
+argument_list|()
+operator|.
+name|toString
+argument_list|()
 argument_list|,
 literal|2
 argument_list|,
