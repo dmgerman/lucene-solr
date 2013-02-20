@@ -386,6 +386,9 @@ parameter_list|(
 name|AtomicReader
 name|reader
 parameter_list|,
+name|Bits
+name|liveDocs
+parameter_list|,
 name|String
 name|field
 parameter_list|)
@@ -395,6 +398,8 @@ block|{
 name|this
 argument_list|(
 name|reader
+argument_list|,
+name|liveDocs
 argument_list|,
 name|field
 argument_list|,
@@ -414,6 +419,9 @@ parameter_list|(
 name|AtomicReader
 name|reader
 parameter_list|,
+name|Bits
+name|liveDocs
+parameter_list|,
 name|String
 name|field
 parameter_list|,
@@ -426,6 +434,8 @@ block|{
 name|this
 argument_list|(
 name|reader
+argument_list|,
+name|liveDocs
 argument_list|,
 name|field
 argument_list|,
@@ -445,6 +455,9 @@ parameter_list|(
 name|AtomicReader
 name|reader
 parameter_list|,
+name|Bits
+name|liveDocs
+parameter_list|,
 name|String
 name|field
 parameter_list|,
@@ -461,6 +474,8 @@ name|this
 argument_list|(
 name|reader
 argument_list|,
+name|liveDocs
+argument_list|,
 name|field
 argument_list|,
 name|termPrefix
@@ -468,13 +483,6 @@ argument_list|,
 name|maxTermDocFreq
 argument_list|,
 name|DEFAULT_INDEX_INTERVAL_BITS
-argument_list|)
-expr_stmt|;
-name|uninvert
-argument_list|(
-name|reader
-argument_list|,
-name|termPrefix
 argument_list|)
 expr_stmt|;
 block|}
@@ -486,6 +494,9 @@ parameter_list|(
 name|AtomicReader
 name|reader
 parameter_list|,
+name|Bits
+name|liveDocs
+parameter_list|,
 name|String
 name|field
 parameter_list|,
@@ -513,6 +524,8 @@ expr_stmt|;
 name|uninvert
 argument_list|(
 name|reader
+argument_list|,
+name|liveDocs
 argument_list|,
 name|termPrefix
 argument_list|)
@@ -694,7 +707,7 @@ parameter_list|)
 throws|throws
 name|IOException
 block|{   }
-comment|/** Invoked during {@link #uninvert(AtomicReader,BytesRef)}    *  to record the document frequency for each uninverted    *  term. */
+comment|/** Invoked during {@link #uninvert(AtomicReader,Bits,BytesRef)}    *  to record the document frequency for each uninverted    *  term. */
 DECL|method|setActualDocFreq
 specifier|protected
 name|void
@@ -718,6 +731,9 @@ parameter_list|(
 specifier|final
 name|AtomicReader
 name|reader
+parameter_list|,
+name|Bits
+name|liveDocs
 parameter_list|,
 specifier|final
 name|BytesRef
@@ -945,15 +961,6 @@ name|boolean
 name|testedOrd
 init|=
 literal|false
-decl_stmt|;
-specifier|final
-name|Bits
-name|liveDocs
-init|=
-name|reader
-operator|.
-name|getLiveDocs
-argument_list|()
 decl_stmt|;
 comment|// we need a minimum of 9 bytes, but round up to 12 since the space would
 comment|// be wasted with most allocators anyway.

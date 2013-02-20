@@ -3995,6 +3995,8 @@ name|DocTermOrds
 argument_list|(
 name|ar
 argument_list|,
+literal|null
+argument_list|,
 literal|"binary"
 argument_list|)
 expr_stmt|;
@@ -4063,6 +4065,8 @@ operator|new
 name|DocTermOrds
 argument_list|(
 name|ar
+argument_list|,
+literal|null
 argument_list|,
 literal|"sorted"
 argument_list|)
@@ -4344,6 +4348,8 @@ name|DocTermOrds
 argument_list|(
 name|ar
 argument_list|,
+literal|null
+argument_list|,
 literal|"numeric"
 argument_list|)
 expr_stmt|;
@@ -4463,6 +4469,8 @@ operator|new
 name|DocTermOrds
 argument_list|(
 name|ar
+argument_list|,
+literal|null
 argument_list|,
 literal|"sortedset"
 argument_list|)
