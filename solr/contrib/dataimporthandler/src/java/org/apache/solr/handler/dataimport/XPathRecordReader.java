@@ -234,7 +234,7 @@ name|FLATTEN
 init|=
 literal|1
 decl_stmt|;
-comment|/**    * A constructor called with a '|' seperated list of Xpath expressions    * which define sub sections of the XML stream that are to be emitted as    * seperate records.    *     * @param forEachXpath  The XPATH for which a record is emitted. Once the    * xpath tag is encountered, the Node.parse method starts collecting wanted     * fields and at the close of the tag, a record is emitted containing all     * fields collected since the tag start. Once     * emitted the collected fields are cleared. Any fields collected in the     * parent tag or above will also be included in the record, but these are    * not cleared after emitting the record.    *    * It uses the ' | ' syntax of XPATH to pass in multiple xpaths.    */
+comment|/**    * A constructor called with a '|' separated list of Xpath expressions    * which define sub sections of the XML stream that are to be emitted as    * separate records.    *     * @param forEachXpath  The XPATH for which a record is emitted. Once the    * xpath tag is encountered, the Node.parse method starts collecting wanted     * fields and at the close of the tag, a record is emitted containing all     * fields collected since the tag start. Once     * emitted the collected fields are cleared. Any fields collected in the     * parent tag or above will also be included in the record, but these are    * not cleared after emitting the record.    *    * It uses the ' | ' syntax of XPATH to pass in multiple xpaths.    */
 DECL|method|XPathRecordReader
 specifier|public
 name|XPathRecordReader

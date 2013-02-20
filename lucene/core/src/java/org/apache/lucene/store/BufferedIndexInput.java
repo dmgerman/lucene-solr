@@ -1710,7 +1710,7 @@ return|return
 name|clone
 return|;
 block|}
-comment|/**    * Flushes the in-memory bufer to the given output, copying at most    *<code>numBytes</code>.    *<p>    *<b>NOTE:</b> this method does not refill the buffer, however it does    * advance the buffer position.    *     * @return the number of bytes actually flushed from the in-memory buffer.    */
+comment|/**    * Flushes the in-memory buffer to the given output, copying at most    *<code>numBytes</code>.    *<p>    *<b>NOTE:</b> this method does not refill the buffer, however it does    * advance the buffer position.    *     * @return the number of bytes actually flushed from the in-memory buffer.    */
 DECL|method|flushBuffer
 specifier|protected
 specifier|final

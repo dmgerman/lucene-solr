@@ -2671,7 +2671,7 @@ return|return
 name|response
 return|;
 block|}
-comment|/**    * Validates a query matches some JSON test expressions using the default double delta tollerance.    * @see JSONTestUtil#DEFAULT_DELTA    * @see #assertJQ(SolrQueryRequest,double,String...)    */
+comment|/**    * Validates a query matches some JSON test expressions using the default double delta tolerance.    * @see JSONTestUtil#DEFAULT_DELTA    * @see #assertJQ(SolrQueryRequest,double,String...)    */
 DECL|method|assertJQ
 specifier|public
 specifier|static
@@ -3305,7 +3305,7 @@ operator|new
 name|StringWriter
 argument_list|()
 decl_stmt|;
-comment|// this is anoying
+comment|// this is annoying
 if|if
 condition|(
 literal|null
@@ -3779,7 +3779,7 @@ name|mp
 argument_list|)
 return|;
 block|}
-comment|/** Neccessary to make method signatures un-ambiguous */
+comment|/** Necessary to make method signatures un-ambiguous */
 DECL|class|XmlDoc
 specifier|public
 specifier|static

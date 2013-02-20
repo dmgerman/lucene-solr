@@ -873,7 +873,7 @@ name|bloomPos
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**    *     * @param targetMaxSaturation A number between 0 and 1 describing the % of bits that would ideally be set in the     * result. Lower values have better qccuracy but require more space.    * @return a smaller FuzzySet or null if the current set is already over-saturated    */
+comment|/**    *     * @param targetMaxSaturation A number between 0 and 1 describing the % of bits that would ideally be set in the     * result. Lower values have better accuracy but require more space.    * @return a smaller FuzzySet or null if the current set is already over-saturated    */
 DECL|method|downsize
 specifier|public
 name|FuzzySet

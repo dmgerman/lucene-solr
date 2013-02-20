@@ -65,7 +65,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * The MultiTrie is a Trie of Tries.  *<p>  * It stores words and their associated patch commands. The MultiTrie handles  * patch commmands broken into their constituent parts, as a MultiTrie does, but  * the commands are delimited by the skip command.  */
+comment|/**  * The MultiTrie is a Trie of Tries.  *<p>  * It stores words and their associated patch commands. The MultiTrie handles  * patch commands broken into their constituent parts, as a MultiTrie does, but  * the commands are delimited by the skip command.  */
 end_comment
 
 begin_class

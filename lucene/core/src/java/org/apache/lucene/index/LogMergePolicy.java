@@ -199,7 +199,7 @@ name|maxMergeDocs
 init|=
 name|DEFAULT_MAX_MERGE_DOCS
 decl_stmt|;
-comment|/** If the size of the merge segment exceesd this ratio of    *  the total index size then it will remain in    *  non-compound format even if {@link    *  #setUseCompoundFile} is {@code true}. */
+comment|/** If the size of the merge segment exceeds this ratio of    *  the total index size then it will remain in    *  non-compound format even if {@link    *  #setUseCompoundFile} is {@code true}. */
 DECL|field|noCFSRatio
 specifier|protected
 name|double
@@ -1552,7 +1552,7 @@ argument_list|)
 expr_stmt|;
 block|}
 comment|// If the segments are already merged (e.g. there's only 1 segment), or
-comment|// there are<maxNumSegements:.
+comment|// there are<maxNumSegments:.
 if|if
 condition|(
 name|isMerged

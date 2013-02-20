@@ -293,7 +293,7 @@ operator|+
 name|ticksAllowed
 expr_stmt|;
 block|}
-comment|/**    * Syntactic sugar for {@link #setBaseline(long)} using {@link Counter#get()}    * on the clock passed to the construcutor.    */
+comment|/**    * Syntactic sugar for {@link #setBaseline(long)} using {@link Counter#get()}    * on the clock passed to the constructor.    */
 DECL|method|setBaseline
 specifier|public
 name|void

@@ -1260,7 +1260,7 @@ expr_stmt|;
 block|}
 comment|// we can't copy any boost unless the dest field is
 comment|// indexed& !omitNorms, but which boost we copy depends
-comment|// on wether the dest field already contains values (we
+comment|// on whether the dest field already contains values (we
 comment|// don't want to apply the compounded docBoost more then once)
 specifier|final
 name|float

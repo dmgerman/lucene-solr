@@ -1786,7 +1786,7 @@ literal|null
 condition|)
 block|{
 comment|// If there were one or more collections specified in the query, split
-comment|// each parameter and store as a seperate member of a List.
+comment|// each parameter and store as a separate member of a List.
 name|List
 argument_list|<
 name|String

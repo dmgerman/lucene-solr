@@ -401,7 +401,7 @@ literal|0.0f
 argument_list|)
 expr_stmt|;
 block|}
-comment|// seperate sweet spot for certain fields
+comment|// separate sweet spot for certain fields
 specifier|final
 name|SweetSpotSimilarity
 name|ssBar

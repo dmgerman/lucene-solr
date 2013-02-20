@@ -6493,7 +6493,7 @@ literal|true
 return|;
 block|}
 block|}
-comment|/**    * Returns a boolean indicating wether or not the caller should behave as     * if this is the "leader" even when ZooKeeper is not enabled.      * (Even in non zk mode, tests may simulate updates to/from a leader)    */
+comment|/**    * Returns a boolean indicating whether or not the caller should behave as    * if this is the "leader" even when ZooKeeper is not enabled.      * (Even in non zk mode, tests may simulate updates to/from a leader)    */
 DECL|method|getNonZkLeaderAssumption
 specifier|public
 specifier|static
