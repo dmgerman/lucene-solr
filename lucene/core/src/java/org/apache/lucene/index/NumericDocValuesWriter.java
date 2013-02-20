@@ -218,6 +218,9 @@ control|(
 name|int
 name|i
 init|=
+operator|(
+name|int
+operator|)
 name|pending
 operator|.
 name|size
@@ -388,6 +391,9 @@ specifier|final
 name|int
 name|size
 init|=
+operator|(
+name|int
+operator|)
 name|pending
 operator|.
 name|size
