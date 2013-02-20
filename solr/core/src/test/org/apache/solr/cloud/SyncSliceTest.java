@@ -1061,7 +1061,7 @@ name|getRandomOtherJetty
 argument_list|(
 name|leaderJetty
 argument_list|,
-literal|null
+name|deadJetty
 argument_list|)
 expr_stmt|;
 name|skipServers
@@ -1072,12 +1072,7 @@ name|getRandomOtherJetty
 argument_list|(
 name|leaderJetty
 argument_list|,
-name|skipServers
-operator|.
-name|get
-argument_list|(
-literal|0
-argument_list|)
+name|deadJetty
 argument_list|)
 argument_list|)
 expr_stmt|;
