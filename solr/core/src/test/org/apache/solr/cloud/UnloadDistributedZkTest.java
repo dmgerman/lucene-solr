@@ -643,7 +643,7 @@ operator|.
 name|currentTimeMillis
 argument_list|()
 operator|+
-literal|30000
+literal|45000
 decl_stmt|;
 while|while
 condition|(
@@ -675,7 +675,7 @@ name|Thread
 operator|.
 name|sleep
 argument_list|(
-literal|50
+literal|1000
 argument_list|)
 expr_stmt|;
 name|shard2
