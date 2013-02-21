@@ -66,6 +66,22 @@ name|apache
 operator|.
 name|lucene
 operator|.
+name|queries
+operator|.
+name|function
+operator|.
+name|FunctionQuery
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
 name|search
 operator|.
 name|Explanation
@@ -122,7 +138,7 @@ operator|=
 name|context
 expr_stmt|;
 block|}
-comment|/**    * Compute a custom score by the subQuery score and a number of     * {@link org.apache.lucene.queries.function.FunctionQuery} scores.    *<p>     * Subclasses can override this method to modify the custom score.      *<p>    * If your custom scoring is different than the default herein you     * should override at least one of the two customScore() methods.    * If the number of ValueSourceQueries is always&lt; 2 it is     * sufficient to override the other     * {@link #customScore(int, float, float) customScore()}     * method, which is simpler.     *<p>    * The default computation herein is a multiplication of given scores:    *<pre>    *     ModifiedScore = valSrcScore * valSrcScores[0] * valSrcScores[1] * ...    *</pre>    *     * @param doc id of scored doc.     * @param subQueryScore score of that doc by the subQuery.    * @param valSrcScores scores of that doc by the ValueSourceQuery.    * @return custom score.    */
+comment|/**    * Compute a custom score by the subQuery score and a number of     * {@link org.apache.lucene.queries.function.FunctionQuery} scores.    *<p>     * Subclasses can override this method to modify the custom score.      *<p>    * If your custom scoring is different than the default herein you     * should override at least one of the two customScore() methods.    * If the number of {@link FunctionQuery function queries} is always&lt; 2 it is     * sufficient to override the other     * {@link #customScore(int, float, float) customScore()}     * method, which is simpler.     *<p>    * The default computation herein is a multiplication of given scores:    *<pre>    *     ModifiedScore = valSrcScore * valSrcScores[0] * valSrcScores[1] * ...    *</pre>    *     * @param doc id of scored doc.     * @param subQueryScore score of that doc by the subQuery.    * @param valSrcScores scores of that doc by the {@link FunctionQuery}.    * @return custom score.    */
 DECL|method|customScore
 specifier|public
 name|float
@@ -206,7 +222,7 @@ return|return
 name|score
 return|;
 block|}
-comment|/**    * Compute a custom score by the subQuery score and the ValueSourceQuery score.    *<p>     * Subclasses can override this method to modify the custom score.    *<p>    * If your custom scoring is different than the default herein you     * should override at least one of the two customScore() methods.    * If the number of ValueSourceQueries is always&lt; 2 it is     * sufficient to override this customScore() method, which is simpler.     *<p>    * The default computation herein is a multiplication of the two scores:    *<pre>    *     ModifiedScore = subQueryScore * valSrcScore    *</pre>    *    * @param doc id of scored doc.     * @param subQueryScore score of that doc by the subQuery.    * @param valSrcScore score of that doc by the ValueSourceQuery.    * @return custom score.    */
+comment|/**    * Compute a custom score by the subQuery score and the {@link FunctionQuery} score.    *<p>     * Subclasses can override this method to modify the custom score.    *<p>    * If your custom scoring is different than the default herein you     * should override at least one of the two customScore() methods.    * If the number of {@link FunctionQuery function queries} is always&lt; 2 it is     * sufficient to override this customScore() method, which is simpler.     *<p>    * The default computation herein is a multiplication of the two scores:    *<pre>    *     ModifiedScore = subQueryScore * valSrcScore    *</pre>    *    * @param doc id of scored doc.     * @param subQueryScore score of that doc by the subQuery.    * @param valSrcScore score of that doc by the {@link FunctionQuery}.    * @return custom score.    */
 DECL|method|customScore
 specifier|public
 name|float

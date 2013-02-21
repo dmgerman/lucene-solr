@@ -218,6 +218,22 @@ name|apache
 operator|.
 name|lucene
 operator|.
+name|search
+operator|.
+name|BooleanQuery
+operator|.
+name|TooManyClauses
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
 name|util
 operator|.
 name|BytesRef
@@ -938,7 +954,7 @@ return|return
 name|lowercaseExpandedTerms
 return|;
 block|}
-comment|/**    * By default QueryParser uses {@link org.apache.lucene.search.MultiTermQuery#CONSTANT_SCORE_AUTO_REWRITE_DEFAULT}    * when creating a PrefixQuery, WildcardQuery or RangeQuery. This implementation is generally preferable because it    * a) Runs faster b) Does not have the scarcity of terms unduly influence score    * c) avoids any "TooManyBooleanClauses" exception.    * However, if your application really needs to use the    * old-fashioned BooleanQuery expansion rewriting and the above    * points are not relevant then use this to change    * the rewrite method.    */
+comment|/**    * By default QueryParser uses {@link org.apache.lucene.search.MultiTermQuery#CONSTANT_SCORE_AUTO_REWRITE_DEFAULT}    * when creating a {@link PrefixQuery}, {@link WildcardQuery} or {@link TermRangeQuery}. This implementation is generally preferable because it    * a) Runs faster b) Does not have the scarcity of terms unduly influence score    * c) avoids any {@link TooManyClauses} exception.    * However, if your application really needs to use the    * old-fashioned {@link BooleanQuery} expansion rewriting and the above    * points are not relevant then use this to change    * the rewrite method.    */
 annotation|@
 name|Override
 DECL|method|setMultiTermRewriteMethod
@@ -1189,7 +1205,7 @@ return|return
 name|resolution
 return|;
 block|}
-comment|/**    * Set whether or not to analyze range terms when constructing RangeQuerys.    * For example, setting this to true can enable analyzing terms into     * collation keys for locale-sensitive RangeQuery.    *     * @param analyzeRangeTerms whether or not terms should be analyzed for RangeQuerys    */
+comment|/**    * Set whether or not to analyze range terms when constructing {@link TermRangeQuery}s.    * For example, setting this to true can enable analyzing terms into     * collation keys for locale-sensitive {@link TermRangeQuery}.    *     * @param analyzeRangeTerms whether or not terms should be analyzed for RangeQuerys    */
 DECL|method|setAnalyzeRangeTerms
 specifier|public
 name|void
@@ -1206,7 +1222,7 @@ operator|=
 name|analyzeRangeTerms
 expr_stmt|;
 block|}
-comment|/**    * @return whether or not to analyze range terms when constructing RangeQuerys.    */
+comment|/**    * @return whether or not to analyze range terms when constructing {@link TermRangeQuery}s.    */
 DECL|method|getAnalyzeRangeTerms
 specifier|public
 name|boolean
@@ -3150,7 +3166,7 @@ name|bytes
 argument_list|)
 return|;
 block|}
-comment|/**    * Builds a new TermRangeQuery instance    * @param field Field    * @param part1 min    * @param part2 max    * @param startInclusive true if the start of the range is inclusive    * @param endInclusive true if the end of the range is inclusive    * @return new TermRangeQuery instance    */
+comment|/**    * Builds a new {@link TermRangeQuery} instance    * @param field Field    * @param part1 min    * @param part2 max    * @param startInclusive true if the start of the range is inclusive    * @param endInclusive true if the end of the range is inclusive    * @return new {@link TermRangeQuery} instance    */
 DECL|method|newRangeQuery
 specifier|protected
 name|Query

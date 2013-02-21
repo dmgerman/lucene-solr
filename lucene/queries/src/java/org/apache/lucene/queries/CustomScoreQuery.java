@@ -116,6 +116,38 @@ name|apache
 operator|.
 name|lucene
 operator|.
+name|queries
+operator|.
+name|function
+operator|.
+name|FunctionQuery
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|queries
+operator|.
+name|function
+operator|.
+name|ValueSource
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
 name|search
 operator|.
 name|ComplexExplanation
@@ -221,7 +253,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Query that sets document score as a programmatic function of several (sub) scores:  *<ol>  *<li>the score of its subQuery (any query)</li>  *<li>(optional) the score of its ValueSourceQuery (or queries).</li>  *</ol>  * Subclasses can modify the computation by overriding {@link #getCustomScoreProvider}.  *   * @lucene.experimental  */
+comment|/**  * Query that sets document score as a programmatic function of several (sub) scores:  *<ol>  *<li>the score of its subQuery (any query)</li>  *<li>(optional) the score of its {@link FunctionQuery} (or queries).</li>  *</ol>  * Subclasses can modify the computation by overriding {@link #getCustomScoreProvider}.  *   * @lucene.experimental  */
 end_comment
 
 begin_class
@@ -1819,7 +1851,7 @@ name|searcher
 argument_list|)
 return|;
 block|}
-comment|/**    * Checks if this is strict custom scoring.    * In strict custom scoring, the ValueSource part does not participate in weight normalization.    * This may be useful when one wants full control over how scores are modified, and does     * not care about normalizing by the ValueSource part.    * One particular case where this is useful if for testing this query.       *<P>    * Note: only has effect when the ValueSource part is not null.    */
+comment|/**    * Checks if this is strict custom scoring.    * In strict custom scoring, the {@link ValueSource} part does not participate in weight normalization.    * This may be useful when one wants full control over how scores are modified, and does     * not care about normalizing by the {@link ValueSource} part.    * One particular case where this is useful if for testing this query.       *<P>    * Note: only has effect when the {@link ValueSource} part is not null.    */
 DECL|method|isStrict
 specifier|public
 name|boolean
