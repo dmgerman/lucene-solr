@@ -64,6 +64,20 @@ begin_import
 import|import
 name|org
 operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|util
+operator|.
+name|LuceneTestCase
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
 name|junit
 operator|.
 name|Test
@@ -84,7 +98,18 @@ begin_comment
 comment|/**  * Testcase for {@link SimpleNaiveBayesClassifier}  */
 end_comment
 
+begin_comment
+comment|// TODO : eventually remove this if / when fallback methods exist for all un-supportable codec methods (see LUCENE-4872)
+end_comment
+
 begin_class
+annotation|@
+name|LuceneTestCase
+operator|.
+name|SuppressCodecs
+argument_list|(
+literal|"Lucene3x"
+argument_list|)
 DECL|class|SimpleNaiveBayesClassifierTest
 specifier|public
 class|class
