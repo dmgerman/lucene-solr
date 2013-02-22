@@ -332,7 +332,7 @@ name|baseToDir
 init|=
 name|getBaseDir
 argument_list|(
-name|fromDir
+name|toDir
 argument_list|)
 decl_stmt|;
 if|if
