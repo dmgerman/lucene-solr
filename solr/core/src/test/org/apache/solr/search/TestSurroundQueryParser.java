@@ -130,6 +130,10 @@ argument_list|,
 literal|"text_np"
 argument_list|,
 name|v
+argument_list|,
+literal|"name"
+argument_list|,
+name|v
 argument_list|)
 argument_list|)
 expr_stmt|;
@@ -326,6 +330,64 @@ literal|"true"
 argument_list|)
 argument_list|,
 literal|"//*[@numFound='1']"
+argument_list|)
+expr_stmt|;
+comment|// test highlighted response with ordered query and hl.usePhraseHighlighter=true
+name|assertQ
+argument_list|(
+name|req
+argument_list|(
+literal|"q"
+argument_list|,
+literal|"{!surround df=name}k w l"
+argument_list|,
+literal|"hl"
+argument_list|,
+literal|"true"
+argument_list|,
+literal|"hl.fl"
+argument_list|,
+literal|"name"
+argument_list|,
+literal|"hl.usePhraseHighlighter"
+argument_list|,
+literal|"true"
+argument_list|)
+argument_list|,
+literal|"//*[@numFound='1']"
+argument_list|,
+literal|"//lst[@name='highlighting']/lst[@name='1']"
+argument_list|,
+literal|"//lst[@name='1']/arr[@name='name']/str[.='a b c d e a b c f g h i j<em>k</em><em>l</em> m l k j z z z']"
+argument_list|)
+expr_stmt|;
+comment|// test highlighted response with ordered query and hl.usePhraseHighlighter=false
+name|assertQ
+argument_list|(
+name|req
+argument_list|(
+literal|"q"
+argument_list|,
+literal|"{!surround df=name}k w l"
+argument_list|,
+literal|"hl"
+argument_list|,
+literal|"true"
+argument_list|,
+literal|"hl.fl"
+argument_list|,
+literal|"name"
+argument_list|,
+literal|"hl.usePhraseHighlighter"
+argument_list|,
+literal|"false"
+argument_list|)
+argument_list|,
+literal|"//*[@numFound='1']"
+argument_list|,
+literal|"//lst[@name='highlighting']/lst[@name='1']"
+argument_list|,
+literal|"//lst[@name='1']/arr[@name='name']/str[.='a b c d e a b c f g h i j<em>k</em><em>l</em> m<em>l</em><em>k</em> j z z z']"
 argument_list|)
 expr_stmt|;
 block|}
