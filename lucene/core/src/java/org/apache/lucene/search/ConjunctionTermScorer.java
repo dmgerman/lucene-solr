@@ -214,26 +214,22 @@ parameter_list|)
 throws|throws
 name|IOException
 block|{
-do|do
+for|for
+control|(
+init|;
+condition|;
+control|)
 block|{
-if|if
-condition|(
-name|lead
-operator|.
-name|doc
-operator|==
-name|DocIdSetIterator
-operator|.
-name|NO_MORE_DOCS
-condition|)
-block|{
-return|return
-name|NO_MORE_DOCS
-return|;
-block|}
+comment|// doc may already be NO_MORE_DOCS here, but we don't check explicitly
+comment|// since all scorers should advance to NO_MORE_DOCS, match, then
+comment|// return that value.
 name|advanceHead
 label|:
-do|do
+for|for
+control|(
+init|;
+condition|;
+control|)
 block|{
 for|for
 control|(
@@ -252,6 +248,9 @@ name|i
 operator|++
 control|)
 block|{
+comment|// invariant: docsAndFreqs[i].doc<= doc at this point.
+comment|// docsAndFreqs[i].doc may already be equal to doc if we "broke advanceHead"
+comment|// on the previous iteration and the advance on the lead scorer exactly matched.
 if|if
 condition|(
 name|docsAndFreqs
@@ -283,7 +282,6 @@ argument_list|(
 name|doc
 argument_list|)
 expr_stmt|;
-block|}
 if|if
 condition|(
 name|docsAndFreqs
@@ -296,10 +294,20 @@ operator|>
 name|doc
 condition|)
 block|{
-comment|// DocsEnum beyond the current doc - break and advance lead
+comment|// DocsEnum beyond the current doc - break and advance lead to the new highest doc.
+name|doc
+operator|=
+name|docsAndFreqs
+index|[
+name|i
+index|]
+operator|.
+name|doc
+expr_stmt|;
 break|break
 name|advanceHead
 break|;
+block|}
 block|}
 block|}
 comment|// success - all DocsEnums are on the same doc
@@ -307,11 +315,6 @@ return|return
 name|doc
 return|;
 block|}
-do|while
-condition|(
-literal|true
-condition|)
-do|;
 comment|// advance head for next iteration
 name|doc
 operator|=
@@ -323,15 +326,12 @@ name|lead
 operator|.
 name|docs
 operator|.
-name|nextDoc
-argument_list|()
+name|advance
+argument_list|(
+name|doc
+argument_list|)
 expr_stmt|;
 block|}
-do|while
-condition|(
-literal|true
-condition|)
-do|;
 block|}
 annotation|@
 name|Override
