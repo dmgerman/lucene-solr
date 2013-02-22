@@ -632,7 +632,7 @@ literal|null
 argument_list|)
 expr_stmt|;
 comment|//System.out.println( handler.getHiddenFiles() );
-comment|// should not contain:<gettableFiles>solrconfig.xml scheam.xml admin-extra.html</gettableFiles>
+comment|// should not contain:<gettableFiles>solrconfig.xml schema.xml admin-extra.html</gettableFiles>
 name|assertFalse
 argument_list|(
 name|handler
@@ -642,7 +642,7 @@ argument_list|()
 operator|.
 name|contains
 argument_list|(
-literal|"scheam.xml"
+literal|"schema.xml"
 operator|.
 name|toUpperCase
 argument_list|(
