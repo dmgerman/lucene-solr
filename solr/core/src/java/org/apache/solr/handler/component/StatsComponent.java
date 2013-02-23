@@ -250,20 +250,6 @@ name|apache
 operator|.
 name|solr
 operator|.
-name|schema
-operator|.
-name|TrieField
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|solr
-operator|.
 name|search
 operator|.
 name|DocIterator
@@ -1238,17 +1224,6 @@ name|?
 argument_list|>
 name|stv
 decl_stmt|;
-comment|// Currently, only UnInvertedField can deal with multi-part trie fields
-name|String
-name|prefix
-init|=
-name|TrieField
-operator|.
-name|getMainValuePrefix
-argument_list|(
-name|ft
-argument_list|)
-decl_stmt|;
 if|if
 condition|(
 name|sf
@@ -1260,10 +1235,6 @@ name|ft
 operator|.
 name|multiValuedFieldCache
 argument_list|()
-operator|||
-name|prefix
-operator|!=
-literal|null
 condition|)
 block|{
 comment|//use UnInvertedField for multivalued fields
