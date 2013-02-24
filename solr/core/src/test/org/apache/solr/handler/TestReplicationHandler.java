@@ -556,6 +556,16 @@ name|org
 operator|.
 name|junit
 operator|.
+name|Ignore
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|junit
+operator|.
 name|Test
 import|;
 end_import
@@ -5137,6 +5147,11 @@ expr_stmt|;
 block|}
 annotation|@
 name|Test
+annotation|@
+name|Ignore
+argument_list|(
+literal|"ignore while i track down the intermittent problem with this test"
+argument_list|)
 DECL|method|doTestIndexAndConfigAliasReplication
 specifier|public
 name|void
