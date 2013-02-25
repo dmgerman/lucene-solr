@@ -477,6 +477,82 @@ argument_list|()
 expr_stmt|;
 block|}
 block|}
+DECL|method|testQuerySwitch
+specifier|public
+name|void
+name|testQuerySwitch
+parameter_list|()
+throws|throws
+name|Exception
+block|{
+name|SolrQueryRequest
+name|req
+init|=
+name|req
+argument_list|(
+literal|"myXXX"
+argument_list|,
+literal|"XXX"
+argument_list|,
+literal|"myField"
+argument_list|,
+literal|"foo_s"
+argument_list|,
+literal|"myQ"
+argument_list|,
+literal|"{!prefix f=$myField}asdf"
+argument_list|)
+decl_stmt|;
+try|try
+block|{
+name|assertQueryEquals
+argument_list|(
+literal|"switch"
+argument_list|,
+name|req
+argument_list|,
+literal|"{!switch case.foo=XXX case.bar=zzz case.yak=qqq}foo"
+argument_list|,
+literal|"{!switch case.foo=qqq case.bar=XXX case.yak=zzz} bar "
+argument_list|,
+literal|"{!switch case.foo=qqq case.bar=XXX case.yak=zzz v='  bar '}"
+argument_list|,
+literal|"{!switch default=XXX case.foo=qqq case.bar=zzz}asdf"
+argument_list|,
+literal|"{!switch default=$myXXX case.foo=qqq case.bar=zzz}asdf"
+argument_list|,
+literal|"{!switch case=XXX case.bar=zzz case.yak=qqq v=''}"
+argument_list|,
+literal|"{!switch case.bar=zzz case=XXX case.yak=qqq v=''}"
+argument_list|,
+literal|"{!switch case=XXX case.bar=zzz case.yak=qqq}"
+argument_list|,
+literal|"{!switch case=XXX case.bar=zzz case.yak=qqq}   "
+argument_list|,
+literal|"{!switch case=$myXXX case.bar=zzz case.yak=qqq}   "
+argument_list|)
+expr_stmt|;
+name|assertQueryEquals
+argument_list|(
+literal|"switch"
+argument_list|,
+name|req
+argument_list|,
+literal|"{!switch case.foo=$myQ case.bar=zzz case.yak=qqq}foo"
+argument_list|,
+literal|"{!query v=$myQ}"
+argument_list|)
+expr_stmt|;
+block|}
+finally|finally
+block|{
+name|req
+operator|.
+name|close
+argument_list|()
+expr_stmt|;
+block|}
+block|}
 DECL|method|testQueryDismax
 specifier|public
 name|void
