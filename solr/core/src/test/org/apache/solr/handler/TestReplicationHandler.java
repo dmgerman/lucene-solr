@@ -3263,6 +3263,15 @@ expr_stmt|;
 name|pullFromSlaveToMaster
 argument_list|()
 expr_stmt|;
+name|rQuery
+argument_list|(
+literal|3
+argument_list|,
+literal|"*:*"
+argument_list|,
+name|slaveClient
+argument_list|)
+expr_stmt|;
 comment|//get docs from slave and check if number is equal to master
 name|slaveQueryRsp
 operator|=
