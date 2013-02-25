@@ -428,6 +428,15 @@ name|CLEAR
 init|=
 literal|"clear"
 decl_stmt|;
+DECL|field|LIST
+specifier|private
+specifier|static
+specifier|final
+name|String
+name|LIST
+init|=
+literal|"list"
+decl_stmt|;
 DECL|field|CMD
 specifier|private
 specifier|static
@@ -507,6 +516,10 @@ operator|+
 literal|", "
 operator|+
 name|MAKEPATH
+operator|+
+literal|", "
+operator|+
+name|LIST
 operator|+
 literal|", "
 operator|+
@@ -836,6 +849,17 @@ operator|+
 name|CLEAR
 operator|+
 literal|" /solr"
+argument_list|)
+expr_stmt|;
+name|System
+operator|.
+name|out
+operator|.
+name|println
+argument_list|(
+literal|"zkcli.sh -zkhost localhost:9983 -cmd "
+operator|+
+name|LIST
 argument_list|)
 expr_stmt|;
 return|return;
@@ -1456,6 +1480,28 @@ name|collection
 argument_list|,
 name|confName
 argument_list|)
+expr_stmt|;
+block|}
+elseif|else
+if|if
+condition|(
+name|line
+operator|.
+name|getOptionValue
+argument_list|(
+name|CMD
+argument_list|)
+operator|.
+name|equals
+argument_list|(
+name|LIST
+argument_list|)
+condition|)
+block|{
+name|zkClient
+operator|.
+name|printLayoutToStdOut
+argument_list|()
 expr_stmt|;
 block|}
 elseif|else
