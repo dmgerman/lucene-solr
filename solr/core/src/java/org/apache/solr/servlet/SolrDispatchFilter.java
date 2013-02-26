@@ -2420,24 +2420,16 @@ name|IOException
 name|e
 parameter_list|)
 block|{
-comment|// return exception
-name|resp
-operator|.
-name|getWriter
-argument_list|()
-operator|.
-name|println
+name|sendError
 argument_list|(
-name|e
-operator|.
-name|getStackTrace
-argument_list|()
-operator|.
-name|toString
-argument_list|()
-argument_list|)
-expr_stmt|;
-throw|throw
+literal|null
+argument_list|,
+name|solrReq
+argument_list|,
+name|req
+argument_list|,
+name|resp
+argument_list|,
 operator|new
 name|SolrException
 argument_list|(
@@ -2445,13 +2437,16 @@ name|SolrException
 operator|.
 name|ErrorCode
 operator|.
-name|BAD_REQUEST
+name|SERVER_ERROR
 argument_list|,
-literal|"This node forword query failed: "
+literal|"Error trying to proxy request for url: "
 operator|+
 name|coreUrl
+argument_list|,
+name|e
 argument_list|)
-throw|;
+argument_list|)
+expr_stmt|;
 block|}
 block|}
 DECL|method|getRemotCoreUrl
