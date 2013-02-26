@@ -2006,6 +2006,20 @@ argument_list|(
 name|passages
 argument_list|)
 expr_stmt|;
+for|for
+control|(
+name|Passage
+name|p
+range|:
+name|passages
+control|)
+block|{
+name|p
+operator|.
+name|sort
+argument_list|()
+expr_stmt|;
+block|}
 comment|// sort in ascending order
 name|Arrays
 operator|.
