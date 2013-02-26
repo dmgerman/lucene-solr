@@ -71,6 +71,8 @@ operator|.
 name|util
 operator|.
 name|Map
+operator|.
+name|Entry
 import|;
 end_import
 
@@ -81,8 +83,6 @@ operator|.
 name|util
 operator|.
 name|Map
-operator|.
-name|Entry
 import|;
 end_import
 
@@ -363,6 +363,13 @@ argument_list|(
 name|IndexOptions
 operator|.
 name|DOCS_ONLY
+argument_list|)
+expr_stmt|;
+name|DRILL_DOWN_TYPE
+operator|.
+name|setOmitNorms
+argument_list|(
+literal|true
 argument_list|)
 expr_stmt|;
 name|DRILL_DOWN_TYPE
