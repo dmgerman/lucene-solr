@@ -462,6 +462,9 @@ name|boolean
 name|scoresDocsOutOfOrder
 parameter_list|()
 block|{
+comment|// TODO: if this returns false, we should wrap
+comment|// Scorer with AssertingScorer that confirms docIDs
+comment|// are in order?
 return|return
 name|w
 operator|.

@@ -452,6 +452,14 @@ operator|&&
 name|index
 operator|<
 name|numBits
+operator|:
+literal|"index="
+operator|+
+name|index
+operator|+
+literal|" numBits="
+operator|+
+name|numBits
 assert|;
 name|int
 name|wordNum

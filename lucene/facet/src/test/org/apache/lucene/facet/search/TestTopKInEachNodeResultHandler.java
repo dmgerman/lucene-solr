@@ -2101,7 +2101,7 @@ argument_list|(
 literal|6
 argument_list|)
 expr_stmt|;
-comment|// a/b, depth=0, K=2
+comment|// Doctor, depth=0, K=2
 name|hasDoctor
 operator||=
 literal|"Doctor"
@@ -2141,7 +2141,7 @@ argument_list|()
 expr_stmt|;
 name|assertEquals
 argument_list|(
-literal|8.0
+literal|0.0
 argument_list|,
 name|parentRes
 operator|.
@@ -2184,20 +2184,20 @@ index|]
 argument_list|)
 expr_stmt|;
 comment|// doctor, depth=1, K=2
-name|assertFalse
+name|assertTrue
 argument_list|(
-literal|"Shouldn't have found anything for a FacetRequest "
+literal|"Should have found an empty FacetResult "
 operator|+
-literal|"of a facet that doesn't exist in the index."
+literal|"for a facet that doesn't exist in the index."
 argument_list|,
 name|hasDoctor
 argument_list|)
 expr_stmt|;
 name|assertEquals
 argument_list|(
-literal|"Shouldn't have found more than seven request."
+literal|"Shouldn't have found more than 8 request."
 argument_list|,
-literal|7
+literal|8
 argument_list|,
 name|facetResults
 operator|.
@@ -2205,6 +2205,102 @@ name|size
 argument_list|()
 argument_list|)
 expr_stmt|;
+name|fr
+operator|=
+name|facetResults
+operator|.
+name|get
+argument_list|(
+literal|7
+argument_list|)
+expr_stmt|;
+comment|// a/b, depth=0, K=2
+name|assertEquals
+argument_list|(
+literal|0
+argument_list|,
+name|fr
+operator|.
+name|getNumValidDescendants
+argument_list|()
+argument_list|)
+expr_stmt|;
+name|parentRes
+operator|=
+name|fr
+operator|.
+name|getFacetResultNode
+argument_list|()
+expr_stmt|;
+name|assertEquals
+argument_list|(
+literal|8.0
+argument_list|,
+name|parentRes
+operator|.
+name|value
+argument_list|,
+name|Double
+operator|.
+name|MIN_VALUE
+argument_list|)
+expr_stmt|;
+name|assertEquals
+argument_list|(
+literal|0
+argument_list|,
+name|parentRes
+operator|.
+name|subResults
+operator|.
+name|size
+argument_list|()
+argument_list|)
+expr_stmt|;
+name|i
+operator|=
+literal|0
+expr_stmt|;
+for|for
+control|(
+name|FacetResultNode
+name|node
+range|:
+name|parentRes
+operator|.
+name|subResults
+control|)
+block|{
+name|assertEquals
+argument_list|(
+name|expectedValues3
+index|[
+name|i
+operator|++
+index|]
+argument_list|,
+name|node
+operator|.
+name|value
+argument_list|,
+name|Double
+operator|.
+name|MIN_VALUE
+argument_list|)
+expr_stmt|;
+name|assertEquals
+argument_list|(
+literal|0
+argument_list|,
+name|node
+operator|.
+name|subResults
+operator|.
+name|size
+argument_list|()
+argument_list|)
+expr_stmt|;
+block|}
 name|ir
 operator|.
 name|close

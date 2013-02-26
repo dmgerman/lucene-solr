@@ -1385,12 +1385,34 @@ literal|"Shouldn't have found anything for a FacetRequest "
 operator|+
 literal|"of a facet that doesn't exist in the index."
 argument_list|,
-literal|0
+literal|1
 argument_list|,
 name|facetResults
 operator|.
 name|size
 argument_list|()
+argument_list|)
+expr_stmt|;
+name|assertEquals
+argument_list|(
+literal|"Miau Hattulla"
+argument_list|,
+name|facetResults
+operator|.
+name|get
+argument_list|(
+literal|0
+argument_list|)
+operator|.
+name|getFacetResultNode
+argument_list|()
+operator|.
+name|label
+operator|.
+name|components
+index|[
+literal|0
+index|]
 argument_list|)
 expr_stmt|;
 name|closeAll
