@@ -76,7 +76,7 @@ name|lucene
 operator|.
 name|document
 operator|.
-name|Field
+name|SortedDocValuesField
 import|;
 end_import
 
@@ -90,7 +90,7 @@ name|lucene
 operator|.
 name|document
 operator|.
-name|SortedDocValuesField
+name|SortedSetDocValuesField
 import|;
 end_import
 
@@ -285,10 +285,37 @@ name|toString
 argument_list|()
 argument_list|)
 decl_stmt|;
-specifier|final
-name|Field
-name|docValuesField
-init|=
+if|if
+condition|(
+name|field
+operator|.
+name|multiValued
+argument_list|()
+condition|)
+block|{
+name|fields
+operator|.
+name|add
+argument_list|(
+operator|new
+name|SortedSetDocValuesField
+argument_list|(
+name|field
+operator|.
+name|getName
+argument_list|()
+argument_list|,
+name|bytes
+argument_list|)
+argument_list|)
+expr_stmt|;
+block|}
+else|else
+block|{
+name|fields
+operator|.
+name|add
+argument_list|(
 operator|new
 name|SortedDocValuesField
 argument_list|(
@@ -299,14 +326,9 @@ argument_list|()
 argument_list|,
 name|bytes
 argument_list|)
-decl_stmt|;
-name|fields
-operator|.
-name|add
-argument_list|(
-name|docValuesField
 argument_list|)
 expr_stmt|;
+block|}
 return|return
 name|fields
 return|;
@@ -451,12 +473,17 @@ name|SchemaField
 name|field
 parameter_list|)
 block|{
-comment|// change me when multi-valued doc values are supported
 if|if
 condition|(
 name|field
 operator|.
 name|hasDocValues
+argument_list|()
+operator|&&
+operator|!
+name|field
+operator|.
+name|multiValued
 argument_list|()
 operator|&&
 operator|!
@@ -483,7 +510,7 @@ literal|"Field "
 operator|+
 name|this
 operator|+
-literal|" has doc values enabled, but has no default value and is not required"
+literal|" has single-valued doc values enabled, but has no default value and is not required"
 argument_list|)
 throw|;
 block|}

@@ -1877,31 +1877,39 @@ argument_list|()
 return|;
 block|}
 block|}
-comment|/** implements SortedDocValues over n subs, using an OrdinalMap */
+comment|/**     * Implements SortedDocValues over n subs, using an OrdinalMap    * @lucene.internal    */
 DECL|class|MultiSortedDocValues
+specifier|public
 specifier|static
 class|class
 name|MultiSortedDocValues
 extends|extends
 name|SortedDocValues
 block|{
+comment|/** docbase for each leaf: parallel with {@link #values} */
 DECL|field|docStarts
+specifier|public
 specifier|final
 name|int
 name|docStarts
 index|[]
 decl_stmt|;
+comment|/** leaf values */
 DECL|field|values
+specifier|public
 specifier|final
 name|SortedDocValues
 name|values
 index|[]
 decl_stmt|;
+comment|/** ordinal map mapping ords from<code>values</code> to global ord space */
 DECL|field|mapping
+specifier|public
 specifier|final
 name|OrdinalMap
 name|mapping
 decl_stmt|;
+comment|/** Creates a new MultiSortedDocValues over<code>values</code> */
 DECL|method|MultiSortedDocValues
 name|MultiSortedDocValues
 parameter_list|(
@@ -2086,27 +2094,34 @@ argument_list|()
 return|;
 block|}
 block|}
-comment|/** implements MultiSortedDocValues over n subs, using an OrdinalMap */
+comment|/**     * Implements MultiSortedSetDocValues over n subs, using an OrdinalMap     * @lucene.internal    */
 DECL|class|MultiSortedSetDocValues
+specifier|public
 specifier|static
 class|class
 name|MultiSortedSetDocValues
 extends|extends
 name|SortedSetDocValues
 block|{
+comment|/** docbase for each leaf: parallel with {@link #values} */
 DECL|field|docStarts
+specifier|public
 specifier|final
 name|int
 name|docStarts
 index|[]
 decl_stmt|;
+comment|/** leaf values */
 DECL|field|values
+specifier|public
 specifier|final
 name|SortedSetDocValues
 name|values
 index|[]
 decl_stmt|;
+comment|/** ordinal map mapping ords from<code>values</code> to global ord space */
 DECL|field|mapping
+specifier|public
 specifier|final
 name|OrdinalMap
 name|mapping
@@ -2115,6 +2130,7 @@ DECL|field|currentSubIndex
 name|int
 name|currentSubIndex
 decl_stmt|;
+comment|/** Creates a new MultiSortedSetDocValues over<code>values</code> */
 DECL|method|MultiSortedSetDocValues
 name|MultiSortedSetDocValues
 parameter_list|(
