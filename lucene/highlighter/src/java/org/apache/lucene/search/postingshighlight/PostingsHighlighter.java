@@ -1877,7 +1877,7 @@ decl_stmt|;
 if|if
 condition|(
 name|start
-operator|>
+operator|>=
 name|current
 operator|.
 name|endOffset

@@ -1330,6 +1330,17 @@ operator|>=
 literal|0
 argument_list|)
 expr_stmt|;
+comment|// must at least start within the passage
+name|assertTrue
+argument_list|(
+name|matchStart
+operator|<
+name|p
+operator|.
+name|getEndOffset
+argument_list|()
+argument_list|)
+expr_stmt|;
 name|int
 name|matchEnd
 init|=
