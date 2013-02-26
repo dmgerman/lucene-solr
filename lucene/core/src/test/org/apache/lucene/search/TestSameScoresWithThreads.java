@@ -861,12 +861,12 @@ name|join
 argument_list|()
 expr_stmt|;
 block|}
+block|}
 name|r
 operator|.
 name|close
 argument_list|()
 expr_stmt|;
-block|}
 name|dir
 operator|.
 name|close
