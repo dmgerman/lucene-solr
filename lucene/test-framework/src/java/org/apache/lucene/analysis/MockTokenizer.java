@@ -201,7 +201,7 @@ argument_list|(
 operator|new
 name|RegExp
 argument_list|(
-literal|"[A-Za-zÂªÂµÂºÃ-ÃÃ-Ã¶Ã¸-Ë]+"
+literal|"[A-Za-zÂªÂµÂºÃ-ÃÃ-Ã¶Ã¸-Ëä¸-é¿]+"
 argument_list|)
 operator|.
 name|toAutomaton
