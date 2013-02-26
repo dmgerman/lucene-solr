@@ -113,7 +113,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * A {@link PrefixTreeStrategy} which uses {@link RecursivePrefixTreeFilter}.  * This strategy has support for searching non-point shapes (note: not tested).  * Even a query shape with distErrPct=0 (fully precise to the grid) should have  * good performance for typical data, unless there is a lot of indexed data  * coincident with the shape's edge.  *  * @lucene.experimental  */
+comment|/**  * A {@link PrefixTreeStrategy} which uses {@link AbstractVisitingPrefixTreeFilter}.  * This strategy has support for searching non-point shapes (note: not tested).  * Even a query shape with distErrPct=0 (fully precise to the grid) should have  * good performance for typical data, unless there is a lot of indexed data  * coincident with the shape's edge.  *  * @lucene.experimental  */
 end_comment
 
 begin_class
@@ -267,20 +267,23 @@ argument_list|)
 decl_stmt|;
 return|return
 operator|new
-name|RecursivePrefixTreeFilter
+name|IntersectsPrefixTreeFilter
 argument_list|(
+name|shape
+argument_list|,
 name|getFieldName
 argument_list|()
 argument_list|,
 name|grid
 argument_list|,
-name|shape
+name|detailLevel
 argument_list|,
 name|prefixGridScanLevel
 argument_list|,
-name|detailLevel
+literal|true
 argument_list|)
 return|;
+comment|//hasIndexedLeaves
 block|}
 block|}
 end_class
