@@ -812,7 +812,21 @@ name|String
 name|coreNodeName
 parameter_list|)
 block|{
-comment|// System.out.println("###### getShardId("+coreNodeName+") in " + collectionStates);
+name|System
+operator|.
+name|out
+operator|.
+name|println
+argument_list|(
+literal|"###### getShardId("
+operator|+
+name|coreNodeName
+operator|+
+literal|") in "
+operator|+
+name|collectionStates
+argument_list|)
+expr_stmt|;
 for|for
 control|(
 name|DocCollection

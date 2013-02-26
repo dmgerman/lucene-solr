@@ -206,6 +206,15 @@ name|ROLES
 init|=
 literal|"roles"
 decl_stmt|;
+DECL|field|CORE_NODE_NAME
+specifier|public
+specifier|static
+specifier|final
+name|String
+name|CORE_NODE_NAME
+init|=
+literal|"coreNodeName"
+decl_stmt|;
 comment|/** Prefix for core property name=value pair **/
 DECL|field|PROPERTY_PREFIX
 specifier|public
