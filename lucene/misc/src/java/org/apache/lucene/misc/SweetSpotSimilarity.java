@@ -47,7 +47,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * A similarity with a lengthNorm that provides for a "plateau" of  * equally good lengths, and tf helper functions.  *  *<p>  * For lengthNorm, A global min/max can be specified to define the  * plateau of lengths that should all have a norm of 1.0.  * Below the min, and above the max the lengthNorm drops off in a  * sqrt function.  *</p>  *<p>  * A per field min/max can be specified if different fields have  * different sweet spots.  *</p>  *  *<p>  * For tf, baselineTf and hyperbolicTf functions are provided, which  * subclasses can choose between.  *</p>  *  * @see<a href="doc-files/ss.gnuplot">A Gnuplot file used to generate some of the visualizations refrenced from each function.</a>   */
+comment|/**  *<p>  * A similarity with a lengthNorm that provides for a "plateau" of  * equally good lengths, and tf helper functions.  *</p>  *<p>  * For lengthNorm, A min/max can be specified to define the  * plateau of lengths that should all have a norm of 1.0.  * Below the min, and above the max the lengthNorm drops off in a  * sqrt function.  *</p>  *<p>  * For tf, baselineTf and hyperbolicTf functions are provided, which  * subclasses can choose between.  *</p>  *  * @see<a href="doc-files/ss.gnuplot">A Gnuplot file used to generate some of the visualizations refrenced from each function.</a>   */
 end_comment
 
 begin_class
@@ -232,7 +232,7 @@ operator|=
 name|discountOverlaps
 expr_stmt|;
 block|}
-comment|/**    * Implemented as<code> state.getBoost() *    * computeLengthNorm(numTokens)</code> where    * numTokens does not count overlap tokens if    * discountOverlaps is true by default or true for this    * specific field. */
+comment|/**    * Implemented as<code> state.getBoost() *    * computeLengthNorm(numTokens)</code> where    * numTokens does not count overlap tokens if    * discountOverlaps is true by default or true for this    * specific field.     */
 annotation|@
 name|Override
 DECL|method|lengthNorm
