@@ -312,6 +312,43 @@ literal|"does not support doc values"
 argument_list|)
 expr_stmt|;
 block|}
+DECL|method|testSweetSpotSimBadConfig
+specifier|public
+name|void
+name|testSweetSpotSimBadConfig
+parameter_list|()
+throws|throws
+name|Exception
+block|{
+name|doTest
+argument_list|(
+literal|"bad-schema-sweetspot-both-tf.xml"
+argument_list|,
+literal|"Can not mix"
+argument_list|)
+expr_stmt|;
+name|doTest
+argument_list|(
+literal|"bad-schema-sweetspot-partial-baseline.xml"
+argument_list|,
+literal|"Overriding default baselineTf"
+argument_list|)
+expr_stmt|;
+name|doTest
+argument_list|(
+literal|"bad-schema-sweetspot-partial-hyperbolic.xml"
+argument_list|,
+literal|"Overriding default hyperbolicTf"
+argument_list|)
+expr_stmt|;
+name|doTest
+argument_list|(
+literal|"bad-schema-sweetspot-partial-norms.xml"
+argument_list|,
+literal|"Overriding default lengthNorm"
+argument_list|)
+expr_stmt|;
+block|}
 block|}
 end_class
 

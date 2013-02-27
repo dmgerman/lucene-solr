@@ -113,7 +113,7 @@ extends|extends
 name|SimilarityFactory
 block|{
 DECL|field|discountOverlaps
-specifier|private
+specifier|protected
 name|boolean
 name|discountOverlaps
 decl_stmt|;
