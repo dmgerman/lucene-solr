@@ -6678,17 +6678,6 @@ operator|.
 name|getCoreNodeName
 argument_list|()
 decl_stmt|;
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"coreNodeName:"
-operator|+
-name|coreNodeName
-argument_list|)
-expr_stmt|;
 if|if
 condition|(
 name|coreNodeName
