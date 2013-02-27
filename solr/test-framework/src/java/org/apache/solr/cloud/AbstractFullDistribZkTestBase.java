@@ -1000,6 +1000,22 @@ return|return
 literal|true
 return|;
 block|}
+annotation|@
+name|Override
+DECL|method|toString
+specifier|public
+name|String
+name|toString
+parameter_list|()
+block|{
+return|return
+literal|"CloudJettyRunner [url="
+operator|+
+name|url
+operator|+
+literal|"]"
+return|;
+block|}
 block|}
 DECL|class|CloudSolrServerClient
 specifier|static
