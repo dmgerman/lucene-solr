@@ -497,16 +497,26 @@ name|beforeThisClass2
 parameter_list|()
 throws|throws
 name|Exception
+block|{    }
+DECL|method|BasicDistributedZk2Test
+specifier|public
+name|BasicDistributedZk2Test
+parameter_list|()
 block|{
-comment|// TODO: we use an fs based dir because something
-comment|// like a ram dir will not recover correctly right now
-comment|// because tran log will still exist on restart and ram
-comment|// dir will not persist - perhaps translog can empty on
-comment|// start if using an EphemeralDirectoryFactory
-name|useFactory
-argument_list|(
-literal|null
-argument_list|)
+name|super
+argument_list|()
+expr_stmt|;
+name|fixShardCount
+operator|=
+literal|true
+expr_stmt|;
+name|sliceCount
+operator|=
+literal|2
+expr_stmt|;
+name|shardCount
+operator|=
+literal|3
 expr_stmt|;
 block|}
 comment|/*    * (non-Javadoc)    *     * @see org.apache.solr.BaseDistributedSearchTestCase#doTest()    *     * Create 3 shards, each with one replica    */
@@ -1459,7 +1469,7 @@ argument_list|()
 decl_stmt|;
 name|assertEquals
 argument_list|(
-literal|5
+literal|4
 argument_list|,
 name|oldLiveNodes
 argument_list|)
@@ -1472,7 +1482,7 @@ name|chaosMonkey
 operator|.
 name|stopShard
 argument_list|(
-name|SHARD2
+name|SHARD1
 argument_list|,
 literal|0
 argument_list|)
@@ -1501,7 +1511,7 @@ name|shardToJetty
 operator|.
 name|get
 argument_list|(
-name|SHARD2
+name|SHARD1
 argument_list|)
 argument_list|)
 expr_stmt|;
@@ -1553,9 +1563,6 @@ block|}
 name|commit
 argument_list|()
 expr_stmt|;
-name|printLayout
-argument_list|()
-expr_stmt|;
 name|query
 argument_list|(
 literal|"q"
@@ -1591,13 +1598,27 @@ operator|.
 name|getNumFound
 argument_list|()
 decl_stmt|;
+name|cloudClient
+operator|.
+name|getZkStateReader
+argument_list|()
+operator|.
+name|getLeaderRetry
+argument_list|(
+name|DEFAULT_COLLECTION
+argument_list|,
+name|SHARD1
+argument_list|,
+literal|15000
+argument_list|)
+expr_stmt|;
 name|index_specific
 argument_list|(
 name|shardToJetty
 operator|.
 name|get
 argument_list|(
-name|SHARD2
+name|SHARD1
 argument_list|)
 operator|.
 name|get
@@ -1916,7 +1937,7 @@ name|shardToJetty
 operator|.
 name|get
 argument_list|(
-name|SHARD2
+name|SHARD1
 argument_list|)
 operator|.
 name|get
@@ -2092,20 +2113,6 @@ name|client
 operator|.
 name|solrClient
 decl_stmt|;
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"base url: "
-operator|+
-name|client
-operator|.
-name|getBaseURL
-argument_list|()
-argument_list|)
-expr_stmt|;
 name|ModifiableSolrParams
 name|params
 init|=
@@ -2153,17 +2160,6 @@ argument_list|(
 name|request
 argument_list|)
 decl_stmt|;
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"results:"
-operator|+
-name|results
-argument_list|)
-expr_stmt|;
 name|checkForBackupSuccess
 argument_list|(
 name|client
