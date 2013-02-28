@@ -373,6 +373,16 @@ name|setUp
 argument_list|()
 expr_stmt|;
 block|}
+DECL|method|getSolrXml
+specifier|protected
+name|String
+name|getSolrXml
+parameter_list|()
+block|{
+return|return
+literal|"solr-no-core.xml"
+return|;
+block|}
 DECL|method|UnloadDistributedZkTest
 specifier|public
 name|UnloadDistributedZkTest
@@ -380,6 +390,10 @@ parameter_list|()
 block|{
 name|super
 argument_list|()
+expr_stmt|;
+name|checkCreatedVsState
+operator|=
+literal|false
 expr_stmt|;
 block|}
 annotation|@

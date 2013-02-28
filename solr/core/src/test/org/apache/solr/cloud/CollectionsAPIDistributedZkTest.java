@@ -846,15 +846,7 @@ name|beforeThisClass2
 parameter_list|()
 throws|throws
 name|Exception
-block|{
-comment|// TODO: we use an fs based dir because something
-comment|// like a ram dir will not recover correctly right now
-name|useFactory
-argument_list|(
-literal|null
-argument_list|)
-expr_stmt|;
-block|}
+block|{    }
 annotation|@
 name|Before
 annotation|@
