@@ -1310,9 +1310,16 @@ name|shouldAvoidCodec
 argument_list|(
 literal|"CheapBastard"
 argument_list|)
+operator|&&
+operator|!
+name|shouldAvoidCodec
+argument_list|(
+literal|"Lucene41"
+argument_list|)
 operator|)
 condition|)
 block|{
+comment|// we also avoid this codec if Lucene41 is avoided, since thats the postings format it uses.
 name|codec
 operator|=
 operator|new
