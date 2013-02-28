@@ -896,6 +896,16 @@ literal|"true"
 argument_list|)
 expr_stmt|;
 block|}
+DECL|method|getSolrXml
+specifier|protected
+name|String
+name|getSolrXml
+parameter_list|()
+block|{
+return|return
+literal|"solr-no-core.xml"
+return|;
+block|}
 DECL|method|CollectionsAPIDistributedZkTest
 specifier|public
 name|CollectionsAPIDistributedZkTest
@@ -935,6 +945,10 @@ name|Request
 argument_list|>
 argument_list|>
 argument_list|()
+expr_stmt|;
+name|checkCreatedVsState
+operator|=
+literal|false
 expr_stmt|;
 block|}
 annotation|@
@@ -1034,65 +1048,12 @@ parameter_list|()
 throws|throws
 name|Exception
 block|{
-comment|// setLoggingLevel(null);
-name|ZkStateReader
-name|zkStateReader
-init|=
-name|cloudClient
-operator|.
-name|getZkStateReader
-argument_list|()
-decl_stmt|;
-comment|// make sure we have leaders for each shard
-for|for
-control|(
-name|int
-name|j
-init|=
-literal|1
-init|;
-name|j
-operator|<
-name|sliceCount
-condition|;
-name|j
-operator|++
-control|)
-block|{
-name|zkStateReader
-operator|.
-name|getLeaderRetry
-argument_list|(
-name|DEFAULT_COLLECTION
-argument_list|,
-literal|"shard"
-operator|+
-name|j
-argument_list|,
-literal|10000
-argument_list|)
-expr_stmt|;
-block|}
-comment|// make sure we again have leaders for each shard
-name|waitForRecoveriesToFinish
-argument_list|(
-literal|false
-argument_list|)
-expr_stmt|;
-name|del
-argument_list|(
-literal|"*:*"
-argument_list|)
-expr_stmt|;
-comment|// would be better if these where all separate tests - but much, much
-comment|// slower
 name|testNodesUsedByCreate
 argument_list|()
 expr_stmt|;
 name|testCollectionsAPI
 argument_list|()
 expr_stmt|;
-comment|// Thread.sleep(10000000000L);
 if|if
 condition|(
 name|DEBUG
