@@ -337,13 +337,14 @@ name|sort
 argument_list|)
 expr_stmt|;
 comment|//only 1 thing in the list, no Sort specified
+comment|// SOLR-4458 - using different case variations of asc and desc
 name|sort
 operator|=
 name|QueryParsing
 operator|.
 name|parseSort
 argument_list|(
-literal|"score asc"
+literal|"score aSc"
 argument_list|,
 name|req
 argument_list|)
@@ -391,7 +392,7 @@ name|QueryParsing
 operator|.
 name|parseSort
 argument_list|(
-literal|"weight desc"
+literal|"weight dEsC"
 argument_list|,
 name|req
 argument_list|)
@@ -452,7 +453,7 @@ name|QueryParsing
 operator|.
 name|parseSort
 argument_list|(
-literal|"weight desc,bday asc"
+literal|"weight desc,bday ASC"
 argument_list|,
 name|req
 argument_list|)
@@ -766,7 +767,7 @@ name|QueryParsing
 operator|.
 name|parseSort
 argument_list|(
-literal|"weight         desc,            bday         asc"
+literal|"weight         DESC,            bday         asc"
 argument_list|,
 name|req
 argument_list|)
