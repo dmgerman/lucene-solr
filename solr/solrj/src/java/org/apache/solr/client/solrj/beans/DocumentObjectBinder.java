@@ -683,16 +683,20 @@ range|:
 name|members
 control|)
 block|{
+comment|// TODO: Fix below code to use c.isAnnotationPresent(). It was changed
+comment|// to the null check to work around a bug in JDK 8 b78 (see LUCENE-4808).
 if|if
 condition|(
 name|member
 operator|.
-name|isAnnotationPresent
+name|getAnnotation
 argument_list|(
 name|Field
 operator|.
 name|class
 argument_list|)
+operator|!=
+literal|null
 condition|)
 block|{
 name|member
