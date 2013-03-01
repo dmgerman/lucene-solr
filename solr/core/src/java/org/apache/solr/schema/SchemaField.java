@@ -294,6 +294,7 @@ name|type
 return|;
 block|}
 DECL|method|getProperties
+specifier|public
 name|int
 name|getProperties
 parameter_list|()
