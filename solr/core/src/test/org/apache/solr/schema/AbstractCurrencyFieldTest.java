@@ -88,6 +88,16 @@ end_import
 
 begin_import
 import|import
+name|org
+operator|.
+name|junit
+operator|.
+name|Assume
+import|;
+end_import
+
+begin_import
+import|import
 name|java
 operator|.
 name|util
@@ -116,18 +126,92 @@ name|Set
 import|;
 end_import
 
+begin_import
+import|import
+name|java
+operator|.
+name|util
+operator|.
+name|Currency
+import|;
+end_import
+
 begin_comment
-comment|/**  * Tests currency field type.  */
+comment|/**  * Tests currency field type.  * @see #field  */
 end_comment
 
 begin_class
-DECL|class|CurrencyFieldTest
+annotation|@
+name|Ignore
+argument_list|(
+literal|"Abstract base class with test methods"
+argument_list|)
+DECL|class|AbstractCurrencyFieldTest
 specifier|public
+specifier|abstract
 class|class
-name|CurrencyFieldTest
+name|AbstractCurrencyFieldTest
 extends|extends
 name|SolrTestCaseJ4
 block|{
+comment|/**    * "Assumes" that the specified list of currency codes are    * supported in this JVM    */
+DECL|method|assumeCurrencySupport
+specifier|public
+specifier|static
+name|void
+name|assumeCurrencySupport
+parameter_list|(
+name|String
+modifier|...
+name|codes
+parameter_list|)
+block|{
+try|try
+block|{
+comment|// each JDK might have a diff list of supported currencies,
+comment|// these are the ones needed for this test to work.
+for|for
+control|(
+name|String
+name|code
+range|:
+name|codes
+control|)
+block|{
+name|Currency
+name|obj
+init|=
+name|Currency
+operator|.
+name|getInstance
+argument_list|(
+name|code
+argument_list|)
+decl_stmt|;
+name|assertNotNull
+argument_list|(
+name|code
+argument_list|,
+name|obj
+argument_list|)
+expr_stmt|;
+block|}
+block|}
+catch|catch
+parameter_list|(
+name|IllegalArgumentException
+name|e
+parameter_list|)
+block|{
+name|Assume
+operator|.
+name|assumeNoException
+argument_list|(
+name|e
+argument_list|)
+expr_stmt|;
+block|}
+block|}
 annotation|@
 name|BeforeClass
 DECL|method|beforeClass
@@ -139,6 +223,21 @@ parameter_list|()
 throws|throws
 name|Exception
 block|{
+name|assumeCurrencySupport
+argument_list|(
+literal|"USD"
+argument_list|,
+literal|"EUR"
+argument_list|,
+literal|"MXN"
+argument_list|,
+literal|"GBP"
+argument_list|,
+literal|"JPY"
+argument_list|,
+literal|"NOK"
+argument_list|)
+expr_stmt|;
 name|initCore
 argument_list|(
 literal|"solrconfig.xml"
@@ -147,6 +246,14 @@ literal|"schema.xml"
 argument_list|)
 expr_stmt|;
 block|}
+comment|/** The field name to use in all tests */
+DECL|method|field
+specifier|public
+specifier|abstract
+name|String
+name|field
+parameter_list|()
+function_decl|;
 annotation|@
 name|Test
 DECL|method|testCurrencySchema
@@ -175,7 +282,8 @@ name|schema
 operator|.
 name|getField
 argument_list|(
-literal|"amount"
+name|field
+argument_list|()
 argument_list|)
 decl_stmt|;
 name|assertNotNull
@@ -319,7 +427,8 @@ name|schema
 operator|.
 name|getField
 argument_list|(
-literal|"amount"
+name|field
+argument_list|()
 argument_list|)
 decl_stmt|;
 name|assertNotNull
@@ -329,7 +438,10 @@ argument_list|)
 expr_stmt|;
 name|assertTrue
 argument_list|(
-literal|"amount is not a poly field"
+name|field
+argument_list|()
+operator|+
+literal|" is not a poly field"
 argument_list|,
 name|amount
 operator|.
@@ -499,16 +611,16 @@ operator|.
 name|listAvailableCurrencies
 argument_list|()
 decl_stmt|;
-assert|assert
-operator|(
+name|assertEquals
+argument_list|(
+literal|5
+argument_list|,
 name|availableCurrencies
 operator|.
 name|size
 argument_list|()
-operator|==
-literal|4
-operator|)
-assert|;
+argument_list|)
+expr_stmt|;
 assert|assert
 operator|(
 name|p
@@ -673,7 +785,8 @@ literal|"id"
 argument_list|,
 literal|"0"
 argument_list|,
-literal|"amount"
+name|field
+argument_list|()
 argument_list|,
 literal|"0,USD"
 argument_list|)
@@ -737,7 +850,8 @@ literal|""
 operator|+
 name|i
 argument_list|,
-literal|"amount"
+name|field
+argument_list|()
 argument_list|,
 name|i
 operator|+
@@ -807,7 +921,8 @@ literal|""
 operator|+
 name|i
 argument_list|,
-literal|"amount"
+name|field
+argument_list|()
 argument_list|,
 name|i
 operator|+
@@ -824,7 +939,8 @@ literal|"id"
 argument_list|,
 literal|"40"
 argument_list|,
-literal|"amount"
+name|field
+argument_list|()
 argument_list|,
 literal|"0,USD"
 argument_list|)
@@ -847,7 +963,10 @@ literal|"*,score"
 argument_list|,
 literal|"q"
 argument_list|,
-literal|"amount:[2.00,USD TO 5.00,USD]"
+name|field
+argument_list|()
+operator|+
+literal|":[2.00,USD TO 5.00,USD]"
 argument_list|)
 argument_list|,
 literal|"//*[@numFound='4']"
@@ -863,7 +982,10 @@ literal|"*,score"
 argument_list|,
 literal|"q"
 argument_list|,
-literal|"amount:[0.50,USD TO 1.00,USD]"
+name|field
+argument_list|()
+operator|+
+literal|":[0.50,USD TO 1.00,USD]"
 argument_list|)
 argument_list|,
 literal|"//*[@numFound='1']"
@@ -879,7 +1001,10 @@ literal|"*,score"
 argument_list|,
 literal|"q"
 argument_list|,
-literal|"amount:[24.00,USD TO 25.00,USD]"
+name|field
+argument_list|()
+operator|+
+literal|":[24.00,USD TO 25.00,USD]"
 argument_list|)
 argument_list|,
 literal|"//*[@numFound='0']"
@@ -896,7 +1021,10 @@ literal|"*,score"
 argument_list|,
 literal|"q"
 argument_list|,
-literal|"amount:[0.50,GBP TO 1.00,GBP]"
+name|field
+argument_list|()
+operator|+
+literal|":[0.50,GBP TO 1.00,GBP]"
 argument_list|)
 argument_list|,
 literal|"//*[@numFound='2']"
@@ -913,7 +1041,10 @@ literal|"*,score"
 argument_list|,
 literal|"q"
 argument_list|,
-literal|"amount:[24.00,EUR TO 25.00,EUR]"
+name|field
+argument_list|()
+operator|+
+literal|":[24.00,EUR TO 25.00,EUR]"
 argument_list|)
 argument_list|,
 literal|"//*[@numFound='1']"
@@ -930,7 +1061,10 @@ literal|"*,score"
 argument_list|,
 literal|"q"
 argument_list|,
-literal|"amount:[24.99,EUR TO 25.01,EUR]"
+name|field
+argument_list|()
+operator|+
+literal|":[24.99,EUR TO 25.01,EUR]"
 argument_list|)
 argument_list|,
 literal|"//*[@numFound='1']"
@@ -947,7 +1081,10 @@ literal|"*,score"
 argument_list|,
 literal|"q"
 argument_list|,
-literal|"amount:[* TO *]"
+name|field
+argument_list|()
+operator|+
+literal|":[* TO *]"
 argument_list|)
 argument_list|,
 literal|"//*[@numFound='"
@@ -974,7 +1111,10 @@ literal|"*,score"
 argument_list|,
 literal|"q"
 argument_list|,
-literal|"amount:[*,EUR TO *,EUR]"
+name|field
+argument_list|()
+operator|+
+literal|":[*,EUR TO *,EUR]"
 argument_list|)
 argument_list|,
 literal|"//*[@numFound='"
@@ -1001,7 +1141,10 @@ literal|"*,score"
 argument_list|,
 literal|"q"
 argument_list|,
-literal|"amount:[* TO 5,USD]"
+name|field
+argument_list|()
+operator|+
+literal|":[* TO 5,USD]"
 argument_list|)
 argument_list|,
 literal|"//*[@numFound='"
@@ -1028,7 +1171,10 @@ literal|"*,score"
 argument_list|,
 literal|"q"
 argument_list|,
-literal|"amount:[*,USD TO 5,USD]"
+name|field
+argument_list|()
+operator|+
+literal|":[*,USD TO 5,USD]"
 argument_list|)
 argument_list|,
 literal|"//*[@numFound='"
@@ -1055,7 +1201,10 @@ literal|"*,score"
 argument_list|,
 literal|"q"
 argument_list|,
-literal|"amount:[3 TO *]"
+name|field
+argument_list|()
+operator|+
+literal|":[3 TO *]"
 argument_list|)
 argument_list|,
 literal|"//*[@numFound='8']"
@@ -1085,7 +1234,8 @@ literal|""
 operator|+
 literal|1
 argument_list|,
-literal|"amount"
+name|field
+argument_list|()
 argument_list|,
 literal|"10.00,USD"
 argument_list|)
@@ -1101,9 +1251,10 @@ literal|""
 operator|+
 literal|2
 argument_list|,
-literal|"amount"
+name|field
+argument_list|()
 argument_list|,
-literal|"15.00,EUR"
+literal|"15.00,MXN"
 argument_list|)
 argument_list|)
 expr_stmt|;
@@ -1123,7 +1274,10 @@ literal|"*,score"
 argument_list|,
 literal|"q"
 argument_list|,
-literal|"amount:10.00,USD"
+name|field
+argument_list|()
+operator|+
+literal|":10.00,USD"
 argument_list|)
 argument_list|,
 literal|"//int[@name='id']='1'"
@@ -1139,7 +1293,10 @@ literal|"*,score"
 argument_list|,
 literal|"q"
 argument_list|,
-literal|"amount:9.99,USD"
+name|field
+argument_list|()
+operator|+
+literal|":9.99,USD"
 argument_list|)
 argument_list|,
 literal|"//*[@numFound='0']"
@@ -1155,7 +1312,10 @@ literal|"*,score"
 argument_list|,
 literal|"q"
 argument_list|,
-literal|"amount:10.01,USD"
+name|field
+argument_list|()
+operator|+
+literal|":10.01,USD"
 argument_list|)
 argument_list|,
 literal|"//*[@numFound='0']"
@@ -1171,7 +1331,10 @@ literal|"*,score"
 argument_list|,
 literal|"q"
 argument_list|,
-literal|"amount:15.00,EUR"
+name|field
+argument_list|()
+operator|+
+literal|":15.00,MXN"
 argument_list|)
 argument_list|,
 literal|"//int[@name='id']='2'"
@@ -1187,7 +1350,10 @@ literal|"*,score"
 argument_list|,
 literal|"q"
 argument_list|,
-literal|"amount:7.50,USD"
+name|field
+argument_list|()
+operator|+
+literal|":7.50,USD"
 argument_list|)
 argument_list|,
 literal|"//int[@name='id']='2'"
@@ -1203,7 +1369,10 @@ literal|"*,score"
 argument_list|,
 literal|"q"
 argument_list|,
-literal|"amount:7.49,USD"
+name|field
+argument_list|()
+operator|+
+literal|":7.49,USD"
 argument_list|)
 argument_list|,
 literal|"//*[@numFound='0']"
@@ -1219,7 +1388,10 @@ literal|"*,score"
 argument_list|,
 literal|"q"
 argument_list|,
-literal|"amount:7.51,USD"
+name|field
+argument_list|()
+operator|+
+literal|":7.51,USD"
 argument_list|)
 argument_list|,
 literal|"//*[@numFound='0']"
@@ -1275,7 +1447,8 @@ literal|""
 operator|+
 name|i
 argument_list|,
-literal|"amount"
+name|field
+argument_list|()
 argument_list|,
 operator|(
 name|r
@@ -1353,7 +1526,10 @@ literal|"*,score"
 argument_list|,
 literal|"q"
 argument_list|,
-literal|"amount:["
+name|field
+argument_list|()
+operator|+
+literal|":["
 operator|+
 name|lower
 operator|+
@@ -1381,7 +1557,10 @@ literal|"*,score"
 argument_list|,
 literal|"q"
 argument_list|,
-literal|"amount:["
+name|field
+argument_list|()
+operator|+
+literal|":["
 operator|+
 name|lower
 operator|+
@@ -1460,7 +1639,10 @@ literal|"*,score"
 argument_list|,
 literal|"q"
 argument_list|,
-literal|"amount:["
+name|field
+argument_list|()
+operator|+
+literal|":["
 operator|+
 name|lower
 operator|+
@@ -1571,7 +1753,10 @@ literal|"*,score"
 argument_list|,
 literal|"q"
 argument_list|,
-literal|"amount:["
+name|field
+argument_list|()
+operator|+
+literal|":["
 operator|+
 name|lower
 operator|+
@@ -1637,7 +1822,8 @@ literal|""
 operator|+
 literal|1
 argument_list|,
-literal|"amount"
+name|field
+argument_list|()
 argument_list|,
 literal|"10.00,USD"
 argument_list|)
@@ -1653,7 +1839,8 @@ literal|""
 operator|+
 literal|2
 argument_list|,
-literal|"amount"
+name|field
+argument_list|()
 argument_list|,
 literal|"15.00,EUR"
 argument_list|)
@@ -1669,7 +1856,8 @@ literal|""
 operator|+
 literal|3
 argument_list|,
-literal|"amount"
+name|field
+argument_list|()
 argument_list|,
 literal|"7.00,EUR"
 argument_list|)
@@ -1685,7 +1873,8 @@ literal|""
 operator|+
 literal|4
 argument_list|,
-literal|"amount"
+name|field
+argument_list|()
 argument_list|,
 literal|"6.00,GBP"
 argument_list|)
@@ -1701,7 +1890,8 @@ literal|""
 operator|+
 literal|5
 argument_list|,
-literal|"amount"
+name|field
+argument_list|()
 argument_list|,
 literal|"2.00,GBP"
 argument_list|)
@@ -1727,7 +1917,10 @@ literal|"*:*"
 argument_list|,
 literal|"sort"
 argument_list|,
-literal|"amount desc"
+name|field
+argument_list|()
+operator|+
+literal|" desc"
 argument_list|,
 literal|"limit"
 argument_list|,
@@ -1751,7 +1944,10 @@ literal|"*:*"
 argument_list|,
 literal|"sort"
 argument_list|,
-literal|"amount asc"
+name|field
+argument_list|()
+operator|+
+literal|" asc"
 argument_list|,
 literal|"limit"
 argument_list|,
