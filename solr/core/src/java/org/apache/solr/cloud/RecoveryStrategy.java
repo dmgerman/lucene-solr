@@ -1058,10 +1058,9 @@ name|doFetch
 argument_list|(
 name|solrParams
 argument_list|,
-literal|true
+literal|false
 argument_list|)
 decl_stmt|;
-comment|// TODO: look into making force=true not download files we already have?
 if|if
 condition|(
 operator|!
