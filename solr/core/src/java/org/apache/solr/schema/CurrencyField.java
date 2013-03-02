@@ -968,11 +968,16 @@ name|ErrorCode
 operator|.
 name|BAD_REQUEST
 argument_list|,
-literal|"Error instansiating exhange rate provider "
+literal|"Error instantiating exhange rate provider "
 operator|+
 name|exchangeRateProviderClass
 operator|+
-literal|". Please check your FieldType configuration"
+literal|": "
+operator|+
+name|e
+operator|.
+name|getMessage
+argument_list|()
 argument_list|,
 name|e
 argument_list|)

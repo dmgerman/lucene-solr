@@ -179,7 +179,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Exchange Rates Provider for {@link CurrencyField} implementing the freely available  * exchange rates from openexchangerates.org  *<p>  *<b>Disclaimer:</b> This data is collected from various providers and provided free of charge  * for informational purposes only, with no guarantee whatsoever of accuracy, validity,  * availability or fitness for any purpose; use at your own risk. Other than that - have  * fun, and please share/watch/fork if you think data like this should be free!  */
+comment|/**  *<p>  * Exchange Rates Provider for {@link CurrencyField} capable of fetching&amp   * parsing the freely available exchange rates from openexchangerates.org  *</p>  *<p>  * Configuration Options:  *</p>  *<ul>  *<li><code>ratesFileLocation</code> - A file path or absolute URL specifying the JSON data to load (mandatory)</li>  *<li><coderefreshInterval></code> - How frequently (in minutes) to reload the exchange rate data (default: 1440)</li>  *</ul>  *<p>  *<b>Disclaimer:</b> This data is collected from various providers and provided free of charge  * for informational purposes only, with no guarantee whatsoever of accuracy, validity,  * availability or fitness for any purpose; use at your own risk. Other than that - have  * fun, and please share/watch/fork if you think data like this should be free!  *</p>  * @see<a href="https://openexchangerates.org/documentation">openexchangerates.org JSON Data Format</a>  */
 end_comment
 
 begin_class
@@ -222,15 +222,6 @@ name|String
 name|PARAM_REFRESH_INTERVAL
 init|=
 literal|"refreshInterval"
-decl_stmt|;
-DECL|field|DEFAULT_RATES_FILE_LOCATION
-specifier|protected
-specifier|static
-specifier|final
-name|String
-name|DEFAULT_RATES_FILE_LOCATION
-init|=
-literal|"http://openexchangerates.org/latest.json"
 decl_stmt|;
 DECL|field|DEFAULT_REFRESH_INTERVAL
 specifier|protected
@@ -739,18 +730,34 @@ try|try
 block|{
 name|ratesFileLocation
 operator|=
-name|getParam
-argument_list|(
 name|params
 operator|.
 name|get
 argument_list|(
 name|PARAM_RATES_FILE_LOCATION
 argument_list|)
-argument_list|,
-name|DEFAULT_RATES_FILE_LOCATION
-argument_list|)
 expr_stmt|;
+if|if
+condition|(
+literal|null
+operator|==
+name|ratesFileLocation
+condition|)
+block|{
+throw|throw
+operator|new
+name|SolrException
+argument_list|(
+name|ErrorCode
+operator|.
+name|SERVER_ERROR
+argument_list|,
+literal|"Init param must be specified: "
+operator|+
+name|PARAM_RATES_FILE_LOCATION
+argument_list|)
+throw|;
+block|}
 name|refreshInterval
 operator|=
 name|Integer
@@ -808,8 +815,18 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+name|SolrException
+name|e1
+parameter_list|)
+block|{
+throw|throw
+name|e1
+throw|;
+block|}
+catch|catch
+parameter_list|(
 name|Exception
-name|e
+name|e2
 parameter_list|)
 block|{
 throw|throw
@@ -818,11 +835,16 @@ name|SolrException
 argument_list|(
 name|ErrorCode
 operator|.
-name|BAD_REQUEST
+name|SERVER_ERROR
 argument_list|,
-literal|"Error initializing"
+literal|"Error initializing: "
+operator|+
+name|e2
+operator|.
+name|getMessage
+argument_list|()
 argument_list|,
-name|e
+name|e2
 argument_list|)
 throw|;
 block|}
