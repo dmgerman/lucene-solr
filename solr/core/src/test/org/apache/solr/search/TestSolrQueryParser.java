@@ -395,6 +395,61 @@ literal|"/response/numFound==1"
 argument_list|)
 expr_stmt|;
 block|}
+annotation|@
+name|Test
+DECL|method|testSyntax
+specifier|public
+name|void
+name|testSyntax
+parameter_list|()
+throws|throws
+name|Exception
+block|{
+comment|// a bare * should be treated as *:*
+name|assertJQ
+argument_list|(
+name|req
+argument_list|(
+literal|"q"
+argument_list|,
+literal|"*"
+argument_list|,
+literal|"df"
+argument_list|,
+literal|"doesnotexist_s"
+argument_list|)
+argument_list|,
+literal|"/response/docs/[0]=="
+comment|// make sure we get something...
+argument_list|)
+expr_stmt|;
+name|assertJQ
+argument_list|(
+name|req
+argument_list|(
+literal|"q"
+argument_list|,
+literal|"doesnotexist_s:*"
+argument_list|)
+argument_list|,
+literal|"/response/numFound==0"
+comment|// nothing should be found
+argument_list|)
+expr_stmt|;
+name|assertJQ
+argument_list|(
+name|req
+argument_list|(
+literal|"q"
+argument_list|,
+literal|"doesnotexist_s:( * * * )"
+argument_list|)
+argument_list|,
+literal|"/response/numFound==0"
+comment|// nothing should be found
+argument_list|)
+expr_stmt|;
+block|}
 block|}
 end_class
 
