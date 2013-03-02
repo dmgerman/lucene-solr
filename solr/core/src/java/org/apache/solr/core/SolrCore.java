@@ -3991,6 +3991,7 @@ operator|.
 name|usingDefaultDataDir
 argument_list|()
 condition|)
+block|{
 name|dataDir
 operator|=
 name|config
@@ -3998,12 +3999,14 @@ operator|.
 name|getDataDir
 argument_list|()
 expr_stmt|;
+block|}
 if|if
 condition|(
 name|dataDir
 operator|==
 literal|null
 condition|)
+block|{
 name|dataDir
 operator|=
 name|cd
@@ -4011,6 +4014,7 @@ operator|.
 name|getDataDir
 argument_list|()
 expr_stmt|;
+block|}
 block|}
 name|dataDir
 operator|=

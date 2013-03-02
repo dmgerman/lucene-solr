@@ -212,7 +212,7 @@ name|defaultValue
 argument_list|)
 expr_stmt|;
 block|}
-comment|/** Create a new SchemaField with the given name and type,    * and with the specified properties.  Properties are *not*    * inherited from the type in this case, so users of this    * constructor should derive the properties from type.getProperties()    *  using all the default properties from the type.    */
+comment|/** Create a new SchemaField with the given name and type,    * and with the specified properties.  Properties are *not*    * inherited from the type in this case, so users of this    * constructor should derive the properties from type.getSolrProperties()    *  using all the default properties from the type.    */
 DECL|method|SchemaField
 specifier|public
 name|SchemaField

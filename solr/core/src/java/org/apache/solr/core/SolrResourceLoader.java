@@ -716,6 +716,7 @@ argument_list|(
 literal|"UTF-8"
 argument_list|)
 decl_stmt|;
+comment|//TODO: Solr5. Remove this completely when you obsolete putting<core> tags in solr.xml (See Solr-4196)
 DECL|field|coreProperties
 specifier|private
 specifier|final

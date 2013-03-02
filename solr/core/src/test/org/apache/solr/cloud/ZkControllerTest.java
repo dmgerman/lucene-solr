@@ -1257,10 +1257,8 @@ argument_list|)
 block|{
 block|{
 name|initShardHandler
-argument_list|(
-literal|null
-argument_list|)
-expr_stmt|;
+parameter_list|()
+constructor_decl|;
 block|}
 block|}
 decl_stmt|;

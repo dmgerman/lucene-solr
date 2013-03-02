@@ -1047,10 +1047,8 @@ operator|.
 name|DEFAULT_DEFAULT_CORE_NAME
 expr_stmt|;
 name|initShardHandler
-argument_list|(
-literal|null
-argument_list|)
-expr_stmt|;
+parameter_list|()
+constructor_decl|;
 name|initZooKeeper
 argument_list|(
 name|System

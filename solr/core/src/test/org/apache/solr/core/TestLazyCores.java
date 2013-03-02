@@ -66,20 +66,6 @@ name|solr
 operator|.
 name|common
 operator|.
-name|SolrInputDocument
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|solr
-operator|.
-name|common
-operator|.
 name|util
 operator|.
 name|NamedList
@@ -190,6 +176,16 @@ name|org
 operator|.
 name|junit
 operator|.
+name|After
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|junit
+operator|.
 name|BeforeClass
 import|;
 end_import
@@ -285,17 +281,17 @@ name|Exception
 block|{
 name|initCore
 argument_list|(
-literal|"solrconfig.xml"
+literal|"solrconfig-minimal.xml"
 argument_list|,
-literal|"schema.xml"
+literal|"schema-tiny.xml"
 argument_list|)
 expr_stmt|;
 block|}
-DECL|field|_solrHomeDirectory
+DECL|field|solrHomeDirectory
 specifier|private
 specifier|final
 name|File
-name|_solrHomeDirectory
+name|solrHomeDirectory
 init|=
 operator|new
 name|File
@@ -304,33 +300,6 @@ name|TEMP_DIR
 argument_list|,
 literal|"org.apache.solr.core.TestLazyCores_testlazy"
 argument_list|)
-decl_stmt|;
-DECL|field|_necessaryConfs
-specifier|private
-specifier|static
-name|String
-index|[]
-name|_necessaryConfs
-init|=
-block|{
-literal|"schema.xml"
-block|,
-literal|"solrconfig.xml"
-block|,
-literal|"stopwords.txt"
-block|,
-literal|"synonyms.txt"
-block|,
-literal|"protwords.txt"
-block|,
-literal|"old_synonyms.txt"
-block|,
-literal|"currency.xml"
-block|,
-literal|"open-exchange-rates.json"
-block|,
-literal|"mapping-ISOLatin1Accent.txt"
-block|}
 decl_stmt|;
 DECL|method|copyConfFiles
 specifier|private
@@ -383,14 +352,6 @@ argument_list|()
 operator|+
 literal|"/collection1/conf"
 decl_stmt|;
-for|for
-control|(
-name|String
-name|file
-range|:
-name|_necessaryConfs
-control|)
-block|{
 name|FileUtils
 operator|.
 name|copyFile
@@ -400,7 +361,7 @@ name|File
 argument_list|(
 name|top
 argument_list|,
-name|file
+literal|"schema-tiny.xml"
 argument_list|)
 argument_list|,
 operator|new
@@ -408,11 +369,31 @@ name|File
 argument_list|(
 name|subHome
 argument_list|,
-name|file
+literal|"schema-tiny.xml"
 argument_list|)
 argument_list|)
 expr_stmt|;
-block|}
+name|FileUtils
+operator|.
+name|copyFile
+argument_list|(
+operator|new
+name|File
+argument_list|(
+name|top
+argument_list|,
+literal|"solrconfig-minimal.xml"
+argument_list|)
+argument_list|,
+operator|new
+name|File
+argument_list|(
+name|subHome
+argument_list|,
+literal|"solrconfig-minimal.xml"
+argument_list|)
+argument_list|)
+expr_stmt|;
 block|}
 DECL|method|init
 specifier|private
@@ -424,7 +405,7 @@ name|Exception
 block|{
 if|if
 condition|(
-name|_solrHomeDirectory
+name|solrHomeDirectory
 operator|.
 name|exists
 argument_list|()
@@ -434,7 +415,7 @@ name|FileUtils
 operator|.
 name|deleteDirectory
 argument_list|(
-name|_solrHomeDirectory
+name|solrHomeDirectory
 argument_list|)
 expr_stmt|;
 block|}
@@ -442,7 +423,7 @@ name|assertTrue
 argument_list|(
 literal|"Failed to mkdirs workDir"
 argument_list|,
-name|_solrHomeDirectory
+name|solrHomeDirectory
 operator|.
 name|mkdirs
 argument_list|()
@@ -465,7 +446,7 @@ control|)
 block|{
 name|copyConfFiles
 argument_list|(
-name|_solrHomeDirectory
+name|solrHomeDirectory
 argument_list|,
 literal|"collection"
 operator|+
@@ -479,7 +460,7 @@ init|=
 operator|new
 name|File
 argument_list|(
-name|_solrHomeDirectory
+name|solrHomeDirectory
 argument_list|,
 literal|"solr.xml"
 argument_list|)
@@ -507,7 +488,7 @@ init|=
 operator|new
 name|CoreContainer
 argument_list|(
-name|_solrHomeDirectory
+name|solrHomeDirectory
 operator|.
 name|getAbsolutePath
 argument_list|()
@@ -517,7 +498,7 @@ name|cores
 operator|.
 name|load
 argument_list|(
-name|_solrHomeDirectory
+name|solrHomeDirectory
 operator|.
 name|getAbsolutePath
 argument_list|()
@@ -525,7 +506,7 @@ argument_list|,
 name|solrXml
 argument_list|)
 expr_stmt|;
-comment|//  h.getCoreContainer().load(_solrHomeDirectory.getAbsolutePath(), new File(_solrHomeDirectory, "solr.xml"));
+comment|//  h.getCoreContainer().load(solrHomeDirectory.getAbsolutePath(), new File(solrHomeDirectory, "solr.xml"));
 name|cores
 operator|.
 name|setPersistent
@@ -537,6 +518,8 @@ return|return
 name|cores
 return|;
 block|}
+annotation|@
+name|After
 DECL|method|after
 specifier|public
 name|void
@@ -547,7 +530,7 @@ name|Exception
 block|{
 if|if
 condition|(
-name|_solrHomeDirectory
+name|solrHomeDirectory
 operator|.
 name|exists
 argument_list|()
@@ -557,7 +540,7 @@ name|FileUtils
 operator|.
 name|deleteDirectory
 argument_list|(
-name|_solrHomeDirectory
+name|solrHomeDirectory
 argument_list|)
 expr_stmt|;
 block|}
@@ -1017,6 +1000,10 @@ argument_list|,
 literal|"q"
 argument_list|,
 literal|"{!prefix f=v_t}hel"
+argument_list|,
+literal|"wt"
+argument_list|,
+literal|"xml"
 argument_list|)
 argument_list|,
 literal|"//result[@numFound='2']"
@@ -1033,6 +1020,10 @@ argument_list|,
 literal|"q"
 argument_list|,
 literal|"{!raw f=v_t}hello"
+argument_list|,
+literal|"wt"
+argument_list|,
+literal|"xml"
 argument_list|)
 argument_list|,
 literal|"//result[@numFound='2']"
@@ -1049,6 +1040,10 @@ argument_list|(
 literal|"q"
 argument_list|,
 literal|"{!raw f=v_t}hello"
+argument_list|,
+literal|"wt"
+argument_list|,
+literal|"xml"
 argument_list|)
 argument_list|,
 literal|"//result[@numFound='0']"
@@ -1066,6 +1061,10 @@ argument_list|,
 literal|"q"
 argument_list|,
 literal|"{!raw f=v_t}Hello"
+argument_list|,
+literal|"wt"
+argument_list|,
+literal|"xml"
 argument_list|)
 argument_list|,
 literal|"//result[@numFound='0']"
@@ -1082,6 +1081,10 @@ argument_list|,
 literal|"q"
 argument_list|,
 literal|"{!raw f=v_f}1.5"
+argument_list|,
+literal|"wt"
+argument_list|,
+literal|"xml"
 argument_list|)
 argument_list|,
 literal|"//result[@numFound='0']"
@@ -1466,7 +1469,7 @@ name|List
 argument_list|<
 name|SolrCore
 argument_list|>
-name|_theCores
+name|theCores
 init|=
 operator|new
 name|ArrayList
@@ -1539,10 +1542,10 @@ argument_list|)
 decl_stmt|;
 synchronized|synchronized
 init|(
-name|_theCores
+name|theCores
 init|)
 block|{
-name|_theCores
+name|theCores
 operator|.
 name|add
 argument_list|(
@@ -1585,7 +1588,7 @@ literal|0
 init|;
 name|idx
 operator|<
-name|_theCores
+name|theCores
 operator|.
 name|size
 argument_list|()
@@ -1600,14 +1603,14 @@ name|assertEquals
 argument_list|(
 literal|"Cores should be the same!"
 argument_list|,
-name|_theCores
+name|theCores
 operator|.
 name|get
 argument_list|(
 name|idx
 argument_list|)
 argument_list|,
-name|_theCores
+name|theCores
 operator|.
 name|get
 argument_list|(
@@ -1623,7 +1626,7 @@ control|(
 name|SolrCore
 name|core
 range|:
-name|_theCores
+name|theCores
 control|)
 block|{
 name|core
@@ -1643,7 +1646,8 @@ expr_stmt|;
 block|}
 block|}
 DECL|method|checkNotInCores
-specifier|private
+specifier|public
+specifier|static
 name|void
 name|checkNotInCores
 parameter_list|(
@@ -1693,7 +1697,8 @@ expr_stmt|;
 block|}
 block|}
 DECL|method|checkInCores
-specifier|private
+specifier|public
+specifier|static
 name|void
 name|checkInCores
 parameter_list|(
@@ -1765,90 +1770,27 @@ operator|.
 name|getUpdateHandler
 argument_list|()
 decl_stmt|;
-name|SolrQueryRequest
-name|req
+name|AddUpdateCommand
+name|cmd
 init|=
+operator|new
+name|AddUpdateCommand
+argument_list|(
 name|makeReq
 argument_list|(
 name|core
 argument_list|)
-decl_stmt|;
-name|AddUpdateCommand
-name|cmd
-init|=
-operator|new
-name|AddUpdateCommand
-argument_list|(
-name|req
 argument_list|)
 decl_stmt|;
-if|if
-condition|(
-operator|(
-name|fieldValues
-operator|.
-name|length
-operator|%
-literal|2
-operator|)
-operator|!=
-literal|0
-condition|)
-block|{
-throw|throw
-operator|new
-name|RuntimeException
-argument_list|(
-literal|"The length of the string array (query arguments) needs to be even"
-argument_list|)
-throw|;
-block|}
 name|cmd
 operator|.
 name|solrDoc
 operator|=
-operator|new
-name|SolrInputDocument
-argument_list|()
-expr_stmt|;
-for|for
-control|(
-name|int
-name|idx
-init|=
-literal|0
-init|;
-name|idx
-operator|<
-name|fieldValues
-operator|.
-name|length
-condition|;
-name|idx
-operator|+=
-literal|2
-control|)
-block|{
-name|cmd
-operator|.
-name|solrDoc
-operator|.
-name|addField
+name|sdoc
 argument_list|(
 name|fieldValues
-index|[
-name|idx
-index|]
-argument_list|,
-name|fieldValues
-index|[
-name|idx
-operator|+
-literal|1
-index|]
 argument_list|)
 expr_stmt|;
-block|}
 name|updater
 operator|.
 name|addDoc
@@ -2019,23 +1961,39 @@ literal|"<solr persistent=\"false\"> "
 operator|+
 literal|"<cores adminPath=\"/admin/cores\" defaultCoreName=\"collectionLazy2\" transientCacheSize=\"4\">  "
 operator|+
-literal|"<core name=\"collection1\" instanceDir=\"collection1\" /> "
+literal|"<core name=\"collection1\" instanceDir=\"collection1\" config=\"solrconfig-minimal.xml\" schema=\"schema-tiny.xml\" /> "
 operator|+
-literal|"<core name=\"collectionLazy2\" instanceDir=\"collection2\" transient=\"true\" loadOnStartup=\"true\"  /> "
+literal|"<core name=\"collectionLazy2\" instanceDir=\"collection2\" transient=\"true\" loadOnStartup=\"true\"  "
 operator|+
-literal|"<core name=\"collectionLazy3\" instanceDir=\"collection3\" transient=\"on\" loadOnStartup=\"false\"/> "
+literal|" config=\"solrconfig-minimal.xml\" schema=\"schema-tiny.xml\" /> "
 operator|+
-literal|"<core name=\"collectionLazy4\" instanceDir=\"collection4\" transient=\"false\" loadOnStartup=\"false\"/> "
+literal|"<core name=\"collectionLazy3\" instanceDir=\"collection3\" transient=\"on\" loadOnStartup=\"false\" "
 operator|+
-literal|"<core name=\"collectionLazy5\" instanceDir=\"collection5\" transient=\"false\" loadOnStartup=\"true\"/> "
+literal|"config=\"solrconfig-minimal.xml\" schema=\"schema-tiny.xml\"  /> "
 operator|+
-literal|"<core name=\"collectionLazy6\" instanceDir=\"collection6\" transient=\"true\" loadOnStartup=\"false\" /> "
+literal|"<core name=\"collectionLazy4\" instanceDir=\"collection4\" transient=\"false\" loadOnStartup=\"false\" "
 operator|+
-literal|"<core name=\"collectionLazy7\" instanceDir=\"collection7\" transient=\"true\" loadOnStartup=\"false\" /> "
+literal|"config=\"solrconfig-minimal.xml\" schema=\"schema-tiny.xml\"  /> "
 operator|+
-literal|"<core name=\"collectionLazy8\" instanceDir=\"collection8\" transient=\"true\" loadOnStartup=\"false\" /> "
+literal|"<core name=\"collectionLazy5\" instanceDir=\"collection5\" transient=\"false\" loadOnStartup=\"true\" "
 operator|+
-literal|"<core name=\"collectionLazy9\" instanceDir=\"collection9\" transient=\"true\" loadOnStartup=\"false\" /> "
+literal|"config=\"solrconfig-minimal.xml\" schema=\"schema-tiny.xml\"  /> "
+operator|+
+literal|"<core name=\"collectionLazy6\" instanceDir=\"collection6\" transient=\"true\" loadOnStartup=\"false\" "
+operator|+
+literal|"config=\"solrconfig-minimal.xml\" schema=\"schema-tiny.xml\"  /> "
+operator|+
+literal|"<core name=\"collectionLazy7\" instanceDir=\"collection7\" transient=\"true\" loadOnStartup=\"false\" "
+operator|+
+literal|"config=\"solrconfig-minimal.xml\" schema=\"schema-tiny.xml\"  /> "
+operator|+
+literal|"<core name=\"collectionLazy8\" instanceDir=\"collection8\" transient=\"true\" loadOnStartup=\"false\" "
+operator|+
+literal|"config=\"solrconfig-minimal.xml\" schema=\"schema-tiny.xml\"  /> "
+operator|+
+literal|"<core name=\"collectionLazy9\" instanceDir=\"collection9\" transient=\"true\" loadOnStartup=\"false\" "
+operator|+
+literal|"config=\"solrconfig-minimal.xml\" schema=\"schema-tiny.xml\"  /> "
 operator|+
 literal|"</cores> "
 operator|+
