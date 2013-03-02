@@ -223,13 +223,13 @@ specifier|private
 name|AppendingLongBuffer
 name|pending
 decl_stmt|;
-comment|// stream of all ords
+comment|// stream of all termIDs
 DECL|field|pendingCounts
 specifier|private
 name|AppendingLongBuffer
 name|pendingCounts
 decl_stmt|;
-comment|// ords per doc
+comment|// termIDs per doc
 DECL|field|iwBytesUsed
 specifier|private
 specifier|final
@@ -517,7 +517,7 @@ operator|++
 control|)
 block|{
 name|int
-name|v
+name|termID
 init|=
 name|currentValues
 index|[
@@ -527,7 +527,7 @@ decl_stmt|;
 comment|// if its not a duplicate
 if|if
 condition|(
-name|v
+name|termID
 operator|!=
 name|lastValue
 condition|)
@@ -536,20 +536,20 @@ name|pending
 operator|.
 name|add
 argument_list|(
-name|v
+name|termID
 argument_list|)
 expr_stmt|;
-comment|// record the ord
+comment|// record the term id
 name|count
 operator|++
 expr_stmt|;
 block|}
 name|lastValue
 operator|=
-name|v
+name|termID
 expr_stmt|;
 block|}
-comment|// record the number of unique ords for this doc
+comment|// record the number of unique term ids for this doc
 name|pendingCounts
 operator|.
 name|add
@@ -626,7 +626,7 @@ name|value
 parameter_list|)
 block|{
 name|int
-name|ord
+name|termID
 init|=
 name|hash
 operator|.
@@ -637,15 +637,15 @@ argument_list|)
 decl_stmt|;
 if|if
 condition|(
-name|ord
+name|termID
 operator|<
 literal|0
 condition|)
 block|{
-name|ord
+name|termID
 operator|=
 operator|-
-name|ord
+name|termID
 operator|-
 literal|1
 expr_stmt|;
@@ -719,7 +719,7 @@ index|[
 name|currentUpto
 index|]
 operator|=
-name|ord
+name|termID
 expr_stmt|;
 name|currentUpto
 operator|++
