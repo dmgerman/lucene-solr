@@ -1213,6 +1213,44 @@ expr_stmt|;
 block|}
 annotation|@
 name|Test
+DECL|method|testBogusCurrency
+specifier|public
+name|void
+name|testBogusCurrency
+parameter_list|()
+throws|throws
+name|Exception
+block|{
+name|ignoreException
+argument_list|(
+literal|"HOSS"
+argument_list|)
+expr_stmt|;
+comment|// bogus currency
+name|assertQEx
+argument_list|(
+literal|"Expected exception for invalid currency"
+argument_list|,
+name|req
+argument_list|(
+literal|"fl"
+argument_list|,
+literal|"*,score"
+argument_list|,
+literal|"q"
+argument_list|,
+name|field
+argument_list|()
+operator|+
+literal|":[3,HOSS TO *]"
+argument_list|)
+argument_list|,
+literal|400
+argument_list|)
+expr_stmt|;
+block|}
+annotation|@
+name|Test
 DECL|method|testCurrencyPointQuery
 specifier|public
 name|void
