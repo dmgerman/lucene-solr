@@ -13,7 +13,7 @@ package|;
 end_package
 
 begin_comment
-comment|/*  * Licensed to the Apache Software Foundation (ASF) under one or more  * contributor license agreements.  See the NOTICE file distributed with  * this work for additional information regarding copyright ownership.  * The ASF licenses this file to You under the Apache License, Version 2.0  * (the "License"); you may not use this file except in compliance with  * the License.  You may obtain a copy of the License at  *  *     http://www.apache.org/licenses/LICENSE-2.0  *  * Unless required by applicable law or agreed to in writing, software  * distributed under the License is distributed on an "AS IS" BASIS,  * WITHOUT WARRANTIES OR CONDITIONS F ANY KIND, either express or implied.  * See the License for the specific language governing permissions and  * limitations under the License.  */
+comment|/*  * Licensed to the Apache Software Foundation (ASF) under one or more  * contributor license agreements.  See the NOTICE file distributed with  * this work for additional information regarding copyright ownership.  * The ASF licenses this file to You under the Apache License, Version 2.0  * (the "License"); you may not use this file except in compliance with  * the License.  You may obtain a copy of the License at  *  *     http://www.apache.org/licenses/LICENSE-2.0  *  * Unless required by applicable law or agreed to in writing, software  * distributed under the License is distributed on an "AS IS" BASIS,  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.  * See the License for the specific language governing permissions and  * limitations under the License.  */
 end_comment
 
 begin_import
@@ -112,7 +112,7 @@ name|java
 operator|.
 name|io
 operator|.
-name|FileOutputStream
+name|FileWriter
 import|;
 end_import
 
@@ -193,7 +193,7 @@ name|File
 argument_list|(
 name|TEMP_DIR
 argument_list|,
-literal|"org.apache.solr.core.TestSolrProperties"
+literal|"org.apache.solr.core.TestSolrDiscoveryProperties"
 operator|+
 name|File
 operator|.
@@ -327,21 +327,31 @@ index|]
 argument_list|)
 expr_stmt|;
 block|}
-name|props
-operator|.
-name|store
-argument_list|(
+name|FileWriter
+name|writer
+init|=
 operator|new
-name|FileOutputStream
+name|FileWriter
 argument_list|(
 name|solrProps
 operator|.
 name|getAbsolutePath
 argument_list|()
 argument_list|)
+decl_stmt|;
+name|props
+operator|.
+name|store
+argument_list|(
+name|writer
 argument_list|,
 literal|null
 argument_list|)
+expr_stmt|;
+name|writer
+operator|.
+name|close
+argument_list|()
 expr_stmt|;
 block|}
 DECL|method|addSolrXml
@@ -583,18 +593,28 @@ name|mkdirs
 argument_list|()
 argument_list|)
 expr_stmt|;
+name|FileWriter
+name|writer
+init|=
+operator|new
+name|FileWriter
+argument_list|(
+name|propFile
+argument_list|)
+decl_stmt|;
 name|stockProps
 operator|.
 name|store
 argument_list|(
-operator|new
-name|FileOutputStream
-argument_list|(
-name|propFile
-argument_list|)
+name|writer
 argument_list|,
 literal|null
 argument_list|)
+expr_stmt|;
+name|writer
+operator|.
+name|close
+argument_list|()
 expr_stmt|;
 name|addConfFiles
 argument_list|(
