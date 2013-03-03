@@ -311,11 +311,11 @@ operator|new
 name|int
 index|[]
 block|{
+literal|200
+block|,
 literal|2000
 block|,
 literal|3000
-block|,
-literal|5000
 block|}
 decl_stmt|;
 name|Thread
@@ -396,14 +396,6 @@ operator|.
 name|getZkStateReader
 argument_list|()
 decl_stmt|;
-comment|// give some time for replication to complete
-name|Thread
-operator|.
-name|sleep
-argument_list|(
-literal|5000
-argument_list|)
-expr_stmt|;
 comment|// stop indexing threads
 name|indexThread
 operator|.
