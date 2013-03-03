@@ -517,6 +517,14 @@ specifier|static
 name|String
 name|savedFactory
 decl_stmt|;
+DECL|field|verbose
+specifier|static
+name|String
+name|verbose
+init|=
+literal|"false"
+decl_stmt|;
+comment|// EOE remove me.
 comment|//  Keep the indexes from being randomly generated.
 annotation|@
 name|BeforeClass
@@ -536,6 +544,17 @@ argument_list|(
 literal|"solr.DirectoryFactory"
 argument_list|)
 expr_stmt|;
+name|verbose
+operator|=
+name|System
+operator|.
+name|getProperty
+argument_list|(
+literal|"tests.verbose"
+argument_list|,
+literal|"false"
+argument_list|)
+expr_stmt|;
 name|System
 operator|.
 name|setProperty
@@ -543,6 +562,15 @@ argument_list|(
 literal|"solr.directoryFactory"
 argument_list|,
 literal|"org.apache.solr.core.MockFSDirectoryFactory"
+argument_list|)
+expr_stmt|;
+name|System
+operator|.
+name|setProperty
+argument_list|(
+literal|"tests.verbose"
+argument_list|,
+literal|"true"
 argument_list|)
 expr_stmt|;
 block|}
@@ -582,6 +610,15 @@ name|savedFactory
 argument_list|)
 expr_stmt|;
 block|}
+name|System
+operator|.
+name|setProperty
+argument_list|(
+literal|"tests.verbose"
+argument_list|,
+name|verbose
+argument_list|)
+expr_stmt|;
 block|}
 annotation|@
 name|Before
@@ -1254,7 +1291,7 @@ argument_list|)
 argument_list|,
 name|testSrcRoot
 argument_list|,
-name|coreName
+name|oldStyle
 argument_list|)
 expr_stmt|;
 name|coreCounts
@@ -1286,8 +1323,8 @@ parameter_list|,
 name|File
 name|testSrcRoot
 parameter_list|,
-name|String
-name|coreName
+name|boolean
+name|oldStyle
 parameter_list|)
 throws|throws
 name|IOException
@@ -1361,6 +1398,12 @@ literal|"solrconfig-minimal.xml"
 argument_list|)
 argument_list|)
 expr_stmt|;
+if|if
+condition|(
+operator|!
+name|oldStyle
+condition|)
+block|{
 name|FileUtils
 operator|.
 name|copyFile
@@ -1382,6 +1425,7 @@ literal|"core.properties"
 argument_list|)
 argument_list|)
 expr_stmt|;
+block|}
 block|}
 DECL|method|deleteAllDocuments
 name|void
@@ -2355,6 +2399,14 @@ argument_list|(
 name|doc
 argument_list|)
 expr_stmt|;
+name|UpdateResponse
+name|response
+init|=
+operator|new
+name|UpdateResponse
+argument_list|()
+decl_stmt|;
+comment|// Just to keep a possible NPE from happening
 try|try
 block|{
 name|server
@@ -2366,9 +2418,8 @@ operator|+
 name|core
 argument_list|)
 expr_stmt|;
-name|UpdateResponse
 name|response
-init|=
+operator|=
 name|server
 operator|.
 name|add
@@ -2379,7 +2430,7 @@ name|OpenCloseCoreStressTest
 operator|.
 name|COMMIT_WITHIN
 argument_list|)
-decl_stmt|;
+expr_stmt|;
 if|if
 condition|(
 name|response
@@ -2423,15 +2474,6 @@ name|incrementAndGet
 argument_list|()
 expr_stmt|;
 block|}
-name|server
-operator|.
-name|commit
-argument_list|(
-literal|true
-argument_list|,
-literal|true
-argument_list|)
-expr_stmt|;
 name|Thread
 operator|.
 name|sleep
@@ -2472,11 +2514,18 @@ condition|)
 block|{
 name|fail
 argument_list|(
-literal|"Could not reach server while querying for three tries, quitting "
+literal|"Could not reach server while indexing for three tries, quitting "
 operator|+
 name|e
 operator|.
 name|getMessage
+argument_list|()
+operator|+
+literal|" "
+operator|+
+name|response
+operator|.
+name|toString
 argument_list|()
 argument_list|)
 expr_stmt|;
@@ -2501,6 +2550,13 @@ name|e
 operator|.
 name|getMessage
 argument_list|()
+operator|+
+literal|" "
+operator|+
+name|response
+operator|.
+name|toString
+argument_list|()
 argument_list|)
 expr_stmt|;
 try|try
@@ -2509,7 +2565,7 @@ name|Thread
 operator|.
 name|sleep
 argument_list|(
-literal|100
+literal|500
 argument_list|)
 expr_stmt|;
 block|}
@@ -2933,6 +2989,14 @@ argument_list|,
 literal|"*:*"
 argument_list|)
 expr_stmt|;
+name|QueryResponse
+name|response
+init|=
+operator|new
+name|QueryResponse
+argument_list|()
+decl_stmt|;
+comment|// so we can use toString below with impunity
 try|try
 block|{
 comment|// sleep between 250ms and 10000 ms
@@ -2953,27 +3017,15 @@ operator|+
 name|core
 argument_list|)
 expr_stmt|;
-name|QueryResponse
 name|response
-init|=
+operator|=
 name|server
 operator|.
 name|query
 argument_list|(
 name|params
 argument_list|)
-decl_stmt|;
-name|long
-name|numFound
-init|=
-name|response
-operator|.
-name|getResults
-argument_list|()
-operator|.
-name|getNumFound
-argument_list|()
-decl_stmt|;
+expr_stmt|;
 comment|// Perhaps collect some stats here in future.
 break|break;
 comment|// retry loop
@@ -3013,6 +3065,13 @@ name|e
 operator|.
 name|getMessage
 argument_list|()
+operator|+
+literal|" "
+operator|+
+name|response
+operator|.
+name|toString
+argument_list|()
 argument_list|)
 expr_stmt|;
 block|}
@@ -3036,6 +3095,13 @@ name|e
 operator|.
 name|getMessage
 argument_list|()
+operator|+
+literal|" "
+operator|+
+name|response
+operator|.
+name|toString
+argument_list|()
 argument_list|)
 expr_stmt|;
 try|try
@@ -3044,7 +3110,7 @@ name|Thread
 operator|.
 name|sleep
 argument_list|(
-literal|250L
+literal|500L
 argument_list|)
 expr_stmt|;
 block|}
