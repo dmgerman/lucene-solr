@@ -876,13 +876,11 @@ expr_stmt|;
 block|}
 else|else
 block|{
-name|SolrException
+name|log
 operator|.
-name|log
+name|info
 argument_list|(
-name|log
-argument_list|,
-literal|"Sync Failed"
+literal|"Leader's attempt to sync with shard failed, moving to the next canidate"
 argument_list|)
 expr_stmt|;
 comment|// lets see who seems ahead...
