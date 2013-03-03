@@ -52,6 +52,14 @@ argument_list|,
 literal|"Stored"
 argument_list|)
 block|,
+DECL|enum constant|DOC_VALUES
+name|DOC_VALUES
+argument_list|(
+literal|'D'
+argument_list|,
+literal|"DocValues"
+argument_list|)
+block|,
 DECL|enum constant|MULTI_VALUED
 name|MULTI_VALUED
 argument_list|(
@@ -106,6 +114,14 @@ argument_list|(
 literal|'P'
 argument_list|,
 literal|"Omit Positions"
+argument_list|)
+block|,
+DECL|enum constant|STORE_OFFSETS_WITH_POSITIONS
+name|STORE_OFFSETS_WITH_POSITIONS
+argument_list|(
+literal|'H'
+argument_list|,
+literal|"Store Offsets with Positions"
 argument_list|)
 block|,
 DECL|enum constant|LAZY
