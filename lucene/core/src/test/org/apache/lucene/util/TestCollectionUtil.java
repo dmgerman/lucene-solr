@@ -66,6 +66,16 @@ name|List
 import|;
 end_import
 
+begin_import
+import|import
+name|java
+operator|.
+name|util
+operator|.
+name|Random
+import|;
+end_import
+
 begin_class
 DECL|class|TestCollectionUtil
 specifier|public
@@ -87,6 +97,13 @@ name|maxSize
 parameter_list|)
 block|{
 specifier|final
+name|Random
+name|rnd
+init|=
+name|random
+argument_list|()
+decl_stmt|;
+specifier|final
 name|Integer
 index|[]
 name|a
@@ -94,8 +111,7 @@ init|=
 operator|new
 name|Integer
 index|[
-name|random
-argument_list|()
+name|rnd
 operator|.
 name|nextInt
 argument_list|(
@@ -131,8 +147,7 @@ name|Integer
 operator|.
 name|valueOf
 argument_list|(
-name|random
-argument_list|()
+name|rnd
 operator|.
 name|nextInt
 argument_list|(
