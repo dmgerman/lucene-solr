@@ -40,7 +40,7 @@ specifier|public
 class|class
 name|NumericDocValuesField
 extends|extends
-name|StoredField
+name|Field
 block|{
 comment|/**    * Type for numeric DocValues.    */
 DECL|field|TYPE

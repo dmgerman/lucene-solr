@@ -68,7 +68,7 @@ specifier|public
 class|class
 name|BinaryDocValuesField
 extends|extends
-name|StoredField
+name|Field
 block|{
 comment|/**    * Type for straight bytes DocValues.    */
 DECL|field|TYPE

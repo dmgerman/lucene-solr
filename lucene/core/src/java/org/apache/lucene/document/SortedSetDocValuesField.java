@@ -54,7 +54,7 @@ specifier|public
 class|class
 name|SortedSetDocValuesField
 extends|extends
-name|StoredField
+name|Field
 block|{
 comment|/**    * Type for sorted bytes DocValues    */
 DECL|field|TYPE
