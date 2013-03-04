@@ -362,6 +362,22 @@ name|core
 operator|.
 name|SolrCore
 operator|.
+name|log
+import|;
+end_import
+
+begin_import
+import|import static
+name|org
+operator|.
+name|apache
+operator|.
+name|solr
+operator|.
+name|core
+operator|.
+name|SolrCore
+operator|.
 name|verbose
 import|;
 end_import
@@ -379,7 +395,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Incorporate the open/close stress tests into junit.  */
+comment|/**  * Incorporate the open/close stress tests into unit tests.  */
 end_comment
 
 begin_class
@@ -390,6 +406,16 @@ name|OpenCloseCoreStressTest
 extends|extends
 name|SolrTestCaseJ4
 block|{
+DECL|field|locker
+specifier|private
+specifier|final
+name|Object
+name|locker
+init|=
+operator|new
+name|Object
+argument_list|()
+decl_stmt|;
 DECL|field|numCores
 specifier|private
 name|int
@@ -1340,10 +1366,20 @@ argument_list|,
 literal|"conf"
 argument_list|)
 decl_stmt|;
+if|if
+condition|(
+operator|!
 name|conf
 operator|.
 name|mkdirs
 argument_list|()
+condition|)
+name|log
+operator|.
+name|info
+argument_list|(
+literal|"mkdirs returned false in makeCore... ignoring"
+argument_list|)
 expr_stmt|;
 name|File
 name|testConf
@@ -1808,7 +1844,7 @@ parameter_list|)
 block|{
 synchronized|synchronized
 init|(
-name|coreCounts
+name|locker
 init|)
 block|{
 name|coreCounts
@@ -2209,11 +2245,6 @@ specifier|final
 name|String
 name|baseUrl
 decl_stmt|;
-DECL|field|OCSST
-specifier|private
-name|OpenCloseCoreStressTest
-name|OCSST
-decl_stmt|;
 DECL|method|OneIndexer
 name|OneIndexer
 parameter_list|(
@@ -2271,14 +2302,6 @@ argument_list|()
 argument_list|)
 argument_list|)
 expr_stmt|;
-name|String
-name|core
-init|=
-name|OCCST
-operator|.
-name|getRandomCore
-argument_list|()
-decl_stmt|;
 while|while
 condition|(
 name|Indexer
@@ -2308,13 +2331,14 @@ operator|.
 name|incrementAndGet
 argument_list|()
 expr_stmt|;
+name|String
 name|core
-operator|=
+init|=
 name|OCCST
 operator|.
 name|getRandomCore
 argument_list|()
-expr_stmt|;
+decl_stmt|;
 name|OCCST
 operator|.
 name|incrementCoreCount
@@ -2399,14 +2423,6 @@ argument_list|(
 name|doc
 argument_list|)
 expr_stmt|;
-name|UpdateResponse
-name|response
-init|=
-operator|new
-name|UpdateResponse
-argument_list|()
-decl_stmt|;
-comment|// Just to keep a possible NPE from happening
 try|try
 block|{
 name|server
@@ -2418,8 +2434,9 @@ operator|+
 name|core
 argument_list|)
 expr_stmt|;
+name|UpdateResponse
 name|response
-operator|=
+init|=
 name|server
 operator|.
 name|add
@@ -2430,7 +2447,7 @@ name|OpenCloseCoreStressTest
 operator|.
 name|COMMIT_WITHIN
 argument_list|)
-expr_stmt|;
+decl_stmt|;
 if|if
 condition|(
 name|response
@@ -2505,6 +2522,15 @@ operator|.
 name|incrementAndGet
 argument_list|()
 expr_stmt|;
+name|log
+operator|.
+name|error
+argument_list|(
+literal|"EOE dumping stack (indexer)"
+argument_list|,
+name|e
+argument_list|)
+expr_stmt|;
 if|if
 condition|(
 name|idx
@@ -2519,13 +2545,6 @@ operator|+
 name|e
 operator|.
 name|getMessage
-argument_list|()
-operator|+
-literal|" "
-operator|+
-name|response
-operator|.
-name|toString
 argument_list|()
 argument_list|)
 expr_stmt|;
@@ -2549,13 +2568,6 @@ operator|+
 name|e
 operator|.
 name|getMessage
-argument_list|()
-operator|+
-literal|" "
-operator|+
-name|response
-operator|.
-name|toString
 argument_list|()
 argument_list|)
 expr_stmt|;
@@ -2634,13 +2646,9 @@ argument_list|(
 literal|0
 argument_list|)
 decl_stmt|;
-DECL|field|_verbose
-specifier|static
-specifier|volatile
-name|boolean
-name|_verbose
-init|=
-literal|false
+DECL|field|baseUrl
+name|String
+name|baseUrl
 decl_stmt|;
 DECL|method|Queries
 specifier|public
@@ -2662,6 +2670,10 @@ name|int
 name|numThreads
 parameter_list|)
 block|{
+name|baseUrl
+operator|=
+name|url
+expr_stmt|;
 for|for
 control|(
 name|int
@@ -2751,7 +2763,6 @@ operator|.
 name|printStackTrace
 argument_list|()
 expr_stmt|;
-comment|//To change body of catch statement use File | Settings | File Templates.
 block|}
 block|}
 block|}
@@ -2797,6 +2808,15 @@ name|numFound
 init|=
 literal|0
 decl_stmt|;
+name|server
+operator|.
+name|setBaseURL
+argument_list|(
+name|baseUrl
+operator|+
+name|core
+argument_list|)
+expr_stmt|;
 try|try
 block|{
 name|QueryResponse
@@ -2919,19 +2939,6 @@ argument_list|()
 argument_list|)
 argument_list|)
 expr_stmt|;
-name|String
-name|core
-init|=
-name|OCCST
-operator|.
-name|getRandomCore
-argument_list|()
-decl_stmt|;
-name|int
-name|repeated
-init|=
-literal|0
-decl_stmt|;
 while|while
 condition|(
 name|Queries
@@ -2942,13 +2949,14 @@ name|get
 argument_list|()
 condition|)
 block|{
+name|String
 name|core
-operator|=
+init|=
 name|OCCST
 operator|.
 name|getRandomCore
 argument_list|()
-expr_stmt|;
+decl_stmt|;
 for|for
 control|(
 name|int
@@ -2989,14 +2997,6 @@ argument_list|,
 literal|"*:*"
 argument_list|)
 expr_stmt|;
-name|QueryResponse
-name|response
-init|=
-operator|new
-name|QueryResponse
-argument_list|()
-decl_stmt|;
-comment|// so we can use toString below with impunity
 try|try
 block|{
 comment|// sleep between 250ms and 10000 ms
@@ -3017,15 +3017,37 @@ operator|+
 name|core
 argument_list|)
 expr_stmt|;
+name|QueryResponse
 name|response
-operator|=
+init|=
 name|server
 operator|.
 name|query
 argument_list|(
 name|params
 argument_list|)
+decl_stmt|;
+if|if
+condition|(
+name|response
+operator|.
+name|getStatus
+argument_list|()
+operator|!=
+literal|0
+condition|)
+block|{
+name|verbose
+argument_list|(
+literal|"Failed to index a document with status "
+operator|+
+name|response
+operator|.
+name|getStatus
+argument_list|()
+argument_list|)
 expr_stmt|;
+block|}
 comment|// Perhaps collect some stats here in future.
 break|break;
 comment|// retry loop
@@ -3043,6 +3065,15 @@ operator|instanceof
 name|InterruptedException
 condition|)
 return|return;
+name|log
+operator|.
+name|error
+argument_list|(
+literal|"EOE dumping stack (query)"
+argument_list|,
+name|e
+argument_list|)
+expr_stmt|;
 name|Queries
 operator|.
 name|_errors
@@ -3064,13 +3095,6 @@ operator|+
 name|e
 operator|.
 name|getMessage
-argument_list|()
-operator|+
-literal|" "
-operator|+
-name|response
-operator|.
-name|toString
 argument_list|()
 argument_list|)
 expr_stmt|;
@@ -3094,13 +3118,6 @@ operator|+
 name|e
 operator|.
 name|getMessage
-argument_list|()
-operator|+
-literal|" "
-operator|+
-name|response
-operator|.
-name|toString
 argument_list|()
 argument_list|)
 expr_stmt|;
