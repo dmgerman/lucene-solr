@@ -984,8 +984,13 @@ argument_list|)
 operator|+
 literal|"/arr[@name='copyDests']/str[.='title_stemmed']"
 argument_list|,
-comment|// :TODO: SOLR-3798
-comment|//dynfield("bar_copydest_*") + "/arr[@name='copySource']/str[.='foo_copysource_*']",
+name|dynfield
+argument_list|(
+literal|"bar_copydest_*"
+argument_list|)
+operator|+
+literal|"/arr[@name='copySources']/str[.='foo_copysource_*']"
+argument_list|,
 name|dynfield
 argument_list|(
 literal|"foo_copysource_*"
