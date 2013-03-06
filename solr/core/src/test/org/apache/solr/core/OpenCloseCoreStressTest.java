@@ -362,22 +362,6 @@ name|core
 operator|.
 name|SolrCore
 operator|.
-name|log
-import|;
-end_import
-
-begin_import
-import|import static
-name|org
-operator|.
-name|apache
-operator|.
-name|solr
-operator|.
-name|core
-operator|.
-name|SolrCore
-operator|.
 name|verbose
 import|;
 end_import
@@ -543,14 +527,6 @@ specifier|static
 name|String
 name|savedFactory
 decl_stmt|;
-DECL|field|verbose
-specifier|static
-name|String
-name|verbose
-init|=
-literal|"false"
-decl_stmt|;
-comment|// EOE remove me.
 comment|//  Keep the indexes from being randomly generated.
 annotation|@
 name|BeforeClass
@@ -570,17 +546,6 @@ argument_list|(
 literal|"solr.DirectoryFactory"
 argument_list|)
 expr_stmt|;
-name|verbose
-operator|=
-name|System
-operator|.
-name|getProperty
-argument_list|(
-literal|"tests.verbose"
-argument_list|,
-literal|"false"
-argument_list|)
-expr_stmt|;
 name|System
 operator|.
 name|setProperty
@@ -588,15 +553,6 @@ argument_list|(
 literal|"solr.directoryFactory"
 argument_list|,
 literal|"org.apache.solr.core.MockFSDirectoryFactory"
-argument_list|)
-expr_stmt|;
-name|System
-operator|.
-name|setProperty
-argument_list|(
-literal|"tests.verbose"
-argument_list|,
-literal|"true"
 argument_list|)
 expr_stmt|;
 block|}
@@ -636,15 +592,6 @@ name|savedFactory
 argument_list|)
 expr_stmt|;
 block|}
-name|System
-operator|.
-name|setProperty
-argument_list|(
-literal|"tests.verbose"
-argument_list|,
-name|verbose
-argument_list|)
-expr_stmt|;
 block|}
 annotation|@
 name|Before
@@ -2522,15 +2469,6 @@ operator|.
 name|incrementAndGet
 argument_list|()
 expr_stmt|;
-name|log
-operator|.
-name|error
-argument_list|(
-literal|"EOE dumping stack (indexer)"
-argument_list|,
-name|e
-argument_list|)
-expr_stmt|;
 if|if
 condition|(
 name|idx
@@ -3065,15 +3003,6 @@ operator|instanceof
 name|InterruptedException
 condition|)
 return|return;
-name|log
-operator|.
-name|error
-argument_list|(
-literal|"EOE dumping stack (query)"
-argument_list|,
-name|e
-argument_list|)
-expr_stmt|;
 name|Queries
 operator|.
 name|_errors
