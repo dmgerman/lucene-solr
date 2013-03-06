@@ -32,6 +32,26 @@ end_import
 
 begin_import
 import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|solr
+operator|.
+name|common
+operator|.
+name|params
+operator|.
+name|CommonParams
+import|;
+end_import
+
+begin_comment
+comment|//jdoc
+end_comment
+
+begin_import
+import|import
 name|java
 operator|.
 name|util
@@ -113,7 +133,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * A Simple Utility class for parsing "math" like strings relating to Dates.  *  *<p>  * The basic syntax support addition, subtraction and rounding at various  * levels of granularity (or "units").  Commands can be chained together  * and are parsed from left to right.  '+' and '-' denote addition and  * subtraction, while '/' denotes "round".  Round requires only a unit, while  * addition/subtraction require an integer value and a unit.  * Command strings must not include white space, but the "No-Op" command  * (empty string) is allowed....    *</p>  *  *<pre>  *   /HOUR  *      ... Round to the start of the current hour  *   /DAY  *      ... Round to the start of the current day  *   +2YEARS  *      ... Exactly two years in the future from now  *   -1DAY  *      ... Exactly 1 day prior to now  *   /DAY+6MONTHS+3DAYS  *      ... 6 months and 3 days in the future from the start of  *          the current day  *   +6MONTHS+3DAYS/DAY  *      ... 6 months and 3 days in the future from now, rounded  *          down to nearest day  *</pre>  *  *<p>  * All commands are relative to a "now" which is fixed in an instance of  * DateMathParser such that  *<code>p.parseMath("+0MILLISECOND").equals(p.parseMath("+0MILLISECOND"))</code>  * no matter how many wall clock milliseconds elapse between the two  * distinct calls to parse (Assuming no other thread calls  * "<code>setNow</code>" in the interim)  *</p>  *  *<p>  * Multiple aliases exist for the various units of time (ie:  *<code>MINUTE</code> and<code>MINUTES</code>;<code>MILLI</code>,  *<code>MILLIS</code>,<code>MILLISECOND</code>, and  *<code>MILLISECONDS</code>.)  The complete list can be found by  * inspecting the keySet of<code>CALENDAR_UNITS</code>.  *</p>  *  *  */
+comment|/**  * A Simple Utility class for parsing "math" like strings relating to Dates.  *  *<p>  * The basic syntax support addition, subtraction and rounding at various  * levels of granularity (or "units").  Commands can be chained together  * and are parsed from left to right.  '+' and '-' denote addition and  * subtraction, while '/' denotes "round".  Round requires only a unit, while  * addition/subtraction require an integer value and a unit.  * Command strings must not include white space, but the "No-Op" command  * (empty string) is allowed....    *</p>  *  *<pre>  *   /HOUR  *      ... Round to the start of the current hour  *   /DAY  *      ... Round to the start of the current day  *   +2YEARS  *      ... Exactly two years in the future from now  *   -1DAY  *      ... Exactly 1 day prior to now  *   /DAY+6MONTHS+3DAYS  *      ... 6 months and 3 days in the future from the start of  *          the current day  *   +6MONTHS+3DAYS/DAY  *      ... 6 months and 3 days in the future from now, rounded  *          down to nearest day  *</pre>  *  *<p>  * (Multiple aliases exist for the various units of time (ie:  *<code>MINUTE</code> and<code>MINUTES</code>;<code>MILLI</code>,  *<code>MILLIS</code>,<code>MILLISECOND</code>, and  *<code>MILLISECONDS</code>.)  The complete list can be found by  * inspecting the keySet of {@link #CALENDAR_UNITS})  *</p>  *  *<p>  * All commands are relative to a "now" which is fixed in an instance of  * DateMathParser such that  *<code>p.parseMath("+0MILLISECOND").equals(p.parseMath("+0MILLISECOND"))</code>  * no matter how many wall clock milliseconds elapse between the two  * distinct calls to parse (Assuming no other thread calls  * "<code>setNow</code>" in the interim).  The default value of 'now' is   * the time at the moment the<code>DateMathParser</code> instance is   * constructed, unless overridden by the {@link CommonParams#NOW NOW}  * request param.  *</p>  *  *<p>  * All commands are also affected to the rules of a specified {@link TimeZone}  * (including the start/end of DST if any) which determine when each arbitrary   * day starts.  This not only impacts rounding/adding of DAYs, but also   * cascades to rounding of HOUR, MIN, MONTH, YEAR as well.  The default   *<code>TimeZone</code> used is<code>UTC</code> unless  overridden by the   * {@link CommonParams#TZ TZ}  * request param.  *</p>  *  * @see SolrRequestInfo#getClientTimeZone  * @see SolrRequestInfo#getNOW  */
 end_comment
 
 begin_class
@@ -699,7 +719,7 @@ specifier|private
 name|Date
 name|now
 decl_stmt|;
-comment|/**    * Default constructor that assumes UTC should be used for rounding unless     * otherwise specified in the SolrRequestInfo    *     * @see #DEFAULT_MATH_TZ    * @see #DEFAULT_MATH_LOCALE    */
+comment|/**    * Default constructor that assumes UTC should be used for rounding unless     * otherwise specified in the SolrRequestInfo    *     * @see SolrRequestInfo#getClientTimeZone    * @see #DEFAULT_MATH_LOCALE    */
 DECL|method|DateMathParser
 specifier|public
 name|DateMathParser
