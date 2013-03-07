@@ -296,6 +296,12 @@ name|REQUESTRECOVERY
 block|,
 DECL|enum constant|REQUESTSYNCSHARD
 name|REQUESTSYNCSHARD
+block|,
+DECL|enum constant|CREATEALIAS
+name|CREATEALIAS
+block|,
+DECL|enum constant|DELETEALIAS
+name|DELETEALIAS
 block|;
 DECL|method|get
 specifier|public
