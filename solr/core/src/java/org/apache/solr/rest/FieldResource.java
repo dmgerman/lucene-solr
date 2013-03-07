@@ -299,6 +299,7 @@ throw|;
 block|}
 else|else
 block|{
+specifier|final
 name|SchemaField
 name|field
 decl_stmt|;
@@ -320,7 +321,6 @@ expr_stmt|;
 block|}
 else|else
 block|{
-comment|// Don't look for matches among dynamic fields
 name|field
 operator|=
 name|getSchema

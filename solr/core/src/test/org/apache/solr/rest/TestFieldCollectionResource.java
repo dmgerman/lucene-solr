@@ -58,11 +58,11 @@ name|assertQ
 argument_list|(
 literal|"/schema/fields?indent=on&wt=xml"
 argument_list|,
-literal|"(/response/arr[@name='fields']/lst/str[@name='name'])[1] = 'custstopfilt'"
+literal|"(/response/arr[@name='fields']/lst/str[@name='name'])[1] = 'HTMLstandardtok'"
 argument_list|,
-literal|"(/response/arr[@name='fields']/lst/str[@name='name'])[2] = 'lowerfilt'"
+literal|"(/response/arr[@name='fields']/lst/str[@name='name'])[2] = 'HTMLwhitetok'"
 argument_list|,
-literal|"(/response/arr[@name='fields']/lst/str[@name='name'])[3] = 'test_basictv'"
+literal|"(/response/arr[@name='fields']/lst/str[@name='name'])[3] = '_version_'"
 argument_list|,
 literal|"count(//copySources/str) = count(//copyDests/str)"
 argument_list|)
@@ -87,6 +87,57 @@ argument_list|,
 literal|"(/response/arr[@name='fields']/lst/str[@name='name'])[1] = 'id'"
 argument_list|,
 literal|"(/response/arr[@name='fields']/lst/str[@name='name'])[2] = '_version_'"
+argument_list|)
+expr_stmt|;
+block|}
+annotation|@
+name|Test
+DECL|method|testGetThreeFieldsDontIncludeDynamic
+specifier|public
+name|void
+name|testGetThreeFieldsDontIncludeDynamic
+parameter_list|()
+throws|throws
+name|IOException
+block|{
+comment|//
+name|assertQ
+argument_list|(
+literal|"/schema/fields?indent=on&wt=xml&fl=id,_version_,price_i"
+argument_list|,
+literal|"count(/response/arr[@name='fields']/lst/str[@name='name']) = 2"
+argument_list|,
+literal|"(/response/arr[@name='fields']/lst/str[@name='name'])[1] = 'id'"
+argument_list|,
+literal|"(/response/arr[@name='fields']/lst/str[@name='name'])[2] = '_version_'"
+argument_list|)
+expr_stmt|;
+block|}
+annotation|@
+name|Test
+DECL|method|testGetThreeFieldsIncludeDynamic
+specifier|public
+name|void
+name|testGetThreeFieldsIncludeDynamic
+parameter_list|()
+throws|throws
+name|IOException
+block|{
+name|assertQ
+argument_list|(
+literal|"/schema/fields?indent=on&wt=xml&fl=id,_version_,price_i&includeDynamic=on"
+argument_list|,
+literal|"count(/response/arr[@name='fields']/lst/str[@name='name']) = 3"
+argument_list|,
+literal|"(/response/arr[@name='fields']/lst/str[@name='name'])[1] = 'id'"
+argument_list|,
+literal|"(/response/arr[@name='fields']/lst/str[@name='name'])[2] = '_version_'"
+argument_list|,
+literal|"(/response/arr[@name='fields']/lst/str[@name='name'])[3] = 'price_i'"
+argument_list|,
+literal|"/response/arr[@name='fields']/lst[    str[@name='name']='price_i'    "
+operator|+
+literal|"                                  and str[@name='dynamicBase']='*_i']"
 argument_list|)
 expr_stmt|;
 block|}
@@ -124,11 +175,11 @@ name|assertJQ
 argument_list|(
 literal|"/schema/fields?indent=on"
 argument_list|,
-literal|"/fields/[0]/name=='custstopfilt'"
+literal|"/fields/[0]/name=='HTMLstandardtok'"
 argument_list|,
-literal|"/fields/[1]/name=='lowerfilt'"
+literal|"/fields/[1]/name=='HTMLwhitetok'"
 argument_list|,
-literal|"/fields/[2]/name=='test_basictv'"
+literal|"/fields/[2]/name=='_version_'"
 argument_list|)
 expr_stmt|;
 block|}
