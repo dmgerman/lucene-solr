@@ -350,34 +350,6 @@ name|AtomicLong
 import|;
 end_import
 
-begin_import
-import|import static
-name|org
-operator|.
-name|apache
-operator|.
-name|solr
-operator|.
-name|core
-operator|.
-name|SolrCore
-operator|.
-name|verbose
-import|;
-end_import
-
-begin_import
-import|import static
-name|org
-operator|.
-name|junit
-operator|.
-name|Assert
-operator|.
-name|fail
-import|;
-end_import
-
 begin_comment
 comment|/**  * Incorporate the open/close stress tests into unit tests.  */
 end_comment
@@ -970,7 +942,9 @@ argument_list|()
 expr_stmt|;
 try|try
 block|{
-name|verbose
+name|log
+operator|.
+name|info
 argument_list|(
 literal|"Starting indexing and querying"
 argument_list|)
@@ -999,7 +973,9 @@ argument_list|,
 name|secondsRemaining
 argument_list|)
 decl_stmt|;
-name|verbose
+name|log
+operator|.
+name|info
 argument_list|(
 name|String
 operator|.
@@ -1323,7 +1299,7 @@ argument_list|()
 condition|)
 name|log
 operator|.
-name|info
+name|warn
 argument_list|(
 literal|"mkdirs returned false in makeCore... ignoring"
 argument_list|)
@@ -1421,7 +1397,9 @@ name|Queries
 name|queries
 parameter_list|)
 block|{
-name|verbose
+name|log
+operator|.
+name|info
 argument_list|(
 literal|"Deleting data from last cycle, this may take a few minutes."
 argument_list|)
@@ -1477,7 +1455,9 @@ expr_stmt|;
 block|}
 block|}
 comment|// We're testing, after all. Let's be really sure things are as we expect.
-name|verbose
+name|log
+operator|.
+name|info
 argument_list|(
 literal|"Insuring all cores empty"
 argument_list|)
@@ -1543,7 +1523,9 @@ operator|>
 literal|0
 condition|)
 block|{
-name|verbose
+name|log
+operator|.
+name|warn
 argument_list|(
 literal|"Found docs after purging done, this is bad."
 argument_list|)
@@ -1591,7 +1573,9 @@ parameter_list|)
 throws|throws
 name|InterruptedException
 block|{
-name|verbose
+name|log
+operator|.
+name|info
 argument_list|(
 literal|"Checking if indexes have all the documents they should..."
 argument_list|)
@@ -1631,6 +1615,21 @@ name|getKey
 argument_list|()
 argument_list|)
 expr_stmt|;
+for|for
+control|(
+name|int
+name|idx
+init|=
+literal|0
+init|;
+name|idx
+operator|<
+literal|3
+condition|;
+operator|++
+name|idx
+control|)
+block|{
 try|try
 block|{
 name|server
@@ -1642,6 +1641,8 @@ argument_list|,
 literal|true
 argument_list|)
 expr_stmt|;
+break|break;
+comment|// retry loop
 block|}
 catch|catch
 parameter_list|(
@@ -1649,7 +1650,9 @@ name|Exception
 name|e
 parameter_list|)
 block|{
-name|fail
+name|log
+operator|.
+name|warn
 argument_list|(
 literal|"Exception when committing core "
 operator|+
@@ -1666,6 +1669,14 @@ name|getMessage
 argument_list|()
 argument_list|)
 expr_stmt|;
+name|Thread
+operator|.
+name|sleep
+argument_list|(
+literal|100L
+argument_list|)
+expr_stmt|;
+block|}
 block|}
 name|long
 name|numFound
@@ -1716,7 +1727,9 @@ name|numFound
 argument_list|)
 expr_stmt|;
 block|}
-name|verbose
+name|log
+operator|.
+name|info
 argument_list|(
 name|String
 operator|.
@@ -2107,7 +2120,11 @@ operator|<=
 literal|0
 condition|)
 block|{
-name|verbose
+name|SolrTestCaseJ4
+operator|.
+name|log
+operator|.
+name|info
 argument_list|(
 name|String
 operator|.
@@ -2232,7 +2249,11 @@ name|void
 name|run
 parameter_list|()
 block|{
-name|verbose
+name|SolrTestCaseJ4
+operator|.
+name|log
+operator|.
+name|info
 argument_list|(
 name|String
 operator|.
@@ -2405,9 +2426,17 @@ operator|!=
 literal|0
 condition|)
 block|{
-name|verbose
+name|SolrTestCaseJ4
+operator|.
+name|log
+operator|.
+name|warn
 argument_list|(
-literal|"Failed to index a document with status "
+literal|"Failed to index a document to core "
+operator|+
+name|core
+operator|+
+literal|" with status "
 operator|+
 name|response
 operator|.
@@ -2437,6 +2466,8 @@ operator|.
 name|incrementAndGet
 argument_list|()
 expr_stmt|;
+break|break;
+comment|// retry loop.
 block|}
 name|Thread
 operator|.
@@ -2446,8 +2477,6 @@ literal|100L
 argument_list|)
 expr_stmt|;
 comment|// Let's not go crazy here.
-break|break;
-comment|// try loop.
 block|}
 catch|catch
 parameter_list|(
@@ -2476,7 +2505,11 @@ operator|==
 literal|2
 condition|)
 block|{
-name|fail
+name|SolrTestCaseJ4
+operator|.
+name|log
+operator|.
+name|warn
 argument_list|(
 literal|"Could not reach server while indexing for three tries, quitting "
 operator|+
@@ -2489,7 +2522,11 @@ expr_stmt|;
 block|}
 else|else
 block|{
-name|verbose
+name|SolrTestCaseJ4
+operator|.
+name|log
+operator|.
+name|info
 argument_list|(
 literal|"Indexing thread "
 operator|+
@@ -2531,7 +2568,11 @@ block|}
 block|}
 block|}
 block|}
-name|verbose
+name|SolrTestCaseJ4
+operator|.
+name|log
+operator|.
+name|info
 argument_list|(
 literal|"Leaving indexing thread "
 operator|+
@@ -2860,7 +2901,11 @@ name|void
 name|run
 parameter_list|()
 block|{
-name|verbose
+name|SolrTestCaseJ4
+operator|.
+name|log
+operator|.
+name|info
 argument_list|(
 name|String
 operator|.
@@ -2975,9 +3020,17 @@ operator|!=
 literal|0
 condition|)
 block|{
-name|verbose
+name|SolrTestCaseJ4
+operator|.
+name|log
+operator|.
+name|warn
 argument_list|(
-literal|"Failed to index a document with status "
+literal|"Failed to query core "
+operator|+
+name|core
+operator|+
+literal|" with status "
 operator|+
 name|response
 operator|.
@@ -3017,7 +3070,11 @@ operator|==
 literal|2
 condition|)
 block|{
-name|fail
+name|SolrTestCaseJ4
+operator|.
+name|log
+operator|.
+name|warn
 argument_list|(
 literal|"Could not reach server while indexing for three tries, quitting "
 operator|+
@@ -3030,7 +3087,11 @@ expr_stmt|;
 block|}
 else|else
 block|{
-name|verbose
+name|SolrTestCaseJ4
+operator|.
+name|log
+operator|.
+name|info
 argument_list|(
 literal|"Querying thread: "
 operator|+
@@ -3072,7 +3133,11 @@ block|}
 block|}
 block|}
 block|}
-name|verbose
+name|SolrTestCaseJ4
+operator|.
+name|log
+operator|.
+name|info
 argument_list|(
 name|String
 operator|.
