@@ -73,6 +73,15 @@ argument_list|()
 decl_stmt|;
 name|toSimpleString
 argument_list|(
+name|fr
+operator|.
+name|getFacetRequest
+argument_list|()
+operator|.
+name|categoryPath
+operator|.
+name|length
+argument_list|,
 literal|0
 argument_list|,
 name|sb
@@ -99,6 +108,9 @@ name|void
 name|toSimpleString
 parameter_list|(
 name|int
+name|startLength
+parameter_list|,
+name|int
 name|depth
 parameter_list|,
 name|StringBuilder
@@ -123,7 +135,11 @@ name|label
 operator|.
 name|components
 index|[
+name|startLength
+operator|+
 name|depth
+operator|-
+literal|1
 index|]
 operator|+
 literal|" ("
@@ -150,6 +166,8 @@ control|)
 block|{
 name|toSimpleString
 argument_list|(
+name|startLength
+argument_list|,
 name|depth
 operator|+
 literal|1
