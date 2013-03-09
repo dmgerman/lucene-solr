@@ -582,7 +582,7 @@ name|Math
 operator|.
 name|max
 argument_list|(
-literal|200
+literal|300
 argument_list|,
 literal|12
 operator|*
