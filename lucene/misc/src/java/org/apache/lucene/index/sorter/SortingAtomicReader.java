@@ -2327,7 +2327,9 @@ name|grow
 argument_list|(
 name|docs
 argument_list|,
-name|i
+name|docs
+operator|.
+name|length
 operator|+
 literal|1
 argument_list|)
@@ -2340,7 +2342,9 @@ name|grow
 argument_list|(
 name|offsets
 argument_list|,
-name|i
+name|offsets
+operator|.
+name|length
 operator|+
 literal|1
 argument_list|)
