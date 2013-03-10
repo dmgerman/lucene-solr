@@ -22,6 +22,16 @@ name|java
 operator|.
 name|io
 operator|.
+name|File
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
+name|io
+operator|.
 name|IOException
 import|;
 end_import
@@ -154,6 +164,30 @@ expr_stmt|;
 block|}
 return|return
 name|dir
+return|;
+block|}
+annotation|@
+name|Override
+DECL|method|isAbsolute
+specifier|public
+name|boolean
+name|isAbsolute
+parameter_list|(
+name|String
+name|path
+parameter_list|)
+block|{
+comment|// TODO: kind of a hack - we don't know what the delegate is, so
+comment|// we treat it as file based since this works on most ephem impls
+return|return
+operator|new
+name|File
+argument_list|(
+name|path
+argument_list|)
+operator|.
+name|isAbsolute
+argument_list|()
 return|;
 block|}
 block|}

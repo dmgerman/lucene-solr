@@ -585,12 +585,6 @@ specifier|final
 name|String
 name|CONF_DIR
 init|=
-literal|"."
-operator|+
-name|File
-operator|.
-name|separator
-operator|+
 literal|"solr"
 operator|+
 name|File
