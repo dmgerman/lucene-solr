@@ -864,6 +864,14 @@ operator|new
 name|Aliases
 argument_list|()
 decl_stmt|;
+DECL|field|closed
+specifier|private
+specifier|volatile
+name|boolean
+name|closed
+init|=
+literal|false
+decl_stmt|;
 DECL|method|ZkStateReader
 specifier|public
 name|ZkStateReader
@@ -2401,6 +2409,12 @@ name|void
 name|close
 parameter_list|()
 block|{
+name|this
+operator|.
+name|closed
+operator|=
+literal|true
+expr_stmt|;
 if|if
 condition|(
 name|closeClient
@@ -2544,6 +2558,9 @@ name|currentTimeMillis
 argument_list|()
 operator|<
 name|timeoutAt
+operator|&&
+operator|!
+name|closed
 condition|)
 block|{
 if|if

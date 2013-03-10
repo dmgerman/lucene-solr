@@ -359,7 +359,7 @@ literal|2
 expr_stmt|;
 name|shardCount
 operator|=
-literal|6
+literal|4
 expr_stmt|;
 block|}
 annotation|@
