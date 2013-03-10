@@ -516,7 +516,7 @@ literal|2
 expr_stmt|;
 name|shardCount
 operator|=
-literal|3
+literal|4
 expr_stmt|;
 block|}
 comment|/*    * (non-Javadoc)    *     * @see org.apache.solr.BaseDistributedSearchTestCase#doTest()    *     * Create 3 shards, each with one replica    */
@@ -1426,7 +1426,7 @@ argument_list|()
 decl_stmt|;
 name|assertEquals
 argument_list|(
-literal|4
+literal|5
 argument_list|,
 name|oldLiveNodes
 argument_list|)
@@ -1566,7 +1566,7 @@ name|DEFAULT_COLLECTION
 argument_list|,
 name|SHARD1
 argument_list|,
-literal|30000
+literal|45000
 argument_list|)
 expr_stmt|;
 name|index_specific
