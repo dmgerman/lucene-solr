@@ -390,7 +390,7 @@ name|sb
 operator|.
 name|append
 argument_list|(
-literal|"<dataSource name=\"hsqldb\" driver=\"org.hsqldb.jdbcDriver\" url=\"jdbc:hsqldb:mem:.\" /> \n"
+literal|"<dataSource name=\"hsqldb\" driver=\"${dataimporter.request.dots.in.hsqldb.driver}\" url=\"jdbc:hsqldb:mem:.\" /> \n"
 argument_list|)
 expr_stmt|;
 name|sb
