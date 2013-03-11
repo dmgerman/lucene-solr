@@ -449,6 +449,23 @@ literal|"/response/numFound==0"
 comment|// nothing should be found
 argument_list|)
 expr_stmt|;
+comment|// length of date math caused issues...
+name|assertJQ
+argument_list|(
+name|req
+argument_list|(
+literal|"q"
+argument_list|,
+literal|"foo_dt:\"2013-03-08T00:46:15Z/DAY+000MILLISECONDS+00SECONDS+00MINUTES+00HOURS+0000000000YEARS+6MONTHS+3DAYS\""
+argument_list|,
+literal|"debug"
+argument_list|,
+literal|"query"
+argument_list|)
+argument_list|,
+literal|"/debug/parsedquery=='foo_dt:2013-09-11T00:00:00Z'"
+argument_list|)
+expr_stmt|;
 block|}
 block|}
 end_class

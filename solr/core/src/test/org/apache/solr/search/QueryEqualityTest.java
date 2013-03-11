@@ -327,6 +327,35 @@ name|String
 argument_list|>
 argument_list|()
 decl_stmt|;
+DECL|method|testDateMathParsingEquality
+specifier|public
+name|void
+name|testDateMathParsingEquality
+parameter_list|()
+throws|throws
+name|Exception
+block|{
+comment|// regardless of parser, these should all be equivilent queries
+name|assertQueryEquals
+argument_list|(
+literal|null
+argument_list|,
+literal|"{!lucene}f_tdt:2013-09-11T00\\:00\\:00Z"
+argument_list|,
+literal|"{!lucene}f_tdt:2013-03-08T00\\:46\\:15Z/DAY+6MONTHS+3DAYS"
+argument_list|,
+literal|"{!lucene}f_tdt:\"2013-03-08T00:46:15Z/DAY+6MONTHS+3DAYS\""
+argument_list|,
+literal|"{!field f=f_tdt}2013-03-08T00:46:15Z/DAY+6MONTHS+3DAYS"
+argument_list|,
+literal|"{!field f=f_tdt}2013-09-11T00:00:00Z"
+argument_list|,
+literal|"{!term f=f_tdt}2013-03-08T00:46:15Z/DAY+6MONTHS+3DAYS"
+argument_list|,
+literal|"{!term f=f_tdt}2013-09-11T00:00:00Z"
+argument_list|)
+expr_stmt|;
+block|}
 DECL|method|testQueryLucene
 specifier|public
 name|void
@@ -2906,7 +2935,7 @@ argument_list|()
 expr_stmt|;
 block|}
 block|}
-comment|/**    * NOTE: defType is not only used to pick the parser, but also to record     * the parser being tested for coverage sanity checking    *    * @see QueryUtils#check    * @see QueryUtils#checkEqual    * @see #testParserCoverage    */
+comment|/**    * NOTE: defType is not only used to pick the parser, but, if non-null it is     * also to record the parser being tested for coverage sanity checking    *    * @see QueryUtils#check    * @see QueryUtils#checkEqual    * @see #testParserCoverage    */
 DECL|method|assertQueryEquals
 specifier|protected
 name|void
@@ -2928,6 +2957,12 @@ parameter_list|)
 throws|throws
 name|Exception
 block|{
+if|if
+condition|(
+literal|null
+operator|!=
+name|defType
+condition|)
 name|qParsersTested
 operator|.
 name|add
