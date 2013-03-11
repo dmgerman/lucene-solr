@@ -89,7 +89,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * A {@link TokenFilter} that normalizes common katakana spelling variations  * ending in a long sound character by removing this character (U+30FC).  Only  * katakana words longer than a minimum length are stemmed (default is four).  *<p>  * Note that only full-width katakana characters are supported.  Please use a  * {@link org.apache.lucene.analysis.cjk.CJKWidthFilter} to convert half-width  * katakana to full-width before using this filter.  *</p>  *<p>  * In order to prevent terms from being stemmed, use an instance of  * {@link org.apache.lucene.analysis.miscellaneous.KeywordMarkerFilter}  * or a custom {@link TokenFilter} that sets the {@link KeywordAttribute}  * before this {@link TokenStream}.  *</p>  */
+comment|/**  * A {@link TokenFilter} that normalizes common katakana spelling variations  * ending in a long sound character by removing this character (U+30FC).  Only  * katakana words longer than a minimum length are stemmed (default is four).  *<p>  * Note that only full-width katakana characters are supported.  Please use a  * {@link org.apache.lucene.analysis.cjk.CJKWidthFilter} to convert half-width  * katakana to full-width before using this filter.  *</p>  *<p>  * In order to prevent terms from being stemmed, use an instance of  * {@link org.apache.lucene.analysis.miscellaneous.SetKeywordMarkerFilter}  * or a custom {@link TokenFilter} that sets the {@link KeywordAttribute}  * before this {@link TokenStream}.  *</p>  */
 end_comment
 
 begin_class

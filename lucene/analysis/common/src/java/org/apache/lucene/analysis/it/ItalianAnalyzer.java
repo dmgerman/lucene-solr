@@ -106,7 +106,23 @@ name|analysis
 operator|.
 name|miscellaneous
 operator|.
-name|KeywordMarkerFilter
+name|SetKeywordMarkerFilter
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|analysis
+operator|.
+name|miscellaneous
+operator|.
+name|SetKeywordMarkerFilter
 import|;
 end_import
 
@@ -495,7 +511,7 @@ name|EMPTY_SET
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**    * Builds an analyzer with the given stop words. If a non-empty stem exclusion set is    * provided this analyzer will add a {@link KeywordMarkerFilter} before    * stemming.    *     * @param matchVersion lucene compatibility version    * @param stopwords a stopword set    * @param stemExclusionSet a set of terms not to be stemmed    */
+comment|/**    * Builds an analyzer with the given stop words. If a non-empty stem exclusion set is    * provided this analyzer will add a {@link SetKeywordMarkerFilter} before    * stemming.    *     * @param matchVersion lucene compatibility version    * @param stopwords a stopword set    * @param stemExclusionSet a set of terms not to be stemmed    */
 DECL|method|ItalianAnalyzer
 specifier|public
 name|ItalianAnalyzer
@@ -536,7 +552,7 @@ argument_list|)
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**    * Creates a    * {@link org.apache.lucene.analysis.Analyzer.TokenStreamComponents}    * which tokenizes all the text in the provided {@link Reader}.    *     * @return A    *         {@link org.apache.lucene.analysis.Analyzer.TokenStreamComponents}    *         built from an {@link StandardTokenizer} filtered with    *         {@link StandardFilter}, {@link ElisionFilter}, {@link LowerCaseFilter}, {@link StopFilter}    *         , {@link KeywordMarkerFilter} if a stem exclusion set is    *         provided and {@link ItalianLightStemFilter}.    */
+comment|/**    * Creates a    * {@link org.apache.lucene.analysis.Analyzer.TokenStreamComponents}    * which tokenizes all the text in the provided {@link Reader}.    *     * @return A    *         {@link org.apache.lucene.analysis.Analyzer.TokenStreamComponents}    *         built from an {@link StandardTokenizer} filtered with    *         {@link StandardFilter}, {@link ElisionFilter}, {@link LowerCaseFilter}, {@link StopFilter}    *         , {@link SetKeywordMarkerFilter} if a stem exclusion set is    *         provided and {@link ItalianLightStemFilter}.    */
 annotation|@
 name|Override
 DECL|method|createComponents
@@ -617,7 +633,7 @@ condition|)
 name|result
 operator|=
 operator|new
-name|KeywordMarkerFilter
+name|SetKeywordMarkerFilter
 argument_list|(
 name|result
 argument_list|,

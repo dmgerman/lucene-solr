@@ -124,7 +124,7 @@ name|analysis
 operator|.
 name|miscellaneous
 operator|.
-name|KeywordMarkerFilter
+name|SetKeywordMarkerFilter
 import|;
 end_import
 
@@ -514,7 +514,7 @@ condition|)
 name|result
 operator|=
 operator|new
-name|KeywordMarkerFilter
+name|SetKeywordMarkerFilter
 argument_list|(
 name|result
 argument_list|,

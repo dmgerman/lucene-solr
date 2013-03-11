@@ -36,7 +36,7 @@ name|analysis
 operator|.
 name|miscellaneous
 operator|.
-name|KeywordMarkerFilter
+name|SetKeywordMarkerFilter
 import|;
 end_import
 
@@ -109,7 +109,7 @@ comment|/*  * Licensed to the Apache Software Foundation (ASF) under one or more
 end_comment
 
 begin_comment
-comment|/**  * A {@link TokenFilter} that applies {@link CzechStemmer} to stem Czech words.  *<p>  * To prevent terms from being stemmed use an instance of  * {@link KeywordMarkerFilter} or a custom {@link TokenFilter} that sets  * the {@link KeywordAttribute} before this {@link TokenStream}.  *</p>  *<p><b>NOTE</b>: Input is expected to be in lowercase,   * but with diacritical marks</p>  * @see KeywordMarkerFilter  */
+comment|/**  * A {@link TokenFilter} that applies {@link CzechStemmer} to stem Czech words.  *<p>  * To prevent terms from being stemmed use an instance of  * {@link SetKeywordMarkerFilter} or a custom {@link TokenFilter} that sets  * the {@link KeywordAttribute} before this {@link TokenStream}.  *</p>  *<p><b>NOTE</b>: Input is expected to be in lowercase,   * but with diacritical marks</p>  * @see SetKeywordMarkerFilter  */
 end_comment
 
 begin_class

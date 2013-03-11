@@ -76,7 +76,7 @@ name|analysis
 operator|.
 name|miscellaneous
 operator|.
-name|KeywordMarkerFilter
+name|SetKeywordMarkerFilter
 import|;
 end_import
 
@@ -645,7 +645,7 @@ argument_list|)
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**    * Returns a (possibly reused) {@link TokenStream} which tokenizes all the     * text in the provided {@link Reader}.    *    * @return A {@link TokenStream} built from a {@link StandardTokenizer}    *   filtered with {@link StandardFilter}, {@link LowerCaseFilter},     *   {@link StopFilter}, {@link KeywordMarkerFilter} if a stem exclusion set is provided,    *   {@link StemmerOverrideFilter}, and {@link SnowballFilter}    */
+comment|/**    * Returns a (possibly reused) {@link TokenStream} which tokenizes all the     * text in the provided {@link Reader}.    *    * @return A {@link TokenStream} built from a {@link StandardTokenizer}    *   filtered with {@link StandardFilter}, {@link LowerCaseFilter},     *   {@link StopFilter}, {@link SetKeywordMarkerFilter} if a stem exclusion set is provided,    *   {@link StemmerOverrideFilter}, and {@link SnowballFilter}    */
 annotation|@
 name|Override
 DECL|method|createComponents
@@ -716,7 +716,7 @@ condition|)
 name|result
 operator|=
 operator|new
-name|KeywordMarkerFilter
+name|SetKeywordMarkerFilter
 argument_list|(
 name|result
 argument_list|,

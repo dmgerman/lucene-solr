@@ -162,7 +162,7 @@ name|analysis
 operator|.
 name|miscellaneous
 operator|.
-name|KeywordMarkerFilter
+name|SetKeywordMarkerFilter
 import|;
 end_import
 
@@ -423,7 +423,7 @@ operator|new
 name|HunspellStemFilter
 argument_list|(
 operator|new
-name|KeywordMarkerFilter
+name|SetKeywordMarkerFilter
 argument_list|(
 name|tokenizer
 argument_list|,

@@ -40,7 +40,7 @@ name|analysis
 operator|.
 name|miscellaneous
 operator|.
-name|KeywordMarkerFilter
+name|SetKeywordMarkerFilter
 import|;
 end_import
 
@@ -109,7 +109,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * A {@link TokenFilter} that applies {@link GreekStemmer} to stem Greek  * words.  *<p>  * To prevent terms from being stemmed use an instance of  * {@link KeywordMarkerFilter} or a custom {@link TokenFilter} that sets  * the {@link KeywordAttribute} before this {@link TokenStream}.  *</p>  *<p>  * NOTE: Input is expected to be casefolded for Greek (including folding of final  * sigma to sigma), and with diacritics removed. This can be achieved by using   * either {@link GreekLowerCaseFilter} or ICUFoldingFilter before GreekStemFilter.  * @lucene.experimental  */
+comment|/**  * A {@link TokenFilter} that applies {@link GreekStemmer} to stem Greek  * words.  *<p>  * To prevent terms from being stemmed use an instance of  * {@link SetKeywordMarkerFilter} or a custom {@link TokenFilter} that sets  * the {@link KeywordAttribute} before this {@link TokenStream}.  *</p>  *<p>  * NOTE: Input is expected to be casefolded for Greek (including folding of final  * sigma to sigma), and with diacritics removed. This can be achieved by using   * either {@link GreekLowerCaseFilter} or ICUFoldingFilter before GreekStemFilter.  * @lucene.experimental  */
 end_comment
 
 begin_class

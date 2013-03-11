@@ -94,7 +94,7 @@ name|analysis
 operator|.
 name|miscellaneous
 operator|.
-name|KeywordMarkerFilter
+name|SetKeywordMarkerFilter
 import|;
 end_import
 
@@ -202,7 +202,7 @@ operator|new
 name|GermanStemFilter
 argument_list|(
 operator|new
-name|KeywordMarkerFilter
+name|SetKeywordMarkerFilter
 argument_list|(
 operator|new
 name|LowerCaseTokenizer

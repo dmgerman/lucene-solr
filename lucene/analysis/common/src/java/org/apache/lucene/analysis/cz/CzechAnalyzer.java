@@ -76,7 +76,7 @@ name|analysis
 operator|.
 name|miscellaneous
 operator|.
-name|KeywordMarkerFilter
+name|SetKeywordMarkerFilter
 import|;
 end_import
 
@@ -418,7 +418,7 @@ argument_list|)
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**    * Creates    * {@link org.apache.lucene.analysis.Analyzer.TokenStreamComponents}    * used to tokenize all the text in the provided {@link Reader}.    *     * @return {@link org.apache.lucene.analysis.Analyzer.TokenStreamComponents}    *         built from a {@link StandardTokenizer} filtered with    *         {@link StandardFilter}, {@link LowerCaseFilter}, {@link StopFilter}    *         , and {@link CzechStemFilter} (only if version is>= LUCENE_31). If    *         a stem exclusion set is provided via    *         {@link #CzechAnalyzer(Version, CharArraySet, CharArraySet)} a    *         {@link KeywordMarkerFilter} is added before    *         {@link CzechStemFilter}.    */
+comment|/**    * Creates    * {@link org.apache.lucene.analysis.Analyzer.TokenStreamComponents}    * used to tokenize all the text in the provided {@link Reader}.    *     * @return {@link org.apache.lucene.analysis.Analyzer.TokenStreamComponents}    *         built from a {@link StandardTokenizer} filtered with    *         {@link StandardFilter}, {@link LowerCaseFilter}, {@link StopFilter}    *         , and {@link CzechStemFilter} (only if version is>= LUCENE_31). If    *         a stem exclusion set is provided via    *         {@link #CzechAnalyzer(Version, CharArraySet, CharArraySet)} a    *         {@link SetKeywordMarkerFilter} is added before    *         {@link CzechStemFilter}.    */
 annotation|@
 name|Override
 DECL|method|createComponents
@@ -491,7 +491,7 @@ condition|)
 name|result
 operator|=
 operator|new
-name|KeywordMarkerFilter
+name|SetKeywordMarkerFilter
 argument_list|(
 name|result
 argument_list|,

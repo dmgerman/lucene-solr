@@ -68,7 +68,7 @@ name|analysis
 operator|.
 name|miscellaneous
 operator|.
-name|KeywordMarkerFilter
+name|SetKeywordMarkerFilter
 import|;
 end_import
 
@@ -105,7 +105,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * A {@link TokenFilter} that applies {@link GalicianMinimalStemmer} to stem   * Galician words.  *<p>  * To prevent terms from being stemmed use an instance of  * {@link KeywordMarkerFilter} or a custom {@link TokenFilter} that sets  * the {@link KeywordAttribute} before this {@link TokenStream}.  *</p>  */
+comment|/**  * A {@link TokenFilter} that applies {@link GalicianMinimalStemmer} to stem   * Galician words.  *<p>  * To prevent terms from being stemmed use an instance of  * {@link SetKeywordMarkerFilter} or a custom {@link TokenFilter} that sets  * the {@link KeywordAttribute} before this {@link TokenStream}.  *</p>  */
 end_comment
 
 begin_class
