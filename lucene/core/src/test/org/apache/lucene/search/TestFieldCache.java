@@ -2270,10 +2270,11 @@ decl_stmt|;
 name|TermsEnum
 name|tenum
 init|=
+operator|new
+name|SortedDocValuesTermsEnum
+argument_list|(
 name|termsIndex
-operator|.
-name|termsEnum
-argument_list|()
+argument_list|)
 decl_stmt|;
 name|BytesRef
 name|val
