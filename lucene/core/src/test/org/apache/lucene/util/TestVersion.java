@@ -175,7 +175,7 @@ name|i
 operator|++
 control|)
 block|{
-name|assertTrue
+name|assertNotNull
 argument_list|(
 name|values
 index|[
@@ -202,7 +202,7 @@ name|name
 argument_list|()
 argument_list|)
 operator|.
-name|isAnnotationPresent
+name|getAnnotation
 argument_list|(
 name|Deprecated
 operator|.
