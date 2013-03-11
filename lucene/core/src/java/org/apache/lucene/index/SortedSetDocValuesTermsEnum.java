@@ -70,7 +70,6 @@ end_comment
 
 begin_class
 DECL|class|SortedSetDocValuesTermsEnum
-specifier|public
 class|class
 name|SortedSetDocValuesTermsEnum
 extends|extends
