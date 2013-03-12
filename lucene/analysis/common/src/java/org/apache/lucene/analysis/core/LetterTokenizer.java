@@ -118,31 +118,6 @@ name|in
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**    * Construct a new LetterTokenizer using a given {@link AttributeSource}.    *     * @param matchVersion    *          Lucene version to match See {@link<a href="#version">above</a>}    * @param source    *          the attribute source to use for this {@link Tokenizer}    * @param in    *          the input to split up into tokens    */
-DECL|method|LetterTokenizer
-specifier|public
-name|LetterTokenizer
-parameter_list|(
-name|Version
-name|matchVersion
-parameter_list|,
-name|AttributeSource
-name|source
-parameter_list|,
-name|Reader
-name|in
-parameter_list|)
-block|{
-name|super
-argument_list|(
-name|matchVersion
-argument_list|,
-name|source
-argument_list|,
-name|in
-argument_list|)
-expr_stmt|;
-block|}
 comment|/**    * Construct a new LetterTokenizer using a given    * {@link org.apache.lucene.util.AttributeSource.AttributeFactory}.    *     * @param matchVersion    *          Lucene version to match See {@link<a href="#version">above</a>}    * @param factory    *          the attribute factory to use for this {@link Tokenizer}    * @param in    *          the input to split up into tokens    */
 DECL|method|LetterTokenizer
 specifier|public

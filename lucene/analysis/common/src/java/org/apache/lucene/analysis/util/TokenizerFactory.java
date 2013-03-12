@@ -34,6 +34,22 @@ end_import
 
 begin_import
 import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|util
+operator|.
+name|AttributeSource
+operator|.
+name|AttributeFactory
+import|;
+end_import
+
+begin_import
+import|import
 name|java
 operator|.
 name|io
@@ -179,6 +195,25 @@ name|Reader
 name|input
 parameter_list|)
 function_decl|;
+comment|/** Creates a TokenStream of the specified input using the given AttributeFactory */
+DECL|method|create
+specifier|public
+name|Tokenizer
+name|create
+parameter_list|(
+name|AttributeFactory
+name|factory
+parameter_list|,
+name|Reader
+name|input
+parameter_list|)
+block|{
+throw|throw
+operator|new
+name|UnsupportedOperationException
+argument_list|()
+throw|;
+block|}
 block|}
 end_class
 

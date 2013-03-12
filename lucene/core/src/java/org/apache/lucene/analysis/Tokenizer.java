@@ -123,37 +123,6 @@ operator|=
 name|input
 expr_stmt|;
 block|}
-comment|/** Construct a token stream processing the given input using the given AttributeSource. */
-DECL|method|Tokenizer
-specifier|protected
-name|Tokenizer
-parameter_list|(
-name|AttributeSource
-name|source
-parameter_list|,
-name|Reader
-name|input
-parameter_list|)
-block|{
-name|super
-argument_list|(
-name|source
-argument_list|)
-expr_stmt|;
-assert|assert
-name|input
-operator|!=
-literal|null
-operator|:
-literal|"input must not be null"
-assert|;
-name|this
-operator|.
-name|input
-operator|=
-name|input
-expr_stmt|;
-block|}
 comment|/**    * {@inheritDoc}    *<p>    *<b>NOTE:</b>     * The default implementation closes the input Reader, so    * be sure to call<code>super.close()</code> when overriding this method.    */
 annotation|@
 name|Override

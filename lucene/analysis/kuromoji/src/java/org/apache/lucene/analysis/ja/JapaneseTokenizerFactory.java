@@ -447,7 +447,7 @@ annotation|@
 name|Override
 DECL|method|create
 specifier|public
-name|Tokenizer
+name|JapaneseTokenizer
 name|create
 parameter_list|(
 name|Reader

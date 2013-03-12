@@ -336,34 +336,6 @@ name|matchVersion
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**    * Creates a new ClassicTokenizer with a given {@link AttributeSource}.     */
-DECL|method|ClassicTokenizer
-specifier|public
-name|ClassicTokenizer
-parameter_list|(
-name|Version
-name|matchVersion
-parameter_list|,
-name|AttributeSource
-name|source
-parameter_list|,
-name|Reader
-name|input
-parameter_list|)
-block|{
-name|super
-argument_list|(
-name|source
-argument_list|,
-name|input
-argument_list|)
-expr_stmt|;
-name|init
-argument_list|(
-name|matchVersion
-argument_list|)
-expr_stmt|;
-block|}
 comment|/**    * Creates a new ClassicTokenizer with a given {@link org.apache.lucene.util.AttributeSource.AttributeFactory}     */
 DECL|method|ClassicTokenizer
 specifier|public
