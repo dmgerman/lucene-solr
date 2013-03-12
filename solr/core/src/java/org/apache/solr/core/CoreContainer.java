@@ -3976,7 +3976,7 @@ expr_stmt|;
 block|}
 try|try
 block|{
-comment|// First allow the closer thread to drain all the pending closes it can.
+comment|// First wake up the closer thread, it'll terminate almost immediately since it checks isShutDown.
 synchronized|synchronized
 init|(
 name|coreMaps
@@ -5623,6 +5623,15 @@ operator|+
 name|name
 argument_list|)
 throw|;
+try|try
+block|{
+name|coreMaps
+operator|.
+name|waitAddPendingCoreOps
+argument_list|(
+name|name
+argument_list|)
+expr_stmt|;
 name|CoreDescriptor
 name|cd
 init|=
@@ -5898,6 +5907,17 @@ argument_list|,
 literal|false
 argument_list|)
 expr_stmt|;
+block|}
+finally|finally
+block|{
+name|coreMaps
+operator|.
+name|removeFromPendingOps
+argument_list|(
+name|name
+argument_list|)
+expr_stmt|;
+block|}
 comment|// :TODO: Java7...
 comment|// http://docs.oracle.com/javase/7/docs/technotes/guides/language/catch-multiple.html
 block|}
@@ -6159,9 +6179,16 @@ name|core
 operator|!=
 literal|null
 condition|)
+block|{
+name|core
+operator|.
+name|open
+argument_list|()
+expr_stmt|;
 return|return
 name|core
 return|;
+block|}
 comment|// OK, it's not presently in any list, is it in the list of dynamic cores but not loaded yet? If so, load it.
 name|CoreDescriptor
 name|desc
@@ -6185,16 +6212,16 @@ return|return
 literal|null
 return|;
 block|}
+comment|// This will put an entry in pending core ops if the core isn't loaded
 name|core
 operator|=
 name|coreMaps
 operator|.
-name|waitPendingCoreOps
+name|waitAddPendingCoreOps
 argument_list|(
 name|name
 argument_list|)
 expr_stmt|;
-comment|// This will put an entry in pending core ops if the core isn't loaded
 if|if
 condition|(
 name|isShutDown
@@ -6204,14 +6231,14 @@ literal|null
 return|;
 comment|// We're quitting, so stop. This needs to be after the wait above since we may come off
 comment|// the wait as a consequence of shutting down.
+try|try
+block|{
 if|if
 condition|(
 name|core
 operator|==
 literal|null
 condition|)
-block|{
-try|try
 block|{
 name|core
 operator|=
@@ -6241,6 +6268,15 @@ literal|false
 argument_list|)
 expr_stmt|;
 block|}
+else|else
+block|{
+name|core
+operator|.
+name|open
+argument_list|()
+expr_stmt|;
+block|}
+block|}
 catch|catch
 parameter_list|(
 name|Exception
@@ -6264,12 +6300,11 @@ finally|finally
 block|{
 name|coreMaps
 operator|.
-name|releasePending
+name|removeFromPendingOps
 argument_list|(
 name|name
 argument_list|)
 expr_stmt|;
-block|}
 block|}
 return|return
 name|core
@@ -7292,8 +7327,9 @@ specifier|final
 name|CoreContainer
 name|container
 decl_stmt|;
-comment|// It's a little clumsy to have two, but closing requires a SolrCore, whereas pending loads don't have a core.
-DECL|field|pendingDynamicLoads
+comment|// This map will hold objects that are being currently operated on. The core (value) may be null in the case of
+comment|// initial load. The rule is, never to any operation on a core that is currently being operated upon.
+DECL|field|pendingCoreOps
 specifier|private
 specifier|static
 specifier|final
@@ -7301,17 +7337,18 @@ name|Set
 argument_list|<
 name|String
 argument_list|>
-name|pendingDynamicLoads
+name|pendingCoreOps
 init|=
 operator|new
-name|TreeSet
+name|HashSet
 argument_list|<
 name|String
 argument_list|>
 argument_list|()
 decl_stmt|;
-comment|// Holds cores from the time they're removed from the transient cache until after they're closed.
-DECL|field|pendingDynamicCloses
+comment|// Due to the fact that closes happen potentially whenever anything is _added_ to the transient core list, we need
+comment|// to essentially queue them up to be handled via pendingCoreOps.
+DECL|field|pendingCloses
 specifier|private
 specifier|static
 specifier|final
@@ -7319,7 +7356,7 @@ name|List
 argument_list|<
 name|SolrCore
 argument_list|>
-name|pendingDynamicCloses
+name|pendingCloses
 init|=
 operator|new
 name|ArrayList
@@ -7444,33 +7481,23 @@ init|(
 name|locker
 init|)
 block|{
-name|SolrCore
-name|closeMe
-init|=
+name|pendingCloses
+operator|.
+name|add
+argument_list|(
 name|eldest
 operator|.
 name|getValue
 argument_list|()
-decl_stmt|;
-synchronized|synchronized
-init|(
-name|locker
-init|)
-block|{
-name|pendingDynamicCloses
-operator|.
-name|add
-argument_list|(
-name|closeMe
 argument_list|)
 expr_stmt|;
+comment|// Essentially just queue this core up for closing.
 name|locker
 operator|.
 name|notifyAll
 argument_list|()
 expr_stmt|;
 comment|// Wakes up closer thread too
-block|}
 block|}
 return|return
 literal|true
@@ -7539,7 +7566,7 @@ name|List
 argument_list|<
 name|SolrCore
 argument_list|>
-name|pendingClosers
+name|pendingToClose
 decl_stmt|;
 synchronized|synchronized
 init|(
@@ -7568,12 +7595,12 @@ name|keySet
 argument_list|()
 argument_list|)
 expr_stmt|;
-name|pendingClosers
+name|pendingToClose
 operator|=
 operator|new
 name|ArrayList
 argument_list|(
-name|pendingDynamicCloses
+name|pendingCloses
 argument_list|)
 expr_stmt|;
 block|}
@@ -7714,14 +7741,37 @@ control|(
 name|SolrCore
 name|core
 range|:
-name|pendingClosers
+name|pendingToClose
 control|)
+block|{
+try|try
 block|{
 name|core
 operator|.
 name|close
 argument_list|()
 expr_stmt|;
+block|}
+catch|catch
+parameter_list|(
+name|Throwable
+name|t
+parameter_list|)
+block|{
+name|SolrException
+operator|.
+name|log
+argument_list|(
+name|CoreContainer
+operator|.
+name|log
+argument_list|,
+literal|"Error shutting down core"
+argument_list|,
+name|t
+argument_list|)
+expr_stmt|;
+block|}
 block|}
 block|}
 DECL|method|addCoresToList
@@ -8441,7 +8491,6 @@ init|(
 name|locker
 init|)
 block|{
-comment|// This one's OK, the core.open is just an increment
 name|core
 operator|=
 name|cores
@@ -8458,12 +8507,6 @@ operator|!=
 literal|null
 condition|)
 block|{
-name|core
-operator|.
-name|open
-argument_list|()
-expr_stmt|;
-comment|// increment the ref count while still synchronized
 return|return
 name|core
 return|;
@@ -8484,36 +8527,15 @@ return|;
 comment|// Nobody even tried to define any transient cores, so we're done.
 block|}
 comment|// Now look for already loaded transient cores.
-name|core
-operator|=
+return|return
 name|transientCores
 operator|.
 name|get
 argument_list|(
 name|name
 argument_list|)
-expr_stmt|;
-if|if
-condition|(
-name|core
-operator|!=
-literal|null
-condition|)
-block|{
-name|core
-operator|.
-name|open
-argument_list|()
-expr_stmt|;
-comment|// Just increments ref count, so it's ok that we're in a synch block
-return|return
-name|core
 return|;
 block|}
-block|}
-return|return
-literal|null
-return|;
 block|}
 DECL|method|getDynamicDescriptor
 specifier|protected
@@ -8954,22 +8976,17 @@ expr_stmt|;
 block|}
 block|}
 block|}
-comment|// We get here when we're being loaded, and the presumption is that we're not in the list yet.
-DECL|method|waitPendingCoreOps
+comment|// Wait here until any pending operations (load, unload or reload) are completed on this core.
+DECL|method|waitAddPendingCoreOps
 specifier|protected
 name|SolrCore
-name|waitPendingCoreOps
+name|waitAddPendingCoreOps
 parameter_list|(
 name|String
 name|name
 parameter_list|)
 block|{
-comment|// Keep multiple threads from opening or closing a core at one time.
-name|SolrCore
-name|ret
-init|=
-literal|null
-decl_stmt|;
+comment|// Keep multiple threads from operating on a core at one time.
 synchronized|synchronized
 init|(
 name|locker
@@ -8980,33 +8997,30 @@ name|pending
 decl_stmt|;
 do|do
 block|{
-comment|// We're either loading or unloading this core,
+comment|// Are we currently doing anything to this core? Loading, unloading, reloading?
 name|pending
 operator|=
-name|pendingDynamicLoads
+name|pendingCoreOps
 operator|.
 name|contains
 argument_list|(
 name|name
 argument_list|)
 expr_stmt|;
-comment|// wait for the core to be loaded
+comment|// wait for the core to be done being operated upon
 if|if
 condition|(
 operator|!
 name|pending
 condition|)
 block|{
-comment|// Check pending closes. This is a linear search is inefficient, but maps don't work without a lot of complexity,
-comment|// we'll live with it unless it proves to be a bottleneck. In the "usual" case, this list shouldn't be
-comment|// very long. In the stress test associated with SOLR-4196, this hovered around 0-3, occasionally spiking
-comment|// very briefly to around 30.
+comment|// Linear list, but shouldn't be too long
 for|for
 control|(
 name|SolrCore
 name|core
 range|:
-name|pendingDynamicCloses
+name|pendingCloses
 control|)
 block|{
 if|if
@@ -9072,6 +9086,7 @@ condition|(
 name|pending
 condition|)
 do|;
+comment|// We _really_ need to do this within the synchronized block!
 if|if
 condition|(
 operator|!
@@ -9081,41 +9096,48 @@ name|isShutDown
 argument_list|()
 condition|)
 block|{
-name|ret
-operator|=
-name|getCoreFromAnyList
-argument_list|(
-name|name
-argument_list|)
-expr_stmt|;
-comment|// we might have been _unloading_ the core, so check.
 if|if
 condition|(
-name|ret
-operator|==
-literal|null
-condition|)
-block|{
-name|pendingDynamicLoads
+operator|!
+name|pendingCoreOps
 operator|.
 name|add
 argument_list|(
 name|name
 argument_list|)
+condition|)
+block|{
+name|CoreContainer
+operator|.
+name|log
+operator|.
+name|warn
+argument_list|(
+literal|"Replaced an entry in pendingCoreOps {}, we should not be doing this"
+argument_list|,
+name|name
+argument_list|)
 expr_stmt|;
-comment|// the caller is going to load us. If we happen to be shutting down, we don't care.
 block|}
+return|return
+name|getCoreFromAnyList
+argument_list|(
+name|name
+argument_list|)
+return|;
+comment|// we might have been _unloading_ the core, so return the core if it was loaded.
 block|}
 block|}
 return|return
-name|ret
+literal|null
 return|;
 block|}
-comment|// The core is loaded, remove it from the pendin gloads
-DECL|method|releasePending
+comment|// We should always be removing the first thing in the list with our name! The idea here is to NOT do anything n
+comment|// any core while some other operation is working on that core.
+DECL|method|removeFromPendingOps
 specifier|protected
 name|void
-name|releasePending
+name|removeFromPendingOps
 parameter_list|(
 name|String
 name|name
@@ -9126,13 +9148,29 @@ init|(
 name|locker
 init|)
 block|{
-name|pendingDynamicLoads
+if|if
+condition|(
+operator|!
+name|pendingCoreOps
 operator|.
 name|remove
 argument_list|(
 name|name
 argument_list|)
+condition|)
+block|{
+name|CoreContainer
+operator|.
+name|log
+operator|.
+name|warn
+argument_list|(
+literal|"Tried to remove core {} from pendingCoreOps and it wasn't there. "
+argument_list|,
+name|name
+argument_list|)
 expr_stmt|;
+block|}
 name|locker
 operator|.
 name|notifyAll
@@ -9914,7 +9952,8 @@ return|;
 block|}
 comment|// Be a little careful. We don't want to either open or close a core unless it's _not_ being opened or closed by
 comment|// another thread. So within this lock we'll walk along the list of pending closes until we find something NOT in
-comment|// the list of threads currently being opened. The "usual" case will probably return the very first one anyway..
+comment|// the list of threads currently being loaded or reloaded. The "usual" case will probably return the very first
+comment|// one anyway..
 DECL|method|getCoreToClose
 specifier|protected
 name|SolrCore
@@ -9926,32 +9965,18 @@ init|(
 name|locker
 init|)
 block|{
-if|if
-condition|(
-name|pendingDynamicCloses
-operator|.
-name|size
-argument_list|()
-operator|==
-literal|0
-condition|)
-return|return
-literal|null
-return|;
-comment|// nothing to do.
-comment|// Yes, a linear search but this is a pretty short list in the normal case and usually we'll take the first one.
 for|for
 control|(
 name|SolrCore
 name|core
 range|:
-name|pendingDynamicCloses
+name|pendingCloses
 control|)
 block|{
 if|if
 condition|(
 operator|!
-name|pendingDynamicLoads
+name|pendingCoreOps
 operator|.
 name|contains
 argument_list|(
@@ -9962,7 +9987,23 @@ argument_list|()
 argument_list|)
 condition|)
 block|{
-comment|// Don't try close a core if it's being opened.
+name|pendingCoreOps
+operator|.
+name|add
+argument_list|(
+name|core
+operator|.
+name|getName
+argument_list|()
+argument_list|)
+expr_stmt|;
+name|pendingCloses
+operator|.
+name|remove
+argument_list|(
+name|core
+argument_list|)
+expr_stmt|;
 return|return
 name|core
 return|;
@@ -9972,34 +10013,6 @@ block|}
 return|return
 literal|null
 return|;
-block|}
-DECL|method|removeClosedFromCloser
-specifier|protected
-name|void
-name|removeClosedFromCloser
-parameter_list|(
-name|SolrCore
-name|core
-parameter_list|)
-block|{
-synchronized|synchronized
-init|(
-name|locker
-init|)
-block|{
-name|pendingDynamicCloses
-operator|.
-name|remove
-argument_list|(
-name|core
-argument_list|)
-expr_stmt|;
-name|locker
-operator|.
-name|notifyAll
-argument_list|()
-expr_stmt|;
-block|}
 block|}
 block|}
 end_class
@@ -10159,9 +10172,12 @@ finally|finally
 block|{
 name|coreMaps
 operator|.
-name|removeClosedFromCloser
+name|removeFromPendingOps
 argument_list|(
 name|removeMe
+operator|.
+name|getName
+argument_list|()
 argument_list|)
 expr_stmt|;
 block|}
