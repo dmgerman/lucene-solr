@@ -70,7 +70,6 @@ end_comment
 
 begin_class
 DECL|class|SortedSetDocValuesTermsEnum
-specifier|public
 class|class
 name|SortedSetDocValuesTermsEnum
 extends|extends
@@ -266,6 +265,34 @@ operator|>=
 literal|0
 condition|)
 block|{
+name|term
+operator|.
+name|offset
+operator|=
+literal|0
+expr_stmt|;
+comment|// TODO: is there a cleaner way?
+comment|// term.bytes may be pointing to codec-private byte[]
+comment|// storage, so we must force new byte[] allocation:
+name|term
+operator|.
+name|bytes
+operator|=
+operator|new
+name|byte
+index|[
+name|text
+operator|.
+name|length
+index|]
+expr_stmt|;
+name|term
+operator|.
+name|copyBytes
+argument_list|(
+name|text
+argument_list|)
+expr_stmt|;
 name|currentOrd
 operator|=
 name|ord

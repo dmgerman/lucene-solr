@@ -276,6 +276,21 @@ operator|)
 return|;
 comment|// key not found.
 block|}
+comment|/**     * Returns a {@link TermsEnum} over the values.    * The enum supports {@link TermsEnum#ord()} and {@link TermsEnum#seekExact(long)}.    */
+DECL|method|termsEnum
+specifier|public
+name|TermsEnum
+name|termsEnum
+parameter_list|()
+block|{
+return|return
+operator|new
+name|SortedSetDocValuesTermsEnum
+argument_list|(
+name|this
+argument_list|)
+return|;
+block|}
 block|}
 end_class
 
