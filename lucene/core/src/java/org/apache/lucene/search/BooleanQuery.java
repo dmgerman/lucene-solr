@@ -2111,6 +2111,18 @@ range|:
 name|clauses
 control|)
 block|{
+if|if
+condition|(
+name|clause
+operator|.
+name|getOccur
+argument_list|()
+operator|!=
+name|Occur
+operator|.
+name|MUST_NOT
+condition|)
+block|{
 name|clause
 operator|.
 name|getQuery
@@ -2121,6 +2133,7 @@ argument_list|(
 name|terms
 argument_list|)
 expr_stmt|;
+block|}
 block|}
 block|}
 annotation|@
