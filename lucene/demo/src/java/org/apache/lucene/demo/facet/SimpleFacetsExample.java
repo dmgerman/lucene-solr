@@ -495,12 +495,6 @@ operator|new
 name|DirectoryTaxonomyWriter
 argument_list|(
 name|taxoDir
-argument_list|,
-name|IndexWriterConfig
-operator|.
-name|OpenMode
-operator|.
-name|CREATE
 argument_list|)
 decl_stmt|;
 comment|// Reused across documents, to add the necessary facet fields
