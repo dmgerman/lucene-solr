@@ -135,6 +135,38 @@ operator|+
 literal|"                                      and str[@name='dest'][.='dest_sub_no_ast_s']"
 operator|+
 literal|"                                      and str[@name='destDynamicBase'][.='*_s']]"
+argument_list|,
+literal|"/response/arr[@name='copyfields']/lst[    str[@name='source'][.='title_*']"
+operator|+
+literal|"                                      and arr[@name='sourceExplicitFields']/str[.='title_stemmed']"
+operator|+
+literal|"                                      and arr[@name='sourceExplicitFields']/str[.='title_lettertok']"
+operator|+
+literal|"                                      and str[@name='dest'][.='text']]"
+argument_list|,
+literal|"/response/arr[@name='copyfields']/lst[    str[@name='source'][.='title_*']"
+operator|+
+literal|"                                      and arr[@name='sourceExplicitFields']/str[.='title_stemmed']"
+operator|+
+literal|"                                      and arr[@name='sourceExplicitFields']/str[.='title_lettertok']"
+operator|+
+literal|"                                      and str[@name='dest'][.='*_s']]"
+argument_list|,
+literal|"/response/arr[@name='copyfields']/lst[    str[@name='source'][.='title_*']"
+operator|+
+literal|"                                      and arr[@name='sourceExplicitFields']/str[.='title_stemmed']"
+operator|+
+literal|"                                      and arr[@name='sourceExplicitFields']/str[.='title_lettertok']"
+operator|+
+literal|"                                      and str[@name='dest'][.='*_dest_sub_s']]"
+argument_list|,
+literal|"/response/arr[@name='copyfields']/lst[    str[@name='source'][.='title_*']"
+operator|+
+literal|"                                      and arr[@name='sourceExplicitFields']/str[.='title_stemmed']"
+operator|+
+literal|"                                      and arr[@name='sourceExplicitFields']/str[.='title_lettertok']"
+operator|+
+literal|"                                      and str[@name='dest'][.='dest_sub_no_ast_s']]"
 argument_list|)
 expr_stmt|;
 block|}
@@ -221,16 +253,16 @@ name|assertQ
 argument_list|(
 literal|"/schema/copyfields/?indent=on&wt=xml&dest.fl=title,*_s,*_dest_sub_s,dest_sub_no_ast_s"
 argument_list|,
-literal|"count(/response/arr[@name='copyfields']/lst) = 13"
+literal|"count(/response/arr[@name='copyfields']/lst) = 16"
 argument_list|,
-comment|// 3 + 3 + 3 + 4
+comment|// 3 + 4 + 4 + 5
 literal|"count(/response/arr[@name='copyfields']/lst/str[@name='dest'][.='title']) = 3"
 argument_list|,
-literal|"count(/response/arr[@name='copyfields']/lst/str[@name='dest'][.='*_s']) = 3"
+literal|"count(/response/arr[@name='copyfields']/lst/str[@name='dest'][.='*_s']) = 4"
 argument_list|,
-literal|"count(/response/arr[@name='copyfields']/lst/str[@name='dest'][.='*_dest_sub_s']) = 3"
+literal|"count(/response/arr[@name='copyfields']/lst/str[@name='dest'][.='*_dest_sub_s']) = 4"
 argument_list|,
-literal|"count(/response/arr[@name='copyfields']/lst/str[@name='dest'][.='dest_sub_no_ast_s']) = 4"
+literal|"count(/response/arr[@name='copyfields']/lst/str[@name='dest'][.='dest_sub_no_ast_s']) = 5"
 argument_list|)
 expr_stmt|;
 block|}
