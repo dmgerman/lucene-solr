@@ -1100,7 +1100,7 @@ name|slices
 operator|=
 name|clusterState2
 operator|.
-name|getSlicesMap
+name|getAllSlicesMap
 argument_list|(
 literal|"collection1"
 argument_list|)
