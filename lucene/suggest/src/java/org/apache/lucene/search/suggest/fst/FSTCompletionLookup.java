@@ -106,6 +106,22 @@ name|lucene
 operator|.
 name|search
 operator|.
+name|spell
+operator|.
+name|TermFreqPayloadIterator
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|search
+operator|.
 name|suggest
 operator|.
 name|Lookup
@@ -125,6 +141,8 @@ operator|.
 name|suggest
 operator|.
 name|Sort
+operator|.
+name|SortInfo
 import|;
 end_import
 
@@ -141,8 +159,6 @@ operator|.
 name|suggest
 operator|.
 name|Sort
-operator|.
-name|SortInfo
 import|;
 end_import
 
@@ -448,6 +464,21 @@ parameter_list|)
 throws|throws
 name|IOException
 block|{
+if|if
+condition|(
+name|tfit
+operator|instanceof
+name|TermFreqPayloadIterator
+condition|)
+block|{
+throw|throw
+operator|new
+name|IllegalArgumentException
+argument_list|(
+literal|"this suggester doesn't support payloads"
+argument_list|)
+throw|;
+block|}
 name|File
 name|tempInput
 init|=

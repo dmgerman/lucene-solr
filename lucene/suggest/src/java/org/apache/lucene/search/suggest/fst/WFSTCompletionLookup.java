@@ -116,6 +116,22 @@ name|lucene
 operator|.
 name|search
 operator|.
+name|spell
+operator|.
+name|TermFreqPayloadIterator
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|search
+operator|.
 name|suggest
 operator|.
 name|Lookup
@@ -134,7 +150,9 @@ name|search
 operator|.
 name|suggest
 operator|.
-name|SortedTermFreqIteratorWrapper
+name|Sort
+operator|.
+name|ByteSequencesWriter
 import|;
 end_import
 
@@ -150,9 +168,7 @@ name|search
 operator|.
 name|suggest
 operator|.
-name|Sort
-operator|.
-name|ByteSequencesWriter
+name|SortedTermFreqIteratorWrapper
 import|;
 end_import
 
@@ -325,22 +341,6 @@ operator|.
 name|fst
 operator|.
 name|FST
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|util
-operator|.
-name|fst
-operator|.
-name|FST
 operator|.
 name|Arc
 import|;
@@ -376,7 +376,7 @@ name|util
 operator|.
 name|fst
 operator|.
-name|PositiveIntOutputs
+name|FST
 import|;
 end_import
 
@@ -392,7 +392,7 @@ name|util
 operator|.
 name|fst
 operator|.
-name|Util
+name|PositiveIntOutputs
 import|;
 end_import
 
@@ -411,6 +411,22 @@ operator|.
 name|Util
 operator|.
 name|MinResult
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|util
+operator|.
+name|fst
+operator|.
+name|Util
 import|;
 end_import
 
@@ -487,6 +503,21 @@ parameter_list|)
 throws|throws
 name|IOException
 block|{
+if|if
+condition|(
+name|iterator
+operator|instanceof
+name|TermFreqPayloadIterator
+condition|)
+block|{
+throw|throw
+operator|new
+name|IllegalArgumentException
+argument_list|(
+literal|"this suggester doesn't support payloads"
+argument_list|)
+throw|;
+block|}
 name|BytesRef
 name|scratch
 init|=
