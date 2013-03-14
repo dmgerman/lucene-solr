@@ -232,6 +232,12 @@ name|String
 index|[]
 name|actualShards
 decl_stmt|;
+comment|/** may be null */
+DECL|field|nodeName
+specifier|public
+name|String
+name|nodeName
+decl_stmt|;
 comment|// TODO: one could store a list of numbers to correlate where returned docs
 comment|// go in the top-level response rather than looking up by id...
 comment|// this would work well if we ever transitioned to using internal ids and
