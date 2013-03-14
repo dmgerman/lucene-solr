@@ -842,6 +842,7 @@ name|close
 argument_list|()
 expr_stmt|;
 block|}
+comment|/*     * weAreReplacement: has someone else been the leader already?    */
 annotation|@
 name|Override
 DECL|method|runLeaderProcess
@@ -1626,7 +1627,7 @@ name|log
 argument_list|(
 name|log
 argument_list|,
-literal|"Errir checking for the number of election participants"
+literal|"Error checking for the number of election participants"
 argument_list|,
 name|e
 argument_list|)
@@ -1717,6 +1718,23 @@ argument_list|)
 expr_stmt|;
 return|return;
 block|}
+block|}
+else|else
+block|{
+name|log
+operator|.
+name|warn
+argument_list|(
+literal|"Shard not found: "
+operator|+
+name|shardId
+operator|+
+literal|" for collection "
+operator|+
+name|collection
+argument_list|)
+expr_stmt|;
+return|return;
 block|}
 name|Thread
 operator|.
