@@ -96,20 +96,6 @@ name|lucene
 operator|.
 name|search
 operator|.
-name|IndexSearcher
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|search
-operator|.
 name|similarities
 operator|.
 name|Similarity
@@ -423,6 +409,21 @@ name|OpenMode
 name|openMode
 parameter_list|)
 block|{
+if|if
+condition|(
+name|openMode
+operator|==
+literal|null
+condition|)
+block|{
+throw|throw
+operator|new
+name|IllegalArgumentException
+argument_list|(
+literal|"openMode must not be null"
+argument_list|)
+throw|;
+block|}
 name|this
 operator|.
 name|openMode
@@ -445,7 +446,7 @@ return|return
 name|openMode
 return|;
 block|}
-comment|/**    * Expert: allows an optional {@link IndexDeletionPolicy} implementation to be    * specified. You can use this to control when prior commits are deleted from    * the index. The default policy is {@link KeepOnlyLastCommitDeletionPolicy}    * which removes all prior commits as soon as a new commit is done (this    * matches behavior before 2.2). Creating your own policy can allow you to    * explicitly keep previous "point in time" commits alive in the index for    * some time, to allow readers to refresh to the new commit without having the    * old commit deleted out from under them. This is necessary on filesystems    * like NFS that do not support "delete on last close" semantics, which    * Lucene's "point in time" search normally relies on.    *<p>    *<b>NOTE:</b> the deletion policy cannot be null. If<code>null</code> is    * passed, the deletion policy will be set to the default.    *    *<p>Only takes effect when IndexWriter is first created.     */
+comment|/**    * Expert: allows an optional {@link IndexDeletionPolicy} implementation to be    * specified. You can use this to control when prior commits are deleted from    * the index. The default policy is {@link KeepOnlyLastCommitDeletionPolicy}    * which removes all prior commits as soon as a new commit is done (this    * matches behavior before 2.2). Creating your own policy can allow you to    * explicitly keep previous "point in time" commits alive in the index for    * some time, to allow readers to refresh to the new commit without having the    * old commit deleted out from under them. This is necessary on filesystems    * like NFS that do not support "delete on last close" semantics, which    * Lucene's "point in time" search normally relies on.    *<p>    *<b>NOTE:</b> the deletion policy cannot be null.    *    *<p>Only takes effect when IndexWriter is first created.     */
 DECL|method|setIndexDeletionPolicy
 specifier|public
 name|IndexWriterConfig
@@ -455,18 +456,25 @@ name|IndexDeletionPolicy
 name|delPolicy
 parameter_list|)
 block|{
+if|if
+condition|(
+name|delPolicy
+operator|==
+literal|null
+condition|)
+block|{
+throw|throw
+operator|new
+name|IllegalArgumentException
+argument_list|(
+literal|"indexDeletionPolicy must not be null"
+argument_list|)
+throw|;
+block|}
 name|this
 operator|.
 name|delPolicy
 operator|=
-name|delPolicy
-operator|==
-literal|null
-condition|?
-operator|new
-name|KeepOnlyLastCommitDeletionPolicy
-argument_list|()
-else|:
 name|delPolicy
 expr_stmt|;
 return|return
@@ -517,7 +525,7 @@ return|return
 name|commit
 return|;
 block|}
-comment|/**    * Expert: set the {@link Similarity} implementation used by this IndexWriter.    *<p>    *<b>NOTE:</b> the similarity cannot be null. If<code>null</code> is passed,    * the similarity will be set to the default implementation (unspecified).    *    *<p>Only takes effect when IndexWriter is first created. */
+comment|/**    * Expert: set the {@link Similarity} implementation used by this IndexWriter.    *<p>    *<b>NOTE:</b> the similarity cannot be null.    *    *<p>Only takes effect when IndexWriter is first created. */
 DECL|method|setSimilarity
 specifier|public
 name|IndexWriterConfig
@@ -527,19 +535,25 @@ name|Similarity
 name|similarity
 parameter_list|)
 block|{
+if|if
+condition|(
+name|similarity
+operator|==
+literal|null
+condition|)
+block|{
+throw|throw
+operator|new
+name|IllegalArgumentException
+argument_list|(
+literal|"similarity must not be null"
+argument_list|)
+throw|;
+block|}
 name|this
 operator|.
 name|similarity
 operator|=
-name|similarity
-operator|==
-literal|null
-condition|?
-name|IndexSearcher
-operator|.
-name|getDefaultSimilarity
-argument_list|()
-else|:
 name|similarity
 expr_stmt|;
 return|return
@@ -558,7 +572,7 @@ return|return
 name|similarity
 return|;
 block|}
-comment|/**    * Expert: sets the merge scheduler used by this writer. The default is    * {@link ConcurrentMergeScheduler}.    *<p>    *<b>NOTE:</b> the merge scheduler cannot be null. If<code>null</code> is    * passed, the merge scheduler will be set to the default.    *    *<p>Only takes effect when IndexWriter is first created. */
+comment|/**    * Expert: sets the merge scheduler used by this writer. The default is    * {@link ConcurrentMergeScheduler}.    *<p>    *<b>NOTE:</b> the merge scheduler cannot be null.    *    *<p>Only takes effect when IndexWriter is first created. */
 DECL|method|setMergeScheduler
 specifier|public
 name|IndexWriterConfig
@@ -568,18 +582,25 @@ name|MergeScheduler
 name|mergeScheduler
 parameter_list|)
 block|{
+if|if
+condition|(
+name|mergeScheduler
+operator|==
+literal|null
+condition|)
+block|{
+throw|throw
+operator|new
+name|IllegalArgumentException
+argument_list|(
+literal|"mergeScheduler must not be null"
+argument_list|)
+throw|;
+block|}
 name|this
 operator|.
 name|mergeScheduler
 operator|=
-name|mergeScheduler
-operator|==
-literal|null
-condition|?
-operator|new
-name|ConcurrentMergeScheduler
-argument_list|()
-else|:
 name|mergeScheduler
 expr_stmt|;
 return|return
@@ -630,7 +651,7 @@ return|return
 name|writeLockTimeout
 return|;
 block|}
-comment|/**    * Expert: {@link MergePolicy} is invoked whenever there are changes to the    * segments in the index. Its role is to select which merges to do, if any,    * and return a {@link MergePolicy.MergeSpecification} describing the merges.    * It also selects merges to do for forceMerge. (The default is    * {@link LogByteSizeMergePolicy}.    *    *<p>Only takes effect when IndexWriter is first created. */
+comment|/**    * Expert: {@link MergePolicy} is invoked whenever there are changes to the    * segments in the index. Its role is to select which merges to do, if any,    * and return a {@link MergePolicy.MergeSpecification} describing the merges.    * It also selects merges to do for forceMerge.    *    *<p>Only takes effect when IndexWriter is first created. */
 DECL|method|setMergePolicy
 specifier|public
 name|IndexWriterConfig
@@ -640,18 +661,25 @@ name|MergePolicy
 name|mergePolicy
 parameter_list|)
 block|{
+if|if
+condition|(
+name|mergePolicy
+operator|==
+literal|null
+condition|)
+block|{
+throw|throw
+operator|new
+name|IllegalArgumentException
+argument_list|(
+literal|"mergePolicy must not be null"
+argument_list|)
+throw|;
+block|}
 name|this
 operator|.
 name|mergePolicy
 operator|=
-name|mergePolicy
-operator|==
-literal|null
-condition|?
-operator|new
-name|LogByteSizeMergePolicy
-argument_list|()
-else|:
 name|mergePolicy
 expr_stmt|;
 return|return
@@ -677,8 +705,10 @@ condition|)
 block|{
 throw|throw
 operator|new
-name|NullPointerException
-argument_list|()
+name|IllegalArgumentException
+argument_list|(
+literal|"codec must not be null"
+argument_list|)
 throw|;
 block|}
 name|this
@@ -862,18 +892,25 @@ name|IndexingChain
 name|indexingChain
 parameter_list|)
 block|{
+if|if
+condition|(
+name|indexingChain
+operator|==
+literal|null
+condition|)
+block|{
+throw|throw
+operator|new
+name|IllegalArgumentException
+argument_list|(
+literal|"indexingChain must not be null"
+argument_list|)
+throw|;
+block|}
 name|this
 operator|.
 name|indexingChain
 operator|=
-name|indexingChain
-operator|==
-literal|null
-condition|?
-name|DocumentsWriterPerThread
-operator|.
-name|defaultIndexingChain
-else|:
 name|indexingChain
 expr_stmt|;
 return|return
@@ -900,6 +937,21 @@ name|FlushPolicy
 name|flushPolicy
 parameter_list|)
 block|{
+if|if
+condition|(
+name|flushPolicy
+operator|==
+literal|null
+condition|)
+block|{
+throw|throw
+operator|new
+name|IllegalArgumentException
+argument_list|(
+literal|"flushPolicy must not be null"
+argument_list|)
+throw|;
+block|}
 name|this
 operator|.
 name|flushPolicy
@@ -1136,17 +1188,24 @@ name|PrintStream
 name|printStream
 parameter_list|)
 block|{
-return|return
-name|setInfoStream
-argument_list|(
+if|if
+condition|(
 name|printStream
 operator|==
 literal|null
-condition|?
-name|InfoStream
-operator|.
-name|NO_OUTPUT
-else|:
+condition|)
+block|{
+throw|throw
+operator|new
+name|IllegalArgumentException
+argument_list|(
+literal|"printStream must not be null"
+argument_list|)
+throw|;
+block|}
+return|return
+name|setInfoStream
+argument_list|(
 operator|new
 name|PrintStreamInfoStream
 argument_list|(
