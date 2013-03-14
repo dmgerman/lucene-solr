@@ -236,6 +236,13 @@ operator|new
 name|Properties
 argument_list|()
 decl_stmt|;
+DECL|field|loadedImplicit
+specifier|private
+name|boolean
+name|loadedImplicit
+init|=
+literal|false
+decl_stmt|;
 DECL|field|coreContainer
 specifier|private
 specifier|final
@@ -570,7 +577,7 @@ name|implicitProperties
 operator|.
 name|setProperty
 argument_list|(
-name|CORE_NAME
+literal|"solr.core.name"
 argument_list|,
 name|getName
 argument_list|()
@@ -580,7 +587,7 @@ name|implicitProperties
 operator|.
 name|setProperty
 argument_list|(
-name|CORE_INSTDIR
+literal|"solr.core.instanceDir"
 argument_list|,
 name|getInstanceDir
 argument_list|()
@@ -590,7 +597,7 @@ name|implicitProperties
 operator|.
 name|setProperty
 argument_list|(
-name|CORE_DATADIR
+literal|"solr.core.dataDir"
 argument_list|,
 name|getDataDir
 argument_list|()
@@ -600,7 +607,7 @@ name|implicitProperties
 operator|.
 name|setProperty
 argument_list|(
-name|CORE_CONFIG
+literal|"solr.core.configName"
 argument_list|,
 name|getConfigName
 argument_list|()
@@ -610,7 +617,7 @@ name|implicitProperties
 operator|.
 name|setProperty
 argument_list|(
-name|CORE_SCHEMA
+literal|"solr.core.schemaName"
 argument_list|,
 name|getSchemaName
 argument_list|()
@@ -1028,13 +1035,14 @@ parameter_list|)
 block|{
 if|if
 condition|(
-name|this
-operator|.
-name|coreProperties
-operator|==
-literal|null
+operator|!
+name|loadedImplicit
 condition|)
 block|{
+name|loadedImplicit
+operator|=
+literal|true
+expr_stmt|;
 name|Properties
 name|p
 init|=
@@ -1044,14 +1052,12 @@ decl_stmt|;
 name|this
 operator|.
 name|coreProperties
-operator|=
-operator|new
-name|Properties
+operator|.
+name|putAll
 argument_list|(
 name|p
 argument_list|)
 expr_stmt|;
-block|}
 comment|// The caller presumably wants whatever properties passed in to override the current core props, so just add them.
 if|if
 condition|(
@@ -1069,6 +1075,7 @@ argument_list|(
 name|coreProperties
 argument_list|)
 expr_stmt|;
+block|}
 block|}
 block|}
 DECL|method|getCloudDescriptor
