@@ -2429,7 +2429,11 @@ argument_list|)
 expr_stmt|;
 name|assertEquals
 argument_list|(
-literal|"data/"
+literal|"data"
+operator|+
+name|File
+operator|.
+name|separator
 argument_list|,
 name|desc
 operator|.
