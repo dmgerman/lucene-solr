@@ -630,6 +630,17 @@ block|}
 annotation|@
 name|Override
 specifier|public
+name|long
+name|cost
+parameter_list|()
+block|{
+return|return
+name|size
+return|;
+block|}
+annotation|@
+name|Override
+specifier|public
 name|int
 name|advance
 parameter_list|(

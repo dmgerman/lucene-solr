@@ -121,6 +121,14 @@ parameter_list|()
 throws|throws
 name|IOException
 function_decl|;
+comment|/**    * Returns the estimated cost of this spans.    *<p>    * This is generally an upper bound of the number of documents this iterator    * might match, but may be a rough heuristic, hardcoded value, or otherwise    * completely inaccurate.    */
+DECL|method|cost
+specifier|public
+specifier|abstract
+name|long
+name|cost
+parameter_list|()
+function_decl|;
 block|}
 end_class
 

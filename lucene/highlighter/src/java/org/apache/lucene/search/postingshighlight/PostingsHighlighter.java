@@ -2505,6 +2505,17 @@ return|return
 name|NO_MORE_DOCS
 return|;
 block|}
+annotation|@
+name|Override
+specifier|public
+name|long
+name|cost
+parameter_list|()
+block|{
+return|return
+literal|0
+return|;
+block|}
 block|}
 decl_stmt|;
 comment|/**     * we rewrite against an empty indexreader: as we don't want things like    * rangeQueries that don't summarize the document    */

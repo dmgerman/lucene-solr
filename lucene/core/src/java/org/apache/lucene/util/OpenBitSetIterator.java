@@ -989,6 +989,20 @@ return|return
 name|curDocId
 return|;
 block|}
+annotation|@
+name|Override
+DECL|method|cost
+specifier|public
+name|long
+name|cost
+parameter_list|()
+block|{
+return|return
+name|words
+operator|/
+literal|64
+return|;
+block|}
 block|}
 end_class
 

@@ -1151,6 +1151,37 @@ else|:
 name|NO_MORE_DOCS
 return|;
 block|}
+annotation|@
+name|Override
+specifier|public
+name|long
+name|cost
+parameter_list|()
+block|{
+comment|// we don't want to actually compute cardinality, but
+comment|// if its already been computed, we use it
+if|if
+condition|(
+name|size
+operator|!=
+operator|-
+literal|1
+condition|)
+block|{
+return|return
+name|size
+return|;
+block|}
+else|else
+block|{
+return|return
+name|bs
+operator|.
+name|capacity
+argument_list|()
+return|;
+block|}
+block|}
 block|}
 return|;
 block|}

@@ -304,6 +304,22 @@ return|return
 name|docId
 return|;
 block|}
+annotation|@
+name|Override
+DECL|method|cost
+specifier|public
+name|long
+name|cost
+parameter_list|()
+block|{
+comment|// upper bound
+return|return
+name|bitSet
+operator|.
+name|length
+argument_list|()
+return|;
+block|}
 block|}
 block|}
 end_class

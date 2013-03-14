@@ -371,6 +371,18 @@ return|return
 literal|1
 return|;
 block|}
+annotation|@
+name|Override
+DECL|method|cost
+specifier|public
+name|long
+name|cost
+parameter_list|()
+block|{
+return|return
+name|maxDoc
+return|;
+block|}
 block|}
 end_class
 

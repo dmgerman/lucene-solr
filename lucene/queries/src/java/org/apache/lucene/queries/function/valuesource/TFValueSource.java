@@ -436,6 +436,17 @@ operator|.
 name|NO_MORE_DOCS
 return|;
 block|}
+annotation|@
+name|Override
+specifier|public
+name|long
+name|cost
+parameter_list|()
+block|{
+return|return
+literal|0
+return|;
+block|}
 block|}
 expr_stmt|;
 block|}

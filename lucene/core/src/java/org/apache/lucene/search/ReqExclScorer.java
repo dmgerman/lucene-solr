@@ -426,6 +426,21 @@ name|toNonExcluded
 argument_list|()
 return|;
 block|}
+annotation|@
+name|Override
+DECL|method|cost
+specifier|public
+name|long
+name|cost
+parameter_list|()
+block|{
+return|return
+name|reqScorer
+operator|.
+name|cost
+argument_list|()
+return|;
+block|}
 block|}
 end_class
 

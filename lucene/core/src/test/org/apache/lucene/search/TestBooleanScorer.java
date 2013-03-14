@@ -608,6 +608,13 @@ else|:
 name|NO_MORE_DOCS
 return|;
 block|}
+function|@Override       public long cost
+parameter_list|()
+block|{
+return|return
+literal|1
+return|;
+block|}
 function|}};
 name|BooleanScorer
 name|bs

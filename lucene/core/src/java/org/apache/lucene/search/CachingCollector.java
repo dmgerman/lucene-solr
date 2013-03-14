@@ -271,6 +271,18 @@ name|UnsupportedOperationException
 argument_list|()
 throw|;
 block|}
+annotation|@
+name|Override
+DECL|method|cost
+specifier|public
+name|long
+name|cost
+parameter_list|()
+block|{
+return|return
+literal|1
+return|;
+block|}
 block|}
 comment|// A CachingCollector which caches scores
 DECL|class|ScoreCachingCollector

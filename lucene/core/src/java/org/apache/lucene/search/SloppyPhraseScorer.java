@@ -223,6 +223,12 @@ specifier|private
 name|int
 name|numMatches
 decl_stmt|;
+DECL|field|cost
+specifier|private
+specifier|final
+name|long
+name|cost
+decl_stmt|;
 DECL|method|SloppyPhraseScorer
 name|SloppyPhraseScorer
 parameter_list|(
@@ -284,6 +290,19 @@ name|postings
 operator|.
 name|length
 argument_list|)
+expr_stmt|;
+comment|// min(cost)
+name|cost
+operator|=
+name|postings
+index|[
+literal|0
+index|]
+operator|.
+name|postings
+operator|.
+name|cost
+argument_list|()
 expr_stmt|;
 comment|// convert tps to a list of phrase positions.
 comment|// note: phrase-position differs from term-position in that its position
@@ -2993,6 +3012,18 @@ return|return
 name|max
 operator|.
 name|doc
+return|;
+block|}
+annotation|@
+name|Override
+DECL|method|cost
+specifier|public
+name|long
+name|cost
+parameter_list|()
+block|{
+return|return
+name|cost
 return|;
 block|}
 annotation|@

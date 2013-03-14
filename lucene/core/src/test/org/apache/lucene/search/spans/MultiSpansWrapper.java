@@ -905,6 +905,21 @@ name|isPayloadAvailable
 argument_list|()
 return|;
 block|}
+annotation|@
+name|Override
+DECL|method|cost
+specifier|public
+name|long
+name|cost
+parameter_list|()
+block|{
+return|return
+name|Integer
+operator|.
+name|MAX_VALUE
+return|;
+comment|// just for tests
+block|}
 block|}
 end_class
 
