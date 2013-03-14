@@ -31,34 +31,74 @@ block|{
 comment|// TODO: this formula is completely made up. It might not provide relevant snippets!
 comment|/** BM25 k1 parameter, controls term frequency normalization */
 DECL|field|k1
-specifier|public
-specifier|static
 specifier|final
 name|float
 name|k1
-init|=
-literal|1.2f
 decl_stmt|;
 comment|/** BM25 b parameter, controls length normalization. */
 DECL|field|b
-specifier|public
-specifier|static
 specifier|final
 name|float
 name|b
-init|=
-literal|0.75f
 decl_stmt|;
-comment|/**    * A pivot used for length normalization.    * The default value is the typical average English sentence length.    */
+comment|/** A pivot used for length normalization. */
 DECL|field|pivot
-specifier|public
-specifier|static
 specifier|final
 name|float
 name|pivot
-init|=
-literal|87f
 decl_stmt|;
+comment|/**    * Creates PassageScorer with these default values:    *<ul>    *<li>{@code k1 = 1.2},    *<li>{@code b = 0.75}.    *<li>{@code pivot = 87}    *</ul>    */
+DECL|method|PassageScorer
+specifier|public
+name|PassageScorer
+parameter_list|()
+block|{
+comment|// 1.2 and 0.75 are well-known bm25 defaults (but maybe not the best here) ?
+comment|// 87 is typical average english sentence length.
+name|this
+argument_list|(
+literal|1.2f
+argument_list|,
+literal|0.75f
+argument_list|,
+literal|87f
+argument_list|)
+expr_stmt|;
+block|}
+comment|/**    * Creates PassageScorer with specified scoring parameters    * @param k1 Controls non-linear term frequency normalization (saturation).    * @param b Controls to what degree passage length normalizes tf values.    * @param pivot Pivot value for length normalization (some rough idea of average sentence length in characters).    */
+DECL|method|PassageScorer
+specifier|public
+name|PassageScorer
+parameter_list|(
+name|float
+name|k1
+parameter_list|,
+name|float
+name|b
+parameter_list|,
+name|float
+name|pivot
+parameter_list|)
+block|{
+name|this
+operator|.
+name|k1
+operator|=
+name|k1
+expr_stmt|;
+name|this
+operator|.
+name|b
+operator|=
+name|b
+expr_stmt|;
+name|this
+operator|.
+name|pivot
+operator|=
+name|pivot
+expr_stmt|;
+block|}
 comment|/**    * Computes term importance, given its in-document statistics.    *     * @param contentLength length of document in characters    * @param totalTermFreq number of time term occurs in document    * @return term importance    */
 DECL|method|weight
 specifier|public
