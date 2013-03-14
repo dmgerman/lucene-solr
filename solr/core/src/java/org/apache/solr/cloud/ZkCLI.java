@@ -1219,6 +1219,8 @@ name|SolrProperties
 argument_list|(
 literal|null
 argument_list|,
+name|loader
+argument_list|,
 name|is
 argument_list|,
 literal|null

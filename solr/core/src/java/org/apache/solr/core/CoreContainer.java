@@ -2191,6 +2191,8 @@ name|SolrProperties
 argument_list|(
 name|this
 argument_list|,
+name|loader
+argument_list|,
 name|is
 argument_list|,
 name|fileName
