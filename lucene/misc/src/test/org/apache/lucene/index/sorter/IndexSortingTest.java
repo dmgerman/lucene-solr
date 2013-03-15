@@ -374,8 +374,9 @@ argument_list|)
 decl_stmt|;
 name|reader
 operator|=
-operator|new
 name|SortingAtomicReader
+operator|.
+name|sort
 argument_list|(
 name|reader
 argument_list|,
