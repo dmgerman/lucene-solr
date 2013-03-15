@@ -148,6 +148,20 @@ name|CoreContainer
 import|;
 end_import
 
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|solr
+operator|.
+name|core
+operator|.
+name|SolrCore
+import|;
+end_import
+
 begin_comment
 comment|/**  * A simple servlet to load the Solr Admin UI  *   * @since solr 4.0  */
 end_comment
@@ -255,6 +269,16 @@ argument_list|,
 literal|"UTF-8"
 argument_list|)
 decl_stmt|;
+name|Package
+package|package =
+name|SolrCore
+operator|.
+name|class
+operator|.
+name|getPackage
+package|(
+block|)
+empty_stmt|;
 name|String
 index|[]
 name|search
@@ -266,6 +290,8 @@ block|{
 literal|"${contextPath}"
 block|,
 literal|"${adminPath}"
+block|,
+literal|"${version}"
 block|}
 decl_stmt|;
 name|String
@@ -293,6 +319,15 @@ argument_list|(
 name|cores
 operator|.
 name|getAdminPath
+argument_list|()
+argument_list|)
+block|,
+name|StringEscapeUtils
+operator|.
+name|escapeJavaScript
+argument_list|(package
+operator|.
+name|getSpecificationVersion
 argument_list|()
 argument_list|)
 block|}
@@ -341,8 +376,8 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
-block|}
 end_class
 
+unit|}
 end_unit
 
