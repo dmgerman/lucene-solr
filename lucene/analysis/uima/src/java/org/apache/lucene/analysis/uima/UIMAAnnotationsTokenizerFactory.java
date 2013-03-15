@@ -36,6 +36,22 @@ end_import
 
 begin_import
 import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|util
+operator|.
+name|AttributeSource
+operator|.
+name|AttributeFactory
+import|;
+end_import
+
+begin_import
+import|import
 name|java
 operator|.
 name|io
@@ -227,6 +243,9 @@ specifier|public
 name|UIMAAnnotationsTokenizer
 name|create
 parameter_list|(
+name|AttributeFactory
+name|factory
+parameter_list|,
 name|Reader
 name|input
 parameter_list|)
@@ -240,6 +259,8 @@ argument_list|,
 name|tokenType
 argument_list|,
 name|configurationParameters
+argument_list|,
+name|factory
 argument_list|,
 name|input
 argument_list|)

@@ -193,30 +193,7 @@ name|DEFAULT_MIN_NGRAM_SIZE
 operator|)
 expr_stmt|;
 block|}
-comment|/** Creates the {@link TokenStream} of n-grams from the given {@link Reader}. */
-annotation|@
-name|Override
-DECL|method|create
-specifier|public
-name|NGramTokenizer
-name|create
-parameter_list|(
-name|Reader
-name|input
-parameter_list|)
-block|{
-return|return
-operator|new
-name|NGramTokenizer
-argument_list|(
-name|input
-argument_list|,
-name|minGramSize
-argument_list|,
-name|maxGramSize
-argument_list|)
-return|;
-block|}
+comment|/** Creates the {@link TokenStream} of n-grams from the given {@link Reader} and {@link AttributeFactory}. */
 annotation|@
 name|Override
 DECL|method|create

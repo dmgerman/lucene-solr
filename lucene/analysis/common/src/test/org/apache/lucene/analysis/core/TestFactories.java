@@ -232,6 +232,22 @@ name|TokenizerFactory
 import|;
 end_import
 
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|util
+operator|.
+name|AttributeSource
+operator|.
+name|AttributeFactory
+import|;
+end_import
+
 begin_comment
 comment|/**  * Sanity check some things about all factories,  * we do our best to see if we can sanely initialize it with  * no parameters and smoke test it, etc.  */
 end_comment
@@ -750,6 +766,9 @@ specifier|public
 name|MockTokenizer
 name|create
 parameter_list|(
+name|AttributeFactory
+name|factory
+parameter_list|,
 name|Reader
 name|input
 parameter_list|)
@@ -758,6 +777,8 @@ return|return
 operator|new
 name|MockTokenizer
 argument_list|(
+name|factory
+argument_list|,
 name|input
 argument_list|)
 return|;

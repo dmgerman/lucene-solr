@@ -60,7 +60,9 @@ name|lucene
 operator|.
 name|analysis
 operator|.
-name|Tokenizer
+name|util
+operator|.
+name|TokenizerFactory
 import|;
 end_import
 
@@ -72,11 +74,11 @@ name|apache
 operator|.
 name|lucene
 operator|.
-name|analysis
-operator|.
 name|util
 operator|.
-name|TokenizerFactory
+name|AttributeSource
+operator|.
+name|AttributeFactory
 import|;
 end_import
 
@@ -241,6 +243,9 @@ specifier|public
 name|MockTokenizer
 name|create
 parameter_list|(
+name|AttributeFactory
+name|factory
+parameter_list|,
 name|Reader
 name|input
 parameter_list|)
@@ -251,6 +256,8 @@ init|=
 operator|new
 name|MockTokenizer
 argument_list|(
+name|factory
+argument_list|,
 name|input
 argument_list|,
 name|pattern

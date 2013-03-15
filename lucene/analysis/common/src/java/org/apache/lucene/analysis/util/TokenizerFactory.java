@@ -184,19 +184,31 @@ name|classloader
 argument_list|)
 expr_stmt|;
 block|}
-comment|/** Creates a TokenStream of the specified input */
+comment|/** Creates a TokenStream of the specified input using the default attribute factory. */
 DECL|method|create
 specifier|public
-specifier|abstract
+specifier|final
 name|Tokenizer
 name|create
 parameter_list|(
 name|Reader
 name|input
 parameter_list|)
-function_decl|;
+block|{
+return|return
+name|create
+argument_list|(
+name|AttributeFactory
+operator|.
+name|DEFAULT_ATTRIBUTE_FACTORY
+argument_list|,
+name|input
+argument_list|)
+return|;
+block|}
 comment|/** Creates a TokenStream of the specified input using the given AttributeFactory */
 DECL|method|create
+specifier|abstract
 specifier|public
 name|Tokenizer
 name|create
@@ -207,13 +219,7 @@ parameter_list|,
 name|Reader
 name|input
 parameter_list|)
-block|{
-throw|throw
-operator|new
-name|UnsupportedOperationException
-argument_list|()
-throw|;
-block|}
+function_decl|;
 block|}
 end_class
 

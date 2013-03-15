@@ -68,6 +68,22 @@ name|TokenizerFactory
 import|;
 end_import
 
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|util
+operator|.
+name|AttributeSource
+operator|.
+name|AttributeFactory
+import|;
+end_import
+
 begin_comment
 comment|/**  * Factory for {@link PathHierarchyTokenizer}.   *<p>  * This factory is typically configured for use only in the<code>index</code>   * Analyzer (or only in the<code>query</code> Analyzer, but never both).  *</p>  *<p>  * For example, in the configuration below a query for   *<code>Books/NonFic</code> will match documents indexed with values like   *<code>Books/NonFic</code>,<code>Books/NonFic/Law</code>,   *<code>Books/NonFic/Science/Physics</code>, etc. But it will not match   * documents indexed with values like<code>Books</code>, or   *<code>Books/Fic</code>...  *</p>  *  *<pre class="prettyprint">  *&lt;fieldType name="descendent_path" class="solr.TextField"&gt;  *&lt;analyzer type="index"&gt;  *&lt;tokenizer class="solr.PathHierarchyTokenizerFactory" delimiter="/" /&gt;  *&lt;/analyzer&gt;  *&lt;analyzer type="query"&gt;  *&lt;tokenizer class="solr.KeywordTokenizerFactory" /&gt;  *&lt;/analyzer&gt;  *&lt;/fieldType&gt;  *</pre>  *<p>  * In this example however we see the oposite configuration, so that a query   * for<code>Books/NonFic/Science/Physics</code> would match documents   * containing<code>Books/NonFic</code>,<code>Books/NonFic/Science</code>,   * or<code>Books/NonFic/Science/Physics</code>, but not   *<code>Books/NonFic/Science/Physics/Theory</code> or   *<code>Books/NonFic/Law</code>.  *</p>  *<pre class="prettyprint">  *&lt;fieldType name="descendent_path" class="solr.TextField"&gt;  *&lt;analyzer type="index"&gt;  *&lt;tokenizer class="solr.KeywordTokenizerFactory" /&gt;  *&lt;/analyzer&gt;  *&lt;analyzer type="query"&gt;  *&lt;tokenizer class="solr.PathHierarchyTokenizerFactory" delimiter="/" /&gt;  *&lt;/analyzer&gt;  *&lt;/fieldType&gt;  *</pre>  */
 end_comment
@@ -309,6 +325,9 @@ specifier|public
 name|Tokenizer
 name|create
 parameter_list|(
+name|AttributeFactory
+name|factory
+parameter_list|,
 name|Reader
 name|input
 parameter_list|)
@@ -322,6 +341,8 @@ return|return
 operator|new
 name|ReversePathHierarchyTokenizer
 argument_list|(
+name|factory
+argument_list|,
 name|input
 argument_list|,
 name|delimiter
@@ -336,6 +357,8 @@ return|return
 operator|new
 name|PathHierarchyTokenizer
 argument_list|(
+name|factory
+argument_list|,
 name|input
 argument_list|,
 name|delimiter

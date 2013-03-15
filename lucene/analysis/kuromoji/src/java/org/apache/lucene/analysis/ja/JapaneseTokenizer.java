@@ -830,7 +830,7 @@ operator|.
 name|class
 argument_list|)
 decl_stmt|;
-comment|/**    * Create a new JapaneseTokenizer.    *     * @param input Reader containing text    * @param userDictionary Optional: if non-null, user dictionary.    * @param discardPunctuation true if punctuation tokens should be dropped from the output.    * @param mode tokenization mode.    */
+comment|/**    * Create a new JapaneseTokenizer.    *<p>    * Uses the default AttributeFactory.    *     * @param input Reader containing text    * @param userDictionary Optional: if non-null, user dictionary.    * @param discardPunctuation true if punctuation tokens should be dropped from the output.    * @param mode tokenization mode.    */
 DECL|method|JapaneseTokenizer
 specifier|public
 name|JapaneseTokenizer
@@ -848,8 +848,47 @@ name|Mode
 name|mode
 parameter_list|)
 block|{
+name|this
+argument_list|(
+name|AttributeFactory
+operator|.
+name|DEFAULT_ATTRIBUTE_FACTORY
+argument_list|,
+name|input
+argument_list|,
+name|userDictionary
+argument_list|,
+name|discardPunctuation
+argument_list|,
+name|mode
+argument_list|)
+expr_stmt|;
+block|}
+comment|/**    * Create a new JapaneseTokenizer.    *    * @param factory the AttributeFactory to use    * @param input Reader containing text    * @param userDictionary Optional: if non-null, user dictionary.    * @param discardPunctuation true if punctuation tokens should be dropped from the output.    * @param mode tokenization mode.    */
+DECL|method|JapaneseTokenizer
+specifier|public
+name|JapaneseTokenizer
+parameter_list|(
+name|AttributeFactory
+name|factory
+parameter_list|,
+name|Reader
+name|input
+parameter_list|,
+name|UserDictionary
+name|userDictionary
+parameter_list|,
+name|boolean
+name|discardPunctuation
+parameter_list|,
+name|Mode
+name|mode
+parameter_list|)
+block|{
 name|super
 argument_list|(
+name|factory
+argument_list|,
 name|input
 argument_list|)
 expr_stmt|;

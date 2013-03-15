@@ -274,7 +274,7 @@ operator|.
 name|class
 argument_list|)
 decl_stmt|;
-comment|/**    * Construct a new ICUTokenizer that breaks text into words from the given    * Reader.    *<p>    * The default script-specific handling is used.    *     * @param input Reader containing text to tokenize.    * @see DefaultICUTokenizerConfig    */
+comment|/**    * Construct a new ICUTokenizer that breaks text into words from the given    * Reader.    *<p>    * The default script-specific handling is used.    *<p>    * The default attribute factory is used.    *     * @param input Reader containing text to tokenize.    * @see DefaultICUTokenizerConfig    */
 DECL|method|ICUTokenizer
 specifier|public
 name|ICUTokenizer
@@ -293,7 +293,7 @@ argument_list|()
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**    * Construct a new ICUTokenizer that breaks text into words from the given    * Reader, using a tailored BreakIterator configuration.    *    * @param input Reader containing text to tokenize.    * @param config Tailored BreakIterator configuration     */
+comment|/**    * Construct a new ICUTokenizer that breaks text into words from the given    * Reader, using a tailored BreakIterator configuration.    *<p>    * The default attribute factory is used.    *    * @param input Reader containing text to tokenize.    * @param config Tailored BreakIterator configuration     */
 DECL|method|ICUTokenizer
 specifier|public
 name|ICUTokenizer
@@ -305,8 +305,37 @@ name|ICUTokenizerConfig
 name|config
 parameter_list|)
 block|{
+name|this
+argument_list|(
+name|AttributeFactory
+operator|.
+name|DEFAULT_ATTRIBUTE_FACTORY
+argument_list|,
+name|input
+argument_list|,
+name|config
+argument_list|)
+expr_stmt|;
+block|}
+comment|/**    * Construct a new ICUTokenizer that breaks text into words from the given    * Reader, using a tailored BreakIterator configuration.    *    * @param factory AttributeFactory to use    * @param input Reader containing text to tokenize.    * @param config Tailored BreakIterator configuration     */
+DECL|method|ICUTokenizer
+specifier|public
+name|ICUTokenizer
+parameter_list|(
+name|AttributeFactory
+name|factory
+parameter_list|,
+name|Reader
+name|input
+parameter_list|,
+name|ICUTokenizerConfig
+name|config
+parameter_list|)
+block|{
 name|super
 argument_list|(
+name|factory
+argument_list|,
 name|input
 argument_list|)
 expr_stmt|;
