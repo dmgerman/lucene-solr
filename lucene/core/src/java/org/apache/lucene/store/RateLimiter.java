@@ -206,9 +206,15 @@ name|nsPerByte
 argument_list|)
 operator|)
 decl_stmt|;
+specifier|final
+name|long
+name|startNS
+decl_stmt|;
 name|long
 name|curNS
 init|=
+name|startNS
+operator|=
 name|System
 operator|.
 name|nanoTime
@@ -300,7 +306,9 @@ block|}
 break|break;
 block|}
 return|return
-name|targetNS
+name|curNS
+operator|-
+name|startNS
 return|;
 block|}
 block|}
