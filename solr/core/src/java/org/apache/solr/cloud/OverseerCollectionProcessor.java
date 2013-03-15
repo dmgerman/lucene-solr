@@ -2181,7 +2181,7 @@ argument_list|,
 literal|1
 argument_list|)
 decl_stmt|;
-name|int
+name|Integer
 name|numSlices
 init|=
 name|msgStrToInt
@@ -2190,9 +2190,30 @@ name|message
 argument_list|,
 name|NUM_SLICES
 argument_list|,
-literal|0
+literal|null
 argument_list|)
 decl_stmt|;
+if|if
+condition|(
+name|numSlices
+operator|==
+literal|null
+condition|)
+block|{
+throw|throw
+operator|new
+name|SolrException
+argument_list|(
+name|ErrorCode
+operator|.
+name|BAD_REQUEST
+argument_list|,
+literal|"collection already exists: "
+operator|+
+name|collectionName
+argument_list|)
+throw|;
+block|}
 name|int
 name|maxShardsPerNode
 init|=
@@ -2249,17 +2270,6 @@ operator|<=
 literal|0
 condition|)
 block|{
-name|SolrException
-operator|.
-name|log
-argument_list|(
-name|log
-argument_list|,
-name|REPLICATION_FACTOR
-operator|+
-literal|" must be> 0"
-argument_list|)
-expr_stmt|;
 throw|throw
 operator|new
 name|SolrException
@@ -2268,16 +2278,16 @@ name|ErrorCode
 operator|.
 name|BAD_REQUEST
 argument_list|,
-literal|"collection already exists: "
+name|NUM_SLICES
 operator|+
-name|collectionName
+literal|" is a required paramater"
 argument_list|)
 throw|;
 block|}
 if|if
 condition|(
 name|numSlices
-operator|<
+operator|<=
 literal|0
 condition|)
 block|{
