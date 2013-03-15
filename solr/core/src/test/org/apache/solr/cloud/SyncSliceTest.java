@@ -415,6 +415,11 @@ argument_list|()
 expr_stmt|;
 comment|// we expect this time of exception as shards go up and down...
 comment|//ignoreException(".*");
+name|useFactory
+argument_list|(
+literal|null
+argument_list|)
+expr_stmt|;
 name|System
 operator|.
 name|setProperty
