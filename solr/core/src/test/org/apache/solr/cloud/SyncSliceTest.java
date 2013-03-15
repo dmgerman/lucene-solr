@@ -1154,6 +1154,12 @@ name|leaderJetty
 operator|.
 name|url
 operator|+
+literal|" Dead Guy:"
+operator|+
+name|deadJetty
+operator|.
+name|url
+operator|+
 literal|"skip list:"
 operator|+
 name|skipServers
