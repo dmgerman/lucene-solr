@@ -4247,7 +4247,7 @@ argument_list|()
 expr_stmt|;
 comment|// now wait until our currently cloud state contains the latest leader
 name|String
-name|clusterStateLeader
+name|clusterStateLeaderUrl
 init|=
 name|zkStateReader
 operator|.
@@ -4276,7 +4276,7 @@ name|leaderUrl
 operator|.
 name|equals
 argument_list|(
-name|clusterStateLeader
+name|clusterStateLeaderUrl
 argument_list|)
 condition|)
 block|{
@@ -4304,7 +4304,7 @@ argument_list|()
 operator|+
 literal|" our state says:"
 operator|+
-name|clusterStateLeader
+name|clusterStateLeaderUrl
 operator|+
 literal|" but zookeeper says:"
 operator|+
@@ -4322,7 +4322,7 @@ expr_stmt|;
 name|tries
 operator|++
 expr_stmt|;
-name|clusterStateLeader
+name|clusterStateLeaderUrl
 operator|=
 name|zkStateReader
 operator|.
@@ -4379,7 +4379,9 @@ name|ErrorCode
 operator|.
 name|SERVER_ERROR
 argument_list|,
-literal|"Error getting leader from zk"
+literal|"Error getting leader from zk for shard "
+operator|+
+name|shardId
 argument_list|,
 name|e
 argument_list|)
@@ -6879,6 +6881,20 @@ operator|.
 name|setShardId
 argument_list|(
 name|shardId
+argument_list|)
+expr_stmt|;
+block|}
+else|else
+block|{
+comment|// still wait till we see us in local state
+name|doGetShardIdProcess
+argument_list|(
+name|cd
+operator|.
+name|getName
+argument_list|()
+argument_list|,
+name|cd
 argument_list|)
 expr_stmt|;
 block|}
