@@ -343,7 +343,7 @@ import|;
 end_import
 
 begin_comment
-comment|/** A {@link FacetsAccumulator} that uses previously  *  indexed {@link SortedSetDocValuesFacetField} to perform faceting,  *  without require a separate taxonomy index.  Faceting is  *  a bit slower (~25%), and there is added cost on every  *  {@link IndexReader} open to create a new {@link  *  SortedSetDocValuesReaderState}.  Furthermore, this does  *  not support hierarchical facets; only flat (dimension +  *  label) facets, but it uses quite a bit less RAM to do so. */
+comment|/** A {@link FacetsAccumulator} that uses previously  *  indexed {@link SortedSetDocValuesFacetFields} to perform faceting,  *  without require a separate taxonomy index.  Faceting is  *  a bit slower (~25%), and there is added cost on every  *  {@link IndexReader} open to create a new {@link  *  SortedSetDocValuesReaderState}.  Furthermore, this does  *  not support hierarchical facets; only flat (dimension +  *  label) facets, but it uses quite a bit less RAM to do so. */
 end_comment
 
 begin_class

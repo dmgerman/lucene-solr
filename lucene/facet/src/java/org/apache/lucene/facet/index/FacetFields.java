@@ -278,64 +278,6 @@ specifier|public
 class|class
 name|FacetFields
 block|{
-comment|// The counting list is written in a payload, but we don't store it
-comment|// nor need norms.
-DECL|field|COUNTING_LIST_PAYLOAD_TYPE
-specifier|private
-specifier|static
-specifier|final
-name|FieldType
-name|COUNTING_LIST_PAYLOAD_TYPE
-init|=
-operator|new
-name|FieldType
-argument_list|()
-decl_stmt|;
-static|static
-block|{
-name|COUNTING_LIST_PAYLOAD_TYPE
-operator|.
-name|setIndexed
-argument_list|(
-literal|true
-argument_list|)
-expr_stmt|;
-name|COUNTING_LIST_PAYLOAD_TYPE
-operator|.
-name|setTokenized
-argument_list|(
-literal|true
-argument_list|)
-expr_stmt|;
-name|COUNTING_LIST_PAYLOAD_TYPE
-operator|.
-name|setIndexOptions
-argument_list|(
-name|IndexOptions
-operator|.
-name|DOCS_AND_FREQS_AND_POSITIONS
-argument_list|)
-expr_stmt|;
-name|COUNTING_LIST_PAYLOAD_TYPE
-operator|.
-name|setStored
-argument_list|(
-literal|false
-argument_list|)
-expr_stmt|;
-name|COUNTING_LIST_PAYLOAD_TYPE
-operator|.
-name|setOmitNorms
-argument_list|(
-literal|true
-argument_list|)
-expr_stmt|;
-name|COUNTING_LIST_PAYLOAD_TYPE
-operator|.
-name|freeze
-argument_list|()
-expr_stmt|;
-block|}
 comment|// The drill-down field is added with a TokenStream, hence why it's based on
 comment|// TextField type. However in practice, it is added just like StringField.
 comment|// Therefore we set its IndexOptions to DOCS_ONLY.
