@@ -637,10 +637,11 @@ argument_list|,
 name|comparator
 argument_list|)
 decl_stmt|;
-comment|// TODO: use a stable sort instead?
+comment|// It can be common to sort a reader, add docs, sort it again, ... and in
+comment|// that case timSort can save a lot of time
 name|sorter
 operator|.
-name|quickSort
+name|timSort
 argument_list|(
 literal|0
 argument_list|,
