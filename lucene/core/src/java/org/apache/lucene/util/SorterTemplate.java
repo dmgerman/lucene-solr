@@ -1444,7 +1444,7 @@ literal|1
 assert|;
 block|}
 block|}
-comment|/** Sorts using TimSort, see http://svn.python.org/projects/python/trunk/Objects/listsort.txt    *  and http://svn.python.org/projects/python/trunk/Objects/listobject.c.    *  TimSort is a stable sorting algorithm based on MergeSort but known to    *  perform extremely well on partially-sorted inputs.    *  For small collections, falls back to {@link #binarySort(int, int)}. */
+comment|/** Sorts using<a href="http://svn.python.org/projects/python/trunk/Objects/listsort.txt">TimSort</a>, see     *  also<a href="http://svn.python.org/projects/python/trunk/Objects/listobject.c">source code</a>.    *  TimSort is a stable sorting algorithm based on MergeSort but known to    *  perform extremely well on partially-sorted inputs.    *  For small collections, falls back to {@link #binarySort(int, int)}. */
 DECL|method|timSort
 specifier|public
 specifier|final
@@ -1570,8 +1570,8 @@ name|mid
 argument_list|)
 expr_stmt|;
 block|}
+comment|// pkg-protected for access from TimSort class
 DECL|method|merge
-specifier|private
 name|void
 name|merge
 parameter_list|(
