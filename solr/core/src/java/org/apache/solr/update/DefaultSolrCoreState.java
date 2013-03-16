@@ -993,6 +993,7 @@ argument_list|)
 expr_stmt|;
 return|return;
 block|}
+comment|// check before we grab the lock
 if|if
 condition|(
 name|cc
@@ -1015,6 +1016,24 @@ init|(
 name|recoveryLock
 init|)
 block|{
+comment|// to be air tight we must also check after lock
+if|if
+condition|(
+name|cc
+operator|.
+name|isShutDown
+argument_list|()
+condition|)
+block|{
+name|log
+operator|.
+name|warn
+argument_list|(
+literal|"Skipping recovery because Solr is shutdown"
+argument_list|)
+expr_stmt|;
+return|return;
+block|}
 name|log
 operator|.
 name|info
