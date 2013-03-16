@@ -464,6 +464,18 @@ parameter_list|()
 throws|throws
 name|IOException
 function_decl|;
+comment|/**    * Returns size of the used output buffer in bytes.    * */
+DECL|method|getBufferSize
+specifier|public
+specifier|final
+name|int
+name|getBufferSize
+parameter_list|()
+block|{
+return|return
+name|bufferSize
+return|;
+block|}
 block|}
 end_class
 
