@@ -109,6 +109,14 @@ import|;
 end_import
 
 begin_comment
+comment|// TODO: could we somehow stream an FST to disk while we
+end_comment
+
+begin_comment
+comment|// build it?
+end_comment
+
+begin_comment
 comment|/**  * Builds a minimal FST (maps an IntsRef term to an arbitrary  * output) from pre-sorted terms with outputs.  The FST  * becomes an FSA if you use NoOutputs.  The FST is written  * on-the-fly into a compact serialized format byte array, which can  * be saved to / loaded from a Directory or used directly  * for traversal.  The FST is always finite (no cycles).  *  *<p>NOTE: The algorithm is described at  * http://citeseerx.ist.psu.edu/viewdoc/summary?doi=10.1.1.24.3698</p>  *  *<p>The parameterized type T is the output type.  See the  * subclasses of {@link Outputs}.  *  *<p>FSTs larger than 2.1GB are now possible (as of Lucene  * 4.2).  FSTs containing more than 2.1B nodes are also now  * possible, however they cannot be packed.  *  * @lucene.experimental  */
 end_comment
 

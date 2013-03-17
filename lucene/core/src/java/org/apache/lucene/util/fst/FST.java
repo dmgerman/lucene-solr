@@ -5055,6 +5055,8 @@ return|return
 name|arc
 return|;
 block|}
+comment|// TODO: could we somehow [partially] tableize arc lookups
+comment|// look automaton?
 comment|/** Finds an arc leaving the incoming arc, replacing the arc in place.    *  This returns null if the arc was not found, else the incoming arc. */
 DECL|method|findTargetArc
 specifier|public
