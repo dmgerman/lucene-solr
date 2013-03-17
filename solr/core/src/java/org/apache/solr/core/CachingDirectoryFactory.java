@@ -276,6 +276,11 @@ name|refCnt
 init|=
 literal|1
 decl_stmt|;
+DECL|field|closed
+specifier|public
+name|boolean
+name|closed
+decl_stmt|;
 DECL|field|path
 specifier|public
 name|String
@@ -910,13 +915,14 @@ argument_list|(
 name|directory
 argument_list|)
 expr_stmt|;
+comment|// if it's been closed, it's path is now
+comment|// owned by another Directory instance
 if|if
 condition|(
+operator|!
 name|cacheValue
 operator|.
-name|path
-operator|!=
-literal|null
+name|closed
 condition|)
 block|{
 name|byPathCache
@@ -1310,13 +1316,13 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
-comment|// kill the path, it will be owned by the new dir
+comment|// close the entry, it will be owned by the new dir
 comment|// we count on it being released by directory
 name|cacheValue
 operator|.
-name|path
+name|closed
 operator|=
-literal|null
+literal|true
 expr_stmt|;
 block|}
 block|}
