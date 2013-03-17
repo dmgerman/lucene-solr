@@ -3390,6 +3390,17 @@ operator|new
 name|SortedSetDocValuesFacetFields
 argument_list|()
 decl_stmt|;
+name|boolean
+name|doUseDV
+init|=
+name|canUseDV
+operator|&&
+name|random
+argument_list|()
+operator|.
+name|nextBoolean
+argument_list|()
+decl_stmt|;
 for|for
 control|(
 name|Doc
@@ -3714,7 +3725,12 @@ name|isEmpty
 argument_list|()
 condition|)
 block|{
-name|facetFields
+if|if
+condition|(
+name|doUseDV
+condition|)
+block|{
+name|dvFacetFields
 operator|.
 name|addFields
 argument_list|(
@@ -3723,12 +3739,10 @@ argument_list|,
 name|paths
 argument_list|)
 expr_stmt|;
-if|if
-condition|(
-name|canUseDV
-condition|)
+block|}
+else|else
 block|{
-name|dvFacetFields
+name|facetFields
 operator|.
 name|addFields
 argument_list|(
@@ -3932,7 +3946,7 @@ name|sortedSetDVState
 decl_stmt|;
 if|if
 condition|(
-name|canUseDV
+name|doUseDV
 condition|)
 block|{
 name|sortedSetDVState
@@ -4136,17 +4150,6 @@ name|numDims
 index|]
 index|[]
 decl_stmt|;
-name|boolean
-name|useSortedSetDV
-init|=
-name|canUseDV
-operator|&&
-name|random
-argument_list|()
-operator|.
-name|nextBoolean
-argument_list|()
-decl_stmt|;
 if|if
 condition|(
 name|VERBOSE
@@ -4172,7 +4175,7 @@ name|numDrillDown
 operator|+
 literal|" useSortedSetDV="
 operator|+
-name|useSortedSetDV
+name|doUseDV
 argument_list|)
 expr_stmt|;
 block|}
@@ -4883,7 +4886,7 @@ name|ds
 decl_stmt|;
 if|if
 condition|(
-name|useSortedSetDV
+name|doUseDV
 condition|)
 block|{
 name|ds
@@ -5061,7 +5064,7 @@ argument_list|,
 operator|-
 literal|1
 argument_list|,
-name|useSortedSetDV
+name|doUseDV
 argument_list|)
 expr_stmt|;
 comment|// Make sure topN works:
@@ -5169,7 +5172,7 @@ name|scores
 argument_list|,
 name|topN
 argument_list|,
-name|useSortedSetDV
+name|doUseDV
 argument_list|)
 expr_stmt|;
 comment|// Make sure drill down doesn't change score:
