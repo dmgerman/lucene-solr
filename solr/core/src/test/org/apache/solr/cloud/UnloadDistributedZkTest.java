@@ -681,7 +681,9 @@ argument_list|()
 expr_stmt|;
 name|fail
 argument_list|(
-literal|"Still found shard"
+literal|"Still found shard2 in collection "
+operator|+
+name|collection
 argument_list|)
 expr_stmt|;
 block|}

@@ -110,22 +110,6 @@ name|NamedList
 import|;
 end_import
 
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|solr
-operator|.
-name|core
-operator|.
-name|DirectoryFactory
-operator|.
-name|DirContext
-import|;
-end_import
-
 begin_comment
 comment|/**  * Factory to instantiate {@link org.apache.lucene.store.NRTCachingDirectory}  */
 end_comment
