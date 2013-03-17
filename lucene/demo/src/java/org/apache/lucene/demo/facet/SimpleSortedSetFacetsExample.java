@@ -14,6 +14,10 @@ name|facet
 package|;
 end_package
 
+begin_comment
+comment|/*  * Licensed to the Apache Software Foundation (ASF) under one or more  * contributor license agreements.  See the NOTICE file distributed with  * this work for additional information regarding copyright ownership.  * The ASF licenses this file to You under the Apache License, Version 2.0  * (the "License"); you may not use this file except in compliance with  * the License.  You may obtain a copy of the License at  *  *     http://www.apache.org/licenses/LICENSE-2.0  *  * Unless required by applicable law or agreed to in writing, software  * distributed under the License is distributed on an "AS IS" BASIS,  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.  * See the License for the specific language governing permissions and  * limitations under the License.  */
+end_comment
+
 begin_import
 import|import
 name|java
@@ -71,22 +75,6 @@ operator|.
 name|document
 operator|.
 name|Document
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|facet
-operator|.
-name|index
-operator|.
-name|FacetFields
 import|;
 end_import
 
@@ -180,61 +168,57 @@ name|lucene
 operator|.
 name|facet
 operator|.
+name|sortedset
+operator|.
+name|SortedSetDocValuesAccumulator
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|facet
+operator|.
+name|sortedset
+operator|.
+name|SortedSetDocValuesFacetFields
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|facet
+operator|.
+name|sortedset
+operator|.
+name|SortedSetDocValuesReaderState
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|facet
+operator|.
 name|taxonomy
 operator|.
 name|CategoryPath
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|facet
-operator|.
-name|taxonomy
-operator|.
-name|TaxonomyReader
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|facet
-operator|.
-name|taxonomy
-operator|.
-name|directory
-operator|.
-name|DirectoryTaxonomyReader
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|facet
-operator|.
-name|taxonomy
-operator|.
-name|directory
-operator|.
-name|DirectoryTaxonomyWriter
 import|;
 end_import
 
@@ -337,18 +321,14 @@ import|;
 end_import
 
 begin_comment
-comment|/*  * Licensed to the Apache Software Foundation (ASF) under one or more  * contributor license agreements.  See the NOTICE file distributed with  * this work for additional information regarding copyright ownership.  * The ASF licenses this file to You under the Apache License, Version 2.0  * (the "License"); you may not use this file except in compliance with  * the License.  You may obtain a copy of the License at  *  *     http://www.apache.org/licenses/LICENSE-2.0  *  * Unless required by applicable law or agreed to in writing, software  * distributed under the License is distributed on an "AS IS" BASIS,  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.  * See the License for the specific language governing permissions and  * limitations under the License.  */
-end_comment
-
-begin_comment
-comment|/** Shows simple usage of faceted indexing and search. */
+comment|/** Shows simple usage of faceted indexing and search,  *  using {@link SortedSetDocValuesFacetFields} and {@link  *  SortedSetDocValuesAccumulator}.  */
 end_comment
 
 begin_class
-DECL|class|SimpleFacetsExample
+DECL|class|SimpleSortedSetFacetsExample
 specifier|public
 class|class
-name|SimpleFacetsExample
+name|SimpleSortedSetFacetsExample
 block|{
 DECL|field|indexDir
 specifier|private
@@ -360,20 +340,10 @@ operator|new
 name|RAMDirectory
 argument_list|()
 decl_stmt|;
-DECL|field|taxoDir
-specifier|private
-specifier|final
-name|Directory
-name|taxoDir
-init|=
-operator|new
-name|RAMDirectory
-argument_list|()
-decl_stmt|;
 comment|/** Empty constructor */
-DECL|method|SimpleFacetsExample
+DECL|method|SimpleSortedSetFacetsExample
 specifier|public
-name|SimpleFacetsExample
+name|SimpleSortedSetFacetsExample
 parameter_list|()
 block|{}
 DECL|method|add
@@ -384,7 +354,7 @@ parameter_list|(
 name|IndexWriter
 name|indexWriter
 parameter_list|,
-name|FacetFields
+name|SortedSetDocValuesFacetFields
 name|facetFields
 parameter_list|,
 name|String
@@ -487,25 +457,13 @@ argument_list|)
 argument_list|)
 argument_list|)
 decl_stmt|;
-comment|// Writes facet ords to a separate directory from the main index
-name|DirectoryTaxonomyWriter
-name|taxoWriter
-init|=
-operator|new
-name|DirectoryTaxonomyWriter
-argument_list|(
-name|taxoDir
-argument_list|)
-decl_stmt|;
 comment|// Reused across documents, to add the necessary facet fields
-name|FacetFields
+name|SortedSetDocValuesFacetFields
 name|facetFields
 init|=
 operator|new
-name|FacetFields
-argument_list|(
-name|taxoWriter
-argument_list|)
+name|SortedSetDocValuesFacetFields
+argument_list|()
 decl_stmt|;
 name|add
 argument_list|(
@@ -515,7 +473,7 @@ name|facetFields
 argument_list|,
 literal|"Author/Bob"
 argument_list|,
-literal|"Publish Date/2010/10/15"
+literal|"Publish Year/2010"
 argument_list|)
 expr_stmt|;
 name|add
@@ -526,7 +484,7 @@ name|facetFields
 argument_list|,
 literal|"Author/Lisa"
 argument_list|,
-literal|"Publish Date/2010/10/20"
+literal|"Publish Year/2010"
 argument_list|)
 expr_stmt|;
 name|add
@@ -537,7 +495,7 @@ name|facetFields
 argument_list|,
 literal|"Author/Lisa"
 argument_list|,
-literal|"Publish Date/2012/1/1"
+literal|"Publish Year/2012"
 argument_list|)
 expr_stmt|;
 name|add
@@ -548,7 +506,7 @@ name|facetFields
 argument_list|,
 literal|"Author/Susan"
 argument_list|,
-literal|"Publish Date/2012/1/7"
+literal|"Publish Year/2012"
 argument_list|)
 expr_stmt|;
 name|add
@@ -559,15 +517,10 @@ name|facetFields
 argument_list|,
 literal|"Author/Frank"
 argument_list|,
-literal|"Publish Date/1999/5/5"
+literal|"Publish Year/1999"
 argument_list|)
 expr_stmt|;
 name|indexWriter
-operator|.
-name|close
-argument_list|()
-expr_stmt|;
-name|taxoWriter
 operator|.
 name|close
 argument_list|()
@@ -604,16 +557,16 @@ argument_list|(
 name|indexReader
 argument_list|)
 decl_stmt|;
-name|TaxonomyReader
-name|taxoReader
+name|SortedSetDocValuesReaderState
+name|state
 init|=
 operator|new
-name|DirectoryTaxonomyReader
+name|SortedSetDocValuesReaderState
 argument_list|(
-name|taxoDir
+name|indexReader
 argument_list|)
 decl_stmt|;
-comment|// Count both "Publish Date" and "Author" dimensions
+comment|// Count both "Publish Year" and "Author" dimensions
 name|FacetSearchParams
 name|fsp
 init|=
@@ -626,7 +579,7 @@ argument_list|(
 operator|new
 name|CategoryPath
 argument_list|(
-literal|"Publish Date"
+literal|"Publish Year"
 argument_list|)
 argument_list|,
 literal|10
@@ -653,14 +606,13 @@ name|FacetsCollector
 operator|.
 name|create
 argument_list|(
+operator|new
+name|SortedSetDocValuesAccumulator
+argument_list|(
 name|fsp
 argument_list|,
-name|searcher
-operator|.
-name|getIndexReader
-argument_list|()
-argument_list|,
-name|taxoReader
+name|state
+argument_list|)
 argument_list|)
 decl_stmt|;
 comment|// MatchAllDocsQuery is for "browsing" (counts facets
@@ -695,16 +647,11 @@ operator|.
 name|close
 argument_list|()
 expr_stmt|;
-name|taxoReader
-operator|.
-name|close
-argument_list|()
-expr_stmt|;
 return|return
 name|facetResults
 return|;
 block|}
-comment|/** User drills down on 'Publish Date/2010'. */
+comment|/** User drills down on 'Publish Year/2010'. */
 DECL|method|drillDown
 specifier|private
 name|List
@@ -735,16 +682,16 @@ argument_list|(
 name|indexReader
 argument_list|)
 decl_stmt|;
-name|TaxonomyReader
-name|taxoReader
+name|SortedSetDocValuesReaderState
+name|state
 init|=
 operator|new
-name|DirectoryTaxonomyReader
+name|SortedSetDocValuesReaderState
 argument_list|(
-name|taxoDir
+name|indexReader
 argument_list|)
 decl_stmt|;
-comment|// Now user drills down on Publish Date/2010:
+comment|// Now user drills down on Publish Year/2010:
 name|FacetSearchParams
 name|fsp
 init|=
@@ -786,7 +733,7 @@ argument_list|(
 operator|new
 name|CategoryPath
 argument_list|(
-literal|"Publish Date/2010"
+literal|"Publish Year/2010"
 argument_list|,
 literal|'/'
 argument_list|)
@@ -799,14 +746,13 @@ name|FacetsCollector
 operator|.
 name|create
 argument_list|(
+operator|new
+name|SortedSetDocValuesAccumulator
+argument_list|(
 name|fsp
 argument_list|,
-name|searcher
-operator|.
-name|getIndexReader
-argument_list|()
-argument_list|,
-name|taxoReader
+name|state
+argument_list|)
 argument_list|)
 decl_stmt|;
 name|searcher
@@ -831,11 +777,6 @@ name|getFacetResults
 argument_list|()
 decl_stmt|;
 name|indexReader
-operator|.
-name|close
-argument_list|()
-expr_stmt|;
-name|taxoReader
 operator|.
 name|close
 argument_list|()
@@ -923,7 +864,7 @@ argument_list|>
 name|results
 init|=
 operator|new
-name|SimpleFacetsExample
+name|SimpleSortedSetFacetsExample
 argument_list|()
 operator|.
 name|runSearch
@@ -962,7 +903,7 @@ name|out
 operator|.
 name|println
 argument_list|(
-literal|"Facet drill-down example (Publish Date/2010):"
+literal|"Facet drill-down example (Publish Year/2010):"
 argument_list|)
 expr_stmt|;
 name|System
@@ -977,7 +918,7 @@ expr_stmt|;
 name|results
 operator|=
 operator|new
-name|SimpleFacetsExample
+name|SimpleSortedSetFacetsExample
 argument_list|()
 operator|.
 name|runDrillDown
