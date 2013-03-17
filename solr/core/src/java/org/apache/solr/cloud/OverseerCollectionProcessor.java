@@ -2447,7 +2447,11 @@ literal|" on collection "
 operator|+
 name|collectionName
 operator|+
-literal|" is higher than or equal to the number of Solr instances currently live ("
+literal|" is higher than or equal to the number of Solr instances currently live or part of your "
+operator|+
+name|CREATE_NODE_SET
+operator|+
+literal|"("
 operator|+
 name|nodeList
 operator|.
@@ -2891,7 +2895,7 @@ block|}
 block|}
 DECL|method|collectionCmd
 specifier|private
-name|boolean
+name|void
 name|collectionCmd
 parameter_list|(
 name|ClusterState
@@ -3214,11 +3218,6 @@ expr_stmt|;
 block|}
 block|}
 block|}
-name|int
-name|failed
-init|=
-literal|0
-decl_stmt|;
 name|ShardResponse
 name|srsp
 decl_stmt|;
@@ -3254,21 +3253,6 @@ operator|!=
 literal|null
 condition|)
 do|;
-comment|// if all calls succeeded, return true
-if|if
-condition|(
-name|failed
-operator|>
-literal|0
-condition|)
-block|{
-return|return
-literal|false
-return|;
-block|}
-return|return
-literal|true
-return|;
 block|}
 DECL|method|processResponse
 specifier|private
