@@ -901,13 +901,6 @@ argument_list|>
 index|[]
 name|drillSidewaysResults
 init|=
-operator|(
-name|List
-argument_list|<
-name|FacetResult
-argument_list|>
-index|[]
-operator|)
 operator|new
 name|List
 index|[

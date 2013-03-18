@@ -819,7 +819,7 @@ decl_stmt|;
 DECL|field|taxoArrays
 specifier|private
 specifier|volatile
-name|ParallelTaxonomyArrays
+name|TaxonomyIndexArrays
 name|taxoArrays
 decl_stmt|;
 DECL|field|nextID
@@ -2682,7 +2682,7 @@ block|}
 block|}
 DECL|method|getTaxoArrays
 specifier|private
-name|ParallelTaxonomyArrays
+name|TaxonomyIndexArrays
 name|getTaxoArrays
 parameter_list|()
 throws|throws
@@ -2723,11 +2723,11 @@ block|{
 comment|// according to Java Concurrency, this might perform better on some
 comment|// JVMs, since the object initialization doesn't happen on the
 comment|// volatile member.
-name|ParallelTaxonomyArrays
+name|TaxonomyIndexArrays
 name|tmpArrays
 init|=
 operator|new
-name|ParallelTaxonomyArrays
+name|TaxonomyIndexArrays
 argument_list|(
 name|reader
 argument_list|)
