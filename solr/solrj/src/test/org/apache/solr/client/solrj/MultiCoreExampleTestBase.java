@@ -63,8 +63,6 @@ operator|.
 name|request
 operator|.
 name|CoreAdminRequest
-operator|.
-name|Unload
 import|;
 end_import
 
@@ -83,6 +81,8 @@ operator|.
 name|request
 operator|.
 name|CoreAdminRequest
+operator|.
+name|Unload
 import|;
 end_import
 
