@@ -139,24 +139,6 @@ name|void
 name|testSuppressedExceptions
 parameter_list|()
 block|{
-if|if
-condition|(
-operator|!
-name|Constants
-operator|.
-name|JRE_IS_MINIMUM_JAVA7
-condition|)
-block|{
-name|System
-operator|.
-name|err
-operator|.
-name|println
-argument_list|(
-literal|"WARNING: TestIOUtils.testSuppressedExceptions: Full test coverage only with Java 7, as suppressed exception recording is not supported before."
-argument_list|)
-expr_stmt|;
-block|}
 comment|// test with prior exception
 try|try
 block|{

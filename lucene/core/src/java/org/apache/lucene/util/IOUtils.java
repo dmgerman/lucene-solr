@@ -858,54 +858,7 @@ parameter_list|)
 block|{       }
 block|}
 block|}
-comment|/** This reflected {@link Method} is {@code null} before Java 7 */
-DECL|field|SUPPRESS_METHOD
-specifier|private
-specifier|static
-specifier|final
-name|Method
-name|SUPPRESS_METHOD
-decl_stmt|;
-static|static
-block|{
-name|Method
-name|m
-decl_stmt|;
-try|try
-block|{
-name|m
-operator|=
-name|Throwable
-operator|.
-name|class
-operator|.
-name|getMethod
-argument_list|(
-literal|"addSuppressed"
-argument_list|,
-name|Throwable
-operator|.
-name|class
-argument_list|)
-expr_stmt|;
-block|}
-catch|catch
-parameter_list|(
-name|Exception
-name|e
-parameter_list|)
-block|{
-name|m
-operator|=
-literal|null
-expr_stmt|;
-block|}
-name|SUPPRESS_METHOD
-operator|=
-name|m
-expr_stmt|;
-block|}
-comment|/** adds a Throwable to the list of suppressed Exceptions of the first Throwable (if Java 7 is detected)    * @param exception this exception should get the suppressed one added    * @param suppressed the suppressed exception    */
+comment|/** adds a Throwable to the list of suppressed Exceptions of the first Throwable    * @param exception this exception should get the suppressed one added    * @param suppressed the suppressed exception    */
 DECL|method|addSuppressed
 specifier|private
 specifier|static
@@ -922,10 +875,6 @@ parameter_list|)
 block|{
 if|if
 condition|(
-name|SUPPRESS_METHOD
-operator|!=
-literal|null
-operator|&&
 name|exception
 operator|!=
 literal|null
@@ -935,26 +884,13 @@ operator|!=
 literal|null
 condition|)
 block|{
-try|try
-block|{
-name|SUPPRESS_METHOD
-operator|.
-name|invoke
-argument_list|(
 name|exception
-argument_list|,
+operator|.
+name|addSuppressed
+argument_list|(
 name|suppressed
 argument_list|)
 expr_stmt|;
-block|}
-catch|catch
-parameter_list|(
-name|Exception
-name|e
-parameter_list|)
-block|{
-comment|// ignore any exceptions caused by invoking (e.g. security constraints)
-block|}
 block|}
 block|}
 comment|/**    * Wrapping the given {@link InputStream} in a reader using a {@link CharsetDecoder}.    * Unlike Java's defaults this reader will throw an exception if your it detects     * the read charset doesn't match the expected {@link Charset}.     *<p>    * Decoding readers are useful to load configuration files, stopword lists or synonym files    * to detect character set problems. However, its not recommended to use as a common purpose     * reader.    *     * @param stream the stream to wrap in a reader    * @param charSet the expected charset    * @return a wrapping reader    */
