@@ -1408,11 +1408,7 @@ name|ErrorCode
 operator|.
 name|SERVER_ERROR
 argument_list|,
-literal|"Error instantiating shardHandlerFactory class "
-operator|+
-name|info
-operator|.
-name|className
+name|e
 argument_list|)
 throw|;
 block|}
