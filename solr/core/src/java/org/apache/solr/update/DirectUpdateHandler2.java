@@ -813,6 +813,11 @@ block|{
 name|super
 argument_list|(
 name|core
+argument_list|,
+name|updateHandler
+operator|.
+name|getUpdateLog
+argument_list|()
 argument_list|)
 expr_stmt|;
 name|solrCoreState
