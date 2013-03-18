@@ -164,8 +164,6 @@ begin_import
 import|import
 name|org
 operator|.
-name|apache
-operator|.
 name|noggit
 operator|.
 name|CharArr
@@ -175,8 +173,6 @@ end_import
 begin_import
 import|import
 name|org
-operator|.
-name|apache
 operator|.
 name|noggit
 operator|.
