@@ -524,6 +524,16 @@ return|return
 name|createdFileNames
 return|;
 block|}
+DECL|method|getDelegate
+specifier|public
+name|Directory
+name|getDelegate
+parameter_list|()
+block|{
+return|return
+name|other
+return|;
+block|}
 block|}
 end_class
 

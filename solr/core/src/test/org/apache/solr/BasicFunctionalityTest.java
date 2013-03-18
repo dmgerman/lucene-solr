@@ -1371,6 +1371,22 @@ argument_list|,
 literal|"//*[@numFound='0']"
 argument_list|)
 expr_stmt|;
+name|assertU
+argument_list|(
+name|h
+operator|.
+name|simpleTag
+argument_list|(
+literal|"rollback"
+argument_list|)
+argument_list|)
+expr_stmt|;
+name|assertU
+argument_list|(
+name|commit
+argument_list|()
+argument_list|)
+expr_stmt|;
 block|}
 comment|/**    * verify that delete by query works with the QParser framework and    * pure negative queries    */
 DECL|method|testNonTrivialDeleteByQuery

@@ -808,7 +808,7 @@ argument_list|)
 return|;
 block|}
 DECL|method|simpleTag
-specifier|private
+specifier|public
 specifier|static
 name|String
 name|simpleTag
