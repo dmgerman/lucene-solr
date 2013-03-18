@@ -242,15 +242,15 @@ argument_list|(
 literal|"java.vendor"
 argument_list|)
 decl_stmt|;
-comment|/** @deprecated With Lucene 4.0, we are always on Java 6 */
+comment|/** @deprecated With Lucene 5.0, we are always on Java 7 */
 annotation|@
 name|Deprecated
-DECL|field|JRE_IS_MINIMUM_JAVA6
+DECL|field|JRE_IS_MINIMUM_JAVA7
 specifier|public
 specifier|static
 specifier|final
 name|boolean
-name|JRE_IS_MINIMUM_JAVA6
+name|JRE_IS_MINIMUM_JAVA7
 init|=
 operator|new
 name|Boolean
@@ -262,13 +262,6 @@ name|booleanValue
 argument_list|()
 decl_stmt|;
 comment|// prevent inlining in foreign class files
-DECL|field|JRE_IS_MINIMUM_JAVA7
-specifier|public
-specifier|static
-specifier|final
-name|boolean
-name|JRE_IS_MINIMUM_JAVA7
-decl_stmt|;
 DECL|field|JRE_IS_MINIMUM_JAVA8
 specifier|public
 specifier|static
@@ -442,44 +435,6 @@ name|JRE_IS_64BIT
 operator|=
 name|is64Bit
 expr_stmt|;
-comment|// this method only exists in Java 7:
-name|boolean
-name|v7
-init|=
-literal|true
-decl_stmt|;
-try|try
-block|{
-name|Throwable
-operator|.
-name|class
-operator|.
-name|getMethod
-argument_list|(
-literal|"getSuppressed"
-argument_list|)
-expr_stmt|;
-block|}
-catch|catch
-parameter_list|(
-name|NoSuchMethodException
-name|nsme
-parameter_list|)
-block|{
-name|v7
-operator|=
-literal|false
-expr_stmt|;
-block|}
-name|JRE_IS_MINIMUM_JAVA7
-operator|=
-name|v7
-expr_stmt|;
-if|if
-condition|(
-name|JRE_IS_MINIMUM_JAVA7
-condition|)
-block|{
 comment|// this method only exists in Java 8:
 name|boolean
 name|v8
@@ -513,14 +468,6 @@ name|JRE_IS_MINIMUM_JAVA8
 operator|=
 name|v8
 expr_stmt|;
-block|}
-else|else
-block|{
-name|JRE_IS_MINIMUM_JAVA8
-operator|=
-literal|false
-expr_stmt|;
-block|}
 block|}
 comment|// this method prevents inlining the final version constant in compiled classes,
 comment|// see: http://www.javaworld.com/community/node/3400

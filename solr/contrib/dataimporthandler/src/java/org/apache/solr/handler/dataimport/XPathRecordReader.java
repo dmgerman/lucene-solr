@@ -2804,6 +2804,7 @@ argument_list|)
 expr_stmt|;
 try|try
 block|{
+comment|// nocommit: still true for java7?
 comment|// The java 1.6 bundled stax parser (sjsxp) does not currently have a thread-safe
 comment|// XMLInputFactory, as that implementation tries to cache and reuse the
 comment|// XMLStreamReader.  Setting the parser-specific "reuse-instance" property to false
