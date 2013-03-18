@@ -393,8 +393,6 @@ operator|)
 return|;
 block|}
 comment|/**    * You can also modify the body of this method to customize your error messages.    * For example, cases like LOOP_DETECTED and INVALID_LEXICAL_STATE are not    * of end-users concern, so you can return something like :    *    *     "Internal Error : Please file a bug report .... "    *    * from this method for such cases in the release version of your parser.    */
-annotation|@
-name|Override
 DECL|method|getMessage
 specifier|public
 name|String
@@ -489,7 +487,7 @@ block|}
 end_class
 
 begin_comment
-comment|/* JavaCC - OriginalChecksum=be88283d82a985d82a34dda46bcf42d5 (do not edit this line) */
+comment|/* JavaCC - OriginalChecksum=3ca7fbf7de9f2424b131a5499b0a78d0 (do not edit this line) */
 end_comment
 
 end_unit

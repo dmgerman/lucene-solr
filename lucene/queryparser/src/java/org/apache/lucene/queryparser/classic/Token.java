@@ -156,8 +156,6 @@ name|image
 expr_stmt|;
 block|}
 comment|/**    * Returns the image.    */
-annotation|@
-name|Override
 DECL|method|toString
 specifier|public
 name|String
@@ -222,7 +220,7 @@ block|}
 end_class
 
 begin_comment
-comment|/* JavaCC - OriginalChecksum=405bb5d2fcd84e94ac1c8f0b12c1f914 (do not edit this line) */
+comment|/* JavaCC - OriginalChecksum=c1e1418b35aa9e47ef8dc98b87423d70 (do not edit this line) */
 end_comment
 
 end_unit

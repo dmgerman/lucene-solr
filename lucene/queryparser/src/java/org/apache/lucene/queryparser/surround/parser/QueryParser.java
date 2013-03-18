@@ -286,7 +286,7 @@ specifier|final
 name|char
 name|quote
 init|=
-literal|'\u005c"'
+literal|'"'
 decl_stmt|;
 DECL|field|fieldOperator
 specifier|final
