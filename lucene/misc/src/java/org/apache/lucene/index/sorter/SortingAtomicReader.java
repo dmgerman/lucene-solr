@@ -2019,6 +2019,13 @@ parameter_list|()
 block|{
 return|return
 name|docIt
+operator|<
+literal|0
+condition|?
+operator|-
+literal|1
+else|:
+name|docIt
 operator|>=
 name|upto
 condition|?
@@ -3064,11 +3071,11 @@ return|;
 block|}
 block|}
 comment|/** Return a sorted view of<code>reader</code> according to the order    *  defined by<code>sorter</code>. If the reader is already sorted, this    *  method might return the reader as-is. */
-DECL|method|sort
+DECL|method|wrap
 specifier|public
 specifier|static
 name|AtomicReader
-name|sort
+name|wrap
 parameter_list|(
 name|AtomicReader
 name|reader
