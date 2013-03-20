@@ -44,6 +44,16 @@ name|java
 operator|.
 name|util
 operator|.
+name|ArrayList
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
+name|util
+operator|.
 name|Arrays
 import|;
 end_import
@@ -181,6 +191,22 @@ operator|.
 name|index
 operator|.
 name|FieldInfo
+operator|.
+name|IndexOptions
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|index
+operator|.
+name|FieldInfo
 import|;
 end_import
 
@@ -293,22 +319,6 @@ operator|.
 name|index
 operator|.
 name|TermsEnum
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|index
-operator|.
-name|FieldInfo
-operator|.
-name|IndexOptions
 import|;
 end_import
 
@@ -596,7 +606,7 @@ operator|=
 name|formatter
 expr_stmt|;
 block|}
-comment|/**    * Highlights the top passages from a single field.    *     * @param field field name to highlight.     *        Must have a stored string value and also be indexed with offsets.    * @param query query to highlight.    * @param searcher searcher that was previously used to execute the query.    * @param topDocs TopDocs containing the summary result documents to highlight.    * @return Array of formatted snippets corresponding to the documents in<code>topDocs</code>.     *         If no highlights were found for a document, its value is<code>null</code>.    * @throws IOException if an I/O error occurred during processing    * @throws IllegalArgumentException if<code>field</code> was indexed without     *         {@link IndexOptions#DOCS_AND_FREQS_AND_POSITIONS_AND_OFFSETS}    */
+comment|/**    * Highlights the top passages from a single field.    *     * @param field field name to highlight.     *        Must have a stored string value and also be indexed with offsets.    * @param query query to highlight.    * @param searcher searcher that was previously used to execute the query.    * @param topDocs TopDocs containing the summary result documents to highlight.    * @return Array of formatted snippets corresponding to the documents in<code>topDocs</code>.     *         If no highlights were found for a document, the    *         first sentence for the field will be returned.    * @throws IOException if an I/O error occurred during processing    * @throws IllegalArgumentException if<code>field</code> was indexed without     *         {@link IndexOptions#DOCS_AND_FREQS_AND_POSITIONS_AND_OFFSETS}    */
 DECL|method|highlight
 specifier|public
 name|String
@@ -633,7 +643,7 @@ literal|1
 argument_list|)
 return|;
 block|}
-comment|/**    * Highlights the top-N passages from a single field.    *     * @param field field name to highlight.     *        Must have a stored string value and also be indexed with offsets.    * @param query query to highlight.    * @param searcher searcher that was previously used to execute the query.    * @param topDocs TopDocs containing the summary result documents to highlight.    * @param maxPassages The maximum number of top-N ranked passages used to     *        form the highlighted snippets.    * @return Array of formatted snippets corresponding to the documents in<code>topDocs</code>.     *         If no highlights were found for a document, its value is<code>null</code>.    * @throws IOException if an I/O error occurred during processing    * @throws IllegalArgumentException if<code>field</code> was indexed without     *         {@link IndexOptions#DOCS_AND_FREQS_AND_POSITIONS_AND_OFFSETS}    */
+comment|/**    * Highlights the top-N passages from a single field.    *     * @param field field name to highlight.     *        Must have a stored string value and also be indexed with offsets.    * @param query query to highlight.    * @param searcher searcher that was previously used to execute the query.    * @param topDocs TopDocs containing the summary result documents to highlight.    * @param maxPassages The maximum number of top-N ranked passages used to     *        form the highlighted snippets.    * @return Array of formatted snippets corresponding to the documents in<code>topDocs</code>.     *         If no highlights were found for a document, the    *         first {@code maxPassages} sentences from the    *         field will be returned.    * @throws IOException if an I/O error occurred during processing    * @throws IllegalArgumentException if<code>field</code> was indexed without     *         {@link IndexOptions#DOCS_AND_FREQS_AND_POSITIONS_AND_OFFSETS}    */
 DECL|method|highlight
 specifier|public
 name|String
@@ -694,7 +704,7 @@ name|field
 argument_list|)
 return|;
 block|}
-comment|/**    * Highlights the top passages from multiple fields.    *<p>    * Conceptually, this behaves as a more efficient form of:    *<pre class="prettyprint">    * Map m = new HashMap();    * for (String field : fields) {    *   m.put(field, highlight(field, query, searcher, topDocs));    * }    * return m;    *</pre>    *     * @param fields field names to highlight.     *        Must have a stored string value and also be indexed with offsets.    * @param query query to highlight.    * @param searcher searcher that was previously used to execute the query.    * @param topDocs TopDocs containing the summary result documents to highlight.    * @return Map keyed on field name, containing the array of formatted snippets     *         corresponding to the documents in<code>topDocs</code>.     *         If no highlights were found for a document, its value is<code>null</code>.    * @throws IOException if an I/O error occurred during processing    * @throws IllegalArgumentException if<code>field</code> was indexed without     *         {@link IndexOptions#DOCS_AND_FREQS_AND_POSITIONS_AND_OFFSETS}    */
+comment|/**    * Highlights the top passages from multiple fields.    *<p>    * Conceptually, this behaves as a more efficient form of:    *<pre class="prettyprint">    * Map m = new HashMap();    * for (String field : fields) {    *   m.put(field, highlight(field, query, searcher, topDocs));    * }    * return m;    *</pre>    *     * @param fields field names to highlight.     *        Must have a stored string value and also be indexed with offsets.    * @param query query to highlight.    * @param searcher searcher that was previously used to execute the query.    * @param topDocs TopDocs containing the summary result documents to highlight.    * @return Map keyed on field name, containing the array of formatted snippets     *         corresponding to the documents in<code>topDocs</code>.     *         If no highlights were found for a document, the    *         first sentence from the field will be returned.    * @throws IOException if an I/O error occurred during processing    * @throws IllegalArgumentException if<code>field</code> was indexed without     *         {@link IndexOptions#DOCS_AND_FREQS_AND_POSITIONS_AND_OFFSETS}    */
 DECL|method|highlightFields
 specifier|public
 name|Map
@@ -737,7 +747,7 @@ literal|1
 argument_list|)
 return|;
 block|}
-comment|/**    * Highlights the top-N passages from multiple fields.    *<p>    * Conceptually, this behaves as a more efficient form of:    *<pre class="prettyprint">    * Map m = new HashMap();    * for (String field : fields) {    *   m.put(field, highlight(field, query, searcher, topDocs, maxPassages));    * }    * return m;    *</pre>    *     * @param fields field names to highlight.     *        Must have a stored string value and also be indexed with offsets.    * @param query query to highlight.    * @param searcher searcher that was previously used to execute the query.    * @param topDocs TopDocs containing the summary result documents to highlight.    * @param maxPassages The maximum number of top-N ranked passages per-field used to     *        form the highlighted snippets.    * @return Map keyed on field name, containing the array of formatted snippets     *         corresponding to the documents in<code>topDocs</code>.     *         If no highlights were found for a document, its value is<code>null</code>.    * @throws IOException if an I/O error occurred during processing    * @throws IllegalArgumentException if<code>field</code> was indexed without     *         {@link IndexOptions#DOCS_AND_FREQS_AND_POSITIONS_AND_OFFSETS}    */
+comment|/**    * Highlights the top-N passages from multiple fields.    *<p>    * Conceptually, this behaves as a more efficient form of:    *<pre class="prettyprint">    * Map m = new HashMap();    * for (String field : fields) {    *   m.put(field, highlight(field, query, searcher, topDocs, maxPassages));    * }    * return m;    *</pre>    *     * @param fields field names to highlight.     *        Must have a stored string value and also be indexed with offsets.    * @param query query to highlight.    * @param searcher searcher that was previously used to execute the query.    * @param topDocs TopDocs containing the summary result documents to highlight.    * @param maxPassages The maximum number of top-N ranked passages per-field used to     *        form the highlighted snippets.    * @return Map keyed on field name, containing the array of formatted snippets     *         corresponding to the documents in<code>topDocs</code>.     *         If no highlights were found for a document, the    *         first {@code maxPassages} sentences from the    *         field will be returned.    * @throws IOException if an I/O error occurred during processing    * @throws IllegalArgumentException if<code>field</code> was indexed without     *         {@link IndexOptions#DOCS_AND_FREQS_AND_POSITIONS_AND_OFFSETS}    */
 DECL|method|highlightFields
 specifier|public
 name|Map
@@ -834,7 +844,7 @@ name|maxPassages
 argument_list|)
 return|;
 block|}
-comment|/**    * Highlights the top-N passages from multiple fields,    * for the provided int[] docids.    *     * @param fields field names to highlight.     *        Must have a stored string value and also be indexed with offsets.    * @param query query to highlight.    * @param searcher searcher that was previously used to execute the query.    * @param docids containing the document IDs to highlight.    * @param maxPassages The maximum number of top-N ranked passages per-field used to     *        form the highlighted snippets.    * @return Map keyed on field name, containing the array of formatted snippets     *         corresponding to the documents in<code>topDocs</code>.     *         If no highlights were found for a document, its value is<code>null</code>.    * @throws IOException if an I/O error occurred during processing    * @throws IllegalArgumentException if<code>field</code> was indexed without     *         {@link IndexOptions#DOCS_AND_FREQS_AND_POSITIONS_AND_OFFSETS}    */
+comment|/**    * Highlights the top-N passages from multiple fields,    * for the provided int[] docids.    *     * @param fields field names to highlight.     *        Must have a stored string value and also be indexed with offsets.    * @param query query to highlight.    * @param searcher searcher that was previously used to execute the query.    * @param docids containing the document IDs to highlight.    * @param maxPassages The maximum number of top-N ranked passages per-field used to     *        form the highlighted snippets.    * @return Map keyed on field name, containing the array of formatted snippets     *         corresponding to the documents in<code>topDocs</code>.     *         If no highlights were found for a document, the    *         first {@code maxPassages} from the field will    *         be returned.    * @throws IOException if an I/O error occurred during processing    * @throws IllegalArgumentException if<code>field</code> was indexed without     *         {@link IndexOptions#DOCS_AND_FREQS_AND_POSITIONS_AND_OFFSETS}    */
 DECL|method|highlightFields
 specifier|public
 name|Map
@@ -1522,11 +1532,33 @@ condition|(
 name|passages
 operator|.
 name|length
+operator|==
+literal|0
+condition|)
+block|{
+name|passages
+operator|=
+name|getEmptyHighlight
+argument_list|(
+name|field
+argument_list|,
+name|bi
+argument_list|,
+name|maxPassages
+argument_list|)
+expr_stmt|;
+block|}
+if|if
+condition|(
+name|passages
+operator|.
+name|length
 operator|>
 literal|0
 condition|)
 block|{
-comment|// otherwise a null snippet
+comment|// otherwise a null snippet (eg if field is missing
+comment|// entirely from the doc)
 name|highlights
 operator|.
 name|put
@@ -2331,12 +2363,140 @@ name|startOffset
 argument_list|)
 expr_stmt|;
 block|}
+comment|// Dead code but compiler disagrees:
+assert|assert
+literal|false
+assert|;
 return|return
+literal|null
+return|;
+block|}
+comment|/** Called to summarize a document when no hits were    *  found.  By default this just returns the first    *  {@code maxPassages} sentences; subclasses can override    *  to customize. */
+DECL|method|getEmptyHighlight
+specifier|protected
+name|Passage
+index|[]
+name|getEmptyHighlight
+parameter_list|(
+name|String
+name|fieldName
+parameter_list|,
+name|BreakIterator
+name|bi
+parameter_list|,
+name|int
+name|maxPassages
+parameter_list|)
+block|{
+comment|// BreakIterator should be un-next'd:
+name|List
+argument_list|<
+name|Passage
+argument_list|>
+name|passages
+init|=
+operator|new
+name|ArrayList
+argument_list|<
+name|Passage
+argument_list|>
+argument_list|()
+decl_stmt|;
+name|int
+name|pos
+init|=
+name|bi
+operator|.
+name|current
+argument_list|()
+decl_stmt|;
+assert|assert
+name|pos
+operator|==
+literal|0
+assert|;
+while|while
+condition|(
+name|passages
+operator|.
+name|size
+argument_list|()
+operator|<
+name|maxPassages
+condition|)
+block|{
+name|int
+name|next
+init|=
+name|bi
+operator|.
+name|next
+argument_list|()
+decl_stmt|;
+if|if
+condition|(
+name|next
+operator|==
+name|BreakIterator
+operator|.
+name|DONE
+condition|)
+block|{
+break|break;
+block|}
+name|Passage
+name|passage
+init|=
+operator|new
+name|Passage
+argument_list|()
+decl_stmt|;
+name|passage
+operator|.
+name|score
+operator|=
+name|Float
+operator|.
+name|NaN
+expr_stmt|;
+name|passage
+operator|.
+name|startOffset
+operator|=
+name|pos
+expr_stmt|;
+name|passage
+operator|.
+name|endOffset
+operator|=
+name|next
+expr_stmt|;
+name|passages
+operator|.
+name|add
+argument_list|(
+name|passage
+argument_list|)
+expr_stmt|;
+name|pos
+operator|=
+name|next
+expr_stmt|;
+block|}
+return|return
+name|passages
+operator|.
+name|toArray
+argument_list|(
 operator|new
 name|Passage
 index|[
-literal|0
+name|passages
+operator|.
+name|size
+argument_list|()
 index|]
+argument_list|)
 return|;
 block|}
 DECL|class|OffsetsEnum
