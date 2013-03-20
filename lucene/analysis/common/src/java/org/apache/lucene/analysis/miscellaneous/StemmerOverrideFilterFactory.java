@@ -292,8 +292,6 @@ else|:
 operator|new
 name|StemmerOverrideFilter
 argument_list|(
-name|luceneMatchVersion
-argument_list|,
 name|input
 argument_list|,
 name|dictionary
