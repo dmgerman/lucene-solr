@@ -1026,6 +1026,45 @@ parameter_list|)
 throws|throws
 name|IOException
 function_decl|;
+comment|/**    * Returns the sum of {@link TermsEnum#docFreq()} for all terms in this field,    * or -1 if this measure isn't stored by the codec. Note that, just like other    * term measures, this measure does not take deleted documents into account.    *     * @see Terms#getSumDocFreq()    */
+DECL|method|getSumDocFreq
+specifier|public
+specifier|abstract
+name|long
+name|getSumDocFreq
+parameter_list|(
+name|String
+name|field
+parameter_list|)
+throws|throws
+name|IOException
+function_decl|;
+comment|/**    * Returns the number of documents that have at least one term for this field,    * or -1 if this measure isn't stored by the codec. Note that, just like other    * term measures, this measure does not take deleted documents into account.    *     * @see Terms#getDocCount()    */
+DECL|method|getDocCount
+specifier|public
+specifier|abstract
+name|int
+name|getDocCount
+parameter_list|(
+name|String
+name|field
+parameter_list|)
+throws|throws
+name|IOException
+function_decl|;
+comment|/**    * Returns the sum of {@link TermsEnum#totalTermFreq} for all terms in this    * field, or -1 if this measure isn't stored by the codec (or if this fields    * omits term freq and positions). Note that, just like other term measures,    * this measure does not take deleted documents into account.    *     * @see Terms#getSumTotalTermFreq()    */
+DECL|method|getSumTotalTermFreq
+specifier|public
+specifier|abstract
+name|long
+name|getSumTotalTermFreq
+parameter_list|(
+name|String
+name|field
+parameter_list|)
+throws|throws
+name|IOException
+function_decl|;
 block|}
 end_class
 
