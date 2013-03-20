@@ -5776,10 +5776,18 @@ name|r
 argument_list|)
 expr_stmt|;
 block|}
+comment|// TODO: this whole check is a coverage hack, we should move it to tests for various filterreaders.
+comment|// ultimately whatever you do will be checkIndex'd at the end anyway.
 if|if
 condition|(
-name|rarely
-argument_list|()
+name|random
+operator|.
+name|nextInt
+argument_list|(
+literal|500
+argument_list|)
+operator|==
+literal|0
 operator|&&
 name|r
 operator|instanceof
