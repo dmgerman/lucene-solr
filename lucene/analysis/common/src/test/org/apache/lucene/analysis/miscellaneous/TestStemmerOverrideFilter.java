@@ -197,8 +197,6 @@ argument_list|(
 operator|new
 name|StemmerOverrideFilter
 argument_list|(
-name|TEST_VERSION_CURRENT
-argument_list|,
 name|tokenizer
 argument_list|,
 name|dictionary
