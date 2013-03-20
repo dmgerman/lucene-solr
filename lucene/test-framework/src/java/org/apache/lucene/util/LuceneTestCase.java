@@ -2416,6 +2416,13 @@ argument_list|)
 expr_stmt|;
 block|}
 comment|/**    * Return<code>args</code> as a {@link Set} instance. The order of elements is not    * preserved in iterators.    */
+annotation|@
+name|SafeVarargs
+annotation|@
+name|SuppressWarnings
+argument_list|(
+literal|"varargs"
+argument_list|)
 DECL|method|asSet
 specifier|public
 specifier|static
