@@ -194,8 +194,6 @@ parameter_list|,
 name|int
 name|group
 parameter_list|)
-throws|throws
-name|IOException
 block|{
 name|this
 argument_list|(
@@ -228,8 +226,6 @@ parameter_list|,
 name|int
 name|group
 parameter_list|)
-throws|throws
-name|IOException
 block|{
 name|super
 argument_list|(

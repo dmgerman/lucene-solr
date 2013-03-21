@@ -214,8 +214,6 @@ name|Reader
 name|in
 parameter_list|)
 block|{
-try|try
-block|{
 return|return
 operator|new
 name|PatternTokenizer
@@ -229,23 +227,6 @@ argument_list|,
 name|group
 argument_list|)
 return|;
-block|}
-catch|catch
-parameter_list|(
-name|IOException
-name|ex
-parameter_list|)
-block|{
-throw|throw
-operator|new
-name|RuntimeException
-argument_list|(
-literal|"IOException thrown creating PatternTokenizer instance"
-argument_list|,
-name|ex
-argument_list|)
-throw|;
-block|}
 block|}
 block|}
 end_class
