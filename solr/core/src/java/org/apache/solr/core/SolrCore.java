@@ -3093,8 +3093,6 @@ argument_list|,
 name|solrDelPolicy
 argument_list|,
 name|codec
-argument_list|,
-literal|false
 argument_list|)
 decl_stmt|;
 name|writer

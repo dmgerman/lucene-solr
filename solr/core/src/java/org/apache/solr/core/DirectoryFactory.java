@@ -400,7 +400,7 @@ name|fileName
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**    * Returns the Directory for a given path, using the specified rawLockType.    * Will return the same Directory instance for the same path.    *     * Note: sometimes you might pass null for the rawLockType when    * you know the Directory exists and the rawLockType is already    * in use.    *     * @throws IOException If there is a low-level I/O error.    */
+comment|/**    * Returns the Directory for a given path, using the specified rawLockType.    * Will return the same Directory instance for the same path.    *     *     * @throws IOException If there is a low-level I/O error.    */
 DECL|method|get
 specifier|public
 specifier|abstract
@@ -415,28 +415,6 @@ name|dirContext
 parameter_list|,
 name|String
 name|rawLockType
-parameter_list|)
-throws|throws
-name|IOException
-function_decl|;
-comment|/**    * Returns the Directory for a given path, using the specified rawLockType.    * Will return the same Directory instance for the same path unless forceNew,    * in which case a new Directory is returned. There is no need to call    * {@link #doneWithDirectory(Directory)} in this case - the old Directory    * will be closed when it's ref count hits 0.    *     * @throws IOException If there is a low-level I/O error.    */
-DECL|method|get
-specifier|public
-specifier|abstract
-name|Directory
-name|get
-parameter_list|(
-name|String
-name|path
-parameter_list|,
-name|DirContext
-name|dirContext
-parameter_list|,
-name|String
-name|rawLockType
-parameter_list|,
-name|boolean
-name|forceNew
 parameter_list|)
 throws|throws
 name|IOException
