@@ -78,7 +78,7 @@ parameter_list|)
 throws|throws
 name|IOException
 function_decl|;
-comment|/**    * Called once for every document matching a query, with the unbased document    * number.    *     *<p>    * Note: This is called in an inner search loop. For good search performance,    * implementations of this method should not call {@link IndexSearcher#doc(int)} or    * {@link org.apache.lucene.index.IndexReader#document(int)} on every hit.    * Doing so can slow searches by an order of magnitude or more.    */
+comment|/**    * Called once for every document matching a query, with the unbased document    * number.    *<p>Note: The collection of the current segment can be terminated by throwing    * a {@link CollectionTerminatedException}. In this case, the last docs of the    * current {@link AtomicReaderContext} will be skipped and {@link IndexSearcher}    * will swallow the exception and continue collection with the next leaf.    *<p>    * Note: This is called in an inner search loop. For good search performance,    * implementations of this method should not call {@link IndexSearcher#doc(int)} or    * {@link org.apache.lucene.index.IndexReader#document(int)} on every hit.    * Doing so can slow searches by an order of magnitude or more.    */
 DECL|method|collect
 specifier|public
 specifier|abstract
