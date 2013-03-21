@@ -3197,9 +3197,6 @@ name|newIndexWriter
 parameter_list|(
 name|boolean
 name|rollback
-parameter_list|,
-name|boolean
-name|forceNewDir
 parameter_list|)
 throws|throws
 name|IOException
@@ -3211,8 +3208,6 @@ argument_list|(
 name|core
 argument_list|,
 name|rollback
-argument_list|,
-name|forceNewDir
 argument_list|)
 expr_stmt|;
 block|}

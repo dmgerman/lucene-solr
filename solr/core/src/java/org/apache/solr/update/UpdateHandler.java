@@ -54,36 +54,6 @@ name|apache
 operator|.
 name|solr
 operator|.
-name|common
-operator|.
-name|SolrException
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|solr
-operator|.
-name|common
-operator|.
-name|SolrException
-operator|.
-name|ErrorCode
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|solr
-operator|.
 name|core
 operator|.
 name|PluginInfo
@@ -803,7 +773,7 @@ name|updateLog
 expr_stmt|;
 block|}
 block|}
-comment|/**    * Called when the Writer should be opened again - eg when replication replaces    * all of the index files.    *     * @param rollback IndexWriter if true else close    * @param forceNewDir Force a new Directory instance    *     * @throws IOException If there is a low-level I/O error.    */
+comment|/**    * Called when the Writer should be opened again - eg when replication replaces    * all of the index files.    *     * @param rollback IndexWriter if true else close    *     * @throws IOException If there is a low-level I/O error.    */
 DECL|method|newIndexWriter
 specifier|public
 specifier|abstract
@@ -812,9 +782,6 @@ name|newIndexWriter
 parameter_list|(
 name|boolean
 name|rollback
-parameter_list|,
-name|boolean
-name|forceNewDir
 parameter_list|)
 throws|throws
 name|IOException

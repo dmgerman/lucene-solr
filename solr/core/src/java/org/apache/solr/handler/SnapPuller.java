@@ -4349,8 +4349,6 @@ operator|.
 name|newIndexWriter
 argument_list|(
 name|isFullCopyNeeded
-argument_list|,
-literal|false
 argument_list|)
 expr_stmt|;
 name|RefCounted
