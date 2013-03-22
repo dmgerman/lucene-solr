@@ -605,6 +605,14 @@ argument_list|(
 name|createCmd
 argument_list|)
 expr_stmt|;
+comment|// does not mean they are active and up yet :*
+name|waitForRecoveriesToFinish
+argument_list|(
+name|collection
+argument_list|,
+literal|false
+argument_list|)
+expr_stmt|;
 comment|// now unload one of the two
 name|Unload
 name|unloadCmd
