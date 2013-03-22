@@ -199,10 +199,9 @@ index|]
 argument_list|)
 expr_stmt|;
 block|}
-comment|// TODO: Use isAnnotationPresent once bug in Java 8 is fixed (LUCENE-4808)
 specifier|final
-name|Deprecated
-name|ann
+name|boolean
+name|dep
 init|=
 name|Version
 operator|.
@@ -219,7 +218,7 @@ name|name
 argument_list|()
 argument_list|)
 operator|.
-name|getAnnotation
+name|isAnnotationPresent
 argument_list|(
 name|Deprecated
 operator|.
@@ -237,7 +236,7 @@ operator|.
 name|length
 condition|)
 block|{
-name|assertNotNull
+name|assertTrue
 argument_list|(
 name|values
 index|[
@@ -249,13 +248,13 @@ argument_list|()
 operator|+
 literal|" should be deprecated"
 argument_list|,
-name|ann
+name|dep
 argument_list|)
 expr_stmt|;
 block|}
 else|else
 block|{
-name|assertNull
+name|assertFalse
 argument_list|(
 name|values
 index|[
@@ -267,7 +266,7 @@ argument_list|()
 operator|+
 literal|" should not be deprecated"
 argument_list|,
-name|ann
+name|dep
 argument_list|)
 expr_stmt|;
 block|}
