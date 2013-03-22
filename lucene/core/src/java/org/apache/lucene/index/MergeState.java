@@ -445,6 +445,7 @@ block|}
 comment|/** {@link SegmentInfo} of the newly merged segment. */
 DECL|field|segmentInfo
 specifier|public
+specifier|final
 name|SegmentInfo
 name|segmentInfo
 decl_stmt|;
@@ -457,6 +458,7 @@ decl_stmt|;
 comment|/** Readers being merged. */
 DECL|field|readers
 specifier|public
+specifier|final
 name|List
 argument_list|<
 name|AtomicReader
@@ -480,12 +482,14 @@ decl_stmt|;
 comment|/** Holds the CheckAbort instance, which is invoked    *  periodically to see if the merge has been aborted. */
 DECL|field|checkAbort
 specifier|public
+specifier|final
 name|CheckAbort
 name|checkAbort
 decl_stmt|;
 comment|/** InfoStream for debugging messages. */
 DECL|field|infoStream
 specifier|public
+specifier|final
 name|InfoStream
 name|infoStream
 decl_stmt|;
@@ -507,8 +511,48 @@ decl_stmt|;
 comment|/** Sole constructor. */
 DECL|method|MergeState
 name|MergeState
-parameter_list|()
-block|{   }
+parameter_list|(
+name|List
+argument_list|<
+name|AtomicReader
+argument_list|>
+name|readers
+parameter_list|,
+name|SegmentInfo
+name|segmentInfo
+parameter_list|,
+name|InfoStream
+name|infoStream
+parameter_list|,
+name|CheckAbort
+name|checkAbort
+parameter_list|)
+block|{
+name|this
+operator|.
+name|readers
+operator|=
+name|readers
+expr_stmt|;
+name|this
+operator|.
+name|segmentInfo
+operator|=
+name|segmentInfo
+expr_stmt|;
+name|this
+operator|.
+name|infoStream
+operator|=
+name|infoStream
+expr_stmt|;
+name|this
+operator|.
+name|checkAbort
+operator|=
+name|checkAbort
+expr_stmt|;
+block|}
 comment|/**    * Class for recording units of work when merging segments.    */
 DECL|class|CheckAbort
 specifier|public
