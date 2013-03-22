@@ -389,10 +389,7 @@ name|newText
 expr_stmt|;
 name|current
 operator|=
-name|newText
-operator|.
-name|getIndex
-argument_list|()
+name|start
 expr_stmt|;
 block|}
 block|}
