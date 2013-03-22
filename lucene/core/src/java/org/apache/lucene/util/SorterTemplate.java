@@ -1570,8 +1570,9 @@ name|mid
 argument_list|)
 expr_stmt|;
 block|}
-comment|// pkg-protected for access from TimSort class
+comment|/** Merge the slices [lo-pivot[ (of length len1) and [pivot-hi[ (of length    *  len2) which are already sorted. This method merges in-place but can be    *  extended to provide a faster implementation using extra memory. */
 DECL|method|merge
+specifier|protected
 name|void
 name|merge
 parameter_list|(
