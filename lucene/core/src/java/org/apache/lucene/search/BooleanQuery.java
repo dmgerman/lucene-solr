@@ -32,7 +32,37 @@ name|java
 operator|.
 name|util
 operator|.
-name|*
+name|ArrayList
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
+name|util
+operator|.
+name|Iterator
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
+name|util
+operator|.
+name|List
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
+name|util
+operator|.
+name|Set
 import|;
 end_import
 
@@ -1424,7 +1454,9 @@ comment|// BooleanQuery that was also using BooleanScorer (ie,
 comment|// BooleanScorer can nest).  But this is hard to
 comment|// detect and we never do so today... (ie, we only
 comment|// return BooleanScorer for topScorer):
-comment|// Check if we can return a BooleanScorer
+comment|// Check if we can and should return a BooleanScorer
+comment|// TODO: (LUCENE-4872) in some cases BooleanScorer may be faster for minNrShouldMatch
+comment|// but the same is even true of pure conjunctions...
 if|if
 condition|(
 operator|!
@@ -1438,6 +1470,10 @@ name|size
 argument_list|()
 operator|==
 literal|0
+operator|&&
+name|minNrShouldMatch
+operator|<=
+literal|1
 condition|)
 block|{
 return|return
