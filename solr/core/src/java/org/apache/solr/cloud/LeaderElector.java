@@ -702,12 +702,10 @@ name|KeeperException
 name|e
 parameter_list|)
 block|{
-name|SolrException
+name|log
 operator|.
-name|log
+name|warn
 argument_list|(
-name|log
-argument_list|,
 literal|"Failed setting watch"
 argument_list|,
 name|e
