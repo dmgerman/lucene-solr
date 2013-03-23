@@ -274,14 +274,17 @@ argument_list|)
 expr_stmt|;
 name|assertEquals
 argument_list|(
+literal|"Hello Scott"
+argument_list|,
 name|map
 operator|.
 name|get
 argument_list|(
 literal|"name"
 argument_list|)
-argument_list|,
-literal|"Hello Scott"
+operator|.
+name|toString
+argument_list|()
 argument_list|)
 expr_stmt|;
 block|}
@@ -293,7 +296,7 @@ parameter_list|)
 block|{
 name|assumeFalse
 argument_list|(
-literal|"This JVM does not have Rhino installed.  Test Skipped."
+literal|"This JVM does not have JavaScript installed.  Test Skipped."
 argument_list|,
 name|e
 operator|.
@@ -507,14 +510,17 @@ argument_list|)
 expr_stmt|;
 name|assertEquals
 argument_list|(
+literal|"Hello Scott"
+argument_list|,
 name|map
 operator|.
 name|get
 argument_list|(
 literal|"name"
 argument_list|)
-argument_list|,
-literal|"Hello Scott"
+operator|.
+name|toString
+argument_list|()
 argument_list|)
 expr_stmt|;
 block|}
@@ -526,7 +532,7 @@ parameter_list|)
 block|{
 name|assumeFalse
 argument_list|(
-literal|"This JVM does not have Rhino installed.  Test Skipped."
+literal|"This JVM does not have JavaScript installed.  Test Skipped."
 argument_list|,
 name|e
 operator|.
@@ -630,7 +636,7 @@ parameter_list|)
 block|{
 name|assumeFalse
 argument_list|(
-literal|"This JVM does not have Rhino installed.  Test Skipped."
+literal|"This JVM does not have JavaScript installed.  Test Skipped."
 argument_list|,
 name|e
 operator|.
@@ -820,7 +826,7 @@ parameter_list|)
 block|{
 name|assumeFalse
 argument_list|(
-literal|"This JVM does not have Rhino installed.  Test Skipped."
+literal|"This JVM does not have JavaScript installed.  Test Skipped."
 argument_list|,
 name|e
 operator|.
