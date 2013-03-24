@@ -81,7 +81,7 @@ import|;
 end_import
 
 begin_comment
-comment|/** A Scorer for OR like queries, counterpart of<code>ConjunctionScorer</code>.  * This Scorer implements {@link Scorer#advance(int)} and uses advance() on the given Scorers.  *   * This implementation uses the minimumMatch constraint actively to efficiently  * prune the number of candidates, it is hence a mixture between a pure DisjunctionScorer  * and a ConjunctionScorer.  */
+comment|/**  * A Scorer for OR like queries, counterpart of<code>ConjunctionScorer</code>.  * This Scorer implements {@link Scorer#advance(int)} and uses advance() on the given Scorers.  *   * This implementation uses the minimumMatch constraint actively to efficiently  * prune the number of candidates, it is hence a mixture between a pure DisjunctionScorer  * and a ConjunctionScorer.  */
 end_comment
 
 begin_class
@@ -142,8 +142,7 @@ name|Scorer
 name|mmStack
 index|[]
 decl_stmt|;
-comment|// of size mm-1: 0..mm-2
-comment|//private int nrInStack; // always mm-1
+comment|// of size mm-1: 0..mm-2, always full
 comment|/** The document number of the current match. */
 DECL|field|doc
 specifier|private
@@ -171,7 +170,7 @@ name|Float
 operator|.
 name|NaN
 decl_stmt|;
-comment|/** Construct a<code>DisjunctionScorer</code>.    * @param weight The weight to be used.    * @param subScorers A collection of at least two subscorers.    * @param minimumNrMatchers The positive minimum number of subscorers that should    * match to match this query.    *<br>When<code>minimumNrMatchers</code> is bigger than    * the number of<code>subScorers</code>,    * no matches will be produced.    *<br>When minimumNrMatchers equals the number of subScorers,    * it more efficient to use<code>ConjunctionScorer</code>.    */
+comment|/**    * Construct a<code>MinShouldMatchSumScorer</code>.    *     * @param weight The weight to be used.    * @param subScorers A collection of at least two subscorers.    * @param minimumNrMatchers The positive minimum number of subscorers that should    * match to match this query.    *<br>When<code>minimumNrMatchers</code> is bigger than    * the number of<code>subScorers</code>, no matches will be produced.    *<br>When minimumNrMatchers equals the number of subScorers,    * it is more efficient to use<code>ConjunctionScorer</code>.    */
 DECL|method|MinShouldMatchSumScorer
 specifier|public
 name|MinShouldMatchSumScorer
@@ -413,8 +412,12 @@ block|}
 name|minheapHeapify
 argument_list|()
 expr_stmt|;
+assert|assert
+name|minheapCheck
+argument_list|()
+assert|;
 block|}
-comment|/** Construct a<code>DisjunctionScorer</code>, using one as the minimum number    * of matching subscorers.    */
+comment|/**    * Construct a<code>DisjunctionScorer</code>, using one as the minimum number    * of matching subscorers.    */
 DECL|method|MinShouldMatchSumScorer
 specifier|public
 name|MinShouldMatchSumScorer
@@ -551,7 +554,7 @@ operator|!=
 name|NO_MORE_DOCS
 condition|)
 block|{
-name|minheapAdjust
+name|minheapSiftDown
 argument_list|(
 literal|0
 argument_list|)
@@ -579,6 +582,7 @@ name|NO_MORE_DOCS
 return|;
 block|}
 block|}
+comment|//assert minheapCheck();
 block|}
 name|evaluateSmallestDocInHeap
 argument_list|()
@@ -659,7 +663,8 @@ literal|2
 argument_list|)
 expr_stmt|;
 comment|// 2. score and count number of matching subScorers within stack,
-comment|//    short-circuit: stop when mm can't be reached for current doc, then perform on heap next() TODO advance() might be possible, but complicates things
+comment|// short-circuit: stop when mm can't be reached for current doc, then perform on heap next()
+comment|// TODO instead advance() might be possible, but complicates things
 for|for
 control|(
 name|int
@@ -677,7 +682,7 @@ name|i
 operator|--
 control|)
 block|{
-comment|// advance first sparsest subScorer as indicated by next doc
+comment|// first advance sparsest subScorer
 if|if
 condition|(
 name|mmStack
@@ -787,7 +792,7 @@ operator|>
 literal|0
 condition|)
 block|{
-comment|// shift RHS of array left, TODO consider double-linked list as data structure
+comment|// shift RHS of array left
 name|System
 operator|.
 name|arraycopy
@@ -810,7 +815,7 @@ name|i
 argument_list|)
 expr_stmt|;
 block|}
-comment|// find next most costly subScorer within heap
+comment|// find next most costly subScorer within heap TODO can this be done better?
 while|while
 condition|(
 operator|!
@@ -823,8 +828,9 @@ operator|++
 index|]
 argument_list|)
 condition|)
-comment|// TODO this is O((# clauses)^2), find most costly subScorer within heap in O(n)
-empty_stmt|;
+block|{
+comment|//assert minheapCheck();
+block|}
 comment|// add the subScorer removed from heap to stack
 name|mmStack
 index|[
@@ -926,7 +932,7 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
-comment|/** Returns the score of the current document matching the query.    * Initially invalid, until {@link #nextDoc()} is called the first time.    */
+comment|/**    * Returns the score of the current document matching the query. Initially    * invalid, until {@link #nextDoc()} is called the first time.    */
 annotation|@
 name|Override
 DECL|method|score
@@ -958,7 +964,6 @@ return|;
 block|}
 annotation|@
 name|Override
-comment|//  public float freq() throws IOException {
 DECL|method|freq
 specifier|public
 name|int
@@ -971,7 +976,7 @@ return|return
 name|nrMatchers
 return|;
 block|}
-comment|/**    * Advances to the first match beyond the current whose document number is    * greater than or equal to a given target.<br>    * The implementation uses the advance() method on the subscorers.    *     * @param target The target document number.    * @return the document whose number is greater than or equal to the given    *         target, or -1 if none exist.    */
+comment|/**    * Advances to the first match beyond the current whose document number is    * greater than or equal to a given target.<br>    * The implementation uses the advance() method on the subscorers.    *     * @param target the target document number.    * @return the document whose number is greater than or equal to the given    *         target, or -1 if none exist.    */
 annotation|@
 name|Override
 DECL|method|advance
@@ -1025,7 +1030,7 @@ operator|!=
 name|NO_MORE_DOCS
 condition|)
 block|{
-name|minheapAdjust
+name|minheapSiftDown
 argument_list|(
 literal|0
 argument_list|)
@@ -1053,6 +1058,7 @@ name|NO_MORE_DOCS
 return|;
 block|}
 block|}
+comment|//assert minheapCheck();
 block|}
 name|evaluateSmallestDocInHeap
 argument_list|()
@@ -1114,7 +1120,8 @@ operator|.
 name|cost
 argument_list|()
 expr_stmt|;
-comment|// TODO cost for advance() seems intuitively higher than for iteration + heap merge
+comment|// TODO is cost for advance() different to cost for iteration + heap merge
+comment|//      and how do they compare overall to pure disjunctions?
 specifier|final
 name|float
 name|c1
@@ -1125,7 +1132,7 @@ name|c2
 init|=
 literal|1.0f
 decl_stmt|;
-comment|// maybe a constant, maybe a proportion between costCandidateGeneration and sum(subScorer_to_be_advanced.cost())
+comment|// maybe a constant, maybe a proportion between costCandidateGeneration and sum(subScorer_to_be_advanced.cost())?
 return|return
 call|(
 name|long
@@ -1149,7 +1156,7 @@ comment|// advance() cost
 argument_list|)
 return|;
 block|}
-comment|/**     * Organize subScorers into a min heap with scorers generating the earliest document on top.    */
+comment|/**    * Organize subScorers into a min heap with scorers generating the earliest document on top.    */
 DECL|method|minheapHeapify
 specifier|protected
 specifier|final
@@ -1178,24 +1185,25 @@ name|i
 operator|--
 control|)
 block|{
-name|minheapAdjust
+name|minheapSiftDown
 argument_list|(
 name|i
 argument_list|)
 expr_stmt|;
 block|}
 block|}
-comment|/**     * The subtree of subScorers at root is a min heap except possibly for its root element.    * Bubble the root down as required to make the subtree a heap.    */
-DECL|method|minheapAdjust
+comment|/**    * The subtree of subScorers at root is a min heap except possibly for its root element.    * Bubble the root down as required to make the subtree a heap.    */
+DECL|method|minheapSiftDown
 specifier|protected
 specifier|final
 name|void
-name|minheapAdjust
+name|minheapSiftDown
 parameter_list|(
 name|int
 name|root
 parameter_list|)
 block|{
+comment|// TODO could this implementation also move rather than swapping neighbours?
 name|Scorer
 name|scorer
 init|=
@@ -1389,85 +1397,25 @@ return|return;
 block|}
 block|}
 block|}
-comment|/**     * Remove the root Scorer from subScorers and re-establish it as a heap    */
-DECL|method|minheapRemoveRoot
+DECL|method|minheapSiftUp
 specifier|protected
 specifier|final
 name|void
-name|minheapRemoveRoot
-parameter_list|()
-block|{
-if|if
-condition|(
-name|nrInHeap
-operator|==
-literal|1
-condition|)
-block|{
-name|subScorers
-index|[
-literal|0
-index|]
-operator|=
-literal|null
-expr_stmt|;
-name|nrInHeap
-operator|=
-literal|0
-expr_stmt|;
-block|}
-else|else
-block|{
-name|subScorers
-index|[
-literal|0
-index|]
-operator|=
-name|subScorers
-index|[
-name|nrInHeap
-operator|-
-literal|1
-index|]
-expr_stmt|;
-name|subScorers
-index|[
-name|nrInHeap
-operator|-
-literal|1
-index|]
-operator|=
-literal|null
-expr_stmt|;
-name|nrInHeap
-operator|--
-expr_stmt|;
-name|minheapAdjust
-argument_list|(
-literal|0
-argument_list|)
-expr_stmt|;
-block|}
-block|}
-comment|/**    * Adds the given Scorer to the heap by adding it at the end and bubbling it up    */
-DECL|method|minheapAdd
-specifier|protected
-specifier|final
-name|void
-name|minheapAdd
+name|minheapSiftUp
 parameter_list|(
-name|Scorer
-name|scorer
-parameter_list|)
-block|{
 name|int
 name|i
+parameter_list|)
+block|{
+name|Scorer
+name|scorer
 init|=
-name|nrInHeap
+name|subScorers
+index|[
+name|i
+index|]
 decl_stmt|;
-name|nrInHeap
-operator|++
-expr_stmt|;
+specifier|final
 name|int
 name|doc
 init|=
@@ -1548,7 +1496,51 @@ operator|=
 name|scorer
 expr_stmt|;
 block|}
-comment|/**    * Removes a given Scorer from the heap by placing end of heap at that position and bubbling it down    */
+comment|/**    * Remove the root Scorer from subScorers and re-establish it as a heap    */
+DECL|method|minheapRemoveRoot
+specifier|protected
+specifier|final
+name|void
+name|minheapRemoveRoot
+parameter_list|()
+block|{
+if|if
+condition|(
+name|nrInHeap
+operator|==
+literal|1
+condition|)
+block|{
+comment|//subScorers[0] = null; // not necessary
+name|nrInHeap
+operator|=
+literal|0
+expr_stmt|;
+block|}
+else|else
+block|{
+name|nrInHeap
+operator|--
+expr_stmt|;
+name|subScorers
+index|[
+literal|0
+index|]
+operator|=
+name|subScorers
+index|[
+name|nrInHeap
+index|]
+expr_stmt|;
+comment|//subScorers[nrInHeap] = null; // not necessary
+name|minheapSiftDown
+argument_list|(
+literal|0
+argument_list|)
+expr_stmt|;
+block|}
+block|}
+comment|/**    * Removes a given Scorer from the heap by placing end of heap at that    * position and bubbling it either up or down    */
 DECL|method|minheapRemove
 specifier|protected
 specifier|final
@@ -1597,7 +1589,13 @@ operator|--
 name|nrInHeap
 index|]
 expr_stmt|;
-name|minheapAdjust
+comment|//if (i != nrInHeap) subScorers[nrInHeap] = null; // not necessary
+name|minheapSiftUp
+argument_list|(
+name|i
+argument_list|)
+expr_stmt|;
+name|minheapSiftDown
 argument_list|(
 name|i
 argument_list|)
@@ -1611,6 +1609,120 @@ return|return
 literal|false
 return|;
 comment|// scorer already exhausted
+block|}
+DECL|method|minheapCheck
+name|boolean
+name|minheapCheck
+parameter_list|()
+block|{
+return|return
+name|minheapCheck
+argument_list|(
+literal|0
+argument_list|)
+return|;
+block|}
+DECL|method|minheapCheck
+specifier|private
+name|boolean
+name|minheapCheck
+parameter_list|(
+name|int
+name|root
+parameter_list|)
+block|{
+if|if
+condition|(
+name|root
+operator|>=
+name|nrInHeap
+condition|)
+return|return
+literal|true
+return|;
+name|int
+name|lchild
+init|=
+operator|(
+name|root
+operator|<<
+literal|1
+operator|)
+operator|+
+literal|1
+decl_stmt|;
+name|int
+name|rchild
+init|=
+operator|(
+name|root
+operator|<<
+literal|1
+operator|)
+operator|+
+literal|2
+decl_stmt|;
+if|if
+condition|(
+name|lchild
+operator|<
+name|nrInHeap
+operator|&&
+name|subScorers
+index|[
+name|root
+index|]
+operator|.
+name|docID
+argument_list|()
+operator|>
+name|subScorers
+index|[
+name|lchild
+index|]
+operator|.
+name|docID
+argument_list|()
+condition|)
+return|return
+literal|false
+return|;
+if|if
+condition|(
+name|rchild
+operator|<
+name|nrInHeap
+operator|&&
+name|subScorers
+index|[
+name|root
+index|]
+operator|.
+name|docID
+argument_list|()
+operator|>
+name|subScorers
+index|[
+name|rchild
+index|]
+operator|.
+name|docID
+argument_list|()
+condition|)
+return|return
+literal|false
+return|;
+return|return
+name|minheapCheck
+argument_list|(
+name|lchild
+argument_list|)
+operator|&&
+name|minheapCheck
+argument_list|(
+name|rchild
+argument_list|)
+return|;
 block|}
 block|}
 end_class
