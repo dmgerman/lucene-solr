@@ -1715,6 +1715,15 @@ name|skipList
 argument_list|)
 argument_list|)
 expr_stmt|;
+name|log
+operator|.
+name|info
+argument_list|(
+literal|"test.distrib.skip.servers was found and contains:"
+operator|+
+name|skipListSet
+argument_list|)
+expr_stmt|;
 block|}
 for|for
 control|(
