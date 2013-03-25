@@ -305,7 +305,6 @@ name|BytesRef
 argument_list|>
 argument_list|()
 decl_stmt|;
-empty_stmt|;
 DECL|field|spare
 specifier|private
 specifier|final
@@ -367,6 +366,18 @@ name|incrementToken
 argument_list|()
 condition|)
 block|{
+if|if
+condition|(
+name|fstReader
+operator|==
+literal|null
+condition|)
+block|{
+comment|// No overrides
+return|return
+literal|true
+return|;
+block|}
 if|if
 condition|(
 operator|!
@@ -553,6 +564,19 @@ name|BytesReader
 name|getBytesReader
 parameter_list|()
 block|{
+if|if
+condition|(
+name|fst
+operator|==
+literal|null
+condition|)
+block|{
+return|return
+literal|null
+return|;
+block|}
+else|else
+block|{
 return|return
 name|fst
 operator|.
@@ -560,9 +584,9 @@ name|getBytesReader
 argument_list|()
 return|;
 block|}
+block|}
 comment|/**      * Returns the value mapped to the given key or<code>null</code> if the key is not in the FST dictionary.      */
 DECL|method|get
-specifier|final
 name|BytesRef
 name|get
 parameter_list|(
