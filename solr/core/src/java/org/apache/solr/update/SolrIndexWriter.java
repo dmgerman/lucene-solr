@@ -818,6 +818,12 @@ parameter_list|()
 throws|throws
 name|IOException
 block|{
+name|Directory
+name|dir
+init|=
+name|getDirectory
+argument_list|()
+decl_stmt|;
 try|try
 block|{
 while|while
@@ -855,8 +861,7 @@ name|directoryFactory
 operator|.
 name|release
 argument_list|(
-name|getDirectory
-argument_list|()
+name|dir
 argument_list|)
 expr_stmt|;
 name|numCloses

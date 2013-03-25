@@ -3020,13 +3020,6 @@ name|name
 argument_list|)
 throw|;
 block|}
-name|directoryFactory
-operator|.
-name|release
-argument_list|(
-name|dir
-argument_list|)
-expr_stmt|;
 block|}
 block|}
 finally|finally
@@ -5360,6 +5353,11 @@ name|e
 argument_list|)
 expr_stmt|;
 block|}
+name|boolean
+name|coreStateClosed
+init|=
+literal|false
+decl_stmt|;
 try|try
 block|{
 if|if
@@ -5376,6 +5374,8 @@ operator|instanceof
 name|IndexWriterCloser
 condition|)
 block|{
+name|coreStateClosed
+operator|=
 name|solrCoreState
 operator|.
 name|decrefSolrCoreState
@@ -5389,6 +5389,8 @@ expr_stmt|;
 block|}
 else|else
 block|{
+name|coreStateClosed
+operator|=
 name|solrCoreState
 operator|.
 name|decrefSolrCoreState
@@ -5472,20 +5474,7 @@ expr_stmt|;
 block|}
 if|if
 condition|(
-name|solrCoreState
-operator|!=
-literal|null
-condition|)
-block|{
-comment|// bad startup case
-if|if
-condition|(
-name|solrCoreState
-operator|.
-name|getSolrCoreStateRefCnt
-argument_list|()
-operator|==
-literal|0
+name|coreStateClosed
 condition|)
 block|{
 try|try
@@ -5511,7 +5500,6 @@ argument_list|,
 name|t
 argument_list|)
 expr_stmt|;
-block|}
 block|}
 block|}
 if|if
@@ -6791,11 +6779,6 @@ operator|.
 name|getIndexReader
 argument_list|()
 decl_stmt|;
-if|if
-condition|(
-name|updateHandlerReopens
-condition|)
-block|{
 comment|// SolrCore.verbose("start reopen from",previousSearcher,"writer=",writer);
 name|RefCounted
 argument_list|<
@@ -6811,10 +6794,17 @@ argument_list|()
 operator|.
 name|getIndexWriter
 argument_list|(
-name|this
+literal|null
 argument_list|)
 decl_stmt|;
 try|try
+block|{
+if|if
+condition|(
+name|writer
+operator|!=
+literal|null
+condition|)
 block|{
 name|newReader
 operator|=
@@ -6833,15 +6823,6 @@ literal|true
 argument_list|)
 expr_stmt|;
 block|}
-finally|finally
-block|{
-name|writer
-operator|.
-name|decref
-argument_list|()
-expr_stmt|;
-block|}
-block|}
 else|else
 block|{
 comment|// verbose("start reopen without writer, reader=", currentReader);
@@ -6855,6 +6836,23 @@ name|currentReader
 argument_list|)
 expr_stmt|;
 comment|// verbose("reopen result", newReader);
+block|}
+block|}
+finally|finally
+block|{
+if|if
+condition|(
+name|writer
+operator|!=
+literal|null
+condition|)
+block|{
+name|writer
+operator|.
+name|decref
+argument_list|()
+expr_stmt|;
+block|}
 block|}
 if|if
 condition|(

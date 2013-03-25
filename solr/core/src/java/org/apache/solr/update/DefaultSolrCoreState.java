@@ -287,14 +287,6 @@ specifier|private
 name|RecoveryStrategy
 name|recoveryStrat
 decl_stmt|;
-DECL|field|closed
-specifier|private
-specifier|volatile
-name|boolean
-name|closed
-init|=
-literal|false
-decl_stmt|;
 DECL|field|refCntWriter
 specifier|private
 name|RefCounted
@@ -439,6 +431,11 @@ parameter_list|)
 throws|throws
 name|IOException
 block|{
+synchronized|synchronized
+init|(
+name|writerPauseLock
+init|)
+block|{
 if|if
 condition|(
 name|closed
@@ -456,11 +453,6 @@ literal|"SolrCoreState already closed"
 argument_list|)
 throw|;
 block|}
-synchronized|synchronized
-init|(
-name|writerPauseLock
-init|)
-block|{
 while|while
 condition|(
 name|pauseWriter
@@ -509,6 +501,27 @@ condition|)
 block|{
 comment|// core == null is a signal to just return the current writer, or null
 comment|// if none.
+name|initRefCntWriter
+argument_list|()
+expr_stmt|;
+if|if
+condition|(
+name|refCntWriter
+operator|==
+literal|null
+condition|)
+return|return
+literal|null
+return|;
+name|writerFree
+operator|=
+literal|false
+expr_stmt|;
+name|writerPauseLock
+operator|.
+name|notifyAll
+argument_list|()
+expr_stmt|;
 if|if
 condition|(
 name|refCntWriter
@@ -574,6 +587,10 @@ condition|(
 name|refCntWriter
 operator|==
 literal|null
+operator|&&
+name|indexWriter
+operator|!=
+literal|null
 condition|)
 block|{
 name|refCntWriter
@@ -631,23 +648,6 @@ parameter_list|)
 throws|throws
 name|IOException
 block|{
-if|if
-condition|(
-name|closed
-condition|)
-block|{
-throw|throw
-operator|new
-name|SolrException
-argument_list|(
-name|ErrorCode
-operator|.
-name|SERVICE_UNAVAILABLE
-argument_list|,
-literal|"Already closed"
-argument_list|)
-throw|;
-block|}
 name|log
 operator|.
 name|info
@@ -668,6 +668,23 @@ init|(
 name|writerPauseLock
 init|)
 block|{
+if|if
+condition|(
+name|closed
+condition|)
+block|{
+throw|throw
+operator|new
+name|SolrException
+argument_list|(
+name|ErrorCode
+operator|.
+name|SERVICE_UNAVAILABLE
+argument_list|,
+literal|"Already closed"
+argument_list|)
+throw|;
+block|}
 comment|// we need to wait for the Writer to fall out of use
 comment|// first lets stop it from being lent out
 name|pauseWriter
