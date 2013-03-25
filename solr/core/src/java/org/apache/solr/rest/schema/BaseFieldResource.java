@@ -1,6 +1,6 @@
 begin_unit|revision:0.9.5;language:Java;cregit-version:0.0.1
 begin_package
-DECL|package|org.apache.solr.rest
+DECL|package|org.apache.solr.rest.schema
 package|package
 name|org
 operator|.
@@ -9,6 +9,8 @@ operator|.
 name|solr
 operator|.
 name|rest
+operator|.
+name|schema
 package|;
 end_package
 
@@ -45,6 +47,20 @@ operator|.
 name|util
 operator|.
 name|SimpleOrderedMap
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|solr
+operator|.
+name|schema
+operator|.
+name|IndexSchema
 import|;
 end_import
 
@@ -113,24 +129,6 @@ name|String
 name|DYNAMIC_BASE
 init|=
 literal|"dynamicBase"
-decl_stmt|;
-DECL|field|UNIQUE_KEY
-specifier|private
-specifier|static
-specifier|final
-name|String
-name|UNIQUE_KEY
-init|=
-literal|"uniqueKey"
-decl_stmt|;
-DECL|field|SHOW_DEFAULTS
-specifier|private
-specifier|static
-specifier|final
-name|String
-name|SHOW_DEFAULTS
-init|=
-literal|"showDefaults"
 decl_stmt|;
 DECL|field|requestedFields
 specifier|private
@@ -405,6 +403,8 @@ name|properties
 operator|.
 name|add
 argument_list|(
+name|IndexSchema
+operator|.
 name|UNIQUE_KEY
 argument_list|,
 literal|true

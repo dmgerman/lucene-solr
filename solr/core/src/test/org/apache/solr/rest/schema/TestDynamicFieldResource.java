@@ -1,6 +1,6 @@
 begin_unit|revision:0.9.5;language:Java;cregit-version:0.0.1
 begin_package
-DECL|package|org.apache.solr.rest
+DECL|package|org.apache.solr.rest.schema
 package|package
 name|org
 operator|.
@@ -9,12 +9,28 @@ operator|.
 name|solr
 operator|.
 name|rest
+operator|.
+name|schema
 package|;
 end_package
 
 begin_comment
 comment|/*  * Licensed to the Apache Software Foundation (ASF) under one or more  * contributor license agreements.  See the NOTICE file distributed with  * this work for additional information regarding copyright ownership.  * The ASF licenses this file to You under the Apache License, Version 2.0  * (the "License"); you may not use this file except in compliance with  * the License.  You may obtain a copy of the License at  *  *     http://www.apache.org/licenses/LICENSE-2.0  *  * Unless required by applicable law or agreed to in writing, software  * distributed under the License is distributed on an "AS IS" BASIS,  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.  * See the License for the specific language governing permissions and  * limitations under the License.  */
 end_comment
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|solr
+operator|.
+name|rest
+operator|.
+name|SolrRestletTestBase
+import|;
+end_import
 
 begin_import
 import|import
@@ -32,7 +48,7 @@ specifier|public
 class|class
 name|TestDynamicFieldResource
 extends|extends
-name|SchemaRestletTestBase
+name|SolrRestletTestBase
 block|{
 annotation|@
 name|Test
@@ -48,37 +64,37 @@ name|assertQ
 argument_list|(
 literal|"/schema/dynamicfields/*_i?indent=on&wt=xml&showDefaults=on"
 argument_list|,
-literal|"count(/response/lst[@name='dynamicfield']) = 1"
+literal|"count(/response/lst[@name='dynamicField']) = 1"
 argument_list|,
-literal|"/response/lst[@name='dynamicfield']/str[@name='name'] = '*_i'"
+literal|"/response/lst[@name='dynamicField']/str[@name='name'] = '*_i'"
 argument_list|,
-literal|"/response/lst[@name='dynamicfield']/str[@name='type'] = 'int'"
+literal|"/response/lst[@name='dynamicField']/str[@name='type'] = 'int'"
 argument_list|,
-literal|"/response/lst[@name='dynamicfield']/bool[@name='indexed'] = 'true'"
+literal|"/response/lst[@name='dynamicField']/bool[@name='indexed'] = 'true'"
 argument_list|,
-literal|"/response/lst[@name='dynamicfield']/bool[@name='stored'] = 'true'"
+literal|"/response/lst[@name='dynamicField']/bool[@name='stored'] = 'true'"
 argument_list|,
-literal|"/response/lst[@name='dynamicfield']/bool[@name='docValues'] = 'false'"
+literal|"/response/lst[@name='dynamicField']/bool[@name='docValues'] = 'false'"
 argument_list|,
-literal|"/response/lst[@name='dynamicfield']/bool[@name='termVectors'] = 'false'"
+literal|"/response/lst[@name='dynamicField']/bool[@name='termVectors'] = 'false'"
 argument_list|,
-literal|"/response/lst[@name='dynamicfield']/bool[@name='termPositions'] = 'false'"
+literal|"/response/lst[@name='dynamicField']/bool[@name='termPositions'] = 'false'"
 argument_list|,
-literal|"/response/lst[@name='dynamicfield']/bool[@name='termOffsets'] = 'false'"
+literal|"/response/lst[@name='dynamicField']/bool[@name='termOffsets'] = 'false'"
 argument_list|,
-literal|"/response/lst[@name='dynamicfield']/bool[@name='omitNorms'] = 'true'"
+literal|"/response/lst[@name='dynamicField']/bool[@name='omitNorms'] = 'true'"
 argument_list|,
-literal|"/response/lst[@name='dynamicfield']/bool[@name='omitTermFreqAndPositions'] = 'true'"
+literal|"/response/lst[@name='dynamicField']/bool[@name='omitTermFreqAndPositions'] = 'true'"
 argument_list|,
-literal|"/response/lst[@name='dynamicfield']/bool[@name='omitPositions'] = 'false'"
+literal|"/response/lst[@name='dynamicField']/bool[@name='omitPositions'] = 'false'"
 argument_list|,
-literal|"/response/lst[@name='dynamicfield']/bool[@name='storeOffsetsWithPositions'] = 'false'"
+literal|"/response/lst[@name='dynamicField']/bool[@name='storeOffsetsWithPositions'] = 'false'"
 argument_list|,
-literal|"/response/lst[@name='dynamicfield']/bool[@name='multiValued'] = 'false'"
+literal|"/response/lst[@name='dynamicField']/bool[@name='multiValued'] = 'false'"
 argument_list|,
-literal|"/response/lst[@name='dynamicfield']/bool[@name='required'] = 'false'"
+literal|"/response/lst[@name='dynamicField']/bool[@name='required'] = 'false'"
 argument_list|,
-literal|"/response/lst[@name='dynamicfield']/bool[@name='tokenized'] = 'false'"
+literal|"/response/lst[@name='dynamicField']/bool[@name='tokenized'] = 'false'"
 argument_list|)
 expr_stmt|;
 block|}
@@ -96,7 +112,7 @@ name|assertQ
 argument_list|(
 literal|"/schema/dynamicfields/*not_in_there?indent=on&wt=xml"
 argument_list|,
-literal|"count(/response/lst[@name='dynamicfield']) = 0"
+literal|"count(/response/lst[@name='dynamicField']) = 0"
 argument_list|,
 literal|"/response/lst[@name='responseHeader']/int[@name='status'] = '404'"
 argument_list|,
@@ -118,35 +134,35 @@ name|assertJQ
 argument_list|(
 literal|"/schema/dynamicfields/*_i?indent=on&showDefaults=on"
 argument_list|,
-literal|"/dynamicfield/name=='*_i'"
+literal|"/dynamicField/name=='*_i'"
 argument_list|,
-literal|"/dynamicfield/type=='int'"
+literal|"/dynamicField/type=='int'"
 argument_list|,
-literal|"/dynamicfield/indexed==true"
+literal|"/dynamicField/indexed==true"
 argument_list|,
-literal|"/dynamicfield/stored==true"
+literal|"/dynamicField/stored==true"
 argument_list|,
-literal|"/dynamicfield/docValues==false"
+literal|"/dynamicField/docValues==false"
 argument_list|,
-literal|"/dynamicfield/termVectors==false"
+literal|"/dynamicField/termVectors==false"
 argument_list|,
-literal|"/dynamicfield/termPositions==false"
+literal|"/dynamicField/termPositions==false"
 argument_list|,
-literal|"/dynamicfield/termOffsets==false"
+literal|"/dynamicField/termOffsets==false"
 argument_list|,
-literal|"/dynamicfield/omitNorms==true"
+literal|"/dynamicField/omitNorms==true"
 argument_list|,
-literal|"/dynamicfield/omitTermFreqAndPositions==true"
+literal|"/dynamicField/omitTermFreqAndPositions==true"
 argument_list|,
-literal|"/dynamicfield/omitPositions==false"
+literal|"/dynamicField/omitPositions==false"
 argument_list|,
-literal|"/dynamicfield/storeOffsetsWithPositions==false"
+literal|"/dynamicField/storeOffsetsWithPositions==false"
 argument_list|,
-literal|"/dynamicfield/multiValued==false"
+literal|"/dynamicField/multiValued==false"
 argument_list|,
-literal|"/dynamicfield/required==false"
+literal|"/dynamicField/required==false"
 argument_list|,
-literal|"/dynamicfield/tokenized==false"
+literal|"/dynamicField/tokenized==false"
 argument_list|)
 expr_stmt|;
 block|}

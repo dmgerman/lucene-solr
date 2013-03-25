@@ -1,6 +1,6 @@
 begin_unit|revision:0.9.5;language:Java;cregit-version:0.0.1
 begin_package
-DECL|package|org.apache.solr.rest
+DECL|package|org.apache.solr.rest.schema
 package|package
 name|org
 operator|.
@@ -9,6 +9,8 @@ operator|.
 name|solr
 operator|.
 name|rest
+operator|.
+name|schema
 package|;
 end_package
 
@@ -45,22 +47,6 @@ operator|.
 name|params
 operator|.
 name|ModifiableSolrParams
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|solr
-operator|.
-name|common
-operator|.
-name|params
-operator|.
-name|SolrParams
 import|;
 end_import
 

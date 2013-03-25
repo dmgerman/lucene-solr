@@ -1,6 +1,6 @@
 begin_unit|revision:0.9.5;language:Java;cregit-version:0.0.1
 begin_package
-DECL|package|org.apache.solr.rest
+DECL|package|org.apache.solr.rest.schema
 package|package
 name|org
 operator|.
@@ -9,12 +9,28 @@ operator|.
 name|solr
 operator|.
 name|rest
+operator|.
+name|schema
 package|;
 end_package
 
 begin_comment
 comment|/*  * Licensed to the Apache Software Foundation (ASF) under one or more  * contributor license agreements.  See the NOTICE file distributed with  * this work for additional information regarding copyright ownership.  * The ASF licenses this file to You under the Apache License, Version 2.0  * (the "License"); you may not use this file except in compliance with  * the License.  You may obtain a copy of the License at  *  *     http://www.apache.org/licenses/LICENSE-2.0  *  * Unless required by applicable law or agreed to in writing, software  * distributed under the License is distributed on an "AS IS" BASIS,  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.  * See the License for the specific language governing permissions and  * limitations under the License.  */
 end_comment
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|solr
+operator|.
+name|rest
+operator|.
+name|SolrRestletTestBase
+import|;
+end_import
 
 begin_import
 import|import
@@ -42,7 +58,7 @@ specifier|public
 class|class
 name|TestDynamicFieldCollectionResource
 extends|extends
-name|SchemaRestletTestBase
+name|SolrRestletTestBase
 block|{
 annotation|@
 name|Test
@@ -58,13 +74,11 @@ name|assertQ
 argument_list|(
 literal|"/schema/dynamicfields?indent=on&wt=xml"
 argument_list|,
-literal|"(/response/arr[@name='dynamicfields']/lst/str[@name='name'])[1] = '*_coordinate'"
+literal|"(/response/arr[@name='dynamicFields']/lst/str[@name='name'])[1] = '*_coordinate'"
 argument_list|,
-literal|"(/response/arr[@name='dynamicfields']/lst/str[@name='name'])[2] = 'ignored_*'"
+literal|"(/response/arr[@name='dynamicFields']/lst/str[@name='name'])[2] = 'ignored_*'"
 argument_list|,
-literal|"(/response/arr[@name='dynamicfields']/lst/str[@name='name'])[3] = '*_mfacet'"
-argument_list|,
-literal|"count(//copySources/str)=count(//copyDests/str)"
+literal|"(/response/arr[@name='dynamicFields']/lst/str[@name='name'])[3] = '*_mfacet'"
 argument_list|)
 expr_stmt|;
 block|}
@@ -82,11 +96,11 @@ name|assertQ
 argument_list|(
 literal|"/schema/dynamicfields?indent=on&wt=xml&fl=*_i,*_s"
 argument_list|,
-literal|"count(/response/arr[@name='dynamicfields']/lst/str[@name='name']) = 2"
+literal|"count(/response/arr[@name='dynamicFields']/lst/str[@name='name']) = 2"
 argument_list|,
-literal|"(/response/arr[@name='dynamicfields']/lst/str[@name='name'])[1] = '*_i'"
+literal|"(/response/arr[@name='dynamicFields']/lst/str[@name='name'])[1] = '*_i'"
 argument_list|,
-literal|"(/response/arr[@name='dynamicfields']/lst/str[@name='name'])[2] = '*_s'"
+literal|"(/response/arr[@name='dynamicFields']/lst/str[@name='name'])[2] = '*_s'"
 argument_list|)
 expr_stmt|;
 block|}
@@ -104,7 +118,7 @@ name|assertQ
 argument_list|(
 literal|"/schema/dynamicfields?indent=on&wt=xml&fl=*_not_in_there,this_one_isnt_either_*"
 argument_list|,
-literal|"count(/response/arr[@name='dynamicfields']) = 1"
+literal|"count(/response/arr[@name='dynamicFields']) = 1"
 argument_list|,
 literal|"count(/response/arr[@name='dynamicfields']/lst/str[@name='name']) = 0"
 argument_list|)
@@ -124,11 +138,11 @@ name|assertJQ
 argument_list|(
 literal|"/schema/dynamicfields?indent=on"
 argument_list|,
-literal|"/dynamicfields/[0]/name=='*_coordinate'"
+literal|"/dynamicFields/[0]/name=='*_coordinate'"
 argument_list|,
-literal|"/dynamicfields/[1]/name=='ignored_*'"
+literal|"/dynamicFields/[1]/name=='ignored_*'"
 argument_list|,
-literal|"/dynamicfields/[2]/name=='*_mfacet'"
+literal|"/dynamicFields/[2]/name=='*_mfacet'"
 argument_list|)
 expr_stmt|;
 block|}
@@ -147,9 +161,9 @@ argument_list|(
 literal|"/schema/dynamicfields?indent=on&fl=*_i,*_s&wt=xml"
 argument_list|,
 comment|// assertJQ will fix the wt param to be json
-literal|"/dynamicfields/[0]/name=='*_i'"
+literal|"/dynamicFields/[0]/name=='*_i'"
 argument_list|,
-literal|"/dynamicfields/[1]/name=='*_s'"
+literal|"/dynamicFields/[1]/name=='*_s'"
 argument_list|)
 expr_stmt|;
 block|}

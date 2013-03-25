@@ -568,6 +568,18 @@ name|queryStartPos
 argument_list|)
 expr_stmt|;
 block|}
+if|if
+condition|(
+operator|!
+name|query
+operator|.
+name|matches
+argument_list|(
+literal|".*wt=schema\\.xml.*"
+argument_list|)
+condition|)
+block|{
+comment|// don't overwrite wt=schema.xml
 name|query
 operator|=
 name|setParam
@@ -579,6 +591,7 @@ argument_list|,
 literal|"xml"
 argument_list|)
 expr_stmt|;
+block|}
 name|request
 operator|=
 name|path
