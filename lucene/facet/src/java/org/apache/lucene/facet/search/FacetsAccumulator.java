@@ -894,6 +894,18 @@ operator|.
 name|categoryPath
 argument_list|)
 decl_stmt|;
+if|if
+condition|(
+name|fr
+operator|.
+name|categoryPath
+operator|.
+name|length
+operator|>
+literal|0
+condition|)
+block|{
+comment|// someone might ask to aggregate the ROOT category
 name|OrdinalPolicy
 name|ordinalPolicy
 init|=
@@ -936,6 +948,7 @@ argument_list|,
 name|facetArrays
 argument_list|)
 expr_stmt|;
+block|}
 block|}
 name|FacetResultsHandler
 name|frh
