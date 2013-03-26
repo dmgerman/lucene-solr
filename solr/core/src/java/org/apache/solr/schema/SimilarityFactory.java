@@ -130,6 +130,15 @@ name|CLASS_NAME
 init|=
 literal|"class"
 decl_stmt|;
+DECL|field|SOLR_SIMILARITIES_PACKAGE
+specifier|private
+specifier|static
+specifier|final
+name|String
+name|SOLR_SIMILARITIES_PACKAGE
+init|=
+literal|"org.apache.solr.search.similarities"
+decl_stmt|;
 DECL|field|params
 specifier|protected
 name|SolrParams
@@ -168,11 +177,11 @@ name|Similarity
 name|getSimilarity
 parameter_list|()
 function_decl|;
-DECL|method|normalizeSPIname
+DECL|method|normalizeName
 specifier|private
 specifier|static
 name|String
-name|normalizeSPIname
+name|normalizeName
 parameter_list|(
 name|String
 name|fullyQualifiedName
@@ -184,14 +193,9 @@ name|fullyQualifiedName
 operator|.
 name|startsWith
 argument_list|(
-literal|"org.apache.lucene."
-argument_list|)
-operator|||
-name|fullyQualifiedName
-operator|.
-name|startsWith
-argument_list|(
-literal|"org.apache.solr."
+name|SOLR_SIMILARITIES_PACKAGE
+operator|+
+literal|"."
 argument_list|)
 condition|)
 block|{
@@ -202,12 +206,10 @@ name|fullyQualifiedName
 operator|.
 name|substring
 argument_list|(
-name|fullyQualifiedName
+name|SOLR_SIMILARITIES_PACKAGE
 operator|.
-name|lastIndexOf
-argument_list|(
-literal|'.'
-argument_list|)
+name|length
+argument_list|()
 argument_list|)
 return|;
 block|}
@@ -215,7 +217,7 @@ return|return
 name|fullyQualifiedName
 return|;
 block|}
-comment|/** Returns a description of this field's similarity, if any */
+comment|/** Returns a serializable description of this similarity(factory) */
 DECL|method|getNamedPropertyValues
 specifier|public
 name|SimpleOrderedMap
@@ -262,7 +264,7 @@ block|{
 comment|// Only normalize factory names
 name|className
 operator|=
-name|normalizeSPIname
+name|normalizeName
 argument_list|(
 name|className
 argument_list|)
@@ -287,10 +289,7 @@ name|add
 argument_list|(
 name|CLASS_NAME
 argument_list|,
-name|normalizeSPIname
-argument_list|(
 name|className
-argument_list|)
 argument_list|)
 expr_stmt|;
 if|if
