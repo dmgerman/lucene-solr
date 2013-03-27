@@ -1846,7 +1846,7 @@ operator|+
 literal|".\\E))([\\p{L}_$][\\p{L}\\p{N}_$]+?)(TokenFilter|Filter|Tokenizer|CharFilter)Factory"
 argument_list|)
 decl_stmt|;
-comment|/**    * This method loads a class either with it's FQN or a short-name (solr.class-simplename or class-simplename).    * It tries to load the class with the name that is given first and if it fails, it tries all the known    * solr packages. This method caches the FQN of a short-name in a static map in-order to make subsequent lookups    * for the same class faster. The caching is done only if the class is loaded by the webapp classloader and it    * is loaded using a shortname.    *    * @param cname The name or the short name of the class.    * @param subpackages the packages to be tried if the cnams starts with solr.    * @return the loaded class. An exception is thrown if it fails    */
+comment|/**    * This method loads a class either with it's FQN or a short-name (solr.class-simplename or class-simplename).    * It tries to load the class with the name that is given first and if it fails, it tries all the known    * solr packages. This method caches the FQN of a short-name in a static map in-order to make subsequent lookups    * for the same class faster. The caching is done only if the class is loaded by the webapp classloader and it    * is loaded using a shortname.    *    * @param cname The name or the short name of the class.    * @param subpackages the packages to be tried if the cname starts with solr.    * @return the loaded class. An exception is thrown if it fails    */
 DECL|method|findClass
 specifier|public
 parameter_list|<
