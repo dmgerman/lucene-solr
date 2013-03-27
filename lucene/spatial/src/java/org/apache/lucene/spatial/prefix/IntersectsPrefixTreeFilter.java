@@ -134,7 +134,7 @@ name|lucene
 operator|.
 name|util
 operator|.
-name|OpenBitSet
+name|FixedBitSet
 import|;
 end_import
 
@@ -268,7 +268,7 @@ name|hasIndexedLeaves
 argument_list|)
 block|{
 specifier|private
-name|OpenBitSet
+name|FixedBitSet
 name|results
 decl_stmt|;
 annotation|@
@@ -281,7 +281,7 @@ block|{
 name|results
 operator|=
 operator|new
-name|OpenBitSet
+name|FixedBitSet
 argument_list|(
 name|maxDoc
 argument_list|)
@@ -368,20 +368,56 @@ name|visitScanned
 parameter_list|(
 name|Node
 name|cell
-parameter_list|,
-name|Shape
-name|cellShape
 parameter_list|)
 throws|throws
 name|IOException
 block|{
+name|Shape
+name|cShape
+decl_stmt|;
+comment|//if this cell represents a point, use the cell center vs the box
+comment|// TODO this behavior is debatable; might want to be configurable
+comment|// (points never have isLeaf())
+if|if
+condition|(
+name|cell
+operator|.
+name|getLevel
+argument_list|()
+operator|==
+name|grid
+operator|.
+name|getMaxLevels
+argument_list|()
+operator|&&
+operator|!
+name|cell
+operator|.
+name|isLeaf
+argument_list|()
+condition|)
+name|cShape
+operator|=
+name|cell
+operator|.
+name|getCenter
+argument_list|()
+expr_stmt|;
+else|else
+name|cShape
+operator|=
+name|cell
+operator|.
+name|getShape
+argument_list|()
+expr_stmt|;
 if|if
 condition|(
 name|queryShape
 operator|.
 name|relate
 argument_list|(
-name|cellShape
+name|cShape
 argument_list|)
 operator|.
 name|intersects

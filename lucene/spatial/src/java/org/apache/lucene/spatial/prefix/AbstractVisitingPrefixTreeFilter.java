@@ -335,7 +335,7 @@ return|return
 name|result
 return|;
 block|}
-comment|/**    * An abstract class designed to make it easy to implement predicates or    * other operations on a {@link SpatialPrefixTree} indexed field. An instance    * of this class is not designed to be re-used across AtomicReaderContext    * instances so simply create a new one for each call to, say a {@link    * org.apache.lucene.search.Filter#getDocIdSet(org.apache.lucene.index.AtomicReaderContext, org.apache.lucene.util.Bits)}.    * The {@link #getDocIdSet()} method here starts the work. It first checks    * that there are indexed terms; if not it quickly returns null. Then it calls    * {@link #start()} so a subclass can set up a return value, like an    * {@link org.apache.lucene.util.OpenBitSet}. Then it starts the traversal    * process, calling {@link #findSubCellsToVisit(org.apache.lucene.spatial.prefix.tree.Node)}    * which by default finds the top cells that intersect {@code queryShape}. If    * there isn't an indexed cell for a corresponding cell returned for this    * method then it's short-circuited until it finds one, at which point    * {@link #visit(org.apache.lucene.spatial.prefix.tree.Node)} is called. At    * some depths, of the tree, the algorithm switches to a scanning mode that    * finds calls {@link #visitScanned(org.apache.lucene.spatial.prefix.tree.Node, com.spatial4j.core.shape.Shape)}    * for each leaf cell found.    *    * @lucene.internal    */
+comment|/**    * An abstract class designed to make it easy to implement predicates or    * other operations on a {@link SpatialPrefixTree} indexed field. An instance    * of this class is not designed to be re-used across AtomicReaderContext    * instances so simply create a new one for each call to, say a {@link    * org.apache.lucene.search.Filter#getDocIdSet(org.apache.lucene.index.AtomicReaderContext, org.apache.lucene.util.Bits)}.    * The {@link #getDocIdSet()} method here starts the work. It first checks    * that there are indexed terms; if not it quickly returns null. Then it calls    * {@link #start()} so a subclass can set up a return value, like an    * {@link org.apache.lucene.util.OpenBitSet}. Then it starts the traversal    * process, calling {@link #findSubCellsToVisit(org.apache.lucene.spatial.prefix.tree.Node)}    * which by default finds the top cells that intersect {@code queryShape}. If    * there isn't an indexed cell for a corresponding cell returned for this    * method then it's short-circuited until it finds one, at which point    * {@link #visit(org.apache.lucene.spatial.prefix.tree.Node)} is called. At    * some depths, of the tree, the algorithm switches to a scanning mode that    * finds calls {@link #visitScanned(org.apache.lucene.spatial.prefix.tree.Node)}    * for each leaf cell found.    *    * @lucene.internal    */
 DECL|class|VisitorTemplate
 specifier|public
 specifier|abstract
@@ -801,13 +801,6 @@ literal|"Spatial logic error"
 argument_list|)
 throw|;
 comment|//Check for adjacent leaf (happens for indexed non-point shapes)
-assert|assert
-operator|!
-name|cell
-operator|.
-name|isLeaf
-argument_list|()
-assert|;
 if|if
 condition|(
 name|hasIndexedLeaves
@@ -989,7 +982,7 @@ name|iterator
 argument_list|()
 return|;
 block|}
-comment|/**      * Scans ({@code termsEnum.next()}) terms until a term is found that does      * not start with curVNode's cell. If it finds a leaf cell or a cell at      * level {@code scanDetailLevel} then it calls {@link      * #visitScanned(org.apache.lucene.spatial.prefix.tree.Node,      * com.spatial4j.core.shape.Shape)}.      */
+comment|/**      * Scans ({@code termsEnum.next()}) terms until a term is found that does      * not start with curVNode's cell. If it finds a leaf cell or a cell at      * level {@code scanDetailLevel} then it calls {@link      * #visitScanned(org.apache.lucene.spatial.prefix.tree.Node)}.      */
 DECL|method|scan
 specifier|protected
 name|void
@@ -1073,46 +1066,9 @@ name|isLeaf
 argument_list|()
 condition|)
 block|{
-name|Shape
-name|cShape
-decl_stmt|;
-comment|//if this cell represents a point, use the cell center vs the box
-comment|// (points never have isLeaf())
-if|if
-condition|(
-name|termLevel
-operator|==
-name|grid
-operator|.
-name|getMaxLevels
-argument_list|()
-operator|&&
-operator|!
-name|scanCell
-operator|.
-name|isLeaf
-argument_list|()
-condition|)
-name|cShape
-operator|=
-name|scanCell
-operator|.
-name|getCenter
-argument_list|()
-expr_stmt|;
-else|else
-name|cShape
-operator|=
-name|scanCell
-operator|.
-name|getShape
-argument_list|()
-expr_stmt|;
 name|visitScanned
 argument_list|(
 name|scanCell
-argument_list|,
-name|cShape
 argument_list|)
 expr_stmt|;
 block|}
@@ -1268,7 +1224,7 @@ parameter_list|)
 throws|throws
 name|IOException
 function_decl|;
-comment|/**      * The cell is either indexed as a leaf or is the last level of detail. It      * might not even intersect the query shape, so be sure to check for that.      * Use {@code cellShape} instead of {@code cell.getCellShape} for the cell's      * shape.      */
+comment|/**      * The cell is either indexed as a leaf or is the last level of detail. It      * might not even intersect the query shape, so be sure to check for that.      */
 DECL|method|visitScanned
 specifier|protected
 specifier|abstract
@@ -1277,9 +1233,6 @@ name|visitScanned
 parameter_list|(
 name|Node
 name|cell
-parameter_list|,
-name|Shape
-name|cellShape
 parameter_list|)
 throws|throws
 name|IOException
