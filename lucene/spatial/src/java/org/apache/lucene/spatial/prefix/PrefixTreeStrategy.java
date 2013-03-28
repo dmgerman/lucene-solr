@@ -162,7 +162,7 @@ name|prefix
 operator|.
 name|tree
 operator|.
-name|Node
+name|Cell
 import|;
 end_import
 
@@ -461,13 +461,13 @@ argument_list|)
 decl_stmt|;
 name|List
 argument_list|<
-name|Node
+name|Cell
 argument_list|>
 name|cells
 init|=
 name|grid
 operator|.
-name|getNodes
+name|getCells
 argument_list|(
 name|shape
 argument_list|,
@@ -589,7 +589,7 @@ DECL|field|iter
 specifier|private
 name|Iterator
 argument_list|<
-name|Node
+name|Cell
 argument_list|>
 name|iter
 init|=
@@ -601,7 +601,7 @@ name|CellTokenStream
 parameter_list|(
 name|Iterator
 argument_list|<
-name|Node
+name|Cell
 argument_list|>
 name|tokens
 parameter_list|)
@@ -651,7 +651,7 @@ argument_list|(
 operator|(
 name|char
 operator|)
-name|Node
+name|Cell
 operator|.
 name|LEAF_BYTE
 argument_list|)
@@ -672,7 +672,7 @@ name|hasNext
 argument_list|()
 condition|)
 block|{
-name|Node
+name|Cell
 name|cell
 init|=
 name|iter

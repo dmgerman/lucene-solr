@@ -88,7 +88,7 @@ name|prefix
 operator|.
 name|tree
 operator|.
-name|Node
+name|Cell
 import|;
 end_import
 
@@ -335,7 +335,7 @@ return|return
 name|result
 return|;
 block|}
-comment|/**    * An abstract class designed to make it easy to implement predicates or    * other operations on a {@link SpatialPrefixTree} indexed field. An instance    * of this class is not designed to be re-used across AtomicReaderContext    * instances so simply create a new one for each call to, say a {@link    * org.apache.lucene.search.Filter#getDocIdSet(org.apache.lucene.index.AtomicReaderContext, org.apache.lucene.util.Bits)}.    * The {@link #getDocIdSet()} method here starts the work. It first checks    * that there are indexed terms; if not it quickly returns null. Then it calls    * {@link #start()} so a subclass can set up a return value, like an    * {@link org.apache.lucene.util.OpenBitSet}. Then it starts the traversal    * process, calling {@link #findSubCellsToVisit(org.apache.lucene.spatial.prefix.tree.Node)}    * which by default finds the top cells that intersect {@code queryShape}. If    * there isn't an indexed cell for a corresponding cell returned for this    * method then it's short-circuited until it finds one, at which point    * {@link #visit(org.apache.lucene.spatial.prefix.tree.Node)} is called. At    * some depths, of the tree, the algorithm switches to a scanning mode that    * finds calls {@link #visitScanned(org.apache.lucene.spatial.prefix.tree.Node)}    * for each leaf cell found.    *    * @lucene.internal    */
+comment|/**    * An abstract class designed to make it easy to implement predicates or    * other operations on a {@link SpatialPrefixTree} indexed field. An instance    * of this class is not designed to be re-used across AtomicReaderContext    * instances so simply create a new one for each call to, say a {@link    * org.apache.lucene.search.Filter#getDocIdSet(org.apache.lucene.index.AtomicReaderContext, org.apache.lucene.util.Bits)}.    * The {@link #getDocIdSet()} method here starts the work. It first checks    * that there are indexed terms; if not it quickly returns null. Then it calls    * {@link #start()} so a subclass can set up a return value, like an    * {@link org.apache.lucene.util.OpenBitSet}. Then it starts the traversal    * process, calling {@link #findSubCellsToVisit(org.apache.lucene.spatial.prefix.tree.Cell)}    * which by default finds the top cells that intersect {@code queryShape}. If    * there isn't an indexed cell for a corresponding cell returned for this    * method then it's short-circuited until it finds one, at which point    * {@link #visit(org.apache.lucene.spatial.prefix.tree.Cell)} is called. At    * some depths, of the tree, the algorithm switches to a scanning mode that    * finds calls {@link #visitScanned(org.apache.lucene.spatial.prefix.tree.Cell)}    * for each leaf cell found.    *    * @lucene.internal    */
 DECL|class|VisitorTemplate
 specifier|public
 specifier|abstract
@@ -370,7 +370,7 @@ decl_stmt|;
 comment|//curVNode.cell's term.
 DECL|field|scanCell
 specifier|private
-name|Node
+name|Cell
 name|scanCell
 decl_stmt|;
 DECL|field|thisTerm
@@ -465,7 +465,7 @@ name|reset
 argument_list|(
 name|grid
 operator|.
-name|getWorldNode
+name|getWorldCell
 argument_list|()
 argument_list|)
 expr_stmt|;
@@ -763,7 +763,7 @@ name|finish
 argument_list|()
 return|;
 block|}
-comment|/** Called initially, and whenever {@link #visit(org.apache.lucene.spatial.prefix.tree.Node)}      * returns true. */
+comment|/** Called initially, and whenever {@link #visit(org.apache.lucene.spatial.prefix.tree.Cell)}      * returns true. */
 DECL|method|addIntersectingChildren
 specifier|private
 name|void
@@ -777,7 +777,7 @@ name|thisTerm
 operator|!=
 literal|null
 assert|;
-name|Node
+name|Cell
 name|cell
 init|=
 name|curVNode
@@ -829,7 +829,7 @@ name|scanCell
 operator|=
 name|grid
 operator|.
-name|getNode
+name|getCell
 argument_list|(
 name|thisTerm
 operator|.
@@ -911,7 +911,7 @@ block|{
 comment|//Divide& conquer (ultimately termsEnum.seek())
 name|Iterator
 argument_list|<
-name|Node
+name|Cell
 argument_list|>
 name|subCellsIter
 init|=
@@ -962,11 +962,11 @@ DECL|method|findSubCellsToVisit
 specifier|protected
 name|Iterator
 argument_list|<
-name|Node
+name|Cell
 argument_list|>
 name|findSubCellsToVisit
 parameter_list|(
-name|Node
+name|Cell
 name|cell
 parameter_list|)
 block|{
@@ -982,7 +982,7 @@ name|iterator
 argument_list|()
 return|;
 block|}
-comment|/**      * Scans ({@code termsEnum.next()}) terms until a term is found that does      * not start with curVNode's cell. If it finds a leaf cell or a cell at      * level {@code scanDetailLevel} then it calls {@link      * #visitScanned(org.apache.lucene.spatial.prefix.tree.Node)}.      */
+comment|/**      * Scans ({@code termsEnum.next()}) terms until a term is found that does      * not start with curVNode's cell. If it finds a leaf cell or a cell at      * level {@code scanDetailLevel} then it calls {@link      * #visitScanned(org.apache.lucene.spatial.prefix.tree.Cell)}.      */
 DECL|method|scan
 specifier|protected
 name|void
@@ -1022,7 +1022,7 @@ name|scanCell
 operator|=
 name|grid
 operator|.
-name|getNode
+name|getCell
 argument_list|(
 name|thisTerm
 operator|.
@@ -1090,7 +1090,7 @@ DECL|field|cellIter
 specifier|final
 name|Iterator
 argument_list|<
-name|Node
+name|Cell
 argument_list|>
 name|cellIter
 decl_stmt|;
@@ -1105,7 +1105,7 @@ name|VNodeCellIterator
 parameter_list|(
 name|Iterator
 argument_list|<
-name|Node
+name|Cell
 argument_list|>
 name|cellIter
 parameter_list|,
@@ -1198,14 +1198,14 @@ parameter_list|()
 throws|throws
 name|IOException
 function_decl|;
-comment|/**      * Visit an indexed cell returned from      * {@link #findSubCellsToVisit(org.apache.lucene.spatial.prefix.tree.Node)}.      *      * @param cell An intersecting cell.      * @return true to descend to more levels. It is an error to return true      * if cell.level == detailLevel      */
+comment|/**      * Visit an indexed cell returned from      * {@link #findSubCellsToVisit(org.apache.lucene.spatial.prefix.tree.Cell)}.      *      * @param cell An intersecting cell.      * @return true to descend to more levels. It is an error to return true      * if cell.level == detailLevel      */
 DECL|method|visit
 specifier|protected
 specifier|abstract
 name|boolean
 name|visit
 parameter_list|(
-name|Node
+name|Cell
 name|cell
 parameter_list|)
 throws|throws
@@ -1218,7 +1218,7 @@ specifier|abstract
 name|void
 name|visitLeaf
 parameter_list|(
-name|Node
+name|Cell
 name|cell
 parameter_list|)
 throws|throws
@@ -1231,7 +1231,7 @@ specifier|abstract
 name|void
 name|visitScanned
 parameter_list|(
-name|Node
+name|Cell
 name|cell
 parameter_list|)
 throws|throws
@@ -1261,7 +1261,7 @@ name|IOException
 block|{     }
 block|}
 comment|//class VisitorTemplate
-comment|/**    * A Visitor Node/Cell found via the query shape for {@link VisitorTemplate}.    * Sometimes these are reset(cell). It's like a LinkedList node but forms a    * tree.    *    * @lucene.internal    */
+comment|/**    * A Visitor Cell/Cell found via the query shape for {@link VisitorTemplate}.    * Sometimes these are reset(cell). It's like a LinkedList node but forms a    * tree.    *    * @lucene.internal    */
 DECL|class|VNode
 specifier|protected
 specifier|static
@@ -1287,7 +1287,7 @@ name|children
 decl_stmt|;
 comment|//null, then sometimes set, then null
 DECL|field|cell
-name|Node
+name|Cell
 name|cell
 decl_stmt|;
 comment|//not null (except initially before reset())
@@ -1311,7 +1311,7 @@ DECL|method|reset
 name|void
 name|reset
 parameter_list|(
-name|Node
+name|Cell
 name|cell
 parameter_list|)
 block|{

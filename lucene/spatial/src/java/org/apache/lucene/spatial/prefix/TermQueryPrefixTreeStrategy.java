@@ -74,7 +74,7 @@ name|prefix
 operator|.
 name|tree
 operator|.
-name|Node
+name|Cell
 import|;
 end_import
 
@@ -169,7 +169,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * A basic implementation of {@link PrefixTreeStrategy} using a large {@link  * TermsFilter} of all the nodes from {@link SpatialPrefixTree#getNodes(com.spatial4j.core.shape.Shape,  * int, boolean, boolean)}. It only supports the search of indexed Point shapes.  *<p/>  * The precision of query shapes (distErrPct) is an important factor in using  * this Strategy. If the precision is too precise then it will result in many  * terms which will amount to a slower query.  *  * @lucene.experimental  */
+comment|/**  * A basic implementation of {@link PrefixTreeStrategy} using a large {@link  * TermsFilter} of all the cells from {@link SpatialPrefixTree#getCells(com.spatial4j.core.shape.Shape,  * int, boolean, boolean)}. It only supports the search of indexed Point shapes.  *<p/>  * The precision of query shapes (distErrPct) is an important factor in using  * this Strategy. If the precision is too precise then it will result in many  * terms which will amount to a slower query.  *  * @lucene.experimental  */
 end_comment
 
 begin_class
@@ -264,13 +264,13 @@ argument_list|)
 decl_stmt|;
 name|List
 argument_list|<
-name|Node
+name|Cell
 argument_list|>
 name|cells
 init|=
 name|grid
 operator|.
-name|getNodes
+name|getCells
 argument_list|(
 name|shape
 argument_list|,
@@ -303,7 +303,7 @@ literal|0
 decl_stmt|;
 for|for
 control|(
-name|Node
+name|Cell
 name|cell
 range|:
 name|cells

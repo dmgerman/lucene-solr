@@ -151,7 +151,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * A {@link SpatialPrefixTree} which uses a  *<a href="http://en.wikipedia.org/wiki/Quadtree">quad tree</a> in which an  * indexed term will be generated for each node, 'A', 'B', 'C', 'D'.  *  * @lucene.experimental  */
+comment|/**  * A {@link SpatialPrefixTree} which uses a  *<a href="http://en.wikipedia.org/wiki/Quadtree">quad tree</a> in which an  * indexed term will be generated for each cell, 'A', 'B', 'C', 'D'.  *  * @lucene.experimental  */
 end_comment
 
 begin_class
@@ -768,10 +768,10 @@ return|;
 block|}
 annotation|@
 name|Override
-DECL|method|getNode
+DECL|method|getCell
 specifier|public
-name|Node
-name|getNode
+name|Cell
+name|getCell
 parameter_list|(
 name|Point
 name|p
@@ -782,14 +782,14 @@ parameter_list|)
 block|{
 name|List
 argument_list|<
-name|Node
+name|Cell
 argument_list|>
 name|cells
 init|=
 operator|new
 name|ArrayList
 argument_list|<
-name|Node
+name|Cell
 argument_list|>
 argument_list|(
 literal|1
@@ -839,10 +839,10 @@ comment|//note cells could be longer if p on edge
 block|}
 annotation|@
 name|Override
-DECL|method|getNode
+DECL|method|getCell
 specifier|public
-name|Node
-name|getNode
+name|Cell
+name|getCell
 parameter_list|(
 name|String
 name|token
@@ -858,10 +858,10 @@ return|;
 block|}
 annotation|@
 name|Override
-DECL|method|getNode
+DECL|method|getCell
 specifier|public
-name|Node
-name|getNode
+name|Cell
+name|getCell
 parameter_list|(
 name|byte
 index|[]
@@ -902,7 +902,7 @@ name|level
 parameter_list|,
 name|List
 argument_list|<
-name|Node
+name|Cell
 argument_list|>
 name|matches
 parameter_list|,
@@ -1062,7 +1062,7 @@ name|level
 parameter_list|,
 name|List
 argument_list|<
-name|Node
+name|Cell
 argument_list|>
 name|matches
 parameter_list|,
@@ -1273,7 +1273,7 @@ DECL|class|QuadCell
 class|class
 name|QuadCell
 extends|extends
-name|Node
+name|Cell
 block|{
 DECL|method|QuadCell
 specifier|public
@@ -1376,21 +1376,21 @@ DECL|method|getSubCells
 specifier|public
 name|Collection
 argument_list|<
-name|Node
+name|Cell
 argument_list|>
 name|getSubCells
 parameter_list|()
 block|{
 name|List
 argument_list|<
-name|Node
+name|Cell
 argument_list|>
 name|cells
 init|=
 operator|new
 name|ArrayList
 argument_list|<
-name|Node
+name|Cell
 argument_list|>
 argument_list|(
 literal|4
@@ -1472,7 +1472,7 @@ annotation|@
 name|Override
 DECL|method|getSubCell
 specifier|public
-name|Node
+name|Cell
 name|getSubCell
 parameter_list|(
 name|Point
@@ -1484,7 +1484,7 @@ name|QuadPrefixTree
 operator|.
 name|this
 operator|.
-name|getNode
+name|getCell
 argument_list|(
 name|p
 argument_list|,
