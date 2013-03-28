@@ -165,6 +165,12 @@ specifier|abstract
 class|class
 name|DocMap
 block|{
+comment|/** Sole constructor, typically invoked from sub-classes constructors. */
+DECL|method|DocMap
+specifier|protected
+name|DocMap
+parameter_list|()
+block|{}
 comment|/** Return the new doc ID according to its old value. */
 DECL|method|map
 specifier|public
