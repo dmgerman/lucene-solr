@@ -56,7 +56,7 @@ name|Exception
 block|{
 name|assertConfigs
 argument_list|(
-literal|"solrconfig.xml"
+literal|"solrconfig-basic.xml"
 argument_list|,
 name|schema
 argument_list|,
@@ -385,6 +385,22 @@ argument_list|(
 literal|"bad-schema-sweetspot-partial-norms.xml"
 argument_list|,
 literal|"Overriding default lengthNorm"
+argument_list|)
+expr_stmt|;
+block|}
+DECL|method|testBogusParameters
+specifier|public
+name|void
+name|testBogusParameters
+parameter_list|()
+throws|throws
+name|Exception
+block|{
+name|doTest
+argument_list|(
+literal|"bad-schema-bogus-field-parameters.xml"
+argument_list|,
+literal|"Invalid field property"
 argument_list|)
 expr_stmt|;
 block|}
