@@ -3013,7 +3013,7 @@ DECL|class|KeepAllCommits
 specifier|static
 class|class
 name|KeepAllCommits
-implements|implements
+extends|extends
 name|IndexDeletionPolicy
 block|{
 annotation|@

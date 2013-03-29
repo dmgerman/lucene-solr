@@ -52,6 +52,20 @@ name|apache
 operator|.
 name|lucene
 operator|.
+name|index
+operator|.
+name|IndexWriter
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
 name|store
 operator|.
 name|Directory
@@ -119,15 +133,16 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * A wrapper for an IndexDeletionPolicy instance.  *<p/>  * Provides features for looking up IndexCommit given a version. Allows reserving index  * commit points for certain amounts of time to support features such as index replication  * or snapshooting directly out of a live index directory.  *  *  * @see org.apache.lucene.index.IndexDeletionPolicy  */
+comment|/**  * A wrapper for an IndexDeletionPolicy instance.  *<p/>  * Provides features for looking up IndexCommit given a version. Allows reserving index  * commit points for certain amounts of time to support features such as index replication  * or snapshooting directly out of a live index directory.  *<p/>  *<b>NOTE</b>: The {@link #clone()} method returns<tt>this</tt> in order to make  * this {@link IndexDeletionPolicy} instance trackable across {@link IndexWriter}  * instantiations. This is correct because each core has its own  * {@link IndexDeletionPolicy} and never has more than one open {@link IndexWriter}.  *  * @see org.apache.lucene.index.IndexDeletionPolicy  */
 end_comment
 
 begin_class
 DECL|class|IndexDeletionPolicyWrapper
 specifier|public
+specifier|final
 class|class
 name|IndexDeletionPolicyWrapper
-implements|implements
+extends|extends
 name|IndexDeletionPolicy
 block|{
 DECL|field|deletionPolicy
@@ -993,6 +1008,19 @@ return|return
 literal|0
 return|;
 block|}
+block|}
+annotation|@
+name|Override
+DECL|method|clone
+specifier|public
+name|IndexDeletionPolicy
+name|clone
+parameter_list|()
+block|{
+comment|// see class-level javadocs
+return|return
+name|this
+return|;
 block|}
 block|}
 end_class

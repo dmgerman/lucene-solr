@@ -67,6 +67,18 @@ name|IndexWriter
 name|writer
 parameter_list|)
 block|{}
+annotation|@
+name|Override
+DECL|method|clone
+specifier|public
+name|MergeScheduler
+name|clone
+parameter_list|()
+block|{
+return|return
+name|this
+return|;
+block|}
 block|}
 end_class
 

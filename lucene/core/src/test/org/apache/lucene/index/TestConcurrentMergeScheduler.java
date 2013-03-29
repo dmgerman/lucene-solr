@@ -2137,7 +2137,12 @@ operator|(
 operator|(
 name|TrackingCMS
 operator|)
-name|iwc
+name|w
+operator|.
+name|w
+operator|.
+name|getConfig
+argument_list|()
 operator|.
 name|getMergeScheduler
 argument_list|()

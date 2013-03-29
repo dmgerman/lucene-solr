@@ -36,7 +36,7 @@ specifier|public
 specifier|final
 class|class
 name|KeepOnlyLastCommitDeletionPolicy
-implements|implements
+extends|extends
 name|IndexDeletionPolicy
 block|{
 comment|/** Sole constructor. */

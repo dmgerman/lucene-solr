@@ -102,34 +102,6 @@ name|lucene
 operator|.
 name|document
 operator|.
-name|Field
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|document
-operator|.
-name|FieldType
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|document
-operator|.
 name|StoredField
 import|;
 end_import
@@ -179,7 +151,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * A {@link SnapshotDeletionPolicy} which adds a persistence layer so that  * snapshots can be maintained across the life of an application. The snapshots  * are persisted in a {@link Directory} and are committed as soon as  * {@link #snapshot(String)} or {@link #release(String)} is called.  *<p>  *<b>NOTE:</b> this class receives a {@link Directory} to persist the data into  * a Lucene index. It is highly recommended to use a dedicated directory (and on  * stable storage as well) for persisting the snapshots' information, and not  * reuse the content index directory, or otherwise conflicts and index  * corruption will occur.  *<p>  *<b>NOTE:</b> you should call {@link #close()} when you're done using this  * class for safety (it will close the {@link IndexWriter} instance used).  */
+comment|/**  * A {@link SnapshotDeletionPolicy} which adds a persistence layer so that  * snapshots can be maintained across the life of an application. The snapshots  * are persisted in a {@link Directory} and are committed as soon as  * {@link #snapshot(String)} or {@link #release(String)} is called.  *<p>  *<b>NOTE:</b> this class receives a {@link Directory} to persist the data into  * a Lucene index. It is highly recommended to use a dedicated directory (and on  * stable storage as well) for persisting the snapshots' information, and not  * reuse the content index directory, or otherwise conflicts and index  * corruption will occur.  *<p>  *<b>NOTE:</b> you should call {@link #close()} when you're done using this  * class for safety (it will close the {@link IndexWriter} instance used).  *<p>  *<b>NOTE:</b> Sharing {@link PersistentSnapshotDeletionPolicy}s that write to  * the same directory across {@link IndexWriter}s will corrupt snapshots. You  * should make sure every {@link IndexWriter} has its own  * {@link PersistentSnapshotDeletionPolicy} and that they all write to a  * different {@link Directory}.  */
 end_comment
 
 begin_class

@@ -355,6 +355,15 @@ comment|// certain objects that have state that cannot be shared
 comment|// across IW instances:
 name|clone
 operator|.
+name|delPolicy
+operator|=
+name|delPolicy
+operator|.
+name|clone
+argument_list|()
+expr_stmt|;
+name|clone
+operator|.
 name|flushPolicy
 operator|=
 name|flushPolicy
@@ -371,11 +380,31 @@ operator|.
 name|clone
 argument_list|()
 expr_stmt|;
+comment|// we clone the infoStream because some impls might have state variables
+comment|// such as line numbers, message throughput, ...
+name|clone
+operator|.
+name|infoStream
+operator|=
+name|infoStream
+operator|.
+name|clone
+argument_list|()
+expr_stmt|;
 name|clone
 operator|.
 name|mergePolicy
 operator|=
 name|mergePolicy
+operator|.
+name|clone
+argument_list|()
+expr_stmt|;
+name|clone
+operator|.
+name|mergeScheduler
+operator|=
+name|mergeScheduler
 operator|.
 name|clone
 argument_list|()

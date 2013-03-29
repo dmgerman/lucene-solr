@@ -91,9 +91,9 @@ DECL|class|FakeDeletionPolicy
 specifier|public
 class|class
 name|FakeDeletionPolicy
-implements|implements
+extends|extends
 name|IndexDeletionPolicy
-implements|,
+implements|implements
 name|NamedListInitializedPlugin
 block|{
 DECL|field|var1
