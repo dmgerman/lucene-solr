@@ -4044,16 +4044,105 @@ name|sourceIsExplicitFieldGlob
 init|=
 literal|false
 decl_stmt|;
+specifier|final
+name|String
+name|invalidGlobMessage
+init|=
+literal|"is an invalid glob: either it contains more than one asterisk,"
+operator|+
+literal|" or the asterisk occurs neither at the start nor at the end."
+decl_stmt|;
+specifier|final
+name|boolean
+name|sourceIsGlob
+init|=
+name|isValidFieldGlob
+argument_list|(
+name|source
+argument_list|)
+decl_stmt|;
+if|if
+condition|(
+name|source
+operator|.
+name|contains
+argument_list|(
+literal|"*"
+argument_list|)
+operator|&&
+operator|!
+name|sourceIsGlob
+condition|)
+block|{
+name|String
+name|msg
+init|=
+literal|"copyField source :'"
+operator|+
+name|source
+operator|+
+literal|"' "
+operator|+
+name|invalidGlobMessage
+decl_stmt|;
+throw|throw
+operator|new
+name|SolrException
+argument_list|(
+name|ErrorCode
+operator|.
+name|SERVER_ERROR
+argument_list|,
+name|msg
+argument_list|)
+throw|;
+block|}
+if|if
+condition|(
+name|dest
+operator|.
+name|contains
+argument_list|(
+literal|"*"
+argument_list|)
+operator|&&
+operator|!
+name|isValidFieldGlob
+argument_list|(
+name|dest
+argument_list|)
+condition|)
+block|{
+name|String
+name|msg
+init|=
+literal|"copyField dest :'"
+operator|+
+name|dest
+operator|+
+literal|"' "
+operator|+
+name|invalidGlobMessage
+decl_stmt|;
+throw|throw
+operator|new
+name|SolrException
+argument_list|(
+name|ErrorCode
+operator|.
+name|SERVER_ERROR
+argument_list|,
+name|msg
+argument_list|)
+throw|;
+block|}
 if|if
 condition|(
 literal|null
 operator|==
 name|sourceSchemaField
 operator|&&
-name|isValidFieldGlob
-argument_list|(
-name|source
-argument_list|)
+name|sourceIsGlob
 condition|)
 block|{
 name|Pattern
@@ -4272,10 +4361,10 @@ operator|==
 name|sourceSchemaField
 operator|&&
 operator|!
-name|sourceIsDynamicFieldReference
+name|sourceIsGlob
 operator|&&
 operator|!
-name|sourceIsExplicitFieldGlob
+name|sourceIsDynamicFieldReference
 condition|)
 block|{
 name|String
@@ -4285,7 +4374,7 @@ literal|"copyField source :'"
 operator|+
 name|source
 operator|+
-literal|"' doesn't match any explicit field or dynamicField."
+literal|"' is not a glob and doesn't match any explicit field or dynamicField."
 decl_stmt|;
 throw|throw
 operator|new
@@ -4331,7 +4420,7 @@ if|if
 condition|(
 name|sourceIsDynamicFieldReference
 operator|||
-name|sourceIsExplicitFieldGlob
+name|sourceIsGlob
 condition|)
 block|{
 if|if
@@ -4341,7 +4430,7 @@ operator|!=
 name|destDynamicField
 condition|)
 block|{
-comment|// source: dynamic field ref or explicit field glob; dest: dynamic field ref
+comment|// source: glob or no-asterisk dynamic field ref; dest: dynamic field ref
 name|registerDynamicCopyField
 argument_list|(
 operator|new
@@ -4367,7 +4456,7 @@ expr_stmt|;
 block|}
 else|else
 block|{
-comment|// source: dynamic field reference; dest: explicit field
+comment|// source: glob or no-asterisk dynamic field ref; dest: explicit field
 name|destDynamicField
 operator|=
 operator|new
