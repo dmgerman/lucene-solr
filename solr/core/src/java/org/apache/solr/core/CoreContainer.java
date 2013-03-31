@@ -7571,8 +7571,8 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
-comment|// We are shutting down. We don't want to risk deadlock, so do this manipulation the expensive way. Note, I've
-comment|// already deadlocked with closing/opening cores while keeping locks here....
+comment|// We are shutting down. You can't hold the lock on the various lists of cores while they shut down, so we need to
+comment|// make a temporary copy of the names and shut them down outside the lock.
 DECL|method|clearMaps
 specifier|protected
 name|void
@@ -7600,6 +7600,14 @@ name|SolrCore
 argument_list|>
 name|pendingToClose
 decl_stmt|;
+comment|// It might be possible for one of the cores to move from one list to another while we're closing them. So
+comment|// loop through the lists until they're all empty. In particular, the core could have moved from the transient
+comment|// list to the pendingCloses list.
+while|while
+condition|(
+literal|true
+condition|)
+block|{
 synchronized|synchronized
 init|(
 name|locker
@@ -7636,6 +7644,30 @@ name|pendingCloses
 argument_list|)
 expr_stmt|;
 block|}
+if|if
+condition|(
+name|coreNames
+operator|.
+name|size
+argument_list|()
+operator|==
+literal|0
+operator|&&
+name|transientNames
+operator|.
+name|size
+argument_list|()
+operator|==
+literal|0
+operator|&&
+name|pendingToClose
+operator|.
+name|size
+argument_list|()
+operator|==
+literal|0
+condition|)
+break|break;
 for|for
 control|(
 name|String
@@ -7657,9 +7689,25 @@ decl_stmt|;
 if|if
 condition|(
 name|core
-operator|!=
+operator|==
 literal|null
 condition|)
+block|{
+name|CoreContainer
+operator|.
+name|log
+operator|.
+name|info
+argument_list|(
+literal|"Core "
+operator|+
+name|coreName
+operator|+
+literal|" moved from core container list before closing."
+argument_list|)
+expr_stmt|;
+block|}
+else|else
 block|{
 try|try
 block|{
@@ -7739,9 +7787,25 @@ decl_stmt|;
 if|if
 condition|(
 name|core
-operator|!=
+operator|==
 literal|null
 condition|)
+block|{
+name|CoreContainer
+operator|.
+name|log
+operator|.
+name|info
+argument_list|(
+literal|"Core "
+operator|+
+name|coreName
+operator|+
+literal|" moved from transient core container list before closing."
+argument_list|)
+expr_stmt|;
+block|}
+else|else
 block|{
 try|try
 block|{
@@ -7840,6 +7904,7 @@ argument_list|(
 name|core
 argument_list|)
 expr_stmt|;
+block|}
 block|}
 block|}
 block|}
