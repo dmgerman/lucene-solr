@@ -413,18 +413,6 @@ name|info
 operator|.
 name|attributes
 decl_stmt|;
-name|BreakIterator
-name|breakIterator
-init|=
-name|BreakIterator
-operator|.
-name|getSentenceInstance
-argument_list|(
-name|Locale
-operator|.
-name|ROOT
-argument_list|)
-decl_stmt|;
 comment|// scorer parameters: k1/b/pivot
 name|String
 name|k1
@@ -679,8 +667,6 @@ operator|new
 name|PostingsHighlighter
 argument_list|(
 name|maxLength
-argument_list|,
-name|breakIterator
 argument_list|)
 block|{
 annotation|@

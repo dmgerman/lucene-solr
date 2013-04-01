@@ -44,6 +44,7 @@ end_comment
 
 begin_class
 DECL|class|WholeBreakIterator
+specifier|public
 specifier|final
 class|class
 name|WholeBreakIterator
