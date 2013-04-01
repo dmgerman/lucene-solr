@@ -24,16 +24,6 @@ name|java
 operator|.
 name|io
 operator|.
-name|IOException
-import|;
-end_import
-
-begin_import
-import|import
-name|java
-operator|.
-name|io
-operator|.
 name|Reader
 import|;
 end_import
@@ -58,7 +48,7 @@ name|lucene
 operator|.
 name|analysis
 operator|.
-name|BaseTokenStreamTestCase
+name|Tokenizer
 import|;
 end_import
 
@@ -72,7 +62,9 @@ name|lucene
 operator|.
 name|analysis
 operator|.
-name|Tokenizer
+name|util
+operator|.
+name|BaseTokenStreamFactoryTestCase
 import|;
 end_import
 
@@ -102,7 +94,7 @@ specifier|public
 class|class
 name|TestWikipediaTokenizerFactory
 extends|extends
-name|BaseTokenStreamTestCase
+name|BaseTokenStreamFactoryTestCase
 block|{
 DECL|method|testTokenizer
 specifier|public
@@ -110,7 +102,7 @@ name|void
 name|testTokenizer
 parameter_list|()
 throws|throws
-name|IOException
+name|Exception
 block|{
 name|Reader
 name|reader
@@ -121,17 +113,13 @@ argument_list|(
 literal|"This is a [[Category:foo]]"
 argument_list|)
 decl_stmt|;
-name|WikipediaTokenizerFactory
-name|factory
-init|=
-operator|new
-name|WikipediaTokenizerFactory
-argument_list|()
-decl_stmt|;
 name|Tokenizer
 name|tokenizer
 init|=
-name|factory
+name|tokenizerFactory
+argument_list|(
+literal|"Wikipedia"
+argument_list|)
 operator|.
 name|create
 argument_list|(
@@ -210,6 +198,51 @@ literal|1
 block|, }
 argument_list|)
 expr_stmt|;
+block|}
+comment|/** Test that bogus arguments result in exception */
+DECL|method|testBogusArguments
+specifier|public
+name|void
+name|testBogusArguments
+parameter_list|()
+throws|throws
+name|Exception
+block|{
+try|try
+block|{
+name|tokenizerFactory
+argument_list|(
+literal|"Wikipedia"
+argument_list|,
+literal|"bogusArg"
+argument_list|,
+literal|"bogusValue"
+argument_list|)
+expr_stmt|;
+name|fail
+argument_list|()
+expr_stmt|;
+block|}
+catch|catch
+parameter_list|(
+name|IllegalArgumentException
+name|expected
+parameter_list|)
+block|{
+name|assertTrue
+argument_list|(
+name|expected
+operator|.
+name|getMessage
+argument_list|()
+operator|.
+name|contains
+argument_list|(
+literal|"Unknown parameters"
+argument_list|)
+argument_list|)
+expr_stmt|;
+block|}
 block|}
 block|}
 end_class

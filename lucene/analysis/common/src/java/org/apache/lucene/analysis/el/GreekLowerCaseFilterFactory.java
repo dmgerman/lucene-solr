@@ -107,7 +107,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**   * Factory for {@link GreekLowerCaseFilter}.   *<pre class="prettyprint">  *&lt;fieldType name="text_glc" class="solr.TextField" positionIncrementGap="100"&gt;  *&lt;analyzer&gt;  *&lt;tokenizer class="solr.StandardTokenizerFactory"/&gt;  *&lt;filter class="solr.GreekLowerCaseFilterFactory"/&gt;  *&lt;/analyzer&gt;  *&lt;/fieldType&gt;</pre>   *  */
+comment|/**   * Factory for {@link GreekLowerCaseFilter}.   *<pre class="prettyprint">  *&lt;fieldType name="text_glc" class="solr.TextField" positionIncrementGap="100"&gt;  *&lt;analyzer&gt;  *&lt;tokenizer class="solr.StandardTokenizerFactory"/&gt;  *&lt;filter class="solr.GreekLowerCaseFilterFactory"/&gt;  *&lt;/analyzer&gt;  *&lt;/fieldType&gt;</pre>  */
 end_comment
 
 begin_class
@@ -120,12 +120,10 @@ name|TokenFilterFactory
 implements|implements
 name|MultiTermAwareComponent
 block|{
-annotation|@
-name|Override
-DECL|method|init
+comment|/** Creates a new GreekLowerCaseFilterFactory */
+DECL|method|GreekLowerCaseFilterFactory
 specifier|public
-name|void
-name|init
+name|GreekLowerCaseFilterFactory
 parameter_list|(
 name|Map
 argument_list|<
@@ -137,8 +135,6 @@ name|args
 parameter_list|)
 block|{
 name|super
-operator|.
-name|init
 argument_list|(
 name|args
 argument_list|)
@@ -148,22 +144,23 @@ argument_list|()
 expr_stmt|;
 if|if
 condition|(
+operator|!
 name|args
 operator|.
-name|containsKey
-argument_list|(
-literal|"charset"
-argument_list|)
+name|isEmpty
+argument_list|()
 condition|)
+block|{
 throw|throw
 operator|new
 name|IllegalArgumentException
 argument_list|(
-literal|"The charset parameter is no longer supported.  "
+literal|"Unknown parameters: "
 operator|+
-literal|"Please process your documents as Unicode instead."
+name|args
 argument_list|)
 throw|;
+block|}
 block|}
 annotation|@
 name|Override

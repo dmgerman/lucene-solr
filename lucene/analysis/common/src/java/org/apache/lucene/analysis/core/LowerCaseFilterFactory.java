@@ -107,7 +107,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Factory for {@link LowerCaseFilter}.   *<pre class="prettyprint">  *&lt;fieldType name="text_lwrcase" class="solr.TextField" positionIncrementGap="100"&gt;  *&lt;analyzer&gt;  *&lt;tokenizer class="solr.WhitespaceTokenizerFactory"/&gt;  *&lt;filter class="solr.LowerCaseFilterFactory"/&gt;  *&lt;/analyzer&gt;  *&lt;/fieldType&gt;</pre>   *  */
+comment|/**  * Factory for {@link LowerCaseFilter}.   *<pre class="prettyprint">  *&lt;fieldType name="text_lwrcase" class="solr.TextField" positionIncrementGap="100"&gt;  *&lt;analyzer&gt;  *&lt;tokenizer class="solr.WhitespaceTokenizerFactory"/&gt;  *&lt;filter class="solr.LowerCaseFilterFactory"/&gt;  *&lt;/analyzer&gt;  *&lt;/fieldType&gt;</pre>  */
 end_comment
 
 begin_class
@@ -120,12 +120,10 @@ name|TokenFilterFactory
 implements|implements
 name|MultiTermAwareComponent
 block|{
-annotation|@
-name|Override
-DECL|method|init
+comment|/** Creates a new LowerCaseFilterFactory */
+DECL|method|LowerCaseFilterFactory
 specifier|public
-name|void
-name|init
+name|LowerCaseFilterFactory
 parameter_list|(
 name|Map
 argument_list|<
@@ -137,8 +135,6 @@ name|args
 parameter_list|)
 block|{
 name|super
-operator|.
-name|init
 argument_list|(
 name|args
 argument_list|)
@@ -146,6 +142,25 @@ expr_stmt|;
 name|assureMatchVersion
 argument_list|()
 expr_stmt|;
+if|if
+condition|(
+operator|!
+name|args
+operator|.
+name|isEmpty
+argument_list|()
+condition|)
+block|{
+throw|throw
+operator|new
+name|IllegalArgumentException
+argument_list|(
+literal|"Unknown parameters: "
+operator|+
+name|args
+argument_list|)
+throw|;
+block|}
 block|}
 annotation|@
 name|Override

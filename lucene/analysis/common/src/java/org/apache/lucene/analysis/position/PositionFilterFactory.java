@@ -75,7 +75,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Factory for {@link PositionFilter}.  * Set the positionIncrement of all tokens to the "positionIncrement", except the first return token which retains its  * original positionIncrement value. The default positionIncrement value is zero.  *<pre class="prettyprint">  *&lt;fieldType name="text_position" class="solr.TextField" positionIncrementGap="100"&gt;  *&lt;analyzer&gt;  *&lt;tokenizer class="solr.WhitespaceTokenizerFactory"/&gt;  *&lt;filter class="solr.PositionFilterFactory" positionIncrement="0"/&gt;  *&lt;/analyzer&gt;  *&lt;/fieldType&gt;</pre>  *  *  * @see org.apache.lucene.analysis.position.PositionFilter  * @since solr 1.4  */
+comment|/**  * Factory for {@link PositionFilter}.  * Set the positionIncrement of all tokens to the "positionIncrement", except the first return token which retains its  * original positionIncrement value. The default positionIncrement value is zero.  *<pre class="prettyprint">  *&lt;fieldType name="text_position" class="solr.TextField" positionIncrementGap="100"&gt;  *&lt;analyzer&gt;  *&lt;tokenizer class="solr.WhitespaceTokenizerFactory"/&gt;  *&lt;filter class="solr.PositionFilterFactory" positionIncrement="0"/&gt;  *&lt;/analyzer&gt;  *&lt;/fieldType&gt;</pre>  *  * @see org.apache.lucene.analysis.position.PositionFilter  * @since solr 1.4  */
 end_comment
 
 begin_class
@@ -88,15 +88,14 @@ name|TokenFilterFactory
 block|{
 DECL|field|positionIncrement
 specifier|private
+specifier|final
 name|int
 name|positionIncrement
 decl_stmt|;
-annotation|@
-name|Override
-DECL|method|init
+comment|/** Creates a new PositionFilterFactory */
+DECL|method|PositionFilterFactory
 specifier|public
-name|void
-name|init
+name|PositionFilterFactory
 parameter_list|(
 name|Map
 argument_list|<
@@ -108,8 +107,6 @@ name|args
 parameter_list|)
 block|{
 name|super
-operator|.
-name|init
 argument_list|(
 name|args
 argument_list|)
@@ -118,11 +115,32 @@ name|positionIncrement
 operator|=
 name|getInt
 argument_list|(
+name|args
+argument_list|,
 literal|"positionIncrement"
 argument_list|,
 literal|0
 argument_list|)
 expr_stmt|;
+if|if
+condition|(
+operator|!
+name|args
+operator|.
+name|isEmpty
+argument_list|()
+condition|)
+block|{
+throw|throw
+operator|new
+name|IllegalArgumentException
+argument_list|(
+literal|"Unknown parameters: "
+operator|+
+name|args
+argument_list|)
+throw|;
+block|}
 block|}
 annotation|@
 name|Override

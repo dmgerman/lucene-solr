@@ -24,16 +24,6 @@ name|java
 operator|.
 name|io
 operator|.
-name|IOException
-import|;
-end_import
-
-begin_import
-import|import
-name|java
-operator|.
-name|io
-operator|.
 name|Reader
 import|;
 end_import
@@ -93,7 +83,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Factory for {@link PatternTokenizer}.  * This tokenizer uses regex pattern matching to construct distinct tokens  * for the input stream.  It takes two arguments:  "pattern" and "group".  *<p/>  *<ul>  *<li>"pattern" is the regular expression.</li>  *<li>"group" says which group to extract into tokens.</li>  *</ul>  *<p>  * group=-1 (the default) is equivalent to "split".  In this case, the tokens will  * be equivalent to the output from (without empty tokens):  * {@link String#split(java.lang.String)}  *</p>  *<p>  * Using group>= 0 selects the matching group as the token.  For example, if you have:<br/>  *<pre>  *  pattern = \'([^\']+)\'  *  group = 0  *  input = aaa 'bbb' 'ccc'  *</pre>  * the output will be two tokens: 'bbb' and 'ccc' (including the ' marks).  With the same input  * but using group=1, the output would be: bbb and ccc (no ' marks)  *</p>  *<p>NOTE: This Tokenizer does not output tokens that are of zero length.</p>  *  *<pre class="prettyprint">  *&lt;fieldType name="text_ptn" class="solr.TextField" positionIncrementGap="100"&gt;  *&lt;analyzer&gt;  *&lt;tokenizer class="solr.PatternTokenizerFactory" pattern="\'([^\']+)\'" group="1"/&gt;  *&lt;/analyzer&gt;  *&lt;/fieldType&gt;</pre>   *   * @see PatternTokenizer  * @since solr1.2  *  */
+comment|/**  * Factory for {@link PatternTokenizer}.  * This tokenizer uses regex pattern matching to construct distinct tokens  * for the input stream.  It takes two arguments:  "pattern" and "group".  *<p/>  *<ul>  *<li>"pattern" is the regular expression.</li>  *<li>"group" says which group to extract into tokens.</li>  *</ul>  *<p>  * group=-1 (the default) is equivalent to "split".  In this case, the tokens will  * be equivalent to the output from (without empty tokens):  * {@link String#split(java.lang.String)}  *</p>  *<p>  * Using group>= 0 selects the matching group as the token.  For example, if you have:<br/>  *<pre>  *  pattern = \'([^\']+)\'  *  group = 0  *  input = aaa 'bbb' 'ccc'  *</pre>  * the output will be two tokens: 'bbb' and 'ccc' (including the ' marks).  With the same input  * but using group=1, the output would be: bbb and ccc (no ' marks)  *</p>  *<p>NOTE: This Tokenizer does not output tokens that are of zero length.</p>  *  *<pre class="prettyprint">  *&lt;fieldType name="text_ptn" class="solr.TextField" positionIncrementGap="100"&gt;  *&lt;analyzer&gt;  *&lt;tokenizer class="solr.PatternTokenizerFactory" pattern="\'([^\']+)\'" group="1"/&gt;  *&lt;/analyzer&gt;  *&lt;/fieldType&gt;</pre>   *   * @see PatternTokenizer  * @since solr1.2  */
 end_comment
 
 begin_class
@@ -124,21 +114,20 @@ literal|"group"
 decl_stmt|;
 DECL|field|pattern
 specifier|protected
+specifier|final
 name|Pattern
 name|pattern
 decl_stmt|;
 DECL|field|group
 specifier|protected
+specifier|final
 name|int
 name|group
 decl_stmt|;
-comment|/**    * Require a configured pattern    */
-annotation|@
-name|Override
-DECL|method|init
+comment|/** Creates a new PatternTokenizerFactory */
+DECL|method|PatternTokenizerFactory
 specifier|public
-name|void
-name|init
+name|PatternTokenizerFactory
 parameter_list|(
 name|Map
 argument_list|<
@@ -150,8 +139,6 @@ name|args
 parameter_list|)
 block|{
 name|super
-operator|.
-name|init
 argument_list|(
 name|args
 argument_list|)
@@ -160,31 +147,36 @@ name|pattern
 operator|=
 name|getPattern
 argument_list|(
+name|args
+argument_list|,
 name|PATTERN
 argument_list|)
 expr_stmt|;
-name|group
-operator|=
-operator|-
-literal|1
-expr_stmt|;
-comment|// use 'split'
 name|String
-name|g
+name|v
 init|=
 name|args
 operator|.
-name|get
+name|remove
 argument_list|(
 name|GROUP
 argument_list|)
 decl_stmt|;
 if|if
 condition|(
-name|g
-operator|!=
+name|v
+operator|==
 literal|null
 condition|)
+block|{
+name|group
+operator|=
+operator|-
+literal|1
+expr_stmt|;
+comment|// use 'split'
+block|}
+else|else
 block|{
 name|group
 operator|=
@@ -192,9 +184,28 @@ name|Integer
 operator|.
 name|parseInt
 argument_list|(
-name|g
+name|v
 argument_list|)
 expr_stmt|;
+block|}
+if|if
+condition|(
+operator|!
+name|args
+operator|.
+name|isEmpty
+argument_list|()
+condition|)
+block|{
+throw|throw
+operator|new
+name|IllegalArgumentException
+argument_list|(
+literal|"Unknown parameters: "
+operator|+
+name|args
+argument_list|)
+throw|;
 block|}
 block|}
 comment|/**    * Split the input using configured pattern    */

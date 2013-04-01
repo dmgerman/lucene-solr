@@ -168,22 +168,14 @@ name|MultiTermAwareComponent
 block|{
 DECL|field|normalizer
 specifier|private
+specifier|final
 name|Normalizer2
 name|normalizer
 decl_stmt|;
-comment|/** Sole constructor. See {@link AbstractAnalysisFactory} for initialization lifecycle. */
+comment|/** Creates a new ICUNormalizer2FilterFactory */
 DECL|method|ICUNormalizer2FilterFactory
 specifier|public
 name|ICUNormalizer2FilterFactory
-parameter_list|()
-block|{}
-comment|// TODO: support custom normalization
-annotation|@
-name|Override
-DECL|method|init
-specifier|public
-name|void
-name|init
 parameter_list|(
 name|Map
 argument_list|<
@@ -195,8 +187,6 @@ name|args
 parameter_list|)
 block|{
 name|super
-operator|.
-name|init
 argument_list|(
 name|args
 argument_list|)
@@ -206,7 +196,7 @@ name|name
 init|=
 name|args
 operator|.
-name|get
+name|remove
 argument_list|(
 literal|"name"
 argument_list|)
@@ -226,7 +216,7 @@ name|mode
 init|=
 name|args
 operator|.
-name|get
+name|remove
 argument_list|(
 literal|"mode"
 argument_list|)
@@ -241,6 +231,9 @@ name|mode
 operator|=
 literal|"compose"
 expr_stmt|;
+name|Normalizer2
+name|normalizer
+decl_stmt|;
 if|if
 condition|(
 name|mode
@@ -309,7 +302,7 @@ name|filter
 init|=
 name|args
 operator|.
-name|get
+name|remove
 argument_list|(
 literal|"filter"
 argument_list|)
@@ -356,7 +349,33 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
+if|if
+condition|(
+operator|!
+name|args
+operator|.
+name|isEmpty
+argument_list|()
+condition|)
+block|{
+throw|throw
+operator|new
+name|IllegalArgumentException
+argument_list|(
+literal|"Unknown parameters: "
+operator|+
+name|args
+argument_list|)
+throw|;
 block|}
+name|this
+operator|.
+name|normalizer
+operator|=
+name|normalizer
+expr_stmt|;
+block|}
+comment|// TODO: support custom normalization
 annotation|@
 name|Override
 DECL|method|create

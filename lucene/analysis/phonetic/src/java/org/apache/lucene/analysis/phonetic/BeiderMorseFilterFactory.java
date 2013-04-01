@@ -164,32 +164,12 @@ name|analysis
 operator|.
 name|util
 operator|.
-name|AbstractAnalysisFactory
-import|;
-end_import
-
-begin_comment
-comment|// javadocs
-end_comment
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|analysis
-operator|.
-name|util
-operator|.
 name|TokenFilterFactory
 import|;
 end_import
 
 begin_comment
-comment|/**   * Factory for {@link BeiderMorseFilter}.  *<pre class="prettyprint">  *&lt;fieldType name="text_bm" class="solr.TextField" positionIncrementGap="100"&gt;  *&lt;analyzer&gt;  *&lt;tokenizer class="solr.StandardTokenizerFactory"/&gt;  *&lt;filter class="solr.BeiderMorseFilterFactory"  *        nameType="GENERIC" ruleType="APPROX"   *        concat="true" languageSet="auto"  *&lt;/filter&gt;  *&lt;/analyzer&gt;  *&lt;/fieldType&gt;</pre>  *  */
+comment|/**   * Factory for {@link BeiderMorseFilter}.  *<pre class="prettyprint">  *&lt;fieldType name="text_bm" class="solr.TextField" positionIncrementGap="100"&gt;  *&lt;analyzer&gt;  *&lt;tokenizer class="solr.StandardTokenizerFactory"/&gt;  *&lt;filter class="solr.BeiderMorseFilterFactory"  *        nameType="GENERIC" ruleType="APPROX"   *        concat="true" languageSet="auto"  *&lt;/filter&gt;  *&lt;/analyzer&gt;  *&lt;/fieldType&gt;</pre>  */
 end_comment
 
 begin_class
@@ -202,26 +182,20 @@ name|TokenFilterFactory
 block|{
 DECL|field|engine
 specifier|private
+specifier|final
 name|PhoneticEngine
 name|engine
 decl_stmt|;
 DECL|field|languageSet
 specifier|private
+specifier|final
 name|LanguageSet
 name|languageSet
 decl_stmt|;
-comment|/** Sole constructor. See {@link AbstractAnalysisFactory} for initialization lifecycle. */
+comment|/** Creates a new BeiderMorseFilterFactory */
 DECL|method|BeiderMorseFilterFactory
 specifier|public
 name|BeiderMorseFilterFactory
-parameter_list|()
-block|{}
-annotation|@
-name|Override
-DECL|method|init
-specifier|public
-name|void
-name|init
 parameter_list|(
 name|Map
 argument_list|<
@@ -233,8 +207,6 @@ name|args
 parameter_list|)
 block|{
 name|super
-operator|.
-name|init
 argument_list|(
 name|args
 argument_list|)
@@ -246,7 +218,7 @@ name|nameTypeArg
 init|=
 name|args
 operator|.
-name|get
+name|remove
 argument_list|(
 literal|"nameType"
 argument_list|)
@@ -276,7 +248,7 @@ name|ruleTypeArg
 init|=
 name|args
 operator|.
-name|get
+name|remove
 argument_list|(
 literal|"ruleType"
 argument_list|)
@@ -306,6 +278,8 @@ name|concat
 init|=
 name|getBoolean
 argument_list|(
+name|args
+argument_list|,
 literal|"concat"
 argument_list|,
 literal|true
@@ -329,7 +303,7 @@ name|languageSetArg
 init|=
 name|args
 operator|.
-name|get
+name|remove
 argument_list|(
 literal|"languageSet"
 argument_list|)
@@ -381,6 +355,25 @@ argument_list|)
 argument_list|)
 argument_list|)
 expr_stmt|;
+block|}
+if|if
+condition|(
+operator|!
+name|args
+operator|.
+name|isEmpty
+argument_list|()
+condition|)
+block|{
+throw|throw
+operator|new
+name|IllegalArgumentException
+argument_list|(
+literal|"Unknown parameters: "
+operator|+
+name|args
+argument_list|)
+throw|;
 block|}
 block|}
 annotation|@

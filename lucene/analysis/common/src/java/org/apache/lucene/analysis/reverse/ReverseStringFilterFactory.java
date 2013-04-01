@@ -20,6 +20,16 @@ end_comment
 
 begin_import
 import|import
+name|java
+operator|.
+name|util
+operator|.
+name|Map
+import|;
+end_import
+
+begin_import
+import|import
 name|org
 operator|.
 name|apache
@@ -65,7 +75,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Factory for {@link ReverseStringFilter}.  *<pre class="prettyprint">  *&lt;fieldType name="text_rvsstr" class="solr.TextField" positionIncrementGap="100"&gt;  *&lt;analyzer&gt;  *&lt;tokenizer class="solr.WhitespaceTokenizerFactory"/&gt;  *&lt;filter class="solr.ReverseStringFilterFactory"/&gt;  *&lt;/analyzer&gt;  *&lt;/fieldType&gt;</pre>  *  *  * @since solr 1.4  */
+comment|/**  * Factory for {@link ReverseStringFilter}.  *<pre class="prettyprint">  *&lt;fieldType name="text_rvsstr" class="solr.TextField" positionIncrementGap="100"&gt;  *&lt;analyzer&gt;  *&lt;tokenizer class="solr.WhitespaceTokenizerFactory"/&gt;  *&lt;filter class="solr.ReverseStringFilterFactory"/&gt;  *&lt;/analyzer&gt;  *&lt;/fieldType&gt;</pre>  *  * @since solr 1.4  */
 end_comment
 
 begin_class
@@ -76,6 +86,48 @@ name|ReverseStringFilterFactory
 extends|extends
 name|TokenFilterFactory
 block|{
+comment|/** Creates a new ReverseStringFilterFactory */
+DECL|method|ReverseStringFilterFactory
+specifier|public
+name|ReverseStringFilterFactory
+parameter_list|(
+name|Map
+argument_list|<
+name|String
+argument_list|,
+name|String
+argument_list|>
+name|args
+parameter_list|)
+block|{
+name|super
+argument_list|(
+name|args
+argument_list|)
+expr_stmt|;
+name|assureMatchVersion
+argument_list|()
+expr_stmt|;
+if|if
+condition|(
+operator|!
+name|args
+operator|.
+name|isEmpty
+argument_list|()
+condition|)
+block|{
+throw|throw
+operator|new
+name|IllegalArgumentException
+argument_list|(
+literal|"Unknown parameters: "
+operator|+
+name|args
+argument_list|)
+throw|;
+block|}
+block|}
 annotation|@
 name|Override
 DECL|method|create
@@ -87,9 +139,6 @@ name|TokenStream
 name|in
 parameter_list|)
 block|{
-name|assureMatchVersion
-argument_list|()
-expr_stmt|;
 return|return
 operator|new
 name|ReverseStringFilter

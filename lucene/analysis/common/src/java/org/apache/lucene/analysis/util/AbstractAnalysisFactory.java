@@ -201,7 +201,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Abstract parent class for analysis factories {@link TokenizerFactory},  * {@link TokenFilterFactory} and {@link CharFilterFactory}.  *<p>  * The typical lifecycle for a factory consumer is:  *<ol>  *<li>Create factory via its a no-arg constructor  *<li>Set version emulation by calling {@link #setLuceneMatchVersion(Version)}  *<li>Calls {@link #init(Map)} passing arguments as key-value mappings.  *<li>(Optional) If the factory uses resources such as files, {@link ResourceLoaderAware#inform(ResourceLoader)} is called to initialize those resources.  *<li>Consumer calls create() to obtain instances.  *</ol>  */
+comment|/**  * Abstract parent class for analysis factories {@link TokenizerFactory},  * {@link TokenFilterFactory} and {@link CharFilterFactory}.  *<p>  * The typical lifecycle for a factory consumer is:  *<ol>  *<li>Create factory via its constructor (or via XXXFactory.forName)  *<li>(Optional) If the factory uses resources such as files, {@link ResourceLoaderAware#inform(ResourceLoader)} is called to initialize those resources.  *<li>Consumer calls create() to obtain instances.  *</ol>  */
 end_comment
 
 begin_class
@@ -211,9 +211,10 @@ specifier|abstract
 class|class
 name|AbstractAnalysisFactory
 block|{
-comment|/** The original args, before init() processes them */
+comment|/** The original args, before any processing */
 DECL|field|originalArgs
 specifier|private
+specifier|final
 name|Map
 argument_list|<
 name|String
@@ -222,30 +223,17 @@ name|String
 argument_list|>
 name|originalArgs
 decl_stmt|;
-comment|/** The init args */
-DECL|field|args
-specifier|protected
-name|Map
-argument_list|<
-name|String
-argument_list|,
-name|String
-argument_list|>
-name|args
-decl_stmt|;
 comment|/** the luceneVersion arg */
 DECL|field|luceneMatchVersion
 specifier|protected
+specifier|final
 name|Version
 name|luceneMatchVersion
-init|=
-literal|null
 decl_stmt|;
 comment|/**    * Initialize this factory via a set of key-value pairs.    */
-DECL|method|init
-specifier|public
-name|void
-name|init
+DECL|method|AbstractAnalysisFactory
+specifier|protected
+name|AbstractAnalysisFactory
 parameter_list|(
 name|Map
 argument_list|<
@@ -262,13 +250,6 @@ name|Collections
 operator|.
 name|unmodifiableMap
 argument_list|(
-name|args
-argument_list|)
-expr_stmt|;
-name|this
-operator|.
-name|args
-operator|=
 operator|new
 name|HashMap
 argument_list|<
@@ -279,25 +260,37 @@ argument_list|>
 argument_list|(
 name|args
 argument_list|)
+argument_list|)
 expr_stmt|;
-block|}
-DECL|method|getArgs
-specifier|public
-name|Map
-argument_list|<
 name|String
-argument_list|,
-name|String
-argument_list|>
-name|getArgs
-parameter_list|()
-block|{
-return|return
+name|version
+init|=
 name|args
-return|;
+operator|.
+name|remove
+argument_list|(
+literal|"luceneMatchVersion"
+argument_list|)
+decl_stmt|;
+name|luceneMatchVersion
+operator|=
+name|version
+operator|==
+literal|null
+condition|?
+literal|null
+else|:
+name|Version
+operator|.
+name|parseLeniently
+argument_list|(
+name|version
+argument_list|)
+expr_stmt|;
 block|}
 DECL|method|getOriginalArgs
 specifier|public
+specifier|final
 name|Map
 argument_list|<
 name|String
@@ -345,24 +338,9 @@ argument_list|)
 throw|;
 block|}
 block|}
-DECL|method|setLuceneMatchVersion
-specifier|public
-name|void
-name|setLuceneMatchVersion
-parameter_list|(
-name|Version
-name|luceneMatchVersion
-parameter_list|)
-block|{
-name|this
-operator|.
-name|luceneMatchVersion
-operator|=
-name|luceneMatchVersion
-expr_stmt|;
-block|}
 DECL|method|getLuceneMatchVersion
 specifier|public
+specifier|final
 name|Version
 name|getLuceneMatchVersion
 parameter_list|()
@@ -375,9 +353,18 @@ return|;
 block|}
 DECL|method|getInt
 specifier|protected
+specifier|final
 name|int
 name|getInt
 parameter_list|(
+name|Map
+argument_list|<
+name|String
+argument_list|,
+name|String
+argument_list|>
+name|args
+parameter_list|,
 name|String
 name|name
 parameter_list|)
@@ -385,6 +372,8 @@ block|{
 return|return
 name|getInt
 argument_list|(
+name|args
+argument_list|,
 name|name
 argument_list|,
 operator|-
@@ -396,9 +385,18 @@ return|;
 block|}
 DECL|method|getInt
 specifier|protected
+specifier|final
 name|int
 name|getInt
 parameter_list|(
+name|Map
+argument_list|<
+name|String
+argument_list|,
+name|String
+argument_list|>
+name|args
+parameter_list|,
 name|String
 name|name
 parameter_list|,
@@ -409,6 +407,8 @@ block|{
 return|return
 name|getInt
 argument_list|(
+name|args
+argument_list|,
 name|name
 argument_list|,
 name|defaultVal
@@ -419,9 +419,18 @@ return|;
 block|}
 DECL|method|getInt
 specifier|protected
+specifier|final
 name|int
 name|getInt
 parameter_list|(
+name|Map
+argument_list|<
+name|String
+argument_list|,
+name|String
+argument_list|>
+name|args
+parameter_list|,
 name|String
 name|name
 parameter_list|,
@@ -437,7 +446,7 @@ name|s
 init|=
 name|args
 operator|.
-name|get
+name|remove
 argument_list|(
 name|name
 argument_list|)
@@ -481,9 +490,18 @@ return|;
 block|}
 DECL|method|getBoolean
 specifier|protected
+specifier|final
 name|boolean
 name|getBoolean
 parameter_list|(
+name|Map
+argument_list|<
+name|String
+argument_list|,
+name|String
+argument_list|>
+name|args
+parameter_list|,
 name|String
 name|name
 parameter_list|,
@@ -494,6 +512,8 @@ block|{
 return|return
 name|getBoolean
 argument_list|(
+name|args
+argument_list|,
 name|name
 argument_list|,
 name|defaultVal
@@ -504,9 +524,18 @@ return|;
 block|}
 DECL|method|getBoolean
 specifier|protected
+specifier|final
 name|boolean
 name|getBoolean
 parameter_list|(
+name|Map
+argument_list|<
+name|String
+argument_list|,
+name|String
+argument_list|>
+name|args
+parameter_list|,
 name|String
 name|name
 parameter_list|,
@@ -522,7 +551,7 @@ name|s
 init|=
 name|args
 operator|.
-name|get
+name|remove
 argument_list|(
 name|name
 argument_list|)
@@ -565,9 +594,18 @@ block|}
 comment|/**    * Compiles a pattern for the value of the specified argument key<code>name</code>     */
 DECL|method|getPattern
 specifier|protected
+specifier|final
 name|Pattern
 name|getPattern
 parameter_list|(
+name|Map
+argument_list|<
+name|String
+argument_list|,
+name|String
+argument_list|>
+name|args
+parameter_list|,
 name|String
 name|name
 parameter_list|)
@@ -579,7 +617,7 @@ name|pat
 init|=
 name|args
 operator|.
-name|get
+name|remove
 argument_list|(
 name|name
 argument_list|)
@@ -608,12 +646,7 @@ name|Pattern
 operator|.
 name|compile
 argument_list|(
-name|args
-operator|.
-name|get
-argument_list|(
-name|name
-argument_list|)
+name|pat
 argument_list|)
 return|;
 block|}
@@ -649,6 +682,7 @@ block|}
 comment|/**    * Returns as {@link CharArraySet} from wordFiles, which    * can be a comma-separated list of filenames    */
 DECL|method|getWordSet
 specifier|protected
+specifier|final
 name|CharArraySet
 name|getWordSet
 parameter_list|(
@@ -761,6 +795,7 @@ block|}
 comment|/**    * Returns the resource's lines (with content treated as UTF-8)    */
 DECL|method|getLines
 specifier|protected
+specifier|final
 name|List
 argument_list|<
 name|String
@@ -797,6 +832,7 @@ block|}
 comment|/** same as {@link #getWordSet(ResourceLoader, String, boolean)},    * except the input is in snowball format. */
 DECL|method|getSnowballWordSet
 specifier|protected
+specifier|final
 name|CharArraySet
 name|getSnowballWordSet
 parameter_list|(
@@ -957,6 +993,7 @@ block|}
 comment|/**    * Splits file names separated by comma character.    * File names can contain comma characters escaped by backslash '\'    *    * @param fileNames the string containing file names    * @return a list of file names with the escaping backslashed removed    */
 DECL|method|splitFileNames
 specifier|protected
+specifier|final
 name|List
 argument_list|<
 name|String

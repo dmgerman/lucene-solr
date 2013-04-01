@@ -102,26 +102,6 @@ name|analysis
 operator|.
 name|util
 operator|.
-name|AbstractAnalysisFactory
-import|;
-end_import
-
-begin_comment
-comment|// javadocs
-end_comment
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|analysis
-operator|.
-name|util
-operator|.
 name|ResourceLoader
 import|;
 end_import
@@ -259,7 +239,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Factory for {@link ICUTokenizer}.  * Words are broken across script boundaries, then segmented according to  * the BreakIterator and typing provided by the {@link DefaultICUTokenizerConfig}.  *  *<p/>  *  * To use the default set of per-script rules:  *  *<pre class="prettyprint">  *&lt;fieldType name="text_icu" class="solr.TextField" positionIncrementGap="100"&gt;  *&lt;analyzer&gt;  *&lt;tokenizer class="solr.ICUTokenizerFactory"/&gt;  *&lt;/analyzer&gt;  *&lt;/fieldType&gt;</pre>  *  *<p/>  *  * You can customize this tokenizer's behavior by specifying per-script rule files,  * which are compiled by the ICU RuleBasedBreakIterator.  See the  *<a href="http://userguide.icu-project.org/boundaryanalysis#TOC-RBBI-Rules"  *>ICU RuleBasedBreakIterator syntax reference</a>.  *  * To add per-script rules, add a "rulefiles" argument, which should contain a  * comma-separated list of<tt>code:rulefile</tt> pairs in the following format:  *<a href="http://unicode.org/iso15924/iso15924-codes.html"  *>four-letter ISO 15924 script code</a>, followed by a colon, then a resource  * path.  E.g. to specify rules for Latin (script code "Latn") and Cyrillic  * (script code "Cyrl"):  *  *<pre class="prettyprint">  *&lt;fieldType name="text_icu_custom" class="solr.TextField" positionIncrementGap="100"&gt;  *&lt;analyzer&gt;  *&lt;tokenizer class="solr.ICUTokenizerFactory"  *                rulefiles="Latn:my.Latin.rules.rbbi,Cyrl:my.Cyrillic.rules.rbbi"/&gt;  *&lt;/analyzer&gt;  *&lt;/fieldType&gt;</pre>  *  */
+comment|/**  * Factory for {@link ICUTokenizer}.  * Words are broken across script boundaries, then segmented according to  * the BreakIterator and typing provided by the {@link DefaultICUTokenizerConfig}.  *  *<p/>  *  * To use the default set of per-script rules:  *  *<pre class="prettyprint">  *&lt;fieldType name="text_icu" class="solr.TextField" positionIncrementGap="100"&gt;  *&lt;analyzer&gt;  *&lt;tokenizer class="solr.ICUTokenizerFactory"/&gt;  *&lt;/analyzer&gt;  *&lt;/fieldType&gt;</pre>  *  *<p/>  *  * You can customize this tokenizer's behavior by specifying per-script rule files,  * which are compiled by the ICU RuleBasedBreakIterator.  See the  *<a href="http://userguide.icu-project.org/boundaryanalysis#TOC-RBBI-Rules"  *>ICU RuleBasedBreakIterator syntax reference</a>.  *  * To add per-script rules, add a "rulefiles" argument, which should contain a  * comma-separated list of<tt>code:rulefile</tt> pairs in the following format:  *<a href="http://unicode.org/iso15924/iso15924-codes.html"  *>four-letter ISO 15924 script code</a>, followed by a colon, then a resource  * path.  E.g. to specify rules for Latin (script code "Latn") and Cyrillic  * (script code "Cyrl"):  *  *<pre class="prettyprint">  *&lt;fieldType name="text_icu_custom" class="solr.TextField" positionIncrementGap="100"&gt;  *&lt;analyzer&gt;  *&lt;tokenizer class="solr.ICUTokenizerFactory"  *                rulefiles="Latn:my.Latin.rules.rbbi,Cyrl:my.Cyrillic.rules.rbbi"/&gt;  *&lt;/analyzer&gt;  *&lt;/fieldType&gt;</pre>  */
 end_comment
 
 begin_class
@@ -282,6 +262,7 @@ literal|"rulefiles"
 decl_stmt|;
 DECL|field|tailored
 specifier|private
+specifier|final
 name|Map
 argument_list|<
 name|Integer
@@ -295,18 +276,10 @@ specifier|private
 name|ICUTokenizerConfig
 name|config
 decl_stmt|;
-comment|/** Sole constructor. See {@link AbstractAnalysisFactory} for initialization lifecycle. */
+comment|/** Creates a new ICUTokenizerFactory */
 DECL|method|ICUTokenizerFactory
 specifier|public
 name|ICUTokenizerFactory
-parameter_list|()
-block|{}
-annotation|@
-name|Override
-DECL|method|init
-specifier|public
-name|void
-name|init
 parameter_list|(
 name|Map
 argument_list|<
@@ -318,8 +291,6 @@ name|args
 parameter_list|)
 block|{
 name|super
-operator|.
-name|init
 argument_list|(
 name|args
 argument_list|)
@@ -340,7 +311,7 @@ name|rulefilesArg
 init|=
 name|args
 operator|.
-name|get
+name|remove
 argument_list|(
 name|RULEFILES
 argument_list|)
@@ -430,6 +401,25 @@ name|resourcePath
 argument_list|)
 expr_stmt|;
 block|}
+block|}
+if|if
+condition|(
+operator|!
+name|args
+operator|.
+name|isEmpty
+argument_list|()
+condition|)
+block|{
+throw|throw
+operator|new
+name|IllegalArgumentException
+argument_list|(
+literal|"Unknown parameters: "
+operator|+
+name|args
+argument_list|)
+throw|;
 block|}
 block|}
 annotation|@

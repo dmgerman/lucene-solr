@@ -75,7 +75,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**   * Factory for {@link NumericPayloadTokenFilter}.  *<pre class="prettyprint">  *&lt;fieldType name="text_numpayload" class="solr.TextField" positionIncrementGap="100"&gt;  *&lt;analyzer&gt;  *&lt;tokenizer class="solr.WhitespaceTokenizerFactory"/&gt;  *&lt;filter class="solr.NumericPayloadTokenFilterFactory" payload="24" typeMatch="word"/&gt;  *&lt;/analyzer&gt;  *&lt;/fieldType&gt;</pre>  *  */
+comment|/**   * Factory for {@link NumericPayloadTokenFilter}.  *<pre class="prettyprint">  *&lt;fieldType name="text_numpayload" class="solr.TextField" positionIncrementGap="100"&gt;  *&lt;analyzer&gt;  *&lt;tokenizer class="solr.WhitespaceTokenizerFactory"/&gt;  *&lt;filter class="solr.NumericPayloadTokenFilterFactory" payload="24" typeMatch="word"/&gt;  *&lt;/analyzer&gt;  *&lt;/fieldType&gt;</pre>  */
 end_comment
 
 begin_class
@@ -88,20 +88,20 @@ name|TokenFilterFactory
 block|{
 DECL|field|payload
 specifier|private
+specifier|final
 name|float
 name|payload
 decl_stmt|;
 DECL|field|typeMatch
 specifier|private
+specifier|final
 name|String
 name|typeMatch
 decl_stmt|;
-annotation|@
-name|Override
-DECL|method|init
+comment|/** Creates a new NumericPayloadTokenFilterFactory */
+DECL|method|NumericPayloadTokenFilterFactory
 specifier|public
-name|void
-name|init
+name|NumericPayloadTokenFilterFactory
 parameter_list|(
 name|Map
 argument_list|<
@@ -113,8 +113,6 @@ name|args
 parameter_list|)
 block|{
 name|super
-operator|.
-name|init
 argument_list|(
 name|args
 argument_list|)
@@ -124,7 +122,7 @@ name|payloadArg
 init|=
 name|args
 operator|.
-name|get
+name|remove
 argument_list|(
 literal|"payload"
 argument_list|)
@@ -133,7 +131,7 @@ name|typeMatch
 operator|=
 name|args
 operator|.
-name|get
+name|remove
 argument_list|(
 literal|"typeMatch"
 argument_list|)
@@ -166,6 +164,25 @@ argument_list|(
 name|payloadArg
 argument_list|)
 expr_stmt|;
+if|if
+condition|(
+operator|!
+name|args
+operator|.
+name|isEmpty
+argument_list|()
+condition|)
+block|{
+throw|throw
+operator|new
+name|IllegalArgumentException
+argument_list|(
+literal|"Unknown parameters: "
+operator|+
+name|args
+argument_list|)
+throw|;
+block|}
 block|}
 annotation|@
 name|Override

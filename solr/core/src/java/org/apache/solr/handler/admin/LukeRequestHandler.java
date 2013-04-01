@@ -3914,7 +3914,7 @@ literal|"args"
 argument_list|,
 name|cfiltfac
 operator|.
-name|getArgs
+name|getOriginalArgs
 argument_list|()
 argument_list|)
 expr_stmt|;
@@ -4004,7 +4004,7 @@ literal|"args"
 argument_list|,
 name|tfac
 operator|.
-name|getArgs
+name|getOriginalArgs
 argument_list|()
 argument_list|)
 expr_stmt|;
@@ -4102,7 +4102,7 @@ literal|"args"
 argument_list|,
 name|filtfac
 operator|.
-name|getArgs
+name|getOriginalArgs
 argument_list|()
 argument_list|)
 expr_stmt|;

@@ -69,7 +69,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**   * Factory for {@link DictionaryCompoundWordTokenFilter}.   *<pre class="prettyprint">  *&lt;fieldType name="text_dictcomp" class="solr.TextField" positionIncrementGap="100"&gt;  *&lt;analyzer&gt;  *&lt;tokenizer class="solr.WhitespaceTokenizerFactory"/&gt;  *&lt;filter class="solr.DictionaryCompoundWordTokenFilterFactory" dictionary="dictionary.txt"  *         minWordSize="5" minSubwordSize="2" maxSubwordSize="15" onlyLongestMatch="true"/&gt;  *&lt;/analyzer&gt;  *&lt;/fieldType&gt;</pre>  *  */
+comment|/**   * Factory for {@link DictionaryCompoundWordTokenFilter}.   *<pre class="prettyprint">  *&lt;fieldType name="text_dictcomp" class="solr.TextField" positionIncrementGap="100"&gt;  *&lt;analyzer&gt;  *&lt;tokenizer class="solr.WhitespaceTokenizerFactory"/&gt;  *&lt;filter class="solr.DictionaryCompoundWordTokenFilterFactory" dictionary="dictionary.txt"  *         minWordSize="5" minSubwordSize="2" maxSubwordSize="15" onlyLongestMatch="true"/&gt;  *&lt;/analyzer&gt;  *&lt;/fieldType&gt;</pre>  */
 end_comment
 
 begin_class
@@ -89,35 +89,38 @@ name|dictionary
 decl_stmt|;
 DECL|field|dictFile
 specifier|private
+specifier|final
 name|String
 name|dictFile
 decl_stmt|;
 DECL|field|minWordSize
 specifier|private
+specifier|final
 name|int
 name|minWordSize
 decl_stmt|;
 DECL|field|minSubwordSize
 specifier|private
+specifier|final
 name|int
 name|minSubwordSize
 decl_stmt|;
 DECL|field|maxSubwordSize
 specifier|private
+specifier|final
 name|int
 name|maxSubwordSize
 decl_stmt|;
 DECL|field|onlyLongestMatch
 specifier|private
+specifier|final
 name|boolean
 name|onlyLongestMatch
 decl_stmt|;
-annotation|@
-name|Override
-DECL|method|init
+comment|/** Creates a new DictionaryCompoundWordTokenFilterFactory */
+DECL|method|DictionaryCompoundWordTokenFilterFactory
 specifier|public
-name|void
-name|init
+name|DictionaryCompoundWordTokenFilterFactory
 parameter_list|(
 name|Map
 argument_list|<
@@ -129,8 +132,6 @@ name|args
 parameter_list|)
 block|{
 name|super
-operator|.
-name|init
 argument_list|(
 name|args
 argument_list|)
@@ -142,7 +143,7 @@ name|dictFile
 operator|=
 name|args
 operator|.
-name|get
+name|remove
 argument_list|(
 literal|"dictionary"
 argument_list|)
@@ -166,6 +167,8 @@ name|minWordSize
 operator|=
 name|getInt
 argument_list|(
+name|args
+argument_list|,
 literal|"minWordSize"
 argument_list|,
 name|CompoundWordTokenFilterBase
@@ -177,6 +180,8 @@ name|minSubwordSize
 operator|=
 name|getInt
 argument_list|(
+name|args
+argument_list|,
 literal|"minSubwordSize"
 argument_list|,
 name|CompoundWordTokenFilterBase
@@ -188,6 +193,8 @@ name|maxSubwordSize
 operator|=
 name|getInt
 argument_list|(
+name|args
+argument_list|,
 literal|"maxSubwordSize"
 argument_list|,
 name|CompoundWordTokenFilterBase
@@ -199,11 +206,32 @@ name|onlyLongestMatch
 operator|=
 name|getBoolean
 argument_list|(
+name|args
+argument_list|,
 literal|"onlyLongestMatch"
 argument_list|,
 literal|true
 argument_list|)
 expr_stmt|;
+if|if
+condition|(
+operator|!
+name|args
+operator|.
+name|isEmpty
+argument_list|()
+condition|)
+block|{
+throw|throw
+operator|new
+name|IllegalArgumentException
+argument_list|(
+literal|"Unknown parameters: "
+operator|+
+name|args
+argument_list|)
+throw|;
+block|}
 block|}
 annotation|@
 name|Override

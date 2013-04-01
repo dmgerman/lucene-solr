@@ -140,22 +140,15 @@ name|MultiTermAwareComponent
 block|{
 DECL|field|transliterator
 specifier|private
+specifier|final
 name|Transliterator
 name|transliterator
 decl_stmt|;
-comment|/** Sole constructor. See {@link AbstractAnalysisFactory} for initialization lifecycle. */
+comment|// TODO: add support for custom rules
+comment|/** Creates a new ICUTransformFilterFactory */
 DECL|method|ICUTransformFilterFactory
 specifier|public
 name|ICUTransformFilterFactory
-parameter_list|()
-block|{}
-comment|// TODO: add support for custom rules
-annotation|@
-name|Override
-DECL|method|init
-specifier|public
-name|void
-name|init
 parameter_list|(
 name|Map
 argument_list|<
@@ -167,8 +160,6 @@ name|args
 parameter_list|)
 block|{
 name|super
-operator|.
-name|init
 argument_list|(
 name|args
 argument_list|)
@@ -178,7 +169,7 @@ name|id
 init|=
 name|args
 operator|.
-name|get
+name|remove
 argument_list|(
 literal|"id"
 argument_list|)
@@ -206,7 +197,7 @@ name|direction
 init|=
 name|args
 operator|.
-name|get
+name|remove
 argument_list|(
 literal|"direction"
 argument_list|)
@@ -267,6 +258,25 @@ argument_list|,
 name|dir
 argument_list|)
 expr_stmt|;
+if|if
+condition|(
+operator|!
+name|args
+operator|.
+name|isEmpty
+argument_list|()
+condition|)
+block|{
+throw|throw
+operator|new
+name|IllegalArgumentException
+argument_list|(
+literal|"Unknown parameters: "
+operator|+
+name|args
+argument_list|)
+throw|;
+block|}
 block|}
 annotation|@
 name|Override

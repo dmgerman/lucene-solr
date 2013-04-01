@@ -60,7 +60,31 @@ parameter_list|)
 throws|throws
 name|IOException
 function_decl|;
-comment|/**    * Creates a class of the name and expected type    */
+comment|/**    * Finds class of the name and expected type    */
+DECL|method|findClass
+specifier|public
+parameter_list|<
+name|T
+parameter_list|>
+name|Class
+argument_list|<
+name|?
+extends|extends
+name|T
+argument_list|>
+name|findClass
+parameter_list|(
+name|String
+name|cname
+parameter_list|,
+name|Class
+argument_list|<
+name|T
+argument_list|>
+name|expectedType
+parameter_list|)
+function_decl|;
+comment|/**    * Creates an instance of the name and expected type    */
 comment|// TODO: fix exception handling
 DECL|method|newInstance
 specifier|public

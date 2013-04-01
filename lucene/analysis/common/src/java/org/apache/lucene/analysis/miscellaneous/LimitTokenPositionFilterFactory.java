@@ -59,7 +59,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Factory for {@link LimitTokenPositionFilter}.   *<pre class="prettyprint">  *&lt;fieldType name="text_limit_pos" class="solr.TextField" positionIncrementGap="100"&gt;  *&lt;analyzer&gt;  *&lt;tokenizer class="solr.WhitespaceTokenizerFactory"/&gt;  *&lt;filter class="solr.LimitTokenPositionFilterFactory" maxTokenPosition="3" consumeAllTokens="false" /&gt;  *&lt;/analyzer&gt;  *&lt;/fieldType&gt;</pre>   *<p>  * The {@code consumeAllTokens} property is optional and defaults to {@code false}.    * See {@link LimitTokenPositionFilter} for an explanation of its use.  */
+comment|/**  * Factory for {@link LimitTokenPositionFilter}.   *<pre class="prettyprint">  *&lt;fieldType name="text_limit_pos" class="solr.TextField" positionIncrementGap="100"&gt;  *&lt;analyzer&gt;  *&lt;tokenizer class="solr.WhitespaceTokenizerFactory"/&gt;  *&lt;filter class="solr.LimitTokenPositionFilterFactory" maxTokenPosition="3" consumeAllTokens="false" /&gt;  *&lt;/analyzer&gt;  *&lt;/fieldType&gt;</pre>  *<p>  * The {@code consumeAllTokens} property is optional and defaults to {@code false}.    * See {@link LimitTokenPositionFilter} for an explanation of its use.  */
 end_comment
 
 begin_class
@@ -89,19 +89,19 @@ init|=
 literal|"consumeAllTokens"
 decl_stmt|;
 DECL|field|maxTokenPosition
+specifier|final
 name|int
 name|maxTokenPosition
 decl_stmt|;
 DECL|field|consumeAllTokens
+specifier|final
 name|boolean
 name|consumeAllTokens
 decl_stmt|;
-annotation|@
-name|Override
-DECL|method|init
+comment|/** Creates a new LimitTokenPositionFilterFactory */
+DECL|method|LimitTokenPositionFilterFactory
 specifier|public
-name|void
-name|init
+name|LimitTokenPositionFilterFactory
 parameter_list|(
 name|Map
 argument_list|<
@@ -113,8 +113,6 @@ name|args
 parameter_list|)
 block|{
 name|super
-operator|.
-name|init
 argument_list|(
 name|args
 argument_list|)
@@ -123,6 +121,8 @@ name|maxTokenPosition
 operator|=
 name|getInt
 argument_list|(
+name|args
+argument_list|,
 name|MAX_TOKEN_POSITION_KEY
 argument_list|)
 expr_stmt|;
@@ -130,11 +130,32 @@ name|consumeAllTokens
 operator|=
 name|getBoolean
 argument_list|(
+name|args
+argument_list|,
 name|CONSUME_ALL_TOKENS_KEY
 argument_list|,
 literal|false
 argument_list|)
 expr_stmt|;
+if|if
+condition|(
+operator|!
+name|args
+operator|.
+name|isEmpty
+argument_list|()
+condition|)
+block|{
+throw|throw
+operator|new
+name|IllegalArgumentException
+argument_list|(
+literal|"Unknown parameters: "
+operator|+
+name|args
+argument_list|)
+throw|;
+block|}
 block|}
 annotation|@
 name|Override

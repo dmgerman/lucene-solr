@@ -404,6 +404,22 @@ literal|"Invalid field property"
 argument_list|)
 expr_stmt|;
 block|}
+DECL|method|testBogusAnalysisParameters
+specifier|public
+name|void
+name|testBogusAnalysisParameters
+parameter_list|()
+throws|throws
+name|Exception
+block|{
+name|doTest
+argument_list|(
+literal|"bad-schema-bogus-analysis-parameters.xml"
+argument_list|,
+literal|"Unknown parameters"
+argument_list|)
+expr_stmt|;
+block|}
 block|}
 end_class
 

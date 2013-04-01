@@ -98,12 +98,22 @@ name|java
 operator|.
 name|util
 operator|.
+name|HashMap
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
+name|util
+operator|.
 name|Map
 import|;
 end_import
 
 begin_comment
-comment|/**  * Factory for {@link LowerCaseTokenizer}.   *<pre class="prettyprint">  *&lt;fieldType name="text_lwrcase" class="solr.TextField" positionIncrementGap="100"&gt;  *&lt;analyzer&gt;  *&lt;tokenizer class="solr.LowerCaseTokenizerFactory"/&gt;  *&lt;/analyzer&gt;  *&lt;/fieldType&gt;</pre>   *  */
+comment|/**  * Factory for {@link LowerCaseTokenizer}.   *<pre class="prettyprint">  *&lt;fieldType name="text_lwrcase" class="solr.TextField" positionIncrementGap="100"&gt;  *&lt;analyzer&gt;  *&lt;tokenizer class="solr.LowerCaseTokenizerFactory"/&gt;  *&lt;/analyzer&gt;  *&lt;/fieldType&gt;</pre>  */
 end_comment
 
 begin_class
@@ -116,12 +126,10 @@ name|TokenizerFactory
 implements|implements
 name|MultiTermAwareComponent
 block|{
-annotation|@
-name|Override
-DECL|method|init
+comment|/** Creates a new LowerCaseTokenizerFactory */
+DECL|method|LowerCaseTokenizerFactory
 specifier|public
-name|void
-name|init
+name|LowerCaseTokenizerFactory
 parameter_list|(
 name|Map
 argument_list|<
@@ -133,8 +141,6 @@ name|args
 parameter_list|)
 block|{
 name|super
-operator|.
-name|init
 argument_list|(
 name|args
 argument_list|)
@@ -142,6 +148,25 @@ expr_stmt|;
 name|assureMatchVersion
 argument_list|()
 expr_stmt|;
+if|if
+condition|(
+operator|!
+name|args
+operator|.
+name|isEmpty
+argument_list|()
+condition|)
+block|{
+throw|throw
+operator|new
+name|IllegalArgumentException
+argument_list|(
+literal|"Unknown parameters: "
+operator|+
+name|args
+argument_list|)
+throw|;
+block|}
 block|}
 annotation|@
 name|Override
@@ -177,29 +202,22 @@ name|AbstractAnalysisFactory
 name|getMultiTermComponent
 parameter_list|()
 block|{
-name|LowerCaseFilterFactory
-name|filt
-init|=
+return|return
 operator|new
 name|LowerCaseFilterFactory
+argument_list|(
+operator|new
+name|HashMap
+argument_list|<
+name|String
+argument_list|,
+name|String
+argument_list|>
+argument_list|(
+name|getOriginalArgs
 argument_list|()
-decl_stmt|;
-name|filt
-operator|.
-name|setLuceneMatchVersion
-argument_list|(
-name|luceneMatchVersion
 argument_list|)
-expr_stmt|;
-name|filt
-operator|.
-name|init
-argument_list|(
-name|args
 argument_list|)
-expr_stmt|;
-return|return
-name|filt
 return|;
 block|}
 block|}

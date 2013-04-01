@@ -71,7 +71,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Factory for {@link StandardTokenizer}.   *<pre class="prettyprint">  *&lt;fieldType name="text_stndrd" class="solr.TextField" positionIncrementGap="100"&gt;  *&lt;analyzer&gt;  *&lt;tokenizer class="solr.StandardTokenizerFactory" maxTokenLength="255"/&gt;  *&lt;/analyzer&gt;  *&lt;/fieldType&gt;</pre>   *  */
+comment|/**  * Factory for {@link StandardTokenizer}.   *<pre class="prettyprint">  *&lt;fieldType name="text_stndrd" class="solr.TextField" positionIncrementGap="100"&gt;  *&lt;analyzer&gt;  *&lt;tokenizer class="solr.StandardTokenizerFactory" maxTokenLength="255"/&gt;  *&lt;/analyzer&gt;  *&lt;/fieldType&gt;</pre>   */
 end_comment
 
 begin_class
@@ -84,15 +84,14 @@ name|TokenizerFactory
 block|{
 DECL|field|maxTokenLength
 specifier|private
+specifier|final
 name|int
 name|maxTokenLength
 decl_stmt|;
-annotation|@
-name|Override
-DECL|method|init
+comment|/** Creates a new StandardTokenizerFactory */
+DECL|method|StandardTokenizerFactory
 specifier|public
-name|void
-name|init
+name|StandardTokenizerFactory
 parameter_list|(
 name|Map
 argument_list|<
@@ -104,8 +103,6 @@ name|args
 parameter_list|)
 block|{
 name|super
-operator|.
-name|init
 argument_list|(
 name|args
 argument_list|)
@@ -117,6 +114,8 @@ name|maxTokenLength
 operator|=
 name|getInt
 argument_list|(
+name|args
+argument_list|,
 literal|"maxTokenLength"
 argument_list|,
 name|StandardAnalyzer
@@ -124,6 +123,25 @@ operator|.
 name|DEFAULT_MAX_TOKEN_LENGTH
 argument_list|)
 expr_stmt|;
+if|if
+condition|(
+operator|!
+name|args
+operator|.
+name|isEmpty
+argument_list|()
+condition|)
+block|{
+throw|throw
+operator|new
+name|IllegalArgumentException
+argument_list|(
+literal|"Unknown parameters: "
+operator|+
+name|args
+argument_list|)
+throw|;
+block|}
 block|}
 annotation|@
 name|Override

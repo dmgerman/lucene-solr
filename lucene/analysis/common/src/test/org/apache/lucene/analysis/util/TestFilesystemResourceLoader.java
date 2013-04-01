@@ -245,15 +245,15 @@ expr_stmt|;
 comment|// try to load a class; we use string comparison because classloader may be different...
 name|assertEquals
 argument_list|(
-literal|"org.apache.lucene.analysis.en.KStemFilterFactory"
+literal|"org.apache.lucene.analysis.util.RollingCharBuffer"
 argument_list|,
 name|rl
 operator|.
 name|newInstance
 argument_list|(
-literal|"org.apache.lucene.analysis.en.KStemFilterFactory"
+literal|"org.apache.lucene.analysis.util.RollingCharBuffer"
 argument_list|,
-name|TokenFilterFactory
+name|Object
 operator|.
 name|class
 argument_list|)

@@ -60,8 +60,18 @@ name|Reader
 import|;
 end_import
 
+begin_import
+import|import
+name|java
+operator|.
+name|util
+operator|.
+name|Map
+import|;
+end_import
+
 begin_comment
-comment|/**  * Factory for {@link KeywordTokenizer}.   *<pre class="prettyprint">  *&lt;fieldType name="text_keyword" class="solr.TextField" positionIncrementGap="100"&gt;  *&lt;analyzer&gt;  *&lt;tokenizer class="solr.KeywordTokenizerFactory"/&gt;  *&lt;/analyzer&gt;  *&lt;/fieldType&gt;</pre>   *  */
+comment|/**  * Factory for {@link KeywordTokenizer}.   *<pre class="prettyprint">  *&lt;fieldType name="text_keyword" class="solr.TextField" positionIncrementGap="100"&gt;  *&lt;analyzer&gt;  *&lt;tokenizer class="solr.KeywordTokenizerFactory"/&gt;  *&lt;/analyzer&gt;  *&lt;/fieldType&gt;</pre>   */
 end_comment
 
 begin_class
@@ -72,6 +82,45 @@ name|KeywordTokenizerFactory
 extends|extends
 name|TokenizerFactory
 block|{
+comment|/** Creates a new KeywordTokenizerFactory */
+DECL|method|KeywordTokenizerFactory
+specifier|public
+name|KeywordTokenizerFactory
+parameter_list|(
+name|Map
+argument_list|<
+name|String
+argument_list|,
+name|String
+argument_list|>
+name|args
+parameter_list|)
+block|{
+name|super
+argument_list|(
+name|args
+argument_list|)
+expr_stmt|;
+if|if
+condition|(
+operator|!
+name|args
+operator|.
+name|isEmpty
+argument_list|()
+condition|)
+block|{
+throw|throw
+operator|new
+name|IllegalArgumentException
+argument_list|(
+literal|"Unknown parameters: "
+operator|+
+name|args
+argument_list|)
+throw|;
+block|}
+block|}
 annotation|@
 name|Override
 DECL|method|create

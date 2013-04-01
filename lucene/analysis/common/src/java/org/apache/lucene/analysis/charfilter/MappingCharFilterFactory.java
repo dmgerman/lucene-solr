@@ -74,6 +74,16 @@ name|java
 operator|.
 name|util
 operator|.
+name|Map
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
+name|util
+operator|.
 name|regex
 operator|.
 name|Matcher
@@ -141,7 +151,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Factory for {@link MappingCharFilter}.   *<pre class="prettyprint">  *&lt;fieldType name="text_map" class="solr.TextField" positionIncrementGap="100"&gt;  *&lt;analyzer&gt;  *&lt;charFilter class="solr.MappingCharFilterFactory" mapping="mapping.txt"/&gt;  *&lt;tokenizer class="solr.WhitespaceTokenizerFactory"/&gt;  *&lt;/analyzer&gt;  *&lt;/fieldType&gt;</pre>  *  *  * @since Solr 1.4  *  */
+comment|/**  * Factory for {@link MappingCharFilter}.   *<pre class="prettyprint">  *&lt;fieldType name="text_map" class="solr.TextField" positionIncrementGap="100"&gt;  *&lt;analyzer&gt;  *&lt;charFilter class="solr.MappingCharFilterFactory" mapping="mapping.txt"/&gt;  *&lt;tokenizer class="solr.WhitespaceTokenizerFactory"/&gt;  *&lt;/analyzer&gt;  *&lt;/fieldType&gt;</pre>  *  * @since Solr 1.4  */
 end_comment
 
 begin_class
@@ -163,9 +173,58 @@ name|normMap
 decl_stmt|;
 DECL|field|mapping
 specifier|private
+specifier|final
 name|String
 name|mapping
 decl_stmt|;
+comment|/** Creates a new MappingCharFilterFactory */
+DECL|method|MappingCharFilterFactory
+specifier|public
+name|MappingCharFilterFactory
+parameter_list|(
+name|Map
+argument_list|<
+name|String
+argument_list|,
+name|String
+argument_list|>
+name|args
+parameter_list|)
+block|{
+name|super
+argument_list|(
+name|args
+argument_list|)
+expr_stmt|;
+name|mapping
+operator|=
+name|args
+operator|.
+name|remove
+argument_list|(
+literal|"mapping"
+argument_list|)
+expr_stmt|;
+if|if
+condition|(
+operator|!
+name|args
+operator|.
+name|isEmpty
+argument_list|()
+condition|)
+block|{
+throw|throw
+operator|new
+name|IllegalArgumentException
+argument_list|(
+literal|"Unknown parameters: "
+operator|+
+name|args
+argument_list|)
+throw|;
+block|}
+block|}
 comment|// TODO: this should use inputstreams from the loader, not File!
 annotation|@
 name|Override
@@ -180,15 +239,6 @@ parameter_list|)
 throws|throws
 name|IOException
 block|{
-name|mapping
-operator|=
-name|args
-operator|.
-name|get
-argument_list|(
-literal|"mapping"
-argument_list|)
-expr_stmt|;
 if|if
 condition|(
 name|mapping

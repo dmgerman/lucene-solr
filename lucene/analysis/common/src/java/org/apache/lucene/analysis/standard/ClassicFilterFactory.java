@@ -20,6 +20,16 @@ end_comment
 
 begin_import
 import|import
+name|java
+operator|.
+name|util
+operator|.
+name|Map
+import|;
+end_import
+
+begin_import
+import|import
 name|org
 operator|.
 name|apache
@@ -79,7 +89,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Factory for {@link ClassicFilter}.  *<pre class="prettyprint">  *&lt;fieldType name="text_clssc" class="solr.TextField" positionIncrementGap="100"&gt;  *&lt;analyzer&gt;  *&lt;tokenizer class="solr.ClassicTokenizerFactory"/&gt;  *&lt;filter class="solr.ClassicFilterFactory"/&gt;  *&lt;/analyzer&gt;  *&lt;/fieldType&gt;</pre>  *  *  */
+comment|/**  * Factory for {@link ClassicFilter}.  *<pre class="prettyprint">  *&lt;fieldType name="text_clssc" class="solr.TextField" positionIncrementGap="100"&gt;  *&lt;analyzer&gt;  *&lt;tokenizer class="solr.ClassicTokenizerFactory"/&gt;  *&lt;filter class="solr.ClassicFilterFactory"/&gt;  *&lt;/analyzer&gt;  *&lt;/fieldType&gt;</pre>  */
 end_comment
 
 begin_class
@@ -90,6 +100,45 @@ name|ClassicFilterFactory
 extends|extends
 name|TokenFilterFactory
 block|{
+comment|/** Creates a new ClassicFilterFactory */
+DECL|method|ClassicFilterFactory
+specifier|public
+name|ClassicFilterFactory
+parameter_list|(
+name|Map
+argument_list|<
+name|String
+argument_list|,
+name|String
+argument_list|>
+name|args
+parameter_list|)
+block|{
+name|super
+argument_list|(
+name|args
+argument_list|)
+expr_stmt|;
+if|if
+condition|(
+operator|!
+name|args
+operator|.
+name|isEmpty
+argument_list|()
+condition|)
+block|{
+throw|throw
+operator|new
+name|IllegalArgumentException
+argument_list|(
+literal|"Unknown parameters: "
+operator|+
+name|args
+argument_list|)
+throw|;
+block|}
+block|}
 annotation|@
 name|Override
 DECL|method|create
