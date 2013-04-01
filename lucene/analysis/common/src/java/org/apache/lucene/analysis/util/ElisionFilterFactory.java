@@ -122,10 +122,10 @@ argument_list|)
 expr_stmt|;
 name|articlesFile
 operator|=
-name|args
-operator|.
-name|remove
+name|get
 argument_list|(
+name|args
+argument_list|,
 literal|"articles"
 argument_list|)
 expr_stmt|;

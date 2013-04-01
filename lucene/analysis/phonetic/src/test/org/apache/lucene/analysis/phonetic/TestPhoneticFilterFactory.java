@@ -459,7 +459,7 @@ argument_list|()
 operator|.
 name|contains
 argument_list|(
-literal|"Missing required parameter"
+literal|"Configuration Error: missing parameter 'encoder'"
 argument_list|)
 argument_list|)
 expr_stmt|;

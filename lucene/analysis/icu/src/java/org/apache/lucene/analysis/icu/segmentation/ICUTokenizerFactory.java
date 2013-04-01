@@ -309,10 +309,10 @@ expr_stmt|;
 name|String
 name|rulefilesArg
 init|=
-name|args
-operator|.
-name|remove
+name|get
 argument_list|(
+name|args
+argument_list|,
 name|RULEFILES
 argument_list|)
 decl_stmt|;

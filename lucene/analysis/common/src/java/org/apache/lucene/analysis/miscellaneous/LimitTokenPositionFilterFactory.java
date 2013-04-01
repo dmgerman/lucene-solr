@@ -119,7 +119,7 @@ argument_list|)
 expr_stmt|;
 name|maxTokenPosition
 operator|=
-name|getInt
+name|requireInt
 argument_list|(
 name|args
 argument_list|,

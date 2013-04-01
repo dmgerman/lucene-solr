@@ -104,15 +104,11 @@ argument_list|)
 expr_stmt|;
 name|remainder
 operator|=
-name|getInt
+name|requireInt
 argument_list|(
 name|args
 argument_list|,
 literal|"remainder"
-argument_list|,
-literal|0
-argument_list|,
-literal|false
 argument_list|)
 expr_stmt|;
 if|if
