@@ -54,6 +54,34 @@ name|apache
 operator|.
 name|solr
 operator|.
+name|schema
+operator|.
+name|IndexSchema
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|solr
+operator|.
+name|schema
+operator|.
+name|IndexSchemaFactory
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|solr
+operator|.
 name|util
 operator|.
 name|DOMUtil
@@ -1294,9 +1322,9 @@ literal|true
 argument_list|)
 expr_stmt|;
 comment|// this is hackish, since it picks up all SolrEventListeners,
-comment|// regardless of when/how/why thye are used (or even if they are
+comment|// regardless of when/how/why they are used (or even if they are
 comment|// declared outside of the appropriate context) but there's no nice
-comment|// way arround that in the PluginInfo framework
+comment|// way around that in the PluginInfo framework
 name|loadPluginInfo
 argument_list|(
 name|SolrEventListener
@@ -1388,6 +1416,19 @@ argument_list|,
 literal|false
 argument_list|,
 literal|false
+argument_list|)
+expr_stmt|;
+name|loadPluginInfo
+argument_list|(
+name|IndexSchemaFactory
+operator|.
+name|class
+argument_list|,
+literal|"schemaFactory"
+argument_list|,
+literal|false
+argument_list|,
+literal|true
 argument_list|)
 expr_stmt|;
 name|updateHandlerInfo

@@ -1044,6 +1044,20 @@ name|solr
 operator|.
 name|schema
 operator|.
+name|IndexSchemaFactory
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|solr
+operator|.
+name|schema
+operator|.
 name|SchemaAware
 import|;
 end_import
@@ -2563,18 +2577,17 @@ decl_stmt|;
 name|IndexSchema
 name|schema
 init|=
-operator|new
-name|IndexSchema
+name|IndexSchemaFactory
+operator|.
+name|buildIndexSchema
 argument_list|(
-name|config
-argument_list|,
 name|getSchema
 argument_list|()
 operator|.
 name|getResourceName
 argument_list|()
 argument_list|,
-literal|null
+name|config
 argument_list|)
 decl_stmt|;
 name|solrCoreState
@@ -4134,16 +4147,15 @@ condition|)
 block|{
 name|schema
 operator|=
-operator|new
-name|IndexSchema
+name|IndexSchemaFactory
+operator|.
+name|buildIndexSchema
 argument_list|(
-name|config
-argument_list|,
 name|IndexSchema
 operator|.
 name|DEFAULT_SCHEMA_FILE
 argument_list|,
-literal|null
+name|config
 argument_list|)
 expr_stmt|;
 block|}
@@ -4165,7 +4177,7 @@ comment|// we are evidently running in cloud mode.
 comment|//
 comment|// In cloud mode, version field is required for correct consistency
 comment|// ideally this check would be more fine grained, and individual features
-comment|// would assert it when they initialize, but DistribuedUpdateProcessor
+comment|// would assert it when they initialize, but DistributedUpdateProcessor
 comment|// is currently a big ball of wax that does more then just distributing
 comment|// updates (ie: partial document updates), so it needs to work in no cloud
 comment|// mode as well, and can't assert version field support on init.

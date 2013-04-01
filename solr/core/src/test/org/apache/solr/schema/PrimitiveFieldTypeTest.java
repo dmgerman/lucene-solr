@@ -289,16 +289,15 @@ comment|// With schema version 1.4:
 comment|// ***********************
 name|schema
 operator|=
-operator|new
-name|IndexSchema
+name|IndexSchemaFactory
+operator|.
+name|buildIndexSchema
 argument_list|(
-name|config
-argument_list|,
 name|testConfHome
 operator|+
 literal|"schema12.xml"
 argument_list|,
-literal|null
+name|config
 argument_list|)
 expr_stmt|;
 name|dt
@@ -685,16 +684,15 @@ comment|// With schema version 1.5
 comment|// ***********************
 name|schema
 operator|=
-operator|new
-name|IndexSchema
+name|IndexSchemaFactory
+operator|.
+name|buildIndexSchema
 argument_list|(
-name|config
-argument_list|,
 name|testConfHome
 operator|+
 literal|"schema15.xml"
 argument_list|,
-literal|null
+name|config
 argument_list|)
 expr_stmt|;
 name|dt
