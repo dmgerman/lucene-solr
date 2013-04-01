@@ -995,12 +995,6 @@ argument_list|)
 decl_stmt|;
 name|cores
 operator|.
-name|transientCacheSize
-operator|=
-literal|32
-expr_stmt|;
-name|cores
-operator|.
 name|persistFile
 argument_list|(
 name|twoXml
@@ -1012,7 +1006,7 @@ name|twoXml
 argument_list|,
 literal|"/solr[@persistent='true']"
 argument_list|,
-literal|"/solr/cores[@defaultCoreName='collection1' and @transientCacheSize='32']"
+literal|"/solr/cores[@defaultCoreName='collection1']"
 argument_list|,
 literal|"/solr/cores/core[@name='collection1' and @instanceDir='"
 operator|+
@@ -1526,6 +1520,19 @@ name|size
 argument_list|()
 argument_list|)
 expr_stmt|;
+name|assertXmlFile
+argument_list|(
+operator|new
+name|File
+argument_list|(
+name|solrHomeDirectory
+argument_list|,
+literal|"solr.xml"
+argument_list|)
+argument_list|,
+literal|"/solr/cores[@transientCacheSize='32']"
+argument_list|)
+expr_stmt|;
 name|newCore
 operator|.
 name|close
@@ -1582,7 +1589,7 @@ literal|"<?xml version=\"1.0\" encoding=\"UTF-8\" ?>\n"
 operator|+
 literal|"<solr persistent=\"false\">\n"
 operator|+
-literal|"<cores adminPath=\"/admin/cores\">\n"
+literal|"<cores adminPath=\"/admin/cores\" transientCacheSize=\"32\">\n"
 operator|+
 literal|"</cores>\n"
 operator|+

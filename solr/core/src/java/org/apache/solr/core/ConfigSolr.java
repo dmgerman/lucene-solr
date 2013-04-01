@@ -87,12 +87,10 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * ConfigSolr is a new interface  to aid us in obsoleting solr.xml and replacing it with solr.properties. The problem here  * is that the Config class is used for _all_ the xml file, e.g. solrconfig.xml and we can't mess with _that_ as part  * of this issue. Primarily used in CoreContainer at present.  *<p/>  * This is already deprecated, it's only intended to exist for while transitioning to properties-based replacement for  * solr.xml  *  * @since solr 4.2  */
+comment|/**  * ConfigSolr is a new interface  to aid us in obsoleting solr.xml and replacing it with solr.properties. The problem here  * is that the Config class is used for _all_ the xml file, e.g. solrconfig.xml and we can't mess with _that_ as part  * of this issue. Primarily used in CoreContainer at present.  *<p/>  * This is already deprecated, it's only intended to exist for while transitioning to properties-based replacement for  * solr.xml  *  * @since solr 4.3  */
 end_comment
 
 begin_interface
-annotation|@
-name|Deprecated
 DECL|interface|ConfigSolr
 specifier|public
 interface|interface
@@ -120,6 +118,24 @@ block|,
 name|SOLR_LOGGING_WATCHER
 block|}
 empty_stmt|;
+DECL|field|CORE_PROP_FILE
+specifier|public
+specifier|final
+specifier|static
+name|String
+name|CORE_PROP_FILE
+init|=
+literal|"core.properties"
+decl_stmt|;
+DECL|field|SOLR_XML_FILE
+specifier|public
+specifier|final
+specifier|static
+name|String
+name|SOLR_XML_FILE
+init|=
+literal|"solr.xml"
+decl_stmt|;
 DECL|method|getInt
 specifier|public
 name|int
