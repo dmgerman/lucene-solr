@@ -803,6 +803,7 @@ name|CORE_LOAD_THREADS
 init|=
 literal|3
 decl_stmt|;
+comment|/** @deprecated will be remove in Solr 5.0 (SOLR-4622) */
 DECL|field|DEFAULT_HOST_CONTEXT
 specifier|private
 specifier|static
@@ -812,6 +813,7 @@ name|DEFAULT_HOST_CONTEXT
 init|=
 literal|"solr"
 decl_stmt|;
+comment|/** @deprecated will be remove in Solr 5.0 (SOLR-4622) */
 DECL|field|DEFAULT_HOST_PORT
 specifier|private
 specifier|static
@@ -1253,6 +1255,58 @@ literal|null
 condition|)
 return|return;
 comment|// not in zk mode
+comment|// BEGIN: SOLR-4622: deprecated hardcoded defaults for hostPort& hostContext
+if|if
+condition|(
+literal|null
+operator|==
+name|hostPort
+condition|)
+block|{
+comment|// throw new ZooKeeperException(SolrException.ErrorCode.SERVER_ERROR,
+comment|//               "'hostPort' must be configured to run SolrCloud");
+name|log
+operator|.
+name|warn
+argument_list|(
+literal|"Solr 'hostPort' has not be explicitly configured, using hardcoded default of "
+operator|+
+name|DEFAULT_HOST_PORT
+operator|+
+literal|".  This default has been deprecated and will be removed in future versions of Solr, please configure this value explicitly"
+argument_list|)
+expr_stmt|;
+name|hostPort
+operator|=
+name|DEFAULT_HOST_PORT
+expr_stmt|;
+block|}
+if|if
+condition|(
+literal|null
+operator|==
+name|hostContext
+condition|)
+block|{
+comment|// throw new ZooKeeperException(SolrException.ErrorCode.SERVER_ERROR,
+comment|//               "'hostContext' must be configured to run SolrCloud");
+name|log
+operator|.
+name|warn
+argument_list|(
+literal|"Solr 'hostContext' has not be explicitly configured, using hardcoded default of "
+operator|+
+name|DEFAULT_HOST_CONTEXT
+operator|+
+literal|".  This default has been deprecated and will be removed in future versions of Solr, please configure this value explicitly"
+argument_list|)
+expr_stmt|;
+name|hostContext
+operator|=
+name|DEFAULT_HOST_CONTEXT
+expr_stmt|;
+block|}
+comment|// END: SOLR-4622
 comment|// zookeeper in quorum mode currently causes a failure when trying to
 comment|// register log4j mbeans.  See SOLR-2369
 comment|// TODO: remove after updating to an slf4j based zookeeper
@@ -2756,6 +2810,7 @@ argument_list|,
 literal|0
 argument_list|)
 expr_stmt|;
+comment|// Note: initZooKeeper will apply hardcoded default if cloud mode
 name|hostPort
 operator|=
 name|cfg
@@ -2770,9 +2825,10 @@ name|SOLR_CORES
 argument_list|,
 literal|"hostPort"
 argument_list|,
-name|DEFAULT_HOST_PORT
+literal|null
 argument_list|)
 expr_stmt|;
+comment|// Note: initZooKeeper will apply hardcoded default if cloud mode
 name|hostContext
 operator|=
 name|cfg
@@ -2787,7 +2843,7 @@ name|SOLR_CORES
 argument_list|,
 literal|"hostContext"
 argument_list|,
-name|DEFAULT_HOST_CONTEXT
+literal|null
 argument_list|)
 expr_stmt|;
 name|host

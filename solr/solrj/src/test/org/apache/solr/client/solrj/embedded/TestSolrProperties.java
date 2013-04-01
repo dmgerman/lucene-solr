@@ -1202,13 +1202,13 @@ argument_list|)
 expr_stmt|;
 name|assertTrue
 argument_list|(
-literal|"\"/solr/cores[@hostContext='solr']\" doesn't match in:\n"
+literal|"\"/solr/cores[@hostContext='${hostContext:solr}']\" doesn't match in:\n"
 operator|+
 name|solrPersistXml
 argument_list|,
 name|exists
 argument_list|(
-literal|"/solr/cores[@hostContext='solr']"
+literal|"/solr/cores[@hostContext='${hostContext:solr}']"
 argument_list|,
 name|document
 argument_list|)
