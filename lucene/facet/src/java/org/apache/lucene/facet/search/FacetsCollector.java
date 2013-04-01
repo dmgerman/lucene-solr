@@ -410,11 +410,11 @@ expr_stmt|;
 block|}
 annotation|@
 name|Override
-DECL|method|setNextReader
-specifier|public
+DECL|method|doSetNextReader
+specifier|protected
 specifier|final
 name|void
-name|setNextReader
+name|doSetNextReader
 parameter_list|(
 name|AtomicReaderContext
 name|context
@@ -621,11 +621,11 @@ name|IOException
 block|{}
 annotation|@
 name|Override
-DECL|method|setNextReader
-specifier|public
+DECL|method|doSetNextReader
+specifier|protected
 specifier|final
 name|void
-name|setNextReader
+name|doSetNextReader
 parameter_list|(
 name|AtomicReaderContext
 name|context
@@ -843,6 +843,14 @@ specifier|final
 name|FacetsAccumulator
 name|accumulator
 decl_stmt|;
+DECL|field|cachedResults
+specifier|private
+name|List
+argument_list|<
+name|FacetResult
+argument_list|>
+name|cachedResults
+decl_stmt|;
 DECL|field|matchingDocs
 specifier|protected
 specifier|final
@@ -882,7 +890,20 @@ name|void
 name|finish
 parameter_list|()
 function_decl|;
-comment|/**    * Returns a {@link FacetResult} per {@link FacetRequest} set in    * {@link FacetSearchParams}. Note that if one of the {@link FacetRequest    * requests} is for a {@link CategoryPath} that does not exist in the taxonomy,    * no matching {@link FacetResult} will be returned.    */
+comment|/** Performs the actual work of {@link #setNextReader(AtomicReaderContext)}. */
+DECL|method|doSetNextReader
+specifier|protected
+specifier|abstract
+name|void
+name|doSetNextReader
+parameter_list|(
+name|AtomicReaderContext
+name|context
+parameter_list|)
+throws|throws
+name|IOException
+function_decl|;
+comment|/**    * Returns a {@link FacetResult} per {@link FacetRequest} set in    * {@link FacetSearchParams}. Note that if a {@link FacetRequest} defines a    * {@link CategoryPath} which does not exist in the taxonomy, an empty    * {@link FacetResult} will be returned for it.    */
 DECL|method|getFacetResults
 specifier|public
 specifier|final
@@ -895,16 +916,30 @@ parameter_list|()
 throws|throws
 name|IOException
 block|{
+comment|// LUCENE-4893: if results are not cached, counts are multiplied as many
+comment|// times as this method is called.
+if|if
+condition|(
+name|cachedResults
+operator|==
+literal|null
+condition|)
+block|{
 name|finish
 argument_list|()
 expr_stmt|;
-return|return
+name|cachedResults
+operator|=
 name|accumulator
 operator|.
 name|accumulate
 argument_list|(
 name|matchingDocs
 argument_list|)
+expr_stmt|;
+block|}
+return|return
+name|cachedResults
 return|;
 block|}
 comment|/**    * Returns the documents matched by the query, one {@link MatchingDocs} per    * visited segment.    */
@@ -925,7 +960,7 @@ return|return
 name|matchingDocs
 return|;
 block|}
-comment|/**    * Allows to reuse the collector between search requests. This method simply    * clears all collected documents (and scores) information, and does not    * attempt to reuse allocated memory spaces.    */
+comment|/**    * Allows to reuse the collector between search requests. This method simply    * clears all collected documents (and scores) information (as well as cached    * results), and does not attempt to reuse allocated memory spaces.    */
 DECL|method|reset
 specifier|public
 specifier|final
@@ -940,6 +975,37 @@ name|matchingDocs
 operator|.
 name|clear
 argument_list|()
+expr_stmt|;
+name|cachedResults
+operator|=
+literal|null
+expr_stmt|;
+block|}
+annotation|@
+name|Override
+DECL|method|setNextReader
+specifier|public
+specifier|final
+name|void
+name|setNextReader
+parameter_list|(
+name|AtomicReaderContext
+name|context
+parameter_list|)
+throws|throws
+name|IOException
+block|{
+comment|// clear cachedResults - needed in case someone called getFacetResults()
+comment|// before doing a search and didn't call reset(). Defensive code to prevent
+comment|// traps.
+name|cachedResults
+operator|=
+literal|null
+expr_stmt|;
+name|doSetNextReader
+argument_list|(
+name|context
+argument_list|)
 expr_stmt|;
 block|}
 block|}
