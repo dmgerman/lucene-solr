@@ -27,7 +27,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * A native int set where one value is reserved to mean "EMPTY"  *  * @lucene.internal  */
+comment|/**  * A native int hash-based set where one value is reserved to mean "EMPTY" internally. The space overhead is fairly low  * as there is only one power-of-two sized int[] to hold the values.  The set is re-hashed when adding a value that  * would make it>= 75% full.  Consider extending and over-riding {@link #hash(int)} if the values might be poor  * hash keys; Lucene docids should be fine.  * The internal fields are exposed publicly to enable more efficient use at the expense of better O-O principles.  *<p/>  * To iterate over the integers held in this set, simply use code like this:  *<pre class="prettyprint">  * SentinelIntSet set = ...  * for (int v : set.keys) {  *   if (v == set.emptyVal)  *     continue;  *   //use v...  * }</pre>  *  * @lucene.internal  */
 end_comment
 
 begin_class
@@ -36,6 +36,7 @@ specifier|public
 class|class
 name|SentinelIntSet
 block|{
+comment|/** A power-of-2 over-sized array holding the integers in the set along with empty values. */
 DECL|field|keys
 specifier|public
 name|int
@@ -53,13 +54,13 @@ specifier|final
 name|int
 name|emptyVal
 decl_stmt|;
+comment|/** the count at which a rehash should be done */
 DECL|field|rehashCount
 specifier|public
 name|int
 name|rehashCount
 decl_stmt|;
-comment|// the count at which a rehash should be done
-comment|/**    *    * @param size  The minimum number of elements this set should be able to hold without re-hashing (i.e. the slots are guaranteed not to change)    * @param emptyVal The integer value to use for EMPTY    */
+comment|/**    *    * @param size  The minimum number of elements this set should be able to hold without rehashing    *              (i.e. the slots are guaranteed not to change)    * @param emptyVal The integer value to use for EMPTY    */
 DECL|method|SentinelIntSet
 specifier|public
 name|SentinelIntSet
@@ -119,7 +120,7 @@ operator|>=
 name|rehashCount
 condition|)
 block|{
-comment|// should be able to hold "size" w/o rehashing
+comment|// should be able to hold "size" w/o re-hashing
 name|tsize
 operator|<<=
 literal|1
@@ -173,6 +174,7 @@ operator|=
 literal|0
 expr_stmt|;
 block|}
+comment|/** (internal) Return the hash for the key. The default implementation just returns the key,    * which is not appropriate for general purpose use.    */
 DECL|method|hash
 specifier|public
 name|int
@@ -186,6 +188,7 @@ return|return
 name|key
 return|;
 block|}
+comment|/** The number of integers in this set. */
 DECL|method|size
 specifier|public
 name|int
@@ -196,7 +199,7 @@ return|return
 name|count
 return|;
 block|}
-comment|/** returns the slot for this key */
+comment|/** (internal) Returns the slot for this key */
 DECL|method|getSlot
 specifier|public
 name|int
@@ -302,7 +305,7 @@ return|return
 name|s
 return|;
 block|}
-comment|/** returns the slot for this key, or -slot-1 if not found */
+comment|/** (internal) Returns the slot for this key, or -slot-1 if not found */
 DECL|method|find
 specifier|public
 name|int
@@ -427,6 +430,7 @@ literal|1
 return|;
 block|}
 block|}
+comment|/** Does this set contain the specified integer? */
 DECL|method|exists
 specifier|public
 name|boolean
@@ -445,6 +449,7 @@ operator|>=
 literal|0
 return|;
 block|}
+comment|/** Puts this integer (key) in the set, and returns the slot index it was added to.    * It rehashes if adding it would make the set more than 75% full. */
 DECL|method|put
 specifier|public
 name|int
@@ -512,6 +517,7 @@ return|return
 name|s
 return|;
 block|}
+comment|/** (internal) Rehashes by doubling {@code int[] key} and filling with the old values. */
 DECL|method|rehash
 specifier|public
 name|void
@@ -559,28 +565,11 @@ expr_stmt|;
 for|for
 control|(
 name|int
-name|i
-init|=
-literal|0
-init|;
-name|i
-operator|<
+name|key
+range|:
 name|oldKeys
-operator|.
-name|length
-condition|;
-name|i
-operator|++
 control|)
 block|{
-name|int
-name|key
-init|=
-name|oldKeys
-index|[
-name|i
-index|]
-decl_stmt|;
 if|if
 condition|(
 name|key
