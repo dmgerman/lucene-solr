@@ -811,6 +811,8 @@ argument_list|(
 literal|"./lib/"
 argument_list|,
 literal|null
+argument_list|,
+literal|true
 argument_list|)
 expr_stmt|;
 name|reloadLuceneSPI
@@ -845,7 +847,7 @@ literal|null
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**    * Adds every file/dir found in the baseDir which passes the specified Filter    * to the ClassLoader used by this ResourceLoader.  This method<b>MUST</b>    * only be called prior to using this ResourceLoader to get any resources, otherwise    * it's behavior will be non-deterministic. You also have to {link @reloadLuceneSPI}    * before using this ResourceLoader.    *    * @param baseDir base directory whose children (either jars or directories of    *                classes) will be in the classpath, will be resolved relative    *                the instance dir.    * @param filter The filter files must satisfy, if null all files will be accepted.    */
+comment|/**    * Adds every file/dir found in the baseDir which passes the specified Filter    * to the ClassLoader used by this ResourceLoader.  This method<b>MUST</b>    * only be called prior to using this ResourceLoader to get any resources, otherwise    * it's behavior will be non-deterministic. You also have to {link @reloadLuceneSPI}    * before using this ResourceLoader.    *     *<p>This method will quietly ignore missing or non-directory<code>baseDir</code>    *  folder.     *    * @param baseDir base directory whose children (either jars or directories of    *                classes) will be in the classpath, will be resolved relative    *                the instance dir.    * @param filter The filter files must satisfy, if null all files will be accepted.    * @param quiet  Be quiet if baseDir does not point to a directory or if no file is     *               left after applying the filter.     */
 DECL|method|addToClassLoader
 name|void
 name|addToClassLoader
@@ -857,6 +859,9 @@ parameter_list|,
 specifier|final
 name|FileFilter
 name|filter
+parameter_list|,
+name|boolean
+name|quiet
 parameter_list|)
 block|{
 name|File
@@ -876,6 +881,73 @@ argument_list|,
 name|baseDir
 argument_list|)
 decl_stmt|;
+if|if
+condition|(
+name|base
+operator|!=
+literal|null
+operator|&&
+name|base
+operator|.
+name|exists
+argument_list|()
+operator|&&
+name|base
+operator|.
+name|isDirectory
+argument_list|()
+condition|)
+block|{
+name|File
+index|[]
+name|files
+init|=
+name|base
+operator|.
+name|listFiles
+argument_list|(
+name|filter
+argument_list|)
+decl_stmt|;
+if|if
+condition|(
+operator|!
+name|quiet
+operator|&&
+operator|(
+name|files
+operator|==
+literal|null
+operator|||
+name|files
+operator|.
+name|length
+operator|==
+literal|0
+operator|)
+condition|)
+block|{
+name|log
+operator|.
+name|warn
+argument_list|(
+literal|"No files added to classloader from lib: "
+operator|+
+name|baseDir
+operator|+
+literal|" (resolved as: "
+operator|+
+name|base
+operator|.
+name|getAbsolutePath
+argument_list|()
+operator|+
+literal|")."
+argument_list|)
+expr_stmt|;
+block|}
+else|else
+block|{
 name|this
 operator|.
 name|classLoader
@@ -889,6 +961,36 @@ argument_list|,
 name|filter
 argument_list|)
 expr_stmt|;
+block|}
+block|}
+else|else
+block|{
+if|if
+condition|(
+operator|!
+name|quiet
+condition|)
+block|{
+name|log
+operator|.
+name|warn
+argument_list|(
+literal|"Can't find (or read) directory to add to classloader: "
+operator|+
+name|baseDir
+operator|+
+literal|" (resolved as: "
+operator|+
+name|base
+operator|.
+name|getAbsolutePath
+argument_list|()
+operator|+
+literal|")."
+argument_list|)
+expr_stmt|;
+block|}
+block|}
 block|}
 comment|/**    * Adds the specific file/dir specified to the ClassLoader used by this    * ResourceLoader.  This method<b>MUST</b>    * only be called prior to using this ResourceLoader to get any resources, otherwise    * it's behavior will be non-deterministic. You also have to {link #reloadLuceneSPI()}    * before using this ResourceLoader.    *    * @param path A jar file (or directory of classes) to be added to the classpath,    *             will be resolved relative the instance dir.    */
 DECL|method|addToClassLoader
@@ -979,7 +1081,7 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
-comment|/**    * Reloads all Lucene SPI implementations using the new classloader.    * This method must be called after {@link #addToClassLoader(String)}    * and {@link #addToClassLoader(String,FileFilter)} before using    * this ResourceLoader.    */
+comment|/**    * Reloads all Lucene SPI implementations using the new classloader.    * This method must be called after {@link #addToClassLoader(String)}    * and {@link #addToClassLoader(String,FileFilter,boolean)} before using    * this ResourceLoader.    */
 DECL|method|reloadLuceneSPI
 name|void
 name|reloadLuceneSPI

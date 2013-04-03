@@ -2643,7 +2643,7 @@ operator|!=
 name|baseDir
 condition|)
 block|{
-comment|// :TODO: add support for a simpler 'glob' mutually eclusive of regex
+comment|// :TODO: add support for a simpler 'glob' mutually exclusive of regex
 name|String
 name|regex
 init|=
@@ -2681,6 +2681,8 @@ argument_list|(
 name|baseDir
 argument_list|,
 name|filter
+argument_list|,
+literal|false
 argument_list|)
 expr_stmt|;
 block|}
