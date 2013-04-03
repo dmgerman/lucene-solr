@@ -1104,6 +1104,11 @@ name|DocsEnumState
 operator|.
 name|START
 decl_stmt|;
+DECL|field|doc
+specifier|private
+name|int
+name|doc
+decl_stmt|;
 DECL|method|AssertingDocsEnum
 specifier|public
 name|AssertingDocsEnum
@@ -1141,6 +1146,11 @@ literal|"invalid initial doc id: "
 operator|+
 name|docid
 assert|;
+name|doc
+operator|=
+operator|-
+literal|1
+expr_stmt|;
 block|}
 annotation|@
 name|Override
@@ -1171,10 +1181,14 @@ argument_list|()
 decl_stmt|;
 assert|assert
 name|nextDoc
-operator|>=
-literal|0
+operator|>
+name|doc
 operator|:
-literal|"invalid doc id: "
+literal|"backwards nextDoc from "
+operator|+
+name|doc
+operator|+
+literal|" to "
 operator|+
 name|nextDoc
 assert|;
@@ -1203,7 +1217,15 @@ operator|.
 name|ITERATING
 expr_stmt|;
 block|}
+assert|assert
+name|docID
+argument_list|()
+operator|==
+name|nextDoc
+assert|;
 return|return
+name|doc
+operator|=
 name|nextDoc
 return|;
 block|}
@@ -1229,6 +1251,19 @@ name|FINISHED
 operator|:
 literal|"advance() called after NO_MORE_DOCS"
 assert|;
+assert|assert
+name|target
+operator|>
+name|doc
+operator|:
+literal|"target must be> docID(), got "
+operator|+
+name|target
+operator|+
+literal|"<= "
+operator|+
+name|doc
+assert|;
 name|int
 name|advanced
 init|=
@@ -1239,15 +1274,6 @@ argument_list|(
 name|target
 argument_list|)
 decl_stmt|;
-assert|assert
-name|advanced
-operator|>=
-literal|0
-operator|:
-literal|"invalid doc id: "
-operator|+
-name|advanced
-assert|;
 assert|assert
 name|advanced
 operator|>=
@@ -1286,7 +1312,15 @@ operator|.
 name|ITERATING
 expr_stmt|;
 block|}
+assert|assert
+name|docID
+argument_list|()
+operator|==
+name|advanced
+assert|;
 return|return
+name|doc
+operator|=
 name|advanced
 return|;
 block|}
@@ -1369,6 +1403,11 @@ name|positionCount
 init|=
 literal|0
 decl_stmt|;
+DECL|field|doc
+specifier|private
+name|int
+name|doc
+decl_stmt|;
 DECL|method|AssertingDocsAndPositionsEnum
 specifier|public
 name|AssertingDocsAndPositionsEnum
@@ -1406,6 +1445,11 @@ literal|"invalid initial doc id: "
 operator|+
 name|docid
 assert|;
+name|doc
+operator|=
+operator|-
+literal|1
+expr_stmt|;
 block|}
 annotation|@
 name|Override
@@ -1436,10 +1480,14 @@ argument_list|()
 decl_stmt|;
 assert|assert
 name|nextDoc
-operator|>=
-literal|0
+operator|>
+name|doc
 operator|:
-literal|"invalid doc id: "
+literal|"backwards nextDoc from "
+operator|+
+name|doc
+operator|+
+literal|" to "
 operator|+
 name|nextDoc
 assert|;
@@ -1483,7 +1531,15 @@ name|freq
 argument_list|()
 expr_stmt|;
 block|}
+assert|assert
+name|docID
+argument_list|()
+operator|==
+name|nextDoc
+assert|;
 return|return
+name|doc
+operator|=
 name|nextDoc
 return|;
 block|}
@@ -1509,6 +1565,19 @@ name|FINISHED
 operator|:
 literal|"advance() called after NO_MORE_DOCS"
 assert|;
+assert|assert
+name|target
+operator|>
+name|doc
+operator|:
+literal|"target must be> docID(), got "
+operator|+
+name|target
+operator|+
+literal|"<= "
+operator|+
+name|doc
+assert|;
 name|int
 name|advanced
 init|=
@@ -1519,15 +1588,6 @@ argument_list|(
 name|target
 argument_list|)
 decl_stmt|;
-assert|assert
-name|advanced
-operator|>=
-literal|0
-operator|:
-literal|"invalid doc id: "
-operator|+
-name|advanced
-assert|;
 assert|assert
 name|advanced
 operator|>=
@@ -1581,7 +1641,15 @@ name|freq
 argument_list|()
 expr_stmt|;
 block|}
+assert|assert
+name|docID
+argument_list|()
+operator|==
+name|advanced
+assert|;
 return|return
+name|doc
+operator|=
 name|advanced
 return|;
 block|}

@@ -2896,8 +2896,11 @@ argument_list|(
 name|max
 operator|.
 name|doc
+operator|+
+literal|1
 argument_list|)
 return|;
+comment|// advance to the next doc after #docID()
 block|}
 annotation|@
 name|Override
@@ -2933,10 +2936,14 @@ parameter_list|)
 throws|throws
 name|IOException
 block|{
-name|sloppyFreq
-operator|=
-literal|0.0f
-expr_stmt|;
+assert|assert
+name|target
+operator|>
+name|docID
+argument_list|()
+assert|;
+do|do
+block|{
 if|if
 condition|(
 operator|!
@@ -2950,18 +2957,6 @@ return|return
 name|NO_MORE_DOCS
 return|;
 block|}
-name|boolean
-name|restart
-init|=
-literal|false
-decl_stmt|;
-while|while
-condition|(
-name|sloppyFreq
-operator|==
-literal|0.0f
-condition|)
-block|{
 while|while
 condition|(
 name|min
@@ -2971,14 +2966,8 @@ operator|<
 name|max
 operator|.
 name|doc
-operator|||
-name|restart
 condition|)
 block|{
-name|restart
-operator|=
-literal|false
-expr_stmt|;
 if|if
 condition|(
 operator|!
@@ -3002,11 +2991,23 @@ name|phraseFreq
 argument_list|()
 expr_stmt|;
 comment|// check for phrase
-name|restart
+name|target
 operator|=
-literal|true
+name|min
+operator|.
+name|doc
+operator|+
+literal|1
 expr_stmt|;
+comment|// next target in case sloppyFreq is still 0
 block|}
+do|while
+condition|(
+name|sloppyFreq
+operator|==
+literal|0f
+condition|)
+do|;
 comment|// found a match
 return|return
 name|max

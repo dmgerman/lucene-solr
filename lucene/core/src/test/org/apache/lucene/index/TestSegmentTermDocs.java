@@ -857,7 +857,7 @@ name|tdocs
 operator|.
 name|advance
 argument_list|(
-literal|0
+literal|2
 argument_list|)
 operator|!=
 name|DocIdSetIterator
@@ -1172,7 +1172,7 @@ name|tdocs
 operator|.
 name|advance
 argument_list|(
-literal|5
+literal|12
 argument_list|)
 operator|!=
 name|DocIdSetIterator
@@ -1537,7 +1537,7 @@ name|tdocs
 operator|.
 name|advance
 argument_list|(
-literal|5
+literal|28
 argument_list|)
 operator|!=
 name|DocIdSetIterator

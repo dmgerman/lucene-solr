@@ -287,6 +287,11 @@ parameter_list|)
 throws|throws
 name|IOException
 block|{
+assert|assert
+name|target
+operator|>
+name|doc
+assert|;
 name|doc
 operator|=
 name|postings
