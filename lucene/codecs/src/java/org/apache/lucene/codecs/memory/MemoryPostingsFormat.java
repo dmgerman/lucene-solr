@@ -2303,22 +2303,18 @@ parameter_list|(
 name|int
 name|target
 parameter_list|)
+throws|throws
+name|IOException
 block|{
 comment|// TODO: we could make more efficient version, but, it
 comment|// should be rare that this will matter in practice
 comment|// since usually apps will not store "big" fields in
 comment|// this codec!
-comment|//System.out.println("advance start docID=" + docID + " target=" + target);
-while|while
-condition|(
-name|nextDoc
-argument_list|()
-operator|<
-name|target
-condition|)
-block|{       }
 return|return
-name|docID
+name|slowAdvance
+argument_list|(
+name|target
+argument_list|)
 return|;
 block|}
 annotation|@
@@ -3107,23 +3103,18 @@ parameter_list|(
 name|int
 name|target
 parameter_list|)
+throws|throws
+name|IOException
 block|{
 comment|// TODO: we could make more efficient version, but, it
 comment|// should be rare that this will matter in practice
 comment|// since usually apps will not store "big" fields in
 comment|// this codec!
-comment|//System.out.println("advance target=" + target);
-while|while
-condition|(
-name|nextDoc
-argument_list|()
-operator|<
-name|target
-condition|)
-block|{       }
-comment|//System.out.println("  return " + docID);
 return|return
-name|docID
+name|slowAdvance
+argument_list|(
+name|target
+argument_list|)
 return|;
 block|}
 annotation|@

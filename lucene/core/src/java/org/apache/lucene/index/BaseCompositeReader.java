@@ -101,12 +101,6 @@ specifier|final
 name|int
 name|numDocs
 decl_stmt|;
-DECL|field|hasDeletions
-specifier|private
-specifier|final
-name|boolean
-name|hasDeletions
-decl_stmt|;
 comment|/** List view solely for {@link #getSequentialSubReaders()},    * for effectiveness the array is used internally. */
 DECL|field|subReadersList
 specifier|private
@@ -170,11 +164,6 @@ decl_stmt|,
 name|numDocs
 init|=
 literal|0
-decl_stmt|;
-name|boolean
-name|hasDeletions
-init|=
-literal|false
 decl_stmt|;
 for|for
 control|(
@@ -245,19 +234,6 @@ name|numDocs
 argument_list|()
 expr_stmt|;
 comment|// compute numDocs
-if|if
-condition|(
-name|r
-operator|.
-name|hasDeletions
-argument_list|()
-condition|)
-block|{
-name|hasDeletions
-operator|=
-literal|true
-expr_stmt|;
-block|}
 name|r
 operator|.
 name|registerParentReader
@@ -286,12 +262,6 @@ operator|.
 name|numDocs
 operator|=
 name|numDocs
-expr_stmt|;
-name|this
-operator|.
-name|hasDeletions
-operator|=
-name|hasDeletions
 expr_stmt|;
 block|}
 annotation|@
@@ -415,20 +385,6 @@ name|visitor
 argument_list|)
 expr_stmt|;
 comment|// dispatch to subreader
-block|}
-annotation|@
-name|Override
-DECL|method|hasDeletions
-specifier|public
-specifier|final
-name|boolean
-name|hasDeletions
-parameter_list|()
-block|{
-comment|// Don't call ensureOpen() here (it could affect performance)
-return|return
-name|hasDeletions
-return|;
 block|}
 annotation|@
 name|Override

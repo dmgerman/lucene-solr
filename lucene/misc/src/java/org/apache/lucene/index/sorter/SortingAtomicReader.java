@@ -2047,17 +2047,11 @@ name|IOException
 block|{
 comment|// need to support it for checkIndex, but in practice it won't be called, so
 comment|// don't bother to implement efficiently for now.
-while|while
-condition|(
-name|nextDoc
-argument_list|()
-operator|<
-name|target
-condition|)
-block|{}
 return|return
-name|docID
-argument_list|()
+name|slowAdvance
+argument_list|(
+name|target
+argument_list|)
 return|;
 block|}
 annotation|@
@@ -2918,17 +2912,11 @@ name|IOException
 block|{
 comment|// need to support it for checkIndex, but in practice it won't be called, so
 comment|// don't bother to implement efficiently for now.
-while|while
-condition|(
-name|nextDoc
-argument_list|()
-operator|<
-name|target
-condition|)
-block|{}
 return|return
-name|docID
-argument_list|()
+name|slowAdvance
+argument_list|(
+name|target
+argument_list|)
 return|;
 block|}
 annotation|@

@@ -1249,17 +1249,14 @@ parameter_list|(
 name|int
 name|target
 parameter_list|)
+throws|throws
+name|IOException
 block|{
-while|while
-condition|(
-name|nextDoc
-argument_list|()
-operator|<
-name|target
-condition|)
-block|{       }
 return|return
-name|docID
+name|slowAdvance
+argument_list|(
+name|target
+argument_list|)
 return|;
 block|}
 annotation|@

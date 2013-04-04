@@ -442,7 +442,13 @@ parameter_list|(
 name|TermState
 name|other
 parameter_list|)
-block|{       }
+block|{
+throw|throw
+operator|new
+name|UnsupportedOperationException
+argument_list|()
+throw|;
+block|}
 block|}
 return|;
 block|}

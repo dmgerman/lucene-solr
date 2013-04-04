@@ -1659,17 +1659,6 @@ block|}
 annotation|@
 name|Override
 specifier|public
-name|boolean
-name|hasDeletions
-parameter_list|()
-block|{
-return|return
-literal|false
-return|;
-block|}
-annotation|@
-name|Override
-specifier|public
 name|FieldInfos
 name|getFieldInfos
 parameter_list|()

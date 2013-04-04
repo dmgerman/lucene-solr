@@ -383,7 +383,7 @@ block|{
 name|TermsEnum
 name|termsEnum
 init|=
-name|super
+name|in
 operator|.
 name|intersect
 argument_list|(

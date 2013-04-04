@@ -444,21 +444,6 @@ expr_stmt|;
 block|}
 annotation|@
 name|Override
-DECL|method|hasDeletions
-specifier|public
-name|boolean
-name|hasDeletions
-parameter_list|()
-block|{
-comment|// Don't call ensureOpen() here (it could affect performance)
-return|return
-name|liveDocs
-operator|!=
-literal|null
-return|;
-block|}
-annotation|@
-name|Override
 DECL|method|getFieldInfos
 specifier|public
 name|FieldInfos

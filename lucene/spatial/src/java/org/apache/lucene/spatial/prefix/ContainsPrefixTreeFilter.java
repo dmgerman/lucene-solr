@@ -1204,23 +1204,11 @@ name|IOException
 block|{
 comment|//for this small set this is likely faster vs. a binary search
 comment|// into the sorted array
-name|int
-name|doc
-decl_stmt|;
-while|while
-condition|(
-operator|(
-name|doc
-operator|=
-name|nextDoc
-argument_list|()
-operator|)
-operator|<
-name|target
-condition|)
-block|{           }
 return|return
-name|doc
+name|slowAdvance
+argument_list|(
+name|target
+argument_list|)
 return|;
 block|}
 annotation|@
