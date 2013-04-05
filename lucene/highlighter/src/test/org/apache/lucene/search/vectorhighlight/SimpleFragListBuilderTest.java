@@ -227,7 +227,7 @@ argument_list|)
 expr_stmt|;
 name|assertEquals
 argument_list|(
-literal|"subInfos=(abcdefghijklmnopqrs((0,19)))/1.0(0,18)"
+literal|"subInfos=(abcdefghijklmnopqrs((0,19)))/1.0(0,19)"
 argument_list|,
 name|ffl
 operator|.
@@ -350,7 +350,7 @@ argument_list|)
 expr_stmt|;
 name|assertEquals
 argument_list|(
-literal|"subInfos=(abcdefghjklmnopqrs((0,21)))/1.0(1,19)"
+literal|"subInfos=(abcdefghjklmnopqrs((0,21)))/1.0(0,21)"
 argument_list|,
 name|ffl
 operator|.
