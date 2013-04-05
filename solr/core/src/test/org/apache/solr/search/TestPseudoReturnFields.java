@@ -34,6 +34,20 @@ name|org
 operator|.
 name|apache
 operator|.
+name|solr
+operator|.
+name|schema
+operator|.
+name|SchemaField
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
 name|commons
 operator|.
 name|lang
@@ -304,6 +318,86 @@ comment|// the response writers used to consult isMultiValued on the field
 comment|// but this doesn't work when you alias a single valued field to
 comment|// a multi valued field (the field value is copied first, then
 comment|// if the type lookup is done again later, we get the wrong thing). SOLR-4036
+comment|// score as psuedo field - precondition checks
+for|for
+control|(
+name|String
+name|name
+range|:
+operator|new
+name|String
+index|[]
+block|{
+literal|"score"
+block|,
+literal|"val_ss"
+block|}
+control|)
+block|{
+name|SchemaField
+name|sf
+init|=
+name|h
+operator|.
+name|getCore
+argument_list|()
+operator|.
+name|getSchema
+argument_list|()
+operator|.
+name|getFieldOrNull
+argument_list|(
+name|name
+argument_list|)
+decl_stmt|;
+name|assertNotNull
+argument_list|(
+literal|"Test depends on a (dynamic) field mtching '"
+operator|+
+name|name
+operator|+
+literal|"', schema was changed out from under us!"
+argument_list|,
+name|sf
+argument_list|)
+expr_stmt|;
+name|assertTrue
+argument_list|(
+literal|"Test depends on a multivalued dynamic field matching '"
+operator|+
+name|name
+operator|+
+literal|"', schema was changed out from under us!"
+argument_list|,
+name|sf
+operator|.
+name|multiValued
+argument_list|()
+argument_list|)
+expr_stmt|;
+block|}
+comment|// score as psuedo field
+name|assertJQ
+argument_list|(
+name|req
+argument_list|(
+literal|"q"
+argument_list|,
+literal|"*:*"
+argument_list|,
+literal|"fq"
+argument_list|,
+literal|"id:42"
+argument_list|,
+literal|"fl"
+argument_list|,
+literal|"id,score"
+argument_list|)
+argument_list|,
+literal|"/response/docs==[{'id':'42','score':1.0}]"
+argument_list|)
+expr_stmt|;
+comment|// single value int using alias that matches multivalued dynamic field
 name|assertJQ
 argument_list|(
 name|req
