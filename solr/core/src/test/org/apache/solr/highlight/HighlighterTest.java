@@ -294,9 +294,12 @@ name|void
 name|testConfig
 parameter_list|()
 block|{
-name|SolrHighlighter
+name|DefaultSolrHighlighter
 name|highlighter
 init|=
+operator|(
+name|DefaultSolrHighlighter
+operator|)
 name|HighlightComponent
 operator|.
 name|getHighlighter

@@ -363,6 +363,43 @@ literal|"count(//lst[@name='highlighting']/lst[@name='102']/arr[@name='text']/*)
 argument_list|)
 expr_stmt|;
 block|}
+DECL|method|testDefaultSummary
+specifier|public
+name|void
+name|testDefaultSummary
+parameter_list|()
+block|{
+name|assertQ
+argument_list|(
+literal|"null snippet test"
+argument_list|,
+name|req
+argument_list|(
+literal|"q"
+argument_list|,
+literal|"text:one OR *:*"
+argument_list|,
+literal|"sort"
+argument_list|,
+literal|"id asc"
+argument_list|,
+literal|"hl"
+argument_list|,
+literal|"true"
+argument_list|,
+literal|"hl.defaultSummary"
+argument_list|,
+literal|"true"
+argument_list|)
+argument_list|,
+literal|"count(//lst[@name='highlighting']/*)=2"
+argument_list|,
+literal|"//lst[@name='highlighting']/lst[@name='101']/arr[@name='text']/str='document<em>one</em>'"
+argument_list|,
+literal|"//lst[@name='highlighting']/lst[@name='102']/arr[@name='text']/str='second document'"
+argument_list|)
+expr_stmt|;
+block|}
 DECL|method|testDifferentField
 specifier|public
 name|void
@@ -492,6 +529,96 @@ comment|// expected
 block|}
 name|resetExceptionIgnores
 argument_list|()
+expr_stmt|;
+block|}
+DECL|method|testTags
+specifier|public
+name|void
+name|testTags
+parameter_list|()
+block|{
+name|assertQ
+argument_list|(
+literal|"different pre/post tags"
+argument_list|,
+name|req
+argument_list|(
+literal|"q"
+argument_list|,
+literal|"text:document"
+argument_list|,
+literal|"sort"
+argument_list|,
+literal|"id asc"
+argument_list|,
+literal|"hl"
+argument_list|,
+literal|"true"
+argument_list|,
+literal|"hl.tag.pre"
+argument_list|,
+literal|"["
+argument_list|,
+literal|"hl.tag.post"
+argument_list|,
+literal|"]"
+argument_list|)
+argument_list|,
+literal|"count(//lst[@name='highlighting']/*)=2"
+argument_list|,
+literal|"//lst[@name='highlighting']/lst[@name='101']/arr[@name='text']/str='[document] one'"
+argument_list|,
+literal|"//lst[@name='highlighting']/lst[@name='102']/arr[@name='text']/str='second [document]'"
+argument_list|)
+expr_stmt|;
+block|}
+DECL|method|testTagsPerField
+specifier|public
+name|void
+name|testTagsPerField
+parameter_list|()
+block|{
+name|assertQ
+argument_list|(
+literal|"highlighting text and text3"
+argument_list|,
+name|req
+argument_list|(
+literal|"q"
+argument_list|,
+literal|"text:document text3:document"
+argument_list|,
+literal|"sort"
+argument_list|,
+literal|"id asc"
+argument_list|,
+literal|"hl"
+argument_list|,
+literal|"true"
+argument_list|,
+literal|"hl.fl"
+argument_list|,
+literal|"text,text3"
+argument_list|,
+literal|"f.text3.hl.tag.pre"
+argument_list|,
+literal|"["
+argument_list|,
+literal|"f.text3.hl.tag.post"
+argument_list|,
+literal|"]"
+argument_list|)
+argument_list|,
+literal|"count(//lst[@name='highlighting']/*)=2"
+argument_list|,
+literal|"//lst[@name='highlighting']/lst[@name='101']/arr[@name='text']/str='<em>document</em> one'"
+argument_list|,
+literal|"//lst[@name='highlighting']/lst[@name='101']/arr[@name='text3']/str='crappy [document]'"
+argument_list|,
+literal|"//lst[@name='highlighting']/lst[@name='102']/arr[@name='text']/str='second<em>document</em>'"
+argument_list|,
+literal|"//lst[@name='highlighting']/lst[@name='102']/arr[@name='text3']/str='crappier [document]'"
+argument_list|)
 expr_stmt|;
 block|}
 block|}
