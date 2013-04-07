@@ -289,7 +289,11 @@ name|node
 init|=
 operator|new
 name|FacetResultNode
-argument_list|()
+argument_list|(
+name|ordinal
+argument_list|,
+name|value
+argument_list|)
 decl_stmt|;
 name|node
 operator|.
@@ -301,12 +305,6 @@ name|getPath
 argument_list|(
 name|ordinal
 argument_list|)
-expr_stmt|;
-name|node
-operator|.
-name|value
-operator|=
-name|value
 expr_stmt|;
 name|nodes
 operator|.

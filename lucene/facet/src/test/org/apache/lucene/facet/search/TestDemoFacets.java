@@ -1403,7 +1403,7 @@ literal|10
 argument_list|)
 argument_list|)
 decl_stmt|;
-comment|// Aggregatses the facet counts:
+comment|// Aggregate the facet counts:
 name|FacetsCollector
 name|c
 init|=
@@ -1477,6 +1477,35 @@ operator|.
 name|value
 argument_list|)
 expr_stmt|;
+comment|// LUCENE-4913:
+for|for
+control|(
+name|FacetResultNode
+name|childNode
+range|:
+name|results
+operator|.
+name|get
+argument_list|(
+literal|0
+argument_list|)
+operator|.
+name|getFacetResultNode
+argument_list|()
+operator|.
+name|subResults
+control|)
+block|{
+name|assertTrue
+argument_list|(
+name|childNode
+operator|.
+name|ordinal
+operator|!=
+literal|0
+argument_list|)
+expr_stmt|;
+block|}
 name|searcher
 operator|.
 name|getIndexReader
