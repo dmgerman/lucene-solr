@@ -355,6 +355,13 @@ name|setLeaf
 argument_list|()
 expr_stmt|;
 block|}
+else|else
+block|{
+name|leaf
+operator|=
+literal|false
+expr_stmt|;
+block|}
 block|}
 DECL|method|getShapeRel
 specifier|public
