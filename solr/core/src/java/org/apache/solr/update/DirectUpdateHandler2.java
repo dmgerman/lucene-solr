@@ -3755,7 +3755,19 @@ parameter_list|)
 throws|throws
 name|IOException
 block|{
-comment|// TODO: do a commit first?
+name|commit
+argument_list|(
+operator|new
+name|CommitUpdateCommand
+argument_list|(
+name|cmd
+operator|.
+name|req
+argument_list|,
+literal|false
+argument_list|)
+argument_list|)
+expr_stmt|;
 name|SolrIndexSplitter
 name|splitter
 init|=

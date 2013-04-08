@@ -197,6 +197,36 @@ name|SHARD
 init|=
 literal|"shard"
 decl_stmt|;
+comment|/** The shard range in solr cloud */
+DECL|field|SHARD_RANGE
+specifier|public
+specifier|final
+specifier|static
+name|String
+name|SHARD_RANGE
+init|=
+literal|"shard.range"
+decl_stmt|;
+comment|/** The shard range in solr cloud */
+DECL|field|SHARD_STATE
+specifier|public
+specifier|final
+specifier|static
+name|String
+name|SHARD_STATE
+init|=
+literal|"shard.state"
+decl_stmt|;
+comment|/** The target core to which a split index should be written to    * Multiple targetCores can be specified by multiple targetCore parameters */
+DECL|field|TARGET_CORE
+specifier|public
+specifier|final
+specifier|static
+name|String
+name|TARGET_CORE
+init|=
+literal|"targetCore"
+decl_stmt|;
 DECL|field|ROLES
 specifier|public
 specifier|static
@@ -320,6 +350,9 @@ name|CREATEALIAS
 block|,
 DECL|enum constant|DELETEALIAS
 name|DELETEALIAS
+block|,
+DECL|enum constant|REQUESTAPPLYUPDATES
+name|REQUESTAPPLYUPDATES
 block|,
 DECL|enum constant|LOAD_ON_STARTUP
 name|LOAD_ON_STARTUP

@@ -560,7 +560,7 @@ comment|// TODO: this may need modification in the future when shard splitting c
 return|return
 name|collection
 operator|.
-name|getSlices
+name|getActiveSlices
 argument_list|()
 return|;
 block|}
@@ -812,7 +812,7 @@ name|slice
 range|:
 name|collection
 operator|.
-name|getSlices
+name|getActiveSlices
 argument_list|()
 control|)
 block|{

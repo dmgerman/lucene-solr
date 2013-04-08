@@ -1390,6 +1390,27 @@ argument_list|(
 name|shardId
 argument_list|)
 decl_stmt|;
+if|if
+condition|(
+operator|!
+name|slice
+operator|.
+name|getState
+argument_list|()
+operator|.
+name|equals
+argument_list|(
+name|Slice
+operator|.
+name|ACTIVE
+argument_list|)
+condition|)
+block|{
+comment|//Return false if the Slice is not active yet.
+return|return
+literal|false
+return|;
+block|}
 name|Map
 argument_list|<
 name|String

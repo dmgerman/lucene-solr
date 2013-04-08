@@ -3005,7 +3005,7 @@ name|slices
 init|=
 name|clusterState
 operator|.
-name|getSlices
+name|getActiveSlices
 argument_list|(
 name|collectionName
 argument_list|)
@@ -3061,7 +3061,7 @@ name|addAll
 argument_list|(
 name|clusterState
 operator|.
-name|getSlices
+name|getActiveSlices
 argument_list|(
 name|collection
 argument_list|)
@@ -3342,7 +3342,7 @@ name|slices
 init|=
 name|clusterState
 operator|.
-name|getSlicesMap
+name|getActiveSlicesMap
 argument_list|(
 name|collection
 argument_list|)
