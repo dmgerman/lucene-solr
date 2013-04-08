@@ -243,6 +243,21 @@ parameter_list|)
 throws|throws
 name|IOException
 block|{
+if|if
+condition|(
+name|mlt
+operator|==
+literal|null
+condition|)
+block|{
+throw|throw
+operator|new
+name|IOException
+argument_list|(
+literal|"You must first call Classifier#train first"
+argument_list|)
+throw|;
+block|}
 name|Query
 name|q
 init|=

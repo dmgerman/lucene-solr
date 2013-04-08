@@ -596,9 +596,9 @@ condition|)
 block|{
 throw|throw
 operator|new
-name|RuntimeException
+name|IOException
 argument_list|(
-literal|"need to train the classifier first"
+literal|"You must first call Classifier#train first"
 argument_list|)
 throw|;
 block|}
