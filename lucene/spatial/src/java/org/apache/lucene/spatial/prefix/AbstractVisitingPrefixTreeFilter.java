@@ -233,7 +233,7 @@ name|Math
 operator|.
 name|max
 argument_list|(
-literal|1
+literal|0
 argument_list|,
 name|Math
 operator|.
