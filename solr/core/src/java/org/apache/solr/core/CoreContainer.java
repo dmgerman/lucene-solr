@@ -6177,7 +6177,7 @@ expr_stmt|;
 block|}
 block|}
 block|}
-comment|/** Gets a core by name and increase its refcount.    * @see SolrCore#close()     * @param name the core name    * @return the core if found    */
+comment|/**     * Gets a core by name and increase its refcount.    *    * @see SolrCore#close()     * @param name the core name    * @return the core if found, null if a SolrCore by this name does not exist    * @exception SolrException if a SolrCore with this name failed to be initialized    */
 DECL|method|getCore
 specifier|public
 name|SolrCore
@@ -6240,6 +6240,50 @@ literal|null
 condition|)
 block|{
 comment|//Nope, no transient core with this name
+comment|// if there was an error initalizing this core, throw a 500
+comment|// error with the details for clients attempting to access it.
+name|Exception
+name|e
+init|=
+name|getCoreInitFailures
+argument_list|()
+operator|.
+name|get
+argument_list|(
+name|name
+argument_list|)
+decl_stmt|;
+if|if
+condition|(
+literal|null
+operator|!=
+name|e
+condition|)
+block|{
+throw|throw
+operator|new
+name|SolrException
+argument_list|(
+name|ErrorCode
+operator|.
+name|SERVER_ERROR
+argument_list|,
+literal|"SolrCore '"
+operator|+
+name|name
+operator|+
+literal|"' is not available due to init failure: "
+operator|+
+name|e
+operator|.
+name|getMessage
+argument_list|()
+argument_list|,
+name|e
+argument_list|)
+throw|;
+block|}
+comment|// otherwise the user is simply asking for something that doesn't exist.
 return|return
 literal|null
 return|;

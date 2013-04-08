@@ -587,6 +587,84 @@ literal|"bogus_path"
 argument_list|)
 argument_list|)
 expr_stmt|;
+comment|// check that we get null accessing a non-existent core
+name|assertNull
+argument_list|(
+name|cc
+operator|.
+name|getCore
+argument_list|(
+literal|"does_not_exist"
+argument_list|)
+argument_list|)
+expr_stmt|;
+comment|// check that we get a 500 accessing the core with an init failure
+try|try
+block|{
+name|SolrCore
+name|c
+init|=
+name|cc
+operator|.
+name|getCore
+argument_list|(
+literal|"bogus"
+argument_list|)
+decl_stmt|;
+name|fail
+argument_list|(
+literal|"Failed to get Exception on accessing core with init failure"
+argument_list|)
+expr_stmt|;
+block|}
+catch|catch
+parameter_list|(
+name|SolrException
+name|ex
+parameter_list|)
+block|{
+name|assertEquals
+argument_list|(
+literal|500
+argument_list|,
+name|ex
+operator|.
+name|code
+argument_list|()
+argument_list|)
+expr_stmt|;
+comment|// double wrapped
+name|String
+name|cause
+init|=
+name|ex
+operator|.
+name|getCause
+argument_list|()
+operator|.
+name|getCause
+argument_list|()
+operator|.
+name|getMessage
+argument_list|()
+decl_stmt|;
+name|assertTrue
+argument_list|(
+literal|"getCore() ex cause doesn't mention init fail: "
+operator|+
+name|cause
+argument_list|,
+literal|0
+operator|<
+name|cause
+operator|.
+name|indexOf
+argument_list|(
+literal|"bogus_path"
+argument_list|)
+argument_list|)
+expr_stmt|;
+block|}
 comment|// let the test end here, with some recorded failures, and let cleanUp()
 comment|// verify that there is no problem shuting down CoreContainer with known
 comment|// SolrCore failures
@@ -878,6 +956,84 @@ literal|"DummyMergePolicy"
 argument_list|)
 argument_list|)
 expr_stmt|;
+comment|// check that we get null accessing a non-existent core
+name|assertNull
+argument_list|(
+name|cc
+operator|.
+name|getCore
+argument_list|(
+literal|"does_not_exist"
+argument_list|)
+argument_list|)
+expr_stmt|;
+comment|// check that we get a 500 accessing the core with an init failure
+try|try
+block|{
+name|SolrCore
+name|c
+init|=
+name|cc
+operator|.
+name|getCore
+argument_list|(
+literal|"col_bad"
+argument_list|)
+decl_stmt|;
+name|fail
+argument_list|(
+literal|"Failed to get Exception on accessing core with init failure"
+argument_list|)
+expr_stmt|;
+block|}
+catch|catch
+parameter_list|(
+name|SolrException
+name|ex
+parameter_list|)
+block|{
+name|assertEquals
+argument_list|(
+literal|500
+argument_list|,
+name|ex
+operator|.
+name|code
+argument_list|()
+argument_list|)
+expr_stmt|;
+comment|// double wrapped
+name|String
+name|cause
+init|=
+name|ex
+operator|.
+name|getCause
+argument_list|()
+operator|.
+name|getCause
+argument_list|()
+operator|.
+name|getMessage
+argument_list|()
+decl_stmt|;
+name|assertTrue
+argument_list|(
+literal|"getCore() ex cause doesn't mention init fail: "
+operator|+
+name|cause
+argument_list|,
+literal|0
+operator|<
+name|cause
+operator|.
+name|indexOf
+argument_list|(
+literal|"DummyMergePolicy"
+argument_list|)
+argument_list|)
+expr_stmt|;
+block|}
 comment|// -----
 comment|// "fix" the bad collection
 name|FileUtils
@@ -1215,6 +1371,84 @@ literal|"bogus_path"
 argument_list|)
 argument_list|)
 expr_stmt|;
+comment|// check that we get null accessing a non-existent core
+name|assertNull
+argument_list|(
+name|cc
+operator|.
+name|getCore
+argument_list|(
+literal|"does_not_exist"
+argument_list|)
+argument_list|)
+expr_stmt|;
+comment|// check that we get a 500 accessing the core with an init failure
+try|try
+block|{
+name|SolrCore
+name|c
+init|=
+name|cc
+operator|.
+name|getCore
+argument_list|(
+literal|"bogus"
+argument_list|)
+decl_stmt|;
+name|fail
+argument_list|(
+literal|"Failed to get Exception on accessing core with init failure"
+argument_list|)
+expr_stmt|;
+block|}
+catch|catch
+parameter_list|(
+name|SolrException
+name|ex
+parameter_list|)
+block|{
+name|assertEquals
+argument_list|(
+literal|500
+argument_list|,
+name|ex
+operator|.
+name|code
+argument_list|()
+argument_list|)
+expr_stmt|;
+comment|// double wrapped
+name|String
+name|cause
+init|=
+name|ex
+operator|.
+name|getCause
+argument_list|()
+operator|.
+name|getCause
+argument_list|()
+operator|.
+name|getMessage
+argument_list|()
+decl_stmt|;
+name|assertTrue
+argument_list|(
+literal|"getCore() ex cause doesn't mention init fail: "
+operator|+
+name|cause
+argument_list|,
+literal|0
+operator|<
+name|cause
+operator|.
+name|indexOf
+argument_list|(
+literal|"bogus_path"
+argument_list|)
+argument_list|)
+expr_stmt|;
+block|}
 comment|// -----
 comment|// register bogus as an alias for col_ok and confirm failure goes away
 name|cc
