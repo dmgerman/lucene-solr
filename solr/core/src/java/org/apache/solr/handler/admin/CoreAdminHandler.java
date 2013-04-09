@@ -2461,21 +2461,13 @@ block|}
 try|try
 block|{
 comment|//for now, do not allow creating new core with same name when in cloud mode
-comment|//XXX perhaps it should just be unregistered from cloud before readding it?,
+comment|//XXX perhaps it should just be unregistered from cloud before reading it?,
 comment|//XXX perhaps we should also check that cores are of same type before adding new core to collection?
 if|if
 condition|(
 name|coreContainer
 operator|.
-name|isZooKeeperAware
-argument_list|()
-condition|)
-block|{
-if|if
-condition|(
-name|coreContainer
-operator|.
-name|getCoreNames
+name|getAllCoreNames
 argument_list|()
 operator|.
 name|contains
@@ -2486,20 +2478,18 @@ condition|)
 block|{
 name|log
 operator|.
-name|info
+name|warn
 argument_list|(
-literal|"Re-creating a core with existing name is not allowed in cloud mode"
+literal|"Re-creating a core with existing name is not allowed"
 argument_list|)
 expr_stmt|;
 throw|throw
 operator|new
 name|SolrException
 argument_list|(
-name|SolrException
-operator|.
 name|ErrorCode
 operator|.
-name|BAD_REQUEST
+name|SERVER_ERROR
 argument_list|,
 literal|"Core with name '"
 operator|+
@@ -2508,7 +2498,6 @@ operator|+
 literal|"' already exists."
 argument_list|)
 throw|;
-block|}
 block|}
 name|String
 name|instanceDir
@@ -3015,6 +3004,62 @@ argument_list|(
 name|dcore
 argument_list|)
 decl_stmt|;
+name|String
+name|sameDirCore
+init|=
+name|coreContainer
+operator|.
+name|checkUniqueDataDir
+argument_list|(
+name|core
+operator|.
+name|getDataDir
+argument_list|()
+argument_list|)
+decl_stmt|;
+if|if
+condition|(
+name|sameDirCore
+operator|!=
+literal|null
+condition|)
+block|{
+if|if
+condition|(
+name|core
+operator|!=
+literal|null
+condition|)
+name|core
+operator|.
+name|close
+argument_list|()
+expr_stmt|;
+name|log
+operator|.
+name|warn
+argument_list|(
+literal|"Creating a core that points to the same data dir as core {} is not allowed"
+argument_list|,
+name|sameDirCore
+argument_list|)
+expr_stmt|;
+throw|throw
+operator|new
+name|SolrException
+argument_list|(
+name|ErrorCode
+operator|.
+name|SERVER_ERROR
+argument_list|,
+literal|"Core with same data dir '"
+operator|+
+name|sameDirCore
+operator|+
+literal|"' already exists."
+argument_list|)
+throw|;
+block|}
 name|coreContainer
 operator|.
 name|register

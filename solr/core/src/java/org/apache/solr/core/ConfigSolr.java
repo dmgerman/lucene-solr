@@ -339,6 +339,17 @@ name|String
 name|coreName
 parameter_list|)
 function_decl|;
+comment|// If the core is not to be loaded (say two cores defined with the same name or with the same data dir), return
+comment|// the reason. If it's OK to load the core, return null.
+DECL|method|getBadCoreMessage
+specifier|public
+name|String
+name|getBadCoreMessage
+parameter_list|(
+name|String
+name|name
+parameter_list|)
+function_decl|;
 block|}
 end_interface
 
