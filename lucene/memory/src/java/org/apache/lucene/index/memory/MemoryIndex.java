@@ -1804,16 +1804,6 @@ operator|.
 name|fillBytesRef
 argument_list|()
 expr_stmt|;
-if|if
-condition|(
-name|ref
-operator|.
-name|length
-operator|==
-literal|0
-condition|)
-continue|continue;
-comment|// nothing to do
 comment|//        if (DEBUG) System.err.println("token='" + term + "'");
 name|numTokens
 operator|++
