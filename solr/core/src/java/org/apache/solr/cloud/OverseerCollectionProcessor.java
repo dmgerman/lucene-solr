@@ -2507,6 +2507,17 @@ argument_list|,
 name|core
 argument_list|)
 expr_stmt|;
+name|params
+operator|.
+name|set
+argument_list|(
+name|CoreAdminParams
+operator|.
+name|DELETE_INDEX
+argument_list|,
+literal|"true"
+argument_list|)
+expr_stmt|;
 name|sendShardRequest
 argument_list|(
 name|replica
