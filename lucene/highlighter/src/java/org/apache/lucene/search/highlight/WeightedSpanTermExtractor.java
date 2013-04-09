@@ -561,10 +561,10 @@ specifier|private
 name|int
 name|maxDocCharsToAnalyze
 decl_stmt|;
-DECL|field|reader
+DECL|field|internalReader
 specifier|private
 name|AtomicReader
-name|reader
+name|internalReader
 init|=
 literal|null
 decl_stmt|;
@@ -2183,7 +2183,7 @@ name|IOException
 block|{
 if|if
 condition|(
-name|reader
+name|internalReader
 operator|==
 literal|null
 condition|)
@@ -2259,7 +2259,7 @@ name|createSearcher
 argument_list|()
 decl_stmt|;
 comment|// MEM index has only atomic ctx
-name|reader
+name|internalReader
 operator|=
 operator|new
 name|DelegatingAtomicReader
@@ -2280,7 +2280,7 @@ argument_list|)
 expr_stmt|;
 block|}
 return|return
-name|reader
+name|internalReader
 operator|.
 name|getContext
 argument_list|()
@@ -2615,7 +2615,7 @@ name|IOUtils
 operator|.
 name|close
 argument_list|(
-name|reader
+name|internalReader
 argument_list|)
 expr_stmt|;
 block|}
@@ -2812,7 +2812,7 @@ name|IOUtils
 operator|.
 name|close
 argument_list|(
-name|reader
+name|internalReader
 argument_list|)
 expr_stmt|;
 block|}
