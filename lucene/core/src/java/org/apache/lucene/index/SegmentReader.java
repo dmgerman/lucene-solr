@@ -714,6 +714,7 @@ return|;
 block|}
 comment|/**    * Return the SegmentInfoPerCommit of the segment this reader is reading.    */
 DECL|method|getSegmentInfo
+specifier|public
 name|SegmentInfoPerCommit
 name|getSegmentInfo
 parameter_list|()

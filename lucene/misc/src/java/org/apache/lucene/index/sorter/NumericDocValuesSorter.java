@@ -191,6 +191,22 @@ name|comparator
 argument_list|)
 return|;
 block|}
+annotation|@
+name|Override
+DECL|method|getID
+specifier|public
+name|String
+name|getID
+parameter_list|()
+block|{
+return|return
+literal|"DocValues("
+operator|+
+name|fieldName
+operator|+
+literal|",asc)"
+return|;
+block|}
 block|}
 end_class
 

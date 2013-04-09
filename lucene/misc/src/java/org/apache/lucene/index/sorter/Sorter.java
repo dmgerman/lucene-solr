@@ -97,7 +97,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Sorts documents in a given index by returning a permutation on the docs.  * Implementations can call {@link #sort(int, DocComparator)} to compute the  * old-to-new permutation over the given documents and values.  *   * @lucene.experimental  */
+comment|/**  * Sorts documents of a given index by returning a permutation on the document  * IDs.  *<p><b>NOTE</b>: A {@link Sorter} implementation can be easily written from  * a {@link DocComparator document comparator} by using the  * {@link #sort(int, DocComparator)} helper method. This is especially useful  * when documents are directly comparable by their field values.  * @lucene.experimental  */
 end_comment
 
 begin_class
@@ -137,6 +137,14 @@ name|int
 name|docID
 parameter_list|)
 function_decl|;
+comment|/** Return the number of documents in this map. This must be equal to the      *  {@link AtomicReader#maxDoc() number of documents} of the      *  {@link AtomicReader} which is sorted. */
+DECL|method|size
+specifier|public
+specifier|abstract
+name|int
+name|size
+parameter_list|()
+function_decl|;
 block|}
 comment|/** Check consistency of a {@link DocMap}, useful for assertions. */
 DECL|method|isConsistent
@@ -146,11 +154,17 @@ name|isConsistent
 parameter_list|(
 name|DocMap
 name|docMap
-parameter_list|,
-name|int
-name|maxDoc
 parameter_list|)
 block|{
+specifier|final
+name|int
+name|maxDoc
+init|=
+name|docMap
+operator|.
+name|size
+argument_list|()
+decl_stmt|;
 for|for
 control|(
 name|int
@@ -269,7 +283,7 @@ name|docID2
 parameter_list|)
 function_decl|;
 block|}
-comment|/** Sorts documents in reverse order. */
+comment|/** Sorts documents in reverse order.    *<b>NOTE</b>: This {@link Sorter} is not idempotent. Sorting an    *  {@link AtomicReader} once or twice will return two different    *  {@link AtomicReader} views. This {@link Sorter} should not be used with    *  {@link SortingMergePolicy}. */
 DECL|field|REVERSE_DOCS
 specifier|public
 specifier|static
@@ -344,7 +358,29 @@ operator|-
 literal|1
 return|;
 block|}
+annotation|@
+name|Override
+specifier|public
+name|int
+name|size
+parameter_list|()
+block|{
+return|return
+name|maxDoc
+return|;
 block|}
+block|}
+return|;
+block|}
+annotation|@
+name|Override
+specifier|public
+name|String
+name|getID
+parameter_list|()
+block|{
+return|return
+literal|"ReverseDocs"
 return|;
 block|}
 block|}
@@ -807,10 +843,21 @@ name|docID
 argument_list|)
 return|;
 block|}
+annotation|@
+name|Override
+specifier|public
+name|int
+name|size
+parameter_list|()
+block|{
+return|return
+name|maxDoc
+return|;
+block|}
 block|}
 return|;
 block|}
-comment|/**    * Returns a mapping from the old document ID to its new location in the    * sorted index. Implementations can use the auxiliary    * {@link #sort(int, DocComparator)} to compute the old-to-new permutation    * given a list of documents and their corresponding values.    *<p>    * A return value of<tt>null</tt> is allowed and means that    *<code>reader</code> is already sorted.    *<p>    *<b>NOTE:</b> deleted documents are expected to appear in the mapping as    * well, they will however be dropped when the index is actually sorted.    */
+comment|/**    * Returns a mapping from the old document ID to its new location in the    * sorted index. Implementations can use the auxiliary    * {@link #sort(int, DocComparator)} to compute the old-to-new permutation    * given a list of documents and their corresponding values.    *<p>    * A return value of<tt>null</tt> is allowed and means that    *<code>reader</code> is already sorted.    *<p>    *<b>NOTE:</b> deleted documents are expected to appear in the mapping as    * well, they will however be marked as deleted in the sorted view.    */
 DECL|method|sort
 specifier|public
 specifier|abstract
@@ -822,6 +869,14 @@ name|reader
 parameter_list|)
 throws|throws
 name|IOException
+function_decl|;
+comment|/**    * Returns the identifier of this {@link Sorter}.    *<p>This identifier is similar to {@link Object#hashCode()} and should be    * chosen so that two instances of this class that sort documents likewise    * will have the same identifier. On the contrary, this identifier should be    * different on different {@link Sorter sorters}.    */
+DECL|method|getID
+specifier|public
+specifier|abstract
+name|String
+name|getID
+parameter_list|()
 function_decl|;
 block|}
 end_class

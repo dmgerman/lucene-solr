@@ -356,6 +356,17 @@ return|return
 name|docMap
 return|;
 block|}
+annotation|@
+name|Override
+specifier|public
+name|String
+name|getID
+parameter_list|()
+block|{
+return|return
+name|ID_FIELD
+return|;
+block|}
 block|}
 argument_list|)
 expr_stmt|;

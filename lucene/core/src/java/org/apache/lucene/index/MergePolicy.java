@@ -527,6 +527,23 @@ name|readers
 argument_list|)
 return|;
 block|}
+comment|/**      * Expert: Sets the {@link SegmentInfoPerCommit} of this {@link OneMerge}.      * Allows sub-classes to e.g. set diagnostics properties.      */
+DECL|method|setInfo
+specifier|public
+name|void
+name|setInfo
+parameter_list|(
+name|SegmentInfoPerCommit
+name|info
+parameter_list|)
+block|{
+name|this
+operator|.
+name|info
+operator|=
+name|info
+expr_stmt|;
+block|}
 comment|/** Expert: If {@link #getMergeReaders()} reorders document IDs, this method      *  must be overridden to return a mapping from the<i>natural</i> doc ID      *  (the doc ID that would result from a natural merge) to the actual doc      *  ID. This mapping is used to apply deletions that happened during the      *  merge to the new segment. */
 DECL|method|getDocMap
 specifier|public

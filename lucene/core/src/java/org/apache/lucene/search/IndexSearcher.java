@@ -2163,6 +2163,8 @@ name|leaves
 control|)
 block|{
 comment|// search each subreader
+try|try
+block|{
 name|collector
 operator|.
 name|setNextReader
@@ -2170,6 +2172,17 @@ argument_list|(
 name|ctx
 argument_list|)
 expr_stmt|;
+block|}
+catch|catch
+parameter_list|(
+name|CollectionTerminatedException
+name|e
+parameter_list|)
+block|{
+comment|// there is no doc of interest in this reader context
+comment|// continue with the following leaf
+continue|continue;
+block|}
 name|Scorer
 name|scorer
 init|=

@@ -2657,7 +2657,9 @@ name|newSegment
 operator|.
 name|info
 argument_list|,
-literal|"flush"
+name|IndexWriter
+operator|.
+name|SOURCE_FLUSH
 argument_list|)
 expr_stmt|;
 name|IOContext
