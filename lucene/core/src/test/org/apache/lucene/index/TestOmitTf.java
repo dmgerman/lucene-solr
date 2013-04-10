@@ -28,6 +28,18 @@ end_import
 
 begin_import
 import|import
+name|java
+operator|.
+name|util
+operator|.
+name|concurrent
+operator|.
+name|ExecutionException
+import|;
+end_import
+
+begin_import
+import|import
 name|org
 operator|.
 name|apache
@@ -1656,8 +1668,7 @@ decl_stmt|;
 name|IndexSearcher
 name|searcher
 init|=
-operator|new
-name|IndexSearcher
+name|newSearcher
 argument_list|(
 name|reader
 argument_list|)
@@ -1791,11 +1802,55 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
-name|IllegalStateException
-name|ise
+name|Exception
+name|e
 parameter_list|)
 block|{
-comment|// expected
+name|Throwable
+name|cause
+init|=
+name|e
+decl_stmt|;
+comment|// If the searcher uses an executor service, the IAE is wrapped into other exceptions
+while|while
+condition|(
+name|cause
+operator|.
+name|getCause
+argument_list|()
+operator|!=
+literal|null
+condition|)
+block|{
+name|cause
+operator|=
+name|cause
+operator|.
+name|getCause
+argument_list|()
+expr_stmt|;
+block|}
+if|if
+condition|(
+operator|!
+operator|(
+name|cause
+operator|instanceof
+name|IllegalStateException
+operator|)
+condition|)
+block|{
+throw|throw
+operator|new
+name|AssertionError
+argument_list|(
+literal|"Expected an IAE"
+argument_list|,
+name|e
+argument_list|)
+throw|;
+block|}
+comment|// else OK because positions are not indexed
 block|}
 name|searcher
 operator|.

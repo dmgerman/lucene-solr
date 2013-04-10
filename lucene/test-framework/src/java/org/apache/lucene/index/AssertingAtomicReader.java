@@ -1089,6 +1089,7 @@ name|FINISHED
 block|}
 empty_stmt|;
 DECL|class|AssertingDocsEnum
+specifier|public
 specifier|static
 class|class
 name|AssertingDocsEnum
@@ -1117,11 +1118,32 @@ name|DocsEnum
 name|in
 parameter_list|)
 block|{
+name|this
+argument_list|(
+name|in
+argument_list|,
+literal|true
+argument_list|)
+expr_stmt|;
+block|}
+DECL|method|AssertingDocsEnum
+specifier|public
+name|AssertingDocsEnum
+parameter_list|(
+name|DocsEnum
+name|in
+parameter_list|,
+name|boolean
+name|failOnUnsupportedDocID
+parameter_list|)
+block|{
 name|super
 argument_list|(
 name|in
 argument_list|)
 expr_stmt|;
+try|try
+block|{
 name|int
 name|docid
 init|=
@@ -1142,10 +1164,32 @@ name|DocIdSetIterator
 operator|.
 name|NO_MORE_DOCS
 operator|:
-literal|"invalid initial doc id: "
+name|in
+operator|.
+name|getClass
+argument_list|()
+operator|+
+literal|": invalid initial doc id: "
 operator|+
 name|docid
 assert|;
+block|}
+catch|catch
+parameter_list|(
+name|UnsupportedOperationException
+name|e
+parameter_list|)
+block|{
+if|if
+condition|(
+name|failOnUnsupportedDocID
+condition|)
+block|{
+throw|throw
+name|e
+throw|;
+block|}
+block|}
 name|doc
 operator|=
 operator|-
@@ -1191,6 +1235,10 @@ operator|+
 literal|" to "
 operator|+
 name|nextDoc
+operator|+
+literal|" "
+operator|+
+name|in
 assert|;
 if|if
 condition|(

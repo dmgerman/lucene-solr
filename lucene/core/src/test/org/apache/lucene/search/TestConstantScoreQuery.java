@@ -612,7 +612,8 @@ argument_list|()
 expr_stmt|;
 name|searcher
 operator|=
-name|newSearcher
+operator|new
+name|IndexSearcher
 argument_list|(
 name|reader
 argument_list|)
@@ -1013,8 +1014,7 @@ decl_stmt|;
 name|IndexSearcher
 name|s
 init|=
-operator|new
-name|IndexSearcher
+name|newSearcher
 argument_list|(
 name|r
 argument_list|)

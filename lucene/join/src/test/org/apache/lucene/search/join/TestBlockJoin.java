@@ -3939,7 +3939,8 @@ specifier|final
 name|IndexSearcher
 name|joinS
 init|=
-name|newSearcher
+operator|new
+name|IndexSearcher
 argument_list|(
 name|joinR
 argument_list|)
@@ -8404,7 +8405,8 @@ expr_stmt|;
 name|IndexSearcher
 name|s
 init|=
-name|newSearcher
+operator|new
+name|IndexSearcher
 argument_list|(
 name|r
 argument_list|)

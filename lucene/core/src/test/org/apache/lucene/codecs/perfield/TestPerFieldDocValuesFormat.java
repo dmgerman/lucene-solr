@@ -676,8 +676,7 @@ comment|// read-only=true
 name|IndexSearcher
 name|isearcher
 init|=
-operator|new
-name|IndexSearcher
+name|newSearcher
 argument_list|(
 name|ireader
 argument_list|)
