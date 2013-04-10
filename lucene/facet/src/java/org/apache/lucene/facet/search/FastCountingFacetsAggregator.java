@@ -430,6 +430,23 @@ operator|)
 operator|+
 name|prev
 expr_stmt|;
+assert|assert
+name|ord
+operator|<
+name|counts
+operator|.
+name|length
+operator|:
+literal|"ord="
+operator|+
+name|ord
+operator|+
+literal|" vs maxOrd="
+operator|+
+name|counts
+operator|.
+name|length
+assert|;
 operator|++
 name|counts
 index|[

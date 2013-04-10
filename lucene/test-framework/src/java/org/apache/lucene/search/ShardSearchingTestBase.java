@@ -2499,6 +2499,8 @@ name|long
 index|[]
 name|nodeVersions
 parameter_list|)
+throws|throws
+name|IOException
 block|{
 assert|assert
 name|currentShardSearcher

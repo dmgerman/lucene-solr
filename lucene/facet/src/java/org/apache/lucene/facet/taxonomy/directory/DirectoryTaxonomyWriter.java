@@ -404,6 +404,10 @@ name|CorruptIndexException
 import|;
 end_import
 
+begin_comment
+comment|// javadocs
+end_comment
+
 begin_import
 import|import
 name|org
@@ -615,6 +619,10 @@ operator|.
 name|LockObtainFailedException
 import|;
 end_import
+
+begin_comment
+comment|// javadocs
+end_comment
 
 begin_import
 import|import
@@ -3535,8 +3543,9 @@ return|return
 name|indexWriter
 return|;
 block|}
-comment|/** Used by {@link DirectoryTaxonomyReader} to support NRT. */
+comment|/** Expert: returns current index epoch, if this is a    * near-real-time reader.  Used by {@link    * DirectoryTaxonomyReader} to support NRT.     *    * @lucene.internal */
 DECL|method|getTaxonomyEpoch
+specifier|public
 specifier|final
 name|long
 name|getTaxonomyEpoch

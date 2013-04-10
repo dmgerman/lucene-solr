@@ -246,6 +246,8 @@ parameter_list|(
 name|G
 name|reference
 parameter_list|)
+throws|throws
+name|IOException
 function_decl|;
 comment|/**    * Obtain the current reference. You must match every call to acquire with one    * call to {@link #release}; it's best to do so in a finally clause, and set    * the reference to {@code null} to prevent accidental usage after it has been    * released.    * @throws AlreadyClosedException if the reference manager has been {@link #close() closed}.     */
 DECL|method|acquire
@@ -254,6 +256,8 @@ specifier|final
 name|G
 name|acquire
 parameter_list|()
+throws|throws
+name|IOException
 block|{
 name|G
 name|ref

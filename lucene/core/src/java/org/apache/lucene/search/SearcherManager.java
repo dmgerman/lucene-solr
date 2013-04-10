@@ -375,8 +375,9 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
-comment|// NOTE: decRefs incoming reader on throwing an exception
+comment|/** Expert: creates a searcher from the provided {@link    *  IndexReader} using the provided {@link    *  SearcherFactory}.  NOTE: this decRefs incoming reader    * on throwing an exception. */
 DECL|method|getSearcher
+specifier|public
 specifier|static
 name|IndexSearcher
 name|getSearcher
