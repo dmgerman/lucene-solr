@@ -6861,6 +6861,37 @@ operator|.
 name|getCoreDescriptor
 argument_list|()
 decl_stmt|;
+if|if
+condition|(
+name|Slice
+operator|.
+name|CONSTRUCTION
+operator|.
+name|equals
+argument_list|(
+name|cd
+operator|.
+name|getCloudDescriptor
+argument_list|()
+operator|.
+name|getShardState
+argument_list|()
+argument_list|)
+condition|)
+block|{
+comment|// set update log to buffer before publishing the core
+name|core
+operator|.
+name|getUpdateHandler
+argument_list|()
+operator|.
+name|getUpdateLog
+argument_list|()
+operator|.
+name|bufferUpdates
+argument_list|()
+expr_stmt|;
+block|}
 comment|// before becoming available, make sure we are not live and active
 comment|// this also gets us our assigned shard id if it was not specified
 name|publish
@@ -6912,17 +6943,6 @@ name|setShardRange
 argument_list|(
 literal|null
 argument_list|)
-expr_stmt|;
-name|core
-operator|.
-name|getUpdateHandler
-argument_list|()
-operator|.
-name|getUpdateLog
-argument_list|()
-operator|.
-name|bufferUpdates
-argument_list|()
 expr_stmt|;
 block|}
 name|String
