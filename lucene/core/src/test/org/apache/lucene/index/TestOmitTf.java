@@ -1830,27 +1830,17 @@ name|getCause
 argument_list|()
 expr_stmt|;
 block|}
-if|if
-condition|(
-operator|!
-operator|(
+name|assertTrue
+argument_list|(
+literal|"Expected an IAE, got "
+operator|+
+name|cause
+argument_list|,
 name|cause
 operator|instanceof
 name|IllegalStateException
-operator|)
-condition|)
-block|{
-throw|throw
-operator|new
-name|AssertionError
-argument_list|(
-literal|"Expected an IAE"
-argument_list|,
-name|e
 argument_list|)
-throw|;
-block|}
-comment|// else OK because positions are not indexed
+expr_stmt|;
 block|}
 name|searcher
 operator|.
