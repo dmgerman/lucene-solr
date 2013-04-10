@@ -3141,6 +3141,19 @@ name|thisDiskFree
 operator|+
 literal|" bytes"
 expr_stmt|;
+name|dir
+operator|.
+name|setRandomIOExceptionRateOnOpen
+argument_list|(
+name|random
+argument_list|()
+operator|.
+name|nextDouble
+argument_list|()
+operator|*
+literal|0.01
+argument_list|)
+expr_stmt|;
 block|}
 else|else
 block|{
@@ -3170,6 +3183,13 @@ block|}
 name|testName
 operator|=
 literal|"reader re-use after disk full"
+expr_stmt|;
+name|dir
+operator|.
+name|setRandomIOExceptionRateOnOpen
+argument_list|(
+literal|0.0
+argument_list|)
 expr_stmt|;
 block|}
 name|dir
@@ -3434,6 +3454,13 @@ decl_stmt|;
 name|dir
 operator|.
 name|setRandomIOExceptionRate
+argument_list|(
+literal|0.0
+argument_list|)
+expr_stmt|;
+name|dir
+operator|.
+name|setRandomIOExceptionRateOnOpen
 argument_list|(
 literal|0.0
 argument_list|)
