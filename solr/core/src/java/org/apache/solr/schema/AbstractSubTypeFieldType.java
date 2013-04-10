@@ -199,6 +199,15 @@ argument_list|>
 name|args
 parameter_list|)
 block|{
+name|super
+operator|.
+name|init
+argument_list|(
+name|schema
+argument_list|,
+name|args
+argument_list|)
+expr_stmt|;
 name|this
 operator|.
 name|schema
