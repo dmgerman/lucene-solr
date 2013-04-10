@@ -3042,6 +3042,11 @@ argument_list|,
 literal|true
 argument_list|,
 name|doDocScores
+operator|||
+name|sort
+operator|.
+name|needsScores
+argument_list|()
 argument_list|,
 name|doMaxScore
 argument_list|)
