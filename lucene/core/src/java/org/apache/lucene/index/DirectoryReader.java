@@ -74,22 +74,6 @@ name|apache
 operator|.
 name|lucene
 operator|.
-name|index
-operator|.
-name|SegmentInfos
-operator|.
-name|FindSegmentsFile
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
 name|search
 operator|.
 name|SearcherManager
@@ -111,6 +95,20 @@ operator|.
 name|store
 operator|.
 name|Directory
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|store
+operator|.
+name|NoSuchDirectoryException
 import|;
 end_import
 
@@ -609,7 +607,7 @@ return|return
 name|commits
 return|;
 block|}
-comment|/**    * Returns<code>true</code> if an index exists at the specified directory.    * @param  directory the directory to check for an index    * @return<code>true</code> if an index exists;<code>false</code> otherwise    */
+comment|/**    * Returns<code>true</code> if an index likely exists at    * the specified directory.  Note that if a corrupt index    * exists, or if an index in the process of committing     * @param  directory the directory to check for an index    * @return<code>true</code> if an index exists;<code>false</code> otherwise    */
 DECL|method|indexExists
 specifier|public
 specifier|static
@@ -619,87 +617,101 @@ parameter_list|(
 name|Directory
 name|directory
 parameter_list|)
-block|{
-try|try
-block|{
-operator|new
-name|FindSegmentsFile
-argument_list|(
-name|directory
-argument_list|)
-block|{
-annotation|@
-name|Override
-specifier|protected
-name|Object
-name|doBody
-parameter_list|(
-name|String
-name|segmentFileName
-parameter_list|)
 throws|throws
 name|IOException
 block|{
+comment|// LUCENE-2812, LUCENE-2727, LUCENE-4738: this logic will
+comment|// return true in cases that should arguably be false,
+comment|// such as only IW.prepareCommit has been called, or a
+comment|// corrupt first commit, but it's too deadly to make
+comment|// this logic "smarter" and risk accidentally returning
+comment|// false due to various cases like file description
+comment|// exhaustion, access denited, etc., because in that
+comment|// case IndexWriter may delete the entire index.  It's
+comment|// safer to err towards "index exists" than try to be
+comment|// smart about detecting not-yet-fully-committed or
+comment|// corrupt indices.  This means that IndexWriter will
+comment|// throw an exception on such indices and the app must
+comment|// resolve the situation manually:
+name|String
+index|[]
+name|files
+decl_stmt|;
 try|try
 block|{
-operator|new
-name|SegmentInfos
-argument_list|()
-operator|.
-name|read
-argument_list|(
+name|files
+operator|=
 name|directory
-argument_list|,
-name|segmentFileName
-argument_list|)
+operator|.
+name|listAll
+argument_list|()
 expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
-name|FileNotFoundException
-name|ex
+name|NoSuchDirectoryException
+name|nsde
 parameter_list|)
 block|{
-if|if
-condition|(
-operator|!
-name|directory
-operator|.
-name|fileExists
-argument_list|(
-name|segmentFileName
-argument_list|)
-condition|)
-block|{
-throw|throw
-name|ex
-throw|;
-block|}
-comment|/* this is ok - we might have run into a access exception here.              * or even worse like on LUCENE-4870 this is triggered due to              * too many open files on the system. In that case we rather report              * a false positive here since wrongly returning false from indexExist              * can cause data loss since IW relies on this.*/
-block|}
-return|return
-literal|null
-return|;
-block|}
-block|}
-operator|.
-name|run
-argument_list|()
-expr_stmt|;
-return|return
-literal|true
-return|;
-block|}
-catch|catch
-parameter_list|(
-name|IOException
-name|ioe
-parameter_list|)
-block|{
+comment|// Directory does not exist --> no index exists
 return|return
 literal|false
 return|;
 block|}
+comment|// Defensive: maybe a Directory impl returns null
+comment|// instead of throwing NoSuchDirectoryException:
+if|if
+condition|(
+name|files
+operator|!=
+literal|null
+condition|)
+block|{
+name|String
+name|prefix
+init|=
+name|IndexFileNames
+operator|.
+name|SEGMENTS
+operator|+
+literal|"_"
+decl_stmt|;
+for|for
+control|(
+name|String
+name|file
+range|:
+name|files
+control|)
+block|{
+if|if
+condition|(
+name|file
+operator|.
+name|startsWith
+argument_list|(
+name|prefix
+argument_list|)
+operator|||
+name|file
+operator|.
+name|equals
+argument_list|(
+name|IndexFileNames
+operator|.
+name|SEGMENTS_GEN
+argument_list|)
+condition|)
+block|{
+return|return
+literal|true
+return|;
+block|}
+block|}
+block|}
+return|return
+literal|false
+return|;
 block|}
 comment|/**    * Expert: Constructs a {@code DirectoryReader} on the given subReaders.    * @param segmentReaders the wrapped atomic index segment readers. This array is    * returned by {@link #getSequentialSubReaders} and used to resolve the correct    * subreader for docID-based methods.<b>Please note:</b> This array is<b>not</b>    * cloned and not protected for modification outside of this reader.    * Subclasses of {@code DirectoryReader} should take care to not allow    * modification of this internal array, e.g. {@link #doOpenIfChanged()}.    */
 DECL|method|DirectoryReader

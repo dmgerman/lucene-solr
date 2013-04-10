@@ -350,6 +350,9 @@ name|infoStream
 parameter_list|,
 name|IndexWriter
 name|writer
+parameter_list|,
+name|boolean
+name|initialIndexExists
 parameter_list|)
 throws|throws
 name|IOException
@@ -768,6 +771,8 @@ operator|&&
 name|currentSegmentsFile
 operator|!=
 literal|null
+operator|&&
+name|initialIndexExists
 condition|)
 block|{
 comment|// We did not in fact see the segments_N file
@@ -806,7 +811,11 @@ throw|throw
 operator|new
 name|CorruptIndexException
 argument_list|(
-literal|"failed to locate current segments_N file"
+literal|"failed to locate current segments_N file \""
+operator|+
+name|currentSegmentsFile
+operator|+
+literal|"\""
 argument_list|)
 throw|;
 block|}
