@@ -410,8 +410,9 @@ name|taxoReader
 argument_list|)
 return|;
 block|}
+comment|/** Returns an empty {@link FacetResult}. */
 DECL|method|emptyResult
-specifier|private
+specifier|protected
 specifier|static
 name|FacetResult
 name|emptyResult
@@ -428,14 +429,12 @@ name|root
 init|=
 operator|new
 name|FacetResultNode
-argument_list|()
+argument_list|(
+name|ordinal
+argument_list|,
+literal|0
+argument_list|)
 decl_stmt|;
-name|root
-operator|.
-name|ordinal
-operator|=
-name|ordinal
-expr_stmt|;
 name|root
 operator|.
 name|label
@@ -443,12 +442,6 @@ operator|=
 name|fr
 operator|.
 name|categoryPath
-expr_stmt|;
-name|root
-operator|.
-name|value
-operator|=
-literal|0
 expr_stmt|;
 return|return
 operator|new

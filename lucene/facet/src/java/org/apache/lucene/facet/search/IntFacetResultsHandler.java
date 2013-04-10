@@ -196,6 +196,16 @@ if|if
 condition|(
 name|value
 operator|>
+literal|0
+condition|)
+block|{
+operator|++
+name|numResults
+expr_stmt|;
+if|if
+condition|(
+name|value
+operator|>
 name|top
 operator|.
 name|value
@@ -220,9 +230,7 @@ operator|.
 name|updateTop
 argument_list|()
 expr_stmt|;
-operator|++
-name|numResults
-expr_stmt|;
+block|}
 block|}
 name|ordinal
 operator|=

@@ -1170,7 +1170,7 @@ name|FacetResultNode
 argument_list|>
 name|heap
 decl_stmt|;
-comment|/**      * Create a Facet Result.      * @param facetRequest Request for which this result was obtained.      * @param facetResultNode top result node for this facet result.      * @param totalFacets - number of children of the targetFacet, up till the requested depth.      */
+comment|/**      * Create a Facet Result.      * @param facetRequest Request for which this result was obtained.      * @param facetResultNode top result node for this facet result.      */
 DECL|method|TopKFacetResult
 name|TopKFacetResult
 parameter_list|(

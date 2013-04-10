@@ -692,17 +692,6 @@ literal|10
 condition|)
 block|{
 comment|// Remap every ord to global ord as we iterate:
-specifier|final
-name|int
-index|[]
-name|segCounts
-init|=
-operator|new
-name|int
-index|[
-name|numSegOrds
-index|]
-decl_stmt|;
 name|int
 name|doc
 init|=
@@ -1575,6 +1564,11 @@ name|dimCount
 init|=
 literal|0
 decl_stmt|;
+name|int
+name|childCount
+init|=
+literal|0
+decl_stmt|;
 name|FacetResultNode
 name|reuse
 init|=
@@ -1600,6 +1594,19 @@ operator|++
 control|)
 block|{
 comment|//System.out.println("  ord=" + ord + " count= "+ counts[ord] + " bottomCount=" + bottomCount);
+if|if
+condition|(
+name|counts
+index|[
+name|ord
+index|]
+operator|>
+literal|0
+condition|)
+block|{
+name|childCount
+operator|++
+expr_stmt|;
 if|if
 condition|(
 name|counts
@@ -1691,6 +1698,7 @@ operator|.
 name|value
 expr_stmt|;
 comment|//System.out.println("    new bottom=" + bottomCount);
+block|}
 block|}
 block|}
 block|}
@@ -1862,9 +1870,7 @@ name|request
 argument_list|,
 name|rootNode
 argument_list|,
-name|childNodes
-operator|.
-name|length
+name|childCount
 argument_list|)
 argument_list|)
 expr_stmt|;

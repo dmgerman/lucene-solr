@@ -145,13 +145,6 @@ decl_stmt|;
 DECL|method|FacetResultNode
 specifier|public
 name|FacetResultNode
-parameter_list|()
-block|{
-comment|// empty constructor
-block|}
-DECL|method|FacetResultNode
-specifier|public
-name|FacetResultNode
 parameter_list|(
 name|int
 name|ordinal
