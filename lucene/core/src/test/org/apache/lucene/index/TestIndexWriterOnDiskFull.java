@@ -1847,6 +1847,13 @@ comment|// Finally, verify index is not corrupt, and, if
 comment|// we succeeded, we see all docs added, and if we
 comment|// failed, we see either all docs or no docs added
 comment|// (transactional semantics):
+name|dir
+operator|.
+name|setRandomIOExceptionRateOnOpen
+argument_list|(
+literal|0.0
+argument_list|)
+expr_stmt|;
 try|try
 block|{
 name|reader
