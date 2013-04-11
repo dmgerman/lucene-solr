@@ -1977,6 +1977,16 @@ parameter_list|()
 block|{
 try|try
 block|{
+name|IndexReader
+name|lastReader
+init|=
+literal|null
+decl_stmt|;
+name|IndexSearcher
+name|lastSearcher
+init|=
+literal|null
+decl_stmt|;
 while|while
 condition|(
 name|operations
@@ -2084,12 +2094,40 @@ block|}
 comment|//  sreq = req("wt","json", "q","id:"+Integer.toString(id), "omitHeader","true");
 name|IndexSearcher
 name|searcher
-init|=
+decl_stmt|;
+if|if
+condition|(
+name|r
+operator|==
+name|lastReader
+condition|)
+block|{
+comment|// Just re-use lastSearcher, else
+comment|// newSearcher may create too many thread
+comment|// pools (ExecutorService):
+name|searcher
+operator|=
+name|lastSearcher
+expr_stmt|;
+block|}
+else|else
+block|{
+name|searcher
+operator|=
 name|newSearcher
 argument_list|(
 name|r
 argument_list|)
-decl_stmt|;
+expr_stmt|;
+name|lastReader
+operator|=
+name|r
+expr_stmt|;
+name|lastSearcher
+operator|=
+name|searcher
+expr_stmt|;
+block|}
 name|Query
 name|q
 init|=
