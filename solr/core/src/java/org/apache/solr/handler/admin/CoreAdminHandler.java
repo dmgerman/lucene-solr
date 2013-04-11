@@ -1308,8 +1308,6 @@ operator|.
 name|getParams
 argument_list|()
 decl_stmt|;
-comment|// partitions=N    (split into N partitions, leaving it up to solr what the ranges are and where to put them)
-comment|// path - multiValued param, or comma separated param?  Only creates indexes, not cores
 name|List
 argument_list|<
 name|DocRouter
@@ -1320,8 +1318,6 @@ name|ranges
 init|=
 literal|null
 decl_stmt|;
-comment|// boolean closeDirectories = true;
-comment|// DirectoryFactory dirFactory = null;
 name|String
 index|[]
 name|pathsArr
@@ -1369,6 +1365,45 @@ argument_list|,
 literal|""
 argument_list|)
 decl_stmt|;
+if|if
+condition|(
+operator|(
+name|pathsArr
+operator|==
+literal|null
+operator|||
+name|pathsArr
+operator|.
+name|length
+operator|==
+literal|0
+operator|)
+operator|&&
+operator|(
+name|newCoreNames
+operator|==
+literal|null
+operator|||
+name|newCoreNames
+operator|.
+name|length
+operator|==
+literal|0
+operator|)
+condition|)
+block|{
+throw|throw
+operator|new
+name|SolrException
+argument_list|(
+name|ErrorCode
+operator|.
+name|BAD_REQUEST
+argument_list|,
+literal|"Either path or targetCore param must be specified"
+argument_list|)
+throw|;
+block|}
 name|log
 operator|.
 name|info
@@ -1429,17 +1464,18 @@ name|pathsArr
 operator|.
 name|length
 else|:
-name|params
+name|newCoreNames
 operator|.
-name|getInt
-argument_list|(
-literal|"partitions"
-argument_list|,
-literal|2
-argument_list|)
+name|length
 decl_stmt|;
-comment|// TODO: if we don't know the real range of the current core, we should just
-comment|//  split on every other doc rather than hash.
+if|if
+condition|(
+name|coreContainer
+operator|.
+name|isZooKeeperAware
+argument_list|()
+condition|)
+block|{
 name|ClusterState
 name|clusterState
 init|=
@@ -1516,27 +1552,6 @@ name|slice
 operator|.
 name|getRange
 argument_list|()
-operator|==
-literal|null
-condition|?
-operator|new
-name|DocRouter
-operator|.
-name|Range
-argument_list|(
-name|Integer
-operator|.
-name|MIN_VALUE
-argument_list|,
-name|Integer
-operator|.
-name|MAX_VALUE
-argument_list|)
-else|:
-name|slice
-operator|.
-name|getRange
-argument_list|()
 decl_stmt|;
 name|DocRouter
 name|hp
@@ -1559,6 +1574,10 @@ name|DEFAULT
 decl_stmt|;
 name|ranges
 operator|=
+name|currentRange
+operator|!=
+literal|null
+condition|?
 name|hp
 operator|.
 name|partitionRange
@@ -1567,7 +1586,10 @@ name|partitions
 argument_list|,
 name|currentRange
 argument_list|)
+else|:
+literal|null
 expr_stmt|;
+block|}
 if|if
 condition|(
 name|pathsArr
