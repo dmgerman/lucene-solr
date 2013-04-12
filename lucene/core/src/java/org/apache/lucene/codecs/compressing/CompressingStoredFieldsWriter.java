@@ -415,6 +415,15 @@ name|CompressingStoredFieldsWriter
 extends|extends
 name|StoredFieldsWriter
 block|{
+comment|// hard limit on the maximum number of documents per chunk
+DECL|field|MAX_DOCUMENTS_PER_CHUNK
+specifier|static
+specifier|final
+name|int
+name|MAX_DOCUMENTS_PER_CHUNK
+init|=
+literal|128
+decl_stmt|;
 DECL|field|STRING
 specifier|static
 specifier|final
@@ -1311,9 +1320,8 @@ operator|||
 comment|// chunks of at least chunkSize bytes
 name|numBufferedDocs
 operator|>=
-name|chunkSize
+name|MAX_DOCUMENTS_PER_CHUNK
 return|;
-comment|// can be necessary if most docs are empty
 block|}
 DECL|method|flush
 specifier|private

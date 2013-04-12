@@ -437,6 +437,15 @@ name|CompressingTermVectorsWriter
 extends|extends
 name|TermVectorsWriter
 block|{
+comment|// hard limit on the maximum number of documents per chunk
+DECL|field|MAX_DOCUMENTS_PER_CHUNK
+specifier|static
+specifier|final
+name|int
+name|MAX_DOCUMENTS_PER_CHUNK
+init|=
+literal|128
+decl_stmt|;
 DECL|field|VECTORS_EXTENSION
 specifier|static
 specifier|final
@@ -2279,7 +2288,7 @@ operator|.
 name|size
 argument_list|()
 operator|>=
-name|chunkSize
+name|MAX_DOCUMENTS_PER_CHUNK
 return|;
 block|}
 DECL|method|flush
