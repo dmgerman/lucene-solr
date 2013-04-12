@@ -417,8 +417,6 @@ operator|.
 name|util
 operator|.
 name|LuceneTestCase
-operator|.
-name|SuppressCodecs
 import|;
 end_import
 
@@ -433,6 +431,8 @@ operator|.
 name|util
 operator|.
 name|LuceneTestCase
+operator|.
+name|SuppressCodecs
 import|;
 end_import
 
@@ -6855,7 +6855,7 @@ parameter_list|)
 block|{
 return|return
 operator|new
-name|PassageFormatter
+name|DefaultPassageFormatter
 argument_list|(
 literal|"<b>"
 argument_list|,

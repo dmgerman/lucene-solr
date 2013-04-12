@@ -32,29 +32,9 @@ begin_import
 import|import
 name|java
 operator|.
-name|text
-operator|.
-name|BreakIterator
-import|;
-end_import
-
-begin_import
-import|import
-name|java
-operator|.
 name|util
 operator|.
 name|HashSet
-import|;
-end_import
-
-begin_import
-import|import
-name|java
-operator|.
-name|util
-operator|.
-name|Locale
 import|;
 end_import
 
@@ -176,6 +156,22 @@ name|lucene
 operator|.
 name|index
 operator|.
+name|FieldInfo
+operator|.
+name|IndexOptions
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|index
+operator|.
 name|IndexReader
 import|;
 end_import
@@ -205,22 +201,6 @@ operator|.
 name|index
 operator|.
 name|RandomIndexWriter
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|index
-operator|.
-name|FieldInfo
-operator|.
-name|IndexOptions
 import|;
 end_import
 
@@ -388,7 +368,9 @@ name|lucene
 operator|.
 name|util
 operator|.
-name|_TestUtil
+name|LuceneTestCase
+operator|.
+name|SuppressCodecs
 import|;
 end_import
 
@@ -402,9 +384,7 @@ name|lucene
 operator|.
 name|util
 operator|.
-name|LuceneTestCase
-operator|.
-name|SuppressCodecs
+name|_TestUtil
 import|;
 end_import
 
@@ -587,7 +567,6 @@ name|i
 operator|++
 control|)
 block|{
-empty_stmt|;
 name|StringBuilder
 name|bodyText
 init|=
