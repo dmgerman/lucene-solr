@@ -9436,7 +9436,7 @@ name|numDocs
 init|=
 name|atLeast
 argument_list|(
-literal|1000
+literal|300
 argument_list|)
 decl_stmt|;
 for|for
@@ -10038,7 +10038,7 @@ name|numDocs
 init|=
 name|atLeast
 argument_list|(
-literal|1000
+literal|300
 argument_list|)
 decl_stmt|;
 for|for
@@ -10557,7 +10557,7 @@ name|numDocs
 init|=
 name|atLeast
 argument_list|(
-literal|1000
+literal|300
 argument_list|)
 decl_stmt|;
 for|for
@@ -14114,7 +14114,7 @@ name|numDocs
 init|=
 name|atLeast
 argument_list|(
-literal|1000
+literal|300
 argument_list|)
 decl_stmt|;
 for|for
@@ -14945,7 +14945,7 @@ name|numDocs
 init|=
 name|atLeast
 argument_list|(
-literal|1000
+literal|300
 argument_list|)
 decl_stmt|;
 for|for

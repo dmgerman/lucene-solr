@@ -1268,6 +1268,13 @@ name|randomVal
 operator|==
 literal|9
 operator|&&
+name|LuceneTestCase
+operator|.
+name|rarely
+argument_list|(
+name|random
+argument_list|)
+operator|&&
 operator|!
 name|shouldAvoidCodec
 argument_list|(

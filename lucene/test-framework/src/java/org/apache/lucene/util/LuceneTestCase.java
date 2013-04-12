@@ -2321,7 +2321,7 @@ name|TEST_NIGHTLY
 condition|?
 literal|10
 else|:
-literal|5
+literal|1
 decl_stmt|;
 name|p
 operator|+=
