@@ -138,7 +138,9 @@ init|=
 name|WeakIdentityMap
 operator|.
 name|newConcurrentHashMap
-argument_list|()
+argument_list|(
+literal|false
+argument_list|)
 decl_stmt|;
 comment|/**    * Creates a new instance for the given {@code baseClass} and method declaration.    * @throws UnsupportedOperationException if you create a second instance of the same    *  {@code baseClass} and method declaration combination. This enforces the singleton status.    * @throws IllegalArgumentException if {@code baseClass} does not declare the given method.    */
 DECL|method|VirtualMethod

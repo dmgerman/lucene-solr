@@ -105,7 +105,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Implements a combination of {@link java.util.WeakHashMap} and  * {@link java.util.IdentityHashMap}.  * Useful for caches that need to key off of a {@code ==} comparison  * instead of a {@code .equals}.  *   *<p>This class is not a general-purpose {@link java.util.Map}  * implementation! It intentionally violates  * Map's general contract, which mandates the use of the equals method  * when comparing objects. This class is designed for use only in the  * rare cases wherein reference-equality semantics are required.  *   *<p>This implementation was forked from<a href="http://cxf.apache.org/">Apache CXF</a>  * but modified to<b>not</b> implement the {@link java.util.Map} interface and  * without any set views on it, as those are error-prone and inefficient,  * if not implemented carefully. The map only contains {@link Iterator} implementations  * on the values and not-GCed keys. Lucene's implementation also supports {@code null}  * keys, but those are never weak!  *  * @lucene.internal  */
+comment|/**  * Implements a combination of {@link java.util.WeakHashMap} and  * {@link java.util.IdentityHashMap}.  * Useful for caches that need to key off of a {@code ==} comparison  * instead of a {@code .equals}.  *   *<p>This class is not a general-purpose {@link java.util.Map}  * implementation! It intentionally violates  * Map's general contract, which mandates the use of the equals method  * when comparing objects. This class is designed for use only in the  * rare cases wherein reference-equality semantics are required.  *   *<p>This implementation was forked from<a href="http://cxf.apache.org/">Apache CXF</a>  * but modified to<b>not</b> implement the {@link java.util.Map} interface and  * without any set views on it, as those are error-prone and inefficient,  * if not implemented carefully. The map only contains {@link Iterator} implementations  * on the values and not-GCed keys. Lucene's implementation also supports {@code null}  * keys, but those are never weak!  *   *<p><a name="reapInfo" />The map supports two modes of operation:  *<ul>  *<li>{@code reapOnRead = true}: This behaves identical to a {@link java.util.WeakHashMap}  *  where it also cleans up the reference queue on every read operation ({@link #get(Object)},  *  {@link #containsKey(Object)}, {@link #size()}, {@link #valueIterator()}), freeing map entries  *  of already GCed keys.</li>  *<li>{@code reapOnRead = false}: This mode does not call {@link #reap()} on every read  *  operation. In this case, the reference queue is only cleaned up on write operations  *  (like {@link #put(Object, Object)}). This is ideal for maps with few entries where  *  the keys are unlikely be garbage collected, but there are lots of {@link #get(Object)}  *  operations. The code can still call {@link #reap()} to manually clean up the queue without  *  doing a write operation.</li>  *</ul>  *  * @lucene.internal  */
 end_comment
 
 begin_class
@@ -147,11 +147,16 @@ name|V
 argument_list|>
 name|backingStore
 decl_stmt|;
-comment|/** Creates a new {@code WeakIdentityMap} based on a non-synchronized {@link HashMap}. */
+DECL|field|reapOnRead
+specifier|private
+specifier|final
+name|boolean
+name|reapOnRead
+decl_stmt|;
+comment|/**     * Creates a new {@code WeakIdentityMap} based on a non-synchronized {@link HashMap}.    * The map<a href="#reapInfo">cleans up the reference queue on every read operation</a>.    */
 DECL|method|newHashMap
 specifier|public
 specifier|static
-specifier|final
 parameter_list|<
 name|K
 parameter_list|,
@@ -165,6 +170,34 @@ name|V
 argument_list|>
 name|newHashMap
 parameter_list|()
+block|{
+return|return
+name|newHashMap
+argument_list|(
+literal|true
+argument_list|)
+return|;
+block|}
+comment|/**    * Creates a new {@code WeakIdentityMap} based on a non-synchronized {@link HashMap}.    * @param reapOnRead controls if the map<a href="#reapInfo">cleans up the reference queue on every read operation</a>.    */
+DECL|method|newHashMap
+specifier|public
+specifier|static
+parameter_list|<
+name|K
+parameter_list|,
+name|V
+parameter_list|>
+name|WeakIdentityMap
+argument_list|<
+name|K
+argument_list|,
+name|V
+argument_list|>
+name|newHashMap
+parameter_list|(
+name|boolean
+name|reapOnRead
+parameter_list|)
 block|{
 return|return
 operator|new
@@ -183,14 +216,15 @@ argument_list|,
 name|V
 argument_list|>
 argument_list|()
+argument_list|,
+name|reapOnRead
 argument_list|)
 return|;
 block|}
-comment|/** Creates a new {@code WeakIdentityMap} based on a {@link ConcurrentHashMap}. */
+comment|/**    * Creates a new {@code WeakIdentityMap} based on a {@link ConcurrentHashMap}.    * The map<a href="#reapInfo">cleans up the reference queue on every read operation</a>.    */
 DECL|method|newConcurrentHashMap
 specifier|public
 specifier|static
-specifier|final
 parameter_list|<
 name|K
 parameter_list|,
@@ -204,6 +238,34 @@ name|V
 argument_list|>
 name|newConcurrentHashMap
 parameter_list|()
+block|{
+return|return
+name|newConcurrentHashMap
+argument_list|(
+literal|true
+argument_list|)
+return|;
+block|}
+comment|/**    * Creates a new {@code WeakIdentityMap} based on a {@link ConcurrentHashMap}.    * @param reapOnRead controls if the map<a href="#reapInfo">cleans up the reference queue on every read operation</a>.    */
+DECL|method|newConcurrentHashMap
+specifier|public
+specifier|static
+parameter_list|<
+name|K
+parameter_list|,
+name|V
+parameter_list|>
+name|WeakIdentityMap
+argument_list|<
+name|K
+argument_list|,
+name|V
+argument_list|>
+name|newConcurrentHashMap
+parameter_list|(
+name|boolean
+name|reapOnRead
+parameter_list|)
 block|{
 return|return
 operator|new
@@ -222,9 +284,12 @@ argument_list|,
 name|V
 argument_list|>
 argument_list|()
+argument_list|,
+name|reapOnRead
 argument_list|)
 return|;
 block|}
+comment|/** Private only constructor, to create use the static factory methods. */
 DECL|method|WeakIdentityMap
 specifier|private
 name|WeakIdentityMap
@@ -236,6 +301,9 @@ argument_list|,
 name|V
 argument_list|>
 name|backingStore
+parameter_list|,
+name|boolean
+name|reapOnRead
 parameter_list|)
 block|{
 name|this
@@ -243,6 +311,12 @@ operator|.
 name|backingStore
 operator|=
 name|backingStore
+expr_stmt|;
+name|this
+operator|.
+name|reapOnRead
+operator|=
+name|reapOnRead
 expr_stmt|;
 block|}
 comment|/** Removes all of the mappings from this map. */
@@ -271,6 +345,10 @@ name|Object
 name|key
 parameter_list|)
 block|{
+if|if
+condition|(
+name|reapOnRead
+condition|)
 name|reap
 argument_list|()
 expr_stmt|;
@@ -299,6 +377,10 @@ name|Object
 name|key
 parameter_list|)
 block|{
+if|if
+condition|(
+name|reapOnRead
+condition|)
 name|reap
 argument_list|()
 expr_stmt|;
@@ -409,6 +491,10 @@ condition|)
 return|return
 literal|0
 return|;
+if|if
+condition|(
+name|reapOnRead
+condition|)
 name|reap
 argument_list|()
 expr_stmt|;
@@ -618,7 +704,7 @@ block|}
 block|}
 return|;
 block|}
-comment|/** Returns an iterator over all values of this map.    * This iterator may return values whose key is already    * garbage collected while iterator is consumed. */
+comment|/** Returns an iterator over all values of this map.    * This iterator may return values whose key is already    * garbage collected while iterator is consumed,    * especially if {@code reapOnRead} is {@code false}. */
 DECL|method|valueIterator
 specifier|public
 name|Iterator
@@ -628,6 +714,10 @@ argument_list|>
 name|valueIterator
 parameter_list|()
 block|{
+if|if
+condition|(
+name|reapOnRead
+condition|)
 name|reap
 argument_list|()
 expr_stmt|;
@@ -641,8 +731,9 @@ name|iterator
 argument_list|()
 return|;
 block|}
+comment|/**    * This method manually cleans up the reference queue to remove all garbage    * collected key/value pairs from the map. Calling this method is not needed    * if {@code reapOnRead = true}. Otherwise it might be a good idea    * to call this method when there is spare time (e.g. from a background thread).    * @see<a href="#reapInfo">Information about the<code>reapOnRead</code> setting</a>    */
 DECL|method|reap
-specifier|private
+specifier|public
 name|void
 name|reap
 parameter_list|()
