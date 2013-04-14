@@ -2269,6 +2269,15 @@ operator|!=
 literal|null
 condition|)
 block|{
+name|log
+operator|.
+name|debug
+argument_list|(
+literal|"Closing out SolrRequest: {}"
+argument_list|,
+name|solrReq
+argument_list|)
+expr_stmt|;
 name|solrReq
 operator|.
 name|close

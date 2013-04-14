@@ -1824,6 +1824,13 @@ return|return;
 block|}
 try|try
 block|{
+name|LOG
+operator|.
+name|debug
+argument_list|(
+literal|"Polling for index modifications"
+argument_list|)
+expr_stmt|;
 name|executorStartTime
 operator|=
 name|System
