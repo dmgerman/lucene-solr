@@ -1362,6 +1362,13 @@ parameter_list|)
 throws|throws
 name|Exception
 block|{
+name|boolean
+name|success
+init|=
+literal|true
+decl_stmt|;
+try|try
+block|{
 name|indexr
 argument_list|(
 literal|"id"
@@ -1369,6 +1376,67 @@ argument_list|,
 name|id
 argument_list|)
 expr_stmt|;
+block|}
+catch|catch
+parameter_list|(
+name|SolrServerException
+name|e
+parameter_list|)
+block|{
+if|if
+condition|(
+operator|!
+name|e
+operator|.
+name|getMessage
+argument_list|()
+operator|.
+name|startsWith
+argument_list|(
+literal|"No live SolrServers available to handle this request"
+argument_list|)
+condition|)
+block|{
+name|success
+operator|=
+literal|false
+expr_stmt|;
+name|log
+operator|.
+name|error
+argument_list|(
+literal|"Exception while adding doc"
+argument_list|,
+name|e
+argument_list|)
+expr_stmt|;
+block|}
+else|else
+block|{
+comment|// Error is recoverable because the proxy node will store the request in its log and
+comment|// it will be retried later and sent to the leader
+name|log
+operator|.
+name|warn
+argument_list|(
+literal|"Counting doc: "
+operator|+
+name|id
+operator|+
+literal|" because error is recoverable"
+argument_list|,
+name|e
+argument_list|)
+expr_stmt|;
+block|}
+block|}
+finally|finally
+block|{
+if|if
+condition|(
+name|success
+condition|)
+block|{
 comment|// todo - hook in custom hashing
 name|byte
 index|[]
@@ -1449,6 +1517,8 @@ name|i
 index|]
 operator|++
 expr_stmt|;
+block|}
+block|}
 block|}
 block|}
 DECL|method|logDebugHelp
