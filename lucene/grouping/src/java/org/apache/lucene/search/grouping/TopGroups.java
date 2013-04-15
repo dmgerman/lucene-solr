@@ -311,7 +311,6 @@ comment|/* Avg score across all shards for this group. */
 DECL|enum constant|Avg
 name|Avg
 block|,   }
-empty_stmt|;
 comment|/** Merges an array of TopGroups, for example obtained    *  from the second-pass collector across multiple    *  shards.  Each TopGroups must have been sorted by the    *  same groupSort and docSort, and the top groups passed    *  to all second-pass collectors must be the same.    *    *<b>NOTE</b>: We can't always compute an exact totalGroupCount.    * Documents belonging to a group may occur on more than    * one shard and thus the merged totalGroupCount can be    * higher than the actual totalGroupCount. In this case the    * totalGroupCount represents a upper bound. If the documents    * of one group do only reside in one shard then the    * totalGroupCount is exact.    *    *<b>NOTE</b>: the topDocs in each GroupDocs is actually    * an instance of TopDocsAndShards    */
 DECL|method|merge
 specifier|public
@@ -874,9 +873,7 @@ index|]
 operator|=
 operator|new
 name|GroupDocs
-argument_list|<
-name|T
-argument_list|>
+argument_list|<>
 argument_list|(
 name|groupScore
 argument_list|,
@@ -928,9 +925,7 @@ name|result
 init|=
 operator|new
 name|TopGroups
-argument_list|<
-name|T
-argument_list|>
+argument_list|<>
 argument_list|(
 name|groupSort
 operator|.
@@ -960,9 +955,7 @@ decl_stmt|;
 return|return
 operator|new
 name|TopGroups
-argument_list|<
-name|T
-argument_list|>
+argument_list|<>
 argument_list|(
 name|result
 argument_list|,
@@ -975,9 +968,7 @@ block|{
 return|return
 operator|new
 name|TopGroups
-argument_list|<
-name|T
-argument_list|>
+argument_list|<>
 argument_list|(
 name|groupSort
 operator|.

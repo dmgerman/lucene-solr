@@ -301,11 +301,7 @@ name|groups
 operator|=
 operator|new
 name|HashMap
-argument_list|<
-name|MutableValue
-argument_list|,
-name|GroupHead
-argument_list|>
+argument_list|<>
 argument_list|()
 expr_stmt|;
 name|this

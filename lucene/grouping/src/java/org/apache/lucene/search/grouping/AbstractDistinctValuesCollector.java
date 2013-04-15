@@ -171,9 +171,7 @@ name|uniqueValues
 operator|=
 operator|new
 name|HashSet
-argument_list|<
-name|GROUP_VALUE_TYPE
-argument_list|>
+argument_list|<>
 argument_list|()
 expr_stmt|;
 block|}
