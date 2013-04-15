@@ -1261,6 +1261,15 @@ argument_list|,
 name|query
 argument_list|)
 expr_stmt|;
+name|params
+operator|.
+name|add
+argument_list|(
+literal|"sort"
+argument_list|,
+literal|"id desc"
+argument_list|)
+expr_stmt|;
 name|QueryResponse
 name|qres
 init|=
