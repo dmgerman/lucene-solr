@@ -730,8 +730,7 @@ argument_list|(
 literal|2.0f
 argument_list|)
 expr_stmt|;
-operator|new
-name|IndexSearcher
+name|newSearcher
 argument_list|(
 name|r
 argument_list|)
@@ -1085,8 +1084,7 @@ argument_list|,
 name|taxo
 argument_list|)
 decl_stmt|;
-operator|new
-name|IndexSearcher
+name|newSearcher
 argument_list|(
 name|r
 argument_list|)
@@ -1508,8 +1506,7 @@ argument_list|,
 literal|false
 argument_list|)
 decl_stmt|;
-operator|new
-name|IndexSearcher
+name|newSearcher
 argument_list|(
 name|r
 argument_list|)
@@ -1838,8 +1835,7 @@ argument_list|(
 name|fa
 argument_list|)
 decl_stmt|;
-operator|new
-name|IndexSearcher
+name|newSearcher
 argument_list|(
 name|r
 argument_list|)
@@ -2114,8 +2110,7 @@ argument_list|(
 name|fa
 argument_list|)
 decl_stmt|;
-operator|new
-name|IndexSearcher
+name|newSearcher
 argument_list|(
 name|r
 argument_list|)
@@ -2384,8 +2379,7 @@ operator|.
 name|getFacetResults
 argument_list|()
 expr_stmt|;
-operator|new
-name|IndexSearcher
+name|newSearcher
 argument_list|(
 name|r
 argument_list|)
@@ -2690,8 +2684,7 @@ argument_list|(
 name|fa
 argument_list|)
 decl_stmt|;
-operator|new
-name|IndexSearcher
+name|newSearcher
 argument_list|(
 name|r
 argument_list|)
@@ -2814,8 +2807,7 @@ argument_list|(
 name|fa
 argument_list|)
 expr_stmt|;
-operator|new
-name|IndexSearcher
+name|newSearcher
 argument_list|(
 name|r
 argument_list|)
@@ -3101,8 +3093,7 @@ argument_list|(
 name|fa
 argument_list|)
 decl_stmt|;
-operator|new
-name|IndexSearcher
+name|newSearcher
 argument_list|(
 name|r
 argument_list|)

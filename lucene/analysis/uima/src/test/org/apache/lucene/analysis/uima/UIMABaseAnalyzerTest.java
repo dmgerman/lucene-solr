@@ -515,8 +515,7 @@ decl_stmt|;
 name|IndexSearcher
 name|indexSearcher
 init|=
-operator|new
-name|IndexSearcher
+name|newSearcher
 argument_list|(
 name|directoryReader
 argument_list|)
@@ -701,8 +700,7 @@ argument_list|)
 expr_stmt|;
 name|indexSearcher
 operator|=
-operator|new
-name|IndexSearcher
+name|newSearcher
 argument_list|(
 name|directoryReader
 argument_list|)
@@ -795,8 +793,7 @@ expr_stmt|;
 comment|// do a matchalldocs query to retrieve both docs
 name|indexSearcher
 operator|=
-operator|new
-name|IndexSearcher
+name|newSearcher
 argument_list|(
 name|directoryReader
 argument_list|)

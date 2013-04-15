@@ -2264,8 +2264,7 @@ decl_stmt|;
 name|IndexSearcher
 name|is
 init|=
-operator|new
-name|IndexSearcher
+name|newSearcher
 argument_list|(
 name|ir
 argument_list|)

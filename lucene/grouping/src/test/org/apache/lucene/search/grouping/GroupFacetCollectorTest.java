@@ -716,8 +716,7 @@ expr_stmt|;
 name|IndexSearcher
 name|indexSearcher
 init|=
-operator|new
-name|IndexSearcher
+name|newSearcher
 argument_list|(
 name|w
 operator|.
@@ -1367,8 +1366,7 @@ argument_list|()
 expr_stmt|;
 name|indexSearcher
 operator|=
-operator|new
-name|IndexSearcher
+name|newSearcher
 argument_list|(
 name|w
 operator|.
@@ -1847,8 +1845,7 @@ argument_list|()
 expr_stmt|;
 name|indexSearcher
 operator|=
-operator|new
-name|IndexSearcher
+name|newSearcher
 argument_list|(
 name|w
 operator|.
@@ -2832,8 +2829,7 @@ expr_stmt|;
 name|IndexSearcher
 name|indexSearcher
 init|=
-operator|new
-name|IndexSearcher
+name|newSearcher
 argument_list|(
 name|DirectoryReader
 operator|.

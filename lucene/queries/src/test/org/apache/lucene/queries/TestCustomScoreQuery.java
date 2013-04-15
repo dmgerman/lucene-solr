@@ -322,6 +322,7 @@ name|TestCustomScoreQuery
 extends|extends
 name|FunctionTestSetup
 block|{
+comment|// TODO: why can't this test use newSearcher?
 annotation|@
 name|BeforeClass
 DECL|method|beforeClass
