@@ -1456,6 +1456,13 @@ operator|==
 name|other
 operator|.
 name|doScores
+operator|&&
+name|super
+operator|.
+name|equals
+argument_list|(
+name|other
+argument_list|)
 return|;
 block|}
 else|else
@@ -1482,7 +1489,10 @@ decl_stmt|;
 name|int
 name|hash
 init|=
-literal|1
+name|super
+operator|.
+name|hashCode
+argument_list|()
 decl_stmt|;
 name|hash
 operator|=

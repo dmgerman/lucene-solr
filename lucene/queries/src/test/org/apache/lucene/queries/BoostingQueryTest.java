@@ -40,6 +40,20 @@ name|lucene
 operator|.
 name|search
 operator|.
+name|QueryUtils
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|search
+operator|.
 name|TermQuery
 import|;
 end_import
@@ -66,6 +80,8 @@ name|BoostingQueryTest
 extends|extends
 name|LuceneTestCase
 block|{
+comment|// TODO: this suite desperately needs more tests!
+comment|// ... like ones that actually run the query
 DECL|method|testBoostingQueryEquals
 specifier|public
 name|void
@@ -124,6 +140,13 @@ argument_list|,
 literal|0.1f
 argument_list|)
 decl_stmt|;
+name|QueryUtils
+operator|.
+name|check
+argument_list|(
+name|bq1
+argument_list|)
+expr_stmt|;
 name|BoostingQuery
 name|bq2
 init|=
