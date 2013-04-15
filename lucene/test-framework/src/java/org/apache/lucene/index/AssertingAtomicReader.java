@@ -1158,12 +1158,6 @@ name|docid
 operator|==
 operator|-
 literal|1
-operator|||
-name|docid
-operator|==
-name|DocIdSetIterator
-operator|.
-name|NO_MORE_DOCS
 operator|:
 name|in
 operator|.
@@ -1267,6 +1261,8 @@ name|ITERATING
 expr_stmt|;
 block|}
 assert|assert
+name|super
+operator|.
 name|docID
 argument_list|()
 operator|==
@@ -1362,6 +1358,8 @@ name|ITERATING
 expr_stmt|;
 block|}
 assert|assert
+name|super
+operator|.
 name|docID
 argument_list|()
 operator|==
@@ -1373,9 +1371,44 @@ operator|=
 name|advanced
 return|;
 block|}
-comment|// NOTE: We don't assert anything for docId(). Specifically DocsEnum javadocs
-comment|// are ambiguous with DocIdSetIterator here, DocIdSetIterator says its ok
-comment|// to call this method before nextDoc(), just that it must be -1 or NO_MORE_DOCS!
+annotation|@
+name|Override
+DECL|method|docID
+specifier|public
+name|int
+name|docID
+parameter_list|()
+block|{
+assert|assert
+name|doc
+operator|==
+name|super
+operator|.
+name|docID
+argument_list|()
+operator|:
+literal|" invalid docID() in "
+operator|+
+name|in
+operator|.
+name|getClass
+argument_list|()
+operator|+
+literal|" "
+operator|+
+name|super
+operator|.
+name|docID
+argument_list|()
+operator|+
+literal|" instead of "
+operator|+
+name|doc
+assert|;
+return|return
+name|doc
+return|;
+block|}
 annotation|@
 name|Override
 DECL|method|freq
@@ -1483,12 +1516,6 @@ name|docid
 operator|==
 operator|-
 literal|1
-operator|||
-name|docid
-operator|==
-name|DocIdSetIterator
-operator|.
-name|NO_MORE_DOCS
 operator|:
 literal|"invalid initial doc id: "
 operator|+
@@ -1581,6 +1608,8 @@ argument_list|()
 expr_stmt|;
 block|}
 assert|assert
+name|super
+operator|.
 name|docID
 argument_list|()
 operator|==
@@ -1691,6 +1720,8 @@ argument_list|()
 expr_stmt|;
 block|}
 assert|assert
+name|super
+operator|.
 name|docID
 argument_list|()
 operator|==
@@ -1700,6 +1731,44 @@ return|return
 name|doc
 operator|=
 name|advanced
+return|;
+block|}
+annotation|@
+name|Override
+DECL|method|docID
+specifier|public
+name|int
+name|docID
+parameter_list|()
+block|{
+assert|assert
+name|doc
+operator|==
+name|super
+operator|.
+name|docID
+argument_list|()
+operator|:
+literal|" invalid docID() in "
+operator|+
+name|in
+operator|.
+name|getClass
+argument_list|()
+operator|+
+literal|" "
+operator|+
+name|super
+operator|.
+name|docID
+argument_list|()
+operator|+
+literal|" instead of "
+operator|+
+name|doc
+assert|;
+return|return
+name|doc
 return|;
 block|}
 annotation|@

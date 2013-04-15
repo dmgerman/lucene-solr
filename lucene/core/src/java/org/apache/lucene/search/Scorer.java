@@ -115,11 +115,6 @@ argument_list|()
 operator|==
 operator|-
 literal|1
-operator|||
-name|docID
-argument_list|()
-operator|==
-name|NO_MORE_DOCS
 assert|;
 comment|// not started
 name|collector

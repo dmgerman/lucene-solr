@@ -49,7 +49,7 @@ name|Integer
 operator|.
 name|MAX_VALUE
 decl_stmt|;
-comment|/**    * Returns the following:    *<ul>    *<li>-1 or {@link #NO_MORE_DOCS} if {@link #nextDoc()} or    * {@link #advance(int)} were not called yet.    *<li>{@link #NO_MORE_DOCS} if the iterator has exhausted.    *<li>Otherwise it should return the doc ID it is currently on.    *</ul>    *<p>    *     * @since 2.9    */
+comment|/**    * Returns the following:    *<ul>    *<li><code>-1</code> if {@link #nextDoc()} or    * {@link #advance(int)} were not called yet.    *<li>{@link #NO_MORE_DOCS} if the iterator has exhausted.    *<li>Otherwise it should return the doc ID it is currently on.    *</ul>    *<p>    *     * @since 2.9    */
 DECL|method|docID
 specifier|public
 specifier|abstract
@@ -94,12 +94,6 @@ throws|throws
 name|IOException
 block|{
 assert|assert
-name|docID
-argument_list|()
-operator|==
-name|NO_MORE_DOCS
-comment|// can happen when the enum is not positioned yet
-operator|||
 name|docID
 argument_list|()
 operator|<
