@@ -1079,29 +1079,34 @@ name|DocSet
 name|docsOrig
 decl_stmt|;
 comment|/** Configuration params behavior should be driven by */
-DECL|field|params
+DECL|field|orig
 specifier|protected
+specifier|final
 name|SolrParams
-name|params
+name|orig
 decl_stmt|;
 DECL|field|required
 specifier|protected
+specifier|final
 name|SolrParams
 name|required
 decl_stmt|;
 comment|/** Searcher to use for all calculations */
 DECL|field|searcher
 specifier|protected
+specifier|final
 name|SolrIndexSearcher
 name|searcher
 decl_stmt|;
 DECL|field|req
 specifier|protected
+specifier|final
 name|SolrQueryRequest
 name|req
 decl_stmt|;
 DECL|field|rb
 specifier|protected
+specifier|final
 name|ResponseBuilder
 name|rb
 decl_stmt|;
@@ -1120,6 +1125,12 @@ name|SolrParams
 name|localParams
 decl_stmt|;
 comment|// localParams on this particular facet command
+DECL|field|params
+specifier|protected
+name|SolrParams
+name|params
+decl_stmt|;
+comment|// local+original
 DECL|field|facetValue
 specifier|protected
 name|String
@@ -1215,6 +1226,8 @@ name|this
 operator|.
 name|params
 operator|=
+name|orig
+operator|=
 name|params
 expr_stmt|;
 name|this
@@ -1287,7 +1300,20 @@ name|localParams
 operator|==
 literal|null
 condition|)
+block|{
 return|return;
+block|}
+name|params
+operator|=
+name|SolrParams
+operator|.
+name|wrapDefaults
+argument_list|(
+name|localParams
+argument_list|,
+name|orig
+argument_list|)
+expr_stmt|;
 comment|// remove local params unless it's a query
 if|if
 condition|(
