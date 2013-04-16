@@ -96,26 +96,91 @@ specifier|public
 interface|interface
 name|ConfigSolr
 block|{
-DECL|enum|ConfLevel
+comment|// Ugly for now, but we'll at least be able to centralize all of the differences between 4x and 5x.
+DECL|enum|CfgProp
 specifier|public
 specifier|static
 enum|enum
-name|ConfLevel
+name|CfgProp
 block|{
-DECL|enum constant|SOLR
-DECL|enum constant|SOLR_CORES
-DECL|enum constant|SOLR_CORES_CORE
-DECL|enum constant|SOLR_LOGGING
-DECL|enum constant|SOLR_LOGGING_WATCHER
-name|SOLR
+DECL|enum constant|SOLR_ADMINHANDLER
+name|SOLR_ADMINHANDLER
 block|,
-name|SOLR_CORES
+DECL|enum constant|SOLR_CORELOADTHREADS
+name|SOLR_CORELOADTHREADS
 block|,
-name|SOLR_CORES_CORE
+DECL|enum constant|SOLR_COREROOTDIRECTORY
+name|SOLR_COREROOTDIRECTORY
 block|,
-name|SOLR_LOGGING
+DECL|enum constant|SOLR_DISTRIBUPDATECONNTIMEOUT
+name|SOLR_DISTRIBUPDATECONNTIMEOUT
 block|,
-name|SOLR_LOGGING_WATCHER
+DECL|enum constant|SOLR_DISTRIBUPDATESOTIMEOUT
+name|SOLR_DISTRIBUPDATESOTIMEOUT
+block|,
+DECL|enum constant|SOLR_HOST
+name|SOLR_HOST
+block|,
+DECL|enum constant|SOLR_HOSTCONTEXT
+name|SOLR_HOSTCONTEXT
+block|,
+DECL|enum constant|SOLR_HOSTPORT
+name|SOLR_HOSTPORT
+block|,
+DECL|enum constant|SOLR_LEADERVOTEWAIT
+name|SOLR_LEADERVOTEWAIT
+block|,
+DECL|enum constant|SOLR_LOGGING_CLASS
+name|SOLR_LOGGING_CLASS
+block|,
+DECL|enum constant|SOLR_LOGGING_ENABLED
+name|SOLR_LOGGING_ENABLED
+block|,
+DECL|enum constant|SOLR_LOGGING_WATCHER_SIZE
+name|SOLR_LOGGING_WATCHER_SIZE
+block|,
+DECL|enum constant|SOLR_LOGGING_WATCHER_THRESHOLD
+name|SOLR_LOGGING_WATCHER_THRESHOLD
+block|,
+DECL|enum constant|SOLR_MANAGEMENTPATH
+name|SOLR_MANAGEMENTPATH
+block|,
+DECL|enum constant|SOLR_SHAREDLIB
+name|SOLR_SHAREDLIB
+block|,
+DECL|enum constant|SOLR_SHARDHANDLERFACTORY_CLASS
+name|SOLR_SHARDHANDLERFACTORY_CLASS
+block|,
+DECL|enum constant|SOLR_SHARDHANDLERFACTORY_CONNTIMEOUT
+name|SOLR_SHARDHANDLERFACTORY_CONNTIMEOUT
+block|,
+DECL|enum constant|SOLR_SHARDHANDLERFACTORY_NAME
+name|SOLR_SHARDHANDLERFACTORY_NAME
+block|,
+DECL|enum constant|SOLR_SHARDHANDLERFACTORY_SOCKETTIMEOUT
+name|SOLR_SHARDHANDLERFACTORY_SOCKETTIMEOUT
+block|,
+DECL|enum constant|SOLR_SHARESCHEMA
+name|SOLR_SHARESCHEMA
+block|,
+DECL|enum constant|SOLR_TRANSIENTCACHESIZE
+name|SOLR_TRANSIENTCACHESIZE
+block|,
+DECL|enum constant|SOLR_ZKCLIENTTIMEOUT
+name|SOLR_ZKCLIENTTIMEOUT
+block|,
+DECL|enum constant|SOLR_ZKHOST
+name|SOLR_ZKHOST
+block|,
+comment|//TODO: Remove all of these elements for 5.0
+DECL|enum constant|SOLR_PERSISTENT
+name|SOLR_PERSISTENT
+block|,
+DECL|enum constant|SOLR_CORES_DEFAULT_CORE_NAME
+name|SOLR_CORES_DEFAULT_CORE_NAME
+block|,
+DECL|enum constant|SOLR_ADMINPATH
+name|SOLR_ADMINPATH
 block|}
 empty_stmt|;
 DECL|field|CORE_PROP_FILE
@@ -141,11 +206,8 @@ specifier|public
 name|int
 name|getInt
 parameter_list|(
-name|ConfLevel
-name|level
-parameter_list|,
-name|String
-name|tag
+name|CfgProp
+name|prop
 parameter_list|,
 name|int
 name|def
@@ -156,11 +218,8 @@ specifier|public
 name|boolean
 name|getBool
 parameter_list|(
-name|ConfLevel
-name|level
-parameter_list|,
-name|String
-name|tag
+name|CfgProp
+name|prop
 parameter_list|,
 name|boolean
 name|defValue
@@ -171,11 +230,20 @@ specifier|public
 name|String
 name|get
 parameter_list|(
-name|ConfLevel
-name|level
+name|CfgProp
+name|prop
 parameter_list|,
 name|String
-name|tag
+name|def
+parameter_list|)
+function_decl|;
+DECL|method|getOrigProp
+specifier|public
+name|String
+name|getOrigProp
+parameter_list|(
+name|CfgProp
+name|prop
 parameter_list|,
 name|String
 name|def
@@ -349,6 +417,12 @@ parameter_list|(
 name|String
 name|name
 parameter_list|)
+function_decl|;
+DECL|method|is50OrLater
+specifier|public
+name|boolean
+name|is50OrLater
+parameter_list|()
 function_decl|;
 block|}
 end_interface
