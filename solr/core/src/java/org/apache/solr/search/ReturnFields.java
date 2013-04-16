@@ -64,6 +64,17 @@ argument_list|>
 name|getLuceneFieldNames
 parameter_list|()
 function_decl|;
+comment|/**    * The requested field names (includes pseudo fields)    *<p>    * @return Set of field names or<code>null</code> (all fields).    */
+DECL|method|getRequestedFieldNames
+specifier|public
+specifier|abstract
+name|Set
+argument_list|<
+name|String
+argument_list|>
+name|getRequestedFieldNames
+parameter_list|()
+function_decl|;
 comment|/** Returns<code>true</code> if the specified field should be returned. */
 DECL|method|wantsField
 specifier|public
@@ -89,6 +100,14 @@ specifier|public
 specifier|abstract
 name|boolean
 name|wantsScore
+parameter_list|()
+function_decl|;
+comment|/** Returns<code>true</code> if the fieldnames should be picked with a pattern */
+DECL|method|hasPatternMatching
+specifier|public
+specifier|abstract
+name|boolean
+name|hasPatternMatching
 parameter_list|()
 function_decl|;
 comment|/** Returns the DocTransformer used to modify documents, or<code>null</code> */

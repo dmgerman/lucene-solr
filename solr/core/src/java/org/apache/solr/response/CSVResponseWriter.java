@@ -1387,7 +1387,7 @@ name|fields
 init|=
 name|returnFields
 operator|.
-name|getLuceneFieldNames
+name|getRequestedFieldNames
 argument_list|()
 decl_stmt|;
 name|Object
@@ -1413,6 +1413,11 @@ condition|(
 name|fields
 operator|==
 literal|null
+operator|||
+name|returnFields
+operator|.
+name|hasPatternMatching
+argument_list|()
 condition|)
 block|{
 if|if
@@ -1423,6 +1428,13 @@ name|SolrDocumentList
 condition|)
 block|{
 comment|// get the list of fields from the SolrDocumentList
+if|if
+condition|(
+name|fields
+operator|==
+literal|null
+condition|)
+block|{
 name|fields
 operator|=
 operator|new
@@ -1432,6 +1444,7 @@ name|String
 argument_list|>
 argument_list|()
 expr_stmt|;
+block|}
 for|for
 control|(
 name|SolrDocument
@@ -1458,8 +1471,12 @@ block|}
 else|else
 block|{
 comment|// get the list of fields from the index
-name|fields
-operator|=
+name|Collection
+argument_list|<
+name|String
+argument_list|>
+name|all
+init|=
 name|req
 operator|.
 name|getSearcher
@@ -1467,7 +1484,29 @@ argument_list|()
 operator|.
 name|getFieldNames
 argument_list|()
+decl_stmt|;
+if|if
+condition|(
+name|fields
+operator|==
+literal|null
+condition|)
+block|{
+name|fields
+operator|=
+name|all
 expr_stmt|;
+block|}
+else|else
+block|{
+name|fields
+operator|.
+name|addAll
+argument_list|(
+name|all
+argument_list|)
+expr_stmt|;
+block|}
 block|}
 if|if
 condition|(
