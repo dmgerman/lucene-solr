@@ -1085,12 +1085,6 @@ specifier|final
 name|SolrParams
 name|orig
 decl_stmt|;
-DECL|field|required
-specifier|protected
-specifier|final
-name|SolrParams
-name|required
-decl_stmt|;
 comment|/** Searcher to use for all calculations */
 DECL|field|searcher
 specifier|protected
@@ -1131,6 +1125,12 @@ name|SolrParams
 name|params
 decl_stmt|;
 comment|// local+original
+DECL|field|required
+specifier|protected
+name|SolrParams
+name|required
+decl_stmt|;
+comment|// required version of params
 DECL|field|facetValue
 specifier|protected
 name|String
@@ -1312,6 +1312,14 @@ argument_list|(
 name|localParams
 argument_list|,
 name|orig
+argument_list|)
+expr_stmt|;
+name|required
+operator|=
+operator|new
+name|RequiredSolrParams
+argument_list|(
+name|params
 argument_list|)
 expr_stmt|;
 comment|// remove local params unless it's a query
