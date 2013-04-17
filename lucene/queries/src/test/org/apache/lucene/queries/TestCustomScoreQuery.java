@@ -322,7 +322,6 @@ name|TestCustomScoreQuery
 extends|extends
 name|FunctionTestSetup
 block|{
-comment|// TODO: why can't this test use newSearcher?
 annotation|@
 name|BeforeClass
 DECL|method|beforeClass
@@ -1106,8 +1105,7 @@ decl_stmt|;
 name|IndexSearcher
 name|s
 init|=
-operator|new
-name|IndexSearcher
+name|newSearcher
 argument_list|(
 name|r
 argument_list|)
@@ -1229,8 +1227,7 @@ specifier|final
 name|IndexSearcher
 name|s
 init|=
-operator|new
-name|IndexSearcher
+name|newSearcher
 argument_list|(
 name|r
 argument_list|)
@@ -1495,8 +1492,7 @@ decl_stmt|;
 name|IndexSearcher
 name|s
 init|=
-operator|new
-name|IndexSearcher
+name|newSearcher
 argument_list|(
 name|r
 argument_list|)
@@ -1584,8 +1580,17 @@ name|q1
 argument_list|)
 expr_stmt|;
 comment|// custom query, that should score the same as q1.
-name|Query
+name|BooleanQuery
 name|q2CustomNeutral
+init|=
+operator|new
+name|BooleanQuery
+argument_list|(
+literal|true
+argument_list|)
+decl_stmt|;
+name|Query
+name|q2CustomNeutralInner
 init|=
 operator|new
 name|CustomScoreQuery
@@ -1595,9 +1600,47 @@ argument_list|)
 decl_stmt|;
 name|q2CustomNeutral
 operator|.
+name|add
+argument_list|(
+name|q2CustomNeutralInner
+argument_list|,
+name|BooleanClause
+operator|.
+name|Occur
+operator|.
+name|SHOULD
+argument_list|)
+expr_stmt|;
+comment|// a little tricky: we split the boost across an outer BQ and CustomScoreQuery
+comment|// this ensures boosting is correct across all these functions (see LUCENE-4935)
+name|q2CustomNeutral
+operator|.
 name|setBoost
 argument_list|(
-name|boost
+operator|(
+name|float
+operator|)
+name|Math
+operator|.
+name|sqrt
+argument_list|(
+name|dboost
+argument_list|)
+argument_list|)
+expr_stmt|;
+name|q2CustomNeutralInner
+operator|.
+name|setBoost
+argument_list|(
+operator|(
+name|float
+operator|)
+name|Math
+operator|.
+name|sqrt
+argument_list|(
+name|dboost
+argument_list|)
 argument_list|)
 expr_stmt|;
 name|log

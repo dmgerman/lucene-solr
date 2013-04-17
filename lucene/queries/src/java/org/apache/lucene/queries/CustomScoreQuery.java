@@ -936,6 +936,10 @@ DECL|field|qStrict
 name|boolean
 name|qStrict
 decl_stmt|;
+DECL|field|queryWeight
+name|float
+name|queryWeight
+decl_stmt|;
 DECL|method|CustomWeight
 specifier|public
 name|CustomWeight
@@ -1075,15 +1079,6 @@ argument_list|()
 expr_stmt|;
 block|}
 block|}
-name|sum
-operator|*=
-name|getBoost
-argument_list|()
-operator|*
-name|getBoost
-argument_list|()
-expr_stmt|;
-comment|// boost each sub-weight
 return|return
 name|sum
 return|;
@@ -1103,19 +1098,18 @@ name|float
 name|topLevelBoost
 parameter_list|)
 block|{
-name|topLevelBoost
-operator|*=
-name|getBoost
-argument_list|()
-expr_stmt|;
-comment|// incorporate boost
+comment|// note we DONT incorporate our boost, nor pass down any topLevelBoost
+comment|// (e.g. from outer BQ), as there is no guarantee that the CustomScoreProvider's
+comment|// function obeys the distributive law... it might call sqrt() on the subQuery score
+comment|// or some other arbitrary function other than multiplication.
+comment|// so, instead boosts are applied directly in score()
 name|subQueryWeight
 operator|.
 name|normalize
 argument_list|(
 name|norm
 argument_list|,
-name|topLevelBoost
+literal|1f
 argument_list|)
 expr_stmt|;
 for|for
@@ -1150,11 +1144,18 @@ name|normalize
 argument_list|(
 name|norm
 argument_list|,
-name|topLevelBoost
+literal|1f
 argument_list|)
 expr_stmt|;
 block|}
 block|}
+name|queryWeight
+operator|=
+name|topLevelBoost
+operator|*
+name|getBoost
+argument_list|()
+expr_stmt|;
 block|}
 annotation|@
 name|Override
@@ -1276,8 +1277,7 @@ argument_list|)
 argument_list|,
 name|this
 argument_list|,
-name|getBoost
-argument_list|()
+name|queryWeight
 argument_list|,
 name|subQueryScorer
 argument_list|,
