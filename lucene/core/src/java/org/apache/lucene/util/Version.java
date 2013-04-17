@@ -77,6 +77,13 @@ name|Deprecated
 DECL|enum constant|LUCENE_43
 name|LUCENE_43
 block|,
+comment|/**    * Match settings and bugs in Lucene's 4.4 release.    * @deprecated (5.0) Use latest    */
+DECL|enum constant|Deprecated
+annotation|@
+name|Deprecated
+DECL|enum constant|LUCENE_44
+name|LUCENE_44
+block|,
 comment|/** Match settings and bugs in Lucene's 5.0 release.    *<p>    *  Use this to get the latest&amp; greatest settings, bug    *  fixes, etc, for Lucene.    */
 DECL|enum constant|LUCENE_50
 name|LUCENE_50
