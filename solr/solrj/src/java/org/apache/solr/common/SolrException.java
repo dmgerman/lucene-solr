@@ -92,7 +92,7 @@ name|SolrException
 extends|extends
 name|RuntimeException
 block|{
-comment|/**    * @since solr 1.2    */
+comment|/**    * This list of valid HTTP Status error codes that Solr may return in     * the case of a "Server Side" error.    *    * @since solr 1.2    */
 DECL|enum|ErrorCode
 specifier|public
 enum|enum
@@ -282,12 +282,42 @@ operator|.
 name|code
 expr_stmt|;
 block|}
+comment|/**    * Constructor that can set arbitrary http status code. Not for     * use in Solr, but may be used by clients in subclasses to capture     * errors returned by the servlet container or other HTTP proxies.    */
+DECL|method|SolrException
+specifier|protected
+name|SolrException
+parameter_list|(
+name|int
+name|code
+parameter_list|,
+name|String
+name|msg
+parameter_list|,
+name|Throwable
+name|th
+parameter_list|)
+block|{
+name|super
+argument_list|(
+name|msg
+argument_list|,
+name|th
+argument_list|)
+expr_stmt|;
+name|this
+operator|.
+name|code
+operator|=
+name|code
+expr_stmt|;
+block|}
 DECL|field|code
 name|int
 name|code
 init|=
 literal|0
 decl_stmt|;
+comment|/**    * The HTTP Status code associated with this Exception.  For SolrExceptions     * thrown by Solr "Server Side", this should valid {@link ErrorCode},     * however client side exceptions may contain an arbitrary error code based     * on the behavior of the Servlet Container hosting Solr, or any HTTP     * Proxies that may exist between the client and the server.    *    * @return The HTTP Status code associated with this Exception    */
 DECL|method|code
 specifier|public
 name|int
