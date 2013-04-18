@@ -726,19 +726,12 @@ operator|==
 literal|null
 operator|||
 name|parents
-operator|.
-name|iterator
-argument_list|()
-operator|.
-name|docID
-argument_list|()
 operator|==
-name|DocIdSetIterator
+name|DocIdSet
 operator|.
-name|NO_MORE_DOCS
+name|EMPTY_DOCIDSET
 condition|)
 block|{
-comment|//<-- means DocIdSet#EMPTY_DOCIDSET
 comment|// No matches
 return|return
 literal|null
