@@ -991,7 +991,7 @@ parameter_list|)
 throws|throws
 name|IOException
 function_decl|;
-comment|/** Returns the number of documents containing the term    *<code>term</code>.  This method returns 0 if the term or    * field does not exists, or -1 if the Codec does not support    * the measure.  This method does not take into account deleted     * documents that have not yet been merged away.    * @see TermsEnum#totalTermFreq()     */
+comment|/**    * Returns the total number of occurrences of {@code term} across all    * documents (the sum of the freq() for each doc that has this term). This    * will be -1 if the codec doesn't support this measure. Note that, like other    * term measures, this measure does not take deleted documents into account.    */
 DECL|method|totalTermFreq
 specifier|public
 specifier|abstract
