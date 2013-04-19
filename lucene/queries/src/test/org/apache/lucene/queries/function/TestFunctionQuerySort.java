@@ -476,9 +476,10 @@ name|search
 argument_list|(
 name|q
 argument_list|,
-name|Integer
+name|reader
 operator|.
-name|MAX_VALUE
+name|maxDoc
+argument_list|()
 argument_list|,
 name|orderBy
 argument_list|)
@@ -570,9 +571,10 @@ name|afterHit
 argument_list|,
 name|q
 argument_list|,
-name|Integer
+name|reader
 operator|.
-name|MAX_VALUE
+name|maxDoc
+argument_list|()
 argument_list|,
 name|orderBy
 argument_list|)
