@@ -215,6 +215,17 @@ argument_list|(
 literal|100
 argument_list|)
 expr_stmt|;
+name|s
+operator|.
+name|setUseMultiPartPost
+argument_list|(
+name|random
+argument_list|()
+operator|.
+name|nextBoolean
+argument_list|()
+argument_list|)
+expr_stmt|;
 comment|// where the magic happens
 name|s
 operator|.
