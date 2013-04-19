@@ -2762,6 +2762,11 @@ argument_list|,
 name|os
 argument_list|)
 expr_stmt|;
+name|os
+operator|.
+name|flush
+argument_list|()
+expr_stmt|;
 block|}
 finally|finally
 block|{
@@ -2915,6 +2920,11 @@ name|is
 argument_list|,
 name|os
 argument_list|)
+expr_stmt|;
+name|os
+operator|.
+name|flush
+argument_list|()
 expr_stmt|;
 block|}
 finally|finally
