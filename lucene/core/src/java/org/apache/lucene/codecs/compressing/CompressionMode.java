@@ -435,6 +435,12 @@ operator|+
 literal|"> "
 operator|+
 name|originalLength
+operator|+
+literal|" (resource="
+operator|+
+name|in
+operator|+
+literal|")"
 argument_list|)
 throw|;
 block|}
@@ -872,6 +878,12 @@ operator|+
 literal|" != "
 operator|+
 name|originalLength
+operator|+
+literal|" (resource="
+operator|+
+name|in
+operator|+
+literal|")"
 argument_list|)
 throw|;
 block|}

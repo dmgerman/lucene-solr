@@ -1381,6 +1381,12 @@ operator|+
 literal|", numDocs="
 operator|+
 name|numDocs
+operator|+
+literal|" (resource="
+operator|+
+name|fieldsStream
+operator|+
+literal|")"
 argument_list|)
 throw|;
 block|}
@@ -1465,6 +1471,12 @@ argument_list|(
 literal|"bitsPerStoredFields="
 operator|+
 name|bitsPerStoredFields
+operator|+
+literal|" (resource="
+operator|+
+name|fieldsStream
+operator|+
+literal|")"
 argument_list|)
 throw|;
 block|}
@@ -1598,6 +1610,12 @@ argument_list|(
 literal|"bitsPerLength="
 operator|+
 name|bitsPerLength
+operator|+
+literal|" (resource="
+operator|+
+name|fieldsStream
+operator|+
+literal|")"
 argument_list|)
 throw|;
 block|}
@@ -1737,6 +1755,12 @@ operator|+
 literal|", numStoredFields="
 operator|+
 name|numStoredFields
+operator|+
+literal|" (resource="
+operator|+
+name|fieldsStream
+operator|+
+literal|")"
 argument_list|)
 throw|;
 block|}
@@ -2258,6 +2282,12 @@ operator|+
 literal|", new numDocs="
 operator|+
 name|chunkDocs
+operator|+
+literal|" (resource="
+operator|+
+name|fieldsStream
+operator|+
+literal|")"
 argument_list|)
 throw|;
 block|}
@@ -2390,6 +2420,12 @@ argument_list|(
 literal|"bitsPerStoredFields="
 operator|+
 name|bitsPerStoredFields
+operator|+
+literal|" (resource="
+operator|+
+name|fieldsStream
+operator|+
+literal|")"
 argument_list|)
 throw|;
 block|}
@@ -2618,6 +2654,12 @@ operator|+
 name|bytes
 operator|.
 name|length
+operator|+
+literal|" (resource="
+operator|+
+name|fieldsStream
+operator|+
+literal|")"
 argument_list|)
 throw|;
 block|}

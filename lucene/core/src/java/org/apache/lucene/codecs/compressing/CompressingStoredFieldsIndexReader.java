@@ -490,7 +490,11 @@ throw|throw
 operator|new
 name|CorruptIndexException
 argument_list|(
-literal|"Corrupted"
+literal|"Corrupted bitsPerDocBase (resource="
+operator|+
+name|fieldsIndexIn
+operator|+
+literal|")"
 argument_list|)
 throw|;
 block|}
@@ -559,7 +563,11 @@ throw|throw
 operator|new
 name|CorruptIndexException
 argument_list|(
-literal|"Corrupted"
+literal|"Corrupted bitsPerStartPointer (resource="
+operator|+
+name|fieldsIndexIn
+operator|+
+literal|")"
 argument_list|)
 throw|;
 block|}

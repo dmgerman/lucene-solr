@@ -645,6 +645,12 @@ argument_list|(
 literal|"invalid norm type: "
 operator|+
 name|oldNormsType
+operator|+
+literal|" (resource="
+operator|+
+name|input
+operator|+
+literal|")"
 argument_list|)
 throw|;
 block|}

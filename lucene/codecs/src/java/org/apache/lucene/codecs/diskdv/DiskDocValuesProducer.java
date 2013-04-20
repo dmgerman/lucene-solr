@@ -730,7 +730,11 @@ literal|"sorted entry for field: "
 operator|+
 name|fieldNumber
 operator|+
-literal|" is corrupt"
+literal|" is corrupt (resource="
+operator|+
+name|meta
+operator|+
+literal|")"
 argument_list|)
 throw|;
 block|}
@@ -754,7 +758,11 @@ literal|"sorted entry for field: "
 operator|+
 name|fieldNumber
 operator|+
-literal|" is corrupt"
+literal|" is corrupt (resource="
+operator|+
+name|meta
+operator|+
+literal|")"
 argument_list|)
 throw|;
 block|}
@@ -793,7 +801,11 @@ literal|"sorted entry for field: "
 operator|+
 name|fieldNumber
 operator|+
-literal|" is corrupt"
+literal|" is corrupt (resource="
+operator|+
+name|meta
+operator|+
+literal|")"
 argument_list|)
 throw|;
 block|}
@@ -817,7 +829,11 @@ literal|"sorted entry for field: "
 operator|+
 name|fieldNumber
 operator|+
-literal|" is corrupt"
+literal|" is corrupt (resource="
+operator|+
+name|meta
+operator|+
+literal|")"
 argument_list|)
 throw|;
 block|}
@@ -868,7 +884,11 @@ literal|"sortedset entry for field: "
 operator|+
 name|fieldNumber
 operator|+
-literal|" is corrupt"
+literal|" is corrupt (resource="
+operator|+
+name|meta
+operator|+
+literal|")"
 argument_list|)
 throw|;
 block|}
@@ -892,7 +912,11 @@ literal|"sortedset entry for field: "
 operator|+
 name|fieldNumber
 operator|+
-literal|" is corrupt"
+literal|" is corrupt (resource="
+operator|+
+name|meta
+operator|+
+literal|")"
 argument_list|)
 throw|;
 block|}
@@ -931,7 +955,11 @@ literal|"sortedset entry for field: "
 operator|+
 name|fieldNumber
 operator|+
-literal|" is corrupt"
+literal|" is corrupt (resource="
+operator|+
+name|meta
+operator|+
+literal|")"
 argument_list|)
 throw|;
 block|}
@@ -955,7 +983,11 @@ literal|"sortedset entry for field: "
 operator|+
 name|fieldNumber
 operator|+
-literal|" is corrupt"
+literal|" is corrupt (resource="
+operator|+
+name|meta
+operator|+
+literal|")"
 argument_list|)
 throw|;
 block|}
@@ -994,7 +1026,11 @@ literal|"sortedset entry for field: "
 operator|+
 name|fieldNumber
 operator|+
-literal|" is corrupt"
+literal|" is corrupt (resource="
+operator|+
+name|meta
+operator|+
+literal|")"
 argument_list|)
 throw|;
 block|}
@@ -1018,7 +1054,11 @@ literal|"sortedset entry for field: "
 operator|+
 name|fieldNumber
 operator|+
-literal|" is corrupt"
+literal|" is corrupt (resource="
+operator|+
+name|meta
+operator|+
+literal|")"
 argument_list|)
 throw|;
 block|}
