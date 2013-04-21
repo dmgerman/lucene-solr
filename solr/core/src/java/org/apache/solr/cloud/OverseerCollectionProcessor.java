@@ -1188,6 +1188,17 @@ argument_list|,
 literal|true
 argument_list|)
 expr_stmt|;
+name|params
+operator|.
+name|set
+argument_list|(
+name|CoreAdminParams
+operator|.
+name|DELETE_DATA_DIR
+argument_list|,
+literal|true
+argument_list|)
+expr_stmt|;
 name|collectionCmd
 argument_list|(
 name|zkStateReader
