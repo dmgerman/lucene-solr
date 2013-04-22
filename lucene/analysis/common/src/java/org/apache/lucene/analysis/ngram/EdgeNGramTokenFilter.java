@@ -299,6 +299,13 @@ specifier|private
 name|int
 name|savePosIncr
 decl_stmt|;
+DECL|field|isFirstToken
+specifier|private
+name|boolean
+name|isFirstToken
+init|=
+literal|true
+decl_stmt|;
 DECL|field|termAtt
 specifier|private
 specifier|final
@@ -561,22 +568,15 @@ operator|<=
 name|maxGram
 condition|)
 block|{
+comment|// if we have hit the end of our n-gram size range, quit
 if|if
 condition|(
-operator|!
-operator|(
 name|curGramSize
-operator|>
+operator|<=
 name|curTermLength
-comment|// if the remaining input is too short, we can't generate any n-grams
-operator|||
-name|curGramSize
-operator|>
-name|maxGram
-operator|)
 condition|)
 block|{
-comment|// if we have hit the end of our n-gram size range, quit
+comment|// if the remaining input is too short, we can't generate any n-grams
 comment|// grab gramSize chars from front or back
 name|int
 name|start
@@ -642,6 +642,13 @@ operator|==
 name|minGram
 condition|)
 block|{
+comment|//  Leave the first token position increment at the cleared-attribute value of 1
+if|if
+condition|(
+operator|!
+name|isFirstToken
+condition|)
+block|{
 name|posIncrAtt
 operator|.
 name|setPositionIncrement
@@ -649,6 +656,7 @@ argument_list|(
 name|savePosIncr
 argument_list|)
 expr_stmt|;
+block|}
 block|}
 else|else
 block|{
@@ -673,6 +681,10 @@ argument_list|)
 expr_stmt|;
 name|curGramSize
 operator|++
+expr_stmt|;
+name|isFirstToken
+operator|=
+literal|false
 expr_stmt|;
 return|return
 literal|true
@@ -703,6 +715,10 @@ expr_stmt|;
 name|curTermBuffer
 operator|=
 literal|null
+expr_stmt|;
+name|isFirstToken
+operator|=
+literal|true
 expr_stmt|;
 block|}
 block|}
