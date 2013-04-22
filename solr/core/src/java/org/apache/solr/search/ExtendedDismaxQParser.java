@@ -3676,9 +3676,9 @@ name|raw
 operator|.
 name|replaceAll
 argument_list|(
-literal|":"
+literal|"([^\\\\]):"
 argument_list|,
-literal|"\\\\:"
+literal|"$1\\\\:"
 argument_list|)
 expr_stmt|;
 block|}

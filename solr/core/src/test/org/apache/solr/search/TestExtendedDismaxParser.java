@@ -4527,6 +4527,50 @@ argument_list|,
 literal|"*[count(//doc)=1]"
 argument_list|)
 expr_stmt|;
+name|assertQ
+argument_list|(
+literal|"Might be double-escaping a client-escaped colon"
+argument_list|,
+name|req
+argument_list|(
+literal|"q"
+argument_list|,
+literal|"text_sw:(theos OR thistokenhasa\\:preescapedcolon OR theou)"
+argument_list|,
+literal|"defType"
+argument_list|,
+literal|"edismax"
+argument_list|,
+literal|"qf"
+argument_list|,
+literal|"id"
+argument_list|)
+argument_list|,
+literal|"*[count(//doc)=3]"
+argument_list|)
+expr_stmt|;
+name|assertQ
+argument_list|(
+literal|"Might be double-escaping a client-escaped colon"
+argument_list|,
+name|req
+argument_list|(
+literal|"q"
+argument_list|,
+literal|"text_sw:(theos OR thistokenhasa\\:preescapedcolon OR theou)"
+argument_list|,
+literal|"defType"
+argument_list|,
+literal|"edismax"
+argument_list|,
+literal|"qf"
+argument_list|,
+literal|"text"
+argument_list|)
+argument_list|,
+literal|"*[count(//doc)=3]"
+argument_list|)
+expr_stmt|;
 block|}
 comment|/**    * SOLR-3589: Edismax parser does not honor mm parameter if analyzer splits a token    */
 DECL|method|testCJK
