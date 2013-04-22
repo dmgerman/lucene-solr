@@ -529,6 +529,11 @@ block|}
 name|int
 name|maxAttempts
 init|=
+literal|20
+decl_stmt|;
+name|long
+name|retryPauseMillis
+init|=
 literal|10
 decl_stmt|;
 for|for
@@ -578,6 +583,16 @@ argument_list|(
 name|request
 argument_list|)
 expr_stmt|;
+name|long
+name|elapsedTimeMillis
+init|=
+name|System
+operator|.
+name|currentTimeMillis
+argument_list|()
+operator|-
+name|addFieldTime
+decl_stmt|;
 name|result
 operator|=
 name|client
@@ -634,14 +649,7 @@ argument_list|()
 operator|+
 literal|" after "
 operator|+
-operator|(
-name|System
-operator|.
-name|currentTimeMillis
-argument_list|()
-operator|-
-name|addFieldTime
-operator|)
+name|elapsedTimeMillis
 operator|+
 literal|" ms"
 argument_list|)
@@ -697,17 +705,35 @@ literal|"Max retry count "
 operator|+
 name|maxAttempts
 operator|+
-literal|" exceeded.  "
+literal|" exceeded after "
+operator|+
+name|elapsedTimeMillis
+operator|+
+literal|" ms.  "
 operator|+
 name|msg
 expr_stmt|;
 block|}
+name|log
+operator|.
+name|error
+argument_list|(
+name|msg
+argument_list|)
+expr_stmt|;
 name|fail
 argument_list|(
 name|msg
 argument_list|)
 expr_stmt|;
 block|}
+name|Thread
+operator|.
+name|sleep
+argument_list|(
+name|retryPauseMillis
+argument_list|)
+expr_stmt|;
 block|}
 block|}
 block|}
