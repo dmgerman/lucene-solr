@@ -2109,6 +2109,9 @@ name|i
 operator|++
 control|)
 block|{
+comment|// NOTE: This is actually in-order collection,
+comment|// because we only accept docs originally returned by
+comment|// the baseScorer (ie that Scorer is AND'd)
 name|int
 name|slot
 init|=
