@@ -330,7 +330,7 @@ argument_list|()
 argument_list|,
 name|core
 operator|.
-name|getSchema
+name|getLatestSchema
 argument_list|()
 argument_list|,
 name|core

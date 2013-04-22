@@ -345,15 +345,6 @@ name|SolrCore
 name|core
 parameter_list|)
 block|{
-specifier|final
-name|IndexSchema
-name|schema
-init|=
-name|core
-operator|.
-name|getSchema
-argument_list|()
-decl_stmt|;
 return|return
 operator|new
 name|FieldMutatingUpdateProcessor
@@ -372,6 +363,15 @@ name|String
 name|fieldName
 parameter_list|)
 block|{
+specifier|final
+name|IndexSchema
+name|schema
+init|=
+name|core
+operator|.
+name|getLatestSchema
+argument_list|()
+decl_stmt|;
 comment|// first check type since it should be fastest
 name|FieldType
 name|type

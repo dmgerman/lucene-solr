@@ -56,20 +56,6 @@ begin_import
 import|import
 name|org
 operator|.
-name|apache
-operator|.
-name|solr
-operator|.
-name|schema
-operator|.
-name|SchemaField
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
 name|junit
 operator|.
 name|BeforeClass
@@ -157,7 +143,7 @@ name|schema
 init|=
 name|core
 operator|.
-name|getSchema
+name|getLatestSchema
 argument_list|()
 decl_stmt|;
 name|SchemaField
@@ -323,7 +309,7 @@ name|subjectDefault
 init|=
 name|core
 operator|.
-name|getSchema
+name|getLatestSchema
 argument_list|()
 operator|.
 name|getField
@@ -362,7 +348,7 @@ name|assertNull
 argument_list|(
 name|core
 operator|.
-name|getSchema
+name|getLatestSchema
 argument_list|()
 operator|.
 name|getField

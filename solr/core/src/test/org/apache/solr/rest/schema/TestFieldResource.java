@@ -235,6 +235,46 @@ name|tests
 argument_list|)
 expr_stmt|;
 block|}
+annotation|@
+name|Test
+DECL|method|testJsonPutFieldToNonMutableIndexSchema
+specifier|public
+name|void
+name|testJsonPutFieldToNonMutableIndexSchema
+parameter_list|()
+throws|throws
+name|Exception
+block|{
+name|assertJPut
+argument_list|(
+literal|"/schema/fields/newfield"
+argument_list|,
+literal|"{\"type\":\"text_general\", \"stored\":\"false\"}"
+argument_list|,
+literal|"/error/msg=='This IndexSchema is not mutable.'"
+argument_list|)
+expr_stmt|;
+block|}
+annotation|@
+name|Test
+DECL|method|testJsonPostFieldsToNonMutableIndexSchema
+specifier|public
+name|void
+name|testJsonPostFieldsToNonMutableIndexSchema
+parameter_list|()
+throws|throws
+name|Exception
+block|{
+name|assertJPost
+argument_list|(
+literal|"/schema/fields"
+argument_list|,
+literal|"[{\"name\":\"foobarbaz\", \"type\":\"text_general\", \"stored\":\"false\"}]"
+argument_list|,
+literal|"/error/msg=='This IndexSchema is not mutable.'"
+argument_list|)
+expr_stmt|;
+block|}
 block|}
 end_class
 

@@ -100,6 +100,20 @@ name|StrUtils
 import|;
 end_import
 
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|solr
+operator|.
+name|request
+operator|.
+name|SolrQueryRequest
+import|;
+end_import
+
 begin_class
 DECL|class|RequestInfo
 specifier|public
@@ -186,6 +200,12 @@ specifier|final
 name|String
 name|dataConfig
 decl_stmt|;
+DECL|field|request
+specifier|private
+specifier|final
+name|SolrQueryRequest
+name|request
+decl_stmt|;
 comment|//TODO:  find a different home for these two...
 DECL|field|contentStream
 specifier|private
@@ -203,6 +223,9 @@ DECL|method|RequestInfo
 specifier|public
 name|RequestInfo
 parameter_list|(
+name|SolrQueryRequest
+name|request
+parameter_list|,
 name|Map
 argument_list|<
 name|String
@@ -215,6 +238,12 @@ name|ContentStream
 name|stream
 parameter_list|)
 block|{
+name|this
+operator|.
+name|request
+operator|=
+name|request
+expr_stmt|;
 name|this
 operator|.
 name|contentStream
@@ -856,6 +885,16 @@ parameter_list|()
 block|{
 return|return
 name|configFile
+return|;
+block|}
+DECL|method|getRequest
+specifier|public
+name|SolrQueryRequest
+name|getRequest
+parameter_list|()
+block|{
+return|return
+name|request
 return|;
 block|}
 block|}

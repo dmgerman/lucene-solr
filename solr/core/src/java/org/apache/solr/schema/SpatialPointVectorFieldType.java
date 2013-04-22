@@ -143,6 +143,7 @@ name|v
 expr_stmt|;
 block|}
 block|}
+comment|/**    * Adds X and Y fields to the given schema for each field with this class as its field type.    *     * {@inheritDoc}    *     * @param schema {@inheritDoc}    *    */
 annotation|@
 name|Override
 DECL|method|inform

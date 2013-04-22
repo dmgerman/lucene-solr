@@ -207,7 +207,7 @@ operator|.
 name|getCore
 argument_list|()
 operator|.
-name|getSchema
+name|getLatestSchema
 argument_list|()
 decl_stmt|;
 name|SchemaField
@@ -418,7 +418,7 @@ name|schema
 init|=
 name|core
 operator|.
-name|getSchema
+name|getLatestSchema
 argument_list|()
 decl_stmt|;
 name|SchemaField
@@ -1000,7 +1000,7 @@ name|schema
 init|=
 name|core
 operator|.
-name|getSchema
+name|getLatestSchema
 argument_list|()
 decl_stmt|;
 name|double

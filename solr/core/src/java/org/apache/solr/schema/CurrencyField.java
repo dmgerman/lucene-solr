@@ -1459,7 +1459,7 @@ argument_list|)
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**    * When index schema is informed, add dynamic fields.    *    * @param indexSchema The index schema.    */
+comment|/**    * When index schema is informed, add dynamic fields "*____currency" and "*____amount_raw".     *     * {@inheritDoc}    *     * @param schema {@inheritDoc}    */
 annotation|@
 name|Override
 DECL|method|inform
@@ -1468,9 +1468,15 @@ name|void
 name|inform
 parameter_list|(
 name|IndexSchema
-name|indexSchema
+name|schema
 parameter_list|)
 block|{
+name|this
+operator|.
+name|schema
+operator|=
+name|schema
+expr_stmt|;
 name|createDynamicCurrencyField
 argument_list|(
 name|FIELD_SUFFIX_CURRENCY

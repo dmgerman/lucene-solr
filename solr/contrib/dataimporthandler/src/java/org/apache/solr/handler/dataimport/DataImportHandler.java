@@ -769,6 +769,8 @@ init|=
 operator|new
 name|RequestInfo
 argument_list|(
+name|req
+argument_list|,
 name|getParamsMap
 argument_list|(
 name|params

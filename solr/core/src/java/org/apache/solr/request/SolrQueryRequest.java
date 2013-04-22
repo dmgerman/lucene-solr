@@ -184,7 +184,7 @@ name|SolrCore
 name|getCore
 parameter_list|()
 function_decl|;
-comment|/** The index schema associated with this request */
+comment|/** The schema snapshot from core.getLatestSchema() at request creation. */
 DECL|method|getSchema
 specifier|public
 name|IndexSchema

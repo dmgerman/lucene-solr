@@ -36,6 +36,20 @@ name|apache
 operator|.
 name|solr
 operator|.
+name|schema
+operator|.
+name|IndexSchema
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|solr
+operator|.
 name|update
 operator|.
 name|processor
@@ -262,14 +276,19 @@ name|getClass
 argument_list|()
 argument_list|)
 expr_stmt|;
+name|IndexSchema
+name|schema
+init|=
+name|core
+operator|.
+name|getLatestSchema
+argument_list|()
+decl_stmt|;
 name|assertNotNull
 argument_list|(
 literal|"ft-included is null"
 argument_list|,
-name|core
-operator|.
-name|getSchema
-argument_list|()
+name|schema
 operator|.
 name|getFieldTypeByName
 argument_list|(
@@ -281,10 +300,7 @@ name|assertNotNull
 argument_list|(
 literal|"field-included is null"
 argument_list|,
-name|core
-operator|.
-name|getSchema
-argument_list|()
+name|schema
 operator|.
 name|getFieldOrNull
 argument_list|(

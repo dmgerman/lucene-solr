@@ -6825,6 +6825,7 @@ argument_list|,
 name|solrParams
 argument_list|)
 expr_stmt|;
+comment|// req.getSearcher() here causes searcher refcount imbalance
 name|userFields
 operator|=
 operator|new
@@ -6861,6 +6862,7 @@ argument_list|,
 name|solrParams
 argument_list|)
 expr_stmt|;
+comment|// req.getSearcher() here causes searcher refcount imbalance
 block|}
 catch|catch
 parameter_list|(

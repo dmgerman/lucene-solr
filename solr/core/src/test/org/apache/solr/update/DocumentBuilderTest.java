@@ -382,7 +382,7 @@ name|doc
 argument_list|,
 name|core
 operator|.
-name|getSchema
+name|getLatestSchema
 argument_list|()
 argument_list|)
 expr_stmt|;
@@ -458,7 +458,7 @@ name|doc
 argument_list|,
 name|core
 operator|.
-name|getSchema
+name|getLatestSchema
 argument_list|()
 argument_list|)
 decl_stmt|;
@@ -529,7 +529,7 @@ name|doc
 argument_list|,
 name|core
 operator|.
-name|getSchema
+name|getLatestSchema
 argument_list|()
 argument_list|)
 expr_stmt|;
@@ -591,7 +591,7 @@ name|doc
 argument_list|,
 name|core
 operator|.
-name|getSchema
+name|getLatestSchema
 argument_list|()
 argument_list|)
 expr_stmt|;
@@ -657,7 +657,7 @@ name|doc
 argument_list|,
 name|core
 operator|.
-name|getSchema
+name|getLatestSchema
 argument_list|()
 argument_list|)
 expr_stmt|;
@@ -710,7 +710,7 @@ name|doc
 argument_list|,
 name|core
 operator|.
-name|getSchema
+name|getLatestSchema
 argument_list|()
 argument_list|)
 decl_stmt|;
@@ -779,7 +779,7 @@ name|schema
 init|=
 name|core
 operator|.
-name|getSchema
+name|getLatestSchema
 argument_list|()
 decl_stmt|;
 name|assertFalse
@@ -840,10 +840,7 @@ name|toDocument
 argument_list|(
 name|doc
 argument_list|,
-name|core
-operator|.
-name|getSchema
-argument_list|()
+name|schema
 argument_list|)
 decl_stmt|;
 name|assertNotNull
@@ -912,7 +909,7 @@ name|schema
 init|=
 name|core
 operator|.
-name|getSchema
+name|getLatestSchema
 argument_list|()
 decl_stmt|;
 name|assertFalse
@@ -968,10 +965,7 @@ name|toDocument
 argument_list|(
 name|doc
 argument_list|,
-name|core
-operator|.
-name|getSchema
-argument_list|()
+name|schema
 argument_list|)
 decl_stmt|;
 name|assertNotNull
@@ -1040,7 +1034,7 @@ name|schema
 init|=
 name|core
 operator|.
-name|getSchema
+name|getLatestSchema
 argument_list|()
 decl_stmt|;
 name|assertFalse
@@ -1171,10 +1165,7 @@ name|toDocument
 argument_list|(
 name|doc
 argument_list|,
-name|core
-operator|.
-name|getSchema
-argument_list|()
+name|schema
 argument_list|)
 decl_stmt|;
 name|assertNotNull
@@ -1302,7 +1293,7 @@ name|schema
 init|=
 name|core
 operator|.
-name|getSchema
+name|getLatestSchema
 argument_list|()
 decl_stmt|;
 name|assertFalse
@@ -1436,10 +1427,7 @@ name|toDocument
 argument_list|(
 name|doc
 argument_list|,
-name|core
-operator|.
-name|getSchema
-argument_list|()
+name|schema
 argument_list|)
 decl_stmt|;
 name|assertNotNull
@@ -1605,7 +1593,7 @@ name|schema
 init|=
 name|core
 operator|.
-name|getSchema
+name|getLatestSchema
 argument_list|()
 decl_stmt|;
 name|SolrInputDocument
@@ -1680,10 +1668,7 @@ name|toDocument
 argument_list|(
 name|doc
 argument_list|,
-name|core
-operator|.
-name|getSchema
-argument_list|()
+name|schema
 argument_list|)
 decl_stmt|;
 name|IndexableField
@@ -1782,7 +1767,7 @@ name|schema
 init|=
 name|core
 operator|.
-name|getSchema
+name|getLatestSchema
 argument_list|()
 decl_stmt|;
 name|SolrInputDocument
@@ -1952,10 +1937,7 @@ name|toDocument
 argument_list|(
 name|doc
 argument_list|,
-name|core
-operator|.
-name|getSchema
-argument_list|()
+name|schema
 argument_list|)
 decl_stmt|;
 name|IndexableField

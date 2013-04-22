@@ -544,7 +544,10 @@ block|{
 name|SchemaField
 name|uniqueKeyField
 init|=
-name|solrCore
+name|cmd
+operator|.
+name|getReq
+argument_list|()
 operator|.
 name|getSchema
 argument_list|()

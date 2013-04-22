@@ -237,7 +237,8 @@ argument_list|<
 name|NamedList
 argument_list|>
 operator|)
-name|args
+name|getArgs
+argument_list|()
 operator|.
 name|get
 argument_list|(
@@ -305,7 +306,8 @@ operator|=
 operator|new
 name|LocalSolrQueryRequest
 argument_list|(
-name|core
+name|getCore
+argument_list|()
 argument_list|,
 name|params
 argument_list|)
@@ -350,11 +352,13 @@ name|rsp
 argument_list|)
 argument_list|)
 expr_stmt|;
-name|core
+name|getCore
+argument_list|()
 operator|.
 name|execute
 argument_list|(
-name|core
+name|getCore
+argument_list|()
 operator|.
 name|getRequestHandler
 argument_list|(
