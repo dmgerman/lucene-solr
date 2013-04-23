@@ -1894,6 +1894,29 @@ operator|=
 name|strict
 expr_stmt|;
 block|}
+comment|/** The sub-query that CustomScoreQuery wraps, affecting both the score and which documents match. */
+DECL|method|getSubQuery
+specifier|public
+name|Query
+name|getSubQuery
+parameter_list|()
+block|{
+return|return
+name|subQuery
+return|;
+block|}
+comment|/** The scoring queries that only affect the score of CustomScoreQuery. */
+DECL|method|getScoringQueries
+specifier|public
+name|Query
+index|[]
+name|getScoringQueries
+parameter_list|()
+block|{
+return|return
+name|scoringQueries
+return|;
+block|}
 comment|/**    * A short name of this query, used in {@link #toString(String)}.    */
 DECL|method|name
 specifier|public
