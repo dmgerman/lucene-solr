@@ -4359,8 +4359,6 @@ name|add
 argument_list|(
 literal|"copySources"
 argument_list|,
-name|toListOfStrings
-argument_list|(
 name|schema
 operator|.
 name|getCopySources
@@ -4369,7 +4367,6 @@ name|f
 operator|.
 name|getName
 argument_list|()
-argument_list|)
 argument_list|)
 argument_list|)
 expr_stmt|;
