@@ -182,39 +182,9 @@ name|apache
 operator|.
 name|solr
 operator|.
-name|cloud
-operator|.
-name|ZkController
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|solr
-operator|.
 name|common
 operator|.
 name|SolrException
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|solr
-operator|.
-name|common
-operator|.
-name|cloud
-operator|.
-name|ZkStateReader
 import|;
 end_import
 
@@ -242,35 +212,9 @@ name|apache
 operator|.
 name|solr
 operator|.
-name|update
-operator|.
-name|SolrCoreState
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|solr
-operator|.
 name|util
 operator|.
 name|DOMUtil
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|zookeeper
-operator|.
-name|KeeperException
 import|;
 end_import
 
@@ -964,67 +908,6 @@ expr_stmt|;
 block|}
 block|}
 block|}
-block|}
-block|}
-DECL|method|addCoresToList
-specifier|protected
-name|void
-name|addCoresToList
-parameter_list|(
-name|ArrayList
-argument_list|<
-name|SolrCoreState
-argument_list|>
-name|coreStates
-parameter_list|)
-block|{
-name|List
-argument_list|<
-name|SolrCore
-argument_list|>
-name|addCores
-decl_stmt|;
-synchronized|synchronized
-init|(
-name|modifyLock
-init|)
-block|{
-name|addCores
-operator|=
-operator|new
-name|ArrayList
-argument_list|<
-name|SolrCore
-argument_list|>
-argument_list|(
-name|cores
-operator|.
-name|values
-argument_list|()
-argument_list|)
-expr_stmt|;
-block|}
-for|for
-control|(
-name|SolrCore
-name|core
-range|:
-name|addCores
-control|)
-block|{
-name|coreStates
-operator|.
-name|add
-argument_list|(
-name|core
-operator|.
-name|getUpdateHandler
-argument_list|()
-operator|.
-name|getSolrCoreState
-argument_list|()
-argument_list|)
-expr_stmt|;
 block|}
 block|}
 comment|//WARNING! This should be the _only_ place you put anything into the list of transient cores!
@@ -1946,10 +1829,6 @@ argument_list|)
 return|;
 block|}
 block|}
-comment|// Irrepressably ugly bit of the transition in SOLR-4196, but there as at least one test case that follows
-comment|// this path, presumably it's there for a reason.
-comment|// This is really perverse, but all we need the here is to call a couple of static methods that for back-compat
-comment|// purposes
 DECL|method|persistCores
 specifier|public
 name|void
@@ -1989,14 +1868,6 @@ parameter_list|)
 throws|throws
 name|XPathExpressionException
 block|{
-comment|// This is expensive in the maximal case, but I think necessary. It should
-comment|// keep a reference open to all of the
-comment|// current cores while they are saved. Remember that especially the
-comment|// transient core can come and go.
-comment|//
-comment|// TODO: 5.0. remove the possibility of storing core descriptors in
-comment|// solr.xml?
-comment|//
 name|List
 argument_list|<
 name|SolrXMLSerializer
