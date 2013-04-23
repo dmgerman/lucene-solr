@@ -42,7 +42,7 @@ name|lucene
 operator|.
 name|index
 operator|.
-name|BaseDocValuesFormatTestCase
+name|BaseCompressingDocValuesFormatTestCase
 import|;
 end_import
 
@@ -70,7 +70,7 @@ specifier|public
 class|class
 name|TestDiskDocValuesFormat
 extends|extends
-name|BaseDocValuesFormatTestCase
+name|BaseCompressingDocValuesFormatTestCase
 block|{
 DECL|field|codec
 specifier|private

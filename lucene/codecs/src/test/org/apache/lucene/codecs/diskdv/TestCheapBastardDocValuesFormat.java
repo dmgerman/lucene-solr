@@ -1,6 +1,6 @@
 begin_unit|revision:0.9.5;language:Java;cregit-version:0.0.1
 begin_package
-DECL|package|org.apache.lucene.codecs.lucene42
+DECL|package|org.apache.lucene.codecs.diskdv
 package|package
 name|org
 operator|.
@@ -10,7 +10,7 @@ name|lucene
 operator|.
 name|codecs
 operator|.
-name|lucene42
+name|diskdv
 package|;
 end_package
 
@@ -40,21 +40,51 @@ name|apache
 operator|.
 name|lucene
 operator|.
+name|codecs
+operator|.
+name|cheapbastard
+operator|.
+name|CheapBastardDocValuesFormat
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
 name|index
 operator|.
 name|BaseCompressingDocValuesFormatTestCase
 import|;
 end_import
 
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|util
+operator|.
+name|_TestUtil
+import|;
+end_import
+
 begin_comment
-comment|/**  * Tests Lucene42DocValuesFormat  */
+comment|/**  * Tests CheapBastardDocValuesFormat  */
 end_comment
 
 begin_class
-DECL|class|TestLucene42DocValuesFormat
+DECL|class|TestCheapBastardDocValuesFormat
 specifier|public
 class|class
-name|TestLucene42DocValuesFormat
+name|TestCheapBastardDocValuesFormat
 extends|extends
 name|BaseCompressingDocValuesFormatTestCase
 block|{
@@ -64,9 +94,14 @@ specifier|final
 name|Codec
 name|codec
 init|=
+name|_TestUtil
+operator|.
+name|alwaysDocValuesFormat
+argument_list|(
 operator|new
-name|Lucene42Codec
+name|CheapBastardDocValuesFormat
 argument_list|()
+argument_list|)
 decl_stmt|;
 annotation|@
 name|Override
