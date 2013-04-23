@@ -5317,6 +5317,11 @@ argument_list|,
 name|this
 argument_list|)
 expr_stmt|;
+assert|assert
+literal|false
+operator|:
+literal|"Too many closes on SolrCore"
+assert|;
 return|return;
 block|}
 name|log
