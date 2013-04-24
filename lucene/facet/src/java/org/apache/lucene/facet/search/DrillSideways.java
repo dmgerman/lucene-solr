@@ -1264,6 +1264,9 @@ argument_list|,
 name|drillSidewaysCollectors
 argument_list|,
 name|drillDownTerms
+argument_list|,
+name|scoreSubDocsAtOnce
+argument_list|()
 argument_list|)
 decl_stmt|;
 name|searcher
@@ -1774,6 +1777,17 @@ argument_list|()
 argument_list|,
 name|taxoReader
 argument_list|)
+return|;
+block|}
+comment|/** Override this and return true if your collector    *  (e.g., ToParentBlockJoinCollector) expects all    *  sub-scorers to be positioned on the document being    *  collected.  This will cause some performance loss;    *  default is false.  Note that if you return true from    *  this method (in a subclass) be sure your collector    *  also returns false from {@link    *  Collector#acceptsDocsOutOfOrder}: this will trick    *  BooleanQuery into also scoring all subDocs at once. */
+DECL|method|scoreSubDocsAtOnce
+specifier|protected
+name|boolean
+name|scoreSubDocsAtOnce
+parameter_list|()
+block|{
+return|return
+literal|false
 return|;
 block|}
 comment|/** Represents the returned result from a drill sideways    *  search. */

@@ -4403,6 +4403,11 @@ name|count
 init|=
 literal|0
 decl_stmt|;
+name|boolean
+name|anyMultiValuedDrillDowns
+init|=
+literal|false
+decl_stmt|;
 while|while
 condition|(
 name|count
@@ -4510,6 +4515,12 @@ name|String
 index|[
 name|orCount
 index|]
+expr_stmt|;
+name|anyMultiValuedDrillDowns
+operator||=
+name|orCount
+operator|>
+literal|1
 expr_stmt|;
 for|for
 control|(
@@ -5063,6 +5074,52 @@ argument_list|,
 name|fsp
 argument_list|)
 expr_stmt|;
+comment|// Also separately verify that DS respects the
+comment|// scoreSubDocsAtOnce method, to ensure that all
+comment|// subScorers are on the same docID:
+if|if
+condition|(
+operator|!
+name|anyMultiValuedDrillDowns
+condition|)
+block|{
+comment|// Can only do this test when there are no OR'd
+comment|// drill-down values, beacuse in that case it's
+comment|// easily possible for one of the DD terms to be on
+comment|// a future docID:
+operator|new
+name|DrillSideways
+argument_list|(
+name|s
+argument_list|,
+name|tr
+argument_list|)
+block|{
+annotation|@
+name|Override
+specifier|protected
+name|boolean
+name|scoreSubDocsAtOnce
+parameter_list|()
+block|{
+return|return
+literal|true
+return|;
+block|}
+block|}
+operator|.
+name|search
+argument_list|(
+name|ddq
+argument_list|,
+operator|new
+name|AssertingSubDocsAtOnceCollector
+argument_list|()
+argument_list|,
+name|fsp
+argument_list|)
+expr_stmt|;
+block|}
 name|SimpleFacetResult
 name|expected
 init|=
