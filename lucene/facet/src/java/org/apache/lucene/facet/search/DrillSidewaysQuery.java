@@ -771,7 +771,7 @@ index|[
 name|dim
 index|]
 operator|.
-name|freq
+name|maxFreq
 operator|=
 name|Math
 operator|.
@@ -782,7 +782,7 @@ index|[
 name|dim
 index|]
 operator|.
-name|freq
+name|maxFreq
 argument_list|,
 name|termsEnum
 operator|.
