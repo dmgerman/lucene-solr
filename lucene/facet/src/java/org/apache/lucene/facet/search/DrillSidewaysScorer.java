@@ -488,7 +488,7 @@ operator|.
 name|cost
 argument_list|()
 decl_stmt|;
-comment|/*     System.out.println("\nbaseDocID=" + baseScorer.docID() + " est=" + estBaseHitCount);     System.out.println("  maxDoc=" + context.reader().maxDoc());     System.out.println("  maxFreq=" + maxFreq);     System.out.println("  dims[0].freq=" + dims[0].freq);     if (numDims> 1) {       System.out.println("  dims[1].freq=" + dims[1].freq);     }     */
+comment|/*     System.out.println("\nbaseDocID=" + baseScorer.docID() + " est=" + estBaseHitCount);     System.out.println("  maxDoc=" + context.reader().maxDoc());     System.out.println("  maxCost=" + maxCost);     System.out.println("  dims[0].freq=" + dims[0].freq);     if (numDims> 1) {       System.out.println("  dims[1].freq=" + dims[1].freq);     }     */
 comment|//System.out.println("DS score " + scoreSubDocsAtOnce);
 if|if
 condition|(
@@ -529,7 +529,7 @@ index|[
 literal|1
 index|]
 operator|.
-name|maxFreq
+name|maxCost
 operator|<
 name|baseQueryCost
 operator|/
@@ -2362,10 +2362,10 @@ name|DocsEnum
 index|[]
 name|docsEnums
 decl_stmt|;
-comment|// Max docFreq for all docsEnums for this dim:
-DECL|field|maxFreq
-name|int
-name|maxFreq
+comment|// Max cost for all docsEnums for this dim:
+DECL|field|maxCost
+name|long
+name|maxCost
 decl_stmt|;
 DECL|field|sidewaysCollector
 name|Collector
@@ -2386,13 +2386,40 @@ name|DocsEnumsAndFreq
 name|other
 parameter_list|)
 block|{
-return|return
-name|maxFreq
-operator|-
+if|if
+condition|(
+name|maxCost
+operator|<
 name|other
 operator|.
-name|maxFreq
+name|maxCost
+condition|)
+block|{
+return|return
+operator|-
+literal|1
 return|;
+block|}
+elseif|else
+if|if
+condition|(
+name|maxCost
+operator|>
+name|other
+operator|.
+name|maxCost
+condition|)
+block|{
+return|return
+literal|1
+return|;
+block|}
+else|else
+block|{
+return|return
+literal|0
+return|;
+block|}
 block|}
 block|}
 block|}
