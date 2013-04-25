@@ -1398,6 +1398,13 @@ argument_list|,
 literal|null
 argument_list|)
 expr_stmt|;
+name|waitForRecoveriesToFinish
+argument_list|(
+literal|"halfdeletedcollection2"
+argument_list|,
+literal|false
+argument_list|)
+expr_stmt|;
 comment|// stop a couple nodes
 name|ChaosMonkey
 operator|.
