@@ -737,6 +737,22 @@ name|file
 argument_list|)
 expr_stmt|;
 block|}
+comment|// LUCENE-4738: if we crashed while writing first
+comment|// commit it's possible index will be corrupt (by
+comment|// design we don't try to be smart about this case
+comment|// since that too risky):
+if|if
+condition|(
+name|SegmentInfos
+operator|.
+name|getLastCommitGeneration
+argument_list|(
+name|dir
+argument_list|)
+operator|>
+literal|1
+condition|)
+block|{
 name|_TestUtil
 operator|.
 name|checkIndex
@@ -744,6 +760,7 @@ argument_list|(
 name|dir
 argument_list|)
 expr_stmt|;
+block|}
 name|dir
 operator|.
 name|close
