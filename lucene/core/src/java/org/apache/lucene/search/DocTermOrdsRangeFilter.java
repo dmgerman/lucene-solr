@@ -441,9 +441,7 @@ name|inclusiveUpperPoint
 condition|)
 block|{
 return|return
-name|DocIdSet
-operator|.
-name|EMPTY_DOCIDSET
+literal|null
 return|;
 block|}
 assert|assert

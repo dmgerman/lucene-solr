@@ -346,9 +346,7 @@ condition|)
 block|{
 comment|// reader has no fields
 return|return
-name|DocIdSet
-operator|.
-name|EMPTY_DOCIDSET
+literal|null
 return|;
 block|}
 specifier|final
@@ -373,9 +371,7 @@ condition|)
 block|{
 comment|// field does not exist
 return|return
-name|DocIdSet
-operator|.
-name|EMPTY_DOCIDSET
+literal|null
 return|;
 block|}
 specifier|final
@@ -491,9 +487,7 @@ block|}
 else|else
 block|{
 return|return
-name|DocIdSet
-operator|.
-name|EMPTY_DOCIDSET
+literal|null
 return|;
 block|}
 block|}

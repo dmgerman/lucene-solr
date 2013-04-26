@@ -724,12 +724,6 @@ condition|(
 name|parents
 operator|==
 literal|null
-operator|||
-name|parents
-operator|==
-name|DocIdSet
-operator|.
-name|EMPTY_DOCIDSET
 condition|)
 block|{
 comment|// No matches

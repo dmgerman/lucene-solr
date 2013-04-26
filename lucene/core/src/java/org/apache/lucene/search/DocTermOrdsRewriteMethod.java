@@ -573,9 +573,7 @@ block|}
 else|else
 block|{
 return|return
-name|DocIdSet
-operator|.
-name|EMPTY_DOCIDSET
+literal|null
 return|;
 block|}
 return|return

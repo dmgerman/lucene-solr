@@ -395,11 +395,9 @@ name|docIdSet
 operator|==
 literal|null
 condition|?
-name|DocIdSet
+name|DocIdSetIterator
 operator|.
-name|EMPTY_DOCIDSET
-operator|.
-name|iterator
+name|empty
 argument_list|()
 else|:
 name|docIdSet
@@ -416,11 +414,9 @@ condition|)
 block|{
 name|docIdSetIterator
 operator|=
-name|DocIdSet
+name|DocIdSetIterator
 operator|.
-name|EMPTY_DOCIDSET
-operator|.
-name|iterator
+name|empty
 argument_list|()
 expr_stmt|;
 block|}

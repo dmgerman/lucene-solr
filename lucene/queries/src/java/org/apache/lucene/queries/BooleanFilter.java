@@ -336,9 +336,7 @@ operator|==
 literal|null
 condition|)
 return|return
-name|DocIdSet
-operator|.
-name|EMPTY_DOCIDSET
+literal|null
 return|;
 for|for
 control|(
@@ -471,9 +469,7 @@ literal|null
 condition|)
 block|{
 return|return
-name|DocIdSet
-operator|.
-name|EMPTY_DOCIDSET
+literal|null
 return|;
 comment|// no documents can match
 block|}
@@ -516,10 +512,6 @@ block|}
 block|}
 block|}
 return|return
-name|res
-operator|!=
-literal|null
-condition|?
 name|BitsFilteredDocIdSet
 operator|.
 name|wrap
@@ -528,10 +520,6 @@ name|res
 argument_list|,
 name|acceptDocs
 argument_list|)
-else|:
-name|DocIdSet
-operator|.
-name|EMPTY_DOCIDSET
 return|;
 block|}
 DECL|method|getDISI
@@ -564,17 +552,9 @@ literal|null
 argument_list|)
 decl_stmt|;
 return|return
-operator|(
 name|set
 operator|==
 literal|null
-operator|||
-name|set
-operator|==
-name|DocIdSet
-operator|.
-name|EMPTY_DOCIDSET
-operator|)
 condition|?
 literal|null
 else|:
