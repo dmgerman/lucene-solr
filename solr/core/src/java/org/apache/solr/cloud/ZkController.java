@@ -2189,6 +2189,13 @@ condition|(
 name|host
 operator|==
 literal|null
+operator|||
+name|host
+operator|.
+name|length
+argument_list|()
+operator|==
+literal|0
 condition|)
 block|{
 name|String
