@@ -867,7 +867,6 @@ condition|)
 return|return
 literal|null
 return|;
-comment|// No worse than before.
 if|if
 condition|(
 operator|new

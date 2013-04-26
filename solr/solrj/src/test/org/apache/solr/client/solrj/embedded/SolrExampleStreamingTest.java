@@ -293,6 +293,8 @@ argument_list|()
 operator|.
 name|toString
 argument_list|()
+operator|+
+literal|"/collection1"
 decl_stmt|;
 comment|// smaller queue size hits locks more often
 name|ConcurrentUpdateSolrServer
@@ -406,6 +408,8 @@ argument_list|()
 operator|.
 name|toString
 argument_list|()
+operator|+
+literal|"/collection1"
 argument_list|,
 literal|2
 argument_list|,

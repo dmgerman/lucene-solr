@@ -200,13 +200,6 @@ name|CoreDescriptor
 argument_list|>
 argument_list|()
 decl_stmt|;
-if|if
-condition|(
-name|container
-operator|!=
-literal|null
-condition|)
-block|{
 name|walkFromHere
 argument_list|(
 name|root
@@ -216,7 +209,6 @@ argument_list|,
 name|coreDescriptorMap
 argument_list|)
 expr_stmt|;
-block|}
 return|return
 name|coreDescriptorMap
 return|;
@@ -450,6 +442,20 @@ expr_stmt|;
 block|}
 comment|// Too much of the code depends on this value being here, but it is NOT supported in discovery mode, so
 comment|// ignore it if present in the core.properties file.
+name|System
+operator|.
+name|out
+operator|.
+name|println
+argument_list|(
+literal|"SET INST DIR:"
+operator|+
+name|childFile
+operator|.
+name|getPath
+argument_list|()
+argument_list|)
+expr_stmt|;
 name|props
 operator|.
 name|setProperty

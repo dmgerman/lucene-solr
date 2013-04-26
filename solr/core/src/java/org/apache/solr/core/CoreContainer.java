@@ -1201,6 +1201,8 @@ argument_list|(
 name|solrHome
 argument_list|)
 expr_stmt|;
+comment|// first we find zkhost, then we check for solr.xml in zk
+comment|// 1. look for zkhost from sys prop 2. look for zkhost in {solr.home}/solr.properties
 comment|// Either we have a config file or not.
 if|if
 condition|(

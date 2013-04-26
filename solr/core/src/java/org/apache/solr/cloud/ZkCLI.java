@@ -1220,7 +1220,6 @@ operator|!=
 literal|null
 operator|)
 decl_stmt|;
-comment|// cfg = new ConfigSolrXml(loader, null, is, null, false, this);
 if|if
 condition|(
 name|oldStyle

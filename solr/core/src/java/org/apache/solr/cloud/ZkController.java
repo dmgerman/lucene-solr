@@ -7735,13 +7735,6 @@ name|KeeperException
 throws|,
 name|InterruptedException
 block|{
-name|log
-operator|.
-name|info
-argument_list|(
-literal|"bootstraping config into ZooKeeper using solr.xml"
-argument_list|)
-expr_stmt|;
 name|List
 argument_list|<
 name|String
@@ -7753,6 +7746,22 @@ operator|.
 name|getAllCoreNames
 argument_list|()
 decl_stmt|;
+name|log
+operator|.
+name|info
+argument_list|(
+literal|"bootstraping config for "
+operator|+
+name|allCoreNames
+operator|.
+name|size
+argument_list|()
+operator|+
+literal|" cores into ZooKeeper using solr.xml from "
+operator|+
+name|solrHome
+argument_list|)
+expr_stmt|;
 for|for
 control|(
 name|String
@@ -7807,6 +7816,17 @@ argument_list|(
 name|instanceDir
 argument_list|)
 decl_stmt|;
+name|System
+operator|.
+name|out
+operator|.
+name|println
+argument_list|(
+literal|"idir:"
+operator|+
+name|idir
+argument_list|)
+expr_stmt|;
 if|if
 condition|(
 operator|!

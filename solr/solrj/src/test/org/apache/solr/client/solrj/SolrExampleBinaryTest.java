@@ -184,6 +184,8 @@ argument_list|()
 operator|.
 name|toString
 argument_list|()
+operator|+
+literal|"/collection1"
 decl_stmt|;
 name|HttpSolrServer
 name|s
