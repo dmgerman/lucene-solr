@@ -1855,6 +1855,15 @@ name|length
 operator|==
 literal|1
 operator|&&
+name|rb
+operator|.
+name|slices
+index|[
+literal|0
+index|]
+operator|!=
+literal|null
+operator|&&
 operator|(
 name|rb
 operator|.
