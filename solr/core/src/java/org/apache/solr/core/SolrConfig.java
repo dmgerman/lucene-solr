@@ -799,6 +799,17 @@ operator|=
 literal|"indexConfig"
 expr_stmt|;
 block|}
+name|reopenReaders
+operator|=
+name|getBool
+argument_list|(
+name|indexConfigPrefix
+operator|+
+literal|"/reopenReaders"
+argument_list|,
+literal|true
+argument_list|)
+expr_stmt|;
 comment|// Parse indexConfig section, using mainIndex as backup in case old config is used
 name|indexConfig
 operator|=
@@ -810,17 +821,6 @@ argument_list|,
 literal|"indexConfig"
 argument_list|,
 name|mainIndexConfig
-argument_list|)
-expr_stmt|;
-name|reopenReaders
-operator|=
-name|getBool
-argument_list|(
-name|indexConfigPrefix
-operator|+
-literal|"/reopenReaders"
-argument_list|,
-literal|true
 argument_list|)
 expr_stmt|;
 name|booleanQueryMaxClauseCount
