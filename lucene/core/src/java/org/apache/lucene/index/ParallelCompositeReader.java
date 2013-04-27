@@ -52,16 +52,6 @@ name|java
 operator|.
 name|util
 operator|.
-name|Iterator
-import|;
-end_import
-
-begin_import
-import|import
-name|java
-operator|.
-name|util
-operator|.
 name|List
 import|;
 end_import
@@ -83,7 +73,6 @@ end_comment
 begin_class
 DECL|class|ParallelCompositeReader
 specifier|public
-specifier|final
 class|class
 name|ParallelCompositeReader
 extends|extends
@@ -103,7 +92,7 @@ specifier|private
 specifier|final
 name|Set
 argument_list|<
-name|CompositeReader
+name|IndexReader
 argument_list|>
 name|completeReaderSet
 init|=
@@ -114,7 +103,7 @@ argument_list|(
 operator|new
 name|IdentityHashMap
 argument_list|<
-name|CompositeReader
+name|IndexReader
 argument_list|,
 name|Boolean
 argument_list|>
@@ -219,7 +208,7 @@ argument_list|,
 name|storedFieldReaders
 argument_list|)
 expr_stmt|;
-comment|// do this finally so any Exceptions occurred before don't affect refcounts:
+comment|// update ref-counts (like MultiReader):
 if|if
 condition|(
 operator|!
@@ -228,7 +217,8 @@ condition|)
 block|{
 for|for
 control|(
-name|CompositeReader
+specifier|final
+name|IndexReader
 name|reader
 range|:
 name|completeReaderSet
@@ -241,6 +231,15 @@ argument_list|()
 expr_stmt|;
 block|}
 block|}
+comment|// finally add our own synthetic readers, so we close or decRef them, too (it does not matter what we do)
+name|completeReaderSet
+operator|.
+name|addAll
+argument_list|(
+name|getSequentialSubReaders
+argument_list|()
+argument_list|)
+expr_stmt|;
 block|}
 DECL|method|prepareSubReaders
 specifier|private
@@ -566,9 +565,8 @@ name|i
 argument_list|)
 expr_stmt|;
 block|}
-comment|// we simply enable closing of subReaders, to prevent incRefs on subReaders
-comment|// -> for synthetic subReaders, close() is never
-comment|// called by our doClose()
+comment|// We pass true for closeSubs and we prevent closing of subreaders in doClose():
+comment|// By this the synthetic throw-away readers used here are completely invisible to ref-counting
 name|subReaders
 index|[
 name|i
@@ -583,6 +581,15 @@ name|atomicSubs
 argument_list|,
 name|storedSubs
 argument_list|)
+block|{
+annotation|@
+name|Override
+specifier|protected
+name|void
+name|doClose
+parameter_list|()
+block|{}
+block|}
 expr_stmt|;
 block|}
 else|else
@@ -701,8 +708,8 @@ name|i
 argument_list|)
 expr_stmt|;
 block|}
-comment|// we simply enable closing of subReaders, to prevent incRefs on subReaders
-comment|// -> for synthetic subReaders, close() is never called by our doClose()
+comment|// We pass true for closeSubs and we prevent closing of subreaders in doClose():
+comment|// By this the synthetic throw-away readers used here are completely invisible to ref-counting
 name|subReaders
 index|[
 name|i
@@ -717,6 +724,15 @@ name|compositeSubs
 argument_list|,
 name|storedSubs
 argument_list|)
+block|{
+annotation|@
+name|Override
+specifier|protected
+name|void
+name|doClose
+parameter_list|()
+block|{}
+block|}
 expr_stmt|;
 block|}
 block|}
@@ -923,82 +939,6 @@ block|}
 block|}
 annotation|@
 name|Override
-DECL|method|toString
-specifier|public
-name|String
-name|toString
-parameter_list|()
-block|{
-specifier|final
-name|StringBuilder
-name|buffer
-init|=
-operator|new
-name|StringBuilder
-argument_list|(
-literal|"ParallelCompositeReader("
-argument_list|)
-decl_stmt|;
-for|for
-control|(
-specifier|final
-name|Iterator
-argument_list|<
-name|CompositeReader
-argument_list|>
-name|iter
-init|=
-name|completeReaderSet
-operator|.
-name|iterator
-argument_list|()
-init|;
-name|iter
-operator|.
-name|hasNext
-argument_list|()
-condition|;
-control|)
-block|{
-name|buffer
-operator|.
-name|append
-argument_list|(
-name|iter
-operator|.
-name|next
-argument_list|()
-argument_list|)
-expr_stmt|;
-if|if
-condition|(
-name|iter
-operator|.
-name|hasNext
-argument_list|()
-condition|)
-name|buffer
-operator|.
-name|append
-argument_list|(
-literal|", "
-argument_list|)
-expr_stmt|;
-block|}
-return|return
-name|buffer
-operator|.
-name|append
-argument_list|(
-literal|')'
-argument_list|)
-operator|.
-name|toString
-argument_list|()
-return|;
-block|}
-annotation|@
-name|Override
 DECL|method|doClose
 specifier|protected
 specifier|synchronized
@@ -1016,7 +956,7 @@ decl_stmt|;
 for|for
 control|(
 specifier|final
-name|CompositeReader
+name|IndexReader
 name|reader
 range|:
 name|completeReaderSet

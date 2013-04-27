@@ -117,7 +117,6 @@ end_comment
 begin_class
 DECL|class|ParallelAtomicReader
 specifier|public
-specifier|final
 class|class
 name|ParallelAtomicReader
 extends|extends
