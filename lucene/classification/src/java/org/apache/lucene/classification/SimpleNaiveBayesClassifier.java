@@ -691,10 +691,12 @@ name|clVal
 expr_stmt|;
 name|foundClass
 operator|=
-name|next
+name|BytesRef
 operator|.
-name|clone
-argument_list|()
+name|deepCopyOf
+argument_list|(
+name|next
+argument_list|)
 expr_stmt|;
 block|}
 block|}

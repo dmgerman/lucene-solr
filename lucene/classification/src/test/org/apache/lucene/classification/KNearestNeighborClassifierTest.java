@@ -87,11 +87,9 @@ argument_list|(
 literal|1
 argument_list|)
 argument_list|,
-operator|new
-name|BytesRef
-argument_list|(
-literal|"technology"
-argument_list|)
+name|TECHNOLOGY_INPUT
+argument_list|,
+name|TECHNOLOGY_RESULT
 argument_list|,
 operator|new
 name|MockAnalyzer
