@@ -1104,6 +1104,13 @@ argument_list|(
 literal|"catchall_t"
 argument_list|)
 expr_stmt|;
+if|if
+condition|(
+name|foundCatchAllCopyField
+condition|)
+block|{
+break|break;
+block|}
 block|}
 name|assertTrue
 argument_list|(
