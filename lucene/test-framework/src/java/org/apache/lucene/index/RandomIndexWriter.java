@@ -647,6 +647,16 @@ comment|// Make sure we sometimes test indices that don't get
 comment|// any forced merges:
 name|doRandomForceMerge
 operator|=
+operator|!
+operator|(
+name|c
+operator|.
+name|getMergePolicy
+argument_list|()
+operator|instanceof
+name|NoMergePolicy
+operator|)
+operator|&&
 name|r
 operator|.
 name|nextBoolean
