@@ -1258,6 +1258,16 @@ argument_list|,
 literal|1
 argument_list|)
 expr_stmt|;
+name|assertTrue
+argument_list|(
+name|filter
+operator|.
+name|sizeInBytes
+argument_list|()
+operator|>
+literal|0
+argument_list|)
+expr_stmt|;
 name|assertEquals
 argument_list|(
 literal|"[query + filter] Should find a hit..."
