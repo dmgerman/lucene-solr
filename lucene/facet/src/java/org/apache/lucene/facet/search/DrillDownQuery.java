@@ -1049,18 +1049,30 @@ operator|=
 name|bq
 expr_stmt|;
 block|}
-name|drillDownDims
-operator|.
-name|put
+name|add
 argument_list|(
 name|dim
 argument_list|,
-name|drillDownDims
-operator|.
-name|size
-argument_list|()
+name|q
 argument_list|)
 expr_stmt|;
+block|}
+comment|/** Expert: add a custom drill-down subQuery.  Use this    *  when you have a separate way to drill-down on the    *  dimension than the indexed facet ordinals. */
+DECL|method|add
+specifier|public
+name|void
+name|add
+parameter_list|(
+name|String
+name|dim
+parameter_list|,
+name|Query
+name|subQuery
+parameter_list|)
+block|{
+comment|// TODO: we should use FilteredQuery?
+comment|// So scores of the drill-down query don't have an
+comment|// effect:
 specifier|final
 name|ConstantScoreQuery
 name|drillDownQuery
@@ -1068,7 +1080,7 @@ init|=
 operator|new
 name|ConstantScoreQuery
 argument_list|(
-name|q
+name|subQuery
 argument_list|)
 decl_stmt|;
 name|drillDownQuery
@@ -1087,6 +1099,18 @@ argument_list|,
 name|Occur
 operator|.
 name|MUST
+argument_list|)
+expr_stmt|;
+name|drillDownDims
+operator|.
+name|put
+argument_list|(
+name|dim
+argument_list|,
+name|drillDownDims
+operator|.
+name|size
+argument_list|()
 argument_list|)
 expr_stmt|;
 block|}

@@ -186,12 +186,6 @@ name|CHUNK
 operator|-
 literal|1
 decl_stmt|;
-DECL|field|scoreSubDocsAtOnce
-specifier|private
-specifier|final
-name|boolean
-name|scoreSubDocsAtOnce
-decl_stmt|;
 DECL|field|collectDocID
 specifier|private
 name|int
@@ -223,9 +217,6 @@ parameter_list|,
 name|DocsEnumsAndFreq
 index|[]
 name|dims
-parameter_list|,
-name|boolean
-name|scoreSubDocsAtOnce
 parameter_list|)
 block|{
 name|super
@@ -256,12 +247,6 @@ operator|.
 name|drillDownCollector
 operator|=
 name|drillDownCollector
-expr_stmt|;
-name|this
-operator|.
-name|scoreSubDocsAtOnce
-operator|=
-name|scoreSubDocsAtOnce
 expr_stmt|;
 block|}
 annotation|@
@@ -489,13 +474,6 @@ name|cost
 argument_list|()
 decl_stmt|;
 comment|/*     System.out.println("\nbaseDocID=" + baseScorer.docID() + " est=" + estBaseHitCount);     System.out.println("  maxDoc=" + context.reader().maxDoc());     System.out.println("  maxCost=" + maxCost);     System.out.println("  dims[0].freq=" + dims[0].freq);     if (numDims> 1) {       System.out.println("  dims[1].freq=" + dims[1].freq);     }     */
-comment|//System.out.println("DS score " + scoreSubDocsAtOnce);
-if|if
-condition|(
-operator|!
-name|scoreSubDocsAtOnce
-condition|)
-block|{
 if|if
 condition|(
 name|baseQueryCost
@@ -552,21 +530,6 @@ else|else
 block|{
 comment|//System.out.println("union");
 name|doUnionScoring
-argument_list|(
-name|collector
-argument_list|,
-name|docsEnums
-argument_list|,
-name|sidewaysCollectors
-argument_list|)
-expr_stmt|;
-block|}
-block|}
-else|else
-block|{
-comment|// TODO: we should fallback to BS2 ReqOptSum scorer here
-comment|//System.out.println("baseAdvance");
-name|doBaseAdvanceScoring
 argument_list|(
 name|collector
 argument_list|,
