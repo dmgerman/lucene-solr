@@ -855,6 +855,16 @@ name|getAfter
 argument_list|()
 argument_list|)
 expr_stmt|;
+name|assertEquals
+argument_list|(
+literal|11
+argument_list|,
+name|manufacturedateDt
+operator|.
+name|getBetween
+argument_list|()
+argument_list|)
+expr_stmt|;
 block|}
 annotation|@
 name|Test
