@@ -2720,6 +2720,33 @@ argument_list|)
 expr_stmt|;
 if|if
 condition|(
+name|VERBOSE
+condition|)
+block|{
+comment|// Even though TestRuleSetupAndRestoreClassEnv calls
+comment|// InfoStream.setDefault, we do it again here so that
+comment|// the PrintStreamInfoStream.messageID increments so
+comment|// that when there are separate instances of
+comment|// IndexWriter created we see "IW 0", "IW 1", "IW 2",
+comment|// ... instead of just always "IW 0":
+name|c
+operator|.
+name|setInfoStream
+argument_list|(
+operator|new
+name|TestRuleSetupAndRestoreClassEnv
+operator|.
+name|ThreadNameFixingPrintStreamInfoStream
+argument_list|(
+name|System
+operator|.
+name|out
+argument_list|)
+argument_list|)
+expr_stmt|;
+block|}
+if|if
+condition|(
 name|r
 operator|.
 name|nextBoolean
