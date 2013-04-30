@@ -330,6 +330,7 @@ operator|.
 name|MIN_VALUE
 expr_stmt|;
 block|}
+comment|//System.out.println("numParentHits=" + numParentHits);
 name|this
 operator|.
 name|trackScores
@@ -419,6 +420,7 @@ argument_list|,
 name|parentScore
 argument_list|)
 expr_stmt|;
+comment|//System.out.println("make OneGroup parentDoc=" + parentDoc);
 name|docs
 operator|=
 operator|new
@@ -541,7 +543,7 @@ parameter_list|)
 throws|throws
 name|IOException
 block|{
-comment|//System.out.println("C parentDoc=" + parentDoc);
+comment|//System.out.println("\nC parentDoc=" + parentDoc);
 name|totalHitCount
 operator|++
 expr_stmt|;
@@ -809,8 +811,7 @@ name|parentDoc
 argument_list|)
 expr_stmt|;
 block|}
-comment|//System.out.println("  startup: new OG doc=" +
-comment|//(docBase+parentDoc));
+comment|//System.out.println("  startup: new OG doc=" + (docBase+parentDoc));
 if|if
 condition|(
 operator|!
@@ -1015,7 +1016,7 @@ name|scores
 argument_list|)
 expr_stmt|;
 block|}
-comment|//System.out.println("copyGroups parentDoc=" + og.doc);
+comment|//System.out.println("\ncopyGroups parentDoc=" + og.doc);
 for|for
 control|(
 name|int
@@ -1048,6 +1049,17 @@ condition|(
 name|joinScorer
 operator|!=
 literal|null
+operator|&&
+name|docBase
+operator|+
+name|joinScorer
+operator|.
+name|getParentDoc
+argument_list|()
+operator|==
+name|og
+operator|.
+name|doc
 condition|)
 block|{
 name|og
@@ -1082,12 +1094,51 @@ name|scorerIDX
 index|]
 argument_list|)
 expr_stmt|;
-comment|/*         for(int idx=0;idx<og.counts[scorerIDX];idx++) {           System.out.println("    docs[" + idx + "]=" + og.docs[scorerIDX][idx]);         }         */
+assert|assert
+name|og
+operator|.
+name|docs
+index|[
+name|scorerIDX
+index|]
+operator|.
+name|length
+operator|>=
+name|og
+operator|.
+name|counts
+index|[
+name|scorerIDX
+index|]
+operator|:
+literal|"length="
+operator|+
+name|og
+operator|.
+name|docs
+index|[
+name|scorerIDX
+index|]
+operator|.
+name|length
+operator|+
+literal|" vs count="
+operator|+
+name|og
+operator|.
+name|counts
+index|[
+name|scorerIDX
+index|]
+assert|;
+comment|//System.out.println("    len=" + og.docs[scorerIDX].length);
+comment|/*           for(int idx=0;idx<og.counts[scorerIDX];idx++) {           System.out.println("    docs[" + idx + "]=" + og.docs[scorerIDX][idx]);           }         */
 if|if
 condition|(
 name|trackScores
 condition|)
 block|{
+comment|//System.out.println("    copy scores");
 name|og
 operator|.
 name|scores
@@ -1107,7 +1158,56 @@ name|scorerIDX
 index|]
 argument_list|)
 expr_stmt|;
+assert|assert
+name|og
+operator|.
+name|scores
+index|[
+name|scorerIDX
+index|]
+operator|.
+name|length
+operator|>=
+name|og
+operator|.
+name|counts
+index|[
+name|scorerIDX
+index|]
+operator|:
+literal|"length="
+operator|+
+name|og
+operator|.
+name|scores
+index|[
+name|scorerIDX
+index|]
+operator|.
+name|length
+operator|+
+literal|" vs count="
+operator|+
+name|og
+operator|.
+name|counts
+index|[
+name|scorerIDX
+index|]
+assert|;
 block|}
+block|}
+else|else
+block|{
+name|og
+operator|.
+name|counts
+index|[
+name|scorerIDX
+index|]
+operator|=
+literal|0
+expr_stmt|;
 block|}
 block|}
 block|}
@@ -1366,6 +1466,7 @@ name|Scorer
 argument_list|>
 argument_list|()
 decl_stmt|;
+comment|//System.out.println("\nqueue: add top scorer=" + scorer);
 name|queue
 operator|.
 name|add
@@ -1387,6 +1488,7 @@ operator|!=
 literal|null
 condition|)
 block|{
+comment|//System.out.println("  poll: " + scorer + "; " + scorer.getWeight().getQuery());
 if|if
 condition|(
 name|scorer
@@ -1429,6 +1531,7 @@ name|getChildren
 argument_list|()
 control|)
 block|{
+comment|//System.out.println("  add sub: " + sub.child + "; " + sub.child.getWeight().getQuery());
 name|queue
 operator|.
 name|add
@@ -1654,10 +1757,7 @@ condition|(
 name|_slot
 operator|==
 literal|null
-condition|)
-block|{
-if|if
-condition|(
+operator|&&
 name|totalHitCount
 operator|==
 literal|0
@@ -1666,17 +1766,6 @@ block|{
 return|return
 literal|null
 return|;
-block|}
-else|else
-block|{
-throw|throw
-operator|new
-name|IllegalArgumentException
-argument_list|(
-literal|"the Query did not contain the provided BlockJoinQuery"
-argument_list|)
-throw|;
-block|}
 block|}
 if|if
 condition|(
@@ -1721,6 +1810,16 @@ return|return
 name|accumulateGroups
 argument_list|(
 name|_slot
+operator|==
+literal|null
+condition|?
+operator|-
+literal|1
+else|:
+name|_slot
+operator|.
+name|intValue
+argument_list|()
 argument_list|,
 name|offset
 argument_list|,
@@ -1804,6 +1903,7 @@ name|totalGroupedHitCount
 init|=
 literal|0
 decl_stmt|;
+comment|//System.out.println("slot=" + slot);
 for|for
 control|(
 name|int
@@ -1833,19 +1933,51 @@ decl_stmt|;
 specifier|final
 name|int
 name|numChildDocs
-init|=
+decl_stmt|;
+if|if
+condition|(
+name|slot
+operator|==
+operator|-
+literal|1
+operator|||
+name|slot
+operator|>=
+name|og
+operator|.
+name|counts
+operator|.
+name|length
+condition|)
+block|{
+name|numChildDocs
+operator|=
+literal|0
+expr_stmt|;
+block|}
+else|else
+block|{
+name|numChildDocs
+operator|=
 name|og
 operator|.
 name|counts
 index|[
 name|slot
 index|]
-decl_stmt|;
+expr_stmt|;
+block|}
 comment|// Number of documents in group should be bounded to prevent redundant memory allocation
 specifier|final
 name|int
 name|numDocsInGroup
 init|=
+name|Math
+operator|.
+name|max
+argument_list|(
+literal|1
+argument_list|,
 name|Math
 operator|.
 name|min
@@ -1854,7 +1986,9 @@ name|numChildDocs
 argument_list|,
 name|maxDocsPerGroup
 argument_list|)
+argument_list|)
 decl_stmt|;
+comment|//System.out.println("parent doc=" + og.doc + " numChildDocs=" + numChildDocs + " maxDocsPG=" + maxDocsPerGroup);
 comment|// At this point we hold all docs w/ in each group,
 comment|// unsorted; we now sort them:
 specifier|final
@@ -1871,6 +2005,7 @@ operator|==
 literal|null
 condition|)
 block|{
+comment|//System.out.println("sort by score");
 comment|// Sort by score
 if|if
 condition|(
@@ -1952,6 +2087,7 @@ name|docIDX
 operator|++
 control|)
 block|{
+comment|//System.out.println("docIDX=" + docIDX + " vs " + og.docs[slot].length);
 specifier|final
 name|int
 name|doc
