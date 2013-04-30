@@ -272,7 +272,7 @@ control|)
 block|{
 comment|// This is a little tricky, we are asking if core.properties exists in a child directory of the directory passed
 comment|// in. In other words we're looking for core.properties in the grandchild directories of the parameter passed
-comment|// in. That allows us to gracefully top recursing deep but continue looking wide.
+comment|// in. That allows us to gracefully stop recursing deep but continue looking wide.
 name|File
 name|propFile
 init|=
@@ -442,20 +442,6 @@ expr_stmt|;
 block|}
 comment|// Too much of the code depends on this value being here, but it is NOT supported in discovery mode, so
 comment|// ignore it if present in the core.properties file.
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"SET INST DIR:"
-operator|+
-name|childFile
-operator|.
-name|getPath
-argument_list|()
-argument_list|)
-expr_stmt|;
 name|props
 operator|.
 name|setProperty
@@ -466,7 +452,7 @@ name|CORE_INSTDIR
 argument_list|,
 name|childFile
 operator|.
-name|getPath
+name|getCanonicalPath
 argument_list|()
 argument_list|)
 expr_stmt|;
