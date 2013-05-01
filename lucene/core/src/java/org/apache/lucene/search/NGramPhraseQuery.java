@@ -221,6 +221,14 @@ operator|new
 name|PhraseQuery
 argument_list|()
 decl_stmt|;
+name|optimized
+operator|.
+name|setBoost
+argument_list|(
+name|getBoost
+argument_list|()
+argument_list|)
+expr_stmt|;
 name|int
 name|pos
 init|=
