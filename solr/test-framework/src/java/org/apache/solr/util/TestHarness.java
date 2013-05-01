@@ -1080,8 +1080,6 @@ argument_list|(
 operator|new
 name|ListenerConfig
 argument_list|()
-argument_list|,
-name|container
 argument_list|)
 expr_stmt|;
 name|container
