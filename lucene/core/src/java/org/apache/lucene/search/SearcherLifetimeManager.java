@@ -86,24 +86,6 @@ name|apache
 operator|.
 name|lucene
 operator|.
-name|search
-operator|.
-name|NRTManager
-import|;
-end_import
-
-begin_comment
-comment|// javadocs
-end_comment
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
 name|index
 operator|.
 name|DirectoryReader
@@ -139,7 +121,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Keeps track of current plus old IndexSearchers, closing  * the old ones once they have timed out.  *  * Use it like this:  *  *<pre class="prettyprint">  *   SearcherLifetimeManager mgr = new SearcherLifetimeManager();  *</pre>  *  * Per search-request, if it's a "new" search request, then  * obtain the latest searcher you have (for example, by  * using {@link SearcherManager} or {@link NRTManager}), and  * then record this searcher:  *  *<pre class="prettyprint">  *   // Record the current searcher, and save the returend  *   // token into user's search results (eg as a  hidden  *   // HTML form field):  *   long token = mgr.record(searcher);  *</pre>  *  * When a follow-up search arrives, for example the user  * clicks next page, drills down/up, etc., take the token  * that you saved from the previous search and:  *  *<pre class="prettyprint">  *   // If possible, obtain the same searcher as the last  *   // search:  *   IndexSearcher searcher = mgr.acquire(token);  *   if (searcher != null) {  *     // Searcher is still here  *     try {  *       // do searching...  *     } finally {  *       mgr.release(searcher);  *       // Do not use searcher after this!  *       searcher = null;  *     }  *   } else {  *     // Searcher was pruned -- notify user session timed  *     // out, or, pull fresh searcher again  *   }  *</pre>  *  * Finally, in a separate thread, ideally the same thread  * that's periodically reopening your searchers, you should  * periodically prune old searchers:  *  *<pre class="prettyprint">  *   mgr.prune(new PruneByAge(600.0));  *</pre>  *  *<p><b>NOTE</b>: keeping many searchers around means  * you'll use more resources (open files, RAM) than a single  * searcher.  However, as long as you are using {@link  * DirectoryReader#openIfChanged(DirectoryReader)}, the searchers  * will usually share almost all segments and the added resource usage  * is contained.  When a large merge has completed, and  * you reopen, because that is a large change, the new  * searcher will use higher additional RAM than other  * searchers; but large merges don't complete very often and  * it's unlikely you'll hit two of them in your expiration  * window.  Still you should budget plenty of heap in the  * JVM to have a good safety margin.  *   * @lucene.experimental  */
+comment|/**  * Keeps track of current plus old IndexSearchers, closing  * the old ones once they have timed out.  *  * Use it like this:  *  *<pre class="prettyprint">  *   SearcherLifetimeManager mgr = new SearcherLifetimeManager();  *</pre>  *  * Per search-request, if it's a "new" search request, then  * obtain the latest searcher you have (for example, by  * using {@link SearcherManager}), and then record this  * searcher:  *  *<pre class="prettyprint">  *   // Record the current searcher, and save the returend  *   // token into user's search results (eg as a  hidden  *   // HTML form field):  *   long token = mgr.record(searcher);  *</pre>  *  * When a follow-up search arrives, for example the user  * clicks next page, drills down/up, etc., take the token  * that you saved from the previous search and:  *  *<pre class="prettyprint">  *   // If possible, obtain the same searcher as the last  *   // search:  *   IndexSearcher searcher = mgr.acquire(token);  *   if (searcher != null) {  *     // Searcher is still here  *     try {  *       // do searching...  *     } finally {  *       mgr.release(searcher);  *       // Do not use searcher after this!  *       searcher = null;  *     }  *   } else {  *     // Searcher was pruned -- notify user session timed  *     // out, or, pull fresh searcher again  *   }  *</pre>  *  * Finally, in a separate thread, ideally the same thread  * that's periodically reopening your searchers, you should  * periodically prune old searchers:  *  *<pre class="prettyprint">  *   mgr.prune(new PruneByAge(600.0));  *</pre>  *  *<p><b>NOTE</b>: keeping many searchers around means  * you'll use more resources (open files, RAM) than a single  * searcher.  However, as long as you are using {@link  * DirectoryReader#openIfChanged(DirectoryReader)}, the searchers  * will usually share almost all segments and the added resource usage  * is contained.  When a large merge has completed, and  * you reopen, because that is a large change, the new  * searcher will use higher additional RAM than other  * searchers; but large merges don't complete very often and  * it's unlikely you'll hit two of them in your expiration  * window.  Still you should budget plenty of heap in the  * JVM to have a good safety margin.  *   * @lucene.experimental  */
 end_comment
 
 begin_class
@@ -333,7 +315,7 @@ argument_list|)
 throw|;
 block|}
 block|}
-comment|/** Records that you are now using this IndexSearcher.    *  Always call this when you've obtained a possibly new    *  {@link IndexSearcher}, for example from one of the    *<code>get</code> methods in {@link NRTManager} or {@link    *  SearcherManager}.  It's fine if you already passed the    *  same searcher to this method before.    *    *<p>This returns the long token that you can later pass    *  to {@link #acquire} to retrieve the same IndexSearcher.    *  You should record this long token in the search results    *  sent to your user, such that if the user performs a    *  follow-on action (clicks next page, drills down, etc.)    *  the token is returned. */
+comment|/** Records that you are now using this IndexSearcher.    *  Always call this when you've obtained a possibly new    *  {@link IndexSearcher}, for example from {@link    *  SearcherManager}.  It's fine if you already passed the    *  same searcher to this method before.    *    *<p>This returns the long token that you can later pass    *  to {@link #acquire} to retrieve the same IndexSearcher.    *  You should record this long token in the search results    *  sent to your user, such that if the user performs a    *  follow-on action (clicks next page, drills down, etc.)    *  the token is returned. */
 DECL|method|record
 specifier|public
 name|long
