@@ -9741,13 +9741,14 @@ argument_list|()
 argument_list|)
 expr_stmt|;
 comment|// Keep that commit
+name|IndexCommit
+name|id
+init|=
 name|sdp
 operator|.
 name|snapshot
-argument_list|(
-literal|"id"
-argument_list|)
-expr_stmt|;
+argument_list|()
+decl_stmt|;
 comment|// Second commit - now KeepOnlyLastCommit cannot delete the prev commit.
 name|doc
 operator|=
@@ -9801,7 +9802,7 @@ name|sdp
 operator|.
 name|release
 argument_list|(
-literal|"id"
+name|id
 argument_list|)
 expr_stmt|;
 name|writer
