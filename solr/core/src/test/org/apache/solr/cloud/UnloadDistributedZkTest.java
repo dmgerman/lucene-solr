@@ -104,6 +104,20 @@ name|org
 operator|.
 name|apache
 operator|.
+name|lucene
+operator|.
+name|util
+operator|.
+name|Constants
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
 name|solr
 operator|.
 name|client
@@ -354,7 +368,17 @@ name|beforeThisClass3
 parameter_list|()
 throws|throws
 name|Exception
-block|{    }
+block|{
+name|assumeFalse
+argument_list|(
+literal|"FIXME: This test fails under Java 8 all the time, see SOLR-4711"
+argument_list|,
+name|Constants
+operator|.
+name|JRE_IS_MINIMUM_JAVA8
+argument_list|)
+expr_stmt|;
+block|}
 annotation|@
 name|Before
 annotation|@
