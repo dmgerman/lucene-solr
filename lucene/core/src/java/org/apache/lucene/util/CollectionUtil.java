@@ -128,6 +128,22 @@ block|{
 name|super
 argument_list|()
 expr_stmt|;
+if|if
+condition|(
+operator|!
+operator|(
+name|list
+operator|instanceof
+name|RandomAccess
+operator|)
+condition|)
+throw|throw
+operator|new
+name|IllegalArgumentException
+argument_list|(
+literal|"CollectionUtil can only sort random access lists in-place."
+argument_list|)
+throw|;
 name|this
 operator|.
 name|list
@@ -318,6 +334,22 @@ argument_list|(
 name|maxTempSlots
 argument_list|)
 expr_stmt|;
+if|if
+condition|(
+operator|!
+operator|(
+name|list
+operator|instanceof
+name|RandomAccess
+operator|)
+condition|)
+throw|throw
+operator|new
+name|IllegalArgumentException
+argument_list|(
+literal|"CollectionUtil can only sort random access lists in-place."
+argument_list|)
+throw|;
 name|this
 operator|.
 name|list
