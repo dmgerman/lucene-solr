@@ -844,7 +844,7 @@ argument_list|)
 decl_stmt|;
 name|ArrayUtil
 operator|.
-name|mergeSort
+name|timSort
 argument_list|(
 name|scoreTerms
 argument_list|,

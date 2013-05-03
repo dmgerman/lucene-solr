@@ -961,7 +961,7 @@ comment|// enabled; we could save [small amount of] CPU
 comment|// here.
 name|ArrayUtil
 operator|.
-name|quickSort
+name|introSort
 argument_list|(
 name|fields
 argument_list|,

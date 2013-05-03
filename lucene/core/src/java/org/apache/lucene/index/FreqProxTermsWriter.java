@@ -223,7 +223,7 @@ decl_stmt|;
 comment|// Sort by field name
 name|CollectionUtil
 operator|.
-name|quickSort
+name|introSort
 argument_list|(
 name|allFields
 argument_list|)

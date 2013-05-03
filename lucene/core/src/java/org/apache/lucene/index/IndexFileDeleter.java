@@ -874,7 +874,7 @@ block|}
 comment|// We keep commits list in sorted order (oldest to newest):
 name|CollectionUtil
 operator|.
-name|mergeSort
+name|timSort
 argument_list|(
 name|commits
 argument_list|)

@@ -265,7 +265,7 @@ comment|// sorting by decreasing subscorer cost should be inversely correlated w
 comment|// next docid (assuming costs are due to generating many postings)
 name|ArrayUtil
 operator|.
-name|mergeSort
+name|timSort
 argument_list|(
 name|sortedSubScorers
 argument_list|,

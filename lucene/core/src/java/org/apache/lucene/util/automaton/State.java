@@ -832,7 +832,7 @@ literal|1
 condition|)
 name|ArrayUtil
 operator|.
-name|mergeSort
+name|timSort
 argument_list|(
 name|transitionsArray
 argument_list|,

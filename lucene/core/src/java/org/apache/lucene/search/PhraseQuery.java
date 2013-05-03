@@ -1659,7 +1659,7 @@ condition|)
 block|{
 name|ArrayUtil
 operator|.
-name|mergeSort
+name|timSort
 argument_list|(
 name|postingsFreqs
 argument_list|)

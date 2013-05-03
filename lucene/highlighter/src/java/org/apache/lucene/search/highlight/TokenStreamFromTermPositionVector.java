@@ -476,7 +476,7 @@ block|}
 block|}
 name|CollectionUtil
 operator|.
-name|mergeSort
+name|timSort
 argument_list|(
 name|this
 operator|.

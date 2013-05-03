@@ -1234,7 +1234,7 @@ decl_stmt|;
 comment|// sort the tokens by absoulte position
 name|ArrayUtil
 operator|.
-name|mergeSort
+name|timSort
 argument_list|(
 name|tokens
 argument_list|,

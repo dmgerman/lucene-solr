@@ -2419,7 +2419,7 @@ literal|1
 condition|)
 name|ArrayUtil
 operator|.
-name|quickSort
+name|introSort
 argument_list|(
 name|entries
 argument_list|,

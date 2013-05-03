@@ -917,7 +917,7 @@ name|IOException
 block|{
 name|ArrayUtil
 operator|.
-name|mergeSort
+name|timSort
 argument_list|(
 name|subSpansByDoc
 argument_list|,

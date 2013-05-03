@@ -557,7 +557,7 @@ block|}
 comment|// Sort the merge threads in descending order.
 name|CollectionUtil
 operator|.
-name|mergeSort
+name|timSort
 argument_list|(
 name|activeMerges
 argument_list|,

@@ -1253,7 +1253,7 @@ expr_stmt|;
 block|}
 name|ArrayUtil
 operator|.
-name|mergeSort
+name|timSort
 argument_list|(
 name|suggestions
 argument_list|,

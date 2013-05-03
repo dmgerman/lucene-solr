@@ -237,7 +237,7 @@ name|length
 expr_stmt|;
 name|ArrayUtil
 operator|.
-name|mergeSort
+name|timSort
 argument_list|(
 name|termsArray
 argument_list|)

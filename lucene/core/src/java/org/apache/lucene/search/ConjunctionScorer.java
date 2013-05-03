@@ -202,7 +202,7 @@ comment|// Sort the array the first time to allow the least frequent DocsEnum to
 comment|// lead the matching.
 name|ArrayUtil
 operator|.
-name|mergeSort
+name|timSort
 argument_list|(
 name|docsAndFreqs
 argument_list|,
