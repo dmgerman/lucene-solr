@@ -445,6 +445,16 @@ throws|throws
 name|IOException
 block|{
 comment|// SOLR-4547: log basic data at INFO, add filenames at DEBUG.
+if|if
+condition|(
+name|commits
+operator|.
+name|isEmpty
+argument_list|()
+condition|)
+block|{
+return|return;
+block|}
 name|log
 operator|.
 name|info
