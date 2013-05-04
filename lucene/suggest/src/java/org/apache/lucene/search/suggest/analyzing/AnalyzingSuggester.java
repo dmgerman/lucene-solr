@@ -635,7 +635,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Suggester that first analyzes the surface form, adds the  * analyzed form to a weighted FST, and then does the same  * thing at lookup time.  This means lookup is based on the  * analyzed form while suggestions are still the surface  * form(s).  *  *<p>  * This can result in powerful suggester functionality.  For  * example, if you use an analyzer removing stop words,   * then the partial text "ghost chr..." could see the  * suggestion "The Ghost of Christmas Past". Note that  * your {@code StopFilter} instance must NOT preserve  * position increments for this example to work, so you should call  * {@code setEnablePositionIncrements(false)} on it.  *  *<p>  * If SynonymFilter is used to map wifi and wireless network to  * hotspot then the partial text "wirele..." could suggest  * "wifi router".  Token normalization like stemmers, accent  * removal, etc., would allow suggestions to ignore such  * variations.  *  *<p>  * When two matching suggestions have the same weight, they  * are tie-broken by the analyzed form.  If their analyzed  * form is the same then the order is undefined.  *  *<p>  * There are some limitations:  *<ul>  *  *<li> A lookup from a query like "net" in English won't  *        be any different than "net " (ie, user added a  *        trailing space) because analyzers don't reflect  *        when they've seen a token separator and when they  *        haven't.  *  *<li> If you're using {@code StopFilter}, and the user will  *        type "fast apple", but so far all they've typed is  *        "fast a", again because the analyzer doesn't convey whether  *        it's seen a token separator after the "a",  *        {@code StopFilter} will remove that "a" causing  *        far more matches than you'd expect.  *  *<li> Lookups with the empty string return no results  *        instead of all results.  *</ul>  *   * @lucene.experimental  */
+comment|/**  * Suggester that first analyzes the surface form, adds the  * analyzed form to a weighted FST, and then does the same  * thing at lookup time.  This means lookup is based on the  * analyzed form while suggestions are still the surface  * form(s).  *  *<p>  * This can result in powerful suggester functionality.  For  * example, if you use an analyzer removing stop words,   * then the partial text "ghost chr..." could see the  * suggestion "The Ghost of Christmas Past". Note that  * position increments MUST NOT be preserved for this example  * to work, so you should call  * {@link #setPreservePositionIncrements(boolean) setPreservePositionIncrements(false)}.  *  *<p>  * If SynonymFilter is used to map wifi and wireless network to  * hotspot then the partial text "wirele..." could suggest  * "wifi router".  Token normalization like stemmers, accent  * removal, etc., would allow suggestions to ignore such  * variations.  *  *<p>  * When two matching suggestions have the same weight, they  * are tie-broken by the analyzed form.  If their analyzed  * form is the same then the order is undefined.  *  *<p>  * There are some limitations:  *<ul>  *  *<li> A lookup from a query like "net" in English won't  *        be any different than "net " (ie, user added a  *        trailing space) because analyzers don't reflect  *        when they've seen a token separator and when they  *        haven't.  *  *<li> If you're using {@code StopFilter}, and the user will  *        type "fast apple", but so far all they've typed is  *        "fast a", again because the analyzer doesn't convey whether  *        it's seen a token separator after the "a",  *        {@code StopFilter} will remove that "a" causing  *        far more matches than you'd expect.  *  *<li> Lookups with the empty string return no results  *        instead of all results.  *</ul>  *   * @lucene.experimental  */
 end_comment
 
 begin_class
@@ -763,6 +763,12 @@ name|int
 name|PAYLOAD_SEP
 init|=
 literal|'\u001f'
+decl_stmt|;
+comment|/** Whether position holes should appear in the automaton. */
+DECL|field|preservePositionIncrements
+specifier|private
+name|boolean
+name|preservePositionIncrements
 decl_stmt|;
 comment|/**    * Calls {@link #AnalyzingSuggester(Analyzer,Analyzer,int,int,int)    * AnalyzingSuggester(analyzer, analyzer, EXACT_FIRST |    * PRESERVE_SEP, 256, -1)}    */
 DECL|method|AnalyzingSuggester
@@ -964,6 +970,27 @@ operator|.
 name|maxGraphExpansions
 operator|=
 name|maxGraphExpansions
+expr_stmt|;
+name|preservePositionIncrements
+operator|=
+literal|true
+expr_stmt|;
+block|}
+comment|/** Whether to take position holes (position increment> 1) into account when    *  building the automaton,<code>true</code> by default. */
+DECL|method|setPreservePositionIncrements
+specifier|public
+name|void
+name|setPreservePositionIncrements
+parameter_list|(
+name|boolean
+name|preservePositionIncrements
+parameter_list|)
+block|{
+name|this
+operator|.
+name|preservePositionIncrements
+operator|=
+name|preservePositionIncrements
 expr_stmt|;
 block|}
 comment|/** Returns byte size of the underlying FST. */
@@ -1433,27 +1460,43 @@ name|TokenStreamToAutomaton
 name|getTokenStreamToAutomaton
 parameter_list|()
 block|{
+specifier|final
+name|TokenStreamToAutomaton
+name|tsta
+decl_stmt|;
 if|if
 condition|(
 name|preserveSep
 condition|)
 block|{
-return|return
+name|tsta
+operator|=
 operator|new
 name|EscapingTokenStreamToAutomaton
 argument_list|()
-return|;
+expr_stmt|;
 block|}
 else|else
 block|{
 comment|// When we're not preserving sep, we don't steal 0xff
 comment|// byte, so we don't need to do any escaping:
-return|return
+name|tsta
+operator|=
 operator|new
 name|TokenStreamToAutomaton
 argument_list|()
-return|;
+expr_stmt|;
 block|}
+name|tsta
+operator|.
+name|setPreservePositionIncrements
+argument_list|(
+name|preservePositionIncrements
+argument_list|)
+expr_stmt|;
+return|return
+name|tsta
+return|;
 block|}
 DECL|class|AnalyzingComparator
 specifier|private

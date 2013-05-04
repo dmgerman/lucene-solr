@@ -542,6 +542,19 @@ argument_list|,
 name|HYPHENATIONS
 argument_list|)
 decl_stmt|;
+if|if
+condition|(
+operator|!
+name|matchVersion
+operator|.
+name|onOrAfter
+argument_list|(
+name|Version
+operator|.
+name|LUCENE_44
+argument_list|)
+condition|)
+block|{
 name|s
 operator|.
 name|setEnablePositionIncrements
@@ -549,6 +562,7 @@ argument_list|(
 literal|false
 argument_list|)
 expr_stmt|;
+block|}
 name|result
 operator|=
 name|s

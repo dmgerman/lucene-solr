@@ -131,7 +131,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Factory class for {@link TypeTokenFilter}.  *<pre class="prettyprint">  *&lt;fieldType name="chars" class="solr.TextField" positionIncrementGap="100"&gt;  *&lt;analyzer&gt;  *&lt;tokenizer class="solr.StandardTokenizerFactory"/&gt;  *&lt;filter class="solr.TypeTokenFilterFactory" types="stoptypes.txt"  *                   enablePositionIncrements="true" useWhitelist="false"/&gt;  *&lt;/analyzer&gt;  *&lt;/fieldType&gt;</pre>  */
+comment|/**  * Factory class for {@link TypeTokenFilter}.  *<pre class="prettyprint">  *&lt;fieldType name="chars" class="solr.TextField" positionIncrementGap="100"&gt;  *&lt;analyzer&gt;  *&lt;tokenizer class="solr.StandardTokenizerFactory"/&gt;  *&lt;filter class="solr.TypeTokenFilterFactory" types="stoptypes.txt"  *                   useWhitelist="false"/&gt;  *&lt;/analyzer&gt;  *&lt;/fieldType&gt;</pre>  */
 end_comment
 
 begin_class
@@ -206,7 +206,7 @@ name|args
 argument_list|,
 literal|"enablePositionIncrements"
 argument_list|,
-literal|false
+literal|true
 argument_list|)
 expr_stmt|;
 name|useWhitelist
@@ -351,10 +351,20 @@ name|TokenStream
 name|input
 parameter_list|)
 block|{
-return|return
+annotation|@
+name|SuppressWarnings
+argument_list|(
+literal|"deprecation"
+argument_list|)
+specifier|final
+name|TokenStream
+name|filter
+init|=
 operator|new
 name|TypeTokenFilter
 argument_list|(
+name|luceneMatchVersion
+argument_list|,
 name|enablePositionIncrements
 argument_list|,
 name|input
@@ -363,6 +373,9 @@ name|stopTypes
 argument_list|,
 name|useWhitelist
 argument_list|)
+decl_stmt|;
+return|return
+name|filter
 return|;
 block|}
 block|}

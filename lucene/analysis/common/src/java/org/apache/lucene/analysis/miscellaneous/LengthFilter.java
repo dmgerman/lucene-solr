@@ -64,6 +64,20 @@ name|CharTermAttribute
 import|;
 end_import
 
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|util
+operator|.
+name|Version
+import|;
+end_import
+
 begin_comment
 comment|/**  * Removes words that are too long or too short from the stream.  *<p>  * Note: Length is calculated as the number of UTF-16 code units.  *</p>  */
 end_comment
@@ -102,11 +116,16 @@ operator|.
 name|class
 argument_list|)
 decl_stmt|;
-comment|/**    * Build a filter that removes words that are too long or too    * short from the text.    */
+comment|/** @deprecated enablePositionIncrements=false is not supported anymore as of Lucene 4.4. */
+annotation|@
+name|Deprecated
 DECL|method|LengthFilter
 specifier|public
 name|LengthFilter
 parameter_list|(
+name|Version
+name|version
+parameter_list|,
 name|boolean
 name|enablePositionIncrements
 parameter_list|,
@@ -122,7 +141,47 @@ parameter_list|)
 block|{
 name|super
 argument_list|(
+name|version
+argument_list|,
 name|enablePositionIncrements
+argument_list|,
+name|in
+argument_list|)
+expr_stmt|;
+name|this
+operator|.
+name|min
+operator|=
+name|min
+expr_stmt|;
+name|this
+operator|.
+name|max
+operator|=
+name|max
+expr_stmt|;
+block|}
+comment|/**    * Create a new {@link LengthFilter}. This will filter out tokens whose    * {@link CharTermAttribute} is either too short ({@link CharTermAttribute#length()}    *&lt; min) or too long ({@link CharTermAttribute#length()}&gt; max).    * @param version the Lucene match version    * @param in      the {@link TokenStream} to consume    * @param min     the minimum length    * @param max     the maximum length    */
+DECL|method|LengthFilter
+specifier|public
+name|LengthFilter
+parameter_list|(
+name|Version
+name|version
+parameter_list|,
+name|TokenStream
+name|in
+parameter_list|,
+name|int
+name|min
+parameter_list|,
+name|int
+name|max
+parameter_list|)
+block|{
+name|super
+argument_list|(
+name|version
 argument_list|,
 name|in
 argument_list|)

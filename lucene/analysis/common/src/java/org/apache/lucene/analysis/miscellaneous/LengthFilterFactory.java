@@ -20,6 +20,16 @@ end_comment
 
 begin_import
 import|import
+name|java
+operator|.
+name|util
+operator|.
+name|Map
+import|;
+end_import
+
+begin_import
+import|import
 name|org
 operator|.
 name|apache
@@ -48,18 +58,8 @@ name|TokenFilterFactory
 import|;
 end_import
 
-begin_import
-import|import
-name|java
-operator|.
-name|util
-operator|.
-name|Map
-import|;
-end_import
-
 begin_comment
-comment|/**  * Factory for {@link LengthFilter}.   *<pre class="prettyprint">  *&lt;fieldType name="text_lngth" class="solr.TextField" positionIncrementGap="100"&gt;  *&lt;analyzer&gt;  *&lt;tokenizer class="solr.WhitespaceTokenizerFactory"/&gt;  *&lt;filter class="solr.LengthFilterFactory" min="0" max="1" enablePositionIncrements="false"/&gt;  *&lt;/analyzer&gt;  *&lt;/fieldType&gt;</pre>  */
+comment|/**  * Factory for {@link LengthFilter}.   *<pre class="prettyprint">  *&lt;fieldType name="text_lngth" class="solr.TextField" positionIncrementGap="100"&gt;  *&lt;analyzer&gt;  *&lt;tokenizer class="solr.WhitespaceTokenizerFactory"/&gt;  *&lt;filter class="solr.LengthFilterFactory" min="0" max="1" /&gt;  *&lt;/analyzer&gt;  *&lt;/fieldType&gt;</pre>  */
 end_comment
 
 begin_class
@@ -148,7 +148,7 @@ name|args
 argument_list|,
 literal|"enablePositionIncrements"
 argument_list|,
-literal|false
+literal|true
 argument_list|)
 expr_stmt|;
 if|if
@@ -182,10 +182,20 @@ name|TokenStream
 name|input
 parameter_list|)
 block|{
-return|return
+annotation|@
+name|SuppressWarnings
+argument_list|(
+literal|"deprecation"
+argument_list|)
+specifier|final
+name|LengthFilter
+name|filter
+init|=
 operator|new
 name|LengthFilter
 argument_list|(
+name|luceneMatchVersion
+argument_list|,
 name|enablePositionIncrements
 argument_list|,
 name|input
@@ -194,6 +204,9 @@ name|min
 argument_list|,
 name|max
 argument_list|)
+decl_stmt|;
+return|return
+name|filter
 return|;
 block|}
 block|}

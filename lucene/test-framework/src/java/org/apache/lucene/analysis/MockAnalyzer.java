@@ -22,16 +22,6 @@ name|java
 operator|.
 name|io
 operator|.
-name|IOException
-import|;
-end_import
-
-begin_import
-import|import
-name|java
-operator|.
-name|io
-operator|.
 name|Reader
 import|;
 end_import
@@ -127,12 +117,6 @@ specifier|final
 name|CharacterRunAutomaton
 name|filter
 decl_stmt|;
-DECL|field|enablePositionIncrements
-specifier|private
-specifier|final
-name|boolean
-name|enablePositionIncrements
-decl_stmt|;
 DECL|field|positionIncrementGap
 specifier|private
 name|int
@@ -179,7 +163,7 @@ name|MockTokenizer
 operator|.
 name|DEFAULT_MAX_TOKEN_LENGTH
 decl_stmt|;
-comment|/**    * Creates a new MockAnalyzer.    *     * @param random Random for payloads behavior    * @param runAutomaton DFA describing how tokenization should happen (e.g. [a-zA-Z]+)    * @param lowerCase true if the tokenizer should lowercase terms    * @param filter DFA describing how terms should be filtered (set of stopwords, etc)    * @param enablePositionIncrements true if position increments should reflect filtered terms.    */
+comment|/**    * Creates a new MockAnalyzer.    *     * @param random Random for payloads behavior    * @param runAutomaton DFA describing how tokenization should happen (e.g. [a-zA-Z]+)    * @param lowerCase true if the tokenizer should lowercase terms    * @param filter DFA describing how terms should be filtered (set of stopwords, etc)    */
 DECL|method|MockAnalyzer
 specifier|public
 name|MockAnalyzer
@@ -195,9 +179,6 @@ name|lowerCase
 parameter_list|,
 name|CharacterRunAutomaton
 name|filter
-parameter_list|,
-name|boolean
-name|enablePositionIncrements
 parameter_list|)
 block|{
 name|super
@@ -239,14 +220,8 @@ name|filter
 operator|=
 name|filter
 expr_stmt|;
-name|this
-operator|.
-name|enablePositionIncrements
-operator|=
-name|enablePositionIncrements
-expr_stmt|;
 block|}
-comment|/**    * Calls {@link #MockAnalyzer(Random, CharacterRunAutomaton, boolean, CharacterRunAutomaton, boolean)     * MockAnalyzer(random, runAutomaton, lowerCase, MockTokenFilter.EMPTY_STOPSET, false}).    */
+comment|/**    * Calls {@link #MockAnalyzer(Random, CharacterRunAutomaton, boolean, CharacterRunAutomaton)     * MockAnalyzer(random, runAutomaton, lowerCase, MockTokenFilter.EMPTY_STOPSET, false}).    */
 DECL|method|MockAnalyzer
 specifier|public
 name|MockAnalyzer
@@ -272,12 +247,10 @@ argument_list|,
 name|MockTokenFilter
 operator|.
 name|EMPTY_STOPSET
-argument_list|,
-literal|true
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**     * Create a Whitespace-lowercasing analyzer with no stopwords removal.    *<p>    * Calls {@link #MockAnalyzer(Random, CharacterRunAutomaton, boolean, CharacterRunAutomaton, boolean)     * MockAnalyzer(random, MockTokenizer.WHITESPACE, true, MockTokenFilter.EMPTY_STOPSET, false}).    */
+comment|/**     * Create a Whitespace-lowercasing analyzer with no stopwords removal.    *<p>    * Calls {@link #MockAnalyzer(Random, CharacterRunAutomaton, boolean, CharacterRunAutomaton)     * MockAnalyzer(random, MockTokenizer.WHITESPACE, true, MockTokenFilter.EMPTY_STOPSET, false}).    */
 DECL|method|MockAnalyzer
 specifier|public
 name|MockAnalyzer
@@ -345,13 +318,6 @@ argument_list|,
 name|filter
 argument_list|)
 decl_stmt|;
-name|filt
-operator|.
-name|setEnablePositionIncrements
-argument_list|(
-name|enablePositionIncrements
-argument_list|)
-expr_stmt|;
 return|return
 operator|new
 name|TokenStreamComponents

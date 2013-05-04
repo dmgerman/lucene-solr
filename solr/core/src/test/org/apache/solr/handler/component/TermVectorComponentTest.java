@@ -881,7 +881,7 @@ argument_list|,
 literal|"true"
 argument_list|)
 argument_list|,
-literal|"/termVectors/0/test_posofftv/anoth=={'tf':1, 'offsets':{'start':20, 'end':27}, 'positions':{'position':1}, 'df':2, 'tf-idf':0.5}"
+literal|"/termVectors/0/test_posofftv/anoth=={'tf':1, 'offsets':{'start':20, 'end':27}, 'positions':{'position':5}, 'df':2, 'tf-idf':0.5}"
 argument_list|)
 expr_stmt|;
 name|assertJQ
@@ -913,7 +913,7 @@ argument_list|,
 literal|"true"
 argument_list|)
 argument_list|,
-literal|"/termVectors/0/test_posofftv/anoth=={'tf':1, 'offsets':{'start':20, 'end':27}, 'positions':{'position':1}, 'df':2, 'tf-idf':0.5}"
+literal|"/termVectors/0/test_posofftv/anoth=={'tf':1, 'offsets':{'start':20, 'end':27}, 'positions':{'position':5}, 'df':2, 'tf-idf':0.5}"
 argument_list|)
 expr_stmt|;
 comment|// test each combination at random
@@ -990,7 +990,7 @@ name|TermVectorParams
 operator|.
 name|POSITIONS
 block|,
-literal|"'positions':{'position':1}"
+literal|"'positions':{'position':5}"
 block|}
 block|,
 block|{
@@ -1254,7 +1254,7 @@ argument_list|)
 argument_list|,
 literal|"/termVectors/0/test_basictv=={'anoth':{},'titl':{}}"
 argument_list|,
-literal|"/termVectors/0/test_postv/anoth=={'tf':1, 'positions':{'position':1}, 'df':2, 'tf-idf':0.5}"
+literal|"/termVectors/0/test_postv/anoth=={'tf':1, 'positions':{'position':5}, 'df':2, 'tf-idf':0.5}"
 argument_list|,
 literal|"/termVectors/0/test_offtv/anoth=={'tf':1, 'df':2, 'tf-idf':0.5}"
 argument_list|,

@@ -1786,8 +1786,6 @@ argument_list|,
 name|MockTokenFilter
 operator|.
 name|ENGLISH_STOPSET
-argument_list|,
-literal|true
 argument_list|)
 operator|.
 name|tokenStream
@@ -8823,8 +8821,6 @@ argument_list|,
 name|MockTokenFilter
 operator|.
 name|ENGLISH_STOPSET
-argument_list|,
-literal|true
 argument_list|)
 decl_stmt|;
 comment|// we disable MockTokenizer checks because we will forcefully limit the
@@ -9011,8 +9007,6 @@ argument_list|,
 literal|true
 argument_list|,
 name|stopWords
-argument_list|,
-literal|true
 argument_list|)
 decl_stmt|;
 name|analyzer
@@ -9328,8 +9322,6 @@ argument_list|,
 literal|true
 argument_list|,
 name|stopWords
-argument_list|,
-literal|true
 argument_list|)
 argument_list|,
 literal|"text"
@@ -9413,8 +9405,6 @@ argument_list|,
 name|MockTokenFilter
 operator|.
 name|ENGLISH_STOPSET
-argument_list|,
-literal|true
 argument_list|)
 decl_stmt|;
 name|BooleanQuery
@@ -12268,8 +12258,6 @@ argument_list|,
 name|MockTokenFilter
 operator|.
 name|ENGLISH_STOPSET
-argument_list|,
-literal|true
 argument_list|)
 expr_stmt|;
 name|dir
@@ -12309,8 +12297,6 @@ argument_list|,
 name|MockTokenFilter
 operator|.
 name|ENGLISH_STOPSET
-argument_list|,
-literal|true
 argument_list|)
 argument_list|)
 argument_list|)

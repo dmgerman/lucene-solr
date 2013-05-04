@@ -80,6 +80,20 @@ end_import
 
 begin_import
 import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|util
+operator|.
+name|Version
+import|;
+end_import
+
+begin_import
+import|import
 name|java
 operator|.
 name|io
@@ -89,7 +103,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Trims leading and trailing whitespace from Tokens in the stream.  */
+comment|/**  * Trims leading and trailing whitespace from Tokens in the stream.  *<p>As of Lucene 4.4, this filter does not support updateOffsets=true anymore  * as it can lead to broken token streams.  */
 end_comment
 
 begin_class
@@ -132,10 +146,16 @@ operator|.
 name|class
 argument_list|)
 decl_stmt|;
+comment|/**    * Create a new {@link TrimFilter}.    * @param version       the Lucene match version    * @param in            the stream to consume    * @param updateOffsets whether to update offsets    * @deprecated Offset updates are not supported anymore as of Lucene 4.4.    */
+annotation|@
+name|Deprecated
 DECL|method|TrimFilter
 specifier|public
 name|TrimFilter
 parameter_list|(
+name|Version
+name|version
+parameter_list|,
 name|TokenStream
 name|in
 parameter_list|,
@@ -148,11 +168,55 @@ argument_list|(
 name|in
 argument_list|)
 expr_stmt|;
+if|if
+condition|(
+name|updateOffsets
+operator|&&
+name|version
+operator|.
+name|onOrAfter
+argument_list|(
+name|Version
+operator|.
+name|LUCENE_44
+argument_list|)
+condition|)
+block|{
+throw|throw
+operator|new
+name|IllegalArgumentException
+argument_list|(
+literal|"updateOffsets=true is not supported anymore as of Lucene 4.4"
+argument_list|)
+throw|;
+block|}
 name|this
 operator|.
 name|updateOffsets
 operator|=
 name|updateOffsets
+expr_stmt|;
+block|}
+comment|/** Create a new {@link TrimFilter} on top of<code>in</code>. */
+DECL|method|TrimFilter
+specifier|public
+name|TrimFilter
+parameter_list|(
+name|Version
+name|version
+parameter_list|,
+name|TokenStream
+name|in
+parameter_list|)
+block|{
+name|this
+argument_list|(
+name|version
+argument_list|,
+name|in
+argument_list|,
+literal|false
+argument_list|)
 expr_stmt|;
 block|}
 annotation|@
@@ -222,7 +286,6 @@ init|=
 literal|0
 decl_stmt|;
 comment|// eat the first characters
-comment|//QUESTION: Should we use Character.isWhitespace() instead?
 for|for
 control|(
 name|start
@@ -233,12 +296,15 @@ name|start
 operator|<
 name|len
 operator|&&
+name|Character
+operator|.
+name|isWhitespace
+argument_list|(
 name|termBuffer
 index|[
 name|start
 index|]
-operator|<=
-literal|' '
+argument_list|)
 condition|;
 name|start
 operator|++
@@ -255,14 +321,17 @@ name|end
 operator|>=
 name|start
 operator|&&
+name|Character
+operator|.
+name|isWhitespace
+argument_list|(
 name|termBuffer
 index|[
 name|end
 operator|-
 literal|1
 index|]
-operator|<=
-literal|' '
+argument_list|)
 condition|;
 name|end
 operator|--

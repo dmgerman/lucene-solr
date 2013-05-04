@@ -72,8 +72,22 @@ name|PositionIncrementAttribute
 import|;
 end_import
 
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|util
+operator|.
+name|Version
+import|;
+end_import
+
 begin_comment
-comment|/**  * Abstract base class for TokenFilters that may remove tokens.  * You have to implement {@link #accept} and return a boolean if the current  * token should be preserved. {@link #incrementToken} uses this method  * to decide if a token should be passed to the caller.  */
+comment|/**  * Abstract base class for TokenFilters that may remove tokens.  * You have to implement {@link #accept} and return a boolean if the current  * token should be preserved. {@link #incrementToken} uses this method  * to decide if a token should be passed to the caller.  *<p><a name="version" />As of Lucene 4.4, an {@link IllegalArgumentException}  * is thrown when trying to disable position increments when filtering terms.  */
 end_comment
 
 begin_class
@@ -85,6 +99,49 @@ name|FilteringTokenFilter
 extends|extends
 name|TokenFilter
 block|{
+DECL|method|checkPositionIncrement
+specifier|private
+specifier|static
+name|void
+name|checkPositionIncrement
+parameter_list|(
+name|Version
+name|version
+parameter_list|,
+name|boolean
+name|enablePositionIncrements
+parameter_list|)
+block|{
+if|if
+condition|(
+operator|!
+name|enablePositionIncrements
+operator|&&
+name|version
+operator|.
+name|onOrAfter
+argument_list|(
+name|Version
+operator|.
+name|LUCENE_44
+argument_list|)
+condition|)
+block|{
+throw|throw
+operator|new
+name|IllegalArgumentException
+argument_list|(
+literal|"enablePositionIncrements=false is not supported anymore as of Lucene 4.4 as it can create broken token streams"
+argument_list|)
+throw|;
+block|}
+block|}
+DECL|field|version
+specifier|protected
+specifier|final
+name|Version
+name|version
+decl_stmt|;
 DECL|field|posIncrAtt
 specifier|private
 specifier|final
@@ -111,11 +168,16 @@ name|first
 init|=
 literal|true
 decl_stmt|;
-comment|// only used when not preserving gaps
+comment|/**    * Create a new {@link FilteringTokenFilter}.    * @param version                  the Lucene match<a href="#version">version</a>    * @param enablePositionIncrements whether to increment position increments when filtering out terms    * @param input                    the input to consume    * @deprecated enablePositionIncrements=false is not supported anymore as of Lucene 4.4    */
+annotation|@
+name|Deprecated
 DECL|method|FilteringTokenFilter
 specifier|public
 name|FilteringTokenFilter
 parameter_list|(
+name|Version
+name|version
+parameter_list|,
 name|boolean
 name|enablePositionIncrements
 parameter_list|,
@@ -123,9 +185,18 @@ name|TokenStream
 name|input
 parameter_list|)
 block|{
-name|super
+name|this
 argument_list|(
+name|version
+argument_list|,
 name|input
+argument_list|)
+expr_stmt|;
+name|checkPositionIncrement
+argument_list|(
+name|version
+argument_list|,
+name|enablePositionIncrements
 argument_list|)
 expr_stmt|;
 name|this
@@ -133,6 +204,36 @@ operator|.
 name|enablePositionIncrements
 operator|=
 name|enablePositionIncrements
+expr_stmt|;
+block|}
+comment|/**    * Create a new {@link FilteringTokenFilter}.    * @param version the Lucene match version    * @param in      the {@link TokenStream} to consume    */
+DECL|method|FilteringTokenFilter
+specifier|public
+name|FilteringTokenFilter
+parameter_list|(
+name|Version
+name|version
+parameter_list|,
+name|TokenStream
+name|in
+parameter_list|)
+block|{
+name|super
+argument_list|(
+name|in
+argument_list|)
+expr_stmt|;
+name|this
+operator|.
+name|version
+operator|=
+name|version
+expr_stmt|;
+name|this
+operator|.
+name|enablePositionIncrements
+operator|=
+literal|true
 expr_stmt|;
 block|}
 comment|/** Override this method and return if the current input token should be returned by {@link #incrementToken}. */
@@ -300,7 +401,9 @@ return|return
 name|enablePositionIncrements
 return|;
 block|}
-comment|/**    * If<code>true</code>, this TokenFilter will preserve    * positions of the incoming tokens (ie, accumulate and    * set position increments of the removed tokens).    * Generally,<code>true</code> is best as it does not    * lose information (positions of the original tokens)    * during indexing.    *     *<p> When set, when a token is stopped    * (omitted), the position increment of the following    * token is incremented.    *    *<p><b>NOTE</b>: be sure to also    * set org.apache.lucene.queryparser.classic.QueryParser#setEnablePositionIncrements if    * you use QueryParser to create queries.    */
+comment|/**    * If<code>true</code>, this TokenFilter will preserve    * positions of the incoming tokens (ie, accumulate and    * set position increments of the removed tokens).    * Generally,<code>true</code> is best as it does not    * lose information (positions of the original tokens)    * during indexing.    *     *<p> When set, when a token is stopped    * (omitted), the position increment of the following    * token is incremented.    *    *<p><b>NOTE</b>: be sure to also    * set org.apache.lucene.queryparser.classic.QueryParser#setEnablePositionIncrements if    * you use QueryParser to create queries.    * @deprecated enablePositionIncrements=false is not supported anymore as of Lucene 4.4    */
+annotation|@
+name|Deprecated
 DECL|method|setEnablePositionIncrements
 specifier|public
 name|void
@@ -310,6 +413,13 @@ name|boolean
 name|enable
 parameter_list|)
 block|{
+name|checkPositionIncrement
+argument_list|(
+name|version
+argument_list|,
+name|enable
+argument_list|)
+expr_stmt|;
 name|this
 operator|.
 name|enablePositionIncrements

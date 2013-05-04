@@ -117,7 +117,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Factory for {@link KeepWordFilter}.   *<pre class="prettyprint">  *&lt;fieldType name="text_keepword" class="solr.TextField" positionIncrementGap="100"&gt;  *&lt;analyzer&gt;  *&lt;tokenizer class="solr.WhitespaceTokenizerFactory"/&gt;  *&lt;filter class="solr.KeepWordFilterFactory" words="keepwords.txt" ignoreCase="false" enablePositionIncrements="false"/&gt;  *&lt;/analyzer&gt;  *&lt;/fieldType&gt;</pre>  */
+comment|/**  * Factory for {@link KeepWordFilter}.   *<pre class="prettyprint">  *&lt;fieldType name="text_keepword" class="solr.TextField" positionIncrementGap="100"&gt;  *&lt;analyzer&gt;  *&lt;tokenizer class="solr.WhitespaceTokenizerFactory"/&gt;  *&lt;filter class="solr.KeepWordFilterFactory" words="keepwords.txt" ignoreCase="false"/&gt;  *&lt;/analyzer&gt;  *&lt;/fieldType&gt;</pre>  */
 end_comment
 
 begin_class
@@ -203,7 +203,7 @@ name|args
 argument_list|,
 literal|"enablePositionIncrements"
 argument_list|,
-literal|false
+literal|true
 argument_list|)
 expr_stmt|;
 if|if
@@ -301,23 +301,44 @@ name|input
 parameter_list|)
 block|{
 comment|// if the set is null, it means it was empty
-return|return
+if|if
+condition|(
 name|words
 operator|==
 literal|null
-condition|?
+condition|)
+block|{
+return|return
 name|input
-else|:
+return|;
+block|}
+else|else
+block|{
+annotation|@
+name|SuppressWarnings
+argument_list|(
+literal|"deprecation"
+argument_list|)
+specifier|final
+name|TokenStream
+name|filter
+init|=
 operator|new
 name|KeepWordFilter
 argument_list|(
+name|luceneMatchVersion
+argument_list|,
 name|enablePositionIncrements
 argument_list|,
 name|input
 argument_list|,
 name|words
 argument_list|)
+decl_stmt|;
+return|return
+name|filter
 return|;
+block|}
 block|}
 block|}
 end_class

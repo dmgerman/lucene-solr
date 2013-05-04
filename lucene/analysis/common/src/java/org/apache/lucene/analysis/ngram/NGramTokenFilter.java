@@ -302,7 +302,7 @@ argument_list|(
 operator|new
 name|LengthFilter
 argument_list|(
-literal|true
+name|version
 argument_list|,
 name|input
 argument_list|,

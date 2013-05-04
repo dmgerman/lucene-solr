@@ -75,7 +75,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Factory for {@link TrimFilter}.  *<pre class="prettyprint">  *&lt;fieldType name="text_trm" class="solr.TextField" positionIncrementGap="100"&gt;  *&lt;analyzer&gt;  *&lt;tokenizer class="solr.NGramTokenizerFactory"/&gt;  *&lt;filter class="solr.TrimFilterFactory" updateOffsets="false"/&gt;  *&lt;/analyzer&gt;  *&lt;/fieldType&gt;</pre>  *  * @see TrimFilter  */
+comment|/**  * Factory for {@link TrimFilter}.  *<pre class="prettyprint">  *&lt;fieldType name="text_trm" class="solr.TextField" positionIncrementGap="100"&gt;  *&lt;analyzer&gt;  *&lt;tokenizer class="solr.NGramTokenizerFactory"/&gt;  *&lt;filter class="solr.TrimFilterFactory" /&gt;  *&lt;/analyzer&gt;  *&lt;/fieldType&gt;</pre>  *  * @see TrimFilter  */
 end_comment
 
 begin_class
@@ -153,14 +153,27 @@ name|TokenStream
 name|input
 parameter_list|)
 block|{
-return|return
+annotation|@
+name|SuppressWarnings
+argument_list|(
+literal|"deprecation"
+argument_list|)
+specifier|final
+name|TrimFilter
+name|filter
+init|=
 operator|new
 name|TrimFilter
 argument_list|(
+name|luceneMatchVersion
+argument_list|,
 name|input
 argument_list|,
 name|updateOffsets
 argument_list|)
+decl_stmt|;
+return|return
+name|filter
 return|;
 block|}
 block|}

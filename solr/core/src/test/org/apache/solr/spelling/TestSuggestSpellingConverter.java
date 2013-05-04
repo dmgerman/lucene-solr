@@ -364,6 +364,8 @@ operator|=
 operator|new
 name|TrimFilter
 argument_list|(
+name|TEST_VERSION_CURRENT
+argument_list|,
 name|filter
 argument_list|,
 literal|false

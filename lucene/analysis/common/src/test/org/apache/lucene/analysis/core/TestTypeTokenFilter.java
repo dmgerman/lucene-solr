@@ -126,6 +126,20 @@ end_import
 
 begin_import
 import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|util
+operator|.
+name|Version
+import|;
+end_import
+
+begin_import
+import|import
 name|java
 operator|.
 name|io
@@ -206,6 +220,8 @@ init|=
 operator|new
 name|TypeTokenFilter
 argument_list|(
+name|TEST_VERSION_CURRENT
+argument_list|,
 literal|true
 argument_list|,
 operator|new
@@ -371,7 +387,7 @@ init|=
 operator|new
 name|TypeTokenFilter
 argument_list|(
-literal|true
+name|TEST_VERSION_CURRENT
 argument_list|,
 operator|new
 name|StandardTokenizer
@@ -406,6 +422,10 @@ operator|=
 operator|new
 name|TypeTokenFilter
 argument_list|(
+name|Version
+operator|.
+name|LUCENE_43
+argument_list|,
 literal|false
 argument_list|,
 operator|new
@@ -581,7 +601,7 @@ init|=
 operator|new
 name|TypeTokenFilter
 argument_list|(
-literal|true
+name|TEST_VERSION_CURRENT
 argument_list|,
 operator|new
 name|StandardTokenizer

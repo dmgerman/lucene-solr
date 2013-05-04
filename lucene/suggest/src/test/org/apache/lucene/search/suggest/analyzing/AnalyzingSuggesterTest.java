@@ -1632,8 +1632,6 @@ argument_list|,
 name|MockTokenFilter
 operator|.
 name|ENGLISH_STOPSET
-argument_list|,
-literal|false
 argument_list|)
 decl_stmt|;
 name|AnalyzingSuggester
@@ -1645,6 +1643,13 @@ argument_list|(
 name|standard
 argument_list|)
 decl_stmt|;
+name|suggester
+operator|.
+name|setPreservePositionIncrements
+argument_list|(
+literal|false
+argument_list|)
+expr_stmt|;
 name|suggester
 operator|.
 name|build
@@ -1881,8 +1886,6 @@ argument_list|,
 name|MockTokenFilter
 operator|.
 name|ENGLISH_STOPSET
-argument_list|,
-literal|false
 argument_list|)
 decl_stmt|;
 name|AnalyzingSuggester
