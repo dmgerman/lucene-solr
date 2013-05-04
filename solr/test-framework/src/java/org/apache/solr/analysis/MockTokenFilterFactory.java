@@ -129,11 +129,6 @@ specifier|final
 name|CharacterRunAutomaton
 name|filter
 decl_stmt|;
-DECL|field|enablePositionIncrements
-specifier|final
-name|boolean
-name|enablePositionIncrements
-decl_stmt|;
 comment|/** Creates a new MockTokenizerFactory */
 DECL|method|MockTokenFilterFactory
 specifier|public
@@ -275,17 +270,6 @@ literal|"Configuration Error: either the 'stopset' or the 'stopregex' parameter 
 argument_list|)
 throw|;
 block|}
-name|enablePositionIncrements
-operator|=
-name|getBoolean
-argument_list|(
-name|args
-argument_list|,
-literal|"enablePositionIncrements"
-argument_list|,
-literal|true
-argument_list|)
-expr_stmt|;
 if|if
 condition|(
 operator|!

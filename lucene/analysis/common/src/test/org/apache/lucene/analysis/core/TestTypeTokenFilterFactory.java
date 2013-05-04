@@ -107,10 +107,6 @@ argument_list|,
 literal|"types"
 argument_list|,
 literal|"stoptypes-1.txt"
-argument_list|,
-literal|"enablePositionIncrements"
-argument_list|,
-literal|"true"
 argument_list|)
 decl_stmt|;
 name|Set
@@ -154,16 +150,6 @@ operator|==
 literal|2
 argument_list|)
 expr_stmt|;
-name|assertTrue
-argument_list|(
-literal|"enablePositionIncrements was set to true but not correctly parsed"
-argument_list|,
-name|factory
-operator|.
-name|isEnablePositionIncrements
-argument_list|()
-argument_list|)
-expr_stmt|;
 name|factory
 operator|=
 operator|(
@@ -176,10 +162,6 @@ argument_list|,
 literal|"types"
 argument_list|,
 literal|"stoptypes-1.txt, stoptypes-2.txt"
-argument_list|,
-literal|"enablePositionIncrements"
-argument_list|,
-literal|"false"
 argument_list|,
 literal|"useWhitelist"
 argument_list|,
@@ -223,17 +205,6 @@ operator|==
 literal|4
 argument_list|)
 expr_stmt|;
-name|assertTrue
-argument_list|(
-literal|"enablePositionIncrements was set to false but not correctly parsed"
-argument_list|,
-operator|!
-name|factory
-operator|.
-name|isEnablePositionIncrements
-argument_list|()
-argument_list|)
-expr_stmt|;
 block|}
 DECL|method|testCreationWithBlackList
 specifier|public
@@ -253,10 +224,6 @@ argument_list|,
 literal|"types"
 argument_list|,
 literal|"stoptypes-1.txt, stoptypes-2.txt"
-argument_list|,
-literal|"enablePositionIncrements"
-argument_list|,
-literal|"true"
 argument_list|)
 decl_stmt|;
 name|NumericTokenStream
@@ -300,10 +267,6 @@ literal|"types"
 argument_list|,
 literal|"stoptypes-1.txt, stoptypes-2.txt"
 argument_list|,
-literal|"enablePositionIncrements"
-argument_list|,
-literal|"true"
-argument_list|,
 literal|"useWhitelist"
 argument_list|,
 literal|"true"
@@ -344,10 +307,6 @@ block|{
 name|tokenFilterFactory
 argument_list|(
 literal|"Type"
-argument_list|,
-literal|"enablePositionIncrements"
-argument_list|,
-literal|"false"
 argument_list|)
 expr_stmt|;
 name|fail

@@ -137,7 +137,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Factory for {@link org.apache.lucene.analysis.ja.JapanesePartOfSpeechStopFilter}.  *<pre class="prettyprint">  *&lt;fieldType name="text_ja" class="solr.TextField"&gt;  *&lt;analyzer&gt;  *&lt;tokenizer class="solr.JapaneseTokenizerFactory"/&gt;  *&lt;filter class="solr.JapanesePartOfSpeechStopFilterFactory"  *             tags="stopTags.txt"   *             enablePositionIncrements="true"/&gt;  *&lt;/analyzer&gt;  *&lt;/fieldType&gt;  *</pre>  */
+comment|/**  * Factory for {@link org.apache.lucene.analysis.ja.JapanesePartOfSpeechStopFilter}.  *<pre class="prettyprint">  *&lt;fieldType name="text_ja" class="solr.TextField"&gt;  *&lt;analyzer&gt;  *&lt;tokenizer class="solr.JapaneseTokenizerFactory"/&gt;  *&lt;filter class="solr.JapanesePartOfSpeechStopFilterFactory"  *             tags="stopTags.txt"/&gt;  *&lt;/analyzer&gt;  *&lt;/fieldType&gt;  *</pre>  */
 end_comment
 
 begin_class
@@ -155,12 +155,6 @@ specifier|private
 specifier|final
 name|String
 name|stopTagFiles
-decl_stmt|;
-DECL|field|enablePositionIncrements
-specifier|private
-specifier|final
-name|boolean
-name|enablePositionIncrements
 decl_stmt|;
 DECL|field|stopTags
 specifier|private
@@ -196,17 +190,6 @@ argument_list|(
 name|args
 argument_list|,
 literal|"tags"
-argument_list|)
-expr_stmt|;
-name|enablePositionIncrements
-operator|=
-name|getBoolean
-argument_list|(
-name|args
-argument_list|,
-literal|"enablePositionIncrements"
-argument_list|,
-literal|true
 argument_list|)
 expr_stmt|;
 if|if
@@ -325,11 +308,6 @@ operator|!=
 literal|null
 condition|)
 block|{
-annotation|@
-name|SuppressWarnings
-argument_list|(
-literal|"deprecation"
-argument_list|)
 specifier|final
 name|TokenStream
 name|filter
@@ -338,8 +316,6 @@ operator|new
 name|JapanesePartOfSpeechStopFilter
 argument_list|(
 name|luceneMatchVersion
-argument_list|,
-name|enablePositionIncrements
 argument_list|,
 name|stream
 argument_list|,

@@ -117,7 +117,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Factory for {@link StopFilter}.  *<pre class="prettyprint">  *&lt;fieldType name="text_stop" class="solr.TextField" positionIncrementGap="100" autoGeneratePhraseQueries="true"&gt;  *&lt;analyzer&gt;  *&lt;tokenizer class="solr.WhitespaceTokenizerFactory"/&gt;  *&lt;filter class="solr.StopFilterFactory" ignoreCase="true"  *             words="stopwords.txt" enablePositionIncrements="true"/&gt;  *&lt;/analyzer&gt;  *&lt;/fieldType&gt;</pre>  */
+comment|/**  * Factory for {@link StopFilter}.  *<pre class="prettyprint">  *&lt;fieldType name="text_stop" class="solr.TextField" positionIncrementGap="100" autoGeneratePhraseQueries="true"&gt;  *&lt;analyzer&gt;  *&lt;tokenizer class="solr.WhitespaceTokenizerFactory"/&gt;  *&lt;filter class="solr.StopFilterFactory" ignoreCase="true"  *             words="stopwords.txt"  *&lt;/analyzer&gt;  *&lt;/fieldType&gt;</pre>  */
 end_comment
 
 begin_class
@@ -152,12 +152,6 @@ specifier|private
 specifier|final
 name|boolean
 name|ignoreCase
-decl_stmt|;
-DECL|field|enablePositionIncrements
-specifier|private
-specifier|final
-name|boolean
-name|enablePositionIncrements
 decl_stmt|;
 comment|/** Creates a new StopFilterFactory */
 DECL|method|StopFilterFactory
@@ -208,17 +202,6 @@ argument_list|,
 literal|"ignoreCase"
 argument_list|,
 literal|false
-argument_list|)
-expr_stmt|;
-name|enablePositionIncrements
-operator|=
-name|getBoolean
-argument_list|(
-name|args
-argument_list|,
-literal|"enablePositionIncrements"
-argument_list|,
-literal|true
 argument_list|)
 expr_stmt|;
 if|if
@@ -316,16 +299,6 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
-DECL|method|isEnablePositionIncrements
-specifier|public
-name|boolean
-name|isEnablePositionIncrements
-parameter_list|()
-block|{
-return|return
-name|enablePositionIncrements
-return|;
-block|}
 DECL|method|isIgnoreCase
 specifier|public
 name|boolean
@@ -370,13 +343,6 @@ argument_list|,
 name|stopWords
 argument_list|)
 decl_stmt|;
-name|stopFilter
-operator|.
-name|setEnablePositionIncrements
-argument_list|(
-name|enablePositionIncrements
-argument_list|)
-expr_stmt|;
 return|return
 name|stopFilter
 return|;

@@ -86,12 +86,6 @@ name|TrimFilterFactory
 extends|extends
 name|TokenFilterFactory
 block|{
-DECL|field|updateOffsets
-specifier|protected
-specifier|final
-name|boolean
-name|updateOffsets
-decl_stmt|;
 comment|/** Creates a new TrimFilterFactory */
 DECL|method|TrimFilterFactory
 specifier|public
@@ -109,17 +103,6 @@ block|{
 name|super
 argument_list|(
 name|args
-argument_list|)
-expr_stmt|;
-name|updateOffsets
-operator|=
-name|getBoolean
-argument_list|(
-name|args
-argument_list|,
-literal|"updateOffsets"
-argument_list|,
-literal|false
 argument_list|)
 expr_stmt|;
 if|if
@@ -153,11 +136,6 @@ name|TokenStream
 name|input
 parameter_list|)
 block|{
-annotation|@
-name|SuppressWarnings
-argument_list|(
-literal|"deprecation"
-argument_list|)
 specifier|final
 name|TrimFilter
 name|filter
@@ -168,8 +146,6 @@ argument_list|(
 name|luceneMatchVersion
 argument_list|,
 name|input
-argument_list|,
-name|updateOffsets
 argument_list|)
 decl_stmt|;
 return|return
