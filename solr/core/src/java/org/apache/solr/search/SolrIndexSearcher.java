@@ -7020,15 +7020,6 @@ name|TERMINATE_EARLY
 init|=
 literal|0x04
 decl_stmt|;
-DECL|field|FORCE_INORDER_COLLECTION
-specifier|public
-specifier|static
-specifier|final
-name|int
-name|FORCE_INORDER_COLLECTION
-init|=
-literal|0x08
-decl_stmt|;
 DECL|field|GET_DOCLIST
 specifier|public
 specifier|static

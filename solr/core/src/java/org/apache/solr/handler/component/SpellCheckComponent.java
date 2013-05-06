@@ -1707,11 +1707,6 @@ name|setDocCollectionLimit
 argument_list|(
 name|maxCollationCollectDocs
 argument_list|)
-operator|.
-name|setReportHits
-argument_list|(
-name|collationExtendedResults
-argument_list|)
 decl_stmt|;
 name|List
 argument_list|<
