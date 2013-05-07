@@ -330,6 +330,13 @@ argument_list|(
 name|doc
 argument_list|)
 expr_stmt|;
+if|if
+condition|(
+name|drillDownCollector
+operator|!=
+literal|null
+condition|)
+block|{
 name|drillDownCollector
 operator|.
 name|collect
@@ -337,6 +344,7 @@ argument_list|(
 name|doc
 argument_list|)
 expr_stmt|;
+block|}
 comment|// Also collect across all drill-sideways counts so
 comment|// we "merge in" drill-down counts for this
 comment|// dimension.
@@ -398,6 +406,11 @@ block|}
 block|}
 else|else
 block|{
+name|boolean
+name|found
+init|=
+literal|false
+decl_stmt|;
 for|for
 control|(
 name|int
@@ -427,7 +440,31 @@ condition|)
 block|{
 comment|// This segment did not have any docs with this
 comment|// drill-down field& value:
-continue|continue;
+name|drillSidewaysCollectors
+index|[
+name|i
+index|]
+operator|.
+name|collect
+argument_list|(
+name|doc
+argument_list|)
+expr_stmt|;
+assert|assert
+name|allMatchesFrom
+argument_list|(
+name|i
+operator|+
+literal|1
+argument_list|,
+name|doc
+argument_list|)
+assert|;
+name|found
+operator|=
+literal|true
+expr_stmt|;
+break|break;
 block|}
 name|int
 name|subDoc
@@ -440,7 +477,7 @@ operator|.
 name|docID
 argument_list|()
 decl_stmt|;
-comment|//System.out.println("  sub: " + subDoc);
+comment|//System.out.println("  i=" + i + " sub: " + subDoc);
 if|if
 condition|(
 name|subDoc
@@ -448,6 +485,7 @@ operator|!=
 name|doc
 condition|)
 block|{
+comment|//System.out.println("  +ds[" + i + "]");
 assert|assert
 name|subDoc
 operator|>
@@ -481,9 +519,16 @@ argument_list|,
 name|doc
 argument_list|)
 assert|;
+name|found
+operator|=
+literal|true
+expr_stmt|;
 break|break;
 block|}
 block|}
+assert|assert
+name|found
+assert|;
 block|}
 block|}
 comment|// Only used by assert:
@@ -560,6 +605,7 @@ parameter_list|)
 throws|throws
 name|IOException
 block|{
+comment|//System.out.println("DS.setNextReader reader=" + leaf.reader());
 name|hitCollector
 operator|.
 name|setNextReader
@@ -567,6 +613,13 @@ argument_list|(
 name|leaf
 argument_list|)
 expr_stmt|;
+if|if
+condition|(
+name|drillDownCollector
+operator|!=
+literal|null
+condition|)
+block|{
 name|drillDownCollector
 operator|.
 name|setNextReader
@@ -574,6 +627,7 @@ argument_list|(
 name|leaf
 argument_list|)
 expr_stmt|;
+block|}
 for|for
 control|(
 name|Collector
@@ -735,6 +789,13 @@ argument_list|(
 name|scorer
 argument_list|)
 expr_stmt|;
+if|if
+condition|(
+name|drillDownCollector
+operator|!=
+literal|null
+condition|)
+block|{
 name|drillDownCollector
 operator|.
 name|setScorer
@@ -742,6 +803,7 @@ argument_list|(
 name|scorer
 argument_list|)
 expr_stmt|;
+block|}
 for|for
 control|(
 name|Collector

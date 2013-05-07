@@ -975,7 +975,7 @@ name|res
 return|;
 block|}
 DECL|method|requiresDocScores
-specifier|protected
+specifier|public
 name|boolean
 name|requiresDocScores
 parameter_list|()

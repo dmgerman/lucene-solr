@@ -273,6 +273,13 @@ argument_list|(
 name|this
 argument_list|)
 expr_stmt|;
+if|if
+condition|(
+name|drillDownCollector
+operator|!=
+literal|null
+condition|)
+block|{
 name|drillDownCollector
 operator|.
 name|setScorer
@@ -287,6 +294,7 @@ argument_list|(
 name|context
 argument_list|)
 expr_stmt|;
+block|}
 for|for
 control|(
 name|DocsEnumsAndFreq
@@ -1556,6 +1564,13 @@ argument_list|(
 name|collectDocID
 argument_list|)
 expr_stmt|;
+if|if
+condition|(
+name|drillDownCollector
+operator|!=
+literal|null
+condition|)
+block|{
 name|drillDownCollector
 operator|.
 name|collect
@@ -1563,6 +1578,7 @@ argument_list|(
 name|collectDocID
 argument_list|)
 expr_stmt|;
+block|}
 comment|// TODO: we could "fix" faceting of the sideways counts
 comment|// to do this "union" (of the drill down hits) in the
 comment|// end instead:
