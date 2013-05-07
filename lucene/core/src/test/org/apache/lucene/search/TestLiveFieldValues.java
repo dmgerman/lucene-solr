@@ -392,6 +392,8 @@ decl_stmt|;
 specifier|final
 name|LiveFieldValues
 argument_list|<
+name|IndexSearcher
+argument_list|,
 name|Integer
 argument_list|>
 name|rt
@@ -399,6 +401,8 @@ init|=
 operator|new
 name|LiveFieldValues
 argument_list|<
+name|IndexSearcher
+argument_list|,
 name|Integer
 argument_list|>
 argument_list|(

@@ -69,6 +69,8 @@ specifier|abstract
 class|class
 name|LiveFieldValues
 parameter_list|<
+name|S
+parameter_list|,
 name|T
 parameter_list|>
 implements|implements
@@ -123,7 +125,7 @@ specifier|private
 specifier|final
 name|ReferenceManager
 argument_list|<
-name|IndexSearcher
+name|S
 argument_list|>
 name|mgr
 decl_stmt|;
@@ -139,7 +141,7 @@ name|LiveFieldValues
 parameter_list|(
 name|ReferenceManager
 argument_list|<
-name|IndexSearcher
+name|S
 argument_list|>
 name|mgr
 parameter_list|,
@@ -395,7 +397,7 @@ block|{
 comment|// It either does not exist in the index, or, it was
 comment|// already flushed& NRT reader was opened on the
 comment|// segment, so fallback to current searcher:
-name|IndexSearcher
+name|S
 name|s
 init|=
 name|mgr
@@ -434,7 +436,7 @@ specifier|abstract
 name|T
 name|lookupFromSearcher
 parameter_list|(
-name|IndexSearcher
+name|S
 name|s
 parameter_list|,
 name|String
