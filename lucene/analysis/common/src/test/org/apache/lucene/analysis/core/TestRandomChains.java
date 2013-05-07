@@ -1653,6 +1653,11 @@ name|HyphenatedWordsFilter
 operator|.
 name|class
 argument_list|,
+comment|// TODO: LUCENE-4983
+name|CommonGramsFilter
+operator|.
+name|class
+argument_list|,
 comment|// TODO: doesn't handle graph inputs
 name|CommonGramsQueryFilter
 operator|.
