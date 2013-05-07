@@ -527,6 +527,14 @@ name|void
 name|run
 parameter_list|()
 block|{
+name|int
+name|max
+init|=
+name|atLeast
+argument_list|(
+literal|401
+argument_list|)
+decl_stmt|;
 for|for
 control|(
 name|int
@@ -536,10 +544,7 @@ literal|101
 init|;
 name|id
 operator|<
-name|atLeast
-argument_list|(
-literal|401
-argument_list|)
+name|max
 condition|;
 name|id
 operator|++

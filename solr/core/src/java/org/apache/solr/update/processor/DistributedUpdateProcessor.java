@@ -2319,6 +2319,34 @@ operator|!=
 literal|null
 condition|)
 block|{
+if|if
+condition|(
+operator|!
+name|Slice
+operator|.
+name|CONSTRUCTION
+operator|.
+name|equals
+argument_list|(
+name|mySlice
+operator|.
+name|getState
+argument_list|()
+argument_list|)
+condition|)
+block|{
+throw|throw
+operator|new
+name|SolrException
+argument_list|(
+name|ErrorCode
+operator|.
+name|SERVICE_UNAVAILABLE
+argument_list|,
+literal|"Request says it is coming from parent shard leader but we are not in construction state"
+argument_list|)
+throw|;
+block|}
 comment|// shard splitting case -- check ranges to see if we are a sub-shard
 name|Slice
 name|fromSlice
