@@ -82,6 +82,20 @@ name|BaseTokenStreamFactoryTestCase
 import|;
 end_import
 
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|util
+operator|.
+name|Version
+import|;
+end_import
+
 begin_comment
 comment|/**  * Simple tests to ensure the NGram filter factories are working.  */
 end_comment
@@ -477,6 +491,10 @@ name|tokenizerFactory
 argument_list|(
 literal|"EdgeNGram"
 argument_list|,
+name|Version
+operator|.
+name|LUCENE_43
+argument_list|,
 literal|"side"
 argument_list|,
 literal|"back"
@@ -664,6 +682,10 @@ operator|=
 name|tokenFilterFactory
 argument_list|(
 literal|"EdgeNGram"
+argument_list|,
+name|Version
+operator|.
+name|LUCENE_43
 argument_list|,
 literal|"side"
 argument_list|,

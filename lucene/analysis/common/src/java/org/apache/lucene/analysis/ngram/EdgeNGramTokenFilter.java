@@ -56,6 +56,22 @@ name|lucene
 operator|.
 name|analysis
 operator|.
+name|reverse
+operator|.
+name|ReverseStringFilter
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|analysis
+operator|.
 name|tokenattributes
 operator|.
 name|OffsetAttribute
@@ -96,6 +112,20 @@ end_import
 
 begin_import
 import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|util
+operator|.
+name|Version
+import|;
+end_import
+
+begin_import
+import|import
 name|java
 operator|.
 name|io
@@ -105,7 +135,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Tokenizes the given token into n-grams of given size(s).  *<p>  * This {@link TokenFilter} create n-grams from the beginning edge or ending edge of a input token.  *</p>  */
+comment|/**  * Tokenizes the given token into n-grams of given size(s).  *<p>  * This {@link TokenFilter} create n-grams from the beginning edge or ending edge of a input token.  *<p><a name="version"/>As of Lucene 4.4, this filter does not support  * {@link Side#BACK} (you can use {@link ReverseStringFilter} up-front and  * afterward to get the same behavior) and does not update offsets anymore.  */
 end_comment
 
 begin_class
@@ -171,6 +201,9 @@ block|}
 block|}
 block|,
 comment|/** Get the n-gram from the end of the input */
+DECL|enum constant|Deprecated
+annotation|@
+name|Deprecated
 DECL|enum constant|BACK
 name|BACK
 block|{
@@ -244,6 +277,12 @@ literal|null
 return|;
 block|}
 block|}
+DECL|field|version
+specifier|private
+specifier|final
+name|Version
+name|version
+decl_stmt|;
 DECL|field|minGram
 specifier|private
 specifier|final
@@ -288,12 +327,12 @@ name|int
 name|tokEnd
 decl_stmt|;
 comment|// only used if the length changed before this filter
-DECL|field|hasIllegalOffsets
+DECL|field|updateOffsets
 specifier|private
 name|boolean
-name|hasIllegalOffsets
+name|updateOffsets
 decl_stmt|;
-comment|// only if the length changed before this filter
+comment|// never if the length changed before this filter
 DECL|field|savePosIncr
 specifier|private
 name|int
@@ -345,11 +384,16 @@ operator|.
 name|class
 argument_list|)
 decl_stmt|;
-comment|/**    * Creates EdgeNGramTokenFilter that can generate n-grams in the sizes of the given range    *    * @param input {@link TokenStream} holding the input to be tokenized    * @param side the {@link Side} from which to chop off an n-gram    * @param minGram the smallest n-gram to generate    * @param maxGram the largest n-gram to generate    */
+comment|/**    * Creates EdgeNGramTokenFilter that can generate n-grams in the sizes of the given range    *    * @param version the<a href="#version">Lucene match version</a>    * @param input {@link TokenStream} holding the input to be tokenized    * @param side the {@link Side} from which to chop off an n-gram    * @param minGram the smallest n-gram to generate    * @param maxGram the largest n-gram to generate    */
+annotation|@
+name|Deprecated
 DECL|method|EdgeNGramTokenFilter
 specifier|public
 name|EdgeNGramTokenFilter
 parameter_list|(
+name|Version
+name|version
+parameter_list|,
 name|TokenStream
 name|input
 parameter_list|,
@@ -368,6 +412,47 @@ argument_list|(
 name|input
 argument_list|)
 expr_stmt|;
+if|if
+condition|(
+name|version
+operator|==
+literal|null
+condition|)
+block|{
+throw|throw
+operator|new
+name|IllegalArgumentException
+argument_list|(
+literal|"version must not be null"
+argument_list|)
+throw|;
+block|}
+if|if
+condition|(
+name|version
+operator|.
+name|onOrAfter
+argument_list|(
+name|Version
+operator|.
+name|LUCENE_44
+argument_list|)
+operator|&&
+name|side
+operator|==
+name|Side
+operator|.
+name|BACK
+condition|)
+block|{
+throw|throw
+operator|new
+name|IllegalArgumentException
+argument_list|(
+literal|"Side.BACK is not supported anymore as of Lucene 4.4, use ReverseStringFilter up-front and afterward"
+argument_list|)
+throw|;
+block|}
 if|if
 condition|(
 name|side
@@ -415,6 +500,12 @@ throw|;
 block|}
 name|this
 operator|.
+name|version
+operator|=
+name|version
+expr_stmt|;
+name|this
+operator|.
 name|minGram
 operator|=
 name|minGram
@@ -432,11 +523,16 @@ operator|=
 name|side
 expr_stmt|;
 block|}
-comment|/**    * Creates EdgeNGramTokenFilter that can generate n-grams in the sizes of the given range    *    * @param input {@link TokenStream} holding the input to be tokenized    * @param sideLabel the name of the {@link Side} from which to chop off an n-gram    * @param minGram the smallest n-gram to generate    * @param maxGram the largest n-gram to generate    */
+comment|/**    * Creates EdgeNGramTokenFilter that can generate n-grams in the sizes of the given range    *    * @param version the<a href="#version">Lucene match version</a>    * @param input {@link TokenStream} holding the input to be tokenized    * @param sideLabel the name of the {@link Side} from which to chop off an n-gram    * @param minGram the smallest n-gram to generate    * @param maxGram the largest n-gram to generate    */
+annotation|@
+name|Deprecated
 DECL|method|EdgeNGramTokenFilter
 specifier|public
 name|EdgeNGramTokenFilter
 parameter_list|(
+name|Version
+name|version
+parameter_list|,
 name|TokenStream
 name|input
 parameter_list|,
@@ -452,6 +548,8 @@ parameter_list|)
 block|{
 name|this
 argument_list|(
+name|version
+argument_list|,
 name|input
 argument_list|,
 name|Side
@@ -460,6 +558,40 @@ name|getSide
 argument_list|(
 name|sideLabel
 argument_list|)
+argument_list|,
+name|minGram
+argument_list|,
+name|maxGram
+argument_list|)
+expr_stmt|;
+block|}
+comment|/**    * Creates EdgeNGramTokenFilter that can generate n-grams in the sizes of the given range    *    * @param version the<a href="#version">Lucene match version</a>    * @param input {@link TokenStream} holding the input to be tokenized    * @param minGram the smallest n-gram to generate    * @param maxGram the largest n-gram to generate    */
+DECL|method|EdgeNGramTokenFilter
+specifier|public
+name|EdgeNGramTokenFilter
+parameter_list|(
+name|Version
+name|version
+parameter_list|,
+name|TokenStream
+name|input
+parameter_list|,
+name|int
+name|minGram
+parameter_list|,
+name|int
+name|maxGram
+parameter_list|)
+block|{
+name|this
+argument_list|(
+name|version
+argument_list|,
+name|input
+argument_list|,
+name|Side
+operator|.
+name|FRONT
 argument_list|,
 name|minGram
 argument_list|,
@@ -540,18 +672,39 @@ operator|.
 name|endOffset
 argument_list|()
 expr_stmt|;
+if|if
+condition|(
+name|version
+operator|.
+name|onOrAfter
+argument_list|(
+name|Version
+operator|.
+name|LUCENE_44
+argument_list|)
+condition|)
+block|{
+comment|// Never update offsets
+name|updateOffsets
+operator|=
+literal|false
+expr_stmt|;
+block|}
+else|else
+block|{
 comment|// if length by start + end offsets doesn't match the term text then assume
 comment|// this is a synonym and don't adjust the offsets.
-name|hasIllegalOffsets
+name|updateOffsets
 operator|=
 operator|(
 name|tokStart
 operator|+
 name|curTermLength
 operator|)
-operator|!=
+operator|==
 name|tokEnd
 expr_stmt|;
+block|}
 name|savePosIncr
 operator|=
 name|posIncrAtt
@@ -605,20 +758,8 @@ argument_list|()
 expr_stmt|;
 if|if
 condition|(
-name|hasIllegalOffsets
+name|updateOffsets
 condition|)
-block|{
-name|offsetAtt
-operator|.
-name|setOffset
-argument_list|(
-name|tokStart
-argument_list|,
-name|tokEnd
-argument_list|)
-expr_stmt|;
-block|}
-else|else
 block|{
 name|offsetAtt
 operator|.
@@ -631,6 +772,18 @@ argument_list|,
 name|tokStart
 operator|+
 name|end
+argument_list|)
+expr_stmt|;
+block|}
+else|else
+block|{
+name|offsetAtt
+operator|.
+name|setOffset
+argument_list|(
+name|tokStart
+argument_list|,
+name|tokEnd
 argument_list|)
 expr_stmt|;
 block|}
