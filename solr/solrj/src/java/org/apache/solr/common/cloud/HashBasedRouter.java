@@ -240,7 +240,7 @@ argument_list|)
 return|;
 block|}
 DECL|method|sliceHash
-specifier|protected
+specifier|public
 name|int
 name|sliceHash
 parameter_list|(

@@ -110,7 +110,11 @@ name|Range
 argument_list|>
 name|ranges
 decl_stmt|;
-comment|// TODO: allow specification of custom hash function
+DECL|field|router
+specifier|public
+name|DocRouter
+name|router
+decl_stmt|;
 DECL|method|SplitIndexCommand
 specifier|public
 name|SplitIndexCommand
@@ -137,6 +141,9 @@ operator|.
 name|Range
 argument_list|>
 name|ranges
+parameter_list|,
+name|DocRouter
+name|router
 parameter_list|)
 block|{
 name|super
@@ -161,6 +168,12 @@ operator|.
 name|ranges
 operator|=
 name|ranges
+expr_stmt|;
+name|this
+operator|.
+name|router
+operator|=
+name|router
 expr_stmt|;
 block|}
 annotation|@
@@ -220,6 +233,15 @@ argument_list|(
 literal|",ranges="
 operator|+
 name|ranges
+argument_list|)
+expr_stmt|;
+name|sb
+operator|.
+name|append
+argument_list|(
+literal|",router="
+operator|+
+name|router
 argument_list|)
 expr_stmt|;
 name|sb

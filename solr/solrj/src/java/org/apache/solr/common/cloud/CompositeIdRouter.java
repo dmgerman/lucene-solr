@@ -145,10 +145,10 @@ init|=
 literal|'!'
 decl_stmt|;
 comment|// separator used to optionally specify number of bits to allocate toward first part.
-DECL|field|bitsSepartor
+DECL|field|bitsSeparator
 specifier|private
 name|int
-name|bitsSepartor
+name|bitsSeparator
 init|=
 literal|'/'
 decl_stmt|;
@@ -312,7 +312,7 @@ block|}
 annotation|@
 name|Override
 DECL|method|sliceHash
-specifier|protected
+specifier|public
 name|int
 name|sliceHash
 parameter_list|(
@@ -390,7 +390,7 @@ name|part1
 operator|.
 name|indexOf
 argument_list|(
-name|bitsSepartor
+name|bitsSeparator
 argument_list|)
 decl_stmt|;
 if|if
@@ -644,7 +644,7 @@ name|part1
 operator|.
 name|indexOf
 argument_list|(
-name|bitsSepartor
+name|bitsSeparator
 argument_list|)
 decl_stmt|;
 if|if
