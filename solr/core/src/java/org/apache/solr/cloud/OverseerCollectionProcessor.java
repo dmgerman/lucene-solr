@@ -2278,7 +2278,7 @@ literal|"Split shard invoked"
 argument_list|)
 expr_stmt|;
 name|String
-name|collection
+name|collectionName
 init|=
 name|message
 operator|.
@@ -2306,7 +2306,7 @@ name|clusterState
 operator|.
 name|getSlice
 argument_list|(
-name|collection
+name|collectionName
 argument_list|,
 name|slice
 argument_list|)
@@ -2327,7 +2327,7 @@ argument_list|()
 operator|.
 name|contains
 argument_list|(
-name|collection
+name|collectionName
 argument_list|)
 condition|)
 block|{
@@ -2357,7 +2357,7 @@ name|BAD_REQUEST
 argument_list|,
 literal|"No collection with the specified name exists: "
 operator|+
-name|collection
+name|collectionName
 argument_list|)
 throw|;
 block|}
@@ -2370,10 +2370,39 @@ name|clusterState
 operator|.
 name|getLeader
 argument_list|(
-name|collection
+name|collectionName
 argument_list|,
 name|slice
 argument_list|)
+decl_stmt|;
+name|DocCollection
+name|collection
+init|=
+name|clusterState
+operator|.
+name|getCollection
+argument_list|(
+name|collectionName
+argument_list|)
+decl_stmt|;
+name|DocRouter
+name|router
+init|=
+name|collection
+operator|.
+name|getRouter
+argument_list|()
+operator|!=
+literal|null
+condition|?
+name|collection
+operator|.
+name|getRouter
+argument_list|()
+else|:
+name|DocRouter
+operator|.
+name|DEFAULT
 decl_stmt|;
 name|DocRouter
 operator|.
@@ -2404,7 +2433,6 @@ expr_stmt|;
 block|}
 comment|// todo: fixed to two partitions?
 comment|// todo: accept the range as a param to api?
-comment|// todo: handle randomizing subshard name in case a shard with the same name already exists.
 name|List
 argument_list|<
 name|DocRouter
@@ -2413,9 +2441,7 @@ name|Range
 argument_list|>
 name|subRanges
 init|=
-operator|new
-name|PlainIdRouter
-argument_list|()
+name|router
 operator|.
 name|partitionRange
 argument_list|(
@@ -2507,7 +2533,7 @@ expr_stmt|;
 name|String
 name|subShardName
 init|=
-name|collection
+name|collectionName
 operator|+
 literal|"_"
 operator|+
@@ -2529,7 +2555,7 @@ name|clusterState
 operator|.
 name|getSlice
 argument_list|(
-name|collection
+name|collectionName
 argument_list|,
 name|subSlice
 argument_list|)
@@ -2783,7 +2809,7 @@ name|subSlice
 operator|+
 literal|" of collection "
 operator|+
-name|collection
+name|collectionName
 operator|+
 literal|" on "
 operator|+
@@ -2832,7 +2858,7 @@ name|CoreAdminParams
 operator|.
 name|COLLECTION
 argument_list|,
-name|collection
+name|collectionName
 argument_list|)
 expr_stmt|;
 name|params
@@ -3007,7 +3033,7 @@ name|info
 argument_list|(
 literal|"Successfully created all sub-shards for collection "
 operator|+
-name|collection
+name|collectionName
 operator|+
 literal|" parent shard: "
 operator|+
@@ -3035,7 +3061,7 @@ name|slice
 operator|+
 literal|" of collection "
 operator|+
-name|collection
+name|collectionName
 operator|+
 literal|" on "
 operator|+
@@ -3305,7 +3331,7 @@ name|clusterState
 operator|.
 name|getSlice
 argument_list|(
-name|collection
+name|collectionName
 argument_list|,
 name|slice
 argument_list|)
@@ -3459,7 +3485,7 @@ decl_stmt|;
 name|String
 name|shardName
 init|=
-name|collection
+name|collectionName
 operator|+
 literal|"_"
 operator|+
@@ -3485,7 +3511,7 @@ name|sliceName
 operator|+
 literal|" of collection "
 operator|+
-name|collection
+name|collectionName
 operator|+
 literal|" on "
 operator|+
@@ -3534,7 +3560,7 @@ name|CoreAdminParams
 operator|.
 name|COLLECTION
 argument_list|,
-name|collection
+name|collectionName
 argument_list|)
 expr_stmt|;
 name|params
@@ -3783,7 +3809,7 @@ name|ZkStateReader
 operator|.
 name|COLLECTION_PROP
 argument_list|,
-name|collection
+name|collectionName
 argument_list|)
 expr_stmt|;
 name|ZkNodeProps
@@ -3833,7 +3859,7 @@ name|error
 argument_list|(
 literal|"Error executing split operation for collection: "
 operator|+
-name|collection
+name|collectionName
 operator|+
 literal|" parent shard: "
 operator|+
