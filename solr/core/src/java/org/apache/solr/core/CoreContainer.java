@@ -3301,6 +3301,22 @@ name|close
 argument_list|()
 expr_stmt|;
 block|}
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|util
+operator|.
+name|IOUtils
+operator|.
+name|closeWhileHandlingException
+argument_list|(
+name|loader
+argument_list|)
+expr_stmt|;
+comment|// best effort
 block|}
 DECL|method|cancelCoreRecoveries
 specifier|public
