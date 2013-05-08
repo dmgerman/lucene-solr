@@ -4844,7 +4844,7 @@ comment|// TODO: try experiment: reverse terms before
 comment|// compressing -- how much smaller?
 comment|// TODO: can FST be used to index all internal substrings,
 comment|// mapping to term?
-comment|// java -cp ../build/codecs/classes/java:../test-framework/lib/randomizedtesting-runner-2.0.9.jar:../build/core/classes/test:../build/core/classes/test-framework:../build/core/classes/java:../build/test-framework/classes/java:../test-framework/lib/junit-4.10.jar org.apache.lucene.util.fst.TestFSTs /xold/tmp/allTerms3.txt out
+comment|// java -cp ../build/codecs/classes/java:../test-framework/lib/randomizedtesting-runner-2.0.10.jar:../build/core/classes/test:../build/core/classes/test-framework:../build/core/classes/java:../build/test-framework/classes/java:../test-framework/lib/junit-4.10.jar org.apache.lucene.util.fst.TestFSTs /xold/tmp/allTerms3.txt out
 DECL|method|main
 specifier|public
 specifier|static
