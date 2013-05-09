@@ -945,7 +945,7 @@ operator|=
 literal|true
 expr_stmt|;
 comment|// Prevent segmentInfos from changing while opening the
-comment|// reader; in theory we could do similar retry logic,
+comment|// reader; in theory we could instead do similar retry logic,
 comment|// just like we do when loading segments_N
 synchronized|synchronized
 init|(
@@ -1261,6 +1261,43 @@ name|dropReaders
 argument_list|()
 expr_stmt|;
 block|}
+block|}
+DECL|method|anyPendingDeletes
+specifier|public
+specifier|synchronized
+name|boolean
+name|anyPendingDeletes
+parameter_list|()
+block|{
+for|for
+control|(
+name|ReadersAndLiveDocs
+name|rld
+range|:
+name|readerMap
+operator|.
+name|values
+argument_list|()
+control|)
+block|{
+if|if
+condition|(
+name|rld
+operator|.
+name|getPendingDeleteCount
+argument_list|()
+operator|!=
+literal|0
+condition|)
+block|{
+return|return
+literal|true
+return|;
+block|}
+block|}
+return|return
+literal|false
+return|;
 block|}
 DECL|method|release
 specifier|public
@@ -1741,8 +1778,73 @@ name|incRef
 argument_list|()
 expr_stmt|;
 block|}
+assert|assert
+name|noDups
+argument_list|()
+assert|;
 return|return
 name|rld
+return|;
+block|}
+comment|// Make sure that every segment appears only once in the
+comment|// pool:
+DECL|method|noDups
+specifier|private
+name|boolean
+name|noDups
+parameter_list|()
+block|{
+name|Set
+argument_list|<
+name|String
+argument_list|>
+name|seen
+init|=
+operator|new
+name|HashSet
+argument_list|<
+name|String
+argument_list|>
+argument_list|()
+decl_stmt|;
+for|for
+control|(
+name|SegmentInfoPerCommit
+name|info
+range|:
+name|readerMap
+operator|.
+name|keySet
+argument_list|()
+control|)
+block|{
+assert|assert
+operator|!
+name|seen
+operator|.
+name|contains
+argument_list|(
+name|info
+operator|.
+name|info
+operator|.
+name|name
+argument_list|)
+assert|;
+name|seen
+operator|.
+name|add
+argument_list|(
+name|info
+operator|.
+name|info
+operator|.
+name|name
+argument_list|)
+expr_stmt|;
+block|}
+return|return
+literal|true
 return|;
 block|}
 block|}
@@ -2086,11 +2188,6 @@ expr_stmt|;
 block|}
 comment|// Record that we have a change (zero out all
 comment|// segments) pending:
-name|changeCount
-operator|++
-expr_stmt|;
-name|segmentInfos
-operator|.
 name|changed
 argument_list|()
 expr_stmt|;
@@ -2166,11 +2263,6 @@ argument_list|(
 name|oldInfos
 argument_list|)
 expr_stmt|;
-name|changeCount
-operator|++
-expr_stmt|;
-name|segmentInfos
-operator|.
 name|changed
 argument_list|()
 expr_stmt|;
@@ -2274,11 +2366,6 @@ comment|// Deletion policy deleted the "head" commit point.
 comment|// We have to mark ourself as changed so that if we
 comment|// are closed w/o any further changes we write a new
 comment|// segments_N file.
-name|changeCount
-operator|++
-expr_stmt|;
-name|segmentInfos
-operator|.
 name|changed
 argument_list|()
 expr_stmt|;
@@ -3317,6 +3404,18 @@ return|return
 literal|true
 return|;
 block|}
+if|if
+condition|(
+name|readerPool
+operator|.
+name|anyPendingDeletes
+argument_list|()
+condition|)
+block|{
+return|return
+literal|true
+return|;
+block|}
 for|for
 control|(
 specifier|final
@@ -3891,8 +3990,8 @@ block|}
 block|}
 comment|// Must bump changeCount so if no other changes
 comment|// happened, we still commit this change:
-name|changeCount
-operator|++
+name|changed
+argument_list|()
 expr_stmt|;
 block|}
 comment|//System.out.println("  yes " + info.info.name + " " + docID);
@@ -6163,11 +6262,6 @@ parameter_list|()
 throws|throws
 name|IOException
 block|{
-name|changeCount
-operator|++
-expr_stmt|;
-name|segmentInfos
-operator|.
 name|changed
 argument_list|()
 expr_stmt|;
@@ -6179,6 +6273,22 @@ name|segmentInfos
 argument_list|,
 literal|false
 argument_list|)
+expr_stmt|;
+block|}
+comment|/** Called internally if any index state has changed. */
+DECL|method|changed
+specifier|synchronized
+name|void
+name|changed
+parameter_list|()
+block|{
+name|changeCount
+operator|++
+expr_stmt|;
+name|segmentInfos
+operator|.
+name|changed
+argument_list|()
 expr_stmt|;
 block|}
 DECL|method|publishFrozenDeletes
@@ -14391,14 +14501,14 @@ operator|.
 name|version
 operator|)
 operator|+
-literal|" DW changes: "
+literal|"; DW changes: "
 operator|+
 name|docWriter
 operator|.
 name|anyChanges
 argument_list|()
 operator|+
-literal|" BD changes: "
+literal|"; BD changes: "
 operator|+
 name|bufferedDeletesStream
 operator|.
