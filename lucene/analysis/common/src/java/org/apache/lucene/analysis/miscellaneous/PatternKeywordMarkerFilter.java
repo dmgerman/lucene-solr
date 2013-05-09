@@ -122,7 +122,7 @@ name|matcher
 decl_stmt|;
 comment|/**    * Create a new {@link PatternKeywordMarkerFilter}, that marks the current    * token as a keyword if the tokens term buffer matches the provided    * {@link Pattern} via the {@link KeywordAttribute}.    *     * @param in    *          TokenStream to filter    * @param pattern    *          the pattern to apply to the incoming term buffer    **/
 DECL|method|PatternKeywordMarkerFilter
-specifier|protected
+specifier|public
 name|PatternKeywordMarkerFilter
 parameter_list|(
 name|TokenStream
