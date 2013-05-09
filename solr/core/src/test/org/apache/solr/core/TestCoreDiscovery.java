@@ -791,9 +791,11 @@ argument_list|()
 decl_stmt|;
 try|try
 block|{
-name|assertNull
+name|assertEquals
 argument_list|(
-literal|"defaultCore no longer allowed in solr.xml"
+name|CoreContainer
+operator|.
+name|DEFAULT_DEFAULT_CORE_NAME
 argument_list|,
 name|cc
 operator|.
