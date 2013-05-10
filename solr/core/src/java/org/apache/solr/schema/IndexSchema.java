@@ -2162,6 +2162,7 @@ operator|new
 name|StringBuilder
 argument_list|()
 decl_stmt|;
+comment|// Another case where the initialization from the test harness is different than the "real world"
 name|sb
 operator|.
 name|append
@@ -2169,6 +2170,16 @@ argument_list|(
 literal|"["
 argument_list|)
 expr_stmt|;
+if|if
+condition|(
+name|loader
+operator|.
+name|getCoreProperties
+argument_list|()
+operator|!=
+literal|null
+condition|)
+block|{
 name|sb
 operator|.
 name|append
@@ -2184,13 +2195,17 @@ name|NAME
 argument_list|)
 argument_list|)
 expr_stmt|;
+block|}
+else|else
+block|{
 name|sb
 operator|.
 name|append
 argument_list|(
-literal|"] "
+literal|"null"
 argument_list|)
 expr_stmt|;
+block|}
 if|if
 condition|(
 name|nd
