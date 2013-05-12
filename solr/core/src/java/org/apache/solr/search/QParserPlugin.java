@@ -227,7 +227,15 @@ block|,
 name|SwitchQParserPlugin
 operator|.
 name|class
-block|,   }
+block|,
+name|MaxScoreQParserPlugin
+operator|.
+name|NAME
+block|,
+name|MaxScoreQParserPlugin
+operator|.
+name|class
+block|}
 decl_stmt|;
 comment|/** return a {@link QParser} */
 DECL|method|createParser
