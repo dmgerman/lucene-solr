@@ -90,6 +90,20 @@ name|java
 operator|.
 name|util
 operator|.
+name|concurrent
+operator|.
+name|atomic
+operator|.
+name|AtomicReference
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
+name|util
+operator|.
 name|logging
 operator|.
 name|Logger
@@ -802,7 +816,7 @@ literal|"tests.badapples"
 decl_stmt|;
 comment|/** @see #ignoreAfterMaxFailures*/
 DECL|field|SYSPROP_MAXFAILURES
-specifier|private
+specifier|public
 specifier|static
 specifier|final
 name|String
@@ -812,7 +826,7 @@ literal|"tests.maxfailures"
 decl_stmt|;
 comment|/** @see #ignoreAfterMaxFailures*/
 DECL|field|SYSPROP_FAILFAST
-specifier|private
+specifier|public
 specifier|static
 specifier|final
 name|String
@@ -1439,11 +1453,22 @@ operator|new
 name|TestRuleMarkFailure
 argument_list|()
 decl_stmt|;
-comment|/**    * Ignore tests after hitting a designated number of initial failures.    */
-DECL|field|ignoreAfterMaxFailures
-specifier|final
+comment|/**    * Ignore tests after hitting a designated number of initial failures. This    * is truly a "static" global singleton since it needs to span the lifetime of all    * test classes running inside this JVM (it cannot be part of a class rule).    *     *<p>This poses some problems for the test framework's tests because these sometimes    * trigger intentional failures which add up to the global count. This field contains    * a (possibly) changing reference to {@link TestRuleIgnoreAfterMaxFailures} and we    * dispatch to its current value from the {@link #classRules} chain using {@link TestRuleDelegate}.      */
+DECL|field|ignoreAfterMaxFailuresDelegate
+specifier|private
 specifier|static
+specifier|final
+name|AtomicReference
+argument_list|<
 name|TestRuleIgnoreAfterMaxFailures
+argument_list|>
+name|ignoreAfterMaxFailuresDelegate
+decl_stmt|;
+DECL|field|ignoreAfterMaxFailures
+specifier|private
+specifier|static
+specifier|final
+name|TestRule
 name|ignoreAfterMaxFailures
 decl_stmt|;
 static|static
@@ -1520,14 +1545,50 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
-name|ignoreAfterMaxFailures
+name|ignoreAfterMaxFailuresDelegate
 operator|=
+operator|new
+name|AtomicReference
+argument_list|<
+name|TestRuleIgnoreAfterMaxFailures
+argument_list|>
+argument_list|(
 operator|new
 name|TestRuleIgnoreAfterMaxFailures
 argument_list|(
 name|maxFailures
 argument_list|)
+argument_list|)
 expr_stmt|;
+name|ignoreAfterMaxFailures
+operator|=
+name|TestRuleDelegate
+operator|.
+name|of
+argument_list|(
+name|ignoreAfterMaxFailuresDelegate
+argument_list|)
+expr_stmt|;
+block|}
+comment|/**    * Temporarily substitute the global {@link TestRuleIgnoreAfterMaxFailures}. See    * {@link #ignoreAfterMaxFailuresDelegate} for some explanation why this method     * is needed.    */
+DECL|method|replaceMaxFailureRule
+specifier|public
+specifier|static
+name|TestRuleIgnoreAfterMaxFailures
+name|replaceMaxFailureRule
+parameter_list|(
+name|TestRuleIgnoreAfterMaxFailures
+name|newValue
+parameter_list|)
+block|{
+return|return
+name|ignoreAfterMaxFailuresDelegate
+operator|.
+name|getAndSet
+argument_list|(
+name|newValue
+argument_list|)
+return|;
 block|}
 comment|/**    * Max 10mb of static data stored in a test suite class after the suite is complete.    * Prevents static data structures leaking and causing OOMs in subsequent tests.    */
 DECL|field|STATIC_LEAK_THRESHOLD
