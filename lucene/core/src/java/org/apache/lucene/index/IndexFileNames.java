@@ -604,9 +604,9 @@ return|return
 name|filename
 return|;
 block|}
-comment|// All files created by codecs much match this pattern (we
-comment|// check this in SegmentInfo.java):
+comment|/**    * All files created by codecs much match this pattern (checked in    * SegmentInfo).    */
 DECL|field|CODEC_FILE_PATTERN
+specifier|public
 specifier|static
 specifier|final
 name|Pattern

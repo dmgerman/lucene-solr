@@ -626,7 +626,7 @@ comment|// such as only IW.prepareCommit has been called, or a
 comment|// corrupt first commit, but it's too deadly to make
 comment|// this logic "smarter" and risk accidentally returning
 comment|// false due to various cases like file description
-comment|// exhaustion, access denited, etc., because in that
+comment|// exhaustion, access denied, etc., because in that
 comment|// case IndexWriter may delete the entire index.  It's
 comment|// safer to err towards "index exists" than try to be
 comment|// smart about detecting not-yet-fully-committed or
