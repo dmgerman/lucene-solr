@@ -1189,7 +1189,17 @@ argument_list|)
 decl_stmt|;
 name|assertTrue
 argument_list|(
-literal|"Make sure we did download each file in the original configuration"
+name|downloadedFile
+operator|.
+name|getAbsolutePath
+argument_list|()
+operator|+
+literal|" does not exist source:"
+operator|+
+name|sourceFile
+operator|.
+name|getAbsolutePath
+argument_list|()
 argument_list|,
 name|downloadedFile
 operator|.
