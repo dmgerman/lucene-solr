@@ -490,6 +490,20 @@ name|lucene
 operator|.
 name|store
 operator|.
+name|MMapDirectory
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|store
+operator|.
 name|MockDirectoryWrapper
 import|;
 end_import
@@ -4599,20 +4613,26 @@ name|IOException
 block|{
 comment|// "big" as "much bigger than the chunk size"
 comment|// for this test we force a FS dir
+comment|// we can't just use newFSDirectory, because this test doesn't really index anything.
+comment|// so if we get NRTCachingDir+SimpleText, we make massive stored fields and OOM (LUCENE-4484)
 name|Directory
 name|dir
 init|=
-name|newFSDirectory
+operator|new
+name|MockDirectoryWrapper
+argument_list|(
+name|random
+argument_list|()
+argument_list|,
+operator|new
+name|MMapDirectory
 argument_list|(
 name|_TestUtil
 operator|.
 name|getTempDir
 argument_list|(
-name|getClass
-argument_list|()
-operator|.
-name|getSimpleName
-argument_list|()
+literal|"testBigDocuments"
+argument_list|)
 argument_list|)
 argument_list|)
 decl_stmt|;
