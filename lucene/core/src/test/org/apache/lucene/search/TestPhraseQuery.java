@@ -192,20 +192,7 @@ begin_comment
 comment|/**  * Tests {@link PhraseQuery}.  *  * @see TestPositionIncrement  */
 end_comment
 
-begin_comment
-comment|/*  * Remove ThreadLeaks and run with (Eclipse or command line):  * -ea -Drt.seed=AFD1E7E84B35D2B1  * to get leaked thread errors.  */
-end_comment
-
-begin_comment
-comment|// @ThreadLeaks(linger = 1000, leakedThreadsBelongToSuite = true)
-end_comment
-
 begin_class
-annotation|@
-name|Seed
-argument_list|(
-literal|"AFD1E7E84B35D2B1"
-argument_list|)
 DECL|class|TestPhraseQuery
 specifier|public
 class|class
