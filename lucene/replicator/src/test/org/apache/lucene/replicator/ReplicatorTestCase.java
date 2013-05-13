@@ -162,6 +162,7 @@ literal|"Lucene3x"
 argument_list|)
 DECL|class|ReplicatorTestCase
 specifier|public
+specifier|abstract
 class|class
 name|ReplicatorTestCase
 extends|extends
