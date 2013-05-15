@@ -1180,7 +1180,13 @@ argument_list|()
 operator|.
 name|lastIndexOf
 argument_list|(
-literal|"collection1/conf"
+literal|"collection1"
+operator|+
+name|File
+operator|.
+name|separator
+operator|+
+literal|"conf"
 argument_list|)
 decl_stmt|;
 name|String
