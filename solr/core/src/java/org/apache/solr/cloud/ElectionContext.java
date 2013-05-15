@@ -1029,17 +1029,6 @@ argument_list|(
 literal|"I may be the new leader - try and sync"
 argument_list|)
 expr_stmt|;
-name|UpdateLog
-name|ulog
-init|=
-name|core
-operator|.
-name|getUpdateHandler
-argument_list|()
-operator|.
-name|getUpdateLog
-argument_list|()
-decl_stmt|;
 comment|// we are going to attempt to be the leader
 comment|// first cancel any current recovery
 name|core
@@ -1096,11 +1085,27 @@ operator|=
 literal|false
 expr_stmt|;
 block|}
+name|UpdateLog
+name|ulog
+init|=
+name|core
+operator|.
+name|getUpdateHandler
+argument_list|()
+operator|.
+name|getUpdateLog
+argument_list|()
+decl_stmt|;
 if|if
 condition|(
 operator|!
 name|success
 operator|&&
+operator|(
+name|ulog
+operator|==
+literal|null
+operator|||
 name|ulog
 operator|.
 name|getRecentUpdates
@@ -1113,6 +1118,7 @@ argument_list|)
 operator|.
 name|isEmpty
 argument_list|()
+operator|)
 condition|)
 block|{
 comment|// we failed sync, but we have no versions - we can't sync in that case
