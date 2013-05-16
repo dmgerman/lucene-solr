@@ -72,11 +72,29 @@ name|PositionIncrementAttribute
 import|;
 end_import
 
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|queryparser
+operator|.
+name|classic
+operator|.
+name|QueryParser
+import|;
+end_import
+
 begin_comment
-comment|/** Set the positionIncrement of all tokens to the "positionIncrement",  * except the first return token which retains its original positionIncrement value.  * The default positionIncrement value is zero.  */
+comment|/** Set the positionIncrement of all tokens to the "positionIncrement",  * except the first return token which retains its original positionIncrement value.  * The default positionIncrement value is zero.  * @deprecated (4.4) PositionFilter makes {@link TokenStream} graphs inconsistent  *             which can cause highlighting bugs. Its main use-case being to make  *             {@link QueryParser} generate boolean queries instead of phrase  *             queries, it is now advised to use  *             {@link QueryParser#setAutoGeneratePhraseQueries(boolean) QueryParser.setAutoGeneratePhraseQueries(false)}  *             (for simple cases) or to override {@link QueryParser#newFieldQuery}.  */
 end_comment
 
 begin_class
+annotation|@
+name|Deprecated
 DECL|class|PositionFilter
 specifier|public
 specifier|final

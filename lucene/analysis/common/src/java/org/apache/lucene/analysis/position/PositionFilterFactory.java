@@ -66,6 +66,20 @@ end_import
 
 begin_import
 import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|util
+operator|.
+name|Version
+import|;
+end_import
+
+begin_import
+import|import
 name|java
 operator|.
 name|util
@@ -75,10 +89,12 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Factory for {@link PositionFilter}.  * Set the positionIncrement of all tokens to the "positionIncrement", except the first return token which retains its  * original positionIncrement value. The default positionIncrement value is zero.  *<pre class="prettyprint">  *&lt;fieldType name="text_position" class="solr.TextField" positionIncrementGap="100"&gt;  *&lt;analyzer&gt;  *&lt;tokenizer class="solr.WhitespaceTokenizerFactory"/&gt;  *&lt;filter class="solr.PositionFilterFactory" positionIncrement="0"/&gt;  *&lt;/analyzer&gt;  *&lt;/fieldType&gt;</pre>  *  * @see org.apache.lucene.analysis.position.PositionFilter  * @since solr 1.4  */
+comment|/**  * Factory for {@link PositionFilter}.  * Set the positionIncrement of all tokens to the "positionIncrement", except the first return token which retains its  * original positionIncrement value. The default positionIncrement value is zero.  *<pre class="prettyprint">  *&lt;fieldType name="text_position" class="solr.TextField" positionIncrementGap="100"&gt;  *&lt;analyzer&gt;  *&lt;tokenizer class="solr.WhitespaceTokenizerFactory"/&gt;  *&lt;filter class="solr.PositionFilterFactory" positionIncrement="0"/&gt;  *&lt;/analyzer&gt;  *&lt;/fieldType&gt;</pre>  *  * @see org.apache.lucene.analysis.position.PositionFilter  * @since solr 1.4  * @deprecated (4.4)  */
 end_comment
 
 begin_class
+annotation|@
+name|Deprecated
 DECL|class|PositionFilterFactory
 specifier|public
 class|class
@@ -138,6 +154,30 @@ argument_list|(
 literal|"Unknown parameters: "
 operator|+
 name|args
+argument_list|)
+throw|;
+block|}
+if|if
+condition|(
+name|luceneMatchVersion
+operator|!=
+literal|null
+operator|&&
+name|luceneMatchVersion
+operator|.
+name|onOrAfter
+argument_list|(
+name|Version
+operator|.
+name|LUCENE_44
+argument_list|)
+condition|)
+block|{
+throw|throw
+operator|new
+name|IllegalArgumentException
+argument_list|(
+literal|"PositionFilter is deprecated as of Lucene 4.4. You should either fix your code to not use it or use Lucene 4.3 version compatibility"
 argument_list|)
 throw|;
 block|}

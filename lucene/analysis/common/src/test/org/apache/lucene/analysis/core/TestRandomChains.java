@@ -1611,11 +1611,6 @@ name|DictionaryCompoundWordTokenFilter
 operator|.
 name|class
 argument_list|,
-comment|// TODO: corrumpts graphs (offset consistency check):
-name|PositionFilter
-operator|.
-name|class
-argument_list|,
 comment|// TODO: it seems to mess up offsets!?
 name|WikipediaTokenizer
 operator|.
