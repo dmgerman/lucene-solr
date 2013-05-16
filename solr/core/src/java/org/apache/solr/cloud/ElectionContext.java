@@ -1100,16 +1100,37 @@ if|if
 condition|(
 operator|!
 name|success
-operator|&&
-operator|(
+condition|)
+block|{
+name|boolean
+name|hasRecentUpdates
+init|=
+literal|false
+decl_stmt|;
+if|if
+condition|(
 name|ulog
-operator|==
+operator|!=
 literal|null
-operator|||
+condition|)
+block|{
+comment|// TODO: we could optimize this if necessary
+name|UpdateLog
+operator|.
+name|RecentUpdates
+name|recentUpdates
+init|=
 name|ulog
 operator|.
 name|getRecentUpdates
 argument_list|()
+decl_stmt|;
+try|try
+block|{
+name|hasRecentUpdates
+operator|=
+operator|!
+name|recentUpdates
 operator|.
 name|getVersions
 argument_list|(
@@ -1118,7 +1139,21 @@ argument_list|)
 operator|.
 name|isEmpty
 argument_list|()
-operator|)
+expr_stmt|;
+block|}
+finally|finally
+block|{
+name|recentUpdates
+operator|.
+name|close
+argument_list|()
+expr_stmt|;
+block|}
+block|}
+if|if
+condition|(
+operator|!
+name|hasRecentUpdates
 condition|)
 block|{
 comment|// we failed sync, but we have no versions - we can't sync in that case
@@ -1135,6 +1170,7 @@ name|success
 operator|=
 literal|true
 expr_stmt|;
+block|}
 block|}
 comment|// if !success but no one else is in active mode,
 comment|// we are the leader anyway

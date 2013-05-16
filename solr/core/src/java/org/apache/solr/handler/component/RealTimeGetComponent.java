@@ -3342,17 +3342,6 @@ argument_list|,
 literal|true
 argument_list|)
 decl_stmt|;
-comment|// TODO: get this from cache instead of rebuilding?
-name|UpdateLog
-operator|.
-name|RecentUpdates
-name|recentUpdates
-init|=
-name|ulog
-operator|.
-name|getRecentUpdates
-argument_list|()
-decl_stmt|;
 name|List
 argument_list|<
 name|Object
@@ -3377,6 +3366,17 @@ init|=
 name|Long
 operator|.
 name|MAX_VALUE
+decl_stmt|;
+comment|// TODO: get this from cache instead of rebuilding?
+name|UpdateLog
+operator|.
+name|RecentUpdates
+name|recentUpdates
+init|=
+name|ulog
+operator|.
+name|getRecentUpdates
+argument_list|()
 decl_stmt|;
 try|try
 block|{
