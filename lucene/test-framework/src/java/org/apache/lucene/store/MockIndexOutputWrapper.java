@@ -203,7 +203,7 @@ operator|!=
 literal|0
 operator|&&
 name|freeSpace
-operator|<
+operator|<=
 name|len
 condition|)
 block|{
@@ -234,7 +234,7 @@ operator|!=
 literal|0
 operator|&&
 name|freeSpace
-operator|<
+operator|<=
 name|len
 condition|)
 block|{
