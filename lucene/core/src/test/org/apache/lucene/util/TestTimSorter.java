@@ -64,11 +64,15 @@ operator|>
 name|naturalComparator
 argument_list|()
 argument_list|,
-name|random
-argument_list|()
+name|_TestUtil
 operator|.
 name|nextInt
 argument_list|(
+name|random
+argument_list|()
+argument_list|,
+literal|0
+argument_list|,
 name|arr
 operator|.
 name|length
