@@ -250,7 +250,7 @@ name|dir
 operator|.
 name|setMaxSizeInBytes
 argument_list|(
-literal|2
+literal|3
 argument_list|)
 expr_stmt|;
 specifier|final
@@ -347,7 +347,7 @@ name|dir
 operator|.
 name|setMaxSizeInBytes
 argument_list|(
-literal|2
+literal|3
 argument_list|)
 expr_stmt|;
 name|out
