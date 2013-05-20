@@ -69,7 +69,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * A simple container class for modeling an ordered list of name/value pairs.  *  *<p>  * Unlike Maps:  *</p>  *<ul>  *<li>Names may be repeated</li>  *<li>Order of elements is maintained</li>  *<li>Elements may be accessed by numeric index</li>  *<li>Names and Values can both be null</li>  *</ul>  *  *<p>  * A NamedList provides fast access by element number, but not by name.  *</p>  *<p>  * When a NamedList is serialized, order is considered more important than access  * by key, so ResponseWriters that output to a format such as JSON will normally  * choose a data structure that allows order to be easily preserved in various  * clients (i.e. not a straight map).  * If access by key is more important for serialization, see {@link SimpleOrderedMap},  * or simply use a regular {@link Map}  *</p>  *  *  */
+comment|/**  * A simple container class for modeling an ordered list of name/value pairs.  *  *<p>  * Unlike Maps:  *</p>  *<ul>  *<li>Names may be repeated</li>  *<li>Order of elements is maintained</li>  *<li>Elements may be accessed by numeric index</li>  *<li>Names and Values can both be null</li>  *</ul>  *  *<p>  * A NamedList provides fast access by element number, but not by name.  *</p>  *<p>  * When a NamedList is serialized, order is considered more important than access  * by key, so ResponseWriters that output to a format such as JSON will normally  * choose a data structure that allows order to be easily preserved in various  * clients (i.e. not a straight map).  * If access by key is more important for serialization, see {@link SimpleOrderedMap},  * or simply use a regular {@link Map}  *</p>  *  */
 end_comment
 
 begin_class
@@ -97,6 +97,15 @@ name|T
 argument_list|>
 argument_list|>
 block|{
+DECL|field|serialVersionUID
+specifier|private
+specifier|static
+specifier|final
+name|long
+name|serialVersionUID
+init|=
+literal|1957981902839867821L
+decl_stmt|;
 DECL|field|nvPairs
 specifier|protected
 specifier|final
@@ -149,7 +158,7 @@ name|nameValuePairs
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**    * Creates an instance backed by an explicitly specified list of    * pairwise names/values.    *    *<p>    * When using this constructor, runtime typesafety is only guaranteed if the all    * even numbered elements of the input list are of type "T".    *</p>    *    * @param nameValuePairs underlying List which should be used to implement a NamedList    * @deprecated Use {@link #NamedList(java.util.Map.Entry[])} for the NamedList instantiation    */
+comment|/**    * Creates an instance backed by an explicitly specified list of    * pairwise names/values.    *    *<p>    * When using this constructor, runtime type safety is only guaranteed if    * all even numbered elements of the input list are of type "T".    *</p>    *    * @param nameValuePairs underlying List which should be used to implement a NamedList    * @deprecated Use {@link #NamedList(java.util.Map.Entry[])} for the NamedList instantiation    */
 annotation|@
 name|Deprecated
 DECL|method|NamedList
@@ -372,7 +381,7 @@ name|name
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**    * Modifies the value of the pair at the specified index.    * @return the value that used to be at index    */
+comment|/**    * Modifies the value of the pair at the specified index.    *    * @return the value that used to be at index    */
 DECL|method|setVal
 specifier|public
 name|T
@@ -427,7 +436,7 @@ return|return
 name|old
 return|;
 block|}
-comment|/**    * Removes the name/value pair at the specified index.    * @return the value at the index removed    */
+comment|/**    * Removes the name/value pair at the specified index.    *    * @return the value at the index removed    */
 DECL|method|remove
 specifier|public
 name|T
@@ -557,7 +566,7 @@ operator|-
 literal|1
 return|;
 block|}
-comment|/**    * Gets the value for the first instance of the specified name    * found.    *<p>    * NOTE: this runs in linear time (it scans starting at the    * beginning of the list until it finds the first pair with    * the specified name).    * @return null if not found or if the value stored was null.    * @see #indexOf    * @see #get(String,int)    *     */
+comment|/**    * Gets the value for the first instance of the specified name    * found.    *<p>    * NOTE: this runs in linear time (it scans starting at the    * beginning of the list until it finds the first pair with    * the specified name).    *    * @return null if not found or if the value stored was null.    * @see #indexOf    * @see #get(String,int)    *    */
 DECL|method|get
 specifier|public
 name|T
@@ -576,7 +585,7 @@ literal|0
 argument_list|)
 return|;
 block|}
-comment|/**    * Gets the value for the first instance of the specified name    * found starting at the specified index.    *<p>    * NOTE: this runs in linear time (it scans starting at the    * specified position until it finds the first pair with    * the specified name).    * @return null if not found or if the value stored was null.    * @see #indexOf    */
+comment|/**    * Gets the value for the first instance of the specified name    * found starting at the specified index.    *<p>    * NOTE: this runs in linear time (it scans starting at the    * specified position until it finds the first pair with    * the specified name).    *    * @return null if not found or if the value stored was null.    * @see #indexOf    */
 DECL|method|get
 specifier|public
 name|T
@@ -661,7 +670,7 @@ return|return
 literal|null
 return|;
 block|}
-comment|/**    * Gets the values for the the specified name    * @param name Name    * @return List of values    */
+comment|/**    * Gets the values for the the specified name    *    * @param name Name    * @return List of values    */
 DECL|method|getAll
 specifier|public
 name|List
@@ -752,10 +761,10 @@ return|return
 name|result
 return|;
 block|}
-comment|/**    * Recursively parses the NamedList structure to arrive at a    * specific element.  As you descend the NamedList tree, the    * last element can be any type, including NamedList, but    * the previous elements MUST be NamedList ojects themselves.    * This method is particularly useful for parsing the response    * from Solr's /admin/mbeans handler.     *     * Explicit casts are recommended.    * Usage examples:    *    * String coreName = (String) response.findRecursive(    * "solr-mbeans", "CORE", "core", "stats", "coreName");    * long numDoc = (long) response.findRecursive(    * "solr-mbeans", "CORE", "searcher", "stats", "numDocs");    *    * @param args One or more strings specifying the tree to navigate.    * @return the last entry in the tree, null if not found.    */
+comment|/**    * Recursively parses the NamedList structure to arrive at a specific element.    * As you descend the NamedList tree, the last element can be any type,    * including NamedList, but the previous elements MUST be NamedList objects    * themselves. A null value is returned if the indicated hierarchy doesn't    * exist, but NamedList allows null values so that could be the actual value    * at the end of the path.    *     * This method is particularly useful for parsing the response from Solr's    * /admin/mbeans handler, but it also works for any complex structure.    *     * Explicitly casting the return value is recommended. An even safer option is    * to accept the return value as an object and then check its type.    *     * Usage examples:    *     * String coreName = (String) response.findRecursive    * ("solr-mbeans", "CORE", "core", "stats", "coreName");    * long numDoc = (long) response.findRecursive    * ("solr-mbeans", "CORE", "searcher", "stats", "numDocs");    *     * @param args    *          One or more strings specifying the tree to navigate.    * @return the last entry in the given path hierarchy, null if not found.    */
 DECL|method|findRecursive
 specifier|public
-name|T
+name|Object
 name|findRecursive
 parameter_list|(
 name|String
@@ -765,34 +774,51 @@ parameter_list|)
 block|{
 name|NamedList
 argument_list|<
-name|T
+name|?
 argument_list|>
-name|list
+name|currentList
 init|=
 literal|null
 decl_stmt|;
-name|T
+name|Object
 name|value
 init|=
 literal|null
 decl_stmt|;
 for|for
 control|(
-name|String
-name|key
-range|:
+name|int
+name|i
+init|=
+literal|0
+init|;
+name|i
+operator|<
 name|args
+operator|.
+name|length
+condition|;
+name|i
+operator|++
 control|)
 block|{
-comment|/* First pass: this list.  Later passes: previous value. */
+name|String
+name|key
+init|=
+name|args
+index|[
+name|i
+index|]
+decl_stmt|;
+comment|/*        * The first time through the loop, the current list is null, so we assign        * it to this list. Then we retrieve the first key from this list and        * assign it to value.        *         * On the next loop, we check whether the retrieved value is a NamedList.        * If it is, then we drop down to that NamedList, grab the value of the        * next key, and start the loop over. If it is not a NamedList, then we        * assign the value to null and break out of the loop.        *         * Assigning the value to null and then breaking out of the loop seems        * like the wrong thing to do, but there's a very simple reason that it        * works: If we have reached the last key, then the loop ends naturally        * after we retrieve the value, and that code is never executed.        */
 if|if
 condition|(
-name|list
+name|currentList
 operator|==
 literal|null
 condition|)
 block|{
-name|list
+name|currentList
 operator|=
 name|this
 expr_stmt|;
@@ -801,22 +827,17 @@ else|else
 block|{
 if|if
 condition|(
-name|NamedList
-operator|.
-name|class
-operator|.
-name|isInstance
-argument_list|(
 name|value
-argument_list|)
+operator|instanceof
+name|NamedList
 condition|)
 block|{
-name|list
+name|currentList
 operator|=
 operator|(
 name|NamedList
 argument_list|<
-name|T
+name|?
 argument_list|>
 operator|)
 name|value
@@ -831,13 +852,16 @@ expr_stmt|;
 break|break;
 block|}
 block|}
+comment|/*        * We do not need to do a null check on currentList for the following        * assignment. The instanceof check above will fail if the current list is        * null, and if that happens, the loop will end before this point.        */
 name|value
 operator|=
-name|list
+name|currentList
 operator|.
 name|get
 argument_list|(
 name|key
+argument_list|,
+literal|0
 argument_list|)
 expr_stmt|;
 block|}
@@ -943,7 +967,7 @@ name|toString
 argument_list|()
 return|;
 block|}
-comment|/**    *    * Helper class implementing Map.Entry&lt;String, T&gt; to store the key-value    * relationship in NamedList (the keys of which are String-s)     */
+comment|/**    *     * Helper class implementing Map.Entry&lt;String, T&gt; to store the key-value    * relationship in NamedList (the keys of which are String-s)    */
 DECL|class|NamedListEntry
 specifier|public
 specifier|static
@@ -1321,11 +1345,6 @@ return|;
 block|}
 annotation|@
 name|Override
-annotation|@
-name|SuppressWarnings
-argument_list|(
-literal|"unchecked"
-argument_list|)
 specifier|public
 name|T
 name|getValue
@@ -1403,7 +1422,7 @@ return|return
 name|iter
 return|;
 block|}
-comment|/**     * NOTE: this runs in linear time (it scans starting at the    * beginning of the list until it finds the first pair with    * the specified name).    */
+comment|/**    * NOTE: this runs in linear time (it scans starting at the    * beginning of the list until it finds the first pair with    * the specified name).    */
 DECL|method|remove
 specifier|public
 name|T
@@ -1491,10 +1510,16 @@ return|return
 literal|false
 return|;
 name|NamedList
+argument_list|<
+name|?
+argument_list|>
 name|nl
 init|=
 operator|(
 name|NamedList
+argument_list|<
+name|?
+argument_list|>
 operator|)
 name|obj
 decl_stmt|;
