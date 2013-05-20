@@ -280,7 +280,7 @@ operator|.
 name|newInstance
 argument_list|()
 decl_stmt|;
-comment|/**      * Key used to set whether expanded terms should be expanded      *       * @see StandardQueryParser#setLowercaseExpandedTerms(boolean)      * @see StandardQueryParser#getLowercaseExpandedTerms()      */
+comment|/**      * Key used to set whether expanded terms should be lower-cased      *       * @see StandardQueryParser#setLowercaseExpandedTerms(boolean)      * @see StandardQueryParser#getLowercaseExpandedTerms()      */
 DECL|field|LOWERCASE_EXPANDED_TERMS
 specifier|final
 specifier|public
