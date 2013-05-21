@@ -2844,6 +2844,266 @@ argument_list|,
 literal|"//lst[@name='bar']/int[@name='Obnoxious'][.='1']"
 argument_list|)
 expr_stmt|;
+name|assertQ
+argument_list|(
+literal|"localparams in one facet variant should not affect defaults in another: facet.sort vs facet.missing"
+argument_list|,
+name|req
+argument_list|(
+literal|"q"
+argument_list|,
+literal|"id:[42 TO 47]"
+argument_list|,
+literal|"rows"
+argument_list|,
+literal|"0"
+argument_list|,
+literal|"facet"
+argument_list|,
+literal|"true"
+argument_list|,
+literal|"fq"
+argument_list|,
+literal|"id:[42 TO 45]"
+argument_list|,
+literal|"facet.field"
+argument_list|,
+literal|"{!key=foo "
+operator|+
+literal|"facet.sort=index"
+operator|+
+literal|"}"
+operator|+
+name|fname
+argument_list|,
+literal|"facet.field"
+argument_list|,
+literal|"{!key=bar "
+operator|+
+literal|"facet.missing=true"
+operator|+
+literal|"}"
+operator|+
+name|fname
+argument_list|)
+comment|// foo is in index order w/o missing
+argument_list|,
+literal|"*[count(//lst[@name='foo']/int)=4]"
+argument_list|,
+literal|"//lst[@name='foo']/int[1][@name='Chauvinist'][.='1']"
+argument_list|,
+literal|"//lst[@name='foo']/int[2][@name='Obnoxious'][.='1']"
+argument_list|,
+literal|"//lst[@name='foo']/int[3][@name='Pig'][.='0']"
+argument_list|,
+literal|"//lst[@name='foo']/int[4][@name='Tool'][.='2']"
+comment|// bar is in count order by default and includes missing
+argument_list|,
+literal|"*[count(//lst[@name='bar']/int)=5]"
+argument_list|,
+literal|"//lst[@name='bar']/int[1][@name='Tool'][.='2']"
+comment|// don't assume tie breaker for slots 3& 4, behavior undefined?
+argument_list|,
+literal|"//lst[@name='bar']/int[4][@name='Pig'][.='0']"
+argument_list|,
+literal|"//lst[@name='bar']/int[5][not(@name)][.='1']"
+argument_list|)
+expr_stmt|;
+name|assertQ
+argument_list|(
+literal|"localparams in one facet variant should not affect defaults in another: facet.mincount"
+argument_list|,
+name|req
+argument_list|(
+literal|"q"
+argument_list|,
+literal|"id:[42 TO 47]"
+argument_list|,
+literal|"rows"
+argument_list|,
+literal|"0"
+argument_list|,
+literal|"facet"
+argument_list|,
+literal|"true"
+argument_list|,
+literal|"fq"
+argument_list|,
+literal|"id:[42 TO 45]"
+argument_list|,
+literal|"facet.field"
+argument_list|,
+literal|"{!key=foo "
+operator|+
+literal|"facet.mincount=2"
+operator|+
+literal|"}"
+operator|+
+name|fname
+argument_list|,
+literal|"facet.field"
+argument_list|,
+literal|"{!key=bar}"
+operator|+
+name|fname
+argument_list|)
+comment|// only Tool for foo
+argument_list|,
+literal|"*[count(//lst[@name='foo']/int)=1]"
+argument_list|,
+literal|"//lst[@name='foo']/int[1][@name='Tool'][.='2']"
+comment|// all for bar
+argument_list|,
+literal|"*[count(//lst[@name='bar']/int)=4]"
+argument_list|,
+literal|"//lst[@name='bar']/int[1][@name='Tool'][.='2']"
+comment|// don't assume tie breaker for slots 3& 4, behavior undefined?
+argument_list|,
+literal|"//lst[@name='bar']/int[4][@name='Pig'][.='0']"
+argument_list|)
+expr_stmt|;
+name|assertQ
+argument_list|(
+literal|"localparams in one facet variant should not affect defaults in another: facet.missing"
+argument_list|,
+name|req
+argument_list|(
+literal|"q"
+argument_list|,
+literal|"id:[42 TO 47]"
+argument_list|,
+literal|"rows"
+argument_list|,
+literal|"0"
+argument_list|,
+literal|"facet"
+argument_list|,
+literal|"true"
+argument_list|,
+literal|"fq"
+argument_list|,
+literal|"id:[42 TO 45]"
+argument_list|,
+literal|"facet.field"
+argument_list|,
+literal|"{!key=foo "
+operator|+
+literal|"facet.missing=true"
+operator|+
+literal|"}"
+operator|+
+name|fname
+argument_list|,
+literal|"facet.field"
+argument_list|,
+literal|"{!key=bar}"
+operator|+
+name|fname
+argument_list|)
+comment|// foo includes missing
+argument_list|,
+literal|"*[count(//lst[@name='foo']/int)=5]"
+argument_list|,
+literal|"//lst[@name='foo']/int[1][@name='Tool'][.='2']"
+comment|// don't assume tie breaker for slots 3& 4, behavior undefined?
+argument_list|,
+literal|"//lst[@name='foo']/int[4][@name='Pig'][.='0']"
+argument_list|,
+literal|"//lst[@name='foo']/int[5][not(@name)][.='1']"
+comment|// bar does not
+argument_list|,
+literal|"*[count(//lst[@name='bar']/int)=4]"
+argument_list|,
+literal|"//lst[@name='bar']/int[1][@name='Tool'][.='2']"
+comment|// don't assume tie breaker for slots 3& 4, behavior undefined?
+argument_list|,
+literal|"//lst[@name='bar']/int[4][@name='Pig'][.='0']"
+argument_list|)
+expr_stmt|;
+name|assertQ
+argument_list|(
+literal|"checking facets when local facet.prefix param used after regular/raw field faceting"
+argument_list|,
+name|req
+argument_list|(
+literal|"q"
+argument_list|,
+literal|"*:*"
+argument_list|,
+literal|"facet"
+argument_list|,
+literal|"true"
+argument_list|,
+literal|"facet.field"
+argument_list|,
+name|fname
+argument_list|,
+literal|"facet.field"
+argument_list|,
+literal|"{!key=foo "
+operator|+
+literal|"facet.prefix=T "
+operator|+
+literal|"}"
+operator|+
+name|fname
+argument_list|)
+argument_list|,
+literal|"*[count(//doc)=6]"
+argument_list|,
+literal|"*[count(//lst[@name='"
+operator|+
+name|fname
+operator|+
+literal|"']/int)=4]"
+argument_list|,
+literal|"*[count(//lst[@name='foo']/int)=1]"
+argument_list|,
+literal|"//lst[@name='foo']/int[@name='Tool'][.='2']"
+argument_list|)
+expr_stmt|;
+name|assertQ
+argument_list|(
+literal|"checking facets when local facet.prefix param used before regular/raw field faceting"
+argument_list|,
+name|req
+argument_list|(
+literal|"q"
+argument_list|,
+literal|"*:*"
+argument_list|,
+literal|"facet"
+argument_list|,
+literal|"true"
+argument_list|,
+literal|"facet.field"
+argument_list|,
+literal|"{!key=foo "
+operator|+
+literal|"facet.prefix=T "
+operator|+
+literal|"}"
+operator|+
+name|fname
+argument_list|,
+literal|"facet.field"
+argument_list|,
+name|fname
+argument_list|)
+argument_list|,
+literal|"*[count(//doc)=6]"
+argument_list|,
+literal|"*[count(//lst[@name='"
+operator|+
+name|fname
+operator|+
+literal|"']/int)=4]"
+argument_list|,
+literal|"*[count(//lst[@name='foo']/int)=1]"
+argument_list|,
+literal|"//lst[@name='foo']/int[@name='Tool'][.='2']"
+argument_list|)
+expr_stmt|;
 name|clearIndex
 argument_list|()
 expr_stmt|;
