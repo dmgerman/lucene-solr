@@ -411,7 +411,7 @@ block|}
 DECL|field|coreInfoMap
 name|Map
 argument_list|<
-name|SolrCore
+name|Integer
 argument_list|,
 name|CoreInfo
 argument_list|>
@@ -420,21 +420,12 @@ init|=
 operator|new
 name|WeakHashMap
 argument_list|<
-name|SolrCore
+name|Integer
 argument_list|,
 name|CoreInfo
 argument_list|>
 argument_list|()
 decl_stmt|;
-comment|// TODO:
-comment|// use
-comment|// something
-comment|// that
-comment|// survives
-comment|// across
-comment|// a
-comment|// core
-comment|// reload?
 DECL|field|classAliases
 specifier|public
 name|Map
@@ -654,6 +645,9 @@ operator|.
 name|get
 argument_list|(
 name|core
+operator|.
+name|hashCode
+argument_list|()
 argument_list|)
 expr_stmt|;
 if|if
@@ -690,6 +684,9 @@ operator|.
 name|put
 argument_list|(
 name|core
+operator|.
+name|hashCode
+argument_list|()
 argument_list|,
 name|info
 argument_list|)
