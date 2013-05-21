@@ -870,11 +870,6 @@ name|int
 name|ord
 parameter_list|)
 block|{
-assert|assert
-name|ord
-operator|<
-name|numThreadStatesActive
-assert|;
 return|return
 name|threadStates
 index|[

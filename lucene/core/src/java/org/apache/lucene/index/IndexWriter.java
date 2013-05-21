@@ -2902,7 +2902,7 @@ operator|.
 name|abort
 argument_list|()
 expr_stmt|;
-comment|// already closed
+comment|// already closed -- never sync on IW
 block|}
 block|}
 finally|finally
@@ -5655,6 +5655,7 @@ operator|.
 name|abort
 argument_list|()
 expr_stmt|;
+comment|// don't sync on IW here
 synchronized|synchronized
 init|(
 name|this
@@ -5831,10 +5832,9 @@ literal|false
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**    * Delete all documents in the index.    *    *<p>This method will drop all buffered documents and will    *    remove all segments from the index. This change will not be    *    visible until a {@link #commit()} has been called. This method    *    can be rolled back using {@link #rollback()}.</p>    *    *<p>NOTE: this method is much faster than using deleteDocuments( new MatchAllDocsQuery() ).</p>    *    *<p>NOTE: this method will forcefully abort all merges    *    in progress.  If other threads are running {@link    *    #forceMerge}, {@link #addIndexes(IndexReader[])} or    *    {@link #forceMergeDeletes} methods, they may receive    *    {@link MergePolicy.MergeAbortedException}s.    */
+comment|/**    * Delete all documents in the index.    *    *<p>This method will drop all buffered documents and will    *    remove all segments from the index. This change will not be    *    visible until a {@link #commit()} has been called. This method    *    can be rolled back using {@link #rollback()}.</p>    *    *<p>NOTE: this method is much faster than using deleteDocuments( new MatchAllDocsQuery() ).     *    Yet, this method also has different semantics compared to {@link #deleteDocuments(Query)}     *    / {@link #deleteDocuments(Query...)} since internal data-structures are cleared as well     *    as all segment information is forcefully dropped anti-viral semantics like omitting norms    *    are reset or doc value types are cleared. Essentially a call to {@link #deleteAll()} is equivalent    *    to creating a new {@link IndexWriter} with {@link OpenMode#CREATE} which a delete query only marks    *    documents as deleted.</p>    *    *<p>NOTE: this method will forcefully abort all merges    *    in progress.  If other threads are running {@link    *    #forceMerge}, {@link #addIndexes(IndexReader[])} or    *    {@link #forceMergeDeletes} methods, they may receive    *    {@link MergePolicy.MergeAbortedException}s.    */
 DECL|method|deleteAll
 specifier|public
-specifier|synchronized
 name|void
 name|deleteAll
 parameter_list|()
@@ -5844,11 +5844,31 @@ block|{
 name|ensureOpen
 argument_list|()
 expr_stmt|;
+comment|// Remove any buffered docs
 name|boolean
 name|success
 init|=
 literal|false
 decl_stmt|;
+comment|/* hold the full flush lock to prevent concurrency commits / NRT reopens to      * get in our way and do unnecessary work. -- if we don't lock this here we might      * get in trouble if */
+synchronized|synchronized
+init|(
+name|fullFlushLock
+init|)
+block|{
+comment|/*          * We first abort and trash everything we have in-memory          * and keep the thread-states locked, the lockAndAbortAll operation          * also guarantees "point in time semantics" ie. the checkpoint that we need in terms          * of logical happens-before relationship in the DW. So we do          * abort all in memory structures           * We also drop global field numbering before during abort to make          * sure it's just like a fresh index.          */
+try|try
+block|{
+name|docWriter
+operator|.
+name|lockAndAbortAll
+argument_list|()
+expr_stmt|;
+synchronized|synchronized
+init|(
+name|this
+init|)
+block|{
 try|try
 block|{
 comment|// Abort any running merges
@@ -5856,12 +5876,6 @@ name|finishMerges
 argument_list|(
 literal|false
 argument_list|)
-expr_stmt|;
-comment|// Remove any buffered docs
-name|docWriter
-operator|.
-name|abort
-argument_list|()
 expr_stmt|;
 comment|// Remove all segments
 name|segmentInfos
@@ -5879,16 +5893,7 @@ argument_list|,
 literal|false
 argument_list|)
 expr_stmt|;
-name|deleter
-operator|.
-name|refresh
-argument_list|()
-expr_stmt|;
-name|globalFieldNumberMap
-operator|.
-name|clear
-argument_list|()
-expr_stmt|;
+comment|/* don't refresh the deleter here since there might              * be concurrent indexing requests coming in opening              * files on the directory after we called DW#abort()              * if we do so these indexing requests might hit FNF exceptions.              * We will remove the files incrementally as we go...              */
 comment|// Don't bother saving any changes in our segmentInfos
 name|readerPool
 operator|.
@@ -5904,6 +5909,11 @@ expr_stmt|;
 name|segmentInfos
 operator|.
 name|changed
+argument_list|()
+expr_stmt|;
+name|globalFieldNumberMap
+operator|.
+name|clear
 argument_list|()
 expr_stmt|;
 name|success
@@ -5953,6 +5963,17 @@ literal|"hit exception during deleteAll"
 argument_list|)
 expr_stmt|;
 block|}
+block|}
+block|}
+block|}
+block|}
+finally|finally
+block|{
+name|docWriter
+operator|.
+name|unlockAllAfterAbortAll
+argument_list|()
+expr_stmt|;
 block|}
 block|}
 block|}
@@ -8672,6 +8693,21 @@ operator|new
 name|Object
 argument_list|()
 decl_stmt|;
+comment|// for assert
+DECL|method|holdsFullFlushLock
+name|boolean
+name|holdsFullFlushLock
+parameter_list|()
+block|{
+return|return
+name|Thread
+operator|.
+name|holdsLock
+argument_list|(
+name|fullFlushLock
+argument_list|)
+return|;
+block|}
 comment|/**    * Flush all in-memory buffered updates (adds and deletes)    * to the Directory.    * @param triggerMerge if true, we may merge segments (if    *  deletes or docs were flushed) if necessary    * @param applyAllDeletes whether pending deletes should also    */
 DECL|method|flush
 specifier|protected
