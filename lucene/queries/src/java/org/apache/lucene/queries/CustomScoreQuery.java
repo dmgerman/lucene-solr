@@ -298,7 +298,7 @@ argument_list|(
 name|subQuery
 argument_list|,
 operator|new
-name|Query
+name|FunctionQuery
 index|[
 literal|0
 index|]
@@ -313,7 +313,7 @@ parameter_list|(
 name|Query
 name|subQuery
 parameter_list|,
-name|Query
+name|FunctionQuery
 name|scoringQuery
 parameter_list|)
 block|{
@@ -327,14 +327,14 @@ literal|null
 condition|?
 comment|// don't want an array that contains a single null..
 operator|new
-name|Query
+name|FunctionQuery
 index|[]
 block|{
 name|scoringQuery
 block|}
 else|:
 operator|new
-name|Query
+name|FunctionQuery
 index|[
 literal|0
 index|]
@@ -349,7 +349,7 @@ parameter_list|(
 name|Query
 name|subQuery
 parameter_list|,
-name|Query
+name|FunctionQuery
 modifier|...
 name|scoringQueries
 parameter_list|)
