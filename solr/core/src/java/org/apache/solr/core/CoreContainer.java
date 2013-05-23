@@ -3577,6 +3577,9 @@ operator|.
 name|preRegister
 argument_list|(
 name|core
+operator|.
+name|getCoreDescriptor
+argument_list|()
 argument_list|)
 expr_stmt|;
 block|}
