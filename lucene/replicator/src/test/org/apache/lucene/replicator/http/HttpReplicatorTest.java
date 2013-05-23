@@ -455,6 +455,16 @@ operator|.
 name|setUp
 argument_list|()
 expr_stmt|;
+name|System
+operator|.
+name|setProperty
+argument_list|(
+literal|"org.eclipse.jetty.LEVEL"
+argument_list|,
+literal|"DEBUG"
+argument_list|)
+expr_stmt|;
+comment|// sets stderr logging to DEBUG level
 name|clientWorkDir
 operator|=
 name|_TestUtil
@@ -555,6 +565,13 @@ argument_list|,
 name|handlerIndexDir
 argument_list|,
 name|serverIndexDir
+argument_list|)
+expr_stmt|;
+name|System
+operator|.
+name|clearProperty
+argument_list|(
+literal|"org.eclipse.jetty.LEVEL"
 argument_list|)
 expr_stmt|;
 name|super
