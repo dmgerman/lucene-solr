@@ -374,6 +374,16 @@ name|c
 argument_list|)
 expr_stmt|;
 block|}
+name|newq
+operator|.
+name|setBoost
+argument_list|(
+name|obq
+operator|.
+name|getBoost
+argument_list|()
+argument_list|)
+expr_stmt|;
 return|return
 name|newq
 return|;
