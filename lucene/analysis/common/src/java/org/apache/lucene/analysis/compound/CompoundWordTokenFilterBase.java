@@ -40,16 +40,6 @@ end_import
 
 begin_import
 import|import
-name|java
-operator|.
-name|util
-operator|.
-name|Set
-import|;
-end_import
-
-begin_import
-import|import
 name|org
 operator|.
 name|apache
@@ -169,7 +159,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Base class for decomposition token filters.  *<p>  *  *<a name="version"></a>  * You must specify the required {@link Version} compatibility when creating  * CompoundWordTokenFilterBase:  *<ul>  *<li>As of 3.1, CompoundWordTokenFilterBase correctly handles Unicode 4.0  * supplementary characters in strings and char arrays provided as compound word  * dictionaries.  *</ul>  */
+comment|/**  * Base class for decomposition token filters.  *<p>  *  *<a name="version"></a>  * You must specify the required {@link Version} compatibility when creating  * CompoundWordTokenFilterBase:  *<ul>  *<li>As of 3.1, CompoundWordTokenFilterBase correctly handles Unicode 4.0  * supplementary characters in strings and char arrays provided as compound word  * dictionaries.  *<li>As of 4.4, {@link CompoundWordTokenFilterBase} doesn't update offsets.  *</ul>  */
 end_comment
 
 begin_class
@@ -210,6 +200,12 @@ name|int
 name|DEFAULT_MAX_SUBWORD_SIZE
 init|=
 literal|15
+decl_stmt|;
+DECL|field|matchVersion
+specifier|protected
+specifier|final
+name|Version
+name|matchVersion
 decl_stmt|;
 DECL|field|dictionary
 specifier|protected
@@ -393,6 +389,12 @@ name|super
 argument_list|(
 name|input
 argument_list|)
+expr_stmt|;
+name|this
+operator|.
+name|matchVersion
+operator|=
+name|matchVersion
 expr_stmt|;
 name|this
 operator|.
@@ -726,6 +728,15 @@ argument_list|()
 decl_stmt|;
 if|if
 condition|(
+name|matchVersion
+operator|.
+name|onOrAfter
+argument_list|(
+name|Version
+operator|.
+name|LUCENE_44
+argument_list|)
+operator|||
 name|endOff
 operator|-
 name|startOff
