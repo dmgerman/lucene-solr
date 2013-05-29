@@ -2214,7 +2214,7 @@ name|REPLAY
 operator||
 name|UpdateCommand
 operator|.
-name|REPLAY
+name|PEER_SYNC
 operator|)
 operator|)
 operator|!=
@@ -3489,7 +3489,7 @@ name|REPLAY
 operator||
 name|UpdateCommand
 operator|.
-name|REPLAY
+name|PEER_SYNC
 operator|)
 operator|)
 operator|!=
@@ -5345,7 +5345,7 @@ name|REPLAY
 operator||
 name|UpdateCommand
 operator|.
-name|REPLAY
+name|PEER_SYNC
 operator|)
 operator|)
 operator|!=
@@ -5906,7 +5906,7 @@ name|REPLAY
 operator||
 name|UpdateCommand
 operator|.
-name|REPLAY
+name|PEER_SYNC
 operator|)
 operator|)
 operator|!=
