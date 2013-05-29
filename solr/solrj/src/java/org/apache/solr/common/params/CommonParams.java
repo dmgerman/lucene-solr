@@ -128,6 +128,58 @@ name|ROWS
 init|=
 literal|"rows"
 decl_stmt|;
+comment|// SOLR-4228 start
+comment|/** handler value for SolrPing */
+DECL|field|PING_HANDLER
+specifier|public
+specifier|static
+specifier|final
+name|String
+name|PING_HANDLER
+init|=
+literal|"/admin/ping"
+decl_stmt|;
+comment|/** "action" parameter for SolrPing */
+DECL|field|ACTION
+specifier|public
+specifier|static
+specifier|final
+name|String
+name|ACTION
+init|=
+literal|"action"
+decl_stmt|;
+comment|/** "disable" value for SolrPing action */
+DECL|field|DISABLE
+specifier|public
+specifier|static
+specifier|final
+name|String
+name|DISABLE
+init|=
+literal|"disable"
+decl_stmt|;
+comment|/** "enable" value for SolrPing action */
+DECL|field|ENABLE
+specifier|public
+specifier|static
+specifier|final
+name|String
+name|ENABLE
+init|=
+literal|"enable"
+decl_stmt|;
+comment|/** "ping" value for SolrPing action */
+DECL|field|PING
+specifier|public
+specifier|static
+specifier|final
+name|String
+name|PING
+init|=
+literal|"ping"
+decl_stmt|;
+comment|// SOLR-4228 end
 comment|//Issue 1726 start
 comment|/** score of the last document of the previous page */
 DECL|field|PAGESCORE
