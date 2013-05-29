@@ -1005,13 +1005,6 @@ name|staticStats
 operator|.
 name|add
 argument_list|(
-literal|"sourceId"
-argument_list|)
-expr_stmt|;
-name|staticStats
-operator|.
-name|add
-argument_list|(
 literal|"source"
 argument_list|)
 expr_stmt|;
