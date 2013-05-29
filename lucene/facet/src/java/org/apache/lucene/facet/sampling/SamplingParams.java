@@ -36,7 +36,7 @@ specifier|final
 name|double
 name|DEFAULT_OVERSAMPLE_FACTOR
 init|=
-literal|2d
+literal|1d
 decl_stmt|;
 comment|/**    * Default ratio between size of sample to original size of document set.    * @see Sampler#getSampleSet(org.apache.lucene.facet.search.ScoredDocIDs)    */
 DECL|field|DEFAULT_SAMPLE_RATIO
@@ -112,6 +112,13 @@ name|double
 name|oversampleFactor
 init|=
 name|DEFAULT_OVERSAMPLE_FACTOR
+decl_stmt|;
+DECL|field|sampleFixer
+specifier|private
+name|SampleFixer
+name|sampleFixer
+init|=
+literal|null
 decl_stmt|;
 comment|/**    * Return the maxSampleSize.    * In no case should the resulting sample size exceed this value.      * @see Sampler#getSampleSet(org.apache.lucene.facet.search.ScoredDocIDs)    */
 DECL|method|getMaxSampleSize
@@ -282,6 +289,51 @@ name|oversampleFactor
 operator|=
 name|oversampleFactor
 expr_stmt|;
+block|}
+comment|/**    * @return {@link SampleFixer} to be used while fixing the sampled results, if    *<code>null</code> no fixing will be performed    */
+DECL|method|getSampleFixer
+specifier|public
+name|SampleFixer
+name|getSampleFixer
+parameter_list|()
+block|{
+return|return
+name|sampleFixer
+return|;
+block|}
+comment|/**    * Set a {@link SampleFixer} to be used while fixing the sampled results.    * {@code null} means no fixing will be performed    */
+DECL|method|setSampleFixer
+specifier|public
+name|void
+name|setSampleFixer
+parameter_list|(
+name|SampleFixer
+name|sampleFixer
+parameter_list|)
+block|{
+name|this
+operator|.
+name|sampleFixer
+operator|=
+name|sampleFixer
+expr_stmt|;
+block|}
+comment|/**    * Returns whether over-sampling should be done. By default returns    * {@code true} when {@link #getSampleFixer()} is not {@code null} and    * {@link #getOversampleFactor()}&gt; 1, {@code false} otherwise.    */
+DECL|method|shouldOverSample
+specifier|public
+name|boolean
+name|shouldOverSample
+parameter_list|()
+block|{
+return|return
+name|sampleFixer
+operator|!=
+literal|null
+operator|&&
+name|oversampleFactor
+operator|>
+literal|1d
+return|;
 block|}
 block|}
 end_class

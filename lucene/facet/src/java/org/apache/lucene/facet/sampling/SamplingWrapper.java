@@ -231,6 +231,21 @@ name|delegee
 operator|.
 name|searchParams
 decl_stmt|;
+name|boolean
+name|shouldOversample
+init|=
+name|sampler
+operator|.
+name|samplingParams
+operator|.
+name|shouldOverSample
+argument_list|()
+decl_stmt|;
+if|if
+condition|(
+name|shouldOversample
+condition|)
+block|{
 name|delegee
 operator|.
 name|searchParams
@@ -242,6 +257,7 @@ argument_list|(
 name|original
 argument_list|)
 expr_stmt|;
+block|}
 name|SampleResult
 name|sampleSet
 init|=
@@ -280,6 +296,16 @@ name|FacetResult
 argument_list|>
 argument_list|()
 decl_stmt|;
+name|SampleFixer
+name|sampleFixer
+init|=
+name|sampler
+operator|.
+name|samplingParams
+operator|.
+name|getSampleFixer
+argument_list|()
+decl_stmt|;
 for|for
 control|(
 name|FacetResult
@@ -300,23 +326,25 @@ name|getFacetRequest
 argument_list|()
 argument_list|)
 decl_stmt|;
+if|if
+condition|(
+name|sampleFixer
+operator|!=
+literal|null
+condition|)
+block|{
 comment|// fix the result of current request
-name|sampler
-operator|.
-name|getSampleFixer
-argument_list|(
-name|indexReader
-argument_list|,
-name|taxonomyReader
-argument_list|,
-name|searchParams
-argument_list|)
+name|sampleFixer
 operator|.
 name|fixResult
 argument_list|(
 name|docids
 argument_list|,
 name|fres
+argument_list|,
+name|sampleSet
+operator|.
+name|actualSampleRatio
 argument_list|)
 expr_stmt|;
 name|fres
@@ -329,6 +357,12 @@ name|fres
 argument_list|)
 expr_stmt|;
 comment|// let delegee's handler do any
+block|}
+if|if
+condition|(
+name|shouldOversample
+condition|)
+block|{
 comment|// Using the sampler to trim the extra (over-sampled) results
 name|fres
 operator|=
@@ -339,6 +373,7 @@ argument_list|(
 name|fres
 argument_list|)
 expr_stmt|;
+block|}
 comment|// final labeling if allowed (because labeling is a costly operation)
 name|frh
 operator|.
@@ -356,6 +391,11 @@ argument_list|)
 expr_stmt|;
 comment|// add to final results
 block|}
+if|if
+condition|(
+name|shouldOversample
+condition|)
+block|{
 name|delegee
 operator|.
 name|searchParams
@@ -363,6 +403,7 @@ operator|=
 name|original
 expr_stmt|;
 comment|// Back to original params
+block|}
 return|return
 name|fixedRes
 return|;

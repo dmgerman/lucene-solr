@@ -430,6 +430,8 @@ DECL|field|complementThreshold
 specifier|private
 name|double
 name|complementThreshold
+init|=
+name|DEFAULT_COMPLEMENT_THRESHOLD
 decl_stmt|;
 DECL|method|StandardFacetsAccumulator
 specifier|public

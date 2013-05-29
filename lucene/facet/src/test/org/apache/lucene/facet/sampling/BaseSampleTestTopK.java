@@ -571,6 +571,8 @@ argument_list|(
 name|nTrial
 argument_list|,
 name|useRandomSampler
+argument_list|,
+name|samplingSearchParams
 argument_list|)
 decl_stmt|;
 name|assertSampling
@@ -764,6 +766,9 @@ name|nTrial
 parameter_list|,
 name|boolean
 name|useRandomSampler
+parameter_list|,
+name|FacetSearchParams
+name|sParams
 parameter_list|)
 block|{
 name|SamplingParams
@@ -773,6 +778,22 @@ operator|new
 name|SamplingParams
 argument_list|()
 decl_stmt|;
+comment|/*      * Set sampling to Exact fixing with TakmiSampleFixer as it is not easy to      * validate results with amortized results.       */
+name|samplingParams
+operator|.
+name|setSampleFixer
+argument_list|(
+operator|new
+name|TakmiSampleFixer
+argument_list|(
+name|indexReader
+argument_list|,
+name|taxoReader
+argument_list|,
+name|sParams
+argument_list|)
+argument_list|)
+expr_stmt|;
 specifier|final
 name|double
 name|retryFactor
@@ -786,6 +807,16 @@ argument_list|,
 name|nTrial
 argument_list|)
 decl_stmt|;
+name|samplingParams
+operator|.
+name|setOversampleFactor
+argument_list|(
+literal|5.0
+operator|*
+name|retryFactor
+argument_list|)
+expr_stmt|;
+comment|// Oversampling
 name|samplingParams
 operator|.
 name|setSampleRatio
@@ -821,15 +852,6 @@ literal|10000
 operator|*
 name|retryFactor
 argument_list|)
-argument_list|)
-expr_stmt|;
-name|samplingParams
-operator|.
-name|setOversampleFactor
-argument_list|(
-literal|5.0
-operator|*
-name|retryFactor
 argument_list|)
 expr_stmt|;
 name|samplingParams

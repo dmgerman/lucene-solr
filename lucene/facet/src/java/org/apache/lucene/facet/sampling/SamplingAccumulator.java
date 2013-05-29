@@ -328,6 +328,32 @@ name|original
 init|=
 name|searchParams
 decl_stmt|;
+name|SampleFixer
+name|samplerFixer
+init|=
+name|sampler
+operator|.
+name|samplingParams
+operator|.
+name|getSampleFixer
+argument_list|()
+decl_stmt|;
+specifier|final
+name|boolean
+name|shouldOversample
+init|=
+name|sampler
+operator|.
+name|samplingParams
+operator|.
+name|shouldOverSample
+argument_list|()
+decl_stmt|;
+if|if
+condition|(
+name|shouldOversample
+condition|)
+block|{
 name|searchParams
 operator|=
 name|sampler
@@ -337,6 +363,7 @@ argument_list|(
 name|original
 argument_list|)
 expr_stmt|;
+block|}
 name|List
 argument_list|<
 name|FacetResult
@@ -383,23 +410,23 @@ name|getFacetRequest
 argument_list|()
 argument_list|)
 decl_stmt|;
+if|if
+condition|(
+name|samplerFixer
+operator|!=
+literal|null
+condition|)
+block|{
 comment|// fix the result of current request
-name|sampler
-operator|.
-name|getSampleFixer
-argument_list|(
-name|indexReader
-argument_list|,
-name|taxonomyReader
-argument_list|,
-name|searchParams
-argument_list|)
+name|samplerFixer
 operator|.
 name|fixResult
 argument_list|(
 name|docids
 argument_list|,
 name|fres
+argument_list|,
+name|samplingRatio
 argument_list|)
 expr_stmt|;
 name|fres
@@ -412,6 +439,11 @@ name|fres
 argument_list|)
 expr_stmt|;
 comment|// let delegee's handler do any arranging it needs to
+if|if
+condition|(
+name|shouldOversample
+condition|)
+block|{
 comment|// Using the sampler to trim the extra (over-sampled) results
 name|fres
 operator|=
@@ -422,6 +454,8 @@ argument_list|(
 name|fres
 argument_list|)
 expr_stmt|;
+block|}
+block|}
 comment|// final labeling if allowed (because labeling is a costly operation)
 name|frh
 operator|.
