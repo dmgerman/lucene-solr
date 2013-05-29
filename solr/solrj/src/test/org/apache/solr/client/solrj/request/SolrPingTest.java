@@ -141,15 +141,13 @@ parameter_list|()
 throws|throws
 name|Exception
 block|{
-comment|// The following works, but it seems like it's probably the wrong way to do
-comment|// this.
 name|initCore
 argument_list|(
 literal|"solrconfig.xml"
 argument_list|,
 literal|"schema.xml"
 argument_list|,
-literal|"../../test-files/solrj/solr"
+literal|"solrj/solr"
 argument_list|,
 literal|"collection1"
 argument_list|)
