@@ -803,12 +803,10 @@ argument_list|)
 expr_stmt|;
 name|setNumLabel
 argument_list|(
-name|orig
-operator|.
-name|getNumLabel
-argument_list|()
+literal|0
 argument_list|)
 expr_stmt|;
+comment|// don't label anything as we're over-sampling
 name|setResultMode
 argument_list|(
 name|orig

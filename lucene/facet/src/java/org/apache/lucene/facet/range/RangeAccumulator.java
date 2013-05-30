@@ -364,6 +364,9 @@ name|rfr
 init|=
 operator|(
 name|RangeFacetRequest
+argument_list|<
+name|?
+argument_list|>
 operator|)
 name|fr
 decl_stmt|;
@@ -507,6 +510,16 @@ operator|.
 name|field
 argument_list|)
 decl_stmt|;
+if|if
+condition|(
+name|ndv
+operator|==
+literal|null
+condition|)
+block|{
+continue|continue;
+comment|// no numeric values for this field in this reader
+block|}
 specifier|final
 name|int
 name|length
