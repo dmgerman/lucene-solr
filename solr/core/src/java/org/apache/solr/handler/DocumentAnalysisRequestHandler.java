@@ -292,6 +292,20 @@ begin_import
 import|import
 name|org
 operator|.
+name|apache
+operator|.
+name|solr
+operator|.
+name|util
+operator|.
+name|EmptyEntityResolver
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
 name|slf4j
 operator|.
 name|Logger
@@ -466,6 +480,20 @@ operator|.
 name|newInstance
 argument_list|()
 expr_stmt|;
+name|EmptyEntityResolver
+operator|.
+name|configureXMLInputFactory
+argument_list|(
+name|inputFactory
+argument_list|)
+expr_stmt|;
+name|inputFactory
+operator|.
+name|setXMLReporter
+argument_list|(
+name|xmllog
+argument_list|)
+expr_stmt|;
 try|try
 block|{
 comment|// The java 1.6 bundled stax parser (sjsxp) does not currently have a thread-safe
@@ -504,13 +532,6 @@ name|inputFactory
 argument_list|)
 expr_stmt|;
 block|}
-name|inputFactory
-operator|.
-name|setXMLReporter
-argument_list|(
-name|xmllog
-argument_list|)
-expr_stmt|;
 block|}
 comment|/**    * {@inheritDoc}    */
 annotation|@
