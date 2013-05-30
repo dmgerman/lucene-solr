@@ -4798,6 +4798,9 @@ argument_list|)
 expr_stmt|;
 break|break;
 block|}
+name|numUpdates
+operator|++
+expr_stmt|;
 block|}
 block|}
 catch|catch
