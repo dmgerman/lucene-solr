@@ -246,6 +246,16 @@ argument_list|,
 literal|"org.apache.solr.core.MockFSDirectoryFactory"
 argument_list|)
 expr_stmt|;
+name|System
+operator|.
+name|setProperty
+argument_list|(
+literal|"enable.update.log"
+argument_list|,
+literal|"false"
+argument_list|)
+expr_stmt|;
+comment|// schema12 doesn't support _version_
 name|initCore
 argument_list|(
 literal|"solrconfig.xml"

@@ -848,6 +848,16 @@ argument_list|,
 name|SKIPVAL
 argument_list|)
 expr_stmt|;
+name|handle
+operator|.
+name|put
+argument_list|(
+literal|"_version_"
+argument_list|,
+name|SKIPVAL
+argument_list|)
+expr_stmt|;
+comment|// not a cloud test, but may use updateLog
 comment|// random value sort
 for|for
 control|(

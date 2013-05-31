@@ -323,6 +323,16 @@ name|void
 name|beforeClass
 parameter_list|()
 block|{
+name|System
+operator|.
+name|setProperty
+argument_list|(
+literal|"enable.update.log"
+argument_list|,
+literal|"false"
+argument_list|)
+expr_stmt|;
+comment|// schema12 doesn't support _version_
 name|savedFactory
 operator|=
 name|System

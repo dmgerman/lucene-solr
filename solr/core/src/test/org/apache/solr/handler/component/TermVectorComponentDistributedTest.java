@@ -114,6 +114,16 @@ argument_list|,
 name|SKIPVAL
 argument_list|)
 expr_stmt|;
+name|handle
+operator|.
+name|put
+argument_list|(
+literal|"_version_"
+argument_list|,
+name|SKIPVAL
+argument_list|)
+expr_stmt|;
+comment|// not a cloud test, but may use updateLog
 comment|// SOLR-3720: TODO: TVC doesn't "merge" df and idf .. should it?
 name|handle
 operator|.
