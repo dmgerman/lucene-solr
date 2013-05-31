@@ -630,16 +630,6 @@ name|System
 operator|.
 name|setProperty
 argument_list|(
-literal|"enable.update.log"
-argument_list|,
-literal|"true"
-argument_list|)
-expr_stmt|;
-comment|// :nocommit:
-name|System
-operator|.
-name|setProperty
-argument_list|(
 literal|"tests.shardhandler.randomSeed"
 argument_list|,
 name|Long
