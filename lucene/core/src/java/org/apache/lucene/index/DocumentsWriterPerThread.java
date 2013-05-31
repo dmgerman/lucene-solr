@@ -1912,11 +1912,6 @@ name|segmentInfo
 operator|=
 literal|null
 expr_stmt|;
-name|consumer
-operator|.
-name|doAfterFlush
-argument_list|()
-expr_stmt|;
 name|directory
 operator|.
 name|getCreatedFiles

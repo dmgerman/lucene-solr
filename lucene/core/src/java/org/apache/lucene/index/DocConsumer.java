@@ -71,12 +71,6 @@ name|void
 name|abort
 parameter_list|()
 function_decl|;
-DECL|method|doAfterFlush
-specifier|abstract
-name|void
-name|doAfterFlush
-parameter_list|()
-function_decl|;
 block|}
 end_class
 
