@@ -260,7 +260,6 @@ argument_list|()
 decl_stmt|;
 DECL|field|ulog
 specifier|protected
-specifier|volatile
 name|UpdateLog
 name|ulog
 decl_stmt|;
@@ -416,10 +415,21 @@ name|initLog
 parameter_list|(
 name|PluginInfo
 name|ulogPluginInfo
+parameter_list|,
+name|UpdateLog
+name|existingUpdateLog
 parameter_list|)
 block|{
+name|ulog
+operator|=
+name|existingUpdateLog
+expr_stmt|;
 if|if
 condition|(
+name|ulog
+operator|==
+literal|null
+operator|&&
 name|ulogPluginInfo
 operator|!=
 literal|null
@@ -454,6 +464,7 @@ name|core
 argument_list|)
 expr_stmt|;
 block|}
+comment|// ulog.init() when reusing an existing log is deferred (currently at the end of the DUH2 constructor
 block|}
 comment|// not thread safe - for startup
 DECL|method|clearLog
@@ -726,28 +737,13 @@ name|ulogPluginInfo
 argument_list|)
 expr_stmt|;
 block|}
-if|if
-condition|(
-name|updateLog
-operator|==
-literal|null
-condition|)
-block|{
 name|initLog
 argument_list|(
 name|ulogPluginInfo
+argument_list|,
+name|updateLog
 argument_list|)
 expr_stmt|;
-block|}
-else|else
-block|{
-name|this
-operator|.
-name|ulog
-operator|=
-name|updateLog
-expr_stmt|;
-block|}
 block|}
 comment|/**    * Called when the Writer should be opened again - eg when replication replaces    * all of the index files.    *     * @param rollback IndexWriter if true else close    *     * @throws IOException If there is a low-level I/O error.    */
 DECL|method|newIndexWriter

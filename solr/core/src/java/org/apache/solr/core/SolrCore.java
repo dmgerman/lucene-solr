@@ -6790,6 +6790,27 @@ name|boolean
 name|realtime
 parameter_list|)
 block|{
+if|if
+condition|(
+name|isClosed
+argument_list|()
+condition|)
+block|{
+comment|// catch some errors quicker
+throw|throw
+operator|new
+name|SolrException
+argument_list|(
+name|SolrException
+operator|.
+name|ErrorCode
+operator|.
+name|SERVER_ERROR
+argument_list|,
+literal|"openNewSearcher called on closed core"
+argument_list|)
+throw|;
+block|}
 name|SolrIndexSearcher
 name|tmp
 decl_stmt|;

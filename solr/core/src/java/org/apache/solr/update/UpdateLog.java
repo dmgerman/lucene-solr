@@ -1213,6 +1213,7 @@ argument_list|)
 argument_list|)
 expr_stmt|;
 block|}
+comment|/* Note, when this is called, uhandler is not completely constructed.    * This must be called when a new log is created, or    * for an existing log whenever the core or update handler changes.    */
 DECL|method|init
 specifier|public
 name|void
