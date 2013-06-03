@@ -40,7 +40,7 @@ name|util
 operator|.
 name|packed
 operator|.
-name|GrowableWriter
+name|PackedInts
 import|;
 end_import
 
@@ -56,7 +56,7 @@ name|util
 operator|.
 name|packed
 operator|.
-name|PackedInts
+name|PagedGrowableWriter
 import|;
 end_import
 
@@ -75,17 +75,17 @@ parameter_list|>
 block|{
 DECL|field|table
 specifier|private
-name|GrowableWriter
+name|PagedGrowableWriter
 name|table
 decl_stmt|;
 DECL|field|count
 specifier|private
-name|int
+name|long
 name|count
 decl_stmt|;
 DECL|field|mask
 specifier|private
-name|int
+name|long
 name|mask
 decl_stmt|;
 DECL|field|fst
@@ -144,11 +144,15 @@ block|{
 name|table
 operator|=
 operator|new
-name|GrowableWriter
+name|PagedGrowableWriter
 argument_list|(
-literal|8
-argument_list|,
 literal|16
+argument_list|,
+literal|1
+operator|<<
+literal|30
+argument_list|,
+literal|8
 argument_list|,
 name|PackedInts
 operator|.
@@ -369,7 +373,7 @@ comment|// hash code for an unfrozen node.  This must be identical
 comment|// to the un-frozen case (below)!!
 DECL|method|hash
 specifier|private
-name|int
+name|long
 name|hash
 parameter_list|(
 name|Builder
@@ -388,7 +392,7 @@ init|=
 literal|31
 decl_stmt|;
 comment|//System.out.println("hash unfrozen");
-name|int
+name|long
 name|h
 init|=
 literal|0
@@ -516,7 +520,7 @@ comment|//System.out.println("  ret " + (h&Integer.MAX_VALUE));
 return|return
 name|h
 operator|&
-name|Integer
+name|Long
 operator|.
 name|MAX_VALUE
 return|;
@@ -524,7 +528,7 @@ block|}
 comment|// hash code for a frozen node
 DECL|method|hash
 specifier|private
-name|int
+name|long
 name|hash
 parameter_list|(
 name|long
@@ -540,7 +544,7 @@ init|=
 literal|31
 decl_stmt|;
 comment|//System.out.println("hash frozen node=" + node);
-name|int
+name|long
 name|h
 init|=
 literal|0
@@ -658,7 +662,7 @@ comment|//System.out.println("  ret " + (h&Integer.MAX_VALUE));
 return|return
 name|h
 operator|&
-name|Integer
+name|Long
 operator|.
 name|MAX_VALUE
 return|;
@@ -679,9 +683,9 @@ parameter_list|)
 throws|throws
 name|IOException
 block|{
-comment|// System.out.println("hash: add count=" + count + " vs " + table.size());
+comment|//System.out.println("hash: add count=" + count + " vs " + table.size() + " mask=" + mask);
 specifier|final
-name|int
+name|long
 name|h
 init|=
 name|hash
@@ -689,7 +693,7 @@ argument_list|(
 name|nodeIn
 argument_list|)
 decl_stmt|;
-name|int
+name|long
 name|pos
 init|=
 name|h
@@ -768,16 +772,19 @@ argument_list|,
 name|node
 argument_list|)
 expr_stmt|;
+comment|// Rehash at 2/3 occupancy:
 if|if
 condition|(
+name|count
+operator|>
+literal|2
+operator|*
 name|table
 operator|.
 name|size
 argument_list|()
-operator|<
-literal|2
-operator|*
-name|count
+operator|/
+literal|3
 condition|)
 block|{
 name|rehash
@@ -832,7 +839,7 @@ parameter_list|)
 throws|throws
 name|IOException
 block|{
-name|int
+name|long
 name|pos
 init|=
 name|hash
@@ -900,49 +907,33 @@ throws|throws
 name|IOException
 block|{
 specifier|final
-name|GrowableWriter
+name|PagedGrowableWriter
 name|oldTable
 init|=
 name|table
 decl_stmt|;
-if|if
-condition|(
-name|oldTable
-operator|.
-name|size
-argument_list|()
-operator|>=
-name|Integer
-operator|.
-name|MAX_VALUE
-operator|/
-literal|2
-condition|)
-block|{
-throw|throw
-operator|new
-name|IllegalStateException
-argument_list|(
-literal|"FST too large (> 2.1 GB)"
-argument_list|)
-throw|;
-block|}
 name|table
 operator|=
 operator|new
-name|GrowableWriter
+name|PagedGrowableWriter
 argument_list|(
-name|oldTable
-operator|.
-name|getBitsPerValue
-argument_list|()
-argument_list|,
 literal|2
 operator|*
 name|oldTable
 operator|.
 name|size
 argument_list|()
+argument_list|,
+literal|1
+operator|<<
+literal|30
+argument_list|,
+name|PackedInts
+operator|.
+name|bitsRequired
+argument_list|(
+name|count
+argument_list|)
 argument_list|,
 name|PackedInts
 operator|.
@@ -960,7 +951,7 @@ literal|1
 expr_stmt|;
 for|for
 control|(
-name|int
+name|long
 name|idx
 init|=
 literal|0
@@ -1001,16 +992,6 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
-block|}
-DECL|method|count
-specifier|public
-name|int
-name|count
-parameter_list|()
-block|{
-return|return
-name|count
-return|;
 block|}
 block|}
 end_class
