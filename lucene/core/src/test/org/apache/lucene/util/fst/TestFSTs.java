@@ -1120,9 +1120,7 @@ init|=
 name|PositiveIntOutputs
 operator|.
 name|getSingleton
-argument_list|(
-literal|true
-argument_list|)
+argument_list|()
 decl_stmt|;
 specifier|final
 name|List
@@ -1570,9 +1568,7 @@ init|=
 name|PositiveIntOutputs
 operator|.
 name|getSingleton
-argument_list|(
-literal|true
-argument_list|)
+argument_list|()
 decl_stmt|;
 specifier|final
 name|List
@@ -1673,25 +1669,13 @@ block|}
 comment|// PositiveIntOutput (random monotonically increasing positive number)
 block|{
 specifier|final
-name|boolean
-name|doShare
-init|=
-name|random
-argument_list|()
-operator|.
-name|nextBoolean
-argument_list|()
-decl_stmt|;
-specifier|final
 name|PositiveIntOutputs
 name|outputs
 init|=
 name|PositiveIntOutputs
 operator|.
 name|getSingleton
-argument_list|(
-name|doShare
-argument_list|)
+argument_list|()
 decl_stmt|;
 specifier|final
 name|List
@@ -1804,7 +1788,7 @@ name|pairs
 argument_list|,
 name|outputs
 argument_list|,
-name|doShare
+literal|true
 argument_list|)
 operator|.
 name|doTest
@@ -1822,13 +1806,7 @@ init|=
 name|PositiveIntOutputs
 operator|.
 name|getSingleton
-argument_list|(
-name|random
 argument_list|()
-operator|.
-name|nextBoolean
-argument_list|()
-argument_list|)
 decl_stmt|;
 specifier|final
 name|List
@@ -1944,13 +1922,7 @@ init|=
 name|PositiveIntOutputs
 operator|.
 name|getSingleton
-argument_list|(
-name|random
 argument_list|()
-operator|.
-name|nextBoolean
-argument_list|()
-argument_list|)
 decl_stmt|;
 specifier|final
 name|PositiveIntOutputs
@@ -1959,13 +1931,7 @@ init|=
 name|PositiveIntOutputs
 operator|.
 name|getSingleton
-argument_list|(
-name|random
 argument_list|()
-operator|.
-name|nextBoolean
-argument_list|()
-argument_list|)
 decl_stmt|;
 specifier|final
 name|PairOutputs
@@ -2861,13 +2827,7 @@ init|=
 name|PositiveIntOutputs
 operator|.
 name|getSingleton
-argument_list|(
-name|random
 argument_list|()
-operator|.
-name|nextBoolean
-argument_list|()
-argument_list|)
 decl_stmt|;
 specifier|final
 name|boolean
@@ -5257,9 +5217,7 @@ init|=
 name|PositiveIntOutputs
 operator|.
 name|getSingleton
-argument_list|(
-literal|true
-argument_list|)
+argument_list|()
 decl_stmt|;
 specifier|final
 name|PositiveIntOutputs
@@ -5268,9 +5226,7 @@ init|=
 name|PositiveIntOutputs
 operator|.
 name|getSingleton
-argument_list|(
-literal|false
-argument_list|)
+argument_list|()
 decl_stmt|;
 specifier|final
 name|PairOutputs
@@ -5413,9 +5369,7 @@ init|=
 name|PositiveIntOutputs
 operator|.
 name|getSingleton
-argument_list|(
-literal|true
-argument_list|)
+argument_list|()
 decl_stmt|;
 operator|new
 name|VisitTerms
@@ -5484,9 +5438,7 @@ init|=
 name|PositiveIntOutputs
 operator|.
 name|getSingleton
-argument_list|(
-literal|false
-argument_list|)
+argument_list|()
 decl_stmt|;
 operator|new
 name|VisitTerms
@@ -5957,9 +5909,7 @@ init|=
 name|PositiveIntOutputs
 operator|.
 name|getSingleton
-argument_list|(
-literal|true
-argument_list|)
+argument_list|()
 decl_stmt|;
 comment|// Build an FST mapping BytesRef -> Long
 specifier|final
@@ -8209,9 +8159,7 @@ init|=
 name|PositiveIntOutputs
 operator|.
 name|getSingleton
-argument_list|(
-literal|true
-argument_list|)
+argument_list|()
 decl_stmt|;
 specifier|final
 name|Builder
@@ -8370,9 +8318,7 @@ init|=
 name|PositiveIntOutputs
 operator|.
 name|getSingleton
-argument_list|(
-literal|true
-argument_list|)
+argument_list|()
 decl_stmt|;
 specifier|final
 name|boolean
@@ -8571,9 +8517,7 @@ init|=
 name|PositiveIntOutputs
 operator|.
 name|getSingleton
-argument_list|(
-literal|true
-argument_list|)
+argument_list|()
 decl_stmt|;
 specifier|final
 name|Long
@@ -9208,9 +9152,7 @@ init|=
 name|PositiveIntOutputs
 operator|.
 name|getSingleton
-argument_list|(
-literal|true
-argument_list|)
+argument_list|()
 decl_stmt|;
 specifier|final
 name|Builder
@@ -9575,17 +9517,13 @@ argument_list|(
 name|PositiveIntOutputs
 operator|.
 name|getSingleton
-argument_list|(
-literal|true
-argument_list|)
+argument_list|()
 argument_list|,
 comment|// weight
 name|PositiveIntOutputs
 operator|.
 name|getSingleton
-argument_list|(
-literal|true
-argument_list|)
+argument_list|()
 comment|// output
 argument_list|)
 decl_stmt|;
@@ -10030,9 +9968,7 @@ init|=
 name|PositiveIntOutputs
 operator|.
 name|getSingleton
-argument_list|(
-literal|true
-argument_list|)
+argument_list|()
 decl_stmt|;
 specifier|final
 name|Builder
@@ -10829,17 +10765,13 @@ argument_list|(
 name|PositiveIntOutputs
 operator|.
 name|getSingleton
-argument_list|(
-literal|true
-argument_list|)
+argument_list|()
 argument_list|,
 comment|// weight
 name|PositiveIntOutputs
 operator|.
 name|getSingleton
-argument_list|(
-literal|true
-argument_list|)
+argument_list|()
 comment|// output
 argument_list|)
 decl_stmt|;

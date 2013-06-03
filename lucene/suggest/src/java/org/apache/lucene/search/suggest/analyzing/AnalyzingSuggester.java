@@ -2476,9 +2476,7 @@ argument_list|(
 name|PositiveIntOutputs
 operator|.
 name|getSingleton
-argument_list|(
-literal|true
-argument_list|)
+argument_list|()
 argument_list|,
 name|ByteSequenceOutputs
 operator|.
@@ -3209,9 +3207,7 @@ argument_list|(
 name|PositiveIntOutputs
 operator|.
 name|getSingleton
-argument_list|(
-literal|true
-argument_list|)
+argument_list|()
 argument_list|,
 name|ByteSequenceOutputs
 operator|.

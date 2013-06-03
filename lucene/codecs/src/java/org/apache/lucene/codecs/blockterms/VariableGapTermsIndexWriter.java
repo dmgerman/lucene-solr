@@ -988,9 +988,7 @@ operator|=
 name|PositiveIntOutputs
 operator|.
 name|getSingleton
-argument_list|(
-literal|true
-argument_list|)
+argument_list|()
 expr_stmt|;
 name|fstBuilder
 operator|=
