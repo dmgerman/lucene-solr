@@ -3263,6 +3263,13 @@ name|length
 argument_list|()
 operator|>
 literal|0
+operator|&&
+name|builder
+operator|.
+name|length
+argument_list|()
+operator|<
+name|maxLength
 condition|)
 block|{
 name|builder
