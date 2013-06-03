@@ -516,6 +516,8 @@ name|valueOf
 argument_list|(
 name|id
 argument_list|)
+argument_list|,
+name|id
 argument_list|)
 expr_stmt|;
 block|}
@@ -574,6 +576,8 @@ name|valueOf
 argument_list|(
 name|id
 argument_list|)
+argument_list|,
+name|id
 argument_list|)
 expr_stmt|;
 name|Thread
