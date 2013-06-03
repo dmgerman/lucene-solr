@@ -3981,6 +3981,26 @@ name|shutdown
 argument_list|()
 expr_stmt|;
 block|}
+comment|/**    * A trivial test that verifies the example keystore used for SSL testing can be     * found using the base class. this helps future-proof against hte possibility of     * something moving/breaking thekeystore path in a way that results in the SSL     * randomization logic being forced to silently never use SSL.  (We can't enforce     * this type of check in the base class because then it would not be usable by client     * code depending on the test framework    */
+DECL|method|testExampleKeystorePath
+specifier|public
+name|void
+name|testExampleKeystorePath
+parameter_list|()
+block|{
+name|assertNotNull
+argument_list|(
+literal|"Example keystore is null, meaning that something has changed in the "
+operator|+
+literal|"structure of the example configs and/or ExternalPaths.java - "
+operator|+
+literal|"SSL randomization is broken"
+argument_list|,
+name|getExampleKeystoreFile
+argument_list|()
+argument_list|)
+expr_stmt|;
+block|}
 DECL|method|findUnusedPort
 specifier|private
 name|int
