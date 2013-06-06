@@ -41,15 +41,37 @@ name|AppendingLongBuffer
 extends|extends
 name|AbstractAppendingLongBuffer
 block|{
-comment|/** Sole constructor. */
+comment|/** @param initialPageCount the initial number of pages    *  @param pageSize         the size of a single page */
+DECL|method|AppendingLongBuffer
+specifier|public
+name|AppendingLongBuffer
+parameter_list|(
+name|int
+name|initialPageCount
+parameter_list|,
+name|int
+name|pageSize
+parameter_list|)
+block|{
+name|super
+argument_list|(
+name|initialPageCount
+argument_list|,
+name|pageSize
+argument_list|)
+expr_stmt|;
+block|}
+comment|/** Create an {@link AppendingLongBuffer} with initialPageCount=16 and    *  pageSize=1024. */
 DECL|method|AppendingLongBuffer
 specifier|public
 name|AppendingLongBuffer
 parameter_list|()
 block|{
-name|super
+name|this
 argument_list|(
 literal|16
+argument_list|,
+literal|1024
 argument_list|)
 expr_stmt|;
 block|}
@@ -118,6 +140,8 @@ argument_list|)
 return|;
 block|}
 block|}
+annotation|@
+name|Override
 DECL|method|packPendingValues
 name|void
 name|packPendingValues
@@ -126,7 +150,9 @@ block|{
 assert|assert
 name|pendingOff
 operator|==
-name|MAX_PENDING_COUNT
+name|pending
+operator|.
+name|length
 assert|;
 comment|// compute max delta
 name|long
@@ -312,6 +338,8 @@ expr_stmt|;
 block|}
 block|}
 comment|/** Return an iterator over the values of this buffer. */
+annotation|@
+name|Override
 DECL|method|iterator
 specifier|public
 name|Iterator
@@ -336,7 +364,6 @@ operator|.
 name|Iterator
 block|{
 DECL|method|Iterator
-specifier|private
 name|Iterator
 parameter_list|()
 block|{
@@ -344,6 +371,8 @@ name|super
 argument_list|()
 expr_stmt|;
 block|}
+annotation|@
+name|Override
 DECL|method|fillValues
 name|void
 name|fillValues
@@ -396,7 +425,9 @@ literal|0
 init|;
 name|k
 operator|<
-name|MAX_PENDING_COUNT
+name|pending
+operator|.
+name|length
 condition|;
 control|)
 block|{
@@ -415,7 +446,9 @@ name|currentValues
 argument_list|,
 name|k
 argument_list|,
-name|MAX_PENDING_COUNT
+name|pending
+operator|.
+name|length
 operator|-
 name|k
 argument_list|)
@@ -430,7 +463,9 @@ literal|0
 init|;
 name|k
 operator|<
-name|MAX_PENDING_COUNT
+name|pending
+operator|.
+name|length
 condition|;
 operator|++
 name|k
