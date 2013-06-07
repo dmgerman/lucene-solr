@@ -14485,13 +14485,35 @@ comment|//   startCommitMergeDeletes
 comment|//   startMergeInit
 comment|//   DocumentsWriter.ThreadState.init start
 DECL|method|testPoint
+specifier|private
+specifier|final
 name|boolean
 name|testPoint
 parameter_list|(
 name|String
-name|name
+name|message
 parameter_list|)
 block|{
+if|if
+condition|(
+name|infoStream
+operator|.
+name|isEnabled
+argument_list|(
+literal|"TP"
+argument_list|)
+condition|)
+block|{
+name|infoStream
+operator|.
+name|message
+argument_list|(
+literal|"TP"
+argument_list|,
+name|message
+argument_list|)
+expr_stmt|;
+block|}
 return|return
 literal|true
 return|;
