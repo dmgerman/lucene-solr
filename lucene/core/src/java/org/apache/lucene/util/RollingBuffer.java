@@ -17,14 +17,6 @@ comment|/*  * Licensed to the Apache Software Foundation (ASF) under one or more
 end_comment
 
 begin_comment
-comment|// TODO: probably move this to core at some point (eg,
-end_comment
-
-begin_comment
-comment|// cutover kuromoji, synfilter, LookaheadTokenFilter)
-end_comment
-
-begin_comment
 comment|/** Acts like forever growing T[], but internally uses a  *  circular buffer to reuse instances of T.  *   *  @lucene.internal */
 end_comment
 
