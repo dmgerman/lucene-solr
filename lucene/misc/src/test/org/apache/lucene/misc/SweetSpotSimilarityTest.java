@@ -1387,7 +1387,7 @@ specifier|public
 name|float
 name|tf
 parameter_list|(
-name|int
+name|float
 name|freq
 parameter_list|)
 block|{

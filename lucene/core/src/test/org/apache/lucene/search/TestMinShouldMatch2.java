@@ -272,7 +272,7 @@ name|similarities
 operator|.
 name|Similarity
 operator|.
-name|ExactSimScorer
+name|SimScorer
 import|;
 end_import
 
@@ -2193,7 +2193,7 @@ argument_list|()
 decl_stmt|;
 DECL|field|sims
 specifier|final
-name|ExactSimScorer
+name|SimScorer
 index|[]
 name|sims
 decl_stmt|;
@@ -2275,7 +2275,7 @@ operator|.
 name|sims
 operator|=
 operator|new
-name|ExactSimScorer
+name|SimScorer
 index|[
 operator|(
 name|int
@@ -2433,7 +2433,7 @@ name|weight
 operator|.
 name|similarity
 operator|.
-name|exactSimScorer
+name|simScorer
 argument_list|(
 name|w
 argument_list|,

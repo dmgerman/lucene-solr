@@ -118,7 +118,7 @@ name|similarities
 operator|.
 name|Similarity
 operator|.
-name|SloppySimScorer
+name|SimScorer
 import|;
 end_import
 
@@ -514,7 +514,7 @@ name|this
 argument_list|,
 name|similarity
 operator|.
-name|sloppySimScorer
+name|simScorer
 argument_list|(
 name|stats
 argument_list|,
@@ -595,12 +595,12 @@ operator|.
 name|sloppyFreq
 argument_list|()
 decl_stmt|;
-name|SloppySimScorer
+name|SimScorer
 name|docScorer
 init|=
 name|similarity
 operator|.
-name|sloppySimScorer
+name|simScorer
 argument_list|(
 name|stats
 argument_list|,

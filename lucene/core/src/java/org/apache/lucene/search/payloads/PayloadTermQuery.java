@@ -176,7 +176,7 @@ name|similarities
 operator|.
 name|Similarity
 operator|.
-name|SloppySimScorer
+name|SimScorer
 import|;
 end_import
 
@@ -299,7 +299,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * This class is very similar to  * {@link org.apache.lucene.search.spans.SpanTermQuery} except that it factors  * in the value of the payload located at each of the positions where the  * {@link org.apache.lucene.index.Term} occurs.  *<p/>  * NOTE: In order to take advantage of this with the default scoring implementation  * ({@link DefaultSimilarity}), you must override {@link DefaultSimilarity#scorePayload(int, int, int, BytesRef)},  * which returns 1 by default.  *<p/>  * Payload scores are aggregated using a pluggable {@link PayloadFunction}.  * @see org.apache.lucene.search.similarities.Similarity.SloppySimScorer#computePayloadFactor(int, int, int, BytesRef)  **/
+comment|/**  * This class is very similar to  * {@link org.apache.lucene.search.spans.SpanTermQuery} except that it factors  * in the value of the payload located at each of the positions where the  * {@link org.apache.lucene.index.Term} occurs.  *<p/>  * NOTE: In order to take advantage of this with the default scoring implementation  * ({@link DefaultSimilarity}), you must override {@link DefaultSimilarity#scorePayload(int, int, int, BytesRef)},  * which returns 1 by default.  *<p/>  * Payload scores are aggregated using a pluggable {@link PayloadFunction}.  * @see org.apache.lucene.search.similarities.Similarity.SimScorer#computePayloadFactor(int, int, int, BytesRef)  **/
 end_comment
 
 begin_class
@@ -468,7 +468,7 @@ name|this
 argument_list|,
 name|similarity
 operator|.
-name|sloppySimScorer
+name|simScorer
 argument_list|(
 name|stats
 argument_list|,
@@ -517,7 +517,7 @@ name|weight
 parameter_list|,
 name|Similarity
 operator|.
-name|SloppySimScorer
+name|SimScorer
 name|docScorer
 parameter_list|)
 throws|throws
@@ -911,12 +911,12 @@ operator|.
 name|sloppyFreq
 argument_list|()
 decl_stmt|;
-name|SloppySimScorer
+name|SimScorer
 name|docScorer
 init|=
 name|similarity
 operator|.
-name|sloppySimScorer
+name|simScorer
 argument_list|(
 name|stats
 argument_list|,
