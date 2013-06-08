@@ -183,7 +183,7 @@ import|;
 end_import
 
 begin_comment
-comment|/** Classic fuzzy TermsEnum for enumerating all terms that are similar  * to the specified filter term.  *  *<p>Term enumerations are always ordered by  * {@link #getComparator}.  Each term in the enumeration is  * greater than all that precede it.</p>  *   * @deprecated Use {@link FuzzyTermsEnum} instead.  */
+comment|/** Potentially slow fuzzy TermsEnum for enumerating all terms that are similar  * to the specified filter term.  *<p> If the minSimilarity or maxEdits is greater than the Automaton's  * allowable range, this backs off to the classic (brute force)  * fuzzy terms enum method by calling FuzzyTermsEnum's getAutomatonEnum.  *</p>  *<p>Term enumerations are always ordered by  * {@link #getComparator}.  Each term in the enumeration is  * greater than all that precede it.</p>  *   * @deprecated Use {@link FuzzyTermsEnum} instead.  */
 end_comment
 
 begin_class
@@ -464,7 +464,7 @@ argument_list|(
 literal|20
 argument_list|)
 decl_stmt|;
-comment|/**      * The termCompare method in FuzzyTermEnum uses Levenshtein distance to       * calculate the distance between the given term and the comparing term.       */
+comment|/**      *<p>The termCompare method in FuzzyTermEnum uses Levenshtein distance to       * calculate the distance between the given term and the comparing term.       *</p>      *<p>If the minSimilarity is>= 1.0, this uses the maxEdits as the comparison.      * Otherwise, this method uses the following logic to calculate similarity.      *<pre>      *   similarity = 1 - ((float)distance / (float) (prefixLength + Math.min(textlen, targetlen)));      *</pre>      * where distance is the Levenshtein distance for the two words.      *</p>      *       */
 annotation|@
 name|Override
 DECL|method|accept
@@ -499,10 +499,10 @@ name|utf32
 argument_list|)
 expr_stmt|;
 specifier|final
-name|float
-name|similarity
+name|int
+name|distance
 init|=
-name|similarity
+name|calcDistance
 argument_list|(
 name|utf32
 operator|.
@@ -517,11 +517,78 @@ operator|-
 name|realPrefixLength
 argument_list|)
 decl_stmt|;
+comment|//Integer.MIN_VALUE is the sentinel that Levenshtein stopped early
 if|if
 condition|(
+name|distance
+operator|==
+name|Integer
+operator|.
+name|MIN_VALUE
+condition|)
+block|{
+return|return
+name|AcceptStatus
+operator|.
+name|NO
+return|;
+block|}
+comment|//no need to calc similarity, if raw is true and distance> maxEdits
+if|if
+condition|(
+name|raw
+operator|==
+literal|true
+operator|&&
+name|distance
+operator|>
+name|maxEdits
+condition|)
+block|{
+return|return
+name|AcceptStatus
+operator|.
+name|NO
+return|;
+block|}
+specifier|final
+name|float
+name|similarity
+init|=
+name|calcSimilarity
+argument_list|(
+name|distance
+argument_list|,
+operator|(
+name|utf32
+operator|.
+name|length
+operator|-
+name|realPrefixLength
+operator|)
+argument_list|,
+name|text
+operator|.
+name|length
+argument_list|)
+decl_stmt|;
+comment|//if raw is true, then distance must also be<= maxEdits by now
+comment|//given the previous if statement
+if|if
+condition|(
+name|raw
+operator|==
+literal|true
+operator|||
+operator|(
+name|raw
+operator|==
+literal|false
+operator|&&
 name|similarity
 operator|>
 name|minSimilarity
+operator|)
 condition|)
 block|{
 name|boostAtt
@@ -544,11 +611,13 @@ name|YES
 return|;
 block|}
 else|else
+block|{
 return|return
 name|AcceptStatus
 operator|.
 name|NO
 return|;
+block|}
 block|}
 else|else
 block|{
@@ -560,12 +629,12 @@ return|;
 block|}
 block|}
 comment|/******************************      * Compute Levenshtein distance      ******************************/
-comment|/**      *<p>Similarity returns a number that is 1.0f or less (including negative numbers)      * based on how similar the Term is compared to a target term.  It returns      * exactly 0.0f when      *<pre>      *    editDistance&gt; maximumEditDistance</pre>      * Otherwise it returns:      *<pre>      *    1 - (editDistance / length)</pre>      * where length is the length of the shortest term (text or target) including a      * prefix that are identical and editDistance is the Levenshtein distance for      * the two words.</p>      *      *<p>Embedded within this algorithm is a fail-fast Levenshtein distance      * algorithm.  The fail-fast algorithm differs from the standard Levenshtein      * distance algorithm in that it is aborted if it is discovered that the      * minimum distance between the words is greater than some threshold.      *      *<p>To calculate the maximum distance threshold we use the following formula:      *<pre>      *     (1 - minimumSimilarity) * length</pre>      * where length is the shortest term including any prefix that is not part of the      * similarity comparison.  This formula was derived by solving for what maximum value      * of distance returns false for the following statements:      *<pre>      *   similarity = 1 - ((float)distance / (float) (prefixLength + Math.min(textlen, targetlen)));      *   return (similarity> minimumSimilarity);</pre>      * where distance is the Levenshtein distance for the two words.      *</p>      *<p>Levenshtein distance (also known as edit distance) is a measure of similarity      * between two strings where the distance is measured as the number of character      * deletions, insertions or substitutions required to transform one string to      * the other string.      * @param target the target word or phrase      * @return the similarity,  0.0 or less indicates that it matches less than the required      * threshold and 1.0 indicates that the text and target are identical      */
-DECL|method|similarity
+comment|/**      *<p>calcDistance returns the Levenshtein distance between the query term      * and the target term.</p>      *       *<p>Embedded within this algorithm is a fail-fast Levenshtein distance      * algorithm.  The fail-fast algorithm differs from the standard Levenshtein      * distance algorithm in that it is aborted if it is discovered that the      * minimum distance between the words is greater than some threshold.       *<p>Levenshtein distance (also known as edit distance) is a measure of similarity      * between two strings where the distance is measured as the number of character      * deletions, insertions or substitutions required to transform one string to      * the other string.      * @param target the target word or phrase      * @param offset the offset at which to start the comparison      * @param length the length of what's left of the string to compare      * @return the number of edits or Integer.MIN_VALUE if the edit distance is      * greater than maxDistance.      */
+DECL|method|calcDistance
 specifier|private
 specifier|final
-name|float
-name|similarity
+name|int
+name|calcDistance
 parameter_list|(
 specifier|final
 name|int
@@ -603,22 +672,7 @@ block|{
 comment|//we don't have anything to compare.  That means if we just add
 comment|//the letters for m we get the new word
 return|return
-name|realPrefixLength
-operator|==
-literal|0
-condition|?
-literal|0.0f
-else|:
-literal|1.0f
-operator|-
-operator|(
-operator|(
-name|float
-operator|)
 name|m
-operator|/
-name|realPrefixLength
-operator|)
 return|;
 block|}
 if|if
@@ -629,22 +683,7 @@ literal|0
 condition|)
 block|{
 return|return
-name|realPrefixLength
-operator|==
-literal|0
-condition|?
-literal|0.0f
-else|:
-literal|1.0f
-operator|-
-operator|(
-operator|(
-name|float
-operator|)
 name|n
-operator|/
-name|realPrefixLength
-operator|)
 return|;
 block|}
 specifier|final
@@ -678,9 +717,9 @@ comment|//which is 8-3 or more precisely Math.abs(3-8).
 comment|//if our maximum edit distance is 4, then we can discard this word
 comment|//without looking at it.
 return|return
-name|Float
+name|Integer
 operator|.
-name|NEGATIVE_INFINITY
+name|MIN_VALUE
 return|;
 block|}
 comment|// init matrix d
@@ -890,9 +929,9 @@ comment|//equal is okay, but not greater
 comment|//the closest the target can be to the text is just too far away.
 comment|//this target is leaving the party early.
 return|return
-name|Float
+name|Integer
 operator|.
-name|NEGATIVE_INFINITY
+name|MIN_VALUE
 return|;
 block|}
 comment|// copy current distance counts to 'previous row' distance counts: swap p and d
@@ -913,6 +952,28 @@ expr_stmt|;
 block|}
 comment|// our last action in the above loop was to switch d and p, so p now
 comment|// actually has the most recent cost counts
+return|return
+name|p
+index|[
+name|n
+index|]
+return|;
+block|}
+DECL|method|calcSimilarity
+specifier|private
+name|float
+name|calcSimilarity
+parameter_list|(
+name|int
+name|edits
+parameter_list|,
+name|int
+name|m
+parameter_list|,
+name|int
+name|n
+parameter_list|)
+block|{
 comment|// this will return less than 0.0 when the edit distance is
 comment|// greater than the number of characters in the shorter word.
 comment|// but this was the formula that was previously used in FuzzyTermEnum,
@@ -925,10 +986,7 @@ operator|(
 operator|(
 name|float
 operator|)
-name|p
-index|[
-name|n
-index|]
+name|edits
 operator|/
 call|(
 name|float
