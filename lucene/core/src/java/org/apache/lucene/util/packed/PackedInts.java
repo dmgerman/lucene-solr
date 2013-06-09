@@ -762,6 +762,26 @@ operator|=
 name|bitsPerValue
 expr_stmt|;
 block|}
+annotation|@
+name|Override
+DECL|method|toString
+specifier|public
+name|String
+name|toString
+parameter_list|()
+block|{
+return|return
+literal|"FormatAndBits(format="
+operator|+
+name|format
+operator|+
+literal|" bitsPerValue="
+operator|+
+name|bitsPerValue
+operator|+
+literal|")"
+return|;
+block|}
 block|}
 comment|/**    * Try to find the {@link Format} and number of bits per value that would    * restore from disk the fastest reader whose overhead is less than    *<code>acceptableOverheadRatio</code>.    *</p><p>    * The<code>acceptableOverheadRatio</code> parameter makes sense for    * random-access {@link Reader}s. In case you only plan to perform    * sequential access on this stream later on, you should probably use    * {@link PackedInts#COMPACT}.    *</p><p>    * If you don't know how many values you are going to write, use    *<code>valueCount = -1</code>.    */
 DECL|method|fastestFormatAndBits
