@@ -407,6 +407,7 @@ name|insane
 operator|=
 literal|true
 expr_stmt|;
+break|break;
 block|}
 block|}
 name|Assert

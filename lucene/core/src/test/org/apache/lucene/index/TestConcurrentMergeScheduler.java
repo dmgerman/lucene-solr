@@ -356,6 +356,15 @@ control|)
 block|{
 if|if
 condition|(
+name|isDoFlush
+operator|&&
+name|isClose
+condition|)
+block|{
+break|break;
+block|}
+if|if
+condition|(
 literal|"flush"
 operator|.
 name|equals

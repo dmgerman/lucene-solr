@@ -662,6 +662,11 @@ name|i
 init|=
 literal|0
 decl_stmt|;
+if|if
+condition|(
+name|VERBOSE
+condition|)
+block|{
 for|for
 control|(
 name|FacetResult
@@ -669,11 +674,6 @@ name|facetResult
 range|:
 name|res
 control|)
-block|{
-if|if
-condition|(
-name|VERBOSE
-condition|)
 block|{
 name|System
 operator|.

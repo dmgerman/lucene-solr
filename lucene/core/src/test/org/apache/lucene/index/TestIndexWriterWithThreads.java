@@ -2047,6 +2047,17 @@ control|)
 block|{
 if|if
 condition|(
+name|sawAbortOrFlushDoc
+operator|&&
+name|sawMerge
+operator|&&
+name|sawClose
+condition|)
+block|{
+break|break;
+block|}
+if|if
+condition|(
 literal|"abort"
 operator|.
 name|equals
@@ -2137,10 +2148,12 @@ if|if
 condition|(
 name|onlyOnce
 condition|)
+block|{
 name|doFail
 operator|=
 literal|false
 expr_stmt|;
+block|}
 comment|//System.out.println(Thread.currentThread().getName() + ": now fail");
 comment|//new Throwable().printStackTrace(System.out);
 throw|throw
