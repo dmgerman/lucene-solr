@@ -448,9 +448,9 @@ try|try
 block|{
 name|waitForConnected
 argument_list|(
-name|SolrZkClient
+name|Long
 operator|.
-name|DEFAULT_CLIENT_CONNECT_TIMEOUT
+name|MAX_VALUE
 argument_list|)
 expr_stmt|;
 block|}
