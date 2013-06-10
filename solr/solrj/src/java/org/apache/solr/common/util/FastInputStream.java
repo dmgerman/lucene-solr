@@ -38,9 +38,7 @@ specifier|public
 class|class
 name|FastInputStream
 extends|extends
-name|InputStream
-implements|implements
-name|DataInput
+name|DataInputInputStream
 block|{
 DECL|field|in
 specifier|protected
