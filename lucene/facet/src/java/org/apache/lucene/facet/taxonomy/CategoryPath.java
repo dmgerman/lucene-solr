@@ -19,6 +19,22 @@ comment|/*  * Licensed to the Apache Software Foundation (ASF) under one or more
 end_comment
 
 begin_import
+import|import static
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|util
+operator|.
+name|ByteBlockPool
+operator|.
+name|BYTE_BLOCK_SIZE
+import|;
+end_import
+
+begin_import
 import|import
 name|java
 operator|.
@@ -55,6 +71,23 @@ argument_list|<
 name|CategoryPath
 argument_list|>
 block|{
+comment|/*    * copied from DocumentWriterPerThread -- if a CategoryPath is resolved to a    * drill-down term which is encoded to a larger term than that length, it is    * silently dropped! Therefore we limit the number of characters to MAX/4 to    * be on the safe side.    */
+comment|/**    * The maximum number of characters a {@link CategoryPath} can have. That is    * {@link CategoryPath#toString(char)} length must not exceed that limit.    */
+DECL|field|MAX_CATEGORY_PATH_LENGTH
+specifier|public
+specifier|final
+specifier|static
+name|int
+name|MAX_CATEGORY_PATH_LENGTH
+init|=
+operator|(
+name|BYTE_BLOCK_SIZE
+operator|-
+literal|2
+operator|)
+operator|/
+literal|4
+decl_stmt|;
 comment|/** An empty {@link CategoryPath} */
 DECL|field|EMPTY
 specifier|public
@@ -172,6 +205,11 @@ literal|0
 operator|:
 literal|"use CategoryPath.EMPTY to create an empty path"
 assert|;
+name|long
+name|len
+init|=
+literal|0
+decl_stmt|;
 for|for
 control|(
 name|String
@@ -207,6 +245,61 @@ argument_list|)
 argument_list|)
 throw|;
 block|}
+name|len
+operator|+=
+name|comp
+operator|.
+name|length
+argument_list|()
+expr_stmt|;
+block|}
+name|len
+operator|+=
+name|components
+operator|.
+name|length
+operator|-
+literal|1
+expr_stmt|;
+comment|// add separators
+if|if
+condition|(
+name|len
+operator|>
+name|MAX_CATEGORY_PATH_LENGTH
+condition|)
+block|{
+throw|throw
+operator|new
+name|IllegalArgumentException
+argument_list|(
+literal|"category path exceeds maximum allowed path length: max="
+operator|+
+name|MAX_CATEGORY_PATH_LENGTH
+operator|+
+literal|" len="
+operator|+
+name|len
+operator|+
+literal|" path="
+operator|+
+name|Arrays
+operator|.
+name|toString
+argument_list|(
+name|components
+argument_list|)
+operator|.
+name|substring
+argument_list|(
+literal|0
+argument_list|,
+literal|30
+argument_list|)
+operator|+
+literal|"..."
+argument_list|)
+throw|;
 block|}
 name|this
 operator|.
@@ -235,6 +328,46 @@ name|char
 name|delimiter
 parameter_list|)
 block|{
+if|if
+condition|(
+name|pathString
+operator|.
+name|length
+argument_list|()
+operator|>
+name|MAX_CATEGORY_PATH_LENGTH
+condition|)
+block|{
+throw|throw
+operator|new
+name|IllegalArgumentException
+argument_list|(
+literal|"category path exceeds maximum allowed path length: max="
+operator|+
+name|MAX_CATEGORY_PATH_LENGTH
+operator|+
+literal|" len="
+operator|+
+name|pathString
+operator|.
+name|length
+argument_list|()
+operator|+
+literal|" path="
+operator|+
+name|pathString
+operator|.
+name|substring
+argument_list|(
+literal|0
+argument_list|,
+literal|30
+argument_list|)
+operator|+
+literal|"..."
+argument_list|)
+throw|;
+block|}
 name|String
 index|[]
 name|comps

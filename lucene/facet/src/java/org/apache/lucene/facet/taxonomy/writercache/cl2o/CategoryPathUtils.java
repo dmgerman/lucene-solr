@@ -150,9 +150,6 @@ block|{
 name|int
 name|length
 init|=
-operator|(
-name|short
-operator|)
 name|charBlockArray
 operator|.
 name|charAt
@@ -195,9 +192,6 @@ block|{
 name|int
 name|len
 init|=
-operator|(
-name|short
-operator|)
 name|charBlockArray
 operator|.
 name|charAt
@@ -309,9 +303,6 @@ block|{
 name|int
 name|len
 init|=
-operator|(
-name|short
-operator|)
 name|charBlockArray
 operator|.
 name|charAt
