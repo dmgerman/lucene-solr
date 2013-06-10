@@ -557,6 +557,18 @@ name|CompressingStoredFieldsReader
 extends|extends
 name|StoredFieldsReader
 block|{
+comment|// Do not reuse the decompression buffer when there is more than 32kb to decompress
+DECL|field|BUFFER_REUSE_THRESHOLD
+specifier|private
+specifier|static
+specifier|final
+name|int
+name|BUFFER_REUSE_THRESHOLD
+init|=
+literal|1
+operator|<<
+literal|15
+decl_stmt|;
 DECL|field|fieldInfos
 specifier|private
 specifier|final
@@ -1774,6 +1786,22 @@ block|{
 comment|// nothing to do
 return|return;
 block|}
+specifier|final
+name|BytesRef
+name|bytes
+init|=
+name|totalLength
+operator|<=
+name|BUFFER_REUSE_THRESHOLD
+condition|?
+name|this
+operator|.
+name|bytes
+else|:
+operator|new
+name|BytesRef
+argument_list|()
+decl_stmt|;
 name|decompressor
 operator|.
 name|decompress
