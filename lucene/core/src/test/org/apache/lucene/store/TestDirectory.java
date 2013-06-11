@@ -50,6 +50,18 @@ begin_import
 import|import
 name|java
 operator|.
+name|nio
+operator|.
+name|file
+operator|.
+name|NoSuchFileException
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
 name|util
 operator|.
 name|Arrays
@@ -447,6 +459,8 @@ block|}
 catch|catch
 parameter_list|(
 name|FileNotFoundException
+decl||
+name|NoSuchFileException
 name|e
 parameter_list|)
 block|{

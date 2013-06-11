@@ -907,18 +907,12 @@ block|}
 catch|catch
 parameter_list|(
 name|FileNotFoundException
-name|e
-parameter_list|)
-block|{
-comment|// expected
-block|}
-catch|catch
-parameter_list|(
+decl||
 name|NoSuchFileException
 name|e
 parameter_list|)
 block|{
-comment|// expected (only java 1.7)
+comment|// expected
 block|}
 block|}
 annotation|@

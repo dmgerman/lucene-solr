@@ -60,6 +60,18 @@ begin_import
 import|import
 name|java
 operator|.
+name|nio
+operator|.
+name|file
+operator|.
+name|NoSuchFileException
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
 name|util
 operator|.
 name|Collection
@@ -148,7 +160,7 @@ parameter_list|)
 throws|throws
 name|IOException
 function_decl|;
-comment|/**    * Returns the length of a file in the directory. This method follows the    * following contract:    *<ul>    *<li>Throws {@link FileNotFoundException} if the file does not exist    *<li>Returns a value&ge;0 if the file exists, which specifies its length.    *</ul>    *     * @param name the name of the file for which to return the length.    * @throws FileNotFoundException if the file does not exist.    * @throws IOException if there was an IO error while retrieving the file's    *         length.    */
+comment|/**    * Returns the length of a file in the directory. This method follows the    * following contract:    *<ul>    *<li>Throws {@link FileNotFoundException} or {@link NoSuchFileException}    * if the file does not exist.    *<li>Returns a value&ge;0 if the file exists, which specifies its length.    *</ul>    *     * @param name the name of the file for which to return the length.    * @throws IOException if there was an IO error while retrieving the file's    *         length.    */
 DECL|method|fileLength
 specifier|public
 specifier|abstract
@@ -193,7 +205,7 @@ parameter_list|)
 throws|throws
 name|IOException
 function_decl|;
-comment|/** Returns a stream reading an existing file, with the    * specified read buffer size.  The particular Directory    * implementation may ignore the buffer size.  Currently    * the only Directory implementations that respect this    * parameter are {@link FSDirectory} and {@link    * CompoundFileDirectory}.   */
+comment|/** Returns a stream reading an existing file, with the    * specified read buffer size.  The particular Directory    * implementation may ignore the buffer size.  Currently    * the only Directory implementations that respect this    * parameter are {@link FSDirectory} and {@link    * CompoundFileDirectory}.    *<p>Throws {@link FileNotFoundException} or {@link NoSuchFileException}    * if the file does not exist.    */
 DECL|method|openInput
 specifier|public
 specifier|abstract
@@ -484,7 +496,7 @@ block|}
 block|}
 block|}
 block|}
-comment|/**    * Creates an {@link IndexInputSlicer} for the given file name.    * IndexInputSlicer allows other {@link Directory} implementations to    * efficiently open one or more sliced {@link IndexInput} instances from a    * single file handle. The underlying file handle is kept open until the    * {@link IndexInputSlicer} is closed.    *    * @throws IOException    *           if an {@link IOException} occurs    * @lucene.internal    * @lucene.experimental    */
+comment|/**    * Creates an {@link IndexInputSlicer} for the given file name.    * IndexInputSlicer allows other {@link Directory} implementations to    * efficiently open one or more sliced {@link IndexInput} instances from a    * single file handle. The underlying file handle is kept open until the    * {@link IndexInputSlicer} is closed.    *<p>Throws {@link FileNotFoundException} or {@link NoSuchFileException}    * if the file does not exist.    *    * @throws IOException    *           if an {@link IOException} occurs    * @lucene.internal    * @lucene.experimental    */
 DECL|method|createSlicer
 specifier|public
 name|IndexInputSlicer
