@@ -551,6 +551,10 @@ argument_list|(
 name|charArray
 argument_list|,
 name|j
+argument_list|,
+name|charArray
+operator|.
+name|length
 argument_list|)
 decl_stmt|;
 if|if

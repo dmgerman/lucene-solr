@@ -215,6 +215,8 @@ argument_list|(
 name|buffer
 argument_list|,
 name|i
+argument_list|,
+name|length
 argument_list|)
 decl_stmt|;
 name|iOrAfter
@@ -392,6 +394,8 @@ argument_list|(
 name|s
 argument_list|,
 name|i
+argument_list|,
+name|len
 argument_list|)
 decl_stmt|;
 if|if

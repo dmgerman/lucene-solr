@@ -1313,6 +1313,10 @@ argument_list|(
 name|text2
 argument_list|,
 name|i
+argument_list|,
+name|text2
+operator|.
+name|length
 argument_list|)
 condition|)
 return|return
@@ -1448,6 +1452,10 @@ argument_list|(
 name|text2
 argument_list|,
 name|i
+argument_list|,
+name|text2
+operator|.
+name|length
 argument_list|)
 condition|)
 return|return

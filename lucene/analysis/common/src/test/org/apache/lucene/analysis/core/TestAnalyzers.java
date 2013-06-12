@@ -995,16 +995,6 @@ literal|1
 index|]
 argument_list|)
 expr_stmt|;
-name|assertEquals
-argument_list|(
-literal|'\udc3e'
-argument_list|,
-name|termBuffer
-index|[
-name|length
-index|]
-argument_list|)
-expr_stmt|;
 block|}
 DECL|method|testLowerCaseTokenizer
 specifier|public

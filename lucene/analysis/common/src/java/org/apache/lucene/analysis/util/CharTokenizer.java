@@ -387,9 +387,6 @@ name|offset
 operator|+=
 name|dataLen
 expr_stmt|;
-if|if
-condition|(
-operator|!
 name|charUtils
 operator|.
 name|fill
@@ -398,9 +395,18 @@ name|ioBuffer
 argument_list|,
 name|input
 argument_list|)
+expr_stmt|;
+comment|// read supplementary char aware with CharacterUtils
+if|if
+condition|(
+name|ioBuffer
+operator|.
+name|getLength
+argument_list|()
+operator|==
+literal|0
 condition|)
 block|{
-comment|// read supplementary char aware with CharacterUtils
 name|dataLen
 operator|=
 literal|0
@@ -456,6 +462,11 @@ name|getBuffer
 argument_list|()
 argument_list|,
 name|bufferIndex
+argument_list|,
+name|ioBuffer
+operator|.
+name|getLength
+argument_list|()
 argument_list|)
 decl_stmt|;
 specifier|final
