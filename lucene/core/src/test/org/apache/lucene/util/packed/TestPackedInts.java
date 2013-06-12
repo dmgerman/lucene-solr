@@ -5205,6 +5205,21 @@ literal|1
 argument_list|)
 argument_list|)
 expr_stmt|;
+name|assertEquals
+argument_list|(
+name|RamUsageEstimator
+operator|.
+name|sizeOf
+argument_list|(
+name|wrt
+argument_list|)
+argument_list|,
+name|wrt
+operator|.
+name|ramBytesUsed
+argument_list|()
+argument_list|)
+expr_stmt|;
 block|}
 DECL|method|testPagedGrowableWriter
 specifier|public
@@ -5472,6 +5487,22 @@ argument_list|)
 argument_list|)
 expr_stmt|;
 block|}
+comment|// test ramBytesUsed
+name|assertEquals
+argument_list|(
+name|RamUsageEstimator
+operator|.
+name|sizeOf
+argument_list|(
+name|writer
+argument_list|)
+argument_list|,
+name|writer
+operator|.
+name|ramBytesUsed
+argument_list|()
+argument_list|)
+expr_stmt|;
 comment|// test copy
 name|PagedGrowableWriter
 name|copy
