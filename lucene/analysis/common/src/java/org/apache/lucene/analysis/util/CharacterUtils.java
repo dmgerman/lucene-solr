@@ -308,6 +308,21 @@ name|int
 name|destOff
 parameter_list|)
 block|{
+if|if
+condition|(
+name|srcLen
+operator|<
+literal|0
+condition|)
+block|{
+throw|throw
+operator|new
+name|IllegalArgumentException
+argument_list|(
+literal|"srcLen must be>= 0"
+argument_list|)
+throw|;
+block|}
 name|int
 name|codePointCount
 init|=
@@ -398,6 +413,21 @@ name|int
 name|destOff
 parameter_list|)
 block|{
+if|if
+condition|(
+name|srcLen
+operator|<
+literal|0
+condition|)
+block|{
+throw|throw
+operator|new
+name|IllegalArgumentException
+argument_list|(
+literal|"srcLen must be>= 0"
+argument_list|)
+throw|;
+block|}
 name|int
 name|written
 init|=
