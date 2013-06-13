@@ -167,19 +167,6 @@ name|getMaxMergeAtOnceExplicit
 argument_list|()
 argument_list|)
 expr_stmt|;
-comment|// make sure we apply compoundFile and mergeFactor
-name|assertEquals
-argument_list|(
-literal|0.0
-argument_list|,
-name|tieredMP
-operator|.
-name|getNoCFSRatio
-argument_list|()
-argument_list|,
-literal|0.0
-argument_list|)
-expr_stmt|;
 name|assertEquals
 argument_list|(
 literal|7
