@@ -364,6 +364,11 @@ argument_list|(
 literal|"Lucene40"
 argument_list|)
 argument_list|)
+operator|.
+name|setUseCompoundFile
+argument_list|(
+literal|false
+argument_list|)
 argument_list|)
 decl_stmt|;
 name|TestIndexWriterReader

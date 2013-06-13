@@ -400,7 +400,7 @@ argument_list|()
 argument_list|)
 argument_list|)
 decl_stmt|;
-comment|//writer.setUseCompoundFile(true);
+comment|//writer.setNoCFSRatio(1.0);
 comment|//writer.infoStream = System.out;
 for|for
 control|(

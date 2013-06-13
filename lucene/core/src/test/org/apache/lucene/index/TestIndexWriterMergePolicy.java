@@ -1526,7 +1526,7 @@ specifier|private
 name|void
 name|assertSetters
 parameter_list|(
-name|LogMergePolicy
+name|MergePolicy
 name|lmp
 parameter_list|)
 block|{

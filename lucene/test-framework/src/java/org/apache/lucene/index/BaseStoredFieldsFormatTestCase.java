@@ -745,7 +745,7 @@ argument_list|)
 argument_list|)
 argument_list|)
 decl_stmt|;
-comment|//w.w.setUseCompoundFile(false);
+comment|//w.w.setNoCFSRatio(0.0);
 specifier|final
 name|int
 name|docCount

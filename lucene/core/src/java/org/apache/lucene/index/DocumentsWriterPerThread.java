@@ -899,6 +899,12 @@ operator|.
 name|Allocator
 name|intBlockAllocator
 decl_stmt|;
+DECL|field|indexWriterConfig
+specifier|private
+specifier|final
+name|LiveIndexWriterConfig
+name|indexWriterConfig
+decl_stmt|;
 DECL|method|DocumentsWriterPerThread
 specifier|public
 name|DocumentsWriterPerThread
@@ -953,6 +959,14 @@ operator|=
 name|parent
 operator|.
 name|indexWriter
+expr_stmt|;
+name|this
+operator|.
+name|indexWriterConfig
+operator|=
+name|parent
+operator|.
+name|indexWriterConfig
 expr_stmt|;
 name|this
 operator|.
@@ -2716,12 +2730,10 @@ try|try
 block|{
 if|if
 condition|(
-name|writer
+name|indexWriterConfig
 operator|.
-name|useCompoundFile
-argument_list|(
-name|newSegment
-argument_list|)
+name|getUseCompoundFile
+argument_list|()
 condition|)
 block|{
 comment|// Now build compound file

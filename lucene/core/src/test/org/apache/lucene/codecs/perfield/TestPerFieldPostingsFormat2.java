@@ -461,9 +461,9 @@ argument_list|()
 decl_stmt|;
 name|logByteSizeMergePolicy
 operator|.
-name|setUseCompoundFile
+name|setNoCFSRatio
 argument_list|(
-literal|false
+literal|0.0
 argument_list|)
 expr_stmt|;
 comment|// make sure we use plain
@@ -1042,7 +1042,7 @@ argument_list|(
 name|codec
 argument_list|)
 expr_stmt|;
-comment|//((LogMergePolicy) iwconf.getMergePolicy()).setUseCompoundFile(false);
+comment|//((LogMergePolicy) iwconf.getMergePolicy()).setNoCFSRatio(0.0);
 comment|//((LogMergePolicy) iwconf.getMergePolicy()).setMergeFactor(10);
 name|iwconf
 operator|.

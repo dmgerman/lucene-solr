@@ -254,7 +254,7 @@ argument_list|()
 argument_list|)
 argument_list|)
 decl_stmt|;
-comment|//writer.setUseCompoundFile(false);
+comment|//writer.setNoCFSRatio(0.0);
 comment|//writer.infoStream = System.out;
 name|FieldType
 name|customType

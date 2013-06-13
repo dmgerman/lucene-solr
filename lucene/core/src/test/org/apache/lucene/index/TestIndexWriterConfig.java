@@ -595,6 +595,18 @@ name|getInfoStream
 argument_list|()
 argument_list|)
 expr_stmt|;
+name|assertEquals
+argument_list|(
+name|IndexWriterConfig
+operator|.
+name|DEFAULT_USE_COMPOUND_FILE_SYSTEM
+argument_list|,
+name|conf
+operator|.
+name|getUseCompoundFile
+argument_list|()
+argument_list|)
+expr_stmt|;
 comment|// Sanity check - validate that all getters are covered.
 name|Set
 argument_list|<
@@ -775,6 +787,13 @@ operator|.
 name|add
 argument_list|(
 literal|"getInfoStream"
+argument_list|)
+expr_stmt|;
+name|getters
+operator|.
+name|add
+argument_list|(
+literal|"getUseCompoundFile"
 argument_list|)
 expr_stmt|;
 for|for
@@ -1337,6 +1356,15 @@ argument_list|,
 name|IndexWriterConfig
 operator|.
 name|DEFAULT_READER_POOLING
+argument_list|)
+expr_stmt|;
+name|assertEquals
+argument_list|(
+literal|true
+argument_list|,
+name|IndexWriterConfig
+operator|.
+name|DEFAULT_USE_COMPOUND_FILE_SYSTEM
 argument_list|)
 expr_stmt|;
 name|assertEquals
@@ -2359,19 +2387,14 @@ argument_list|)
 argument_list|)
 expr_stmt|;
 comment|// Start false:
-operator|(
-operator|(
-name|LogMergePolicy
-operator|)
 name|iwc
 operator|.
 name|getMergePolicy
 argument_list|()
-operator|)
 operator|.
-name|setUseCompoundFile
+name|setNoCFSRatio
 argument_list|(
-literal|false
+literal|0.0
 argument_list|)
 expr_stmt|;
 name|IndexWriter
@@ -2386,13 +2409,9 @@ name|iwc
 argument_list|)
 decl_stmt|;
 comment|// Change to true:
-name|LogMergePolicy
+name|MergePolicy
 name|lmp
 init|=
-operator|(
-operator|(
-name|LogMergePolicy
-operator|)
 name|w
 operator|.
 name|getConfig
@@ -2400,7 +2419,6 @@ argument_list|()
 operator|.
 name|getMergePolicy
 argument_list|()
-operator|)
 decl_stmt|;
 name|lmp
 operator|.
@@ -2416,13 +2434,6 @@ argument_list|(
 name|Double
 operator|.
 name|POSITIVE_INFINITY
-argument_list|)
-expr_stmt|;
-name|lmp
-operator|.
-name|setUseCompoundFile
-argument_list|(
-literal|true
 argument_list|)
 expr_stmt|;
 name|Document

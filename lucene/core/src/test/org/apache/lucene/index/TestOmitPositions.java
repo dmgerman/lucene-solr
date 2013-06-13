@@ -1215,9 +1215,9 @@ argument_list|)
 expr_stmt|;
 name|lmp
 operator|.
-name|setUseCompoundFile
+name|setNoCFSRatio
 argument_list|(
-literal|false
+literal|0.0
 argument_list|)
 expr_stmt|;
 name|Document

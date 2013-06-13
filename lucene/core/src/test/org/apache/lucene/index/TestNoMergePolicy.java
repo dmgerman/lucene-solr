@@ -344,13 +344,24 @@ operator|!=
 name|Object
 operator|.
 name|class
+operator|&&
+operator|!
+name|Modifier
+operator|.
+name|isFinal
+argument_list|(
+name|m
+operator|.
+name|getModifiers
+argument_list|()
+argument_list|)
 condition|)
 block|{
 name|assertTrue
 argument_list|(
 name|m
 operator|+
-literal|" is not overridden !"
+literal|" is not overridden ! "
 argument_list|,
 name|m
 operator|.

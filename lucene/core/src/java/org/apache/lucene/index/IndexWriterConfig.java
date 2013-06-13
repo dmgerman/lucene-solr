@@ -281,6 +281,16 @@ name|DEFAULT_MAX_THREAD_STATES
 init|=
 literal|8
 decl_stmt|;
+comment|/** Default value for compound file system for newly written segments    *  (set to<code>true</code>). For batch indexing with very large     *  ram buffers use<code>false</code> */
+DECL|field|DEFAULT_USE_COMPOUND_FILE_SYSTEM
+specifier|public
+specifier|final
+specifier|static
+name|boolean
+name|DEFAULT_USE_COMPOUND_FILE_SYSTEM
+init|=
+literal|true
+decl_stmt|;
 comment|/**    * Sets the default (for any instance) maximum time to wait for a write lock    * (in milliseconds).    */
 DECL|method|setDefaultWriteLockTimeout
 specifier|public
@@ -1378,6 +1388,27 @@ operator|.
 name|setTermIndexInterval
 argument_list|(
 name|interval
+argument_list|)
+return|;
+block|}
+DECL|method|setUseCompoundFile
+specifier|public
+name|IndexWriterConfig
+name|setUseCompoundFile
+parameter_list|(
+name|boolean
+name|useCompoundFile
+parameter_list|)
+block|{
+return|return
+operator|(
+name|IndexWriterConfig
+operator|)
+name|super
+operator|.
+name|setUseCompoundFile
+argument_list|(
+name|useCompoundFile
 argument_list|)
 return|;
 block|}
