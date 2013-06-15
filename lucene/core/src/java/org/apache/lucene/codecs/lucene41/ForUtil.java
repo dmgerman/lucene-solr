@@ -170,6 +170,7 @@ end_comment
 
 begin_class
 DECL|class|ForUtil
+specifier|public
 specifier|final
 class|class
 name|ForUtil
@@ -186,6 +187,7 @@ literal|0
 decl_stmt|;
 comment|/**    * Upper limit of the number of bytes that might be required to stored    *<code>BLOCK_SIZE</code> encoded values.    */
 DECL|field|MAX_ENCODED_SIZE
+specifier|public
 specifier|static
 specifier|final
 name|int
@@ -197,6 +199,7 @@ literal|4
 decl_stmt|;
 comment|/**    * Upper limit of the number of values that might be decoded in a single call to    * {@link #readBlock(IndexInput, byte[], int[])}. Although values after    *<code>BLOCK_SIZE</code> are garbage, it is necessary to allocate value buffers    * whose size is>= MAX_DATA_SIZE to avoid {@link ArrayIndexOutOfBoundsException}s.    */
 DECL|field|MAX_DATA_SIZE
+specifier|public
 specifier|static
 specifier|final
 name|int
@@ -442,6 +445,7 @@ name|iterations
 decl_stmt|;
 comment|/**    * Create a new {@link ForUtil} instance and save state into<code>out</code>.    */
 DECL|method|ForUtil
+specifier|public
 name|ForUtil
 parameter_list|(
 name|float
@@ -650,6 +654,7 @@ block|}
 block|}
 comment|/**    * Restore a {@link ForUtil} from a {@link DataInput}.    */
 DECL|method|ForUtil
+specifier|public
 name|ForUtil
 parameter_list|(
 name|DataInput
@@ -839,6 +844,7 @@ block|}
 block|}
 comment|/**    * Write a block of data (<code>For</code> format).    *    * @param data     the data to write    * @param encoded  a buffer to use to encode data    * @param out      the destination output    * @throws IOException If there is a low-level I/O error    */
 DECL|method|writeBlock
+specifier|public
 name|void
 name|writeBlock
 parameter_list|(
@@ -992,6 +998,7 @@ expr_stmt|;
 block|}
 comment|/**    * Read the next block of data (<code>For</code> format).    *    * @param in        the input to use to read data    * @param encoded   a buffer that can be used to store encoded data    * @param decoded   where to write decoded data    * @throws IOException If there is a low-level I/O error    */
 DECL|method|readBlock
+specifier|public
 name|void
 name|readBlock
 parameter_list|(
@@ -1124,6 +1131,7 @@ expr_stmt|;
 block|}
 comment|/**    * Skip the next block of data.    *    * @param in      the input where to read data    * @throws IOException If there is a low-level I/O error    */
 DECL|method|skipBlock
+specifier|public
 name|void
 name|skipBlock
 parameter_list|(

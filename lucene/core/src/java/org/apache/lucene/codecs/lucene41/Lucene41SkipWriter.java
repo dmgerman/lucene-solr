@@ -72,6 +72,7 @@ end_comment
 
 begin_class
 DECL|class|Lucene41SkipWriter
+specifier|public
 specifier|final
 class|class
 name|Lucene41SkipWriter
