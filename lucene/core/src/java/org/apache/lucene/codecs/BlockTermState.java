@@ -169,9 +169,6 @@ name|other
 operator|.
 name|blockFilePointer
 expr_stmt|;
-comment|// NOTE: don't copy blockTermCount;
-comment|// it's "transient": used only by the "primary"
-comment|// termState, and regenerated on seek by TermState
 block|}
 annotation|@
 name|Override
