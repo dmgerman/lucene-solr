@@ -192,11 +192,11 @@ name|IOException
 function_decl|;
 comment|/** Actually decode metadata for next term */
 comment|// nocommit: remove the 'fieldInfo' ? I suppose for a given postingsPBR, this should be fixed?
-DECL|method|nextTerm
+DECL|method|decodeTerm
 specifier|public
 specifier|abstract
 name|void
-name|nextTerm
+name|decodeTerm
 parameter_list|(
 name|long
 index|[]
@@ -213,17 +213,6 @@ name|state
 parameter_list|)
 throws|throws
 name|IOException
-function_decl|;
-comment|/** Return the fixed length of longs */
-DECL|method|longsSize
-specifier|public
-specifier|abstract
-name|int
-name|longsSize
-parameter_list|(
-name|FieldInfo
-name|fieldInfo
-parameter_list|)
 function_decl|;
 comment|/** Must fully consume state, since after this call that    *  TermState may be reused. */
 DECL|method|docs

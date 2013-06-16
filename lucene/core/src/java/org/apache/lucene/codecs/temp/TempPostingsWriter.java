@@ -1711,10 +1711,7 @@ DECL|method|longsSize
 specifier|public
 name|int
 name|longsSize
-parameter_list|(
-name|FieldInfo
-name|info
-parameter_list|)
+parameter_list|()
 block|{
 if|if
 condition|(
@@ -2248,31 +2245,6 @@ comment|// if (DEBUG) {
 comment|//   System.out.println("  no skip: docCount=" + docCount);
 comment|// }
 block|}
-name|long
-name|payStartFP
-decl_stmt|;
-if|if
-condition|(
-name|stats
-operator|.
-name|totalTermFreq
-operator|>=
-name|BLOCK_SIZE
-condition|)
-block|{
-name|payStartFP
-operator|=
-name|payTermStartFP
-expr_stmt|;
-block|}
-else|else
-block|{
-name|payStartFP
-operator|=
-operator|-
-literal|1
-expr_stmt|;
-block|}
 comment|// if (DEBUG) {
 comment|//   System.out.println("  payStartFP=" + payStartFP);
 comment|// }
@@ -2301,7 +2273,7 @@ index|[
 literal|2
 index|]
 operator|=
-name|payStartFP
+name|payTermStartFP
 expr_stmt|;
 block|}
 if|if

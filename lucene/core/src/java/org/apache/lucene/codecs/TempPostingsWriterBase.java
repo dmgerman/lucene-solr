@@ -160,10 +160,7 @@ specifier|public
 specifier|abstract
 name|int
 name|longsSize
-parameter_list|(
-name|FieldInfo
-name|fieldInfo
-parameter_list|)
+parameter_list|()
 function_decl|;
 comment|/** Called when the writing switches to another field. */
 DECL|method|setField
