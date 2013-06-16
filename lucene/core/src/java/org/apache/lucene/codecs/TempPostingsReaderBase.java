@@ -100,6 +100,20 @@ name|apache
 operator|.
 name|lucene
 operator|.
+name|store
+operator|.
+name|DataInput
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
 name|util
 operator|.
 name|Bits
@@ -177,12 +191,20 @@ throws|throws
 name|IOException
 function_decl|;
 comment|/** Actually decode metadata for next term */
+comment|// nocommit: remove the 'fieldInfo' ? I suppose for a given postingsPBR, this should be fixed?
 DECL|method|nextTerm
 specifier|public
 specifier|abstract
 name|void
 name|nextTerm
 parameter_list|(
+name|long
+index|[]
+name|longs
+parameter_list|,
+name|DataInput
+name|in
+parameter_list|,
 name|FieldInfo
 name|fieldInfo
 parameter_list|,
@@ -191,6 +213,17 @@ name|state
 parameter_list|)
 throws|throws
 name|IOException
+function_decl|;
+comment|/** Return the fixed length of longs */
+DECL|method|longsSize
+specifier|public
+specifier|abstract
+name|int
+name|longsSize
+parameter_list|(
+name|FieldInfo
+name|fieldInfo
+parameter_list|)
 function_decl|;
 comment|/** Must fully consume state, since after this call that    *  TermState may be reused. */
 DECL|method|docs
@@ -250,25 +283,6 @@ specifier|abstract
 name|void
 name|close
 parameter_list|()
-throws|throws
-name|IOException
-function_decl|;
-comment|/** Reads data for all terms in the next block; this    *  method should merely load the byte[] blob but not    *  decode, which is done in {@link #nextTerm}. */
-DECL|method|readTermsBlock
-specifier|public
-specifier|abstract
-name|void
-name|readTermsBlock
-parameter_list|(
-name|IndexInput
-name|termsIn
-parameter_list|,
-name|FieldInfo
-name|fieldInfo
-parameter_list|,
-name|TempTermState
-name|termState
-parameter_list|)
 throws|throws
 name|IOException
 function_decl|;

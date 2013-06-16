@@ -46,6 +46,20 @@ name|lucene
 operator|.
 name|store
 operator|.
+name|DataOutput
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|store
+operator|.
 name|IndexOutput
 import|;
 end_import
@@ -120,22 +134,6 @@ parameter_list|()
 throws|throws
 name|IOException
 function_decl|;
-comment|/** Flush count terms starting at start "backwards", as a    *  block. start is a negative offset from the end of the    *  terms stack, ie bigger start means further back in    *  the stack. */
-DECL|method|flushTermsBlock
-specifier|public
-specifier|abstract
-name|void
-name|flushTermsBlock
-parameter_list|(
-name|int
-name|start
-parameter_list|,
-name|int
-name|count
-parameter_list|)
-throws|throws
-name|IOException
-function_decl|;
 comment|/** Finishes the current term.  The provided {@link    *  TermStats} contains the term's summary statistics. */
 DECL|method|finishTerm
 specifier|public
@@ -143,11 +141,29 @@ specifier|abstract
 name|void
 name|finishTerm
 parameter_list|(
+name|long
+index|[]
+name|longs
+parameter_list|,
+name|DataOutput
+name|out
+parameter_list|,
 name|TermStats
 name|stats
 parameter_list|)
 throws|throws
 name|IOException
+function_decl|;
+comment|/** Return the fixed length of longs */
+DECL|method|longsSize
+specifier|public
+specifier|abstract
+name|int
+name|longsSize
+parameter_list|(
+name|FieldInfo
+name|fieldInfo
+parameter_list|)
 function_decl|;
 comment|/** Called when the writing switches to another field. */
 DECL|method|setField
