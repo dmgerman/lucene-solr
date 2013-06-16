@@ -3940,6 +3940,13 @@ name|docFreq
 argument_list|)
 expr_stmt|;
 block|}
+comment|// TODO: now that terms dict "sees" these longs,
+comment|// we can explore better column-stride encodings
+comment|// to encode all long[0]s for this block at
+comment|// once, all long[1]s, etc., e.g. using
+comment|// Simple64.  Alternatively, we could interleave
+comment|// stats + meta ... no reason to have them
+comment|// separate anymore:
 comment|// Write term meta data
 for|for
 control|(
