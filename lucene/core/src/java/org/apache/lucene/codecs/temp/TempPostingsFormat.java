@@ -312,7 +312,7 @@ name|DEFAULT_MAX_BLOCK_SIZE
 argument_list|)
 expr_stmt|;
 block|}
-comment|/** Creates {@code TempPostingsFormat} with custom    *  values for {@code minBlockSize} and {@code    *  maxBlockSize} passed to block terms dictionary.    *  @see TempBlockTermsWriter#TempBlockTermsWriter(SegmentWriteState,PostingsWriterBase,int,int) */
+comment|/** Creates {@code TempPostingsFormat} with custom    *  values for {@code minBlockSize} and {@code    *  maxBlockSize} passed to block terms dictionary.    *  @see TempBlockTermsWriter#TempBlockTermsWriter(SegmentWriteState,TempPostingsWriterBase,int,int) */
 DECL|method|TempPostingsFormat
 specifier|public
 name|TempPostingsFormat
