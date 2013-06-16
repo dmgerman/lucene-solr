@@ -1046,7 +1046,7 @@ annotation|@
 name|Override
 DECL|method|setField
 specifier|public
-name|void
+name|int
 name|setField
 parameter_list|(
 name|FieldInfo
@@ -1118,6 +1118,23 @@ argument_list|,
 name|fieldHasPayloads
 argument_list|)
 expr_stmt|;
+if|if
+condition|(
+name|fieldHasPositions
+condition|)
+block|{
+return|return
+literal|3
+return|;
+comment|// doc + pos + pay FP
+block|}
+else|else
+block|{
+return|return
+literal|1
+return|;
+comment|// docFP
+block|}
 block|}
 annotation|@
 name|Override
@@ -1706,30 +1723,6 @@ name|docBufferUpto
 operator|=
 literal|0
 expr_stmt|;
-block|}
-block|}
-DECL|method|longsSize
-specifier|public
-name|int
-name|longsSize
-parameter_list|()
-block|{
-if|if
-condition|(
-name|fieldHasPositions
-condition|)
-block|{
-return|return
-literal|3
-return|;
-comment|// doc + pos + pay FP
-block|}
-else|else
-block|{
-return|return
-literal|1
-return|;
-comment|// docFP
 block|}
 block|}
 comment|// nocommit explain about the "don't care" values
