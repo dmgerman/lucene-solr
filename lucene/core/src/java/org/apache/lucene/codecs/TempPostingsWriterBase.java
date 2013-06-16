@@ -124,7 +124,7 @@ parameter_list|)
 throws|throws
 name|IOException
 function_decl|;
-comment|/** Start a new term.  Note that a matching call to {@link    *  #finishTerm(TermStats)} is done, only if the term has at least one    *  document. */
+comment|/** Start a new term.  Note that a matching call to {@link    *  #finishTerm(long[], DataOutput, TermStats)} is done, only if the term has at least one    *  document. */
 DECL|method|startTerm
 specifier|public
 specifier|abstract
@@ -154,19 +154,11 @@ parameter_list|)
 throws|throws
 name|IOException
 function_decl|;
-comment|/** Return the fixed length of longs */
-DECL|method|longsSize
-specifier|public
-specifier|abstract
-name|int
-name|longsSize
-parameter_list|()
-function_decl|;
-comment|/** Called when the writing switches to another field. */
+comment|/**     * Return the fixed length of longs,    * called when the writing switches to another field. */
 DECL|method|setField
 specifier|public
 specifier|abstract
-name|void
+name|int
 name|setField
 parameter_list|(
 name|FieldInfo

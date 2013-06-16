@@ -191,7 +191,6 @@ throws|throws
 name|IOException
 function_decl|;
 comment|/** Actually decode metadata for next term */
-comment|// nocommit: remove the 'fieldInfo' ? I suppose for a given postingsPBR, this should be fixed?
 DECL|method|decodeTerm
 specifier|public
 specifier|abstract
