@@ -2094,6 +2094,16 @@ return|return
 name|lbServer
 return|;
 block|}
+DECL|method|isUpdatesToLeaders
+specifier|public
+name|boolean
+name|isUpdatesToLeaders
+parameter_list|()
+block|{
+return|return
+name|updatesToLeaders
+return|;
+block|}
 comment|// for tests
 DECL|method|getUrlLists
 name|Map
