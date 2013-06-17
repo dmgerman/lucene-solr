@@ -2085,48 +2085,6 @@ literal|"</cores>\n"
 operator|+
 literal|"</solr>"
 decl_stmt|;
-DECL|field|SOLR_XML_SAME_NAME
-specifier|private
-specifier|static
-specifier|final
-name|String
-name|SOLR_XML_SAME_NAME
-init|=
-literal|"<?xml version=\"1.0\" encoding=\"UTF-8\" ?>\n"
-operator|+
-literal|"<solr persistent=\"false\">\n"
-operator|+
-literal|"<cores adminPath=\"/admin/cores\" transientCacheSize=\"32\">\n"
-operator|+
-literal|"<core name=\"core1\" instanceDir=\"core1\" dataDir=\"core1\"/> \n"
-operator|+
-literal|"<core name=\"core1\" instanceDir=\"core2\" dataDir=\"core2\"/> \n "
-operator|+
-literal|"</cores>\n"
-operator|+
-literal|"</solr>"
-decl_stmt|;
-DECL|field|SOLR_XML_SAME_DATADIR
-specifier|private
-specifier|static
-specifier|final
-name|String
-name|SOLR_XML_SAME_DATADIR
-init|=
-literal|"<?xml version=\"1.0\" encoding=\"UTF-8\" ?>\n"
-operator|+
-literal|"<solr persistent=\"false\">\n"
-operator|+
-literal|"<cores adminPath=\"/admin/cores\" transientCacheSize=\"32\">\n"
-operator|+
-literal|"<core name=\"core2\" instanceDir=\"core2\" dataDir=\"../samedatadir\" schema=\"schema-tiny.xml\" config=\"solrconfig-minimal.xml\" /> \n"
-operator|+
-literal|"<core name=\"core1\" instanceDir=\"core2\" dataDir=\"../samedatadir\" schema=\"schema-tiny.xml\" config=\"solrconfig-minimal.xml\"  /> \n "
-operator|+
-literal|"</cores>\n"
-operator|+
-literal|"</solr>"
-decl_stmt|;
 block|}
 end_class
 

@@ -328,7 +328,7 @@ argument_list|)
 expr_stmt|;
 name|failIfFound
 argument_list|(
-literal|"solr/@persist"
+literal|"solr/@persistent"
 argument_list|)
 expr_stmt|;
 name|failIfFound

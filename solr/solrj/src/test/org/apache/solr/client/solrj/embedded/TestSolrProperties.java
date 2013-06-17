@@ -1420,7 +1420,7 @@ name|assertTrue
 argument_list|(
 name|exists
 argument_list|(
-literal|"/solr/cores/core[@name='collection1' and (@instanceDir='./' or @instanceDir='.\\')]"
+literal|"/solr/cores/core[@name='collection1' and @instanceDir='.']"
 argument_list|,
 name|document
 argument_list|)

@@ -861,7 +861,7 @@ name|config
 operator|.
 name|getVal
 argument_list|(
-literal|"solr/shardHandlerFactory/int[@connTimeout]"
+literal|"solr/shardHandlerFactory/int[@name='connTimeout']"
 argument_list|,
 literal|false
 argument_list|)
@@ -879,7 +879,7 @@ name|config
 operator|.
 name|getVal
 argument_list|(
-literal|"solr/shardHandlerFactory/int[@socketTimeout]"
+literal|"solr/shardHandlerFactory/int[@name='socketTimeout']"
 argument_list|,
 literal|false
 argument_list|)
