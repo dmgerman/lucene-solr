@@ -439,6 +439,11 @@ name|void
 name|onInit
 parameter_list|(
 name|List
+argument_list|<
+name|?
+extends|extends
+name|IndexCommit
+argument_list|>
 name|commits
 parameter_list|)
 throws|throws
@@ -483,12 +488,6 @@ argument_list|)
 expr_stmt|;
 name|updateCommits
 argument_list|(
-operator|(
-name|List
-argument_list|<
-name|IndexCommit
-argument_list|>
-operator|)
 name|commits
 argument_list|)
 expr_stmt|;
@@ -502,6 +501,11 @@ name|void
 name|onCommit
 parameter_list|(
 name|List
+argument_list|<
+name|?
+extends|extends
+name|IndexCommit
+argument_list|>
 name|commits
 parameter_list|)
 throws|throws
@@ -536,12 +540,6 @@ argument_list|)
 expr_stmt|;
 name|updateCommits
 argument_list|(
-operator|(
-name|List
-argument_list|<
-name|IndexCommit
-argument_list|>
-operator|)
 name|commits
 argument_list|)
 expr_stmt|;
@@ -556,6 +554,8 @@ DECL|field|commits
 specifier|private
 name|List
 argument_list|<
+name|?
+extends|extends
 name|IndexCommit
 argument_list|>
 name|commits
@@ -566,6 +566,8 @@ name|CommitsLoggingInfo
 parameter_list|(
 name|List
 argument_list|<
+name|?
+extends|extends
 name|IndexCommit
 argument_list|>
 name|commits
@@ -757,6 +759,8 @@ name|CommitsLoggingDebug
 parameter_list|(
 name|List
 argument_list|<
+name|?
+extends|extends
 name|IndexCommit
 argument_list|>
 name|commits
@@ -832,6 +836,8 @@ name|updateCommits
 parameter_list|(
 name|List
 argument_list|<
+name|?
+extends|extends
 name|IndexCommit
 argument_list|>
 name|commits
