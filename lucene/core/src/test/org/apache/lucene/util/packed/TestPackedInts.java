@@ -5501,6 +5501,8 @@ name|writer
 operator|.
 name|ramBytesUsed
 argument_list|()
+argument_list|,
+literal|8
 argument_list|)
 expr_stmt|;
 comment|// test copy
