@@ -526,7 +526,7 @@ name|setProperty
 argument_list|(
 literal|"solrconfig"
 argument_list|,
-literal|"solrconfig-minimal.xml"
+literal|"solrconfig.xml"
 argument_list|)
 expr_stmt|;
 name|System
@@ -535,7 +535,7 @@ name|setProperty
 argument_list|(
 literal|"schema"
 argument_list|,
-literal|"schema-tiny.xml"
+literal|"schema.xml"
 argument_list|)
 expr_stmt|;
 name|System
@@ -992,6 +992,16 @@ argument_list|(
 name|origXml
 argument_list|)
 expr_stmt|;
+name|expressions
+operator|=
+operator|new
+name|String
+index|[
+name|persistList
+operator|.
+name|length
+index|]
+expr_stmt|;
 for|for
 control|(
 name|int
@@ -1353,6 +1363,67 @@ block|}
 block|}
 annotation|@
 name|Test
+DECL|method|testMinimalXml
+specifier|public
+name|void
+name|testMinimalXml
+parameter_list|()
+throws|throws
+name|Exception
+block|{
+name|CoreContainer
+name|cc
+init|=
+name|init
+argument_list|(
+name|SOLR_XML_MINIMAL
+argument_list|,
+literal|"SystemVars1"
+argument_list|)
+decl_stmt|;
+try|try
+block|{
+name|origMatchesPersist
+argument_list|(
+name|cc
+argument_list|,
+operator|new
+name|File
+argument_list|(
+name|solrHomeDirectory
+argument_list|,
+literal|"minimal.solr.xml"
+argument_list|)
+argument_list|)
+expr_stmt|;
+block|}
+finally|finally
+block|{
+name|cc
+operator|.
+name|shutdown
+argument_list|()
+expr_stmt|;
+if|if
+condition|(
+name|solrHomeDirectory
+operator|.
+name|exists
+argument_list|()
+condition|)
+block|{
+name|FileUtils
+operator|.
+name|deleteDirectory
+argument_list|(
+name|solrHomeDirectory
+argument_list|)
+expr_stmt|;
+block|}
+block|}
+block|}
+annotation|@
+name|Test
 DECL|method|testUnloadCreate
 specifier|public
 name|void
@@ -1507,18 +1578,6 @@ name|instPath
 argument_list|,
 name|CoreAdminParams
 operator|.
-name|CONFIG
-argument_list|,
-literal|"solrconfig-minimal.xml"
-argument_list|,
-name|CoreAdminParams
-operator|.
-name|SCHEMA
-argument_list|,
-literal|"schema-tiny.xml"
-argument_list|,
-name|CoreAdminParams
-operator|.
 name|NAME
 argument_list|,
 name|which
@@ -1636,7 +1695,7 @@ index|]
 operator|.
 name|contains
 argument_list|(
-literal|"@schema='schema-tiny.xml'"
+literal|"@schema='schema.xml'"
 argument_list|)
 condition|)
 block|{
@@ -1652,9 +1711,9 @@ index|]
 operator|.
 name|replace
 argument_list|(
-literal|"schema-tiny.xml"
+literal|"schema.xml"
 argument_list|,
-literal|"${schema:schema-tiny.xml}"
+literal|"${schema:schema.xml}"
 argument_list|)
 expr_stmt|;
 block|}
@@ -1668,7 +1727,7 @@ index|]
 operator|.
 name|contains
 argument_list|(
-literal|"@config='solrconfig-minimal.xml'"
+literal|"@config='solrconfig.xml'"
 argument_list|)
 condition|)
 block|{
@@ -1684,9 +1743,9 @@ index|]
 operator|.
 name|replace
 argument_list|(
-literal|"solrconfig-minimal.xml"
+literal|"solrconfig.xml"
 argument_list|,
-literal|"${solrconfig:solrconfig-minimal.xml}"
+literal|"${solrconfig:solrconfig.xml}"
 argument_list|)
 expr_stmt|;
 block|}
@@ -1955,18 +2014,6 @@ operator|+
 literal|"prefix2"
 argument_list|,
 literal|"valueP2"
-argument_list|,
-name|CoreAdminParams
-operator|.
-name|CONFIG
-argument_list|,
-literal|"solrconfig-minimal.xml"
-argument_list|,
-name|CoreAdminParams
-operator|.
-name|SCHEMA
-argument_list|,
-literal|"schema-tiny.xml"
 argument_list|)
 argument_list|,
 name|resp
@@ -2047,7 +2094,7 @@ name|CoreAdminParams
 operator|.
 name|CONFIG
 argument_list|,
-literal|"solrconfig-minimal.xml"
+literal|"solrconfig.xml"
 argument_list|,
 name|CoreAdminParams
 operator|.
@@ -2059,7 +2106,7 @@ name|CoreAdminParams
 operator|.
 name|SCHEMA
 argument_list|,
-literal|"schema-tiny.xml"
+literal|"schema.xml"
 argument_list|)
 argument_list|,
 name|resp
@@ -2095,10 +2142,10 @@ argument_list|(
 name|persistXml
 argument_list|)
 expr_stmt|;
-name|String
-index|[]
-name|expressions
-init|=
+name|assertXmlFile
+argument_list|(
+name|persistXml
+argument_list|,
 name|getAllNodes
 argument_list|(
 operator|new
@@ -2109,12 +2156,6 @@ argument_list|,
 literal|"solr.xml"
 argument_list|)
 argument_list|)
-decl_stmt|;
-name|assertXmlFile
-argument_list|(
-name|persistXml
-argument_list|,
-name|expressions
 argument_list|)
 expr_stmt|;
 comment|// And the params for the new core should be in the persisted file.
@@ -2126,10 +2167,6 @@ literal|"/solr/cores/core[@name='props1']/property[@name='prefix1' and @value='v
 argument_list|,
 literal|"/solr/cores/core[@name='props1']/property[@name='prefix2' and @value='valueP2']"
 argument_list|,
-literal|"/solr/cores/core[@name='props1' and @config='solrconfig-minimal.xml']"
-argument_list|,
-literal|"/solr/cores/core[@name='props1' and @schema='schema-tiny.xml']"
-argument_list|,
 literal|"/solr/cores/core[@name='props1' and @transient='true']"
 argument_list|,
 literal|"/solr/cores/core[@name='props1' and @loadOnStartup='true']"
@@ -2138,9 +2175,9 @@ literal|"/solr/cores/core[@name='props2']/property[@name='prefix2_1' and @value=
 argument_list|,
 literal|"/solr/cores/core[@name='props2']/property[@name='prefix2_2' and @value='valueP2_2']"
 argument_list|,
-literal|"/solr/cores/core[@name='props2' and @config='solrconfig-minimal.xml']"
+literal|"/solr/cores/core[@name='props2' and @config='solrconfig.xml']"
 argument_list|,
-literal|"/solr/cores/core[@name='props2' and @schema='schema-tiny.xml']"
+literal|"/solr/cores/core[@name='props2' and @schema='schema.xml']"
 argument_list|,
 literal|"/solr/cores/core[@name='props2' and not(@loadOnStartup)]"
 argument_list|,
@@ -2727,9 +2764,9 @@ literal|"       leaderVoteWait=\"${leadVoteWait:32}\" managementPath=\"${manpath
 operator|+
 literal|"<core name=\"SystemVars1\" instanceDir=\"SystemVars1\" shard=\"${shard:32}\" \n"
 operator|+
-literal|"          collection=\"${collection:collection1}\" config=\"${solrconfig:solrconfig-minimal.xml}\" \n"
+literal|"          collection=\"${collection:collection1}\" config=\"${solrconfig:solrconfig.xml}\" \n"
 operator|+
-literal|"          schema=\"${schema:schema-tiny.xml}\" ulogDir=\"${ulog:./}\" roles=\"${myrole:boss}\" \n"
+literal|"          schema=\"${schema:schema.xml}\" ulogDir=\"${ulog:./}\" roles=\"${myrole:boss}\" \n"
 operator|+
 literal|"          dataDir=\"${data:./}\" loadOnStartup=\"${onStart:true}\" transient=\"${tran:true}\" \n"
 operator|+
@@ -2741,17 +2778,33 @@ literal|"</core>\n"
 operator|+
 literal|"<core name=\"SystemVars2\" instanceDir=\"SystemVars2\" shard=\"${shard:32}\" \n"
 operator|+
-literal|"          collection=\"${collection:collection2}\" config=\"${solrconfig:solrconfig-minimal.xml}\" \n"
+literal|"          collection=\"${collection:collection2}\" config=\"${solrconfig:solrconfig.xml}\" \n"
 operator|+
-literal|"          coreNodeName=\"${coreNodeName:}\" schema=\"${schema:schema-tiny.xml}\">\n"
+literal|"          coreNodeName=\"${coreNodeName:}\" schema=\"${schema:schema.xml}\">\n"
 operator|+
 literal|"<property name=\"collection\" value=\"{collection:collection2}\"/>\n"
 operator|+
-literal|"<property name=\"schema\" value=\"${schema:schema-tiny.xml}\"/>\n"
+literal|"<property name=\"schema\" value=\"${schema:schema.xml}\"/>\n"
 operator|+
 literal|"<property name=\"coreNodeName\" value=\"EricksCore\"/>\n"
 operator|+
 literal|"</core>\n"
+operator|+
+literal|"</cores>\n"
+operator|+
+literal|"</solr>"
+decl_stmt|;
+DECL|field|SOLR_XML_MINIMAL
+specifier|private
+specifier|static
+name|String
+name|SOLR_XML_MINIMAL
+init|=
+literal|"<solr>\n"
+operator|+
+literal|"<cores> \n"
+operator|+
+literal|"<core name=\"SystemVars1\" instanceDir=\"SystemVars1\" />\n"
 operator|+
 literal|"</cores>\n"
 operator|+

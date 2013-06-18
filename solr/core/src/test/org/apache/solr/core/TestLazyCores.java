@@ -1677,11 +1677,11 @@ name|name
 argument_list|,
 literal|"schema"
 argument_list|,
-literal|"schema-tiny.xml"
+literal|"schema.xml"
 argument_list|,
 literal|"config"
 argument_list|,
-literal|"solrconfig-minimal.xml"
+literal|"solrconfig.xml"
 argument_list|)
 decl_stmt|;
 name|admin
@@ -2061,14 +2061,14 @@ name|d1
 operator|.
 name|setSchemaName
 argument_list|(
-literal|"schema-tiny.xml"
+literal|"schema.xml"
 argument_list|)
 expr_stmt|;
 name|d1
 operator|.
 name|setConfigName
 argument_list|(
-literal|"solrconfig-minimal.xml"
+literal|"solrconfig.xml"
 argument_list|)
 expr_stmt|;
 name|SolrCore
@@ -2112,14 +2112,14 @@ name|d2
 operator|.
 name|setSchemaName
 argument_list|(
-literal|"schema-tiny.xml"
+literal|"schema.xml"
 argument_list|)
 expr_stmt|;
 name|d2
 operator|.
 name|setConfigName
 argument_list|(
-literal|"solrconfig-minimal.xml"
+literal|"solrconfig.xml"
 argument_list|)
 expr_stmt|;
 name|SolrCore
@@ -2163,14 +2163,14 @@ name|d3
 operator|.
 name|setSchemaName
 argument_list|(
-literal|"schema-tiny.xml"
+literal|"schema.xml"
 argument_list|)
 expr_stmt|;
 name|d3
 operator|.
 name|setConfigName
 argument_list|(
-literal|"solrconfig-minimal.xml"
+literal|"solrconfig.xml"
 argument_list|)
 expr_stmt|;
 name|SolrCore
@@ -2214,14 +2214,14 @@ name|d4
 operator|.
 name|setSchemaName
 argument_list|(
-literal|"schema-tiny.xml"
+literal|"schema.xml"
 argument_list|)
 expr_stmt|;
 name|d4
 operator|.
 name|setConfigName
 argument_list|(
-literal|"solrconfig-minimal.xml"
+literal|"solrconfig.xml"
 argument_list|)
 expr_stmt|;
 name|SolrCore
@@ -2748,39 +2748,23 @@ literal|"<solr persistent=\"false\"> "
 operator|+
 literal|"<cores adminPath=\"/admin/cores\" defaultCoreName=\"collectionLazy2\" transientCacheSize=\"4\">  "
 operator|+
-literal|"<core name=\"collection1\" instanceDir=\"collection1\" config=\"solrconfig-minimal.xml\" schema=\"schema-tiny.xml\" /> "
+literal|"<core name=\"collection1\" instanceDir=\"collection1\"  /> "
 operator|+
-literal|"<core name=\"collectionLazy2\" instanceDir=\"collection2\" transient=\"true\" loadOnStartup=\"true\"  "
+literal|"<core name=\"collectionLazy2\" instanceDir=\"collection2\" transient=\"true\" loadOnStartup=\"true\"   /> "
 operator|+
-literal|" config=\"solrconfig-minimal.xml\" schema=\"schema-tiny.xml\" /> "
+literal|"<core name=\"collectionLazy3\" instanceDir=\"collection3\" transient=\"on\" loadOnStartup=\"false\"    /> "
 operator|+
-literal|"<core name=\"collectionLazy3\" instanceDir=\"collection3\" transient=\"on\" loadOnStartup=\"false\" "
+literal|"<core name=\"collectionLazy4\" instanceDir=\"collection4\" transient=\"false\" loadOnStartup=\"false\" /> "
 operator|+
-literal|"config=\"solrconfig-minimal.xml\" schema=\"schema-tiny.xml\"  /> "
+literal|"<core name=\"collectionLazy5\" instanceDir=\"collection5\" transient=\"false\" loadOnStartup=\"true\" /> "
 operator|+
-literal|"<core name=\"collectionLazy4\" instanceDir=\"collection4\" transient=\"false\" loadOnStartup=\"false\" "
+literal|"<core name=\"collectionLazy6\" instanceDir=\"collection6\" transient=\"true\" loadOnStartup=\"false\" /> "
 operator|+
-literal|"config=\"solrconfig-minimal.xml\" schema=\"schema-tiny.xml\"  /> "
+literal|"<core name=\"collectionLazy7\" instanceDir=\"collection7\" transient=\"true\" loadOnStartup=\"false\" /> "
 operator|+
-literal|"<core name=\"collectionLazy5\" instanceDir=\"collection5\" transient=\"false\" loadOnStartup=\"true\" "
+literal|"<core name=\"collectionLazy8\" instanceDir=\"collection8\" transient=\"true\" loadOnStartup=\"false\" /> "
 operator|+
-literal|"config=\"solrconfig-minimal.xml\" schema=\"schema-tiny.xml\"  /> "
-operator|+
-literal|"<core name=\"collectionLazy6\" instanceDir=\"collection6\" transient=\"true\" loadOnStartup=\"false\" "
-operator|+
-literal|"config=\"solrconfig-minimal.xml\" schema=\"schema-tiny.xml\"  /> "
-operator|+
-literal|"<core name=\"collectionLazy7\" instanceDir=\"collection7\" transient=\"true\" loadOnStartup=\"false\" "
-operator|+
-literal|"config=\"solrconfig-minimal.xml\" schema=\"schema-tiny.xml\"  /> "
-operator|+
-literal|"<core name=\"collectionLazy8\" instanceDir=\"collection8\" transient=\"true\" loadOnStartup=\"false\" "
-operator|+
-literal|"config=\"solrconfig-minimal.xml\" schema=\"schema-tiny.xml\"  /> "
-operator|+
-literal|"<core name=\"collectionLazy9\" instanceDir=\"collection9\" transient=\"true\" loadOnStartup=\"false\" "
-operator|+
-literal|"config=\"solrconfig-minimal.xml\" schema=\"schema-tiny.xml\"  /> "
+literal|"<core name=\"collectionLazy9\" instanceDir=\"collection9\" transient=\"true\" loadOnStartup=\"false\" /> "
 operator|+
 literal|"</cores> "
 operator|+

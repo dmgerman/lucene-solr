@@ -8070,7 +8070,7 @@ name|File
 argument_list|(
 name|subHome
 argument_list|,
-literal|"schema-tiny.xml"
+literal|"schema.xml"
 argument_list|)
 argument_list|)
 expr_stmt|;
@@ -8091,7 +8091,7 @@ name|File
 argument_list|(
 name|subHome
 argument_list|,
-literal|"solrconfig-minimal.xml"
+literal|"solrconfig.xml"
 argument_list|)
 argument_list|)
 expr_stmt|;
