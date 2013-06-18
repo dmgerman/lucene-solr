@@ -37,7 +37,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**<p>Expert: {@link IndexWriter} uses an instance  *  implementing this interface to execute the merges  *  selected by a {@link MergePolicy}.  The default  *  MergeScheduler is {@link ConcurrentMergeScheduler}.</p>  *  * @lucene.experimental */
+comment|/**<p>Expert: {@link IndexWriter} uses an instance  *  implementing this interface to execute the merges  *  selected by a {@link MergePolicy}.  The default  *  MergeScheduler is {@link ConcurrentMergeScheduler}.</p>  *<p>Implementers of sub-classes should make sure that {@link #clone()}  *  returns an independent instance able to work with any {@link IndexWriter}  *  instance.</p>  * @lucene.experimental */
 end_comment
 
 begin_class

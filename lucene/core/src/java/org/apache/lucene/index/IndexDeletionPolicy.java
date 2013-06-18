@@ -36,8 +36,22 @@ name|IOException
 import|;
 end_import
 
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|store
+operator|.
+name|Directory
+import|;
+end_import
+
 begin_comment
-comment|/**  *<p>Expert: policy for deletion of stale {@link IndexCommit index commits}.   *   *<p>Implement this interface, and pass it to one  * of the {@link IndexWriter} or {@link IndexReader}  * constructors, to customize when older  * {@link IndexCommit point-in-time commits}  * are deleted from the index directory.  The default deletion policy  * is {@link KeepOnlyLastCommitDeletionPolicy}, which always  * removes old commits as soon as a new commit is done (this  * matches the behavior before 2.2).</p>  *  *<p>One expected use case for this (and the reason why it  * was first created) is to work around problems with an  * index directory accessed via filesystems like NFS because  * NFS does not provide the "delete on last close" semantics  * that Lucene's "point in time" search normally relies on.  * By implementing a custom deletion policy, such as "a  * commit is only removed once it has been stale for more  * than X minutes", you can give your readers time to  * refresh to the new commit before {@link IndexWriter}  * removes the old commits.  Note that doing so will  * increase the storage requirements of the index.  See<a  * target="top"  * href="http://issues.apache.org/jira/browse/LUCENE-710">LUCENE-710</a>  * for details.</p>  */
+comment|/**  *<p>Expert: policy for deletion of stale {@link IndexCommit index commits}.   *   *<p>Implement this interface, and pass it to one  * of the {@link IndexWriter} or {@link IndexReader}  * constructors, to customize when older  * {@link IndexCommit point-in-time commits}  * are deleted from the index directory.  The default deletion policy  * is {@link KeepOnlyLastCommitDeletionPolicy}, which always  * removes old commits as soon as a new commit is done (this  * matches the behavior before 2.2).</p>  *  *<p>One expected use case for this (and the reason why it  * was first created) is to work around problems with an  * index directory accessed via filesystems like NFS because  * NFS does not provide the "delete on last close" semantics  * that Lucene's "point in time" search normally relies on.  * By implementing a custom deletion policy, such as "a  * commit is only removed once it has been stale for more  * than X minutes", you can give your readers time to  * refresh to the new commit before {@link IndexWriter}  * removes the old commits.  Note that doing so will  * increase the storage requirements of the index.  See<a  * target="top"  * href="http://issues.apache.org/jira/browse/LUCENE-710">LUCENE-710</a>  * for details.</p>  *  *<p>Implementers of sub-classes should make sure that {@link #clone()}  * returns an independent instance able to work with any other {@link IndexWriter}  * or {@link Directory} instance.</p>  */
 end_comment
 
 begin_class
