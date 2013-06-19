@@ -1213,7 +1213,7 @@ return|return
 name|this
 return|;
 block|}
-comment|/**    * Retruns<code>true</code> iff the {@link IndexWriter} packs    * newly written segments in a compound file. Default is<code>true</code>.    */
+comment|/**    * Returns<code>true</code> iff the {@link IndexWriter} packs    * newly written segments in a compound file. Default is<code>true</code>.    */
 DECL|method|getUseCompoundFile
 specifier|public
 name|boolean
