@@ -1164,7 +1164,7 @@ block|}
 comment|// TODO: this is a dangerous method ... Automaton could be
 comment|// huge ... and it's better in general for caller to
 comment|// enumerate& process in a single walk:
-comment|/**    * Returns the set of accepted strings, assuming that at most    *<code>limit</code> strings are accepted. If more than<code>limit</code>     * strings are accepted, null is returned. If<code>limit</code>&lt;0, then     * the limit is infinite.    */
+comment|/**    * Returns the set of accepted strings, assuming that at most    *<code>limit</code> strings are accepted. If more than<code>limit</code>     * strings are accepted, the first limit strings found are returned. If<code>limit</code>&lt;0, then     * the limit is infinite.    */
 DECL|method|getFiniteStrings
 specifier|public
 specifier|static
@@ -1228,12 +1228,6 @@ argument_list|)
 argument_list|)
 expr_stmt|;
 block|}
-else|else
-block|{
-return|return
-literal|null
-return|;
-block|}
 block|}
 elseif|else
 if|if
@@ -1263,7 +1257,7 @@ argument_list|)
 condition|)
 block|{
 return|return
-literal|null
+name|strings
 return|;
 block|}
 return|return
