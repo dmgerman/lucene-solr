@@ -143,6 +143,22 @@ specifier|private
 name|int
 name|prefixGridScanLevel
 decl_stmt|;
+comment|/** True if only indexed points shall be supported.  See    *  {@link IntersectsPrefixTreeFilter#hasIndexedLeaves}. */
+DECL|field|pointsOnly
+specifier|protected
+name|boolean
+name|pointsOnly
+init|=
+literal|false
+decl_stmt|;
+comment|/** See {@link ContainsPrefixTreeFilter#multiOverlappingIndexedShapes}. */
+DECL|field|multiOverlappingIndexedShapes
+specifier|protected
+name|boolean
+name|multiOverlappingIndexedShapes
+init|=
+literal|true
+decl_stmt|;
 DECL|method|RecursivePrefixTreeStrategy
 specifier|public
 name|RecursivePrefixTreeStrategy
@@ -284,14 +300,10 @@ name|distErrPct
 argument_list|)
 argument_list|)
 decl_stmt|;
-specifier|final
-name|boolean
-name|hasIndexedLeaves
-init|=
-literal|true
-decl_stmt|;
 if|if
 condition|(
+name|pointsOnly
+operator|||
 name|op
 operator|==
 name|SpatialOperation
@@ -314,7 +326,8 @@ name|detailLevel
 argument_list|,
 name|prefixGridScanLevel
 argument_list|,
-name|hasIndexedLeaves
+operator|!
+name|pointsOnly
 argument_list|)
 return|;
 block|}
@@ -371,6 +384,8 @@ argument_list|,
 name|grid
 argument_list|,
 name|detailLevel
+argument_list|,
+name|multiOverlappingIndexedShapes
 argument_list|)
 return|;
 block|}
