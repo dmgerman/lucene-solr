@@ -165,14 +165,6 @@ literal|"double_f"
 argument_list|,
 name|num
 argument_list|,
-literal|"byte_f"
-argument_list|,
-name|num
-argument_list|,
-literal|"short_f"
-argument_list|,
-name|num
-argument_list|,
 literal|"bool_f"
 argument_list|,
 name|boolVal
@@ -1556,10 +1548,6 @@ block|,
 literal|"long_f"
 block|,
 literal|"double_f"
-block|,
-literal|"byte_f"
-block|,
-literal|"short_f"
 block|}
 decl_stmt|;
 for|for

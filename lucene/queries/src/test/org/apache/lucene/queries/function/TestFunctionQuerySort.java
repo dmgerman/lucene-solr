@@ -66,7 +66,7 @@ name|lucene
 operator|.
 name|document
 operator|.
-name|StringField
+name|IntField
 import|;
 end_import
 
@@ -340,11 +340,11 @@ name|Field
 name|field
 init|=
 operator|new
-name|StringField
+name|IntField
 argument_list|(
 literal|"value"
 argument_list|,
-literal|""
+literal|0
 argument_list|,
 name|Field
 operator|.
@@ -384,14 +384,9 @@ control|)
 block|{
 name|field
 operator|.
-name|setStringValue
-argument_list|(
-name|Integer
-operator|.
-name|toString
+name|setIntValue
 argument_list|(
 name|val
-argument_list|)
 argument_list|)
 expr_stmt|;
 name|writer

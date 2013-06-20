@@ -353,60 +353,6 @@ literal|true
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**    * Test that CustomScoreQuery of Type.BYTE returns the expected scores.    */
-annotation|@
-name|Test
-DECL|method|testCustomScoreByte
-specifier|public
-name|void
-name|testCustomScoreByte
-parameter_list|()
-throws|throws
-name|Exception
-block|{
-comment|// INT field values are small enough to be parsed as byte
-name|doTestCustomScore
-argument_list|(
-name|BYTE_VALUESOURCE
-argument_list|,
-literal|1.0
-argument_list|)
-expr_stmt|;
-name|doTestCustomScore
-argument_list|(
-name|BYTE_VALUESOURCE
-argument_list|,
-literal|2.0
-argument_list|)
-expr_stmt|;
-block|}
-comment|/**    * Test that CustomScoreQuery of Type.SHORT returns the expected scores.    */
-annotation|@
-name|Test
-DECL|method|testCustomScoreShort
-specifier|public
-name|void
-name|testCustomScoreShort
-parameter_list|()
-throws|throws
-name|Exception
-block|{
-comment|// INT field values are small enough to be parsed as short
-name|doTestCustomScore
-argument_list|(
-name|SHORT_VALUESOURCE
-argument_list|,
-literal|1.0
-argument_list|)
-expr_stmt|;
-name|doTestCustomScore
-argument_list|(
-name|SHORT_VALUESOURCE
-argument_list|,
-literal|3.0
-argument_list|)
-expr_stmt|;
-block|}
 comment|/**    * Test that CustomScoreQuery of Type.INT returns the expected scores.    */
 annotation|@
 name|Test

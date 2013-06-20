@@ -673,12 +673,11 @@ name|d
 operator|.
 name|add
 argument_list|(
-name|newStringField
+operator|new
+name|IntField
 argument_list|(
 literal|"id"
 argument_list|,
-literal|""
-operator|+
 name|j
 argument_list|,
 name|Field
