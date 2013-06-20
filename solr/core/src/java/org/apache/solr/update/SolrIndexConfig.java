@@ -241,11 +241,19 @@ specifier|final
 name|Version
 name|luceneVersion
 decl_stmt|;
+comment|/**    * The explicit value of&lt;useCompoundFile&gt; specified on this index config    * @deprecated use {@link #getUseCompoundFile}    */
+annotation|@
+name|Deprecated
 DECL|field|useCompoundFile
 specifier|public
 specifier|final
 name|boolean
 name|useCompoundFile
+decl_stmt|;
+DECL|field|effectiveUseCompountFileSetting
+specifier|private
+name|boolean
+name|effectiveUseCompountFileSetting
 decl_stmt|;
 DECL|field|maxBufferedDocs
 specifier|public
@@ -378,6 +386,8 @@ operator|.
 name|luceneMatchVersion
 expr_stmt|;
 name|useCompoundFile
+operator|=
+name|effectiveUseCompountFileSetting
 operator|=
 literal|false
 expr_stmt|;
@@ -630,6 +640,10 @@ name|def
 operator|.
 name|useCompoundFile
 argument_list|)
+expr_stmt|;
+name|effectiveUseCompountFileSetting
+operator|=
+name|useCompoundFile
 expr_stmt|;
 name|maxBufferedDocs
 operator|=
@@ -1069,6 +1083,16 @@ name|schema
 argument_list|)
 argument_list|)
 expr_stmt|;
+comment|// do this after buildMergePolicy since the backcompat logic
+comment|// there may modify the effective useCompoundFile
+name|iwc
+operator|.
+name|setUseCompoundFile
+argument_list|(
+name|getUseCompoundFile
+argument_list|()
+argument_list|)
+expr_stmt|;
 if|if
 condition|(
 name|maxIndexingThreads
@@ -1144,6 +1168,7 @@ return|return
 name|iwc
 return|;
 block|}
+comment|/**    * Builds a MergePolicy, may also modify the value returned by    * getUseCompoundFile() for use by the IndexWriterConfig if     * "useCompoundFile" is specified as an init arg for     * an out of the box MergePolicy that no longer supports it    *    * @see #fixUseCFMergePolicyInitArg    * @see #getUseCompoundFile    */
 DECL|method|buildMergePolicy
 specifier|private
 name|MergePolicy
@@ -1198,6 +1223,13 @@ name|LogMergePolicy
 operator|)
 name|policy
 decl_stmt|;
+name|fixUseCFMergePolicyInitArg
+argument_list|(
+name|LogMergePolicy
+operator|.
+name|class
+argument_list|)
+expr_stmt|;
 if|if
 condition|(
 name|maxMergeDocs
@@ -1216,7 +1248,8 @@ name|logMergePolicy
 operator|.
 name|setNoCFSRatio
 argument_list|(
-name|useCompoundFile
+name|getUseCompoundFile
+argument_list|()
 condition|?
 literal|1.0
 else|:
@@ -1237,13 +1270,6 @@ argument_list|(
 name|mergeFactor
 argument_list|)
 expr_stmt|;
-name|fixUseCFInitArg
-argument_list|(
-name|LogMergePolicy
-operator|.
-name|class
-argument_list|)
-expr_stmt|;
 block|}
 elseif|else
 if|if
@@ -1261,11 +1287,19 @@ name|TieredMergePolicy
 operator|)
 name|policy
 decl_stmt|;
+name|fixUseCFMergePolicyInitArg
+argument_list|(
+name|TieredMergePolicy
+operator|.
+name|class
+argument_list|)
+expr_stmt|;
 name|tieredMergePolicy
 operator|.
 name|setNoCFSRatio
 argument_list|(
-name|useCompoundFile
+name|getUseCompoundFile
+argument_list|()
 condition|?
 literal|1.0
 else|:
@@ -1295,32 +1329,21 @@ name|mergeFactor
 argument_list|)
 expr_stmt|;
 block|}
-name|fixUseCFInitArg
-argument_list|(
-name|TieredMergePolicy
-operator|.
-name|class
-argument_list|)
-expr_stmt|;
 block|}
 elseif|else
 if|if
 condition|(
-name|useCompoundFile
-operator|&&
-operator|(
 name|mergeFactor
 operator|!=
 operator|-
 literal|1
-operator|)
 condition|)
 block|{
 name|log
 operator|.
 name|warn
 argument_list|(
-literal|"Use of<useCompoundFile> or<mergeFactor> cannot be configured if merge policy is not an instance of LogMergePolicy or TieredMergePolicy. The configured policy's defaults will be used."
+literal|"Use of<mergeFactor> cannot be configured if merge policy is not an instance of LogMergePolicy or TieredMergePolicy. The configured policy's defaults will be used."
 argument_list|)
 expr_stmt|;
 block|}
@@ -1407,11 +1430,21 @@ return|return
 name|scheduler
 return|;
 block|}
-comment|/**    * Lucene 4.4 removed the setUseCompoundFile(boolean) method from the two     * conrete MergePolicies provided with Lucene/Solr.  In the event that users     * have a value explicitly configured for this setter in their mergePolicy     * init args, we remove it for them and warn about it.    */
-DECL|method|fixUseCFInitArg
+DECL|method|getUseCompoundFile
+specifier|public
+name|boolean
+name|getUseCompoundFile
+parameter_list|()
+block|{
+return|return
+name|effectiveUseCompountFileSetting
+return|;
+block|}
+comment|/**    * Lucene 4.4 removed the setUseCompoundFile(boolean) method from the two     * conrete MergePolicies provided with Lucene/Solr and added it to the     * IndexWRiterConfig.      * In the event that users have a value explicitly configured for this     * setter in their MergePolicy init args, we remove it from the MergePolicy     * init args, update the 'effective' useCompoundFile setting used by the     * IndexWriterConfig, and warn about discontinuing to use this init arg.    *     * @see #getUseCompoundFile    */
+DECL|method|fixUseCFMergePolicyInitArg
 specifier|private
 name|void
-name|fixUseCFInitArg
+name|fixUseCFMergePolicyInitArg
 parameter_list|(
 name|Class
 name|c
@@ -1453,7 +1486,7 @@ name|log
 operator|.
 name|warn
 argument_list|(
-literal|"Ignoring 'useCompoundFile' specified as an init arg for the<mergePolicy> since it is no longer supported by "
+literal|"Ignoring 'useCompoundFile' specified as an init arg for the<mergePolicy> since it is no directly longer supported by "
 operator|+
 name|c
 operator|.
@@ -1461,6 +1494,57 @@ name|getSimpleName
 argument_list|()
 argument_list|)
 expr_stmt|;
+if|if
+condition|(
+name|useCFSArg
+operator|instanceof
+name|Boolean
+condition|)
+block|{
+name|boolean
+name|cfs
+init|=
+operator|(
+operator|(
+name|Boolean
+operator|)
+name|useCFSArg
+operator|)
+operator|.
+name|booleanValue
+argument_list|()
+decl_stmt|;
+name|log
+operator|.
+name|warn
+argument_list|(
+literal|"Please update your config to specify<useCompoundFile>"
+operator|+
+name|cfs
+operator|+
+literal|"</useCompoundFile> directly in your<indexConfig> settings."
+argument_list|)
+expr_stmt|;
+name|effectiveUseCompountFileSetting
+operator|=
+name|cfs
+expr_stmt|;
+block|}
+else|else
+block|{
+name|log
+operator|.
+name|error
+argument_list|(
+literal|"MergePolicy's 'useCompoundFile' init arg is not a boolean, can not apply back compat logic to apply to the IndexWriterConfig: "
+operator|+
+name|useCFSArg
+operator|.
+name|toString
+argument_list|()
+argument_list|)
+expr_stmt|;
+block|}
 block|}
 block|}
 block|}
