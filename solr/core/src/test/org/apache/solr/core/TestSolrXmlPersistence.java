@@ -2836,7 +2836,13 @@ literal|"/solr/cores/core[@name='props1' and @transient='true']"
 argument_list|,
 literal|"/solr/cores/core[@name='props1' and @loadOnStartup='true']"
 argument_list|,
-literal|"/solr/cores/core[@name='props1' and @instanceDir='props1/']"
+literal|"/solr/cores/core[@name='props1' and @instanceDir='props1"
+operator|+
+name|File
+operator|.
+name|separator
+operator|+
+literal|"']"
 argument_list|,
 literal|"/solr/cores/core[@name='props2']/property[@name='prefix2_1' and @value='valuep2_1']"
 argument_list|,
