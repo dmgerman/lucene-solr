@@ -517,6 +517,19 @@ name|String
 name|message
 parameter_list|)
 block|{
+if|if
+condition|(
+literal|"TP"
+operator|.
+name|equals
+argument_list|(
+name|component
+argument_list|)
+condition|)
+block|{
+return|return;
+comment|// ignore test points!
+block|}
 specifier|final
 name|String
 name|name
