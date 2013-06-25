@@ -93,9 +93,16 @@ block|{
 name|CoreContainer
 name|cc
 init|=
+operator|new
 name|CoreContainer
+argument_list|(
+name|TEST_HOME
+argument_list|()
+argument_list|)
+decl_stmt|;
+name|cc
 operator|.
-name|createAndLoad
+name|load
 argument_list|(
 name|TEST_HOME
 argument_list|()
@@ -109,7 +116,7 @@ argument_list|,
 literal|"solr-shardhandler.xml"
 argument_list|)
 argument_list|)
-decl_stmt|;
+expr_stmt|;
 name|ShardHandlerFactory
 name|factory
 init|=

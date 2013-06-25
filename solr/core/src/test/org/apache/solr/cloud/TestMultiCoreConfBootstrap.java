@@ -18,6 +18,16 @@ end_package
 
 begin_import
 import|import
+name|java
+operator|.
+name|io
+operator|.
+name|File
+import|;
+end_import
+
+begin_import
+import|import
 name|org
 operator|.
 name|apache
@@ -133,16 +143,6 @@ operator|.
 name|slf4j
 operator|.
 name|LoggerFactory
-import|;
-end_import
-
-begin_import
-import|import
-name|java
-operator|.
-name|io
-operator|.
-name|File
 import|;
 end_import
 
@@ -528,9 +528,8 @@ argument_list|)
 expr_stmt|;
 name|cores
 operator|=
+operator|new
 name|CoreContainer
-operator|.
-name|createAndLoad
 argument_list|(
 name|home
 argument_list|,

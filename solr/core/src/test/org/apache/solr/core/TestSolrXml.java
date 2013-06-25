@@ -283,6 +283,8 @@ operator|new
 name|ConfigSolrXmlOld
 argument_list|(
 name|config
+argument_list|,
+name|cc
 argument_list|)
 expr_stmt|;
 block|}
@@ -1047,6 +1049,8 @@ operator|new
 name|ConfigSolrXmlOld
 argument_list|(
 name|config
+argument_list|,
+name|cc
 argument_list|)
 expr_stmt|;
 block|}

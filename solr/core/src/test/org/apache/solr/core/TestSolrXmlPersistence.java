@@ -136,6 +136,16 @@ name|org
 operator|.
 name|junit
 operator|.
+name|BeforeClass
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|junit
+operator|.
 name|Rule
 import|;
 end_import
@@ -320,6 +330,7 @@ name|SolrTestCaseJ4
 block|{
 DECL|field|solrHomeDirectory
 specifier|private
+specifier|final
 name|File
 name|solrHomeDirectory
 init|=
@@ -337,7 +348,25 @@ name|getName
 argument_list|()
 argument_list|)
 decl_stmt|;
-comment|/*   @BeforeClass   public static void beforeClass() throws Exception {     initCore("solrconfig-minimal.xml", "schema-tiny.xml");   }   */
+annotation|@
+name|BeforeClass
+DECL|method|beforeClass
+specifier|public
+specifier|static
+name|void
+name|beforeClass
+parameter_list|()
+throws|throws
+name|Exception
+block|{
+name|initCore
+argument_list|(
+literal|"solrconfig-minimal.xml"
+argument_list|,
+literal|"schema-tiny.xml"
+argument_list|)
+expr_stmt|;
+block|}
 annotation|@
 name|Rule
 DECL|field|solrTestRules
@@ -369,13 +398,22 @@ parameter_list|)
 throws|throws
 name|Exception
 block|{
-name|createTempDir
-argument_list|()
-expr_stmt|;
+if|if
+condition|(
 name|solrHomeDirectory
-operator|=
-name|dataDir
+operator|.
+name|exists
+argument_list|()
+condition|)
+block|{
+name|FileUtils
+operator|.
+name|deleteDirectory
+argument_list|(
+name|solrHomeDirectory
+argument_list|)
 expr_stmt|;
+block|}
 for|for
 control|(
 name|String
@@ -427,16 +465,34 @@ specifier|final
 name|CoreContainer
 name|cores
 init|=
-name|createCoreContainer
+operator|new
+name|CoreContainer
+argument_list|(
+name|solrHomeDirectory
+operator|.
+name|getAbsolutePath
+argument_list|()
+argument_list|)
+decl_stmt|;
+name|cores
+operator|.
+name|load
 argument_list|(
 name|solrHomeDirectory
 operator|.
 name|getAbsolutePath
 argument_list|()
 argument_list|,
-name|solrXmlString
+name|solrXml
 argument_list|)
-decl_stmt|;
+expr_stmt|;
+name|cores
+operator|.
+name|setPersistent
+argument_list|(
+literal|false
+argument_list|)
+expr_stmt|;
 return|return
 name|cores
 return|;
@@ -1738,7 +1794,7 @@ literal|"instanceDir='"
 operator|+
 name|which
 operator|+
-literal|"/'"
+literal|"'"
 argument_list|)
 expr_stmt|;
 block|}
@@ -3388,7 +3444,7 @@ literal|"       distribUpdateSoTimeout=\"${distribUpdateSoTimeout:120000}\" \n"
 operator|+
 literal|"       leaderVoteWait=\"${leadVoteWait:32}\" managementPath=\"${manpath:/var/lib/path}\" transientCacheSize=\"${tranSize:128}\"> \n"
 operator|+
-literal|"<core name=\"SystemVars1\" instanceDir=\"SystemVars1/\" shard=\"${shard:32}\" \n"
+literal|"<core name=\"SystemVars1\" instanceDir=\"SystemVars1\" shard=\"${shard:32}\" \n"
 operator|+
 literal|"          collection=\"${collection:collection1}\" config=\"${solrconfig:solrconfig.xml}\" \n"
 operator|+
@@ -3402,7 +3458,7 @@ literal|">\n"
 operator|+
 literal|"</core>\n"
 operator|+
-literal|"<core name=\"SystemVars2\" instanceDir=\"SystemVars2/\" shard=\"${shard:32}\" \n"
+literal|"<core name=\"SystemVars2\" instanceDir=\"SystemVars2\" shard=\"${shard:32}\" \n"
 operator|+
 literal|"          collection=\"${collection:collection2}\" config=\"${solrconfig:solrconfig.xml}\" \n"
 operator|+
@@ -3430,7 +3486,7 @@ literal|"<solr>\n"
 operator|+
 literal|"<cores> \n"
 operator|+
-literal|"<core name=\"SystemVars1\" instanceDir=\"SystemVars1/\" />\n"
+literal|"<core name=\"SystemVars1\" instanceDir=\"SystemVars1\" />\n"
 operator|+
 literal|"</cores>\n"
 operator|+

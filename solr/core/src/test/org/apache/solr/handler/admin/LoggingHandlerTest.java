@@ -20,23 +20,11 @@ end_package
 
 begin_import
 import|import
-name|org
+name|java
 operator|.
-name|apache
+name|util
 operator|.
-name|log4j
-operator|.
-name|Level
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|log4j
+name|logging
 operator|.
 name|Logger
 import|;
@@ -80,9 +68,9 @@ name|solr
 operator|.
 name|logging
 operator|.
-name|log4j
+name|jul
 operator|.
-name|Log4jInfo
+name|JulInfo
 import|;
 end_import
 
@@ -114,10 +102,6 @@ name|LoggingHandlerTest
 extends|extends
 name|SolrTestCaseJ4
 block|{
-comment|// TODO: This only tests Log4j at the moment, as that's what's defined
-comment|// through the CoreContainer.
-comment|// TODO: Would be nice to throw an exception on trying to set a
-comment|// log level that doesn't exist
 annotation|@
 name|BeforeClass
 DECL|method|beforeClass
@@ -157,20 +141,11 @@ argument_list|(
 literal|"org.apache.solr.SolrTestCaseJ4"
 argument_list|)
 decl_stmt|;
-name|tst
-operator|.
-name|setLevel
-argument_list|(
-name|Level
-operator|.
-name|INFO
-argument_list|)
-expr_stmt|;
-name|Log4jInfo
+name|JulInfo
 name|wrap
 init|=
 operator|new
-name|Log4jInfo
+name|JulInfo
 argument_list|(
 name|tst
 operator|.
@@ -230,10 +205,10 @@ literal|"org.xxx.yyy.abc:null"
 argument_list|,
 literal|"set"
 argument_list|,
-literal|"org.xxx.yyy.zzz:TRACE"
+literal|"org.xxx.yyy.zzz:FINEST"
 argument_list|)
 argument_list|,
-literal|"//arr[@name='loggers']/lst/str[.='org.xxx.yyy.zzz']/../str[@name='level'][.='TRACE']"
+literal|"//arr[@name='loggers']/lst/str[.='org.xxx.yyy.zzz']/../str[@name='level'][.='FINEST']"
 argument_list|)
 expr_stmt|;
 block|}

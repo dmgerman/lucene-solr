@@ -191,7 +191,6 @@ name|BaseTestHarness
 block|{
 DECL|field|builderTL
 specifier|private
-specifier|static
 specifier|final
 name|ThreadLocal
 argument_list|<
@@ -208,7 +207,6 @@ argument_list|()
 decl_stmt|;
 DECL|field|xpathTL
 specifier|private
-specifier|static
 specifier|final
 name|ThreadLocal
 argument_list|<
@@ -225,7 +223,6 @@ argument_list|()
 decl_stmt|;
 DECL|method|getXmlDocumentBuilder
 specifier|public
-specifier|static
 name|DocumentBuilder
 name|getXmlDocumentBuilder
 parameter_list|()
@@ -286,7 +283,6 @@ block|}
 block|}
 DECL|method|getXpath
 specifier|public
-specifier|static
 name|XPath
 name|getXpath
 parameter_list|()
@@ -348,7 +344,6 @@ block|}
 comment|/**    * A helper method which validates a String against an array of XPath test    * strings.    *    * @param xml The xml String to validate    * @param tests Array of XPath strings to test (in boolean mode) on the xml    * @return null if all good, otherwise the first test that fails.    */
 DECL|method|validateXPath
 specifier|public
-specifier|static
 name|String
 name|validateXPath
 parameter_list|(
