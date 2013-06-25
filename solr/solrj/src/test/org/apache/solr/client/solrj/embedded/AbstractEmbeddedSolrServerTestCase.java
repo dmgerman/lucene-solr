@@ -344,8 +344,9 @@ argument_list|)
 expr_stmt|;
 name|cores
 operator|=
-operator|new
 name|CoreContainer
+operator|.
+name|createAndLoad
 argument_list|(
 name|SOLR_HOME
 operator|.
