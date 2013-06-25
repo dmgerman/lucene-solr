@@ -127,12 +127,42 @@ name|Lucene42NormsFormat
 extends|extends
 name|NormsFormat
 block|{
-comment|/** Sole constructor */
+DECL|field|acceptableOverheadRatio
+specifier|final
+name|float
+name|acceptableOverheadRatio
+decl_stmt|;
+comment|/**     * Calls {@link #Lucene42NormsFormat(float)     * Lucene42DocValuesFormat(PackedInts.FASTEST)}     */
 DECL|method|Lucene42NormsFormat
 specifier|public
 name|Lucene42NormsFormat
 parameter_list|()
-block|{}
+block|{
+comment|// note: we choose FASTEST here (otherwise our norms are half as big but 15% slower than previous lucene)
+name|this
+argument_list|(
+name|PackedInts
+operator|.
+name|FASTEST
+argument_list|)
+expr_stmt|;
+block|}
+comment|/**    * Creates a new Lucene42DocValuesFormat with the specified    *<code>acceptableOverheadRatio</code> for NumericDocValues.    * @param acceptableOverheadRatio compression parameter for numerics.     *        Currently this is only used when the number of unique values is small.    *            * @lucene.experimental    */
+DECL|method|Lucene42NormsFormat
+specifier|public
+name|Lucene42NormsFormat
+parameter_list|(
+name|float
+name|acceptableOverheadRatio
+parameter_list|)
+block|{
+name|this
+operator|.
+name|acceptableOverheadRatio
+operator|=
+name|acceptableOverheadRatio
+expr_stmt|;
+block|}
 annotation|@
 name|Override
 DECL|method|normsConsumer
@@ -146,7 +176,6 @@ parameter_list|)
 throws|throws
 name|IOException
 block|{
-comment|// note: we choose FASTEST here (otherwise our norms are half as big but 15% slower than previous lucene)
 return|return
 operator|new
 name|Lucene42DocValuesConsumer
@@ -161,9 +190,7 @@ name|METADATA_CODEC
 argument_list|,
 name|METADATA_EXTENSION
 argument_list|,
-name|PackedInts
-operator|.
-name|FASTEST
+name|acceptableOverheadRatio
 argument_list|)
 return|;
 block|}

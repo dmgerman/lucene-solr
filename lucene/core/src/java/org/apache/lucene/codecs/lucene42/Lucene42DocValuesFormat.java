@@ -203,16 +203,44 @@ name|Lucene42DocValuesFormat
 extends|extends
 name|DocValuesFormat
 block|{
-comment|/** Sole constructor */
+DECL|field|acceptableOverheadRatio
+specifier|final
+name|float
+name|acceptableOverheadRatio
+decl_stmt|;
+comment|/**     * Calls {@link #Lucene42DocValuesFormat(float)     * Lucene42DocValuesFormat(PackedInts.DEFAULT)}     */
 DECL|method|Lucene42DocValuesFormat
 specifier|public
 name|Lucene42DocValuesFormat
 parameter_list|()
 block|{
+name|this
+argument_list|(
+name|PackedInts
+operator|.
+name|DEFAULT
+argument_list|)
+expr_stmt|;
+block|}
+comment|/**    * Creates a new Lucene42DocValuesFormat with the specified    *<code>acceptableOverheadRatio</code> for NumericDocValues.    * @param acceptableOverheadRatio compression parameter for numerics.     *        Currently this is only used when the number of unique values is small.    *            * @lucene.experimental    */
+DECL|method|Lucene42DocValuesFormat
+specifier|public
+name|Lucene42DocValuesFormat
+parameter_list|(
+name|float
+name|acceptableOverheadRatio
+parameter_list|)
+block|{
 name|super
 argument_list|(
 literal|"Lucene42"
 argument_list|)
+expr_stmt|;
+name|this
+operator|.
+name|acceptableOverheadRatio
+operator|=
+name|acceptableOverheadRatio
 expr_stmt|;
 block|}
 annotation|@
@@ -243,9 +271,7 @@ name|METADATA_CODEC
 argument_list|,
 name|METADATA_EXTENSION
 argument_list|,
-name|PackedInts
-operator|.
-name|DEFAULT
+name|acceptableOverheadRatio
 argument_list|)
 return|;
 block|}
