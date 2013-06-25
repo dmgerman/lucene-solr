@@ -635,7 +635,7 @@ parameter_list|)
 block|{
 return|return
 operator|(
-name|long
+name|byte
 operator|)
 name|f
 return|;
