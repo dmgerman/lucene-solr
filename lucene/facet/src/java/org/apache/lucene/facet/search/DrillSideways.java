@@ -1224,26 +1224,15 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
-if|if
-condition|(
+comment|// We already moved all drill-downs that didn't have a
+comment|// FacetRequest, in moveDrillDownOnlyClauses above:
+assert|assert
+operator|!
 name|requests
 operator|.
 name|isEmpty
 argument_list|()
-condition|)
-block|{
-throw|throw
-operator|new
-name|IllegalArgumentException
-argument_list|(
-literal|"could not find FacetRequest for drill-sideways dimension \""
-operator|+
-name|dim
-operator|+
-literal|"\""
-argument_list|)
-throw|;
-block|}
+assert|;
 name|drillSidewaysCollectors
 index|[
 name|idx
