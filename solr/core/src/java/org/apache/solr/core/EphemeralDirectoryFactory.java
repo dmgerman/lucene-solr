@@ -152,6 +152,36 @@ return|return
 literal|true
 return|;
 block|}
+annotation|@
+name|Override
+DECL|method|remove
+specifier|public
+name|void
+name|remove
+parameter_list|(
+name|Directory
+name|dir
+parameter_list|)
+throws|throws
+name|IOException
+block|{
+comment|// ram dir does not persist its dir anywhere
+block|}
+annotation|@
+name|Override
+DECL|method|remove
+specifier|public
+name|void
+name|remove
+parameter_list|(
+name|String
+name|path
+parameter_list|)
+throws|throws
+name|IOException
+block|{
+comment|// ram dir does not persist its dir anywhere
+block|}
 block|}
 end_class
 

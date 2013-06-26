@@ -1789,6 +1789,13 @@ specifier|static
 name|File
 name|dataDir
 decl_stmt|;
+comment|// hack due to File dataDir
+DECL|field|hdfsDataDir
+specifier|protected
+specifier|static
+name|String
+name|hdfsDataDir
+decl_stmt|;
 comment|/**    * Initializes things your test might need    *    *<ul>    *<li>Creates a dataDir in the "java.io.tmpdir"</li>    *<li>initializes the TestHarness h using this data directory, and getSchemaPath()</li>    *<li>initializes the LocalRequestFactory lrf using sensible defaults.</li>    *</ul>    *    */
 DECL|field|log
 specifier|public
@@ -1998,10 +2005,16 @@ name|TestHarness
 argument_list|(
 name|coreName
 argument_list|,
+name|hdfsDataDir
+operator|==
+literal|null
+condition|?
 name|dataDir
 operator|.
 name|getAbsolutePath
 argument_list|()
+else|:
+name|hdfsDataDir
 argument_list|,
 name|solrConfig
 argument_list|,

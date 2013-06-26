@@ -8374,7 +8374,7 @@ block|{
 return|return
 name|dataDir
 operator|.
-name|toString
+name|getAbsolutePath
 argument_list|()
 return|;
 block|}

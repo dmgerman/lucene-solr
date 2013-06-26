@@ -622,6 +622,9 @@ try|try
 block|{
 name|logDir
 operator|=
+operator|new
+name|File
+argument_list|(
 name|core
 operator|.
 name|getUpdateHandler
@@ -632,6 +635,7 @@ argument_list|()
 operator|.
 name|getLogDir
 argument_list|()
+argument_list|)
 expr_stmt|;
 block|}
 finally|finally

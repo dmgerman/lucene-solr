@@ -1749,12 +1749,37 @@ operator|.
 name|name
 argument_list|)
 expr_stmt|;
+if|if
+condition|(
+name|directoryFactory
+operator|.
+name|searchersReserveCommitPoints
+argument_list|()
+condition|)
+block|{
+comment|// reserve commit point for life of searcher
+name|core
+operator|.
+name|getDeletionPolicy
+argument_list|()
+operator|.
+name|saveCommitPoint
+argument_list|(
+name|reader
+operator|.
+name|getIndexCommit
+argument_list|()
+operator|.
+name|getGeneration
+argument_list|()
+argument_list|)
+expr_stmt|;
+block|}
 name|Directory
 name|dir
 init|=
-name|this
-operator|.
-name|reader
+name|getIndexReader
+argument_list|()
 operator|.
 name|directory
 argument_list|()
@@ -2440,6 +2465,17 @@ expr_stmt|;
 comment|// super.close();
 comment|// can't use super.close() since it just calls reader.close() and that may only be called once
 comment|// per reader (even if incRef() was previously called).
+name|long
+name|cpg
+init|=
+name|reader
+operator|.
+name|getIndexCommit
+argument_list|()
+operator|.
+name|getGeneration
+argument_list|()
+decl_stmt|;
 try|try
 block|{
 if|if
@@ -2467,6 +2503,25 @@ argument_list|,
 literal|"Problem dec ref'ing reader"
 argument_list|,
 name|t
+argument_list|)
+expr_stmt|;
+block|}
+if|if
+condition|(
+name|directoryFactory
+operator|.
+name|searchersReserveCommitPoints
+argument_list|()
+condition|)
+block|{
+name|core
+operator|.
+name|getDeletionPolicy
+argument_list|()
+operator|.
+name|releaseCommitPoint
+argument_list|(
+name|cpg
 argument_list|)
 expr_stmt|;
 block|}

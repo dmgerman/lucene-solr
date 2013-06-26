@@ -374,6 +374,7 @@ name|int
 name|numRecords
 decl_stmt|;
 DECL|field|deleteOnClose
+specifier|protected
 specifier|volatile
 name|boolean
 name|deleteOnClose
@@ -511,7 +512,12 @@ block|{
 DECL|method|LogCodec
 specifier|public
 name|LogCodec
-parameter_list|()
+parameter_list|(
+name|JavaBinCodec
+operator|.
+name|ObjectResolver
+name|resolver
+parameter_list|)
 block|{
 name|super
 argument_list|(
@@ -959,6 +965,12 @@ block|}
 block|}
 block|}
 block|}
+comment|// for subclasses
+DECL|method|TransactionLog
+specifier|protected
+name|TransactionLog
+parameter_list|()
+block|{}
 comment|/** Returns the number of records in the log (currently includes the header and an optional commit).    * Note: currently returns 0 for reopened existing log files.    */
 DECL|method|numRecords
 specifier|public
@@ -1197,7 +1209,9 @@ name|codec
 init|=
 operator|new
 name|LogCodec
-argument_list|()
+argument_list|(
+name|resolver
+argument_list|)
 decl_stmt|;
 try|try
 block|{
@@ -1282,7 +1296,9 @@ name|codec
 init|=
 operator|new
 name|LogCodec
-argument_list|()
+argument_list|(
+name|resolver
+argument_list|)
 decl_stmt|;
 name|Map
 name|header
@@ -1378,7 +1394,7 @@ block|}
 block|}
 block|}
 DECL|method|addGlobalStrings
-specifier|private
+specifier|protected
 name|void
 name|addGlobalStrings
 parameter_list|(
@@ -1500,7 +1516,7 @@ return|;
 block|}
 block|}
 DECL|method|writeLogHeader
-specifier|private
+specifier|protected
 name|void
 name|writeLogHeader
 parameter_list|(
@@ -1570,7 +1586,7 @@ argument_list|)
 expr_stmt|;
 block|}
 DECL|method|endRecord
-specifier|private
+specifier|protected
 name|void
 name|endRecord
 parameter_list|(
@@ -1688,7 +1704,9 @@ name|codec
 init|=
 operator|new
 name|LogCodec
-argument_list|()
+argument_list|(
+name|resolver
+argument_list|)
 decl_stmt|;
 name|SolrInputDocument
 name|sdoc
@@ -1887,7 +1905,9 @@ name|codec
 init|=
 operator|new
 name|LogCodec
-argument_list|()
+argument_list|(
+name|resolver
+argument_list|)
 decl_stmt|;
 try|try
 block|{
@@ -2055,7 +2075,9 @@ name|codec
 init|=
 operator|new
 name|LogCodec
-argument_list|()
+argument_list|(
+name|resolver
+argument_list|)
 decl_stmt|;
 try|try
 block|{
@@ -2207,7 +2229,9 @@ name|codec
 init|=
 operator|new
 name|LogCodec
-argument_list|()
+argument_list|(
+name|resolver
+argument_list|)
 decl_stmt|;
 synchronized|synchronized
 init|(
@@ -2394,7 +2418,9 @@ name|codec
 init|=
 operator|new
 name|LogCodec
-argument_list|()
+argument_list|(
+name|resolver
+argument_list|)
 decl_stmt|;
 return|return
 name|codec
@@ -2601,7 +2627,7 @@ throw|;
 block|}
 block|}
 DECL|method|close
-specifier|private
+specifier|protected
 name|void
 name|close
 parameter_list|()
@@ -2764,7 +2790,7 @@ name|IOException
 block|{
 return|return
 operator|new
-name|ReverseReader
+name|FSReverseReader
 argument_list|()
 return|;
 block|}
@@ -2774,6 +2800,7 @@ class|class
 name|LogReader
 block|{
 DECL|field|fis
+specifier|private
 name|ChannelFastInputStream
 name|fis
 decl_stmt|;
@@ -2784,7 +2811,9 @@ name|codec
 init|=
 operator|new
 name|LogCodec
-argument_list|()
+argument_list|(
+name|resolver
+argument_list|)
 decl_stmt|;
 DECL|method|LogReader
 specifier|public
@@ -2808,6 +2837,12 @@ name|startingPos
 argument_list|)
 expr_stmt|;
 block|}
+comment|// for classes that extend
+DECL|method|LogReader
+specifier|protected
+name|LogReader
+parameter_list|()
+block|{}
 comment|/** Returns the next object from the log, or null if none available.      *      * @return The log record, or null if EOF      * @throws IOException If there is a low-level I/O error.      */
 DECL|method|next
 specifier|public
@@ -3010,7 +3045,50 @@ block|}
 block|}
 DECL|class|ReverseReader
 specifier|public
+specifier|abstract
 class|class
+name|ReverseReader
+block|{
+comment|/** Returns the next object from the log, or null if none available.      *      * @return The log record, or null if EOF      * @throws IOException If there is a low-level I/O error.      */
+DECL|method|next
+specifier|public
+specifier|abstract
+name|Object
+name|next
+parameter_list|()
+throws|throws
+name|IOException
+function_decl|;
+comment|/* returns the position in the log file of the last record returned by next() */
+DECL|method|position
+specifier|public
+specifier|abstract
+name|long
+name|position
+parameter_list|()
+function_decl|;
+DECL|method|close
+specifier|public
+specifier|abstract
+name|void
+name|close
+parameter_list|()
+function_decl|;
+annotation|@
+name|Override
+DECL|method|toString
+specifier|public
+specifier|abstract
+name|String
+name|toString
+parameter_list|()
+function_decl|;
+block|}
+DECL|class|FSReverseReader
+specifier|public
+class|class
+name|FSReverseReader
+extends|extends
 name|ReverseReader
 block|{
 DECL|field|fis
@@ -3024,7 +3102,9 @@ name|codec
 init|=
 operator|new
 name|LogCodec
-argument_list|()
+argument_list|(
+name|resolver
+argument_list|)
 block|{
 annotation|@
 name|Override
@@ -3054,9 +3134,9 @@ name|long
 name|prevPos
 decl_stmt|;
 comment|// where we started reading from last time (so prevPos - nextLength == start of next record)
-DECL|method|ReverseReader
+DECL|method|FSReverseReader
 specifier|public
-name|ReverseReader
+name|FSReverseReader
 parameter_list|()
 throws|throws
 name|IOException

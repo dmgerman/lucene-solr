@@ -847,7 +847,7 @@ name|verbose
 argument_list|,
 name|failOnTimeout
 argument_list|,
-literal|230
+literal|330
 argument_list|)
 expr_stmt|;
 block|}
@@ -1050,12 +1050,8 @@ operator|.
 name|getValue
 argument_list|()
 operator|.
-name|getStr
-argument_list|(
-name|ZkStateReader
-operator|.
-name|NODE_NAME_PROP
-argument_list|)
+name|getNodeName
+argument_list|()
 argument_list|)
 argument_list|)
 expr_stmt|;

@@ -1214,6 +1214,20 @@ name|document
 argument_list|)
 argument_list|)
 expr_stmt|;
+name|assertTrue
+argument_list|(
+literal|"\"/solr/cores[@genericCoreNodeNames='${genericCoreNodeNames:true}']\" doesn't match in:\n"
+operator|+
+name|solrPersistXml
+argument_list|,
+name|exists
+argument_list|(
+literal|"/solr/cores[@genericCoreNodeNames='${genericCoreNodeNames:true}']"
+argument_list|,
+name|document
+argument_list|)
+argument_list|)
+expr_stmt|;
 block|}
 finally|finally
 block|{
