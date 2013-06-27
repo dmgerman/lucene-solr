@@ -757,6 +757,11 @@ operator|.
 name|tearDown
 argument_list|()
 expr_stmt|;
+name|directory
+operator|.
+name|close
+argument_list|()
+expr_stmt|;
 name|FileUtils
 operator|.
 name|deleteDirectory
@@ -850,6 +855,11 @@ argument_list|,
 name|hdfsLength
 argument_list|)
 expr_stmt|;
+name|fsDir
+operator|.
+name|close
+argument_list|()
+expr_stmt|;
 block|}
 DECL|method|testEof
 specifier|private
@@ -882,6 +892,8 @@ name|IOContext
 argument_list|()
 argument_list|)
 decl_stmt|;
+try|try
+block|{
 name|input
 operator|.
 name|seek
@@ -907,7 +919,16 @@ parameter_list|(
 name|IOException
 name|e
 parameter_list|)
-block|{     }
+block|{       }
+block|}
+finally|finally
+block|{
+name|input
+operator|.
+name|close
+argument_list|()
+expr_stmt|;
+block|}
 block|}
 annotation|@
 name|Test
