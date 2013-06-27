@@ -821,6 +821,17 @@ operator|=
 name|collection
 expr_stmt|;
 block|}
+comment|/** Gets the default collection for request */
+DECL|method|getDefaultCollection
+specifier|public
+name|String
+name|getDefaultCollection
+parameter_list|()
+block|{
+return|return
+name|defaultCollection
+return|;
+block|}
 comment|/** Set the connect timeout to the zookeeper ensemble in ms */
 DECL|method|setZkConnectTimeout
 specifier|public
