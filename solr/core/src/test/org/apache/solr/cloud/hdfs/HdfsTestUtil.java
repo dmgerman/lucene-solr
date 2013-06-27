@@ -171,6 +171,18 @@ operator|.
 name|WINDOWS
 argument_list|)
 expr_stmt|;
+name|LuceneTestCase
+operator|.
+name|assumeFalse
+argument_list|(
+literal|"HDFS do not work well with FreeBSD blackhole setup"
+argument_list|,
+name|Constants
+operator|.
+name|FREE_BSD
+argument_list|)
+expr_stmt|;
+comment|// LuceneTestCase.assumeFalse("HDFS tests on Windows require Cygwin", Constants.F);
 name|File
 name|dir
 init|=
