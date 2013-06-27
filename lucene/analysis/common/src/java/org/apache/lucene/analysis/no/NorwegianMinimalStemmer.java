@@ -44,8 +44,44 @@ name|*
 import|;
 end_import
 
+begin_import
+import|import static
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|analysis
+operator|.
+name|no
+operator|.
+name|NorwegianLightStemmer
+operator|.
+name|BOKMAAL
+import|;
+end_import
+
+begin_import
+import|import static
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|analysis
+operator|.
+name|no
+operator|.
+name|NorwegianLightStemmer
+operator|.
+name|NYNORSK
+import|;
+end_import
+
 begin_comment
-comment|/**  * Minimal Stemmer for Norwegian bokmÃ¥l (no-nb)  *<p>  * Stems known plural forms for Norwegian nouns only, together with genitiv -s  */
+comment|/**  * Minimal Stemmer for Norwegian BokmÃ¥l (no-nb) and Nynorsk (no-nn)  *<p>  * Stems known plural forms for Norwegian nouns only, together with genitiv -s  */
 end_comment
 
 begin_class
@@ -54,6 +90,67 @@ specifier|public
 class|class
 name|NorwegianMinimalStemmer
 block|{
+DECL|field|useBokmaal
+specifier|final
+name|boolean
+name|useBokmaal
+decl_stmt|;
+DECL|field|useNynorsk
+specifier|final
+name|boolean
+name|useNynorsk
+decl_stmt|;
+comment|/**     * Creates a new NorwegianMinimalStemmer    * @param flags set to {@link NorwegianLightStemmer#BOKMAAL},     *                     {@link NorwegianLightStemmer#NYNORSK}, or both.    */
+DECL|method|NorwegianMinimalStemmer
+specifier|public
+name|NorwegianMinimalStemmer
+parameter_list|(
+name|int
+name|flags
+parameter_list|)
+block|{
+if|if
+condition|(
+name|flags
+operator|<=
+literal|0
+operator|||
+name|flags
+operator|>
+name|BOKMAAL
+operator|+
+name|NYNORSK
+condition|)
+block|{
+throw|throw
+operator|new
+name|IllegalArgumentException
+argument_list|(
+literal|"invalid flags"
+argument_list|)
+throw|;
+block|}
+name|useBokmaal
+operator|=
+operator|(
+name|flags
+operator|&
+name|BOKMAAL
+operator|)
+operator|!=
+literal|0
+expr_stmt|;
+name|useNynorsk
+operator|=
+operator|(
+name|flags
+operator|&
+name|NYNORSK
+operator|)
+operator|!=
+literal|0
+expr_stmt|;
+block|}
 DECL|method|stem
 specifier|public
 name|int
@@ -92,6 +189,7 @@ name|len
 operator|>
 literal|5
 operator|&&
+operator|(
 name|endsWith
 argument_list|(
 name|s
@@ -100,7 +198,22 @@ name|len
 argument_list|,
 literal|"ene"
 argument_list|)
+operator|||
 comment|// masc/fem/neutr pl definite (hus-ene)
+operator|(
+name|endsWith
+argument_list|(
+name|s
+argument_list|,
+name|len
+argument_list|,
+literal|"ane"
+argument_list|)
+operator|&&
+name|useNynorsk
+comment|// masc pl definite (gut-ane)
+operator|)
+operator|)
 condition|)
 return|return
 name|len
@@ -142,7 +255,21 @@ name|len
 argument_list|,
 literal|"et"
 argument_list|)
+operator|||
 comment|// neutr definite
+operator|(
+name|endsWith
+argument_list|(
+name|s
+argument_list|,
+name|len
+argument_list|,
+literal|"ar"
+argument_list|)
+operator|&&
+name|useNynorsk
+comment|// masc pl indefinite
+operator|)
 operator|)
 condition|)
 return|return
