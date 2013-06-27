@@ -303,6 +303,8 @@ class|class
 name|SortableFloatField
 extends|extends
 name|PrimitiveFieldType
+implements|implements
+name|FloatValueFieldType
 block|{
 annotation|@
 name|Override

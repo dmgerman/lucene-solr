@@ -275,6 +275,8 @@ class|class
 name|TrieDateField
 extends|extends
 name|DateField
+implements|implements
+name|DateValueFieldType
 block|{
 DECL|field|wrappedField
 specifier|final

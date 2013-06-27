@@ -193,6 +193,8 @@ class|class
 name|DoubleField
 extends|extends
 name|PrimitiveFieldType
+implements|implements
+name|DoubleValueFieldType
 block|{
 DECL|field|PARSER
 specifier|private

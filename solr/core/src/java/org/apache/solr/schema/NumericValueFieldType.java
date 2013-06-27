@@ -17,29 +17,16 @@ package|;
 end_package
 
 begin_comment
-comment|/**  * A numeric field that can contain 64-bit signed two's complement integer values.  *  *<ul>  *<li>Min Value Allowed: -9223372036854775808</li>  *<li>Max Value Allowed: 9223372036854775807</li>  *</ul>  *   * @see Long  */
+comment|/**  * Marker interface for numeric-valued field types.  */
 end_comment
 
-begin_class
-DECL|class|TrieLongField
+begin_interface
+DECL|interface|NumericValueFieldType
 specifier|public
-class|class
-name|TrieLongField
-extends|extends
-name|TrieField
-implements|implements
-name|LongValueFieldType
-block|{
-block|{
-name|type
-operator|=
-name|TrieTypes
-operator|.
-name|LONG
-expr_stmt|;
-block|}
-block|}
-end_class
+interface|interface
+name|NumericValueFieldType
+block|{ }
+end_interface
 
 end_unit
 

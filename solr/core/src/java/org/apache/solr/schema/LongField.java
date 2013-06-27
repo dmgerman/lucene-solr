@@ -221,6 +221,8 @@ class|class
 name|LongField
 extends|extends
 name|PrimitiveFieldType
+implements|implements
+name|LongValueFieldType
 block|{
 DECL|field|PARSER
 specifier|private
