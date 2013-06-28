@@ -880,7 +880,7 @@ name|log
 operator|.
 name|info
 argument_list|(
-literal|"Leader's attempt to sync with shard failed, moving to the next canidate"
+literal|"Leader's attempt to sync with shard failed, moving to the next candidate"
 argument_list|)
 expr_stmt|;
 comment|// lets see who seems ahead...
