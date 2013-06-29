@@ -2874,15 +2874,10 @@ argument_list|()
 decl_stmt|;
 name|cms
 operator|.
-name|setMaxMergeCount
+name|setMaxMergesAndThreads
 argument_list|(
 name|maxMergeCount
-argument_list|)
-expr_stmt|;
-name|cms
-operator|.
-name|setMaxThreadCount
-argument_list|(
+argument_list|,
 name|maxThreadCount
 argument_list|)
 expr_stmt|;
