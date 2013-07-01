@@ -844,7 +844,12 @@ argument_list|()
 expr_stmt|;
 comment|//    System.setProperty("solr.directoryFactory", "solr.StandardDirectoryFactory");
 comment|// For manual testing only
-comment|// useFactory(null); // force an FS factory
+name|useFactory
+argument_list|(
+literal|null
+argument_list|)
+expr_stmt|;
+comment|// force an FS factory.  currently MockDirectoryFactory causes SolrCore.initIndex to detect no index and create a new one.
 name|master
 operator|=
 operator|new
@@ -2123,6 +2128,57 @@ block|{
 comment|/* :NOOP: */
 block|}
 block|}
+block|}
+comment|/**    * Verify that things still work if an IW has not been opened (and hence the CommitPoints have not been communicated to the deletion policy)    */
+DECL|method|testNoWriter
+specifier|public
+name|void
+name|testNoWriter
+parameter_list|()
+throws|throws
+name|Exception
+block|{
+name|index
+argument_list|(
+name|slaveClient
+argument_list|,
+literal|"id"
+argument_list|,
+literal|"123456"
+argument_list|)
+expr_stmt|;
+name|slaveClient
+operator|.
+name|commit
+argument_list|()
+expr_stmt|;
+name|slaveJetty
+operator|.
+name|stop
+argument_list|()
+expr_stmt|;
+comment|// System.err.println("############ starting jetty");
+name|slaveJetty
+operator|=
+name|createJetty
+argument_list|(
+name|slave
+argument_list|)
+expr_stmt|;
+comment|// System.err.println("############ done starting jetty");
+name|slaveClient
+operator|=
+name|createNewSolrServer
+argument_list|(
+name|slaveJetty
+operator|.
+name|getLocalPort
+argument_list|()
+argument_list|)
+expr_stmt|;
+name|pullFromMasterToSlave
+argument_list|()
+expr_stmt|;
 block|}
 comment|/**    * Verify that empty commits and/or commits with openSearcher=false     * on the master do not cause subsequent replication problems on the slave     */
 DECL|method|testEmptyCommits
