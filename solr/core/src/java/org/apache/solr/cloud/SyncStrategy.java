@@ -1668,7 +1668,6 @@ name|SolrServerException
 throws|,
 name|IOException
 block|{
-comment|// TODO: do this in background threads
 name|Thread
 name|thread
 init|=
