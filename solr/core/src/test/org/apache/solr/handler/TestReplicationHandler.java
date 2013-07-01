@@ -844,12 +844,7 @@ argument_list|()
 expr_stmt|;
 comment|//    System.setProperty("solr.directoryFactory", "solr.StandardDirectoryFactory");
 comment|// For manual testing only
-name|useFactory
-argument_list|(
-literal|null
-argument_list|)
-expr_stmt|;
-comment|// force an FS factory.  currently MockDirectoryFactory causes SolrCore.initIndex to detect no index and create a new one.
+comment|// useFactory(null); // force an FS factory.
 name|master
 operator|=
 operator|new
@@ -2138,6 +2133,37 @@ parameter_list|()
 throws|throws
 name|Exception
 block|{
+name|useFactory
+argument_list|(
+literal|null
+argument_list|)
+expr_stmt|;
+comment|// force a persistent directory
+comment|// stop and start so they see the new directory setting
+name|slaveJetty
+operator|.
+name|stop
+argument_list|()
+expr_stmt|;
+name|masterJetty
+operator|.
+name|stop
+argument_list|()
+expr_stmt|;
+name|slaveJetty
+operator|.
+name|start
+argument_list|(
+literal|true
+argument_list|)
+expr_stmt|;
+name|masterJetty
+operator|.
+name|start
+argument_list|(
+literal|true
+argument_list|)
+expr_stmt|;
 name|index
 argument_list|(
 name|slaveClient
@@ -2157,26 +2183,87 @@ operator|.
 name|stop
 argument_list|()
 expr_stmt|;
-comment|// System.err.println("############ starting jetty");
-name|slaveJetty
-operator|=
-name|createJetty
-argument_list|(
-name|slave
-argument_list|)
-expr_stmt|;
-comment|// System.err.println("############ done starting jetty");
-name|slaveClient
-operator|=
-name|createNewSolrServer
-argument_list|(
 name|slaveJetty
 operator|.
-name|getLocalPort
+name|start
+argument_list|(
+literal|true
+argument_list|)
+expr_stmt|;
+comment|// Currently we open a writer on-demand.  This is to test that we are correctly testing
+comment|// the code path when SolrDeletionPolicy.getLatestCommit() returns null.
+comment|// When we are using an ephemeral directory, an IW will always be opened to create the index and hence
+comment|// getLatestCommit will always be non-null.
+name|CoreContainer
+name|cores
+init|=
+operator|(
+operator|(
+name|SolrDispatchFilter
+operator|)
+name|slaveJetty
+operator|.
+name|getDispatchFilter
+argument_list|()
+operator|.
+name|getFilter
+argument_list|()
+operator|)
+operator|.
+name|getCores
+argument_list|()
+decl_stmt|;
+name|Collection
+argument_list|<
+name|SolrCore
+argument_list|>
+name|theCores
+init|=
+name|cores
+operator|.
+name|getCores
+argument_list|()
+decl_stmt|;
+name|assertEquals
+argument_list|(
+literal|1
+argument_list|,
+name|theCores
+operator|.
+name|size
+argument_list|()
+argument_list|)
+expr_stmt|;
+name|SolrCore
+name|core
+init|=
+operator|(
+name|SolrCore
+operator|)
+name|theCores
+operator|.
+name|toArray
+argument_list|()
+index|[
+literal|0
+index|]
+decl_stmt|;
+name|assertNull
+argument_list|(
+name|core
+operator|.
+name|getDeletionPolicy
+argument_list|()
+operator|.
+name|getLatestCommit
 argument_list|()
 argument_list|)
 expr_stmt|;
 name|pullFromMasterToSlave
+argument_list|()
+expr_stmt|;
+comment|// this will cause SnapPuller to be invoked and we will test when SolrDeletionPolicy.getLatestCommit() returns null
+name|resetFactory
 argument_list|()
 expr_stmt|;
 block|}
