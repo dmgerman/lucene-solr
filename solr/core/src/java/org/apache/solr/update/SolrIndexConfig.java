@@ -917,7 +917,7 @@ decl_stmt|;
 if|if
 condition|(
 name|infoStreamFile
-operator|!=
+operator|==
 literal|null
 condition|)
 block|{
@@ -925,9 +925,27 @@ name|log
 operator|.
 name|info
 argument_list|(
-literal|"IndexWriter infoStream debug log is enabled: "
+literal|"IndexWriter infoStream solr logging is enabled"
+argument_list|)
+expr_stmt|;
+name|infoStream
+operator|=
+operator|new
+name|LoggingInfoStream
+argument_list|()
+expr_stmt|;
+block|}
+else|else
+block|{
+name|log
+operator|.
+name|warn
+argument_list|(
+literal|"IndexWriter infoStream file log is enabled: "
 operator|+
 name|infoStreamFile
+operator|+
+literal|"\nThis feature is deprecated. Remove @file from<infoStream> to output messages to solr's logfile"
 argument_list|)
 expr_stmt|;
 name|File
