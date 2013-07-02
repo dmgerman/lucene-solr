@@ -262,6 +262,20 @@ name|getAbsolutePath
 argument_list|()
 argument_list|)
 expr_stmt|;
+name|System
+operator|.
+name|out
+operator|.
+name|println
+argument_list|(
+literal|"Solr home: "
+operator|+
+name|SOLR_HOME
+operator|.
+name|getAbsolutePath
+argument_list|()
+argument_list|)
+expr_stmt|;
 comment|//The index is always stored within a temporary directory
 name|createTempDir
 argument_list|()
@@ -344,8 +358,9 @@ argument_list|)
 expr_stmt|;
 name|cores
 operator|=
-operator|new
 name|CoreContainer
+operator|.
+name|createAndLoad
 argument_list|(
 name|SOLR_HOME
 operator|.
@@ -354,6 +369,13 @@ argument_list|()
 argument_list|,
 name|getSolrXml
 argument_list|()
+argument_list|)
+expr_stmt|;
+name|cores
+operator|.
+name|setPersistent
+argument_list|(
+literal|false
 argument_list|)
 expr_stmt|;
 block|}

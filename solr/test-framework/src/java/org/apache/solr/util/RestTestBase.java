@@ -622,7 +622,7 @@ comment|/*       if (req.getParams().getBool("facet", false)) {         // add a
 name|String
 name|results
 init|=
-name|restTestHarness
+name|TestHarness
 operator|.
 name|validateXPath
 argument_list|(

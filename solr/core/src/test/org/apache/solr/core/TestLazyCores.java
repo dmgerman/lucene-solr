@@ -467,14 +467,7 @@ decl_stmt|;
 name|cores
 operator|.
 name|load
-argument_list|(
-name|solrHomeDirectory
-operator|.
-name|getAbsolutePath
 argument_list|()
-argument_list|,
-name|solrXml
-argument_list|)
 expr_stmt|;
 comment|//  h.getCoreContainer().load(solrHomeDirectory.getAbsolutePath(), new File(solrHomeDirectory, "solr.xml"));
 name|cores

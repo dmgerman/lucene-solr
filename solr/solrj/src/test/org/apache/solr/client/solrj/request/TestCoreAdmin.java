@@ -22,11 +22,29 @@ end_package
 
 begin_import
 import|import
-name|java
+name|com
+operator|.
+name|carrotsearch
+operator|.
+name|randomizedtesting
+operator|.
+name|annotations
+operator|.
+name|ThreadLeakFilters
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|commons
 operator|.
 name|io
 operator|.
-name|File
+name|FileUtils
 import|;
 end_import
 
@@ -158,20 +176,6 @@ begin_import
 import|import
 name|org
 operator|.
-name|apache
-operator|.
-name|commons
-operator|.
-name|io
-operator|.
-name|FileUtils
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
 name|junit
 operator|.
 name|After
@@ -220,15 +224,11 @@ end_import
 
 begin_import
 import|import
-name|com
+name|java
 operator|.
-name|carrotsearch
+name|io
 operator|.
-name|randomizedtesting
-operator|.
-name|annotations
-operator|.
-name|ThreadLeakFilters
+name|File
 import|;
 end_import
 
@@ -393,6 +393,15 @@ name|tmp
 operator|.
 name|mkdirs
 argument_list|()
+expr_stmt|;
+name|log
+operator|.
+name|info
+argument_list|(
+literal|"Creating cores underneath {}"
+argument_list|,
+name|tmp
+argument_list|)
 expr_stmt|;
 name|File
 name|dataDir

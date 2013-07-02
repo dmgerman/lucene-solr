@@ -616,7 +616,12 @@ name|log
 operator|.
 name|info
 argument_list|(
-literal|"Registering Log Listener"
+literal|"Registering Log Listener [{}]"
+argument_list|,
+name|logWatcher
+operator|.
+name|getName
+argument_list|()
 argument_list|)
 expr_stmt|;
 name|logWatcher
