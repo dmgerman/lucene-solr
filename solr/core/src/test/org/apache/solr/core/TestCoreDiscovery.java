@@ -1103,13 +1103,23 @@ argument_list|)
 expr_stmt|;
 name|assertTrue
 argument_list|(
-literal|"/core1 should have been mentioned in the message"
+name|File
+operator|.
+name|separator
+operator|+
+literal|"core1 should have been mentioned in the message: "
+operator|+
+name|message
 argument_list|,
 name|message
 operator|.
 name|indexOf
 argument_list|(
-literal|"/core1"
+name|File
+operator|.
+name|separator
+operator|+
+literal|"core1"
 argument_list|)
 operator|!=
 operator|-
@@ -1118,13 +1128,23 @@ argument_list|)
 expr_stmt|;
 name|assertTrue
 argument_list|(
-literal|"/core2 should have been mentioned in the message"
+name|File
+operator|.
+name|separator
+operator|+
+literal|"core2 should have been mentioned in the message:"
+operator|+
+name|message
 argument_list|,
 name|message
 operator|.
 name|indexOf
 argument_list|(
-literal|"/core2"
+name|File
+operator|.
+name|separator
+operator|+
+literal|"core2"
 argument_list|)
 operator|!=
 operator|-
