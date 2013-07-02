@@ -653,6 +653,22 @@ return|return
 literal|true
 return|;
 block|}
+if|if
+condition|(
+name|isClosed
+condition|)
+block|{
+name|log
+operator|.
+name|warn
+argument_list|(
+literal|"Closed, skipping sync up."
+argument_list|)
+expr_stmt|;
+return|return
+literal|false
+return|;
+block|}
 name|log
 operator|.
 name|info
