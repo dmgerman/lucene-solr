@@ -47,7 +47,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**   * Morfologik dictionaries provide morphosyntactic annotations for  * surface forms. For the exact format and description of these,  * see the project's documentation (annotations vary by dictionary!).  */
+comment|/**   * Morfologik provides morphosyntactic annotations for  * surface forms. For the exact format and description of these,  * see the project's documentation.  */
 end_comment
 
 begin_interface
@@ -71,7 +71,7 @@ argument_list|>
 name|tags
 parameter_list|)
 function_decl|;
-comment|/**     * Returns the POS tag of the term.    */
+comment|/**     * Returns the POS tag of the term. A single word may have multiple POS tags,     * depending on the interpretation (context disambiguation is typically needed    * to determine which particular tag is appropriate).      */
 DECL|method|getTags
 specifier|public
 name|List
