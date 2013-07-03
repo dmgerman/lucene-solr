@@ -1536,12 +1536,12 @@ name|uniqueKeyField
 return|;
 block|}
 DECL|field|uniqueKeyFieldName
-specifier|private
+specifier|protected
 name|String
 name|uniqueKeyFieldName
 decl_stmt|;
 DECL|field|uniqueKeyFieldType
-specifier|private
+specifier|protected
 name|FieldType
 name|uniqueKeyFieldType
 decl_stmt|;
