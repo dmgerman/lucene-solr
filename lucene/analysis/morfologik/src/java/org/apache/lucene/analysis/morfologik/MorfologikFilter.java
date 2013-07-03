@@ -286,7 +286,7 @@ specifier|private
 name|int
 name|lemmaListIndex
 decl_stmt|;
-comment|/**    * @param in   input token stream    * @param version Lucene version compatibility for lowercasing.    */
+comment|/**    * Creates MorfologikFilter    * @param in   input token stream    * @param version Lucene version compatibility for lowercasing.    */
 DECL|method|MorfologikFilter
 specifier|public
 name|MorfologikFilter
