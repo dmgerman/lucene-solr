@@ -1671,6 +1671,7 @@ argument_list|,
 name|flagSep
 argument_list|)
 expr_stmt|;
+block|}
 if|if
 condition|(
 name|ignoreCase
@@ -1687,7 +1688,6 @@ operator|.
 name|ROOT
 argument_list|)
 expr_stmt|;
-block|}
 block|}
 name|List
 argument_list|<
