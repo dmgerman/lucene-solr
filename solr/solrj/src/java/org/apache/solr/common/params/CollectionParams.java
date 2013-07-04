@@ -65,6 +65,7 @@ DECL|enum constant|SYNCSHARD
 DECL|enum constant|CREATEALIAS
 DECL|enum constant|DELETEALIAS
 DECL|enum constant|SPLITSHARD
+DECL|enum constant|DELETESHARD
 name|CREATE
 block|,
 name|DELETE
@@ -78,6 +79,8 @@ block|,
 name|DELETEALIAS
 block|,
 name|SPLITSHARD
+block|,
+name|DELETESHARD
 block|;
 DECL|method|get
 specifier|public
