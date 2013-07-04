@@ -300,17 +300,20 @@ specifier|public
 name|TempPostingsFormat
 parameter_list|()
 block|{
-name|this
+name|super
 argument_list|(
-name|TempBlockTermsWriter
-operator|.
-name|DEFAULT_MIN_BLOCK_SIZE
-argument_list|,
-name|TempBlockTermsWriter
-operator|.
-name|DEFAULT_MAX_BLOCK_SIZE
+literal|"TempFST"
 argument_list|)
 expr_stmt|;
+name|minTermBlockSize
+operator|=
+literal|0
+expr_stmt|;
+name|maxTermBlockSize
+operator|=
+literal|0
+expr_stmt|;
+comment|//this(TempBlockTermsWriter.DEFAULT_MIN_BLOCK_SIZE, TempBlockTermsWriter.DEFAULT_MAX_BLOCK_SIZE);
 block|}
 comment|/** Creates {@code TempPostingsFormat} with custom    *  values for {@code minBlockSize} and {@code    *  maxBlockSize} passed to block terms dictionary.    *  @see TempBlockTermsWriter#TempBlockTermsWriter(SegmentWriteState,TempPostingsWriterBase,int,int) */
 DECL|method|TempPostingsFormat
@@ -400,19 +403,19 @@ literal|false
 decl_stmt|;
 try|try
 block|{
+comment|//FieldsConsumer ret = new TempBlockTermsWriter(state,
+comment|//                                              postingsWriter,
+comment|//                                              minTermBlockSize,
+comment|//                                              maxTermBlockSize);
 name|FieldsConsumer
 name|ret
 init|=
 operator|new
-name|TempBlockTermsWriter
+name|TempFSTTermsWriter
 argument_list|(
 name|state
 argument_list|,
 name|postingsWriter
-argument_list|,
-name|minTermBlockSize
-argument_list|,
-name|maxTermBlockSize
 argument_list|)
 decl_stmt|;
 name|success
@@ -488,37 +491,22 @@ literal|false
 decl_stmt|;
 try|try
 block|{
+comment|//FieldsProducer ret = new TempBlockTermsReader(state.directory,
+comment|//                                              state.fieldInfos,
+comment|//                                              state.segmentInfo,
+comment|//                                              postingsReader,
+comment|//                                              state.context,
+comment|//                                              state.segmentSuffix,
+comment|//                                              state.termsIndexDivisor);
 name|FieldsProducer
 name|ret
 init|=
 operator|new
-name|TempBlockTermsReader
+name|TempFSTTermsReader
 argument_list|(
 name|state
-operator|.
-name|directory
-argument_list|,
-name|state
-operator|.
-name|fieldInfos
-argument_list|,
-name|state
-operator|.
-name|segmentInfo
 argument_list|,
 name|postingsReader
-argument_list|,
-name|state
-operator|.
-name|context
-argument_list|,
-name|state
-operator|.
-name|segmentSuffix
-argument_list|,
-name|state
-operator|.
-name|termsIndexDivisor
 argument_list|)
 decl_stmt|;
 name|success
