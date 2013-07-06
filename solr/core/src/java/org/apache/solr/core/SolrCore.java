@@ -3249,6 +3249,9 @@ expr_stmt|;
 comment|//most of the classes do not have constructors which takes SolrCore argument. It is recommended to obtain SolrCore by implementing SolrCoreAware.
 comment|// So invariably always it will cause a  NoSuchMethodException. So iterate though the list of available constructors
 name|Constructor
+argument_list|<
+name|?
+argument_list|>
 index|[]
 name|cons
 init|=
@@ -3260,12 +3263,18 @@ decl_stmt|;
 for|for
 control|(
 name|Constructor
+argument_list|<
+name|?
+argument_list|>
 name|con
 range|:
 name|cons
 control|)
 block|{
 name|Class
+argument_list|<
+name|?
+argument_list|>
 index|[]
 name|types
 init|=
@@ -3293,14 +3302,16 @@ name|class
 condition|)
 block|{
 return|return
-operator|(
-name|T
-operator|)
+name|cast
+operator|.
+name|cast
+argument_list|(
 name|con
 operator|.
 name|newInstance
 argument_list|(
 name|this
+argument_list|)
 argument_list|)
 return|;
 block|}
@@ -3452,11 +3463,9 @@ expr_stmt|;
 comment|//most of the classes do not have constructors which takes SolrCore argument. It is recommended to obtain SolrCore by implementing SolrCoreAware.
 comment|// So invariably always it will cause a  NoSuchMethodException. So iterate though the list of available constructors
 name|Constructor
-name|justSolrCoreCon
-init|=
-literal|null
-decl_stmt|;
-name|Constructor
+argument_list|<
+name|?
+argument_list|>
 index|[]
 name|cons
 init|=
@@ -3468,12 +3477,18 @@ decl_stmt|;
 for|for
 control|(
 name|Constructor
+argument_list|<
+name|?
+argument_list|>
 name|con
 range|:
 name|cons
 control|)
 block|{
 name|Class
+argument_list|<
+name|?
+argument_list|>
 index|[]
 name|types
 init|=
@@ -3510,9 +3525,12 @@ name|class
 condition|)
 block|{
 return|return
-operator|(
 name|UpdateHandler
-operator|)
+operator|.
+name|class
+operator|.
+name|cast
+argument_list|(
 name|con
 operator|.
 name|newInstance
@@ -3520,6 +3538,7 @@ argument_list|(
 name|this
 argument_list|,
 name|updateHandler
+argument_list|)
 argument_list|)
 return|;
 block|}
@@ -4222,16 +4241,13 @@ comment|// updates (ie: partial document updates), so it needs to work in no clo
 comment|// mode as well, and can't assert version field support on init.
 try|try
 block|{
-name|Object
-name|ignored
-init|=
 name|VersionInfo
 operator|.
 name|getAndCheckVersionField
 argument_list|(
 name|schema
 argument_list|)
-decl_stmt|;
+expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
@@ -4567,12 +4583,15 @@ name|submit
 argument_list|(
 operator|new
 name|Callable
+argument_list|<
+name|Void
+argument_list|>
 argument_list|()
 block|{
 annotation|@
 name|Override
 specifier|public
-name|Object
+name|Void
 name|call
 parameter_list|()
 throws|throws
@@ -6257,15 +6276,23 @@ block|}
 comment|/**    * Returns an unmodifiable Map containing the registered handlers of the specified type.    */
 DECL|method|getRequestHandlers
 specifier|public
+parameter_list|<
+name|T
+extends|extends
+name|SolrRequestHandler
+parameter_list|>
 name|Map
 argument_list|<
 name|String
 argument_list|,
-name|SolrRequestHandler
+name|T
 argument_list|>
 name|getRequestHandlers
 parameter_list|(
 name|Class
+argument_list|<
+name|T
+argument_list|>
 name|clazz
 parameter_list|)
 block|{
