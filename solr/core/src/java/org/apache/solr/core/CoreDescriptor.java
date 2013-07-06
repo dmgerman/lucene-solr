@@ -210,6 +210,7 @@ init|=
 literal|"coreNodeName"
 decl_stmt|;
 DECL|field|standardPropNames
+specifier|public
 specifier|static
 specifier|final
 name|String
@@ -253,7 +254,7 @@ operator|new
 name|Properties
 argument_list|()
 decl_stmt|;
-comment|//TODO: 5.0 remove this, this is solely a hack for persistence.
+comment|//TODO: 5.0 remove this, this is solely a hack for persistence. And perhaps creating cores in discovery mode?
 DECL|field|createdProperties
 specifier|private
 name|Properties
