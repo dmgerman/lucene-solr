@@ -226,7 +226,6 @@ name|admin
 init|=
 literal|null
 decl_stmt|;
-comment|//  private static CoreContainer cc = null;
 DECL|field|coreNormal
 specifier|private
 specifier|static
@@ -245,11 +244,11 @@ literal|"sys_props"
 decl_stmt|;
 annotation|@
 name|BeforeClass
-DECL|method|before
+DECL|method|beforeClass
 specifier|public
 specifier|static
 name|void
-name|before
+name|beforeClass
 parameter_list|()
 throws|throws
 name|Exception
@@ -322,20 +321,20 @@ expr_stmt|;
 block|}
 annotation|@
 name|AfterClass
-DECL|method|after
+DECL|method|afterClass
 specifier|public
 specifier|static
 name|void
-name|after
+name|afterClass
 parameter_list|()
 throws|throws
 name|Exception
 block|{
-name|h
-operator|.
-name|close
-argument_list|()
+name|admin
+operator|=
+literal|null
 expr_stmt|;
+comment|// Release it or the test harness complains.
 if|if
 condition|(
 name|solrHomeDirectory
