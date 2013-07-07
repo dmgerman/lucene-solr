@@ -631,7 +631,7 @@ name|state
 operator|.
 name|segmentSuffix
 argument_list|,
-name|TempPostingsFormat
+name|TempBlockPostingsFormat
 operator|.
 name|DOC_EXTENSION
 argument_list|)
@@ -719,7 +719,7 @@ name|state
 operator|.
 name|segmentSuffix
 argument_list|,
-name|TempPostingsFormat
+name|TempBlockPostingsFormat
 operator|.
 name|POS_EXTENSION
 argument_list|)
@@ -855,7 +855,7 @@ name|state
 operator|.
 name|segmentSuffix
 argument_list|,
-name|TempPostingsFormat
+name|TempBlockPostingsFormat
 operator|.
 name|PAY_EXTENSION
 argument_list|)

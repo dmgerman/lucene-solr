@@ -6383,6 +6383,13 @@ name|equals
 argument_list|(
 literal|"Direct"
 argument_list|)
+operator|||
+name|format
+operator|.
+name|equals
+argument_list|(
+literal|"TempFST"
+argument_list|)
 operator|)
 argument_list|)
 expr_stmt|;
