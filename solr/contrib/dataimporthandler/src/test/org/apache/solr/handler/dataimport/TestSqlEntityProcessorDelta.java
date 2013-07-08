@@ -782,13 +782,13 @@ name|deltaQueriesPersonTable
 parameter_list|()
 block|{
 return|return
-literal|"deletedPkQuery=''SELECT ID FROM PEOPLE WHERE DELETED='Y' AND last_modified&gt;='${dih.last_index_time}' '' "
+literal|"deletedPkQuery=''SELECT ID FROM PEOPLE WHERE DELETED='Y' AND last_modified&gt;='${dih.People.last_index_time}' '' "
 operator|+
 literal|"deltaImportQuery=''SELECT ID, NAME, COUNTRY_CODE FROM PEOPLE where ID=${dih.delta.ID} '' "
 operator|+
 literal|"deltaQuery=''"
 operator|+
-literal|"SELECT ID FROM PEOPLE WHERE DELETED!='Y' AND last_modified&gt;='${dih.last_index_time}' "
+literal|"SELECT ID FROM PEOPLE WHERE DELETED!='Y' AND last_modified&gt;='${dih.People.last_index_time}' "
 operator|+
 operator|(
 name|useParentDeltaQueryParam
@@ -797,7 +797,7 @@ literal|""
 else|:
 literal|"UNION DISTINCT "
 operator|+
-literal|"SELECT ID FROM PEOPLE WHERE DELETED!='Y' AND COUNTRY_CODE IN (SELECT CODE FROM COUNTRIES WHERE last_modified&gt;='${dih.last_index_time}') "
+literal|"SELECT ID FROM PEOPLE WHERE DELETED!='Y' AND COUNTRY_CODE IN (SELECT CODE FROM COUNTRIES WHERE last_modified&gt;='${dih.People.last_index_time}') "
 operator|)
 operator|+
 literal|"'' "
