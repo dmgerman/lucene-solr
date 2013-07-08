@@ -350,10 +350,6 @@ begin_comment
 comment|/** FST based term dict, all the metadata held  *  as output of FST */
 end_comment
 
-begin_comment
-comment|// nocommit: where is 'TermStats' ???
-end_comment
-
 begin_class
 DECL|class|TempFSTTermsWriter
 specifier|public

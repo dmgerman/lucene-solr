@@ -74,7 +74,7 @@ comment|// TODO: maybe change this API to allow for re-use of the
 comment|// output instances -- this is an insane amount of garbage
 comment|// (new object per byte/char/int) if eg used during
 comment|// analysis
-comment|/** Eg common("foo", "foobar") -> "foo" */
+comment|/** Eg common("foobar", "food") -> "foo" */
 DECL|method|common
 specifier|public
 specifier|abstract
