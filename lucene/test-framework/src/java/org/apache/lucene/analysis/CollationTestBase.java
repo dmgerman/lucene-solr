@@ -30,16 +30,6 @@ begin_import
 import|import
 name|java
 operator|.
-name|io
-operator|.
-name|StringReader
-import|;
-end_import
-
-begin_import
-import|import
-name|java
-operator|.
 name|util
 operator|.
 name|HashMap
@@ -195,20 +185,6 @@ operator|.
 name|index
 operator|.
 name|IndexWriterConfig
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|index
-operator|.
-name|IndexableField
 import|;
 end_import
 
@@ -1462,9 +1438,6 @@ name|tokenStream
 argument_list|(
 literal|"US"
 argument_list|,
-operator|new
-name|StringReader
-argument_list|(
 name|sortData
 index|[
 name|i
@@ -1472,7 +1445,6 @@ index|]
 index|[
 literal|2
 index|]
-argument_list|)
 argument_list|)
 argument_list|)
 argument_list|)
@@ -1504,9 +1476,6 @@ name|tokenStream
 argument_list|(
 literal|"France"
 argument_list|,
-operator|new
-name|StringReader
-argument_list|(
 name|sortData
 index|[
 name|i
@@ -1514,7 +1483,6 @@ index|]
 index|[
 literal|3
 index|]
-argument_list|)
 argument_list|)
 argument_list|)
 argument_list|)
@@ -1546,9 +1514,6 @@ name|tokenStream
 argument_list|(
 literal|"Sweden"
 argument_list|,
-operator|new
-name|StringReader
-argument_list|(
 name|sortData
 index|[
 name|i
@@ -1556,7 +1521,6 @@ index|]
 index|[
 literal|4
 index|]
-argument_list|)
 argument_list|)
 argument_list|)
 argument_list|)
@@ -1588,9 +1552,6 @@ name|tokenStream
 argument_list|(
 literal|"Denmark"
 argument_list|,
-operator|new
-name|StringReader
-argument_list|(
 name|sortData
 index|[
 name|i
@@ -1598,7 +1559,6 @@ index|]
 index|[
 literal|5
 index|]
-argument_list|)
 argument_list|)
 argument_list|)
 argument_list|)
@@ -2031,11 +1991,7 @@ name|tokenStream
 argument_list|(
 literal|"fake"
 argument_list|,
-operator|new
-name|StringReader
-argument_list|(
 name|term
-argument_list|)
 argument_list|)
 decl_stmt|;
 name|TermToBytesRefAttribute
@@ -2178,11 +2134,7 @@ name|tokenStream
 argument_list|(
 literal|"fake"
 argument_list|,
-operator|new
-name|StringReader
-argument_list|(
 name|term
-argument_list|)
 argument_list|)
 decl_stmt|;
 name|TermToBytesRefAttribute

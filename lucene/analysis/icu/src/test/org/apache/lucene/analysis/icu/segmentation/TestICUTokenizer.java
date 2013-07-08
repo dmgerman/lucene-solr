@@ -1829,11 +1829,7 @@ name|tokenStream
 argument_list|(
 literal|"dummy"
 argument_list|,
-operator|new
-name|StringReader
-argument_list|(
 literal|"This is a test"
-argument_list|)
 argument_list|)
 decl_stmt|;
 name|ScriptAttribute

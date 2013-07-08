@@ -244,16 +244,6 @@ name|IOException
 import|;
 end_import
 
-begin_import
-import|import
-name|java
-operator|.
-name|io
-operator|.
-name|StringReader
-import|;
-end_import
-
 begin_comment
 comment|/**<code>TextField</code> is the basic type for configurable text analysis.  * Analyzers for field types using this implementation should be defined in the schema.  *  */
 end_comment
@@ -700,11 +690,7 @@ name|tokenStream
 argument_list|(
 name|field
 argument_list|,
-operator|new
-name|StringReader
-argument_list|(
 name|part
-argument_list|)
 argument_list|)
 expr_stmt|;
 name|source
@@ -913,11 +899,7 @@ name|tokenStream
 argument_list|(
 name|field
 argument_list|,
-operator|new
-name|StringReader
-argument_list|(
 name|queryText
-argument_list|)
 argument_list|)
 expr_stmt|;
 name|source

@@ -572,11 +572,7 @@ name|tokenStream
 argument_list|(
 literal|"one"
 argument_list|,
-operator|new
-name|StringReader
-argument_list|(
 name|text
-argument_list|)
 argument_list|)
 decl_stmt|;
 name|assertTokenStreamContents
@@ -677,11 +673,7 @@ name|tokenStream
 argument_list|(
 literal|"two"
 argument_list|,
-operator|new
-name|StringReader
-argument_list|(
 name|text
-argument_list|)
 argument_list|)
 expr_stmt|;
 name|assertTokenStreamContents
@@ -750,11 +742,7 @@ name|tokenStream
 argument_list|(
 literal|"three"
 argument_list|,
-operator|new
-name|StringReader
-argument_list|(
 name|text
-argument_list|)
 argument_list|)
 expr_stmt|;
 name|assertTokenStreamContents

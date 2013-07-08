@@ -180,16 +180,6 @@ begin_import
 import|import
 name|java
 operator|.
-name|io
-operator|.
-name|StringReader
-import|;
-end_import
-
-begin_import
-import|import
-name|java
-operator|.
 name|util
 operator|.
 name|Arrays
@@ -968,11 +958,7 @@ name|tokenStream
 argument_list|(
 literal|""
 argument_list|,
-operator|new
-name|StringReader
-argument_list|(
 literal|"a b c d e f g h i j k l m n"
-argument_list|)
 argument_list|)
 decl_stmt|;
 name|tokenStream
@@ -1028,11 +1014,7 @@ name|tokenStream
 argument_list|(
 literal|""
 argument_list|,
-operator|new
-name|StringReader
-argument_list|(
 name|v
-argument_list|)
 argument_list|)
 decl_stmt|;
 name|ts2
