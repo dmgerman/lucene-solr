@@ -449,6 +449,62 @@ expr_stmt|;
 block|}
 annotation|@
 name|Test
+DECL|method|testAddCopyField
+specifier|public
+name|void
+name|testAddCopyField
+parameter_list|()
+throws|throws
+name|Exception
+block|{
+name|assertQ
+argument_list|(
+literal|"/schema/fields/newfield2?indent=on&wt=xml"
+argument_list|,
+literal|"count(/response/lst[@name='field']) = 0"
+argument_list|,
+literal|"/response/lst[@name='responseHeader']/int[@name='status'] = '404'"
+argument_list|,
+literal|"/response/lst[@name='error']/int[@name='code'] = '404'"
+argument_list|)
+expr_stmt|;
+name|assertJPut
+argument_list|(
+literal|"/schema/fields/fieldA"
+argument_list|,
+literal|"{\"type\":\"text\",\"stored\":\"false\"}"
+argument_list|,
+literal|"/responseHeader/status==0"
+argument_list|)
+expr_stmt|;
+name|assertJPut
+argument_list|(
+literal|"/schema/fields/fieldB"
+argument_list|,
+literal|"{\"type\":\"text\",\"stored\":\"false\", \"copyFields\":\"fieldA\"}"
+argument_list|,
+literal|"/responseHeader/status==0"
+argument_list|)
+expr_stmt|;
+name|assertQ
+argument_list|(
+literal|"/schema/fields/fieldB?indent=on&wt=xml"
+argument_list|,
+literal|"count(/response/lst[@name='field']) = 1"
+argument_list|,
+literal|"/response/lst[@name='responseHeader']/int[@name='status'] = '0'"
+argument_list|)
+expr_stmt|;
+name|assertQ
+argument_list|(
+literal|"/schema/copyfields/?indent=on&wt=xml&source.fl=fieldB"
+argument_list|,
+literal|"count(/response/arr[@name='copyFields']/lst) = 1"
+argument_list|)
+expr_stmt|;
+block|}
+annotation|@
+name|Test
 DECL|method|testPostMultipleFields
 specifier|public
 name|void
@@ -566,6 +622,77 @@ argument_list|,
 literal|"count(/response/result[@name='response']/doc/*) = 1"
 argument_list|,
 literal|"/response/result[@name='response']/doc/str[@name='id'][.='456']"
+argument_list|)
+expr_stmt|;
+block|}
+annotation|@
+name|Test
+DECL|method|testPostCopy
+specifier|public
+name|void
+name|testPostCopy
+parameter_list|()
+throws|throws
+name|Exception
+block|{
+name|assertJPost
+argument_list|(
+literal|"/schema/fields"
+argument_list|,
+literal|"[{\"name\":\"fieldA\",\"type\":\"text\",\"stored\":\"false\"},"
+operator|+
+literal|"{\"name\":\"fieldB\",\"type\":\"text\",\"stored\":\"false\"},"
+operator|+
+literal|" {\"name\":\"fieldC\",\"type\":\"text\",\"stored\":\"false\", \"copyFields\":\"fieldB\"}]"
+argument_list|,
+literal|"/responseHeader/status==0"
+argument_list|)
+expr_stmt|;
+name|assertQ
+argument_list|(
+literal|"/schema/copyfields/?indent=on&wt=xml&source.fl=fieldC"
+argument_list|,
+literal|"count(/response/arr[@name='copyFields']/lst) = 1"
+argument_list|)
+expr_stmt|;
+name|assertJPost
+argument_list|(
+literal|"/schema/fields"
+argument_list|,
+literal|"[{\"name\":\"fieldD\",\"type\":\"text\",\"stored\":\"false\"},"
+operator|+
+literal|"{\"name\":\"fieldE\",\"type\":\"text\",\"stored\":\"false\"},"
+operator|+
+literal|" {\"name\":\"fieldF\",\"type\":\"text\",\"stored\":\"false\", \"copyFields\":\"fieldD,fieldE\"}]"
+argument_list|,
+literal|"/responseHeader/status==0"
+argument_list|)
+expr_stmt|;
+name|assertQ
+argument_list|(
+literal|"/schema/copyfields/?indent=on&wt=xml&source.fl=fieldF"
+argument_list|,
+literal|"count(/response/arr[@name='copyFields']/lst) = 2"
+argument_list|)
+expr_stmt|;
+name|assertJPost
+argument_list|(
+literal|"/schema/fields"
+argument_list|,
+literal|"[{\"name\":\"fieldG\",\"type\":\"text\",\"stored\":\"false\"},"
+operator|+
+literal|"{\"name\":\"fieldH\",\"type\":\"text\",\"stored\":\"false\"},"
+operator|+
+literal|" {\"name\":\"fieldI\",\"type\":\"text\",\"stored\":\"false\", \"copyFields\":\"fieldG,   fieldH   \"}]"
+argument_list|,
+literal|"/responseHeader/status==0"
+argument_list|)
+expr_stmt|;
+name|assertQ
+argument_list|(
+literal|"/schema/copyfields/?indent=on&wt=xml&source.fl=fieldF"
+argument_list|,
+literal|"count(/response/arr[@name='copyFields']/lst) = 2"
 argument_list|)
 expr_stmt|;
 block|}
