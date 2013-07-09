@@ -516,9 +516,9 @@ name|assertJPut
 argument_list|(
 literal|"/schema/fields/fieldC"
 argument_list|,
-literal|"{\"type\":\"text\",\"stored\":\"false\", \"copyFields\":\"some_nonexistent_field\"}"
+literal|"{\"type\":\"text\",\"stored\":\"false\", \"copyFields\":\"some_nonexistent_field_ignore_exception\"}"
 argument_list|,
-literal|"/error/msg==\"copyField dest :\\'some_nonexistent_field\\' is not an explicit field and doesn\\'t match a dynamicField.\""
+literal|"/error/msg==\"copyField dest :\\'some_nonexistent_field_ignore_exception\\' is not an explicit field and doesn\\'t match a dynamicField.\""
 argument_list|)
 expr_stmt|;
 block|}
@@ -736,9 +736,9 @@ literal|"[{\"name\":\"fieldX\",\"type\":\"text\",\"stored\":\"false\"},"
 operator|+
 literal|"{\"name\":\"fieldY\",\"type\":\"text\",\"stored\":\"false\"},"
 operator|+
-literal|" {\"name\":\"fieldZ\",\"type\":\"text\",\"stored\":\"false\", \"copyFields\":\"some_nonexistent_field\"}]"
+literal|" {\"name\":\"fieldZ\",\"type\":\"text\",\"stored\":\"false\", \"copyFields\":\"some_nonexistent_field_ignore_exception\"}]"
 argument_list|,
-literal|"/error/msg==\"copyField dest :\\'some_nonexistent_field\\' is not an explicit field and doesn\\'t match a dynamicField.\""
+literal|"/error/msg==\"copyField dest :\\'some_nonexistent_field_ignore_exception\\' is not an explicit field and doesn\\'t match a dynamicField.\""
 argument_list|)
 expr_stmt|;
 block|}
@@ -805,18 +805,18 @@ name|assertJPost
 argument_list|(
 literal|"/schema/copyfields"
 argument_list|,
-literal|"[{\"source\":\"some_nonexistent_field\", \"dest\":\"fieldA\"}]"
+literal|"[{\"source\":\"some_nonexistent_field_ignore_exception\", \"dest\":\"fieldA\"}]"
 argument_list|,
-literal|"/error/msg==\"copyField source :\\'some_nonexistent_field\\' is not a glob and doesn\\'t match any explicit field or dynamicField.\""
+literal|"/error/msg==\"copyField source :\\'some_nonexistent_field_ignore_exception\\' is not a glob and doesn\\'t match any explicit field or dynamicField.\""
 argument_list|)
 expr_stmt|;
 name|assertJPost
 argument_list|(
 literal|"/schema/copyfields"
 argument_list|,
-literal|"[{\"source\":\"fieldD\", \"dest\":\"some_nonexistent_field\"}]"
+literal|"[{\"source\":\"fieldD\", \"dest\":\"some_nonexistent_field_ignore_exception\"}]"
 argument_list|,
-literal|"/error/msg==\"copyField dest :\\'some_nonexistent_field\\' is not an explicit field and doesn\\'t match a dynamicField.\""
+literal|"/error/msg==\"copyField dest :\\'some_nonexistent_field_ignore_exception\\' is not an explicit field and doesn\\'t match a dynamicField.\""
 argument_list|)
 expr_stmt|;
 block|}
