@@ -92,20 +92,6 @@ name|lucene
 operator|.
 name|util
 operator|.
-name|Constants
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|util
-operator|.
 name|LuceneTestCase
 import|;
 end_import
@@ -164,25 +150,23 @@ name|LuceneTestCase
 operator|.
 name|assumeFalse
 argument_list|(
-literal|"HDFS tests on Windows require Cygwin"
+literal|"HDFS tests were disabled by -Dtests.disableHdfs"
 argument_list|,
-name|Constants
+name|Boolean
 operator|.
-name|WINDOWS
-argument_list|)
-expr_stmt|;
-name|LuceneTestCase
-operator|.
-name|assumeFalse
+name|parseBoolean
 argument_list|(
-literal|"HDFS do not work well with FreeBSD blackhole setup"
-argument_list|,
-name|Constants
+name|System
 operator|.
-name|FREE_BSD
+name|getProperty
+argument_list|(
+literal|"tests.disableHdfs"
+argument_list|,
+literal|"false"
+argument_list|)
+argument_list|)
 argument_list|)
 expr_stmt|;
-comment|// LuceneTestCase.assumeFalse("HDFS tests on Windows require Cygwin", Constants.F);
 name|File
 name|dir
 init|=
