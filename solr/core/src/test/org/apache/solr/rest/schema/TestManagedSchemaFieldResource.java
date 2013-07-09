@@ -502,6 +502,25 @@ argument_list|,
 literal|"count(/response/arr[@name='copyFields']/lst) = 1"
 argument_list|)
 expr_stmt|;
+comment|//some bad usages
+name|assertJPut
+argument_list|(
+literal|"/schema/fields/fieldB"
+argument_list|,
+literal|"{\"type\":\"text\",\"stored\":\"false\", \"copyFields\":\",,,\"}"
+argument_list|,
+literal|"/error/msg==\"Invalid copyFields for field: fieldB\""
+argument_list|)
+expr_stmt|;
+name|assertJPut
+argument_list|(
+literal|"/schema/fields/fieldC"
+argument_list|,
+literal|"{\"type\":\"text\",\"stored\":\"false\", \"copyFields\":\"some_nonexistent_field\"}"
+argument_list|,
+literal|"/error/msg==\"copyField dest :\\'some_nonexistent_field\\' is not an explicit field and doesn\\'t match a dynamicField.\""
+argument_list|)
+expr_stmt|;
 block|}
 annotation|@
 name|Test
@@ -693,6 +712,111 @@ argument_list|(
 literal|"/schema/copyfields/?indent=on&wt=xml&source.fl=fieldF"
 argument_list|,
 literal|"count(/response/arr[@name='copyFields']/lst) = 2"
+argument_list|)
+expr_stmt|;
+comment|//some bad usages
+name|assertJPost
+argument_list|(
+literal|"/schema/fields"
+argument_list|,
+literal|"[{\"name\":\"fieldX\",\"type\":\"text\",\"stored\":\"false\"},"
+operator|+
+literal|"{\"name\":\"fieldY\",\"type\":\"text\",\"stored\":\"false\"},"
+operator|+
+literal|" {\"name\":\"fieldZ\",\"type\":\"text\",\"stored\":\"false\", \"copyFields\":\",,,\"}]"
+argument_list|,
+literal|"/error/msg==\"Malformed destination(s) for: fieldZ\""
+argument_list|)
+expr_stmt|;
+name|assertJPost
+argument_list|(
+literal|"/schema/fields"
+argument_list|,
+literal|"[{\"name\":\"fieldX\",\"type\":\"text\",\"stored\":\"false\"},"
+operator|+
+literal|"{\"name\":\"fieldY\",\"type\":\"text\",\"stored\":\"false\"},"
+operator|+
+literal|" {\"name\":\"fieldZ\",\"type\":\"text\",\"stored\":\"false\", \"copyFields\":\"some_nonexistent_field\"}]"
+argument_list|,
+literal|"/error/msg==\"copyField dest :\\'some_nonexistent_field\\' is not an explicit field and doesn\\'t match a dynamicField.\""
+argument_list|)
+expr_stmt|;
+block|}
+annotation|@
+name|Test
+DECL|method|testPostCopyFields
+specifier|public
+name|void
+name|testPostCopyFields
+parameter_list|()
+throws|throws
+name|Exception
+block|{
+name|assertJPost
+argument_list|(
+literal|"/schema/fields"
+argument_list|,
+literal|"[{\"name\":\"fieldA\",\"type\":\"text\",\"stored\":\"false\"},"
+operator|+
+literal|"{\"name\":\"fieldB\",\"type\":\"text\",\"stored\":\"false\"},"
+operator|+
+literal|"{\"name\":\"fieldC\",\"type\":\"text\",\"stored\":\"false\"},"
+operator|+
+literal|"{\"name\":\"fieldD\",\"type\":\"text\",\"stored\":\"false\"},"
+operator|+
+literal|" {\"name\":\"fieldE\",\"type\":\"text\",\"stored\":\"false\"}]"
+argument_list|,
+literal|"/responseHeader/status==0"
+argument_list|)
+expr_stmt|;
+name|assertJPost
+argument_list|(
+literal|"/schema/copyfields"
+argument_list|,
+literal|"[{\"source\":\"fieldA\", \"dest\":\"fieldB\"},{\"source\":\"fieldD\", \"dest\":\"fieldC,   fieldE\"}]"
+argument_list|,
+literal|"/responseHeader/status==0"
+argument_list|)
+expr_stmt|;
+name|assertQ
+argument_list|(
+literal|"/schema/copyfields/?indent=on&wt=xml&source.fl=fieldA"
+argument_list|,
+literal|"count(/response/arr[@name='copyFields']/lst) = 1"
+argument_list|)
+expr_stmt|;
+name|assertQ
+argument_list|(
+literal|"/schema/copyfields/?indent=on&wt=xml&source.fl=fieldD"
+argument_list|,
+literal|"count(/response/arr[@name='copyFields']/lst) = 2"
+argument_list|)
+expr_stmt|;
+name|assertJPost
+argument_list|(
+literal|"/schema/copyfields"
+argument_list|,
+literal|"[{\"source\":\"fieldD\", \"dest\":\",,,\"}]"
+argument_list|,
+literal|"/error/msg==\"Malformed destination(s) for: fieldD\""
+argument_list|)
+expr_stmt|;
+name|assertJPost
+argument_list|(
+literal|"/schema/copyfields"
+argument_list|,
+literal|"[{\"source\":\"some_nonexistent_field\", \"dest\":\"fieldA\"}]"
+argument_list|,
+literal|"/error/msg==\"copyField source :\\'some_nonexistent_field\\' is not a glob and doesn\\'t match any explicit field or dynamicField.\""
+argument_list|)
+expr_stmt|;
+name|assertJPost
+argument_list|(
+literal|"/schema/copyfields"
+argument_list|,
+literal|"[{\"source\":\"fieldD\", \"dest\":\"some_nonexistent_field\"}]"
+argument_list|,
+literal|"/error/msg==\"copyField dest :\\'some_nonexistent_field\\' is not an explicit field and doesn\\'t match a dynamicField.\""
 argument_list|)
 expr_stmt|;
 block|}

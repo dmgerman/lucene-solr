@@ -7682,7 +7682,7 @@ name|msg
 argument_list|)
 throw|;
 block|}
-comment|/**    * Copies this schema, adds the given field to the copy, then persists the new schema.    *    * @param newField the SchemaField to add    * @param copyFieldNames 0 or more names of targets to copy this field to    * @return a new IndexSchema based on this schema with newField added    * @see #newField(String, String, Map)    */
+comment|/**    * Copies this schema, adds the given field to the copy, then persists the new schema.    *    * @param newField the SchemaField to add    * @param copyFieldNames 0 or more names of targets to copy this field to.  The targets must already exist.    * @return a new IndexSchema based on this schema with newField added    * @see #newField(String, String, Map)    */
 DECL|method|addField
 specifier|public
 name|IndexSchema
@@ -7759,7 +7759,7 @@ name|msg
 argument_list|)
 throw|;
 block|}
-comment|/**    * Copies this schema, adds the given fields to the copy, then persists the new schema.    *    * @param newFields the SchemaFields to add    * @param copyFieldNames 0 or more names of targets to copy this field to    * @return a new IndexSchema based on this schema with newFields added    * @see #newField(String, String, Map)    */
+comment|/**    * Copies this schema, adds the given fields to the copy, then persists the new schema.    *    * @param newFields the SchemaFields to add    * @param copyFieldNames 0 or more names of targets to copy this field to.  The target fields must already exist.    * @return a new IndexSchema based on this schema with newFields added    * @see #newField(String, String, Map)    */
 DECL|method|addFields
 specifier|public
 name|IndexSchema
@@ -7781,6 +7781,48 @@ name|String
 argument_list|>
 argument_list|>
 name|copyFieldNames
+parameter_list|)
+block|{
+name|String
+name|msg
+init|=
+literal|"This IndexSchema is not mutable."
+decl_stmt|;
+name|log
+operator|.
+name|error
+argument_list|(
+name|msg
+argument_list|)
+expr_stmt|;
+throw|throw
+operator|new
+name|SolrException
+argument_list|(
+name|ErrorCode
+operator|.
+name|SERVER_ERROR
+argument_list|,
+name|msg
+argument_list|)
+throw|;
+block|}
+comment|/**    * Copies this schema and adds the new copy fields to the copy, then persists the new schema    * @param copyFields Key is the name of the source field name, value is a collection of target field names.  Fields must exist.    * @return The new Schema with the copy fields added    */
+DECL|method|addCopyFields
+specifier|public
+name|IndexSchema
+name|addCopyFields
+parameter_list|(
+name|Map
+argument_list|<
+name|String
+argument_list|,
+name|Collection
+argument_list|<
+name|String
+argument_list|>
+argument_list|>
+name|copyFields
 parameter_list|)
 block|{
 name|String
