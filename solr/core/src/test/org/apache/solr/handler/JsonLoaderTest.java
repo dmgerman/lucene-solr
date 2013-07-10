@@ -1444,13 +1444,9 @@ name|Exception
 block|{
 name|updateJ
 argument_list|(
-literal|"[{'id':'10','foo_s':null,'foo2_s':['hi',null,'there']}]"
-operator|.
-name|replace
+name|json
 argument_list|(
-literal|'\''
-argument_list|,
-literal|'"'
+literal|"[{'id':'10','foo_s':null,'foo2_s':['hi',null,'there']}]"
 argument_list|)
 argument_list|,
 name|params
@@ -2625,17 +2621,11 @@ block|{
 comment|// BigInteger and BigDecimal should be typed as strings, since there is no direct support for them
 name|updateJ
 argument_list|(
-operator|(
+name|json
+argument_list|(
 literal|"[{'id':'1','boolean_b':false,'long_l':19,'double_d':18.6,'big_integer_s':12345678901234567890,"
 operator|+
 literal|"      'big_decimal_s':0.1234567890123456789012345}]"
-operator|)
-operator|.
-name|replace
-argument_list|(
-literal|'\''
-argument_list|,
-literal|'"'
 argument_list|)
 argument_list|,
 name|params
@@ -2683,15 +2673,9 @@ try|try
 block|{
 name|updateJ
 argument_list|(
-operator|(
-literal|"[{'id':'1','big_integer_tl':12345678901234567890}]"
-operator|)
-operator|.
-name|replace
+name|json
 argument_list|(
-literal|'\''
-argument_list|,
-literal|'"'
+literal|"[{'id':'1','big_integer_tl':12345678901234567890}]"
 argument_list|)
 argument_list|,
 literal|null
@@ -2733,15 +2717,9 @@ try|try
 block|{
 name|updateJ
 argument_list|(
-operator|(
-literal|"[{'id':'1','big_integer_ti':12345678901234567890}]"
-operator|)
-operator|.
-name|replace
+name|json
 argument_list|(
-literal|'\''
-argument_list|,
-literal|'"'
+literal|"[{'id':'1','big_integer_ti':12345678901234567890}]"
 argument_list|)
 argument_list|,
 literal|null
@@ -2791,15 +2769,9 @@ block|{
 comment|// Adding a BigDecimal to a double field should succeed by reducing precision
 name|updateJ
 argument_list|(
-operator|(
-literal|"[{'id':'1','big_decimal_td':100000000000000000000000000001234567890.0987654321}]"
-operator|)
-operator|.
-name|replace
+name|json
 argument_list|(
-literal|'\''
-argument_list|,
-literal|'"'
+literal|"[{'id':'1','big_decimal_td':100000000000000000000000000001234567890.0987654321}]"
 argument_list|)
 argument_list|,
 name|params
@@ -2829,15 +2801,9 @@ expr_stmt|;
 comment|// Adding a BigDecimal to a float field should succeed by reducing precision
 name|updateJ
 argument_list|(
-operator|(
-literal|"[{'id':'2','big_decimal_tf':100000000000000000000000000001234567890.0987654321}]"
-operator|)
-operator|.
-name|replace
+name|json
 argument_list|(
-literal|'\''
-argument_list|,
-literal|'"'
+literal|"[{'id':'2','big_decimal_tf':100000000000000000000000000001234567890.0987654321}]"
 argument_list|)
 argument_list|,
 name|params
