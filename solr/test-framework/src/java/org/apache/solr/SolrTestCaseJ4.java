@@ -3805,6 +3805,11 @@ parameter_list|)
 block|{
 try|try
 block|{
+name|ignoreException
+argument_list|(
+literal|"."
+argument_list|)
+expr_stmt|;
 name|h
 operator|.
 name|query
@@ -3850,6 +3855,14 @@ argument_list|,
 name|e2
 argument_list|)
 throw|;
+block|}
+finally|finally
+block|{
+name|unIgnoreException
+argument_list|(
+literal|"."
+argument_list|)
+expr_stmt|;
 block|}
 block|}
 DECL|method|assertQEx
@@ -3872,6 +3885,11 @@ parameter_list|)
 block|{
 try|try
 block|{
+name|ignoreException
+argument_list|(
+literal|"."
+argument_list|)
+expr_stmt|;
 name|h
 operator|.
 name|query
@@ -3919,6 +3937,14 @@ argument_list|,
 name|e2
 argument_list|)
 throw|;
+block|}
+finally|finally
+block|{
+name|unIgnoreException
+argument_list|(
+literal|"."
+argument_list|)
+expr_stmt|;
 block|}
 block|}
 comment|/**    * @see TestHarness#optimize    */
