@@ -481,7 +481,7 @@ name|assertJPut
 argument_list|(
 literal|"/schema/fields/fieldB"
 argument_list|,
-literal|"{\"type\":\"text\",\"stored\":\"false\", \"copyFields\":\"fieldA\"}"
+literal|"{\"type\":\"text\",\"stored\":\"false\", \"copyFields\":[\"fieldA\"]}"
 argument_list|,
 literal|"/responseHeader/status==0"
 argument_list|)
@@ -502,21 +502,22 @@ argument_list|,
 literal|"count(/response/arr[@name='copyFields']/lst) = 1"
 argument_list|)
 expr_stmt|;
-comment|//some bad usages
+comment|//fine to pass in empty list, just won't do anything
 name|assertJPut
 argument_list|(
-literal|"/schema/fields/fieldB"
+literal|"/schema/fields/fieldD"
 argument_list|,
-literal|"{\"type\":\"text\",\"stored\":\"false\", \"copyFields\":\",,,\"}"
+literal|"{\"type\":\"text\",\"stored\":\"false\", \"copyFields\":[]}"
 argument_list|,
-literal|"/error/msg==\"Invalid copyFields for field: fieldB\""
+literal|"/responseHeader/status==0"
 argument_list|)
 expr_stmt|;
+comment|//some bad usages
 name|assertJPut
 argument_list|(
 literal|"/schema/fields/fieldC"
 argument_list|,
-literal|"{\"type\":\"text\",\"stored\":\"false\", \"copyFields\":\"some_nonexistent_field_ignore_exception\"}"
+literal|"{\"type\":\"text\",\"stored\":\"false\", \"copyFields\":[\"some_nonexistent_field_ignore_exception\"]}"
 argument_list|,
 literal|"/error/msg==\"copyField dest :\\'some_nonexistent_field_ignore_exception\\' is not an explicit field and doesn\\'t match a dynamicField.\""
 argument_list|)
@@ -662,7 +663,7 @@ literal|"[{\"name\":\"fieldA\",\"type\":\"text\",\"stored\":\"false\"},"
 operator|+
 literal|"{\"name\":\"fieldB\",\"type\":\"text\",\"stored\":\"false\"},"
 operator|+
-literal|" {\"name\":\"fieldC\",\"type\":\"text\",\"stored\":\"false\", \"copyFields\":\"fieldB\"}]"
+literal|" {\"name\":\"fieldC\",\"type\":\"text\",\"stored\":\"false\", \"copyFields\":[\"fieldB\"]}]"
 argument_list|,
 literal|"/responseHeader/status==0"
 argument_list|)
@@ -682,7 +683,7 @@ literal|"[{\"name\":\"fieldD\",\"type\":\"text\",\"stored\":\"false\"},"
 operator|+
 literal|"{\"name\":\"fieldE\",\"type\":\"text\",\"stored\":\"false\"},"
 operator|+
-literal|" {\"name\":\"fieldF\",\"type\":\"text\",\"stored\":\"false\", \"copyFields\":\"fieldD,fieldE\"}]"
+literal|" {\"name\":\"fieldF\",\"type\":\"text\",\"stored\":\"false\", \"copyFields\":[\"fieldD\",\"fieldE\"]}]"
 argument_list|,
 literal|"/responseHeader/status==0"
 argument_list|)
@@ -694,24 +695,18 @@ argument_list|,
 literal|"count(/response/arr[@name='copyFields']/lst) = 2"
 argument_list|)
 expr_stmt|;
+comment|//passing in an empty list is perfectly acceptable, it just won't do anything
 name|assertJPost
 argument_list|(
 literal|"/schema/fields"
 argument_list|,
-literal|"[{\"name\":\"fieldG\",\"type\":\"text\",\"stored\":\"false\"},"
+literal|"[{\"name\":\"fieldX\",\"type\":\"text\",\"stored\":\"false\"},"
 operator|+
-literal|"{\"name\":\"fieldH\",\"type\":\"text\",\"stored\":\"false\"},"
+literal|"{\"name\":\"fieldY\",\"type\":\"text\",\"stored\":\"false\"},"
 operator|+
-literal|" {\"name\":\"fieldI\",\"type\":\"text\",\"stored\":\"false\", \"copyFields\":\"fieldG,   fieldH   \"}]"
+literal|" {\"name\":\"fieldZ\",\"type\":\"text\",\"stored\":\"false\", \"copyFields\":[]}]"
 argument_list|,
 literal|"/responseHeader/status==0"
-argument_list|)
-expr_stmt|;
-name|assertQ
-argument_list|(
-literal|"/schema/copyfields/?indent=on&wt=xml&source.fl=fieldF"
-argument_list|,
-literal|"count(/response/arr[@name='copyFields']/lst) = 2"
 argument_list|)
 expr_stmt|;
 comment|//some bad usages
@@ -719,24 +714,11 @@ name|assertJPost
 argument_list|(
 literal|"/schema/fields"
 argument_list|,
-literal|"[{\"name\":\"fieldX\",\"type\":\"text\",\"stored\":\"false\"},"
+literal|"[{\"name\":\"fieldH\",\"type\":\"text\",\"stored\":\"false\"},"
 operator|+
-literal|"{\"name\":\"fieldY\",\"type\":\"text\",\"stored\":\"false\"},"
+literal|"{\"name\":\"fieldI\",\"type\":\"text\",\"stored\":\"false\"},"
 operator|+
-literal|" {\"name\":\"fieldZ\",\"type\":\"text\",\"stored\":\"false\", \"copyFields\":\",,,\"}]"
-argument_list|,
-literal|"/error/msg==\"Malformed destination(s) for: fieldZ\""
-argument_list|)
-expr_stmt|;
-name|assertJPost
-argument_list|(
-literal|"/schema/fields"
-argument_list|,
-literal|"[{\"name\":\"fieldX\",\"type\":\"text\",\"stored\":\"false\"},"
-operator|+
-literal|"{\"name\":\"fieldY\",\"type\":\"text\",\"stored\":\"false\"},"
-operator|+
-literal|" {\"name\":\"fieldZ\",\"type\":\"text\",\"stored\":\"false\", \"copyFields\":\"some_nonexistent_field_ignore_exception\"}]"
+literal|" {\"name\":\"fieldJ\",\"type\":\"text\",\"stored\":\"false\", \"copyFields\":[\"some_nonexistent_field_ignore_exception\"]}]"
 argument_list|,
 literal|"/error/msg==\"copyField dest :\\'some_nonexistent_field_ignore_exception\\' is not an explicit field and doesn\\'t match a dynamicField.\""
 argument_list|)
@@ -773,7 +755,7 @@ name|assertJPost
 argument_list|(
 literal|"/schema/copyfields"
 argument_list|,
-literal|"[{\"source\":\"fieldA\", \"dest\":\"fieldB\"},{\"source\":\"fieldD\", \"dest\":\"fieldC,   fieldE\"}]"
+literal|"[{\"source\":\"fieldA\", \"dest\":[\"fieldB\"]},{\"source\":\"fieldD\", \"dest\":[\"fieldC\", \"fieldE\"]}]"
 argument_list|,
 literal|"/responseHeader/status==0"
 argument_list|)
@@ -796,16 +778,7 @@ name|assertJPost
 argument_list|(
 literal|"/schema/copyfields"
 argument_list|,
-literal|"[{\"source\":\"fieldD\", \"dest\":\",,,\"}]"
-argument_list|,
-literal|"/error/msg==\"Malformed destination(s) for: fieldD\""
-argument_list|)
-expr_stmt|;
-name|assertJPost
-argument_list|(
-literal|"/schema/copyfields"
-argument_list|,
-literal|"[{\"source\":\"some_nonexistent_field_ignore_exception\", \"dest\":\"fieldA\"}]"
+literal|"[{\"source\":\"some_nonexistent_field_ignore_exception\", \"dest\":[\"fieldA\"]}]"
 argument_list|,
 literal|"/error/msg==\"copyField source :\\'some_nonexistent_field_ignore_exception\\' is not a glob and doesn\\'t match any explicit field or dynamicField.\""
 argument_list|)
@@ -814,7 +787,7 @@ name|assertJPost
 argument_list|(
 literal|"/schema/copyfields"
 argument_list|,
-literal|"[{\"source\":\"fieldD\", \"dest\":\"some_nonexistent_field_ignore_exception\"}]"
+literal|"[{\"source\":\"fieldD\", \"dest\":[\"some_nonexistent_field_ignore_exception\"]}]"
 argument_list|,
 literal|"/error/msg==\"copyField dest :\\'some_nonexistent_field_ignore_exception\\' is not an explicit field and doesn\\'t match a dynamicField.\""
 argument_list|)
