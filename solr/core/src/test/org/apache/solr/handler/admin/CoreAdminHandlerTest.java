@@ -1021,6 +1021,11 @@ literal|"/solr/cores/core[@name='props']/property[@name='foo' and @value='baz']"
 argument_list|)
 expr_stmt|;
 comment|// attempt to create a bogus core and confirm failure
+name|ignoreException
+argument_list|(
+literal|"Could not load config"
+argument_list|)
+expr_stmt|;
 try|try
 block|{
 name|resp
@@ -1079,6 +1084,11 @@ block|{
 comment|// :NOOP:
 comment|// :TODO: CoreAdminHandler's exception messages are terrible, otherwise we could assert something useful here
 block|}
+name|unIgnoreException
+argument_list|(
+literal|"Could not load config"
+argument_list|)
+expr_stmt|;
 comment|// check specifically for status of the failed core name
 name|resp
 operator|=
