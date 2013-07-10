@@ -709,7 +709,7 @@ operator|>
 name|numValues
 return|;
 block|}
-comment|/**    * @return An {@link EliasFanoDecoder} to access the encoded values.    * Perform all calls to {@link #encodeNext} before calling {@link #getDecoder}.    */
+comment|/**    * Returns an {@link EliasFanoDecoder} to access the encoded values.    * Perform all calls to {@link #encodeNext} before calling {@link #getDecoder}.    */
 DECL|method|getDecoder
 specifier|public
 name|EliasFanoDecoder
