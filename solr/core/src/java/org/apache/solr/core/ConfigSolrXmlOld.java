@@ -1838,7 +1838,7 @@ name|CoreContainer
 operator|.
 name|DEFAULT_DEFAULT_CORE_NAME
 operator|+
-literal|"\" shard=\"${shard:}\" collection=\"${collection:}\" instanceDir=\"collection1\" />\n"
+literal|"\" shard=\"${shard:}\" collection=\"${collection:collection1}\" instanceDir=\"collection1\" />\n"
 operator|+
 literal|"</cores>\n"
 operator|+
