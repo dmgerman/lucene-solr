@@ -354,9 +354,7 @@ argument_list|(
 literal|"{'name':'something_else','type':'text','stored':'false'}"
 argument_list|)
 argument_list|,
-literal|"/error/msg==\"Field name in the request body \\'something_else\\'"
-operator|+
-literal|" doesn\\'t match field name in the request URL \\'newfield\\'\""
+literal|"/error/msg=='///regex:newfield///'"
 argument_list|)
 expr_stmt|;
 block|}
