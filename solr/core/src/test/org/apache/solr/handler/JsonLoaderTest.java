@@ -292,7 +292,8 @@ specifier|static
 name|String
 name|input
 init|=
-operator|(
+name|json
+argument_list|(
 literal|"{\n"
 operator|+
 literal|"\n"
@@ -370,13 +371,6 @@ operator|+
 literal|"}\n"
 operator|+
 literal|""
-operator|)
-operator|.
-name|replace
-argument_list|(
-literal|'\''
-argument_list|,
-literal|'"'
 argument_list|)
 decl_stmt|;
 DECL|method|testParsing
@@ -2669,6 +2663,11 @@ name|Exception
 block|{
 comment|// Adding a BigInteger to a long field should fail
 comment|// BigInteger.longValue() returns only the low-order 64 bits.
+name|ignoreException
+argument_list|(
+literal|"big_integer_t"
+argument_list|)
+expr_stmt|;
 try|try
 block|{
 name|updateJ
@@ -2755,6 +2754,11 @@ name|e
 throw|;
 block|}
 block|}
+name|unIgnoreException
+argument_list|(
+literal|"big_integer_t"
+argument_list|)
+expr_stmt|;
 block|}
 annotation|@
 name|Test
