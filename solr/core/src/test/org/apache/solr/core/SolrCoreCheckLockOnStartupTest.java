@@ -306,6 +306,11 @@ literal|null
 argument_list|)
 argument_list|)
 decl_stmt|;
+name|ignoreException
+argument_list|(
+literal|"locked"
+argument_list|)
+expr_stmt|;
 try|try
 block|{
 comment|//opening a new core on the same index
@@ -341,6 +346,11 @@ expr_stmt|;
 block|}
 finally|finally
 block|{
+name|unIgnoreException
+argument_list|(
+literal|"locked"
+argument_list|)
+expr_stmt|;
 name|indexWriter
 operator|.
 name|close
@@ -421,6 +431,11 @@ literal|null
 argument_list|)
 argument_list|)
 decl_stmt|;
+name|ignoreException
+argument_list|(
+literal|"locked"
+argument_list|)
+expr_stmt|;
 try|try
 block|{
 comment|//opening a new core on the same index
@@ -464,6 +479,11 @@ expr_stmt|;
 block|}
 finally|finally
 block|{
+name|unIgnoreException
+argument_list|(
+literal|"locked"
+argument_list|)
+expr_stmt|;
 name|indexWriter
 operator|.
 name|close
