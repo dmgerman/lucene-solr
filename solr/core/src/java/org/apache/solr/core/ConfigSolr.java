@@ -583,6 +583,72 @@ literal|null
 argument_list|)
 return|;
 block|}
+DECL|method|getShardHandlerFactoryPluginInfo
+specifier|public
+name|PluginInfo
+name|getShardHandlerFactoryPluginInfo
+parameter_list|()
+block|{
+name|Node
+name|node
+init|=
+name|config
+operator|.
+name|getNode
+argument_list|(
+name|getShardHandlerFactoryConfigPath
+argument_list|()
+argument_list|,
+literal|false
+argument_list|)
+decl_stmt|;
+return|return
+operator|(
+name|node
+operator|==
+literal|null
+operator|)
+condition|?
+literal|null
+else|:
+operator|new
+name|PluginInfo
+argument_list|(
+name|node
+argument_list|,
+literal|"shardHandlerFactory"
+argument_list|,
+literal|false
+argument_list|,
+literal|true
+argument_list|)
+return|;
+block|}
+DECL|method|getUnsubsititutedShardHandlerFactoryPluginNode
+specifier|public
+name|Node
+name|getUnsubsititutedShardHandlerFactoryPluginNode
+parameter_list|()
+block|{
+return|return
+name|config
+operator|.
+name|getUnsubstitutedNode
+argument_list|(
+name|getShardHandlerFactoryConfigPath
+argument_list|()
+argument_list|,
+literal|false
+argument_list|)
+return|;
+block|}
+DECL|method|getShardHandlerFactoryConfigPath
+specifier|protected
+specifier|abstract
+name|String
+name|getShardHandlerFactoryConfigPath
+parameter_list|()
+function_decl|;
 comment|// Ugly for now, but we'll at least be able to centralize all of the differences between 4x and 5x.
 DECL|enum|CfgProp
 specifier|public
@@ -634,18 +700,6 @@ name|SOLR_MANAGEMENTPATH
 block|,
 DECL|enum constant|SOLR_SHAREDLIB
 name|SOLR_SHAREDLIB
-block|,
-DECL|enum constant|SOLR_SHARDHANDLERFACTORY_CLASS
-name|SOLR_SHARDHANDLERFACTORY_CLASS
-block|,
-DECL|enum constant|SOLR_SHARDHANDLERFACTORY_CONNTIMEOUT
-name|SOLR_SHARDHANDLERFACTORY_CONNTIMEOUT
-block|,
-DECL|enum constant|SOLR_SHARDHANDLERFACTORY_NAME
-name|SOLR_SHARDHANDLERFACTORY_NAME
-block|,
-DECL|enum constant|SOLR_SHARDHANDLERFACTORY_SOCKETTIMEOUT
-name|SOLR_SHARDHANDLERFACTORY_SOCKETTIMEOUT
 block|,
 DECL|enum constant|SOLR_SHARESCHEMA
 name|SOLR_SHARESCHEMA

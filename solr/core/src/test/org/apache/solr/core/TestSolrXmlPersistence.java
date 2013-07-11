@@ -3368,14 +3368,6 @@ literal|"<watcher size=\"{watchSize:13}\" threshold=\"${logThresh:54}\" />\n"
 operator|+
 literal|"</logging>\n"
 operator|+
-literal|"<shardHandlerFactory name=\"${shhandler:shardHandlerFactory}\" class=\"${handlefac:HttpShardHandlerFactory}\">\n"
-operator|+
-literal|"<int name=\"socketTimeout\">${socketTimeout:120000}</int> \n"
-operator|+
-literal|"<int name=\"connTimeout\">${connTimeout:15000}</int> \n"
-operator|+
-literal|"</shardHandlerFactory> \n"
-operator|+
 literal|"<cores adminPath=\"/admin/cores\" defaultCoreName=\"SystemVars1\" host=\"127.0.0.1\" \n"
 operator|+
 literal|"       hostPort=\"${hostPort:8983}\" hostContext=\"${hostContext:solr}\" \n"
@@ -3415,6 +3407,16 @@ operator|+
 literal|"<property name=\"coreNodeName\" value=\"EricksCore\"/>\n"
 operator|+
 literal|"</core>\n"
+operator|+
+literal|"<shardHandlerFactory name=\"${shhandler:shardHandlerFactory}\" class=\"${handlefac:HttpShardHandlerFactory}\">\n"
+operator|+
+literal|"<int name=\"socketTimeout\">${socketTimeout:120000}</int> \n"
+operator|+
+literal|"<int name=\"connTimeout\">${connTimeout:15000}</int> \n"
+operator|+
+literal|"<str name=\"arbitraryName\">${arbitrarySysValue:foobar}</str>\n"
+operator|+
+literal|"</shardHandlerFactory> \n"
 operator|+
 literal|"</cores>\n"
 operator|+
