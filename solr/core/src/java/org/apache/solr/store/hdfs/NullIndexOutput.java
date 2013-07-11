@@ -122,6 +122,9 @@ block|{
 name|pos
 operator|++
 expr_stmt|;
+name|updateLength
+argument_list|()
+expr_stmt|;
 block|}
 annotation|@
 name|Override
