@@ -552,9 +552,9 @@ argument_list|,
 name|name
 argument_list|)
 argument_list|,
-name|SolrCoreDiscoverer
+name|CorePropertiesLocator
 operator|.
-name|CORE_PROP_FILE
+name|PROPERTIES_FILENAME
 argument_list|)
 decl_stmt|;
 name|File
@@ -873,10 +873,17 @@ literal|"core1"
 argument_list|,
 name|desc
 operator|.
-name|getProperty
-argument_list|(
-literal|"solr.core.name"
+name|getName
+argument_list|()
 argument_list|)
+expr_stmt|;
+comment|// This is too long and ugly to put in. Besides, it varies.
+name|assertNotNull
+argument_list|(
+name|desc
+operator|.
+name|getInstanceDir
+argument_list|()
 argument_list|)
 expr_stmt|;
 comment|// Prove we're ignoring this even though it's set in the properties file
@@ -886,25 +893,12 @@ literal|"InstanceDir should be ignored"
 argument_list|,
 name|desc
 operator|.
-name|getProperty
-argument_list|(
-literal|"solr.core.instanceDir"
-argument_list|)
+name|getInstanceDir
+argument_list|()
 operator|.
 name|contains
 argument_list|(
 literal|"totallybogus"
-argument_list|)
-argument_list|)
-expr_stmt|;
-comment|// This is too long and ugly to put in. Besides, it varies.
-name|assertNotNull
-argument_list|(
-name|desc
-operator|.
-name|getProperty
-argument_list|(
-literal|"solr.core.instanceDir"
 argument_list|)
 argument_list|)
 expr_stmt|;
@@ -914,10 +908,8 @@ literal|"core1"
 argument_list|,
 name|desc
 operator|.
-name|getProperty
-argument_list|(
-literal|"solr.core.dataDir"
-argument_list|)
+name|getDataDir
+argument_list|()
 argument_list|)
 expr_stmt|;
 name|assertEquals
@@ -926,10 +918,8 @@ literal|"solrconfig-minimal.xml"
 argument_list|,
 name|desc
 operator|.
-name|getProperty
-argument_list|(
-literal|"solr.core.configName"
-argument_list|)
+name|getConfigName
+argument_list|()
 argument_list|)
 expr_stmt|;
 name|assertEquals
@@ -938,10 +928,8 @@ literal|"schema-tiny.xml"
 argument_list|,
 name|desc
 operator|.
-name|getProperty
-argument_list|(
-literal|"solr.core.schemaName"
-argument_list|)
+name|getSchemaName
+argument_list|()
 argument_list|)
 expr_stmt|;
 name|SolrCore
@@ -1070,31 +1058,23 @@ name|SolrException
 name|se
 parameter_list|)
 block|{
-name|Throwable
-name|cause
-init|=
-name|se
-operator|.
-name|getCause
-argument_list|()
-decl_stmt|;
 name|String
 name|message
 init|=
-name|cause
+name|se
 operator|.
 name|getMessage
 argument_list|()
 decl_stmt|;
 name|assertTrue
 argument_list|(
-literal|"Should have seen an exception because two cores had the same name"
+literal|"Wrong exception thrown on duplicate core names"
 argument_list|,
 name|message
 operator|.
 name|indexOf
 argument_list|(
-literal|"Core core1 defined more than once"
+literal|"Found multiple cores with the name [core1]"
 argument_list|)
 operator|!=
 operator|-
@@ -1241,9 +1221,9 @@ name|File
 operator|.
 name|separator
 operator|+
-name|SolrCoreDiscoverer
+name|CorePropertiesLocator
 operator|.
-name|CORE_PROP_FILE
+name|PROPERTIES_FILENAME
 argument_list|)
 argument_list|)
 expr_stmt|;
@@ -1271,9 +1251,9 @@ name|File
 operator|.
 name|separator
 operator|+
-name|SolrCoreDiscoverer
+name|CorePropertiesLocator
 operator|.
-name|CORE_PROP_FILE
+name|PROPERTIES_FILENAME
 argument_list|)
 argument_list|)
 expr_stmt|;
@@ -1419,9 +1399,9 @@ name|File
 operator|.
 name|separator
 operator|+
-name|SolrCoreDiscoverer
+name|CorePropertiesLocator
 operator|.
-name|CORE_PROP_FILE
+name|PROPERTIES_FILENAME
 argument_list|)
 argument_list|)
 expr_stmt|;
@@ -1447,9 +1427,9 @@ name|File
 operator|.
 name|separator
 operator|+
-name|SolrCoreDiscoverer
+name|CorePropertiesLocator
 operator|.
-name|CORE_PROP_FILE
+name|PROPERTIES_FILENAME
 argument_list|)
 argument_list|)
 expr_stmt|;
