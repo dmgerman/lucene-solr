@@ -328,9 +328,17 @@ argument_list|(
 name|cds
 argument_list|)
 argument_list|,
-literal|"<solr><cores>\n"
+literal|"<solr><cores>"
 operator|+
-literal|"<core name=\"testcore\" instanceDir=\"instance/dir/\"/>\n"
+name|SolrXMLCoresLocator
+operator|.
+name|NEWLINE
+operator|+
+literal|"<core name=\"testcore\" instanceDir=\"instance/dir/\"/>"
+operator|+
+name|SolrXMLCoresLocator
+operator|.
+name|NEWLINE
 operator|+
 literal|"</cores></solr>"
 argument_list|)
