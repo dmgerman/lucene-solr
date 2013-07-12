@@ -966,7 +966,15 @@ name|cfg
 operator|.
 name|load
 argument_list|(
+operator|new
+name|InputStreamReader
+argument_list|(
 name|in
+argument_list|,
+name|IOUtils
+operator|.
+name|CHARSET_UTF_8
+argument_list|)
 argument_list|)
 expr_stmt|;
 block|}
