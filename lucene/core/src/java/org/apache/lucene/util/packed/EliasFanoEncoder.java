@@ -183,8 +183,16 @@ name|this
 operator|.
 name|upperBound
 operator|=
+name|numValues
+operator|>
+literal|0
+condition|?
 name|upperBound
+else|:
+operator|-
+literal|1L
 expr_stmt|;
+comment|// if there is no value, -1 is the best upper bound
 name|int
 name|nLowBits
 init|=
