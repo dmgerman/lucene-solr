@@ -4079,6 +4079,7 @@ argument_list|)
 decl_stmt|;
 if|if
 condition|(
+operator|!
 name|Slice
 operator|.
 name|CONSTRUCTION
@@ -4090,19 +4091,10 @@ operator|.
 name|getState
 argument_list|()
 argument_list|)
+operator|&&
+operator|!
+name|isLeader
 condition|)
-block|{
-name|publish
-argument_list|(
-name|desc
-argument_list|,
-name|ZkStateReader
-operator|.
-name|ACTIVE
-argument_list|)
-expr_stmt|;
-block|}
-else|else
 block|{
 name|Future
 argument_list|<
@@ -4159,6 +4151,7 @@ name|baseUrl
 argument_list|)
 expr_stmt|;
 block|}
+block|}
 name|boolean
 name|didRecovery
 init|=
@@ -4202,7 +4195,6 @@ operator|.
 name|ACTIVE
 argument_list|)
 expr_stmt|;
-block|}
 block|}
 block|}
 block|}
