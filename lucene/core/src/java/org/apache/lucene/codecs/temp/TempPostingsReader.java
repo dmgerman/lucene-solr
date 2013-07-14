@@ -1187,6 +1187,13 @@ index|[
 literal|1
 index|]
 expr_stmt|;
+if|if
+condition|(
+name|fieldHasOffsets
+operator|||
+name|fieldHasPayloads
+condition|)
+block|{
 name|termState
 operator|.
 name|payStartFP
@@ -1196,6 +1203,7 @@ index|[
 literal|2
 index|]
 expr_stmt|;
+block|}
 block|}
 if|if
 condition|(
