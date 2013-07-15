@@ -4091,7 +4091,7 @@ operator|.
 name|getState
 argument_list|()
 argument_list|)
-operator|&&
+operator|||
 operator|!
 name|isLeader
 condition|)
