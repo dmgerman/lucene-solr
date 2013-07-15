@@ -964,7 +964,7 @@ literal|"Each '"
 operator|+
 name|TYPE_MAPPING_PARAM
 operator|+
-literal|"'<lst/> must contain a '"
+literal|"'<lst/> may contain only one '"
 operator|+
 name|FIELD_TYPE_PARAM
 operator|+
