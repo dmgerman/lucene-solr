@@ -1552,8 +1552,6 @@ operator|.
 name|seekExact
 argument_list|(
 name|internalKey
-argument_list|,
-literal|false
 argument_list|)
 condition|)
 block|{

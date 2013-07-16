@@ -1000,8 +1000,6 @@ operator|.
 name|seekCeil
 argument_list|(
 name|lowerBytes
-argument_list|,
-literal|true
 argument_list|)
 operator|==
 name|TermsEnum

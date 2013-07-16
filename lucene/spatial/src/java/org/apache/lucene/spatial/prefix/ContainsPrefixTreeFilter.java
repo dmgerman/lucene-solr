@@ -687,13 +687,6 @@ operator|.
 name|seekExact
 argument_list|(
 name|termBytes
-argument_list|,
-name|cell
-operator|.
-name|getLevel
-argument_list|()
-operator|<=
-literal|2
 argument_list|)
 return|;
 block|}

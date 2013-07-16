@@ -631,8 +631,6 @@ name|BytesRef
 argument_list|(
 literal|"000"
 argument_list|)
-argument_list|,
-literal|true
 argument_list|)
 operator|!=
 name|TermsEnum

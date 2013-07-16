@@ -440,15 +440,6 @@ block|}
 block|}
 block|}
 block|}
-DECL|field|TERMS_CACHE_SIZE
-specifier|public
-specifier|final
-specifier|static
-name|int
-name|TERMS_CACHE_SIZE
-init|=
-literal|1024
-decl_stmt|;
 annotation|@
 name|Override
 DECL|method|fieldsProducer
@@ -587,8 +578,6 @@ argument_list|,
 name|state
 operator|.
 name|context
-argument_list|,
-name|TERMS_CACHE_SIZE
 argument_list|,
 name|state
 operator|.

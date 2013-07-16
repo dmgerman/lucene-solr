@@ -9026,16 +9026,6 @@ expr_stmt|;
 block|}
 specifier|final
 name|boolean
-name|useCache
-init|=
-name|random
-argument_list|()
-operator|.
-name|nextBoolean
-argument_list|()
-decl_stmt|;
-specifier|final
-name|boolean
 name|seekExact
 init|=
 name|random
@@ -9058,8 +9048,6 @@ operator|.
 name|seekExact
 argument_list|(
 name|b
-argument_list|,
-name|useCache
 argument_list|)
 argument_list|,
 name|rightEnum
@@ -9067,8 +9055,6 @@ operator|.
 name|seekExact
 argument_list|(
 name|b
-argument_list|,
-name|useCache
 argument_list|)
 argument_list|)
 expr_stmt|;
@@ -9083,8 +9069,6 @@ operator|.
 name|seekCeil
 argument_list|(
 name|b
-argument_list|,
-name|useCache
 argument_list|)
 decl_stmt|;
 name|SeekStatus
@@ -9095,8 +9079,6 @@ operator|.
 name|seekCeil
 argument_list|(
 name|b
-argument_list|,
-name|useCache
 argument_list|)
 decl_stmt|;
 name|assertEquals

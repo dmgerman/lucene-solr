@@ -439,18 +439,6 @@ name|FieldReader
 argument_list|>
 argument_list|()
 decl_stmt|;
-comment|// Caches the most recently looked-up field + terms:
-DECL|field|termsCache
-specifier|private
-specifier|final
-name|DoubleBarrelLRUCache
-argument_list|<
-name|FieldAndTerm
-argument_list|,
-name|BlockTermState
-argument_list|>
-name|termsCache
-decl_stmt|;
 comment|// Reads the terms index
 DECL|field|indexReader
 specifier|private
@@ -620,9 +608,6 @@ parameter_list|,
 name|IOContext
 name|context
 parameter_list|,
-name|int
-name|termsCacheSize
-parameter_list|,
 name|String
 name|segmentSuffix
 parameter_list|)
@@ -634,19 +619,6 @@ operator|.
 name|postingsReader
 operator|=
 name|postingsReader
-expr_stmt|;
-name|termsCache
-operator|=
-operator|new
-name|DoubleBarrelLRUCache
-argument_list|<
-name|FieldAndTerm
-argument_list|,
-name|BlockTermState
-argument_list|>
-argument_list|(
-name|termsCacheSize
-argument_list|)
 expr_stmt|;
 comment|// this.segment = segment;
 name|in
@@ -1762,10 +1734,6 @@ parameter_list|(
 specifier|final
 name|BytesRef
 name|target
-parameter_list|,
-specifier|final
-name|boolean
-name|useCache
 parameter_list|)
 throws|throws
 name|IOException
@@ -1785,7 +1753,7 @@ literal|"terms index was not loaded"
 argument_list|)
 throw|;
 block|}
-comment|//System.out.println("BTR.seek seg=" + segment + " target=" + fieldInfo.name + ":" + target.utf8ToString() + " " + target + " current=" + term().utf8ToString() + " " + term() + " useCache=" + useCache + " indexIsCurrent=" + indexIsCurrent + " didIndexNext=" + didIndexNext + " seekPending=" + seekPending + " divisor=" + indexReader.getDivisor() + " this="  + this);
+comment|//System.out.println("BTR.seek seg=" + segment + " target=" + fieldInfo.name + ":" + target.utf8ToString() + " " + target + " current=" + term().utf8ToString() + " " + term() + " indexIsCurrent=" + indexIsCurrent + " didIndexNext=" + didIndexNext + " seekPending=" + seekPending + " divisor=" + indexReader.getDivisor() + " this="  + this);
 if|if
 condition|(
 name|didIndexNext
@@ -1803,60 +1771,6 @@ block|}
 else|else
 block|{
 comment|//System.out.println("  nextIndexTerm=" + nextIndexTerm.utf8ToString());
-block|}
-block|}
-comment|// Check cache
-if|if
-condition|(
-name|useCache
-condition|)
-block|{
-name|fieldTerm
-operator|.
-name|term
-operator|=
-name|target
-expr_stmt|;
-comment|// TODO: should we differentiate "frozen"
-comment|// TermState (ie one that was cloned and
-comment|// cached/returned by termState()) from the
-comment|// malleable (primary) one?
-specifier|final
-name|TermState
-name|cachedState
-init|=
-name|termsCache
-operator|.
-name|get
-argument_list|(
-name|fieldTerm
-argument_list|)
-decl_stmt|;
-if|if
-condition|(
-name|cachedState
-operator|!=
-literal|null
-condition|)
-block|{
-name|seekPending
-operator|=
-literal|true
-expr_stmt|;
-comment|//System.out.println("  cached!");
-name|seekExact
-argument_list|(
-name|target
-argument_list|,
-name|cachedState
-argument_list|)
-expr_stmt|;
-comment|//System.out.println("  term=" + term.utf8ToString());
-return|return
-name|SeekStatus
-operator|.
-name|FOUND
-return|;
 block|}
 block|}
 name|boolean
@@ -2618,36 +2532,6 @@ block|{
 comment|// Done!  Exact match.  Stop here, fill in
 comment|// real term, return FOUND.
 comment|//System.out.println("  FOUND");
-if|if
-condition|(
-name|useCache
-condition|)
-block|{
-comment|// Store in cache
-name|decodeMetaData
-argument_list|()
-expr_stmt|;
-comment|//System.out.println("  cache! state=" + state);
-name|termsCache
-operator|.
-name|put
-argument_list|(
-operator|new
-name|FieldAndTerm
-argument_list|(
-name|fieldTerm
-argument_list|)
-argument_list|,
-operator|(
-name|BlockTermState
-operator|)
-name|state
-operator|.
-name|clone
-argument_list|()
-argument_list|)
-expr_stmt|;
-block|}
 return|return
 name|SeekStatus
 operator|.

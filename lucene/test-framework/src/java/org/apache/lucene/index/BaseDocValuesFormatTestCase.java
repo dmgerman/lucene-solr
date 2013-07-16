@@ -6259,8 +6259,6 @@ name|BytesRef
 argument_list|(
 literal|"beer"
 argument_list|)
-argument_list|,
-literal|true
 argument_list|)
 argument_list|)
 expr_stmt|;
@@ -6298,8 +6296,6 @@ name|BytesRef
 argument_list|(
 literal|"hello"
 argument_list|)
-argument_list|,
-literal|true
 argument_list|)
 argument_list|)
 expr_stmt|;
@@ -6345,8 +6341,6 @@ name|BytesRef
 argument_list|(
 literal|"world"
 argument_list|)
-argument_list|,
-literal|true
 argument_list|)
 argument_list|)
 expr_stmt|;
@@ -6384,8 +6378,6 @@ name|BytesRef
 argument_list|(
 literal|"bogus"
 argument_list|)
-argument_list|,
-literal|true
 argument_list|)
 argument_list|)
 expr_stmt|;
@@ -13855,8 +13847,6 @@ name|BytesRef
 argument_list|(
 literal|"beer"
 argument_list|)
-argument_list|,
-literal|true
 argument_list|)
 argument_list|)
 expr_stmt|;
@@ -13894,8 +13884,6 @@ name|BytesRef
 argument_list|(
 literal|"hello"
 argument_list|)
-argument_list|,
-literal|true
 argument_list|)
 argument_list|)
 expr_stmt|;
@@ -13933,8 +13921,6 @@ name|BytesRef
 argument_list|(
 literal|"world"
 argument_list|)
-argument_list|,
-literal|true
 argument_list|)
 argument_list|)
 expr_stmt|;
@@ -13972,8 +13958,6 @@ name|BytesRef
 argument_list|(
 literal|"bogus"
 argument_list|)
-argument_list|,
-literal|true
 argument_list|)
 argument_list|)
 expr_stmt|;

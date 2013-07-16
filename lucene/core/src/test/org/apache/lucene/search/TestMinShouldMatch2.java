@@ -2374,8 +2374,6 @@ name|getContext
 argument_list|()
 argument_list|,
 name|term
-argument_list|,
-literal|true
 argument_list|)
 decl_stmt|;
 name|SimWeight

@@ -656,8 +656,6 @@ operator|.
 name|seekExact
 argument_list|(
 name|curVNodeTerm
-argument_list|,
-literal|false
 argument_list|)
 operator|:
 literal|"should be absent"
@@ -683,8 +681,6 @@ operator|.
 name|seekCeil
 argument_list|(
 name|curVNodeTerm
-argument_list|,
-literal|true
 argument_list|)
 decl_stmt|;
 if|if

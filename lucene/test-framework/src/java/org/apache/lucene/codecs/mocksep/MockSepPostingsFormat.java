@@ -553,8 +553,6 @@ name|state
 operator|.
 name|context
 argument_list|,
-literal|1024
-argument_list|,
 name|state
 operator|.
 name|segmentSuffix

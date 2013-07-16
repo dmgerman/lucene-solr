@@ -282,20 +282,6 @@ name|lucene
 operator|.
 name|util
 operator|.
-name|BytesRef
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|util
-operator|.
 name|ToStringUtils
 import|;
 end_import
@@ -1274,8 +1260,6 @@ argument_list|(
 name|context
 argument_list|,
 name|term
-argument_list|,
-literal|true
 argument_list|)
 expr_stmt|;
 name|termStats
@@ -1591,8 +1575,6 @@ name|t
 operator|.
 name|bytes
 argument_list|()
-argument_list|,
-literal|false
 argument_list|)
 operator|:
 literal|"termstate found but no term exists in reader"

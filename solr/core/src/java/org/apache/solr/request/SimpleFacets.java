@@ -4928,8 +4928,6 @@ operator|.
 name|seekCeil
 argument_list|(
 name|startTermBytes
-argument_list|,
-literal|true
 argument_list|)
 operator|==
 name|TermsEnum

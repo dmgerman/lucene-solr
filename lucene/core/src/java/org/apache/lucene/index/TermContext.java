@@ -203,9 +203,6 @@ name|context
 parameter_list|,
 name|Term
 name|term
-parameter_list|,
-name|boolean
-name|cache
 parameter_list|)
 throws|throws
 name|IOException
@@ -316,8 +313,6 @@ operator|.
 name|seekExact
 argument_list|(
 name|bytes
-argument_list|,
-name|cache
 argument_list|)
 condition|)
 block|{

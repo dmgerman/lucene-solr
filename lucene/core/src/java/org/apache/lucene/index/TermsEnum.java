@@ -93,7 +93,7 @@ import|;
 end_import
 
 begin_comment
-comment|/** Iterator to seek ({@link #seekCeil(BytesRef)}, {@link  * #seekExact(BytesRef,boolean)}) or step through ({@link  * #next} terms to obtain frequency information ({@link  * #docFreq}), {@link DocsEnum} or {@link  * DocsAndPositionsEnum} for the current term ({@link  * #docs}.  *   *<p>Term enumerations are always ordered by  * {@link #getComparator}.  Each term in the enumeration is  * greater than the one before it.</p>  *  *<p>The TermsEnum is unpositioned when you first obtain it  * and you must first successfully call {@link #next} or one  * of the<code>seek</code> methods.  *  * @lucene.experimental */
+comment|/** Iterator to seek ({@link #seekCeil(BytesRef)}, {@link  * #seekExact(BytesRef)}) or step through ({@link  * #next} terms to obtain frequency information ({@link  * #docFreq}), {@link DocsEnum} or {@link  * DocsAndPositionsEnum} for the current term ({@link  * #docs}.  *   *<p>Term enumerations are always ordered by  * {@link #getComparator}.  Each term in the enumeration is  * greater than the one before it.</p>  *  *<p>The TermsEnum is unpositioned when you first obtain it  * and you must first successfully call {@link #next} or one  * of the<code>seek</code> methods.  *  * @lucene.experimental */
 end_comment
 
 begin_class
@@ -169,9 +169,6 @@ name|seekExact
 parameter_list|(
 name|BytesRef
 name|text
-parameter_list|,
-name|boolean
-name|useCache
 parameter_list|)
 throws|throws
 name|IOException
@@ -180,8 +177,6 @@ return|return
 name|seekCeil
 argument_list|(
 name|text
-argument_list|,
-name|useCache
 argument_list|)
 operator|==
 name|SeekStatus
@@ -189,7 +184,7 @@ operator|.
 name|FOUND
 return|;
 block|}
-comment|/** Expert: just like {@link #seekCeil(BytesRef)} but allows    *  you to control whether the implementation should    *  attempt to use its term cache (if it uses one). */
+comment|/** Seeks to the specified term, if it exists, or to the    *  next (ceiling) term.  Returns SeekStatus to    *  indicate whether exact term was found, a different    *  term was found, or EOF was hit.  The target term may    *  be before or after the current term.  If this returns    *  SeekStatus.END, the enum is unpositioned. */
 DECL|method|seekCeil
 specifier|public
 specifier|abstract
@@ -198,35 +193,10 @@ name|seekCeil
 parameter_list|(
 name|BytesRef
 name|text
-parameter_list|,
-name|boolean
-name|useCache
 parameter_list|)
 throws|throws
 name|IOException
 function_decl|;
-comment|/** Seeks to the specified term, if it exists, or to the    *  next (ceiling) term.  Returns SeekStatus to    *  indicate whether exact term was found, a different    *  term was found, or EOF was hit.  The target term may    *  be before or after the current term.  If this returns    *  SeekStatus.END, the enum is unpositioned. */
-DECL|method|seekCeil
-specifier|public
-specifier|final
-name|SeekStatus
-name|seekCeil
-parameter_list|(
-name|BytesRef
-name|text
-parameter_list|)
-throws|throws
-name|IOException
-block|{
-return|return
-name|seekCeil
-argument_list|(
-name|text
-argument_list|,
-literal|true
-argument_list|)
-return|;
-block|}
 comment|/** Seeks to the specified term by ordinal (position) as    *  previously returned by {@link #ord}.  The target ord    *  may be before or after the current ord, and must be    *  within bounds. */
 DECL|method|seekExact
 specifier|public
@@ -261,8 +231,6 @@ operator|!
 name|seekExact
 argument_list|(
 name|term
-argument_list|,
-literal|true
 argument_list|)
 condition|)
 block|{
@@ -472,9 +440,6 @@ name|seekCeil
 parameter_list|(
 name|BytesRef
 name|term
-parameter_list|,
-name|boolean
-name|useCache
 parameter_list|)
 block|{
 return|return

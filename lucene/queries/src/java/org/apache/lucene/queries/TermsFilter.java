@@ -986,12 +986,9 @@ operator|.
 name|seekExact
 argument_list|(
 name|spare
-argument_list|,
-literal|false
 argument_list|)
 condition|)
 block|{
-comment|// don't use cache since we could pollute the cache here easily
 name|docs
 operator|=
 name|termsEnum

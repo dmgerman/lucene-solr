@@ -802,8 +802,6 @@ argument_list|(
 name|context
 argument_list|,
 name|term
-argument_list|,
-literal|true
 argument_list|)
 expr_stmt|;
 name|termContexts
