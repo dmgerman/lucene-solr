@@ -133,7 +133,7 @@ operator|=
 operator|new
 name|float
 index|[
-name|pageSize
+name|initialPageCount
 index|]
 expr_stmt|;
 block|}
