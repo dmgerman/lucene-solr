@@ -1847,24 +1847,24 @@ name|seekPending
 operator|=
 literal|false
 expr_stmt|;
-if|if
-condition|(
+name|SeekStatus
+name|status
+init|=
 name|seekCeil
 argument_list|(
 name|term
 argument_list|,
 literal|false
 argument_list|)
-operator|!=
+decl_stmt|;
+assert|assert
+name|status
+operator|==
 name|SeekStatus
 operator|.
 name|FOUND
-condition|)
-block|{
-return|return
-name|term
-return|;
-block|}
+assert|;
+comment|// must positioned on valid term
 block|}
 name|updateEnum
 argument_list|(
@@ -1912,7 +1912,6 @@ operator|!=
 literal|null
 return|;
 block|}
-comment|// nocommit: when will we useCache?
 annotation|@
 name|Override
 DECL|method|seekCeil

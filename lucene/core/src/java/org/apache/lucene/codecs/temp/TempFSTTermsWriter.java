@@ -487,7 +487,6 @@ operator|.
 name|context
 argument_list|)
 expr_stmt|;
-comment|// nocommit: why try catch here? not catching createOutput?
 name|boolean
 name|success
 init|=
