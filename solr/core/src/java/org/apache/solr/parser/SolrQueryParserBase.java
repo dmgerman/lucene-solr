@@ -1746,11 +1746,7 @@ name|tokenStream
 argument_list|(
 name|field
 argument_list|,
-operator|new
-name|StringReader
-argument_list|(
 name|queryText
-argument_list|)
 argument_list|)
 expr_stmt|;
 name|source

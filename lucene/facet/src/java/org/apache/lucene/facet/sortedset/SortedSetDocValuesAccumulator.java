@@ -266,6 +266,20 @@ name|lucene
 operator|.
 name|index
 operator|.
+name|AtomicReader
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|index
+operator|.
 name|IndexReader
 import|;
 end_import
@@ -297,6 +311,20 @@ operator|.
 name|index
 operator|.
 name|MultiDocValues
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|index
+operator|.
+name|ReaderUtil
 import|;
 end_import
 
@@ -393,15 +421,9 @@ argument_list|,
 operator|new
 name|FacetArrays
 argument_list|(
-operator|(
-name|int
-operator|)
 name|state
 operator|.
-name|getDocValues
-argument_list|()
-operator|.
-name|getValueCount
+name|getSize
 argument_list|()
 argument_list|)
 argument_list|)
@@ -581,8 +603,8 @@ parameter_list|)
 throws|throws
 name|IOException
 block|{
-name|SortedSetDocValues
-name|segValues
+name|AtomicReader
+name|reader
 init|=
 name|matchingDocs
 operator|.
@@ -590,6 +612,42 @@ name|context
 operator|.
 name|reader
 argument_list|()
+decl_stmt|;
+comment|// LUCENE-5090: make sure the provided reader context "matches"
+comment|// the top-level reader passed to the
+comment|// SortedSetDocValuesReaderState, else cryptic
+comment|// AIOOBE can happen:
+if|if
+condition|(
+name|ReaderUtil
+operator|.
+name|getTopLevelContext
+argument_list|(
+name|matchingDocs
+operator|.
+name|context
+argument_list|)
+operator|.
+name|reader
+argument_list|()
+operator|!=
+name|state
+operator|.
+name|origReader
+condition|)
+block|{
+throw|throw
+operator|new
+name|IllegalStateException
+argument_list|(
+literal|"the SortedSetDocValuesReaderState provided to this class does not match the reader being searched; you must create a new SortedSetDocValuesReaderState every time you open a new IndexReader"
+argument_list|)
+throw|;
+block|}
+name|SortedSetDocValues
+name|segValues
+init|=
+name|reader
 operator|.
 name|getSortedSetDocValues
 argument_list|(
@@ -619,12 +677,7 @@ specifier|final
 name|int
 name|maxDoc
 init|=
-name|matchingDocs
-operator|.
-name|context
-operator|.
 name|reader
-argument_list|()
 operator|.
 name|maxDoc
 argument_list|()

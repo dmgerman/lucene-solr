@@ -27,6 +27,8 @@ class|class
 name|TrieLongField
 extends|extends
 name|TrieField
+implements|implements
+name|LongValueFieldType
 block|{
 block|{
 name|type

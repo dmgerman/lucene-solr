@@ -1226,7 +1226,7 @@ block|{
 operator|new
 name|SortField
 argument_list|(
-literal|"docid"
+literal|"docid_int"
 argument_list|,
 name|SortField
 operator|.

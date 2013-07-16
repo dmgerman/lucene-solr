@@ -759,12 +759,13 @@ argument_list|()
 expr_stmt|;
 name|coreZkNodeName
 operator|=
-name|zkController
+name|cd
+operator|.
+name|getCloudDescriptor
+argument_list|()
 operator|.
 name|getCoreNodeName
-argument_list|(
-name|cd
-argument_list|)
+argument_list|()
 expr_stmt|;
 block|}
 DECL|method|setRecoveringAfterStartup
@@ -890,27 +891,12 @@ name|core
 parameter_list|,
 name|ZkNodeProps
 name|leaderprops
-parameter_list|,
-name|String
-name|baseUrl
 parameter_list|)
 throws|throws
 name|SolrServerException
 throws|,
 name|IOException
 block|{
-name|String
-name|leaderBaseUrl
-init|=
-name|leaderprops
-operator|.
-name|getStr
-argument_list|(
-name|ZkStateReader
-operator|.
-name|BASE_URL_PROP
-argument_list|)
-decl_stmt|;
 name|ZkCoreNodeProps
 name|leaderCNodeProps
 init|=
@@ -941,19 +927,6 @@ operator|+
 name|coreName
 argument_list|)
 expr_stmt|;
-comment|// if we are the leader, either we are trying to recover faster
-comment|// then our ephemeral timed out or we are the only node
-if|if
-condition|(
-operator|!
-name|leaderBaseUrl
-operator|.
-name|equals
-argument_list|(
-name|baseUrl
-argument_list|)
-condition|)
-block|{
 comment|// send commit
 name|commitOnLeader
 argument_list|(
@@ -1092,7 +1065,6 @@ comment|//        }
 comment|//      } catch (Exception e) {
 comment|//
 comment|//      }
-block|}
 block|}
 DECL|method|commitOnLeader
 specifier|private
@@ -1983,6 +1955,7 @@ operator|!
 name|cloudDesc
 operator|.
 name|isLeader
+argument_list|()
 condition|)
 block|{
 throw|throw
@@ -2002,6 +1975,7 @@ condition|(
 name|cloudDesc
 operator|.
 name|isLeader
+argument_list|()
 condition|)
 block|{
 comment|// we are now the leader - no one else must have been suitable
@@ -2290,8 +2264,6 @@ argument_list|,
 name|core
 argument_list|,
 name|leaderprops
-argument_list|,
-name|leaderUrl
 argument_list|)
 expr_stmt|;
 name|replay

@@ -54,6 +54,87 @@ specifier|public
 class|class
 name|NorwegianLightStemmer
 block|{
+comment|/** Constant to remove BokmÃ¥l-specific endings */
+DECL|field|BOKMAAL
+specifier|public
+specifier|static
+specifier|final
+name|int
+name|BOKMAAL
+init|=
+literal|1
+decl_stmt|;
+comment|/** Constant to remove Nynorsk-specific endings */
+DECL|field|NYNORSK
+specifier|public
+specifier|static
+specifier|final
+name|int
+name|NYNORSK
+init|=
+literal|2
+decl_stmt|;
+DECL|field|useBokmaal
+specifier|final
+name|boolean
+name|useBokmaal
+decl_stmt|;
+DECL|field|useNynorsk
+specifier|final
+name|boolean
+name|useNynorsk
+decl_stmt|;
+comment|/**     * Creates a new NorwegianLightStemmer    * @param flags set to {@link #BOKMAAL}, {@link #NYNORSK}, or both.    */
+DECL|method|NorwegianLightStemmer
+specifier|public
+name|NorwegianLightStemmer
+parameter_list|(
+name|int
+name|flags
+parameter_list|)
+block|{
+if|if
+condition|(
+name|flags
+operator|<=
+literal|0
+operator|||
+name|flags
+operator|>
+name|BOKMAAL
+operator|+
+name|NYNORSK
+condition|)
+block|{
+throw|throw
+operator|new
+name|IllegalArgumentException
+argument_list|(
+literal|"invalid flags"
+argument_list|)
+throw|;
+block|}
+name|useBokmaal
+operator|=
+operator|(
+name|flags
+operator|&
+name|BOKMAAL
+operator|)
+operator|!=
+literal|0
+expr_stmt|;
+name|useNynorsk
+operator|=
+operator|(
+name|flags
+operator|&
+name|NYNORSK
+operator|)
+operator|!=
+literal|0
+expr_stmt|;
+block|}
 DECL|method|stem
 specifier|public
 name|int
@@ -94,6 +175,7 @@ operator|>
 literal|7
 operator|&&
 operator|(
+operator|(
 name|endsWith
 argument_list|(
 name|s
@@ -102,8 +184,12 @@ name|len
 argument_list|,
 literal|"heter"
 argument_list|)
+operator|&&
+name|useBokmaal
+operator|)
 operator|||
 comment|// general ending (hemmelig-heter -> hemmelig)
+operator|(
 name|endsWith
 argument_list|(
 name|s
@@ -112,13 +198,76 @@ name|len
 argument_list|,
 literal|"heten"
 argument_list|)
+operator|&&
+name|useBokmaal
+operator|)
+operator|||
+comment|// general ending (hemmelig-heten -> hemmelig)
+operator|(
+name|endsWith
+argument_list|(
+name|s
+argument_list|,
+name|len
+argument_list|,
+literal|"heita"
+argument_list|)
+operator|&&
+name|useNynorsk
+operator|)
 operator|)
 condition|)
-comment|// general ending (hemmelig-heten -> hemmelig)
+comment|// general ending (hemmeleg-heita -> hemmeleg)
 return|return
 name|len
 operator|-
 literal|5
+return|;
+comment|// Remove Nynorsk common endings, single-pass
+if|if
+condition|(
+name|len
+operator|>
+literal|8
+operator|&&
+name|useNynorsk
+operator|&&
+operator|(
+name|endsWith
+argument_list|(
+name|s
+argument_list|,
+name|len
+argument_list|,
+literal|"heiter"
+argument_list|)
+operator|||
+comment|// general ending (hemmeleg-heiter -> hemmeleg)
+name|endsWith
+argument_list|(
+name|s
+argument_list|,
+name|len
+argument_list|,
+literal|"leiken"
+argument_list|)
+operator|||
+comment|// general ending (trygg-leiken -> trygg)
+name|endsWith
+argument_list|(
+name|s
+argument_list|,
+name|len
+argument_list|,
+literal|"leikar"
+argument_list|)
+operator|)
+condition|)
+comment|// general ending (trygg-leikar -> trygg)
+return|return
+name|len
+operator|-
+literal|6
 return|;
 if|if
 condition|(
@@ -137,6 +286,7 @@ literal|"dom"
 argument_list|)
 operator|||
 comment|// general ending (kristen-dom -> kristen)
+operator|(
 name|endsWith
 argument_list|(
 name|s
@@ -145,6 +295,9 @@ name|len
 argument_list|,
 literal|"het"
 argument_list|)
+operator|&&
+name|useBokmaal
+operator|)
 operator|)
 condition|)
 comment|// general ending (hemmelig-het -> hemmelig)
@@ -152,6 +305,51 @@ return|return
 name|len
 operator|-
 literal|3
+return|;
+if|if
+condition|(
+name|len
+operator|>
+literal|6
+operator|&&
+name|useNynorsk
+operator|&&
+operator|(
+name|endsWith
+argument_list|(
+name|s
+argument_list|,
+name|len
+argument_list|,
+literal|"heit"
+argument_list|)
+operator|||
+comment|// general ending (hemmeleg-heit -> hemmeleg)
+name|endsWith
+argument_list|(
+name|s
+argument_list|,
+name|len
+argument_list|,
+literal|"semd"
+argument_list|)
+operator|||
+comment|// general ending (verk-semd -> verk)
+name|endsWith
+argument_list|(
+name|s
+argument_list|,
+name|len
+argument_list|,
+literal|"leik"
+argument_list|)
+operator|)
+condition|)
+comment|// general ending (trygg-leik -> trygg)
+return|return
+name|len
+operator|-
+literal|4
 return|;
 if|if
 condition|(
@@ -193,6 +391,7 @@ operator|>
 literal|6
 operator|&&
 operator|(
+operator|(
 name|endsWith
 argument_list|(
 name|s
@@ -201,8 +400,25 @@ name|len
 argument_list|,
 literal|"ende"
 argument_list|)
+operator|&&
+name|useBokmaal
+operator|)
 operator|||
 comment|// (sov-ende -> sov)
+operator|(
+name|endsWith
+argument_list|(
+name|s
+argument_list|,
+name|len
+argument_list|,
+literal|"ande"
+argument_list|)
+operator|&&
+name|useNynorsk
+operator|)
+operator|||
+comment|// (sov-ande -> sov)
 name|endsWith
 argument_list|(
 name|s
@@ -213,6 +429,7 @@ literal|"else"
 argument_list|)
 operator|||
 comment|// general ending (fÃ¸l-else -> fÃ¸l)
+operator|(
 name|endsWith
 argument_list|(
 name|s
@@ -221,8 +438,26 @@ name|len
 argument_list|,
 literal|"este"
 argument_list|)
+operator|&&
+name|useBokmaal
+operator|)
 operator|||
 comment|// adj (fin-este -> fin)
+operator|(
+name|endsWith
+argument_list|(
+name|s
+argument_list|,
+name|len
+argument_list|,
+literal|"aste"
+argument_list|)
+operator|&&
+name|useNynorsk
+operator|)
+operator|||
+comment|// adj (fin-aste -> fin)
+operator|(
 name|endsWith
 argument_list|(
 name|s
@@ -231,6 +466,23 @@ name|len
 argument_list|,
 literal|"eren"
 argument_list|)
+operator|&&
+name|useBokmaal
+operator|)
+operator|||
+comment|// masc
+operator|(
+name|endsWith
+argument_list|(
+name|s
+argument_list|,
+name|len
+argument_list|,
+literal|"aren"
+argument_list|)
+operator|&&
+name|useNynorsk
+operator|)
 operator|)
 condition|)
 comment|// masc
@@ -246,6 +498,7 @@ operator|>
 literal|5
 operator|&&
 operator|(
+operator|(
 name|endsWith
 argument_list|(
 name|s
@@ -254,8 +507,26 @@ name|len
 argument_list|,
 literal|"ere"
 argument_list|)
+operator|&&
+name|useBokmaal
+operator|)
 operator|||
 comment|// adj (fin-ere -> fin)
+operator|(
+name|endsWith
+argument_list|(
+name|s
+argument_list|,
+name|len
+argument_list|,
+literal|"are"
+argument_list|)
+operator|&&
+name|useNynorsk
+operator|)
+operator|||
+comment|// adj (fin-are -> fin)
+operator|(
 name|endsWith
 argument_list|(
 name|s
@@ -264,8 +535,25 @@ name|len
 argument_list|,
 literal|"est"
 argument_list|)
+operator|&&
+name|useBokmaal
+operator|)
 operator|||
 comment|// adj (fin-est -> fin)
+operator|(
+name|endsWith
+argument_list|(
+name|s
+argument_list|,
+name|len
+argument_list|,
+literal|"ast"
+argument_list|)
+operator|&&
+name|useNynorsk
+operator|)
+operator|||
+comment|// adj (fin-ast -> fin)
 name|endsWith
 argument_list|(
 name|s
@@ -274,9 +562,23 @@ name|len
 argument_list|,
 literal|"ene"
 argument_list|)
+operator|||
 comment|// masc/fem/neutr pl definite (hus-ene)
+operator|(
+name|endsWith
+argument_list|(
+name|s
+argument_list|,
+name|len
+argument_list|,
+literal|"ane"
+argument_list|)
+operator|&&
+name|useNynorsk
+operator|)
 operator|)
 condition|)
+comment|// masc pl definite (gut-ane)
 return|return
 name|len
 operator|-
@@ -319,6 +621,21 @@ literal|"et"
 argument_list|)
 operator|||
 comment|// neutr definite
+operator|(
+name|endsWith
+argument_list|(
+name|s
+argument_list|,
+name|len
+argument_list|,
+literal|"ar"
+argument_list|)
+operator|&&
+name|useNynorsk
+operator|)
+operator|||
+comment|// masc pl indefinite
+operator|(
 name|endsWith
 argument_list|(
 name|s
@@ -327,6 +644,9 @@ name|len
 argument_list|,
 literal|"st"
 argument_list|)
+operator|&&
+name|useBokmaal
+operator|)
 operator|||
 comment|// adj (billig-st -> billig)
 name|endsWith

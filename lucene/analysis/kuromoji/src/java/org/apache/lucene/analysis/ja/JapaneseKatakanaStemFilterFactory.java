@@ -75,7 +75,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Factory for {@link JapaneseKatakanaStemFilterFactory}.  *<pre class="prettyprint">  *&lt;fieldType name="text_ja" class="solr.TextField"&gt;  *&lt;analyzer&gt;  *&lt;tokenizer class="solr.JapaneseTokenizerFactory"/&gt;  *&lt;filter class="solr.JapaneseKatakanaStemFilterFactory"  *             minimumLength="4"/&gt;  *&lt;/analyzer&gt;  *&lt;/fieldType&gt;  *</pre>  */
+comment|/**  * Factory for {@link JapaneseKatakanaStemFilter}.  *<pre class="prettyprint">  *&lt;fieldType name="text_ja" class="solr.TextField"&gt;  *&lt;analyzer&gt;  *&lt;tokenizer class="solr.JapaneseTokenizerFactory"/&gt;  *&lt;filter class="solr.JapaneseKatakanaStemFilterFactory"  *             minimumLength="4"/&gt;  *&lt;/analyzer&gt;  *&lt;/fieldType&gt;  *</pre>  */
 end_comment
 
 begin_class

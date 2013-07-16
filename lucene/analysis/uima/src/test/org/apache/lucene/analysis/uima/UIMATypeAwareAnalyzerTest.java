@@ -76,16 +76,6 @@ name|Test
 import|;
 end_import
 
-begin_import
-import|import
-name|java
-operator|.
-name|io
-operator|.
-name|StringReader
-import|;
-end_import
-
 begin_comment
 comment|/**  * Testcase for {@link UIMATypeAwareAnalyzer}  */
 end_comment
@@ -178,11 +168,7 @@ name|tokenStream
 argument_list|(
 literal|"text"
 argument_list|,
-operator|new
-name|StringReader
-argument_list|(
 literal|"the big brown fox jumped on the wood"
-argument_list|)
 argument_list|)
 decl_stmt|;
 comment|// check that 'the big brown fox jumped on the wood' tokens have the expected PoS types

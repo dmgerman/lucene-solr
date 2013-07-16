@@ -393,7 +393,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**   * Highlighter impl that uses {@link PostingsHighlighter}  *<p>  * Example configuration:  *<pre class="prettyprint">  *&lt;requestHandler name="standard" class="solr.StandardRequestHandler"&gt;  *&lt;lst name="defaults"&gt;  *&lt;int name="hl.snippets"&gt;1&lt;/int&gt;  *&lt;str name="hl.tag.pre"&gt;&amp;lt;em&amp;gt;&lt;/str&gt;  *&lt;str name="hl.tag.post"&gt;&amp;lt;/em&amp;gt;&lt;/str&gt;  *&lt;str name="hl.tag.ellipsis"&gt;...&lt;/str&gt;  *&lt;bool name="hl.defaultSummary"&gt;true&lt;/bool&gt;  *&lt;str name="hl.encoder"&gt;simple&lt;/str&gt;  *&lt;float name="hl.score.k1"&gt;1.2&lt;/float&gt;  *&lt;float name="hl.score.b"&gt;0.75&lt;/float&gt;  *&lt;float name="hl.score.pivot"&gt;87&lt;/float&gt;  *&lt;str name="hl.bs.language"&gt;&lt;/str&gt;  *&lt;str name="hl.bs.country"&gt;&lt;/str&gt;  *&lt;str name="hl.bs.variant"&gt;&lt;/str&gt;  *&lt;str name="hl.bs.type"&gt;SENTENCE&lt;/str&gt;  *&lt;int name="hl.maxAnalyzedChars"&gt;10000&lt;/int&gt;  *&lt;/lst&gt;  *&lt;/requestHandler&gt;  *</pre>  * ...  *<pre class="prettyprint">  *&lt;searchComponent class="solr.HighlightComponent" name="highlight"&gt;  *&lt;highlighting class="org.apache.solr.highlight.PostingsSolrHighlighter"/&gt;  *&lt;/searchComponent&gt;  *</pre>  *<p>  * Notes:  *<ul>  *<li>fields to highlight must be configured with storeOffsetsWithPositions="true"  *<li>hl.q (string) can specify the query  *<li>hl.fl (string) specifies the field list.  *<li>hl.snippets (int) specifies how many underlying passages form the resulting snippet.  *<li>hl.tag.pre (string) specifies text which appears before a highlighted term.  *<li>hl.tag.post (string) specifies text which appears after a highlighted term.  *<li>hl.tag.ellipsis (string) specifies text which joins non-adjacent passages.  *<li>hl.defaultSummary (bool) specifies if a field should have a default summary.  *<li>hl.encoder (string) can be 'html' (html escapes content) or 'simple' (no escaping).  *<li>hl.score.k1 (float) specifies bm25 scoring parameter 'k1'  *<li>hl.score.b (float) specifies bm25 scoring parameter 'b'  *<li>hl.score.pivot (float) specifies bm25 scoring parameter 'avgdl'  *<li>hl.bs.type (string) specifies how to divide text into passages: [SENTENCE, LINE, WORD, CHAR, WHOLE]  *<li>hl.bs.language (string) specifies language code for BreakIterator. default is empty string (root locale)  *<li>hl.bs.country (string) specifies country code for BreakIterator. default is empty string (root locale)  *<li>hl.bs.variant (string) specifies country code for BreakIterator. default is empty string (root locale)  *<li>hl.maxAnalyzedChars specifies how many characters at most will be processed in a document.  *        NOTE: currently hl.maxAnalyzedChars cannot yet be specified per-field  *</ul>  *    * @lucene.experimental   */
+comment|/**   * Highlighter impl that uses {@link PostingsHighlighter}  *<p>  * Example configuration:  *<pre class="prettyprint">  *&lt;requestHandler name="standard" class="solr.StandardRequestHandler"&gt;  *&lt;lst name="defaults"&gt;  *&lt;int name="hl.snippets"&gt;1&lt;/int&gt;  *&lt;str name="hl.tag.pre"&gt;&amp;lt;em&amp;gt;&lt;/str&gt;  *&lt;str name="hl.tag.post"&gt;&amp;lt;/em&amp;gt;&lt;/str&gt;  *&lt;str name="hl.tag.ellipsis"&gt;...&lt;/str&gt;  *&lt;bool name="hl.defaultSummary"&gt;true&lt;/bool&gt;  *&lt;str name="hl.encoder"&gt;simple&lt;/str&gt;  *&lt;float name="hl.score.k1"&gt;1.2&lt;/float&gt;  *&lt;float name="hl.score.b"&gt;0.75&lt;/float&gt;  *&lt;float name="hl.score.pivot"&gt;87&lt;/float&gt;  *&lt;str name="hl.bs.language"&gt;&lt;/str&gt;  *&lt;str name="hl.bs.country"&gt;&lt;/str&gt;  *&lt;str name="hl.bs.variant"&gt;&lt;/str&gt;  *&lt;str name="hl.bs.type"&gt;SENTENCE&lt;/str&gt;  *&lt;int name="hl.maxAnalyzedChars"&gt;10000&lt;/int&gt;  *&lt;str name="hl.multiValuedSeparatorChar"&gt;&lt;/str&gt;  *&lt;/lst&gt;  *&lt;/requestHandler&gt;  *</pre>  * ...  *<pre class="prettyprint">  *&lt;searchComponent class="solr.HighlightComponent" name="highlight"&gt;  *&lt;highlighting class="org.apache.solr.highlight.PostingsSolrHighlighter"/&gt;  *&lt;/searchComponent&gt;  *</pre>  *<p>  * Notes:  *<ul>  *<li>fields to highlight must be configured with storeOffsetsWithPositions="true"  *<li>hl.q (string) can specify the query  *<li>hl.fl (string) specifies the field list.  *<li>hl.snippets (int) specifies how many underlying passages form the resulting snippet.  *<li>hl.tag.pre (string) specifies text which appears before a highlighted term.  *<li>hl.tag.post (string) specifies text which appears after a highlighted term.  *<li>hl.tag.ellipsis (string) specifies text which joins non-adjacent passages.  *<li>hl.defaultSummary (bool) specifies if a field should have a default summary.  *<li>hl.encoder (string) can be 'html' (html escapes content) or 'simple' (no escaping).  *<li>hl.score.k1 (float) specifies bm25 scoring parameter 'k1'  *<li>hl.score.b (float) specifies bm25 scoring parameter 'b'  *<li>hl.score.pivot (float) specifies bm25 scoring parameter 'avgdl'  *<li>hl.bs.type (string) specifies how to divide text into passages: [SENTENCE, LINE, WORD, CHAR, WHOLE]  *<li>hl.bs.language (string) specifies language code for BreakIterator. default is empty string (root locale)  *<li>hl.bs.country (string) specifies country code for BreakIterator. default is empty string (root locale)  *<li>hl.bs.variant (string) specifies country code for BreakIterator. default is empty string (root locale)  *<li>hl.maxAnalyzedChars specifies how many characters at most will be processed in a document.  *<li>hl.multiValuedSeparatorChar specifies the logical separator between values for multi-valued fields.  *        NOTE: currently hl.maxAnalyzedChars cannot yet be specified per-field  *</ul>  *    * @lucene.experimental   */
 end_comment
 
 begin_class
@@ -900,6 +900,63 @@ argument_list|(
 name|type
 argument_list|,
 name|locale
+argument_list|)
+return|;
+block|}
+annotation|@
+name|Override
+specifier|protected
+name|char
+name|getMultiValuedSeparator
+parameter_list|(
+name|String
+name|field
+parameter_list|)
+block|{
+name|String
+name|sep
+init|=
+name|params
+operator|.
+name|getFieldParam
+argument_list|(
+name|field
+argument_list|,
+name|HighlightParams
+operator|.
+name|MULTI_VALUED_SEPARATOR
+argument_list|,
+literal|" "
+argument_list|)
+decl_stmt|;
+if|if
+condition|(
+name|sep
+operator|.
+name|length
+argument_list|()
+operator|!=
+literal|1
+condition|)
+block|{
+throw|throw
+operator|new
+name|IllegalArgumentException
+argument_list|(
+name|HighlightParams
+operator|.
+name|MULTI_VALUED_SEPARATOR
+operator|+
+literal|" must be exactly one character."
+argument_list|)
+throw|;
+block|}
+return|return
+name|sep
+operator|.
+name|charAt
+argument_list|(
+literal|0
 argument_list|)
 return|;
 block|}

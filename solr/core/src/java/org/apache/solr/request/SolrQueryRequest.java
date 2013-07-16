@@ -191,6 +191,13 @@ name|IndexSchema
 name|getSchema
 parameter_list|()
 function_decl|;
+comment|/** Replaces the current schema snapshot with the latest from the core. */
+DECL|method|updateSchemaToLatest
+specifier|public
+name|void
+name|updateSchemaToLatest
+parameter_list|()
+function_decl|;
 comment|/**    * Returns a string representing all the important parameters.    * Suitable for logging.    */
 DECL|method|getParamString
 specifier|public

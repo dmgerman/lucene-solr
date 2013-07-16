@@ -2512,6 +2512,9 @@ name|boost
 parameter_list|)
 block|{
 return|return
+operator|(
+name|byte
+operator|)
 name|sim
 operator|.
 name|encodeNormValue

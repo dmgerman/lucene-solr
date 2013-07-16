@@ -2955,7 +2955,7 @@ expr_stmt|;
 block|}
 comment|/**    * Subclass of SolrException that allows us to capture an arbitrary HTTP    * status code that may have been returned by the remote server or a     * proxy along the way.    */
 DECL|class|RemoteSolrException
-specifier|protected
+specifier|public
 specifier|static
 class|class
 name|RemoteSolrException

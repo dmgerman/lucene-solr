@@ -1091,7 +1091,7 @@ condition|)
 do|;
 name|assertTrue
 argument_list|(
-literal|"We didn't index any documents, somethings really messsed up"
+literal|"We didn't index any documents, somethings really messed up"
 argument_list|,
 name|cumulativeDocs
 operator|>
@@ -1109,6 +1109,11 @@ name|e
 operator|.
 name|printStackTrace
 argument_list|()
+expr_stmt|;
+name|fail
+argument_list|(
+literal|"Caught unexpected exception"
+argument_list|)
 expr_stmt|;
 block|}
 block|}
@@ -1332,6 +1337,27 @@ argument_list|(
 name|conf
 argument_list|,
 literal|"solrconfig-minimal.xml"
+argument_list|)
+argument_list|)
+expr_stmt|;
+name|FileUtils
+operator|.
+name|copyFile
+argument_list|(
+operator|new
+name|File
+argument_list|(
+name|testConf
+argument_list|,
+literal|"solrconfig.snippet.randomindexconfig.xml"
+argument_list|)
+argument_list|,
+operator|new
+name|File
+argument_list|(
+name|conf
+argument_list|,
+literal|"solrconfig.snippet.randomindexconfig.xml"
 argument_list|)
 argument_list|)
 expr_stmt|;
@@ -2839,7 +2865,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
-name|SolrServerException
+name|Exception
 name|e
 parameter_list|)
 block|{

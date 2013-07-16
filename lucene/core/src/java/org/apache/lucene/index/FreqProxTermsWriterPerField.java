@@ -2261,7 +2261,7 @@ init|=
 literal|0
 decl_stmt|;
 name|long
-name|totTF
+name|totalTermFreq
 init|=
 literal|0
 decl_stmt|;
@@ -2554,7 +2554,7 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
-name|totTF
+name|totalTermFreq
 operator|+=
 name|termFreq
 expr_stmt|;
@@ -2854,7 +2854,7 @@ name|docFreq
 argument_list|,
 name|writeTermFreq
 condition|?
-name|totTF
+name|totalTermFreq
 else|:
 operator|-
 literal|1
@@ -2863,7 +2863,7 @@ argument_list|)
 expr_stmt|;
 name|sumTotalTermFreq
 operator|+=
-name|totTF
+name|totalTermFreq
 expr_stmt|;
 name|sumDocFreq
 operator|+=

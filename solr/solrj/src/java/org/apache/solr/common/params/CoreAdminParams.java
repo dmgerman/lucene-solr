@@ -32,10 +32,11 @@ begin_comment
 comment|/**  * @since solr 1.3  */
 end_comment
 
-begin_interface
-DECL|interface|CoreAdminParams
+begin_class
+DECL|class|CoreAdminParams
 specifier|public
-interface|interface
+specifier|abstract
+class|class
 name|CoreAdminParams
 block|{
 comment|/** What Core are we talking about **/
@@ -408,7 +409,7 @@ return|;
 block|}
 block|}
 block|}
-end_interface
+end_class
 
 end_unit
 

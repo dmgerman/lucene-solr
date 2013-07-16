@@ -326,7 +326,10 @@ name|assertJPut
 argument_list|(
 literal|"/schema/fields/newfield"
 argument_list|,
-literal|"{\"type\":\"not_in_there_at_all\",\"stored\":\"false\"}"
+name|json
+argument_list|(
+literal|"{'type':'not_in_there_at_all','stored':'false'}"
+argument_list|)
 argument_list|,
 literal|"/error/msg==\"Field \\'newfield\\': Field type \\'not_in_there_at_all\\' not found.\""
 argument_list|)
@@ -346,11 +349,12 @@ name|assertJPut
 argument_list|(
 literal|"/schema/fields/newfield"
 argument_list|,
-literal|"{\"name\":\"something_else\",\"type\":\"text\",\"stored\":\"false\"}"
+name|json
+argument_list|(
+literal|"{'name':'something_else','type':'text','stored':'false'}"
+argument_list|)
 argument_list|,
-literal|"/error/msg==\"Field name in the request body \\'something_else\\'"
-operator|+
-literal|" doesn\\'t match field name in the request URL \\'newfield\\'\""
+literal|"/error/msg=='///regex:newfield///'"
 argument_list|)
 expr_stmt|;
 block|}
@@ -368,7 +372,10 @@ name|assertJPut
 argument_list|(
 literal|"/schema/fields/newfield"
 argument_list|,
-literal|"{\"type\":\"text\",\"no_property_with_this_name\":\"false\"}"
+name|json
+argument_list|(
+literal|"{'type':'text','no_property_with_this_name':'false'}"
+argument_list|)
 argument_list|,
 literal|"/error/msg==\"java.lang.IllegalArgumentException: Invalid field property: no_property_with_this_name\""
 argument_list|)
@@ -399,7 +406,10 @@ name|assertJPut
 argument_list|(
 literal|"/schema/fields/newfield"
 argument_list|,
-literal|"{\"type\":\"text\",\"stored\":\"false\"}"
+name|json
+argument_list|(
+literal|"{'type':'text','stored':'false'}"
+argument_list|)
 argument_list|,
 literal|"/responseHeader/status==0"
 argument_list|)
@@ -444,6 +454,98 @@ argument_list|,
 literal|"count(/response/result[@name='response']/doc/*) = 1"
 argument_list|,
 literal|"/response/result[@name='response']/doc/str[@name='id'][.='123']"
+argument_list|)
+expr_stmt|;
+block|}
+annotation|@
+name|Test
+DECL|method|testAddCopyField
+specifier|public
+name|void
+name|testAddCopyField
+parameter_list|()
+throws|throws
+name|Exception
+block|{
+name|assertQ
+argument_list|(
+literal|"/schema/fields/newfield2?indent=on&wt=xml"
+argument_list|,
+literal|"count(/response/lst[@name='field']) = 0"
+argument_list|,
+literal|"/response/lst[@name='responseHeader']/int[@name='status'] = '404'"
+argument_list|,
+literal|"/response/lst[@name='error']/int[@name='code'] = '404'"
+argument_list|)
+expr_stmt|;
+name|assertJPut
+argument_list|(
+literal|"/schema/fields/fieldA"
+argument_list|,
+literal|"{\"type\":\"text\",\"stored\":\"false\"}"
+argument_list|,
+literal|"/responseHeader/status==0"
+argument_list|)
+expr_stmt|;
+name|assertJPut
+argument_list|(
+literal|"/schema/fields/fieldB"
+argument_list|,
+literal|"{\"type\":\"text\",\"stored\":\"false\", \"copyFields\":[\"fieldA\"]}"
+argument_list|,
+literal|"/responseHeader/status==0"
+argument_list|)
+expr_stmt|;
+name|assertJPut
+argument_list|(
+literal|"/schema/fields/fieldC"
+argument_list|,
+literal|"{\"type\":\"text\",\"stored\":\"false\", \"copyFields\":\"fieldA\"}"
+argument_list|,
+literal|"/responseHeader/status==0"
+argument_list|)
+expr_stmt|;
+name|assertQ
+argument_list|(
+literal|"/schema/fields/fieldB?indent=on&wt=xml"
+argument_list|,
+literal|"count(/response/lst[@name='field']) = 1"
+argument_list|,
+literal|"/response/lst[@name='responseHeader']/int[@name='status'] = '0'"
+argument_list|)
+expr_stmt|;
+name|assertQ
+argument_list|(
+literal|"/schema/copyfields/?indent=on&wt=xml&source.fl=fieldB"
+argument_list|,
+literal|"count(/response/arr[@name='copyFields']/lst) = 1"
+argument_list|)
+expr_stmt|;
+name|assertQ
+argument_list|(
+literal|"/schema/copyfields/?indent=on&wt=xml&source.fl=fieldC"
+argument_list|,
+literal|"count(/response/arr[@name='copyFields']/lst) = 1"
+argument_list|)
+expr_stmt|;
+comment|//fine to pass in empty list, just won't do anything
+name|assertJPut
+argument_list|(
+literal|"/schema/fields/fieldD"
+argument_list|,
+literal|"{\"type\":\"text\",\"stored\":\"false\", \"copyFields\":[]}"
+argument_list|,
+literal|"/responseHeader/status==0"
+argument_list|)
+expr_stmt|;
+comment|//some bad usages
+name|assertJPut
+argument_list|(
+literal|"/schema/fields/fieldF"
+argument_list|,
+literal|"{\"type\":\"text\",\"stored\":\"false\", \"copyFields\":[\"some_nonexistent_field_ignore_exception\"]}"
+argument_list|,
+literal|"/error/msg==\"copyField dest :\\'some_nonexistent_field_ignore_exception\\' is not an explicit field and doesn\\'t match a dynamicField.\""
 argument_list|)
 expr_stmt|;
 block|}
@@ -566,6 +668,162 @@ argument_list|,
 literal|"count(/response/result[@name='response']/doc/*) = 1"
 argument_list|,
 literal|"/response/result[@name='response']/doc/str[@name='id'][.='456']"
+argument_list|)
+expr_stmt|;
+block|}
+annotation|@
+name|Test
+DECL|method|testPostCopy
+specifier|public
+name|void
+name|testPostCopy
+parameter_list|()
+throws|throws
+name|Exception
+block|{
+name|assertJPost
+argument_list|(
+literal|"/schema/fields"
+argument_list|,
+name|json
+argument_list|(
+literal|"[{'name':'fieldA','type':'text','stored':'false'},"
+operator|+
+literal|" {'name':'fieldB','type':'text','stored':'false'},"
+operator|+
+literal|" {'name':'fieldC','type':'text','stored':'false', 'copyFields':['fieldB']}]"
+argument_list|)
+argument_list|,
+literal|"/responseHeader/status==0"
+argument_list|)
+expr_stmt|;
+name|assertQ
+argument_list|(
+literal|"/schema/copyfields/?indent=on&wt=xml&source.fl=fieldC"
+argument_list|,
+literal|"count(/response/arr[@name='copyFields']/lst) = 1"
+argument_list|)
+expr_stmt|;
+name|assertJPost
+argument_list|(
+literal|"/schema/fields"
+argument_list|,
+literal|"[{\"name\":\"fieldD\",\"type\":\"text\",\"stored\":\"false\"},"
+operator|+
+literal|"{\"name\":\"fieldE\",\"type\":\"text\",\"stored\":\"false\"},"
+operator|+
+literal|" {\"name\":\"fieldF\",\"type\":\"text\",\"stored\":\"false\", \"copyFields\":[\"fieldD\",\"fieldE\"]},"
+operator|+
+literal|" {\"name\":\"fieldG\",\"type\":\"text\",\"stored\":\"false\", \"copyFields\":\"fieldD\"}"
+comment|//single
+operator|+
+literal|"]"
+argument_list|,
+literal|"/responseHeader/status==0"
+argument_list|)
+expr_stmt|;
+name|assertQ
+argument_list|(
+literal|"/schema/copyfields/?indent=on&wt=xml&source.fl=fieldF"
+argument_list|,
+literal|"count(/response/arr[@name='copyFields']/lst) = 2"
+argument_list|)
+expr_stmt|;
+comment|//passing in an empty list is perfectly acceptable, it just won't do anything
+name|assertJPost
+argument_list|(
+literal|"/schema/fields"
+argument_list|,
+literal|"[{\"name\":\"fieldX\",\"type\":\"text\",\"stored\":\"false\"},"
+operator|+
+literal|"{\"name\":\"fieldY\",\"type\":\"text\",\"stored\":\"false\"},"
+operator|+
+literal|" {\"name\":\"fieldZ\",\"type\":\"text\",\"stored\":\"false\", \"copyFields\":[]}]"
+argument_list|,
+literal|"/responseHeader/status==0"
+argument_list|)
+expr_stmt|;
+comment|//some bad usages
+name|assertJPost
+argument_list|(
+literal|"/schema/fields"
+argument_list|,
+literal|"[{\"name\":\"fieldH\",\"type\":\"text\",\"stored\":\"false\"},"
+operator|+
+literal|"{\"name\":\"fieldI\",\"type\":\"text\",\"stored\":\"false\"},"
+operator|+
+literal|" {\"name\":\"fieldJ\",\"type\":\"text\",\"stored\":\"false\", \"copyFields\":[\"some_nonexistent_field_ignore_exception\"]}]"
+argument_list|,
+literal|"/error/msg==\"copyField dest :\\'some_nonexistent_field_ignore_exception\\' is not an explicit field and doesn\\'t match a dynamicField.\""
+argument_list|)
+expr_stmt|;
+block|}
+annotation|@
+name|Test
+DECL|method|testPostCopyFields
+specifier|public
+name|void
+name|testPostCopyFields
+parameter_list|()
+throws|throws
+name|Exception
+block|{
+name|assertJPost
+argument_list|(
+literal|"/schema/fields"
+argument_list|,
+literal|"[{\"name\":\"fieldA\",\"type\":\"text\",\"stored\":\"false\"},"
+operator|+
+literal|"{\"name\":\"fieldB\",\"type\":\"text\",\"stored\":\"false\"},"
+operator|+
+literal|"{\"name\":\"fieldC\",\"type\":\"text\",\"stored\":\"false\"},"
+operator|+
+literal|"{\"name\":\"fieldD\",\"type\":\"text\",\"stored\":\"false\"},"
+operator|+
+literal|" {\"name\":\"fieldE\",\"type\":\"text\",\"stored\":\"false\"}]"
+argument_list|,
+literal|"/responseHeader/status==0"
+argument_list|)
+expr_stmt|;
+name|assertJPost
+argument_list|(
+literal|"/schema/copyfields"
+argument_list|,
+literal|"[{\"source\":\"fieldA\", \"dest\":\"fieldB\"},{\"source\":\"fieldD\", \"dest\":[\"fieldC\", \"fieldE\"]}]"
+argument_list|,
+literal|"/responseHeader/status==0"
+argument_list|)
+expr_stmt|;
+name|assertQ
+argument_list|(
+literal|"/schema/copyfields/?indent=on&wt=xml&source.fl=fieldA"
+argument_list|,
+literal|"count(/response/arr[@name='copyFields']/lst) = 1"
+argument_list|)
+expr_stmt|;
+name|assertQ
+argument_list|(
+literal|"/schema/copyfields/?indent=on&wt=xml&source.fl=fieldD"
+argument_list|,
+literal|"count(/response/arr[@name='copyFields']/lst) = 2"
+argument_list|)
+expr_stmt|;
+name|assertJPost
+argument_list|(
+literal|"/schema/copyfields"
+argument_list|,
+literal|"[{\"source\":\"some_nonexistent_field_ignore_exception\", \"dest\":[\"fieldA\"]}]"
+argument_list|,
+literal|"/error/msg==\"copyField source :\\'some_nonexistent_field_ignore_exception\\' is not a glob and doesn\\'t match any explicit field or dynamicField.\""
+argument_list|)
+expr_stmt|;
+name|assertJPost
+argument_list|(
+literal|"/schema/copyfields"
+argument_list|,
+literal|"[{\"source\":\"fieldD\", \"dest\":[\"some_nonexistent_field_ignore_exception\"]}]"
+argument_list|,
+literal|"/error/msg==\"copyField dest :\\'some_nonexistent_field_ignore_exception\\' is not an explicit field and doesn\\'t match a dynamicField.\""
 argument_list|)
 expr_stmt|;
 block|}

@@ -24,39 +24,7 @@ name|java
 operator|.
 name|util
 operator|.
-name|Arrays
-import|;
-end_import
-
-begin_import
-import|import
-name|java
-operator|.
-name|util
-operator|.
-name|Locale
-import|;
-end_import
-
-begin_import
-import|import
-name|java
-operator|.
-name|util
-operator|.
 name|Map
-import|;
-end_import
-
-begin_import
-import|import
-name|morfologik
-operator|.
-name|stemming
-operator|.
-name|PolishStemmer
-operator|.
-name|DICTIONARY
 import|;
 end_import
 
@@ -91,7 +59,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Filter factory for {@link MorfologikFilter}.  *<pre class="prettyprint">  *&lt;fieldType name="text_polish" class="solr.TextField" positionIncrementGap="100"&gt;  *&lt;analyzer&gt;  *&lt;tokenizer class="solr.WhitespaceTokenizerFactory"/&gt;  *&lt;filter class="solr.MorfologikFilterFactory" dictionary="MORFOLOGIK" /&gt;  *&lt;/analyzer&gt;  *&lt;/fieldType&gt;</pre>  *   *<p>Any of Morfologik dictionaries can be used, these are at the moment:  *<code>MORFOLOGIK</code> (Morfologik's original dictionary),  *<code>MORFEUSZ</code> (Morfeusz-SIAT),  *<code>COMBINED</code> (both of the dictionaries above, combined).  *   * @see<a href="http://morfologik.blogspot.com/">Morfologik web site</a>  */
+comment|/**  * Filter factory for {@link MorfologikFilter}.  *<pre class="prettyprint">  *&lt;fieldType name="text_polish" class="solr.TextField" positionIncrementGap="100"&gt;  *&lt;analyzer&gt;  *&lt;tokenizer class="solr.WhitespaceTokenizerFactory"/&gt;  *&lt;filter class="solr.MorfologikFilterFactory" /&gt;  *&lt;/analyzer&gt;  *&lt;/fieldType&gt;</pre>  *   * @see<a href="http://morfologik.blogspot.com/">Morfologik web site</a>  */
 end_comment
 
 begin_class
@@ -102,17 +70,9 @@ name|MorfologikFilterFactory
 extends|extends
 name|TokenFilterFactory
 block|{
-comment|/** Dictionary. */
-DECL|field|dictionary
-specifier|private
-name|DICTIONARY
-name|dictionary
-init|=
-name|DICTIONARY
-operator|.
-name|MORFOLOGIK
-decl_stmt|;
 comment|/** Schema attribute. */
+annotation|@
+name|Deprecated
 DECL|field|DICTIONARY_SCHEMA_ATTRIBUTE
 specifier|public
 specifier|static
@@ -141,6 +101,7 @@ argument_list|(
 name|args
 argument_list|)
 expr_stmt|;
+comment|// Be specific about no-longer-supported dictionary attribute.
 name|String
 name|dictionaryName
 init|=
@@ -164,43 +125,6 @@ name|isEmpty
 argument_list|()
 condition|)
 block|{
-try|try
-block|{
-name|DICTIONARY
-name|dictionary
-init|=
-name|DICTIONARY
-operator|.
-name|valueOf
-argument_list|(
-name|dictionaryName
-operator|.
-name|toUpperCase
-argument_list|(
-name|Locale
-operator|.
-name|ROOT
-argument_list|)
-argument_list|)
-decl_stmt|;
-assert|assert
-name|dictionary
-operator|!=
-literal|null
-assert|;
-name|this
-operator|.
-name|dictionary
-operator|=
-name|dictionary
-expr_stmt|;
-block|}
-catch|catch
-parameter_list|(
-name|IllegalArgumentException
-name|e
-parameter_list|)
-block|{
 throw|throw
 operator|new
 name|IllegalArgumentException
@@ -209,26 +133,13 @@ literal|"The "
 operator|+
 name|DICTIONARY_SCHEMA_ATTRIBUTE
 operator|+
-literal|" attribute accepts the "
+literal|" attribute is no "
 operator|+
-literal|"following constants: "
-operator|+
-name|Arrays
-operator|.
-name|toString
-argument_list|(
-name|DICTIONARY
-operator|.
-name|values
-argument_list|()
-argument_list|)
-operator|+
-literal|", this value is invalid: "
+literal|"longer supported (Morfologik has one dictionary): "
 operator|+
 name|dictionaryName
 argument_list|)
 throw|;
-block|}
 block|}
 if|if
 condition|(
@@ -266,8 +177,6 @@ operator|new
 name|MorfologikFilter
 argument_list|(
 name|ts
-argument_list|,
-name|dictionary
 argument_list|,
 name|luceneMatchVersion
 argument_list|)

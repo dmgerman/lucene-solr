@@ -148,16 +148,6 @@ begin_import
 import|import
 name|java
 operator|.
-name|io
-operator|.
-name|StringReader
-import|;
-end_import
-
-begin_import
-import|import
-name|java
-operator|.
 name|util
 operator|.
 name|Arrays
@@ -464,11 +454,7 @@ name|tokenStream
 argument_list|(
 literal|"variedField"
 argument_list|,
-operator|new
-name|StringReader
-argument_list|(
 literal|"quick"
-argument_list|)
 argument_list|)
 decl_stmt|;
 name|assertTokenStreamContents
@@ -491,11 +477,7 @@ name|tokenStream
 argument_list|(
 literal|"repetitiveField"
 argument_list|,
-operator|new
-name|StringReader
-argument_list|(
 literal|"boring"
-argument_list|)
 argument_list|)
 expr_stmt|;
 name|assertTokenStreamContents
@@ -540,11 +522,7 @@ name|tokenStream
 argument_list|(
 literal|"repetitiveField"
 argument_list|,
-operator|new
-name|StringReader
-argument_list|(
 literal|"boring"
-argument_list|)
 argument_list|)
 decl_stmt|;
 name|assertTokenStreamContents
@@ -593,11 +571,7 @@ name|tokenStream
 argument_list|(
 literal|"repetitiveField"
 argument_list|,
-operator|new
-name|StringReader
-argument_list|(
 literal|"boring"
-argument_list|)
 argument_list|)
 decl_stmt|;
 comment|// A filter on terms in> one half of docs remove boring
@@ -620,11 +594,7 @@ name|tokenStream
 argument_list|(
 literal|"repetitiveField"
 argument_list|,
-operator|new
-name|StringReader
-argument_list|(
 literal|"vaguelyboring"
-argument_list|)
 argument_list|)
 expr_stmt|;
 comment|// A filter on terms in> half of docs should not remove vaguelyBoring
@@ -664,11 +634,7 @@ name|tokenStream
 argument_list|(
 literal|"repetitiveField"
 argument_list|,
-operator|new
-name|StringReader
-argument_list|(
 literal|"vaguelyboring"
-argument_list|)
 argument_list|)
 expr_stmt|;
 comment|// A filter on terms in> quarter of docs should remove vaguelyBoring
@@ -724,11 +690,7 @@ name|tokenStream
 argument_list|(
 literal|"repetitiveField"
 argument_list|,
-operator|new
-name|StringReader
-argument_list|(
 literal|"boring"
-argument_list|)
 argument_list|)
 decl_stmt|;
 comment|// A filter on one Field should not affect queries on another
@@ -777,11 +739,7 @@ name|tokenStream
 argument_list|(
 literal|"repetitiveField"
 argument_list|,
-operator|new
-name|StringReader
-argument_list|(
 literal|"boring"
-argument_list|)
 argument_list|)
 expr_stmt|;
 comment|// A filter on the right Field should affect queries on it
@@ -939,11 +897,7 @@ name|tokenStream
 argument_list|(
 literal|"repetitiveField"
 argument_list|,
-operator|new
-name|StringReader
-argument_list|(
 literal|"boring"
-argument_list|)
 argument_list|)
 decl_stmt|;
 comment|// Check filter set up OK
@@ -966,11 +920,7 @@ name|tokenStream
 argument_list|(
 literal|"variedField"
 argument_list|,
-operator|new
-name|StringReader
-argument_list|(
 literal|"boring"
-argument_list|)
 argument_list|)
 expr_stmt|;
 comment|// Filter should not prevent stopwords in one field being used in another
@@ -1030,11 +980,7 @@ name|tokenStream
 argument_list|(
 literal|"repetitiveField"
 argument_list|,
-operator|new
-name|StringReader
-argument_list|(
 literal|"this boring"
-argument_list|)
 argument_list|)
 decl_stmt|;
 name|assertTokenStreamContents

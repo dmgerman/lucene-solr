@@ -569,6 +569,10 @@ argument_list|(
 name|doc
 argument_list|)
 decl_stmt|;
+comment|// TODO: if all ranges are non-overlapping, we
+comment|// should instead do a bin-search up front
+comment|// (really, a specialized case of the interval
+comment|// tree)
 comment|// TODO: use interval tree instead of linear search:
 for|for
 control|(

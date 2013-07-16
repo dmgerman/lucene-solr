@@ -114,16 +114,6 @@ name|java
 operator|.
 name|io
 operator|.
-name|StringReader
-import|;
-end_import
-
-begin_import
-import|import
-name|java
-operator|.
-name|io
-operator|.
 name|IOException
 import|;
 end_import
@@ -255,15 +245,6 @@ operator|!=
 literal|null
 argument_list|)
 expr_stmt|;
-name|StringReader
-name|reader
-init|=
-operator|new
-name|StringReader
-argument_list|(
-literal|"This is a test of the english stop analyzer"
-argument_list|)
-decl_stmt|;
 name|TokenStream
 name|stream
 init|=
@@ -273,7 +254,7 @@ name|tokenStream
 argument_list|(
 literal|"test"
 argument_list|,
-name|reader
+literal|"This is a test of the english stop analyzer"
 argument_list|)
 decl_stmt|;
 name|assertTrue
@@ -364,15 +345,6 @@ argument_list|,
 name|stopWordsSet
 argument_list|)
 decl_stmt|;
-name|StringReader
-name|reader
-init|=
-operator|new
-name|StringReader
-argument_list|(
-literal|"This is a good test of the english stop analyzer"
-argument_list|)
-decl_stmt|;
 name|TokenStream
 name|stream
 init|=
@@ -382,7 +354,7 @@ name|tokenStream
 argument_list|(
 literal|"test"
 argument_list|,
-name|reader
+literal|"This is a good test of the english stop analyzer"
 argument_list|)
 decl_stmt|;
 name|assertNotNull
@@ -474,14 +446,10 @@ argument_list|,
 name|stopWordsSet
 argument_list|)
 decl_stmt|;
-name|StringReader
-name|reader
+name|String
+name|s
 init|=
-operator|new
-name|StringReader
-argument_list|(
 literal|"This is a good test of the english stop analyzer with positions"
-argument_list|)
 decl_stmt|;
 name|int
 name|expectedIncr
@@ -516,7 +484,7 @@ name|tokenStream
 argument_list|(
 literal|"test"
 argument_list|,
-name|reader
+name|s
 argument_list|)
 decl_stmt|;
 name|assertNotNull

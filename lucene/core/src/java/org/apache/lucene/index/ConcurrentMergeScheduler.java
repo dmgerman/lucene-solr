@@ -99,7 +99,7 @@ import|;
 end_import
 
 begin_comment
-comment|/** A {@link MergeScheduler} that runs each merge using a  *  separate thread.  *  *<p>Specify the max number of threads that may run at  *  once with {@link #setMaxThreadCount}.</p>  *  *<p>Separately specify the maximum number of simultaneous  *  merges with {@link #setMaxMergeCount}.  If the number of  *  merges exceeds the max number of threads then the  *  largest merges are paused until one of the smaller  *  merges completes.</p>  *  *<p>If more than {@link #getMaxMergeCount} merges are  *  requested then this class will forcefully throttle the  *  incoming threads by pausing until one more more merges  *  complete.</p>  */
+comment|/** A {@link MergeScheduler} that runs each merge using a  *  separate thread.  *  *<p>Specify the max number of threads that may run at  *  once, and the maximum number of simultaneous merges  *  with {@link #setMaxMergesAndThreads}.</p>  *  *<p>If the number of merges exceeds the max number of threads   *  then the largest merges are paused until one of the smaller  *  merges completes.</p>  *  *<p>If more than {@link #getMaxMergeCount} merges are  *  requested then this class will forcefully throttle the  *  incoming threads by pausing until one more more merges  *  complete.</p>  */
 end_comment
 
 begin_class
@@ -134,21 +134,38 @@ name|MergeThread
 argument_list|>
 argument_list|()
 decl_stmt|;
+comment|/**     * Default {@code maxThreadCount}.    * We default to 1: tests on spinning-magnet drives showed slower    * indexing performance if more than one merge thread runs at    * once (though on an SSD it was faster)    */
+DECL|field|DEFAULT_MAX_THREAD_COUNT
+specifier|public
+specifier|static
+specifier|final
+name|int
+name|DEFAULT_MAX_THREAD_COUNT
+init|=
+literal|1
+decl_stmt|;
+comment|/** Default {@code maxMergeCount}. */
+DECL|field|DEFAULT_MAX_MERGE_COUNT
+specifier|public
+specifier|static
+specifier|final
+name|int
+name|DEFAULT_MAX_MERGE_COUNT
+init|=
+literal|2
+decl_stmt|;
 comment|// Max number of merge threads allowed to be running at
 comment|// once.  When there are more merges then this, we
 comment|// forcefully pause the larger ones, letting the smaller
 comment|// ones run, up until maxMergeCount merges at which point
 comment|// we forcefully pause incoming threads (that presumably
-comment|// are the ones causing so much merging).  We default to 1
-comment|// here: tests on spinning-magnet drives showed slower
-comment|// indexing perf if more than one merge thread runs at
-comment|// once (though on an SSD it was faster):
+comment|// are the ones causing so much merging).
 DECL|field|maxThreadCount
 specifier|private
 name|int
 name|maxThreadCount
 init|=
-literal|1
+name|DEFAULT_MAX_THREAD_COUNT
 decl_stmt|;
 comment|// Max number of merges we accept before forcefully
 comment|// throttling the incoming threads
@@ -157,7 +174,7 @@ specifier|private
 name|int
 name|maxMergeCount
 init|=
-literal|2
+name|DEFAULT_MAX_MERGE_COUNT
 decl_stmt|;
 comment|/** {@link Directory} that holds the index. */
 DECL|field|dir
@@ -183,19 +200,22 @@ specifier|public
 name|ConcurrentMergeScheduler
 parameter_list|()
 block|{   }
-comment|/** Sets the max # simultaneous merge threads that should    *  be running at once.  This must be<= {@link    *  #setMaxMergeCount}. */
-DECL|method|setMaxThreadCount
+comment|/**    * Sets the maximum number of merge threads and simultaneous merges allowed.    *     * @param maxMergeCount the max # simultaneous merges that are allowed.    *       If a merge is necessary yet we already have this many    *       threads running, the incoming thread (that is calling    *       add/updateDocument) will block until a merge thread    *       has completed.  Note that we will only run the    *       smallest<code>maxThreadCount</code> merges at a time.    * @param maxThreadCount the max # simultaneous merge threads that should    *       be running at once.  This must be&lt;=<code>maxMergeCount</code>    */
+DECL|method|setMaxMergesAndThreads
 specifier|public
 name|void
-name|setMaxThreadCount
+name|setMaxMergesAndThreads
 parameter_list|(
 name|int
-name|count
+name|maxMergeCount
+parameter_list|,
+name|int
+name|maxThreadCount
 parameter_list|)
 block|{
 if|if
 condition|(
-name|count
+name|maxThreadCount
 operator|<
 literal|1
 condition|)
@@ -204,13 +224,28 @@ throw|throw
 operator|new
 name|IllegalArgumentException
 argument_list|(
-literal|"count should be at least 1"
+literal|"maxThreadCount should be at least 1"
 argument_list|)
 throw|;
 block|}
 if|if
 condition|(
-name|count
+name|maxMergeCount
+operator|<
+literal|1
+condition|)
+block|{
+throw|throw
+operator|new
+name|IllegalArgumentException
+argument_list|(
+literal|"maxMergeCount should be at least 1"
+argument_list|)
+throw|;
+block|}
+if|if
+condition|(
+name|maxThreadCount
 operator|>
 name|maxMergeCount
 condition|)
@@ -219,7 +254,7 @@ throw|throw
 operator|new
 name|IllegalArgumentException
 argument_list|(
-literal|"count should be<= maxMergeCount (= "
+literal|"maxThreadCount should be<= maxMergeCount (= "
 operator|+
 name|maxMergeCount
 operator|+
@@ -227,12 +262,20 @@ literal|")"
 argument_list|)
 throw|;
 block|}
+name|this
+operator|.
 name|maxThreadCount
 operator|=
-name|count
+name|maxThreadCount
+expr_stmt|;
+name|this
+operator|.
+name|maxMergeCount
+operator|=
+name|maxMergeCount
 expr_stmt|;
 block|}
-comment|/** Returns {@code maxThreadCount}.    *    * @see #setMaxThreadCount(int) */
+comment|/** Returns {@code maxThreadCount}.    *    * @see #setMaxMergesAndThreads(int, int) */
 DECL|method|getMaxThreadCount
 specifier|public
 name|int
@@ -243,56 +286,7 @@ return|return
 name|maxThreadCount
 return|;
 block|}
-comment|/** Sets the max # simultaneous merges that are allowed.    *  If a merge is necessary yet we already have this many    *  threads running, the incoming thread (that is calling    *  add/updateDocument) will block until a merge thread    *  has completed.  Note that we will only run the    *  smallest {@link #setMaxThreadCount} merges at a time. */
-DECL|method|setMaxMergeCount
-specifier|public
-name|void
-name|setMaxMergeCount
-parameter_list|(
-name|int
-name|count
-parameter_list|)
-block|{
-if|if
-condition|(
-name|count
-operator|<
-literal|1
-condition|)
-block|{
-throw|throw
-operator|new
-name|IllegalArgumentException
-argument_list|(
-literal|"count should be at least 1"
-argument_list|)
-throw|;
-block|}
-if|if
-condition|(
-name|count
-operator|<
-name|maxThreadCount
-condition|)
-block|{
-throw|throw
-operator|new
-name|IllegalArgumentException
-argument_list|(
-literal|"count should be>= maxThreadCount (= "
-operator|+
-name|maxThreadCount
-operator|+
-literal|")"
-argument_list|)
-throw|;
-block|}
-name|maxMergeCount
-operator|=
-name|count
-expr_stmt|;
-block|}
-comment|/** See {@link #setMaxMergeCount}. */
+comment|/** See {@link #setMaxMergesAndThreads}. */
 DECL|method|getMaxMergeCount
 specifier|public
 name|int

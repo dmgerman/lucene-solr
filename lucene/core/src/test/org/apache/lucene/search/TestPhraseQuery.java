@@ -4271,11 +4271,7 @@ name|tokenStream
 argument_list|(
 literal|"ignore"
 argument_list|,
-operator|new
-name|StringReader
-argument_list|(
 name|term
-argument_list|)
 argument_list|)
 decl_stmt|;
 name|CharTermAttribute

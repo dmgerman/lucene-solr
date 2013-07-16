@@ -301,11 +301,7 @@ block|,
 literal|"val1_l1"
 block|,
 literal|"val1_b1"
-block|,
-literal|"val1_by1"
-block|,
-literal|"val1_sh1"
-block|}
+block|,     }
 decl_stmt|;
 for|for
 control|(

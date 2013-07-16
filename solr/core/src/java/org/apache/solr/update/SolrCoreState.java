@@ -343,6 +343,35 @@ parameter_list|)
 throws|throws
 name|IOException
 function_decl|;
+comment|/**    * Expert method that closes the IndexWriter - you must call {@link #openIndexWriter(SolrCore)}    * in a finally block after calling this method.    *     * @param core that the IW belongs to    * @param rollback true if IW should rollback rather than close    * @throws IOException If there is a low-level I/O error.    */
+DECL|method|closeIndexWriter
+specifier|public
+specifier|abstract
+name|void
+name|closeIndexWriter
+parameter_list|(
+name|SolrCore
+name|core
+parameter_list|,
+name|boolean
+name|rollback
+parameter_list|)
+throws|throws
+name|IOException
+function_decl|;
+comment|/**    * Expert method that opens the IndexWriter - you must call {@link #closeIndexWriter(SolrCore, boolean)}    * first, and then call this method in a finally block.    *     * @param core that the IW belongs to    * @throws IOException If there is a low-level I/O error.    */
+DECL|method|openIndexWriter
+specifier|public
+specifier|abstract
+name|void
+name|openIndexWriter
+parameter_list|(
+name|SolrCore
+name|core
+parameter_list|)
+throws|throws
+name|IOException
+function_decl|;
 comment|/**    * Get the current IndexWriter. If a new IndexWriter must be created, use the    * settings from the given {@link SolrCore}.    *     * @throws IOException If there is a low-level I/O error.    */
 DECL|method|getIndexWriter
 specifier|public

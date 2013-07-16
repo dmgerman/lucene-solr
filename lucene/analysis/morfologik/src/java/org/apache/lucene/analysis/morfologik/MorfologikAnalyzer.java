@@ -106,18 +106,6 @@ name|Version
 import|;
 end_import
 
-begin_import
-import|import
-name|morfologik
-operator|.
-name|stemming
-operator|.
-name|PolishStemmer
-operator|.
-name|DICTIONARY
-import|;
-end_import
-
 begin_comment
 comment|/**  * {@link org.apache.lucene.analysis.Analyzer} using Morfologik library.  * @see<a href="http://morfologik.blogspot.com/">Morfologik project page</a>  */
 end_comment
@@ -130,63 +118,27 @@ name|MorfologikAnalyzer
 extends|extends
 name|Analyzer
 block|{
-DECL|field|dictionary
-specifier|private
-specifier|final
-name|DICTIONARY
-name|dictionary
-decl_stmt|;
 DECL|field|version
 specifier|private
 specifier|final
 name|Version
 name|version
 decl_stmt|;
-comment|/**    * Builds an analyzer for a given PolishStemmer.DICTIONARY enum.    *     * @param vers    *          lucene compatibility version    * @param dict    *          A constant specifying which dictionary to choose. See the    *          Morfologik documentation for details or use the default.    */
+comment|/**    * Builds an analyzer with the default Morfologik's dictionary (polimorf).    *     * @param version    *          Lucene compatibility version    */
 DECL|method|MorfologikAnalyzer
 specifier|public
 name|MorfologikAnalyzer
 parameter_list|(
 specifier|final
 name|Version
-name|vers
-parameter_list|,
-specifier|final
-name|DICTIONARY
-name|dict
+name|version
 parameter_list|)
 block|{
 name|this
 operator|.
 name|version
 operator|=
-name|vers
-expr_stmt|;
-name|this
-operator|.
-name|dictionary
-operator|=
-name|dict
-expr_stmt|;
-block|}
-comment|/**    * Builds an analyzer for an original MORFOLOGIK dictionary.    *     * @param vers         lucene compatibility version    */
-DECL|method|MorfologikAnalyzer
-specifier|public
-name|MorfologikAnalyzer
-parameter_list|(
-specifier|final
-name|Version
-name|vers
-parameter_list|)
-block|{
-name|this
-argument_list|(
-name|vers
-argument_list|,
-name|DICTIONARY
-operator|.
-name|MORFOLOGIK
-argument_list|)
+name|version
 expr_stmt|;
 block|}
 comment|/**    * Creates a    * {@link org.apache.lucene.analysis.Analyzer.TokenStreamComponents}    * which tokenizes all the text in the provided {@link Reader}.    *     * @param field ignored field name    * @param reader source of tokens    *     * @return A    *         {@link org.apache.lucene.analysis.Analyzer.TokenStreamComponents}    *         built from an {@link StandardTokenizer} filtered with    *         {@link StandardFilter} and {@link MorfologikFilter}.    */
@@ -238,10 +190,6 @@ name|version
 argument_list|,
 name|src
 argument_list|)
-argument_list|,
-name|this
-operator|.
-name|dictionary
 argument_list|,
 name|this
 operator|.

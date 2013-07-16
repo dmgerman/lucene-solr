@@ -234,6 +234,20 @@ begin_import
 import|import
 name|org
 operator|.
+name|apache
+operator|.
+name|solr
+operator|.
+name|util
+operator|.
+name|TestHarness
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
 name|junit
 operator|.
 name|After
@@ -424,6 +438,18 @@ argument_list|)
 argument_list|)
 expr_stmt|;
 block|}
+name|SolrResourceLoader
+name|loader
+init|=
+operator|new
+name|SolrResourceLoader
+argument_list|(
+name|solrHomeDirectory
+operator|.
+name|getAbsolutePath
+argument_list|()
+argument_list|)
+decl_stmt|;
 name|File
 name|solrXml
 init|=
@@ -451,6 +477,36 @@ name|toString
 argument_list|()
 argument_list|)
 expr_stmt|;
+name|ConfigSolrXmlOld
+name|config
+init|=
+operator|(
+name|ConfigSolrXmlOld
+operator|)
+name|ConfigSolr
+operator|.
+name|fromFile
+argument_list|(
+name|loader
+argument_list|,
+name|solrXml
+argument_list|)
+decl_stmt|;
+name|CoresLocator
+name|locator
+init|=
+operator|new
+name|SolrXMLCoresLocator
+operator|.
+name|NonPersistingLocator
+argument_list|(
+name|solrXml
+argument_list|,
+name|LOTS_SOLR_XML
+argument_list|,
+name|config
+argument_list|)
+decl_stmt|;
 specifier|final
 name|CoreContainer
 name|cores
@@ -458,31 +514,17 @@ init|=
 operator|new
 name|CoreContainer
 argument_list|(
-name|solrHomeDirectory
-operator|.
-name|getAbsolutePath
-argument_list|()
+name|loader
+argument_list|,
+name|config
+argument_list|,
+name|locator
 argument_list|)
 decl_stmt|;
 name|cores
 operator|.
 name|load
-argument_list|(
-name|solrHomeDirectory
-operator|.
-name|getAbsolutePath
 argument_list|()
-argument_list|,
-name|solrXml
-argument_list|)
-expr_stmt|;
-comment|//  h.getCoreContainer().load(solrHomeDirectory.getAbsolutePath(), new File(solrHomeDirectory, "solr.xml"));
-name|cores
-operator|.
-name|setPersistent
-argument_list|(
-literal|false
-argument_list|)
 expr_stmt|;
 return|return
 name|cores
@@ -587,7 +629,7 @@ argument_list|)
 expr_stmt|;
 name|assertTrue
 argument_list|(
-literal|"core1 should  be loadable"
+literal|"core1 should be loadable"
 argument_list|,
 name|core1
 operator|.
@@ -618,7 +660,7 @@ argument_list|)
 decl_stmt|;
 name|assertTrue
 argument_list|(
-literal|"core2 should not be transient"
+literal|"core2 should be transient"
 argument_list|,
 name|core2
 operator|.
@@ -654,7 +696,7 @@ argument_list|)
 decl_stmt|;
 name|assertTrue
 argument_list|(
-literal|"core3 should not be transient"
+literal|"core3 should be transient"
 argument_list|,
 name|core3
 operator|.
@@ -739,7 +781,7 @@ argument_list|)
 expr_stmt|;
 name|assertTrue
 argument_list|(
-literal|"core5 should  be loadable"
+literal|"core5 should be loadable"
 argument_list|,
 name|core5
 operator|.
@@ -1677,11 +1719,11 @@ name|name
 argument_list|,
 literal|"schema"
 argument_list|,
-literal|"schema-tiny.xml"
+literal|"schema.xml"
 argument_list|,
 literal|"config"
 argument_list|,
-literal|"solrconfig-minimal.xml"
+literal|"solrconfig.xml"
 argument_list|)
 decl_stmt|;
 name|admin
@@ -1705,24 +1747,14 @@ name|SolrException
 name|se
 parameter_list|)
 block|{
-name|SolrException
-name|cause
-init|=
-operator|(
-name|SolrException
-operator|)
-name|se
-operator|.
-name|getCause
-argument_list|()
-decl_stmt|;
+comment|//SolrException cause = (SolrException)se.getCause();
 name|assertEquals
 argument_list|(
 literal|"Exception code should be 500"
 argument_list|,
 literal|500
 argument_list|,
-name|cause
+name|se
 operator|.
 name|code
 argument_list|()
@@ -1740,7 +1772,7 @@ name|assertTrue
 argument_list|(
 literal|"Should have seen an exception containing the an error"
 argument_list|,
-name|cause
+name|se
 operator|.
 name|getMessage
 argument_list|()
@@ -2023,18 +2055,11 @@ literal|"core4"
 argument_list|)
 argument_list|)
 expr_stmt|;
-name|cc
-operator|.
-name|setPersistent
-argument_list|(
-literal|true
-argument_list|)
-expr_stmt|;
+specifier|final
 name|CoreDescriptor
-name|d1
+name|cd1
 init|=
-operator|new
-name|CoreDescriptor
+name|buildCoreDescriptor
 argument_list|(
 name|cc
 argument_list|,
@@ -2042,50 +2067,25 @@ literal|"core1"
 argument_list|,
 literal|"./core1"
 argument_list|)
-decl_stmt|;
-name|d1
 operator|.
-name|setTransient
+name|isTransient
 argument_list|(
 literal|true
 argument_list|)
-expr_stmt|;
-name|d1
 operator|.
-name|setLoadOnStartup
+name|loadOnStartup
 argument_list|(
 literal|true
 argument_list|)
-expr_stmt|;
-name|d1
 operator|.
-name|setSchemaName
-argument_list|(
-literal|"schema-tiny.xml"
-argument_list|)
-expr_stmt|;
-name|d1
-operator|.
-name|setConfigName
-argument_list|(
-literal|"solrconfig-minimal.xml"
-argument_list|)
-expr_stmt|;
-name|SolrCore
-name|core1
-init|=
-name|cc
-operator|.
-name|create
-argument_list|(
-name|d1
-argument_list|)
+name|build
+argument_list|()
 decl_stmt|;
+specifier|final
 name|CoreDescriptor
-name|d2
+name|cd2
 init|=
-operator|new
-name|CoreDescriptor
+name|buildCoreDescriptor
 argument_list|(
 name|cc
 argument_list|,
@@ -2093,50 +2093,25 @@ literal|"core2"
 argument_list|,
 literal|"./core2"
 argument_list|)
-decl_stmt|;
-name|d2
 operator|.
-name|setTransient
+name|isTransient
 argument_list|(
 literal|true
 argument_list|)
-expr_stmt|;
-name|d2
 operator|.
-name|setLoadOnStartup
+name|loadOnStartup
 argument_list|(
 literal|false
 argument_list|)
-expr_stmt|;
-name|d2
 operator|.
-name|setSchemaName
-argument_list|(
-literal|"schema-tiny.xml"
-argument_list|)
-expr_stmt|;
-name|d2
-operator|.
-name|setConfigName
-argument_list|(
-literal|"solrconfig-minimal.xml"
-argument_list|)
-expr_stmt|;
-name|SolrCore
-name|core2
-init|=
-name|cc
-operator|.
-name|create
-argument_list|(
-name|d2
-argument_list|)
+name|build
+argument_list|()
 decl_stmt|;
+specifier|final
 name|CoreDescriptor
-name|d3
+name|cd3
 init|=
-operator|new
-name|CoreDescriptor
+name|buildCoreDescriptor
 argument_list|(
 name|cc
 argument_list|,
@@ -2144,50 +2119,25 @@ literal|"core3"
 argument_list|,
 literal|"./core3"
 argument_list|)
-decl_stmt|;
-name|d3
 operator|.
-name|setTransient
+name|isTransient
 argument_list|(
 literal|false
 argument_list|)
-expr_stmt|;
-name|d3
 operator|.
-name|setLoadOnStartup
+name|loadOnStartup
 argument_list|(
 literal|true
 argument_list|)
-expr_stmt|;
-name|d3
 operator|.
-name|setSchemaName
-argument_list|(
-literal|"schema-tiny.xml"
-argument_list|)
-expr_stmt|;
-name|d3
-operator|.
-name|setConfigName
-argument_list|(
-literal|"solrconfig-minimal.xml"
-argument_list|)
-expr_stmt|;
-name|SolrCore
-name|core3
-init|=
-name|cc
-operator|.
-name|create
-argument_list|(
-name|d3
-argument_list|)
+name|build
+argument_list|()
 decl_stmt|;
+specifier|final
 name|CoreDescriptor
-name|d4
+name|cd4
 init|=
-operator|new
-name|CoreDescriptor
+name|buildCoreDescriptor
 argument_list|(
 name|cc
 argument_list|,
@@ -2195,35 +2145,50 @@ literal|"core4"
 argument_list|,
 literal|"./core4"
 argument_list|)
+operator|.
+name|isTransient
+argument_list|(
+literal|false
+argument_list|)
+operator|.
+name|loadOnStartup
+argument_list|(
+literal|false
+argument_list|)
+operator|.
+name|build
+argument_list|()
 decl_stmt|;
-name|d4
+name|SolrCore
+name|core1
+init|=
+name|cc
 operator|.
-name|setTransient
+name|create
 argument_list|(
-literal|false
+name|cd1
 argument_list|)
-expr_stmt|;
-name|d4
+decl_stmt|;
+name|SolrCore
+name|core2
+init|=
+name|cc
 operator|.
-name|setLoadOnStartup
+name|create
 argument_list|(
-literal|false
+name|cd2
 argument_list|)
-expr_stmt|;
-name|d4
+decl_stmt|;
+name|SolrCore
+name|core3
+init|=
+name|cc
 operator|.
-name|setSchemaName
+name|create
 argument_list|(
-literal|"schema-tiny.xml"
+name|cd3
 argument_list|)
-expr_stmt|;
-name|d4
-operator|.
-name|setConfigName
-argument_list|(
-literal|"solrconfig-minimal.xml"
-argument_list|)
-expr_stmt|;
+decl_stmt|;
 name|SolrCore
 name|core4
 init|=
@@ -2231,31 +2196,31 @@ name|cc
 operator|.
 name|create
 argument_list|(
-name|d4
+name|cd4
 argument_list|)
 decl_stmt|;
-specifier|final
-name|File
-name|oneXml
+name|SolrXMLCoresLocator
+operator|.
+name|NonPersistingLocator
+name|locator
 init|=
-operator|new
-name|File
-argument_list|(
-name|solrHomeDirectory
-argument_list|,
-literal|"lazy1.solr.xml"
-argument_list|)
-decl_stmt|;
+operator|(
+name|SolrXMLCoresLocator
+operator|.
+name|NonPersistingLocator
+operator|)
 name|cc
 operator|.
-name|persistFile
+name|getCoresLocator
+argument_list|()
+decl_stmt|;
+name|TestHarness
+operator|.
+name|validateXPath
 argument_list|(
-name|oneXml
-argument_list|)
-expr_stmt|;
-name|assertXmlFile
-argument_list|(
-name|oneXml
+name|locator
+operator|.
+name|xml
 argument_list|,
 literal|"/solr/cores/core[@name='collection1']"
 argument_list|,
@@ -2282,11 +2247,6 @@ argument_list|,
 literal|"/solr/cores/core[@name='core3']"
 argument_list|,
 literal|"/solr/cores/core[@name='core4']"
-argument_list|)
-expr_stmt|;
-name|assertXmlFile
-argument_list|(
-name|oneXml
 argument_list|,
 literal|"13=count(/solr/cores/core)"
 argument_list|)
@@ -2362,28 +2322,13 @@ literal|"core4"
 argument_list|)
 expr_stmt|;
 comment|// now test that unloading a core means the core is not persisted
-specifier|final
-name|File
-name|twoXml
-init|=
-operator|new
-name|File
-argument_list|(
-name|solrHomeDirectory
-argument_list|,
-literal|"lazy2.solr.xml"
-argument_list|)
-decl_stmt|;
-name|cc
+name|TestHarness
 operator|.
-name|persistFile
+name|validateXPath
 argument_list|(
-name|twoXml
-argument_list|)
-expr_stmt|;
-name|assertXmlFile
-argument_list|(
-name|twoXml
+name|locator
+operator|.
+name|xml
 argument_list|,
 literal|"3=count(/solr/cores/core)"
 argument_list|)
@@ -2748,39 +2693,23 @@ literal|"<solr persistent=\"false\"> "
 operator|+
 literal|"<cores adminPath=\"/admin/cores\" defaultCoreName=\"collectionLazy2\" transientCacheSize=\"4\">  "
 operator|+
-literal|"<core name=\"collection1\" instanceDir=\"collection1\" config=\"solrconfig-minimal.xml\" schema=\"schema-tiny.xml\" /> "
+literal|"<core name=\"collection1\" instanceDir=\"collection1\"  /> "
 operator|+
-literal|"<core name=\"collectionLazy2\" instanceDir=\"collection2\" transient=\"true\" loadOnStartup=\"true\"  "
+literal|"<core name=\"collectionLazy2\" instanceDir=\"collection2\" transient=\"true\" loadOnStartup=\"true\"   /> "
 operator|+
-literal|" config=\"solrconfig-minimal.xml\" schema=\"schema-tiny.xml\" /> "
+literal|"<core name=\"collectionLazy3\" instanceDir=\"collection3\" transient=\"on\" loadOnStartup=\"false\"    /> "
 operator|+
-literal|"<core name=\"collectionLazy3\" instanceDir=\"collection3\" transient=\"on\" loadOnStartup=\"false\" "
+literal|"<core name=\"collectionLazy4\" instanceDir=\"collection4\" transient=\"false\" loadOnStartup=\"false\" /> "
 operator|+
-literal|"config=\"solrconfig-minimal.xml\" schema=\"schema-tiny.xml\"  /> "
+literal|"<core name=\"collectionLazy5\" instanceDir=\"collection5\" transient=\"false\" loadOnStartup=\"true\" /> "
 operator|+
-literal|"<core name=\"collectionLazy4\" instanceDir=\"collection4\" transient=\"false\" loadOnStartup=\"false\" "
+literal|"<core name=\"collectionLazy6\" instanceDir=\"collection6\" transient=\"true\" loadOnStartup=\"false\" /> "
 operator|+
-literal|"config=\"solrconfig-minimal.xml\" schema=\"schema-tiny.xml\"  /> "
+literal|"<core name=\"collectionLazy7\" instanceDir=\"collection7\" transient=\"true\" loadOnStartup=\"false\" /> "
 operator|+
-literal|"<core name=\"collectionLazy5\" instanceDir=\"collection5\" transient=\"false\" loadOnStartup=\"true\" "
+literal|"<core name=\"collectionLazy8\" instanceDir=\"collection8\" transient=\"true\" loadOnStartup=\"false\" /> "
 operator|+
-literal|"config=\"solrconfig-minimal.xml\" schema=\"schema-tiny.xml\"  /> "
-operator|+
-literal|"<core name=\"collectionLazy6\" instanceDir=\"collection6\" transient=\"true\" loadOnStartup=\"false\" "
-operator|+
-literal|"config=\"solrconfig-minimal.xml\" schema=\"schema-tiny.xml\"  /> "
-operator|+
-literal|"<core name=\"collectionLazy7\" instanceDir=\"collection7\" transient=\"true\" loadOnStartup=\"false\" "
-operator|+
-literal|"config=\"solrconfig-minimal.xml\" schema=\"schema-tiny.xml\"  /> "
-operator|+
-literal|"<core name=\"collectionLazy8\" instanceDir=\"collection8\" transient=\"true\" loadOnStartup=\"false\" "
-operator|+
-literal|"config=\"solrconfig-minimal.xml\" schema=\"schema-tiny.xml\"  /> "
-operator|+
-literal|"<core name=\"collectionLazy9\" instanceDir=\"collection9\" transient=\"true\" loadOnStartup=\"false\" "
-operator|+
-literal|"config=\"solrconfig-minimal.xml\" schema=\"schema-tiny.xml\"  /> "
+literal|"<core name=\"collectionLazy9\" instanceDir=\"collection9\" transient=\"true\" loadOnStartup=\"false\" /> "
 operator|+
 literal|"</cores> "
 operator|+

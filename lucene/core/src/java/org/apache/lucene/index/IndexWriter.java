@@ -577,6 +577,7 @@ decl_stmt|;
 comment|// increments every time a change is completed
 DECL|field|lastCommitChangeCount
 specifier|private
+specifier|volatile
 name|long
 name|lastCommitChangeCount
 decl_stmt|;
@@ -1958,7 +1959,7 @@ name|Codec
 name|codec
 decl_stmt|;
 comment|// for writing new segments
-comment|/**    * Constructs a new IndexWriter per the settings given in<code>conf</code>.    * Note that the passed in {@link IndexWriterConfig} is    * privately cloned; if you need to make subsequent "live"    * changes to the configuration use {@link #getConfig}.    *<p>    *     * @param d    *          the index directory. The index is either created or appended    *          according<code>conf.getOpenMode()</code>.    * @param conf    *          the configuration settings according to which IndexWriter should    *          be initialized.    * @throws IOException    *           if the directory cannot be read/written to, or if it does not    *           exist and<code>conf.getOpenMode()</code> is    *<code>OpenMode.APPEND</code> or if there is any other low-level    *           IO error    */
+comment|/**    * Constructs a new IndexWriter per the settings given in<code>conf</code>.    * Note that the passed in {@link IndexWriterConfig} is    * privately cloned, which, in-turn, clones the    * {@link IndexWriterConfig#getFlushPolicy() flush policy},    * {@link IndexWriterConfig#getIndexDeletionPolicy() deletion policy},    * {@link IndexWriterConfig#getMergePolicy() merge policy},    * and {@link IndexWriterConfig#getMergeScheduler() merge scheduler}.    * If you need to make subsequent "live"    * changes to the configuration use {@link #getConfig}.    *<p>    *     * @param d    *          the index directory. The index is either created or appended    *          according<code>conf.getOpenMode()</code>.    * @param conf    *          the configuration settings according to which IndexWriter should    *          be initialized.    * @throws IOException    *           if the directory cannot be read/written to, or if it does not    *           exist and<code>conf.getOpenMode()</code> is    *<code>OpenMode.APPEND</code> or if there is any other low-level    *           IO error    */
 DECL|method|IndexWriter
 specifier|public
 name|IndexWriter
@@ -8373,6 +8374,20 @@ name|commitInternal
 argument_list|()
 expr_stmt|;
 block|}
+comment|/** Returns true if there are changes that have not been committed */
+DECL|method|hasUncommittedChanges
+specifier|public
+specifier|final
+name|boolean
+name|hasUncommittedChanges
+parameter_list|()
+block|{
+return|return
+name|changeCount
+operator|!=
+name|lastCommitChangeCount
+return|;
+block|}
 DECL|method|commitInternal
 specifier|private
 specifier|final
@@ -8564,16 +8579,16 @@ literal|"\""
 argument_list|)
 expr_stmt|;
 block|}
-name|lastCommitChangeCount
-operator|=
-name|pendingCommitChangeCount
-expr_stmt|;
 name|segmentInfos
 operator|.
 name|updateGeneration
 argument_list|(
 name|pendingCommit
 argument_list|)
+expr_stmt|;
+name|lastCommitChangeCount
+operator|=
+name|pendingCommitChangeCount
 expr_stmt|;
 name|rollbackSegments
 operator|=

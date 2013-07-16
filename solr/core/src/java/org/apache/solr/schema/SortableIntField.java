@@ -303,6 +303,8 @@ class|class
 name|SortableIntField
 extends|extends
 name|PrimitiveFieldType
+implements|implements
+name|IntValueFieldType
 block|{
 annotation|@
 name|Override

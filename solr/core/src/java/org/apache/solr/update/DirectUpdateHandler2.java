@@ -2867,6 +2867,14 @@ argument_list|)
 expr_stmt|;
 block|}
 comment|// SolrCore.verbose("writer.commit() start writer=",writer);
+if|if
+condition|(
+name|writer
+operator|.
+name|hasUncommittedChanges
+argument_list|()
+condition|)
+block|{
 specifier|final
 name|Map
 argument_list|<
@@ -2916,6 +2924,17 @@ operator|.
 name|commit
 argument_list|()
 expr_stmt|;
+block|}
+else|else
+block|{
+name|log
+operator|.
+name|info
+argument_list|(
+literal|"No uncommitted changes. Skipping IW.commit."
+argument_list|)
+expr_stmt|;
+block|}
 comment|// SolrCore.verbose("writer.commit() end");
 name|numDocsPending
 operator|.

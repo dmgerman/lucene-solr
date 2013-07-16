@@ -119,6 +119,15 @@ operator|+
 literal|".whitelist"
 decl_stmt|;
 comment|// Allowed languages
+DECL|field|LCMAP
+name|String
+name|LCMAP
+init|=
+name|LANGUAGE_ID
+operator|+
+literal|".lcmap"
+decl_stmt|;
+comment|// Maps detected langcode to other value
 DECL|field|MAP_ENABLE
 name|String
 name|MAP_ENABLE

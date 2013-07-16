@@ -518,11 +518,9 @@ decl_stmt|;
 DECL|field|client
 specifier|private
 specifier|final
-specifier|static
 name|HttpClient
 name|client
 decl_stmt|;
-static|static
 block|{
 name|ModifiableSolrParams
 name|params
@@ -655,6 +653,22 @@ return|return
 literal|true
 return|;
 block|}
+if|if
+condition|(
+name|isClosed
+condition|)
+block|{
+name|log
+operator|.
+name|warn
+argument_list|(
+literal|"Closed, skipping sync up."
+argument_list|)
+expr_stmt|;
+return|return
+literal|false
+return|;
+block|}
 name|log
 operator|.
 name|info
@@ -776,20 +790,6 @@ return|return
 literal|false
 return|;
 block|}
-comment|// if no one that is up is active, we are willing to wait...
-comment|// we don't want a recovering node to become leader and then
-comment|// a better candidate pops up a second later.
-comment|//    int tries = 20;
-comment|//    while (!areAnyReplicasActive(zkController, collection, shardId)) {
-comment|//      if (tries-- == 0) {
-comment|//        break;
-comment|//      }
-comment|//      try {
-comment|//        Thread.sleep(500);
-comment|//      } catch (InterruptedException e) {
-comment|//        Thread.currentThread().interrupt();
-comment|//      }
-comment|//    }
 comment|// first sync ourselves - we are the potential leader after all
 try|try
 block|{
@@ -880,7 +880,7 @@ name|log
 operator|.
 name|info
 argument_list|(
-literal|"Leader's attempt to sync with shard failed, moving to the next canidate"
+literal|"Leader's attempt to sync with shard failed, moving to the next candidate"
 argument_list|)
 expr_stmt|;
 comment|// lets see who seems ahead...
@@ -946,15 +946,16 @@ name|collection
 argument_list|,
 name|shardId
 argument_list|,
-name|zkController
-operator|.
-name|getCoreNodeName
-argument_list|(
 name|core
 operator|.
 name|getCoreDescriptor
 argument_list|()
-argument_list|)
+operator|.
+name|getCloudDescriptor
+argument_list|()
+operator|.
+name|getCoreNodeName
+argument_list|()
 argument_list|,
 name|props
 operator|.
@@ -1085,12 +1086,13 @@ name|collection
 argument_list|,
 name|shardId
 argument_list|,
-name|zkController
+name|cd
+operator|.
+name|getCloudDescriptor
+argument_list|()
 operator|.
 name|getCoreNodeName
-argument_list|(
-name|cd
-argument_list|)
+argument_list|()
 argument_list|,
 name|leaderProps
 operator|.
@@ -1619,6 +1621,33 @@ literal|true
 expr_stmt|;
 try|try
 block|{
+name|client
+operator|.
+name|getConnectionManager
+argument_list|()
+operator|.
+name|shutdown
+argument_list|()
+expr_stmt|;
+block|}
+catch|catch
+parameter_list|(
+name|Throwable
+name|e
+parameter_list|)
+block|{
+name|SolrException
+operator|.
+name|log
+argument_list|(
+name|log
+argument_list|,
+name|e
+argument_list|)
+expr_stmt|;
+block|}
+try|try
+block|{
 name|ExecutorUtil
 operator|.
 name|shutdownNowAndAwaitTermination
@@ -1666,7 +1695,6 @@ name|SolrServerException
 throws|,
 name|IOException
 block|{
-comment|// TODO: do this in background threads
 name|Thread
 name|thread
 init|=
@@ -1718,6 +1746,8 @@ operator|new
 name|HttpSolrServer
 argument_list|(
 name|baseUrl
+argument_list|,
+name|client
 argument_list|)
 decl_stmt|;
 name|server

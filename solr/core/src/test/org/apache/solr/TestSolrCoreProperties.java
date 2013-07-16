@@ -617,9 +617,12 @@ argument_list|,
 literal|"f2"
 argument_list|)
 expr_stmt|;
-name|FileOutputStream
+name|Writer
 name|fos
 init|=
+operator|new
+name|OutputStreamWriter
+argument_list|(
 operator|new
 name|FileOutputStream
 argument_list|(
@@ -630,6 +633,11 @@ operator|.
 name|separator
 operator|+
 literal|"solrcore.properties"
+argument_list|)
+argument_list|,
+name|IOUtils
+operator|.
+name|CHARSET_UTF_8
 argument_list|)
 decl_stmt|;
 name|p

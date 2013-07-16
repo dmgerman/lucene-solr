@@ -121,17 +121,9 @@ comment|/** Sort using term values as encoded Doubles.  Sort values are Double a
 DECL|enum constant|DOUBLE
 name|DOUBLE
 block|,
-comment|/** Sort using term values as encoded Shorts.  Sort values are Short and      * lower values are at the front. */
-DECL|enum constant|SHORT
-name|SHORT
-block|,
 comment|/** Sort using a custom Comparator.  Sort values are any Comparable and      * sorting is done according to natural order. */
 DECL|enum constant|CUSTOM
 name|CUSTOM
-block|,
-comment|/** Sort using term values as encoded Bytes.  Sort values are Byte and      * lower values are at the front. */
-DECL|enum constant|BYTE
-name|BYTE
 block|,
 comment|/** Sort using term values as Strings, but comparing by      * value (using String.compareTo) for all comparisons.      * This is typically slower than {@link #STRING}, which      * uses ordinals to do the sorting. */
 DECL|enum constant|STRING_VAL
@@ -352,42 +344,6 @@ name|parser
 operator|instanceof
 name|FieldCache
 operator|.
-name|ShortParser
-condition|)
-name|initFieldType
-argument_list|(
-name|field
-argument_list|,
-name|Type
-operator|.
-name|SHORT
-argument_list|)
-expr_stmt|;
-elseif|else
-if|if
-condition|(
-name|parser
-operator|instanceof
-name|FieldCache
-operator|.
-name|ByteParser
-condition|)
-name|initFieldType
-argument_list|(
-name|field
-argument_list|,
-name|Type
-operator|.
-name|BYTE
-argument_list|)
-expr_stmt|;
-elseif|else
-if|if
-condition|(
-name|parser
-operator|instanceof
-name|FieldCache
-operator|.
 name|LongParser
 condition|)
 name|initFieldType
@@ -455,18 +411,6 @@ parameter_list|)
 block|{
 if|if
 condition|(
-name|type
-operator|!=
-name|Type
-operator|.
-name|BYTE
-operator|&&
-name|type
-operator|!=
-name|Type
-operator|.
-name|SHORT
-operator|&&
 name|type
 operator|!=
 name|Type
@@ -768,48 +712,6 @@ argument_list|(
 literal|"<string_val"
 operator|+
 literal|": \""
-argument_list|)
-operator|.
-name|append
-argument_list|(
-name|field
-argument_list|)
-operator|.
-name|append
-argument_list|(
-literal|"\">"
-argument_list|)
-expr_stmt|;
-break|break;
-case|case
-name|BYTE
-case|:
-name|buffer
-operator|.
-name|append
-argument_list|(
-literal|"<byte: \""
-argument_list|)
-operator|.
-name|append
-argument_list|(
-name|field
-argument_list|)
-operator|.
-name|append
-argument_list|(
-literal|"\">"
-argument_list|)
-expr_stmt|;
-break|break;
-case|case
-name|SHORT
-case|:
-name|buffer
-operator|.
-name|append
-argument_list|(
-literal|"<short: \""
 argument_list|)
 operator|.
 name|append
@@ -1338,48 +1240,6 @@ name|parser
 argument_list|,
 operator|(
 name|Double
-operator|)
-name|missingValue
-argument_list|)
-return|;
-case|case
-name|BYTE
-case|:
-return|return
-operator|new
-name|FieldComparator
-operator|.
-name|ByteComparator
-argument_list|(
-name|numHits
-argument_list|,
-name|field
-argument_list|,
-name|parser
-argument_list|,
-operator|(
-name|Byte
-operator|)
-name|missingValue
-argument_list|)
-return|;
-case|case
-name|SHORT
-case|:
-return|return
-operator|new
-name|FieldComparator
-operator|.
-name|ShortComparator
-argument_list|(
-name|numHits
-argument_list|,
-name|field
-argument_list|,
-name|parser
-argument_list|,
-operator|(
-name|Short
 operator|)
 name|missingValue
 argument_list|)

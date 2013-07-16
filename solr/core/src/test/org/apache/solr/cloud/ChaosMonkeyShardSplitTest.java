@@ -224,6 +224,16 @@ end_import
 
 begin_import
 import|import
+name|org
+operator|.
+name|junit
+operator|.
+name|Ignore
+import|;
+end_import
+
+begin_import
+import|import
 name|java
 operator|.
 name|io
@@ -273,6 +283,11 @@ end_comment
 begin_class
 annotation|@
 name|Slow
+annotation|@
+name|Ignore
+argument_list|(
+literal|"SOLR-4944"
+argument_list|)
 DECL|class|ChaosMonkeyShardSplitTest
 specifier|public
 class|class

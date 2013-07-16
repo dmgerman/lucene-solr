@@ -62,6 +62,16 @@ name|java
 operator|.
 name|io
 operator|.
+name|InputStreamReader
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
+name|io
+operator|.
 name|OutputStream
 import|;
 end_import
@@ -371,6 +381,22 @@ operator|.
 name|store
 operator|.
 name|IndexInput
+import|;
+end_import
+
+begin_import
+import|import static
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|util
+operator|.
+name|IOUtils
+operator|.
+name|CHARSET_UTF_8
 import|;
 end_import
 
@@ -5641,7 +5667,13 @@ name|props
 operator|.
 name|load
 argument_list|(
+operator|new
+name|InputStreamReader
+argument_list|(
 name|is
+argument_list|,
+name|CHARSET_UTF_8
+argument_list|)
 argument_list|)
 expr_stmt|;
 return|return

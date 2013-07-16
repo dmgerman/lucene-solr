@@ -1440,15 +1440,13 @@ operator|.
 name|getFilters
 argument_list|()
 decl_stmt|;
-if|if
-condition|(
+comment|// if filters already exists, make a copy instead of modifying the original
+name|filters
+operator|=
 name|filters
 operator|==
 literal|null
-condition|)
-block|{
-name|filters
-operator|=
+condition|?
 operator|new
 name|ArrayList
 argument_list|<
@@ -1459,8 +1457,16 @@ name|fqs
 operator|.
 name|length
 argument_list|)
+else|:
+operator|new
+name|ArrayList
+argument_list|<
+name|Query
+argument_list|>
+argument_list|(
+name|filters
+argument_list|)
 expr_stmt|;
-block|}
 for|for
 control|(
 name|String

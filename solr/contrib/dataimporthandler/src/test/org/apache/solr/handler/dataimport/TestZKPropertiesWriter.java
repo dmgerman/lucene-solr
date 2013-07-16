@@ -351,12 +351,9 @@ argument_list|,
 literal|"dataimport-schema.xml"
 argument_list|)
 expr_stmt|;
-name|initCore
+comment|//initCore("solrconfig.xml", "schema.xml", getFile("dih/solr").getAbsolutePath());
+name|createDefaultCoreContainer
 argument_list|(
-literal|"dataimport-solrconfig.xml"
-argument_list|,
-literal|"dataimport-schema.xml"
-argument_list|,
 name|getFile
 argument_list|(
 literal|"dih/solr"

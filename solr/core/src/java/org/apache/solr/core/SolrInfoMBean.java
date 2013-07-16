@@ -58,6 +58,7 @@ DECL|enum constant|QUERYHANDLER
 DECL|enum constant|UPDATEHANDLER
 DECL|enum constant|CACHE
 DECL|enum constant|HIGHLIGHTING
+DECL|enum constant|QUERYPARSER
 DECL|enum constant|OTHER
 specifier|public
 enum|enum
@@ -72,6 +73,8 @@ block|,
 name|CACHE
 block|,
 name|HIGHLIGHTING
+block|,
+name|QUERYPARSER
 block|,
 name|OTHER
 block|}

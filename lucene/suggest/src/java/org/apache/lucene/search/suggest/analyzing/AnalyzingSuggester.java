@@ -64,16 +64,6 @@ begin_import
 import|import
 name|java
 operator|.
-name|io
-operator|.
-name|StringReader
-import|;
-end_import
-
-begin_import
-import|import
-name|java
-operator|.
 name|util
 operator|.
 name|ArrayList
@@ -4381,14 +4371,10 @@ name|tokenStream
 argument_list|(
 literal|""
 argument_list|,
-operator|new
-name|StringReader
-argument_list|(
 name|surfaceForm
 operator|.
 name|utf8ToString
 argument_list|()
-argument_list|)
 argument_list|)
 decl_stmt|;
 comment|// Create corresponding automaton: labels are bytes
@@ -4462,14 +4448,10 @@ name|tokenStream
 argument_list|(
 literal|""
 argument_list|,
-operator|new
-name|StringReader
-argument_list|(
 name|key
 operator|.
 name|toString
 argument_list|()
-argument_list|)
 argument_list|)
 decl_stmt|;
 name|Automaton

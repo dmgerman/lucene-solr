@@ -2285,6 +2285,29 @@ argument_list|,
 literal|"*[count(//lst[@name='zerolen_s']/int)=1]"
 argument_list|)
 expr_stmt|;
+name|assertQ
+argument_list|(
+literal|"a facet.query that analyzes to no query shoud not NPE"
+argument_list|,
+name|req
+argument_list|(
+literal|"q"
+argument_list|,
+literal|"*:*"
+argument_list|,
+literal|"facet"
+argument_list|,
+literal|"true"
+argument_list|,
+literal|"facet.query"
+argument_list|,
+literal|"{!field key=k f=lengthfilt}a"
+argument_list|)
+argument_list|,
+comment|//2 char minimum
+literal|"//lst[@name='facet_queries']/int[@name='k'][.='0']"
+argument_list|)
+expr_stmt|;
 block|}
 DECL|method|indexDateFacets
 specifier|public

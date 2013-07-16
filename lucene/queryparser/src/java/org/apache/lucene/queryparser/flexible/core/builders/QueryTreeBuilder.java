@@ -520,10 +520,7 @@ argument_list|>
 index|[]
 name|classes
 init|=
-name|node
-operator|.
-name|getClass
-argument_list|()
+name|clazz
 operator|.
 name|getInterfaces
 argument_list|()

@@ -361,6 +361,11 @@ argument_list|,
 literal|400
 argument_list|)
 expr_stmt|;
+name|ignoreException
+argument_list|(
+literal|"NonexistentShape"
+argument_list|)
+expr_stmt|;
 try|try
 block|{
 name|assertU
@@ -398,6 +403,11 @@ argument_list|()
 argument_list|)
 expr_stmt|;
 block|}
+name|unIgnoreException
+argument_list|(
+literal|"NonexistentShape"
+argument_list|)
+expr_stmt|;
 block|}
 DECL|method|setupDocs
 specifier|private

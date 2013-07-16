@@ -474,7 +474,7 @@ name|SolrException
 argument_list|(
 name|SERVER_ERROR
 argument_list|,
-literal|"mutute returned field with different name: "
+literal|"mutate returned field with different name: "
 operator|+
 name|fname
 operator|+
@@ -509,7 +509,7 @@ name|cmd
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**    * Interface for idenfifying which fileds should be mutated    */
+comment|/**    * Interface for identifying which fields should be mutated    */
 DECL|interface|FieldNameSelector
 specifier|public
 specifier|static

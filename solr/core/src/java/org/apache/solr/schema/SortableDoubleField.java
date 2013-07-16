@@ -303,6 +303,8 @@ class|class
 name|SortableDoubleField
 extends|extends
 name|PrimitiveFieldType
+implements|implements
+name|DoubleValueFieldType
 block|{
 annotation|@
 name|Override

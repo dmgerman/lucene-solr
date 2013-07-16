@@ -538,7 +538,7 @@ name|stemmer
 operator|.
 name|stem
 argument_list|(
-literal|"food"
+literal|"mood"
 argument_list|)
 expr_stmt|;
 name|assertEquals
@@ -553,7 +553,7 @@ argument_list|)
 expr_stmt|;
 name|assertEquals
 argument_list|(
-literal|"foo"
+literal|"moo"
 argument_list|,
 name|stems
 operator|.
@@ -600,6 +600,7 @@ name|getStemString
 argument_list|()
 argument_list|)
 expr_stmt|;
+comment|// The "Foo" rule gets overridden by the "foo" rule, and we don't merge
 name|stems
 operator|=
 name|stemmer
@@ -607,6 +608,25 @@ operator|.
 name|stem
 argument_list|(
 literal|"Food"
+argument_list|)
+expr_stmt|;
+name|assertEquals
+argument_list|(
+literal|0
+argument_list|,
+name|stems
+operator|.
+name|size
+argument_list|()
+argument_list|)
+expr_stmt|;
+name|stems
+operator|=
+name|stemmer
+operator|.
+name|stem
+argument_list|(
+literal|"Mood"
 argument_list|)
 expr_stmt|;
 name|assertEquals
@@ -621,7 +641,7 @@ argument_list|)
 expr_stmt|;
 name|assertEquals
 argument_list|(
-literal|"foo"
+literal|"moo"
 argument_list|,
 name|stems
 operator|.

@@ -200,6 +200,21 @@ argument_list|(
 literal|"Mac OS X"
 argument_list|)
 decl_stmt|;
+comment|/** True iff running on FreeBSD */
+DECL|field|FREE_BSD
+specifier|public
+specifier|static
+specifier|final
+name|boolean
+name|FREE_BSD
+init|=
+name|OS_NAME
+operator|.
+name|startsWith
+argument_list|(
+literal|"FreeBSD"
+argument_list|)
+decl_stmt|;
 DECL|field|OS_ARCH
 specifier|public
 specifier|static
