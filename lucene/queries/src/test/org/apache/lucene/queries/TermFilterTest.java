@@ -1008,7 +1008,10 @@ argument_list|(
 name|random
 argument_list|()
 argument_list|)
+operator|+
+literal|"x"
 decl_stmt|;
+comment|// this must be not equal to value1
 name|TermFilter
 name|filter1
 init|=
@@ -1156,6 +1159,24 @@ expr_stmt|;
 block|}
 else|else
 block|{
+name|System
+operator|.
+name|out
+operator|.
+name|println
+argument_list|(
+name|termFilter
+argument_list|)
+expr_stmt|;
+name|System
+operator|.
+name|out
+operator|.
+name|println
+argument_list|(
+name|otherTermFilter
+argument_list|)
+expr_stmt|;
 name|assertFalse
 argument_list|(
 name|termFilter
