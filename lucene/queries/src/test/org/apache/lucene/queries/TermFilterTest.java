@@ -1001,13 +1001,7 @@ decl_stmt|;
 name|String
 name|value2
 init|=
-name|_TestUtil
-operator|.
-name|randomRealisticUnicodeString
-argument_list|(
-name|random
-argument_list|()
-argument_list|)
+name|value1
 operator|+
 literal|"x"
 decl_stmt|;
