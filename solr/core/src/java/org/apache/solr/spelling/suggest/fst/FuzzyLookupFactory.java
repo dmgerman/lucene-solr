@@ -156,7 +156,17 @@ name|FuzzyLookupFactory
 extends|extends
 name|LookupFactory
 block|{
-comment|/**    * Maximum number of edits allowed, used by {@link LevenshteinAutomata#toAutomaton(int)}    */
+comment|/**    * If<code>true</code>, maxEdits, minFuzzyLength, transpositions and nonFuzzyPrefix     * will be measured in Unicode code points (actual letters) instead of bytes.    */
+DECL|field|UNICODE_AWARE
+specifier|public
+specifier|static
+specifier|final
+name|String
+name|UNICODE_AWARE
+init|=
+literal|"unicodeAware"
+decl_stmt|;
+comment|/**    * Maximum number of edits allowed, used by {@link LevenshteinAutomata#toAutomaton(int)}    * in bytes or Unicode code points (if {@link #UNICODE_AWARE} option is set to true).    */
 DECL|field|MAX_EDITS
 specifier|public
 specifier|static
@@ -166,7 +176,7 @@ name|MAX_EDITS
 init|=
 literal|"maxEdits"
 decl_stmt|;
-comment|/**    * If transpositions are allowed, Fuzzy suggestions will be computed based on a primitive     * edit operation. If it is false, it will be based on the classic Levenshtein algorithm.    */
+comment|/**    * If transpositions are allowed, Fuzzy suggestions will be computed based on a primitive     * edit operation. If it is false, it will be based on the classic Levenshtein algorithm.    * Transpositions of bytes or Unicode code points (if {@link #UNICODE_AWARE} option is set to true).    */
 DECL|field|TRANSPOSITIONS
 specifier|public
 specifier|static
@@ -176,7 +186,7 @@ name|TRANSPOSITIONS
 init|=
 literal|"transpositions"
 decl_stmt|;
-comment|/**    * Length of common (non-fuzzy) prefix for the suggestions    */
+comment|/**    * Length of common (non-fuzzy) prefix for the suggestions    * in bytes or Unicode code points (if {@link #UNICODE_AWARE} option is set to true).    */
 DECL|field|NON_FUZZY_PREFIX
 specifier|public
 specifier|static
@@ -186,7 +196,7 @@ name|NON_FUZZY_PREFIX
 init|=
 literal|"nonFuzzyPrefix"
 decl_stmt|;
-comment|/**    * Minimum length of lookup key before any edits are allowed for the suggestions    */
+comment|/**    * Minimum length of lookup key before any edits are allowed for the suggestions    * in bytes or Unicode code points (if {@link #UNICODE_AWARE} option is set to true).    */
 DECL|field|MIN_FUZZY_LENGTH
 specifier|public
 specifier|static
@@ -590,6 +600,39 @@ name|FuzzySuggester
 operator|.
 name|DEFAULT_MIN_FUZZY_LENGTH
 decl_stmt|;
+name|boolean
+name|unicodeAware
+init|=
+operator|(
+name|params
+operator|.
+name|get
+argument_list|(
+name|UNICODE_AWARE
+argument_list|)
+operator|!=
+literal|null
+operator|)
+condition|?
+name|Boolean
+operator|.
+name|valueOf
+argument_list|(
+name|params
+operator|.
+name|get
+argument_list|(
+name|UNICODE_AWARE
+argument_list|)
+operator|.
+name|toString
+argument_list|()
+argument_list|)
+else|:
+name|FuzzySuggester
+operator|.
+name|DEFAULT_UNICODE_AWARE
+decl_stmt|;
 return|return
 operator|new
 name|FuzzySuggester
@@ -611,6 +654,8 @@ argument_list|,
 name|nonFuzzyPrefix
 argument_list|,
 name|minFuzzyLength
+argument_list|,
+name|unicodeAware
 argument_list|)
 return|;
 block|}
