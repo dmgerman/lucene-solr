@@ -99,7 +99,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * DocValues format that keeps most things on disk.  *<p>  * Things like ordinals and disk offsets are loaded into ram,  * for single-seek access to all the types.  *<p>  * @lucene.experimental  */
+comment|/**  * DocValues format that keeps most things on disk.  *<p>  * Only things like disk offsets are loaded into ram.  *<p>  * @lucene.experimental  */
 end_comment
 
 begin_class
