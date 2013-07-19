@@ -7023,7 +7023,7 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
-comment|/**    * Merges the provided indexes into this index.    *     *<p>    * The provided IndexReaders are not closed.    *     *<p>    * See {@link #addIndexes} for details on transactional semantics, temporary    * free space required in the Directory, and non-CFS segments on an Exception.    *     *<p>    *<b>NOTE</b>: if this method hits an OutOfMemoryError you should immediately    * close the writer. See<a href="#OOME">above</a> for details.    *     *<p>    *<b>NOTE:</b> this method merges all given {@link IndexReader}s in one    * merge. If you intend to merge a large number of readers, it may be better    * to call this method multiple times, each time with a small set of readers.    * In principle, if you use a merge policy with a {@code mergeFactor} or    * {@code maxMergeAtOnce} parameter, you should pass that many readers in one    * call. Also, if the given readers are {@link DirectoryReader}s, they can be    * opened with {@code termIndexInterval=-1} to save RAM, since during merge    * the in-memory structure is not used. See    * {@link DirectoryReader#open(Directory, int)}.    *     *<p>    *<b>NOTE</b>: if you call {@link #close(boolean)} with<tt>false</tt>, which    * aborts all running merges, then any thread still running this method might    * hit a {@link MergePolicy.MergeAbortedException}.    *     * @throws CorruptIndexException    *           if the index is corrupt    * @throws IOException    *           if there is a low-level IO error    */
+comment|/**    * Merges the provided indexes into this index.    *     *<p>    * The provided IndexReaders are not closed.    *     *<p>    * See {@link #addIndexes} for details on transactional semantics, temporary    * free space required in the Directory, and non-CFS segments on an Exception.    *     *<p>    *<b>NOTE</b>: if this method hits an OutOfMemoryError you should immediately    * close the writer. See<a href="#OOME">above</a> for details.    *     *<p>    *<b>NOTE:</b> empty segments are dropped by this method and not added to this    * index.    *     *<p>    *<b>NOTE:</b> this method merges all given {@link IndexReader}s in one    * merge. If you intend to merge a large number of readers, it may be better    * to call this method multiple times, each time with a small set of readers.    * In principle, if you use a merge policy with a {@code mergeFactor} or    * {@code maxMergeAtOnce} parameter, you should pass that many readers in one    * call. Also, if the given readers are {@link DirectoryReader}s, they can be    * opened with {@code termIndexInterval=-1} to save RAM, since during merge    * the in-memory structure is not used. See    * {@link DirectoryReader#open(Directory, int)}.    *     *<p>    *<b>NOTE</b>: if you call {@link #close(boolean)} with<tt>false</tt>, which    * aborts all running merges, then any thread still running this method might    * hit a {@link MergePolicy.MergeAbortedException}.    *     * @throws CorruptIndexException    *           if the index is corrupt    * @throws IOException    *           if there is a low-level IO error    */
 DECL|method|addIndexes
 specifier|public
 name|void
@@ -7101,6 +7101,16 @@ range|:
 name|readers
 control|)
 block|{
+if|if
+condition|(
+name|indexReader
+operator|.
+name|numDocs
+argument_list|()
+operator|>
+literal|0
+condition|)
+block|{
 name|numDocs
 operator|+=
 name|indexReader
@@ -7119,6 +7129,20 @@ name|leaves
 argument_list|()
 control|)
 block|{
+if|if
+condition|(
+name|ctx
+operator|.
+name|reader
+argument_list|()
+operator|.
+name|numDocs
+argument_list|()
+operator|>
+literal|0
+condition|)
+block|{
+comment|// drop empty (or all deleted) segments
 name|mergeReaders
 operator|.
 name|add
@@ -7130,6 +7154,19 @@ argument_list|()
 argument_list|)
 expr_stmt|;
 block|}
+block|}
+block|}
+block|}
+if|if
+condition|(
+name|mergeReaders
+operator|.
+name|isEmpty
+argument_list|()
+condition|)
+block|{
+comment|// no segments with documents to add
+return|return;
 block|}
 specifier|final
 name|IOContext
