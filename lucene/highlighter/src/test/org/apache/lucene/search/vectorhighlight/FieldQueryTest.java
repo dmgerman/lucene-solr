@@ -7422,14 +7422,14 @@ name|phraseCandidate
 argument_list|)
 argument_list|)
 expr_stmt|;
-comment|// "a b c"~1
+comment|// "a b c"~2
 name|query
 operator|=
 name|pqF
 argument_list|(
 literal|1F
 argument_list|,
-literal|1
+literal|2
 argument_list|,
 literal|"a"
 argument_list|,
