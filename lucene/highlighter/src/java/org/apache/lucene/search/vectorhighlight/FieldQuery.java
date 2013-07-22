@@ -1926,8 +1926,9 @@ name|phraseCandidate
 argument_list|)
 return|;
 block|}
+comment|/** Get the root map for the given field name. */
 DECL|method|getRootMap
-specifier|private
+specifier|public
 name|QueryPhraseMap
 name|getRootMap
 parameter_list|(
