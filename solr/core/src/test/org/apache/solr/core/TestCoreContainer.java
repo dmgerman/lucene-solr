@@ -454,13 +454,6 @@ argument_list|)
 decl_stmt|;
 try|try
 block|{
-name|cores
-operator|.
-name|setPersistent
-argument_list|(
-literal|false
-argument_list|)
-expr_stmt|;
 name|assertTrue
 argument_list|(
 name|cores
@@ -1074,13 +1067,6 @@ argument_list|)
 decl_stmt|;
 try|try
 block|{
-name|cc
-operator|.
-name|setPersistent
-argument_list|(
-literal|false
-argument_list|)
-expr_stmt|;
 name|ClassLoader
 name|sharedLoader
 init|=

@@ -958,7 +958,7 @@ name|overseer
 decl_stmt|;
 DECL|field|leaderVoteWait
 specifier|private
-name|String
+name|int
 name|leaderVoteWait
 decl_stmt|;
 DECL|field|genericCoreNodeNames
@@ -1008,7 +1008,7 @@ parameter_list|,
 name|String
 name|localHostContext
 parameter_list|,
-name|String
+name|int
 name|leaderVoteWait
 parameter_list|,
 name|boolean
@@ -1489,7 +1489,7 @@ expr_stmt|;
 block|}
 DECL|method|getLeaderVoteWait
 specifier|public
-name|String
+name|int
 name|getLeaderVoteWait
 parameter_list|()
 block|{
@@ -3967,12 +3967,7 @@ name|getLeader
 argument_list|(
 name|cloudDesc
 argument_list|,
-name|Integer
-operator|.
-name|parseInt
-argument_list|(
 name|leaderVoteWait
-argument_list|)
 operator|+
 literal|600000
 argument_list|)

@@ -844,7 +844,7 @@ try|try
 block|{
 name|assertEquals
 argument_list|(
-name|CoreContainer
+name|ConfigSolrXmlOld
 operator|.
 name|DEFAULT_DEFAULT_CORE_NAME
 argument_list|,

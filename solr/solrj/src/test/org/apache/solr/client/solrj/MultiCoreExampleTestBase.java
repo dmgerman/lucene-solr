@@ -398,13 +398,6 @@ name|getCoreNames
 argument_list|()
 argument_list|)
 expr_stmt|;
-name|cores
-operator|.
-name|setPersistent
-argument_list|(
-literal|false
-argument_list|)
-expr_stmt|;
 block|}
 annotation|@
 name|Override

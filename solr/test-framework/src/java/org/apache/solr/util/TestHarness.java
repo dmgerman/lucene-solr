@@ -104,6 +104,20 @@ name|solr
 operator|.
 name|core
 operator|.
+name|ConfigSolrXmlOld
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|solr
+operator|.
+name|core
+operator|.
 name|CoreContainer
 import|;
 end_import
@@ -438,7 +452,7 @@ argument_list|)
 throw|;
 block|}
 block|}
-comment|/**    * Creates a SolrConfig object for the     * {@link CoreContainer#DEFAULT_DEFAULT_CORE_NAME} core using {@link #createConfig(String,String,String)}    */
+comment|/**    * Creates a SolrConfig object for the     * {@link ConfigSolrXmlOld#DEFAULT_DEFAULT_CORE_NAME} core using {@link #createConfig(String,String,String)}    */
 DECL|method|createConfig
 specifier|public
 specifier|static
@@ -457,7 +471,7 @@ name|createConfig
 argument_list|(
 name|solrHome
 argument_list|,
-name|CoreContainer
+name|ConfigSolrXmlOld
 operator|.
 name|DEFAULT_DEFAULT_CORE_NAME
 argument_list|,
@@ -551,7 +565,7 @@ parameter_list|)
 block|{
 name|this
 argument_list|(
-name|CoreContainer
+name|ConfigSolrXmlOld
 operator|.
 name|DEFAULT_DEFAULT_CORE_NAME
 argument_list|,
@@ -591,7 +605,7 @@ literal|null
 condition|)
 name|coreName
 operator|=
-name|CoreContainer
+name|ConfigSolrXmlOld
 operator|.
 name|DEFAULT_DEFAULT_CORE_NAME
 expr_stmt|;
@@ -806,7 +820,7 @@ literal|"<logging enabled=\"true\"/>\n"
 operator|+
 literal|"<cores adminPath=\"/admin/cores\" defaultCoreName=\""
 operator|+
-name|CoreContainer
+name|ConfigSolrXmlOld
 operator|.
 name|DEFAULT_DEFAULT_CORE_NAME
 operator|+
