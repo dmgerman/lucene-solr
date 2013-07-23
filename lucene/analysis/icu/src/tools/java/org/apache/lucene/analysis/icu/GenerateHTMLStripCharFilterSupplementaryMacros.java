@@ -273,7 +273,7 @@ name|System
 operator|.
 name|out
 operator|.
-name|print
+name|println
 argument_list|(
 literal|"// Generated using ICU4J "
 operator|+
@@ -283,24 +283,6 @@ name|ICU_VERSION
 operator|.
 name|toString
 argument_list|()
-operator|+
-literal|" on "
-argument_list|)
-expr_stmt|;
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-name|DATE_FORMAT
-operator|.
-name|format
-argument_list|(
-operator|new
-name|Date
-argument_list|()
-argument_list|)
 argument_list|)
 expr_stmt|;
 name|System
