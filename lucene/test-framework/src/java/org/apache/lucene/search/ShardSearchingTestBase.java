@@ -2036,6 +2036,11 @@ operator|.
 name|length
 index|]
 decl_stmt|;
+comment|// results are merged in that order: score, shardIndex, doc. therefore we set
+comment|// after to after.score and depending on the nodeID we set doc to either:
+comment|// - not collect any more documents with that score (only with worse score)
+comment|// - collect more documents with that score (and worse) following the last collected document
+comment|// - collect all documents with that score (and worse)
 name|ScoreDoc
 name|shardAfter
 init|=
@@ -2077,16 +2082,60 @@ operator|.
 name|shardIndex
 condition|)
 block|{
-comment|// If score is tied then no docs in this shard
-comment|// should be collected:
+comment|// all documents with after.score were already collected, so collect
+comment|// only documents with worse scores.
+specifier|final
+name|NodeState
+operator|.
+name|ShardIndexSearcher
+name|s
+init|=
+name|nodes
+index|[
+name|nodeID
+index|]
+operator|.
+name|acquire
+argument_list|(
+name|nodeVersions
+argument_list|)
+decl_stmt|;
+try|try
+block|{
+comment|// Setting after.doc to reader.maxDoc-1 is a way to tell
+comment|// TopScoreDocCollector that no more docs with that score should
+comment|// be collected. note that in practice the shard which sends the
+comment|// request to a remote shard won't have reader.maxDoc at hand, so
+comment|// it will send some arbitrary value which will be fixed on the
+comment|// other end.
 name|shardAfter
 operator|.
 name|doc
 operator|=
-name|Integer
+name|s
 operator|.
-name|MAX_VALUE
+name|getIndexReader
+argument_list|()
+operator|.
+name|maxDoc
+argument_list|()
+operator|-
+literal|1
 expr_stmt|;
+block|}
+finally|finally
+block|{
+name|nodes
+index|[
+name|nodeID
+index|]
+operator|.
+name|release
+argument_list|(
+name|s
+argument_list|)
+expr_stmt|;
+block|}
 block|}
 elseif|else
 if|if
@@ -2098,8 +2147,8 @@ operator|.
 name|shardIndex
 condition|)
 block|{
-comment|// If score is tied then we break according to
-comment|// docID (like normal):
+comment|// collect all documents following the last collected doc with
+comment|// after.score + documents with worse scores.
 name|shardAfter
 operator|.
 name|doc
@@ -2111,9 +2160,8 @@ expr_stmt|;
 block|}
 else|else
 block|{
-comment|// If score is tied then all docs in this shard
-comment|// should be collected, because they come after
-comment|// the previous bottom:
+comment|// all documents with after.score (and worse) should be collected
+comment|// because they didn't make it to top-N in the previous round.
 name|shardAfter
 operator|.
 name|doc

@@ -1433,6 +1433,35 @@ operator|=
 literal|1
 expr_stmt|;
 block|}
+if|if
+condition|(
+name|after
+operator|!=
+literal|null
+operator|&&
+name|after
+operator|.
+name|doc
+operator|>=
+name|limit
+condition|)
+block|{
+throw|throw
+operator|new
+name|IllegalArgumentException
+argument_list|(
+literal|"after.doc exceeds the number of documents in that reader: after.doc="
+operator|+
+name|after
+operator|.
+name|doc
+operator|+
+literal|" limit="
+operator|+
+name|limit
+argument_list|)
+throw|;
+block|}
 name|nDocs
 operator|=
 name|Math
@@ -3515,7 +3544,6 @@ argument_list|()
 argument_list|)
 return|;
 block|}
-empty_stmt|;
 comment|/**    * Returns {@link CollectionStatistics} for a field.    *     * This can be overridden for example, to return a field's statistics    * across a distributed collection.    * @lucene.experimental    */
 DECL|method|collectionStatistics
 specifier|public
