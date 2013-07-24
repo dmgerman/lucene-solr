@@ -554,27 +554,6 @@ specifier|public
 name|double
 name|sizeMB
 decl_stmt|;
-comment|/** Doc store offset, if this segment shares the doc        *  store files (stored fields and term vectors) with        *  other segments.  This is -1 if it does not share. */
-DECL|field|docStoreOffset
-specifier|public
-name|int
-name|docStoreOffset
-init|=
-operator|-
-literal|1
-decl_stmt|;
-comment|/** String of the shared doc store segment, or null if        *  this segment does not share the doc store files. */
-DECL|field|docStoreSegment
-specifier|public
-name|String
-name|docStoreSegment
-decl_stmt|;
-comment|/** True if the shared doc store files are compound file        *  format. */
-DECL|field|docStoreCompoundFile
-specifier|public
-name|boolean
-name|docStoreCompoundFile
-decl_stmt|;
 comment|/** True if this segment has pending deletions. */
 DECL|field|hasDeletions
 specifier|public
