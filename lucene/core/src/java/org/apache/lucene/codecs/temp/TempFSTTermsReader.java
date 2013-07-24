@@ -2924,6 +2924,10 @@ literal|null
 return|;
 block|}
 comment|// nocommit: might be great if we can set flag BIT_LAST_ARC
+comment|// nocommit: actually we can use first arc as candidate...
+comment|// it always has NO_OUTPUT as output, and BIT_LAST_ARC set.
+comment|// but we'll have problem if later FST supports output sharing
+comment|// on first arc!
 comment|/** Virtual frame, never pop */
 DECL|method|loadVirtualFrame
 name|Frame
@@ -3842,8 +3846,6 @@ name|arc
 operator|.
 name|target
 decl_stmt|;
-comment|// nocommit: hmm... for startArc, Arc.toString() is broken???
-comment|//           BIT_ARC_HAS_FINAL_OUTPUT never set
 comment|//System.out.println(arc);
 if|if
 condition|(
