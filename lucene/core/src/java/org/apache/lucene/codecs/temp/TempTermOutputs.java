@@ -1200,6 +1200,8 @@ return|return
 name|ret
 return|;
 block|}
+comment|// nocommit: we might refactor out an 'addSelf' later,
+comment|// which improves 5~7% for fuzzy queries
 annotation|@
 name|Override
 DECL|method|add
