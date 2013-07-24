@@ -740,6 +740,9 @@ name|makeDistanceValueSource
 parameter_list|(
 name|Point
 name|queryPoint
+parameter_list|,
+name|double
+name|multiplier
 parameter_list|)
 block|{
 return|return
@@ -757,6 +760,8 @@ name|getSpatialContext
 argument_list|()
 argument_list|,
 name|queryPoint
+argument_list|,
+name|multiplier
 argument_list|)
 argument_list|)
 return|;
