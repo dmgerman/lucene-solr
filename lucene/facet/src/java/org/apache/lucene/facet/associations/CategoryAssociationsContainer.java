@@ -89,7 +89,7 @@ name|CategoryAssociation
 argument_list|>
 argument_list|()
 decl_stmt|;
-comment|/**    * Adds the {@link CategoryAssociation} for the given {@link CategoryPath    * category}. Overrides any assocation that was previously set. It is ok to    * pass {@code null}, in which case the category will be treated as a regular    * one (i.e. without association value).    */
+comment|/**    * Adds the {@link CategoryAssociation} for the given {@link CategoryPath    * category}. Overrides any assocation that was previously set.    */
 DECL|method|setAssociation
 specifier|public
 name|void
@@ -102,6 +102,21 @@ name|CategoryAssociation
 name|association
 parameter_list|)
 block|{
+if|if
+condition|(
+name|association
+operator|==
+literal|null
+condition|)
+block|{
+throw|throw
+operator|new
+name|IllegalArgumentException
+argument_list|(
+literal|"cannot set a null association to a category"
+argument_list|)
+throw|;
+block|}
 name|categoryAssociations
 operator|.
 name|put
