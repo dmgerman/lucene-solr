@@ -190,6 +190,24 @@ name|lucene
 operator|.
 name|index
 operator|.
+name|CheckIndex
+operator|.
+name|Status
+operator|.
+name|DocValuesStatus
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|index
+operator|.
 name|FieldInfo
 operator|.
 name|IndexOptions
@@ -809,17 +827,35 @@ DECL|method|DocValuesStatus
 name|DocValuesStatus
 parameter_list|()
 block|{       }
-comment|/** Number of documents tested. */
-DECL|field|docCount
-specifier|public
-name|int
-name|docCount
-decl_stmt|;
 comment|/** Total number of docValues tested. */
 DECL|field|totalValueFields
 specifier|public
 name|long
 name|totalValueFields
+decl_stmt|;
+comment|/** Total number of numeric fields */
+DECL|field|totalNumericFields
+specifier|public
+name|long
+name|totalNumericFields
+decl_stmt|;
+comment|/** Total number of binary fields */
+DECL|field|totalBinaryFields
+specifier|public
+name|long
+name|totalBinaryFields
+decl_stmt|;
+comment|/** Total number of sorted fields */
+DECL|field|totalSortedFields
+specifier|public
+name|long
+name|totalSortedFields
+decl_stmt|;
+comment|/** Total number of sortedset fields */
+DECL|field|totalSortedSetFields
+specifier|public
+name|long
+name|totalSortedSetFields
 decl_stmt|;
 comment|/** Exception thrown during doc values test (null on success) */
 DECL|field|error
@@ -6459,6 +6495,8 @@ argument_list|,
 name|reader
 argument_list|,
 name|infoStream
+argument_list|,
+name|status
 argument_list|)
 expr_stmt|;
 block|}
@@ -6535,15 +6573,33 @@ literal|"OK ["
 operator|+
 name|status
 operator|.
-name|docCount
+name|totalValueFields
 operator|+
-literal|" total doc count; "
+literal|" docvalues fields; "
 operator|+
 name|status
 operator|.
-name|totalValueFields
+name|totalBinaryFields
 operator|+
-literal|" docvalues fields]"
+literal|" BINARY; "
+operator|+
+name|status
+operator|.
+name|totalNumericFields
+operator|+
+literal|" NUMERIC; "
+operator|+
+name|status
+operator|.
+name|totalSortedFields
+operator|+
+literal|" SORTED; "
+operator|+
+name|status
+operator|.
+name|totalSortedSetFields
+operator|+
+literal|" SORTED_SET]"
 argument_list|)
 expr_stmt|;
 block|}
@@ -7306,6 +7362,9 @@ name|reader
 parameter_list|,
 name|PrintStream
 name|infoStream
+parameter_list|,
+name|DocValuesStatus
+name|status
 parameter_list|)
 throws|throws
 name|Exception
@@ -7321,6 +7380,11 @@ block|{
 case|case
 name|SORTED
 case|:
+name|status
+operator|.
+name|totalSortedFields
+operator|++
+expr_stmt|;
 name|checkSortedDocValues
 argument_list|(
 name|fi
@@ -7391,6 +7455,11 @@ break|break;
 case|case
 name|SORTED_SET
 case|:
+name|status
+operator|.
+name|totalSortedSetFields
+operator|++
+expr_stmt|;
 name|checkSortedSetDocValues
 argument_list|(
 name|fi
@@ -7461,6 +7530,11 @@ break|break;
 case|case
 name|BINARY
 case|:
+name|status
+operator|.
+name|totalBinaryFields
+operator|++
+expr_stmt|;
 name|checkBinaryDocValues
 argument_list|(
 name|fi
@@ -7531,6 +7605,11 @@ break|break;
 case|case
 name|NUMERIC
 case|:
+name|status
+operator|.
+name|totalNumericFields
+operator|++
+expr_stmt|;
 name|checkNumericDocValues
 argument_list|(
 name|fi
