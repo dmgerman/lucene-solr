@@ -420,11 +420,21 @@ name|clone
 parameter_list|()
 block|{
 comment|// We should only be cloned before being used:
-assert|assert
+if|if
+condition|(
 name|numThreadStatesActive
-operator|==
+operator|!=
 literal|0
-assert|;
+condition|)
+block|{
+throw|throw
+operator|new
+name|IllegalStateException
+argument_list|(
+literal|"clone this object before it is used!"
+argument_list|)
+throw|;
+block|}
 name|DocumentsWriterPerThreadPool
 name|clone
 decl_stmt|;

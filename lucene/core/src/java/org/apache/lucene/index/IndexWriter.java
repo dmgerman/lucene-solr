@@ -1959,7 +1959,7 @@ name|Codec
 name|codec
 decl_stmt|;
 comment|// for writing new segments
-comment|/**    * Constructs a new IndexWriter per the settings given in<code>conf</code>.    * Note that the passed in {@link IndexWriterConfig} is    * privately cloned, which, in-turn, clones the    * {@link IndexWriterConfig#getFlushPolicy() flush policy},    * {@link IndexWriterConfig#getIndexDeletionPolicy() deletion policy},    * {@link IndexWriterConfig#getMergePolicy() merge policy},    * and {@link IndexWriterConfig#getMergeScheduler() merge scheduler}.    * If you need to make subsequent "live"    * changes to the configuration use {@link #getConfig}.    *<p>    *     * @param d    *          the index directory. The index is either created or appended    *          according<code>conf.getOpenMode()</code>.    * @param conf    *          the configuration settings according to which IndexWriter should    *          be initialized.    * @throws IOException    *           if the directory cannot be read/written to, or if it does not    *           exist and<code>conf.getOpenMode()</code> is    *<code>OpenMode.APPEND</code> or if there is any other low-level    *           IO error    */
+comment|/**    * Constructs a new IndexWriter per the settings given in<code>conf</code>.    * If you want to make "live" changes to this writer instance, use    * {@link #getConfig()}.    *     *<p>    *<b>NOTE:</b> after ths writer is created, the given configuration instance    * cannot be passed to another writer. If you intend to do so, you should    * {@link IndexWriterConfig#clone() clone} it beforehand.    *     * @param d    *          the index directory. The index is either created or appended    *          according<code>conf.getOpenMode()</code>.    * @param conf    *          the configuration settings according to which IndexWriter should    *          be initialized.    * @throws IOException    *           if the directory cannot be read/written to, or if it does not    *           exist and<code>conf.getOpenMode()</code> is    *<code>OpenMode.APPEND</code> or if there is any other low-level    *           IO error    */
 DECL|method|IndexWriter
 specifier|public
 name|IndexWriter
@@ -1973,15 +1973,20 @@ parameter_list|)
 throws|throws
 name|IOException
 block|{
+name|conf
+operator|.
+name|setIndexWriter
+argument_list|(
+name|this
+argument_list|)
+expr_stmt|;
+comment|// prevent reuse by other instances
 name|config
 operator|=
 operator|new
 name|LiveIndexWriterConfig
 argument_list|(
 name|conf
-operator|.
-name|clone
-argument_list|()
 argument_list|)
 expr_stmt|;
 name|directory
