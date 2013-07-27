@@ -2056,22 +2056,9 @@ operator|=
 name|addRequestHeadersToContext
 expr_stmt|;
 block|}
-block|}
-end_class
-
-begin_comment
 comment|//-----------------------------------------------------------------
-end_comment
-
-begin_comment
 comment|//-----------------------------------------------------------------
-end_comment
-
-begin_comment
 comment|// I guess we don't really even need the interface, but i'll keep it here just for kicks
-end_comment
-
-begin_interface
 DECL|interface|SolrRequestParser
 interface|interface
 name|SolrRequestParser
@@ -2095,22 +2082,11 @@ throws|throws
 name|Exception
 function_decl|;
 block|}
-end_interface
-
-begin_comment
 comment|//-----------------------------------------------------------------
-end_comment
-
-begin_comment
 comment|//-----------------------------------------------------------------
-end_comment
-
-begin_comment
-comment|/**  * The simple parser just uses the params directly, does not support POST URL-encoded forms  */
-end_comment
-
-begin_class
+comment|/**    * The simple parser just uses the params directly, does not support POST URL-encoded forms    */
 DECL|class|SimpleRequestParser
+specifier|static
 class|class
 name|SimpleRequestParser
 implements|implements
@@ -2137,8 +2113,6 @@ throws|throws
 name|Exception
 block|{
 return|return
-name|SolrRequestParsers
-operator|.
 name|parseQueryString
 argument_list|(
 name|req
@@ -2149,14 +2123,9 @@ argument_list|)
 return|;
 block|}
 block|}
-end_class
-
-begin_comment
-comment|/**  * Wrap an HttpServletRequest as a ContentStream  */
-end_comment
-
-begin_class
+comment|/**    * Wrap an HttpServletRequest as a ContentStream    */
 DECL|class|HttpRequestContentStream
+specifier|static
 class|class
 name|HttpRequestContentStream
 extends|extends
@@ -2237,14 +2206,9 @@ argument_list|()
 return|;
 block|}
 block|}
-end_class
-
-begin_comment
-comment|/**  * Wrap a FileItem as a ContentStream  */
-end_comment
-
-begin_class
+comment|/**    * Wrap a FileItem as a ContentStream    */
 DECL|class|FileItemContentStream
+specifier|static
 class|class
 name|FileItemContentStream
 extends|extends
@@ -2315,14 +2279,9 @@ argument_list|()
 return|;
 block|}
 block|}
-end_class
-
-begin_comment
-comment|/**  * The raw parser just uses the params directly  */
-end_comment
-
-begin_class
+comment|/**    * The raw parser just uses the params directly    */
 DECL|class|RawRequestParser
+specifier|static
 class|class
 name|RawRequestParser
 implements|implements
@@ -2360,8 +2319,6 @@ argument_list|)
 argument_list|)
 expr_stmt|;
 return|return
-name|SolrRequestParsers
-operator|.
 name|parseQueryString
 argument_list|(
 name|req
@@ -2372,14 +2329,9 @@ argument_list|)
 return|;
 block|}
 block|}
-end_class
-
-begin_comment
-comment|/**  * Extract Multipart streams  */
-end_comment
-
-begin_class
+comment|/**    * Extract Multipart streams    */
 DECL|class|MultipartRequestParser
+specifier|static
 class|class
 name|MultipartRequestParser
 implements|implements
@@ -2455,8 +2407,6 @@ block|}
 name|MultiMapSolrParams
 name|params
 init|=
-name|SolrRequestParsers
-operator|.
 name|parseQueryString
 argument_list|(
 name|req
@@ -2589,14 +2539,9 @@ name|params
 return|;
 block|}
 block|}
-end_class
-
-begin_comment
-comment|/**  * Extract application/x-www-form-urlencoded form data for POST requests  */
-end_comment
-
-begin_class
+comment|/**    * Extract application/x-www-form-urlencoded form data for POST requests    */
 DECL|class|FormDataRequestParser
+specifier|static
 class|class
 name|FormDataRequestParser
 implements|implements
@@ -2704,8 +2649,6 @@ operator|!=
 literal|null
 condition|)
 block|{
-name|SolrRequestParsers
-operator|.
 name|parseQueryString
 argument_list|(
 name|qs
@@ -2818,8 +2761,6 @@ specifier|final
 name|long
 name|bytesRead
 init|=
-name|SolrRequestParsers
-operator|.
 name|parseFormDataContent
 argument_list|(
 name|FastInputStream
@@ -3013,14 +2954,9 @@ literal|false
 return|;
 block|}
 block|}
-end_class
-
-begin_comment
-comment|/**  * The default Logic  */
-end_comment
-
-begin_class
+comment|/**    * The default Logic    */
 DECL|class|StandardRequestParser
+specifier|static
 class|class
 name|StandardRequestParser
 implements|implements
@@ -3142,8 +3078,6 @@ operator|)
 condition|)
 block|{
 return|return
-name|SolrRequestParsers
-operator|.
 name|parseQueryString
 argument_list|(
 name|req
@@ -3233,6 +3167,7 @@ operator|+
 name|req
 argument_list|)
 throw|;
+block|}
 block|}
 block|}
 end_class
