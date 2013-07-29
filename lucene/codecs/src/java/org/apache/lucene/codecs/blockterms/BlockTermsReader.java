@@ -1558,12 +1558,6 @@ specifier|private
 name|boolean
 name|seekPending
 decl_stmt|;
-comment|/* How many blocks we've read since last seek.  Once this          is>= indexEnum.getDivisor() we set indexIsCurrent to false (since          the index can no long bracket seek-within-block). */
-DECL|field|blocksSinceSeek
-specifier|private
-name|int
-name|blocksSinceSeek
-decl_stmt|;
 DECL|field|termSuffixes
 specifier|private
 name|byte
@@ -1932,10 +1926,6 @@ expr_stmt|;
 name|didIndexNext
 operator|=
 literal|false
-expr_stmt|;
-name|blocksSinceSeek
-operator|=
-literal|0
 expr_stmt|;
 if|if
 condition|(
@@ -3159,10 +3149,6 @@ name|didIndexNext
 operator|=
 literal|false
 expr_stmt|;
-name|blocksSinceSeek
-operator|=
-literal|0
-expr_stmt|;
 name|seekPending
 operator|=
 literal|false
@@ -3453,21 +3439,9 @@ argument_list|,
 name|state
 argument_list|)
 expr_stmt|;
-name|blocksSinceSeek
-operator|++
-expr_stmt|;
 name|indexIsCurrent
 operator|=
-name|indexIsCurrent
-operator|&&
-operator|(
-name|blocksSinceSeek
-operator|<
-name|indexReader
-operator|.
-name|getDivisor
-argument_list|()
-operator|)
+literal|false
 expr_stmt|;
 comment|//System.out.println("  indexIsCurrent=" + indexIsCurrent);
 return|return

@@ -174,18 +174,6 @@ specifier|private
 name|SegmentReader
 name|reader
 decl_stmt|;
-comment|// TODO: it's sometimes wasteful that we hold open two
-comment|// separate SRs (one for merging one for
-comment|// reading)... maybe just use a single SR?  The gains of
-comment|// not loading the terms index (for merging in the
-comment|// non-NRT case) are far less now... and if the app has
-comment|// any deletes it'll open real readers anyway.
-comment|// Set once (null, and then maybe set, and never set again):
-DECL|field|mergeReader
-specifier|private
-name|SegmentReader
-name|mergeReader
-decl_stmt|;
 comment|// Holds the current shared (readable and writable
 comment|// liveDocs).  This is null when there are no deleted
 comment|// docs, and it's copy-on-write (cloned whenever we need
@@ -459,14 +447,6 @@ name|SegmentReader
 argument_list|(
 name|info
 argument_list|,
-name|writer
-operator|.
-name|getConfig
-argument_list|()
-operator|.
-name|getReaderTermsIndexDivisor
-argument_list|()
-argument_list|,
 name|context
 argument_list|)
 expr_stmt|;
@@ -496,95 +476,6 @@ argument_list|()
 expr_stmt|;
 return|return
 name|reader
-return|;
-block|}
-comment|// Get reader for merging (does not load the terms
-comment|// index):
-DECL|method|getMergeReader
-specifier|public
-specifier|synchronized
-name|SegmentReader
-name|getMergeReader
-parameter_list|(
-name|IOContext
-name|context
-parameter_list|)
-throws|throws
-name|IOException
-block|{
-comment|//System.out.println("  livedocs=" + rld.liveDocs);
-if|if
-condition|(
-name|mergeReader
-operator|==
-literal|null
-condition|)
-block|{
-if|if
-condition|(
-name|reader
-operator|!=
-literal|null
-condition|)
-block|{
-comment|// Just use the already opened non-merge reader
-comment|// for merging.  In the NRT case this saves us
-comment|// pointless double-open:
-comment|//System.out.println("PROMOTE non-merge reader seg=" + rld.info);
-comment|// Ref for us:
-name|reader
-operator|.
-name|incRef
-argument_list|()
-expr_stmt|;
-name|mergeReader
-operator|=
-name|reader
-expr_stmt|;
-comment|//System.out.println(Thread.currentThread().getName() + ": getMergeReader share seg=" + info.name);
-block|}
-else|else
-block|{
-comment|//System.out.println(Thread.currentThread().getName() + ": getMergeReader seg=" + info.name);
-comment|// We steal returned ref:
-name|mergeReader
-operator|=
-operator|new
-name|SegmentReader
-argument_list|(
-name|info
-argument_list|,
-operator|-
-literal|1
-argument_list|,
-name|context
-argument_list|)
-expr_stmt|;
-if|if
-condition|(
-name|liveDocs
-operator|==
-literal|null
-condition|)
-block|{
-name|liveDocs
-operator|=
-name|mergeReader
-operator|.
-name|getLiveDocs
-argument_list|()
-expr_stmt|;
-block|}
-block|}
-block|}
-comment|// Ref for caller
-name|mergeReader
-operator|.
-name|incRef
-argument_list|()
-expr_stmt|;
-return|return
-name|mergeReader
 return|;
 block|}
 DECL|method|release
@@ -729,8 +620,6 @@ name|IOException
 block|{
 comment|// TODO: can we somehow use IOUtils here...?  problem is
 comment|// we are calling .decRef not .close)...
-try|try
-block|{
 if|if
 condition|(
 name|reader
@@ -753,34 +642,6 @@ name|reader
 operator|=
 literal|null
 expr_stmt|;
-block|}
-block|}
-block|}
-finally|finally
-block|{
-if|if
-condition|(
-name|mergeReader
-operator|!=
-literal|null
-condition|)
-block|{
-comment|//System.out.println("  pool.drop info=" + info + " merge rc=" + mergeReader.getRefCount());
-try|try
-block|{
-name|mergeReader
-operator|.
-name|decRef
-argument_list|()
-expr_stmt|;
-block|}
-finally|finally
-block|{
-name|mergeReader
-operator|=
-literal|null
-expr_stmt|;
-block|}
 block|}
 block|}
 name|decRef

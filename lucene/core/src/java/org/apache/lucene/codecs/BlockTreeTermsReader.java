@@ -515,7 +515,7 @@ import|;
 end_import
 
 begin_comment
-comment|/** A block-based terms index and dictionary that assigns  *  terms to variable length blocks according to how they  *  share prefixes.  The terms index is a prefix trie  *  whose leaves are term blocks.  The advantage of this  *  approach is that seekExact is often able to  *  determine a term cannot exist without doing any IO, and  *  intersection with Automata is very fast.  Note that this  *  terms dictionary has it's own fixed terms index (ie, it  *  does not support a pluggable terms index  *  implementation).  *  *<p><b>NOTE</b>: this terms dictionary does not support  *  index divisor when opening an IndexReader.  Instead, you  *  can change the min/maxItemsPerBlock during indexing.</p>  *  *<p>The data structure used by this implementation is very  *  similar to a burst trie  *  (http://citeseer.ist.psu.edu/viewdoc/summary?doi=10.1.1.18.3499),  *  but with added logic to break up too-large blocks of all  *  terms sharing a given prefix into smaller ones.</p>  *  *<p>Use {@link org.apache.lucene.index.CheckIndex} with the<code>-verbose</code>  *  option to see summary statistics on the blocks in the  *  dictionary.  *  *  See {@link BlockTreeTermsWriter}.  *  * @lucene.experimental  */
+comment|/** A block-based terms index and dictionary that assigns  *  terms to variable length blocks according to how they  *  share prefixes.  The terms index is a prefix trie  *  whose leaves are term blocks.  The advantage of this  *  approach is that seekExact is often able to  *  determine a term cannot exist without doing any IO, and  *  intersection with Automata is very fast.  Note that this  *  terms dictionary has it's own fixed terms index (ie, it  *  does not support a pluggable terms index  *  implementation).  *  *<p><b>NOTE</b>: this terms dictionary supports  *  min/maxItemsPerBlock during indexing to control how  *  much memory the terms index uses.</p>  *  *<p>The data structure used by this implementation is very  *  similar to a burst trie  *  (http://citeseer.ist.psu.edu/viewdoc/summary?doi=10.1.1.18.3499),  *  but with added logic to break up too-large blocks of all  *  terms sharing a given prefix into smaller ones.</p>  *  *<p>Use {@link org.apache.lucene.index.CheckIndex} with the<code>-verbose</code>  *  option to see summary statistics on the blocks in the  *  dictionary.  *  *  See {@link BlockTreeTermsWriter}.  *  * @lucene.experimental  */
 end_comment
 
 begin_class
@@ -607,9 +607,6 @@ name|ioContext
 parameter_list|,
 name|String
 name|segmentSuffix
-parameter_list|,
-name|int
-name|indexDivisor
 parameter_list|)
 throws|throws
 name|IOException
@@ -669,14 +666,6 @@ argument_list|(
 name|in
 argument_list|)
 expr_stmt|;
-if|if
-condition|(
-name|indexDivisor
-operator|!=
-operator|-
-literal|1
-condition|)
-block|{
 name|indexIn
 operator|=
 name|dir
@@ -736,7 +725,6 @@ name|indexVersion
 argument_list|)
 throw|;
 block|}
-block|}
 comment|// Have PostingsReader init itself
 name|postingsReader
 operator|.
@@ -753,14 +741,6 @@ argument_list|,
 name|dirOffset
 argument_list|)
 expr_stmt|;
-if|if
-condition|(
-name|indexDivisor
-operator|!=
-operator|-
-literal|1
-condition|)
-block|{
 name|seekDir
 argument_list|(
 name|indexIn
@@ -768,7 +748,6 @@ argument_list|,
 name|indexDirOffset
 argument_list|)
 expr_stmt|;
-block|}
 specifier|final
 name|int
 name|numFields
@@ -1043,17 +1022,10 @@ specifier|final
 name|long
 name|indexStartFP
 init|=
-name|indexDivisor
-operator|!=
-operator|-
-literal|1
-condition|?
 name|indexIn
 operator|.
 name|readVLong
 argument_list|()
-else|:
-literal|0
 decl_stmt|;
 name|FieldReader
 name|previous
@@ -1113,20 +1085,11 @@ argument_list|)
 throw|;
 block|}
 block|}
-if|if
-condition|(
-name|indexDivisor
-operator|!=
-operator|-
-literal|1
-condition|)
-block|{
 name|indexIn
 operator|.
 name|close
 argument_list|()
 expr_stmt|;
-block|}
 name|success
 operator|=
 literal|true

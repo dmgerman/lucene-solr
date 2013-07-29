@@ -123,13 +123,6 @@ name|boolean
 name|supportsOrd
 parameter_list|()
 function_decl|;
-DECL|method|getDivisor
-specifier|public
-specifier|abstract
-name|int
-name|getDivisor
-parameter_list|()
-function_decl|;
 comment|/**     * Similar to TermsEnum, except, the only "metadata" it    * reports for a given indexed term is the long fileOffset    * into the main terms dictionary file.    */
 DECL|class|FieldIndexEnum
 specifier|public

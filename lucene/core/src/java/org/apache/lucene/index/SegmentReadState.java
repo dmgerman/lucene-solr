@@ -120,12 +120,6 @@ specifier|final
 name|IOContext
 name|context
 decl_stmt|;
-comment|/** The {@code termInfosIndexDivisor} to use, if    *  appropriate (not all {@link PostingsFormat}s support    *  it; in particular the current default does not).    *    *<p>  NOTE: if this is&lt; 0, that means "defer terms index    *  load until needed".  But if the codec must load the    *  terms index on init (preflex is the only once currently    *  that must do so), then it should negate this value to    *  get the app's terms divisor */
-DECL|field|termsIndexDivisor
-specifier|public
-name|int
-name|termsIndexDivisor
-decl_stmt|;
 comment|/** Unique suffix for any postings files read for this    *  segment.  {@link PerFieldPostingsFormat} sets this for    *  each of the postings formats it wraps.  If you create    *  a new {@link PostingsFormat} then any files you    *  write/read must be derived using this suffix (use    *  {@link IndexFileNames#segmentFileName(String,String,String)}). */
 DECL|field|segmentSuffix
 specifier|public
@@ -149,9 +143,6 @@ name|fieldInfos
 parameter_list|,
 name|IOContext
 name|context
-parameter_list|,
-name|int
-name|termsIndexDivisor
 parameter_list|)
 block|{
 name|this
@@ -163,8 +154,6 @@ argument_list|,
 name|fieldInfos
 argument_list|,
 name|context
-argument_list|,
-name|termsIndexDivisor
 argument_list|,
 literal|""
 argument_list|)
@@ -186,9 +175,6 @@ name|fieldInfos
 parameter_list|,
 name|IOContext
 name|context
-parameter_list|,
-name|int
-name|termsIndexDivisor
 parameter_list|,
 name|String
 name|segmentSuffix
@@ -217,12 +203,6 @@ operator|.
 name|context
 operator|=
 name|context
-expr_stmt|;
-name|this
-operator|.
-name|termsIndexDivisor
-operator|=
-name|termsIndexDivisor
 expr_stmt|;
 name|this
 operator|.
@@ -274,14 +254,6 @@ operator|=
 name|other
 operator|.
 name|context
-expr_stmt|;
-name|this
-operator|.
-name|termsIndexDivisor
-operator|=
-name|other
-operator|.
-name|termsIndexDivisor
 expr_stmt|;
 name|this
 operator|.

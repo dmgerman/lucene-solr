@@ -42,9 +42,9 @@ name|lucene
 operator|.
 name|codecs
 operator|.
-name|lucene41ords
+name|lucene41vargap
 operator|.
-name|Lucene41WithOrds
+name|Lucene41VarGapDocFreqInterval
 import|;
 end_import
 
@@ -77,14 +77,14 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Basic tests of a PF using FixedGap terms dictionary  */
+comment|/**  * Basic tests of a PF using VariableGap terms dictionary (fixed interval, docFreq threshold)  */
 end_comment
 
 begin_class
-DECL|class|TestFixedGapPostingsFormat
+DECL|class|TestVarGapFixedIntervalPostingsFormat
 specifier|public
 class|class
-name|TestFixedGapPostingsFormat
+name|TestVarGapFixedIntervalPostingsFormat
 extends|extends
 name|BasePostingsFormatTestCase
 block|{
@@ -99,8 +99,20 @@ operator|.
 name|alwaysPostingsFormat
 argument_list|(
 operator|new
-name|Lucene41WithOrds
+name|Lucene41VarGapDocFreqInterval
 argument_list|(
+name|_TestUtil
+operator|.
+name|nextInt
+argument_list|(
+name|random
+argument_list|()
+argument_list|,
+literal|1
+argument_list|,
+literal|100
+argument_list|)
+argument_list|,
 name|_TestUtil
 operator|.
 name|nextInt

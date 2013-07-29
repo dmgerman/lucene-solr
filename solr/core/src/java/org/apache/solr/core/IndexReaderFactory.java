@@ -99,15 +99,7 @@ name|IndexReaderFactory
 implements|implements
 name|NamedListInitializedPlugin
 block|{
-DECL|field|termInfosIndexDivisor
-specifier|protected
-name|int
-name|termInfosIndexDivisor
-init|=
-literal|1
-decl_stmt|;
-comment|//IndexReader.DEFAULT_TERMS_INDEX_DIVISOR;  Set this once Lucene makes this public.
-comment|/**    * Potentially initializes {@link #termInfosIndexDivisor}.  Overriding classes should call super.init() in order    * to make sure termInfosIndexDivisor is set.    *<p>    *<code>init</code> will be called just once, immediately after creation.    *<p>    * The args are user-level initialization parameters that may be specified    * when declaring an indexReaderFactory in solrconfig.xml    *    */
+comment|/**    * init will be called just once, immediately after creation.    *<p>    * The args are user-level initialization parameters that may be specified    * when declaring an indexReaderFactory in solrconfig.xml    *    */
 annotation|@
 name|Override
 DECL|method|init
@@ -119,12 +111,9 @@ name|NamedList
 name|args
 parameter_list|)
 block|{
-name|Integer
+name|Object
 name|v
 init|=
-operator|(
-name|Integer
-operator|)
 name|args
 operator|.
 name|get
@@ -139,25 +128,14 @@ operator|!=
 literal|null
 condition|)
 block|{
-name|termInfosIndexDivisor
-operator|=
-name|v
-operator|.
-name|intValue
-argument_list|()
-expr_stmt|;
+throw|throw
+operator|new
+name|IllegalArgumentException
+argument_list|(
+literal|"Illegal parameter 'setTermIndexDivisor'"
+argument_list|)
+throw|;
 block|}
-block|}
-comment|/**    *    * @return The setting of {@link #termInfosIndexDivisor}     */
-DECL|method|getTermInfosIndexDivisor
-specifier|public
-name|int
-name|getTermInfosIndexDivisor
-parameter_list|()
-block|{
-return|return
-name|termInfosIndexDivisor
-return|;
 block|}
 comment|/**    * Creates a new IndexReader instance using the given Directory.    *     * @param indexDir indexDir index location    * @param core {@link SolrCore} instance where this reader will be used. NOTE:    * this SolrCore instance may not be fully configured yet, but basic things like    * {@link SolrCore#getCoreDescriptor()}, {@link SolrCore#getLatestSchema()} and    * {@link SolrCore#getSolrConfig()} are valid.    * @return An IndexReader instance    * @throws IOException If there is a low-level I/O error.    */
 DECL|method|newReader

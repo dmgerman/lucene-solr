@@ -771,18 +771,6 @@ name|j
 argument_list|)
 expr_stmt|;
 block|}
-specifier|final
-name|int
-name|termIndexInterval
-init|=
-name|writer
-operator|.
-name|getConfig
-argument_list|()
-operator|.
-name|getTermIndexInterval
-argument_list|()
-decl_stmt|;
 comment|// force one extra segment w/ different doc store so
 comment|// we see the doc stores get merged
 name|writer
@@ -905,9 +893,6 @@ argument_list|(
 literal|true
 argument_list|)
 expr_stmt|;
-comment|// Import to use same term index interval else a
-comment|// smaller one here could increase the disk usage and
-comment|// cause a false failure:
 name|writer
 operator|=
 operator|new
@@ -932,11 +917,6 @@ argument_list|(
 name|OpenMode
 operator|.
 name|APPEND
-argument_list|)
-operator|.
-name|setTermIndexInterval
-argument_list|(
-name|termIndexInterval
 argument_list|)
 operator|.
 name|setMergePolicy
