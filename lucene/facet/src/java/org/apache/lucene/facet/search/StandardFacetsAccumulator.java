@@ -337,7 +337,7 @@ comment|/*  * Licensed to the Apache Software Foundation (ASF) under one or more
 end_comment
 
 begin_comment
-comment|/**  * Standard implementation for {@link FacetsAccumulator}, utilizing partitions to save on memory.  *<p>  * Why partitions? Because if there are say 100M categories out of which   * only top K are required, we must first compute value for all 100M categories  * (going over all documents) and only then could we select top K.   * This is made easier on memory by working in partitions of distinct categories:   * Once a values for a partition are found, we take the top K for that   * partition and work on the next partition, them merge the top K of both,   * and so forth, thereby computing top K with RAM needs for the size of   * a single partition rather than for the size of all the 100M categories.  *<p>  * Decision on partitions size is done at indexing time, and the facet information  * for each partition is maintained separately.  *<p>  *<u>Implementation detail:</u> Since facets information of each partition is   * maintained in a separate "category list", we can be more efficient  * at search time, because only the facet info for a single partition   * need to be read while processing that partition.   *   * @lucene.experimental  */
+comment|/**  * Standard implementation for {@link TaxonomyFacetsAccumulator}, utilizing partitions to save on memory.  *<p>  * Why partitions? Because if there are say 100M categories out of which   * only top K are required, we must first compute value for all 100M categories  * (going over all documents) and only then could we select top K.   * This is made easier on memory by working in partitions of distinct categories:   * Once a values for a partition are found, we take the top K for that   * partition and work on the next partition, them merge the top K of both,   * and so forth, thereby computing top K with RAM needs for the size of   * a single partition rather than for the size of all the 100M categories.  *<p>  * Decision on partitions size is done at indexing time, and the facet information  * for each partition is maintained separately.  *<p>  *<u>Implementation detail:</u> Since facets information of each partition is   * maintained in a separate "category list", we can be more efficient  * at search time, because only the facet info for a single partition   * need to be read while processing that partition.   *   * @lucene.experimental  */
 end_comment
 
 begin_class
@@ -346,7 +346,7 @@ specifier|public
 class|class
 name|StandardFacetsAccumulator
 extends|extends
-name|FacetsAccumulator
+name|TaxonomyFacetsAccumulator
 block|{
 DECL|field|logger
 specifier|private
@@ -433,6 +433,36 @@ name|complementThreshold
 init|=
 name|DEFAULT_COMPLEMENT_THRESHOLD
 decl_stmt|;
+DECL|method|createFacetArrays
+specifier|private
+specifier|static
+name|FacetArrays
+name|createFacetArrays
+parameter_list|(
+name|FacetSearchParams
+name|searchParams
+parameter_list|,
+name|TaxonomyReader
+name|taxoReader
+parameter_list|)
+block|{
+return|return
+operator|new
+name|FacetArrays
+argument_list|(
+name|PartitionsUtils
+operator|.
+name|partitionSize
+argument_list|(
+name|searchParams
+operator|.
+name|indexingParams
+argument_list|,
+name|taxoReader
+argument_list|)
+argument_list|)
+return|;
+block|}
 DECL|method|StandardFacetsAccumulator
 specifier|public
 name|StandardFacetsAccumulator
@@ -455,20 +485,7 @@ name|indexReader
 argument_list|,
 name|taxonomyReader
 argument_list|,
-operator|new
-name|FacetArrays
-argument_list|(
-name|PartitionsUtils
-operator|.
-name|partitionSize
-argument_list|(
-name|searchParams
-operator|.
-name|indexingParams
-argument_list|,
-name|taxonomyReader
-argument_list|)
-argument_list|)
+literal|null
 argument_list|)
 expr_stmt|;
 block|}
@@ -497,6 +514,17 @@ name|indexReader
 argument_list|,
 name|taxonomyReader
 argument_list|,
+name|facetArrays
+operator|==
+literal|null
+condition|?
+name|createFacetArrays
+argument_list|(
+name|searchParams
+argument_list|,
+name|taxonomyReader
+argument_list|)
+else|:
 name|facetArrays
 argument_list|)
 expr_stmt|;

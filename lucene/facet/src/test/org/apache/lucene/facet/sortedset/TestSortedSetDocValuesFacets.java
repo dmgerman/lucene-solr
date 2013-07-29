@@ -733,9 +733,9 @@ argument_list|(
 operator|new
 name|SortedSetDocValuesAccumulator
 argument_list|(
-name|fsp
-argument_list|,
 name|state
+argument_list|,
+name|fsp
 argument_list|)
 argument_list|)
 decl_stmt|;
@@ -1195,9 +1195,9 @@ argument_list|(
 operator|new
 name|SortedSetDocValuesAccumulator
 argument_list|(
-name|fsp
-argument_list|,
 name|state
+argument_list|,
+name|fsp
 argument_list|)
 argument_list|)
 decl_stmt|;

@@ -24,6 +24,22 @@ name|lucene
 operator|.
 name|facet
 operator|.
+name|params
+operator|.
+name|FacetIndexingParams
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|facet
+operator|.
 name|search
 operator|.
 name|FacetArrays
@@ -43,6 +59,22 @@ operator|.
 name|search
 operator|.
 name|FacetRequest
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|facet
+operator|.
+name|search
+operator|.
+name|FacetsAggregator
 import|;
 end_import
 
@@ -67,21 +99,21 @@ comment|/*  * Licensed to the Apache Software Foundation (ASF) under one or more
 end_comment
 
 begin_comment
-comment|/**  * A {@link FacetRequest} for weighting facets according to their integer  * association by summing the association values.  *   * @lucene.experimental  */
+comment|/**  * A {@link FacetRequest} for weighting facets according to their float  * association by summing the association values.  *   * @lucene.experimental  */
 end_comment
 
 begin_class
-DECL|class|AssociationIntSumFacetRequest
+DECL|class|SumFloatAssociationFacetRequest
 specifier|public
 class|class
-name|AssociationIntSumFacetRequest
+name|SumFloatAssociationFacetRequest
 extends|extends
 name|FacetRequest
 block|{
-comment|/**    * Create an integer association facet request for a given node in the    * taxonomy.    */
-DECL|method|AssociationIntSumFacetRequest
+comment|/**    * Create a float association facet request for a given node in the    * taxonomy.    */
+DECL|method|SumFloatAssociationFacetRequest
 specifier|public
-name|AssociationIntSumFacetRequest
+name|SumFloatAssociationFacetRequest
 parameter_list|(
 name|CategoryPath
 name|path
@@ -100,16 +132,19 @@ expr_stmt|;
 block|}
 annotation|@
 name|Override
-DECL|method|getFacetArraysSource
+DECL|method|createFacetsAggregator
 specifier|public
-name|FacetArraysSource
-name|getFacetArraysSource
-parameter_list|()
+name|FacetsAggregator
+name|createFacetsAggregator
+parameter_list|(
+name|FacetIndexingParams
+name|fip
+parameter_list|)
 block|{
 return|return
-name|FacetArraysSource
-operator|.
-name|INT
+operator|new
+name|SumFloatAssociationFacetsAggregator
+argument_list|()
 return|;
 block|}
 annotation|@
@@ -129,11 +164,25 @@ block|{
 return|return
 name|arrays
 operator|.
-name|getIntArray
+name|getFloatArray
 argument_list|()
 index|[
 name|ordinal
 index|]
+return|;
+block|}
+annotation|@
+name|Override
+DECL|method|getFacetArraysSource
+specifier|public
+name|FacetArraysSource
+name|getFacetArraysSource
+parameter_list|()
+block|{
+return|return
+name|FacetArraysSource
+operator|.
+name|FLOAT
 return|;
 block|}
 block|}
