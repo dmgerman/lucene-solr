@@ -1710,14 +1710,47 @@ name|String
 argument_list|>
 argument_list|()
 decl_stmt|;
-comment|// TODO:
-comment|//final int numTerms = atLeast(10);
-specifier|final
 name|int
 name|numTerms
-init|=
-literal|4
 decl_stmt|;
+if|if
+condition|(
+name|random
+argument_list|()
+operator|.
+name|nextInt
+argument_list|(
+literal|10
+argument_list|)
+operator|==
+literal|7
+condition|)
+block|{
+name|numTerms
+operator|=
+name|atLeast
+argument_list|(
+literal|50
+argument_list|)
+expr_stmt|;
+block|}
+else|else
+block|{
+name|numTerms
+operator|=
+name|_TestUtil
+operator|.
+name|nextInt
+argument_list|(
+name|random
+argument_list|()
+argument_list|,
+literal|2
+argument_list|,
+literal|20
+argument_list|)
+expr_stmt|;
+block|}
 for|for
 control|(
 name|int
@@ -3170,6 +3203,18 @@ name|maxTestOptions
 argument_list|)
 expr_stmt|;
 block|}
+comment|// Make sure TermsEnum really is positioned on the
+comment|// expected term:
+name|assertEquals
+argument_list|(
+name|term
+argument_list|,
+name|termsEnum
+operator|.
+name|term
+argument_list|()
+argument_list|)
+expr_stmt|;
 comment|// 50% of the time time pass liveDocs:
 name|boolean
 name|useLiveDocs
