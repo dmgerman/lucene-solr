@@ -1872,7 +1872,6 @@ argument_list|,
 name|facetArrays
 argument_list|)
 decl_stmt|;
-comment|// TODO: remove! facetRequest.createAggregator(isUsingComplements, facetArrays, taxonomyReader);
 name|CategoryListIterator
 name|cli
 init|=
