@@ -1,6 +1,6 @@
 begin_unit|revision:0.9.5;language:Java;cregit-version:0.0.1
 begin_package
-DECL|package|org.apache.lucene.facet.util
+DECL|package|org.apache.lucene.facet.old
 package|package
 name|org
 operator|.
@@ -10,7 +10,7 @@ name|lucene
 operator|.
 name|facet
 operator|.
-name|util
+name|old
 package|;
 end_package
 
@@ -129,38 +129,6 @@ operator|.
 name|facet
 operator|.
 name|FacetTestCase
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|facet
-operator|.
-name|search
-operator|.
-name|ScoredDocIDs
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|facet
-operator|.
-name|search
-operator|.
-name|ScoredDocIDsIterator
 import|;
 end_import
 

@@ -16,16 +16,6 @@ end_package
 
 begin_import
 import|import
-name|java
-operator|.
-name|io
-operator|.
-name|IOException
-import|;
-end_import
-
-begin_import
-import|import
 name|org
 operator|.
 name|apache
@@ -87,22 +77,6 @@ operator|.
 name|taxonomy
 operator|.
 name|CategoryPath
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|facet
-operator|.
-name|taxonomy
-operator|.
-name|TaxonomyReader
 import|;
 end_import
 
@@ -285,34 +259,6 @@ name|this
 operator|.
 name|numResults
 expr_stmt|;
-block|}
-comment|/**    * Create an aggregator for this facet request. Aggregator action depends on    * request definition. For a count request, it will usually increment the    * count for that facet.    *     * @param useComplements    *          whether the complements optimization is being used for current    *          computation.    * @param arrays    *          provider for facet arrays in use for current computation.    * @param taxonomy    *          reader of taxonomy in effect.    * @throws IOException If there is a low-level I/O error.    */
-DECL|method|createAggregator
-specifier|public
-name|Aggregator
-name|createAggregator
-parameter_list|(
-name|boolean
-name|useComplements
-parameter_list|,
-name|FacetArrays
-name|arrays
-parameter_list|,
-name|TaxonomyReader
-name|taxonomy
-parameter_list|)
-throws|throws
-name|IOException
-block|{
-throw|throw
-operator|new
-name|UnsupportedOperationException
-argument_list|(
-literal|"this FacetRequest does not support this type of Aggregator anymore; "
-operator|+
-literal|"you should override FacetsAccumulator to return the proper FacetsAggregator"
-argument_list|)
-throw|;
 block|}
 comment|/**    * Returns the {@link FacetsAggregator} which can aggregate the categories of    * this facet request. The aggregator is expected to aggregate category values    * into {@link FacetArrays}. If the facet request does not support that, e.g.    * {@link RangeFacetRequest}, it can return {@code null}. Note though that    * such requests require a dedicated {@link FacetsAccumulator}.    */
 DECL|method|createFacetsAggregator

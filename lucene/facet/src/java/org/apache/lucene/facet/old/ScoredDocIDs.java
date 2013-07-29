@@ -1,6 +1,6 @@
 begin_unit|revision:0.9.5;language:Java;cregit-version:0.0.1
 begin_package
-DECL|package|org.apache.lucene.facet.search
+DECL|package|org.apache.lucene.facet.old
 package|package
 name|org
 operator|.
@@ -10,7 +10,7 @@ name|lucene
 operator|.
 name|facet
 operator|.
-name|search
+name|old
 package|;
 end_package
 
@@ -43,7 +43,7 @@ comment|/*  * Licensed to the Apache Software Foundation (ASF) under one or more
 end_comment
 
 begin_comment
-comment|/**  * Document IDs with scores for each, driving facets accumulation. Document  * scores are optionally used in the process of facets scoring.  *   * @see StandardFacetsAccumulator#accumulate(ScoredDocIDs)  * @lucene.experimental  */
+comment|/**  * Document IDs with scores for each, driving facets accumulation. Document  * scores are optionally used in the process of facets scoring.  *   * @see OldFacetsAccumulator#accumulate(ScoredDocIDs)  * @lucene.experimental  */
 end_comment
 
 begin_interface
