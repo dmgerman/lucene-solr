@@ -4061,6 +4061,7 @@ name|void
 name|testPackedIntsNull
 parameter_list|()
 block|{
+comment|// must be> 10 for the bulk reads below
 name|int
 name|size
 init|=
@@ -4071,7 +4072,7 @@ argument_list|(
 name|random
 argument_list|()
 argument_list|,
-literal|0
+literal|11
 argument_list|,
 literal|256
 argument_list|)
