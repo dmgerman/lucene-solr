@@ -275,13 +275,10 @@ condition|(
 name|bytes
 operator|.
 name|length
-operator|==
+operator|>
 literal|0
 condition|)
 block|{
-continue|continue;
-comment|// no associations for this document
-block|}
 comment|// aggreate float association values for ordinals
 name|int
 name|bytesUpto
@@ -446,6 +443,7 @@ argument_list|(
 name|value
 argument_list|)
 expr_stmt|;
+block|}
 block|}
 operator|++
 name|doc

@@ -516,7 +516,7 @@ literal|0
 init|;
 name|i
 operator|<
-literal|100
+literal|110
 condition|;
 name|i
 operator|++
@@ -536,6 +536,17 @@ operator|new
 name|CategoryAssociationsContainer
 argument_list|()
 decl_stmt|;
+comment|// every 11th document is added empty, this used to cause the association
+comment|// aggregators to go into an infinite loop
+if|if
+condition|(
+name|i
+operator|%
+literal|11
+operator|!=
+literal|0
+condition|)
+block|{
 name|associations
 operator|.
 name|setAssociation
@@ -598,6 +609,7 @@ literal|0.2f
 argument_list|)
 argument_list|)
 expr_stmt|;
+block|}
 block|}
 name|assocFacetFields
 operator|.
