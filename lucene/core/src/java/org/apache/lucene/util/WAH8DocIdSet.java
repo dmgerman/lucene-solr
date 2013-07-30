@@ -128,6 +128,22 @@ name|MonotonicAppendingLongBuffer
 import|;
 end_import
 
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|util
+operator|.
+name|packed
+operator|.
+name|PackedInts
+import|;
+end_import
+
 begin_comment
 comment|/**  * {@link DocIdSet} implementation based on word-aligned hybrid encoding on  * words of 8 bits.  *<p>This implementation doesn't support random-access but has a fast  * {@link DocIdSetIterator} which can advance in logarithmic time thanks to  * an index.</p>  *<p>The compression scheme is simplistic and should work well with sparse doc  * id sets while being only slightly larger than a {@link FixedBitSet} for  * incompressible sets (overhead&lt;2% in the worst case) in spite of the index.</p>  *<p><b>Format</b>: The format is byte-aligned. An 8-bits word is either clean,  * meaning composed only of zeros, or dirty, meaning that it contains at least one  * bit set. The idea is to encode sequences of clean words using run-length  * encoding and to leave sequences of dirty words as-is.</p>  *<table>  *<tr><th>Token</th><th>Clean length+</th><th>Dirty length+</th><th>Dirty words</th></tr>  *<tr><td>1 byte</td><td>0-n bytes</td><td>0-n bytes</td><td>0-n bytes</td></tr>  *</table>  *<ul>  *<li><b>Token</b> encodes the number of clean words minus 2 on the first 4  * bits and the number of dirty words minus 1 on the last 4 bits. The  * higher-order bit is a continuation bit, meaning that the number is incomplete  * and needs additional bytes to be read.</li>  *<li><b>Clean length+</b>: If clean length has its higher-order bit set,  * you need to read a {@link DataInput#readVInt() vint}, shift it by 3 bits on  * the left side and add it to the 3 bits which have been read in the token.</li>  *<li><b>Dirty length+</b> works the same way as<b>Clean length+</b> but  * for the length of dirty words.</li>  *<li><b>Dirty words</b> are the dirty words, there are<b>Dirty length</b>  * of them.</li>  *</ul>  *<p>This format cannot encode sequences of less than 2 clean words and 1 dirty  * word. The reason is that if you find a single clean word, you should rather  * encode it as a dirty word. This takes the same space as starting a new  * sequence (since you need one byte for the token) but will be lighter to  * decode. There is however an exception for the first sequence. Since the first  * sequence may start directly with a dirty word, the clean length is encoded  * directly, without subtracting 2.</p>  *<p>There is an additional restriction on the format: the sequence of dirty  * words must start and end with a non-null word and is not allowed to contain  * two consecutive null words. This restriction exists to make sure no space is  * wasted and to make sure iterators can read the next doc ID by reading at most  * 2 dirty words.</p>  * @lucene.experimental  */
 end_comment
@@ -1420,6 +1436,10 @@ argument_list|(
 name|initialPageCount
 argument_list|,
 name|pageSize
+argument_list|,
+name|PackedInts
+operator|.
+name|COMPACT
 argument_list|)
 decl_stmt|;
 specifier|final
@@ -1432,6 +1452,10 @@ argument_list|(
 name|initialPageCount
 argument_list|,
 name|pageSize
+argument_list|,
+name|PackedInts
+operator|.
+name|COMPACT
 argument_list|)
 decl_stmt|;
 name|positions

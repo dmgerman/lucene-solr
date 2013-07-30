@@ -86,7 +86,23 @@ name|util
 operator|.
 name|packed
 operator|.
-name|AppendingLongBuffer
+name|AppendingDeltaPackedLongBuffer
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|util
+operator|.
+name|packed
+operator|.
+name|PackedInts
 import|;
 end_import
 
@@ -112,7 +128,7 @@ literal|0L
 decl_stmt|;
 DECL|field|pending
 specifier|private
-name|AppendingLongBuffer
+name|AppendingDeltaPackedLongBuffer
 name|pending
 decl_stmt|;
 DECL|field|iwBytesUsed
@@ -146,8 +162,12 @@ block|{
 name|pending
 operator|=
 operator|new
-name|AppendingLongBuffer
-argument_list|()
+name|AppendingDeltaPackedLongBuffer
+argument_list|(
+name|PackedInts
+operator|.
+name|COMPACT
+argument_list|)
 expr_stmt|;
 name|bytesUsed
 operator|=
@@ -376,7 +396,7 @@ argument_list|>
 block|{
 DECL|field|iter
 specifier|final
-name|AppendingLongBuffer
+name|AppendingDeltaPackedLongBuffer
 operator|.
 name|Iterator
 name|iter
