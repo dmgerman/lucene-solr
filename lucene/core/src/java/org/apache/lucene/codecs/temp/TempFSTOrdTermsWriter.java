@@ -425,14 +425,7 @@ name|SKIP_INTERVAL
 init|=
 literal|8
 decl_stmt|;
-DECL|field|TEST
-specifier|static
-specifier|final
-name|boolean
-name|TEST
-init|=
-literal|false
-decl_stmt|;
+comment|//static final boolean TEST = false;
 DECL|field|postingsWriter
 specifier|final
 name|TempPostingsWriterBase
