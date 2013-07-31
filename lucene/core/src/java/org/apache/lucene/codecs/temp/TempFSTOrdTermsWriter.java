@@ -1006,7 +1006,7 @@ specifier|public
 name|RAMOutputStream
 name|metaLongsOut
 decl_stmt|;
-comment|// vint encode metalongs[0~(fieldSize-1)] and metaBytes[startFPdelta, len]
+comment|// vint encode monotonic long[] and length for corresponding byte[]
 DECL|field|metaBytesOut
 specifier|public
 name|RAMOutputStream
