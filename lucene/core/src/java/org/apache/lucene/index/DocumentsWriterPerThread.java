@@ -1886,8 +1886,8 @@ operator|++
 name|numDocsInRAM
 expr_stmt|;
 block|}
-comment|// Buffer a specific docID for deletion.  Currently only
-comment|// used when we hit a exception when adding a document
+comment|// Buffer a specific docID for deletion. Currently only
+comment|// used when we hit an exception when adding a document
 DECL|method|deleteDocID
 name|void
 name|deleteDocID

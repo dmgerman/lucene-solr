@@ -246,7 +246,7 @@ operator|=
 name|context
 expr_stmt|;
 block|}
-comment|/**    * Create a shallow {@link SegmentWriteState} copy final a format ID    */
+comment|/** Create a shallow copy of {@link SegmentWriteState} with a new segment suffix. */
 DECL|method|SegmentWriteState
 specifier|public
 name|SegmentWriteState

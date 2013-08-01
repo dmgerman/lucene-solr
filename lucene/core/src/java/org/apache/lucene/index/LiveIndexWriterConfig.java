@@ -627,7 +627,7 @@ return|return
 name|analyzer
 return|;
 block|}
-comment|/**    * Determines the minimal number of delete terms required before the buffered    * in-memory delete terms and queries are applied and flushed.    *<p>    * Disabled by default (writer flushes by RAM usage).    *<p>    * NOTE: This setting won't trigger a segment flush.    *     *<p>    * Takes effect immediately, but only the next time a document is added,    * updated or deleted.    *     * @throws IllegalArgumentException    *           if maxBufferedDeleteTerms is enabled but smaller than 1    *     * @see #setRAMBufferSizeMB    */
+comment|/**    * Determines the maximum number of delete-by-term operations that will be    * buffered before both the buffered in-memory delete terms and queries are    * applied and flushed.    *<p>    * Disabled by default (writer flushes by RAM usage).    *<p>    * NOTE: This setting won't trigger a segment flush.    *     *<p>    * Takes effect immediately, but only the next time a document is added,    * updated or deleted. Also, if you only delete-by-query, this setting has no    * effect, i.e. delete queries are buffered until the next segment is flushed.    *     * @throws IllegalArgumentException    *           if maxBufferedDeleteTerms is enabled but smaller than 1    *     * @see #setRAMBufferSizeMB    */
 DECL|method|setMaxBufferedDeleteTerms
 specifier|public
 name|LiveIndexWriterConfig
