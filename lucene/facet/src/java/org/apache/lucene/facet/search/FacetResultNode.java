@@ -89,7 +89,7 @@ comment|/*  * Licensed to the Apache Software Foundation (ASF) under one or more
 end_comment
 
 begin_comment
-comment|/**  * Result of faceted search for a certain taxonomy node. This class serves as a  * bin of different attributes of the result node, such as its {@link #ordinal}  * as well as {@link #label}. You are not expected to modify those values.  *   * @lucene.experimental  */
+comment|/**  * Result of faceted search for a certain taxonomy node. This class serves as a  * bin of different attributes of the result node, such as its {@link #ordinal}  * as well as {@link #label}. You are not expected to modify those values.  *<p>  * This class implements {@link Comparable} for easy comparisons of result  * nodes, e.g. when sorting or computing top-K nodes.  *   * @lucene.experimental  */
 end_comment
 
 begin_class
@@ -97,6 +97,11 @@ DECL|class|FacetResultNode
 specifier|public
 class|class
 name|FacetResultNode
+implements|implements
+name|Comparable
+argument_list|<
+name|FacetResultNode
+argument_list|>
 block|{
 DECL|field|EMPTY_SUB_RESULTS
 specifier|public
@@ -165,6 +170,51 @@ name|value
 operator|=
 name|value
 expr_stmt|;
+block|}
+annotation|@
+name|Override
+DECL|method|compareTo
+specifier|public
+name|int
+name|compareTo
+parameter_list|(
+name|FacetResultNode
+name|o
+parameter_list|)
+block|{
+name|int
+name|res
+init|=
+name|Double
+operator|.
+name|compare
+argument_list|(
+name|value
+argument_list|,
+name|o
+operator|.
+name|value
+argument_list|)
+decl_stmt|;
+if|if
+condition|(
+name|res
+operator|==
+literal|0
+condition|)
+block|{
+name|res
+operator|=
+name|ordinal
+operator|-
+name|o
+operator|.
+name|ordinal
+expr_stmt|;
+block|}
+return|return
+name|res
+return|;
 block|}
 annotation|@
 name|Override

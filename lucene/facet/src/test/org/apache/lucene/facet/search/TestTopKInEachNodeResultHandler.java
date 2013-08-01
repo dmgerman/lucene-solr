@@ -1447,6 +1447,13 @@ operator|.
 name|createFacetResultsHandler
 argument_list|(
 name|cfra23
+argument_list|,
+name|sfa
+operator|.
+name|createOrdinalValueResolver
+argument_list|(
+name|cfra23
+argument_list|)
 argument_list|)
 operator|.
 name|rearrangeFacetResult

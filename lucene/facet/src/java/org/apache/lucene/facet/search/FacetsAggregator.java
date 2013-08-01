@@ -139,6 +139,19 @@ name|boolean
 name|requiresDocScores
 parameter_list|()
 function_decl|;
+comment|/**    * Creates the appropriate {@link OrdinalValueResolver} for this aggregator    * and the given {@link FacetRequest}. The request is passed so that compound    * aggregators can return the correct {@link OrdinalValueResolver}.    */
+DECL|method|createOrdinalValueResolver
+specifier|public
+name|OrdinalValueResolver
+name|createOrdinalValueResolver
+parameter_list|(
+name|FacetRequest
+name|facetRequest
+parameter_list|,
+name|FacetArrays
+name|arrays
+parameter_list|)
+function_decl|;
 block|}
 end_interface
 

@@ -109,24 +109,6 @@ comment|/**      * Constraints are applied globally, on total number of results,
 DECL|enum constant|GLOBAL_FLAT
 name|GLOBAL_FLAT
 block|}
-comment|/**    * Specifies which array of {@link FacetArrays} should be used to resolve    * values. When set to {@link #INT} or {@link #FLOAT}, allows creating an    * optimized {@link FacetResultsHandler}, which does not call    * {@link FacetRequest#getValueOf(FacetArrays, int)} for every ordinal.    *<p>    * If set to {@link #BOTH}, the {@link FacetResultsHandler} will use    * {@link FacetRequest#getValueOf(FacetArrays, int)} to resolve ordinal    * values, although it is recommended that you consider writing a specialized    * {@link FacetResultsHandler}.    *<p>    * Can also be set to {@link #NONE}, to indicate that this    * {@link FacetRequest} does not use {@link FacetArrays} to aggregate its    * result categories. Such requests won't use {@link FacetResultsHandler}.    */
-DECL|enum|FacetArraysSource
-DECL|enum constant|INT
-DECL|enum constant|FLOAT
-DECL|enum constant|BOTH
-DECL|enum constant|NONE
-specifier|public
-enum|enum
-name|FacetArraysSource
-block|{
-name|INT
-block|,
-name|FLOAT
-block|,
-name|BOTH
-block|,
-name|NONE
-block|}
 comment|/**    * Defines which categories to return. If {@link #DESCENDING} (the default),    * the highest {@link FacetRequest#numResults} weighted categories will be    * returned, otherwise the lowest ones.    */
 DECL|enum|SortOrder
 DECL|enum constant|ASCENDING
@@ -375,14 +357,6 @@ return|return
 name|depth
 return|;
 block|}
-comment|/**    * Returns the {@link FacetArraysSource} this request uses in    * {@link #getValueOf(FacetArrays, int)}.    */
-DECL|method|getFacetArraysSource
-specifier|public
-specifier|abstract
-name|FacetArraysSource
-name|getFacetArraysSource
-parameter_list|()
-function_decl|;
 comment|/**    * Allows to specify the number of categories to label. By default all    * returned categories are labeled.    *<p>    * This allows an app to request a large number of results to return, while    * labeling them on-demand (e.g. when the UI requests to show more    * categories).    */
 DECL|method|getNumLabel
 specifier|public
@@ -419,23 +393,6 @@ return|return
 name|sortOrder
 return|;
 block|}
-comment|/**    * Return the weight of the requested category ordinal. A {@link FacetRequest}    * is responsible for resolving the weight of a category given the    * {@link FacetArrays} and {@link #getFacetArraysSource()}. E.g. a counting    * request will probably return the value of the category from    * {@link FacetArrays#getIntArray()} while an average-weighting request will    * compute the value using both arrays.    *     * @param arrays    *          the arrays used to aggregate the categories weights.    * @param ordinal    *          the category ordinal for which to return the weight.    */
-comment|// TODO perhaps instead of getValueOf we can have a postProcess(FacetArrays)
-comment|// That, together with getFacetArraysSource should allow ResultHandlers to
-comment|// efficiently obtain the values from the arrays directly
-DECL|method|getValueOf
-specifier|public
-specifier|abstract
-name|double
-name|getValueOf
-parameter_list|(
-name|FacetArrays
-name|arrays
-parameter_list|,
-name|int
-name|ordinal
-parameter_list|)
-function_decl|;
 annotation|@
 name|Override
 DECL|method|hashCode
