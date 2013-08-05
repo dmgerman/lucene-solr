@@ -580,6 +580,15 @@ name|zkClient
 argument_list|,
 name|solrhome
 argument_list|,
+literal|"solrconfig.snippet.randomindexconfig.xml"
+argument_list|)
+expr_stmt|;
+name|putConfig
+argument_list|(
+name|zkClient
+argument_list|,
+name|solrhome
+argument_list|,
 literal|"stopwords.txt"
 argument_list|)
 expr_stmt|;
