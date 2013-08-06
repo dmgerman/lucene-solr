@@ -4703,6 +4703,7 @@ operator|.
 name|getParams
 argument_list|()
 decl_stmt|;
+specifier|final
 name|int
 name|numTerms
 init|=
@@ -4867,6 +4868,10 @@ literal|1
 expr_stmt|;
 if|if
 condition|(
+name|numTerms
+operator|>
+literal|0
+operator|&&
 name|freq
 operator|>
 name|tiq
