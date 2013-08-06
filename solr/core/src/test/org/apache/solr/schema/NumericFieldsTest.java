@@ -83,7 +83,7 @@ name|Exception
 block|{
 name|initCore
 argument_list|(
-literal|"solrconfig-master.xml"
+literal|"solrconfig-basic.xml"
 argument_list|,
 literal|"schema-numeric.xml"
 argument_list|)

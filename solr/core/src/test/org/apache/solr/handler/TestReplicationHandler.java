@@ -8667,6 +8667,15 @@ argument_list|,
 literal|"schema.xml"
 argument_list|)
 expr_stmt|;
+name|copyConfigFile
+argument_list|(
+name|CONF_DIR
+operator|+
+literal|"solrconfig.snippet.randomindexconfig.xml"
+argument_list|,
+literal|"solrconfig.snippet.randomindexconfig.xml"
+argument_list|)
+expr_stmt|;
 block|}
 DECL|method|tearDown
 specifier|public
