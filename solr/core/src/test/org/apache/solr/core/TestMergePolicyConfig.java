@@ -22,6 +22,20 @@ name|org
 operator|.
 name|apache
 operator|.
+name|solr
+operator|.
+name|update
+operator|.
+name|SolrIndexConfigTest
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
 name|lucene
 operator|.
 name|index
@@ -134,6 +148,20 @@ name|org
 operator|.
 name|apache
 operator|.
+name|lucene
+operator|.
+name|index
+operator|.
+name|ConcurrentMergeScheduler
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
 name|solr
 operator|.
 name|core
@@ -205,6 +233,10 @@ operator|.
 name|AtomicInteger
 import|;
 end_import
+
+begin_comment
+comment|/** @see SolrIndexConfigTest */
+end_comment
 
 begin_class
 DECL|class|TestMergePolicyConfig
