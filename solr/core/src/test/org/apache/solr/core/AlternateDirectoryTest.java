@@ -96,6 +96,10 @@ name|Test
 import|;
 end_import
 
+begin_comment
+comment|/**  * test that configs can override the DirectoryFactory and   * IndexReaderFactory used in solr.  */
+end_comment
+
 begin_class
 DECL|class|AlternateDirectoryTest
 specifier|public
@@ -123,9 +127,6 @@ literal|"schema.xml"
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**    * Simple test to ensure that alternate IndexReaderFactory is being used.    */
-annotation|@
-name|Test
 DECL|method|testAltDirectoryUsed
 specifier|public
 name|void
@@ -160,6 +161,55 @@ argument_list|(
 name|TestIndexReaderFactory
 operator|.
 name|newReaderCalled
+argument_list|)
+expr_stmt|;
+block|}
+DECL|method|testAltReaderUsed
+specifier|public
+name|void
+name|testAltReaderUsed
+parameter_list|()
+throws|throws
+name|Exception
+block|{
+name|IndexReaderFactory
+name|readerFactory
+init|=
+name|h
+operator|.
+name|getCore
+argument_list|()
+operator|.
+name|getIndexReaderFactory
+argument_list|()
+decl_stmt|;
+name|assertNotNull
+argument_list|(
+literal|"Factory is null"
+argument_list|,
+name|readerFactory
+argument_list|)
+expr_stmt|;
+name|assertEquals
+argument_list|(
+literal|"readerFactory is wrong class"
+argument_list|,
+name|AlternateDirectoryTest
+operator|.
+name|TestIndexReaderFactory
+operator|.
+name|class
+operator|.
+name|getName
+argument_list|()
+argument_list|,
+name|readerFactory
+operator|.
+name|getClass
+argument_list|()
+operator|.
+name|getName
+argument_list|()
 argument_list|)
 expr_stmt|;
 block|}
