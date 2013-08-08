@@ -26,6 +26,20 @@ name|lucene
 operator|.
 name|index
 operator|.
+name|LogDocMergePolicy
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|index
+operator|.
 name|AtomicReaderContext
 import|;
 end_import
@@ -189,6 +203,22 @@ parameter_list|()
 throws|throws
 name|Exception
 block|{
+comment|// we need a consistent segmentation because reopen test validation
+comment|// dependso n merges not happening when it doesn't expect
+name|System
+operator|.
+name|setProperty
+argument_list|(
+literal|"solr.tests.mergePolicy"
+argument_list|,
+name|LogDocMergePolicy
+operator|.
+name|class
+operator|.
+name|getName
+argument_list|()
+argument_list|)
+expr_stmt|;
 name|initCore
 argument_list|(
 literal|"solrconfig.xml"
