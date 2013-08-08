@@ -648,6 +648,44 @@ argument_list|,
 name|readLength
 argument_list|)
 decl_stmt|;
+if|if
+condition|(
+name|i
+operator|<
+literal|0
+condition|)
+block|{
+comment|//be defensive here, even though we checked before hand, something could have changed
+throw|throw
+operator|new
+name|EOFException
+argument_list|(
+literal|"read past EOF: "
+operator|+
+name|this
+operator|+
+literal|" off: "
+operator|+
+name|offset
+operator|+
+literal|" len: "
+operator|+
+name|len
+operator|+
+literal|" total: "
+operator|+
+name|total
+operator|+
+literal|" readLen: "
+operator|+
+name|readLength
+operator|+
+literal|" end: "
+operator|+
+name|end
+argument_list|)
+throw|;
+block|}
 name|total
 operator|+=
 name|i

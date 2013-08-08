@@ -815,6 +815,44 @@ argument_list|,
 name|pos
 argument_list|)
 decl_stmt|;
+if|if
+condition|(
+name|i
+operator|<
+literal|0
+condition|)
+block|{
+comment|//be defensive here, even though we checked before hand, something could have changed
+throw|throw
+operator|new
+name|EOFException
+argument_list|(
+literal|"read past EOF: "
+operator|+
+name|this
+operator|+
+literal|" off: "
+operator|+
+name|offset
+operator|+
+literal|" len: "
+operator|+
+name|len
+operator|+
+literal|" pos: "
+operator|+
+name|pos
+operator|+
+literal|" limit: "
+operator|+
+name|limit
+operator|+
+literal|" end: "
+operator|+
+name|end
+argument_list|)
+throw|;
+block|}
 name|pos
 operator|+=
 name|i
