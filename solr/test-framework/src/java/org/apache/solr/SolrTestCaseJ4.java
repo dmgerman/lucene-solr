@@ -1002,6 +1002,15 @@ argument_list|()
 argument_list|)
 argument_list|)
 expr_stmt|;
+name|System
+operator|.
+name|setProperty
+argument_list|(
+literal|"solr.clustering.enabled"
+argument_list|,
+literal|"false"
+argument_list|)
+expr_stmt|;
 name|setupLogging
 argument_list|()
 expr_stmt|;
