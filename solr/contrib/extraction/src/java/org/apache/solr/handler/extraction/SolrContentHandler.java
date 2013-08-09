@@ -1556,6 +1556,37 @@ name|length
 argument_list|)
 expr_stmt|;
 block|}
+comment|/**    * Treat the same as any other characters    */
+annotation|@
+name|Override
+DECL|method|ignorableWhitespace
+specifier|public
+name|void
+name|ignorableWhitespace
+parameter_list|(
+name|char
+index|[]
+name|chars
+parameter_list|,
+name|int
+name|offset
+parameter_list|,
+name|int
+name|length
+parameter_list|)
+throws|throws
+name|SAXException
+block|{
+name|characters
+argument_list|(
+name|chars
+argument_list|,
+name|offset
+argument_list|,
+name|length
+argument_list|)
+expr_stmt|;
+block|}
 comment|/**    * Can be used to transform input values based on their {@link org.apache.solr.schema.SchemaField}    *<p/>    * This implementation only formats dates using the {@link org.apache.solr.common.util.DateUtil}.    *    * @param val    The value to transform    * @param schFld The {@link org.apache.solr.schema.SchemaField}    * @return The potentially new value.    */
 DECL|method|transformValue
 specifier|protected
