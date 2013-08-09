@@ -86,6 +86,18 @@ name|apache
 operator|.
 name|solr
 operator|.
+name|SolrTestCaseJ4
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|solr
+operator|.
 name|util
 operator|.
 name|ExternalPaths
@@ -224,7 +236,7 @@ specifier|public
 class|class
 name|JettyWebappTest
 extends|extends
-name|LuceneTestCase
+name|SolrTestCaseJ4
 block|{
 DECL|field|port
 name|int
