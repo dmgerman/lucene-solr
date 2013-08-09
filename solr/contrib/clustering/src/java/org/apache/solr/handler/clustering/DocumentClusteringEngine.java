@@ -88,7 +88,7 @@ name|SolrParams
 name|solrParams
 parameter_list|)
 function_decl|;
-comment|/**    *  Experimental.  Subject to change before the next release    *    *    * Cluster the set of docs.  Clustering of documents is often an expensive task that can take a long time.    * @param docs The docs to cluster.  If null, cluster all docs as in {@link #cluster(org.apache.solr.common.params.SolrParams)}    * @param solrParams The params controlling the clustering    * @return The results.    */
+comment|/**    * Experimental.  Subject to change before the next release    *    * Cluster the set of docs.  Clustering of documents is often an expensive task that can take a long time.    * @param docs The docs to cluster.  If null, cluster all docs as in {@link #cluster(org.apache.solr.common.params.SolrParams)}    * @param solrParams The params controlling the clustering    * @return The results.    */
 DECL|method|cluster
 specifier|public
 specifier|abstract
