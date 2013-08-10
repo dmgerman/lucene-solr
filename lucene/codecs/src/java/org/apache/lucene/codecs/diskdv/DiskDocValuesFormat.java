@@ -225,6 +225,15 @@ name|VERSION_START
 init|=
 literal|0
 decl_stmt|;
+DECL|field|VERSION_COMPRESSED_TERMS
+specifier|public
+specifier|static
+specifier|final
+name|int
+name|VERSION_COMPRESSED_TERMS
+init|=
+literal|1
+decl_stmt|;
 DECL|field|VERSION_CURRENT
 specifier|public
 specifier|static
@@ -232,7 +241,7 @@ specifier|final
 name|int
 name|VERSION_CURRENT
 init|=
-name|VERSION_START
+name|VERSION_COMPRESSED_TERMS
 decl_stmt|;
 DECL|field|NUMERIC
 specifier|public
