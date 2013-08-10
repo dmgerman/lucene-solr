@@ -161,7 +161,7 @@ name|FSDirectory
 extends|extends
 name|Directory
 block|{
-comment|/**    * Default read chunk size.  This is a conditional default: on 32bit JVMs, it defaults to 100 MB.  On 64bit JVMs, it's    *<code>Integer.MAX_VALUE</code>.    *    * @see #setReadChunkSize    */
+comment|/**    * Default read chunk size: 2*{@link BufferedIndexInput#MERGE_BUFFER_SIZE}.    */
 DECL|field|DEFAULT_READ_CHUNK_SIZE
 specifier|public
 specifier|static
@@ -169,19 +169,11 @@ specifier|final
 name|int
 name|DEFAULT_READ_CHUNK_SIZE
 init|=
-name|Constants
+name|BufferedIndexInput
 operator|.
-name|JRE_IS_64BIT
-condition|?
-name|Integer
-operator|.
-name|MAX_VALUE
-else|:
-literal|100
+name|MERGE_BUFFER_SIZE
 operator|*
-literal|1024
-operator|*
-literal|1024
+literal|2
 decl_stmt|;
 DECL|field|directory
 specifier|protected
@@ -1171,7 +1163,7 @@ name|getLockFactory
 argument_list|()
 return|;
 block|}
-comment|/**    * Sets the maximum number of bytes read at once from the    * underlying file during {@link IndexInput#readBytes}.    * The default value is {@link #DEFAULT_READ_CHUNK_SIZE};    *    *<p> This was introduced due to<a    * href="http://bugs.sun.com/bugdatabase/view_bug.do?bug_id=6478546">Sun    * JVM Bug 6478546</a>, which throws an incorrect    * OutOfMemoryError when attempting to read too many bytes    * at once.  It only happens on 32bit JVMs with a large    * maximum heap size.</p>    *    *<p>Changes to this value will not impact any    * already-opened {@link IndexInput}s.  You should call    * this before attempting to open an index on the    * directory.</p>    *    *<p><b>NOTE</b>: This value should be as large as    * possible to reduce any possible performance impact.  If    * you still encounter an incorrect OutOfMemoryError,    * trying lowering the chunk size.</p>    */
+comment|/**    * Sets the maximum number of bytes read at once from the    * underlying file during {@link IndexInput#readBytes}.    * The default value is {@link #DEFAULT_READ_CHUNK_SIZE};    *    *<p> This was introduced due to<a    * href="http://bugs.sun.com/bugdatabase/view_bug.do?bug_id=6478546">Sun    * JVM Bug 6478546</a>, which throws an incorrect    * OutOfMemoryError when attempting to read too many bytes    * at once.  It only happens on 32bit JVMs with a large    * maximum heap size.</p>    *    *<p>Changes to this value will not impact any    * already-opened {@link IndexInput}s.  You should call    * this before attempting to open an index on the    * directory.</p>    */
 DECL|method|setReadChunkSize
 specifier|public
 specifier|final
@@ -1198,21 +1190,12 @@ literal|"chunkSize must be positive"
 argument_list|)
 throw|;
 block|}
-if|if
-condition|(
-operator|!
-name|Constants
-operator|.
-name|JRE_IS_64BIT
-condition|)
-block|{
 name|this
 operator|.
 name|chunkSize
 operator|=
 name|chunkSize
 expr_stmt|;
-block|}
 block|}
 comment|/**    * The maximum number of bytes to read at once from the    * underlying file during {@link IndexInput#readBytes}.    * @see #setReadChunkSize    */
 DECL|method|getReadChunkSize
