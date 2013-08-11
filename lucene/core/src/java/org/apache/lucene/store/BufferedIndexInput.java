@@ -49,7 +49,7 @@ name|BufferedIndexInput
 extends|extends
 name|IndexInput
 block|{
-comment|/** Default buffer size set to 1024*/
+comment|/** Default buffer size set to {@value #BUFFER_SIZE}. */
 DECL|field|BUFFER_SIZE
 specifier|public
 specifier|static
@@ -65,7 +65,7 @@ comment|// performance gains.  However we don't want to increase
 comment|// it too much because there are quite a few
 comment|// BufferedIndexInputs created during merging.  See
 comment|// LUCENE-888 for details.
-comment|/**    * A buffer size for merges set to 4096    */
+comment|/**    * A buffer size for merges set to {@value #MERGE_BUFFER_SIZE}.    */
 DECL|field|MERGE_BUFFER_SIZE
 specifier|public
 specifier|static
@@ -461,15 +461,18 @@ parameter_list|)
 throws|throws
 name|IOException
 block|{
+name|int
+name|available
+init|=
+name|bufferLength
+operator|-
+name|bufferPosition
+decl_stmt|;
 if|if
 condition|(
 name|len
 operator|<=
-operator|(
-name|bufferLength
-operator|-
-name|bufferPosition
-operator|)
+name|available
 condition|)
 block|{
 comment|// the buffer contains enough data to satisfy this request
@@ -503,13 +506,6 @@ block|}
 else|else
 block|{
 comment|// the buffer does not have enough data. First serve all we've got.
-name|int
-name|available
-init|=
-name|bufferLength
-operator|-
-name|bufferPosition
-decl_stmt|;
 if|if
 condition|(
 name|available

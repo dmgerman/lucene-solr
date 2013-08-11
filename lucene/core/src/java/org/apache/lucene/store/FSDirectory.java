@@ -148,6 +148,20 @@ name|Constants
 import|;
 end_import
 
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|util
+operator|.
+name|IOUtils
+import|;
+end_import
+
 begin_comment
 comment|/**  * Base class for Directory implementations that store index  * files in the file system.    *<a name="subclasses"/>  * There are currently three core  * subclasses:  *  *<ul>  *  *<li> {@link SimpleFSDirectory} is a straightforward  *       implementation using java.io.RandomAccessFile.  *       However, it has poor concurrent performance  *       (multiple threads will bottleneck) as it  *       synchronizes when multiple threads read from the  *       same file.  *  *<li> {@link NIOFSDirectory} uses java.nio's  *       FileChannel's positional io when reading to avoid  *       synchronization when reading from the same file.  *       Unfortunately, due to a Windows-only<a  *       href="http://bugs.sun.com/bugdatabase/view_bug.do?bug_id=6265734">Sun  *       JRE bug</a> this is a poor choice for Windows, but  *       on all other platforms this is the preferred  *       choice. Applications using {@link Thread#interrupt()} or  *       {@link Future#cancel(boolean)} should use  *       {@link SimpleFSDirectory} instead. See {@link NIOFSDirectory} java doc  *       for details.  *          *          *  *<li> {@link MMapDirectory} uses memory-mapped IO when  *       reading. This is a good choice if you have plenty  *       of virtual memory relative to your index size, eg  *       if you are running on a 64 bit JRE, or you are  *       running on a 32 bit JRE but your index sizes are  *       small enough to fit into the virtual memory space.  *       Java has currently the limitation of not being able to  *       unmap files from user code. The files are unmapped, when GC  *       releases the byte buffers. Due to  *<a href="http://bugs.sun.com/bugdatabase/view_bug.do?bug_id=4724038">  *       this bug</a> in Sun's JRE, MMapDirectory's {@link IndexInput#close}  *       is unable to close the underlying OS file handle. Only when  *       GC finally collects the underlying objects, which could be  *       quite some time later, will the file handle be closed.  *       This will consume additional transient disk usage: on Windows,  *       attempts to delete or overwrite the files will result in an  *       exception; on other platforms, which typically have a&quot;delete on  *       last close&quot; semantics, while such operations will succeed, the bytes  *       are still consuming space on disk.  For many applications this  *       limitation is not a problem (e.g. if you have plenty of disk space,  *       and you don't rely on overwriting files on Windows) but it's still  *       an important limitation to be aware of. This class supplies a  *       (possibly dangerous) workaround mentioned in the bug report,  *       which may fail on non-Sun JVMs.  *         *       Applications using {@link Thread#interrupt()} or  *       {@link Future#cancel(boolean)} should use  *       {@link SimpleFSDirectory} instead. See {@link MMapDirectory}  *       java doc for details.  *</ul>  *  * Unfortunately, because of system peculiarities, there is  * no single overall best implementation.  Therefore, we've  * added the {@link #open} method, to allow Lucene to choose  * the best FSDirectory implementation given your  * environment, and the known limitations of each  * implementation.  For users who have no reason to prefer a  * specific implementation, it's best to simply use {@link  * #open}.  For all others, you should instantiate the  * desired implementation directly.  *  *<p>The locking implementation is by default {@link  * NativeFSLockFactory}, but can be changed by  * passing in a custom {@link LockFactory} instance.  *  * @see Directory  */
 end_comment
@@ -161,7 +175,9 @@ name|FSDirectory
 extends|extends
 name|Directory
 block|{
-comment|/**    * Default read chunk size: 2*{@link BufferedIndexInput#MERGE_BUFFER_SIZE}.    */
+comment|/**    * Default read chunk size: 8192 bytes (this is the size up to which the JDK      does not allocate additional arrays while reading/writing)      @deprecated This constant is no longer used since Lucene 4.5.    */
+annotation|@
+name|Deprecated
 DECL|field|DEFAULT_READ_CHUNK_SIZE
 specifier|public
 specifier|static
@@ -169,11 +185,7 @@ specifier|final
 name|int
 name|DEFAULT_READ_CHUNK_SIZE
 init|=
-name|BufferedIndexInput
-operator|.
-name|MERGE_BUFFER_SIZE
-operator|*
-literal|2
+literal|8192
 decl_stmt|;
 DECL|field|directory
 specifier|protected
@@ -209,7 +221,6 @@ name|chunkSize
 init|=
 name|DEFAULT_READ_CHUNK_SIZE
 decl_stmt|;
-comment|// LUCENE-1566
 comment|// returns the canonical version of the directory, creating it if it doesn't exist.
 DECL|method|getCanonicalPath
 specifier|private
@@ -1163,7 +1174,9 @@ name|getLockFactory
 argument_list|()
 return|;
 block|}
-comment|/**    * Sets the maximum number of bytes read at once from the    * underlying file during {@link IndexInput#readBytes}.    * The default value is {@link #DEFAULT_READ_CHUNK_SIZE};    *    *<p> This was introduced due to<a    * href="http://bugs.sun.com/bugdatabase/view_bug.do?bug_id=6478546">Sun    * JVM Bug 6478546</a>, which throws an incorrect    * OutOfMemoryError when attempting to read too many bytes    * at once.  It only happens on 32bit JVMs with a large    * maximum heap size.</p>    *    *<p>Changes to this value will not impact any    * already-opened {@link IndexInput}s.  You should call    * this before attempting to open an index on the    * directory.</p>    */
+comment|/**    * This setting has no effect anymore.    * @deprecated This is no longer used since Lucene 4.5.    */
+annotation|@
+name|Deprecated
 DECL|method|setReadChunkSize
 specifier|public
 specifier|final
@@ -1174,7 +1187,6 @@ name|int
 name|chunkSize
 parameter_list|)
 block|{
-comment|// LUCENE-1566
 if|if
 condition|(
 name|chunkSize
@@ -1197,7 +1209,9 @@ operator|=
 name|chunkSize
 expr_stmt|;
 block|}
-comment|/**    * The maximum number of bytes to read at once from the    * underlying file during {@link IndexInput#readBytes}.    * @see #setReadChunkSize    */
+comment|/**    * This setting has no effect anymore.    * @deprecated This is no longer used since Lucene 4.5.    */
+annotation|@
+name|Deprecated
 DECL|method|getReadChunkSize
 specifier|public
 specifier|final
@@ -1205,7 +1219,6 @@ name|int
 name|getReadChunkSize
 parameter_list|()
 block|{
-comment|// LUCENE-1566
 return|return
 name|chunkSize
 return|;
@@ -1219,6 +1232,16 @@ name|FSIndexOutput
 extends|extends
 name|BufferedIndexOutput
 block|{
+comment|/**      * The maximum chunk size is 8192 bytes, because {@link RandomAccessFile} mallocs      * a native buffer outside of stack if the write buffer size is larger.      */
+DECL|field|CHUNK_SIZE
+specifier|private
+specifier|static
+specifier|final
+name|int
+name|CHUNK_SIZE
+init|=
+literal|8192
+decl_stmt|;
 DECL|field|parent
 specifier|private
 specifier|final
@@ -1257,6 +1280,11 @@ parameter_list|)
 throws|throws
 name|IOException
 block|{
+name|super
+argument_list|(
+name|CHUNK_SIZE
+argument_list|)
+expr_stmt|;
 name|this
 operator|.
 name|parent
@@ -1292,11 +1320,10 @@ operator|=
 literal|true
 expr_stmt|;
 block|}
-comment|/** output methods: */
 annotation|@
 name|Override
 DECL|method|flushBuffer
-specifier|public
+specifier|protected
 name|void
 name|flushBuffer
 parameter_list|(
@@ -1316,6 +1343,26 @@ block|{
 assert|assert
 name|isOpen
 assert|;
+while|while
+condition|(
+name|size
+operator|>
+literal|0
+condition|)
+block|{
+specifier|final
+name|int
+name|toWrite
+init|=
+name|Math
+operator|.
+name|min
+argument_list|(
+name|CHUNK_SIZE
+argument_list|,
+name|size
+argument_list|)
+decl_stmt|;
 name|file
 operator|.
 name|write
@@ -1324,9 +1371,23 @@ name|b
 argument_list|,
 name|offset
 argument_list|,
-name|size
+name|toWrite
 argument_list|)
 expr_stmt|;
+name|offset
+operator|+=
+name|toWrite
+expr_stmt|;
+name|size
+operator|-=
+name|toWrite
+expr_stmt|;
+block|}
+assert|assert
+name|size
+operator|==
+literal|0
+assert|;
 block|}
 annotation|@
 name|Override
@@ -1351,10 +1412,10 @@ condition|(
 name|isOpen
 condition|)
 block|{
-name|boolean
-name|success
+name|IOException
+name|priorE
 init|=
-literal|false
+literal|null
 decl_stmt|;
 try|try
 block|{
@@ -1363,9 +1424,16 @@ operator|.
 name|close
 argument_list|()
 expr_stmt|;
-name|success
+block|}
+catch|catch
+parameter_list|(
+name|IOException
+name|ioe
+parameter_list|)
+block|{
+name|priorE
 operator|=
-literal|true
+name|ioe
 expr_stmt|;
 block|}
 finally|finally
@@ -1374,37 +1442,15 @@ name|isOpen
 operator|=
 literal|false
 expr_stmt|;
-if|if
-condition|(
-operator|!
-name|success
-condition|)
-block|{
-try|try
-block|{
-name|file
+name|IOUtils
 operator|.
-name|close
-argument_list|()
-expr_stmt|;
-block|}
-catch|catch
-parameter_list|(
-name|Throwable
-name|t
-parameter_list|)
-block|{
-comment|// Suppress so we don't mask original exception
-block|}
-block|}
-else|else
-block|{
+name|closeWhileHandlingException
+argument_list|(
+name|priorE
+argument_list|,
 name|file
-operator|.
-name|close
-argument_list|()
+argument_list|)
 expr_stmt|;
-block|}
 block|}
 block|}
 block|}

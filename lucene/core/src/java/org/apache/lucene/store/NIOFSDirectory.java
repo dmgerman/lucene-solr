@@ -50,6 +50,16 @@ begin_import
 import|import
 name|java
 operator|.
+name|io
+operator|.
+name|RandomAccessFile
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
 name|nio
 operator|.
 name|ByteBuffer
@@ -227,9 +237,6 @@ argument_list|,
 name|fc
 argument_list|,
 name|context
-argument_list|,
-name|getReadChunkSize
-argument_list|()
 argument_list|)
 return|;
 block|}
@@ -361,9 +368,6 @@ name|bufferSize
 argument_list|(
 name|context
 argument_list|)
-argument_list|,
-name|getReadChunkSize
-argument_list|()
 argument_list|)
 return|;
 block|}
@@ -379,6 +383,16 @@ name|NIOFSIndexInput
 extends|extends
 name|BufferedIndexInput
 block|{
+comment|/**      * The maximum chunk size for reads of 16384 bytes.      */
+DECL|field|CHUNK_SIZE
+specifier|private
+specifier|static
+specifier|final
+name|int
+name|CHUNK_SIZE
+init|=
+literal|16384
+decl_stmt|;
 comment|/** the file channel we will read from */
 DECL|field|channel
 specifier|protected
@@ -392,13 +406,6 @@ name|boolean
 name|isClone
 init|=
 literal|false
-decl_stmt|;
-comment|/** maximum read length on a 32bit JVM to prevent incorrect OOM, see LUCENE-1566 */
-DECL|field|chunkSize
-specifier|protected
-specifier|final
-name|int
-name|chunkSize
 decl_stmt|;
 comment|/** start offset: non-zero in the slice case */
 DECL|field|off
@@ -432,9 +439,6 @@ name|fc
 parameter_list|,
 name|IOContext
 name|context
-parameter_list|,
-name|int
-name|chunkSize
 parameter_list|)
 throws|throws
 name|IOException
@@ -451,12 +455,6 @@ operator|.
 name|channel
 operator|=
 name|fc
-expr_stmt|;
-name|this
-operator|.
-name|chunkSize
-operator|=
-name|chunkSize
 expr_stmt|;
 name|this
 operator|.
@@ -492,9 +490,6 @@ name|length
 parameter_list|,
 name|int
 name|bufferSize
-parameter_list|,
-name|int
-name|chunkSize
 parameter_list|)
 block|{
 name|super
@@ -509,12 +504,6 @@ operator|.
 name|channel
 operator|=
 name|fc
-expr_stmt|;
-name|this
-operator|.
-name|chunkSize
-operator|=
-name|chunkSize
 expr_stmt|;
 name|this
 operator|.
@@ -663,10 +652,6 @@ condition|(
 name|b
 operator|==
 name|buffer
-operator|&&
-literal|0
-operator|==
-name|offset
 condition|)
 block|{
 comment|// Use our own pre-wrapped byteBuf:
@@ -675,21 +660,19 @@ name|byteBuf
 operator|!=
 literal|null
 assert|;
+name|bb
+operator|=
+name|byteBuf
+expr_stmt|;
 name|byteBuf
 operator|.
 name|clear
 argument_list|()
-expr_stmt|;
-name|byteBuf
 operator|.
-name|limit
+name|position
 argument_list|(
-name|len
+name|offset
 argument_list|)
-expr_stmt|;
-name|bb
-operator|=
-name|byteBuf
 expr_stmt|;
 block|}
 else|else
@@ -708,29 +691,6 @@ name|len
 argument_list|)
 expr_stmt|;
 block|}
-name|int
-name|readOffset
-init|=
-name|bb
-operator|.
-name|position
-argument_list|()
-decl_stmt|;
-name|int
-name|readLength
-init|=
-name|bb
-operator|.
-name|limit
-argument_list|()
-operator|-
-name|readOffset
-decl_stmt|;
-assert|assert
-name|readLength
-operator|==
-name|len
-assert|;
 name|long
 name|pos
 init|=
@@ -760,6 +720,11 @@ throw|;
 block|}
 try|try
 block|{
+name|int
+name|readLength
+init|=
+name|len
+decl_stmt|;
 while|while
 condition|(
 name|readLength
@@ -769,40 +734,38 @@ condition|)
 block|{
 specifier|final
 name|int
-name|limit
+name|toRead
+init|=
+name|Math
+operator|.
+name|min
+argument_list|(
+name|CHUNK_SIZE
+argument_list|,
+name|readLength
+argument_list|)
 decl_stmt|;
-if|if
-condition|(
-name|readLength
-operator|>
-name|chunkSize
-condition|)
-block|{
-comment|// LUCENE-1566 - work around JVM Bug by breaking
-comment|// very large reads into chunks
-name|limit
-operator|=
-name|readOffset
-operator|+
-name|chunkSize
-expr_stmt|;
-block|}
-else|else
-block|{
-name|limit
-operator|=
-name|readOffset
-operator|+
-name|readLength
-expr_stmt|;
-block|}
 name|bb
 operator|.
 name|limit
 argument_list|(
-name|limit
+name|bb
+operator|.
+name|position
+argument_list|()
+operator|+
+name|toRead
 argument_list|)
 expr_stmt|;
+assert|assert
+name|bb
+operator|.
+name|remaining
+argument_list|()
+operator|==
+name|toRead
+assert|;
+specifier|final
 name|int
 name|i
 init|=
@@ -822,7 +785,7 @@ operator|<
 literal|0
 condition|)
 block|{
-comment|//be defensive here, even though we checked before hand, something could have changed
+comment|// be defensive here, even though we checked before hand, something could have changed
 throw|throw
 operator|new
 name|EOFException
@@ -843,9 +806,9 @@ literal|" pos: "
 operator|+
 name|pos
 operator|+
-literal|" limit: "
+literal|" chunkLen: "
 operator|+
-name|limit
+name|toRead
 operator|+
 literal|" end: "
 operator|+
@@ -853,11 +816,14 @@ name|end
 argument_list|)
 throw|;
 block|}
-name|pos
-operator|+=
+assert|assert
 name|i
-expr_stmt|;
-name|readOffset
+operator|>
+literal|0
+operator|:
+literal|"FileChannel.read with non zero-length bb.remaining() must always read at least one byte (FileChannel is in blocking mode, see spec of ReadableByteChannel)"
+assert|;
+name|pos
 operator|+=
 name|i
 expr_stmt|;
@@ -866,43 +832,11 @@ operator|-=
 name|i
 expr_stmt|;
 block|}
-block|}
-catch|catch
-parameter_list|(
-name|OutOfMemoryError
-name|e
-parameter_list|)
-block|{
-comment|// propagate OOM up and add a hint for 32bit VM Users hitting the bug
-comment|// with a large chunk size in the fast path.
-specifier|final
-name|OutOfMemoryError
-name|outOfMemoryError
-init|=
-operator|new
-name|OutOfMemoryError
-argument_list|(
-literal|"OutOfMemoryError likely caused by the Sun VM Bug described in "
-operator|+
-literal|"https://issues.apache.org/jira/browse/LUCENE-1566; try calling FSDirectory.setReadChunkSize "
-operator|+
-literal|"with a value smaller than the current chunk size ("
-operator|+
-name|chunkSize
-operator|+
-literal|")"
-argument_list|)
-decl_stmt|;
-name|outOfMemoryError
-operator|.
-name|initCause
-argument_list|(
-name|e
-argument_list|)
-expr_stmt|;
-throw|throw
-name|outOfMemoryError
-throw|;
+assert|assert
+name|readLength
+operator|==
+literal|0
+assert|;
 block|}
 catch|catch
 parameter_list|(

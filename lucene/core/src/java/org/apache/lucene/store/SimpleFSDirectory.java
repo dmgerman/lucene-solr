@@ -168,9 +168,6 @@ argument_list|,
 name|raf
 argument_list|,
 name|context
-argument_list|,
-name|getReadChunkSize
-argument_list|()
 argument_list|)
 return|;
 block|}
@@ -297,9 +294,6 @@ name|bufferSize
 argument_list|(
 name|context
 argument_list|)
-argument_list|,
-name|getReadChunkSize
-argument_list|()
 argument_list|)
 return|;
 block|}
@@ -315,6 +309,16 @@ name|SimpleFSIndexInput
 extends|extends
 name|BufferedIndexInput
 block|{
+comment|/**      * The maximum chunk size is 8192 bytes, because {@link RandomAccessFile} mallocs      * a native buffer outside of stack if the read buffer size is larger.      */
+DECL|field|CHUNK_SIZE
+specifier|private
+specifier|static
+specifier|final
+name|int
+name|CHUNK_SIZE
+init|=
+literal|8192
+decl_stmt|;
 comment|/** the file channel we will read from */
 DECL|field|file
 specifier|protected
@@ -328,13 +332,6 @@ name|boolean
 name|isClone
 init|=
 literal|false
-decl_stmt|;
-comment|/** maximum read length on a 32bit JVM to prevent incorrect OOM, see LUCENE-1566 */
-DECL|field|chunkSize
-specifier|protected
-specifier|final
-name|int
-name|chunkSize
 decl_stmt|;
 comment|/** start offset: non-zero in the slice case */
 DECL|field|off
@@ -362,9 +359,6 @@ name|file
 parameter_list|,
 name|IOContext
 name|context
-parameter_list|,
-name|int
-name|chunkSize
 parameter_list|)
 throws|throws
 name|IOException
@@ -381,12 +375,6 @@ operator|.
 name|file
 operator|=
 name|file
-expr_stmt|;
-name|this
-operator|.
-name|chunkSize
-operator|=
-name|chunkSize
 expr_stmt|;
 name|this
 operator|.
@@ -422,9 +410,6 @@ name|length
 parameter_list|,
 name|int
 name|bufferSize
-parameter_list|,
-name|int
-name|chunkSize
 parameter_list|)
 block|{
 name|super
@@ -439,12 +424,6 @@ operator|.
 name|file
 operator|=
 name|file
-expr_stmt|;
-name|this
-operator|.
-name|chunkSize
-operator|=
-name|chunkSize
 expr_stmt|;
 name|this
 operator|.
@@ -601,36 +580,28 @@ throw|;
 block|}
 try|try
 block|{
-do|do
-block|{
-specifier|final
-name|int
-name|readLength
-decl_stmt|;
-if|if
+while|while
 condition|(
 name|total
-operator|+
-name|chunkSize
-operator|>
+operator|<
 name|len
 condition|)
 block|{
-name|readLength
-operator|=
+specifier|final
+name|int
+name|toRead
+init|=
+name|Math
+operator|.
+name|min
+argument_list|(
+name|CHUNK_SIZE
+argument_list|,
 name|len
 operator|-
 name|total
-expr_stmt|;
-block|}
-else|else
-block|{
-comment|// LUCENE-1566 - work around JVM Bug by breaking very large reads into chunks
-name|readLength
-operator|=
-name|chunkSize
-expr_stmt|;
-block|}
+argument_list|)
+decl_stmt|;
 specifier|final
 name|int
 name|i
@@ -645,7 +616,7 @@ name|offset
 operator|+
 name|total
 argument_list|,
-name|readLength
+name|toRead
 argument_list|)
 decl_stmt|;
 if|if
@@ -655,7 +626,7 @@ operator|<
 literal|0
 condition|)
 block|{
-comment|//be defensive here, even though we checked before hand, something could have changed
+comment|// be defensive here, even though we checked before hand, something could have changed
 throw|throw
 operator|new
 name|EOFException
@@ -676,9 +647,9 @@ literal|" total: "
 operator|+
 name|total
 operator|+
-literal|" readLen: "
+literal|" chunkLen: "
 operator|+
-name|readLength
+name|toRead
 operator|+
 literal|" end: "
 operator|+
@@ -686,55 +657,23 @@ name|end
 argument_list|)
 throw|;
 block|}
+assert|assert
+name|i
+operator|>
+literal|0
+operator|:
+literal|"RandomAccessFile.read with non zero-length toRead must always read at least one byte"
+assert|;
 name|total
 operator|+=
 name|i
 expr_stmt|;
 block|}
-do|while
-condition|(
+assert|assert
 name|total
-operator|<
+operator|==
 name|len
-condition|)
-do|;
-block|}
-catch|catch
-parameter_list|(
-name|OutOfMemoryError
-name|e
-parameter_list|)
-block|{
-comment|// propagate OOM up and add a hint for 32bit VM Users hitting the bug
-comment|// with a large chunk size in the fast path.
-specifier|final
-name|OutOfMemoryError
-name|outOfMemoryError
-init|=
-operator|new
-name|OutOfMemoryError
-argument_list|(
-literal|"OutOfMemoryError likely caused by the Sun VM Bug described in "
-operator|+
-literal|"https://issues.apache.org/jira/browse/LUCENE-1566; try calling FSDirectory.setReadChunkSize "
-operator|+
-literal|"with a value smaller than the current chunk size ("
-operator|+
-name|chunkSize
-operator|+
-literal|")"
-argument_list|)
-decl_stmt|;
-name|outOfMemoryError
-operator|.
-name|initCause
-argument_list|(
-name|e
-argument_list|)
-expr_stmt|;
-throw|throw
-name|outOfMemoryError
-throw|;
+assert|;
 block|}
 catch|catch
 parameter_list|(
