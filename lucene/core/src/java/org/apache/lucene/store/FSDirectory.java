@@ -175,18 +175,6 @@ name|FSDirectory
 extends|extends
 name|Directory
 block|{
-comment|/**    * Default read chunk size: 8192 bytes (this is the size up to which the JDK      does not allocate additional arrays while reading/writing)      @deprecated This constant is no longer used since Lucene 4.5.    */
-annotation|@
-name|Deprecated
-DECL|field|DEFAULT_READ_CHUNK_SIZE
-specifier|public
-specifier|static
-specifier|final
-name|int
-name|DEFAULT_READ_CHUNK_SIZE
-init|=
-literal|8192
-decl_stmt|;
 DECL|field|directory
 specifier|protected
 specifier|final
@@ -214,13 +202,6 @@ argument_list|()
 argument_list|)
 decl_stmt|;
 comment|// Files written, but not yet sync'ed
-DECL|field|chunkSize
-specifier|private
-name|int
-name|chunkSize
-init|=
-name|DEFAULT_READ_CHUNK_SIZE
-decl_stmt|;
 comment|// returns the canonical version of the directory, creating it if it doesn't exist.
 DECL|method|getCanonicalPath
 specifier|private
@@ -1172,55 +1153,6 @@ literal|" lockFactory="
 operator|+
 name|getLockFactory
 argument_list|()
-return|;
-block|}
-comment|/**    * This setting has no effect anymore.    * @deprecated This is no longer used since Lucene 4.5.    */
-annotation|@
-name|Deprecated
-DECL|method|setReadChunkSize
-specifier|public
-specifier|final
-name|void
-name|setReadChunkSize
-parameter_list|(
-name|int
-name|chunkSize
-parameter_list|)
-block|{
-if|if
-condition|(
-name|chunkSize
-operator|<=
-literal|0
-condition|)
-block|{
-throw|throw
-operator|new
-name|IllegalArgumentException
-argument_list|(
-literal|"chunkSize must be positive"
-argument_list|)
-throw|;
-block|}
-name|this
-operator|.
-name|chunkSize
-operator|=
-name|chunkSize
-expr_stmt|;
-block|}
-comment|/**    * This setting has no effect anymore.    * @deprecated This is no longer used since Lucene 4.5.    */
-annotation|@
-name|Deprecated
-DECL|method|getReadChunkSize
-specifier|public
-specifier|final
-name|int
-name|getReadChunkSize
-parameter_list|()
-block|{
-return|return
-name|chunkSize
 return|;
 block|}
 comment|/**    * Writes output with {@link RandomAccessFile#write(byte[], int, int)}    */
