@@ -2154,6 +2154,13 @@ name|uniqueKeyFieldType
 operator|=
 name|uniqueKeyFieldType
 expr_stmt|;
+comment|// After the schema is persisted, resourceName is the same as managedSchemaResourceName
+name|newSchema
+operator|.
+name|resourceName
+operator|=
+name|managedSchemaResourceName
+expr_stmt|;
 if|if
 condition|(
 name|includeFieldDataStructures
