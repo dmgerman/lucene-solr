@@ -728,6 +728,16 @@ name|java
 operator|.
 name|util
 operator|.
+name|Arrays
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
+name|util
+operator|.
 name|Comparator
 import|;
 end_import
@@ -5111,6 +5121,29 @@ return|return
 name|sd
 return|;
 block|}
+DECL|method|sdocs
+specifier|public
+specifier|static
+name|List
+argument_list|<
+name|SolrInputDocument
+argument_list|>
+name|sdocs
+parameter_list|(
+name|SolrInputDocument
+modifier|...
+name|docs
+parameter_list|)
+block|{
+return|return
+name|Arrays
+operator|.
+name|asList
+argument_list|(
+name|docs
+argument_list|)
+return|;
+block|}
 comment|/** Converts "test JSON" and returns standard JSON.    *  Currently this only consists of changing unescaped single quotes to double quotes,    *  and escaped single quotes to single quotes.    *    * The primary purpose is to be able to easily embed JSON strings in a JAVA string    * with the best readability.    *    * This transformation is automatically applied to JSON test srings (like assertJQ).    */
 DECL|method|json
 specifier|public
@@ -8617,6 +8650,7 @@ return|;
 block|}
 comment|/** Return a Map from field value to a list of document ids */
 DECL|method|invertField
+specifier|public
 name|Map
 argument_list|<
 name|Comparable

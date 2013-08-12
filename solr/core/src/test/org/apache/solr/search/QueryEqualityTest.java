@@ -1182,6 +1182,33 @@ argument_list|()
 expr_stmt|;
 block|}
 block|}
+DECL|method|testBlockJoin
+specifier|public
+name|void
+name|testBlockJoin
+parameter_list|()
+throws|throws
+name|Exception
+block|{
+name|assertQueryEquals
+argument_list|(
+literal|"parent"
+argument_list|,
+literal|"{!parent which=foo_s:parent}dude"
+argument_list|,
+literal|"{!parent which=foo_s:parent}dude"
+argument_list|)
+expr_stmt|;
+name|assertQueryEquals
+argument_list|(
+literal|"child"
+argument_list|,
+literal|"{!child of=foo_s:parent}dude"
+argument_list|,
+literal|"{!child of=foo_s:parent}dude"
+argument_list|)
+expr_stmt|;
+block|}
 DECL|method|testQuerySurround
 specifier|public
 name|void
