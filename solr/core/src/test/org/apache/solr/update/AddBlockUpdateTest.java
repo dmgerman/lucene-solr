@@ -1234,7 +1234,7 @@ name|doc1
 argument_list|,
 literal|"sample_i"
 argument_list|,
-literal|"notanumber"
+literal|"notanumber/ignore_exception"
 argument_list|)
 expr_stmt|;
 name|Element
