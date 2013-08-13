@@ -292,7 +292,26 @@ name|Shape
 name|shape
 parameter_list|)
 function_decl|;
-comment|/**    * Make a ValueSource returning the distance between the center of the    * indexed shape and {@code queryPoint}.  If there are multiple indexed shapes    * then the closest one is chosen.    */
+comment|/**    * See {@link #makeDistanceValueSource(com.spatial4j.core.shape.Point, double)} called with    * a multiplier of 1.0 (i.e. units of degrees).    */
+DECL|method|makeDistanceValueSource
+specifier|public
+name|ValueSource
+name|makeDistanceValueSource
+parameter_list|(
+name|Point
+name|queryPoint
+parameter_list|)
+block|{
+return|return
+name|makeDistanceValueSource
+argument_list|(
+name|queryPoint
+argument_list|,
+literal|1.0
+argument_list|)
+return|;
+block|}
+comment|/**    * Make a ValueSource returning the distance between the center of the    * indexed shape and {@code queryPoint}.  If there are multiple indexed shapes    * then the closest one is chosen. The result is multiplied by {@code multiplier}, which    * conveniently is used to get the desired units.    */
 DECL|method|makeDistanceValueSource
 specifier|public
 specifier|abstract
@@ -301,6 +320,9 @@ name|makeDistanceValueSource
 parameter_list|(
 name|Point
 name|queryPoint
+parameter_list|,
+name|double
+name|multiplier
 parameter_list|)
 function_decl|;
 comment|/**    * Make a Query based principally on {@link org.apache.lucene.spatial.query.SpatialOperation}    * and {@link Shape} from the supplied {@code args}.    * The default implementation is    *<pre>return new ConstantScoreQuery(makeFilter(args));</pre>    *    * @throws UnsupportedOperationException If the strategy does not support the shape in {@code args}    * @throws org.apache.lucene.spatial.query.UnsupportedSpatialOperation If the strategy does not support the {@link    * org.apache.lucene.spatial.query.SpatialOperation} in {@code args}.    */
@@ -335,7 +357,7 @@ name|SpatialArgs
 name|args
 parameter_list|)
 function_decl|;
-comment|/**    * Returns a ValueSource with values ranging from 1 to 0, depending inversely    * on the distance from {@link #makeDistanceValueSource(com.spatial4j.core.shape.Point)}.    * The formula is {@code c/(d + c)} where 'd' is the distance and 'c' is    * one tenth the distance to the farthest edge from the center. Thus the    * scores will be 1 for indexed points at the center of the query shape and as    * low as ~0.1 at its furthest edges.    */
+comment|/**    * Returns a ValueSource with values ranging from 1 to 0, depending inversely    * on the distance from {@link #makeDistanceValueSource(com.spatial4j.core.shape.Point,double)}.    * The formula is {@code c/(d + c)} where 'd' is the distance and 'c' is    * one tenth the distance to the farthest edge from the center. Thus the    * scores will be 1 for indexed points at the center of the query shape and as    * low as ~0.1 at its furthest edges.    */
 DECL|method|makeRecipDistanceValueSource
 specifier|public
 specifier|final
@@ -418,6 +440,8 @@ name|queryShape
 operator|.
 name|getCenter
 argument_list|()
+argument_list|,
+literal|1.0
 argument_list|)
 argument_list|,
 literal|1f

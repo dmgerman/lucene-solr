@@ -374,11 +374,14 @@ throw|throw
 operator|new
 name|IllegalArgumentException
 argument_list|(
-literal|"cannot index term vector payloads for field: "
+literal|"cannot index term vector payloads without term vector positions (field=\""
 operator|+
 name|field
+operator|.
+name|name
+argument_list|()
 operator|+
-literal|" without term vector positions"
+literal|"\")"
 argument_list|)
 throw|;
 block|}
@@ -406,6 +409,8 @@ name|field
 operator|.
 name|name
 argument_list|()
+operator|+
+literal|"\")"
 argument_list|)
 throw|;
 block|}
@@ -430,6 +435,8 @@ name|field
 operator|.
 name|name
 argument_list|()
+operator|+
+literal|"\")"
 argument_list|)
 throw|;
 block|}
@@ -454,6 +461,8 @@ name|field
 operator|.
 name|name
 argument_list|()
+operator|+
+literal|"\")"
 argument_list|)
 throw|;
 block|}
@@ -482,6 +491,8 @@ name|field
 operator|.
 name|name
 argument_list|()
+operator|+
+literal|"\")"
 argument_list|)
 throw|;
 block|}
@@ -506,6 +517,8 @@ name|field
 operator|.
 name|name
 argument_list|()
+operator|+
+literal|"\")"
 argument_list|)
 throw|;
 block|}
@@ -530,6 +543,8 @@ name|field
 operator|.
 name|name
 argument_list|()
+operator|+
+literal|"\")"
 argument_list|)
 throw|;
 block|}
@@ -554,6 +569,8 @@ name|field
 operator|.
 name|name
 argument_list|()
+operator|+
+literal|"\")"
 argument_list|)
 throw|;
 block|}

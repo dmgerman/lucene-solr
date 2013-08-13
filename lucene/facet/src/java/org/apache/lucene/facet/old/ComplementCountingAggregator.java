@@ -1,6 +1,6 @@
 begin_unit|revision:0.9.5;language:Java;cregit-version:0.0.1
 begin_package
-DECL|package|org.apache.lucene.facet.search
+DECL|package|org.apache.lucene.facet.old
 package|package
 name|org
 operator|.
@@ -10,7 +10,7 @@ name|lucene
 operator|.
 name|facet
 operator|.
-name|search
+name|old
 package|;
 end_package
 
@@ -21,20 +21,6 @@ operator|.
 name|io
 operator|.
 name|IOException
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|index
-operator|.
-name|AtomicReaderContext
 import|;
 end_import
 
@@ -57,28 +43,34 @@ comment|/*  * Licensed to the Apache Software Foundation (ASF) under one or more
 end_comment
 
 begin_comment
-comment|/**  * Aggregates the categories of documents given to  * {@link #aggregate(int, float, IntsRef)}. Note that the document IDs are local  * to the reader given to {@link #setNextReader(AtomicReaderContext)}.  *   * @lucene.experimental  */
+comment|/**  * A {@link CountingAggregator} used during complement counting.  *   * @lucene.experimental  */
 end_comment
 
-begin_interface
-DECL|interface|Aggregator
+begin_class
+DECL|class|ComplementCountingAggregator
 specifier|public
-interface|interface
-name|Aggregator
+class|class
+name|ComplementCountingAggregator
+extends|extends
+name|CountingAggregator
 block|{
-comment|/**    * Sets the {@link AtomicReaderContext} for which    * {@link #aggregate(int, float, IntsRef)} calls will be made. If this method    * returns false, {@link #aggregate(int, float, IntsRef)} should not be called    * for this reader.    */
-DECL|method|setNextReader
+DECL|method|ComplementCountingAggregator
 specifier|public
-name|boolean
-name|setNextReader
+name|ComplementCountingAggregator
 parameter_list|(
-name|AtomicReaderContext
-name|context
+name|int
+index|[]
+name|counterArray
 parameter_list|)
-throws|throws
-name|IOException
-function_decl|;
-comment|/**    * Aggregate the ordinals of the given document ID (and its score). The given    * ordinals offset is always zero.    */
+block|{
+name|super
+argument_list|(
+name|counterArray
+argument_list|)
+expr_stmt|;
+block|}
+annotation|@
+name|Override
 DECL|method|aggregate
 specifier|public
 name|void
@@ -95,9 +87,56 @@ name|ordinals
 parameter_list|)
 throws|throws
 name|IOException
-function_decl|;
+block|{
+for|for
+control|(
+name|int
+name|i
+init|=
+literal|0
+init|;
+name|i
+operator|<
+name|ordinals
+operator|.
+name|length
+condition|;
+name|i
+operator|++
+control|)
+block|{
+name|int
+name|ord
+init|=
+name|ordinals
+operator|.
+name|ints
+index|[
+name|i
+index|]
+decl_stmt|;
+assert|assert
+name|counterArray
+index|[
+name|ord
+index|]
+operator|!=
+literal|0
+operator|:
+literal|"complement aggregation: count is about to become negative for ordinal "
+operator|+
+name|ord
+assert|;
+operator|--
+name|counterArray
+index|[
+name|ord
+index|]
+expr_stmt|;
 block|}
-end_interface
+block|}
+block|}
+end_class
 
 end_unit
 

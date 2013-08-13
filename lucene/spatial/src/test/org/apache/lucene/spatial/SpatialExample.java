@@ -999,6 +999,20 @@ operator|-
 literal|50
 argument_list|)
 decl_stmt|;
+name|double
+name|degToKm
+init|=
+name|DistanceUtils
+operator|.
+name|degrees2Dist
+argument_list|(
+literal|1
+argument_list|,
+name|DistanceUtils
+operator|.
+name|EARTH_MEAN_RADIUS_KM
+argument_list|)
+decl_stmt|;
 name|ValueSource
 name|valueSource
 init|=
@@ -1007,9 +1021,11 @@ operator|.
 name|makeDistanceValueSource
 argument_list|(
 name|pt
+argument_list|,
+name|degToKm
 argument_list|)
 decl_stmt|;
-comment|//the distance (in degrees)
+comment|//the distance (in km)
 name|Sort
 name|distSort
 init|=

@@ -542,6 +542,17 @@ argument_list|)
 argument_list|)
 return|;
 block|}
+comment|/** Returns the number of values */
+DECL|method|size
+specifier|public
+name|long
+name|size
+parameter_list|()
+block|{
+return|return
+name|valueCount
+return|;
+block|}
 block|}
 end_class
 

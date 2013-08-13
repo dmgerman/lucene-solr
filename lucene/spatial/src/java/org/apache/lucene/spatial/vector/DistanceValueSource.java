@@ -177,6 +177,12 @@ specifier|final
 name|Point
 name|from
 decl_stmt|;
+DECL|field|multiplier
+specifier|private
+specifier|final
+name|double
+name|multiplier
+decl_stmt|;
 comment|/**    * Constructor.    */
 DECL|method|DistanceValueSource
 specifier|public
@@ -187,6 +193,9 @@ name|strategy
 parameter_list|,
 name|Point
 name|from
+parameter_list|,
+name|double
+name|multiplier
 parameter_list|)
 block|{
 name|this
@@ -200,6 +209,12 @@ operator|.
 name|from
 operator|=
 name|from
+expr_stmt|;
+name|this
+operator|.
+name|multiplier
+operator|=
+name|multiplier
 expr_stmt|;
 block|}
 comment|/**    * Returns the ValueSource description.    */
@@ -372,6 +387,8 @@ name|isGeo
 argument_list|()
 condition|?
 literal|180
+operator|*
+name|multiplier
 else|:
 name|Double
 operator|.
@@ -448,6 +465,8 @@ argument_list|(
 name|doc
 argument_list|)
 argument_list|)
+operator|*
+name|multiplier
 return|;
 block|}
 return|return
@@ -550,6 +569,17 @@ name|that
 operator|.
 name|strategy
 argument_list|)
+condition|)
+return|return
+literal|false
+return|;
+if|if
+condition|(
+name|multiplier
+operator|!=
+name|that
+operator|.
+name|multiplier
 condition|)
 return|return
 literal|false

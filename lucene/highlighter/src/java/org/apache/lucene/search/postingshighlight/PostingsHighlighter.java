@@ -2088,8 +2088,6 @@ name|terms
 index|[
 name|i
 index|]
-argument_list|,
-literal|true
 argument_list|)
 condition|)
 block|{
@@ -2383,6 +2381,32 @@ operator|.
 name|endOffset
 argument_list|()
 decl_stmt|;
+comment|// LUCENE-5166: this hit would span the content limit... however more valid
+comment|// hits may exist (they are sorted by start). so we pretend like we never
+comment|// saw this term, it won't cause a passage to be added to passageQueue or anything.
+assert|assert
+name|EMPTY
+operator|.
+name|startOffset
+argument_list|()
+operator|==
+name|Integer
+operator|.
+name|MAX_VALUE
+assert|;
+if|if
+condition|(
+name|start
+argument_list|<
+name|contentLength
+operator|&&
+name|end
+argument_list|>
+name|contentLength
+condition|)
+block|{
+continue|continue;
+block|}
 if|if
 condition|(
 name|start

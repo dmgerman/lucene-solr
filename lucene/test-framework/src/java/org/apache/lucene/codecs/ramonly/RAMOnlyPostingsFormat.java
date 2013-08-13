@@ -1735,9 +1735,6 @@ name|seekCeil
 parameter_list|(
 name|BytesRef
 name|term
-parameter_list|,
-name|boolean
-name|useCache
 parameter_list|)
 block|{
 name|current

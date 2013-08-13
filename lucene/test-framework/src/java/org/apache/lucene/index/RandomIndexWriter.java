@@ -1558,17 +1558,6 @@ name|w
 operator|.
 name|getDirectory
 argument_list|()
-argument_list|,
-name|_TestUtil
-operator|.
-name|nextInt
-argument_list|(
-name|r
-argument_list|,
-literal|1
-argument_list|,
-literal|10
-argument_list|)
 argument_list|)
 return|;
 block|}

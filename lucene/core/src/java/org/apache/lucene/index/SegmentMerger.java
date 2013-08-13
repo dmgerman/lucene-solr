@@ -218,12 +218,6 @@ specifier|final
 name|Directory
 name|directory
 decl_stmt|;
-DECL|field|termIndexInterval
-specifier|private
-specifier|final
-name|int
-name|termIndexInterval
-decl_stmt|;
 DECL|field|codec
 specifier|private
 specifier|final
@@ -269,9 +263,6 @@ parameter_list|,
 name|Directory
 name|dir
 parameter_list|,
-name|int
-name|termIndexInterval
-parameter_list|,
 name|MergeState
 operator|.
 name|CheckAbort
@@ -303,12 +294,6 @@ expr_stmt|;
 name|directory
 operator|=
 name|dir
-expr_stmt|;
-name|this
-operator|.
-name|termIndexInterval
-operator|=
-name|termIndexInterval
 expr_stmt|;
 name|this
 operator|.
@@ -475,8 +460,6 @@ argument_list|,
 name|mergeState
 operator|.
 name|fieldInfos
-argument_list|,
-name|termIndexInterval
 argument_list|,
 literal|null
 argument_list|,

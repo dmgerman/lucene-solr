@@ -80,14 +80,6 @@ begin_comment
 comment|/**  * Basic tests of a PF using FixedGap terms dictionary  */
 end_comment
 
-begin_comment
-comment|// TODO: we should add an instantiation for VarGap too to TestFramework, and a test in this package
-end_comment
-
-begin_comment
-comment|// TODO: ensure both of these are also in rotation in RandomCodec
-end_comment
-
 begin_class
 DECL|class|TestFixedGapPostingsFormat
 specifier|public
@@ -108,7 +100,19 @@ name|alwaysPostingsFormat
 argument_list|(
 operator|new
 name|Lucene41WithOrds
+argument_list|(
+name|_TestUtil
+operator|.
+name|nextInt
+argument_list|(
+name|random
 argument_list|()
+argument_list|,
+literal|1
+argument_list|,
+literal|1000
+argument_list|)
+argument_list|)
 argument_list|)
 decl_stmt|;
 annotation|@

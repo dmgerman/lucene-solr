@@ -130,7 +130,23 @@ name|util
 operator|.
 name|packed
 operator|.
-name|AppendingLongBuffer
+name|AppendingDeltaPackedLongBuffer
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|util
+operator|.
+name|packed
+operator|.
+name|PackedInts
 import|;
 end_import
 
@@ -170,7 +186,7 @@ decl_stmt|;
 DECL|field|lengths
 specifier|private
 specifier|final
-name|AppendingLongBuffer
+name|AppendingDeltaPackedLongBuffer
 name|lengths
 decl_stmt|;
 DECL|field|fieldInfo
@@ -222,8 +238,12 @@ operator|.
 name|lengths
 operator|=
 operator|new
-name|AppendingLongBuffer
-argument_list|()
+name|AppendingDeltaPackedLongBuffer
+argument_list|(
+name|PackedInts
+operator|.
+name|COMPACT
+argument_list|)
 expr_stmt|;
 block|}
 DECL|method|addValue
@@ -455,7 +475,7 @@ argument_list|()
 decl_stmt|;
 DECL|field|lengthsIterator
 specifier|final
-name|AppendingLongBuffer
+name|AppendingDeltaPackedLongBuffer
 operator|.
 name|Iterator
 name|lengthsIterator

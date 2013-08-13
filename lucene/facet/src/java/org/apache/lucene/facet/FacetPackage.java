@@ -17,7 +17,7 @@ comment|/*  * Licensed to the Apache Software Foundation (ASF) under one or more
 end_comment
 
 begin_comment
-comment|/**  * Required so that userguide files are copied as part of javadocs generation.  * Otherwise, if the root facet package contains no classes, doc-files aren't  * copied.  */
+comment|/** Required for javadocs generation. */
 end_comment
 
 begin_class

@@ -1684,6 +1684,12 @@ init|=
 name|newDirectory
 argument_list|()
 decl_stmt|;
+name|SnapshotDeletionPolicy
+name|sdp
+init|=
+name|getDeletionPolicy
+argument_list|()
+decl_stmt|;
 name|IndexWriter
 name|writer
 init|=
@@ -1697,24 +1703,9 @@ argument_list|(
 name|random
 argument_list|()
 argument_list|,
-name|getDeletionPolicy
-argument_list|()
-argument_list|)
-argument_list|)
-decl_stmt|;
-name|SnapshotDeletionPolicy
 name|sdp
-init|=
-operator|(
-name|SnapshotDeletionPolicy
-operator|)
-name|writer
-operator|.
-name|getConfig
-argument_list|()
-operator|.
-name|getIndexDeletionPolicy
-argument_list|()
+argument_list|)
+argument_list|)
 decl_stmt|;
 name|prepareIndexAndSnapshots
 argument_list|(
@@ -1768,7 +1759,6 @@ operator|.
 name|deleteUnusedFiles
 argument_list|()
 expr_stmt|;
-comment|//sdp = (SnapshotDeletionPolicy) writer.getConfig().getIndexDeletionPolicy();
 name|assertSnapshotExists
 argument_list|(
 name|dir
@@ -1779,7 +1769,7 @@ name|numSnapshots
 operator|-
 literal|1
 argument_list|,
-literal|true
+literal|false
 argument_list|)
 expr_stmt|;
 name|writer

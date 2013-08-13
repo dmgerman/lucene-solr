@@ -1549,8 +1549,6 @@ argument_list|(
 name|groupedFacetHit
 operator|.
 name|facetValue
-argument_list|,
-literal|true
 argument_list|)
 condition|)
 block|{
@@ -1622,8 +1620,6 @@ operator|.
 name|seekCeil
 argument_list|(
 name|facetPrefix
-argument_list|,
-literal|true
 argument_list|)
 expr_stmt|;
 block|}
@@ -1698,8 +1694,6 @@ operator|.
 name|seekCeil
 argument_list|(
 name|facetEndPrefix
-argument_list|,
-literal|true
 argument_list|)
 expr_stmt|;
 if|if

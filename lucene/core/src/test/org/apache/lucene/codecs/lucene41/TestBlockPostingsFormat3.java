@@ -754,6 +754,9 @@ argument_list|,
 name|dir
 argument_list|,
 name|iwc
+operator|.
+name|clone
+argument_list|()
 argument_list|)
 decl_stmt|;
 name|Document
@@ -1188,6 +1191,9 @@ argument_list|(
 name|dir
 argument_list|,
 name|iwc
+operator|.
+name|clone
+argument_list|()
 argument_list|)
 decl_stmt|;
 name|iw2
@@ -1868,8 +1874,6 @@ operator|.
 name|seekExact
 argument_list|(
 name|b
-argument_list|,
-literal|false
 argument_list|)
 argument_list|,
 name|rightEnum
@@ -1877,8 +1881,6 @@ operator|.
 name|seekExact
 argument_list|(
 name|b
-argument_list|,
-literal|false
 argument_list|)
 argument_list|)
 expr_stmt|;
@@ -1889,8 +1891,6 @@ operator|.
 name|seekExact
 argument_list|(
 name|b
-argument_list|,
-literal|true
 argument_list|)
 argument_list|,
 name|rightEnum
@@ -1898,8 +1898,6 @@ operator|.
 name|seekExact
 argument_list|(
 name|b
-argument_list|,
-literal|true
 argument_list|)
 argument_list|)
 expr_stmt|;
@@ -1916,8 +1914,6 @@ operator|.
 name|seekCeil
 argument_list|(
 name|b
-argument_list|,
-literal|false
 argument_list|)
 expr_stmt|;
 name|rightStatus
@@ -1927,8 +1923,6 @@ operator|.
 name|seekCeil
 argument_list|(
 name|b
-argument_list|,
-literal|false
 argument_list|)
 expr_stmt|;
 name|assertEquals
@@ -1968,8 +1962,6 @@ operator|.
 name|seekCeil
 argument_list|(
 name|b
-argument_list|,
-literal|true
 argument_list|)
 expr_stmt|;
 name|rightStatus
@@ -1979,8 +1971,6 @@ operator|.
 name|seekCeil
 argument_list|(
 name|b
-argument_list|,
-literal|true
 argument_list|)
 expr_stmt|;
 name|assertEquals

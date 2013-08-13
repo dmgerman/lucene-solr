@@ -16,11 +16,51 @@ end_package
 
 begin_import
 import|import
-name|java
+name|org
 operator|.
-name|io
+name|apache
 operator|.
-name|IOException
+name|lucene
+operator|.
+name|facet
+operator|.
+name|params
+operator|.
+name|CategoryListParams
+operator|.
+name|OrdinalPolicy
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|facet
+operator|.
+name|params
+operator|.
+name|FacetIndexingParams
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|facet
+operator|.
+name|range
+operator|.
+name|RangeFacetRequest
 import|;
 end_import
 
@@ -40,28 +80,12 @@ name|CategoryPath
 import|;
 end_import
 
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|facet
-operator|.
-name|taxonomy
-operator|.
-name|TaxonomyReader
-import|;
-end_import
-
 begin_comment
 comment|/*  * Licensed to the Apache Software Foundation (ASF) under one or more  * contributor license agreements.  See the NOTICE file distributed with  * this work for additional information regarding copyright ownership.  * The ASF licenses this file to You under the Apache License, Version 2.0  * (the "License"); you may not use this file except in compliance with  * the License.  You may obtain a copy of the License at  *  *     http://www.apache.org/licenses/LICENSE-2.0  *  * Unless required by applicable law or agreed to in writing, software  * distributed under the License is distributed on an "AS IS" BASIS,  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.  * See the License for the specific language governing permissions and  * limitations under the License.  */
 end_comment
 
 begin_comment
-comment|/**  * Request to accumulate facet information for a specified facet and possibly   * also some of its descendants, upto a specified depth.  *<p>  * The facet request additionally defines what information should   * be computed within the facet results, if and how should results  * be ordered, etc.  *<P>  * An example facet request is to look at all sub-categories of "Author", and  * return the 10 with the highest counts (sorted by decreasing count).   *   * @lucene.experimental  */
+comment|/**  * Defines an aggregation request for a category. Allows specifying the  * {@link #numResults number of child categories} to return as well as  * {@link #getSortOrder() which} categories to consider the "top" (highest or  * lowest ranking ones).  *<p>  * If the category being aggregated is hierarchical, you can also specify the  * {@link #setDepth(int) depth} up which to aggregate child categories as well  * as how the result should be {@link #setResultMode(ResultMode) constructed}.  *   * @lucene.experimental  */
 end_comment
 
 begin_class
@@ -71,36 +95,21 @@ specifier|abstract
 class|class
 name|FacetRequest
 block|{
-comment|/**    * Result structure manner of applying request's limits such as    * {@link FacetRequest#getNumLabel()} and {@link FacetRequest#numResults}.    * Only relevant when {@link FacetRequest#getDepth()} is&gt; 1.    */
+comment|/**    * When {@link FacetRequest#getDepth()} is greater than 1, defines the    * structure of the result as well as how constraints such as    * {@link FacetRequest#numResults} and {@link FacetRequest#getNumLabel()} are    * applied.    */
 DECL|enum|ResultMode
 specifier|public
 enum|enum
 name|ResultMode
 block|{
-comment|/** Limits are applied per node, and the result has a full tree structure. */
+comment|/**      * Constraints are applied per node, and the result has a full tree      * structure. Default result mode.      */
 DECL|enum constant|PER_NODE_IN_TREE
 name|PER_NODE_IN_TREE
 block|,
-comment|/** Limits are applied globally, on total number of results, and the result has a flat structure. */
+comment|/**      * Constraints are applied globally, on total number of results, and the      * result has a flat structure.      */
 DECL|enum constant|GLOBAL_FLAT
 name|GLOBAL_FLAT
 block|}
-comment|/**    * Specifies which array of {@link FacetArrays} should be used to resolve    * values. When set to {@link #INT} or {@link #FLOAT}, allows creating an    * optimized {@link FacetResultsHandler}, which does not call    * {@link FacetRequest#getValueOf(FacetArrays, int)} for every ordinals.    *<p>    * If set to {@link #BOTH}, the {@link FacetResultsHandler} will use    * {@link FacetRequest#getValueOf(FacetArrays, int)} to resolve ordinal    * values, although it is recommended that you consider writing a specialized    * {@link FacetResultsHandler}.    */
-DECL|enum|FacetArraysSource
-DECL|enum constant|INT
-DECL|enum constant|FLOAT
-DECL|enum constant|BOTH
-specifier|public
-enum|enum
-name|FacetArraysSource
-block|{
-name|INT
-block|,
-name|FLOAT
-block|,
-name|BOTH
-block|}
-comment|/** Requested sort order for the results. */
+comment|/**    * Defines which categories to return. If {@link #DESCENDING} (the default),    * the highest {@link FacetRequest#numResults} weighted categories will be    * returned, otherwise the lowest ones.    */
 DECL|enum|SortOrder
 DECL|enum constant|ASCENDING
 DECL|enum constant|DESCENDING
@@ -112,34 +121,14 @@ name|ASCENDING
 block|,
 name|DESCENDING
 block|}
-comment|/**    * Default depth for facets accumulation.    * @see #getDepth()    */
-DECL|field|DEFAULT_DEPTH
-specifier|public
-specifier|static
-specifier|final
-name|int
-name|DEFAULT_DEPTH
-init|=
-literal|1
-decl_stmt|;
-comment|/**    * Default result mode    * @see #getResultMode()    */
-DECL|field|DEFAULT_RESULT_MODE
-specifier|public
-specifier|static
-specifier|final
-name|ResultMode
-name|DEFAULT_RESULT_MODE
-init|=
-name|ResultMode
-operator|.
-name|PER_NODE_IN_TREE
-decl_stmt|;
+comment|/** The category being aggregated in this facet request. */
 DECL|field|categoryPath
 specifier|public
 specifier|final
 name|CategoryPath
 name|categoryPath
 decl_stmt|;
+comment|/** The number of child categories to return for {@link #categoryPath}. */
 DECL|field|numResults
 specifier|public
 specifier|final
@@ -155,27 +144,35 @@ DECL|field|depth
 specifier|private
 name|int
 name|depth
+init|=
+literal|1
 decl_stmt|;
 DECL|field|sortOrder
 specifier|private
 name|SortOrder
 name|sortOrder
-decl_stmt|;
-comment|/**    * Computed at construction, this hashCode is based on two final members    * {@link CategoryPath} and<code>numResults</code>    */
-DECL|field|hashCode
-specifier|private
-specifier|final
-name|int
-name|hashCode
+init|=
+name|SortOrder
+operator|.
+name|DESCENDING
 decl_stmt|;
 DECL|field|resultMode
 specifier|private
 name|ResultMode
 name|resultMode
 init|=
-name|DEFAULT_RESULT_MODE
+name|ResultMode
+operator|.
+name|PER_NODE_IN_TREE
 decl_stmt|;
-comment|/**    * Initialize the request with a given path, and a requested number of facets    * results. By default, all returned results would be labeled - to alter this    * default see {@link #setNumLabel(int)}.    *<p>    *<b>NOTE:</b> if<code>numResults</code> is given as    *<code>Integer.MAX_VALUE</code> than all the facet results would be    * returned, without any limit.    *<p>    *<b>NOTE:</b> it is assumed that the given {@link CategoryPath} is not    * modified after construction of this object. Otherwise, some things may not    * function properly, e.g. {@link #hashCode()}.    *     * @throws IllegalArgumentException if numResults is&le; 0    */
+comment|// Computed at construction; based on categoryPath and numResults.
+DECL|field|hashCode
+specifier|private
+specifier|final
+name|int
+name|hashCode
+decl_stmt|;
+comment|/**    * Constructor with the given category to aggregate and the number of child    * categories to return.    *     * @param path    *          the category to aggregate. Cannot be {@code null}.    * @param numResults    *          the number of child categories to return. If set to    *          {@code Integer.MAX_VALUE}, all immediate child categories will be    *          returned. Must be greater than 0.    */
 DECL|method|FacetRequest
 specifier|public
 name|FacetRequest
@@ -233,16 +230,6 @@ name|numLabel
 operator|=
 name|numResults
 expr_stmt|;
-name|depth
-operator|=
-name|DEFAULT_DEPTH
-expr_stmt|;
-name|sortOrder
-operator|=
-name|SortOrder
-operator|.
-name|DESCENDING
-expr_stmt|;
 name|hashCode
 operator|=
 name|categoryPath
@@ -255,34 +242,17 @@ operator|.
 name|numResults
 expr_stmt|;
 block|}
-comment|/**    * Create an aggregator for this facet request. Aggregator action depends on    * request definition. For a count request, it will usually increment the    * count for that facet.    *     * @param useComplements    *          whether the complements optimization is being used for current    *          computation.    * @param arrays    *          provider for facet arrays in use for current computation.    * @param taxonomy    *          reader of taxonomy in effect.    * @throws IOException If there is a low-level I/O error.    */
-DECL|method|createAggregator
+comment|/**    * Returns the {@link FacetsAggregator} which can aggregate the categories of    * this facet request. The aggregator is expected to aggregate category values    * into {@link FacetArrays}. If the facet request does not support that, e.g.    * {@link RangeFacetRequest}, it can return {@code null}. Note though that    * such requests require a dedicated {@link FacetsAccumulator}.    */
+DECL|method|createFacetsAggregator
 specifier|public
-name|Aggregator
-name|createAggregator
+specifier|abstract
+name|FacetsAggregator
+name|createFacetsAggregator
 parameter_list|(
-name|boolean
-name|useComplements
-parameter_list|,
-name|FacetArrays
-name|arrays
-parameter_list|,
-name|TaxonomyReader
-name|taxonomy
+name|FacetIndexingParams
+name|fip
 parameter_list|)
-throws|throws
-name|IOException
-block|{
-throw|throw
-operator|new
-name|UnsupportedOperationException
-argument_list|(
-literal|"this FacetRequest does not support this type of Aggregator anymore; "
-operator|+
-literal|"you should override FacetsAccumulator to return the proper FacetsAggregator"
-argument_list|)
-throw|;
-block|}
+function_decl|;
 annotation|@
 name|Override
 DECL|method|equals
@@ -360,13 +330,21 @@ operator|==
 name|this
 operator|.
 name|numLabel
+operator|&&
+name|that
+operator|.
+name|sortOrder
+operator|==
+name|this
+operator|.
+name|sortOrder
 return|;
 block|}
 return|return
 literal|false
 return|;
 block|}
-comment|/**    * How deeply to look under the given category. If the depth is 0,    * only the category itself is counted. If the depth is 1, its immediate    * children are also counted, and so on. If the depth is Integer.MAX_VALUE,    * all the category's descendants are counted.<br>    */
+comment|/**    * How deeply to look under {@link #categoryPath}. By default, only its    * immediate children are aggregated (depth=1). If set to    * {@code Integer.MAX_VALUE}, the entire sub-tree of the category will be    * aggregated.    *<p>    *<b>NOTE:</b> setting depth to 0 means that only the category itself should    * be aggregated. In that case, make sure to index the category with    * {@link OrdinalPolicy#ALL_PARENTS}, unless it is not the root category (the    * dimension), in which case {@link OrdinalPolicy#ALL_BUT_DIMENSION} is fine    * too.    */
 DECL|method|getDepth
 specifier|public
 specifier|final
@@ -374,20 +352,12 @@ name|int
 name|getDepth
 parameter_list|()
 block|{
-comment|// TODO add AUTO_EXPAND option
+comment|// TODO an AUTO_EXPAND option could be useful
 return|return
 name|depth
 return|;
 block|}
-comment|/**    * Returns the {@link FacetArraysSource} this {@link FacetRequest} uses in    * {@link #getValueOf(FacetArrays, int)}.    */
-DECL|method|getFacetArraysSource
-specifier|public
-specifier|abstract
-name|FacetArraysSource
-name|getFacetArraysSource
-parameter_list|()
-function_decl|;
-comment|/**    * If getNumLabel()&lt; getNumResults(), only the first getNumLabel() results    * will have their category paths calculated, and the rest will only be    * available as ordinals (category numbers) and will have null paths.    *<P>    * If Integer.MAX_VALUE is specified, all results are labled.    *<P>    * The purpose of this parameter is to avoid having to run the whole faceted    * search again when the user asks for more values for the facet; The    * application can ask (getNumResults()) for more values than it needs to    * show, but keep getNumLabel() only the number it wants to immediately show.    * The slow-down caused by finding more values is negligible, because the    * slowest part - finding the categories' paths, is avoided.    *<p>    * Depending on the {@link #getResultMode() LimitsMode}, this limit is applied    * globally or per results node. In the global mode, if this limit is 3, only    * 3 top results would be labeled. In the per-node mode, if this limit is 3, 3    * top children of {@link #categoryPath the target category} would be labeled,    * as well as 3 top children of each of them, and so forth, until the depth    * defined by {@link #getDepth()}.    *     * @see #getResultMode()    */
+comment|/**    * Allows to specify the number of categories to label. By default all    * returned categories are labeled.    *<p>    * This allows an app to request a large number of results to return, while    * labeling them on-demand (e.g. when the UI requests to show more    * categories).    */
 DECL|method|getNumLabel
 specifier|public
 specifier|final
@@ -399,7 +369,7 @@ return|return
 name|numLabel
 return|;
 block|}
-comment|/** Return the requested result mode. */
+comment|/** Return the requested result mode (defaults to {@link ResultMode#PER_NODE_IN_TREE}. */
 DECL|method|getResultMode
 specifier|public
 specifier|final
@@ -411,7 +381,7 @@ return|return
 name|resultMode
 return|;
 block|}
-comment|/** Return the requested order of results. */
+comment|/** Return the requested order of results (defaults to {@link SortOrder#DESCENDING}. */
 DECL|method|getSortOrder
 specifier|public
 specifier|final
@@ -423,23 +393,6 @@ return|return
 name|sortOrder
 return|;
 block|}
-comment|/**    * Return the value of a category used for facets computations for this    * request. For a count request this would be the count for that facet, i.e.    * an integer number. but for other requests this can be the result of a more    * complex operation, and the result can be any double precision number.    * Having this method with a general name<b>value</b> which is double    * precision allows to have more compact API and code for handling counts and    * perhaps other requests (such as for associations) very similarly, and by    * the same code and API, avoiding code duplication.    *     * @param arrays    *          provider for facet arrays in use for current computation.    * @param idx    *          an index into the count arrays now in effect in    *<code>arrays</code>. E.g., for ordinal number<i>n</i>, with    *          partition, of size<i>partitionSize</i>, now covering<i>n</i>,    *<code>getValueOf</code> would be invoked with<code>idx</code>    *          being<i>n</i> %<i>partitionSize</i>.    */
-comment|// TODO perhaps instead of getValueOf we can have a postProcess(FacetArrays)
-comment|// That, together with getFacetArraysSource should allow ResultHandlers to
-comment|// efficiently obtain the values from the arrays directly
-DECL|method|getValueOf
-specifier|public
-specifier|abstract
-name|double
-name|getValueOf
-parameter_list|(
-name|FacetArrays
-name|arrays
-parameter_list|,
-name|int
-name|idx
-parameter_list|)
-function_decl|;
 annotation|@
 name|Override
 DECL|method|hashCode
@@ -452,6 +405,7 @@ return|return
 name|hashCode
 return|;
 block|}
+comment|/**    * Sets the depth up to which to aggregate facets.    *     * @see #getDepth()    */
 DECL|method|setDepth
 specifier|public
 name|void
@@ -468,6 +422,7 @@ operator|=
 name|depth
 expr_stmt|;
 block|}
+comment|/**    * Sets the number of categories to label.    *     * @see #getNumLabel()    */
 DECL|method|setNumLabel
 specifier|public
 name|void
@@ -484,7 +439,7 @@ operator|=
 name|numLabel
 expr_stmt|;
 block|}
-comment|/**    * @param resultMode the resultMode to set    * @see #getResultMode()    */
+comment|/**    * Sets the {@link ResultMode} for this request.    *     * @see #getResultMode()    */
 DECL|method|setResultMode
 specifier|public
 name|void
@@ -501,6 +456,7 @@ operator|=
 name|resultMode
 expr_stmt|;
 block|}
+comment|/**    * Sets the {@link SortOrder} for this request.    *     * @see #getSortOrder()    */
 DECL|method|setSortOrder
 specifier|public
 name|void

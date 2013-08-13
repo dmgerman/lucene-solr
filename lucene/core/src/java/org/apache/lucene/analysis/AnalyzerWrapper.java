@@ -64,10 +64,9 @@ name|String
 name|fieldName
 parameter_list|)
 function_decl|;
-comment|/**    * Wraps / alters the given TokenStreamComponents, taken from the wrapped    * Analyzer, to form new components.  It is through this method that new    * TokenFilters can be added by AnalyzerWrappers.    *    *    * @param fieldName Name of the field which is to be analyzed    * @param components TokenStreamComponents taken from the wrapped Analyzer    * @return Wrapped / altered TokenStreamComponents.    */
+comment|/**    * Wraps / alters the given TokenStreamComponents, taken from the wrapped    * Analyzer, to form new components. It is through this method that new    * TokenFilters can be added by AnalyzerWrappers. By default, the given    * components are returned.    *     * @param fieldName    *          Name of the field which is to be analyzed    * @param components    *          TokenStreamComponents taken from the wrapped Analyzer    * @return Wrapped / altered TokenStreamComponents.    */
 DECL|method|wrapComponents
 specifier|protected
-specifier|abstract
 name|TokenStreamComponents
 name|wrapComponents
 parameter_list|(
@@ -77,7 +76,28 @@ parameter_list|,
 name|TokenStreamComponents
 name|components
 parameter_list|)
-function_decl|;
+block|{
+return|return
+name|components
+return|;
+block|}
+comment|/**    * Wraps / alters the given Reader. Through this method AnalyzerWrappers can    * implement {@link #initReader(String, Reader)}. By default, the given reader    * is returned.    *     * @param fieldName    *          name of the field which is to be analyzed    * @param reader    *          the reader to wrap    * @return the wrapped reader    */
+DECL|method|wrapReader
+specifier|protected
+name|Reader
+name|wrapReader
+parameter_list|(
+name|String
+name|fieldName
+parameter_list|,
+name|Reader
+name|reader
+parameter_list|)
+block|{
+return|return
+name|reader
+return|;
+block|}
 annotation|@
 name|Override
 DECL|method|createComponents
@@ -185,7 +205,12 @@ name|initReader
 argument_list|(
 name|fieldName
 argument_list|,
+name|wrapReader
+argument_list|(
+name|fieldName
+argument_list|,
 name|reader
+argument_list|)
 argument_list|)
 return|;
 block|}

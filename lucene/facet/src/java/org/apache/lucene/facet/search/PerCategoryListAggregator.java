@@ -89,7 +89,7 @@ comment|/*  * Licensed to the Apache Software Foundation (ASF) under one or more
 end_comment
 
 begin_comment
-comment|/**  * A {@link FacetsAggregator} which invokes the proper aggregator per  * {@link CategoryListParams}.  */
+comment|/**  * A {@link FacetsAggregator} which invokes the proper aggregator per  * {@link CategoryListParams}.  * {@link #rollupValues(FacetRequest, int, int[], int[], FacetArrays)} is  * delegated to the proper aggregator which handles the  * {@link CategoryListParams} the given {@link FacetRequest} belongs to.  */
 end_comment
 
 begin_class
@@ -274,6 +274,48 @@ block|}
 block|}
 return|return
 literal|false
+return|;
+block|}
+annotation|@
+name|Override
+DECL|method|createOrdinalValueResolver
+specifier|public
+name|OrdinalValueResolver
+name|createOrdinalValueResolver
+parameter_list|(
+name|FacetRequest
+name|facetRequest
+parameter_list|,
+name|FacetArrays
+name|arrays
+parameter_list|)
+block|{
+name|CategoryListParams
+name|clp
+init|=
+name|fip
+operator|.
+name|getCategoryListParams
+argument_list|(
+name|facetRequest
+operator|.
+name|categoryPath
+argument_list|)
+decl_stmt|;
+return|return
+name|aggregators
+operator|.
+name|get
+argument_list|(
+name|clp
+argument_list|)
+operator|.
+name|createOrdinalValueResolver
+argument_list|(
+name|facetRequest
+argument_list|,
+name|arrays
+argument_list|)
 return|;
 block|}
 block|}

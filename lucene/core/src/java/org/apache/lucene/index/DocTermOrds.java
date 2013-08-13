@@ -2612,9 +2612,6 @@ name|seekCeil
 parameter_list|(
 name|BytesRef
 name|target
-parameter_list|,
-name|boolean
-name|useCache
 parameter_list|)
 throws|throws
 name|IOException
@@ -2981,8 +2978,6 @@ operator|.
 name|seekCeil
 argument_list|(
 name|base
-argument_list|,
-literal|true
 argument_list|)
 decl_stmt|;
 assert|assert

@@ -38,7 +38,7 @@ name|DEFAULT_OVERSAMPLE_FACTOR
 init|=
 literal|1d
 decl_stmt|;
-comment|/**    * Default ratio between size of sample to original size of document set.    * @see Sampler#getSampleSet(org.apache.lucene.facet.search.ScoredDocIDs)    */
+comment|/**    * Default ratio between size of sample to original size of document set.    * @see Sampler#getSampleSet(org.apache.lucene.facet.old.ScoredDocIDs)    */
 DECL|field|DEFAULT_SAMPLE_RATIO
 specifier|public
 specifier|static
@@ -48,7 +48,7 @@ name|DEFAULT_SAMPLE_RATIO
 init|=
 literal|0.01
 decl_stmt|;
-comment|/**    * Default maximum size of sample.    * @see Sampler#getSampleSet(org.apache.lucene.facet.search.ScoredDocIDs)    */
+comment|/**    * Default maximum size of sample.    * @see Sampler#getSampleSet(org.apache.lucene.facet.old.ScoredDocIDs)    */
 DECL|field|DEFAULT_MAX_SAMPLE_SIZE
 specifier|public
 specifier|static
@@ -58,7 +58,7 @@ name|DEFAULT_MAX_SAMPLE_SIZE
 init|=
 literal|10000
 decl_stmt|;
-comment|/**    * Default minimum size of sample.    * @see Sampler#getSampleSet(org.apache.lucene.facet.search.ScoredDocIDs)    */
+comment|/**    * Default minimum size of sample.    * @see Sampler#getSampleSet(org.apache.lucene.facet.old.ScoredDocIDs)    */
 DECL|field|DEFAULT_MIN_SAMPLE_SIZE
 specifier|public
 specifier|static
@@ -120,7 +120,7 @@ name|sampleFixer
 init|=
 literal|null
 decl_stmt|;
-comment|/**    * Return the maxSampleSize.    * In no case should the resulting sample size exceed this value.      * @see Sampler#getSampleSet(org.apache.lucene.facet.search.ScoredDocIDs)    */
+comment|/**    * Return the maxSampleSize.    * In no case should the resulting sample size exceed this value.      * @see Sampler#getSampleSet(org.apache.lucene.facet.old.ScoredDocIDs)    */
 DECL|method|getMaxSampleSize
 specifier|public
 specifier|final
@@ -132,7 +132,7 @@ return|return
 name|maxSampleSize
 return|;
 block|}
-comment|/**    * Return the minSampleSize.    * In no case should the resulting sample size be smaller than this value.      * @see Sampler#getSampleSet(org.apache.lucene.facet.search.ScoredDocIDs)    */
+comment|/**    * Return the minSampleSize.    * In no case should the resulting sample size be smaller than this value.      * @see Sampler#getSampleSet(org.apache.lucene.facet.old.ScoredDocIDs)    */
 DECL|method|getMinSampleSize
 specifier|public
 specifier|final
@@ -144,7 +144,7 @@ return|return
 name|minSampleSize
 return|;
 block|}
-comment|/**    * @return the sampleRatio    * @see Sampler#getSampleSet(org.apache.lucene.facet.search.ScoredDocIDs)    */
+comment|/**    * @return the sampleRatio    * @see Sampler#getSampleSet(org.apache.lucene.facet.old.ScoredDocIDs)    */
 DECL|method|getSampleRatio
 specifier|public
 specifier|final

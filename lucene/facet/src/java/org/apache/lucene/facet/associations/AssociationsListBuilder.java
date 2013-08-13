@@ -247,20 +247,6 @@ argument_list|(
 name|cp
 argument_list|)
 decl_stmt|;
-if|if
-condition|(
-name|association
-operator|==
-literal|null
-condition|)
-block|{
-comment|// it is ok to set a null association for a category - it's treated as a
-comment|// regular category in that case.
-operator|++
-name|idx
-expr_stmt|;
-continue|continue;
-block|}
 name|BytesRef
 name|bytes
 init|=

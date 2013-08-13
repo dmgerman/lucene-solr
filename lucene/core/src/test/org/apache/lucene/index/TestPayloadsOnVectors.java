@@ -533,8 +533,6 @@ name|BytesRef
 argument_list|(
 literal|"withPayload"
 argument_list|)
-argument_list|,
-literal|true
 argument_list|)
 argument_list|)
 expr_stmt|;
@@ -916,8 +914,6 @@ name|BytesRef
 argument_list|(
 literal|"withPayload"
 argument_list|)
-argument_list|,
-literal|true
 argument_list|)
 argument_list|)
 expr_stmt|;

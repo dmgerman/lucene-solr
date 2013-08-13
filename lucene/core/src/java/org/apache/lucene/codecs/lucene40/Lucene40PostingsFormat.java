@@ -450,10 +450,6 @@ argument_list|,
 name|state
 operator|.
 name|segmentSuffix
-argument_list|,
-name|state
-operator|.
-name|termsIndexDivisor
 argument_list|)
 decl_stmt|;
 name|success

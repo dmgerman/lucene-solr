@@ -130,7 +130,7 @@ name|TopKFacetResultsHandler
 extends|extends
 name|PartitionsFacetResultsHandler
 block|{
-comment|/**    * Construct top-K results handler.    *     * @param taxonomyReader    *          taxonomy reader    * @param facetRequest    *          facet request being served    */
+comment|/** Construct top-K results handler. */
 DECL|method|TopKFacetResultsHandler
 specifier|public
 name|TopKFacetResultsHandler
@@ -141,6 +141,9 @@ parameter_list|,
 name|FacetRequest
 name|facetRequest
 parameter_list|,
+name|OrdinalValueResolver
+name|resolver
+parameter_list|,
 name|FacetArrays
 name|facetArrays
 parameter_list|)
@@ -150,6 +153,8 @@ argument_list|(
 name|taxonomyReader
 argument_list|,
 name|facetRequest
+argument_list|,
+name|resolver
 argument_list|,
 name|facetArrays
 argument_list|)
@@ -221,12 +226,10 @@ name|arrayLength
 decl_stmt|;
 name|value
 operator|=
-name|facetRequest
+name|resolver
 operator|.
-name|getValueOf
+name|valueOf
 argument_list|(
-name|facetArrays
-argument_list|,
 name|ordinal
 operator|%
 name|partitionSize
@@ -672,12 +675,10 @@ decl_stmt|;
 name|double
 name|value
 init|=
-name|facetRequest
+name|resolver
 operator|.
-name|getValueOf
+name|valueOf
 argument_list|(
-name|facetArrays
-argument_list|,
 name|relativeOrdinal
 argument_list|)
 decl_stmt|;

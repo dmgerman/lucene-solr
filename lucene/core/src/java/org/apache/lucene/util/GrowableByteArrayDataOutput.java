@@ -154,15 +154,6 @@ name|length
 operator|+
 name|len
 decl_stmt|;
-if|if
-condition|(
-name|newLength
-operator|>
-name|bytes
-operator|.
-name|length
-condition|)
-block|{
 name|bytes
 operator|=
 name|ArrayUtil
@@ -174,7 +165,6 @@ argument_list|,
 name|newLength
 argument_list|)
 expr_stmt|;
-block|}
 name|System
 operator|.
 name|arraycopy

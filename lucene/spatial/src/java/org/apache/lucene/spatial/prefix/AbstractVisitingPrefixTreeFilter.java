@@ -344,7 +344,7 @@ name|VisitorTemplate
 extends|extends
 name|BaseTermsEnumTraverser
 block|{
-comment|/* Future potential optimizations:    * Can a polygon query shape be optimized / made-simpler at recursive depths     (e.g. intersection of shape + cell box)    * RE "scan" vs divide& conquer performance decision:     We should use termsEnum.docFreq() as an estimate on the number of places at     this depth.  It would be nice if termsEnum knew how many terms     start with the current term without having to repeatedly next()& test to find out.    */
+comment|/* Future potential optimizations:    * Can a polygon query shape be optimized / made-simpler at recursive depths     (e.g. intersection of shape + cell box)    * RE "scan" vs divide& conquer performance decision:     We should use termsEnum.docFreq() as an estimate on the number of places at     this depth.  It would be nice if termsEnum knew how many terms     start with the current term without having to repeatedly next()& test to find out.    * Perhaps don't do intermediate seek()'s to cells above detailLevel that have Intersects     relation because we won't be collecting those docs any way.  However seeking     does act as a short-circuit.  So maybe do some percent of the time or when the level     is above some threshold.    * Each shape.relate(otherShape) result could be cached since much of the same relations     will be invoked when multiple segments are involved.    */
 DECL|field|hasIndexedLeaves
 specifier|protected
 specifier|final
@@ -656,8 +656,6 @@ operator|.
 name|seekExact
 argument_list|(
 name|curVNodeTerm
-argument_list|,
-literal|false
 argument_list|)
 operator|:
 literal|"should be absent"
@@ -683,8 +681,6 @@ operator|.
 name|seekCeil
 argument_list|(
 name|curVNodeTerm
-argument_list|,
-literal|true
 argument_list|)
 decl_stmt|;
 if|if
@@ -1261,7 +1257,7 @@ name|IOException
 block|{     }
 block|}
 comment|//class VisitorTemplate
-comment|/**    * A Visitor Cell/Cell found via the query shape for {@link VisitorTemplate}.    * Sometimes these are reset(cell). It's like a LinkedList node but forms a    * tree.    *    * @lucene.internal    */
+comment|/**    * A visitor node/cell found via the query shape for {@link VisitorTemplate}.    * Sometimes these are reset(cell). It's like a LinkedList node but forms a    * tree.    *    * @lucene.internal    */
 DECL|class|VNode
 specifier|protected
 specifier|static

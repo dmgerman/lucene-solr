@@ -324,11 +324,6 @@ specifier|final
 name|DocValuesProducer
 name|normsProducer
 decl_stmt|;
-DECL|field|termsIndexDivisor
-specifier|final
-name|int
-name|termsIndexDivisor
-decl_stmt|;
 DECL|field|owner
 specifier|private
 specifier|final
@@ -558,28 +553,10 @@ name|si
 parameter_list|,
 name|IOContext
 name|context
-parameter_list|,
-name|int
-name|termsIndexDivisor
 parameter_list|)
 throws|throws
 name|IOException
 block|{
-if|if
-condition|(
-name|termsIndexDivisor
-operator|==
-literal|0
-condition|)
-block|{
-throw|throw
-operator|new
-name|IllegalArgumentException
-argument_list|(
-literal|"indexDivisor must be< 0 (don't load terms index) or greater than 0 (got 0)"
-argument_list|)
-throw|;
-block|}
 specifier|final
 name|Codec
 name|codec
@@ -681,12 +658,6 @@ operator|.
 name|READONCE
 argument_list|)
 expr_stmt|;
-name|this
-operator|.
-name|termsIndexDivisor
-operator|=
-name|termsIndexDivisor
-expr_stmt|;
 specifier|final
 name|PostingsFormat
 name|format
@@ -712,8 +683,6 @@ argument_list|,
 name|fieldInfos
 argument_list|,
 name|context
-argument_list|,
-name|termsIndexDivisor
 argument_list|)
 decl_stmt|;
 comment|// Ask codec for its Fields

@@ -320,8 +320,6 @@ argument_list|(
 name|context
 argument_list|,
 name|term
-argument_list|,
-literal|true
 argument_list|)
 decl_stmt|;
 name|termStats

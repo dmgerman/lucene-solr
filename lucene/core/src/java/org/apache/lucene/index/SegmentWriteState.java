@@ -174,13 +174,6 @@ specifier|final
 name|String
 name|segmentSuffix
 decl_stmt|;
-comment|/** Expert: The fraction of terms in the "dictionary" which should be stored    * in RAM.  Smaller values use more memory, but make searching slightly    * faster, while larger values use less memory and make searching slightly    * slower.  Searching is typically not dominated by dictionary lookup, so    * tweaking this is rarely useful.*/
-DECL|field|termIndexInterval
-specifier|public
-name|int
-name|termIndexInterval
-decl_stmt|;
-comment|// TODO: this should be private to the codec, not settable here or in IWC
 comment|/** {@link IOContext} for all writes; you should pass this    *  to {@link Directory#createOutput(String,IOContext)}. */
 DECL|field|context
 specifier|public
@@ -204,9 +197,6 @@ name|segmentInfo
 parameter_list|,
 name|FieldInfos
 name|fieldInfos
-parameter_list|,
-name|int
-name|termIndexInterval
 parameter_list|,
 name|BufferedDeletes
 name|segDeletes
@@ -245,12 +235,6 @@ name|fieldInfos
 operator|=
 name|fieldInfos
 expr_stmt|;
-name|this
-operator|.
-name|termIndexInterval
-operator|=
-name|termIndexInterval
-expr_stmt|;
 name|segmentSuffix
 operator|=
 literal|""
@@ -262,7 +246,7 @@ operator|=
 name|context
 expr_stmt|;
 block|}
-comment|/**    * Create a shallow {@link SegmentWriteState} copy final a format ID    */
+comment|/** Create a shallow copy of {@link SegmentWriteState} with a new segment suffix. */
 DECL|method|SegmentWriteState
 specifier|public
 name|SegmentWriteState
@@ -297,12 +281,6 @@ operator|=
 name|state
 operator|.
 name|fieldInfos
-expr_stmt|;
-name|termIndexInterval
-operator|=
-name|state
-operator|.
-name|termIndexInterval
 expr_stmt|;
 name|context
 operator|=

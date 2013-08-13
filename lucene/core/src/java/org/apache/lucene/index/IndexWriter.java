@@ -1959,7 +1959,7 @@ name|Codec
 name|codec
 decl_stmt|;
 comment|// for writing new segments
-comment|/**    * Constructs a new IndexWriter per the settings given in<code>conf</code>.    * Note that the passed in {@link IndexWriterConfig} is    * privately cloned, which, in-turn, clones the    * {@link IndexWriterConfig#getFlushPolicy() flush policy},    * {@link IndexWriterConfig#getIndexDeletionPolicy() deletion policy},    * {@link IndexWriterConfig#getMergePolicy() merge policy},    * and {@link IndexWriterConfig#getMergeScheduler() merge scheduler}.    * If you need to make subsequent "live"    * changes to the configuration use {@link #getConfig}.    *<p>    *     * @param d    *          the index directory. The index is either created or appended    *          according<code>conf.getOpenMode()</code>.    * @param conf    *          the configuration settings according to which IndexWriter should    *          be initialized.    * @throws IOException    *           if the directory cannot be read/written to, or if it does not    *           exist and<code>conf.getOpenMode()</code> is    *<code>OpenMode.APPEND</code> or if there is any other low-level    *           IO error    */
+comment|/**    * Constructs a new IndexWriter per the settings given in<code>conf</code>.    * If you want to make "live" changes to this writer instance, use    * {@link #getConfig()}.    *     *<p>    *<b>NOTE:</b> after ths writer is created, the given configuration instance    * cannot be passed to another writer. If you intend to do so, you should    * {@link IndexWriterConfig#clone() clone} it beforehand.    *     * @param d    *          the index directory. The index is either created or appended    *          according<code>conf.getOpenMode()</code>.    * @param conf    *          the configuration settings according to which IndexWriter should    *          be initialized.    * @throws IOException    *           if the directory cannot be read/written to, or if it does not    *           exist and<code>conf.getOpenMode()</code> is    *<code>OpenMode.APPEND</code> or if there is any other low-level    *           IO error    */
 DECL|method|IndexWriter
 specifier|public
 name|IndexWriter
@@ -1973,15 +1973,20 @@ parameter_list|)
 throws|throws
 name|IOException
 block|{
+name|conf
+operator|.
+name|setIndexWriter
+argument_list|(
+name|this
+argument_list|)
+expr_stmt|;
+comment|// prevent reuse by other instances
 name|config
 operator|=
 operator|new
 name|LiveIndexWriterConfig
 argument_list|(
 name|conf
-operator|.
-name|clone
-argument_list|()
 argument_list|)
 expr_stmt|;
 name|directory
@@ -7023,7 +7028,7 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
-comment|/**    * Merges the provided indexes into this index.    *     *<p>    * The provided IndexReaders are not closed.    *     *<p>    * See {@link #addIndexes} for details on transactional semantics, temporary    * free space required in the Directory, and non-CFS segments on an Exception.    *     *<p>    *<b>NOTE</b>: if this method hits an OutOfMemoryError you should immediately    * close the writer. See<a href="#OOME">above</a> for details.    *     *<p>    *<b>NOTE:</b> this method merges all given {@link IndexReader}s in one    * merge. If you intend to merge a large number of readers, it may be better    * to call this method multiple times, each time with a small set of readers.    * In principle, if you use a merge policy with a {@code mergeFactor} or    * {@code maxMergeAtOnce} parameter, you should pass that many readers in one    * call. Also, if the given readers are {@link DirectoryReader}s, they can be    * opened with {@code termIndexInterval=-1} to save RAM, since during merge    * the in-memory structure is not used. See    * {@link DirectoryReader#open(Directory, int)}.    *     *<p>    *<b>NOTE</b>: if you call {@link #close(boolean)} with<tt>false</tt>, which    * aborts all running merges, then any thread still running this method might    * hit a {@link MergePolicy.MergeAbortedException}.    *     * @throws CorruptIndexException    *           if the index is corrupt    * @throws IOException    *           if there is a low-level IO error    */
+comment|/**    * Merges the provided indexes into this index.    *     *<p>    * The provided IndexReaders are not closed.    *     *<p>    * See {@link #addIndexes} for details on transactional semantics, temporary    * free space required in the Directory, and non-CFS segments on an Exception.    *     *<p>    *<b>NOTE</b>: if this method hits an OutOfMemoryError you should immediately    * close the writer. See<a href="#OOME">above</a> for details.    *     *<p>    *<b>NOTE:</b> empty segments are dropped by this method and not added to this    * index.    *     *<p>    *<b>NOTE:</b> this method merges all given {@link IndexReader}s in one    * merge. If you intend to merge a large number of readers, it may be better    * to call this method multiple times, each time with a small set of readers.    * In principle, if you use a merge policy with a {@code mergeFactor} or    * {@code maxMergeAtOnce} parameter, you should pass that many readers in one    * call.    *     *<p>    *<b>NOTE</b>: if you call {@link #close(boolean)} with<tt>false</tt>, which    * aborts all running merges, then any thread still running this method might    * hit a {@link MergePolicy.MergeAbortedException}.    *     * @throws CorruptIndexException    *           if the index is corrupt    * @throws IOException    *           if there is a low-level IO error    */
 DECL|method|addIndexes
 specifier|public
 name|void
@@ -7101,6 +7106,16 @@ range|:
 name|readers
 control|)
 block|{
+if|if
+condition|(
+name|indexReader
+operator|.
+name|numDocs
+argument_list|()
+operator|>
+literal|0
+condition|)
+block|{
 name|numDocs
 operator|+=
 name|indexReader
@@ -7119,6 +7134,20 @@ name|leaves
 argument_list|()
 control|)
 block|{
+if|if
+condition|(
+name|ctx
+operator|.
+name|reader
+argument_list|()
+operator|.
+name|numDocs
+argument_list|()
+operator|>
+literal|0
+condition|)
+block|{
+comment|// drop empty (or all deleted) segments
 name|mergeReaders
 operator|.
 name|add
@@ -7130,6 +7159,19 @@ argument_list|()
 argument_list|)
 expr_stmt|;
 block|}
+block|}
+block|}
+block|}
+if|if
+condition|(
+name|mergeReaders
+operator|.
+name|isEmpty
+argument_list|()
+condition|)
+block|{
+comment|// no segments with documents to add
+return|return;
 block|}
 specifier|final
 name|IOContext
@@ -7203,11 +7245,6 @@ argument_list|,
 name|infoStream
 argument_list|,
 name|trackingDir
-argument_list|,
-name|config
-operator|.
-name|getTermIndexInterval
-argument_list|()
 argument_list|,
 name|MergeState
 operator|.
@@ -12395,7 +12432,7 @@ name|reader
 init|=
 name|rld
 operator|.
-name|getMergeReader
+name|getReader
 argument_list|(
 name|context
 argument_list|)
@@ -12710,11 +12747,6 @@ argument_list|,
 name|infoStream
 argument_list|,
 name|dirWrapper
-argument_list|,
-name|config
-operator|.
-name|getTermIndexInterval
-argument_list|()
 argument_list|,
 name|checkAbort
 argument_list|,
