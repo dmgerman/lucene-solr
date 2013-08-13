@@ -152,6 +152,8 @@ argument_list|,
 name|sdoc
 argument_list|,
 name|params
+argument_list|,
+name|collection
 argument_list|)
 decl_stmt|;
 return|return
@@ -211,6 +213,8 @@ argument_list|,
 name|sdoc
 argument_list|,
 name|params
+argument_list|,
+name|collection
 argument_list|)
 decl_stmt|;
 name|Range
@@ -252,6 +256,9 @@ name|sdoc
 parameter_list|,
 name|SolrParams
 name|params
+parameter_list|,
+name|DocCollection
+name|collection
 parameter_list|)
 block|{
 return|return
