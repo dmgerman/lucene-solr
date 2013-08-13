@@ -797,7 +797,7 @@ argument_list|,
 name|fmt
 argument_list|)
 expr_stmt|;
-comment|// Load the formatters
+comment|// Load the encoders
 name|SolrEncoder
 name|enc
 init|=

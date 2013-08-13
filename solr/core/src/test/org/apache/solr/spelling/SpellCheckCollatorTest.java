@@ -288,6 +288,16 @@ name|org
 operator|.
 name|junit
 operator|.
+name|Ignore
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|junit
+operator|.
 name|Test
 import|;
 end_import
@@ -3177,6 +3187,11 @@ block|}
 block|}
 annotation|@
 name|Test
+annotation|@
+name|Ignore
+argument_list|(
+literal|"SOLR-5122: estimates don't seem to make any sense"
+argument_list|)
 DECL|method|testEstimatedHitCounts
 specifier|public
 name|void

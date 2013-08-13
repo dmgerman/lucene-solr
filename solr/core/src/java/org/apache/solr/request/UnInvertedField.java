@@ -1293,8 +1293,6 @@ operator|.
 name|seekCeil
 argument_list|(
 name|prefixBr
-argument_list|,
-literal|true
 argument_list|)
 operator|==
 name|TermsEnum
@@ -1338,8 +1336,6 @@ operator|.
 name|seekCeil
 argument_list|(
 name|prefixBr
-argument_list|,
-literal|true
 argument_list|)
 operator|==
 name|TermsEnum

@@ -920,6 +920,17 @@ name|map
 argument_list|)
 return|;
 block|}
+comment|/** For test verification */
+DECL|method|getServer
+specifier|public
+name|MBeanServer
+name|getServer
+parameter_list|()
+block|{
+return|return
+name|server
+return|;
+block|}
 comment|/**    * DynamicMBean is used to dynamically expose all SolrInfoMBean    * getStatistics() NameList keys as String getters.    */
 DECL|class|SolrDynamicMBean
 specifier|static

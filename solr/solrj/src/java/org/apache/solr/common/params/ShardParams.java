@@ -118,6 +118,8 @@ init|=
 literal|"shards.tolerant"
 decl_stmt|;
 comment|/** Should things fail if there is an error? (true/false) */
+annotation|@
+name|Deprecated
 DECL|field|SHARD_KEYS
 specifier|public
 specifier|static
@@ -126,6 +128,15 @@ name|String
 name|SHARD_KEYS
 init|=
 literal|"shard.keys"
+decl_stmt|;
+DECL|field|_ROUTE_
+specifier|public
+specifier|static
+specifier|final
+name|String
+name|_ROUTE_
+init|=
+literal|"_route_"
 decl_stmt|;
 block|}
 end_interface

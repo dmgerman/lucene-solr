@@ -98,16 +98,6 @@ name|org
 operator|.
 name|junit
 operator|.
-name|After
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|junit
-operator|.
 name|Assume
 import|;
 end_import
@@ -118,7 +108,7 @@ name|org
 operator|.
 name|junit
 operator|.
-name|Before
+name|AfterClass
 import|;
 end_import
 
@@ -164,6 +154,14 @@ name|TestJmxIntegration
 extends|extends
 name|AbstractSolrTestCase
 block|{
+DECL|field|mbeanServer
+specifier|private
+specifier|static
+name|MBeanServer
+name|mbeanServer
+init|=
+literal|null
+decl_stmt|;
 annotation|@
 name|BeforeClass
 DECL|method|beforeClass
@@ -175,6 +173,19 @@ parameter_list|()
 throws|throws
 name|Exception
 block|{
+comment|// Make sure that at least one MBeanServer is available
+comment|// prior to initializing the core
+comment|//
+comment|// (test configs are setup to use existing server if any,
+comment|// otherwise skip JMX)
+name|MBeanServer
+name|platformServer
+init|=
+name|ManagementFactory
+operator|.
+name|getPlatformMBeanServer
+argument_list|()
+decl_stmt|;
 name|initCore
 argument_list|(
 literal|"solrconfig.xml"
@@ -182,50 +193,85 @@ argument_list|,
 literal|"schema.xml"
 argument_list|)
 expr_stmt|;
-block|}
-annotation|@
-name|Override
-annotation|@
-name|Before
-DECL|method|setUp
-specifier|public
-name|void
-name|setUp
-parameter_list|()
-throws|throws
-name|Exception
-block|{
-comment|// Make sure that at least one MBeanServer is available
-name|MBeanServer
-name|mbeanServer
-init|=
-name|ManagementFactory
+comment|// we should be able to se that the core has JmxIntegration enabled
+name|assertTrue
+argument_list|(
+literal|"JMX not enabled"
+argument_list|,
+name|h
 operator|.
-name|getPlatformMBeanServer
+name|getCore
+argument_list|()
+operator|.
+name|getSolrConfig
+argument_list|()
+operator|.
+name|jmxConfig
+operator|.
+name|enabled
+argument_list|)
+expr_stmt|;
+comment|// and we should be able to see that the the monitor map found
+comment|// a JMX server to use, which refers to the server we started
+name|Map
+name|registry
+init|=
+name|h
+operator|.
+name|getCore
+argument_list|()
+operator|.
+name|getInfoRegistry
 argument_list|()
 decl_stmt|;
-name|super
+name|assertTrue
+argument_list|(
+literal|"info registry is not a JMX monitored map"
+argument_list|,
+name|registry
+operator|instanceof
+name|JmxMonitoredMap
+argument_list|)
+expr_stmt|;
+name|mbeanServer
+operator|=
+operator|(
+operator|(
+name|JmxMonitoredMap
+operator|)
+name|registry
+operator|)
 operator|.
-name|setUp
+name|getServer
 argument_list|()
 expr_stmt|;
+name|assertNotNull
+argument_list|(
+literal|"No JMX server found by monitor map"
+argument_list|,
+name|mbeanServer
+argument_list|)
+expr_stmt|;
+comment|// NOTE: we can't garuntee that "mbeanServer == platformServer"
+comment|// the JVM may have mutiple MBean servers funning when the test started
+comment|// and the contract of not specifying one when configuring solr with
+comment|//<jmx /> is that it will use whatever the "first" MBean server
+comment|// returned by the JVM is.
 block|}
 annotation|@
-name|Override
-annotation|@
-name|After
-DECL|method|tearDown
+name|AfterClass
+DECL|method|afterClass
 specifier|public
+specifier|static
 name|void
-name|tearDown
+name|afterClass
 parameter_list|()
 throws|throws
 name|Exception
 block|{
-name|super
-operator|.
-name|tearDown
-argument_list|()
+name|mbeanServer
+operator|=
+literal|null
 expr_stmt|;
 block|}
 annotation|@
@@ -238,55 +284,6 @@ parameter_list|()
 throws|throws
 name|Exception
 block|{
-name|List
-argument_list|<
-name|MBeanServer
-argument_list|>
-name|servers
-init|=
-name|MBeanServerFactory
-operator|.
-name|findMBeanServer
-argument_list|(
-literal|null
-argument_list|)
-decl_stmt|;
-name|log
-operator|.
-name|info
-argument_list|(
-literal|"Servers in testJmxRegistration: "
-operator|+
-name|servers
-argument_list|)
-expr_stmt|;
-name|assertNotNull
-argument_list|(
-literal|"MBeanServers were null"
-argument_list|,
-name|servers
-argument_list|)
-expr_stmt|;
-name|assertFalse
-argument_list|(
-literal|"No MBeanServer was found"
-argument_list|,
-name|servers
-operator|.
-name|isEmpty
-argument_list|()
-argument_list|)
-expr_stmt|;
-name|MBeanServer
-name|mbeanServer
-init|=
-name|servers
-operator|.
-name|get
-argument_list|(
-literal|0
-argument_list|)
-decl_stmt|;
 name|assertTrue
 argument_list|(
 literal|"No MBeans found in server"
@@ -493,61 +490,6 @@ parameter_list|()
 throws|throws
 name|Exception
 block|{
-comment|// Workaround for SOLR-4418 (this test fails with "No
-comment|// mbean found for SolrIndexSearcher" on IBM J9 6.0 and 7.0):
-name|Assume
-operator|.
-name|assumeTrue
-argument_list|(
-operator|!
-literal|"IBM Corporation"
-operator|.
-name|equals
-argument_list|(
-name|Constants
-operator|.
-name|JVM_VENDOR
-argument_list|)
-argument_list|)
-expr_stmt|;
-name|List
-argument_list|<
-name|MBeanServer
-argument_list|>
-name|servers
-init|=
-name|MBeanServerFactory
-operator|.
-name|findMBeanServer
-argument_list|(
-literal|null
-argument_list|)
-decl_stmt|;
-name|log
-operator|.
-name|info
-argument_list|(
-literal|"Servers in testJmxUpdate: "
-operator|+
-name|servers
-argument_list|)
-expr_stmt|;
-name|log
-operator|.
-name|info
-argument_list|(
-name|h
-operator|.
-name|getCore
-argument_list|()
-operator|.
-name|getInfoRegistry
-argument_list|()
-operator|.
-name|toString
-argument_list|()
-argument_list|)
-expr_stmt|;
 name|SolrInfoMBean
 name|bean
 init|=
@@ -620,16 +562,6 @@ argument_list|(
 literal|"searcher"
 argument_list|,
 name|bean
-argument_list|)
-decl_stmt|;
-name|MBeanServer
-name|mbeanServer
-init|=
-name|servers
-operator|.
-name|get
-argument_list|(
-literal|0
 argument_list|)
 decl_stmt|;
 name|log
@@ -738,29 +670,6 @@ parameter_list|()
 throws|throws
 name|Exception
 block|{
-name|List
-argument_list|<
-name|MBeanServer
-argument_list|>
-name|servers
-init|=
-name|MBeanServerFactory
-operator|.
-name|findMBeanServer
-argument_list|(
-literal|null
-argument_list|)
-decl_stmt|;
-name|MBeanServer
-name|mbeanServer
-init|=
-name|servers
-operator|.
-name|get
-argument_list|(
-literal|0
-argument_list|)
-decl_stmt|;
 name|String
 name|coreName
 init|=

@@ -1424,7 +1424,7 @@ argument_list|()
 operator|>
 literal|0
 condition|?
-name|collation
+name|origQuery
 operator|.
 name|charAt
 argument_list|(

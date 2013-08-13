@@ -559,7 +559,7 @@ name|HttpClientUtil
 operator|.
 name|PROP_CONNECTION_TIMEOUT
 argument_list|,
-literal|30000
+literal|15000
 argument_list|)
 expr_stmt|;
 name|params
@@ -1754,14 +1754,14 @@ name|server
 operator|.
 name|setConnectionTimeout
 argument_list|(
-literal|45000
+literal|15000
 argument_list|)
 expr_stmt|;
 name|server
 operator|.
 name|setSoTimeout
 argument_list|(
-literal|45000
+literal|30000
 argument_list|)
 expr_stmt|;
 try|try

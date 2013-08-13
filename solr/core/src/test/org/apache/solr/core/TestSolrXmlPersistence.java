@@ -3107,7 +3107,7 @@ literal|"<solr persistent=\"${solr.xml.persist:false}\" coreLoadThreads=\"12\" s
 operator|+
 literal|"<logging class=\"${logclass:log4j.class}\" enabled=\"{logenable:true}\">\n"
 operator|+
-literal|"<watcher size=\"{watchSize:13}\" threshold=\"${logThresh:54}\" />\n"
+literal|"<watcher size=\"${watchSize:13}\" threshold=\"${logThresh:54}\" />\n"
 operator|+
 literal|"</logging>\n"
 operator|+

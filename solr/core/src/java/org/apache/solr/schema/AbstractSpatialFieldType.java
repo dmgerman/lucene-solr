@@ -1558,6 +1558,13 @@ argument_list|(
 name|score
 argument_list|)
 condition|)
+block|{
+name|double
+name|multiplier
+init|=
+literal|1.0
+decl_stmt|;
+comment|//TODO support units=kilometers
 name|valueSource
 operator|=
 name|strategy
@@ -1571,8 +1578,11 @@ argument_list|()
 operator|.
 name|getCenter
 argument_list|()
+argument_list|,
+name|multiplier
 argument_list|)
 expr_stmt|;
+block|}
 elseif|else
 if|if
 condition|(
@@ -1583,6 +1593,7 @@ argument_list|(
 name|score
 argument_list|)
 condition|)
+block|{
 name|valueSource
 operator|=
 name|strategy
@@ -1595,7 +1606,9 @@ name|getShape
 argument_list|()
 argument_list|)
 expr_stmt|;
+block|}
 else|else
+block|{
 throw|throw
 operator|new
 name|SolrException
@@ -1609,6 +1622,7 @@ argument_list|,
 literal|"'score' local-param must be one of 'none', 'distance', or 'recipDistance'"
 argument_list|)
 throw|;
+block|}
 name|FunctionQuery
 name|functionQuery
 init|=

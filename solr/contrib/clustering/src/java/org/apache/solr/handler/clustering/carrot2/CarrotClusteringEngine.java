@@ -778,6 +778,20 @@ name|Closeables
 import|;
 end_import
 
+begin_import
+import|import
+name|com
+operator|.
+name|google
+operator|.
+name|common
+operator|.
+name|io
+operator|.
+name|Closer
+import|;
+end_import
+
 begin_comment
 comment|/**  * Search results clustering engine based on Carrot2 clustering algorithms.  *<p/>  * Output from this class is subject to change.  *  * @see "http://project.carrot2.org"  */
 end_comment
@@ -1010,13 +1024,24 @@ name|resourceStream
 operator|!=
 literal|null
 condition|)
-name|Closeables
-operator|.
-name|closeQuietly
-argument_list|(
+block|{
+try|try
+block|{
 name|resourceStream
-argument_list|)
+operator|.
+name|close
+argument_list|()
 expr_stmt|;
+block|}
+catch|catch
+parameter_list|(
+name|IOException
+name|e
+parameter_list|)
+block|{
+comment|// ignore.
+block|}
+block|}
 block|}
 name|log
 operator|.

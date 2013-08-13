@@ -22,16 +22,6 @@ begin_import
 import|import
 name|org
 operator|.
-name|noggit
-operator|.
-name|JSONWriter
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
 name|apache
 operator|.
 name|solr
@@ -84,7 +74,7 @@ name|common
 operator|.
 name|util
 operator|.
-name|Hash
+name|StrUtils
 import|;
 end_import
 
@@ -92,15 +82,9 @@ begin_import
 import|import
 name|org
 operator|.
-name|apache
+name|noggit
 operator|.
-name|solr
-operator|.
-name|common
-operator|.
-name|util
-operator|.
-name|StrUtils
+name|JSONWriter
 import|;
 end_import
 
@@ -206,6 +190,15 @@ init|=
 operator|new
 name|CompositeIdRouter
 argument_list|()
+decl_stmt|;
+DECL|field|ROUTE_FIELD
+specifier|public
+specifier|static
+specifier|final
+name|String
+name|ROUTE_FIELD
+init|=
+literal|"routeField"
 decl_stmt|;
 DECL|method|getDocRouter
 specifier|public

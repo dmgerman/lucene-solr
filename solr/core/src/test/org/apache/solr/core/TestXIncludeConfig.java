@@ -108,6 +108,10 @@ name|BeforeClass
 import|;
 end_import
 
+begin_comment
+comment|/**   * Test both XInclude as well as more old school "entity includes"  */
+end_comment
+
 begin_class
 DECL|class|TestXIncludeConfig
 specifier|public
@@ -284,6 +288,7 @@ operator|.
 name|getLatestSchema
 argument_list|()
 decl_stmt|;
+comment|// xinclude
 name|assertNotNull
 argument_list|(
 literal|"ft-included is null"
@@ -305,6 +310,45 @@ operator|.
 name|getFieldOrNull
 argument_list|(
 literal|"field-included"
+argument_list|)
+argument_list|)
+expr_stmt|;
+comment|// entity include
+name|assertNotNull
+argument_list|(
+literal|"ft-entity-include1 is null"
+argument_list|,
+name|schema
+operator|.
+name|getFieldTypeByName
+argument_list|(
+literal|"ft-entity-include1"
+argument_list|)
+argument_list|)
+expr_stmt|;
+name|assertNotNull
+argument_list|(
+literal|"ft-entity-include2 is null"
+argument_list|,
+name|schema
+operator|.
+name|getFieldTypeByName
+argument_list|(
+literal|"ft-entity-include2"
+argument_list|)
+argument_list|)
+expr_stmt|;
+comment|// sanity check
+name|assertNull
+argument_list|(
+literal|"ft-entity-include3 is not null"
+argument_list|,
+comment|// Does Not Exist Anywhere
+name|schema
+operator|.
+name|getFieldTypeByName
+argument_list|(
+literal|"ft-entity-include3"
 argument_list|)
 argument_list|)
 expr_stmt|;

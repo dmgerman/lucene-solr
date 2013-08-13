@@ -3827,7 +3827,7 @@ name|req
 argument_list|,
 literal|"//str[.='Yonik']"
 argument_list|,
-literal|"//float[.='2.9459102']"
+literal|"//float[@name='score' and .> 0]"
 argument_list|)
 expr_stmt|;
 comment|// test addition of score field

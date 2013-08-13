@@ -66,6 +66,7 @@ DECL|enum constant|CREATEALIAS
 DECL|enum constant|DELETEALIAS
 DECL|enum constant|SPLITSHARD
 DECL|enum constant|DELETESHARD
+DECL|enum constant|CREATESHARD
 name|CREATE
 block|,
 name|DELETE
@@ -81,6 +82,8 @@ block|,
 name|SPLITSHARD
 block|,
 name|DELETESHARD
+block|,
+name|CREATESHARD
 block|;
 DECL|method|get
 specifier|public
