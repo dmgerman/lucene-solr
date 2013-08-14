@@ -1102,15 +1102,6 @@ argument_list|)
 argument_list|)
 argument_list|)
 decl_stmt|;
-name|_TestUtil
-operator|.
-name|keepFullyDeletedSegments
-argument_list|(
-name|writer
-operator|.
-name|w
-argument_list|)
-expr_stmt|;
 comment|// NOTE: cannot use writer.getReader because RIW (on
 comment|// flipping a coin) may give us a newly opened reader,
 comment|// but we use .reopen on this reader below and expect to
