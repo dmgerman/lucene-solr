@@ -6285,7 +6285,11 @@ name|class
 operator|.
 name|getDeclaredMethod
 argument_list|(
-literal|"keepFullyDeletedSegments"
+literal|"setKeepFullyDeletedSegments"
+argument_list|,
+name|boolean
+operator|.
+name|class
 argument_list|)
 decl_stmt|;
 name|m
@@ -6300,6 +6304,10 @@ operator|.
 name|invoke
 argument_list|(
 name|w
+argument_list|,
+name|Boolean
+operator|.
+name|TRUE
 argument_list|)
 expr_stmt|;
 block|}

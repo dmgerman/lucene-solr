@@ -276,6 +276,8 @@ parameter_list|,
 name|IOContext
 name|context
 parameter_list|)
+throws|throws
+name|IOException
 block|{
 name|mergeState
 operator|=
@@ -322,21 +324,6 @@ argument_list|(
 name|fieldNumbers
 argument_list|)
 expr_stmt|;
-block|}
-comment|/**    * Merges the readers into the directory passed to the constructor    * @return The number of documents that were merged    * @throws CorruptIndexException if the index is corrupt    * @throws IOException if there is a low-level IO error    */
-DECL|method|merge
-name|MergeState
-name|merge
-parameter_list|()
-throws|throws
-name|IOException
-block|{
-comment|// NOTE: it's important to add calls to
-comment|// checkAbort.work(...) if you make any changes to this
-comment|// method that will spend alot of time.  The frequency
-comment|// of this check impacts how long
-comment|// IndexWriter.close(false) takes to actually stop the
-comment|// threads.
 name|mergeState
 operator|.
 name|segmentInfo
@@ -347,6 +334,53 @@ name|setDocMaps
 argument_list|()
 argument_list|)
 expr_stmt|;
+block|}
+comment|/** True if any merging should happen */
+DECL|method|shouldMerge
+name|boolean
+name|shouldMerge
+parameter_list|()
+block|{
+return|return
+name|mergeState
+operator|.
+name|segmentInfo
+operator|.
+name|getDocCount
+argument_list|()
+operator|>
+literal|0
+return|;
+block|}
+comment|/**    * Merges the readers into the directory passed to the constructor    * @return The number of documents that were merged    * @throws CorruptIndexException if the index is corrupt    * @throws IOException if there is a low-level IO error    */
+DECL|method|merge
+name|MergeState
+name|merge
+parameter_list|()
+throws|throws
+name|IOException
+block|{
+if|if
+condition|(
+operator|!
+name|shouldMerge
+argument_list|()
+condition|)
+block|{
+throw|throw
+operator|new
+name|IllegalStateException
+argument_list|(
+literal|"Merge would result in 0 document segment"
+argument_list|)
+throw|;
+block|}
+comment|// NOTE: it's important to add calls to
+comment|// checkAbort.work(...) if you make any changes to this
+comment|// method that will spend alot of time.  The frequency
+comment|// of this check impacts how long
+comment|// IndexWriter.close(false) takes to actually stop the
+comment|// threads.
 name|mergeFieldInfos
 argument_list|()
 expr_stmt|;
