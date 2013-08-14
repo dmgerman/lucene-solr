@@ -2447,9 +2447,7 @@ parameter_list|()
 block|{
 name|super
 argument_list|(
-operator|new
-name|PerFieldReuseStrategy
-argument_list|()
+name|PER_FIELD_REUSE_STRATEGY
 argument_list|)
 expr_stmt|;
 block|}
@@ -2473,9 +2471,7 @@ parameter_list|)
 block|{
 name|super
 argument_list|(
-operator|new
-name|PerFieldReuseStrategy
-argument_list|()
+name|PER_FIELD_REUSE_STRATEGY
 argument_list|)
 expr_stmt|;
 name|setPayloadData

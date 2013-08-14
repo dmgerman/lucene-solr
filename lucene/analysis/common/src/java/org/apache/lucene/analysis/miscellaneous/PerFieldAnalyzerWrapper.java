@@ -130,6 +130,11 @@ argument_list|>
 name|fieldAnalyzers
 parameter_list|)
 block|{
+name|super
+argument_list|(
+name|PER_FIELD_REUSE_STRATEGY
+argument_list|)
+expr_stmt|;
 name|this
 operator|.
 name|defaultAnalyzer

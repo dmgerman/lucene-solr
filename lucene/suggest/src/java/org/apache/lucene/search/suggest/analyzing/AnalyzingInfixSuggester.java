@@ -825,13 +825,11 @@ name|Analyzer
 name|queryAnalyzer
 decl_stmt|;
 DECL|field|indexAnalyzer
-specifier|private
 specifier|final
 name|Analyzer
 name|indexAnalyzer
 decl_stmt|;
 DECL|field|matchVersion
-specifier|private
 specifier|final
 name|Version
 name|matchVersion
@@ -843,7 +841,6 @@ name|File
 name|indexPath
 decl_stmt|;
 DECL|field|minPrefixChars
-specifier|private
 specifier|final
 name|int
 name|minPrefixChars
@@ -1239,7 +1236,11 @@ name|gramAnalyzer
 init|=
 operator|new
 name|AnalyzerWrapper
-argument_list|()
+argument_list|(
+name|Analyzer
+operator|.
+name|PER_FIELD_REUSE_STRATEGY
+argument_list|)
 block|{
 annotation|@
 name|Override

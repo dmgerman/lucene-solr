@@ -89,11 +89,11 @@ name|ShingleAnalyzerWrapper
 extends|extends
 name|AnalyzerWrapper
 block|{
-DECL|field|defaultAnalyzer
+DECL|field|delegate
 specifier|private
 specifier|final
 name|Analyzer
-name|defaultAnalyzer
+name|delegate
 decl_stmt|;
 DECL|field|maxShingleSize
 specifier|private
@@ -198,13 +198,13 @@ literal|false
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**    * Creates a new ShingleAnalyzerWrapper    *    * @param defaultAnalyzer Analyzer whose TokenStream is to be filtered    * @param minShingleSize Min shingle (token ngram) size    * @param maxShingleSize Max shingle size    * @param tokenSeparator Used to separate input stream tokens in output shingles    * @param outputUnigrams Whether or not the filter shall pass the original    *        tokens to the output stream    * @param outputUnigramsIfNoShingles Overrides the behavior of outputUnigrams==false for those    *        times when no shingles are available (because there are fewer than    *        minShingleSize tokens in the input stream)?    *        Note that if outputUnigrams==true, then unigrams are always output,    *        regardless of whether any shingles are available.    */
+comment|/**    * Creates a new ShingleAnalyzerWrapper    *    * @param delegate Analyzer whose TokenStream is to be filtered    * @param minShingleSize Min shingle (token ngram) size    * @param maxShingleSize Max shingle size    * @param tokenSeparator Used to separate input stream tokens in output shingles    * @param outputUnigrams Whether or not the filter shall pass the original    *        tokens to the output stream    * @param outputUnigramsIfNoShingles Overrides the behavior of outputUnigrams==false for those    *        times when no shingles are available (because there are fewer than    *        minShingleSize tokens in the input stream)?    *        Note that if outputUnigrams==true, then unigrams are always output,    *        regardless of whether any shingles are available.    */
 DECL|method|ShingleAnalyzerWrapper
 specifier|public
 name|ShingleAnalyzerWrapper
 parameter_list|(
 name|Analyzer
-name|defaultAnalyzer
+name|delegate
 parameter_list|,
 name|int
 name|minShingleSize
@@ -222,11 +222,19 @@ name|boolean
 name|outputUnigramsIfNoShingles
 parameter_list|)
 block|{
+name|super
+argument_list|(
+name|delegate
+operator|.
+name|getReuseStrategy
+argument_list|()
+argument_list|)
+expr_stmt|;
 name|this
 operator|.
-name|defaultAnalyzer
+name|delegate
 operator|=
-name|defaultAnalyzer
+name|delegate
 expr_stmt|;
 if|if
 condition|(
@@ -428,7 +436,7 @@ name|fieldName
 parameter_list|)
 block|{
 return|return
-name|defaultAnalyzer
+name|delegate
 return|;
 block|}
 annotation|@
