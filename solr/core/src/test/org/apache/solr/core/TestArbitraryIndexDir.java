@@ -357,6 +357,16 @@ name|void
 name|beforeClass
 parameter_list|()
 block|{
+comment|// this test wants to start solr, and then open a separate indexwriter of its own on the same dir.
+name|System
+operator|.
+name|setProperty
+argument_list|(
+literal|"solr.tests.reopenReaders"
+argument_list|,
+literal|"false"
+argument_list|)
+expr_stmt|;
 name|System
 operator|.
 name|setProperty
@@ -395,6 +405,13 @@ name|void
 name|afterClass
 parameter_list|()
 block|{
+name|System
+operator|.
+name|clearProperty
+argument_list|(
+literal|"solr.tests.reopenReaders"
+argument_list|)
+expr_stmt|;
 if|if
 condition|(
 name|savedFactory

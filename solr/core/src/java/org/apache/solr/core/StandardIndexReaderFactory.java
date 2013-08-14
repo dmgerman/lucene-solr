@@ -48,6 +48,20 @@ name|apache
 operator|.
 name|lucene
 operator|.
+name|index
+operator|.
+name|IndexWriter
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
 name|store
 operator|.
 name|Directory
@@ -55,7 +69,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Default IndexReaderFactory implementation. Returns a standard Lucene  * {@link DirectoryReader}.  *   * @see DirectoryReader#open(Directory)  */
+comment|/**  * Default IndexReaderFactory implementation. Returns a standard Lucene  * {@link DirectoryReader}.  *   * @see DirectoryReader#open(Directory)  * @see DirectoryReader#open(IndexWriter, boolean)  */
 end_comment
 
 begin_class
@@ -88,6 +102,33 @@ operator|.
 name|open
 argument_list|(
 name|indexDir
+argument_list|)
+return|;
+block|}
+annotation|@
+name|Override
+DECL|method|newReader
+specifier|public
+name|DirectoryReader
+name|newReader
+parameter_list|(
+name|IndexWriter
+name|writer
+parameter_list|,
+name|SolrCore
+name|core
+parameter_list|)
+throws|throws
+name|IOException
+block|{
+return|return
+name|DirectoryReader
+operator|.
+name|open
+argument_list|(
+name|writer
+argument_list|,
+literal|true
 argument_list|)
 return|;
 block|}

@@ -2139,6 +2139,18 @@ literal|null
 argument_list|)
 expr_stmt|;
 comment|// force a persistent directory
+comment|// read-only setting (no opening from indexwriter)
+name|System
+operator|.
+name|setProperty
+argument_list|(
+literal|"solr.tests.reopenReaders"
+argument_list|,
+literal|"false"
+argument_list|)
+expr_stmt|;
+try|try
+block|{
 comment|// stop and start so they see the new directory setting
 name|slaveJetty
 operator|.
@@ -2190,6 +2202,18 @@ argument_list|(
 literal|true
 argument_list|)
 expr_stmt|;
+block|}
+finally|finally
+block|{
+name|System
+operator|.
+name|clearProperty
+argument_list|(
+literal|"solr.tests.reopenReaders"
+argument_list|)
+expr_stmt|;
+comment|// dont mess with other tests
+block|}
 comment|// Currently we open a writer on-demand.  This is to test that we are correctly testing
 comment|// the code path when SolrDeletionPolicy.getLatestCommit() returns null.
 comment|// When we are using an ephemeral directory, an IW will always be opened to create the index and hence
