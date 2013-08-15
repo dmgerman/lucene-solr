@@ -73,6 +73,15 @@ name|maxDoc
 argument_list|()
 argument_list|)
 expr_stmt|;
+assert|assert
+name|maxDoc
+argument_list|()
+operator|==
+literal|0
+operator|||
+name|hasDeletions
+argument_list|()
+assert|;
 block|}
 annotation|@
 name|Override
