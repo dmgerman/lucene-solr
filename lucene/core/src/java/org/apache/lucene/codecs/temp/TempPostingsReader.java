@@ -491,7 +491,7 @@ name|name
 argument_list|,
 name|segmentSuffix
 argument_list|,
-name|TempBlockPostingsFormat
+name|TempBlockTreePostingsFormat
 operator|.
 name|DOC_EXTENSION
 argument_list|)
@@ -550,7 +550,7 @@ name|name
 argument_list|,
 name|segmentSuffix
 argument_list|,
-name|TempBlockPostingsFormat
+name|TempBlockTreePostingsFormat
 operator|.
 name|POS_EXTENSION
 argument_list|)
@@ -606,7 +606,7 @@ name|name
 argument_list|,
 name|segmentSuffix
 argument_list|,
-name|TempBlockPostingsFormat
+name|TempBlockTreePostingsFormat
 operator|.
 name|PAY_EXTENSION
 argument_list|)
