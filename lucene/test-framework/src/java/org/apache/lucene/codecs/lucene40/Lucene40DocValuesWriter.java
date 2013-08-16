@@ -1072,6 +1072,35 @@ range|:
 name|values
 control|)
 block|{
+if|if
+condition|(
+name|b
+operator|.
+name|length
+operator|>
+name|Lucene40DocValuesFormat
+operator|.
+name|MAX_BINARY_FIELD_LENGTH
+condition|)
+block|{
+throw|throw
+operator|new
+name|IllegalArgumentException
+argument_list|(
+literal|"DocValuesField \""
+operator|+
+name|field
+operator|.
+name|name
+operator|+
+literal|"\" is too large, must be<= "
+operator|+
+name|Lucene40DocValuesFormat
+operator|.
+name|MAX_BINARY_FIELD_LENGTH
+argument_list|)
+throw|;
+block|}
 name|minLength
 operator|=
 name|Math

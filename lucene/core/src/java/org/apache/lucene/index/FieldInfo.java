@@ -148,15 +148,15 @@ comment|/**       * A per-document Number      */
 DECL|enum constant|NUMERIC
 name|NUMERIC
 block|,
-comment|/**      * A per-document byte[].      */
+comment|/**      * A per-document byte[].  Values may be larger than      * 32766 bytes, but different codecs may enforce their own limits.      */
 DECL|enum constant|BINARY
 name|BINARY
 block|,
-comment|/**       * A pre-sorted byte[]. Fields with this type only store distinct byte values       * and store an additional offset pointer per document to dereference the shared       * byte[]. The stored byte[] is presorted and allows access via document id,       * ordinal and by-value.      */
+comment|/**       * A pre-sorted byte[]. Fields with this type only store distinct byte values       * and store an additional offset pointer per document to dereference the shared       * byte[]. The stored byte[] is presorted and allows access via document id,       * ordinal and by-value.  Values must be<= 32766 bytes.      */
 DECL|enum constant|SORTED
 name|SORTED
 block|,
-comment|/**       * A pre-sorted Set&lt;byte[]&gt;. Fields with this type only store distinct byte values       * and store additional offset pointers per document to dereference the shared       * byte[]s. The stored byte[] is presorted and allows access via document id,       * ordinal and by-value.      */
+comment|/**       * A pre-sorted Set&lt;byte[]&gt;. Fields with this type only store distinct byte values       * and store additional offset pointers per document to dereference the shared       * byte[]s. The stored byte[] is presorted and allows access via document id,       * ordinal and by-value.  Values must be<= 32766 bytes.      */
 DECL|enum constant|SORTED_SET
 name|SORTED_SET
 block|}
