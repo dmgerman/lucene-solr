@@ -285,9 +285,6 @@ parameter_list|(
 name|Config
 name|config
 parameter_list|,
-name|File
-name|configFile
-parameter_list|,
 name|String
 name|originalXML
 parameter_list|)
@@ -323,8 +320,6 @@ condition|?
 operator|new
 name|SolrXMLCoresLocator
 argument_list|(
-name|configFile
-argument_list|,
 name|originalXML
 argument_list|,
 name|this
@@ -335,8 +330,6 @@ name|SolrXMLCoresLocator
 operator|.
 name|NonPersistingLocator
 argument_list|(
-name|configFile
-argument_list|,
 name|originalXML
 argument_list|,
 name|this
