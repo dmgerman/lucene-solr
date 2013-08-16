@@ -1497,6 +1497,7 @@ expr_stmt|;
 block|}
 else|else
 block|{
+comment|// nocommit: support missing count (ord = -1) for single-valued here.
 name|missingCount
 operator|=
 literal|0

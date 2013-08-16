@@ -6355,6 +6355,37 @@ return|return
 literal|true
 return|;
 block|}
+comment|/** Returns true if the codec for the field "supports" docsWithField     * (other codecs return MatchAllBits, because you couldnt write missing values before) */
+DECL|method|codecSupportsDocsWithField
+specifier|public
+specifier|static
+name|boolean
+name|codecSupportsDocsWithField
+parameter_list|(
+name|String
+name|field
+parameter_list|)
+block|{
+comment|// currently only one codec!
+return|return
+name|_TestUtil
+operator|.
+name|getDocValuesFormat
+argument_list|(
+name|Codec
+operator|.
+name|getDefault
+argument_list|()
+argument_list|,
+name|field
+argument_list|)
+operator|.
+name|equals
+argument_list|(
+literal|"SimpleText"
+argument_list|)
+return|;
+block|}
 DECL|method|assertReaderEquals
 specifier|public
 name|void

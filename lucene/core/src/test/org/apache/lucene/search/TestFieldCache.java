@@ -4467,10 +4467,11 @@ expr_stmt|;
 name|assertTrue
 argument_list|(
 name|bits
-operator|instanceof
-name|Bits
 operator|.
-name|MatchAllBits
+name|get
+argument_list|(
+literal|0
+argument_list|)
 argument_list|)
 expr_stmt|;
 block|}
