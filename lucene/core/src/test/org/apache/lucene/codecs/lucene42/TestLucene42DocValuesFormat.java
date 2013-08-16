@@ -80,6 +80,21 @@ return|return
 name|codec
 return|;
 block|}
+annotation|@
+name|Override
+DECL|method|codecAcceptsHugeBinaryValues
+specifier|protected
+name|boolean
+name|codecAcceptsHugeBinaryValues
+parameter_list|(
+name|String
+name|field
+parameter_list|)
+block|{
+return|return
+literal|false
+return|;
+block|}
 block|}
 end_class
 

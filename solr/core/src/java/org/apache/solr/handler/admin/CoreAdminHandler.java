@@ -2584,19 +2584,13 @@ argument_list|(
 name|instancedir
 argument_list|)
 condition|)
+block|{
 name|instancedir
 operator|=
-name|container
-operator|.
-name|getSolrHome
-argument_list|()
-operator|+
-name|File
-operator|.
-name|separator
-operator|+
 name|name
 expr_stmt|;
+comment|// Already relative to solrHome, we haven't been given an absolute path.
+block|}
 name|Properties
 name|coreProps
 init|=

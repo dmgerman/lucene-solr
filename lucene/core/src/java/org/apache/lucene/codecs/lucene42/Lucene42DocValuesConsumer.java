@@ -279,6 +279,8 @@ operator|.
 name|fst
 operator|.
 name|FST
+operator|.
+name|INPUT_TYPE
 import|;
 end_import
 
@@ -295,8 +297,6 @@ operator|.
 name|fst
 operator|.
 name|FST
-operator|.
-name|INPUT_TYPE
 import|;
 end_import
 
@@ -377,6 +377,8 @@ operator|.
 name|packed
 operator|.
 name|PackedInts
+operator|.
+name|FormatAndBits
 import|;
 end_import
 
@@ -393,8 +395,6 @@ operator|.
 name|packed
 operator|.
 name|PackedInts
-operator|.
-name|FormatAndBits
 import|;
 end_import
 
@@ -1553,6 +1553,33 @@ name|v
 operator|.
 name|length
 decl_stmt|;
+if|if
+condition|(
+name|length
+operator|>
+name|Lucene42DocValuesFormat
+operator|.
+name|MAX_BINARY_FIELD_LENGTH
+condition|)
+block|{
+throw|throw
+operator|new
+name|IllegalArgumentException
+argument_list|(
+literal|"DocValuesField \""
+operator|+
+name|field
+operator|.
+name|name
+operator|+
+literal|"\" is too large, must be<= "
+operator|+
+name|Lucene42DocValuesFormat
+operator|.
+name|MAX_BINARY_FIELD_LENGTH
+argument_list|)
+throw|;
+block|}
 name|minLength
 operator|=
 name|Math

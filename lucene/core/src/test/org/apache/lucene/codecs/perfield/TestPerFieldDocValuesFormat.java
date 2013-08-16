@@ -400,6 +400,20 @@ name|BytesRef
 import|;
 end_import
 
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|util
+operator|.
+name|_TestUtil
+import|;
+end_import
+
 begin_comment
 comment|/**  * Basic tests of PerFieldDocValuesFormat  */
 end_comment
@@ -467,6 +481,26 @@ parameter_list|()
 block|{
 return|return
 name|codec
+return|;
+block|}
+annotation|@
+name|Override
+DECL|method|codecAcceptsHugeBinaryValues
+specifier|protected
+name|boolean
+name|codecAcceptsHugeBinaryValues
+parameter_list|(
+name|String
+name|field
+parameter_list|)
+block|{
+return|return
+name|_TestUtil
+operator|.
+name|fieldSupportsHugeBinaryDocValues
+argument_list|(
+name|field
+argument_list|)
 return|;
 block|}
 comment|// just a simple trivial test
