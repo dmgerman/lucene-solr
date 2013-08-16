@@ -80,9 +80,9 @@ name|lucene
 operator|.
 name|codecs
 operator|.
-name|lucene42
+name|lucene45
 operator|.
-name|Lucene42Codec
+name|Lucene45Codec
 import|;
 end_import
 
@@ -1424,7 +1424,7 @@ specifier|static
 class|class
 name|MockCodec
 extends|extends
-name|Lucene42Codec
+name|Lucene45Codec
 block|{
 DECL|field|lucene40
 specifier|final
@@ -1507,7 +1507,7 @@ specifier|static
 class|class
 name|MockCodec2
 extends|extends
-name|Lucene42Codec
+name|Lucene45Codec
 block|{
 DECL|field|lucene40
 specifier|final
@@ -1832,7 +1832,7 @@ name|Codec
 name|codec
 init|=
 operator|new
-name|Lucene42Codec
+name|Lucene45Codec
 argument_list|()
 block|{
 annotation|@
@@ -1914,7 +1914,7 @@ name|Codec
 name|codec
 init|=
 operator|new
-name|Lucene42Codec
+name|Lucene45Codec
 argument_list|()
 block|{
 annotation|@

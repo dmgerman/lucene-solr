@@ -106,6 +106,10 @@ begin_comment
 comment|/**  * Same as {@link Lucene42Codec} except it uses {@link Facet42DocValuesFormat}  * for facet fields (faster-but-more-RAM-consuming doc values).  *   *<p>  *<b>NOTE</b>: this codec does not support facet partitions (see  * {@link FacetIndexingParams#getPartitionSize()}).  *  *<p>  *<b>NOTE</b>: this format cannot handle more than 2 GB  * of facet data in a single segment.  If your usage may hit  * this limit, you can either use Lucene's default  * DocValuesFormat, limit the maximum segment size in your  * MergePolicy, or send us a patch fixing the limitation.  *   * @lucene.experimental  */
 end_comment
 
+begin_comment
+comment|// nocommit
+end_comment
+
 begin_class
 DECL|class|Facet42Codec
 specifier|public

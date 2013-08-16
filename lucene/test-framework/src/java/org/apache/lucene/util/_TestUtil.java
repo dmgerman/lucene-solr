@@ -310,9 +310,9 @@ name|lucene
 operator|.
 name|codecs
 operator|.
-name|lucene42
+name|lucene45
 operator|.
-name|Lucene42Codec
+name|Lucene45Codec
 import|;
 end_import
 
@@ -5793,7 +5793,7 @@ expr_stmt|;
 block|}
 return|return
 operator|new
-name|Lucene42Codec
+name|Lucene45Codec
 argument_list|()
 block|{
 annotation|@
@@ -5849,7 +5849,7 @@ expr_stmt|;
 block|}
 return|return
 operator|new
-name|Lucene42Codec
+name|Lucene45Codec
 argument_list|()
 block|{
 annotation|@
@@ -6025,6 +6025,7 @@ argument_list|()
 return|;
 block|}
 block|}
+comment|// nocommit: remove this, push this test to Lucene40/Lucene42 codec tests
 DECL|method|fieldSupportsHugeBinaryDocValues
 specifier|public
 specifier|static
@@ -6043,12 +6044,28 @@ argument_list|(
 name|field
 argument_list|)
 decl_stmt|;
+name|System
+operator|.
+name|out
+operator|.
+name|println
+argument_list|(
+name|dvFormat
+argument_list|)
+expr_stmt|;
 return|return
 name|dvFormat
 operator|.
 name|equals
 argument_list|(
-literal|"CheapBastard"
+literal|"Lucene45"
+argument_list|)
+operator|||
+name|dvFormat
+operator|.
+name|equals
+argument_list|(
+literal|"Asserting"
 argument_list|)
 operator|||
 name|dvFormat

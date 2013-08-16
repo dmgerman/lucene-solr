@@ -65,6 +65,10 @@ comment|/*  * Licensed to the Apache Software Foundation (ASF) under one or more
 end_comment
 
 begin_comment
+comment|// nocommit
+end_comment
+
+begin_comment
 comment|/** CompressionCodec that uses {@link CompressionMode#HIGH_COMPRESSION} */
 end_comment
 
