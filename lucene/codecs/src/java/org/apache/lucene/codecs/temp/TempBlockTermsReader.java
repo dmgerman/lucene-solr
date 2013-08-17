@@ -88,6 +88,20 @@ name|lucene
 operator|.
 name|codecs
 operator|.
+name|BlockTermState
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|codecs
+operator|.
 name|CodecUtil
 import|;
 end_import
@@ -1534,7 +1548,7 @@ decl_stmt|;
 DECL|field|state
 specifier|private
 specifier|final
-name|TempTermState
+name|BlockTermState
 name|state
 decl_stmt|;
 DECL|field|doOrd
@@ -3077,7 +3091,7 @@ literal|null
 operator|&&
 name|otherState
 operator|instanceof
-name|TempTermState
+name|BlockTermState
 assert|;
 assert|assert
 operator|!
@@ -3085,7 +3099,7 @@ name|doOrd
 operator|||
 operator|(
 operator|(
-name|TempTermState
+name|BlockTermState
 operator|)
 name|otherState
 operator|)

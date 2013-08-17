@@ -102,6 +102,20 @@ name|lucene
 operator|.
 name|codecs
 operator|.
+name|BlockTermState
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|codecs
+operator|.
 name|CodecUtil
 import|;
 end_import
@@ -882,7 +896,7 @@ specifier|static
 class|class
 name|IntBlockTermState
 extends|extends
-name|TempTermState
+name|BlockTermState
 block|{
 DECL|field|docStartFP
 name|long
@@ -1088,7 +1102,7 @@ parameter_list|,
 name|FieldInfo
 name|fieldInfo
 parameter_list|,
-name|TempTermState
+name|BlockTermState
 name|_termState
 parameter_list|)
 throws|throws
@@ -1293,7 +1307,7 @@ parameter_list|(
 name|FieldInfo
 name|fieldInfo
 parameter_list|,
-name|TempTermState
+name|BlockTermState
 name|termState
 parameter_list|,
 name|Bits
@@ -1386,7 +1400,7 @@ parameter_list|(
 name|FieldInfo
 name|fieldInfo
 parameter_list|,
-name|TempTermState
+name|BlockTermState
 name|termState
 parameter_list|,
 name|Bits

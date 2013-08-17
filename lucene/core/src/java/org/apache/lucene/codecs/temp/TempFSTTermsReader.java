@@ -514,6 +514,20 @@ name|lucene
 operator|.
 name|codecs
 operator|.
+name|BlockTermState
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|codecs
+operator|.
 name|FieldsProducer
 import|;
 end_import
@@ -1495,7 +1509,7 @@ decl_stmt|;
 comment|/* Current term stats + decoded metadata (customized by PBF) */
 DECL|field|state
 specifier|final
-name|TempTermState
+name|BlockTermState
 name|state
 decl_stmt|;
 comment|/* Current term stats + undecoded metadata (long[]& byte[]) */

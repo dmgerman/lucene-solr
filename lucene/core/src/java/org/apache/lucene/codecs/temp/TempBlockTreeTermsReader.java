@@ -550,6 +550,20 @@ name|lucene
 operator|.
 name|codecs
 operator|.
+name|BlockTermState
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|codecs
+operator|.
 name|TempPostingsReaderBase
 import|;
 end_import
@@ -3195,7 +3209,7 @@ name|arc
 decl_stmt|;
 DECL|field|termState
 specifier|final
-name|TempTermState
+name|BlockTermState
 name|termState
 decl_stmt|;
 comment|// metadata buffer, holding monotonical values
@@ -10669,7 +10683,7 @@ literal|null
 operator|&&
 name|otherState
 operator|instanceof
-name|TempTermState
+name|BlockTermState
 assert|;
 name|currentFrame
 operator|=
@@ -10942,7 +10956,7 @@ name|metaDataUpto
 decl_stmt|;
 DECL|field|state
 specifier|final
-name|TempTermState
+name|BlockTermState
 name|state
 decl_stmt|;
 comment|// metadata buffer, holding monotonical values
