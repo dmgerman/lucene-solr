@@ -910,18 +910,6 @@ DECL|field|singletonDocID
 name|int
 name|singletonDocID
 decl_stmt|;
-comment|// Only used by the "primary" TermState -- clones don't
-comment|// copy this (basically they are "transient"):
-DECL|field|bytesReader
-name|ByteArrayDataInput
-name|bytesReader
-decl_stmt|;
-comment|// TODO: should this NOT be in the TermState...?
-DECL|field|bytes
-name|byte
-index|[]
-name|bytes
-decl_stmt|;
 annotation|@
 name|Override
 DECL|method|clone
@@ -1010,10 +998,6 @@ name|other
 operator|.
 name|singletonDocID
 expr_stmt|;
-comment|// Do not copy bytes, bytesReader (else TermState is
-comment|// very heavy, ie drags around the entire block's
-comment|// byte[]).  On seek back, if next() is in fact used
-comment|// (rare!), they will be re-read from disk.
 block|}
 annotation|@
 name|Override

@@ -112,15 +112,25 @@ name|TempPostingsWriterBase
 parameter_list|()
 block|{   }
 comment|/** Called once after startup, before any terms have been    *  added.  Implementations typically write a header to    *  the provided {@code termsOut}. */
-DECL|method|start
+DECL|method|init
 specifier|public
 specifier|abstract
 name|void
-name|start
+name|init
 parameter_list|(
 name|IndexOutput
 name|termsOut
 parameter_list|)
+throws|throws
+name|IOException
+function_decl|;
+comment|/** Return a newly created empty TermState */
+DECL|method|newTermState
+specifier|public
+specifier|abstract
+name|BlockTermState
+name|newTermState
+parameter_list|()
 throws|throws
 name|IOException
 function_decl|;
@@ -134,12 +144,25 @@ parameter_list|()
 throws|throws
 name|IOException
 function_decl|;
-comment|/** Finishes the current term.  The provided {@link    *  TermStats} contains the term's summary statistics. */
+comment|/** Finishes the current term.  The provided {@link    *  BlockTermState} contains the term's summary statistics,     *  and will holds metadata from PBF when returned*/
 DECL|method|finishTerm
 specifier|public
 specifier|abstract
 name|void
 name|finishTerm
+parameter_list|(
+name|BlockTermState
+name|state
+parameter_list|)
+throws|throws
+name|IOException
+function_decl|;
+comment|/**    * Encode metadata as long[] and byte[]. {@code absolute} controls     * whether current term is delta encoded according to latest term.    */
+DECL|method|encodeTerm
+specifier|public
+specifier|abstract
+name|void
+name|encodeTerm
 parameter_list|(
 name|long
 index|[]
@@ -148,8 +171,14 @@ parameter_list|,
 name|DataOutput
 name|out
 parameter_list|,
-name|TermStats
-name|stats
+name|FieldInfo
+name|fieldInfo
+parameter_list|,
+name|BlockTermState
+name|state
+parameter_list|,
+name|boolean
+name|absolute
 parameter_list|)
 throws|throws
 name|IOException
