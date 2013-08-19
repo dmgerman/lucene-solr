@@ -2589,7 +2589,8 @@ name|instancedir
 operator|=
 name|name
 expr_stmt|;
-comment|// Already relative to solrHome, we haven't been given an absolute path.
+comment|// will be resolved later against solr.home
+comment|//instancedir = container.getSolrHome() + "/" + name;
 block|}
 name|Properties
 name|coreProps

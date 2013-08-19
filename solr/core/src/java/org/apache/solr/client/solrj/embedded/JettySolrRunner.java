@@ -2464,6 +2464,16 @@ operator|=
 name|coreNodeName
 expr_stmt|;
 block|}
+DECL|method|getSolrHome
+specifier|public
+name|String
+name|getSolrHome
+parameter_list|()
+block|{
+return|return
+name|solrHome
+return|;
+block|}
 block|}
 end_class
 
