@@ -151,10 +151,6 @@ import|;
 end_import
 
 begin_comment
-comment|// nocommit
-end_comment
-
-begin_comment
 comment|/**  * Just like {@link Lucene42NormsFormat} but with additional asserts.  */
 end_comment
 

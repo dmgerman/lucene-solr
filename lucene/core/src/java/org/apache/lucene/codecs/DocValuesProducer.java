@@ -223,6 +223,7 @@ specifier|final
 name|int
 name|maxDoc
 decl_stmt|;
+comment|/** Creates a {@link Bits} returning true if the document has a value */
 DECL|method|SortedDocsWithField
 specifier|public
 name|SortedDocsWithField
@@ -301,6 +302,7 @@ specifier|final
 name|int
 name|maxDoc
 decl_stmt|;
+comment|/** Creates a {@link Bits} returning true if the document has a value */
 DECL|method|SortedSetDocsWithField
 specifier|public
 name|SortedSetDocsWithField

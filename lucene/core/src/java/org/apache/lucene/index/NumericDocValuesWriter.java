@@ -350,18 +350,19 @@ name|long
 name|docsWithFieldBytesUsed
 parameter_list|()
 block|{
-comment|// nocommit: this is not correct
+comment|// size of the long[] + some overhead
 return|return
+name|RamUsageEstimator
+operator|.
+name|sizeOf
+argument_list|(
 name|docsWithField
 operator|.
 name|getBits
 argument_list|()
-operator|.
-name|length
-operator|*
-name|RamUsageEstimator
-operator|.
-name|NUM_BYTES_LONG
+argument_list|)
+operator|+
+literal|64
 return|;
 block|}
 DECL|method|updateBytesUsed

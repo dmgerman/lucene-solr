@@ -24,6 +24,20 @@ name|java
 operator|.
 name|io
 operator|.
+name|Closeable
+import|;
+end_import
+
+begin_comment
+comment|// javadocs
+end_comment
+
+begin_import
+import|import
+name|java
+operator|.
+name|io
+operator|.
 name|IOException
 import|;
 end_import
@@ -261,6 +275,8 @@ class|class
 name|Lucene45DocValuesConsumer
 extends|extends
 name|DocValuesConsumer
+implements|implements
+name|Closeable
 block|{
 DECL|field|BLOCK_SIZE
 specifier|static
@@ -351,6 +367,7 @@ specifier|final
 name|int
 name|maxDoc
 decl_stmt|;
+comment|/** expert: Creates a new writer */
 DECL|method|Lucene45DocValuesConsumer
 specifier|public
 name|Lucene45DocValuesConsumer
@@ -1668,6 +1685,7 @@ argument_list|()
 expr_stmt|;
 block|}
 block|}
+comment|/** expert: writes a value dictionary for a sorted/sortedset field */
 DECL|method|addTermsDict
 specifier|protected
 name|void
