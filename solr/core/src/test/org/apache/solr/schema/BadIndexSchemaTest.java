@@ -319,22 +319,6 @@ literal|"codec does not support"
 argument_list|)
 expr_stmt|;
 block|}
-DECL|method|testDocValuesNotRequiredNoDefault
-specifier|public
-name|void
-name|testDocValuesNotRequiredNoDefault
-parameter_list|()
-throws|throws
-name|Exception
-block|{
-name|doTest
-argument_list|(
-literal|"bad-schema-docValues-not-required-no-default.xml"
-argument_list|,
-literal|"has no default value and is not required"
-argument_list|)
-expr_stmt|;
-block|}
 DECL|method|testDocValuesUnsupported
 specifier|public
 name|void
