@@ -193,6 +193,9 @@ name|fieldInfo
 parameter_list|,
 name|BlockTermState
 name|state
+parameter_list|,
+name|boolean
+name|absolute
 parameter_list|)
 throws|throws
 name|IOException
