@@ -41,15 +41,7 @@ comment|/*  * Licensed to the Apache Software Foundation (ASF) under one or more
 end_comment
 
 begin_comment
-comment|/**   * a utility class to write missing values for SORTED_SET as if they were the empty string  * (to simulate pre-Lucene4.5 dv behavior for testing old codecs)  */
-end_comment
-
-begin_comment
-comment|// nocommit: move this to test-framework with all the impersonators of
-end_comment
-
-begin_comment
-comment|// these old codecs once new memory/disk codecs are written that support missing
+comment|/**   * a utility class to write missing values for SORTED as if they were the empty string  * (to simulate pre-Lucene4.5 dv behavior for testing old codecs)  */
 end_comment
 
 begin_class
