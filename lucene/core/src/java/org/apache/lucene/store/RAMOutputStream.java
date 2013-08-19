@@ -121,7 +121,7 @@ specifier|public
 name|void
 name|writeTo
 parameter_list|(
-name|IndexOutput
+name|DataOutput
 name|out
 parameter_list|)
 throws|throws

@@ -843,10 +843,12 @@ operator|!
 name|success
 condition|)
 block|{
-name|in
+name|IOUtils
 operator|.
-name|close
-argument_list|()
+name|closeWhileHandlingException
+argument_list|(
+name|in
+argument_list|)
 expr_stmt|;
 block|}
 block|}

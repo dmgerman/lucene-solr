@@ -945,7 +945,7 @@ finally|finally
 block|{
 name|IOUtils
 operator|.
-name|close
+name|closeWhileHandlingException
 argument_list|(
 name|indexIn
 argument_list|,
@@ -2188,16 +2188,9 @@ expr_stmt|;
 block|}
 name|metaBytesReader
 operator|.
-name|reset
+name|setPosition
 argument_list|(
-name|metaBytesBlock
-argument_list|,
 name|bytesStart
-index|[
-name|upto
-index|]
-argument_list|,
-name|bytesLength
 index|[
 name|upto
 index|]

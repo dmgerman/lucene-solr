@@ -1085,6 +1085,41 @@ init|=
 operator|-
 literal|1
 decl_stmt|;
+annotation|@
+name|Override
+DECL|method|toString
+specifier|public
+name|String
+name|toString
+parameter_list|()
+block|{
+return|return
+name|super
+operator|.
+name|toString
+argument_list|()
+operator|+
+literal|" docStartFP="
+operator|+
+name|docTermStartFP
+operator|+
+literal|" posStartFP="
+operator|+
+name|posTermStartFP
+operator|+
+literal|" payStartFP="
+operator|+
+name|payTermStartFP
+operator|+
+literal|" lastPosBlockOffset="
+operator|+
+name|lastPosBlockOffset
+operator|+
+literal|" singletonDocID="
+operator|+
+name|singletonDocID
+return|;
+block|}
 block|}
 annotation|@
 name|Override
