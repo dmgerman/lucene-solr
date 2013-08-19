@@ -2351,25 +2351,8 @@ block|{
 if|if
 condition|(
 name|ord
-operator|==
-operator|-
-literal|1
-condition|)
-block|{
-name|result
-operator|.
-name|length
-operator|=
-literal|0
-expr_stmt|;
-return|return;
-block|}
-if|if
-condition|(
-name|ord
 operator|<
-operator|-
-literal|1
+literal|0
 operator|||
 name|ord
 operator|>=
@@ -2382,7 +2365,7 @@ throw|throw
 operator|new
 name|IndexOutOfBoundsException
 argument_list|(
-literal|"ord must be -1 .. "
+literal|"ord must be 0 .. "
 operator|+
 operator|(
 name|field

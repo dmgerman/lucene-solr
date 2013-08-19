@@ -60,7 +60,7 @@ name|int
 name|docID
 parameter_list|)
 function_decl|;
-comment|/** Retrieves the value for the specified ordinal.    * @param ord ordinal to lookup    * @param result will be populated with the ordinal's value    * @see #getOrd(int)     */
+comment|/** Retrieves the value for the specified ordinal.    * @param ord ordinal to lookup (must be&gt;= 0 and&lt {@link #getValueCount()})    * @param result will be populated with the ordinal's value    * @see #getOrd(int)     */
 DECL|method|lookupOrd
 specifier|public
 specifier|abstract
