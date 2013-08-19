@@ -6059,6 +6059,13 @@ name|equals
 argument_list|(
 literal|"Lucene42"
 argument_list|)
+operator|||
+name|dvFormat
+operator|.
+name|equals
+argument_list|(
+literal|"Memory"
+argument_list|)
 condition|)
 block|{
 return|return
