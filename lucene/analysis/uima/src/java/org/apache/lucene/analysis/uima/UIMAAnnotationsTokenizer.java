@@ -468,6 +468,11 @@ parameter_list|()
 throws|throws
 name|IOException
 block|{
+name|super
+operator|.
+name|end
+argument_list|()
+expr_stmt|;
 name|offsetAttr
 operator|.
 name|setOffset
@@ -476,11 +481,6 @@ name|finalOffset
 argument_list|,
 name|finalOffset
 argument_list|)
-expr_stmt|;
-name|super
-operator|.
-name|end
-argument_list|()
 expr_stmt|;
 block|}
 block|}

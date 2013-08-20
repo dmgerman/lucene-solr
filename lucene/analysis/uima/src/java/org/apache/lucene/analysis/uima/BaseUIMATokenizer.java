@@ -416,21 +416,6 @@ operator|=
 literal|null
 expr_stmt|;
 block|}
-annotation|@
-name|Override
-DECL|method|end
-specifier|public
-name|void
-name|end
-parameter_list|()
-throws|throws
-name|IOException
-block|{
-name|iterator
-operator|=
-literal|null
-expr_stmt|;
-block|}
 block|}
 end_class
 

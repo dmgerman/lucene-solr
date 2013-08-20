@@ -362,6 +362,11 @@ block|,
 literal|"<EMAIL>"
 block|,   }
 decl_stmt|;
+DECL|field|skippedPositions
+specifier|private
+name|int
+name|skippedPositions
+decl_stmt|;
 DECL|field|maxTokenLength
 specifier|private
 name|int
@@ -545,11 +550,10 @@ block|{
 name|clearAttributes
 argument_list|()
 expr_stmt|;
-name|int
-name|posIncr
-init|=
-literal|1
-decl_stmt|;
+name|skippedPositions
+operator|=
+literal|0
+expr_stmt|;
 while|while
 condition|(
 literal|true
@@ -590,7 +594,9 @@ name|posIncrAtt
 operator|.
 name|setPositionIncrement
 argument_list|(
-name|posIncr
+name|skippedPositions
+operator|+
+literal|1
 argument_list|)
 expr_stmt|;
 name|scanner
@@ -646,7 +652,7 @@ block|}
 else|else
 comment|// When we skip a too-long term, we still increment the
 comment|// position increment
-name|posIncr
+name|skippedPositions
 operator|++
 expr_stmt|;
 block|}
@@ -659,7 +665,14 @@ specifier|final
 name|void
 name|end
 parameter_list|()
+throws|throws
+name|IOException
 block|{
+name|super
+operator|.
+name|end
+argument_list|()
+expr_stmt|;
 comment|// set final offset
 name|int
 name|finalOffset
@@ -686,6 +699,19 @@ argument_list|,
 name|finalOffset
 argument_list|)
 expr_stmt|;
+comment|// adjust any skipped tokens
+name|posIncrAtt
+operator|.
+name|setPositionIncrement
+argument_list|(
+name|posIncrAtt
+operator|.
+name|getPositionIncrement
+argument_list|()
+operator|+
+name|skippedPositions
+argument_list|)
+expr_stmt|;
 block|}
 annotation|@
 name|Override
@@ -703,6 +729,10 @@ name|yyreset
 argument_list|(
 name|input
 argument_list|)
+expr_stmt|;
+name|skippedPositions
+operator|=
+literal|0
 expr_stmt|;
 block|}
 block|}
