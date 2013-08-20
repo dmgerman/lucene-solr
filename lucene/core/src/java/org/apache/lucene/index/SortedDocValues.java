@@ -49,7 +49,7 @@ specifier|protected
 name|SortedDocValues
 parameter_list|()
 block|{}
-comment|/**    * Returns the ordinal for the specified docID.    * @param  docID document ID to lookup    * @return ordinal for the document: this is dense, starts at 0, then    *         increments by 1 for the next value in sorted order.     */
+comment|/**    * Returns the ordinal for the specified docID.    * @param  docID document ID to lookup    * @return ordinal for the document: this is dense, starts at 0, then    *         increments by 1 for the next value in sorted order. Note that    *         missing values are indicated by -1.    */
 DECL|method|getOrd
 specifier|public
 specifier|abstract
@@ -60,7 +60,7 @@ name|int
 name|docID
 parameter_list|)
 function_decl|;
-comment|/** Retrieves the value for the specified ordinal.    * @param ord ordinal to lookup    * @param result will be populated with the ordinal's value    * @see #getOrd(int)     */
+comment|/** Retrieves the value for the specified ordinal.    * @param ord ordinal to lookup (must be&gt;= 0 and&lt {@link #getValueCount()})    * @param result will be populated with the ordinal's value    * @see #getOrd(int)     */
 DECL|method|lookupOrd
 specifier|public
 specifier|abstract
@@ -165,7 +165,8 @@ name|docID
 parameter_list|)
 block|{
 return|return
-literal|0
+operator|-
+literal|1
 return|;
 block|}
 annotation|@
@@ -208,7 +209,7 @@ name|getValueCount
 parameter_list|()
 block|{
 return|return
-literal|1
+literal|0
 return|;
 block|}
 block|}

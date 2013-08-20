@@ -24,7 +24,7 @@ name|lucene
 operator|.
 name|analysis
 operator|.
-name|*
+name|MockAnalyzer
 import|;
 end_import
 
@@ -38,7 +38,7 @@ name|lucene
 operator|.
 name|codecs
 operator|.
-name|*
+name|PostingsFormat
 import|;
 end_import
 
@@ -52,9 +52,9 @@ name|lucene
 operator|.
 name|codecs
 operator|.
-name|lucene42
+name|lucene45
 operator|.
-name|Lucene42Codec
+name|Lucene45Codec
 import|;
 end_import
 
@@ -68,7 +68,21 @@ name|lucene
 operator|.
 name|document
 operator|.
-name|*
+name|Document
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|document
+operator|.
+name|Field
 import|;
 end_import
 
@@ -82,7 +96,49 @@ name|lucene
 operator|.
 name|index
 operator|.
-name|*
+name|DirectoryReader
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|index
+operator|.
+name|IndexReader
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|index
+operator|.
+name|IndexWriter
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|index
+operator|.
+name|Term
 import|;
 end_import
 
@@ -96,7 +152,21 @@ name|lucene
 operator|.
 name|search
 operator|.
-name|*
+name|IndexSearcher
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|search
+operator|.
+name|TermQuery
 import|;
 end_import
 
@@ -110,7 +180,7 @@ name|lucene
 operator|.
 name|store
 operator|.
-name|*
+name|BaseDirectoryWrapper
 import|;
 end_import
 
@@ -124,7 +194,7 @@ name|lucene
 operator|.
 name|util
 operator|.
-name|*
+name|LuceneTestCase
 import|;
 end_import
 
@@ -147,7 +217,7 @@ specifier|final
 class|class
 name|CustomPerFieldCodec
 extends|extends
-name|Lucene42Codec
+name|Lucene45Codec
 block|{
 DECL|field|ramFormat
 specifier|private

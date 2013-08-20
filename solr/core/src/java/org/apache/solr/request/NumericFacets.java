@@ -1309,8 +1309,26 @@ name|fieldName
 argument_list|)
 expr_stmt|;
 block|}
+name|long
+name|v
+init|=
+name|longs
+operator|.
+name|get
+argument_list|(
+name|doc
+operator|-
+name|ctx
+operator|.
+name|docBase
+argument_list|)
+decl_stmt|;
 if|if
 condition|(
+name|v
+operator|!=
+literal|0
+operator|||
 name|docsWithField
 operator|.
 name|get
@@ -1329,16 +1347,7 @@ name|add
 argument_list|(
 name|doc
 argument_list|,
-name|longs
-operator|.
-name|get
-argument_list|(
-name|doc
-operator|-
-name|ctx
-operator|.
-name|docBase
-argument_list|)
+name|v
 argument_list|,
 literal|1
 argument_list|)
@@ -1806,7 +1815,14 @@ name|FacetParams
 operator|.
 name|FACET_MINCOUNT
 operator|+
-literal|"=0 on a field which is not indexed"
+literal|"=0 on field "
+operator|+
+name|sf
+operator|.
+name|getName
+argument_list|()
+operator|+
+literal|" which is not indexed"
 argument_list|)
 throw|;
 block|}

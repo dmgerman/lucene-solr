@@ -102,6 +102,20 @@ name|lucene
 operator|.
 name|document
 operator|.
+name|NumericDocValuesField
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|document
+operator|.
 name|SortedSetDocValuesField
 import|;
 end_import
@@ -239,7 +253,7 @@ operator|.
 name|setUp
 argument_list|()
 expr_stmt|;
-comment|// for now its SimpleText vs Lucene42(random postings format)
+comment|// for now its SimpleText vs Lucene45(random postings format)
 comment|// as this gives the best overall coverage. when we have more
 comment|// codecs we should probably pick 2 from Codec.availableCodecs()
 name|leftCodec
@@ -658,6 +672,43 @@ name|BytesRef
 argument_list|(
 name|trash
 argument_list|)
+argument_list|)
+argument_list|)
+expr_stmt|;
+block|}
+comment|// add a numeric dv field sometimes
+name|document
+operator|.
+name|removeFields
+argument_list|(
+literal|"sparsenumeric"
+argument_list|)
+expr_stmt|;
+if|if
+condition|(
+name|random
+operator|.
+name|nextInt
+argument_list|(
+literal|4
+argument_list|)
+operator|==
+literal|2
+condition|)
+block|{
+name|document
+operator|.
+name|add
+argument_list|(
+operator|new
+name|NumericDocValuesField
+argument_list|(
+literal|"sparsenumeric"
+argument_list|,
+name|random
+operator|.
+name|nextInt
+argument_list|()
 argument_list|)
 argument_list|)
 expr_stmt|;

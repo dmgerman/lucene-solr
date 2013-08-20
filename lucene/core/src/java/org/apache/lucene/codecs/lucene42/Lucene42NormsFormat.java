@@ -121,7 +121,6 @@ end_comment
 begin_class
 DECL|class|Lucene42NormsFormat
 specifier|public
-specifier|final
 class|class
 name|Lucene42NormsFormat
 extends|extends
@@ -178,7 +177,7 @@ name|IOException
 block|{
 return|return
 operator|new
-name|Lucene42DocValuesConsumer
+name|Lucene42NormsConsumer
 argument_list|(
 name|state
 argument_list|,

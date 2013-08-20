@@ -2911,17 +2911,12 @@ name|hasDocValues
 argument_list|()
 condition|)
 block|{
-comment|// doc values are dense
 return|return
-operator|new
-name|Bits
-operator|.
-name|MatchAllBits
-argument_list|(
 name|reader
 operator|.
-name|maxDoc
-argument_list|()
+name|getDocsWithField
+argument_list|(
+name|field
 argument_list|)
 return|;
 block|}
@@ -5223,7 +5218,9 @@ literal|null
 condition|)
 block|{
 return|return
-name|EMPTY_TERMSINDEX
+name|SortedDocValues
+operator|.
+name|EMPTY
 return|;
 block|}
 elseif|else
@@ -5265,7 +5262,9 @@ argument_list|()
 condition|)
 block|{
 return|return
-name|EMPTY_TERMSINDEX
+name|SortedDocValues
+operator|.
+name|EMPTY
 return|;
 block|}
 return|return

@@ -20,6 +20,16 @@ end_comment
 
 begin_import
 import|import
+name|java
+operator|.
+name|io
+operator|.
+name|IOException
+import|;
+end_import
+
+begin_import
+import|import
 name|org
 operator|.
 name|apache
@@ -29,6 +39,20 @@ operator|.
 name|codecs
 operator|.
 name|Codec
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|codecs
+operator|.
+name|DocValuesConsumer
 import|;
 end_import
 
@@ -238,8 +262,22 @@ name|PerFieldPostingsFormat
 import|;
 end_import
 
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|index
+operator|.
+name|SegmentWriteState
+import|;
+end_import
+
 begin_comment
-comment|/**  * Implements the Lucene 4.2 index format, with configurable per-field postings  * and docvalues formats.  *<p>  * If you want to reuse functionality of this codec in another codec, extend  * {@link FilterCodec}.  *  * @see org.apache.lucene.codecs.lucene42 package documentation for file format details.  * @lucene.experimental  */
+comment|/**  * Implements the Lucene 4.2 index format, with configurable per-field postings  * and docvalues formats.  *<p>  * If you want to reuse functionality of this codec in another codec, extend  * {@link FilterCodec}.  *  * @see org.apache.lucene.codecs.lucene42 package documentation for file format details.  * @lucene.experimental  * @deprecated Only for reading old 4.2 segments  */
 end_comment
 
 begin_comment
@@ -255,6 +293,8 @@ comment|// (it writes a minor version, etc).
 end_comment
 
 begin_class
+annotation|@
+name|Deprecated
 DECL|class|Lucene42Codec
 specifier|public
 class|class
@@ -544,12 +584,33 @@ init|=
 operator|new
 name|Lucene42NormsFormat
 argument_list|()
+block|{
+annotation|@
+name|Override
+specifier|public
+name|DocValuesConsumer
+name|normsConsumer
+parameter_list|(
+name|SegmentWriteState
+name|state
+parameter_list|)
+throws|throws
+name|IOException
+block|{
+throw|throw
+operator|new
+name|UnsupportedOperationException
+argument_list|(
+literal|"this codec can only be used for reading"
+argument_list|)
+throw|;
+block|}
+block|}
 decl_stmt|;
 annotation|@
 name|Override
 DECL|method|normsFormat
 specifier|public
-specifier|final
 name|NormsFormat
 name|normsFormat
 parameter_list|()

@@ -1470,14 +1470,6 @@ operator|<
 literal|0
 condition|)
 block|{
-if|if
-condition|(
-name|schemaField
-operator|.
-name|multiValued
-argument_list|()
-condition|)
-block|{
 name|missingCount
 operator|=
 name|SimpleFacets
@@ -1495,15 +1487,6 @@ argument_list|()
 argument_list|)
 expr_stmt|;
 block|}
-else|else
-block|{
-name|missingCount
-operator|=
-literal|0
-expr_stmt|;
-comment|// single-valued dv is implicitly 0
-block|}
-block|}
 name|res
 operator|.
 name|add
@@ -1519,7 +1502,7 @@ name|res
 return|;
 block|}
 comment|/** accumulates per-segment single-valued facet counts, mapping to global ordinal space */
-comment|// specialized since the single-valued case is simpler: you don't have to deal with missing count, etc
+comment|// specialized since the single-valued case is different
 DECL|method|accumSingle
 specifier|static
 name|void
@@ -1581,6 +1564,10 @@ condition|(
 name|map
 operator|!=
 literal|null
+operator|&&
+name|term
+operator|>=
+literal|0
 condition|)
 block|{
 name|term
