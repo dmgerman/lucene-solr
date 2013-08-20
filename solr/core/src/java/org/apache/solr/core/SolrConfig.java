@@ -17,6 +17,24 @@ package|;
 end_package
 
 begin_import
+import|import static
+name|org
+operator|.
+name|apache
+operator|.
+name|solr
+operator|.
+name|core
+operator|.
+name|SolrConfig
+operator|.
+name|PluginOpts
+operator|.
+name|*
+import|;
+end_import
+
+begin_import
 import|import
 name|org
 operator|.
@@ -511,6 +529,25 @@ name|DEFAULT_CONF_FILE
 init|=
 literal|"solrconfig.xml"
 decl_stmt|;
+DECL|enum|PluginOpts
+specifier|static
+enum|enum
+name|PluginOpts
+block|{
+DECL|enum constant|MULTI_OK
+name|MULTI_OK
+block|,
+DECL|enum constant|REQUIRE_NAME
+name|REQUIRE_NAME
+block|,
+DECL|enum constant|REQUIRE_CLASS
+name|REQUIRE_CLASS
+block|,
+comment|// EnumSet.of and/or EnumSet.copyOf(Collection) are anoying
+comment|// because of type determination
+DECL|enum constant|NOOP
+name|NOOP
+block|}
 comment|/** Creates a default instance from the solrconfig.xml. */
 DECL|method|SolrConfig
 specifier|public
@@ -1252,9 +1289,11 @@ name|class
 argument_list|,
 literal|"requestHandler"
 argument_list|,
-literal|true
+name|REQUIRE_NAME
 argument_list|,
-literal|true
+name|REQUIRE_CLASS
+argument_list|,
+name|MULTI_OK
 argument_list|)
 expr_stmt|;
 name|loadPluginInfo
@@ -1265,9 +1304,11 @@ name|class
 argument_list|,
 literal|"queryParser"
 argument_list|,
-literal|true
+name|REQUIRE_NAME
 argument_list|,
-literal|true
+name|REQUIRE_CLASS
+argument_list|,
+name|MULTI_OK
 argument_list|)
 expr_stmt|;
 name|loadPluginInfo
@@ -1278,9 +1319,11 @@ name|class
 argument_list|,
 literal|"queryResponseWriter"
 argument_list|,
-literal|true
+name|REQUIRE_NAME
 argument_list|,
-literal|true
+name|REQUIRE_CLASS
+argument_list|,
+name|MULTI_OK
 argument_list|)
 expr_stmt|;
 name|loadPluginInfo
@@ -1291,9 +1334,11 @@ name|class
 argument_list|,
 literal|"valueSourceParser"
 argument_list|,
-literal|true
+name|REQUIRE_NAME
 argument_list|,
-literal|true
+name|REQUIRE_CLASS
+argument_list|,
+name|MULTI_OK
 argument_list|)
 expr_stmt|;
 name|loadPluginInfo
@@ -1304,9 +1349,11 @@ name|class
 argument_list|,
 literal|"transformer"
 argument_list|,
-literal|true
+name|REQUIRE_NAME
 argument_list|,
-literal|true
+name|REQUIRE_CLASS
+argument_list|,
+name|MULTI_OK
 argument_list|)
 expr_stmt|;
 name|loadPluginInfo
@@ -1317,11 +1364,17 @@ name|class
 argument_list|,
 literal|"searchComponent"
 argument_list|,
-literal|true
+name|REQUIRE_NAME
 argument_list|,
-literal|true
+name|REQUIRE_CLASS
+argument_list|,
+name|MULTI_OK
 argument_list|)
 expr_stmt|;
+comment|// TODO: WTF is up with queryConverter???
+comment|// it aparently *only* works as a singleton? - SOLR-4304
+comment|// and even then -- only if there is a single SpellCheckComponent
+comment|// because of queryConverter.setAnalyzer
 name|loadPluginInfo
 argument_list|(
 name|QueryConverter
@@ -1330,9 +1383,9 @@ name|class
 argument_list|,
 literal|"queryConverter"
 argument_list|,
-literal|true
+name|REQUIRE_NAME
 argument_list|,
-literal|true
+name|REQUIRE_CLASS
 argument_list|)
 expr_stmt|;
 comment|// this is hackish, since it picks up all SolrEventListeners,
@@ -1347,9 +1400,9 @@ name|class
 argument_list|,
 literal|"//listener"
 argument_list|,
-literal|false
+name|REQUIRE_CLASS
 argument_list|,
-literal|true
+name|MULTI_OK
 argument_list|)
 expr_stmt|;
 name|loadPluginInfo
@@ -1360,9 +1413,7 @@ name|class
 argument_list|,
 literal|"directoryFactory"
 argument_list|,
-literal|false
-argument_list|,
-literal|true
+name|REQUIRE_CLASS
 argument_list|)
 expr_stmt|;
 name|loadPluginInfo
@@ -1375,9 +1426,7 @@ name|indexConfigPrefix
 operator|+
 literal|"/deletionPolicy"
 argument_list|,
-literal|false
-argument_list|,
-literal|true
+name|REQUIRE_CLASS
 argument_list|)
 expr_stmt|;
 name|loadPluginInfo
@@ -1388,9 +1437,7 @@ name|class
 argument_list|,
 literal|"codecFactory"
 argument_list|,
-literal|false
-argument_list|,
-literal|false
+name|REQUIRE_CLASS
 argument_list|)
 expr_stmt|;
 name|loadPluginInfo
@@ -1401,9 +1448,7 @@ name|class
 argument_list|,
 literal|"indexReaderFactory"
 argument_list|,
-literal|false
-argument_list|,
-literal|true
+name|REQUIRE_CLASS
 argument_list|)
 expr_stmt|;
 name|loadPluginInfo
@@ -1414,9 +1459,7 @@ name|class
 argument_list|,
 literal|"updateRequestProcessorChain"
 argument_list|,
-literal|false
-argument_list|,
-literal|false
+name|MULTI_OK
 argument_list|)
 expr_stmt|;
 name|loadPluginInfo
@@ -1426,10 +1469,6 @@ operator|.
 name|class
 argument_list|,
 literal|"updateHandler/updateLog"
-argument_list|,
-literal|false
-argument_list|,
-literal|false
 argument_list|)
 expr_stmt|;
 name|loadPluginInfo
@@ -1440,9 +1479,7 @@ name|class
 argument_list|,
 literal|"schemaFactory"
 argument_list|,
-literal|false
-argument_list|,
-literal|true
+name|REQUIRE_CLASS
 argument_list|)
 expr_stmt|;
 name|updateHandlerInfo
@@ -1546,13 +1583,49 @@ parameter_list|,
 name|String
 name|tag
 parameter_list|,
-name|boolean
-name|requireName
-parameter_list|,
-name|boolean
-name|requireClass
+name|PluginOpts
+modifier|...
+name|opts
 parameter_list|)
 block|{
+name|EnumSet
+argument_list|<
+name|PluginOpts
+argument_list|>
+name|options
+init|=
+name|EnumSet
+operator|.
+expr|<
+name|PluginOpts
+operator|>
+name|of
+argument_list|(
+name|NOOP
+argument_list|,
+name|opts
+argument_list|)
+decl_stmt|;
+name|boolean
+name|requireName
+init|=
+name|options
+operator|.
+name|contains
+argument_list|(
+name|REQUIRE_NAME
+argument_list|)
+decl_stmt|;
+name|boolean
+name|requireClass
+init|=
+name|options
+operator|.
+name|contains
+argument_list|(
+name|REQUIRE_CLASS
+argument_list|)
+decl_stmt|;
 name|List
 argument_list|<
 name|PluginInfo
@@ -1568,6 +1641,49 @@ argument_list|,
 name|requireClass
 argument_list|)
 decl_stmt|;
+if|if
+condition|(
+literal|1
+operator|<
+name|result
+operator|.
+name|size
+argument_list|()
+operator|&&
+operator|!
+name|options
+operator|.
+name|contains
+argument_list|(
+name|MULTI_OK
+argument_list|)
+condition|)
+block|{
+throw|throw
+operator|new
+name|SolrException
+argument_list|(
+name|SolrException
+operator|.
+name|ErrorCode
+operator|.
+name|SERVER_ERROR
+argument_list|,
+literal|"Found "
+operator|+
+name|result
+operator|.
+name|size
+argument_list|()
+operator|+
+literal|" configuration sections when at most "
+operator|+
+literal|"1 is allowed matching expression: "
+operator|+
+name|tag
+argument_list|)
+throw|;
+block|}
 if|if
 condition|(
 operator|!
@@ -2534,7 +2650,8 @@ argument_list|(
 name|type
 argument_list|)
 decl_stmt|;
-return|return
+if|if
+condition|(
 name|result
 operator|==
 literal|null
@@ -2543,9 +2660,23 @@ name|result
 operator|.
 name|isEmpty
 argument_list|()
-condition|?
+condition|)
+block|{
+return|return
 literal|null
-else|:
+return|;
+block|}
+if|if
+condition|(
+literal|1
+operator|==
+name|result
+operator|.
+name|size
+argument_list|()
+condition|)
+block|{
+return|return
 name|result
 operator|.
 name|get
@@ -2553,6 +2684,22 @@ argument_list|(
 literal|0
 argument_list|)
 return|;
+block|}
+throw|throw
+operator|new
+name|SolrException
+argument_list|(
+name|SolrException
+operator|.
+name|ErrorCode
+operator|.
+name|SERVER_ERROR
+argument_list|,
+literal|"Multiple plugins configured for type: "
+operator|+
+name|type
+argument_list|)
+throw|;
 block|}
 DECL|method|initLibs
 specifier|private
