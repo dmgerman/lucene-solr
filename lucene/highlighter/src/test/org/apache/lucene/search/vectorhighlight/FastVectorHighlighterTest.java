@@ -2633,11 +2633,9 @@ decl_stmt|;
 name|int
 name|iters
 init|=
-name|atLeast
-argument_list|(
 literal|1000
-argument_list|)
 decl_stmt|;
+comment|// don't let it go too big, or jenkins will stack overflow: atLeast(1000);
 name|StringBuilder
 name|builder
 init|=
