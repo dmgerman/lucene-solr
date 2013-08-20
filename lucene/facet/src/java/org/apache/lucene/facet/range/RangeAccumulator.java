@@ -186,6 +186,20 @@ name|NumericDocValues
 import|;
 end_import
 
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|util
+operator|.
+name|Bits
+import|;
+end_import
+
 begin_comment
 comment|/** Uses a {@link NumericDocValues} and accumulates  *  counts for provided ranges.  This is dynamic (does not  *  use the taxonomy index or anything from the index  *  except the NumericDocValuesField). */
 end_comment
@@ -492,6 +506,23 @@ block|{
 continue|continue;
 comment|// no numeric values for this field in this reader
 block|}
+name|Bits
+name|docsWithField
+init|=
+name|hits
+operator|.
+name|context
+operator|.
+name|reader
+argument_list|()
+operator|.
+name|getDocsWithField
+argument_list|(
+name|ranges
+operator|.
+name|field
+argument_list|)
+decl_stmt|;
 specifier|final
 name|int
 name|length
@@ -541,6 +572,28 @@ argument_list|(
 name|doc
 argument_list|)
 decl_stmt|;
+comment|// Skip missing docs:
+if|if
+condition|(
+name|v
+operator|==
+literal|0
+operator|&&
+name|docsWithField
+operator|.
+name|get
+argument_list|(
+name|doc
+argument_list|)
+operator|==
+literal|false
+condition|)
+block|{
+name|doc
+operator|++
+expr_stmt|;
+continue|continue;
+block|}
 comment|// TODO: if all ranges are non-overlapping, we
 comment|// should instead do a bin-search up front
 comment|// (really, a specialized case of the interval
