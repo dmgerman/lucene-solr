@@ -36,7 +36,7 @@ name|lucene
 operator|.
 name|store
 operator|.
-name|IndexOutput
+name|DataOutput
 import|;
 end_import
 
@@ -127,7 +127,7 @@ specifier|abstract
 name|void
 name|write
 parameter_list|(
-name|IndexOutput
+name|DataOutput
 name|indexOut
 parameter_list|,
 name|boolean
@@ -144,8 +144,6 @@ specifier|abstract
 name|Index
 name|index
 parameter_list|()
-throws|throws
-name|IOException
 function_decl|;
 annotation|@
 name|Override
