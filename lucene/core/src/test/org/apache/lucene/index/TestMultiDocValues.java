@@ -824,6 +824,29 @@ argument_list|()
 argument_list|)
 argument_list|)
 expr_stmt|;
+if|if
+condition|(
+name|random
+argument_list|()
+operator|.
+name|nextInt
+argument_list|(
+literal|7
+argument_list|)
+operator|==
+literal|0
+condition|)
+block|{
+name|iw
+operator|.
+name|addDocument
+argument_list|(
+operator|new
+name|Document
+argument_list|()
+argument_list|)
+expr_stmt|;
+block|}
 name|iw
 operator|.
 name|addDocument
@@ -969,7 +992,7 @@ name|i
 argument_list|)
 argument_list|)
 expr_stmt|;
-comment|// check ord value
+comment|// check value
 name|single
 operator|.
 name|get

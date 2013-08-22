@@ -2404,6 +2404,13 @@ index|]
 argument_list|)
 decl_stmt|;
 return|return
+name|segmentOrd
+operator|==
+operator|-
+literal|1
+condition|?
+name|segmentOrd
+else|:
 operator|(
 name|int
 operator|)
