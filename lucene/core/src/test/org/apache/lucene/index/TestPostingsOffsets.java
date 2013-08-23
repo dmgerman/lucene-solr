@@ -408,6 +408,8 @@ block|,
 literal|"TempFixedIntBlock"
 block|,
 literal|"TempVariableIntBlock"
+block|,
+literal|"TempRandom"
 block|}
 argument_list|)
 DECL|class|TestPostingsOffsets

@@ -647,11 +647,17 @@ literal|"MockSep"
 block|,
 literal|"MockRandom"
 block|,
+literal|"Lucene40"
+block|,
+literal|"Lucene41"
+block|,
 literal|"TempSep"
 block|,
 literal|"TempFixedIntBlock"
 block|,
 literal|"TempVariableIntBlock"
+block|,
+literal|"TempRandom"
 block|}
 argument_list|)
 DECL|class|TestBackwardsCompatibility
