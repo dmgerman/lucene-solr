@@ -298,7 +298,7 @@ specifier|static
 name|int
 name|VERSION_META_ARRAY
 init|=
-literal|0
+literal|1
 decl_stmt|;
 DECL|field|VERSION_CURRENT
 specifier|final
