@@ -383,6 +383,8 @@ operator|=
 operator|new
 name|PulsingPostingsWriter
 argument_list|(
+name|state
+argument_list|,
 name|freqCutoff
 argument_list|,
 name|docsWriter
@@ -475,6 +477,8 @@ operator|=
 operator|new
 name|PulsingPostingsReader
 argument_list|(
+name|state
+argument_list|,
 name|docsReader
 argument_list|)
 expr_stmt|;
