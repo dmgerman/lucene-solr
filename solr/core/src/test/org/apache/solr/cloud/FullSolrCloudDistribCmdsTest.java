@@ -337,9 +337,6 @@ end_comment
 begin_class
 annotation|@
 name|Slow
-annotation|@
-name|Ignore
-comment|// failing on certain jenkins since block join commit - needs investigation.
 DECL|class|FullSolrCloudDistribCmdsTest
 specifier|public
 class|class
@@ -1297,9 +1294,14 @@ decl_stmt|;
 name|int
 name|childsNum
 init|=
-name|atLeast
+literal|5
+operator|+
+name|random
+argument_list|()
+operator|.
+name|nextInt
 argument_list|(
-literal|10
+literal|5
 argument_list|)
 decl_stmt|;
 for|for
