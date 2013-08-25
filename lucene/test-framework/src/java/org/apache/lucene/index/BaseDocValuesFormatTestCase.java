@@ -8972,6 +8972,24 @@ argument_list|()
 argument_list|)
 argument_list|)
 decl_stmt|;
+if|if
+condition|(
+operator|!
+name|defaultCodecSupportsDocsWithField
+argument_list|()
+condition|)
+block|{
+comment|// if the codec doesnt support missing, we expect missing to be mapped to byte[]
+comment|// by the impersonator, but we have to give it a chance to merge them to this
+name|cfg
+operator|.
+name|setMergePolicy
+argument_list|(
+name|newLogMergePolicy
+argument_list|()
+argument_list|)
+expr_stmt|;
+block|}
 name|RandomIndexWriter
 name|w
 init|=
@@ -9239,6 +9257,23 @@ name|w
 operator|.
 name|commit
 argument_list|()
+expr_stmt|;
+block|}
+if|if
+condition|(
+operator|!
+name|defaultCodecSupportsDocsWithField
+argument_list|()
+condition|)
+block|{
+comment|// if the codec doesnt support missing, we expect missing to be mapped to byte[]
+comment|// by the impersonator, but we have to give it a chance to merge them to this
+name|w
+operator|.
+name|forceMerge
+argument_list|(
+literal|1
+argument_list|)
 expr_stmt|;
 block|}
 for|for
