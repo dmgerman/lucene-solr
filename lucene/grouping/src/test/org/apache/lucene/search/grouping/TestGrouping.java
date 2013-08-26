@@ -5606,8 +5606,9 @@ name|DEFAULT
 operator|.
 name|getInts
 argument_list|(
-operator|new
 name|SlowCompositeReaderWrapper
+operator|.
+name|wrap
 argument_list|(
 name|r
 argument_list|)
@@ -5867,8 +5868,9 @@ name|DEFAULT
 operator|.
 name|getInts
 argument_list|(
-operator|new
 name|SlowCompositeReaderWrapper
+operator|.
+name|wrap
 argument_list|(
 name|rBlocks
 argument_list|)

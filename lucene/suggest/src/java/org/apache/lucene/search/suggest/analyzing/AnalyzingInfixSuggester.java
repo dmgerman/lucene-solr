@@ -1569,8 +1569,9 @@ block|}
 comment|//System.out.println("initial indexing time: " + ((System.nanoTime()-t0)/1000000) + " msec");
 name|r
 operator|=
-operator|new
 name|SlowCompositeReaderWrapper
+operator|.
+name|wrap
 argument_list|(
 name|DirectoryReader
 operator|.
