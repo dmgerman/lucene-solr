@@ -226,6 +226,16 @@ begin_import
 import|import
 name|java
 operator|.
+name|io
+operator|.
+name|IOException
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
 name|lang
 operator|.
 name|reflect
@@ -778,24 +788,16 @@ name|InvocationTargetException
 name|ite
 parameter_list|)
 block|{
-name|SolrException
-name|se
-init|=
-operator|(
-name|SolrException
-operator|)
-name|ite
-operator|.
-name|getTargetException
-argument_list|()
-decl_stmt|;
 name|assertEquals
 argument_list|(
 literal|"Should have an exception here, file not in ZK."
 argument_list|,
 literal|"Could not load solr.xml from zookeeper"
 argument_list|,
-name|se
+name|ite
+operator|.
+name|getTargetException
+argument_list|()
 operator|.
 name|getMessage
 argument_list|()
@@ -809,7 +811,6 @@ argument_list|()
 expr_stmt|;
 block|}
 block|}
-comment|// TODO: Solr 5.0. when we remove the default solr.xml from configSolrXmlOld this should start failing.
 annotation|@
 name|Test
 DECL|method|testNotInZkOrOnDisk
@@ -846,16 +847,40 @@ literal|false
 argument_list|)
 expr_stmt|;
 comment|// solr.xml not on disk either
-name|assertEquals
+name|fail
 argument_list|(
-literal|"Should have gotten the default port from the hard-coded default solr.xml file via sys prop."
+literal|"Should have thrown an exception here"
+argument_list|)
+expr_stmt|;
+block|}
+catch|catch
+parameter_list|(
+name|InvocationTargetException
+name|ite
+parameter_list|)
+block|{
+name|assertTrue
+argument_list|(
+literal|"Should be failing to create default solr.xml in code"
 argument_list|,
-name|cfg
+name|ite
 operator|.
-name|getZkHostPort
+name|getTargetException
 argument_list|()
-argument_list|,
-literal|"8787"
+operator|.
+name|getCause
+argument_list|()
+operator|.
+name|getMessage
+argument_list|()
+operator|.
+name|indexOf
+argument_list|(
+literal|"solr.xml does not exist"
+argument_list|)
+operator|!=
+operator|-
+literal|1
 argument_list|)
 expr_stmt|;
 block|}
@@ -952,22 +977,14 @@ name|InvocationTargetException
 name|ite
 parameter_list|)
 block|{
-name|SolrException
-name|se
-init|=
-operator|(
-name|SolrException
-operator|)
-name|ite
-operator|.
-name|getTargetException
-argument_list|()
-decl_stmt|;
 name|assertEquals
 argument_list|(
 literal|"Should have an exception in SolrXmlInZkTest.testBadSysProp, sysprop set to bogus value."
 argument_list|,
-name|se
+name|ite
+operator|.
+name|getTargetException
+argument_list|()
 operator|.
 name|getMessage
 argument_list|()
@@ -1074,27 +1091,17 @@ operator|instanceof
 name|SolrException
 argument_list|)
 expr_stmt|;
-name|String
-name|cause
-init|=
-operator|(
-operator|(
-name|SolrException
-operator|)
-name|ite
-operator|.
-name|getTargetException
-argument_list|()
-operator|)
-operator|.
-name|getMessage
-argument_list|()
-decl_stmt|;
 name|assertEquals
 argument_list|(
 literal|"Caught Solr exception"
 argument_list|,
-name|cause
+name|ite
+operator|.
+name|getTargetException
+argument_list|()
+operator|.
+name|getMessage
+argument_list|()
 argument_list|,
 literal|"Could not load solr.xml from zookeeper: zkHost system property not set"
 argument_list|)

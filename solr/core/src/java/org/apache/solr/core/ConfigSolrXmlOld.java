@@ -266,6 +266,15 @@ specifier|final
 name|CoresLocator
 name|persistor
 decl_stmt|;
+DECL|field|DEFAULT_DEFAULT_CORE_NAME
+specifier|public
+specifier|static
+specifier|final
+name|String
+name|DEFAULT_DEFAULT_CORE_NAME
+init|=
+literal|"collection1"
+decl_stmt|;
 annotation|@
 name|Override
 DECL|method|getShardHandlerFactoryConfigPath
@@ -1608,46 +1617,6 @@ name|Properties
 argument_list|()
 return|;
 block|}
-DECL|field|DEFAULT_DEFAULT_CORE_NAME
-specifier|public
-specifier|static
-specifier|final
-name|String
-name|DEFAULT_DEFAULT_CORE_NAME
-init|=
-literal|"collection1"
-decl_stmt|;
-DECL|field|DEF_SOLR_XML
-specifier|public
-specifier|static
-specifier|final
-name|String
-name|DEF_SOLR_XML
-init|=
-literal|"<?xml version=\"1.0\" encoding=\"UTF-8\" ?>\n"
-operator|+
-literal|"<solr persistent=\"false\">\n"
-operator|+
-literal|"<cores adminPath=\"/admin/cores\" defaultCoreName=\""
-operator|+
-name|DEFAULT_DEFAULT_CORE_NAME
-operator|+
-literal|"\""
-operator|+
-literal|" host=\"${host:}\" hostPort=\"${hostPort:}\" hostContext=\"${hostContext:}\" zkClientTimeout=\"${zkClientTimeout:15000}\""
-operator|+
-literal|">\n"
-operator|+
-literal|"<core name=\""
-operator|+
-name|DEFAULT_DEFAULT_CORE_NAME
-operator|+
-literal|"\" shard=\"${shard:}\" collection=\"${collection:collection1}\" instanceDir=\"collection1\" />\n"
-operator|+
-literal|"</cores>\n"
-operator|+
-literal|"</solr>"
-decl_stmt|;
 block|}
 end_class
 
