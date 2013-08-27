@@ -445,6 +445,16 @@ name|TERMS_VERSION_APPEND_ONLY
 init|=
 literal|1
 decl_stmt|;
+comment|/** Meta data as array */
+DECL|field|TERMS_VERSION_META_ARRAY
+specifier|public
+specifier|static
+specifier|final
+name|int
+name|TERMS_VERSION_META_ARRAY
+init|=
+literal|2
+decl_stmt|;
 comment|/** Current terms format. */
 DECL|field|TERMS_VERSION_CURRENT
 specifier|public
@@ -491,6 +501,16 @@ name|int
 name|TERMS_INDEX_VERSION_APPEND_ONLY
 init|=
 literal|1
+decl_stmt|;
+comment|/** Meta data as array */
+DECL|field|TERMS_INDEX_VERSION_META_ARRAY
+specifier|public
+specifier|static
+specifier|final
+name|int
+name|TERMS_INDEX_VERSION_META_ARRAY
+init|=
+literal|2
 decl_stmt|;
 comment|/** Current index format. */
 DECL|field|TERMS_INDEX_VERSION_CURRENT
@@ -4756,6 +4776,13 @@ operator|.
 name|docCount
 argument_list|)
 expr_stmt|;
+if|if
+condition|(
+name|TERMS_VERSION_CURRENT
+operator|>=
+name|TERMS_VERSION_META_ARRAY
+condition|)
+block|{
 name|out
 operator|.
 name|writeVInt
@@ -4765,6 +4792,7 @@ operator|.
 name|longsSize
 argument_list|)
 expr_stmt|;
+block|}
 name|indexOut
 operator|.
 name|writeVLong

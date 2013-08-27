@@ -363,6 +363,15 @@ name|VERSION_APPEND_ONLY
 init|=
 literal|1
 decl_stmt|;
+DECL|field|VERSION_META_ARRAY
+specifier|public
+specifier|static
+specifier|final
+name|int
+name|VERSION_META_ARRAY
+init|=
+literal|2
+decl_stmt|;
 DECL|field|VERSION_CURRENT
 specifier|public
 specifier|static
@@ -372,6 +381,7 @@ name|VERSION_CURRENT
 init|=
 name|VERSION_APPEND_ONLY
 decl_stmt|;
+comment|//public static final int VERSION_CURRENT = VERSION_META_ARRAY;
 comment|/** Extension of terms file */
 DECL|field|TERMS_EXTENSION
 specifier|static
@@ -864,6 +874,13 @@ operator|.
 name|docCount
 argument_list|)
 expr_stmt|;
+if|if
+condition|(
+name|VERSION_CURRENT
+operator|>=
+name|VERSION_META_ARRAY
+condition|)
+block|{
 name|out
 operator|.
 name|writeVInt
@@ -873,6 +890,7 @@ operator|.
 name|longsSize
 argument_list|)
 expr_stmt|;
+block|}
 block|}
 name|writeTrailer
 argument_list|(
