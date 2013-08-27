@@ -816,8 +816,6 @@ literal|"<?xml version=\"1.0\" encoding=\"UTF-8\" ?>\n"
 operator|+
 literal|"<solr persistent=\"false\">\n"
 operator|+
-literal|"<logging enabled=\"true\"/>\n"
-operator|+
 literal|"<cores adminPath=\"/admin/cores\" defaultCoreName=\""
 operator|+
 name|ConfigSolrXmlOld
