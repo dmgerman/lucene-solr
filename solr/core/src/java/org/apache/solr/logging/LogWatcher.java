@@ -520,9 +520,18 @@ operator|.
 name|isEnabled
 argument_list|()
 condition|)
+block|{
+name|log
+operator|.
+name|info
+argument_list|(
+literal|"A LogWatcher is not enabled"
+argument_list|)
+expr_stmt|;
 return|return
 literal|null
 return|;
+block|}
 name|LogWatcher
 name|logWatcher
 init|=
@@ -613,6 +622,15 @@ argument_list|()
 operator|.
 name|getLoggerFactoryClassStr
 argument_list|()
+expr_stmt|;
+name|log
+operator|.
+name|info
+argument_list|(
+literal|"SLF4J impl is "
+operator|+
+name|slf4jImpl
+argument_list|)
 expr_stmt|;
 if|if
 condition|(
