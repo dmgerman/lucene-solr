@@ -1360,6 +1360,18 @@ argument_list|(
 name|docValues
 argument_list|)
 expr_stmt|;
+comment|// must also update docValuesType map so it's aware of this field's DocValueType
+name|globalFieldNumbers
+operator|.
+name|docValuesType
+operator|.
+name|put
+argument_list|(
+name|name
+argument_list|,
+name|docValues
+argument_list|)
+expr_stmt|;
 block|}
 if|if
 condition|(
