@@ -622,6 +622,8 @@ argument_list|(
 name|ar
 argument_list|,
 literal|"bytes"
+argument_list|,
+literal|false
 argument_list|)
 decl_stmt|;
 name|SortedDocValues

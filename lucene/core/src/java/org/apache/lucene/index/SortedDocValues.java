@@ -116,7 +116,9 @@ name|result
 operator|.
 name|bytes
 operator|=
-name|MISSING
+name|BytesRef
+operator|.
+name|EMPTY_BYTES
 expr_stmt|;
 name|result
 operator|.
@@ -142,7 +144,7 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
-comment|/** An empty SortedDocValues which returns {@link #MISSING} for every document */
+comment|/** An empty SortedDocValues which returns {@link BytesRef#EMPTY_BYTES} for every document */
 DECL|field|EMPTY
 specifier|public
 specifier|static
@@ -186,7 +188,9 @@ name|result
 operator|.
 name|bytes
 operator|=
-name|MISSING
+name|BytesRef
+operator|.
+name|EMPTY_BYTES
 expr_stmt|;
 name|result
 operator|.

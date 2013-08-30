@@ -1090,7 +1090,7 @@ parameter_list|)
 throws|throws
 name|IOException
 function_decl|;
-comment|/** Checks the internal cache for an appropriate entry, and if none    * is found, reads the term values in<code>field</code>    * and returns a {@link BinaryDocValues} instance, providing a    * method to retrieve the term (as a BytesRef) per document.    * @param reader  Used to get field values.    * @param field   Which field contains the strings.    * @return The values in the given field for each document.    * @throws IOException  If any error occurs.    */
+comment|/** Checks the internal cache for an appropriate entry, and if none    * is found, reads the term values in<code>field</code>    * and returns a {@link BinaryDocValues} instance, providing a    * method to retrieve the term (as a BytesRef) per document.    * @param reader  Used to get field values.    * @param field   Which field contains the strings.    * @param setDocsWithField  If true then {@link #getDocsWithField} will    *        also be computed and stored in the FieldCache.    * @return The values in the given field for each document.    * @throws IOException  If any error occurs.    */
 DECL|method|getTerms
 specifier|public
 name|BinaryDocValues
@@ -1101,11 +1101,14 @@ name|reader
 parameter_list|,
 name|String
 name|field
+parameter_list|,
+name|boolean
+name|setDocsWithField
 parameter_list|)
 throws|throws
 name|IOException
 function_decl|;
-comment|/** Expert: just like {@link #getTerms(AtomicReader,String)},    *  but you can specify whether more RAM should be consumed in exchange for    *  faster lookups (default is "true").  Note that the    *  first call for a given reader and field "wins",    *  subsequent calls will share the same cache entry. */
+comment|/** Expert: just like {@link #getTerms(AtomicReader,String,boolean)},    *  but you can specify whether more RAM should be consumed in exchange for    *  faster lookups (default is "true").  Note that the    *  first call for a given reader and field "wins",    *  subsequent calls will share the same cache entry. */
 DECL|method|getTerms
 specifier|public
 name|BinaryDocValues
@@ -1116,6 +1119,9 @@ name|reader
 parameter_list|,
 name|String
 name|field
+parameter_list|,
+name|boolean
+name|setDocsWithField
 parameter_list|,
 name|float
 name|acceptableOverheadRatio
