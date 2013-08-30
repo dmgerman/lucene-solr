@@ -380,35 +380,15 @@ name|reader
 expr_stmt|;
 comment|// We need this to create thread-safe MultiSortedSetDV
 comment|// per collector:
-if|if
-condition|(
-name|reader
-operator|instanceof
-name|AtomicReader
-condition|)
-block|{
 name|topReader
 operator|=
-operator|(
-name|AtomicReader
-operator|)
-name|reader
-expr_stmt|;
-block|}
-else|else
-block|{
-name|topReader
-operator|=
-operator|new
 name|SlowCompositeReaderWrapper
+operator|.
+name|wrap
 argument_list|(
-operator|(
-name|CompositeReader
-operator|)
 name|reader
 argument_list|)
 expr_stmt|;
-block|}
 name|SortedSetDocValues
 name|dv
 init|=

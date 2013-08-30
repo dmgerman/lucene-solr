@@ -220,6 +220,8 @@ operator|.
 name|docWriter
 operator|.
 name|bytesUsed
+argument_list|,
+literal|false
 argument_list|)
 expr_stmt|;
 block|}

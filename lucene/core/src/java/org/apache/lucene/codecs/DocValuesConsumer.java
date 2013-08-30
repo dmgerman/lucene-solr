@@ -297,7 +297,7 @@ specifier|protected
 name|DocValuesConsumer
 parameter_list|()
 block|{}
-comment|/**    * Writes numeric docvalues for a field.    * @param field field information    * @param values Iterable of numeric values (one for each document).    * @throws IOException if an I/O error occurred.    */
+comment|/**    * Writes numeric docvalues for a field.    * @param field field information    * @param values Iterable of numeric values (one for each document). {@code null} indicates    *               a missing value.    * @throws IOException if an I/O error occurred.    */
 DECL|method|addNumericField
 specifier|public
 specifier|abstract
@@ -316,7 +316,7 @@ parameter_list|)
 throws|throws
 name|IOException
 function_decl|;
-comment|/**    * Writes binary docvalues for a field.    * @param field field information    * @param values Iterable of binary values (one for each document).    * @throws IOException if an I/O error occurred.    */
+comment|/**    * Writes binary docvalues for a field.    * @param field field information    * @param values Iterable of binary values (one for each document). {@code null} indicates    *               a missing value.    * @throws IOException if an I/O error occurred.    */
 DECL|method|addBinaryField
 specifier|public
 specifier|abstract
@@ -335,7 +335,7 @@ parameter_list|)
 throws|throws
 name|IOException
 function_decl|;
-comment|/**    * Writes pre-sorted binary docvalues for a field.    * @param field field information    * @param values Iterable of binary values in sorted order (deduplicated).    * @param docToOrd Iterable of ordinals (one for each document).    * @throws IOException if an I/O error occurred.    */
+comment|/**    * Writes pre-sorted binary docvalues for a field.    * @param field field information    * @param values Iterable of binary values in sorted order (deduplicated).    * @param docToOrd Iterable of ordinals (one for each document). {@code -1} indicates    *                 a missing value.    * @throws IOException if an I/O error occurred.    */
 DECL|method|addSortedField
 specifier|public
 specifier|abstract
@@ -360,7 +360,7 @@ parameter_list|)
 throws|throws
 name|IOException
 function_decl|;
-comment|/**    * Writes pre-sorted set docvalues for a field    * @param field field information    * @param values Iterable of binary values in sorted order (deduplicated).    * @param docToOrdCount Iterable of the number of values for each document.     * @param ords Iterable of ordinal occurrences (docToOrdCount*maxDoc total).    * @throws IOException if an I/O error occurred.    */
+comment|/**    * Writes pre-sorted set docvalues for a field    * @param field field information    * @param values Iterable of binary values in sorted order (deduplicated).    * @param docToOrdCount Iterable of the number of values for each document. A zero ordinal    *                      count indicates a missing value.    * @param ords Iterable of ordinal occurrences (docToOrdCount*maxDoc total).    * @throws IOException if an I/O error occurred.    */
 DECL|method|addSortedSetField
 specifier|public
 specifier|abstract
@@ -397,6 +397,7 @@ specifier|public
 name|void
 name|mergeNumericField
 parameter_list|(
+specifier|final
 name|FieldInfo
 name|fieldInfo
 parameter_list|,
@@ -410,6 +411,13 @@ argument_list|<
 name|NumericDocValues
 argument_list|>
 name|toMerge
+parameter_list|,
+specifier|final
+name|List
+argument_list|<
+name|Bits
+argument_list|>
+name|docsWithField
 parameter_list|)
 throws|throws
 name|IOException
@@ -452,7 +460,7 @@ decl_stmt|;
 name|int
 name|docIDUpto
 decl_stmt|;
-name|long
+name|Long
 name|nextValue
 decl_stmt|;
 name|AtomicReader
@@ -463,6 +471,9 @@ name|currentValues
 decl_stmt|;
 name|Bits
 name|currentLiveDocs
+decl_stmt|;
+name|Bits
+name|currentDocsWithField
 decl_stmt|;
 name|boolean
 name|nextIsSet
@@ -521,7 +532,6 @@ name|nextIsSet
 operator|=
 literal|false
 expr_stmt|;
-comment|// TODO: make a mutable number
 return|return
 name|nextValue
 return|;
@@ -604,6 +614,15 @@ operator|.
 name|getLiveDocs
 argument_list|()
 expr_stmt|;
+name|currentDocsWithField
+operator|=
+name|docsWithField
+operator|.
+name|get
+argument_list|(
+name|readerUpto
+argument_list|)
+expr_stmt|;
 block|}
 name|docIDUpto
 operator|=
@@ -629,6 +648,16 @@ name|nextIsSet
 operator|=
 literal|true
 expr_stmt|;
+if|if
+condition|(
+name|currentDocsWithField
+operator|.
+name|get
+argument_list|(
+name|docIDUpto
+argument_list|)
+condition|)
+block|{
 name|nextValue
 operator|=
 name|currentValues
@@ -638,6 +667,14 @@ argument_list|(
 name|docIDUpto
 argument_list|)
 expr_stmt|;
+block|}
+else|else
+block|{
+name|nextValue
+operator|=
+literal|null
+expr_stmt|;
+block|}
 name|docIDUpto
 operator|++
 expr_stmt|;
@@ -676,6 +713,13 @@ argument_list|<
 name|BinaryDocValues
 argument_list|>
 name|toMerge
+parameter_list|,
+specifier|final
+name|List
+argument_list|<
+name|Bits
+argument_list|>
+name|docsWithField
 parameter_list|)
 throws|throws
 name|IOException
@@ -725,6 +769,10 @@ operator|new
 name|BytesRef
 argument_list|()
 decl_stmt|;
+name|BytesRef
+name|nextPointer
+decl_stmt|;
+comment|// points to null if missing, or nextValue
 name|AtomicReader
 name|currentReader
 decl_stmt|;
@@ -733,6 +781,9 @@ name|currentValues
 decl_stmt|;
 name|Bits
 name|currentLiveDocs
+decl_stmt|;
+name|Bits
+name|currentDocsWithField
 decl_stmt|;
 name|boolean
 name|nextIsSet
@@ -791,9 +842,8 @@ name|nextIsSet
 operator|=
 literal|false
 expr_stmt|;
-comment|// TODO: make a mutable number
 return|return
-name|nextValue
+name|nextPointer
 return|;
 block|}
 specifier|private
@@ -867,6 +917,15 @@ argument_list|(
 name|readerUpto
 argument_list|)
 expr_stmt|;
+name|currentDocsWithField
+operator|=
+name|docsWithField
+operator|.
+name|get
+argument_list|(
+name|readerUpto
+argument_list|)
+expr_stmt|;
 name|currentLiveDocs
 operator|=
 name|currentReader
@@ -899,6 +958,16 @@ name|nextIsSet
 operator|=
 literal|true
 expr_stmt|;
+if|if
+condition|(
+name|currentDocsWithField
+operator|.
+name|get
+argument_list|(
+name|docIDUpto
+argument_list|)
+condition|)
+block|{
 name|currentValues
 operator|.
 name|get
@@ -908,6 +977,18 @@ argument_list|,
 name|nextValue
 argument_list|)
 expr_stmt|;
+name|nextPointer
+operator|=
+name|nextValue
+expr_stmt|;
+block|}
+else|else
+block|{
+name|nextPointer
+operator|=
+literal|null
+expr_stmt|;
+block|}
 name|docIDUpto
 operator|++
 expr_stmt|;
@@ -1103,18 +1184,31 @@ name|i
 argument_list|)
 condition|)
 block|{
-name|bitset
-operator|.
-name|set
-argument_list|(
+name|int
+name|ord
+init|=
 name|dv
 operator|.
 name|getOrd
 argument_list|(
 name|i
 argument_list|)
+decl_stmt|;
+if|if
+condition|(
+name|ord
+operator|>=
+literal|0
+condition|)
+block|{
+name|bitset
+operator|.
+name|set
+argument_list|(
+name|ord
 argument_list|)
 expr_stmt|;
+block|}
 block|}
 block|}
 name|liveTerms
@@ -1497,6 +1591,14 @@ argument_list|)
 decl_stmt|;
 name|nextValue
 operator|=
+name|segOrd
+operator|==
+operator|-
+literal|1
+condition|?
+operator|-
+literal|1
+else|:
 operator|(
 name|int
 operator|)

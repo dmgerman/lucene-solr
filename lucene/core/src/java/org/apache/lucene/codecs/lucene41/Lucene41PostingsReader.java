@@ -1412,17 +1412,6 @@ operator|.
 name|readVLong
 argument_list|()
 expr_stmt|;
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-name|termState
-operator|.
-name|docStartFP
-argument_list|)
-expr_stmt|;
 block|}
 if|if
 condition|(
@@ -1522,7 +1511,6 @@ operator|-
 literal|1
 expr_stmt|;
 block|}
-comment|//System.out.println("PR: state=" + termState);
 block|}
 annotation|@
 name|Override

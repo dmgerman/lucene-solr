@@ -724,7 +724,7 @@ block|}
 decl_stmt|;
 name|assertEquals
 argument_list|(
-literal|"&lt;h1&gt; [a]&lt;/h1&gt;"
+literal|"&lt;h1&gt; [a]&lt;&#x2F;h1&gt;"
 argument_list|,
 name|sfb
 operator|.

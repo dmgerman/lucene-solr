@@ -261,6 +261,15 @@ else|:
 literal|""
 operator|)
 decl_stmt|;
+name|log
+operator|.
+name|info
+argument_list|(
+literal|"creating "
+operator|+
+name|infomsg
+argument_list|)
+expr_stmt|;
 comment|// wrap in an ArrayList so we know we know we can do fast index lookups
 comment|// and that add(int,Object) is supported
 name|List

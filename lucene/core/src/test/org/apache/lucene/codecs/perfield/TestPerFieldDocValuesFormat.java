@@ -114,9 +114,9 @@ name|lucene
 operator|.
 name|codecs
 operator|.
-name|lucene42
+name|lucene45
 operator|.
-name|Lucene42Codec
+name|Lucene45Codec
 import|;
 end_import
 
@@ -400,6 +400,20 @@ name|BytesRef
 import|;
 end_import
 
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|util
+operator|.
+name|_TestUtil
+import|;
+end_import
+
 begin_comment
 comment|/**  * Basic tests of PerFieldDocValuesFormat  */
 end_comment
@@ -469,6 +483,26 @@ return|return
 name|codec
 return|;
 block|}
+annotation|@
+name|Override
+DECL|method|codecAcceptsHugeBinaryValues
+specifier|protected
+name|boolean
+name|codecAcceptsHugeBinaryValues
+parameter_list|(
+name|String
+name|field
+parameter_list|)
+block|{
+return|return
+name|_TestUtil
+operator|.
+name|fieldSupportsHugeBinaryDocValues
+argument_list|(
+name|field
+argument_list|)
+return|;
+block|}
 comment|// just a simple trivial test
 comment|// TODO: we should come up with a test that somehow checks that segment suffix
 comment|// is respected by all codec apis (not just docvalues and postings)
@@ -515,7 +549,7 @@ name|DocValuesFormat
 operator|.
 name|forName
 argument_list|(
-literal|"Lucene42"
+literal|"Lucene45"
 argument_list|)
 decl_stmt|;
 specifier|final
@@ -534,7 +568,7 @@ operator|.
 name|setCodec
 argument_list|(
 operator|new
-name|Lucene42Codec
+name|Lucene45Codec
 argument_list|()
 block|{
 annotation|@

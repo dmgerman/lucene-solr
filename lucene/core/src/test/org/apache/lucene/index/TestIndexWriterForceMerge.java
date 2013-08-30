@@ -662,6 +662,10 @@ expr_stmt|;
 else|else
 name|assertEquals
 argument_list|(
+literal|"seg: "
+operator|+
+name|segCount
+argument_list|,
 literal|7
 argument_list|,
 name|optSegCount

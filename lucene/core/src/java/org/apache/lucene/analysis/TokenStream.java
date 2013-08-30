@@ -56,6 +56,22 @@ name|apache
 operator|.
 name|lucene
 operator|.
+name|analysis
+operator|.
+name|tokenattributes
+operator|.
+name|PositionIncrementAttribute
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
 name|document
 operator|.
 name|Document
@@ -295,7 +311,7 @@ parameter_list|()
 throws|throws
 name|IOException
 function_decl|;
-comment|/**    * This method is called by the consumer after the last token has been    * consumed, after {@link #incrementToken()} returned<code>false</code>    * (using the new<code>TokenStream</code> API). Streams implementing the old API    * should upgrade to use this feature.    *<p/>    * This method can be used to perform any end-of-stream operations, such as    * setting the final offset of a stream. The final offset of a stream might    * differ from the offset of the last token eg in case one or more whitespaces    * followed after the last token, but a WhitespaceTokenizer was used.    *     * @throws IOException If an I/O error occurs    */
+comment|/**    * This method is called by the consumer after the last token has been    * consumed, after {@link #incrementToken()} returned<code>false</code>    * (using the new<code>TokenStream</code> API). Streams implementing the old API    * should upgrade to use this feature.    *<p/>    * This method can be used to perform any end-of-stream operations, such as    * setting the final offset of a stream. The final offset of a stream might    * differ from the offset of the last token eg in case one or more whitespaces    * followed after the last token, but a WhitespaceTokenizer was used.    *<p>    * Additionally any skipped positions (such as those removed by a stopfilter)    * can be applied to the position increment, or any adjustment of other    * attributes where the end-of-stream value may be important.    *     * @throws IOException If an I/O error occurs    */
 DECL|method|end
 specifier|public
 name|void
@@ -304,7 +320,33 @@ parameter_list|()
 throws|throws
 name|IOException
 block|{
-comment|// do nothing by default
+name|clearAttributes
+argument_list|()
+expr_stmt|;
+comment|// LUCENE-3849: don't consume dirty atts
+if|if
+condition|(
+name|hasAttribute
+argument_list|(
+name|PositionIncrementAttribute
+operator|.
+name|class
+argument_list|)
+condition|)
+block|{
+name|getAttribute
+argument_list|(
+name|PositionIncrementAttribute
+operator|.
+name|class
+argument_list|)
+operator|.
+name|setPositionIncrement
+argument_list|(
+literal|0
+argument_list|)
+expr_stmt|;
+block|}
 block|}
 comment|/**    * This method is called by a consumer before it begins consumption using    * {@link #incrementToken()}.    *<p/>    * Resets this stream to a clean state. Stateful implementations must implement    * this method so that they can be reused, just as if they had been created fresh.    */
 DECL|method|reset

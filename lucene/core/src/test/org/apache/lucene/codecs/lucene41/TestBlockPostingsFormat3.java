@@ -601,11 +601,9 @@ init|=
 operator|new
 name|Analyzer
 argument_list|(
-operator|new
 name|Analyzer
 operator|.
-name|PerFieldReuseStrategy
-argument_list|()
+name|PER_FIELD_REUSE_STRATEGY
 argument_list|)
 block|{
 annotation|@

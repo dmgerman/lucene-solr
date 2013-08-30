@@ -5400,10 +5400,6 @@ parameter_list|)
 throws|throws
 name|IOException
 block|{
-assert|assert
-name|assertRootArcs
-argument_list|()
-assert|;
 if|if
 condition|(
 name|labelToMatch
@@ -5502,6 +5498,12 @@ operator|.
 name|length
 condition|)
 block|{
+comment|// LUCENE-5152: detect tricky cases where caller
+comment|// modified previously returned cached root-arcs:
+assert|assert
+name|assertRootArcs
+argument_list|()
+assert|;
 specifier|final
 name|Arc
 argument_list|<

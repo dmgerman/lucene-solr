@@ -2584,19 +2584,14 @@ argument_list|(
 name|instancedir
 argument_list|)
 condition|)
+block|{
 name|instancedir
 operator|=
-name|container
-operator|.
-name|getSolrHome
-argument_list|()
-operator|+
-name|File
-operator|.
-name|separator
-operator|+
 name|name
 expr_stmt|;
+comment|// will be resolved later against solr.home
+comment|//instancedir = container.getSolrHome() + "/" + name;
+block|}
 name|Properties
 name|coreProps
 init|=

@@ -518,6 +518,17 @@ operator|new
 name|Properties
 argument_list|()
 decl_stmt|;
+comment|/** The properties for this core, substitutable by resource loaders */
+DECL|field|substitutableProperties
+specifier|protected
+specifier|final
+name|Properties
+name|substitutableProperties
+init|=
+operator|new
+name|Properties
+argument_list|()
+decl_stmt|;
 comment|/**    * Create a new CoreDescriptor.    * @param container       the CoreDescriptor's container    * @param name            the CoreDescriptor's name    * @param instanceDir     a String containing the instanceDir    * @param coreProps       a Properties object of the properties for this core    */
 DECL|method|CoreDescriptor
 specifier|public
@@ -720,6 +731,9 @@ block|}
 name|loadExtraProperties
 argument_list|()
 expr_stmt|;
+name|buildSubstitutableProperties
+argument_list|()
+expr_stmt|;
 comment|// TODO maybe make this a CloudCoreDescriptor subclass?
 if|if
 condition|(
@@ -880,6 +894,59 @@ name|in
 argument_list|)
 expr_stmt|;
 block|}
+block|}
+block|}
+comment|/**    * Create the properties object used by resource loaders, etc, for property    * substitution.  The default solr properties are prefixed with 'solr.core.', so,    * e.g., 'name' becomes 'solr.core.name'    */
+DECL|method|buildSubstitutableProperties
+specifier|protected
+name|void
+name|buildSubstitutableProperties
+parameter_list|()
+block|{
+for|for
+control|(
+name|String
+name|propName
+range|:
+name|coreProperties
+operator|.
+name|stringPropertyNames
+argument_list|()
+control|)
+block|{
+name|String
+name|propValue
+init|=
+name|coreProperties
+operator|.
+name|getProperty
+argument_list|(
+name|propName
+argument_list|)
+decl_stmt|;
+if|if
+condition|(
+operator|!
+name|isUserDefinedProperty
+argument_list|(
+name|propName
+argument_list|)
+condition|)
+name|propName
+operator|=
+literal|"solr.core."
+operator|+
+name|propName
+expr_stmt|;
+name|substitutableProperties
+operator|.
+name|setProperty
+argument_list|(
+name|propName
+argument_list|,
+name|propValue
+argument_list|)
+expr_stmt|;
 block|}
 block|}
 DECL|method|resolvePaths
@@ -1437,15 +1504,15 @@ name|defVal
 argument_list|)
 return|;
 block|}
-comment|/**    * Returns all properties defined on this CoreDescriptor    * @return all properties defined on this CoreDescriptor    */
-DECL|method|getCoreProperties
+comment|/**    * Returns all substitutable properties defined on this CoreDescriptor    * @return all substitutable properties defined on this CoreDescriptor    */
+DECL|method|getSubstitutableProperties
 specifier|public
 name|Properties
-name|getCoreProperties
+name|getSubstitutableProperties
 parameter_list|()
 block|{
 return|return
-name|coreProperties
+name|substitutableProperties
 return|;
 block|}
 annotation|@

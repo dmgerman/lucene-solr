@@ -114,6 +114,14 @@ name|boolean
 name|consumeAllTokens
 parameter_list|)
 block|{
+name|super
+argument_list|(
+name|delegate
+operator|.
+name|getReuseStrategy
+argument_list|()
+argument_list|)
+expr_stmt|;
 name|this
 operator|.
 name|delegate

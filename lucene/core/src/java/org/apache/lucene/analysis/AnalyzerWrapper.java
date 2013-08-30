@@ -39,17 +39,32 @@ name|AnalyzerWrapper
 extends|extends
 name|Analyzer
 block|{
-comment|/**    * Creates a new AnalyzerWrapper.  Since the {@link Analyzer.ReuseStrategy} of    * the wrapped Analyzers are unknown, {@link Analyzer.PerFieldReuseStrategy} is assumed    */
+comment|/**    * Creates a new AnalyzerWrapper.  Since the {@link Analyzer.ReuseStrategy} of    * the wrapped Analyzers are unknown, {@link #PER_FIELD_REUSE_STRATEGY} is assumed.    * @deprecated Use {@link #AnalyzerWrapper(Analyzer.ReuseStrategy)}    * and specify a valid {@link Analyzer.ReuseStrategy}, probably retrieved from the    * wrapped analyzer using {@link #getReuseStrategy()}.    */
+annotation|@
+name|Deprecated
 DECL|method|AnalyzerWrapper
 specifier|protected
 name|AnalyzerWrapper
 parameter_list|()
 block|{
+name|this
+argument_list|(
+name|PER_FIELD_REUSE_STRATEGY
+argument_list|)
+expr_stmt|;
+block|}
+comment|/**    * Creates a new AnalyzerWrapper with the given reuse strategy.    *<p>If you want to wrap a single delegate Analyzer you can probably    * reuse its strategy when instantiating this subclass:    * {@code super(delegate.getReuseStrategy());}.    *<p>If you choose different analyzers per field, use    * {@link #PER_FIELD_REUSE_STRATEGY}.    * @see #getReuseStrategy()    */
+DECL|method|AnalyzerWrapper
+specifier|protected
+name|AnalyzerWrapper
+parameter_list|(
+name|ReuseStrategy
+name|reuseStrategy
+parameter_list|)
+block|{
 name|super
 argument_list|(
-operator|new
-name|PerFieldReuseStrategy
-argument_list|()
+name|reuseStrategy
 argument_list|)
 expr_stmt|;
 block|}

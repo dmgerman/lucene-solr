@@ -1,6 +1,6 @@
 begin_unit|revision:0.9.5;language:Java;cregit-version:0.0.1
 begin_package
-DECL|package|org.apache.lucene.codecs.cheapbastard
+DECL|package|org.apache.lucene.codecs.diskdv
 package|package
 name|org
 operator|.
@@ -10,7 +10,7 @@ name|lucene
 operator|.
 name|codecs
 operator|.
-name|cheapbastard
+name|diskdv
 package|;
 end_package
 
@@ -80,9 +80,9 @@ name|lucene
 operator|.
 name|codecs
 operator|.
-name|diskdv
+name|lucene45
 operator|.
-name|DiskDocValuesConsumer
+name|Lucene45DocValuesConsumer
 import|;
 end_import
 
@@ -119,11 +119,11 @@ comment|/** Norms format that keeps all norms on disk */
 end_comment
 
 begin_class
-DECL|class|CheapBastardNormsFormat
+DECL|class|DiskNormsFormat
 specifier|public
 specifier|final
 class|class
-name|CheapBastardNormsFormat
+name|DiskNormsFormat
 extends|extends
 name|NormsFormat
 block|{
@@ -142,7 +142,7 @@ name|IOException
 block|{
 return|return
 operator|new
-name|DiskDocValuesConsumer
+name|Lucene45DocValuesConsumer
 argument_list|(
 name|state
 argument_list|,
@@ -171,7 +171,7 @@ name|IOException
 block|{
 return|return
 operator|new
-name|CheapBastardDocValuesProducer
+name|DiskDocValuesProducer
 argument_list|(
 name|state
 argument_list|,
@@ -191,7 +191,7 @@ specifier|final
 name|String
 name|DATA_CODEC
 init|=
-literal|"CheapBastardNormsData"
+literal|"DiskNormsData"
 decl_stmt|;
 DECL|field|DATA_EXTENSION
 specifier|static
@@ -199,7 +199,7 @@ specifier|final
 name|String
 name|DATA_EXTENSION
 init|=
-literal|"cbnd"
+literal|"dnvd"
 decl_stmt|;
 DECL|field|META_CODEC
 specifier|static
@@ -207,7 +207,7 @@ specifier|final
 name|String
 name|META_CODEC
 init|=
-literal|"CheapBastardNormsMetadata"
+literal|"DiskNormsMetadata"
 decl_stmt|;
 DECL|field|META_EXTENSION
 specifier|static
@@ -215,7 +215,7 @@ specifier|final
 name|String
 name|META_EXTENSION
 init|=
-literal|"cbnm"
+literal|"dnvm"
 decl_stmt|;
 block|}
 end_class

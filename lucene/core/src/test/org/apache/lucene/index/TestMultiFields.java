@@ -186,11 +186,12 @@ name|COMPOUND_FILES
 argument_list|)
 argument_list|)
 decl_stmt|;
-name|_TestUtil
-operator|.
-name|keepFullyDeletedSegments
-argument_list|(
+comment|// we can do this because we use NoMergePolicy (and dont merge to "nothing")
 name|w
+operator|.
+name|setKeepFullyDeletedSegments
+argument_list|(
+literal|true
 argument_list|)
 expr_stmt|;
 name|Map

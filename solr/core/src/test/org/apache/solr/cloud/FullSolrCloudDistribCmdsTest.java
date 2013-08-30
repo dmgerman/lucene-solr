@@ -320,6 +320,16 @@ name|BeforeClass
 import|;
 end_import
 
+begin_import
+import|import
+name|org
+operator|.
+name|junit
+operator|.
+name|Ignore
+import|;
+end_import
+
 begin_comment
 comment|/**  * Super basic testing, no shard restarting or anything.  */
 end_comment
@@ -1284,9 +1294,14 @@ decl_stmt|;
 name|int
 name|childsNum
 init|=
-name|atLeast
+literal|5
+operator|+
+name|random
+argument_list|()
+operator|.
+name|nextInt
 argument_list|(
-literal|10
+literal|5
 argument_list|)
 decl_stmt|;
 for|for

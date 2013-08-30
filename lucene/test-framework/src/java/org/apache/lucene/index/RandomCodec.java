@@ -240,9 +240,9 @@ name|lucene
 operator|.
 name|codecs
 operator|.
-name|lucene42
+name|lucene45
 operator|.
-name|Lucene42Codec
+name|Lucene45Codec
 import|;
 end_import
 
@@ -256,9 +256,9 @@ name|lucene
 operator|.
 name|codecs
 operator|.
-name|lucene42
+name|lucene45
 operator|.
-name|Lucene42DocValuesFormat
+name|Lucene45DocValuesFormat
 import|;
 end_import
 
@@ -275,22 +275,6 @@ operator|.
 name|bloom
 operator|.
 name|TestBloomFilteredLucene41Postings
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|codecs
-operator|.
-name|cheapbastard
-operator|.
-name|CheapBastardDocValuesFormat
 import|;
 end_import
 
@@ -323,6 +307,22 @@ operator|.
 name|memory
 operator|.
 name|DirectPostingsFormat
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|codecs
+operator|.
+name|memory
+operator|.
+name|MemoryDocValuesFormat
 import|;
 end_import
 
@@ -524,7 +524,7 @@ specifier|public
 class|class
 name|RandomCodec
 extends|extends
-name|Lucene42Codec
+name|Lucene45Codec
 block|{
 comment|/** Shuffled list of postings formats to use for new mappings */
 DECL|field|formats
@@ -1034,11 +1034,15 @@ argument_list|(
 name|avoidCodecs
 argument_list|,
 operator|new
-name|Lucene42DocValuesFormat
+name|Lucene45DocValuesFormat
 argument_list|()
 argument_list|,
 operator|new
 name|DiskDocValuesFormat
+argument_list|()
+argument_list|,
+operator|new
+name|MemoryDocValuesFormat
 argument_list|()
 argument_list|,
 operator|new
@@ -1047,10 +1051,6 @@ argument_list|()
 argument_list|,
 operator|new
 name|AssertingDocValuesFormat
-argument_list|()
-argument_list|,
-operator|new
-name|CheapBastardDocValuesFormat
 argument_list|()
 argument_list|)
 expr_stmt|;

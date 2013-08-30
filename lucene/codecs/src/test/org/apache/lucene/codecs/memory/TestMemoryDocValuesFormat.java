@@ -1,6 +1,6 @@
 begin_unit|revision:0.9.5;language:Java;cregit-version:0.0.1
 begin_package
-DECL|package|org.apache.lucene.codecs.diskdv
+DECL|package|org.apache.lucene.codecs.memory
 package|package
 name|org
 operator|.
@@ -10,7 +10,7 @@ name|lucene
 operator|.
 name|codecs
 operator|.
-name|diskdv
+name|memory
 package|;
 end_package
 
@@ -29,22 +29,6 @@ operator|.
 name|codecs
 operator|.
 name|Codec
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|codecs
-operator|.
-name|cheapbastard
-operator|.
-name|CheapBastardDocValuesFormat
 import|;
 end_import
 
@@ -77,14 +61,14 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Tests CheapBastardDocValuesFormat  */
+comment|/**  * Tests MemoryDocValuesFormat  */
 end_comment
 
 begin_class
-DECL|class|TestCheapBastardDocValuesFormat
+DECL|class|TestMemoryDocValuesFormat
 specifier|public
 class|class
-name|TestCheapBastardDocValuesFormat
+name|TestMemoryDocValuesFormat
 extends|extends
 name|BaseCompressingDocValuesFormatTestCase
 block|{
@@ -99,7 +83,7 @@ operator|.
 name|alwaysDocValuesFormat
 argument_list|(
 operator|new
-name|CheapBastardDocValuesFormat
+name|MemoryDocValuesFormat
 argument_list|()
 argument_list|)
 decl_stmt|;
@@ -113,6 +97,21 @@ parameter_list|()
 block|{
 return|return
 name|codec
+return|;
+block|}
+annotation|@
+name|Override
+DECL|method|codecAcceptsHugeBinaryValues
+specifier|protected
+name|boolean
+name|codecAcceptsHugeBinaryValues
+parameter_list|(
+name|String
+name|field
+parameter_list|)
+block|{
+return|return
+literal|false
 return|;
 block|}
 block|}

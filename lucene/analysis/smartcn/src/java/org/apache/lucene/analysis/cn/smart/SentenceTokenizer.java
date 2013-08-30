@@ -510,7 +510,14 @@ specifier|public
 name|void
 name|end
 parameter_list|()
+throws|throws
+name|IOException
 block|{
+name|super
+operator|.
+name|end
+argument_list|()
+expr_stmt|;
 comment|// set final offset
 specifier|final
 name|int

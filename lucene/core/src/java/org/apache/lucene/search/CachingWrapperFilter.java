@@ -208,6 +208,17 @@ operator|=
 name|filter
 expr_stmt|;
 block|}
+comment|/**    * Gets the contained filter.    * @return the contained filter.    */
+DECL|method|getFilter
+specifier|public
+name|Filter
+name|getFilter
+parameter_list|()
+block|{
+return|return
+name|filter
+return|;
+block|}
 comment|/**     *  Provide the DocIdSet to be cached, using the DocIdSet provided    *  by the wrapped Filter.<p>This implementation returns the given {@link DocIdSet},    *  if {@link DocIdSet#isCacheable} returns<code>true</code>, else it copies the     *  {@link DocIdSetIterator} into a {@link FixedBitSet}.    *<p>Note: This method returns {@linkplain #EMPTY_DOCIDSET} if the given docIdSet    *  is<code>null</code> or if {@link DocIdSet#iterator()} return<code>null</code>. The empty    *  instance is use as a placeholder in the cache instead of the<code>null</code> value.    */
 DECL|method|docIdSetToCache
 specifier|protected

@@ -1412,12 +1412,11 @@ operator|==
 literal|0
 condition|)
 block|{
-comment|// no frame of reference to tell of we've missed updates
 name|log
 operator|.
 name|warn
 argument_list|(
-literal|"no frame of reference to tell of we've missed updates"
+literal|"no frame of reference to tell if we've missed updates"
 argument_list|)
 expr_stmt|;
 return|return

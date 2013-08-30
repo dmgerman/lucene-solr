@@ -781,6 +781,17 @@ operator|.
 name|end
 argument_list|()
 expr_stmt|;
+comment|// TODO: maybe add some safety? then again, its already checked
+comment|// when we come back around to the field...
+name|fieldState
+operator|.
+name|position
+operator|+=
+name|posIncrAttribute
+operator|.
+name|getPositionIncrement
+argument_list|()
+expr_stmt|;
 name|fieldState
 operator|.
 name|offset
