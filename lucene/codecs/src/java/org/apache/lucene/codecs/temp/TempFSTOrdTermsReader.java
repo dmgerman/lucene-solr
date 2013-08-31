@@ -568,7 +568,7 @@ name|lucene
 operator|.
 name|codecs
 operator|.
-name|TempPostingsReaderBase
+name|PostingsReaderBase
 import|;
 end_import
 
@@ -625,7 +625,7 @@ argument_list|()
 decl_stmt|;
 DECL|field|postingsReader
 specifier|final
-name|TempPostingsReaderBase
+name|PostingsReaderBase
 name|postingsReader
 decl_stmt|;
 DECL|field|indexIn
@@ -648,7 +648,7 @@ parameter_list|(
 name|SegmentReadState
 name|state
 parameter_list|,
-name|TempPostingsReaderBase
+name|PostingsReaderBase
 name|postingsReader
 parameter_list|)
 throws|throws

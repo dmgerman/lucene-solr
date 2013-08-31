@@ -93,7 +93,7 @@ name|int
 name|termBlockOrd
 decl_stmt|;
 comment|/** fp into the terms dict primary file (_X.tim) that holds this term */
-comment|// nocommit: update BTR to nuke this
+comment|// TODO: update BTR to nuke this
 DECL|field|blockFilePointer
 specifier|public
 name|long

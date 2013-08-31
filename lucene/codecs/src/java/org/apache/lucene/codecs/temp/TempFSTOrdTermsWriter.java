@@ -302,7 +302,7 @@ name|lucene
 operator|.
 name|codecs
 operator|.
-name|TempPostingsWriterBase
+name|PostingsWriterBase
 import|;
 end_import
 
@@ -442,7 +442,7 @@ decl_stmt|;
 comment|//static final boolean TEST = false;
 DECL|field|postingsWriter
 specifier|final
-name|TempPostingsWriterBase
+name|PostingsWriterBase
 name|postingsWriter
 decl_stmt|;
 DECL|field|fieldInfos
@@ -485,7 +485,7 @@ parameter_list|(
 name|SegmentWriteState
 name|state
 parameter_list|,
-name|TempPostingsWriterBase
+name|PostingsWriterBase
 name|postingsWriter
 parameter_list|)
 throws|throws
