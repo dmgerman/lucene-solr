@@ -154,7 +154,6 @@ argument_list|(
 literal|"Facet42"
 argument_list|)
 decl_stmt|;
-comment|// must have that for SPI purposes
 comment|/** Default constructor, uses {@link FacetIndexingParams#DEFAULT}. */
 DECL|method|Facet45Codec
 specifier|public
