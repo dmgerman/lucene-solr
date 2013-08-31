@@ -2418,11 +2418,20 @@ name|ErrorCode
 operator|.
 name|SERVER_ERROR
 argument_list|,
-literal|"Could not load config for "
+literal|"Could not load config file "
 operator|+
+operator|new
+name|File
+argument_list|(
+name|instanceDir
+argument_list|,
 name|dcore
 operator|.
 name|getConfigName
+argument_list|()
+argument_list|)
+operator|.
+name|getAbsolutePath
 argument_list|()
 argument_list|,
 name|e

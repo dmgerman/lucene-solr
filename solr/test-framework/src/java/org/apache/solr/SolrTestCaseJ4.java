@@ -62,6 +62,20 @@ name|apache
 operator|.
 name|commons
 operator|.
+name|codec
+operator|.
+name|Charsets
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|commons
+operator|.
 name|io
 operator|.
 name|FileUtils
@@ -9038,7 +9052,6 @@ argument_list|)
 throw|;
 block|}
 block|}
-comment|// Creates a mininmal conf dir.
 DECL|method|copyMinConf
 specifier|public
 specifier|static
@@ -9047,6 +9060,32 @@ name|copyMinConf
 parameter_list|(
 name|File
 name|dstRoot
+parameter_list|)
+throws|throws
+name|IOException
+block|{
+name|copyMinConf
+argument_list|(
+name|dstRoot
+argument_list|,
+literal|null
+argument_list|)
+expr_stmt|;
+block|}
+comment|// Creates a minimal conf dir. Optionally adding in a core.properties file from the string passed in
+comment|// the string to write to the core.properties file may be null in which case nothing is done with it.
+comment|// propertiesContent may be an empty string, which will actually work.
+DECL|method|copyMinConf
+specifier|public
+specifier|static
+name|void
+name|copyMinConf
+parameter_list|(
+name|File
+name|dstRoot
+parameter_list|,
+name|String
+name|propertiesContent
 parameter_list|)
 throws|throws
 name|IOException
@@ -9078,6 +9117,36 @@ argument_list|,
 name|dstRoot
 operator|.
 name|mkdirs
+argument_list|()
+argument_list|)
+expr_stmt|;
+block|}
+if|if
+condition|(
+name|propertiesContent
+operator|!=
+literal|null
+condition|)
+block|{
+name|FileUtils
+operator|.
+name|writeStringToFile
+argument_list|(
+operator|new
+name|File
+argument_list|(
+name|dstRoot
+argument_list|,
+literal|"core.properties"
+argument_list|)
+argument_list|,
+name|propertiesContent
+argument_list|,
+name|Charsets
+operator|.
+name|UTF_8
+operator|.
+name|toString
 argument_list|()
 argument_list|)
 expr_stmt|;
@@ -9156,7 +9225,8 @@ argument_list|)
 argument_list|)
 expr_stmt|;
 block|}
-comment|// Creates minimal full setup, including the old solr.xml file that used to be hard coded in COnfigSolrXmlOld
+comment|// Creates minimal full setup, including the old solr.xml file that used to be hard coded in ConfigSolrXmlOld
+comment|// TODO: remove for 5.0
 DECL|method|copyMinFullSetup
 specifier|public
 specifier|static
