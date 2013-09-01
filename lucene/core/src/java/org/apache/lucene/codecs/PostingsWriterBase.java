@@ -134,7 +134,7 @@ parameter_list|()
 throws|throws
 name|IOException
 function_decl|;
-comment|/** Start a new term.  Note that a matching call to {@link    *  #finishTerm(long[], DataOutput, TermStats)} is done, only if the term has at least one    *  document. */
+comment|/** Start a new term.  Note that a matching call to {@link    *  #finishTerm(BlockTermState)} is done, only if the term has at least one    *  document. */
 DECL|method|startTerm
 specifier|public
 specifier|abstract
@@ -157,7 +157,7 @@ parameter_list|)
 throws|throws
 name|IOException
 function_decl|;
-comment|/**    * Encode metadata as long[] and byte[]. {@code absolute} controls     * whether current term is delta encoded according to latest term.    */
+comment|/**    * Encode metadata as long[] and byte[]. {@code absolute} controls     * whether current term is delta encoded according to latest term.    *    * NOTE: sometimes long[] might contain values that doesn't make sense,    * e.g. for Lucene41PostingsFormat, when singletonDocID != -1, docStartFP is not defined.    * Here postings side should always use the last docStartFP, to keep each element in     * metadata long[] monotonic.    */
 DECL|method|encodeTerm
 specifier|public
 specifier|abstract
@@ -183,7 +183,8 @@ parameter_list|)
 throws|throws
 name|IOException
 function_decl|;
-comment|/**     * Return the fixed length of longs,    * called when the writing switches to another field. */
+comment|/**     * Return the fixed length of long[] metadata (which is fixed per field),    * called when the writing switches to another field. */
+comment|// TODO: better name?
 DECL|method|setField
 specifier|public
 specifier|abstract

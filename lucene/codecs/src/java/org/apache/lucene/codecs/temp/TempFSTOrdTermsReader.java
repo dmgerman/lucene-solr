@@ -2725,7 +2725,7 @@ name|flags
 argument_list|)
 return|;
 block|}
-comment|// nocommit: this can be achieved by making use of Util.getByOutput()
+comment|// TODO: this can be achieved by making use of Util.getByOutput()
 comment|//           and should have related tests
 annotation|@
 name|Override
@@ -3251,7 +3251,6 @@ name|compiled
 operator|.
 name|runAutomaton
 expr_stmt|;
-comment|/*         PrintWriter pw1 = new PrintWriter(new File("../temp/fst.txt"));         Util.toDot(dict,pw1, false, false);         pw1.close();         PrintWriter pw2 = new PrintWriter(new File("../temp/fsa.txt"));         pw2.write(compiled.toDot());         pw2.close();         */
 name|this
 operator|.
 name|level
@@ -3904,7 +3903,6 @@ return|return
 name|frame
 return|;
 block|}
-comment|// nocommit: expected to use readFirstTargetArc here?
 comment|/** Load frame for target arc(node) on fst */
 DECL|method|loadExpandFrame
 name|Frame
@@ -4292,7 +4290,6 @@ name|isLast
 argument_list|()
 return|;
 block|}
-comment|// nocommit: need to load ord lazily?
 DECL|method|pushFrame
 name|void
 name|pushFrame

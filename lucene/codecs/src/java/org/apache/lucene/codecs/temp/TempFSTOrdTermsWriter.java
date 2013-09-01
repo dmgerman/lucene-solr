@@ -439,7 +439,6 @@ name|SKIP_INTERVAL
 init|=
 literal|8
 decl_stmt|;
-comment|//static final boolean TEST = false;
 DECL|field|postingsWriter
 specifier|final
 name|PostingsWriterBase
@@ -477,7 +476,6 @@ name|indexOut
 init|=
 literal|null
 decl_stmt|;
-comment|// nocommit: hmm, do we really need two streams?
 DECL|method|TempFSTOrdTermsWriter
 specifier|public
 name|TempFSTOrdTermsWriter
@@ -948,8 +946,6 @@ name|dirStart
 argument_list|)
 expr_stmt|;
 block|}
-comment|// nocommit: nuke this? we don't need to buffer so much data,
-comment|// since close() can do this naturally
 DECL|class|FieldMetaData
 specifier|private
 specifier|static
@@ -994,32 +990,31 @@ name|Long
 argument_list|>
 name|dict
 decl_stmt|;
-comment|// nocommit: block encode each part
-comment|// (so that we'll have metaLongsOut[])
+comment|// TODO: block encode each part
+comment|// vint encode next skip point (fully decoded when reading)
 DECL|field|skipOut
 specifier|public
 name|RAMOutputStream
 name|skipOut
 decl_stmt|;
-comment|// vint encode next skip point (all values start from 0, fully decoded when reading)
+comment|// vint encode df, (ttf-df)
 DECL|field|statsOut
 specifier|public
 name|RAMOutputStream
 name|statsOut
 decl_stmt|;
-comment|// vint encode df, (ttf-df)
+comment|// vint encode monotonic long[] and length for corresponding byte[]
 DECL|field|metaLongsOut
 specifier|public
 name|RAMOutputStream
 name|metaLongsOut
 decl_stmt|;
-comment|// vint encode monotonic long[] and length for corresponding byte[]
+comment|// generic byte[]
 DECL|field|metaBytesOut
 specifier|public
 name|RAMOutputStream
 name|metaBytesOut
 decl_stmt|;
-comment|// put all bytes blob here
 block|}
 DECL|class|TermsWriter
 specifier|final
