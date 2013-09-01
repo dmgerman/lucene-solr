@@ -560,6 +560,10 @@ name|CodecUtil
 import|;
 end_import
 
+begin_comment
+comment|/**  * FST-based terms dictionary reader.  *  * The FST directly maps each term and its metadata,   * it is memeory resident.  *  * @lucene.experimental  */
+end_comment
+
 begin_class
 DECL|class|TempFSTTermsReader
 specifier|public

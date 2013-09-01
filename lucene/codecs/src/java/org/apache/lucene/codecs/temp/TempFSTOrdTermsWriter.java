@@ -377,7 +377,7 @@ import|;
 end_import
 
 begin_comment
-comment|/** FST based term dict, only ords is hold in FST,   *  other metadata encoded into single byte block */
+comment|/**   * FST based term dict, the FST maps each term and its ord.  *  * @lucene.experimental  */
 end_comment
 
 begin_class

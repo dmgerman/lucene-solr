@@ -188,6 +188,10 @@ name|IOUtils
 import|;
 end_import
 
+begin_comment
+comment|/**  * FST-based term dict, using metadata as FST output.  *  * The FST directly holds the mapping between&lt;term, metadata&gt;.  *  * Term metadata consists of three parts:  * 1. term statistics: docFreq, totalTermFreq;  * 2. monotonic long[], e.g. the pointer to the postings list for that term;  * 3. generic byte[], e.g. other information need by postings reader.  *  *  *<!-- TODO: explain about the data format -->  * @lucene.experimental  */
+end_comment
+
 begin_class
 DECL|class|TempFSTPostingsFormat
 specifier|public

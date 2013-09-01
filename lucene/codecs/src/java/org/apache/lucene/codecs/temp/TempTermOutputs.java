@@ -127,6 +127,10 @@ import|;
 end_import
 
 begin_comment
+comment|/**  * An FST {@link Outputs} implementation for   * {@link TempFSTPostingsFormat}.  *  * @lucene.experimental  */
+end_comment
+
+begin_comment
 comment|// NOTE: outputs should be per-field, since
 end_comment
 
@@ -158,14 +162,7 @@ operator|new
 name|TempMetaData
 argument_list|()
 decl_stmt|;
-DECL|field|DEBUG
-specifier|private
-specifier|static
-name|boolean
-name|DEBUG
-init|=
-literal|false
-decl_stmt|;
+comment|//private static boolean TEST = false;
 DECL|field|hasPos
 specifier|private
 specifier|final
@@ -178,6 +175,7 @@ specifier|final
 name|int
 name|longsSize
 decl_stmt|;
+comment|/**     * Represents the metadata for one term.    * On an FST, only long[] part is 'shared' and pushed towards root.    * byte[] and term stats will be kept on deeper arcs.    */
 DECL|class|TempMetaData
 specifier|public
 specifier|static
@@ -454,189 +452,6 @@ name|other
 argument_list|)
 return|;
 block|}
-DECL|method|toString
-specifier|public
-name|String
-name|toString
-parameter_list|()
-block|{
-if|if
-condition|(
-name|this
-operator|==
-name|NO_OUTPUT
-condition|)
-block|{
-return|return
-literal|"no_output"
-return|;
-block|}
-name|StringBuffer
-name|sb
-init|=
-operator|new
-name|StringBuffer
-argument_list|()
-decl_stmt|;
-if|if
-condition|(
-name|longs
-operator|!=
-literal|null
-condition|)
-block|{
-name|sb
-operator|.
-name|append
-argument_list|(
-literal|"[ "
-argument_list|)
-expr_stmt|;
-for|for
-control|(
-name|int
-name|i
-init|=
-literal|0
-init|;
-name|i
-operator|<
-name|longs
-operator|.
-name|length
-condition|;
-name|i
-operator|++
-control|)
-block|{
-name|sb
-operator|.
-name|append
-argument_list|(
-name|longs
-index|[
-name|i
-index|]
-operator|+
-literal|" "
-argument_list|)
-expr_stmt|;
-block|}
-name|sb
-operator|.
-name|append
-argument_list|(
-literal|"]"
-argument_list|)
-expr_stmt|;
-block|}
-else|else
-block|{
-name|sb
-operator|.
-name|append
-argument_list|(
-literal|"null"
-argument_list|)
-expr_stmt|;
-block|}
-if|if
-condition|(
-name|bytes
-operator|!=
-literal|null
-condition|)
-block|{
-name|sb
-operator|.
-name|append
-argument_list|(
-literal|" [ "
-argument_list|)
-expr_stmt|;
-for|for
-control|(
-name|int
-name|i
-init|=
-literal|0
-init|;
-name|i
-operator|<
-name|bytes
-operator|.
-name|length
-condition|;
-name|i
-operator|++
-control|)
-block|{
-name|sb
-operator|.
-name|append
-argument_list|(
-name|Integer
-operator|.
-name|toHexString
-argument_list|(
-operator|(
-name|int
-operator|)
-name|bytes
-index|[
-name|i
-index|]
-operator|&
-literal|0xff
-argument_list|)
-operator|+
-literal|" "
-argument_list|)
-expr_stmt|;
-block|}
-name|sb
-operator|.
-name|append
-argument_list|(
-literal|"]"
-argument_list|)
-expr_stmt|;
-block|}
-else|else
-block|{
-name|sb
-operator|.
-name|append
-argument_list|(
-literal|" null"
-argument_list|)
-expr_stmt|;
-block|}
-name|sb
-operator|.
-name|append
-argument_list|(
-literal|" "
-operator|+
-name|docFreq
-argument_list|)
-expr_stmt|;
-name|sb
-operator|.
-name|append
-argument_list|(
-literal|" "
-operator|+
-name|totalTermFreq
-argument_list|)
-expr_stmt|;
-return|return
-name|sb
-operator|.
-name|toString
-argument_list|()
-return|;
-block|}
 block|}
 DECL|method|TempTermOutputs
 specifier|protected
@@ -679,10 +494,6 @@ comment|// 'comparable', i.e.
 comment|// 1. every value in t1 is not larger than in t2, or
 comment|// 2. every value in t1 is not smaller than t2.
 comment|//
-comment|// NOTE:
-comment|// Only long[] part is 'shared' and pushed towards root.
-comment|// byte[] and term stats will be kept on deeper arcs.
-comment|//
 DECL|method|common
 specifier|public
 name|TempMetaData
@@ -695,7 +506,7 @@ name|TempMetaData
 name|t2
 parameter_list|)
 block|{
-comment|//if (DEBUG) System.out.print("common("+t1+", "+t2+") = ");
+comment|//if (TEST) System.out.print("common("+t1+", "+t2+") = ");
 if|if
 condition|(
 name|t1
@@ -707,7 +518,7 @@ operator|==
 name|NO_OUTPUT
 condition|)
 block|{
-comment|//if (DEBUG) System.out.println("ret:"+NO_OUTPUT);
+comment|//if (TEST) System.out.println("ret:"+NO_OUTPUT);
 return|return
 name|NO_OUTPUT
 return|;
@@ -919,7 +730,7 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
-comment|//if (DEBUG) System.out.println("ret:"+ret);
+comment|//if (TEST) System.out.println("ret:"+ret);
 return|return
 name|ret
 return|;
@@ -938,7 +749,7 @@ name|TempMetaData
 name|t2
 parameter_list|)
 block|{
-comment|//if (DEBUG) System.out.print("subtract("+t1+", "+t2+") = ");
+comment|//if (TEST) System.out.print("subtract("+t1+", "+t2+") = ");
 if|if
 condition|(
 name|t2
@@ -946,7 +757,7 @@ operator|==
 name|NO_OUTPUT
 condition|)
 block|{
-comment|//if (DEBUG) System.out.println("ret:"+t1);
+comment|//if (TEST) System.out.println("ret:"+t1);
 return|return
 name|t1
 return|;
@@ -1073,7 +884,7 @@ name|totalTermFreq
 argument_list|)
 expr_stmt|;
 block|}
-comment|//if (DEBUG) System.out.println("ret:"+ret);
+comment|//if (TEST) System.out.println("ret:"+ret);
 return|return
 name|ret
 return|;
@@ -1095,7 +906,7 @@ name|TempMetaData
 name|t2
 parameter_list|)
 block|{
-comment|//if (DEBUG) System.out.print("add("+t1+", "+t2+") = ");
+comment|//if (TEST) System.out.print("add("+t1+", "+t2+") = ");
 if|if
 condition|(
 name|t1
@@ -1103,7 +914,7 @@ operator|==
 name|NO_OUTPUT
 condition|)
 block|{
-comment|//if (DEBUG) System.out.println("ret:"+t2);
+comment|//if (TEST) System.out.println("ret:"+t2);
 return|return
 name|t2
 return|;
@@ -1116,7 +927,7 @@ operator|==
 name|NO_OUTPUT
 condition|)
 block|{
-comment|//if (DEBUG) System.out.println("ret:"+t1);
+comment|//if (TEST) System.out.println("ret:"+t1);
 return|return
 name|t1
 return|;
@@ -1241,7 +1052,7 @@ name|totalTermFreq
 argument_list|)
 expr_stmt|;
 block|}
-comment|//if (DEBUG) System.out.println("ret:"+ret);
+comment|//if (TEST) System.out.println("ret:"+ret);
 return|return
 name|ret
 return|;

@@ -72,7 +72,6 @@ end_comment
 
 begin_class
 DECL|class|Lucene41SkipReader
-specifier|public
 specifier|final
 class|class
 name|Lucene41SkipReader

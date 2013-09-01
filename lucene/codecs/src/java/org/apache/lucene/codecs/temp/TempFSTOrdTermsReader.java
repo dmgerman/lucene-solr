@@ -586,6 +586,10 @@ name|CodecUtil
 import|;
 end_import
 
+begin_comment
+comment|/**   * FST-based terms dictionary reader.  *  * The FST index maps each term and its ord, and during seek   * the ord is used fetch metadata from a single block.  * The term dictionary is fully memeory resident.  *  * @lucene.experimental  */
+end_comment
+
 begin_class
 DECL|class|TempFSTOrdTermsReader
 specifier|public

@@ -847,7 +847,7 @@ annotation|@
 name|Override
 DECL|method|newTermState
 specifier|public
-name|SepTermState
+name|BlockTermState
 name|newTermState
 parameter_list|()
 block|{

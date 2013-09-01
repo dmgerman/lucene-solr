@@ -2654,7 +2654,7 @@ name|state
 expr_stmt|;
 block|}
 DECL|method|_encodeTerm
-specifier|public
+specifier|private
 name|void
 name|_encodeTerm
 parameter_list|(
