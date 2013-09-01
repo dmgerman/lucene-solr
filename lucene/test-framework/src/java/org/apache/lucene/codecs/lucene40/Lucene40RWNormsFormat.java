@@ -70,11 +70,30 @@ name|SegmentWriteState
 import|;
 end_import
 
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|util
+operator|.
+name|LuceneTestCase
+import|;
+end_import
+
 begin_comment
 comment|/** Read-write version of {@link Lucene40NormsFormat} for testing */
 end_comment
 
 begin_class
+annotation|@
+name|SuppressWarnings
+argument_list|(
+literal|"deprecation"
+argument_list|)
 DECL|class|Lucene40RWNormsFormat
 specifier|public
 class|class
@@ -94,6 +113,25 @@ name|state
 parameter_list|)
 throws|throws
 name|IOException
+block|{
+if|if
+condition|(
+operator|!
+name|LuceneTestCase
+operator|.
+name|OLD_FORMAT_IMPERSONATION_IS_ACTIVE
+condition|)
+block|{
+return|return
+name|super
+operator|.
+name|normsConsumer
+argument_list|(
+name|state
+argument_list|)
+return|;
+block|}
+else|else
 block|{
 name|String
 name|filename
@@ -128,6 +166,7 @@ operator|.
 name|LEGACY_NORM_TYPE_KEY
 argument_list|)
 return|;
+block|}
 block|}
 block|}
 end_class

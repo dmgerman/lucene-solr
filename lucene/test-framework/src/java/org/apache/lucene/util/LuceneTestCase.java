@@ -1428,12 +1428,14 @@ decl_stmt|;
 comment|// -----------------------------------------------------------------
 comment|// Fields initialized in class or instance rules.
 comment|// -----------------------------------------------------------------
-comment|/**    * @lucene.internal     */
-DECL|field|PREFLEX_IMPERSONATION_IS_ACTIVE
+comment|/**    * When {@code true}, Codecs for old Lucene version will support writing    * indexes in that format. Defaults to {@code true}, can be disabled by    * spdecific tests on demand.    *     * @lucene.internal    */
+DECL|field|OLD_FORMAT_IMPERSONATION_IS_ACTIVE
 specifier|public
 specifier|static
 name|boolean
-name|PREFLEX_IMPERSONATION_IS_ACTIVE
+name|OLD_FORMAT_IMPERSONATION_IS_ACTIVE
+init|=
+literal|true
 decl_stmt|;
 comment|// -----------------------------------------------------------------
 comment|// Class level (suite) rules.
