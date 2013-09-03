@@ -2253,9 +2253,7 @@ argument_list|(
 literal|"codec does not support docsWithField"
 argument_list|,
 name|defaultCodecSupportsDocsWithField
-argument_list|(
-literal|"numbers"
-argument_list|)
+argument_list|()
 argument_list|)
 expr_stmt|;
 name|Directory
