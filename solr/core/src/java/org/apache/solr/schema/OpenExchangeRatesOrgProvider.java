@@ -235,10 +235,11 @@ specifier|protected
 name|String
 name|ratesFileLocation
 decl_stmt|;
-DECL|field|refreshInterval
+comment|// configured in minutes, but stored in seconds for quicker math
+DECL|field|refreshIntervalSeconds
 specifier|protected
 name|int
-name|refreshInterval
+name|refreshIntervalSeconds
 decl_stmt|;
 DECL|field|resourceLoader
 specifier|protected
@@ -313,17 +314,17 @@ throw|;
 block|}
 if|if
 condition|(
+operator|(
 name|rates
 operator|.
 name|getTimestamp
 argument_list|()
 operator|+
-name|refreshInterval
-operator|*
-literal|60
+name|refreshIntervalSeconds
+operator|)
 operator|*
 literal|1000
-operator|>
+operator|<
 name|System
 operator|.
 name|currentTimeMillis
@@ -756,8 +757,9 @@ name|PARAM_RATES_FILE_LOCATION
 argument_list|)
 throw|;
 block|}
+name|int
 name|refreshInterval
-operator|=
+init|=
 name|Integer
 operator|.
 name|parseInt
@@ -774,7 +776,7 @@ argument_list|,
 name|DEFAULT_REFRESH_INTERVAL
 argument_list|)
 argument_list|)
-expr_stmt|;
+decl_stmt|;
 comment|// Force a refresh interval of minimum one hour, since the API does not offer better resolution
 if|if
 condition|(
@@ -809,6 +811,12 @@ name|refreshInterval
 operator|+
 literal|"."
 argument_list|)
+expr_stmt|;
+name|refreshIntervalSeconds
+operator|=
+name|refreshInterval
+operator|*
+literal|60
 expr_stmt|;
 block|}
 catch|catch
@@ -910,6 +918,7 @@ return|;
 block|}
 comment|/**    * A simple class encapsulating the JSON data from openexchangerates.org    */
 DECL|class|OpenExchangeRates
+specifier|static
 class|class
 name|OpenExchangeRates
 block|{
@@ -1302,6 +1311,22 @@ block|{
 return|return
 name|timestamp
 return|;
+block|}
+comment|/** Package protected method for test purposes      * @lucene.internal      */
+DECL|method|setTimestamp
+name|void
+name|setTimestamp
+parameter_list|(
+name|long
+name|timestamp
+parameter_list|)
+block|{
+name|this
+operator|.
+name|timestamp
+operator|=
+name|timestamp
+expr_stmt|;
 block|}
 DECL|method|getDisclaimer
 specifier|public
