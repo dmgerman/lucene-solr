@@ -584,7 +584,7 @@ throw|throw
 operator|new
 name|IOException
 argument_list|(
-literal|"You must first call Classifier#train first"
+literal|"You must first call Classifier#train"
 argument_list|)
 throw|;
 block|}

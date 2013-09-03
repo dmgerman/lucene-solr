@@ -254,7 +254,7 @@ throw|throw
 operator|new
 name|IOException
 argument_list|(
-literal|"You must first call Classifier#train first"
+literal|"You must first call Classifier#train"
 argument_list|)
 throw|;
 block|}
@@ -359,13 +359,6 @@ name|stringValue
 argument_list|()
 argument_list|)
 decl_stmt|;
-if|if
-condition|(
-name|cl
-operator|!=
-literal|null
-condition|)
-block|{
 name|Integer
 name|count
 init|=
@@ -406,7 +399,6 @@ argument_list|,
 literal|1
 argument_list|)
 expr_stmt|;
-block|}
 block|}
 block|}
 name|double
