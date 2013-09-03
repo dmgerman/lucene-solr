@@ -890,8 +890,8 @@ name|ret
 return|;
 block|}
 comment|// TODO: if we refactor a 'addSelf(TempMetaDat other)',
-comment|// we can gain about 5~7% for fuzzy queries, however on the other hand
-comment|// we seem to put much stress on FST Outputs decoding?
+comment|// we can gain about 5~7% for fuzzy queries, however this also
+comment|// means we are putting too much stress on FST Outputs decoding?
 annotation|@
 name|Override
 DECL|method|add

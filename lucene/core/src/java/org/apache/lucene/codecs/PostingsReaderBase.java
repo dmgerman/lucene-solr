@@ -174,7 +174,7 @@ parameter_list|()
 throws|throws
 name|IOException
 function_decl|;
-comment|/** Actually decode metadata for next term */
+comment|/** Actually decode metadata for next term     *  @see PostingsWriterBase#encodeTerm     */
 DECL|method|decodeTerm
 specifier|public
 specifier|abstract

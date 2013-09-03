@@ -300,14 +300,13 @@ name|VERSION_META_ARRAY
 init|=
 literal|1
 decl_stmt|;
-comment|//final static int VERSION_CURRENT = VERSION_META_ARRAY;
 DECL|field|VERSION_CURRENT
 specifier|final
 specifier|static
 name|int
 name|VERSION_CURRENT
 init|=
-name|VERSION_START
+name|VERSION_META_ARRAY
 decl_stmt|;
 DECL|field|segmentState
 specifier|private

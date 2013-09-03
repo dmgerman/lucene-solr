@@ -379,9 +379,8 @@ specifier|final
 name|int
 name|VERSION_CURRENT
 init|=
-name|VERSION_APPEND_ONLY
+name|VERSION_META_ARRAY
 decl_stmt|;
-comment|//public static final int VERSION_CURRENT = VERSION_META_ARRAY;
 comment|/** Extension of terms file */
 DECL|field|TERMS_EXTENSION
 specifier|static

@@ -387,15 +387,15 @@ name|VERSION_META_ARRAY
 init|=
 literal|1
 decl_stmt|;
+comment|//final static int VERSION_CURRENT = VERSION_START;
 DECL|field|VERSION_CURRENT
 specifier|final
 specifier|static
 name|int
 name|VERSION_CURRENT
 init|=
-name|VERSION_START
+name|VERSION_META_ARRAY
 decl_stmt|;
-comment|//final static int VERSION_CURRENT = VERSION_META_ARRAY;
 DECL|field|docOut
 specifier|final
 name|IndexOutput
@@ -2351,6 +2351,10 @@ comment|// }
 block|}
 if|if
 condition|(
+name|VERSION_CURRENT
+operator|>=
+name|VERSION_META_ARRAY
+operator|||
 name|state
 operator|.
 name|totalTermFreq
@@ -2527,26 +2531,6 @@ operator|||
 name|fieldHasOffsets
 condition|)
 block|{
-if|if
-condition|(
-name|state
-operator|.
-name|payTermStartFP
-operator|==
-operator|-
-literal|1
-condition|)
-block|{
-name|longs
-index|[
-literal|2
-index|]
-operator|=
-literal|0
-expr_stmt|;
-block|}
-else|else
-block|{
 name|longs
 index|[
 literal|2
@@ -2560,7 +2544,6 @@ name|lastState
 operator|.
 name|payTermStartFP
 expr_stmt|;
-block|}
 block|}
 block|}
 if|if
