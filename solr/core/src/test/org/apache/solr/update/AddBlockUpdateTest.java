@@ -1599,8 +1599,32 @@ argument_list|,
 literal|"X"
 argument_list|)
 expr_stmt|;
+name|assertQ
+argument_list|(
+name|req
+argument_list|(
+literal|"q"
+argument_list|,
+name|child
+operator|+
+literal|":(a b c)"
+argument_list|,
+literal|"sort"
+argument_list|,
+literal|"_docid_ asc"
+argument_list|)
+argument_list|,
+literal|"//*[@numFound='3']"
+argument_list|,
+comment|// assert physical order of children
+literal|"//doc[1]/arr[@name='child_s']/str[text()='a']"
+argument_list|,
+literal|"//doc[2]/arr[@name='child_s']/str[text()='b']"
+argument_list|,
+literal|"//doc[3]/arr[@name='child_s']/str[text()='c']"
+argument_list|)
+expr_stmt|;
 block|}
-comment|/***   @Test   public void testSmallBlockDirect() throws Exception {     final AddBlockUpdateCommand cmd = new AddBlockUpdateCommand(req("*:*"));     final List<SolrInputDocument> docs = Arrays.asList(new SolrInputDocument() {       {         addField("id", id());         addField(child, "a");       }     }, new SolrInputDocument() {       {         addField("id", id());         addField(parent, "B");       }     });     cmd.setDocs(docs);     assertEquals(2, h.getCore().getUpdateHandler().addBlock(cmd));     assertU(commit());          final SolrIndexSearcher searcher = getSearcher();     assertQ(req("*:*"), "//*[@numFound='2']");     assertSingleParentOf(searcher, one("a"), "B");   }      @Test   public void testEmptyDirect() throws Exception {     final AddBlockUpdateCommand cmd = new AddBlockUpdateCommand(req("*:*"));     // let's add empty one     cmd.setDocs(Collections.<SolrInputDocument> emptyList());     assertEquals(0,         ((DirectUpdateHandler2) h.getCore().getUpdateHandler()).addBlock(cmd));     assertU(commit());          assertQ(req("*:*"), "//*[@numFound='0']");   }    ***/
 annotation|@
 name|Test
 DECL|method|testExceptionThrown
