@@ -400,14 +400,6 @@ block|,
 literal|"MockSep"
 block|,
 literal|"MockRandom"
-block|,
-literal|"TempFixedIntBlock"
-block|,
-literal|"TempVariableIntBlock"
-block|,
-literal|"TempSep"
-block|,
-literal|"TempRandom"
 block|}
 argument_list|)
 DECL|class|TestPostingsHighlighterRanking
