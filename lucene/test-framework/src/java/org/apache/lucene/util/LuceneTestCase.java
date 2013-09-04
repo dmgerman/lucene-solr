@@ -1422,14 +1422,6 @@ argument_list|,
 literal|"MockSep"
 argument_list|,
 literal|"MockRandom"
-argument_list|,
-literal|"TempSep"
-argument_list|,
-literal|"TempFixedIntBlock"
-argument_list|,
-literal|"TempVariableIntBlock"
-argument_list|,
-literal|"TempRandom"
 argument_list|)
 argument_list|)
 decl_stmt|;

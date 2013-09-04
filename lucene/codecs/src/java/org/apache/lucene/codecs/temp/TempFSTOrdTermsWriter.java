@@ -860,13 +860,6 @@ expr_stmt|;
 block|}
 name|writeTrailer
 argument_list|(
-name|indexOut
-argument_list|,
-name|indexDirStart
-argument_list|)
-expr_stmt|;
-name|writeTrailer
-argument_list|(
 name|blockOut
 argument_list|,
 name|blockDirStart

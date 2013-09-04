@@ -767,11 +767,6 @@ argument_list|)
 expr_stmt|;
 name|seekDir
 argument_list|(
-name|indexIn
-argument_list|)
-expr_stmt|;
-name|seekDir
-argument_list|(
 name|blockIn
 argument_list|)
 expr_stmt|;
