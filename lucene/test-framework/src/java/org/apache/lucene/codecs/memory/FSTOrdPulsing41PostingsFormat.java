@@ -1,6 +1,6 @@
 begin_unit|revision:0.9.5;language:Java;cregit-version:0.0.1
 begin_package
-DECL|package|org.apache.lucene.codecs.temp
+DECL|package|org.apache.lucene.codecs.memory
 package|package
 name|org
 operator|.
@@ -10,7 +10,7 @@ name|lucene
 operator|.
 name|codecs
 operator|.
-name|temp
+name|memory
 package|;
 end_package
 
@@ -251,14 +251,14 @@ import|;
 end_import
 
 begin_comment
-comment|/** TempFST + Pulsing41, test only, since  *  FST does no delta encoding here!  *  @lucene.experimental */
+comment|/** FSTOrd + Pulsing41  *  @lucene.experimental */
 end_comment
 
 begin_class
-DECL|class|TempFSTPulsing41PostingsFormat
+DECL|class|FSTOrdPulsing41PostingsFormat
 specifier|public
 class|class
-name|TempFSTPulsing41PostingsFormat
+name|FSTOrdPulsing41PostingsFormat
 extends|extends
 name|PostingsFormat
 block|{
@@ -274,9 +274,9 @@ specifier|final
 name|int
 name|freqCutoff
 decl_stmt|;
-DECL|method|TempFSTPulsing41PostingsFormat
+DECL|method|FSTOrdPulsing41PostingsFormat
 specifier|public
-name|TempFSTPulsing41PostingsFormat
+name|FSTOrdPulsing41PostingsFormat
 parameter_list|()
 block|{
 name|this
@@ -285,9 +285,9 @@ literal|1
 argument_list|)
 expr_stmt|;
 block|}
-DECL|method|TempFSTPulsing41PostingsFormat
+DECL|method|FSTOrdPulsing41PostingsFormat
 specifier|public
-name|TempFSTPulsing41PostingsFormat
+name|FSTOrdPulsing41PostingsFormat
 parameter_list|(
 name|int
 name|freqCutoff
@@ -295,7 +295,7 @@ parameter_list|)
 block|{
 name|super
 argument_list|(
-literal|"TempFSTPulsing41"
+literal|"FSTOrdPulsing41"
 argument_list|)
 expr_stmt|;
 name|this
@@ -368,7 +368,7 @@ name|FieldsConsumer
 name|ret
 init|=
 operator|new
-name|TempFSTTermsWriter
+name|FSTOrdTermsWriter
 argument_list|(
 name|state
 argument_list|,
@@ -456,7 +456,7 @@ name|FieldsProducer
 name|ret
 init|=
 operator|new
-name|TempFSTTermsReader
+name|FSTOrdTermsReader
 argument_list|(
 name|state
 argument_list|,

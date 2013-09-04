@@ -1,6 +1,6 @@
 begin_unit|revision:0.9.5;language:Java;cregit-version:0.0.1
 begin_package
-DECL|package|org.apache.lucene.codecs.temp
+DECL|package|org.apache.lucene.codecs.memory
 package|package
 name|org
 operator|.
@@ -10,7 +10,7 @@ name|lucene
 operator|.
 name|codecs
 operator|.
-name|temp
+name|memory
 package|;
 end_package
 
@@ -127,7 +127,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * An FST {@link Outputs} implementation for   * {@link TempFSTPostingsFormat}.  *  * @lucene.experimental  */
+comment|/**  * An FST {@link Outputs} implementation for   * {@link FSTTermsWriter}.  *  * @lucene.experimental  */
 end_comment
 
 begin_comment
@@ -139,27 +139,26 @@ comment|// longsSize is fixed for each field
 end_comment
 
 begin_class
-DECL|class|TempTermOutputs
-specifier|public
+DECL|class|FSTTermOutputs
 class|class
-name|TempTermOutputs
+name|FSTTermOutputs
 extends|extends
 name|Outputs
 argument_list|<
-name|TempTermOutputs
+name|FSTTermOutputs
 operator|.
-name|TempTermData
+name|TermData
 argument_list|>
 block|{
 DECL|field|NO_OUTPUT
 specifier|private
 specifier|final
 specifier|static
-name|TempTermData
+name|TermData
 name|NO_OUTPUT
 init|=
 operator|new
-name|TempTermData
+name|TermData
 argument_list|()
 decl_stmt|;
 comment|//private static boolean TEST = false;
@@ -176,11 +175,10 @@ name|int
 name|longsSize
 decl_stmt|;
 comment|/**     * Represents the metadata for one term.    * On an FST, only long[] part is 'shared' and pushed towards root.    * byte[] and term stats will be kept on deeper arcs.    */
-DECL|class|TempTermData
-specifier|public
+DECL|class|TermData
 specifier|static
 class|class
-name|TempTermData
+name|TermData
 block|{
 DECL|field|longs
 name|long
@@ -200,8 +198,8 @@ DECL|field|totalTermFreq
 name|long
 name|totalTermFreq
 decl_stmt|;
-DECL|method|TempTermData
-name|TempTermData
+DECL|method|TermData
+name|TermData
 parameter_list|()
 block|{
 name|this
@@ -230,8 +228,8 @@ operator|-
 literal|1
 expr_stmt|;
 block|}
-DECL|method|TempTermData
-name|TempTermData
+DECL|method|TermData
+name|TermData
 parameter_list|(
 name|long
 index|[]
@@ -411,9 +409,9 @@ operator|!
 operator|(
 name|other_
 operator|instanceof
-name|TempTermOutputs
+name|FSTTermOutputs
 operator|.
-name|TempTermData
+name|TermData
 operator|)
 condition|)
 block|{
@@ -421,11 +419,11 @@ return|return
 literal|false
 return|;
 block|}
-name|TempTermData
+name|TermData
 name|other
 init|=
 operator|(
-name|TempTermData
+name|TermData
 operator|)
 name|other_
 decl_stmt|;
@@ -453,9 +451,9 @@ argument_list|)
 return|;
 block|}
 block|}
-DECL|method|TempTermOutputs
+DECL|method|FSTTermOutputs
 specifier|protected
-name|TempTermOutputs
+name|FSTTermOutputs
 parameter_list|(
 name|FieldInfo
 name|fieldInfo
@@ -496,13 +494,13 @@ comment|// 2. every value in t1 is not smaller than t2.
 comment|//
 DECL|method|common
 specifier|public
-name|TempTermData
+name|TermData
 name|common
 parameter_list|(
-name|TempTermData
+name|TermData
 name|t1
 parameter_list|,
-name|TempTermData
+name|TermData
 name|t2
 parameter_list|)
 block|{
@@ -555,7 +553,7 @@ name|pos
 init|=
 literal|0
 decl_stmt|;
-name|TempTermData
+name|TermData
 name|ret
 decl_stmt|;
 while|while
@@ -658,7 +656,7 @@ block|{
 name|ret
 operator|=
 operator|new
-name|TempTermData
+name|TermData
 argument_list|(
 name|min
 argument_list|,
@@ -716,7 +714,7 @@ block|{
 name|ret
 operator|=
 operator|new
-name|TempTermData
+name|TermData
 argument_list|(
 name|min
 argument_list|,
@@ -739,13 +737,13 @@ annotation|@
 name|Override
 DECL|method|subtract
 specifier|public
-name|TempTermData
+name|TermData
 name|subtract
 parameter_list|(
-name|TempTermData
+name|TermData
 name|t1
 parameter_list|,
-name|TempTermData
+name|TermData
 name|t2
 parameter_list|)
 block|{
@@ -832,7 +830,7 @@ name|pos
 operator|++
 expr_stmt|;
 block|}
-name|TempTermData
+name|TermData
 name|ret
 decl_stmt|;
 if|if
@@ -866,7 +864,7 @@ block|{
 name|ret
 operator|=
 operator|new
-name|TempTermData
+name|TermData
 argument_list|(
 name|share
 argument_list|,
@@ -889,20 +887,20 @@ return|return
 name|ret
 return|;
 block|}
-comment|// TODO: if we refactor a 'addSelf(TempMetaDat other)',
+comment|// TODO: if we refactor a 'addSelf(TermData other)',
 comment|// we can gain about 5~7% for fuzzy queries, however this also
 comment|// means we are putting too much stress on FST Outputs decoding?
 annotation|@
 name|Override
 DECL|method|add
 specifier|public
-name|TempTermData
+name|TermData
 name|add
 parameter_list|(
-name|TempTermData
+name|TermData
 name|t1
 parameter_list|,
-name|TempTermData
+name|TermData
 name|t2
 parameter_list|)
 block|{
@@ -990,7 +988,7 @@ name|pos
 operator|++
 expr_stmt|;
 block|}
-name|TempTermData
+name|TermData
 name|ret
 decl_stmt|;
 if|if
@@ -1011,7 +1009,7 @@ block|{
 name|ret
 operator|=
 operator|new
-name|TempTermData
+name|TermData
 argument_list|(
 name|accum
 argument_list|,
@@ -1034,7 +1032,7 @@ block|{
 name|ret
 operator|=
 operator|new
-name|TempTermData
+name|TermData
 argument_list|(
 name|accum
 argument_list|,
@@ -1064,7 +1062,7 @@ specifier|public
 name|void
 name|write
 parameter_list|(
-name|TempTermData
+name|TermData
 name|data
 parameter_list|,
 name|DataOutput
@@ -1373,7 +1371,7 @@ annotation|@
 name|Override
 DECL|method|read
 specifier|public
-name|TempTermData
+name|TermData
 name|read
 parameter_list|(
 name|DataInput
@@ -1591,7 +1589,7 @@ block|}
 block|}
 return|return
 operator|new
-name|TempTermData
+name|TermData
 argument_list|(
 name|longs
 argument_list|,
@@ -1607,7 +1605,7 @@ annotation|@
 name|Override
 DECL|method|getNoOutput
 specifier|public
-name|TempTermData
+name|TermData
 name|getNoOutput
 parameter_list|()
 block|{
@@ -1622,7 +1620,7 @@ specifier|public
 name|String
 name|outputToString
 parameter_list|(
-name|TempTermData
+name|TermData
 name|data
 parameter_list|)
 block|{
@@ -1639,11 +1637,11 @@ name|boolean
 name|statsEqual
 parameter_list|(
 specifier|final
-name|TempTermData
+name|TermData
 name|t1
 parameter_list|,
 specifier|final
-name|TempTermData
+name|TermData
 name|t2
 parameter_list|)
 block|{
@@ -1671,11 +1669,11 @@ name|boolean
 name|bytesEqual
 parameter_list|(
 specifier|final
-name|TempTermData
+name|TermData
 name|t1
 parameter_list|,
 specifier|final
-name|TempTermData
+name|TermData
 name|t2
 parameter_list|)
 block|{
@@ -1731,11 +1729,11 @@ name|boolean
 name|longsEqual
 parameter_list|(
 specifier|final
-name|TempTermData
+name|TermData
 name|t1
 parameter_list|,
 specifier|final
-name|TempTermData
+name|TermData
 name|t2
 parameter_list|)
 block|{

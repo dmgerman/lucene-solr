@@ -480,9 +480,9 @@ name|lucene
 operator|.
 name|codecs
 operator|.
-name|temp
+name|memory
 operator|.
-name|TempFSTOrdPostingsFormat
+name|FSTOrdPostingsFormat
 import|;
 end_import
 
@@ -496,9 +496,9 @@ name|lucene
 operator|.
 name|codecs
 operator|.
-name|temp
+name|memory
 operator|.
-name|TempFSTOrdPulsing41PostingsFormat
+name|FSTOrdPulsing41PostingsFormat
 import|;
 end_import
 
@@ -512,9 +512,9 @@ name|lucene
 operator|.
 name|codecs
 operator|.
-name|temp
+name|memory
 operator|.
-name|TempFSTPostingsFormat
+name|FSTPostingsFormat
 import|;
 end_import
 
@@ -528,9 +528,9 @@ name|lucene
 operator|.
 name|codecs
 operator|.
-name|temp
+name|memory
 operator|.
-name|TempFSTPulsing41PostingsFormat
+name|FSTPulsing41PostingsFormat
 import|;
 end_import
 
@@ -1033,15 +1033,15 @@ name|maxItemsPerBlock
 argument_list|)
 argument_list|,
 operator|new
-name|TempFSTPostingsFormat
+name|FSTPostingsFormat
 argument_list|()
 argument_list|,
 operator|new
-name|TempFSTOrdPostingsFormat
+name|FSTOrdPostingsFormat
 argument_list|()
 argument_list|,
 operator|new
-name|TempFSTPulsing41PostingsFormat
+name|FSTPulsing41PostingsFormat
 argument_list|(
 literal|1
 operator|+
@@ -1054,7 +1054,7 @@ argument_list|)
 argument_list|)
 argument_list|,
 operator|new
-name|TempFSTOrdPulsing41PostingsFormat
+name|FSTOrdPulsing41PostingsFormat
 argument_list|(
 literal|1
 operator|+
