@@ -1688,8 +1688,6 @@ name|v
 argument_list|)
 decl_stmt|;
 return|return
-name|base
-operator|+
 name|hashTable
 index|[
 name|h
@@ -1763,6 +1761,13 @@ index|[
 name|h
 index|]
 decl_stmt|;
+assert|assert
+name|delta
+operator|>
+literal|0
+operator|:
+name|delta
+assert|;
 if|if
 condition|(
 name|delta

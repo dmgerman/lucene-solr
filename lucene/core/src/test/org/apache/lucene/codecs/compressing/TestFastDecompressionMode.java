@@ -69,6 +69,12 @@ parameter_list|(
 name|byte
 index|[]
 name|decompressed
+parameter_list|,
+name|int
+name|off
+parameter_list|,
+name|int
+name|len
 parameter_list|)
 throws|throws
 name|IOException
@@ -83,6 +89,10 @@ operator|.
 name|test
 argument_list|(
 name|decompressed
+argument_list|,
+name|off
+argument_list|,
+name|len
 argument_list|)
 decl_stmt|;
 specifier|final
@@ -100,6 +110,10 @@ name|newCompressor
 argument_list|()
 argument_list|,
 name|decompressed
+argument_list|,
+name|off
+argument_list|,
+name|len
 argument_list|)
 decl_stmt|;
 comment|// because of the way this compression mode works, its output is necessarily
