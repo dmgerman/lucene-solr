@@ -1165,7 +1165,7 @@ operator|.
 name|VERSION_META_ARRAY
 condition|)
 block|{
-comment|// impersonation
+comment|// backward compatibility
 name|_decodeTerm
 argument_list|(
 name|in
