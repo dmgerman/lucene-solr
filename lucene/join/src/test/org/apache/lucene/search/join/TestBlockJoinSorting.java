@@ -2190,7 +2190,7 @@ name|childFilter
 argument_list|)
 argument_list|,
 operator|new
-name|CachingWrapperFilter
+name|FixedBitSetCachingWrapperFilter
 argument_list|(
 name|parentFilter
 argument_list|)
@@ -3106,7 +3106,7 @@ name|childFilter
 argument_list|)
 argument_list|,
 operator|new
-name|CachingWrapperFilter
+name|FixedBitSetCachingWrapperFilter
 argument_list|(
 name|parentFilter
 argument_list|)
@@ -3434,7 +3434,7 @@ name|nextBoolean
 argument_list|()
 condition|?
 operator|new
-name|CachingWrapperFilter
+name|FixedBitSetCachingWrapperFilter
 argument_list|(
 name|filter
 argument_list|)

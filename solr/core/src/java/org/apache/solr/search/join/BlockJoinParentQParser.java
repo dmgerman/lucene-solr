@@ -100,6 +100,22 @@ name|search
 operator|.
 name|join
 operator|.
+name|FixedBitSetCachingWrapperFilter
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|search
+operator|.
+name|join
+operator|.
 name|ScoreMode
 import|;
 end_import
@@ -523,7 +539,7 @@ parameter_list|)
 block|{
 return|return
 operator|new
-name|CachingWrapperFilter
+name|FixedBitSetCachingWrapperFilter
 argument_list|(
 operator|new
 name|QueryWrapperFilter
@@ -531,7 +547,6 @@ argument_list|(
 name|parentQ
 argument_list|)
 argument_list|)
-block|{     }
 return|;
 block|}
 block|}

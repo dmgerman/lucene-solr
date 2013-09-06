@@ -128,7 +128,7 @@ name|lucene
 operator|.
 name|util
 operator|.
-name|FixedBitSet
+name|RamUsageEstimator
 import|;
 end_import
 
@@ -142,7 +142,7 @@ name|lucene
 operator|.
 name|util
 operator|.
-name|RamUsageEstimator
+name|WAH8DocIdSet
 import|;
 end_import
 
@@ -158,9 +158,6 @@ name|CachingWrapperFilter
 extends|extends
 name|Filter
 block|{
-comment|// TODO: make this filter aware of ReaderContext. a cached filter could
-comment|// specify the actual readers key or something similar to indicate on which
-comment|// level of the readers hierarchy it should be cached.
 DECL|field|filter
 specifier|private
 specifier|final
@@ -219,7 +216,7 @@ return|return
 name|filter
 return|;
 block|}
-comment|/**     *  Provide the DocIdSet to be cached, using the DocIdSet provided    *  by the wrapped Filter.<p>This implementation returns the given {@link DocIdSet},    *  if {@link DocIdSet#isCacheable} returns<code>true</code>, else it copies the     *  {@link DocIdSetIterator} into a {@link FixedBitSet}.    *<p>Note: This method returns {@linkplain #EMPTY_DOCIDSET} if the given docIdSet    *  is<code>null</code> or if {@link DocIdSet#iterator()} return<code>null</code>. The empty    *  instance is use as a placeholder in the cache instead of the<code>null</code> value.    */
+comment|/**     *  Provide the DocIdSet to be cached, using the DocIdSet provided    *  by the wrapped Filter.<p>This implementation returns the given {@link DocIdSet},    *  if {@link DocIdSet#isCacheable} returns<code>true</code>, else it calls    *  {@link #cacheImpl(DocIdSetIterator,AtomicReader)}    *<p>Note: This method returns {@linkplain #EMPTY_DOCIDSET} if the given docIdSet    *  is<code>null</code> or if {@link DocIdSet#iterator()} return<code>null</code>. The empty    *  instance is use as a placeholder in the cache instead of the<code>null</code> value.    */
 DECL|method|docIdSetToCache
 specifier|protected
 name|DocIdSet
@@ -286,31 +283,56 @@ return|;
 block|}
 else|else
 block|{
-specifier|final
-name|FixedBitSet
-name|bits
-init|=
-operator|new
-name|FixedBitSet
-argument_list|(
-name|reader
-operator|.
-name|maxDoc
-argument_list|()
-argument_list|)
-decl_stmt|;
-name|bits
-operator|.
-name|or
+return|return
+name|cacheImpl
 argument_list|(
 name|it
+argument_list|,
+name|reader
 argument_list|)
-expr_stmt|;
-return|return
-name|bits
 return|;
 block|}
 block|}
+block|}
+comment|/**    * Default cache implementation: uses {@link WAH8DocIdSet}.    */
+DECL|method|cacheImpl
+specifier|protected
+name|DocIdSet
+name|cacheImpl
+parameter_list|(
+name|DocIdSetIterator
+name|iterator
+parameter_list|,
+name|AtomicReader
+name|reader
+parameter_list|)
+throws|throws
+name|IOException
+block|{
+name|WAH8DocIdSet
+operator|.
+name|Builder
+name|builder
+init|=
+operator|new
+name|WAH8DocIdSet
+operator|.
+name|Builder
+argument_list|()
+decl_stmt|;
+name|builder
+operator|.
+name|add
+argument_list|(
+name|iterator
+argument_list|)
+expr_stmt|;
+return|return
+name|builder
+operator|.
+name|build
+argument_list|()
+return|;
 block|}
 comment|// for testing
 DECL|field|hitCount
@@ -397,6 +419,12 @@ argument_list|,
 name|reader
 argument_list|)
 expr_stmt|;
+assert|assert
+name|docIdSet
+operator|.
+name|isCacheable
+argument_list|()
+assert|;
 name|cache
 operator|.
 name|put
@@ -433,7 +461,13 @@ name|toString
 parameter_list|()
 block|{
 return|return
-literal|"CachingWrapperFilter("
+name|getClass
+argument_list|()
+operator|.
+name|getSimpleName
+argument_list|()
+operator|+
+literal|"("
 operator|+
 name|filter
 operator|+
@@ -453,12 +487,21 @@ parameter_list|)
 block|{
 if|if
 condition|(
-operator|!
-operator|(
 name|o
-operator|instanceof
-name|CachingWrapperFilter
-operator|)
+operator|==
+literal|null
+operator|||
+operator|!
+name|getClass
+argument_list|()
+operator|.
+name|equals
+argument_list|(
+name|o
+operator|.
+name|getClass
+argument_list|()
+argument_list|)
 condition|)
 return|return
 literal|false
@@ -500,7 +543,11 @@ operator|.
 name|hashCode
 argument_list|()
 operator|^
-literal|0x1117BF25
+name|getClass
+argument_list|()
+operator|.
+name|hashCode
+argument_list|()
 operator|)
 return|;
 block|}
