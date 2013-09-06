@@ -224,6 +224,20 @@ name|apache
 operator|.
 name|lucene
 operator|.
+name|index
+operator|.
+name|TermState
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
 name|store
 operator|.
 name|DataOutput
@@ -446,20 +460,20 @@ name|boolean
 name|fieldHasPayloads
 decl_stmt|;
 comment|// Holds starting file pointers for current term:
-DECL|field|docTermStartFP
+DECL|field|docStartFP
 specifier|private
 name|long
-name|docTermStartFP
+name|docStartFP
 decl_stmt|;
-DECL|field|posTermStartFP
+DECL|field|posStartFP
 specifier|private
 name|long
-name|posTermStartFP
+name|posStartFP
 decl_stmt|;
-DECL|field|payTermStartFP
+DECL|field|payStartFP
 specifier|private
 name|long
-name|payTermStartFP
+name|payStartFP
 decl_stmt|;
 DECL|field|docDeltaBuffer
 specifier|final
@@ -1000,7 +1014,6 @@ argument_list|)
 expr_stmt|;
 block|}
 DECL|class|IntBlockTermState
-specifier|private
 specifier|final
 specifier|static
 class|class
@@ -1008,21 +1021,21 @@ name|IntBlockTermState
 extends|extends
 name|BlockTermState
 block|{
-DECL|field|docTermStartFP
+DECL|field|docStartFP
 name|long
-name|docTermStartFP
+name|docStartFP
 init|=
 literal|0
 decl_stmt|;
-DECL|field|posTermStartFP
+DECL|field|posStartFP
 name|long
-name|posTermStartFP
+name|posStartFP
 init|=
 literal|0
 decl_stmt|;
-DECL|field|payTermStartFP
+DECL|field|payStartFP
 name|long
-name|payTermStartFP
+name|payStartFP
 init|=
 literal|0
 decl_stmt|;
@@ -1040,6 +1053,8 @@ init|=
 operator|-
 literal|1
 decl_stmt|;
+comment|// docid when there is a single pulsed posting, otherwise -1
+comment|// freq is always implicitly totalTermFreq in this case.
 DECL|field|singletonDocID
 name|int
 name|singletonDocID
@@ -1047,6 +1062,95 @@ init|=
 operator|-
 literal|1
 decl_stmt|;
+annotation|@
+name|Override
+DECL|method|clone
+specifier|public
+name|IntBlockTermState
+name|clone
+parameter_list|()
+block|{
+name|IntBlockTermState
+name|other
+init|=
+operator|new
+name|IntBlockTermState
+argument_list|()
+decl_stmt|;
+name|other
+operator|.
+name|copyFrom
+argument_list|(
+name|this
+argument_list|)
+expr_stmt|;
+return|return
+name|other
+return|;
+block|}
+annotation|@
+name|Override
+DECL|method|copyFrom
+specifier|public
+name|void
+name|copyFrom
+parameter_list|(
+name|TermState
+name|_other
+parameter_list|)
+block|{
+name|super
+operator|.
+name|copyFrom
+argument_list|(
+name|_other
+argument_list|)
+expr_stmt|;
+name|IntBlockTermState
+name|other
+init|=
+operator|(
+name|IntBlockTermState
+operator|)
+name|_other
+decl_stmt|;
+name|docStartFP
+operator|=
+name|other
+operator|.
+name|docStartFP
+expr_stmt|;
+name|posStartFP
+operator|=
+name|other
+operator|.
+name|posStartFP
+expr_stmt|;
+name|payStartFP
+operator|=
+name|other
+operator|.
+name|payStartFP
+expr_stmt|;
+name|lastPosBlockOffset
+operator|=
+name|other
+operator|.
+name|lastPosBlockOffset
+expr_stmt|;
+name|skipOffset
+operator|=
+name|other
+operator|.
+name|skipOffset
+expr_stmt|;
+name|singletonDocID
+operator|=
+name|other
+operator|.
+name|singletonDocID
+expr_stmt|;
+block|}
 annotation|@
 name|Override
 DECL|method|toString
@@ -1063,15 +1167,15 @@ argument_list|()
 operator|+
 literal|" docStartFP="
 operator|+
-name|docTermStartFP
+name|docStartFP
 operator|+
 literal|" posStartFP="
 operator|+
-name|posTermStartFP
+name|posStartFP
 operator|+
 literal|" payStartFP="
 operator|+
-name|payTermStartFP
+name|payStartFP
 operator|+
 literal|" lastPosBlockOffset="
 operator|+
@@ -1250,7 +1354,7 @@ name|void
 name|startTerm
 parameter_list|()
 block|{
-name|docTermStartFP
+name|docStartFP
 operator|=
 name|docOut
 operator|.
@@ -1262,7 +1366,7 @@ condition|(
 name|fieldHasPositions
 condition|)
 block|{
-name|posTermStartFP
+name|posStartFP
 operator|=
 name|posOut
 operator|.
@@ -1276,7 +1380,7 @@ operator|||
 name|fieldHasOffsets
 condition|)
 block|{
-name|payTermStartFP
+name|payStartFP
 operator|=
 name|payOut
 operator|.
@@ -1295,7 +1399,7 @@ operator|-
 literal|1
 expr_stmt|;
 comment|// if (DEBUG) {
-comment|//   System.out.println("FPW.startTerm startFP=" + docTermStartFP);
+comment|//   System.out.println("FPW.startTerm startFP=" + docStartFP);
 comment|// }
 name|skipWriter
 operator|.
@@ -1882,7 +1986,7 @@ comment|//   System.out.println("FPW.finishTerm docFreq=" + state.docFreq);
 comment|// }
 comment|// if (DEBUG) {
 comment|//   if (docBufferUpto> 0) {
-comment|//     System.out.println("  write doc/freq vInt block (count=" + docBufferUpto + ") at fp=" + docOut.getFilePointer() + " docTermStartFP=" + docTermStartFP);
+comment|//     System.out.println("  write doc/freq vInt block (count=" + docBufferUpto + ") at fp=" + docOut.getFilePointer() + " docStartFP=" + docStartFP);
 comment|//   }
 comment|// }
 comment|// docFreq == 1, don't write the single docid/freq to a separate file along with a pointer to it.
@@ -2020,7 +2124,7 @@ condition|)
 block|{
 comment|// if (DEBUG) {
 comment|//   if (posBufferUpto> 0) {
-comment|//     System.out.println("  write pos vInt block (count=" + posBufferUpto + ") at fp=" + posOut.getFilePointer() + " posTermStartFP=" + posTermStartFP + " hasPayloads=" + fieldHasPayloads + " hasOffsets=" + fieldHasOffsets);
+comment|//     System.out.println("  write pos vInt block (count=" + posBufferUpto + ") at fp=" + posOut.getFilePointer() + " posStartFP=" + posStartFP + " hasPayloads=" + fieldHasPayloads + " hasOffsets=" + fieldHasOffsets);
 comment|//   }
 comment|// }
 comment|// totalTermFreq is just total number of positions(or payloads, or offsets)
@@ -2050,7 +2154,7 @@ operator|.
 name|getFilePointer
 argument_list|()
 operator|-
-name|posTermStartFP
+name|posStartFP
 expr_stmt|;
 block|}
 else|else
@@ -2329,10 +2433,10 @@ argument_list|(
 name|docOut
 argument_list|)
 operator|-
-name|docTermStartFP
+name|docStartFP
 expr_stmt|;
 comment|// if (DEBUG) {
-comment|//   System.out.println("skip packet " + (docOut.getFilePointer() - (docTermStartFP + skipOffset)) + " bytes");
+comment|//   System.out.println("skip packet " + (docOut.getFilePointer() - (docStartFP + skipOffset)) + " bytes");
 comment|// }
 block|}
 else|else
@@ -2351,21 +2455,21 @@ comment|//   System.out.println("  payStartFP=" + payStartFP);
 comment|// }
 name|state
 operator|.
-name|docTermStartFP
+name|docStartFP
 operator|=
-name|docTermStartFP
+name|docStartFP
 expr_stmt|;
 name|state
 operator|.
-name|posTermStartFP
+name|posStartFP
 operator|=
-name|posTermStartFP
+name|posStartFP
 expr_stmt|;
 name|state
 operator|.
-name|payTermStartFP
+name|payStartFP
 operator|=
-name|payTermStartFP
+name|payStartFP
 expr_stmt|;
 name|state
 operator|.
@@ -2453,11 +2557,11 @@ index|]
 operator|=
 name|state
 operator|.
-name|docTermStartFP
+name|docStartFP
 operator|-
 name|lastState
 operator|.
-name|docTermStartFP
+name|docStartFP
 expr_stmt|;
 if|if
 condition|(
@@ -2471,11 +2575,11 @@ index|]
 operator|=
 name|state
 operator|.
-name|posTermStartFP
+name|posStartFP
 operator|-
 name|lastState
 operator|.
-name|posTermStartFP
+name|posStartFP
 expr_stmt|;
 if|if
 condition|(
@@ -2491,11 +2595,11 @@ index|]
 operator|=
 name|state
 operator|.
-name|payTermStartFP
+name|payStartFP
 operator|-
 name|lastState
 operator|.
-name|payTermStartFP
+name|payStartFP
 expr_stmt|;
 block|}
 block|}
