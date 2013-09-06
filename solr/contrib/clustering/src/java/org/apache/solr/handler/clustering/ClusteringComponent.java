@@ -366,7 +366,7 @@ name|DocumentClusteringEngine
 argument_list|>
 argument_list|()
 decl_stmt|;
-comment|/**    * Base name for all spell checker query parameters. This name is also used to    * register this component with SearchHandler.    */
+comment|/**    * Base name for all component parameters. This name is also used to    * register this component with SearchHandler.    */
 DECL|field|COMPONENT_NAME
 specifier|public
 specifier|static

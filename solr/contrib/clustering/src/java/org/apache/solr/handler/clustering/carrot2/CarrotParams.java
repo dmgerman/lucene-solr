@@ -173,6 +173,19 @@ name|CARROT_PREFIX
 operator|+
 literal|"outputSubClusters"
 decl_stmt|;
+DECL|field|LANGUAGE_CODE_MAP
+specifier|public
+specifier|static
+name|String
+name|LANGUAGE_CODE_MAP
+init|=
+name|CARROT_PREFIX
+operator|+
+literal|"lcmap"
+decl_stmt|;
+comment|/**    * Use {@link #RESOURCES_DIR}.    */
+annotation|@
+name|Deprecated
 DECL|field|LEXICAL_RESOURCES_DIR
 specifier|public
 specifier|static
@@ -183,15 +196,16 @@ name|CARROT_PREFIX
 operator|+
 literal|"lexicalResourcesDir"
 decl_stmt|;
-DECL|field|LANGUAGE_CODE_MAP
+comment|/**    * A replacement property pointing to Carrot<sup>2</sup> resources    * (a more generic version of the deprecated {@link #LEXICAL_RESOURCES_DIR}).    */
+DECL|field|RESOURCES_DIR
 specifier|public
 specifier|static
 name|String
-name|LANGUAGE_CODE_MAP
+name|RESOURCES_DIR
 init|=
 name|CARROT_PREFIX
 operator|+
-literal|"lcmap"
+literal|"resourcesDir"
 decl_stmt|;
 DECL|field|CARROT_PARAM_NAMES
 specifier|static
@@ -229,6 +243,8 @@ argument_list|,
 name|OUTPUT_SUB_CLUSTERS
 argument_list|,
 name|LEXICAL_RESOURCES_DIR
+argument_list|,
+name|RESOURCES_DIR
 argument_list|,
 name|LANGUAGE_CODE_MAP
 argument_list|)
