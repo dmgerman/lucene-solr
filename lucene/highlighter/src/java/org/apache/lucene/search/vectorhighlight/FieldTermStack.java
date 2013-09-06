@@ -575,20 +575,6 @@ name|poll
 argument_list|()
 return|;
 block|}
-comment|/**    * Return the top TermInfo object of the stack without removing it.    */
-DECL|method|peek
-specifier|public
-name|TermInfo
-name|peek
-parameter_list|()
-block|{
-return|return
-name|termList
-operator|.
-name|peek
-argument_list|()
-return|;
-block|}
 comment|/**    * @param termInfo the TermInfo object to be put on the top of the stack    */
 DECL|method|push
 specifier|public
