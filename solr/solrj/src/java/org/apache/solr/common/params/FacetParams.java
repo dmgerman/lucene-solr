@@ -72,6 +72,18 @@ name|FACET
 init|=
 literal|"facet"
 decl_stmt|;
+comment|/**    * Numeric option indicating the maximum number of threads to be used    * in counting facet field vales     */
+DECL|field|FACET_THREADS
+specifier|public
+specifier|static
+specifier|final
+name|String
+name|FACET_THREADS
+init|=
+name|FACET
+operator|+
+literal|".threads"
+decl_stmt|;
 comment|/** What method should be used to do the faceting */
 DECL|field|FACET_METHOD
 specifier|public
