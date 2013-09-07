@@ -826,6 +826,9 @@ argument_list|)
 expr_stmt|;
 if|if
 condition|(
+name|defaultCodecSupportsDocsWithField
+argument_list|()
+operator|&&
 name|random
 argument_list|()
 operator|.
