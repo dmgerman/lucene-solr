@@ -411,7 +411,7 @@ operator|=
 literal|true
 expr_stmt|;
 block|}
-comment|/** This is called when all input tokens leaving a given    *  position have been returned.  Override this and    *  call createToken and then set whichever token's    *  attributes you want, if you want to inject    *  a token starting from this position. */
+comment|/** This is called when all input tokens leaving a given    *  position have been returned.  Override this and    *  call insertToken and then set whichever token's    *  attributes you want, if you want to inject    *  a token starting from this position. */
 DECL|method|afterPosition
 specifier|protected
 name|void
@@ -932,6 +932,43 @@ literal|"  END"
 argument_list|)
 expr_stmt|;
 block|}
+name|afterPosition
+argument_list|()
+expr_stmt|;
+if|if
+condition|(
+name|insertPending
+condition|)
+block|{
+comment|// Subclass inserted a token at this same
+comment|// position:
+if|if
+condition|(
+name|DEBUG
+condition|)
+block|{
+name|System
+operator|.
+name|out
+operator|.
+name|println
+argument_list|(
+literal|"  return inserted token"
+argument_list|)
+expr_stmt|;
+block|}
+assert|assert
+name|insertedTokenConsistent
+argument_list|()
+assert|;
+name|insertPending
+operator|=
+literal|false
+expr_stmt|;
+return|return
+literal|true
+return|;
+block|}
 return|return
 literal|false
 return|;
@@ -1087,6 +1124,19 @@ operator|.
 name|endOffset
 argument_list|()
 operator|==
+name|endPosData
+operator|.
+name|endOffset
+operator|:
+literal|"offsetAtt.endOffset="
+operator|+
+name|offsetAtt
+operator|.
+name|endOffset
+argument_list|()
+operator|+
+literal|" vs expected="
+operator|+
 name|endPosData
 operator|.
 name|endOffset
