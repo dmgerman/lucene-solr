@@ -2725,7 +2725,6 @@ operator|!=
 literal|null
 condition|)
 block|{
-comment|/*          * TODO: if lastGen == -1 we get might get null here it seems wrong to          * add null to the files set          */
 name|files
 operator|.
 name|add
