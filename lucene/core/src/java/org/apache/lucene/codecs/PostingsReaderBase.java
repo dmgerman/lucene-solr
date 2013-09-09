@@ -250,6 +250,14 @@ parameter_list|)
 throws|throws
 name|IOException
 function_decl|;
+comment|/** Returns approximate RAM bytes used */
+DECL|method|ramBytesUsed
+specifier|public
+specifier|abstract
+name|long
+name|ramBytesUsed
+parameter_list|()
+function_decl|;
 annotation|@
 name|Override
 DECL|method|close

@@ -973,6 +973,31 @@ name|listener
 argument_list|)
 expr_stmt|;
 block|}
+comment|/** Returns approximate RAM Bytes used */
+DECL|method|ramBytesUsed
+specifier|public
+name|long
+name|ramBytesUsed
+parameter_list|()
+block|{
+name|ensureOpen
+argument_list|()
+expr_stmt|;
+return|return
+operator|(
+name|core
+operator|!=
+literal|null
+operator|)
+condition|?
+name|core
+operator|.
+name|ramBytesUsed
+argument_list|()
+else|:
+literal|0
+return|;
+block|}
 block|}
 end_class
 

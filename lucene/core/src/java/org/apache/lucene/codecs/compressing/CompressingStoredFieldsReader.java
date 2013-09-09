@@ -3289,6 +3289,21 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
+annotation|@
+name|Override
+DECL|method|ramBytesUsed
+specifier|public
+name|long
+name|ramBytesUsed
+parameter_list|()
+block|{
+return|return
+name|indexReader
+operator|.
+name|ramBytesUsed
+argument_list|()
+return|;
+block|}
 block|}
 end_class
 

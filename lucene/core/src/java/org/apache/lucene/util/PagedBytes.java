@@ -657,6 +657,33 @@ literal|0
 assert|;
 block|}
 block|}
+comment|/** Returns approximate RAM bytes used */
+DECL|method|ramBytesUsed
+specifier|public
+name|long
+name|ramBytesUsed
+parameter_list|()
+block|{
+return|return
+operator|(
+operator|(
+name|blocks
+operator|!=
+literal|null
+operator|)
+condition|?
+operator|(
+name|blockSize
+operator|*
+name|blocks
+operator|.
+name|length
+operator|)
+else|:
+literal|0
+operator|)
+return|;
+block|}
 block|}
 comment|/** 1&lt;&lt;blockBits must be bigger than biggest single    *  BytesRef slice that will be pulled */
 DECL|method|PagedBytes

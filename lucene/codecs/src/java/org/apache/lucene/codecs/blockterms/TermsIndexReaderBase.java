@@ -183,6 +183,14 @@ name|ord
 parameter_list|()
 function_decl|;
 block|}
+comment|/** Returns approximate RAM bytes used */
+DECL|method|ramBytesUsed
+specifier|public
+specifier|abstract
+name|long
+name|ramBytesUsed
+parameter_list|()
+function_decl|;
 block|}
 end_class
 

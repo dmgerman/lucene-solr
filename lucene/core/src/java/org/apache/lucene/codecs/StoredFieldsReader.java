@@ -96,6 +96,14 @@ name|StoredFieldsReader
 name|clone
 parameter_list|()
 function_decl|;
+comment|/** Returns approximate RAM bytes used */
+DECL|method|ramBytesUsed
+specifier|public
+specifier|abstract
+name|long
+name|ramBytesUsed
+parameter_list|()
+function_decl|;
 block|}
 end_class
 

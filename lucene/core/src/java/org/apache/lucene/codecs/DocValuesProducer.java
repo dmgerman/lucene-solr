@@ -204,6 +204,14 @@ parameter_list|)
 throws|throws
 name|IOException
 function_decl|;
+comment|/** Returns approximate RAM bytes used */
+DECL|method|ramBytesUsed
+specifier|public
+specifier|abstract
+name|long
+name|ramBytesUsed
+parameter_list|()
+function_decl|;
 comment|/**     * A simple implementation of {@link DocValuesProducer#getDocsWithField} that     * returns {@code true} if a document has an ordinal&gt;= 0    *<p>    * Codecs can choose to use this (or implement it more efficiently another way), but    * in most cases a Bits is unnecessary anyway: users can check this as they go.    */
 DECL|class|SortedDocsWithField
 specifier|public

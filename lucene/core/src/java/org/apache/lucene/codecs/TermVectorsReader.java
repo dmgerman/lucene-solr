@@ -122,6 +122,14 @@ parameter_list|)
 throws|throws
 name|IOException
 function_decl|;
+comment|/** Returns approximate RAM bytes used */
+DECL|method|ramBytesUsed
+specifier|public
+specifier|abstract
+name|long
+name|ramBytesUsed
+parameter_list|()
+function_decl|;
 comment|/** Create a clone that one caller at a time may use to    *  read term vectors. */
 annotation|@
 name|Override

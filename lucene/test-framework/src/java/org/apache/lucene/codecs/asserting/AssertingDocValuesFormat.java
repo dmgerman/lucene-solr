@@ -274,6 +274,20 @@ name|OpenBitSet
 import|;
 end_import
 
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|util
+operator|.
+name|RamUsageEstimator
+import|;
+end_import
+
 begin_comment
 comment|/**  * Just like {@link Lucene45DocValuesFormat} but with additional asserts.  */
 end_comment
@@ -1773,6 +1787,21 @@ operator|.
 name|close
 argument_list|()
 expr_stmt|;
+block|}
+annotation|@
+name|Override
+DECL|method|ramBytesUsed
+specifier|public
+name|long
+name|ramBytesUsed
+parameter_list|()
+block|{
+return|return
+name|in
+operator|.
+name|ramBytesUsed
+argument_list|()
+return|;
 block|}
 block|}
 block|}

@@ -3296,6 +3296,31 @@ comment|// this makes no sense for us, because our state is per-docsenum.
 comment|// we don't want to copy any stuff over to another docsenum ever!
 block|}
 block|}
+annotation|@
+name|Override
+DECL|method|ramBytesUsed
+specifier|public
+name|long
+name|ramBytesUsed
+parameter_list|()
+block|{
+return|return
+operator|(
+operator|(
+name|wrappedPostingsReader
+operator|!=
+literal|null
+operator|)
+condition|?
+name|wrappedPostingsReader
+operator|.
+name|ramBytesUsed
+argument_list|()
+else|:
+literal|0
+operator|)
+return|;
+block|}
 block|}
 end_class
 

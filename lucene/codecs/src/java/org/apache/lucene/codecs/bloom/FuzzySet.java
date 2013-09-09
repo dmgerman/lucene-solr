@@ -84,6 +84,20 @@ name|FixedBitSet
 import|;
 end_import
 
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|util
+operator|.
+name|RamUsageEstimator
+import|;
+end_import
+
 begin_comment
 comment|/**  *<p>  * A class used to represent a set of many, potentially large, values (e.g. many  * long strings such as URLs), using a significantly smaller amount of memory.  *</p>  *<p>  * The set is "lossy" in that it cannot definitively state that is does contain  * a value but it<em>can</em> definitively say if a value is<em>not</em> in  * the set. It can therefore be used as a Bloom Filter.  *</p>   * Another application of the set is that it can be used to perform fuzzy counting because  * it can estimate reasonably accurately how many unique values are contained in the set.   *</p>  *<p>This class is NOT threadsafe.</p>  *<p>  * Internally a Bitset is used to record values and once a client has finished recording  * a stream of values the {@link #downsize(float)} method can be used to create a suitably smaller set that  * is sized appropriately for the number of values recorded and desired saturation levels.   *   *</p>  * @lucene.experimental  */
 end_comment
@@ -1151,6 +1165,24 @@ operator|(
 name|float
 operator|)
 name|bloomSize
+return|;
+block|}
+DECL|method|ramBytesUsed
+specifier|public
+name|long
+name|ramBytesUsed
+parameter_list|()
+block|{
+return|return
+name|RamUsageEstimator
+operator|.
+name|sizeOf
+argument_list|(
+name|filter
+operator|.
+name|getBits
+argument_list|()
+argument_list|)
 return|;
 block|}
 block|}
