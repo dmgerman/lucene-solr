@@ -3603,6 +3603,18 @@ operator|<=
 literal|0x7d
 condition|)
 block|{
+if|if
+condition|(
+name|label
+operator|!=
+literal|0x22
+operator|&&
+name|label
+operator|!=
+literal|0x5c
+condition|)
+block|{
+comment|// " OR \
 return|return
 name|Character
 operator|.
@@ -3615,8 +3627,7 @@ name|label
 argument_list|)
 return|;
 block|}
-else|else
-block|{
+block|}
 return|return
 literal|"0x"
 operator|+
@@ -3627,7 +3638,6 @@ argument_list|(
 name|label
 argument_list|)
 return|;
-block|}
 block|}
 comment|/** Just maps each UTF16 unit (char) to the ints in an    *  IntsRef. */
 DECL|method|toUTF16

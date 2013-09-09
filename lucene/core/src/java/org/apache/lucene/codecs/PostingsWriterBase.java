@@ -46,6 +46,20 @@ name|lucene
 operator|.
 name|store
 operator|.
+name|DataOutput
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|store
+operator|.
 name|IndexOutput
 import|;
 end_import
@@ -98,11 +112,11 @@ name|PostingsWriterBase
 parameter_list|()
 block|{   }
 comment|/** Called once after startup, before any terms have been    *  added.  Implementations typically write a header to    *  the provided {@code termsOut}. */
-DECL|method|start
+DECL|method|init
 specifier|public
 specifier|abstract
 name|void
-name|start
+name|init
 parameter_list|(
 name|IndexOutput
 name|termsOut
@@ -110,7 +124,17 @@ parameter_list|)
 throws|throws
 name|IOException
 function_decl|;
-comment|/** Start a new term.  Note that a matching call to {@link    *  #finishTerm(TermStats)} is done, only if the term has at least one    *  document. */
+comment|/** Return a newly created empty TermState */
+DECL|method|newTermState
+specifier|public
+specifier|abstract
+name|BlockTermState
+name|newTermState
+parameter_list|()
+throws|throws
+name|IOException
+function_decl|;
+comment|/** Start a new term.  Note that a matching call to {@link    *  #finishTerm(BlockTermState)} is done, only if the term has at least one    *  document. */
 DECL|method|startTerm
 specifier|public
 specifier|abstract
@@ -120,40 +144,51 @@ parameter_list|()
 throws|throws
 name|IOException
 function_decl|;
-comment|/** Flush count terms starting at start "backwards", as a    *  block. start is a negative offset from the end of the    *  terms stack, ie bigger start means further back in    *  the stack. */
-DECL|method|flushTermsBlock
-specifier|public
-specifier|abstract
-name|void
-name|flushTermsBlock
-parameter_list|(
-name|int
-name|start
-parameter_list|,
-name|int
-name|count
-parameter_list|)
-throws|throws
-name|IOException
-function_decl|;
-comment|/** Finishes the current term.  The provided {@link    *  TermStats} contains the term's summary statistics. */
+comment|/** Finishes the current term.  The provided {@link    *  BlockTermState} contains the term's summary statistics,     *  and will holds metadata from PBF when returned */
 DECL|method|finishTerm
 specifier|public
 specifier|abstract
 name|void
 name|finishTerm
 parameter_list|(
-name|TermStats
-name|stats
+name|BlockTermState
+name|state
 parameter_list|)
 throws|throws
 name|IOException
 function_decl|;
-comment|/** Called when the writing switches to another field. */
-DECL|method|setField
+comment|/**    * Encode metadata as long[] and byte[]. {@code absolute} controls whether     * current term is delta encoded according to latest term.     * Usually elements in {@code longs} are file pointers, so each one always     * increases when a new term is consumed. {@code out} is used to write generic    * bytes, which are not monotonic.    *    * NOTE: sometimes long[] might contain "don't care" values that are unused, e.g.     * the pointer to postings list may not be defined for some terms but is defined    * for others, if it is designed to inline  some postings data in term dictionary.    * In this case, the postings writer should always use the last value, so that each    * element in metadata long[] remains monotonic.    */
+DECL|method|encodeTerm
 specifier|public
 specifier|abstract
 name|void
+name|encodeTerm
+parameter_list|(
+name|long
+index|[]
+name|longs
+parameter_list|,
+name|DataOutput
+name|out
+parameter_list|,
+name|FieldInfo
+name|fieldInfo
+parameter_list|,
+name|BlockTermState
+name|state
+parameter_list|,
+name|boolean
+name|absolute
+parameter_list|)
+throws|throws
+name|IOException
+function_decl|;
+comment|/**     * Sets the current field for writing, and returns the    * fixed length of long[] metadata (which is fixed per    * field), called when the writing switches to another field. */
+comment|// TODO: better name?
+DECL|method|setField
+specifier|public
+specifier|abstract
+name|int
 name|setField
 parameter_list|(
 name|FieldInfo

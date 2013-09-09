@@ -987,27 +987,16 @@ name|b
 operator|.
 name|append
 argument_list|(
-literal|" label="
+literal|" label=0x"
 operator|+
+name|Integer
+operator|.
+name|toHexString
+argument_list|(
 name|label
 argument_list|)
-expr_stmt|;
-if|if
-condition|(
-name|flag
-argument_list|(
-name|BIT_LAST_ARC
-argument_list|)
-condition|)
-block|{
-name|b
-operator|.
-name|append
-argument_list|(
-literal|" last"
 argument_list|)
 expr_stmt|;
-block|}
 if|if
 condition|(
 name|flag
@@ -1028,6 +1017,22 @@ if|if
 condition|(
 name|flag
 argument_list|(
+name|BIT_LAST_ARC
+argument_list|)
+condition|)
+block|{
+name|b
+operator|.
+name|append
+argument_list|(
+literal|" last"
+argument_list|)
+expr_stmt|;
+block|}
+if|if
+condition|(
+name|flag
+argument_list|(
 name|BIT_TARGET_NEXT
 argument_list|)
 condition|)
@@ -1037,6 +1042,22 @@ operator|.
 name|append
 argument_list|(
 literal|" targetNext"
+argument_list|)
+expr_stmt|;
+block|}
+if|if
+condition|(
+name|flag
+argument_list|(
+name|BIT_STOP_NODE
+argument_list|)
+condition|)
+block|{
+name|b
+operator|.
+name|append
+argument_list|(
+literal|" stop"
 argument_list|)
 expr_stmt|;
 block|}
@@ -3910,6 +3931,20 @@ name|nextFinalOutput
 operator|=
 name|emptyOutput
 expr_stmt|;
+if|if
+condition|(
+name|emptyOutput
+operator|!=
+name|NO_OUTPUT
+condition|)
+block|{
+name|arc
+operator|.
+name|flags
+operator||=
+name|BIT_ARC_HAS_FINAL_OUTPUT
+expr_stmt|;
+block|}
 block|}
 else|else
 block|{

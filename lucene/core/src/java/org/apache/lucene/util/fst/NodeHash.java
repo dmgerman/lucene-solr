@@ -370,7 +370,7 @@ literal|false
 return|;
 block|}
 comment|// hash code for an unfrozen node.  This must be identical
-comment|// to the un-frozen case (below)!!
+comment|// to the frozen case (below)!!
 DECL|method|hash
 specifier|private
 name|long
