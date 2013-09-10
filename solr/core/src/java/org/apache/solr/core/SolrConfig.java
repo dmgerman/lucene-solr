@@ -850,13 +850,13 @@ operator|=
 literal|"indexConfig"
 expr_stmt|;
 block|}
-name|reopenReaders
+name|nrtMode
 operator|=
 name|getBool
 argument_list|(
 name|indexConfigPrefix
 operator|+
-literal|"/reopenReaders"
+literal|"/nrtMode"
 argument_list|,
 literal|true
 argument_list|)
@@ -1878,11 +1878,11 @@ specifier|final
 name|boolean
 name|enableLazyFieldLoading
 decl_stmt|;
-DECL|field|reopenReaders
+DECL|field|nrtMode
 specifier|public
 specifier|final
 name|boolean
-name|reopenReaders
+name|nrtMode
 decl_stmt|;
 comment|// DocSet
 DECL|field|hashSetInverseLoadFactor

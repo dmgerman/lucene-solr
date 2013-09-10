@@ -22,20 +22,6 @@ name|org
 operator|.
 name|apache
 operator|.
-name|commons
-operator|.
-name|io
-operator|.
-name|FileUtils
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
 name|lucene
 operator|.
 name|index
@@ -231,16 +217,6 @@ operator|.
 name|io
 operator|.
 name|File
-import|;
-end_import
-
-begin_import
-import|import
-name|java
-operator|.
-name|io
-operator|.
-name|FileNotFoundException
 import|;
 end_import
 
@@ -985,7 +961,7 @@ literal|null
 operator|&&
 name|solrConfig
 operator|.
-name|reopenReaders
+name|nrtMode
 operator|==
 literal|false
 condition|)
@@ -994,7 +970,7 @@ throw|throw
 operator|new
 name|IllegalArgumentException
 argument_list|(
-literal|"Supplying a mergedSegmentWarmer will do nothing since reopenReaders is false"
+literal|"Supplying a mergedSegmentWarmer will do nothing since nrtMode is false"
 argument_list|)
 throw|;
 block|}
