@@ -1011,13 +1011,10 @@ literal|"message"
 argument_list|,
 name|event
 operator|.
-name|getMessage
+name|getRenderedMessage
 argument_list|()
-operator|+
-literal|""
 argument_list|)
 expr_stmt|;
-comment|// avoid NPE when we have an event with null message
 name|ThrowableInformation
 name|t
 init|=
