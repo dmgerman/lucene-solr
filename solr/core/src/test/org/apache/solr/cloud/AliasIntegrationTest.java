@@ -934,6 +934,17 @@ name|nextBoolean
 argument_list|()
 argument_list|)
 decl_stmt|;
+name|cloudSolrServer
+operator|.
+name|setParallelUpdates
+argument_list|(
+name|random
+argument_list|()
+operator|.
+name|nextBoolean
+argument_list|()
+argument_list|)
+expr_stmt|;
 name|query
 operator|=
 operator|new

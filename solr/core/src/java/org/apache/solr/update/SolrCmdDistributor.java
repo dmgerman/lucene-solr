@@ -224,7 +224,7 @@ name|solrj
 operator|.
 name|request
 operator|.
-name|UpdateRequestExt
+name|UpdateRequest
 import|;
 end_import
 
@@ -911,11 +911,11 @@ argument_list|(
 literal|false
 argument_list|)
 expr_stmt|;
-name|UpdateRequestExt
+name|UpdateRequest
 name|ureq
 init|=
 operator|new
-name|UpdateRequestExt
+name|UpdateRequest
 argument_list|()
 decl_stmt|;
 name|ureq
@@ -1031,11 +1031,11 @@ name|params
 operator|=
 name|params
 expr_stmt|;
-name|UpdateRequestExt
+name|UpdateRequest
 name|ureq
 init|=
 operator|new
-name|UpdateRequestExt
+name|UpdateRequest
 argument_list|()
 decl_stmt|;
 if|if
@@ -1106,7 +1106,7 @@ parameter_list|(
 name|Node
 name|node
 parameter_list|,
-name|UpdateRequestExt
+name|UpdateRequest
 name|ureq
 parameter_list|)
 block|{
@@ -1271,11 +1271,11 @@ literal|true
 argument_list|)
 expr_stmt|;
 comment|// currently, we dont try to piggy back on outstanding adds or deletes
-name|UpdateRequestExt
+name|UpdateRequest
 name|ureq
 init|=
 operator|new
-name|UpdateRequestExt
+name|UpdateRequest
 argument_list|()
 decl_stmt|;
 name|ureq
@@ -1454,7 +1454,7 @@ DECL|method|addCommit
 name|void
 name|addCommit
 parameter_list|(
-name|UpdateRequestExt
+name|UpdateRequest
 name|ureq
 parameter_list|,
 name|CommitUpdateCommand
@@ -1576,11 +1576,11 @@ operator|<
 name|limit
 condition|)
 continue|continue;
-name|UpdateRequestExt
+name|UpdateRequest
 name|ureq
 init|=
 operator|new
-name|UpdateRequestExt
+name|UpdateRequest
 argument_list|()
 decl_stmt|;
 name|ModifiableSolrParams
@@ -1763,11 +1763,11 @@ operator|<
 name|limit
 condition|)
 continue|continue;
-name|UpdateRequestExt
+name|UpdateRequest
 name|ureq
 init|=
 operator|new
-name|UpdateRequestExt
+name|UpdateRequest
 argument_list|()
 decl_stmt|;
 name|ModifiableSolrParams
@@ -1958,7 +1958,7 @@ name|Node
 name|node
 decl_stmt|;
 DECL|field|ureq
-name|UpdateRequestExt
+name|UpdateRequest
 name|ureq
 decl_stmt|;
 DECL|field|ursp
@@ -1986,7 +1986,7 @@ DECL|method|submit
 name|void
 name|submit
 parameter_list|(
-name|UpdateRequestExt
+name|UpdateRequest
 name|ureq
 parameter_list|,
 name|Node

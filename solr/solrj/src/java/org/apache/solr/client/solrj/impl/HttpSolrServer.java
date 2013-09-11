@@ -785,12 +785,14 @@ decl_stmt|;
 comment|/**    * Default response parser is BinaryResponseParser    *<p/>    * This parser represents the default Response Parser chosen to parse the    * response if the parser were not specified as part of the request.    *     * @see org.apache.solr.client.solrj.impl.BinaryResponseParser    */
 DECL|field|parser
 specifier|protected
+specifier|volatile
 name|ResponseParser
 name|parser
 decl_stmt|;
 comment|/**    * The RequestWriter used to write all requests to Solr    *     * @see org.apache.solr.client.solrj.request.RequestWriter    */
 DECL|field|requestWriter
 specifier|protected
+specifier|volatile
 name|RequestWriter
 name|requestWriter
 init|=

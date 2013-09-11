@@ -8160,6 +8160,17 @@ argument_list|)
 expr_stmt|;
 name|commondCloudSolrServer
 operator|.
+name|setParallelUpdates
+argument_list|(
+name|random
+argument_list|()
+operator|.
+name|nextBoolean
+argument_list|()
+argument_list|)
+expr_stmt|;
+name|commondCloudSolrServer
+operator|.
 name|setDefaultCollection
 argument_list|(
 name|DEFAULT_COLLECTION
