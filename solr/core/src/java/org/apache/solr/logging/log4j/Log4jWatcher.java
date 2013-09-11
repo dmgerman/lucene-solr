@@ -1013,11 +1013,11 @@ name|event
 operator|.
 name|getMessage
 argument_list|()
-operator|.
-name|toString
-argument_list|()
+operator|+
+literal|""
 argument_list|)
 expr_stmt|;
+comment|// avoid NPE when we have an event with null message
 name|ThrowableInformation
 name|t
 init|=
