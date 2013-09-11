@@ -337,6 +337,9 @@ name|rsp
 argument_list|)
 expr_stmt|;
 name|NamedList
+argument_list|<
+name|?
+argument_list|>
 name|values
 init|=
 name|rsp

@@ -1665,11 +1665,7 @@ name|Override
 annotation|@
 name|SuppressWarnings
 argument_list|(
-block|{
-literal|"unchecked"
-block|,
 literal|"rawtypes"
-block|}
 argument_list|)
 DECL|method|init
 specifier|public
@@ -3430,6 +3426,21 @@ expr_stmt|;
 block|}
 return|return
 name|result
+return|;
+block|}
+comment|/**    * Expose clustering algorithm class for tests.    */
+DECL|method|getClusteringAlgorithmClass
+name|Class
+argument_list|<
+name|?
+extends|extends
+name|IClusteringAlgorithm
+argument_list|>
+name|getClusteringAlgorithmClass
+parameter_list|()
+block|{
+return|return
+name|clusteringAlgorithmClass
 return|;
 block|}
 comment|/**    * Prepares a map of Solr field names (keys) to the corresponding Carrot2    * custom field names.    */

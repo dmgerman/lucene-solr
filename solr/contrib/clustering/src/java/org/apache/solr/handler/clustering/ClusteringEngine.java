@@ -87,6 +87,9 @@ name|String
 name|init
 parameter_list|(
 name|NamedList
+argument_list|<
+name|?
+argument_list|>
 name|config
 parameter_list|,
 name|SolrCore

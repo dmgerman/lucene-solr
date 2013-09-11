@@ -20,6 +20,16 @@ end_comment
 
 begin_import
 import|import
+name|java
+operator|.
+name|util
+operator|.
+name|Map
+import|;
+end_import
+
+begin_import
+import|import
 name|org
 operator|.
 name|apache
@@ -522,6 +532,29 @@ argument_list|()
 argument_list|)
 argument_list|)
 expr_stmt|;
+block|}
+comment|/**    * Expose package-scope methods from {@link ClusteringComponent} to tests.    */
+DECL|method|getSearchClusteringEngines
+specifier|protected
+specifier|final
+name|Map
+argument_list|<
+name|String
+argument_list|,
+name|SearchClusteringEngine
+argument_list|>
+name|getSearchClusteringEngines
+parameter_list|(
+name|ClusteringComponent
+name|comp
+parameter_list|)
+block|{
+return|return
+name|comp
+operator|.
+name|getSearchClusteringEngines
+argument_list|()
+return|;
 block|}
 DECL|field|DOCUMENTS
 specifier|final

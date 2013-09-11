@@ -82,6 +82,9 @@ DECL|method|cluster
 specifier|public
 specifier|abstract
 name|NamedList
+argument_list|<
+name|?
+argument_list|>
 name|cluster
 parameter_list|(
 name|SolrParams
@@ -93,6 +96,9 @@ DECL|method|cluster
 specifier|public
 specifier|abstract
 name|NamedList
+argument_list|<
+name|?
+argument_list|>
 name|cluster
 parameter_list|(
 name|DocSet
