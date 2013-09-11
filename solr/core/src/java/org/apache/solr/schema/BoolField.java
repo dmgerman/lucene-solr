@@ -995,11 +995,12 @@ operator|new
 name|BytesRef
 argument_list|()
 decl_stmt|;
+comment|// if no values in the segment, default trueOrd to something other then -1 (missing)
 name|int
 name|tord
 init|=
 operator|-
-literal|1
+literal|2
 decl_stmt|;
 for|for
 control|(
