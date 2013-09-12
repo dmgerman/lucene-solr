@@ -1055,10 +1055,6 @@ name|i
 index|]
 operator|.
 name|core
-argument_list|,
-name|IOContext
-operator|.
-name|READ
 argument_list|)
 expr_stmt|;
 block|}

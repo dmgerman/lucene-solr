@@ -227,15 +227,9 @@ argument_list|()
 argument_list|,
 name|si
 argument_list|,
-operator|new
-name|IOContext
-argument_list|(
 name|IOContext
 operator|.
-name|READ
-argument_list|,
-literal|true
-argument_list|)
+name|READONCE
 argument_list|)
 expr_stmt|;
 block|}
@@ -303,9 +297,6 @@ name|si
 parameter_list|,
 name|SegmentCoreReaders
 name|core
-parameter_list|,
-name|IOContext
-name|context
 parameter_list|)
 throws|throws
 name|IOException
@@ -336,7 +327,9 @@ name|dir
 argument_list|,
 name|si
 argument_list|,
-name|context
+name|IOContext
+operator|.
+name|READONCE
 argument_list|)
 argument_list|,
 name|si
