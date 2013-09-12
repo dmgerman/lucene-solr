@@ -122,7 +122,7 @@ specifier|public
 class|class
 name|RAMDirectory
 extends|extends
-name|Directory
+name|BaseDirectory
 block|{
 DECL|field|fileMap
 specifier|protected

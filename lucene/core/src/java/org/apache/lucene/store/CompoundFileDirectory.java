@@ -197,7 +197,7 @@ specifier|final
 class|class
 name|CompoundFileDirectory
 extends|extends
-name|Directory
+name|BaseDirectory
 block|{
 comment|/** Offset/Length for a slice inside of a compound file */
 DECL|class|FileEntry

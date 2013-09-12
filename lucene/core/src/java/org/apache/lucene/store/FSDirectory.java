@@ -173,7 +173,7 @@ specifier|abstract
 class|class
 name|FSDirectory
 extends|extends
-name|Directory
+name|BaseDirectory
 block|{
 DECL|field|directory
 specifier|protected

@@ -86,7 +86,7 @@ specifier|public
 class|class
 name|FileSwitchDirectory
 extends|extends
-name|Directory
+name|BaseDirectory
 block|{
 DECL|field|secondaryDir
 specifier|private
