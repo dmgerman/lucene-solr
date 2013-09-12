@@ -2233,7 +2233,9 @@ argument_list|()
 operator|.
 name|get
 argument_list|(
-literal|"collection"
+name|ZkStateReader
+operator|.
+name|COLLECTION_PROP
 argument_list|)
 decl_stmt|;
 name|String
@@ -2249,7 +2251,9 @@ argument_list|()
 operator|.
 name|get
 argument_list|(
-literal|"shard"
+name|ZkStateReader
+operator|.
+name|SHARD_ID_PROP
 argument_list|)
 decl_stmt|;
 name|Map
@@ -2273,7 +2277,9 @@ name|props
 operator|.
 name|put
 argument_list|(
-literal|"collection"
+name|ZkStateReader
+operator|.
+name|COLLECTION_PROP
 argument_list|,
 name|name
 argument_list|)

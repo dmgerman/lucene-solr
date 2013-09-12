@@ -4092,6 +4092,21 @@ operator|.
 name|SHARD_ID_PROP
 argument_list|)
 decl_stmt|;
+name|log
+operator|.
+name|info
+argument_list|(
+literal|"Removing collection: "
+operator|+
+name|collection
+operator|+
+literal|" shard: "
+operator|+
+name|sliceId
+operator|+
+literal|" from clusterstate"
+argument_list|)
+expr_stmt|;
 specifier|final
 name|Map
 argument_list|<
