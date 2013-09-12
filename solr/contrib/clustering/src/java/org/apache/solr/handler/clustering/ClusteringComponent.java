@@ -44,16 +44,6 @@ name|java
 operator|.
 name|util
 operator|.
-name|HashMap
-import|;
-end_import
-
-begin_import
-import|import
-name|java
-operator|.
-name|util
-operator|.
 name|HashSet
 import|;
 end_import
@@ -308,6 +298,20 @@ name|solr
 operator|.
 name|util
 operator|.
+name|SolrPluginUtils
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|solr
+operator|.
+name|util
+operator|.
 name|plugin
 operator|.
 name|SolrCoreAware
@@ -349,7 +353,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Provide a plugin for performing cluster analysis. This can either be applied to   * search results (e.g., via<a href="http://project.carrot2.org">Carrot<sup>2</sup></a>) or for  * clustering documents (e.g., via<a href="http://mahout.apache.org/">Mahout</a>).  *<p>  * This engine is experimental. Output from this engine is subject to change in future releases.</p>  *<p>  * See Solr example for configuration examples.</p>    */
+comment|/**  * Provides a plugin for performing cluster analysis. This can either be applied to   * search results (e.g., via<a href="http://project.carrot2.org">Carrot<sup>2</sup></a>) or for  * clustering documents (e.g., via<a href="http://mahout.apache.org/">Mahout</a>).  *<p>  * See Solr example for configuration examples.</p>  *   * @lucene.experimental  */
 end_comment
 
 begin_class
@@ -441,6 +445,7 @@ argument_list|(
 name|searchClusteringEngines
 argument_list|)
 decl_stmt|;
+comment|/**    * Initialization parameters temporarily saved here, the component    * is initialized in {@link #inform(SolrCore)} because we need to know    * the core's {@link SolrResourceLoader}.    *     * @see #init(NamedList)    */
 DECL|field|initParams
 specifier|private
 name|NamedList
@@ -872,13 +877,9 @@ name|Integer
 argument_list|>
 name|docIds
 init|=
-operator|new
-name|HashMap
-argument_list|<
-name|SolrDocument
-argument_list|,
-name|Integer
-argument_list|>
+name|Maps
+operator|.
+name|newHashMapWithExpectedSize
 argument_list|(
 name|results
 operator|.
@@ -891,9 +892,9 @@ decl_stmt|;
 name|SolrDocumentList
 name|solrDocList
 init|=
-name|engine
+name|SolrPluginUtils
 operator|.
-name|getSolrDocumentList
+name|docListToSolrDocumentList
 argument_list|(
 name|results
 operator|.
@@ -902,6 +903,18 @@ argument_list|,
 name|rb
 operator|.
 name|req
+operator|.
+name|getSearcher
+argument_list|()
+argument_list|,
+name|engine
+operator|.
+name|getFieldsToLoad
+argument_list|(
+name|rb
+operator|.
+name|req
+argument_list|)
 argument_list|,
 name|docIds
 argument_list|)

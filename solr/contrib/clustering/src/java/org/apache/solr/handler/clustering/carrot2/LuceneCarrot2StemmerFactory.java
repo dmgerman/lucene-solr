@@ -357,7 +357,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * An implementation of Carrot2's {@link IStemmerFactory} based on Lucene's  * APIs. Should the relevant Lucene APIs need to change, the changes can be made  * in this class.  */
+comment|/**  * An implementation of Carrot2's {@link IStemmerFactory} based on Lucene's  * APIs. Should the relevant Lucene APIs need to change, the changes can be made  * in this class.  *   * @lucene.experimental  */
 end_comment
 
 begin_class

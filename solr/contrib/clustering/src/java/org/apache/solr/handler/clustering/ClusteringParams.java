@@ -19,7 +19,7 @@ comment|/*  * Licensed to the Apache Software Foundation (ASF) under one or more
 end_comment
 
 begin_comment
-comment|/**  *  *  **/
+comment|/**  * @lucene.experimental  */
 end_comment
 
 begin_interface
@@ -70,7 +70,7 @@ name|CLUSTERING_PREFIX
 operator|+
 literal|"collection"
 decl_stmt|;
-comment|/**    * When document clustering, cluster on the Doc Set    */
+comment|/**    * When clustering full documents, cluster on the Doc Set.    */
 DECL|field|USE_DOC_SET
 specifier|public
 specifier|static

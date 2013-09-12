@@ -323,7 +323,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * An implementation of Carrot2's {@link ILexicalDataFactory} that adds stop  * words from a field's StopFilter to the default stop words used in Carrot2,  * for all languages Carrot2 supports. Completely replacing Carrot2 stop words  * with Solr's wouldn't make much sense because clustering needs more aggressive  * stop words removal. In other words, if something is a stop word during  * indexing, then it should also be a stop word during clustering, but not the  * other way round.  */
+comment|/**  * An implementation of Carrot2's {@link ILexicalDataFactory} that adds stop  * words from a field's StopFilter to the default stop words used in Carrot2,  * for all languages Carrot2 supports. Completely replacing Carrot2 stop words  * with Solr's wouldn't make much sense because clustering needs more aggressive  * stop words removal. In other words, if something is a stop word during  * indexing, then it should also be a stop word during clustering, but not the  * other way round.  *   * @lucene.experimental  */
 end_comment
 
 begin_class

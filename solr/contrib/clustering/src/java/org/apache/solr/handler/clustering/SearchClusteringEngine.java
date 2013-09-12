@@ -22,16 +22,6 @@ begin_import
 import|import
 name|java
 operator|.
-name|io
-operator|.
-name|IOException
-import|;
-end_import
-
-begin_import
-import|import
-name|java
-operator|.
 name|util
 operator|.
 name|Map
@@ -112,28 +102,14 @@ name|apache
 operator|.
 name|solr
 operator|.
-name|search
+name|response
 operator|.
-name|DocList
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|solr
-operator|.
-name|util
-operator|.
-name|SolrPluginUtils
+name|SolrQueryResponse
 import|;
 end_import
 
 begin_comment
-comment|/**  *  *  **/
+comment|/**  * Base class for clustering engines performing cluster analysis on search  * results.  *   * @lucene.experimental  */
 end_comment
 
 begin_class
@@ -145,25 +121,7 @@ name|SearchClusteringEngine
 extends|extends
 name|ClusteringEngine
 block|{
-annotation|@
-name|Deprecated
-DECL|method|cluster
-specifier|public
-specifier|abstract
-name|Object
-name|cluster
-parameter_list|(
-name|Query
-name|query
-parameter_list|,
-name|DocList
-name|docList
-parameter_list|,
-name|SolrQueryRequest
-name|sreq
-parameter_list|)
-function_decl|;
-comment|// TODO: need DocList, too?
+comment|/**    * Do the clustering, return a clusters structure to be appended to    * {@link SolrQueryResponse}.    */
 DECL|method|cluster
 specifier|public
 specifier|abstract
@@ -188,7 +146,7 @@ name|SolrQueryRequest
 name|sreq
 parameter_list|)
 function_decl|;
-comment|/**    * Returns the set of field names to load.    * Concrete classes can override this method if needed.    * Default implementation returns null, that is, all stored fields are loaded.    * @return set of field names to load    */
+comment|/**    * Returns the set of field names to load.    * Concrete classes can override this method if needed.    * Default implementation returns null, that is, all stored fields are loaded.    *     * @return The set of field names to load.    */
 DECL|method|getFieldsToLoad
 specifier|protected
 name|Set
@@ -203,49 +161,6 @@ parameter_list|)
 block|{
 return|return
 literal|null
-return|;
-block|}
-DECL|method|getSolrDocumentList
-specifier|public
-name|SolrDocumentList
-name|getSolrDocumentList
-parameter_list|(
-name|DocList
-name|docList
-parameter_list|,
-name|SolrQueryRequest
-name|sreq
-parameter_list|,
-name|Map
-argument_list|<
-name|SolrDocument
-argument_list|,
-name|Integer
-argument_list|>
-name|docIds
-parameter_list|)
-throws|throws
-name|IOException
-block|{
-return|return
-name|SolrPluginUtils
-operator|.
-name|docListToSolrDocumentList
-argument_list|(
-name|docList
-argument_list|,
-name|sreq
-operator|.
-name|getSearcher
-argument_list|()
-argument_list|,
-name|getFieldsToLoad
-argument_list|(
-name|sreq
-argument_list|)
-argument_list|,
-name|docIds
-argument_list|)
 return|;
 block|}
 block|}

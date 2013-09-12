@@ -45,7 +45,7 @@ comment|/*  * Licensed to the Apache Software Foundation (ASF) under one or more
 end_comment
 
 begin_comment
-comment|/**  * Carrot2 parameter mapping (recognized and mapped if passed via Solr configuration).  */
+comment|/**  * Carrot2 parameter mapping (recognized and mapped if passed via Solr configuration).  * @lucene.experimental  */
 end_comment
 
 begin_class
