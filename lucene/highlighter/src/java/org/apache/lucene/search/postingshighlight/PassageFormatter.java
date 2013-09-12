@@ -29,11 +29,11 @@ specifier|abstract
 class|class
 name|PassageFormatter
 block|{
-comment|/**    * Formats the top<code>passages</code> from<code>content</code>    * into a human-readable text snippet.    *    * @param passages top-N passages for the field. Note these are sorted in    *        the order that they appear in the document for convenience.    * @param content content for the field.    * @return formatted highlight    */
+comment|/**    * Formats the top<code>passages</code> from<code>content</code>    * into a human-readable text snippet.    *    * @param passages top-N passages for the field. Note these are sorted in    *        the order that they appear in the document for convenience.    * @param content content for the field.    * @return formatted highlight.  Note that for the    * non-expert APIs in {@link PostingsHighlighter} that    * return String, the toString method on the Object    * returned by this method is used to compute the string.    */
 DECL|method|format
 specifier|public
 specifier|abstract
-name|String
+name|Object
 name|format
 parameter_list|(
 name|Passage
