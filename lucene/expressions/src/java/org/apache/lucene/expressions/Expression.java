@@ -24,6 +24,26 @@ name|apache
 operator|.
 name|lucene
 operator|.
+name|expressions
+operator|.
+name|js
+operator|.
+name|JavascriptCompiler
+import|;
+end_import
+
+begin_comment
+comment|// javadocs
+end_comment
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
 name|queries
 operator|.
 name|function
@@ -63,7 +83,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Base class that computes the value of an expression for a document.  *<p>  * Example usage:  *<pre class="prettyprint">  *   // compile an expression:  *   Expression expr = JavascriptCompiler.compile("sqrt(_score) + ln(popularity)");  *     *   // SimpleBindings just maps variables to SortField instances  *   SimpleBindings bindings = new SimpleBindings();      *   bindings.add(new SortField("_score", SortField.Type.SCORE));  *   bindings.add(new SortField("popularity", SortField.Type.INT));  *     *   // create a sort field and sort by it (reverse order)  *   Sort sort = new Sort(expr.getSortField(bindings, true));  *   Query query = new TermQuery(new Term("body", "contents"));  *   searcher.search(query, null, 10, sort);  *</pre>  * @lucene.experimental  */
+comment|/**  * Base class that computes the value of an expression for a document.  *<p>  * Example usage:  *<pre class="prettyprint">  *   // compile an expression:  *   Expression expr = JavascriptCompiler.compile("sqrt(_score) + ln(popularity)");  *     *   // SimpleBindings just maps variables to SortField instances  *   SimpleBindings bindings = new SimpleBindings();      *   bindings.add(new SortField("_score", SortField.Type.SCORE));  *   bindings.add(new SortField("popularity", SortField.Type.INT));  *     *   // create a sort field and sort by it (reverse order)  *   Sort sort = new Sort(expr.getSortField(bindings, true));  *   Query query = new TermQuery(new Term("body", "contents"));  *   searcher.search(query, null, 10, sort);  *</pre>  * @see JavascriptCompiler#compile  * @lucene.experimental  */
 end_comment
 
 begin_class
@@ -73,48 +93,48 @@ specifier|abstract
 class|class
 name|Expression
 block|{
-comment|/** The original {@link String} expression, before it was compiled */
-DECL|field|expression
+comment|/** The original source text */
+DECL|field|sourceText
 specifier|public
 specifier|final
 name|String
-name|expression
+name|sourceText
 decl_stmt|;
-comment|/** The names of external references found in the expression */
-DECL|field|externals
+comment|/** Named variables referred to by this expression */
+DECL|field|variables
 specifier|public
 specifier|final
 name|String
 index|[]
-name|externals
+name|variables
 decl_stmt|;
-comment|/**    * Creates a new {@code CompiledExpression}.    *    * @param expression The expression that was compiled    * @param externals Names of external references found in the expression    */
+comment|/**    * Creates a new {@code Expression}.    *    * @param sourceText Source text for the expression: e.g. {@code ln(popularity)}    * @param variables Names of external variables referred to by the expression    */
 DECL|method|Expression
-specifier|public
+specifier|protected
 name|Expression
 parameter_list|(
 name|String
-name|expression
+name|sourceText
 parameter_list|,
 name|String
 index|[]
-name|externals
+name|variables
 parameter_list|)
 block|{
 name|this
 operator|.
-name|expression
+name|sourceText
 operator|=
-name|expression
+name|sourceText
 expr_stmt|;
 name|this
 operator|.
-name|externals
+name|variables
 operator|=
-name|externals
+name|variables
 expr_stmt|;
 block|}
-comment|/**    * Evaluates the expression for the given document.    *    * @param document<code>docId</code> of the document to compute a value for    * @param functionValues {@link FunctionValues} for each element of {@link #externals}.    * @return The computed value of the expression for the given document.    */
+comment|/**    * Evaluates the expression for the given document.    *    * @param document<code>docId</code> of the document to compute a value for    * @param functionValues {@link FunctionValues} for each element of {@link #variables}.    * @return The computed value of the expression for the given document.    */
 DECL|method|evaluate
 specifier|public
 specifier|abstract

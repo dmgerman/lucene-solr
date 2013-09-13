@@ -213,7 +213,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Simple class that binds expression variable names to {@link SortField}s.  *  * @lucene.experimental  */
+comment|/**  * Simple class that binds expression variable names to {@link SortField}s  * or other {@link Expression}s.  *  * @lucene.experimental  */
 end_comment
 
 begin_class

@@ -141,7 +141,7 @@ name|document
 parameter_list|)
 block|{
 return|return
-literal|"ComputedScorerValues("
+literal|"ScoreFunctionValues("
 operator|+
 name|document
 operator|+
