@@ -1548,6 +1548,24 @@ literal|false
 expr_stmt|;
 block|}
 block|}
+comment|// limit maximum length, theoretically 65536 is allowed in constant pool (in UTF-8 format).
+if|if
+condition|(
+name|sb
+operator|.
+name|length
+argument_list|()
+operator|>
+literal|1204
+condition|)
+name|sb
+operator|.
+name|setLength
+argument_list|(
+literal|1024
+argument_list|)
+expr_stmt|;
+comment|// remove trailing underscores
 for|for
 control|(
 name|int
