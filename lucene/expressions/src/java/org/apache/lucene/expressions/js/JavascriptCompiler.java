@@ -1032,6 +1032,15 @@ argument_list|)
 return|;
 block|}
 block|}
+DECL|field|CLASSFILE_VERSION
+specifier|private
+specifier|static
+specifier|final
+name|int
+name|CLASSFILE_VERSION
+init|=
+name|V1_7
+decl_stmt|;
 comment|// We use the same class name for all generated classes as they all have their own class loader.
 comment|// The source code is displayed as "source file name" in stack trace.
 DECL|field|COMPILED_EXPRESSION_CLASS
@@ -1287,6 +1296,35 @@ name|sourceText
 argument_list|)
 return|;
 block|}
+comment|/**    * This method is unused, it is just here to make sure that the funcion signatures don't change.    * If this method fails to compile, you also have to change the byte code generator to correctly    * use the FunctionValues class.    */
+annotation|@
+name|SuppressWarnings
+argument_list|(
+literal|"unused"
+argument_list|)
+DECL|method|unusedTestCompile
+specifier|private
+specifier|static
+name|void
+name|unusedTestCompile
+parameter_list|()
+block|{
+name|FunctionValues
+name|f
+init|=
+literal|null
+decl_stmt|;
+name|double
+name|ret
+init|=
+name|f
+operator|.
+name|doubleVal
+argument_list|(
+literal|2
+argument_list|)
+decl_stmt|;
+block|}
 comment|/**    * Constructs a compiler for expressions.    */
 DECL|method|JavascriptCompiler
 specifier|private
@@ -1480,7 +1518,7 @@ name|classWriter
 operator|.
 name|visit
 argument_list|(
-name|V1_7
+name|CLASSFILE_VERSION
 argument_list|,
 name|ACC_PUBLIC
 operator|+
