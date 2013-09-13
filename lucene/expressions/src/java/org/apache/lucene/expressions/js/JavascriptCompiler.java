@@ -1812,7 +1812,7 @@ name|method
 argument_list|,
 name|method
 operator|.
-name|signature
+name|descriptor
 argument_list|)
 expr_stmt|;
 name|typeCompile
