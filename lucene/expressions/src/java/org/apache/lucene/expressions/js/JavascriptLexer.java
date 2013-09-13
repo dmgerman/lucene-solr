@@ -74,13 +74,7 @@ begin_class
 annotation|@
 name|SuppressWarnings
 argument_list|(
-block|{
 literal|"all"
-block|,
-literal|"warnings"
-block|,
-literal|"unchecked"
-block|}
 argument_list|)
 DECL|class|JavascriptLexer
 class|class
@@ -571,6 +565,8 @@ argument_list|)
 expr_stmt|;
 block|}
 DECL|method|getGrammarFileName
+annotation|@
+name|Override
 specifier|public
 name|String
 name|getGrammarFileName
@@ -2038,7 +2034,10 @@ block|}
 comment|// src/java/org/apache/lucene/expressions/js/Javascript.g:334:31: ( 'a' .. 'z' | 'A' .. 'Z' | '0' .. '9' | '_' )*
 name|loop1
 label|:
-do|do
+while|while
+condition|(
+literal|true
+condition|)
 block|{
 name|int
 name|alt1
@@ -2217,11 +2216,6 @@ name|loop1
 break|;
 block|}
 block|}
-do|while
-condition|(
-literal|true
-condition|)
-do|;
 block|}
 name|state
 operator|.
@@ -2275,7 +2269,10 @@ literal|0
 decl_stmt|;
 name|loop2
 label|:
-do|do
+while|while
+condition|(
+literal|true
+condition|)
 block|{
 name|int
 name|alt2
@@ -2430,11 +2427,6 @@ name|cnt2
 operator|++
 expr_stmt|;
 block|}
-do|while
-condition|(
-literal|true
-condition|)
-do|;
 name|skip
 argument_list|()
 expr_stmt|;
@@ -2514,7 +2506,10 @@ expr_stmt|;
 comment|// src/java/org/apache/lucene/expressions/js/Javascript.g:342:29: ( DECIMALDIGIT )*
 name|loop3
 label|:
-do|do
+while|while
+condition|(
+literal|true
+condition|)
 block|{
 name|int
 name|alt3
@@ -2620,11 +2615,6 @@ name|loop3
 break|;
 block|}
 block|}
-do|while
-condition|(
-literal|true
-condition|)
-do|;
 comment|// src/java/org/apache/lucene/expressions/js/Javascript.g:342:43: ( EXPONENT )?
 name|int
 name|alt4
@@ -2693,7 +2683,10 @@ literal|0
 decl_stmt|;
 name|loop5
 label|:
-do|do
+while|while
+condition|(
+literal|true
+condition|)
 block|{
 name|int
 name|alt5
@@ -2822,11 +2815,6 @@ name|cnt5
 operator|++
 expr_stmt|;
 block|}
-do|while
-condition|(
-literal|true
-condition|)
-do|;
 comment|// src/java/org/apache/lucene/expressions/js/Javascript.g:343:28: ( EXPONENT )?
 name|int
 name|alt6
@@ -2997,7 +2985,10 @@ literal|0
 decl_stmt|;
 name|loop9
 label|:
-do|do
+while|while
+condition|(
+literal|true
+condition|)
 block|{
 name|int
 name|alt9
@@ -3126,11 +3117,6 @@ name|cnt9
 operator|++
 expr_stmt|;
 block|}
-do|while
-condition|(
-literal|true
-condition|)
-do|;
 block|}
 name|state
 operator|.
@@ -3242,6 +3228,21 @@ expr_stmt|;
 block|}
 else|else
 block|{
+name|int
+name|nvaeMark
+init|=
+name|input
+operator|.
+name|mark
+argument_list|()
+decl_stmt|;
+try|try
+block|{
+name|input
+operator|.
+name|consume
+argument_list|()
+expr_stmt|;
 name|NoViableAltException
 name|nvae
 init|=
@@ -3260,6 +3261,17 @@ decl_stmt|;
 throw|throw
 name|nvae
 throw|;
+block|}
+finally|finally
+block|{
+name|input
+operator|.
+name|rewind
+argument_list|(
+name|nvaeMark
+argument_list|)
+expr_stmt|;
+block|}
 block|}
 block|}
 else|else
@@ -3321,7 +3333,10 @@ literal|0
 decl_stmt|;
 name|loop11
 label|:
-do|do
+while|while
+condition|(
+literal|true
+condition|)
 block|{
 name|int
 name|alt11
@@ -3510,11 +3525,6 @@ name|cnt11
 operator|++
 expr_stmt|;
 block|}
-do|while
-condition|(
-literal|true
-condition|)
-do|;
 block|}
 name|state
 operator|.
@@ -3651,7 +3661,10 @@ expr_stmt|;
 comment|// src/java/org/apache/lucene/expressions/js/Javascript.g:359:16: ( DECIMALDIGIT )*
 name|loop12
 label|:
-do|do
+while|while
+condition|(
+literal|true
+condition|)
 block|{
 name|int
 name|alt12
@@ -3757,11 +3770,6 @@ name|loop12
 break|;
 block|}
 block|}
-do|while
-condition|(
-literal|true
-condition|)
-do|;
 block|}
 break|break;
 block|}
@@ -3940,7 +3948,10 @@ literal|0
 decl_stmt|;
 name|loop15
 label|:
-do|do
+while|while
+condition|(
+literal|true
+condition|)
 block|{
 name|int
 name|alt15
@@ -4069,11 +4080,6 @@ name|cnt15
 operator|++
 expr_stmt|;
 block|}
-do|while
-condition|(
-literal|true
-condition|)
-do|;
 block|}
 block|}
 finally|finally
@@ -4344,6 +4350,8 @@ comment|// do for sure before leaving
 block|}
 block|}
 comment|// $ANTLR end "OCTALDIGIT"
+annotation|@
+name|Override
 DECL|method|mTokens
 specifier|public
 name|void
@@ -5620,6 +5628,7 @@ expr_stmt|;
 block|}
 block|}
 DECL|class|DFA8
+specifier|protected
 class|class
 name|DFA8
 extends|extends
@@ -5688,6 +5697,8 @@ operator|=
 name|DFA8_transition
 expr_stmt|;
 block|}
+annotation|@
+name|Override
 DECL|method|getDescription
 specifier|public
 name|String
