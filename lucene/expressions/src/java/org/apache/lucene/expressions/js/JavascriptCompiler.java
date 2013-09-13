@@ -310,6 +310,20 @@ name|asm
 operator|.
 name|Opcodes
 operator|.
+name|ACC_SYNTHETIC
+import|;
+end_import
+
+begin_import
+import|import static
+name|org
+operator|.
+name|objectweb
+operator|.
+name|asm
+operator|.
+name|Opcodes
+operator|.
 name|ALOAD
 import|;
 end_import
@@ -1219,6 +1233,8 @@ operator|.
 name|INT_TYPE
 argument_list|)
 decl_stmt|;
+comment|// This maximum length is theoretically 65535 bytes, but as its CESU-8 encoded we dont know how large it is in bytes, so be safe
+comment|// rcmuir: "If your ranking function is that large you need to check yourself into a mental institution!"
 DECL|field|MAX_SOURCE_LENGTH
 specifier|private
 specifier|static
@@ -1266,6 +1282,10 @@ argument_list|(
 name|ClassWriter
 operator|.
 name|COMPUTE_FRAMES
+operator||
+name|ClassWriter
+operator|.
+name|COMPUTE_MAXS
 argument_list|)
 decl_stmt|;
 DECL|field|methodVisitor
@@ -1326,7 +1346,7 @@ literal|2
 argument_list|)
 decl_stmt|;
 block|}
-comment|/**    * Constructs a compiler for expressions.    */
+comment|/**    * Constructs a compiler for expressions.    * @param sourceText The expression to compile    */
 DECL|method|JavascriptCompiler
 specifier|private
 name|JavascriptCompiler
@@ -1355,7 +1375,7 @@ operator|=
 name|sourceText
 expr_stmt|;
 block|}
-comment|/**    * Compiles the given expression.    *    * @param sourceText The expression to compile    * @return A new compiled expression    * @throws ParseException on failure to compile    */
+comment|/**    * Compiles the given expression.    *    * @return A new compiled expression    * @throws ParseException on failure to compile    */
 DECL|method|compileExpression
 specifier|private
 name|Expression
@@ -1503,10 +1523,12 @@ argument_list|(
 name|CLASSFILE_VERSION
 argument_list|,
 name|ACC_PUBLIC
-operator|+
+operator||
 name|ACC_SUPER
-operator|+
+operator||
 name|ACC_FINAL
+operator||
+name|ACC_SYNTHETIC
 argument_list|,
 name|COMPILED_EXPRESSION_INTERNAL
 argument_list|,
@@ -1563,6 +1585,8 @@ operator|.
 name|visitMethod
 argument_list|(
 name|ACC_PUBLIC
+operator||
+name|ACC_SYNTHETIC
 argument_list|,
 literal|"<init>"
 argument_list|,
@@ -1646,6 +1670,8 @@ operator|.
 name|visitMethod
 argument_list|(
 name|ACC_PUBLIC
+operator||
+name|ACC_SYNTHETIC
 argument_list|,
 literal|"evaluate"
 argument_list|,
