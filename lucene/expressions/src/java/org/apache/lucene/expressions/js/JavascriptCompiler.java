@@ -280,20 +280,6 @@ name|asm
 operator|.
 name|Opcodes
 operator|.
-name|ILOAD
-import|;
-end_import
-
-begin_import
-import|import static
-name|org
-operator|.
-name|objectweb
-operator|.
-name|asm
-operator|.
-name|Opcodes
-operator|.
 name|LAND
 import|;
 end_import
@@ -1730,11 +1716,9 @@ argument_list|)
 expr_stmt|;
 name|methodVisitor
 operator|.
-name|visitVarInsn
+name|loadArg
 argument_list|(
-name|ILOAD
-argument_list|,
-literal|1
+literal|0
 argument_list|)
 expr_stmt|;
 name|methodVisitor
