@@ -339,6 +339,11 @@ name|CHECKSUM_BYTE_MASK
 init|=
 literal|0xFF
 decl_stmt|;
+DECL|field|skipSnapshotsChecksum
+specifier|private
+name|boolean
+name|skipSnapshotsChecksum
+decl_stmt|;
 comment|/**    * All JAR files to check.    */
 DECL|field|jarResources
 specifier|private
@@ -468,6 +473,22 @@ operator|=
 name|file
 expr_stmt|;
 block|}
+DECL|method|setSkipSnapshotsChecksum
+specifier|public
+name|void
+name|setSkipSnapshotsChecksum
+parameter_list|(
+name|boolean
+name|skipSnapshotsChecksum
+parameter_list|)
+block|{
+name|this
+operator|.
+name|skipSnapshotsChecksum
+operator|=
+name|skipSnapshotsChecksum
+expr_stmt|;
+block|}
 comment|/**    * Execute the task.    */
 annotation|@
 name|Override
@@ -494,6 +515,19 @@ literal|"Expected an embedded<licenseMapper>."
 argument_list|)
 throw|;
 block|}
+if|if
+condition|(
+name|skipSnapshotsChecksum
+condition|)
+name|log
+argument_list|(
+literal|"Skipping checksum for SNAPSHOT dependencies"
+argument_list|,
+name|Project
+operator|.
+name|MSG_INFO
+argument_list|)
+expr_stmt|;
 name|jarResources
 operator|.
 name|setProject
@@ -739,6 +773,23 @@ argument_list|,
 name|verboseLevel
 argument_list|)
 expr_stmt|;
+if|if
+condition|(
+operator|!
+name|skipSnapshotsChecksum
+operator|||
+operator|!
+name|jarFile
+operator|.
+name|getName
+argument_list|()
+operator|.
+name|contains
+argument_list|(
+literal|"-SNAPSHOT"
+argument_list|)
+condition|)
+block|{
 comment|// validate the jar matches against our expected hash
 specifier|final
 name|File
@@ -784,6 +835,24 @@ operator|+
 literal|" checksum file for: "
 operator|+
 name|jarFile
+operator|.
+name|getPath
+argument_list|()
+argument_list|,
+name|Project
+operator|.
+name|MSG_ERR
+argument_list|)
+expr_stmt|;
+name|log
+argument_list|(
+literal|"EXPECTED "
+operator|+
+name|CHECKSUM_TYPE
+operator|+
+literal|" checksum file : "
+operator|+
+name|checksumFile
 operator|.
 name|getPath
 argument_list|()
@@ -1004,6 +1073,28 @@ name|ae
 argument_list|)
 throw|;
 block|}
+block|}
+block|}
+elseif|else
+if|if
+condition|(
+name|skipSnapshotsChecksum
+condition|)
+block|{
+name|log
+argument_list|(
+literal|"Skipping jar because it is a SNAPSHOT : "
+operator|+
+name|jarFile
+operator|.
+name|getAbsolutePath
+argument_list|()
+argument_list|,
+name|Project
+operator|.
+name|MSG_INFO
+argument_list|)
+expr_stmt|;
 block|}
 comment|// Get the expected license path base from the mapper and search for license files.
 name|Map
