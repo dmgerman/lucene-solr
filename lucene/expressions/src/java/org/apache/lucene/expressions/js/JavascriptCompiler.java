@@ -1403,10 +1403,17 @@ name|sourceText
 argument_list|)
 operator|.
 name|compileExpression
+argument_list|(
+name|JavascriptCompiler
+operator|.
+name|class
+operator|.
+name|getClassLoader
 argument_list|()
+argument_list|)
 return|;
 block|}
-comment|/**    * Compiles the given expression with the supplied custom functions.    *<p>    * Functions must return a double.    *    * @param sourceText The expression to compile    * @param functions map of String names to functions    * @return A new compiled expression    * @throws ParseException on failure to compile    */
+comment|/**    * Compiles the given expression with the supplied custom functions.    *<p>    * Functions must return {@code double} and can take from zero to 256 {@code double} parameters.    *    * @param sourceText The expression to compile    * @param functions map of String names to functions    * @return A new compiled expression    * @throws ParseException on failure to compile    */
 DECL|method|compile
 specifier|public
 specifier|static
@@ -1423,6 +1430,9 @@ argument_list|,
 name|Method
 argument_list|>
 name|functions
+parameter_list|,
+name|ClassLoader
+name|parent
 parameter_list|)
 throws|throws
 name|ParseException
@@ -1454,7 +1464,9 @@ name|functions
 argument_list|)
 operator|.
 name|compileExpression
-argument_list|()
+argument_list|(
+name|parent
+argument_list|)
 return|;
 block|}
 comment|/**    * This method is unused, it is just here to make sure that the function signatures don't change.    * If this method fails to compile, you also have to change the byte code generator to correctly    * use the FunctionValues class.    */
@@ -1546,12 +1558,15 @@ operator|=
 name|functions
 expr_stmt|;
 block|}
-comment|/**    * Compiles the given expression.    *    * @return A new compiled expression    * @throws ParseException on failure to compile    */
+comment|/**    * Compiles the given expression with the specified parent classloader    *    * @return A new compiled expression    * @throws ParseException on failure to compile    */
 DECL|method|compileExpression
 specifier|private
 name|Expression
 name|compileExpression
-parameter_list|()
+parameter_list|(
+name|ClassLoader
+name|parent
+parameter_list|)
 throws|throws
 name|ParseException
 block|{
@@ -1589,11 +1604,7 @@ init|=
 operator|new
 name|Loader
 argument_list|(
-name|getClass
-argument_list|()
-operator|.
-name|getClassLoader
-argument_list|()
+name|parent
 argument_list|)
 operator|.
 name|define
