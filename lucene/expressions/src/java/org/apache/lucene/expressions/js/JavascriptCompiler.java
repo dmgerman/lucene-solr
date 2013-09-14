@@ -1413,7 +1413,7 @@ argument_list|()
 argument_list|)
 return|;
 block|}
-comment|/**    * Compiles the given expression with the supplied custom functions.    *<p>    * Functions must return {@code double} and can take from zero to 256 {@code double} parameters.    *    * @param sourceText The expression to compile    * @param functions map of String names to functions    * @return A new compiled expression    * @throws ParseException on failure to compile    */
+comment|/**    * Compiles the given expression with the supplied custom functions.    *<p>    * Functions must return {@code double} and can take from zero to 256 {@code double} parameters.    *    * @param sourceText The expression to compile    * @param functions map of String names to functions    * @param parent a {@code ClassLoader} that should be used as the parent of the loaded class.    *   It must contain all classes referred to by the given {@code functions}.    * @return A new compiled expression    * @throws ParseException on failure to compile    */
 DECL|method|compile
 specifier|public
 specifier|static
@@ -1437,6 +1437,21 @@ parameter_list|)
 throws|throws
 name|ParseException
 block|{
+if|if
+condition|(
+name|parent
+operator|==
+literal|null
+condition|)
+block|{
+throw|throw
+operator|new
+name|NullPointerException
+argument_list|(
+literal|"A parent ClassLoader must be given."
+argument_list|)
+throw|;
+block|}
 for|for
 control|(
 name|Method
@@ -1451,6 +1466,8 @@ block|{
 name|checkFunction
 argument_list|(
 name|m
+argument_list|,
+name|parent
 argument_list|)
 expr_stmt|;
 block|}
@@ -4655,6 +4672,13 @@ decl_stmt|;
 name|checkFunction
 argument_list|(
 name|method
+argument_list|,
+name|JavascriptCompiler
+operator|.
+name|class
+operator|.
+name|getClassLoader
+argument_list|()
 argument_list|)
 expr_stmt|;
 name|map
@@ -4698,7 +4722,6 @@ name|map
 argument_list|)
 expr_stmt|;
 block|}
-comment|/* do some checks if the signature is "compatible" */
 DECL|method|checkFunction
 specifier|private
 specifier|static
@@ -4707,8 +4730,83 @@ name|checkFunction
 parameter_list|(
 name|Method
 name|method
+parameter_list|,
+name|ClassLoader
+name|parent
 parameter_list|)
 block|{
+comment|// We can only call the function if the given parent class loader of our compiled class has access to the method:
+specifier|final
+name|ClassLoader
+name|functionClassloader
+init|=
+name|method
+operator|.
+name|getDeclaringClass
+argument_list|()
+operator|.
+name|getClassLoader
+argument_list|()
+decl_stmt|;
+if|if
+condition|(
+name|functionClassloader
+operator|!=
+literal|null
+condition|)
+block|{
+comment|// it is a system class iff null!
+name|boolean
+name|found
+init|=
+literal|false
+decl_stmt|;
+while|while
+condition|(
+name|parent
+operator|!=
+literal|null
+condition|)
+block|{
+if|if
+condition|(
+name|parent
+operator|==
+name|functionClassloader
+condition|)
+block|{
+name|found
+operator|=
+literal|true
+expr_stmt|;
+break|break;
+block|}
+name|parent
+operator|=
+name|parent
+operator|.
+name|getParent
+argument_list|()
+expr_stmt|;
+block|}
+if|if
+condition|(
+operator|!
+name|found
+condition|)
+block|{
+throw|throw
+operator|new
+name|IllegalArgumentException
+argument_list|(
+name|method
+operator|+
+literal|" is not declared by a class which is accessible by the given parent ClassLoader."
+argument_list|)
+throw|;
+block|}
+block|}
+comment|// do some checks if the signature is "compatible":
 if|if
 condition|(
 operator|!
