@@ -1781,6 +1781,42 @@ argument_list|,
 literal|78193085935L
 argument_list|)
 expr_stmt|;
+name|assertEvaluatesTo
+argument_list|(
+literal|"1<< 0x1"
+argument_list|,
+literal|1
+operator|<<
+literal|0x1
+argument_list|)
+expr_stmt|;
+name|assertEvaluatesTo
+argument_list|(
+literal|"1<< 0xA"
+argument_list|,
+literal|1
+operator|<<
+literal|0xA
+argument_list|)
+expr_stmt|;
+name|assertEvaluatesTo
+argument_list|(
+literal|"0x1<< 2"
+argument_list|,
+literal|0x1
+operator|<<
+literal|2
+argument_list|)
+expr_stmt|;
+name|assertEvaluatesTo
+argument_list|(
+literal|"0xA<< 2"
+argument_list|,
+literal|0xA
+operator|<<
+literal|2
+argument_list|)
+expr_stmt|;
 block|}
 DECL|method|testHexConst2
 specifier|public
@@ -1853,6 +1889,42 @@ argument_list|(
 literal|"0123456777"
 argument_list|,
 literal|21913087
+argument_list|)
+expr_stmt|;
+name|assertEvaluatesTo
+argument_list|(
+literal|"1<< 01"
+argument_list|,
+literal|1
+operator|<<
+literal|01
+argument_list|)
+expr_stmt|;
+name|assertEvaluatesTo
+argument_list|(
+literal|"1<< 010"
+argument_list|,
+literal|1
+operator|<<
+literal|010
+argument_list|)
+expr_stmt|;
+name|assertEvaluatesTo
+argument_list|(
+literal|"01<< 2"
+argument_list|,
+literal|01
+operator|<<
+literal|2
+argument_list|)
+expr_stmt|;
+name|assertEvaluatesTo
+argument_list|(
+literal|"010<< 2"
+argument_list|,
+literal|010
+operator|<<
+literal|2
 argument_list|)
 expr_stmt|;
 block|}
