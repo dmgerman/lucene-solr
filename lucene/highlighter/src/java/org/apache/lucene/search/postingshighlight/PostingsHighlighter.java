@@ -1032,7 +1032,7 @@ return|;
 block|}
 comment|/**    * Expert: highlights the top-N passages from multiple fields,    * for the provided int[] docids, to custom Object as    * returned by the {@link PassageFormatter}.  Use    * this API to render to something other than String.    *     * @param fieldsIn field names to highlight.     *        Must have a stored string value and also be indexed with offsets.    * @param query query to highlight.    * @param searcher searcher that was previously used to execute the query.    * @param docidsIn containing the document IDs to highlight.    * @param maxPassagesIn The maximum number of top-N ranked passages per-field used to     *        form the highlighted snippets.    * @return Map keyed on field name, containing the array of formatted snippets     *         corresponding to the documents in<code>docidsIn</code>.     *         If no highlights were found for a document, the    *         first {@code maxPassages} from the field will    *         be returned.    * @throws IOException if an I/O error occurred during processing    * @throws IllegalArgumentException if<code>field</code> was indexed without     *         {@link IndexOptions#DOCS_AND_FREQS_AND_POSITIONS_AND_OFFSETS}    */
 DECL|method|highlightFieldsAsObjects
-specifier|public
+specifier|protected
 name|Map
 argument_list|<
 name|String
