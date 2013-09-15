@@ -977,7 +977,7 @@ argument_list|,
 literal|null
 argument_list|)
 expr_stmt|;
-comment|// force out of order
+comment|// force in order
 name|bq
 operator|.
 name|add
