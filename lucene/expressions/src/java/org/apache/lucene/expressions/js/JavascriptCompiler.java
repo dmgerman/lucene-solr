@@ -423,7 +423,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * An expression compiler for javascript expressions.  *<p>  * Example:  *<pre class="prettyprint">  *   Expression foo = JavascriptCompiler.compile("((0.3*popularity)/10.0)+(0.7*score)");  *</pre>  *<p>  * See the {@link org.apache.lucene.expressions.js package documentation} for   * the supported syntax and functions.  *   * @lucene.experimental  */
+comment|/**  * An expression compiler for javascript expressions.  *<p>  * Example:  *<pre class="prettyprint">  *   Expression foo = JavascriptCompiler.compile("((0.3*popularity)/10.0)+(0.7*score)");  *</pre>  *<p>  * See the {@link org.apache.lucene.expressions.js package documentation} for   * the supported syntax and default functions.  *<p>  * You can compile with an alternate set of functions via {@link #compile(String, Map, ClassLoader)}.  * For example:  *<pre class="prettyprint">  *   Map&lt;String,Method&gt; functions = new HashMap&lt;&gt;();  *   // add all the default functions  *   functions.putAll(JavascriptCompiler.DEFAULT_FUNCTIONS);  *   // add cbrt()  *   functions.put("cbrt", Math.class.getMethod("cbrt", double.class));  *   // call compile with customized function map  *   Expression foo = JavascriptCompiler.compile("cbrt(score)+ln(popularity)",   *                                               functions,   *                                               getClass().getClassLoader());  *</pre>  *   * @lucene.experimental  */
 end_comment
 
 begin_class
@@ -753,7 +753,7 @@ argument_list|()
 argument_list|)
 return|;
 block|}
-comment|/**    * Compiles the given expression with the supplied custom functions.    *<p>    * Functions must return {@code double} and can take from zero to 256 {@code double} parameters.    *    * @param sourceText The expression to compile    * @param functions map of String names to functions    * @param parent a {@code ClassLoader} that should be used as the parent of the loaded class.    *   It must contain all classes referred to by the given {@code functions}.    * @return A new compiled expression    * @throws ParseException on failure to compile    */
+comment|/**    * Compiles the given expression with the supplied custom functions.    *<p>    * Functions must be {@code public static}, return {@code double} and     * can take from zero to 256 {@code double} parameters.    *    * @param sourceText The expression to compile    * @param functions map of String names to functions    * @param parent a {@code ClassLoader} that should be used as the parent of the loaded class.    *   It must contain all classes referred to by the given {@code functions}.    * @return A new compiled expression    * @throws ParseException on failure to compile    */
 DECL|method|compile
 specifier|public
 specifier|static
