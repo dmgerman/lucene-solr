@@ -78,10 +78,6 @@ name|ServiceLoader
 import|;
 end_import
 
-begin_comment
-comment|// javadocs
-end_comment
-
 begin_import
 import|import
 name|java
@@ -89,20 +85,6 @@ operator|.
 name|util
 operator|.
 name|TreeMap
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|codecs
-operator|.
-name|PostingsFormat
 import|;
 end_import
 
@@ -130,6 +112,20 @@ name|lucene
 operator|.
 name|codecs
 operator|.
+name|DocValuesFormat
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|codecs
+operator|.
 name|DocValuesProducer
 import|;
 end_import
@@ -144,7 +140,7 @@ name|lucene
 operator|.
 name|codecs
 operator|.
-name|DocValuesFormat
+name|PostingsFormat
 import|;
 end_import
 
@@ -657,14 +653,60 @@ block|{
 specifier|final
 name|DocValuesFormat
 name|format
+decl_stmt|;
+if|if
+condition|(
+name|segmentWriteState
+operator|.
+name|isFieldUpdate
+condition|)
+block|{
+specifier|final
+name|String
+name|formatName
 init|=
+name|field
+operator|.
+name|getAttribute
+argument_list|(
+name|PER_FIELD_FORMAT_KEY
+argument_list|)
+decl_stmt|;
+assert|assert
+name|formatName
+operator|!=
+literal|null
+operator|:
+literal|"invalid null FORMAT_KEY for field=\""
+operator|+
+name|field
+operator|.
+name|name
+operator|+
+literal|"\" (field updates)"
+assert|;
+name|format
+operator|=
+name|DocValuesFormat
+operator|.
+name|forName
+argument_list|(
+name|formatName
+argument_list|)
+expr_stmt|;
+block|}
+else|else
+block|{
+name|format
+operator|=
 name|getDocValuesFormatForField
 argument_list|(
 name|field
 operator|.
 name|name
 argument_list|)
-decl_stmt|;
+expr_stmt|;
+block|}
 if|if
 condition|(
 name|format
@@ -708,6 +750,10 @@ name|formatName
 argument_list|)
 decl_stmt|;
 assert|assert
+name|segmentWriteState
+operator|.
+name|isFieldUpdate
+operator|||
 name|previousValue
 operator|==
 literal|null
@@ -741,6 +787,49 @@ literal|null
 condition|)
 block|{
 comment|// First time we are seeing this format; create a new instance
+if|if
+condition|(
+name|segmentWriteState
+operator|.
+name|isFieldUpdate
+condition|)
+block|{
+specifier|final
+name|String
+name|suffixAtt
+init|=
+name|field
+operator|.
+name|getAttribute
+argument_list|(
+name|PER_FIELD_SUFFIX_KEY
+argument_list|)
+decl_stmt|;
+assert|assert
+name|suffixAtt
+operator|!=
+literal|null
+operator|:
+literal|"invalid numm SUFFIX_KEY for field=\""
+operator|+
+name|field
+operator|.
+name|name
+operator|+
+literal|"\" (field updates)"
+assert|;
+name|suffix
+operator|=
+name|Integer
+operator|.
+name|valueOf
+argument_list|(
+name|suffixAtt
+argument_list|)
+expr_stmt|;
+block|}
+else|else
+block|{
 comment|// bump the suffix
 name|suffix
 operator|=
@@ -772,6 +861,7 @@ operator|+
 literal|1
 expr_stmt|;
 block|}
+block|}
 name|suffixes
 operator|.
 name|put
@@ -787,10 +877,6 @@ name|segmentSuffix
 init|=
 name|getFullSegmentSuffix
 argument_list|(
-name|field
-operator|.
-name|name
-argument_list|,
 name|segmentWriteState
 operator|.
 name|segmentSuffix
@@ -882,12 +968,29 @@ argument_list|)
 argument_list|)
 expr_stmt|;
 assert|assert
+name|segmentWriteState
+operator|.
+name|isFieldUpdate
+operator|||
 name|previousValue
 operator|==
 literal|null
+operator|:
+literal|"suffix="
+operator|+
+name|Integer
+operator|.
+name|toString
+argument_list|(
+name|suffix
+argument_list|)
+operator|+
+literal|" prevValue="
+operator|+
+name|previousValue
 assert|;
 comment|// TODO: we should only provide the "slice" of FIS
-comment|// that this PF actually sees ...
+comment|// that this DVF actually sees ...
 return|return
 name|consumer
 operator|.
@@ -943,9 +1046,6 @@ name|String
 name|getFullSegmentSuffix
 parameter_list|(
 name|String
-name|fieldName
-parameter_list|,
-name|String
 name|outerSegmentSuffix
 parameter_list|,
 name|String
@@ -968,20 +1068,13 @@ return|;
 block|}
 else|else
 block|{
-comment|// TODO: support embedding; I think it should work but
-comment|// we need a test confirm to confirm
-comment|// return outerSegmentSuffix + "_" + segmentSuffix;
-throw|throw
-operator|new
-name|IllegalStateException
-argument_list|(
-literal|"cannot embed PerFieldPostingsFormat inside itself (field \""
+return|return
+name|outerSegmentSuffix
 operator|+
-name|fieldName
+literal|"_"
 operator|+
-literal|"\" returned PerFieldPostingsFormat)"
-argument_list|)
-throw|;
+name|segmentSuffix
+return|;
 block|}
 block|}
 DECL|class|FieldsReader
@@ -1125,11 +1218,18 @@ decl_stmt|;
 name|String
 name|segmentSuffix
 init|=
+name|getFullSegmentSuffix
+argument_list|(
+name|readState
+operator|.
+name|segmentSuffix
+argument_list|,
 name|getSuffix
 argument_list|(
 name|formatName
 argument_list|,
 name|suffix
+argument_list|)
 argument_list|)
 decl_stmt|;
 if|if

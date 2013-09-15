@@ -32,7 +32,7 @@ name|java
 operator|.
 name|util
 operator|.
-name|List
+name|ArrayList
 import|;
 end_import
 
@@ -42,7 +42,17 @@ name|java
 operator|.
 name|util
 operator|.
-name|ArrayList
+name|Arrays
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
+name|util
+operator|.
+name|Collections
 import|;
 end_import
 
@@ -62,7 +72,7 @@ name|java
 operator|.
 name|util
 operator|.
-name|Collections
+name|List
 import|;
 end_import
 
@@ -193,7 +203,7 @@ import|;
 end_import
 
 begin_comment
-comment|/* Tracks the stream of {@link BufferedDeletes}.  * When DocumentsWriterPerThread flushes, its buffered  * deletes are appended to this stream.  We later  * apply these deletes (resolve them to the actual  * docIDs, per segment) when a merge is started  * (only to the to-be-merged segments).  We  * also apply to all segments when NRT reader is pulled,  * commit/close is called, or when too many deletes are  * buffered and must be flushed (by RAM usage or by count).  *  * Each packet is assigned a generation, and each flushed or  * merged segment is also assigned a generation, so we can  * track which BufferedDeletes packets to apply to any given  * segment. */
+comment|/* Tracks the stream of {@link BufferedDeletes}.  * When DocumentsWriterPerThread flushes, its buffered  * deletes and updates are appended to this stream.  We later  * apply them (resolve them to the actual  * docIDs, per segment) when a merge is started  * (only to the to-be-merged segments).  We  * also apply to all segments when NRT reader is pulled,  * commit/close is called, or when too many deletes or  updates are  * buffered and must be flushed (by RAM usage or by count).  *  * Each packet is assigned a generation, and each flushed or  * merged segment is also assigned a generation, so we can  * track which BufferedDeletes packets to apply to any given  * segment. */
 end_comment
 
 begin_class
@@ -201,6 +211,7 @@ DECL|class|BufferedDeletesStream
 class|class
 name|BufferedDeletesStream
 block|{
+comment|// TODO (DVU_RENAME) BufferedUpdatesStream
 comment|// TODO: maybe linked list?
 DECL|field|deletes
 specifier|private
@@ -523,6 +534,13 @@ name|SegmentInfoPerCommit
 argument_list|>
 name|allDeleted
 decl_stmt|;
+comment|// True if any actual numeric docvalues updates took place
+DECL|field|anyNumericDVUpdates
+specifier|public
+specifier|final
+name|boolean
+name|anyNumericDVUpdates
+decl_stmt|;
 DECL|method|ApplyDeletesResult
 name|ApplyDeletesResult
 parameter_list|(
@@ -537,6 +555,9 @@ argument_list|<
 name|SegmentInfoPerCommit
 argument_list|>
 name|allDeleted
+parameter_list|,
+name|boolean
+name|anyNumericDVUpdates
 parameter_list|)
 block|{
 name|this
@@ -556,6 +577,12 @@ operator|.
 name|allDeleted
 operator|=
 name|allDeleted
+expr_stmt|;
+name|this
+operator|.
+name|anyNumericDVUpdates
+operator|=
+name|anyNumericDVUpdates
 expr_stmt|;
 block|}
 block|}
@@ -659,6 +686,8 @@ name|nextGen
 operator|++
 argument_list|,
 literal|null
+argument_list|,
+literal|false
 argument_list|)
 return|;
 block|}
@@ -703,6 +732,8 @@ name|nextGen
 operator|++
 argument_list|,
 literal|null
+argument_list|,
+literal|false
 argument_list|)
 return|;
 block|}
@@ -778,6 +809,11 @@ literal|null
 decl_stmt|;
 name|boolean
 name|anyNewDeletes
+init|=
+literal|false
+decl_stmt|;
+name|boolean
+name|anyNewUpdates
 init|=
 literal|false
 decl_stmt|;
@@ -868,7 +904,7 @@ name|delGen
 argument_list|()
 condition|)
 block|{
-comment|//System.out.println("  coalesce");
+comment|//        System.out.println("  coalesce");
 if|if
 condition|(
 name|coalescedDeletes
@@ -959,11 +995,14 @@ name|rld
 operator|.
 name|getReader
 argument_list|(
+literal|false
+argument_list|,
 name|IOContext
 operator|.
 name|READ
 argument_list|)
 decl_stmt|;
+comment|// don't apply deletes, as we're about to add more!
 name|int
 name|delCount
 init|=
@@ -1011,6 +1050,19 @@ argument_list|,
 name|reader
 argument_list|)
 expr_stmt|;
+name|anyNewUpdates
+operator||=
+name|applyNumericDocValueUpdates
+argument_list|(
+name|coalescedDeletes
+operator|.
+name|numericDVUpdates
+argument_list|,
+name|rld
+argument_list|,
+name|reader
+argument_list|)
+expr_stmt|;
 block|}
 comment|//System.out.println("    del exact");
 comment|// Don't delete by Term here; DocumentsWriterPerThread
@@ -1023,6 +1075,24 @@ name|packet
 operator|.
 name|queriesIterable
 argument_list|()
+argument_list|,
+name|rld
+argument_list|,
+name|reader
+argument_list|)
+expr_stmt|;
+name|anyNewUpdates
+operator||=
+name|applyNumericDocValueUpdates
+argument_list|(
+name|Arrays
+operator|.
+name|asList
+argument_list|(
+name|packet
+operator|.
+name|updates
+argument_list|)
 argument_list|,
 name|rld
 argument_list|,
@@ -1247,11 +1317,14 @@ name|rld
 operator|.
 name|getReader
 argument_list|(
+literal|false
+argument_list|,
 name|IOContext
 operator|.
 name|READ
 argument_list|)
 decl_stmt|;
+comment|// don't apply deletes, as we're about to add more!
 name|int
 name|delCount
 init|=
@@ -1285,6 +1358,19 @@ name|coalescedDeletes
 operator|.
 name|queriesIterable
 argument_list|()
+argument_list|,
+name|rld
+argument_list|,
+name|reader
+argument_list|)
+expr_stmt|;
+name|anyNewUpdates
+operator||=
+name|applyNumericDocValueUpdates
+argument_list|(
+name|coalescedDeletes
+operator|.
+name|numericDVUpdates
 argument_list|,
 name|rld
 argument_list|,
@@ -1494,6 +1580,8 @@ argument_list|,
 name|gen
 argument_list|,
 name|allDeleted
+argument_list|,
+name|anyNewUpdates
 argument_list|)
 return|;
 block|}
@@ -2024,11 +2112,6 @@ condition|)
 block|{
 break|break;
 block|}
-comment|// NOTE: there is no limit check on the docID
-comment|// when deleting by Term (unlike by Query)
-comment|// because on flush we apply all Term deletes to
-comment|// each segment.  So all Term deleting here is
-comment|// against prior segments:
 if|if
 condition|(
 operator|!
@@ -2045,6 +2128,11 @@ operator|=
 literal|true
 expr_stmt|;
 block|}
+comment|// NOTE: there is no limit check on the docID
+comment|// when deleting by Term (unlike by Query)
+comment|// because on flush we apply all Term deletes to
+comment|// each segment.  So all Term deleting here is
+comment|// against prior segments:
 if|if
 condition|(
 name|rld
@@ -2065,6 +2153,224 @@ block|}
 block|}
 return|return
 name|delCount
+return|;
+block|}
+comment|// NumericDocValue Updates
+DECL|method|applyNumericDocValueUpdates
+specifier|private
+specifier|synchronized
+name|boolean
+name|applyNumericDocValueUpdates
+parameter_list|(
+name|Iterable
+argument_list|<
+name|NumericUpdate
+argument_list|>
+name|updates
+parameter_list|,
+name|ReadersAndLiveDocs
+name|rld
+parameter_list|,
+name|SegmentReader
+name|reader
+parameter_list|)
+throws|throws
+name|IOException
+block|{
+name|Fields
+name|fields
+init|=
+name|reader
+operator|.
+name|fields
+argument_list|()
+decl_stmt|;
+if|if
+condition|(
+name|fields
+operator|==
+literal|null
+condition|)
+block|{
+comment|// This reader has no postings
+return|return
+literal|false
+return|;
+block|}
+name|TermsEnum
+name|termsEnum
+init|=
+literal|null
+decl_stmt|;
+name|DocsEnum
+name|docs
+init|=
+literal|null
+decl_stmt|;
+name|boolean
+name|any
+init|=
+literal|false
+decl_stmt|;
+comment|//System.out.println(Thread.currentThread().getName() + " numericDVUpdate reader=" + reader);
+for|for
+control|(
+name|NumericUpdate
+name|update
+range|:
+name|updates
+control|)
+block|{
+name|Term
+name|term
+init|=
+name|update
+operator|.
+name|term
+decl_stmt|;
+name|int
+name|limit
+init|=
+name|update
+operator|.
+name|docIDUpto
+decl_stmt|;
+comment|// TODO: we rely on the map being ordered by updates order, not by terms order.
+comment|// we need that so that if two terms update the same document, the one that came
+comment|// last wins.
+comment|// alternatively, we could keep a map from doc->lastUpto and apply the update
+comment|// in terms order, where an update is applied only if its docIDUpto is greater
+comment|// than lastUpto.
+comment|// but, since app can send two updates, in order, which will have same upto, we
+comment|// cannot rely solely on docIDUpto, and need to have our own gen, which is
+comment|// incremented with every update.
+comment|// Unlike applyTermDeletes, we visit terms in update order, not term order.
+comment|// Therefore we cannot assume we can only seek forwards and must ask for a
+comment|// new TermsEnum
+name|Terms
+name|terms
+init|=
+name|fields
+operator|.
+name|terms
+argument_list|(
+name|term
+operator|.
+name|field
+argument_list|)
+decl_stmt|;
+if|if
+condition|(
+name|terms
+operator|==
+literal|null
+condition|)
+block|{
+comment|// no terms in that field
+name|termsEnum
+operator|=
+literal|null
+expr_stmt|;
+continue|continue;
+block|}
+name|termsEnum
+operator|=
+name|terms
+operator|.
+name|iterator
+argument_list|(
+name|termsEnum
+argument_list|)
+expr_stmt|;
+comment|// System.out.println("  term=" + term);
+if|if
+condition|(
+name|termsEnum
+operator|.
+name|seekExact
+argument_list|(
+name|term
+operator|.
+name|bytes
+argument_list|()
+argument_list|)
+condition|)
+block|{
+comment|// we don't need term frequencies for this
+name|DocsEnum
+name|docsEnum
+init|=
+name|termsEnum
+operator|.
+name|docs
+argument_list|(
+name|rld
+operator|.
+name|getLiveDocs
+argument_list|()
+argument_list|,
+name|docs
+argument_list|,
+name|DocsEnum
+operator|.
+name|FLAG_NONE
+argument_list|)
+decl_stmt|;
+comment|//System.out.println("BDS: got docsEnum=" + docsEnum);
+name|int
+name|doc
+decl_stmt|;
+while|while
+condition|(
+operator|(
+name|doc
+operator|=
+name|docsEnum
+operator|.
+name|nextDoc
+argument_list|()
+operator|)
+operator|!=
+name|DocIdSetIterator
+operator|.
+name|NO_MORE_DOCS
+condition|)
+block|{
+comment|//System.out.println(Thread.currentThread().getName() + " numericDVUpdate term=" + term + " doc=" + docID);
+if|if
+condition|(
+name|doc
+operator|>=
+name|limit
+condition|)
+block|{
+break|break;
+comment|// no more docs that can be updated for this term
+block|}
+name|rld
+operator|.
+name|updateNumericDocValue
+argument_list|(
+name|update
+operator|.
+name|field
+argument_list|,
+name|doc
+argument_list|,
+name|update
+operator|.
+name|value
+argument_list|)
+expr_stmt|;
+name|any
+operator|=
+literal|true
+expr_stmt|;
+block|}
+block|}
+block|}
+return|return
+name|any
 return|;
 block|}
 DECL|class|QueryAndLimit

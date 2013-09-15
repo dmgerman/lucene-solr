@@ -403,7 +403,7 @@ throw|throw
 operator|new
 name|IllegalArgumentException
 argument_list|(
-literal|"segmentCodecs must be non-null"
+literal|"codec must be non-null"
 argument_list|)
 throw|;
 block|}

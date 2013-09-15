@@ -17,6 +17,38 @@ comment|/*  * Licensed to the Apache Software Foundation (ASF) under one or more
 end_comment
 
 begin_import
+import|import static
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|util
+operator|.
+name|ByteBlockPool
+operator|.
+name|BYTE_BLOCK_MASK
+import|;
+end_import
+
+begin_import
+import|import static
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|util
+operator|.
+name|ByteBlockPool
+operator|.
+name|BYTE_BLOCK_SIZE
+import|;
+end_import
+
+begin_import
 import|import
 name|java
 operator|.
@@ -33,16 +65,6 @@ operator|.
 name|text
 operator|.
 name|NumberFormat
-import|;
-end_import
-
-begin_import
-import|import
-name|java
-operator|.
-name|util
-operator|.
-name|Collection
 import|;
 end_import
 
@@ -305,38 +327,6 @@ operator|.
 name|util
 operator|.
 name|RamUsageEstimator
-import|;
-end_import
-
-begin_import
-import|import static
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|util
-operator|.
-name|ByteBlockPool
-operator|.
-name|BYTE_BLOCK_MASK
-import|;
-end_import
-
-begin_import
-import|import static
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|util
-operator|.
-name|ByteBlockPool
-operator|.
-name|BYTE_BLOCK_SIZE
 import|;
 end_import
 
@@ -818,7 +808,11 @@ specifier|final
 name|Counter
 name|bytesUsed
 decl_stmt|;
-comment|//Deletes for our still-in-RAM (to be flushed next) segment
+DECL|field|flushState
+name|SegmentWriteState
+name|flushState
+decl_stmt|;
+comment|// Deletes for our still-in-RAM (to be flushed next) segment
 DECL|field|pendingDeletes
 specifier|final
 name|BufferedDeletes
@@ -2162,6 +2156,9 @@ literal|0
 argument_list|,
 operator|-
 literal|1L
+argument_list|,
+operator|-
+literal|1L
 argument_list|)
 decl_stmt|;
 if|if
@@ -2328,8 +2325,20 @@ name|queries
 operator|.
 name|isEmpty
 argument_list|()
+operator|&&
+name|pendingDeletes
+operator|.
+name|numericUpdates
+operator|.
+name|isEmpty
+argument_list|()
 condition|)
 block|{
+name|pendingDeletes
+operator|.
+name|clear
+argument_list|()
+expr_stmt|;
 name|segmentDeletes
 operator|=
 literal|null
