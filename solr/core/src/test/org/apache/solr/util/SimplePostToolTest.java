@@ -180,6 +180,10 @@ name|Test
 import|;
 end_import
 
+begin_comment
+comment|/**  * NOTE: do *not* use real hostnames, not even "example.com", in this test.  *  * Even though a MockPageFetcher is used to prevent real HTTP requests from being   * executed, the use of the URL class in SimplePostTool causes attempted resolution of   * the hostnames.  */
+end_comment
+
 begin_class
 DECL|class|SimplePostToolTest
 specifier|public
@@ -209,22 +213,15 @@ name|PageFetcher
 name|pf
 decl_stmt|;
 annotation|@
-name|Override
-annotation|@
 name|Before
-DECL|method|setUp
+DECL|method|initVariousPostTools
 specifier|public
 name|void
-name|setUp
+name|initVariousPostTools
 parameter_list|()
 throws|throws
 name|Exception
 block|{
-name|super
-operator|.
-name|setUp
-argument_list|()
-expr_stmt|;
 name|String
 index|[]
 name|args
@@ -463,37 +460,37 @@ parameter_list|()
 block|{
 name|assertEquals
 argument_list|(
-literal|"http://example.com"
+literal|"http://[ff01::114]"
 argument_list|,
 name|SimplePostTool
 operator|.
 name|normalizeUrlEnding
 argument_list|(
-literal|"http://example.com/"
+literal|"http://[ff01::114]/"
 argument_list|)
 argument_list|)
 expr_stmt|;
 name|assertEquals
 argument_list|(
-literal|"http://example.com"
+literal|"http://[ff01::114]"
 argument_list|,
 name|SimplePostTool
 operator|.
 name|normalizeUrlEnding
 argument_list|(
-literal|"http://example.com/#foo?bar=baz"
+literal|"http://[ff01::114]/#foo?bar=baz"
 argument_list|)
 argument_list|)
 expr_stmt|;
 name|assertEquals
 argument_list|(
-literal|"http://example.com/index.html"
+literal|"http://[ff01::114]/index.html"
 argument_list|,
 name|SimplePostTool
 operator|.
 name|normalizeUrlEnding
 argument_list|(
-literal|"http://example.com/index.html#hello"
+literal|"http://[ff01::114]/index.html#hello"
 argument_list|)
 argument_list|)
 expr_stmt|;
@@ -510,7 +507,7 @@ name|MalformedURLException
 block|{
 name|assertEquals
 argument_list|(
-literal|"http://example.com/index.html"
+literal|"http://[ff01::114]/index.html"
 argument_list|,
 name|t_web
 operator|.
@@ -519,7 +516,7 @@ argument_list|(
 operator|new
 name|URL
 argument_list|(
-literal|"http://example.com/"
+literal|"http://[ff01::114]/"
 argument_list|)
 argument_list|,
 literal|"/index.html"
@@ -528,7 +525,7 @@ argument_list|)
 expr_stmt|;
 name|assertEquals
 argument_list|(
-literal|"http://example.com/index.html"
+literal|"http://[ff01::114]/index.html"
 argument_list|,
 name|t_web
 operator|.
@@ -537,7 +534,7 @@ argument_list|(
 operator|new
 name|URL
 argument_list|(
-literal|"http://example.com/foo/bar/"
+literal|"http://[ff01::114]/foo/bar/"
 argument_list|)
 argument_list|,
 literal|"/index.html"
@@ -546,7 +543,7 @@ argument_list|)
 expr_stmt|;
 name|assertEquals
 argument_list|(
-literal|"http://example.com/fil.html"
+literal|"http://[ff01::114]/fil.html"
 argument_list|,
 name|t_web
 operator|.
@@ -555,7 +552,7 @@ argument_list|(
 operator|new
 name|URL
 argument_list|(
-literal|"http://example.com/foo.htm?baz#hello"
+literal|"http://[ff01::114]/foo.htm?baz#hello"
 argument_list|)
 argument_list|,
 literal|"fil.html"
@@ -563,7 +560,7 @@ argument_list|)
 argument_list|)
 expr_stmt|;
 comment|//    TODO: How to know what is the base if URL path ends with "foo"??
-comment|//    assertEquals("http://example.com/fil.html", t_web.computeFullUrl(new URL("http://example.com/foo?baz#hello"), "fil.html"));
+comment|//    assertEquals("http://[ff01::114]/fil.html", t_web.computeFullUrl(new URL("http://[ff01::114]/foo?baz#hello"), "fil.html"));
 name|assertEquals
 argument_list|(
 literal|null
@@ -575,7 +572,7 @@ argument_list|(
 operator|new
 name|URL
 argument_list|(
-literal|"http://example.com/"
+literal|"http://[ff01::114]/"
 argument_list|)
 argument_list|,
 literal|"fil.jpg"
@@ -593,7 +590,7 @@ argument_list|(
 operator|new
 name|URL
 argument_list|(
-literal|"http://example.com/"
+literal|"http://[ff01::114]/"
 argument_list|)
 argument_list|,
 literal|"mailto:hello@foo.bar"
@@ -611,7 +608,7 @@ argument_list|(
 operator|new
 name|URL
 argument_list|(
-literal|"http://example.com/"
+literal|"http://[ff01::114]/"
 argument_list|)
 argument_list|,
 literal|"ftp://server/file"
@@ -746,13 +743,13 @@ parameter_list|()
 block|{
 name|assertEquals
 argument_list|(
-literal|"http://example.com?foo=bar"
+literal|"http://[ff01::114]?foo=bar"
 argument_list|,
 name|SimplePostTool
 operator|.
 name|appendParam
 argument_list|(
-literal|"http://example.com"
+literal|"http://[ff01::114]"
 argument_list|,
 literal|"foo=bar"
 argument_list|)
@@ -760,13 +757,13 @@ argument_list|)
 expr_stmt|;
 name|assertEquals
 argument_list|(
-literal|"http://example.com/?a=b&foo=bar"
+literal|"http://[ff01::114]/?a=b&foo=bar"
 argument_list|,
 name|SimplePostTool
 operator|.
 name|appendParam
 argument_list|(
-literal|"http://example.com/?a=b"
+literal|"http://[ff01::114]/?a=b"
 argument_list|,
 literal|"foo=bar"
 argument_list|)
@@ -788,7 +785,7 @@ argument_list|(
 operator|new
 name|URL
 argument_list|(
-literal|"http://example.com/a?foo=bar"
+literal|"http://[ff01::114]/a?foo=bar"
 argument_list|)
 argument_list|,
 name|SimplePostTool
@@ -798,7 +795,7 @@ argument_list|(
 operator|new
 name|URL
 argument_list|(
-literal|"http://example.com?foo=bar"
+literal|"http://[ff01::114]?foo=bar"
 argument_list|)
 argument_list|,
 literal|"/a"
@@ -939,7 +936,7 @@ operator|new
 name|String
 index|[]
 block|{
-literal|"http://example.com/#removeme"
+literal|"http://[ff01::114]/#removeme"
 block|}
 argument_list|,
 literal|0
@@ -970,7 +967,7 @@ operator|new
 name|String
 index|[]
 block|{
-literal|"http://example.com/"
+literal|"http://[ff01::114]/"
 block|}
 argument_list|,
 literal|0
@@ -1011,7 +1008,7 @@ operator|new
 name|String
 index|[]
 block|{
-literal|"http://example.com/#removeme"
+literal|"http://[ff01::114]/#removeme"
 block|}
 argument_list|,
 literal|0
@@ -1048,7 +1045,7 @@ argument_list|(
 operator|new
 name|URL
 argument_list|(
-literal|"http://example.com/"
+literal|"http://[ff01::114]/"
 argument_list|)
 argument_list|)
 argument_list|)
@@ -1064,7 +1061,7 @@ argument_list|(
 operator|new
 name|URL
 argument_list|(
-literal|"http://example.com/disallowed"
+literal|"http://[ff01::114]/disallowed"
 argument_list|)
 argument_list|)
 argument_list|)
@@ -1081,7 +1078,7 @@ name|robotsCache
 operator|.
 name|get
 argument_list|(
-literal|"example.com"
+literal|"[ff01::114]"
 argument_list|)
 operator|.
 name|size
@@ -1092,6 +1089,7 @@ argument_list|)
 expr_stmt|;
 block|}
 DECL|class|MockPageFetcher
+specifier|static
 class|class
 name|MockPageFetcher
 extends|extends
@@ -1159,63 +1157,63 @@ name|htmlMap
 operator|.
 name|put
 argument_list|(
-literal|"http://example.com"
+literal|"http://[ff01::114]"
 argument_list|,
-literal|"<html><body><a href=\"http://example.com/page1\">page1</a><a href=\"http://example.com/page2\">page2</a></body></html>"
+literal|"<html><body><a href=\"http://[ff01::114]/page1\">page1</a><a href=\"http://[ff01::114]/page2\">page2</a></body></html>"
 argument_list|)
 expr_stmt|;
 name|htmlMap
 operator|.
 name|put
 argument_list|(
-literal|"http://example.com/index.html"
+literal|"http://[ff01::114]/index.html"
 argument_list|,
-literal|"<html><body><a href=\"http://example.com/page1\">page1</a><a href=\"http://example.com/page2\">page2</a></body></html>"
+literal|"<html><body><a href=\"http://[ff01::114]/page1\">page1</a><a href=\"http://[ff01::114]/page2\">page2</a></body></html>"
 argument_list|)
 expr_stmt|;
 name|htmlMap
 operator|.
 name|put
 argument_list|(
-literal|"http://example.com/page1"
+literal|"http://[ff01::114]/page1"
 argument_list|,
-literal|"<html><body><a href=\"http://example.com/page1/foo\"></body></html>"
+literal|"<html><body><a href=\"http://[ff01::114]/page1/foo\"></body></html>"
 argument_list|)
 expr_stmt|;
 name|htmlMap
 operator|.
 name|put
 argument_list|(
-literal|"http://example.com/page1/foo"
+literal|"http://[ff01::114]/page1/foo"
 argument_list|,
-literal|"<html><body><a href=\"http://example.com/page1/foo/bar\"></body></html>"
+literal|"<html><body><a href=\"http://[ff01::114]/page1/foo/bar\"></body></html>"
 argument_list|)
 expr_stmt|;
 name|htmlMap
 operator|.
 name|put
 argument_list|(
-literal|"http://example.com/page1/foo/bar"
+literal|"http://[ff01::114]/page1/foo/bar"
 argument_list|,
-literal|"<html><body><a href=\"http://example.com/page1\"></body></html>"
+literal|"<html><body><a href=\"http://[ff01::114]/page1\"></body></html>"
 argument_list|)
 expr_stmt|;
 name|htmlMap
 operator|.
 name|put
 argument_list|(
-literal|"http://example.com/page2"
+literal|"http://[ff01::114]/page2"
 argument_list|,
-literal|"<html><body><a href=\"http://example.com/\"><a href=\"http://example.com/disallowed\"/></body></html>"
+literal|"<html><body><a href=\"http://[ff01::114]/\"><a href=\"http://[ff01::114]/disallowed\"/></body></html>"
 argument_list|)
 expr_stmt|;
 name|htmlMap
 operator|.
 name|put
 argument_list|(
-literal|"http://example.com/disallowed"
+literal|"http://[ff01::114]/disallowed"
 argument_list|,
-literal|"<html><body><a href=\"http://example.com/\"></body></html>"
+literal|"<html><body><a href=\"http://[ff01::114]/\"></body></html>"
 argument_list|)
 expr_stmt|;
 name|Set
@@ -1238,7 +1236,7 @@ argument_list|(
 operator|new
 name|URL
 argument_list|(
-literal|"http://example.com/page1"
+literal|"http://[ff01::114]/page1"
 argument_list|)
 argument_list|)
 expr_stmt|;
@@ -1249,7 +1247,7 @@ argument_list|(
 operator|new
 name|URL
 argument_list|(
-literal|"http://example.com/page2"
+literal|"http://[ff01::114]/page2"
 argument_list|)
 argument_list|)
 expr_stmt|;
@@ -1257,7 +1255,7 @@ name|linkMap
 operator|.
 name|put
 argument_list|(
-literal|"http://example.com"
+literal|"http://[ff01::114]"
 argument_list|,
 name|s
 argument_list|)
@@ -1266,36 +1264,7 @@ name|linkMap
 operator|.
 name|put
 argument_list|(
-literal|"http://example.com/index.html"
-argument_list|,
-name|s
-argument_list|)
-expr_stmt|;
-name|s
-operator|=
-operator|new
-name|HashSet
-argument_list|<
-name|URL
-argument_list|>
-argument_list|()
-expr_stmt|;
-name|s
-operator|.
-name|add
-argument_list|(
-operator|new
-name|URL
-argument_list|(
-literal|"http://example.com/page1/foo"
-argument_list|)
-argument_list|)
-expr_stmt|;
-name|linkMap
-operator|.
-name|put
-argument_list|(
-literal|"http://example.com/page1"
+literal|"http://[ff01::114]/index.html"
 argument_list|,
 name|s
 argument_list|)
@@ -1316,7 +1285,7 @@ argument_list|(
 operator|new
 name|URL
 argument_list|(
-literal|"http://example.com/page1/foo/bar"
+literal|"http://[ff01::114]/page1/foo"
 argument_list|)
 argument_list|)
 expr_stmt|;
@@ -1324,7 +1293,7 @@ name|linkMap
 operator|.
 name|put
 argument_list|(
-literal|"http://example.com/page1/foo"
+literal|"http://[ff01::114]/page1"
 argument_list|,
 name|s
 argument_list|)
@@ -1345,7 +1314,7 @@ argument_list|(
 operator|new
 name|URL
 argument_list|(
-literal|"http://example.com/disallowed"
+literal|"http://[ff01::114]/page1/foo/bar"
 argument_list|)
 argument_list|)
 expr_stmt|;
@@ -1353,7 +1322,36 @@ name|linkMap
 operator|.
 name|put
 argument_list|(
-literal|"http://example.com/page2"
+literal|"http://[ff01::114]/page1/foo"
+argument_list|,
+name|s
+argument_list|)
+expr_stmt|;
+name|s
+operator|=
+operator|new
+name|HashSet
+argument_list|<
+name|URL
+argument_list|>
+argument_list|()
+expr_stmt|;
+name|s
+operator|.
+name|add
+argument_list|(
+operator|new
+name|URL
+argument_list|(
+literal|"http://[ff01::114]/disallowed"
+argument_list|)
+argument_list|)
+expr_stmt|;
+name|linkMap
+operator|.
+name|put
+argument_list|(
+literal|"http://[ff01::114]/page2"
 argument_list|,
 name|s
 argument_list|)
@@ -1407,7 +1405,7 @@ name|robotsCache
 operator|.
 name|put
 argument_list|(
-literal|"example.com"
+literal|"[ff01::114]"
 argument_list|,
 name|SimplePostTool
 operator|.
