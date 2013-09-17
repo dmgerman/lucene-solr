@@ -503,6 +503,42 @@ import|;
 end_import
 
 begin_import
+import|import
+name|java
+operator|.
+name|util
+operator|.
+name|concurrent
+operator|.
+name|LinkedBlockingQueue
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
+name|util
+operator|.
+name|concurrent
+operator|.
+name|ThreadPoolExecutor
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
+name|util
+operator|.
+name|concurrent
+operator|.
+name|TimeUnit
+import|;
+end_import
+
+begin_import
 import|import static
 name|com
 operator|.
@@ -1104,6 +1140,7 @@ literal|"solr"
 argument_list|)
 expr_stmt|;
 comment|// setup executor to load cores in parallel
+comment|// do not limit the size of the executor in zk mode since cores may try and wait for each other.
 name|ExecutorService
 name|coreLoadExecutor
 init|=
@@ -1111,10 +1148,23 @@ name|Executors
 operator|.
 name|newFixedThreadPool
 argument_list|(
+operator|(
+name|zkSys
+operator|.
+name|getZkController
+argument_list|()
+operator|==
+literal|null
+condition|?
 name|cfg
 operator|.
 name|getCoreLoadThreadCount
 argument_list|()
+else|:
+name|Integer
+operator|.
+name|MAX_VALUE
+operator|)
 argument_list|,
 operator|new
 name|DefaultSolrThreadFactory
