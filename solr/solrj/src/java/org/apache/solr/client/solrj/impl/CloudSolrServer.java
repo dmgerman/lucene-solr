@@ -1662,6 +1662,18 @@ argument_list|(
 name|col
 argument_list|)
 decl_stmt|;
+if|if
+condition|(
+name|urlMap
+operator|==
+literal|null
+condition|)
+block|{
+comment|// we could not find a leader yet - use unoptimized general path
+return|return
+literal|null
+return|;
+block|}
 name|NamedList
 name|exceptions
 init|=
@@ -1755,7 +1767,12 @@ name|?
 argument_list|>
 argument_list|>
 argument_list|>
+argument_list|(
+name|routes
+operator|.
+name|size
 argument_list|()
+argument_list|)
 decl_stmt|;
 for|for
 control|(
@@ -2476,6 +2493,18 @@ operator|.
 name|getLeader
 argument_list|()
 decl_stmt|;
+if|if
+condition|(
+name|leader
+operator|==
+literal|null
+condition|)
+block|{
+comment|// take unoptimized general path - we cannot find a leader yet
+return|return
+literal|null
+return|;
+block|}
 name|ZkCoreNodeProps
 name|zkProps
 init|=
