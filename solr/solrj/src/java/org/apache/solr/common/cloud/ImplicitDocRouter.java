@@ -203,11 +203,9 @@ block|{
 name|String
 name|f
 init|=
-name|collection
-operator|.
-name|getStr
+name|getRouteField
 argument_list|(
-name|ROUTE_FIELD
+name|collection
 argument_list|)
 decl_stmt|;
 if|if

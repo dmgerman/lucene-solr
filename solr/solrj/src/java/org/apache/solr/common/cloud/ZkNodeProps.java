@@ -217,7 +217,7 @@ argument_list|>
 name|propMap
 init|=
 operator|new
-name|HashMap
+name|LinkedHashMap
 argument_list|<
 name|String
 argument_list|,

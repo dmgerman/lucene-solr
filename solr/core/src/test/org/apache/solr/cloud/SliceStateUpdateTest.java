@@ -934,9 +934,16 @@ name|DocCollection
 operator|.
 name|DOC_ROUTER
 argument_list|,
+name|ZkNodeProps
+operator|.
+name|makeMap
+argument_list|(
+literal|"name"
+argument_list|,
 name|ImplicitDocRouter
 operator|.
 name|NAME
+argument_list|)
 argument_list|)
 expr_stmt|;
 name|DocCollection

@@ -9809,9 +9809,9 @@ name|collectionInfos
 argument_list|,
 name|collectionName
 argument_list|,
-name|OverseerCollectionProcessor
+name|ZkNodeProps
 operator|.
-name|asMap
+name|makeMap
 argument_list|(
 name|NUM_SLICES
 argument_list|,
