@@ -886,11 +886,6 @@ name|state
 operator|.
 name|getLength
 argument_list|()
-operator|/
-name|state
-operator|.
-name|getBoost
-argument_list|()
 expr_stmt|;
 return|return
 name|encodeNormValue
