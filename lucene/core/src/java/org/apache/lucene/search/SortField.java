@@ -1332,6 +1332,21 @@ return|return
 name|this
 return|;
 block|}
+comment|/** Whether the relevance score is needed to sort documents. */
+DECL|method|needsScores
+specifier|public
+name|boolean
+name|needsScores
+parameter_list|()
+block|{
+return|return
+name|type
+operator|==
+name|Type
+operator|.
+name|SCORE
+return|;
+block|}
 block|}
 end_class
 

@@ -149,6 +149,19 @@ name|numHits
 argument_list|)
 return|;
 block|}
+annotation|@
+name|Override
+DECL|method|needsScores
+specifier|public
+name|boolean
+name|needsScores
+parameter_list|()
+block|{
+return|return
+literal|true
+return|;
+comment|// TODO: maybe we can optimize by "figuring this out" somehow...
+block|}
 block|}
 end_class
 

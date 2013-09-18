@@ -438,14 +438,8 @@ if|if
 condition|(
 name|sortField
 operator|.
-name|getType
+name|needsScores
 argument_list|()
-operator|==
-name|SortField
-operator|.
-name|Type
-operator|.
-name|SCORE
 condition|)
 block|{
 return|return
