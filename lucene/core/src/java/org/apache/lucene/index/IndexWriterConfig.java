@@ -1205,7 +1205,7 @@ name|getRAMBufferSizeMB
 argument_list|()
 return|;
 block|}
-comment|/** If non-null, information about merges, deletes and a    * message when maxFieldLength is reached will be printed    * to this.    */
+comment|/**     * Information about merges, deletes and a    * message when maxFieldLength is reached will be printed    * to this. Must not be null, but {@link InfoStream#NO_OUTPUT}     * may be used to supress output.    */
 DECL|method|setInfoStream
 specifier|public
 name|IndexWriterConfig
@@ -1242,7 +1242,7 @@ return|return
 name|this
 return|;
 block|}
-comment|/** Convenience method that uses {@link PrintStreamInfoStream} */
+comment|/**     * Convenience method that uses {@link PrintStreamInfoStream}.  Must not be null.    */
 DECL|method|setInfoStream
 specifier|public
 name|IndexWriterConfig
