@@ -3995,7 +3995,7 @@ argument_list|)
 decl_stmt|;
 name|parser
 operator|.
-name|add
+name|parse
 argument_list|(
 operator|new
 name|StringReader
