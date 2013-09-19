@@ -34,22 +34,6 @@ name|apache
 operator|.
 name|lucene
 operator|.
-name|queries
-operator|.
-name|function
-operator|.
-name|ValueSource
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
 name|search
 operator|.
 name|FieldComparator
@@ -84,7 +68,7 @@ block|{
 DECL|field|source
 specifier|private
 specifier|final
-name|ValueSource
+name|ExpressionValueSource
 name|source
 decl_stmt|;
 DECL|method|ExpressionSortField
@@ -93,7 +77,7 @@ parameter_list|(
 name|String
 name|name
 parameter_list|,
-name|ValueSource
+name|ExpressionValueSource
 name|source
 parameter_list|,
 name|boolean
@@ -356,9 +340,11 @@ name|needsScores
 parameter_list|()
 block|{
 return|return
-literal|true
+name|source
+operator|.
+name|needsScores
+argument_list|()
 return|;
-comment|// TODO: maybe we can optimize by "figuring this out" somehow...
 block|}
 block|}
 end_class
