@@ -80,7 +80,7 @@ name|lucene
 operator|.
 name|index
 operator|.
-name|SegmentWriteState
+name|IndexFileNames
 import|;
 end_import
 
@@ -108,7 +108,7 @@ name|lucene
 operator|.
 name|index
 operator|.
-name|IndexFileNames
+name|SegmentWriteState
 import|;
 end_import
 

@@ -18,26 +18,6 @@ end_comment
 
 begin_import
 import|import
-name|java
-operator|.
-name|io
-operator|.
-name|IOException
-import|;
-end_import
-
-begin_import
-import|import
-name|java
-operator|.
-name|util
-operator|.
-name|Comparator
-import|;
-end_import
-
-begin_import
-import|import
 name|org
 operator|.
 name|apache
@@ -79,7 +59,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Subclass of FilteredTermEnum for enumerating all terms that match the  * specified range parameters.  *<p>Term enumerations are always ordered by  * {@link #getComparator}.  Each term in the enumeration is  * greater than all that precede it.</p>  */
+comment|/**  * Subclass of FilteredTermEnum for enumerating all terms that match the  * specified range parameters.  Each term in the enumeration is  * greater than all that precede it.</p>  */
 end_comment
 
 begin_class
@@ -113,15 +93,6 @@ specifier|final
 specifier|private
 name|BytesRef
 name|upperBytesRef
-decl_stmt|;
-DECL|field|termComp
-specifier|private
-specifier|final
-name|Comparator
-argument_list|<
-name|BytesRef
-argument_list|>
-name|termComp
 decl_stmt|;
 comment|/**    * Enumerates all terms greater/equal than<code>lowerTerm</code>    * but less/equal than<code>upperTerm</code>.     *     * If an endpoint is null, it is said to be "open". Either or both     * endpoints may be open.  Open endpoints may not be exclusive     * (you can't select all but the first or last term without     * explicitly specifying the term to exclude.)    *     * @param tenum    *          TermsEnum to filter    * @param lowerTerm    *          The term text at the lower end of the range    * @param upperTerm    *          The term text at the upper end of the range    * @param includeLower    *          If true, the<code>lowerTerm</code> is included in the range.    * @param includeUpper    *          If true, the<code>upperTerm</code> is included in the range.    */
 DECL|method|TermRangeTermsEnum
@@ -224,11 +195,6 @@ argument_list|(
 name|lowerBytesRef
 argument_list|)
 expr_stmt|;
-name|termComp
-operator|=
-name|getComparator
-argument_list|()
-expr_stmt|;
 block|}
 annotation|@
 name|Override
@@ -272,12 +238,10 @@ specifier|final
 name|int
 name|cmp
 init|=
-name|termComp
-operator|.
-name|compare
-argument_list|(
 name|upperBytesRef
-argument_list|,
+operator|.
+name|compareTo
+argument_list|(
 name|term
 argument_list|)
 decl_stmt|;

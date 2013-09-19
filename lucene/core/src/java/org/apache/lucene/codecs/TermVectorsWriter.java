@@ -42,16 +42,6 @@ name|java
 operator|.
 name|util
 operator|.
-name|Comparator
-import|;
-end_import
-
-begin_import
-import|import
-name|java
-operator|.
-name|util
-operator|.
 name|Iterator
 import|;
 end_import
@@ -1229,19 +1219,6 @@ name|finishDocument
 argument_list|()
 expr_stmt|;
 block|}
-comment|/** Return the BytesRef Comparator used to sort terms    *  before feeding to this API. */
-DECL|method|getComparator
-specifier|public
-specifier|abstract
-name|Comparator
-argument_list|<
-name|BytesRef
-argument_list|>
-name|getComparator
-parameter_list|()
-throws|throws
-name|IOException
-function_decl|;
 annotation|@
 name|Override
 DECL|method|close

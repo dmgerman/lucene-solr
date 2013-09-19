@@ -335,7 +335,7 @@ import|;
 end_import
 
 begin_comment
-comment|/** Subclass of TermsEnum for enumerating all terms that are similar  * to the specified filter term.  *  *<p>Term enumerations are always ordered by  * {@link #getComparator}.  Each term in the enumeration is  * greater than all that precede it.</p>  */
+comment|/** Subclass of TermsEnum for enumerating all terms that are similar  * to the specified filter term.  *  *<p>Term enumerations are always ordered by  * {@link BytesRef#compareTo}.  Each term in the enumeration is  * greater than all that precede it.</p>  */
 end_comment
 
 begin_class
@@ -1572,24 +1572,6 @@ return|return
 name|actualEnum
 operator|.
 name|termState
-argument_list|()
-return|;
-block|}
-annotation|@
-name|Override
-DECL|method|getComparator
-specifier|public
-name|Comparator
-argument_list|<
-name|BytesRef
-argument_list|>
-name|getComparator
-parameter_list|()
-block|{
-return|return
-name|actualEnum
-operator|.
-name|getComparator
 argument_list|()
 return|;
 block|}

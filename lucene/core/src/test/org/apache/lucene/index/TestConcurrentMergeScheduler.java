@@ -1238,6 +1238,7 @@ argument_list|()
 argument_list|)
 argument_list|)
 operator|.
+comment|// Force excessive merging:
 name|setMaxBufferedDocs
 argument_list|(
 literal|2
@@ -1454,6 +1455,12 @@ name|newLogMergePolicy
 argument_list|(
 literal|100
 argument_list|)
+argument_list|)
+operator|.
+comment|// Force excessive merging:
+name|setMaxBufferedDocs
+argument_list|(
+literal|2
 argument_list|)
 argument_list|)
 expr_stmt|;

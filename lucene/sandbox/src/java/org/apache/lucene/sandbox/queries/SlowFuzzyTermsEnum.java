@@ -183,7 +183,7 @@ import|;
 end_import
 
 begin_comment
-comment|/** Potentially slow fuzzy TermsEnum for enumerating all terms that are similar  * to the specified filter term.  *<p> If the minSimilarity or maxEdits is greater than the Automaton's  * allowable range, this backs off to the classic (brute force)  * fuzzy terms enum method by calling FuzzyTermsEnum's getAutomatonEnum.  *</p>  *<p>Term enumerations are always ordered by  * {@link #getComparator}.  Each term in the enumeration is  * greater than all that precede it.</p>  *   * @deprecated Use {@link FuzzyTermsEnum} instead.  */
+comment|/** Potentially slow fuzzy TermsEnum for enumerating all terms that are similar  * to the specified filter term.  *<p> If the minSimilarity or maxEdits is greater than the Automaton's  * allowable range, this backs off to the classic (brute force)  * fuzzy terms enum method by calling FuzzyTermsEnum's getAutomatonEnum.  *</p>  *<p>Term enumerations are always ordered by  * {@link BytesRef#compareTo}.  Each term in the enumeration is  * greater than all that precede it.</p>  *   * @deprecated Use {@link FuzzyTermsEnum} instead.  */
 end_comment
 
 begin_class

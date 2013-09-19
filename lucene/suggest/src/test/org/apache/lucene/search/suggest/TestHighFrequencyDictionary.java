@@ -236,14 +236,6 @@ name|assertNull
 argument_list|(
 name|tf
 operator|.
-name|getComparator
-argument_list|()
-argument_list|)
-expr_stmt|;
-name|assertNull
-argument_list|(
-name|tf
-operator|.
 name|next
 argument_list|()
 argument_list|)

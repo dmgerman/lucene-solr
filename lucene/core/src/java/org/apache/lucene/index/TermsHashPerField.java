@@ -28,16 +28,6 @@ end_import
 
 begin_import
 import|import
-name|java
-operator|.
-name|util
-operator|.
-name|Comparator
-import|;
-end_import
-
-begin_import
-import|import
 name|org
 operator|.
 name|apache
@@ -397,26 +387,7 @@ operator|=
 literal|null
 expr_stmt|;
 block|}
-DECL|method|shrinkHash
-name|void
-name|shrinkHash
-parameter_list|(
-name|int
-name|targetSize
-parameter_list|)
-block|{
-comment|// Fully free the bytesHash on each flush but keep the pool untouched
-comment|// bytesHash.clear will clear the ByteStartArray and in turn the ParallelPostingsArray too
-name|bytesHash
-operator|.
-name|clear
-argument_list|(
-literal|false
-argument_list|)
-expr_stmt|;
-block|}
 DECL|method|reset
-specifier|public
 name|void
 name|reset
 parameter_list|()
@@ -553,20 +524,17 @@ specifier|public
 name|int
 index|[]
 name|sortPostings
-parameter_list|(
-name|Comparator
-argument_list|<
-name|BytesRef
-argument_list|>
-name|termComp
-parameter_list|)
+parameter_list|()
 block|{
 return|return
 name|bytesHash
 operator|.
 name|sort
 argument_list|(
-name|termComp
+name|BytesRef
+operator|.
+name|getUTF8SortedAsUnicodeComparator
+argument_list|()
 argument_list|)
 return|;
 block|}
@@ -692,7 +660,8 @@ return|;
 block|}
 comment|// Secondary entry point (for 2nd& subsequent TermsHash),
 comment|// because token text has already been "interned" into
-comment|// textStart, so we hash by textStart
+comment|// textStart, so we hash by textStart.  term vectors use
+comment|// this API.
 DECL|method|add
 specifier|public
 name|void
@@ -909,7 +878,8 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
-comment|// Primary entry point (for first TermsHash)
+comment|// Primary entry point (for first TermsHash); postings use
+comment|// this API.
 annotation|@
 name|Override
 DECL|method|add

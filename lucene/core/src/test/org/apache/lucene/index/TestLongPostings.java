@@ -1082,6 +1082,21 @@ operator|==
 literal|3
 condition|)
 block|{
+if|if
+condition|(
+name|VERBOSE
+condition|)
+block|{
+name|System
+operator|.
+name|out
+operator|.
+name|println
+argument_list|(
+literal|"    check positions"
+argument_list|)
+expr_stmt|;
+block|}
 specifier|final
 name|int
 name|freq

@@ -278,20 +278,6 @@ operator|new
 name|TernaryTreeNode
 argument_list|()
 expr_stmt|;
-comment|// buffer first
-if|if
-condition|(
-name|tfit
-operator|.
-name|getComparator
-argument_list|()
-operator|!=
-name|BytesRef
-operator|.
-name|getUTF8SortedAsUTF16Comparator
-argument_list|()
-condition|)
-block|{
 comment|// make sure it's sorted and the comparator uses UTF16 sort order
 name|tfit
 operator|=
@@ -306,7 +292,6 @@ name|getUTF8SortedAsUTF16Comparator
 argument_list|()
 argument_list|)
 expr_stmt|;
-block|}
 name|ArrayList
 argument_list|<
 name|String

@@ -28,16 +28,6 @@ end_import
 
 begin_import
 import|import
-name|java
-operator|.
-name|util
-operator|.
-name|Comparator
-import|;
-end_import
-
-begin_import
-import|import
 name|org
 operator|.
 name|apache
@@ -93,7 +83,7 @@ import|;
 end_import
 
 begin_comment
-comment|/** Iterator to seek ({@link #seekCeil(BytesRef)}, {@link  * #seekExact(BytesRef)}) or step through ({@link  * #next} terms to obtain frequency information ({@link  * #docFreq}), {@link DocsEnum} or {@link  * DocsAndPositionsEnum} for the current term ({@link  * #docs}.  *   *<p>Term enumerations are always ordered by  * {@link #getComparator}.  Each term in the enumeration is  * greater than the one before it.</p>  *  *<p>The TermsEnum is unpositioned when you first obtain it  * and you must first successfully call {@link #next} or one  * of the<code>seek</code> methods.  *  * @lucene.experimental */
+comment|/** Iterator to seek ({@link #seekCeil(BytesRef)}, {@link  * #seekExact(BytesRef)}) or step through ({@link  * #next} terms to obtain frequency information ({@link  * #docFreq}), {@link DocsEnum} or {@link  * DocsAndPositionsEnum} for the current term ({@link  * #docs}.  *   *<p>Term enumerations are always ordered by  * BytesRef.compareTo, which is Unicode sort  * order if the terms are UTF-8 bytes.  Each term in the  * enumeration is greater than the one before it.</p>  *  *<p>The TermsEnum is unpositioned when you first obtain it  * and you must first successfully call {@link #next} or one  * of the<code>seek</code> methods.  *  * @lucene.experimental */
 end_comment
 
 begin_class
@@ -472,20 +462,6 @@ argument_list|(
 literal|"this method should never be called"
 argument_list|)
 throw|;
-block|}
-annotation|@
-name|Override
-specifier|public
-name|Comparator
-argument_list|<
-name|BytesRef
-argument_list|>
-name|getComparator
-parameter_list|()
-block|{
-return|return
-literal|null
-return|;
 block|}
 annotation|@
 name|Override

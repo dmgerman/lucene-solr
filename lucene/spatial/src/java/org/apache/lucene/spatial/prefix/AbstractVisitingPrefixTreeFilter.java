@@ -20,15 +20,21 @@ end_comment
 
 begin_import
 import|import
-name|com
+name|java
 operator|.
-name|spatial4j
+name|io
 operator|.
-name|core
+name|IOException
+import|;
+end_import
+
+begin_import
+import|import
+name|java
 operator|.
-name|shape
+name|util
 operator|.
-name|Shape
+name|Iterator
 import|;
 end_import
 
@@ -154,21 +160,15 @@ end_import
 
 begin_import
 import|import
-name|java
+name|com
 operator|.
-name|io
+name|spatial4j
 operator|.
-name|IOException
-import|;
-end_import
-
-begin_import
-import|import
-name|java
+name|core
 operator|.
-name|util
+name|shape
 operator|.
-name|Iterator
+name|Shape
 import|;
 end_import
 
@@ -616,15 +616,10 @@ expr_stmt|;
 name|int
 name|compare
 init|=
-name|termsEnum
-operator|.
-name|getComparator
-argument_list|()
-operator|.
-name|compare
-argument_list|(
 name|thisTerm
-argument_list|,
+operator|.
+name|compareTo
+argument_list|(
 name|curVNodeTerm
 argument_list|)
 decl_stmt|;

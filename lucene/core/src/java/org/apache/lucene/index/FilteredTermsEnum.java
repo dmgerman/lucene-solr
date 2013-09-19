@@ -28,16 +28,6 @@ end_import
 
 begin_import
 import|import
-name|java
-operator|.
-name|util
-operator|.
-name|Comparator
-import|;
-end_import
-
-begin_import
-import|import
 name|org
 operator|.
 name|apache
@@ -79,7 +69,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Abstract class for enumerating a subset of all terms.   *   *<p>Term enumerations are always ordered by  * {@link #getComparator}.  Each term in the enumeration is  * greater than all that precede it.</p>  *<p><em>Please note:</em> Consumers of this enum cannot  * call {@code seek()}, it is forward only; it throws  * {@link UnsupportedOperationException} when a seeking method  * is called.  */
+comment|/**  * Abstract class for enumerating a subset of all terms.   *   *<p>Term enumerations are always ordered by  * {@link BytesRef#compareTo}.  Each term in the enumeration is  * greater than all that precede it.</p>  *<p><em>Please note:</em> Consumers of this enum cannot  * call {@code seek()}, it is forward only; it throws  * {@link UnsupportedOperationException} when a seeking method  * is called.  */
 end_comment
 
 begin_class
@@ -280,24 +270,6 @@ return|return
 name|tenum
 operator|.
 name|term
-argument_list|()
-return|;
-block|}
-annotation|@
-name|Override
-DECL|method|getComparator
-specifier|public
-name|Comparator
-argument_list|<
-name|BytesRef
-argument_list|>
-name|getComparator
-parameter_list|()
-block|{
-return|return
-name|tenum
-operator|.
-name|getComparator
 argument_list|()
 return|;
 block|}
@@ -607,13 +579,10 @@ name|t
 operator|==
 literal|null
 operator|||
-name|getComparator
-argument_list|()
-operator|.
-name|compare
-argument_list|(
 name|t
-argument_list|,
+operator|.
+name|compareTo
+argument_list|(
 name|actualTerm
 argument_list|)
 operator|>

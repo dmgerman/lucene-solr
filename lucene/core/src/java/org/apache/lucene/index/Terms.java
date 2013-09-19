@@ -28,16 +28,6 @@ end_import
 
 begin_import
 import|import
-name|java
-operator|.
-name|util
-operator|.
-name|Comparator
-import|;
-end_import
-
-begin_import
-import|import
 name|org
 operator|.
 name|apache
@@ -207,17 +197,6 @@ block|}
 return|;
 block|}
 block|}
-comment|/** Return the BytesRef Comparator used to sort terms    *  provided by the iterator.  This method may return null    *  if there are no terms.  This method may be invoked    *  many times; it's best to cache a single instance&    *  reuse it. */
-DECL|method|getComparator
-specifier|public
-specifier|abstract
-name|Comparator
-argument_list|<
-name|BytesRef
-argument_list|>
-name|getComparator
-parameter_list|()
-function_decl|;
 comment|/** Returns the number of terms for this field, or -1 if this     *  measure isn't stored by the codec. Note that, just like     *  other term measures, this measure does not take deleted     *  documents into account. */
 DECL|method|size
 specifier|public
@@ -258,6 +237,7 @@ parameter_list|()
 throws|throws
 name|IOException
 function_decl|;
+comment|// TODO: shouldn't we have hasFreq() as well?
 comment|/** Returns true if documents in this field store offsets. */
 DECL|method|hasOffsets
 specifier|public

@@ -28,16 +28,6 @@ end_import
 
 begin_import
 import|import
-name|java
-operator|.
-name|util
-operator|.
-name|Comparator
-import|;
-end_import
-
-begin_import
-import|import
 name|org
 operator|.
 name|apache
@@ -217,15 +207,6 @@ argument_list|(
 literal|10
 argument_list|)
 decl_stmt|;
-DECL|field|termComp
-specifier|private
-specifier|final
-name|Comparator
-argument_list|<
-name|BytesRef
-argument_list|>
-name|termComp
-decl_stmt|;
 comment|/**    * Construct an enumerator based upon an automaton, enumerating the specified    * field, working on a supplied TermsEnum    *<p>    * @lucene.experimental     *<p>    * @param compiled CompiledAutomaton    */
 DECL|method|AutomatonTermsEnum
 specifier|public
@@ -294,11 +275,6 @@ name|getSize
 argument_list|()
 index|]
 expr_stmt|;
-name|termComp
-operator|=
-name|getComparator
-argument_list|()
-expr_stmt|;
 block|}
 comment|/**    * Returns true if the term matches the automaton. Also stashes away the term    * to assist with smart enumeration.    */
 annotation|@
@@ -364,12 +340,10 @@ return|return
 operator|(
 name|linear
 operator|&&
-name|termComp
-operator|.
-name|compare
-argument_list|(
 name|term
-argument_list|,
+operator|.
+name|compareTo
+argument_list|(
 name|linearUpperBound
 argument_list|)
 operator|<
@@ -391,12 +365,10 @@ return|return
 operator|(
 name|linear
 operator|&&
-name|termComp
-operator|.
-name|compare
-argument_list|(
 name|term
-argument_list|,
+operator|.
+name|compareTo
+argument_list|(
 name|linearUpperBound
 argument_list|)
 operator|<

@@ -7116,17 +7116,6 @@ parameter_list|)
 throws|throws
 name|IOException
 block|{
-assert|assert
-name|leftTerms
-operator|.
-name|getComparator
-argument_list|()
-operator|==
-name|rightTerms
-operator|.
-name|getComparator
-argument_list|()
-assert|;
 if|if
 condition|(
 name|leftTerms

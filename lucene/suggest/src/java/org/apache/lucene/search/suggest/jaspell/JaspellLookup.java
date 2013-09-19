@@ -150,22 +150,6 @@ name|search
 operator|.
 name|suggest
 operator|.
-name|UnsortedTermFreqIteratorWrapper
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|search
-operator|.
-name|suggest
-operator|.
 name|jaspell
 operator|.
 name|JaspellTernarySearchTrie
@@ -297,27 +281,6 @@ argument_list|(
 literal|"this suggester doesn't support payloads"
 argument_list|)
 throw|;
-block|}
-if|if
-condition|(
-name|tfit
-operator|.
-name|getComparator
-argument_list|()
-operator|!=
-literal|null
-condition|)
-block|{
-comment|// make sure it's unsorted
-comment|// WTF - this could result in yet another sorted iteration....
-name|tfit
-operator|=
-operator|new
-name|UnsortedTermFreqIteratorWrapper
-argument_list|(
-name|tfit
-argument_list|)
-expr_stmt|;
 block|}
 name|trie
 operator|=

@@ -22,16 +22,6 @@ name|java
 operator|.
 name|io
 operator|.
-name|Closeable
-import|;
-end_import
-
-begin_import
-import|import
-name|java
-operator|.
-name|io
-operator|.
 name|IOException
 import|;
 end_import
@@ -50,19 +40,9 @@ name|FieldInfo
 import|;
 end_import
 
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|index
-operator|.
-name|Fields
-import|;
-end_import
+begin_comment
+comment|// javadocs
+end_comment
 
 begin_import
 import|import
@@ -74,7 +54,7 @@ name|lucene
 operator|.
 name|index
 operator|.
-name|MergeState
+name|Fields
 import|;
 end_import
 
@@ -96,22 +76,8 @@ begin_comment
 comment|// javadocs
 end_comment
 
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|index
-operator|.
-name|Terms
-import|;
-end_import
-
 begin_comment
-comment|/**   * Abstract API that consumes terms, doc, freq, prox, offset and  * payloads postings.  Concrete implementations of this  * actually do "something" with the postings (write it into  * the index in a specific format).  *<p>  * The lifecycle is:  *<ol>  *<li>FieldsConsumer is created by   *       {@link PostingsFormat#fieldsConsumer(SegmentWriteState)}.  *<li>For each field, {@link #addField(FieldInfo)} is called,  *       returning a {@link TermsConsumer} for the field.  *<li>After all fields are added, the consumer is {@link #close}d.  *</ol>  *  * @lucene.experimental  */
+comment|/**   * Abstract API that consumes terms, doc, freq, prox, offset and  * payloads postings.  Concrete implementations of this  * actually do "something" with the postings (write it into  * the index in a specific format).  *  * @lucene.experimental  */
 end_comment
 
 begin_class
@@ -120,8 +86,6 @@ specifier|public
 specifier|abstract
 class|class
 name|FieldsConsumer
-implements|implements
-name|Closeable
 block|{
 comment|/** Sole constructor. (For invocation by subclass     *  constructors, typically implicit.) */
 DECL|method|FieldsConsumer
@@ -129,123 +93,23 @@ specifier|protected
 name|FieldsConsumer
 parameter_list|()
 block|{   }
-comment|/** Add a new field */
-DECL|method|addField
-specifier|public
-specifier|abstract
-name|TermsConsumer
-name|addField
-parameter_list|(
-name|FieldInfo
-name|field
-parameter_list|)
-throws|throws
-name|IOException
-function_decl|;
-comment|/** Called when we are done adding everything. */
-annotation|@
-name|Override
-DECL|method|close
+comment|// TODO: can we somehow compute stats for you...?
+comment|// TODO: maybe we should factor out "limited" (only
+comment|// iterables, no counts/stats) base classes from
+comment|// Fields/Terms/Docs/AndPositions?
+comment|/** Write all fields, terms and postings.  This the "pull"    *  API, allowing you to iterate more than once over the    *  postings, somewhat analogous to using a DOM API to    *  traverse an XML tree.  Alternatively, if you subclass    *  {@link PushFieldsConsumer}, then all postings are    *  pushed in a single pass, somewhat analogous to using a    *  SAX API to traverse an XML tree.    *    *<p>This API is has certain restrictions vs {@link    *  PushFieldsConsumer}:    *    *<ul>    *<li> You must compute index statistics yourself,    *         including each Term's docFreq and totalTermFreq,    *         as well as the summary sumTotalTermFreq,    *         sumTotalDocFreq and docCount.    *    *<li> You must skip terms that have no docs and    *         fields that have no terms, even though the provided    *         Fields API will expose them; this typically    *         requires lazily writing the field or term until    *         you've actually seen the first term or    *         document.    *    *<li> The provided Fields instance is limited: you    *         cannot call any methods that return    *         statistics/counts; you cannot pass a non-null    *         live docs when pulling docs/positions enums.    *</ul>    */
+DECL|method|write
 specifier|public
 specifier|abstract
 name|void
-name|close
-parameter_list|()
-throws|throws
-name|IOException
-function_decl|;
-comment|/** Called during merging to merge all {@link Fields} from    *  sub-readers.  This must recurse to merge all postings    *  (terms, docs, positions, etc.).  A {@link    *  PostingsFormat} can override this default    *  implementation to do its own merging. */
-DECL|method|merge
-specifier|public
-name|void
-name|merge
+name|write
 parameter_list|(
-name|MergeState
-name|mergeState
-parameter_list|,
 name|Fields
 name|fields
 parameter_list|)
 throws|throws
 name|IOException
-block|{
-for|for
-control|(
-name|String
-name|field
-range|:
-name|fields
-control|)
-block|{
-name|FieldInfo
-name|info
-init|=
-name|mergeState
-operator|.
-name|fieldInfos
-operator|.
-name|fieldInfo
-argument_list|(
-name|field
-argument_list|)
-decl_stmt|;
-assert|assert
-name|info
-operator|!=
-literal|null
-operator|:
-literal|"FieldInfo for field is null: "
-operator|+
-name|field
-assert|;
-name|Terms
-name|terms
-init|=
-name|fields
-operator|.
-name|terms
-argument_list|(
-name|field
-argument_list|)
-decl_stmt|;
-if|if
-condition|(
-name|terms
-operator|!=
-literal|null
-condition|)
-block|{
-specifier|final
-name|TermsConsumer
-name|termsConsumer
-init|=
-name|addField
-argument_list|(
-name|info
-argument_list|)
-decl_stmt|;
-name|termsConsumer
-operator|.
-name|merge
-argument_list|(
-name|mergeState
-argument_list|,
-name|info
-operator|.
-name|getIndexOptions
-argument_list|()
-argument_list|,
-name|terms
-operator|.
-name|iterator
-argument_list|(
-literal|null
-argument_list|)
-argument_list|)
-expr_stmt|;
-block|}
-block|}
-block|}
+function_decl|;
 block|}
 end_class
 
