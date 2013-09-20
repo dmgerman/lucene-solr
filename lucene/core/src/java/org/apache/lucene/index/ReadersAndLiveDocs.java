@@ -838,6 +838,7 @@ return|;
 block|}
 DECL|method|doGetReaderWithUpdates
 specifier|private
+specifier|synchronized
 name|SegmentReader
 name|doGetReaderWithUpdates
 parameter_list|(
@@ -847,20 +848,21 @@ parameter_list|)
 throws|throws
 name|IOException
 block|{
+assert|assert
+name|Thread
+operator|.
+name|holdsLock
+argument_list|(
+name|writer
+argument_list|)
+assert|;
+comment|// when we get here, we should already have the writer lock
 name|boolean
 name|checkpoint
 init|=
 literal|false
 decl_stmt|;
 try|try
-block|{
-comment|// don't synchronize the entire method because we cannot call
-comment|// writer.checkpoint() while holding the RLD lock, otherwise we might hit
-comment|// a deadlock w/ e.g. a concurrent merging thread.
-synchronized|synchronized
-init|(
-name|this
-init|)
 block|{
 name|checkpoint
 operator|=
@@ -881,6 +883,7 @@ literal|null
 condition|)
 block|{
 comment|// We steal returned ref:
+comment|//        System.out.println("[" + Thread.currentThread().getName() + "] RLD.doGetReaderWithUpdates: newSR " + info);
 name|reader
 operator|=
 operator|new
@@ -914,6 +917,7 @@ name|checkpoint
 condition|)
 block|{
 comment|// enroll a new reader with the applied updates
+comment|//        System.out.println("[" + Thread.currentThread().getName() + "] RLD.doGetReaderWithUpdates: reopenReader " + info);
 name|reopenReader
 argument_list|(
 name|context
@@ -929,7 +933,6 @@ expr_stmt|;
 return|return
 name|reader
 return|;
-block|}
 block|}
 finally|finally
 block|{
@@ -978,6 +981,7 @@ init|(
 name|writer
 init|)
 block|{
+comment|//        System.out.println("[" + Thread.currentThread().getName() + "] RLD.getReader: getReaderWithUpdates " + info);
 return|return
 name|doGetReaderWithUpdates
 argument_list|(
@@ -988,6 +992,7 @@ block|}
 block|}
 else|else
 block|{
+comment|//      System.out.println("[" + Thread.currentThread().getName() + "] RLD.getReader: getReader no updates " + info);
 return|return
 name|doGetReader
 argument_list|(
@@ -1678,6 +1683,7 @@ condition|)
 block|{
 comment|// reader could be null e.g. for a just merged segment (from
 comment|// IndexWriter.commitMergedDeletes).
+comment|//        if (this.reader == null) System.out.println("[" + Thread.currentThread().getName() + "] RLD.writeLiveDocs: newSR " + info);
 specifier|final
 name|SegmentReader
 name|reader
@@ -1884,6 +1890,7 @@ literal|false
 decl_stmt|;
 try|try
 block|{
+comment|//            System.out.println("[" + Thread.currentThread().getName() + "] RLD.writeLiveDocs: applying updates; seg=" + info + " updates=" + numericUpdates);
 for|for
 control|(
 name|Entry
@@ -2201,6 +2208,7 @@ operator|.
 name|reader
 condition|)
 block|{
+comment|//            System.out.println("[" + Thread.currentThread().getName() + "] RLD.writeLiveDocs: closeReader " + reader);
 name|reader
 operator|.
 name|close
@@ -2329,6 +2337,8 @@ comment|// copy all the updates to mergingUpdates, so they can later be applied 
 if|if
 condition|(
 name|isMerging
+operator|||
+literal|true
 condition|)
 block|{
 name|copyUpdatesToMerging
@@ -2361,6 +2371,9 @@ name|void
 name|copyUpdatesToMerging
 parameter_list|()
 block|{
+comment|//    System.out.println("[" + Thread.currentThread().getName() + "] RLD.copyUpdatesToMerging: " + numericUpdates);
+comment|// cannot do a simple putAll, even if mergingUpdates is empty, because we
+comment|// need a shallow copy of the values (maps)
 for|for
 control|(
 name|Entry
@@ -2449,35 +2462,65 @@ expr_stmt|;
 block|}
 block|}
 block|}
-comment|/**    * Indicates whether this segment is currently being merged. Call this just    * before the segment is being merged with {@code true} and when the merge has    * finished and all updates have been applied to the merged segment, call this    * with {@code false}.    */
-DECL|method|setMerging
+comment|/**    * Returns a reader for merge. This method applies field updates if there are    * any and marks that this segment is currently merging.    */
+DECL|method|getReaderForMerge
+name|SegmentReader
+name|getReaderForMerge
+parameter_list|(
+name|IOContext
+name|context
+parameter_list|)
+throws|throws
+name|IOException
+block|{
+comment|// lock ordering must be IW -> RLD, otherwise could cause deadlocks
+synchronized|synchronized
+init|(
+name|writer
+init|)
+block|{
+synchronized|synchronized
+init|(
+name|this
+init|)
+block|{
+comment|// must execute these two statements as atomic operation, otherwise we
+comment|// could lose updates if e.g. another thread calls writeLiveDocs in
+comment|// between, or the updates are applied to the obtained reader, but then
+comment|// re-applied in IW.commitMergedDeletes (unnecessary work and potential
+comment|// bugs.
+name|isMerging
+operator|=
+literal|true
+expr_stmt|;
+return|return
+name|getReader
+argument_list|(
+literal|true
+argument_list|,
+name|context
+argument_list|)
+return|;
+block|}
+block|}
+block|}
+comment|/**    * Drops all merging updates. Called from IndexWriter after this segment    * finished merging (whether successfully or not).    */
+DECL|method|dropMergingUpdates
 specifier|public
 specifier|synchronized
 name|void
-name|setMerging
-parameter_list|(
-name|boolean
-name|isMerging
-parameter_list|)
-block|{
-name|this
-operator|.
-name|isMerging
-operator|=
-name|isMerging
-expr_stmt|;
-if|if
-condition|(
-operator|!
-name|isMerging
-condition|)
+name|dropMergingUpdates
+parameter_list|()
 block|{
 name|mergingUpdates
 operator|.
 name|clear
 argument_list|()
 expr_stmt|;
-block|}
+name|isMerging
+operator|=
+literal|false
+expr_stmt|;
 block|}
 comment|/**    * Called from IndexWriter after applying deletes to the merged segment, while    * it was being merged.    */
 DECL|method|setMergingUpdates

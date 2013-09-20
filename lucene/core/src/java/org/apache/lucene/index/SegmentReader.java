@@ -604,6 +604,7 @@ argument_list|(
 name|si
 argument_list|)
 decl_stmt|;
+comment|//        System.out.println("[" + Thread.currentThread().getName() + "] SR.init: new reader: " + si + "; gens=" + genInfos.keySet());
 for|for
 control|(
 name|Entry
@@ -851,6 +852,7 @@ operator|.
 name|incRef
 argument_list|()
 expr_stmt|;
+comment|//    System.out.println("[" + Thread.currentThread().getName() + "] SR.init: sharing reader: " + sr + " for gens=" + sr.genDVProducers.keySet());
 comment|// increment refCount of DocValuesProducers that are used by this reader
 name|boolean
 name|success
@@ -1009,6 +1011,7 @@ operator|.
 name|incRef
 argument_list|()
 expr_stmt|;
+comment|//              System.out.println("[" + Thread.currentThread().getName() + "] SR.init: sharing DVP for gen=" + gen + " refCount=" + dvp.getRefCount());
 block|}
 else|else
 block|{
@@ -1032,6 +1035,7 @@ argument_list|,
 name|infos
 argument_list|)
 expr_stmt|;
+comment|//              System.out.println("[" + Thread.currentThread().getName() + "] SR.init: new DVP for gen=" + gen + " refCount=" + dvp.getRefCount());
 block|}
 assert|assert
 name|dvp

@@ -1286,6 +1286,7 @@ name|rld
 operator|.
 name|info
 assert|;
+comment|//        System.out.println("[" + Thread.currentThread().getName() + "] ReaderPool.drop: " + info);
 name|readerMap
 operator|.
 name|remove
@@ -1379,6 +1380,7 @@ condition|)
 block|{
 comment|// This is the last ref to this RLD, and we're not
 comment|// pooling, so remove it:
+comment|//        System.out.println("[" + Thread.currentThread().getName() + "] ReaderPool.release: " + rld.info);
 if|if
 condition|(
 name|rld
@@ -1410,6 +1412,7 @@ literal|false
 argument_list|)
 expr_stmt|;
 block|}
+comment|//        System.out.println("[" + Thread.currentThread().getName() + "] ReaderPool.release: drop readers " + rld.info);
 name|rld
 operator|.
 name|dropReaders
@@ -9834,6 +9837,7 @@ operator|.
 name|getMergingUpdates
 argument_list|()
 decl_stmt|;
+comment|//      System.out.println("[" + Thread.currentThread().getName() + "] IW.commitMergedDeletes: info=" + info + ", mergingUpdates=" + mergingUpdates);
 if|if
 condition|(
 name|prevLiveDocs
@@ -10588,6 +10592,7 @@ name|isEmpty
 argument_list|()
 condition|)
 block|{
+comment|//      System.out.println("[" + Thread.currentThread().getName() + "] IW.commitMergedDeletes: mergedDeletes.info=" + mergedDeletes.info + ", mergedUpdates=" + mergedUpdates);
 assert|assert
 name|mergedDeletes
 operator|!=
@@ -10813,6 +10818,7 @@ argument_list|,
 name|mergeState
 argument_list|)
 decl_stmt|;
+comment|//    System.out.println("[" + Thread.currentThread().getName() + "] IW.commitMerge: mergedDeletes=" + mergedDeletes);
 assert|assert
 name|mergedDeletes
 operator|==
@@ -10989,6 +10995,7 @@ condition|(
 name|dropSegment
 condition|)
 block|{
+comment|//        System.out.println("[" + Thread.currentThread().getName() + "] IW.commitMerge: dropChanges " + merge.info);
 name|mergedDeletes
 operator|.
 name|dropChanges
@@ -12510,7 +12517,7 @@ literal|1L
 argument_list|)
 argument_list|)
 expr_stmt|;
-comment|//    System.out.println("[" + Thread.currentThread().getName() + "] _mergeInit: " + segString(merge.segments) + " into " + si);
+comment|//    System.out.println("[" + Thread.currentThread().getName() + "] IW._mergeInit: " + segString(merge.segments) + " into " + si);
 comment|// Lock order: IW -> BD
 name|bufferedDeletesStream
 operator|.
@@ -12913,13 +12920,14 @@ name|dropChanges
 argument_list|()
 expr_stmt|;
 block|}
+else|else
+block|{
 name|rld
 operator|.
-name|setMerging
-argument_list|(
-literal|false
-argument_list|)
+name|dropMergingUpdates
+argument_list|()
 expr_stmt|;
+block|}
 name|rld
 operator|.
 name|release
@@ -13212,10 +13220,8 @@ name|reader
 init|=
 name|rld
 operator|.
-name|getReader
+name|getReaderForMerge
 argument_list|(
-literal|true
-argument_list|,
 name|context
 argument_list|)
 decl_stmt|;
@@ -13224,15 +13230,6 @@ name|reader
 operator|!=
 literal|null
 assert|;
-comment|// Notify that we are merging, so that we can later copy the updates
-comment|// that were received while merging to the merged segment.
-name|rld
-operator|.
-name|setMerging
-argument_list|(
-literal|true
-argument_list|)
-expr_stmt|;
 comment|// Carefully pull the most recent live docs:
 specifier|final
 name|Bits
@@ -13513,6 +13510,7 @@ name|segUpto
 operator|++
 expr_stmt|;
 block|}
+comment|//      System.out.println("[" + Thread.currentThread().getName() + "] IW.mergeMiddle: merging " + merge.getMergeReaders());
 comment|// we pass merge.getMergeReaders() instead of merge.readers to allow the
 comment|// OneMerge to return a view over the actual segments to merge
 specifier|final
