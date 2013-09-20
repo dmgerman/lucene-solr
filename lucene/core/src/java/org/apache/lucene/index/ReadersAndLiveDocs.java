@@ -2337,8 +2337,6 @@ comment|// copy all the updates to mergingUpdates, so they can later be applied 
 if|if
 condition|(
 name|isMerging
-operator|||
-literal|true
 condition|)
 block|{
 name|copyUpdatesToMerging
