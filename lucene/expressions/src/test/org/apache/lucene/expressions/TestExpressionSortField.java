@@ -216,7 +216,7 @@ operator|new
 name|SimpleBindings
 argument_list|()
 decl_stmt|;
-name|bindings
+name|otherBindings
 operator|.
 name|add
 argument_list|(
@@ -233,7 +233,7 @@ name|LONG
 argument_list|)
 argument_list|)
 expr_stmt|;
-name|bindings
+name|otherBindings
 operator|.
 name|add
 argument_list|(
