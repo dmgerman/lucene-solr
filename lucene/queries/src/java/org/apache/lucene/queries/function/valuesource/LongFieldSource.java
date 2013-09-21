@@ -179,7 +179,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Obtains float field values from the {@link org.apache.lucene.search.FieldCache}  * using<code>getFloats()</code>  * and makes those values available as other numeric types, casting as needed.  *  *  */
+comment|/**  * Obtains long field values from {@link FieldCache#getLongs} and makes those  * values available as other numeric types, casting as needed.  */
 end_comment
 
 begin_class
