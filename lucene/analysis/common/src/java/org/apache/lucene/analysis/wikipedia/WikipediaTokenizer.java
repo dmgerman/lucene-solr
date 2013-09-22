@@ -676,10 +676,11 @@ operator|=
 operator|new
 name|WikipediaTokenizerImpl
 argument_list|(
-literal|null
+name|this
+operator|.
+name|input
 argument_list|)
 expr_stmt|;
-comment|// best effort NPE if you dont call reset
 name|init
 argument_list|(
 name|tokenOutput
@@ -723,10 +724,11 @@ operator|=
 operator|new
 name|WikipediaTokenizerImpl
 argument_list|(
-literal|null
+name|this
+operator|.
+name|input
 argument_list|)
 expr_stmt|;
-comment|// best effort NPE if you dont call reset
 name|init
 argument_list|(
 name|tokenOutput
@@ -1530,6 +1532,29 @@ argument_list|)
 argument_list|)
 expr_stmt|;
 block|}
+annotation|@
+name|Override
+DECL|method|close
+specifier|public
+name|void
+name|close
+parameter_list|()
+throws|throws
+name|IOException
+block|{
+name|super
+operator|.
+name|close
+argument_list|()
+expr_stmt|;
+name|scanner
+operator|.
+name|yyreset
+argument_list|(
+name|input
+argument_list|)
+expr_stmt|;
+block|}
 comment|/*   * (non-Javadoc)   *   * @see org.apache.lucene.analysis.TokenStream#reset()   */
 annotation|@
 name|Override
@@ -1541,6 +1566,11 @@ parameter_list|()
 throws|throws
 name|IOException
 block|{
+name|super
+operator|.
+name|reset
+argument_list|()
+expr_stmt|;
 name|scanner
 operator|.
 name|yyreset

@@ -1349,11 +1349,6 @@ argument_list|,
 literal|10
 argument_list|)
 expr_stmt|;
-name|tk
-operator|.
-name|reset
-argument_list|()
-expr_stmt|;
 name|assertTokenStreamContents
 argument_list|(
 name|tk

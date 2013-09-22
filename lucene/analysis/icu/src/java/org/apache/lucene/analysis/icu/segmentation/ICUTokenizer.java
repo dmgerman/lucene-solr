@@ -192,14 +192,12 @@ init|=
 literal|0
 decl_stmt|;
 comment|/** length in buffer that can be evaluated safely, up to a safe end point */
-comment|// note: usableLength is -1 here to best-effort AIOOBE consumers that don't call reset()
 DECL|field|usableLength
 specifier|private
 name|int
 name|usableLength
 init|=
-operator|-
-literal|1
+literal|0
 decl_stmt|;
 comment|/** accumulated offset of previous buffers for this reader, for offsetAtt */
 DECL|field|offset

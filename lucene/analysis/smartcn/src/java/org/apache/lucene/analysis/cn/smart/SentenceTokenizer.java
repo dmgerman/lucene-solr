@@ -496,6 +496,11 @@ parameter_list|()
 throws|throws
 name|IOException
 block|{
+name|super
+operator|.
+name|reset
+argument_list|()
+expr_stmt|;
 name|tokenStart
 operator|=
 name|tokenEnd

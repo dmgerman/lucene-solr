@@ -1531,7 +1531,7 @@ parameter_list|()
 throws|throws
 name|Exception
 block|{
-name|assertAnalyzesToReuse
+name|assertAnalyzesTo
 argument_list|(
 name|a
 argument_list|,

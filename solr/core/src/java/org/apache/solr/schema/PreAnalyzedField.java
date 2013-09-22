@@ -1363,6 +1363,12 @@ specifier|private
 name|Reader
 name|lastReader
 decl_stmt|;
+DECL|field|input
+specifier|private
+name|Reader
+name|input
+decl_stmt|;
+comment|// hides original input since we replay saved states (and dont reuse)
 DECL|method|PreAnalyzedTokenizer
 specifier|public
 name|PreAnalyzedTokenizer
@@ -1378,6 +1384,12 @@ name|super
 argument_list|(
 name|reader
 argument_list|)
+expr_stmt|;
+name|this
+operator|.
+name|input
+operator|=
+name|reader
 expr_stmt|;
 name|this
 operator|.

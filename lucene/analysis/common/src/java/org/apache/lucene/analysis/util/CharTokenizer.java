@@ -218,7 +218,6 @@ name|matchVersion
 argument_list|)
 expr_stmt|;
 block|}
-comment|// note: bufferIndex is -1 here to best-effort AIOOBE consumers that don't call reset()
 DECL|field|offset
 DECL|field|bufferIndex
 DECL|field|dataLen
@@ -231,8 +230,7 @@ literal|0
 decl_stmt|,
 name|bufferIndex
 init|=
-operator|-
-literal|1
+literal|0
 decl_stmt|,
 name|dataLen
 init|=
@@ -658,6 +656,11 @@ parameter_list|()
 throws|throws
 name|IOException
 block|{
+name|super
+operator|.
+name|reset
+argument_list|()
+expr_stmt|;
 name|bufferIndex
 operator|=
 literal|0

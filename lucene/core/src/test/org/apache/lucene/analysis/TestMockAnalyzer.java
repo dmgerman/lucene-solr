@@ -203,7 +203,7 @@ literal|"z"
 block|}
 argument_list|)
 expr_stmt|;
-name|assertAnalyzesToReuse
+name|assertAnalyzesTo
 argument_list|(
 name|a
 argument_list|,
@@ -221,7 +221,7 @@ literal|"shazam"
 block|}
 argument_list|)
 expr_stmt|;
-name|assertAnalyzesToReuse
+name|assertAnalyzesTo
 argument_list|(
 name|a
 argument_list|,
@@ -291,7 +291,7 @@ literal|"z"
 block|}
 argument_list|)
 expr_stmt|;
-name|assertAnalyzesToReuse
+name|assertAnalyzesTo
 argument_list|(
 name|a
 argument_list|,
@@ -309,7 +309,7 @@ literal|"shazam"
 block|}
 argument_list|)
 expr_stmt|;
-name|assertAnalyzesToReuse
+name|assertAnalyzesTo
 argument_list|(
 name|a
 argument_list|,
@@ -367,7 +367,7 @@ literal|"a-bc123 defg+hijklmn567opqrstuv78wxy_z "
 block|}
 argument_list|)
 expr_stmt|;
-name|assertAnalyzesToReuse
+name|assertAnalyzesTo
 argument_list|(
 name|a
 argument_list|,
@@ -381,7 +381,7 @@ literal|"aba4cadaba-Shazam"
 block|}
 argument_list|)
 expr_stmt|;
-name|assertAnalyzesToReuse
+name|assertAnalyzesTo
 argument_list|(
 name|a
 argument_list|,
@@ -681,7 +681,7 @@ operator|.
 name|close
 argument_list|()
 expr_stmt|;
-name|assertAnalyzesToReuse
+name|assertAnalyzesTo
 argument_list|(
 name|analyzer
 argument_list|,

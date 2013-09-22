@@ -480,7 +480,7 @@ argument_list|,
 name|result
 argument_list|)
 expr_stmt|;
-name|assertAnalyzesToReuse
+name|assertAnalyzesTo
 argument_list|(
 name|analyzer
 argument_list|,
@@ -1038,7 +1038,7 @@ operator|.
 name|LUCENE_CURRENT
 argument_list|)
 decl_stmt|;
-name|assertAnalyzesToReuse
+name|assertAnalyzesTo
 argument_list|(
 name|a
 argument_list|,
@@ -1102,7 +1102,7 @@ literal|16
 block|}
 argument_list|)
 expr_stmt|;
-name|assertAnalyzesToReuse
+name|assertAnalyzesTo
 argument_list|(
 name|a
 argument_list|,

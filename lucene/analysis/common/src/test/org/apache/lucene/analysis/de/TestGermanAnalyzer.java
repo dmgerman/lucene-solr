@@ -139,7 +139,7 @@ argument_list|(
 name|TEST_VERSION_CURRENT
 argument_list|)
 decl_stmt|;
-name|checkOneTermReuse
+name|checkOneTerm
 argument_list|(
 name|a
 argument_list|,
@@ -148,7 +148,7 @@ argument_list|,
 literal|"tisch"
 argument_list|)
 expr_stmt|;
-name|checkOneTermReuse
+name|checkOneTerm
 argument_list|(
 name|a
 argument_list|,
@@ -157,7 +157,7 @@ argument_list|,
 literal|"tisch"
 argument_list|)
 expr_stmt|;
-name|checkOneTermReuse
+name|checkOneTerm
 argument_list|(
 name|a
 argument_list|,
@@ -269,7 +269,7 @@ literal|false
 argument_list|)
 argument_list|)
 decl_stmt|;
-name|checkOneTermReuse
+name|checkOneTerm
 argument_list|(
 name|a
 argument_list|,
@@ -298,7 +298,7 @@ name|TEST_VERSION_CURRENT
 argument_list|)
 decl_stmt|;
 comment|// a/o/u + e is equivalent to the umlaut form
-name|checkOneTermReuse
+name|checkOneTerm
 argument_list|(
 name|a
 argument_list|,
@@ -307,7 +307,7 @@ argument_list|,
 literal|"schaltflach"
 argument_list|)
 expr_stmt|;
-name|checkOneTermReuse
+name|checkOneTerm
 argument_list|(
 name|a
 argument_list|,

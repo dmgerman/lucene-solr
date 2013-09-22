@@ -679,7 +679,7 @@ argument_list|(
 name|TEST_VERSION_CURRENT
 argument_list|)
 decl_stmt|;
-name|checkOneTermReuse
+name|checkOneTerm
 argument_list|(
 name|a
 argument_list|,
@@ -688,7 +688,7 @@ argument_list|,
 literal|"opheff"
 argument_list|)
 expr_stmt|;
-name|checkOneTermReuse
+name|checkOneTerm
 argument_list|(
 name|a
 argument_list|,
@@ -697,7 +697,7 @@ argument_list|,
 literal|"opheff"
 argument_list|)
 expr_stmt|;
-name|checkOneTermReuse
+name|checkOneTerm
 argument_list|(
 name|a
 argument_list|,
@@ -724,7 +724,7 @@ argument_list|(
 name|TEST_VERSION_CURRENT
 argument_list|)
 decl_stmt|;
-name|checkOneTermReuse
+name|checkOneTerm
 argument_list|(
 name|a
 argument_list|,
@@ -733,7 +733,7 @@ argument_list|,
 literal|"lichaamsziek"
 argument_list|)
 expr_stmt|;
-name|checkOneTermReuse
+name|checkOneTerm
 argument_list|(
 name|a
 argument_list|,
@@ -742,7 +742,7 @@ argument_list|,
 literal|"licham"
 argument_list|)
 expr_stmt|;
-name|checkOneTermReuse
+name|checkOneTerm
 argument_list|(
 name|a
 argument_list|,
@@ -751,7 +751,7 @@ argument_list|,
 literal|"licham"
 argument_list|)
 expr_stmt|;
-name|checkOneTermReuse
+name|checkOneTerm
 argument_list|(
 name|a
 argument_list|,
@@ -804,7 +804,7 @@ argument_list|,
 name|set
 argument_list|)
 decl_stmt|;
-name|assertAnalyzesToReuse
+name|assertAnalyzesTo
 argument_list|(
 name|a
 argument_list|,

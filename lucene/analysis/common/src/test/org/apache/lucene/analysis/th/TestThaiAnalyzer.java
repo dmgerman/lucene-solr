@@ -656,7 +656,7 @@ operator|.
 name|EMPTY_SET
 argument_list|)
 decl_stmt|;
-name|assertAnalyzesToReuse
+name|assertAnalyzesTo
 argument_list|(
 name|analyzer
 argument_list|,
@@ -668,7 +668,7 @@ index|[]
 block|{}
 argument_list|)
 expr_stmt|;
-name|assertAnalyzesToReuse
+name|assertAnalyzesTo
 argument_list|(
 name|analyzer
 argument_list|,
@@ -696,7 +696,7 @@ literal|"à¸à¸µ"
 block|}
 argument_list|)
 expr_stmt|;
-name|assertAnalyzesToReuse
+name|assertAnalyzesTo
 argument_list|(
 name|analyzer
 argument_list|,
@@ -920,7 +920,7 @@ return|;
 block|}
 block|}
 decl_stmt|;
-name|checkOneTermReuse
+name|checkOneTerm
 argument_list|(
 name|a
 argument_list|,

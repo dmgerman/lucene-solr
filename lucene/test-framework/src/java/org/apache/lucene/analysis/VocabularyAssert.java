@@ -211,7 +211,7 @@ argument_list|)
 expr_stmt|;
 name|BaseTokenStreamTestCase
 operator|.
-name|checkOneTermReuse
+name|checkOneTerm
 argument_list|(
 name|a
 argument_list|,
@@ -306,7 +306,7 @@ argument_list|)
 decl_stmt|;
 name|BaseTokenStreamTestCase
 operator|.
-name|checkOneTermReuse
+name|checkOneTerm
 argument_list|(
 name|a
 argument_list|,

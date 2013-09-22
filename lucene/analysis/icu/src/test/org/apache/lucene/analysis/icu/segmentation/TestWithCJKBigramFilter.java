@@ -1468,7 +1468,7 @@ parameter_list|()
 throws|throws
 name|IOException
 block|{
-name|assertAnalyzesToReuse
+name|assertAnalyzesTo
 argument_list|(
 name|analyzer
 argument_list|,
@@ -1590,7 +1590,7 @@ literal|1
 block|}
 argument_list|)
 expr_stmt|;
-name|assertAnalyzesToReuse
+name|assertAnalyzesTo
 argument_list|(
 name|analyzer
 argument_list|,

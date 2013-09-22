@@ -221,7 +221,7 @@ literal|"evenmuchlongertext"
 block|}
 argument_list|)
 expr_stmt|;
-name|checkOneTermReuse
+name|checkOneTerm
 argument_list|(
 operator|new
 name|Analyzer
