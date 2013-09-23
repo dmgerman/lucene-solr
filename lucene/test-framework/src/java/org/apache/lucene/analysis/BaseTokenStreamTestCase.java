@@ -2924,6 +2924,15 @@ name|Exception
 name|unexpected
 parameter_list|)
 block|{
+name|unexpected
+operator|.
+name|printStackTrace
+argument_list|(
+name|System
+operator|.
+name|err
+argument_list|)
+expr_stmt|;
 name|fail
 argument_list|(
 literal|"got wrong exception when reset() not called: "
