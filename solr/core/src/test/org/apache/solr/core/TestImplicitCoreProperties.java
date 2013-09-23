@@ -90,7 +90,15 @@ argument_list|,
 literal|"*:*"
 argument_list|)
 argument_list|,
-literal|"//str[@name='dummyParam'][.='collection1']"
+literal|"//str[@name='dummy1'][.='collection1']"
+argument_list|,
+literal|"//str[@name='dummy2'][.='data/']"
+argument_list|,
+literal|"//str[@name='dummy3'][.='solrconfig-implicitproperties.xml']"
+argument_list|,
+literal|"//str[@name='dummy4'][.='schema.xml']"
+argument_list|,
+literal|"//str[@name='dummy5'][.='false']"
 argument_list|)
 expr_stmt|;
 block|}
