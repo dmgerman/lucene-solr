@@ -3584,6 +3584,11 @@ operator|.
 name|maxDoc
 argument_list|()
 expr_stmt|;
+name|taxoArrays
+operator|=
+literal|null
+expr_stmt|;
+comment|// must nullify so that it's re-computed next time it's needed
 comment|// need to clear the cache, so that addCategory won't accidentally return
 comment|// old categories that are in the cache.
 name|cache
@@ -3598,6 +3603,13 @@ expr_stmt|;
 name|shouldFillCache
 operator|=
 literal|true
+expr_stmt|;
+name|cacheMisses
+operator|.
+name|set
+argument_list|(
+literal|0
+argument_list|)
 expr_stmt|;
 comment|// update indexEpoch as a taxonomy replace is just like it has be recreated
 operator|++
