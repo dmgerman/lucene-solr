@@ -26,6 +26,16 @@ end_import
 
 begin_import
 import|import
+name|java
+operator|.
+name|io
+operator|.
+name|File
+import|;
+end_import
+
+begin_import
+import|import
 name|org
 operator|.
 name|junit
@@ -92,7 +102,13 @@ argument_list|)
 argument_list|,
 literal|"//str[@name='dummy1'][.='collection1']"
 argument_list|,
-literal|"//str[@name='dummy2'][.='data/']"
+literal|"//str[@name='dummy2'][.='data"
+operator|+
+name|File
+operator|.
+name|separator
+operator|+
+literal|"']"
 argument_list|,
 literal|"//str[@name='dummy3'][.='solrconfig-implicitproperties.xml']"
 argument_list|,
