@@ -256,6 +256,13 @@ name|termsEnum
 argument_list|)
 expr_stmt|;
 block|}
+else|else
+block|{
+name|termsEnum
+operator|=
+literal|null
+expr_stmt|;
+block|}
 block|}
 if|if
 condition|(
