@@ -133,7 +133,7 @@ name|LuceneTestCase
 operator|.
 name|assumeTrue
 argument_list|(
-literal|"Nested suite class ignored (started as stand-along)."
+literal|"Nested suite class ignored (started as stand-alone)."
 argument_list|,
 name|isRunningNested
 argument_list|()

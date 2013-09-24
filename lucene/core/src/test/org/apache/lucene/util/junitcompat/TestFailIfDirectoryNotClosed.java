@@ -90,6 +90,18 @@ name|Failure
 import|;
 end_import
 
+begin_import
+import|import
+name|com
+operator|.
+name|carrotsearch
+operator|.
+name|randomizedtesting
+operator|.
+name|RandomizedTest
+import|;
+end_import
+
 begin_class
 DECL|class|TestFailIfDirectoryNotClosed
 specifier|public
@@ -167,6 +179,20 @@ operator|.
 name|class
 argument_list|)
 decl_stmt|;
+name|RandomizedTest
+operator|.
+name|assumeTrue
+argument_list|(
+literal|"Ignoring nested test, very likely zombie threads present."
+argument_list|,
+name|r
+operator|.
+name|getIgnoreCount
+argument_list|()
+operator|==
+literal|0
+argument_list|)
+expr_stmt|;
 for|for
 control|(
 name|Failure
