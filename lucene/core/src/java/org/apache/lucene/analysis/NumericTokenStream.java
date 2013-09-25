@@ -494,8 +494,6 @@ name|int
 name|fillBytesRef
 parameter_list|()
 block|{
-try|try
-block|{
 assert|assert
 name|valueSize
 operator|==
@@ -537,24 +535,6 @@ argument_list|,
 name|bytes
 argument_list|)
 return|;
-block|}
-catch|catch
-parameter_list|(
-name|IllegalArgumentException
-name|iae
-parameter_list|)
-block|{
-comment|// return empty token before first or after last
-name|bytes
-operator|.
-name|length
-operator|=
-literal|0
-expr_stmt|;
-return|return
-literal|0
-return|;
-block|}
 block|}
 annotation|@
 name|Override
