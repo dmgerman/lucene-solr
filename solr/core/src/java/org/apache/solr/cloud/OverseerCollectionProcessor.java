@@ -3933,7 +3933,6 @@ operator|.
 name|CONSTRUCTION
 argument_list|)
 expr_stmt|;
-comment|//params.set(ZkStateReader.NUM_SHARDS_PROP, numSlices); todo: is it necessary, we're not creating collections?
 name|sendShardRequest
 argument_list|(
 name|nodeName

@@ -759,6 +759,10 @@ argument_list|()
 expr_stmt|;
 name|splitShard
 argument_list|(
+name|AbstractDistribZkTestBase
+operator|.
+name|DEFAULT_COLLECTION
+argument_list|,
 name|SHARD1
 argument_list|)
 expr_stmt|;
