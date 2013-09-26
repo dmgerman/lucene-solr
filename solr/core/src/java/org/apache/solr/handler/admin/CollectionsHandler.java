@@ -826,6 +826,28 @@ literal|"Core container instance missing"
 argument_list|)
 throw|;
 block|}
+comment|// Make sure that the core is ZKAware
+if|if
+condition|(
+operator|!
+name|cores
+operator|.
+name|isZooKeeperAware
+argument_list|()
+condition|)
+block|{
+throw|throw
+operator|new
+name|SolrException
+argument_list|(
+name|ErrorCode
+operator|.
+name|BAD_REQUEST
+argument_list|,
+literal|"Solr instance is not running in SolrCloud mode."
+argument_list|)
+throw|;
+block|}
 comment|// Pick the action
 name|SolrParams
 name|params
