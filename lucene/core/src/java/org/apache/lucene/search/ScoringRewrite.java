@@ -376,20 +376,6 @@ argument_list|,
 name|query
 argument_list|)
 decl_stmt|;
-comment|// TODO: if empty boolean query return NullQuery?
-if|if
-condition|(
-name|bq
-operator|.
-name|clauses
-argument_list|()
-operator|.
-name|isEmpty
-argument_list|()
-condition|)
-return|return
-name|bq
-return|;
 comment|// strip the scores off
 specifier|final
 name|Query
