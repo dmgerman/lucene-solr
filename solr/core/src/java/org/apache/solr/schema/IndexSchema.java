@@ -918,6 +918,15 @@ name|MAX_CHARS
 init|=
 literal|"maxChars"
 decl_stmt|;
+DECL|field|SOLR_CORE_NAME
+specifier|private
+specifier|static
+specifier|final
+name|String
+name|SOLR_CORE_NAME
+init|=
+literal|"solr.core.name"
+decl_stmt|;
 DECL|field|SOURCE_DYNAMIC_BASE
 specifier|private
 specifier|static
@@ -2192,7 +2201,7 @@ argument_list|()
 operator|.
 name|getProperty
 argument_list|(
-name|NAME
+name|SOLR_CORE_NAME
 argument_list|)
 argument_list|)
 expr_stmt|;
