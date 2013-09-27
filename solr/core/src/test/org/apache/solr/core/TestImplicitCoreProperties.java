@@ -117,6 +117,14 @@ argument_list|,
 literal|"//str[@name='dummy5'][.='false']"
 argument_list|)
 expr_stmt|;
+comment|// Test for SOLR-5279 - make sure properties are there on core reload
+name|cc
+operator|.
+name|reload
+argument_list|(
+literal|"collection1"
+argument_list|)
+expr_stmt|;
 block|}
 finally|finally
 block|{
