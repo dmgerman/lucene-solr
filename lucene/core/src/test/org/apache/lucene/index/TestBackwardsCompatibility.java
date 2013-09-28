@@ -248,7 +248,7 @@ name|lucene
 operator|.
 name|document
 operator|.
-name|NumericDocValuesField
+name|LongField
 import|;
 end_import
 
@@ -262,7 +262,7 @@ name|lucene
 operator|.
 name|document
 operator|.
-name|LongField
+name|NumericDocValuesField
 import|;
 end_import
 
@@ -490,20 +490,6 @@ name|lucene
 operator|.
 name|store
 operator|.
-name|SimpleFSDirectory
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|store
-operator|.
 name|NIOFSDirectory
 import|;
 end_import
@@ -519,6 +505,20 @@ operator|.
 name|store
 operator|.
 name|RAMDirectory
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|store
+operator|.
+name|SimpleFSDirectory
 import|;
 end_import
 
@@ -575,8 +575,6 @@ operator|.
 name|util
 operator|.
 name|LuceneTestCase
-operator|.
-name|SuppressCodecs
 import|;
 end_import
 
@@ -591,6 +589,8 @@ operator|.
 name|util
 operator|.
 name|LuceneTestCase
+operator|.
+name|SuppressCodecs
 import|;
 end_import
 
@@ -642,16 +642,6 @@ name|BeforeClass
 import|;
 end_import
 
-begin_import
-import|import
-name|org
-operator|.
-name|junit
-operator|.
-name|Ignore
-import|;
-end_import
-
 begin_comment
 comment|/*   Verify we can read the pre-5.0 file format, do searches   against it, and add documents to it. */
 end_comment
@@ -694,6 +684,8 @@ block|,
 literal|"Lucene41"
 block|,
 literal|"Lucene42"
+block|,
+literal|"Lucene45"
 block|}
 argument_list|)
 DECL|class|TestBackwardsCompatibility

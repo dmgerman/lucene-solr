@@ -98,6 +98,9 @@ parameter_list|,
 name|String
 name|segmentName
 parameter_list|,
+name|String
+name|segmentSuffix
+parameter_list|,
 name|FieldInfos
 name|infos
 parameter_list|,

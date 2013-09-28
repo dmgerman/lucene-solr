@@ -80,9 +80,9 @@ name|lucene
 operator|.
 name|codecs
 operator|.
-name|lucene45
+name|lucene41
 operator|.
-name|Lucene45Codec
+name|Lucene41PostingsFormat
 import|;
 end_import
 
@@ -96,9 +96,9 @@ name|lucene
 operator|.
 name|codecs
 operator|.
-name|lucene41
+name|lucene46
 operator|.
-name|Lucene41PostingsFormat
+name|Lucene46Codec
 import|;
 end_import
 
@@ -272,6 +272,22 @@ name|lucene
 operator|.
 name|index
 operator|.
+name|IndexWriterConfig
+operator|.
+name|OpenMode
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|index
+operator|.
 name|LogDocMergePolicy
 import|;
 end_import
@@ -301,22 +317,6 @@ operator|.
 name|index
 operator|.
 name|Term
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|index
-operator|.
-name|IndexWriterConfig
-operator|.
-name|OpenMode
 import|;
 end_import
 
@@ -1424,7 +1424,7 @@ specifier|static
 class|class
 name|MockCodec
 extends|extends
-name|Lucene45Codec
+name|Lucene46Codec
 block|{
 DECL|field|lucene40
 specifier|final
@@ -1507,7 +1507,7 @@ specifier|static
 class|class
 name|MockCodec2
 extends|extends
-name|Lucene45Codec
+name|Lucene46Codec
 block|{
 DECL|field|lucene40
 specifier|final
@@ -1832,7 +1832,7 @@ name|Codec
 name|codec
 init|=
 operator|new
-name|Lucene45Codec
+name|Lucene46Codec
 argument_list|()
 block|{
 annotation|@
@@ -1914,7 +1914,7 @@ name|Codec
 name|codec
 init|=
 operator|new
-name|Lucene45Codec
+name|Lucene46Codec
 argument_list|()
 block|{
 annotation|@

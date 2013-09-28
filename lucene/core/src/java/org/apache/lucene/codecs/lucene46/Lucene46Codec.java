@@ -1,6 +1,6 @@
 begin_unit|revision:0.9.5;language:Java;cregit-version:0.0.1
 begin_package
-DECL|package|org.apache.lucene.codecs.lucene42
+DECL|package|org.apache.lucene.codecs.lucene46
 package|package
 name|org
 operator|.
@@ -10,23 +10,13 @@ name|lucene
 operator|.
 name|codecs
 operator|.
-name|lucene42
+name|lucene46
 package|;
 end_package
 
 begin_comment
 comment|/*  * Licensed to the Apache Software Foundation (ASF) under one or more  * contributor license agreements.  See the NOTICE file distributed with  * this work for additional information regarding copyright ownership.  * The ASF licenses this file to You under the Apache License, Version 2.0  * (the "License"); you may not use this file except in compliance with  * the License.  You may obtain a copy of the License at  *  *     http://www.apache.org/licenses/LICENSE-2.0  *  * Unless required by applicable law or agreed to in writing, software  * distributed under the License is distributed on an "AS IS" BASIS,  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.  * See the License for the specific language governing permissions and  * limitations under the License.  */
 end_comment
-
-begin_import
-import|import
-name|java
-operator|.
-name|io
-operator|.
-name|IOException
-import|;
-end_import
 
 begin_import
 import|import
@@ -39,20 +29,6 @@ operator|.
 name|codecs
 operator|.
 name|Codec
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|codecs
-operator|.
-name|DocValuesConsumer
 import|;
 end_import
 
@@ -240,6 +216,38 @@ name|lucene
 operator|.
 name|codecs
 operator|.
+name|lucene42
+operator|.
+name|Lucene42NormsFormat
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|codecs
+operator|.
+name|lucene42
+operator|.
+name|Lucene42TermVectorsFormat
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|codecs
+operator|.
 name|perfield
 operator|.
 name|PerFieldDocValuesFormat
@@ -262,26 +270,12 @@ name|PerFieldPostingsFormat
 import|;
 end_import
 
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|index
-operator|.
-name|SegmentWriteState
-import|;
-end_import
-
 begin_comment
-comment|/**  * Implements the Lucene 4.2 index format, with configurable per-field postings  * and docvalues formats.  *<p>  * If you want to reuse functionality of this codec in another codec, extend  * {@link FilterCodec}.  *  * @see org.apache.lucene.codecs.lucene42 package documentation for file format details.  * @lucene.experimental  * @deprecated Only for reading old 4.2 segments  */
+comment|/**  * Implements the Lucene 4.6 index format, with configurable per-field postings  * and docvalues formats.  *<p>  * If you want to reuse functionality of this codec in another codec, extend  * {@link FilterCodec}.  *  * @see org.apache.lucene.codecs.lucene46 package documentation for file format details.  * @lucene.experimental  */
 end_comment
 
 begin_comment
-comment|// NOTE: if we make largish changes in a minor release, easier to just make Lucene43Codec or whatever
+comment|// NOTE: if we make largish changes in a minor release, easier to just make Lucene46Codec or whatever
 end_comment
 
 begin_comment
@@ -293,12 +287,10 @@ comment|// (it writes a minor version, etc).
 end_comment
 
 begin_class
-annotation|@
-name|Deprecated
-DECL|class|Lucene42Codec
+DECL|class|Lucene46Codec
 specifier|public
 class|class
-name|Lucene42Codec
+name|Lucene46Codec
 extends|extends
 name|Codec
 block|{
@@ -329,7 +321,7 @@ name|FieldInfosFormat
 name|fieldInfosFormat
 init|=
 operator|new
-name|Lucene42FieldInfosFormat
+name|Lucene46FieldInfosFormat
 argument_list|()
 decl_stmt|;
 DECL|field|infosFormat
@@ -373,7 +365,7 @@ name|field
 parameter_list|)
 block|{
 return|return
-name|Lucene42Codec
+name|Lucene46Codec
 operator|.
 name|this
 operator|.
@@ -406,7 +398,7 @@ name|field
 parameter_list|)
 block|{
 return|return
-name|Lucene42Codec
+name|Lucene46Codec
 operator|.
 name|this
 operator|.
@@ -419,14 +411,14 @@ block|}
 block|}
 decl_stmt|;
 comment|/** Sole constructor. */
-DECL|method|Lucene42Codec
+DECL|method|Lucene46Codec
 specifier|public
-name|Lucene42Codec
+name|Lucene46Codec
 parameter_list|()
 block|{
 name|super
 argument_list|(
-literal|"Lucene42"
+literal|"Lucene46"
 argument_list|)
 expr_stmt|;
 block|}
@@ -473,6 +465,7 @@ annotation|@
 name|Override
 DECL|method|fieldInfosFormat
 specifier|public
+specifier|final
 name|FieldInfosFormat
 name|fieldInfosFormat
 parameter_list|()
@@ -521,7 +514,7 @@ return|return
 name|defaultFormat
 return|;
 block|}
-comment|/** Returns the docvalues format that should be used for writing     *  new segments of<code>field</code>.    *      *  The default implementation always returns "Lucene42"    */
+comment|/** Returns the docvalues format that should be used for writing     *  new segments of<code>field</code>.    *      *  The default implementation always returns "Lucene45"    */
 DECL|method|getDocValuesFormatForField
 specifier|public
 name|DocValuesFormat
@@ -571,7 +564,7 @@ name|DocValuesFormat
 operator|.
 name|forName
 argument_list|(
-literal|"Lucene42"
+literal|"Lucene45"
 argument_list|)
 decl_stmt|;
 DECL|field|normsFormat
@@ -583,33 +576,12 @@ init|=
 operator|new
 name|Lucene42NormsFormat
 argument_list|()
-block|{
-annotation|@
-name|Override
-specifier|public
-name|DocValuesConsumer
-name|normsConsumer
-parameter_list|(
-name|SegmentWriteState
-name|state
-parameter_list|)
-throws|throws
-name|IOException
-block|{
-throw|throw
-operator|new
-name|UnsupportedOperationException
-argument_list|(
-literal|"this codec can only be used for reading"
-argument_list|)
-throw|;
-block|}
-block|}
 decl_stmt|;
 annotation|@
 name|Override
 DECL|method|normsFormat
 specifier|public
+specifier|final
 name|NormsFormat
 name|normsFormat
 parameter_list|()

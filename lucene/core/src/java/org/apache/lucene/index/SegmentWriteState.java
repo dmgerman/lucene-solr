@@ -181,14 +181,6 @@ specifier|final
 name|IOContext
 name|context
 decl_stmt|;
-comment|/** True is this instance represents a field update. */
-DECL|field|isFieldUpdate
-specifier|public
-specifier|final
-name|boolean
-name|isFieldUpdate
-decl_stmt|;
-comment|// TODO (DVU_FIELDINFOS_GEN) once we gen FieldInfos, get rid of this
 comment|/** Sole constructor. */
 DECL|method|SegmentWriteState
 specifier|public
@@ -228,12 +220,10 @@ argument_list|,
 name|context
 argument_list|,
 literal|""
-argument_list|,
-literal|false
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**    * Constructor which takes segment suffix and isFieldUpdate in addition to the    * other parameters.    *     * @see #SegmentWriteState(InfoStream, Directory, SegmentInfo, FieldInfos,    *      BufferedDeletes, IOContext)    */
+comment|/**    * Constructor which takes segment suffix.    *     * @see #SegmentWriteState(InfoStream, Directory, SegmentInfo, FieldInfos,    *      BufferedDeletes, IOContext)    */
 DECL|method|SegmentWriteState
 specifier|public
 name|SegmentWriteState
@@ -258,9 +248,6 @@ name|context
 parameter_list|,
 name|String
 name|segmentSuffix
-parameter_list|,
-name|boolean
-name|isFieldUpdate
 parameter_list|)
 block|{
 name|this
@@ -304,12 +291,6 @@ operator|.
 name|context
 operator|=
 name|context
-expr_stmt|;
-name|this
-operator|.
-name|isFieldUpdate
-operator|=
-name|isFieldUpdate
 expr_stmt|;
 block|}
 comment|/** Create a shallow copy of {@link SegmentWriteState} with a new segment suffix. */
@@ -371,12 +352,6 @@ operator|=
 name|state
 operator|.
 name|delCountOnFlush
-expr_stmt|;
-name|isFieldUpdate
-operator|=
-name|state
-operator|.
-name|isFieldUpdate
 expr_stmt|;
 block|}
 block|}

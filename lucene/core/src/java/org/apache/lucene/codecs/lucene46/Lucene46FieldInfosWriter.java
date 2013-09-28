@@ -1,6 +1,6 @@
 begin_unit|revision:0.9.5;language:Java;cregit-version:0.0.1
 begin_package
-DECL|package|org.apache.lucene.codecs.lucene42
+DECL|package|org.apache.lucene.codecs.lucene46
 package|package
 name|org
 operator|.
@@ -10,7 +10,7 @@ name|lucene
 operator|.
 name|codecs
 operator|.
-name|lucene42
+name|lucene46
 package|;
 end_package
 
@@ -187,21 +187,21 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Lucene 4.2 FieldInfos writer.  *   * @see Lucene42FieldInfosFormat  * @lucene.experimental  */
+comment|/**  * Lucene 4.6 FieldInfos writer.  *   * @see Lucene46FieldInfosFormat  * @lucene.experimental  */
 end_comment
 
 begin_class
-DECL|class|Lucene42FieldInfosWriter
+DECL|class|Lucene46FieldInfosWriter
 specifier|final
 class|class
-name|Lucene42FieldInfosWriter
+name|Lucene46FieldInfosWriter
 extends|extends
 name|FieldInfosWriter
 block|{
 comment|/** Sole constructor. */
-DECL|method|Lucene42FieldInfosWriter
+DECL|method|Lucene46FieldInfosWriter
 specifier|public
-name|Lucene42FieldInfosWriter
+name|Lucene46FieldInfosWriter
 parameter_list|()
 block|{   }
 annotation|@
@@ -216,6 +216,9 @@ name|directory
 parameter_list|,
 name|String
 name|segmentName
+parameter_list|,
+name|String
+name|segmentSuffix
 parameter_list|,
 name|FieldInfos
 name|infos
@@ -236,9 +239,9 @@ name|segmentFileName
 argument_list|(
 name|segmentName
 argument_list|,
-literal|""
+name|segmentSuffix
 argument_list|,
-name|Lucene42FieldInfosFormat
+name|Lucene46FieldInfosFormat
 operator|.
 name|EXTENSION
 argument_list|)
@@ -268,11 +271,11 @@ name|writeHeader
 argument_list|(
 name|output
 argument_list|,
-name|Lucene42FieldInfosFormat
+name|Lucene46FieldInfosFormat
 operator|.
 name|CODEC_NAME
 argument_list|,
-name|Lucene42FieldInfosFormat
+name|Lucene46FieldInfosFormat
 operator|.
 name|FORMAT_CURRENT
 argument_list|)
@@ -317,7 +320,7 @@ argument_list|()
 condition|)
 name|bits
 operator||=
-name|Lucene42FieldInfosFormat
+name|Lucene46FieldInfosFormat
 operator|.
 name|STORE_TERMVECTOR
 expr_stmt|;
@@ -330,7 +333,7 @@ argument_list|()
 condition|)
 name|bits
 operator||=
-name|Lucene42FieldInfosFormat
+name|Lucene46FieldInfosFormat
 operator|.
 name|OMIT_NORMS
 expr_stmt|;
@@ -343,7 +346,7 @@ argument_list|()
 condition|)
 name|bits
 operator||=
-name|Lucene42FieldInfosFormat
+name|Lucene46FieldInfosFormat
 operator|.
 name|STORE_PAYLOADS
 expr_stmt|;
@@ -357,7 +360,7 @@ condition|)
 block|{
 name|bits
 operator||=
-name|Lucene42FieldInfosFormat
+name|Lucene46FieldInfosFormat
 operator|.
 name|IS_INDEXED
 expr_stmt|;
@@ -390,7 +393,7 @@ condition|)
 block|{
 name|bits
 operator||=
-name|Lucene42FieldInfosFormat
+name|Lucene46FieldInfosFormat
 operator|.
 name|OMIT_TERM_FREQ_AND_POSITIONS
 expr_stmt|;
@@ -407,7 +410,7 @@ condition|)
 block|{
 name|bits
 operator||=
-name|Lucene42FieldInfosFormat
+name|Lucene46FieldInfosFormat
 operator|.
 name|STORE_OFFSETS_IN_POSTINGS
 expr_stmt|;
@@ -424,7 +427,7 @@ condition|)
 block|{
 name|bits
 operator||=
-name|Lucene42FieldInfosFormat
+name|Lucene46FieldInfosFormat
 operator|.
 name|OMIT_POSITIONS
 expr_stmt|;
@@ -528,6 +531,16 @@ operator|.
 name|writeByte
 argument_list|(
 name|val
+argument_list|)
+expr_stmt|;
+name|output
+operator|.
+name|writeLong
+argument_list|(
+name|fi
+operator|.
+name|getDocValuesGen
+argument_list|()
 argument_list|)
 expr_stmt|;
 name|output

@@ -221,10 +221,12 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Lucene 4.2 FieldInfos reader.  *   * @lucene.experimental  * @see Lucene42FieldInfosFormat  */
+comment|/**  * Lucene 4.2 FieldInfos reader.  *   * @lucene.experimental  * @deprecated Only for reading old 4.2-4.5 segments  * @see Lucene42FieldInfosFormat  */
 end_comment
 
 begin_class
+annotation|@
+name|Deprecated
 DECL|class|Lucene42FieldInfosReader
 specifier|final
 class|class
@@ -250,6 +252,9 @@ name|directory
 parameter_list|,
 name|String
 name|segmentName
+parameter_list|,
+name|String
+name|segmentSuffix
 parameter_list|,
 name|IOContext
 name|iocontext

@@ -1,6 +1,6 @@
 begin_unit|revision:0.9.5;language:Java;cregit-version:0.0.1
 begin_package
-DECL|package|org.apache.lucene.facet.codecs.facet45
+DECL|package|org.apache.lucene.facet.codecs.facet46
 package|package
 name|org
 operator|.
@@ -12,7 +12,7 @@ name|facet
 operator|.
 name|codecs
 operator|.
-name|facet45
+name|facet46
 package|;
 end_package
 
@@ -64,9 +64,9 @@ name|lucene
 operator|.
 name|codecs
 operator|.
-name|lucene45
+name|lucene46
 operator|.
-name|Lucene45Codec
+name|Lucene46Codec
 import|;
 end_import
 
@@ -121,16 +121,16 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Same as {@link Lucene45Codec} except it uses {@link Facet42DocValuesFormat}  * for facet fields (faster-but-more-RAM-consuming doc values).  *   *<p>  *<b>NOTE</b>: this codec does not support facet partitions (see  * {@link FacetIndexingParams#getPartitionSize()}).  *  *<p>  *<b>NOTE</b>: this format cannot handle more than 2 GB  * of facet data in a single segment.  If your usage may hit  * this limit, you can either use Lucene's default  * DocValuesFormat, limit the maximum segment size in your  * MergePolicy, or send us a patch fixing the limitation.  *   * @lucene.experimental  */
+comment|/**  * Same as {@link Lucene46Codec} except it uses {@link Facet42DocValuesFormat}  * for facet fields (faster-but-more-RAM-consuming doc values).  *   *<p>  *<b>NOTE</b>: this codec does not support facet partitions (see  * {@link FacetIndexingParams#getPartitionSize()}).  *  *<p>  *<b>NOTE</b>: this format cannot handle more than 2 GB  * of facet data in a single segment.  If your usage may hit  * this limit, you can either use Lucene's default  * DocValuesFormat, limit the maximum segment size in your  * MergePolicy, or send us a patch fixing the limitation.  *   * @lucene.experimental  */
 end_comment
 
 begin_class
-DECL|class|Facet45Codec
+DECL|class|Facet46Codec
 specifier|public
 class|class
-name|Facet45Codec
+name|Facet46Codec
 extends|extends
-name|Lucene45Codec
+name|Lucene46Codec
 block|{
 DECL|field|facetFields
 specifier|private
@@ -155,9 +155,9 @@ literal|"Facet42"
 argument_list|)
 decl_stmt|;
 comment|/** Default constructor, uses {@link FacetIndexingParams#DEFAULT}. */
-DECL|method|Facet45Codec
+DECL|method|Facet46Codec
 specifier|public
-name|Facet45Codec
+name|Facet46Codec
 parameter_list|()
 block|{
 name|this
@@ -169,9 +169,9 @@ argument_list|)
 expr_stmt|;
 block|}
 comment|/**    * Initializes with the given {@link FacetIndexingParams}. Returns the proper    * {@link DocValuesFormat} for the fields that are returned by    * {@link FacetIndexingParams#getAllCategoryListParams()}.    */
-DECL|method|Facet45Codec
+DECL|method|Facet46Codec
 specifier|public
-name|Facet45Codec
+name|Facet46Codec
 parameter_list|(
 name|FacetIndexingParams
 name|fip

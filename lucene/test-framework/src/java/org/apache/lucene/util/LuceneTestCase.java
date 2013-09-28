@@ -6449,6 +6449,13 @@ name|equals
 argument_list|(
 literal|"Lucene42"
 argument_list|)
+operator|||
+name|name
+operator|.
+name|equals
+argument_list|(
+literal|"Lucene45"
+argument_list|)
 condition|)
 block|{
 return|return

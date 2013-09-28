@@ -42,27 +42,7 @@ name|java
 operator|.
 name|util
 operator|.
-name|HashMap
-import|;
-end_import
-
-begin_import
-import|import
-name|java
-operator|.
-name|util
-operator|.
 name|HashSet
-import|;
-end_import
-
-begin_import
-import|import
-name|java
-operator|.
-name|util
-operator|.
-name|Map
 import|;
 end_import
 
@@ -128,40 +108,18 @@ specifier|private
 name|long
 name|nextWriteDelGen
 decl_stmt|;
-comment|// holds field.number to docValuesGen mapping
-comment|// TODO (DVU_FIELDINFOS_GEN) once we gen FieldInfos, get rid of this; every FieldInfo will record its dvGen
-DECL|field|fieldDocValuesGens
-specifier|private
-specifier|final
-name|Map
-argument_list|<
-name|Integer
-argument_list|,
-name|Long
-argument_list|>
-name|fieldDocValuesGens
-init|=
-operator|new
-name|HashMap
-argument_list|<
-name|Integer
-argument_list|,
-name|Long
-argument_list|>
-argument_list|()
-decl_stmt|;
-comment|// Generation number of the docValues (-1 if there are no field updates)
-DECL|field|docValuesGen
+comment|// Generation number of the FieldInfos (-1 if there are no updates)
+DECL|field|fieldInfosGen
 specifier|private
 name|long
-name|docValuesGen
+name|fieldInfosGen
 decl_stmt|;
-comment|// Normally 1 + docValuesGen, unless an exception was hit on last attempt to
+comment|// Normally 1 + fieldInfosGen, unless an exception was hit on last attempt to
 comment|// write
-DECL|field|nextWriteDocValuesGen
+DECL|field|nextWriteFieldInfosGen
 specifier|private
 name|long
-name|nextWriteDocValuesGen
+name|nextWriteFieldInfosGen
 decl_stmt|;
 comment|// Tracks the files with field updates
 DECL|field|updatesFiles
@@ -188,7 +146,7 @@ init|=
 operator|-
 literal|1
 decl_stmt|;
-comment|/**    * Sole constructor.    *     * @param info    *          {@link SegmentInfo} that we wrap    * @param delCount    *          number of deleted documents in this segment    * @param delGen    *          deletion generation number (used to name deletion files)    * @param docValuesGen    *          doc-values generation number (used to name docvalues files)    **/
+comment|/**    * Sole constructor.    *     * @param info    *          {@link SegmentInfo} that we wrap    * @param delCount    *          number of deleted documents in this segment    * @param delGen    *          deletion generation number (used to name deletion files)    * @param fieldInfosGen    *          FieldInfos generation number (used to name field-infos files)    **/
 DECL|method|SegmentInfoPerCommit
 specifier|public
 name|SegmentInfoPerCommit
@@ -203,7 +161,7 @@ name|long
 name|delGen
 parameter_list|,
 name|long
-name|docValuesGen
+name|fieldInfosGen
 parameter_list|)
 block|{
 name|this
@@ -248,28 +206,28 @@ expr_stmt|;
 block|}
 name|this
 operator|.
-name|docValuesGen
+name|fieldInfosGen
 operator|=
-name|docValuesGen
+name|fieldInfosGen
 expr_stmt|;
 if|if
 condition|(
-name|docValuesGen
+name|fieldInfosGen
 operator|==
 operator|-
 literal|1
 condition|)
 block|{
-name|nextWriteDocValuesGen
+name|nextWriteFieldInfosGen
 operator|=
 literal|1
 expr_stmt|;
 block|}
 else|else
 block|{
-name|nextWriteDocValuesGen
+name|nextWriteFieldInfosGen
 operator|=
-name|docValuesGen
+name|fieldInfosGen
 operator|+
 literal|1
 expr_stmt|;
@@ -349,19 +307,19 @@ name|nextWriteDelGen
 operator|++
 expr_stmt|;
 block|}
-comment|/** Called when we succeed in writing docvalues updates */
-DECL|method|advanceDocValuesGen
+comment|/** Called when we succeed in writing a new FieldInfos generation. */
+DECL|method|advanceFieldInfosGen
 name|void
-name|advanceDocValuesGen
+name|advanceFieldInfosGen
 parameter_list|()
 block|{
-name|docValuesGen
+name|fieldInfosGen
 operator|=
-name|nextWriteDocValuesGen
+name|nextWriteFieldInfosGen
 expr_stmt|;
-name|nextWriteDocValuesGen
+name|nextWriteFieldInfosGen
 operator|=
-name|docValuesGen
+name|fieldInfosGen
 operator|+
 literal|1
 expr_stmt|;
@@ -371,13 +329,13 @@ operator|-
 literal|1
 expr_stmt|;
 block|}
-comment|/**    * Called if there was an exception while writing docvalues updates, so that    * we don't try to write to the same file more than once.    */
-DECL|method|advanceNextWriteDocValuesGen
+comment|/**    * Called if there was an exception while writing a new generation of    * FieldInfos, so that we don't try to write to the same file more than once.    */
+DECL|method|advanceNextWriteFieldInfosGen
 name|void
-name|advanceNextWriteDocValuesGen
+name|advanceNextWriteFieldInfosGen
 parameter_list|()
 block|{
-name|nextWriteDocValuesGen
+name|nextWriteFieldInfosGen
 operator|++
 expr_stmt|;
 block|}
@@ -551,105 +509,32 @@ name|hasFieldUpdates
 parameter_list|()
 block|{
 return|return
-name|docValuesGen
+name|fieldInfosGen
 operator|!=
 operator|-
 literal|1
 return|;
 block|}
-comment|/** Returns the next available generation number of the docvalues files. */
-DECL|method|getNextDocValuesGen
+comment|/** Returns the next available generation number of the FieldInfos files. */
+DECL|method|getNextFieldInfosGen
 specifier|public
 name|long
-name|getNextDocValuesGen
+name|getNextFieldInfosGen
 parameter_list|()
 block|{
 return|return
-name|nextWriteDocValuesGen
-return|;
-block|}
-comment|/**    * Returns the docvalues generation of this field, or -1 if there are    * no updates to it.    */
-DECL|method|getDocValuesGen
-specifier|public
-name|long
-name|getDocValuesGen
-parameter_list|(
-name|int
-name|fieldNumber
-parameter_list|)
-block|{
-name|Long
-name|gen
-init|=
-name|fieldDocValuesGens
-operator|.
-name|get
-argument_list|(
-name|fieldNumber
-argument_list|)
-decl_stmt|;
-return|return
-name|gen
-operator|==
-literal|null
-condition|?
-operator|-
-literal|1
-else|:
-name|gen
-operator|.
-name|longValue
-argument_list|()
-return|;
-block|}
-comment|/** Sets the docvalues generation for this field. */
-DECL|method|setDocValuesGen
-specifier|public
-name|void
-name|setDocValuesGen
-parameter_list|(
-name|int
-name|fieldNumber
-parameter_list|,
-name|long
-name|gen
-parameter_list|)
-block|{
-name|fieldDocValuesGens
-operator|.
-name|put
-argument_list|(
-name|fieldNumber
-argument_list|,
-name|gen
-argument_list|)
-expr_stmt|;
-block|}
-comment|/**    * Returns a mapping from a field number to its DV generation.    *     * @see #getDocValuesGen(int)    */
-DECL|method|getFieldDocValuesGens
-specifier|public
-name|Map
-argument_list|<
-name|Integer
-argument_list|,
-name|Long
-argument_list|>
-name|getFieldDocValuesGens
-parameter_list|()
-block|{
-return|return
-name|fieldDocValuesGens
+name|nextWriteFieldInfosGen
 return|;
 block|}
 comment|/**    * Returns the generation number of the field infos file or -1 if there are no    * field updates yet.    */
-DECL|method|getDocValuesGen
+DECL|method|getFieldInfosGen
 specifier|public
 name|long
-name|getDocValuesGen
+name|getFieldInfosGen
 parameter_list|()
 block|{
 return|return
-name|docValuesGen
+name|fieldInfosGen
 return|;
 block|}
 comment|/**    * Returns the next available generation number    * of the live docs file.    */
@@ -773,7 +658,7 @@ expr_stmt|;
 block|}
 if|if
 condition|(
-name|docValuesGen
+name|fieldInfosGen
 operator|!=
 operator|-
 literal|1
@@ -781,9 +666,9 @@ condition|)
 block|{
 name|s
 operator|+=
-literal|":docValuesGen="
+literal|":fieldInfosGen="
 operator|+
-name|docValuesGen
+name|fieldInfosGen
 expr_stmt|;
 block|}
 return|return
@@ -810,7 +695,7 @@ name|delCount
 argument_list|,
 name|delGen
 argument_list|,
-name|docValuesGen
+name|fieldInfosGen
 argument_list|)
 decl_stmt|;
 comment|// Not clear that we need to carry over nextWriteDelGen
@@ -825,9 +710,9 @@ name|nextWriteDelGen
 expr_stmt|;
 name|other
 operator|.
-name|nextWriteDocValuesGen
+name|nextWriteFieldInfosGen
 operator|=
-name|nextWriteDocValuesGen
+name|nextWriteFieldInfosGen
 expr_stmt|;
 name|other
 operator|.
@@ -836,15 +721,6 @@ operator|.
 name|addAll
 argument_list|(
 name|updatesFiles
-argument_list|)
-expr_stmt|;
-name|other
-operator|.
-name|fieldDocValuesGens
-operator|.
-name|putAll
-argument_list|(
-name|fieldDocValuesGens
 argument_list|)
 expr_stmt|;
 return|return

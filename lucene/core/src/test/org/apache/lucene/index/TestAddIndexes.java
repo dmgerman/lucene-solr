@@ -144,9 +144,9 @@ name|lucene
 operator|.
 name|codecs
 operator|.
-name|lucene45
+name|lucene46
 operator|.
-name|Lucene45Codec
+name|Lucene46Codec
 import|;
 end_import
 
@@ -347,20 +347,6 @@ operator|.
 name|store
 operator|.
 name|RAMDirectory
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|util
-operator|.
-name|Bits
 import|;
 end_import
 
@@ -6351,7 +6337,7 @@ specifier|final
 class|class
 name|CustomPerFieldCodec
 extends|extends
-name|Lucene45Codec
+name|Lucene46Codec
 block|{
 DECL|field|simpleTextFormat
 specifier|private
@@ -6729,7 +6715,7 @@ argument_list|(
 literal|"NotRegistered"
 argument_list|,
 operator|new
-name|Lucene45Codec
+name|Lucene46Codec
 argument_list|()
 argument_list|)
 expr_stmt|;

@@ -48,9 +48,9 @@ name|facet
 operator|.
 name|codecs
 operator|.
-name|facet45
+name|facet46
 operator|.
-name|Facet45Codec
+name|Facet46Codec
 import|;
 end_import
 
@@ -425,7 +425,7 @@ operator|.
 name|setDefault
 argument_list|(
 operator|new
-name|Facet45Codec
+name|Facet46Codec
 argument_list|()
 argument_list|)
 expr_stmt|;

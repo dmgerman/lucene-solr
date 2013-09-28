@@ -109,6 +109,15 @@ name|String
 argument_list|>
 name|attributes
 decl_stmt|;
+DECL|field|dvGen
+specifier|private
+name|long
+name|dvGen
+init|=
+operator|-
+literal|1
+decl_stmt|;
+comment|// the DocValues generation of this field
 comment|/**    * Controls how much information is stored in the postings lists.    * @lucene.experimental    */
 DECL|enum|IndexOptions
 specifier|public
@@ -680,6 +689,34 @@ parameter_list|()
 block|{
 return|return
 name|docValueType
+return|;
+block|}
+comment|/** Sets the docValues generation of this field. */
+DECL|method|setDocValuesGen
+specifier|public
+name|void
+name|setDocValuesGen
+parameter_list|(
+name|long
+name|dvGen
+parameter_list|)
+block|{
+name|this
+operator|.
+name|dvGen
+operator|=
+name|dvGen
+expr_stmt|;
+block|}
+comment|/**    * Returns the docValues generation of this field, or -1 if no docValues    * updates exist for it.    */
+DECL|method|getDocValuesGen
+specifier|public
+name|long
+name|getDocValuesGen
+parameter_list|()
+block|{
+return|return
+name|dvGen
 return|;
 block|}
 comment|/**    * Returns {@link DocValuesType} of the norm. this may be null if the field has no norms.    */

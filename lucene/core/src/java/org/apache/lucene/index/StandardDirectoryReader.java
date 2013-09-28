@@ -977,7 +977,7 @@ operator|.
 name|getSegmentInfo
 argument_list|()
 operator|.
-name|getDocValuesGen
+name|getFieldInfosGen
 argument_list|()
 operator|==
 name|infos
@@ -987,7 +987,7 @@ argument_list|(
 name|i
 argument_list|)
 operator|.
-name|getDocValuesGen
+name|getFieldInfosGen
 argument_list|()
 condition|)
 block|{
