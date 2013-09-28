@@ -7388,6 +7388,16 @@ argument_list|)
 decl_stmt|;
 name|conf
 operator|.
+name|setMergePolicy
+argument_list|(
+name|NoMergePolicy
+operator|.
+name|COMPOUND_FILES
+argument_list|)
+expr_stmt|;
+comment|// disable merges to simplify test assertions.
+name|conf
+operator|.
 name|setCodec
 argument_list|(
 operator|new
