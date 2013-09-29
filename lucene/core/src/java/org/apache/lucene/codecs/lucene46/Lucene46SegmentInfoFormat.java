@@ -1,6 +1,6 @@
 begin_unit|revision:0.9.5;language:Java;cregit-version:0.0.1
 begin_package
-DECL|package|org.apache.lucene.codecs.lucene40
+DECL|package|org.apache.lucene.codecs.lucene46
 package|package
 name|org
 operator|.
@@ -10,7 +10,7 @@ name|lucene
 operator|.
 name|codecs
 operator|.
-name|lucene40
+name|lucene46
 package|;
 end_package
 
@@ -147,16 +147,14 @@ comment|// javadocs
 end_comment
 
 begin_comment
-comment|/**  * Lucene 4.0 Segment info format.  *<p>  * Files:  *<ul>  *<li><tt>.si</tt>: Header, SegVersion, SegSize, IsCompoundFile, Diagnostics, Attributes, Files  *</ul>  *</p>  * Data types:  *<p>  *<ul>  *<li>Header --&gt; {@link CodecUtil#writeHeader CodecHeader}</li>  *<li>SegSize --&gt; {@link DataOutput#writeInt Int32}</li>  *<li>SegVersion --&gt; {@link DataOutput#writeString String}</li>  *<li>Files --&gt; {@link DataOutput#writeStringSet Set&lt;String&gt;}</li>  *<li>Diagnostics, Attributes --&gt; {@link DataOutput#writeStringStringMap Map&lt;String,String&gt;}</li>  *<li>IsCompoundFile --&gt; {@link DataOutput#writeByte Int8}</li>  *</ul>  *</p>  * Field Descriptions:  *<p>  *<ul>  *<li>SegVersion is the code version that created the segment.</li>  *<li>SegSize is the number of documents contained in the segment index.</li>  *<li>IsCompoundFile records whether the segment is written as a compound file or  *       not. If this is -1, the segment is not a compound file. If it is 1, the segment  *       is a compound file.</li>  *<li>Checksum contains the CRC32 checksum of all bytes in the segments_N file up  *       until the checksum. This is used to verify integrity of the file on opening the  *       index.</li>  *<li>The Diagnostics Map is privately written by {@link IndexWriter}, as a debugging aid,  *       for each segment it creates. It includes metadata like the current Lucene  *       version, OS, Java version, why the segment was created (merge, flush,  *       addIndexes), etc.</li>  *<li>Attributes: a key-value map of codec-private attributes.</li>  *<li>Files is a list of files referred to by this segment.</li>  *</ul>  *</p>  *   * @see SegmentInfos  * @lucene.experimental  * @deprecated Only for reading old 4.0-4.5 segments  */
+comment|/**  * Lucene 4.6 Segment info format.  *<p>  * Files:  *<ul>  *<li><tt>.si</tt>: Header, SegVersion, SegSize, IsCompoundFile, Diagnostics, Files  *</ul>  *</p>  * Data types:  *<p>  *<ul>  *<li>Header --&gt; {@link CodecUtil#writeHeader CodecHeader}</li>  *<li>SegSize --&gt; {@link DataOutput#writeInt Int32}</li>  *<li>SegVersion --&gt; {@link DataOutput#writeString String}</li>  *<li>Files --&gt; {@link DataOutput#writeStringSet Set&lt;String&gt;}</li>  *<li>Diagnostics --&gt; {@link DataOutput#writeStringStringMap Map&lt;String,String&gt;}</li>  *<li>IsCompoundFile --&gt; {@link DataOutput#writeByte Int8}</li>  *</ul>  *</p>  * Field Descriptions:  *<p>  *<ul>  *<li>SegVersion is the code version that created the segment.</li>  *<li>SegSize is the number of documents contained in the segment index.</li>  *<li>IsCompoundFile records whether the segment is written as a compound file or  *       not. If this is -1, the segment is not a compound file. If it is 1, the segment  *       is a compound file.</li>  *<li>Checksum contains the CRC32 checksum of all bytes in the segments_N file up  *       until the checksum. This is used to verify integrity of the file on opening the  *       index.</li>  *<li>The Diagnostics Map is privately written by {@link IndexWriter}, as a debugging aid,  *       for each segment it creates. It includes metadata like the current Lucene  *       version, OS, Java version, why the segment was created (merge, flush,  *       addIndexes), etc.</li>  *<li>Files is a list of files referred to by this segment.</li>  *</ul>  *</p>  *   * @see SegmentInfos  * @lucene.experimental  */
 end_comment
 
 begin_class
-annotation|@
-name|Deprecated
-DECL|class|Lucene40SegmentInfoFormat
+DECL|class|Lucene46SegmentInfoFormat
 specifier|public
 class|class
-name|Lucene40SegmentInfoFormat
+name|Lucene46SegmentInfoFormat
 extends|extends
 name|SegmentInfoFormat
 block|{
@@ -167,13 +165,23 @@ name|SegmentInfoReader
 name|reader
 init|=
 operator|new
-name|Lucene40SegmentInfoReader
+name|Lucene46SegmentInfoReader
+argument_list|()
+decl_stmt|;
+DECL|field|writer
+specifier|private
+specifier|final
+name|SegmentInfoWriter
+name|writer
+init|=
+operator|new
+name|Lucene46SegmentInfoWriter
 argument_list|()
 decl_stmt|;
 comment|/** Sole constructor. */
-DECL|method|Lucene40SegmentInfoFormat
+DECL|method|Lucene46SegmentInfoFormat
 specifier|public
-name|Lucene40SegmentInfoFormat
+name|Lucene46SegmentInfoFormat
 parameter_list|()
 block|{   }
 annotation|@
@@ -196,13 +204,9 @@ name|SegmentInfoWriter
 name|getSegmentInfoWriter
 parameter_list|()
 block|{
-throw|throw
-operator|new
-name|UnsupportedOperationException
-argument_list|(
-literal|"this codec can only be used for reading"
-argument_list|)
-throw|;
+return|return
+name|writer
+return|;
 block|}
 comment|/** File extension used to store {@link SegmentInfo}. */
 DECL|field|SI_EXTENSION
@@ -220,7 +224,7 @@ specifier|final
 name|String
 name|CODEC_NAME
 init|=
-literal|"Lucene40SegmentInfo"
+literal|"Lucene46SegmentInfo"
 decl_stmt|;
 DECL|field|VERSION_START
 specifier|static

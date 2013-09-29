@@ -1,6 +1,6 @@
 begin_unit|revision:0.9.5;language:Java;cregit-version:0.0.1
 begin_package
-DECL|package|org.apache.lucene.codecs.lucene40
+DECL|package|org.apache.lucene.codecs.lucene46
 package|package
 name|org
 operator|.
@@ -10,7 +10,7 @@ name|lucene
 operator|.
 name|codecs
 operator|.
-name|lucene40
+name|lucene46
 package|;
 end_package
 
@@ -175,23 +175,21 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Lucene 4.0 implementation of {@link SegmentInfoReader}.  *   * @see Lucene40SegmentInfoFormat  * @lucene.experimental  * @deprecated Only for reading old 4.0-4.5 segments  */
+comment|/**  * Lucene 4.6 implementation of {@link SegmentInfoReader}.  *   * @see Lucene46SegmentInfoFormat  * @lucene.experimental  */
 end_comment
 
 begin_class
-annotation|@
-name|Deprecated
-DECL|class|Lucene40SegmentInfoReader
+DECL|class|Lucene46SegmentInfoReader
 specifier|public
 class|class
-name|Lucene40SegmentInfoReader
+name|Lucene46SegmentInfoReader
 extends|extends
 name|SegmentInfoReader
 block|{
 comment|/** Sole constructor. */
-DECL|method|Lucene40SegmentInfoReader
+DECL|method|Lucene46SegmentInfoReader
 specifier|public
-name|Lucene40SegmentInfoReader
+name|Lucene46SegmentInfoReader
 parameter_list|()
 block|{   }
 annotation|@
@@ -225,7 +223,7 @@ name|segment
 argument_list|,
 literal|""
 argument_list|,
-name|Lucene40SegmentInfoFormat
+name|Lucene46SegmentInfoFormat
 operator|.
 name|SI_EXTENSION
 argument_list|)
@@ -256,15 +254,15 @@ name|checkHeader
 argument_list|(
 name|input
 argument_list|,
-name|Lucene40SegmentInfoFormat
+name|Lucene46SegmentInfoFormat
 operator|.
 name|CODEC_NAME
 argument_list|,
-name|Lucene40SegmentInfoFormat
+name|Lucene46SegmentInfoFormat
 operator|.
 name|VERSION_START
 argument_list|,
-name|Lucene40SegmentInfoFormat
+name|Lucene46SegmentInfoFormat
 operator|.
 name|VERSION_CURRENT
 argument_list|)
@@ -337,12 +335,6 @@ operator|.
 name|readStringStringMap
 argument_list|()
 decl_stmt|;
-name|input
-operator|.
-name|readStringStringMap
-argument_list|()
-expr_stmt|;
-comment|// read deprecated attributes
 specifier|final
 name|Set
 argument_list|<

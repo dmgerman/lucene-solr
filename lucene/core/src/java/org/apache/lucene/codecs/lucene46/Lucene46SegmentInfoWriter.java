@@ -1,6 +1,6 @@
 begin_unit|revision:0.9.5;language:Java;cregit-version:0.0.1
 begin_package
-DECL|package|org.apache.lucene.codecs.lucene40
+DECL|package|org.apache.lucene.codecs.lucene46
 package|package
 name|org
 operator|.
@@ -10,7 +10,7 @@ name|lucene
 operator|.
 name|codecs
 operator|.
-name|lucene40
+name|lucene46
 package|;
 end_package
 
@@ -155,21 +155,21 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Lucene 4.0 implementation of {@link SegmentInfoWriter}.  *   * @see Lucene40SegmentInfoFormat  * @lucene.experimental  */
+comment|/**  * Lucene 4.0 implementation of {@link SegmentInfoWriter}.  *   * @see Lucene46SegmentInfoFormat  * @lucene.experimental  */
 end_comment
 
 begin_class
-DECL|class|Lucene40SegmentInfoWriter
+DECL|class|Lucene46SegmentInfoWriter
 specifier|public
 class|class
-name|Lucene40SegmentInfoWriter
+name|Lucene46SegmentInfoWriter
 extends|extends
 name|SegmentInfoWriter
 block|{
 comment|/** Sole constructor. */
-DECL|method|Lucene40SegmentInfoWriter
+DECL|method|Lucene46SegmentInfoWriter
 specifier|public
-name|Lucene40SegmentInfoWriter
+name|Lucene46SegmentInfoWriter
 parameter_list|()
 block|{   }
 comment|/** Save a single segment's info. */
@@ -209,7 +209,7 @@ name|name
 argument_list|,
 literal|""
 argument_list|,
-name|Lucene40SegmentInfoFormat
+name|Lucene46SegmentInfoFormat
 operator|.
 name|SI_EXTENSION
 argument_list|)
@@ -247,11 +247,11 @@ name|writeHeader
 argument_list|(
 name|output
 argument_list|,
-name|Lucene40SegmentInfoFormat
+name|Lucene46SegmentInfoFormat
 operator|.
 name|CODEC_NAME
 argument_list|,
-name|Lucene40SegmentInfoFormat
+name|Lucene46SegmentInfoFormat
 operator|.
 name|VERSION_CURRENT
 argument_list|)
@@ -307,16 +307,6 @@ argument_list|(
 name|si
 operator|.
 name|getDiagnostics
-argument_list|()
-argument_list|)
-expr_stmt|;
-name|output
-operator|.
-name|writeStringStringMap
-argument_list|(
-name|si
-operator|.
-name|attributes
 argument_list|()
 argument_list|)
 expr_stmt|;
