@@ -630,9 +630,7 @@ argument_list|>
 name|genInfos
 init|=
 name|getGenInfos
-argument_list|(
-name|si
-argument_list|)
+argument_list|()
 decl_stmt|;
 comment|//        System.out.println("[" + Thread.currentThread().getName() + "] SR.init: new reader: " + si + "; gens=" + genInfos.keySet());
 for|for
@@ -980,9 +978,7 @@ argument_list|>
 name|genInfos
 init|=
 name|getGenInfos
-argument_list|(
-name|si
-argument_list|)
+argument_list|()
 decl_stmt|;
 for|for
 control|(
@@ -1337,10 +1333,7 @@ name|FieldInfo
 argument_list|>
 argument_list|>
 name|getGenInfos
-parameter_list|(
-name|SegmentInfoPerCommit
-name|si
-parameter_list|)
+parameter_list|()
 block|{
 specifier|final
 name|Map
