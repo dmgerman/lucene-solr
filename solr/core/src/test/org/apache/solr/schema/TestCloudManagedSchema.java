@@ -734,7 +734,7 @@ comment|// Stolen from AbstractBadConfigTestBase
 name|String
 name|errString
 init|=
-literal|"returned non ok status:404, message:Not Found"
+literal|"Not Found"
 decl_stmt|;
 name|ignoreException
 argument_list|(

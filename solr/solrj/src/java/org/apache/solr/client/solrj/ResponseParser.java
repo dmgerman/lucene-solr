@@ -102,6 +102,17 @@ name|Reader
 name|reader
 parameter_list|)
 function_decl|;
+comment|/**    * A well behaved ResponseParser will return it's content-type.    *     * @return the content-type this parser expects to parse    */
+DECL|method|getContentType
+specifier|public
+name|String
+name|getContentType
+parameter_list|()
+block|{
+return|return
+literal|null
+return|;
+block|}
 comment|/**    * @return the version param passed to solr    */
 DECL|method|getVersion
 specifier|public

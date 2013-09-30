@@ -282,6 +282,15 @@ name|XMLResponseParser
 extends|extends
 name|ResponseParser
 block|{
+DECL|field|XML_CONTENT_TYPE
+specifier|public
+specifier|static
+specifier|final
+name|String
+name|XML_CONTENT_TYPE
+init|=
+literal|"application/xml; charset=UTF-8"
+decl_stmt|;
 DECL|field|log
 specifier|public
 specifier|static
@@ -388,6 +397,18 @@ parameter_list|()
 block|{
 return|return
 literal|"xml"
+return|;
+block|}
+annotation|@
+name|Override
+DECL|method|getContentType
+specifier|public
+name|String
+name|getContentType
+parameter_list|()
+block|{
+return|return
+name|XML_CONTENT_TYPE
 return|;
 block|}
 annotation|@
