@@ -1803,10 +1803,10 @@ name|size
 argument_list|()
 return|;
 block|}
-DECL|method|doApplyAllDeletes
+DECL|method|getAndResetApplyAllDeletes
 specifier|public
 name|boolean
-name|doApplyAllDeletes
+name|getAndResetApplyAllDeletes
 parameter_list|()
 block|{
 return|return
