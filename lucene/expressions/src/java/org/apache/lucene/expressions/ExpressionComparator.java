@@ -242,11 +242,7 @@ name|put
 argument_list|(
 literal|"scorer"
 argument_list|,
-operator|new
-name|ScoreFunctionValues
-argument_list|(
 name|scorer
-argument_list|)
 argument_list|)
 expr_stmt|;
 name|scores
