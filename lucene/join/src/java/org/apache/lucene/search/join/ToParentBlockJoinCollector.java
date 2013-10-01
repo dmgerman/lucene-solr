@@ -1296,6 +1296,11 @@ name|BlockJoinScorer
 name|scorer
 parameter_list|)
 block|{
+name|scorer
+operator|.
+name|trackPendingChildHits
+argument_list|()
+expr_stmt|;
 specifier|final
 name|Integer
 name|slot
