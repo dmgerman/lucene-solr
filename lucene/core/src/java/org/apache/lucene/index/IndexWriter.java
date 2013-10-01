@@ -4332,6 +4332,8 @@ throw|;
 block|}
 try|try
 block|{
+if|if
+condition|(
 name|docWriter
 operator|.
 name|updateNumericDocValue
@@ -4342,7 +4344,16 @@ name|field
 argument_list|,
 name|value
 argument_list|)
+condition|)
+block|{
+name|processEvents
+argument_list|(
+literal|true
+argument_list|,
+literal|false
+argument_list|)
 expr_stmt|;
+block|}
 block|}
 catch|catch
 parameter_list|(
