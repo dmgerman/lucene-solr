@@ -1478,6 +1478,21 @@ name|MAX_SHARDS_PER_NODE
 argument_list|)
 argument_list|)
 expr_stmt|;
+name|assertNull
+argument_list|(
+literal|"A shard of a Collection configured with implicit router must have null range"
+argument_list|,
+name|coll
+operator|.
+name|getSlice
+argument_list|(
+literal|"a"
+argument_list|)
+operator|.
+name|getRange
+argument_list|()
+argument_list|)
+expr_stmt|;
 name|List
 argument_list|<
 name|String
