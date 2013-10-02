@@ -1108,8 +1108,9 @@ return|;
 block|}
 block|}
 block|}
+comment|/** Represents a path in TopNSearcher.    *    *  @lucene.experimental    */
 DECL|class|FSTPath
-specifier|private
+specifier|public
 specifier|static
 class|class
 name|FSTPath
@@ -1138,6 +1139,7 @@ specifier|final
 name|IntsRef
 name|input
 decl_stmt|;
+comment|/** Sole constructor */
 DECL|method|FSTPath
 specifier|public
 name|FSTPath
@@ -1473,7 +1475,7 @@ expr_stmt|;
 block|}
 comment|// If back plus this arc is competitive then add to queue:
 DECL|method|addIfCompetitive
-specifier|private
+specifier|protected
 name|void
 name|addIfCompetitive
 parameter_list|(
@@ -1989,6 +1991,7 @@ literal|null
 condition|)
 block|{
 comment|// Ran out of paths
+comment|//System.out.println("  break queue=null");
 break|break;
 block|}
 comment|// Remove top path since we are now going to
@@ -2008,6 +2011,7 @@ literal|null
 condition|)
 block|{
 comment|// There were less than topN paths available:
+comment|//System.out.println("  break no more paths");
 break|break;
 block|}
 if|if
@@ -2288,6 +2292,7 @@ name|finalOutput
 argument_list|)
 condition|)
 block|{
+comment|//System.out.println("    add result: " + path);
 name|results
 operator|.
 name|add
@@ -3592,6 +3597,8 @@ name|int
 name|label
 parameter_list|)
 block|{
+comment|// Any ordinary ascii character, except for " or \, are
+comment|// printed as the character; else, as a hex string:
 if|if
 condition|(
 name|label
@@ -3601,10 +3608,7 @@ operator|&&
 name|label
 operator|<=
 literal|0x7d
-condition|)
-block|{
-if|if
-condition|(
+operator|&&
 name|label
 operator|!=
 literal|0x22
@@ -3626,7 +3630,6 @@ operator|)
 name|label
 argument_list|)
 return|;
-block|}
 block|}
 return|return
 literal|"0x"
