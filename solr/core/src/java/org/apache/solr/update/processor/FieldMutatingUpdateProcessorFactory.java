@@ -24,7 +24,7 @@ name|java
 operator|.
 name|util
 operator|.
-name|Arrays
+name|ArrayList
 import|;
 end_import
 
@@ -34,7 +34,7 @@ name|java
 operator|.
 name|util
 operator|.
-name|ArrayList
+name|Arrays
 import|;
 end_import
 
@@ -120,41 +120,9 @@ name|apache
 operator|.
 name|solr
 operator|.
-name|core
-operator|.
-name|SolrCore
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|solr
-operator|.
 name|common
 operator|.
 name|SolrException
-import|;
-end_import
-
-begin_import
-import|import static
-name|org
-operator|.
-name|apache
-operator|.
-name|solr
-operator|.
-name|common
-operator|.
-name|SolrException
-operator|.
-name|ErrorCode
-operator|.
-name|*
 import|;
 end_import
 
@@ -171,6 +139,20 @@ operator|.
 name|util
 operator|.
 name|NamedList
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|solr
+operator|.
+name|core
+operator|.
+name|SolrCore
 import|;
 end_import
 
@@ -360,11 +342,13 @@ throw|throw
 operator|new
 name|SolrException
 argument_list|(
+name|SolrException
+operator|.
+name|ErrorCode
+operator|.
 name|SERVER_ERROR
 argument_list|,
-literal|"selector was never initialized, "
-operator|+
-literal|" inform(SolrCore) never called???"
+literal|"selector was never initialized, inform(SolrCore) never called???"
 argument_list|)
 throw|;
 block|}
@@ -395,10 +379,10 @@ argument_list|<
 name|String
 argument_list|>
 argument_list|(
-name|oneOrMany
-argument_list|(
 name|args
-argument_list|,
+operator|.
+name|removeConfigArgs
+argument_list|(
 literal|"fieldName"
 argument_list|)
 argument_list|)
@@ -413,10 +397,10 @@ argument_list|<
 name|String
 argument_list|>
 argument_list|(
-name|oneOrMany
-argument_list|(
 name|args
-argument_list|,
+operator|.
+name|removeConfigArgs
+argument_list|(
 literal|"typeName"
 argument_list|)
 argument_list|)
@@ -428,10 +412,10 @@ name|String
 argument_list|>
 name|patterns
 init|=
-name|oneOrMany
-argument_list|(
 name|args
-argument_list|,
+operator|.
+name|removeConfigArgs
+argument_list|(
 literal|"fieldRegex"
 argument_list|)
 decl_stmt|;
@@ -495,6 +479,10 @@ throw|throw
 operator|new
 name|SolrException
 argument_list|(
+name|SolrException
+operator|.
+name|ErrorCode
+operator|.
 name|SERVER_ERROR
 argument_list|,
 literal|"Invalid 'fieldRegex' pattern: "
@@ -512,10 +500,10 @@ name|params
 operator|.
 name|typeClass
 operator|=
-name|oneOrMany
-argument_list|(
 name|args
-argument_list|,
+operator|.
+name|removeConfigArgs
+argument_list|(
 literal|"typeClass"
 argument_list|)
 expr_stmt|;
@@ -593,6 +581,10 @@ throw|throw
 operator|new
 name|SolrException
 argument_list|(
+name|SolrException
+operator|.
+name|ErrorCode
+operator|.
 name|SERVER_ERROR
 argument_list|,
 literal|"'exclude' init param can not be null"
@@ -613,6 +605,10 @@ throw|throw
 operator|new
 name|SolrException
 argument_list|(
+name|SolrException
+operator|.
+name|ErrorCode
+operator|.
 name|SERVER_ERROR
 argument_list|,
 literal|"'exclude' init param must be<lst/>"
@@ -651,6 +647,10 @@ throw|throw
 operator|new
 name|SolrException
 argument_list|(
+name|SolrException
+operator|.
+name|ErrorCode
+operator|.
 name|SERVER_ERROR
 argument_list|,
 literal|"Unexpected 'exclude' init sub-param(s): '"
@@ -724,6 +724,10 @@ throw|throw
 operator|new
 name|SolrException
 argument_list|(
+name|SolrException
+operator|.
+name|ErrorCode
+operator|.
 name|SERVER_ERROR
 argument_list|,
 literal|"Unexpected init param(s): '"
@@ -829,7 +833,9 @@ operator|.
 name|SELECT_ALL_FIELDS
 return|;
 block|}
-comment|/**    * Removes all instance of the key from NamedList, returning the Set of     * Strings that key referred to.  Throws an error if the key didn't refer    * to one or more strings (or arrays of strings)    * @exception SolrException invalid arr/str structure.    */
+comment|/**    * Removes all instance of the key from NamedList, returning the Set of     * Strings that key referred to.  Throws an error if the key didn't refer    * to one or more strings (or arrays of strings)    * @exception SolrException invalid arr/str structure.    * @deprecated Replaced by {@link NamedList#removeConfigArgs(String)}.  Will be    * removed in version 5.0.    */
+annotation|@
+name|Deprecated
 DECL|method|oneOrMany
 specifier|public
 specifier|static
@@ -979,6 +985,10 @@ throw|throw
 operator|new
 name|SolrException
 argument_list|(
+name|SolrException
+operator|.
+name|ErrorCode
+operator|.
 name|SERVER_ERROR
 argument_list|,
 name|err
@@ -1008,6 +1018,10 @@ throw|throw
 operator|new
 name|SolrException
 argument_list|(
+name|SolrException
+operator|.
+name|ErrorCode
+operator|.
 name|SERVER_ERROR
 argument_list|,
 name|err
@@ -1080,6 +1094,10 @@ throw|throw
 operator|new
 name|SolrException
 argument_list|(
+name|SolrException
+operator|.
+name|ErrorCode
+operator|.
 name|SERVER_ERROR
 argument_list|,
 literal|"Only one '"
@@ -1142,6 +1160,10 @@ throw|throw
 operator|new
 name|SolrException
 argument_list|(
+name|SolrException
+operator|.
+name|ErrorCode
+operator|.
 name|SERVER_ERROR
 argument_list|,
 literal|"'"

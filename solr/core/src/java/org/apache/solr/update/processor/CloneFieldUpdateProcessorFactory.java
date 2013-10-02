@@ -715,12 +715,10 @@ argument_list|<
 name|String
 argument_list|>
 argument_list|(
-name|FieldMutatingUpdateProcessorFactory
-operator|.
-name|oneOrMany
-argument_list|(
 name|args
-argument_list|,
+operator|.
+name|removeConfigArgs
+argument_list|(
 literal|"source"
 argument_list|)
 argument_list|)

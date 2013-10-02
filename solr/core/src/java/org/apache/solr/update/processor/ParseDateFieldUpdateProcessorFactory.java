@@ -601,10 +601,10 @@ name|String
 argument_list|>
 name|formatsParam
 init|=
-name|oneOrMany
-argument_list|(
 name|args
-argument_list|,
+operator|.
+name|removeConfigArgs
+argument_list|(
 name|FORMATS_PARAM
 argument_list|)
 decl_stmt|;

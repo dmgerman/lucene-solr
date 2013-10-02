@@ -986,12 +986,10 @@ name|String
 argument_list|>
 name|valueClasses
 init|=
-name|FieldMutatingUpdateProcessorFactory
-operator|.
-name|oneOrMany
-argument_list|(
 name|typeMappingNamedList
-argument_list|,
+operator|.
+name|removeConfigArgs
+argument_list|(
 name|VALUE_CLASS_PARAM
 argument_list|)
 decl_stmt|;

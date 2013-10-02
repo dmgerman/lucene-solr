@@ -462,12 +462,10 @@ name|String
 argument_list|>
 name|scripts
 init|=
-name|FieldMutatingUpdateProcessorFactory
-operator|.
-name|oneOrMany
-argument_list|(
 name|args
-argument_list|,
+operator|.
+name|removeConfigArgs
+argument_list|(
 name|SCRIPT_ARG
 argument_list|)
 decl_stmt|;
