@@ -217,14 +217,14 @@ name|NUM_BYTES_INT
 operator|+
 literal|24
 decl_stmt|;
-comment|/* Rough logic: NumericUpdate calculates its actual size,    * including the update Term and DV field (String). The     * per-term map holds a reference to the update Term, and    * therefore we only account for the object reference and     * map space itself. This is incremented when we first see    * an update Term.    * LinkedHashMap has an array[Entry] w/ varying load factor     * (say 2*POINTER). Entry is an object w/ Term key, Map val,     * int hash, Entry next, Entry before, Entry after (OBJ_HEADER + 5*POINTER + INT).    * Term (key) is counted only as POINTER.    * Map (val) is counted as OBJ_HEADER, array[Entry] ref + header, 4*INT, 1*FLOAT,    * Set (entrySet) (2*OBJ_HEADER + ARRAY_HEADER + 2*POINTER + 4*INT + FLOAT)    */
-DECL|field|BYTES_PER_NUMERIC_UPDATE_TERM_ENTRY
+comment|/* Rough logic: NumericUpdate calculates its actual size,    * including the update Term and DV field (String). The     * per-field map holds a reference to the updated field, and    * therefore we only account for the object reference and     * map space itself. This is incremented when we first see    * an updated field.    *     * HashMap has an array[Entry] w/ varying load    * factor (say 2*POINTER). Entry is an object w/ String key,     * LinkedHashMap val, int hash, Entry next (OBJ_HEADER + 3*POINTER + INT).    *     * LinkedHashMap (val) is counted as OBJ_HEADER, array[Entry] ref + header, 4*INT, 1*FLOAT,    * Set (entrySet) (2*OBJ_HEADER + ARRAY_HEADER + 2*POINTER + 4*INT + FLOAT)    */
+DECL|field|BYTES_PER_NUMERIC_FIELD_ENTRY
 specifier|final
 specifier|static
 name|int
-name|BYTES_PER_NUMERIC_UPDATE_TERM_ENTRY
+name|BYTES_PER_NUMERIC_FIELD_ENTRY
 init|=
-literal|9
+literal|7
 operator|*
 name|RamUsageEstimator
 operator|.
@@ -250,14 +250,14 @@ name|RamUsageEstimator
 operator|.
 name|NUM_BYTES_FLOAT
 decl_stmt|;
-comment|/* Rough logic: Incremented when we see another field for an already updated    * Term.    * HashMap has an array[Entry] w/ varying load    * factor (say 2*POINTER). Entry is an object w/ String key,     * NumericUpdate val, int hash, Entry next (OBJ_HEADER + 3*POINTER + INT).    * NumericUpdate returns its own size, and therefore isn't accounted for here.    */
+comment|/* Rough logic: Incremented when we see another Term for an already updated    * field.    * LinkedHashMap has an array[Entry] w/ varying load factor     * (say 2*POINTER). Entry is an object w/ Term key, NumericUpdate val,     * int hash, Entry next, Entry before, Entry after (OBJ_HEADER + 5*POINTER + INT).    *     * Term (key) is counted only as POINTER.    * NumericUpdate (val) counts its own size and isn't accounted for here.    */
 DECL|field|BYTES_PER_NUMERIC_UPDATE_ENTRY
 specifier|final
 specifier|static
 name|int
 name|BYTES_PER_NUMERIC_UPDATE_ENTRY
 init|=
-literal|5
+literal|7
 operator|*
 name|RamUsageEstimator
 operator|.
@@ -342,20 +342,22 @@ name|Integer
 argument_list|>
 argument_list|()
 decl_stmt|;
-comment|// Map<updateTerm,Map<dvField,NumericUpdate>>
-comment|// LinkedHashMap because we need to preserve the order of the updates. That
-comment|// is, if two terms update the same document and same DV field, whoever came
-comment|// in last should win. LHM guarantees we iterate on the map in insertion
-comment|// order.
+comment|// Map<dvField,Map<updateTerm,NumericUpdate>>
+comment|// For each field we keep an ordered list of NumericUpdates, key'd by the
+comment|// update Term. LinkedHashMap guarantees we will later traverse the map in
+comment|// insertion order (so that if two terms affect the same document, the last
+comment|// one that came in wins), and helps us detect faster if the same Term is
+comment|// used to update the same field multiple times (so we later traverse it
+comment|// only once).
 DECL|field|numericUpdates
 specifier|final
 name|Map
 argument_list|<
-name|Term
-argument_list|,
-name|Map
-argument_list|<
 name|String
+argument_list|,
+name|LinkedHashMap
+argument_list|<
+name|Term
 argument_list|,
 name|NumericUpdate
 argument_list|>
@@ -363,13 +365,13 @@ argument_list|>
 name|numericUpdates
 init|=
 operator|new
+name|HashMap
+argument_list|<
+name|String
+argument_list|,
 name|LinkedHashMap
 argument_list|<
 name|Term
-argument_list|,
-name|Map
-argument_list|<
-name|String
 argument_list|,
 name|NumericUpdate
 argument_list|>
@@ -785,13 +787,13 @@ name|int
 name|docIDUpto
 parameter_list|)
 block|{
-name|Map
+name|LinkedHashMap
 argument_list|<
-name|String
+name|Term
 argument_list|,
 name|NumericUpdate
 argument_list|>
-name|termUpdates
+name|fieldUpdates
 init|=
 name|numericUpdates
 operator|.
@@ -799,22 +801,22 @@ name|get
 argument_list|(
 name|update
 operator|.
-name|term
+name|field
 argument_list|)
 decl_stmt|;
 if|if
 condition|(
-name|termUpdates
+name|fieldUpdates
 operator|==
 literal|null
 condition|)
 block|{
-name|termUpdates
+name|fieldUpdates
 operator|=
 operator|new
-name|HashMap
+name|LinkedHashMap
 argument_list|<
-name|String
+name|Term
 argument_list|,
 name|NumericUpdate
 argument_list|>
@@ -826,16 +828,16 @@ name|put
 argument_list|(
 name|update
 operator|.
-name|term
+name|field
 argument_list|,
-name|termUpdates
+name|fieldUpdates
 argument_list|)
 expr_stmt|;
 name|bytesUsed
 operator|.
 name|addAndGet
 argument_list|(
-name|BYTES_PER_NUMERIC_UPDATE_TERM_ENTRY
+name|BYTES_PER_NUMERIC_FIELD_ENTRY
 argument_list|)
 expr_stmt|;
 block|}
@@ -843,13 +845,13 @@ specifier|final
 name|NumericUpdate
 name|current
 init|=
-name|termUpdates
+name|fieldUpdates
 operator|.
 name|get
 argument_list|(
 name|update
 operator|.
-name|field
+name|term
 argument_list|)
 decl_stmt|;
 if|if
@@ -877,13 +879,32 @@ name|docIDUpto
 operator|=
 name|docIDUpto
 expr_stmt|;
-name|termUpdates
+comment|// since it's a LinkedHashMap, we must first remove the Term entry so that
+comment|// it's added last (we're interested in insertion-order).
+if|if
+condition|(
+name|current
+operator|!=
+literal|null
+condition|)
+block|{
+name|fieldUpdates
+operator|.
+name|remove
+argument_list|(
+name|update
+operator|.
+name|term
+argument_list|)
+expr_stmt|;
+block|}
+name|fieldUpdates
 operator|.
 name|put
 argument_list|(
 name|update
 operator|.
-name|field
+name|term
 argument_list|,
 name|update
 argument_list|)

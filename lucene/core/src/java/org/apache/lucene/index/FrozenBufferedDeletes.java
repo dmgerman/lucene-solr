@@ -42,6 +42,16 @@ name|java
 operator|.
 name|util
 operator|.
+name|LinkedHashMap
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
+name|util
+operator|.
 name|List
 import|;
 end_import
@@ -378,6 +388,10 @@ name|upto
 operator|++
 expr_stmt|;
 block|}
+comment|// TODO if a Term affects multiple fields, we could keep the updates key'd by Term
+comment|// so that it maps to all fields it affects, sorted by their docUpto, and traverse
+comment|// that Term only once, applying the update to all fields that still need to be
+comment|// updated.
 name|List
 argument_list|<
 name|NumericUpdate
@@ -398,9 +412,9 @@ literal|0
 decl_stmt|;
 for|for
 control|(
-name|Map
+name|LinkedHashMap
 argument_list|<
-name|String
+name|Term
 argument_list|,
 name|NumericUpdate
 argument_list|>
