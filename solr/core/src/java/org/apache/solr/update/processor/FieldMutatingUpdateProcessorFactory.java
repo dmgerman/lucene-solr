@@ -507,15 +507,15 @@ argument_list|(
 literal|"typeClass"
 argument_list|)
 expr_stmt|;
-comment|// getBooleanArg() returns null if the arg is not specified
+comment|// Returns null if the arg is not specified
 name|params
 operator|.
 name|fieldNameMatchesSchemaField
 operator|=
-name|getBooleanArg
-argument_list|(
 name|args
-argument_list|,
+operator|.
+name|removeBooleanArg
+argument_list|(
 literal|"fieldNameMatchesSchemaField"
 argument_list|)
 expr_stmt|;
@@ -833,7 +833,9 @@ operator|.
 name|SELECT_ALL_FIELDS
 return|;
 block|}
-comment|/**    * Removes the first instance of the key from NamedList, returning the Boolean    * that key referred to, or null if the key is not specified.    * @exception SolrException invalid type or structure    */
+comment|/**    * Removes the first instance of the key from NamedList, returning the Boolean    * that key referred to, or null if the key is not specified.    * @exception SolrException invalid type or structure    * @deprecated Use {@link NamedList#removeBooleanArg} instead.  Will be    * removed in 5.0.    */
+annotation|@
+name|Deprecated
 DECL|method|getBooleanArg
 specifier|public
 specifier|static
