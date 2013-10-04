@@ -298,11 +298,11 @@ specifier|final
 name|DocValuesProducer
 name|normsProducer
 decl_stmt|;
-DECL|field|owner
+DECL|field|ownerCoreCacheKey
 specifier|private
 specifier|final
-name|SegmentReader
-name|owner
+name|Object
+name|ownerCoreCacheKey
 decl_stmt|;
 DECL|field|fieldsReaderOrig
 specifier|final
@@ -481,6 +481,15 @@ parameter_list|)
 throws|throws
 name|IOException
 block|{
+comment|// SegmentReader uses us as the coreCacheKey; we cannot
+comment|// call owner.getCoreCacheKey() because that will return
+comment|// null!:
+name|this
+operator|.
+name|ownerCoreCacheKey
+operator|=
+name|this
+expr_stmt|;
 specifier|final
 name|Codec
 name|codec
@@ -728,16 +737,6 @@ argument_list|()
 expr_stmt|;
 block|}
 block|}
-comment|// Must assign this at the end -- if we hit an
-comment|// exception above core, we don't want to attempt to
-comment|// purge the FieldCache (will hit NPE because core is
-comment|// not assigned yet).
-name|this
-operator|.
-name|owner
-operator|=
-name|owner
-expr_stmt|;
 block|}
 DECL|method|getRefCount
 name|int
@@ -904,7 +903,7 @@ name|listener
 operator|.
 name|onClose
 argument_list|(
-name|owner
+name|ownerCoreCacheKey
 argument_list|)
 expr_stmt|;
 block|}
@@ -1009,22 +1008,6 @@ argument_list|()
 else|:
 literal|0
 operator|)
-return|;
-block|}
-annotation|@
-name|Override
-DECL|method|toString
-specifier|public
-name|String
-name|toString
-parameter_list|()
-block|{
-return|return
-literal|"SegmentCoreReader(owner="
-operator|+
-name|owner
-operator|+
-literal|")"
 return|;
 block|}
 block|}

@@ -172,6 +172,24 @@ name|lucene
 operator|.
 name|index
 operator|.
+name|IndexReader
+import|;
+end_import
+
+begin_comment
+comment|// javadocs
+end_comment
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|index
+operator|.
 name|SortedDocValues
 import|;
 end_import
@@ -1511,7 +1529,6 @@ block|}
 comment|/**    * EXPERT: Generates an array of CacheEntry objects representing all items     * currently in the FieldCache.    *<p>    * NOTE: These CacheEntry objects maintain a strong reference to the     * Cached Values.  Maintaining references to a CacheEntry the AtomicIndexReader     * associated with it has garbage collected will prevent the Value itself    * from being garbage collected when the Cache drops the WeakReference.    *</p>    * @lucene.experimental    */
 DECL|method|getCacheEntries
 specifier|public
-specifier|abstract
 name|CacheEntry
 index|[]
 name|getCacheEntries
@@ -1520,20 +1537,18 @@ function_decl|;
 comment|/**    *<p>    * EXPERT: Instructs the FieldCache to forcibly expunge all entries     * from the underlying caches.  This is intended only to be used for     * test methods as a way to ensure a known base state of the Cache     * (with out needing to rely on GC to free WeakReferences).      * It should not be relied on for "Cache maintenance" in general     * application code.    *</p>    * @lucene.experimental    */
 DECL|method|purgeAllCaches
 specifier|public
-specifier|abstract
 name|void
 name|purgeAllCaches
 parameter_list|()
 function_decl|;
-comment|/**    * Expert: drops all cache entries associated with this    * reader.  NOTE: this reader must precisely match the    * reader that the cache entry is keyed on. If you pass a    * top-level reader, it usually will have no effect as    * Lucene now caches at the segment reader level.    */
-DECL|method|purge
+comment|/**    * Expert: drops all cache entries associated with this    * reader {@link IndexReader#getCoreCacheKey}.  NOTE: this cache key must    * precisely match the reader that the cache entry is    * keyed on. If you pass a top-level reader, it usually    * will have no effect as Lucene now caches at the segment    * reader level.    */
+DECL|method|purgeByCacheKey
 specifier|public
-specifier|abstract
 name|void
-name|purge
+name|purgeByCacheKey
 parameter_list|(
-name|AtomicReader
-name|r
+name|Object
+name|coreCacheKey
 parameter_list|)
 function_decl|;
 comment|/**    * If non-null, FieldCacheImpl will warn whenever    * entries are created that are not sane according to    * {@link org.apache.lucene.util.FieldCacheSanityChecker}.    */

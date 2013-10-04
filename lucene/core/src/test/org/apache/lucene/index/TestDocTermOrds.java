@@ -1179,9 +1179,12 @@ name|FieldCache
 operator|.
 name|DEFAULT
 operator|.
-name|purge
+name|purgeByCacheKey
 argument_list|(
 name|slowR
+operator|.
+name|getCoreCacheKey
+argument_list|()
 argument_list|)
 expr_stmt|;
 name|r
@@ -2002,9 +2005,12 @@ name|FieldCache
 operator|.
 name|DEFAULT
 operator|.
-name|purge
+name|purgeByCacheKey
 argument_list|(
 name|slowR
+operator|.
+name|getCoreCacheKey
+argument_list|()
 argument_list|)
 expr_stmt|;
 name|r

@@ -2030,6 +2030,8 @@ name|Object
 name|getCoreCacheKey
 parameter_list|()
 block|{
+comment|// NOTE: if this every changes, be sure to fix
+comment|// SegmentCoreReader's ownerCoreCacheKey to match!
 return|return
 name|core
 return|;
@@ -2738,14 +2740,14 @@ specifier|static
 interface|interface
 name|CoreClosedListener
 block|{
-comment|/** Invoked when the shared core of the provided {@link      *  SegmentReader} has closed. */
+comment|/** Invoked when the shared core of the original {@code      *  SegmentReader} has closed. */
 DECL|method|onClose
 specifier|public
 name|void
 name|onClose
 parameter_list|(
-name|SegmentReader
-name|owner
+name|Object
+name|ownerCoreCacheKey
 parameter_list|)
 function_decl|;
 block|}
