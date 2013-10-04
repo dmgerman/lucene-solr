@@ -2030,8 +2030,9 @@ name|Object
 name|getCoreCacheKey
 parameter_list|()
 block|{
-comment|// NOTE: if this every changes, be sure to fix
-comment|// SegmentCoreReader's ownerCoreCacheKey to match!
+comment|// NOTE: if this ever changes, be sure to fix
+comment|// SegmentCoreReader.notifyCoreClosedListeners to match!
+comment|// Today it passes "this" as its coreCacheKey:
 return|return
 name|core
 return|;

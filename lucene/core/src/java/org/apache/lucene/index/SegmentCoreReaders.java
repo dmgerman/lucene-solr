@@ -298,12 +298,6 @@ specifier|final
 name|DocValuesProducer
 name|normsProducer
 decl_stmt|;
-DECL|field|ownerCoreCacheKey
-specifier|private
-specifier|final
-name|Object
-name|ownerCoreCacheKey
-decl_stmt|;
 DECL|field|fieldsReaderOrig
 specifier|final
 name|StoredFieldsReader
@@ -481,15 +475,6 @@ parameter_list|)
 throws|throws
 name|IOException
 block|{
-comment|// SegmentReader uses us as the coreCacheKey; we cannot
-comment|// call owner.getCoreCacheKey() because that will return
-comment|// null!:
-name|this
-operator|.
-name|ownerCoreCacheKey
-operator|=
-name|this
-expr_stmt|;
 specifier|final
 name|Codec
 name|codec
@@ -899,11 +884,13 @@ range|:
 name|coreClosedListeners
 control|)
 block|{
+comment|// SegmentReader uses our instance as its
+comment|// coreCacheKey:
 name|listener
 operator|.
 name|onClose
 argument_list|(
-name|ownerCoreCacheKey
+name|this
 argument_list|)
 expr_stmt|;
 block|}
