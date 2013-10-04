@@ -1783,7 +1783,7 @@ name|handleResponse
 argument_list|(
 name|OverseerCollectionProcessor
 operator|.
-name|CREATEALIAS
+name|DELETEALIAS
 argument_list|,
 name|m
 argument_list|,
