@@ -764,6 +764,8 @@ operator|.
 name|DEFAULT_COLLECTION
 argument_list|,
 name|SHARD1
+argument_list|,
+literal|null
 argument_list|)
 expr_stmt|;
 name|log

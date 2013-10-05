@@ -228,6 +228,16 @@ name|TARGET_CORE
 init|=
 literal|"targetCore"
 decl_stmt|;
+comment|/** The hash ranges to be used to split a shard or an index */
+DECL|field|RANGES
+specifier|public
+specifier|final
+specifier|static
+name|String
+name|RANGES
+init|=
+literal|"ranges"
+decl_stmt|;
 DECL|field|ROLES
 specifier|public
 specifier|static
