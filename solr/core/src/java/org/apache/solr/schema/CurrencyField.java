@@ -997,7 +997,7 @@ name|ErrorCode
 operator|.
 name|BAD_REQUEST
 argument_list|,
-literal|"Error instantiating exhange rate provider "
+literal|"Error instantiating exchange rate provider "
 operator|+
 name|exchangeRateProviderClass
 operator|+
