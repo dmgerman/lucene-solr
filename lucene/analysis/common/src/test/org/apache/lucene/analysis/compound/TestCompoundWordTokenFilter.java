@@ -1797,6 +1797,16 @@ name|toString
 argument_list|()
 argument_list|)
 expr_stmt|;
+name|tf
+operator|.
+name|end
+argument_list|()
+expr_stmt|;
+name|tf
+operator|.
+name|close
+argument_list|()
+expr_stmt|;
 name|wsTokenizer
 operator|.
 name|setReader

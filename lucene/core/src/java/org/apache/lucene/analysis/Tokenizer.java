@@ -235,12 +235,24 @@ literal|"input must not be null"
 argument_list|)
 throw|;
 block|}
+elseif|else
+if|if
+condition|(
 name|this
 operator|.
 name|input
-operator|=
+operator|!=
 name|ILLEGAL_STATE_READER
-expr_stmt|;
+condition|)
+block|{
+throw|throw
+operator|new
+name|IllegalStateException
+argument_list|(
+literal|"TokenStream contract violation: close() call missing"
+argument_list|)
+throw|;
+block|}
 name|this
 operator|.
 name|inputPending

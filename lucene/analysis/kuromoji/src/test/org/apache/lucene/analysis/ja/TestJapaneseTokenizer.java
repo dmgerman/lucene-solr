@@ -1514,6 +1514,16 @@ name|incrementToken
 argument_list|()
 condition|)
 block|{       }
+name|ts
+operator|.
+name|end
+argument_list|()
+expr_stmt|;
+name|ts
+operator|.
+name|close
+argument_list|()
+expr_stmt|;
 block|}
 block|}
 comment|/** simple test for supplementary characters */
@@ -1660,6 +1670,16 @@ argument_list|)
 argument_list|)
 expr_stmt|;
 block|}
+name|ts
+operator|.
+name|end
+argument_list|()
+expr_stmt|;
+name|ts
+operator|.
+name|close
+argument_list|()
+expr_stmt|;
 block|}
 block|}
 DECL|method|testOnlyPunctuation
@@ -3218,6 +3238,16 @@ name|incrementToken
 argument_list|()
 condition|)
 empty_stmt|;
+name|ts
+operator|.
+name|end
+argument_list|()
+expr_stmt|;
+name|ts
+operator|.
+name|close
+argument_list|()
+expr_stmt|;
 block|}
 name|String
 index|[]
@@ -3325,6 +3355,16 @@ name|incrementToken
 argument_list|()
 condition|)
 empty_stmt|;
+name|ts
+operator|.
+name|end
+argument_list|()
+expr_stmt|;
+name|ts
+operator|.
+name|close
+argument_list|()
+expr_stmt|;
 block|}
 block|}
 if|if

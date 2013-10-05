@@ -96,7 +96,7 @@ literal|"/response/lst[@name='fieldType']/bool[@name='storeOffsetsWithPositions'
 argument_list|,
 literal|"/response/lst[@name='fieldType']/bool[@name='multiValued'] = 'false'"
 argument_list|,
-literal|"/response/lst[@name='fieldType']/bool[@name='tokenized'] = 'true'"
+literal|"/response/lst[@name='fieldType']/bool[@name='tokenized'] = 'false'"
 argument_list|,
 literal|"/response/lst[@name='fieldType']/arr[@name='fields']/str = 'weight'"
 argument_list|,
@@ -169,7 +169,7 @@ literal|"/fieldType/storeOffsetsWithPositions==false"
 argument_list|,
 literal|"/fieldType/multiValued==false"
 argument_list|,
-literal|"/fieldType/tokenized==true"
+literal|"/fieldType/tokenized==false"
 argument_list|,
 literal|"/fieldType/fields==['weight']"
 argument_list|,
