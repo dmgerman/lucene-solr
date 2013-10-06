@@ -7384,11 +7384,6 @@ init|=
 literal|0
 decl_stmt|;
 name|int
-name|idUpto
-init|=
-literal|0
-decl_stmt|;
-name|int
 name|docBase
 init|=
 literal|0
