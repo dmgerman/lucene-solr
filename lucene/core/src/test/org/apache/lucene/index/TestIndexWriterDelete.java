@@ -7684,8 +7684,6 @@ name|docCount
 operator|+=
 name|numDocs
 expr_stmt|;
-comment|// We should hit exc when trying to write the live
-comment|// docs, here:
 name|IndexReader
 name|r
 init|=
