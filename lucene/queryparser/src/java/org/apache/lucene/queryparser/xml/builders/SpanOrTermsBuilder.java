@@ -282,8 +282,6 @@ argument_list|(
 name|e
 argument_list|)
 decl_stmt|;
-try|try
-block|{
 name|List
 argument_list|<
 name|SpanQuery
@@ -297,6 +295,8 @@ name|SpanQuery
 argument_list|>
 argument_list|()
 decl_stmt|;
+try|try
+init|(
 name|TokenStream
 name|ts
 init|=
@@ -308,7 +308,8 @@ name|fieldName
 argument_list|,
 name|value
 argument_list|)
-decl_stmt|;
+init|)
+block|{
 name|TermToBytesRefAttribute
 name|termAtt
 init|=
@@ -378,11 +379,6 @@ block|}
 name|ts
 operator|.
 name|end
-argument_list|()
-expr_stmt|;
-name|ts
-operator|.
-name|close
 argument_list|()
 expr_stmt|;
 name|SpanOrQuery

@@ -1982,6 +1982,8 @@ name|random
 argument_list|()
 argument_list|)
 decl_stmt|;
+try|try
+init|(
 name|TokenStream
 name|ts
 init|=
@@ -1993,7 +1995,8 @@ literal|"fake"
 argument_list|,
 name|term
 argument_list|)
-decl_stmt|;
+init|)
+block|{
 name|TermToBytesRefAttribute
 name|termAtt
 init|=
@@ -2060,11 +2063,7 @@ operator|.
 name|end
 argument_list|()
 expr_stmt|;
-name|ts
-operator|.
-name|close
-argument_list|()
-expr_stmt|;
+block|}
 block|}
 name|Thread
 name|threads
@@ -2143,6 +2142,8 @@ operator|.
 name|getValue
 argument_list|()
 decl_stmt|;
+try|try
+init|(
 name|TokenStream
 name|ts
 init|=
@@ -2154,7 +2155,8 @@ literal|"fake"
 argument_list|,
 name|term
 argument_list|)
-decl_stmt|;
+init|)
+block|{
 name|TermToBytesRefAttribute
 name|termAtt
 init|=
@@ -2213,11 +2215,7 @@ operator|.
 name|end
 argument_list|()
 expr_stmt|;
-name|ts
-operator|.
-name|close
-argument_list|()
-expr_stmt|;
+block|}
 block|}
 block|}
 catch|catch

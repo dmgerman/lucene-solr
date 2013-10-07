@@ -1161,6 +1161,8 @@ parameter_list|()
 throws|throws
 name|Exception
 block|{
+try|try
+init|(
 name|TokenStream
 name|ts
 init|=
@@ -1172,7 +1174,8 @@ literal|"bogus"
 argument_list|,
 literal|"ãããããããããããããããããããããããããããããããããããããããã"
 argument_list|)
-decl_stmt|;
+init|)
+block|{
 name|ts
 operator|.
 name|reset
@@ -1185,17 +1188,13 @@ operator|.
 name|incrementToken
 argument_list|()
 condition|)
-block|{            }
+block|{              }
 name|ts
 operator|.
 name|end
 argument_list|()
 expr_stmt|;
-name|ts
-operator|.
-name|close
-argument_list|()
-expr_stmt|;
+block|}
 block|}
 comment|/*     // NOTE: intentionally fails!  Just trying to debug this     // one input...   public void testDecomposition6() throws Exception {     assertAnalyzesTo(analyzer, "å¥è¯åç«¯ç§å­¦æè¡å¤§å­¦é¢å¤§å­¦",       new String[] { "ãã", "ã¯", "æ¬", "ã§", "ã¯", "ãªã" },       new int[] { 0, 2, 3, 4, 5, 6 },       new int[] { 2, 3, 4, 5, 6, 8 }                      );   }   */
 comment|/** Tests that sentence offset is incorporated into the resulting offsets */
@@ -1489,6 +1488,8 @@ argument_list|,
 literal|10000
 argument_list|)
 decl_stmt|;
+try|try
+init|(
 name|TokenStream
 name|ts
 init|=
@@ -1500,7 +1501,8 @@ literal|"foo"
 argument_list|,
 name|s
 argument_list|)
-decl_stmt|;
+init|)
+block|{
 name|ts
 operator|.
 name|reset
@@ -1513,17 +1515,13 @@ operator|.
 name|incrementToken
 argument_list|()
 condition|)
-block|{       }
+block|{         }
 name|ts
 operator|.
 name|end
 argument_list|()
 expr_stmt|;
-name|ts
-operator|.
-name|close
-argument_list|()
-expr_stmt|;
+block|}
 block|}
 block|}
 comment|/** simple test for supplementary characters */
@@ -1622,6 +1620,8 @@ argument_list|,
 literal|100
 argument_list|)
 decl_stmt|;
+try|try
+init|(
 name|TokenStream
 name|ts
 init|=
@@ -1633,7 +1633,8 @@ literal|"foo"
 argument_list|,
 name|s
 argument_list|)
-decl_stmt|;
+init|)
+block|{
 name|CharTermAttribute
 name|termAtt
 init|=
@@ -1675,11 +1676,7 @@ operator|.
 name|end
 argument_list|()
 expr_stmt|;
-name|ts
-operator|.
-name|close
-argument_list|()
-expr_stmt|;
+block|}
 block|}
 block|}
 DECL|method|testOnlyPunctuation
@@ -1690,6 +1687,8 @@ parameter_list|()
 throws|throws
 name|IOException
 block|{
+try|try
+init|(
 name|TokenStream
 name|ts
 init|=
@@ -1701,7 +1700,8 @@ literal|"foo"
 argument_list|,
 literal|"ãããã"
 argument_list|)
-decl_stmt|;
+init|)
+block|{
 name|ts
 operator|.
 name|reset
@@ -1721,6 +1721,7 @@ name|end
 argument_list|()
 expr_stmt|;
 block|}
+block|}
 DECL|method|testOnlyPunctuationExtended
 specifier|public
 name|void
@@ -1729,6 +1730,8 @@ parameter_list|()
 throws|throws
 name|IOException
 block|{
+try|try
+init|(
 name|TokenStream
 name|ts
 init|=
@@ -1740,7 +1743,8 @@ literal|"foo"
 argument_list|,
 literal|"......"
 argument_list|)
-decl_stmt|;
+init|)
+block|{
 name|ts
 operator|.
 name|reset
@@ -1759,6 +1763,7 @@ operator|.
 name|end
 argument_list|()
 expr_stmt|;
+block|}
 block|}
 comment|// note: test is kinda silly since kuromoji emits punctuation tokens.
 comment|// but, when/if we filter these out it will be useful.
@@ -2307,6 +2312,8 @@ parameter_list|)
 throws|throws
 name|IOException
 block|{
+try|try
+init|(
 name|TokenStream
 name|ts
 init|=
@@ -2318,7 +2325,8 @@ literal|"ignored"
 argument_list|,
 name|input
 argument_list|)
-decl_stmt|;
+init|)
+block|{
 name|ReadingAttribute
 name|readingAtt
 init|=
@@ -2377,6 +2385,7 @@ name|end
 argument_list|()
 expr_stmt|;
 block|}
+block|}
 DECL|method|assertPronunciations
 specifier|private
 name|void
@@ -2392,6 +2401,8 @@ parameter_list|)
 throws|throws
 name|IOException
 block|{
+try|try
+init|(
 name|TokenStream
 name|ts
 init|=
@@ -2403,7 +2414,8 @@ literal|"ignored"
 argument_list|,
 name|input
 argument_list|)
-decl_stmt|;
+init|)
+block|{
 name|ReadingAttribute
 name|readingAtt
 init|=
@@ -2462,6 +2474,7 @@ name|end
 argument_list|()
 expr_stmt|;
 block|}
+block|}
 DECL|method|assertBaseForms
 specifier|private
 name|void
@@ -2477,6 +2490,8 @@ parameter_list|)
 throws|throws
 name|IOException
 block|{
+try|try
+init|(
 name|TokenStream
 name|ts
 init|=
@@ -2488,7 +2503,8 @@ literal|"ignored"
 argument_list|,
 name|input
 argument_list|)
-decl_stmt|;
+init|)
+block|{
 name|BaseFormAttribute
 name|baseFormAtt
 init|=
@@ -2547,6 +2563,7 @@ name|end
 argument_list|()
 expr_stmt|;
 block|}
+block|}
 DECL|method|assertInflectionTypes
 specifier|private
 name|void
@@ -2562,6 +2579,8 @@ parameter_list|)
 throws|throws
 name|IOException
 block|{
+try|try
+init|(
 name|TokenStream
 name|ts
 init|=
@@ -2573,7 +2592,8 @@ literal|"ignored"
 argument_list|,
 name|input
 argument_list|)
-decl_stmt|;
+init|)
+block|{
 name|InflectionAttribute
 name|inflectionAtt
 init|=
@@ -2632,6 +2652,7 @@ name|end
 argument_list|()
 expr_stmt|;
 block|}
+block|}
 DECL|method|assertInflectionForms
 specifier|private
 name|void
@@ -2647,6 +2668,8 @@ parameter_list|)
 throws|throws
 name|IOException
 block|{
+try|try
+init|(
 name|TokenStream
 name|ts
 init|=
@@ -2658,7 +2681,8 @@ literal|"ignored"
 argument_list|,
 name|input
 argument_list|)
-decl_stmt|;
+init|)
+block|{
 name|InflectionAttribute
 name|inflectionAtt
 init|=
@@ -2717,6 +2741,7 @@ name|end
 argument_list|()
 expr_stmt|;
 block|}
+block|}
 DECL|method|assertPartsOfSpeech
 specifier|private
 name|void
@@ -2732,6 +2757,8 @@ parameter_list|)
 throws|throws
 name|IOException
 block|{
+try|try
+init|(
 name|TokenStream
 name|ts
 init|=
@@ -2743,7 +2770,8 @@ literal|"ignored"
 argument_list|,
 name|input
 argument_list|)
-decl_stmt|;
+init|)
+block|{
 name|PartOfSpeechAttribute
 name|partOfSpeechAtt
 init|=
@@ -2801,6 +2829,7 @@ operator|.
 name|end
 argument_list|()
 expr_stmt|;
+block|}
 block|}
 DECL|method|testReadings
 specifier|public
@@ -3212,7 +3241,8 @@ name|i
 operator|++
 control|)
 block|{
-specifier|final
+try|try
+init|(
 name|TokenStream
 name|ts
 init|=
@@ -3224,7 +3254,8 @@ literal|"ignored"
 argument_list|,
 name|line
 argument_list|)
-decl_stmt|;
+init|)
+block|{
 name|ts
 operator|.
 name|reset
@@ -3243,11 +3274,7 @@ operator|.
 name|end
 argument_list|()
 expr_stmt|;
-name|ts
-operator|.
-name|close
-argument_list|()
-expr_stmt|;
+block|}
 block|}
 name|String
 index|[]
@@ -3329,7 +3356,8 @@ range|:
 name|sentences
 control|)
 block|{
-specifier|final
+try|try
+init|(
 name|TokenStream
 name|ts
 init|=
@@ -3341,7 +3369,8 @@ literal|"ignored"
 argument_list|,
 name|sentence
 argument_list|)
-decl_stmt|;
+init|)
+block|{
 name|ts
 operator|.
 name|reset
@@ -3360,11 +3389,7 @@ operator|.
 name|end
 argument_list|()
 expr_stmt|;
-name|ts
-operator|.
-name|close
-argument_list|()
-expr_stmt|;
+block|}
 block|}
 block|}
 if|if

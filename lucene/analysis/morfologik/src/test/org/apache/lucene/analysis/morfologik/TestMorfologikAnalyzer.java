@@ -484,6 +484,8 @@ parameter_list|)
 throws|throws
 name|IOException
 block|{
+try|try
+init|(
 name|TokenStream
 name|ts
 init|=
@@ -496,7 +498,8 @@ literal|"dummy"
 argument_list|,
 name|input
 argument_list|)
-decl_stmt|;
+init|)
+block|{
 name|ts
 operator|.
 name|reset
@@ -554,6 +557,12 @@ argument_list|()
 argument_list|)
 expr_stmt|;
 block|}
+name|ts
+operator|.
+name|end
+argument_list|()
+expr_stmt|;
+block|}
 block|}
 comment|/** Test reuse of MorfologikFilter with leftover stems. */
 DECL|method|testLeftoverStems
@@ -571,6 +580,8 @@ init|=
 name|getTestAnalyzer
 argument_list|()
 decl_stmt|;
+try|try
+init|(
 name|TokenStream
 name|ts_1
 init|=
@@ -582,7 +593,8 @@ literal|"dummy"
 argument_list|,
 literal|"liÅcie"
 argument_list|)
-decl_stmt|;
+init|)
+block|{
 name|CharTermAttribute
 name|termAtt_1
 init|=
@@ -622,11 +634,9 @@ operator|.
 name|end
 argument_list|()
 expr_stmt|;
-name|ts_1
-operator|.
-name|close
-argument_list|()
-expr_stmt|;
+block|}
+try|try
+init|(
 name|TokenStream
 name|ts_2
 init|=
@@ -638,7 +648,8 @@ literal|"dummy"
 argument_list|,
 literal|"danych"
 argument_list|)
-decl_stmt|;
+init|)
+block|{
 name|CharTermAttribute
 name|termAtt_2
 init|=
@@ -678,11 +689,7 @@ operator|.
 name|end
 argument_list|()
 expr_stmt|;
-name|ts_2
-operator|.
-name|close
-argument_list|()
-expr_stmt|;
+block|}
 block|}
 comment|/** Test stemming of mixed-case tokens. */
 DECL|method|testCase
@@ -972,6 +979,8 @@ parameter_list|()
 throws|throws
 name|IOException
 block|{
+try|try
+init|(
 name|TokenStream
 name|ts
 init|=
@@ -984,7 +993,8 @@ literal|"dummy"
 argument_list|,
 literal|"liÅcie"
 argument_list|)
-decl_stmt|;
+init|)
+block|{
 name|ts
 operator|.
 name|reset
@@ -1043,11 +1053,7 @@ operator|.
 name|end
 argument_list|()
 expr_stmt|;
-name|ts
-operator|.
-name|close
-argument_list|()
-expr_stmt|;
+block|}
 block|}
 comment|/** */
 DECL|method|testKeywordAttrTokens

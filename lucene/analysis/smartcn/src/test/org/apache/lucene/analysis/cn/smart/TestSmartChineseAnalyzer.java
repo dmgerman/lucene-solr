@@ -1209,6 +1209,8 @@ argument_list|(
 name|TEST_VERSION_CURRENT
 argument_list|)
 decl_stmt|;
+try|try
+init|(
 name|TokenStream
 name|stream
 init|=
@@ -1223,7 +1225,8 @@ operator|.
 name|toString
 argument_list|()
 argument_list|)
-decl_stmt|;
+init|)
+block|{
 name|stream
 operator|.
 name|reset
@@ -1236,7 +1239,13 @@ operator|.
 name|incrementToken
 argument_list|()
 condition|)
-block|{     }
+block|{       }
+name|stream
+operator|.
+name|end
+argument_list|()
+expr_stmt|;
+block|}
 block|}
 comment|// LUCENE-3026
 DECL|method|testLargeSentence
@@ -1286,6 +1295,8 @@ argument_list|(
 name|TEST_VERSION_CURRENT
 argument_list|)
 decl_stmt|;
+try|try
+init|(
 name|TokenStream
 name|stream
 init|=
@@ -1300,7 +1311,8 @@ operator|.
 name|toString
 argument_list|()
 argument_list|)
-decl_stmt|;
+init|)
+block|{
 name|stream
 operator|.
 name|reset
@@ -1313,7 +1325,13 @@ operator|.
 name|incrementToken
 argument_list|()
 condition|)
-block|{     }
+block|{       }
+name|stream
+operator|.
+name|end
+argument_list|()
+expr_stmt|;
+block|}
 block|}
 comment|// LUCENE-3642
 DECL|method|testInvalidOffset

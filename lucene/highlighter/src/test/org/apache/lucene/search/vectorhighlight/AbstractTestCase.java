@@ -1029,6 +1029,8 @@ name|BytesRef
 argument_list|>
 argument_list|()
 decl_stmt|;
+try|try
+init|(
 name|TokenStream
 name|tokenStream
 init|=
@@ -1040,7 +1042,8 @@ name|field
 argument_list|,
 name|text
 argument_list|)
-decl_stmt|;
+init|)
+block|{
 name|TermToBytesRefAttribute
 name|termAttribute
 init|=
@@ -1097,11 +1100,7 @@ operator|.
 name|end
 argument_list|()
 expr_stmt|;
-name|tokenStream
-operator|.
-name|close
-argument_list|()
-expr_stmt|;
+block|}
 return|return
 name|bytesRefs
 return|;

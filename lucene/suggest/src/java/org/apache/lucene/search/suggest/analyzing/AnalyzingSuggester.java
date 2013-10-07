@@ -4239,6 +4239,13 @@ throws|throws
 name|IOException
 block|{
 comment|// Analyze surface form:
+name|Automaton
+name|automaton
+init|=
+literal|null
+decl_stmt|;
+try|try
+init|(
 name|TokenStream
 name|ts
 init|=
@@ -4253,25 +4260,21 @@ operator|.
 name|utf8ToString
 argument_list|()
 argument_list|)
-decl_stmt|;
+init|)
+block|{
 comment|// Create corresponding automaton: labels are bytes
 comment|// from each analyzed token, with byte 0 used as
 comment|// separator between tokens:
-name|Automaton
 name|automaton
-init|=
+operator|=
 name|ts2a
 operator|.
 name|toAutomaton
 argument_list|(
 name|ts
 argument_list|)
-decl_stmt|;
-name|ts
-operator|.
-name|close
-argument_list|()
 expr_stmt|;
+block|}
 name|replaceSep
 argument_list|(
 name|automaton
@@ -4323,6 +4326,13 @@ name|IOException
 block|{
 comment|// TODO: is there a Reader from a CharSequence?
 comment|// Turn tokenstream into automaton:
+name|Automaton
+name|automaton
+init|=
+literal|null
+decl_stmt|;
+try|try
+init|(
 name|TokenStream
 name|ts
 init|=
@@ -4337,10 +4347,10 @@ operator|.
 name|toString
 argument_list|()
 argument_list|)
-decl_stmt|;
-name|Automaton
+init|)
+block|{
 name|automaton
-init|=
+operator|=
 operator|(
 name|getTokenStreamToAutomaton
 argument_list|()
@@ -4350,12 +4360,8 @@ name|toAutomaton
 argument_list|(
 name|ts
 argument_list|)
-decl_stmt|;
-name|ts
-operator|.
-name|close
-argument_list|()
 expr_stmt|;
+block|}
 comment|// TODO: we could use the end offset to "guess"
 comment|// whether the final token was a partial token; this
 comment|// would only be a heuristic ... but maybe an OK one.

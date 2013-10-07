@@ -1669,6 +1669,8 @@ parameter_list|)
 throws|throws
 name|IOException
 block|{
+try|try
+init|(
 name|TokenStream
 name|ts
 init|=
@@ -1680,7 +1682,8 @@ literal|""
 argument_list|,
 name|text
 argument_list|)
-decl_stmt|;
+init|)
+block|{
 name|CharTermAttribute
 name|termAtt
 init|=
@@ -1857,11 +1860,7 @@ operator|.
 name|end
 argument_list|()
 expr_stmt|;
-name|ts
-operator|.
-name|close
-argument_list|()
-expr_stmt|;
+block|}
 if|if
 condition|(
 name|reuse

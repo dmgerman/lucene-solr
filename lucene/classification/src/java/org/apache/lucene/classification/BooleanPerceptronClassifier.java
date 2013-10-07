@@ -450,6 +450,8 @@ name|output
 init|=
 literal|0l
 decl_stmt|;
+try|try
+init|(
 name|TokenStream
 name|tokenStream
 init|=
@@ -459,13 +461,10 @@ name|tokenStream
 argument_list|(
 name|textFieldName
 argument_list|,
-operator|new
-name|StringReader
-argument_list|(
 name|text
 argument_list|)
-argument_list|)
-decl_stmt|;
+init|)
+block|{
 name|CharTermAttribute
 name|charTermAttribute
 init|=
@@ -533,11 +532,7 @@ operator|.
 name|end
 argument_list|()
 expr_stmt|;
-name|tokenStream
-operator|.
-name|close
-argument_list|()
-expr_stmt|;
+block|}
 return|return
 operator|new
 name|ClassificationResult

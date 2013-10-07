@@ -1266,6 +1266,8 @@ operator|new
 name|Document
 argument_list|()
 decl_stmt|;
+try|try
+init|(
 name|TokenStream
 name|stream
 init|=
@@ -1277,21 +1279,23 @@ literal|"field"
 argument_list|,
 literal|"abcd   "
 argument_list|)
-decl_stmt|;
+init|)
+block|{
 name|stream
 operator|.
 name|reset
 argument_list|()
 expr_stmt|;
 comment|// TODO: weird to reset before wrapping with CachingTokenFilter... correct?
-name|stream
-operator|=
+name|TokenStream
+name|cachedStream
+init|=
 operator|new
 name|CachingTokenFilter
 argument_list|(
 name|stream
 argument_list|)
-expr_stmt|;
+decl_stmt|;
 name|FieldType
 name|customType
 init|=
@@ -1332,7 +1336,7 @@ name|Field
 argument_list|(
 literal|"field"
 argument_list|,
-name|stream
+name|cachedStream
 argument_list|,
 name|customType
 argument_list|)
@@ -1358,6 +1362,7 @@ argument_list|(
 name|doc
 argument_list|)
 expr_stmt|;
+block|}
 name|w
 operator|.
 name|close

@@ -4262,6 +4262,8 @@ block|{
 break|break;
 block|}
 block|}
+try|try
+init|(
 name|TokenStream
 name|ts
 init|=
@@ -4273,7 +4275,8 @@ literal|"ignore"
 argument_list|,
 name|term
 argument_list|)
-decl_stmt|;
+init|)
+block|{
 name|CharTermAttribute
 name|termAttr
 init|=
@@ -4332,11 +4335,7 @@ operator|.
 name|end
 argument_list|()
 expr_stmt|;
-name|ts
-operator|.
-name|close
-argument_list|()
-expr_stmt|;
+block|}
 block|}
 else|else
 block|{

@@ -2614,6 +2614,8 @@ operator|new
 name|StringBuilder
 argument_list|()
 decl_stmt|;
+try|try
+init|(
 name|TokenStream
 name|tokens
 init|=
@@ -2625,7 +2627,8 @@ literal|""
 argument_list|,
 name|query
 argument_list|)
-decl_stmt|;
+init|)
+block|{
 name|tokens
 operator|.
 name|reset
@@ -2674,17 +2677,13 @@ operator|.
 name|end
 argument_list|()
 expr_stmt|;
-name|tokens
-operator|.
-name|close
-argument_list|()
-expr_stmt|;
 return|return
 name|norm
 operator|.
 name|toString
 argument_list|()
 return|;
+block|}
 block|}
 comment|//---------------------------------------------------------------------------------
 comment|// SearchComponent

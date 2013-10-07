@@ -330,7 +330,8 @@ condition|)
 block|{
 continue|continue;
 block|}
-specifier|final
+try|try
+init|(
 name|TokenStream
 name|ts
 init|=
@@ -342,7 +343,8 @@ literal|"foo"
 argument_list|,
 name|s
 argument_list|)
-decl_stmt|;
+init|)
+block|{
 specifier|final
 name|TermToBytesRefAttribute
 name|termAtt
@@ -427,11 +429,6 @@ operator|.
 name|end
 argument_list|()
 expr_stmt|;
-name|ts
-operator|.
-name|close
-argument_list|()
-expr_stmt|;
 comment|// Did we iterate just once and the value was unchanged?
 if|if
 condition|(
@@ -446,6 +443,7 @@ block|{
 return|return
 name|s
 return|;
+block|}
 block|}
 block|}
 block|}

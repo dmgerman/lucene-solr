@@ -1820,6 +1820,8 @@ parameter_list|()
 throws|throws
 name|Exception
 block|{
+try|try
+init|(
 name|TokenStream
 name|ts
 init|=
@@ -1831,7 +1833,8 @@ literal|"dummy"
 argument_list|,
 literal|"This is a test"
 argument_list|)
-decl_stmt|;
+init|)
+block|{
 name|ScriptAttribute
 name|scriptAtt
 init|=
@@ -1924,11 +1927,7 @@ operator|.
 name|end
 argument_list|()
 expr_stmt|;
-name|ts
-operator|.
-name|close
-argument_list|()
-expr_stmt|;
+block|}
 block|}
 block|}
 end_class

@@ -3376,6 +3376,8 @@ name|analyzer
 operator|!=
 literal|null
 assert|;
+try|try
+init|(
 name|TokenStream
 name|ts
 init|=
@@ -3387,7 +3389,8 @@ literal|""
 argument_list|,
 name|q
 argument_list|)
-decl_stmt|;
+init|)
+block|{
 name|ts
 operator|.
 name|reset
@@ -3566,14 +3569,10 @@ operator|.
 name|end
 argument_list|()
 expr_stmt|;
-name|ts
-operator|.
-name|close
-argument_list|()
-expr_stmt|;
 return|return
 name|result
 return|;
+block|}
 block|}
 DECL|method|getSpellChecker
 specifier|protected
