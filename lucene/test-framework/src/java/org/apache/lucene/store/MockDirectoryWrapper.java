@@ -4880,6 +4880,15 @@ expr_stmt|;
 block|}
 block|}
 block|}
+comment|/** Use this when throwing fake {@code IOException},    *  e.g. from {@link MockDirectoryWrapper.Failure}. */
+DECL|class|FakeIOException
+specifier|public
+specifier|static
+class|class
+name|FakeIOException
+extends|extends
+name|IOException
+block|{   }
 block|}
 end_class
 

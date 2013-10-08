@@ -445,6 +445,9 @@ operator|.
 name|nanoTime
 argument_list|()
 decl_stmt|;
+comment|// TODO: sometimes, write only half the bytes, then
+comment|// sleep, then 2nd half, then sleep, so we sometimes
+comment|// interrupt having only written not all bytes
 name|delegate
 operator|.
 name|writeBytes

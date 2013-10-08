@@ -274,10 +274,6 @@ begin_comment
 comment|//import org.apache.lucene.queryparser.classic.QueryParserBase;
 end_comment
 
-begin_comment
-comment|//import org.apache.lucene.queryparser.classic.QueryParserTokenManager;
-end_comment
-
 begin_import
 import|import
 name|org
@@ -293,6 +289,10 @@ operator|.
 name|QueryParserBase
 import|;
 end_import
+
+begin_comment
+comment|//import org.apache.lucene.queryparser.classic.QueryParserTokenManager;
+end_comment
 
 begin_import
 import|import
@@ -418,6 +418,26 @@ name|RegExp
 import|;
 end_import
 
+begin_import
+import|import
+name|org
+operator|.
+name|junit
+operator|.
+name|AfterClass
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|junit
+operator|.
+name|BeforeClass
+import|;
+end_import
+
 begin_comment
 comment|/**  * Base Test class for QueryParser subclasses  */
 end_comment
@@ -444,11 +464,37 @@ specifier|public
 specifier|static
 name|Analyzer
 name|qpAnalyzer
-init|=
+decl_stmt|;
+annotation|@
+name|BeforeClass
+DECL|method|beforeClass
+specifier|public
+specifier|static
+name|void
+name|beforeClass
+parameter_list|()
+block|{
+name|qpAnalyzer
+operator|=
 operator|new
 name|QPTestAnalyzer
 argument_list|()
-decl_stmt|;
+expr_stmt|;
+block|}
+annotation|@
+name|AfterClass
+DECL|method|afterClass
+specifier|public
+specifier|static
+name|void
+name|afterClass
+parameter_list|()
+block|{
+name|qpAnalyzer
+operator|=
+literal|null
+expr_stmt|;
+block|}
 DECL|class|QPTestFilter
 specifier|public
 specifier|static

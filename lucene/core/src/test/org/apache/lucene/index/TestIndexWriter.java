@@ -7402,7 +7402,7 @@ name|run
 parameter_list|()
 block|{
 comment|// LUCENE-2239: won't work with NIOFS/MMAP
-name|Directory
+name|MockDirectoryWrapper
 name|dir
 init|=
 operator|new
@@ -7415,6 +7415,10 @@ name|RAMDirectory
 argument_list|()
 argument_list|)
 decl_stmt|;
+comment|// When interrupt arrives in w.close(), when it's
+comment|// writing liveDocs, this can lead to double-write of
+comment|// _X_N.del:
+comment|//dir.setPreventDoubleWrite(false);
 name|IndexWriter
 name|w
 init|=
@@ -7441,6 +7445,11 @@ operator|!=
 literal|null
 condition|)
 block|{
+comment|// If interrupt arrives inside here, it's
+comment|// fine: we will cycle back and the first
+comment|// thing we do is try to close again,
+comment|// i.e. we'll never try to open a new writer
+comment|// until this one successfully closes:
 name|w
 operator|.
 name|close

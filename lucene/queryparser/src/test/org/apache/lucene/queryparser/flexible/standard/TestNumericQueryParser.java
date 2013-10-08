@@ -3650,6 +3650,10 @@ name|directory
 operator|=
 literal|null
 expr_stmt|;
+name|qp
+operator|=
+literal|null
+expr_stmt|;
 block|}
 block|}
 end_class
