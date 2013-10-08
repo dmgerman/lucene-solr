@@ -4900,6 +4900,13 @@ argument_list|,
 literal|"SPLTSHARD failed to create subshard replicas or timed out waiting for them to come up"
 argument_list|)
 expr_stmt|;
+name|log
+operator|.
+name|info
+argument_list|(
+literal|"Calling soft commit to make sub shard updates visible"
+argument_list|)
+expr_stmt|;
 name|String
 name|coreUrl
 init|=
@@ -4923,11 +4930,9 @@ try|try
 block|{
 name|updateResponse
 operator|=
-name|commit
+name|softCommit
 argument_list|(
 name|coreUrl
-argument_list|,
-literal|true
 argument_list|)
 expr_stmt|;
 name|processResponse
@@ -4971,7 +4976,7 @@ name|ErrorCode
 operator|.
 name|SERVER_ERROR
 argument_list|,
-literal|"Unable to call distrib commit on: "
+literal|"Unable to call distrib softCommit on: "
 operator|+
 name|coreUrl
 argument_list|,
@@ -5149,16 +5154,13 @@ argument_list|)
 throw|;
 block|}
 block|}
-DECL|method|commit
+DECL|method|softCommit
 specifier|static
 name|UpdateResponse
-name|commit
+name|softCommit
 parameter_list|(
 name|String
 name|url
-parameter_list|,
-name|boolean
-name|openSearcher
 parameter_list|)
 throws|throws
 name|SolrServerException
@@ -5191,7 +5193,7 @@ name|server
 operator|.
 name|setSoTimeout
 argument_list|(
-literal|60000
+literal|120000
 argument_list|)
 expr_stmt|;
 name|UpdateRequest
@@ -5212,20 +5214,6 @@ argument_list|)
 expr_stmt|;
 name|ureq
 operator|.
-name|getParams
-argument_list|()
-operator|.
-name|set
-argument_list|(
-name|UpdateParams
-operator|.
-name|OPEN_SEARCHER
-argument_list|,
-name|openSearcher
-argument_list|)
-expr_stmt|;
-name|ureq
-operator|.
 name|setAction
 argument_list|(
 name|AbstractUpdateRequest
@@ -5235,6 +5223,8 @@ operator|.
 name|COMMIT
 argument_list|,
 literal|false
+argument_list|,
+literal|true
 argument_list|,
 literal|true
 argument_list|)
