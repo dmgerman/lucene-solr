@@ -2914,6 +2914,8 @@ argument_list|,
 name|instancedir
 argument_list|,
 name|coreProps
+argument_list|,
+name|params
 argument_list|)
 return|;
 block|}

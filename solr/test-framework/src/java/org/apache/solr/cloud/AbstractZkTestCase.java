@@ -554,6 +554,8 @@ expr_stmt|;
 comment|// for now, always upload the config and schema to the canonical names
 name|putConfig
 argument_list|(
+literal|"conf1"
+argument_list|,
 name|zkClient
 argument_list|,
 name|solrhome
@@ -565,6 +567,8 @@ argument_list|)
 expr_stmt|;
 name|putConfig
 argument_list|(
+literal|"conf1"
+argument_list|,
 name|zkClient
 argument_list|,
 name|solrhome
@@ -576,6 +580,8 @@ argument_list|)
 expr_stmt|;
 name|putConfig
 argument_list|(
+literal|"conf1"
+argument_list|,
 name|zkClient
 argument_list|,
 name|solrhome
@@ -585,6 +591,8 @@ argument_list|)
 expr_stmt|;
 name|putConfig
 argument_list|(
+literal|"conf1"
+argument_list|,
 name|zkClient
 argument_list|,
 name|solrhome
@@ -594,6 +602,8 @@ argument_list|)
 expr_stmt|;
 name|putConfig
 argument_list|(
+literal|"conf1"
+argument_list|,
 name|zkClient
 argument_list|,
 name|solrhome
@@ -603,6 +613,8 @@ argument_list|)
 expr_stmt|;
 name|putConfig
 argument_list|(
+literal|"conf1"
+argument_list|,
 name|zkClient
 argument_list|,
 name|solrhome
@@ -612,6 +624,8 @@ argument_list|)
 expr_stmt|;
 name|putConfig
 argument_list|(
+literal|"conf1"
+argument_list|,
 name|zkClient
 argument_list|,
 name|solrhome
@@ -621,6 +635,8 @@ argument_list|)
 expr_stmt|;
 name|putConfig
 argument_list|(
+literal|"conf1"
+argument_list|,
 name|zkClient
 argument_list|,
 name|solrhome
@@ -630,6 +646,8 @@ argument_list|)
 expr_stmt|;
 name|putConfig
 argument_list|(
+literal|"conf1"
+argument_list|,
 name|zkClient
 argument_list|,
 name|solrhome
@@ -639,6 +657,8 @@ argument_list|)
 expr_stmt|;
 name|putConfig
 argument_list|(
+literal|"conf1"
+argument_list|,
 name|zkClient
 argument_list|,
 name|solrhome
@@ -653,11 +673,14 @@ argument_list|()
 expr_stmt|;
 block|}
 DECL|method|putConfig
-specifier|private
+specifier|public
 specifier|static
 name|void
 name|putConfig
 parameter_list|(
+name|String
+name|confName
+parameter_list|,
 name|SolrZkClient
 name|zkClient
 parameter_list|,
@@ -673,6 +696,8 @@ name|Exception
 block|{
 name|putConfig
 argument_list|(
+name|confName
+argument_list|,
 name|zkClient
 argument_list|,
 name|solrhome
@@ -684,11 +709,14 @@ argument_list|)
 expr_stmt|;
 block|}
 DECL|method|putConfig
-specifier|private
+specifier|public
 specifier|static
 name|void
 name|putConfig
 parameter_list|(
+name|String
+name|confName
+parameter_list|,
 name|SolrZkClient
 name|zkClient
 parameter_list|,
@@ -756,7 +784,11 @@ block|}
 name|String
 name|destPath
 init|=
-literal|"/configs/conf1/"
+literal|"/configs/"
+operator|+
+name|confName
+operator|+
+literal|"/"
 operator|+
 name|destName
 decl_stmt|;
