@@ -1734,15 +1734,6 @@ comment|// increments SIS.version, which we do not want to
 comment|// do here: it was done previously (after we
 comment|// invoked BDS.applyDeletes), whereas here all we
 comment|// did was move the state to disk:
-name|deleter
-operator|.
-name|checkpoint
-argument_list|(
-name|segmentInfos
-argument_list|,
-literal|false
-argument_list|)
-expr_stmt|;
 name|checkpointNoSIS
 argument_list|()
 expr_stmt|;
