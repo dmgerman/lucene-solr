@@ -4984,6 +4984,16 @@ argument_list|(
 literal|null
 argument_list|)
 expr_stmt|;
+name|cd
+operator|.
+name|getCloudDescriptor
+argument_list|()
+operator|.
+name|setShardParent
+argument_list|(
+literal|null
+argument_list|)
+expr_stmt|;
 block|}
 comment|// For debugging
 comment|//    numOpens.incrementAndGet();

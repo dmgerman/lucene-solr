@@ -443,6 +443,15 @@ name|SHARD_STATE_PROP
 init|=
 literal|"shard_state"
 decl_stmt|;
+DECL|field|SHARD_PARENT_PROP
+specifier|public
+specifier|static
+specifier|final
+name|String
+name|SHARD_PARENT_PROP
+init|=
+literal|"shard_parent"
+decl_stmt|;
 DECL|field|NUM_SHARDS_PROP
 specifier|public
 specifier|static

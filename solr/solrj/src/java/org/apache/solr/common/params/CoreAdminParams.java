@@ -218,6 +218,16 @@ name|SHARD_STATE
 init|=
 literal|"shard.state"
 decl_stmt|;
+comment|/** The parent shard if applicable */
+DECL|field|SHARD_PARENT
+specifier|public
+specifier|final
+specifier|static
+name|String
+name|SHARD_PARENT
+init|=
+literal|"shard.parent"
+decl_stmt|;
 comment|/** The target core to which a split index should be written to    * Multiple targetCores can be specified by multiple targetCore parameters */
 DECL|field|TARGET_CORE
 specifier|public

@@ -1369,6 +1369,11 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
+name|waitForRecoveriesToFinish
+argument_list|(
+literal|false
+argument_list|)
+expr_stmt|;
 name|checkDocCountsAndShardStates
 argument_list|(
 name|docCounts
@@ -1890,6 +1895,13 @@ expr_stmt|;
 block|}
 block|}
 block|}
+name|waitForRecoveriesToFinish
+argument_list|(
+name|collectionName
+argument_list|,
+literal|false
+argument_list|)
+expr_stmt|;
 name|assertEquals
 argument_list|(
 name|docCounts

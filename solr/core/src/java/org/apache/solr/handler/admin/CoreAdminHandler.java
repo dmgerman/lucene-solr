@@ -2684,6 +2684,17 @@ argument_list|)
 decl|.
 name|put
 argument_list|(
+name|CoreAdminParams
+operator|.
+name|SHARD_PARENT
+argument_list|,
+name|CloudDescriptor
+operator|.
+name|SHARD_PARENT
+argument_list|)
+decl|.
+name|put
+argument_list|(
 name|ZkStateReader
 operator|.
 name|NUM_SHARDS_PROP
