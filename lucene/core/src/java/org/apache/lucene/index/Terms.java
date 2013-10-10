@@ -237,7 +237,14 @@ parameter_list|()
 throws|throws
 name|IOException
 function_decl|;
-comment|// TODO: shouldn't we have hasFreq() as well?
+comment|/** Returns true if documents in this field store    *  per-document term frequency ({@link DocsEnum#freq}). */
+DECL|method|hasFreqs
+specifier|public
+specifier|abstract
+name|boolean
+name|hasFreqs
+parameter_list|()
+function_decl|;
 comment|/** Returns true if documents in this field store offsets. */
 DECL|method|hasOffsets
 specifier|public

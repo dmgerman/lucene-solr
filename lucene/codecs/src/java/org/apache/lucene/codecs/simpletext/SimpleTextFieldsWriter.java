@@ -91,22 +91,6 @@ operator|.
 name|index
 operator|.
 name|FieldInfo
-operator|.
-name|IndexOptions
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|index
-operator|.
-name|FieldInfo
 import|;
 end_import
 
@@ -541,24 +525,13 @@ operator|.
 name|hasPositions
 argument_list|()
 decl_stmt|;
-comment|// TODO: shouldn't we add hasFreqs to Terms?
-comment|// then we don't need FieldInfos here?
 name|boolean
 name|hasFreqs
 init|=
-name|fieldInfo
+name|terms
 operator|.
-name|getIndexOptions
+name|hasFreqs
 argument_list|()
-operator|.
-name|compareTo
-argument_list|(
-name|IndexOptions
-operator|.
-name|DOCS_ONLY
-argument_list|)
-operator|>
-literal|0
 decl_stmt|;
 name|boolean
 name|hasPayloads
