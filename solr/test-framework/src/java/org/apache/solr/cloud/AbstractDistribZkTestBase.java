@@ -1025,7 +1025,17 @@ name|out
 operator|.
 name|println
 argument_list|(
-literal|"rstate:"
+literal|"replica:"
+operator|+
+name|shard
+operator|.
+name|getValue
+argument_list|()
+operator|.
+name|getName
+argument_list|()
+operator|+
+literal|" rstate:"
 operator|+
 name|shard
 operator|.

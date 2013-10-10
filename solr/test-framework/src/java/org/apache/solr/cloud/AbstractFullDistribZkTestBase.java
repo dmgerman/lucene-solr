@@ -1024,6 +1024,13 @@ specifier|protected
 name|boolean
 name|checkCreatedVsState
 decl_stmt|;
+DECL|field|useJettyDataDir
+specifier|protected
+name|boolean
+name|useJettyDataDir
+init|=
+literal|true
+decl_stmt|;
 DECL|class|CloudJettyRunner
 specifier|public
 specifier|static
@@ -2222,6 +2229,8 @@ name|createJetty
 argument_list|(
 name|jettyDir
 argument_list|,
+name|useJettyDataDir
+condition|?
 name|getDataDir
 argument_list|(
 name|testDir
@@ -2230,6 +2239,8 @@ literal|"/jetty"
 operator|+
 name|cnt
 argument_list|)
+else|:
+literal|null
 argument_list|,
 literal|null
 argument_list|,

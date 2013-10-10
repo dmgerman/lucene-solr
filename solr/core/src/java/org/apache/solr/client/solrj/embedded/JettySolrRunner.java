@@ -2186,6 +2186,8 @@ name|coreNodeName
 argument_list|)
 expr_stmt|;
 block|}
+try|try
+block|{
 if|if
 condition|(
 operator|!
@@ -2244,6 +2246,9 @@ throw|;
 block|}
 block|}
 block|}
+block|}
+finally|finally
+block|{
 name|System
 operator|.
 name|clearProperty
@@ -2272,6 +2277,7 @@ argument_list|(
 literal|"solr.ulog.dir"
 argument_list|)
 expr_stmt|;
+block|}
 block|}
 DECL|method|stop
 specifier|public
