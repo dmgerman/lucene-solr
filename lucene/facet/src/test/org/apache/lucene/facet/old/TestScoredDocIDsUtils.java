@@ -341,11 +341,10 @@ block|}
 name|FixedBitSet
 name|verify
 init|=
-operator|new
-name|FixedBitSet
-argument_list|(
 name|bits
-argument_list|)
+operator|.
+name|clone
+argument_list|()
 decl_stmt|;
 name|ScoredDocIDs
 name|scoredDocIDs
