@@ -1282,7 +1282,7 @@ name|ShingleFilter
 argument_list|(
 name|tokenizer
 argument_list|,
-literal|54
+literal|5
 argument_list|)
 decl_stmt|;
 comment|//stream = new SopTokenFilter(stream);
@@ -1320,7 +1320,7 @@ argument_list|()
 argument_list|,
 name|analyzer
 argument_list|,
-literal|10
+literal|2000
 argument_list|)
 expr_stmt|;
 block|}
