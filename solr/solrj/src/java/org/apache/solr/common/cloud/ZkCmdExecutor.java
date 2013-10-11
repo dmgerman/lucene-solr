@@ -103,9 +103,9 @@ specifier|private
 name|long
 name|retryDelay
 init|=
-literal|1300L
+literal|1500L
 decl_stmt|;
-comment|// 300 ms over for padding
+comment|// 500 ms over for padding
 DECL|field|retryCount
 specifier|private
 name|int
