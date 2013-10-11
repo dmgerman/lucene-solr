@@ -1616,6 +1616,16 @@ operator|=
 name|theTickTime
 expr_stmt|;
 block|}
+DECL|method|getZkDir
+specifier|public
+name|String
+name|getZkDir
+parameter_list|()
+block|{
+return|return
+name|zkDir
+return|;
+block|}
 block|}
 end_class
 
