@@ -2229,6 +2229,44 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
+comment|/**    * Returns a string consisting of the class's simple name, the hex representation of the identity hash code,    * and the current reflection of all attributes.    * @see #reflectAsString(boolean)    */
+annotation|@
+name|Override
+DECL|method|toString
+specifier|public
+name|String
+name|toString
+parameter_list|()
+block|{
+return|return
+name|getClass
+argument_list|()
+operator|.
+name|getSimpleName
+argument_list|()
+operator|+
+literal|'@'
+operator|+
+name|Integer
+operator|.
+name|toHexString
+argument_list|(
+name|System
+operator|.
+name|identityHashCode
+argument_list|(
+name|this
+argument_list|)
+argument_list|)
+operator|+
+literal|" "
+operator|+
+name|reflectAsString
+argument_list|(
+literal|false
+argument_list|)
+return|;
+block|}
 block|}
 end_class
 
