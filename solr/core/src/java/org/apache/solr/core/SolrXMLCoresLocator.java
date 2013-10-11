@@ -880,34 +880,6 @@ operator|.
 name|length
 argument_list|)
 decl_stmt|;
-name|System
-operator|.
-name|err
-operator|.
-name|println
-argument_list|(
-literal|"Persist existing cores:"
-operator|+
-name|cc
-operator|.
-name|getCoreDescriptors
-argument_list|()
-argument_list|)
-expr_stmt|;
-name|System
-operator|.
-name|err
-operator|.
-name|println
-argument_list|(
-literal|"Persist new cores:"
-operator|+
-name|cc
-operator|.
-name|getCoreDescriptors
-argument_list|()
-argument_list|)
-expr_stmt|;
 name|cds
 operator|.
 name|addAll
