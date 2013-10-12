@@ -3080,22 +3080,6 @@ literal|"now call final commit()"
 argument_list|)
 expr_stmt|;
 block|}
-comment|// Must do this before commitInternal, in case any of
-comment|// the dropped readers in the pool wrote a new live
-comment|// docs:
-synchronized|synchronized
-init|(
-name|this
-init|)
-block|{
-name|readerPool
-operator|.
-name|dropAll
-argument_list|(
-literal|true
-argument_list|)
-expr_stmt|;
-block|}
 if|if
 condition|(
 name|doFlush
@@ -3110,6 +3094,16 @@ init|(
 name|this
 init|)
 block|{
+comment|// commitInternal calls ReaderPool.commit, which
+comment|// writes any pending liveDocs from ReaderPool, so
+comment|// it's safe to drop all readers now:
+name|readerPool
+operator|.
+name|dropAll
+argument_list|(
+literal|true
+argument_list|)
+expr_stmt|;
 name|deleter
 operator|.
 name|close
