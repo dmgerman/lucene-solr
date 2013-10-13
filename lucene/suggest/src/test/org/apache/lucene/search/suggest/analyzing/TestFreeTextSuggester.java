@@ -294,7 +294,7 @@ name|search
 operator|.
 name|spell
 operator|.
-name|TermFreqIterator
+name|TermFreqPayloadIterator
 import|;
 end_import
 
@@ -328,7 +328,7 @@ name|search
 operator|.
 name|suggest
 operator|.
-name|TermFreq
+name|TermFreqPayload
 import|;
 end_import
 
@@ -344,7 +344,7 @@ name|search
 operator|.
 name|suggest
 operator|.
-name|TermFreqArrayIterator
+name|TermFreqPayloadArrayIterator
 import|;
 end_import
 
@@ -432,14 +432,14 @@ name|Exception
 block|{
 name|Iterable
 argument_list|<
-name|TermFreq
+name|TermFreqPayload
 argument_list|>
 name|keys
 init|=
 name|shuffle
 argument_list|(
 operator|new
-name|TermFreq
+name|TermFreqPayload
 argument_list|(
 literal|"foo bar baz blah"
 argument_list|,
@@ -447,7 +447,7 @@ literal|50
 argument_list|)
 argument_list|,
 operator|new
-name|TermFreq
+name|TermFreqPayload
 argument_list|(
 literal|"boo foo bar foo bee"
 argument_list|,
@@ -488,7 +488,7 @@ operator|.
 name|build
 argument_list|(
 operator|new
-name|TermFreqArrayIterator
+name|TermFreqPayloadArrayIterator
 argument_list|(
 name|keys
 argument_list|)
@@ -681,14 +681,14 @@ comment|// Default separator is INFORMATION SEPARATOR TWO
 comment|// (0x1e), so no input token is allowed to contain it
 name|Iterable
 argument_list|<
-name|TermFreq
+name|TermFreqPayload
 argument_list|>
 name|keys
 init|=
 name|shuffle
 argument_list|(
 operator|new
-name|TermFreq
+name|TermFreqPayload
 argument_list|(
 literal|"foo\u001ebar baz"
 argument_list|,
@@ -717,7 +717,7 @@ operator|.
 name|build
 argument_list|(
 operator|new
-name|TermFreqArrayIterator
+name|TermFreqPayloadArrayIterator
 argument_list|(
 name|keys
 argument_list|)
@@ -750,14 +750,14 @@ comment|// Default separator is INFORMATION SEPARATOR TWO
 comment|// (0x1e), so no input token is allowed to contain it
 name|Iterable
 argument_list|<
-name|TermFreq
+name|TermFreqPayload
 argument_list|>
 name|keys
 init|=
 name|shuffle
 argument_list|(
 operator|new
-name|TermFreq
+name|TermFreqPayload
 argument_list|(
 literal|"foo bar baz"
 argument_list|,
@@ -784,7 +784,7 @@ operator|.
 name|build
 argument_list|(
 operator|new
-name|TermFreqArrayIterator
+name|TermFreqPayloadArrayIterator
 argument_list|(
 name|keys
 argument_list|)
@@ -865,7 +865,7 @@ operator|.
 name|build
 argument_list|(
 operator|new
-name|TermFreqIterator
+name|TermFreqPayloadIterator
 argument_list|()
 block|{
 specifier|private
@@ -953,6 +953,28 @@ argument_list|)
 argument_list|)
 return|;
 block|}
+annotation|@
+name|Override
+specifier|public
+name|BytesRef
+name|payload
+parameter_list|()
+block|{
+return|return
+literal|null
+return|;
+block|}
+annotation|@
+name|Override
+specifier|public
+name|boolean
+name|hasPayloads
+parameter_list|()
+block|{
+return|return
+literal|false
+return|;
+block|}
 block|}
 argument_list|)
 expr_stmt|;
@@ -1032,14 +1054,14 @@ name|Exception
 block|{
 name|Iterable
 argument_list|<
-name|TermFreq
+name|TermFreqPayload
 argument_list|>
 name|keys
 init|=
 name|shuffle
 argument_list|(
 operator|new
-name|TermFreq
+name|TermFreqPayload
 argument_list|(
 literal|"foo bar baz blah boo foo bar foo bee"
 argument_list|,
@@ -1080,7 +1102,7 @@ operator|.
 name|build
 argument_list|(
 operator|new
-name|TermFreqArrayIterator
+name|TermFreqPayloadArrayIterator
 argument_list|(
 name|keys
 argument_list|)
@@ -1116,14 +1138,14 @@ name|Exception
 block|{
 name|Iterable
 argument_list|<
-name|TermFreq
+name|TermFreqPayload
 argument_list|>
 name|keys
 init|=
 name|shuffle
 argument_list|(
 operator|new
-name|TermFreq
+name|TermFreqPayload
 argument_list|(
 literal|"foo bar bar bar bar"
 argument_list|,
@@ -1164,7 +1186,7 @@ operator|.
 name|build
 argument_list|(
 operator|new
-name|TermFreqArrayIterator
+name|TermFreqPayloadArrayIterator
 argument_list|(
 name|keys
 argument_list|)
@@ -1199,14 +1221,14 @@ name|Exception
 block|{
 name|Iterable
 argument_list|<
-name|TermFreq
+name|TermFreqPayload
 argument_list|>
 name|keys
 init|=
 name|shuffle
 argument_list|(
 operator|new
-name|TermFreq
+name|TermFreqPayload
 argument_list|(
 literal|"foo bar bar bar bar"
 argument_list|,
@@ -1247,7 +1269,7 @@ operator|.
 name|build
 argument_list|(
 operator|new
-name|TermFreqArrayIterator
+name|TermFreqPayloadArrayIterator
 argument_list|(
 name|keys
 argument_list|)
@@ -1353,14 +1375,14 @@ block|}
 decl_stmt|;
 name|Iterable
 argument_list|<
-name|TermFreq
+name|TermFreqPayload
 argument_list|>
 name|keys
 init|=
 name|shuffle
 argument_list|(
 operator|new
-name|TermFreq
+name|TermFreqPayload
 argument_list|(
 literal|"wizard of oz"
 argument_list|,
@@ -1391,7 +1413,7 @@ operator|.
 name|build
 argument_list|(
 operator|new
-name|TermFreqArrayIterator
+name|TermFreqPayloadArrayIterator
 argument_list|(
 name|keys
 argument_list|)
@@ -1509,14 +1531,14 @@ block|}
 decl_stmt|;
 name|Iterable
 argument_list|<
-name|TermFreq
+name|TermFreqPayload
 argument_list|>
 name|keys
 init|=
 name|shuffle
 argument_list|(
 operator|new
-name|TermFreq
+name|TermFreqPayload
 argument_list|(
 literal|"wizard of of oz"
 argument_list|,
@@ -1547,7 +1569,7 @@ operator|.
 name|build
 argument_list|(
 operator|new
-name|TermFreqArrayIterator
+name|TermFreqPayloadArrayIterator
 argument_list|(
 name|keys
 argument_list|)
@@ -1989,7 +2011,7 @@ operator|.
 name|build
 argument_list|(
 operator|new
-name|TermFreqIterator
+name|TermFreqPayloadIterator
 argument_list|()
 block|{
 name|int
@@ -2078,6 +2100,28 @@ argument_list|()
 operator|.
 name|nextLong
 argument_list|()
+return|;
+block|}
+annotation|@
+name|Override
+specifier|public
+name|BytesRef
+name|payload
+parameter_list|()
+block|{
+return|return
+literal|null
+return|;
+block|}
+annotation|@
+name|Override
+specifier|public
+name|boolean
+name|hasPayloads
+parameter_list|()
+block|{
+return|return
+literal|false
 return|;
 block|}
 block|}

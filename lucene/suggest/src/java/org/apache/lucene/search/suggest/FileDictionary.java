@@ -56,7 +56,7 @@ name|search
 operator|.
 name|spell
 operator|.
-name|TermFreqIterator
+name|TermFreqPayloadIterator
 import|;
 end_import
 
@@ -166,7 +166,7 @@ annotation|@
 name|Override
 DECL|method|getWordsIterator
 specifier|public
-name|TermFreqIterator
+name|TermFreqPayloadIterator
 name|getWordsIterator
 parameter_list|()
 block|{
@@ -181,7 +181,7 @@ specifier|final
 class|class
 name|FileIterator
 implements|implements
-name|TermFreqIterator
+name|TermFreqPayloadIterator
 block|{
 DECL|field|curFreq
 specifier|private
@@ -347,6 +347,30 @@ return|return
 literal|null
 return|;
 block|}
+block|}
+annotation|@
+name|Override
+DECL|method|payload
+specifier|public
+name|BytesRef
+name|payload
+parameter_list|()
+block|{
+return|return
+literal|null
+return|;
+block|}
+annotation|@
+name|Override
+DECL|method|hasPayloads
+specifier|public
+name|boolean
+name|hasPayloads
+parameter_list|()
+block|{
+return|return
+literal|false
+return|;
 block|}
 block|}
 block|}

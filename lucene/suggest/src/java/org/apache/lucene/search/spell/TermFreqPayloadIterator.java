@@ -20,6 +20,16 @@ end_comment
 
 begin_import
 import|import
+name|java
+operator|.
+name|io
+operator|.
+name|IOException
+import|;
+end_import
+
+begin_import
+import|import
 name|org
 operator|.
 name|apache
@@ -33,6 +43,28 @@ operator|.
 name|Lookup
 operator|.
 name|LookupResult
+import|;
+end_import
+
+begin_comment
+comment|// javadocs
+end_comment
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|search
+operator|.
+name|suggest
+operator|.
+name|analyzing
+operator|.
+name|AnalyzingInfixSuggester
 import|;
 end_import
 
@@ -98,8 +130,22 @@ name|BytesRef
 import|;
 end_import
 
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|util
+operator|.
+name|BytesRefIterator
+import|;
+end_import
+
 begin_comment
-comment|/**  * Interface for enumerating term,weight,payload triples;  * currently only {@link AnalyzingSuggester} and {@link  * FuzzySuggester} support payloads.  */
+comment|/**  * Interface for enumerating term,weight,payload triples;  * currently only {@link AnalyzingSuggester}, {@link  * FuzzySuggester} and {@link AnalyzingInfixSuggester} support payloads.  */
 end_comment
 
 begin_interface
@@ -108,8 +154,15 @@ specifier|public
 interface|interface
 name|TermFreqPayloadIterator
 extends|extends
-name|TermFreqIterator
+name|BytesRefIterator
 block|{
+comment|/** A term's weight, higher numbers mean better suggestions. */
+DECL|method|weight
+specifier|public
+name|long
+name|weight
+parameter_list|()
+function_decl|;
 comment|/** An arbitrary byte[] to record per suggestion.  See    *  {@link LookupResult#payload} to retrieve the payload    *  for each suggestion. */
 DECL|method|payload
 specifier|public
@@ -117,6 +170,98 @@ name|BytesRef
 name|payload
 parameter_list|()
 function_decl|;
+comment|/** Returns true if the iterator has payloads */
+DECL|method|hasPayloads
+specifier|public
+name|boolean
+name|hasPayloads
+parameter_list|()
+function_decl|;
+comment|/**    * Wraps a BytesRefIterator as a TermFreqPayloadIterator, with all weights    * set to<code>1</code> and carries no payload    */
+DECL|class|TermFreqPayloadIteratorWrapper
+specifier|public
+specifier|static
+class|class
+name|TermFreqPayloadIteratorWrapper
+implements|implements
+name|TermFreqPayloadIterator
+block|{
+DECL|field|wrapped
+specifier|private
+specifier|final
+name|BytesRefIterator
+name|wrapped
+decl_stmt|;
+comment|/**       * Creates a new wrapper, wrapping the specified iterator and       * specifying a weight value of<code>1</code> for all terms       * and nullifies associated payloads.      */
+DECL|method|TermFreqPayloadIteratorWrapper
+specifier|public
+name|TermFreqPayloadIteratorWrapper
+parameter_list|(
+name|BytesRefIterator
+name|wrapped
+parameter_list|)
+block|{
+name|this
+operator|.
+name|wrapped
+operator|=
+name|wrapped
+expr_stmt|;
+block|}
+annotation|@
+name|Override
+DECL|method|weight
+specifier|public
+name|long
+name|weight
+parameter_list|()
+block|{
+return|return
+literal|1
+return|;
+block|}
+annotation|@
+name|Override
+DECL|method|next
+specifier|public
+name|BytesRef
+name|next
+parameter_list|()
+throws|throws
+name|IOException
+block|{
+return|return
+name|wrapped
+operator|.
+name|next
+argument_list|()
+return|;
+block|}
+annotation|@
+name|Override
+DECL|method|payload
+specifier|public
+name|BytesRef
+name|payload
+parameter_list|()
+block|{
+return|return
+literal|null
+return|;
+block|}
+annotation|@
+name|Override
+DECL|method|hasPayloads
+specifier|public
+name|boolean
+name|hasPayloads
+parameter_list|()
+block|{
+return|return
+literal|false
+return|;
+block|}
+block|}
 block|}
 end_interface
 

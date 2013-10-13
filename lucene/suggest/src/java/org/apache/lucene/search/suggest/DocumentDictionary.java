@@ -309,7 +309,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Dictionary with terms, weights and optionally payload information   * taken from stored fields in a Lucene index.  *   *<b>NOTE:</b>   *<ul>  *<li>  *      The term, weight and (optionally) payload fields supplied  *      are required for ALL documents and has to be stored  *</li>  *<li>  *      This Dictionary implementation is not compatible with the following Suggesters:   *      {@link JaspellLookup}, {@link TSTLookup}, {@link FSTCompletionLookup},  *      {@link WFSTCompletionLookup} and {@link AnalyzingInfixSuggester}.   *      see https://issues.apache.org/jira/browse/LUCENE-5260  *</li>  *</ul>  */
+comment|/**  * Dictionary with terms, weights and optionally payload information   * taken from stored fields in a Lucene index.  *   *<b>NOTE:</b>   *<ul>  *<li>  *      The term, weight and (optionally) payload fields supplied  *      are required for ALL documents and has to be stored  *</li>  *</ul>  */
 end_comment
 
 begin_class
@@ -469,11 +469,11 @@ name|String
 argument_list|>
 name|relevantFields
 decl_stmt|;
-DECL|field|withPayload
+DECL|field|hasPayloads
 specifier|private
 specifier|final
 name|boolean
-name|withPayload
+name|hasPayloads
 decl_stmt|;
 DECL|field|liveDocs
 specifier|private
@@ -505,7 +505,7 @@ specifier|public
 name|TermWeightPayloadIterator
 parameter_list|(
 name|boolean
-name|withPayload
+name|hasPayloads
 parameter_list|)
 throws|throws
 name|IOException
@@ -521,9 +521,9 @@ literal|1
 expr_stmt|;
 name|this
 operator|.
-name|withPayload
+name|hasPayloads
 operator|=
-name|withPayload
+name|hasPayloads
 expr_stmt|;
 name|currentPayload
 operator|=
@@ -546,7 +546,7 @@ name|relevantFieldList
 decl_stmt|;
 if|if
 condition|(
-name|withPayload
+name|hasPayloads
 condition|)
 block|{
 name|relevantFieldList
@@ -652,7 +652,7 @@ argument_list|)
 decl_stmt|;
 if|if
 condition|(
-name|withPayload
+name|hasPayloads
 condition|)
 block|{
 name|StorableField
@@ -842,6 +842,18 @@ parameter_list|()
 block|{
 return|return
 name|currentPayload
+return|;
+block|}
+annotation|@
+name|Override
+DECL|method|hasPayloads
+specifier|public
+name|boolean
+name|hasPayloads
+parameter_list|()
+block|{
+return|return
+name|hasPayloads
 return|;
 block|}
 block|}
