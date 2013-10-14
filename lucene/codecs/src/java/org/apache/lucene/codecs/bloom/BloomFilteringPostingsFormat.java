@@ -1735,6 +1735,19 @@ parameter_list|)
 throws|throws
 name|IOException
 block|{
+comment|// Delegate must write first: it may have opened files
+comment|// on creating the class
+comment|// (e.g. Lucene41PostingsConsumer), and write() will
+comment|// close them; alternatively, if we delayed pulling
+comment|// the fields consumer until here, we could do it
+comment|// afterwards:
+name|delegateFieldsConsumer
+operator|.
+name|write
+argument_list|(
+name|fields
+argument_list|)
+expr_stmt|;
 try|try
 block|{
 for|for
@@ -1909,13 +1922,6 @@ name|close
 argument_list|()
 expr_stmt|;
 block|}
-name|delegateFieldsConsumer
-operator|.
-name|write
-argument_list|(
-name|fields
-argument_list|)
-expr_stmt|;
 block|}
 DECL|method|close
 specifier|public
@@ -2190,6 +2196,22 @@ name|bloomOutput
 argument_list|)
 expr_stmt|;
 block|}
+block|}
+annotation|@
+name|Override
+DECL|method|toString
+specifier|public
+name|String
+name|toString
+parameter_list|()
+block|{
+return|return
+literal|"BloomFilteringPostingsFormat("
+operator|+
+name|delegatePostingsFormat
+operator|+
+literal|")"
+return|;
 block|}
 block|}
 end_class
