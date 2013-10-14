@@ -662,11 +662,17 @@ name|lucene
 operator|.
 name|search
 operator|.
-name|spell
+name|suggest
 operator|.
-name|TermFreqPayloadIterator
+name|Lookup
+operator|.
+name|LookupResult
 import|;
 end_import
+
+begin_comment
+comment|// javadocs
+end_comment
 
 begin_import
 import|import
@@ -680,15 +686,9 @@ name|search
 operator|.
 name|suggest
 operator|.
-name|Lookup
-operator|.
-name|LookupResult
+name|InputIterator
 import|;
 end_import
-
-begin_comment
-comment|// javadocs
-end_comment
 
 begin_import
 import|import
@@ -1150,7 +1150,7 @@ specifier|public
 name|void
 name|build
 parameter_list|(
-name|TermFreqPayloadIterator
+name|InputIterator
 name|iter
 parameter_list|)
 throws|throws

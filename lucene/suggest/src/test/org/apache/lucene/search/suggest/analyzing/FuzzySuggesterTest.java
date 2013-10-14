@@ -322,7 +322,7 @@ name|search
 operator|.
 name|suggest
 operator|.
-name|TermFreqPayload
+name|Input
 import|;
 end_import
 
@@ -338,7 +338,7 @@ name|search
 operator|.
 name|suggest
 operator|.
-name|TermFreqPayloadArrayIterator
+name|InputArrayIterator
 import|;
 end_import
 
@@ -464,14 +464,14 @@ name|IOException
 block|{
 name|List
 argument_list|<
-name|TermFreqPayload
+name|Input
 argument_list|>
 name|keys
 init|=
 operator|new
 name|ArrayList
 argument_list|<
-name|TermFreqPayload
+name|Input
 argument_list|>
 argument_list|()
 decl_stmt|;
@@ -503,7 +503,7 @@ operator|.
 name|add
 argument_list|(
 operator|new
-name|TermFreqPayload
+name|Input
 argument_list|(
 literal|"boo"
 operator|+
@@ -533,7 +533,7 @@ operator|.
 name|add
 argument_list|(
 operator|new
-name|TermFreqPayload
+name|Input
 argument_list|(
 literal|"foo bar boo far"
 argument_list|,
@@ -604,7 +604,7 @@ operator|.
 name|build
 argument_list|(
 operator|new
-name|TermFreqPayloadArrayIterator
+name|InputArrayIterator
 argument_list|(
 name|keys
 argument_list|)
@@ -727,14 +727,14 @@ name|IOException
 block|{
 name|List
 argument_list|<
-name|TermFreqPayload
+name|Input
 argument_list|>
 name|keys
 init|=
 operator|new
 name|ArrayList
 argument_list|<
-name|TermFreqPayload
+name|Input
 argument_list|>
 argument_list|()
 decl_stmt|;
@@ -766,7 +766,7 @@ operator|.
 name|add
 argument_list|(
 operator|new
-name|TermFreqPayload
+name|Input
 argument_list|(
 literal|"Ð±ÑÑ"
 operator|+
@@ -796,7 +796,7 @@ operator|.
 name|add
 argument_list|(
 operator|new
-name|TermFreqPayload
+name|Input
 argument_list|(
 literal|"ÑÑÑ Ð±Ð°Ñ Ð±ÑÑ ÑÐ°Ñ"
 argument_list|,
@@ -865,7 +865,7 @@ operator|.
 name|build
 argument_list|(
 operator|new
-name|TermFreqPayloadArrayIterator
+name|InputArrayIterator
 argument_list|(
 name|keys
 argument_list|)
@@ -985,16 +985,16 @@ parameter_list|()
 throws|throws
 name|Exception
 block|{
-name|TermFreqPayload
+name|Input
 name|keys
 index|[]
 init|=
 operator|new
-name|TermFreqPayload
+name|Input
 index|[]
 block|{
 operator|new
-name|TermFreqPayload
+name|Input
 argument_list|(
 literal|"foo"
 argument_list|,
@@ -1002,7 +1002,7 @@ literal|50
 argument_list|)
 block|,
 operator|new
-name|TermFreqPayload
+name|Input
 argument_list|(
 literal|"bar"
 argument_list|,
@@ -1010,7 +1010,7 @@ literal|10
 argument_list|)
 block|,
 operator|new
-name|TermFreqPayload
+name|Input
 argument_list|(
 literal|"barbar"
 argument_list|,
@@ -1018,7 +1018,7 @@ literal|12
 argument_list|)
 block|,
 operator|new
-name|TermFreqPayload
+name|Input
 argument_list|(
 literal|"barbara"
 argument_list|,
@@ -1051,7 +1051,7 @@ operator|.
 name|build
 argument_list|(
 operator|new
-name|TermFreqPayloadArrayIterator
+name|InputArrayIterator
 argument_list|(
 name|keys
 argument_list|)
@@ -1817,16 +1817,16 @@ parameter_list|()
 throws|throws
 name|Exception
 block|{
-name|TermFreqPayload
+name|Input
 name|keys
 index|[]
 init|=
 operator|new
-name|TermFreqPayload
+name|Input
 index|[]
 block|{
 operator|new
-name|TermFreqPayload
+name|Input
 argument_list|(
 literal|"the ghost of christmas past"
 argument_list|,
@@ -1875,7 +1875,7 @@ operator|.
 name|build
 argument_list|(
 operator|new
-name|TermFreqPayloadArrayIterator
+name|InputArrayIterator
 argument_list|(
 name|keys
 argument_list|)
@@ -2088,16 +2088,16 @@ parameter_list|()
 throws|throws
 name|Exception
 block|{
-name|TermFreqPayload
+name|Input
 index|[]
 name|keys
 init|=
 operator|new
-name|TermFreqPayload
+name|Input
 index|[]
 block|{
 operator|new
-name|TermFreqPayload
+name|Input
 argument_list|(
 literal|"ab cd"
 argument_list|,
@@ -2105,7 +2105,7 @@ literal|0
 argument_list|)
 block|,
 operator|new
-name|TermFreqPayload
+name|Input
 argument_list|(
 literal|"abcd"
 argument_list|,
@@ -2161,7 +2161,7 @@ operator|.
 name|build
 argument_list|(
 operator|new
-name|TermFreqPayloadArrayIterator
+name|InputArrayIterator
 argument_list|(
 name|keys
 argument_list|)
@@ -2486,16 +2486,16 @@ return|;
 block|}
 block|}
 decl_stmt|;
-name|TermFreqPayload
+name|Input
 name|keys
 index|[]
 init|=
 operator|new
-name|TermFreqPayload
+name|Input
 index|[]
 block|{
 operator|new
-name|TermFreqPayload
+name|Input
 argument_list|(
 literal|"wifi network is slow"
 argument_list|,
@@ -2503,7 +2503,7 @@ literal|50
 argument_list|)
 block|,
 operator|new
-name|TermFreqPayload
+name|Input
 argument_list|(
 literal|"wi fi network is fast"
 argument_list|,
@@ -2525,7 +2525,7 @@ operator|.
 name|build
 argument_list|(
 operator|new
-name|TermFreqPayloadArrayIterator
+name|InputArrayIterator
 argument_list|(
 name|keys
 argument_list|)
@@ -2665,10 +2665,10 @@ operator|.
 name|build
 argument_list|(
 operator|new
-name|TermFreqPayloadArrayIterator
+name|InputArrayIterator
 argument_list|(
 operator|new
-name|TermFreqPayload
+name|Input
 index|[
 literal|0
 index|]
@@ -2912,16 +2912,16 @@ return|;
 block|}
 block|}
 decl_stmt|;
-name|TermFreqPayload
+name|Input
 name|keys
 index|[]
 init|=
 operator|new
-name|TermFreqPayload
+name|Input
 index|[]
 block|{
 operator|new
-name|TermFreqPayload
+name|Input
 argument_list|(
 literal|"ab xc"
 argument_list|,
@@ -2929,7 +2929,7 @@ literal|50
 argument_list|)
 block|,
 operator|new
-name|TermFreqPayload
+name|Input
 argument_list|(
 literal|"ba xd"
 argument_list|,
@@ -2951,7 +2951,7 @@ operator|.
 name|build
 argument_list|(
 operator|new
-name|TermFreqPayloadArrayIterator
+name|InputArrayIterator
 argument_list|(
 name|keys
 argument_list|)
@@ -3226,14 +3226,14 @@ operator|.
 name|build
 argument_list|(
 operator|new
-name|TermFreqPayloadArrayIterator
+name|InputArrayIterator
 argument_list|(
 operator|new
-name|TermFreqPayload
+name|Input
 index|[]
 block|{
 operator|new
-name|TermFreqPayload
+name|Input
 argument_list|(
 literal|"x y"
 argument_list|,
@@ -3241,7 +3241,7 @@ literal|1
 argument_list|)
 block|,
 operator|new
-name|TermFreqPayload
+name|Input
 argument_list|(
 literal|"x y z"
 argument_list|,
@@ -3249,7 +3249,7 @@ literal|3
 argument_list|)
 block|,
 operator|new
-name|TermFreqPayload
+name|Input
 argument_list|(
 literal|"x"
 argument_list|,
@@ -3257,7 +3257,7 @@ literal|2
 argument_list|)
 block|,
 operator|new
-name|TermFreqPayload
+name|Input
 argument_list|(
 literal|"z z z"
 argument_list|,
@@ -3505,14 +3505,14 @@ operator|.
 name|build
 argument_list|(
 operator|new
-name|TermFreqPayloadArrayIterator
+name|InputArrayIterator
 argument_list|(
 operator|new
-name|TermFreqPayload
+name|Input
 index|[]
 block|{
 operator|new
-name|TermFreqPayload
+name|Input
 argument_list|(
 literal|"x y"
 argument_list|,
@@ -3520,7 +3520,7 @@ literal|1
 argument_list|)
 block|,
 operator|new
-name|TermFreqPayload
+name|Input
 argument_list|(
 literal|"x y z"
 argument_list|,
@@ -3528,7 +3528,7 @@ literal|3
 argument_list|)
 block|,
 operator|new
-name|TermFreqPayload
+name|Input
 argument_list|(
 literal|"x"
 argument_list|,
@@ -3536,7 +3536,7 @@ literal|2
 argument_list|)
 block|,
 operator|new
-name|TermFreqPayload
+name|Input
 argument_list|(
 literal|"z z z"
 argument_list|,
@@ -4289,12 +4289,12 @@ name|String
 argument_list|>
 argument_list|()
 decl_stmt|;
-name|TermFreqPayload
+name|Input
 index|[]
 name|keys
 init|=
 operator|new
-name|TermFreqPayload
+name|Input
 index|[
 name|numQueries
 index|]
@@ -4695,7 +4695,7 @@ name|i
 index|]
 operator|=
 operator|new
-name|TermFreqPayload
+name|Input
 argument_list|(
 name|key
 argument_list|,
@@ -4832,7 +4832,7 @@ operator|.
 name|build
 argument_list|(
 operator|new
-name|TermFreqPayloadArrayIterator
+name|InputArrayIterator
 argument_list|(
 name|keys
 argument_list|)
@@ -5729,7 +5729,7 @@ argument_list|)
 decl_stmt|;
 name|List
 argument_list|<
-name|TermFreqPayload
+name|Input
 argument_list|>
 name|keys
 init|=
@@ -5738,11 +5738,11 @@ operator|.
 name|asList
 argument_list|(
 operator|new
-name|TermFreqPayload
+name|Input
 index|[]
 block|{
 operator|new
-name|TermFreqPayload
+name|Input
 argument_list|(
 literal|"a"
 argument_list|,
@@ -5750,7 +5750,7 @@ literal|40
 argument_list|)
 block|,
 operator|new
-name|TermFreqPayload
+name|Input
 argument_list|(
 literal|"a "
 argument_list|,
@@ -5758,7 +5758,7 @@ literal|50
 argument_list|)
 block|,
 operator|new
-name|TermFreqPayload
+name|Input
 argument_list|(
 literal|" a"
 argument_list|,
@@ -5782,7 +5782,7 @@ operator|.
 name|build
 argument_list|(
 operator|new
-name|TermFreqPayloadArrayIterator
+name|InputArrayIterator
 argument_list|(
 name|keys
 argument_list|)
@@ -5922,7 +5922,7 @@ argument_list|)
 decl_stmt|;
 name|List
 argument_list|<
-name|TermFreqPayload
+name|Input
 argument_list|>
 name|keys
 init|=
@@ -5931,11 +5931,11 @@ operator|.
 name|asList
 argument_list|(
 operator|new
-name|TermFreqPayload
+name|Input
 index|[]
 block|{
 operator|new
-name|TermFreqPayload
+name|Input
 argument_list|(
 literal|"foo bar"
 argument_list|,
@@ -5943,7 +5943,7 @@ literal|40
 argument_list|)
 block|,
 operator|new
-name|TermFreqPayload
+name|Input
 argument_list|(
 literal|"foo bar baz"
 argument_list|,
@@ -5951,7 +5951,7 @@ literal|50
 argument_list|)
 block|,
 operator|new
-name|TermFreqPayload
+name|Input
 argument_list|(
 literal|"barbaz"
 argument_list|,
@@ -5959,7 +5959,7 @@ literal|60
 argument_list|)
 block|,
 operator|new
-name|TermFreqPayload
+name|Input
 argument_list|(
 literal|"barbazfoo"
 argument_list|,
@@ -5983,7 +5983,7 @@ operator|.
 name|build
 argument_list|(
 operator|new
-name|TermFreqPayloadArrayIterator
+name|InputArrayIterator
 argument_list|(
 name|keys
 argument_list|)
@@ -6541,14 +6541,14 @@ decl_stmt|;
 specifier|final
 name|List
 argument_list|<
-name|TermFreqPayload
+name|Input
 argument_list|>
 name|answers
 init|=
 operator|new
 name|ArrayList
 argument_list|<
-name|TermFreqPayload
+name|Input
 argument_list|>
 argument_list|()
 decl_stmt|;
@@ -6606,7 +6606,7 @@ operator|.
 name|add
 argument_list|(
 operator|new
-name|TermFreqPayload
+name|Input
 argument_list|(
 name|s
 argument_list|,
@@ -6638,7 +6638,7 @@ argument_list|,
 operator|new
 name|Comparator
 argument_list|<
-name|TermFreqPayload
+name|Input
 argument_list|>
 argument_list|()
 block|{
@@ -6648,10 +6648,10 @@ specifier|public
 name|int
 name|compare
 parameter_list|(
-name|TermFreqPayload
+name|Input
 name|a
 parameter_list|,
-name|TermFreqPayload
+name|Input
 name|b
 parameter_list|)
 block|{
@@ -6687,7 +6687,7 @@ argument_list|)
 expr_stmt|;
 for|for
 control|(
-name|TermFreqPayload
+name|Input
 name|tf
 range|:
 name|answers
@@ -6840,14 +6840,14 @@ operator|.
 name|build
 argument_list|(
 operator|new
-name|TermFreqPayloadArrayIterator
+name|InputArrayIterator
 argument_list|(
 name|answers
 operator|.
 name|toArray
 argument_list|(
 operator|new
-name|TermFreqPayload
+name|Input
 index|[
 name|answers
 operator|.
@@ -7169,7 +7169,7 @@ name|allowTransposition
 parameter_list|,
 name|List
 argument_list|<
-name|TermFreqPayload
+name|Input
 argument_list|>
 name|answers
 parameter_list|,
@@ -7202,7 +7202,7 @@ argument_list|()
 decl_stmt|;
 for|for
 control|(
-name|TermFreqPayload
+name|Input
 name|tf
 range|:
 name|answers

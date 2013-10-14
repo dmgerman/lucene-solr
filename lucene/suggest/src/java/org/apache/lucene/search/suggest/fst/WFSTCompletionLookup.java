@@ -100,9 +100,9 @@ name|lucene
 operator|.
 name|search
 operator|.
-name|spell
+name|suggest
 operator|.
-name|TermFreqPayloadIterator
+name|InputIterator
 import|;
 end_import
 
@@ -152,7 +152,7 @@ name|search
 operator|.
 name|suggest
 operator|.
-name|SortedTermFreqPayloadIteratorWrapper
+name|SortedInputIterator
 import|;
 end_import
 
@@ -481,7 +481,7 @@ specifier|public
 name|void
 name|build
 parameter_list|(
-name|TermFreqPayloadIterator
+name|InputIterator
 name|iterator
 parameter_list|)
 throws|throws
@@ -510,11 +510,11 @@ operator|new
 name|BytesRef
 argument_list|()
 decl_stmt|;
-name|TermFreqPayloadIterator
+name|InputIterator
 name|iter
 init|=
 operator|new
-name|WFSTTermFreqIteratorWrapper
+name|WFSTInputIterator
 argument_list|(
 name|iterator
 argument_list|)
@@ -1403,18 +1403,18 @@ operator|)
 name|value
 return|;
 block|}
-DECL|class|WFSTTermFreqIteratorWrapper
+DECL|class|WFSTInputIterator
 specifier|private
 specifier|final
 class|class
-name|WFSTTermFreqIteratorWrapper
+name|WFSTInputIterator
 extends|extends
-name|SortedTermFreqPayloadIteratorWrapper
+name|SortedInputIterator
 block|{
-DECL|method|WFSTTermFreqIteratorWrapper
-name|WFSTTermFreqIteratorWrapper
+DECL|method|WFSTInputIterator
+name|WFSTInputIterator
 parameter_list|(
-name|TermFreqPayloadIterator
+name|InputIterator
 name|source
 parameter_list|)
 throws|throws

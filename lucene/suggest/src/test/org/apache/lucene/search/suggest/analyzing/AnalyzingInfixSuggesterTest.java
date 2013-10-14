@@ -240,7 +240,7 @@ name|search
 operator|.
 name|suggest
 operator|.
-name|TermFreqPayload
+name|Input
 import|;
 end_import
 
@@ -256,7 +256,7 @@ name|search
 operator|.
 name|suggest
 operator|.
-name|TermFreqPayloadArrayIterator
+name|InputArrayIterator
 import|;
 end_import
 
@@ -367,16 +367,16 @@ parameter_list|()
 throws|throws
 name|Exception
 block|{
-name|TermFreqPayload
+name|Input
 name|keys
 index|[]
 init|=
 operator|new
-name|TermFreqPayload
+name|Input
 index|[]
 block|{
 operator|new
-name|TermFreqPayload
+name|Input
 argument_list|(
 literal|"lend me your ear"
 argument_list|,
@@ -390,7 +390,7 @@ argument_list|)
 argument_list|)
 block|,
 operator|new
-name|TermFreqPayload
+name|Input
 argument_list|(
 literal|"a penny saved is a penny earned"
 argument_list|,
@@ -469,7 +469,7 @@ operator|.
 name|build
 argument_list|(
 operator|new
-name|TermFreqPayloadArrayIterator
+name|InputArrayIterator
 argument_list|(
 name|keys
 argument_list|)
@@ -855,16 +855,16 @@ parameter_list|()
 throws|throws
 name|Exception
 block|{
-name|TermFreqPayload
+name|Input
 name|keys
 index|[]
 init|=
 operator|new
-name|TermFreqPayload
+name|Input
 index|[]
 block|{
 operator|new
-name|TermFreqPayload
+name|Input
 argument_list|(
 literal|"lend me your ear"
 argument_list|,
@@ -878,7 +878,7 @@ argument_list|)
 argument_list|)
 block|,
 operator|new
-name|TermFreqPayload
+name|Input
 argument_list|(
 literal|"a penny saved is a penny earned"
 argument_list|,
@@ -959,7 +959,7 @@ operator|.
 name|build
 argument_list|(
 operator|new
-name|TermFreqPayloadArrayIterator
+name|InputArrayIterator
 argument_list|(
 name|keys
 argument_list|)
@@ -1175,16 +1175,16 @@ parameter_list|()
 throws|throws
 name|Exception
 block|{
-name|TermFreqPayload
+name|Input
 name|keys
 index|[]
 init|=
 operator|new
-name|TermFreqPayload
+name|Input
 index|[]
 block|{
 operator|new
-name|TermFreqPayload
+name|Input
 argument_list|(
 literal|"a penny saved is a penny earned"
 argument_list|,
@@ -1594,7 +1594,7 @@ operator|.
 name|build
 argument_list|(
 operator|new
-name|TermFreqPayloadArrayIterator
+name|InputArrayIterator
 argument_list|(
 name|keys
 argument_list|)
@@ -1780,16 +1780,16 @@ parameter_list|()
 throws|throws
 name|Exception
 block|{
-name|TermFreqPayload
+name|Input
 name|keys
 index|[]
 init|=
 operator|new
-name|TermFreqPayload
+name|Input
 index|[]
 block|{
 operator|new
-name|TermFreqPayload
+name|Input
 argument_list|(
 literal|"lend me your ear"
 argument_list|,
@@ -1803,7 +1803,7 @@ argument_list|)
 argument_list|)
 block|,
 operator|new
-name|TermFreqPayload
+name|Input
 argument_list|(
 literal|"a penny saved is a penny earned"
 argument_list|,
@@ -1895,7 +1895,7 @@ operator|.
 name|build
 argument_list|(
 operator|new
-name|TermFreqPayloadArrayIterator
+name|InputArrayIterator
 argument_list|(
 name|keys
 argument_list|)
@@ -2476,16 +2476,16 @@ parameter_list|()
 throws|throws
 name|Exception
 block|{
-name|TermFreqPayload
+name|Input
 name|keys
 index|[]
 init|=
 operator|new
-name|TermFreqPayload
+name|Input
 index|[]
 block|{
 operator|new
-name|TermFreqPayload
+name|Input
 argument_list|(
 literal|"a penny saved is a penny earned"
 argument_list|,
@@ -2564,7 +2564,7 @@ operator|.
 name|build
 argument_list|(
 operator|new
-name|TermFreqPayloadArrayIterator
+name|InputArrayIterator
 argument_list|(
 name|keys
 argument_list|)
@@ -2635,16 +2635,16 @@ parameter_list|()
 throws|throws
 name|Exception
 block|{
-name|TermFreqPayload
+name|Input
 name|keys
 index|[]
 init|=
 operator|new
-name|TermFreqPayload
+name|Input
 index|[]
 block|{
 operator|new
-name|TermFreqPayload
+name|Input
 argument_list|(
 literal|"a Penny saved is a penny earned"
 argument_list|,
@@ -2723,7 +2723,7 @@ operator|.
 name|build
 argument_list|(
 operator|new
-name|TermFreqPayloadArrayIterator
+name|InputArrayIterator
 argument_list|(
 name|keys
 argument_list|)
@@ -2866,7 +2866,7 @@ operator|.
 name|build
 argument_list|(
 operator|new
-name|TermFreqPayloadArrayIterator
+name|InputArrayIterator
 argument_list|(
 name|keys
 argument_list|)
@@ -2933,16 +2933,16 @@ parameter_list|()
 throws|throws
 name|Exception
 block|{
-name|TermFreqPayload
+name|Input
 name|keys
 index|[]
 init|=
 operator|new
-name|TermFreqPayload
+name|Input
 index|[]
 block|{
 operator|new
-name|TermFreqPayload
+name|Input
 argument_list|(
 literal|"a penny saved is a penny earned"
 argument_list|,
@@ -3021,7 +3021,7 @@ operator|.
 name|build
 argument_list|(
 operator|new
-name|TermFreqPayloadArrayIterator
+name|InputArrayIterator
 argument_list|(
 name|keys
 argument_list|)
@@ -3199,16 +3199,16 @@ return|;
 block|}
 block|}
 decl_stmt|;
-name|TermFreqPayload
+name|Input
 name|keys
 index|[]
 init|=
 operator|new
-name|TermFreqPayload
+name|Input
 index|[]
 block|{
 operator|new
-name|TermFreqPayload
+name|Input
 argument_list|(
 literal|"a bob for apples"
 argument_list|,
@@ -3227,7 +3227,7 @@ operator|.
 name|build
 argument_list|(
 operator|new
-name|TermFreqPayloadArrayIterator
+name|InputArrayIterator
 argument_list|(
 name|keys
 argument_list|)

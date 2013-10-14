@@ -100,9 +100,9 @@ name|lucene
 operator|.
 name|search
 operator|.
-name|spell
+name|suggest
 operator|.
-name|TermFreqPayloadIterator
+name|InputIterator
 import|;
 end_import
 
@@ -134,7 +134,7 @@ name|search
 operator|.
 name|suggest
 operator|.
-name|SortedTermFreqPayloadIteratorWrapper
+name|SortedInputIterator
 import|;
 end_import
 
@@ -222,7 +222,7 @@ operator|new
 name|TSTAutocomplete
 argument_list|()
 decl_stmt|;
-comment|/**     * Creates a new TSTLookup with an empty Ternary Search Tree.    * @see #build(TermFreqPayloadIterator)    */
+comment|/**     * Creates a new TSTLookup with an empty Ternary Search Tree.    * @see #build(InputIterator)    */
 DECL|method|TSTLookup
 specifier|public
 name|TSTLookup
@@ -235,7 +235,7 @@ specifier|public
 name|void
 name|build
 parameter_list|(
-name|TermFreqPayloadIterator
+name|InputIterator
 name|tfit
 parameter_list|)
 throws|throws
@@ -267,7 +267,7 @@ comment|// make sure it's sorted and the comparator uses UTF16 sort order
 name|tfit
 operator|=
 operator|new
-name|SortedTermFreqPayloadIteratorWrapper
+name|SortedInputIterator
 argument_list|(
 name|tfit
 argument_list|,

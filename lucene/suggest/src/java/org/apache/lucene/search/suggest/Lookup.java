@@ -92,22 +92,6 @@ name|apache
 operator|.
 name|lucene
 operator|.
-name|search
-operator|.
-name|spell
-operator|.
-name|TermFreqPayloadIterator
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
 name|util
 operator|.
 name|BytesRef
@@ -578,7 +562,7 @@ specifier|public
 name|Lookup
 parameter_list|()
 block|{}
-comment|/** Build lookup from a dictionary. Some implementations may require sorted    * or unsorted keys from the dictionary's iterator - use    * {@link SortedTermFreqPayloadIteratorWrapper} or    * {@link UnsortedTermFreqPayloadIteratorWrapper} in such case.    */
+comment|/** Build lookup from a dictionary. Some implementations may require sorted    * or unsorted keys from the dictionary's iterator - use    * {@link SortedInputIterator} or    * {@link UnsortedInputIterator} in such case.    */
 DECL|method|build
 specifier|public
 name|void
@@ -598,20 +582,20 @@ operator|.
 name|getWordsIterator
 argument_list|()
 decl_stmt|;
-name|TermFreqPayloadIterator
+name|InputIterator
 name|tfit
 decl_stmt|;
 if|if
 condition|(
 name|it
 operator|instanceof
-name|TermFreqPayloadIterator
+name|InputIterator
 condition|)
 block|{
 name|tfit
 operator|=
 operator|(
-name|TermFreqPayloadIterator
+name|InputIterator
 operator|)
 name|it
 expr_stmt|;
@@ -621,9 +605,9 @@ block|{
 name|tfit
 operator|=
 operator|new
-name|TermFreqPayloadIterator
+name|InputIterator
 operator|.
-name|TermFreqPayloadIteratorWrapper
+name|InputIteratorWrapper
 argument_list|(
 name|it
 argument_list|)
@@ -635,14 +619,14 @@ name|tfit
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**    * Builds up a new internal {@link Lookup} representation based on the given {@link TermFreqPayloadIterator}.    * The implementation might re-sort the data internally.    */
+comment|/**    * Builds up a new internal {@link Lookup} representation based on the given {@link InputIterator}.    * The implementation might re-sort the data internally.    */
 DECL|method|build
 specifier|public
 specifier|abstract
 name|void
 name|build
 parameter_list|(
-name|TermFreqPayloadIterator
+name|InputIterator
 name|tfit
 parameter_list|)
 throws|throws

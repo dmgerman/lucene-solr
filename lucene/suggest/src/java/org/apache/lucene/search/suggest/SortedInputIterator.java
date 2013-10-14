@@ -58,22 +58,6 @@ name|lucene
 operator|.
 name|search
 operator|.
-name|spell
-operator|.
-name|TermFreqPayloadIterator
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|search
-operator|.
 name|suggest
 operator|.
 name|Sort
@@ -175,17 +159,17 @@ comment|/**  * This wrapper buffers incoming elements and makes sure they are so
 end_comment
 
 begin_class
-DECL|class|SortedTermFreqPayloadIteratorWrapper
+DECL|class|SortedInputIterator
 specifier|public
 class|class
-name|SortedTermFreqPayloadIteratorWrapper
+name|SortedInputIterator
 implements|implements
-name|TermFreqPayloadIterator
+name|InputIterator
 block|{
 DECL|field|source
 specifier|private
 specifier|final
-name|TermFreqPayloadIterator
+name|InputIterator
 name|source
 decl_stmt|;
 DECL|field|tempInput
@@ -251,11 +235,11 @@ name|BytesRef
 argument_list|()
 decl_stmt|;
 comment|/**    * Creates a new sorted wrapper, using {@link    * BytesRef#getUTF8SortedAsUnicodeComparator} for    * sorting. */
-DECL|method|SortedTermFreqPayloadIteratorWrapper
+DECL|method|SortedInputIterator
 specifier|public
-name|SortedTermFreqPayloadIteratorWrapper
+name|SortedInputIterator
 parameter_list|(
-name|TermFreqPayloadIterator
+name|InputIterator
 name|source
 parameter_list|)
 throws|throws
@@ -273,11 +257,11 @@ argument_list|)
 expr_stmt|;
 block|}
 comment|/**    * Creates a new sorted wrapper, sorting by BytesRef    * (ascending) then cost (ascending).    */
-DECL|method|SortedTermFreqPayloadIteratorWrapper
+DECL|method|SortedInputIterator
 specifier|public
-name|SortedTermFreqPayloadIteratorWrapper
+name|SortedInputIterator
 parameter_list|(
-name|TermFreqPayloadIterator
+name|InputIterator
 name|source
 parameter_list|,
 name|Comparator

@@ -1,6 +1,6 @@
 begin_unit|revision:0.9.5;language:Java;cregit-version:0.0.1
 begin_package
-DECL|package|org.apache.lucene.search.spell
+DECL|package|org.apache.lucene.search.suggest
 package|package
 name|org
 operator|.
@@ -10,7 +10,7 @@ name|lucene
 operator|.
 name|search
 operator|.
-name|spell
+name|suggest
 package|;
 end_package
 
@@ -145,14 +145,14 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Interface for enumerating term,weight,payload triples;  * currently only {@link AnalyzingSuggester}, {@link  * FuzzySuggester} and {@link AnalyzingInfixSuggester} support payloads.  */
+comment|/**  * Interface for enumerating term,weight,payload triples for suggester consumption;  * currently only {@link AnalyzingSuggester}, {@link  * FuzzySuggester} and {@link AnalyzingInfixSuggester} support payloads.  */
 end_comment
 
 begin_interface
-DECL|interface|TermFreqPayloadIterator
+DECL|interface|InputIterator
 specifier|public
 interface|interface
-name|TermFreqPayloadIterator
+name|InputIterator
 extends|extends
 name|BytesRefIterator
 block|{
@@ -177,14 +177,14 @@ name|boolean
 name|hasPayloads
 parameter_list|()
 function_decl|;
-comment|/**    * Wraps a BytesRefIterator as a TermFreqPayloadIterator, with all weights    * set to<code>1</code> and carries no payload    */
-DECL|class|TermFreqPayloadIteratorWrapper
+comment|/**    * Wraps a BytesRefIterator as a suggester InputIterator, with all weights    * set to<code>1</code> and carries no payload    */
+DECL|class|InputIteratorWrapper
 specifier|public
 specifier|static
 class|class
-name|TermFreqPayloadIteratorWrapper
+name|InputIteratorWrapper
 implements|implements
-name|TermFreqPayloadIterator
+name|InputIterator
 block|{
 DECL|field|wrapped
 specifier|private
@@ -193,9 +193,9 @@ name|BytesRefIterator
 name|wrapped
 decl_stmt|;
 comment|/**       * Creates a new wrapper, wrapping the specified iterator and       * specifying a weight value of<code>1</code> for all terms       * and nullifies associated payloads.      */
-DECL|method|TermFreqPayloadIteratorWrapper
+DECL|method|InputIteratorWrapper
 specifier|public
-name|TermFreqPayloadIteratorWrapper
+name|InputIteratorWrapper
 parameter_list|(
 name|BytesRefIterator
 name|wrapped
