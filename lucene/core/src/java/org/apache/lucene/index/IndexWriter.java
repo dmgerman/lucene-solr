@@ -10860,6 +10860,16 @@ operator|!=
 literal|null
 condition|)
 block|{
+comment|// Pass false for assertInfoLive because the merged
+comment|// segment is not yet live (only below do we commit it
+comment|// to the segmentInfos):
+name|boolean
+name|success
+init|=
+literal|false
+decl_stmt|;
+try|try
+block|{
 if|if
 condition|(
 name|dropSegment
@@ -10871,9 +10881,6 @@ name|dropChanges
 argument_list|()
 expr_stmt|;
 block|}
-comment|// Pass false for assertInfoLive because the merged
-comment|// segment is not yet live (only below do we commit it
-comment|// to the segmentInfos):
 name|readerPool
 operator|.
 name|release
@@ -10883,6 +10890,35 @@ argument_list|,
 literal|false
 argument_list|)
 expr_stmt|;
+name|success
+operator|=
+literal|true
+expr_stmt|;
+block|}
+finally|finally
+block|{
+if|if
+condition|(
+operator|!
+name|success
+condition|)
+block|{
+name|mergedDeletes
+operator|.
+name|dropChanges
+argument_list|()
+expr_stmt|;
+name|readerPool
+operator|.
+name|drop
+argument_list|(
+name|merge
+operator|.
+name|info
+argument_list|)
+expr_stmt|;
+block|}
+block|}
 block|}
 comment|// Must do this after readerPool.release, in case an
 comment|// exception is hit e.g. writing the live docs for the
