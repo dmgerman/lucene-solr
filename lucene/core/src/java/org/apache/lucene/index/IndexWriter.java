@@ -10860,9 +10860,6 @@ operator|!=
 literal|null
 condition|)
 block|{
-comment|// Pass false for assertInfoLive because the merged
-comment|// segment is not yet live (only below do we commit it
-comment|// to the segmentInfos):
 name|boolean
 name|success
 init|=
@@ -10881,6 +10878,9 @@ name|dropChanges
 argument_list|()
 expr_stmt|;
 block|}
+comment|// Pass false for assertInfoLive because the merged
+comment|// segment is not yet live (only below do we commit it
+comment|// to the segmentInfos):
 name|readerPool
 operator|.
 name|release
