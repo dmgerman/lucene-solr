@@ -2746,6 +2746,8 @@ name|hasPayloads
 parameter_list|()
 block|{
 return|return
+name|allowPayloads
+operator|&&
 name|fieldInfo
 operator|.
 name|hasPayloads
@@ -3188,15 +3190,6 @@ operator|<
 literal|0
 condition|)
 block|{
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"no: max"
-argument_list|)
-expr_stmt|;
 return|return
 literal|null
 return|;
@@ -3225,15 +3218,6 @@ operator|<
 literal|0
 condition|)
 block|{
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"no: offsets"
-argument_list|)
-expr_stmt|;
 return|return
 literal|null
 return|;
@@ -3255,15 +3239,6 @@ operator|==
 literal|false
 condition|)
 block|{
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"no: payloads"
-argument_list|)
-expr_stmt|;
 return|return
 literal|null
 return|;

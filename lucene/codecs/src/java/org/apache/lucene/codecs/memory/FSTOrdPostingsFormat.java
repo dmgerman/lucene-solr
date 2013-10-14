@@ -110,7 +110,7 @@ name|codecs
 operator|.
 name|lucene41
 operator|.
-name|Lucene41PostingsWriter
+name|Lucene41PostingsReader
 import|;
 end_import
 
@@ -126,23 +126,7 @@ name|codecs
 operator|.
 name|lucene41
 operator|.
-name|Lucene41PostingsReader
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|index
-operator|.
-name|FieldInfo
-operator|.
-name|IndexOptions
+name|Lucene41PostingsWriter
 import|;
 end_import
 

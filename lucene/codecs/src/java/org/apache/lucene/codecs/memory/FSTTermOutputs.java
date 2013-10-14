@@ -112,20 +112,6 @@ name|Outputs
 import|;
 end_import
 
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|util
-operator|.
-name|LongsRef
-import|;
-end_import
-
 begin_comment
 comment|/**  * An FST {@link Outputs} implementation for   * {@link FSTTermsWriter}.  *  * @lucene.experimental  */
 end_comment
@@ -378,6 +364,42 @@ name|totalTermFreq
 expr_stmt|;
 return|return
 name|hash
+return|;
+block|}
+annotation|@
+name|Override
+DECL|method|toString
+specifier|public
+name|String
+name|toString
+parameter_list|()
+block|{
+return|return
+literal|"FSTTermOutputs$TermData longs="
+operator|+
+name|Arrays
+operator|.
+name|toString
+argument_list|(
+name|longs
+argument_list|)
+operator|+
+literal|" bytes="
+operator|+
+name|Arrays
+operator|.
+name|toString
+argument_list|(
+name|bytes
+argument_list|)
+operator|+
+literal|" docFreq="
+operator|+
+name|docFreq
+operator|+
+literal|" totalTermFreq="
+operator|+
+name|totalTermFreq
 return|;
 block|}
 annotation|@
@@ -1071,6 +1093,16 @@ parameter_list|)
 throws|throws
 name|IOException
 block|{
+assert|assert
+name|hasPos
+operator|||
+name|data
+operator|.
+name|totalTermFreq
+operator|==
+operator|-
+literal|1
+assert|;
 name|int
 name|bit0
 init|=

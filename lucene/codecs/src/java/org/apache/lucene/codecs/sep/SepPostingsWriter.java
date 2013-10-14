@@ -66,7 +66,7 @@ name|lucene
 operator|.
 name|codecs
 operator|.
-name|PostingsWriterBase
+name|PushPostingsWriterBase
 import|;
 end_import
 
@@ -109,6 +109,8 @@ operator|.
 name|index
 operator|.
 name|FieldInfo
+operator|.
+name|IndexOptions
 import|;
 end_import
 
@@ -123,8 +125,6 @@ operator|.
 name|index
 operator|.
 name|FieldInfo
-operator|.
-name|IndexOptions
 import|;
 end_import
 
@@ -192,20 +192,6 @@ name|apache
 operator|.
 name|lucene
 operator|.
-name|store
-operator|.
-name|RAMOutputStream
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
 name|util
 operator|.
 name|BytesRef
@@ -237,7 +223,7 @@ specifier|final
 class|class
 name|SepPostingsWriter
 extends|extends
-name|PostingsWriterBase
+name|PushPostingsWriterBase
 block|{
 DECL|field|CODEC
 specifier|final
@@ -380,17 +366,9 @@ specifier|final
 name|int
 name|totalNumDocs
 decl_stmt|;
-DECL|field|storePayloads
-name|boolean
-name|storePayloads
-decl_stmt|;
 DECL|field|indexOptions
 name|IndexOptions
 name|indexOptions
-decl_stmt|;
-DECL|field|fieldInfo
-name|FieldInfo
-name|fieldInfo
 decl_stmt|;
 DECL|field|lastPayloadLength
 name|int
@@ -940,11 +918,12 @@ name|FieldInfo
 name|fieldInfo
 parameter_list|)
 block|{
-name|this
+name|super
 operator|.
+name|setField
+argument_list|(
 name|fieldInfo
-operator|=
-name|fieldInfo
+argument_list|)
 expr_stmt|;
 name|this
 operator|.
@@ -983,19 +962,6 @@ name|setIndexOptions
 argument_list|(
 name|indexOptions
 argument_list|)
-expr_stmt|;
-name|storePayloads
-operator|=
-name|indexOptions
-operator|==
-name|IndexOptions
-operator|.
-name|DOCS_AND_FREQS_AND_POSITIONS
-operator|&&
-name|fieldInfo
-operator|.
-name|hasPayloads
-argument_list|()
 expr_stmt|;
 name|lastPayloadFP
 operator|=
@@ -1174,7 +1140,7 @@ name|setSkipData
 argument_list|(
 name|lastDocID
 argument_list|,
-name|storePayloads
+name|writePayloads
 argument_list|,
 name|lastPayloadLength
 argument_list|)
@@ -1275,7 +1241,7 @@ name|position
 expr_stmt|;
 if|if
 condition|(
-name|storePayloads
+name|writePayloads
 condition|)
 block|{
 specifier|final
@@ -1767,7 +1733,7 @@ argument_list|)
 expr_stmt|;
 if|if
 condition|(
-name|storePayloads
+name|writePayloads
 condition|)
 block|{
 if|if

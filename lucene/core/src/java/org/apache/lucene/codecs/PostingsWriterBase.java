@@ -22,7 +22,7 @@ name|java
 operator|.
 name|io
 operator|.
-name|IOException
+name|Closeable
 import|;
 end_import
 
@@ -32,7 +32,71 @@ name|java
 operator|.
 name|io
 operator|.
-name|Closeable
+name|IOException
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|index
+operator|.
+name|DocsAndPositionsEnum
+import|;
+end_import
+
+begin_comment
+comment|// javadocs
+end_comment
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|index
+operator|.
+name|DocsEnum
+import|;
+end_import
+
+begin_comment
+comment|// javadocs
+end_comment
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|index
+operator|.
+name|FieldInfo
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|index
+operator|.
+name|TermsEnum
 import|;
 end_import
 
@@ -72,14 +136,28 @@ name|apache
 operator|.
 name|lucene
 operator|.
-name|index
+name|util
 operator|.
-name|FieldInfo
+name|BytesRef
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|util
+operator|.
+name|FixedBitSet
 import|;
 end_import
 
 begin_comment
-comment|/**  * Extension of {@link PostingsConsumer} to support pluggable term dictionaries.  *<p>  * This class contains additional hooks to interact with the provided  * term dictionaries such as {@link BlockTreeTermsWriter}. If you want  * to re-use an existing implementation and are only interested in  * customizing the format of the postings list, extend this class  * instead.  *   * @see PostingsReaderBase  * @lucene.experimental  */
+comment|/**  * Class that plugs into term dictionaries, such as {@link  * BlockTreeTermsWriter}, and handles writing postings.  *   * @see PostingsReaderBase  * @lucene.experimental  */
 end_comment
 
 begin_comment
@@ -91,7 +169,7 @@ comment|// terms dict impls use to talk to a postings impl.
 end_comment
 
 begin_comment
-comment|// TermsDict + PostingsReader/WriterBase == PostingsConsumer/Producer
+comment|// TermsDict + PostingsReader/WriterBase == FieldsProducer/Consumer
 end_comment
 
 begin_class
@@ -100,8 +178,6 @@ specifier|public
 specifier|abstract
 class|class
 name|PostingsWriterBase
-extends|extends
-name|PostingsConsumer
 implements|implements
 name|Closeable
 block|{
@@ -124,35 +200,21 @@ parameter_list|)
 throws|throws
 name|IOException
 function_decl|;
-comment|/** Return a newly created empty TermState */
-DECL|method|newTermState
+comment|/** Write all postings for one term; use the provided    *  {@link TermsEnum} to pull a {@link DocsEnum} or {@link    *  DocsAndPositionsEnum}.  This method should not    *  re-position the {@code TermsEnum}!  It is already    *  positioned on the term that should be written.  This    *  method must set the bit in the provided {@link    *  FixedBitSet} for every docID written.  If no docs    *  were written, this method should return null, and the    *  terms dict will skip the term. */
+DECL|method|writeTerm
 specifier|public
 specifier|abstract
 name|BlockTermState
-name|newTermState
-parameter_list|()
-throws|throws
-name|IOException
-function_decl|;
-comment|/** Start a new term.  Note that a matching call to {@link    *  #finishTerm(BlockTermState)} is done, only if the term has at least one    *  document. */
-DECL|method|startTerm
-specifier|public
-specifier|abstract
-name|void
-name|startTerm
-parameter_list|()
-throws|throws
-name|IOException
-function_decl|;
-comment|/** Finishes the current term.  The provided {@link    *  BlockTermState} contains the term's summary statistics,     *  and will holds metadata from PBF when returned */
-DECL|method|finishTerm
-specifier|public
-specifier|abstract
-name|void
-name|finishTerm
+name|writeTerm
 parameter_list|(
-name|BlockTermState
-name|state
+name|BytesRef
+name|term
+parameter_list|,
+name|TermsEnum
+name|termsEnum
+parameter_list|,
+name|FixedBitSet
+name|docsSeen
 parameter_list|)
 throws|throws
 name|IOException

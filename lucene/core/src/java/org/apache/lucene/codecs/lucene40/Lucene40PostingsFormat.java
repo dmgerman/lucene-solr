@@ -140,6 +140,10 @@ name|PostingsWriterBase
 import|;
 end_import
 
+begin_comment
+comment|// javadocs
+end_comment
+
 begin_import
 import|import
 name|org
