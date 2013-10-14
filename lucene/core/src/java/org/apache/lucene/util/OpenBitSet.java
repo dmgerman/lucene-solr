@@ -88,7 +88,7 @@ specifier|private
 name|long
 name|numBits
 decl_stmt|;
-comment|/** Constructs an OpenBitSet large enough to hold<code>numBits</code>.    */
+comment|/** Constructs an OpenBitSet large enough to hold {@code numBits}. */
 DECL|method|OpenBitSet
 specifier|public
 name|OpenBitSet
@@ -121,6 +121,7 @@ operator|.
 name|length
 expr_stmt|;
 block|}
+comment|/** Constructor: allocates enough space for 64 bits. */
 DECL|method|OpenBitSet
 specifier|public
 name|OpenBitSet
@@ -132,7 +133,7 @@ literal|64
 argument_list|)
 expr_stmt|;
 block|}
-comment|/** Constructs an OpenBitSet from an existing long[].    *<br/>    * The first 64 bits are in long[0],    * with bit index 0 at the least significant bit, and bit index 63 at the most significant.    * Given a bit index,    * the word containing it is long[index/64], and it is at bit number index%64 within that word.    *<p>    * numWords are the number of elements in the array that contain    * set bits (non-zero longs).    * numWords should be&lt= bits.length, and    * any existing words in the array at position&gt= numWords should be zero.    *    */
+comment|/**    * Constructs an OpenBitSet from an existing long[].    *<p>    * The first 64 bits are in long[0], with bit index 0 at the least significant    * bit, and bit index 63 at the most significant. Given a bit index, the word    * containing it is long[index/64], and it is at bit number index%64 within    * that word.    *<p>    * numWords are the number of elements in the array that contain set bits    * (non-zero longs). numWords should be&lt= bits.length, and any existing    * words in the array at position&gt= numWords should be zero.    *     */
 DECL|method|OpenBitSet
 specifier|public
 name|OpenBitSet
@@ -145,6 +146,23 @@ name|int
 name|numWords
 parameter_list|)
 block|{
+if|if
+condition|(
+name|numWords
+operator|>
+name|bits
+operator|.
+name|length
+condition|)
+block|{
+throw|throw
+operator|new
+name|IllegalArgumentException
+argument_list|(
+literal|"numWords cannot exceed bits.length"
+argument_list|)
+throw|;
+block|}
 name|this
 operator|.
 name|bits
@@ -278,24 +296,6 @@ return|return
 name|bits
 return|;
 block|}
-comment|/** Expert: sets a new long[] to use as the bit storage */
-DECL|method|setBits
-specifier|public
-name|void
-name|setBits
-parameter_list|(
-name|long
-index|[]
-name|bits
-parameter_list|)
-block|{
-name|this
-operator|.
-name|bits
-operator|=
-name|bits
-expr_stmt|;
-block|}
 comment|/** Expert: gets the number of longs in the array that are in use */
 DECL|method|getNumWords
 specifier|public
@@ -306,23 +306,6 @@ block|{
 return|return
 name|wlen
 return|;
-block|}
-comment|/** Expert: sets the number of longs in the array that are in use */
-DECL|method|setNumWords
-specifier|public
-name|void
-name|setNumWords
-parameter_list|(
-name|int
-name|nWords
-parameter_list|)
-block|{
-name|this
-operator|.
-name|wlen
-operator|=
-name|nWords
-expr_stmt|;
 block|}
 comment|/** Returns true or false for the specified bit index. */
 annotation|@
@@ -922,31 +905,7 @@ operator|+
 literal|1
 argument_list|)
 expr_stmt|;
-name|wlen
-operator|=
-name|wordNum
-operator|+
-literal|1
-expr_stmt|;
 block|}
-assert|assert
-operator|(
-name|numBits
-operator|=
-name|Math
-operator|.
-name|max
-argument_list|(
-name|numBits
-argument_list|,
-name|index
-operator|+
-literal|1
-argument_list|)
-operator|)
-operator|>=
-literal|0
-assert|;
 return|return
 name|wordNum
 return|;
@@ -3571,7 +3530,7 @@ return|return
 literal|false
 return|;
 block|}
-comment|/** Expand the long[] with the size given as a number of words (64 bit longs).    * getNumWords() is unchanged by this call.    */
+comment|/** Expand the long[] with the size given as a number of words (64 bit longs). */
 DECL|method|ensureCapacityWords
 specifier|public
 name|void
@@ -3580,15 +3539,6 @@ parameter_list|(
 name|int
 name|numWords
 parameter_list|)
-block|{
-if|if
-condition|(
-name|bits
-operator|.
-name|length
-operator|<
-name|numWords
-condition|)
 block|{
 name|bits
 operator|=
@@ -3601,9 +3551,34 @@ argument_list|,
 name|numWords
 argument_list|)
 expr_stmt|;
+name|wlen
+operator|=
+name|numWords
+expr_stmt|;
+assert|assert
+operator|(
+name|this
+operator|.
+name|numBits
+operator|=
+name|Math
+operator|.
+name|max
+argument_list|(
+name|this
+operator|.
+name|numBits
+argument_list|,
+name|numWords
+operator|<<
+literal|6
+argument_list|)
+operator|)
+operator|>=
+literal|0
+assert|;
 block|}
-block|}
-comment|/** Ensure that the long[] is big enough to hold numBits, expanding it if necessary.    * getNumWords() is unchanged by this call.    */
+comment|/**    * Ensure that the long[] is big enough to hold numBits, expanding it if    * necessary.    */
 DECL|method|ensureCapacity
 specifier|public
 name|void
@@ -3621,6 +3596,28 @@ name|numBits
 argument_list|)
 argument_list|)
 expr_stmt|;
+comment|// ensureCapacityWords sets numBits to a multiple of 64, but we want to set
+comment|// it to exactly what the app asked.
+assert|assert
+operator|(
+name|this
+operator|.
+name|numBits
+operator|=
+name|Math
+operator|.
+name|max
+argument_list|(
+name|this
+operator|.
+name|numBits
+argument_list|,
+name|numBits
+argument_list|)
+operator|)
+operator|>=
+literal|0
+assert|;
 block|}
 comment|/** Lowers numWords, the number of words in use,    * by checking for trailing zero words.    */
 DECL|method|trimTrailingZeros
