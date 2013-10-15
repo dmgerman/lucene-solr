@@ -2448,14 +2448,18 @@ argument_list|(
 name|random
 argument_list|()
 argument_list|,
-literal|128
+literal|127
 argument_list|,
+operator|(
 name|numWords
 operator|<<
 literal|6
+operator|)
+operator|-
+literal|1
 argument_list|)
 expr_stmt|;
-comment|// pick a higher bit than 128, but still within range
+comment|// pick a bit>= to 128, but still within range
 name|bits
 operator|.
 name|fastSet
