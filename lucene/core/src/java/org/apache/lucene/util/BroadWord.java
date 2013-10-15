@@ -17,7 +17,7 @@ comment|/*  * Licensed to the Apache Software Foundation (ASF) under one or more
 end_comment
 
 begin_comment
-comment|/**  * Methods and constants inspired by the article  * "Broadword Implementation of Rank/Select Queries" by Sebastiano Vigna, January 30, 2012:  *<ul>  *<li>algorithm 1: {@link #rank9(long)}, count of set bits in a<code>long</code>  *<li>algorithm 2: {@link #select9(long, int)}, selection of a set bit in a<code>long</code>,  *<li>bytewise signed smaller&lt;<sub><small>8</small></sub> operator: {@link #smallerUpTo7_8(long,long)}.  *<li>shortwise signed smaller&lt;<sub><small>16</small></sub> operator: {@link #smallerUpto15_16(long,long)}.  *<li>some of the Lk and Hk constants that are used by the above:  * L8 {@link #L8_L}, H8 {@link #H8_L}, L9 {@link #L9_L}, L16 {@link #L16_L}and H16 {@link #H8_L}.  *</ul>  * @lucene.internal  */
+comment|/**  * Methods and constants inspired by the article  * "Broadword Implementation of Rank/Select Queries" by Sebastiano Vigna, January 30, 2012:  *<ul>  *<li>algorithm 1: {@link #bitCount(long)}, count of set bits in a<code>long</code>  *<li>algorithm 2: {@link #select(long, int)}, selection of a set bit in a<code>long</code>,  *<li>bytewise signed smaller&lt;<sub><small>8</small></sub> operator: {@link #smallerUpTo7_8(long,long)}.  *<li>shortwise signed smaller&lt;<sub><small>16</small></sub> operator: {@link #smallerUpto15_16(long,long)}.  *<li>some of the Lk and Hk constants that are used by the above:  * L8 {@link #L8_L}, H8 {@link #H8_L}, L9 {@link #L9_L}, L16 {@link #L16_L}and H16 {@link #H8_L}.  *</ul>  * @lucene.internal  */
 end_comment
 
 begin_class
@@ -34,11 +34,11 @@ name|BroadWord
 parameter_list|()
 block|{}
 comment|// no instance
-comment|/** Bit count of a long.    * Only here to compare the implementation with {@link #select9(long,int)},    * normally {@link Long#bitCount} is preferable.    * @return The total number of 1 bits in x.    */
-DECL|method|rank9
+comment|/** Bit count of a long.    * Only here to compare the implementation with {@link #select(long,int)},    * normally {@link Long#bitCount} is preferable.    * @return The total number of 1 bits in x.    */
+DECL|method|bitCount
 specifier|static
 name|int
-name|rank9
+name|bitCount
 parameter_list|(
 name|long
 name|x
@@ -110,11 +110,11 @@ argument_list|)
 return|;
 block|}
 comment|/** Select a 1-bit from a long.    * @return The index of the r-th 1 bit in x, or if no such bit exists, 72.    */
-DECL|method|select9
+DECL|method|select
 specifier|public
 specifier|static
 name|int
-name|select9
+name|select
 parameter_list|(
 name|long
 name|x
@@ -544,7 +544,7 @@ name|L16_L
 operator|<<
 literal|15
 decl_stmt|;
-comment|/**    * Naive implementation of {@link #select9(long,int)}, using {@link Long#numberOfTrailingZeros} repetitively.    * @return The index of the r-th 1 bit in x, or if no such bit exists, 72.    */
+comment|/**    * Naive implementation of {@link #select(long,int)}, using {@link Long#numberOfTrailingZeros} repetitively.    * Works relatively fast for low ranks.    * @return The index of the r-th 1 bit in x, or if no such bit exists, 72.    */
 DECL|method|selectNaive
 specifier|public
 specifier|static

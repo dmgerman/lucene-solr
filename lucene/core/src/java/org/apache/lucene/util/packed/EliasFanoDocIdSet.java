@@ -56,6 +56,24 @@ name|DocIdSetIterator
 import|;
 end_import
 
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|util
+operator|.
+name|FixedBitSet
+import|;
+end_import
+
+begin_comment
+comment|// for javadocs
+end_comment
+
 begin_comment
 comment|/** A DocIdSet in Elias-Fano encoding.  * @lucene.internal  */
 end_comment
@@ -73,7 +91,7 @@ specifier|final
 name|EliasFanoEncoder
 name|efEncoder
 decl_stmt|;
-comment|/*    * Construct an EliasFanoDocIdSet.    * @param numValues The number of values that can be encoded.    * @param upperBound  At least the highest value that will be encoded.    */
+comment|/**    * Construct an EliasFanoDocIdSet. For efficient encoding, the parameters should be chosen as low as possible.    * @param numValues At least the number of document ids that will be encoded.    * @param upperBound  At least the highest document id that will be encoded.    */
 DECL|method|EliasFanoDocIdSet
 specifier|public
 name|EliasFanoDocIdSet
@@ -96,6 +114,32 @@ name|upperBound
 argument_list|)
 expr_stmt|;
 block|}
+comment|/** Provide an indication that is better to use an {@link EliasFanoDocIdSet} than a {@link FixedBitSet}    *  to encode document identifiers.    *  @param numValues The number of document identifiers that is to be encoded. Should be non negative.    *  @param upperBound The maximum possible value for a document identifier. Should be at least<code>numValues</code>.    *  @return See {@link EliasFanoEncoder#sufficientlySmallerThanBitSet(long, long)}    */
+DECL|method|sufficientlySmallerThanBitSet
+specifier|public
+specifier|static
+name|boolean
+name|sufficientlySmallerThanBitSet
+parameter_list|(
+name|long
+name|numValues
+parameter_list|,
+name|long
+name|upperBound
+parameter_list|)
+block|{
+return|return
+name|EliasFanoEncoder
+operator|.
+name|sufficientlySmallerThanBitSet
+argument_list|(
+name|numValues
+argument_list|,
+name|upperBound
+argument_list|)
+return|;
+block|}
+comment|/** Encode the document ids from a DocIdSetIterator.    *  @param disi This DocIdSetIterator should provide document ids that are consistent    *              with<code>numValues</code> and<code>upperBound</code> as provided to the constructor.      */
 DECL|method|encodeFromDisi
 specifier|public
 name|void
@@ -241,13 +285,13 @@ name|int
 name|setCurDocID
 parameter_list|(
 name|long
-name|nextValue
+name|value
 parameter_list|)
 block|{
 name|curDocId
 operator|=
 operator|(
-name|nextValue
+name|value
 operator|==
 name|EliasFanoDecoder
 operator|.
@@ -259,7 +303,7 @@ else|:
 operator|(
 name|int
 operator|)
-name|nextValue
+name|value
 expr_stmt|;
 return|return
 name|curDocId
@@ -315,12 +359,13 @@ return|return
 name|efDecoder
 operator|.
 name|numEncoded
+argument_list|()
 return|;
 block|}
 block|}
 return|;
 block|}
-comment|/** This DocIdSet implementation is cacheable. @return<code>true</code> */
+comment|/** This DocIdSet implementation is cacheable.    * @return<code>true</code>    */
 annotation|@
 name|Override
 DECL|method|isCacheable
