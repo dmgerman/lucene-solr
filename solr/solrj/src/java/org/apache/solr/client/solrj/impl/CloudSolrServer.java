@@ -1225,9 +1225,9 @@ name|ZkStateReader
 argument_list|(
 name|zkHost
 argument_list|,
-name|zkConnectTimeout
-argument_list|,
 name|zkClientTimeout
+argument_list|,
+name|zkConnectTimeout
 argument_list|)
 decl_stmt|;
 name|zk
