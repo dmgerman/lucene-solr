@@ -473,7 +473,7 @@ specifier|private
 name|PassageScorer
 name|defaultScorer
 decl_stmt|;
-comment|/**    * Creates a new highlighter with default parameters.    */
+comment|/**    * Creates a new highlighter with {@link #DEFAULT_MAX_LENGTH}.    */
 DECL|method|PostingsHighlighter
 specifier|public
 name|PostingsHighlighter
