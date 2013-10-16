@@ -72,7 +72,27 @@ name|java
 operator|.
 name|util
 operator|.
+name|HashMap
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
+name|util
+operator|.
 name|List
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
+name|util
+operator|.
+name|Map
 import|;
 end_import
 
@@ -534,13 +554,6 @@ name|SegmentInfoPerCommit
 argument_list|>
 name|allDeleted
 decl_stmt|;
-comment|// True if any actual numeric docvalues updates took place
-DECL|field|anyNumericDVUpdates
-specifier|public
-specifier|final
-name|boolean
-name|anyNumericDVUpdates
-decl_stmt|;
 DECL|method|ApplyDeletesResult
 name|ApplyDeletesResult
 parameter_list|(
@@ -555,9 +568,6 @@ argument_list|<
 name|SegmentInfoPerCommit
 argument_list|>
 name|allDeleted
-parameter_list|,
-name|boolean
-name|anyNumericDVUpdates
 parameter_list|)
 block|{
 name|this
@@ -577,12 +587,6 @@ operator|.
 name|allDeleted
 operator|=
 name|allDeleted
-expr_stmt|;
-name|this
-operator|.
-name|anyNumericDVUpdates
-operator|=
-name|anyNumericDVUpdates
 expr_stmt|;
 block|}
 block|}
@@ -686,8 +690,6 @@ name|nextGen
 operator|++
 argument_list|,
 literal|null
-argument_list|,
-literal|false
 argument_list|)
 return|;
 block|}
@@ -732,8 +734,6 @@ name|nextGen
 operator|++
 argument_list|,
 literal|null
-argument_list|,
-literal|false
 argument_list|)
 return|;
 block|}
@@ -809,11 +809,6 @@ literal|null
 decl_stmt|;
 name|boolean
 name|anyNewDeletes
-init|=
-literal|false
-decl_stmt|;
-name|boolean
-name|anyNewUpdates
 init|=
 literal|false
 decl_stmt|;
@@ -995,14 +990,11 @@ name|rld
 operator|.
 name|getReader
 argument_list|(
-literal|false
-argument_list|,
 name|IOContext
 operator|.
 name|READ
 argument_list|)
 decl_stmt|;
-comment|// don't apply deletes, as we're about to add more!
 name|int
 name|delCount
 init|=
@@ -1014,6 +1006,16 @@ name|segAllDeletes
 decl_stmt|;
 try|try
 block|{
+name|Map
+argument_list|<
+name|String
+argument_list|,
+name|NumericFieldUpdates
+argument_list|>
+name|fieldUpdates
+init|=
+literal|null
+decl_stmt|;
 if|if
 condition|(
 name|coalescedDeletes
@@ -1050,9 +1052,9 @@ argument_list|,
 name|reader
 argument_list|)
 expr_stmt|;
-name|anyNewUpdates
-operator||=
-name|applyNumericDocValueUpdates
+name|fieldUpdates
+operator|=
+name|applyNumericDocValuesUpdates
 argument_list|(
 name|coalescedDeletes
 operator|.
@@ -1061,6 +1063,8 @@ argument_list|,
 name|rld
 argument_list|,
 name|reader
+argument_list|,
+name|fieldUpdates
 argument_list|)
 expr_stmt|;
 block|}
@@ -1081,9 +1085,9 @@ argument_list|,
 name|reader
 argument_list|)
 expr_stmt|;
-name|anyNewUpdates
-operator||=
-name|applyNumericDocValueUpdates
+name|fieldUpdates
+operator|=
+name|applyNumericDocValuesUpdates
 argument_list|(
 name|Arrays
 operator|.
@@ -1097,8 +1101,33 @@ argument_list|,
 name|rld
 argument_list|,
 name|reader
+argument_list|,
+name|fieldUpdates
 argument_list|)
 expr_stmt|;
+if|if
+condition|(
+operator|!
+name|fieldUpdates
+operator|.
+name|isEmpty
+argument_list|()
+condition|)
+block|{
+name|rld
+operator|.
+name|writeFieldUpdates
+argument_list|(
+name|info
+operator|.
+name|info
+operator|.
+name|dir
+argument_list|,
+name|fieldUpdates
+argument_list|)
+expr_stmt|;
+block|}
 specifier|final
 name|int
 name|fullDelCount
@@ -1317,14 +1346,11 @@ name|rld
 operator|.
 name|getReader
 argument_list|(
-literal|false
-argument_list|,
 name|IOContext
 operator|.
 name|READ
 argument_list|)
 decl_stmt|;
-comment|// don't apply deletes, as we're about to add more!
 name|int
 name|delCount
 init|=
@@ -1364,9 +1390,15 @@ argument_list|,
 name|reader
 argument_list|)
 expr_stmt|;
-name|anyNewUpdates
-operator||=
-name|applyNumericDocValueUpdates
+name|Map
+argument_list|<
+name|String
+argument_list|,
+name|NumericFieldUpdates
+argument_list|>
+name|fieldUpdates
+init|=
+name|applyNumericDocValuesUpdates
 argument_list|(
 name|coalescedDeletes
 operator|.
@@ -1375,8 +1407,33 @@ argument_list|,
 name|rld
 argument_list|,
 name|reader
+argument_list|,
+literal|null
+argument_list|)
+decl_stmt|;
+if|if
+condition|(
+operator|!
+name|fieldUpdates
+operator|.
+name|isEmpty
+argument_list|()
+condition|)
+block|{
+name|rld
+operator|.
+name|writeFieldUpdates
+argument_list|(
+name|info
+operator|.
+name|info
+operator|.
+name|dir
+argument_list|,
+name|fieldUpdates
 argument_list|)
 expr_stmt|;
+block|}
 specifier|final
 name|int
 name|fullDelCount
@@ -1498,15 +1555,7 @@ name|segGen
 operator|+
 literal|" coalesced deletes=["
 operator|+
-operator|(
 name|coalescedDeletes
-operator|==
-literal|null
-condition|?
-literal|"null"
-else|:
-name|coalescedDeletes
-operator|)
 operator|+
 literal|"] newDelCount="
 operator|+
@@ -1580,8 +1629,6 @@ argument_list|,
 name|gen
 argument_list|,
 name|allDeleted
-argument_list|,
-name|anyNewUpdates
 argument_list|)
 return|;
 block|}
@@ -2155,12 +2202,18 @@ return|return
 name|delCount
 return|;
 block|}
-comment|// NumericDocValue Updates
-DECL|method|applyNumericDocValueUpdates
+comment|// NumericDocValues Updates
+comment|// If otherFieldUpdates != null, we need to merge the updates into them
+DECL|method|applyNumericDocValuesUpdates
 specifier|private
 specifier|synchronized
-name|boolean
-name|applyNumericDocValueUpdates
+name|Map
+argument_list|<
+name|String
+argument_list|,
+name|NumericFieldUpdates
+argument_list|>
+name|applyNumericDocValuesUpdates
 parameter_list|(
 name|Iterable
 argument_list|<
@@ -2173,6 +2226,14 @@ name|rld
 parameter_list|,
 name|SegmentReader
 name|reader
+parameter_list|,
+name|Map
+argument_list|<
+name|String
+argument_list|,
+name|NumericFieldUpdates
+argument_list|>
+name|otherFieldUpdates
 parameter_list|)
 throws|throws
 name|IOException
@@ -2194,9 +2255,26 @@ condition|)
 block|{
 comment|// This reader has no postings
 return|return
-literal|false
+name|Collections
+operator|.
+name|emptyMap
+argument_list|()
 return|;
 block|}
+comment|// TODO: we can process the updates per DV field, from last to first so that
+comment|// if multiple terms affect same document for the same field, we add an update
+comment|// only once (that of the last term). To do that, we can keep a bitset which
+comment|// marks which documents have already been updated. So e.g. if term T1
+comment|// updates doc 7, and then we process term T2 and it updates doc 7 as well,
+comment|// we don't apply the update since we know T1 came last and therefore wins
+comment|// the update.
+comment|// We can also use that bitset as 'liveDocs' to pass to TermEnum.docs(), so
+comment|// that these documents aren't even returned.
+name|String
+name|currentField
+init|=
+literal|null
+decl_stmt|;
 name|TermsEnum
 name|termsEnum
 init|=
@@ -2207,10 +2285,29 @@ name|docs
 init|=
 literal|null
 decl_stmt|;
-name|boolean
-name|any
+specifier|final
+name|Map
+argument_list|<
+name|String
+argument_list|,
+name|NumericFieldUpdates
+argument_list|>
+name|result
 init|=
-literal|false
+name|otherFieldUpdates
+operator|==
+literal|null
+condition|?
+operator|new
+name|HashMap
+argument_list|<
+name|String
+argument_list|,
+name|NumericFieldUpdates
+argument_list|>
+argument_list|()
+else|:
+name|otherFieldUpdates
 decl_stmt|;
 comment|//System.out.println(Thread.currentThread().getName() + " numericDVUpdate reader=" + reader);
 for|for
@@ -2235,18 +2332,38 @@ name|update
 operator|.
 name|docIDUpto
 decl_stmt|;
-comment|// TODO: we rely on the map being ordered by updates order, not by terms order.
-comment|// we need that so that if two terms update the same document, the one that came
-comment|// last wins.
-comment|// alternatively, we could keep a map from doc->lastUpto and apply the update
-comment|// in terms order, where an update is applied only if its docIDUpto is greater
-comment|// than lastUpto.
-comment|// but, since app can send two updates, in order, which will have same upto, we
-comment|// cannot rely solely on docIDUpto, and need to have our own gen, which is
-comment|// incremented with every update.
-comment|// Unlike applyTermDeletes, we visit terms in update order, not term order.
-comment|// Therefore we cannot assume we can only seek forwards and must ask for a
-comment|// new TermsEnum
+comment|// TODO: we traverse the terms in update order (not term order) so that we
+comment|// apply the updates in the correct order, i.e. if two terms udpate the
+comment|// same document, the last one that came in wins, irrespective of the
+comment|// terms lexical order.
+comment|// we can apply the updates in terms order if we keep an updatesGen (and
+comment|// increment it with every update) and attach it to each NumericUpdate. Note
+comment|// that we cannot rely only on docIDUpto because an app may send two updates
+comment|// which will get same docIDUpto, yet will still need to respect the order
+comment|// those updates arrived.
+if|if
+condition|(
+operator|!
+name|term
+operator|.
+name|field
+argument_list|()
+operator|.
+name|equals
+argument_list|(
+name|currentField
+argument_list|)
+condition|)
+block|{
+comment|// if we change the code to process updates in terms order, enable this assert
+comment|//        assert currentField == null || currentField.compareTo(term.field())< 0;
+name|currentField
+operator|=
+name|term
+operator|.
+name|field
+argument_list|()
+expr_stmt|;
 name|Terms
 name|terms
 init|=
@@ -2254,25 +2371,16 @@ name|fields
 operator|.
 name|terms
 argument_list|(
-name|term
-operator|.
-name|field
+name|currentField
 argument_list|)
 decl_stmt|;
 if|if
 condition|(
 name|terms
-operator|==
+operator|!=
 literal|null
 condition|)
 block|{
-comment|// no terms in that field
-name|termsEnum
-operator|=
-literal|null
-expr_stmt|;
-continue|continue;
-block|}
 name|termsEnum
 operator|=
 name|terms
@@ -2282,6 +2390,26 @@ argument_list|(
 name|termsEnum
 argument_list|)
 expr_stmt|;
+block|}
+else|else
+block|{
+name|termsEnum
+operator|=
+literal|null
+expr_stmt|;
+continue|continue;
+comment|// no terms in that field
+block|}
+block|}
+if|if
+condition|(
+name|termsEnum
+operator|==
+literal|null
+condition|)
+block|{
+continue|continue;
+block|}
 comment|// System.out.println("  term=" + term);
 if|if
 condition|(
@@ -2317,6 +2445,50 @@ name|FLAG_NONE
 argument_list|)
 decl_stmt|;
 comment|//System.out.println("BDS: got docsEnum=" + docsEnum);
+name|NumericFieldUpdates
+name|fieldUpdates
+init|=
+name|result
+operator|.
+name|get
+argument_list|(
+name|update
+operator|.
+name|field
+argument_list|)
+decl_stmt|;
+if|if
+condition|(
+name|fieldUpdates
+operator|==
+literal|null
+condition|)
+block|{
+name|fieldUpdates
+operator|=
+operator|new
+name|NumericFieldUpdates
+operator|.
+name|PackedNumericFieldUpdates
+argument_list|(
+name|reader
+operator|.
+name|maxDoc
+argument_list|()
+argument_list|)
+expr_stmt|;
+name|result
+operator|.
+name|put
+argument_list|(
+name|update
+operator|.
+name|field
+argument_list|,
+name|fieldUpdates
+argument_list|)
+expr_stmt|;
+block|}
 name|int
 name|doc
 decl_stmt|;
@@ -2347,14 +2519,10 @@ block|{
 break|break;
 comment|// no more docs that can be updated for this term
 block|}
-name|rld
+name|fieldUpdates
 operator|.
-name|updateNumericDocValue
+name|add
 argument_list|(
-name|update
-operator|.
-name|field
-argument_list|,
 name|doc
 argument_list|,
 name|update
@@ -2362,15 +2530,11 @@ operator|.
 name|value
 argument_list|)
 expr_stmt|;
-name|any
-operator|=
-literal|true
-expr_stmt|;
 block|}
 block|}
 block|}
 return|return
-name|any
+name|result
 return|;
 block|}
 DECL|class|QueryAndLimit
