@@ -234,22 +234,6 @@ name|lucene
 operator|.
 name|facet
 operator|.
-name|search
-operator|.
-name|TaxonomyFacetsAccumulator
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|facet
-operator|.
 name|taxonomy
 operator|.
 name|CategoryPath
@@ -371,7 +355,7 @@ import|;
 end_import
 
 begin_comment
-comment|/** A {@link TaxonomyFacetsAccumulator} that uses previously  *  indexed {@link SortedSetDocValuesFacetFields} to perform faceting,  *  without require a separate taxonomy index.  Faceting is  *  a bit slower (~25%), and there is added cost on every  *  {@link IndexReader} open to create a new {@link  *  SortedSetDocValuesReaderState}.  Furthermore, this does  *  not support hierarchical facets; only flat (dimension +  *  label) facets, but it uses quite a bit less RAM to do so. */
+comment|/** A {@link FacetsAccumulator} that uses previously  *  indexed {@link SortedSetDocValuesFacetFields} to perform faceting,  *  without require a separate taxonomy index.  Faceting is  *  a bit slower (~25%), and there is added cost on every  *  {@link IndexReader} open to create a new {@link  *  SortedSetDocValuesReaderState}.  Furthermore, this does  *  not support hierarchical facets; only flat (dimension +  *  label) facets, but it uses quite a bit less RAM to do so. */
 end_comment
 
 begin_class
