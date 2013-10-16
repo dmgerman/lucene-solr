@@ -1024,36 +1024,17 @@ operator|.
 name|top
 argument_list|()
 decl_stmt|;
-comment|// make a shallow copy
+comment|// we will normally end up advancing the term enum for this segment
+comment|// while still using "val", so we need to make a copy since the BytesRef
+comment|// may be shared across calls.
 name|val
 operator|.
-name|bytes
-operator|=
+name|copyBytes
+argument_list|(
 name|seg
 operator|.
 name|tempBR
-operator|.
-name|bytes
-expr_stmt|;
-name|val
-operator|.
-name|offset
-operator|=
-name|seg
-operator|.
-name|tempBR
-operator|.
-name|offset
-expr_stmt|;
-name|val
-operator|.
-name|length
-operator|=
-name|seg
-operator|.
-name|tempBR
-operator|.
-name|length
+argument_list|)
 expr_stmt|;
 name|int
 name|count
