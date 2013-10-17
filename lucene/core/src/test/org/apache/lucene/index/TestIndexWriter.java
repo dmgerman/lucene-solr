@@ -14978,6 +14978,18 @@ name|hasUncommittedChanges
 argument_list|()
 argument_list|)
 expr_stmt|;
+comment|// Must commit, waitForMerges, commit again, to be
+comment|// certain that hasUncommittedChanges returns false:
+name|writer
+operator|.
+name|commit
+argument_list|()
+expr_stmt|;
+name|writer
+operator|.
+name|waitForMerges
+argument_list|()
+expr_stmt|;
 name|writer
 operator|.
 name|commit
@@ -15050,6 +15062,18 @@ name|hasUncommittedChanges
 argument_list|()
 argument_list|)
 expr_stmt|;
+comment|// Must commit, waitForMerges, commit again, to be
+comment|// certain that hasUncommittedChanges returns false:
+name|writer
+operator|.
+name|commit
+argument_list|()
+expr_stmt|;
+name|writer
+operator|.
+name|waitForMerges
+argument_list|()
+expr_stmt|;
 name|writer
 operator|.
 name|commit
@@ -15083,6 +15107,18 @@ operator|.
 name|hasUncommittedChanges
 argument_list|()
 argument_list|)
+expr_stmt|;
+comment|// Must commit, waitForMerges, commit again, to be
+comment|// certain that hasUncommittedChanges returns false:
+name|writer
+operator|.
+name|commit
+argument_list|()
+expr_stmt|;
+name|writer
+operator|.
+name|waitForMerges
+argument_list|()
 expr_stmt|;
 name|writer
 operator|.

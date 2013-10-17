@@ -8498,7 +8498,7 @@ name|commitInternal
 argument_list|()
 expr_stmt|;
 block|}
-comment|/** Returns true if there are changes that have not been committed */
+comment|/** Returns true if there are changes that have not been    *  committed.  Note that if a merge kicked off as a    *  result of flushing a new segment during {@link    *  #commit}, or a concurrent merged finished,    *  this method may return true right after you    *  had just called {@link #commit}. */
 DECL|method|hasUncommittedChanges
 specifier|public
 specifier|final
