@@ -717,6 +717,22 @@ name|doc
 argument_list|)
 expr_stmt|;
 block|}
+name|field
+operator|.
+name|setLongValue
+argument_list|(
+name|Long
+operator|.
+name|MAX_VALUE
+argument_list|)
+expr_stmt|;
+name|w
+operator|.
+name|addDocument
+argument_list|(
+name|doc
+argument_list|)
+expr_stmt|;
 name|IndexReader
 name|r
 init|=
@@ -813,7 +829,7 @@ name|Long
 operator|.
 name|MAX_VALUE
 argument_list|,
-literal|false
+literal|true
 argument_list|)
 argument_list|)
 argument_list|)
@@ -870,7 +886,7 @@ argument_list|)
 expr_stmt|;
 name|assertEquals
 argument_list|(
-literal|"field (0)\n  less than 10 (10)\n  less than or equal to 10 (11)\n  over 90 (9)\n  90 or above (10)\n  over 1000 (0)\n"
+literal|"field (0)\n  less than 10 (10)\n  less than or equal to 10 (11)\n  over 90 (9)\n  90 or above (10)\n  over 1000 (1)\n"
 argument_list|,
 name|FacetTestUtils
 operator|.
