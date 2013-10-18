@@ -74,7 +74,7 @@ return|return
 literal|null
 return|;
 block|}
-comment|/**    * This method is a hint for {@link CachingWrapperFilter}, if this<code>DocIdSet</code>    * should be cached without copying it into a BitSet. The default is to return    *<code>false</code>. If you have an own<code>DocIdSet</code> implementation    * that does its iteration very effective and fast without doing disk I/O,    * override this method and return<code>true</code>.    */
+comment|/**    * This method is a hint for {@link CachingWrapperFilter}, if this<code>DocIdSet</code>    * should be cached without copying it. The default is to return    *<code>false</code>. If you have an own<code>DocIdSet</code> implementation    * that does its iteration very effective and fast without doing disk I/O,    * override this method and return<code>true</code>.    */
 DECL|method|isCacheable
 specifier|public
 name|boolean
