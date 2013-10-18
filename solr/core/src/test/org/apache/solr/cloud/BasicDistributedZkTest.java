@@ -698,22 +698,6 @@ name|apache
 operator|.
 name|solr
 operator|.
-name|update
-operator|.
-name|SolrCmdDistributor
-operator|.
-name|Request
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|solr
-operator|.
 name|util
 operator|.
 name|DefaultSolrThreadFactory
@@ -937,7 +921,7 @@ decl_stmt|;
 DECL|field|completionService
 name|CompletionService
 argument_list|<
-name|Request
+name|Object
 argument_list|>
 name|completionService
 decl_stmt|;
@@ -946,7 +930,7 @@ name|Set
 argument_list|<
 name|Future
 argument_list|<
-name|Request
+name|Object
 argument_list|>
 argument_list|>
 name|pending
@@ -1025,7 +1009,7 @@ operator|=
 operator|new
 name|ExecutorCompletionService
 argument_list|<
-name|Request
+name|Object
 argument_list|>
 argument_list|(
 name|executor
@@ -1038,7 +1022,7 @@ name|HashSet
 argument_list|<
 name|Future
 argument_list|<
-name|Request
+name|Object
 argument_list|>
 argument_list|>
 argument_list|()
@@ -5808,7 +5792,7 @@ condition|)
 block|{
 name|Future
 argument_list|<
-name|Request
+name|Object
 argument_list|>
 name|future
 init|=
@@ -6621,7 +6605,7 @@ condition|)
 block|{
 name|Future
 argument_list|<
-name|Request
+name|Object
 argument_list|>
 name|future
 init|=
@@ -7167,7 +7151,7 @@ condition|)
 block|{
 name|Future
 argument_list|<
-name|Request
+name|Object
 argument_list|>
 name|future
 init|=
@@ -8022,7 +8006,7 @@ condition|)
 block|{
 name|Future
 argument_list|<
-name|Request
+name|Object
 argument_list|>
 name|future
 init|=

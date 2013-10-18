@@ -585,15 +585,24 @@ argument_list|(
 name|params
 argument_list|)
 decl_stmt|;
+if|if
+condition|(
 name|logger
 operator|.
-name|info
+name|isDebugEnabled
+argument_list|()
+condition|)
+block|{
+name|logger
+operator|.
+name|debug
 argument_list|(
 literal|"Creating new http client, config:"
 operator|+
 name|config
 argument_list|)
 expr_stmt|;
+block|}
 specifier|final
 name|DefaultHttpClient
 name|httpClient
