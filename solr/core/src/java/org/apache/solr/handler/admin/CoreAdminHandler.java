@@ -1374,12 +1374,6 @@ operator|.
 name|length
 operator|==
 literal|0
-operator|||
-name|rangesArr
-operator|.
-name|length
-operator|==
-literal|1
 condition|)
 block|{
 throw|throw
@@ -1390,7 +1384,7 @@ name|ErrorCode
 operator|.
 name|BAD_REQUEST
 argument_list|,
-literal|"There must be at least two ranges specified to split an index"
+literal|"There must be at least one range specified to split an index"
 argument_list|)
 throw|;
 block|}
