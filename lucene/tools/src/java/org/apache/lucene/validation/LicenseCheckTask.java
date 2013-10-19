@@ -344,6 +344,11 @@ specifier|private
 name|boolean
 name|skipSnapshotsChecksum
 decl_stmt|;
+DECL|field|skipChecksum
+specifier|private
+name|boolean
+name|skipChecksum
+decl_stmt|;
 comment|/**    * All JAR files to check.    */
 DECL|field|jarResources
 specifier|private
@@ -489,6 +494,22 @@ operator|=
 name|skipSnapshotsChecksum
 expr_stmt|;
 block|}
+DECL|method|setSkipChecksum
+specifier|public
+name|void
+name|setSkipChecksum
+parameter_list|(
+name|boolean
+name|skipChecksum
+parameter_list|)
+block|{
+name|this
+operator|.
+name|skipChecksum
+operator|=
+name|skipChecksum
+expr_stmt|;
+block|}
 comment|/**    * Execute the task.    */
 annotation|@
 name|Override
@@ -517,8 +538,25 @@ throw|;
 block|}
 if|if
 condition|(
+name|skipChecksum
+condition|)
+block|{
+name|log
+argument_list|(
+literal|"Skipping checksum verification for dependencies"
+argument_list|,
+name|Project
+operator|.
+name|MSG_INFO
+argument_list|)
+expr_stmt|;
+block|}
+elseif|else
+if|if
+condition|(
 name|skipSnapshotsChecksum
 condition|)
+block|{
 name|log
 argument_list|(
 literal|"Skipping checksum for SNAPSHOT dependencies"
@@ -528,6 +566,7 @@ operator|.
 name|MSG_INFO
 argument_list|)
 expr_stmt|;
+block|}
 name|jarResources
 operator|.
 name|setProject
@@ -773,6 +812,12 @@ argument_list|,
 name|verboseLevel
 argument_list|)
 expr_stmt|;
+if|if
+condition|(
+operator|!
+name|skipChecksum
+condition|)
+block|{
 if|if
 condition|(
 operator|!
@@ -1095,6 +1140,7 @@ operator|.
 name|MSG_INFO
 argument_list|)
 expr_stmt|;
+block|}
 block|}
 comment|// Get the expected license path base from the mapper and search for license files.
 name|Map
