@@ -300,6 +300,15 @@ name|UpdateRequest
 extends|extends
 name|AbstractUpdateRequest
 block|{
+DECL|field|VER
+specifier|private
+specifier|static
+specifier|final
+name|String
+name|VER
+init|=
+literal|"ver"
+decl_stmt|;
 DECL|field|OVERWRITE
 specifier|public
 specifier|static
@@ -875,7 +884,7 @@ name|params
 operator|.
 name|put
 argument_list|(
-literal|"ver"
+name|VER
 argument_list|,
 name|version
 argument_list|)
@@ -1360,7 +1369,7 @@ name|map
 operator|.
 name|get
 argument_list|(
-literal|"ver"
+name|VER
 argument_list|)
 expr_stmt|;
 block|}
@@ -2376,7 +2385,7 @@ name|map
 operator|.
 name|get
 argument_list|(
-literal|"ver"
+name|VER
 argument_list|)
 decl_stmt|;
 if|if
