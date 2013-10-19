@@ -230,21 +230,6 @@ operator|.
 name|class
 argument_list|)
 decl_stmt|;
-comment|// Try not introduce a dependency on the example schema or config unless you need to.
-comment|// using configs in the test directory allows more flexibility to change "example"
-comment|// without breaking configs.
-DECL|method|getSolrHome
-specifier|public
-name|String
-name|getSolrHome
-parameter_list|()
-block|{
-return|return
-name|ExternalPaths
-operator|.
-name|EXAMPLE_HOME
-return|;
-block|}
 DECL|field|TEST_KEYSTORE
 specifier|private
 specifier|static

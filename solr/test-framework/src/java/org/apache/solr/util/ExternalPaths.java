@@ -84,6 +84,24 @@ name|getAbsolutePath
 argument_list|()
 decl_stmt|;
 comment|/* @see #SOURCE_HOME */
+DECL|field|EXAMPLE_SCHEMALESS_HOME
+specifier|public
+specifier|static
+name|String
+name|EXAMPLE_SCHEMALESS_HOME
+init|=
+operator|new
+name|File
+argument_list|(
+name|SOURCE_HOME
+argument_list|,
+literal|"example/example-schemaless/solr"
+argument_list|)
+operator|.
+name|getAbsolutePath
+argument_list|()
+decl_stmt|;
+comment|/* @see #SOURCE_HOME */
 DECL|field|EXAMPLE_MULTICORE_HOME
 specifier|public
 specifier|static
