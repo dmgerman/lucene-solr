@@ -812,14 +812,7 @@ name|baseServer
 operator|.
 name|setSoTimeout
 argument_list|(
-call|(
-name|int
-call|)
-argument_list|(
-name|CollectionsHandler
-operator|.
-name|DEFAULT_ZK_TIMEOUT
-argument_list|)
+literal|60000
 argument_list|)
 expr_stmt|;
 name|baseServer
