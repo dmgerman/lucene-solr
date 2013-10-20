@@ -3880,6 +3880,11 @@ name|UnsupportedOperationException
 name|e
 parameter_list|)
 block|{}
+name|server
+operator|.
+name|shutdown
+argument_list|()
+expr_stmt|;
 name|client
 operator|.
 name|getConnectionManager

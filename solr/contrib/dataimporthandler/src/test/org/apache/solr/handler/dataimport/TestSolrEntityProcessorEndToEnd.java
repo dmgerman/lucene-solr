@@ -1675,6 +1675,8 @@ name|getSourceUrl
 argument_list|()
 argument_list|)
 decl_stmt|;
+try|try
+block|{
 name|solrServer
 operator|.
 name|setConnectionTimeout
@@ -1705,6 +1707,15 @@ argument_list|,
 literal|true
 argument_list|)
 expr_stmt|;
+block|}
+finally|finally
+block|{
+name|solrServer
+operator|.
+name|shutdown
+argument_list|()
+expr_stmt|;
+block|}
 block|}
 DECL|class|SolrInstance
 specifier|private

@@ -730,6 +730,8 @@ operator|+
 literal|"/delete_data_dir"
 argument_list|)
 decl_stmt|;
+try|try
+block|{
 name|c
 operator|.
 name|add
@@ -916,11 +918,15 @@ argument_list|(
 name|dataDir
 argument_list|)
 expr_stmt|;
+block|}
+finally|finally
+block|{
 name|c
 operator|.
 name|shutdown
 argument_list|()
 expr_stmt|;
+block|}
 block|}
 if|if
 condition|(

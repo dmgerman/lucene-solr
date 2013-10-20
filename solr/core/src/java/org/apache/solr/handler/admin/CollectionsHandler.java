@@ -1570,6 +1570,8 @@ name|getBaseUrl
 argument_list|()
 argument_list|)
 decl_stmt|;
+try|try
+block|{
 name|server
 operator|.
 name|setConnectionTimeout
@@ -1624,6 +1626,15 @@ argument_list|(
 name|reqSyncShard
 argument_list|)
 expr_stmt|;
+block|}
+finally|finally
+block|{
+name|server
+operator|.
+name|shutdown
+argument_list|()
+expr_stmt|;
+block|}
 block|}
 DECL|method|handleCreateAliasAction
 specifier|private
