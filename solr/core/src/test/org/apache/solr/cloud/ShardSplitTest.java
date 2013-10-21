@@ -3685,6 +3685,8 @@ operator|.
 name|setSoTimeout
 argument_list|(
 literal|60000
+operator|*
+literal|5
 argument_list|)
 expr_stmt|;
 name|baseServer
