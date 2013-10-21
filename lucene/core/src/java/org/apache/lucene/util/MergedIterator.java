@@ -1,6 +1,6 @@
 begin_unit|revision:0.9.5;language:Java;cregit-version:0.0.1
 begin_package
-DECL|package|org.apache.lucene.index
+DECL|package|org.apache.lucene.util
 package|package
 name|org
 operator|.
@@ -8,7 +8,7 @@ name|apache
 operator|.
 name|lucene
 operator|.
-name|index
+name|util
 package|;
 end_package
 
@@ -51,11 +51,12 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Provides a merged sorted view from several sorted iterators, each  * iterating over a unique set of elements.  *<p>  * If an element appears in multiple iterators, it is deduplicated,  * that is this iterator returns the sorted union of elements.  *<p>  * Caveats:  *<ul>  *<li>The behavior is undefined if the iterators are not actually   *       sorted according to their comparator, or if a single iterator  *       contains duplicates.  *<li>Null elements are unsupported.  *<li>When an element E is a duplicate across multiple iterators,  *       only one is returned, but it is undefined which one: not  *       guaranteed to be a stable sort.  *</ul>  * @lucene.internal  */
+comment|/**  * Provides a merged sorted view from several sorted iterators.  *<p>  * If built with<code>removeDuplicates</code> set to true and an element  * appears in multiple iterators then it is deduplicated, that is this iterator  * returns the sorted union of elements.  *<p>  * If built with<code>removeDuplicates</code> set to false then all elements  * in all iterators are returned.  *<p>  * Caveats:  *<ul>  *<li>The behavior is undefined if the iterators are not actually sorted.  *<li>Null elements are unsupported.  *<li>If removeDuplicates is set to true and if a single iterator contains  *       duplicates then they will not be deduplicated.  *<li>When elements are deduplicated it is not defined which one is returned.  *<li>If removeDuplicates is set to false then the order in which duplicates  *       are returned isn't defined.  *</ul>  * @lucene.internal  */
 end_comment
 
 begin_class
 DECL|class|MergedIterator
+specifier|public
 specifier|final
 class|class
 name|MergedIterator
@@ -97,6 +98,12 @@ argument_list|>
 index|[]
 name|top
 decl_stmt|;
+DECL|field|removeDuplicates
+specifier|private
+specifier|final
+name|boolean
+name|removeDuplicates
+decl_stmt|;
 DECL|field|numTop
 specifier|private
 name|int
@@ -123,6 +130,44 @@ modifier|...
 name|iterators
 parameter_list|)
 block|{
+name|this
+argument_list|(
+literal|true
+argument_list|,
+name|iterators
+argument_list|)
+expr_stmt|;
+block|}
+annotation|@
+name|SuppressWarnings
+argument_list|(
+block|{
+literal|"unchecked"
+block|,
+literal|"rawtypes"
+block|}
+argument_list|)
+DECL|method|MergedIterator
+specifier|public
+name|MergedIterator
+parameter_list|(
+name|boolean
+name|removeDuplicates
+parameter_list|,
+name|Iterator
+argument_list|<
+name|T
+argument_list|>
+modifier|...
+name|iterators
+parameter_list|)
+block|{
+name|this
+operator|.
+name|removeDuplicates
+operator|=
+name|removeDuplicates
+expr_stmt|;
 name|queue
 operator|=
 operator|new
@@ -345,17 +390,11 @@ name|void
 name|pullTop
 parameter_list|()
 block|{
-comment|// extract all subs from the queue that have the same top element
 assert|assert
 name|numTop
 operator|==
 literal|0
 assert|;
-while|while
-condition|(
-literal|true
-condition|)
-block|{
 name|top
 index|[
 name|numTop
@@ -369,20 +408,23 @@ argument_list|()
 expr_stmt|;
 if|if
 condition|(
+name|removeDuplicates
+condition|)
+block|{
+comment|// extract all subs from the queue that have the same top element
+while|while
+condition|(
 name|queue
 operator|.
 name|size
 argument_list|()
-operator|==
+operator|!=
 literal|0
-operator|||
-operator|!
-operator|(
+operator|&&
 name|queue
 operator|.
 name|top
 argument_list|()
-operator|)
 operator|.
 name|current
 operator|.
@@ -397,7 +439,17 @@ name|current
 argument_list|)
 condition|)
 block|{
-break|break;
+name|top
+index|[
+name|numTop
+operator|++
+index|]
+operator|=
+name|queue
+operator|.
+name|pop
+argument_list|()
+expr_stmt|;
 block|}
 block|}
 name|current
