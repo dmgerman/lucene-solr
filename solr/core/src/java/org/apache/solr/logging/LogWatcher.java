@@ -641,14 +641,12 @@ condition|)
 block|{
 if|if
 condition|(
-name|slf4jImpl
+literal|"org.slf4j.impl.Log4jLoggerFactory"
 operator|.
-name|indexOf
+name|equals
 argument_list|(
-literal|"Log4j"
+name|slf4jImpl
 argument_list|)
-operator|>
-literal|0
 condition|)
 block|{
 name|fname
