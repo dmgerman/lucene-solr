@@ -393,7 +393,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * An {@link AtomicReader} which supports sorting documents by a given  * {@link Sorter}. You can use this class to sort an index as follows:  *   *<pre class="prettyprint">  * IndexWriter writer; // writer to which the sorted index will be added  * DirectoryReader reader; // reader on the input index  * Sorter sorter; // determines how the documents are sorted  * AtomicReader sortingReader = new SortingAtomicReader(reader, sorter);  * writer.addIndexes(reader);  * writer.close();  * reader.close();  *</pre>  *   * @lucene.experimental  */
+comment|/**  * An {@link AtomicReader} which supports sorting documents by a given  * {@link Sorter}. You can use this class to sort an index as follows:  *   *<pre class="prettyprint">  * IndexWriter writer; // writer to which the sorted index will be added  * DirectoryReader reader; // reader on the input index  * Sorter sorter; // determines how the documents are sorted  * AtomicReader sortingReader = SortingAtomicReader.wrap(SlowCompositeReaderWrapper.wrap(reader), sorter);  * writer.addIndexes(reader);  * writer.close();  * reader.close();  *</pre>  *   * @lucene.experimental  */
 end_comment
 
 begin_class
