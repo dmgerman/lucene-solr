@@ -81,6 +81,17 @@ literal|1
 assert|;
 comment|// this allows our nextOrd() to work for missing values without a check
 block|}
+comment|/** Return the wrapped {@link SortedDocValues} */
+DECL|method|getSortedDocValues
+specifier|public
+name|SortedDocValues
+name|getSortedDocValues
+parameter_list|()
+block|{
+return|return
+name|in
+return|;
+block|}
 annotation|@
 name|Override
 DECL|method|nextOrd
