@@ -749,6 +749,21 @@ return|return
 name|size
 return|;
 block|}
+comment|/** Clears all entries from the cache. */
+DECL|method|clear
+specifier|public
+specifier|synchronized
+specifier|static
+name|void
+name|clear
+parameter_list|()
+block|{
+name|ordsCache
+operator|.
+name|clear
+argument_list|()
+expr_stmt|;
+block|}
 block|}
 end_class
 
