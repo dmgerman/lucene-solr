@@ -772,7 +772,7 @@ name|metaCodec
 argument_list|,
 name|Lucene45DocValuesFormat
 operator|.
-name|VERSION_CURRENT
+name|VERSION_START
 argument_list|,
 name|Lucene45DocValuesFormat
 operator|.
