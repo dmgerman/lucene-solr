@@ -947,6 +947,18 @@ operator|=
 name|NULL_POLICY_EXPAND
 expr_stmt|;
 block|}
+else|else
+block|{
+throw|throw
+operator|new
+name|IOException
+argument_list|(
+literal|"Invalid nullPolicy:"
+operator|+
+name|nPolicy
+argument_list|)
+throw|;
+block|}
 name|this
 operator|.
 name|searcher
@@ -2856,6 +2868,16 @@ argument_list|,
 name|boostDocs
 argument_list|)
 expr_stmt|;
+block|}
+else|else
+block|{
+throw|throw
+operator|new
+name|IOException
+argument_list|(
+literal|"min/max must be either TrieInt, TrieLong or TrieFloat."
+argument_list|)
+throw|;
 block|}
 block|}
 DECL|method|acceptsDocsOutOfOrder
