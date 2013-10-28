@@ -225,6 +225,10 @@ class|class
 name|LogUpdateProcessorFactory
 extends|extends
 name|UpdateRequestProcessorFactory
+implements|implements
+name|UpdateRequestProcessorFactory
+operator|.
+name|RunAlways
 block|{
 DECL|field|maxNumToLog
 name|int
