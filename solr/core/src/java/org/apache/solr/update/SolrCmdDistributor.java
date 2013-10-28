@@ -447,6 +447,8 @@ range|:
 name|errors
 control|)
 block|{
+try|try
+block|{
 name|String
 name|oldNodeUrl
 init|=
@@ -661,6 +663,25 @@ expr_stmt|;
 name|blockUntilFinishedAgain
 operator|=
 literal|true
+expr_stmt|;
+block|}
+block|}
+catch|catch
+parameter_list|(
+name|Exception
+name|e
+parameter_list|)
+block|{
+name|SolrException
+operator|.
+name|log
+argument_list|(
+name|log
+argument_list|,
+literal|"Retry attempt failed"
+argument_list|,
+name|e
+argument_list|)
 expr_stmt|;
 block|}
 block|}
