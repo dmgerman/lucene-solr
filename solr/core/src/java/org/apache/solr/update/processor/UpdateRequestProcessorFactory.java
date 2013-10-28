@@ -121,6 +121,12 @@ name|UpdateRequestProcessorFactory
 implements|implements
 name|NamedListInitializedPlugin
 block|{
+comment|/** A marker interface for UpdateRequestProcessorFactory implementations indicating that    * the factory should be used even if the update.distrib parameter would otherwise cause    * it to not be run.    */
+DECL|interface|RunAlways
+specifier|public
+interface|interface
+name|RunAlways
+block|{}
 annotation|@
 name|Override
 DECL|method|init
