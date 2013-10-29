@@ -1325,7 +1325,7 @@ name|segmentNumber
 init|=
 name|map
 operator|.
-name|getSegmentNumber
+name|getFirstSegmentNumber
 argument_list|(
 name|currentOrd
 argument_list|)
@@ -1338,10 +1338,8 @@ name|int
 operator|)
 name|map
 operator|.
-name|getSegmentOrd
+name|getFirstSegmentOrd
 argument_list|(
-name|segmentNumber
-argument_list|,
 name|currentOrd
 argument_list|)
 decl_stmt|;
@@ -1956,7 +1954,7 @@ name|segmentNumber
 init|=
 name|map
 operator|.
-name|getSegmentNumber
+name|getFirstSegmentNumber
 argument_list|(
 name|currentOrd
 argument_list|)
@@ -1966,10 +1964,8 @@ name|segmentOrd
 init|=
 name|map
 operator|.
-name|getSegmentOrd
+name|getFirstSegmentOrd
 argument_list|(
-name|segmentNumber
-argument_list|,
 name|currentOrd
 argument_list|)
 decl_stmt|;

@@ -1760,25 +1760,25 @@ specifier|static
 class|class
 name|OrdinalMap
 block|{
-comment|// cache key of whoever asked for this aweful thing
+comment|// cache key of whoever asked for this awful thing
 DECL|field|owner
 specifier|final
 name|Object
 name|owner
 decl_stmt|;
-comment|// globalOrd -> (globalOrd - segmentOrd)
+comment|// globalOrd -> (globalOrd - segmentOrd) where segmentOrd is the the ordinal in the first segment that contains this term
 DECL|field|globalOrdDeltas
 specifier|final
 name|MonotonicAppendingLongBuffer
 name|globalOrdDeltas
 decl_stmt|;
-comment|// globalOrd -> sub index
-DECL|field|subIndexes
+comment|// globalOrd -> first segment container
+DECL|field|firstSegments
 specifier|final
 name|AppendingPackedLongBuffer
-name|subIndexes
+name|firstSegments
 decl_stmt|;
-comment|// segmentOrd -> (globalOrd - segmentOrd)
+comment|// for every segment, segmentOrd -> (globalOrd - segmentOrd)
 DECL|field|ordDeltas
 specifier|final
 name|MonotonicAppendingLongBuffer
@@ -1818,7 +1818,7 @@ operator|.
 name|COMPACT
 argument_list|)
 expr_stmt|;
-name|subIndexes
+name|firstSegments
 operator|=
 operator|new
 name|AppendingPackedLongBuffer
@@ -2009,7 +2009,7 @@ operator|++
 control|)
 block|{
 name|int
-name|subIndex
+name|segmentIndex
 init|=
 name|matches
 index|[
@@ -2038,7 +2038,7 @@ name|globalOrd
 operator|-
 name|segmentOrd
 decl_stmt|;
-comment|// for each unique term, just mark the first subindex/delta where it occurs
+comment|// for each unique term, just mark the first segment index/delta where it occurs
 if|if
 condition|(
 name|i
@@ -2046,11 +2046,11 @@ operator|==
 literal|0
 condition|)
 block|{
-name|subIndexes
+name|firstSegments
 operator|.
 name|add
 argument_list|(
-name|subIndex
+name|segmentIndex
 argument_list|)
 expr_stmt|;
 name|globalOrdDeltas
@@ -2066,7 +2066,7 @@ while|while
 condition|(
 name|segmentOrds
 index|[
-name|subIndex
+name|segmentIndex
 index|]
 operator|<=
 name|segmentOrd
@@ -2074,7 +2074,7 @@ condition|)
 block|{
 name|ordDeltas
 index|[
-name|subIndex
+name|segmentIndex
 index|]
 operator|.
 name|add
@@ -2084,7 +2084,7 @@ argument_list|)
 expr_stmt|;
 name|segmentOrds
 index|[
-name|subIndex
+name|segmentIndex
 index|]
 operator|++
 expr_stmt|;
@@ -2094,7 +2094,7 @@ name|globalOrd
 operator|++
 expr_stmt|;
 block|}
-name|subIndexes
+name|firstSegments
 operator|.
 name|freeze
 argument_list|()
@@ -2138,7 +2138,7 @@ name|long
 name|getGlobalOrd
 parameter_list|(
 name|int
-name|subIndex
+name|segmentIndex
 parameter_list|,
 name|long
 name|segmentOrd
@@ -2149,7 +2149,7 @@ name|segmentOrd
 operator|+
 name|ordDeltas
 index|[
-name|subIndex
+name|segmentIndex
 index|]
 operator|.
 name|get
@@ -2158,15 +2158,12 @@ name|segmentOrd
 argument_list|)
 return|;
 block|}
-comment|/**      * Given a segment number and global ordinal, returns      * the corresponding segment ordinal.      */
-DECL|method|getSegmentOrd
+comment|/**      * Given global ordinal, returns the ordinal of the first segment which contains      * this ordinal (the corresponding to the segment return {@link #getFirstSegmentNumber}).      */
+DECL|method|getFirstSegmentOrd
 specifier|public
 name|long
-name|getSegmentOrd
+name|getFirstSegmentOrd
 parameter_list|(
-name|int
-name|subIndex
-parameter_list|,
 name|long
 name|globalOrd
 parameter_list|)
@@ -2182,11 +2179,11 @@ name|globalOrd
 argument_list|)
 return|;
 block|}
-comment|/**       * Given a global ordinal, returns the index of the first      * sub that contains this term.      */
-DECL|method|getSegmentNumber
+comment|/**       * Given a global ordinal, returns the index of the first      * segment that contains this term.      */
+DECL|method|getFirstSegmentNumber
 specifier|public
 name|int
-name|getSegmentNumber
+name|getFirstSegmentNumber
 parameter_list|(
 name|long
 name|globalOrd
@@ -2196,7 +2193,7 @@ return|return
 operator|(
 name|int
 operator|)
-name|subIndexes
+name|firstSegments
 operator|.
 name|get
 argument_list|(
@@ -2233,7 +2230,7 @@ operator|.
 name|ramBytesUsed
 argument_list|()
 operator|+
-name|subIndexes
+name|firstSegments
 operator|.
 name|ramBytesUsed
 argument_list|()
@@ -2443,7 +2440,7 @@ name|subIndex
 init|=
 name|mapping
 operator|.
-name|getSegmentNumber
+name|getFirstSegmentNumber
 argument_list|(
 name|ord
 argument_list|)
@@ -2456,10 +2453,8 @@ name|int
 operator|)
 name|mapping
 operator|.
-name|getSegmentOrd
+name|getFirstSegmentOrd
 argument_list|(
-name|subIndex
-argument_list|,
 name|ord
 argument_list|)
 decl_stmt|;
@@ -2691,7 +2686,7 @@ name|subIndex
 init|=
 name|mapping
 operator|.
-name|getSegmentNumber
+name|getFirstSegmentNumber
 argument_list|(
 name|ord
 argument_list|)
@@ -2701,10 +2696,8 @@ name|segmentOrd
 init|=
 name|mapping
 operator|.
-name|getSegmentOrd
+name|getFirstSegmentOrd
 argument_list|(
-name|subIndex
-argument_list|,
 name|ord
 argument_list|)
 decl_stmt|;
