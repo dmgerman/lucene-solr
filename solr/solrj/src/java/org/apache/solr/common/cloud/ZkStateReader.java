@@ -425,6 +425,15 @@ name|SHARD_ID_PROP
 init|=
 literal|"shard"
 decl_stmt|;
+DECL|field|REPLICA_PROP
+specifier|public
+specifier|static
+specifier|final
+name|String
+name|REPLICA_PROP
+init|=
+literal|"replica"
+decl_stmt|;
 DECL|field|SHARD_RANGE_PROP
 specifier|public
 specifier|static

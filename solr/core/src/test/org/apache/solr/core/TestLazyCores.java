@@ -3747,6 +3747,10 @@ name|solrDoc
 operator|=
 name|sdoc
 argument_list|(
+operator|(
+name|Object
+index|[]
+operator|)
 name|fieldValues
 argument_list|)
 expr_stmt|;

@@ -1757,6 +1757,9 @@ name|set
 argument_list|(
 literal|"facet.method"
 argument_list|,
+operator|(
+name|String
+operator|)
 literal|null
 argument_list|)
 expr_stmt|;

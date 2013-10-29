@@ -811,6 +811,8 @@ argument_list|(
 name|name
 argument_list|,
 name|coreProperties
+argument_list|,
+name|this
 argument_list|)
 expr_stmt|;
 if|if

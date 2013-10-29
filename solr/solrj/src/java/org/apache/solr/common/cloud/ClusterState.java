@@ -496,6 +496,26 @@ return|return
 literal|null
 return|;
 block|}
+DECL|method|hasCollection
+specifier|public
+name|boolean
+name|hasCollection
+parameter_list|(
+name|String
+name|coll
+parameter_list|)
+block|{
+return|return
+name|collectionStates
+operator|.
+name|get
+argument_list|(
+name|coll
+argument_list|)
+operator|!=
+literal|null
+return|;
+block|}
 comment|/**    * Get the named Slice for collection, or null if not found.    */
 DECL|method|getSlice
 specifier|public
