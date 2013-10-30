@@ -744,7 +744,7 @@ specifier|private
 name|boolean
 name|preservePositionIncrements
 decl_stmt|;
-comment|/**    * Calls {@link #AnalyzingSuggester(Analyzer,Analyzer,int,int,int,boolean)    * AnalyzingSuggester(analyzer, analyzer, EXACT_FIRST |    * PRESERVE_SEP, 256, -1, false)}    */
+comment|/**    * Calls {@link #AnalyzingSuggester(Analyzer,Analyzer,int,int,int,boolean)    * AnalyzingSuggester(analyzer, analyzer, EXACT_FIRST |    * PRESERVE_SEP, 256, -1, true)}    */
 DECL|method|AnalyzingSuggester
 specifier|public
 name|AnalyzingSuggester
@@ -768,11 +768,11 @@ argument_list|,
 operator|-
 literal|1
 argument_list|,
-literal|false
+literal|true
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**    * Calls {@link #AnalyzingSuggester(Analyzer,Analyzer,int,int,int,boolean)    * AnalyzingSuggester(indexAnalyzer, queryAnalyzer, EXACT_FIRST |    * PRESERVE_SEP, 256, -1, false)}    */
+comment|/**    * Calls {@link #AnalyzingSuggester(Analyzer,Analyzer,int,int,int,boolean)    * AnalyzingSuggester(indexAnalyzer, queryAnalyzer, EXACT_FIRST |    * PRESERVE_SEP, 256, -1, true)}    */
 DECL|method|AnalyzingSuggester
 specifier|public
 name|AnalyzingSuggester
@@ -799,7 +799,7 @@ argument_list|,
 operator|-
 literal|1
 argument_list|,
-literal|false
+literal|true
 argument_list|)
 expr_stmt|;
 block|}

@@ -417,7 +417,7 @@ argument_list|,
 operator|-
 literal|1
 argument_list|,
-literal|false
+literal|true
 argument_list|,
 name|DEFAULT_MAX_EDITS
 argument_list|,
