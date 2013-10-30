@@ -47,6 +47,20 @@ specifier|final
 class|class
 name|ArrayUtil
 block|{
+comment|/** Maximum length for an array; we set this to "a    *  bit" below Integer.MAX_VALUE because the exact max    *  allowed byte[] is JVM dependent, so we want to avoid    *  a case where a large value worked during indexing on    *  one JVM but failed later at search time with a    *  different JVM. */
+DECL|field|MAX_ARRAY_LENGTH
+specifier|public
+specifier|static
+specifier|final
+name|int
+name|MAX_ARRAY_LENGTH
+init|=
+name|Integer
+operator|.
+name|MAX_VALUE
+operator|-
+literal|256
+decl_stmt|;
 DECL|method|ArrayUtil
 specifier|private
 name|ArrayUtil

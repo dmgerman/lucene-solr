@@ -98,6 +98,20 @@ name|lucene
 operator|.
 name|util
 operator|.
+name|ArrayUtil
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|util
+operator|.
 name|BytesRef
 import|;
 end_import
@@ -140,7 +154,7 @@ name|lucene
 operator|.
 name|util
 operator|.
-name|RamUsageEstimator
+name|PagedBytes
 import|;
 end_import
 
@@ -154,7 +168,7 @@ name|lucene
 operator|.
 name|util
 operator|.
-name|PagedBytes
+name|RamUsageEstimator
 import|;
 end_import
 
@@ -201,7 +215,7 @@ name|BinaryDocValuesWriter
 extends|extends
 name|DocValuesWriter
 block|{
-comment|/** Maximum length for a binary field; we set this to "a    *  bit" below Integer.MAX_VALUE because the exact max    *  allowed byte[] is JVM dependent, so we want to avoid    *  a case where a large value worked in one JVM but    *  failed later at search time with a different JVM.  */
+comment|/** Maximum length for a binary field. */
 DECL|field|MAX_LENGTH
 specifier|private
 specifier|static
@@ -209,11 +223,9 @@ specifier|final
 name|int
 name|MAX_LENGTH
 init|=
-name|Integer
+name|ArrayUtil
 operator|.
-name|MAX_VALUE
-operator|-
-literal|256
+name|MAX_ARRAY_LENGTH
 decl_stmt|;
 comment|// 32 KB block sizes for PagedBytes storage:
 DECL|field|BLOCK_BITS
