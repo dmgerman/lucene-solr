@@ -2289,6 +2289,8 @@ name|clazz
 init|=
 literal|null
 decl_stmt|;
+try|try
+block|{
 comment|// first try legacy analysis patterns, now replaced by Lucene's Analysis package:
 specifier|final
 name|Matcher
@@ -2448,6 +2450,8 @@ comment|// first try cname == full name
 try|try
 block|{
 return|return
+name|clazz
+operator|=
 name|Class
 operator|.
 name|forName
@@ -2580,16 +2584,20 @@ name|e
 argument_list|)
 throw|;
 block|}
+block|}
 finally|finally
 block|{
-comment|//cache the shortname vs FQN if it is loaded by the webapp classloader  and it is loaded
-comment|// using a shortname
 if|if
 condition|(
 name|clazz
 operator|!=
 literal|null
-operator|&&
+condition|)
+block|{
+comment|//cache the shortname vs FQN if it is loaded by the webapp classloader  and it is loaded
+comment|// using a shortname
+if|if
+condition|(
 name|clazz
 operator|.
 name|getClassLoader
@@ -2639,6 +2647,30 @@ name|getName
 argument_list|()
 argument_list|)
 expr_stmt|;
+block|}
+comment|// print warning if class is deprecated
+if|if
+condition|(
+name|clazz
+operator|.
+name|isAnnotationPresent
+argument_list|(
+name|Deprecated
+operator|.
+name|class
+argument_list|)
+condition|)
+block|{
+name|log
+operator|.
+name|warn
+argument_list|(
+literal|"Solr loaded a deprecated plugin/analysis class [{}]. Please consult documentation how to replace it accordingly."
+argument_list|,
+name|cname
+argument_list|)
+expr_stmt|;
+block|}
 block|}
 block|}
 block|}
