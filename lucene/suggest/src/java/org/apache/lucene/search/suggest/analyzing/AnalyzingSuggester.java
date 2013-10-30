@@ -609,7 +609,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Suggester that first analyzes the surface form, adds the  * analyzed form to a weighted FST, and then does the same  * thing at lookup time.  This means lookup is based on the  * analyzed form while suggestions are still the surface  * form(s).  *  *<p>  * This can result in powerful suggester functionality.  For  * example, if you use an analyzer removing stop words,   * then the partial text "ghost chr..." could see the  * suggestion "The Ghost of Christmas Past". Note that  * position increments MUST NOT be preserved for this example  * to work, so you should call  * {@link #setPreservePositionIncrements(boolean) setPreservePositionIncrements(false)}.  *  *<p>  * If SynonymFilter is used to map wifi and wireless network to  * hotspot then the partial text "wirele..." could suggest  * "wifi router".  Token normalization like stemmers, accent  * removal, etc., would allow suggestions to ignore such  * variations.  *  *<p>  * When two matching suggestions have the same weight, they  * are tie-broken by the analyzed form.  If their analyzed  * form is the same then the order is undefined.  *  *<p>  * There are some limitations:  *<ul>  *  *<li> A lookup from a query like "net" in English won't  *        be any different than "net " (ie, user added a  *        trailing space) because analyzers don't reflect  *        when they've seen a token separator and when they  *        haven't.  *  *<li> If you're using {@code StopFilter}, and the user will  *        type "fast apple", but so far all they've typed is  *        "fast a", again because the analyzer doesn't convey whether  *        it's seen a token separator after the "a",  *        {@code StopFilter} will remove that "a" causing  *        far more matches than you'd expect.  *  *<li> Lookups with the empty string return no results  *        instead of all results.  *</ul>  *   * @lucene.experimental  */
+comment|/**  * Suggester that first analyzes the surface form, adds the  * analyzed form to a weighted FST, and then does the same  * thing at lookup time.  This means lookup is based on the  * analyzed form while suggestions are still the surface  * form(s).  *  *<p>  * This can result in powerful suggester functionality.  For  * example, if you use an analyzer removing stop words,   * then the partial text "ghost chr..." could see the  * suggestion "The Ghost of Christmas Past". Note that  * position increments MUST NOT be preserved for this example  * to work, so you should call the constructor with   *<code>preservePositionIncrements</code> parameter set to   * false  *  *<p>  * If SynonymFilter is used to map wifi and wireless network to  * hotspot then the partial text "wirele..." could suggest  * "wifi router".  Token normalization like stemmers, accent  * removal, etc., would allow suggestions to ignore such  * variations.  *  *<p>  * When two matching suggestions have the same weight, they  * are tie-broken by the analyzed form.  If their analyzed  * form is the same then the order is undefined.  *  *<p>  * There are some limitations:  *<ul>  *  *<li> A lookup from a query like "net" in English won't  *        be any different than "net " (ie, user added a  *        trailing space) because analyzers don't reflect  *        when they've seen a token separator and when they  *        haven't.  *  *<li> If you're using {@code StopFilter}, and the user will  *        type "fast apple", but so far all they've typed is  *        "fast a", again because the analyzer doesn't convey whether  *        it's seen a token separator after the "a",  *        {@code StopFilter} will remove that "a" causing  *        far more matches than you'd expect.  *  *<li> Lookups with the empty string return no results  *        instead of all results.  *</ul>  *   * @lucene.experimental  */
 end_comment
 
 begin_class
@@ -664,7 +664,7 @@ specifier|final
 name|boolean
 name|preserveSep
 decl_stmt|;
-comment|/** Include this flag in the options parameter to {@link    *  #AnalyzingSuggester(Analyzer,Analyzer,int,int,int)} to always    *  return the exact match first, regardless of score.  This    *  has no performance impact but could result in    *  low-quality suggestions. */
+comment|/** Include this flag in the options parameter to {@link    *  #AnalyzingSuggester(Analyzer,Analyzer,int,int,int,boolean)} to always    *  return the exact match first, regardless of score.  This    *  has no performance impact but could result in    *  low-quality suggestions. */
 DECL|field|EXACT_FIRST
 specifier|public
 specifier|static
@@ -674,7 +674,7 @@ name|EXACT_FIRST
 init|=
 literal|1
 decl_stmt|;
-comment|/** Include this flag in the options parameter to {@link    *  #AnalyzingSuggester(Analyzer,Analyzer,int,int,int)} to preserve    *  token separators when matching. */
+comment|/** Include this flag in the options parameter to {@link    *  #AnalyzingSuggester(Analyzer,Analyzer,int,int,int,boolean)} to preserve    *  token separators when matching. */
 DECL|field|PRESERVE_SEP
 specifier|public
 specifier|static
@@ -744,7 +744,7 @@ specifier|private
 name|boolean
 name|preservePositionIncrements
 decl_stmt|;
-comment|/**    * Calls {@link #AnalyzingSuggester(Analyzer,Analyzer,int,int,int)    * AnalyzingSuggester(analyzer, analyzer, EXACT_FIRST |    * PRESERVE_SEP, 256, -1)}    */
+comment|/**    * Calls {@link #AnalyzingSuggester(Analyzer,Analyzer,int,int,int,boolean)    * AnalyzingSuggester(analyzer, analyzer, EXACT_FIRST |    * PRESERVE_SEP, 256, -1, false)}    */
 DECL|method|AnalyzingSuggester
 specifier|public
 name|AnalyzingSuggester
@@ -767,10 +767,12 @@ literal|256
 argument_list|,
 operator|-
 literal|1
+argument_list|,
+literal|false
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**    * Calls {@link #AnalyzingSuggester(Analyzer,Analyzer,int,int,int)    * AnalyzingSuggester(indexAnalyzer, queryAnalyzer, EXACT_FIRST |    * PRESERVE_SEP, 256, -1)}    */
+comment|/**    * Calls {@link #AnalyzingSuggester(Analyzer,Analyzer,int,int,int,boolean)    * AnalyzingSuggester(indexAnalyzer, queryAnalyzer, EXACT_FIRST |    * PRESERVE_SEP, 256, -1, false)}    */
 DECL|method|AnalyzingSuggester
 specifier|public
 name|AnalyzingSuggester
@@ -796,10 +798,12 @@ literal|256
 argument_list|,
 operator|-
 literal|1
+argument_list|,
+literal|false
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**    * Creates a new suggester.    *     * @param indexAnalyzer Analyzer that will be used for    *   analyzing suggestions while building the index.    * @param queryAnalyzer Analyzer that will be used for    *   analyzing query text during lookup    * @param options see {@link #EXACT_FIRST}, {@link #PRESERVE_SEP}    * @param maxSurfaceFormsPerAnalyzedForm Maximum number of    *   surface forms to keep for a single analyzed form.    *   When there are too many surface forms we discard the    *   lowest weighted ones.    * @param maxGraphExpansions Maximum number of graph paths    *   to expand from the analyzed form.  Set this to -1 for    *   no limit.    */
+comment|/**    * Creates a new suggester.    *     * @param indexAnalyzer Analyzer that will be used for    *   analyzing suggestions while building the index.    * @param queryAnalyzer Analyzer that will be used for    *   analyzing query text during lookup    * @param options see {@link #EXACT_FIRST}, {@link #PRESERVE_SEP}    * @param maxSurfaceFormsPerAnalyzedForm Maximum number of    *   surface forms to keep for a single analyzed form.    *   When there are too many surface forms we discard the    *   lowest weighted ones.    * @param maxGraphExpansions Maximum number of graph paths    *   to expand from the analyzed form.  Set this to -1 for    *   no limit.    * @param preservePositionIncrements Whether position holes    *   should appear in the automata    */
 DECL|method|AnalyzingSuggester
 specifier|public
 name|AnalyzingSuggester
@@ -818,6 +822,9 @@ name|maxSurfaceFormsPerAnalyzedForm
 parameter_list|,
 name|int
 name|maxGraphExpansions
+parameter_list|,
+name|boolean
+name|preservePositionIncrements
 parameter_list|)
 block|{
 name|this
@@ -945,21 +952,6 @@ name|maxGraphExpansions
 operator|=
 name|maxGraphExpansions
 expr_stmt|;
-name|preservePositionIncrements
-operator|=
-literal|true
-expr_stmt|;
-block|}
-comment|/** Whether to take position holes (position increment> 1) into account when    *  building the automaton,<code>true</code> by default. */
-DECL|method|setPreservePositionIncrements
-specifier|public
-name|void
-name|setPreservePositionIncrements
-parameter_list|(
-name|boolean
-name|preservePositionIncrements
-parameter_list|)
-block|{
 name|this
 operator|.
 name|preservePositionIncrements
