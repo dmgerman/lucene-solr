@@ -60,6 +60,20 @@ begin_import
 import|import
 name|org
 operator|.
+name|apache
+operator|.
+name|solr
+operator|.
+name|util
+operator|.
+name|DefaultSolrThreadFactory
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
 name|junit
 operator|.
 name|Before
@@ -2531,6 +2545,12 @@ operator|.
 name|newFixedThreadPool
 argument_list|(
 name|MAX_CONCURENT
+argument_list|,
+operator|new
+name|DefaultSolrThreadFactory
+argument_list|(
+literal|"TestDocBasedVersionConstraints"
+argument_list|)
 argument_list|)
 decl_stmt|;
 comment|// runner = Executors.newFixedThreadPool(1);    // to test single threaded
