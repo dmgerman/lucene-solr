@@ -40,18 +40,6 @@ name|apache
 operator|.
 name|solr
 operator|.
-name|AnalysisAfterCoreReloadTest
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|solr
-operator|.
 name|util
 operator|.
 name|RestTestBase
@@ -146,6 +134,18 @@ name|TreeMap
 import|;
 end_import
 
+begin_import
+import|import
+name|java
+operator|.
+name|util
+operator|.
+name|regex
+operator|.
+name|Pattern
+import|;
+end_import
+
 begin_class
 DECL|class|TestManagedSchemaFieldResource
 specifier|public
@@ -154,6 +154,38 @@ name|TestManagedSchemaFieldResource
 extends|extends
 name|RestTestBase
 block|{
+DECL|field|tmpSolrHome
+specifier|private
+specifier|static
+name|File
+name|tmpSolrHome
+decl_stmt|;
+DECL|field|tmpConfDir
+specifier|private
+specifier|static
+name|File
+name|tmpConfDir
+decl_stmt|;
+DECL|field|collection
+specifier|private
+specifier|static
+specifier|final
+name|String
+name|collection
+init|=
+literal|"collection1"
+decl_stmt|;
+DECL|field|confDir
+specifier|private
+specifier|static
+specifier|final
+name|String
+name|confDir
+init|=
+name|collection
+operator|+
+literal|"/conf"
+decl_stmt|;
 annotation|@
 name|Before
 DECL|method|before
@@ -167,16 +199,18 @@ block|{
 name|createTempDir
 argument_list|()
 expr_stmt|;
-name|String
 name|tmpSolrHome
-init|=
+operator|=
+operator|new
+name|File
+argument_list|(
 name|TEMP_DIR
 operator|+
 name|File
 operator|.
 name|separator
 operator|+
-name|AnalysisAfterCoreReloadTest
+name|TestManagedSchemaFieldResource
 operator|.
 name|class
 operator|.
@@ -187,7 +221,18 @@ name|System
 operator|.
 name|currentTimeMillis
 argument_list|()
-decl_stmt|;
+argument_list|)
+expr_stmt|;
+name|tmpConfDir
+operator|=
+operator|new
+name|File
+argument_list|(
+name|tmpSolrHome
+argument_list|,
+name|confDir
+argument_list|)
+expr_stmt|;
 name|FileUtils
 operator|.
 name|copyDirectory
@@ -199,11 +244,7 @@ name|TEST_HOME
 argument_list|()
 argument_list|)
 argument_list|,
-operator|new
-name|File
-argument_list|(
 name|tmpSolrHome
-argument_list|)
 operator|.
 name|getAbsoluteFile
 argument_list|()
@@ -281,6 +322,9 @@ expr_stmt|;
 name|createJettyAndHarness
 argument_list|(
 name|tmpSolrHome
+operator|.
+name|getAbsolutePath
+argument_list|()
 argument_list|,
 literal|"solrconfig-managed-schema.xml"
 argument_list|,
@@ -346,7 +390,7 @@ literal|"/schema/fields/newfield"
 argument_list|,
 name|json
 argument_list|(
-literal|"{'type':'not_in_there_at_all','stored':'false'}"
+literal|"{'type':'not_in_there_at_all','stored':false}"
 argument_list|)
 argument_list|,
 literal|"/error/msg==\"Field \\'newfield\\': Field type \\'not_in_there_at_all\\' not found.\""
@@ -369,7 +413,7 @@ literal|"/schema/fields/newfield"
 argument_list|,
 name|json
 argument_list|(
-literal|"{'name':'something_else','type':'text','stored':'false'}"
+literal|"{'name':'something_else','type':'text','stored':false}"
 argument_list|)
 argument_list|,
 literal|"/error/msg=='///regex:newfield///'"
@@ -392,7 +436,7 @@ literal|"/schema/fields/newfield"
 argument_list|,
 name|json
 argument_list|(
-literal|"{'type':'text','no_property_with_this_name':'false'}"
+literal|"{'type':'text','no_property_with_this_name':false}"
 argument_list|)
 argument_list|,
 literal|"/error/msg==\"java.lang.IllegalArgumentException: Invalid field property: no_property_with_this_name\""
@@ -426,7 +470,7 @@ literal|"/schema/fields/newfield"
 argument_list|,
 name|json
 argument_list|(
-literal|"{'type':'text','stored':'false'}"
+literal|"{'type':'text','stored':false}"
 argument_list|)
 argument_list|,
 literal|"/responseHeader/status==0"
@@ -477,6 +521,465 @@ expr_stmt|;
 block|}
 annotation|@
 name|Test
+DECL|method|testAddFieldWithMulipleOptions
+specifier|public
+name|void
+name|testAddFieldWithMulipleOptions
+parameter_list|()
+throws|throws
+name|Exception
+block|{
+name|assertQ
+argument_list|(
+literal|"/schema/fields/newfield?indent=on&wt=xml"
+argument_list|,
+literal|"count(/response/lst[@name='field']) = 0"
+argument_list|,
+literal|"/response/lst[@name='responseHeader']/int[@name='status'] = '404'"
+argument_list|,
+literal|"/response/lst[@name='error']/int[@name='code'] = '404'"
+argument_list|)
+expr_stmt|;
+name|assertJPut
+argument_list|(
+literal|"/schema/fields/newfield"
+argument_list|,
+name|json
+argument_list|(
+literal|"{'type':'text_en','stored':true,'indexed':false}"
+argument_list|)
+argument_list|,
+literal|"/responseHeader/status==0"
+argument_list|)
+expr_stmt|;
+name|File
+name|managedSchemaFile
+init|=
+operator|new
+name|File
+argument_list|(
+name|tmpConfDir
+argument_list|,
+literal|"managed-schema"
+argument_list|)
+decl_stmt|;
+name|assertTrue
+argument_list|(
+name|managedSchemaFile
+operator|.
+name|exists
+argument_list|()
+argument_list|)
+expr_stmt|;
+name|String
+name|managedSchemaContents
+init|=
+name|FileUtils
+operator|.
+name|readFileToString
+argument_list|(
+name|managedSchemaFile
+argument_list|,
+literal|"UTF-8"
+argument_list|)
+decl_stmt|;
+name|Pattern
+name|newfieldStoredTrueIndexedFalsePattern
+init|=
+name|Pattern
+operator|.
+name|compile
+argument_list|(
+literal|"<field name=\"newfield\" type=\"text_en\" "
+operator|+
+literal|"(?=.*stored=\"true\")(?=.*indexed=\"false\").*/>"
+argument_list|)
+decl_stmt|;
+name|assertTrue
+argument_list|(
+name|newfieldStoredTrueIndexedFalsePattern
+operator|.
+name|matcher
+argument_list|(
+name|managedSchemaContents
+argument_list|)
+operator|.
+name|find
+argument_list|()
+argument_list|)
+expr_stmt|;
+name|assertQ
+argument_list|(
+literal|"/schema/fields/newfield?indent=on&wt=xml"
+argument_list|,
+literal|"count(/response/lst[@name='field']) = 1"
+argument_list|,
+literal|"/response/lst[@name='responseHeader']/int[@name='status'] = '0'"
+argument_list|,
+literal|"/response/lst[@name='field']/str[@name='name'] = 'newfield'"
+argument_list|,
+literal|"/response/lst[@name='field']/str[@name='type'] = 'text_en'"
+argument_list|,
+literal|"/response/lst[@name='field']/bool[@name='indexed'] = 'false'"
+argument_list|,
+literal|"/response/lst[@name='field']/bool[@name='stored'] = 'true'"
+argument_list|)
+expr_stmt|;
+name|assertU
+argument_list|(
+name|adoc
+argument_list|(
+literal|"newfield"
+argument_list|,
+literal|"value1 value2"
+argument_list|,
+literal|"id"
+argument_list|,
+literal|"1234"
+argument_list|)
+argument_list|)
+expr_stmt|;
+name|assertU
+argument_list|(
+name|commit
+argument_list|()
+argument_list|)
+expr_stmt|;
+name|assertQ
+argument_list|(
+literal|"/schema/fields/newfield2?indent=on&wt=xml"
+argument_list|,
+literal|"count(/response/lst[@name='field']) = 0"
+argument_list|,
+literal|"/response/lst[@name='responseHeader']/int[@name='status'] = '404'"
+argument_list|,
+literal|"/response/lst[@name='error']/int[@name='code'] = '404'"
+argument_list|)
+expr_stmt|;
+name|assertJPut
+argument_list|(
+literal|"/schema/fields/newfield2"
+argument_list|,
+name|json
+argument_list|(
+literal|"{'type':'text_en','stored':true,'indexed':true,'multiValued':true}"
+argument_list|)
+argument_list|,
+literal|"/responseHeader/status==0"
+argument_list|)
+expr_stmt|;
+name|managedSchemaContents
+operator|=
+name|FileUtils
+operator|.
+name|readFileToString
+argument_list|(
+name|managedSchemaFile
+argument_list|,
+literal|"UTF-8"
+argument_list|)
+expr_stmt|;
+name|Pattern
+name|newfield2StoredTrueIndexedTrueMultiValuedTruePattern
+init|=
+name|Pattern
+operator|.
+name|compile
+argument_list|(
+literal|"<field name=\"newfield2\" type=\"text_en\" "
+operator|+
+literal|"(?=.*stored=\"true\")(?=.*indexed=\"true\")(?=multiValued=\"true\").*/>"
+argument_list|)
+decl_stmt|;
+name|assertTrue
+argument_list|(
+name|newfield2StoredTrueIndexedTrueMultiValuedTruePattern
+operator|.
+name|matcher
+argument_list|(
+name|managedSchemaContents
+argument_list|)
+operator|.
+name|find
+argument_list|()
+argument_list|)
+expr_stmt|;
+name|assertQ
+argument_list|(
+literal|"/schema/fields/newfield2?indent=on&wt=xml"
+argument_list|,
+literal|"count(/response/lst[@name='field']) = 1"
+argument_list|,
+literal|"/response/lst[@name='responseHeader']/int[@name='status'] = '0'"
+argument_list|,
+literal|"/response/lst[@name='field']/str[@name='name'] = 'newfield2'"
+argument_list|,
+literal|"/response/lst[@name='field']/str[@name='type'] = 'text_en'"
+argument_list|,
+literal|"/response/lst[@name='field']/bool[@name='indexed'] = 'true'"
+argument_list|,
+literal|"/response/lst[@name='field']/bool[@name='stored'] = 'true'"
+argument_list|,
+literal|"/response/lst[@name='field']/bool[@name='multiValued'] = 'true'"
+argument_list|)
+expr_stmt|;
+name|assertU
+argument_list|(
+name|adoc
+argument_list|(
+literal|"newfield2"
+argument_list|,
+literal|"value1 value2"
+argument_list|,
+literal|"newfield2"
+argument_list|,
+literal|"value3 value4"
+argument_list|,
+literal|"id"
+argument_list|,
+literal|"5678"
+argument_list|)
+argument_list|)
+expr_stmt|;
+name|assertU
+argument_list|(
+name|commit
+argument_list|()
+argument_list|)
+expr_stmt|;
+name|assertQ
+argument_list|(
+literal|"/select?q=newfield2:value3"
+argument_list|,
+literal|"/response/lst[@name='responseHeader']/int[@name='status'] = '0'"
+argument_list|,
+literal|"/response/result[@name='response'][@numFound='1']"
+argument_list|,
+literal|"count(/response/result[@name='response']/doc) = 1"
+argument_list|,
+literal|"/response/result[@name='response']/doc/str[@name='id'][.='5678']"
+argument_list|)
+expr_stmt|;
+block|}
+annotation|@
+name|Test
+DECL|method|testAddFieldCollectionWithMultipleOptions
+specifier|public
+name|void
+name|testAddFieldCollectionWithMultipleOptions
+parameter_list|()
+throws|throws
+name|Exception
+block|{
+name|assertQ
+argument_list|(
+literal|"/schema/fields?indent=on&wt=xml"
+argument_list|,
+literal|"count(/response/arr[@name='fields']/lst/str[@name])> 0"
+argument_list|,
+comment|// there are fields
+literal|"count(/response/arr[@name='fields']/lst/str[starts-with(@name,'newfield')]) = 0"
+argument_list|)
+expr_stmt|;
+comment|// but none named newfield*
+name|assertJPost
+argument_list|(
+literal|"/schema/fields"
+argument_list|,
+name|json
+argument_list|(
+literal|"[{'name':'newfield','type':'text_en','stored':true,'indexed':false}]"
+argument_list|)
+argument_list|,
+literal|"/responseHeader/status==0"
+argument_list|)
+expr_stmt|;
+name|File
+name|managedSchemaFile
+init|=
+operator|new
+name|File
+argument_list|(
+name|tmpConfDir
+argument_list|,
+literal|"managed-schema"
+argument_list|)
+decl_stmt|;
+name|assertTrue
+argument_list|(
+name|managedSchemaFile
+operator|.
+name|exists
+argument_list|()
+argument_list|)
+expr_stmt|;
+name|String
+name|managedSchemaContents
+init|=
+name|FileUtils
+operator|.
+name|readFileToString
+argument_list|(
+name|managedSchemaFile
+argument_list|,
+literal|"UTF-8"
+argument_list|)
+decl_stmt|;
+name|Pattern
+name|newfieldStoredTrueIndexedFalsePattern
+init|=
+name|Pattern
+operator|.
+name|compile
+argument_list|(
+literal|"<field name=\"newfield\" type=\"text_en\" "
+operator|+
+literal|"(?=.*stored=\"true\")(?=.*indexed=\"false\").*/>"
+argument_list|)
+decl_stmt|;
+name|assertTrue
+argument_list|(
+name|newfieldStoredTrueIndexedFalsePattern
+operator|.
+name|matcher
+argument_list|(
+name|managedSchemaContents
+argument_list|)
+operator|.
+name|find
+argument_list|()
+argument_list|)
+expr_stmt|;
+name|assertQ
+argument_list|(
+literal|"/schema/fields?indent=on&wt=xml"
+argument_list|,
+literal|"/response/arr[@name='fields']/lst"
+operator|+
+literal|"[str[@name='name']='newfield' and str[@name='type']='text_en'"
+operator|+
+literal|" and bool[@name='stored']='true' and bool[@name='indexed']='false']"
+argument_list|)
+expr_stmt|;
+name|assertU
+argument_list|(
+name|adoc
+argument_list|(
+literal|"newfield"
+argument_list|,
+literal|"value1 value2"
+argument_list|,
+literal|"id"
+argument_list|,
+literal|"789"
+argument_list|)
+argument_list|)
+expr_stmt|;
+name|assertU
+argument_list|(
+name|commit
+argument_list|()
+argument_list|)
+expr_stmt|;
+name|assertJPost
+argument_list|(
+literal|"/schema/fields"
+argument_list|,
+name|json
+argument_list|(
+literal|"[{'name':'newfield2','type':'text_en','stored':true,'indexed':true,'multiValued':true}]"
+argument_list|)
+argument_list|,
+literal|"/responseHeader/status==0"
+argument_list|)
+expr_stmt|;
+name|managedSchemaContents
+operator|=
+name|FileUtils
+operator|.
+name|readFileToString
+argument_list|(
+name|managedSchemaFile
+argument_list|,
+literal|"UTF-8"
+argument_list|)
+expr_stmt|;
+name|Pattern
+name|newfield2StoredTrueIndexedTrueMultiValuedTruePattern
+init|=
+name|Pattern
+operator|.
+name|compile
+argument_list|(
+literal|"<field name=\"newfield2\" type=\"text_en\" "
+operator|+
+literal|"(?=.*stored=\"true\")(?=.*indexed=\"true\")(?=multiValued=\"true\").*/>"
+argument_list|)
+decl_stmt|;
+name|assertTrue
+argument_list|(
+name|newfield2StoredTrueIndexedTrueMultiValuedTruePattern
+operator|.
+name|matcher
+argument_list|(
+name|managedSchemaContents
+argument_list|)
+operator|.
+name|find
+argument_list|()
+argument_list|)
+expr_stmt|;
+name|assertQ
+argument_list|(
+literal|"/schema/fields?indent=on&wt=xml"
+argument_list|,
+literal|"/response/arr[@name='fields']/lst"
+operator|+
+literal|"[str[@name='name']='newfield2' and str[@name='type']='text_en'"
+operator|+
+literal|" and bool[@name='stored']='true' and bool[@name='indexed']='true' and bool[@name='multiValued']='true']"
+argument_list|)
+expr_stmt|;
+name|assertU
+argument_list|(
+name|adoc
+argument_list|(
+literal|"newfield2"
+argument_list|,
+literal|"value1 value2"
+argument_list|,
+literal|"newfield2"
+argument_list|,
+literal|"value3 value4"
+argument_list|,
+literal|"id"
+argument_list|,
+literal|"790"
+argument_list|)
+argument_list|)
+expr_stmt|;
+name|assertU
+argument_list|(
+name|commit
+argument_list|()
+argument_list|)
+expr_stmt|;
+name|assertQ
+argument_list|(
+literal|"/select?q=newfield2:value3"
+argument_list|,
+literal|"/response/lst[@name='responseHeader']/int[@name='status'] = '0'"
+argument_list|,
+literal|"/response/result[@name='response'][@numFound='1']"
+argument_list|,
+literal|"count(/response/result[@name='response']/doc) = 1"
+argument_list|,
+literal|"/response/result[@name='response']/doc/str[@name='id'][.='790']"
+argument_list|)
+expr_stmt|;
+block|}
+annotation|@
+name|Test
 DECL|method|testAddCopyField
 specifier|public
 name|void
@@ -500,7 +1003,10 @@ name|assertJPut
 argument_list|(
 literal|"/schema/fields/fieldA"
 argument_list|,
-literal|"{\"type\":\"text\",\"stored\":\"false\"}"
+name|json
+argument_list|(
+literal|"{'type':'text','stored':false}"
+argument_list|)
 argument_list|,
 literal|"/responseHeader/status==0"
 argument_list|)
@@ -509,7 +1015,10 @@ name|assertJPut
 argument_list|(
 literal|"/schema/fields/fieldB"
 argument_list|,
-literal|"{\"type\":\"text\",\"stored\":\"false\", \"copyFields\":[\"fieldA\"]}"
+name|json
+argument_list|(
+literal|"{'type':'text','stored':false, 'copyFields':['fieldA']}"
+argument_list|)
 argument_list|,
 literal|"/responseHeader/status==0"
 argument_list|)
@@ -518,7 +1027,10 @@ name|assertJPut
 argument_list|(
 literal|"/schema/fields/fieldC"
 argument_list|,
-literal|"{\"type\":\"text\",\"stored\":\"false\", \"copyFields\":\"fieldA\"}"
+name|json
+argument_list|(
+literal|"{'type':'text','stored':false, 'copyFields':'fieldA'}"
+argument_list|)
 argument_list|,
 literal|"/responseHeader/status==0"
 argument_list|)
@@ -551,7 +1063,10 @@ name|assertJPut
 argument_list|(
 literal|"/schema/fields/fieldD"
 argument_list|,
-literal|"{\"type\":\"text\",\"stored\":\"false\", \"copyFields\":[]}"
+name|json
+argument_list|(
+literal|"{'type':'text','stored':false, 'copyFields':[]}"
+argument_list|)
 argument_list|,
 literal|"/responseHeader/status==0"
 argument_list|)
@@ -561,7 +1076,10 @@ name|assertJPut
 argument_list|(
 literal|"/schema/fields/fieldF"
 argument_list|,
-literal|"{\"type\":\"text\",\"stored\":\"false\", \"copyFields\":[\"some_nonexistent_field_ignore_exception\"]}"
+name|json
+argument_list|(
+literal|"{'type':'text','stored':false, 'copyFields':['some_nonexistent_field_ignore_exception']}"
+argument_list|)
 argument_list|,
 literal|"/error/msg==\"copyField dest :\\'some_nonexistent_field_ignore_exception\\' is not an explicit field and doesn\\'t match a dynamicField.\""
 argument_list|)
@@ -603,9 +1121,12 @@ name|assertJPost
 argument_list|(
 literal|"/schema/fields"
 argument_list|,
-literal|"[{\"name\":\"newfield1\",\"type\":\"text\",\"stored\":\"false\"},"
+name|json
+argument_list|(
+literal|"[{'name':'newfield1','type':'text','stored':false},"
 operator|+
-literal|" {\"name\":\"newfield2\",\"type\":\"text\",\"stored\":\"false\"}]"
+literal|" {'name':'newfield2','type':'text','stored':false}]"
+argument_list|)
 argument_list|,
 literal|"/responseHeader/status==0"
 argument_list|)
@@ -705,11 +1226,11 @@ literal|"/schema/fields"
 argument_list|,
 name|json
 argument_list|(
-literal|"[{'name':'fieldA','type':'text','stored':'false'},"
+literal|"[{'name':'fieldA','type':'text','stored':false},"
 operator|+
-literal|" {'name':'fieldB','type':'text','stored':'false'},"
+literal|" {'name':'fieldB','type':'text','stored':false},"
 operator|+
-literal|" {'name':'fieldC','type':'text','stored':'false', 'copyFields':['fieldB']}]"
+literal|" {'name':'fieldC','type':'text','stored':false, 'copyFields':['fieldB']}]"
 argument_list|)
 argument_list|,
 literal|"/responseHeader/status==0"
@@ -726,17 +1247,18 @@ name|assertJPost
 argument_list|(
 literal|"/schema/fields"
 argument_list|,
-literal|"[{\"name\":\"fieldD\",\"type\":\"text\",\"stored\":\"false\"},"
+name|json
+argument_list|(
+literal|"[{'name':'fieldD','type':'text','stored':false},"
 operator|+
-literal|"{\"name\":\"fieldE\",\"type\":\"text\",\"stored\":\"false\"},"
+literal|" {'name':'fieldE','type':'text','stored':false},"
 operator|+
-literal|" {\"name\":\"fieldF\",\"type\":\"text\",\"stored\":\"false\", \"copyFields\":[\"fieldD\",\"fieldE\"]},"
+literal|" {'name':'fieldF','type':'text','stored':false, 'copyFields':['fieldD','fieldE']},"
 operator|+
-literal|" {\"name\":\"fieldG\",\"type\":\"text\",\"stored\":\"false\", \"copyFields\":\"fieldD\"}"
-comment|//single
-operator|+
-literal|"]"
+literal|" {'name':'fieldG','type':'text','stored':false, 'copyFields':'fieldD'}]"
+argument_list|)
 argument_list|,
+comment|//single
 literal|"/responseHeader/status==0"
 argument_list|)
 expr_stmt|;
@@ -752,11 +1274,14 @@ name|assertJPost
 argument_list|(
 literal|"/schema/fields"
 argument_list|,
-literal|"[{\"name\":\"fieldX\",\"type\":\"text\",\"stored\":\"false\"},"
+name|json
+argument_list|(
+literal|"[{'name':'fieldX','type':'text','stored':false},"
 operator|+
-literal|"{\"name\":\"fieldY\",\"type\":\"text\",\"stored\":\"false\"},"
+literal|" {'name':'fieldY','type':'text','stored':false},"
 operator|+
-literal|" {\"name\":\"fieldZ\",\"type\":\"text\",\"stored\":\"false\", \"copyFields\":[]}]"
+literal|" {'name':'fieldZ','type':'text','stored':false, 'copyFields':[]}]"
+argument_list|)
 argument_list|,
 literal|"/responseHeader/status==0"
 argument_list|)
@@ -766,13 +1291,16 @@ name|assertJPost
 argument_list|(
 literal|"/schema/fields"
 argument_list|,
-literal|"[{\"name\":\"fieldH\",\"type\":\"text\",\"stored\":\"false\"},"
+name|json
+argument_list|(
+literal|"[{'name':'fieldH','type':'text','stored':false},"
 operator|+
-literal|"{\"name\":\"fieldI\",\"type\":\"text\",\"stored\":\"false\"},"
+literal|" {'name':'fieldI','type':'text','stored':false},"
 operator|+
-literal|" {\"name\":\"fieldJ\",\"type\":\"text\",\"stored\":\"false\", \"copyFields\":[\"some_nonexistent_field_ignore_exception\"]}]"
+literal|" {'name':'fieldJ','type':'text','stored':false, 'copyFields':['some_nonexistent_field_ignore_exception']}]"
+argument_list|)
 argument_list|,
-literal|"/error/msg==\"copyField dest :\\'some_nonexistent_field_ignore_exception\\' is not an explicit field and doesn\\'t match a dynamicField.\""
+literal|"/error/msg=='copyField dest :\\'some_nonexistent_field_ignore_exception\\' is not an explicit field and doesn\\'t match a dynamicField.'"
 argument_list|)
 expr_stmt|;
 block|}
@@ -790,15 +1318,18 @@ name|assertJPost
 argument_list|(
 literal|"/schema/fields"
 argument_list|,
-literal|"[{\"name\":\"fieldA\",\"type\":\"text\",\"stored\":\"false\"},"
+name|json
+argument_list|(
+literal|"[{'name':'fieldA','type':'text','stored':false},"
 operator|+
-literal|"{\"name\":\"fieldB\",\"type\":\"text\",\"stored\":\"false\"},"
+literal|" {'name':'fieldB','type':'text','stored':false},"
 operator|+
-literal|"{\"name\":\"fieldC\",\"type\":\"text\",\"stored\":\"false\"},"
+literal|" {'name':'fieldC','type':'text','stored':false},"
 operator|+
-literal|"{\"name\":\"fieldD\",\"type\":\"text\",\"stored\":\"false\"},"
+literal|" {'name':'fieldD','type':'text','stored':false},"
 operator|+
-literal|" {\"name\":\"fieldE\",\"type\":\"text\",\"stored\":\"false\"}]"
+literal|" {'name':'fieldE','type':'text','stored':false}]"
+argument_list|)
 argument_list|,
 literal|"/responseHeader/status==0"
 argument_list|)
@@ -807,7 +1338,12 @@ name|assertJPost
 argument_list|(
 literal|"/schema/copyfields"
 argument_list|,
-literal|"[{\"source\":\"fieldA\", \"dest\":\"fieldB\"},{\"source\":\"fieldD\", \"dest\":[\"fieldC\", \"fieldE\"]}]"
+name|json
+argument_list|(
+literal|"[{'source':'fieldA', 'dest':'fieldB'},"
+operator|+
+literal|" {'source':'fieldD', 'dest':['fieldC', 'fieldE']}]"
+argument_list|)
 argument_list|,
 literal|"/responseHeader/status==0"
 argument_list|)
@@ -830,18 +1366,24 @@ name|assertJPost
 argument_list|(
 literal|"/schema/copyfields"
 argument_list|,
-literal|"[{\"source\":\"some_nonexistent_field_ignore_exception\", \"dest\":[\"fieldA\"]}]"
+name|json
+argument_list|(
+literal|"[{'source':'some_nonexistent_field_ignore_exception', 'dest':['fieldA']}]"
+argument_list|)
 argument_list|,
-literal|"/error/msg==\"copyField source :\\'some_nonexistent_field_ignore_exception\\' is not a glob and doesn\\'t match any explicit field or dynamicField.\""
+literal|"/error/msg=='copyField source :\\'some_nonexistent_field_ignore_exception\\' is not a glob and doesn\\'t match any explicit field or dynamicField.'"
 argument_list|)
 expr_stmt|;
 name|assertJPost
 argument_list|(
 literal|"/schema/copyfields"
 argument_list|,
-literal|"[{\"source\":\"fieldD\", \"dest\":[\"some_nonexistent_field_ignore_exception\"]}]"
+name|json
+argument_list|(
+literal|"[{'source':'fieldD', 'dest':['some_nonexistent_field_ignore_exception']}]"
+argument_list|)
 argument_list|,
-literal|"/error/msg==\"copyField dest :\\'some_nonexistent_field_ignore_exception\\' is not an explicit field and doesn\\'t match a dynamicField.\""
+literal|"/error/msg=='copyField dest :\\'some_nonexistent_field_ignore_exception\\' is not an explicit field and doesn\\'t match a dynamicField.'"
 argument_list|)
 expr_stmt|;
 block|}
