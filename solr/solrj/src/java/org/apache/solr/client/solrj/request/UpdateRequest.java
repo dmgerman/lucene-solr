@@ -1477,6 +1477,13 @@ argument_list|()
 decl_stmt|;
 name|urequest
 operator|.
+name|setParams
+argument_list|(
+name|params
+argument_list|)
+expr_stmt|;
+name|urequest
+operator|.
 name|deleteById
 argument_list|(
 name|deleteId
