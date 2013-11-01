@@ -2131,11 +2131,15 @@ name|ErrorCode
 operator|.
 name|BAD_REQUEST
 argument_list|,
-literal|"Invalid shard name : "
+literal|"Invalid replica : "
+operator|+
+name|replicaName
+operator|+
+literal|" in shard/collection : "
 operator|+
 name|shard
 operator|+
-literal|" in collection : "
+literal|"/"
 operator|+
 name|collectionName
 argument_list|)
