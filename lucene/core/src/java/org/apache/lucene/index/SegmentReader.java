@@ -427,7 +427,9 @@ name|dvGens
 init|=
 operator|new
 name|ArrayList
-argument_list|<>
+argument_list|<
+name|Long
+argument_list|>
 argument_list|()
 decl_stmt|;
 comment|/**    * Constructs a new SegmentReader with a new core.    * @throws CorruptIndexException if the index is corrupt    * @throws IOException if there is a low-level IO error    */
