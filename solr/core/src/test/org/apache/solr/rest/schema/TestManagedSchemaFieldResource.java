@@ -688,7 +688,7 @@ name|compile
 argument_list|(
 literal|"<field name=\"newfield2\" type=\"text_en\" "
 operator|+
-literal|"(?=.*stored=\"true\")(?=.*indexed=\"true\")(?=multiValued=\"true\").*/>"
+literal|"(?=.*stored=\"true\")(?=.*indexed=\"true\")(?=.*multiValued=\"true\").*/>"
 argument_list|)
 decl_stmt|;
 name|assertTrue
@@ -913,7 +913,7 @@ name|compile
 argument_list|(
 literal|"<field name=\"newfield2\" type=\"text_en\" "
 operator|+
-literal|"(?=.*stored=\"true\")(?=.*indexed=\"true\")(?=multiValued=\"true\").*/>"
+literal|"(?=.*stored=\"true\")(?=.*indexed=\"true\")(?=.*multiValued=\"true\").*/>"
 argument_list|)
 decl_stmt|;
 name|assertTrue
