@@ -1428,6 +1428,9 @@ parameter_list|,
 name|Integer
 name|shards
 parameter_list|,
+name|String
+name|conf
+parameter_list|,
 name|SolrServer
 name|server
 parameter_list|)
@@ -1462,6 +1465,13 @@ operator|.
 name|setNumShards
 argument_list|(
 name|shards
+argument_list|)
+expr_stmt|;
+name|req
+operator|.
+name|setConfigName
+argument_list|(
+name|conf
 argument_list|)
 expr_stmt|;
 return|return
@@ -1593,6 +1603,9 @@ parameter_list|,
 name|String
 name|shards
 parameter_list|,
+name|String
+name|conf
+parameter_list|,
 name|SolrServer
 name|server
 parameter_list|)
@@ -1627,6 +1640,13 @@ operator|.
 name|setShards
 argument_list|(
 name|shards
+argument_list|)
+expr_stmt|;
+name|req
+operator|.
+name|setConfigName
+argument_list|(
+name|conf
 argument_list|)
 expr_stmt|;
 return|return

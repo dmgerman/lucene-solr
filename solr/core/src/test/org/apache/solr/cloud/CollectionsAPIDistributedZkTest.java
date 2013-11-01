@@ -1950,6 +1950,8 @@ literal|"solrj_implicit"
 argument_list|,
 literal|"shardA,shardB"
 argument_list|,
+literal|"conf1"
+argument_list|,
 name|server
 argument_list|)
 expr_stmt|;
@@ -2159,6 +2161,8 @@ argument_list|(
 literal|"conf1"
 argument_list|,
 literal|4
+argument_list|,
+literal|"conf1"
 argument_list|,
 name|server
 argument_list|)
