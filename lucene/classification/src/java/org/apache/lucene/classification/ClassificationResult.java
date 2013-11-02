@@ -31,11 +31,13 @@ parameter_list|>
 block|{
 DECL|field|assignedClass
 specifier|private
+specifier|final
 name|T
 name|assignedClass
 decl_stmt|;
 DECL|field|score
 specifier|private
+specifier|final
 name|double
 name|score
 decl_stmt|;

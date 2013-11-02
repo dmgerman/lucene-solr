@@ -250,11 +250,13 @@ name|DatasetSplitter
 block|{
 DECL|field|crossValidationRatio
 specifier|private
+specifier|final
 name|double
 name|crossValidationRatio
 decl_stmt|;
 DECL|field|testRatio
 specifier|private
+specifier|final
 name|double
 name|testRatio
 decl_stmt|;
@@ -311,7 +313,6 @@ parameter_list|)
 throws|throws
 name|IOException
 block|{
-comment|// TODO : check that the passed fields are stored in the original index
 comment|// create IWs for train / test / cv IDXs
 name|IndexWriter
 name|testWriter
