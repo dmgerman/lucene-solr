@@ -1700,6 +1700,11 @@ literal|true
 expr_stmt|;
 name|suss
 operator|.
+name|blockUntilFinished
+argument_list|()
+expr_stmt|;
+name|suss
+operator|.
 name|shutdownNow
 argument_list|()
 expr_stmt|;
