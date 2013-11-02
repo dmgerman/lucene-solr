@@ -86,6 +86,20 @@ name|org
 operator|.
 name|apache
 operator|.
+name|lucene
+operator|.
+name|search
+operator|.
+name|MatchAllDocsQuery
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
 name|solr
 operator|.
 name|client
@@ -462,6 +476,20 @@ name|apache
 operator|.
 name|solr
 operator|.
+name|search
+operator|.
+name|SolrIndexSearcher
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|solr
+operator|.
 name|update
 operator|.
 name|CommitUpdateCommand
@@ -525,6 +553,20 @@ operator|.
 name|processor
 operator|.
 name|DistributedUpdateProcessor
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|solr
+operator|.
+name|util
+operator|.
+name|RefCounted
 import|;
 end_import
 
@@ -1053,18 +1095,132 @@ argument_list|)
 throw|;
 block|}
 comment|// solrcloud_debug
-comment|//      try {
-comment|//        RefCounted<SolrIndexSearcher> searchHolder = core.getNewestSearcher(false);
-comment|//        SolrIndexSearcher searcher = searchHolder.get();
-comment|//        try {
-comment|//          System.out.println(core.getCoreDescriptor().getCoreContainer().getZkController().getNodeName() + " replicated "
-comment|//              + searcher.search(new MatchAllDocsQuery(), 1).totalHits + " from " + leaderUrl + " gen:" + core.getDeletionPolicy().getLatestCommit().getGeneration() + " data:" + core.getDataDir());
-comment|//        } finally {
-comment|//          searchHolder.decref();
-comment|//        }
-comment|//      } catch (Exception e) {
-comment|//
-comment|//      }
+if|if
+condition|(
+name|Boolean
+operator|.
+name|getBoolean
+argument_list|(
+literal|"solr.cloud.debug"
+argument_list|)
+condition|)
+block|{
+try|try
+block|{
+name|RefCounted
+argument_list|<
+name|SolrIndexSearcher
+argument_list|>
+name|searchHolder
+init|=
+name|core
+operator|.
+name|getNewestSearcher
+argument_list|(
+literal|false
+argument_list|)
+decl_stmt|;
+name|SolrIndexSearcher
+name|searcher
+init|=
+name|searchHolder
+operator|.
+name|get
+argument_list|()
+decl_stmt|;
+try|try
+block|{
+name|System
+operator|.
+name|err
+operator|.
+name|println
+argument_list|(
+name|core
+operator|.
+name|getCoreDescriptor
+argument_list|()
+operator|.
+name|getCoreContainer
+argument_list|()
+operator|.
+name|getZkController
+argument_list|()
+operator|.
+name|getNodeName
+argument_list|()
+operator|+
+literal|" replicated "
+operator|+
+name|searcher
+operator|.
+name|search
+argument_list|(
+operator|new
+name|MatchAllDocsQuery
+argument_list|()
+argument_list|,
+literal|1
+argument_list|)
+operator|.
+name|totalHits
+operator|+
+literal|" from "
+operator|+
+name|leaderUrl
+operator|+
+literal|" gen:"
+operator|+
+name|core
+operator|.
+name|getDeletionPolicy
+argument_list|()
+operator|.
+name|getLatestCommit
+argument_list|()
+operator|.
+name|getGeneration
+argument_list|()
+operator|+
+literal|" data:"
+operator|+
+name|core
+operator|.
+name|getDataDir
+argument_list|()
+argument_list|)
+expr_stmt|;
+block|}
+finally|finally
+block|{
+name|searchHolder
+operator|.
+name|decref
+argument_list|()
+expr_stmt|;
+block|}
+block|}
+catch|catch
+parameter_list|(
+name|Exception
+name|e
+parameter_list|)
+block|{
+throw|throw
+operator|new
+name|SolrException
+argument_list|(
+name|ErrorCode
+operator|.
+name|SERVER_ERROR
+argument_list|,
+literal|null
+argument_list|,
+name|e
+argument_list|)
+throw|;
+block|}
+block|}
 block|}
 DECL|method|commitOnLeader
 specifier|private
@@ -2188,20 +2344,108 @@ name|coreName
 argument_list|)
 expr_stmt|;
 comment|// solrcloud_debug
-comment|// try {
-comment|// RefCounted<SolrIndexSearcher> searchHolder =
-comment|// core.getNewestSearcher(false);
-comment|// SolrIndexSearcher searcher = searchHolder.get();
-comment|// try {
-comment|// System.out.println(core.getCoreDescriptor().getCoreContainer().getZkController().getNodeName()
-comment|// + " synched "
-comment|// + searcher.search(new MatchAllDocsQuery(), 1).totalHits);
-comment|// } finally {
-comment|// searchHolder.decref();
-comment|// }
-comment|// } catch (Exception e) {
-comment|//
-comment|// }
+if|if
+condition|(
+name|Boolean
+operator|.
+name|getBoolean
+argument_list|(
+literal|"solr.cloud.debug"
+argument_list|)
+condition|)
+block|{
+try|try
+block|{
+name|RefCounted
+argument_list|<
+name|SolrIndexSearcher
+argument_list|>
+name|searchHolder
+init|=
+name|core
+operator|.
+name|getNewestSearcher
+argument_list|(
+literal|false
+argument_list|)
+decl_stmt|;
+name|SolrIndexSearcher
+name|searcher
+init|=
+name|searchHolder
+operator|.
+name|get
+argument_list|()
+decl_stmt|;
+try|try
+block|{
+name|System
+operator|.
+name|out
+operator|.
+name|println
+argument_list|(
+name|core
+operator|.
+name|getCoreDescriptor
+argument_list|()
+operator|.
+name|getCoreContainer
+argument_list|()
+operator|.
+name|getZkController
+argument_list|()
+operator|.
+name|getNodeName
+argument_list|()
+operator|+
+literal|" synched "
+operator|+
+name|searcher
+operator|.
+name|search
+argument_list|(
+operator|new
+name|MatchAllDocsQuery
+argument_list|()
+argument_list|,
+literal|1
+argument_list|)
+operator|.
+name|totalHits
+argument_list|)
+expr_stmt|;
+block|}
+finally|finally
+block|{
+name|searchHolder
+operator|.
+name|decref
+argument_list|()
+expr_stmt|;
+block|}
+block|}
+catch|catch
+parameter_list|(
+name|Exception
+name|e
+parameter_list|)
+block|{
+throw|throw
+operator|new
+name|SolrException
+argument_list|(
+name|ErrorCode
+operator|.
+name|SERVER_ERROR
+argument_list|,
+literal|null
+argument_list|,
+name|e
+argument_list|)
+throw|;
+block|}
+block|}
 comment|// sync success - register as active and return
 name|zkController
 operator|.
@@ -2280,7 +2524,7 @@ argument_list|)
 expr_stmt|;
 name|replay
 argument_list|(
-name|ulog
+name|core
 argument_list|)
 expr_stmt|;
 name|replayed
@@ -2721,8 +2965,8 @@ name|RecoveryInfo
 argument_list|>
 name|replay
 parameter_list|(
-name|UpdateLog
-name|ulog
+name|SolrCore
+name|core
 parameter_list|)
 throws|throws
 name|InterruptedException
@@ -2735,7 +2979,13 @@ name|RecoveryInfo
 argument_list|>
 name|future
 init|=
-name|ulog
+name|core
+operator|.
+name|getUpdateHandler
+argument_list|()
+operator|.
+name|getUpdateLog
+argument_list|()
 operator|.
 name|applyBufferedUpdates
 argument_list|()
@@ -2808,18 +3058,108 @@ throw|;
 block|}
 block|}
 comment|// solrcloud_debug
-comment|//    try {
-comment|//      RefCounted<SolrIndexSearcher> searchHolder = core.getNewestSearcher(false);
-comment|//      SolrIndexSearcher searcher = searchHolder.get();
-comment|//      try {
-comment|//        System.out.println(core.getCoreDescriptor().getCoreContainer().getZkController().getNodeName() + " replayed "
-comment|//            + searcher.search(new MatchAllDocsQuery(), 1).totalHits);
-comment|//      } finally {
-comment|//        searchHolder.decref();
-comment|//      }
-comment|//    } catch (Exception e) {
-comment|//
-comment|//    }
+if|if
+condition|(
+name|Boolean
+operator|.
+name|getBoolean
+argument_list|(
+literal|"solr.cloud.debug"
+argument_list|)
+condition|)
+block|{
+try|try
+block|{
+name|RefCounted
+argument_list|<
+name|SolrIndexSearcher
+argument_list|>
+name|searchHolder
+init|=
+name|core
+operator|.
+name|getNewestSearcher
+argument_list|(
+literal|false
+argument_list|)
+decl_stmt|;
+name|SolrIndexSearcher
+name|searcher
+init|=
+name|searchHolder
+operator|.
+name|get
+argument_list|()
+decl_stmt|;
+try|try
+block|{
+name|System
+operator|.
+name|out
+operator|.
+name|println
+argument_list|(
+name|core
+operator|.
+name|getCoreDescriptor
+argument_list|()
+operator|.
+name|getCoreContainer
+argument_list|()
+operator|.
+name|getZkController
+argument_list|()
+operator|.
+name|getNodeName
+argument_list|()
+operator|+
+literal|" replayed "
+operator|+
+name|searcher
+operator|.
+name|search
+argument_list|(
+operator|new
+name|MatchAllDocsQuery
+argument_list|()
+argument_list|,
+literal|1
+argument_list|)
+operator|.
+name|totalHits
+argument_list|)
+expr_stmt|;
+block|}
+finally|finally
+block|{
+name|searchHolder
+operator|.
+name|decref
+argument_list|()
+expr_stmt|;
+block|}
+block|}
+catch|catch
+parameter_list|(
+name|Exception
+name|e
+parameter_list|)
+block|{
+throw|throw
+operator|new
+name|SolrException
+argument_list|(
+name|ErrorCode
+operator|.
+name|SERVER_ERROR
+argument_list|,
+literal|null
+argument_list|,
+name|e
+argument_list|)
+throw|;
+block|}
+block|}
 return|return
 name|future
 return|;
