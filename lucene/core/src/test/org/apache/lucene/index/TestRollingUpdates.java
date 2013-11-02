@@ -787,7 +787,7 @@ literal|0
 decl_stmt|;
 for|for
 control|(
-name|SegmentInfoPerCommit
+name|SegmentCommitInfo
 name|sipc
 range|:
 name|infos

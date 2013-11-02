@@ -285,17 +285,16 @@ comment|// for a given segment
 end_comment
 
 begin_class
-DECL|class|ReadersAndLiveDocs
+DECL|class|ReadersAndUpdates
 class|class
-name|ReadersAndLiveDocs
+name|ReadersAndUpdates
 block|{
-comment|// TODO (DVU_RENAME) to ReaderAndUpdates
 comment|// Not final because we replace (clone) when we need to
 comment|// change it and it's been shared:
 DECL|field|info
 specifier|public
 specifier|final
-name|SegmentInfoPerCommit
+name|SegmentCommitInfo
 name|info
 decl_stmt|;
 comment|// Tracks how many consumers are using this instance:
@@ -380,14 +379,14 @@ name|NumericFieldUpdates
 argument_list|>
 argument_list|()
 decl_stmt|;
-DECL|method|ReadersAndLiveDocs
+DECL|method|ReadersAndUpdates
 specifier|public
-name|ReadersAndLiveDocs
+name|ReadersAndUpdates
 parameter_list|(
 name|IndexWriter
 name|writer
 parameter_list|,
-name|SegmentInfoPerCommit
+name|SegmentCommitInfo
 name|info
 parameter_list|)
 block|{
@@ -1082,7 +1081,6 @@ block|}
 comment|// Commit live docs (writes new _X_N.del files) and field updates (writes new
 comment|// _X_N updates files) to the directory; returns true if it wrote any file
 comment|// and false if there were no new deletes or updates to write:
-comment|// TODO (DVU_RENAME) to writeDeletesAndUpdates
 DECL|method|writeLiveDocs
 specifier|public
 specifier|synchronized

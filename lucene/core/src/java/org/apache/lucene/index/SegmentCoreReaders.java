@@ -466,7 +466,7 @@ parameter_list|,
 name|Directory
 name|dir
 parameter_list|,
-name|SegmentInfoPerCommit
+name|SegmentCommitInfo
 name|si
 parameter_list|,
 name|IOContext

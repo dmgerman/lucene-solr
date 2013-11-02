@@ -2390,7 +2390,7 @@ name|state
 operator|.
 name|dwpt
 operator|.
-name|pendingDeletes
+name|pendingUpdates
 operator|.
 name|numTermDeletes
 operator|.

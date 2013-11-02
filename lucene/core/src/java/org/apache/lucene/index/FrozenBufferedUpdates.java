@@ -76,7 +76,7 @@ name|lucene
 operator|.
 name|index
 operator|.
-name|BufferedDeletesStream
+name|BufferedUpdatesStream
 operator|.
 name|QueryAndLimit
 import|;
@@ -129,11 +129,10 @@ comment|/**  * Holds buffered deletes and updates by term or query, once pushed.
 end_comment
 
 begin_class
-DECL|class|FrozenBufferedDeletes
+DECL|class|FrozenBufferedUpdates
 class|class
-name|FrozenBufferedDeletes
+name|FrozenBufferedUpdates
 block|{
-comment|// TODO (DVU_RENAME) FrozenBufferedUpdates?
 comment|/* Query we often undercount (say 24 bytes), plus int. */
 DECL|field|BYTES_PER_DEL_QUERY
 specifier|final
@@ -209,11 +208,11 @@ decl_stmt|;
 comment|// set to true iff this frozen packet represents
 comment|// a segment private deletes. in that case is should
 comment|// only have Queries
-DECL|method|FrozenBufferedDeletes
+DECL|method|FrozenBufferedUpdates
 specifier|public
-name|FrozenBufferedDeletes
+name|FrozenBufferedUpdates
 parameter_list|(
-name|BufferedDeletes
+name|BufferedUpdates
 name|deletes
 parameter_list|,
 name|boolean

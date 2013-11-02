@@ -1126,7 +1126,7 @@ argument_list|()
 decl_stmt|;
 for|for
 control|(
-name|SegmentInfoPerCommit
+name|SegmentCommitInfo
 name|si
 range|:
 name|sis
@@ -1623,7 +1623,7 @@ operator|++
 control|)
 block|{
 specifier|final
-name|SegmentInfoPerCommit
+name|SegmentCommitInfo
 name|info
 init|=
 name|sis

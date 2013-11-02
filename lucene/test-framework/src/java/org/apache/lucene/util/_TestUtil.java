@@ -802,7 +802,7 @@ name|lucene
 operator|.
 name|index
 operator|.
-name|SegmentInfoPerCommit
+name|SegmentCommitInfo
 import|;
 end_import
 

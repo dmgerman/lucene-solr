@@ -358,7 +358,7 @@ name|dir
 decl_stmt|;
 DECL|field|seg
 specifier|private
-name|SegmentInfoPerCommit
+name|SegmentCommitInfo
 name|seg
 decl_stmt|;
 DECL|field|fieldInfos

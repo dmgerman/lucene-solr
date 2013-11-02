@@ -46,7 +46,7 @@ name|lucene
 operator|.
 name|index
 operator|.
-name|SegmentInfoPerCommit
+name|SegmentCommitInfo
 import|;
 end_import
 
@@ -159,7 +159,7 @@ parameter_list|(
 name|Directory
 name|dir
 parameter_list|,
-name|SegmentInfoPerCommit
+name|SegmentCommitInfo
 name|info
 parameter_list|,
 name|IOContext
@@ -168,7 +168,7 @@ parameter_list|)
 throws|throws
 name|IOException
 function_decl|;
-comment|/** Persist live docs bits.  Use {@link    *  SegmentInfoPerCommit#getNextDelGen} to determine the    *  generation of the deletes file you should write to. */
+comment|/** Persist live docs bits.  Use {@link    *  SegmentCommitInfo#getNextDelGen} to determine the    *  generation of the deletes file you should write to. */
 DECL|method|writeLiveDocs
 specifier|public
 specifier|abstract
@@ -181,7 +181,7 @@ parameter_list|,
 name|Directory
 name|dir
 parameter_list|,
-name|SegmentInfoPerCommit
+name|SegmentCommitInfo
 name|info
 parameter_list|,
 name|int
@@ -193,14 +193,14 @@ parameter_list|)
 throws|throws
 name|IOException
 function_decl|;
-comment|/** Records all files in use by this {@link SegmentInfoPerCommit} into the files argument. */
+comment|/** Records all files in use by this {@link SegmentCommitInfo} into the files argument. */
 DECL|method|files
 specifier|public
 specifier|abstract
 name|void
 name|files
 parameter_list|(
-name|SegmentInfoPerCommit
+name|SegmentCommitInfo
 name|info
 parameter_list|,
 name|Collection

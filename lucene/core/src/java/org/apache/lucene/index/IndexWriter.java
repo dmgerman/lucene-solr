@@ -640,7 +640,7 @@ DECL|field|rollbackSegments
 specifier|private
 name|List
 argument_list|<
-name|SegmentInfoPerCommit
+name|SegmentCommitInfo
 argument_list|>
 name|rollbackSegments
 decl_stmt|;
@@ -700,7 +700,7 @@ DECL|field|segmentsToMerge
 specifier|private
 name|Map
 argument_list|<
-name|SegmentInfoPerCommit
+name|SegmentCommitInfo
 argument_list|,
 name|Boolean
 argument_list|>
@@ -709,7 +709,7 @@ init|=
 operator|new
 name|HashMap
 argument_list|<
-name|SegmentInfoPerCommit
+name|SegmentCommitInfo
 argument_list|,
 name|Boolean
 argument_list|>
@@ -743,14 +743,14 @@ DECL|field|mergingSegments
 specifier|private
 name|HashSet
 argument_list|<
-name|SegmentInfoPerCommit
+name|SegmentCommitInfo
 argument_list|>
 name|mergingSegments
 init|=
 operator|new
 name|HashSet
 argument_list|<
-name|SegmentInfoPerCommit
+name|SegmentCommitInfo
 argument_list|>
 argument_list|()
 decl_stmt|;
@@ -859,10 +859,10 @@ operator|new
 name|ReaderPool
 argument_list|()
 decl_stmt|;
-DECL|field|bufferedDeletesStream
+DECL|field|bufferedUpdatesStream
 specifier|final
-name|BufferedDeletesStream
-name|bufferedDeletesStream
+name|BufferedUpdatesStream
+name|bufferedUpdatesStream
 decl_stmt|;
 comment|// This is a "write once" variable (like the organic dye
 comment|// on a DVD-R that may or may not be heated by a laser and
@@ -1210,18 +1210,18 @@ specifier|private
 specifier|final
 name|Map
 argument_list|<
-name|SegmentInfoPerCommit
+name|SegmentCommitInfo
 argument_list|,
-name|ReadersAndLiveDocs
+name|ReadersAndUpdates
 argument_list|>
 name|readerMap
 init|=
 operator|new
 name|HashMap
 argument_list|<
-name|SegmentInfoPerCommit
+name|SegmentCommitInfo
 argument_list|,
-name|ReadersAndLiveDocs
+name|ReadersAndUpdates
 argument_list|>
 argument_list|()
 decl_stmt|;
@@ -1232,7 +1232,7 @@ specifier|synchronized
 name|boolean
 name|infoIsLive
 parameter_list|(
-name|SegmentInfoPerCommit
+name|SegmentCommitInfo
 name|info
 parameter_list|)
 block|{
@@ -1284,14 +1284,14 @@ specifier|synchronized
 name|void
 name|drop
 parameter_list|(
-name|SegmentInfoPerCommit
+name|SegmentCommitInfo
 name|info
 parameter_list|)
 throws|throws
 name|IOException
 block|{
 specifier|final
-name|ReadersAndLiveDocs
+name|ReadersAndUpdates
 name|rld
 init|=
 name|readerMap
@@ -1339,7 +1339,7 @@ parameter_list|()
 block|{
 for|for
 control|(
-name|ReadersAndLiveDocs
+name|ReadersAndUpdates
 name|rld
 range|:
 name|readerMap
@@ -1373,7 +1373,7 @@ specifier|synchronized
 name|void
 name|release
 parameter_list|(
-name|ReadersAndLiveDocs
+name|ReadersAndUpdates
 name|rld
 parameter_list|)
 throws|throws
@@ -1393,7 +1393,7 @@ specifier|synchronized
 name|void
 name|release
 parameter_list|(
-name|ReadersAndLiveDocs
+name|ReadersAndUpdates
 name|rld
 parameter_list|,
 name|boolean
@@ -1509,9 +1509,9 @@ name|Map
 operator|.
 name|Entry
 argument_list|<
-name|SegmentInfoPerCommit
+name|SegmentCommitInfo
 argument_list|,
-name|ReadersAndLiveDocs
+name|ReadersAndUpdates
 argument_list|>
 argument_list|>
 name|it
@@ -1533,7 +1533,7 @@ argument_list|()
 condition|)
 block|{
 specifier|final
-name|ReadersAndLiveDocs
+name|ReadersAndUpdates
 name|rld
 init|=
 name|it
@@ -1698,14 +1698,14 @@ name|IOException
 block|{
 for|for
 control|(
-name|SegmentInfoPerCommit
+name|SegmentCommitInfo
 name|info
 range|:
 name|infos
 control|)
 block|{
 specifier|final
-name|ReadersAndLiveDocs
+name|ReadersAndUpdates
 name|rld
 init|=
 name|readerMap
@@ -1760,14 +1760,14 @@ block|}
 block|}
 block|}
 block|}
-comment|/**      * Obtain a ReadersAndLiveDocs instance from the      * readerPool.  If create is true, you must later call      * {@link #release(ReadersAndLiveDocs)}.      */
+comment|/**      * Obtain a ReadersAndLiveDocs instance from the      * readerPool.  If create is true, you must later call      * {@link #release(ReadersAndUpdates)}.      */
 DECL|method|get
 specifier|public
 specifier|synchronized
-name|ReadersAndLiveDocs
+name|ReadersAndUpdates
 name|get
 parameter_list|(
-name|SegmentInfoPerCommit
+name|SegmentCommitInfo
 name|info
 parameter_list|,
 name|boolean
@@ -1795,7 +1795,7 @@ literal|" vs "
 operator|+
 name|directory
 assert|;
-name|ReadersAndLiveDocs
+name|ReadersAndUpdates
 name|rld
 init|=
 name|readerMap
@@ -1825,7 +1825,7 @@ block|}
 name|rld
 operator|=
 operator|new
-name|ReadersAndLiveDocs
+name|ReadersAndUpdates
 argument_list|(
 name|IndexWriter
 operator|.
@@ -1924,7 +1924,7 @@ argument_list|()
 decl_stmt|;
 for|for
 control|(
-name|SegmentInfoPerCommit
+name|SegmentCommitInfo
 name|info
 range|:
 name|readerMap
@@ -1969,7 +1969,7 @@ specifier|public
 name|int
 name|numDeletedDocs
 parameter_list|(
-name|SegmentInfoPerCommit
+name|SegmentCommitInfo
 name|info
 parameter_list|)
 block|{
@@ -1987,7 +1987,7 @@ name|getDelCount
 argument_list|()
 decl_stmt|;
 specifier|final
-name|ReadersAndLiveDocs
+name|ReadersAndUpdates
 name|rld
 init|=
 name|readerPool
@@ -2149,10 +2149,10 @@ operator|.
 name|getCodec
 argument_list|()
 expr_stmt|;
-name|bufferedDeletesStream
+name|bufferedUpdatesStream
 operator|=
 operator|new
-name|BufferedDeletesStream
+name|BufferedUpdatesStream
 argument_list|(
 name|infoStream
 argument_list|)
@@ -2601,7 +2601,7 @@ argument_list|()
 decl_stmt|;
 for|for
 control|(
-name|SegmentInfoPerCommit
+name|SegmentCommitInfo
 name|info
 range|:
 name|segmentInfos
@@ -3339,7 +3339,7 @@ decl_stmt|;
 for|for
 control|(
 specifier|final
-name|SegmentInfoPerCommit
+name|SegmentCommitInfo
 name|info
 range|:
 name|segmentInfos
@@ -3377,7 +3377,7 @@ argument_list|()
 expr_stmt|;
 if|if
 condition|(
-name|bufferedDeletesStream
+name|bufferedUpdatesStream
 operator|.
 name|any
 argument_list|()
@@ -3414,7 +3414,7 @@ block|}
 for|for
 control|(
 specifier|final
-name|SegmentInfoPerCommit
+name|SegmentCommitInfo
 name|info
 range|:
 name|segmentInfos
@@ -3844,7 +3844,7 @@ argument_list|)
 throw|;
 block|}
 specifier|final
-name|SegmentInfoPerCommit
+name|SegmentCommitInfo
 name|info
 init|=
 operator|(
@@ -3874,7 +3874,7 @@ operator|-
 literal|1
 condition|)
 block|{
-name|ReadersAndLiveDocs
+name|ReadersAndUpdates
 name|rld
 init|=
 name|readerPool
@@ -3895,7 +3895,7 @@ condition|)
 block|{
 synchronized|synchronized
 init|(
-name|bufferedDeletesStream
+name|bufferedUpdatesStream
 init|)
 block|{
 name|rld
@@ -4665,7 +4665,7 @@ argument_list|()
 expr_stmt|;
 for|for
 control|(
-name|SegmentInfoPerCommit
+name|SegmentCommitInfo
 name|info
 range|:
 name|segmentInfos
@@ -5549,7 +5549,7 @@ specifier|public
 specifier|synchronized
 name|Collection
 argument_list|<
-name|SegmentInfoPerCommit
+name|SegmentCommitInfo
 argument_list|>
 name|getMergingSegments
 parameter_list|()
@@ -5740,7 +5740,7 @@ operator|.
 name|close
 argument_list|()
 expr_stmt|;
-name|bufferedDeletesStream
+name|bufferedUpdatesStream
 operator|.
 name|clear
 argument_list|()
@@ -6455,12 +6455,12 @@ name|changed
 argument_list|()
 expr_stmt|;
 block|}
-DECL|method|publishFrozenDeletes
+DECL|method|publishFrozenUpdates
 specifier|synchronized
 name|void
-name|publishFrozenDeletes
+name|publishFrozenUpdates
 parameter_list|(
-name|FrozenBufferedDeletes
+name|FrozenBufferedUpdates
 name|packet
 parameter_list|)
 block|{
@@ -6476,10 +6476,10 @@ argument_list|()
 assert|;
 synchronized|synchronized
 init|(
-name|bufferedDeletesStream
+name|bufferedUpdatesStream
 init|)
 block|{
-name|bufferedDeletesStream
+name|bufferedUpdatesStream
 operator|.
 name|push
 argument_list|(
@@ -6493,13 +6493,13 @@ DECL|method|publishFlushedSegment
 name|void
 name|publishFlushedSegment
 parameter_list|(
-name|SegmentInfoPerCommit
+name|SegmentCommitInfo
 name|newSegment
 parameter_list|,
-name|FrozenBufferedDeletes
+name|FrozenBufferedUpdates
 name|packet
 parameter_list|,
-name|FrozenBufferedDeletes
+name|FrozenBufferedUpdates
 name|globalPacket
 parameter_list|)
 throws|throws
@@ -6515,7 +6515,7 @@ block|{
 comment|// Lock order IW -> BDS
 synchronized|synchronized
 init|(
-name|bufferedDeletesStream
+name|bufferedUpdatesStream
 init|)
 block|{
 if|if
@@ -6550,7 +6550,7 @@ name|any
 argument_list|()
 condition|)
 block|{
-name|bufferedDeletesStream
+name|bufferedUpdatesStream
 operator|.
 name|push
 argument_list|(
@@ -6578,7 +6578,7 @@ condition|)
 block|{
 name|nextGen
 operator|=
-name|bufferedDeletesStream
+name|bufferedUpdatesStream
 operator|.
 name|push
 argument_list|(
@@ -6592,7 +6592,7 @@ comment|// Since we don't have a delete packet to apply we can get a new
 comment|// generation right away
 name|nextGen
 operator|=
-name|bufferedDeletesStream
+name|bufferedUpdatesStream
 operator|.
 name|getNextGen
 argument_list|()
@@ -6827,14 +6827,14 @@ argument_list|)
 expr_stmt|;
 name|List
 argument_list|<
-name|SegmentInfoPerCommit
+name|SegmentCommitInfo
 argument_list|>
 name|infos
 init|=
 operator|new
 name|ArrayList
 argument_list|<
-name|SegmentInfoPerCommit
+name|SegmentCommitInfo
 argument_list|>
 argument_list|()
 decl_stmt|;
@@ -6892,7 +6892,7 @@ argument_list|)
 expr_stmt|;
 for|for
 control|(
-name|SegmentInfoPerCommit
+name|SegmentCommitInfo
 name|info
 range|:
 name|sis
@@ -7054,7 +7054,7 @@ condition|)
 block|{
 for|for
 control|(
-name|SegmentInfoPerCommit
+name|SegmentCommitInfo
 name|sipc
 range|:
 name|infos
@@ -7120,7 +7120,7 @@ condition|)
 block|{
 for|for
 control|(
-name|SegmentInfoPerCommit
+name|SegmentCommitInfo
 name|sipc
 range|:
 name|infos
@@ -7433,11 +7433,11 @@ expr_stmt|;
 block|}
 block|}
 block|}
-name|SegmentInfoPerCommit
+name|SegmentCommitInfo
 name|infoPerCommit
 init|=
 operator|new
-name|SegmentInfoPerCommit
+name|SegmentCommitInfo
 argument_list|(
 name|info
 argument_list|,
@@ -7713,10 +7713,10 @@ block|}
 comment|/** Copies the segment files as-is into the IndexWriter's directory. */
 DECL|method|copySegmentAsIs
 specifier|private
-name|SegmentInfoPerCommit
+name|SegmentCommitInfo
 name|copySegmentAsIs
 parameter_list|(
-name|SegmentInfoPerCommit
+name|SegmentCommitInfo
 name|info
 parameter_list|,
 name|String
@@ -7788,11 +7788,11 @@ name|getDiagnostics
 argument_list|()
 argument_list|)
 decl_stmt|;
-name|SegmentInfoPerCommit
+name|SegmentCommitInfo
 name|newInfoPerCommit
 init|=
 operator|new
-name|SegmentInfoPerCommit
+name|SegmentCommitInfo
 argument_list|(
 name|newInfo
 argument_list|,
@@ -8516,7 +8516,7 @@ operator|.
 name|anyChanges
 argument_list|()
 operator|||
-name|bufferedDeletesStream
+name|bufferedUpdatesStream
 operator|.
 name|any
 argument_list|()
@@ -9129,7 +9129,7 @@ literal|"apply all deletes during flush"
 argument_list|)
 expr_stmt|;
 block|}
-name|applyAllDeletes
+name|applyAllDeletesAndUpdates
 argument_list|()
 expr_stmt|;
 block|}
@@ -9152,14 +9152,14 @@ literal|"IW"
 argument_list|,
 literal|"don't apply deletes now delTermCount="
 operator|+
-name|bufferedDeletesStream
+name|bufferedUpdatesStream
 operator|.
 name|numTerms
 argument_list|()
 operator|+
 literal|" bytesUsed="
 operator|+
-name|bufferedDeletesStream
+name|bufferedUpdatesStream
 operator|.
 name|bytesUsed
 argument_list|()
@@ -9167,11 +9167,11 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
-DECL|method|applyAllDeletes
+DECL|method|applyAllDeletesAndUpdates
 specifier|final
 specifier|synchronized
 name|void
-name|applyAllDeletes
+name|applyAllDeletesAndUpdates
 parameter_list|()
 throws|throws
 name|IOException
@@ -9182,16 +9182,16 @@ name|incrementAndGet
 argument_list|()
 expr_stmt|;
 specifier|final
-name|BufferedDeletesStream
+name|BufferedUpdatesStream
 operator|.
 name|ApplyDeletesResult
 name|result
 decl_stmt|;
 name|result
 operator|=
-name|bufferedDeletesStream
+name|bufferedUpdatesStream
 operator|.
-name|applyDeletes
+name|applyDeletesAndUpdates
 argument_list|(
 name|readerPool
 argument_list|,
@@ -9253,7 +9253,7 @@ expr_stmt|;
 block|}
 for|for
 control|(
-name|SegmentInfoPerCommit
+name|SegmentCommitInfo
 name|info
 range|:
 name|result
@@ -9296,7 +9296,7 @@ name|checkpoint
 argument_list|()
 expr_stmt|;
 block|}
-name|bufferedDeletesStream
+name|bufferedUpdatesStream
 operator|.
 name|prune
 argument_list|(
@@ -9323,7 +9323,7 @@ operator|.
 name|netBytes
 argument_list|()
 operator|+
-name|bufferedDeletesStream
+name|bufferedUpdatesStream
 operator|.
 name|bytesUsed
 argument_list|()
@@ -9386,7 +9386,7 @@ parameter_list|)
 block|{
 for|for
 control|(
-name|SegmentInfoPerCommit
+name|SegmentCommitInfo
 name|info
 range|:
 name|merge
@@ -9539,12 +9539,11 @@ assert|;
 block|}
 block|}
 comment|/**    * Carefully merges deletes and updates for the segments we just merged. This    * is tricky because, although merging will clear all deletes (compacts the    * documents) and compact all the updates, new deletes and updates may have    * been flushed to the segments since the merge was started. This method    * "carries over" such new deletes and updates onto the newly merged segment,    * and saves the resulting deletes and updates files (incrementing the delete    * and DV generations for merge.info). If no deletes were flushed, no new    * deletes file is saved.    */
-comment|// TODO (DVU_RENAME) to commitMergedDeletesAndUpdates
-DECL|method|commitMergedDeletes
+DECL|method|commitMergedDeletesAndUpdates
 specifier|synchronized
 specifier|private
-name|ReadersAndLiveDocs
-name|commitMergedDeletes
+name|ReadersAndUpdates
+name|commitMergedDeletesAndUpdates
 parameter_list|(
 name|MergePolicy
 operator|.
@@ -9566,7 +9565,7 @@ assert|;
 specifier|final
 name|List
 argument_list|<
-name|SegmentInfoPerCommit
+name|SegmentCommitInfo
 argument_list|>
 name|sourceSegments
 init|=
@@ -9616,12 +9615,11 @@ operator|.
 name|MAX_VALUE
 decl_stmt|;
 comment|// Lazy init (only when we find a delete to carry over):
-name|ReadersAndLiveDocs
-name|mergedDeletes
+name|ReadersAndUpdates
+name|mergedDeletesAndUpdates
 init|=
 literal|null
 decl_stmt|;
-comment|// TODO (DVU_RENAME) to mergedDeletesAndUpdates
 name|boolean
 name|initWritableLiveDocs
 init|=
@@ -9670,7 +9668,7 @@ name|i
 operator|++
 control|)
 block|{
-name|SegmentInfoPerCommit
+name|SegmentCommitInfo
 name|info
 init|=
 name|sourceSegments
@@ -9722,7 +9720,7 @@ name|getLiveDocs
 argument_list|()
 decl_stmt|;
 specifier|final
-name|ReadersAndLiveDocs
+name|ReadersAndUpdates
 name|rld
 init|=
 name|readerPool
@@ -9983,12 +9981,12 @@ condition|)
 block|{
 if|if
 condition|(
-name|mergedDeletes
+name|mergedDeletesAndUpdates
 operator|==
 literal|null
 condition|)
 block|{
-name|mergedDeletes
+name|mergedDeletesAndUpdates
 operator|=
 name|readerPool
 operator|.
@@ -10001,7 +9999,7 @@ argument_list|,
 literal|true
 argument_list|)
 expr_stmt|;
-name|mergedDeletes
+name|mergedDeletesAndUpdates
 operator|.
 name|initWritableLiveDocs
 argument_list|()
@@ -10028,7 +10026,7 @@ name|initWritableLiveDocs
 condition|)
 block|{
 comment|// mergedDeletes was initialized by field-updates changes
-name|mergedDeletes
+name|mergedDeletesAndUpdates
 operator|.
 name|initWritableLiveDocs
 argument_list|()
@@ -10038,7 +10036,7 @@ operator|=
 literal|true
 expr_stmt|;
 block|}
-name|mergedDeletes
+name|mergedDeletesAndUpdates
 operator|.
 name|delete
 argument_list|(
@@ -10120,12 +10118,12 @@ block|{
 comment|// document has an update
 if|if
 condition|(
-name|mergedDeletes
+name|mergedDeletesAndUpdates
 operator|==
 literal|null
 condition|)
 block|{
-name|mergedDeletes
+name|mergedDeletesAndUpdates
 operator|=
 name|readerPool
 operator|.
@@ -10357,12 +10355,12 @@ block|{
 comment|// document has an update
 if|if
 condition|(
-name|mergedDeletes
+name|mergedDeletesAndUpdates
 operator|==
 literal|null
 condition|)
 block|{
-name|mergedDeletes
+name|mergedDeletesAndUpdates
 operator|=
 name|readerPool
 operator|.
@@ -10595,12 +10593,12 @@ condition|)
 block|{
 if|if
 condition|(
-name|mergedDeletes
+name|mergedDeletesAndUpdates
 operator|==
 literal|null
 condition|)
 block|{
-name|mergedDeletes
+name|mergedDeletesAndUpdates
 operator|=
 name|readerPool
 operator|.
@@ -10613,7 +10611,7 @@ argument_list|,
 literal|true
 argument_list|)
 expr_stmt|;
-name|mergedDeletes
+name|mergedDeletesAndUpdates
 operator|.
 name|initWritableLiveDocs
 argument_list|()
@@ -10640,7 +10638,7 @@ name|initWritableLiveDocs
 condition|)
 block|{
 comment|// mergedDeletes was initialized by field-updates changes
-name|mergedDeletes
+name|mergedDeletesAndUpdates
 operator|.
 name|initWritableLiveDocs
 argument_list|()
@@ -10650,7 +10648,7 @@ operator|=
 literal|true
 expr_stmt|;
 block|}
-name|mergedDeletes
+name|mergedDeletesAndUpdates
 operator|.
 name|delete
 argument_list|(
@@ -10732,12 +10730,12 @@ block|{
 comment|// document has an update
 if|if
 condition|(
-name|mergedDeletes
+name|mergedDeletesAndUpdates
 operator|==
 literal|null
 condition|)
 block|{
-name|mergedDeletes
+name|mergedDeletesAndUpdates
 operator|=
 name|readerPool
 operator|.
@@ -10964,12 +10962,12 @@ block|{
 comment|// document has an update
 if|if
 condition|(
-name|mergedDeletes
+name|mergedDeletesAndUpdates
 operator|==
 literal|null
 condition|)
 block|{
-name|mergedDeletes
+name|mergedDeletesAndUpdates
 operator|=
 name|readerPool
 operator|.
@@ -11170,7 +11168,7 @@ comment|// which later causes false exceptions in pool.dropAll().
 comment|// NOTE: currently this is the only place which throws a true
 comment|// IOException. If this ever changes, we need to extend that try/finally
 comment|// block to the rest of the method too.
-name|mergedDeletes
+name|mergedDeletesAndUpdates
 operator|.
 name|writeFieldUpdates
 argument_list|(
@@ -11192,7 +11190,7 @@ operator|!
 name|success
 condition|)
 block|{
-name|mergedDeletes
+name|mergedDeletesAndUpdates
 operator|.
 name|dropChanges
 argument_list|()
@@ -11221,7 +11219,7 @@ condition|)
 block|{
 if|if
 condition|(
-name|mergedDeletes
+name|mergedDeletesAndUpdates
 operator|==
 literal|null
 condition|)
@@ -11241,7 +11239,7 @@ block|{
 name|String
 name|msg
 init|=
-name|mergedDeletes
+name|mergedDeletesAndUpdates
 operator|.
 name|getPendingDeleteCount
 argument_list|()
@@ -11294,7 +11292,7 @@ name|minGen
 argument_list|)
 expr_stmt|;
 return|return
-name|mergedDeletes
+name|mergedDeletesAndUpdates
 return|;
 block|}
 DECL|method|commitMerge
@@ -11421,8 +11419,8 @@ literal|false
 return|;
 block|}
 specifier|final
-name|ReadersAndLiveDocs
-name|mergedDeletes
+name|ReadersAndUpdates
+name|mergedUpdates
 init|=
 name|merge
 operator|.
@@ -11437,7 +11435,7 @@ literal|0
 condition|?
 literal|null
 else|:
-name|commitMergedDeletes
+name|commitMergedDeletesAndUpdates
 argument_list|(
 name|merge
 argument_list|,
@@ -11485,11 +11483,11 @@ operator|==
 literal|0
 operator|||
 operator|(
-name|mergedDeletes
+name|mergedUpdates
 operator|!=
 literal|null
 operator|&&
-name|mergedDeletes
+name|mergedUpdates
 operator|.
 name|getPendingDeleteCount
 argument_list|()
@@ -11585,7 +11583,7 @@ name|dropSegment
 assert|;
 if|if
 condition|(
-name|mergedDeletes
+name|mergedUpdates
 operator|!=
 literal|null
 condition|)
@@ -11602,7 +11600,7 @@ condition|(
 name|dropSegment
 condition|)
 block|{
-name|mergedDeletes
+name|mergedUpdates
 operator|.
 name|dropChanges
 argument_list|()
@@ -11615,7 +11613,7 @@ name|readerPool
 operator|.
 name|release
 argument_list|(
-name|mergedDeletes
+name|mergedUpdates
 argument_list|,
 literal|false
 argument_list|)
@@ -11633,7 +11631,7 @@ operator|!
 name|success
 condition|)
 block|{
-name|mergedDeletes
+name|mergedUpdates
 operator|.
 name|dropChanges
 argument_list|()
@@ -12311,7 +12309,7 @@ literal|false
 decl_stmt|;
 for|for
 control|(
-name|SegmentInfoPerCommit
+name|SegmentCommitInfo
 name|info
 range|:
 name|merge
@@ -12539,7 +12537,7 @@ argument_list|)
 decl_stmt|;
 for|for
 control|(
-name|SegmentInfoPerCommit
+name|SegmentCommitInfo
 name|info
 range|:
 name|mergingSegments
@@ -12597,7 +12595,7 @@ block|}
 block|}
 for|for
 control|(
-name|SegmentInfoPerCommit
+name|SegmentCommitInfo
 name|info
 range|:
 name|merge
@@ -12654,7 +12652,7 @@ literal|0
 assert|;
 for|for
 control|(
-name|SegmentInfoPerCommit
+name|SegmentCommitInfo
 name|info
 range|:
 name|merge
@@ -12896,14 +12894,14 @@ comment|// and then open them again for merging.  Maybe  we
 comment|// could pre-pool them somehow in that case...
 comment|// Lock order: IW -> BD
 specifier|final
-name|BufferedDeletesStream
+name|BufferedUpdatesStream
 operator|.
 name|ApplyDeletesResult
 name|result
 init|=
-name|bufferedDeletesStream
+name|bufferedUpdatesStream
 operator|.
-name|applyDeletes
+name|applyDeletesAndUpdates
 argument_list|(
 name|readerPool
 argument_list|,
@@ -12961,7 +12959,7 @@ expr_stmt|;
 block|}
 for|for
 control|(
-name|SegmentInfoPerCommit
+name|SegmentCommitInfo
 name|info
 range|:
 name|result
@@ -13114,7 +13112,7 @@ operator|.
 name|setInfo
 argument_list|(
 operator|new
-name|SegmentInfoPerCommit
+name|SegmentCommitInfo
 argument_list|(
 name|si
 argument_list|,
@@ -13130,7 +13128,7 @@ argument_list|)
 expr_stmt|;
 comment|//    System.out.println("[" + Thread.currentThread().getName() + "] IW._mergeInit: " + segString(merge.segments) + " into " + si);
 comment|// Lock order: IW -> BD
-name|bufferedDeletesStream
+name|bufferedUpdatesStream
 operator|.
 name|prune
 argument_list|(
@@ -13382,7 +13380,7 @@ block|{
 specifier|final
 name|List
 argument_list|<
-name|SegmentInfoPerCommit
+name|SegmentCommitInfo
 argument_list|>
 name|sourceSegments
 init|=
@@ -13392,7 +13390,7 @@ name|segments
 decl_stmt|;
 for|for
 control|(
-name|SegmentInfoPerCommit
+name|SegmentCommitInfo
 name|info
 range|:
 name|sourceSegments
@@ -13499,7 +13497,7 @@ block|{
 try|try
 block|{
 specifier|final
-name|ReadersAndLiveDocs
+name|ReadersAndUpdates
 name|rld
 init|=
 name|readerPool
@@ -13652,7 +13650,7 @@ name|name
 decl_stmt|;
 name|List
 argument_list|<
-name|SegmentInfoPerCommit
+name|SegmentCommitInfo
 argument_list|>
 name|sourceSegments
 init|=
@@ -13761,7 +13759,7 @@ argument_list|()
 condition|)
 block|{
 specifier|final
-name|SegmentInfoPerCommit
+name|SegmentCommitInfo
 name|info
 init|=
 name|sourceSegments
@@ -13774,7 +13772,7 @@ decl_stmt|;
 comment|// Hold onto the "live" reader; we will use this to
 comment|// commit merged deletes
 specifier|final
-name|ReadersAndLiveDocs
+name|ReadersAndUpdates
 name|rld
 init|=
 name|readerPool
@@ -14848,7 +14846,7 @@ literal|0
 condition|)
 block|{
 specifier|final
-name|ReadersAndLiveDocs
+name|ReadersAndUpdates
 name|rld
 init|=
 name|readerPool
@@ -15038,7 +15036,7 @@ block|}
 comment|// utility routines for tests
 DECL|method|newestSegment
 specifier|synchronized
-name|SegmentInfoPerCommit
+name|SegmentCommitInfo
 name|newestSegment
 parameter_list|()
 block|{
@@ -15089,7 +15087,7 @@ name|segString
 parameter_list|(
 name|Iterable
 argument_list|<
-name|SegmentInfoPerCommit
+name|SegmentCommitInfo
 argument_list|>
 name|infos
 parameter_list|)
@@ -15105,7 +15103,7 @@ decl_stmt|;
 for|for
 control|(
 specifier|final
-name|SegmentInfoPerCommit
+name|SegmentCommitInfo
 name|info
 range|:
 name|infos
@@ -15154,7 +15152,7 @@ specifier|synchronized
 name|String
 name|segString
 parameter_list|(
-name|SegmentInfoPerCommit
+name|SegmentCommitInfo
 name|info
 parameter_list|)
 block|{
@@ -15338,24 +15336,24 @@ decl_stmt|;
 specifier|final
 name|Map
 argument_list|<
-name|SegmentInfoPerCommit
+name|SegmentCommitInfo
 argument_list|,
-name|SegmentInfoPerCommit
+name|SegmentCommitInfo
 argument_list|>
 name|liveSIS
 init|=
 operator|new
 name|HashMap
 argument_list|<
-name|SegmentInfoPerCommit
+name|SegmentCommitInfo
 argument_list|,
-name|SegmentInfoPerCommit
+name|SegmentCommitInfo
 argument_list|>
 argument_list|()
 decl_stmt|;
 for|for
 control|(
-name|SegmentInfoPerCommit
+name|SegmentCommitInfo
 name|info
 range|:
 name|segmentInfos
@@ -15373,13 +15371,13 @@ expr_stmt|;
 block|}
 for|for
 control|(
-name|SegmentInfoPerCommit
+name|SegmentCommitInfo
 name|info
 range|:
 name|sis
 control|)
 block|{
-name|SegmentInfoPerCommit
+name|SegmentCommitInfo
 name|liveInfo
 init|=
 name|liveSIS
@@ -16019,7 +16017,7 @@ argument_list|()
 operator|+
 literal|"; BD changes: "
 operator|+
-name|bufferedDeletesStream
+name|bufferedUpdatesStream
 operator|.
 name|any
 argument_list|()
@@ -16042,7 +16040,7 @@ name|anyChanges
 argument_list|()
 operator|&&
 operator|!
-name|bufferedDeletesStream
+name|bufferedUpdatesStream
 operator|.
 name|any
 argument_list|()
@@ -16470,7 +16468,7 @@ expr_stmt|;
 block|}
 finally|finally
 block|{
-name|applyAllDeletes
+name|applyAllDeletesAndUpdates
 argument_list|()
 expr_stmt|;
 name|flushCount

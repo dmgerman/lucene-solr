@@ -331,11 +331,11 @@ specifier|final
 name|LiveIndexWriterConfig
 name|config
 decl_stmt|;
-DECL|field|bufferedDeletesStream
+DECL|field|bufferedUpdatesStream
 specifier|private
 specifier|final
-name|BufferedDeletesStream
-name|bufferedDeletesStream
+name|BufferedUpdatesStream
+name|bufferedUpdatesStream
 decl_stmt|;
 DECL|field|infoStream
 specifier|private
@@ -352,8 +352,8 @@ parameter_list|,
 name|LiveIndexWriterConfig
 name|config
 parameter_list|,
-name|BufferedDeletesStream
-name|bufferedDeletesStream
+name|BufferedUpdatesStream
+name|bufferedUpdatesStream
 parameter_list|)
 block|{
 name|this
@@ -416,9 +416,9 @@ name|documentsWriter
 expr_stmt|;
 name|this
 operator|.
-name|bufferedDeletesStream
+name|bufferedUpdatesStream
 operator|=
-name|bufferedDeletesStream
+name|bufferedUpdatesStream
 expr_stmt|;
 block|}
 DECL|method|activeBytes
@@ -1764,7 +1764,7 @@ operator|.
 name|numGlobalTermDeletes
 argument_list|()
 operator|+
-name|bufferedDeletesStream
+name|bufferedUpdatesStream
 operator|.
 name|numTerms
 argument_list|()
@@ -1784,7 +1784,7 @@ operator|.
 name|bytesUsed
 argument_list|()
 operator|+
-name|bufferedDeletesStream
+name|bufferedUpdatesStream
 operator|.
 name|bytesUsed
 argument_list|()

@@ -256,18 +256,18 @@ operator|.
 name|newSlice
 argument_list|()
 decl_stmt|;
-name|BufferedDeletes
+name|BufferedUpdates
 name|bd1
 init|=
 operator|new
-name|BufferedDeletes
+name|BufferedUpdates
 argument_list|()
 decl_stmt|;
-name|BufferedDeletes
+name|BufferedUpdates
 name|bd2
 init|=
 operator|new
-name|BufferedDeletes
+name|BufferedUpdates
 argument_list|()
 decl_stmt|;
 name|int
@@ -615,7 +615,7 @@ parameter_list|,
 name|int
 name|end
 parameter_list|,
-name|BufferedDeletes
+name|BufferedUpdates
 name|deletes
 parameter_list|,
 name|Integer
@@ -971,7 +971,7 @@ operator|==
 literal|0
 condition|)
 block|{
-name|FrozenBufferedDeletes
+name|FrozenBufferedUpdates
 name|freezeGlobalBuffer
 init|=
 name|queue
@@ -1151,7 +1151,7 @@ name|anyChanges
 argument_list|()
 argument_list|)
 expr_stmt|;
-name|FrozenBufferedDeletes
+name|FrozenBufferedUpdates
 name|freezeGlobalBuffer
 init|=
 name|queue
@@ -1429,7 +1429,7 @@ argument_list|(
 name|slice
 argument_list|)
 expr_stmt|;
-name|BufferedDeletes
+name|BufferedUpdates
 name|deletes
 init|=
 name|updateThread
@@ -1442,7 +1442,7 @@ name|apply
 argument_list|(
 name|deletes
 argument_list|,
-name|BufferedDeletes
+name|BufferedUpdates
 operator|.
 name|MAX_INT
 argument_list|)
@@ -1590,7 +1590,7 @@ name|slice
 decl_stmt|;
 DECL|field|deletes
 specifier|final
-name|BufferedDeletes
+name|BufferedUpdates
 name|deletes
 decl_stmt|;
 DECL|field|latch
@@ -1646,7 +1646,7 @@ expr_stmt|;
 name|deletes
 operator|=
 operator|new
-name|BufferedDeletes
+name|BufferedUpdates
 argument_list|()
 expr_stmt|;
 name|this
@@ -1749,7 +1749,7 @@ name|apply
 argument_list|(
 name|deletes
 argument_list|,
-name|BufferedDeletes
+name|BufferedUpdates
 operator|.
 name|MAX_INT
 argument_list|)

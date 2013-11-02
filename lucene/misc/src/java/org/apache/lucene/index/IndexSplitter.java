@@ -518,7 +518,7 @@ name|x
 operator|++
 control|)
 block|{
-name|SegmentInfoPerCommit
+name|SegmentCommitInfo
 name|info
 init|=
 name|infos
@@ -616,7 +616,7 @@ return|;
 block|}
 DECL|method|getInfo
 specifier|private
-name|SegmentInfoPerCommit
+name|SegmentCommitInfo
 name|getInfo
 parameter_list|(
 name|String
@@ -774,7 +774,7 @@ range|:
 name|segs
 control|)
 block|{
-name|SegmentInfoPerCommit
+name|SegmentCommitInfo
 name|infoPerCommit
 init|=
 name|getInfo
@@ -833,7 +833,7 @@ operator|.
 name|add
 argument_list|(
 operator|new
-name|SegmentInfoPerCommit
+name|SegmentCommitInfo
 argument_list|(
 name|newInfo
 argument_list|,

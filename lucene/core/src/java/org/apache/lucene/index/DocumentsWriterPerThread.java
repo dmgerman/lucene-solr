@@ -578,7 +578,7 @@ name|FlushedSegment
 block|{
 DECL|field|segmentInfo
 specifier|final
-name|SegmentInfoPerCommit
+name|SegmentCommitInfo
 name|segmentInfo
 decl_stmt|;
 DECL|field|fieldInfos
@@ -586,10 +586,10 @@ specifier|final
 name|FieldInfos
 name|fieldInfos
 decl_stmt|;
-DECL|field|segmentDeletes
+DECL|field|segmentUpdates
 specifier|final
-name|FrozenBufferedDeletes
-name|segmentDeletes
+name|FrozenBufferedUpdates
+name|segmentUpdates
 decl_stmt|;
 DECL|field|liveDocs
 specifier|final
@@ -605,14 +605,14 @@ DECL|method|FlushedSegment
 specifier|private
 name|FlushedSegment
 parameter_list|(
-name|SegmentInfoPerCommit
+name|SegmentCommitInfo
 name|segmentInfo
 parameter_list|,
 name|FieldInfos
 name|fieldInfos
 parameter_list|,
-name|BufferedDeletes
-name|segmentDeletes
+name|BufferedUpdates
+name|segmentUpdates
 parameter_list|,
 name|MutableBits
 name|liveDocs
@@ -635,21 +635,21 @@ name|fieldInfos
 expr_stmt|;
 name|this
 operator|.
-name|segmentDeletes
+name|segmentUpdates
 operator|=
-name|segmentDeletes
+name|segmentUpdates
 operator|!=
 literal|null
 operator|&&
-name|segmentDeletes
+name|segmentUpdates
 operator|.
 name|any
 argument_list|()
 condition|?
 operator|new
-name|FrozenBufferedDeletes
+name|FrozenBufferedUpdates
 argument_list|(
-name|segmentDeletes
+name|segmentUpdates
 argument_list|,
 literal|true
 argument_list|)
@@ -725,7 +725,7 @@ name|Throwable
 name|t
 parameter_list|)
 block|{       }
-name|pendingDeletes
+name|pendingUpdates
 operator|.
 name|clear
 argument_list|()
@@ -812,11 +812,11 @@ DECL|field|flushState
 name|SegmentWriteState
 name|flushState
 decl_stmt|;
-comment|// Deletes for our still-in-RAM (to be flushed next) segment
-DECL|field|pendingDeletes
+comment|// Updates for our still-in-RAM (to be flushed next) segment
+DECL|field|pendingUpdates
 specifier|final
-name|BufferedDeletes
-name|pendingDeletes
+name|BufferedUpdates
+name|pendingUpdates
 decl_stmt|;
 DECL|field|segmentInfo
 specifier|private
@@ -1007,10 +1007,10 @@ argument_list|(
 name|bytesUsed
 argument_list|)
 expr_stmt|;
-name|pendingDeletes
+name|pendingUpdates
 operator|=
 operator|new
-name|BufferedDeletes
+name|BufferedUpdates
 argument_list|()
 expr_stmt|;
 name|intBlockAllocator
@@ -1036,7 +1036,7 @@ literal|"num docs "
 operator|+
 name|numDocsInRAM
 assert|;
-name|pendingDeletes
+name|pendingUpdates
 operator|.
 name|clear
 argument_list|()
@@ -1624,7 +1624,7 @@ name|deleteSlice
 operator|.
 name|apply
 argument_list|(
-name|pendingDeletes
+name|pendingUpdates
 argument_list|,
 name|numDocsInRAM
 operator|-
@@ -1753,7 +1753,7 @@ name|deleteSlice
 operator|.
 name|apply
 argument_list|(
-name|pendingDeletes
+name|pendingUpdates
 argument_list|,
 name|numDocsInRAM
 argument_list|)
@@ -1782,7 +1782,7 @@ name|int
 name|docIDUpto
 parameter_list|)
 block|{
-name|pendingDeletes
+name|pendingUpdates
 operator|.
 name|addDocID
 argument_list|(
@@ -1808,7 +1808,7 @@ parameter_list|()
 block|{
 comment|// public for FlushPolicy
 return|return
-name|pendingDeletes
+name|pendingUpdates
 operator|.
 name|numTermDeletes
 operator|.
@@ -1830,7 +1830,7 @@ return|;
 block|}
 comment|/**    * Prepares this DWPT for flushing. This method will freeze and return the    * {@link DocumentsWriterDeleteQueue}s global buffer and apply all pending    * deletes to this DWPT.    */
 DECL|method|prepareFlush
-name|FrozenBufferedDeletes
+name|FrozenBufferedUpdates
 name|prepareFlush
 parameter_list|()
 block|{
@@ -1840,8 +1840,8 @@ operator|>
 literal|0
 assert|;
 specifier|final
-name|FrozenBufferedDeletes
-name|globalDeletes
+name|FrozenBufferedUpdates
+name|globalUpdates
 init|=
 name|deleteQueue
 operator|.
@@ -1863,7 +1863,7 @@ name|deleteSlice
 operator|.
 name|apply
 argument_list|(
-name|pendingDeletes
+name|pendingUpdates
 argument_list|,
 name|numDocsInRAM
 argument_list|)
@@ -1881,7 +1881,7 @@ argument_list|()
 expr_stmt|;
 block|}
 return|return
-name|globalDeletes
+name|globalUpdates
 return|;
 block|}
 comment|/** Flush all pending docs to a new segment */
@@ -1930,7 +1930,7 @@ operator|.
 name|finish
 argument_list|()
 argument_list|,
-name|pendingDeletes
+name|pendingUpdates
 argument_list|,
 operator|new
 name|IOContext
@@ -1962,7 +1962,7 @@ comment|// happens when an exception is hit processing that
 comment|// doc, eg if analyzer has some problem w/ the text):
 if|if
 condition|(
-name|pendingDeletes
+name|pendingUpdates
 operator|.
 name|docIDs
 operator|.
@@ -1991,7 +1991,7 @@ control|(
 name|int
 name|delDocID
 range|:
-name|pendingDeletes
+name|pendingUpdates
 operator|.
 name|docIDs
 control|)
@@ -2010,33 +2010,33 @@ name|flushState
 operator|.
 name|delCountOnFlush
 operator|=
-name|pendingDeletes
+name|pendingUpdates
 operator|.
 name|docIDs
 operator|.
 name|size
 argument_list|()
 expr_stmt|;
-name|pendingDeletes
+name|pendingUpdates
 operator|.
 name|bytesUsed
 operator|.
 name|addAndGet
 argument_list|(
 operator|-
-name|pendingDeletes
+name|pendingUpdates
 operator|.
 name|docIDs
 operator|.
 name|size
 argument_list|()
 operator|*
-name|BufferedDeletes
+name|BufferedUpdates
 operator|.
 name|BYTES_PER_DEL_DOCID
 argument_list|)
 expr_stmt|;
-name|pendingDeletes
+name|pendingUpdates
 operator|.
 name|docIDs
 operator|.
@@ -2117,7 +2117,7 @@ argument_list|(
 name|flushState
 argument_list|)
 expr_stmt|;
-name|pendingDeletes
+name|pendingUpdates
 operator|.
 name|terms
 operator|.
@@ -2142,11 +2142,11 @@ argument_list|)
 argument_list|)
 expr_stmt|;
 specifier|final
-name|SegmentInfoPerCommit
+name|SegmentCommitInfo
 name|segmentInfoPerCommit
 init|=
 operator|new
-name|SegmentInfoPerCommit
+name|SegmentCommitInfo
 argument_list|(
 name|segmentInfo
 argument_list|,
@@ -2312,19 +2312,19 @@ argument_list|)
 expr_stmt|;
 block|}
 specifier|final
-name|BufferedDeletes
+name|BufferedUpdates
 name|segmentDeletes
 decl_stmt|;
 if|if
 condition|(
-name|pendingDeletes
+name|pendingUpdates
 operator|.
 name|queries
 operator|.
 name|isEmpty
 argument_list|()
 operator|&&
-name|pendingDeletes
+name|pendingUpdates
 operator|.
 name|numericUpdates
 operator|.
@@ -2332,7 +2332,7 @@ name|isEmpty
 argument_list|()
 condition|)
 block|{
-name|pendingDeletes
+name|pendingUpdates
 operator|.
 name|clear
 argument_list|()
@@ -2346,7 +2346,7 @@ else|else
 block|{
 name|segmentDeletes
 operator|=
-name|pendingDeletes
+name|pendingUpdates
 expr_stmt|;
 block|}
 if|if
@@ -2526,7 +2526,7 @@ name|flushedSegment
 operator|!=
 literal|null
 assert|;
-name|SegmentInfoPerCommit
+name|SegmentCommitInfo
 name|newSegment
 init|=
 name|flushedSegment
@@ -2712,7 +2712,7 @@ comment|// this del vector over to the
 comment|// shortly-to-be-opened SegmentReader and let it
 comment|// carry the changes; there's no reason to use
 comment|// filesystem as intermediary here.
-name|SegmentInfoPerCommit
+name|SegmentCommitInfo
 name|info
 init|=
 name|flushedSegment
@@ -2825,7 +2825,7 @@ operator|.
 name|get
 argument_list|()
 operator|+
-name|pendingDeletes
+name|pendingUpdates
 operator|.
 name|bytesUsed
 operator|.
@@ -2983,7 +2983,7 @@ block|{
 return|return
 literal|"DocumentsWriterPerThread [pendingDeletes="
 operator|+
-name|pendingDeletes
+name|pendingUpdates
 operator|+
 literal|", segment="
 operator|+

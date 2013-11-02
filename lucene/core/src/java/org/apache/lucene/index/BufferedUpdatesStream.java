@@ -227,25 +227,24 @@ comment|/* Tracks the stream of {@link BufferedDeletes}.  * When DocumentsWriter
 end_comment
 
 begin_class
-DECL|class|BufferedDeletesStream
+DECL|class|BufferedUpdatesStream
 class|class
-name|BufferedDeletesStream
+name|BufferedUpdatesStream
 block|{
-comment|// TODO (DVU_RENAME) BufferedUpdatesStream
 comment|// TODO: maybe linked list?
-DECL|field|deletes
+DECL|field|updates
 specifier|private
 specifier|final
 name|List
 argument_list|<
-name|FrozenBufferedDeletes
+name|FrozenBufferedUpdates
 argument_list|>
-name|deletes
+name|updates
 init|=
 operator|new
 name|ArrayList
 argument_list|<
-name|FrozenBufferedDeletes
+name|FrozenBufferedUpdates
 argument_list|>
 argument_list|()
 decl_stmt|;
@@ -291,9 +290,9 @@ operator|new
 name|AtomicInteger
 argument_list|()
 decl_stmt|;
-DECL|method|BufferedDeletesStream
+DECL|method|BufferedUpdatesStream
 specifier|public
-name|BufferedDeletesStream
+name|BufferedUpdatesStream
 parameter_list|(
 name|InfoStream
 name|infoStream
@@ -314,7 +313,7 @@ specifier|synchronized
 name|long
 name|push
 parameter_list|(
-name|FrozenBufferedDeletes
+name|FrozenBufferedUpdates
 name|packet
 parameter_list|)
 block|{
@@ -346,16 +345,16 @@ operator|<
 name|nextGen
 assert|;
 assert|assert
-name|deletes
+name|updates
 operator|.
 name|isEmpty
 argument_list|()
 operator|||
-name|deletes
+name|updates
 operator|.
 name|get
 argument_list|(
-name|deletes
+name|updates
 operator|.
 name|size
 argument_list|()
@@ -373,7 +372,7 @@ argument_list|()
 operator|:
 literal|"Delete packets must be in order"
 assert|;
-name|deletes
+name|updates
 operator|.
 name|add
 argument_list|(
@@ -427,7 +426,7 @@ argument_list|()
 operator|+
 literal|" packetCount="
 operator|+
-name|deletes
+name|updates
 operator|.
 name|size
 argument_list|()
@@ -459,7 +458,7 @@ name|void
 name|clear
 parameter_list|()
 block|{
-name|deletes
+name|updates
 operator|.
 name|clear
 argument_list|()
@@ -550,7 +549,7 @@ specifier|public
 specifier|final
 name|List
 argument_list|<
-name|SegmentInfoPerCommit
+name|SegmentCommitInfo
 argument_list|>
 name|allDeleted
 decl_stmt|;
@@ -565,7 +564,7 @@ name|gen
 parameter_list|,
 name|List
 argument_list|<
-name|SegmentInfoPerCommit
+name|SegmentCommitInfo
 argument_list|>
 name|allDeleted
 parameter_list|)
@@ -597,14 +596,14 @@ specifier|static
 specifier|final
 name|Comparator
 argument_list|<
-name|SegmentInfoPerCommit
+name|SegmentCommitInfo
 argument_list|>
 name|sortSegInfoByDelGen
 init|=
 operator|new
 name|Comparator
 argument_list|<
-name|SegmentInfoPerCommit
+name|SegmentCommitInfo
 argument_list|>
 argument_list|()
 block|{
@@ -614,10 +613,10 @@ specifier|public
 name|int
 name|compare
 parameter_list|(
-name|SegmentInfoPerCommit
+name|SegmentCommitInfo
 name|si1
 parameter_list|,
-name|SegmentInfoPerCommit
+name|SegmentCommitInfo
 name|si2
 parameter_list|)
 block|{
@@ -641,11 +640,11 @@ block|}
 block|}
 decl_stmt|;
 comment|/** Resolves the buffered deleted Term/Query/docIDs, into    *  actual deleted docIDs in the liveDocs MutableBits for    *  each SegmentReader. */
-DECL|method|applyDeletes
+DECL|method|applyDeletesAndUpdates
 specifier|public
 specifier|synchronized
 name|ApplyDeletesResult
-name|applyDeletes
+name|applyDeletesAndUpdates
 parameter_list|(
 name|IndexWriter
 operator|.
@@ -654,7 +653,7 @@ name|readerPool
 parameter_list|,
 name|List
 argument_list|<
-name|SegmentInfoPerCommit
+name|SegmentCommitInfo
 argument_list|>
 name|infos
 parameter_list|)
@@ -759,7 +758,7 @@ name|infos
 operator|+
 literal|" packetCount="
 operator|+
-name|deletes
+name|updates
 operator|.
 name|size
 argument_list|()
@@ -775,14 +774,14 @@ operator|++
 decl_stmt|;
 name|List
 argument_list|<
-name|SegmentInfoPerCommit
+name|SegmentCommitInfo
 argument_list|>
 name|infos2
 init|=
 operator|new
 name|ArrayList
 argument_list|<
-name|SegmentInfoPerCommit
+name|SegmentCommitInfo
 argument_list|>
 argument_list|()
 decl_stmt|;
@@ -802,7 +801,7 @@ argument_list|,
 name|sortSegInfoByDelGen
 argument_list|)
 expr_stmt|;
-name|CoalescedDeletes
+name|CoalescedUpdates
 name|coalescedDeletes
 init|=
 literal|null
@@ -825,7 +824,7 @@ decl_stmt|;
 name|int
 name|delIDX
 init|=
-name|deletes
+name|updates
 operator|.
 name|size
 argument_list|()
@@ -834,7 +833,7 @@ literal|1
 decl_stmt|;
 name|List
 argument_list|<
-name|SegmentInfoPerCommit
+name|SegmentCommitInfo
 argument_list|>
 name|allDeleted
 init|=
@@ -849,14 +848,14 @@ condition|)
 block|{
 comment|//System.out.println("BD: cycle delIDX=" + delIDX + " infoIDX=" + infosIDX);
 specifier|final
-name|FrozenBufferedDeletes
+name|FrozenBufferedUpdates
 name|packet
 init|=
 name|delIDX
 operator|>=
 literal|0
 condition|?
-name|deletes
+name|updates
 operator|.
 name|get
 argument_list|(
@@ -866,7 +865,7 @@ else|:
 literal|null
 decl_stmt|;
 specifier|final
-name|SegmentInfoPerCommit
+name|SegmentCommitInfo
 name|info
 init|=
 name|infos2
@@ -910,7 +909,7 @@ block|{
 name|coalescedDeletes
 operator|=
 operator|new
-name|CoalescedDeletes
+name|CoalescedUpdates
 argument_list|()
 expr_stmt|;
 block|}
@@ -970,7 +969,7 @@ name|info
 argument_list|)
 assert|;
 specifier|final
-name|ReadersAndLiveDocs
+name|ReadersAndUpdates
 name|rld
 init|=
 name|readerPool
@@ -1210,7 +1209,7 @@ operator|=
 operator|new
 name|ArrayList
 argument_list|<
-name|SegmentInfoPerCommit
+name|SegmentCommitInfo
 argument_list|>
 argument_list|()
 expr_stmt|;
@@ -1287,7 +1286,7 @@ block|{
 name|coalescedDeletes
 operator|=
 operator|new
-name|CoalescedDeletes
+name|CoalescedUpdates
 argument_list|()
 expr_stmt|;
 block|}
@@ -1326,7 +1325,7 @@ name|info
 argument_list|)
 assert|;
 specifier|final
-name|ReadersAndLiveDocs
+name|ReadersAndUpdates
 name|rld
 init|=
 name|readerPool
@@ -1516,7 +1515,7 @@ operator|=
 operator|new
 name|ArrayList
 argument_list|<
-name|SegmentInfoPerCommit
+name|SegmentCommitInfo
 argument_list|>
 argument_list|()
 expr_stmt|;
@@ -1668,7 +1667,7 @@ name|MAX_VALUE
 decl_stmt|;
 for|for
 control|(
-name|SegmentInfoPerCommit
+name|SegmentCommitInfo
 name|info
 range|:
 name|segmentInfos
@@ -1715,7 +1714,7 @@ name|minGen
 operator|+
 literal|" packetCount="
 operator|+
-name|deletes
+name|updates
 operator|.
 name|size
 argument_list|()
@@ -1726,7 +1725,7 @@ specifier|final
 name|int
 name|limit
 init|=
-name|deletes
+name|updates
 operator|.
 name|size
 argument_list|()
@@ -1748,7 +1747,7 @@ control|)
 block|{
 if|if
 condition|(
-name|deletes
+name|updates
 operator|.
 name|get
 argument_list|(
@@ -1829,7 +1828,7 @@ operator|+
 literal|" packets; "
 operator|+
 operator|(
-name|deletes
+name|updates
 operator|.
 name|size
 argument_list|()
@@ -1857,10 +1856,10 @@ operator|++
 control|)
 block|{
 specifier|final
-name|FrozenBufferedDeletes
+name|FrozenBufferedUpdates
 name|packet
 init|=
-name|deletes
+name|updates
 operator|.
 name|get
 argument_list|(
@@ -1904,7 +1903,7 @@ operator|>=
 literal|0
 assert|;
 block|}
-name|deletes
+name|updates
 operator|.
 name|subList
 argument_list|(
@@ -1931,7 +1930,7 @@ name|Term
 argument_list|>
 name|termsIter
 parameter_list|,
-name|ReadersAndLiveDocs
+name|ReadersAndUpdates
 name|rld
 parameter_list|,
 name|SegmentReader
@@ -2221,7 +2220,7 @@ name|NumericUpdate
 argument_list|>
 name|updates
 parameter_list|,
-name|ReadersAndLiveDocs
+name|ReadersAndUpdates
 name|rld
 parameter_list|,
 name|SegmentReader
@@ -2593,7 +2592,7 @@ name|QueryAndLimit
 argument_list|>
 name|queriesIter
 parameter_list|,
-name|ReadersAndLiveDocs
+name|ReadersAndUpdates
 name|rld
 parameter_list|,
 specifier|final
@@ -2837,10 +2836,10 @@ literal|0
 decl_stmt|;
 for|for
 control|(
-name|FrozenBufferedDeletes
+name|FrozenBufferedUpdates
 name|packet
 range|:
-name|deletes
+name|updates
 control|)
 block|{
 name|numTerms2

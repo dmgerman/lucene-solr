@@ -139,11 +139,10 @@ comment|// DocumentsWriterDeleteQueue
 end_comment
 
 begin_class
-DECL|class|BufferedDeletes
+DECL|class|BufferedUpdates
 class|class
-name|BufferedDeletes
+name|BufferedUpdates
 block|{
-comment|// TODO (DVU_RENAME) BufferedUpdates?
 comment|/* Rough logic: HashMap has an array[Entry] w/ varying      load factor (say 2 * POINTER).  Entry is object w/ Term      key, Integer val, int hash, Entry next      (OBJ_HEADER + 3*POINTER + INT).  Term is object w/      String field and String text (OBJ_HEADER + 2*POINTER).      Term's field is String (OBJ_HEADER + 4*INT + POINTER +      OBJ_HEADER + string.length*CHAR).      Term's text is String (OBJ_HEADER + 4*INT + POINTER +      OBJ_HEADER + string.length*CHAR).  Integer is      OBJ_HEADER + INT. */
 DECL|field|BYTES_PER_DEL_TERM
 specifier|final
@@ -412,9 +411,9 @@ DECL|field|gen
 name|long
 name|gen
 decl_stmt|;
-DECL|method|BufferedDeletes
+DECL|method|BufferedUpdates
 specifier|public
-name|BufferedDeletes
+name|BufferedUpdates
 parameter_list|()
 block|{
 name|this

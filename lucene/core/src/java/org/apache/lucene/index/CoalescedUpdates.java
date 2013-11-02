@@ -90,7 +90,7 @@ name|lucene
 operator|.
 name|index
 operator|.
-name|BufferedDeletesStream
+name|BufferedUpdatesStream
 operator|.
 name|QueryAndLimit
 import|;
@@ -111,9 +111,9 @@ import|;
 end_import
 
 begin_class
-DECL|class|CoalescedDeletes
+DECL|class|CoalescedUpdates
 class|class
-name|CoalescedDeletes
+name|CoalescedUpdates
 block|{
 DECL|field|queries
 specifier|final
@@ -180,7 +180,7 @@ parameter_list|()
 block|{
 comment|// note: we could add/collect more debugging information
 return|return
-literal|"CoalescedDeletes(termSets="
+literal|"CoalescedUpdates(termSets="
 operator|+
 name|iterables
 operator|.
@@ -208,7 +208,7 @@ DECL|method|update
 name|void
 name|update
 parameter_list|(
-name|FrozenBufferedDeletes
+name|FrozenBufferedUpdates
 name|in
 parameter_list|)
 block|{
@@ -258,7 +258,7 @@ name|put
 argument_list|(
 name|query
 argument_list|,
-name|BufferedDeletes
+name|BufferedUpdates
 operator|.
 name|MAX_INT
 argument_list|)

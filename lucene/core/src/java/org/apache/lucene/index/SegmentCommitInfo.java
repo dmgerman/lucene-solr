@@ -117,12 +117,11 @@ comment|/** Embeds a [read-only] SegmentInfo and adds per-commit  *  fields.  * 
 end_comment
 
 begin_class
-DECL|class|SegmentInfoPerCommit
+DECL|class|SegmentCommitInfo
 specifier|public
 class|class
-name|SegmentInfoPerCommit
+name|SegmentCommitInfo
 block|{
-comment|// TODO (DVU_RENAME) to SegmentCommitInfo
 comment|/** The {@link SegmentInfo} that we wrap. */
 DECL|field|info
 specifier|public
@@ -200,9 +199,9 @@ operator|-
 literal|1
 decl_stmt|;
 comment|/**    * Sole constructor.    *     * @param info    *          {@link SegmentInfo} that we wrap    * @param delCount    *          number of deleted documents in this segment    * @param delGen    *          deletion generation number (used to name deletion files)    * @param fieldInfosGen    *          FieldInfos generation number (used to name field-infos files)    **/
-DECL|method|SegmentInfoPerCommit
+DECL|method|SegmentCommitInfo
 specifier|public
-name|SegmentInfoPerCommit
+name|SegmentCommitInfo
 parameter_list|(
 name|SegmentInfo
 name|info
@@ -762,15 +761,15 @@ annotation|@
 name|Override
 DECL|method|clone
 specifier|public
-name|SegmentInfoPerCommit
+name|SegmentCommitInfo
 name|clone
 parameter_list|()
 block|{
-name|SegmentInfoPerCommit
+name|SegmentCommitInfo
 name|other
 init|=
 operator|new
-name|SegmentInfoPerCommit
+name|SegmentCommitInfo
 argument_list|(
 name|info
 argument_list|,

@@ -123,7 +123,7 @@ specifier|protected
 name|long
 name|size
 parameter_list|(
-name|SegmentInfoPerCommit
+name|SegmentCommitInfo
 name|info
 parameter_list|)
 throws|throws

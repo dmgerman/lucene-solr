@@ -166,7 +166,7 @@ name|lucene
 operator|.
 name|index
 operator|.
-name|SegmentInfoPerCommit
+name|SegmentCommitInfo
 import|;
 end_import
 
@@ -307,7 +307,7 @@ name|SortingOneMerge
 parameter_list|(
 name|List
 argument_list|<
-name|SegmentInfoPerCommit
+name|SegmentCommitInfo
 argument_list|>
 name|segments
 parameter_list|)
@@ -447,7 +447,7 @@ specifier|public
 name|void
 name|setInfo
 parameter_list|(
-name|SegmentInfoPerCommit
+name|SegmentCommitInfo
 name|info
 parameter_list|)
 block|{
@@ -984,7 +984,7 @@ name|maxSegmentCount
 parameter_list|,
 name|Map
 argument_list|<
-name|SegmentInfoPerCommit
+name|SegmentCommitInfo
 argument_list|,
 name|Boolean
 argument_list|>
@@ -1079,7 +1079,7 @@ parameter_list|(
 name|SegmentInfos
 name|segments
 parameter_list|,
-name|SegmentInfoPerCommit
+name|SegmentCommitInfo
 name|newSegment
 parameter_list|)
 throws|throws

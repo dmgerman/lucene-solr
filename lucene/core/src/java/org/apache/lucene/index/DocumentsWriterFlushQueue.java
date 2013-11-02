@@ -636,10 +636,10 @@ specifier|abstract
 class|class
 name|FlushTicket
 block|{
-DECL|field|frozenDeletes
+DECL|field|frozenUpdates
 specifier|protected
-name|FrozenBufferedDeletes
-name|frozenDeletes
+name|FrozenBufferedUpdates
+name|frozenUpdates
 decl_stmt|;
 DECL|field|published
 specifier|protected
@@ -652,20 +652,20 @@ DECL|method|FlushTicket
 specifier|protected
 name|FlushTicket
 parameter_list|(
-name|FrozenBufferedDeletes
-name|frozenDeletes
+name|FrozenBufferedUpdates
+name|frozenUpdates
 parameter_list|)
 block|{
 assert|assert
-name|frozenDeletes
+name|frozenUpdates
 operator|!=
 literal|null
 assert|;
 name|this
 operator|.
-name|frozenDeletes
+name|frozenUpdates
 operator|=
-name|frozenDeletes
+name|frozenUpdates
 expr_stmt|;
 block|}
 DECL|method|publish
@@ -700,7 +700,7 @@ parameter_list|,
 name|FlushedSegment
 name|newSegment
 parameter_list|,
-name|FrozenBufferedDeletes
+name|FrozenBufferedUpdates
 name|globalPacket
 parameter_list|)
 throws|throws
@@ -719,12 +719,12 @@ operator|!=
 literal|null
 assert|;
 specifier|final
-name|FrozenBufferedDeletes
-name|segmentDeletes
+name|FrozenBufferedUpdates
+name|segmentUpdates
 init|=
 name|newSegment
 operator|.
-name|segmentDeletes
+name|segmentUpdates
 decl_stmt|;
 comment|//System.out.println("FLUSH: " + newSegment.segmentInfo.info.name);
 if|if
@@ -747,15 +747,15 @@ name|message
 argument_list|(
 literal|"DW"
 argument_list|,
-literal|"publishFlushedSegment seg-private deletes="
+literal|"publishFlushedSegment seg-private updates="
 operator|+
-name|segmentDeletes
+name|segmentUpdates
 argument_list|)
 expr_stmt|;
 block|}
 if|if
 condition|(
-name|segmentDeletes
+name|segmentUpdates
 operator|!=
 literal|null
 operator|&&
@@ -777,9 +777,9 @@ name|message
 argument_list|(
 literal|"DW"
 argument_list|,
-literal|"flush: push buffered seg private deletes: "
+literal|"flush: push buffered seg private updates: "
 operator|+
-name|segmentDeletes
+name|segmentUpdates
 argument_list|)
 expr_stmt|;
 block|}
@@ -792,7 +792,7 @@ name|newSegment
 operator|.
 name|segmentInfo
 argument_list|,
-name|segmentDeletes
+name|segmentUpdates
 argument_list|,
 name|globalPacket
 argument_list|)
@@ -810,8 +810,8 @@ parameter_list|,
 name|FlushedSegment
 name|newSegment
 parameter_list|,
-name|FrozenBufferedDeletes
-name|bufferedDeletes
+name|FrozenBufferedUpdates
+name|bufferedUpdates
 parameter_list|)
 throws|throws
 name|IOException
@@ -825,17 +825,17 @@ literal|null
 condition|)
 block|{
 assert|assert
-name|bufferedDeletes
+name|bufferedUpdates
 operator|!=
 literal|null
 assert|;
 if|if
 condition|(
-name|bufferedDeletes
+name|bufferedUpdates
 operator|!=
 literal|null
 operator|&&
-name|bufferedDeletes
+name|bufferedUpdates
 operator|.
 name|any
 argument_list|()
@@ -843,9 +843,9 @@ condition|)
 block|{
 name|indexWriter
 operator|.
-name|publishFrozenDeletes
+name|publishFrozenUpdates
 argument_list|(
-name|bufferedDeletes
+name|bufferedUpdates
 argument_list|)
 expr_stmt|;
 if|if
@@ -868,9 +868,9 @@ name|message
 argument_list|(
 literal|"DW"
 argument_list|,
-literal|"flush: push buffered deletes: "
+literal|"flush: push buffered updates: "
 operator|+
-name|bufferedDeletes
+name|bufferedUpdates
 argument_list|)
 expr_stmt|;
 block|}
@@ -884,7 +884,7 @@ name|indexWriter
 argument_list|,
 name|newSegment
 argument_list|,
-name|bufferedDeletes
+name|bufferedUpdates
 argument_list|)
 expr_stmt|;
 block|}
@@ -902,13 +902,13 @@ DECL|method|GlobalDeletesTicket
 specifier|protected
 name|GlobalDeletesTicket
 parameter_list|(
-name|FrozenBufferedDeletes
-name|frozenDeletes
+name|FrozenBufferedUpdates
+name|frozenUpdates
 parameter_list|)
 block|{
 name|super
 argument_list|(
-name|frozenDeletes
+name|frozenUpdates
 argument_list|)
 expr_stmt|;
 block|}
@@ -942,7 +942,7 @@ name|writer
 argument_list|,
 literal|null
 argument_list|,
-name|frozenDeletes
+name|frozenUpdates
 argument_list|)
 expr_stmt|;
 block|}
@@ -983,7 +983,7 @@ DECL|method|SegmentFlushTicket
 specifier|protected
 name|SegmentFlushTicket
 parameter_list|(
-name|FrozenBufferedDeletes
+name|FrozenBufferedUpdates
 name|frozenDeletes
 parameter_list|)
 block|{
@@ -1022,7 +1022,7 @@ name|writer
 argument_list|,
 name|segment
 argument_list|,
-name|frozenDeletes
+name|frozenUpdates
 argument_list|)
 expr_stmt|;
 block|}

@@ -69,7 +69,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * {@link DocumentsWriterDeleteQueue} is a non-blocking linked pending deletes  * queue. In contrast to other queue implementation we only maintain the  * tail of the queue. A delete queue is always used in a context of a set of  * DWPTs and a global delete pool. Each of the DWPT and the global pool need to  * maintain their 'own' head of the queue (as a DeleteSlice instance per DWPT).  * The difference between the DWPT and the global pool is that the DWPT starts  * maintaining a head once it has added its first document since for its segments  * private deletes only the deletes after that document are relevant. The global  * pool instead starts maintaining the head once this instance is created by  * taking the sentinel instance as its initial head.  *<p>  * Since each {@link DeleteSlice} maintains its own head and the list is only  * single linked the garbage collector takes care of pruning the list for us.  * All nodes in the list that are still relevant should be either directly or  * indirectly referenced by one of the DWPT's private {@link DeleteSlice} or by  * the global {@link BufferedDeletes} slice.  *<p>  * Each DWPT as well as the global delete pool maintain their private  * DeleteSlice instance. In the DWPT case updating a slice is equivalent to  * atomically finishing the document. The slice update guarantees a "happens  * before" relationship to all other updates in the same indexing session. When a  * DWPT updates a document it:  *   *<ol>  *<li>consumes a document and finishes its processing</li>  *<li>updates its private {@link DeleteSlice} either by calling  * {@link #updateSlice(DeleteSlice)} or {@link #add(Term, DeleteSlice)} (if the  * document has a delTerm)</li>  *<li>applies all deletes in the slice to its private {@link BufferedDeletes}  * and resets it</li>  *<li>increments its internal document id</li>  *</ol>  *   * The DWPT also doesn't apply its current documents delete term until it has  * updated its delete slice which ensures the consistency of the update. If the  * update fails before the DeleteSlice could have been updated the deleteTerm  * will also not be added to its private deletes neither to the global deletes.  *   */
+comment|/**  * {@link DocumentsWriterDeleteQueue} is a non-blocking linked pending deletes  * queue. In contrast to other queue implementation we only maintain the  * tail of the queue. A delete queue is always used in a context of a set of  * DWPTs and a global delete pool. Each of the DWPT and the global pool need to  * maintain their 'own' head of the queue (as a DeleteSlice instance per DWPT).  * The difference between the DWPT and the global pool is that the DWPT starts  * maintaining a head once it has added its first document since for its segments  * private deletes only the deletes after that document are relevant. The global  * pool instead starts maintaining the head once this instance is created by  * taking the sentinel instance as its initial head.  *<p>  * Since each {@link DeleteSlice} maintains its own head and the list is only  * single linked the garbage collector takes care of pruning the list for us.  * All nodes in the list that are still relevant should be either directly or  * indirectly referenced by one of the DWPT's private {@link DeleteSlice} or by  * the global {@link BufferedUpdates} slice.  *<p>  * Each DWPT as well as the global delete pool maintain their private  * DeleteSlice instance. In the DWPT case updating a slice is equivalent to  * atomically finishing the document. The slice update guarantees a "happens  * before" relationship to all other updates in the same indexing session. When a  * DWPT updates a document it:  *   *<ol>  *<li>consumes a document and finishes its processing</li>  *<li>updates its private {@link DeleteSlice} either by calling  * {@link #updateSlice(DeleteSlice)} or {@link #add(Term, DeleteSlice)} (if the  * document has a delTerm)</li>  *<li>applies all deletes in the slice to its private {@link BufferedUpdates}  * and resets it</li>  *<li>increments its internal document id</li>  *</ol>  *   * The DWPT also doesn't apply its current documents delete term until it has  * updated its delete slice which ensures the consistency of the update. If the  * update fails before the DeleteSlice could have been updated the deleteTerm  * will also not be added to its private deletes neither to the global deletes.  *   */
 end_comment
 
 begin_class
@@ -125,11 +125,11 @@ specifier|final
 name|DeleteSlice
 name|globalSlice
 decl_stmt|;
-DECL|field|globalBufferedDeletes
+DECL|field|globalBufferedUpdates
 specifier|private
 specifier|final
-name|BufferedDeletes
-name|globalBufferedDeletes
+name|BufferedUpdates
+name|globalBufferedUpdates
 decl_stmt|;
 comment|/* only acquired to update the global deletes */
 DECL|field|globalBufferLock
@@ -167,7 +167,7 @@ block|{
 name|this
 argument_list|(
 operator|new
-name|BufferedDeletes
+name|BufferedUpdates
 argument_list|()
 argument_list|,
 name|generation
@@ -177,8 +177,8 @@ block|}
 DECL|method|DocumentsWriterDeleteQueue
 name|DocumentsWriterDeleteQueue
 parameter_list|(
-name|BufferedDeletes
-name|globalBufferedDeletes
+name|BufferedUpdates
+name|globalBufferedUpdates
 parameter_list|,
 name|long
 name|generation
@@ -186,9 +186,9 @@ parameter_list|)
 block|{
 name|this
 operator|.
-name|globalBufferedDeletes
+name|globalBufferedUpdates
 operator|=
-name|globalBufferedDeletes
+name|globalBufferedUpdates
 expr_stmt|;
 name|this
 operator|.
@@ -447,9 +447,9 @@ argument_list|()
 expr_stmt|;
 try|try
 block|{
-comment|/*        * check if all items in the global slice were applied         * and if the global slice is up-to-date        * and if globalBufferedDeletes has changes        */
+comment|/*        * check if all items in the global slice were applied         * and if the global slice is up-to-date        * and if globalBufferedUpdates has changes        */
 return|return
-name|globalBufferedDeletes
+name|globalBufferedUpdates
 operator|.
 name|any
 argument_list|()
@@ -511,9 +511,9 @@ name|globalSlice
 operator|.
 name|apply
 argument_list|(
-name|globalBufferedDeletes
+name|globalBufferedUpdates
 argument_list|,
-name|BufferedDeletes
+name|BufferedUpdates
 operator|.
 name|MAX_INT
 argument_list|)
@@ -531,7 +531,7 @@ block|}
 block|}
 block|}
 DECL|method|freezeGlobalBuffer
-name|FrozenBufferedDeletes
+name|FrozenBufferedUpdates
 name|freezeGlobalBuffer
 parameter_list|(
 name|DeleteSlice
@@ -592,9 +592,9 @@ name|globalSlice
 operator|.
 name|apply
 argument_list|(
-name|globalBufferedDeletes
+name|globalBufferedUpdates
 argument_list|,
-name|BufferedDeletes
+name|BufferedUpdates
 operator|.
 name|MAX_INT
 argument_list|)
@@ -602,18 +602,18 @@ expr_stmt|;
 block|}
 comment|//      System.out.println(Thread.currentThread().getName() + ": now freeze global buffer " + globalBufferedDeletes);
 specifier|final
-name|FrozenBufferedDeletes
+name|FrozenBufferedUpdates
 name|packet
 init|=
 operator|new
-name|FrozenBufferedDeletes
+name|FrozenBufferedUpdates
 argument_list|(
-name|globalBufferedDeletes
+name|globalBufferedUpdates
 argument_list|,
 literal|false
 argument_list|)
 decl_stmt|;
-name|globalBufferedDeletes
+name|globalBufferedUpdates
 operator|.
 name|clear
 argument_list|()
@@ -724,7 +724,7 @@ DECL|method|apply
 name|void
 name|apply
 parameter_list|(
-name|BufferedDeletes
+name|BufferedUpdates
 name|del
 parameter_list|,
 name|int
@@ -834,7 +834,7 @@ name|numGlobalTermDeletes
 parameter_list|()
 block|{
 return|return
-name|globalBufferedDeletes
+name|globalBufferedUpdates
 operator|.
 name|numTermDeletes
 operator|.
@@ -873,7 +873,7 @@ name|sliceTail
 operator|=
 name|currentTail
 expr_stmt|;
-name|globalBufferedDeletes
+name|globalBufferedUpdates
 operator|.
 name|clear
 argument_list|()
@@ -959,7 +959,7 @@ DECL|method|apply
 name|void
 name|apply
 parameter_list|(
-name|BufferedDeletes
+name|BufferedUpdates
 name|bufferedDeletes
 parameter_list|,
 name|int
@@ -1036,7 +1036,7 @@ DECL|method|apply
 name|void
 name|apply
 parameter_list|(
-name|BufferedDeletes
+name|BufferedUpdates
 name|bufferedDeletes
 parameter_list|,
 name|int
@@ -1101,8 +1101,8 @@ DECL|method|apply
 name|void
 name|apply
 parameter_list|(
-name|BufferedDeletes
-name|bufferedDeletes
+name|BufferedUpdates
+name|bufferedUpdates
 parameter_list|,
 name|int
 name|docIDUpto
@@ -1116,7 +1116,7 @@ range|:
 name|item
 control|)
 block|{
-name|bufferedDeletes
+name|bufferedUpdates
 operator|.
 name|addQuery
 argument_list|(
@@ -1161,8 +1161,8 @@ DECL|method|apply
 name|void
 name|apply
 parameter_list|(
-name|BufferedDeletes
-name|bufferedDeletes
+name|BufferedUpdates
+name|bufferedUpdates
 parameter_list|,
 name|int
 name|docIDUpto
@@ -1176,7 +1176,7 @@ range|:
 name|item
 control|)
 block|{
-name|bufferedDeletes
+name|bufferedUpdates
 operator|.
 name|addTerm
 argument_list|(
@@ -1238,14 +1238,14 @@ DECL|method|apply
 name|void
 name|apply
 parameter_list|(
-name|BufferedDeletes
-name|bufferedDeletes
+name|BufferedUpdates
+name|bufferedUpdates
 parameter_list|,
 name|int
 name|docIDUpto
 parameter_list|)
 block|{
-name|bufferedDeletes
+name|bufferedUpdates
 operator|.
 name|addNumericUpdate
 argument_list|(
@@ -1311,16 +1311,16 @@ name|globalSlice
 operator|.
 name|apply
 argument_list|(
-name|globalBufferedDeletes
+name|globalBufferedUpdates
 argument_list|,
-name|BufferedDeletes
+name|BufferedUpdates
 operator|.
 name|MAX_INT
 argument_list|)
 expr_stmt|;
 block|}
 return|return
-name|globalBufferedDeletes
+name|globalBufferedUpdates
 operator|.
 name|any
 argument_list|()
@@ -1335,10 +1335,10 @@ argument_list|()
 expr_stmt|;
 block|}
 block|}
-DECL|method|getBufferedDeleteTermsSize
+DECL|method|getBufferedUpdatesTermsSize
 specifier|public
 name|int
-name|getBufferedDeleteTermsSize
+name|getBufferedUpdatesTermsSize
 parameter_list|()
 block|{
 name|globalBufferLock
@@ -1352,7 +1352,7 @@ name|forceApplyGlobalSlice
 argument_list|()
 expr_stmt|;
 return|return
-name|globalBufferedDeletes
+name|globalBufferedUpdates
 operator|.
 name|terms
 operator|.
@@ -1376,7 +1376,7 @@ name|bytesUsed
 parameter_list|()
 block|{
 return|return
-name|globalBufferedDeletes
+name|globalBufferedUpdates
 operator|.
 name|bytesUsed
 operator|.

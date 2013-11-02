@@ -278,7 +278,7 @@ argument_list|(
 name|doc1
 argument_list|)
 expr_stmt|;
-name|SegmentInfoPerCommit
+name|SegmentCommitInfo
 name|info1
 init|=
 name|DocHelper
@@ -300,7 +300,7 @@ argument_list|(
 name|doc2
 argument_list|)
 expr_stmt|;
-name|SegmentInfoPerCommit
+name|SegmentCommitInfo
 name|info2
 init|=
 name|DocHelper
@@ -548,7 +548,7 @@ operator|new
 name|SegmentReader
 argument_list|(
 operator|new
-name|SegmentInfoPerCommit
+name|SegmentCommitInfo
 argument_list|(
 operator|new
 name|SegmentInfo

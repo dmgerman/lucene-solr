@@ -689,7 +689,7 @@ argument_list|)
 argument_list|)
 argument_list|)
 decl_stmt|;
-name|SegmentInfoPerCommit
+name|SegmentCommitInfo
 name|si1
 init|=
 name|indexDoc
@@ -706,7 +706,7 @@ argument_list|,
 name|si1
 argument_list|)
 expr_stmt|;
-name|SegmentInfoPerCommit
+name|SegmentCommitInfo
 name|si2
 init|=
 name|indexDoc
@@ -728,7 +728,7 @@ operator|.
 name|close
 argument_list|()
 expr_stmt|;
-name|SegmentInfoPerCommit
+name|SegmentCommitInfo
 name|siMerge
 init|=
 name|merge
@@ -751,7 +751,7 @@ argument_list|,
 name|siMerge
 argument_list|)
 expr_stmt|;
-name|SegmentInfoPerCommit
+name|SegmentCommitInfo
 name|siMerge2
 init|=
 name|merge
@@ -774,7 +774,7 @@ argument_list|,
 name|siMerge2
 argument_list|)
 expr_stmt|;
-name|SegmentInfoPerCommit
+name|SegmentCommitInfo
 name|siMerge3
 init|=
 name|merge
@@ -1051,7 +1051,7 @@ expr_stmt|;
 block|}
 DECL|method|indexDoc
 specifier|private
-name|SegmentInfoPerCommit
+name|SegmentCommitInfo
 name|indexDoc
 parameter_list|(
 name|IndexWriter
@@ -1135,16 +1135,16 @@ return|;
 block|}
 DECL|method|merge
 specifier|private
-name|SegmentInfoPerCommit
+name|SegmentCommitInfo
 name|merge
 parameter_list|(
 name|Directory
 name|dir
 parameter_list|,
-name|SegmentInfoPerCommit
+name|SegmentCommitInfo
 name|si1
 parameter_list|,
-name|SegmentInfoPerCommit
+name|SegmentCommitInfo
 name|si2
 parameter_list|,
 name|String
@@ -1423,7 +1423,7 @@ block|}
 block|}
 return|return
 operator|new
-name|SegmentInfoPerCommit
+name|SegmentCommitInfo
 argument_list|(
 name|info
 argument_list|,
@@ -1445,7 +1445,7 @@ parameter_list|(
 name|PrintWriter
 name|out
 parameter_list|,
-name|SegmentInfoPerCommit
+name|SegmentCommitInfo
 name|si
 parameter_list|)
 throws|throws
