@@ -1255,12 +1255,10 @@ block|}
 comment|// solrcloud_debug
 if|if
 condition|(
-name|Boolean
+name|log
 operator|.
-name|getBoolean
-argument_list|(
-literal|"solr.cloud.debug"
-argument_list|)
+name|isDebugEnabled
+argument_list|()
 condition|)
 block|{
 try|try
@@ -1288,11 +1286,9 @@ argument_list|()
 decl_stmt|;
 try|try
 block|{
-name|System
+name|log
 operator|.
-name|err
-operator|.
-name|println
+name|debug
 argument_list|(
 name|core
 operator|.

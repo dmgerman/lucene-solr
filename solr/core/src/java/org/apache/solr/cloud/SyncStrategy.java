@@ -683,10 +683,6 @@ name|leaderProps
 argument_list|)
 argument_list|)
 expr_stmt|;
-comment|// TODO: look at our state usage of sync
-comment|// zkController.publish(core, ZkStateReader.SYNC);
-comment|// solrcloud_debug
-comment|// System.out.println("SYNC UP");
 if|if
 condition|(
 name|core
