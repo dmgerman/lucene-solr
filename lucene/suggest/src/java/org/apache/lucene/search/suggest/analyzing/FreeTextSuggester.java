@@ -1083,6 +1083,8 @@ name|separator
 expr_stmt|;
 block|}
 comment|/** Returns byte size of the underlying FST. */
+annotation|@
+name|Override
 DECL|method|sizeInBytes
 specifier|public
 name|long

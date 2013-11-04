@@ -1301,6 +1301,23 @@ return|return
 literal|true
 return|;
 block|}
+annotation|@
+name|Override
+DECL|method|sizeInBytes
+specifier|public
+name|long
+name|sizeInBytes
+parameter_list|()
+block|{
+return|return
+name|RamUsageEstimator
+operator|.
+name|sizeOf
+argument_list|(
+name|this
+argument_list|)
+return|;
+block|}
 block|}
 end_class
 

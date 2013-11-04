@@ -890,42 +890,12 @@ argument_list|)
 decl_stmt|;
 name|long
 name|sizeInBytes
-decl_stmt|;
-if|if
-condition|(
+init|=
 name|lookup
-operator|instanceof
-name|AnalyzingSuggester
-condition|)
-block|{
-comment|// Just get size of FST: else we are also measuring
-comment|// size of MockAnalyzer which is non-trivial and
-comment|// varies depending on test seed:
-name|sizeInBytes
-operator|=
-operator|(
-operator|(
-name|AnalyzingSuggester
-operator|)
-name|lookup
-operator|)
 operator|.
 name|sizeInBytes
 argument_list|()
-expr_stmt|;
-block|}
-else|else
-block|{
-name|sizeInBytes
-operator|=
-name|RamUsageEstimator
-operator|.
-name|sizeOf
-argument_list|(
-name|lookup
-argument_list|)
-expr_stmt|;
-block|}
+decl_stmt|;
 name|System
 operator|.
 name|err

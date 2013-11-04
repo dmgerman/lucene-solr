@@ -678,6 +678,14 @@ parameter_list|)
 throws|throws
 name|IOException
 function_decl|;
+comment|/**    * Get the size of the underlying lookup implementation in memory    * @return ram size of the lookup implementation in bytes    */
+DECL|method|sizeInBytes
+specifier|public
+specifier|abstract
+name|long
+name|sizeInBytes
+parameter_list|()
+function_decl|;
 block|}
 end_class
 

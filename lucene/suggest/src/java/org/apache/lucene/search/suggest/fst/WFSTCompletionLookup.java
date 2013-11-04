@@ -1630,6 +1630,30 @@ return|;
 block|}
 block|}
 decl_stmt|;
+comment|/** Returns byte size of the underlying FST. */
+annotation|@
+name|Override
+DECL|method|sizeInBytes
+specifier|public
+name|long
+name|sizeInBytes
+parameter_list|()
+block|{
+return|return
+operator|(
+name|fst
+operator|==
+literal|null
+operator|)
+condition|?
+literal|0
+else|:
+name|fst
+operator|.
+name|sizeInBytes
+argument_list|()
+return|;
+block|}
 block|}
 end_class
 
