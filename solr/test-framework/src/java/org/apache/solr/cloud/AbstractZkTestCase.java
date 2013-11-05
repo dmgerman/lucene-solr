@@ -630,6 +630,17 @@ name|zkClient
 argument_list|,
 name|solrhome
 argument_list|,
+literal|"enumsConfig.xml"
+argument_list|)
+expr_stmt|;
+name|putConfig
+argument_list|(
+literal|"conf1"
+argument_list|,
+name|zkClient
+argument_list|,
+name|solrhome
+argument_list|,
 literal|"open-exchange-rates.json"
 argument_list|)
 expr_stmt|;
