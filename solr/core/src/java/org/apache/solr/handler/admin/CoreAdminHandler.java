@@ -3138,11 +3138,6 @@ name|coreContainer
 operator|.
 name|register
 argument_list|(
-name|dcore
-operator|.
-name|getName
-argument_list|()
-argument_list|,
 name|core
 argument_list|,
 literal|false
