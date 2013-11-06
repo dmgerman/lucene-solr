@@ -1123,6 +1123,13 @@ argument_list|(
 name|success
 argument_list|)
 expr_stmt|;
+name|processEvents
+argument_list|(
+literal|false
+argument_list|,
+literal|true
+argument_list|)
+expr_stmt|;
 name|doAfterFlush
 argument_list|()
 expr_stmt|;
@@ -2776,6 +2783,12 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
+assert|assert
+name|eventQueue
+operator|.
+name|isEmpty
+argument_list|()
+assert|;
 block|}
 block|}
 comment|// Returns true if this thread should attempt to close, or
@@ -3266,6 +3279,13 @@ argument_list|()
 operator|.
 name|interrupt
 argument_list|()
+expr_stmt|;
+name|processEvents
+argument_list|(
+literal|false
+argument_list|,
+literal|true
+argument_list|)
 expr_stmt|;
 block|}
 block|}
@@ -5656,6 +5676,14 @@ argument_list|()
 expr_stmt|;
 block|}
 block|}
+assert|assert
+name|eventQueue
+operator|.
+name|isEmpty
+argument_list|()
+operator|:
+name|eventQueue
+assert|;
 block|}
 DECL|method|rollbackInternal
 specifier|private
