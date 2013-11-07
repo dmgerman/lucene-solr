@@ -742,7 +742,7 @@ literal|10
 argument_list|)
 argument_list|)
 decl_stmt|;
-comment|// Aggregatses the facet counts:
+comment|// Aggregate the facet counts:
 name|FacetsCollector
 name|c
 init|=
