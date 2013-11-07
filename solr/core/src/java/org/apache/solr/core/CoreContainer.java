@@ -4328,6 +4328,24 @@ name|name
 argument_list|)
 return|;
 block|}
+DECL|method|isLoadedNotPendingClose
+specifier|public
+name|boolean
+name|isLoadedNotPendingClose
+parameter_list|(
+name|String
+name|name
+parameter_list|)
+block|{
+return|return
+name|solrCores
+operator|.
+name|isLoadedNotPendingClose
+argument_list|(
+name|name
+argument_list|)
+return|;
+block|}
 comment|/**    * Gets a solr core descriptor for a core that is not loaded. Note that if the caller calls this on a    * loaded core, the unloaded descriptor will be returned.    *    * @param cname - name of the unloaded core descriptor to load. NOTE:    * @return a coreDescriptor. May return null    */
 DECL|method|getUnloadedCoreDescriptor
 specifier|public
