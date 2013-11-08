@@ -1316,7 +1316,7 @@ break|break;
 case|case
 name|JavascriptParser
 operator|.
-name|ID
+name|NAMESPACE_ID
 case|:
 name|int
 name|index

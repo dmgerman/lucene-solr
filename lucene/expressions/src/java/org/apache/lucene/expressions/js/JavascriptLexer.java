@@ -416,6 +416,15 @@ name|ID
 init|=
 literal|39
 decl_stmt|;
+DECL|field|NAMESPACE_ID
+specifier|public
+specifier|static
+specifier|final
+name|int
+name|NAMESPACE_ID
+init|=
+literal|40
+decl_stmt|;
 DECL|field|OCTAL
 specifier|public
 specifier|static
@@ -423,7 +432,7 @@ specifier|final
 name|int
 name|OCTAL
 init|=
-literal|40
+literal|41
 decl_stmt|;
 DECL|field|OCTALDIGIT
 specifier|public
@@ -432,7 +441,7 @@ specifier|final
 name|int
 name|OCTALDIGIT
 init|=
-literal|41
+literal|42
 decl_stmt|;
 DECL|field|WS
 specifier|public
@@ -441,7 +450,7 @@ specifier|final
 name|int
 name|WS
 init|=
-literal|42
+literal|43
 decl_stmt|;
 annotation|@
 name|Override
@@ -1926,6 +1935,115 @@ comment|// do for sure before leaving
 block|}
 block|}
 comment|// $ANTLR end "AT_SUBTRACT"
+comment|// $ANTLR start "NAMESPACE_ID"
+DECL|method|mNAMESPACE_ID
+specifier|public
+specifier|final
+name|void
+name|mNAMESPACE_ID
+parameter_list|()
+throws|throws
+name|RecognitionException
+block|{
+try|try
+block|{
+name|int
+name|_type
+init|=
+name|NAMESPACE_ID
+decl_stmt|;
+name|int
+name|_channel
+init|=
+name|DEFAULT_TOKEN_CHANNEL
+decl_stmt|;
+comment|// src/java/org/apache/lucene/expressions/js/Javascript.g:334:5: ( ID ( AT_DOT ID )* )
+comment|// src/java/org/apache/lucene/expressions/js/Javascript.g:334:7: ID ( AT_DOT ID )*
+block|{
+name|mID
+argument_list|()
+expr_stmt|;
+comment|// src/java/org/apache/lucene/expressions/js/Javascript.g:334:10: ( AT_DOT ID )*
+name|loop1
+label|:
+while|while
+condition|(
+literal|true
+condition|)
+block|{
+name|int
+name|alt1
+init|=
+literal|2
+decl_stmt|;
+name|int
+name|LA1_0
+init|=
+name|input
+operator|.
+name|LA
+argument_list|(
+literal|1
+argument_list|)
+decl_stmt|;
+if|if
+condition|(
+operator|(
+name|LA1_0
+operator|==
+literal|'.'
+operator|)
+condition|)
+block|{
+name|alt1
+operator|=
+literal|1
+expr_stmt|;
+block|}
+switch|switch
+condition|(
+name|alt1
+condition|)
+block|{
+case|case
+literal|1
+case|:
+comment|// src/java/org/apache/lucene/expressions/js/Javascript.g:334:11: AT_DOT ID
+block|{
+name|mAT_DOT
+argument_list|()
+expr_stmt|;
+name|mID
+argument_list|()
+expr_stmt|;
+block|}
+break|break;
+default|default :
+break|break
+name|loop1
+break|;
+block|}
+block|}
+block|}
+name|state
+operator|.
+name|type
+operator|=
+name|_type
+expr_stmt|;
+name|state
+operator|.
+name|channel
+operator|=
+name|_channel
+expr_stmt|;
+block|}
+finally|finally
+block|{
+comment|// do for sure before leaving
+block|}
+block|}
+comment|// $ANTLR end "NAMESPACE_ID"
 comment|// $ANTLR start "ID"
 DECL|method|mID
 specifier|public
@@ -1938,18 +2056,8 @@ name|RecognitionException
 block|{
 try|try
 block|{
-name|int
-name|_type
-init|=
-name|ID
-decl_stmt|;
-name|int
-name|_channel
-init|=
-name|DEFAULT_TOKEN_CHANNEL
-decl_stmt|;
-comment|// src/java/org/apache/lucene/expressions/js/Javascript.g:334:5: ( ( 'a' .. 'z' | 'A' .. 'Z' | '_' ) ( 'a' .. 'z' | 'A' .. 'Z' | '0' .. '9' | '_' )* )
-comment|// src/java/org/apache/lucene/expressions/js/Javascript.g:334:7: ( 'a' .. 'z' | 'A' .. 'Z' | '_' ) ( 'a' .. 'z' | 'A' .. 'Z' | '0' .. '9' | '_' )*
+comment|// src/java/org/apache/lucene/expressions/js/Javascript.g:340:5: ( ( 'a' .. 'z' | 'A' .. 'Z' | '_' ) ( 'a' .. 'z' | 'A' .. 'Z' | '0' .. '9' | '_' )* )
+comment|// src/java/org/apache/lucene/expressions/js/Javascript.g:340:7: ( 'a' .. 'z' | 'A' .. 'Z' | '_' ) ( 'a' .. 'z' | 'A' .. 'Z' | '0' .. '9' | '_' )*
 block|{
 if|if
 condition|(
@@ -2031,8 +2139,8 @@ throw|throw
 name|mse
 throw|;
 block|}
-comment|// src/java/org/apache/lucene/expressions/js/Javascript.g:334:31: ( 'a' .. 'z' | 'A' .. 'Z' | '0' .. '9' | '_' )*
-name|loop1
+comment|// src/java/org/apache/lucene/expressions/js/Javascript.g:340:31: ( 'a' .. 'z' | 'A' .. 'Z' | '0' .. '9' | '_' )*
+name|loop2
 label|:
 while|while
 condition|(
@@ -2040,12 +2148,12 @@ literal|true
 condition|)
 block|{
 name|int
-name|alt1
+name|alt2
 init|=
 literal|2
 decl_stmt|;
 name|int
-name|LA1_0
+name|LA2_0
 init|=
 name|input
 operator|.
@@ -2058,49 +2166,49 @@ if|if
 condition|(
 operator|(
 operator|(
-name|LA1_0
+name|LA2_0
 operator|>=
 literal|'0'
 operator|&&
-name|LA1_0
+name|LA2_0
 operator|<=
 literal|'9'
 operator|)
 operator|||
 operator|(
-name|LA1_0
+name|LA2_0
 operator|>=
 literal|'A'
 operator|&&
-name|LA1_0
+name|LA2_0
 operator|<=
 literal|'Z'
 operator|)
 operator|||
-name|LA1_0
+name|LA2_0
 operator|==
 literal|'_'
 operator|||
 operator|(
-name|LA1_0
+name|LA2_0
 operator|>=
 literal|'a'
 operator|&&
-name|LA1_0
+name|LA2_0
 operator|<=
 literal|'z'
 operator|)
 operator|)
 condition|)
 block|{
-name|alt1
+name|alt2
 operator|=
 literal|1
 expr_stmt|;
 block|}
 switch|switch
 condition|(
-name|alt1
+name|alt2
 condition|)
 block|{
 case|case
@@ -2212,23 +2320,11 @@ block|}
 break|break;
 default|default :
 break|break
-name|loop1
+name|loop2
 break|;
 block|}
 block|}
 block|}
-name|state
-operator|.
-name|type
-operator|=
-name|_type
-expr_stmt|;
-name|state
-operator|.
-name|channel
-operator|=
-name|_channel
-expr_stmt|;
 block|}
 finally|finally
 block|{
@@ -2258,16 +2354,16 @@ name|_channel
 init|=
 name|DEFAULT_TOKEN_CHANNEL
 decl_stmt|;
-comment|// src/java/org/apache/lucene/expressions/js/Javascript.g:338:5: ( ( ' ' | '\\t' | '\\n' | '\\r' )+ )
-comment|// src/java/org/apache/lucene/expressions/js/Javascript.g:338:7: ( ' ' | '\\t' | '\\n' | '\\r' )+
+comment|// src/java/org/apache/lucene/expressions/js/Javascript.g:343:5: ( ( ' ' | '\\t' | '\\n' | '\\r' )+ )
+comment|// src/java/org/apache/lucene/expressions/js/Javascript.g:343:7: ( ' ' | '\\t' | '\\n' | '\\r' )+
 block|{
-comment|// src/java/org/apache/lucene/expressions/js/Javascript.g:338:7: ( ' ' | '\\t' | '\\n' | '\\r' )+
+comment|// src/java/org/apache/lucene/expressions/js/Javascript.g:343:7: ( ' ' | '\\t' | '\\n' | '\\r' )+
 name|int
-name|cnt2
+name|cnt3
 init|=
 literal|0
 decl_stmt|;
-name|loop2
+name|loop3
 label|:
 while|while
 condition|(
@@ -2275,12 +2371,12 @@ literal|true
 condition|)
 block|{
 name|int
-name|alt2
+name|alt3
 init|=
 literal|2
 decl_stmt|;
 name|int
-name|LA2_0
+name|LA3_0
 init|=
 name|input
 operator|.
@@ -2293,33 +2389,33 @@ if|if
 condition|(
 operator|(
 operator|(
-name|LA2_0
+name|LA3_0
 operator|>=
 literal|'\t'
 operator|&&
-name|LA2_0
+name|LA3_0
 operator|<=
 literal|'\n'
 operator|)
 operator|||
-name|LA2_0
+name|LA3_0
 operator|==
 literal|'\r'
 operator|||
-name|LA2_0
+name|LA3_0
 operator|==
 literal|' '
 operator|)
 condition|)
 block|{
-name|alt2
+name|alt3
 operator|=
 literal|1
 expr_stmt|;
 block|}
 switch|switch
 condition|(
-name|alt2
+name|alt3
 condition|)
 block|{
 case|case
@@ -2401,12 +2497,12 @@ break|break;
 default|default :
 if|if
 condition|(
-name|cnt2
+name|cnt3
 operator|>=
 literal|1
 condition|)
 break|break
-name|loop2
+name|loop3
 break|;
 name|EarlyExitException
 name|eee
@@ -2414,7 +2510,7 @@ init|=
 operator|new
 name|EarlyExitException
 argument_list|(
-literal|2
+literal|3
 argument_list|,
 name|input
 argument_list|)
@@ -2423,7 +2519,7 @@ throw|throw
 name|eee
 throw|;
 block|}
-name|cnt2
+name|cnt3
 operator|++
 expr_stmt|;
 block|}
@@ -2472,15 +2568,15 @@ name|_channel
 init|=
 name|DEFAULT_TOKEN_CHANNEL
 decl_stmt|;
-comment|// src/java/org/apache/lucene/expressions/js/Javascript.g:342:5: ( DECIMALINTEGER AT_DOT ( DECIMALDIGIT )* ( EXPONENT )? | AT_DOT ( DECIMALDIGIT )+ ( EXPONENT )? | DECIMALINTEGER ( EXPONENT )? )
+comment|// src/java/org/apache/lucene/expressions/js/Javascript.g:347:5: ( DECIMALINTEGER AT_DOT ( DECIMALDIGIT )* ( EXPONENT )? | AT_DOT ( DECIMALDIGIT )+ ( EXPONENT )? | DECIMALINTEGER ( EXPONENT )? )
 name|int
-name|alt8
+name|alt9
 init|=
 literal|3
 decl_stmt|;
-name|alt8
+name|alt9
 operator|=
-name|dfa8
+name|dfa9
 operator|.
 name|predict
 argument_list|(
@@ -2489,13 +2585,13 @@ argument_list|)
 expr_stmt|;
 switch|switch
 condition|(
-name|alt8
+name|alt9
 condition|)
 block|{
 case|case
 literal|1
 case|:
-comment|// src/java/org/apache/lucene/expressions/js/Javascript.g:342:7: DECIMALINTEGER AT_DOT ( DECIMALDIGIT )* ( EXPONENT )?
+comment|// src/java/org/apache/lucene/expressions/js/Javascript.g:347:7: DECIMALINTEGER AT_DOT ( DECIMALDIGIT )* ( EXPONENT )?
 block|{
 name|mDECIMALINTEGER
 argument_list|()
@@ -2503,8 +2599,8 @@ expr_stmt|;
 name|mAT_DOT
 argument_list|()
 expr_stmt|;
-comment|// src/java/org/apache/lucene/expressions/js/Javascript.g:342:29: ( DECIMALDIGIT )*
-name|loop3
+comment|// src/java/org/apache/lucene/expressions/js/Javascript.g:347:29: ( DECIMALDIGIT )*
+name|loop4
 label|:
 while|while
 condition|(
@@ -2512,12 +2608,12 @@ literal|true
 condition|)
 block|{
 name|int
-name|alt3
+name|alt4
 init|=
 literal|2
 decl_stmt|;
 name|int
-name|LA3_0
+name|LA4_0
 init|=
 name|input
 operator|.
@@ -2530,25 +2626,25 @@ if|if
 condition|(
 operator|(
 operator|(
-name|LA3_0
+name|LA4_0
 operator|>=
 literal|'0'
 operator|&&
-name|LA3_0
+name|LA4_0
 operator|<=
 literal|'9'
 operator|)
 operator|)
 condition|)
 block|{
-name|alt3
+name|alt4
 operator|=
 literal|1
 expr_stmt|;
 block|}
 switch|switch
 condition|(
-name|alt3
+name|alt4
 condition|)
 block|{
 case|case
@@ -2611,18 +2707,18 @@ block|}
 break|break;
 default|default :
 break|break
-name|loop3
+name|loop4
 break|;
 block|}
 block|}
-comment|// src/java/org/apache/lucene/expressions/js/Javascript.g:342:43: ( EXPONENT )?
+comment|// src/java/org/apache/lucene/expressions/js/Javascript.g:347:43: ( EXPONENT )?
 name|int
-name|alt4
+name|alt5
 init|=
 literal|2
 decl_stmt|;
 name|int
-name|LA4_0
+name|LA5_0
 init|=
 name|input
 operator|.
@@ -2634,30 +2730,30 @@ decl_stmt|;
 if|if
 condition|(
 operator|(
-name|LA4_0
+name|LA5_0
 operator|==
 literal|'E'
 operator|||
-name|LA4_0
+name|LA5_0
 operator|==
 literal|'e'
 operator|)
 condition|)
 block|{
-name|alt4
+name|alt5
 operator|=
 literal|1
 expr_stmt|;
 block|}
 switch|switch
 condition|(
-name|alt4
+name|alt5
 condition|)
 block|{
 case|case
 literal|1
 case|:
-comment|// src/java/org/apache/lucene/expressions/js/Javascript.g:342:43: EXPONENT
+comment|// src/java/org/apache/lucene/expressions/js/Javascript.g:347:43: EXPONENT
 block|{
 name|mEXPONENT
 argument_list|()
@@ -2670,18 +2766,18 @@ break|break;
 case|case
 literal|2
 case|:
-comment|// src/java/org/apache/lucene/expressions/js/Javascript.g:343:7: AT_DOT ( DECIMALDIGIT )+ ( EXPONENT )?
+comment|// src/java/org/apache/lucene/expressions/js/Javascript.g:348:7: AT_DOT ( DECIMALDIGIT )+ ( EXPONENT )?
 block|{
 name|mAT_DOT
 argument_list|()
 expr_stmt|;
-comment|// src/java/org/apache/lucene/expressions/js/Javascript.g:343:14: ( DECIMALDIGIT )+
+comment|// src/java/org/apache/lucene/expressions/js/Javascript.g:348:14: ( DECIMALDIGIT )+
 name|int
-name|cnt5
+name|cnt6
 init|=
 literal|0
 decl_stmt|;
-name|loop5
+name|loop6
 label|:
 while|while
 condition|(
@@ -2689,12 +2785,12 @@ literal|true
 condition|)
 block|{
 name|int
-name|alt5
+name|alt6
 init|=
 literal|2
 decl_stmt|;
 name|int
-name|LA5_0
+name|LA6_0
 init|=
 name|input
 operator|.
@@ -2707,25 +2803,25 @@ if|if
 condition|(
 operator|(
 operator|(
-name|LA5_0
+name|LA6_0
 operator|>=
 literal|'0'
 operator|&&
-name|LA5_0
+name|LA6_0
 operator|<=
 literal|'9'
 operator|)
 operator|)
 condition|)
 block|{
-name|alt5
+name|alt6
 operator|=
 literal|1
 expr_stmt|;
 block|}
 switch|switch
 condition|(
-name|alt5
+name|alt6
 condition|)
 block|{
 case|case
@@ -2789,12 +2885,12 @@ break|break;
 default|default :
 if|if
 condition|(
-name|cnt5
+name|cnt6
 operator|>=
 literal|1
 condition|)
 break|break
-name|loop5
+name|loop6
 break|;
 name|EarlyExitException
 name|eee
@@ -2802,7 +2898,7 @@ init|=
 operator|new
 name|EarlyExitException
 argument_list|(
-literal|5
+literal|6
 argument_list|,
 name|input
 argument_list|)
@@ -2811,18 +2907,18 @@ throw|throw
 name|eee
 throw|;
 block|}
-name|cnt5
+name|cnt6
 operator|++
 expr_stmt|;
 block|}
-comment|// src/java/org/apache/lucene/expressions/js/Javascript.g:343:28: ( EXPONENT )?
+comment|// src/java/org/apache/lucene/expressions/js/Javascript.g:348:28: ( EXPONENT )?
 name|int
-name|alt6
+name|alt7
 init|=
 literal|2
 decl_stmt|;
 name|int
-name|LA6_0
+name|LA7_0
 init|=
 name|input
 operator|.
@@ -2834,30 +2930,30 @@ decl_stmt|;
 if|if
 condition|(
 operator|(
-name|LA6_0
+name|LA7_0
 operator|==
 literal|'E'
 operator|||
-name|LA6_0
+name|LA7_0
 operator|==
 literal|'e'
 operator|)
 condition|)
 block|{
-name|alt6
+name|alt7
 operator|=
 literal|1
 expr_stmt|;
 block|}
 switch|switch
 condition|(
-name|alt6
+name|alt7
 condition|)
 block|{
 case|case
 literal|1
 case|:
-comment|// src/java/org/apache/lucene/expressions/js/Javascript.g:343:28: EXPONENT
+comment|// src/java/org/apache/lucene/expressions/js/Javascript.g:348:28: EXPONENT
 block|{
 name|mEXPONENT
 argument_list|()
@@ -2870,19 +2966,19 @@ break|break;
 case|case
 literal|3
 case|:
-comment|// src/java/org/apache/lucene/expressions/js/Javascript.g:344:7: DECIMALINTEGER ( EXPONENT )?
+comment|// src/java/org/apache/lucene/expressions/js/Javascript.g:349:7: DECIMALINTEGER ( EXPONENT )?
 block|{
 name|mDECIMALINTEGER
 argument_list|()
 expr_stmt|;
-comment|// src/java/org/apache/lucene/expressions/js/Javascript.g:344:22: ( EXPONENT )?
+comment|// src/java/org/apache/lucene/expressions/js/Javascript.g:349:22: ( EXPONENT )?
 name|int
-name|alt7
+name|alt8
 init|=
 literal|2
 decl_stmt|;
 name|int
-name|LA7_0
+name|LA8_0
 init|=
 name|input
 operator|.
@@ -2894,30 +2990,30 @@ decl_stmt|;
 if|if
 condition|(
 operator|(
-name|LA7_0
+name|LA8_0
 operator|==
 literal|'E'
 operator|||
-name|LA7_0
+name|LA8_0
 operator|==
 literal|'e'
 operator|)
 condition|)
 block|{
-name|alt7
+name|alt8
 operator|=
 literal|1
 expr_stmt|;
 block|}
 switch|switch
 condition|(
-name|alt7
+name|alt8
 condition|)
 block|{
 case|case
 literal|1
 case|:
-comment|// src/java/org/apache/lucene/expressions/js/Javascript.g:344:22: EXPONENT
+comment|// src/java/org/apache/lucene/expressions/js/Javascript.g:349:22: EXPONENT
 block|{
 name|mEXPONENT
 argument_list|()
@@ -2969,21 +3065,21 @@ name|_channel
 init|=
 name|DEFAULT_TOKEN_CHANNEL
 decl_stmt|;
-comment|// src/java/org/apache/lucene/expressions/js/Javascript.g:348:5: ( '0' ( OCTALDIGIT )+ )
-comment|// src/java/org/apache/lucene/expressions/js/Javascript.g:348:7: '0' ( OCTALDIGIT )+
+comment|// src/java/org/apache/lucene/expressions/js/Javascript.g:353:5: ( '0' ( OCTALDIGIT )+ )
+comment|// src/java/org/apache/lucene/expressions/js/Javascript.g:353:7: '0' ( OCTALDIGIT )+
 block|{
 name|match
 argument_list|(
 literal|'0'
 argument_list|)
 expr_stmt|;
-comment|// src/java/org/apache/lucene/expressions/js/Javascript.g:348:11: ( OCTALDIGIT )+
+comment|// src/java/org/apache/lucene/expressions/js/Javascript.g:353:11: ( OCTALDIGIT )+
 name|int
-name|cnt9
+name|cnt10
 init|=
 literal|0
 decl_stmt|;
-name|loop9
+name|loop10
 label|:
 while|while
 condition|(
@@ -2991,12 +3087,12 @@ literal|true
 condition|)
 block|{
 name|int
-name|alt9
+name|alt10
 init|=
 literal|2
 decl_stmt|;
 name|int
-name|LA9_0
+name|LA10_0
 init|=
 name|input
 operator|.
@@ -3009,25 +3105,25 @@ if|if
 condition|(
 operator|(
 operator|(
-name|LA9_0
+name|LA10_0
 operator|>=
 literal|'0'
 operator|&&
-name|LA9_0
+name|LA10_0
 operator|<=
 literal|'7'
 operator|)
 operator|)
 condition|)
 block|{
-name|alt9
+name|alt10
 operator|=
 literal|1
 expr_stmt|;
 block|}
 switch|switch
 condition|(
-name|alt9
+name|alt10
 condition|)
 block|{
 case|case
@@ -3091,12 +3187,12 @@ break|break;
 default|default :
 if|if
 condition|(
-name|cnt9
+name|cnt10
 operator|>=
 literal|1
 condition|)
 break|break
-name|loop9
+name|loop10
 break|;
 name|EarlyExitException
 name|eee
@@ -3104,7 +3200,7 @@ init|=
 operator|new
 name|EarlyExitException
 argument_list|(
-literal|9
+literal|10
 argument_list|,
 name|input
 argument_list|)
@@ -3113,7 +3209,7 @@ throw|throw
 name|eee
 throw|;
 block|}
-name|cnt9
+name|cnt10
 operator|++
 expr_stmt|;
 block|}
@@ -3159,17 +3255,17 @@ name|_channel
 init|=
 name|DEFAULT_TOKEN_CHANNEL
 decl_stmt|;
-comment|// src/java/org/apache/lucene/expressions/js/Javascript.g:352:5: ( ( '0x' | '0X' ) ( HEXDIGIT )+ )
-comment|// src/java/org/apache/lucene/expressions/js/Javascript.g:352:7: ( '0x' | '0X' ) ( HEXDIGIT )+
+comment|// src/java/org/apache/lucene/expressions/js/Javascript.g:357:5: ( ( '0x' | '0X' ) ( HEXDIGIT )+ )
+comment|// src/java/org/apache/lucene/expressions/js/Javascript.g:357:7: ( '0x' | '0X' ) ( HEXDIGIT )+
 block|{
-comment|// src/java/org/apache/lucene/expressions/js/Javascript.g:352:7: ( '0x' | '0X' )
+comment|// src/java/org/apache/lucene/expressions/js/Javascript.g:357:7: ( '0x' | '0X' )
 name|int
-name|alt10
+name|alt11
 init|=
 literal|2
 decl_stmt|;
 name|int
-name|LA10_0
+name|LA11_0
 init|=
 name|input
 operator|.
@@ -3181,14 +3277,14 @@ decl_stmt|;
 if|if
 condition|(
 operator|(
-name|LA10_0
+name|LA11_0
 operator|==
 literal|'0'
 operator|)
 condition|)
 block|{
 name|int
-name|LA10_1
+name|LA11_1
 init|=
 name|input
 operator|.
@@ -3200,13 +3296,13 @@ decl_stmt|;
 if|if
 condition|(
 operator|(
-name|LA10_1
+name|LA11_1
 operator|==
 literal|'x'
 operator|)
 condition|)
 block|{
-name|alt10
+name|alt11
 operator|=
 literal|1
 expr_stmt|;
@@ -3215,13 +3311,13 @@ elseif|else
 if|if
 condition|(
 operator|(
-name|LA10_1
+name|LA11_1
 operator|==
 literal|'X'
 operator|)
 condition|)
 block|{
-name|alt10
+name|alt11
 operator|=
 literal|2
 expr_stmt|;
@@ -3251,7 +3347,7 @@ name|NoViableAltException
 argument_list|(
 literal|""
 argument_list|,
-literal|10
+literal|11
 argument_list|,
 literal|1
 argument_list|,
@@ -3284,7 +3380,7 @@ name|NoViableAltException
 argument_list|(
 literal|""
 argument_list|,
-literal|10
+literal|11
 argument_list|,
 literal|0
 argument_list|,
@@ -3297,13 +3393,13 @@ throw|;
 block|}
 switch|switch
 condition|(
-name|alt10
+name|alt11
 condition|)
 block|{
 case|case
 literal|1
 case|:
-comment|// src/java/org/apache/lucene/expressions/js/Javascript.g:352:8: '0x'
+comment|// src/java/org/apache/lucene/expressions/js/Javascript.g:357:8: '0x'
 block|{
 name|match
 argument_list|(
@@ -3315,7 +3411,7 @@ break|break;
 case|case
 literal|2
 case|:
-comment|// src/java/org/apache/lucene/expressions/js/Javascript.g:352:13: '0X'
+comment|// src/java/org/apache/lucene/expressions/js/Javascript.g:357:13: '0X'
 block|{
 name|match
 argument_list|(
@@ -3325,13 +3421,13 @@ expr_stmt|;
 block|}
 break|break;
 block|}
-comment|// src/java/org/apache/lucene/expressions/js/Javascript.g:352:19: ( HEXDIGIT )+
+comment|// src/java/org/apache/lucene/expressions/js/Javascript.g:357:19: ( HEXDIGIT )+
 name|int
-name|cnt11
+name|cnt12
 init|=
 literal|0
 decl_stmt|;
-name|loop11
+name|loop12
 label|:
 while|while
 condition|(
@@ -3339,12 +3435,12 @@ literal|true
 condition|)
 block|{
 name|int
-name|alt11
+name|alt12
 init|=
 literal|2
 decl_stmt|;
 name|int
-name|LA11_0
+name|LA12_0
 init|=
 name|input
 operator|.
@@ -3357,45 +3453,45 @@ if|if
 condition|(
 operator|(
 operator|(
-name|LA11_0
+name|LA12_0
 operator|>=
 literal|'0'
 operator|&&
-name|LA11_0
+name|LA12_0
 operator|<=
 literal|'9'
 operator|)
 operator|||
 operator|(
-name|LA11_0
+name|LA12_0
 operator|>=
 literal|'A'
 operator|&&
-name|LA11_0
+name|LA12_0
 operator|<=
 literal|'F'
 operator|)
 operator|||
 operator|(
-name|LA11_0
+name|LA12_0
 operator|>=
 literal|'a'
 operator|&&
-name|LA11_0
+name|LA12_0
 operator|<=
 literal|'f'
 operator|)
 operator|)
 condition|)
 block|{
-name|alt11
+name|alt12
 operator|=
 literal|1
 expr_stmt|;
 block|}
 switch|switch
 condition|(
-name|alt11
+name|alt12
 condition|)
 block|{
 case|case
@@ -3499,12 +3595,12 @@ break|break;
 default|default :
 if|if
 condition|(
-name|cnt11
+name|cnt12
 operator|>=
 literal|1
 condition|)
 break|break
-name|loop11
+name|loop12
 break|;
 name|EarlyExitException
 name|eee
@@ -3512,7 +3608,7 @@ init|=
 operator|new
 name|EarlyExitException
 argument_list|(
-literal|11
+literal|12
 argument_list|,
 name|input
 argument_list|)
@@ -3521,7 +3617,7 @@ throw|throw
 name|eee
 throw|;
 block|}
-name|cnt11
+name|cnt12
 operator|++
 expr_stmt|;
 block|}
@@ -3557,14 +3653,14 @@ name|RecognitionException
 block|{
 try|try
 block|{
-comment|// src/java/org/apache/lucene/expressions/js/Javascript.g:358:5: ( '0' | '1' .. '9' ( DECIMALDIGIT )* )
+comment|// src/java/org/apache/lucene/expressions/js/Javascript.g:363:5: ( '0' | '1' .. '9' ( DECIMALDIGIT )* )
 name|int
-name|alt13
+name|alt14
 init|=
 literal|2
 decl_stmt|;
 name|int
-name|LA13_0
+name|LA14_0
 init|=
 name|input
 operator|.
@@ -3576,13 +3672,13 @@ decl_stmt|;
 if|if
 condition|(
 operator|(
-name|LA13_0
+name|LA14_0
 operator|==
 literal|'0'
 operator|)
 condition|)
 block|{
-name|alt13
+name|alt14
 operator|=
 literal|1
 expr_stmt|;
@@ -3592,18 +3688,18 @@ if|if
 condition|(
 operator|(
 operator|(
-name|LA13_0
+name|LA14_0
 operator|>=
 literal|'1'
 operator|&&
-name|LA13_0
+name|LA14_0
 operator|<=
 literal|'9'
 operator|)
 operator|)
 condition|)
 block|{
-name|alt13
+name|alt14
 operator|=
 literal|2
 expr_stmt|;
@@ -3618,7 +3714,7 @@ name|NoViableAltException
 argument_list|(
 literal|""
 argument_list|,
-literal|13
+literal|14
 argument_list|,
 literal|0
 argument_list|,
@@ -3631,13 +3727,13 @@ throw|;
 block|}
 switch|switch
 condition|(
-name|alt13
+name|alt14
 condition|)
 block|{
 case|case
 literal|1
 case|:
-comment|// src/java/org/apache/lucene/expressions/js/Javascript.g:358:7: '0'
+comment|// src/java/org/apache/lucene/expressions/js/Javascript.g:363:7: '0'
 block|{
 name|match
 argument_list|(
@@ -3649,7 +3745,7 @@ break|break;
 case|case
 literal|2
 case|:
-comment|// src/java/org/apache/lucene/expressions/js/Javascript.g:359:7: '1' .. '9' ( DECIMALDIGIT )*
+comment|// src/java/org/apache/lucene/expressions/js/Javascript.g:364:7: '1' .. '9' ( DECIMALDIGIT )*
 block|{
 name|matchRange
 argument_list|(
@@ -3658,8 +3754,8 @@ argument_list|,
 literal|'9'
 argument_list|)
 expr_stmt|;
-comment|// src/java/org/apache/lucene/expressions/js/Javascript.g:359:16: ( DECIMALDIGIT )*
-name|loop12
+comment|// src/java/org/apache/lucene/expressions/js/Javascript.g:364:16: ( DECIMALDIGIT )*
+name|loop13
 label|:
 while|while
 condition|(
@@ -3667,12 +3763,12 @@ literal|true
 condition|)
 block|{
 name|int
-name|alt12
+name|alt13
 init|=
 literal|2
 decl_stmt|;
 name|int
-name|LA12_0
+name|LA13_0
 init|=
 name|input
 operator|.
@@ -3685,25 +3781,25 @@ if|if
 condition|(
 operator|(
 operator|(
-name|LA12_0
+name|LA13_0
 operator|>=
 literal|'0'
 operator|&&
-name|LA12_0
+name|LA13_0
 operator|<=
 literal|'9'
 operator|)
 operator|)
 condition|)
 block|{
-name|alt12
+name|alt13
 operator|=
 literal|1
 expr_stmt|;
 block|}
 switch|switch
 condition|(
-name|alt12
+name|alt13
 condition|)
 block|{
 case|case
@@ -3766,7 +3862,7 @@ block|}
 break|break;
 default|default :
 break|break
-name|loop12
+name|loop13
 break|;
 block|}
 block|}
@@ -3792,8 +3888,8 @@ name|RecognitionException
 block|{
 try|try
 block|{
-comment|// src/java/org/apache/lucene/expressions/js/Javascript.g:364:5: ( ( 'e' | 'E' ) ( '+' | '-' )? ( DECIMALDIGIT )+ )
-comment|// src/java/org/apache/lucene/expressions/js/Javascript.g:364:7: ( 'e' | 'E' ) ( '+' | '-' )? ( DECIMALDIGIT )+
+comment|// src/java/org/apache/lucene/expressions/js/Javascript.g:369:5: ( ( 'e' | 'E' ) ( '+' | '-' )? ( DECIMALDIGIT )+ )
+comment|// src/java/org/apache/lucene/expressions/js/Javascript.g:369:7: ( 'e' | 'E' ) ( '+' | '-' )? ( DECIMALDIGIT )+
 block|{
 if|if
 condition|(
@@ -3844,14 +3940,14 @@ throw|throw
 name|mse
 throw|;
 block|}
-comment|// src/java/org/apache/lucene/expressions/js/Javascript.g:364:17: ( '+' | '-' )?
+comment|// src/java/org/apache/lucene/expressions/js/Javascript.g:369:17: ( '+' | '-' )?
 name|int
-name|alt14
+name|alt15
 init|=
 literal|2
 decl_stmt|;
 name|int
-name|LA14_0
+name|LA15_0
 init|=
 name|input
 operator|.
@@ -3863,24 +3959,24 @@ decl_stmt|;
 if|if
 condition|(
 operator|(
-name|LA14_0
+name|LA15_0
 operator|==
 literal|'+'
 operator|||
-name|LA14_0
+name|LA15_0
 operator|==
 literal|'-'
 operator|)
 condition|)
 block|{
-name|alt14
+name|alt15
 operator|=
 literal|1
 expr_stmt|;
 block|}
 switch|switch
 condition|(
-name|alt14
+name|alt15
 condition|)
 block|{
 case|case
@@ -3940,13 +4036,13 @@ block|}
 block|}
 break|break;
 block|}
-comment|// src/java/org/apache/lucene/expressions/js/Javascript.g:364:28: ( DECIMALDIGIT )+
+comment|// src/java/org/apache/lucene/expressions/js/Javascript.g:369:28: ( DECIMALDIGIT )+
 name|int
-name|cnt15
+name|cnt16
 init|=
 literal|0
 decl_stmt|;
-name|loop15
+name|loop16
 label|:
 while|while
 condition|(
@@ -3954,12 +4050,12 @@ literal|true
 condition|)
 block|{
 name|int
-name|alt15
+name|alt16
 init|=
 literal|2
 decl_stmt|;
 name|int
-name|LA15_0
+name|LA16_0
 init|=
 name|input
 operator|.
@@ -3972,25 +4068,25 @@ if|if
 condition|(
 operator|(
 operator|(
-name|LA15_0
+name|LA16_0
 operator|>=
 literal|'0'
 operator|&&
-name|LA15_0
+name|LA16_0
 operator|<=
 literal|'9'
 operator|)
 operator|)
 condition|)
 block|{
-name|alt15
+name|alt16
 operator|=
 literal|1
 expr_stmt|;
 block|}
 switch|switch
 condition|(
-name|alt15
+name|alt16
 condition|)
 block|{
 case|case
@@ -4054,12 +4150,12 @@ break|break;
 default|default :
 if|if
 condition|(
-name|cnt15
+name|cnt16
 operator|>=
 literal|1
 condition|)
 break|break
-name|loop15
+name|loop16
 break|;
 name|EarlyExitException
 name|eee
@@ -4067,7 +4163,7 @@ init|=
 operator|new
 name|EarlyExitException
 argument_list|(
-literal|15
+literal|16
 argument_list|,
 name|input
 argument_list|)
@@ -4076,7 +4172,7 @@ throw|throw
 name|eee
 throw|;
 block|}
-name|cnt15
+name|cnt16
 operator|++
 expr_stmt|;
 block|}
@@ -4100,7 +4196,7 @@ name|RecognitionException
 block|{
 try|try
 block|{
-comment|// src/java/org/apache/lucene/expressions/js/Javascript.g:369:5: ( '0' .. '9' )
+comment|// src/java/org/apache/lucene/expressions/js/Javascript.g:374:5: ( '0' .. '9' )
 comment|// src/java/org/apache/lucene/expressions/js/Javascript.g:
 block|{
 if|if
@@ -4174,7 +4270,7 @@ name|RecognitionException
 block|{
 try|try
 block|{
-comment|// src/java/org/apache/lucene/expressions/js/Javascript.g:374:5: ( DECIMALDIGIT | 'a' .. 'f' | 'A' .. 'F' )
+comment|// src/java/org/apache/lucene/expressions/js/Javascript.g:379:5: ( DECIMALDIGIT | 'a' .. 'f' | 'A' .. 'F' )
 comment|// src/java/org/apache/lucene/expressions/js/Javascript.g:
 block|{
 if|if
@@ -4288,7 +4384,7 @@ name|RecognitionException
 block|{
 try|try
 block|{
-comment|// src/java/org/apache/lucene/expressions/js/Javascript.g:381:5: ( '0' .. '7' )
+comment|// src/java/org/apache/lucene/expressions/js/Javascript.g:386:5: ( '0' .. '7' )
 comment|// src/java/org/apache/lucene/expressions/js/Javascript.g:
 block|{
 if|if
@@ -4360,9 +4456,9 @@ parameter_list|()
 throws|throws
 name|RecognitionException
 block|{
-comment|// src/java/org/apache/lucene/expressions/js/Javascript.g:1:8: ( AT_ADD | AT_BIT_AND | AT_BIT_NOT | AT_BIT_OR | AT_BIT_SHL | AT_BIT_SHR | AT_BIT_SHU | AT_BIT_XOR | AT_BOOL_AND | AT_BOOL_NOT | AT_BOOL_OR | AT_COLON | AT_COMMA | AT_COMP_EQ | AT_COMP_GT | AT_COMP_GTE | AT_COMP_LT | AT_COMP_LTE | AT_COMP_NEQ | AT_COND_QUE | AT_DIVIDE | AT_DOT | AT_LPAREN | AT_MODULO | AT_MULTIPLY | AT_RPAREN | AT_SUBTRACT | ID | WS | DECIMAL | OCTAL | HEX )
+comment|// src/java/org/apache/lucene/expressions/js/Javascript.g:1:8: ( AT_ADD | AT_BIT_AND | AT_BIT_NOT | AT_BIT_OR | AT_BIT_SHL | AT_BIT_SHR | AT_BIT_SHU | AT_BIT_XOR | AT_BOOL_AND | AT_BOOL_NOT | AT_BOOL_OR | AT_COLON | AT_COMMA | AT_COMP_EQ | AT_COMP_GT | AT_COMP_GTE | AT_COMP_LT | AT_COMP_LTE | AT_COMP_NEQ | AT_COND_QUE | AT_DIVIDE | AT_DOT | AT_LPAREN | AT_MODULO | AT_MULTIPLY | AT_RPAREN | AT_SUBTRACT | NAMESPACE_ID | WS | DECIMAL | OCTAL | HEX )
 name|int
-name|alt16
+name|alt17
 init|=
 literal|32
 decl_stmt|;
@@ -4380,7 +4476,7 @@ case|case
 literal|'+'
 case|:
 block|{
-name|alt16
+name|alt17
 operator|=
 literal|1
 expr_stmt|;
@@ -4391,7 +4487,7 @@ literal|'&'
 case|:
 block|{
 name|int
-name|LA16_2
+name|LA17_2
 init|=
 name|input
 operator|.
@@ -4403,20 +4499,20 @@ decl_stmt|;
 if|if
 condition|(
 operator|(
-name|LA16_2
+name|LA17_2
 operator|==
 literal|'&'
 operator|)
 condition|)
 block|{
-name|alt16
+name|alt17
 operator|=
 literal|9
 expr_stmt|;
 block|}
 else|else
 block|{
-name|alt16
+name|alt17
 operator|=
 literal|2
 expr_stmt|;
@@ -4427,7 +4523,7 @@ case|case
 literal|'~'
 case|:
 block|{
-name|alt16
+name|alt17
 operator|=
 literal|3
 expr_stmt|;
@@ -4438,7 +4534,7 @@ literal|'|'
 case|:
 block|{
 name|int
-name|LA16_4
+name|LA17_4
 init|=
 name|input
 operator|.
@@ -4450,20 +4546,20 @@ decl_stmt|;
 if|if
 condition|(
 operator|(
-name|LA16_4
+name|LA17_4
 operator|==
 literal|'|'
 operator|)
 condition|)
 block|{
-name|alt16
+name|alt17
 operator|=
 literal|11
 expr_stmt|;
 block|}
 else|else
 block|{
-name|alt16
+name|alt17
 operator|=
 literal|4
 expr_stmt|;
@@ -4488,7 +4584,7 @@ case|case
 literal|'<'
 case|:
 block|{
-name|alt16
+name|alt17
 operator|=
 literal|5
 expr_stmt|;
@@ -4498,14 +4594,14 @@ case|case
 literal|'='
 case|:
 block|{
-name|alt16
+name|alt17
 operator|=
 literal|18
 expr_stmt|;
 block|}
 break|break;
 default|default:
-name|alt16
+name|alt17
 operator|=
 literal|17
 expr_stmt|;
@@ -4531,7 +4627,7 @@ literal|'>'
 case|:
 block|{
 name|int
-name|LA16_31
+name|LA17_31
 init|=
 name|input
 operator|.
@@ -4543,20 +4639,20 @@ decl_stmt|;
 if|if
 condition|(
 operator|(
-name|LA16_31
+name|LA17_31
 operator|==
 literal|'>'
 operator|)
 condition|)
 block|{
-name|alt16
+name|alt17
 operator|=
 literal|7
 expr_stmt|;
 block|}
 else|else
 block|{
-name|alt16
+name|alt17
 operator|=
 literal|6
 expr_stmt|;
@@ -4567,14 +4663,14 @@ case|case
 literal|'='
 case|:
 block|{
-name|alt16
+name|alt17
 operator|=
 literal|16
 expr_stmt|;
 block|}
 break|break;
 default|default:
-name|alt16
+name|alt17
 operator|=
 literal|15
 expr_stmt|;
@@ -4585,7 +4681,7 @@ case|case
 literal|'^'
 case|:
 block|{
-name|alt16
+name|alt17
 operator|=
 literal|8
 expr_stmt|;
@@ -4596,7 +4692,7 @@ literal|'!'
 case|:
 block|{
 name|int
-name|LA16_8
+name|LA17_8
 init|=
 name|input
 operator|.
@@ -4608,20 +4704,20 @@ decl_stmt|;
 if|if
 condition|(
 operator|(
-name|LA16_8
+name|LA17_8
 operator|==
 literal|'='
 operator|)
 condition|)
 block|{
-name|alt16
+name|alt17
 operator|=
 literal|19
 expr_stmt|;
 block|}
 else|else
 block|{
-name|alt16
+name|alt17
 operator|=
 literal|10
 expr_stmt|;
@@ -4632,7 +4728,7 @@ case|case
 literal|':'
 case|:
 block|{
-name|alt16
+name|alt17
 operator|=
 literal|12
 expr_stmt|;
@@ -4642,7 +4738,7 @@ case|case
 literal|','
 case|:
 block|{
-name|alt16
+name|alt17
 operator|=
 literal|13
 expr_stmt|;
@@ -4652,7 +4748,7 @@ case|case
 literal|'='
 case|:
 block|{
-name|alt16
+name|alt17
 operator|=
 literal|14
 expr_stmt|;
@@ -4662,7 +4758,7 @@ case|case
 literal|'?'
 case|:
 block|{
-name|alt16
+name|alt17
 operator|=
 literal|20
 expr_stmt|;
@@ -4672,7 +4768,7 @@ case|case
 literal|'/'
 case|:
 block|{
-name|alt16
+name|alt17
 operator|=
 literal|21
 expr_stmt|;
@@ -4683,7 +4779,7 @@ literal|'.'
 case|:
 block|{
 name|int
-name|LA16_14
+name|LA17_14
 init|=
 name|input
 operator|.
@@ -4696,25 +4792,25 @@ if|if
 condition|(
 operator|(
 operator|(
-name|LA16_14
+name|LA17_14
 operator|>=
 literal|'0'
 operator|&&
-name|LA16_14
+name|LA17_14
 operator|<=
 literal|'9'
 operator|)
 operator|)
 condition|)
 block|{
-name|alt16
+name|alt17
 operator|=
 literal|30
 expr_stmt|;
 block|}
 else|else
 block|{
-name|alt16
+name|alt17
 operator|=
 literal|22
 expr_stmt|;
@@ -4725,7 +4821,7 @@ case|case
 literal|'('
 case|:
 block|{
-name|alt16
+name|alt17
 operator|=
 literal|23
 expr_stmt|;
@@ -4735,7 +4831,7 @@ case|case
 literal|'%'
 case|:
 block|{
-name|alt16
+name|alt17
 operator|=
 literal|24
 expr_stmt|;
@@ -4745,7 +4841,7 @@ case|case
 literal|'*'
 case|:
 block|{
-name|alt16
+name|alt17
 operator|=
 literal|25
 expr_stmt|;
@@ -4755,7 +4851,7 @@ case|case
 literal|')'
 case|:
 block|{
-name|alt16
+name|alt17
 operator|=
 literal|26
 expr_stmt|;
@@ -4765,7 +4861,7 @@ case|case
 literal|'-'
 case|:
 block|{
-name|alt16
+name|alt17
 operator|=
 literal|27
 expr_stmt|;
@@ -4931,7 +5027,7 @@ case|case
 literal|'z'
 case|:
 block|{
-name|alt16
+name|alt17
 operator|=
 literal|28
 expr_stmt|;
@@ -4950,7 +5046,7 @@ case|case
 literal|' '
 case|:
 block|{
-name|alt16
+name|alt17
 operator|=
 literal|29
 expr_stmt|;
@@ -4977,7 +5073,7 @@ case|case
 literal|'x'
 case|:
 block|{
-name|alt16
+name|alt17
 operator|=
 literal|32
 expr_stmt|;
@@ -5008,14 +5104,14 @@ case|case
 literal|'7'
 case|:
 block|{
-name|alt16
+name|alt17
 operator|=
 literal|31
 expr_stmt|;
 block|}
 break|break;
 default|default:
-name|alt16
+name|alt17
 operator|=
 literal|30
 expr_stmt|;
@@ -5050,7 +5146,7 @@ case|case
 literal|'9'
 case|:
 block|{
-name|alt16
+name|alt17
 operator|=
 literal|30
 expr_stmt|;
@@ -5065,7 +5161,7 @@ name|NoViableAltException
 argument_list|(
 literal|""
 argument_list|,
-literal|16
+literal|17
 argument_list|,
 literal|0
 argument_list|,
@@ -5078,7 +5174,7 @@ throw|;
 block|}
 switch|switch
 condition|(
-name|alt16
+name|alt17
 condition|)
 block|{
 case|case
@@ -5354,9 +5450,9 @@ break|break;
 case|case
 literal|28
 case|:
-comment|// src/java/org/apache/lucene/expressions/js/Javascript.g:1:298: ID
+comment|// src/java/org/apache/lucene/expressions/js/Javascript.g:1:298: NAMESPACE_ID
 block|{
-name|mID
+name|mNAMESPACE_ID
 argument_list|()
 expr_stmt|;
 block|}
@@ -5364,7 +5460,7 @@ break|break;
 case|case
 literal|29
 case|:
-comment|// src/java/org/apache/lucene/expressions/js/Javascript.g:1:301: WS
+comment|// src/java/org/apache/lucene/expressions/js/Javascript.g:1:311: WS
 block|{
 name|mWS
 argument_list|()
@@ -5374,7 +5470,7 @@ break|break;
 case|case
 literal|30
 case|:
-comment|// src/java/org/apache/lucene/expressions/js/Javascript.g:1:304: DECIMAL
+comment|// src/java/org/apache/lucene/expressions/js/Javascript.g:1:314: DECIMAL
 block|{
 name|mDECIMAL
 argument_list|()
@@ -5384,7 +5480,7 @@ break|break;
 case|case
 literal|31
 case|:
-comment|// src/java/org/apache/lucene/expressions/js/Javascript.g:1:312: OCTAL
+comment|// src/java/org/apache/lucene/expressions/js/Javascript.g:1:322: OCTAL
 block|{
 name|mOCTAL
 argument_list|()
@@ -5394,7 +5490,7 @@ break|break;
 case|case
 literal|32
 case|:
-comment|// src/java/org/apache/lucene/expressions/js/Javascript.g:1:318: HEX
+comment|// src/java/org/apache/lucene/expressions/js/Javascript.g:1:328: HEX
 block|{
 name|mHEX
 argument_list|()
@@ -5403,71 +5499,71 @@ block|}
 break|break;
 block|}
 block|}
-DECL|field|dfa8
+DECL|field|dfa9
 specifier|protected
-name|DFA8
-name|dfa8
+name|DFA9
+name|dfa9
 init|=
 operator|new
-name|DFA8
+name|DFA9
 argument_list|(
 name|this
 argument_list|)
 decl_stmt|;
-DECL|field|DFA8_eotS
+DECL|field|DFA9_eotS
 specifier|static
 specifier|final
 name|String
-name|DFA8_eotS
+name|DFA9_eotS
 init|=
 literal|"\1\uffff\2\4\3\uffff\1\4"
 decl_stmt|;
-DECL|field|DFA8_eofS
+DECL|field|DFA9_eofS
 specifier|static
 specifier|final
 name|String
-name|DFA8_eofS
+name|DFA9_eofS
 init|=
 literal|"\7\uffff"
 decl_stmt|;
-DECL|field|DFA8_minS
+DECL|field|DFA9_minS
 specifier|static
 specifier|final
 name|String
-name|DFA8_minS
+name|DFA9_minS
 init|=
 literal|"\3\56\3\uffff\1\56"
 decl_stmt|;
-DECL|field|DFA8_maxS
+DECL|field|DFA9_maxS
 specifier|static
 specifier|final
 name|String
-name|DFA8_maxS
+name|DFA9_maxS
 init|=
 literal|"\1\71\1\56\1\71\3\uffff\1\71"
 decl_stmt|;
-DECL|field|DFA8_acceptS
+DECL|field|DFA9_acceptS
 specifier|static
 specifier|final
 name|String
-name|DFA8_acceptS
+name|DFA9_acceptS
 init|=
 literal|"\3\uffff\1\2\1\3\1\1\1\uffff"
 decl_stmt|;
-DECL|field|DFA8_specialS
+DECL|field|DFA9_specialS
 specifier|static
 specifier|final
 name|String
-name|DFA8_specialS
+name|DFA9_specialS
 init|=
 literal|"\7\uffff}>"
 decl_stmt|;
-DECL|field|DFA8_transitionS
+DECL|field|DFA9_transitionS
 specifier|static
 specifier|final
 name|String
 index|[]
-name|DFA8_transitionS
+name|DFA9_transitionS
 init|=
 block|{
 literal|"\1\3\1\uffff\1\1\11\2"
@@ -5485,108 +5581,108 @@ block|,
 literal|"\1\5\1\uffff\12\6"
 block|}
 decl_stmt|;
-DECL|field|DFA8_eot
+DECL|field|DFA9_eot
 specifier|static
 specifier|final
 name|short
 index|[]
-name|DFA8_eot
+name|DFA9_eot
 init|=
 name|DFA
 operator|.
 name|unpackEncodedString
 argument_list|(
-name|DFA8_eotS
+name|DFA9_eotS
 argument_list|)
 decl_stmt|;
-DECL|field|DFA8_eof
+DECL|field|DFA9_eof
 specifier|static
 specifier|final
 name|short
 index|[]
-name|DFA8_eof
+name|DFA9_eof
 init|=
 name|DFA
 operator|.
 name|unpackEncodedString
 argument_list|(
-name|DFA8_eofS
+name|DFA9_eofS
 argument_list|)
 decl_stmt|;
-DECL|field|DFA8_min
+DECL|field|DFA9_min
 specifier|static
 specifier|final
 name|char
 index|[]
-name|DFA8_min
+name|DFA9_min
 init|=
 name|DFA
 operator|.
 name|unpackEncodedStringToUnsignedChars
 argument_list|(
-name|DFA8_minS
+name|DFA9_minS
 argument_list|)
 decl_stmt|;
-DECL|field|DFA8_max
+DECL|field|DFA9_max
 specifier|static
 specifier|final
 name|char
 index|[]
-name|DFA8_max
+name|DFA9_max
 init|=
 name|DFA
 operator|.
 name|unpackEncodedStringToUnsignedChars
 argument_list|(
-name|DFA8_maxS
+name|DFA9_maxS
 argument_list|)
 decl_stmt|;
-DECL|field|DFA8_accept
+DECL|field|DFA9_accept
 specifier|static
 specifier|final
 name|short
 index|[]
-name|DFA8_accept
+name|DFA9_accept
 init|=
 name|DFA
 operator|.
 name|unpackEncodedString
 argument_list|(
-name|DFA8_acceptS
+name|DFA9_acceptS
 argument_list|)
 decl_stmt|;
-DECL|field|DFA8_special
+DECL|field|DFA9_special
 specifier|static
 specifier|final
 name|short
 index|[]
-name|DFA8_special
+name|DFA9_special
 init|=
 name|DFA
 operator|.
 name|unpackEncodedString
 argument_list|(
-name|DFA8_specialS
+name|DFA9_specialS
 argument_list|)
 decl_stmt|;
-DECL|field|DFA8_transition
+DECL|field|DFA9_transition
 specifier|static
 specifier|final
 name|short
 index|[]
 index|[]
-name|DFA8_transition
+name|DFA9_transition
 decl_stmt|;
 static|static
 block|{
 name|int
 name|numStates
 init|=
-name|DFA8_transitionS
+name|DFA9_transitionS
 operator|.
 name|length
 decl_stmt|;
-name|DFA8_transition
+name|DFA9_transition
 operator|=
 operator|new
 name|short
@@ -5610,7 +5706,7 @@ name|i
 operator|++
 control|)
 block|{
-name|DFA8_transition
+name|DFA9_transition
 index|[
 name|i
 index|]
@@ -5619,7 +5715,7 @@ name|DFA
 operator|.
 name|unpackEncodedString
 argument_list|(
-name|DFA8_transitionS
+name|DFA9_transitionS
 index|[
 name|i
 index|]
@@ -5627,16 +5723,16 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
-DECL|class|DFA8
+DECL|class|DFA9
 specifier|protected
 class|class
-name|DFA8
+name|DFA9
 extends|extends
 name|DFA
 block|{
-DECL|method|DFA8
+DECL|method|DFA9
 specifier|public
-name|DFA8
+name|DFA9
 parameter_list|(
 name|BaseRecognizer
 name|recognizer
@@ -5652,49 +5748,49 @@ name|this
 operator|.
 name|decisionNumber
 operator|=
-literal|8
+literal|9
 expr_stmt|;
 name|this
 operator|.
 name|eot
 operator|=
-name|DFA8_eot
+name|DFA9_eot
 expr_stmt|;
 name|this
 operator|.
 name|eof
 operator|=
-name|DFA8_eof
+name|DFA9_eof
 expr_stmt|;
 name|this
 operator|.
 name|min
 operator|=
-name|DFA8_min
+name|DFA9_min
 expr_stmt|;
 name|this
 operator|.
 name|max
 operator|=
-name|DFA8_max
+name|DFA9_max
 expr_stmt|;
 name|this
 operator|.
 name|accept
 operator|=
-name|DFA8_accept
+name|DFA9_accept
 expr_stmt|;
 name|this
 operator|.
 name|special
 operator|=
-name|DFA8_special
+name|DFA9_special
 expr_stmt|;
 name|this
 operator|.
 name|transition
 operator|=
-name|DFA8_transition
+name|DFA9_transition
 expr_stmt|;
 block|}
 annotation|@
@@ -5706,7 +5802,7 @@ name|getDescription
 parameter_list|()
 block|{
 return|return
-literal|"341:1: DECIMAL : ( DECIMALINTEGER AT_DOT ( DECIMALDIGIT )* ( EXPONENT )? | AT_DOT ( DECIMALDIGIT )+ ( EXPONENT )? | DECIMALINTEGER ( EXPONENT )? );"
+literal|"346:1: DECIMAL : ( DECIMALINTEGER AT_DOT ( DECIMALDIGIT )* ( EXPONENT )? | AT_DOT ( DECIMALDIGIT )+ ( EXPONENT )? | DECIMALINTEGER ( EXPONENT )? );"
 return|;
 block|}
 block|}
