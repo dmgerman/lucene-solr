@@ -8347,31 +8347,15 @@ block|}
 block|}
 block|}
 comment|// Also test seeking the TermsEnum:
-comment|// must make copy because this very code sometimes makes puts while iterating?!
-name|Set
-argument_list|<
-name|String
-argument_list|>
-name|copy
-init|=
-operator|new
-name|HashSet
-argument_list|<
-name|String
-argument_list|>
-argument_list|(
-name|termFreqs
-operator|.
-name|keySet
-argument_list|()
-argument_list|)
-decl_stmt|;
 for|for
 control|(
 name|String
 name|term
 range|:
-name|copy
+name|termFreqs
+operator|.
+name|keySet
+argument_list|()
 control|)
 block|{
 if|if
