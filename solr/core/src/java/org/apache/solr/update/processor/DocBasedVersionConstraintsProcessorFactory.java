@@ -1147,6 +1147,7 @@ operator|=
 operator|-
 literal|1
 expr_stmt|;
+comment|// log.info("!!!!!!!!! isVersionNewEnough being called for " + indexedDocId.utf8ToString() + " newVersion=" + newUserVersion);
 name|newUserVersion
 operator|=
 name|convertFieldValueUsingType
@@ -1457,6 +1458,7 @@ operator|==
 name|oldDoc
 condition|)
 block|{
+comment|// log.info("VERSION no doc found, returning true");
 return|return
 literal|true
 return|;
@@ -1547,6 +1549,7 @@ argument_list|()
 argument_list|)
 expr_stmt|;
 block|}
+comment|// log.info("VERSION old=" + oldUserVersion + " new=" +newUserVersion );
 if|if
 condition|(
 literal|null
@@ -1626,6 +1629,7 @@ name|oldUserVersion
 argument_list|)
 condition|)
 block|{
+comment|// log.info("VERSION returning true (proceed with update)" );
 return|return
 literal|true
 return|;
@@ -1635,312 +1639,36 @@ condition|(
 name|ignoreOldUpdates
 condition|)
 block|{
+if|if
+condition|(
+name|log
+operator|.
+name|isDebugEnabled
+argument_list|()
+condition|)
+block|{
+name|log
+operator|.
+name|debug
+argument_list|(
+literal|"Dropping update since user version is not high enough: "
+operator|+
+name|newUserVersion
+operator|+
+literal|"; old user version="
+operator|+
+name|oldUserVersion
+argument_list|)
+expr_stmt|;
+block|}
+comment|// log.info("VERSION returning false (dropping update)" );
 return|return
 literal|false
 return|;
 block|}
 else|else
 block|{
-throw|throw
-operator|new
-name|SolrException
-argument_list|(
-name|CONFLICT
-argument_list|,
-literal|"user version is not high enough: "
-operator|+
-name|newUserVersion
-argument_list|)
-throw|;
-block|}
-block|}
-catch|catch
-parameter_list|(
-name|ClassCastException
-name|e
-parameter_list|)
-block|{
-throw|throw
-operator|new
-name|SolrException
-argument_list|(
-name|BAD_REQUEST
-argument_list|,
-literal|"old version and new version are not comparable: "
-operator|+
-name|oldUserVersion
-operator|.
-name|getClass
-argument_list|()
-operator|+
-literal|" vs "
-operator|+
-name|newUserVersion
-operator|.
-name|getClass
-argument_list|()
-operator|+
-literal|": "
-operator|+
-name|e
-operator|.
-name|getMessage
-argument_list|()
-argument_list|,
-name|e
-argument_list|)
-throw|;
-block|}
-block|}
-DECL|method|isVersionNewEnoughStoredOnly
-specifier|private
-name|boolean
-name|isVersionNewEnoughStoredOnly
-parameter_list|(
-name|BytesRef
-name|indexedDocId
-parameter_list|,
-name|Object
-name|newUserVersion
-parameter_list|)
-throws|throws
-name|IOException
-block|{
-assert|assert
-literal|null
-operator|!=
-name|indexedDocId
-assert|;
-assert|assert
-literal|null
-operator|!=
-name|newUserVersion
-assert|;
-name|oldSolrVersion
-operator|=
-operator|-
-literal|1
-expr_stmt|;
-comment|// :TODO: would be nice if a full RTG was not always needed here, ideas...
-comment|//  - first check fieldCache/docVals - if a versionField exists
-comment|//    in index that is already greater then this cmd, fail fast
-comment|//    (no need to check updateLog, new version already too low)
-comment|//  - first check if docId is in the updateLog w/o doing the full get, if
-comment|//    it's not then check fieldCache/docVals
-comment|//  - track versionField externally from updateLog (or as a special case
-comment|//    that can be looked up by itself - similar to how _version_ is dealt with)
-comment|//
-comment|// Depending on if/when/how this is changed, what we assert about
-comment|// versionField on init will need updated.
-name|newUserVersion
-operator|=
-name|convertFieldValueUsingType
-argument_list|(
-name|userVersionField
-argument_list|,
-name|newUserVersion
-argument_list|)
-expr_stmt|;
-name|Object
-name|oldUserVersion
-init|=
-literal|null
-decl_stmt|;
-name|SolrInputDocument
-name|oldDoc
-init|=
-name|RealTimeGetComponent
-operator|.
-name|getInputDocument
-argument_list|(
-name|core
-argument_list|,
-name|indexedDocId
-argument_list|)
-decl_stmt|;
-if|if
-condition|(
-literal|null
-operator|==
-name|oldDoc
-condition|)
-block|{
-return|return
-literal|true
-return|;
-block|}
-name|oldUserVersion
-operator|=
-name|oldDoc
-operator|.
-name|getFieldValue
-argument_list|(
-name|versionFieldName
-argument_list|)
-expr_stmt|;
-if|if
-condition|(
-literal|null
-operator|==
-name|oldUserVersion
-condition|)
-block|{
-comment|// could happen if they turn this feature on after building an index
-comment|// w/o the versionField
-throw|throw
-operator|new
-name|SolrException
-argument_list|(
-name|SERVER_ERROR
-argument_list|,
-literal|"Doc exists in index, but has null versionField: "
-operator|+
-name|versionFieldName
-argument_list|)
-throw|;
-block|}
-comment|// Make the FieldType resolve any conversion we need.
-name|oldUserVersion
-operator|=
-name|convertFieldValueUsingType
-argument_list|(
-name|userVersionField
-argument_list|,
-name|oldUserVersion
-argument_list|)
-expr_stmt|;
-if|if
-condition|(
-operator|!
-operator|(
-name|oldUserVersion
-operator|instanceof
-name|Comparable
-operator|&&
-name|newUserVersion
-operator|instanceof
-name|Comparable
-operator|)
-condition|)
-block|{
-throw|throw
-operator|new
-name|SolrException
-argument_list|(
-name|BAD_REQUEST
-argument_list|,
-literal|"old version and new version are not comparable: "
-operator|+
-name|oldUserVersion
-operator|.
-name|getClass
-argument_list|()
-operator|+
-literal|" vs "
-operator|+
-name|newUserVersion
-operator|.
-name|getClass
-argument_list|()
-argument_list|)
-throw|;
-block|}
-try|try
-block|{
-if|if
-condition|(
-literal|0
-operator|<
-operator|(
-operator|(
-name|Comparable
-operator|)
-name|newUserVersion
-operator|)
-operator|.
-name|compareTo
-argument_list|(
-operator|(
-name|Comparable
-operator|)
-name|oldUserVersion
-argument_list|)
-condition|)
-block|{
-comment|// since we're going to proceed with this update, we need to find the _version_
-comment|// so we can use optimistic concurrency.
-name|Object
-name|o
-init|=
-name|oldDoc
-operator|.
-name|getFieldValue
-argument_list|(
-name|VersionInfo
-operator|.
-name|VERSION_FIELD
-argument_list|)
-decl_stmt|;
-if|if
-condition|(
-name|o
-operator|==
-literal|null
-condition|)
-block|{
-throw|throw
-operator|new
-name|SolrException
-argument_list|(
-name|SERVER_ERROR
-argument_list|,
-literal|"No _version_ for document "
-operator|+
-name|oldDoc
-argument_list|)
-throw|;
-block|}
-name|oldSolrVersion
-operator|=
-name|o
-operator|instanceof
-name|Number
-condition|?
-operator|(
-operator|(
-name|Number
-operator|)
-name|o
-operator|)
-operator|.
-name|longValue
-argument_list|()
-else|:
-name|Long
-operator|.
-name|parseLong
-argument_list|(
-name|o
-operator|.
-name|toString
-argument_list|()
-argument_list|)
-expr_stmt|;
-return|return
-literal|true
-return|;
-block|}
-if|if
-condition|(
-name|ignoreOldUpdates
-condition|)
-block|{
-return|return
-literal|false
-return|;
-block|}
-else|else
-block|{
+comment|// log.info("VERSION will throw conflict" );
 throw|throw
 operator|new
 name|SolrException
@@ -2043,13 +1771,19 @@ literal|false
 return|;
 block|}
 comment|// if phase==TOLEADER, we can't just assume we are the leader... let the normal logic check.
-return|return
+name|boolean
+name|x
+init|=
 name|distribProc
 operator|.
 name|isLeader
 argument_list|(
 name|cmd
 argument_list|)
+decl_stmt|;
+comment|// log.info("VERSION: checking if we are leader:" + x);
+return|return
+name|x
 return|;
 block|}
 DECL|method|processAdd
@@ -2079,6 +1813,7 @@ argument_list|(
 name|cmd
 argument_list|)
 expr_stmt|;
+return|return;
 block|}
 specifier|final
 name|SolrInputDocument
@@ -2208,6 +1943,7 @@ operator|==
 literal|409
 condition|)
 block|{
+comment|// log.info ("##################### CONFLICT ADDING newDoc=" + newDoc + " newVersion=" + newVersion );
 continue|continue;
 comment|// if a version conflict, retry
 block|}
@@ -2380,6 +2116,7 @@ argument_list|(
 name|newCmd
 argument_list|)
 expr_stmt|;
+return|return;
 block|}
 for|for
 control|(
