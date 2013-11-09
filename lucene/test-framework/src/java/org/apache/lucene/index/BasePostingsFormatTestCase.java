@@ -192,6 +192,18 @@ end_import
 
 begin_import
 import|import
+name|java
+operator|.
+name|util
+operator|.
+name|concurrent
+operator|.
+name|ConcurrentHashMap
+import|;
+end_import
+
+begin_import
+import|import
 name|org
 operator|.
 name|apache
@@ -7784,6 +7796,10 @@ argument_list|()
 argument_list|)
 argument_list|)
 decl_stmt|;
+comment|// Must be concurrent because thread(s) can be merging
+comment|// while up to one thread flushes, and each of those
+comment|// threads iterates over the map while the flushing
+comment|// thread might be adding to it:
 specifier|final
 name|Map
 argument_list|<
@@ -7794,7 +7810,7 @@ argument_list|>
 name|termFreqs
 init|=
 operator|new
-name|HashMap
+name|ConcurrentHashMap
 argument_list|<
 name|String
 argument_list|,
@@ -7874,6 +7890,15 @@ name|PostingsFormat
 name|defaultPostingsFormat
 init|=
 name|p
+decl_stmt|;
+specifier|final
+name|Thread
+name|mainThread
+init|=
+name|Thread
+operator|.
+name|currentThread
+argument_list|()
 decl_stmt|;
 if|if
 condition|(
@@ -7963,6 +7988,23 @@ name|Context
 operator|.
 name|MERGE
 decl_stmt|;
+comment|// We only use one thread for flushing
+comment|// in this test:
+assert|assert
+name|isMerge
+operator|||
+name|Thread
+operator|.
+name|currentThread
+argument_list|()
+operator|==
+name|mainThread
+assert|;
+comment|// We iterate the provided TermsEnum
+comment|// twice, so we excercise this new freedom
+comment|// with the inverted API; if
+comment|// addOnSecondPass is true, we add up
+comment|// term stats on the 2nd iteration:
 name|boolean
 name|addOnSecondPass
 init|=
@@ -8185,7 +8227,8 @@ name|utf8ToString
 argument_list|()
 decl_stmt|;
 comment|// During merge we should only see terms
-comment|// we had already seen during flush:
+comment|// we had already seen during a
+comment|// previous flush:
 name|assertTrue
 argument_list|(
 name|isMerge
@@ -8205,7 +8248,10 @@ condition|(
 name|isMerge
 operator|==
 literal|false
-operator|&&
+condition|)
+block|{
+if|if
+condition|(
 name|addOnSecondPass
 operator|==
 literal|false
@@ -8284,6 +8330,8 @@ operator|==
 literal|false
 condition|)
 block|{
+comment|// Add placeholder (2nd pass will
+comment|// set its counts):
 name|termFreqs
 operator|.
 name|put
@@ -8295,6 +8343,7 @@ name|TermFreqs
 argument_list|()
 argument_list|)
 expr_stmt|;
+block|}
 block|}
 block|}
 comment|// Also test seeking the TermsEnum:
@@ -8512,29 +8561,11 @@ argument_list|(
 name|term
 argument_list|)
 decl_stmt|;
-if|if
-condition|(
+assert|assert
 name|tf
-operator|==
+operator|!=
 literal|null
-condition|)
-block|{
-name|tf
-operator|=
-operator|new
-name|TermFreqs
-argument_list|()
-expr_stmt|;
-name|termFreqs
-operator|.
-name|put
-argument_list|(
-name|term
-argument_list|,
-name|tf
-argument_list|)
-expr_stmt|;
-block|}
+assert|;
 name|tf
 operator|.
 name|docFreq
