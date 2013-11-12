@@ -142,6 +142,20 @@ name|lucene
 operator|.
 name|util
 operator|.
+name|LongValues
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|util
+operator|.
 name|RamUsageEstimator
 import|;
 end_import
@@ -156,6 +170,8 @@ specifier|public
 specifier|final
 class|class
 name|MonotonicBlockPackedReader
+extends|extends
+name|LongValues
 block|{
 DECL|field|blockShift
 DECL|field|blockMask
@@ -479,7 +495,8 @@ block|}
 block|}
 block|}
 block|}
-comment|/** Get value at<code>index</code>. */
+annotation|@
+name|Override
 DECL|method|get
 specifier|public
 name|long

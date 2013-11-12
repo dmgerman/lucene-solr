@@ -78,6 +78,20 @@ name|lucene
 operator|.
 name|util
 operator|.
+name|LongValues
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|util
+operator|.
 name|RamUsageEstimator
 import|;
 end_import
@@ -99,6 +113,8 @@ parameter_list|<
 name|T
 parameter_list|>
 parameter_list|>
+extends|extends
+name|LongValues
 block|{
 DECL|field|MIN_BLOCK_SIZE
 specifier|static
@@ -385,7 +401,8 @@ operator|&
 name|pageMask
 return|;
 block|}
-comment|/** Get value at<code>index</code>. */
+annotation|@
+name|Override
 DECL|method|get
 specifier|public
 specifier|final

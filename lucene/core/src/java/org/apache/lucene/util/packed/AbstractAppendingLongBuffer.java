@@ -42,6 +42,20 @@ name|lucene
 operator|.
 name|util
 operator|.
+name|LongValues
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|util
+operator|.
 name|RamUsageEstimator
 import|;
 end_import
@@ -83,6 +97,8 @@ DECL|class|AbstractAppendingLongBuffer
 specifier|abstract
 class|class
 name|AbstractAppendingLongBuffer
+extends|extends
+name|LongValues
 block|{
 DECL|field|MIN_PAGE_SIZE
 specifier|static
@@ -398,7 +414,8 @@ name|void
 name|packPendingValues
 parameter_list|()
 function_decl|;
-comment|/** Get a value from this buffer. */
+annotation|@
+name|Override
 DECL|method|get
 specifier|public
 specifier|final

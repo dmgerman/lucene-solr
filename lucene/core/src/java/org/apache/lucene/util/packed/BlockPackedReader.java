@@ -186,6 +186,20 @@ name|IndexInput
 import|;
 end_import
 
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|util
+operator|.
+name|LongValues
+import|;
+end_import
+
 begin_comment
 comment|/**  * Provides random access to a stream written with {@link BlockPackedWriter}.  * @lucene.internal  */
 end_comment
@@ -196,6 +210,8 @@ specifier|public
 specifier|final
 class|class
 name|BlockPackedReader
+extends|extends
+name|LongValues
 block|{
 DECL|field|blockShift
 DECL|field|blockMask
@@ -536,7 +552,8 @@ operator|=
 name|minValues
 expr_stmt|;
 block|}
-comment|/** Get value at<code>index</code>. */
+annotation|@
+name|Override
 DECL|method|get
 specifier|public
 name|long
