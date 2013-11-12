@@ -2590,6 +2590,13 @@ name|currentContext
 index|]
 argument_list|)
 expr_stmt|;
+name|delegate
+operator|.
+name|setScorer
+argument_list|(
+name|dummy
+argument_list|)
+expr_stmt|;
 block|}
 name|int
 name|contextDoc
@@ -3277,6 +3284,13 @@ name|contexts
 index|[
 name|currentContext
 index|]
+argument_list|)
+expr_stmt|;
+name|delegate
+operator|.
+name|setScorer
+argument_list|(
+name|dummy
 argument_list|)
 expr_stmt|;
 block|}
