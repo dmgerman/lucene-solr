@@ -219,6 +219,10 @@ argument_list|,
 literal|"title"
 argument_list|,
 literal|"this is a title."
+argument_list|,
+literal|"inStock_b1"
+argument_list|,
+literal|"true"
 argument_list|)
 argument_list|)
 expr_stmt|;
@@ -233,6 +237,10 @@ argument_list|,
 literal|"title"
 argument_list|,
 literal|"this is another title."
+argument_list|,
+literal|"inStock_b1"
+argument_list|,
+literal|"true"
 argument_list|)
 argument_list|)
 expr_stmt|;
@@ -247,6 +255,10 @@ argument_list|,
 literal|"title"
 argument_list|,
 literal|"Mary had a little lamb."
+argument_list|,
+literal|"inStock_b1"
+argument_list|,
+literal|"false"
 argument_list|)
 argument_list|)
 expr_stmt|;
@@ -532,6 +544,43 @@ argument_list|,
 literal|"//lst[@name='explain']/str[@name='3']"
 argument_list|,
 literal|"count(//lst[@name='timing']/*)=0"
+argument_list|)
+expr_stmt|;
+comment|//Grouping
+name|assertQ
+argument_list|(
+name|req
+argument_list|(
+literal|"q"
+argument_list|,
+literal|"*:*"
+argument_list|,
+literal|"debug"
+argument_list|,
+name|CommonParams
+operator|.
+name|RESULTS
+argument_list|,
+literal|"group"
+argument_list|,
+name|CommonParams
+operator|.
+name|TRUE
+argument_list|,
+literal|"group.field"
+argument_list|,
+literal|"inStock_b1"
+argument_list|,
+literal|"debug"
+argument_list|,
+name|CommonParams
+operator|.
+name|TRUE
+argument_list|)
+argument_list|,
+literal|"//str[@name='rawquerystring']='*:*'"
+argument_list|,
+literal|"count(//lst[@name='explain']/*)=2"
 argument_list|)
 expr_stmt|;
 block|}
