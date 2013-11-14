@@ -302,6 +302,16 @@ name|QUERY
 init|=
 literal|"query"
 decl_stmt|;
+comment|/**    * {@link #DEBUG} value indicating an interest in debug output related to the distributed tracking    */
+DECL|field|TRACK
+specifier|public
+specifier|static
+specifier|final
+name|String
+name|TRACK
+init|=
+literal|"track"
+decl_stmt|;
 comment|/**     * boolean indicating whether score explanations should structured (true),     * or plain text (false)    */
 DECL|field|EXPLAIN_STRUCT
 specifier|public
@@ -605,6 +615,26 @@ name|String
 name|COST
 init|=
 literal|"cost"
+decl_stmt|;
+comment|/**    * Request ID parameter added to the request when using debug=track    */
+DECL|field|REQUEST_ID
+specifier|public
+specifier|static
+specifier|final
+name|String
+name|REQUEST_ID
+init|=
+literal|"rid"
+decl_stmt|;
+comment|/**    * Request Purpose parameter added to each internal shard request when using debug=track    */
+DECL|field|REQUEST_PURPOSE
+specifier|public
+specifier|static
+specifier|final
+name|String
+name|REQUEST_PURPOSE
+init|=
+literal|"requestPurpose"
 decl_stmt|;
 block|}
 end_interface
