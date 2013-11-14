@@ -1380,7 +1380,8 @@ name|docSets
 return|;
 block|}
 DECL|method|getRouteKey
-specifier|private
+specifier|public
+specifier|static
 name|String
 name|getRouteKey
 parameter_list|(
