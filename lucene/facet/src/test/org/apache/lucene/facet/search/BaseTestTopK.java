@@ -168,7 +168,7 @@ name|facet
 operator|.
 name|taxonomy
 operator|.
-name|CategoryPath
+name|FacetLabel
 import|;
 end_import
 
@@ -403,7 +403,7 @@ DECL|method|getCategories
 specifier|protected
 name|List
 argument_list|<
-name|CategoryPath
+name|FacetLabel
 argument_list|>
 name|getCategories
 parameter_list|(
@@ -416,11 +416,11 @@ argument_list|(
 name|doc
 argument_list|)
 expr_stmt|;
-name|CategoryPath
+name|FacetLabel
 name|cp
 init|=
 operator|new
-name|CategoryPath
+name|FacetLabel
 argument_list|(
 literal|"a"
 argument_list|,
@@ -514,7 +514,7 @@ operator|new
 name|CountFacetRequest
 argument_list|(
 operator|new
-name|CategoryPath
+name|FacetLabel
 argument_list|(
 literal|"a"
 argument_list|)
@@ -531,7 +531,7 @@ operator|new
 name|CountFacetRequest
 argument_list|(
 operator|new
-name|CategoryPath
+name|FacetLabel
 argument_list|(
 literal|"a"
 argument_list|,
@@ -550,7 +550,7 @@ operator|new
 name|CountFacetRequest
 argument_list|(
 operator|new
-name|CategoryPath
+name|FacetLabel
 argument_list|(
 literal|"a"
 argument_list|,
@@ -571,7 +571,7 @@ operator|new
 name|CountFacetRequest
 argument_list|(
 operator|new
-name|CategoryPath
+name|FacetLabel
 argument_list|(
 literal|"a"
 argument_list|,

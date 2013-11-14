@@ -268,7 +268,7 @@ name|facet
 operator|.
 name|taxonomy
 operator|.
-name|CategoryPath
+name|FacetLabel
 import|;
 end_import
 
@@ -1157,7 +1157,7 @@ comment|// Make sure that the taxonomy always contain the root category
 comment|// with category id 0.
 name|addCategory
 argument_list|(
-name|CategoryPath
+name|FacetLabel
 operator|.
 name|EMPTY
 argument_list|)
@@ -1454,7 +1454,7 @@ specifier|synchronized
 name|int
 name|findCategory
 parameter_list|(
-name|CategoryPath
+name|FacetLabel
 name|categoryPath
 parameter_list|)
 throws|throws
@@ -1693,7 +1693,7 @@ specifier|public
 name|int
 name|addCategory
 parameter_list|(
-name|CategoryPath
+name|FacetLabel
 name|categoryPath
 parameter_list|)
 throws|throws
@@ -1767,7 +1767,7 @@ specifier|private
 name|int
 name|internalAddCategory
 parameter_list|(
-name|CategoryPath
+name|FacetLabel
 name|cp
 parameter_list|)
 throws|throws
@@ -1789,7 +1789,7 @@ operator|>
 literal|1
 condition|)
 block|{
-name|CategoryPath
+name|FacetLabel
 name|parentPath
 init|=
 name|cp
@@ -1894,7 +1894,7 @@ specifier|private
 name|int
 name|addCategoryDocument
 parameter_list|(
-name|CategoryPath
+name|FacetLabel
 name|categoryPath
 parameter_list|,
 name|int
@@ -2155,7 +2155,7 @@ specifier|private
 name|void
 name|addToCache
 parameter_list|(
-name|CategoryPath
+name|FacetLabel
 name|categoryPath
 parameter_list|,
 name|int
@@ -2652,11 +2652,11 @@ comment|// one document. Also, since we do not allow removing categories (and
 comment|// hence documents), there are no deletions in the index. Therefore, it
 comment|// is sufficient to call next(), and then doc(), exactly once with no
 comment|// 'validation' checks.
-name|CategoryPath
+name|FacetLabel
 name|cp
 init|=
 operator|new
-name|CategoryPath
+name|FacetLabel
 argument_list|(
 name|t
 operator|.
@@ -3046,11 +3046,11 @@ operator|.
 name|utf8ToString
 argument_list|()
 decl_stmt|;
-name|CategoryPath
+name|FacetLabel
 name|cp
 init|=
 operator|new
-name|CategoryPath
+name|FacetLabel
 argument_list|(
 name|value
 argument_list|,

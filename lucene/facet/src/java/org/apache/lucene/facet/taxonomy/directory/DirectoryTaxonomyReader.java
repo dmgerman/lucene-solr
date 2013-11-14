@@ -88,7 +88,7 @@ name|facet
 operator|.
 name|taxonomy
 operator|.
-name|CategoryPath
+name|FacetLabel
 import|;
 end_import
 
@@ -336,7 +336,7 @@ DECL|field|ordinalCache
 specifier|private
 name|LRUHashMap
 argument_list|<
-name|CategoryPath
+name|FacetLabel
 argument_list|,
 name|Integer
 argument_list|>
@@ -348,7 +348,7 @@ name|LRUHashMap
 argument_list|<
 name|Integer
 argument_list|,
-name|CategoryPath
+name|FacetLabel
 argument_list|>
 name|categoryCache
 decl_stmt|;
@@ -379,7 +379,7 @@ name|taxoWriter
 parameter_list|,
 name|LRUHashMap
 argument_list|<
-name|CategoryPath
+name|FacetLabel
 argument_list|,
 name|Integer
 argument_list|>
@@ -389,7 +389,7 @@ name|LRUHashMap
 argument_list|<
 name|Integer
 argument_list|,
-name|CategoryPath
+name|FacetLabel
 argument_list|>
 name|categoryCache
 parameter_list|,
@@ -439,7 +439,7 @@ condition|?
 operator|new
 name|LRUHashMap
 argument_list|<
-name|CategoryPath
+name|FacetLabel
 argument_list|,
 name|Integer
 argument_list|>
@@ -462,7 +462,7 @@ name|LRUHashMap
 argument_list|<
 name|Integer
 argument_list|,
-name|CategoryPath
+name|FacetLabel
 argument_list|>
 argument_list|(
 name|DEFAULT_CACHE_VALUE
@@ -523,7 +523,7 @@ operator|=
 operator|new
 name|LRUHashMap
 argument_list|<
-name|CategoryPath
+name|FacetLabel
 argument_list|,
 name|Integer
 argument_list|>
@@ -538,7 +538,7 @@ name|LRUHashMap
 argument_list|<
 name|Integer
 argument_list|,
-name|CategoryPath
+name|FacetLabel
 argument_list|>
 argument_list|(
 name|DEFAULT_CACHE_VALUE
@@ -586,7 +586,7 @@ operator|=
 operator|new
 name|LRUHashMap
 argument_list|<
-name|CategoryPath
+name|FacetLabel
 argument_list|,
 name|Integer
 argument_list|>
@@ -601,7 +601,7 @@ name|LRUHashMap
 argument_list|<
 name|Integer
 argument_list|,
-name|CategoryPath
+name|FacetLabel
 argument_list|>
 argument_list|(
 name|DEFAULT_CACHE_VALUE
@@ -1016,7 +1016,7 @@ specifier|public
 name|int
 name|getOrdinal
 parameter_list|(
-name|CategoryPath
+name|FacetLabel
 name|cp
 parameter_list|)
 throws|throws
@@ -1193,7 +1193,7 @@ annotation|@
 name|Override
 DECL|method|getPath
 specifier|public
-name|CategoryPath
+name|FacetLabel
 name|getPath
 parameter_list|(
 name|int
@@ -1244,7 +1244,7 @@ init|(
 name|categoryCache
 init|)
 block|{
-name|CategoryPath
+name|FacetLabel
 name|res
 init|=
 name|categoryCache
@@ -1276,11 +1276,11 @@ argument_list|(
 name|ordinal
 argument_list|)
 decl_stmt|;
-name|CategoryPath
+name|FacetLabel
 name|ret
 init|=
 operator|new
-name|CategoryPath
+name|FacetLabel
 argument_list|(
 name|doc
 operator|.
@@ -1331,7 +1331,7 @@ name|numDocs
 argument_list|()
 return|;
 block|}
-comment|/**    * setCacheSize controls the maximum allowed size of each of the caches    * used by {@link #getPath(int)} and {@link #getOrdinal(CategoryPath)}.    *<P>    * Currently, if the given size is smaller than the current size of    * a cache, it will not shrink, and rather we be limited to its current    * size.    * @param size the new maximum cache size, in number of entries.    */
+comment|/**    * setCacheSize controls the maximum allowed size of each of the caches    * used by {@link #getPath(int)} and {@link #getOrdinal(FacetLabel)}.    *<P>    * Currently, if the given size is smaller than the current size of    * a cache, it will not shrink, and rather we be limited to its current    * size.    * @param size the new maximum cache size, in number of entries.    */
 DECL|method|setCacheSize
 specifier|public
 name|void
@@ -1442,7 +1442,7 @@ control|)
 block|{
 try|try
 block|{
-name|CategoryPath
+name|FacetLabel
 name|category
 init|=
 name|this

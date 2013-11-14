@@ -26,7 +26,7 @@ name|facet
 operator|.
 name|taxonomy
 operator|.
-name|CategoryPath
+name|FacetLabel
 import|;
 end_import
 
@@ -91,7 +91,7 @@ comment|/*  * Licensed to the Apache Software Foundation (ASF) under one or more
 end_comment
 
 begin_comment
-comment|/**  * Allows associating an arbitrary value with a {@link CategoryPath}.  *   * @lucene.experimental  */
+comment|/**  * Allows associating an arbitrary value with a {@link FacetLabel}.  *   * @lucene.experimental  */
 end_comment
 
 begin_interface

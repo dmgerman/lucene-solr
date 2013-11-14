@@ -278,7 +278,7 @@ name|facet
 operator|.
 name|taxonomy
 operator|.
-name|CategoryPath
+name|FacetLabel
 import|;
 end_import
 
@@ -546,16 +546,16 @@ DECL|field|CATEGORIES
 specifier|private
 specifier|static
 specifier|final
-name|CategoryPath
+name|FacetLabel
 index|[]
 name|CATEGORIES
 init|=
 operator|new
-name|CategoryPath
+name|FacetLabel
 index|[]
 block|{
 operator|new
-name|CategoryPath
+name|FacetLabel
 argument_list|(
 literal|"Author"
 argument_list|,
@@ -563,7 +563,7 @@ literal|"Mark Twain"
 argument_list|)
 block|,
 operator|new
-name|CategoryPath
+name|FacetLabel
 argument_list|(
 literal|"Author"
 argument_list|,
@@ -571,7 +571,7 @@ literal|"Stephen King"
 argument_list|)
 block|,
 operator|new
-name|CategoryPath
+name|FacetLabel
 argument_list|(
 literal|"Author"
 argument_list|,
@@ -579,7 +579,7 @@ literal|"Kurt Vonnegut"
 argument_list|)
 block|,
 operator|new
-name|CategoryPath
+name|FacetLabel
 argument_list|(
 literal|"Band"
 argument_list|,
@@ -589,7 +589,7 @@ literal|"The Beatles"
 argument_list|)
 block|,
 operator|new
-name|CategoryPath
+name|FacetLabel
 argument_list|(
 literal|"Band"
 argument_list|,
@@ -599,7 +599,7 @@ literal|"The Ramones"
 argument_list|)
 block|,
 operator|new
-name|CategoryPath
+name|FacetLabel
 argument_list|(
 literal|"Band"
 argument_list|,
@@ -609,7 +609,7 @@ literal|"U2"
 argument_list|)
 block|,
 operator|new
-name|CategoryPath
+name|FacetLabel
 argument_list|(
 literal|"Band"
 argument_list|,
@@ -619,7 +619,7 @@ literal|"REM"
 argument_list|)
 block|,
 operator|new
-name|CategoryPath
+name|FacetLabel
 argument_list|(
 literal|"Band"
 argument_list|,
@@ -629,7 +629,7 @@ literal|"Dave Matthews Band"
 argument_list|)
 block|,
 operator|new
-name|CategoryPath
+name|FacetLabel
 argument_list|(
 literal|"Composer"
 argument_list|,
@@ -713,7 +713,7 @@ argument_list|(
 name|Collections
 operator|.
 expr|<
-name|CategoryPath
+name|FacetLabel
 argument_list|,
 name|CategoryListParams
 operator|>
@@ -890,7 +890,7 @@ operator|.
 name|singletonMap
 argument_list|(
 operator|new
-name|CategoryPath
+name|FacetLabel
 argument_list|(
 literal|"Author"
 argument_list|)
@@ -1070,7 +1070,7 @@ argument_list|)
 decl_stmt|;
 name|Map
 argument_list|<
-name|CategoryPath
+name|FacetLabel
 argument_list|,
 name|CategoryListParams
 argument_list|>
@@ -1079,7 +1079,7 @@ init|=
 operator|new
 name|HashMap
 argument_list|<
-name|CategoryPath
+name|FacetLabel
 argument_list|,
 name|CategoryListParams
 argument_list|>
@@ -1090,7 +1090,7 @@ operator|.
 name|put
 argument_list|(
 operator|new
-name|CategoryPath
+name|FacetLabel
 argument_list|(
 literal|"Band"
 argument_list|)
@@ -1107,7 +1107,7 @@ operator|.
 name|put
 argument_list|(
 operator|new
-name|CategoryPath
+name|FacetLabel
 argument_list|(
 literal|"Composer"
 argument_list|)
@@ -1359,7 +1359,7 @@ argument_list|)
 decl_stmt|;
 name|Map
 argument_list|<
-name|CategoryPath
+name|FacetLabel
 argument_list|,
 name|CategoryListParams
 argument_list|>
@@ -1368,7 +1368,7 @@ init|=
 operator|new
 name|HashMap
 argument_list|<
-name|CategoryPath
+name|FacetLabel
 argument_list|,
 name|CategoryListParams
 argument_list|>
@@ -1379,7 +1379,7 @@ operator|.
 name|put
 argument_list|(
 operator|new
-name|CategoryPath
+name|FacetLabel
 argument_list|(
 literal|"Band"
 argument_list|)
@@ -1396,7 +1396,7 @@ operator|.
 name|put
 argument_list|(
 operator|new
-name|CategoryPath
+name|FacetLabel
 argument_list|(
 literal|"Composer"
 argument_list|)
@@ -1591,7 +1591,7 @@ argument_list|)
 decl_stmt|;
 name|Map
 argument_list|<
-name|CategoryPath
+name|FacetLabel
 argument_list|,
 name|CategoryListParams
 argument_list|>
@@ -1600,7 +1600,7 @@ init|=
 operator|new
 name|HashMap
 argument_list|<
-name|CategoryPath
+name|FacetLabel
 argument_list|,
 name|CategoryListParams
 argument_list|>
@@ -1611,7 +1611,7 @@ operator|.
 name|put
 argument_list|(
 operator|new
-name|CategoryPath
+name|FacetLabel
 argument_list|(
 literal|"Band"
 argument_list|)
@@ -1628,7 +1628,7 @@ operator|.
 name|put
 argument_list|(
 operator|new
-name|CategoryPath
+name|FacetLabel
 argument_list|(
 literal|"Composer"
 argument_list|)
@@ -1645,7 +1645,7 @@ operator|.
 name|put
 argument_list|(
 operator|new
-name|CategoryPath
+name|FacetLabel
 argument_list|(
 literal|"Author"
 argument_list|)
@@ -2170,7 +2170,7 @@ operator|new
 name|CountFacetRequest
 argument_list|(
 operator|new
-name|CategoryPath
+name|FacetLabel
 argument_list|(
 literal|"Band"
 argument_list|)
@@ -2186,7 +2186,7 @@ operator|new
 name|CountFacetRequest
 argument_list|(
 operator|new
-name|CategoryPath
+name|FacetLabel
 argument_list|(
 literal|"Band"
 argument_list|)
@@ -2226,7 +2226,7 @@ operator|new
 name|CountFacetRequest
 argument_list|(
 operator|new
-name|CategoryPath
+name|FacetLabel
 argument_list|(
 literal|"Author"
 argument_list|)
@@ -2243,7 +2243,7 @@ operator|new
 name|CountFacetRequest
 argument_list|(
 operator|new
-name|CategoryPath
+name|FacetLabel
 argument_list|(
 literal|"Band"
 argument_list|,
@@ -2331,7 +2331,7 @@ argument_list|)
 decl_stmt|;
 for|for
 control|(
-name|CategoryPath
+name|FacetLabel
 name|cp
 range|:
 name|CATEGORIES

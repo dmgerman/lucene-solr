@@ -160,7 +160,7 @@ name|facet
 operator|.
 name|taxonomy
 operator|.
-name|CategoryPath
+name|FacetLabel
 import|;
 end_import
 
@@ -997,10 +997,10 @@ literal|" components"
 argument_list|)
 throw|;
 block|}
-name|CategoryPath
+name|FacetLabel
 name|cp
 init|=
-name|CategoryPath
+name|FacetLabel
 operator|.
 name|create
 argument_list|(
@@ -1255,11 +1255,11 @@ name|getValue
 argument_list|()
 control|)
 block|{
-name|CategoryPath
+name|FacetLabel
 name|cp
 init|=
 operator|new
-name|CategoryPath
+name|FacetLabel
 argument_list|(
 name|facetField
 operator|.

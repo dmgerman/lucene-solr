@@ -60,7 +60,7 @@ name|facet
 operator|.
 name|taxonomy
 operator|.
-name|CategoryPath
+name|FacetLabel
 import|;
 end_import
 
@@ -396,7 +396,7 @@ name|numImmediateChildren
 operator|++
 expr_stmt|;
 block|}
-name|CategoryPath
+name|FacetLabel
 name|cp
 init|=
 name|r

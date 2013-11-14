@@ -598,7 +598,7 @@ operator|.
 name|addCategory
 argument_list|(
 operator|new
-name|CategoryPath
+name|FacetLabel
 argument_list|(
 name|categories
 index|[
@@ -773,7 +773,7 @@ specifier|private
 name|String
 name|showcat
 parameter_list|(
-name|CategoryPath
+name|FacetLabel
 name|path
 parameter_list|)
 block|{
@@ -1072,7 +1072,7 @@ operator|.
 name|addCategory
 argument_list|(
 operator|new
-name|CategoryPath
+name|FacetLabel
 argument_list|(
 literal|"hi"
 argument_list|)
@@ -1159,7 +1159,7 @@ operator|.
 name|addCategory
 argument_list|(
 operator|new
-name|CategoryPath
+name|FacetLabel
 argument_list|(
 literal|"a"
 argument_list|)
@@ -1187,7 +1187,7 @@ operator|.
 name|addCategory
 argument_list|(
 operator|new
-name|CategoryPath
+name|FacetLabel
 argument_list|(
 literal|"a"
 argument_list|)
@@ -1215,7 +1215,7 @@ operator|.
 name|addCategory
 argument_list|(
 operator|new
-name|CategoryPath
+name|FacetLabel
 argument_list|(
 literal|"b"
 argument_list|)
@@ -1243,7 +1243,7 @@ operator|.
 name|addCategory
 argument_list|(
 operator|new
-name|CategoryPath
+name|FacetLabel
 argument_list|(
 literal|"a"
 argument_list|,
@@ -1272,7 +1272,7 @@ operator|.
 name|addCategory
 argument_list|(
 operator|new
-name|CategoryPath
+name|FacetLabel
 argument_list|(
 literal|"a"
 argument_list|,
@@ -1302,7 +1302,7 @@ operator|.
 name|addCategory
 argument_list|(
 operator|new
-name|CategoryPath
+name|FacetLabel
 argument_list|(
 literal|"d"
 argument_list|,
@@ -1331,7 +1331,7 @@ operator|.
 name|addCategory
 argument_list|(
 operator|new
-name|CategoryPath
+name|FacetLabel
 argument_list|(
 literal|"d"
 argument_list|)
@@ -1348,7 +1348,7 @@ operator|.
 name|addCategory
 argument_list|(
 operator|new
-name|CategoryPath
+name|FacetLabel
 argument_list|(
 literal|"b"
 argument_list|,
@@ -1379,7 +1379,7 @@ operator|.
 name|addCategory
 argument_list|(
 operator|new
-name|CategoryPath
+name|FacetLabel
 argument_list|(
 literal|"b"
 argument_list|,
@@ -1513,7 +1513,7 @@ name|tr
 operator|.
 name|getOrdinal
 argument_list|(
-name|CategoryPath
+name|FacetLabel
 operator|.
 name|EMPTY
 argument_list|)
@@ -1620,7 +1620,7 @@ name|tr
 operator|.
 name|getOrdinal
 argument_list|(
-name|CategoryPath
+name|FacetLabel
 operator|.
 name|EMPTY
 argument_list|)
@@ -1756,11 +1756,11 @@ name|i
 operator|++
 control|)
 block|{
-name|CategoryPath
+name|FacetLabel
 name|expectedCategory
 init|=
 operator|new
-name|CategoryPath
+name|FacetLabel
 argument_list|(
 name|expectedCategories
 index|[
@@ -1768,7 +1768,7 @@ name|i
 index|]
 argument_list|)
 decl_stmt|;
-name|CategoryPath
+name|FacetLabel
 name|category
 init|=
 name|tr
@@ -1880,7 +1880,7 @@ operator|.
 name|getOrdinal
 argument_list|(
 operator|new
-name|CategoryPath
+name|FacetLabel
 argument_list|(
 name|expectedCategories
 index|[
@@ -1931,7 +1931,7 @@ operator|.
 name|getOrdinal
 argument_list|(
 operator|new
-name|CategoryPath
+name|FacetLabel
 argument_list|(
 literal|"non-existant"
 argument_list|)
@@ -1949,7 +1949,7 @@ operator|.
 name|getOrdinal
 argument_list|(
 operator|new
-name|CategoryPath
+name|FacetLabel
 argument_list|(
 literal|"Author"
 argument_list|,
@@ -2058,7 +2058,7 @@ name|ordinal
 operator|++
 control|)
 block|{
-name|CategoryPath
+name|FacetLabel
 name|me
 init|=
 name|tr
@@ -2076,7 +2076,7 @@ index|[
 name|ordinal
 index|]
 decl_stmt|;
-name|CategoryPath
+name|FacetLabel
 name|parent
 init|=
 name|tr
@@ -2359,7 +2359,7 @@ name|ordinal
 operator|++
 control|)
 block|{
-name|CategoryPath
+name|FacetLabel
 name|me
 init|=
 name|tr
@@ -2379,7 +2379,7 @@ argument_list|(
 name|ordinal
 argument_list|)
 decl_stmt|;
-name|CategoryPath
+name|FacetLabel
 name|parent
 init|=
 name|tr
@@ -3358,7 +3358,7 @@ operator|.
 name|addCategory
 argument_list|(
 operator|new
-name|CategoryPath
+name|FacetLabel
 argument_list|(
 literal|"hi"
 argument_list|,
@@ -3479,7 +3479,7 @@ operator|.
 name|addCategory
 argument_list|(
 operator|new
-name|CategoryPath
+name|FacetLabel
 argument_list|(
 literal|"hi"
 argument_list|,
@@ -3492,7 +3492,7 @@ operator|.
 name|addCategory
 argument_list|(
 operator|new
-name|CategoryPath
+name|FacetLabel
 argument_list|(
 literal|"hello"
 argument_list|)
@@ -3730,7 +3730,7 @@ operator|.
 name|addCategory
 argument_list|(
 operator|new
-name|CategoryPath
+name|FacetLabel
 argument_list|(
 literal|"a"
 argument_list|,
@@ -3739,11 +3739,11 @@ argument_list|)
 argument_list|)
 expr_stmt|;
 specifier|final
-name|CategoryPath
+name|FacetLabel
 name|abPath
 init|=
 operator|new
-name|CategoryPath
+name|FacetLabel
 argument_list|(
 literal|"a"
 argument_list|,
@@ -3832,7 +3832,7 @@ operator|.
 name|addCategory
 argument_list|(
 operator|new
-name|CategoryPath
+name|FacetLabel
 argument_list|(
 literal|"a"
 argument_list|,
@@ -3954,7 +3954,7 @@ name|void
 name|assertConsistentYoungestChild
 parameter_list|(
 specifier|final
-name|CategoryPath
+name|FacetLabel
 name|abPath
 parameter_list|,
 specifier|final
@@ -4006,7 +4006,7 @@ operator|.
 name|addCategory
 argument_list|(
 operator|new
-name|CategoryPath
+name|FacetLabel
 argument_list|(
 literal|"a"
 argument_list|,
@@ -4052,11 +4052,11 @@ operator|++
 control|)
 block|{
 specifier|final
-name|CategoryPath
+name|FacetLabel
 name|cp
 init|=
 operator|new
-name|CategoryPath
+name|FacetLabel
 argument_list|(
 literal|"a"
 argument_list|,
@@ -4516,7 +4516,7 @@ operator|.
 name|addCategory
 argument_list|(
 operator|new
-name|CategoryPath
+name|FacetLabel
 argument_list|(
 literal|"Author"
 argument_list|)
@@ -4658,7 +4658,7 @@ operator|.
 name|addCategory
 argument_list|(
 operator|new
-name|CategoryPath
+name|FacetLabel
 argument_list|(
 literal|"Author"
 argument_list|,
@@ -4813,11 +4813,11 @@ name|indexDir
 argument_list|)
 decl_stmt|;
 comment|// Test getOrdinal():
-name|CategoryPath
+name|FacetLabel
 name|author
 init|=
 operator|new
-name|CategoryPath
+name|FacetLabel
 argument_list|(
 literal|"Author"
 argument_list|)
@@ -5042,7 +5042,7 @@ operator|.
 name|addCategory
 argument_list|(
 operator|new
-name|CategoryPath
+name|FacetLabel
 argument_list|(
 literal|"hi"
 argument_list|,
@@ -5076,7 +5076,7 @@ operator|.
 name|getOrdinal
 argument_list|(
 operator|new
-name|CategoryPath
+name|FacetLabel
 argument_list|(
 literal|"hi"
 argument_list|,
@@ -5135,7 +5135,7 @@ operator|.
 name|addCategory
 argument_list|(
 operator|new
-name|CategoryPath
+name|FacetLabel
 argument_list|(
 literal|"hey"
 argument_list|)
@@ -5180,7 +5180,7 @@ operator|.
 name|getOrdinal
 argument_list|(
 operator|new
-name|CategoryPath
+name|FacetLabel
 argument_list|(
 literal|"hey"
 argument_list|)
@@ -5241,7 +5241,7 @@ operator|.
 name|addCategory
 argument_list|(
 operator|new
-name|CategoryPath
+name|FacetLabel
 argument_list|(
 name|categories
 index|[
@@ -5734,11 +5734,11 @@ argument_list|(
 name|writer
 argument_list|)
 decl_stmt|;
-name|CategoryPath
+name|FacetLabel
 name|cp
 init|=
 operator|new
-name|CategoryPath
+name|FacetLabel
 argument_list|(
 literal|"a"
 argument_list|)

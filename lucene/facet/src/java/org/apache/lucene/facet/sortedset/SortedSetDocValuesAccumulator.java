@@ -236,7 +236,7 @@ name|facet
 operator|.
 name|taxonomy
 operator|.
-name|CategoryPath
+name|FacetLabel
 import|;
 end_import
 
@@ -1425,7 +1425,7 @@ operator|.
 name|label
 operator|=
 operator|new
-name|CategoryPath
+name|FacetLabel
 argument_list|(
 name|scratch
 operator|.
@@ -1574,7 +1574,7 @@ operator|.
 name|label
 operator|=
 operator|new
-name|CategoryPath
+name|FacetLabel
 argument_list|(
 operator|new
 name|String
@@ -1824,7 +1824,7 @@ operator|.
 name|label
 operator|=
 operator|new
-name|CategoryPath
+name|FacetLabel
 argument_list|(
 operator|new
 name|String
@@ -1898,7 +1898,7 @@ operator|.
 name|label
 operator|=
 operator|new
-name|CategoryPath
+name|FacetLabel
 argument_list|(
 name|scratch
 operator|.

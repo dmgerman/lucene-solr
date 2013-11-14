@@ -446,7 +446,7 @@ name|facet
 operator|.
 name|taxonomy
 operator|.
-name|CategoryPath
+name|FacetLabel
 import|;
 end_import
 
@@ -1025,7 +1025,7 @@ name|NO
 argument_list|)
 argument_list|)
 expr_stmt|;
-name|CategoryPath
+name|FacetLabel
 name|cp
 decl_stmt|;
 if|if
@@ -1042,7 +1042,7 @@ block|{
 name|cp
 operator|=
 operator|new
-name|CategoryPath
+name|FacetLabel
 argument_list|(
 literal|"dim"
 argument_list|,
@@ -1055,7 +1055,7 @@ block|{
 name|cp
 operator|=
 operator|new
-name|CategoryPath
+name|FacetLabel
 argument_list|(
 literal|"dim"
 argument_list|,
@@ -1130,7 +1130,7 @@ operator|new
 name|CountFacetRequest
 argument_list|(
 operator|new
-name|CategoryPath
+name|FacetLabel
 argument_list|(
 literal|"dim"
 argument_list|)
@@ -1512,7 +1512,7 @@ operator|.
 name|add
 argument_list|(
 operator|new
-name|CategoryPath
+name|FacetLabel
 argument_list|(
 literal|"dim"
 argument_list|,
@@ -1831,7 +1831,7 @@ name|NO
 argument_list|)
 argument_list|)
 expr_stmt|;
-name|CategoryPath
+name|FacetLabel
 name|cp
 decl_stmt|;
 if|if
@@ -1848,7 +1848,7 @@ block|{
 name|cp
 operator|=
 operator|new
-name|CategoryPath
+name|FacetLabel
 argument_list|(
 literal|"dim"
 argument_list|,
@@ -1861,7 +1861,7 @@ block|{
 name|cp
 operator|=
 operator|new
-name|CategoryPath
+name|FacetLabel
 argument_list|(
 literal|"dim"
 argument_list|,
@@ -1934,7 +1934,7 @@ operator|new
 name|CountFacetRequest
 argument_list|(
 operator|new
-name|CategoryPath
+name|FacetLabel
 argument_list|(
 literal|"dim"
 argument_list|)
@@ -2316,7 +2316,7 @@ operator|.
 name|add
 argument_list|(
 operator|new
-name|CategoryPath
+name|FacetLabel
 argument_list|(
 literal|"dim"
 argument_list|,

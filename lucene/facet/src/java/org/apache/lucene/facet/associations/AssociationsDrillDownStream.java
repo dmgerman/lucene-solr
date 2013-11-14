@@ -74,7 +74,7 @@ name|facet
 operator|.
 name|taxonomy
 operator|.
-name|CategoryPath
+name|FacetLabel
 import|;
 end_import
 
@@ -238,7 +238,7 @@ specifier|protected
 name|void
 name|addAdditionalAttributes
 parameter_list|(
-name|CategoryPath
+name|FacetLabel
 name|cp
 parameter_list|,
 name|boolean

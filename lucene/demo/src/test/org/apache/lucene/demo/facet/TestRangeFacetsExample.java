@@ -120,7 +120,7 @@ name|facet
 operator|.
 name|taxonomy
 operator|.
-name|CategoryPath
+name|FacetLabel
 import|;
 end_import
 
@@ -197,14 +197,14 @@ specifier|static
 specifier|final
 name|ObjectToIntMap
 argument_list|<
-name|CategoryPath
+name|FacetLabel
 argument_list|>
 name|expectedCounts
 init|=
 operator|new
 name|ObjectToIntMap
 argument_list|<
-name|CategoryPath
+name|FacetLabel
 argument_list|>
 argument_list|()
 decl_stmt|;
@@ -215,7 +215,7 @@ operator|.
 name|put
 argument_list|(
 operator|new
-name|CategoryPath
+name|FacetLabel
 argument_list|(
 literal|"timestamp"
 argument_list|,
@@ -230,7 +230,7 @@ operator|.
 name|put
 argument_list|(
 operator|new
-name|CategoryPath
+name|FacetLabel
 argument_list|(
 literal|"timestamp"
 argument_list|,
@@ -245,7 +245,7 @@ operator|.
 name|put
 argument_list|(
 operator|new
-name|CategoryPath
+name|FacetLabel
 argument_list|(
 literal|"timestamp"
 argument_list|,
@@ -266,7 +266,7 @@ name|res
 parameter_list|,
 name|ObjectToIntMap
 argument_list|<
-name|CategoryPath
+name|FacetLabel
 argument_list|>
 name|expCounts
 parameter_list|)

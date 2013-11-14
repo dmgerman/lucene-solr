@@ -148,7 +148,7 @@ name|facet
 operator|.
 name|taxonomy
 operator|.
-name|CategoryPath
+name|FacetLabel
 import|;
 end_import
 
@@ -197,7 +197,7 @@ comment|/**      * Encodes the ordinals of all path components. That is, the cat
 DECL|enum constant|ALL_PARENTS
 name|ALL_PARENTS
 block|,
-comment|/**      * Encodes the ordinals of all path components except the dimension. The      * dimension of a category is defined to be the first components in      * {@link CategoryPath#components}. For the category A/B/C, the ordinal of      * A/B will be encoded as well, however not the ordinal of A.      *       *<p>      *<b>NOTE:</b> when facets are aggregated, this policy behaves exactly like      * {@link #ALL_PARENTS}, except that the dimension is never counted. I.e. if      * you ask to count the facet "A", then while in {@link #ALL_PARENTS} you      * will get counts for "A"<u>and its children</u>, with this policy you      * will get counts for<u>only its children</u>. This policy is the default      * one, and makes sense for using with flat dimensions, whenever your      * application does not require the dimension's count. Otherwise, use      * {@link #ALL_PARENTS}.      */
+comment|/**      * Encodes the ordinals of all path components except the dimension. The      * dimension of a category is defined to be the first components in      * {@link FacetLabel#components}. For the category A/B/C, the ordinal of      * A/B will be encoded as well, however not the ordinal of A.      *       *<p>      *<b>NOTE:</b> when facets are aggregated, this policy behaves exactly like      * {@link #ALL_PARENTS}, except that the dimension is never counted. I.e. if      * you ask to count the facet "A", then while in {@link #ALL_PARENTS} you      * will get counts for "A"<u>and its children</u>, with this policy you      * will get counts for<u>only its children</u>. This policy is the default      * one, and makes sense for using with flat dimensions, whenever your      * application does not require the dimension's count. Otherwise, use      * {@link #ALL_PARENTS}.      */
 DECL|enum constant|ALL_BUT_DIMENSION
 name|ALL_BUT_DIMENSION
 block|}

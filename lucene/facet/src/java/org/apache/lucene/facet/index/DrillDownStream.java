@@ -92,7 +92,7 @@ name|facet
 operator|.
 name|taxonomy
 operator|.
-name|CategoryPath
+name|FacetLabel
 import|;
 end_import
 
@@ -123,7 +123,7 @@ specifier|private
 specifier|final
 name|Iterator
 argument_list|<
-name|CategoryPath
+name|FacetLabel
 argument_list|>
 name|categories
 decl_stmt|;
@@ -135,7 +135,7 @@ name|termAttribute
 decl_stmt|;
 DECL|field|current
 specifier|private
-name|CategoryPath
+name|FacetLabel
 name|current
 decl_stmt|;
 DECL|field|isParent
@@ -149,7 +149,7 @@ name|DrillDownStream
 parameter_list|(
 name|Iterable
 argument_list|<
-name|CategoryPath
+name|FacetLabel
 argument_list|>
 name|categories
 parameter_list|,
@@ -187,7 +187,7 @@ specifier|protected
 name|void
 name|addAdditionalAttributes
 parameter_list|(
-name|CategoryPath
+name|FacetLabel
 name|category
 parameter_list|,
 name|boolean

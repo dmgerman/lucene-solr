@@ -154,7 +154,7 @@ name|facet
 operator|.
 name|taxonomy
 operator|.
-name|CategoryPath
+name|FacetLabel
 import|;
 end_import
 
@@ -751,7 +751,7 @@ name|ordinals
 parameter_list|,
 name|Iterable
 argument_list|<
-name|CategoryPath
+name|FacetLabel
 argument_list|>
 name|categories
 parameter_list|)
@@ -768,7 +768,7 @@ decl_stmt|;
 comment|// since we may add ordinals to IntsRef, iterate upto original length
 name|Iterator
 argument_list|<
-name|CategoryPath
+name|FacetLabel
 argument_list|>
 name|iter
 init|=
@@ -802,7 +802,7 @@ index|[
 name|i
 index|]
 decl_stmt|;
-name|CategoryPath
+name|FacetLabel
 name|cp
 init|=
 name|iter

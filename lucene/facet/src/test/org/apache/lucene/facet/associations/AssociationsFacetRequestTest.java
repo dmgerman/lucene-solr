@@ -140,7 +140,7 @@ name|facet
 operator|.
 name|taxonomy
 operator|.
-name|CategoryPath
+name|FacetLabel
 import|;
 end_import
 
@@ -348,11 +348,11 @@ DECL|field|aint
 specifier|private
 specifier|static
 specifier|final
-name|CategoryPath
+name|FacetLabel
 name|aint
 init|=
 operator|new
-name|CategoryPath
+name|FacetLabel
 argument_list|(
 literal|"int"
 argument_list|,
@@ -363,11 +363,11 @@ DECL|field|bint
 specifier|private
 specifier|static
 specifier|final
-name|CategoryPath
+name|FacetLabel
 name|bint
 init|=
 operator|new
-name|CategoryPath
+name|FacetLabel
 argument_list|(
 literal|"int"
 argument_list|,
@@ -378,11 +378,11 @@ DECL|field|afloat
 specifier|private
 specifier|static
 specifier|final
-name|CategoryPath
+name|FacetLabel
 name|afloat
 init|=
 operator|new
-name|CategoryPath
+name|FacetLabel
 argument_list|(
 literal|"float"
 argument_list|,
@@ -393,11 +393,11 @@ DECL|field|bfloat
 specifier|private
 specifier|static
 specifier|final
-name|CategoryPath
+name|FacetLabel
 name|bfloat
 init|=
 operator|new
-name|CategoryPath
+name|FacetLabel
 argument_list|(
 literal|"float"
 argument_list|,

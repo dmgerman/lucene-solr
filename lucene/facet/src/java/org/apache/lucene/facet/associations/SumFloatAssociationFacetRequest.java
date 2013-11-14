@@ -74,7 +74,7 @@ name|facet
 operator|.
 name|taxonomy
 operator|.
-name|CategoryPath
+name|FacetLabel
 import|;
 end_import
 
@@ -99,7 +99,7 @@ DECL|method|SumFloatAssociationFacetRequest
 specifier|public
 name|SumFloatAssociationFacetRequest
 parameter_list|(
-name|CategoryPath
+name|FacetLabel
 name|path
 parameter_list|,
 name|int

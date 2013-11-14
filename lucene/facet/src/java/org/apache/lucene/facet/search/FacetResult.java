@@ -102,7 +102,7 @@ name|facet
 operator|.
 name|taxonomy
 operator|.
-name|CategoryPath
+name|FacetLabel
 import|;
 end_import
 
@@ -158,7 +158,7 @@ name|addIfNotExist
 parameter_list|(
 name|Map
 argument_list|<
-name|CategoryPath
+name|FacetLabel
 argument_list|,
 name|FacetResultNode
 argument_list|>
@@ -207,7 +207,7 @@ return|return
 name|n
 return|;
 block|}
-comment|/**    * A utility for merging multiple {@link FacetResult} of the same    * (hierarchical) dimension into a single {@link FacetResult}, to reconstruct    * the hierarchy. The results are merged according to the following rules:    *<ul>    *<li>If two results share the same dimension (first component in their    * {@link CategoryPath}), they are merged.    *<li>If a result is missing ancestors in the other results, e.g. A/B/C but    * no corresponding A or A/B, these nodes are 'filled' with their label,    * ordinal and value (obtained from the respective {@link FacetArrays}).    *<li>If a result does not share a dimension with other results, it is    * returned as is.    *</ul>    *<p>    *<b>NOTE:</b> the returned results are not guaranteed to be in the same    * order of the input ones.    *     * @param results    *          the results to merge    * @param taxoReader    *          the {@link TaxonomyReader} to use when creating missing ancestor    *          nodes    * @param dimArrays    *          a mapping from a dimension to the respective {@link FacetArrays}    *          from which to pull the nodes values    */
+comment|/**    * A utility for merging multiple {@link FacetResult} of the same    * (hierarchical) dimension into a single {@link FacetResult}, to reconstruct    * the hierarchy. The results are merged according to the following rules:    *<ul>    *<li>If two results share the same dimension (first component in their    * {@link FacetLabel}), they are merged.    *<li>If a result is missing ancestors in the other results, e.g. A/B/C but    * no corresponding A or A/B, these nodes are 'filled' with their label,    * ordinal and value (obtained from the respective {@link FacetArrays}).    *<li>If a result does not share a dimension with other results, it is    * returned as is.    *</ul>    *<p>    *<b>NOTE:</b> the returned results are not guaranteed to be in the same    * order of the input ones.    *     * @param results    *          the results to merge    * @param taxoReader    *          the {@link TaxonomyReader} to use when creating missing ancestor    *          nodes    * @param dimArrays    *          a mapping from a dimension to the respective {@link FacetArrays}    *          from which to pull the nodes values    */
 DECL|method|mergeHierarchies
 specifier|public
 specifier|static
@@ -429,7 +429,7 @@ argument_list|)
 expr_stmt|;
 name|Map
 argument_list|<
-name|CategoryPath
+name|FacetLabel
 argument_list|,
 name|FacetResultNode
 argument_list|>
@@ -438,7 +438,7 @@ init|=
 operator|new
 name|HashMap
 argument_list|<
-name|CategoryPath
+name|FacetLabel
 argument_list|,
 name|FacetResultNode
 argument_list|>
@@ -549,7 +549,7 @@ operator|==
 literal|null
 condition|)
 block|{
-name|CategoryPath
+name|FacetLabel
 name|parent
 init|=
 name|frn
@@ -854,14 +854,14 @@ block|}
 block|}
 block|}
 comment|// find the 'first' node to put on the FacetResult root
-name|CategoryPath
+name|FacetLabel
 name|min
 init|=
 literal|null
 decl_stmt|;
 for|for
 control|(
-name|CategoryPath
+name|FacetLabel
 name|cp
 range|:
 name|mergedNodes

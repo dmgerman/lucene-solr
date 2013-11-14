@@ -36,7 +36,7 @@ name|facet
 operator|.
 name|taxonomy
 operator|.
-name|CategoryPath
+name|FacetLabel
 import|;
 end_import
 
@@ -45,7 +45,7 @@ comment|/*  * Licensed to the Apache Software Foundation (ASF) under one or more
 end_comment
 
 begin_comment
-comment|/**  * A {@link CategoryListParams} which allow controlling the  * {@link CategoryListParams.OrdinalPolicy} used for each dimension. The  * dimension is specified as the first component in  * {@link CategoryPath#components}.  */
+comment|/**  * A {@link CategoryListParams} which allow controlling the  * {@link CategoryListParams.OrdinalPolicy} used for each dimension. The  * dimension is specified as the first component in  * {@link FacetLabel#components}.  */
 end_comment
 
 begin_class

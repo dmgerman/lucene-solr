@@ -46,7 +46,7 @@ name|facet
 operator|.
 name|taxonomy
 operator|.
-name|CategoryPath
+name|FacetLabel
 import|;
 end_import
 
@@ -55,7 +55,7 @@ comment|/*  * Licensed to the Apache Software Foundation (ASF) under one or more
 end_comment
 
 begin_comment
-comment|/** Holds {@link CategoryAssociation} per {@link CategoryPath}. */
+comment|/** Holds {@link CategoryAssociation} per {@link FacetLabel}. */
 end_comment
 
 begin_class
@@ -66,7 +66,7 @@ name|CategoryAssociationsContainer
 implements|implements
 name|Iterable
 argument_list|<
-name|CategoryPath
+name|FacetLabel
 argument_list|>
 block|{
 DECL|field|categoryAssociations
@@ -74,7 +74,7 @@ specifier|private
 specifier|final
 name|HashMap
 argument_list|<
-name|CategoryPath
+name|FacetLabel
 argument_list|,
 name|CategoryAssociation
 argument_list|>
@@ -83,19 +83,19 @@ init|=
 operator|new
 name|HashMap
 argument_list|<
-name|CategoryPath
+name|FacetLabel
 argument_list|,
 name|CategoryAssociation
 argument_list|>
 argument_list|()
 decl_stmt|;
-comment|/**    * Adds the {@link CategoryAssociation} for the given {@link CategoryPath    * category}. Overrides any assocation that was previously set.    */
+comment|/**    * Adds the {@link CategoryAssociation} for the given {@link FacetLabel    * category}. Overrides any assocation that was previously set.    */
 DECL|method|setAssociation
 specifier|public
 name|void
 name|setAssociation
 parameter_list|(
-name|CategoryPath
+name|FacetLabel
 name|category
 parameter_list|,
 name|CategoryAssociation
@@ -127,13 +127,13 @@ name|association
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**    * Returns the {@link CategoryAssociation} that was set for the    * {@link CategoryPath category}, or {@code null} if none was defined.    */
+comment|/**    * Returns the {@link CategoryAssociation} that was set for the    * {@link FacetLabel category}, or {@code null} if none was defined.    */
 DECL|method|getAssociation
 specifier|public
 name|CategoryAssociation
 name|getAssociation
 parameter_list|(
-name|CategoryPath
+name|FacetLabel
 name|category
 parameter_list|)
 block|{
@@ -152,7 +152,7 @@ DECL|method|iterator
 specifier|public
 name|Iterator
 argument_list|<
-name|CategoryPath
+name|FacetLabel
 argument_list|>
 name|iterator
 parameter_list|()

@@ -166,7 +166,7 @@ name|res
 return|;
 block|}
 block|}
-comment|/**    * The root category (the category with the empty path) always has the ordinal    * 0, to which we give a name ROOT_ORDINAL. {@link #getOrdinal(CategoryPath)}    * of an empty path will always return {@code ROOT_ORDINAL}, and    * {@link #getPath(int)} with {@code ROOT_ORDINAL} will return the empty path.    */
+comment|/**    * The root category (the category with the empty path) always has the ordinal    * 0, to which we give a name ROOT_ORDINAL. {@link #getOrdinal(FacetLabel)}    * of an empty path will always return {@code ROOT_ORDINAL}, and    * {@link #getPath(int)} with {@code ROOT_ORDINAL} will return the empty path.    */
 DECL|field|ROOT_ORDINAL
 specifier|public
 specifier|final
@@ -505,7 +505,7 @@ specifier|abstract
 name|int
 name|getOrdinal
 parameter_list|(
-name|CategoryPath
+name|FacetLabel
 name|categoryPath
 parameter_list|)
 throws|throws
@@ -515,7 +515,7 @@ comment|/** Returns the path name of the category with the given ordinal. */
 DECL|method|getPath
 specifier|public
 specifier|abstract
-name|CategoryPath
+name|FacetLabel
 name|getPath
 parameter_list|(
 name|int

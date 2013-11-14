@@ -30,7 +30,7 @@ name|facet
 operator|.
 name|taxonomy
 operator|.
-name|CategoryPath
+name|FacetLabel
 import|;
 end_import
 
@@ -98,7 +98,7 @@ specifier|abstract
 name|void
 name|addLabel
 parameter_list|(
-name|CategoryPath
+name|FacetLabel
 name|label
 parameter_list|,
 name|int
@@ -112,7 +112,7 @@ specifier|abstract
 name|int
 name|getOrdinal
 parameter_list|(
-name|CategoryPath
+name|FacetLabel
 name|label
 parameter_list|)
 function_decl|;

@@ -58,7 +58,7 @@ name|facet
 operator|.
 name|taxonomy
 operator|.
-name|CategoryPath
+name|FacetLabel
 import|;
 end_import
 
@@ -251,7 +251,7 @@ specifier|public
 name|int
 name|get
 parameter_list|(
-name|CategoryPath
+name|FacetLabel
 name|categoryPath
 parameter_list|)
 block|{
@@ -293,7 +293,7 @@ specifier|public
 name|boolean
 name|put
 parameter_list|(
-name|CategoryPath
+name|FacetLabel
 name|categoryPath
 parameter_list|,
 name|int

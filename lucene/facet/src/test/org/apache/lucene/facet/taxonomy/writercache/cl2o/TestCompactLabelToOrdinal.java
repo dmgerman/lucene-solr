@@ -118,7 +118,7 @@ name|facet
 operator|.
 name|taxonomy
 operator|.
-name|CategoryPath
+name|FacetLabel
 import|;
 end_import
 
@@ -511,11 +511,11 @@ argument_list|(
 name|numUniqueValues
 argument_list|)
 decl_stmt|;
-name|CategoryPath
+name|FacetLabel
 name|label
 init|=
 operator|new
-name|CategoryPath
+name|FacetLabel
 argument_list|(
 name|uniqueValues
 index|[
@@ -603,11 +603,11 @@ name|i
 operator|++
 control|)
 block|{
-name|CategoryPath
+name|FacetLabel
 name|label
 init|=
 operator|new
-name|CategoryPath
+name|FacetLabel
 argument_list|(
 name|uniqueValues
 index|[
@@ -658,7 +658,7 @@ DECL|field|map
 specifier|private
 name|Map
 argument_list|<
-name|CategoryPath
+name|FacetLabel
 argument_list|,
 name|Integer
 argument_list|>
@@ -667,7 +667,7 @@ init|=
 operator|new
 name|HashMap
 argument_list|<
-name|CategoryPath
+name|FacetLabel
 argument_list|,
 name|Integer
 argument_list|>
@@ -684,7 +684,7 @@ specifier|public
 name|void
 name|addLabel
 parameter_list|(
-name|CategoryPath
+name|FacetLabel
 name|label
 parameter_list|,
 name|int
@@ -708,7 +708,7 @@ specifier|public
 name|int
 name|getOrdinal
 parameter_list|(
-name|CategoryPath
+name|FacetLabel
 name|label
 parameter_list|)
 block|{

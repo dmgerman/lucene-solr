@@ -252,7 +252,7 @@ name|facet
 operator|.
 name|taxonomy
 operator|.
-name|CategoryPath
+name|FacetLabel
 import|;
 end_import
 
@@ -424,7 +424,7 @@ comment|/**    * Categories per document, {@link #ASSOCIATIONS} hold the associa
 DECL|field|CATEGORIES
 specifier|public
 specifier|static
-name|CategoryPath
+name|FacetLabel
 index|[]
 index|[]
 name|CATEGORIES
@@ -433,7 +433,7 @@ block|{
 comment|// Doc #1
 block|{
 operator|new
-name|CategoryPath
+name|FacetLabel
 argument_list|(
 literal|"tags"
 argument_list|,
@@ -441,7 +441,7 @@ literal|"lucene"
 argument_list|)
 block|,
 operator|new
-name|CategoryPath
+name|FacetLabel
 argument_list|(
 literal|"genre"
 argument_list|,
@@ -452,7 +452,7 @@ block|,
 comment|// Doc #2
 block|{
 operator|new
-name|CategoryPath
+name|FacetLabel
 argument_list|(
 literal|"tags"
 argument_list|,
@@ -460,7 +460,7 @@ literal|"lucene"
 argument_list|)
 block|,
 operator|new
-name|CategoryPath
+name|FacetLabel
 argument_list|(
 literal|"tags"
 argument_list|,
@@ -468,7 +468,7 @@ literal|"solr"
 argument_list|)
 block|,
 operator|new
-name|CategoryPath
+name|FacetLabel
 argument_list|(
 literal|"genre"
 argument_list|,
@@ -476,7 +476,7 @@ literal|"computing"
 argument_list|)
 block|,
 operator|new
-name|CategoryPath
+name|FacetLabel
 argument_list|(
 literal|"genre"
 argument_list|,
@@ -765,20 +765,20 @@ argument_list|(
 name|taxoDir
 argument_list|)
 decl_stmt|;
-name|CategoryPath
+name|FacetLabel
 name|tags
 init|=
 operator|new
-name|CategoryPath
+name|FacetLabel
 argument_list|(
 literal|"tags"
 argument_list|)
 decl_stmt|;
-name|CategoryPath
+name|FacetLabel
 name|genre
 init|=
 operator|new
-name|CategoryPath
+name|FacetLabel
 argument_list|(
 literal|"genre"
 argument_list|)

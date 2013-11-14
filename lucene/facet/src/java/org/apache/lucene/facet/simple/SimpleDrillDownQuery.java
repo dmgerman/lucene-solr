@@ -86,7 +86,7 @@ name|facet
 operator|.
 name|taxonomy
 operator|.
-name|CategoryPath
+name|FacetLabel
 import|;
 end_import
 
@@ -247,7 +247,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * A {@link Query} for drill-down over {@link CategoryPath categories}. You  * should call {@link #add(CategoryPath...)} for every group of categories you  * want to drill-down over. Each category in the group is {@code OR'ed} with  * the others, and groups are {@code AND'ed}.  *<p>  *<b>NOTE:</b> if you choose to create your own {@link Query} by calling  * {@link #term}, it is recommended to wrap it with {@link ConstantScoreQuery}  * and set the {@link ConstantScoreQuery#setBoost(float) boost} to {@code 0.0f},  * so that it does not affect the scores of the documents.  *   * @lucene.experimental  */
+comment|/**  * A {@link Query} for drill-down over {@link FacetLabel categories}. You  * should call {@link #add(FacetLabel...)} for every group of categories you  * want to drill-down over. Each category in the group is {@code OR'ed} with  * the others, and groups are {@code AND'ed}.  *<p>  *<b>NOTE:</b> if you choose to create your own {@link Query} by calling  * {@link #term}, it is recommended to wrap it with {@link ConstantScoreQuery}  * and set the {@link ConstantScoreQuery#setBoost(float) boost} to {@code 0.0f},  * so that it does not affect the scores of the documents.  *   * @lucene.experimental  */
 end_comment
 
 begin_class
@@ -271,7 +271,7 @@ parameter_list|,
 name|char
 name|delimChar
 parameter_list|,
-name|CategoryPath
+name|FacetLabel
 name|path
 parameter_list|)
 block|{
@@ -584,7 +584,7 @@ name|drillDownDims
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**    * Creates a new {@link DrillDownQuery} without a base query,     * to perform a pure browsing query (equivalent to using    * {@link MatchAllDocsQuery} as base).    */
+comment|/**    * Creates a new {@code SimpleDrillDownQuery} without a base query,     * to perform a pure browsing query (equivalent to using    * {@link MatchAllDocsQuery} as base).    */
 DECL|method|SimpleDrillDownQuery
 specifier|public
 name|SimpleDrillDownQuery
@@ -596,7 +596,7 @@ literal|null
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**    * Creates a new {@link DrillDownQuery} over the given base query. Can be    * {@code null}, in which case the result {@link Query} from    * {@link #rewrite(IndexReader)} will be a pure browsing query, filtering on    * the added categories only.    */
+comment|/**    * Creates a new {@code SimpleDrillDownQuery} over the given base query. Can be    * {@code null}, in which case the result {@link Query} from    * {@link #rewrite(IndexReader)} will be a pure browsing query, filtering on    * the added categories only.    */
 DECL|method|SimpleDrillDownQuery
 specifier|public
 name|SimpleDrillDownQuery
@@ -641,7 +641,7 @@ specifier|public
 name|void
 name|add
 parameter_list|(
-name|CategoryPath
+name|FacetLabel
 modifier|...
 name|paths
 parameter_list|)
@@ -669,7 +669,7 @@ parameter_list|(
 name|String
 name|field
 parameter_list|,
-name|CategoryPath
+name|FacetLabel
 modifier|...
 name|paths
 parameter_list|)
@@ -698,7 +698,7 @@ parameter_list|,
 name|char
 name|delimChar
 parameter_list|,
-name|CategoryPath
+name|FacetLabel
 modifier|...
 name|paths
 parameter_list|)
@@ -803,7 +803,7 @@ decl_stmt|;
 comment|// disable coord
 for|for
 control|(
-name|CategoryPath
+name|FacetLabel
 name|cp
 range|:
 name|paths

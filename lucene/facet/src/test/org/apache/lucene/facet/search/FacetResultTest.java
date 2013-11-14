@@ -212,7 +212,7 @@ name|facet
 operator|.
 name|taxonomy
 operator|.
-name|CategoryPath
+name|FacetLabel
 import|;
 end_import
 
@@ -436,14 +436,14 @@ argument_list|()
 decl_stmt|;
 name|List
 argument_list|<
-name|CategoryPath
+name|FacetLabel
 argument_list|>
 name|cats
 init|=
 operator|new
 name|ArrayList
 argument_list|<
-name|CategoryPath
+name|FacetLabel
 argument_list|>
 argument_list|()
 decl_stmt|;
@@ -460,7 +460,7 @@ operator|.
 name|add
 argument_list|(
 operator|new
-name|CategoryPath
+name|FacetLabel
 argument_list|(
 name|cat
 argument_list|,
@@ -735,13 +735,13 @@ parameter_list|)
 throws|throws
 name|IOException
 block|{
-name|CategoryPath
+name|FacetLabel
 index|[]
 index|[]
 name|cps
 init|=
 operator|new
-name|CategoryPath
+name|FacetLabel
 index|[
 name|drillDowns
 operator|.
@@ -772,7 +772,7 @@ name|i
 index|]
 operator|=
 operator|new
-name|CategoryPath
+name|FacetLabel
 index|[
 name|drillDowns
 index|[
@@ -811,7 +811,7 @@ name|j
 index|]
 operator|=
 operator|new
-name|CategoryPath
+name|FacetLabel
 argument_list|(
 name|drillDowns
 index|[
@@ -843,7 +843,7 @@ argument_list|)
 decl_stmt|;
 for|for
 control|(
-name|CategoryPath
+name|FacetLabel
 index|[]
 name|cats
 range|:
@@ -873,7 +873,7 @@ argument_list|()
 decl_stmt|;
 for|for
 control|(
-name|CategoryPath
+name|FacetLabel
 index|[]
 name|cats
 range|:
@@ -897,7 +897,7 @@ name|i
 operator|++
 control|)
 block|{
-name|CategoryPath
+name|FacetLabel
 name|cp
 init|=
 name|cats

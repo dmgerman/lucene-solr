@@ -46,7 +46,7 @@ name|facet
 operator|.
 name|taxonomy
 operator|.
-name|CategoryPath
+name|FacetLabel
 import|;
 end_import
 
@@ -108,7 +108,7 @@ name|ordinals
 parameter_list|,
 name|Iterable
 argument_list|<
-name|CategoryPath
+name|FacetLabel
 argument_list|>
 name|categories
 parameter_list|)

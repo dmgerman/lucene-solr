@@ -114,7 +114,7 @@ name|facet
 operator|.
 name|taxonomy
 operator|.
-name|CategoryPath
+name|FacetLabel
 import|;
 end_import
 
@@ -187,7 +187,7 @@ argument_list|(
 name|Collections
 operator|.
 expr|<
-name|CategoryPath
+name|FacetLabel
 argument_list|,
 name|CategoryListParams
 operator|>
@@ -233,11 +233,11 @@ argument_list|()
 operator|+
 literal|"b"
 decl_stmt|;
-name|CategoryPath
+name|FacetLabel
 name|cp
 init|=
 operator|new
-name|CategoryPath
+name|FacetLabel
 argument_list|(
 literal|"a"
 argument_list|,
@@ -419,14 +419,14 @@ argument_list|(
 name|Collections
 operator|.
 expr|<
-name|CategoryPath
+name|FacetLabel
 argument_list|,
 name|CategoryListParams
 operator|>
 name|singletonMap
 argument_list|(
 operator|new
-name|CategoryPath
+name|FacetLabel
 argument_list|(
 literal|"a"
 argument_list|)
@@ -452,7 +452,7 @@ operator|.
 name|getCategoryListParams
 argument_list|(
 operator|new
-name|CategoryPath
+name|FacetLabel
 argument_list|(
 literal|"a"
 argument_list|)

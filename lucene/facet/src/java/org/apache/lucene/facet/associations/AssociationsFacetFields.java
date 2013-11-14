@@ -162,7 +162,7 @@ name|facet
 operator|.
 name|taxonomy
 operator|.
-name|CategoryPath
+name|FacetLabel
 import|;
 end_import
 
@@ -231,7 +231,7 @@ comment|/*  * Licensed to the Apache Software Foundation (ASF) under one or more
 end_comment
 
 begin_comment
-comment|/**  * A utility class for adding facet fields to a document. Usually one field will  * be added for all facets, however per the  * {@link FacetIndexingParams#getCategoryListParams(CategoryPath)}, one field  * may be added for every group of facets.  *   * @lucene.experimental  */
+comment|/**  * A utility class for adding facet fields to a document. Usually one field will  * be added for all facets, however per the  * {@link FacetIndexingParams#getCategoryListParams(FacetLabel)}, one field  * may be added for every group of facets.  *   * @lucene.experimental  */
 end_comment
 
 begin_class
@@ -322,14 +322,14 @@ name|CategoryListParams
 argument_list|,
 name|Iterable
 argument_list|<
-name|CategoryPath
+name|FacetLabel
 argument_list|>
 argument_list|>
 name|createCategoryListMapping
 parameter_list|(
 name|Iterable
 argument_list|<
-name|CategoryPath
+name|FacetLabel
 argument_list|>
 name|categories
 parameter_list|)
@@ -348,7 +348,7 @@ name|CategoryListParams
 argument_list|,
 name|Iterable
 argument_list|<
-name|CategoryPath
+name|FacetLabel
 argument_list|>
 argument_list|>
 name|categoryLists
@@ -360,14 +360,14 @@ name|CategoryListParams
 argument_list|,
 name|Iterable
 argument_list|<
-name|CategoryPath
+name|FacetLabel
 argument_list|>
 argument_list|>
 argument_list|()
 decl_stmt|;
 for|for
 control|(
-name|CategoryPath
+name|FacetLabel
 name|cp
 range|:
 name|categories
@@ -459,7 +459,7 @@ name|ordinals
 parameter_list|,
 name|Iterable
 argument_list|<
-name|CategoryPath
+name|FacetLabel
 argument_list|>
 name|categories
 parameter_list|)
@@ -498,7 +498,7 @@ name|getDrillDownStream
 parameter_list|(
 name|Iterable
 argument_list|<
-name|CategoryPath
+name|FacetLabel
 argument_list|>
 name|categories
 parameter_list|)
@@ -540,7 +540,7 @@ name|doc
 parameter_list|,
 name|Iterable
 argument_list|<
-name|CategoryPath
+name|FacetLabel
 argument_list|>
 name|categories
 parameter_list|)

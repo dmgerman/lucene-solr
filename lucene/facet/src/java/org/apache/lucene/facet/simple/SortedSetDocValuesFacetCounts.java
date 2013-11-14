@@ -162,7 +162,7 @@ name|facet
 operator|.
 name|taxonomy
 operator|.
-name|CategoryPath
+name|FacetLabel
 import|;
 end_import
 
@@ -281,7 +281,7 @@ import|;
 end_import
 
 begin_comment
-comment|/** Compute facets counts from previously  *  indexed {@link SortedSetDocValuesFacetFields},  *  without require a separate taxonomy index.  Faceting is  *  a bit slower (~25%), and there is added cost on every  *  {@link IndexReader} open to create a new {@link  *  SortedSetDocValuesReaderState}.  Furthermore, this does  *  not support hierarchical facets; only flat (dimension +  *  label) facets, but it uses quite a bit less RAM to do  *  so.  *  *  After creating this class, invoke {@link #getDim} or  *  {@link #getAllDims} to retrieve facet results. */
+comment|/** Compute facets counts from previously  *  indexed {@link SortedSetDocValuesFacetField},  *  without require a separate taxonomy index.  Faceting is  *  a bit slower (~25%), and there is added cost on every  *  {@link IndexReader} open to create a new {@link  *  SortedSetDocValuesReaderState}.  Furthermore, this does  *  not support hierarchical facets; only flat (dimension +  *  label) facets, but it uses quite a bit less RAM to do  *  so.  *  *  After creating this class, invoke {@link #getDim} or  *  {@link #getAllDims} to retrieve facet results. */
 end_comment
 
 begin_class
@@ -729,7 +729,7 @@ operator|new
 name|SimpleFacetResult
 argument_list|(
 operator|new
-name|CategoryPath
+name|FacetLabel
 argument_list|(
 name|dim
 argument_list|)

@@ -61,22 +61,22 @@ comment|/**  * Holds a sequence of string components, specifying the hierarchica
 end_comment
 
 begin_comment
-comment|// nocommit rename to FacetLabel?
+comment|// nocommit rename to just Label under .facet?
 end_comment
 
 begin_class
-DECL|class|CategoryPath
+DECL|class|FacetLabel
 specifier|public
 class|class
-name|CategoryPath
+name|FacetLabel
 implements|implements
 name|Comparable
 argument_list|<
-name|CategoryPath
+name|FacetLabel
 argument_list|>
 block|{
 comment|/*    * copied from DocumentWriterPerThread -- if a CategoryPath is resolved to a    * drill-down term which is encoded to a larger term than that length, it is    * silently dropped! Therefore we limit the number of characters to MAX/4 to    * be on the safe side.    */
-comment|/**    * The maximum number of characters a {@link CategoryPath} can have. That is    * {@link CategoryPath#toString(char)} length must not exceed that limit.    */
+comment|/**    * The maximum number of characters a {@link FacetLabel} can have. That is    * {@link FacetLabel#toString(char)} length must not exceed that limit.    */
 DECL|field|MAX_CATEGORY_PATH_LENGTH
 specifier|public
 specifier|final
@@ -92,19 +92,19 @@ operator|)
 operator|/
 literal|4
 decl_stmt|;
-comment|/** An empty {@link CategoryPath} */
+comment|/** An empty {@link FacetLabel} */
 DECL|field|EMPTY
 specifier|public
 specifier|static
 specifier|final
-name|CategoryPath
+name|FacetLabel
 name|EMPTY
 init|=
 operator|new
-name|CategoryPath
+name|FacetLabel
 argument_list|()
 decl_stmt|;
-comment|/**    * The components of this {@link CategoryPath}. Note that this array may be    * shared with other {@link CategoryPath} instances, e.g. as a result of    * {@link #subpath(int)}, therefore you should traverse the array up to    * {@link #length} for this path's components.    */
+comment|/**    * The components of this {@link FacetLabel}. Note that this array may be    * shared with other {@link FacetLabel} instances, e.g. as a result of    * {@link #subpath(int)}, therefore you should traverse the array up to    * {@link #length} for this path's components.    */
 DECL|field|components
 specifier|public
 specifier|final
@@ -112,7 +112,7 @@ name|String
 index|[]
 name|components
 decl_stmt|;
-comment|/** The number of components of this {@link CategoryPath}. */
+comment|/** The number of components of this {@link FacetLabel}. */
 DECL|field|length
 specifier|public
 specifier|final
@@ -120,9 +120,9 @@ name|int
 name|length
 decl_stmt|;
 comment|// Used by singleton EMPTY
-DECL|method|CategoryPath
+DECL|method|FacetLabel
 specifier|private
-name|CategoryPath
+name|FacetLabel
 parameter_list|()
 block|{
 name|components
@@ -135,12 +135,12 @@ literal|0
 expr_stmt|;
 block|}
 comment|// Used by subpath
-DECL|method|CategoryPath
+DECL|method|FacetLabel
 specifier|private
-name|CategoryPath
+name|FacetLabel
 parameter_list|(
 specifier|final
-name|CategoryPath
+name|FacetLabel
 name|copyFrom
 parameter_list|,
 specifier|final
@@ -190,9 +190,9 @@ name|prefixLen
 expr_stmt|;
 block|}
 comment|/** Construct from the given path components. */
-DECL|method|CategoryPath
+DECL|method|FacetLabel
 specifier|public
-name|CategoryPath
+name|FacetLabel
 parameter_list|(
 specifier|final
 name|String
@@ -322,7 +322,7 @@ comment|// nocommit javadocs/rename
 DECL|method|create
 specifier|public
 specifier|static
-name|CategoryPath
+name|FacetLabel
 name|create
 parameter_list|(
 name|String
@@ -373,16 +373,16 @@ argument_list|)
 expr_stmt|;
 return|return
 operator|new
-name|CategoryPath
+name|FacetLabel
 argument_list|(
 name|components
 argument_list|)
 return|;
 block|}
 comment|/** Construct from a given path, separating path components with {@code delimiter}. */
-DECL|method|CategoryPath
+DECL|method|FacetLabel
 specifier|public
-name|CategoryPath
+name|FacetLabel
 parameter_list|(
 specifier|final
 name|String
@@ -588,7 +588,7 @@ return|return
 name|charsNeeded
 return|;
 block|}
-comment|/**    * Compares this path with another {@link CategoryPath} for lexicographic    * order.    */
+comment|/**    * Compares this path with another {@link FacetLabel} for lexicographic    * order.    */
 annotation|@
 name|Override
 DECL|method|compareTo
@@ -596,7 +596,7 @@ specifier|public
 name|int
 name|compareTo
 parameter_list|(
-name|CategoryPath
+name|FacetLabel
 name|other
 parameter_list|)
 block|{
@@ -964,7 +964,7 @@ operator|!
 operator|(
 name|obj
 operator|instanceof
-name|CategoryPath
+name|FacetLabel
 operator|)
 condition|)
 block|{
@@ -972,11 +972,11 @@ return|return
 literal|false
 return|;
 block|}
-name|CategoryPath
+name|FacetLabel
 name|other
 init|=
 operator|(
-name|CategoryPath
+name|FacetLabel
 operator|)
 name|obj
 decl_stmt|;
@@ -1159,7 +1159,7 @@ block|}
 comment|/** Returns a sub-path of this path up to {@code length} components. */
 DECL|method|subpath
 specifier|public
-name|CategoryPath
+name|FacetLabel
 name|subpath
 parameter_list|(
 specifier|final
@@ -1200,7 +1200,7 @@ else|else
 block|{
 return|return
 operator|new
-name|CategoryPath
+name|FacetLabel
 argument_list|(
 name|this
 argument_list|,

@@ -52,7 +52,7 @@ name|facet
 operator|.
 name|taxonomy
 operator|.
-name|CategoryPath
+name|FacetLabel
 import|;
 end_import
 
@@ -78,7 +78,7 @@ name|getNextFacets
 parameter_list|(
 name|List
 argument_list|<
-name|CategoryPath
+name|FacetLabel
 argument_list|>
 name|facets
 parameter_list|)

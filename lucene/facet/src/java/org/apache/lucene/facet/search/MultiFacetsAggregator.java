@@ -158,7 +158,7 @@ name|facet
 operator|.
 name|taxonomy
 operator|.
-name|CategoryPath
+name|FacetLabel
 import|;
 end_import
 
@@ -183,7 +183,7 @@ specifier|private
 specifier|final
 name|Map
 argument_list|<
-name|CategoryPath
+name|FacetLabel
 argument_list|,
 name|FacetsAggregator
 argument_list|>
@@ -198,14 +198,14 @@ name|FacetsAggregator
 argument_list|>
 name|aggregators
 decl_stmt|;
-comment|/**    * Constructor.    *<p>    * The mapping is used to rollup the values of the specific category by the    * corresponding {@link FacetsAggregator}. It is ok to pass differnet    * {@link FacetsAggregator} instances for each {@link CategoryPath} - the    * constructor ensures that each aggregator<u>type</u> (determined by its    * class) is invoked only once.    */
+comment|/**    * Constructor.    *<p>    * The mapping is used to rollup the values of the specific category by the    * corresponding {@link FacetsAggregator}. It is ok to pass differnet    * {@link FacetsAggregator} instances for each {@link FacetLabel} - the    * constructor ensures that each aggregator<u>type</u> (determined by its    * class) is invoked only once.    */
 DECL|method|MultiFacetsAggregator
 specifier|public
 name|MultiFacetsAggregator
 parameter_list|(
 name|Map
 argument_list|<
-name|CategoryPath
+name|FacetLabel
 argument_list|,
 name|FacetsAggregator
 argument_list|>

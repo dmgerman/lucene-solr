@@ -116,7 +116,7 @@ name|facet
 operator|.
 name|taxonomy
 operator|.
-name|CategoryPath
+name|FacetLabel
 import|;
 end_import
 
@@ -353,7 +353,7 @@ name|ordinal
 argument_list|)
 expr_stmt|;
 block|}
-name|CategoryPath
+name|FacetLabel
 name|catPath
 init|=
 name|fresNode

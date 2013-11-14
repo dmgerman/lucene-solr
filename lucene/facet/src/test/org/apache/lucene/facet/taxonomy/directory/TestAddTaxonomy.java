@@ -86,7 +86,7 @@ name|facet
 operator|.
 name|taxonomy
 operator|.
-name|CategoryPath
+name|FacetLabel
 import|;
 end_import
 
@@ -358,7 +358,7 @@ operator|.
 name|addCategory
 argument_list|(
 operator|new
-name|CategoryPath
+name|FacetLabel
 argument_list|(
 literal|"a"
 argument_list|,
@@ -615,7 +615,7 @@ name|j
 operator|++
 control|)
 block|{
-name|CategoryPath
+name|FacetLabel
 name|cp
 init|=
 name|srcTR
@@ -704,7 +704,7 @@ operator|.
 name|addCategory
 argument_list|(
 operator|new
-name|CategoryPath
+name|FacetLabel
 argument_list|(
 literal|"Author"
 argument_list|,
@@ -717,7 +717,7 @@ operator|.
 name|addCategory
 argument_list|(
 operator|new
-name|CategoryPath
+name|FacetLabel
 argument_list|(
 literal|"Aardvarks"
 argument_list|,
@@ -819,7 +819,7 @@ operator|.
 name|addCategory
 argument_list|(
 operator|new
-name|CategoryPath
+name|FacetLabel
 argument_list|(
 literal|"Author"
 argument_list|,
@@ -832,7 +832,7 @@ operator|.
 name|addCategory
 argument_list|(
 operator|new
-name|CategoryPath
+name|FacetLabel
 argument_list|(
 literal|"Aardvarks"
 argument_list|,
@@ -1017,7 +1017,7 @@ operator|.
 name|addCategory
 argument_list|(
 operator|new
-name|CategoryPath
+name|FacetLabel
 argument_list|(
 literal|"Author"
 argument_list|,
@@ -1030,7 +1030,7 @@ operator|.
 name|addCategory
 argument_list|(
 operator|new
-name|CategoryPath
+name|FacetLabel
 argument_list|(
 literal|"Animals"
 argument_list|,
@@ -1043,7 +1043,7 @@ operator|.
 name|addCategory
 argument_list|(
 operator|new
-name|CategoryPath
+name|FacetLabel
 argument_list|(
 literal|"Author"
 argument_list|,
@@ -1071,7 +1071,7 @@ operator|.
 name|addCategory
 argument_list|(
 operator|new
-name|CategoryPath
+name|FacetLabel
 argument_list|(
 literal|"Author"
 argument_list|,
@@ -1084,7 +1084,7 @@ operator|.
 name|addCategory
 argument_list|(
 operator|new
-name|CategoryPath
+name|FacetLabel
 argument_list|(
 literal|"Aardvarks"
 argument_list|,
@@ -1190,7 +1190,7 @@ operator|.
 name|addCategory
 argument_list|(
 operator|new
-name|CategoryPath
+name|FacetLabel
 argument_list|(
 literal|"a"
 argument_list|,
@@ -1263,7 +1263,7 @@ operator|.
 name|addCategory
 argument_list|(
 operator|new
-name|CategoryPath
+name|FacetLabel
 argument_list|(
 literal|"a"
 argument_list|,
@@ -1352,14 +1352,14 @@ argument_list|)
 expr_stmt|;
 name|HashSet
 argument_list|<
-name|CategoryPath
+name|FacetLabel
 argument_list|>
 name|categories
 init|=
 operator|new
 name|HashSet
 argument_list|<
-name|CategoryPath
+name|FacetLabel
 argument_list|>
 argument_list|()
 decl_stmt|;
@@ -1381,7 +1381,7 @@ name|i
 operator|++
 control|)
 block|{
-name|CategoryPath
+name|FacetLabel
 name|cat
 init|=
 name|dtr

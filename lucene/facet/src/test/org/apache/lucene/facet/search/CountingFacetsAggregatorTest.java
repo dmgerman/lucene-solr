@@ -292,7 +292,7 @@ name|facet
 operator|.
 name|taxonomy
 operator|.
-name|CategoryPath
+name|FacetLabel
 import|;
 end_import
 
@@ -580,11 +580,11 @@ DECL|field|CP_B
 specifier|private
 specifier|static
 specifier|final
-name|CategoryPath
+name|FacetLabel
 name|CP_A
 init|=
 operator|new
-name|CategoryPath
+name|FacetLabel
 argument_list|(
 literal|"A"
 argument_list|)
@@ -592,7 +592,7 @@ decl_stmt|,
 name|CP_B
 init|=
 operator|new
-name|CategoryPath
+name|FacetLabel
 argument_list|(
 literal|"B"
 argument_list|)
@@ -602,11 +602,11 @@ DECL|field|CP_D
 specifier|private
 specifier|static
 specifier|final
-name|CategoryPath
+name|FacetLabel
 name|CP_C
 init|=
 operator|new
-name|CategoryPath
+name|FacetLabel
 argument_list|(
 literal|"C"
 argument_list|)
@@ -614,7 +614,7 @@ decl_stmt|,
 name|CP_D
 init|=
 operator|new
-name|CategoryPath
+name|FacetLabel
 argument_list|(
 literal|"D"
 argument_list|)
@@ -653,7 +653,7 @@ DECL|field|CATEGORIES_B
 specifier|private
 specifier|static
 specifier|final
-name|CategoryPath
+name|FacetLabel
 index|[]
 name|CATEGORIES_A
 decl_stmt|,
@@ -664,7 +664,7 @@ DECL|field|CATEGORIES_D
 specifier|private
 specifier|static
 specifier|final
-name|CategoryPath
+name|FacetLabel
 index|[]
 name|CATEGORIES_C
 decl_stmt|,
@@ -675,7 +675,7 @@ block|{
 name|CATEGORIES_A
 operator|=
 operator|new
-name|CategoryPath
+name|FacetLabel
 index|[
 name|NUM_CHILDREN_CP_A
 index|]
@@ -701,7 +701,7 @@ name|i
 index|]
 operator|=
 operator|new
-name|CategoryPath
+name|FacetLabel
 argument_list|(
 name|CP_A
 operator|.
@@ -722,7 +722,7 @@ block|}
 name|CATEGORIES_B
 operator|=
 operator|new
-name|CategoryPath
+name|FacetLabel
 index|[
 name|NUM_CHILDREN_CP_B
 index|]
@@ -748,7 +748,7 @@ name|i
 index|]
 operator|=
 operator|new
-name|CategoryPath
+name|FacetLabel
 argument_list|(
 name|CP_B
 operator|.
@@ -770,7 +770,7 @@ comment|// NO_PARENTS categories
 name|CATEGORIES_C
 operator|=
 operator|new
-name|CategoryPath
+name|FacetLabel
 index|[
 name|NUM_CHILDREN_CP_C
 index|]
@@ -796,7 +796,7 @@ name|i
 index|]
 operator|=
 operator|new
-name|CategoryPath
+name|FacetLabel
 argument_list|(
 name|CP_C
 operator|.
@@ -818,7 +818,7 @@ comment|// Multi-level categories
 name|CATEGORIES_D
 operator|=
 operator|new
-name|CategoryPath
+name|FacetLabel
 index|[
 name|NUM_CHILDREN_CP_D
 index|]
@@ -854,7 +854,7 @@ name|i
 index|]
 operator|=
 operator|new
-name|CategoryPath
+name|FacetLabel
 argument_list|(
 name|CP_D
 operator|.
@@ -888,7 +888,7 @@ specifier|private
 specifier|static
 name|ObjectToIntMap
 argument_list|<
-name|CategoryPath
+name|FacetLabel
 argument_list|>
 name|allExpectedCounts
 decl_stmt|,
@@ -926,7 +926,7 @@ specifier|private
 specifier|static
 name|List
 argument_list|<
-name|CategoryPath
+name|FacetLabel
 argument_list|>
 name|randomCategories
 parameter_list|(
@@ -964,14 +964,14 @@ decl_stmt|;
 comment|// 1-2
 name|ArrayList
 argument_list|<
-name|CategoryPath
+name|FacetLabel
 argument_list|>
 name|categories_a
 init|=
 operator|new
 name|ArrayList
 argument_list|<
-name|CategoryPath
+name|FacetLabel
 argument_list|>
 argument_list|()
 decl_stmt|;
@@ -989,14 +989,14 @@ argument_list|)
 expr_stmt|;
 name|ArrayList
 argument_list|<
-name|CategoryPath
+name|FacetLabel
 argument_list|>
 name|categories_b
 init|=
 operator|new
 name|ArrayList
 argument_list|<
-name|CategoryPath
+name|FacetLabel
 argument_list|>
 argument_list|()
 decl_stmt|;
@@ -1032,14 +1032,14 @@ argument_list|)
 expr_stmt|;
 name|ArrayList
 argument_list|<
-name|CategoryPath
+name|FacetLabel
 argument_list|>
 name|categories
 init|=
 operator|new
 name|ArrayList
 argument_list|<
-name|CategoryPath
+name|FacetLabel
 argument_list|>
 argument_list|()
 decl_stmt|;
@@ -1162,7 +1162,7 @@ name|IOException
 block|{
 name|List
 argument_list|<
-name|CategoryPath
+name|FacetLabel
 argument_list|>
 name|docCategories
 init|=
@@ -1174,7 +1174,7 @@ argument_list|)
 decl_stmt|;
 for|for
 control|(
-name|CategoryPath
+name|FacetLabel
 name|cp
 range|:
 name|docCategories
@@ -1439,7 +1439,7 @@ name|taxoWriter
 parameter_list|,
 name|ObjectToIntMap
 argument_list|<
-name|CategoryPath
+name|FacetLabel
 argument_list|>
 name|expectedCounts
 parameter_list|)
@@ -1533,7 +1533,7 @@ name|taxoWriter
 parameter_list|,
 name|ObjectToIntMap
 argument_list|<
-name|CategoryPath
+name|FacetLabel
 argument_list|>
 name|expectedCounts
 parameter_list|)
@@ -1632,7 +1632,7 @@ name|taxoWriter
 parameter_list|,
 name|ObjectToIntMap
 argument_list|<
-name|CategoryPath
+name|FacetLabel
 argument_list|>
 name|expectedCounts
 parameter_list|)
@@ -1737,21 +1737,21 @@ specifier|private
 specifier|static
 name|ObjectToIntMap
 argument_list|<
-name|CategoryPath
+name|FacetLabel
 argument_list|>
 name|newCounts
 parameter_list|()
 block|{
 name|ObjectToIntMap
 argument_list|<
-name|CategoryPath
+name|FacetLabel
 argument_list|>
 name|counts
 init|=
 operator|new
 name|ObjectToIntMap
 argument_list|<
-name|CategoryPath
+name|FacetLabel
 argument_list|>
 argument_list|()
 decl_stmt|;
@@ -1793,7 +1793,7 @@ argument_list|)
 expr_stmt|;
 for|for
 control|(
-name|CategoryPath
+name|FacetLabel
 name|cp
 range|:
 name|CATEGORIES_A
@@ -1811,7 +1811,7 @@ expr_stmt|;
 block|}
 for|for
 control|(
-name|CategoryPath
+name|FacetLabel
 name|cp
 range|:
 name|CATEGORIES_B
@@ -1829,7 +1829,7 @@ expr_stmt|;
 block|}
 for|for
 control|(
-name|CategoryPath
+name|FacetLabel
 name|cp
 range|:
 name|CATEGORIES_C
@@ -1847,7 +1847,7 @@ expr_stmt|;
 block|}
 for|for
 control|(
-name|CategoryPath
+name|FacetLabel
 name|cp
 range|:
 name|CATEGORIES_D

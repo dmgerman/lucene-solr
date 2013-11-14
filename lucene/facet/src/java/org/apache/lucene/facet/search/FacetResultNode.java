@@ -64,7 +64,7 @@ name|facet
 operator|.
 name|taxonomy
 operator|.
-name|CategoryPath
+name|FacetLabel
 import|;
 end_import
 
@@ -124,10 +124,10 @@ specifier|public
 name|int
 name|ordinal
 decl_stmt|;
-comment|/**    * The {@link CategoryPath label} of this result. May be {@code null} if not    * computed, in which case use {@link TaxonomyReader#getPath(int)} to label    * it.    *<p>    *<b>NOTE:</b> by default, all nodes are labeled. Only when    * {@link FacetRequest#getNumLabel()}&lt;    * {@link FacetRequest#numResults} there will be unlabeled nodes.    */
+comment|/**    * The {@link FacetLabel label} of this result. May be {@code null} if not    * computed, in which case use {@link TaxonomyReader#getPath(int)} to label    * it.    *<p>    *<b>NOTE:</b> by default, all nodes are labeled. Only when    * {@link FacetRequest#getNumLabel()}&lt;    * {@link FacetRequest#numResults} there will be unlabeled nodes.    */
 DECL|field|label
 specifier|public
-name|CategoryPath
+name|FacetLabel
 name|label
 decl_stmt|;
 comment|/**    * The value of this result. Its actual type depends on the    * {@link FacetRequest} used (e.g. in case of {@link CountFacetRequest} it is    * {@code int}).    */

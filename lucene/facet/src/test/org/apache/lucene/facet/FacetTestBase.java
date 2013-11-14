@@ -344,7 +344,7 @@ name|facet
 operator|.
 name|taxonomy
 operator|.
-name|CategoryPath
+name|FacetLabel
 import|;
 end_import
 
@@ -882,7 +882,7 @@ DECL|field|DEFAULT_CATEGORIES
 specifier|private
 specifier|static
 specifier|final
-name|CategoryPath
+name|FacetLabel
 index|[]
 index|[]
 name|DEFAULT_CATEGORIES
@@ -890,7 +890,7 @@ init|=
 block|{
 block|{
 operator|new
-name|CategoryPath
+name|FacetLabel
 argument_list|(
 literal|"root"
 argument_list|,
@@ -900,7 +900,7 @@ literal|"f1"
 argument_list|)
 block|,
 operator|new
-name|CategoryPath
+name|FacetLabel
 argument_list|(
 literal|"root"
 argument_list|,
@@ -912,7 +912,7 @@ block|}
 block|,
 block|{
 operator|new
-name|CategoryPath
+name|FacetLabel
 argument_list|(
 literal|"root"
 argument_list|,
@@ -922,7 +922,7 @@ literal|"f1"
 argument_list|)
 block|,
 operator|new
-name|CategoryPath
+name|FacetLabel
 argument_list|(
 literal|"root"
 argument_list|,
@@ -938,7 +938,7 @@ DECL|method|getCategories
 specifier|protected
 name|List
 argument_list|<
-name|CategoryPath
+name|FacetLabel
 argument_list|>
 name|getCategories
 parameter_list|(
@@ -1688,7 +1688,7 @@ name|content
 parameter_list|,
 name|List
 argument_list|<
-name|CategoryPath
+name|FacetLabel
 argument_list|>
 name|categories
 parameter_list|)
@@ -1754,7 +1754,7 @@ DECL|method|facetCountsTruth
 specifier|protected
 name|Map
 argument_list|<
-name|CategoryPath
+name|FacetLabel
 argument_list|,
 name|Integer
 argument_list|>
@@ -1788,7 +1788,7 @@ argument_list|)
 decl_stmt|;
 name|Map
 argument_list|<
-name|CategoryPath
+name|FacetLabel
 argument_list|,
 name|Integer
 argument_list|>
@@ -1797,7 +1797,7 @@ init|=
 operator|new
 name|HashMap
 argument_list|<
-name|CategoryPath
+name|FacetLabel
 argument_list|,
 name|Integer
 argument_list|>
@@ -1947,7 +1947,7 @@ operator|.
 name|put
 argument_list|(
 operator|new
-name|CategoryPath
+name|FacetLabel
 argument_list|(
 name|te
 operator|.
@@ -1981,7 +1981,7 @@ name|assertCountsAndCardinality
 parameter_list|(
 name|Map
 argument_list|<
-name|CategoryPath
+name|FacetLabel
 argument_list|,
 name|Integer
 argument_list|>
@@ -2066,7 +2066,7 @@ name|assertCountsAndCardinality
 parameter_list|(
 name|Map
 argument_list|<
-name|CategoryPath
+name|FacetLabel
 argument_list|,
 name|Integer
 argument_list|>

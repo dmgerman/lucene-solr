@@ -30,7 +30,7 @@ name|facet
 operator|.
 name|taxonomy
 operator|.
-name|CategoryPath
+name|FacetLabel
 import|;
 end_import
 
@@ -39,7 +39,7 @@ comment|/*  * Licensed to the Apache Software Foundation (ASF) under one or more
 end_comment
 
 begin_comment
-comment|/** Utilities for use of {@link CategoryPath} by {@link CompactLabelToOrdinal}. */
+comment|/** Utilities for use of {@link FacetLabel} by {@link CompactLabelToOrdinal}. */
 end_comment
 
 begin_class
@@ -47,14 +47,14 @@ DECL|class|CategoryPathUtils
 class|class
 name|CategoryPathUtils
 block|{
-comment|/** Serializes the given {@link CategoryPath} to the {@link CharBlockArray}. */
+comment|/** Serializes the given {@link FacetLabel} to the {@link CharBlockArray}. */
 DECL|method|serialize
 specifier|public
 specifier|static
 name|void
 name|serialize
 parameter_list|(
-name|CategoryPath
+name|FacetLabel
 name|cp
 parameter_list|,
 name|CharBlockArray
@@ -133,7 +133,7 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
-comment|/**    * Calculates a hash function of a path that was serialized with    * {@link #serialize(CategoryPath, CharBlockArray)}.    */
+comment|/**    * Calculates a hash function of a path that was serialized with    * {@link #serialize(FacetLabel, CharBlockArray)}.    */
 DECL|method|hashCodeOfSerialized
 specifier|public
 specifier|static
@@ -229,14 +229,14 @@ return|return
 name|hash
 return|;
 block|}
-comment|/**    * Check whether the {@link CategoryPath} is equal to the one serialized in    * {@link CharBlockArray}.    */
+comment|/**    * Check whether the {@link FacetLabel} is equal to the one serialized in    * {@link CharBlockArray}.    */
 DECL|method|equalsToSerialized
 specifier|public
 specifier|static
 name|boolean
 name|equalsToSerialized
 parameter_list|(
-name|CategoryPath
+name|FacetLabel
 name|cp
 parameter_list|,
 name|CharBlockArray

@@ -72,7 +72,7 @@ name|facet
 operator|.
 name|taxonomy
 operator|.
-name|CategoryPath
+name|FacetLabel
 import|;
 end_import
 
@@ -902,7 +902,7 @@ parameter_list|)
 throws|throws
 name|IOException
 function_decl|;
-comment|/**    * Returns a {@link FacetResult} per {@link FacetRequest} set in    * {@link FacetSearchParams}. Note that if a {@link FacetRequest} defines a    * {@link CategoryPath} which does not exist in the taxonomy, an empty    * {@link FacetResult} will be returned for it.    */
+comment|/**    * Returns a {@link FacetResult} per {@link FacetRequest} set in    * {@link FacetSearchParams}. Note that if a {@link FacetRequest} defines a    * {@link FacetLabel} which does not exist in the taxonomy, an empty    * {@link FacetResult} will be returned for it.    */
 DECL|method|getFacetResults
 specifier|public
 specifier|final

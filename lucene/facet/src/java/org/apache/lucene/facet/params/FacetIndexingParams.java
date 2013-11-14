@@ -62,7 +62,7 @@ name|facet
 operator|.
 name|taxonomy
 operator|.
-name|CategoryPath
+name|FacetLabel
 import|;
 end_import
 
@@ -104,7 +104,7 @@ operator|new
 name|FacetIndexingParams
 argument_list|()
 decl_stmt|;
-comment|/**    * The default delimiter with which {@link CategoryPath#components} are    * concatenated when written to the index, e.g. as drill-down terms. If you    * choose to override it by overiding {@link #getFacetDelimChar()}, you should    * make sure that you return a character that's not found in any path    * component.    */
+comment|/**    * The default delimiter with which {@link FacetLabel#components} are    * concatenated when written to the index, e.g. as drill-down terms. If you    * choose to override it by overiding {@link #getFacetDelimChar()}, you should    * make sure that you return a character that's not found in any path    * component.    */
 DECL|field|DEFAULT_FACET_DELIM_CHAR
 specifier|public
 specifier|static
@@ -156,13 +156,13 @@ operator|=
 name|categoryListParams
 expr_stmt|;
 block|}
-comment|/**    * Returns the {@link CategoryListParams} for this {@link CategoryPath}. The    * default implementation returns the same {@link CategoryListParams} for all    * categories (even if {@code category} is {@code null}).    *     * @see PerDimensionIndexingParams    */
+comment|/**    * Returns the {@link CategoryListParams} for this {@link FacetLabel}. The    * default implementation returns the same {@link CategoryListParams} for all    * categories (even if {@code category} is {@code null}).    *     * @see PerDimensionIndexingParams    */
 DECL|method|getCategoryListParams
 specifier|public
 name|CategoryListParams
 name|getCategoryListParams
 parameter_list|(
-name|CategoryPath
+name|FacetLabel
 name|category
 parameter_list|)
 block|{
@@ -170,13 +170,13 @@ return|return
 name|clParams
 return|;
 block|}
-comment|/**    * Copies the text required to execute a drill-down query on the given    * category to the given {@code char[]}, and returns the number of characters    * that were written.    *<p>    *<b>NOTE:</b> You should make sure that the {@code char[]} is large enough,    * by e.g. calling {@link CategoryPath#fullPathLength()}.    */
+comment|/**    * Copies the text required to execute a drill-down query on the given    * category to the given {@code char[]}, and returns the number of characters    * that were written.    *<p>    *<b>NOTE:</b> You should make sure that the {@code char[]} is large enough,    * by e.g. calling {@link FacetLabel#fullPathLength()}.    */
 DECL|method|drillDownTermText
 specifier|public
 name|int
 name|drillDownTermText
 parameter_list|(
-name|CategoryPath
+name|FacetLabel
 name|path
 parameter_list|,
 name|char
