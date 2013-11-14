@@ -861,11 +861,11 @@ literal|"Author (145.0)\n  Lisa (50.0)\n  Frank (45.0)\n  Susan (40.0)\n  Bob (1
 argument_list|,
 name|facets
 operator|.
-name|getDim
+name|getTopChildren
 argument_list|(
-literal|"Author"
-argument_list|,
 literal|10
+argument_list|,
+literal|"Author"
 argument_list|)
 operator|.
 name|toString

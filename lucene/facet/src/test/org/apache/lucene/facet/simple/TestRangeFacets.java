@@ -860,8 +860,12 @@ name|result
 init|=
 name|facets
 operator|.
-name|getCounts
-argument_list|()
+name|getTopChildren
+argument_list|(
+literal|10
+argument_list|,
+literal|null
+argument_list|)
 decl_stmt|;
 name|assertEquals
 argument_list|(
