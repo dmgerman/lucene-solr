@@ -60,6 +60,10 @@ begin_comment
 comment|/**  * Holds a sequence of string components, specifying the hierarchical name of a  * category.  *   * @lucene.experimental  */
 end_comment
 
+begin_comment
+comment|// nocommit rename to FacetLabel?
+end_comment
+
 begin_class
 DECL|class|CategoryPath
 specifier|public

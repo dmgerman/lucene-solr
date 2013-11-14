@@ -85,6 +85,8 @@ specifier|final
 name|boolean
 name|maxInclusive
 decl_stmt|;
+comment|// nocommit can we require fewer args? (same for
+comment|// Double/FloatRange too)
 comment|/** Create a LongRange. */
 DECL|method|LongRange
 specifier|public
