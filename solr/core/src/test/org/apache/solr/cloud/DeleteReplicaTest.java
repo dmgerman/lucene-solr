@@ -887,9 +887,17 @@ literal|null
 condition|)
 name|fail
 argument_list|(
-literal|"no active relicas found"
+literal|"no active replicas found"
 argument_list|)
 expr_stmt|;
+name|Thread
+operator|.
+name|sleep
+argument_list|(
+literal|2500
+argument_list|)
+expr_stmt|;
+comment|//remove this later.not sure if the clusterstate is not propagated and that is why the tests are failing.SOLR-5437
 name|removeAndWaitForReplicaGone
 argument_list|(
 name|COLL_NAME
