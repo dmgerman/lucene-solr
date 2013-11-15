@@ -1398,7 +1398,7 @@ name|indexOf
 argument_list|(
 name|CompositeIdRouter
 operator|.
-name|separator
+name|SEPARATOR
 argument_list|)
 decl_stmt|;
 if|if
