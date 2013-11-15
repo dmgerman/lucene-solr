@@ -2478,6 +2478,15 @@ return|return
 name|compressionMode
 return|;
 block|}
+DECL|method|getChunkSize
+name|int
+name|getChunkSize
+parameter_list|()
+block|{
+return|return
+name|chunkSize
+return|;
+block|}
 DECL|method|chunkIterator
 name|ChunkIterator
 name|chunkIterator
