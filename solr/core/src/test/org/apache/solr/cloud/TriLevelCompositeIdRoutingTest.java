@@ -265,13 +265,6 @@ argument_list|)
 expr_stmt|;
 comment|// for now,  we know how ranges will be distributed to shards.
 comment|// may have to look it up in clusterstate if that assumption changes.
-name|Random
-name|r
-init|=
-operator|new
-name|Random
-argument_list|()
-decl_stmt|;
 for|for
 control|(
 name|int
@@ -456,13 +449,6 @@ argument_list|(
 literal|"*:*"
 argument_list|)
 expr_stmt|;
-name|Random
-name|r
-init|=
-operator|new
-name|Random
-argument_list|()
-decl_stmt|;
 for|for
 control|(
 name|int
