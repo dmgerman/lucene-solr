@@ -3006,6 +3006,49 @@ operator|=
 literal|true
 expr_stmt|;
 block|}
+DECL|method|testQuerySimple
+specifier|public
+name|void
+name|testQuerySimple
+parameter_list|()
+throws|throws
+name|Exception
+block|{
+name|SolrQueryRequest
+name|req
+init|=
+name|req
+argument_list|(
+literal|"myField"
+argument_list|,
+literal|"foo_s"
+argument_list|)
+decl_stmt|;
+try|try
+block|{
+name|assertQueryEquals
+argument_list|(
+literal|"simple"
+argument_list|,
+name|req
+argument_list|,
+literal|"{!simple f=$myField}asdf"
+argument_list|,
+literal|"{!simple f=$myField v=asdf}"
+argument_list|,
+literal|"{!simple f=foo_s}asdf"
+argument_list|)
+expr_stmt|;
+block|}
+finally|finally
+block|{
+name|req
+operator|.
+name|close
+argument_list|()
+expr_stmt|;
+block|}
+block|}
 comment|/**    * NOTE: defType is not only used to pick the parser, but also to record     * the parser being tested for coverage sanity checking    * @see #testParserCoverage    * @see #assertQueryEquals    */
 DECL|method|assertQueryEquals
 specifier|protected
