@@ -186,6 +186,10 @@ name|FixedBitSet
 import|;
 end_import
 
+begin_comment
+comment|// nocommit jdoc that this assumes/requires the default encoding
+end_comment
+
 begin_class
 DECL|class|TaxonomyFacetCounts
 specifier|public
@@ -1057,6 +1061,8 @@ literal|0
 index|]
 argument_list|)
 decl_stmt|;
+comment|// nocommit shouldn't we verify the indexedFieldName
+comment|// matches what was passed to our ctor?
 if|if
 condition|(
 name|ft
