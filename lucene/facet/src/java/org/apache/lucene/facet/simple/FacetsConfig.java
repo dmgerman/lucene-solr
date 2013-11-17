@@ -61,8 +61,6 @@ literal|"$facets"
 decl_stmt|;
 comment|// nocommit pull the delim char into there?
 comment|// nocommit pull DimType into here (shai?)
-comment|// nocommit pull facet field ($facets) into here, instead
-comment|// of optionally setting it on FacetField
 DECL|field|fieldTypes
 specifier|private
 specifier|final

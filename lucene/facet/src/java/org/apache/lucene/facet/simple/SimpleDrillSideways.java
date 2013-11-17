@@ -488,11 +488,11 @@ specifier|final
 name|SortedSetDocValuesReaderState
 name|state
 decl_stmt|;
-DECL|field|facetsConfig
+DECL|field|config
 specifier|protected
 specifier|final
 name|FacetsConfig
-name|facetsConfig
+name|config
 decl_stmt|;
 comment|/**    * Create a new {@code DrillSideways} instance, assuming the categories were    * indexed with {@link FacetFields}.    */
 DECL|method|SimpleDrillSideways
@@ -503,7 +503,7 @@ name|IndexSearcher
 name|searcher
 parameter_list|,
 name|FacetsConfig
-name|facetsConfig
+name|config
 parameter_list|,
 name|TaxonomyReader
 name|taxoReader
@@ -513,7 +513,7 @@ name|this
 argument_list|(
 name|searcher
 argument_list|,
-name|facetsConfig
+name|config
 argument_list|,
 name|taxoReader
 argument_list|,
@@ -530,7 +530,7 @@ name|IndexSearcher
 name|searcher
 parameter_list|,
 name|FacetsConfig
-name|facetsConfig
+name|config
 parameter_list|,
 name|SortedSetDocValuesReaderState
 name|state
@@ -540,7 +540,7 @@ name|this
 argument_list|(
 name|searcher
 argument_list|,
-name|facetsConfig
+name|config
 argument_list|,
 literal|null
 argument_list|,
@@ -557,7 +557,7 @@ name|IndexSearcher
 name|searcher
 parameter_list|,
 name|FacetsConfig
-name|facetsConfig
+name|config
 parameter_list|,
 name|TaxonomyReader
 name|taxoReader
@@ -574,9 +574,9 @@ name|searcher
 expr_stmt|;
 name|this
 operator|.
-name|facetsConfig
+name|config
 operator|=
-name|facetsConfig
+name|config
 expr_stmt|;
 name|this
 operator|.
@@ -619,7 +619,7 @@ name|FastTaxonomyFacetCounts
 argument_list|(
 name|taxoReader
 argument_list|,
-name|facetsConfig
+name|config
 argument_list|,
 name|drillDowns
 argument_list|)
@@ -685,7 +685,7 @@ name|FastTaxonomyFacetCounts
 argument_list|(
 name|taxoReader
 argument_list|,
-name|facetsConfig
+name|config
 argument_list|,
 name|drillSideways
 index|[
@@ -1623,6 +1623,8 @@ operator|=
 operator|new
 name|SimpleDrillDownQuery
 argument_list|(
+name|config
+argument_list|,
 name|filter
 argument_list|,
 name|query

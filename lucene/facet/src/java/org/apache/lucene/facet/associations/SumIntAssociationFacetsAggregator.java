@@ -313,7 +313,7 @@ operator|>
 literal|0
 condition|)
 block|{
-comment|// aggreate association values for ordinals
+comment|// aggregate association values for ordinals
 name|int
 name|bytesUpto
 init|=
