@@ -462,6 +462,14 @@ operator|.
 name|shutdown
 argument_list|()
 expr_stmt|;
+name|collection1
+operator|=
+literal|null
+expr_stmt|;
+name|collection2
+operator|=
+literal|null
+expr_stmt|;
 name|jetty
 operator|.
 name|stop
