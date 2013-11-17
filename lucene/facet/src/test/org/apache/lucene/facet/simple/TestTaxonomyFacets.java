@@ -526,8 +526,6 @@ argument_list|,
 name|fts
 argument_list|)
 decl_stmt|;
-comment|// Reused across documents, to add the necessary facet
-comment|// fields:
 name|Document
 name|doc
 init|=
