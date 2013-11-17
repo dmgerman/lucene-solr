@@ -615,7 +615,7 @@ name|Facets
 name|drillDownFacets
 init|=
 operator|new
-name|TaxonomyFacetCounts
+name|FastTaxonomyFacetCounts
 argument_list|(
 name|taxoReader
 argument_list|,
@@ -681,7 +681,7 @@ name|i
 index|]
 argument_list|,
 operator|new
-name|TaxonomyFacetCounts
+name|FastTaxonomyFacetCounts
 argument_list|(
 name|taxoReader
 argument_list|,
