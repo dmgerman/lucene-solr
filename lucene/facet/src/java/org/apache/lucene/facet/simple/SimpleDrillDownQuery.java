@@ -34,6 +34,16 @@ name|java
 operator|.
 name|util
 operator|.
+name|Arrays
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
+name|util
+operator|.
 name|LinkedHashMap
 import|;
 end_import
@@ -268,9 +278,6 @@ parameter_list|(
 name|String
 name|field
 parameter_list|,
-name|char
-name|delimChar
-parameter_list|,
 name|String
 name|dim
 parameter_list|,
@@ -285,18 +292,13 @@ name|Term
 argument_list|(
 name|field
 argument_list|,
-name|FacetLabel
+name|FacetIndexWriter
 operator|.
-name|create
+name|pathToString
 argument_list|(
 name|dim
 argument_list|,
 name|path
-argument_list|)
-operator|.
-name|toString
-argument_list|(
-name|delimChar
 argument_list|)
 argument_list|)
 return|;
@@ -792,14 +794,6 @@ argument_list|)
 operator|.
 name|indexedFieldName
 decl_stmt|;
-comment|// nocommit pull this from FacetsConfig
-name|char
-name|delimChar
-init|=
-name|Constants
-operator|.
-name|DEFAULT_DELIM_CHAR
-decl_stmt|;
 name|BooleanQuery
 name|bq
 init|=
@@ -821,8 +815,6 @@ argument_list|(
 name|term
 argument_list|(
 name|indexedField
-argument_list|,
-name|delimChar
 argument_list|,
 name|dim
 argument_list|,
@@ -882,14 +874,6 @@ argument_list|)
 operator|.
 name|indexedFieldName
 decl_stmt|;
-comment|// nocommit pull this from FacetsConfig
-name|char
-name|delimChar
-init|=
-name|Constants
-operator|.
-name|DEFAULT_DELIM_CHAR
-decl_stmt|;
 name|BooleanQuery
 name|bq
 init|=
@@ -927,8 +911,6 @@ argument_list|(
 name|term
 argument_list|(
 name|indexedField
-argument_list|,
-name|delimChar
 argument_list|,
 name|dim
 argument_list|,

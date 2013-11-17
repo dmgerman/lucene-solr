@@ -59,7 +59,6 @@ name|DEFAULT_INDEXED_FIELD_NAME
 init|=
 literal|"$facets"
 decl_stmt|;
-comment|// nocommit pull the delim char into there?
 comment|// nocommit pull DimType into here (shai?)
 DECL|field|fieldTypes
 specifier|private
