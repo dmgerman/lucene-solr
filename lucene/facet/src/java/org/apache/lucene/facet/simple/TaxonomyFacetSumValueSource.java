@@ -1092,11 +1092,11 @@ parameter_list|)
 throws|throws
 name|IOException
 block|{
-name|TopOrdValueQueue
+name|TopOrdAndFloatQueue
 name|q
 init|=
 operator|new
-name|TopOrdValueQueue
+name|TopOrdAndFloatQueue
 argument_list|(
 name|topN
 argument_list|)
@@ -1119,7 +1119,7 @@ name|sumValues
 init|=
 literal|0
 decl_stmt|;
-name|TopOrdValueQueue
+name|TopOrdAndFloatQueue
 operator|.
 name|OrdAndValue
 name|reuse
@@ -1172,7 +1172,7 @@ block|{
 name|reuse
 operator|=
 operator|new
-name|TopOrdValueQueue
+name|TopOrdAndFloatQueue
 operator|.
 name|OrdAndValue
 argument_list|()
@@ -1311,7 +1311,7 @@ name|i
 operator|--
 control|)
 block|{
-name|TopOrdValueQueue
+name|TopOrdAndFloatQueue
 operator|.
 name|OrdAndValue
 name|ordAndValue

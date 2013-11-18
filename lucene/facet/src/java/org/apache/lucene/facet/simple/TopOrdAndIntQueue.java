@@ -33,44 +33,40 @@ import|;
 end_import
 
 begin_comment
-comment|// nocommit rename to TopOrdIntQueue?
-end_comment
-
-begin_comment
-comment|/** Keeps highest count results. */
+comment|/** Keeps highest results, first by largest int value,  *  then tie break by smallest ord. */
 end_comment
 
 begin_class
-DECL|class|TopOrdCountQueue
+DECL|class|TopOrdAndIntQueue
 class|class
-name|TopOrdCountQueue
+name|TopOrdAndIntQueue
 extends|extends
 name|PriorityQueue
 argument_list|<
-name|TopOrdCountQueue
+name|TopOrdAndIntQueue
 operator|.
-name|OrdAndCount
+name|OrdAndValue
 argument_list|>
 block|{
-DECL|class|OrdAndCount
+DECL|class|OrdAndValue
 specifier|public
 specifier|static
 specifier|final
 class|class
-name|OrdAndCount
+name|OrdAndValue
 block|{
 DECL|field|ord
 name|int
 name|ord
 decl_stmt|;
-DECL|field|count
+DECL|field|value
 name|int
-name|count
+name|value
 decl_stmt|;
 block|}
-DECL|method|TopOrdCountQueue
+DECL|method|TopOrdAndIntQueue
 specifier|public
-name|TopOrdCountQueue
+name|TopOrdAndIntQueue
 parameter_list|(
 name|int
 name|topN
@@ -91,10 +87,10 @@ specifier|protected
 name|boolean
 name|lessThan
 parameter_list|(
-name|OrdAndCount
+name|OrdAndValue
 name|a
 parameter_list|,
-name|OrdAndCount
+name|OrdAndValue
 name|b
 parameter_list|)
 block|{
@@ -102,11 +98,11 @@ if|if
 condition|(
 name|a
 operator|.
-name|count
+name|value
 operator|<
 name|b
 operator|.
-name|count
+name|value
 condition|)
 block|{
 return|return
@@ -118,11 +114,11 @@ if|if
 condition|(
 name|a
 operator|.
-name|count
+name|value
 operator|>
 name|b
 operator|.
-name|count
+name|value
 condition|)
 block|{
 return|return

@@ -37,17 +37,17 @@ comment|// nocommit make value a double and merge with TopOrdCountValueQueue?
 end_comment
 
 begin_comment
-comment|/** Keeps highest results. */
+comment|/** Keeps highest results, first by largest float value,  *  then tie break by smallest ord. */
 end_comment
 
 begin_class
-DECL|class|TopOrdValueQueue
+DECL|class|TopOrdAndFloatQueue
 class|class
-name|TopOrdValueQueue
+name|TopOrdAndFloatQueue
 extends|extends
 name|PriorityQueue
 argument_list|<
-name|TopOrdValueQueue
+name|TopOrdAndFloatQueue
 operator|.
 name|OrdAndValue
 argument_list|>
@@ -68,9 +68,9 @@ name|float
 name|value
 decl_stmt|;
 block|}
-DECL|method|TopOrdValueQueue
+DECL|method|TopOrdAndFloatQueue
 specifier|public
-name|TopOrdValueQueue
+name|TopOrdAndFloatQueue
 parameter_list|(
 name|int
 name|topN

@@ -463,7 +463,7 @@ name|int
 name|topN
 parameter_list|)
 block|{
-name|TopOrdCountQueue
+name|TopOrdAndIntQueue
 name|q
 init|=
 literal|null
@@ -478,9 +478,9 @@ name|dimCount
 init|=
 literal|0
 decl_stmt|;
-name|TopOrdCountQueue
+name|TopOrdAndIntQueue
 operator|.
-name|OrdAndCount
+name|OrdAndValue
 name|reuse
 init|=
 literal|null
@@ -543,9 +543,9 @@ block|{
 name|reuse
 operator|=
 operator|new
-name|TopOrdCountQueue
+name|TopOrdAndIntQueue
 operator|.
-name|OrdAndCount
+name|OrdAndValue
 argument_list|()
 expr_stmt|;
 block|}
@@ -557,7 +557,7 @@ name|ord
 expr_stmt|;
 name|reuse
 operator|.
-name|count
+name|value
 operator|=
 name|counts
 index|[
@@ -576,7 +576,7 @@ comment|// sparse case unnecessarily
 name|q
 operator|=
 operator|new
-name|TopOrdCountQueue
+name|TopOrdAndIntQueue
 argument_list|(
 name|topN
 argument_list|)
@@ -608,7 +608,7 @@ operator|.
 name|top
 argument_list|()
 operator|.
-name|count
+name|value
 expr_stmt|;
 block|}
 block|}
@@ -664,10 +664,10 @@ name|i
 operator|--
 control|)
 block|{
-name|TopOrdCountQueue
+name|TopOrdAndIntQueue
 operator|.
-name|OrdAndCount
-name|ordAndCount
+name|OrdAndValue
+name|ordAndValue
 init|=
 name|q
 operator|.
@@ -678,7 +678,7 @@ name|dv
 operator|.
 name|lookupOrd
 argument_list|(
-name|ordAndCount
+name|ordAndValue
 operator|.
 name|ord
 argument_list|,
@@ -718,9 +718,9 @@ name|length
 argument_list|()
 argument_list|)
 argument_list|,
-name|ordAndCount
+name|ordAndValue
 operator|.
-name|count
+name|value
 argument_list|)
 expr_stmt|;
 block|}
