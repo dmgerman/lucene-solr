@@ -282,16 +282,6 @@ begin_import
 import|import
 name|org
 operator|.
-name|junit
-operator|.
-name|Ignore
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
 name|slf4j
 operator|.
 name|Logger
@@ -332,8 +322,6 @@ name|linger
 operator|=
 literal|60000
 argument_list|)
-annotation|@
-name|Ignore
 DECL|class|ChaosMonkeyNothingIsSafeTest
 specifier|public
 class|class
