@@ -334,11 +334,11 @@ specifier|final
 name|TaxonomyWriter
 name|taxoWriter
 decl_stmt|;
-DECL|field|facetsConfig
+DECL|field|config
 specifier|private
 specifier|final
 name|FacetsConfig
-name|facetsConfig
+name|config
 decl_stmt|;
 DECL|method|FacetIndexWriter
 specifier|public
@@ -354,7 +354,7 @@ name|TaxonomyWriter
 name|taxoWriter
 parameter_list|,
 name|FacetsConfig
-name|facetsConfig
+name|config
 parameter_list|)
 throws|throws
 name|IOException
@@ -374,9 +374,9 @@ name|taxoWriter
 expr_stmt|;
 name|this
 operator|.
-name|facetsConfig
+name|config
 operator|=
-name|facetsConfig
+name|config
 expr_stmt|;
 block|}
 comment|// nocommit maybe we could somehow "own" TaxonomyWriter
@@ -504,22 +504,21 @@ operator|.
 name|DimConfig
 name|dimConfig
 init|=
-name|facetsConfig
+name|config
 operator|.
 name|getDimConfig
 argument_list|(
-name|field
+name|facetField
 operator|.
-name|name
-argument_list|()
+name|dim
 argument_list|)
 decl_stmt|;
 name|String
-name|indexedFieldName
+name|indexFieldName
 init|=
 name|dimConfig
 operator|.
-name|indexedFieldName
+name|indexFieldName
 decl_stmt|;
 name|List
 argument_list|<
@@ -531,7 +530,7 @@ name|byField
 operator|.
 name|get
 argument_list|(
-name|indexedFieldName
+name|indexFieldName
 argument_list|)
 decl_stmt|;
 if|if
@@ -554,7 +553,7 @@ name|byField
 operator|.
 name|put
 argument_list|(
-name|indexedFieldName
+name|indexFieldName
 argument_list|,
 name|fields
 argument_list|)
@@ -593,22 +592,21 @@ operator|.
 name|DimConfig
 name|dimConfig
 init|=
-name|facetsConfig
+name|config
 operator|.
 name|getDimConfig
 argument_list|(
-name|field
+name|facetField
 operator|.
-name|name
-argument_list|()
+name|dim
 argument_list|)
 decl_stmt|;
 name|String
-name|indexedFieldName
+name|indexFieldName
 init|=
 name|dimConfig
 operator|.
-name|indexedFieldName
+name|indexFieldName
 decl_stmt|;
 name|List
 argument_list|<
@@ -620,7 +618,7 @@ name|dvByField
 operator|.
 name|get
 argument_list|(
-name|indexedFieldName
+name|indexFieldName
 argument_list|)
 decl_stmt|;
 if|if
@@ -643,7 +641,7 @@ name|dvByField
 operator|.
 name|put
 argument_list|(
-name|indexedFieldName
+name|indexFieldName
 argument_list|,
 name|fields
 argument_list|)
@@ -682,23 +680,22 @@ operator|.
 name|DimConfig
 name|dimConfig
 init|=
-name|facetsConfig
+name|config
 operator|.
 name|getDimConfig
 argument_list|(
-name|field
+name|facetField
 operator|.
-name|name
-argument_list|()
+name|dim
 argument_list|)
 decl_stmt|;
 comment|// nocommit how to use a different default name for assocs?
 name|String
-name|indexedFieldName
+name|indexFieldName
 init|=
 name|dimConfig
 operator|.
-name|indexedFieldName
+name|indexFieldName
 decl_stmt|;
 name|List
 argument_list|<
@@ -710,7 +707,7 @@ name|assocByField
 operator|.
 name|get
 argument_list|(
-name|indexedFieldName
+name|indexFieldName
 argument_list|)
 decl_stmt|;
 if|if
@@ -733,7 +730,7 @@ name|assocByField
 operator|.
 name|put
 argument_list|(
-name|indexedFieldName
+name|indexFieldName
 argument_list|,
 name|fields
 argument_list|)
@@ -1009,7 +1006,7 @@ block|{
 comment|// nocommit maybe we can somehow catch singleValued
 comment|// dim appearing more than once?
 name|String
-name|indexedFieldName
+name|indexFieldName
 init|=
 name|ent
 operator|.
@@ -1042,7 +1039,7 @@ operator|.
 name|DimConfig
 name|ft
 init|=
-name|facetsConfig
+name|config
 operator|.
 name|getDimConfig
 argument_list|(
@@ -1231,7 +1228,7 @@ argument_list|(
 operator|new
 name|StringField
 argument_list|(
-name|indexedFieldName
+name|indexFieldName
 argument_list|,
 name|pathToString
 argument_list|(
@@ -1261,7 +1258,7 @@ argument_list|(
 operator|new
 name|BinaryDocValuesField
 argument_list|(
-name|indexedFieldName
+name|indexFieldName
 argument_list|,
 name|dedupAndEncode
 argument_list|(
@@ -1326,14 +1323,14 @@ argument_list|()
 control|)
 block|{
 name|String
-name|indexedFieldName
+name|indexFieldName
 init|=
 name|ent
 operator|.
 name|getKey
 argument_list|()
 decl_stmt|;
-comment|//System.out.println("  field=" + indexedFieldName);
+comment|//System.out.println("  field=" + indexFieldName);
 for|for
 control|(
 name|SortedSetDocValuesFacetField
@@ -1383,7 +1380,7 @@ argument_list|(
 operator|new
 name|SortedSetDocValuesField
 argument_list|(
-name|indexedFieldName
+name|indexFieldName
 argument_list|,
 operator|new
 name|BytesRef
@@ -1401,7 +1398,7 @@ argument_list|(
 operator|new
 name|StringField
 argument_list|(
-name|indexedFieldName
+name|indexFieldName
 argument_list|,
 name|fullPath
 argument_list|,
@@ -1484,7 +1481,7 @@ init|=
 literal|0
 decl_stmt|;
 name|String
-name|indexedFieldName
+name|indexFieldName
 init|=
 name|ent
 operator|.
@@ -1685,7 +1682,7 @@ argument_list|(
 operator|new
 name|BinaryDocValuesField
 argument_list|(
-name|indexedFieldName
+name|indexFieldName
 argument_list|,
 operator|new
 name|BytesRef
