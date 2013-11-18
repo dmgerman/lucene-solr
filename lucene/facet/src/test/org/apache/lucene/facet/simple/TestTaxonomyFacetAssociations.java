@@ -367,10 +367,10 @@ comment|/** Test for associations */
 end_comment
 
 begin_class
-DECL|class|TestAssociationFacets
+DECL|class|TestTaxonomyFacetAssociations
 specifier|public
 class|class
-name|TestAssociationFacets
+name|TestTaxonomyFacetAssociations
 extends|extends
 name|FacetTestCase
 block|{
@@ -779,7 +779,7 @@ name|Facets
 name|facets
 init|=
 operator|new
-name|SumIntAssociationFacets
+name|TaxonomyFacetSumIntAssociations
 argument_list|(
 literal|"$facets.int"
 argument_list|,
@@ -867,7 +867,7 @@ name|Facets
 name|facets
 init|=
 operator|new
-name|SumFloatAssociationFacets
+name|TaxonomyFacetSumFloatAssociations
 argument_list|(
 literal|"$facets.float"
 argument_list|,
@@ -960,7 +960,7 @@ name|Facets
 name|facets
 init|=
 operator|new
-name|SumFloatAssociationFacets
+name|TaxonomyFacetSumFloatAssociations
 argument_list|(
 literal|"$facets.float"
 argument_list|,
@@ -1016,7 +1016,7 @@ expr_stmt|;
 name|facets
 operator|=
 operator|new
-name|SumIntAssociationFacets
+name|TaxonomyFacetSumIntAssociations
 argument_list|(
 literal|"$facets.int"
 argument_list|,
@@ -1104,7 +1104,7 @@ name|Facets
 name|facets
 init|=
 operator|new
-name|SumFloatAssociationFacets
+name|TaxonomyFacetSumFloatAssociations
 argument_list|(
 name|taxoReader
 argument_list|,

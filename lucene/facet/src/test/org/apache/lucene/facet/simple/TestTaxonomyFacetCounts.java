@@ -417,10 +417,10 @@ import|;
 end_import
 
 begin_class
-DECL|class|TestTaxonomyFacets
+DECL|class|TestTaxonomyFacetCounts
 specifier|public
 class|class
-name|TestTaxonomyFacets
+name|TestTaxonomyFacetCounts
 extends|extends
 name|FacetTestCase
 block|{

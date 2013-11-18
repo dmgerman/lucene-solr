@@ -187,31 +187,27 @@ import|;
 end_import
 
 begin_comment
-comment|// nocommit rename to TaxonomySumIntAssociationFacets
-end_comment
-
-begin_comment
 comment|// nocommit jdoc that this assumes/requires the default encoding
 end_comment
 
 begin_class
-DECL|class|SumIntAssociationFacets
+DECL|class|TaxonomyFacetSumFloatAssociations
 specifier|public
 class|class
-name|SumIntAssociationFacets
+name|TaxonomyFacetSumFloatAssociations
 extends|extends
 name|TaxonomyFacets
 block|{
 DECL|field|values
 specifier|private
 specifier|final
-name|int
+name|float
 index|[]
 name|values
 decl_stmt|;
-DECL|method|SumIntAssociationFacets
+DECL|method|TaxonomyFacetSumFloatAssociations
 specifier|public
-name|SumIntAssociationFacets
+name|TaxonomyFacetSumFloatAssociations
 parameter_list|(
 name|TaxonomyReader
 name|taxoReader
@@ -239,9 +235,9 @@ name|fc
 argument_list|)
 expr_stmt|;
 block|}
-DECL|method|SumIntAssociationFacets
+DECL|method|TaxonomyFacetSumFloatAssociations
 specifier|public
-name|SumIntAssociationFacets
+name|TaxonomyFacetSumFloatAssociations
 parameter_list|(
 name|String
 name|indexFieldName
@@ -270,7 +266,7 @@ expr_stmt|;
 name|values
 operator|=
 operator|new
-name|int
+name|float
 index|[
 name|taxoReader
 operator|.
@@ -560,7 +556,12 @@ index|[
 name|ord
 index|]
 operator|+=
+name|Float
+operator|.
+name|intBitsToFloat
+argument_list|(
 name|value
+argument_list|)
 expr_stmt|;
 block|}
 operator|++
@@ -575,7 +576,7 @@ comment|/*     for(Map.Entry<String,FacetsConfig.DimConfig> ent : config.getDimC
 block|}
 DECL|method|rollup
 specifier|private
-name|int
+name|float
 name|rollup
 parameter_list|(
 name|int
@@ -596,7 +597,7 @@ operator|.
 name|INVALID_ORDINAL
 condition|)
 block|{
-name|int
+name|float
 name|childValue
 init|=
 name|values
@@ -714,11 +715,16 @@ parameter_list|)
 throws|throws
 name|IOException
 block|{
+name|FacetsConfig
+operator|.
+name|DimConfig
+name|dimConfig
+init|=
 name|verifyDim
 argument_list|(
 name|dim
 argument_list|)
-expr_stmt|;
+decl_stmt|;
 name|FacetLabel
 name|cp
 init|=
@@ -754,16 +760,16 @@ return|return
 literal|null
 return|;
 block|}
-name|TopOrdAndIntQueue
+name|TopOrdAndFloatQueue
 name|q
 init|=
 operator|new
-name|TopOrdAndIntQueue
+name|TopOrdAndFloatQueue
 argument_list|(
 name|topN
 argument_list|)
 decl_stmt|;
-name|int
+name|float
 name|bottomValue
 init|=
 literal|0
@@ -776,12 +782,12 @@ index|[
 name|dimOrd
 index|]
 decl_stmt|;
-name|long
+name|float
 name|sumValue
 init|=
 literal|0
 decl_stmt|;
-name|TopOrdAndIntQueue
+name|TopOrdAndFloatQueue
 operator|.
 name|OrdAndValue
 name|reuse
@@ -834,7 +840,7 @@ block|{
 name|reuse
 operator|=
 operator|new
-name|TopOrdAndIntQueue
+name|TopOrdAndFloatQueue
 operator|.
 name|OrdAndValue
 argument_list|()
@@ -906,7 +912,7 @@ return|return
 literal|null
 return|;
 block|}
-comment|/*     FacetsConfig.DimConfig ft = config.getDimConfig(path.components[0]);     if (ft.hierarchical&& ft.multiValued) {       totCount = counts[dimOrd];     }     */
+comment|/*     if (dimConfig.hierarchical&& dimConfig.multiValued) {       totCount = counts[dimOrd];     }     */
 name|LabelAndValue
 index|[]
 name|labelValues
@@ -939,7 +945,7 @@ name|i
 operator|--
 control|)
 block|{
-name|TopOrdAndIntQueue
+name|TopOrdAndFloatQueue
 operator|.
 name|OrdAndValue
 name|ordAndValue

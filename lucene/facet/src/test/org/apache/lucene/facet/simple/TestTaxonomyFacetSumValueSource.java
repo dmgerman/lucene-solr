@@ -475,10 +475,10 @@ import|;
 end_import
 
 begin_class
-DECL|class|TestTaxonomyFacetsSumValueSource
+DECL|class|TestTaxonomyFacetSumValueSource
 specifier|public
 class|class
-name|TestTaxonomyFacetsSumValueSource
+name|TestTaxonomyFacetSumValueSource
 extends|extends
 name|FacetTestCase
 block|{
