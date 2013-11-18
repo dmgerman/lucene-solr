@@ -2092,39 +2092,12 @@ name|origCorename
 argument_list|)
 decl_stmt|;
 comment|// don't proxy for internal update requests
-name|solrReq
-operator|=
-name|SolrRequestParsers
-operator|.
-name|DEFAULT
-operator|.
-name|parse
-argument_list|(
-literal|null
-argument_list|,
-name|path
-argument_list|,
-name|req
-argument_list|)
-expr_stmt|;
+comment|//solrReq =  SolrRequestParsers.DEFAULT.parse(null,path, req);
+comment|//if (coreUrl != null&& solrReq.getParams().get(DistributingUpdateProcessorFactory.DISTRIB_UPDATE_PARAM) == null) {
 if|if
 condition|(
 name|coreUrl
 operator|!=
-literal|null
-operator|&&
-name|solrReq
-operator|.
-name|getParams
-argument_list|()
-operator|.
-name|get
-argument_list|(
-name|DistributingUpdateProcessorFactory
-operator|.
-name|DISTRIB_UPDATE_PARAM
-argument_list|)
-operator|==
 literal|null
 condition|)
 block|{
