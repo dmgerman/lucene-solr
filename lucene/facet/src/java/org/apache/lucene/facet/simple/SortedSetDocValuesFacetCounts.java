@@ -1262,7 +1262,7 @@ argument_list|(
 operator|new
 name|BytesRef
 argument_list|(
-name|FacetDocument
+name|DocumentBuilder
 operator|.
 name|pathToString
 argument_list|(
