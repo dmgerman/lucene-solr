@@ -260,10 +260,6 @@ begin_comment
 comment|/** Aggregates sum of values from a {@link ValueSource}, for  *  each facet label. */
 end_comment
 
-begin_comment
-comment|// nocommit jdoc that this assumes/requires the default encoding
-end_comment
-
 begin_class
 DECL|class|TaxonomyFacetSumValueSource
 specifier|public
@@ -285,6 +281,7 @@ specifier|final
 name|OrdinalsReader
 name|ordinalsReader
 decl_stmt|;
+comment|/** Aggreggates float facet values from the provided    *  {@link ValueSource}, pulling ordinals using {@link    *  DocValuesOrdinalsReader} against the default indexed    *  facet field {@link    *  FacetsConfig#DEFAULT_INDEX_FIELD_NAME}. */
 DECL|method|TaxonomyFacetSumValueSource
 specifier|public
 name|TaxonomyFacetSumValueSource
@@ -324,6 +321,7 @@ name|valueSource
 argument_list|)
 expr_stmt|;
 block|}
+comment|/** Aggreggates float facet values from the provided    *  {@link ValueSource}, and pulls ordinals from the    *  provided {@link OrdinalsReader}. */
 DECL|method|TaxonomyFacetSumValueSource
 specifier|public
 name|TaxonomyFacetSumValueSource
