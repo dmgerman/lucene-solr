@@ -320,13 +320,15 @@ name|IntsRef
 import|;
 end_import
 
+begin_comment
+comment|/** Pass the {@link #Document} to index to {@link #build},  *  to translate any added {@link FacetField}s into  *  indexable and storable fields.  It's safe to share a  *  single instance of this across multiple threads. */
+end_comment
+
 begin_class
-DECL|class|FacetIndexWriter
+DECL|class|DocumentBuilder
 specifier|public
 class|class
-name|FacetIndexWriter
-extends|extends
-name|IndexWriter
+name|DocumentBuilder
 block|{
 DECL|field|taxoWriter
 specifier|private
@@ -340,32 +342,17 @@ specifier|final
 name|FacetsConfig
 name|config
 decl_stmt|;
-DECL|method|FacetIndexWriter
+DECL|method|DocumentBuilder
 specifier|public
-name|FacetIndexWriter
+name|DocumentBuilder
 parameter_list|(
-name|Directory
-name|d
-parameter_list|,
-name|IndexWriterConfig
-name|conf
-parameter_list|,
 name|TaxonomyWriter
 name|taxoWriter
 parameter_list|,
 name|FacetsConfig
 name|config
 parameter_list|)
-throws|throws
-name|IOException
 block|{
-name|super
-argument_list|(
-name|d
-argument_list|,
-name|conf
-argument_list|)
-expr_stmt|;
 name|this
 operator|.
 name|taxoWriter
@@ -379,17 +366,11 @@ operator|=
 name|config
 expr_stmt|;
 block|}
-comment|// nocommit maybe we could somehow "own" TaxonomyWriter
-comment|// too?  commit it in commit, close it in close, etc?
-comment|// nocommit also updateDocument, addDocument, addDocuments
-annotation|@
-name|Override
-DECL|method|addDocument
+DECL|method|build
 specifier|public
-name|void
-name|addDocument
+name|IndexDocument
+name|build
 parameter_list|(
-specifier|final
 name|IndexDocument
 name|doc
 parameter_list|)
@@ -911,10 +892,7 @@ argument_list|)
 expr_stmt|;
 comment|//System.out.println("all indexed: " + allIndexedFields);
 comment|//System.out.println("all stored: " + allStoredFields);
-name|super
-operator|.
-name|addDocument
-argument_list|(
+return|return
 operator|new
 name|IndexDocument
 argument_list|()
@@ -948,8 +926,7 @@ name|allStoredFields
 return|;
 block|}
 block|}
-argument_list|)
-expr_stmt|;
+return|;
 block|}
 DECL|method|processFacetFields
 specifier|private
@@ -1698,11 +1675,9 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
-comment|// nocommit open this up
-comment|/** We can open this up if/when we really need    *  pluggability on the encoding. */
+comment|/** Encodes ordinals into a BytesRef; expert: subclass can    *  override this to change encoding. */
 DECL|method|dedupAndEncode
-specifier|private
-specifier|final
+specifier|protected
 name|BytesRef
 name|dedupAndEncode
 parameter_list|(
@@ -2217,7 +2192,7 @@ name|upto
 argument_list|)
 return|;
 block|}
-comment|// nocommit move these constants / methods to Util?
+comment|// nocommit move all of this to Util?
 comment|// Joins the path components together:
 DECL|field|DELIM_CHAR
 specifier|private

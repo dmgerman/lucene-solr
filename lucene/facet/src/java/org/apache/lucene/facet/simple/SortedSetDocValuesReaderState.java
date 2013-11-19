@@ -463,7 +463,7 @@ name|String
 index|[]
 name|components
 init|=
-name|FacetIndexWriter
+name|FacetDocument
 operator|.
 name|stringToPath
 argument_list|(

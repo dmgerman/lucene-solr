@@ -292,7 +292,7 @@ name|Term
 argument_list|(
 name|field
 argument_list|,
-name|FacetIndexWriter
+name|FacetDocument
 operator|.
 name|pathToString
 argument_list|(
