@@ -1684,7 +1684,7 @@ name|LOG
 operator|.
 name|warn
 argument_list|(
-literal|"Could not get attibute "
+literal|"Could not get attribute "
 operator|+
 name|attribute
 argument_list|)
