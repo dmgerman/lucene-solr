@@ -2444,6 +2444,17 @@ name|int
 name|length
 parameter_list|)
 block|{
+if|if
+condition|(
+name|length
+operator|==
+literal|0
+condition|)
+block|{
+return|return
+literal|""
+return|;
+block|}
 name|StringBuilder
 name|sb
 init|=

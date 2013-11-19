@@ -266,6 +266,22 @@ name|lucene
 operator|.
 name|facet
 operator|.
+name|simple
+operator|.
+name|DocumentBuilder
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|facet
+operator|.
 name|taxonomy
 operator|.
 name|FacetLabel
@@ -475,6 +491,8 @@ operator|.
 name|index
 operator|.
 name|IndexWriterConfig
+operator|.
+name|OpenMode
 import|;
 end_import
 
@@ -489,8 +507,6 @@ operator|.
 name|index
 operator|.
 name|IndexWriterConfig
-operator|.
-name|OpenMode
 import|;
 end_import
 
@@ -1946,11 +1962,17 @@ name|fullPathField
 operator|.
 name|setStringValue
 argument_list|(
+name|DocumentBuilder
+operator|.
+name|pathToString
+argument_list|(
 name|categoryPath
 operator|.
-name|toString
-argument_list|(
-name|delimiter
+name|components
+argument_list|,
+name|categoryPath
+operator|.
+name|length
 argument_list|)
 argument_list|)
 expr_stmt|;
