@@ -378,6 +378,17 @@ argument_list|,
 literal|30000
 argument_list|)
 expr_stmt|;
+name|params
+operator|.
+name|set
+argument_list|(
+name|HttpClientUtil
+operator|.
+name|PROP_USE_RETRY
+argument_list|,
+literal|false
+argument_list|)
+expr_stmt|;
 name|httpClient
 operator|=
 name|HttpClientUtil
