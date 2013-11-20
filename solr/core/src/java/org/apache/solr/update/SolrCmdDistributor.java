@@ -448,6 +448,8 @@ range|:
 name|errors
 control|)
 block|{
+try|try
+block|{
 name|String
 name|oldNodeUrl
 init|=
@@ -681,6 +683,24 @@ operator|.
 name|add
 argument_list|(
 name|err
+argument_list|)
+expr_stmt|;
+block|}
+block|}
+catch|catch
+parameter_list|(
+name|Exception
+name|e
+parameter_list|)
+block|{
+comment|// continue on
+name|log
+operator|.
+name|error
+argument_list|(
+literal|"Unexpected Error while doing request retries"
+argument_list|,
+name|e
 argument_list|)
 expr_stmt|;
 block|}
@@ -2003,6 +2023,26 @@ argument_list|()
 expr_stmt|;
 return|return
 literal|false
+return|;
+block|}
+catch|catch
+parameter_list|(
+name|Exception
+name|e
+parameter_list|)
+block|{
+comment|// we retry with same info
+name|log
+operator|.
+name|warn
+argument_list|(
+literal|null
+argument_list|,
+name|e
+argument_list|)
+expr_stmt|;
+return|return
+literal|true
 return|;
 block|}
 name|this
