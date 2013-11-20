@@ -643,14 +643,13 @@ literal|"Testing rewrite of schema.xml file."
 argument_list|)
 argument_list|)
 expr_stmt|;
-comment|//streams.add( new ContentStreamBase.StringStream( "there" ) );
 name|params
 operator|=
 name|params
 argument_list|(
 literal|"op"
 argument_list|,
-literal|"write"
+literal|"test"
 argument_list|,
 literal|"file"
 argument_list|,
@@ -690,6 +689,27 @@ argument_list|,
 name|rsp
 argument_list|)
 expr_stmt|;
+name|assertTrue
+argument_list|(
+literal|"Schema should have caused core reload to fail!"
+argument_list|,
+name|rsp
+operator|.
+name|getException
+argument_list|()
+operator|.
+name|getMessage
+argument_list|()
+operator|.
+name|indexOf
+argument_list|(
+literal|"SAXParseException"
+argument_list|)
+operator|!=
+operator|-
+literal|1
+argument_list|)
+expr_stmt|;
 name|String
 name|contents
 init|=
@@ -712,13 +732,16 @@ literal|"conf/schema.xml"
 argument_list|)
 argument_list|)
 decl_stmt|;
-name|assertEquals
+name|assertFalse
 argument_list|(
-literal|"Schema contents should have changed!"
-argument_list|,
-literal|"Testing rewrite of schema.xml file."
+literal|"Schema contents should NOT have changed!"
 argument_list|,
 name|contents
+operator|.
+name|contains
+argument_list|(
+literal|"Testing rewrite of schema.xml file."
+argument_list|)
 argument_list|)
 expr_stmt|;
 name|streams

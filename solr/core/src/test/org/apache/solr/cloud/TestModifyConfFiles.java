@@ -258,6 +258,15 @@ argument_list|,
 literal|"Testing rewrite of schema.xml file."
 argument_list|)
 expr_stmt|;
+name|params
+operator|.
+name|set
+argument_list|(
+literal|"op"
+argument_list|,
+literal|"test"
+argument_list|)
+expr_stmt|;
 name|request
 operator|=
 operator|new
@@ -305,6 +314,15 @@ literal|"No file name specified for write operation."
 argument_list|)
 expr_stmt|;
 block|}
+name|params
+operator|.
+name|set
+argument_list|(
+literal|"op"
+argument_list|,
+literal|"write"
+argument_list|)
+expr_stmt|;
 name|params
 operator|.
 name|set
@@ -425,7 +443,6 @@ argument_list|,
 literal|"UTF-8"
 argument_list|)
 decl_stmt|;
-comment|//String schema = getFileContentFromZooKeeper("schema.xml");
 name|assertTrue
 argument_list|(
 literal|"Schema contents should have changed!"
