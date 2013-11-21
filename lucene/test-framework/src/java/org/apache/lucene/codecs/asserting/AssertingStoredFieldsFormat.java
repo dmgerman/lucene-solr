@@ -684,13 +684,6 @@ operator|.
 name|close
 argument_list|()
 expr_stmt|;
-assert|assert
-name|docStatus
-operator|!=
-name|Status
-operator|.
-name|STARTED
-assert|;
 block|}
 block|}
 block|}
