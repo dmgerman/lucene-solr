@@ -517,9 +517,9 @@ operator|.
 name|readFileToString
 argument_list|(
 name|healthcheckFile
-argument_list|)
 argument_list|,
 literal|"UTF-8"
+argument_list|)
 argument_list|)
 expr_stmt|;
 comment|// now verify that the handler response with success

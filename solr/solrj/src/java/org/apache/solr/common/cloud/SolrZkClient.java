@@ -2380,12 +2380,13 @@ name|path
 argument_list|)
 expr_stmt|;
 block|}
-name|String
+name|byte
+index|[]
 name|data
 init|=
 name|FileUtils
 operator|.
-name|readFileToString
+name|readFileToByteArray
 argument_list|(
 name|file
 argument_list|)
@@ -2396,11 +2397,6 @@ argument_list|(
 name|path
 argument_list|,
 name|data
-operator|.
-name|getBytes
-argument_list|(
-literal|"UTF-8"
-argument_list|)
 argument_list|,
 name|retryOnConnLoss
 argument_list|)

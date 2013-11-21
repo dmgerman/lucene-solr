@@ -3440,6 +3440,13 @@ literal|"solrconfig.snippet.randomindexconfig.xml"
 argument_list|)
 argument_list|,
 name|rand_snip
+argument_list|,
+name|Charsets
+operator|.
+name|UTF_8
+operator|.
+name|toString
+argument_list|()
 argument_list|)
 expr_stmt|;
 name|FileUtils
