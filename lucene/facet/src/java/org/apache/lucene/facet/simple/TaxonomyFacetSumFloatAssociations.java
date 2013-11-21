@@ -593,6 +593,25 @@ parameter_list|)
 throws|throws
 name|IOException
 block|{
+if|if
+condition|(
+name|topN
+operator|<=
+literal|0
+condition|)
+block|{
+throw|throw
+operator|new
+name|IllegalArgumentException
+argument_list|(
+literal|"topN must be> 0 (got: "
+operator|+
+name|topN
+operator|+
+literal|")"
+argument_list|)
+throw|;
+block|}
 name|FacetsConfig
 operator|.
 name|DimConfig

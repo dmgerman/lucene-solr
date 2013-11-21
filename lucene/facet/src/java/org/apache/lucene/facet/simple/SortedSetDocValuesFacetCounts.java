@@ -392,6 +392,25 @@ name|IOException
 block|{
 if|if
 condition|(
+name|topN
+operator|<=
+literal|0
+condition|)
+block|{
+throw|throw
+operator|new
+name|IllegalArgumentException
+argument_list|(
+literal|"topN must be> 0 (got: "
+operator|+
+name|topN
+operator|+
+literal|")"
+argument_list|)
+throw|;
+block|}
+if|if
+condition|(
 name|path
 operator|.
 name|length
@@ -686,12 +705,18 @@ name|scratch
 argument_list|)
 expr_stmt|;
 name|String
-name|s
+index|[]
+name|parts
 init|=
+name|DocumentBuilder
+operator|.
+name|stringToPath
+argument_list|(
 name|scratch
 operator|.
 name|utf8ToString
 argument_list|()
+argument_list|)
 decl_stmt|;
 name|labelValues
 index|[
@@ -701,22 +726,10 @@ operator|=
 operator|new
 name|LabelAndValue
 argument_list|(
-name|s
-operator|.
-name|substring
-argument_list|(
-name|dim
-operator|.
-name|length
-argument_list|()
-operator|+
+name|parts
+index|[
 literal|1
-argument_list|,
-name|s
-operator|.
-name|length
-argument_list|()
-argument_list|)
+index|]
 argument_list|,
 name|ordAndValue
 operator|.
@@ -756,6 +769,48 @@ parameter_list|)
 throws|throws
 name|IOException
 block|{
+comment|//System.out.println("ssdv count");
+name|MultiDocValues
+operator|.
+name|OrdinalMap
+name|ordinalMap
+decl_stmt|;
+comment|// nocommit not quite right?  really, we need a way to
+comment|// verify that this ordinalMap "matches" the leaves in
+comment|// matchingDocs...
+if|if
+condition|(
+name|dv
+operator|instanceof
+name|MultiSortedSetDocValues
+operator|&&
+name|matchingDocs
+operator|.
+name|size
+argument_list|()
+operator|>
+literal|1
+condition|)
+block|{
+name|ordinalMap
+operator|=
+operator|(
+operator|(
+name|MultiSortedSetDocValues
+operator|)
+name|dv
+operator|)
+operator|.
+name|mapping
+expr_stmt|;
+block|}
+else|else
+block|{
+name|ordinalMap
+operator|=
+literal|null
+expr_stmt|;
+block|}
 for|for
 control|(
 name|MatchingDocs
@@ -774,6 +829,7 @@ operator|.
 name|reader
 argument_list|()
 decl_stmt|;
+comment|//System.out.println("  reader=" + reader);
 comment|// LUCENE-5090: make sure the provided reader context "matches"
 comment|// the top-level reader passed to the
 comment|// SortedSetDocValuesReaderState, else cryptic
@@ -822,7 +878,9 @@ operator|==
 literal|null
 condition|)
 block|{
-return|return;
+comment|// nocommit in trunk this was a "return" which is
+comment|// wrong; make a failing test
+continue|continue;
 block|}
 specifier|final
 name|int
@@ -843,6 +901,7 @@ operator|.
 name|length
 argument_list|()
 assert|;
+comment|//System.out.println("  dv=" + dv);
 comment|// nocommit, yet another option is to count all segs
 comment|// first, only in seg-ord space, and then do a
 comment|// merge-sort-PQ in the end to only "resolve to
@@ -854,25 +913,11 @@ comment|// temp ram req'ts (sum of number of ords across all
 comment|// segs)
 if|if
 condition|(
-name|dv
-operator|instanceof
-name|MultiSortedSetDocValues
+name|ordinalMap
+operator|!=
+literal|null
 condition|)
 block|{
-name|MultiDocValues
-operator|.
-name|OrdinalMap
-name|ordinalMap
-init|=
-operator|(
-operator|(
-name|MultiSortedSetDocValues
-operator|)
-name|dv
-operator|)
-operator|.
-name|mapping
-decl_stmt|;
 name|int
 name|segOrd
 init|=
@@ -904,6 +949,7 @@ operator|/
 literal|10
 condition|)
 block|{
+comment|//System.out.println("    remap as-we-go");
 comment|// Remap every ord to global ord as we iterate:
 name|int
 name|doc
@@ -933,6 +979,7 @@ operator|-
 literal|1
 condition|)
 block|{
+comment|//System.out.println("    doc=" + doc);
 name|segValues
 operator|.
 name|setDocument
@@ -960,6 +1007,7 @@ operator|.
 name|NO_MORE_ORDS
 condition|)
 block|{
+comment|//System.out.println("      segOrd=" + segOrd + " ord=" + term + " globalOrd=" + ordinalMap.getGlobalOrd(segOrd, term));
 name|counts
 index|[
 operator|(
@@ -994,6 +1042,7 @@ block|}
 block|}
 else|else
 block|{
+comment|//System.out.println("    count in seg ord first");
 comment|// First count in seg-ord space:
 specifier|final
 name|int
@@ -1034,6 +1083,7 @@ operator|-
 literal|1
 condition|)
 block|{
+comment|//System.out.println("    doc=" + doc);
 name|segValues
 operator|.
 name|setDocument
@@ -1061,6 +1111,7 @@ operator|.
 name|NO_MORE_ORDS
 condition|)
 block|{
+comment|//System.out.println("      ord=" + term);
 name|segCounts
 index|[
 name|term
@@ -1113,6 +1164,7 @@ operator|!=
 literal|0
 condition|)
 block|{
+comment|//System.out.println("    migrate segOrd=" + segOrd + " ord=" + ord + " globalOrd=" + ordinalMap.getGlobalOrd(segOrd, ord));
 name|counts
 index|[
 operator|(
@@ -1249,6 +1301,8 @@ literal|"path must be length=1"
 argument_list|)
 throw|;
 block|}
+comment|// nocommit this is not thread safe in general?  add
+comment|// jdocs that app must instantiate& use from same thread?
 name|int
 name|ord
 init|=

@@ -102,6 +102,7 @@ end_comment
 
 begin_class
 DECL|class|AssertingSubDocsAtOnceCollector
+specifier|public
 class|class
 name|AssertingSubDocsAtOnceCollector
 extends|extends
