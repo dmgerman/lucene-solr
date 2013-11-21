@@ -9701,7 +9701,7 @@ name|BAD_REQUEST
 argument_list|,
 name|REPLICATION_FACTOR
 operator|+
-literal|" must be greater than or equal to 0"
+literal|" must be greater than 0"
 argument_list|)
 throw|;
 block|}
