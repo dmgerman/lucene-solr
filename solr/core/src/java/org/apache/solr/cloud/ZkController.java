@@ -8470,6 +8470,26 @@ return|return
 name|updateShardHandler
 return|;
 block|}
+DECL|method|getOverseer
+specifier|public
+name|Overseer
+name|getOverseer
+parameter_list|()
+block|{
+return|return
+name|overseer
+return|;
+block|}
+DECL|method|getOverseerElector
+specifier|public
+name|LeaderElector
+name|getOverseerElector
+parameter_list|()
+block|{
+return|return
+name|overseerElector
+return|;
+block|}
 comment|/**    * Returns the nodeName that should be used based on the specified properties.    *    * @param hostName - must not be null or the empty string    * @param hostPort - must consist only of digits, must not be null or the empty string    * @param hostContext - should not begin or end with a slash (leading/trailin slashes will be ignored), must not be null, may be the empty string to denote the root context    * @lucene.experimental    * @see SolrZkClient#getBaseUrlForNodeName    */
 DECL|method|generateNodeName
 specifier|static
