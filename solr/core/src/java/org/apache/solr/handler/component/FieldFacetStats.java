@@ -234,6 +234,11 @@ specifier|final
 name|SchemaField
 name|field_sf
 decl_stmt|;
+DECL|field|calcDistinct
+specifier|final
+name|boolean
+name|calcDistinct
+decl_stmt|;
 DECL|field|facetStatsValues
 specifier|public
 specifier|final
@@ -310,6 +315,9 @@ name|field_sf
 parameter_list|,
 name|SchemaField
 name|facet_sf
+parameter_list|,
+name|boolean
+name|calcDistinct
 parameter_list|)
 block|{
 name|this
@@ -329,6 +337,12 @@ operator|.
 name|facet_sf
 operator|=
 name|facet_sf
+expr_stmt|;
+name|this
+operator|.
+name|calcDistinct
+operator|=
+name|calcDistinct
 expr_stmt|;
 name|topLevelReader
 operator|=
@@ -412,6 +426,8 @@ operator|.
 name|createStatsValues
 argument_list|(
 name|field_sf
+argument_list|,
+name|calcDistinct
 argument_list|)
 expr_stmt|;
 name|facetStatsValues
@@ -806,6 +822,8 @@ operator|.
 name|createStatsValues
 argument_list|(
 name|field_sf
+argument_list|,
+name|calcDistinct
 argument_list|)
 expr_stmt|;
 name|facetStatsValues

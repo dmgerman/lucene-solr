@@ -59,6 +59,17 @@ name|STATS
 operator|+
 literal|".facet"
 decl_stmt|;
+DECL|field|STATS_CALC_DISTINCT
+specifier|public
+specifier|static
+specifier|final
+name|String
+name|STATS_CALC_DISTINCT
+init|=
+name|STATS
+operator|+
+literal|".calcdistinct"
+decl_stmt|;
 block|}
 end_interface
 
