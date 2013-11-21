@@ -4386,11 +4386,6 @@ expr_stmt|;
 block|}
 annotation|@
 name|Test
-annotation|@
-name|Ignore
-argument_list|(
-literal|"https://issues.apache.org/jira/browse/SOLR-5343"
-argument_list|)
 DECL|method|doTestStressReplication
 specifier|public
 name|void
