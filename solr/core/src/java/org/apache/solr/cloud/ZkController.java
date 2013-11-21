@@ -124,6 +124,22 @@ name|common
 operator|.
 name|cloud
 operator|.
+name|BeforeReconnect
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|solr
+operator|.
+name|common
+operator|.
+name|cloud
+operator|.
 name|ClusterState
 import|;
 end_import
@@ -140,39 +156,23 @@ name|common
 operator|.
 name|cloud
 operator|.
+name|DefaultConnectionStrategy
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|solr
+operator|.
+name|common
+operator|.
+name|cloud
+operator|.
 name|DocCollection
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|solr
-operator|.
-name|common
-operator|.
-name|cloud
-operator|.
-name|DocRouter
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|solr
-operator|.
-name|common
-operator|.
-name|cloud
-operator|.
-name|ImplicitDocRouter
 import|;
 end_import
 
@@ -1419,6 +1419,10 @@ name|zkClientTimeout
 argument_list|,
 name|zkClientConnectTimeout
 argument_list|,
+operator|new
+name|DefaultConnectionStrategy
+argument_list|()
+argument_list|,
 comment|// on reconnect, reload cloud info
 operator|new
 name|OnReconnect
@@ -1438,13 +1442,15 @@ argument_list|(
 name|registerOnReconnect
 argument_list|)
 expr_stmt|;
-comment|// this is troublesome - we dont want to kill anything the old leader accepted
-comment|// though I guess sync will likely get those updates back? But only if
+comment|// this is troublesome - we dont want to kill anything the old
+comment|// leader accepted
+comment|// though I guess sync will likely get those updates back? But
+comment|// only if
 comment|// he is involved in the sync, and he certainly may not be
-comment|//  ExecutorUtil.shutdownAndAwaitTermination(cc.getCmdDistribExecutor());
+comment|// ExecutorUtil.shutdownAndAwaitTermination(cc.getCmdDistribExecutor());
 comment|// we need to create all of our lost watches
 comment|// seems we dont need to do this again...
-comment|//Overseer.createClientNodes(zkClient, getNodeName());
+comment|// Overseer.createClientNodes(zkClient, getNodeName());
 name|ShardHandler
 name|shardHandler
 decl_stmt|;
@@ -1478,22 +1484,6 @@ argument_list|(
 name|registerOnReconnect
 argument_list|,
 literal|false
-argument_list|)
-expr_stmt|;
-name|ZkController
-operator|.
-name|this
-operator|.
-name|overseer
-operator|=
-operator|new
-name|Overseer
-argument_list|(
-name|shardHandler
-argument_list|,
-name|adminPath
-argument_list|,
-name|zkStateReader
 argument_list|)
 expr_stmt|;
 name|ElectionContext
@@ -1555,8 +1545,10 @@ range|:
 name|descriptors
 control|)
 block|{
-comment|// TODO: we need to think carefully about what happens when it was
-comment|// a leader that was expired - as well as what to do about leaders/overseers
+comment|// TODO: we need to think carefully about what happens when it
+comment|// was
+comment|// a leader that was expired - as well as what to do about
+comment|// leaders/overseers
 comment|// with connection loss
 try|try
 block|{
@@ -1659,6 +1651,48 @@ argument_list|,
 name|e
 argument_list|)
 throw|;
+block|}
+block|}
+block|}
+argument_list|,
+operator|new
+name|BeforeReconnect
+argument_list|()
+block|{
+annotation|@
+name|Override
+specifier|public
+name|void
+name|command
+parameter_list|()
+block|{
+try|try
+block|{
+name|ZkController
+operator|.
+name|this
+operator|.
+name|overseer
+operator|.
+name|close
+argument_list|()
+expr_stmt|;
+block|}
+catch|catch
+parameter_list|(
+name|Exception
+name|e
+parameter_list|)
+block|{
+name|log
+operator|.
+name|error
+argument_list|(
+literal|"Error trying to stop any Overseer threads"
+argument_list|,
+name|e
+argument_list|)
+expr_stmt|;
 block|}
 block|}
 block|}
