@@ -809,7 +809,7 @@ throw|;
 comment|// should never happen w/o using real IO
 block|}
 block|}
-comment|/**    * Returns config value    * @param collection    */
+comment|/**    * Returns config set name for collection.    *     * @param collection to return config set name for    */
 DECL|method|readConfigName
 specifier|public
 name|String
