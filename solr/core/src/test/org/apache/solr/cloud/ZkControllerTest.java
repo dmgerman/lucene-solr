@@ -1050,6 +1050,9 @@ name|configName
 init|=
 name|zkController
 operator|.
+name|getZkStateReader
+argument_list|()
+operator|.
 name|readConfigName
 argument_list|(
 name|COLLECTION_NAME

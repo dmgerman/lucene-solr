@@ -3179,6 +3179,9 @@ operator|.
 name|getZkController
 argument_list|()
 operator|.
+name|getZkStateReader
+argument_list|()
+operator|.
 name|readConfigName
 argument_list|(
 name|collection
