@@ -2592,15 +2592,12 @@ if|if
 condition|(
 name|param
 operator|.
-name|indexOf
+name|startsWith
 argument_list|(
 name|OverseerCollectionProcessor
 operator|.
 name|COLL_PROP_PREFIX
 argument_list|)
-operator|!=
-operator|-
-literal|1
 condition|)
 block|{
 name|props
