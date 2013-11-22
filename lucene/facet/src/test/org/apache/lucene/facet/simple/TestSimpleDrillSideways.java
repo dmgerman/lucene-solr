@@ -2823,7 +2823,6 @@ name|cChance
 operator|/=
 name|sum
 expr_stmt|;
-comment|// nocommit
 name|int
 name|numDims
 init|=

@@ -1118,16 +1118,11 @@ operator|==
 literal|0
 condition|)
 block|{
-comment|// baseQuery given to the ctor was null + no drill-downs were added
-comment|// note that if only baseQuery was given to the ctor, but no drill-down terms
-comment|// is fine, since the rewritten query will be the original base query.
-throw|throw
+return|return
 operator|new
-name|IllegalStateException
-argument_list|(
-literal|"no base query or drill-down categories given"
-argument_list|)
-throw|;
+name|MatchAllDocsQuery
+argument_list|()
+return|;
 block|}
 return|return
 name|query

@@ -569,10 +569,10 @@ block|}
 block|}
 return|;
 block|}
-DECL|method|getFacetCounts
+DECL|method|getTaxonomyFacetCounts
 specifier|public
 name|Facets
-name|getFacetCounts
+name|getTaxonomyFacetCounts
 parameter_list|(
 name|TaxonomyReader
 name|taxoReader
