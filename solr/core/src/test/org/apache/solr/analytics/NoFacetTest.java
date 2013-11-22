@@ -1505,6 +1505,31 @@ name|floatResult
 operator|-
 name|floatTest
 argument_list|)
+operator|+
+literal|" Let's see what the JVM thinks these bits are. FloatResult:  "
+operator|+
+name|floatResult
+operator|.
+name|toString
+argument_list|()
+operator|+
+literal|" floatTest: "
+operator|+
+name|floatTest
+operator|.
+name|toString
+argument_list|()
+operator|+
+literal|" Diff "
+operator|+
+name|Double
+operator|.
+name|toString
+argument_list|(
+name|floatResult
+operator|-
+name|floatTest
+argument_list|)
 argument_list|,
 name|Math
 operator|.
