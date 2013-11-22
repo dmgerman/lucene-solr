@@ -101,6 +101,16 @@ argument_list|>
 name|readIndexerProperties
 parameter_list|()
 function_decl|;
+DECL|method|convertDateToString
+specifier|public
+specifier|abstract
+name|String
+name|convertDateToString
+parameter_list|(
+name|Date
+name|d
+parameter_list|)
+function_decl|;
 DECL|method|getCurrentTimestamp
 specifier|public
 name|Date
