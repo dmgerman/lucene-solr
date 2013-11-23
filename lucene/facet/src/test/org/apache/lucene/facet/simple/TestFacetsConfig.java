@@ -57,10 +57,10 @@ import|;
 end_import
 
 begin_class
-DECL|class|TestDocumentBuilder
+DECL|class|TestFacetsConfig
 specifier|public
 class|class
-name|TestDocumentBuilder
+name|TestFacetsConfig
 extends|extends
 name|FacetTestCase
 block|{
@@ -152,7 +152,7 @@ block|}
 name|String
 name|s
 init|=
-name|DocumentBuilder
+name|FacetsConfig
 operator|.
 name|pathToString
 argument_list|(
@@ -163,7 +163,7 @@ name|String
 index|[]
 name|parts2
 init|=
-name|DocumentBuilder
+name|FacetsConfig
 operator|.
 name|stringToPath
 argument_list|(

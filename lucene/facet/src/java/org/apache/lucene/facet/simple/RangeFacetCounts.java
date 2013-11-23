@@ -545,6 +545,10 @@ argument_list|,
 name|totCount
 argument_list|,
 name|labelValues
+argument_list|,
+name|labelValues
+operator|.
+name|length
 argument_list|)
 return|;
 block|}

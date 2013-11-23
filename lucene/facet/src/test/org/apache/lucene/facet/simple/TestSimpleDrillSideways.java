@@ -680,7 +680,9 @@ name|config
 init|=
 operator|new
 name|FacetsConfig
-argument_list|()
+argument_list|(
+name|taxoWriter
+argument_list|)
 decl_stmt|;
 name|config
 operator|.
@@ -701,17 +703,6 @@ name|random
 argument_list|()
 argument_list|,
 name|dir
-argument_list|)
-decl_stmt|;
-name|DocumentBuilder
-name|builder
-init|=
-operator|new
-name|DocumentBuilder
-argument_list|(
-name|taxoWriter
-argument_list|,
-name|config
 argument_list|)
 decl_stmt|;
 name|Document
@@ -755,7 +746,7 @@ name|writer
 operator|.
 name|addDocument
 argument_list|(
-name|builder
+name|config
 operator|.
 name|build
 argument_list|(
@@ -803,7 +794,7 @@ name|writer
 operator|.
 name|addDocument
 argument_list|(
-name|builder
+name|config
 operator|.
 name|build
 argument_list|(
@@ -851,7 +842,7 @@ name|writer
 operator|.
 name|addDocument
 argument_list|(
-name|builder
+name|config
 operator|.
 name|build
 argument_list|(
@@ -899,7 +890,7 @@ name|writer
 operator|.
 name|addDocument
 argument_list|(
-name|builder
+name|config
 operator|.
 name|build
 argument_list|(
@@ -947,7 +938,7 @@ name|writer
 operator|.
 name|addDocument
 argument_list|(
-name|builder
+name|config
 operator|.
 name|build
 argument_list|(
@@ -1854,7 +1845,9 @@ name|config
 init|=
 operator|new
 name|FacetsConfig
-argument_list|()
+argument_list|(
+name|taxoWriter
+argument_list|)
 decl_stmt|;
 name|config
 operator|.
@@ -1865,19 +1858,6 @@ argument_list|,
 literal|true
 argument_list|)
 expr_stmt|;
-comment|// Reused across documents, to add the necessary facet
-comment|// fields:
-name|DocumentBuilder
-name|builder
-init|=
-operator|new
-name|DocumentBuilder
-argument_list|(
-name|taxoWriter
-argument_list|,
-name|config
-argument_list|)
-decl_stmt|;
 name|Document
 name|doc
 init|=
@@ -1919,7 +1899,7 @@ name|writer
 operator|.
 name|addDocument
 argument_list|(
-name|builder
+name|config
 operator|.
 name|build
 argument_list|(
@@ -1967,7 +1947,7 @@ name|writer
 operator|.
 name|addDocument
 argument_list|(
-name|builder
+name|config
 operator|.
 name|build
 argument_list|(
@@ -2021,7 +2001,7 @@ name|writer
 operator|.
 name|addDocument
 argument_list|(
-name|builder
+name|config
 operator|.
 name|build
 argument_list|(
@@ -2199,22 +2179,6 @@ argument_list|,
 name|dir
 argument_list|)
 decl_stmt|;
-name|FacetsConfig
-name|config
-init|=
-operator|new
-name|FacetsConfig
-argument_list|()
-decl_stmt|;
-name|config
-operator|.
-name|setHierarchical
-argument_list|(
-literal|"dim"
-argument_list|,
-literal|true
-argument_list|)
-expr_stmt|;
 comment|// Writes facet ords to a separate directory from the
 comment|// main index:
 name|DirectoryTaxonomyWriter
@@ -2232,19 +2196,24 @@ operator|.
 name|CREATE
 argument_list|)
 decl_stmt|;
-comment|// Reused across documents, to add the necessary facet
-comment|// fields:
-name|DocumentBuilder
-name|builder
+name|FacetsConfig
+name|config
 init|=
 operator|new
-name|DocumentBuilder
+name|FacetsConfig
 argument_list|(
 name|taxoWriter
-argument_list|,
-name|config
 argument_list|)
 decl_stmt|;
+name|config
+operator|.
+name|setHierarchical
+argument_list|(
+literal|"dim"
+argument_list|,
+literal|true
+argument_list|)
+expr_stmt|;
 name|Document
 name|doc
 init|=
@@ -2271,7 +2240,7 @@ name|writer
 operator|.
 name|addDocument
 argument_list|(
-name|builder
+name|config
 operator|.
 name|build
 argument_list|(
@@ -2304,7 +2273,7 @@ name|writer
 operator|.
 name|addDocument
 argument_list|(
-name|builder
+name|config
 operator|.
 name|build
 argument_list|(
@@ -2337,7 +2306,7 @@ name|writer
 operator|.
 name|addDocument
 argument_list|(
-name|builder
+name|config
 operator|.
 name|build
 argument_list|(
@@ -2368,7 +2337,7 @@ name|writer
 operator|.
 name|addDocument
 argument_list|(
-name|builder
+name|config
 operator|.
 name|build
 argument_list|(
@@ -2399,7 +2368,7 @@ name|writer
 operator|.
 name|addDocument
 argument_list|(
-name|builder
+name|config
 operator|.
 name|build
 argument_list|(
@@ -2430,7 +2399,7 @@ name|writer
 operator|.
 name|addDocument
 argument_list|(
-name|builder
+name|config
 operator|.
 name|build
 argument_list|(
@@ -3324,7 +3293,9 @@ name|config
 init|=
 operator|new
 name|FacetsConfig
-argument_list|()
+argument_list|(
+name|tw
+argument_list|)
 decl_stmt|;
 for|for
 control|(
@@ -3353,17 +3324,6 @@ literal|true
 argument_list|)
 expr_stmt|;
 block|}
-name|DocumentBuilder
-name|builder
-init|=
-operator|new
-name|DocumentBuilder
-argument_list|(
-name|tw
-argument_list|,
-name|config
-argument_list|)
-decl_stmt|;
 name|boolean
 name|doUseDV
 init|=
@@ -3731,7 +3691,7 @@ name|w
 operator|.
 name|addDocument
 argument_list|(
-name|builder
+name|config
 operator|.
 name|build
 argument_list|(

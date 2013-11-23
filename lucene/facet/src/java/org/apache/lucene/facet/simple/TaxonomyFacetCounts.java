@@ -699,6 +699,11 @@ name|totCount
 init|=
 literal|0
 decl_stmt|;
+name|int
+name|childCount
+init|=
+literal|0
+decl_stmt|;
 name|TopOrdAndIntQueue
 operator|.
 name|OrdAndValue
@@ -731,6 +736,9 @@ name|counts
 index|[
 name|ord
 index|]
+expr_stmt|;
+name|childCount
+operator|++
 expr_stmt|;
 if|if
 condition|(
@@ -945,6 +953,8 @@ argument_list|,
 name|totCount
 argument_list|,
 name|labelValues
+argument_list|,
+name|childCount
 argument_list|)
 return|;
 block|}
