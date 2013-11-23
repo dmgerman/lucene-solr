@@ -758,11 +758,24 @@ operator|+
 literal|"_noCores"
 argument_list|)
 decl_stmt|;
+name|boolean
+name|oldSolrXml
+init|=
+name|random
+argument_list|()
+operator|.
+name|nextBoolean
+argument_list|()
+decl_stmt|;
 name|SetUpHome
 argument_list|(
 name|solrHomeDirectory
 argument_list|,
+name|oldSolrXml
+condition|?
 name|EMPTY_SOLR_XML
+else|:
+name|EMPTY_SOLR_XML2
 argument_list|)
 expr_stmt|;
 name|CoreContainer
@@ -870,6 +883,11 @@ name|size
 argument_list|()
 argument_list|)
 expr_stmt|;
+if|if
+condition|(
+name|oldSolrXml
+condition|)
+block|{
 name|assertXmlFile
 argument_list|(
 operator|new
@@ -883,6 +901,7 @@ argument_list|,
 literal|"/solr/cores[@transientCacheSize='32']"
 argument_list|)
 expr_stmt|;
+block|}
 name|newCore
 operator|.
 name|close
@@ -909,6 +928,22 @@ argument_list|()
 operator|.
 name|size
 argument_list|()
+argument_list|)
+expr_stmt|;
+comment|// try and remove a core that does not exist
+name|SolrCore
+name|ret
+init|=
+name|cores
+operator|.
+name|remove
+argument_list|(
+literal|"non_existent_core"
+argument_list|)
+decl_stmt|;
+name|assertNull
+argument_list|(
+name|ret
 argument_list|)
 expr_stmt|;
 block|}
@@ -1510,6 +1545,19 @@ operator|+
 literal|"<cores adminPath=\"/admin/cores\" transientCacheSize=\"32\">\n"
 operator|+
 literal|"</cores>\n"
+operator|+
+literal|"</solr>"
+decl_stmt|;
+DECL|field|EMPTY_SOLR_XML2
+specifier|private
+specifier|static
+specifier|final
+name|String
+name|EMPTY_SOLR_XML2
+init|=
+literal|"<?xml version=\"1.0\" encoding=\"UTF-8\" ?>\n"
+operator|+
+literal|"<solr>\n"
 operator|+
 literal|"</solr>"
 decl_stmt|;
