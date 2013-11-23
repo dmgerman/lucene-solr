@@ -539,6 +539,15 @@ name|params
 operator|.
 name|add
 argument_list|(
+literal|"field"
+argument_list|,
+literal|"test_field"
+argument_list|)
+expr_stmt|;
+name|params
+operator|.
+name|add
+argument_list|(
 literal|"lookupImpl"
 argument_list|,
 literal|"org.apache.solr.spelling.suggest.tst.TSTLookupFactory"

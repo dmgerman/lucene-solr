@@ -28,9 +28,9 @@ name|lucene
 operator|.
 name|search
 operator|.
-name|suggest
+name|spell
 operator|.
-name|Lookup
+name|Dictionary
 import|;
 end_import
 
@@ -72,62 +72,86 @@ name|apache
 operator|.
 name|solr
 operator|.
-name|spelling
+name|search
 operator|.
-name|suggest
-operator|.
-name|jaspell
-operator|.
-name|JaspellLookupFactory
+name|SolrIndexSearcher
 import|;
 end_import
 
 begin_comment
-comment|/**  * Suggester factory for creating {@link Lookup} instances.  */
+comment|/**  * Encapsulates shared fields for all types of dictionaryFactory classes  */
 end_comment
 
 begin_class
-DECL|class|LookupFactory
+DECL|class|DictionaryFactory
 specifier|public
 specifier|abstract
 class|class
-name|LookupFactory
+name|DictionaryFactory
 block|{
-comment|/** Default lookup implementation to use for SolrSuggester */
+comment|/** Default dictionary implementation to use for FileBasedDictionaries */
 DECL|field|DEFAULT_FILE_BASED_DICT
 specifier|public
 specifier|static
 name|String
 name|DEFAULT_FILE_BASED_DICT
 init|=
-name|JaspellLookupFactory
+name|FileDictionaryFactory
 operator|.
 name|class
 operator|.
 name|getName
 argument_list|()
 decl_stmt|;
-comment|/**    * Create a Lookup using config options in<code>params</code> and     * current<code>core</code>    */
-DECL|method|create
+comment|/** Default dictionary implementation to use for IndexBasedDictionaries */
+DECL|field|DEFAULT_INDEX_BASED_DICT
 specifier|public
-specifier|abstract
-name|Lookup
-name|create
+specifier|static
+name|String
+name|DEFAULT_INDEX_BASED_DICT
+init|=
+name|HighFrequencyDictionaryFactory
+operator|.
+name|class
+operator|.
+name|getName
+argument_list|()
+decl_stmt|;
+DECL|field|params
+specifier|protected
+name|NamedList
+name|params
+decl_stmt|;
+comment|/** Sets the parameters available to SolrSuggester for use in Dictionary creation */
+DECL|method|setParams
+specifier|public
+name|void
+name|setParams
 parameter_list|(
 name|NamedList
 name|params
-parameter_list|,
-name|SolrCore
-name|core
 parameter_list|)
-function_decl|;
-comment|/**     *<p>Returns the filename in which the in-memory data structure is stored</p>    *<b>NOTE:</b> not all {@link Lookup} implementations store in-memory data structures    * */
-DECL|method|storeFileName
+block|{
+name|this
+operator|.
+name|params
+operator|=
+name|params
+expr_stmt|;
+block|}
+comment|/**    * Create a Dictionary using options in<code>core</code> and optionally    * uses<code>searcher</code>, in case of index based dictionaries    */
+DECL|method|create
 specifier|public
 specifier|abstract
-name|String
-name|storeFileName
-parameter_list|()
+name|Dictionary
+name|create
+parameter_list|(
+name|SolrCore
+name|core
+parameter_list|,
+name|SolrIndexSearcher
+name|searcher
+parameter_list|)
 function_decl|;
 block|}
 end_class

@@ -287,6 +287,28 @@ name|toString
 argument_list|()
 argument_list|)
 decl_stmt|;
+if|if
+condition|(
+name|ft
+operator|==
+literal|null
+condition|)
+block|{
+throw|throw
+operator|new
+name|IllegalArgumentException
+argument_list|(
+literal|"Error in configuration: "
+operator|+
+name|fieldTypeName
+operator|.
+name|toString
+argument_list|()
+operator|+
+literal|" is not defined in the schema"
+argument_list|)
+throw|;
+block|}
 name|Analyzer
 name|indexAnalyzer
 init|=
