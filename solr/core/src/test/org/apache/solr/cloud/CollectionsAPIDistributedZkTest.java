@@ -1059,17 +1059,7 @@ name|beforeThisClass2
 parameter_list|()
 throws|throws
 name|Exception
-block|{
-name|assumeFalse
-argument_list|(
-literal|"FIXME: This test fails under Java 8 all the time, see SOLR-4711"
-argument_list|,
-name|Constants
-operator|.
-name|JRE_IS_MINIMUM_JAVA8
-argument_list|)
-expr_stmt|;
-block|}
+block|{    }
 annotation|@
 name|Before
 annotation|@
