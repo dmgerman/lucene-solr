@@ -10793,6 +10793,16 @@ argument_list|)
 expr_stmt|;
 name|commondCloudSolrServer
 operator|.
+name|getLbServer
+argument_list|()
+operator|.
+name|setConnectionTimeout
+argument_list|(
+literal|30000
+argument_list|)
+expr_stmt|;
+name|commondCloudSolrServer
+operator|.
 name|setParallelUpdates
 argument_list|(
 name|random

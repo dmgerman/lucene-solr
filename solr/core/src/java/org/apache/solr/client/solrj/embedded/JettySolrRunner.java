@@ -1231,6 +1231,13 @@ argument_list|(
 literal|1500
 argument_list|)
 expr_stmt|;
+name|c
+operator|.
+name|setSoLingerTime
+argument_list|(
+literal|0
+argument_list|)
+expr_stmt|;
 name|connector
 operator|=
 name|c
@@ -1278,6 +1285,13 @@ operator|.
 name|setReuseAddress
 argument_list|(
 literal|true
+argument_list|)
+expr_stmt|;
+name|c
+operator|.
+name|setSoLingerTime
+argument_list|(
+literal|0
 argument_list|)
 expr_stmt|;
 name|connector
