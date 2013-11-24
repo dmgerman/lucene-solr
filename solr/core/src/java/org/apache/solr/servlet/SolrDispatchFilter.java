@@ -3613,7 +3613,7 @@ name|addAll
 argument_list|(
 name|clusterState
 operator|.
-name|getActiveSlices
+name|getSlices
 argument_list|(
 name|collection
 argument_list|)
