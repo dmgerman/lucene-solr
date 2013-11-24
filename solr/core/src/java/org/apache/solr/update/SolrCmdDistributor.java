@@ -48,18 +48,6 @@ end_import
 
 begin_import
 import|import
-name|java
-operator|.
-name|util
-operator|.
-name|concurrent
-operator|.
-name|ExecutorService
-import|;
-end_import
-
-begin_import
-import|import
 name|org
 operator|.
 name|apache
@@ -354,8 +342,8 @@ DECL|method|SolrCmdDistributor
 specifier|public
 name|SolrCmdDistributor
 parameter_list|(
-name|ExecutorService
-name|updateExecutor
+name|UpdateShardHandler
+name|updateShardHandler
 parameter_list|)
 block|{
 name|servers
@@ -363,7 +351,7 @@ operator|=
 operator|new
 name|StreamingSolrServers
 argument_list|(
-name|updateExecutor
+name|updateShardHandler
 argument_list|)
 expr_stmt|;
 block|}

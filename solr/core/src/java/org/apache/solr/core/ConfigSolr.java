@@ -938,6 +938,40 @@ literal|0
 argument_list|)
 return|;
 block|}
+DECL|method|getMaxUpdateConnections
+specifier|public
+name|int
+name|getMaxUpdateConnections
+parameter_list|()
+block|{
+return|return
+name|getInt
+argument_list|(
+name|CfgProp
+operator|.
+name|SOLR_MAXUPDATECONNECTIONS
+argument_list|,
+literal|10000
+argument_list|)
+return|;
+block|}
+DECL|method|getMaxUpdateConnectionsPerHost
+specifier|public
+name|int
+name|getMaxUpdateConnectionsPerHost
+parameter_list|()
+block|{
+return|return
+name|getInt
+argument_list|(
+name|CfgProp
+operator|.
+name|SOLR_MAXUPDATECONNECTIONSPERHOST
+argument_list|,
+literal|100
+argument_list|)
+return|;
+block|}
 DECL|method|getCoreLoadThreadCount
 specifier|public
 name|int
@@ -1158,6 +1192,12 @@ name|SOLR_DISTRIBUPDATECONNTIMEOUT
 block|,
 DECL|enum constant|SOLR_DISTRIBUPDATESOTIMEOUT
 name|SOLR_DISTRIBUPDATESOTIMEOUT
+block|,
+DECL|enum constant|SOLR_MAXUPDATECONNECTIONS
+name|SOLR_MAXUPDATECONNECTIONS
+block|,
+DECL|enum constant|SOLR_MAXUPDATECONNECTIONSPERHOST
+name|SOLR_MAXUPDATECONNECTIONSPERHOST
 block|,
 DECL|enum constant|SOLR_HOST
 name|SOLR_HOST

@@ -1017,10 +1017,6 @@ literal|0
 argument_list|,
 literal|true
 argument_list|,
-literal|10000
-argument_list|,
-literal|10000
-argument_list|,
 operator|new
 name|CurrentCoreDescriptorProvider
 argument_list|()
@@ -1192,10 +1188,6 @@ argument_list|,
 literal|0
 argument_list|,
 literal|true
-argument_list|,
-literal|10000
-argument_list|,
-literal|10000
 argument_list|,
 operator|new
 name|CurrentCoreDescriptorProvider
