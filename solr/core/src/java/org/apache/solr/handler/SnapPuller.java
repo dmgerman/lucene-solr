@@ -5111,6 +5111,46 @@ name|SIZE
 argument_list|)
 condition|)
 block|{
+name|LOG
+operator|.
+name|warn
+argument_list|(
+literal|"File "
+operator|+
+name|file
+operator|.
+name|get
+argument_list|(
+name|NAME
+argument_list|)
+operator|+
+literal|" expected to be "
+operator|+
+name|file
+operator|.
+name|get
+argument_list|(
+name|SIZE
+argument_list|)
+operator|+
+literal|" while it is "
+operator|+
+name|dir
+operator|.
+name|fileLength
+argument_list|(
+operator|(
+name|String
+operator|)
+name|file
+operator|.
+name|get
+argument_list|(
+name|NAME
+argument_list|)
+argument_list|)
+argument_list|)
+expr_stmt|;
 comment|// file exists and size is different, therefore we must assume
 comment|// corrupted index
 return|return
