@@ -683,7 +683,7 @@ block|}
 name|int
 name|zkClientConnectTimeout
 init|=
-literal|15000
+literal|30000
 decl_stmt|;
 if|if
 condition|(
