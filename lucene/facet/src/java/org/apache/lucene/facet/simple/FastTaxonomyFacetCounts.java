@@ -1064,8 +1064,6 @@ return|return
 operator|new
 name|SimpleFacetResult
 argument_list|(
-name|cp
-argument_list|,
 name|totCount
 argument_list|,
 name|labelValues

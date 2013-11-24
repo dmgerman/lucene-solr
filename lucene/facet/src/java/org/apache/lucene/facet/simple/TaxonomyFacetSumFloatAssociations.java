@@ -908,8 +908,6 @@ return|return
 operator|new
 name|SimpleFacetResult
 argument_list|(
-name|cp
-argument_list|,
 name|sumValue
 argument_list|,
 name|labelValues

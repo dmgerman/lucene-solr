@@ -401,7 +401,7 @@ argument_list|)
 decl_stmt|;
 name|assertEquals
 argument_list|(
-literal|"a (4)\n  foo (2)\n  bar (1)\n  zoo (1)\n"
+literal|"value=4 childCount=3\n  foo (2)\n  bar (1)\n  zoo (1)\n"
 argument_list|,
 name|facets
 operator|.
@@ -418,7 +418,7 @@ argument_list|)
 expr_stmt|;
 name|assertEquals
 argument_list|(
-literal|"b (1)\n  baz (1)\n"
+literal|"value=1 childCount=1\n  baz (1)\n"
 argument_list|,
 name|facets
 operator|.
@@ -1017,7 +1017,7 @@ argument_list|)
 expr_stmt|;
 name|assertEquals
 argument_list|(
-literal|"a (3)\n  foo1 (1)\n  foo2 (1)\n  foo3 (1)\n"
+literal|"value=3 childCount=3\n  foo1 (1)\n  foo2 (1)\n  foo3 (1)\n"
 argument_list|,
 name|results
 operator|.
@@ -1032,7 +1032,7 @@ argument_list|)
 expr_stmt|;
 name|assertEquals
 argument_list|(
-literal|"b (2)\n  bar1 (1)\n  bar2 (1)\n"
+literal|"value=2 childCount=2\n  bar1 (1)\n  bar2 (1)\n"
 argument_list|,
 name|results
 operator|.
@@ -1047,7 +1047,7 @@ argument_list|)
 expr_stmt|;
 name|assertEquals
 argument_list|(
-literal|"c (1)\n  baz1 (1)\n"
+literal|"value=1 childCount=1\n  baz1 (1)\n"
 argument_list|,
 name|results
 operator|.
@@ -1250,7 +1250,7 @@ decl_stmt|;
 comment|// Ask for top 10 labels for any dims that have counts:
 name|assertEquals
 argument_list|(
-literal|"a (2)\n  foo1 (1)\n  foo2 (1)\n"
+literal|"value=2 childCount=2\n  foo1 (1)\n  foo2 (1)\n"
 argument_list|,
 name|facets
 operator|.

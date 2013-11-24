@@ -909,7 +909,7 @@ argument_list|)
 decl_stmt|;
 name|assertEquals
 argument_list|(
-literal|"field (101)\n  less than 10 (10)\n  less than or equal to 10 (11)\n  over 90 (9)\n  90 or above (10)\n  over 1000 (1)\n"
+literal|"value=101 childCount=5\n  less than 10 (10)\n  less than or equal to 10 (11)\n  over 90 (9)\n  90 or above (10)\n  over 1000 (1)\n"
 argument_list|,
 name|result
 operator|.
@@ -1414,7 +1414,7 @@ argument_list|)
 expr_stmt|;
 name|assertEquals
 argument_list|(
-literal|"dim (100)\n  b (75)\n  a (25)\n"
+literal|"value=100 childCount=2\n  b (75)\n  a (25)\n"
 argument_list|,
 name|dsr
 operator|.
@@ -1433,7 +1433,7 @@ argument_list|)
 expr_stmt|;
 name|assertEquals
 argument_list|(
-literal|"field (100)\n  less than 10 (10)\n  less than or equal to 10 (11)\n  over 90 (9)\n  90 or above (10)\n  over 1000 (0)\n"
+literal|"value=100 childCount=5\n  less than 10 (10)\n  less than or equal to 10 (11)\n  over 90 (9)\n  90 or above (10)\n  over 1000 (0)\n"
 argument_list|,
 name|dsr
 operator|.
@@ -1494,7 +1494,7 @@ argument_list|)
 expr_stmt|;
 name|assertEquals
 argument_list|(
-literal|"dim (100)\n  b (75)\n  a (25)\n"
+literal|"value=100 childCount=2\n  b (75)\n  a (25)\n"
 argument_list|,
 name|dsr
 operator|.
@@ -1513,7 +1513,7 @@ argument_list|)
 expr_stmt|;
 name|assertEquals
 argument_list|(
-literal|"field (75)\n  less than 10 (7)\n  less than or equal to 10 (8)\n  over 90 (7)\n  90 or above (8)\n  over 1000 (0)\n"
+literal|"value=75 childCount=5\n  less than 10 (7)\n  less than or equal to 10 (8)\n  over 90 (7)\n  90 or above (8)\n  over 1000 (0)\n"
 argument_list|,
 name|dsr
 operator|.
@@ -1587,7 +1587,7 @@ argument_list|)
 expr_stmt|;
 name|assertEquals
 argument_list|(
-literal|"dim (11)\n  b (8)\n  a (3)\n"
+literal|"value=11 childCount=2\n  b (8)\n  a (3)\n"
 argument_list|,
 name|dsr
 operator|.
@@ -1606,7 +1606,7 @@ argument_list|)
 expr_stmt|;
 name|assertEquals
 argument_list|(
-literal|"field (100)\n  less than 10 (10)\n  less than or equal to 10 (11)\n  over 90 (9)\n  90 or above (10)\n  over 1000 (0)\n"
+literal|"value=100 childCount=5\n  less than 10 (10)\n  less than or equal to 10 (11)\n  over 90 (9)\n  90 or above (10)\n  over 1000 (0)\n"
 argument_list|,
 name|dsr
 operator|.
@@ -1841,7 +1841,7 @@ argument_list|)
 decl_stmt|;
 name|assertEquals
 argument_list|(
-literal|"field (100)\n  less than 10 (10)\n  less than or equal to 10 (11)\n  over 90 (9)\n  90 or above (10)\n  over 1000 (0)\n"
+literal|"value=100 childCount=5\n  less than 10 (10)\n  less than or equal to 10 (11)\n  over 90 (9)\n  90 or above (10)\n  over 1000 (0)\n"
 argument_list|,
 name|facets
 operator|.
@@ -2068,7 +2068,7 @@ argument_list|)
 decl_stmt|;
 name|assertEquals
 argument_list|(
-literal|"field (100)\n  less than 10 (10)\n  less than or equal to 10 (11)\n  over 90 (9)\n  90 or above (10)\n  over 1000 (0)\n"
+literal|"value=100 childCount=5\n  less than 10 (10)\n  less than or equal to 10 (11)\n  over 90 (9)\n  90 or above (10)\n  over 1000 (0)\n"
 argument_list|,
 name|facets
 operator|.
@@ -4164,7 +4164,7 @@ argument_list|)
 decl_stmt|;
 name|assertEquals
 argument_list|(
-literal|"field (100)\n  less than 10 (8)\n  less than or equal to 10 (8)\n  over 90 (8)\n  90 or above (8)\n  over 1000 (0)\n"
+literal|"value=100 childCount=5\n  less than 10 (8)\n  less than or equal to 10 (8)\n  over 90 (8)\n  90 or above (8)\n  over 1000 (0)\n"
 argument_list|,
 name|facets
 operator|.

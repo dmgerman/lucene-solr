@@ -1032,7 +1032,7 @@ comment|// Publish Date is only drill-down, and Lisa published
 comment|// one in 2012 and one in 2010:
 name|assertEquals
 argument_list|(
-literal|"Publish Date (2)\n  2010 (1)\n  2012 (1)\n"
+literal|"value=2 childCount=2\n  2010 (1)\n  2012 (1)\n"
 argument_list|,
 name|r
 operator|.
@@ -1054,7 +1054,7 @@ comment|// (drill-down) published twice, and Frank/Susan/Bob
 comment|// published once:
 name|assertEquals
 argument_list|(
-literal|"Author (5)\n  Lisa (2)\n  Bob (1)\n  Susan (1)\n  Frank (1)\n"
+literal|"value=5 childCount=4\n  Lisa (2)\n  Bob (1)\n  Susan (1)\n  Frank (1)\n"
 argument_list|,
 name|r
 operator|.
@@ -1120,7 +1120,7 @@ comment|// Publish Date is only drill-down, and Lisa published
 comment|// one in 2012 and one in 2010:
 name|assertEquals
 argument_list|(
-literal|"Publish Date (2)\n  2010 (1)\n  2012 (1)\n"
+literal|"value=2 childCount=2\n  2010 (1)\n  2012 (1)\n"
 argument_list|,
 name|r
 operator|.
@@ -1142,7 +1142,7 @@ comment|// (drill-down) published twice, and Frank/Susan/Bob
 comment|// published once:
 name|assertEquals
 argument_list|(
-literal|"Author (5)\n  Lisa (2)\n  Bob (1)\n  Susan (1)\n  Frank (1)\n"
+literal|"value=5 childCount=4\n  Lisa (2)\n  Bob (1)\n  Susan (1)\n  Frank (1)\n"
 argument_list|,
 name|r
 operator|.
@@ -1215,7 +1215,7 @@ comment|// Publish Date is only drill-down: Lisa and Bob
 comment|// (drill-down) published twice in 2010 and once in 2012:
 name|assertEquals
 argument_list|(
-literal|"Publish Date (3)\n  2010 (2)\n  2012 (1)\n"
+literal|"value=3 childCount=2\n  2010 (2)\n  2012 (1)\n"
 argument_list|,
 name|r
 operator|.
@@ -1237,7 +1237,7 @@ comment|// (drill-down) published twice, and Frank/Susan/Bob
 comment|// published once:
 name|assertEquals
 argument_list|(
-literal|"Author (5)\n  Lisa (2)\n  Bob (1)\n  Susan (1)\n  Frank (1)\n"
+literal|"value=5 childCount=4\n  Lisa (2)\n  Bob (1)\n  Susan (1)\n  Frank (1)\n"
 argument_list|,
 name|r
 operator|.
@@ -1309,7 +1309,7 @@ comment|// Publish Date is drill-sideways + drill-down: Lisa
 comment|// (drill-down) published once in 2010 and once in 2012:
 name|assertEquals
 argument_list|(
-literal|"Publish Date (2)\n  2010 (1)\n  2012 (1)\n"
+literal|"value=2 childCount=2\n  2010 (1)\n  2012 (1)\n"
 argument_list|,
 name|r
 operator|.
@@ -1330,7 +1330,7 @@ comment|// Author is drill-sideways + drill-down:
 comment|// only Lisa& Bob published (once each) in 2010:
 name|assertEquals
 argument_list|(
-literal|"Author (2)\n  Bob (1)\n  Lisa (1)\n"
+literal|"value=2 childCount=2\n  Bob (1)\n  Lisa (1)\n"
 argument_list|,
 name|r
 operator|.
@@ -1413,7 +1413,7 @@ comment|// Publish Date is both drill-sideways + drill-down:
 comment|// Lisa or Bob published twice in 2010 and once in 2012:
 name|assertEquals
 argument_list|(
-literal|"Publish Date (3)\n  2010 (2)\n  2012 (1)\n"
+literal|"value=3 childCount=2\n  2010 (2)\n  2012 (1)\n"
 argument_list|,
 name|r
 operator|.
@@ -1434,7 +1434,7 @@ comment|// Author is drill-sideways + drill-down:
 comment|// only Lisa& Bob published (once each) in 2010:
 name|assertEquals
 argument_list|(
-literal|"Author (2)\n  Bob (1)\n  Lisa (1)\n"
+literal|"value=2 childCount=2\n  Bob (1)\n  Lisa (1)\n"
 argument_list|,
 name|r
 operator|.
@@ -1576,7 +1576,7 @@ comment|// Publish Date is only drill-down, and Lisa published
 comment|// one in 2012 and one in 2010:
 name|assertEquals
 argument_list|(
-literal|"Publish Date (2)\n  2010 (1)\n  2012 (1)\n"
+literal|"value=2 childCount=2\n  2010 (1)\n  2012 (1)\n"
 argument_list|,
 name|r
 operator|.
@@ -1598,7 +1598,7 @@ comment|// (drill-down) published twice, and Frank/Susan/Bob
 comment|// published once:
 name|assertEquals
 argument_list|(
-literal|"Author (5)\n  Lisa (2)\n  Bob (1)\n  Susan (1)\n  Frank (1)\n"
+literal|"value=5 childCount=4\n  Lisa (2)\n  Bob (1)\n  Susan (1)\n  Frank (1)\n"
 argument_list|,
 name|r
 operator|.
@@ -1671,7 +1671,7 @@ comment|// Publish Date is only drill-down, and Lisa published
 comment|// one in 2012 and one in 2010:
 name|assertEquals
 argument_list|(
-literal|"Publish Date (2)\n  2010 (1)\n  2012 (1)\n"
+literal|"value=2 childCount=2\n  2010 (1)\n  2012 (1)\n"
 argument_list|,
 name|r
 operator|.
@@ -2087,7 +2087,7 @@ comment|// Publish Date is only drill-down, and Lisa published
 comment|// one in 2012 and one in 2010:
 name|assertEquals
 argument_list|(
-literal|"Publish Date (1)\n  2010 (1)\n"
+literal|"value=1 childCount=1\n  2010 (1)\n"
 argument_list|,
 name|r
 operator|.
@@ -2109,7 +2109,7 @@ comment|// (drill-down) published once, and Bob
 comment|// published once:
 name|assertEquals
 argument_list|(
-literal|"Author (2)\n  Bob (1)\n  Lisa (1)\n"
+literal|"value=2 childCount=2\n  Bob (1)\n  Lisa (1)\n"
 argument_list|,
 name|r
 operator|.
@@ -2483,7 +2483,7 @@ argument_list|)
 expr_stmt|;
 name|assertEquals
 argument_list|(
-literal|"dim (6)\n  a (3)\n  b (1)\n  c (1)\n  d (1)\n"
+literal|"value=6 childCount=4\n  a (3)\n  b (1)\n  c (1)\n  d (1)\n"
 argument_list|,
 name|r
 operator|.
@@ -2502,7 +2502,7 @@ argument_list|)
 expr_stmt|;
 name|assertEquals
 argument_list|(
-literal|"dim/a (3)\n  x (1)\n  y (1)\n  z (1)\n"
+literal|"value=3 childCount=3\n  x (1)\n  y (1)\n  z (1)\n"
 argument_list|,
 name|r
 operator|.

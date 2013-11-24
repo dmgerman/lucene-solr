@@ -1304,8 +1304,6 @@ return|return
 operator|new
 name|SimpleFacetResult
 argument_list|(
-name|cp
-argument_list|,
 name|sumValues
 argument_list|,
 name|labelValues

@@ -536,12 +536,6 @@ return|return
 operator|new
 name|SimpleFacetResult
 argument_list|(
-operator|new
-name|FacetLabel
-argument_list|(
-name|field
-argument_list|)
-argument_list|,
 name|totCount
 argument_list|,
 name|labelValues
