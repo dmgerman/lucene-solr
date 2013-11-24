@@ -2365,6 +2365,11 @@ name|jetty
 decl_stmt|;
 if|if
 condition|(
+name|jetty
+operator|.
+name|isStopped
+argument_list|()
+operator|&&
 operator|!
 name|ChaosMonkey
 operator|.
