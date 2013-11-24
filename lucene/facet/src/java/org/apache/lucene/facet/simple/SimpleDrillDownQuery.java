@@ -270,7 +270,7 @@ extends|extends
 name|Query
 block|{
 DECL|method|term
-specifier|private
+specifier|public
 specifier|static
 name|Term
 name|term
@@ -282,7 +282,7 @@ name|String
 name|dim
 parameter_list|,
 name|String
-index|[]
+modifier|...
 name|path
 parameter_list|)
 block|{
@@ -884,23 +884,8 @@ literal|true
 argument_list|)
 decl_stmt|;
 comment|// disable coord
-if|if
-condition|(
-name|path
-operator|.
-name|length
-operator|==
-literal|0
-condition|)
-block|{
-throw|throw
-operator|new
-name|IllegalArgumentException
-argument_list|(
-literal|"must have at least one facet label under dim"
-argument_list|)
-throw|;
-block|}
+comment|// nocommit too anal?
+comment|/*     if (path.length == 0) {       throw new IllegalArgumentException("must have at least one facet label under dim");     }     */
 name|bq
 operator|.
 name|add

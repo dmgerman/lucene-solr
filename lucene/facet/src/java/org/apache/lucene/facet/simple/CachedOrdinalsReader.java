@@ -104,8 +104,22 @@ name|IntsRef
 import|;
 end_import
 
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|util
+operator|.
+name|RamUsageEstimator
+import|;
+end_import
+
 begin_comment
-comment|/**  * A per-segment cache of documents' facet ordinals. Every  * {@link CachedOrds} holds the ordinals in a raw {@code  * int[]}, and therefore consumes as much RAM as the total  * number of ordinals found in the segment, but saves the  * CPU cost of decoding ordinals during facet counting.  *   *<p>  *<b>NOTE:</b> every {@link CachedOrds} is limited to 2.1B  * total ordinals. If that is a limitation for you then  * consider limiting the segment size to fewer documents, or  * use an alternative cache which pages through the category  * ordinals.  *   *<p>  *<b>NOTE:</b> when using this cache, it is advised to use  * a {@link DocValuesFormat} that does not cache the data in  * memory, at least for the category lists fields, or  * otherwise you'll be doing double-caching.  */
+comment|/**  * A per-segment cache of documents' facet ordinals. Every  * {@link CachedOrds} holds the ordinals in a raw {@code  * int[]}, and therefore consumes as much RAM as the total  * number of ordinals found in the segment, but saves the  * CPU cost of decoding ordinals during facet counting.  *   *<p>  *<b>NOTE:</b> every {@link CachedOrds} is limited to 2.1B  * total ordinals. If that is a limitation for you then  * consider limiting the segment size to fewer documents, or  * use an alternative cache which pages through the category  * ordinals.  *   *<p>  *<b>NOTE:</b> when using this cache, it is advised to use  * a {@link DocValuesFormat} that does not cache the data in  * memory, at least for the category lists fields, or  * otherwise you'll be doing double-caching.  *  *<p>  *<b>NOTE:</b> create one instance of this and re-use it  * for all facet implementations (the cache is per-instance,  * not static).  */
 end_comment
 
 begin_class
@@ -122,14 +136,6 @@ specifier|final
 name|OrdinalsReader
 name|source
 decl_stmt|;
-DECL|field|current
-specifier|private
-name|CachedOrds
-name|current
-decl_stmt|;
-comment|// outer map is a WeakHashMap which uses reader.getCoreCacheKey() as the weak
-comment|// reference. When it's no longer referenced, the entire inner map can be
-comment|// evicted.
 DECL|field|ordsCache
 specifier|private
 specifier|final
@@ -600,6 +606,44 @@ name|ords
 expr_stmt|;
 block|}
 block|}
+block|}
+comment|/** How many bytes is this cache using? */
+DECL|method|ramBytesUsed
+specifier|public
+specifier|synchronized
+name|long
+name|ramBytesUsed
+parameter_list|()
+block|{
+name|long
+name|bytes
+init|=
+literal|0
+decl_stmt|;
+for|for
+control|(
+name|CachedOrds
+name|ords
+range|:
+name|ordsCache
+operator|.
+name|values
+argument_list|()
+control|)
+block|{
+name|bytes
+operator|+=
+name|RamUsageEstimator
+operator|.
+name|sizeOf
+argument_list|(
+name|ords
+argument_list|)
+expr_stmt|;
+block|}
+return|return
+name|bytes
+return|;
 block|}
 block|}
 end_class
