@@ -38,22 +38,6 @@ end_import
 
 begin_import
 import|import
-name|jdk
-operator|.
-name|nashorn
-operator|.
-name|internal
-operator|.
-name|ir
-operator|.
-name|annotations
-operator|.
-name|Ignore
-import|;
-end_import
-
-begin_import
-import|import
 name|org
 operator|.
 name|apache
@@ -75,6 +59,16 @@ operator|.
 name|junit
 operator|.
 name|BeforeClass
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|junit
+operator|.
+name|Ignore
 import|;
 end_import
 
@@ -1355,8 +1349,9 @@ annotation|@
 name|Test
 annotation|@
 name|Ignore
-argument_list|()
-comment|// See "SOLR-5488"
+argument_list|(
+literal|"SOLR-5488"
+argument_list|)
 DECL|method|stddevTest
 specifier|public
 name|void
