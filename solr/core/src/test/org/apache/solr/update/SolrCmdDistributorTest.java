@@ -2834,19 +2834,17 @@ operator|.
 name|getNumFound
 argument_list|()
 decl_stmt|;
-comment|// we will get java.net.SocketException: Network is unreachable and then retry
+comment|// we will get java.net.SocketException: Network is unreachable and not retry
 name|assertEquals
 argument_list|(
 name|numFoundBefore
-operator|+
-literal|1
 argument_list|,
 name|numFoundAfter
 argument_list|)
 expr_stmt|;
 name|assertEquals
 argument_list|(
-literal|0
+literal|1
 argument_list|,
 name|cmdDistrib
 operator|.
