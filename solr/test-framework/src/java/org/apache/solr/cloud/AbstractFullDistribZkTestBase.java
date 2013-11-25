@@ -3957,13 +3957,6 @@ argument_list|(
 name|controlClient
 argument_list|)
 expr_stmt|;
-name|controlClient
-operator|.
-name|add
-argument_list|(
-name|doc
-argument_list|)
-expr_stmt|;
 comment|// if we wanted to randomly pick a client - but sometimes they may be
 comment|// down...
 comment|// boolean pick = random.nextBoolean();
