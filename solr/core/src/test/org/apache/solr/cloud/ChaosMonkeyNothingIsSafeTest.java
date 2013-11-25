@@ -857,7 +857,7 @@ literal|10000
 block|,
 literal|15000
 block|,
-literal|15000
+literal|25000
 block|,
 literal|30000
 block|,
