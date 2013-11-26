@@ -38,9 +38,7 @@ name|lucene
 operator|.
 name|facet
 operator|.
-name|simple
-operator|.
-name|SimpleFacetResult
+name|FacetResult
 import|;
 end_import
 
@@ -133,7 +131,7 @@ operator|.
 name|index
 argument_list|()
 expr_stmt|;
-name|SimpleFacetResult
+name|FacetResult
 name|result
 init|=
 name|example

@@ -88,8 +88,6 @@ name|lucene
 operator|.
 name|facet
 operator|.
-name|simple
-operator|.
 name|Facets
 import|;
 end_import
@@ -103,8 +101,6 @@ operator|.
 name|lucene
 operator|.
 name|facet
-operator|.
-name|simple
 operator|.
 name|FacetsConfig
 import|;
@@ -120,9 +116,7 @@ name|lucene
 operator|.
 name|facet
 operator|.
-name|simple
-operator|.
-name|SimpleDrillDownQuery
+name|DrillDownQuery
 import|;
 end_import
 
@@ -136,9 +130,7 @@ name|lucene
 operator|.
 name|facet
 operator|.
-name|simple
-operator|.
-name|SimpleFacetResult
+name|FacetResult
 import|;
 end_import
 
@@ -152,9 +144,7 @@ name|lucene
 operator|.
 name|facet
 operator|.
-name|simple
-operator|.
-name|SimpleFacetsCollector
+name|FacetsCollector
 import|;
 end_import
 
@@ -167,8 +157,6 @@ operator|.
 name|lucene
 operator|.
 name|facet
-operator|.
-name|simple
 operator|.
 name|SortedSetDocValuesFacetCounts
 import|;
@@ -184,8 +172,6 @@ name|lucene
 operator|.
 name|facet
 operator|.
-name|simple
-operator|.
 name|SortedSetDocValuesFacetField
 import|;
 end_import
@@ -199,8 +185,6 @@ operator|.
 name|lucene
 operator|.
 name|facet
-operator|.
-name|simple
 operator|.
 name|SortedSetDocValuesReaderState
 import|;
@@ -630,7 +614,7 @@ DECL|method|search
 specifier|private
 name|List
 argument_list|<
-name|SimpleFacetResult
+name|FacetResult
 argument_list|>
 name|search
 parameter_list|()
@@ -672,11 +656,11 @@ name|getConfig
 argument_list|()
 decl_stmt|;
 comment|// Aggregatses the facet counts
-name|SimpleFacetsCollector
+name|FacetsCollector
 name|sfc
 init|=
 operator|new
-name|SimpleFacetsCollector
+name|FacetsCollector
 argument_list|()
 decl_stmt|;
 comment|// MatchAllDocsQuery is for "browsing" (counts facets
@@ -708,14 +692,14 @@ argument_list|)
 decl_stmt|;
 name|List
 argument_list|<
-name|SimpleFacetResult
+name|FacetResult
 argument_list|>
 name|results
 init|=
 operator|new
 name|ArrayList
 argument_list|<
-name|SimpleFacetResult
+name|FacetResult
 argument_list|>
 argument_list|()
 decl_stmt|;
@@ -759,7 +743,7 @@ block|}
 comment|/** User drills down on 'Publish Year/2010'. */
 DECL|method|drillDown
 specifier|private
-name|SimpleFacetResult
+name|FacetResult
 name|drillDown
 parameter_list|()
 throws|throws
@@ -800,11 +784,11 @@ name|getConfig
 argument_list|()
 decl_stmt|;
 comment|// Now user drills down on Publish Year/2010:
-name|SimpleDrillDownQuery
+name|DrillDownQuery
 name|q
 init|=
 operator|new
-name|SimpleDrillDownQuery
+name|DrillDownQuery
 argument_list|(
 name|config
 argument_list|)
@@ -818,11 +802,11 @@ argument_list|,
 literal|"2010"
 argument_list|)
 expr_stmt|;
-name|SimpleFacetsCollector
+name|FacetsCollector
 name|sfc
 init|=
 operator|new
-name|SimpleFacetsCollector
+name|FacetsCollector
 argument_list|()
 decl_stmt|;
 name|searcher
@@ -846,7 +830,7 @@ argument_list|,
 name|sfc
 argument_list|)
 decl_stmt|;
-name|SimpleFacetResult
+name|FacetResult
 name|result
 init|=
 name|facets
@@ -872,7 +856,7 @@ DECL|method|runSearch
 specifier|public
 name|List
 argument_list|<
-name|SimpleFacetResult
+name|FacetResult
 argument_list|>
 name|runSearch
 parameter_list|()
@@ -890,7 +874,7 @@ block|}
 comment|/** Runs the drill-down example. */
 DECL|method|runDrillDown
 specifier|public
-name|SimpleFacetResult
+name|FacetResult
 name|runDrillDown
 parameter_list|()
 throws|throws
@@ -945,7 +929,7 @@ argument_list|()
 decl_stmt|;
 name|List
 argument_list|<
-name|SimpleFacetResult
+name|FacetResult
 argument_list|>
 name|results
 init|=

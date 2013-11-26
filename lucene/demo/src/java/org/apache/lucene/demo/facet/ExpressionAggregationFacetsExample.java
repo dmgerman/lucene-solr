@@ -182,8 +182,6 @@ name|lucene
 operator|.
 name|facet
 operator|.
-name|simple
-operator|.
 name|FacetField
 import|;
 end_import
@@ -197,8 +195,6 @@ operator|.
 name|lucene
 operator|.
 name|facet
-operator|.
-name|simple
 operator|.
 name|Facets
 import|;
@@ -214,8 +210,6 @@ name|lucene
 operator|.
 name|facet
 operator|.
-name|simple
-operator|.
 name|FacetsConfig
 import|;
 end_import
@@ -230,9 +224,7 @@ name|lucene
 operator|.
 name|facet
 operator|.
-name|simple
-operator|.
-name|SimpleFacetResult
+name|FacetResult
 import|;
 end_import
 
@@ -246,9 +238,7 @@ name|lucene
 operator|.
 name|facet
 operator|.
-name|simple
-operator|.
-name|SimpleFacetsCollector
+name|FacetsCollector
 import|;
 end_import
 
@@ -261,8 +251,6 @@ operator|.
 name|lucene
 operator|.
 name|facet
-operator|.
-name|simple
 operator|.
 name|TaxonomyFacetSumValueSource
 import|;
@@ -679,7 +667,7 @@ block|}
 comment|/** User runs a query and aggregates facets. */
 DECL|method|search
 specifier|private
-name|SimpleFacetResult
+name|FacetResult
 name|search
 parameter_list|()
 throws|throws
@@ -778,11 +766,11 @@ argument_list|)
 expr_stmt|;
 comment|// the value of the 'popularity' field
 comment|// Aggregates the facet values
-name|SimpleFacetsCollector
+name|FacetsCollector
 name|sfc
 init|=
 operator|new
-name|SimpleFacetsCollector
+name|FacetsCollector
 argument_list|(
 literal|true
 argument_list|)
@@ -823,7 +811,7 @@ name|bindings
 argument_list|)
 argument_list|)
 decl_stmt|;
-name|SimpleFacetResult
+name|FacetResult
 name|result
 init|=
 name|facets
@@ -852,7 +840,7 @@ block|}
 comment|/** Runs the search example. */
 DECL|method|runSearch
 specifier|public
-name|SimpleFacetResult
+name|FacetResult
 name|runSearch
 parameter_list|()
 throws|throws
@@ -900,7 +888,7 @@ argument_list|(
 literal|"-----------------------"
 argument_list|)
 expr_stmt|;
-name|SimpleFacetResult
+name|FacetResult
 name|result
 init|=
 operator|new

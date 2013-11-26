@@ -108,8 +108,6 @@ name|lucene
 operator|.
 name|facet
 operator|.
-name|simple
-operator|.
 name|FacetField
 import|;
 end_import
@@ -123,8 +121,6 @@ operator|.
 name|lucene
 operator|.
 name|facet
-operator|.
-name|simple
 operator|.
 name|Facets
 import|;
@@ -140,8 +136,6 @@ name|lucene
 operator|.
 name|facet
 operator|.
-name|simple
-operator|.
 name|FacetsConfig
 import|;
 end_import
@@ -155,8 +149,6 @@ operator|.
 name|lucene
 operator|.
 name|facet
-operator|.
-name|simple
 operator|.
 name|FastTaxonomyFacetCounts
 import|;
@@ -172,9 +164,7 @@ name|lucene
 operator|.
 name|facet
 operator|.
-name|simple
-operator|.
-name|SimpleFacetResult
+name|FacetResult
 import|;
 end_import
 
@@ -188,9 +178,7 @@ name|lucene
 operator|.
 name|facet
 operator|.
-name|simple
-operator|.
-name|SimpleFacetsCollector
+name|FacetsCollector
 import|;
 end_import
 
@@ -771,7 +759,7 @@ DECL|method|search
 specifier|private
 name|List
 argument_list|<
-name|SimpleFacetResult
+name|FacetResult
 argument_list|>
 name|search
 parameter_list|()
@@ -814,11 +802,11 @@ argument_list|(
 literal|null
 argument_list|)
 decl_stmt|;
-name|SimpleFacetsCollector
+name|FacetsCollector
 name|sfc
 init|=
 operator|new
-name|SimpleFacetsCollector
+name|FacetsCollector
 argument_list|()
 decl_stmt|;
 comment|// MatchAllDocsQuery is for "browsing" (counts facets
@@ -839,14 +827,14 @@ expr_stmt|;
 comment|// Retrieve results
 name|List
 argument_list|<
-name|SimpleFacetResult
+name|FacetResult
 argument_list|>
 name|results
 init|=
 operator|new
 name|ArrayList
 argument_list|<
-name|SimpleFacetResult
+name|FacetResult
 argument_list|>
 argument_list|()
 decl_stmt|;
@@ -928,7 +916,7 @@ DECL|method|runSearch
 specifier|public
 name|List
 argument_list|<
-name|SimpleFacetResult
+name|FacetResult
 argument_list|>
 name|runSearch
 parameter_list|()
@@ -977,7 +965,7 @@ argument_list|)
 expr_stmt|;
 name|List
 argument_list|<
-name|SimpleFacetResult
+name|FacetResult
 argument_list|>
 name|results
 init|=

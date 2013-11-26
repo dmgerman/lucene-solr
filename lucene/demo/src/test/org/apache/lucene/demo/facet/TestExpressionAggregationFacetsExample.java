@@ -48,9 +48,7 @@ name|lucene
 operator|.
 name|facet
 operator|.
-name|simple
-operator|.
-name|SimpleFacetResult
+name|FacetResult
 import|;
 end_import
 
@@ -96,7 +94,7 @@ parameter_list|()
 throws|throws
 name|Exception
 block|{
-name|SimpleFacetResult
+name|FacetResult
 name|result
 init|=
 operator|new
