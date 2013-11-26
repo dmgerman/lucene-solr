@@ -668,6 +668,23 @@ argument_list|)
 decl_stmt|;
 name|assertEquals
 argument_list|(
+literal|"value=350 childCount=2\n  a (200)\n  b (150)\n"
+argument_list|,
+name|facets
+operator|.
+name|getTopChildren
+argument_list|(
+literal|10
+argument_list|,
+literal|"int"
+argument_list|)
+operator|.
+name|toString
+argument_list|()
+argument_list|)
+expr_stmt|;
+name|assertEquals
+argument_list|(
 literal|"Wrong count for category 'a'!"
 argument_list|,
 literal|200
@@ -754,6 +771,23 @@ argument_list|,
 name|fc
 argument_list|)
 decl_stmt|;
+name|assertEquals
+argument_list|(
+literal|"value=59.999996 childCount=2\n  a (50.0)\n  b (9.999995)\n"
+argument_list|,
+name|facets
+operator|.
+name|getTopChildren
+argument_list|(
+literal|10
+argument_list|,
+literal|"float"
+argument_list|)
+operator|.
+name|toString
+argument_list|()
+argument_list|)
+expr_stmt|;
 name|assertEquals
 argument_list|(
 literal|"Wrong count for category 'a'!"
