@@ -989,11 +989,6 @@ operator|.
 name|toCharArray
 argument_list|()
 decl_stmt|;
-name|boolean
-name|escapedCharacter
-init|=
-literal|false
-decl_stmt|;
 for|for
 control|(
 name|int
@@ -1029,9 +1024,6 @@ operator|&&
 name|stack
 operator|==
 literal|0
-operator|&&
-operator|!
-name|escapedCharacter
 condition|)
 block|{
 name|arguments
@@ -1085,9 +1077,6 @@ condition|(
 name|c
 operator|==
 literal|'('
-operator|&&
-operator|!
-name|escapedCharacter
 condition|)
 block|{
 name|stack
@@ -1100,9 +1089,6 @@ condition|(
 name|c
 operator|==
 literal|')'
-operator|&&
-operator|!
-name|escapedCharacter
 condition|)
 block|{
 name|stack
@@ -1117,20 +1103,8 @@ operator|==
 literal|'\\'
 condition|)
 block|{
-name|escapedCharacter
-operator|=
-literal|true
-expr_stmt|;
-block|}
-if|if
-condition|(
-name|escapedCharacter
-condition|)
-block|{
-name|escapedCharacter
-operator|=
-literal|false
-expr_stmt|;
+empty_stmt|;
+comment|// Do nothing.
 block|}
 block|}
 if|if
