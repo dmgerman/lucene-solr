@@ -70,9 +70,9 @@ name|lucene
 operator|.
 name|facet
 operator|.
-name|collections
+name|taxonomy
 operator|.
-name|LRUHashMap
+name|FacetLabel
 import|;
 end_import
 
@@ -88,7 +88,7 @@ name|facet
 operator|.
 name|taxonomy
 operator|.
-name|FacetLabel
+name|LRUHashMap
 import|;
 end_import
 
