@@ -4951,7 +4951,37 @@ name|cc
 operator|.
 name|isZooKeeperAware
 argument_list|()
-operator|&&
+condition|)
+block|{
+name|SolrRequestHandler
+name|realtimeGetHandler
+init|=
+name|reqHandlers
+operator|.
+name|get
+argument_list|(
+literal|"/get"
+argument_list|)
+decl_stmt|;
+if|if
+condition|(
+name|realtimeGetHandler
+operator|==
+literal|null
+condition|)
+block|{
+name|log
+operator|.
+name|warn
+argument_list|(
+literal|"WARNING: RealTimeGetHandler is not registered at /get. "
+operator|+
+literal|"SolrCloud will always use full index replication instead of the more efficient PeerSync method."
+argument_list|)
+expr_stmt|;
+block|}
+if|if
+condition|(
 name|Slice
 operator|.
 name|CONSTRUCTION
@@ -5008,6 +5038,7 @@ argument_list|(
 literal|null
 argument_list|)
 expr_stmt|;
+block|}
 block|}
 comment|// For debugging
 comment|//    numOpens.incrementAndGet();
