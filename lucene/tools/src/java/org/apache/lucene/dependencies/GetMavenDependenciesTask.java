@@ -3958,7 +3958,7 @@ name|toString
 argument_list|()
 return|;
 block|}
-comment|/**    * Convert Ant project names to artifact names: prepend "lucene-"    * to Lucene project names; and "solr-cell" -> "solr-extraction"    */
+comment|/**    * Convert Ant project names to artifact names: prepend "lucene-"    * to Lucene project names    */
 DECL|method|antProjectToArtifactName
 specifier|private
 name|String
@@ -3990,21 +3990,6 @@ operator|=
 literal|"lucene-"
 operator|+
 name|module
-expr_stmt|;
-block|}
-if|if
-condition|(
-name|module
-operator|.
-name|equals
-argument_list|(
-literal|"solr-cell"
-argument_list|)
-condition|)
-block|{
-name|module
-operator|=
-literal|"solr-extraction"
 expr_stmt|;
 block|}
 return|return
