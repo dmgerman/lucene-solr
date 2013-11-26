@@ -303,7 +303,7 @@ specifier|final
 name|int
 name|MAX_RETRIES_ON_FORWARD
 init|=
-literal|15
+literal|25
 decl_stmt|;
 DECL|field|log
 specifier|public
