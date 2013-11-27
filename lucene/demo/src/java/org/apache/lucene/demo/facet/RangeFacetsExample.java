@@ -609,7 +609,7 @@ name|IOException
 block|{
 comment|// Aggregates the facet counts
 name|FacetsCollector
-name|sfc
+name|fc
 init|=
 operator|new
 name|FacetsCollector
@@ -617,17 +617,20 @@ argument_list|()
 decl_stmt|;
 comment|// MatchAllDocsQuery is for "browsing" (counts facets
 comment|// for all non-deleted docs in the index); normally
-comment|// you'd use a "normal" query, and use MultiCollector to
-comment|// wrap collecting the "normal" hits and also facets:
-name|searcher
+comment|// you'd use a "normal" query:
+name|Facets
 operator|.
 name|search
 argument_list|(
+name|searcher
+argument_list|,
 operator|new
 name|MatchAllDocsQuery
 argument_list|()
 argument_list|,
-name|sfc
+literal|10
+argument_list|,
+name|fc
 argument_list|)
 expr_stmt|;
 name|Facets
@@ -638,7 +641,7 @@ name|RangeFacetCounts
 argument_list|(
 literal|"timestamp"
 argument_list|,
-name|sfc
+name|fc
 argument_list|,
 name|PAST_HOUR
 argument_list|,

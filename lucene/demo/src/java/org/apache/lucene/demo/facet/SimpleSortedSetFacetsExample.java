@@ -657,7 +657,7 @@ argument_list|()
 decl_stmt|;
 comment|// Aggregatses the facet counts
 name|FacetsCollector
-name|sfc
+name|fc
 init|=
 operator|new
 name|FacetsCollector
@@ -665,17 +665,20 @@ argument_list|()
 decl_stmt|;
 comment|// MatchAllDocsQuery is for "browsing" (counts facets
 comment|// for all non-deleted docs in the index); normally
-comment|// you'd use a "normal" query, and use MultiCollector to
-comment|// wrap collecting the "normal" hits and also facets:
-name|searcher
+comment|// you'd use a "normal" query:
+name|Facets
 operator|.
 name|search
 argument_list|(
+name|searcher
+argument_list|,
 operator|new
 name|MatchAllDocsQuery
 argument_list|()
 argument_list|,
-name|sfc
+literal|10
+argument_list|,
+name|fc
 argument_list|)
 expr_stmt|;
 comment|// Retrieve results
@@ -687,7 +690,7 @@ name|SortedSetDocValuesFacetCounts
 argument_list|(
 name|state
 argument_list|,
-name|sfc
+name|fc
 argument_list|)
 decl_stmt|;
 name|List
@@ -803,19 +806,23 @@ literal|"2010"
 argument_list|)
 expr_stmt|;
 name|FacetsCollector
-name|sfc
+name|fc
 init|=
 operator|new
 name|FacetsCollector
 argument_list|()
 decl_stmt|;
-name|searcher
+name|Facets
 operator|.
 name|search
 argument_list|(
+name|searcher
+argument_list|,
 name|q
 argument_list|,
-name|sfc
+literal|10
+argument_list|,
+name|fc
 argument_list|)
 expr_stmt|;
 comment|// Retrieve results
@@ -827,7 +834,7 @@ name|SortedSetDocValuesFacetCounts
 argument_list|(
 name|state
 argument_list|,
-name|sfc
+name|fc
 argument_list|)
 decl_stmt|;
 name|FacetResult
