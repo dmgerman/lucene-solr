@@ -381,6 +381,11 @@ argument_list|(
 literal|"/"
 operator|+
 name|cp
+operator|.
+name|components
+index|[
+literal|0
+index|]
 operator|+
 literal|": "
 operator|+

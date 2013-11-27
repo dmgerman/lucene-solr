@@ -80,17 +80,6 @@ argument_list|(
 name|PAYLOAD_PARENT
 argument_list|)
 decl_stmt|;
-comment|/**    * Delimiter used for creating the full path of a category from the list of    * its labels from root. It is forbidden for labels to contain this    * character.    *<P>    * Originally, we used \uFFFE, officially a "unicode noncharacter" (invalid    * unicode character) for this purpose. Recently, we switched to the    * "private-use" character \uF749.  Even more recently, we    * switched to \U001F (INFORMATION_SEPARATOR).    */
-comment|//static final char DEFAULT_DELIMITER = '\uFFFE';
-comment|//static final char DEFAULT_DELIMITER = '\uF749';
-DECL|field|DEFAULT_DELIMITER
-specifier|static
-specifier|final
-name|char
-name|DEFAULT_DELIMITER
-init|=
-literal|'\u001F'
-decl_stmt|;
 block|}
 end_class
 

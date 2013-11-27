@@ -514,11 +514,6 @@ argument_list|(
 literal|"Label already exists: "
 operator|+
 name|label
-operator|.
-name|toString
-argument_list|(
-literal|'/'
-argument_list|)
 operator|+
 literal|" prev ordinal "
 operator|+
