@@ -127,7 +127,7 @@ import|;
 end_import
 
 begin_comment
-comment|// nocommit jdoc that this assumes/requires the default encoding
+comment|/** Aggregates sum of int values previously indexed with  *  {@link FloatAssociationFacetField}, assuming the default  *  encoding.  *  *  @lucene.experimental */
 end_comment
 
 begin_class
@@ -145,6 +145,7 @@ name|float
 index|[]
 name|values
 decl_stmt|;
+comment|/** Create {@code TaxonomyFacetSumFloatAssociations} against    *  the default index field. */
 DECL|method|TaxonomyFacetSumFloatAssociations
 specifier|public
 name|TaxonomyFacetSumFloatAssociations
@@ -175,6 +176,7 @@ name|fc
 argument_list|)
 expr_stmt|;
 block|}
+comment|/** Create {@code TaxonomyFacetSumFloatAssociations} against    *  the specified index field. */
 DECL|method|TaxonomyFacetSumFloatAssociations
 specifier|public
 name|TaxonomyFacetSumFloatAssociations
@@ -510,7 +512,6 @@ expr_stmt|;
 block|}
 block|}
 block|}
-comment|/** Return the count for a specific path.  Returns -1 if    *  this path doesn't exist, else the count. */
 annotation|@
 name|Override
 DECL|method|getSpecificValue
@@ -589,6 +590,7 @@ parameter_list|)
 throws|throws
 name|IOException
 block|{
+comment|// TODO: can we factor this out?
 if|if
 condition|(
 name|topN

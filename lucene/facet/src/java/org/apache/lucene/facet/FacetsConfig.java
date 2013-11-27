@@ -295,7 +295,7 @@ import|;
 end_import
 
 begin_comment
-comment|/** By default a dimension is flat, single valued and does  *  not require count for the dimension; use  *  the setters in this class to change these settings for  *  any dims.  *  *<p><b>NOTE</b>: this configuration is not saved into the  *  index, but it's vital, and up to the application to  *  ensure, that at search time the provided FacetsConfig  *  matches what was used during indexing.  *  *  @lucene.experimental */
+comment|/** Records per-dimension configuration.  By default a  *  dimension is flat, single valued and does  *  not require count for the dimension; use  *  the setters in this class to change these settings for  *  each dim.  *  *<p><b>NOTE</b>: this configuration is not saved into the  *  index, but it's vital, and up to the application to  *  ensure, that at search time the provided {@code  *  FacetsConfig} matches what was used during indexing.  *  *  @lucene.experimental */
 end_comment
 
 begin_class
@@ -361,7 +361,7 @@ specifier|final
 name|TaxonomyWriter
 name|taxoWriter
 decl_stmt|;
-comment|/** @lucene.internal */
+comment|/** Holds the configuration for one dimension    *    * @lucene.experimental */
 comment|// nocommit expose this to the user, vs the setters?
 DECL|class|DimConfig
 specifier|public
@@ -393,6 +393,19 @@ init|=
 name|DEFAULT_INDEX_FIELD_NAME
 decl_stmt|;
 block|}
+comment|/** Default per-dimension configuration. */
+DECL|field|DEFAULT_DIM_CONFIG
+specifier|public
+specifier|final
+specifier|static
+name|DimConfig
+name|DEFAULT_DIM_CONFIG
+init|=
+operator|new
+name|DimConfig
+argument_list|()
+decl_stmt|;
+comment|/** Default constructor. */
 DECL|method|FacetsConfig
 specifier|public
 name|FacetsConfig
@@ -404,6 +417,7 @@ literal|null
 argument_list|)
 expr_stmt|;
 block|}
+comment|/** Use this constructor at index time, with the provided    *  {@link TaxonomyWriter}, and then use the {@link    *  #build} method to index documents. */
 DECL|method|FacetsConfig
 specifier|public
 name|FacetsConfig
@@ -419,17 +433,7 @@ operator|=
 name|taxoWriter
 expr_stmt|;
 block|}
-DECL|field|DEFAULT_DIM_CONFIG
-specifier|public
-specifier|final
-specifier|static
-name|DimConfig
-name|DEFAULT_DIM_CONFIG
-init|=
-operator|new
-name|DimConfig
-argument_list|()
-decl_stmt|;
+comment|/** Get the current configuration for a dimension. */
 DECL|method|getDimConfig
 specifier|public
 name|DimConfig
@@ -465,7 +469,7 @@ return|return
 name|ft
 return|;
 block|}
-comment|// nocommit maybe setDimConfig instead?
+comment|/** Pass {@code true} if this dimension is hierarchical    *  (has depth> 1 paths). */
 DECL|method|setHierarchical
 specifier|public
 specifier|synchronized
@@ -519,6 +523,7 @@ operator|=
 name|v
 expr_stmt|;
 block|}
+comment|/** Pass {@code true} if this dimension may have more than    *  one value per document. */
 DECL|method|setMultiValued
 specifier|public
 specifier|synchronized
@@ -572,6 +577,7 @@ operator|=
 name|v
 expr_stmt|;
 block|}
+comment|/** Pass {@code true} if at search time you require    *  accurate counts of the dimension, i.e. how many    *  hits have this dimension. */
 DECL|method|setRequireDimCount
 specifier|public
 specifier|synchronized
@@ -625,6 +631,7 @@ operator|=
 name|v
 expr_stmt|;
 block|}
+comment|/** Specify which index field name should hold the    *  ordinals for this dimension; this is only used by the    *  taxonomy based facet methods. */
 DECL|method|setIndexFieldName
 specifier|public
 specifier|synchronized
@@ -738,7 +745,7 @@ name|dim
 argument_list|)
 expr_stmt|;
 block|}
-comment|/** Translates any added {@link FacetField}s into normal    *  fields for indexing */
+comment|/** Translates any added {@link FacetField}s into normal    *  fields for indexing. */
 DECL|method|build
 specifier|public
 name|IndexDocument
@@ -2879,7 +2886,7 @@ name|ESCAPE_CHAR
 init|=
 literal|'\u001E'
 decl_stmt|;
-comment|/** Turns a path into a string without stealing any    *  characters. */
+comment|/** Turns a dim + path into an encoded string. */
 DECL|method|pathToString
 specifier|public
 specifier|static
@@ -2943,6 +2950,7 @@ name|length
 argument_list|)
 return|;
 block|}
+comment|/** Turns a dim + path into an encoded string. */
 DECL|method|pathToString
 specifier|public
 specifier|static
@@ -2965,6 +2973,7 @@ name|length
 argument_list|)
 return|;
 block|}
+comment|/** Turns the first {@code} length elements of {@code    * path} into an encoded string. */
 DECL|method|pathToString
 specifier|public
 specifier|static
@@ -3112,7 +3121,7 @@ name|toString
 argument_list|()
 return|;
 block|}
-comment|/** Turns a result from previous call to {@link    *  #pathToString} back into the original {@code String[]}    *  without stealing any characters. */
+comment|/** Turns an encoded string (from a previous call to {@link    *  #pathToString}) back into the original {@code    *  String[]}. */
 DECL|method|stringToPath
 specifier|public
 specifier|static

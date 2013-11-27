@@ -176,6 +176,10 @@ name|TopScoreDocCollector
 import|;
 end_import
 
+begin_comment
+comment|/** Common base class for all facets implementations.  *  *  @lucene.experimental */
+end_comment
+
 begin_class
 DECL|class|Facets
 specifier|public
@@ -183,7 +187,7 @@ specifier|abstract
 class|class
 name|Facets
 block|{
-comment|/** Returns the topN child labels under the specified    *  path.  Returns null if the specified path doesn't    *  exist. */
+comment|/** Returns the topN child labels under the specified    *  path.  Returns null if the specified path doesn't    *  exist or if this dimension was never seen. */
 DECL|method|getTopChildren
 specifier|public
 specifier|abstract
@@ -203,7 +207,7 @@ parameter_list|)
 throws|throws
 name|IOException
 function_decl|;
-comment|/** Return the count for a specific path.  Returns -1 if    *  this path doesn't exist, else the count. */
+comment|/** Return the count or value    *  for a specific path.  Returns -1 if    *  this path doesn't exist, else the count. */
 DECL|method|getSpecificValue
 specifier|public
 specifier|abstract
@@ -220,7 +224,7 @@ parameter_list|)
 throws|throws
 name|IOException
 function_decl|;
-comment|/** Returns topN labels for any dimension that had hits,    *  sorted by the number of hits that dimension matched;    *  this is used for "sparse" faceting, where many    *  different dimensions were indexed depending on the    *  type of document. */
+comment|/** Returns topN labels for any dimension that had hits,    *  sorted by the number of hits that dimension matched;    *  this is used for "sparse" faceting, where many    *  different dimensions were indexed, for example    *  depending on the type of document. */
 DECL|method|getAllDims
 specifier|public
 specifier|abstract
@@ -259,7 +263,7 @@ parameter_list|)
 throws|throws
 name|IOException
 block|{
-comment|// nocommit can we pass the "right" boolean for
+comment|// TODO: can we pass the "right" boolean for
 comment|// in-order...?  we'd need access to the protected
 comment|// IS.search methods taking Weight... could use
 comment|// reflection...

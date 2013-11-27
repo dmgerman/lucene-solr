@@ -36,6 +36,24 @@ name|lucene
 operator|.
 name|document
 operator|.
+name|Document
+import|;
+end_import
+
+begin_comment
+comment|// javadoc
+end_comment
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|document
+operator|.
 name|Field
 import|;
 end_import
@@ -55,7 +73,7 @@ import|;
 end_import
 
 begin_comment
-comment|/** Add an instance of this to your Document for every facet  *  label. */
+comment|/** Add an instance of this to your {@link Document} for  *  every facet label. */
 end_comment
 
 begin_class
@@ -91,12 +109,14 @@ name|freeze
 argument_list|()
 expr_stmt|;
 block|}
+comment|/** Dimension for this field. */
 DECL|field|dim
 specifier|public
 specifier|final
 name|String
 name|dim
 decl_stmt|;
+comment|/** Path for this field. */
 DECL|field|path
 specifier|public
 specifier|final
@@ -104,6 +124,7 @@ name|String
 index|[]
 name|path
 decl_stmt|;
+comment|/** Creates the this from {@code dim} and    *  {@code path}. */
 DECL|method|FacetField
 specifier|public
 name|FacetField

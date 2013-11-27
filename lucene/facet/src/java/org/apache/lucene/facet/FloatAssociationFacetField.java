@@ -36,6 +36,24 @@ name|lucene
 operator|.
 name|document
 operator|.
+name|Document
+import|;
+end_import
+
+begin_comment
+comment|// javadocs
+end_comment
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|document
+operator|.
 name|Field
 import|;
 end_import
@@ -69,7 +87,7 @@ import|;
 end_import
 
 begin_comment
-comment|/** Associates an arbitrary float with the added facet  *  path, encoding the float into a 4-byte BytesRef. */
+comment|/** Add an instance of this to your {@link Document} to add  *  a facet label associated with a float.  Use {@link  *  TaxonomyFacetSumFloatAssociations} to aggregate float values  *  per facet label at search time.  *   *  @lucene.experimental */
 end_comment
 
 begin_class
@@ -80,7 +98,7 @@ name|FloatAssociationFacetField
 extends|extends
 name|AssociationFacetField
 block|{
-comment|/** Utility ctor: associates an int value (translates it    *  to 4-byte BytesRef). */
+comment|/** Creates this from {@code dim} and {@code path} and a    *  float association */
 DECL|method|FloatAssociationFacetField
 specifier|public
 name|FloatAssociationFacetField
@@ -109,6 +127,7 @@ name|path
 argument_list|)
 expr_stmt|;
 block|}
+comment|/** Encodes a {@code float} as a 4-byte {@link BytesRef}. */
 DECL|method|floatToBytesRef
 specifier|public
 specifier|static
@@ -133,6 +152,7 @@ argument_list|)
 argument_list|)
 return|;
 block|}
+comment|/** Decodes a previously encoded {@code float}. */
 DECL|method|bytesRefToFloat
 specifier|public
 specifier|static

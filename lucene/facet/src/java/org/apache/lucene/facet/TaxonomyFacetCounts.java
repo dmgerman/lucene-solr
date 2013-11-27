@@ -137,7 +137,7 @@ import|;
 end_import
 
 begin_comment
-comment|/** Reads from any {@link OrdinalsReader}; use {@link  *  FastTaxonomyFacetCounts} if you are just using the  *  default encoding from {@link BinaryDocValues}. */
+comment|/** Reads from any {@link OrdinalsReader}; use {@link  *  FastTaxonomyFacetCounts} if you are just using the  *  default encoding from {@link BinaryDocValues}.  *   * @lucene.experimental */
 end_comment
 
 begin_comment
@@ -165,6 +165,7 @@ name|int
 index|[]
 name|counts
 decl_stmt|;
+comment|/** Create {@code TaxonomyFacetCounts}, which also    *  counts all facet labels.  Use this for a non-default    *  {@link OrdinalsReader}; otherwise use {@link    *  FastTaxonomyFacetCounts}. */
 DECL|method|TaxonomyFacetCounts
 specifier|public
 name|TaxonomyFacetCounts
@@ -515,7 +516,6 @@ return|return
 name|sum
 return|;
 block|}
-comment|/** Return the count for a specific path.  Returns -1 if    *  this path doesn't exist, else the count. */
 annotation|@
 name|Override
 DECL|method|getSpecificValue
@@ -594,6 +594,7 @@ parameter_list|)
 throws|throws
 name|IOException
 block|{
+comment|// TODO: can we factor this out?
 if|if
 condition|(
 name|topN

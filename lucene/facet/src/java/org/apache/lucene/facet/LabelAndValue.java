@@ -133,7 +133,28 @@ name|value
 argument_list|)
 return|;
 block|}
-comment|// nocommit hashCode
+annotation|@
+name|Override
+DECL|method|hashCode
+specifier|public
+name|int
+name|hashCode
+parameter_list|()
+block|{
+return|return
+name|label
+operator|.
+name|hashCode
+argument_list|()
+operator|+
+literal|1439
+operator|*
+name|value
+operator|.
+name|hashCode
+argument_list|()
+return|;
+block|}
 block|}
 end_class
 

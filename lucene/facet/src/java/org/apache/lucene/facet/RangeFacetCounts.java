@@ -129,7 +129,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * accumulates counts for provided ranges.  */
+comment|/** {@link Facets} implementation that computes counts for  *  dynamic ranges from a provided {@link ValueSource}.  Use  *  this for dimensions that change in real-time (e.g. a  *  relative time based dimension like "Past day", "Past 2  *  days", etc.) or that change for each user (e.g. a  *  distance dimension like "< 1 km", "< 2 km", etc.).  *  *  @lucene.experimental */
 end_comment
 
 begin_class
@@ -165,6 +165,7 @@ specifier|private
 name|int
 name|totCount
 decl_stmt|;
+comment|/** Create {@code RangeFacetCounts}, using {@link    *  LongFieldSource} from the specified field. */
 DECL|method|RangeFacetCounts
 specifier|public
 name|RangeFacetCounts
@@ -198,6 +199,7 @@ name|ranges
 argument_list|)
 expr_stmt|;
 block|}
+comment|/** Create {@code RangeFacetCounts}, using the provided    *  {@link ValueSource}. */
 DECL|method|RangeFacetCounts
 specifier|public
 name|RangeFacetCounts

@@ -17,7 +17,7 @@ comment|/*  * Licensed to the Apache Software Foundation (ASF) under one or more
 end_comment
 
 begin_comment
-comment|/** Represents a single labelled range, one facet label in  *  the facets computed by {@link RangeAccumulator}.  *  *  @lucene.experimental */
+comment|/** Represents a single labeled range, one facet label in  *  the facets computed by {@link RangeFacetCounts}.  *  *  @lucene.experimental */
 end_comment
 
 begin_class

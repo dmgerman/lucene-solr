@@ -36,6 +36,24 @@ name|lucene
 operator|.
 name|document
 operator|.
+name|Document
+import|;
+end_import
+
+begin_comment
+comment|// javadocs
+end_comment
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|document
+operator|.
 name|Field
 import|;
 end_import
@@ -69,7 +87,7 @@ import|;
 end_import
 
 begin_comment
-comment|/** Associates an arbitrary int with the added facet  *  path, encoding the int into a 4-byte BytesRef. */
+comment|/** Add an instance of this to your {@link Document} to add  *  a facet label associated with an int.  Use {@link  *  TaxonomyFacetSumIntAssociations} to aggregate int values  *  per facet label at search time.  *   *  @lucene.experimental */
 end_comment
 
 begin_class
@@ -80,7 +98,7 @@ name|IntAssociationFacetField
 extends|extends
 name|AssociationFacetField
 block|{
-comment|/** Utility ctor: associates an int value (translates it    *  to 4-byte BytesRef). */
+comment|/** Creates this from {@code dim} and {@code path} and an    *  int association */
 DECL|method|IntAssociationFacetField
 specifier|public
 name|IntAssociationFacetField
@@ -109,6 +127,7 @@ name|path
 argument_list|)
 expr_stmt|;
 block|}
+comment|/** Encodes an {@code int} as a 4-byte {@link BytesRef},    *  big-endian. */
 DECL|method|intToBytesRef
 specifier|public
 specifier|static
@@ -190,6 +209,7 @@ name|bytes
 argument_list|)
 return|;
 block|}
+comment|/** Decodes a previously encoded {@code int}. */
 DECL|method|bytesRefToInt
 specifier|public
 specifier|static

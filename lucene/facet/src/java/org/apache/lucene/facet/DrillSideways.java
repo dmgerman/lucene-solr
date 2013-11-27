@@ -412,7 +412,7 @@ specifier|final
 name|FacetsConfig
 name|config
 decl_stmt|;
-comment|/**    * Create a new {@code DrillSideways} instance, assuming the categories were    * indexed with {@link FacetFields}.    */
+comment|/** Create a new {@code DrillSideways} instance. */
 DECL|method|DrillSideways
 specifier|public
 name|DrillSideways
@@ -439,7 +439,7 @@ literal|null
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**    * Create a new {@code DrillSideways} instance, assuming the categories were    * indexed with {@link SortedSetDocValuesFacetFields}.    */
+comment|/** Create a new {@code DrillSideways} instance, assuming the categories were    *  indexed with {@link SortedSetDocValuesFacetField}. */
 DECL|method|DrillSideways
 specifier|public
 name|DrillSideways
@@ -466,7 +466,7 @@ name|state
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**    * Create a new {@code DrillSideways} instance, where some    * dimensions are sorted set facets and others are    * taxononmy facets.    */
+comment|/** Create a new {@code DrillSideways} instance, where some    *  dimensions were indexed with {@link    *  SortedSetDocValuesFacetField} and others were indexed    *  with {@link FacetField}. */
 DECL|method|DrillSideways
 specifier|public
 name|DrillSideways

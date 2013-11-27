@@ -36,6 +36,24 @@ name|lucene
 operator|.
 name|document
 operator|.
+name|Document
+import|;
+end_import
+
+begin_comment
+comment|// javadocs
+end_comment
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|document
+operator|.
 name|Field
 import|;
 end_import
@@ -69,7 +87,7 @@ import|;
 end_import
 
 begin_comment
-comment|/** Associates an arbitrary byte[] with the added facet  *  path. */
+comment|/** Add an instance of this to your {@link Document} to add  *  a facet label associated with an arbitrary byte[].  *  This will require a custom {@link Facets}  *  implementation at search time; see {@link  *  IntAssociationFacetField} and {@link  *  FloatAssociationFacetField} to use existing {@link  *  Facets} implementations.  *   *  @lucene.experimental */
 end_comment
 
 begin_class
@@ -124,6 +142,7 @@ specifier|final
 name|BytesRef
 name|assoc
 decl_stmt|;
+comment|/** Creates this from {@code dim} and {@code path} and an    *  association */
 DECL|method|AssociationFacetField
 specifier|public
 name|AssociationFacetField

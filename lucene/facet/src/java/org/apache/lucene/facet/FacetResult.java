@@ -50,7 +50,7 @@ specifier|final
 name|Number
 name|value
 decl_stmt|;
-comment|/** How many labels were populated under the requested    *  path. */
+comment|/** How many child labels were encountered. */
 DECL|field|childCount
 specifier|public
 specifier|final
