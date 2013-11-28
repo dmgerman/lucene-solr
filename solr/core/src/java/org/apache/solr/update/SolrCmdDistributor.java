@@ -1167,12 +1167,10 @@ name|log
 operator|.
 name|debug
 argument_list|(
-literal|"Distrib commit to:"
-operator|+
+literal|"Distrib commit to: {} params: {}"
+argument_list|,
 name|nodes
-operator|+
-literal|" params:"
-operator|+
+argument_list|,
 name|params
 argument_list|)
 expr_stmt|;
