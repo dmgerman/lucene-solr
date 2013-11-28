@@ -559,6 +559,9 @@ argument_list|)
 decl_stmt|;
 name|assertEquals
 argument_list|(
+name|getRawResponse
+argument_list|()
+argument_list|,
 name|sumResult
 operator|+
 name|uniqueResult
@@ -642,6 +645,9 @@ argument_list|)
 expr_stmt|;
 name|assertEquals
 argument_list|(
+name|getRawResponse
+argument_list|()
+argument_list|,
 name|meanResult
 operator|+
 name|countResult
@@ -722,6 +728,9 @@ argument_list|)
 decl_stmt|;
 name|assertEquals
 argument_list|(
+name|getRawResponse
+argument_list|()
+argument_list|,
 name|sumResult
 operator|*
 name|uniqueResult
@@ -805,6 +814,9 @@ argument_list|)
 expr_stmt|;
 name|assertEquals
 argument_list|(
+name|getRawResponse
+argument_list|()
+argument_list|,
 name|meanResult
 operator|*
 name|countResult
@@ -885,6 +897,9 @@ argument_list|)
 decl_stmt|;
 name|assertEquals
 argument_list|(
+name|getRawResponse
+argument_list|()
+argument_list|,
 name|sumResult
 operator|/
 name|uniqueResult
@@ -951,6 +966,9 @@ argument_list|)
 expr_stmt|;
 name|assertEquals
 argument_list|(
+name|getRawResponse
+argument_list|()
+argument_list|,
 name|meanResult
 operator|/
 name|countResult
@@ -1029,6 +1047,9 @@ argument_list|)
 decl_stmt|;
 name|assertEquals
 argument_list|(
+name|getRawResponse
+argument_list|()
+argument_list|,
 name|Math
 operator|.
 name|pow
@@ -1100,6 +1121,9 @@ argument_list|)
 expr_stmt|;
 name|assertEquals
 argument_list|(
+name|getRawResponse
+argument_list|()
+argument_list|,
 name|Math
 operator|.
 name|pow
@@ -1161,6 +1185,9 @@ argument_list|)
 decl_stmt|;
 name|assertEquals
 argument_list|(
+name|getRawResponse
+argument_list|()
+argument_list|,
 operator|-
 literal|1
 operator|*
@@ -1211,6 +1238,9 @@ argument_list|)
 expr_stmt|;
 name|assertEquals
 argument_list|(
+name|getRawResponse
+argument_list|()
+argument_list|,
 operator|-
 literal|1
 operator|*
@@ -1268,6 +1298,9 @@ argument_list|)
 decl_stmt|;
 name|assertEquals
 argument_list|(
+name|getRawResponse
+argument_list|()
+argument_list|,
 name|sumResult
 argument_list|,
 name|result
@@ -1315,6 +1348,9 @@ argument_list|)
 expr_stmt|;
 name|assertEquals
 argument_list|(
+name|getRawResponse
+argument_list|()
+argument_list|,
 name|countResult
 argument_list|,
 name|result
@@ -1352,6 +1388,9 @@ argument_list|)
 decl_stmt|;
 name|assertEquals
 argument_list|(
+name|getRawResponse
+argument_list|()
+argument_list|,
 literal|8
 argument_list|,
 name|result
@@ -1377,6 +1416,9 @@ argument_list|)
 expr_stmt|;
 name|assertEquals
 argument_list|(
+name|getRawResponse
+argument_list|()
+argument_list|,
 literal|10
 argument_list|,
 name|result
@@ -1467,6 +1509,9 @@ argument_list|)
 decl_stmt|;
 name|assertEquals
 argument_list|(
+name|getRawResponse
+argument_list|()
+argument_list|,
 name|TrieDateField
 operator|.
 name|parseDate
@@ -1546,6 +1591,9 @@ argument_list|)
 expr_stmt|;
 name|assertEquals
 argument_list|(
+name|getRawResponse
+argument_list|()
+argument_list|,
 name|TrieDateField
 operator|.
 name|parseDate
@@ -1608,6 +1656,9 @@ argument_list|)
 decl_stmt|;
 name|assertEquals
 argument_list|(
+name|getRawResponse
+argument_list|()
+argument_list|,
 name|date
 argument_list|,
 name|str
@@ -1647,6 +1698,9 @@ argument_list|)
 expr_stmt|;
 name|assertEquals
 argument_list|(
+name|getRawResponse
+argument_list|()
+argument_list|,
 name|date
 argument_list|,
 name|str
@@ -1682,6 +1736,9 @@ argument_list|)
 decl_stmt|;
 name|assertEquals
 argument_list|(
+name|getRawResponse
+argument_list|()
+argument_list|,
 name|str
 argument_list|,
 literal|"this is the first"
@@ -1705,6 +1762,9 @@ argument_list|)
 expr_stmt|;
 name|assertEquals
 argument_list|(
+name|getRawResponse
+argument_list|()
+argument_list|,
 name|str
 argument_list|,
 literal|"this is the second"
@@ -1728,6 +1788,9 @@ argument_list|)
 expr_stmt|;
 name|assertEquals
 argument_list|(
+name|getRawResponse
+argument_list|()
+argument_list|,
 name|str
 argument_list|,
 literal|"this is the third"
@@ -1808,6 +1871,9 @@ argument_list|)
 decl_stmt|;
 name|assertEquals
 argument_list|(
+name|getRawResponse
+argument_list|()
+argument_list|,
 name|concat
 argument_list|,
 name|builder
@@ -1879,6 +1945,9 @@ argument_list|)
 expr_stmt|;
 name|assertEquals
 argument_list|(
+name|getRawResponse
+argument_list|()
+argument_list|,
 name|concat
 argument_list|,
 name|builder
@@ -1943,6 +2012,9 @@ argument_list|)
 decl_stmt|;
 name|assertEquals
 argument_list|(
+name|getRawResponse
+argument_list|()
+argument_list|,
 name|rev
 argument_list|,
 name|builder
@@ -1998,6 +2070,9 @@ argument_list|)
 expr_stmt|;
 name|assertEquals
 argument_list|(
+name|getRawResponse
+argument_list|()
+argument_list|,
 name|rev
 argument_list|,
 name|builder
