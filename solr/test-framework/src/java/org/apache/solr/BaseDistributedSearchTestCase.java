@@ -2859,9 +2859,10 @@ return|return
 name|rsp
 return|;
 block|}
+comment|/**    * Sets distributed params.    * Returns the QueryResponse from {@link #queryServer},    */
 DECL|method|query
 specifier|protected
-name|void
+name|QueryResponse
 name|query
 parameter_list|(
 name|Object
@@ -2871,17 +2872,19 @@ parameter_list|)
 throws|throws
 name|Exception
 block|{
+return|return
 name|query
 argument_list|(
 literal|true
 argument_list|,
 name|q
 argument_list|)
-expr_stmt|;
+return|;
 block|}
+comment|/**    * Returns the QueryResponse from {@link #queryServer}      */
 DECL|method|query
 specifier|protected
-name|void
+name|QueryResponse
 name|query
 parameter_list|(
 name|boolean
@@ -3168,6 +3171,9 @@ argument_list|()
 expr_stmt|;
 block|}
 block|}
+return|return
+name|rsp
+return|;
 block|}
 DECL|method|queryAndCompare
 specifier|public
