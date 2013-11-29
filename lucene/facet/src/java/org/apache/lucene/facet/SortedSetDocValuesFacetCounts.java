@@ -273,7 +273,7 @@ import|;
 end_import
 
 begin_comment
-comment|/** Compute facets counts from previously  *  indexed {@link SortedSetDocValuesFacetField},  *  without require a separate taxonomy index.  Faceting is  *  a bit slower (~25%), and there is added cost on every  *  {@link IndexReader} open to create a new {@link  *  SortedSetDocValuesReaderState}.  Furthermore, this does  *  not support hierarchical facets; only flat (dimension +  *  label) facets, but it uses quite a bit less RAM to do  *  so.  *  *  After creating this class, invoke {@link #getDim} or  *  {@link #getAllDims} to retrieve facet results. */
+comment|/** Compute facets counts from previously  *  indexed {@link SortedSetDocValuesFacetField},  *  without require a separate taxonomy index.  Faceting is  *  a bit slower (~25%), and there is added cost on every  *  {@link IndexReader} open to create a new {@link  *  SortedSetDocValuesReaderState}.  Furthermore, this does  *  not support hierarchical facets; only flat (dimension +  *  label) facets, but it uses quite a bit less RAM to do  *  so.  *  *<p><b>NOTE</b>: this class should be instantiated and  *  then used from a single thread, because it holds a  *  thread-private instance of {@link SortedSetDocValues}. */
 end_comment
 
 begin_class
@@ -874,8 +874,6 @@ operator|==
 literal|null
 condition|)
 block|{
-comment|// nocommit in trunk this was a "return" which is
-comment|// wrong; make a failing test
 continue|continue;
 block|}
 specifier|final
@@ -898,7 +896,7 @@ name|length
 argument_list|()
 assert|;
 comment|//System.out.println("  dv=" + dv);
-comment|// nocommit, yet another option is to count all segs
+comment|// TODO: yet another option is to count all segs
 comment|// first, only in seg-ord space, and then do a
 comment|// merge-sort-PQ in the end to only "resolve to
 comment|// global" those seg ords that can compete, if we know
@@ -1297,8 +1295,6 @@ literal|"path must be length=1"
 argument_list|)
 throw|;
 block|}
-comment|// nocommit this is not thread safe in general?  add
-comment|// jdocs that app must instantiate& use from same thread?
 name|int
 name|ord
 init|=

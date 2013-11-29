@@ -314,9 +314,8 @@ name|taxoReader
 operator|.
 name|getOrdinal
 argument_list|(
+operator|new
 name|FacetLabel
-operator|.
-name|create
 argument_list|(
 name|dim
 argument_list|,
@@ -395,9 +394,8 @@ decl_stmt|;
 name|FacetLabel
 name|cp
 init|=
+operator|new
 name|FacetLabel
-operator|.
-name|create
 argument_list|(
 name|dim
 argument_list|,

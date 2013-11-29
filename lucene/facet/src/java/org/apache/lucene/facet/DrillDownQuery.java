@@ -884,8 +884,6 @@ literal|true
 argument_list|)
 decl_stmt|;
 comment|// disable coord
-comment|// nocommit too anal?
-comment|/*     if (path.length == 0) {       throw new IllegalArgumentException("must have at least one facet label under dim");     }     */
 name|bq
 operator|.
 name|add

@@ -500,9 +500,7 @@ name|config
 init|=
 operator|new
 name|FacetsConfig
-argument_list|(
-name|taxoWriter
-argument_list|)
+argument_list|()
 decl_stmt|;
 name|config
 operator|.
@@ -570,6 +568,8 @@ name|config
 operator|.
 name|build
 argument_list|(
+name|taxoWriter
+argument_list|,
 name|doc
 argument_list|)
 argument_list|)
@@ -618,6 +618,8 @@ name|config
 operator|.
 name|build
 argument_list|(
+name|taxoWriter
+argument_list|,
 name|doc
 argument_list|)
 argument_list|)
@@ -666,6 +668,8 @@ name|config
 operator|.
 name|build
 argument_list|(
+name|taxoWriter
+argument_list|,
 name|doc
 argument_list|)
 argument_list|)
@@ -714,6 +718,8 @@ name|config
 operator|.
 name|build
 argument_list|(
+name|taxoWriter
+argument_list|,
 name|doc
 argument_list|)
 argument_list|)
@@ -762,6 +768,8 @@ name|config
 operator|.
 name|build
 argument_list|(
+name|taxoWriter
+argument_list|,
 name|doc
 argument_list|)
 argument_list|)
@@ -1115,9 +1123,7 @@ name|config
 init|=
 operator|new
 name|FacetsConfig
-argument_list|(
-name|taxoWriter
-argument_list|)
+argument_list|()
 decl_stmt|;
 name|Document
 name|doc
@@ -1147,6 +1153,8 @@ name|config
 operator|.
 name|build
 argument_list|(
+name|taxoWriter
+argument_list|,
 name|doc
 argument_list|)
 argument_list|)
@@ -1206,6 +1214,8 @@ name|config
 operator|.
 name|build
 argument_list|(
+name|taxoWriter
+argument_list|,
 name|doc
 argument_list|)
 argument_list|)
@@ -1278,6 +1288,8 @@ name|config
 operator|.
 name|build
 argument_list|(
+name|taxoWriter
+argument_list|,
 name|doc
 argument_list|)
 argument_list|)
@@ -1468,9 +1480,7 @@ name|config
 init|=
 operator|new
 name|FacetsConfig
-argument_list|(
-name|taxoWriter
-argument_list|)
+argument_list|()
 decl_stmt|;
 name|config
 operator|.
@@ -1521,6 +1531,8 @@ name|config
 operator|.
 name|build
 argument_list|(
+name|taxoWriter
+argument_list|,
 name|doc
 argument_list|)
 argument_list|)
@@ -1835,9 +1847,7 @@ name|config
 init|=
 operator|new
 name|FacetsConfig
-argument_list|(
-name|taxoWriter
-argument_list|)
+argument_list|()
 decl_stmt|;
 name|Document
 name|doc
@@ -1885,6 +1895,8 @@ name|config
 operator|.
 name|build
 argument_list|(
+name|taxoWriter
+argument_list|,
 name|doc
 argument_list|)
 argument_list|)
@@ -1943,9 +1955,7 @@ name|config
 init|=
 operator|new
 name|FacetsConfig
-argument_list|(
-name|taxoWriter
-argument_list|)
+argument_list|()
 decl_stmt|;
 name|config
 operator|.
@@ -2040,6 +2050,8 @@ name|config
 operator|.
 name|build
 argument_list|(
+name|taxoWriter
+argument_list|,
 name|doc
 argument_list|)
 argument_list|)
@@ -2214,9 +2226,7 @@ name|config
 init|=
 operator|new
 name|FacetsConfig
-argument_list|(
-name|taxoWriter
-argument_list|)
+argument_list|()
 decl_stmt|;
 name|config
 operator|.
@@ -2286,6 +2296,8 @@ name|config
 operator|.
 name|build
 argument_list|(
+name|taxoWriter
+argument_list|,
 name|doc
 argument_list|)
 argument_list|)
@@ -2465,9 +2477,7 @@ name|config
 init|=
 operator|new
 name|FacetsConfig
-argument_list|(
-name|taxoWriter
-argument_list|)
+argument_list|()
 decl_stmt|;
 name|config
 operator|.
@@ -2625,6 +2635,8 @@ name|config
 operator|.
 name|build
 argument_list|(
+name|taxoWriter
+argument_list|,
 name|doc
 argument_list|)
 argument_list|)
@@ -2835,9 +2847,7 @@ name|config
 init|=
 operator|new
 name|FacetsConfig
-argument_list|(
-name|taxoWriter
-argument_list|)
+argument_list|()
 decl_stmt|;
 name|config
 operator|.
@@ -2927,6 +2937,8 @@ name|config
 operator|.
 name|build
 argument_list|(
+name|taxoWriter
+argument_list|,
 name|doc
 argument_list|)
 argument_list|)
@@ -3143,9 +3155,7 @@ name|config
 init|=
 operator|new
 name|FacetsConfig
-argument_list|(
-name|taxoWriter
-argument_list|)
+argument_list|()
 decl_stmt|;
 name|Document
 name|doc
@@ -3193,6 +3203,8 @@ name|config
 operator|.
 name|build
 argument_list|(
+name|taxoWriter
+argument_list|,
 name|doc
 argument_list|)
 expr_stmt|;
@@ -3278,9 +3290,7 @@ name|config
 init|=
 operator|new
 name|FacetsConfig
-argument_list|(
-name|taxoWriter
-argument_list|)
+argument_list|()
 decl_stmt|;
 name|Document
 name|doc
@@ -3339,6 +3349,8 @@ name|config
 operator|.
 name|build
 argument_list|(
+name|taxoWriter
+argument_list|,
 name|doc
 argument_list|)
 expr_stmt|;
@@ -3425,9 +3437,7 @@ name|config
 init|=
 operator|new
 name|FacetsConfig
-argument_list|(
-name|taxoWriter
-argument_list|)
+argument_list|()
 decl_stmt|;
 name|config
 operator|.
@@ -3516,6 +3526,8 @@ name|config
 operator|.
 name|build
 argument_list|(
+name|taxoWriter
+argument_list|,
 name|doc
 argument_list|)
 argument_list|)
@@ -3707,9 +3719,7 @@ name|config
 init|=
 operator|new
 name|FacetsConfig
-argument_list|(
-name|taxoWriter
-argument_list|)
+argument_list|()
 decl_stmt|;
 for|for
 control|(
@@ -3770,6 +3780,8 @@ name|config
 operator|.
 name|build
 argument_list|(
+name|taxoWriter
+argument_list|,
 name|doc
 argument_list|)
 argument_list|)
@@ -3932,9 +3944,7 @@ name|config
 init|=
 operator|new
 name|FacetsConfig
-argument_list|(
-name|taxoWriter
-argument_list|)
+argument_list|()
 decl_stmt|;
 name|Document
 name|doc
@@ -3977,6 +3987,8 @@ name|config
 operator|.
 name|build
 argument_list|(
+name|taxoWriter
+argument_list|,
 name|doc
 argument_list|)
 argument_list|)
@@ -4145,9 +4157,7 @@ name|config
 init|=
 operator|new
 name|FacetsConfig
-argument_list|(
-name|taxoWriter
-argument_list|)
+argument_list|()
 decl_stmt|;
 for|for
 control|(
@@ -4197,6 +4207,8 @@ name|config
 operator|.
 name|build
 argument_list|(
+name|taxoWriter
+argument_list|,
 name|doc
 argument_list|)
 argument_list|)
@@ -4295,6 +4307,9 @@ specifier|private
 name|void
 name|indexTwoDocs
 parameter_list|(
+name|TaxonomyWriter
+name|taxoWriter
+parameter_list|,
 name|IndexWriter
 name|indexWriter
 parameter_list|,
@@ -4387,6 +4402,8 @@ name|config
 operator|.
 name|build
 argument_list|(
+name|taxoWriter
+argument_list|,
 name|doc
 argument_list|)
 argument_list|)
@@ -4480,12 +4497,12 @@ name|config
 init|=
 operator|new
 name|FacetsConfig
-argument_list|(
-name|taxoWriter
-argument_list|)
+argument_list|()
 decl_stmt|;
 name|indexTwoDocs
 argument_list|(
+name|taxoWriter
+argument_list|,
 name|indexWriter
 argument_list|,
 name|config
@@ -4496,6 +4513,8 @@ expr_stmt|;
 comment|// 1st segment, no content, with categories
 name|indexTwoDocs
 argument_list|(
+name|taxoWriter
+argument_list|,
 name|indexWriter
 argument_list|,
 literal|null
@@ -4506,6 +4525,8 @@ expr_stmt|;
 comment|// 2nd segment, with content, no categories
 name|indexTwoDocs
 argument_list|(
+name|taxoWriter
+argument_list|,
 name|indexWriter
 argument_list|,
 name|config
@@ -4516,6 +4537,8 @@ expr_stmt|;
 comment|// 3rd segment ok
 name|indexTwoDocs
 argument_list|(
+name|taxoWriter
+argument_list|,
 name|indexWriter
 argument_list|,
 literal|null
@@ -4526,6 +4549,8 @@ expr_stmt|;
 comment|// 4th segment, no content, or categories
 name|indexTwoDocs
 argument_list|(
+name|taxoWriter
+argument_list|,
 name|indexWriter
 argument_list|,
 literal|null
@@ -4536,6 +4561,8 @@ expr_stmt|;
 comment|// 5th segment, with content, no categories
 name|indexTwoDocs
 argument_list|(
+name|taxoWriter
+argument_list|,
 name|indexWriter
 argument_list|,
 name|config
@@ -4546,6 +4573,8 @@ expr_stmt|;
 comment|// 6th segment, with content, with categories
 name|indexTwoDocs
 argument_list|(
+name|taxoWriter
+argument_list|,
 name|indexWriter
 argument_list|,
 literal|null

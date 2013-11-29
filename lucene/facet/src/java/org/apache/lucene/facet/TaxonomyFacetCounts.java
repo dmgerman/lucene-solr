@@ -111,11 +111,7 @@ import|;
 end_import
 
 begin_comment
-comment|/** Reads from any {@link OrdinalsReader}; use {@link  *  FastTaxonomyFacetCounts} if you are just using the  *  default encoding from {@link BinaryDocValues}.  *   * @lucene.experimental */
-end_comment
-
-begin_comment
-comment|// nocommit remove& add specialized Cached variation only?
+comment|/** Reads from any {@link OrdinalsReader}; use {@link  *  FastTaxonomyFacetCounts} if you are using the  *  default encoding from {@link BinaryDocValues}.  *   * @lucene.experimental */
 end_comment
 
 begin_class

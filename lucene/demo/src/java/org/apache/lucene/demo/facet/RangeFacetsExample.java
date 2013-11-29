@@ -618,7 +618,7 @@ decl_stmt|;
 comment|// MatchAllDocsQuery is for "browsing" (counts facets
 comment|// for all non-deleted docs in the index); normally
 comment|// you'd use a "normal" query:
-name|Facets
+name|FacetsCollector
 operator|.
 name|search
 argument_list|(

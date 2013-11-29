@@ -236,7 +236,6 @@ name|indexFieldName
 argument_list|)
 condition|)
 block|{
-comment|// nocommit get test case to cover this:
 throw|throw
 operator|new
 name|IllegalArgumentException

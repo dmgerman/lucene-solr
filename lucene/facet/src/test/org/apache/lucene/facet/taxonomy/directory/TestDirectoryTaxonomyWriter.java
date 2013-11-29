@@ -2789,9 +2789,7 @@ name|config
 init|=
 operator|new
 name|FacetsConfig
-argument_list|(
-name|taxoWriter
-argument_list|)
+argument_list|()
 decl_stmt|;
 comment|// Add one huge label:
 name|String
@@ -2843,9 +2841,8 @@ decl_stmt|;
 name|FacetLabel
 name|cp
 init|=
+operator|new
 name|FacetLabel
-operator|.
-name|create
 argument_list|(
 literal|"dim"
 argument_list|,
@@ -2883,6 +2880,8 @@ name|config
 operator|.
 name|build
 argument_list|(
+name|taxoWriter
+argument_list|,
 name|doc
 argument_list|)
 argument_list|)
@@ -2958,6 +2957,8 @@ name|config
 operator|.
 name|build
 argument_list|(
+name|taxoWriter
+argument_list|,
 name|doc
 argument_list|)
 argument_list|)

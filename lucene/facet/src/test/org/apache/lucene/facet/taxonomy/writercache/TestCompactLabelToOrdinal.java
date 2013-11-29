@@ -331,7 +331,6 @@ argument_list|()
 expr_stmt|;
 comment|// we cannot have empty path components, so eliminate all prefix as well
 comment|// as middle consecutive delimiter chars.
-comment|// nocommit remove
 name|uniqueValues
 index|[
 name|i

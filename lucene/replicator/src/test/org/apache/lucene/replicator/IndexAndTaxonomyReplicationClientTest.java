@@ -1280,6 +1280,8 @@ name|config
 operator|.
 name|build
 argument_list|(
+name|publishTaxoWriter
+argument_list|,
 name|doc
 argument_list|)
 return|;
@@ -1424,9 +1426,7 @@ name|config
 operator|=
 operator|new
 name|FacetsConfig
-argument_list|(
-name|publishTaxoWriter
-argument_list|)
+argument_list|()
 expr_stmt|;
 name|config
 operator|.

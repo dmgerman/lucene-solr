@@ -269,7 +269,6 @@ operator|new
 name|BytesRef
 argument_list|()
 decl_stmt|;
-comment|//System.out.println("count seg=" + hits.context.reader());
 while|while
 condition|(
 name|doc
@@ -291,7 +290,6 @@ operator|-
 literal|1
 condition|)
 block|{
-comment|//System.out.println("  doc=" + doc);
 name|dv
 operator|.
 name|get
@@ -376,23 +374,6 @@ operator|)
 operator|+
 name|prev
 expr_stmt|;
-assert|assert
-name|ord
-operator|<
-name|values
-operator|.
-name|length
-operator|:
-literal|"ord="
-operator|+
-name|ord
-operator|+
-literal|" vs maxOrd="
-operator|+
-name|values
-operator|.
-name|length
-assert|;
 operator|++
 name|values
 index|[

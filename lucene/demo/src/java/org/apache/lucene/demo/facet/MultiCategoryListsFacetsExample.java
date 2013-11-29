@@ -394,31 +394,22 @@ operator|new
 name|RAMDirectory
 argument_list|()
 decl_stmt|;
-comment|/** Creates a new instance and populates the catetory list params mapping. */
-DECL|method|MultiCategoryListsFacetsExample
-specifier|public
-name|MultiCategoryListsFacetsExample
-parameter_list|()
-block|{   }
-comment|/** It's fine if taxoWriter is null (i.e., at search time) */
-DECL|method|getConfig
+DECL|field|config
 specifier|private
-name|FacetsConfig
-name|getConfig
-parameter_list|(
-name|TaxonomyWriter
-name|taxoWriter
-parameter_list|)
-block|{
+specifier|final
 name|FacetsConfig
 name|config
 init|=
 operator|new
 name|FacetsConfig
-argument_list|(
-name|taxoWriter
-argument_list|)
+argument_list|()
 decl_stmt|;
+comment|/** Creates a new instance and populates the catetory list params mapping. */
+DECL|method|MultiCategoryListsFacetsExample
+specifier|public
+name|MultiCategoryListsFacetsExample
+parameter_list|()
+block|{
 name|config
 operator|.
 name|setIndexFieldName
@@ -446,9 +437,6 @@ argument_list|,
 literal|true
 argument_list|)
 expr_stmt|;
-return|return
-name|config
-return|;
 block|}
 comment|/** Build the example index. */
 DECL|method|index
@@ -492,14 +480,6 @@ operator|new
 name|DirectoryTaxonomyWriter
 argument_list|(
 name|taxoDir
-argument_list|)
-decl_stmt|;
-name|FacetsConfig
-name|config
-init|=
-name|getConfig
-argument_list|(
-name|taxoWriter
 argument_list|)
 decl_stmt|;
 name|Document
@@ -547,6 +527,8 @@ name|config
 operator|.
 name|build
 argument_list|(
+name|taxoWriter
+argument_list|,
 name|doc
 argument_list|)
 argument_list|)
@@ -595,6 +577,8 @@ name|config
 operator|.
 name|build
 argument_list|(
+name|taxoWriter
+argument_list|,
 name|doc
 argument_list|)
 argument_list|)
@@ -643,6 +627,8 @@ name|config
 operator|.
 name|build
 argument_list|(
+name|taxoWriter
+argument_list|,
 name|doc
 argument_list|)
 argument_list|)
@@ -691,6 +677,8 @@ name|config
 operator|.
 name|build
 argument_list|(
+name|taxoWriter
+argument_list|,
 name|doc
 argument_list|)
 argument_list|)
@@ -739,6 +727,8 @@ name|config
 operator|.
 name|build
 argument_list|(
+name|taxoWriter
+argument_list|,
 name|doc
 argument_list|)
 argument_list|)
@@ -794,14 +784,6 @@ argument_list|(
 name|taxoDir
 argument_list|)
 decl_stmt|;
-name|FacetsConfig
-name|config
-init|=
-name|getConfig
-argument_list|(
-literal|null
-argument_list|)
-decl_stmt|;
 name|FacetsCollector
 name|fc
 init|=
@@ -812,7 +794,7 @@ decl_stmt|;
 comment|// MatchAllDocsQuery is for "browsing" (counts facets
 comment|// for all non-deleted docs in the index); normally
 comment|// you'd use a "normal" query:
-name|Facets
+name|FacetsCollector
 operator|.
 name|search
 argument_list|(

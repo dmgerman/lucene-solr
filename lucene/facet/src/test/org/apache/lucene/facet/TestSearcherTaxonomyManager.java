@@ -278,9 +278,7 @@ name|config
 init|=
 operator|new
 name|FacetsConfig
-argument_list|(
-name|tw
-argument_list|)
+argument_list|()
 decl_stmt|;
 name|config
 operator|.
@@ -518,6 +516,8 @@ name|config
 operator|.
 name|build
 argument_list|(
+name|tw
+argument_list|,
 name|doc
 argument_list|)
 argument_list|)

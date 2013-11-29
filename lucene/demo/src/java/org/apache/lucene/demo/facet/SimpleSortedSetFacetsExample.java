@@ -324,24 +324,22 @@ operator|new
 name|RAMDirectory
 argument_list|()
 decl_stmt|;
+DECL|field|config
+specifier|private
+specifier|final
+name|FacetsConfig
+name|config
+init|=
+operator|new
+name|FacetsConfig
+argument_list|()
+decl_stmt|;
 comment|/** Empty constructor */
 DECL|method|SimpleSortedSetFacetsExample
 specifier|public
 name|SimpleSortedSetFacetsExample
 parameter_list|()
-block|{}
-DECL|method|getConfig
-specifier|private
-name|FacetsConfig
-name|getConfig
-parameter_list|()
-block|{
-return|return
-operator|new
-name|FacetsConfig
-argument_list|()
-return|;
-block|}
+block|{   }
 comment|/** Build the example index. */
 DECL|method|index
 specifier|private
@@ -375,12 +373,6 @@ name|EXAMPLES_VER
 argument_list|)
 argument_list|)
 argument_list|)
-decl_stmt|;
-name|FacetsConfig
-name|config
-init|=
-name|getConfig
-argument_list|()
 decl_stmt|;
 name|Document
 name|doc
@@ -649,12 +641,6 @@ argument_list|(
 name|indexReader
 argument_list|)
 decl_stmt|;
-name|FacetsConfig
-name|config
-init|=
-name|getConfig
-argument_list|()
-decl_stmt|;
 comment|// Aggregatses the facet counts
 name|FacetsCollector
 name|fc
@@ -666,7 +652,7 @@ decl_stmt|;
 comment|// MatchAllDocsQuery is for "browsing" (counts facets
 comment|// for all non-deleted docs in the index); normally
 comment|// you'd use a "normal" query:
-name|Facets
+name|FacetsCollector
 operator|.
 name|search
 argument_list|(
@@ -780,12 +766,6 @@ argument_list|(
 name|indexReader
 argument_list|)
 decl_stmt|;
-name|FacetsConfig
-name|config
-init|=
-name|getConfig
-argument_list|()
-decl_stmt|;
 comment|// Now user drills down on Publish Year/2010:
 name|DrillDownQuery
 name|q
@@ -812,7 +792,7 @@ operator|new
 name|FacetsCollector
 argument_list|()
 decl_stmt|;
-name|Facets
+name|FacetsCollector
 operator|.
 name|search
 argument_list|(

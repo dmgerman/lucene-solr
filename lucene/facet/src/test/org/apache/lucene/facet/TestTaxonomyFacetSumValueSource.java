@@ -542,9 +542,7 @@ name|config
 init|=
 operator|new
 name|FacetsConfig
-argument_list|(
-name|taxoWriter
-argument_list|)
+argument_list|()
 decl_stmt|;
 comment|// Reused across documents, to add the necessary facet
 comment|// fields:
@@ -595,6 +593,8 @@ name|config
 operator|.
 name|build
 argument_list|(
+name|taxoWriter
+argument_list|,
 name|doc
 argument_list|)
 argument_list|)
@@ -645,6 +645,8 @@ name|config
 operator|.
 name|build
 argument_list|(
+name|taxoWriter
+argument_list|,
 name|doc
 argument_list|)
 argument_list|)
@@ -695,6 +697,8 @@ name|config
 operator|.
 name|build
 argument_list|(
+name|taxoWriter
+argument_list|,
 name|doc
 argument_list|)
 argument_list|)
@@ -745,6 +749,8 @@ name|config
 operator|.
 name|build
 argument_list|(
+name|taxoWriter
+argument_list|,
 name|doc
 argument_list|)
 argument_list|)
@@ -795,6 +801,8 @@ name|config
 operator|.
 name|build
 argument_list|(
+name|taxoWriter
+argument_list|,
 name|doc
 argument_list|)
 argument_list|)
@@ -972,9 +980,7 @@ name|config
 init|=
 operator|new
 name|FacetsConfig
-argument_list|(
-name|taxoWriter
-argument_list|)
+argument_list|()
 decl_stmt|;
 name|Document
 name|doc
@@ -1023,6 +1029,8 @@ name|config
 operator|.
 name|build
 argument_list|(
+name|taxoWriter
+argument_list|,
 name|doc
 argument_list|)
 argument_list|)
@@ -1101,6 +1109,8 @@ name|config
 operator|.
 name|build
 argument_list|(
+name|taxoWriter
+argument_list|,
 name|doc
 argument_list|)
 argument_list|)
@@ -1192,6 +1202,8 @@ name|config
 operator|.
 name|build
 argument_list|(
+name|taxoWriter
+argument_list|,
 name|doc
 argument_list|)
 argument_list|)
@@ -1395,9 +1407,7 @@ name|config
 init|=
 operator|new
 name|FacetsConfig
-argument_list|(
-name|taxoWriter
-argument_list|)
+argument_list|()
 decl_stmt|;
 name|config
 operator|.
@@ -1467,6 +1477,8 @@ name|config
 operator|.
 name|build
 argument_list|(
+name|taxoWriter
+argument_list|,
 name|doc
 argument_list|)
 argument_list|)
@@ -1682,9 +1694,7 @@ name|config
 init|=
 operator|new
 name|FacetsConfig
-argument_list|(
-name|taxoWriter
-argument_list|)
+argument_list|()
 decl_stmt|;
 for|for
 control|(
@@ -1762,6 +1772,8 @@ name|config
 operator|.
 name|build
 argument_list|(
+name|taxoWriter
+argument_list|,
 name|doc
 argument_list|)
 argument_list|)
@@ -1818,7 +1830,7 @@ expr_stmt|;
 name|TopDocs
 name|td
 init|=
-name|Facets
+name|FacetsCollector
 operator|.
 name|search
 argument_list|(
@@ -1960,9 +1972,7 @@ name|config
 init|=
 operator|new
 name|FacetsConfig
-argument_list|(
-name|taxoWriter
-argument_list|)
+argument_list|()
 decl_stmt|;
 for|for
 control|(
@@ -2031,6 +2041,8 @@ name|config
 operator|.
 name|build
 argument_list|(
+name|taxoWriter
+argument_list|,
 name|doc
 argument_list|)
 argument_list|)
@@ -2187,9 +2199,7 @@ name|config
 init|=
 operator|new
 name|FacetsConfig
-argument_list|(
-name|taxoWriter
-argument_list|)
+argument_list|()
 decl_stmt|;
 for|for
 control|(
@@ -2258,6 +2268,8 @@ name|config
 operator|.
 name|build
 argument_list|(
+name|taxoWriter
+argument_list|,
 name|doc
 argument_list|)
 argument_list|)
@@ -2454,7 +2466,7 @@ literal|"price"
 argument_list|)
 argument_list|)
 decl_stmt|;
-name|Facets
+name|FacetsCollector
 operator|.
 name|search
 argument_list|(
@@ -2575,9 +2587,7 @@ name|config
 init|=
 operator|new
 name|FacetsConfig
-argument_list|(
-name|taxoWriter
-argument_list|)
+argument_list|()
 decl_stmt|;
 name|config
 operator|.
@@ -2658,6 +2668,8 @@ name|config
 operator|.
 name|build
 argument_list|(
+name|taxoWriter
+argument_list|,
 name|doc
 argument_list|)
 argument_list|)
@@ -2819,9 +2831,7 @@ name|config
 init|=
 operator|new
 name|FacetsConfig
-argument_list|(
-name|taxoWriter
-argument_list|)
+argument_list|()
 decl_stmt|;
 name|config
 operator|.
@@ -2910,6 +2920,8 @@ name|config
 operator|.
 name|build
 argument_list|(
+name|taxoWriter
+argument_list|,
 name|doc
 argument_list|)
 argument_list|)
@@ -2948,7 +2960,7 @@ decl_stmt|;
 name|TopDocs
 name|hits
 init|=
-name|Facets
+name|FacetsCollector
 operator|.
 name|search
 argument_list|(

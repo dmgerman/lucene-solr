@@ -280,9 +280,7 @@ name|config
 operator|=
 operator|new
 name|FacetsConfig
-argument_list|(
-name|taxoWriter
-argument_list|)
+argument_list|()
 expr_stmt|;
 name|config
 operator|.
@@ -446,6 +444,8 @@ name|config
 operator|.
 name|build
 argument_list|(
+name|taxoWriter
+argument_list|,
 name|doc
 argument_list|)
 argument_list|)
@@ -1014,9 +1014,7 @@ name|config
 init|=
 operator|new
 name|FacetsConfig
-argument_list|(
-name|taxoWriter
-argument_list|)
+argument_list|()
 decl_stmt|;
 name|RandomIndexWriter
 name|writer
@@ -1077,6 +1075,8 @@ name|config
 operator|.
 name|build
 argument_list|(
+name|taxoWriter
+argument_list|,
 name|doc
 argument_list|)
 argument_list|)
@@ -1143,9 +1143,7 @@ name|config
 init|=
 operator|new
 name|FacetsConfig
-argument_list|(
-name|taxoWriter
-argument_list|)
+argument_list|()
 decl_stmt|;
 name|config
 operator|.
@@ -1200,6 +1198,8 @@ name|config
 operator|.
 name|build
 argument_list|(
+name|taxoWriter
+argument_list|,
 name|doc
 argument_list|)
 argument_list|)
@@ -1266,9 +1266,7 @@ name|config
 init|=
 operator|new
 name|FacetsConfig
-argument_list|(
-name|taxoWriter
-argument_list|)
+argument_list|()
 decl_stmt|;
 name|config
 operator|.
@@ -1323,6 +1321,8 @@ name|config
 operator|.
 name|build
 argument_list|(
+name|taxoWriter
+argument_list|,
 name|doc
 argument_list|)
 argument_list|)

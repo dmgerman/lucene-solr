@@ -23,7 +23,7 @@ specifier|final
 class|class
 name|LabelAndValue
 block|{
-comment|// nocommit BytesRef?
+comment|/** Facet's label. */
 DECL|field|label
 specifier|public
 specifier|final
