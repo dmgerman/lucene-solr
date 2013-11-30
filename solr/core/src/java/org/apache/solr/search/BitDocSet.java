@@ -1159,7 +1159,7 @@ name|cost
 parameter_list|()
 block|{
 comment|// we don't want to actually compute cardinality, but
-comment|// if its already been computed, we use it
+comment|// if its already been computed, we use it (pro-rated for the segment)
 if|if
 condition|(
 name|size
@@ -1169,16 +1169,39 @@ literal|1
 condition|)
 block|{
 return|return
+call|(
+name|long
+call|)
+argument_list|(
 name|size
+operator|*
+operator|(
+operator|(
+name|OpenBitSet
+operator|.
+name|bits2words
+argument_list|(
+name|maxDoc
+argument_list|)
+operator|<<
+literal|6
+operator|)
+operator|/
+operator|(
+name|float
+operator|)
+name|bs
+operator|.
+name|capacity
+argument_list|()
+operator|)
+argument_list|)
 return|;
 block|}
 else|else
 block|{
 return|return
-name|bs
-operator|.
-name|capacity
-argument_list|()
+name|maxDoc
 return|;
 block|}
 block|}
