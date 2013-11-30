@@ -1996,9 +1996,9 @@ name|NamedList
 name|stv
 parameter_list|)
 block|{
-name|sum
-operator|+=
-operator|(
+name|Date
+name|date
+init|=
 operator|(
 name|Date
 operator|)
@@ -2008,7 +2008,17 @@ name|get
 argument_list|(
 literal|"sum"
 argument_list|)
-operator|)
+decl_stmt|;
+if|if
+condition|(
+name|date
+operator|!=
+literal|null
+condition|)
+block|{
+name|sum
+operator|+=
+name|date
 operator|.
 name|getTime
 argument_list|()
@@ -2030,6 +2040,7 @@ operator|.
 name|doubleValue
 argument_list|()
 expr_stmt|;
+block|}
 block|}
 comment|/**    * {@inheritDoc}    */
 annotation|@
