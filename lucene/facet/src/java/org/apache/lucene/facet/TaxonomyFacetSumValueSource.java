@@ -195,7 +195,7 @@ import|;
 end_import
 
 begin_comment
-comment|/** Aggregates sum of values from {@link  *  ValueSource#doubleValue}, for each facet label.  *  *  @lucene.experimental */
+comment|/** Aggregates sum of values from {@link  *  FunctionValues#doubleVal}, for each facet label.  *  *  @lucene.experimental */
 end_comment
 
 begin_class

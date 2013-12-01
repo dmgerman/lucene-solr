@@ -45,7 +45,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Holds a sequence of string components, specifying the hierarchical name of a  * category.  *   * @lucene.experimental  */
+comment|/**  * Holds a sequence of string components, specifying the hierarchical name of a  * category.  *   * @lucene.internal  */
 end_comment
 
 begin_class
@@ -60,7 +60,7 @@ name|FacetLabel
 argument_list|>
 block|{
 comment|/*    * copied from DocumentWriterPerThread -- if a CategoryPath is resolved to a    * drill-down term which is encoded to a larger term than that length, it is    * silently dropped! Therefore we limit the number of characters to MAX/4 to    * be on the safe side.    */
-comment|/**    * The maximum number of characters a {@link FacetLabel} can have. That is    * {@link FacetLabel#toString(char)} length must not exceed that limit.    */
+comment|/**    * The maximum number of characters a {@link FacetLabel} can have.    */
 DECL|field|MAX_CATEGORY_PATH_LENGTH
 specifier|public
 specifier|final
@@ -725,7 +725,7 @@ argument_list|)
 return|;
 block|}
 block|}
-comment|/**    * Returns a string representation of the path, separating components with    * '/'.    *     * @see #toString(char)    */
+comment|/**    * Returns a string representation of the path.    */
 annotation|@
 name|Override
 DECL|method|toString

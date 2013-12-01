@@ -35,7 +35,7 @@ comment|// javadocs
 end_comment
 
 begin_comment
-comment|/** Represents a range over long values indexed as {@link  *  NumericDocValuesField}.  */
+comment|/** Represents a range over long values. */
 end_comment
 
 begin_class
@@ -180,8 +180,6 @@ operator|=
 name|max
 expr_stmt|;
 block|}
-annotation|@
-name|Override
 DECL|method|accept
 specifier|public
 name|boolean

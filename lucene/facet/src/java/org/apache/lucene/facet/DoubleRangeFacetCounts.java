@@ -54,6 +54,42 @@ name|apache
 operator|.
 name|lucene
 operator|.
+name|document
+operator|.
+name|DoubleDocValuesField
+import|;
+end_import
+
+begin_comment
+comment|// javadocs
+end_comment
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|document
+operator|.
+name|FloatDocValuesField
+import|;
+end_import
+
+begin_comment
+comment|// javadocs
+end_comment
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
 name|facet
 operator|.
 name|FacetsCollector
@@ -124,26 +160,48 @@ name|function
 operator|.
 name|valuesource
 operator|.
-name|LongFieldSource
+name|DoubleFieldSource
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|queries
+operator|.
+name|function
+operator|.
+name|valuesource
+operator|.
+name|FloatFieldSource
 import|;
 end_import
 
 begin_comment
-comment|/** {@link Facets} implementation that computes counts for  *  dynamic ranges from a provided {@link ValueSource}.  Use  *  this for dimensions that change in real-time (e.g. a  *  relative time based dimension like "Past day", "Past 2  *  days", etc.) or that change for each user (e.g. a  *  distance dimension like "< 1 km", "< 2 km", etc.).  *  *  @lucene.experimental */
+comment|// javadocs
+end_comment
+
+begin_comment
+comment|/** {@link Facets} implementation that computes counts for  *  dynamic double ranges from a provided {@link  *  ValueSource}, using {@link FunctionValues#doubleVal}.  Use  *  this for dimensions that change in real-time (e.g. a  *  relative time based dimension like "Past day", "Past 2  *  days", etc.) or that change for each user (e.g. a  *  distance dimension like "< 1 km", "< 2 km", etc.).  *  *<p> If you had indexed your field using {@link  *  FloatDocValuesField} then pass {@link FloatFieldSource}  *  as the {@link ValueSource}; if you used {@link  *  DoubleDocValuesField} then pass {@link  *  DoubleFieldSource} (this is the default used when you  *  pass just a the field name).  *  *  @lucene.experimental */
 end_comment
 
 begin_class
-DECL|class|RangeFacetCounts
+DECL|class|DoubleRangeFacetCounts
 specifier|public
 class|class
-name|RangeFacetCounts
+name|DoubleRangeFacetCounts
 extends|extends
 name|Facets
 block|{
 DECL|field|ranges
 specifier|private
 specifier|final
-name|Range
+name|DoubleRange
 index|[]
 name|ranges
 decl_stmt|;
@@ -165,10 +223,10 @@ specifier|private
 name|int
 name|totCount
 decl_stmt|;
-comment|/** Create {@code RangeFacetCounts}, using {@link    *  LongFieldSource} from the specified field. */
-DECL|method|RangeFacetCounts
+comment|/** Create {@code RangeFacetCounts}, using {@link    *  DoubleFieldSource} from the specified field. */
+DECL|method|DoubleRangeFacetCounts
 specifier|public
-name|RangeFacetCounts
+name|DoubleRangeFacetCounts
 parameter_list|(
 name|String
 name|field
@@ -176,7 +234,7 @@ parameter_list|,
 name|FacetsCollector
 name|hits
 parameter_list|,
-name|Range
+name|DoubleRange
 modifier|...
 name|ranges
 parameter_list|)
@@ -188,7 +246,7 @@ argument_list|(
 name|field
 argument_list|,
 operator|new
-name|LongFieldSource
+name|DoubleFieldSource
 argument_list|(
 name|field
 argument_list|)
@@ -200,9 +258,9 @@ argument_list|)
 expr_stmt|;
 block|}
 comment|/** Create {@code RangeFacetCounts}, using the provided    *  {@link ValueSource}. */
-DECL|method|RangeFacetCounts
+DECL|method|DoubleRangeFacetCounts
 specifier|public
-name|RangeFacetCounts
+name|DoubleRangeFacetCounts
 parameter_list|(
 name|String
 name|field
@@ -213,7 +271,7 @@ parameter_list|,
 name|FacetsCollector
 name|hits
 parameter_list|,
-name|Range
+name|DoubleRange
 modifier|...
 name|ranges
 parameter_list|)
@@ -354,12 +412,12 @@ name|doc
 argument_list|)
 condition|)
 block|{
-name|long
+name|double
 name|v
 init|=
 name|fv
 operator|.
-name|longVal
+name|doubleVal
 argument_list|(
 name|doc
 argument_list|)

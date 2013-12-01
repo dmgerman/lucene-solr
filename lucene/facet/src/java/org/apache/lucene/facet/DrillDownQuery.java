@@ -914,7 +914,7 @@ name|bq
 argument_list|)
 expr_stmt|;
 block|}
-comment|/** Expert: add a custom drill-down subQuery.  Use this    *  when you have a separate way to drill-down on the    *  dimension than the indexed facet ordinals (for    *  example, use a {@link NumericRangeQuery} to drill down    *  after{@link RangeFacetCounts}. */
+comment|/** Expert: add a custom drill-down subQuery.  Use this    *  when you have a separate way to drill-down on the    *  dimension than the indexed facet ordinals (for    *  example, use a {@link NumericRangeQuery} to drill down    *  after {@link LongRangeFacetCounts} or {@link DoubleRangeFacetCounts}. */
 DECL|method|add
 specifier|public
 name|void

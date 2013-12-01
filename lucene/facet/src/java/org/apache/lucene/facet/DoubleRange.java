@@ -35,7 +35,7 @@ comment|// javadocs
 end_comment
 
 begin_comment
-comment|/** Represents a range over double values indexed as {@link  *  DoubleDocValuesField}.  */
+comment|/** Represents a range over double values. */
 end_comment
 
 begin_class
@@ -223,33 +223,21 @@ operator|=
 name|max
 expr_stmt|;
 block|}
-annotation|@
-name|Override
 DECL|method|accept
 specifier|public
 name|boolean
 name|accept
 parameter_list|(
-name|long
+name|double
 name|value
 parameter_list|)
 block|{
-name|double
-name|doubleValue
-init|=
-name|Double
-operator|.
-name|longBitsToDouble
-argument_list|(
-name|value
-argument_list|)
-decl_stmt|;
 return|return
-name|doubleValue
+name|value
 operator|>=
 name|minIncl
 operator|&&
-name|doubleValue
+name|value
 operator|<=
 name|maxIncl
 return|;
