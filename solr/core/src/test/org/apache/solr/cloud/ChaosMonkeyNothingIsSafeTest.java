@@ -695,6 +695,7 @@ name|i
 operator|++
 control|)
 block|{
+comment|// ensure the id start is high enough that threads will not overlap doc ids
 name|StopableIndexingThread
 name|indexThread
 init|=
@@ -707,7 +708,7 @@ operator|+
 literal|1
 operator|)
 operator|*
-literal|50000
+literal|25000000
 argument_list|,
 literal|true
 argument_list|)
