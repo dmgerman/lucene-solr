@@ -42,16 +42,6 @@ name|java
 operator|.
 name|util
 operator|.
-name|Arrays
-import|;
-end_import
-
-begin_import
-import|import
-name|java
-operator|.
-name|util
-operator|.
 name|Collections
 import|;
 end_import
@@ -63,16 +53,6 @@ operator|.
 name|util
 operator|.
 name|Comparator
-import|;
-end_import
-
-begin_import
-import|import
-name|java
-operator|.
-name|util
-operator|.
-name|Iterator
 import|;
 end_import
 
@@ -125,36 +105,6 @@ operator|.
 name|SortedSetDocValuesReaderState
 operator|.
 name|OrdRange
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|facet
-operator|.
-name|SortedSetDocValuesReaderState
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|facet
-operator|.
-name|taxonomy
-operator|.
-name|FacetLabel
 import|;
 end_import
 
@@ -258,22 +208,8 @@ name|BytesRef
 import|;
 end_import
 
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|util
-operator|.
-name|PriorityQueue
-import|;
-end_import
-
 begin_comment
-comment|/** Compute facets counts from previously  *  indexed {@link SortedSetDocValuesFacetField},  *  without require a separate taxonomy index.  Faceting is  *  a bit slower (~25%), and there is added cost on every  *  {@link IndexReader} open to create a new {@link  *  SortedSetDocValuesReaderState}.  Furthermore, this does  *  not support hierarchical facets; only flat (dimension +  *  label) facets, but it uses quite a bit less RAM to do  *  so.  *  *<p><b>NOTE</b>: this class should be instantiated and  *  then used from a single thread, because it holds a  *  thread-private instance of {@link SortedSetDocValues}. */
+comment|/** Compute facets counts from previously  *  indexed {@link SortedSetDocValuesFacetField},  *  without require a separate taxonomy index.  Faceting is  *  a bit slower (~25%), and there is added cost on every  *  {@link IndexReader} open to create a new {@link  *  SortedSetDocValuesReaderState}.  Furthermore, this does  *  not support hierarchical facets; only flat (dimension +  *  label) facets, but it uses quite a bit less RAM to do  *  so.  *  *<p><b>NOTE</b>: this class should be instantiated and  *  then used from a single thread, because it holds a  *  thread-private instance of {@link SortedSetDocValues}.  *   *<p><b>NOTE:<b/>: tie-break is by unicode sort order  *  * @lucene.experimental */
 end_comment
 
 begin_class
@@ -741,6 +677,14 @@ return|return
 operator|new
 name|FacetResult
 argument_list|(
+name|dim
+argument_list|,
+operator|new
+name|String
+index|[
+literal|0
+index|]
+argument_list|,
 name|dimCount
 argument_list|,
 name|labelValues
@@ -1496,7 +1440,16 @@ block|}
 else|else
 block|{
 return|return
-literal|0
+name|a
+operator|.
+name|dim
+operator|.
+name|compareTo
+argument_list|(
+name|b
+operator|.
+name|dim
+argument_list|)
 return|;
 block|}
 block|}

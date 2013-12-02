@@ -40,16 +40,6 @@ end_import
 
 begin_import
 import|import
-name|java
-operator|.
-name|util
-operator|.
-name|List
-import|;
-end_import
-
-begin_import
-import|import
 name|org
 operator|.
 name|apache
@@ -685,8 +675,6 @@ name|getConfig
 argument_list|()
 argument_list|)
 decl_stmt|;
-comment|// Use FieldCacheRangeFilter; this will use
-comment|// NumericDocValues:
 name|q
 operator|.
 name|add

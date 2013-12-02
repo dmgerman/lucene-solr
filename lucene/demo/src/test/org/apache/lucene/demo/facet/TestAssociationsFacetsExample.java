@@ -111,7 +111,7 @@ argument_list|)
 expr_stmt|;
 name|assertEquals
 argument_list|(
-literal|"value=-1 childCount=2\n  lucene (4)\n  solr (2)\n"
+literal|"dim=tags path=[] value=-1 childCount=2\n  lucene (4)\n  solr (2)\n"
 argument_list|,
 name|res
 operator|.
@@ -126,7 +126,7 @@ argument_list|)
 expr_stmt|;
 name|assertEquals
 argument_list|(
-literal|"value=-1.0 childCount=2\n  computing (1.62)\n  software (0.34)\n"
+literal|"dim=genre path=[] value=-1.0 childCount=2\n  computing (1.62)\n  software (0.34)\n"
 argument_list|,
 name|res
 operator|.

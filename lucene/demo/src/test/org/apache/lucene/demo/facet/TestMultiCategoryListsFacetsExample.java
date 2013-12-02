@@ -109,7 +109,7 @@ argument_list|)
 expr_stmt|;
 name|assertEquals
 argument_list|(
-literal|"value=5 childCount=4\n  Lisa (2)\n  Bob (1)\n  Susan (1)\n  Frank (1)\n"
+literal|"dim=Author path=[] value=5 childCount=4\n  Lisa (2)\n  Bob (1)\n  Susan (1)\n  Frank (1)\n"
 argument_list|,
 name|results
 operator|.
@@ -124,7 +124,7 @@ argument_list|)
 expr_stmt|;
 name|assertEquals
 argument_list|(
-literal|"value=5 childCount=3\n  2010 (2)\n  2012 (2)\n  1999 (1)\n"
+literal|"dim=Publish Date path=[] value=5 childCount=3\n  2010 (2)\n  2012 (2)\n  1999 (1)\n"
 argument_list|,
 name|results
 operator|.

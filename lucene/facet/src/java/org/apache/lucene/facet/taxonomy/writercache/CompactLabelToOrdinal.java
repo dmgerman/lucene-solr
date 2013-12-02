@@ -355,9 +355,9 @@ name|CategoryPathUtils
 operator|.
 name|serialize
 argument_list|(
+operator|new
 name|FacetLabel
-operator|.
-name|EMPTY
+argument_list|()
 argument_list|,
 name|labelRepository
 argument_list|)

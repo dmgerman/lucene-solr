@@ -1511,9 +1511,9 @@ name|tr
 operator|.
 name|getOrdinal
 argument_list|(
+operator|new
 name|FacetLabel
-operator|.
-name|EMPTY
+argument_list|()
 argument_list|)
 argument_list|)
 expr_stmt|;
@@ -1618,9 +1618,9 @@ name|tr
 operator|.
 name|getOrdinal
 argument_list|(
+operator|new
 name|FacetLabel
-operator|.
-name|EMPTY
+argument_list|()
 argument_list|)
 argument_list|)
 expr_stmt|;

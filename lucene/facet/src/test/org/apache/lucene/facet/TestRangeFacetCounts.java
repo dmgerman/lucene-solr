@@ -360,6 +360,20 @@ name|lucene
 operator|.
 name|search
 operator|.
+name|ConstantScoreQuery
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|search
+operator|.
 name|IndexSearcher
 import|;
 end_import
@@ -389,20 +403,6 @@ operator|.
 name|search
 operator|.
 name|NumericRangeQuery
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|search
-operator|.
-name|SortField
 import|;
 end_import
 
@@ -689,7 +689,7 @@ argument_list|)
 decl_stmt|;
 name|assertEquals
 argument_list|(
-literal|"value=101 childCount=5\n  less than 10 (10)\n  less than or equal to 10 (11)\n  over 90 (9)\n  90 or above (10)\n  over 1000 (1)\n"
+literal|"dim=field path=[] value=101 childCount=5\n  less than 10 (10)\n  less than or equal to 10 (11)\n  over 90 (9)\n  90 or above (10)\n  over 1000 (1)\n"
 argument_list|,
 name|result
 operator|.
@@ -1194,7 +1194,7 @@ argument_list|)
 expr_stmt|;
 name|assertEquals
 argument_list|(
-literal|"value=100 childCount=2\n  b (75)\n  a (25)\n"
+literal|"dim=dim path=[] value=100 childCount=2\n  b (75)\n  a (25)\n"
 argument_list|,
 name|dsr
 operator|.
@@ -1213,7 +1213,7 @@ argument_list|)
 expr_stmt|;
 name|assertEquals
 argument_list|(
-literal|"value=100 childCount=5\n  less than 10 (10)\n  less than or equal to 10 (11)\n  over 90 (9)\n  90 or above (10)\n  over 1000 (0)\n"
+literal|"dim=field path=[] value=100 childCount=5\n  less than 10 (10)\n  less than or equal to 10 (11)\n  over 90 (9)\n  90 or above (10)\n  over 1000 (0)\n"
 argument_list|,
 name|dsr
 operator|.
@@ -1274,7 +1274,7 @@ argument_list|)
 expr_stmt|;
 name|assertEquals
 argument_list|(
-literal|"value=100 childCount=2\n  b (75)\n  a (25)\n"
+literal|"dim=dim path=[] value=100 childCount=2\n  b (75)\n  a (25)\n"
 argument_list|,
 name|dsr
 operator|.
@@ -1293,7 +1293,7 @@ argument_list|)
 expr_stmt|;
 name|assertEquals
 argument_list|(
-literal|"value=75 childCount=5\n  less than 10 (7)\n  less than or equal to 10 (8)\n  over 90 (7)\n  90 or above (8)\n  over 1000 (0)\n"
+literal|"dim=field path=[] value=75 childCount=5\n  less than 10 (7)\n  less than or equal to 10 (8)\n  over 90 (7)\n  90 or above (8)\n  over 1000 (0)\n"
 argument_list|,
 name|dsr
 operator|.
@@ -1367,7 +1367,7 @@ argument_list|)
 expr_stmt|;
 name|assertEquals
 argument_list|(
-literal|"value=11 childCount=2\n  b (8)\n  a (3)\n"
+literal|"dim=dim path=[] value=11 childCount=2\n  b (8)\n  a (3)\n"
 argument_list|,
 name|dsr
 operator|.
@@ -1386,7 +1386,7 @@ argument_list|)
 expr_stmt|;
 name|assertEquals
 argument_list|(
-literal|"value=100 childCount=5\n  less than 10 (10)\n  less than or equal to 10 (11)\n  over 90 (9)\n  90 or above (10)\n  over 1000 (0)\n"
+literal|"dim=field path=[] value=100 childCount=5\n  less than 10 (10)\n  less than or equal to 10 (11)\n  over 90 (9)\n  90 or above (10)\n  over 1000 (0)\n"
 argument_list|,
 name|dsr
 operator|.
@@ -1621,7 +1621,7 @@ argument_list|)
 decl_stmt|;
 name|assertEquals
 argument_list|(
-literal|"value=100 childCount=5\n  less than 10 (10)\n  less than or equal to 10 (11)\n  over 90 (9)\n  90 or above (10)\n  over 1000 (0)\n"
+literal|"dim=field path=[] value=100 childCount=5\n  less than 10 (10)\n  less than or equal to 10 (11)\n  over 90 (9)\n  90 or above (10)\n  over 1000 (0)\n"
 argument_list|,
 name|facets
 operator|.
@@ -1854,7 +1854,7 @@ argument_list|)
 decl_stmt|;
 name|assertEquals
 argument_list|(
-literal|"value=100 childCount=5\n  less than 10 (10)\n  less than or equal to 10 (11)\n  over 90 (9)\n  90 or above (10)\n  over 1000 (0)\n"
+literal|"dim=field path=[] value=100 childCount=5\n  less than 10 (10)\n  less than or equal to 10 (11)\n  over 90 (9)\n  90 or above (10)\n  over 1000 (0)\n"
 argument_list|,
 name|facets
 operator|.
@@ -3962,7 +3962,7 @@ argument_list|)
 decl_stmt|;
 name|assertEquals
 argument_list|(
-literal|"value=100 childCount=5\n  less than 10 (8)\n  less than or equal to 10 (8)\n  over 90 (8)\n  90 or above (8)\n  over 1000 (0)\n"
+literal|"dim=field path=[] value=100 childCount=5\n  less than 10 (8)\n  less than or equal to 10 (8)\n  over 90 (8)\n  90 or above (8)\n  over 1000 (0)\n"
 argument_list|,
 name|facets
 operator|.
@@ -4283,7 +4283,7 @@ argument_list|)
 decl_stmt|;
 name|assertEquals
 argument_list|(
-literal|"value=3 childCount=6\n< 1 (0)\n< 2 (1)\n< 5 (3)\n< 10 (3)\n< 20 (3)\n< 50 (3)\n"
+literal|"dim=field path=[] value=3 childCount=6\n< 1 (0)\n< 2 (1)\n< 5 (3)\n< 10 (3)\n< 20 (3)\n< 50 (3)\n"
 argument_list|,
 name|facets
 operator|.
@@ -4296,6 +4296,44 @@ argument_list|)
 operator|.
 name|toString
 argument_list|()
+argument_list|)
+expr_stmt|;
+comment|// Test drill-down:
+name|assertEquals
+argument_list|(
+literal|1
+argument_list|,
+name|s
+operator|.
+name|search
+argument_list|(
+operator|new
+name|ConstantScoreQuery
+argument_list|(
+operator|new
+name|DoubleRange
+argument_list|(
+literal|"< 2"
+argument_list|,
+literal|0.0
+argument_list|,
+literal|true
+argument_list|,
+literal|2.0
+argument_list|,
+literal|false
+argument_list|)
+operator|.
+name|getFilter
+argument_list|(
+name|vs
+argument_list|)
+argument_list|)
+argument_list|,
+literal|10
+argument_list|)
+operator|.
+name|totalHits
 argument_list|)
 expr_stmt|;
 name|IOUtils

@@ -106,7 +106,7 @@ argument_list|()
 decl_stmt|;
 name|assertEquals
 argument_list|(
-literal|"value=3.9681187 childCount=2\n  B (2.236068)\n  C (1.7320508)\n"
+literal|"dim=A path=[] value=3.9681187 childCount=2\n  B (2.236068)\n  C (1.7320508)\n"
 argument_list|,
 name|result
 operator|.

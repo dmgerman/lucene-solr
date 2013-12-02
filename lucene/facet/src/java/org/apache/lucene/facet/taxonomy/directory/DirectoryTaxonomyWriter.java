@@ -1138,9 +1138,9 @@ comment|// Make sure that the taxonomy always contain the root category
 comment|// with category id 0.
 name|addCategory
 argument_list|(
+operator|new
 name|FacetLabel
-operator|.
-name|EMPTY
+argument_list|()
 argument_list|)
 expr_stmt|;
 block|}

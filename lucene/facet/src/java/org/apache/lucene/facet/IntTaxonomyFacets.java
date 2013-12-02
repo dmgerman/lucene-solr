@@ -715,6 +715,10 @@ return|return
 operator|new
 name|FacetResult
 argument_list|(
+name|dim
+argument_list|,
+name|path
+argument_list|,
 name|totValue
 argument_list|,
 name|labelValues

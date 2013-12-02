@@ -77,17 +77,7 @@ operator|/
 literal|4
 decl_stmt|;
 comment|/** An empty {@link FacetLabel} */
-DECL|field|EMPTY
-specifier|public
-specifier|static
-specifier|final
-name|FacetLabel
-name|EMPTY
-init|=
-operator|new
-name|FacetLabel
-argument_list|()
-decl_stmt|;
+comment|//public static final FacetLabel EMPTY = new FacetLabel();
 comment|/**    * The components of this {@link FacetLabel}. Note that this array may be    * shared with other {@link FacetLabel} instances, e.g. as a result of    * {@link #subpath(int)}, therefore you should traverse the array up to    * {@link #length} for this path's components.    */
 DECL|field|components
 specifier|public
@@ -137,7 +127,7 @@ comment|// tripped on AIOOBE in toString, but we failed to reproduce. adding the
 comment|// assert as a safety check.
 assert|assert
 name|prefixLen
-operator|>
+operator|>=
 literal|0
 operator|&&
 name|prefixLen
@@ -265,8 +255,6 @@ name|void
 name|checkComponents
 parameter_list|()
 block|{
-comment|// nocommit why so anal?
-comment|// assert components.length> 0 : "use CategoryPath.EMPTY to create an empty path";
 name|long
 name|len
 init|=
@@ -615,63 +603,6 @@ return|return
 name|hash
 return|;
 block|}
-comment|/** Calculate a 64-bit hash function for this path. */
-DECL|method|longHashCode
-specifier|public
-name|long
-name|longHashCode
-parameter_list|()
-block|{
-if|if
-condition|(
-name|length
-operator|==
-literal|0
-condition|)
-block|{
-return|return
-literal|0
-return|;
-block|}
-name|long
-name|hash
-init|=
-name|length
-decl_stmt|;
-for|for
-control|(
-name|int
-name|i
-init|=
-literal|0
-init|;
-name|i
-operator|<
-name|length
-condition|;
-name|i
-operator|++
-control|)
-block|{
-name|hash
-operator|=
-name|hash
-operator|*
-literal|65599
-operator|+
-name|components
-index|[
-name|i
-index|]
-operator|.
-name|hashCode
-argument_list|()
-expr_stmt|;
-block|}
-return|return
-name|hash
-return|;
-block|}
 comment|/** Returns a sub-path of this path up to {@code length} components. */
 DECL|method|subpath
 specifier|public
@@ -698,18 +629,6 @@ condition|)
 block|{
 return|return
 name|this
-return|;
-block|}
-elseif|else
-if|if
-condition|(
-name|length
-operator|==
-literal|0
-condition|)
-block|{
-return|return
-name|EMPTY
 return|;
 block|}
 else|else

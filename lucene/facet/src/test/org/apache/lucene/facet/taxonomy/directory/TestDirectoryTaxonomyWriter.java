@@ -2037,9 +2037,9 @@ comment|// for root, parent is always virtual ROOT (ord=0)
 name|FacetLabel
 name|path
 init|=
+operator|new
 name|FacetLabel
-operator|.
-name|EMPTY
+argument_list|()
 decl_stmt|;
 for|for
 control|(

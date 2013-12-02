@@ -26,16 +26,6 @@ name|Arrays
 import|;
 end_import
 
-begin_import
-import|import
-name|java
-operator|.
-name|util
-operator|.
-name|List
-import|;
-end_import
-
 begin_class
 DECL|class|FacetResult
 specifier|public
@@ -43,6 +33,21 @@ specifier|final
 class|class
 name|FacetResult
 block|{
+comment|/** Dimension that was requested. */
+DECL|field|dim
+specifier|public
+specifier|final
+name|String
+name|dim
+decl_stmt|;
+comment|/** Path whose children were requested. */
+DECL|field|path
+specifier|public
+specifier|final
+name|String
+index|[]
+name|path
+decl_stmt|;
 comment|/** Total value for this path (sum of all child counts, or    *  sum of all child values), even those not included in    *  the topN. */
 DECL|field|value
 specifier|public
@@ -69,6 +74,13 @@ DECL|method|FacetResult
 specifier|public
 name|FacetResult
 parameter_list|(
+name|String
+name|dim
+parameter_list|,
+name|String
+index|[]
+name|path
+parameter_list|,
 name|Number
 name|value
 parameter_list|,
@@ -80,6 +92,18 @@ name|int
 name|childCount
 parameter_list|)
 block|{
+name|this
+operator|.
+name|dim
+operator|=
+name|dim
+expr_stmt|;
+name|this
+operator|.
+name|path
+operator|=
+name|path
+expr_stmt|;
 name|this
 operator|.
 name|value
@@ -118,7 +142,40 @@ name|sb
 operator|.
 name|append
 argument_list|(
-literal|"value="
+literal|"dim="
+argument_list|)
+expr_stmt|;
+name|sb
+operator|.
+name|append
+argument_list|(
+name|dim
+argument_list|)
+expr_stmt|;
+name|sb
+operator|.
+name|append
+argument_list|(
+literal|" path="
+argument_list|)
+expr_stmt|;
+name|sb
+operator|.
+name|append
+argument_list|(
+name|Arrays
+operator|.
+name|toString
+argument_list|(
+name|path
+argument_list|)
+argument_list|)
+expr_stmt|;
+name|sb
+operator|.
+name|append
+argument_list|(
+literal|" value="
 argument_list|)
 expr_stmt|;
 name|sb
