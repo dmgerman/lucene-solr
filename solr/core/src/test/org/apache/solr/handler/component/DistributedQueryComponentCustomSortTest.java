@@ -187,9 +187,14 @@ block|,
 literal|0x15
 block|}
 argument_list|)
+argument_list|,
+comment|//  2
+comment|// quick check to prove "*" dynamicField hasn't been broken by somebody mucking with schema
+literal|"asdfasdf_field_should_match_catchall_dynamic_field_adsfasdf"
+argument_list|,
+literal|"value"
 argument_list|)
 expr_stmt|;
-comment|//  2
 name|index
 argument_list|(
 name|id
@@ -1000,6 +1005,58 @@ argument_list|,
 literal|13
 argument_list|,
 literal|12
+argument_list|)
+expr_stmt|;
+comment|// sanity check function sorting
+name|rsp
+operator|=
+name|query
+argument_list|(
+literal|"q"
+argument_list|,
+literal|"id:[1 TO 10]"
+argument_list|,
+literal|"fl"
+argument_list|,
+literal|"id"
+argument_list|,
+literal|"rows"
+argument_list|,
+literal|"20"
+argument_list|,
+literal|"sort"
+argument_list|,
+literal|"abs(sub(5,id)) asc, id desc"
+argument_list|)
+expr_stmt|;
+name|assertFieldValues
+argument_list|(
+name|rsp
+operator|.
+name|getResults
+argument_list|()
+argument_list|,
+name|id
+argument_list|,
+literal|5
+argument_list|,
+literal|6
+argument_list|,
+literal|4
+argument_list|,
+literal|7
+argument_list|,
+literal|3
+argument_list|,
+literal|8
+argument_list|,
+literal|2
+argument_list|,
+literal|9
+argument_list|,
+literal|1
+argument_list|,
+literal|10
 argument_list|)
 expr_stmt|;
 comment|// Add two more docs with same payload as in doc #4
