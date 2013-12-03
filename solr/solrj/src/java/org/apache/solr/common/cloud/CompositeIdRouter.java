@@ -1171,6 +1171,15 @@ name|i
 operator|++
 control|)
 block|{
+if|if
+condition|(
+name|i
+operator|<
+name|pieces
+operator|-
+literal|1
+condition|)
+block|{
 name|int
 name|commaIdx
 init|=
@@ -1223,6 +1232,7 @@ argument_list|,
 name|commaIdx
 argument_list|)
 expr_stmt|;
+block|}
 block|}
 name|hashes
 index|[

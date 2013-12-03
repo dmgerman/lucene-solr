@@ -620,6 +620,12 @@ argument_list|(
 literal|"f1!f2!doc5"
 argument_list|)
 expr_stmt|;
+comment|// Check successful addition of a document with a '/' in the id part.
+name|doAddDoc
+argument_list|(
+literal|"f1!f2!doc5/5"
+argument_list|)
+expr_stmt|;
 name|doRTG
 argument_list|(
 literal|"b!doc1"
@@ -647,6 +653,11 @@ argument_list|)
 expr_stmt|;
 name|doRTG
 argument_list|(
+literal|"f1!f2!doc5/5"
+argument_list|)
+expr_stmt|;
+name|doRTG
+argument_list|(
 literal|"b!doc1,c!doc2"
 argument_list|)
 expr_stmt|;
@@ -660,7 +671,7 @@ argument_list|()
 expr_stmt|;
 name|doQuery
 argument_list|(
-literal|"b!doc1,c!doc2,d!doc3,e!doc4,f1!f2!doc5"
+literal|"b!doc1,c!doc2,d!doc3,e!doc4,f1!f2!doc5,f1!f2!doc5/5"
 argument_list|,
 literal|"q"
 argument_list|,
@@ -669,7 +680,7 @@ argument_list|)
 expr_stmt|;
 name|doQuery
 argument_list|(
-literal|"b!doc1,c!doc2,d!doc3,e!doc4,f1!f2!doc5"
+literal|"b!doc1,c!doc2,d!doc3,e!doc4,f1!f2!doc5,f1!f2!doc5/5"
 argument_list|,
 literal|"q"
 argument_list|,
@@ -682,7 +693,7 @@ argument_list|)
 expr_stmt|;
 name|doQuery
 argument_list|(
-literal|"b!doc1,c!doc2,d!doc3,e!doc4,f1!f2!doc5"
+literal|"b!doc1,c!doc2,d!doc3,e!doc4,f1!f2!doc5,f1!f2!doc5/5"
 argument_list|,
 literal|"q"
 argument_list|,
@@ -721,7 +732,7 @@ argument_list|)
 expr_stmt|;
 name|doQuery
 argument_list|(
-literal|"d!doc3,f1!f2!doc5"
+literal|"d!doc3,f1!f2!doc5,f1!f2!doc5/5"
 argument_list|,
 literal|"q"
 argument_list|,
@@ -747,7 +758,7 @@ argument_list|)
 expr_stmt|;
 name|doQuery
 argument_list|(
-literal|"f1!f2!doc5,d!doc3"
+literal|"f1!f2!doc5,d!doc3,f1!f2!doc5/5"
 argument_list|,
 literal|"q"
 argument_list|,
@@ -787,7 +798,7 @@ argument_list|)
 expr_stmt|;
 name|doQuery
 argument_list|(
-literal|"d!doc3,f1!f2!doc5"
+literal|"d!doc3,f1!f2!doc5,f1!f2!doc5/5"
 argument_list|,
 literal|"q"
 argument_list|,
@@ -867,7 +878,7 @@ expr_stmt|;
 comment|// top bit of hash(b)==1, so shard1 and shard2
 name|doQuery
 argument_list|(
-literal|"d!doc3,e!doc4,f1!f2!doc5"
+literal|"d!doc3,e!doc4,f1!f2!doc5,f1!f2!doc5/5"
 argument_list|,
 literal|"q"
 argument_list|,
@@ -894,7 +905,7 @@ argument_list|)
 expr_stmt|;
 name|doQuery
 argument_list|(
-literal|"b!doc1,f1!f2!doc5,c!doc2,d!doc3,e!doc4"
+literal|"b!doc1,f1!f2!doc5,c!doc2,d!doc3,e!doc4,f1!f2!doc5/5"
 argument_list|,
 literal|"q"
 argument_list|,
@@ -920,7 +931,7 @@ argument_list|()
 expr_stmt|;
 name|doQuery
 argument_list|(
-literal|"c!doc2,d!doc3,e!doc4,f1!f2!doc5"
+literal|"c!doc2,d!doc3,e!doc4,f1!f2!doc5,f1!f2!doc5/5"
 argument_list|,
 literal|"q"
 argument_list|,
