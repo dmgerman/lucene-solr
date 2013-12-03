@@ -4259,7 +4259,7 @@ literal|"conf"
 argument_list|)
 decl_stmt|;
 name|boolean
-name|isTestDependency
+name|confContainsTest
 init|=
 name|conf
 operator|.
@@ -4414,6 +4414,29 @@ argument_list|(
 literal|"ext"
 argument_list|)
 decl_stmt|;
+comment|// When conf contains BOTH "test" and "compile", and type != "test", this is NOT a test dependency
+name|boolean
+name|isTestDependency
+init|=
+name|confContainsTest
+operator|&&
+operator|(
+name|type
+operator|.
+name|equals
+argument_list|(
+literal|"test"
+argument_list|)
+operator|||
+operator|!
+name|conf
+operator|.
+name|contains
+argument_list|(
+literal|"compile"
+argument_list|)
+operator|)
+decl_stmt|;
 if|if
 condition|(
 operator|(
@@ -4528,7 +4551,7 @@ name|artifactId
 argument_list|,
 literal|null
 argument_list|,
-name|isTestDependency
+name|confContainsTest
 argument_list|,
 name|isOptional
 argument_list|)
