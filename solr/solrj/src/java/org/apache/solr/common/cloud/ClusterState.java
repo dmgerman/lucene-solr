@@ -713,6 +713,24 @@ name|getActiveSlices
 argument_list|()
 return|;
 block|}
+DECL|method|getCollectionOrNull
+specifier|public
+name|DocCollection
+name|getCollectionOrNull
+parameter_list|(
+name|String
+name|collection
+parameter_list|)
+block|{
+return|return
+name|collectionStates
+operator|.
+name|get
+argument_list|(
+name|collection
+argument_list|)
+return|;
+block|}
 comment|/**    * Get the named DocCollection object, or throw an exception if it doesn't exist.    */
 DECL|method|getCollection
 specifier|public
@@ -780,7 +798,7 @@ argument_list|()
 argument_list|)
 return|;
 block|}
-comment|/**    * @return Map&lt;collectionName, Map&lt;sliceName,Slice&gt;&gt;    */
+comment|/**    * @return Map&lt;collectionName, Map&lt;sliceName,Slice&gt;&gt;    * @deprecated    */
 DECL|method|getCollectionStates
 specifier|public
 name|Map

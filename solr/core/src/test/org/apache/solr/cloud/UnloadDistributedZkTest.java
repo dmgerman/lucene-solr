@@ -936,10 +936,7 @@ operator|.
 name|getClusterState
 argument_list|()
 operator|.
-name|getCollectionStates
-argument_list|()
-operator|.
-name|get
+name|getCollection
 argument_list|(
 literal|"unloadcollection"
 argument_list|)
@@ -1054,10 +1051,7 @@ operator|.
 name|getClusterState
 argument_list|()
 operator|.
-name|getCollectionStates
-argument_list|()
-operator|.
-name|get
+name|getCollection
 argument_list|(
 literal|"unloadcollection"
 argument_list|)

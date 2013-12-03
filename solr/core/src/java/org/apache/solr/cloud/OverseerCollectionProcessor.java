@@ -7972,10 +7972,7 @@ if|if
 condition|(
 name|clusterState
 operator|.
-name|getCollectionStates
-argument_list|()
-operator|.
-name|containsKey
+name|hasCollection
 argument_list|(
 name|tempSourceCollectionName
 argument_list|)

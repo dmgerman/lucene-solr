@@ -3217,10 +3217,7 @@ name|numShards
 operator|=
 name|state
 operator|.
-name|getCollectionStates
-argument_list|()
-operator|.
-name|get
+name|getCollection
 argument_list|(
 name|collection
 argument_list|)
