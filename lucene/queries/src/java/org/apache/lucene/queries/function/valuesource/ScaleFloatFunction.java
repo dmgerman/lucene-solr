@@ -440,9 +440,9 @@ name|context
 operator|.
 name|put
 argument_list|(
-name|this
+name|ScaleFloatFunction
 operator|.
-name|source
+name|this
 argument_list|,
 name|scaleInfo
 argument_list|)
@@ -477,7 +477,9 @@ name|context
 operator|.
 name|get
 argument_list|(
-name|source
+name|ScaleFloatFunction
+operator|.
+name|this
 argument_list|)
 decl_stmt|;
 if|if
