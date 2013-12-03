@@ -4449,7 +4449,7 @@ name|c
 init|=
 name|s
 operator|.
-name|codePointAt
+name|charAt
 argument_list|(
 name|charUpto
 argument_list|)
@@ -4568,13 +4568,7 @@ argument_list|)
 expr_stmt|;
 block|}
 name|charUpto
-operator|+=
-name|Character
-operator|.
-name|charCount
-argument_list|(
-name|c
-argument_list|)
+operator|++
 expr_stmt|;
 block|}
 return|return

@@ -89,10 +89,6 @@ specifier|private
 specifier|final
 name|ScriptIterator
 name|scriptIterator
-init|=
-operator|new
-name|ScriptIterator
-argument_list|()
 decl_stmt|;
 DECL|field|text
 specifier|private
@@ -112,6 +108,19 @@ operator|.
 name|config
 operator|=
 name|config
+expr_stmt|;
+name|this
+operator|.
+name|scriptIterator
+operator|=
+operator|new
+name|ScriptIterator
+argument_list|(
+name|config
+operator|.
+name|combineCJ
+argument_list|()
+argument_list|)
 expr_stmt|;
 block|}
 comment|/**    * Retrieve the next break position. If the RBBI range is exhausted within the    * script boundary, examine the next script boundary.    *     * @return the next break position or BreakIterator.DONE    */

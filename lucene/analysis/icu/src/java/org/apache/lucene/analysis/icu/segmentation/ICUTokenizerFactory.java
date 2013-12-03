@@ -239,7 +239,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Factory for {@link ICUTokenizer}.  * Words are broken across script boundaries, then segmented according to  * the BreakIterator and typing provided by the {@link DefaultICUTokenizerConfig}.  *  *<p/>  *  * To use the default set of per-script rules:  *  *<pre class="prettyprint">  *&lt;fieldType name="text_icu" class="solr.TextField" positionIncrementGap="100"&gt;  *&lt;analyzer&gt;  *&lt;tokenizer class="solr.ICUTokenizerFactory"/&gt;  *&lt;/analyzer&gt;  *&lt;/fieldType&gt;</pre>  *  *<p/>  *  * You can customize this tokenizer's behavior by specifying per-script rule files,  * which are compiled by the ICU RuleBasedBreakIterator.  See the  *<a href="http://userguide.icu-project.org/boundaryanalysis#TOC-RBBI-Rules"  *>ICU RuleBasedBreakIterator syntax reference</a>.  *  * To add per-script rules, add a "rulefiles" argument, which should contain a  * comma-separated list of<tt>code:rulefile</tt> pairs in the following format:  *<a href="http://unicode.org/iso15924/iso15924-codes.html"  *>four-letter ISO 15924 script code</a>, followed by a colon, then a resource  * path.  E.g. to specify rules for Latin (script code "Latn") and Cyrillic  * (script code "Cyrl"):  *  *<pre class="prettyprint">  *&lt;fieldType name="text_icu_custom" class="solr.TextField" positionIncrementGap="100"&gt;  *&lt;analyzer&gt;  *&lt;tokenizer class="solr.ICUTokenizerFactory"  *                rulefiles="Latn:my.Latin.rules.rbbi,Cyrl:my.Cyrillic.rules.rbbi"/&gt;  *&lt;/analyzer&gt;  *&lt;/fieldType&gt;</pre>  */
+comment|/**  * Factory for {@link ICUTokenizer}.  * Words are broken across script boundaries, then segmented according to  * the BreakIterator and typing provided by the {@link DefaultICUTokenizerConfig}.  *  *<p/>  *  * To use the default set of per-script rules:  *  *<pre class="prettyprint">  *&lt;fieldType name="text_icu" class="solr.TextField" positionIncrementGap="100"&gt;  *&lt;analyzer&gt;  *&lt;tokenizer class="solr.ICUTokenizerFactory"/&gt;  *&lt;/analyzer&gt;  *&lt;/fieldType&gt;</pre>  *  *<p/>  *  * You can customize this tokenizer's behavior by specifying per-script rule files,  * which are compiled by the ICU RuleBasedBreakIterator.  See the  *<a href="http://userguide.icu-project.org/boundaryanalysis#TOC-RBBI-Rules"  *>ICU RuleBasedBreakIterator syntax reference</a>.  *  * To add per-script rules, add a "rulefiles" argument, which should contain a  * comma-separated list of<tt>code:rulefile</tt> pairs in the following format:  *<a href="http://unicode.org/iso15924/iso15924-codes.html"  *>four-letter ISO 15924 script code</a>, followed by a colon, then a resource  * path.  E.g. to specify rules for Latin (script code "Latn") and Cyrillic  * (script code "Cyrl"):  *  *<pre class="prettyprint">  *&lt;fieldType name="text_icu_custom" class="solr.TextField" positionIncrementGap="100"&gt;  *&lt;analyzer&gt;  *&lt;tokenizer class="solr.ICUTokenizerFactory" cjkAsWords="true"  *                rulefiles="Latn:my.Latin.rules.rbbi,Cyrl:my.Cyrillic.rules.rbbi"/&gt;  *&lt;/analyzer&gt;  *&lt;/fieldType&gt;</pre>  */
 end_comment
 
 begin_class
@@ -275,6 +275,12 @@ DECL|field|config
 specifier|private
 name|ICUTokenizerConfig
 name|config
+decl_stmt|;
+DECL|field|cjkAsWords
+specifier|private
+specifier|final
+name|boolean
+name|cjkAsWords
 decl_stmt|;
 comment|/** Creates a new ICUTokenizerFactory */
 DECL|method|ICUTokenizerFactory
@@ -402,6 +408,17 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
+name|cjkAsWords
+operator|=
+name|getBoolean
+argument_list|(
+name|args
+argument_list|,
+literal|"cjkAsWords"
+argument_list|,
+literal|true
+argument_list|)
+expr_stmt|;
 if|if
 condition|(
 operator|!
@@ -454,7 +471,9 @@ name|config
 operator|=
 operator|new
 name|DefaultICUTokenizerConfig
-argument_list|()
+argument_list|(
+name|cjkAsWords
+argument_list|)
 expr_stmt|;
 block|}
 else|else
@@ -523,7 +542,9 @@ name|config
 operator|=
 operator|new
 name|DefaultICUTokenizerConfig
-argument_list|()
+argument_list|(
+name|cjkAsWords
+argument_list|)
 block|{
 annotation|@
 name|Override

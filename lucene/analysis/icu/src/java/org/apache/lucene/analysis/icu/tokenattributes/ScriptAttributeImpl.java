@@ -268,6 +268,23 @@ name|AttributeReflector
 name|reflector
 parameter_list|)
 block|{
+comment|// when wordbreaking CJK, we use the 15924 code Japanese (Han+Hiragana+Katakana) to
+comment|// mark runs of Chinese/Japanese. our use is correct (as for chinese Han is a subset),
+comment|// but this is just to help prevent confusion.
+name|String
+name|name
+init|=
+name|code
+operator|==
+name|UScript
+operator|.
+name|JAPANESE
+condition|?
+literal|"Chinese/Japanese"
+else|:
+name|getName
+argument_list|()
+decl_stmt|;
 name|reflector
 operator|.
 name|reflect
@@ -278,8 +295,7 @@ name|class
 argument_list|,
 literal|"script"
 argument_list|,
-name|getName
-argument_list|()
+name|name
 argument_list|)
 expr_stmt|;
 block|}

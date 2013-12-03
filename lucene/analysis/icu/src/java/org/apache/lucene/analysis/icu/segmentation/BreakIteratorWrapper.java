@@ -68,20 +68,6 @@ name|icu
 operator|.
 name|text
 operator|.
-name|DictionaryBasedBreakIterator
-import|;
-end_import
-
-begin_import
-import|import
-name|com
-operator|.
-name|ibm
-operator|.
-name|icu
-operator|.
-name|text
-operator|.
 name|RuleBasedBreakIterator
 import|;
 end_import
@@ -213,7 +199,7 @@ name|textIterator
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**    * If its a DictionaryBasedBreakIterator, it doesn't return rulestatus, so    * treat it like a generic BreakIterator If its any other    * RuleBasedBreakIterator, the rule status can be used for token type. If its    * any other BreakIterator, the rulestatus method is not available, so treat    * it like a generic BreakIterator.    */
+comment|/**    * If its a RuleBasedBreakIterator, the rule status can be used for token type. If its    * any other BreakIterator, the rulestatus method is not available, so treat    * it like a generic BreakIterator.    */
 DECL|method|wrap
 specifier|static
 name|BreakIteratorWrapper
@@ -228,13 +214,6 @@ condition|(
 name|breakIterator
 operator|instanceof
 name|RuleBasedBreakIterator
-operator|&&
-operator|!
-operator|(
-name|breakIterator
-operator|instanceof
-name|DictionaryBasedBreakIterator
-operator|)
 condition|)
 return|return
 operator|new

@@ -287,7 +287,9 @@ name|input
 argument_list|,
 operator|new
 name|DefaultICUTokenizerConfig
-argument_list|()
+argument_list|(
+literal|true
+argument_list|)
 argument_list|)
 expr_stmt|;
 block|}
