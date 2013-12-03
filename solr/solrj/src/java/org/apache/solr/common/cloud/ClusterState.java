@@ -798,7 +798,9 @@ argument_list|()
 argument_list|)
 return|;
 block|}
-comment|/**    * @return Map&lt;collectionName, Map&lt;sliceName,Slice&gt;&gt;    * @deprecated    */
+comment|/**    * @return Map&lt;collectionName, Map&lt;sliceName,Slice&gt;&gt;    */
+annotation|@
+name|Deprecated
 DECL|method|getCollectionStates
 specifier|public
 name|Map
