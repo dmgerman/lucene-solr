@@ -128,6 +128,12 @@ argument_list|(
 literal|409
 argument_list|)
 block|,
+DECL|enum constant|UNSUPPORTED_MEDIA_TYPE
+name|UNSUPPORTED_MEDIA_TYPE
+argument_list|(
+literal|415
+argument_list|)
+block|,
 DECL|enum constant|SERVER_ERROR
 name|SERVER_ERROR
 argument_list|(
