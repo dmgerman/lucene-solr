@@ -318,6 +318,20 @@ name|lucene
 operator|.
 name|util
 operator|.
+name|Constants
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|util
+operator|.
 name|LuceneTestCase
 import|;
 end_import
@@ -1100,8 +1114,6 @@ parameter_list|()
 throws|throws
 name|Exception
 block|{
-name|LuceneTestCase
-operator|.
 name|assumeTrue
 argument_list|(
 literal|"Currently this test can only be run without the lucene test security policy in place"
@@ -1121,8 +1133,6 @@ literal|""
 argument_list|)
 argument_list|)
 expr_stmt|;
-name|LuceneTestCase
-operator|.
 name|assumeFalse
 argument_list|(
 literal|"HDFS tests were disabled by -Dtests.disableHdfs"
@@ -1139,6 +1149,34 @@ literal|"tests.disableHdfs"
 argument_list|,
 literal|"false"
 argument_list|)
+argument_list|)
+argument_list|)
+expr_stmt|;
+name|assumeFalse
+argument_list|(
+literal|"FIXME: This test fails under Java 8 due to the Saxon dependency - see SOLR-1301"
+argument_list|,
+name|Constants
+operator|.
+name|JRE_IS_MINIMUM_JAVA8
+argument_list|)
+expr_stmt|;
+name|assumeFalse
+argument_list|(
+literal|"FIXME: This test fails under J9 due to the Saxon dependency - see SOLR-1301"
+argument_list|,
+name|System
+operator|.
+name|getProperty
+argument_list|(
+literal|"java.vm.info"
+argument_list|,
+literal|"<?>"
+argument_list|)
+operator|.
+name|contains
+argument_list|(
+literal|"IBM J9"
 argument_list|)
 argument_list|)
 expr_stmt|;
