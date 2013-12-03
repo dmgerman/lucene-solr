@@ -73,11 +73,11 @@ parameter_list|)
 block|{
 return|return
 operator|new
-name|Integer
+name|Long
 argument_list|(
 name|name
 operator|.
-name|hashCode
+name|longHashCode
 argument_list|()
 argument_list|)
 return|;
@@ -97,7 +97,7 @@ parameter_list|)
 block|{
 return|return
 operator|new
-name|Integer
+name|Long
 argument_list|(
 name|name
 operator|.
@@ -106,7 +106,7 @@ argument_list|(
 name|prefixLen
 argument_list|)
 operator|.
-name|hashCode
+name|longHashCode
 argument_list|()
 argument_list|)
 return|;

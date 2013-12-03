@@ -170,13 +170,11 @@ extends|extends
 name|Range
 block|{
 DECL|field|minIncl
-specifier|private
 specifier|final
 name|double
 name|minIncl
 decl_stmt|;
 DECL|field|maxIncl
-specifier|private
 specifier|final
 name|double
 name|maxIncl

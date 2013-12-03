@@ -76,8 +76,6 @@ operator|)
 operator|/
 literal|4
 decl_stmt|;
-comment|/** An empty {@link FacetLabel} */
-comment|//public static final FacetLabel EMPTY = new FacetLabel();
 comment|/**    * The components of this {@link FacetLabel}. Note that this array may be    * shared with other {@link FacetLabel} instances, e.g. as a result of    * {@link #subpath(int)}, therefore you should traverse the array up to    * {@link #length} for this path's components.    */
 DECL|field|components
 specifier|public
@@ -426,21 +424,25 @@ name|cmp
 operator|<
 literal|0
 condition|)
+block|{
 return|return
 operator|-
 literal|1
 return|;
 comment|// this is 'before'
+block|}
 if|if
 condition|(
 name|cmp
 operator|>
 literal|0
 condition|)
+block|{
 return|return
 literal|1
 return|;
 comment|// this is 'after'
+block|}
 block|}
 comment|// one is a prefix of the other
 return|return
@@ -589,6 +591,63 @@ operator|=
 name|hash
 operator|*
 literal|31
+operator|+
+name|components
+index|[
+name|i
+index|]
+operator|.
+name|hashCode
+argument_list|()
+expr_stmt|;
+block|}
+return|return
+name|hash
+return|;
+block|}
+comment|/** Calculate a 64-bit hash function for this path.  This    *  is necessary for {@link NameHashIntCacheLRU} (the    *  default cache impl for {@link    *  LruTaxonomyWriterCache}) to reduce the chance of    *  "silent but deadly" collisions. */
+DECL|method|longHashCode
+specifier|public
+name|long
+name|longHashCode
+parameter_list|()
+block|{
+if|if
+condition|(
+name|length
+operator|==
+literal|0
+condition|)
+block|{
+return|return
+literal|0
+return|;
+block|}
+name|long
+name|hash
+init|=
+name|length
+decl_stmt|;
+for|for
+control|(
+name|int
+name|i
+init|=
+literal|0
+init|;
+name|i
+operator|<
+name|length
+condition|;
+name|i
+operator|++
+control|)
+block|{
+name|hash
+operator|=
+name|hash
+operator|*
+literal|65599
 operator|+
 name|components
 index|[
