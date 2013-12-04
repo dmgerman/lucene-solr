@@ -1020,14 +1020,7 @@ name|ArgumentParsers
 operator|.
 name|newArgumentParser
 argument_list|(
-literal|"hadoop [GenericOptions]... jar search-mr-*-job.jar "
-operator|+
-name|MapReduceIndexerTool
-operator|.
-name|class
-operator|.
-name|getName
-argument_list|()
+literal|"hadoop [GenericOptions]... jar solr-map-reduce-*.jar "
 argument_list|,
 literal|false
 argument_list|)
@@ -1245,16 +1238,7 @@ literal|"sudo -u hdfs hadoop \\\n"
 operator|+
 literal|"  --config /etc/hadoop/conf.cloudera.mapreduce1 \\\n"
 operator|+
-literal|"  jar target/search-mr-*-job.jar "
-operator|+
-name|MapReduceIndexerTool
-operator|.
-name|class
-operator|.
-name|getName
-argument_list|()
-operator|+
-literal|" \\\n"
+literal|"  jar target/solr-map-reduce-*.jar \\\n"
 operator|+
 literal|"  -D 'mapred.child.java.opts=-Xmx500m' \\\n"
 operator|+
@@ -1285,7 +1269,7 @@ literal|"# 4) file size is between 1 MB and 1 GB\n"
 operator|+
 literal|"# Also include extra library jar file containing JSON tweet Java parser:\n"
 operator|+
-literal|"hadoop jar target/search-mr-*-job.jar "
+literal|"hadoop jar target/solr-map-reduce-*.jar "
 operator|+
 literal|"com.cloudera.cdk.morphline.hadoop.find.HdfsFindTool"
 operator|+
@@ -1307,16 +1291,7 @@ literal|"| sudo -u hdfs hadoop \\\n"
 operator|+
 literal|"  --config /etc/hadoop/conf.cloudera.mapreduce1 \\\n"
 operator|+
-literal|"  jar target/search-mr-*-job.jar "
-operator|+
-name|MapReduceIndexerTool
-operator|.
-name|class
-operator|.
-name|getName
-argument_list|()
-operator|+
-literal|" \\\n"
+literal|"  jar target/solr-map-reduce-*.jar \\\n"
 operator|+
 literal|"  -D 'mapred.child.java.opts=-Xmx500m' \\\n"
 operator|+
@@ -1343,16 +1318,7 @@ literal|"sudo -u hdfs hadoop \\\n"
 operator|+
 literal|"  --config /etc/hadoop/conf.cloudera.mapreduce1 \\\n"
 operator|+
-literal|"  jar target/search-mr-*-job.jar "
-operator|+
-name|MapReduceIndexerTool
-operator|.
-name|class
-operator|.
-name|getName
-argument_list|()
-operator|+
-literal|" \\\n"
+literal|"  jar target/solr-map-reduce-*.jar \\\n"
 operator|+
 literal|"  -D 'mapred.child.java.opts=-Xmx500m' \\\n"
 operator|+
@@ -1383,16 +1349,7 @@ literal|"sudo -u hdfs hadoop \\\n"
 operator|+
 literal|"  --config /etc/hadoop/conf.cloudera.mapreduce1 \\\n"
 operator|+
-literal|"  jar target/search-mr-*-job.jar "
-operator|+
-name|MapReduceIndexerTool
-operator|.
-name|class
-operator|.
-name|getName
-argument_list|()
-operator|+
-literal|" \\\n"
+literal|"  jar target/solr-map-reduce-*.jar \\\n"
 operator|+
 literal|"  -D 'mapred.child.java.opts=-Xmx500m' \\\n"
 operator|+
