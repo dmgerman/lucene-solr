@@ -867,11 +867,6 @@ name|IllegalArgumentException
 name|e
 parameter_list|)
 block|{            }
-name|cloudClient
-operator|.
-name|shutdown
-argument_list|()
-expr_stmt|;
 block|}
 DECL|method|createAlias
 specifier|private
