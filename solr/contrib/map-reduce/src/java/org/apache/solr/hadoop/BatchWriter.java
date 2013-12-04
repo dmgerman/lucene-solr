@@ -995,8 +995,22 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
-comment|//reporter.setStatus("Committing Solr");
-comment|//solr.commit(true, false);
+name|context
+operator|.
+name|setStatus
+argument_list|(
+literal|"Committing Solr Phase 1"
+argument_list|)
+expr_stmt|;
+name|solr
+operator|.
+name|commit
+argument_list|(
+literal|true
+argument_list|,
+literal|false
+argument_list|)
+expr_stmt|;
 name|context
 operator|.
 name|setStatus
@@ -1107,11 +1121,25 @@ name|context
 operator|.
 name|setStatus
 argument_list|(
+literal|"Committing Solr Phase 2"
+argument_list|)
+expr_stmt|;
+name|solr
+operator|.
+name|commit
+argument_list|(
+literal|true
+argument_list|,
+literal|false
+argument_list|)
+expr_stmt|;
+name|context
+operator|.
+name|setStatus
+argument_list|(
 literal|"Shutting down Solr"
 argument_list|)
 expr_stmt|;
-comment|// TODO is core close needed? - according to TestEmbeddedSolrServer it's not...
-comment|//core.close();
 name|solr
 operator|.
 name|shutdown

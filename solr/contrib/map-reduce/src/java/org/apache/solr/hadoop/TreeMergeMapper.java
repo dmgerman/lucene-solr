@@ -148,6 +148,15 @@ name|MAX_SEGMENTS_ON_TREE_MERGE
 init|=
 literal|"maxSegmentsOnTreeMerge"
 decl_stmt|;
+DECL|field|SOLR_SHARD_NUMBER
+specifier|public
+specifier|static
+specifier|final
+name|String
+name|SOLR_SHARD_NUMBER
+init|=
+literal|"_solrShardNumber"
+decl_stmt|;
 annotation|@
 name|Override
 DECL|method|map
