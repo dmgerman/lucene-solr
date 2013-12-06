@@ -322,7 +322,27 @@ literal|"/*"
 operator|+
 name|NL
 operator|+
-literal|" * Copyright 2001-2005 The Apache Software Foundation."
+literal|" * Licensed to the Apache Software Foundation (ASF) under one or more"
+operator|+
+name|NL
+operator|+
+literal|" * contributor license agreements.  See the NOTICE file distributed with"
+operator|+
+name|NL
+operator|+
+literal|" * this work for additional information regarding copyright ownership."
+operator|+
+name|NL
+operator|+
+literal|" * The ASF licenses this file to You under the Apache License, Version 2.0"
+operator|+
+name|NL
+operator|+
+literal|" * (the \"License\"); you may not use this file except in compliance with"
+operator|+
+name|NL
+operator|+
+literal|" * the License.  You may obtain a copy of the License at"
 operator|+
 name|NL
 operator|+
@@ -330,23 +350,7 @@ literal|" *"
 operator|+
 name|NL
 operator|+
-literal|" * Licensed under the Apache License, Version 2.0 (the \"License\");"
-operator|+
-name|NL
-operator|+
-literal|" * you may not use this file except in compliance with the License."
-operator|+
-name|NL
-operator|+
-literal|" * You may obtain a copy of the License at"
-operator|+
-name|NL
-operator|+
-literal|" *"
-operator|+
-name|NL
-operator|+
-literal|" *      http://www.apache.org/licenses/LICENSE-2.0"
+literal|" *     http://www.apache.org/licenses/LICENSE-2.0"
 operator|+
 name|NL
 operator|+
@@ -375,8 +379,6 @@ operator|+
 name|NL
 operator|+
 literal|" */"
-operator|+
-name|NL
 operator|+
 name|NL
 decl_stmt|;
