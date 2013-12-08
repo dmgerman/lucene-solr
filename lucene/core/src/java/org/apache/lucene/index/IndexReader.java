@@ -441,14 +441,17 @@ name|void
 name|incRef
 parameter_list|()
 block|{
+if|if
+condition|(
+operator|!
+name|tryIncRef
+argument_list|()
+condition|)
+block|{
 name|ensureOpen
 argument_list|()
 expr_stmt|;
-name|refCount
-operator|.
-name|incrementAndGet
-argument_list|()
-expr_stmt|;
+block|}
 block|}
 comment|/**    * Expert: increments the refCount of this IndexReader    * instance only if the IndexReader has not been closed yet    * and returns<code>true</code> iff the refCount was    * successfully incremented, otherwise<code>false</code>.    * If this method returns<code>false</code> the reader is either    * already closed or is currently being closed. Either way this    * reader instance shouldn't be used by an application unless    *<code>true</code> is returned.    *<p>    * RefCounts are used to determine when a    * reader can be closed safely, i.e. as soon as there are    * no more references.  Be sure to always call a    * corresponding {@link #decRef}, in a finally clause;    * otherwise the reader may never be closed.  Note that    * {@link #close} simply calls decRef(), which means that    * the IndexReader will not really be closed until {@link    * #decRef} has been called for all outstanding    * references.    *    * @see #decRef    * @see #incRef    */
 DECL|method|tryIncRef
