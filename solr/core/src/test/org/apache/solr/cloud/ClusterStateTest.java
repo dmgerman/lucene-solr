@@ -825,6 +825,13 @@ operator|.
 name|anyTimes
 argument_list|()
 expr_stmt|;
+name|EasyMock
+operator|.
+name|replay
+argument_list|(
+name|mock
+argument_list|)
+expr_stmt|;
 return|return
 name|mock
 return|;
