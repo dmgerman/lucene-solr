@@ -809,9 +809,7 @@ init|=
 operator|new
 name|StopFilter
 argument_list|(
-name|Version
-operator|.
-name|LUCENE_40
+name|TEST_VERSION_CURRENT
 argument_list|,
 operator|new
 name|MockTokenizer

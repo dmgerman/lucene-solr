@@ -62289,7 +62289,7 @@ argument_list|>
 argument_list|(
 name|Version
 operator|.
-name|LUCENE_40
+name|LUCENE_CURRENT
 argument_list|,
 literal|253
 argument_list|,
@@ -63681,7 +63681,7 @@ name|CharArraySet
 argument_list|(
 name|Version
 operator|.
-name|LUCENE_40
+name|LUCENE_CURRENT
 argument_list|,
 literal|16
 argument_list|,

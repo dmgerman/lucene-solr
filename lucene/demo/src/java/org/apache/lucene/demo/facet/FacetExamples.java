@@ -42,6 +42,7 @@ specifier|public
 interface|interface
 name|FacetExamples
 block|{
+comment|// :Post-Release-Update-Version.LUCENE_XY:
 comment|/** The Lucene {@link Version} used by the example code. */
 DECL|field|EXAMPLES_VER
 specifier|public

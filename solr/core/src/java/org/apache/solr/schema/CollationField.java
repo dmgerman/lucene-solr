@@ -841,7 +841,6 @@ name|decomposition
 argument_list|)
 throw|;
 block|}
-comment|// we use 4.0 because it ensures we just encode the pure byte[] keys.
 name|analyzer
 operator|=
 operator|new
@@ -849,7 +848,7 @@ name|CollationKeyAnalyzer
 argument_list|(
 name|Version
 operator|.
-name|LUCENE_40
+name|LUCENE_CURRENT
 argument_list|,
 name|collator
 argument_list|)
