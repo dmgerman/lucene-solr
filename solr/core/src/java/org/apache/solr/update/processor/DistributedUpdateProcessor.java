@@ -3042,20 +3042,37 @@ name|Node
 argument_list|>
 argument_list|()
 expr_stmt|;
+name|DocCollection
+name|targetColl
+init|=
+name|cstate
+operator|.
+name|getCollection
+argument_list|(
+name|rule
+operator|.
+name|getTargetCollectionName
+argument_list|()
+argument_list|)
+decl_stmt|;
 name|Collection
 argument_list|<
 name|Slice
 argument_list|>
 name|activeSlices
 init|=
-name|cstate
+name|targetColl
 operator|.
-name|getActiveSlices
-argument_list|(
-name|rule
-operator|.
-name|getTargetCollectionName
+name|getRouter
 argument_list|()
+operator|.
+name|getSearchSlicesSingle
+argument_list|(
+name|id
+argument_list|,
+literal|null
+argument_list|,
+name|targetColl
 argument_list|)
 decl_stmt|;
 if|if
@@ -3078,7 +3095,11 @@ name|ErrorCode
 operator|.
 name|SERVER_ERROR
 argument_list|,
-literal|"No active slices found for target collection: "
+literal|"No active slices serving "
+operator|+
+name|id
+operator|+
+literal|" found for target collection: "
 operator|+
 name|rule
 operator|.
@@ -3087,8 +3108,6 @@ argument_list|()
 argument_list|)
 throw|;
 block|}
-comment|// it doesn't matter where we forward it so just choose the first one
-comment|// todo this can be optimized
 name|Replica
 name|targetLeader
 init|=
