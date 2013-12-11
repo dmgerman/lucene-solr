@@ -3598,6 +3598,20 @@ operator|!=
 literal|null
 argument_list|)
 expr_stmt|;
+name|assertTrue
+argument_list|(
+literal|"Expected to find shardAddress in the up shard info"
+argument_list|,
+name|info
+operator|.
+name|get
+argument_list|(
+literal|"shardAddress"
+argument_list|)
+operator|!=
+literal|null
+argument_list|)
+expr_stmt|;
 block|}
 else|else
 block|{
