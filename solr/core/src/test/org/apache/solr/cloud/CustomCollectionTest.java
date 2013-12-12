@@ -650,6 +650,16 @@ name|BeforeClass
 import|;
 end_import
 
+begin_import
+import|import
+name|org
+operator|.
+name|junit
+operator|.
+name|Ignore
+import|;
+end_import
+
 begin_comment
 comment|/**  * Tests the Custom Sharding API.  */
 end_comment
@@ -657,6 +667,11 @@ end_comment
 begin_class
 annotation|@
 name|Slow
+annotation|@
+name|Ignore
+argument_list|(
+literal|"I am broken since SOLR-5492"
+argument_list|)
 DECL|class|CustomCollectionTest
 specifier|public
 class|class
