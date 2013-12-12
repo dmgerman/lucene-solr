@@ -2046,6 +2046,11 @@ name|stopAtShutdown
 argument_list|,
 name|getExtraServlets
 argument_list|()
+argument_list|,
+literal|null
+argument_list|,
+name|getExtraRequestFilters
+argument_list|()
 argument_list|)
 decl_stmt|;
 name|jetty
@@ -2102,6 +2107,22 @@ argument_list|,
 name|String
 argument_list|>
 name|getExtraServlets
+parameter_list|()
+block|{
+return|return
+literal|null
+return|;
+block|}
+comment|/** Override this method to insert extra filters into the JettySolrRunners that are created using createJetty() */
+DECL|method|getExtraRequestFilters
+specifier|public
+name|SortedMap
+argument_list|<
+name|Class
+argument_list|,
+name|String
+argument_list|>
+name|getExtraRequestFilters
 parameter_list|()
 block|{
 return|return
