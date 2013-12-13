@@ -911,8 +911,6 @@ parameter_list|(
 name|String
 name|zkHost
 parameter_list|)
-throws|throws
-name|MalformedURLException
 block|{
 name|this
 operator|.
