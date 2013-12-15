@@ -78,24 +78,6 @@ name|apache
 operator|.
 name|solr
 operator|.
-name|client
-operator|.
-name|solrj
-operator|.
-name|request
-operator|.
-name|QueryRequest
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|solr
-operator|.
 name|common
 operator|.
 name|params
@@ -299,6 +281,22 @@ operator|.
 name|util
 operator|.
 name|ArrayList
+import|;
+end_import
+
+begin_import
+import|import static
+name|org
+operator|.
+name|junit
+operator|.
+name|internal
+operator|.
+name|matchers
+operator|.
+name|StringContains
+operator|.
+name|containsString
 import|;
 end_import
 
@@ -763,7 +761,7 @@ argument_list|,
 name|rsp
 argument_list|)
 expr_stmt|;
-name|assertTrue
+name|assertThat
 argument_list|(
 literal|"should have detected an error early!"
 argument_list|,
@@ -774,26 +772,8 @@ argument_list|()
 operator|.
 name|getMessage
 argument_list|()
-operator|.
-name|contains
-argument_list|(
-literal|"\"dataDir\""
-argument_list|)
-argument_list|)
-expr_stmt|;
-name|assertTrue
-argument_list|(
-literal|"should have detected an error early!"
 argument_list|,
-name|rsp
-operator|.
-name|getException
-argument_list|()
-operator|.
-name|getMessage
-argument_list|()
-operator|.
-name|contains
+name|containsString
 argument_list|(
 literal|"\"</dataDir>\""
 argument_list|)
