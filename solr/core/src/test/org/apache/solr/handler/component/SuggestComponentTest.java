@@ -445,15 +445,15 @@ argument_list|,
 literal|"2"
 argument_list|)
 argument_list|,
-literal|"//lst[@name='suggest']/lst[@name='suggestions']/lst[@name='exampel']/int[@name='numFound'][.='2']"
+literal|"//lst[@name='suggest']/lst[@name='exampel']/int[@name='numFound'][.='2']"
 argument_list|,
-literal|"//lst[@name='suggest']/lst[@name='suggestions']/lst[@name='exampel']/lst[@name='suggestion'][1]/str[@name='term'][.='example inputdata']"
+literal|"//lst[@name='suggest']/lst[@name='exampel']/arr[@name='suggestions']/lst[1]/str[@name='term'][.='example inputdata']"
 argument_list|,
-literal|"//lst[@name='suggest']/lst[@name='suggestions']/lst[@name='exampel']/lst[@name='suggestion'][1]/long[@name='weight'][.='45']"
+literal|"//lst[@name='suggest']/lst[@name='exampel']/arr[@name='suggestions']/lst[1]/long[@name='weight'][.='45']"
 argument_list|,
-literal|"//lst[@name='suggest']/lst[@name='suggestions']/lst[@name='exampel']/lst[@name='suggestion'][2]/str[@name='term'][.='example data']"
+literal|"//lst[@name='suggest']/lst[@name='exampel']/arr[@name='suggestions']/lst[2]/str[@name='term'][.='example data']"
 argument_list|,
-literal|"//lst[@name='suggest']/lst[@name='suggestions']/lst[@name='exampel']/lst[@name='suggestion'][2]/long[@name='weight'][.='40']"
+literal|"//lst[@name='suggest']/lst[@name='exampel']/arr[@name='suggestions']/lst[2]/long[@name='weight'][.='40']"
 argument_list|)
 expr_stmt|;
 name|assertQ
@@ -489,15 +489,15 @@ argument_list|,
 literal|"2"
 argument_list|)
 argument_list|,
-literal|"//lst[@name='suggest']/lst[@name='suggestions']/lst[@name='Rad']/int[@name='numFound'][.='2']"
+literal|"//lst[@name='suggest']/lst[@name='Rad']/int[@name='numFound'][.='2']"
 argument_list|,
-literal|"//lst[@name='suggest']/lst[@name='suggestions']/lst[@name='Rad']/lst[@name='suggestion'][1]/str[@name='term'][.='Rad fox']"
+literal|"//lst[@name='suggest']/lst[@name='Rad']/arr[@name='suggestions']/lst[1]/str[@name='term'][.='Rad fox']"
 argument_list|,
-literal|"//lst[@name='suggest']/lst[@name='suggestions']/lst[@name='Rad']/lst[@name='suggestion'][1]/long[@name='weight'][.='35']"
+literal|"//lst[@name='suggest']/lst[@name='Rad']/arr[@name='suggestions']/lst[1]/long[@name='weight'][.='35']"
 argument_list|,
-literal|"//lst[@name='suggest']/lst[@name='suggestions']/lst[@name='Rad']/lst[@name='suggestion'][2]/str[@name='term'][.='Red fox']"
+literal|"//lst[@name='suggest']/lst[@name='Rad']/arr[@name='suggestions']/lst[2]/str[@name='term'][.='Red fox']"
 argument_list|,
-literal|"//lst[@name='suggest']/lst[@name='suggestions']/lst[@name='Rad']/lst[@name='suggestion'][2]/long[@name='weight'][.='30']"
+literal|"//lst[@name='suggest']/lst[@name='Rad']/arr[@name='suggestions']/lst[2]/long[@name='weight'][.='30']"
 argument_list|)
 expr_stmt|;
 block|}
@@ -544,15 +544,15 @@ argument_list|,
 literal|"2"
 argument_list|)
 argument_list|,
-literal|"//lst[@name='suggest']/lst[@name='suggestions']/lst[@name='exampel']/int[@name='numFound'][.='2']"
+literal|"//lst[@name='suggest']/lst[@name='exampel']/int[@name='numFound'][.='2']"
 argument_list|,
-literal|"//lst[@name='suggest']/lst[@name='suggestions']/lst[@name='exampel']/lst[@name='suggestion'][1]/str[@name='term'][.='example inputdata']"
+literal|"//lst[@name='suggest']/lst[@name='exampel']/arr[@name='suggestions']/lst[1]/str[@name='term'][.='example inputdata']"
 argument_list|,
-literal|"//lst[@name='suggest']/lst[@name='suggestions']/lst[@name='exampel']/lst[@name='suggestion'][1]/long[@name='weight'][.='120']"
+literal|"//lst[@name='suggest']/lst[@name='exampel']/arr[@name='suggestions']/lst[1]/long[@name='weight'][.='120']"
 argument_list|,
-literal|"//lst[@name='suggest']/lst[@name='suggestions']/lst[@name='exampel']/lst[@name='suggestion'][2]/str[@name='term'][.='example data']"
+literal|"//lst[@name='suggest']/lst[@name='exampel']/arr[@name='suggestions']/lst[2]/str[@name='term'][.='example data']"
 argument_list|,
-literal|"//lst[@name='suggest']/lst[@name='suggestions']/lst[@name='exampel']/lst[@name='suggestion'][2]/long[@name='weight'][.='110']"
+literal|"//lst[@name='suggest']/lst[@name='exampel']/arr[@name='suggestions']/lst[2]/long[@name='weight'][.='110']"
 argument_list|)
 expr_stmt|;
 block|}
@@ -599,15 +599,15 @@ argument_list|,
 literal|"2"
 argument_list|)
 argument_list|,
-literal|"//lst[@name='suggest']/lst[@name='suggestions']/lst[@name='chn']/int[@name='numFound'][.='2']"
+literal|"//lst[@name='suggest']/lst[@name='chn']/int[@name='numFound'][.='2']"
 argument_list|,
-literal|"//lst[@name='suggest']/lst[@name='suggestions']/lst[@name='chn']/lst[@name='suggestion'][1]/str[@name='term'][.='chance']"
+literal|"//lst[@name='suggest']/lst[@name='chn']/arr[@name='suggestions']/lst[1]/str[@name='term'][.='chance']"
 argument_list|,
-literal|"//lst[@name='suggest']/lst[@name='suggestions']/lst[@name='chn']/lst[@name='suggestion'][1]/long[@name='weight'][.='1']"
+literal|"//lst[@name='suggest']/lst[@name='chn']/arr[@name='suggestions']/lst[1]/long[@name='weight'][.='1']"
 argument_list|,
-literal|"//lst[@name='suggest']/lst[@name='suggestions']/lst[@name='chn']/lst[@name='suggestion'][2]/str[@name='term'][.='change']"
+literal|"//lst[@name='suggest']/lst[@name='chn']/arr[@name='suggestions']/lst[2]/str[@name='term'][.='change']"
 argument_list|,
-literal|"//lst[@name='suggest']/lst[@name='suggestions']/lst[@name='chn']/lst[@name='suggestion'][2]/long[@name='weight'][.='1']"
+literal|"//lst[@name='suggest']/lst[@name='chn']/arr[@name='suggestions']/lst[2]/long[@name='weight'][.='1']"
 argument_list|)
 expr_stmt|;
 block|}
