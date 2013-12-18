@@ -41,12 +41,45 @@ name|String
 name|label
 parameter_list|)
 block|{
+if|if
+condition|(
+name|label
+operator|==
+literal|null
+condition|)
+block|{
+throw|throw
+operator|new
+name|NullPointerException
+argument_list|(
+literal|"label cannot be null"
+argument_list|)
+throw|;
+block|}
 name|this
 operator|.
 name|label
 operator|=
 name|label
 expr_stmt|;
+block|}
+DECL|method|failNoMatch
+specifier|protected
+name|void
+name|failNoMatch
+parameter_list|()
+block|{
+throw|throw
+operator|new
+name|IllegalArgumentException
+argument_list|(
+literal|"range \""
+operator|+
+name|label
+operator|+
+literal|"\" matches nothing"
+argument_list|)
+throw|;
 block|}
 block|}
 end_class

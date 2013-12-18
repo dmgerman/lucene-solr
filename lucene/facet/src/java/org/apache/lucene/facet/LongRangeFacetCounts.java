@@ -113,7 +113,7 @@ import|;
 end_import
 
 begin_comment
-comment|/** {@link Facets} implementation that computes counts for  *  dynamic long ranges from a provided {@link ValueSource},  *  using {@link FunctionValues#longVal}.  Use  *  this for dimensions that change in real-time (e.g. a  *  relative time based dimension like "Past day", "Past 2  *  days", etc.) or that change for each user (e.g. a  *  distance dimension like "< 1 km", "< 2 km", etc.).  *  *  @lucene.experimental */
+comment|/** {@link Facets} implementation that computes counts for  *  dynamic long ranges from a provided {@link ValueSource},  *  using {@link FunctionValues#longVal}.  Use  *  this for dimensions that change in real-time (e.g. a  *  relative time based dimension like "Past day", "Past 2  *  days", etc.) or that change for each request (e.g.   *  distance from the user's location, "< 1 km", "< 2 km",  *  etc.).  *  *  @lucene.experimental */
 end_comment
 
 begin_class
@@ -276,9 +276,20 @@ name|maxIncl
 argument_list|)
 expr_stmt|;
 block|}
-comment|// TODO: test if this is faster (in the past it was
-comment|// faster to do MatchingDocs on the inside) ... see
-comment|// patches on LUCENE-4965):
+name|LongRangeCounter
+name|counter
+init|=
+operator|new
+name|LongRangeCounter
+argument_list|(
+name|ranges
+argument_list|)
+decl_stmt|;
+name|int
+name|missingCount
+init|=
+literal|0
+decl_stmt|;
 for|for
 control|(
 name|MatchingDocs
@@ -360,81 +371,49 @@ name|doc
 argument_list|)
 condition|)
 block|{
-name|long
-name|v
-init|=
+name|counter
+operator|.
+name|add
+argument_list|(
 name|fv
 operator|.
 name|longVal
 argument_list|(
 name|doc
 argument_list|)
-decl_stmt|;
-if|if
-condition|(
-name|v
-argument_list|<
-name|minIncl
-operator|||
-name|v
-argument_list|>
-name|maxIncl
-condition|)
-block|{
-name|doc
-operator|++
-expr_stmt|;
-continue|continue;
-block|}
-comment|// TODO: if all ranges are non-overlapping, we
-comment|// should instead do a bin-search up front
-comment|// (really, a specialized case of the interval
-comment|// tree)
-comment|// TODO: use interval tree instead of linear search:
-for|for
-control|(
-name|int
-name|j
-init|=
-literal|0
-init|;
-name|j
-operator|<
-name|ranges
-operator|.
-name|length
-condition|;
-name|j
-operator|++
-control|)
-block|{
-if|if
-condition|(
-name|ranges
-index|[
-name|j
-index|]
-operator|.
-name|accept
-argument_list|(
-name|v
 argument_list|)
-condition|)
-block|{
-name|counts
-index|[
-name|j
-index|]
-operator|++
 expr_stmt|;
 block|}
-block|}
+else|else
+block|{
+name|missingCount
+operator|++
+expr_stmt|;
 block|}
 name|doc
 operator|++
 expr_stmt|;
 block|}
 block|}
+name|int
+name|x
+init|=
+name|counter
+operator|.
+name|fillCounts
+argument_list|(
+name|counts
+argument_list|)
+decl_stmt|;
+name|missingCount
+operator|+=
+name|x
+expr_stmt|;
+comment|//System.out.println("totCount " + totCount + " missingCount " + counter.missingCount);
+name|totCount
+operator|-=
+name|missingCount
+expr_stmt|;
 block|}
 block|}
 end_class

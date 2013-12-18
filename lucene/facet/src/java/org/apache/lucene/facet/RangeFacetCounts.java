@@ -121,8 +121,6 @@ name|length
 index|]
 expr_stmt|;
 block|}
-comment|// nocommit all args are ... unused ... this doesn't "fit"
-comment|// very well:
 annotation|@
 name|Override
 DECL|method|getTopChildren
