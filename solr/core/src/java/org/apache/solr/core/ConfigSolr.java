@@ -1068,6 +1068,40 @@ literal|"org.apache.solr.handler.admin.CoreAdminHandler"
 argument_list|)
 return|;
 block|}
+DECL|method|getCollectionsHandlerClass
+specifier|public
+name|String
+name|getCollectionsHandlerClass
+parameter_list|()
+block|{
+return|return
+name|get
+argument_list|(
+name|CfgProp
+operator|.
+name|SOLR_COLLECTIONSHANDLER
+argument_list|,
+literal|"org.apache.solr.handler.admin.CollectionsHandler"
+argument_list|)
+return|;
+block|}
+DECL|method|getInfoHandlerClass
+specifier|public
+name|String
+name|getInfoHandlerClass
+parameter_list|()
+block|{
+return|return
+name|get
+argument_list|(
+name|CfgProp
+operator|.
+name|SOLR_INFOHANDLER
+argument_list|,
+literal|"org.apache.solr.handler.admin.InfoHandler"
+argument_list|)
+return|;
+block|}
 DECL|method|hasSchemaCache
 specifier|public
 name|boolean
@@ -1181,6 +1215,9 @@ block|{
 DECL|enum constant|SOLR_ADMINHANDLER
 name|SOLR_ADMINHANDLER
 block|,
+DECL|enum constant|SOLR_COLLECTIONSHANDLER
+name|SOLR_COLLECTIONSHANDLER
+block|,
 DECL|enum constant|SOLR_CORELOADTHREADS
 name|SOLR_CORELOADTHREADS
 block|,
@@ -1207,6 +1244,9 @@ name|SOLR_HOSTCONTEXT
 block|,
 DECL|enum constant|SOLR_HOSTPORT
 name|SOLR_HOSTPORT
+block|,
+DECL|enum constant|SOLR_INFOHANDLER
+name|SOLR_INFOHANDLER
 block|,
 DECL|enum constant|SOLR_LEADERVOTEWAIT
 name|SOLR_LEADERVOTEWAIT
