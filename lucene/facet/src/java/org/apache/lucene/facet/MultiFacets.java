@@ -280,8 +280,7 @@ parameter_list|)
 throws|throws
 name|IOException
 block|{
-comment|// nocommit can/should we impl this?  ie, sparse
-comment|// faceting after drill sideways
+comment|// TODO
 throw|throw
 operator|new
 name|UnsupportedOperationException

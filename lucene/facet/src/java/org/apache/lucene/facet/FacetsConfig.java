@@ -1578,7 +1578,7 @@ operator|.
 name|getKey
 argument_list|()
 decl_stmt|;
-comment|//System.out.println("  fields=" + ent.getValue());
+comment|//System.out.println("  indexFieldName=" + indexFieldName + " fields=" + ent.getValue());
 name|IntsRef
 name|ordinals
 init|=
@@ -1717,6 +1717,7 @@ index|]
 operator|=
 name|ordinal
 expr_stmt|;
+comment|//System.out.println("ords[" + (ordinals.length-1) + "]=" + ordinal);
 comment|//System.out.println("  add cp=" + cp);
 if|if
 condition|(
@@ -1735,6 +1736,7 @@ name|requireDimCount
 operator|)
 condition|)
 block|{
+comment|//System.out.println("  add parents");
 comment|// Add all parents too:
 name|int
 name|parent
@@ -2138,9 +2140,6 @@ argument_list|()
 control|)
 block|{
 comment|// NOTE: we don't add parents for associations
-comment|// nocommit is that right?  maybe we are supposed to
-comment|// add to taxo writer, and just not index the parent
-comment|// ords?
 name|checkTaxoWriter
 argument_list|(
 name|taxoWriter

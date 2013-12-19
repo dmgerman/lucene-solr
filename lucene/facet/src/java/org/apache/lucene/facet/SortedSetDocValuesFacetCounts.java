@@ -715,7 +715,7 @@ operator|.
 name|OrdinalMap
 name|ordinalMap
 decl_stmt|;
-comment|// nocommit not quite right?  really, we need a way to
+comment|// TODO: is this right?  really, we need a way to
 comment|// verify that this ordinalMap "matches" the leaves in
 comment|// matchingDocs...
 if|if

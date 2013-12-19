@@ -293,7 +293,7 @@ literal|1
 condition|)
 block|{
 comment|//System.out.println("  doc=" + doc);
-comment|// nocommit use OrdinalsReader?  but, add a
+comment|// TODO: use OrdinalsReader?  we'd need to add a
 comment|// BytesRef getAssociation()?
 name|dv
 operator|.

@@ -141,7 +141,7 @@ argument_list|()
 decl_stmt|;
 name|assertEquals
 argument_list|(
-literal|"dim=timestamp path=[] value=100 childCount=3\n  Past hour (4)\n  Past six hours (22)\n  Past day (87)\n"
+literal|"dim=timestamp path=[] value=87 childCount=3\n  Past hour (4)\n  Past six hours (22)\n  Past day (87)\n"
 argument_list|,
 name|result
 operator|.
