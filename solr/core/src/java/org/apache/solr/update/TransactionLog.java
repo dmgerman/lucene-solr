@@ -2767,11 +2767,22 @@ name|long
 name|getLogSize
 parameter_list|()
 block|{
+if|if
+condition|(
+name|tlogFile
+operator|!=
+literal|null
+condition|)
+block|{
 return|return
 name|tlogFile
 operator|.
 name|length
 argument_list|()
+return|;
+block|}
+return|return
+literal|0
 return|;
 block|}
 comment|/** Returns a reader that can be used while a log is still in use.    * Currently only *one* LogReader may be outstanding, and that log may only    * be used from a single thread. */

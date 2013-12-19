@@ -6812,10 +6812,13 @@ init|=
 name|newDirectory
 argument_list|()
 decl_stmt|;
+comment|// Don't use newIndexWriterConfig, because we need a
+comment|// "sane" mergePolicy:
 name|IndexWriterConfig
 name|iwc
 init|=
-name|newIndexWriterConfig
+operator|new
+name|IndexWriterConfig
 argument_list|(
 name|TEST_VERSION_CURRENT
 argument_list|,

@@ -321,6 +321,13 @@ specifier|private
 name|ZkCmdExecutor
 name|zkCmdExecutor
 decl_stmt|;
+comment|// for tests
+DECL|field|context
+specifier|private
+specifier|volatile
+name|ElectionContext
+name|context
+decl_stmt|;
 DECL|method|LeaderElector
 specifier|public
 name|LeaderElector
@@ -356,6 +363,17 @@ argument_list|)
 argument_list|)
 expr_stmt|;
 block|}
+comment|// for tests
+DECL|method|getContext
+specifier|public
+name|ElectionContext
+name|getContext
+parameter_list|()
+block|{
+return|return
+name|context
+return|;
+block|}
 comment|/**    * Check if the candidate with the given n_* sequence number is the leader.    * If it is, set the leaderId on the leader zk node. If it is not, start    * watching the candidate that is in line before this one - if it goes down, check    * if this candidate is the leader again.    *    * @param replacement has someone else been the leader already?    */
 DECL|method|checkIfIamLeader
 specifier|private
@@ -380,6 +398,11 @@ name|InterruptedException
 throws|,
 name|IOException
 block|{
+name|context
+operator|.
+name|checkIfIamLeaderFired
+argument_list|()
+expr_stmt|;
 comment|// get all other numbers...
 specifier|final
 name|String
@@ -949,6 +972,11 @@ name|InterruptedException
 throws|,
 name|IOException
 block|{
+name|context
+operator|.
+name|joinedElectionFired
+argument_list|()
+expr_stmt|;
 specifier|final
 name|String
 name|shardsElectZkPath
@@ -1264,6 +1292,12 @@ name|InterruptedException
 throws|,
 name|KeeperException
 block|{
+name|this
+operator|.
+name|context
+operator|=
+name|context
+expr_stmt|;
 name|String
 name|electZKPath
 init|=

@@ -831,6 +831,8 @@ argument_list|(
 name|file
 argument_list|,
 name|stopwords
+argument_list|,
+literal|"UTF-8"
 argument_list|)
 expr_stmt|;
 block|}

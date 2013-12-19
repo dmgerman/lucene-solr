@@ -373,9 +373,17 @@ comment|// usually termsOffsets.size() == 1,
 comment|// but if position-gap> 1 and slop> 0 then size() could be greater than 1
 DECL|field|seqnum
 specifier|private
+specifier|final
 name|int
 name|seqnum
 decl_stmt|;
+DECL|field|boost
+specifier|private
+specifier|final
+name|float
+name|boost
+decl_stmt|;
+comment|// used for scoring split WeightedPhraseInfos.
 DECL|method|SubInfo
 specifier|public
 name|SubInfo
@@ -391,6 +399,9 @@ name|termsOffsets
 parameter_list|,
 name|int
 name|seqnum
+parameter_list|,
+name|float
+name|boost
 parameter_list|)
 block|{
 name|this
@@ -410,6 +421,12 @@ operator|.
 name|seqnum
 operator|=
 name|seqnum
+expr_stmt|;
+name|this
+operator|.
+name|boost
+operator|=
+name|boost
 expr_stmt|;
 block|}
 DECL|method|getTermsOffsets
@@ -443,6 +460,16 @@ parameter_list|()
 block|{
 return|return
 name|text
+return|;
+block|}
+DECL|method|getBoost
+specifier|public
+name|float
+name|getBoost
+parameter_list|()
+block|{
+return|return
+name|boost
 return|;
 block|}
 annotation|@

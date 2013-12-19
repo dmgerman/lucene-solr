@@ -689,7 +689,7 @@ else|:
 literal|null
 decl_stmt|;
 comment|// RAMDirectory dir = new RAMDirectory();
-comment|// final IndexWriter writer = new IndexWriter(dir, new IndexWriterConfig(Version.LUCENE_40, new WhitespaceAnalyzer(Version.LUCENE_40)));
+comment|// final IndexWriter writer = new IndexWriter(dir, new IndexWriterConfig(TEST_VERSION_CURRENT, new WhitespaceAnalyzer(TEST_VERSION_CURRENT)));
 name|Directory
 name|dir
 init|=

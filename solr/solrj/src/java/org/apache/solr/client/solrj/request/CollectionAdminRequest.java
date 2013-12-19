@@ -1054,7 +1054,7 @@ name|set
 argument_list|(
 literal|"collections"
 argument_list|,
-name|collection
+name|aliasedCollections
 argument_list|)
 expr_stmt|;
 return|return

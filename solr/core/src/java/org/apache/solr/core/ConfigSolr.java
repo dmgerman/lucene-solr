@@ -938,6 +938,40 @@ literal|0
 argument_list|)
 return|;
 block|}
+DECL|method|getMaxUpdateConnections
+specifier|public
+name|int
+name|getMaxUpdateConnections
+parameter_list|()
+block|{
+return|return
+name|getInt
+argument_list|(
+name|CfgProp
+operator|.
+name|SOLR_MAXUPDATECONNECTIONS
+argument_list|,
+literal|10000
+argument_list|)
+return|;
+block|}
+DECL|method|getMaxUpdateConnectionsPerHost
+specifier|public
+name|int
+name|getMaxUpdateConnectionsPerHost
+parameter_list|()
+block|{
+return|return
+name|getInt
+argument_list|(
+name|CfgProp
+operator|.
+name|SOLR_MAXUPDATECONNECTIONSPERHOST
+argument_list|,
+literal|100
+argument_list|)
+return|;
+block|}
 DECL|method|getCoreLoadThreadCount
 specifier|public
 name|int
@@ -1031,6 +1065,40 @@ operator|.
 name|SOLR_ADMINHANDLER
 argument_list|,
 literal|"org.apache.solr.handler.admin.CoreAdminHandler"
+argument_list|)
+return|;
+block|}
+DECL|method|getCollectionsHandlerClass
+specifier|public
+name|String
+name|getCollectionsHandlerClass
+parameter_list|()
+block|{
+return|return
+name|get
+argument_list|(
+name|CfgProp
+operator|.
+name|SOLR_COLLECTIONSHANDLER
+argument_list|,
+literal|"org.apache.solr.handler.admin.CollectionsHandler"
+argument_list|)
+return|;
+block|}
+DECL|method|getInfoHandlerClass
+specifier|public
+name|String
+name|getInfoHandlerClass
+parameter_list|()
+block|{
+return|return
+name|get
+argument_list|(
+name|CfgProp
+operator|.
+name|SOLR_INFOHANDLER
+argument_list|,
+literal|"org.apache.solr.handler.admin.InfoHandler"
 argument_list|)
 return|;
 block|}
@@ -1147,6 +1215,9 @@ block|{
 DECL|enum constant|SOLR_ADMINHANDLER
 name|SOLR_ADMINHANDLER
 block|,
+DECL|enum constant|SOLR_COLLECTIONSHANDLER
+name|SOLR_COLLECTIONSHANDLER
+block|,
 DECL|enum constant|SOLR_CORELOADTHREADS
 name|SOLR_CORELOADTHREADS
 block|,
@@ -1159,6 +1230,12 @@ block|,
 DECL|enum constant|SOLR_DISTRIBUPDATESOTIMEOUT
 name|SOLR_DISTRIBUPDATESOTIMEOUT
 block|,
+DECL|enum constant|SOLR_MAXUPDATECONNECTIONS
+name|SOLR_MAXUPDATECONNECTIONS
+block|,
+DECL|enum constant|SOLR_MAXUPDATECONNECTIONSPERHOST
+name|SOLR_MAXUPDATECONNECTIONSPERHOST
+block|,
 DECL|enum constant|SOLR_HOST
 name|SOLR_HOST
 block|,
@@ -1167,6 +1244,9 @@ name|SOLR_HOSTCONTEXT
 block|,
 DECL|enum constant|SOLR_HOSTPORT
 name|SOLR_HOSTPORT
+block|,
+DECL|enum constant|SOLR_INFOHANDLER
+name|SOLR_INFOHANDLER
 block|,
 DECL|enum constant|SOLR_LEADERVOTEWAIT
 name|SOLR_LEADERVOTEWAIT

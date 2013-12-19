@@ -76,6 +76,14 @@ name|int
 name|ruleStatus
 parameter_list|)
 function_decl|;
+comment|/** true if Han, Hiragana, and Katakana scripts should all be returned as Japanese */
+DECL|method|combineCJ
+specifier|public
+specifier|abstract
+name|boolean
+name|combineCJ
+parameter_list|()
+function_decl|;
 block|}
 end_class
 

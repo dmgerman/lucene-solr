@@ -3640,6 +3640,36 @@ operator|!=
 literal|null
 condition|)
 block|{
+comment|// we are unloading, cancel any ongoing recovery
+comment|// so there are no races to publish state
+comment|// we will try to cancel again later before close
+if|if
+condition|(
+name|core
+operator|!=
+literal|null
+condition|)
+block|{
+if|if
+condition|(
+name|coreContainer
+operator|.
+name|getZkController
+argument_list|()
+operator|!=
+literal|null
+condition|)
+block|{
+name|core
+operator|.
+name|getSolrCoreState
+argument_list|()
+operator|.
+name|cancelRecovery
+argument_list|()
+expr_stmt|;
+block|}
+block|}
 name|log
 operator|.
 name|info
@@ -4760,7 +4790,18 @@ name|syncStrategy
 operator|=
 operator|new
 name|SyncStrategy
+argument_list|(
+name|core
+operator|.
+name|getCoreDescriptor
 argument_list|()
+operator|.
+name|getCoreContainer
+argument_list|()
+operator|.
+name|getUpdateShardHandler
+argument_list|()
+argument_list|)
 expr_stmt|;
 name|Map
 argument_list|<

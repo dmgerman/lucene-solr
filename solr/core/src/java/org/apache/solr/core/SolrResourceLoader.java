@@ -735,6 +735,10 @@ block|,
 literal|"handler.component."
 block|,
 literal|"handler.dataimport."
+block|,
+literal|"spelling.suggest."
+block|,
+literal|"spelling.suggest.fst."
 block|}
 decl_stmt|;
 DECL|field|classLoader

@@ -197,7 +197,27 @@ literal|"/*"
 operator|+
 name|NL
 operator|+
-literal|" * Copyright 2010 The Apache Software Foundation."
+literal|" * Licensed to the Apache Software Foundation (ASF) under one or more"
+operator|+
+name|NL
+operator|+
+literal|" * contributor license agreements.  See the NOTICE file distributed with"
+operator|+
+name|NL
+operator|+
+literal|" * this work for additional information regarding copyright ownership."
+operator|+
+name|NL
+operator|+
+literal|" * The ASF licenses this file to You under the Apache License, Version 2.0"
+operator|+
+name|NL
+operator|+
+literal|" * (the \"License\"); you may not use this file except in compliance with"
+operator|+
+name|NL
+operator|+
+literal|" * the License.  You may obtain a copy of the License at"
 operator|+
 name|NL
 operator|+
@@ -205,23 +225,7 @@ literal|" *"
 operator|+
 name|NL
 operator|+
-literal|" * Licensed under the Apache License, Version 2.0 (the \"License\");"
-operator|+
-name|NL
-operator|+
-literal|" * you may not use this file except in compliance with the License."
-operator|+
-name|NL
-operator|+
-literal|" * You may obtain a copy of the License at"
-operator|+
-name|NL
-operator|+
-literal|" *"
-operator|+
-name|NL
-operator|+
-literal|" *      http://www.apache.org/licenses/LICENSE-2.0"
+literal|" *     http://www.apache.org/licenses/LICENSE-2.0"
 operator|+
 name|NL
 operator|+
@@ -250,8 +254,6 @@ operator|+
 name|NL
 operator|+
 literal|" */"
-operator|+
-name|NL
 operator|+
 name|NL
 decl_stmt|;
@@ -285,16 +287,16 @@ argument_list|)
 expr_stmt|;
 name|outputMacro
 argument_list|(
-literal|"ExtendSupp"
+literal|"NumericSupp"
 argument_list|,
-literal|"[:WordBreak=Extend:]"
+literal|"[:WordBreak=Numeric:]"
 argument_list|)
 expr_stmt|;
 name|outputMacro
 argument_list|(
-literal|"NumericSupp"
+literal|"ExtendSupp"
 argument_list|,
-literal|"[:WordBreak=Numeric:]"
+literal|"[:WordBreak=Extend:]"
 argument_list|)
 expr_stmt|;
 name|outputMacro
@@ -358,6 +360,34 @@ argument_list|(
 literal|"HiraganaSupp"
 argument_list|,
 literal|"[:Script=Hiragana:]"
+argument_list|)
+expr_stmt|;
+name|outputMacro
+argument_list|(
+literal|"SingleQuoteSupp"
+argument_list|,
+literal|"[:WordBreak=Single_Quote:]"
+argument_list|)
+expr_stmt|;
+name|outputMacro
+argument_list|(
+literal|"DoubleQuoteSupp"
+argument_list|,
+literal|"[:WordBreak=Double_Quote:]"
+argument_list|)
+expr_stmt|;
+name|outputMacro
+argument_list|(
+literal|"HebrewLetterSupp"
+argument_list|,
+literal|"[:WordBreak=Hebrew_Letter:]"
+argument_list|)
+expr_stmt|;
+name|outputMacro
+argument_list|(
+literal|"RegionalIndicatorSupp"
+argument_list|,
+literal|"[:WordBreak=Regional_Indicator:]"
 argument_list|)
 expr_stmt|;
 block|}

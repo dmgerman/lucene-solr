@@ -1029,6 +1029,7 @@ comment|// -----------------------------------------------------------------
 comment|// Truly immutable fields and constants, initialized once and valid
 comment|// for all suites ever since.
 comment|// -----------------------------------------------------------------
+comment|// :Post-Release-Update-Version.LUCENE_XY:
 comment|/**     * Use this constant when creating Analyzers and any other version-dependent stuff.    *<p><b>NOTE:</b> Change this when development starts for new Lucene version:    */
 DECL|field|TEST_VERSION_CURRENT
 specifier|public

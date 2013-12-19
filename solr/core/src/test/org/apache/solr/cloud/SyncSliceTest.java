@@ -809,18 +809,12 @@ argument_list|(
 name|baseUrl
 argument_list|)
 decl_stmt|;
+comment|// we only set the connect timeout, not so timeout
 name|baseServer
 operator|.
 name|setConnectionTimeout
 argument_list|(
 literal|15000
-argument_list|)
-expr_stmt|;
-name|baseServer
-operator|.
-name|setSoTimeout
-argument_list|(
-literal|60000
 argument_list|)
 expr_stmt|;
 name|baseServer

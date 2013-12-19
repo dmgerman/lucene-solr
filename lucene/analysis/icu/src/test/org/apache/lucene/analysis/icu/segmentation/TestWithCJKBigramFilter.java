@@ -202,6 +202,12 @@ operator|new
 name|ICUTokenizer
 argument_list|(
 name|reader
+argument_list|,
+operator|new
+name|DefaultICUTokenizerConfig
+argument_list|(
+literal|false
+argument_list|)
 argument_list|)
 decl_stmt|;
 name|TokenStream
@@ -265,6 +271,12 @@ operator|new
 name|ICUTokenizer
 argument_list|(
 name|reader
+argument_list|,
+operator|new
+name|DefaultICUTokenizerConfig
+argument_list|(
+literal|false
+argument_list|)
 argument_list|)
 decl_stmt|;
 comment|// we put this before the CJKBigramFilter, because the normalization might combine

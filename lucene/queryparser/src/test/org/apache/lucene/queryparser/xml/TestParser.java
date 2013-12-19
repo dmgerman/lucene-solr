@@ -490,9 +490,7 @@ name|dir
 argument_list|,
 name|newIndexWriterConfig
 argument_list|(
-name|Version
-operator|.
-name|LUCENE_40
+name|TEST_VERSION_CURRENT
 argument_list|,
 name|analyzer
 argument_list|)

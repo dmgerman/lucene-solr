@@ -68,6 +68,16 @@ begin_import
 import|import
 name|java
 operator|.
+name|net
+operator|.
+name|SocketAddress
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
 name|util
 operator|.
 name|Set
@@ -186,6 +196,17 @@ parameter_list|()
 block|{
 return|return
 name|cnxn
+return|;
+block|}
+DECL|method|getSocketAddress
+specifier|public
+name|SocketAddress
+name|getSocketAddress
+parameter_list|()
+block|{
+return|return
+name|testableLocalSocketAddress
+argument_list|()
 return|;
 block|}
 comment|/**    * Cause this ZooKeeper object to stop receiving from the ZooKeeperServer    * for the given number of milliseconds.    * @param ms the number of milliseconds to pause.    */

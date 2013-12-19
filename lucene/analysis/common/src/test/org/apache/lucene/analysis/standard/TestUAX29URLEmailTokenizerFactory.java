@@ -384,7 +384,7 @@ literal|"ftp://119.220.152.185/JgJgdZ/31aW5c/viWlfQSTs5/1c8U5T/ih5rXx/YfUJ/xBW1u
 operator|+
 literal|"M19nq.0URV4A.Me.CC/mj0kgt6hue/dRXv8YVLOw9v/CIOqb\n"
 operator|+
-literal|"Https://yu7v33rbt.vC6U3.XN--JXALPDLP/y%4fMSzkGFlm/wbDF4m"
+literal|"Https://yu7v33rbt.vC6U3.XN--KPRW13D/y%4fMSzkGFlm/wbDF4m"
 operator|+
 literal|" inter Locutio "
 operator|+
@@ -452,7 +452,7 @@ literal|"ftp://119.220.152.185/JgJgdZ/31aW5c/viWlfQSTs5/1c8U5T/ih5rXx/YfUJ/xBW1u
 block|,
 literal|"M19nq.0URV4A.Me.CC/mj0kgt6hue/dRXv8YVLOw9v/CIOqb"
 block|,
-literal|"Https://yu7v33rbt.vC6U3.XN--JXALPDLP/y%4fMSzkGFlm/wbDF4m"
+literal|"Https://yu7v33rbt.vC6U3.XN--KPRW13D/y%4fMSzkGFlm/wbDF4m"
 block|,
 literal|"inter"
 block|,

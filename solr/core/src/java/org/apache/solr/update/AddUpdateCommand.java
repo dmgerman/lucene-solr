@@ -502,6 +502,13 @@ name|String
 name|getPrintableId
 parameter_list|()
 block|{
+if|if
+condition|(
+name|req
+operator|!=
+literal|null
+condition|)
+block|{
 name|IndexSchema
 name|schema
 init|=
@@ -558,6 +565,7 @@ operator|.
 name|toString
 argument_list|()
 return|;
+block|}
 block|}
 block|}
 return|return

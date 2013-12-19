@@ -805,6 +805,12 @@ name|get
 argument_list|(
 name|Math
 operator|.
+name|max
+argument_list|(
+literal|0
+argument_list|,
+name|Math
+operator|.
 name|abs
 argument_list|(
 name|perFieldSeed
@@ -813,6 +819,7 @@ name|field
 operator|.
 name|hashCode
 argument_list|()
+argument_list|)
 argument_list|)
 operator|%
 name|knownSims

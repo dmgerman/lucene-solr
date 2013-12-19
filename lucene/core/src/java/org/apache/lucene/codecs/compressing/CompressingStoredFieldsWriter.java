@@ -2139,9 +2139,24 @@ name|getVersion
 argument_list|()
 operator|!=
 name|VERSION_CURRENT
+comment|// means reader version is not the same as the writer version
+operator|||
+name|matchingFieldsReader
+operator|.
+name|getCompressionMode
+argument_list|()
+operator|!=
+name|compressionMode
+operator|||
+name|matchingFieldsReader
+operator|.
+name|getChunkSize
+argument_list|()
+operator|!=
+name|chunkSize
 condition|)
 block|{
-comment|// means reader version is not the same as the writer version
+comment|// the way data is decompressed depends on the chunk size
 comment|// naive merge...
 for|for
 control|(
@@ -2332,14 +2347,6 @@ expr_stmt|;
 block|}
 if|if
 condition|(
-name|compressionMode
-operator|==
-name|matchingFieldsReader
-operator|.
-name|getCompressionMode
-argument_list|()
-comment|// same compression mode
-operator|&&
 name|numBufferedDocs
 operator|==
 literal|0

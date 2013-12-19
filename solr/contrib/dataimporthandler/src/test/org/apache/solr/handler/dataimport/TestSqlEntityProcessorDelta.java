@@ -63,7 +63,7 @@ comment|/*  * Licensed to the Apache Software Foundation (ASF) under one or more
 end_comment
 
 begin_comment
-comment|/**  * Test with various combinations of parameters, child entites, transformers.  */
+comment|/**  * Test with various combinations of parameters, child entities, transformers.  */
 end_comment
 
 begin_class
@@ -172,6 +172,44 @@ expr_stmt|;
 name|singleEntity
 argument_list|(
 name|c
+argument_list|)
+expr_stmt|;
+name|validateChanges
+argument_list|()
+expr_stmt|;
+block|}
+annotation|@
+name|Test
+DECL|method|testDeltaImportWithoutInitialFullImport
+specifier|public
+name|void
+name|testDeltaImportWithoutInitialFullImport
+parameter_list|()
+throws|throws
+name|Exception
+block|{
+name|log
+operator|.
+name|debug
+argument_list|(
+literal|"testDeltaImportWithoutInitialFullImport delta-import..."
+argument_list|)
+expr_stmt|;
+name|countryEntity
+operator|=
+literal|false
+expr_stmt|;
+name|delta
+operator|=
+literal|true
+expr_stmt|;
+comment|/*      * We need to add 2 in total:       * +1 for deltaQuery i.e identifying id of items to update,       * +1 for deletedPkQuery i.e delete query      */
+name|singleEntity
+argument_list|(
+name|totalPeople
+argument_list|()
+operator|+
+literal|2
 argument_list|)
 expr_stmt|;
 name|validateChanges

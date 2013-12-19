@@ -2445,7 +2445,7 @@ return|return
 name|res
 return|;
 block|}
-comment|/**    * Collect statistics about the UninvertedField.  Code is very similar to {@link #getCounts(org.apache.solr.search.SolrIndexSearcher, org.apache.solr.search.DocSet, int, int, Integer, boolean, String, String)}    * It can be used to calculate stats on multivalued fields.    *<p/>    * This method is mainly used by the {@link org.apache.solr.handler.component.StatsComponent}.    *    * @param searcher The Searcher to use to gather the statistics    * @param baseDocs The {@link org.apache.solr.search.DocSet} to gather the stats on    * @param facet One or more fields to facet on.    * @return The {@link org.apache.solr.handler.component.StatsValues} collected    * @throws IOException If there is a low-level I/O error.    */
+comment|/**    * Collect statistics about the UninvertedField.  Code is very similar to {@link #getCounts(org.apache.solr.search.SolrIndexSearcher, org.apache.solr.search.DocSet, int, int, Integer, boolean, String, String)}    * It can be used to calculate stats on multivalued fields.    *<p/>    * This method is mainly used by the {@link org.apache.solr.handler.component.StatsComponent}.    *    * @param searcher The Searcher to use to gather the statistics    * @param baseDocs The {@link org.apache.solr.search.DocSet} to gather the stats on    * @param calcDistinct whether distinct values should be collected and counted    * @param facet One or more fields to facet on.    * @return The {@link org.apache.solr.handler.component.StatsValues} collected    * @throws IOException If there is a low-level I/O error.    */
 DECL|method|getStats
 specifier|public
 name|StatsValues
@@ -2456,6 +2456,9 @@ name|searcher
 parameter_list|,
 name|DocSet
 name|baseDocs
+parameter_list|,
+name|boolean
+name|calcDistinct
 parameter_list|,
 name|String
 index|[]
@@ -2494,6 +2497,8 @@ operator|.
 name|createStatsValues
 argument_list|(
 name|sf
+argument_list|,
+name|calcDistinct
 argument_list|)
 decl_stmt|;
 name|DocSet
@@ -2611,6 +2616,8 @@ argument_list|,
 name|sf
 argument_list|,
 name|facet_sf
+argument_list|,
+name|calcDistinct
 argument_list|)
 expr_stmt|;
 name|i

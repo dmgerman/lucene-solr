@@ -347,9 +347,7 @@ init|=
 operator|new
 name|StopAnalyzer
 argument_list|(
-name|Version
-operator|.
-name|LUCENE_40
+name|TEST_VERSION_CURRENT
 argument_list|,
 name|stopWordsSet
 argument_list|)

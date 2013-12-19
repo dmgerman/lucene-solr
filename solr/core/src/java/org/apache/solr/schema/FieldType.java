@@ -4413,6 +4413,34 @@ return|return
 name|analyzerProps
 return|;
 block|}
+comment|/**     * Convert a value used by the FieldComparator for this FieldType's SortField    * into a marshalable value for distributed sorting.    */
+DECL|method|marshalSortValue
+specifier|public
+name|Object
+name|marshalSortValue
+parameter_list|(
+name|Object
+name|value
+parameter_list|)
+block|{
+return|return
+name|value
+return|;
+block|}
+comment|/**    * Convert a value marshaled via {@link #marshalSortValue} back     * into a value usable by the FieldComparator for this FieldType's SortField    */
+DECL|method|unmarshalSortValue
+specifier|public
+name|Object
+name|unmarshalSortValue
+parameter_list|(
+name|Object
+name|value
+parameter_list|)
+block|{
+return|return
+name|value
+return|;
+block|}
 block|}
 end_class
 

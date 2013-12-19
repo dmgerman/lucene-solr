@@ -1243,15 +1243,15 @@ operator|.
 name|parseFloat
 argument_list|()
 decl_stmt|;
-name|float
+name|ValueSource
 name|target
 init|=
 name|fp
 operator|.
-name|parseFloat
+name|parseValueSource
 argument_list|()
 decl_stmt|;
-name|Float
+name|ValueSource
 name|def
 init|=
 name|fp
@@ -1261,7 +1261,7 @@ argument_list|()
 condition|?
 name|fp
 operator|.
-name|parseFloat
+name|parseValueSource
 argument_list|()
 else|:
 literal|null

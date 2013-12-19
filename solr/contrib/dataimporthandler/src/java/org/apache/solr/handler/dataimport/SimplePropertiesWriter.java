@@ -676,8 +676,10 @@ name|canWrite
 argument_list|()
 return|;
 block|}
+annotation|@
+name|Override
 DECL|method|convertDateToString
-specifier|protected
+specifier|public
 name|String
 name|convertDateToString
 parameter_list|(

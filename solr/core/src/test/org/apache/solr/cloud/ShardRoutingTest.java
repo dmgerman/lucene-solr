@@ -470,7 +470,7 @@ comment|// shard1: top bits:10  80000000:bfffffff
 comment|// shard2: top bits:11  c0000000:ffffffff
 comment|// shard3: top bits:00  00000000:3fffffff
 comment|// shard4: top bits:01  40000000:7fffffff
-comment|/***      hash of a is 3c2569b2 high bits=0 shard=shard3      hash of b is 95de7e03 high bits=2 shard=shard1      hash of c is e132d65f high bits=3 shard=shard2      hash of d is 27191473 high bits=0 shard=shard3      hash of e is 656c4367 high bits=1 shard=shard4      hash of f is 2b64883b high bits=0 shard=shard3      hash of g is f18ae416 high bits=3 shard=shard2      hash of h is d482b2d3 high bits=3 shard=shard2      hash of i is 811a702b high bits=2 shard=shard1      hash of j is ca745a39 high bits=3 shard=shard2      hash of k is cfbda5d1 high bits=3 shard=shard2      hash of l is 1d5d6a2c high bits=0 shard=shard3      hash of m is 5ae4385c high bits=1 shard=shard4      hash of n is c651d8ac high bits=3 shard=shard2      hash of o is 68348473 high bits=1 shard=shard4      hash of p is 986fdf9a high bits=2 shard=shard1      hash of q is ff8209e8 high bits=3 shard=shard2      hash of r is 5c9373f1 high bits=1 shard=shard4      hash of s is ff4acaf1 high bits=3 shard=shard2      hash of t is ca87df4d high bits=3 shard=shard2      hash of u is 62203ae0 high bits=1 shard=shard4      hash of v is bdafcc55 high bits=2 shard=shard1      hash of w is ff439d1f high bits=3 shard=shard2      hash of x is 3e9a9b1b high bits=0 shard=shard3      hash of y is 477d9216 high bits=1 shard=shard4      hash of z is c1f69a17 high bits=3 shard=shard2      ***/
+comment|/***      hash of a is 3c2569b2 high bits=0 shard=shard3      hash of b is 95de7e03 high bits=2 shard=shard1      hash of c is e132d65f high bits=3 shard=shard2      hash of d is 27191473 high bits=0 shard=shard3      hash of e is 656c4367 high bits=1 shard=shard4      hash of f is 2b64883b high bits=0 shard=shard3      hash of g is f18ae416 high bits=3 shard=shard2      hash of h is d482b2d3 high bits=3 shard=shard2      hash of i is 811a702b high bits=2 shard=shard1      hash of j is ca745a39 high bits=3 shard=shard2      hash of k is cfbda5d1 high bits=3 shard=shard2      hash of l is 1d5d6a2c high bits=0 shard=shard3      hash of m is 5ae4385c high bits=1 shard=shard4      hash of n is c651d8ac high bits=3 shard=shard2      hash of o is 68348473 high bits=1 shard=shard4      hash of p is 986fdf9a high bits=2 shard=shard1      hash of q is ff8209e8 high bits=3 shard=shard2      hash of r is 5c9373f1 high bits=1 shard=shard4      hash of s is ff4acaf1 high bits=3 shard=shard2      hash of t is ca87df4d high bits=3 shard=shard2      hash of u is 62203ae0 high bits=1 shard=shard4      hash of v is bdafcc55 high bits=2 shard=shard1      hash of w is ff439d1f high bits=3 shard=shard2      hash of x is 3e9a9b1b high bits=0 shard=shard3      hash of y is 477d9216 high bits=1 shard=shard4      hash of z is c1f69a17 high bits=3 shard=shard2       hash of f1 is 313bf6b1      hash of f2 is ff143f8       ***/
 block|}
 annotation|@
 name|Override
@@ -615,6 +615,17 @@ argument_list|(
 literal|"e!doc4"
 argument_list|)
 expr_stmt|;
+name|doAddDoc
+argument_list|(
+literal|"f1!f2!doc5"
+argument_list|)
+expr_stmt|;
+comment|// Check successful addition of a document with a '/' in the id part.
+name|doAddDoc
+argument_list|(
+literal|"f1!f2!doc5/5"
+argument_list|)
+expr_stmt|;
 name|doRTG
 argument_list|(
 literal|"b!doc1"
@@ -637,6 +648,16 @@ argument_list|)
 expr_stmt|;
 name|doRTG
 argument_list|(
+literal|"f1!f2!doc5"
+argument_list|)
+expr_stmt|;
+name|doRTG
+argument_list|(
+literal|"f1!f2!doc5/5"
+argument_list|)
+expr_stmt|;
+name|doRTG
+argument_list|(
 literal|"b!doc1,c!doc2"
 argument_list|)
 expr_stmt|;
@@ -650,7 +671,7 @@ argument_list|()
 expr_stmt|;
 name|doQuery
 argument_list|(
-literal|"b!doc1,c!doc2,d!doc3,e!doc4"
+literal|"b!doc1,c!doc2,d!doc3,e!doc4,f1!f2!doc5,f1!f2!doc5/5"
 argument_list|,
 literal|"q"
 argument_list|,
@@ -659,7 +680,7 @@ argument_list|)
 expr_stmt|;
 name|doQuery
 argument_list|(
-literal|"b!doc1,c!doc2,d!doc3,e!doc4"
+literal|"b!doc1,c!doc2,d!doc3,e!doc4,f1!f2!doc5,f1!f2!doc5/5"
 argument_list|,
 literal|"q"
 argument_list|,
@@ -672,7 +693,7 @@ argument_list|)
 expr_stmt|;
 name|doQuery
 argument_list|(
-literal|"b!doc1,c!doc2,d!doc3,e!doc4"
+literal|"b!doc1,c!doc2,d!doc3,e!doc4,f1!f2!doc5,f1!f2!doc5/5"
 argument_list|,
 literal|"q"
 argument_list|,
@@ -680,7 +701,7 @@ literal|"*:*"
 argument_list|,
 name|shardKeys
 argument_list|,
-literal|"b!,c!,d!,e!"
+literal|"b!,c!,d!,e!,f1!f2!"
 argument_list|)
 expr_stmt|;
 name|doQuery
@@ -711,7 +732,7 @@ argument_list|)
 expr_stmt|;
 name|doQuery
 argument_list|(
-literal|"d!doc3"
+literal|"d!doc3,f1!f2!doc5,f1!f2!doc5/5"
 argument_list|,
 literal|"q"
 argument_list|,
@@ -733,6 +754,19 @@ argument_list|,
 name|shardKeys
 argument_list|,
 literal|"e!"
+argument_list|)
+expr_stmt|;
+name|doQuery
+argument_list|(
+literal|"f1!f2!doc5,d!doc3,f1!f2!doc5/5"
+argument_list|,
+literal|"q"
+argument_list|,
+literal|"*:*"
+argument_list|,
+name|shardKeys
+argument_list|,
+literal|"f1/8!"
 argument_list|)
 expr_stmt|;
 comment|// try using shards parameter
@@ -764,7 +798,7 @@ argument_list|)
 expr_stmt|;
 name|doQuery
 argument_list|(
-literal|"d!doc3"
+literal|"d!doc3,f1!f2!doc5,f1!f2!doc5/5"
 argument_list|,
 literal|"q"
 argument_list|,
@@ -844,7 +878,7 @@ expr_stmt|;
 comment|// top bit of hash(b)==1, so shard1 and shard2
 name|doQuery
 argument_list|(
-literal|"d!doc3,e!doc4"
+literal|"d!doc3,e!doc4,f1!f2!doc5,f1!f2!doc5/5"
 argument_list|,
 literal|"q"
 argument_list|,
@@ -871,7 +905,7 @@ argument_list|)
 expr_stmt|;
 name|doQuery
 argument_list|(
-literal|"b!doc1,c!doc2,d!doc3,e!doc4"
+literal|"b!doc1,f1!f2!doc5,c!doc2,d!doc3,e!doc4,f1!f2!doc5/5"
 argument_list|,
 literal|"q"
 argument_list|,
@@ -897,7 +931,7 @@ argument_list|()
 expr_stmt|;
 name|doQuery
 argument_list|(
-literal|"c!doc2,d!doc3,e!doc4"
+literal|"c!doc2,d!doc3,e!doc4,f1!f2!doc5,f1!f2!doc5/5"
 argument_list|,
 literal|"q"
 argument_list|,
@@ -915,7 +949,7 @@ literal|"*:*"
 argument_list|,
 name|shardKeys
 argument_list|,
-literal|"c!"
+literal|"f1!"
 argument_list|)
 expr_stmt|;
 name|commit
@@ -923,7 +957,7 @@ argument_list|()
 expr_stmt|;
 name|doQuery
 argument_list|(
-literal|"b!doc1,d!doc3,e!doc4"
+literal|"b!doc1,c!doc2,e!doc4"
 argument_list|,
 literal|"q"
 argument_list|,
@@ -932,7 +966,12 @@ argument_list|)
 expr_stmt|;
 name|doAddDoc
 argument_list|(
-literal|"c!doc2"
+literal|"f1!f2!doc5"
+argument_list|)
+expr_stmt|;
+name|doAddDoc
+argument_list|(
+literal|"d!doc3"
 argument_list|)
 expr_stmt|;
 name|doDBQ
@@ -949,7 +988,7 @@ argument_list|()
 expr_stmt|;
 name|doQuery
 argument_list|(
-literal|"b!doc1,d!doc3,e!doc4"
+literal|"b!doc1,f1!f2!doc5,d!doc3,e!doc4"
 argument_list|,
 literal|"q"
 argument_list|,
@@ -990,6 +1029,11 @@ expr_stmt|;
 name|doAddDoc
 argument_list|(
 literal|"e!doc4"
+argument_list|)
+expr_stmt|;
+name|doAddDoc
+argument_list|(
+literal|"f1!f2!doc5"
 argument_list|)
 expr_stmt|;
 name|commit
@@ -1374,6 +1418,45 @@ name|nStart
 argument_list|)
 expr_stmt|;
 comment|// original + 2 phase distrib search * 2 shards.
+name|nStart
+operator|=
+name|getNumRequests
+argument_list|()
+expr_stmt|;
+name|leader2
+operator|.
+name|client
+operator|.
+name|solrClient
+operator|.
+name|query
+argument_list|(
+name|params
+argument_list|(
+literal|"q"
+argument_list|,
+literal|"*:*"
+argument_list|,
+literal|"shard.keys"
+argument_list|,
+literal|"b!,f1!f2!"
+argument_list|)
+argument_list|)
+expr_stmt|;
+name|nEnd
+operator|=
+name|getNumRequests
+argument_list|()
+expr_stmt|;
+name|assertEquals
+argument_list|(
+literal|5
+argument_list|,
+name|nEnd
+operator|-
+name|nStart
+argument_list|)
+expr_stmt|;
 block|}
 DECL|method|doAtomicUpdate
 specifier|public

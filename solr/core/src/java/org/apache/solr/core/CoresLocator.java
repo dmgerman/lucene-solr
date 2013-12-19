@@ -94,6 +94,22 @@ name|CoreDescriptor
 name|newCD
 parameter_list|)
 function_decl|;
+comment|/**    * Swap two core definitions    * @param cc  the CoreContainer    * @param cd1 the core descriptor of the first core, after swapping    * @param cd2 the core descriptor of the second core, after swapping    */
+DECL|method|swap
+specifier|public
+name|void
+name|swap
+parameter_list|(
+name|CoreContainer
+name|cc
+parameter_list|,
+name|CoreDescriptor
+name|cd1
+parameter_list|,
+name|CoreDescriptor
+name|cd2
+parameter_list|)
+function_decl|;
 comment|/**    * Load all the CoreDescriptors from persistence store    * @param cc the CoreContainer    * @return a list of all CoreDescriptors found    */
 DECL|method|discover
 specifier|public

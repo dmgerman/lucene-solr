@@ -2096,6 +2096,8 @@ name|map
 operator|.
 name|put
 argument_list|(
+name|DocBuilder
+operator|.
 name|SKIP_DOC
 argument_list|,
 name|Boolean

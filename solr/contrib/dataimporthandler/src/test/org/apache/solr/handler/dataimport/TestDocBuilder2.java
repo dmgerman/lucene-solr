@@ -726,7 +726,9 @@ literal|"desc"
 argument_list|,
 literal|"two"
 argument_list|,
-literal|"$skipDoc"
+name|DocBuilder
+operator|.
+name|SKIP_DOC
 argument_list|,
 literal|"true"
 argument_list|)
@@ -822,7 +824,9 @@ literal|"desc"
 argument_list|,
 literal|"two"
 argument_list|,
-literal|"$skipRow"
+name|DocBuilder
+operator|.
+name|SKIP_ROW
 argument_list|,
 literal|"true"
 argument_list|)
@@ -966,7 +970,9 @@ literal|"name_s"
 argument_list|,
 literal|"xyz"
 argument_list|,
-literal|"$skipRow"
+name|DocBuilder
+operator|.
+name|SKIP_ROW
 argument_list|,
 literal|"true"
 argument_list|)
@@ -1204,7 +1210,9 @@ literal|"desc"
 argument_list|,
 literal|"two"
 argument_list|,
-literal|"$deleteDocById"
+name|DocBuilder
+operator|.
+name|DELETE_DOC_BY_ID
 argument_list|,
 literal|"2"
 argument_list|)
@@ -1332,7 +1340,9 @@ literal|"desc"
 argument_list|,
 literal|"two"
 argument_list|,
-literal|"$deleteDocByQuery"
+name|DocBuilder
+operator|.
+name|DELETE_DOC_BY_QUERY
 argument_list|,
 literal|"desc:one"
 argument_list|)
@@ -1420,7 +1430,9 @@ name|add
 argument_list|(
 name|createMap
 argument_list|(
-literal|"$deleteDocById"
+name|DocBuilder
+operator|.
+name|DELETE_DOC_BY_ID
 argument_list|,
 literal|"3"
 argument_list|)
