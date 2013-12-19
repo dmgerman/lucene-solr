@@ -330,6 +330,16 @@ name|IOException
 import|;
 end_import
 
+begin_import
+import|import
+name|java
+operator|.
+name|net
+operator|.
+name|MalformedURLException
+import|;
+end_import
+
 begin_comment
 comment|/**  * Set of configuration parameters that identify the location and schema of a Solr server or  * SolrCloud; Based on this information this class can return the schema and a corresponding  * {@link DocumentLoader}.  */
 end_comment
@@ -376,15 +386,6 @@ name|int
 name|batchSize
 init|=
 literal|1000
-decl_stmt|;
-DECL|field|SOLR_HOME_PROPERTY_NAME
-specifier|private
-specifier|static
-specifier|final
-name|String
-name|SOLR_HOME_PROPERTY_NAME
-init|=
-literal|"solr.solr.home"
 decl_stmt|;
 DECL|field|LOG
 specifier|private
@@ -751,11 +752,6 @@ block|}
 comment|// If solrHomeDir isn't defined and zkHost and collectionName are defined
 comment|// then download schema.xml and solrconfig.xml, etc from zk and use that as solrHomeDir
 name|String
-name|oldSolrHomeDir
-init|=
-literal|null
-decl_stmt|;
-name|String
 name|mySolrHomeDir
 init|=
 name|solrHomeDir
@@ -937,40 +933,38 @@ argument_list|()
 expr_stmt|;
 block|}
 block|}
-name|oldSolrHomeDir
-operator|=
-name|System
+name|LOG
 operator|.
-name|setProperty
+name|debug
 argument_list|(
-name|SOLR_HOME_PROPERTY_NAME
+literal|"SolrLocator loading IndexSchema from dir {}"
 argument_list|,
 name|mySolrHomeDir
 argument_list|)
 expr_stmt|;
 try|try
 block|{
+name|SolrResourceLoader
+name|loader
+init|=
+operator|new
+name|SolrResourceLoader
+argument_list|(
+name|mySolrHomeDir
+argument_list|)
+decl_stmt|;
 name|SolrConfig
 name|solrConfig
 init|=
 operator|new
 name|SolrConfig
-argument_list|()
-decl_stmt|;
-comment|// TODO use SolrResourceLoader ala TikaMapper?
-comment|// SolrConfig solrConfig = new SolrConfig("solrconfig.xml");
-comment|// SolrConfig solrConfig = new
-comment|// SolrConfig("/cloud/apache-solr-4.0.0-BETA/example/solr/collection1",
-comment|// "solrconfig.xml", null);
-comment|// SolrConfig solrConfig = new
-comment|// SolrConfig("/cloud/apache-solr-4.0.0-BETA/example/solr/collection1/conf/solrconfig.xml");
-name|SolrResourceLoader
+argument_list|(
 name|loader
-init|=
-name|solrConfig
-operator|.
-name|getResourceLoader
-argument_list|()
+argument_list|,
+literal|"solrconfig.xml"
+argument_list|,
+literal|null
+argument_list|)
 decl_stmt|;
 name|InputSource
 name|is
@@ -1061,45 +1055,6 @@ argument_list|(
 name|e
 argument_list|)
 throw|;
-block|}
-finally|finally
-block|{
-comment|// restore old global state
-if|if
-condition|(
-name|solrHomeDir
-operator|!=
-literal|null
-condition|)
-block|{
-if|if
-condition|(
-name|oldSolrHomeDir
-operator|==
-literal|null
-condition|)
-block|{
-name|System
-operator|.
-name|clearProperty
-argument_list|(
-name|SOLR_HOME_PROPERTY_NAME
-argument_list|)
-expr_stmt|;
-block|}
-else|else
-block|{
-name|System
-operator|.
-name|setProperty
-argument_list|(
-name|SOLR_HOME_PROPERTY_NAME
-argument_list|,
-name|oldSolrHomeDir
-argument_list|)
-expr_stmt|;
-block|}
-block|}
 block|}
 block|}
 DECL|method|validateSchema

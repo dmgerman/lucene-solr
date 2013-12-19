@@ -1834,18 +1834,6 @@ operator|new
 name|ParseContext
 argument_list|()
 decl_stmt|;
-comment|// necessary for gzipped files or tar files, etc! copied from TikaCLI
-name|parseContext
-operator|.
-name|set
-argument_list|(
-name|Parser
-operator|.
-name|class
-argument_list|,
-name|parser
-argument_list|)
-expr_stmt|;
 name|Metadata
 name|metadata
 init|=
