@@ -332,11 +332,9 @@ end_import
 
 begin_import
 import|import
-name|com
+name|org
 operator|.
-name|cloudera
-operator|.
-name|cdk
+name|kitesdk
 operator|.
 name|morphline
 operator|.
@@ -348,11 +346,9 @@ end_import
 
 begin_import
 import|import
-name|com
+name|org
 operator|.
-name|cloudera
-operator|.
-name|cdk
+name|kitesdk
 operator|.
 name|morphline
 operator|.
@@ -364,11 +360,9 @@ end_import
 
 begin_import
 import|import
-name|com
+name|org
 operator|.
-name|cloudera
-operator|.
-name|cdk
+name|kitesdk
 operator|.
 name|morphline
 operator|.
