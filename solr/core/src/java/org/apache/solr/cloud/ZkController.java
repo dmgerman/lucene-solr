@@ -1430,29 +1430,6 @@ comment|// ExecutorUtil.shutdownAndAwaitTermination(cc.getCmdDistribExecutor());
 comment|// we need to create all of our lost watches
 comment|// seems we dont need to do this again...
 comment|// Overseer.createClientNodes(zkClient, getNodeName());
-name|ShardHandler
-name|shardHandler
-decl_stmt|;
-name|String
-name|adminPath
-decl_stmt|;
-name|shardHandler
-operator|=
-name|cc
-operator|.
-name|getShardHandlerFactory
-argument_list|()
-operator|.
-name|getShardHandler
-argument_list|()
-expr_stmt|;
-name|adminPath
-operator|=
-name|cc
-operator|.
-name|getAdminPath
-argument_list|()
-expr_stmt|;
 name|cc
 operator|.
 name|cancelCoreRecoveries
@@ -3794,6 +3771,7 @@ parameter_list|)
 throws|throws
 name|Exception
 block|{
+comment|// pre register has published our down state
 specifier|final
 name|String
 name|baseUrl
@@ -4099,9 +4077,6 @@ comment|// going active
 comment|// TODO: should this be moved to another thread? To recoveryStrat?
 comment|// TODO: should this actually be done earlier, before (or as part of)
 comment|// leader election perhaps?
-comment|// TODO: if I'm the leader, ensure that a replica that is trying to recover waits until I'm
-comment|// active (or don't make me the
-comment|// leader until my local replay is done.
 name|UpdateLog
 name|ulog
 init|=

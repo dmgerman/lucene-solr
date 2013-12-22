@@ -1281,42 +1281,6 @@ literal|true
 expr_stmt|;
 block|}
 block|}
-comment|// if !success but no one else is in active mode,
-comment|// we are the leader anyway
-comment|// TODO: should we also be leader if there is only one other active?
-comment|// if we couldn't sync with it, it shouldn't be able to sync with us
-comment|// TODO: this needs to be moved to the election context - the logic does
-comment|// not belong here.
-if|if
-condition|(
-operator|!
-name|success
-operator|&&
-operator|!
-name|areAnyOtherReplicasActive
-argument_list|(
-name|zkController
-argument_list|,
-name|leaderProps
-argument_list|,
-name|collection
-argument_list|,
-name|shardId
-argument_list|)
-condition|)
-block|{
-name|log
-operator|.
-name|info
-argument_list|(
-literal|"Sync was not a success but no one else is active! I am the leader"
-argument_list|)
-expr_stmt|;
-name|success
-operator|=
-literal|true
-expr_stmt|;
-block|}
 comment|// solrcloud_debug
 if|if
 condition|(
