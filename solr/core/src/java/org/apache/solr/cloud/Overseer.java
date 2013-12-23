@@ -1680,10 +1680,7 @@ if|if
 condition|(
 name|clusterState
 operator|.
-name|getCollections
-argument_list|()
-operator|.
-name|contains
+name|hasCollection
 argument_list|(
 name|collection
 argument_list|)
