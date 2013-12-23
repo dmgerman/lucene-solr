@@ -289,6 +289,15 @@ parameter_list|()
 block|{
 name|assumeFalse
 argument_list|(
+literal|"FIXME: Morphlines currently has issues with Windows paths"
+argument_list|,
+name|Constants
+operator|.
+name|WINDOWS
+argument_list|)
+expr_stmt|;
+name|assumeFalse
+argument_list|(
 literal|"FIXME: This test fails under Java 8 due to the Saxon dependency - see SOLR-1301"
 argument_list|,
 name|Constants
