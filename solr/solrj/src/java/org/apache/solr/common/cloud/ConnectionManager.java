@@ -797,6 +797,12 @@ name|isClosed
 operator|=
 literal|true
 expr_stmt|;
+name|this
+operator|.
+name|likelyExpired
+operator|=
+literal|true
+expr_stmt|;
 if|if
 condition|(
 name|this
