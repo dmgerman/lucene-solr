@@ -831,13 +831,6 @@ argument_list|)
 expr_stmt|;
 name|c
 operator|.
-name|setSoTimeout
-argument_list|(
-literal|60000
-argument_list|)
-expr_stmt|;
-name|c
-operator|.
 name|setConnectionTimeout
 argument_list|(
 literal|30000
