@@ -2040,6 +2040,11 @@ condition|(
 name|runner
 operator|==
 literal|null
+operator|||
+name|scheduler
+operator|.
+name|isTerminated
+argument_list|()
 condition|)
 break|break;
 name|runner
