@@ -310,7 +310,10 @@ init|=
 operator|new
 name|ZkCmdExecutor
 argument_list|(
-literal|30
+name|zookeeper
+operator|.
+name|getZkClientTimeout
+argument_list|()
 argument_list|)
 decl_stmt|;
 try|try
