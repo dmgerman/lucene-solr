@@ -377,6 +377,12 @@ operator|=
 literal|null
 expr_stmt|;
 block|}
+if|if
+condition|(
+operator|!
+name|isClosed
+condition|)
+block|{
 name|disconnectedTimer
 operator|=
 operator|new
@@ -426,6 +432,7 @@ literal|0.90
 argument_list|)
 argument_list|)
 expr_stmt|;
+block|}
 name|connected
 operator|=
 literal|false
