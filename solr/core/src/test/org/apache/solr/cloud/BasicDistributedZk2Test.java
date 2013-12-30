@@ -1582,41 +1582,6 @@ argument_list|,
 literal|0
 argument_list|)
 decl_stmt|;
-comment|// we are careful to make sure the downed node is no longer in the state,
-comment|// because on some systems (especially freebsd w/ blackhole enabled), trying
-comment|// to talk to a downed node causes grief
-name|Set
-argument_list|<
-name|CloudJettyRunner
-argument_list|>
-name|jetties
-init|=
-operator|new
-name|HashSet
-argument_list|<
-name|CloudJettyRunner
-argument_list|>
-argument_list|()
-decl_stmt|;
-name|jetties
-operator|.
-name|addAll
-argument_list|(
-name|shardToJetty
-operator|.
-name|get
-argument_list|(
-name|SHARD1
-argument_list|)
-argument_list|)
-expr_stmt|;
-name|jetties
-operator|.
-name|remove
-argument_list|(
-name|deadShard
-argument_list|)
-expr_stmt|;
 comment|// ensure shard is dead
 try|try
 block|{
