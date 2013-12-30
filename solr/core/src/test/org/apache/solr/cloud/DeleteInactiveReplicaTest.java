@@ -242,7 +242,22 @@ name|Before
 import|;
 end_import
 
+begin_import
+import|import
+name|org
+operator|.
+name|junit
+operator|.
+name|Ignore
+import|;
+end_import
+
 begin_class
+annotation|@
+name|Ignore
+argument_list|(
+literal|"Not currently valid see SOLR-5580"
+argument_list|)
 DECL|class|DeleteInactiveReplicaTest
 specifier|public
 class|class
