@@ -4536,6 +4536,38 @@ name|e
 argument_list|)
 expr_stmt|;
 block|}
+else|else
+block|{
+if|if
+condition|(
+name|log
+operator|.
+name|isWarnEnabled
+argument_list|()
+condition|)
+block|{
+for|for
+control|(
+name|Error
+name|error
+range|:
+name|errors
+control|)
+block|{
+name|log
+operator|.
+name|warn
+argument_list|(
+literal|"Error sending update"
+argument_list|,
+name|error
+operator|.
+name|e
+argument_list|)
+expr_stmt|;
+block|}
+block|}
+block|}
 comment|// else
 comment|// for now we don't error - we assume if it was added locally, we
 comment|// succeeded
@@ -4543,7 +4575,6 @@ block|}
 comment|// if it is not a forward request, for each fail, try to tell them to
 comment|// recover - the doc was already added locally, so it should have been
 comment|// legit
-comment|// TODO: we should do this in the background it would seem
 for|for
 control|(
 specifier|final
