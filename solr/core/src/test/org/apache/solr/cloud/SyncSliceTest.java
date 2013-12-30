@@ -814,7 +814,7 @@ name|baseServer
 operator|.
 name|setConnectionTimeout
 argument_list|(
-literal|15000
+literal|30000
 argument_list|)
 expr_stmt|;
 name|baseServer
@@ -967,7 +967,7 @@ argument_list|)
 expr_stmt|;
 name|waitForThingsToLevelOut
 argument_list|(
-literal|90
+literal|120
 argument_list|)
 expr_stmt|;
 name|Thread
@@ -1232,7 +1232,7 @@ argument_list|)
 expr_stmt|;
 name|waitForThingsToLevelOut
 argument_list|(
-literal|90
+literal|120
 argument_list|)
 expr_stmt|;
 name|Thread
