@@ -98,11 +98,33 @@ end_import
 
 begin_import
 import|import
-name|java
+name|org
 operator|.
-name|util
+name|apache
 operator|.
-name|Random
+name|lucene
+operator|.
+name|facet
+operator|.
+name|taxonomy
+operator|.
+name|FastTaxonomyFacetCounts
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|facet
+operator|.
+name|taxonomy
+operator|.
+name|TaxonomyFacetCounts
 import|;
 end_import
 

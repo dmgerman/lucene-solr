@@ -190,6 +190,8 @@ name|lucene
 operator|.
 name|facet
 operator|.
+name|range
+operator|.
 name|LongRange
 import|;
 end_import
@@ -203,6 +205,8 @@ operator|.
 name|lucene
 operator|.
 name|facet
+operator|.
+name|range
 operator|.
 name|LongRangeFacetCounts
 import|;
