@@ -1369,6 +1369,22 @@ literal|"rord(foo_s    )"
 argument_list|)
 expr_stmt|;
 block|}
+DECL|method|testFuncCscore
+specifier|public
+name|void
+name|testFuncCscore
+parameter_list|()
+throws|throws
+name|Exception
+block|{
+name|assertFuncEquals
+argument_list|(
+literal|"cscore()"
+argument_list|,
+literal|"cscore(  )"
+argument_list|)
+expr_stmt|;
+block|}
 DECL|method|testFuncTop
 specifier|public
 name|void
