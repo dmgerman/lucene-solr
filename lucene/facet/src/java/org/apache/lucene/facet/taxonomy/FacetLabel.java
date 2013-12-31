@@ -19,16 +19,6 @@ comment|/*  * Licensed to the Apache Software Foundation (ASF) under one or more
 end_comment
 
 begin_import
-import|import
-name|java
-operator|.
-name|util
-operator|.
-name|Arrays
-import|;
-end_import
-
-begin_import
 import|import static
 name|org
 operator|.
@@ -41,6 +31,52 @@ operator|.
 name|ByteBlockPool
 operator|.
 name|BYTE_BLOCK_SIZE
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
+name|util
+operator|.
+name|Arrays
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|facet
+operator|.
+name|taxonomy
+operator|.
+name|writercache
+operator|.
+name|LruTaxonomyWriterCache
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|facet
+operator|.
+name|taxonomy
+operator|.
+name|writercache
+operator|.
+name|NameHashIntCacheLRU
 import|;
 end_import
 
@@ -59,7 +95,7 @@ argument_list|<
 name|FacetLabel
 argument_list|>
 block|{
-comment|/*    * copied from DocumentWriterPerThread -- if a CategoryPath is resolved to a    * drill-down term which is encoded to a larger term than that length, it is    * silently dropped! Therefore we limit the number of characters to MAX/4 to    * be on the safe side.    */
+comment|/*    * copied from DocumentWriterPerThread -- if a FacetLabel is resolved to a    * drill-down term which is encoded to a larger term than that length, it is    * silently dropped! Therefore we limit the number of characters to MAX/4 to    * be on the safe side.    */
 comment|/**    * The maximum number of characters a {@link FacetLabel} can have.    */
 DECL|field|MAX_CATEGORY_PATH_LENGTH
 specifier|public
@@ -91,21 +127,6 @@ specifier|final
 name|int
 name|length
 decl_stmt|;
-comment|// Used by singleton EMPTY
-DECL|method|FacetLabel
-specifier|private
-name|FacetLabel
-parameter_list|()
-block|{
-name|components
-operator|=
-literal|null
-expr_stmt|;
-name|length
-operator|=
-literal|0
-expr_stmt|;
-block|}
 comment|// Used by subpath
 DECL|method|FacetLabel
 specifier|private

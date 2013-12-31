@@ -60,10 +60,6 @@ name|DocValuesFormat
 import|;
 end_import
 
-begin_comment
-comment|// javadocs
-end_comment
-
 begin_import
 import|import
 name|org
@@ -92,10 +88,6 @@ name|BinaryDocValues
 import|;
 end_import
 
-begin_comment
-comment|// javadocs
-end_comment
-
 begin_import
 import|import
 name|org
@@ -107,20 +99,6 @@ operator|.
 name|util
 operator|.
 name|ArrayUtil
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|util
-operator|.
-name|BytesRef
 import|;
 end_import
 
@@ -411,14 +389,6 @@ parameter_list|)
 throws|throws
 name|IOException
 block|{
-specifier|final
-name|BytesRef
-name|buf
-init|=
-operator|new
-name|BytesRef
-argument_list|()
-decl_stmt|;
 name|offsets
 operator|=
 operator|new

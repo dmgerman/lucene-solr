@@ -46,6 +46,24 @@ name|List
 import|;
 end_import
 
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|queries
+operator|.
+name|function
+operator|.
+name|valuesource
+operator|.
+name|LongFieldSource
+import|;
+end_import
+
 begin_comment
 comment|/** Base class for range faceting.  *  *  @lucene.experimental */
 end_comment

@@ -2988,7 +2988,7 @@ name|length
 argument_list|)
 return|;
 block|}
-comment|/** Turns the first {@code} length elements of {@code    * path} into an encoded string. */
+comment|/** Turns the first {@code length} elements of {@code    * path} into an encoded string. */
 DECL|method|pathToString
 specifier|public
 specifier|static

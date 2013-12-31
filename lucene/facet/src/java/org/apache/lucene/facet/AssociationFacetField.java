@@ -201,87 +201,15 @@ operator|=
 name|path
 expr_stmt|;
 block|}
-DECL|method|intToBytesRef
-specifier|private
-specifier|static
-name|BytesRef
-name|intToBytesRef
-parameter_list|(
-name|int
-name|v
-parameter_list|)
-block|{
-name|byte
-index|[]
-name|bytes
-init|=
-operator|new
-name|byte
-index|[
-literal|4
-index|]
-decl_stmt|;
-comment|// big-endian:
-name|bytes
-index|[
-literal|0
-index|]
-operator|=
-call|(
-name|byte
-call|)
-argument_list|(
-name|v
-operator|>>
-literal|24
-argument_list|)
-expr_stmt|;
-name|bytes
-index|[
-literal|1
-index|]
-operator|=
-call|(
-name|byte
-call|)
-argument_list|(
-name|v
-operator|>>
-literal|16
-argument_list|)
-expr_stmt|;
-name|bytes
-index|[
-literal|2
-index|]
-operator|=
-call|(
-name|byte
-call|)
-argument_list|(
-name|v
-operator|>>
-literal|8
-argument_list|)
-expr_stmt|;
-name|bytes
-index|[
-literal|3
-index|]
-operator|=
-operator|(
-name|byte
-operator|)
-name|v
-expr_stmt|;
-return|return
-operator|new
-name|BytesRef
-argument_list|(
-name|bytes
-argument_list|)
-return|;
-block|}
+comment|//  private static BytesRef intToBytesRef(int v) {
+comment|//    byte[] bytes = new byte[4];
+comment|//    // big-endian:
+comment|//    bytes[0] = (byte) (v>> 24);
+comment|//    bytes[1] = (byte) (v>> 16);
+comment|//    bytes[2] = (byte) (v>> 8);
+comment|//    bytes[3] = (byte) v;
+comment|//    return new BytesRef(bytes);
+comment|//  }
 annotation|@
 name|Override
 DECL|method|toString

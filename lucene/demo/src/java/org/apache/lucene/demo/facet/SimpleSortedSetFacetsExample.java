@@ -88,34 +88,6 @@ name|lucene
 operator|.
 name|facet
 operator|.
-name|Facets
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|facet
-operator|.
-name|FacetsConfig
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|facet
-operator|.
 name|DrillDownQuery
 import|;
 end_import
@@ -144,7 +116,35 @@ name|lucene
 operator|.
 name|facet
 operator|.
+name|Facets
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|facet
+operator|.
 name|FacetsCollector
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|facet
+operator|.
+name|FacetsConfig
 import|;
 end_import
 
@@ -187,22 +187,6 @@ operator|.
 name|facet
 operator|.
 name|SortedSetDocValuesReaderState
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|facet
-operator|.
-name|taxonomy
-operator|.
-name|FacetLabel
 import|;
 end_import
 
@@ -305,7 +289,7 @@ import|;
 end_import
 
 begin_comment
-comment|/** Shows simple usage of faceted indexing and search,  *  using {@link SortedSetDocValuesFacetFields} and {@link  *  SortedSetDocValuesAccumulator}.  */
+comment|/** Shows simple usage of faceted indexing and search,  *  using {@link SortedSetDocValuesFacetField} and {@link  *  SortedSetDocValuesFacetCounts}.  */
 end_comment
 
 begin_class
