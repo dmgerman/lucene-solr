@@ -47,11 +47,13 @@ specifier|abstract
 class|class
 name|LabelToOrdinal
 block|{
+comment|/** How many ordinals we've seen. */
 DECL|field|counter
 specifier|protected
 name|int
 name|counter
 decl_stmt|;
+comment|/** Returned by {@link #getOrdinal} when the label isn't    *  recognized. */
 DECL|field|INVALID_ORDINAL
 specifier|public
 specifier|static
@@ -62,6 +64,12 @@ init|=
 operator|-
 literal|2
 decl_stmt|;
+comment|/** Default constructor. */
+DECL|method|LabelToOrdinal
+specifier|public
+name|LabelToOrdinal
+parameter_list|()
+block|{   }
 comment|/**    * return the maximal Ordinal assigned so far    */
 DECL|method|getMaxOrdinal
 specifier|public
@@ -103,7 +111,7 @@ name|int
 name|ordinal
 parameter_list|)
 function_decl|;
-comment|/**    * @return the ordinal assigned to the given label,     * or {@link #INVALID_ORDINAL} if the label cannot be found in this table.    */
+comment|/**    * Returns the ordinal assigned to the given label,     * or {@link #INVALID_ORDINAL} if the label cannot be found in this table.    */
 DECL|method|getOrdinal
 specifier|public
 specifier|abstract

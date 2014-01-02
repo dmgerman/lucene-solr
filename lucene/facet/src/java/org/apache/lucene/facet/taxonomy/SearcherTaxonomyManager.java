@@ -200,12 +200,14 @@ specifier|static
 class|class
 name|SearcherAndTaxonomy
 block|{
+comment|/** Point-in-time {@link IndexSearcher}. */
 DECL|field|searcher
 specifier|public
 specifier|final
 name|IndexSearcher
 name|searcher
 decl_stmt|;
+comment|/** Matching point-in-time {@link DirectoryTaxonomyReader}. */
 DECL|field|taxonomyReader
 specifier|public
 specifier|final

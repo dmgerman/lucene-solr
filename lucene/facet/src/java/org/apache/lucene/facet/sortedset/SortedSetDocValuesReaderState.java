@@ -171,6 +171,7 @@ specifier|final
 name|int
 name|valueCount
 decl_stmt|;
+comment|/** {@link IndexReader} passed to the constructor. */
 DECL|field|origReader
 specifier|public
 specifier|final
@@ -539,6 +540,7 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
+comment|/** Return top-level doc values. */
 DECL|method|getDocValues
 specifier|public
 name|SortedSetDocValues
@@ -556,6 +558,7 @@ name|field
 argument_list|)
 return|;
 block|}
+comment|/** Returns mapping from prefix to {@link OrdRange}. */
 DECL|method|getPrefixToOrdRange
 specifier|public
 name|Map
@@ -571,6 +574,7 @@ return|return
 name|prefixToOrdRange
 return|;
 block|}
+comment|/** Returns the {@link OrdRange} for this dimension. */
 DECL|method|getOrdRange
 specifier|public
 name|OrdRange
@@ -589,6 +593,7 @@ name|dim
 argument_list|)
 return|;
 block|}
+comment|/** Indexed field we are reading. */
 DECL|method|getField
 specifier|public
 name|String
@@ -599,6 +604,7 @@ return|return
 name|field
 return|;
 block|}
+comment|/** Number of unique labels. */
 DECL|method|getSize
 specifier|public
 name|int

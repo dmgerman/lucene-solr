@@ -114,6 +114,7 @@ specifier|final
 name|String
 name|field
 decl_stmt|;
+comment|/** Default constructor. */
 DECL|method|DocValuesOrdinalsReader
 specifier|public
 name|DocValuesOrdinalsReader
@@ -127,6 +128,7 @@ name|DEFAULT_INDEX_FIELD_NAME
 argument_list|)
 expr_stmt|;
 block|}
+comment|/** Create this, with the specified indexed field name. */
 DECL|method|DocValuesOrdinalsReader
 specifier|public
 name|DocValuesOrdinalsReader

@@ -26,6 +26,10 @@ name|Arrays
 import|;
 end_import
 
+begin_comment
+comment|/** Counts or aggregates for a single dimension. */
+end_comment
+
 begin_class
 DECL|class|FacetResult
 specifier|public
@@ -70,6 +74,7 @@ name|LabelAndValue
 index|[]
 name|labelValues
 decl_stmt|;
+comment|/** Sole constructor. */
 DECL|method|FacetResult
 specifier|public
 name|FacetResult

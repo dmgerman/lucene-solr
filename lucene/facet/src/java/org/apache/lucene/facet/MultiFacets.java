@@ -75,6 +75,7 @@ specifier|final
 name|Facets
 name|defaultFacets
 decl_stmt|;
+comment|/** Create this, with no default {@link Facets}. */
 DECL|method|MultiFacets
 specifier|public
 name|MultiFacets
@@ -96,6 +97,7 @@ literal|null
 argument_list|)
 expr_stmt|;
 block|}
+comment|/** Create this, with the specified default {@link Facets}    *  for fields not included in {@code dimToFacets}. */
 DECL|method|MultiFacets
 specifier|public
 name|MultiFacets

@@ -138,6 +138,7 @@ name|CompactLabelToOrdinal
 extends|extends
 name|LabelToOrdinal
 block|{
+comment|/** Default maximum load factor. */
 DECL|field|DefaultLoadFactor
 specifier|public
 specifier|static
@@ -196,6 +197,7 @@ specifier|private
 name|float
 name|loadFactor
 decl_stmt|;
+comment|/** How many labels. */
 DECL|method|sizeOfMap
 specifier|public
 name|int
@@ -216,6 +218,7 @@ specifier|private
 name|CompactLabelToOrdinal
 parameter_list|()
 block|{   }
+comment|/** Sole constructor. */
 DECL|method|CompactLabelToOrdinal
 specifier|public
 name|CompactLabelToOrdinal

@@ -65,6 +65,7 @@ specifier|abstract
 class|class
 name|OrdinalsReader
 block|{
+comment|/** Returns ordinals for documents in one segment. */
 DECL|class|OrdinalsSegmentReader
 specifier|public
 specifier|static
@@ -88,7 +89,19 @@ parameter_list|)
 throws|throws
 name|IOException
 function_decl|;
+comment|/** Default constructor. */
+DECL|method|OrdinalsSegmentReader
+specifier|public
+name|OrdinalsSegmentReader
+parameter_list|()
+block|{     }
 block|}
+comment|/** Default constructor. */
+DECL|method|OrdinalsReader
+specifier|public
+name|OrdinalsReader
+parameter_list|()
+block|{   }
 comment|/** Set current atomic reader. */
 DECL|method|getReader
 specifier|public
@@ -102,6 +115,7 @@ parameter_list|)
 throws|throws
 name|IOException
 function_decl|;
+comment|/** Returns the indexed field name this {@code    *  OrdinalsReader} is reading from. */
 DECL|method|getIndexFieldName
 specifier|public
 specifier|abstract

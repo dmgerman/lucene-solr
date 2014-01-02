@@ -903,6 +903,7 @@ expr_stmt|;
 block|}
 block|}
 block|}
+comment|/** Open the {@link DirectoryReader} from this {@link    *  Directory}. */
 DECL|method|openIndexReader
 specifier|protected
 name|DirectoryReader
@@ -923,6 +924,7 @@ name|directory
 argument_list|)
 return|;
 block|}
+comment|/** Open the {@link DirectoryReader} from this {@link    *  IndexWriter}. */
 DECL|method|openIndexReader
 specifier|protected
 name|DirectoryReader
@@ -1385,6 +1387,7 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
+comment|/** Returns ordinal -> label mapping, up to the provided    *  max ordinal or number of ordinals, whichever is    *  smaller. */
 DECL|method|toString
 specifier|public
 name|String

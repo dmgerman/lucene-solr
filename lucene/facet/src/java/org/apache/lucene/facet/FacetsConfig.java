@@ -368,6 +368,7 @@ specifier|public
 class|class
 name|FacetsConfig
 block|{
+comment|/** Which Lucene field holds the drill-downs and ords (as    *  doc values). */
 DECL|field|DEFAULT_INDEX_FIELD_NAME
 specifier|public
 specifier|static
@@ -453,6 +454,12 @@ name|indexFieldName
 init|=
 name|DEFAULT_INDEX_FIELD_NAME
 decl_stmt|;
+comment|/** Default constructor. */
+DECL|method|DimConfig
+specifier|public
+name|DimConfig
+parameter_list|()
+block|{     }
 block|}
 comment|/** Default per-dimension configuration. */
 DECL|field|DEFAULT_DIM_CONFIG
@@ -725,6 +732,7 @@ operator|=
 name|indexFieldName
 expr_stmt|;
 block|}
+comment|/** Returns map of field name to {@link DimConfig}. */
 DECL|method|getDimConfigs
 specifier|public
 name|Map

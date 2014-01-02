@@ -126,6 +126,13 @@ specifier|public
 class|class
 name|PrintTaxonomyStats
 block|{
+comment|/** Sole constructor. */
+DECL|method|PrintTaxonomyStats
+specifier|public
+name|PrintTaxonomyStats
+parameter_list|()
+block|{   }
+comment|/** Command-line tool. */
 DECL|method|main
 specifier|public
 specifier|static
@@ -272,6 +279,7 @@ name|close
 argument_list|()
 expr_stmt|;
 block|}
+comment|/** Recursively prints stats for all ordinals. */
 DECL|method|printStats
 specifier|public
 specifier|static

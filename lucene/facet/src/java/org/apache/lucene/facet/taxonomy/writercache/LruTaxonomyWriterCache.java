@@ -68,14 +68,16 @@ name|TaxonomyWriterCache
 block|{
 comment|/**    * Determines cache type.    * For guaranteed correctness - not relying on no-collisions in the hash    * function, LRU_STRING should be used.    */
 DECL|enum|LRUType
-DECL|enum constant|LRU_HASHED
-DECL|enum constant|LRU_STRING
 specifier|public
 enum|enum
 name|LRUType
 block|{
+comment|/** Use the label's hash as the key; this can lead to      *  silent conflicts! */
+DECL|enum constant|LRU_HASHED
 name|LRU_HASHED
 block|,
+comment|/** Use the label as the hash key; this is always      *  correct but will usually use more RAM. */
+DECL|enum constant|LRU_STRING
 name|LRU_STRING
 block|}
 DECL|field|cache
@@ -83,6 +85,7 @@ specifier|private
 name|NameIntCacheLRU
 name|cache
 decl_stmt|;
+comment|/** Creates this with {@link LRUType#LRU_HASHED} method. */
 DECL|method|LruTaxonomyWriterCache
 specifier|public
 name|LruTaxonomyWriterCache
@@ -107,6 +110,7 @@ name|LRU_HASHED
 argument_list|)
 expr_stmt|;
 block|}
+comment|/** Creates this with the specified method. */
 DECL|method|LruTaxonomyWriterCache
 specifier|public
 name|LruTaxonomyWriterCache

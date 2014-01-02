@@ -1319,6 +1319,7 @@ literal|3
 argument_list|)
 return|;
 block|}
+comment|/** Create this with {@code OpenMode.CREATE_OR_APPEND}. */
 DECL|method|DirectoryTaxonomyWriter
 specifier|public
 name|DirectoryTaxonomyWriter
@@ -3134,6 +3135,7 @@ parameter_list|)
 throws|throws
 name|IOException
 function_decl|;
+comment|/** Record a mapping. */
 DECL|method|addMapping
 specifier|public
 name|void
@@ -3183,6 +3185,12 @@ name|int
 index|[]
 name|map
 decl_stmt|;
+comment|/** Sole constructor. */
+DECL|method|MemoryOrdinalMap
+specifier|public
+name|MemoryOrdinalMap
+parameter_list|()
+block|{     }
 annotation|@
 name|Override
 DECL|method|setSize
@@ -3267,6 +3275,7 @@ DECL|field|out
 name|DataOutputStream
 name|out
 decl_stmt|;
+comment|/** Sole constructor. */
 DECL|method|DiskOrdinalMap
 specifier|public
 name|DiskOrdinalMap

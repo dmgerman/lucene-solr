@@ -29,12 +29,14 @@ specifier|abstract
 class|class
 name|Range
 block|{
+comment|/** Label that identifies this range. */
 DECL|field|label
 specifier|public
 specifier|final
 name|String
 name|label
 decl_stmt|;
+comment|/** Sole constructor. */
 DECL|method|Range
 specifier|protected
 name|Range
@@ -65,6 +67,7 @@ operator|=
 name|label
 expr_stmt|;
 block|}
+comment|/** Invoke this for a useless range. */
 DECL|method|failNoMatch
 specifier|protected
 name|void

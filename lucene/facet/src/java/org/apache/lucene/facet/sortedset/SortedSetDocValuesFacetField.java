@@ -85,18 +85,21 @@ name|freeze
 argument_list|()
 expr_stmt|;
 block|}
+comment|/** Dimension. */
 DECL|field|dim
 specifier|public
 specifier|final
 name|String
 name|dim
 decl_stmt|;
+comment|/** Label. */
 DECL|field|label
 specifier|public
 specifier|final
 name|String
 name|label
 decl_stmt|;
+comment|/** Sole constructor. */
 DECL|method|SortedSetDocValuesFacetField
 specifier|public
 name|SortedSetDocValuesFacetField

@@ -47,6 +47,12 @@ specifier|abstract
 class|class
 name|Facets
 block|{
+comment|/** Default constructor. */
+DECL|method|Facets
+specifier|public
+name|Facets
+parameter_list|()
+block|{   }
 comment|/** Returns the topN child labels under the specified    *  path.  Returns null if the specified path doesn't    *  exist or if this dimension was never seen. */
 DECL|method|getTopChildren
 specifier|public

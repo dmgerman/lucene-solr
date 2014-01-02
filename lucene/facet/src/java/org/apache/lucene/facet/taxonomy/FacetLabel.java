@@ -62,6 +62,10 @@ name|LruTaxonomyWriterCache
 import|;
 end_import
 
+begin_comment
+comment|// javadocs
+end_comment
+
 begin_import
 import|import
 name|org
@@ -79,6 +83,10 @@ operator|.
 name|NameHashIntCacheLRU
 import|;
 end_import
+
+begin_comment
+comment|// javadocs
+end_comment
 
 begin_comment
 comment|/**  * Holds a sequence of string components, specifying the hierarchical name of a  * category.  *   * @lucene.internal  */

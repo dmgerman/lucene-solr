@@ -47,6 +47,7 @@ operator|.
 name|OrdAndValue
 argument_list|>
 block|{
+comment|/** Holds a single entry. */
 DECL|class|OrdAndValue
 specifier|public
 specifier|static
@@ -54,17 +55,26 @@ specifier|final
 class|class
 name|OrdAndValue
 block|{
+comment|/** Ordinal of the entry. */
 DECL|field|ord
 specifier|public
 name|int
 name|ord
 decl_stmt|;
+comment|/** Value associated with the ordinal. */
 DECL|field|value
 specifier|public
 name|int
 name|value
 decl_stmt|;
+comment|/** Default constructor. */
+DECL|method|OrdAndValue
+specifier|public
+name|OrdAndValue
+parameter_list|()
+block|{     }
 block|}
+comment|/** Sole constructor. */
 DECL|method|TopOrdAndIntQueue
 specifier|public
 name|TopOrdAndIntQueue
