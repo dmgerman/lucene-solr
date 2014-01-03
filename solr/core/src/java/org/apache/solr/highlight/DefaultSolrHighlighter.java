@@ -3569,6 +3569,26 @@ argument_list|(
 name|alternateField
 argument_list|)
 decl_stmt|;
+if|if
+condition|(
+name|docFields
+operator|.
+name|length
+operator|==
+literal|0
+condition|)
+block|{
+comment|// The alternate field did not exist, treat the original field as fallback instead
+name|docFields
+operator|=
+name|doc
+operator|.
+name|getFields
+argument_list|(
+name|fieldName
+argument_list|)
+expr_stmt|;
+block|}
 name|List
 argument_list|<
 name|String
