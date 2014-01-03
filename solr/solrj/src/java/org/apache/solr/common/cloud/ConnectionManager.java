@@ -810,14 +810,7 @@ name|likelyExpired
 operator|=
 literal|true
 expr_stmt|;
-if|if
-condition|(
-name|this
-operator|.
-name|disconnectedTimer
-operator|!=
-literal|null
-condition|)
+try|try
 block|{
 name|this
 operator|.
@@ -826,6 +819,17 @@ operator|.
 name|cancel
 argument_list|()
 expr_stmt|;
+block|}
+catch|catch
+parameter_list|(
+name|NullPointerException
+name|e
+parameter_list|)
+block|{
+comment|// fine
+block|}
+finally|finally
+block|{
 name|this
 operator|.
 name|disconnectedTimer
