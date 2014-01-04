@@ -266,9 +266,23 @@ name|lucene
 operator|.
 name|facet
 operator|.
+name|FacetsConfig
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|facet
+operator|.
 name|taxonomy
 operator|.
-name|CategoryPath
+name|FacetLabel
 import|;
 end_import
 
@@ -336,8 +350,6 @@ name|taxonomy
 operator|.
 name|writercache
 operator|.
-name|cl2o
-operator|.
 name|Cl2oTaxonomyWriterCache
 import|;
 end_import
@@ -355,8 +367,6 @@ operator|.
 name|taxonomy
 operator|.
 name|writercache
-operator|.
-name|lru
 operator|.
 name|LruTaxonomyWriterCache
 import|;
@@ -475,6 +485,8 @@ operator|.
 name|index
 operator|.
 name|IndexWriterConfig
+operator|.
+name|OpenMode
 import|;
 end_import
 
@@ -489,8 +501,6 @@ operator|.
 name|index
 operator|.
 name|IndexWriterConfig
-operator|.
-name|OpenMode
 import|;
 end_import
 
@@ -742,15 +752,6 @@ specifier|private
 name|long
 name|indexEpoch
 decl_stmt|;
-DECL|field|delimiter
-specifier|private
-name|char
-name|delimiter
-init|=
-name|Consts
-operator|.
-name|DEFAULT_DELIMITER
-decl_stmt|;
 DECL|field|parentStream
 specifier|private
 name|SinglePositionTokenStream
@@ -874,26 +875,6 @@ operator|.
 name|getUserData
 argument_list|()
 return|;
-block|}
-comment|/**    * Changes the character that the taxonomy uses in its internal storage as a    * delimiter between category components. Do not use this method unless you    * really know what you are doing. It has nothing to do with whatever    * character the application may be using to represent categories for its own    * use.    *<p>    * If you do use this method, make sure you call it before any other methods    * that actually queries the taxonomy. Moreover, make sure you always pass the    * same delimiter for all taxonomy writer and reader instances you create for    * the same directory.    */
-DECL|method|setDelimiter
-specifier|public
-name|void
-name|setDelimiter
-parameter_list|(
-name|char
-name|delimiter
-parameter_list|)
-block|{
-name|ensureOpen
-argument_list|()
-expr_stmt|;
-name|this
-operator|.
-name|delimiter
-operator|=
-name|delimiter
-expr_stmt|;
 block|}
 comment|/**    * Forcibly unlocks the taxonomy in the named directory.    *<P>    * Caution: this should only be used by failure recovery code, when it is    * known that no other process nor thread is in fact currently accessing    * this taxonomy.    *<P>    * This method is unnecessary if your {@link Directory} uses a    * {@link NativeFSLockFactory} instead of the default    * {@link SimpleFSLockFactory}. When the "native" lock is used, a lock    * does not stay behind forever when the process using it dies.     */
 DECL|method|unlock
@@ -1157,9 +1138,9 @@ comment|// Make sure that the taxonomy always contain the root category
 comment|// with category id 0.
 name|addCategory
 argument_list|(
-name|CategoryPath
-operator|.
-name|EMPTY
+operator|new
+name|FacetLabel
+argument_list|()
 argument_list|)
 expr_stmt|;
 block|}
@@ -1338,6 +1319,7 @@ literal|3
 argument_list|)
 return|;
 block|}
+comment|/** Create this with {@code OpenMode.CREATE_OR_APPEND}. */
 DECL|method|DirectoryTaxonomyWriter
 specifier|public
 name|DirectoryTaxonomyWriter
@@ -1455,7 +1437,7 @@ specifier|synchronized
 name|int
 name|findCategory
 parameter_list|(
-name|CategoryPath
+name|FacetLabel
 name|categoryPath
 parameter_list|)
 throws|throws
@@ -1554,11 +1536,17 @@ init|=
 operator|new
 name|BytesRef
 argument_list|(
+name|FacetsConfig
+operator|.
+name|pathToString
+argument_list|(
 name|categoryPath
 operator|.
-name|toString
-argument_list|(
-name|delimiter
+name|components
+argument_list|,
+name|categoryPath
+operator|.
+name|length
 argument_list|)
 argument_list|)
 decl_stmt|;
@@ -1694,7 +1682,7 @@ specifier|public
 name|int
 name|addCategory
 parameter_list|(
-name|CategoryPath
+name|FacetLabel
 name|categoryPath
 parameter_list|)
 throws|throws
@@ -1768,7 +1756,7 @@ specifier|private
 name|int
 name|internalAddCategory
 parameter_list|(
-name|CategoryPath
+name|FacetLabel
 name|cp
 parameter_list|)
 throws|throws
@@ -1790,7 +1778,7 @@ operator|>
 literal|1
 condition|)
 block|{
-name|CategoryPath
+name|FacetLabel
 name|parentPath
 init|=
 name|cp
@@ -1895,7 +1883,7 @@ specifier|private
 name|int
 name|addCategoryDocument
 parameter_list|(
-name|CategoryPath
+name|FacetLabel
 name|categoryPath
 parameter_list|,
 name|int
@@ -1947,11 +1935,17 @@ name|fullPathField
 operator|.
 name|setStringValue
 argument_list|(
+name|FacetsConfig
+operator|.
+name|pathToString
+argument_list|(
 name|categoryPath
 operator|.
-name|toString
-argument_list|(
-name|delimiter
+name|components
+argument_list|,
+name|categoryPath
+operator|.
+name|length
 argument_list|)
 argument_list|)
 expr_stmt|;
@@ -2156,7 +2150,7 @@ specifier|private
 name|void
 name|addToCache
 parameter_list|(
-name|CategoryPath
+name|FacetLabel
 name|categoryPath
 parameter_list|,
 name|int
@@ -2653,18 +2647,21 @@ comment|// one document. Also, since we do not allow removing categories (and
 comment|// hence documents), there are no deletions in the index. Therefore, it
 comment|// is sufficient to call next(), and then doc(), exactly once with no
 comment|// 'validation' checks.
-name|CategoryPath
+name|FacetLabel
 name|cp
 init|=
 operator|new
-name|CategoryPath
+name|FacetLabel
+argument_list|(
+name|FacetsConfig
+operator|.
+name|stringToPath
 argument_list|(
 name|t
 operator|.
 name|utf8ToString
 argument_list|()
-argument_list|,
-name|delimiter
+argument_list|)
 argument_list|)
 decl_stmt|;
 name|docsEnum
@@ -3036,9 +3033,16 @@ operator|!=
 literal|null
 condition|)
 block|{
-name|String
-name|value
+name|FacetLabel
+name|cp
 init|=
+operator|new
+name|FacetLabel
+argument_list|(
+name|FacetsConfig
+operator|.
+name|stringToPath
+argument_list|(
 name|te
 operator|.
 name|term
@@ -3046,16 +3050,7 @@ argument_list|()
 operator|.
 name|utf8ToString
 argument_list|()
-decl_stmt|;
-name|CategoryPath
-name|cp
-init|=
-operator|new
-name|CategoryPath
-argument_list|(
-name|value
-argument_list|,
-name|delimiter
+argument_list|)
 argument_list|)
 decl_stmt|;
 specifier|final
@@ -3140,6 +3135,7 @@ parameter_list|)
 throws|throws
 name|IOException
 function_decl|;
+comment|/** Record a mapping. */
 DECL|method|addMapping
 specifier|public
 name|void
@@ -3189,6 +3185,12 @@ name|int
 index|[]
 name|map
 decl_stmt|;
+comment|/** Sole constructor. */
+DECL|method|MemoryOrdinalMap
+specifier|public
+name|MemoryOrdinalMap
+parameter_list|()
+block|{     }
 annotation|@
 name|Override
 DECL|method|setSize
@@ -3273,6 +3275,7 @@ DECL|field|out
 name|DataOutputStream
 name|out
 decl_stmt|;
+comment|/** Sole constructor. */
 DECL|method|DiskOrdinalMap
 specifier|public
 name|DiskOrdinalMap

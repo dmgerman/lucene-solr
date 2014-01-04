@@ -1887,7 +1887,9 @@ throw|throw
 operator|new
 name|IllegalArgumentException
 argument_list|(
-literal|"Field must have either TokenStream, String, Reader or Number value"
+literal|"Field must have either TokenStream, String, Reader or Number value; got "
+operator|+
+name|this
 argument_list|)
 throw|;
 block|}

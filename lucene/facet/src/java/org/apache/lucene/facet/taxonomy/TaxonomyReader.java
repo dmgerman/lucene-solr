@@ -166,7 +166,13 @@ name|res
 return|;
 block|}
 block|}
-comment|/**    * The root category (the category with the empty path) always has the ordinal    * 0, to which we give a name ROOT_ORDINAL. {@link #getOrdinal(CategoryPath)}    * of an empty path will always return {@code ROOT_ORDINAL}, and    * {@link #getPath(int)} with {@code ROOT_ORDINAL} will return the empty path.    */
+comment|/** Sole constructor. */
+DECL|method|TaxonomyReader
+specifier|public
+name|TaxonomyReader
+parameter_list|()
+block|{   }
+comment|/**    * The root category (the category with the empty path) always has the ordinal    * 0, to which we give a name ROOT_ORDINAL. {@link #getOrdinal(FacetLabel)}    * of an empty path will always return {@code ROOT_ORDINAL}, and    * {@link #getPath(int)} with {@code ROOT_ORDINAL} will return the empty path.    */
 DECL|field|ROOT_ORDINAL
 specifier|public
 specifier|final
@@ -272,7 +278,7 @@ parameter_list|()
 throws|throws
 name|IOException
 function_decl|;
-comment|/**    * @throws AlreadyClosedException if this IndexReader is closed    */
+comment|/**    * Throws {@link AlreadyClosedException} if this IndexReader is closed    */
 DECL|method|ensureOpen
 specifier|protected
 specifier|final
@@ -505,17 +511,82 @@ specifier|abstract
 name|int
 name|getOrdinal
 parameter_list|(
-name|CategoryPath
+name|FacetLabel
 name|categoryPath
 parameter_list|)
 throws|throws
 name|IOException
 function_decl|;
+comment|/** Returns ordinal for the dim + path. */
+DECL|method|getOrdinal
+specifier|public
+name|int
+name|getOrdinal
+parameter_list|(
+name|String
+name|dim
+parameter_list|,
+name|String
+index|[]
+name|path
+parameter_list|)
+throws|throws
+name|IOException
+block|{
+name|String
+index|[]
+name|fullPath
+init|=
+operator|new
+name|String
+index|[
+name|path
+operator|.
+name|length
+operator|+
+literal|1
+index|]
+decl_stmt|;
+name|fullPath
+index|[
+literal|0
+index|]
+operator|=
+name|dim
+expr_stmt|;
+name|System
+operator|.
+name|arraycopy
+argument_list|(
+name|path
+argument_list|,
+literal|0
+argument_list|,
+name|fullPath
+argument_list|,
+literal|1
+argument_list|,
+name|path
+operator|.
+name|length
+argument_list|)
+expr_stmt|;
+return|return
+name|getOrdinal
+argument_list|(
+operator|new
+name|FacetLabel
+argument_list|(
+name|fullPath
+argument_list|)
+argument_list|)
+return|;
+block|}
 comment|/** Returns the path name of the category with the given ordinal. */
 DECL|method|getPath
 specifier|public
 specifier|abstract
-name|CategoryPath
+name|FacetLabel
 name|getPath
 parameter_list|(
 name|int

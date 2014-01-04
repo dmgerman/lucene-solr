@@ -34,6 +34,16 @@ name|java
 operator|.
 name|util
 operator|.
+name|Arrays
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
+name|util
+operator|.
 name|HashMap
 import|;
 end_import
@@ -50,18 +60,6 @@ end_import
 
 begin_import
 import|import
-name|java
-operator|.
-name|util
-operator|.
-name|regex
-operator|.
-name|Pattern
-import|;
-end_import
-
-begin_import
-import|import
 name|org
 operator|.
 name|apache
@@ -70,25 +68,7 @@ name|lucene
 operator|.
 name|facet
 operator|.
-name|params
-operator|.
-name|CategoryListParams
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|facet
-operator|.
-name|params
-operator|.
-name|FacetIndexingParams
+name|FacetsConfig
 import|;
 end_import
 
@@ -103,20 +83,6 @@ operator|.
 name|index
 operator|.
 name|AtomicReader
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|index
-operator|.
-name|CompositeReader
 import|;
 end_import
 
@@ -205,33 +171,16 @@ specifier|final
 name|int
 name|valueCount
 decl_stmt|;
+comment|/** {@link IndexReader} passed to the constructor. */
 DECL|field|origReader
+specifier|public
 specifier|final
 name|IndexReader
 name|origReader
 decl_stmt|;
-DECL|field|separator
-specifier|final
-name|char
-name|separator
-decl_stmt|;
-DECL|field|separatorRegex
-specifier|final
-name|String
-name|separatorRegex
-decl_stmt|;
-comment|/** Extension added to {@link CategoryListParams#field}    *  to determin which field to read/write facet ordinals from/to. */
-DECL|field|FACET_FIELD_EXTENSION
-specifier|public
-specifier|static
-specifier|final
-name|String
-name|FACET_FIELD_EXTENSION
-init|=
-literal|"_sorted_doc_values"
-decl_stmt|;
 comment|/** Holds start/end range of ords, which maps to one    *  dimension (someday we may generalize it to map to    *  hierarchies within one dimension). */
 DECL|class|OrdRange
+specifier|public
 specifier|static
 specifier|final
 class|class
@@ -297,7 +246,7 @@ name|OrdRange
 argument_list|>
 argument_list|()
 decl_stmt|;
-comment|/** Create an instance, scanning the {@link    *  SortedSetDocValues} from the provided reader, with    *  default {@link FacetIndexingParams}. */
+comment|/** Creates this, pulling doc values from the default {@link    *  FacetsConfig#DEFAULT_INDEX_FIELD_NAME}. */
 DECL|method|SortedSetDocValuesReaderState
 specifier|public
 name|SortedSetDocValuesReaderState
@@ -310,24 +259,24 @@ name|IOException
 block|{
 name|this
 argument_list|(
-name|FacetIndexingParams
-operator|.
-name|DEFAULT
-argument_list|,
 name|reader
+argument_list|,
+name|FacetsConfig
+operator|.
+name|DEFAULT_INDEX_FIELD_NAME
 argument_list|)
 expr_stmt|;
 block|}
-comment|/** Create an instance, scanning the {@link    *  SortedSetDocValues} from the provided reader and    *  {@link FacetIndexingParams}. */
+comment|/** Creates this, pulling doc values from the specified    *  field. */
 DECL|method|SortedSetDocValuesReaderState
 specifier|public
 name|SortedSetDocValuesReaderState
 parameter_list|(
-name|FacetIndexingParams
-name|fip
-parameter_list|,
 name|IndexReader
 name|reader
+parameter_list|,
+name|String
+name|field
 parameter_list|)
 throws|throws
 name|IOException
@@ -336,41 +285,7 @@ name|this
 operator|.
 name|field
 operator|=
-name|fip
-operator|.
-name|getCategoryListParams
-argument_list|(
-literal|null
-argument_list|)
-operator|.
 name|field
-operator|+
-name|FACET_FIELD_EXTENSION
-expr_stmt|;
-name|this
-operator|.
-name|separator
-operator|=
-name|fip
-operator|.
-name|getFacetDelimChar
-argument_list|()
-expr_stmt|;
-name|this
-operator|.
-name|separatorRegex
-operator|=
-name|Pattern
-operator|.
-name|quote
-argument_list|(
-name|Character
-operator|.
-name|toString
-argument_list|(
-name|separator
-argument_list|)
-argument_list|)
 expr_stmt|;
 name|this
 operator|.
@@ -506,16 +421,14 @@ name|String
 index|[]
 name|components
 init|=
+name|FacetsConfig
+operator|.
+name|stringToPath
+argument_list|(
 name|spare
 operator|.
 name|utf8ToString
 argument_list|()
-operator|.
-name|split
-argument_list|(
-name|separatorRegex
-argument_list|,
-literal|2
 argument_list|)
 decl_stmt|;
 if|if
@@ -532,6 +445,15 @@ operator|new
 name|IllegalArgumentException
 argument_list|(
 literal|"this class can only handle 2 level hierarchy (dim/value); got: "
+operator|+
+name|Arrays
+operator|.
+name|toString
+argument_list|(
+name|components
+argument_list|)
+operator|+
+literal|" "
 operator|+
 name|spare
 operator|.
@@ -618,7 +540,9 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
+comment|/** Return top-level doc values. */
 DECL|method|getDocValues
+specifier|public
 name|SortedSetDocValues
 name|getDocValues
 parameter_list|()
@@ -634,7 +558,25 @@ name|field
 argument_list|)
 return|;
 block|}
+comment|/** Returns mapping from prefix to {@link OrdRange}. */
+DECL|method|getPrefixToOrdRange
+specifier|public
+name|Map
+argument_list|<
+name|String
+argument_list|,
+name|OrdRange
+argument_list|>
+name|getPrefixToOrdRange
+parameter_list|()
+block|{
+return|return
+name|prefixToOrdRange
+return|;
+block|}
+comment|/** Returns the {@link OrdRange} for this dimension. */
 DECL|method|getOrdRange
+specifier|public
 name|OrdRange
 name|getOrdRange
 parameter_list|(
@@ -651,7 +593,9 @@ name|dim
 argument_list|)
 return|;
 block|}
+comment|/** Indexed field we are reading. */
 DECL|method|getField
+specifier|public
 name|String
 name|getField
 parameter_list|()
@@ -660,7 +604,9 @@ return|return
 name|field
 return|;
 block|}
+comment|/** Number of unique labels. */
 DECL|method|getSize
+specifier|public
 name|int
 name|getSize
 parameter_list|()

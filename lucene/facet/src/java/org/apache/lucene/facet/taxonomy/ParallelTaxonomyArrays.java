@@ -29,6 +29,12 @@ specifier|abstract
 class|class
 name|ParallelTaxonomyArrays
 block|{
+comment|/** Sole constructor. */
+DECL|method|ParallelTaxonomyArrays
+specifier|public
+name|ParallelTaxonomyArrays
+parameter_list|()
+block|{   }
 comment|/**    * Returns the parents array, where {@code parents[i]} denotes the parent of    * category ordinal {@code i}.    */
 DECL|method|parents
 specifier|public

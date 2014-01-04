@@ -1450,7 +1450,7 @@ throw|throw
 operator|new
 name|IllegalArgumentException
 argument_list|(
-literal|"after.doc exceeds the number of documents in that reader: after.doc="
+literal|"after.doc exceeds the number of documents in the reader: after.doc="
 operator|+
 name|after
 operator|.

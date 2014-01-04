@@ -70,9 +70,7 @@ name|lucene
 operator|.
 name|facet
 operator|.
-name|collections
-operator|.
-name|LRUHashMap
+name|FacetsConfig
 import|;
 end_import
 
@@ -88,7 +86,23 @@ name|facet
 operator|.
 name|taxonomy
 operator|.
-name|CategoryPath
+name|FacetLabel
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|facet
+operator|.
+name|taxonomy
+operator|.
+name|LRUHashMap
 import|;
 end_import
 
@@ -336,7 +350,7 @@ DECL|field|ordinalCache
 specifier|private
 name|LRUHashMap
 argument_list|<
-name|CategoryPath
+name|FacetLabel
 argument_list|,
 name|Integer
 argument_list|>
@@ -348,7 +362,7 @@ name|LRUHashMap
 argument_list|<
 name|Integer
 argument_list|,
-name|CategoryPath
+name|FacetLabel
 argument_list|>
 name|categoryCache
 decl_stmt|;
@@ -357,15 +371,6 @@ specifier|private
 specifier|volatile
 name|TaxonomyIndexArrays
 name|taxoArrays
-decl_stmt|;
-DECL|field|delimiter
-specifier|private
-name|char
-name|delimiter
-init|=
-name|Consts
-operator|.
-name|DEFAULT_DELIMITER
 decl_stmt|;
 comment|/**    * Called only from {@link #doOpenIfChanged()}. If the taxonomy has been    * recreated, you should pass {@code null} as the caches and parent/children    * arrays.    */
 DECL|method|DirectoryTaxonomyReader
@@ -379,7 +384,7 @@ name|taxoWriter
 parameter_list|,
 name|LRUHashMap
 argument_list|<
-name|CategoryPath
+name|FacetLabel
 argument_list|,
 name|Integer
 argument_list|>
@@ -389,7 +394,7 @@ name|LRUHashMap
 argument_list|<
 name|Integer
 argument_list|,
-name|CategoryPath
+name|FacetLabel
 argument_list|>
 name|categoryCache
 parameter_list|,
@@ -439,7 +444,7 @@ condition|?
 operator|new
 name|LRUHashMap
 argument_list|<
-name|CategoryPath
+name|FacetLabel
 argument_list|,
 name|Integer
 argument_list|>
@@ -462,7 +467,7 @@ name|LRUHashMap
 argument_list|<
 name|Integer
 argument_list|,
-name|CategoryPath
+name|FacetLabel
 argument_list|>
 argument_list|(
 name|DEFAULT_CACHE_VALUE
@@ -523,7 +528,7 @@ operator|=
 operator|new
 name|LRUHashMap
 argument_list|<
-name|CategoryPath
+name|FacetLabel
 argument_list|,
 name|Integer
 argument_list|>
@@ -538,7 +543,7 @@ name|LRUHashMap
 argument_list|<
 name|Integer
 argument_list|,
-name|CategoryPath
+name|FacetLabel
 argument_list|>
 argument_list|(
 name|DEFAULT_CACHE_VALUE
@@ -586,7 +591,7 @@ operator|=
 operator|new
 name|LRUHashMap
 argument_list|<
-name|CategoryPath
+name|FacetLabel
 argument_list|,
 name|Integer
 argument_list|>
@@ -601,7 +606,7 @@ name|LRUHashMap
 argument_list|<
 name|Integer
 argument_list|,
-name|CategoryPath
+name|FacetLabel
 argument_list|>
 argument_list|(
 name|DEFAULT_CACHE_VALUE
@@ -898,6 +903,7 @@ expr_stmt|;
 block|}
 block|}
 block|}
+comment|/** Open the {@link DirectoryReader} from this {@link    *  Directory}. */
 DECL|method|openIndexReader
 specifier|protected
 name|DirectoryReader
@@ -918,6 +924,7 @@ name|directory
 argument_list|)
 return|;
 block|}
+comment|/** Open the {@link DirectoryReader} from this {@link    *  IndexWriter}. */
 DECL|method|openIndexReader
 specifier|protected
 name|DirectoryReader
@@ -1016,7 +1023,7 @@ specifier|public
 name|int
 name|getOrdinal
 parameter_list|(
-name|CategoryPath
+name|FacetLabel
 name|cp
 parameter_list|)
 throws|throws
@@ -1125,11 +1132,17 @@ argument_list|,
 operator|new
 name|BytesRef
 argument_list|(
+name|FacetsConfig
+operator|.
+name|pathToString
+argument_list|(
 name|cp
 operator|.
-name|toString
-argument_list|(
-name|delimiter
+name|components
+argument_list|,
+name|cp
+operator|.
+name|length
 argument_list|)
 argument_list|)
 argument_list|,
@@ -1193,7 +1206,7 @@ annotation|@
 name|Override
 DECL|method|getPath
 specifier|public
-name|CategoryPath
+name|FacetLabel
 name|getPath
 parameter_list|(
 name|int
@@ -1244,7 +1257,7 @@ init|(
 name|categoryCache
 init|)
 block|{
-name|CategoryPath
+name|FacetLabel
 name|res
 init|=
 name|categoryCache
@@ -1276,11 +1289,15 @@ argument_list|(
 name|ordinal
 argument_list|)
 decl_stmt|;
-name|CategoryPath
+name|FacetLabel
 name|ret
 init|=
 operator|new
-name|CategoryPath
+name|FacetLabel
+argument_list|(
+name|FacetsConfig
+operator|.
+name|stringToPath
 argument_list|(
 name|doc
 operator|.
@@ -1290,8 +1307,7 @@ name|Consts
 operator|.
 name|FULL
 argument_list|)
-argument_list|,
-name|delimiter
+argument_list|)
 argument_list|)
 decl_stmt|;
 synchronized|synchronized
@@ -1331,7 +1347,7 @@ name|numDocs
 argument_list|()
 return|;
 block|}
-comment|/**    * setCacheSize controls the maximum allowed size of each of the caches    * used by {@link #getPath(int)} and {@link #getOrdinal(CategoryPath)}.    *<P>    * Currently, if the given size is smaller than the current size of    * a cache, it will not shrink, and rather we be limited to its current    * size.    * @param size the new maximum cache size, in number of entries.    */
+comment|/**    * setCacheSize controls the maximum allowed size of each of the caches    * used by {@link #getPath(int)} and {@link #getOrdinal(FacetLabel)}.    *<P>    * Currently, if the given size is smaller than the current size of    * a cache, it will not shrink, and rather we be limited to its current    * size.    * @param size the new maximum cache size, in number of entries.    */
 DECL|method|setCacheSize
 specifier|public
 name|void
@@ -1371,26 +1387,7 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
-comment|/**    * setDelimiter changes the character that the taxonomy uses in its    * internal storage as a delimiter between category components. Do not    * use this method unless you really know what you are doing.    *<P>    * If you do use this method, make sure you call it before any other    * methods that actually queries the taxonomy. Moreover, make sure you    * always pass the same delimiter for all LuceneTaxonomyWriter and    * LuceneTaxonomyReader objects you create.    */
-DECL|method|setDelimiter
-specifier|public
-name|void
-name|setDelimiter
-parameter_list|(
-name|char
-name|delimiter
-parameter_list|)
-block|{
-name|ensureOpen
-argument_list|()
-expr_stmt|;
-name|this
-operator|.
-name|delimiter
-operator|=
-name|delimiter
-expr_stmt|;
-block|}
+comment|/** Returns ordinal -> label mapping, up to the provided    *  max ordinal or number of ordinals, whichever is    *  smaller. */
 DECL|method|toString
 specifier|public
 name|String
@@ -1442,7 +1439,7 @@ control|)
 block|{
 try|try
 block|{
-name|CategoryPath
+name|FacetLabel
 name|category
 init|=
 name|this

@@ -19,7 +19,7 @@ comment|/*  * Licensed to the Apache Software Foundation (ASF) under one or more
 end_comment
 
 begin_comment
-comment|/** Represents a single labelled range, one facet label in  *  the facets computed by {@link RangeAccumulator}.  *  *  @lucene.experimental */
+comment|/** Base class for a single labeled range.  *  *  @lucene.experimental */
 end_comment
 
 begin_class
@@ -29,12 +29,14 @@ specifier|abstract
 class|class
 name|Range
 block|{
+comment|/** Label that identifies this range. */
 DECL|field|label
 specifier|public
 specifier|final
 name|String
 name|label
 decl_stmt|;
+comment|/** Sole constructor. */
 DECL|method|Range
 specifier|protected
 name|Range
@@ -43,6 +45,21 @@ name|String
 name|label
 parameter_list|)
 block|{
+if|if
+condition|(
+name|label
+operator|==
+literal|null
+condition|)
+block|{
+throw|throw
+operator|new
+name|NullPointerException
+argument_list|(
+literal|"label cannot be null"
+argument_list|)
+throw|;
+block|}
 name|this
 operator|.
 name|label
@@ -50,16 +67,25 @@ operator|=
 name|label
 expr_stmt|;
 block|}
-DECL|method|accept
-specifier|public
-specifier|abstract
-name|boolean
-name|accept
-parameter_list|(
-name|long
-name|value
-parameter_list|)
-function_decl|;
+comment|/** Invoke this for a useless range. */
+DECL|method|failNoMatch
+specifier|protected
+name|void
+name|failNoMatch
+parameter_list|()
+block|{
+throw|throw
+operator|new
+name|IllegalArgumentException
+argument_list|(
+literal|"range \""
+operator|+
+name|label
+operator|+
+literal|"\" matches nothing"
+argument_list|)
+throw|;
+block|}
 block|}
 end_class
 
