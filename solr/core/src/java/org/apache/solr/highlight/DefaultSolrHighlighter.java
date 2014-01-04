@@ -2221,9 +2221,9 @@ name|HighlightParams
 operator|.
 name|PHRASE_LIMIT
 argument_list|,
-name|Integer
+name|SolrHighlighter
 operator|.
-name|MAX_VALUE
+name|DEFAULT_PHRASE_LIMIT
 argument_list|)
 argument_list|)
 expr_stmt|;

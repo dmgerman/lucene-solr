@@ -201,6 +201,14 @@ specifier|abstract
 class|class
 name|SolrHighlighter
 block|{
+DECL|field|DEFAULT_PHRASE_LIMIT
+specifier|public
+specifier|static
+name|int
+name|DEFAULT_PHRASE_LIMIT
+init|=
+literal|5000
+decl_stmt|;
 DECL|field|log
 specifier|public
 specifier|static
