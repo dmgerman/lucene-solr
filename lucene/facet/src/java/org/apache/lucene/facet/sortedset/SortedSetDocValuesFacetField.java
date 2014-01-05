@@ -46,6 +46,20 @@ name|FieldType
 import|;
 end_import
 
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|facet
+operator|.
+name|FacetField
+import|;
+end_import
+
 begin_comment
 comment|/** Add an instance of this to your Document for every facet  *  label to be indexed via SortedSetDocValues. */
 end_comment
@@ -116,6 +130,20 @@ argument_list|(
 literal|"dummy"
 argument_list|,
 name|TYPE
+argument_list|)
+expr_stmt|;
+name|FacetField
+operator|.
+name|verifyLabel
+argument_list|(
+name|label
+argument_list|)
+expr_stmt|;
+name|FacetField
+operator|.
+name|verifyLabel
+argument_list|(
+name|dim
 argument_list|)
 expr_stmt|;
 name|this
