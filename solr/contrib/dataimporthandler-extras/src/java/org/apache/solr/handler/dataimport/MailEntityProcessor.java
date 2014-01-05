@@ -2030,11 +2030,11 @@ name|isInfoEnabled
 argument_list|()
 condition|)
 return|return;
-name|StringBuffer
+name|StringBuilder
 name|config
 init|=
 operator|new
-name|StringBuffer
+name|StringBuilder
 argument_list|()
 decl_stmt|;
 name|config

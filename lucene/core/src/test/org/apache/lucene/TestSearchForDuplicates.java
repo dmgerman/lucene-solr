@@ -249,9 +249,6 @@ name|multiFileOutput
 init|=
 name|sw
 operator|.
-name|getBuffer
-argument_list|()
-operator|.
 name|toString
 argument_list|()
 decl_stmt|;
@@ -298,9 +295,6 @@ name|String
 name|singleFileOutput
 init|=
 name|sw
-operator|.
-name|getBuffer
-argument_list|()
 operator|.
 name|toString
 argument_list|()

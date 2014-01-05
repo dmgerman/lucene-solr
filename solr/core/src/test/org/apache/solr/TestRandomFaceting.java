@@ -949,11 +949,11 @@ operator|==
 literal|0
 condition|)
 return|return;
-name|StringBuffer
+name|StringBuilder
 name|sb
 init|=
 operator|new
-name|StringBuffer
+name|StringBuilder
 argument_list|(
 literal|"id:("
 argument_list|)

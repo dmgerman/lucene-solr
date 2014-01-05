@@ -492,37 +492,6 @@ index|]
 return|;
 block|}
 comment|/**      * Converts the contents of the buffer into a StringBuffer.      * This method involves copying the new data once!      */
-DECL|method|toStringBuffer
-specifier|public
-name|StringBuffer
-name|toStringBuffer
-parameter_list|()
-block|{
-name|StringBuffer
-name|sb
-init|=
-operator|new
-name|StringBuffer
-argument_list|(
-name|length
-argument_list|)
-decl_stmt|;
-name|sb
-operator|.
-name|append
-argument_list|(
-name|c
-argument_list|,
-literal|0
-argument_list|,
-name|length
-argument_list|)
-expr_stmt|;
-return|return
-name|sb
-return|;
-block|}
-comment|/**      * Converts the contents of the buffer into a StringBuffer.      * This method involves copying the new data once!      */
 annotation|@
 name|Override
 DECL|method|toString

@@ -492,7 +492,7 @@ comment|/**    * A helper that creates an xml&lt;doc&gt; containing all of the  
 DECL|method|makeSimpleDoc
 specifier|public
 specifier|static
-name|StringBuffer
+name|String
 name|makeSimpleDoc
 parameter_list|(
 name|String
@@ -568,7 +568,7 @@ expr_stmt|;
 return|return
 name|w
 operator|.
-name|getBuffer
+name|toString
 argument_list|()
 return|;
 block|}

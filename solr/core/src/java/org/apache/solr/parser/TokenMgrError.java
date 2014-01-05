@@ -96,11 +96,11 @@ name|String
 name|str
 parameter_list|)
 block|{
-name|StringBuffer
+name|StringBuilder
 name|retval
 init|=
 operator|new
-name|StringBuffer
+name|StringBuilder
 argument_list|()
 decl_stmt|;
 name|char
@@ -387,8 +387,6 @@ operator|)
 return|;
 block|}
 comment|/**    * You can also modify the body of this method to customize your error messages.    * For example, cases like LOOP_DETECTED and INVALID_LEXICAL_STATE are not    * of end-users concern, so you can return something like :    *    *     "Internal Error : Please file a bug report .... "    *    * from this method for such cases in the release version of your parser.    */
-annotation|@
-name|Override
 DECL|method|getMessage
 specifier|public
 name|String
@@ -483,7 +481,7 @@ block|}
 end_class
 
 begin_comment
-comment|/* JavaCC - OriginalChecksum=200a46f65c1a0f71a7f037b35f4e934e (do not edit this line) */
+comment|/* JavaCC - OriginalChecksum=59744072870f5c27fc8796947fc3b06f (do not edit this line) */
 end_comment
 
 end_unit

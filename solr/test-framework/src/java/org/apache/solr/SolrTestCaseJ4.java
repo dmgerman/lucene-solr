@@ -4542,9 +4542,6 @@ name|makeSimpleDoc
 argument_list|(
 name|fieldsAndValues
 argument_list|)
-operator|.
-name|toString
-argument_list|()
 expr_stmt|;
 return|return
 name|d

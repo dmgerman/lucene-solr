@@ -509,8 +509,6 @@ argument_list|)
 throw|;
 block|}
 comment|// This makes sure that there is no garbage after the query string
-annotation|@
-name|Override
 DECL|method|TopLevelQuery
 specifier|final
 specifier|public
@@ -2564,8 +2562,6 @@ argument_list|()
 expr_stmt|;
 block|}
 comment|/** Reinitialise. */
-annotation|@
-name|Override
 DECL|method|ReInit
 specifier|public
 name|void
