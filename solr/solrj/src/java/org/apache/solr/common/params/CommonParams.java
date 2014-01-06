@@ -180,28 +180,6 @@ init|=
 literal|"ping"
 decl_stmt|;
 comment|// SOLR-4228 end
-comment|//Issue 1726 start
-comment|/** score of the last document of the previous page */
-DECL|field|PAGESCORE
-specifier|public
-specifier|static
-specifier|final
-name|String
-name|PAGESCORE
-init|=
-literal|"pageScore"
-decl_stmt|;
-comment|/** docid of the last document of the previous page */
-DECL|field|PAGEDOC
-specifier|public
-specifier|static
-specifier|final
-name|String
-name|PAGEDOC
-init|=
-literal|"pageDoc"
-decl_stmt|;
-comment|//Issue 1726 end
 comment|/** stylesheet to apply to XML results */
 DECL|field|XSL
 specifier|public
