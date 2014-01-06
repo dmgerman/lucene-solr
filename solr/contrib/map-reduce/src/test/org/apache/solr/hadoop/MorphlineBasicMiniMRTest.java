@@ -2378,6 +2378,15 @@ init|=
 name|getJobConf
 argument_list|()
 decl_stmt|;
+name|jobConf
+operator|.
+name|set
+argument_list|(
+literal|"jobclient.output.filter"
+argument_list|,
+literal|"ALL"
+argument_list|)
+expr_stmt|;
 if|if
 condition|(
 name|ENABLE_LOCAL_JOB_RUNNER

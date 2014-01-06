@@ -2583,6 +2583,15 @@ init|=
 name|getJobConf
 argument_list|()
 decl_stmt|;
+name|jobConf
+operator|.
+name|set
+argument_list|(
+literal|"jobclient.output.filter"
+argument_list|,
+literal|"ALL"
+argument_list|)
+expr_stmt|;
 comment|// enable mapred.job.tracker = local to run in debugger and set breakpoints
 comment|// jobConf.set("mapred.job.tracker", "local");
 name|jobConf
