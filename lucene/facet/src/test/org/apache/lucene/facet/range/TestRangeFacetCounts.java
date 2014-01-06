@@ -3904,22 +3904,16 @@ comment|// drill-down counts (which use NRQ.newFloatRange)
 comment|// are correct:
 name|min
 operator|=
-call|(
-name|double
-call|)
-argument_list|(
+operator|(
 name|float
-argument_list|)
+operator|)
 name|min
 expr_stmt|;
 name|max
 operator|=
-call|(
-name|double
-call|)
-argument_list|(
+operator|(
 name|float
-argument_list|)
+operator|)
 name|max
 expr_stmt|;
 name|boolean
