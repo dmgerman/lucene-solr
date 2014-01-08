@@ -321,7 +321,6 @@ specifier|private
 name|ZkCmdExecutor
 name|zkCmdExecutor
 decl_stmt|;
-comment|// for tests
 DECL|field|context
 specifier|private
 specifier|volatile
@@ -354,7 +353,6 @@ argument_list|()
 argument_list|)
 expr_stmt|;
 block|}
-comment|// for tests
 DECL|method|getContext
 specifier|public
 name|ElectionContext
