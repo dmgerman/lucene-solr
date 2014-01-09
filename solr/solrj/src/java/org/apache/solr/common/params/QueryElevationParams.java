@@ -46,6 +46,18 @@ name|FORCE_ELEVATION
 init|=
 literal|"forceElevation"
 decl_stmt|;
+DECL|field|IDS
+name|String
+name|IDS
+init|=
+literal|"elevateIds"
+decl_stmt|;
+DECL|field|EXCLUDE
+name|String
+name|EXCLUDE
+init|=
+literal|"excludeIds"
+decl_stmt|;
 comment|/**    * The name of the field that editorial results will be written out as when using the QueryElevationComponent, which    * automatically configures the EditorialMarkerFactory.  The default name is "elevated"    *<br/>    * See http://wiki.apache.org/solr/DocTransformers    */
 DECL|field|EDITORIAL_MARKER_FIELD_NAME
 name|String
