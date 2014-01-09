@@ -844,6 +844,11 @@ comment|// protected QueryParser(QueryParserTokenManager tm)
 comment|//
 comment|// This test is here as a safety, in case that ant step
 comment|// doesn't work for some reason.
+annotation|@
+name|SuppressWarnings
+argument_list|(
+literal|"rawtype"
+argument_list|)
 DECL|method|testProtectedCtors
 specifier|public
 name|void
@@ -1917,9 +1922,6 @@ name|createComponents
 parameter_list|(
 name|String
 name|fieldName
-parameter_list|,
-name|Reader
-name|reader
 parameter_list|)
 block|{
 name|MockTokenizer
@@ -1927,9 +1929,7 @@ name|tokenizer
 init|=
 operator|new
 name|MockTokenizer
-argument_list|(
-name|reader
-argument_list|)
+argument_list|()
 decl_stmt|;
 return|return
 operator|new
@@ -2400,9 +2400,6 @@ name|createComponents
 parameter_list|(
 name|String
 name|fieldName
-parameter_list|,
-name|Reader
-name|reader
 parameter_list|)
 block|{
 name|Tokenizer
@@ -2410,9 +2407,7 @@ name|tokenizer
 init|=
 operator|new
 name|SimpleCJKTokenizer
-argument_list|(
-name|reader
-argument_list|)
+argument_list|()
 decl_stmt|;
 return|return
 operator|new

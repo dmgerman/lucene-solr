@@ -371,7 +371,7 @@ return|return
 name|originalArgs
 return|;
 block|}
-comment|/** this method can be called in the {@link org.apache.lucene.analysis.util.TokenizerFactory#create(java.io.Reader)}    * or {@link org.apache.lucene.analysis.util.TokenFilterFactory#create(org.apache.lucene.analysis.TokenStream)} methods,    * to inform user, that for this factory a {@link #luceneMatchVersion} is required */
+comment|/** this method can be called in the {@link org.apache.lucene.analysis.util.TokenizerFactory#create()}    * or {@link org.apache.lucene.analysis.util.TokenFilterFactory#create(org.apache.lucene.analysis.TokenStream)} methods,    * to inform user, that for this factory a {@link #luceneMatchVersion} is required */
 DECL|method|assureMatchVersion
 specifier|protected
 specifier|final

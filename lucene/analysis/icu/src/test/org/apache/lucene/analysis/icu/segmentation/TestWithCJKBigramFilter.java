@@ -190,9 +190,6 @@ name|createComponents
 parameter_list|(
 name|String
 name|fieldName
-parameter_list|,
-name|Reader
-name|reader
 parameter_list|)
 block|{
 name|Tokenizer
@@ -201,8 +198,6 @@ init|=
 operator|new
 name|ICUTokenizer
 argument_list|(
-name|reader
-argument_list|,
 operator|new
 name|DefaultICUTokenizerConfig
 argument_list|(
@@ -259,9 +254,6 @@ name|createComponents
 parameter_list|(
 name|String
 name|fieldName
-parameter_list|,
-name|Reader
-name|reader
 parameter_list|)
 block|{
 name|Tokenizer
@@ -270,8 +262,6 @@ init|=
 operator|new
 name|ICUTokenizer
 argument_list|(
-name|reader
-argument_list|,
 operator|new
 name|DefaultICUTokenizerConfig
 argument_list|(

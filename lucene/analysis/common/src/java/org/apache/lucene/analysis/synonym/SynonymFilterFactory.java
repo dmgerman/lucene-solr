@@ -673,9 +673,6 @@ name|createComponents
 parameter_list|(
 name|String
 name|fieldName
-parameter_list|,
-name|Reader
-name|reader
 parameter_list|)
 block|{
 name|Tokenizer
@@ -691,16 +688,12 @@ argument_list|(
 name|Version
 operator|.
 name|LUCENE_CURRENT
-argument_list|,
-name|reader
 argument_list|)
 else|:
 name|factory
 operator|.
 name|create
-argument_list|(
-name|reader
-argument_list|)
+argument_list|()
 decl_stmt|;
 name|TokenStream
 name|stream

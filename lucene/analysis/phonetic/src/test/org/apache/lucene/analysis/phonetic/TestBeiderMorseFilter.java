@@ -301,9 +301,6 @@ name|createComponents
 parameter_list|(
 name|String
 name|fieldName
-parameter_list|,
-name|Reader
-name|reader
 parameter_list|)
 block|{
 name|Tokenizer
@@ -312,8 +309,6 @@ init|=
 operator|new
 name|MockTokenizer
 argument_list|(
-name|reader
-argument_list|,
 name|MockTokenizer
 operator|.
 name|WHITESPACE
@@ -618,9 +613,6 @@ name|createComponents
 parameter_list|(
 name|String
 name|fieldName
-parameter_list|,
-name|Reader
-name|reader
 parameter_list|)
 block|{
 name|Tokenizer
@@ -629,8 +621,6 @@ init|=
 operator|new
 name|MockTokenizer
 argument_list|(
-name|reader
-argument_list|,
 name|MockTokenizer
 operator|.
 name|WHITESPACE
@@ -811,9 +801,6 @@ name|createComponents
 parameter_list|(
 name|String
 name|fieldName
-parameter_list|,
-name|Reader
-name|reader
 parameter_list|)
 block|{
 name|Tokenizer
@@ -821,9 +808,7 @@ name|tokenizer
 init|=
 operator|new
 name|KeywordTokenizer
-argument_list|(
-name|reader
-argument_list|)
+argument_list|()
 decl_stmt|;
 return|return
 operator|new
@@ -878,6 +863,16 @@ name|stream
 init|=
 operator|new
 name|KeywordTokenizer
+argument_list|()
+decl_stmt|;
+operator|(
+operator|(
+name|Tokenizer
+operator|)
+name|stream
+operator|)
+operator|.
+name|setReader
 argument_list|(
 operator|new
 name|StringReader
@@ -885,7 +880,7 @@ argument_list|(
 literal|"D'Angelo"
 argument_list|)
 argument_list|)
-decl_stmt|;
+expr_stmt|;
 name|stream
 operator|=
 operator|new

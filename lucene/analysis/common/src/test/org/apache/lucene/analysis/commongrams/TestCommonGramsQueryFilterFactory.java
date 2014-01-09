@@ -522,20 +522,9 @@ expr_stmt|;
 name|Tokenizer
 name|tokenizer
 init|=
-operator|new
-name|MockTokenizer
-argument_list|(
-operator|new
-name|StringReader
+name|whitespaceMockTokenizer
 argument_list|(
 literal|"testing the factory"
-argument_list|)
-argument_list|,
-name|MockTokenizer
-operator|.
-name|WHITESPACE
-argument_list|,
-literal|false
 argument_list|)
 decl_stmt|;
 name|TokenStream

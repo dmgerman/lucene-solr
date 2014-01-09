@@ -130,9 +130,6 @@ name|create
 parameter_list|(
 name|AttributeFactory
 name|factory
-parameter_list|,
-name|Reader
-name|input
 parameter_list|)
 block|{
 return|return
@@ -140,8 +137,6 @@ operator|new
 name|KeywordTokenizer
 argument_list|(
 name|factory
-argument_list|,
-name|input
 argument_list|,
 name|KeywordTokenizer
 operator|.

@@ -450,9 +450,6 @@ name|createComponents
 parameter_list|(
 name|String
 name|fieldName
-parameter_list|,
-name|Reader
-name|reader
 parameter_list|)
 block|{
 name|Tokenizer
@@ -460,9 +457,7 @@ name|tokenizer
 init|=
 operator|new
 name|SentenceTokenizer
-argument_list|(
-name|reader
-argument_list|)
+argument_list|()
 decl_stmt|;
 name|TokenStream
 name|result

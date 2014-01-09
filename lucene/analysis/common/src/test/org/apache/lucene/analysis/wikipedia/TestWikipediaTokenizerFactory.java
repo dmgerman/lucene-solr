@@ -122,10 +122,15 @@ literal|"Wikipedia"
 argument_list|)
 operator|.
 name|create
+argument_list|()
+decl_stmt|;
+name|tokenizer
+operator|.
+name|setReader
 argument_list|(
 name|reader
 argument_list|)
-decl_stmt|;
+expr_stmt|;
 name|assertTokenStreamContents
 argument_list|(
 name|tokenizer

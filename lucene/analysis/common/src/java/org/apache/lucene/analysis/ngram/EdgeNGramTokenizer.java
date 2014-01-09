@@ -86,16 +86,13 @@ name|DEFAULT_MIN_GRAM_SIZE
 init|=
 literal|1
 decl_stmt|;
-comment|/**    * Creates EdgeNGramTokenizer that can generate n-grams in the sizes of the given range    *    * @param version the Lucene match version    * @param input {@link Reader} holding the input to be tokenized    * @param minGram the smallest n-gram to generate    * @param maxGram the largest n-gram to generate    */
+comment|/**    * Creates EdgeNGramTokenizer that can generate n-grams in the sizes of the given range    *    * @param version the Lucene match version    * @param minGram the smallest n-gram to generate    * @param maxGram the largest n-gram to generate    */
 DECL|method|EdgeNGramTokenizer
 specifier|public
 name|EdgeNGramTokenizer
 parameter_list|(
 name|Version
 name|version
-parameter_list|,
-name|Reader
-name|input
 parameter_list|,
 name|int
 name|minGram
@@ -108,8 +105,6 @@ name|super
 argument_list|(
 name|version
 argument_list|,
-name|input
-argument_list|,
 name|minGram
 argument_list|,
 name|maxGram
@@ -118,7 +113,7 @@ literal|true
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**    * Creates EdgeNGramTokenizer that can generate n-grams in the sizes of the given range    *    * @param version the Lucene match version    * @param factory {@link org.apache.lucene.util.AttributeSource.AttributeFactory} to use    * @param input {@link Reader} holding the input to be tokenized    * @param minGram the smallest n-gram to generate    * @param maxGram the largest n-gram to generate    */
+comment|/**    * Creates EdgeNGramTokenizer that can generate n-grams in the sizes of the given range    *    * @param version the Lucene match version    * @param factory {@link org.apache.lucene.util.AttributeSource.AttributeFactory} to use    * @param minGram the smallest n-gram to generate    * @param maxGram the largest n-gram to generate    */
 DECL|method|EdgeNGramTokenizer
 specifier|public
 name|EdgeNGramTokenizer
@@ -129,9 +124,6 @@ parameter_list|,
 name|AttributeFactory
 name|factory
 parameter_list|,
-name|Reader
-name|input
-parameter_list|,
 name|int
 name|minGram
 parameter_list|,
@@ -144,8 +136,6 @@ argument_list|(
 name|version
 argument_list|,
 name|factory
-argument_list|,
-name|input
 argument_list|,
 name|minGram
 argument_list|,

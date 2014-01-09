@@ -48,7 +48,7 @@ name|lucene
 operator|.
 name|analysis
 operator|.
-name|TokenStream
+name|Tokenizer
 import|;
 end_import
 
@@ -99,7 +99,7 @@ literal|"GÃ¼nther GÃ¼nther is here"
 argument_list|)
 decl_stmt|;
 comment|// create PatternTokenizer
-name|TokenStream
+name|Tokenizer
 name|stream
 init|=
 name|tokenizerFactory
@@ -112,10 +112,15 @@ literal|"[,;/\\s]+"
 argument_list|)
 operator|.
 name|create
+argument_list|()
+decl_stmt|;
+name|stream
+operator|.
+name|setReader
 argument_list|(
 name|reader
 argument_list|)
-decl_stmt|;
+expr_stmt|;
 name|assertTokenStreamContents
 argument_list|(
 name|stream

@@ -159,23 +159,15 @@ name|CharTokenizer
 extends|extends
 name|Tokenizer
 block|{
-comment|/**    * Creates a new {@link CharTokenizer} instance    *     * @param matchVersion    *          Lucene version to match    * @param input    *          the input to split up into tokens    */
+comment|/**    * Creates a new {@link CharTokenizer} instance    *     * @param matchVersion    *          Lucene version to match    */
 DECL|method|CharTokenizer
 specifier|public
 name|CharTokenizer
 parameter_list|(
 name|Version
 name|matchVersion
-parameter_list|,
-name|Reader
-name|input
 parameter_list|)
 block|{
-name|super
-argument_list|(
-name|input
-argument_list|)
-expr_stmt|;
 name|charUtils
 operator|=
 name|CharacterUtils
@@ -186,7 +178,7 @@ name|matchVersion
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**    * Creates a new {@link CharTokenizer} instance    *     * @param matchVersion    *          Lucene version to match    * @param factory    *          the attribute factory to use for this {@link Tokenizer}    * @param input    *          the input to split up into tokens    */
+comment|/**    * Creates a new {@link CharTokenizer} instance    *     * @param matchVersion    *          Lucene version to match    * @param factory    *          the attribute factory to use for this {@link Tokenizer}    */
 DECL|method|CharTokenizer
 specifier|public
 name|CharTokenizer
@@ -196,16 +188,11 @@ name|matchVersion
 parameter_list|,
 name|AttributeFactory
 name|factory
-parameter_list|,
-name|Reader
-name|input
 parameter_list|)
 block|{
 name|super
 argument_list|(
 name|factory
-argument_list|,
-name|input
 argument_list|)
 expr_stmt|;
 name|charUtils

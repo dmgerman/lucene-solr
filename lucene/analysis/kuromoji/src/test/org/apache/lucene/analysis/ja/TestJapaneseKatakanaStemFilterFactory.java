@@ -48,6 +48,20 @@ end_import
 
 begin_import
 import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|analysis
+operator|.
+name|Tokenizer
+import|;
+end_import
+
+begin_import
+import|import
 name|java
 operator|.
 name|io
@@ -129,6 +143,16 @@ init|=
 name|tokenizerFactory
 operator|.
 name|create
+argument_list|()
+decl_stmt|;
+operator|(
+operator|(
+name|Tokenizer
+operator|)
+name|tokenStream
+operator|)
+operator|.
+name|setReader
 argument_list|(
 operator|new
 name|StringReader
@@ -136,7 +160,7 @@ argument_list|(
 literal|"æå¾æ¥ãã¼ãã£ã¼ã«è¡ãäºå®ããããå³æ¸é¤¨ã§è³æãã³ãã¼ãã¾ããã"
 argument_list|)
 argument_list|)
-decl_stmt|;
+expr_stmt|;
 name|JapaneseKatakanaStemFilterFactory
 name|filterFactory
 init|=

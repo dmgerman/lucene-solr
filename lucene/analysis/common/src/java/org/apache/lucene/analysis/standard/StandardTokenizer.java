@@ -392,23 +392,15 @@ return|return
 name|maxTokenLength
 return|;
 block|}
-comment|/**    * Creates a new instance of the {@link org.apache.lucene.analysis.standard.StandardTokenizer}.  Attaches    * the<code>input</code> to the newly created JFlex scanner.    *    * @param input The input reader    *    * See http://issues.apache.org/jira/browse/LUCENE-1068    */
+comment|/**    * Creates a new instance of the {@link org.apache.lucene.analysis.standard.StandardTokenizer}.  Attaches    * the<code>input</code> to the newly created JFlex scanner.     * See http://issues.apache.org/jira/browse/LUCENE-1068    */
 DECL|method|StandardTokenizer
 specifier|public
 name|StandardTokenizer
 parameter_list|(
 name|Version
 name|matchVersion
-parameter_list|,
-name|Reader
-name|input
 parameter_list|)
 block|{
-name|super
-argument_list|(
-name|input
-argument_list|)
-expr_stmt|;
 name|init
 argument_list|(
 name|matchVersion
@@ -425,16 +417,11 @@ name|matchVersion
 parameter_list|,
 name|AttributeFactory
 name|factory
-parameter_list|,
-name|Reader
-name|input
 parameter_list|)
 block|{
 name|super
 argument_list|(
 name|factory
-argument_list|,
-name|input
 argument_list|)
 expr_stmt|;
 name|init
@@ -445,7 +432,6 @@ expr_stmt|;
 block|}
 DECL|method|init
 specifier|private
-specifier|final
 name|void
 name|init
 parameter_list|(

@@ -1088,9 +1088,6 @@ name|createComponents
 parameter_list|(
 name|String
 name|field
-parameter_list|,
-name|Reader
-name|reader
 parameter_list|)
 block|{
 specifier|final
@@ -1122,8 +1119,6 @@ operator|new
 name|StandardTokenizer
 argument_list|(
 name|TEST_VERSION_CURRENT
-argument_list|,
-name|reader
 argument_list|)
 decl_stmt|;
 name|TokenStream

@@ -404,23 +404,15 @@ return|return
 name|maxTokenLength
 return|;
 block|}
-comment|/**    * Creates a new instance of the UAX29URLEmailTokenizer.  Attaches    * the<code>input</code> to the newly created JFlex scanner.    *    * @param input The input reader    */
+comment|/**    * Creates a new instance of the UAX29URLEmailTokenizer.  Attaches    * the<code>input</code> to the newly created JFlex scanner.     */
 DECL|method|UAX29URLEmailTokenizer
 specifier|public
 name|UAX29URLEmailTokenizer
 parameter_list|(
 name|Version
 name|matchVersion
-parameter_list|,
-name|Reader
-name|input
 parameter_list|)
 block|{
-name|super
-argument_list|(
-name|input
-argument_list|)
-expr_stmt|;
 name|this
 operator|.
 name|scanner
@@ -441,16 +433,11 @@ name|matchVersion
 parameter_list|,
 name|AttributeFactory
 name|factory
-parameter_list|,
-name|Reader
-name|input
 parameter_list|)
 block|{
 name|super
 argument_list|(
 name|factory
-argument_list|,
-name|input
 argument_list|)
 expr_stmt|;
 name|this

@@ -290,10 +290,6 @@ parameter_list|(
 specifier|final
 name|String
 name|fieldName
-parameter_list|,
-specifier|final
-name|Reader
-name|reader
 parameter_list|)
 block|{
 specifier|final
@@ -304,8 +300,6 @@ operator|new
 name|UAX29URLEmailTokenizer
 argument_list|(
 name|matchVersion
-argument_list|,
-name|reader
 argument_list|)
 decl_stmt|;
 name|src

@@ -2601,9 +2601,6 @@ name|createComponents
 parameter_list|(
 name|String
 name|fieldName
-parameter_list|,
-name|Reader
-name|reader
 parameter_list|)
 block|{
 name|MockTokenizer
@@ -2612,8 +2609,6 @@ init|=
 operator|new
 name|MockTokenizer
 argument_list|(
-name|reader
-argument_list|,
 name|MockTokenizer
 operator|.
 name|WHITESPACE
@@ -2998,9 +2993,6 @@ name|createComponents
 parameter_list|(
 name|String
 name|fieldName
-parameter_list|,
-name|Reader
-name|reader
 parameter_list|)
 block|{
 name|MockTokenizer
@@ -3009,8 +3001,6 @@ init|=
 operator|new
 name|MockTokenizer
 argument_list|(
-name|reader
-argument_list|,
 name|MockTokenizer
 operator|.
 name|SIMPLE
@@ -3745,9 +3735,6 @@ name|createComponents
 parameter_list|(
 name|String
 name|fieldName
-parameter_list|,
-name|Reader
-name|reader
 parameter_list|)
 block|{
 name|MockTokenizer
@@ -3756,8 +3743,6 @@ init|=
 operator|new
 name|MockTokenizer
 argument_list|(
-name|reader
-argument_list|,
 name|MockTokenizer
 operator|.
 name|WHITESPACE
@@ -4415,9 +4400,6 @@ name|createComponents
 parameter_list|(
 name|String
 name|fieldName
-parameter_list|,
-name|Reader
-name|reader
 parameter_list|)
 block|{
 name|MockTokenizer
@@ -4426,8 +4408,6 @@ init|=
 operator|new
 name|MockTokenizer
 argument_list|(
-name|reader
-argument_list|,
 name|MockTokenizer
 operator|.
 name|WHITESPACE
@@ -8546,12 +8526,6 @@ init|=
 operator|new
 name|MockTokenizer
 argument_list|(
-operator|new
-name|StringReader
-argument_list|(
-literal|"crash me on the 4th token"
-argument_list|)
-argument_list|,
 name|MockTokenizer
 operator|.
 name|WHITESPACE
@@ -8559,6 +8533,17 @@ argument_list|,
 literal|false
 argument_list|)
 decl_stmt|;
+name|tokenizer
+operator|.
+name|setReader
+argument_list|(
+operator|new
+name|StringReader
+argument_list|(
+literal|"crash me on the 4th token"
+argument_list|)
+argument_list|)
+expr_stmt|;
 name|tokenizer
 operator|.
 name|setEnableChecks
@@ -9217,12 +9202,6 @@ init|=
 operator|new
 name|MockTokenizer
 argument_list|(
-operator|new
-name|StringReader
-argument_list|(
-literal|"crash me on the 4th token"
-argument_list|)
-argument_list|,
 name|MockTokenizer
 operator|.
 name|WHITESPACE
@@ -9230,6 +9209,17 @@ argument_list|,
 literal|false
 argument_list|)
 decl_stmt|;
+name|tokenizer
+operator|.
+name|setReader
+argument_list|(
+operator|new
+name|StringReader
+argument_list|(
+literal|"crash me on the 4th token"
+argument_list|)
+argument_list|)
+expr_stmt|;
 name|tokenizer
 operator|.
 name|setEnableChecks

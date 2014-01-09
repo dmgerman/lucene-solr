@@ -140,16 +140,9 @@ decl_stmt|;
 name|TokenStream
 name|stream
 init|=
-operator|new
-name|MockTokenizer
+name|whitespaceMockTokenizer
 argument_list|(
 name|reader
-argument_list|,
-name|MockTokenizer
-operator|.
-name|WHITESPACE
-argument_list|,
-literal|false
 argument_list|)
 decl_stmt|;
 name|stream

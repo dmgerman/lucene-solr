@@ -22,16 +22,6 @@ begin_import
 import|import
 name|java
 operator|.
-name|io
-operator|.
-name|Reader
-import|;
-end_import
-
-begin_import
-import|import
-name|java
-operator|.
 name|util
 operator|.
 name|Collections
@@ -141,9 +131,6 @@ name|create
 parameter_list|(
 name|AttributeFactory
 name|factory
-parameter_list|,
-name|Reader
-name|input
 parameter_list|)
 block|{
 return|return
@@ -151,8 +138,6 @@ operator|new
 name|WikipediaTokenizer
 argument_list|(
 name|factory
-argument_list|,
-name|input
 argument_list|,
 name|WikipediaTokenizer
 operator|.

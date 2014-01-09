@@ -79,74 +79,27 @@ name|inputPending
 init|=
 name|ILLEGAL_STATE_READER
 decl_stmt|;
-comment|/** Construct a token stream processing the given input. */
+comment|/**    * Construct a tokenizer with no input, awaiting a call to {@link #setReader(java.io.Reader)}    * to provide input.    */
 DECL|method|Tokenizer
 specifier|protected
 name|Tokenizer
-parameter_list|(
-name|Reader
-name|input
-parameter_list|)
+parameter_list|()
 block|{
-if|if
-condition|(
-name|input
-operator|==
-literal|null
-condition|)
-block|{
-throw|throw
-operator|new
-name|NullPointerException
-argument_list|(
-literal|"input must not be null"
-argument_list|)
-throw|;
+comment|//
 block|}
-name|this
-operator|.
-name|inputPending
-operator|=
-name|input
-expr_stmt|;
-block|}
-comment|/** Construct a token stream processing the given input using the given AttributeFactory. */
+comment|/**    * Construct a tokenizer with no input, awaiting a call to {@link #setReader(java.io.Reader)} to    * provide input.    * @param factory attribute factory.    */
 DECL|method|Tokenizer
 specifier|protected
 name|Tokenizer
 parameter_list|(
 name|AttributeFactory
 name|factory
-parameter_list|,
-name|Reader
-name|input
 parameter_list|)
 block|{
 name|super
 argument_list|(
 name|factory
 argument_list|)
-expr_stmt|;
-if|if
-condition|(
-name|input
-operator|==
-literal|null
-condition|)
-block|{
-throw|throw
-operator|new
-name|NullPointerException
-argument_list|(
-literal|"input must not be null"
-argument_list|)
-throw|;
-block|}
-name|this
-operator|.
-name|inputPending
-operator|=
-name|input
 expr_stmt|;
 block|}
 comment|/**    * {@inheritDoc}    *<p>    *<b>NOTE:</b>     * The default implementation closes the input Reader, so    * be sure to call<code>super.close()</code> when overriding this method.    */

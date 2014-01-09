@@ -183,14 +183,11 @@ operator|.
 name|class
 argument_list|)
 decl_stmt|;
-comment|/**    * Creates NGramTokenizer with given min and max n-grams.    * @param input {@link Reader} holding the input to be tokenized    * @param minGram the smallest n-gram to generate    * @param maxGram the largest n-gram to generate    */
+comment|/**    * Creates NGramTokenizer with given min and max n-grams.    * @param minGram the smallest n-gram to generate    * @param maxGram the largest n-gram to generate    */
 DECL|method|Lucene43NGramTokenizer
 specifier|public
 name|Lucene43NGramTokenizer
 parameter_list|(
-name|Reader
-name|input
-parameter_list|,
 name|int
 name|minGram
 parameter_list|,
@@ -198,11 +195,6 @@ name|int
 name|maxGram
 parameter_list|)
 block|{
-name|super
-argument_list|(
-name|input
-argument_list|)
-expr_stmt|;
 name|init
 argument_list|(
 name|minGram
@@ -211,7 +203,7 @@ name|maxGram
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**    * Creates NGramTokenizer with given min and max n-grams.    * @param factory {@link org.apache.lucene.util.AttributeSource.AttributeFactory} to use    * @param input {@link Reader} holding the input to be tokenized    * @param minGram the smallest n-gram to generate    * @param maxGram the largest n-gram to generate    */
+comment|/**    * Creates NGramTokenizer with given min and max n-grams.    * @param factory {@link org.apache.lucene.util.AttributeSource.AttributeFactory} to use    * @param minGram the smallest n-gram to generate    * @param maxGram the largest n-gram to generate    */
 DECL|method|Lucene43NGramTokenizer
 specifier|public
 name|Lucene43NGramTokenizer
@@ -219,9 +211,6 @@ parameter_list|(
 name|AttributeFactory
 name|factory
 parameter_list|,
-name|Reader
-name|input
-parameter_list|,
 name|int
 name|minGram
 parameter_list|,
@@ -232,8 +221,6 @@ block|{
 name|super
 argument_list|(
 name|factory
-argument_list|,
-name|input
 argument_list|)
 expr_stmt|;
 name|init
@@ -244,19 +231,14 @@ name|maxGram
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**    * Creates NGramTokenizer with default min and max n-grams.    * @param input {@link Reader} holding the input to be tokenized    */
+comment|/**    * Creates NGramTokenizer with default min and max n-grams.    */
 DECL|method|Lucene43NGramTokenizer
 specifier|public
 name|Lucene43NGramTokenizer
-parameter_list|(
-name|Reader
-name|input
-parameter_list|)
+parameter_list|()
 block|{
 name|this
 argument_list|(
-name|input
-argument_list|,
 name|DEFAULT_MIN_NGRAM_SIZE
 argument_list|,
 name|DEFAULT_MAX_NGRAM_SIZE

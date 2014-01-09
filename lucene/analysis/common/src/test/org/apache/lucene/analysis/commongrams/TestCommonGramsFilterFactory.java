@@ -525,12 +525,6 @@ init|=
 operator|new
 name|MockTokenizer
 argument_list|(
-operator|new
-name|StringReader
-argument_list|(
-literal|"testing the factory"
-argument_list|)
-argument_list|,
 name|MockTokenizer
 operator|.
 name|WHITESPACE
@@ -538,6 +532,17 @@ argument_list|,
 literal|false
 argument_list|)
 decl_stmt|;
+name|tokenizer
+operator|.
+name|setReader
+argument_list|(
+operator|new
+name|StringReader
+argument_list|(
+literal|"testing the factory"
+argument_list|)
+argument_list|)
+expr_stmt|;
 name|TokenStream
 name|stream
 init|=

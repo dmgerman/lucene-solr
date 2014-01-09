@@ -54,16 +54,6 @@ begin_import
 import|import
 name|java
 operator|.
-name|io
-operator|.
-name|Reader
-import|;
-end_import
-
-begin_import
-import|import
-name|java
-operator|.
 name|util
 operator|.
 name|Map
@@ -152,9 +142,6 @@ name|create
 parameter_list|(
 name|AttributeFactory
 name|factory
-parameter_list|,
-name|Reader
-name|input
 parameter_list|)
 block|{
 name|StandardTokenizer
@@ -166,8 +153,6 @@ argument_list|(
 name|luceneMatchVersion
 argument_list|,
 name|factory
-argument_list|,
-name|input
 argument_list|)
 decl_stmt|;
 name|tokenizer

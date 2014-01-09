@@ -378,9 +378,6 @@ parameter_list|(
 name|AttributeFactory
 name|factory
 parameter_list|,
-name|Reader
-name|input
-parameter_list|,
 name|CharacterRunAutomaton
 name|runAutomaton
 parameter_list|,
@@ -394,8 +391,6 @@ block|{
 name|super
 argument_list|(
 name|factory
-argument_list|,
-name|input
 argument_list|)
 expr_stmt|;
 name|this
@@ -421,14 +416,6 @@ argument_list|()
 expr_stmt|;
 name|this
 operator|.
-name|streamState
-operator|=
-name|State
-operator|.
-name|SETREADER
-expr_stmt|;
-name|this
-operator|.
 name|maxTokenLength
 operator|=
 name|maxTokenLength
@@ -438,9 +425,6 @@ DECL|method|MockTokenizer
 specifier|public
 name|MockTokenizer
 parameter_list|(
-name|Reader
-name|input
-parameter_list|,
 name|CharacterRunAutomaton
 name|runAutomaton
 parameter_list|,
@@ -457,8 +441,6 @@ name|AttributeFactory
 operator|.
 name|DEFAULT_ATTRIBUTE_FACTORY
 argument_list|,
-name|input
-argument_list|,
 name|runAutomaton
 argument_list|,
 name|lowerCase
@@ -471,9 +453,6 @@ DECL|method|MockTokenizer
 specifier|public
 name|MockTokenizer
 parameter_list|(
-name|Reader
-name|input
-parameter_list|,
 name|CharacterRunAutomaton
 name|runAutomaton
 parameter_list|,
@@ -483,8 +462,6 @@ parameter_list|)
 block|{
 name|this
 argument_list|(
-name|input
-argument_list|,
 name|runAutomaton
 argument_list|,
 name|lowerCase
@@ -493,19 +470,14 @@ name|DEFAULT_MAX_TOKEN_LENGTH
 argument_list|)
 expr_stmt|;
 block|}
-comment|/** Calls {@link #MockTokenizer(Reader, CharacterRunAutomaton, boolean) MockTokenizer(Reader, WHITESPACE, true)} */
+comment|/** Calls {@link #MockTokenizer(CharacterRunAutomaton, boolean) MockTokenizer(Reader, WHITESPACE, true)} */
 DECL|method|MockTokenizer
 specifier|public
 name|MockTokenizer
-parameter_list|(
-name|Reader
-name|input
-parameter_list|)
+parameter_list|()
 block|{
 name|this
 argument_list|(
-name|input
-argument_list|,
 name|WHITESPACE
 argument_list|,
 literal|true
@@ -519,9 +491,6 @@ parameter_list|(
 name|AttributeFactory
 name|factory
 parameter_list|,
-name|Reader
-name|input
-parameter_list|,
 name|CharacterRunAutomaton
 name|runAutomaton
 parameter_list|,
@@ -533,8 +502,6 @@ name|this
 argument_list|(
 name|factory
 argument_list|,
-name|input
-argument_list|,
 name|runAutomaton
 argument_list|,
 name|lowerCase
@@ -543,21 +510,18 @@ name|DEFAULT_MAX_TOKEN_LENGTH
 argument_list|)
 expr_stmt|;
 block|}
-comment|/** Calls {@link #MockTokenizer(org.apache.lucene.util.AttributeSource.AttributeFactory,Reader,CharacterRunAutomaton,boolean)    *                MockTokenizer(AttributeFactory, Reader, WHITESPACE, true)} */
+comment|/** Calls {@link #MockTokenizer(org.apache.lucene.util.AttributeSource.AttributeFactory,CharacterRunAutomaton,boolean)    *                MockTokenizer(AttributeFactory, Reader, WHITESPACE, true)} */
 DECL|method|MockTokenizer
 specifier|public
 name|MockTokenizer
 parameter_list|(
 name|AttributeFactory
 name|factory
-parameter_list|,
-name|Reader
-name|input
 parameter_list|)
 block|{
 name|this
 argument_list|(
-name|input
+name|factory
 argument_list|,
 name|WHITESPACE
 argument_list|,

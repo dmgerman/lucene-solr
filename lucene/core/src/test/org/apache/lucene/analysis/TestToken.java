@@ -1648,12 +1648,6 @@ name|Token
 operator|.
 name|TOKEN_ATTRIBUTE_FACTORY
 argument_list|,
-operator|new
-name|StringReader
-argument_list|(
-literal|"foo bar"
-argument_list|)
-argument_list|,
 name|MockTokenizer
 operator|.
 name|WHITESPACE
@@ -1665,6 +1659,22 @@ operator|.
 name|DEFAULT_MAX_TOKEN_LENGTH
 argument_list|)
 decl_stmt|;
+operator|(
+operator|(
+name|Tokenizer
+operator|)
+name|ts
+operator|)
+operator|.
+name|setReader
+argument_list|(
+operator|new
+name|StringReader
+argument_list|(
+literal|"foo bar"
+argument_list|)
+argument_list|)
+expr_stmt|;
 name|assertTrue
 argument_list|(
 literal|"SenselessAttribute is not implemented by SenselessAttributeImpl"

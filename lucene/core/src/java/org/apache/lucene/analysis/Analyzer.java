@@ -95,7 +95,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * An Analyzer builds TokenStreams, which analyze text.  It thus represents a  * policy for extracting index terms from text.  *<p>  * In order to define what analysis is done, subclasses must define their  * {@link TokenStreamComponents TokenStreamComponents} in {@link #createComponents(String, Reader)}.  * The components are then reused in each call to {@link #tokenStream(String, Reader)}.  *<p>  * Simple example:  *<pre class="prettyprint">  * Analyzer analyzer = new Analyzer() {  *  {@literal @Override}  *   protected TokenStreamComponents createComponents(String fieldName, Reader reader) {  *     Tokenizer source = new FooTokenizer(reader);  *     TokenStream filter = new FooFilter(source);  *     filter = new BarFilter(filter);  *     return new TokenStreamComponents(source, filter);  *   }  * };  *</pre>  * For more examples, see the {@link org.apache.lucene.analysis Analysis package documentation}.  *<p>  * For some concrete implementations bundled with Lucene, look in the analysis modules:  *<ul>  *<li><a href="{@docRoot}/../analyzers-common/overview-summary.html">Common</a>:  *       Analyzers for indexing content in different languages and domains.  *<li><a href="{@docRoot}/../analyzers-icu/overview-summary.html">ICU</a>:  *       Exposes functionality from ICU to Apache Lucene.   *<li><a href="{@docRoot}/../analyzers-kuromoji/overview-summary.html">Kuromoji</a>:  *       Morphological analyzer for Japanese text.  *<li><a href="{@docRoot}/../analyzers-morfologik/overview-summary.html">Morfologik</a>:  *       Dictionary-driven lemmatization for the Polish language.  *<li><a href="{@docRoot}/../analyzers-phonetic/overview-summary.html">Phonetic</a>:  *       Analysis for indexing phonetic signatures (for sounds-alike search).  *<li><a href="{@docRoot}/../analyzers-smartcn/overview-summary.html">Smart Chinese</a>:  *       Analyzer for Simplified Chinese, which indexes words.  *<li><a href="{@docRoot}/../analyzers-stempel/overview-summary.html">Stempel</a>:  *       Algorithmic Stemmer for the Polish Language.  *<li><a href="{@docRoot}/../analyzers-uima/overview-summary.html">UIMA</a>:   *       Analysis integration with Apache UIMA.   *</ul>  */
+comment|/**  * An Analyzer builds TokenStreams, which analyze text.  It thus represents a  * policy for extracting index terms from text.  *<p>  * In order to define what analysis is done, subclasses must define their  * {@link TokenStreamComponents TokenStreamComponents} in {@link #createComponents(String)}.  * The components are then reused in each call to {@link #tokenStream(String, Reader)}.  *<p>  * Simple example:  *<pre class="prettyprint">  * Analyzer analyzer = new Analyzer() {  *  {@literal @Override}  *   protected TokenStreamComponents createComponents(String fieldName) {  *     Tokenizer source = new FooTokenizer(reader);  *     TokenStream filter = new FooFilter(source);  *     filter = new BarFilter(filter);  *     return new TokenStreamComponents(source, filter);  *   }  * };  *</pre>  * For more examples, see the {@link org.apache.lucene.analysis Analysis package documentation}.  *<p>  * For some concrete implementations bundled with Lucene, look in the analysis modules:  *<ul>  *<li><a href="{@docRoot}/../analyzers-common/overview-summary.html">Common</a>:  *       Analyzers for indexing content in different languages and domains.  *<li><a href="{@docRoot}/../analyzers-icu/overview-summary.html">ICU</a>:  *       Exposes functionality from ICU to Apache Lucene.   *<li><a href="{@docRoot}/../analyzers-kuromoji/overview-summary.html">Kuromoji</a>:  *       Morphological analyzer for Japanese text.  *<li><a href="{@docRoot}/../analyzers-morfologik/overview-summary.html">Morfologik</a>:  *       Dictionary-driven lemmatization for the Polish language.  *<li><a href="{@docRoot}/../analyzers-phonetic/overview-summary.html">Phonetic</a>:  *       Analysis for indexing phonetic signatures (for sounds-alike search).  *<li><a href="{@docRoot}/../analyzers-smartcn/overview-summary.html">Smart Chinese</a>:  *       Analyzer for Simplified Chinese, which indexes words.  *<li><a href="{@docRoot}/../analyzers-stempel/overview-summary.html">Stempel</a>:  *       Algorithmic Stemmer for the Polish Language.  *<li><a href="{@docRoot}/../analyzers-uima/overview-summary.html">UIMA</a>:   *       Analysis integration with Apache UIMA.   *</ul>  */
 end_comment
 
 begin_class
@@ -156,7 +156,7 @@ operator|=
 name|reuseStrategy
 expr_stmt|;
 block|}
-comment|/**    * Creates a new {@link TokenStreamComponents} instance for this analyzer.    *     * @param fieldName    *          the name of the fields content passed to the    *          {@link TokenStreamComponents} sink as a reader    * @param reader    *          the reader passed to the {@link Tokenizer} constructor    * @return the {@link TokenStreamComponents} for this analyzer.    */
+comment|/**    * Creates a new {@link TokenStreamComponents} instance for this analyzer.    *     * @param fieldName    *          the name of the fields content passed to the    *          {@link TokenStreamComponents} sink as a reader     * @return the {@link TokenStreamComponents} for this analyzer.    */
 DECL|method|createComponents
 specifier|protected
 specifier|abstract
@@ -165,12 +165,9 @@ name|createComponents
 parameter_list|(
 name|String
 name|fieldName
-parameter_list|,
-name|Reader
-name|reader
 parameter_list|)
 function_decl|;
-comment|/**    * Returns a TokenStream suitable for<code>fieldName</code>, tokenizing    * the contents of<code>reader</code>.    *<p>    * This method uses {@link #createComponents(String, Reader)} to obtain an    * instance of {@link TokenStreamComponents}. It returns the sink of the    * components and stores the components internally. Subsequent calls to this    * method will reuse the previously stored components after resetting them    * through {@link TokenStreamComponents#setReader(Reader)}.    *<p>    *<b>NOTE:</b> After calling this method, the consumer must follow the     * workflow described in {@link TokenStream} to properly consume its contents.    * See the {@link org.apache.lucene.analysis Analysis package documentation} for    * some examples demonstrating this.    *     *<b>NOTE:</b> If your data is available as a {@code String}, use    * {@link #tokenStream(String, String)} which reuses a {@code StringReader}-like    * instance internally.    *     * @param fieldName the name of the field the created TokenStream is used for    * @param reader the reader the streams source reads from    * @return TokenStream for iterating the analyzed content of<code>reader</code>    * @throws AlreadyClosedException if the Analyzer is closed.    * @throws IOException if an i/o error occurs.    * @see #tokenStream(String, String)    */
+comment|/**    * Returns a TokenStream suitable for<code>fieldName</code>, tokenizing    * the contents of<code>reader</code>.    *<p>    * This method uses {@link #createComponents(String)} to obtain an    * instance of {@link TokenStreamComponents}. It returns the sink of the    * components and stores the components internally. Subsequent calls to this    * method will reuse the previously stored components after resetting them    * through {@link TokenStreamComponents#setReader(Reader)}.    *<p>    *<b>NOTE:</b> After calling this method, the consumer must follow the     * workflow described in {@link TokenStream} to properly consume its contents.    * See the {@link org.apache.lucene.analysis Analysis package documentation} for    * some examples demonstrating this.    *     *<b>NOTE:</b> If your data is available as a {@code String}, use    * {@link #tokenStream(String, String)} which reuses a {@code StringReader}-like    * instance internally.    *     * @param fieldName the name of the field the created TokenStream is used for    * @param reader the reader the streams source reads from    * @return TokenStream for iterating the analyzed content of<code>reader</code>    * @throws AlreadyClosedException if the Analyzer is closed.    * @throws IOException if an i/o error occurs.    * @see #tokenStream(String, String)    */
 DECL|method|tokenStream
 specifier|public
 specifier|final
@@ -223,8 +220,6 @@ operator|=
 name|createComponents
 argument_list|(
 name|fieldName
-argument_list|,
-name|r
 argument_list|)
 expr_stmt|;
 name|reuseStrategy
@@ -239,8 +234,6 @@ name|components
 argument_list|)
 expr_stmt|;
 block|}
-else|else
-block|{
 name|components
 operator|.
 name|setReader
@@ -248,7 +241,6 @@ argument_list|(
 name|r
 argument_list|)
 expr_stmt|;
-block|}
 return|return
 name|components
 operator|.
@@ -256,7 +248,7 @@ name|getTokenStream
 argument_list|()
 return|;
 block|}
-comment|/**    * Returns a TokenStream suitable for<code>fieldName</code>, tokenizing    * the contents of<code>text</code>.    *<p>    * This method uses {@link #createComponents(String, Reader)} to obtain an    * instance of {@link TokenStreamComponents}. It returns the sink of the    * components and stores the components internally. Subsequent calls to this    * method will reuse the previously stored components after resetting them    * through {@link TokenStreamComponents#setReader(Reader)}.    *<p>    *<b>NOTE:</b> After calling this method, the consumer must follow the     * workflow described in {@link TokenStream} to properly consume its contents.    * See the {@link org.apache.lucene.analysis Analysis package documentation} for    * some examples demonstrating this.    *     * @param fieldName the name of the field the created TokenStream is used for    * @param text the String the streams source reads from    * @return TokenStream for iterating the analyzed content of<code>reader</code>    * @throws AlreadyClosedException if the Analyzer is closed.    * @throws IOException if an i/o error occurs (may rarely happen for strings).    * @see #tokenStream(String, Reader)    */
+comment|/**    * Returns a TokenStream suitable for<code>fieldName</code>, tokenizing    * the contents of<code>text</code>.    *<p>    * This method uses {@link #createComponents(String)} to obtain an    * instance of {@link TokenStreamComponents}. It returns the sink of the    * components and stores the components internally. Subsequent calls to this    * method will reuse the previously stored components after resetting them    * through {@link TokenStreamComponents#setReader(Reader)}.    *<p>    *<b>NOTE:</b> After calling this method, the consumer must follow the     * workflow described in {@link TokenStream} to properly consume its contents.    * See the {@link org.apache.lucene.analysis Analysis package documentation} for    * some examples demonstrating this.    *     * @param fieldName the name of the field the created TokenStream is used for    * @param text the String the streams source reads from    * @return TokenStream for iterating the analyzed content of<code>reader</code>    * @throws AlreadyClosedException if the Analyzer is closed.    * @throws IOException if an i/o error occurs (may rarely happen for strings).    * @see #tokenStream(String, Reader)    */
 DECL|method|tokenStream
 specifier|public
 specifier|final
@@ -345,8 +337,6 @@ operator|=
 name|createComponents
 argument_list|(
 name|fieldName
-argument_list|,
-name|r
 argument_list|)
 expr_stmt|;
 name|reuseStrategy
@@ -361,8 +351,6 @@ name|components
 argument_list|)
 expr_stmt|;
 block|}
-else|else
-block|{
 name|components
 operator|.
 name|setReader
@@ -370,7 +358,6 @@ argument_list|(
 name|r
 argument_list|)
 expr_stmt|;
-block|}
 name|components
 operator|.
 name|reusableStringReader

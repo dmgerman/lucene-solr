@@ -117,10 +117,6 @@ parameter_list|(
 specifier|final
 name|String
 name|fieldName
-parameter_list|,
-specifier|final
-name|Reader
-name|reader
 parameter_list|)
 block|{
 return|return
@@ -131,8 +127,6 @@ operator|new
 name|WhitespaceTokenizer
 argument_list|(
 name|matchVersion
-argument_list|,
-name|reader
 argument_list|)
 argument_list|)
 return|;

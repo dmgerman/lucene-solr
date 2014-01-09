@@ -211,9 +211,6 @@ name|create
 parameter_list|(
 name|AttributeFactory
 name|factory
-parameter_list|,
-name|Reader
-name|input
 parameter_list|)
 block|{
 if|if
@@ -236,8 +233,6 @@ name|luceneMatchVersion
 argument_list|,
 name|factory
 argument_list|,
-name|input
-argument_list|,
 name|minGramSize
 argument_list|,
 name|maxGramSize
@@ -251,8 +246,6 @@ operator|new
 name|Lucene43NGramTokenizer
 argument_list|(
 name|factory
-argument_list|,
-name|input
 argument_list|,
 name|minGramSize
 argument_list|,

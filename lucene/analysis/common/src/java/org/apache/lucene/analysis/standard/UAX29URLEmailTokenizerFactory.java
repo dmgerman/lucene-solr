@@ -152,9 +152,6 @@ name|create
 parameter_list|(
 name|AttributeFactory
 name|factory
-parameter_list|,
-name|Reader
-name|input
 parameter_list|)
 block|{
 name|UAX29URLEmailTokenizer
@@ -166,8 +163,6 @@ argument_list|(
 name|luceneMatchVersion
 argument_list|,
 name|factory
-argument_list|,
-name|input
 argument_list|)
 decl_stmt|;
 name|tokenizer

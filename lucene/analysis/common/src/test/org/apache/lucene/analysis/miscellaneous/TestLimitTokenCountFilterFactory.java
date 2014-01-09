@@ -113,8 +113,6 @@ init|=
 operator|new
 name|MockTokenizer
 argument_list|(
-name|reader
-argument_list|,
 name|MockTokenizer
 operator|.
 name|WHITESPACE
@@ -122,6 +120,13 @@ argument_list|,
 literal|false
 argument_list|)
 decl_stmt|;
+name|tokenizer
+operator|.
+name|setReader
+argument_list|(
+name|reader
+argument_list|)
+expr_stmt|;
 comment|// LimitTokenCountFilter doesn't consume the entire stream that it wraps
 name|tokenizer
 operator|.

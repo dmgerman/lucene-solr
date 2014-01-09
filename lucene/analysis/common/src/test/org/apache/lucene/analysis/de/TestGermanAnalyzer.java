@@ -195,6 +195,27 @@ argument_list|(
 literal|"fischen"
 argument_list|)
 expr_stmt|;
+specifier|final
+name|LowerCaseTokenizer
+name|in
+init|=
+operator|new
+name|LowerCaseTokenizer
+argument_list|(
+name|TEST_VERSION_CURRENT
+argument_list|)
+decl_stmt|;
+name|in
+operator|.
+name|setReader
+argument_list|(
+operator|new
+name|StringReader
+argument_list|(
+literal|"Fischen Trinken"
+argument_list|)
+argument_list|)
+expr_stmt|;
 name|GermanStemFilter
 name|filter
 init|=
@@ -204,17 +225,7 @@ argument_list|(
 operator|new
 name|SetKeywordMarkerFilter
 argument_list|(
-operator|new
-name|LowerCaseTokenizer
-argument_list|(
-name|TEST_VERSION_CURRENT
-argument_list|,
-operator|new
-name|StringReader
-argument_list|(
-literal|"Fischen Trinken"
-argument_list|)
-argument_list|)
+name|in
 argument_list|,
 name|set
 argument_list|)

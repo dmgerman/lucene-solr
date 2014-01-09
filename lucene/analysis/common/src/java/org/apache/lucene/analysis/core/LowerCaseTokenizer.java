@@ -99,27 +99,22 @@ name|LowerCaseTokenizer
 extends|extends
 name|LetterTokenizer
 block|{
-comment|/**    * Construct a new LowerCaseTokenizer.    *     * @param matchVersion    *          Lucene version to match See {@link<a href="#version">above</a>}    *     * @param in    *          the input to split up into tokens    */
+comment|/**    * Construct a new LowerCaseTokenizer.    *     * @param matchVersion    *          Lucene version to match See {@link<a href="#version">above</a>}    *     */
 DECL|method|LowerCaseTokenizer
 specifier|public
 name|LowerCaseTokenizer
 parameter_list|(
 name|Version
 name|matchVersion
-parameter_list|,
-name|Reader
-name|in
 parameter_list|)
 block|{
 name|super
 argument_list|(
 name|matchVersion
-argument_list|,
-name|in
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**    * Construct a new LowerCaseTokenizer using a given    * {@link org.apache.lucene.util.AttributeSource.AttributeFactory}.    *    * @param matchVersion    *          Lucene version to match See {@link<a href="#version">above</a>}    * @param factory    *          the attribute factory to use for this {@link Tokenizer}    * @param in    *          the input to split up into tokens    */
+comment|/**    * Construct a new LowerCaseTokenizer using a given    * {@link org.apache.lucene.util.AttributeSource.AttributeFactory}.    *    * @param matchVersion    *          Lucene version to match See {@link<a href="#version">above</a>}    * @param factory    *          the attribute factory to use for this {@link Tokenizer}    */
 DECL|method|LowerCaseTokenizer
 specifier|public
 name|LowerCaseTokenizer
@@ -129,9 +124,6 @@ name|matchVersion
 parameter_list|,
 name|AttributeFactory
 name|factory
-parameter_list|,
-name|Reader
-name|in
 parameter_list|)
 block|{
 name|super
@@ -139,8 +131,6 @@ argument_list|(
 name|matchVersion
 argument_list|,
 name|factory
-argument_list|,
-name|in
 argument_list|)
 expr_stmt|;
 block|}

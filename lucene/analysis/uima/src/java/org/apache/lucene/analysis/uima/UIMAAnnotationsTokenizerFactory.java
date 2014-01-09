@@ -176,9 +176,6 @@ name|create
 parameter_list|(
 name|AttributeFactory
 name|factory
-parameter_list|,
-name|Reader
-name|input
 parameter_list|)
 block|{
 return|return
@@ -192,8 +189,6 @@ argument_list|,
 name|configurationParameters
 argument_list|,
 name|factory
-argument_list|,
-name|input
 argument_list|)
 return|;
 block|}

@@ -221,9 +221,6 @@ parameter_list|(
 name|AttributeFactory
 name|factory
 parameter_list|,
-name|Reader
-name|reader
-parameter_list|,
 name|String
 name|descriptorPath
 parameter_list|,
@@ -239,8 +236,6 @@ block|{
 name|super
 argument_list|(
 name|factory
-argument_list|,
-name|reader
 argument_list|)
 expr_stmt|;
 name|this
