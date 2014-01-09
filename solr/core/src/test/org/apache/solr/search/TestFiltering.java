@@ -52,6 +52,22 @@ name|solr
 operator|.
 name|common
 operator|.
+name|params
+operator|.
+name|SolrParams
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|solr
+operator|.
+name|common
+operator|.
 name|SolrException
 import|;
 end_import
@@ -1536,6 +1552,23 @@ name|commit
 argument_list|()
 argument_list|)
 expr_stmt|;
+comment|// sanity check
+name|assertJQ
+argument_list|(
+name|req
+argument_list|(
+literal|"q"
+argument_list|,
+literal|"*:*"
+argument_list|)
+argument_list|,
+literal|"/response/numFound=="
+operator|+
+name|model
+operator|.
+name|indexSize
+argument_list|)
+expr_stmt|;
 name|int
 name|totalMatches
 init|=
@@ -1989,7 +2022,13 @@ expr_stmt|;
 name|String
 name|s
 init|=
-literal|"FAILURE: iiter="
+literal|"FAILURE: indexSize="
+operator|+
+name|model
+operator|.
+name|indexSize
+operator|+
+literal|" iiter="
 operator|+
 name|iiter
 operator|+
@@ -2019,6 +2058,183 @@ comment|// After making substantial changes to this test, make sure that we stil
 comment|// decent number of queries that match some documents
 comment|// System.out.println("totalMatches=" + totalMatches + " nonZeroQueries="+nonZeros);
 block|}
+block|}
+DECL|method|testHossssSanity
+specifier|public
+name|void
+name|testHossssSanity
+parameter_list|()
+throws|throws
+name|Exception
+block|{
+name|SolrParams
+name|match_0
+init|=
+name|params
+argument_list|(
+literal|"q"
+argument_list|,
+literal|"{!frange v=val_i l=0 u=1}"
+argument_list|,
+literal|"fq"
+argument_list|,
+literal|"{!frange v=val_i l=1 u=1}"
+argument_list|,
+literal|"fq"
+argument_list|,
+literal|"{!frange v=val_i l=0 u=1}"
+argument_list|,
+literal|"fq"
+argument_list|,
+literal|"-_query_:\"{!frange v=val_i l=1 u=1}\""
+argument_list|,
+literal|"fq"
+argument_list|,
+literal|"-_query_:\"{!frange v=val_i l=0 u=1}\""
+argument_list|)
+decl_stmt|;
+name|SolrParams
+name|match_1
+init|=
+name|params
+argument_list|(
+literal|"q"
+argument_list|,
+literal|"{!frange v=val_i l=0 u=1}"
+argument_list|,
+literal|"fq"
+argument_list|,
+literal|"{!frange v=val_i l=0 u=1}"
+argument_list|,
+literal|"fq"
+argument_list|,
+literal|"{!frange v=val_i l=0 u=1}"
+argument_list|,
+literal|"fq"
+argument_list|,
+literal|"-_query_:\"{!frange v=val_i l=1 u=1}\""
+argument_list|,
+literal|"fq"
+argument_list|,
+literal|"-_query_:\"{!frange v=val_i l=1 u=1}\""
+argument_list|)
+decl_stmt|;
+specifier|final
+name|int
+name|numDocs
+init|=
+literal|10
+decl_stmt|;
+for|for
+control|(
+name|int
+name|i
+init|=
+literal|0
+init|;
+name|i
+operator|<
+name|numDocs
+condition|;
+name|i
+operator|++
+control|)
+block|{
+name|String
+name|val
+init|=
+name|Integer
+operator|.
+name|toString
+argument_list|(
+name|i
+argument_list|)
+decl_stmt|;
+name|assertU
+argument_list|(
+name|adoc
+argument_list|(
+literal|"id"
+argument_list|,
+name|val
+argument_list|,
+name|f
+argument_list|,
+name|val
+argument_list|)
+argument_list|)
+expr_stmt|;
+block|}
+name|assertU
+argument_list|(
+name|commit
+argument_list|()
+argument_list|)
+expr_stmt|;
+comment|// sanity check
+name|assertJQ
+argument_list|(
+name|req
+argument_list|(
+literal|"q"
+argument_list|,
+literal|"*:*"
+argument_list|)
+argument_list|,
+literal|"/response/numFound=="
+operator|+
+name|numDocs
+argument_list|)
+expr_stmt|;
+comment|// 1 then 0
+name|assertJQ
+argument_list|(
+name|req
+argument_list|(
+name|match_1
+argument_list|)
+argument_list|,
+literal|"/response/numFound==1"
+argument_list|)
+expr_stmt|;
+name|assertJQ
+argument_list|(
+name|req
+argument_list|(
+name|match_0
+argument_list|)
+argument_list|,
+literal|"/response/numFound==0"
+argument_list|)
+expr_stmt|;
+comment|// clear caches
+name|assertU
+argument_list|(
+name|commit
+argument_list|()
+argument_list|)
+expr_stmt|;
+comment|// 0 then 1
+name|assertJQ
+argument_list|(
+name|req
+argument_list|(
+name|match_0
+argument_list|)
+argument_list|,
+literal|"/response/numFound==0"
+argument_list|)
+expr_stmt|;
+name|assertJQ
+argument_list|(
+name|req
+argument_list|(
+name|match_1
+argument_list|)
+argument_list|,
+literal|"/response/numFound==1"
+argument_list|)
+expr_stmt|;
 block|}
 block|}
 end_class

@@ -68,6 +68,16 @@ name|List
 import|;
 end_import
 
+begin_import
+import|import
+name|java
+operator|.
+name|util
+operator|.
+name|ArrayList
+import|;
+end_import
+
 begin_comment
 comment|/** A hash key encapsulating a query, a list of filters, and a sort  *  */
 end_comment
@@ -195,6 +205,8 @@ name|filt
 range|:
 name|filters
 control|)
+comment|// NOTE: simple summation used here so keys with the same filters but in
+comment|// different orders get the same hashCode
 name|h
 operator|+=
 name|filt
@@ -354,7 +366,7 @@ return|;
 if|if
 condition|(
 operator|!
-name|isEqual
+name|unorderedCompare
 argument_list|(
 name|this
 operator|.
@@ -423,16 +435,12 @@ return|return
 literal|true
 return|;
 block|}
-comment|// Do fast version, expecting that filters are ordered and only
-comment|// fall back to unordered compare on the first non-equal elements.
-comment|// This will only be called if the hash code of the entire key already
-comment|// matched, so the slower unorderedCompare should pretty much never
-comment|// be called if filter lists are generally ordered.
-DECL|method|isEqual
+comment|/**     * compares the two lists of queries in an unordered manner such that this method     * returns true if the 2 lists are the same size, and contain the same elements.    *    * This method should only be used if the lists come from QueryResultKeys which have     * already been found to have equal hashCodes, since the unordered comparison aspects     * of the logic are not cheap.    *     * @return true if the lists of equivilent other then the ordering    */
+DECL|method|unorderedCompare
 specifier|private
 specifier|static
 name|boolean
-name|isEqual
+name|unorderedCompare
 parameter_list|(
 name|List
 argument_list|<
@@ -447,6 +455,11 @@ argument_list|>
 name|fqList2
 parameter_list|)
 block|{
+comment|// Do fast version first, expecting that filters are usually in the same order
+comment|//
+comment|// Fall back to unordered compare logic on the first non-equal elements.
+comment|// The slower unorderedCompare should pretty much never be called if filter
+comment|// lists are generally ordered consistently
 if|if
 condition|(
 name|fqList1
@@ -542,6 +555,7 @@ return|return
 literal|true
 return|;
 block|}
+comment|/**     * Does an unordered comparison of the elements of two lists of queries starting at     * the specified start index.    *     * This method should only be called on lists which are the same size, and where     * all items with an index less then the specified start index are the same.    *    * @return true if the list items after start are equivilent other then the ordering    */
 DECL|method|unorderedCompare
 specifier|private
 specifier|static
@@ -564,6 +578,17 @@ name|int
 name|start
 parameter_list|)
 block|{
+assert|assert
+literal|null
+operator|!=
+name|fqList1
+assert|;
+assert|assert
+literal|null
+operator|!=
+name|fqList2
+assert|;
+specifier|final
 name|int
 name|sz
 init|=
@@ -572,8 +597,42 @@ operator|.
 name|size
 argument_list|()
 decl_stmt|;
-name|outer
-label|:
+assert|assert
+name|fqList2
+operator|.
+name|size
+argument_list|()
+operator|==
+name|sz
+assert|;
+comment|// SOLR-5618: if we had a garuntee that the lists never contained any duplicates,
+comment|// this logic could be a lot simplier
+comment|//
+comment|// (And of course: if the SolrIndexSearcher / QueryCommmand was ever changed to
+comment|// sort the filter query list, then this whole method could be eliminated).
+specifier|final
+name|ArrayList
+argument_list|<
+name|Query
+argument_list|>
+name|set2
+init|=
+operator|new
+name|ArrayList
+argument_list|<
+name|Query
+argument_list|>
+argument_list|(
+name|fqList2
+operator|.
+name|subList
+argument_list|(
+name|start
+argument_list|,
+name|sz
+argument_list|)
+argument_list|)
+decl_stmt|;
 for|for
 control|(
 name|int
@@ -599,45 +658,27 @@ argument_list|(
 name|i
 argument_list|)
 decl_stmt|;
-for|for
-control|(
-name|int
-name|j
-init|=
-name|start
-init|;
-name|j
-operator|<
-name|sz
-condition|;
-name|j
-operator|++
-control|)
-block|{
 if|if
 condition|(
+operator|!
+name|set2
+operator|.
+name|remove
+argument_list|(
 name|q1
-operator|.
-name|equals
-argument_list|(
-name|fqList2
-operator|.
-name|get
-argument_list|(
-name|j
-argument_list|)
 argument_list|)
 condition|)
-continue|continue
-name|outer
-continue|;
-block|}
+block|{
 return|return
 literal|false
 return|;
 block|}
+block|}
 return|return
-literal|true
+name|set2
+operator|.
+name|isEmpty
+argument_list|()
 return|;
 block|}
 block|}
