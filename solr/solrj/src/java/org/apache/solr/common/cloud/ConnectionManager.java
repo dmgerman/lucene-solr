@@ -377,7 +377,9 @@ name|disconnectedTimer
 operator|=
 operator|new
 name|Timer
-argument_list|()
+argument_list|(
+literal|true
+argument_list|)
 expr_stmt|;
 name|disconnectedTimer
 operator|.
