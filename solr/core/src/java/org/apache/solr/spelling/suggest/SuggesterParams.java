@@ -81,6 +81,18 @@ name|SUGGEST_PREFIX
 operator|+
 literal|"build"
 decl_stmt|;
+comment|/**    * Whether to build the index or not for all suggesters in the component.    * Optional and false by default.    * This parameter does not need any suggest dictionary names to be specified    */
+DECL|field|SUGGEST_BUILD_ALL
+specifier|public
+specifier|static
+specifier|final
+name|String
+name|SUGGEST_BUILD_ALL
+init|=
+name|SUGGEST_PREFIX
+operator|+
+literal|"buildAll"
+decl_stmt|;
 comment|/**    * Whether to reload the index. Optional and false by default.    */
 DECL|field|SUGGEST_RELOAD
 specifier|public
@@ -92,6 +104,18 @@ init|=
 name|SUGGEST_PREFIX
 operator|+
 literal|"reload"
+decl_stmt|;
+comment|/**    * Whether to reload the index or not for all suggesters in the component.    * Optional and false by default.    * This parameter does not need any suggest dictionary names to be specified    */
+DECL|field|SUGGEST_RELOAD_ALL
+specifier|public
+specifier|static
+specifier|final
+name|String
+name|SUGGEST_RELOAD_ALL
+init|=
+name|SUGGEST_PREFIX
+operator|+
+literal|"reloadAll"
 decl_stmt|;
 block|}
 end_interface
