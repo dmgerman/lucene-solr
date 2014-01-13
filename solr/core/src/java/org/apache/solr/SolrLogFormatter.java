@@ -571,8 +571,8 @@ return|;
 block|}
 catch|catch
 parameter_list|(
-name|Throwable
-name|th
+name|Exception
+name|e
 parameter_list|)
 block|{
 comment|// logging swallows exceptions, so if we hit an exception we need to convert it to a string to see it
@@ -590,7 +590,7 @@ name|SolrException
 operator|.
 name|toStr
 argument_list|(
-name|th
+name|e
 argument_list|)
 return|;
 block|}
@@ -2184,7 +2184,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
-name|Throwable
+name|Exception
 name|e
 parameter_list|)
 block|{

@@ -1461,7 +1461,7 @@ return|return;
 block|}
 catch|catch
 parameter_list|(
-name|Throwable
+name|Exception
 name|e
 parameter_list|)
 block|{
@@ -1964,8 +1964,8 @@ block|}
 block|}
 catch|catch
 parameter_list|(
-name|Throwable
-name|t
+name|Exception
+name|e
 parameter_list|)
 block|{
 name|SolrException
@@ -1984,7 +1984,7 @@ name|operation
 operator|+
 literal|" failed"
 argument_list|,
-name|t
+name|e
 argument_list|)
 expr_stmt|;
 name|results
@@ -1997,7 +1997,7 @@ name|operation
 operator|+
 literal|" caused exception:"
 argument_list|,
-name|t
+name|e
 argument_list|)
 expr_stmt|;
 name|SimpleOrderedMap
@@ -2013,7 +2013,7 @@ name|add
 argument_list|(
 literal|"msg"
 argument_list|,
-name|t
+name|e
 operator|.
 name|getMessage
 argument_list|()
@@ -2025,7 +2025,7 @@ name|add
 argument_list|(
 literal|"rspCode"
 argument_list|,
-name|t
+name|e
 operator|instanceof
 name|SolrException
 condition|?
@@ -2033,7 +2033,7 @@ operator|(
 operator|(
 name|SolrException
 operator|)
-name|t
+name|e
 operator|)
 operator|.
 name|code

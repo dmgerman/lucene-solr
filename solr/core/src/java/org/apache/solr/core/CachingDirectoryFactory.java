@@ -1057,8 +1057,8 @@ assert|;
 block|}
 catch|catch
 parameter_list|(
-name|Throwable
-name|t
+name|Exception
+name|e
 parameter_list|)
 block|{
 name|SolrException
@@ -1069,7 +1069,7 @@ name|log
 argument_list|,
 literal|"Error closing directory"
 argument_list|,
-name|t
+name|e
 argument_list|)
 expr_stmt|;
 block|}
@@ -1161,8 +1161,8 @@ block|}
 block|}
 catch|catch
 parameter_list|(
-name|Throwable
-name|t
+name|Exception
+name|e
 parameter_list|)
 block|{
 name|SolrException
@@ -1173,7 +1173,7 @@ name|log
 argument_list|,
 literal|"Error closing directory"
 argument_list|,
-name|t
+name|e
 argument_list|)
 expr_stmt|;
 block|}
@@ -1207,8 +1207,8 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
-name|Throwable
-name|t
+name|Exception
+name|e
 parameter_list|)
 block|{
 name|SolrException
@@ -1219,7 +1219,7 @@ name|log
 argument_list|,
 literal|"Error removing directory"
 argument_list|,
-name|t
+name|e
 argument_list|)
 expr_stmt|;
 block|}
@@ -1348,8 +1348,8 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
-name|Throwable
-name|t
+name|Exception
+name|e
 parameter_list|)
 block|{
 name|SolrException
@@ -1360,7 +1360,7 @@ name|log
 argument_list|,
 literal|"Error executing preClose for directory"
 argument_list|,
-name|t
+name|e
 argument_list|)
 expr_stmt|;
 block|}
@@ -1571,8 +1571,8 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
-name|Throwable
-name|t
+name|Exception
+name|e
 parameter_list|)
 block|{
 name|SolrException
@@ -1583,7 +1583,7 @@ name|log
 argument_list|,
 literal|"Error removing directory"
 argument_list|,
-name|t
+name|e
 argument_list|)
 expr_stmt|;
 block|}
@@ -1624,8 +1624,8 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
-name|Throwable
-name|t
+name|Exception
+name|e
 parameter_list|)
 block|{
 name|SolrException
@@ -1636,7 +1636,7 @@ name|log
 argument_list|,
 literal|"Error executing postClose for directory"
 argument_list|,
-name|t
+name|e
 argument_list|)
 expr_stmt|;
 block|}
@@ -1678,8 +1678,8 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
-name|Throwable
-name|t
+name|Exception
+name|e
 parameter_list|)
 block|{
 name|SolrException
@@ -1690,7 +1690,7 @@ name|log
 argument_list|,
 literal|"Error closing directory"
 argument_list|,
-name|t
+name|e
 argument_list|)
 expr_stmt|;
 block|}

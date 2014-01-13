@@ -869,13 +869,13 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
-name|Throwable
-name|th
+name|Exception
+name|e
 parameter_list|)
 block|{
 name|ex
 operator|=
-name|th
+name|e
 expr_stmt|;
 block|}
 comment|// Send an error or an 'OK' message (response code will be 200)

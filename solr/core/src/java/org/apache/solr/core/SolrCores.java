@@ -604,7 +604,7 @@ block|}
 catch|catch
 parameter_list|(
 name|Throwable
-name|t
+name|e
 parameter_list|)
 block|{
 name|SolrException
@@ -617,9 +617,23 @@ name|log
 argument_list|,
 literal|"Error shutting down core"
 argument_list|,
-name|t
+name|e
 argument_list|)
 expr_stmt|;
+if|if
+condition|(
+name|e
+operator|instanceof
+name|Error
+condition|)
+block|{
+throw|throw
+operator|(
+name|Error
+operator|)
+name|e
+throw|;
+block|}
 block|}
 block|}
 block|}

@@ -1313,8 +1313,8 @@ block|}
 block|}
 catch|catch
 parameter_list|(
-name|Throwable
-name|t
+name|Exception
+name|e
 parameter_list|)
 block|{
 name|SolrException
@@ -1332,7 +1332,7 @@ argument_list|)
 operator|+
 literal|": Could not tell a replica to recover"
 argument_list|,
-name|t
+name|e
 argument_list|)
 expr_stmt|;
 block|}
@@ -1717,6 +1717,20 @@ argument_list|,
 name|t
 argument_list|)
 expr_stmt|;
+if|if
+condition|(
+name|t
+operator|instanceof
+name|Error
+condition|)
+block|{
+throw|throw
+operator|(
+name|Error
+operator|)
+name|t
+throw|;
+block|}
 block|}
 finally|finally
 block|{

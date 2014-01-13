@@ -333,8 +333,8 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
-name|Throwable
-name|throwable
+name|Exception
+name|e
 parameter_list|)
 block|{
 name|SolrException
@@ -347,7 +347,7 @@ name|log
 argument_list|,
 literal|"Exception during close hook"
 argument_list|,
-name|throwable
+name|e
 argument_list|)
 expr_stmt|;
 block|}

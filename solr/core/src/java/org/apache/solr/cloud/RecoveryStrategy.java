@@ -1707,8 +1707,8 @@ throw|;
 block|}
 catch|catch
 parameter_list|(
-name|Throwable
-name|t
+name|Exception
+name|e
 parameter_list|)
 block|{
 name|log
@@ -1717,7 +1717,7 @@ name|error
 argument_list|(
 literal|""
 argument_list|,
-name|t
+name|e
 argument_list|)
 expr_stmt|;
 throw|throw
@@ -1732,7 +1732,7 @@ name|SERVER_ERROR
 argument_list|,
 literal|""
 argument_list|,
-name|t
+name|e
 argument_list|)
 throw|;
 block|}
@@ -1871,8 +1871,8 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
-name|Throwable
-name|t
+name|Exception
+name|e
 parameter_list|)
 block|{
 name|SolrException
@@ -1885,7 +1885,7 @@ literal|"Corrupt tlog - ignoring. core="
 operator|+
 name|coreName
 argument_list|,
-name|t
+name|e
 argument_list|)
 expr_stmt|;
 name|recentVersions
@@ -2029,8 +2029,8 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
-name|Throwable
-name|t
+name|Exception
+name|e
 parameter_list|)
 block|{
 name|SolrException
@@ -2043,7 +2043,7 @@ literal|"Error getting recent versions. core="
 operator|+
 name|coreName
 argument_list|,
-name|t
+name|e
 argument_list|)
 expr_stmt|;
 name|recentVersions
@@ -2110,8 +2110,8 @@ block|}
 block|}
 catch|catch
 parameter_list|(
-name|Throwable
-name|t
+name|Exception
+name|e
 parameter_list|)
 block|{
 name|SolrException
@@ -2124,7 +2124,7 @@ literal|"Error trying to get ulog starting operation. core="
 operator|+
 name|coreName
 argument_list|,
-name|t
+name|e
 argument_list|)
 expr_stmt|;
 name|firstTime
@@ -2741,8 +2741,8 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
-name|Throwable
-name|t
+name|Exception
+name|e
 parameter_list|)
 block|{
 name|SolrException
@@ -2753,7 +2753,7 @@ name|log
 argument_list|,
 literal|"Error while trying to recover"
 argument_list|,
-name|t
+name|e
 argument_list|)
 expr_stmt|;
 block|}
@@ -2775,8 +2775,8 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
-name|Throwable
-name|t
+name|Exception
+name|e
 parameter_list|)
 block|{
 name|SolrException
@@ -2787,7 +2787,7 @@ name|log
 argument_list|,
 literal|""
 argument_list|,
-name|t
+name|e
 argument_list|)
 expr_stmt|;
 block|}
@@ -2796,8 +2796,8 @@ block|}
 block|}
 catch|catch
 parameter_list|(
-name|Throwable
-name|t
+name|Exception
+name|e
 parameter_list|)
 block|{
 name|SolrException
@@ -2810,7 +2810,7 @@ literal|"Error while trying to recover. core="
 operator|+
 name|coreName
 argument_list|,
-name|t
+name|e
 argument_list|)
 expr_stmt|;
 block|}
@@ -2898,8 +2898,8 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
-name|Throwable
-name|t
+name|Exception
+name|e
 parameter_list|)
 block|{
 name|SolrException
@@ -2910,7 +2910,7 @@ name|log
 argument_list|,
 literal|"Could not publish that recovery failed"
 argument_list|,
-name|t
+name|e
 argument_list|)
 expr_stmt|;
 block|}
@@ -2953,8 +2953,8 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
-name|Throwable
-name|t
+name|Exception
+name|e
 parameter_list|)
 block|{
 name|SolrException
@@ -2965,7 +2965,7 @@ name|log
 argument_list|,
 literal|"Could not publish that recovery failed"
 argument_list|,
-name|t
+name|e
 argument_list|)
 expr_stmt|;
 block|}
@@ -2975,7 +2975,7 @@ block|}
 block|}
 catch|catch
 parameter_list|(
-name|Throwable
+name|Exception
 name|e
 parameter_list|)
 block|{

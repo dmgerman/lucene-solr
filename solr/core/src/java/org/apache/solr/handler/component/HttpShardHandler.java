@@ -1071,7 +1071,7 @@ comment|//????
 block|}
 catch|catch
 parameter_list|(
-name|Throwable
+name|Exception
 name|th
 parameter_list|)
 block|{

@@ -6409,6 +6409,7 @@ specifier|private
 name|String
 name|adminPath
 decl_stmt|;
+comment|// overseer not responsible for closing reader
 DECL|method|Overseer
 specifier|public
 name|Overseer
@@ -6578,6 +6579,8 @@ name|void
 name|close
 parameter_list|()
 block|{
+try|try
+block|{
 if|if
 condition|(
 name|updaterThread
@@ -6600,8 +6603,8 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
-name|Throwable
-name|t
+name|Exception
+name|e
 parameter_list|)
 block|{
 name|log
@@ -6610,11 +6613,14 @@ name|error
 argument_list|(
 literal|"Error closing updaterThread"
 argument_list|,
-name|t
+name|e
 argument_list|)
 expr_stmt|;
 block|}
 block|}
+block|}
+finally|finally
+block|{
 if|if
 condition|(
 name|ccThread
@@ -6637,8 +6643,8 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
-name|Throwable
-name|t
+name|Exception
+name|e
 parameter_list|)
 block|{
 name|log
@@ -6647,9 +6653,10 @@ name|error
 argument_list|(
 literal|"Error closing ccThread"
 argument_list|,
-name|t
+name|e
 argument_list|)
 expr_stmt|;
+block|}
 block|}
 block|}
 name|updaterThread
