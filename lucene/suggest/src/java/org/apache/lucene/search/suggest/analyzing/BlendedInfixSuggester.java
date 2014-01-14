@@ -1198,7 +1198,8 @@ name|value
 condition|)
 block|{
 return|return
-literal|0
+operator|-
+literal|1
 return|;
 block|}
 comment|// otherwise on alphabetic order
