@@ -238,8 +238,8 @@ name|ToChildBlockJoinQuery
 extends|extends
 name|Query
 block|{
+comment|/** Message thrown from {@link    *  ToChildBlockJoinScorer#validateParentDoc} on mis-use,    *  when the parent query incorrectly returns child docs. */
 DECL|field|INVALID_QUERY_MESSAGE
-specifier|public
 specifier|static
 specifier|final
 name|String
