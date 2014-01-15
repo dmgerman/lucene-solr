@@ -4364,6 +4364,34 @@ operator|.
 name|CORE
 argument_list|)
 decl_stmt|;
+if|if
+condition|(
+name|coreContainer
+operator|.
+name|getCore
+argument_list|(
+name|cname
+argument_list|)
+operator|==
+literal|null
+condition|)
+block|{
+throw|throw
+operator|new
+name|SolrException
+argument_list|(
+name|ErrorCode
+operator|.
+name|BAD_REQUEST
+argument_list|,
+literal|"Core with core name ["
+operator|+
+name|cname
+operator|+
+literal|"] does not exist."
+argument_list|)
+throw|;
+block|}
 try|try
 block|{
 name|coreContainer
@@ -4660,7 +4688,7 @@ name|log
 argument_list|(
 name|log
 argument_list|,
-literal|"Cound not find core to call recovery:"
+literal|"Could not find core to call recovery:"
 operator|+
 name|cname
 argument_list|)
