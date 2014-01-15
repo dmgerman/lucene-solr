@@ -1225,7 +1225,9 @@ name|Integer
 operator|.
 name|MIN_VALUE
 decl_stmt|;
-return|return
+name|SortField
+name|sf
+init|=
 operator|new
 name|SortField
 argument_list|(
@@ -1240,11 +1242,16 @@ name|NUMERIC_UTILS_INT_PARSER
 argument_list|,
 name|top
 argument_list|)
+decl_stmt|;
+name|sf
 operator|.
 name|setMissingValue
 argument_list|(
 name|missingValue
 argument_list|)
+expr_stmt|;
+return|return
+name|sf
 return|;
 block|}
 comment|/**    * {@inheritDoc}    */

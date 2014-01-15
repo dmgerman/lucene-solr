@@ -212,6 +212,12 @@ name|missingValue
 init|=
 literal|null
 decl_stmt|;
+comment|// Only used with type=STRING
+DECL|field|sortMissingLast
+specifier|public
+name|boolean
+name|sortMissingLast
+decl_stmt|;
 comment|/** Creates a sort by terms in the given field with the type of term    * values explicitly given.    * @param field  Name of field to sort by.  Can be<code>null</code> if    *<code>type</code> is SCORE or DOC.    * @param type   Type of values in the terms.    */
 DECL|method|SortField
 specifier|public
@@ -400,15 +406,69 @@ operator|=
 name|parser
 expr_stmt|;
 block|}
+comment|/** Pass this to {@link #setMissingValue} to have missing    *  string values sort first. */
+DECL|field|STRING_FIRST
+specifier|public
+specifier|final
+specifier|static
+name|Object
+name|STRING_FIRST
+init|=
+operator|new
+name|Object
+argument_list|()
+decl_stmt|;
+comment|/** Pass this to {@link #setMissingValue} to have missing    *  string values sort last. */
+DECL|field|STRING_LAST
+specifier|public
+specifier|final
+specifier|static
+name|Object
+name|STRING_LAST
+init|=
+operator|new
+name|Object
+argument_list|()
+decl_stmt|;
 DECL|method|setMissingValue
 specifier|public
-name|SortField
+name|void
 name|setMissingValue
 parameter_list|(
 name|Object
 name|missingValue
 parameter_list|)
 block|{
+if|if
+condition|(
+name|type
+operator|==
+name|Type
+operator|.
+name|STRING
+condition|)
+block|{
+if|if
+condition|(
+name|missingValue
+operator|!=
+name|STRING_FIRST
+operator|&&
+name|missingValue
+operator|!=
+name|STRING_LAST
+condition|)
+block|{
+throw|throw
+operator|new
+name|IllegalArgumentException
+argument_list|(
+literal|"For STRING type, missing value must be either STRING_FIRST or STRING_LAST"
+argument_list|)
+throw|;
+block|}
+block|}
+elseif|else
 if|if
 condition|(
 name|type
@@ -440,7 +500,7 @@ throw|throw
 operator|new
 name|IllegalArgumentException
 argument_list|(
-literal|"Missing value only works for numeric types"
+literal|"Missing value only works for numeric or STRING types"
 argument_list|)
 throw|;
 block|}
@@ -450,9 +510,6 @@ name|missingValue
 operator|=
 name|missingValue
 expr_stmt|;
-return|return
-name|this
-return|;
 block|}
 comment|/** Creates a sort with a custom comparison function.    * @param field Name of field to sort by; cannot be<code>null</code>.    * @param comparator Returns a comparator for sorting hits.    */
 DECL|method|SortField
@@ -1278,11 +1335,16 @@ argument_list|(
 name|numHits
 argument_list|,
 name|field
+argument_list|,
+name|missingValue
+operator|==
+name|STRING_LAST
 argument_list|)
 return|;
 case|case
 name|STRING_VAL
 case|:
+comment|// TODO: should we remove this?  who really uses it?
 return|return
 operator|new
 name|FieldComparator

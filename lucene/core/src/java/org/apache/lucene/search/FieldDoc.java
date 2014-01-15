@@ -16,6 +16,16 @@ begin_comment
 comment|/*  * Licensed to the Apache Software Foundation (ASF) under one or more  * contributor license agreements.  See the NOTICE file distributed with  * this work for additional information regarding copyright ownership.  * The ASF licenses this file to You under the Apache License, Version 2.0  * (the "License"); you may not use this file except in compliance with  * the License.  You may obtain a copy of the License at  *  *     http://www.apache.org/licenses/LICENSE-2.0  *  * Unless required by applicable law or agreed to in writing, software  * distributed under the License is distributed on an "AS IS" BASIS,  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.  * See the License for the specific language governing permissions and  * limitations under the License.  */
 end_comment
 
+begin_import
+import|import
+name|java
+operator|.
+name|util
+operator|.
+name|Arrays
+import|;
+end_import
+
 begin_comment
 comment|/**  * Expert: A ScoreDoc which also contains information about  * how to sort the referenced document.  In addition to the  * document number and score, this object contains an array  * of values for the document from the field(s) used to sort.  * For example, if the sort criteria was to sort by fields  * "a", "b" then "c", the<code>fields</code> object array  * will have three elements, corresponding respectively to  * the term values for the document in fields "a", "b" and "c".  * The class of each element in the array will be either  * Integer, Float or String depending on the type of values  * in the terms of each field.  *  *<p>Created: Feb 11, 2004 1:23:38 PM  *  * @since   lucene 1.4  * @see ScoreDoc  * @see TopFieldDocs  */
 end_comment
@@ -147,60 +157,19 @@ name|sb
 operator|.
 name|append
 argument_list|(
-literal|"["
+literal|" fields="
 argument_list|)
 expr_stmt|;
-for|for
-control|(
-name|int
-name|i
-init|=
-literal|0
-init|;
-name|i
-operator|<
-name|fields
-operator|.
-name|length
-condition|;
-name|i
-operator|++
-control|)
-block|{
 name|sb
 operator|.
 name|append
+argument_list|(
+name|Arrays
+operator|.
+name|toString
 argument_list|(
 name|fields
-index|[
-name|i
-index|]
 argument_list|)
-operator|.
-name|append
-argument_list|(
-literal|", "
-argument_list|)
-expr_stmt|;
-block|}
-name|sb
-operator|.
-name|setLength
-argument_list|(
-name|sb
-operator|.
-name|length
-argument_list|()
-operator|-
-literal|2
-argument_list|)
-expr_stmt|;
-comment|// discard last ", "
-name|sb
-operator|.
-name|append
-argument_list|(
-literal|"]"
 argument_list|)
 expr_stmt|;
 return|return
