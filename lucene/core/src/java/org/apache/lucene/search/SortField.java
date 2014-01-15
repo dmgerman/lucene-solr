@@ -406,6 +406,7 @@ operator|=
 name|parser
 expr_stmt|;
 block|}
+comment|// nocommit should missing first/last not be affected by reverse=true???
 comment|/** Pass this to {@link #setMissingValue} to have missing    *  string values sort first. */
 DECL|field|STRING_FIRST
 specifier|public
@@ -417,6 +418,19 @@ init|=
 operator|new
 name|Object
 argument_list|()
+block|{
+annotation|@
+name|Override
+specifier|public
+name|String
+name|toString
+parameter_list|()
+block|{
+return|return
+literal|"SortField.STRING_FIRST"
+return|;
+block|}
+block|}
 decl_stmt|;
 comment|/** Pass this to {@link #setMissingValue} to have missing    *  string values sort last. */
 DECL|field|STRING_LAST
@@ -429,6 +443,19 @@ init|=
 operator|new
 name|Object
 argument_list|()
+block|{
+annotation|@
+name|Override
+specifier|public
+name|String
+name|toString
+parameter_list|()
+block|{
+return|return
+literal|"SortField.STRING_LAST"
+return|;
+block|}
+block|}
 decl_stmt|;
 DECL|method|setMissingValue
 specifier|public
@@ -955,6 +982,28 @@ argument_list|(
 literal|'!'
 argument_list|)
 expr_stmt|;
+if|if
+condition|(
+name|missingValue
+operator|!=
+literal|null
+condition|)
+block|{
+name|buffer
+operator|.
+name|append
+argument_list|(
+literal|" missingValue="
+argument_list|)
+expr_stmt|;
+name|buffer
+operator|.
+name|append
+argument_list|(
+name|missingValue
+argument_list|)
+expr_stmt|;
+block|}
 return|return
 name|buffer
 operator|.
