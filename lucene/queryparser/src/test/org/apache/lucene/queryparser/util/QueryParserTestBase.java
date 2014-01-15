@@ -3394,6 +3394,41 @@ operator|instanceof
 name|TermQuery
 argument_list|)
 expr_stmt|;
+name|CommonQueryParserConfiguration
+name|cqpc
+init|=
+name|getParserConfig
+argument_list|(
+name|qpAnalyzer
+argument_list|)
+decl_stmt|;
+name|setDefaultOperatorAND
+argument_list|(
+name|cqpc
+argument_list|)
+expr_stmt|;
+name|assertQueryEquals
+argument_list|(
+name|cqpc
+argument_list|,
+literal|"field"
+argument_list|,
+literal|"term phrase term"
+argument_list|,
+literal|"+term +(+phrase1 +phrase2) +term"
+argument_list|)
+expr_stmt|;
+name|assertQueryEquals
+argument_list|(
+name|cqpc
+argument_list|,
+literal|"field"
+argument_list|,
+literal|"phrase"
+argument_list|,
+literal|"+phrase1 +phrase2"
+argument_list|)
+expr_stmt|;
 block|}
 DECL|method|testRange
 specifier|public
