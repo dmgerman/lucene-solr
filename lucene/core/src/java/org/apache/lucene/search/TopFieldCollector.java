@@ -3819,6 +3819,59 @@ name|Float
 operator|.
 name|NEGATIVE_INFINITY
 expr_stmt|;
+comment|// Tell all comparators their top value:
+for|for
+control|(
+name|int
+name|i
+init|=
+literal|0
+init|;
+name|i
+operator|<
+name|comparators
+operator|.
+name|length
+condition|;
+name|i
+operator|++
+control|)
+block|{
+annotation|@
+name|SuppressWarnings
+argument_list|(
+literal|"unchecked"
+argument_list|)
+name|FieldComparator
+argument_list|<
+name|Object
+argument_list|>
+name|comparator
+init|=
+operator|(
+name|FieldComparator
+argument_list|<
+name|Object
+argument_list|>
+operator|)
+name|comparators
+index|[
+name|i
+index|]
+decl_stmt|;
+name|comparator
+operator|.
+name|setTopValue
+argument_list|(
+name|after
+operator|.
+name|fields
+index|[
+name|i
+index|]
+argument_list|)
+expr_stmt|;
+block|}
 block|}
 DECL|method|updateBottom
 name|void
@@ -3875,109 +3928,8 @@ parameter_list|)
 throws|throws
 name|IOException
 block|{
-name|totalHits
-operator|++
-expr_stmt|;
 comment|//System.out.println("  collect doc=" + doc);
-comment|// Check if this hit was already collected on a
-comment|// previous page:
-name|boolean
-name|sameValues
-init|=
-literal|true
-decl_stmt|;
-for|for
-control|(
-name|int
-name|compIDX
-init|=
-literal|0
-init|;
-name|compIDX
-operator|<
-name|comparators
-operator|.
-name|length
-condition|;
-name|compIDX
-operator|++
-control|)
-block|{
-specifier|final
-name|FieldComparator
-name|comp
-init|=
-name|comparators
-index|[
-name|compIDX
-index|]
-decl_stmt|;
-specifier|final
-name|int
-name|cmp
-init|=
-name|reverseMul
-index|[
-name|compIDX
-index|]
-operator|*
-name|comp
-operator|.
-name|compareDocToValue
-argument_list|(
-name|doc
-argument_list|,
-name|after
-operator|.
-name|fields
-index|[
-name|compIDX
-index|]
-argument_list|)
-decl_stmt|;
-if|if
-condition|(
-name|cmp
-operator|<
-literal|0
-condition|)
-block|{
-comment|// Already collected on a previous page
-comment|//System.out.println("    skip: before");
-return|return;
-block|}
-elseif|else
-if|if
-condition|(
-name|cmp
-operator|>
-literal|0
-condition|)
-block|{
-comment|// Not yet collected
-name|sameValues
-operator|=
-literal|false
-expr_stmt|;
-comment|//System.out.println("    keep: after");
-break|break;
-block|}
-block|}
-comment|// Tie-break by docID:
-if|if
-condition|(
-name|sameValues
-operator|&&
-name|doc
-operator|<=
-name|afterDoc
-condition|)
-block|{
-comment|// Already collected on a previous page
-comment|//System.out.println("    skip: tie-break");
-return|return;
-block|}
-name|collectedHits
+name|totalHits
 operator|++
 expr_stmt|;
 name|float
@@ -4017,7 +3969,8 @@ condition|(
 name|queueFull
 condition|)
 block|{
-comment|// Fastmatch: return if this hit is not competitive
+comment|// Fastmatch: return if this hit is no better than
+comment|// the worst hit currently in the queue:
 for|for
 control|(
 name|int
@@ -4100,6 +4053,103 @@ block|}
 break|break;
 block|}
 block|}
+block|}
+comment|// Check if this hit was already collected on a
+comment|// previous page:
+name|boolean
+name|sameValues
+init|=
+literal|true
+decl_stmt|;
+for|for
+control|(
+name|int
+name|compIDX
+init|=
+literal|0
+init|;
+name|compIDX
+operator|<
+name|comparators
+operator|.
+name|length
+condition|;
+name|compIDX
+operator|++
+control|)
+block|{
+specifier|final
+name|FieldComparator
+name|comp
+init|=
+name|comparators
+index|[
+name|compIDX
+index|]
+decl_stmt|;
+specifier|final
+name|int
+name|cmp
+init|=
+name|reverseMul
+index|[
+name|compIDX
+index|]
+operator|*
+name|comp
+operator|.
+name|compareTop
+argument_list|(
+name|doc
+argument_list|)
+decl_stmt|;
+if|if
+condition|(
+name|cmp
+operator|>
+literal|0
+condition|)
+block|{
+comment|// Already collected on a previous page
+comment|//System.out.println("    skip: before");
+return|return;
+block|}
+elseif|else
+if|if
+condition|(
+name|cmp
+operator|<
+literal|0
+condition|)
+block|{
+comment|// Not yet collected
+name|sameValues
+operator|=
+literal|false
+expr_stmt|;
+comment|//System.out.println("    keep: after; reverseMul=" + reverseMul[compIDX]);
+break|break;
+block|}
+block|}
+comment|// Tie-break by docID:
+if|if
+condition|(
+name|sameValues
+operator|&&
+name|doc
+operator|<=
+name|afterDoc
+condition|)
+block|{
+comment|// Already collected on a previous page
+comment|//System.out.println("    skip: tie-break");
+return|return;
+block|}
+if|if
+condition|(
+name|queueFull
+condition|)
+block|{
 comment|// This hit is competitive - replace bottom element in queue& adjustTop
 for|for
 control|(
@@ -4190,6 +4240,9 @@ block|}
 block|}
 else|else
 block|{
+name|collectedHits
+operator|++
+expr_stmt|;
 comment|// Startup transient: queue hasn't gathered numHits yet
 specifier|final
 name|int

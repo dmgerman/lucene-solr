@@ -43,7 +43,7 @@ specifier|final
 class|class
 name|UnicodeUtil
 block|{
-comment|/** A binary term consisting of a number of 0xff bytes, likely to be bigger than other terms    *  one would normally encounter, and definitely bigger than any UTF-8 terms.    *<p>    *  WARNING: This is not a valid UTF8 Term      **/
+comment|/** A binary term consisting of a number of 0xff bytes, likely to be bigger than other terms    *  (e.g. collation keys) one would normally encounter, and definitely bigger than any UTF-8 terms.    *<p>    *  WARNING: This is not a valid UTF8 Term      **/
 DECL|field|BIG_TERM
 specifier|public
 specifier|static

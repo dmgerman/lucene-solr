@@ -3257,7 +3257,7 @@ name|out
 operator|.
 name|println
 argument_list|(
-literal|"\nNOTE: MockDirectoryWrapper: now crash"
+literal|"\nNOTE: MockDirectoryWrapper: now crush"
 argument_list|)
 expr_stmt|;
 block|}
