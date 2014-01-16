@@ -406,7 +406,6 @@ operator|=
 name|parser
 expr_stmt|;
 block|}
-comment|// nocommit should missing first/last not be affected by reverse=true???
 comment|/** Pass this to {@link #setMissingValue} to have missing    *  string values sort first. */
 DECL|field|STRING_FIRST
 specifier|public
