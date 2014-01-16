@@ -515,6 +515,15 @@ name|CLUSTER_STATE
 init|=
 literal|"/clusterstate.json"
 decl_stmt|;
+DECL|field|ROLES
+specifier|public
+specifier|static
+specifier|final
+name|String
+name|ROLES
+init|=
+literal|"/roles.json"
+decl_stmt|;
 DECL|field|RECOVERING
 specifier|public
 specifier|static

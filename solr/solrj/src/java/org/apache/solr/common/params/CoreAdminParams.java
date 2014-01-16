@@ -383,6 +383,9 @@ name|LOAD_ON_STARTUP
 block|,
 DECL|enum constant|TRANSIENT
 name|TRANSIENT
+block|,
+DECL|enum constant|REJOINOVERSEERELECTION
+name|REJOINOVERSEERELECTION
 block|;
 DECL|method|get
 specifier|public

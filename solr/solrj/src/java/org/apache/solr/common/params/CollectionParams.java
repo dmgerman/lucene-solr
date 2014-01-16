@@ -69,6 +69,8 @@ DECL|enum constant|DELETESHARD
 DECL|enum constant|CREATESHARD
 DECL|enum constant|DELETEREPLICA
 DECL|enum constant|MIGRATE
+DECL|enum constant|ADDROLE
+DECL|enum constant|REMOVEROLE
 name|CREATE
 block|,
 name|DELETE
@@ -90,6 +92,10 @@ block|,
 name|DELETEREPLICA
 block|,
 name|MIGRATE
+block|,
+name|ADDROLE
+block|,
+name|REMOVEROLE
 block|;
 DECL|method|get
 specifier|public
