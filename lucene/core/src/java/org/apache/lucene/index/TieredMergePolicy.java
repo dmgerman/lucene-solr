@@ -394,7 +394,7 @@ operator|/
 literal|1024.
 return|;
 block|}
-comment|/** Controls how aggressively merges that reclaim more    *  deletions are favored.  Higher values favor selecting    *  merges that reclaim deletions.  A value of 0.0 means    *  deletions don't impact merge selection. */
+comment|/** Controls how aggressively merges that reclaim more    *  deletions are favored.  Higher values will more    *  aggressively target merges that reclaim deletions, but    *  be careful not to go so high that way too much merging    *  takes place; a value of 3.0 is probably nearly too    *  high.  A value of 0.0 means deletions don't impact    *  merge selection. */
 DECL|method|setReclaimDeletesWeight
 specifier|public
 name|TieredMergePolicy
@@ -729,18 +729,20 @@ specifier|abstract
 class|class
 name|MergeScore
 block|{
-comment|/** Sole constructor. (For invocation by subclass       * constructors, typically implicit.) */
+comment|/** Sole constructor. (For invocation by subclass       *  constructors, typically implicit.) */
 DECL|method|MergeScore
 specifier|protected
 name|MergeScore
 parameter_list|()
 block|{     }
+comment|/** Returns the score for this merge candidate; lower      *  scores are better. */
 DECL|method|getScore
 specifier|abstract
 name|double
 name|getScore
 parameter_list|()
 function_decl|;
+comment|/** Human readable explanation of how the merge got this      *  score. */
 DECL|method|getExplanation
 specifier|abstract
 name|String
@@ -1768,9 +1770,12 @@ name|sizeInBytes
 argument_list|()
 expr_stmt|;
 block|}
-comment|// Measure "skew" of the merge, which can range
-comment|// from 1.0/numSegsBeingMerged (good) to 1.0
-comment|// (poor):
+comment|// Roughly measure "skew" of the merge, i.e. how
+comment|// "balanced" the merge is (whether the segments are
+comment|// about the same size), which can range from
+comment|// 1.0/numSegsBeingMerged (good) to 1.0 (poor). Heavily
+comment|// lopsided merges (skew near 1.0) is no good; it means
+comment|// O(N^2) merge cost over time:
 specifier|final
 name|double
 name|skew
