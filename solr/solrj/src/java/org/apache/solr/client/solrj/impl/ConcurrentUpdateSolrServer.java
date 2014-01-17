@@ -1913,7 +1913,6 @@ comment|// break out of the retry loop if we added the element to the queue
 comment|// successfully, *and*
 comment|// while we are still holding the runners lock to prevent race
 comment|// conditions.
-comment|// race conditions.
 if|if
 condition|(
 name|success
@@ -2051,9 +2050,16 @@ expr_stmt|;
 block|}
 if|if
 condition|(
+operator|(
 name|runner
 operator|==
 literal|null
+operator|&&
+name|queue
+operator|.
+name|isEmpty
+argument_list|()
+operator|)
 operator|||
 name|scheduler
 operator|.
