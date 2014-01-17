@@ -2044,7 +2044,7 @@ name|log
 operator|.
 name|warn
 argument_list|(
-literal|"No overseer designates are available, overseerDesignates: {}, nodes : "
+literal|"No overseer designates are available, overseerDesignates: {}, live nodes : {}"
 argument_list|,
 name|overseerDesignates
 argument_list|,
