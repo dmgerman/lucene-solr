@@ -2067,6 +2067,13 @@ name|isTerminated
 argument_list|()
 condition|)
 break|break;
+if|if
+condition|(
+name|runner
+operator|!=
+literal|null
+condition|)
+block|{
 name|runner
 operator|.
 name|runnerLock
@@ -2081,6 +2088,7 @@ operator|.
 name|unlock
 argument_list|()
 expr_stmt|;
+block|}
 block|}
 block|}
 finally|finally
