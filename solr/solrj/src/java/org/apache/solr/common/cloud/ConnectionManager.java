@@ -416,6 +416,23 @@ literal|0.90
 argument_list|)
 argument_list|)
 expr_stmt|;
+if|if
+condition|(
+name|isClosed
+condition|)
+block|{
+comment|// we might have closed after getting by isClosed
+comment|// and before starting the new timer
+name|disconnectedTimer
+operator|.
+name|cancel
+argument_list|()
+expr_stmt|;
+name|disconnectedTimer
+operator|=
+literal|null
+expr_stmt|;
+block|}
 block|}
 name|connected
 operator|=
