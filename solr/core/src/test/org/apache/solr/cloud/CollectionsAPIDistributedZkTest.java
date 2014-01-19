@@ -2778,6 +2778,37 @@ literal|1
 argument_list|)
 argument_list|)
 expr_stmt|;
+comment|// wait for leaders to settle out
+for|for
+control|(
+name|int
+name|i
+init|=
+literal|1
+init|;
+name|i
+operator|<
+literal|4
+condition|;
+name|i
+operator|++
+control|)
+block|{
+name|cloudClient
+operator|.
+name|getZkStateReader
+argument_list|()
+operator|.
+name|getLeaderRetry
+argument_list|(
+literal|"halfdeletedcollection2"
+argument_list|,
+literal|"shard"
+operator|+
+name|i
+argument_list|)
+expr_stmt|;
+block|}
 name|baseUrl
 operator|=
 name|getBaseUrl
@@ -2864,6 +2895,8 @@ argument_list|)
 expr_stmt|;
 name|assertFalse
 argument_list|(
+literal|"Still found collection that should be gone"
+argument_list|,
 name|cloudClient
 operator|.
 name|getZkStateReader
