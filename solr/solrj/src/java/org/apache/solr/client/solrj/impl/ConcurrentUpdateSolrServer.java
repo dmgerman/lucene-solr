@@ -1524,13 +1524,6 @@ expr_stmt|;
 block|}
 finally|finally
 block|{
-comment|// remove it from the list of running things unless we are the last
-comment|// runner and the queue is full...
-comment|// in which case, the next queue.put() would block and there would be no
-comment|// runners to handle it.
-comment|// This case has been further handled by using offer instead of put, and
-comment|// using a retry loop
-comment|// to avoid blocking forever (see request()).
 synchronized|synchronized
 init|(
 name|runners
@@ -1545,12 +1538,11 @@ argument_list|()
 operator|==
 literal|1
 operator|&&
+operator|!
 name|queue
 operator|.
-name|remainingCapacity
+name|isEmpty
 argument_list|()
-operator|==
-literal|0
 condition|)
 block|{
 comment|// keep this runner alive
@@ -2099,6 +2091,10 @@ name|isEmpty
 argument_list|()
 condition|)
 block|{
+comment|// failsafe - should not be necessary, but a good
+comment|// precaution to ensure blockUntilFinished guarantees
+comment|// all updates are emptied from the queue regardless of
+comment|// any bugs around starting or retaining runners
 name|Runner
 name|r
 init|=
