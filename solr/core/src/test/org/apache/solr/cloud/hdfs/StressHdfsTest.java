@@ -522,14 +522,14 @@ name|shardCount
 operator|=
 name|TEST_NIGHTLY
 condition|?
-literal|13
+literal|7
 else|:
 name|random
 argument_list|()
 operator|.
 name|nextInt
 argument_list|(
-literal|3
+literal|2
 argument_list|)
 operator|+
 literal|1
@@ -641,7 +641,7 @@ literal|8
 expr_stmt|;
 name|rep
 operator|=
-literal|2
+literal|1
 expr_stmt|;
 block|}
 else|else
@@ -736,7 +736,7 @@ literal|"shard"
 operator|+
 name|i
 argument_list|,
-literal|15000
+literal|30000
 argument_list|)
 expr_stmt|;
 block|}
