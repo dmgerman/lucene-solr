@@ -427,7 +427,8 @@ block|}
 annotation|@
 name|Override
 DECL|method|getWrappedAnalyzer
-specifier|protected
+specifier|public
+specifier|final
 name|Analyzer
 name|getWrappedAnalyzer
 parameter_list|(
