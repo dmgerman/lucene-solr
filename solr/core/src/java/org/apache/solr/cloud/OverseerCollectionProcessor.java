@@ -4190,7 +4190,7 @@ name|Thread
 operator|.
 name|sleep
 argument_list|(
-literal|300
+literal|500
 argument_list|)
 expr_stmt|;
 comment|// just a bit of time so it's more likely other
