@@ -3088,10 +3088,10 @@ else|:
 name|likely
 return|;
 block|}
-comment|/**    * a list of the fields in the schema - excluding _version_    */
+comment|/**    * An immutable list of the fields in the schema (excluding _version_) in a     * deterministically random order.    */
 DECL|method|getAllFieldNames
 specifier|private
-name|Collection
+name|List
 argument_list|<
 name|String
 argument_list|>
@@ -3153,13 +3153,30 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
+name|Collections
+operator|.
+name|sort
+argument_list|(
+name|names
+argument_list|)
+expr_stmt|;
+name|Collections
+operator|.
+name|shuffle
+argument_list|(
+name|names
+argument_list|,
+name|random
+argument_list|()
+argument_list|)
+expr_stmt|;
 return|return
 name|Collections
 operator|.
 expr|<
 name|String
 operator|>
-name|unmodifiableCollection
+name|unmodifiableList
 argument_list|(
 name|names
 argument_list|)
