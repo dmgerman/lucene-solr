@@ -216,6 +216,13 @@ argument_list|>
 name|getTagMap
 parameter_list|()
 function_decl|;
+comment|/**    * Removes this query node from its parent.    */
+DECL|method|removeFromParent
+specifier|public
+name|void
+name|removeFromParent
+parameter_list|()
+function_decl|;
 block|}
 end_interface
 
