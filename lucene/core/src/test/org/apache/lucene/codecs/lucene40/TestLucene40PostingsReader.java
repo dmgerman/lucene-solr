@@ -236,6 +236,16 @@ name|_TestUtil
 import|;
 end_import
 
+begin_import
+import|import
+name|org
+operator|.
+name|junit
+operator|.
+name|BeforeClass
+import|;
+end_import
+
 begin_class
 DECL|class|TestLucene40PostingsReader
 specifier|public
@@ -291,6 +301,21 @@ literal|1
 argument_list|)
 expr_stmt|;
 block|}
+block|}
+annotation|@
+name|BeforeClass
+DECL|method|beforeClass
+specifier|public
+specifier|static
+name|void
+name|beforeClass
+parameter_list|()
+block|{
+name|OLD_FORMAT_IMPERSONATION_IS_ACTIVE
+operator|=
+literal|true
+expr_stmt|;
+comment|// explicitly instantiates ancient codec
 block|}
 comment|/** tests terms with different probabilities of being in the document.    *  depends heavily on term vectors cross-check at checkIndex    */
 DECL|method|testPostings

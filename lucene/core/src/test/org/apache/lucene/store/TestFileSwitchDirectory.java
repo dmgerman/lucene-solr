@@ -326,6 +326,15 @@ literal|true
 argument_list|)
 decl_stmt|;
 comment|// for now we wire Lucene40Codec because we rely upon its specific impl
+name|boolean
+name|oldValue
+init|=
+name|OLD_FORMAT_IMPERSONATION_IS_ACTIVE
+decl_stmt|;
+name|OLD_FORMAT_IMPERSONATION_IS_ACTIVE
+operator|=
+literal|true
+expr_stmt|;
 name|IndexWriter
 name|writer
 init|=
@@ -574,6 +583,10 @@ name|fsd
 operator|.
 name|close
 argument_list|()
+expr_stmt|;
+name|OLD_FORMAT_IMPERSONATION_IS_ACTIVE
+operator|=
+name|oldValue
 expr_stmt|;
 block|}
 DECL|method|newFSSwitchDirectory

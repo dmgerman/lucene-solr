@@ -298,6 +298,16 @@ name|_TestUtil
 import|;
 end_import
 
+begin_import
+import|import
+name|org
+operator|.
+name|junit
+operator|.
+name|BeforeClass
+import|;
+end_import
+
 begin_comment
 comment|// TODO: really this should be in BaseTestPF or somewhere else? useful test!
 end_comment
@@ -310,6 +320,21 @@ name|TestReuseDocsEnum
 extends|extends
 name|LuceneTestCase
 block|{
+annotation|@
+name|BeforeClass
+DECL|method|beforeClass
+specifier|public
+specifier|static
+name|void
+name|beforeClass
+parameter_list|()
+block|{
+name|OLD_FORMAT_IMPERSONATION_IS_ACTIVE
+operator|=
+literal|true
+expr_stmt|;
+comment|// explicitly instantiates ancient codec
+block|}
 DECL|method|testReuseDocsEnumNoReuse
 specifier|public
 name|void

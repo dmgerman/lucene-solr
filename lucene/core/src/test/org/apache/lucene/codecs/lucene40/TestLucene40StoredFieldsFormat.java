@@ -46,6 +46,16 @@ name|BaseStoredFieldsFormatTestCase
 import|;
 end_import
 
+begin_import
+import|import
+name|org
+operator|.
+name|junit
+operator|.
+name|BeforeClass
+import|;
+end_import
+
 begin_class
 DECL|class|TestLucene40StoredFieldsFormat
 specifier|public
@@ -54,6 +64,21 @@ name|TestLucene40StoredFieldsFormat
 extends|extends
 name|BaseStoredFieldsFormatTestCase
 block|{
+annotation|@
+name|BeforeClass
+DECL|method|beforeClass
+specifier|public
+specifier|static
+name|void
+name|beforeClass
+parameter_list|()
+block|{
+name|OLD_FORMAT_IMPERSONATION_IS_ACTIVE
+operator|=
+literal|true
+expr_stmt|;
+comment|// explicitly instantiates ancient codec
+block|}
 annotation|@
 name|Override
 DECL|method|getCodec
