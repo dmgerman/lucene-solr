@@ -655,23 +655,8 @@ name|e
 argument_list|)
 throw|;
 block|}
-name|hdfsDataDir
-operator|=
-name|hdfsUri
-operator|+
-literal|"/solr/shard1"
-expr_stmt|;
-name|System
-operator|.
-name|setProperty
-argument_list|(
-literal|"solr.data.dir"
-argument_list|,
-name|hdfsUri
-operator|+
-literal|"/solr/shard1"
-argument_list|)
-expr_stmt|;
+comment|//hdfsDataDir = hdfsUri + "/solr/shard1";
+comment|// System.setProperty("solr.data.dir", hdfsUri + "/solr/shard1");
 name|System
 operator|.
 name|setProperty
