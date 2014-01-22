@@ -395,6 +395,11 @@ import|;
 end_import
 
 begin_class
+annotation|@
+name|Ignore
+argument_list|(
+literal|"needs to restart the OverSeer"
+argument_list|)
 DECL|class|OverseerRolesTest
 specifier|public
 class|class
