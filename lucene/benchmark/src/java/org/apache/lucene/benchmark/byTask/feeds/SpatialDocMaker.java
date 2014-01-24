@@ -987,7 +987,7 @@ operator|.
 name|getSpatialContext
 argument_list|()
 operator|.
-name|readShape
+name|readShapeFromWkt
 argument_list|(
 name|shapeStr
 argument_list|)

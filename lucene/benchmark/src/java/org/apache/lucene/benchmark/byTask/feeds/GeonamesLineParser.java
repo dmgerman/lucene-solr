@@ -107,24 +107,38 @@ literal|1
 index|]
 argument_list|)
 expr_stmt|;
-name|docData
-operator|.
-name|setBody
-argument_list|(
+name|String
+name|latitude
+init|=
 name|parts
 index|[
 literal|4
 index|]
-operator|+
-literal|","
-operator|+
+decl_stmt|;
+name|String
+name|longitude
+init|=
 name|parts
 index|[
 literal|5
 index|]
+decl_stmt|;
+name|docData
+operator|.
+name|setBody
+argument_list|(
+literal|"POINT("
+operator|+
+name|longitude
+operator|+
+literal|" "
+operator|+
+name|latitude
+operator|+
+literal|")"
 argument_list|)
 expr_stmt|;
-comment|// latitude , longitude
+comment|//WKT is x y order
 block|}
 block|}
 end_class

@@ -38,38 +38,6 @@ name|spatial4j
 operator|.
 name|core
 operator|.
-name|io
-operator|.
-name|sample
-operator|.
-name|SampleData
-import|;
-end_import
-
-begin_import
-import|import
-name|com
-operator|.
-name|spatial4j
-operator|.
-name|core
-operator|.
-name|io
-operator|.
-name|sample
-operator|.
-name|SampleDataReader
-import|;
-end_import
-
-begin_import
-import|import
-name|com
-operator|.
-name|spatial4j
-operator|.
-name|core
-operator|.
 name|shape
 operator|.
 name|Shape
@@ -309,6 +277,16 @@ operator|.
 name|io
 operator|.
 name|InputStream
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
+name|text
+operator|.
+name|ParseException
 import|;
 end_import
 
@@ -655,7 +633,7 @@ name|getDocuments
 parameter_list|(
 name|Iterator
 argument_list|<
-name|SampleData
+name|SpatialTestData
 argument_list|>
 name|sampleData
 parameter_list|)
@@ -681,7 +659,7 @@ name|hasNext
 argument_list|()
 condition|)
 block|{
-name|SampleData
+name|SpatialTestData
 name|data
 init|=
 name|sampleData
@@ -741,14 +719,9 @@ expr_stmt|;
 name|Shape
 name|shape
 init|=
-name|ctx
-operator|.
-name|readShape
-argument_list|(
 name|data
 operator|.
 name|shape
-argument_list|)
 decl_stmt|;
 name|shape
 operator|=
@@ -789,6 +762,7 @@ if|if
 condition|(
 name|storeShape
 condition|)
+comment|//just for diagnostics
 name|document
 operator|.
 name|add
@@ -801,12 +775,10 @@ operator|.
 name|getFieldName
 argument_list|()
 argument_list|,
-name|ctx
+name|shape
 operator|.
 name|toString
-argument_list|(
-name|shape
-argument_list|)
+argument_list|()
 argument_list|)
 argument_list|)
 expr_stmt|;
@@ -841,7 +813,7 @@ DECL|method|getSampleData
 specifier|protected
 name|Iterator
 argument_list|<
-name|SampleData
+name|SpatialTestData
 argument_list|>
 name|getSampleData
 parameter_list|(
@@ -888,12 +860,16 @@ name|path
 argument_list|)
 throw|;
 return|return
-operator|new
-name|SampleDataReader
+name|SpatialTestData
+operator|.
+name|getTestData
 argument_list|(
 name|stream
+argument_list|,
+name|ctx
 argument_list|)
 return|;
+comment|//closes the InputStream
 block|}
 DECL|method|getTestQueries
 specifier|protected
@@ -940,6 +916,7 @@ argument_list|,
 name|in
 argument_list|)
 return|;
+comment|//closes the InputStream
 block|}
 DECL|method|runTestQueries
 specifier|public
@@ -1044,12 +1021,8 @@ operator|>
 literal|0
 condition|)
 block|{
-comment|//check stored value is there& parses
+comment|//check stored value is there
 name|assertNotNull
-argument_list|(
-name|ctx
-operator|.
-name|readShape
 argument_list|(
 name|got
 operator|.
@@ -1068,7 +1041,6 @@ name|strategy
 operator|.
 name|getFieldName
 argument_list|()
-argument_list|)
 argument_list|)
 argument_list|)
 expr_stmt|;
@@ -1353,6 +1325,8 @@ name|shapeStr
 parameter_list|)
 throws|throws
 name|IOException
+throws|,
+name|ParseException
 block|{
 name|Shape
 name|shape
@@ -1365,7 +1339,7 @@ literal|null
 else|:
 name|ctx
 operator|.
-name|readShape
+name|readShapeFromWkt
 argument_list|(
 name|shapeStr
 argument_list|)
@@ -1488,15 +1462,14 @@ operator|.
 name|getFieldName
 argument_list|()
 argument_list|,
-name|ctx
+name|shape
 operator|.
 name|toString
-argument_list|(
-name|shape
-argument_list|)
+argument_list|()
 argument_list|)
 argument_list|)
 expr_stmt|;
+comment|//not to be parsed; just for debug
 block|}
 return|return
 name|doc

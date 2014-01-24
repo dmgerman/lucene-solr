@@ -474,7 +474,7 @@ index|[]
 name|args
 parameter_list|)
 throws|throws
-name|IOException
+name|Exception
 block|{
 operator|new
 name|SpatialExample
@@ -490,7 +490,7 @@ name|void
 name|test
 parameter_list|()
 throws|throws
-name|IOException
+name|Exception
 block|{
 name|init
 argument_list|()
@@ -582,7 +582,7 @@ name|void
 name|indexPoints
 parameter_list|()
 throws|throws
-name|IOException
+name|Exception
 block|{
 name|IndexWriterConfig
 name|iwConfig
@@ -627,8 +627,7 @@ argument_list|)
 argument_list|)
 argument_list|)
 expr_stmt|;
-comment|//When parsing a string to a shape, the presence of a comma means it's y-x
-comment|// order (lon, lat)
+comment|//Spatial4j has a WKT parser which is also "x y" order
 name|indexWriter
 operator|.
 name|addDocument
@@ -639,9 +638,9 @@ literal|4
 argument_list|,
 name|ctx
 operator|.
-name|readShape
+name|readShapeFromWkt
 argument_list|(
-literal|"-50.7693246, 60.9289094"
+literal|"POINT(60.9289094 -50.7693246)"
 argument_list|)
 argument_list|)
 argument_list|)
@@ -751,6 +750,15 @@ argument_list|)
 expr_stmt|;
 block|}
 comment|//store it too; the format is up to you
+comment|//  (assume point in this example)
+name|Point
+name|pt
+init|=
+operator|(
+name|Point
+operator|)
+name|shape
+decl_stmt|;
 name|doc
 operator|.
 name|add
@@ -763,12 +771,17 @@ operator|.
 name|getFieldName
 argument_list|()
 argument_list|,
-name|ctx
+name|pt
 operator|.
-name|toString
-argument_list|(
-name|shape
-argument_list|)
+name|getX
+argument_list|()
+operator|+
+literal|" "
+operator|+
+name|pt
+operator|.
+name|getY
+argument_list|()
 argument_list|)
 argument_list|)
 expr_stmt|;
@@ -783,7 +796,7 @@ name|void
 name|search
 parameter_list|()
 throws|throws
-name|IOException
+name|Exception
 block|{
 name|IndexReader
 name|indexReader
@@ -931,17 +944,49 @@ operator|.
 name|stringValue
 argument_list|()
 decl_stmt|;
-name|Point
-name|doc1Point
+comment|//assume doc1Str is "x y" as written in newSampleDocument()
+name|int
+name|spaceIdx
 init|=
-operator|(
-name|Point
-operator|)
-name|ctx
+name|doc1Str
 operator|.
-name|readShape
+name|indexOf
+argument_list|(
+literal|' '
+argument_list|)
+decl_stmt|;
+name|double
+name|x
+init|=
+name|Double
+operator|.
+name|parseDouble
 argument_list|(
 name|doc1Str
+operator|.
+name|substring
+argument_list|(
+literal|0
+argument_list|,
+name|spaceIdx
+argument_list|)
+argument_list|)
+decl_stmt|;
+name|double
+name|y
+init|=
+name|Double
+operator|.
+name|parseDouble
+argument_list|(
+name|doc1Str
+operator|.
+name|substring
+argument_list|(
+name|spaceIdx
+operator|+
+literal|1
+argument_list|)
 argument_list|)
 decl_stmt|;
 name|double
@@ -949,10 +994,7 @@ name|doc1DistDEG
 init|=
 name|ctx
 operator|.
-name|getDistCalc
-argument_list|()
-operator|.
-name|distance
+name|calcDistance
 argument_list|(
 name|args
 operator|.
@@ -962,7 +1004,9 @@ operator|.
 name|getCenter
 argument_list|()
 argument_list|,
-name|doc1Point
+name|x
+argument_list|,
+name|y
 argument_list|)
 decl_stmt|;
 name|assertEquals
@@ -983,6 +1027,20 @@ argument_list|,
 literal|0.1
 argument_list|)
 expr_stmt|;
+comment|//or more simply:
+name|assertEquals
+argument_list|(
+literal|121.6d
+argument_list|,
+name|doc1DistDEG
+operator|*
+name|DistanceUtils
+operator|.
+name|DEG_TO_KM
+argument_list|,
+literal|0.1
+argument_list|)
+expr_stmt|;
 block|}
 comment|//--Match all, order by distance ascending
 block|{
@@ -999,20 +1057,6 @@ operator|-
 literal|50
 argument_list|)
 decl_stmt|;
-name|double
-name|degToKm
-init|=
-name|DistanceUtils
-operator|.
-name|degrees2Dist
-argument_list|(
-literal|1
-argument_list|,
-name|DistanceUtils
-operator|.
-name|EARTH_MEAN_RADIUS_KM
-argument_list|)
-decl_stmt|;
 name|ValueSource
 name|valueSource
 init|=
@@ -1022,7 +1066,9 @@ name|makeDistanceValueSource
 argument_list|(
 name|pt
 argument_list|,
-name|degToKm
+name|DistanceUtils
+operator|.
+name|DEG_TO_KM
 argument_list|)
 decl_stmt|;
 comment|//the distance (in km)
@@ -1116,7 +1162,7 @@ argument_list|()
 operator|.
 name|parse
 argument_list|(
-literal|"Intersects(Circle(33,-80 d=1))"
+literal|"Intersects(BUFFER(POINT(-80 33),1))"
 argument_list|,
 name|ctx
 argument_list|)

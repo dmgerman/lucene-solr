@@ -54,20 +54,6 @@ name|MultiValueSource
 import|;
 end_import
 
-begin_import
-import|import
-name|com
-operator|.
-name|spatial4j
-operator|.
-name|core
-operator|.
-name|distance
-operator|.
-name|DistanceUtils
-import|;
-end_import
-
 begin_comment
 comment|/**  * While not strictly a distance, the Sq. Euclidean Distance is often all that is needed in many applications  * that require a distance, thus saving a sq. rt. calculation  */
 end_comment
@@ -185,8 +171,6 @@ name|vals2
 argument_list|)
 expr_stmt|;
 return|return
-name|DistanceUtils
-operator|.
 name|distSquaredCartesian
 argument_list|(
 name|vals1

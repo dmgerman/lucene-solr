@@ -292,15 +292,14 @@ operator|.
 name|getFieldName
 argument_list|()
 argument_list|,
-name|ctx
+name|point
 operator|.
 name|toString
-argument_list|(
-name|point
-argument_list|)
+argument_list|()
 argument_list|)
 argument_list|)
 expr_stmt|;
+comment|//just for diagnostics
 name|addDocumentsAndCommit
 argument_list|(
 name|Arrays

@@ -274,9 +274,9 @@ begin_import
 import|import
 name|java
 operator|.
-name|io
+name|text
 operator|.
-name|IOException
+name|ParseException
 import|;
 end_import
 
@@ -428,7 +428,7 @@ name|void
 name|testCloseButNoMatch
 parameter_list|()
 throws|throws
-name|IOException
+name|Exception
 block|{
 name|getAddAndVerifyIndexedDocuments
 argument_list|(
@@ -509,13 +509,15 @@ parameter_list|,
 name|double
 name|distErrPct
 parameter_list|)
+throws|throws
+name|ParseException
 block|{
 name|Shape
 name|shape
 init|=
 name|ctx
 operator|.
-name|readShape
+name|readShapeFromWkt
 argument_list|(
 name|shapeStr
 argument_list|)
@@ -560,7 +562,7 @@ name|area
 init|=
 name|ctx
 operator|.
-name|readShape
+name|readShapeFromWkt
 argument_list|(
 literal|"POLYGON((-122.83 48.57, -122.77 48.56, -122.79 48.53, -122.83 48.57))"
 argument_list|)
