@@ -301,7 +301,7 @@ extends|extends
 name|AbstractUpdateRequest
 block|{
 DECL|field|VER
-specifier|private
+specifier|public
 specifier|static
 specifier|final
 name|String

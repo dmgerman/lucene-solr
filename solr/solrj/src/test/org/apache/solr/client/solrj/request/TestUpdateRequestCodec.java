@@ -495,6 +495,12 @@ name|document
 parameter_list|,
 name|UpdateRequest
 name|req
+parameter_list|,
+name|Integer
+name|commitWithin
+parameter_list|,
+name|Boolean
+name|overwrite
 parameter_list|)
 block|{
 name|Assert
@@ -866,6 +872,12 @@ name|document
 parameter_list|,
 name|UpdateRequest
 name|req
+parameter_list|,
+name|Integer
+name|commitWithin
+parameter_list|,
+name|Boolean
+name|overwrite
 parameter_list|)
 block|{
 name|Assert
