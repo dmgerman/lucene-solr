@@ -27,7 +27,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * This exception is thrown when the<code>write.lock</code>  * could not be released.  * @see Lock#release()  */
+comment|/**  * This exception is thrown when the<code>write.lock</code>  * could not be released.  * @see Lock#close()  */
 end_comment
 
 begin_class

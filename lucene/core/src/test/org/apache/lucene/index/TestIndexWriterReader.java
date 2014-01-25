@@ -4546,6 +4546,8 @@ argument_list|>
 argument_list|()
 argument_list|)
 decl_stmt|;
+comment|// Only one thread can addIndexes at a time, because
+comment|// IndexWriter acquires a write lock in each directory:
 specifier|final
 name|Thread
 index|[]
@@ -4554,7 +4556,7 @@ init|=
 operator|new
 name|Thread
 index|[
-name|numThreads
+literal|1
 index|]
 decl_stmt|;
 for|for
@@ -4566,7 +4568,9 @@ literal|0
 init|;
 name|i
 operator|<
-name|numThreads
+name|threads
+operator|.
+name|length
 condition|;
 name|i
 operator|++
@@ -4760,7 +4764,9 @@ literal|0
 init|;
 name|i
 operator|<
-name|numThreads
+name|threads
+operator|.
+name|length
 condition|;
 name|i
 operator|++

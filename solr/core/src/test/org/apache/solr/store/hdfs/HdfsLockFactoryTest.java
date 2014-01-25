@@ -420,7 +420,7 @@ argument_list|)
 expr_stmt|;
 name|lock
 operator|.
-name|release
+name|close
 argument_list|()
 expr_stmt|;
 name|success

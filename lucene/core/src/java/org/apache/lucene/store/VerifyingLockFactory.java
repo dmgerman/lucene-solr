@@ -293,11 +293,11 @@ return|;
 block|}
 annotation|@
 name|Override
-DECL|method|release
+DECL|method|close
 specifier|public
 specifier|synchronized
 name|void
-name|release
+name|close
 parameter_list|()
 throws|throws
 name|IOException
@@ -318,7 +318,7 @@ argument_list|)
 expr_stmt|;
 name|lock
 operator|.
-name|release
+name|close
 argument_list|()
 expr_stmt|;
 block|}
