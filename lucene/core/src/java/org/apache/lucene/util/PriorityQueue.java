@@ -93,20 +93,22 @@ literal|0
 operator|==
 name|maxSize
 condition|)
+block|{
 comment|// We allocate 1 extra to avoid if statement in top()
 name|heapSize
 operator|=
 literal|2
 expr_stmt|;
+block|}
 else|else
 block|{
 if|if
 condition|(
 name|maxSize
-operator|==
-name|Integer
+operator|>
+name|ArrayUtil
 operator|.
-name|MAX_VALUE
+name|MAX_ARRAY_LENGTH
 condition|)
 block|{
 comment|// Don't wrap heapSize to -1, in this case, which
@@ -117,12 +119,22 @@ comment|// caller that this values is too big.  We don't +1
 comment|// in this case, but it's very unlikely in practice
 comment|// one will actually insert this many objects into
 comment|// the PQ:
-name|heapSize
-operator|=
-name|Integer
+comment|// Throw exception to prevent confusing OOME:
+throw|throw
+operator|new
+name|IllegalArgumentException
+argument_list|(
+literal|"maxSize must be<= "
+operator|+
+name|ArrayUtil
 operator|.
-name|MAX_VALUE
-expr_stmt|;
+name|MAX_ARRAY_LENGTH
+operator|+
+literal|"; got: "
+operator|+
+name|maxSize
+argument_list|)
+throw|;
 block|}
 else|else
 block|{
@@ -417,9 +429,11 @@ name|result
 return|;
 block|}
 else|else
+block|{
 return|return
 literal|null
 return|;
+block|}
 block|}
 comment|/**    * Should be called when the Object at top changes values. Still log(n) worst    * case, but it's at least twice as fast to    *     *<pre class="prettyprint">    * pq.top().change();    * pq.updateTop();    *</pre>    *     * instead of    *     *<pre class="prettyprint">    * o = pq.pop();    * o.change();    * pq.push(o);    *</pre>    *     * @return the new 'top' element.    */
 DECL|method|updateTop
