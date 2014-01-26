@@ -345,15 +345,16 @@ operator|!
 name|isClosed
 condition|)
 block|{
-name|disconnectedTimer
-operator|=
+name|Timer
+name|newDcTimer
+init|=
 operator|new
 name|Timer
 argument_list|(
 literal|true
 argument_list|)
-expr_stmt|;
-name|disconnectedTimer
+decl_stmt|;
+name|newDcTimer
 operator|.
 name|schedule
 argument_list|(
@@ -395,9 +396,31 @@ condition|)
 block|{
 comment|// we might have closed after getting by isClosed
 comment|// and before starting the new timer
+name|newDcTimer
+operator|.
+name|cancel
+argument_list|()
+expr_stmt|;
+block|}
+else|else
+block|{
+name|disconnectedTimer
+operator|=
+name|newDcTimer
+expr_stmt|;
+if|if
+condition|(
+name|isClosed
+condition|)
+block|{
+comment|// now deal with we may have been closed after getting
+comment|// by isClosed but before setting disconnectedTimer -
+comment|// if close happens after isClosed check this time, it
+comment|// will handle stopping the timer
 name|cancelTimer
 argument_list|()
 expr_stmt|;
+block|}
 block|}
 block|}
 name|connected
@@ -843,7 +866,7 @@ name|connected
 return|;
 block|}
 comment|// we use a volatile rather than sync
-comment|// to avoid deadlock on shutdown
+comment|// to avoid possible deadlock on shutdown
 DECL|method|close
 specifier|public
 name|void
