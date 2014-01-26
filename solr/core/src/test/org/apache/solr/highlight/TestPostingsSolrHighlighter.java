@@ -783,6 +783,43 @@ literal|"//lst[@name='highlighting']/lst[@name='103']/arr[@name='text']/str='<em
 argument_list|)
 expr_stmt|;
 block|}
+DECL|method|testWildcard
+specifier|public
+name|void
+name|testWildcard
+parameter_list|()
+block|{
+name|assertQ
+argument_list|(
+literal|"simplest test"
+argument_list|,
+name|req
+argument_list|(
+literal|"q"
+argument_list|,
+literal|"text:doc*ment"
+argument_list|,
+literal|"sort"
+argument_list|,
+literal|"id asc"
+argument_list|,
+literal|"hl"
+argument_list|,
+literal|"true"
+argument_list|,
+literal|"hl.highlightMultiTerm"
+argument_list|,
+literal|"true"
+argument_list|)
+argument_list|,
+literal|"count(//lst[@name='highlighting']/*)=2"
+argument_list|,
+literal|"//lst[@name='highlighting']/lst[@name='101']/arr[@name='text']/str='<em>document</em> one'"
+argument_list|,
+literal|"//lst[@name='highlighting']/lst[@name='102']/arr[@name='text']/str='second<em>document</em>'"
+argument_list|)
+expr_stmt|;
+block|}
 block|}
 end_class
 

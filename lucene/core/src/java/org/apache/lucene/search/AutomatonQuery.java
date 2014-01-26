@@ -582,6 +582,17 @@ name|toString
 argument_list|()
 return|;
 block|}
+comment|/** Returns the automaton used to create this query */
+DECL|method|getAutomaton
+specifier|public
+name|Automaton
+name|getAutomaton
+parameter_list|()
+block|{
+return|return
+name|automaton
+return|;
+block|}
 block|}
 end_class
 

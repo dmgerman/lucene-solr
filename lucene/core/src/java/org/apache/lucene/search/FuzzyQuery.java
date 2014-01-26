@@ -422,6 +422,17 @@ return|return
 name|prefixLength
 return|;
 block|}
+comment|/**    * Returns true if transpositions should be treated as a primitive edit operation.     * If this is false, comparisons will implement the classic Levenshtein algorithm.    */
+DECL|method|getTranspositions
+specifier|public
+name|boolean
+name|getTranspositions
+parameter_list|()
+block|{
+return|return
+name|transpositions
+return|;
+block|}
 annotation|@
 name|Override
 DECL|method|getTermsEnum
