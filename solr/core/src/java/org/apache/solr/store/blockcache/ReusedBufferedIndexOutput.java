@@ -15,7 +15,7 @@ package|;
 end_package
 
 begin_comment
-comment|/**  * Licensed to the Apache Software Foundation (ASF) under one or more  * contributor license agreements.  See the NOTICE file distributed with  * this work for additional information regarding copyright ownership.  * The ASF licenses this file to You under the Apache License, Version 2.0  * (the "License"); you may not use this file except in compliance with  * the License.  You may obtain a copy of the License at  *  *     http://www.apache.org/licenses/LICENSE-2.0  *  * Unless required by applicable law or agreed to in writing, software  * distributed under the License is distributed on an "AS IS" BASIS,  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.  * See the License for the specific language governing permissions and  * limitations under the License.  */
+comment|/*  * Licensed to the Apache Software Foundation (ASF) under one or more  * contributor license agreements.  See the NOTICE file distributed with  * this work for additional information regarding copyright ownership.  * The ASF licenses this file to You under the Apache License, Version 2.0  * (the "License"); you may not use this file except in compliance with  * the License.  You may obtain a copy of the License at  *  *     http://www.apache.org/licenses/LICENSE-2.0  *  * Unless required by applicable law or agreed to in writing, software  * distributed under the License is distributed on an "AS IS" BASIS,  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.  * See the License for the specific language governing permissions and  * limitations under the License.  */
 end_comment
 
 begin_import
@@ -105,6 +105,12 @@ name|fileLength
 init|=
 literal|0
 decl_stmt|;
+DECL|field|store
+specifier|private
+specifier|final
+name|Store
+name|store
+decl_stmt|;
 DECL|method|ReusedBufferedIndexOutput
 specifier|public
 name|ReusedBufferedIndexOutput
@@ -135,9 +141,18 @@ name|bufferSize
 operator|=
 name|bufferSize
 expr_stmt|;
-name|buffer
+name|store
 operator|=
 name|BufferStore
+operator|.
+name|instance
+argument_list|(
+name|bufferSize
+argument_list|)
+expr_stmt|;
+name|buffer
+operator|=
+name|store
 operator|.
 name|takeBuffer
 argument_list|(
@@ -266,7 +281,7 @@ expr_stmt|;
 name|closeInternal
 argument_list|()
 expr_stmt|;
-name|BufferStore
+name|store
 operator|.
 name|putBuffer
 argument_list|(
