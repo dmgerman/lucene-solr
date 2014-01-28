@@ -567,6 +567,10 @@ control|)
 block|{
 if|if
 condition|(
+name|scorer
+operator|instanceof
+name|AssertingScorer
+operator|||
 name|relationships
 operator|.
 name|contains
@@ -1277,6 +1281,7 @@ if|if
 condition|(
 name|includeOptional
 condition|)
+block|{
 name|assertEquals
 argument_list|(
 literal|3.0F
@@ -1291,6 +1296,7 @@ argument_list|,
 name|FLOAT_TOLERANCE
 argument_list|)
 expr_stmt|;
+block|}
 name|Map
 argument_list|<
 name|Query
@@ -1355,6 +1361,7 @@ if|if
 condition|(
 name|includeOptional
 condition|)
+block|{
 name|assertEquals
 argument_list|(
 literal|1.0F
@@ -1369,6 +1376,7 @@ argument_list|,
 name|FLOAT_TOLERANCE
 argument_list|)
 expr_stmt|;
+block|}
 block|}
 block|}
 block|}

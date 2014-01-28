@@ -858,11 +858,23 @@ argument_list|>
 name|getChildren
 parameter_list|()
 block|{
+comment|// We cannot hide that we hold a single child, else
+comment|// collectors (e.g. ToParentBlockJoinCollector) that
+comment|// need to walk the scorer tree will miss/skip the
+comment|// Scorer we wrap:
 return|return
-name|in
+name|Collections
 operator|.
-name|getChildren
-argument_list|()
+name|singletonList
+argument_list|(
+operator|new
+name|ChildScorer
+argument_list|(
+name|in
+argument_list|,
+literal|"SHOULD"
+argument_list|)
+argument_list|)
 return|;
 block|}
 annotation|@
