@@ -52,16 +52,6 @@ name|java
 operator|.
 name|util
 operator|.
-name|Collections
-import|;
-end_import
-
-begin_import
-import|import
-name|java
-operator|.
-name|util
-operator|.
 name|HashMap
 import|;
 end_import
@@ -131,20 +121,6 @@ operator|.
 name|facet
 operator|.
 name|FacetField
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|facet
-operator|.
-name|FacetResult
 import|;
 end_import
 
@@ -285,20 +261,6 @@ operator|.
 name|index
 operator|.
 name|DirectoryReader
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|index
-operator|.
-name|IndexDocument
 import|;
 end_import
 
@@ -1238,7 +1200,7 @@ return|;
 block|}
 DECL|method|newDocument
 specifier|private
-name|IndexDocument
+name|Document
 name|newDocument
 parameter_list|(
 name|TaxonomyWriter

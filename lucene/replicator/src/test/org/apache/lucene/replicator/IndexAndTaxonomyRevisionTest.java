@@ -42,7 +42,7 @@ name|java
 operator|.
 name|util
 operator|.
-name|Collections
+name|List
 import|;
 end_import
 
@@ -52,7 +52,7 @@ name|java
 operator|.
 name|util
 operator|.
-name|List
+name|Map
 import|;
 end_import
 
@@ -65,16 +65,6 @@ operator|.
 name|Map
 operator|.
 name|Entry
-import|;
-end_import
-
-begin_import
-import|import
-name|java
-operator|.
-name|util
-operator|.
-name|Map
 import|;
 end_import
 
@@ -132,37 +122,7 @@ name|facet
 operator|.
 name|taxonomy
 operator|.
-name|FacetLabel
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|facet
-operator|.
-name|taxonomy
-operator|.
 name|TaxonomyWriter
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|index
-operator|.
-name|IndexDocument
 import|;
 end_import
 
@@ -314,7 +274,7 @@ name|ReplicatorTestCase
 block|{
 DECL|method|newDocument
 specifier|private
-name|IndexDocument
+name|Document
 name|newDocument
 parameter_list|(
 name|TaxonomyWriter

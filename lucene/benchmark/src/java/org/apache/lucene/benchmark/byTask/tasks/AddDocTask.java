@@ -24,16 +24,6 @@ begin_import
 import|import
 name|java
 operator|.
-name|text
-operator|.
-name|NumberFormat
-import|;
-end_import
-
-begin_import
-import|import
-name|java
-operator|.
 name|util
 operator|.
 name|Locale
@@ -88,20 +78,6 @@ name|Document
 import|;
 end_import
 
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|index
-operator|.
-name|IndexDocument
-import|;
-end_import
-
 begin_comment
 comment|/**  * Add a document, optionally of a certain size.  *<br>Other side effects: none.  *<br>Takes optional param: document size.   */
 end_comment
@@ -138,7 +114,7 @@ decl_stmt|;
 comment|/**     * volatile data passed between setup(), doLogic(), tearDown().    * the doc is created at setup() and added at doLogic().     */
 DECL|field|doc
 specifier|protected
-name|IndexDocument
+name|Document
 name|doc
 init|=
 literal|null
