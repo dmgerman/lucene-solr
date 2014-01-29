@@ -623,22 +623,6 @@ argument_list|(
 literal|"(lucene|solr)/build/(?:contrib/)?(.*)/classes/(?:java|test)"
 argument_list|)
 decl_stmt|;
-comment|// Local:   lucene/build/analysis/common/lucene-analyzers-common-5.0-SNAPSHOT.jar
-comment|// Jenkins: lucene/build/analysis/common/lucene-analyzers-common-5.0-2013-10-31_18-52-24.jar
-DECL|field|INTERNAL_JAR_PATTERN
-specifier|private
-specifier|static
-specifier|final
-name|Pattern
-name|INTERNAL_JAR_PATTERN
-init|=
-name|Pattern
-operator|.
-name|compile
-argument_list|(
-literal|".*(lucene|solr)([^/]*?)-\\d[-._\\d]*(?:-SNAPSHOT)?\\.jar"
-argument_list|)
-decl_stmt|;
 DECL|field|PROPERTY_REFERENCE_PATTERN
 specifier|private
 specifier|static
@@ -3974,9 +3958,37 @@ expr_stmt|;
 block|}
 else|else
 block|{
+comment|// Local:   lucene/build/analysis/common/lucene-analyzers-common-5.0-SNAPSHOT.jar
+comment|// Jenkins: lucene/build/analysis/common/lucene-analyzers-common-5.0-2013-10-31_18-52-24.jar
+comment|// Also support any custom version, which won't necessarily conform to any predefined pattern.
+name|Pattern
+name|internalJarPattern
+init|=
+name|Pattern
+operator|.
+name|compile
+argument_list|(
+literal|".*(lucene|solr)([^/]*?)-"
+operator|+
+name|Pattern
+operator|.
+name|quote
+argument_list|(
+name|getProject
+argument_list|()
+operator|.
+name|getProperty
+argument_list|(
+literal|"version"
+argument_list|)
+argument_list|)
+operator|+
+literal|"\\.jar"
+argument_list|)
+decl_stmt|;
 name|matcher
 operator|=
-name|INTERNAL_JAR_PATTERN
+name|internalJarPattern
 operator|.
 name|matcher
 argument_list|(
