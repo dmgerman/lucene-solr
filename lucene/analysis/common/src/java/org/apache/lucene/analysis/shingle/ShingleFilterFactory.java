@@ -59,7 +59,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**   * Factory for {@link ShingleFilter}.  *<pre class="prettyprint">  *&lt;fieldType name="text_shingle" class="solr.TextField" positionIncrementGap="100"&gt;  *&lt;analyzer&gt;  *&lt;tokenizer class="solr.WhitespaceTokenizerFactory"/&gt;  *&lt;filter class="solr.ShingleFilterFactory" minShingleSize="2" maxShingleSize="2"  *             outputUnigrams="true" outputUnigramsIfNoShingles="false" tokenSeparator=" "/&gt;  *&lt;/analyzer&gt;  *&lt;/fieldType&gt;</pre>  */
+comment|/**   * Factory for {@link ShingleFilter}.  *<pre class="prettyprint">  *&lt;fieldType name="text_shingle" class="solr.TextField" positionIncrementGap="100"&gt;  *&lt;analyzer&gt;  *&lt;tokenizer class="solr.WhitespaceTokenizerFactory"/&gt;  *&lt;filter class="solr.ShingleFilterFactory" minShingleSize="2" maxShingleSize="2"  *             outputUnigrams="true" outputUnigramsIfNoShingles="false" tokenSeparator=" " fillerToken="_"/&gt;  *&lt;/analyzer&gt;  *&lt;/fieldType&gt;</pre>  */
 end_comment
 
 begin_class
@@ -99,6 +99,12 @@ specifier|private
 specifier|final
 name|String
 name|tokenSeparator
+decl_stmt|;
+DECL|field|fillerToken
+specifier|private
+specifier|final
+name|String
+name|fillerToken
 decl_stmt|;
 comment|/** Creates a new ShingleFilterFactory */
 DECL|method|ShingleFilterFactory
@@ -238,7 +244,20 @@ literal|"tokenSeparator"
 argument_list|,
 name|ShingleFilter
 operator|.
-name|TOKEN_SEPARATOR
+name|DEFAULT_TOKEN_SEPARATOR
+argument_list|)
+expr_stmt|;
+name|fillerToken
+operator|=
+name|get
+argument_list|(
+name|args
+argument_list|,
+literal|"fillerToken"
+argument_list|,
+name|ShingleFilter
+operator|.
+name|DEFAULT_FILLER_TOKEN
 argument_list|)
 expr_stmt|;
 if|if
@@ -304,6 +323,13 @@ operator|.
 name|setTokenSeparator
 argument_list|(
 name|tokenSeparator
+argument_list|)
+expr_stmt|;
+name|r
+operator|.
+name|setFillerToken
+argument_list|(
+name|fillerToken
 argument_list|)
 expr_stmt|;
 return|return

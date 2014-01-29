@@ -125,6 +125,12 @@ specifier|final
 name|boolean
 name|outputUnigramsIfNoShingles
 decl_stmt|;
+DECL|field|fillerToken
+specifier|private
+specifier|final
+name|String
+name|fillerToken
+decl_stmt|;
 DECL|method|ShingleAnalyzerWrapper
 specifier|public
 name|ShingleAnalyzerWrapper
@@ -190,15 +196,19 @@ name|maxShingleSize
 argument_list|,
 name|ShingleFilter
 operator|.
-name|TOKEN_SEPARATOR
+name|DEFAULT_TOKEN_SEPARATOR
 argument_list|,
 literal|true
 argument_list|,
 literal|false
+argument_list|,
+name|ShingleFilter
+operator|.
+name|DEFAULT_FILLER_TOKEN
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**    * Creates a new ShingleAnalyzerWrapper    *    * @param delegate Analyzer whose TokenStream is to be filtered    * @param minShingleSize Min shingle (token ngram) size    * @param maxShingleSize Max shingle size    * @param tokenSeparator Used to separate input stream tokens in output shingles    * @param outputUnigrams Whether or not the filter shall pass the original    *        tokens to the output stream    * @param outputUnigramsIfNoShingles Overrides the behavior of outputUnigrams==false for those    *        times when no shingles are available (because there are fewer than    *        minShingleSize tokens in the input stream)?    *        Note that if outputUnigrams==true, then unigrams are always output,    *        regardless of whether any shingles are available.    */
+comment|/**    * Creates a new ShingleAnalyzerWrapper    *    * @param delegate Analyzer whose TokenStream is to be filtered    * @param minShingleSize Min shingle (token ngram) size    * @param maxShingleSize Max shingle size    * @param tokenSeparator Used to separate input stream tokens in output shingles    * @param outputUnigrams Whether or not the filter shall pass the original    *        tokens to the output stream    * @param outputUnigramsIfNoShingles Overrides the behavior of outputUnigrams==false for those    *        times when no shingles are available (because there are fewer than    *        minShingleSize tokens in the input stream)?    *        Note that if outputUnigrams==true, then unigrams are always output,    *        regardless of whether any shingles are available.    * @param fillerToken filler token to use when positionIncrement is more than 1    */
 DECL|method|ShingleAnalyzerWrapper
 specifier|public
 name|ShingleAnalyzerWrapper
@@ -220,6 +230,9 @@ name|outputUnigrams
 parameter_list|,
 name|boolean
 name|outputUnigramsIfNoShingles
+parameter_list|,
+name|String
+name|fillerToken
 parameter_list|)
 block|{
 name|super
@@ -318,6 +331,12 @@ operator|.
 name|outputUnigramsIfNoShingles
 operator|=
 name|outputUnigramsIfNoShingles
+expr_stmt|;
+name|this
+operator|.
+name|fillerToken
+operator|=
+name|fillerToken
 expr_stmt|;
 block|}
 comment|/**    * Wraps {@link StandardAnalyzer}.     */
@@ -424,6 +443,16 @@ return|return
 name|outputUnigramsIfNoShingles
 return|;
 block|}
+DECL|method|getFillerToken
+specifier|public
+name|String
+name|getFillerToken
+parameter_list|()
+block|{
+return|return
+name|fillerToken
+return|;
+block|}
 annotation|@
 name|Override
 DECL|method|getWrappedAnalyzer
@@ -503,6 +532,13 @@ operator|.
 name|setOutputUnigramsIfNoShingles
 argument_list|(
 name|outputUnigramsIfNoShingles
+argument_list|)
+expr_stmt|;
+name|filter
+operator|.
+name|setFillerToken
+argument_list|(
+name|fillerToken
 argument_list|)
 expr_stmt|;
 return|return

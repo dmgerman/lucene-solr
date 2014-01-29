@@ -184,17 +184,14 @@ extends|extends
 name|TokenFilter
 block|{
 comment|/**    * filler token for when positionIncrement is more than 1    */
-DECL|field|FILLER_TOKEN
+DECL|field|DEFAULT_FILLER_TOKEN
 specifier|public
 specifier|static
 specifier|final
-name|char
-index|[]
-name|FILLER_TOKEN
+name|String
+name|DEFAULT_FILLER_TOKEN
 init|=
-block|{
-literal|'_'
-block|}
+literal|"_"
 decl_stmt|;
 comment|/**    * default maximum shingle size is 2.    */
 DECL|field|DEFAULT_MAX_SHINGLE_SIZE
@@ -227,12 +224,12 @@ init|=
 literal|"shingle"
 decl_stmt|;
 comment|/**    * The default string to use when joining adjacent tokens to form a shingle    */
-DECL|field|TOKEN_SEPARATOR
+DECL|field|DEFAULT_TOKEN_SEPARATOR
 specifier|public
 specifier|static
 specifier|final
 name|String
-name|TOKEN_SEPARATOR
+name|DEFAULT_TOKEN_SEPARATOR
 init|=
 literal|" "
 decl_stmt|;
@@ -282,7 +279,19 @@ specifier|private
 name|String
 name|tokenSeparator
 init|=
-name|TOKEN_SEPARATOR
+name|DEFAULT_TOKEN_SEPARATOR
+decl_stmt|;
+comment|/**    * The string to insert for each position at which there is no token    * (i.e., when position increment is greater than one).    */
+DECL|field|fillerToken
+specifier|private
+name|char
+index|[]
+name|fillerToken
+init|=
+name|DEFAULT_FILLER_TOKEN
+operator|.
+name|toCharArray
+argument_list|()
 decl_stmt|;
 comment|/**    * By default, we output unigrams (individual tokens) as well as shingles    * (token n-grams).    */
 DECL|field|outputUnigrams
@@ -682,6 +691,36 @@ else|:
 name|tokenSeparator
 expr_stmt|;
 block|}
+comment|/**    * Sets the string to insert for each position at which there is no token    * (i.e., when position increment is greater than one).    *    * @param fillerToken string to insert at each position where there is no token    */
+DECL|method|setFillerToken
+specifier|public
+name|void
+name|setFillerToken
+parameter_list|(
+name|String
+name|fillerToken
+parameter_list|)
+block|{
+name|this
+operator|.
+name|fillerToken
+operator|=
+literal|null
+operator|==
+name|fillerToken
+condition|?
+operator|new
+name|char
+index|[
+literal|0
+index|]
+else|:
+name|fillerToken
+operator|.
+name|toCharArray
+argument_list|()
+expr_stmt|;
+block|}
 annotation|@
 name|Override
 DECL|method|incrementToken
@@ -1002,7 +1041,7 @@ specifier|private
 name|boolean
 name|exhausted
 decl_stmt|;
-comment|/**    *<p>Get the next token from the input stream.    *<p>If the next token has<code>positionIncrement> 1</code>,    *<code>positionIncrement - 1</code> {@link #FILLER_TOKEN}s are    * inserted first.    * @param target Where to put the new token; if null, a new instance is created.    * @return On success, the populated token; null otherwise    * @throws IOException if the input stream has a problem    */
+comment|/**    *<p>Get the next token from the input stream.    *<p>If the next token has<code>positionIncrement> 1</code>,    *<code>positionIncrement - 1</code> {@link #fillerToken}s are    * inserted first.    * @param target Where to put the new token; if null, a new instance is created.    * @return On success, the populated token; null otherwise    * @throws IOException if the input stream has a problem    */
 DECL|method|getNextToken
 specifier|private
 name|InputWindowToken
@@ -1085,11 +1124,11 @@ name|termAtt
 operator|.
 name|copyBuffer
 argument_list|(
-name|FILLER_TOKEN
+name|fillerToken
 argument_list|,
 literal|0
 argument_list|,
-name|FILLER_TOKEN
+name|fillerToken
 operator|.
 name|length
 argument_list|)
@@ -1278,11 +1317,11 @@ name|termAtt
 operator|.
 name|copyBuffer
 argument_list|(
-name|FILLER_TOKEN
+name|fillerToken
 argument_list|,
 literal|0
 argument_list|,
-name|FILLER_TOKEN
+name|fillerToken
 operator|.
 name|length
 argument_list|)
