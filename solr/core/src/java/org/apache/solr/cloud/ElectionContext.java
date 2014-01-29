@@ -344,7 +344,6 @@ class|class
 name|ElectionContext
 block|{
 DECL|field|log
-specifier|private
 specifier|static
 name|Logger
 name|log
@@ -2438,6 +2437,15 @@ name|KeeperException
 throws|,
 name|InterruptedException
 block|{
+name|log
+operator|.
+name|info
+argument_list|(
+literal|"I am going to be the leader {}"
+argument_list|,
+name|id
+argument_list|)
+expr_stmt|;
 specifier|final
 name|String
 name|id

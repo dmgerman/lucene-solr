@@ -384,8 +384,8 @@ block|,
 DECL|enum constant|TRANSIENT
 name|TRANSIENT
 block|,
-DECL|enum constant|REJOINOVERSEERELECTION
-name|REJOINOVERSEERELECTION
+DECL|enum constant|OVERSEEROP
+name|OVERSEEROP
 block|;
 DECL|method|get
 specifier|public
