@@ -937,6 +937,11 @@ specifier|private
 name|File
 name|ivyCacheDir
 decl_stmt|;
+DECL|field|internalJarPattern
+specifier|private
+name|Pattern
+name|internalJarPattern
+decl_stmt|;
 comment|/**    * All ivy.xml files to get external dependencies from.    */
 DECL|field|ivyXmlResources
 specifier|private
@@ -1103,6 +1108,33 @@ parameter_list|()
 throws|throws
 name|BuildException
 block|{
+comment|// Local:   lucene/build/analysis/common/lucene-analyzers-common-5.0-SNAPSHOT.jar
+comment|// Jenkins: lucene/build/analysis/common/lucene-analyzers-common-5.0-2013-10-31_18-52-24.jar
+comment|// Also support any custom version, which won't necessarily conform to any predefined pattern.
+name|internalJarPattern
+operator|=
+name|Pattern
+operator|.
+name|compile
+argument_list|(
+literal|".*(lucene|solr)([^/]*?)-"
+operator|+
+name|Pattern
+operator|.
+name|quote
+argument_list|(
+name|getProject
+argument_list|()
+operator|.
+name|getProperty
+argument_list|(
+literal|"version"
+argument_list|)
+argument_list|)
+operator|+
+literal|"\\.jar"
+argument_list|)
+expr_stmt|;
 name|setInternalDependencyProperties
 argument_list|()
 expr_stmt|;
@@ -2963,7 +2995,7 @@ return|return
 name|transitiveDependencies
 return|;
 block|}
-comment|/**    * Sets the internal dependencies compile and test properties to be inserted     * into modules' POMs.                                                                          k    *     * Also collects shared external dependencies,     * e.g. solr-core wants all of solrj's external dependencies     */
+comment|/**    * Sets the internal dependencies compile and test properties to be inserted     * into modules' POMs.    *     * Also collects shared external dependencies,     * e.g. solr-core wants all of solrj's external dependencies     */
 DECL|method|setInternalDependencyProperties
 specifier|private
 name|void
@@ -3958,34 +3990,6 @@ expr_stmt|;
 block|}
 else|else
 block|{
-comment|// Local:   lucene/build/analysis/common/lucene-analyzers-common-5.0-SNAPSHOT.jar
-comment|// Jenkins: lucene/build/analysis/common/lucene-analyzers-common-5.0-2013-10-31_18-52-24.jar
-comment|// Also support any custom version, which won't necessarily conform to any predefined pattern.
-name|Pattern
-name|internalJarPattern
-init|=
-name|Pattern
-operator|.
-name|compile
-argument_list|(
-literal|".*(lucene|solr)([^/]*?)-"
-operator|+
-name|Pattern
-operator|.
-name|quote
-argument_list|(
-name|getProject
-argument_list|()
-operator|.
-name|getProperty
-argument_list|(
-literal|"version"
-argument_list|)
-argument_list|)
-operator|+
-literal|"\\.jar"
-argument_list|)
-decl_stmt|;
 name|matcher
 operator|=
 name|internalJarPattern
@@ -4003,7 +4007,8 @@ name|matches
 argument_list|()
 condition|)
 block|{
-comment|// Pattern.compile(".*(lucene|solr)([^/]*?)-(?:\\d\\.)+\\d(?:-SNAPSHOT)?\\.jar)")
+comment|// internalJarPattern is /.*(lucene|solr)([^/]*?)-<version>\.jar/,
+comment|// where<version> is the value of the Ant "version" property
 name|artifactId
 operator|.
 name|append
