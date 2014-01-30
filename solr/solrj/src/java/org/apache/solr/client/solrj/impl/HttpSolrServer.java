@@ -3035,7 +3035,7 @@ name|this
 operator|.
 name|followRedirects
 operator|=
-literal|true
+name|followRedirects
 expr_stmt|;
 name|HttpClientUtil
 operator|.
