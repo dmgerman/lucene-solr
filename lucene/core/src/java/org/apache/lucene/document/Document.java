@@ -256,6 +256,7 @@ name|fieldsData
 operator|==
 literal|null
 condition|)
+block|{
 name|newField
 operator|.
 name|fieldsData
@@ -265,6 +266,7 @@ operator|.
 name|numericValue
 argument_list|()
 expr_stmt|;
+block|}
 if|if
 condition|(
 name|newField
@@ -273,6 +275,7 @@ name|fieldsData
 operator|==
 literal|null
 condition|)
+block|{
 name|newField
 operator|.
 name|fieldsData
@@ -282,6 +285,7 @@ operator|.
 name|binaryValue
 argument_list|()
 expr_stmt|;
+block|}
 if|if
 condition|(
 name|newField
@@ -290,6 +294,7 @@ name|fieldsData
 operator|==
 literal|null
 condition|)
+block|{
 name|newField
 operator|.
 name|fieldsData
@@ -299,6 +304,7 @@ operator|.
 name|readerValue
 argument_list|()
 expr_stmt|;
+block|}
 name|add
 argument_list|(
 name|newField
@@ -1027,6 +1033,7 @@ argument_list|()
 operator|-
 literal|1
 condition|)
+block|{
 name|buffer
 operator|.
 name|append
@@ -1034,6 +1041,7 @@ argument_list|(
 literal|" "
 argument_list|)
 expr_stmt|;
+block|}
 block|}
 name|buffer
 operator|.
