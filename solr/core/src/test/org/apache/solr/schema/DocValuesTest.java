@@ -217,8 +217,11 @@ literal|"1"
 argument_list|)
 argument_list|)
 expr_stmt|;
+name|assertU
+argument_list|(
 name|commit
 argument_list|()
+argument_list|)
 expr_stmt|;
 name|SolrCore
 name|core
@@ -1363,8 +1366,11 @@ name|rarely
 argument_list|()
 condition|)
 block|{
+name|assertU
+argument_list|(
 name|commit
 argument_list|()
+argument_list|)
 expr_stmt|;
 comment|// to have several segments
 block|}
@@ -2075,8 +2081,11 @@ name|rarely
 argument_list|()
 condition|)
 block|{
+name|assertU
+argument_list|(
 name|commit
 argument_list|()
+argument_list|)
 expr_stmt|;
 comment|// to have several segments
 block|}

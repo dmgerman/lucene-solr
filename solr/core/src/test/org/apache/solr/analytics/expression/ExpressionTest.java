@@ -462,8 +462,11 @@ name|usually
 argument_list|()
 condition|)
 block|{
+name|assertU
+argument_list|(
 name|commit
 argument_list|()
+argument_list|)
 expr_stmt|;
 comment|// to have several segments
 block|}
