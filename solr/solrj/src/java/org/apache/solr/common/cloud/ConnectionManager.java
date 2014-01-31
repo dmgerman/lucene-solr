@@ -844,10 +844,22 @@ name|disconnected
 argument_list|()
 expr_stmt|;
 block|}
-else|else
+elseif|else
+if|if
+condition|(
+name|state
+operator|==
+name|KeeperState
+operator|.
+name|AuthFailed
+condition|)
 block|{
-name|disconnected
-argument_list|()
+name|log
+operator|.
+name|warn
+argument_list|(
+literal|"zkClient received AuthFailed"
+argument_list|)
 expr_stmt|;
 block|}
 block|}
