@@ -739,8 +739,10 @@ block|,
 literal|"42.nocfs"
 block|,
 comment|// TODO: these are on 4x, but something is wrong (they seem to be a too old DV format):
-comment|//"45.cfs",
-comment|//"45.nocfs",
+literal|"45.cfs"
+block|,
+literal|"45.nocfs"
+block|,
 literal|"461.cfs"
 block|,
 literal|"461.nocfs"
