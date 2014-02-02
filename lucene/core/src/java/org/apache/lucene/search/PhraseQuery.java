@@ -367,6 +367,21 @@ name|int
 name|s
 parameter_list|)
 block|{
+if|if
+condition|(
+name|s
+operator|<
+literal|0
+condition|)
+block|{
+throw|throw
+operator|new
+name|IllegalArgumentException
+argument_list|(
+literal|"slop value cannot be negative"
+argument_list|)
+throw|;
+block|}
 name|slop
 operator|=
 name|s
