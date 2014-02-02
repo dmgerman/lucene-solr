@@ -6042,6 +6042,10 @@ operator|!=
 literal|null
 condition|)
 block|{
+name|partialResults
+operator|=
+literal|true
+expr_stmt|;
 continue|continue;
 block|}
 if|if
