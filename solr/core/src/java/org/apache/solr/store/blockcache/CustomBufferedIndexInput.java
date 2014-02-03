@@ -82,7 +82,7 @@ specifier|final
 name|int
 name|BUFFER_SIZE
 init|=
-literal|1024
+literal|32768
 decl_stmt|;
 DECL|field|bufferSize
 specifier|private
