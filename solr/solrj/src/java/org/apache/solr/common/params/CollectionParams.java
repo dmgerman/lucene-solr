@@ -59,43 +59,46 @@ enum|enum
 name|CollectionAction
 block|{
 DECL|enum constant|CREATE
-DECL|enum constant|DELETE
-DECL|enum constant|RELOAD
-DECL|enum constant|SYNCSHARD
-DECL|enum constant|CREATEALIAS
-DECL|enum constant|DELETEALIAS
-DECL|enum constant|SPLITSHARD
-DECL|enum constant|DELETESHARD
-DECL|enum constant|CREATESHARD
-DECL|enum constant|DELETEREPLICA
-DECL|enum constant|MIGRATE
-DECL|enum constant|ADDROLE
-DECL|enum constant|REMOVEROLE
 name|CREATE
 block|,
+DECL|enum constant|DELETE
 name|DELETE
 block|,
+DECL|enum constant|RELOAD
 name|RELOAD
 block|,
+DECL|enum constant|SYNCSHARD
 name|SYNCSHARD
 block|,
+DECL|enum constant|CREATEALIAS
 name|CREATEALIAS
 block|,
+DECL|enum constant|DELETEALIAS
 name|DELETEALIAS
 block|,
+DECL|enum constant|SPLITSHARD
 name|SPLITSHARD
 block|,
+DECL|enum constant|DELETESHARD
 name|DELETESHARD
 block|,
+DECL|enum constant|CREATESHARD
 name|CREATESHARD
 block|,
+DECL|enum constant|DELETEREPLICA
 name|DELETEREPLICA
 block|,
+DECL|enum constant|MIGRATE
 name|MIGRATE
 block|,
+DECL|enum constant|ADDROLE
 name|ADDROLE
 block|,
+DECL|enum constant|REMOVEROLE
 name|REMOVEROLE
+block|,
+DECL|enum constant|CLUSTERPROP
+name|CLUSTERPROP
 block|;
 DECL|method|get
 specifier|public
