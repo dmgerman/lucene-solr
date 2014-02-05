@@ -149,6 +149,7 @@ comment|/** internal use - name of the default parser */
 DECL|field|DEFAULT_QTYPE
 specifier|public
 specifier|static
+specifier|final
 name|String
 name|DEFAULT_QTYPE
 init|=
@@ -156,7 +157,7 @@ name|LuceneQParserPlugin
 operator|.
 name|NAME
 decl_stmt|;
-comment|/** internal use - name to class mappings of builtin parsers */
+comment|/**    * Internal use - name to class mappings of builtin parsers.    * Each query parser plugin extending {@link QParserPlugin} has own instance of standardPlugins.    * This leads to cyclic dependencies of static fields and to case when NAME field is not yet initialized.    * This result to NPE during initialization.    * For every plugin, listed here, NAME field has to be final and static.    */
 DECL|field|standardPlugins
 specifier|public
 specifier|static

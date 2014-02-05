@@ -296,6 +296,7 @@ comment|/** The name that can be used to specify this plugin should be used to p
 DECL|field|NAME
 specifier|public
 specifier|static
+specifier|final
 name|String
 name|NAME
 init|=
