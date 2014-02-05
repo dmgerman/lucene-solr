@@ -455,7 +455,7 @@ name|commit
 argument_list|()
 expr_stmt|;
 block|}
-comment|/**    * Parse response from query using NoOpResponseParser.    * @throws Exception    */
+comment|/**    * Parse response from query using NoOpResponseParser.    */
 annotation|@
 name|Test
 DECL|method|testQueryParse
@@ -633,7 +633,7 @@ argument_list|)
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**    * Parse response from java.io.Reader.    * @throws Exception    */
+comment|/**    * Parse response from java.io.Reader.    */
 annotation|@
 name|Test
 DECL|method|testReaderResponse
@@ -727,7 +727,7 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
-comment|/**    * Parse response from java.io.InputStream.    * @throws Exception    */
+comment|/**    * Parse response from java.io.InputStream.    */
 annotation|@
 name|Test
 DECL|method|testInputStreamResponse
