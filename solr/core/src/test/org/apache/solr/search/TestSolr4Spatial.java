@@ -256,6 +256,16 @@ end_import
 
 begin_import
 import|import
+name|org
+operator|.
+name|junit
+operator|.
+name|Ignore
+import|;
+end_import
+
+begin_import
+import|import
 name|java
 operator|.
 name|text
@@ -396,6 +406,11 @@ expr_stmt|;
 block|}
 annotation|@
 name|Test
+annotation|@
+name|Ignore
+argument_list|(
+literal|"Please fix me!"
+argument_list|)
 DECL|method|testBadShapeParse400
 specifier|public
 name|void

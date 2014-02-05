@@ -1645,6 +1645,11 @@ expr_stmt|;
 block|}
 annotation|@
 name|Test
+annotation|@
+name|Ignore
+argument_list|(
+literal|"Please fix me!"
+argument_list|)
 DECL|method|testClientErrorOnMalformedNumbers
 specifier|public
 name|void
