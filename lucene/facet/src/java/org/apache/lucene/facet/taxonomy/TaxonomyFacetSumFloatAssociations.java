@@ -62,7 +62,9 @@ name|lucene
 operator|.
 name|facet
 operator|.
-name|FacetsConfig
+name|FacetsCollector
+operator|.
+name|MatchingDocs
 import|;
 end_import
 
@@ -76,9 +78,7 @@ name|lucene
 operator|.
 name|facet
 operator|.
-name|FacetsCollector
-operator|.
-name|MatchingDocs
+name|FacetsConfig
 import|;
 end_import
 
@@ -104,9 +104,9 @@ name|apache
 operator|.
 name|lucene
 operator|.
-name|util
+name|search
 operator|.
-name|BytesRef
+name|DocIdSetIterator
 import|;
 end_import
 
@@ -120,7 +120,7 @@ name|lucene
 operator|.
 name|util
 operator|.
-name|FixedBitSet
+name|BytesRef
 import|;
 end_import
 
@@ -254,29 +254,6 @@ block|{
 comment|// this reader does not have DocValues for the requested category list
 continue|continue;
 block|}
-name|FixedBitSet
-name|bits
-init|=
-name|hits
-operator|.
-name|bits
-decl_stmt|;
-specifier|final
-name|int
-name|length
-init|=
-name|hits
-operator|.
-name|bits
-operator|.
-name|length
-argument_list|()
-decl_stmt|;
-name|int
-name|doc
-init|=
-literal|0
-decl_stmt|;
 name|BytesRef
 name|scratch
 init|=
@@ -284,26 +261,33 @@ operator|new
 name|BytesRef
 argument_list|()
 decl_stmt|;
-comment|//System.out.println("count seg=" + hits.context.reader());
+name|DocIdSetIterator
+name|docs
+init|=
+name|hits
+operator|.
+name|bits
+operator|.
+name|iterator
+argument_list|()
+decl_stmt|;
+name|int
+name|doc
+decl_stmt|;
 while|while
 condition|(
-name|doc
-operator|<
-name|length
-operator|&&
 operator|(
 name|doc
 operator|=
-name|bits
+name|docs
 operator|.
-name|nextSetBit
-argument_list|(
-name|doc
-argument_list|)
+name|nextDoc
+argument_list|()
 operator|)
 operator|!=
-operator|-
-literal|1
+name|DocIdSetIterator
+operator|.
+name|NO_MORE_DOCS
 condition|)
 block|{
 comment|//System.out.println("  doc=" + doc);
@@ -486,9 +470,6 @@ name|value
 argument_list|)
 expr_stmt|;
 block|}
-operator|++
-name|doc
-expr_stmt|;
 block|}
 block|}
 name|rollup
