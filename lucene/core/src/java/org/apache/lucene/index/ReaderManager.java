@@ -204,6 +204,24 @@ name|tryIncRef
 argument_list|()
 return|;
 block|}
+annotation|@
+name|Override
+DECL|method|getRefCount
+specifier|protected
+name|int
+name|getRefCount
+parameter_list|(
+name|DirectoryReader
+name|reference
+parameter_list|)
+block|{
+return|return
+name|reference
+operator|.
+name|getRefCount
+argument_list|()
+return|;
+block|}
 block|}
 end_class
 

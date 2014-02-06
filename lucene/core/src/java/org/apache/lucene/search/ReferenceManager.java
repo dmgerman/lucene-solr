@@ -283,19 +283,52 @@ name|REFERENCE_MANAGER_IS_CLOSED_MSG
 argument_list|)
 throw|;
 block|}
-block|}
-do|while
+if|if
 condition|(
-operator|!
 name|tryIncRef
 argument_list|(
 name|ref
 argument_list|)
 condition|)
-do|;
+block|{
 return|return
 name|ref
 return|;
+block|}
+if|if
+condition|(
+name|getRefCount
+argument_list|(
+name|ref
+argument_list|)
+operator|==
+literal|0
+operator|&&
+name|current
+operator|==
+name|ref
+condition|)
+block|{
+assert|assert
+name|ref
+operator|!=
+literal|null
+assert|;
+comment|/* if we can't increment the reader but we are            still the current reference the RM is in a            illegal states since we can't make any progress            anymore. The reference is closed but the RM still            holds on to it as the actual instance.            This can only happen if somebody outside of the RM            decrements the refcount without a corresponding increment            since the RM assigns the new reference before counting down            the reference. */
+throw|throw
+operator|new
+name|IllegalStateException
+argument_list|(
+literal|"The managed reference has already closed - this is likely a bug when the reference count is modified outside of the ReferenceManager"
+argument_list|)
+throw|;
+block|}
+block|}
+do|while
+condition|(
+literal|true
+condition|)
+do|;
 block|}
 comment|/**     *<p>     * Closes this ReferenceManager to prevent future {@link #acquire() acquiring}. A     * reference manager should be closed if the reference to the managed resource     * should be disposed or the application using the {@link ReferenceManager}     * is shutting down. The managed resource might not be released immediately,     * if the {@link ReferenceManager} user is holding on to a previously     * {@link #acquire() acquired} reference. The resource will be released once     * when the last reference is {@link #release(Object) released}. Those     * references can still be used as if the manager was still active.     *</p>     *<p>     * Applications should not {@link #acquire() acquire} new references from this     * manager once this method has been called. {@link #acquire() Acquiring} a     * resource on a closed {@link ReferenceManager} will throw an     * {@link AlreadyClosedException}.     *</p>     *      * @throws IOException     *           if the underlying reader of the current reference could not be closed    */
 annotation|@
@@ -330,6 +363,17 @@ argument_list|()
 expr_stmt|;
 block|}
 block|}
+comment|/**    * Returns the current reference count of the given reference.    */
+DECL|method|getRefCount
+specifier|protected
+specifier|abstract
+name|int
+name|getRefCount
+parameter_list|(
+name|G
+name|reference
+parameter_list|)
+function_decl|;
 comment|/**    *  Called after close(), so subclass can free any resources.    *  @throws IOException if the after close operation in a sub-class throws an {@link IOException}     * */
 DECL|method|afterClose
 specifier|protected

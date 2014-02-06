@@ -318,6 +318,27 @@ name|tryIncRef
 argument_list|()
 return|;
 block|}
+annotation|@
+name|Override
+DECL|method|getRefCount
+specifier|protected
+name|int
+name|getRefCount
+parameter_list|(
+name|IndexSearcher
+name|reference
+parameter_list|)
+block|{
+return|return
+name|reference
+operator|.
+name|getIndexReader
+argument_list|()
+operator|.
+name|getRefCount
+argument_list|()
+return|;
+block|}
 comment|/**    * Returns<code>true</code> if no changes have occured since this searcher    * ie. reader was opened, otherwise<code>false</code>.    * @see DirectoryReader#isCurrent()     */
 DECL|method|isSearcherCurrent
 specifier|public
