@@ -532,7 +532,7 @@ name|SortedSetDocValuesReaderState
 name|state
 init|=
 operator|new
-name|SortedSetDocValuesReaderState
+name|DefaultSortedSetDocValuesReaderState
 argument_list|(
 name|searcher
 operator|.
@@ -758,7 +758,7 @@ name|SortedSetDocValuesReaderState
 name|state
 init|=
 operator|new
-name|SortedSetDocValuesReaderState
+name|DefaultSortedSetDocValuesReaderState
 argument_list|(
 name|r
 argument_list|)
@@ -1129,7 +1129,7 @@ name|SortedSetDocValuesReaderState
 name|state
 init|=
 operator|new
-name|SortedSetDocValuesReaderState
+name|DefaultSortedSetDocValuesReaderState
 argument_list|(
 name|searcher
 operator|.
@@ -1408,7 +1408,7 @@ name|SortedSetDocValuesReaderState
 name|state
 init|=
 operator|new
-name|SortedSetDocValuesReaderState
+name|DefaultSortedSetDocValuesReaderState
 argument_list|(
 name|searcher
 operator|.
@@ -1609,7 +1609,7 @@ name|SortedSetDocValuesReaderState
 name|state
 init|=
 operator|new
-name|SortedSetDocValuesReaderState
+name|DefaultSortedSetDocValuesReaderState
 argument_list|(
 name|searcher
 operator|.
@@ -1887,7 +1887,7 @@ name|SortedSetDocValuesReaderState
 name|state
 init|=
 operator|new
-name|SortedSetDocValuesReaderState
+name|DefaultSortedSetDocValuesReaderState
 argument_list|(
 name|searcher
 operator|.

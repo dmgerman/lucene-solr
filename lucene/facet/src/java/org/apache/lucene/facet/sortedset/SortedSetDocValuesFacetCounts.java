@@ -372,6 +372,13 @@ operator|.
 name|getField
 argument_list|()
 expr_stmt|;
+name|dv
+operator|=
+name|state
+operator|.
+name|getDocValues
+argument_list|()
+expr_stmt|;
 name|counts
 operator|=
 operator|new
@@ -382,13 +389,6 @@ operator|.
 name|getSize
 argument_list|()
 index|]
-expr_stmt|;
-name|dv
-operator|=
-name|state
-operator|.
-name|getDocValues
-argument_list|()
 expr_stmt|;
 comment|//System.out.println("field=" + field);
 name|count
@@ -853,6 +853,14 @@ operator|=
 literal|null
 expr_stmt|;
 block|}
+name|IndexReader
+name|origReader
+init|=
+name|state
+operator|.
+name|getOrigReader
+argument_list|()
+decl_stmt|;
 for|for
 control|(
 name|MatchingDocs
@@ -890,8 +898,6 @@ operator|.
 name|reader
 argument_list|()
 operator|!=
-name|state
-operator|.
 name|origReader
 condition|)
 block|{
