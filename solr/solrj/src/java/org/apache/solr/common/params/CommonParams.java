@@ -483,6 +483,16 @@ return|;
 block|}
 block|}
 empty_stmt|;
+comment|/** which parameters to log (if not supplied all parameters will be logged) **/
+DECL|field|LOG_PARAMS_LIST
+specifier|public
+specifier|static
+specifier|final
+name|String
+name|LOG_PARAMS_LIST
+init|=
+literal|"logParamsList"
+decl_stmt|;
 DECL|field|EXCLUDE
 specifier|public
 specifier|static
