@@ -61,6 +61,12 @@ parameter_list|()
 throws|throws
 name|IOException
 function_decl|;
+comment|// TODO: somehow this class should express the cost of
+comment|// iteration vs the cost of random access Bits; for
+comment|// expensive Filters (e.g. distance< 1 km) we should use
+comment|// bits() after all other Query/Filters have matched, but
+comment|// this is the opposite of what bits() is for now
+comment|// (down-low filtering using e.g. FixedBitSet)
 comment|/** Optionally provides a {@link Bits} interface for random access    * to matching documents.    * @return {@code null}, if this {@code DocIdSet} does not support random access.    * In contrast to {@link #iterator()}, a return value of {@code null}    *<b>does not</b> imply that no documents match the filter!    * The default implementation does not provide random access, so you    * only need to implement this method if your DocIdSet can    * guarantee random access to every docid in O(1) time without    * external disk access (as {@link Bits} interface cannot throw    * {@link IOException}). This is generally true for bit sets    * like {@link org.apache.lucene.util.FixedBitSet}, which return    * itself if they are used as {@code DocIdSet}.    */
 DECL|method|bits
 specifier|public

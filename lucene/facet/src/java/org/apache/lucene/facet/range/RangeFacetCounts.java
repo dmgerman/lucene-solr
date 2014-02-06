@@ -98,13 +98,9 @@ name|apache
 operator|.
 name|lucene
 operator|.
-name|queries
+name|search
 operator|.
-name|function
-operator|.
-name|valuesource
-operator|.
-name|LongFieldSource
+name|Filter
 import|;
 end_import
 
@@ -136,6 +132,13 @@ name|int
 index|[]
 name|counts
 decl_stmt|;
+comment|/** Optional: if specified, we first test this Filter to    *  see whether the document should be checked for    *  matching ranges.  If this is null, all documents are    *  checked. */
+DECL|field|fastMatchFilter
+specifier|protected
+specifier|final
+name|Filter
+name|fastMatchFilter
+decl_stmt|;
 comment|/** Our field name. */
 DECL|field|field
 specifier|protected
@@ -149,7 +152,7 @@ specifier|protected
 name|int
 name|totCount
 decl_stmt|;
-comment|/** Create {@code RangeFacetCounts}, using {@link    *  LongFieldSource} from the specified field. */
+comment|/** Create {@code RangeFacetCounts} */
 DECL|method|RangeFacetCounts
 specifier|protected
 name|RangeFacetCounts
@@ -160,6 +163,9 @@ parameter_list|,
 name|Range
 index|[]
 name|ranges
+parameter_list|,
+name|Filter
+name|fastMatchFilter
 parameter_list|)
 throws|throws
 name|IOException
@@ -175,6 +181,12 @@ operator|.
 name|ranges
 operator|=
 name|ranges
+expr_stmt|;
+name|this
+operator|.
+name|fastMatchFilter
+operator|=
+name|fastMatchFilter
 expr_stmt|;
 name|counts
 operator|=
