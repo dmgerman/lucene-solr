@@ -859,11 +859,8 @@ decl_stmt|;
 name|Directory
 name|dir1
 init|=
-name|getAssertNoDeletesDirectory
-argument_list|(
 name|newDirectory
 argument_list|()
-argument_list|)
 decl_stmt|;
 name|IndexWriterConfig
 name|iwc
