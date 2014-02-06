@@ -274,6 +274,20 @@ name|lucene
 operator|.
 name|store
 operator|.
+name|BaseDirectoryWrapper
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|store
+operator|.
 name|Directory
 import|;
 end_import
@@ -471,7 +485,7 @@ argument_list|()
 decl_stmt|;
 DECL|field|dir
 specifier|protected
-name|MockDirectoryWrapper
+name|Directory
 name|dir
 decl_stmt|;
 DECL|field|writer
@@ -2789,13 +2803,28 @@ argument_list|)
 decl_stmt|;
 name|dir
 operator|=
+name|getDirectory
+argument_list|(
 name|newMockFSDirectory
 argument_list|(
 name|tempDir
 argument_list|)
+argument_list|)
 expr_stmt|;
 comment|// some subclasses rely on this being MDW
+if|if
+condition|(
 name|dir
+operator|instanceof
+name|BaseDirectoryWrapper
+condition|)
+block|{
+operator|(
+operator|(
+name|BaseDirectoryWrapper
+operator|)
+name|dir
+operator|)
 operator|.
 name|setCheckIndexOnClose
 argument_list|(
@@ -2803,6 +2832,7 @@ literal|false
 argument_list|)
 expr_stmt|;
 comment|// don't double-checkIndex, we do it ourselves.
+block|}
 specifier|final
 name|IndexWriterConfig
 name|conf
