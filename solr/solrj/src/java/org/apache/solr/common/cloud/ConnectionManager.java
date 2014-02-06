@@ -984,13 +984,7 @@ operator|.
 name|interrupt
 argument_list|()
 expr_stmt|;
-throw|throw
-operator|new
-name|RuntimeException
-argument_list|(
-name|e
-argument_list|)
-throw|;
+break|break;
 block|}
 name|left
 operator|=
