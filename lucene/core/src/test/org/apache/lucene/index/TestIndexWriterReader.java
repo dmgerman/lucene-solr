@@ -487,14 +487,13 @@ parameter_list|()
 throws|throws
 name|IOException
 block|{
+comment|// Can't use assertNoDeletes: this test pulls a non-NRT
+comment|// reader in the end:
 name|Directory
 name|dir1
 init|=
-name|getAssertNoDeletesDirectory
-argument_list|(
 name|newDirectory
 argument_list|()
-argument_list|)
 decl_stmt|;
 name|IndexWriterConfig
 name|iwc
