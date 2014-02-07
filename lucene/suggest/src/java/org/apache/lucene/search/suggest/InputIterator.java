@@ -177,6 +177,22 @@ name|boolean
 name|hasPayloads
 parameter_list|()
 function_decl|;
+comment|/** Singleton InputIterator that iterates over 0 BytesRefs. */
+DECL|field|EMPTY
+specifier|public
+specifier|static
+specifier|final
+name|InputIterator
+name|EMPTY
+init|=
+operator|new
+name|InputIteratorWrapper
+argument_list|(
+name|BytesRefIterator
+operator|.
+name|EMPTY
+argument_list|)
+decl_stmt|;
 comment|/**    * Wraps a BytesRefIterator as a suggester InputIterator, with all weights    * set to<code>1</code> and carries no payload    */
 DECL|class|InputIteratorWrapper
 specifier|public

@@ -1951,7 +1951,7 @@ name|iter
 init|=
 name|dict
 operator|.
-name|getWordsIterator
+name|getEntryIterator
 argument_list|()
 decl_stmt|;
 name|BytesRef

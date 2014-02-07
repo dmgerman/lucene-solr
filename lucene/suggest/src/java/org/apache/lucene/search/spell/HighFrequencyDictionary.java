@@ -191,11 +191,11 @@ expr_stmt|;
 block|}
 annotation|@
 name|Override
-DECL|method|getWordsIterator
+DECL|method|getEntryIterator
 specifier|public
 specifier|final
-name|BytesRefIterator
-name|getWordsIterator
+name|InputIterator
+name|getEntryIterator
 parameter_list|()
 throws|throws
 name|IOException

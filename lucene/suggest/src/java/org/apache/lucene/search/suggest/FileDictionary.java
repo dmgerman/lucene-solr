@@ -216,10 +216,10 @@ expr_stmt|;
 block|}
 annotation|@
 name|Override
-DECL|method|getWordsIterator
+DECL|method|getEntryIterator
 specifier|public
 name|InputIterator
-name|getWordsIterator
+name|getEntryIterator
 parameter_list|()
 block|{
 try|try
