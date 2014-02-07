@@ -2833,11 +2833,17 @@ name|ErrorCode
 operator|.
 name|SERVICE_UNAVAILABLE
 argument_list|,
-literal|"No registered leader was found, collection:"
+literal|"No registered leader was found after waiting for "
+operator|+
+name|timeout
+operator|+
+literal|"ms "
+operator|+
+literal|", collection: "
 operator|+
 name|collection
 operator|+
-literal|" slice:"
+literal|" slice: "
 operator|+
 name|shard
 argument_list|)
