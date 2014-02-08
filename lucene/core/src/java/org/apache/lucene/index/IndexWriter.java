@@ -11613,6 +11613,24 @@ literal|"commitMerge: skip: it was aborted"
 argument_list|)
 expr_stmt|;
 block|}
+comment|// In case we opened and pooled a reader for this
+comment|// segment, drop it now.  This ensures that we close
+comment|// the reader before trying to delete any of its
+comment|// files.  This is not a very big deal, since this
+comment|// reader will never be used by any NRT reader, and
+comment|// another thread is currently running close(false)
+comment|// so it will be dropped shortly anyway, but not
+comment|// doing this  makes  MockDirWrapper angry in
+comment|// TestNRTThreads (LUCENE-5434):
+name|readerPool
+operator|.
+name|drop
+argument_list|(
+name|merge
+operator|.
+name|info
+argument_list|)
+expr_stmt|;
 name|deleter
 operator|.
 name|deleteNewFiles
@@ -15131,7 +15149,8 @@ name|mergeState
 argument_list|)
 condition|)
 block|{
-comment|// commitMerge will return false if this merge was aborted
+comment|// commitMerge will return false if this merge was
+comment|// aborted
 return|return
 literal|0
 return|;
