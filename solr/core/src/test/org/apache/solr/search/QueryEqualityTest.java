@@ -38,6 +38,16 @@ end_import
 
 begin_import
 import|import
+name|java
+operator|.
+name|util
+operator|.
+name|Map
+import|;
+end_import
+
+begin_import
+import|import
 name|org
 operator|.
 name|apache
@@ -792,6 +802,83 @@ argument_list|,
 name|req
 argument_list|,
 literal|"{!collapse field=$myField}"
+argument_list|)
+expr_stmt|;
+name|assertQueryEquals
+argument_list|(
+literal|"collapse"
+argument_list|,
+name|req
+argument_list|,
+literal|"{!collapse field=$myField max=a}"
+argument_list|)
+expr_stmt|;
+name|assertQueryEquals
+argument_list|(
+literal|"collapse"
+argument_list|,
+name|req
+argument_list|,
+literal|"{!collapse field=$myField min=a}"
+argument_list|)
+expr_stmt|;
+name|assertQueryEquals
+argument_list|(
+literal|"collapse"
+argument_list|,
+name|req
+argument_list|,
+literal|"{!collapse field=$myField max=a nullPolicy=expand}"
+argument_list|)
+expr_stmt|;
+comment|//Add boosted documents to the request context.
+name|Map
+name|context
+init|=
+name|req
+operator|.
+name|getContext
+argument_list|()
+decl_stmt|;
+name|Set
+name|boosted
+init|=
+operator|new
+name|HashSet
+argument_list|()
+decl_stmt|;
+name|boosted
+operator|.
+name|add
+argument_list|(
+literal|"doc1"
+argument_list|)
+expr_stmt|;
+name|boosted
+operator|.
+name|add
+argument_list|(
+literal|"doc2"
+argument_list|)
+expr_stmt|;
+name|context
+operator|.
+name|put
+argument_list|(
+literal|"BOOSTED"
+argument_list|,
+name|boosted
+argument_list|)
+expr_stmt|;
+name|assertQueryEquals
+argument_list|(
+literal|"collapse"
+argument_list|,
+name|req
+argument_list|,
+literal|"{!collapse field=$myField min=a}"
+argument_list|,
+literal|"{!collapse field=$myField min=a nullPolicy=ignore}"
 argument_list|)
 expr_stmt|;
 block|}

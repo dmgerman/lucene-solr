@@ -771,6 +771,12 @@ argument_list|,
 literal|"*[count(//doc)=4]"
 argument_list|,
 literal|"//result/doc[1]/float[@name='id'][.='1.0']"
+argument_list|,
+literal|"//result/doc[2]/float[@name='id'][.='2.0']"
+argument_list|,
+literal|"//result/doc[3]/float[@name='id'][.='3.0']"
+argument_list|,
+literal|"//result/doc[4]/float[@name='id'][.='6.0']"
 argument_list|)
 expr_stmt|;
 comment|//Test collapse by min int field and sort
