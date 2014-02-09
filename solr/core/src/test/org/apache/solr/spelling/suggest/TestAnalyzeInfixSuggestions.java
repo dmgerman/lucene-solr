@@ -167,12 +167,9 @@ operator|.
 name|exists
 argument_list|()
 condition|)
-name|assertTrue
-argument_list|(
 name|recurseDelete
 argument_list|(
 name|indexPathDir
-argument_list|)
 argument_list|)
 expr_stmt|;
 if|if
@@ -182,12 +179,9 @@ operator|.
 name|exists
 argument_list|()
 condition|)
-name|assertTrue
-argument_list|(
 name|recurseDelete
 argument_list|(
 name|indexPathDirTmp
-argument_list|)
 argument_list|)
 expr_stmt|;
 block|}
