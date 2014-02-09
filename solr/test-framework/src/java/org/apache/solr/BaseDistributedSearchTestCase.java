@@ -206,7 +206,7 @@ name|lucene
 operator|.
 name|util
 operator|.
-name|_TestUtil
+name|Constants
 import|;
 end_import
 
@@ -220,7 +220,23 @@ name|lucene
 operator|.
 name|util
 operator|.
-name|Constants
+name|_TestUtil
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|solr
+operator|.
+name|client
+operator|.
+name|solrj
+operator|.
+name|SolrResponse
 import|;
 end_import
 
@@ -343,22 +359,6 @@ operator|.
 name|response
 operator|.
 name|UpdateResponse
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|solr
-operator|.
-name|client
-operator|.
-name|solrj
-operator|.
-name|SolrResponse
 import|;
 end_import
 
@@ -500,7 +500,7 @@ name|org
 operator|.
 name|junit
 operator|.
-name|BeforeClass
+name|AfterClass
 import|;
 end_import
 
@@ -510,7 +510,7 @@ name|org
 operator|.
 name|junit
 operator|.
-name|AfterClass
+name|BeforeClass
 import|;
 end_import
 
@@ -2047,7 +2047,7 @@ argument_list|,
 name|getExtraServlets
 argument_list|()
 argument_list|,
-literal|null
+name|sslConfig
 argument_list|,
 name|getExtraRequestFilters
 argument_list|()
@@ -2142,9 +2142,21 @@ try|try
 block|{
 comment|// setup the server...
 name|String
+name|urlScheme
+init|=
+name|isSSLMode
+argument_list|()
+condition|?
+literal|"https"
+else|:
+literal|"http"
+decl_stmt|;
+name|String
 name|url
 init|=
-literal|"http://127.0.0.1:"
+name|urlScheme
+operator|+
+literal|"://127.0.0.1:"
 operator|+
 name|port
 operator|+

@@ -577,6 +577,17 @@ operator|=
 name|newConfigurer
 expr_stmt|;
 block|}
+DECL|method|getConfigurer
+specifier|public
+specifier|static
+name|HttpClientConfigurer
+name|getConfigurer
+parameter_list|()
+block|{
+return|return
+name|configurer
+return|;
+block|}
 comment|/**    * Creates new http client by using the provided configuration.    *     * @param params    *          http client configuration, if null a client with default    *          configuration (no additional configuration) is created.     */
 DECL|method|createClient
 specifier|public

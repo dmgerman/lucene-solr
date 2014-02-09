@@ -1026,8 +1026,18 @@ expr_stmt|;
 comment|// TODO: shutdown
 name|shardHandlerFactory
 operator|=
-operator|new
+operator|(
 name|HttpShardHandlerFactory
+operator|)
+name|core
+operator|.
+name|getCoreDescriptor
+argument_list|()
+operator|.
+name|getCoreContainer
+argument_list|()
+operator|.
+name|getShardHandlerFactory
 argument_list|()
 expr_stmt|;
 name|shardHandler
@@ -1648,25 +1658,6 @@ operator|.
 name|purpose
 operator|=
 literal|1
-expr_stmt|;
-comment|// TODO: this sucks
-if|if
-condition|(
-name|replica
-operator|.
-name|startsWith
-argument_list|(
-literal|"http://"
-argument_list|)
-condition|)
-name|replica
-operator|=
-name|replica
-operator|.
-name|substring
-argument_list|(
-literal|7
-argument_list|)
 expr_stmt|;
 name|sreq
 operator|.

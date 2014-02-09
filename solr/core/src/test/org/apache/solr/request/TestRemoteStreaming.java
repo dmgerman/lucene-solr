@@ -335,6 +335,14 @@ argument_list|,
 literal|"TestRemoteStreaming"
 argument_list|)
 decl_stmt|;
+static|static
+block|{
+comment|// does not yet work with ssl
+name|sslConfig
+operator|=
+literal|null
+expr_stmt|;
+block|}
 annotation|@
 name|BeforeClass
 DECL|method|beforeTest

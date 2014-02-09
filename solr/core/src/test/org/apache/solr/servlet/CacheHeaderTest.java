@@ -78,20 +78,6 @@ end_import
 
 begin_import
 import|import
-name|com
-operator|.
-name|google
-operator|.
-name|common
-operator|.
-name|base
-operator|.
-name|Charsets
-import|;
-end_import
-
-begin_import
-import|import
 name|org
 operator|.
 name|apache
@@ -152,6 +138,20 @@ name|org
 operator|.
 name|apache
 operator|.
+name|lucene
+operator|.
+name|util
+operator|.
+name|_TestUtil
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
 name|solr
 operator|.
 name|common
@@ -194,15 +194,15 @@ end_import
 
 begin_import
 import|import
-name|org
+name|com
 operator|.
-name|apache
+name|google
 operator|.
-name|lucene
+name|common
 operator|.
-name|util
+name|base
 operator|.
-name|_TestUtil
+name|Charsets
 import|;
 end_import
 
@@ -233,6 +233,14 @@ argument_list|,
 literal|"CacheHeaderTest"
 argument_list|)
 decl_stmt|;
+static|static
+block|{
+comment|// does not yet work with ssl
+name|sslConfig
+operator|=
+literal|null
+expr_stmt|;
+block|}
 annotation|@
 name|BeforeClass
 DECL|method|beforeTest

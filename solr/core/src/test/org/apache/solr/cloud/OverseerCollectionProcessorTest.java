@@ -1306,7 +1306,7 @@ argument_list|(
 name|address
 argument_list|)
 expr_stmt|;
-name|solrZkClientMock
+name|zkStateReaderMock
 operator|.
 name|getBaseUrlForNodeName
 argument_list|(

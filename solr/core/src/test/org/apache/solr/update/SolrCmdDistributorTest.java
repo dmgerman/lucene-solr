@@ -547,6 +547,14 @@ operator|new
 name|AtomicInteger
 argument_list|()
 decl_stmt|;
+static|static
+block|{
+comment|// no ssl currently because distrib updates read scheme from zk and no zk in this test
+name|sslConfig
+operator|=
+literal|null
+expr_stmt|;
+block|}
 annotation|@
 name|BeforeClass
 DECL|method|beforeClass

@@ -746,6 +746,16 @@ name|org
 operator|.
 name|junit
 operator|.
+name|BeforeClass
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|junit
+operator|.
 name|Ignore
 import|;
 end_import
@@ -851,6 +861,23 @@ name|nDocs
 init|=
 literal|500
 decl_stmt|;
+static|static
+block|{
+comment|// does not yet work with ssl
+name|sslConfig
+operator|=
+literal|null
+expr_stmt|;
+block|}
+annotation|@
+name|BeforeClass
+DECL|method|beforeClass
+specifier|public
+specifier|static
+name|void
+name|beforeClass
+parameter_list|()
+block|{    }
 annotation|@
 name|Before
 DECL|method|setUp

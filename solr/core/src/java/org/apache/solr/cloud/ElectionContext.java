@@ -975,9 +975,6 @@ operator|new
 name|SyncStrategy
 argument_list|(
 name|cc
-operator|.
-name|getUpdateShardHandler
-argument_list|()
 argument_list|)
 expr_stmt|;
 block|}
