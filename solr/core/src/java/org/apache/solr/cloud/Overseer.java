@@ -451,7 +451,7 @@ init|=
 literal|"removeroutingrule"
 decl_stmt|;
 DECL|field|STATE_UPDATE_DELAY
-specifier|private
+specifier|public
 specifier|static
 specifier|final
 name|int

@@ -1766,10 +1766,13 @@ operator|.
 name|runLeaderProcess
 argument_list|(
 literal|true
+argument_list|,
+name|Overseer
+operator|.
+name|STATE_UPDATE_DELAY
+operator|+
+literal|100
 argument_list|)
-expr_stmt|;
-name|rejoinOverseerElection
-argument_list|()
 expr_stmt|;
 block|}
 catch|catch
