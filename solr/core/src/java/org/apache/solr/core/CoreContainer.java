@@ -3812,6 +3812,19 @@ return|return
 literal|null
 return|;
 block|}
+DECL|method|getCoreRootDirectory
+specifier|public
+name|String
+name|getCoreRootDirectory
+parameter_list|()
+block|{
+return|return
+name|cfg
+operator|.
+name|getCoreRootDirectory
+argument_list|()
+return|;
+block|}
 comment|/**    * Gets a core by name and increase its refcount.    *    * @see SolrCore#close()    * @param name the core name    * @return the core if found, null if a SolrCore by this name does not exist    * @exception SolrException if a SolrCore with this name failed to be initialized    */
 DECL|method|getCore
 specifier|public

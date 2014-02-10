@@ -632,6 +632,8 @@ name|config
 init|=
 name|getTestHarnessConfig
 argument_list|(
+name|loader
+argument_list|,
 name|coreName
 argument_list|,
 name|dataDir
@@ -720,7 +722,7 @@ argument_list|()
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**    * Create a TestHarness using a specific solr home directory and solr xml    * @param solrHome the solr home directory    * @param solrXml a File pointing to a solr.xml configuration    */
+comment|/**    * Create a TestHarness using a specific solr home directory and solr xml    * @param solrHome the solr home directory    * @param solrXml the text of a solrxml    */
 DECL|method|TestHarness
 specifier|public
 name|TestHarness
@@ -740,10 +742,32 @@ argument_list|(
 name|solrHome
 argument_list|)
 argument_list|,
+name|solrXml
+argument_list|)
+expr_stmt|;
+block|}
+comment|/**    * Create a TestHarness using a specific solr resource loader and solr xml    * @param loader the SolrResourceLoader to use    * @param solrXml the text of a solrxml    */
+DECL|method|TestHarness
+specifier|public
+name|TestHarness
+parameter_list|(
+name|SolrResourceLoader
+name|loader
+parameter_list|,
+name|String
+name|solrXml
+parameter_list|)
+block|{
+name|this
+argument_list|(
+name|loader
+argument_list|,
 name|ConfigSolr
 operator|.
 name|fromString
 argument_list|(
+name|loader
+argument_list|,
 name|solrXml
 argument_list|)
 argument_list|)
@@ -796,6 +820,9 @@ specifier|static
 name|ConfigSolr
 name|getTestHarnessConfig
 parameter_list|(
+name|SolrResourceLoader
+name|loader
+parameter_list|,
 name|String
 name|coreName
 parameter_list|,
@@ -865,6 +892,8 @@ name|ConfigSolr
 operator|.
 name|fromString
 argument_list|(
+name|loader
+argument_list|,
 name|solrxml
 argument_list|)
 return|;

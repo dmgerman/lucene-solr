@@ -708,7 +708,7 @@ name|instanceDir
 argument_list|,
 name|container
 operator|.
-name|getSolrHome
+name|getCoreRootDirectory
 argument_list|()
 argument_list|)
 argument_list|)

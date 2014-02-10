@@ -243,6 +243,20 @@ argument_list|(
 name|coreDiscoveryRoot
 argument_list|)
 expr_stmt|;
+name|logger
+operator|.
+name|info
+argument_list|(
+literal|"Config-defined core root directory: {}"
+argument_list|,
+name|this
+operator|.
+name|rootDirectory
+operator|.
+name|getAbsolutePath
+argument_list|()
+argument_list|)
+expr_stmt|;
 block|}
 annotation|@
 name|Override
