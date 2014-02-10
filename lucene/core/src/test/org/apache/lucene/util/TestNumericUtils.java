@@ -1607,13 +1607,13 @@ parameter_list|)
 block|{
 comment|// Cannot use FixedBitSet since the range could be long:
 specifier|final
-name|OpenBitSet
+name|LongBitSet
 name|bits
 init|=
 name|useBitSet
 condition|?
 operator|new
-name|OpenBitSet
+name|LongBitSet
 argument_list|(
 name|upper
 operator|-

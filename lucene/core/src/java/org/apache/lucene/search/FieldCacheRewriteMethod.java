@@ -120,7 +120,7 @@ name|lucene
 operator|.
 name|util
 operator|.
-name|OpenBitSet
+name|LongBitSet
 import|;
 end_import
 
@@ -365,11 +365,11 @@ argument_list|)
 decl_stmt|;
 comment|// Cannot use FixedBitSet because we require long index (ord):
 specifier|final
-name|OpenBitSet
+name|LongBitSet
 name|termSet
 init|=
 operator|new
-name|OpenBitSet
+name|LongBitSet
 argument_list|(
 name|fcsi
 operator|.
@@ -515,7 +515,7 @@ operator|!=
 literal|null
 condition|)
 block|{
-comment|// fill into a OpenBitSet
+comment|// fill into a bitset
 do|do
 block|{
 name|long

@@ -126,7 +126,7 @@ name|lucene
 operator|.
 name|util
 operator|.
-name|OpenBitSet
+name|FixedBitSet
 import|;
 end_import
 
@@ -705,11 +705,11 @@ operator|.
 name|rptGroup
 index|]
 decl_stmt|;
-name|OpenBitSet
+name|FixedBitSet
 name|bits
 init|=
 operator|new
-name|OpenBitSet
+name|FixedBitSet
 argument_list|(
 name|rg
 operator|.
@@ -793,6 +793,9 @@ name|n
 init|=
 literal|0
 decl_stmt|;
+comment|// TODO can't this be checked once and decremented as we clear bits?
+comment|// in fact, we don't even need to clear any bits, since the bitset is totally discarded
+comment|// only need to pop as many set bits from the pq.
 while|while
 condition|(
 name|bits
@@ -1950,7 +1953,7 @@ argument_list|()
 decl_stmt|;
 name|ArrayList
 argument_list|<
-name|OpenBitSet
+name|FixedBitSet
 argument_list|>
 name|bb
 init|=
@@ -2424,7 +2427,7 @@ DECL|method|ppTermsBitSets
 specifier|private
 name|ArrayList
 argument_list|<
-name|OpenBitSet
+name|FixedBitSet
 argument_list|>
 name|ppTermsBitSets
 parameter_list|(
@@ -2443,14 +2446,14 @@ parameter_list|)
 block|{
 name|ArrayList
 argument_list|<
-name|OpenBitSet
+name|FixedBitSet
 argument_list|>
 name|bb
 init|=
 operator|new
 name|ArrayList
 argument_list|<
-name|OpenBitSet
+name|FixedBitSet
 argument_list|>
 argument_list|(
 name|rpp
@@ -2466,11 +2469,11 @@ range|:
 name|rpp
 control|)
 block|{
-name|OpenBitSet
+name|FixedBitSet
 name|b
 init|=
 operator|new
-name|OpenBitSet
+name|FixedBitSet
 argument_list|(
 name|tord
 operator|.
@@ -2536,7 +2539,7 @@ name|unionTermGroups
 parameter_list|(
 name|ArrayList
 argument_list|<
-name|OpenBitSet
+name|FixedBitSet
 argument_list|>
 name|bb
 parameter_list|)
@@ -2613,7 +2616,7 @@ argument_list|(
 name|i
 argument_list|)
 operator|.
-name|union
+name|or
 argument_list|(
 name|bb
 operator|.
@@ -2665,7 +2668,7 @@ name|tord
 parameter_list|,
 name|ArrayList
 argument_list|<
-name|OpenBitSet
+name|FixedBitSet
 argument_list|>
 name|bb
 parameter_list|)

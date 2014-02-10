@@ -18,6 +18,16 @@ end_comment
 
 begin_import
 import|import
+name|java
+operator|.
+name|io
+operator|.
+name|IOException
+import|;
+end_import
+
+begin_import
+import|import
 name|org
 operator|.
 name|apache
@@ -124,31 +134,7 @@ name|lucene
 operator|.
 name|util
 operator|.
-name|OpenBitSet
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|util
-operator|.
-name|OpenBitSetDISI
-import|;
-end_import
-
-begin_import
-import|import
-name|java
-operator|.
-name|io
-operator|.
-name|IOException
+name|FixedBitSet
 import|;
 end_import
 
@@ -484,7 +470,7 @@ block|}
 block|}
 DECL|method|initialResult
 specifier|private
-name|OpenBitSetDISI
+name|FixedBitSet
 name|initialResult
 parameter_list|(
 name|AtomicReaderContext
@@ -508,10 +494,18 @@ operator|.
 name|reader
 argument_list|()
 decl_stmt|;
-name|OpenBitSetDISI
+name|FixedBitSet
 name|result
+init|=
+operator|new
+name|FixedBitSet
+argument_list|(
+name|reader
+operator|.
+name|maxDoc
+argument_list|()
+argument_list|)
 decl_stmt|;
-comment|/**      * First AND operation takes place against a completely false      * bitset and will always return zero results.      */
 if|if
 condition|(
 name|logic
@@ -520,9 +514,8 @@ name|AND
 condition|)
 block|{
 name|result
-operator|=
-operator|new
-name|OpenBitSetDISI
+operator|.
+name|or
 argument_list|(
 name|getDISI
 argument_list|(
@@ -536,11 +529,6 @@ index|]
 argument_list|,
 name|context
 argument_list|)
-argument_list|,
-name|reader
-operator|.
-name|maxDoc
-argument_list|()
 argument_list|)
 expr_stmt|;
 operator|++
@@ -559,9 +547,8 @@ name|ANDNOT
 condition|)
 block|{
 name|result
-operator|=
-operator|new
-name|OpenBitSetDISI
+operator|.
+name|or
 argument_list|(
 name|getDISI
 argument_list|(
@@ -575,11 +562,6 @@ index|]
 argument_list|,
 name|context
 argument_list|)
-argument_list|,
-name|reader
-operator|.
-name|maxDoc
-argument_list|()
 argument_list|)
 expr_stmt|;
 name|result
@@ -600,20 +582,6 @@ name|index
 index|[
 literal|0
 index|]
-expr_stmt|;
-block|}
-else|else
-block|{
-name|result
-operator|=
-operator|new
-name|OpenBitSetDISI
-argument_list|(
-name|reader
-operator|.
-name|maxDoc
-argument_list|()
-argument_list|)
 expr_stmt|;
 block|}
 return|return
@@ -639,7 +607,7 @@ parameter_list|)
 throws|throws
 name|IOException
 block|{
-name|OpenBitSetDISI
+name|FixedBitSet
 name|result
 init|=
 name|initialResult
@@ -737,7 +705,7 @@ literal|"Invalid number of elements in logic array"
 argument_list|)
 throw|;
 block|}
-name|OpenBitSetDISI
+name|FixedBitSet
 name|result
 init|=
 name|initialResult
@@ -869,7 +837,7 @@ specifier|private
 name|void
 name|doChain
 parameter_list|(
-name|OpenBitSetDISI
+name|FixedBitSet
 name|result
 parameter_list|,
 name|int
@@ -885,10 +853,10 @@ if|if
 condition|(
 name|dis
 operator|instanceof
-name|OpenBitSet
+name|FixedBitSet
 condition|)
 block|{
-comment|// optimized case for OpenBitSets
+comment|// optimized case for FixedBitSets
 switch|switch
 condition|(
 name|logic
@@ -902,7 +870,7 @@ operator|.
 name|or
 argument_list|(
 operator|(
-name|OpenBitSet
+name|FixedBitSet
 operator|)
 name|dis
 argument_list|)
@@ -916,7 +884,7 @@ operator|.
 name|and
 argument_list|(
 operator|(
-name|OpenBitSet
+name|FixedBitSet
 operator|)
 name|dis
 argument_list|)
@@ -930,7 +898,7 @@ operator|.
 name|andNot
 argument_list|(
 operator|(
-name|OpenBitSet
+name|FixedBitSet
 operator|)
 name|dis
 argument_list|)
@@ -944,7 +912,7 @@ operator|.
 name|xor
 argument_list|(
 operator|(
-name|OpenBitSet
+name|FixedBitSet
 operator|)
 name|dis
 argument_list|)
@@ -1018,7 +986,7 @@ name|OR
 case|:
 name|result
 operator|.
-name|inPlaceOr
+name|or
 argument_list|(
 name|disi
 argument_list|)
@@ -1029,7 +997,7 @@ name|AND
 case|:
 name|result
 operator|.
-name|inPlaceAnd
+name|and
 argument_list|(
 name|disi
 argument_list|)
@@ -1040,7 +1008,7 @@ name|ANDNOT
 case|:
 name|result
 operator|.
-name|inPlaceNot
+name|andNot
 argument_list|(
 name|disi
 argument_list|)
@@ -1051,7 +1019,7 @@ name|XOR
 case|:
 name|result
 operator|.
-name|inPlaceXor
+name|xor
 argument_list|(
 name|disi
 argument_list|)

@@ -328,7 +328,7 @@ name|lucene
 operator|.
 name|util
 operator|.
-name|OpenBitSet
+name|LongBitSet
 import|;
 end_import
 
@@ -7399,11 +7399,11 @@ argument_list|()
 operator|-
 literal|1
 decl_stmt|;
-name|OpenBitSet
+name|LongBitSet
 name|seenOrds
 init|=
 operator|new
-name|OpenBitSet
+name|LongBitSet
 argument_list|(
 name|dv
 operator|.

@@ -270,21 +270,7 @@ name|lucene
 operator|.
 name|util
 operator|.
-name|OpenBitSet
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|util
-operator|.
-name|RamUsageEstimator
+name|LongBitSet
 import|;
 end_import
 
@@ -897,11 +883,11 @@ name|ordCount
 init|=
 literal|0
 decl_stmt|;
-name|OpenBitSet
+name|LongBitSet
 name|seenOrds
 init|=
 operator|new
-name|OpenBitSet
+name|LongBitSet
 argument_list|(
 name|valueCount
 argument_list|)

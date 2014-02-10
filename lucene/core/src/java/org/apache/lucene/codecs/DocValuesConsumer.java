@@ -274,7 +274,7 @@ name|lucene
 operator|.
 name|util
 operator|.
-name|OpenBitSet
+name|LongBitSet
 import|;
 end_import
 
@@ -1144,11 +1144,11 @@ expr_stmt|;
 block|}
 else|else
 block|{
-name|OpenBitSet
+name|LongBitSet
 name|bitset
 init|=
 operator|new
-name|OpenBitSet
+name|LongBitSet
 argument_list|(
 name|dv
 operator|.
@@ -1764,11 +1764,11 @@ expr_stmt|;
 block|}
 else|else
 block|{
-name|OpenBitSet
+name|LongBitSet
 name|bitset
 init|=
 operator|new
-name|OpenBitSet
+name|LongBitSet
 argument_list|(
 name|dv
 operator|.
@@ -2599,7 +2599,7 @@ name|FilteredTermsEnum
 block|{
 DECL|field|liveTerms
 specifier|final
-name|OpenBitSet
+name|LongBitSet
 name|liveTerms
 decl_stmt|;
 DECL|method|BitsFilteredTermsEnum
@@ -2608,7 +2608,7 @@ parameter_list|(
 name|TermsEnum
 name|in
 parameter_list|,
-name|OpenBitSet
+name|LongBitSet
 name|liveTerms
 parameter_list|)
 block|{

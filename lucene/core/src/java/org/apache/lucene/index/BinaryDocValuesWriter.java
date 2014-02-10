@@ -140,7 +140,7 @@ name|lucene
 operator|.
 name|util
 operator|.
-name|OpenBitSet
+name|FixedBitSet
 import|;
 end_import
 
@@ -263,8 +263,7 @@ name|lengths
 decl_stmt|;
 DECL|field|docsWithField
 specifier|private
-specifier|final
-name|OpenBitSet
+name|FixedBitSet
 name|docsWithField
 decl_stmt|;
 DECL|field|fieldInfo
@@ -342,8 +341,10 @@ operator|.
 name|docsWithField
 operator|=
 operator|new
-name|OpenBitSet
-argument_list|()
+name|FixedBitSet
+argument_list|(
+literal|64
+argument_list|)
 expr_stmt|;
 name|this
 operator|.
@@ -505,6 +506,17 @@ name|ioe
 argument_list|)
 throw|;
 block|}
+name|docsWithField
+operator|=
+name|FixedBitSet
+operator|.
+name|ensureCapacity
+argument_list|(
+name|docsWithField
+argument_list|,
+name|docID
+argument_list|)
+expr_stmt|;
 name|docsWithField
 operator|.
 name|set
