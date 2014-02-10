@@ -1488,6 +1488,20 @@ name|ShardDoc
 operator|)
 name|scoreDoc
 decl_stmt|;
+comment|// Include the first if there are duplicate IDs
+if|if
+condition|(
+operator|!
+name|resultIds
+operator|.
+name|containsKey
+argument_list|(
+name|solrDoc
+operator|.
+name|id
+argument_list|)
+condition|)
+block|{
 name|solrDoc
 operator|.
 name|positionInResponse
@@ -1506,6 +1520,7 @@ argument_list|,
 name|solrDoc
 argument_list|)
 expr_stmt|;
+block|}
 block|}
 block|}
 block|}
