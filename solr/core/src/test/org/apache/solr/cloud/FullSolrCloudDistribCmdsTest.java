@@ -2448,7 +2448,7 @@ name|suss
 operator|.
 name|setConnectionTimeout
 argument_list|(
-literal|30000
+literal|120000
 argument_list|)
 expr_stmt|;
 for|for
