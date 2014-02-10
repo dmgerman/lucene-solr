@@ -3387,7 +3387,7 @@ argument_list|()
 argument_list|)
 return|;
 block|}
-comment|/**    *<p>    * Given a list of field names in the schema, returns an immutable list in     * deterministically random order with the following things removed:    *</p>    *<ul>    *<li><code>_version_</code> is removed</li>    *<li><code>dv_last</code> and<code>dv_first</code> fields are removed     *      if the codec doesn't support them</li>    *</ul>    * @see #defaultCodecSupportsMissingDocValues    */
+comment|/**    *<p>    * Given a list of field names in the schema, returns an immutable list in     * deterministically random order with the following things removed:    *</p>    *<ul>    *<li><code>_version_</code> is removed</li>    *<li>    *<code>*_dv_last</code>,<code>*_dv_first</code> and<code>*_dv</code>    *    fields are removed if the codec doesn't support missing DocValues    *</li>    *</ul>    * @see #defaultCodecSupportsMissingDocValues    */
 DECL|method|pruneAndDeterministicallySort
 specifier|public
 specifier|static
@@ -3406,7 +3406,7 @@ parameter_list|)
 block|{
 specifier|final
 name|boolean
-name|prune_dv_missing
+name|prune_dv
 init|=
 operator|!
 name|defaultCodecSupportsMissingDocValues
@@ -3449,7 +3449,7 @@ continue|continue;
 block|}
 if|if
 condition|(
-name|prune_dv_missing
+name|prune_dv
 operator|&&
 operator|(
 name|f
@@ -3466,6 +3466,13 @@ argument_list|(
 literal|"_dv_first"
 argument_list|)
 operator|)
+operator|||
+name|f
+operator|.
+name|endsWith
+argument_list|(
+literal|"_dv"
+argument_list|)
 condition|)
 block|{
 continue|continue;
