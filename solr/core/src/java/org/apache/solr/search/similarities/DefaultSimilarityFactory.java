@@ -112,10 +112,23 @@ name|DefaultSimilarityFactory
 extends|extends
 name|SimilarityFactory
 block|{
+comment|/** Init param name for specifying the value to use in     * {@link DefaultSimilarity#setDiscountOverlaps(boolean)}     */
+DECL|field|DISCOUNT_OVERLAPS
+specifier|public
+specifier|static
+specifier|final
+name|String
+name|DISCOUNT_OVERLAPS
+init|=
+literal|"discountOverlaps"
+decl_stmt|;
+comment|/**     * Controls the value of {@link DefaultSimilarity#setDiscountOverlaps(boolean)}     * on newly constructed instances of {@link DefaultSimilarity}    */
 DECL|field|discountOverlaps
 specifier|protected
 name|boolean
 name|discountOverlaps
+init|=
+literal|true
 decl_stmt|;
 annotation|@
 name|Override
@@ -141,7 +154,7 @@ name|params
 operator|.
 name|getBool
 argument_list|(
-literal|"discountOverlaps"
+name|DISCOUNT_OVERLAPS
 argument_list|,
 literal|true
 argument_list|)
