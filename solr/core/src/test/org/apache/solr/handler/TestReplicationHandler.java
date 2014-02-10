@@ -864,9 +864,9 @@ decl_stmt|;
 static|static
 block|{
 comment|// does not yet work with ssl
-name|sslConfig
+name|ALLOW_SSL
 operator|=
-literal|null
+literal|false
 expr_stmt|;
 block|}
 annotation|@

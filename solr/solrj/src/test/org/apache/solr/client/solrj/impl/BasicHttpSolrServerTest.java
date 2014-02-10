@@ -412,6 +412,20 @@ begin_import
 import|import
 name|org
 operator|.
+name|apache
+operator|.
+name|solr
+operator|.
+name|util
+operator|.
+name|SSLTestConfig
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
 name|junit
 operator|.
 name|BeforeClass
@@ -4043,7 +4057,7 @@ name|shutdown
 argument_list|()
 expr_stmt|;
 block|}
-comment|/**    * A trivial test that verifies the example keystore used for SSL testing can be     * found using the base class. this helps future-proof against hte possibility of     * something moving/breaking thekeystore path in a way that results in the SSL     * randomization logic being forced to silently never use SSL.  (We can't enforce     * this type of check in the base class because then it would not be usable by client     * code depending on the test framework    */
+comment|/**    * A trivial test that verifies the example keystore used for SSL testing can be     * found using the base class. this helps future-proof against the possibility of     * something moving/breaking the keystore path in a way that results in the SSL     * randomization logic being forced to silently never use SSL.  (We can't enforce     * this type of check in the base class because then it would not be usable by client     * code depending on the test framework    */
 DECL|method|testExampleKeystorePath
 specifier|public
 name|void
@@ -4058,8 +4072,9 @@ literal|"structure of the example configs and/or ExternalPaths.java - "
 operator|+
 literal|"SSL randomization is broken"
 argument_list|,
-name|getExampleKeystoreFile
-argument_list|()
+name|SSLTestConfig
+operator|.
+name|TEST_KEYSTORE
 argument_list|)
 expr_stmt|;
 block|}

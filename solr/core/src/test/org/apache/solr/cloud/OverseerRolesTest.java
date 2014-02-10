@@ -323,9 +323,10 @@ name|client
 decl_stmt|;
 static|static
 block|{
-name|sslConfig
+comment|// SSL does not work with this feature for some reason
+name|ALLOW_SSL
 operator|=
-literal|null
+literal|false
 expr_stmt|;
 block|}
 annotation|@

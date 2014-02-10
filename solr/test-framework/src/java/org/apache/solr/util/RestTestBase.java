@@ -160,16 +160,6 @@ begin_import
 import|import
 name|org
 operator|.
-name|junit
-operator|.
-name|BeforeClass
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
 name|slf4j
 operator|.
 name|Logger
@@ -229,19 +219,6 @@ specifier|static
 name|RestTestHarness
 name|restTestHarness
 decl_stmt|;
-annotation|@
-name|BeforeClass
-DECL|method|beforeClass
-specifier|public
-specifier|static
-name|void
-name|beforeClass
-parameter_list|()
-throws|throws
-name|Exception
-block|{
-comment|// sslConfig = null;
-block|}
 DECL|method|createJettyAndHarness
 specifier|public
 specifier|static

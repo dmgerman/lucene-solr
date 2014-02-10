@@ -550,9 +550,9 @@ decl_stmt|;
 static|static
 block|{
 comment|// no ssl currently because distrib updates read scheme from zk and no zk in this test
-name|sslConfig
+name|ALLOW_SSL
 operator|=
-literal|null
+literal|false
 expr_stmt|;
 block|}
 annotation|@

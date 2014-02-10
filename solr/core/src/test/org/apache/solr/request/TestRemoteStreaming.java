@@ -337,10 +337,10 @@ argument_list|)
 decl_stmt|;
 static|static
 block|{
-comment|// does not yet work with ssl
-name|sslConfig
+comment|// does not yet work with ssl - uses raw URL
+name|ALLOW_SSL
 operator|=
-literal|null
+literal|false
 expr_stmt|;
 block|}
 annotation|@
