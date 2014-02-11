@@ -188,6 +188,16 @@ name|SAXException
 import|;
 end_import
 
+begin_import
+import|import
+name|org
+operator|.
+name|junit
+operator|.
+name|AfterClass
+import|;
+end_import
+
 begin_class
 DECL|class|RestTestBase
 specifier|abstract
@@ -219,6 +229,20 @@ specifier|static
 name|RestTestHarness
 name|restTestHarness
 decl_stmt|;
+annotation|@
+name|AfterClass
+DECL|method|cleanUpHarness
+specifier|public
+specifier|static
+name|void
+name|cleanUpHarness
+parameter_list|()
+block|{
+name|restTestHarness
+operator|=
+literal|null
+expr_stmt|;
+block|}
 DECL|method|createJettyAndHarness
 specifier|public
 specifier|static
