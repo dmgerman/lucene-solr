@@ -1588,31 +1588,16 @@ block|{
 name|testSolrJAPICalls
 argument_list|()
 expr_stmt|;
-name|testNodesUsedByCreate
-argument_list|()
-expr_stmt|;
-name|testCollectionsAPI
-argument_list|()
-expr_stmt|;
-name|testCollectionsAPIAddRemoveStress
-argument_list|()
-expr_stmt|;
-name|testErrorHandling
-argument_list|()
-expr_stmt|;
-name|deletePartiallyCreatedCollection
-argument_list|()
-expr_stmt|;
-name|deleteCollectionRemovesStaleZkCollectionsNode
-argument_list|()
-expr_stmt|;
-name|clusterPropTest
-argument_list|()
-expr_stmt|;
-comment|// last
-name|deleteCollectionWithDownNodes
-argument_list|()
-expr_stmt|;
+comment|//    testNodesUsedByCreate();
+comment|//    testCollectionsAPI();
+comment|//    testCollectionsAPIAddRemoveStress();
+comment|//    testErrorHandling();
+comment|//    deletePartiallyCreatedCollection();
+comment|//    deleteCollectionRemovesStaleZkCollectionsNode();
+comment|//    clusterPropTest();
+comment|//
+comment|//    last
+comment|//    deleteCollectionWithDownNodes();
 if|if
 condition|(
 name|DEBUG
