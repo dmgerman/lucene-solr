@@ -1407,6 +1407,13 @@ expr_stmt|;
 block|}
 name|overseerElector
 operator|.
+name|setup
+argument_list|(
+name|context
+argument_list|)
+expr_stmt|;
+name|overseerElector
+operator|.
 name|joinElection
 argument_list|(
 name|context
