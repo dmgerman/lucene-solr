@@ -777,6 +777,17 @@ condition|)
 block|{
 comment|// careful: mark only those currently in the queue
 name|bits
+operator|=
+name|FixedBitSet
+operator|.
+name|ensureCapacity
+argument_list|(
+name|bits
+argument_list|,
+name|k
+argument_list|)
+expr_stmt|;
+name|bits
 operator|.
 name|set
 argument_list|(
@@ -793,9 +804,16 @@ name|n
 init|=
 literal|0
 decl_stmt|;
-comment|// TODO can't this be checked once and decremented as we clear bits?
-comment|// in fact, we don't even need to clear any bits, since the bitset is totally discarded
-comment|// only need to pop as many set bits from the pq.
+comment|// TODO would be good if we can avoid calling cardinality() in each iteration!
+name|int
+name|numBits
+init|=
+name|bits
+operator|.
+name|length
+argument_list|()
+decl_stmt|;
+comment|// larges bit we set
 while|while
 condition|(
 name|bits
@@ -829,6 +847,13 @@ operator|.
 name|rptGroup
 operator|>=
 literal|0
+operator|&&
+name|pp2
+operator|.
+name|rptInd
+operator|<
+name|numBits
+comment|// this bit may not have been set
 operator|&&
 name|bits
 operator|.
