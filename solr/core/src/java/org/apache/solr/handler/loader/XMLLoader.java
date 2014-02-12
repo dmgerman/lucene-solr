@@ -1614,7 +1614,7 @@ name|log
 operator|.
 name|warn
 argument_list|(
-literal|"Unknown attribute id in add:"
+literal|"XML element<add> has invalid XML attr: "
 operator|+
 name|attrName
 argument_list|)
@@ -1848,9 +1848,7 @@ name|log
 operator|.
 name|trace
 argument_list|(
-literal|"parsing "
-operator|+
-name|currTag
+literal|"parsing rollback"
 argument_list|)
 expr_stmt|;
 name|RollbackUpdateCommand
@@ -2054,7 +2052,7 @@ name|log
 operator|.
 name|warn
 argument_list|(
-literal|"unexpected attribute delete/@"
+literal|"XML element<delete> has invalid XML attr: "
 operator|+
 name|attrName
 argument_list|)
@@ -2119,13 +2117,18 @@ argument_list|)
 operator|)
 condition|)
 block|{
+name|String
+name|msg
+init|=
+literal|"XML element<delete> has invalid XML child element: "
+operator|+
+name|mode
+decl_stmt|;
 name|log
 operator|.
 name|warn
 argument_list|(
-literal|"unexpected XML tag /delete/"
-operator|+
-name|mode
+name|msg
 argument_list|)
 expr_stmt|;
 throw|throw
@@ -2138,9 +2141,7 @@ name|ErrorCode
 operator|.
 name|BAD_REQUEST
 argument_list|,
-literal|"unexpected XML tag /delete/"
-operator|+
-name|mode
+name|msg
 argument_list|)
 throw|;
 block|}
@@ -2298,13 +2299,18 @@ return|return;
 block|}
 else|else
 block|{
+name|String
+name|msg
+init|=
+literal|"XML element<delete> has invalid XML (closing) child element: "
+operator|+
+name|currTag
+decl_stmt|;
 name|log
 operator|.
 name|warn
 argument_list|(
-literal|"unexpected XML tag /delete/"
-operator|+
-name|currTag
+name|msg
 argument_list|)
 expr_stmt|;
 throw|throw
@@ -2317,9 +2323,7 @@ name|ErrorCode
 operator|.
 name|BAD_REQUEST
 argument_list|,
-literal|"unexpected XML tag /delete/"
-operator|+
-name|currTag
+name|msg
 argument_list|)
 throw|;
 block|}
@@ -2451,7 +2455,7 @@ name|log
 operator|.
 name|warn
 argument_list|(
-literal|"Unknown attribute doc/@"
+literal|"XML element<doc> has invalid XML attr:"
 operator|+
 name|attrName
 argument_list|)
@@ -2893,13 +2897,18 @@ name|localName
 argument_list|)
 condition|)
 block|{
+name|String
+name|msg
+init|=
+literal|"XML element<doc> has invalid XML child element: "
+operator|+
+name|localName
+decl_stmt|;
 name|log
 operator|.
 name|warn
 argument_list|(
-literal|"unexpected XML tag doc/"
-operator|+
-name|localName
+name|msg
 argument_list|)
 expr_stmt|;
 throw|throw
@@ -2912,9 +2921,7 @@ name|ErrorCode
 operator|.
 name|BAD_REQUEST
 argument_list|,
-literal|"unexpected XML tag doc/"
-operator|+
-name|localName
+name|msg
 argument_list|)
 throw|;
 block|}
@@ -3050,7 +3057,7 @@ name|log
 operator|.
 name|warn
 argument_list|(
-literal|"Unknown attribute doc/field/@"
+literal|"XML element<field> has invalid XML attr: "
 operator|+
 name|attrName
 argument_list|)
