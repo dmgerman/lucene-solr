@@ -947,6 +947,13 @@ name|MorphlineGoLiveMiniMRTest
 extends|extends
 name|AbstractFullDistribZkTestBase
 block|{
+static|static
+block|{
+name|ALLOW_SSL
+operator|=
+literal|false
+expr_stmt|;
+block|}
 DECL|field|RECORD_COUNT
 specifier|private
 specifier|static
@@ -4866,6 +4873,12 @@ argument_list|,
 name|solrConfigOverride
 argument_list|,
 name|schemaOverride
+argument_list|,
+literal|true
+argument_list|,
+literal|null
+argument_list|,
+name|sslConfig
 argument_list|)
 decl_stmt|;
 name|jetty
