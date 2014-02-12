@@ -547,14 +547,6 @@ operator|new
 name|AtomicInteger
 argument_list|()
 decl_stmt|;
-static|static
-block|{
-comment|// no ssl currently because distrib updates read scheme from zk and no zk in this test
-name|ALLOW_SSL
-operator|=
-literal|false
-expr_stmt|;
-block|}
 annotation|@
 name|BeforeClass
 DECL|method|beforeClass
@@ -827,14 +819,13 @@ expr_stmt|;
 name|String
 name|shardStr
 init|=
-literal|"127.0.0.1:"
-operator|+
+name|buildUrl
+argument_list|(
 name|j
 operator|.
 name|getLocalPort
 argument_list|()
-operator|+
-name|context
+argument_list|)
 decl_stmt|;
 name|shardsArr
 index|[

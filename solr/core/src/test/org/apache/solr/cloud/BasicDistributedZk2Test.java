@@ -118,20 +118,6 @@ name|org
 operator|.
 name|apache
 operator|.
-name|lucene
-operator|.
-name|util
-operator|.
-name|Constants
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
 name|solr
 operator|.
 name|client
@@ -420,16 +406,6 @@ name|AbstractSolrTestCase
 import|;
 end_import
 
-begin_import
-import|import
-name|org
-operator|.
-name|junit
-operator|.
-name|BeforeClass
-import|;
-end_import
-
 begin_comment
 comment|/**  * This test simply does a bunch of basic things in solrcloud mode and asserts things  * work as expected.  */
 end_comment
@@ -469,22 +445,6 @@ name|ONE_NODE_COLLECTION
 init|=
 literal|"onenodecollection"
 decl_stmt|;
-static|static
-block|{
-if|if
-condition|(
-name|Constants
-operator|.
-name|MAC_OS_X
-condition|)
-block|{
-comment|// disable while we look into mac test fail
-name|ALLOW_SSL
-operator|=
-literal|false
-expr_stmt|;
-block|}
-block|}
 DECL|method|BasicDistributedZk2Test
 specifier|public
 name|BasicDistributedZk2Test
