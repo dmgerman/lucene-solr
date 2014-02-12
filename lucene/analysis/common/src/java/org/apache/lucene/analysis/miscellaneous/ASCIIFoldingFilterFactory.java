@@ -107,7 +107,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**   * Factory for {@link ASCIIFoldingFilter}.  *<pre class="prettyprint">  *&lt;fieldType name="text_ascii" class="solr.TextField" positionIncrementGap="100"&gt;  *&lt;analyzer&gt;  *&lt;tokenizer class="solr.WhitespaceTokenizerFactory"/&gt;  *&lt;filter class="solr.ASCIIFoldingFilterFactory"/&gt;  *&lt;/analyzer&gt;  *&lt;/fieldType&gt;</pre>  */
+comment|/**   * Factory for {@link ASCIIFoldingFilter}.  *<pre class="prettyprint">  *&lt;fieldType name="text_ascii" class="solr.TextField" positionIncrementGap="100"&gt;  *&lt;analyzer&gt;  *&lt;tokenizer class="solr.WhitespaceTokenizerFactory"/&gt;  *&lt;filter class="solr.ASCIIFoldingFilterFactory" preserveOriginal="false"/&gt;  *&lt;/analyzer&gt;  *&lt;/fieldType&gt;</pre>  */
 end_comment
 
 begin_class
@@ -120,6 +120,12 @@ name|TokenFilterFactory
 implements|implements
 name|MultiTermAwareComponent
 block|{
+DECL|field|preserveOriginal
+specifier|private
+specifier|final
+name|boolean
+name|preserveOriginal
+decl_stmt|;
 comment|/** Creates a new ASCIIFoldingFilterFactory */
 DECL|method|ASCIIFoldingFilterFactory
 specifier|public
@@ -137,6 +143,17 @@ block|{
 name|super
 argument_list|(
 name|args
+argument_list|)
+expr_stmt|;
+name|preserveOriginal
+operator|=
+name|getBoolean
+argument_list|(
+name|args
+argument_list|,
+literal|"preserveOriginal"
+argument_list|,
+literal|false
 argument_list|)
 expr_stmt|;
 if|if
@@ -175,6 +192,8 @@ operator|new
 name|ASCIIFoldingFilter
 argument_list|(
 name|input
+argument_list|,
+name|preserveOriginal
 argument_list|)
 return|;
 block|}
