@@ -1243,6 +1243,13 @@ name|getPositionIncrementGap
 argument_list|(
 name|fieldName
 argument_list|)
+argument_list|,
+name|analyzer
+operator|.
+name|getOffsetGap
+argument_list|(
+name|fieldName
+argument_list|)
 argument_list|)
 expr_stmt|;
 block|}
@@ -1424,7 +1431,7 @@ block|}
 end_function
 
 begin_comment
-comment|/**    * Equivalent to<code>addField(fieldName, stream, 1.0f)</code>.    *     * @param fieldName    *            a name to be associated with the text    * @param stream    *            the token stream to retrieve tokens from    */
+comment|/**    * Equivalent to<code>addField(fieldName, stream, 1.0f)</code>.    *    * @param fieldName    *            a name to be associated with the text    * @param stream    *            the token stream to retrieve tokens from    */
 end_comment
 
 begin_function
@@ -1487,7 +1494,7 @@ block|}
 end_function
 
 begin_comment
-comment|/**    * Iterates over the given token stream and adds the resulting terms to the index;    * Equivalent to adding a tokenized, indexed, termVectorStored, unstored,    * Lucene {@link org.apache.lucene.document.Field}.    * Finally closes the token stream. Note that untokenized keywords can be added with this method via     * {@link #keywordTokenStream(Collection)}, the Lucene<code>KeywordTokenizer</code> or similar utilities.    *     * @param fieldName    *            a name to be associated with the text    * @param stream    *            the token stream to retrieve tokens from.    * @param boost    *            the boost factor for hits for this field    * @param positionIncrementGap    *            the position increment gap if fields with the same name are added more than once    *    * @see org.apache.lucene.document.Field#setBoost(float)    */
+comment|/**    * Iterates over the given token stream and adds the resulting terms to the index;    * Equivalent to adding a tokenized, indexed, termVectorStored, unstored,    * Lucene {@link org.apache.lucene.document.Field}.    * Finally closes the token stream. Note that untokenized keywords can be added with this method via    * {@link #keywordTokenStream(Collection)}, the Lucene<code>KeywordTokenizer</code> or similar utilities.    *    * @param fieldName    *            a name to be associated with the text    * @param stream    *            the token stream to retrieve tokens from.    * @param boost    *            the boost factor for hits for this field    *    * @param positionIncrementGap    *            the position increment gap if fields with the same name are added more than once    *    *    * @see org.apache.lucene.document.Field#setBoost(float)    */
 end_comment
 
 begin_function
@@ -1507,6 +1514,48 @@ name|boost
 parameter_list|,
 name|int
 name|positionIncrementGap
+parameter_list|)
+block|{
+name|addField
+argument_list|(
+name|fieldName
+argument_list|,
+name|stream
+argument_list|,
+name|boost
+argument_list|,
+name|positionIncrementGap
+argument_list|,
+literal|1
+argument_list|)
+expr_stmt|;
+block|}
+end_function
+
+begin_comment
+comment|/**    * Iterates over the given token stream and adds the resulting terms to the index;    * Equivalent to adding a tokenized, indexed, termVectorStored, unstored,    * Lucene {@link org.apache.lucene.document.Field}.    * Finally closes the token stream. Note that untokenized keywords can be added with this method via     * {@link #keywordTokenStream(Collection)}, the Lucene<code>KeywordTokenizer</code> or similar utilities.    *     *    * @param fieldName    *            a name to be associated with the text    * @param stream    *            the token stream to retrieve tokens from.    * @param boost    *            the boost factor for hits for this field    * @param positionIncrementGap    *            the position increment gap if fields with the same name are added more than once    * @param offsetGap    *            the offset gap if fields with the same name are added more than once    * @see org.apache.lucene.document.Field#setBoost(float)    */
+end_comment
+
+begin_function
+DECL|method|addField
+specifier|public
+name|void
+name|addField
+parameter_list|(
+name|String
+name|fieldName
+parameter_list|,
+name|TokenStream
+name|stream
+parameter_list|,
+name|float
+name|boost
+parameter_list|,
+name|int
+name|positionIncrementGap
+parameter_list|,
+name|int
+name|offsetGap
 parameter_list|)
 block|{
 try|try
@@ -1584,6 +1633,11 @@ name|sumTotalTermFreq
 init|=
 literal|0
 decl_stmt|;
+name|int
+name|offset
+init|=
+literal|0
+decl_stmt|;
 if|if
 condition|(
 operator|(
@@ -1619,6 +1673,14 @@ operator|.
 name|lastPosition
 operator|+
 name|positionIncrementGap
+expr_stmt|;
+name|offset
+operator|=
+name|info
+operator|.
+name|lastOffset
+operator|+
+name|offsetGap
 expr_stmt|;
 name|terms
 operator|=
@@ -1912,6 +1974,8 @@ name|offsetAtt
 operator|.
 name|startOffset
 argument_list|()
+operator|+
+name|offset
 argument_list|)
 expr_stmt|;
 name|postingsWriter
@@ -1922,6 +1986,8 @@ name|offsetAtt
 operator|.
 name|endOffset
 argument_list|()
+operator|+
+name|offset
 argument_list|)
 expr_stmt|;
 block|}
@@ -1971,6 +2037,13 @@ argument_list|,
 name|boost
 argument_list|,
 name|pos
+argument_list|,
+name|offsetAtt
+operator|.
+name|endOffset
+argument_list|()
+operator|+
+name|offset
 argument_list|,
 name|sumTotalTermFreq
 argument_list|)
@@ -2931,6 +3004,12 @@ specifier|private
 name|int
 name|lastPosition
 decl_stmt|;
+comment|/** the last offset encountered in this field for multi field support*/
+DECL|field|lastOffset
+specifier|private
+name|int
+name|lastOffset
+decl_stmt|;
 DECL|method|Info
 specifier|public
 name|Info
@@ -2952,6 +3031,9 @@ name|boost
 parameter_list|,
 name|int
 name|lastPosition
+parameter_list|,
+name|int
+name|lastOffset
 parameter_list|,
 name|long
 name|sumTotalTermFreq
@@ -2998,6 +3080,12 @@ operator|.
 name|lastPosition
 operator|=
 name|lastPosition
+expr_stmt|;
+name|this
+operator|.
+name|lastOffset
+operator|=
+name|lastOffset
 expr_stmt|;
 block|}
 DECL|method|getSumTotalTermFreq
