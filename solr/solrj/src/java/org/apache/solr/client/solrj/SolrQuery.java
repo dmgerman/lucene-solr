@@ -204,6 +204,16 @@ name|SolrQuery
 extends|extends
 name|ModifiableSolrParams
 block|{
+DECL|field|DOCID
+specifier|public
+specifier|static
+specifier|final
+name|String
+name|DOCID
+init|=
+literal|"_docid_"
+decl_stmt|;
+comment|// duplicate of org.apache.solr.search.QueryParsing.DOCID which is not accessible from here
 DECL|enum|ORDER
 DECL|enum constant|desc
 DECL|enum constant|asc
@@ -3765,6 +3775,32 @@ operator|.
 name|valueOf
 argument_list|(
 name|showDebugInfo
+argument_list|)
+argument_list|)
+expr_stmt|;
+block|}
+DECL|method|setDistrib
+specifier|public
+name|void
+name|setDistrib
+parameter_list|(
+name|boolean
+name|val
+parameter_list|)
+block|{
+name|this
+operator|.
+name|set
+argument_list|(
+name|CommonParams
+operator|.
+name|DISTRIB
+argument_list|,
+name|String
+operator|.
+name|valueOf
+argument_list|(
+name|val
 argument_list|)
 argument_list|)
 expr_stmt|;

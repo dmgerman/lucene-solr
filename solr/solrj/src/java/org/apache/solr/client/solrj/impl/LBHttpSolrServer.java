@@ -387,6 +387,30 @@ argument_list|(
 literal|0
 argument_list|)
 expr_stmt|;
+comment|/**      * Default sort (if we don't supply a sort) is by score and since      * we request 0 rows any sorting and scoring is not necessary.      * SolrQuery.DOCID schema-independently specifies a non-scoring sort.      *<code>_docid_ asc</code> sort is efficient,      *<code>_docid_ desc</code> sort is not, so choose ascending DOCID sort.      */
+name|solrQuery
+operator|.
+name|setSort
+argument_list|(
+name|SolrQuery
+operator|.
+name|DOCID
+argument_list|,
+name|SolrQuery
+operator|.
+name|ORDER
+operator|.
+name|asc
+argument_list|)
+expr_stmt|;
+comment|// not a top-level request, we are interested only in the server being sent to i.e. it need not distribute our request to further servers
+name|solrQuery
+operator|.
+name|setDistrib
+argument_list|(
+literal|false
+argument_list|)
+expr_stmt|;
 block|}
 DECL|class|ServerWrapper
 specifier|protected

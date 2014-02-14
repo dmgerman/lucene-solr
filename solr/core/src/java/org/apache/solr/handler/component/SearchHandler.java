@@ -1461,7 +1461,9 @@ name|params
 operator|.
 name|set
 argument_list|(
-literal|"distrib"
+name|CommonParams
+operator|.
+name|DISTRIB
 argument_list|,
 literal|"false"
 argument_list|)

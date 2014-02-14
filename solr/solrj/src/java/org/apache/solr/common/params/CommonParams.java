@@ -88,6 +88,16 @@ name|Q
 init|=
 literal|"q"
 decl_stmt|;
+comment|/** distrib string */
+DECL|field|DISTRIB
+specifier|public
+specifier|static
+specifier|final
+name|String
+name|DISTRIB
+init|=
+literal|"distrib"
+decl_stmt|;
 comment|/** sort order */
 DECL|field|SORT
 specifier|public
