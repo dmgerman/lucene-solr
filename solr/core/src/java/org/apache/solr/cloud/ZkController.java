@@ -1344,11 +1344,6 @@ parameter_list|()
 block|{
 try|try
 block|{
-name|markAllAsNotLeader
-argument_list|(
-name|registerOnReconnect
-argument_list|)
-expr_stmt|;
 comment|// this is troublesome - we dont want to kill anything the old
 comment|// leader accepted
 comment|// though I guess sync will likely get those updates back? But
@@ -1606,6 +1601,11 @@ name|e
 argument_list|)
 expr_stmt|;
 block|}
+name|markAllAsNotLeader
+argument_list|(
+name|registerOnReconnect
+argument_list|)
+expr_stmt|;
 block|}
 block|}
 argument_list|)
