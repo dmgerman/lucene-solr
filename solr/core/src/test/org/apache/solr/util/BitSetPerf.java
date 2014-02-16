@@ -22,7 +22,7 @@ name|java
 operator|.
 name|util
 operator|.
-name|Random
+name|BitSet
 import|;
 end_import
 
@@ -32,7 +32,7 @@ name|java
 operator|.
 name|util
 operator|.
-name|BitSet
+name|Random
 import|;
 end_import
 
@@ -46,7 +46,7 @@ name|lucene
 operator|.
 name|util
 operator|.
-name|OpenBitSet
+name|FixedBitSet
 import|;
 end_import
 
@@ -60,12 +60,14 @@ name|lucene
 operator|.
 name|util
 operator|.
-name|OpenBitSetIterator
+name|FixedBitSet
+operator|.
+name|FixedBitSetIterator
 import|;
 end_import
 
 begin_comment
-comment|/** Performance tester for OpenBitSet.  * Use -Xbatch for more predictable results, and run tests such that the duration  * is at least 10 seconds for better accuracy.  Close browsers on your system (javascript  * or flash may be running and cause more erratic results).  *  *  */
+comment|/** Performance tester for FixedBitSet.  * Use -Xbatch for more predictable results, and run tests such that the duration  * is at least 10 seconds for better accuracy.  Close browsers on your system (javascript  * or flash may be running and cause more erratic results).  *  *  */
 end_comment
 
 begin_class
@@ -99,7 +101,7 @@ parameter_list|,
 name|BitSet
 name|target1
 parameter_list|,
-name|OpenBitSet
+name|FixedBitSet
 name|target2
 parameter_list|)
 block|{
@@ -188,7 +190,7 @@ name|out
 operator|.
 name|println
 argument_list|(
-literal|"  impl => open for OpenBitSet"
+literal|"  impl => open for FixedBitSet"
 argument_list|)
 expr_stmt|;
 block|}
@@ -281,12 +283,12 @@ index|[
 name|numSets
 index|]
 decl_stmt|;
-name|OpenBitSet
+name|FixedBitSet
 index|[]
 name|osets
 init|=
 operator|new
-name|OpenBitSet
+name|FixedBitSet
 index|[
 name|numSets
 index|]
@@ -323,7 +325,7 @@ name|i
 index|]
 operator|=
 operator|new
-name|OpenBitSet
+name|FixedBitSet
 argument_list|(
 name|bitSetSize
 argument_list|)
@@ -355,11 +357,11 @@ argument_list|(
 name|bitSetSize
 argument_list|)
 decl_stmt|;
-name|OpenBitSet
+name|FixedBitSet
 name|obs
 init|=
 operator|new
-name|OpenBitSet
+name|FixedBitSet
 argument_list|(
 name|bitSetSize
 argument_list|)
@@ -435,7 +437,7 @@ operator|==
 literal|"open"
 condition|)
 block|{
-name|OpenBitSet
+name|FixedBitSet
 name|other
 init|=
 name|osets
@@ -445,7 +447,7 @@ index|]
 decl_stmt|;
 name|obs
 operator|.
-name|union
+name|or
 argument_list|(
 name|other
 argument_list|)
@@ -593,7 +595,7 @@ operator|==
 literal|"open"
 condition|)
 block|{
-name|OpenBitSet
+name|FixedBitSet
 name|oset
 init|=
 name|osets
@@ -619,7 +621,7 @@ if|if
 condition|(
 name|oset
 operator|.
-name|fastGet
+name|get
 argument_list|(
 name|k
 argument_list|)
@@ -717,7 +719,7 @@ operator|==
 literal|"open"
 condition|)
 block|{
-name|OpenBitSet
+name|FixedBitSet
 name|a
 init|=
 name|osets
@@ -725,7 +727,7 @@ index|[
 name|i
 index|]
 decl_stmt|;
-name|OpenBitSet
+name|FixedBitSet
 name|b
 init|=
 name|osets
@@ -737,7 +739,7 @@ index|]
 decl_stmt|;
 name|ret
 operator|+=
-name|OpenBitSet
+name|FixedBitSet
 operator|.
 name|intersectionCount
 argument_list|(
@@ -848,9 +850,6 @@ index|[
 name|i
 index|]
 operator|=
-operator|(
-name|OpenBitSet
-operator|)
 name|osets
 index|[
 name|i
@@ -930,7 +929,7 @@ literal|"open"
 condition|)
 block|{
 specifier|final
-name|OpenBitSet
+name|FixedBitSet
 name|set
 init|=
 name|osets
@@ -1068,7 +1067,7 @@ literal|"open"
 condition|)
 block|{
 specifier|final
-name|OpenBitSet
+name|FixedBitSet
 name|set
 init|=
 name|osets
@@ -1077,11 +1076,11 @@ name|i
 index|]
 decl_stmt|;
 specifier|final
-name|OpenBitSetIterator
+name|FixedBitSetIterator
 name|iterator
 init|=
 operator|new
-name|OpenBitSetIterator
+name|FixedBitSetIterator
 argument_list|(
 name|set
 argument_list|)

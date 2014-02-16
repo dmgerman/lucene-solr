@@ -27,7 +27,7 @@ comment|/*  * Licensed to the Apache Software Foundation (ASF) under one or more
 end_comment
 
 begin_comment
-comment|/**  * BitSet of fixed length (numBits), backed by accessible ({@link #getBits})  * long[], accessed with a long index. Use it only if you intend to store more  * than 2.1B bits, otherwise you should use {@link FixedBitSet}.  */
+comment|/**  * BitSet of fixed length (numBits), backed by accessible ({@link #getBits})  * long[], accessed with a long index. Use it only if you intend to store more  * than 2.1B bits, otherwise you should use {@link FixedBitSet}.  *   * @lucene.internal  */
 end_comment
 
 begin_class
@@ -930,6 +930,23 @@ name|LongBitSet
 name|other
 parameter_list|)
 block|{
+assert|assert
+name|other
+operator|.
+name|numWords
+operator|<=
+name|numWords
+operator|:
+literal|"numWords="
+operator|+
+name|numWords
+operator|+
+literal|", other.numWords="
+operator|+
+name|other
+operator|.
+name|numWords
+assert|;
 name|int
 name|pos
 init|=
@@ -976,6 +993,23 @@ name|LongBitSet
 name|other
 parameter_list|)
 block|{
+assert|assert
+name|other
+operator|.
+name|numWords
+operator|<=
+name|numWords
+operator|:
+literal|"numWords="
+operator|+
+name|numWords
+operator|+
+literal|", other.numWords="
+operator|+
+name|other
+operator|.
+name|numWords
+assert|;
 name|int
 name|pos
 init|=

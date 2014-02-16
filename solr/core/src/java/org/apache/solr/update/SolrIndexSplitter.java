@@ -18,6 +18,36 @@ end_package
 
 begin_import
 import|import
+name|java
+operator|.
+name|io
+operator|.
+name|IOException
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
+name|util
+operator|.
+name|ArrayList
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
+name|util
+operator|.
+name|List
+import|;
+end_import
+
+begin_import
+import|import
 name|org
 operator|.
 name|apache
@@ -150,6 +180,20 @@ name|apache
 operator|.
 name|lucene
 operator|.
+name|search
+operator|.
+name|DocIdSetIterator
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
 name|util
 operator|.
 name|Bits
@@ -194,7 +238,7 @@ name|lucene
 operator|.
 name|util
 operator|.
-name|IOUtils
+name|FixedBitSet
 import|;
 end_import
 
@@ -208,7 +252,7 @@ name|lucene
 operator|.
 name|util
 operator|.
-name|OpenBitSet
+name|IOUtils
 import|;
 end_import
 
@@ -333,36 +377,6 @@ operator|.
 name|slf4j
 operator|.
 name|LoggerFactory
-import|;
-end_import
-
-begin_import
-import|import
-name|java
-operator|.
-name|io
-operator|.
-name|IOException
-import|;
-end_import
-
-begin_import
-import|import
-name|java
-operator|.
-name|util
-operator|.
-name|ArrayList
-import|;
-end_import
-
-begin_import
-import|import
-name|java
-operator|.
-name|util
-operator|.
-name|List
 import|;
 end_import
 
@@ -642,7 +656,7 @@ argument_list|()
 decl_stmt|;
 name|List
 argument_list|<
-name|OpenBitSet
+name|FixedBitSet
 index|[]
 argument_list|>
 name|segmentDocSets
@@ -650,7 +664,7 @@ init|=
 operator|new
 name|ArrayList
 argument_list|<
-name|OpenBitSet
+name|FixedBitSet
 index|[]
 argument_list|>
 argument_list|(
@@ -695,7 +709,7 @@ name|size
 argument_list|()
 assert|;
 comment|// make sure we're going in order
-name|OpenBitSet
+name|FixedBitSet
 index|[]
 name|docSets
 init|=
@@ -1043,7 +1057,7 @@ block|}
 block|}
 block|}
 DECL|method|split
-name|OpenBitSet
+name|FixedBitSet
 index|[]
 name|split
 parameter_list|(
@@ -1061,12 +1075,12 @@ operator|.
 name|reader
 argument_list|()
 decl_stmt|;
-name|OpenBitSet
+name|FixedBitSet
 index|[]
 name|docSets
 init|=
 operator|new
-name|OpenBitSet
+name|FixedBitSet
 index|[
 name|numPieces
 index|]
@@ -1094,7 +1108,7 @@ name|i
 index|]
 operator|=
 operator|new
-name|OpenBitSet
+name|FixedBitSet
 argument_list|(
 name|reader
 operator|.
@@ -1325,7 +1339,7 @@ if|if
 condition|(
 name|doc
 operator|==
-name|DocsEnum
+name|DocIdSetIterator
 operator|.
 name|NO_MORE_DOCS
 condition|)
@@ -1342,7 +1356,7 @@ index|[
 name|currPartition
 index|]
 operator|.
-name|fastSet
+name|set
 argument_list|(
 name|doc
 argument_list|)
@@ -1396,7 +1410,7 @@ index|[
 name|i
 index|]
 operator|.
-name|fastSet
+name|set
 argument_list|(
 name|doc
 argument_list|)
@@ -1535,7 +1549,7 @@ name|FilterAtomicReader
 block|{
 DECL|field|liveDocs
 specifier|final
-name|OpenBitSet
+name|FixedBitSet
 name|liveDocs
 decl_stmt|;
 DECL|field|numDocs
@@ -1550,7 +1564,7 @@ parameter_list|(
 name|AtomicReaderContext
 name|context
 parameter_list|,
-name|OpenBitSet
+name|FixedBitSet
 name|liveDocs
 parameter_list|)
 throws|throws
@@ -1574,9 +1588,6 @@ name|this
 operator|.
 name|numDocs
 operator|=
-operator|(
-name|int
-operator|)
 name|liveDocs
 operator|.
 name|cardinality

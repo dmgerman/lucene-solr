@@ -28,7 +28,7 @@ name|lucene
 operator|.
 name|util
 operator|.
-name|OpenBitSet
+name|FixedBitSet
 import|;
 end_import
 
@@ -37,11 +37,11 @@ DECL|class|BitSetSlice
 class|class
 name|BitSetSlice
 block|{
-DECL|field|obs
+DECL|field|fbs
 specifier|private
 specifier|final
-name|OpenBitSet
-name|obs
+name|FixedBitSet
+name|fbs
 decl_stmt|;
 DECL|field|off
 specifier|private
@@ -58,8 +58,8 @@ decl_stmt|;
 DECL|method|BitSetSlice
 name|BitSetSlice
 parameter_list|(
-name|OpenBitSet
-name|obs
+name|FixedBitSet
+name|fbs
 parameter_list|,
 name|int
 name|off
@@ -70,9 +70,9 @@ parameter_list|)
 block|{
 name|this
 operator|.
-name|obs
+name|fbs
 operator|=
-name|obs
+name|fbs
 expr_stmt|;
 name|this
 operator|.
@@ -97,7 +97,7 @@ name|pos
 parameter_list|)
 block|{
 return|return
-name|obs
+name|fbs
 operator|.
 name|get
 argument_list|(
@@ -119,7 +119,7 @@ block|{
 name|int
 name|result
 init|=
-name|obs
+name|fbs
 operator|.
 name|prevSetBit
 argument_list|(
@@ -155,7 +155,7 @@ block|{
 name|int
 name|result
 init|=
-name|obs
+name|fbs
 operator|.
 name|nextSetBit
 argument_list|(

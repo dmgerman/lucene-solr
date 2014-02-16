@@ -36,20 +36,6 @@ name|org
 operator|.
 name|apache
 operator|.
-name|lucene
-operator|.
-name|util
-operator|.
-name|OpenBitSet
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
 name|solr
 operator|.
 name|common
@@ -59,7 +45,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  *<code>DocSet</code> represents an unordered set of Lucene Document Ids.  *  *<p>  * WARNING: Any DocSet returned from SolrIndexSearcher should<b>not</b> be modified as it may have been retrieved from  * a cache and could be shared.  *</p>  *  *  * @since solr 0.9  */
+comment|/**  *<code>DocSet</code> represents an unordered set of Lucene Document Ids.  *  *<p>  * WARNING: Any DocSet returned from SolrIndexSearcher should<b>not</b> be modified as it may have been retrieved from  * a cache and could be shared.  *</p>  *  * @since solr 0.9  */
 end_comment
 
 begin_interface
@@ -111,13 +97,6 @@ DECL|method|iterator
 specifier|public
 name|DocIterator
 name|iterator
-parameter_list|()
-function_decl|;
-comment|/**    * Returns a BitSet view of the DocSet.  Any changes to this BitSet<b>may</b>    * be reflected in the DocSet, hence if the DocSet is shared or was returned from    * a SolrIndexSearcher method, it's not safe to modify the BitSet.    *    * @return    * An OpenBitSet with the bit number of every docid set in the set.    */
-DECL|method|getBits
-specifier|public
-name|OpenBitSet
-name|getBits
 parameter_list|()
 function_decl|;
 comment|/**    * Returns the approximate amount of memory taken by this DocSet.    * This is only an approximation and doesn't take into account java object overhead.    *    * @return    * the approximate memory consumption in bytes    */
@@ -204,13 +183,13 @@ name|Filter
 name|getTopFilter
 parameter_list|()
 function_decl|;
-comment|/**    * Takes the docs from this set and sets those bits on the target OpenBitSet.    * The target should be sized large enough to accommodate all of the documents before calling this method.    */
-DECL|method|setBitsOn
+comment|/**    * Adds all the docs from this set to the target set. The target should be    * sized large enough to accommodate all of the documents before calling this    * method.    */
+DECL|method|addAllTo
 specifier|public
 name|void
-name|setBitsOn
+name|addAllTo
 parameter_list|(
-name|OpenBitSet
+name|DocSet
 name|target
 parameter_list|)
 function_decl|;

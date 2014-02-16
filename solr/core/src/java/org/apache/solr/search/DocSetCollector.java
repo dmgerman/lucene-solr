@@ -18,15 +18,11 @@ end_comment
 
 begin_import
 import|import
-name|org
+name|java
 operator|.
-name|apache
+name|io
 operator|.
-name|lucene
-operator|.
-name|index
-operator|.
-name|IndexReader
+name|IOException
 import|;
 end_import
 
@@ -82,17 +78,7 @@ name|lucene
 operator|.
 name|util
 operator|.
-name|OpenBitSet
-import|;
-end_import
-
-begin_import
-import|import
-name|java
-operator|.
-name|io
-operator|.
-name|IOException
+name|FixedBitSet
 import|;
 end_import
 
@@ -115,7 +101,7 @@ init|=
 literal|0
 decl_stmt|;
 DECL|field|bits
-name|OpenBitSet
+name|FixedBitSet
 name|bits
 decl_stmt|;
 DECL|field|maxDoc
@@ -229,14 +215,14 @@ condition|)
 name|bits
 operator|=
 operator|new
-name|OpenBitSet
+name|FixedBitSet
 argument_list|(
 name|maxDoc
 argument_list|)
 expr_stmt|;
 name|bits
 operator|.
-name|fastSet
+name|set
 argument_list|(
 name|doc
 argument_list|)
@@ -293,7 +279,7 @@ operator|++
 control|)
 name|bits
 operator|.
-name|fastSet
+name|set
 argument_list|(
 name|scratch
 index|[

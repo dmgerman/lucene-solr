@@ -161,7 +161,7 @@ name|TemporalResult
 argument_list|()
 expr_stmt|;
 block|}
-comment|/**    * @param maxDoc The maxDoc of the top level {@link IndexReader}.    * @return an {@link FixedBitSet} containing all group heads.    */
+comment|/**    * @param maxDoc The maxDoc of the top level {@link IndexReader}.    * @return a {@link FixedBitSet} containing all group heads.    */
 DECL|method|retrieveGroupHeads
 specifier|public
 name|FixedBitSet
