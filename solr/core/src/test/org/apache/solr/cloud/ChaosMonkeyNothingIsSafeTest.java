@@ -1135,7 +1135,7 @@ operator|.
 name|getFails
 argument_list|()
 operator|>
-literal|1
+literal|10
 argument_list|)
 expr_stmt|;
 block|}
