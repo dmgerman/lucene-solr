@@ -709,7 +709,7 @@ literal|0
 argument_list|,
 name|indexThread
 operator|.
-name|getFails
+name|getFailCount
 argument_list|()
 argument_list|)
 expr_stmt|;
