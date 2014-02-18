@@ -3158,11 +3158,27 @@ argument_list|(
 name|params
 argument_list|)
 decl_stmt|;
+comment|// if time.allowed is specified then even a control response can return a partialResults header
+if|if
+condition|(
+name|params
+operator|.
+name|get
+argument_list|(
+name|CommonParams
+operator|.
+name|TIME_ALLOWED
+argument_list|)
+operator|==
+literal|null
+condition|)
+block|{
 name|validateControlData
 argument_list|(
 name|controlRsp
 argument_list|)
 expr_stmt|;
+block|}
 name|params
 operator|.
 name|remove
