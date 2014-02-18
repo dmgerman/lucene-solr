@@ -492,10 +492,6 @@ argument_list|,
 name|CloudDescriptor
 operator|.
 name|NUM_SHARDS
-argument_list|,
-name|CloudDescriptor
-operator|.
-name|SHARD_STATE
 argument_list|)
 decl_stmt|;
 DECL|field|coreContainer
