@@ -173,7 +173,7 @@ parameter_list|)
 throws|throws
 name|IOException
 function_decl|;
-comment|/** Returns the name of the field matched by this query.*/
+comment|/**     * Returns the name of the field matched by this query.    *<p>    * Note that this may return null if the query matches no terms.    */
 DECL|method|getField
 specifier|public
 specifier|abstract

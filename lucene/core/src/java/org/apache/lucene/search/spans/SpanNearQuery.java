@@ -307,9 +307,9 @@ index|]
 decl_stmt|;
 if|if
 condition|(
-name|i
+name|field
 operator|==
-literal|0
+literal|null
 condition|)
 block|{
 comment|// check field
@@ -324,6 +324,13 @@ block|}
 elseif|else
 if|if
 condition|(
+name|clause
+operator|.
+name|getField
+argument_list|()
+operator|!=
+literal|null
+operator|&&
 operator|!
 name|clause
 operator|.
