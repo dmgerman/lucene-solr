@@ -445,6 +445,15 @@ name|ONE_NODE_COLLECTION
 init|=
 literal|"onenodecollection"
 decl_stmt|;
+static|static
+block|{
+comment|// disable SSL until this test is hardened more to deal with the
+comment|// consequences of how slow it can make some things
+name|ALLOW_SSL
+operator|=
+literal|false
+expr_stmt|;
+block|}
 DECL|method|BasicDistributedZk2Test
 specifier|public
 name|BasicDistributedZk2Test
