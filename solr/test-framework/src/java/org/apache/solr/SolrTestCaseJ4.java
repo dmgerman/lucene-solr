@@ -1068,7 +1068,7 @@ specifier|static
 name|int
 name|DEFAULT_CONNECTION_TIMEOUT
 init|=
-literal|45000
+literal|60000
 decl_stmt|;
 comment|// default socket connection timeout in ms
 comment|// these are meant to be accessed sequentially, but are volatile just to ensure any test
