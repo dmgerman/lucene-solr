@@ -296,7 +296,7 @@ name|lucene
 operator|.
 name|util
 operator|.
-name|ThrottledIndexOutput
+name|TestUtil
 import|;
 end_import
 
@@ -310,7 +310,7 @@ name|lucene
 operator|.
 name|util
 operator|.
-name|_TestUtil
+name|ThrottledIndexOutput
 import|;
 end_import
 
@@ -3377,7 +3377,7 @@ literal|"\nNOTE: MockDirectoryWrapper: now run CheckIndex"
 argument_list|)
 expr_stmt|;
 block|}
-name|_TestUtil
+name|TestUtil
 operator|.
 name|checkIndex
 argument_list|(

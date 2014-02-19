@@ -452,7 +452,21 @@ name|lucene
 operator|.
 name|util
 operator|.
-name|_TestUtil
+name|TestUtil
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|util
+operator|.
+name|TestUtil
 import|;
 end_import
 
@@ -7092,7 +7106,7 @@ specifier|final
 name|int
 name|numThreads
 init|=
-name|_TestUtil
+name|TestUtil
 operator|.
 name|nextInt
 argument_list|(
@@ -8699,7 +8713,7 @@ specifier|final
 name|int
 name|numTerms
 init|=
-name|_TestUtil
+name|TestUtil
 operator|.
 name|nextInt
 argument_list|(
@@ -8740,7 +8754,7 @@ name|randomTerms
 operator|.
 name|add
 argument_list|(
-name|_TestUtil
+name|TestUtil
 operator|.
 name|randomSimpleString
 argument_list|(
@@ -9426,7 +9440,7 @@ specifier|final
 name|int
 name|numTerms
 init|=
-name|_TestUtil
+name|TestUtil
 operator|.
 name|nextInt
 argument_list|(
@@ -9465,7 +9479,7 @@ name|updateTerms
 operator|.
 name|add
 argument_list|(
-name|_TestUtil
+name|TestUtil
 operator|.
 name|randomSimpleString
 argument_list|(
@@ -9501,7 +9515,7 @@ decl_stmt|;
 name|int
 name|numUpdateTerms
 init|=
-name|_TestUtil
+name|TestUtil
 operator|.
 name|nextInt
 argument_list|(

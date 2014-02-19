@@ -122,7 +122,7 @@ name|lucene
 operator|.
 name|util
 operator|.
-name|_TestUtil
+name|TestUtil
 import|;
 end_import
 
@@ -153,7 +153,7 @@ argument_list|,
 literal|"testfilesplitter"
 argument_list|)
 decl_stmt|;
-name|_TestUtil
+name|TestUtil
 operator|.
 name|rmDir
 argument_list|(
@@ -176,7 +176,7 @@ argument_list|,
 literal|"testfilesplitterdest"
 argument_list|)
 decl_stmt|;
-name|_TestUtil
+name|TestUtil
 operator|.
 name|rmDir
 argument_list|(
@@ -522,7 +522,7 @@ argument_list|,
 literal|"testfilesplitterdest2"
 argument_list|)
 decl_stmt|;
-name|_TestUtil
+name|TestUtil
 operator|.
 name|rmDir
 argument_list|(

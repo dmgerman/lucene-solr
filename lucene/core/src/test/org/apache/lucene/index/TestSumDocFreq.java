@@ -82,7 +82,7 @@ name|lucene
 operator|.
 name|util
 operator|.
-name|_TestUtil
+name|TestUtil
 import|;
 end_import
 
@@ -239,7 +239,7 @@ init|=
 operator|(
 name|char
 operator|)
-name|_TestUtil
+name|TestUtil
 operator|.
 name|nextInt
 argument_list|(
@@ -257,7 +257,7 @@ init|=
 operator|(
 name|char
 operator|)
-name|_TestUtil
+name|TestUtil
 operator|.
 name|nextInt
 argument_list|(
@@ -287,7 +287,7 @@ operator|=
 operator|(
 name|char
 operator|)
-name|_TestUtil
+name|TestUtil
 operator|.
 name|nextInt
 argument_list|(
@@ -304,7 +304,7 @@ operator|=
 operator|(
 name|char
 operator|)
-name|_TestUtil
+name|TestUtil
 operator|.
 name|nextInt
 argument_list|(

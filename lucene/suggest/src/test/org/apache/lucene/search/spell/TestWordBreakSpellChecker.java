@@ -242,7 +242,7 @@ name|lucene
 operator|.
 name|util
 operator|.
-name|_TestUtil
+name|TestUtil
 import|;
 end_import
 
@@ -2510,7 +2510,7 @@ block|{
 name|int
 name|numDocs
 init|=
-name|_TestUtil
+name|TestUtil
 operator|.
 name|nextInt
 argument_list|(
@@ -2579,7 +2579,7 @@ expr_stmt|;
 name|int
 name|maxLength
 init|=
-name|_TestUtil
+name|TestUtil
 operator|.
 name|nextInt
 argument_list|(
@@ -2663,7 +2663,7 @@ condition|)
 block|{
 name|orig
 operator|=
-name|_TestUtil
+name|TestUtil
 operator|.
 name|randomSimpleString
 argument_list|(
@@ -2688,7 +2688,7 @@ condition|)
 block|{
 name|orig
 operator|=
-name|_TestUtil
+name|TestUtil
 operator|.
 name|randomUnicodeString
 argument_list|(
@@ -2731,7 +2731,7 @@ name|offsetByCodePoints
 argument_list|(
 literal|0
 argument_list|,
-name|_TestUtil
+name|TestUtil
 operator|.
 name|nextInt
 argument_list|(

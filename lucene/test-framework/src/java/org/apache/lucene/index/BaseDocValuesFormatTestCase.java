@@ -526,7 +526,7 @@ name|lucene
 operator|.
 name|util
 operator|.
-name|_TestUtil
+name|TestUtil
 import|;
 end_import
 
@@ -9407,7 +9407,7 @@ decl_stmt|;
 name|int
 name|maxLength
 init|=
-name|_TestUtil
+name|TestUtil
 operator|.
 name|nextInt
 argument_list|(
@@ -9464,7 +9464,7 @@ expr_stmt|;
 name|String
 name|string
 init|=
-name|_TestUtil
+name|TestUtil
 operator|.
 name|randomRealisticUnicodeString
 argument_list|(
@@ -9696,7 +9696,7 @@ expr_stmt|;
 name|String
 name|string
 init|=
-name|_TestUtil
+name|TestUtil
 operator|.
 name|randomRealisticUnicodeString
 argument_list|(
@@ -10043,7 +10043,7 @@ name|next
 parameter_list|()
 block|{
 return|return
-name|_TestUtil
+name|TestUtil
 operator|.
 name|nextLong
 argument_list|(
@@ -10482,7 +10482,7 @@ name|next
 parameter_list|()
 block|{
 return|return
-name|_TestUtil
+name|TestUtil
 operator|.
 name|nextLong
 argument_list|(
@@ -11460,7 +11460,7 @@ else|else
 block|{
 name|length
 operator|=
-name|_TestUtil
+name|TestUtil
 operator|.
 name|nextInt
 argument_list|(
@@ -11739,7 +11739,7 @@ block|{
 name|int
 name|fixedLength
 init|=
-name|_TestUtil
+name|TestUtil
 operator|.
 name|nextInt
 argument_list|(
@@ -11979,7 +11979,7 @@ else|else
 block|{
 name|length
 operator|=
-name|_TestUtil
+name|TestUtil
 operator|.
 name|nextInt
 argument_list|(
@@ -12405,7 +12405,7 @@ else|else
 block|{
 name|length
 operator|=
-name|_TestUtil
+name|TestUtil
 operator|.
 name|nextInt
 argument_list|(
@@ -12421,7 +12421,7 @@ block|}
 name|String
 name|value
 init|=
-name|_TestUtil
+name|TestUtil
 operator|.
 name|randomSimpleString
 argument_list|(
@@ -12652,7 +12652,7 @@ block|{
 name|int
 name|fixedLength
 init|=
-name|_TestUtil
+name|TestUtil
 operator|.
 name|nextInt
 argument_list|(
@@ -12707,7 +12707,7 @@ block|{
 name|int
 name|fixedLength
 init|=
-name|_TestUtil
+name|TestUtil
 operator|.
 name|nextInt
 argument_list|(
@@ -16044,7 +16044,7 @@ else|else
 block|{
 name|length
 operator|=
-name|_TestUtil
+name|TestUtil
 operator|.
 name|nextInt
 argument_list|(
@@ -16060,7 +16060,7 @@ block|}
 name|int
 name|numValues
 init|=
-name|_TestUtil
+name|TestUtil
 operator|.
 name|nextInt
 argument_list|(
@@ -16105,7 +16105,7 @@ name|values
 operator|.
 name|add
 argument_list|(
-name|_TestUtil
+name|TestUtil
 operator|.
 name|randomSimpleString
 argument_list|(
@@ -16504,7 +16504,7 @@ block|{
 name|int
 name|fixedLength
 init|=
-name|_TestUtil
+name|TestUtil
 operator|.
 name|nextInt
 argument_list|(
@@ -16619,7 +16619,7 @@ block|{
 name|int
 name|fixedLength
 init|=
-name|_TestUtil
+name|TestUtil
 operator|.
 name|nextInt
 argument_list|(
@@ -17271,7 +17271,7 @@ block|{
 name|long
 name|randomOrd
 init|=
-name|_TestUtil
+name|TestUtil
 operator|.
 name|nextLong
 argument_list|(
@@ -17345,7 +17345,7 @@ block|{
 name|long
 name|randomOrd
 init|=
-name|_TestUtil
+name|TestUtil
 operator|.
 name|nextLong
 argument_list|(
@@ -17425,7 +17425,7 @@ init|=
 operator|new
 name|BytesRef
 argument_list|(
-name|_TestUtil
+name|TestUtil
 operator|.
 name|randomUnicodeString
 argument_list|(
@@ -17625,7 +17625,7 @@ else|else
 block|{
 name|length
 operator|=
-name|_TestUtil
+name|TestUtil
 operator|.
 name|nextInt
 argument_list|(
@@ -17682,7 +17682,7 @@ name|values
 operator|.
 name|add
 argument_list|(
-name|_TestUtil
+name|TestUtil
 operator|.
 name|randomSimpleString
 argument_list|(
@@ -18072,7 +18072,7 @@ block|{
 name|int
 name|fixedLength
 init|=
-name|_TestUtil
+name|TestUtil
 operator|.
 name|nextInt
 argument_list|(
@@ -20136,7 +20136,7 @@ name|d
 init|=
 name|newFSDirectory
 argument_list|(
-name|_TestUtil
+name|TestUtil
 operator|.
 name|getTempDir
 argument_list|(
@@ -20170,7 +20170,7 @@ comment|// Sometimes make all values fixed length since some
 comment|// codecs have different code paths for this:
 name|numDocs
 operator|=
-name|_TestUtil
+name|TestUtil
 operator|.
 name|nextInt
 argument_list|(
@@ -20184,7 +20184,7 @@ argument_list|)
 expr_stmt|;
 name|fixedLength
 operator|=
-name|_TestUtil
+name|TestUtil
 operator|.
 name|nextInt
 argument_list|(
@@ -20203,7 +20203,7 @@ else|else
 block|{
 name|numDocs
 operator|=
-name|_TestUtil
+name|TestUtil
 operator|.
 name|nextInt
 argument_list|(
@@ -20304,7 +20304,7 @@ condition|)
 block|{
 name|numBytes
 operator|=
-name|_TestUtil
+name|TestUtil
 operator|.
 name|nextInt
 argument_list|(
@@ -20325,7 +20325,7 @@ else|else
 block|{
 name|numBytes
 operator|=
-name|_TestUtil
+name|TestUtil
 operator|.
 name|nextInt
 argument_list|(
@@ -20739,7 +20739,7 @@ name|d
 init|=
 name|newFSDirectory
 argument_list|(
-name|_TestUtil
+name|TestUtil
 operator|.
 name|getTempDir
 argument_list|(
@@ -20773,7 +20773,7 @@ comment|// Sometimes make all values fixed length since some
 comment|// codecs have different code paths for this:
 name|numDocs
 operator|=
-name|_TestUtil
+name|TestUtil
 operator|.
 name|nextInt
 argument_list|(
@@ -20796,7 +20796,7 @@ else|else
 block|{
 name|numDocs
 operator|=
-name|_TestUtil
+name|TestUtil
 operator|.
 name|nextInt
 argument_list|(
@@ -20906,7 +20906,7 @@ else|else
 block|{
 name|numBytes
 operator|=
-name|_TestUtil
+name|TestUtil
 operator|.
 name|nextInt
 argument_list|(
@@ -21379,7 +21379,7 @@ expr_stmt|;
 name|int
 name|length
 init|=
-name|_TestUtil
+name|TestUtil
 operator|.
 name|nextInt
 argument_list|(
@@ -21564,7 +21564,7 @@ decl_stmt|;
 name|int
 name|numThreads
 init|=
-name|_TestUtil
+name|TestUtil
 operator|.
 name|nextInt
 argument_list|(
@@ -21791,7 +21791,7 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
-name|_TestUtil
+name|TestUtil
 operator|.
 name|checkReader
 argument_list|(
@@ -22034,7 +22034,7 @@ expr_stmt|;
 name|int
 name|length
 init|=
-name|_TestUtil
+name|TestUtil
 operator|.
 name|nextInt
 argument_list|(
@@ -22233,7 +22233,7 @@ name|values
 operator|.
 name|add
 argument_list|(
-name|_TestUtil
+name|TestUtil
 operator|.
 name|randomSimpleString
 argument_list|(
@@ -22388,7 +22388,7 @@ decl_stmt|;
 name|int
 name|numThreads
 init|=
-name|_TestUtil
+name|TestUtil
 operator|.
 name|nextInt
 argument_list|(
@@ -22952,7 +22952,7 @@ expr_stmt|;
 block|}
 block|}
 block|}
-name|_TestUtil
+name|TestUtil
 operator|.
 name|checkReader
 argument_list|(

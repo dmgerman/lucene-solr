@@ -130,7 +130,7 @@ name|lucene
 operator|.
 name|util
 operator|.
-name|_TestUtil
+name|TestUtil
 import|;
 end_import
 
@@ -285,7 +285,7 @@ argument_list|)
 expr_stmt|;
 name|docsLeftInThisSegment
 operator|=
-name|_TestUtil
+name|TestUtil
 operator|.
 name|nextInt
 argument_list|(

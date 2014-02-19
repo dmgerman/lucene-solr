@@ -108,7 +108,7 @@ name|lucene
 operator|.
 name|util
 operator|.
-name|_TestUtil
+name|TestUtil
 import|;
 end_import
 
@@ -587,7 +587,7 @@ specifier|final
 name|File
 name|path
 init|=
-name|_TestUtil
+name|TestUtil
 operator|.
 name|getTempDir
 argument_list|(
@@ -1174,7 +1174,7 @@ name|isOpen
 argument_list|)
 expr_stmt|;
 block|}
-name|_TestUtil
+name|TestUtil
 operator|.
 name|rmDir
 argument_list|(
@@ -1241,7 +1241,7 @@ expr_stmt|;
 block|}
 finally|finally
 block|{
-name|_TestUtil
+name|TestUtil
 operator|.
 name|rmDir
 argument_list|(
@@ -1280,7 +1280,7 @@ name|checkDirectoryFilter
 argument_list|(
 name|newFSDirectory
 argument_list|(
-name|_TestUtil
+name|TestUtil
 operator|.
 name|getTempDir
 argument_list|(
@@ -1375,7 +1375,7 @@ block|{
 name|File
 name|path
 init|=
-name|_TestUtil
+name|TestUtil
 operator|.
 name|getTempDir
 argument_list|(
@@ -1436,7 +1436,7 @@ expr_stmt|;
 block|}
 finally|finally
 block|{
-name|_TestUtil
+name|TestUtil
 operator|.
 name|rmDir
 argument_list|(
@@ -1457,7 +1457,7 @@ block|{
 name|File
 name|path
 init|=
-name|_TestUtil
+name|TestUtil
 operator|.
 name|getTempDir
 argument_list|(
@@ -1546,7 +1546,7 @@ operator|.
 name|close
 argument_list|()
 expr_stmt|;
-name|_TestUtil
+name|TestUtil
 operator|.
 name|rmDir
 argument_list|(

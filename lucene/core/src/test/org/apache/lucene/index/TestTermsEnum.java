@@ -202,7 +202,7 @@ name|lucene
 operator|.
 name|util
 operator|.
-name|_TestUtil
+name|TestUtil
 import|;
 end_import
 
@@ -685,7 +685,7 @@ operator|=
 operator|new
 name|BytesRef
 argument_list|(
-name|_TestUtil
+name|TestUtil
 operator|.
 name|randomSimpleString
 argument_list|(
@@ -702,7 +702,7 @@ operator|=
 operator|new
 name|BytesRef
 argument_list|(
-name|_TestUtil
+name|TestUtil
 operator|.
 name|randomRealisticUnicodeString
 argument_list|(
@@ -2308,7 +2308,7 @@ argument_list|)
 expr_stmt|;
 name|docsEnum
 operator|=
-name|_TestUtil
+name|TestUtil
 operator|.
 name|docs
 argument_list|(
@@ -3401,7 +3401,7 @@ parameter_list|()
 block|{
 comment|//return _TestUtil.randomSimpleString(random());
 return|return
-name|_TestUtil
+name|TestUtil
 operator|.
 name|randomRealisticUnicodeString
 argument_list|(
@@ -3426,7 +3426,7 @@ init|=
 operator|new
 name|String
 index|[
-name|_TestUtil
+name|TestUtil
 operator|.
 name|nextInt
 argument_list|(

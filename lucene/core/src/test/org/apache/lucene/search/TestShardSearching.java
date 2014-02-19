@@ -180,7 +180,7 @@ name|lucene
 operator|.
 name|util
 operator|.
-name|_TestUtil
+name|TestUtil
 import|;
 end_import
 
@@ -368,7 +368,7 @@ specifier|final
 name|int
 name|numNodes
 init|=
-name|_TestUtil
+name|TestUtil
 operator|.
 name|nextInt
 argument_list|(
@@ -393,7 +393,7 @@ specifier|final
 name|int
 name|minDocsToMakeTerms
 init|=
-name|_TestUtil
+name|TestUtil
 operator|.
 name|nextInt
 argument_list|(
@@ -409,7 +409,7 @@ specifier|final
 name|int
 name|maxSearcherAgeSeconds
 init|=
-name|_TestUtil
+name|TestUtil
 operator|.
 name|nextInt
 argument_list|(
@@ -1113,7 +1113,7 @@ name|substring
 argument_list|(
 literal|0
 argument_list|,
-name|_TestUtil
+name|TestUtil
 operator|.
 name|nextInt
 argument_list|(
@@ -1509,7 +1509,7 @@ block|{
 name|int
 name|numHits
 init|=
-name|_TestUtil
+name|TestUtil
 operator|.
 name|nextInt
 argument_list|(
@@ -2218,7 +2218,7 @@ name|shardIndex
 index|]
 expr_stmt|;
 block|}
-name|_TestUtil
+name|TestUtil
 operator|.
 name|assertEquals
 argument_list|(

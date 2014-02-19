@@ -426,7 +426,7 @@ name|lucene
 operator|.
 name|util
 operator|.
-name|_TestUtil
+name|TestUtil
 import|;
 end_import
 
@@ -492,7 +492,7 @@ decl_stmt|;
 name|int
 name|numDocs
 init|=
-name|_TestUtil
+name|TestUtil
 operator|.
 name|nextInt
 argument_list|(
@@ -1177,7 +1177,7 @@ expr_stmt|;
 name|int
 name|numSorts
 init|=
-name|_TestUtil
+name|TestUtil
 operator|.
 name|nextInt
 argument_list|(
@@ -1234,7 +1234,7 @@ block|{
 name|int
 name|size
 init|=
-name|_TestUtil
+name|TestUtil
 operator|.
 name|nextInt
 argument_list|(

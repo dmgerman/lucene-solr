@@ -160,7 +160,7 @@ name|lucene
 operator|.
 name|util
 operator|.
-name|_TestUtil
+name|TestUtil
 import|;
 end_import
 
@@ -2152,7 +2152,7 @@ argument_list|)
 argument_list|)
 argument_list|)
 decl_stmt|;
-name|_TestUtil
+name|TestUtil
 operator|.
 name|checkReader
 argument_list|(

@@ -618,7 +618,7 @@ name|lucene
 operator|.
 name|util
 operator|.
-name|_TestUtil
+name|TestUtil
 import|;
 end_import
 
@@ -848,7 +848,7 @@ specifier|final
 name|int
 name|choice
 init|=
-name|_TestUtil
+name|TestUtil
 operator|.
 name|nextInt
 argument_list|(
@@ -1017,7 +1017,7 @@ block|{
 name|File
 name|dir
 init|=
-name|_TestUtil
+name|TestUtil
 operator|.
 name|getTempDir
 argument_list|(
@@ -1047,7 +1047,7 @@ name|toURI
 argument_list|()
 argument_list|)
 decl_stmt|;
-name|_TestUtil
+name|TestUtil
 operator|.
 name|unzip
 argument_list|(
@@ -1152,7 +1152,7 @@ block|}
 name|File
 name|oldIndxeDir
 init|=
-name|_TestUtil
+name|TestUtil
 operator|.
 name|getTempDir
 argument_list|(
@@ -1162,7 +1162,7 @@ name|i
 index|]
 argument_list|)
 decl_stmt|;
-name|_TestUtil
+name|TestUtil
 operator|.
 name|unzip
 argument_list|(
@@ -1446,7 +1446,7 @@ operator|.
 name|close
 argument_list|()
 expr_stmt|;
-name|_TestUtil
+name|TestUtil
 operator|.
 name|rmDir
 argument_list|(
@@ -1970,7 +1970,7 @@ argument_list|(
 name|reader
 argument_list|)
 decl_stmt|;
-name|_TestUtil
+name|TestUtil
 operator|.
 name|checkIndex
 argument_list|(
@@ -3723,7 +3723,7 @@ argument_list|,
 name|dirName
 argument_list|)
 decl_stmt|;
-name|_TestUtil
+name|TestUtil
 operator|.
 name|rmDir
 argument_list|(
@@ -3999,14 +3999,14 @@ decl_stmt|;
 name|File
 name|outputDir
 init|=
-name|_TestUtil
+name|TestUtil
 operator|.
 name|getTempDir
 argument_list|(
 name|outputDirName
 argument_list|)
 decl_stmt|;
-name|_TestUtil
+name|TestUtil
 operator|.
 name|rmDir
 argument_list|(
@@ -4318,7 +4318,7 @@ expr_stmt|;
 block|}
 finally|finally
 block|{
-name|_TestUtil
+name|TestUtil
 operator|.
 name|rmDir
 argument_list|(
@@ -5218,7 +5218,7 @@ literal|35
 argument_list|,
 name|countDocs
 argument_list|(
-name|_TestUtil
+name|TestUtil
 operator|.
 name|docs
 argument_list|(
@@ -5315,7 +5315,7 @@ literal|35
 argument_list|,
 name|countDocs
 argument_list|(
-name|_TestUtil
+name|TestUtil
 operator|.
 name|docs
 argument_list|(
@@ -5365,7 +5365,7 @@ literal|35
 argument_list|,
 name|countDocs
 argument_list|(
-name|_TestUtil
+name|TestUtil
 operator|.
 name|docs
 argument_list|(
@@ -6304,7 +6304,7 @@ block|{
 name|File
 name|dir
 init|=
-name|_TestUtil
+name|TestUtil
 operator|.
 name|getTempDir
 argument_list|(
@@ -6334,7 +6334,7 @@ name|toURI
 argument_list|()
 argument_list|)
 decl_stmt|;
-name|_TestUtil
+name|TestUtil
 operator|.
 name|unzip
 argument_list|(
@@ -6829,14 +6829,14 @@ block|{
 name|File
 name|oldIndexDir
 init|=
-name|_TestUtil
+name|TestUtil
 operator|.
 name|getTempDir
 argument_list|(
 literal|"moreterms"
 argument_list|)
 decl_stmt|;
-name|_TestUtil
+name|TestUtil
 operator|.
 name|unzip
 argument_list|(
@@ -6857,7 +6857,7 @@ name|oldIndexDir
 argument_list|)
 decl_stmt|;
 comment|// TODO: more tests
-name|_TestUtil
+name|TestUtil
 operator|.
 name|checkIndex
 argument_list|(

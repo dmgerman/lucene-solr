@@ -132,20 +132,6 @@ name|lucene
 operator|.
 name|index
 operator|.
-name|IndexReader
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|index
-operator|.
 name|IndexWriter
 import|;
 end_import
@@ -286,7 +272,7 @@ name|lucene
 operator|.
 name|util
 operator|.
-name|Version
+name|TestUtil
 import|;
 end_import
 
@@ -300,7 +286,7 @@ name|lucene
 operator|.
 name|util
 operator|.
-name|_TestUtil
+name|TestUtil
 import|;
 end_import
 
@@ -385,7 +371,7 @@ specifier|final
 name|int
 name|numDocs
 init|=
-name|_TestUtil
+name|TestUtil
 operator|.
 name|nextInt
 argument_list|(
@@ -843,14 +829,14 @@ block|{
 name|File
 name|tempDir
 init|=
-name|_TestUtil
+name|TestUtil
 operator|.
 name|getTempDir
 argument_list|(
 literal|"doesnotexist"
 argument_list|)
 decl_stmt|;
-name|_TestUtil
+name|TestUtil
 operator|.
 name|rmDir
 argument_list|(
@@ -919,7 +905,7 @@ name|NRTCachingDirectory
 argument_list|(
 name|newFSDirectory
 argument_list|(
-name|_TestUtil
+name|TestUtil
 operator|.
 name|getTempDir
 argument_list|(

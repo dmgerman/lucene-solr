@@ -383,7 +383,7 @@ argument_list|)
 operator|.
 name|setCodec
 argument_list|(
-name|_TestUtil
+name|TestUtil
 operator|.
 name|alwaysPostingsFormat
 argument_list|(

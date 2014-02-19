@@ -50,7 +50,7 @@ name|lucene
 operator|.
 name|util
 operator|.
-name|_TestUtil
+name|TestUtil
 import|;
 end_import
 
@@ -140,7 +140,7 @@ name|this
 argument_list|)
 condition|)
 block|{
-name|_TestUtil
+name|TestUtil
 operator|.
 name|checkIndex
 argument_list|(

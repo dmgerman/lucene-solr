@@ -232,7 +232,7 @@ name|lucene
 operator|.
 name|util
 operator|.
-name|_TestUtil
+name|TestUtil
 import|;
 end_import
 
@@ -858,7 +858,7 @@ argument_list|)
 operator|.
 name|setMaxBufferedDocs
 argument_list|(
-name|_TestUtil
+name|TestUtil
 operator|.
 name|nextInt
 argument_list|(
@@ -877,7 +877,7 @@ argument_list|()
 argument_list|)
 argument_list|)
 decl_stmt|;
-name|_TestUtil
+name|TestUtil
 operator|.
 name|reduceOpenFiles
 argument_list|(

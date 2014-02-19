@@ -450,7 +450,7 @@ name|lucene
 operator|.
 name|util
 operator|.
-name|_TestUtil
+name|TestUtil
 import|;
 end_import
 
@@ -1775,7 +1775,7 @@ block|{
 name|int
 name|numberOfRuns
 init|=
-name|_TestUtil
+name|TestUtil
 operator|.
 name|nextInt
 argument_list|(
@@ -1834,7 +1834,7 @@ specifier|final
 name|int
 name|numDocs
 init|=
-name|_TestUtil
+name|TestUtil
 operator|.
 name|nextInt
 argument_list|(
@@ -1852,7 +1852,7 @@ specifier|final
 name|int
 name|numGroups
 init|=
-name|_TestUtil
+name|TestUtil
 operator|.
 name|nextInt
 argument_list|(
@@ -1921,7 +1921,7 @@ comment|// B/c of DV based impl we can't see the difference between an empty str
 comment|// For that reason we don't generate empty string groups.
 name|randomValue
 operator|=
-name|_TestUtil
+name|TestUtil
 operator|.
 name|randomRealisticUnicodeString
 argument_list|(
@@ -1960,7 +1960,7 @@ init|=
 operator|new
 name|String
 index|[
-name|_TestUtil
+name|TestUtil
 operator|.
 name|nextInt
 argument_list|(

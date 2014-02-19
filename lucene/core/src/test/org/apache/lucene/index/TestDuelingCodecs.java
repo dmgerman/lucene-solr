@@ -186,7 +186,7 @@ name|lucene
 operator|.
 name|util
 operator|.
-name|_TestUtil
+name|TestUtil
 import|;
 end_import
 
@@ -466,14 +466,14 @@ name|close
 argument_list|()
 expr_stmt|;
 comment|// check that our readers are valid
-name|_TestUtil
+name|TestUtil
 operator|.
 name|checkReader
 argument_list|(
 name|leftReader
 argument_list|)
 expr_stmt|;
-name|_TestUtil
+name|TestUtil
 operator|.
 name|checkReader
 argument_list|(

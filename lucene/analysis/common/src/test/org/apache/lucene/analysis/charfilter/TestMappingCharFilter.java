@@ -202,7 +202,7 @@ name|lucene
 operator|.
 name|util
 operator|.
-name|UnicodeUtil
+name|TestUtil
 import|;
 end_import
 
@@ -216,7 +216,7 @@ name|lucene
 operator|.
 name|util
 operator|.
-name|_TestUtil
+name|UnicodeUtil
 import|;
 end_import
 
@@ -1796,7 +1796,7 @@ block|{
 name|String
 name|key
 init|=
-name|_TestUtil
+name|TestUtil
 operator|.
 name|randomSimpleString
 argument_list|(
@@ -1824,7 +1824,7 @@ block|{
 name|String
 name|value
 init|=
-name|_TestUtil
+name|TestUtil
 operator|.
 name|randomSimpleString
 argument_list|(
@@ -1920,7 +1920,7 @@ init|=
 operator|(
 name|char
 operator|)
-name|_TestUtil
+name|TestUtil
 operator|.
 name|nextInt
 argument_list|(
@@ -1999,7 +1999,7 @@ specifier|final
 name|String
 name|key
 init|=
-name|_TestUtil
+name|TestUtil
 operator|.
 name|randomSimpleStringRange
 argument_list|(
@@ -2034,7 +2034,7 @@ specifier|final
 name|String
 name|value
 init|=
-name|_TestUtil
+name|TestUtil
 operator|.
 name|randomSimpleString
 argument_list|(
@@ -2125,7 +2125,7 @@ specifier|final
 name|String
 name|content
 init|=
-name|_TestUtil
+name|TestUtil
 operator|.
 name|randomSimpleStringRange
 argument_list|(
@@ -2758,7 +2758,7 @@ init|=
 operator|new
 name|char
 index|[
-name|_TestUtil
+name|TestUtil
 operator|.
 name|nextInt
 argument_list|(

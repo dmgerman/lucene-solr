@@ -248,7 +248,7 @@ name|lucene
 operator|.
 name|util
 operator|.
-name|_TestUtil
+name|TestUtil
 import|;
 end_import
 
@@ -331,7 +331,7 @@ decl_stmt|;
 name|long
 name|diskFree
 init|=
-name|_TestUtil
+name|TestUtil
 operator|.
 name|nextInt
 argument_list|(
@@ -626,7 +626,7 @@ block|}
 comment|//_TestUtil.syncConcurrentMerges(ms);
 if|if
 condition|(
-name|_TestUtil
+name|TestUtil
 operator|.
 name|anyFilesExceptWriteLock
 argument_list|(
@@ -663,7 +663,7 @@ name|diskFree
 operator|+=
 name|TEST_NIGHTLY
 condition|?
-name|_TestUtil
+name|TestUtil
 operator|.
 name|nextInt
 argument_list|(
@@ -675,7 +675,7 @@ argument_list|,
 literal|600
 argument_list|)
 else|:
-name|_TestUtil
+name|TestUtil
 operator|.
 name|nextInt
 argument_list|(
@@ -735,7 +735,7 @@ specifier|final
 name|String
 name|idFormat
 init|=
-name|_TestUtil
+name|TestUtil
 operator|.
 name|getPostingsFormat
 argument_list|(
@@ -746,7 +746,7 @@ specifier|final
 name|String
 name|contentFormat
 init|=
-name|_TestUtil
+name|TestUtil
 operator|.
 name|getPostingsFormat
 argument_list|(
@@ -1182,7 +1182,7 @@ name|diskFree
 init|=
 name|diskUsage
 operator|+
-name|_TestUtil
+name|TestUtil
 operator|.
 name|nextInt
 argument_list|(
@@ -1821,7 +1821,7 @@ block|}
 block|}
 comment|// Make sure all threads from
 comment|// ConcurrentMergeScheduler are done
-name|_TestUtil
+name|TestUtil
 operator|.
 name|syncConcurrentMerges
 argument_list|(
@@ -2254,7 +2254,7 @@ expr_stmt|;
 comment|// Wait for all BG threads to finish else
 comment|// dir.close() will throw IOException because
 comment|// there are still open files
-name|_TestUtil
+name|TestUtil
 operator|.
 name|syncConcurrentMerges
 argument_list|(
@@ -2271,7 +2271,7 @@ name|diskFree
 operator|+=
 name|TEST_NIGHTLY
 condition|?
-name|_TestUtil
+name|TestUtil
 operator|.
 name|nextInt
 argument_list|(
@@ -2283,7 +2283,7 @@ argument_list|,
 literal|8000
 argument_list|)
 else|:
-name|_TestUtil
+name|TestUtil
 operator|.
 name|nextInt
 argument_list|(
@@ -2659,7 +2659,7 @@ name|didFail2
 argument_list|)
 expr_stmt|;
 block|}
-name|_TestUtil
+name|TestUtil
 operator|.
 name|checkIndex
 argument_list|(

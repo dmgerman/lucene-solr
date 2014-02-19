@@ -50,16 +50,6 @@ begin_import
 import|import
 name|java
 operator|.
-name|io
-operator|.
-name|Reader
-import|;
-end_import
-
-begin_import
-import|import
-name|java
-operator|.
 name|util
 operator|.
 name|ArrayList
@@ -368,7 +358,21 @@ name|lucene
 operator|.
 name|util
 operator|.
-name|_TestUtil
+name|TestUtil
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|util
+operator|.
+name|TestUtil
 import|;
 end_import
 
@@ -3982,7 +3986,7 @@ condition|(
 name|success
 condition|)
 block|{
-name|_TestUtil
+name|TestUtil
 operator|.
 name|checkIndex
 argument_list|(
@@ -5645,7 +5649,7 @@ name|min
 argument_list|(
 name|left
 argument_list|,
-name|_TestUtil
+name|TestUtil
 operator|.
 name|nextInt
 argument_list|(
@@ -5747,7 +5751,7 @@ specifier|final
 name|String
 name|fieldFormat
 init|=
-name|_TestUtil
+name|TestUtil
 operator|.
 name|getPostingsFormat
 argument_list|(
@@ -6682,7 +6686,7 @@ argument_list|)
 operator|.
 name|append
 argument_list|(
-name|_TestUtil
+name|TestUtil
 operator|.
 name|randomRealisticUnicodeString
 argument_list|(

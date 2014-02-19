@@ -82,16 +82,6 @@ name|java
 operator|.
 name|util
 operator|.
-name|HashMap
-import|;
-end_import
-
-begin_import
-import|import
-name|java
-operator|.
-name|util
-operator|.
 name|HashSet
 import|;
 end_import
@@ -514,7 +504,7 @@ name|lucene
 operator|.
 name|util
 operator|.
-name|_TestUtil
+name|TestUtil
 import|;
 end_import
 
@@ -774,7 +764,7 @@ argument_list|)
 expr_stmt|;
 name|docFreq
 operator|=
-name|_TestUtil
+name|TestUtil
 operator|.
 name|nextInt
 argument_list|(
@@ -800,7 +790,7 @@ expr_stmt|;
 comment|// TODO: more realistic to inversely tie this to numDocs:
 name|maxDocSpacing
 operator|=
-name|_TestUtil
+name|TestUtil
 operator|.
 name|nextInt
 argument_list|(
@@ -991,7 +981,7 @@ block|{
 comment|// TODO: sometimes have a biggish gap here!
 name|docID
 operator|+=
-name|_TestUtil
+name|TestUtil
 operator|.
 name|nextInt
 argument_list|(
@@ -1017,7 +1007,7 @@ condition|)
 block|{
 name|freq
 operator|=
-name|_TestUtil
+name|TestUtil
 operator|.
 name|nextInt
 argument_list|(
@@ -1044,7 +1034,7 @@ condition|)
 block|{
 name|freq
 operator|=
-name|_TestUtil
+name|TestUtil
 operator|.
 name|nextInt
 argument_list|(
@@ -1060,7 +1050,7 @@ else|else
 block|{
 name|freq
 operator|=
-name|_TestUtil
+name|TestUtil
 operator|.
 name|nextInt
 argument_list|(
@@ -1086,7 +1076,7 @@ literal|0
 expr_stmt|;
 name|posSpacing
 operator|=
-name|_TestUtil
+name|TestUtil
 operator|.
 name|nextInt
 argument_list|(
@@ -1194,7 +1184,7 @@ else|else
 block|{
 name|pos
 operator|+=
-name|_TestUtil
+name|TestUtil
 operator|.
 name|nextInt
 argument_list|(
@@ -1680,7 +1670,7 @@ specifier|final
 name|int
 name|numFields
 init|=
-name|_TestUtil
+name|TestUtil
 operator|.
 name|nextInt
 argument_list|(
@@ -1740,7 +1730,7 @@ block|{
 name|String
 name|field
 init|=
-name|_TestUtil
+name|TestUtil
 operator|.
 name|randomSimpleString
 argument_list|(
@@ -1863,7 +1853,7 @@ else|else
 block|{
 name|numTerms
 operator|=
-name|_TestUtil
+name|TestUtil
 operator|.
 name|nextInt
 argument_list|(
@@ -1894,7 +1884,7 @@ block|{
 name|String
 name|term
 init|=
-name|_TestUtil
+name|TestUtil
 operator|.
 name|randomSimpleString
 argument_list|(
@@ -3435,7 +3425,7 @@ decl_stmt|;
 name|String
 name|pf
 init|=
-name|_TestUtil
+name|TestUtil
 operator|.
 name|getPostingsFormat
 argument_list|(
@@ -4675,7 +4665,7 @@ literal|3
 condition|?
 literal|1
 else|:
-name|_TestUtil
+name|TestUtil
 operator|.
 name|nextInt
 argument_list|(
@@ -4982,7 +4972,7 @@ specifier|final
 name|int
 name|skipCount
 init|=
-name|_TestUtil
+name|TestUtil
 operator|.
 name|nextInt
 argument_list|(
@@ -5032,7 +5022,7 @@ specifier|final
 name|int
 name|skipDocIDs
 init|=
-name|_TestUtil
+name|TestUtil
 operator|.
 name|nextInt
 argument_list|(
@@ -6047,7 +6037,7 @@ block|{
 name|int
 name|numThreads
 init|=
-name|_TestUtil
+name|TestUtil
 operator|.
 name|nextInt
 argument_list|(
@@ -6733,7 +6723,7 @@ block|{
 name|File
 name|path
 init|=
-name|_TestUtil
+name|TestUtil
 operator|.
 name|getTempDir
 argument_list|(
@@ -6876,7 +6866,7 @@ operator|.
 name|close
 argument_list|()
 expr_stmt|;
-name|_TestUtil
+name|TestUtil
 operator|.
 name|rmDir
 argument_list|(
@@ -7023,7 +7013,7 @@ block|{
 name|File
 name|path
 init|=
-name|_TestUtil
+name|TestUtil
 operator|.
 name|getTempDir
 argument_list|(
@@ -7109,7 +7099,7 @@ operator|.
 name|close
 argument_list|()
 expr_stmt|;
-name|_TestUtil
+name|TestUtil
 operator|.
 name|rmDir
 argument_list|(
@@ -8180,7 +8170,7 @@ decl_stmt|;
 name|int
 name|limit
 init|=
-name|_TestUtil
+name|TestUtil
 operator|.
 name|nextInt
 argument_list|(
@@ -8488,7 +8478,7 @@ decl_stmt|;
 name|int
 name|limit
 init|=
-name|_TestUtil
+name|TestUtil
 operator|.
 name|nextInt
 argument_list|(

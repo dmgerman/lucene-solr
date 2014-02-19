@@ -118,7 +118,7 @@ name|lucene
 operator|.
 name|util
 operator|.
-name|_TestUtil
+name|TestUtil
 import|;
 end_import
 
@@ -221,7 +221,7 @@ name|suggester
 operator|.
 name|lookup
 argument_list|(
-name|_TestUtil
+name|TestUtil
 operator|.
 name|stringToCharSequence
 argument_list|(
@@ -285,7 +285,7 @@ name|suggester
 operator|.
 name|lookup
 argument_list|(
-name|_TestUtil
+name|TestUtil
 operator|.
 name|stringToCharSequence
 argument_list|(
@@ -349,7 +349,7 @@ name|suggester
 operator|.
 name|lookup
 argument_list|(
-name|_TestUtil
+name|TestUtil
 operator|.
 name|stringToCharSequence
 argument_list|(
@@ -413,7 +413,7 @@ name|suggester
 operator|.
 name|lookup
 argument_list|(
-name|_TestUtil
+name|TestUtil
 operator|.
 name|stringToCharSequence
 argument_list|(
@@ -510,7 +510,7 @@ name|suggester
 operator|.
 name|lookup
 argument_list|(
-name|_TestUtil
+name|TestUtil
 operator|.
 name|stringToCharSequence
 argument_list|(
@@ -1043,7 +1043,7 @@ comment|// TODO: would be nice to fix this slowCompletor/comparator to
 comment|// use full range, but we might lose some coverage too...
 name|s
 operator|=
-name|_TestUtil
+name|TestUtil
 operator|.
 name|randomSimpleString
 argument_list|(
@@ -1193,7 +1193,7 @@ specifier|final
 name|int
 name|topN
 init|=
-name|_TestUtil
+name|TestUtil
 operator|.
 name|nextInt
 argument_list|(
@@ -1214,7 +1214,7 @@ name|suggester
 operator|.
 name|lookup
 argument_list|(
-name|_TestUtil
+name|TestUtil
 operator|.
 name|stringToCharSequence
 argument_list|(

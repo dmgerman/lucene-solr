@@ -636,7 +636,7 @@ name|lucene
 operator|.
 name|util
 operator|.
-name|_TestUtil
+name|TestUtil
 import|;
 end_import
 
@@ -2915,7 +2915,7 @@ condition|)
 block|{
 name|s
 operator|=
-name|_TestUtil
+name|TestUtil
 operator|.
 name|randomUnicodeString
 argument_list|(
@@ -2929,7 +2929,7 @@ else|else
 block|{
 name|s
 operator|=
-name|_TestUtil
+name|TestUtil
 operator|.
 name|randomUnicodeString
 argument_list|(
@@ -5448,7 +5448,7 @@ init|=
 operator|new
 name|long
 index|[
-name|_TestUtil
+name|TestUtil
 operator|.
 name|nextInt
 argument_list|(
@@ -5524,7 +5524,7 @@ break|break;
 default|default:
 name|v
 operator|=
-name|_TestUtil
+name|TestUtil
 operator|.
 name|nextLong
 argument_list|(
@@ -5764,7 +5764,7 @@ init|=
 operator|new
 name|int
 index|[
-name|_TestUtil
+name|TestUtil
 operator|.
 name|nextInt
 argument_list|(
@@ -5840,7 +5840,7 @@ break|break;
 default|default:
 name|v
 operator|=
-name|_TestUtil
+name|TestUtil
 operator|.
 name|nextInt
 argument_list|(

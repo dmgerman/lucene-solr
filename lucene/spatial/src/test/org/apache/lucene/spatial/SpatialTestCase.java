@@ -266,7 +266,7 @@ name|lucene
 operator|.
 name|util
 operator|.
-name|_TestUtil
+name|TestUtil
 import|;
 end_import
 
@@ -496,7 +496,7 @@ name|indexWriterConfig
 operator|.
 name|setCodec
 argument_list|(
-name|_TestUtil
+name|TestUtil
 operator|.
 name|alwaysDocValuesFormat
 argument_list|(

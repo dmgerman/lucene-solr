@@ -318,7 +318,7 @@ name|lucene
 operator|.
 name|util
 operator|.
-name|_TestUtil
+name|TestUtil
 import|;
 end_import
 
@@ -1340,7 +1340,7 @@ name|newStringField
 argument_list|(
 literal|"bytes"
 argument_list|,
-name|_TestUtil
+name|TestUtil
 operator|.
 name|randomRealisticUnicodeString
 argument_list|(
@@ -1364,7 +1364,7 @@ name|newStringField
 argument_list|(
 literal|"bytesval"
 argument_list|,
-name|_TestUtil
+name|TestUtil
 operator|.
 name|randomRealisticUnicodeString
 argument_list|(
@@ -1449,7 +1449,7 @@ argument_list|,
 operator|new
 name|BytesRef
 argument_list|(
-name|_TestUtil
+name|TestUtil
 operator|.
 name|randomRealisticUnicodeString
 argument_list|(
@@ -1472,7 +1472,7 @@ argument_list|,
 operator|new
 name|BytesRef
 argument_list|(
-name|_TestUtil
+name|TestUtil
 operator|.
 name|randomRealisticUnicodeString
 argument_list|(
@@ -1495,7 +1495,7 @@ argument_list|,
 operator|new
 name|BytesRef
 argument_list|(
-name|_TestUtil
+name|TestUtil
 operator|.
 name|randomRealisticUnicodeString
 argument_list|(
@@ -1960,7 +1960,7 @@ init|=
 operator|new
 name|SortField
 index|[
-name|_TestUtil
+name|TestUtil
 operator|.
 name|nextInt
 argument_list|(
@@ -2053,7 +2053,7 @@ decl_stmt|;
 name|int
 name|pageSize
 init|=
-name|_TestUtil
+name|TestUtil
 operator|.
 name|nextInt
 argument_list|(

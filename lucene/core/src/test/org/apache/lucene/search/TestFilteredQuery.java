@@ -284,7 +284,7 @@ name|lucene
 operator|.
 name|util
 operator|.
-name|_TestUtil
+name|TestUtil
 import|;
 end_import
 
@@ -3089,7 +3089,7 @@ block|}
 return|;
 block|}
 return|return
-name|_TestUtil
+name|TestUtil
 operator|.
 name|randomFilterStrategy
 argument_list|(

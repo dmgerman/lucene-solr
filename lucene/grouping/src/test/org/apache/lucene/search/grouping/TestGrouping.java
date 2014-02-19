@@ -368,7 +368,7 @@ name|lucene
 operator|.
 name|util
 operator|.
-name|_TestUtil
+name|TestUtil
 import|;
 end_import
 
@@ -4678,7 +4678,7 @@ block|{
 name|int
 name|numberOfRuns
 init|=
-name|_TestUtil
+name|TestUtil
 operator|.
 name|nextInt
 argument_list|(
@@ -4726,7 +4726,7 @@ specifier|final
 name|int
 name|numDocs
 init|=
-name|_TestUtil
+name|TestUtil
 operator|.
 name|nextInt
 argument_list|(
@@ -4745,7 +4745,7 @@ specifier|final
 name|int
 name|numGroups
 init|=
-name|_TestUtil
+name|TestUtil
 operator|.
 name|nextInt
 argument_list|(
@@ -4815,7 +4815,7 @@ comment|// For that reason we don't generate empty string
 comment|// groups.
 name|randomValue
 operator|=
-name|_TestUtil
+name|TestUtil
 operator|.
 name|randomRealisticUnicodeString
 argument_list|(
@@ -4855,7 +4855,7 @@ init|=
 operator|new
 name|String
 index|[
-name|_TestUtil
+name|TestUtil
 operator|.
 name|nextInt
 argument_list|(
@@ -6227,7 +6227,7 @@ specifier|final
 name|int
 name|topNGroups
 init|=
-name|_TestUtil
+name|TestUtil
 operator|.
 name|nextInt
 argument_list|(
@@ -6244,7 +6244,7 @@ specifier|final
 name|int
 name|docsPerGroup
 init|=
-name|_TestUtil
+name|TestUtil
 operator|.
 name|nextInt
 argument_list|(
@@ -6260,7 +6260,7 @@ specifier|final
 name|int
 name|groupOffset
 init|=
-name|_TestUtil
+name|TestUtil
 operator|.
 name|nextInt
 argument_list|(
@@ -6283,7 +6283,7 @@ specifier|final
 name|int
 name|docOffset
 init|=
-name|_TestUtil
+name|TestUtil
 operator|.
 name|nextInt
 argument_list|(

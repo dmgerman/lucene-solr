@@ -94,25 +94,9 @@ name|apache
 operator|.
 name|lucene
 operator|.
-name|index
-operator|.
-name|MergePolicy
-operator|.
-name|MergeTrigger
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
 name|util
 operator|.
-name|_TestUtil
+name|TestUtil
 import|;
 end_import
 
@@ -291,7 +275,7 @@ specifier|final
 name|int
 name|segsToMerge
 init|=
-name|_TestUtil
+name|TestUtil
 operator|.
 name|nextInt
 argument_list|(
@@ -483,7 +467,7 @@ literal|2
 condition|?
 name|max
 else|:
-name|_TestUtil
+name|TestUtil
 operator|.
 name|nextInt
 argument_list|(

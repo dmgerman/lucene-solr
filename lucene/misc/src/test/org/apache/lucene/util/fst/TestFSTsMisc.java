@@ -154,7 +154,21 @@ name|lucene
 operator|.
 name|util
 operator|.
-name|_TestUtil
+name|TestUtil
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|util
+operator|.
+name|TestUtil
 import|;
 end_import
 
@@ -577,7 +591,7 @@ name|value
 init|=
 name|lastOutput
 operator|+
-name|_TestUtil
+name|TestUtil
 operator|.
 name|nextInt
 argument_list|(
@@ -601,7 +615,7 @@ name|value
 operator|=
 name|lastOutput
 operator|+
-name|_TestUtil
+name|TestUtil
 operator|.
 name|nextInt
 argument_list|(
@@ -637,7 +651,7 @@ name|value2
 init|=
 name|lastOutput
 operator|+
-name|_TestUtil
+name|TestUtil
 operator|.
 name|nextInt
 argument_list|(
@@ -661,7 +675,7 @@ name|value2
 operator|=
 name|lastOutput
 operator|+
-name|_TestUtil
+name|TestUtil
 operator|.
 name|nextInt
 argument_list|(
@@ -976,7 +990,7 @@ block|{
 name|int
 name|outputCount
 init|=
-name|_TestUtil
+name|TestUtil
 operator|.
 name|nextInt
 argument_list|(
@@ -1022,7 +1036,7 @@ name|value
 init|=
 name|lastOutput
 operator|+
-name|_TestUtil
+name|TestUtil
 operator|.
 name|nextInt
 argument_list|(
@@ -1046,7 +1060,7 @@ name|value
 operator|=
 name|lastOutput
 operator|+
-name|_TestUtil
+name|TestUtil
 operator|.
 name|nextInt
 argument_list|(

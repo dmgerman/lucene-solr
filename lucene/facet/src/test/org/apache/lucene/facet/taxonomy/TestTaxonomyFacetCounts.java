@@ -528,7 +528,7 @@ name|lucene
 operator|.
 name|util
 operator|.
-name|_TestUtil
+name|TestUtil
 import|;
 end_import
 
@@ -2943,7 +2943,7 @@ name|assumeTrue
 argument_list|(
 literal|"default Codec doesn't support huge BinaryDocValues"
 argument_list|,
-name|_TestUtil
+name|TestUtil
 operator|.
 name|fieldSupportsHugeBinaryDocValues
 argument_list|(
@@ -3028,7 +3028,7 @@ expr_stmt|;
 name|int
 name|numLabels
 init|=
-name|_TestUtil
+name|TestUtil
 operator|.
 name|nextInt
 argument_list|(
@@ -4966,7 +4966,7 @@ decl_stmt|;
 name|int
 name|numDims
 init|=
-name|_TestUtil
+name|TestUtil
 operator|.
 name|nextInt
 argument_list|(

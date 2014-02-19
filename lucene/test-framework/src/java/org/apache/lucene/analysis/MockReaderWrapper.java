@@ -56,7 +56,7 @@ name|lucene
 operator|.
 name|util
 operator|.
-name|_TestUtil
+name|TestUtil
 import|;
 end_import
 
@@ -244,7 +244,7 @@ comment|// Spoon-feed: intentionally maybe return less than
 comment|// the consumer asked for
 name|realLen
 operator|=
-name|_TestUtil
+name|TestUtil
 operator|.
 name|nextInt
 argument_list|(

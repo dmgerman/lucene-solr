@@ -88,22 +88,6 @@ name|apache
 operator|.
 name|lucene
 operator|.
-name|index
-operator|.
-name|MergePolicy
-operator|.
-name|MergeTrigger
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
 name|search
 operator|.
 name|DocIdSetIterator
@@ -218,7 +202,7 @@ name|lucene
 operator|.
 name|util
 operator|.
-name|_TestUtil
+name|TestUtil
 import|;
 end_import
 
@@ -979,7 +963,7 @@ block|{
 name|DocsEnum
 name|docsEnum
 init|=
-name|_TestUtil
+name|TestUtil
 operator|.
 name|docs
 argument_list|(

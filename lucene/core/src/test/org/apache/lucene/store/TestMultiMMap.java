@@ -160,7 +160,7 @@ name|lucene
 operator|.
 name|util
 operator|.
-name|_TestUtil
+name|TestUtil
 import|;
 end_import
 
@@ -206,7 +206,7 @@ argument_list|)
 expr_stmt|;
 name|workDir
 operator|=
-name|_TestUtil
+name|TestUtil
 operator|.
 name|getTempDir
 argument_list|(
@@ -233,7 +233,7 @@ init|=
 operator|new
 name|MMapDirectory
 argument_list|(
-name|_TestUtil
+name|TestUtil
 operator|.
 name|getTempDir
 argument_list|(
@@ -404,7 +404,7 @@ init|=
 operator|new
 name|MMapDirectory
 argument_list|(
-name|_TestUtil
+name|TestUtil
 operator|.
 name|getTempDir
 argument_list|(
@@ -547,7 +547,7 @@ init|=
 operator|new
 name|MMapDirectory
 argument_list|(
-name|_TestUtil
+name|TestUtil
 operator|.
 name|getTempDir
 argument_list|(
@@ -787,7 +787,7 @@ init|=
 operator|new
 name|MMapDirectory
 argument_list|(
-name|_TestUtil
+name|TestUtil
 operator|.
 name|getTempDir
 argument_list|(
@@ -984,7 +984,7 @@ init|=
 operator|new
 name|MMapDirectory
 argument_list|(
-name|_TestUtil
+name|TestUtil
 operator|.
 name|getTempDir
 argument_list|(
@@ -1083,7 +1083,7 @@ init|=
 operator|new
 name|MMapDirectory
 argument_list|(
-name|_TestUtil
+name|TestUtil
 operator|.
 name|getTempDir
 argument_list|(
@@ -1201,7 +1201,7 @@ init|=
 operator|new
 name|MMapDirectory
 argument_list|(
-name|_TestUtil
+name|TestUtil
 operator|.
 name|getTempDir
 argument_list|(
@@ -1373,7 +1373,7 @@ init|=
 operator|new
 name|MMapDirectory
 argument_list|(
-name|_TestUtil
+name|TestUtil
 operator|.
 name|getTempDir
 argument_list|(
@@ -1566,7 +1566,7 @@ init|=
 operator|new
 name|MMapDirectory
 argument_list|(
-name|_TestUtil
+name|TestUtil
 operator|.
 name|getTempDir
 argument_list|(
@@ -1828,7 +1828,7 @@ init|=
 operator|new
 name|MMapDirectory
 argument_list|(
-name|_TestUtil
+name|TestUtil
 operator|.
 name|getTempDir
 argument_list|(
@@ -2129,7 +2129,7 @@ argument_list|(
 name|random
 argument_list|()
 argument_list|,
-name|_TestUtil
+name|TestUtil
 operator|.
 name|nextInt
 argument_list|(
@@ -2160,7 +2160,7 @@ block|{
 name|File
 name|path
 init|=
-name|_TestUtil
+name|TestUtil
 operator|.
 name|createTempFile
 argument_list|(
@@ -2335,7 +2335,7 @@ name|junk
 operator|.
 name|setStringValue
 argument_list|(
-name|_TestUtil
+name|TestUtil
 operator|.
 name|randomUnicodeString
 argument_list|(

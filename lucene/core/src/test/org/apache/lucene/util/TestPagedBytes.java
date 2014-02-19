@@ -191,7 +191,7 @@ name|dir
 init|=
 name|newFSDirectory
 argument_list|(
-name|_TestUtil
+name|TestUtil
 operator|.
 name|getTempDir
 argument_list|(
@@ -227,7 +227,7 @@ specifier|final
 name|int
 name|blockBits
 init|=
-name|_TestUtil
+name|TestUtil
 operator|.
 name|nextInt
 argument_list|(
@@ -275,7 +275,7 @@ specifier|final
 name|int
 name|numBytes
 init|=
-name|_TestUtil
+name|TestUtil
 operator|.
 name|nextInt
 argument_list|(
@@ -695,7 +695,7 @@ specifier|final
 name|int
 name|blockBits
 init|=
-name|_TestUtil
+name|TestUtil
 operator|.
 name|nextInt
 argument_list|(
@@ -1089,7 +1089,7 @@ name|dir
 init|=
 name|newFSDirectory
 argument_list|(
-name|_TestUtil
+name|TestUtil
 operator|.
 name|getTempDir
 argument_list|(
@@ -1125,7 +1125,7 @@ specifier|final
 name|int
 name|blockBits
 init|=
-name|_TestUtil
+name|TestUtil
 operator|.
 name|nextInt
 argument_list|(
@@ -1152,7 +1152,7 @@ init|=
 operator|new
 name|byte
 index|[
-name|_TestUtil
+name|TestUtil
 operator|.
 name|nextInt
 argument_list|(
@@ -1207,7 +1207,7 @@ operator|<<
 literal|31
 operator|)
 operator|+
-name|_TestUtil
+name|TestUtil
 operator|.
 name|nextInt
 argument_list|(
@@ -1378,7 +1378,7 @@ name|numBytes
 operator|-
 literal|1
 block|,
-name|_TestUtil
+name|TestUtil
 operator|.
 name|nextLong
 argument_list|(

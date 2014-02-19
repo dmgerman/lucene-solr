@@ -92,7 +92,21 @@ name|lucene
 operator|.
 name|util
 operator|.
-name|_TestUtil
+name|TestUtil
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|util
+operator|.
+name|TestUtil
 import|;
 end_import
 
@@ -239,7 +253,7 @@ name|leaves
 argument_list|()
 control|)
 block|{
-name|_TestUtil
+name|TestUtil
 operator|.
 name|checkReader
 argument_list|(

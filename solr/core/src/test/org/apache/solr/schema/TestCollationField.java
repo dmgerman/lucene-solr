@@ -76,7 +76,7 @@ name|lucene
 operator|.
 name|util
 operator|.
-name|_TestUtil
+name|TestUtil
 import|;
 end_import
 
@@ -358,7 +358,7 @@ comment|// make a solr home underneath the test's TEMP_DIR
 name|File
 name|tmpFile
 init|=
-name|_TestUtil
+name|TestUtil
 operator|.
 name|getTempDir
 argument_list|(

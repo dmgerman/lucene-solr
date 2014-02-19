@@ -389,7 +389,7 @@ block|{
 name|int
 name|sz
 init|=
-name|_TestUtil
+name|TestUtil
 operator|.
 name|nextInt
 argument_list|(

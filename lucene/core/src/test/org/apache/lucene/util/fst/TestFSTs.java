@@ -496,7 +496,7 @@ name|lucene
 operator|.
 name|util
 operator|.
-name|_TestUtil
+name|TestUtil
 import|;
 end_import
 
@@ -1733,7 +1733,7 @@ name|value
 init|=
 name|lastOutput
 operator|+
-name|_TestUtil
+name|TestUtil
 operator|.
 name|nextInt
 argument_list|(
@@ -1870,7 +1870,7 @@ index|[
 name|idx
 index|]
 argument_list|,
-name|_TestUtil
+name|TestUtil
 operator|.
 name|nextLong
 argument_list|(
@@ -2025,7 +2025,7 @@ name|value
 init|=
 name|lastOutput
 operator|+
-name|_TestUtil
+name|TestUtil
 operator|.
 name|nextInt
 argument_list|(
@@ -2645,7 +2645,7 @@ name|IOException
 block|{
 name|testRandomWords
 argument_list|(
-name|_TestUtil
+name|TestUtil
 operator|.
 name|nextInt
 argument_list|(
@@ -2724,7 +2724,7 @@ specifier|final
 name|File
 name|tempDir
 init|=
-name|_TestUtil
+name|TestUtil
 operator|.
 name|getTempDir
 argument_list|(
@@ -5330,7 +5330,7 @@ argument_list|,
 operator|(
 name|long
 operator|)
-name|_TestUtil
+name|TestUtil
 operator|.
 name|nextInt
 argument_list|(
@@ -5497,7 +5497,7 @@ return|return
 operator|(
 name|long
 operator|)
-name|_TestUtil
+name|TestUtil
 operator|.
 name|nextInt
 argument_list|(
@@ -9994,7 +9994,7 @@ condition|)
 block|{
 name|s
 operator|=
-name|_TestUtil
+name|TestUtil
 operator|.
 name|randomSimpleString
 argument_list|(
@@ -10051,7 +10051,7 @@ block|}
 name|int
 name|weight
 init|=
-name|_TestUtil
+name|TestUtil
 operator|.
 name|nextInt
 argument_list|(
@@ -10243,7 +10243,7 @@ specifier|final
 name|int
 name|topN
 init|=
-name|_TestUtil
+name|TestUtil
 operator|.
 name|nextInt
 argument_list|(
@@ -10815,7 +10815,7 @@ condition|)
 block|{
 name|s
 operator|=
-name|_TestUtil
+name|TestUtil
 operator|.
 name|randomSimpleString
 argument_list|(
@@ -10872,7 +10872,7 @@ block|}
 name|int
 name|weight
 init|=
-name|_TestUtil
+name|TestUtil
 operator|.
 name|nextInt
 argument_list|(
@@ -10887,7 +10887,7 @@ comment|// weights 1..100
 name|int
 name|output
 init|=
-name|_TestUtil
+name|TestUtil
 operator|.
 name|nextInt
 argument_list|(
@@ -11136,7 +11136,7 @@ specifier|final
 name|int
 name|topN
 init|=
-name|_TestUtil
+name|TestUtil
 operator|.
 name|nextInt
 argument_list|(

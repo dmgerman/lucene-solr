@@ -42,7 +42,7 @@ name|lucene
 operator|.
 name|util
 operator|.
-name|_TestUtil
+name|TestUtil
 import|;
 end_import
 
@@ -508,7 +508,7 @@ block|{
 name|int
 name|x
 init|=
-name|_TestUtil
+name|TestUtil
 operator|.
 name|nextInt
 argument_list|(
@@ -636,7 +636,7 @@ case|case
 literal|0
 case|:
 return|return
-name|_TestUtil
+name|TestUtil
 operator|.
 name|nextInt
 argument_list|(
@@ -651,7 +651,7 @@ case|case
 literal|1
 case|:
 return|return
-name|_TestUtil
+name|TestUtil
 operator|.
 name|nextInt
 argument_list|(
@@ -666,7 +666,7 @@ case|case
 literal|2
 case|:
 return|return
-name|_TestUtil
+name|TestUtil
 operator|.
 name|nextInt
 argument_list|(
@@ -679,7 +679,7 @@ argument_list|)
 return|;
 default|default:
 return|return
-name|_TestUtil
+name|TestUtil
 operator|.
 name|nextInt
 argument_list|(
@@ -1324,7 +1324,7 @@ block|{
 comment|// likely not accepted
 name|string
 operator|=
-name|_TestUtil
+name|TestUtil
 operator|.
 name|randomUnicodeString
 argument_list|(

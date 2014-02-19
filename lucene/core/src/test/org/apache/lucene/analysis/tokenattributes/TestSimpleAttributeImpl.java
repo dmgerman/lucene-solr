@@ -28,7 +28,7 @@ name|lucene
 operator|.
 name|util
 operator|.
-name|_TestUtil
+name|TestUtil
 import|;
 end_import
 
@@ -81,7 +81,7 @@ name|void
 name|testAttributes
 parameter_list|()
 block|{
-name|_TestUtil
+name|TestUtil
 operator|.
 name|assertAttributeReflection
 argument_list|(
@@ -106,7 +106,7 @@ literal|1
 argument_list|)
 argument_list|)
 expr_stmt|;
-name|_TestUtil
+name|TestUtil
 operator|.
 name|assertAttributeReflection
 argument_list|(
@@ -131,7 +131,7 @@ literal|1
 argument_list|)
 argument_list|)
 expr_stmt|;
-name|_TestUtil
+name|TestUtil
 operator|.
 name|assertAttributeReflection
 argument_list|(
@@ -156,7 +156,7 @@ literal|0
 argument_list|)
 argument_list|)
 expr_stmt|;
-name|_TestUtil
+name|TestUtil
 operator|.
 name|assertAttributeReflection
 argument_list|(
@@ -183,7 +183,7 @@ name|DEFAULT_TYPE
 argument_list|)
 argument_list|)
 expr_stmt|;
-name|_TestUtil
+name|TestUtil
 operator|.
 name|assertAttributeReflection
 argument_list|(
@@ -208,7 +208,7 @@ literal|null
 argument_list|)
 argument_list|)
 expr_stmt|;
-name|_TestUtil
+name|TestUtil
 operator|.
 name|assertAttributeReflection
 argument_list|(
@@ -233,7 +233,7 @@ literal|false
 argument_list|)
 argument_list|)
 expr_stmt|;
-name|_TestUtil
+name|TestUtil
 operator|.
 name|assertAttributeReflection
 argument_list|(

@@ -504,7 +504,7 @@ name|lucene
 operator|.
 name|util
 operator|.
-name|_TestUtil
+name|TestUtil
 import|;
 end_import
 
@@ -2248,7 +2248,7 @@ block|{
 name|int
 name|maxIndexIter
 init|=
-name|_TestUtil
+name|TestUtil
 operator|.
 name|nextInt
 argument_list|(
@@ -2263,7 +2263,7 @@ decl_stmt|;
 name|int
 name|maxSearchIter
 init|=
-name|_TestUtil
+name|TestUtil
 operator|.
 name|nextInt
 argument_list|(
@@ -2283,7 +2283,7 @@ name|maxIndexIter
 argument_list|,
 name|maxSearchIter
 argument_list|,
-name|_TestUtil
+name|TestUtil
 operator|.
 name|nextInt
 argument_list|(
@@ -2313,7 +2313,7 @@ block|{
 name|int
 name|maxIndexIter
 init|=
-name|_TestUtil
+name|TestUtil
 operator|.
 name|nextInt
 argument_list|(
@@ -2328,7 +2328,7 @@ decl_stmt|;
 name|int
 name|maxSearchIter
 init|=
-name|_TestUtil
+name|TestUtil
 operator|.
 name|nextInt
 argument_list|(
@@ -2348,7 +2348,7 @@ name|maxIndexIter
 argument_list|,
 name|maxSearchIter
 argument_list|,
-name|_TestUtil
+name|TestUtil
 operator|.
 name|nextInt
 argument_list|(
@@ -3404,7 +3404,7 @@ do|do
 block|{
 name|uniqueRandomValue
 operator|=
-name|_TestUtil
+name|TestUtil
 operator|.
 name|randomRealisticUnicodeString
 argument_list|(

@@ -24,7 +24,7 @@ name|lucene
 operator|.
 name|util
 operator|.
-name|_TestUtil
+name|TestUtil
 import|;
 end_import
 
@@ -2814,7 +2814,7 @@ literal|"rows"
 argument_list|,
 literal|""
 operator|+
-name|_TestUtil
+name|TestUtil
 operator|.
 name|nextInt
 argument_list|(
@@ -2964,7 +2964,7 @@ specifier|final
 name|int
 name|initialDocs
 init|=
-name|_TestUtil
+name|TestUtil
 operator|.
 name|nextInt
 argument_list|(
@@ -3075,7 +3075,7 @@ name|rows
 init|=
 literal|""
 operator|+
-name|_TestUtil
+name|TestUtil
 operator|.
 name|nextInt
 argument_list|(
@@ -3206,7 +3206,7 @@ name|rows
 init|=
 literal|""
 operator|+
-name|_TestUtil
+name|TestUtil
 operator|.
 name|nextInt
 argument_list|(
@@ -3309,7 +3309,7 @@ block|{
 return|return
 literal|0
 operator|!=
-name|_TestUtil
+name|TestUtil
 operator|.
 name|nextInt
 argument_list|(
@@ -3340,7 +3340,7 @@ return|return
 operator|(
 literal|0
 operator|==
-name|_TestUtil
+name|TestUtil
 operator|.
 name|nextInt
 argument_list|(
@@ -3827,7 +3827,7 @@ specifier|final
 name|int
 name|numDocs
 init|=
-name|_TestUtil
+name|TestUtil
 operator|.
 name|nextInt
 argument_list|(
@@ -3935,7 +3935,7 @@ name|f
 init|=
 name|fieldNames
 index|[
-name|_TestUtil
+name|TestUtil
 operator|.
 name|nextInt
 argument_list|(
@@ -3957,7 +3957,7 @@ name|order
 init|=
 literal|0
 operator|==
-name|_TestUtil
+name|TestUtil
 operator|.
 name|nextInt
 argument_list|(
@@ -4000,7 +4000,7 @@ name|rows
 init|=
 literal|""
 operator|+
-name|_TestUtil
+name|TestUtil
 operator|.
 name|nextInt
 argument_list|(
@@ -4017,7 +4017,7 @@ name|facetField
 init|=
 name|fieldsToFacetOn
 index|[
-name|_TestUtil
+name|TestUtil
 operator|.
 name|nextInt
 argument_list|(
@@ -4039,7 +4039,7 @@ name|facetMethod
 init|=
 name|facetMethods
 index|[
-name|_TestUtil
+name|TestUtil
 operator|.
 name|nextInt
 argument_list|(
@@ -5010,7 +5010,7 @@ operator|.
 name|nextInt
 argument_list|()
 argument_list|,
-name|_TestUtil
+name|TestUtil
 operator|.
 name|nextInt
 argument_list|(
@@ -5045,7 +5045,7 @@ operator|.
 name|nextLong
 argument_list|()
 argument_list|,
-name|_TestUtil
+name|TestUtil
 operator|.
 name|nextInt
 argument_list|(
@@ -5155,7 +5155,7 @@ argument_list|(
 name|randomUsableUnicodeString
 argument_list|()
 argument_list|,
-name|_TestUtil
+name|TestUtil
 operator|.
 name|randomSimpleString
 argument_list|(
@@ -5184,7 +5184,7 @@ name|int
 operator|)
 name|skewed
 argument_list|(
-name|_TestUtil
+name|TestUtil
 operator|.
 name|nextInt
 argument_list|(
@@ -5300,7 +5300,7 @@ comment|// several SHOULD clauses on range queries
 name|int
 name|low
 init|=
-name|_TestUtil
+name|TestUtil
 operator|.
 name|nextInt
 argument_list|(
@@ -5316,7 +5316,7 @@ decl_stmt|;
 name|int
 name|high
 init|=
-name|_TestUtil
+name|TestUtil
 operator|.
 name|nextInt
 argument_list|(
@@ -5377,7 +5377,7 @@ block|{
 name|String
 name|result
 init|=
-name|_TestUtil
+name|TestUtil
 operator|.
 name|randomRealisticUnicodeString
 argument_list|(
@@ -5398,7 +5398,7 @@ block|{
 comment|// oh well
 name|result
 operator|=
-name|_TestUtil
+name|TestUtil
 operator|.
 name|randomSimpleString
 argument_list|(
@@ -5520,7 +5520,7 @@ operator|&&
 operator|(
 literal|0
 operator|==
-name|_TestUtil
+name|TestUtil
 operator|.
 name|nextInt
 argument_list|(

@@ -196,7 +196,7 @@ name|lucene
 operator|.
 name|util
 operator|.
-name|_TestUtil
+name|TestUtil
 import|;
 end_import
 
@@ -1584,7 +1584,7 @@ decl_stmt|;
 name|DocsEnum
 name|docsEnum
 init|=
-name|_TestUtil
+name|TestUtil
 operator|.
 name|docs
 argument_list|(
@@ -2352,7 +2352,7 @@ decl_stmt|;
 name|DocsEnum
 name|disi
 init|=
-name|_TestUtil
+name|TestUtil
 operator|.
 name|docs
 argument_list|(
@@ -2438,7 +2438,7 @@ argument_list|)
 expr_stmt|;
 name|disi
 operator|=
-name|_TestUtil
+name|TestUtil
 operator|.
 name|docs
 argument_list|(

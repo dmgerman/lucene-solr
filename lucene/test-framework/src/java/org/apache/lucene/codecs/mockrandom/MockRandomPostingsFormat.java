@@ -704,7 +704,7 @@ name|lucene
 operator|.
 name|util
 operator|.
-name|_TestUtil
+name|TestUtil
 import|;
 end_import
 
@@ -874,7 +874,7 @@ specifier|final
 name|int
 name|blockSize
 init|=
-name|_TestUtil
+name|TestUtil
 operator|.
 name|nextInt
 argument_list|(
@@ -902,7 +902,7 @@ specifier|final
 name|int
 name|baseBlockSize
 init|=
-name|_TestUtil
+name|TestUtil
 operator|.
 name|nextInt
 argument_list|(
@@ -1185,7 +1185,7 @@ comment|// (the skipInterval is written into postings header)
 name|int
 name|skipInterval
 init|=
-name|_TestUtil
+name|TestUtil
 operator|.
 name|nextInt
 argument_list|(
@@ -1400,7 +1400,7 @@ specifier|final
 name|int
 name|totTFCutoff
 init|=
-name|_TestUtil
+name|TestUtil
 operator|.
 name|nextInt
 argument_list|(
@@ -1581,7 +1581,7 @@ specifier|final
 name|int
 name|minTermsInBlock
 init|=
-name|_TestUtil
+name|TestUtil
 operator|.
 name|nextInt
 argument_list|(
@@ -1701,7 +1701,7 @@ block|{
 name|int
 name|termIndexInterval
 init|=
-name|_TestUtil
+name|TestUtil
 operator|.
 name|nextInt
 argument_list|(
@@ -1774,7 +1774,7 @@ specifier|final
 name|int
 name|tii
 init|=
-name|_TestUtil
+name|TestUtil
 operator|.
 name|nextInt
 argument_list|(
@@ -1829,7 +1829,7 @@ specifier|final
 name|int
 name|docFreqThresh
 init|=
-name|_TestUtil
+name|TestUtil
 operator|.
 name|nextInt
 argument_list|(
@@ -1844,7 +1844,7 @@ specifier|final
 name|int
 name|tii
 init|=
-name|_TestUtil
+name|TestUtil
 operator|.
 name|nextInt
 argument_list|(
@@ -1883,7 +1883,7 @@ specifier|final
 name|int
 name|gap
 init|=
-name|_TestUtil
+name|TestUtil
 operator|.
 name|nextInt
 argument_list|(
@@ -2168,7 +2168,7 @@ decl_stmt|;
 name|int
 name|readBufferSize
 init|=
-name|_TestUtil
+name|TestUtil
 operator|.
 name|nextInt
 argument_list|(
@@ -2317,7 +2317,7 @@ specifier|final
 name|int
 name|totTFCutoff
 init|=
-name|_TestUtil
+name|TestUtil
 operator|.
 name|nextInt
 argument_list|(

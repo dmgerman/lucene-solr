@@ -690,20 +690,6 @@ name|lucene
 operator|.
 name|index
 operator|.
-name|FieldInfos
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|index
-operator|.
 name|IndexReader
 import|;
 end_import
@@ -789,34 +775,6 @@ operator|.
 name|index
 operator|.
 name|MultiFields
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|index
-operator|.
-name|SegmentCommitInfo
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|index
-operator|.
-name|SegmentReader
 import|;
 end_import
 
@@ -1003,11 +961,19 @@ comment|/**  * General utility methods for Lucene unit tests.   */
 end_comment
 
 begin_class
-DECL|class|_TestUtil
+DECL|class|TestUtil
 specifier|public
+specifier|final
 class|class
-name|_TestUtil
+name|TestUtil
 block|{
+DECL|method|TestUtil
+specifier|private
+name|TestUtil
+parameter_list|()
+block|{
+comment|//
+block|}
 comment|// the max number of retries we're going to do in getTempDir
 DECL|field|GET_TEMP_DIR_RETRY_THRESHOLD
 specifier|private
@@ -2194,7 +2160,7 @@ operator|=
 operator|(
 name|char
 operator|)
-name|_TestUtil
+name|TestUtil
 operator|.
 name|nextInt
 argument_list|(
@@ -2296,7 +2262,7 @@ operator|=
 operator|(
 name|char
 operator|)
-name|_TestUtil
+name|TestUtil
 operator|.
 name|nextInt
 argument_list|(
@@ -7574,7 +7540,7 @@ name|Pattern
 operator|.
 name|compile
 argument_list|(
-name|_TestUtil
+name|TestUtil
 operator|.
 name|randomRegexpishString
 argument_list|(
@@ -7944,7 +7910,7 @@ expr_stmt|;
 name|int
 name|avgWordLength
 init|=
-name|_TestUtil
+name|TestUtil
 operator|.
 name|nextInt
 argument_list|(
@@ -8088,7 +8054,7 @@ block|}
 name|int
 name|evilness
 init|=
-name|_TestUtil
+name|TestUtil
 operator|.
 name|nextInt
 argument_list|(
@@ -8131,7 +8097,7 @@ operator|.
 name|nextBoolean
 argument_list|()
 condition|?
-name|_TestUtil
+name|TestUtil
 operator|.
 name|randomSimpleString
 argument_list|(
@@ -8140,7 +8106,7 @@ argument_list|,
 name|wordLength
 argument_list|)
 else|:
-name|_TestUtil
+name|TestUtil
 operator|.
 name|randomHtmlishString
 argument_list|(
@@ -8164,7 +8130,7 @@ name|sb
 operator|.
 name|append
 argument_list|(
-name|_TestUtil
+name|TestUtil
 operator|.
 name|randomSimpleString
 argument_list|(
@@ -8196,7 +8162,7 @@ name|sb
 operator|.
 name|append
 argument_list|(
-name|_TestUtil
+name|TestUtil
 operator|.
 name|randomRealisticUnicodeString
 argument_list|(
@@ -8221,7 +8187,7 @@ name|sb
 operator|.
 name|append
 argument_list|(
-name|_TestUtil
+name|TestUtil
 operator|.
 name|randomHtmlishString
 argument_list|(
@@ -8245,7 +8211,7 @@ name|sb
 operator|.
 name|append
 argument_list|(
-name|_TestUtil
+name|TestUtil
 operator|.
 name|randomRegexpishString
 argument_list|(
@@ -8262,7 +8228,7 @@ name|sb
 operator|.
 name|append
 argument_list|(
-name|_TestUtil
+name|TestUtil
 operator|.
 name|randomUnicodeString
 argument_list|(
@@ -8336,7 +8302,7 @@ comment|// mix up case
 name|String
 name|mixedUp
 init|=
-name|_TestUtil
+name|TestUtil
 operator|.
 name|randomlyRecaseCodePoints
 argument_list|(

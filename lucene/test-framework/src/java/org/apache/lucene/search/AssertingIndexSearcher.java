@@ -110,7 +110,7 @@ name|lucene
 operator|.
 name|util
 operator|.
-name|_TestUtil
+name|TestUtil
 import|;
 end_import
 
@@ -423,7 +423,7 @@ name|query
 argument_list|,
 name|filter
 argument_list|,
-name|_TestUtil
+name|TestUtil
 operator|.
 name|randomFilterStrategy
 argument_list|(

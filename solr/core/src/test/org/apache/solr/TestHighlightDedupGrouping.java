@@ -24,7 +24,21 @@ name|lucene
 operator|.
 name|util
 operator|.
-name|_TestUtil
+name|TestUtil
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|util
+operator|.
+name|TestUtil
 import|;
 end_import
 
@@ -371,7 +385,7 @@ comment|// distrib grouping doesn't guarantee order of top level group commands
 name|int
 name|numDocs
 init|=
-name|_TestUtil
+name|TestUtil
 operator|.
 name|nextInt
 argument_list|(
@@ -386,7 +400,7 @@ decl_stmt|;
 name|int
 name|numGroups
 init|=
-name|_TestUtil
+name|TestUtil
 operator|.
 name|nextInt
 argument_list|(
@@ -415,7 +429,7 @@ decl_stmt|;
 name|int
 name|percentDuplicates
 init|=
-name|_TestUtil
+name|TestUtil
 operator|.
 name|nextInt
 argument_list|(
@@ -445,7 +459,7 @@ block|{
 name|int
 name|group
 init|=
-name|_TestUtil
+name|TestUtil
 operator|.
 name|nextInt
 argument_list|(
@@ -468,7 +482,7 @@ name|makeDuplicate
 init|=
 literal|0
 operator|==
-name|_TestUtil
+name|TestUtil
 operator|.
 name|nextInt
 argument_list|(
@@ -518,7 +532,7 @@ block|{
 name|int
 name|shard
 init|=
-name|_TestUtil
+name|TestUtil
 operator|.
 name|nextInt
 argument_list|(

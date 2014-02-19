@@ -270,7 +270,7 @@ name|lucene
 operator|.
 name|util
 operator|.
-name|_TestUtil
+name|TestUtil
 import|;
 end_import
 
@@ -492,7 +492,7 @@ specifier|final
 name|int
 name|nWriteThreads
 init|=
-name|_TestUtil
+name|TestUtil
 operator|.
 name|nextInt
 argument_list|(
@@ -512,7 +512,7 @@ specifier|final
 name|int
 name|maxConcurrentCommits
 init|=
-name|_TestUtil
+name|TestUtil
 operator|.
 name|nextInt
 argument_list|(
@@ -558,7 +558,7 @@ specifier|final
 name|int
 name|nReadThreads
 init|=
-name|_TestUtil
+name|TestUtil
 operator|.
 name|nextInt
 argument_list|(

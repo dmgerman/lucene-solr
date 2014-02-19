@@ -72,7 +72,7 @@ name|lucene
 operator|.
 name|util
 operator|.
-name|_TestUtil
+name|TestUtil
 import|;
 end_import
 
@@ -94,14 +94,14 @@ specifier|final
 name|Codec
 name|codec
 init|=
-name|_TestUtil
+name|TestUtil
 operator|.
 name|alwaysPostingsFormat
 argument_list|(
 operator|new
 name|Lucene41VarGapFixedInterval
 argument_list|(
-name|_TestUtil
+name|TestUtil
 operator|.
 name|nextInt
 argument_list|(

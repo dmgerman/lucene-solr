@@ -116,7 +116,7 @@ name|lucene
 operator|.
 name|util
 operator|.
-name|_TestUtil
+name|TestUtil
 import|;
 end_import
 
@@ -644,7 +644,7 @@ parameter_list|()
 block|{
 comment|// return _TestUtil.randomSimpleString(random);
 return|return
-name|_TestUtil
+name|TestUtil
 operator|.
 name|randomRealisticUnicodeString
 argument_list|(

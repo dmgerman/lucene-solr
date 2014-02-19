@@ -207,22 +207,6 @@ operator|.
 name|taxonomy
 operator|.
 name|SearcherTaxonomyManager
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|facet
-operator|.
-name|taxonomy
-operator|.
-name|SearcherTaxonomyManager
 operator|.
 name|SearcherAndTaxonomy
 import|;
@@ -326,7 +310,7 @@ name|lucene
 operator|.
 name|util
 operator|.
-name|_TestUtil
+name|TestUtil
 import|;
 end_import
 
@@ -493,7 +477,7 @@ decl_stmt|;
 name|int
 name|numPaths
 init|=
-name|_TestUtil
+name|TestUtil
 operator|.
 name|nextInt
 argument_list|(
@@ -576,7 +560,7 @@ condition|)
 block|{
 name|path
 operator|=
-name|_TestUtil
+name|TestUtil
 operator|.
 name|randomRealisticUnicodeString
 argument_list|(

@@ -363,7 +363,7 @@ name|random
 expr_stmt|;
 name|nextSave
 operator|=
-name|_TestUtil
+name|TestUtil
 operator|.
 name|nextInt
 argument_list|(
@@ -439,7 +439,7 @@ argument_list|)
 expr_stmt|;
 name|nextSave
 operator|=
-name|_TestUtil
+name|TestUtil
 operator|.
 name|nextInt
 argument_list|(
@@ -703,7 +703,7 @@ specifier|final
 name|int
 name|TERMS_PER_DOC
 init|=
-name|_TestUtil
+name|TestUtil
 operator|.
 name|nextInt
 argument_list|(
@@ -728,7 +728,7 @@ name|dir
 init|=
 name|newFSDirectory
 argument_list|(
-name|_TestUtil
+name|TestUtil
 operator|.
 name|getTempDir
 argument_list|(
@@ -1188,7 +1188,7 @@ operator|.
 name|Status
 name|status
 init|=
-name|_TestUtil
+name|TestUtil
 operator|.
 name|checkIndex
 argument_list|(
@@ -1304,7 +1304,7 @@ decl_stmt|;
 name|int
 name|nextSave
 init|=
-name|_TestUtil
+name|TestUtil
 operator|.
 name|nextInt
 argument_list|(
@@ -1366,7 +1366,7 @@ argument_list|)
 expr_stmt|;
 name|nextSave
 operator|=
-name|_TestUtil
+name|TestUtil
 operator|.
 name|nextInt
 argument_list|(

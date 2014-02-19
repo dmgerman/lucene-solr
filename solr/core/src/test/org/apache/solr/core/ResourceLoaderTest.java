@@ -82,7 +82,7 @@ name|lucene
 operator|.
 name|util
 operator|.
-name|_TestUtil
+name|TestUtil
 import|;
 end_import
 
@@ -442,7 +442,7 @@ block|{
 name|File
 name|temp
 init|=
-name|_TestUtil
+name|TestUtil
 operator|.
 name|getTempDir
 argument_list|(
@@ -550,7 +550,7 @@ expr_stmt|;
 block|}
 finally|finally
 block|{
-name|_TestUtil
+name|TestUtil
 operator|.
 name|rmDir
 argument_list|(
@@ -1054,7 +1054,7 @@ block|{
 name|File
 name|tmpRoot
 init|=
-name|_TestUtil
+name|TestUtil
 operator|.
 name|getTempDir
 argument_list|(

@@ -104,7 +104,7 @@ name|lucene
 operator|.
 name|util
 operator|.
-name|_TestUtil
+name|TestUtil
 import|;
 end_import
 
@@ -623,7 +623,7 @@ argument_list|()
 condition|?
 literal|0
 else|:
-name|_TestUtil
+name|TestUtil
 operator|.
 name|nextInt
 argument_list|(
@@ -653,7 +653,7 @@ name|length
 operator|-
 name|off
 else|:
-name|_TestUtil
+name|TestUtil
 operator|.
 name|nextInt
 argument_list|(
@@ -1069,7 +1069,7 @@ init|=
 operator|new
 name|byte
 index|[
-name|_TestUtil
+name|TestUtil
 operator|.
 name|nextInt
 argument_list|(

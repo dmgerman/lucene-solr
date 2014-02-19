@@ -734,7 +734,7 @@ name|lucene
 operator|.
 name|util
 operator|.
-name|_TestUtil
+name|TestUtil
 import|;
 end_import
 
@@ -3083,7 +3083,7 @@ block|}
 name|int
 name|numRange
 init|=
-name|_TestUtil
+name|TestUtil
 operator|.
 name|nextInt
 argument_list|(
@@ -4099,7 +4099,7 @@ block|}
 name|int
 name|numRange
 init|=
-name|_TestUtil
+name|TestUtil
 operator|.
 name|nextInt
 argument_list|(
@@ -5191,7 +5191,7 @@ block|}
 name|int
 name|numRange
 init|=
-name|_TestUtil
+name|TestUtil
 operator|.
 name|nextInt
 argument_list|(

@@ -170,7 +170,7 @@ specifier|final
 name|String
 name|value
 init|=
-name|_TestUtil
+name|TestUtil
 operator|.
 name|randomRealisticUnicodeString
 argument_list|(

@@ -108,7 +108,7 @@ name|lucene
 operator|.
 name|util
 operator|.
-name|_TestUtil
+name|TestUtil
 import|;
 end_import
 
@@ -156,7 +156,7 @@ specifier|final
 name|int
 name|numBytes
 init|=
-name|_TestUtil
+name|TestUtil
 operator|.
 name|nextInt
 argument_list|(
@@ -183,7 +183,7 @@ specifier|final
 name|int
 name|blockBits
 init|=
-name|_TestUtil
+name|TestUtil
 operator|.
 name|nextInt
 argument_list|(
@@ -571,7 +571,7 @@ block|{
 name|int
 name|len
 init|=
-name|_TestUtil
+name|TestUtil
 operator|.
 name|nextInt
 argument_list|(
@@ -737,7 +737,7 @@ decl_stmt|;
 name|int
 name|len
 init|=
-name|_TestUtil
+name|TestUtil
 operator|.
 name|nextInt
 argument_list|(
@@ -871,7 +871,7 @@ decl_stmt|;
 name|int
 name|dest
 init|=
-name|_TestUtil
+name|TestUtil
 operator|.
 name|nextInt
 argument_list|(
@@ -890,7 +890,7 @@ decl_stmt|;
 name|int
 name|len
 init|=
-name|_TestUtil
+name|TestUtil
 operator|.
 name|nextInt
 argument_list|(
@@ -1143,7 +1143,7 @@ comment|// truncate
 name|int
 name|len
 init|=
-name|_TestUtil
+name|TestUtil
 operator|.
 name|nextInt
 argument_list|(
@@ -1327,7 +1327,7 @@ name|in
 argument_list|,
 name|numBytes
 argument_list|,
-name|_TestUtil
+name|TestUtil
 operator|.
 name|nextInt
 argument_list|(
@@ -1712,7 +1712,7 @@ block|{
 name|int
 name|numOps
 init|=
-name|_TestUtil
+name|TestUtil
 operator|.
 name|nextInt
 argument_list|(
@@ -1769,7 +1769,7 @@ condition|)
 block|{
 name|pos
 operator|=
-name|_TestUtil
+name|TestUtil
 operator|.
 name|nextInt
 argument_list|(

@@ -148,7 +148,7 @@ name|lucene
 operator|.
 name|util
 operator|.
-name|_TestUtil
+name|TestUtil
 import|;
 end_import
 
@@ -198,7 +198,7 @@ argument_list|()
 expr_stmt|;
 name|tempDir
 operator|=
-name|_TestUtil
+name|TestUtil
 operator|.
 name|getTempDir
 argument_list|(
@@ -283,7 +283,7 @@ specifier|final
 name|int
 name|crashTime
 init|=
-name|_TestUtil
+name|TestUtil
 operator|.
 name|nextInt
 argument_list|(
@@ -823,7 +823,7 @@ operator|>
 literal|1
 condition|)
 block|{
-name|_TestUtil
+name|TestUtil
 operator|.
 name|checkIndex
 argument_list|(

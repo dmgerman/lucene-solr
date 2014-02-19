@@ -246,7 +246,7 @@ decl_stmt|;
 name|int
 name|numDocs
 init|=
-name|_TestUtil
+name|TestUtil
 operator|.
 name|nextInt
 argument_list|(
@@ -438,7 +438,7 @@ block|{
 name|String
 name|s
 init|=
-name|_TestUtil
+name|TestUtil
 operator|.
 name|randomUnicodeString
 argument_list|(
@@ -872,7 +872,7 @@ block|}
 name|DocsEnum
 name|docsEnum
 init|=
-name|_TestUtil
+name|TestUtil
 operator|.
 name|docs
 argument_list|(
@@ -1056,7 +1056,7 @@ expr_stmt|;
 name|DocsEnum
 name|d1
 init|=
-name|_TestUtil
+name|TestUtil
 operator|.
 name|docs
 argument_list|(
@@ -1085,7 +1085,7 @@ decl_stmt|;
 name|DocsEnum
 name|d2
 init|=
-name|_TestUtil
+name|TestUtil
 operator|.
 name|docs
 argument_list|(

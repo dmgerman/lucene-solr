@@ -328,7 +328,7 @@ name|lucene
 operator|.
 name|util
 operator|.
-name|ThreadInterruptedException
+name|TestUtil
 import|;
 end_import
 
@@ -342,7 +342,7 @@ name|lucene
 operator|.
 name|util
 operator|.
-name|_TestUtil
+name|ThreadInterruptedException
 import|;
 end_import
 
@@ -1333,7 +1333,7 @@ decl_stmt|;
 name|DocsEnum
 name|tdocs
 init|=
-name|_TestUtil
+name|TestUtil
 operator|.
 name|docs
 argument_list|(
@@ -2891,7 +2891,7 @@ specifier|final
 name|int
 name|threadCount
 init|=
-name|_TestUtil
+name|TestUtil
 operator|.
 name|nextInt
 argument_list|(

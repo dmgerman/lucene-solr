@@ -46,16 +46,6 @@ name|java
 operator|.
 name|io
 operator|.
-name|Reader
-import|;
-end_import
-
-begin_import
-import|import
-name|java
-operator|.
-name|io
-operator|.
 name|StringReader
 import|;
 end_import
@@ -328,7 +318,7 @@ name|lucene
 operator|.
 name|util
 operator|.
-name|_TestUtil
+name|TestUtil
 import|;
 end_import
 
@@ -407,7 +397,7 @@ decl_stmt|;
 name|File
 name|tempDir
 init|=
-name|_TestUtil
+name|TestUtil
 operator|.
 name|getTempDir
 argument_list|(
@@ -485,7 +475,7 @@ name|suggester
 operator|.
 name|lookup
 argument_list|(
-name|_TestUtil
+name|TestUtil
 operator|.
 name|stringToCharSequence
 argument_list|(
@@ -610,7 +600,7 @@ name|suggester
 operator|.
 name|lookup
 argument_list|(
-name|_TestUtil
+name|TestUtil
 operator|.
 name|stringToCharSequence
 argument_list|(
@@ -689,7 +679,7 @@ name|suggester
 operator|.
 name|lookup
 argument_list|(
-name|_TestUtil
+name|TestUtil
 operator|.
 name|stringToCharSequence
 argument_list|(
@@ -768,7 +758,7 @@ name|suggester
 operator|.
 name|lookup
 argument_list|(
-name|_TestUtil
+name|TestUtil
 operator|.
 name|stringToCharSequence
 argument_list|(
@@ -895,7 +885,7 @@ decl_stmt|;
 name|File
 name|tempDir
 init|=
-name|_TestUtil
+name|TestUtil
 operator|.
 name|getTempDir
 argument_list|(
@@ -1025,7 +1015,7 @@ name|suggester
 operator|.
 name|lookup
 argument_list|(
-name|_TestUtil
+name|TestUtil
 operator|.
 name|stringToCharSequence
 argument_list|(
@@ -1221,7 +1211,7 @@ decl_stmt|;
 name|File
 name|tempDir
 init|=
-name|_TestUtil
+name|TestUtil
 operator|.
 name|getTempDir
 argument_list|(
@@ -1630,7 +1620,7 @@ name|suggester
 operator|.
 name|lookup
 argument_list|(
-name|_TestUtil
+name|TestUtil
 operator|.
 name|stringToCharSequence
 argument_list|(
@@ -1840,7 +1830,7 @@ decl_stmt|;
 name|File
 name|tempDir
 init|=
-name|_TestUtil
+name|TestUtil
 operator|.
 name|getTempDir
 argument_list|(
@@ -1968,7 +1958,7 @@ name|suggester
 operator|.
 name|lookup
 argument_list|(
-name|_TestUtil
+name|TestUtil
 operator|.
 name|stringToCharSequence
 argument_list|(
@@ -2139,7 +2129,7 @@ name|suggester
 operator|.
 name|lookup
 argument_list|(
-name|_TestUtil
+name|TestUtil
 operator|.
 name|stringToCharSequence
 argument_list|(
@@ -2241,7 +2231,7 @@ name|suggester
 operator|.
 name|lookup
 argument_list|(
-name|_TestUtil
+name|TestUtil
 operator|.
 name|stringToCharSequence
 argument_list|(
@@ -2343,7 +2333,7 @@ name|suggester
 operator|.
 name|lookup
 argument_list|(
-name|_TestUtil
+name|TestUtil
 operator|.
 name|stringToCharSequence
 argument_list|(
@@ -2522,7 +2512,7 @@ decl_stmt|;
 name|File
 name|tempDir
 init|=
-name|_TestUtil
+name|TestUtil
 operator|.
 name|getTempDir
 argument_list|(
@@ -2600,7 +2590,7 @@ name|suggester
 operator|.
 name|lookup
 argument_list|(
-name|_TestUtil
+name|TestUtil
 operator|.
 name|stringToCharSequence
 argument_list|(
@@ -2681,7 +2671,7 @@ decl_stmt|;
 name|File
 name|tempDir
 init|=
-name|_TestUtil
+name|TestUtil
 operator|.
 name|getTempDir
 argument_list|(
@@ -2759,7 +2749,7 @@ name|suggester
 operator|.
 name|lookup
 argument_list|(
-name|_TestUtil
+name|TestUtil
 operator|.
 name|stringToCharSequence
 argument_list|(
@@ -2898,7 +2888,7 @@ name|suggester
 operator|.
 name|lookup
 argument_list|(
-name|_TestUtil
+name|TestUtil
 operator|.
 name|stringToCharSequence
 argument_list|(
@@ -2979,7 +2969,7 @@ decl_stmt|;
 name|File
 name|tempDir
 init|=
-name|_TestUtil
+name|TestUtil
 operator|.
 name|getTempDir
 argument_list|(
@@ -3168,7 +3158,7 @@ decl_stmt|;
 name|File
 name|tempDir
 init|=
-name|_TestUtil
+name|TestUtil
 operator|.
 name|getTempDir
 argument_list|(
@@ -3253,7 +3243,7 @@ name|suggester
 operator|.
 name|lookup
 argument_list|(
-name|_TestUtil
+name|TestUtil
 operator|.
 name|stringToCharSequence
 argument_list|(

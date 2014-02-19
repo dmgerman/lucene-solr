@@ -226,7 +226,7 @@ name|lucene
 operator|.
 name|util
 operator|.
-name|ThreadInterruptedException
+name|TestUtil
 import|;
 end_import
 
@@ -240,7 +240,7 @@ name|lucene
 operator|.
 name|util
 operator|.
-name|_TestUtil
+name|ThreadInterruptedException
 import|;
 end_import
 
@@ -456,7 +456,7 @@ name|lastGeneration
 operator|=
 name|newGeneration
 expr_stmt|;
-name|_TestUtil
+name|TestUtil
 operator|.
 name|checkIndex
 argument_list|(
@@ -782,7 +782,7 @@ operator|=
 operator|new
 name|PerSessionDirectoryFactory
 argument_list|(
-name|_TestUtil
+name|TestUtil
 operator|.
 name|getTempDir
 argument_list|(
@@ -1626,7 +1626,7 @@ argument_list|()
 expr_stmt|;
 block|}
 comment|// verify index consistency
-name|_TestUtil
+name|TestUtil
 operator|.
 name|checkIndex
 argument_list|(

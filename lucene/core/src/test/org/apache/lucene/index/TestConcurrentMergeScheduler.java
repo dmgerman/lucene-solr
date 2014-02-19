@@ -232,7 +232,7 @@ name|lucene
 operator|.
 name|util
 operator|.
-name|_TestUtil
+name|TestUtil
 import|;
 end_import
 
@@ -1511,7 +1511,7 @@ specifier|final
 name|int
 name|maxMergeCount
 init|=
-name|_TestUtil
+name|TestUtil
 operator|.
 name|nextInt
 argument_list|(
@@ -1527,7 +1527,7 @@ specifier|final
 name|int
 name|maxMergeThreads
 init|=
-name|_TestUtil
+name|TestUtil
 operator|.
 name|nextInt
 argument_list|(
@@ -1994,7 +1994,7 @@ argument_list|)
 expr_stmt|;
 if|if
 condition|(
-name|_TestUtil
+name|TestUtil
 operator|.
 name|getPostingsFormat
 argument_list|(
@@ -2012,7 +2012,7 @@ name|iwc
 operator|.
 name|setCodec
 argument_list|(
-name|_TestUtil
+name|TestUtil
 operator|.
 name|alwaysPostingsFormat
 argument_list|(

@@ -150,17 +150,7 @@ name|lucene
 operator|.
 name|util
 operator|.
-name|_TestUtil
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|junit
-operator|.
-name|Assume
+name|TestUtil
 import|;
 end_import
 
@@ -845,7 +835,7 @@ block|}
 name|DocsEnum
 name|termDocs
 init|=
-name|_TestUtil
+name|TestUtil
 operator|.
 name|docs
 argument_list|(
@@ -890,7 +880,7 @@ argument_list|)
 expr_stmt|;
 name|termDocs
 operator|=
-name|_TestUtil
+name|TestUtil
 operator|.
 name|docs
 argument_list|(

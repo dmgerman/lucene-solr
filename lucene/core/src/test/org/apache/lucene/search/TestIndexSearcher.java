@@ -214,7 +214,7 @@ name|lucene
 operator|.
 name|util
 operator|.
-name|_TestUtil
+name|TestUtil
 import|;
 end_import
 
@@ -876,7 +876,7 @@ block|}
 block|}
 block|}
 block|}
-name|_TestUtil
+name|TestUtil
 operator|.
 name|shutdownExecutorService
 argument_list|(

@@ -103,7 +103,7 @@ condition|)
 block|{
 try|try
 block|{
-name|_TestUtil
+name|TestUtil
 operator|.
 name|rmDir
 argument_list|(

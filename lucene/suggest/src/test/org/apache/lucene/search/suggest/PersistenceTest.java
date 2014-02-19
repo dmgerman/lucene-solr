@@ -81,22 +81,6 @@ operator|.
 name|suggest
 operator|.
 name|Lookup
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|search
-operator|.
-name|suggest
-operator|.
-name|Lookup
 operator|.
 name|LookupResult
 import|;
@@ -180,7 +164,7 @@ name|lucene
 operator|.
 name|util
 operator|.
-name|_TestUtil
+name|TestUtil
 import|;
 end_import
 
@@ -455,7 +439,7 @@ name|lookup
 operator|.
 name|lookup
 argument_list|(
-name|_TestUtil
+name|TestUtil
 operator|.
 name|bytesToCharSequence
 argument_list|(

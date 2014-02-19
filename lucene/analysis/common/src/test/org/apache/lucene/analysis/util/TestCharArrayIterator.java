@@ -72,21 +72,7 @@ name|lucene
 operator|.
 name|util
 operator|.
-name|UnicodeUtil
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|util
-operator|.
-name|_TestUtil
+name|TestUtil
 import|;
 end_import
 
@@ -160,7 +146,7 @@ name|char
 name|text
 index|[]
 init|=
-name|_TestUtil
+name|TestUtil
 operator|.
 name|randomUnicodeString
 argument_list|(
@@ -256,7 +242,7 @@ name|char
 name|text
 index|[]
 init|=
-name|_TestUtil
+name|TestUtil
 operator|.
 name|randomUnicodeString
 argument_list|(

@@ -340,7 +340,7 @@ name|lucene
 operator|.
 name|util
 operator|.
-name|_TestUtil
+name|TestUtil
 import|;
 end_import
 
@@ -407,7 +407,7 @@ expr_stmt|;
 block|}
 name|workDir
 operator|=
-name|_TestUtil
+name|TestUtil
 operator|.
 name|getTempDir
 argument_list|(
@@ -421,7 +421,7 @@ argument_list|()
 expr_stmt|;
 name|indexDir
 operator|=
-name|_TestUtil
+name|TestUtil
 operator|.
 name|getTempDir
 argument_list|(

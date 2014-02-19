@@ -410,7 +410,21 @@ name|lucene
 operator|.
 name|util
 operator|.
-name|_TestUtil
+name|TestUtil
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|util
+operator|.
+name|TestUtil
 import|;
 end_import
 
@@ -495,7 +509,7 @@ name|field
 parameter_list|)
 block|{
 return|return
-name|_TestUtil
+name|TestUtil
 operator|.
 name|fieldSupportsHugeBinaryDocValues
 argument_list|(

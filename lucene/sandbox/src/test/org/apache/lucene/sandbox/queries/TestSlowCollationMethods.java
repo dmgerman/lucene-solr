@@ -158,7 +158,7 @@ name|lucene
 operator|.
 name|util
 operator|.
-name|_TestUtil
+name|TestUtil
 import|;
 end_import
 
@@ -332,7 +332,7 @@ decl_stmt|;
 name|String
 name|value
 init|=
-name|_TestUtil
+name|TestUtil
 operator|.
 name|randomUnicodeString
 argument_list|(
@@ -373,7 +373,7 @@ expr_stmt|;
 block|}
 name|splitDoc
 operator|=
-name|_TestUtil
+name|TestUtil
 operator|.
 name|randomUnicodeString
 argument_list|(
@@ -926,7 +926,7 @@ block|{
 name|String
 name|startPoint
 init|=
-name|_TestUtil
+name|TestUtil
 operator|.
 name|randomUnicodeString
 argument_list|(
@@ -937,7 +937,7 @@ decl_stmt|;
 name|String
 name|endPoint
 init|=
-name|_TestUtil
+name|TestUtil
 operator|.
 name|randomUnicodeString
 argument_list|(
@@ -1008,7 +1008,7 @@ block|{
 name|String
 name|startPoint
 init|=
-name|_TestUtil
+name|TestUtil
 operator|.
 name|randomUnicodeString
 argument_list|(
@@ -1019,7 +1019,7 @@ decl_stmt|;
 name|String
 name|endPoint
 init|=
-name|_TestUtil
+name|TestUtil
 operator|.
 name|randomUnicodeString
 argument_list|(
@@ -1162,7 +1162,7 @@ decl_stmt|;
 name|String
 name|value
 init|=
-name|_TestUtil
+name|TestUtil
 operator|.
 name|randomUnicodeString
 argument_list|(
@@ -1225,7 +1225,7 @@ decl_stmt|;
 name|String
 name|startPoint
 init|=
-name|_TestUtil
+name|TestUtil
 operator|.
 name|randomUnicodeString
 argument_list|(
@@ -1236,7 +1236,7 @@ decl_stmt|;
 name|String
 name|endPoint
 init|=
-name|_TestUtil
+name|TestUtil
 operator|.
 name|randomUnicodeString
 argument_list|(

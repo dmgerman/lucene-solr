@@ -569,7 +569,7 @@ argument_list|)
 expr_stmt|;
 name|de
 operator|=
-name|_TestUtil
+name|TestUtil
 operator|.
 name|docs
 argument_list|(
@@ -616,7 +616,7 @@ argument_list|)
 expr_stmt|;
 name|de
 operator|=
-name|_TestUtil
+name|TestUtil
 operator|.
 name|docs
 argument_list|(
@@ -791,7 +791,7 @@ specifier|final
 name|int
 name|inc
 init|=
-name|_TestUtil
+name|TestUtil
 operator|.
 name|nextInt
 argument_list|(

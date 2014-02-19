@@ -77,7 +77,7 @@ argument_list|()
 operator|.
 name|setIndexInterval
 argument_list|(
-name|_TestUtil
+name|TestUtil
 operator|.
 name|nextInt
 argument_list|(

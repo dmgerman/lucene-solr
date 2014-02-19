@@ -626,7 +626,7 @@ index|]
 operator|.
 name|value
 operator|-
-name|_TestUtil
+name|TestUtil
 operator|.
 name|nextInt
 argument_list|(
@@ -773,7 +773,7 @@ index|]
 operator|.
 name|value
 operator|+
-name|_TestUtil
+name|TestUtil
 operator|.
 name|nextInt
 argument_list|(

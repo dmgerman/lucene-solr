@@ -230,7 +230,7 @@ name|Codec
 operator|.
 name|setDefault
 argument_list|(
-name|_TestUtil
+name|TestUtil
 operator|.
 name|alwaysPostingsFormat
 argument_list|(
@@ -934,7 +934,7 @@ decl_stmt|;
 name|int
 name|numThreads
 init|=
-name|_TestUtil
+name|TestUtil
 operator|.
 name|nextInt
 argument_list|(

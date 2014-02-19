@@ -350,7 +350,7 @@ do|do
 block|{
 name|str
 operator|=
-name|_TestUtil
+name|TestUtil
 operator|.
 name|randomRealisticUnicodeString
 argument_list|(
@@ -548,7 +548,7 @@ do|do
 block|{
 name|str
 operator|=
-name|_TestUtil
+name|TestUtil
 operator|.
 name|randomRealisticUnicodeString
 argument_list|(
@@ -817,7 +817,7 @@ do|do
 block|{
 name|str
 operator|=
-name|_TestUtil
+name|TestUtil
 operator|.
 name|randomRealisticUnicodeString
 argument_list|(
@@ -1088,7 +1088,7 @@ do|do
 block|{
 name|str
 operator|=
-name|_TestUtil
+name|TestUtil
 operator|.
 name|randomRealisticUnicodeString
 argument_list|(
@@ -1313,7 +1313,7 @@ do|do
 block|{
 name|str
 operator|=
-name|_TestUtil
+name|TestUtil
 operator|.
 name|randomRealisticUnicodeString
 argument_list|(
@@ -1573,7 +1573,7 @@ do|do
 block|{
 name|str
 operator|=
-name|_TestUtil
+name|TestUtil
 operator|.
 name|randomRealisticUnicodeString
 argument_list|(
@@ -2000,7 +2000,7 @@ do|do
 block|{
 name|str
 operator|=
-name|_TestUtil
+name|TestUtil
 operator|.
 name|randomRealisticUnicodeString
 argument_list|(

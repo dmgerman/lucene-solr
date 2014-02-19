@@ -624,7 +624,7 @@ name|lucene
 operator|.
 name|util
 operator|.
-name|_TestUtil
+name|TestUtil
 import|;
 end_import
 
@@ -2815,7 +2815,7 @@ expr_stmt|;
 name|int
 name|numDims
 init|=
-name|_TestUtil
+name|TestUtil
 operator|.
 name|nextInt
 argument_list|(
@@ -2928,7 +2928,7 @@ block|{
 name|String
 name|s
 init|=
-name|_TestUtil
+name|TestUtil
 operator|.
 name|randomRealisticUnicodeString
 argument_list|(
@@ -3733,7 +3733,7 @@ comment|// Randomly delete a few docs:
 name|int
 name|numDel
 init|=
-name|_TestUtil
+name|TestUtil
 operator|.
 name|nextInt
 argument_list|(
@@ -4006,7 +4006,7 @@ decl_stmt|;
 name|int
 name|numDrillDown
 init|=
-name|_TestUtil
+name|TestUtil
 operator|.
 name|nextInt
 argument_list|(
@@ -4149,7 +4149,7 @@ block|{
 name|int
 name|orCount
 init|=
-name|_TestUtil
+name|TestUtil
 operator|.
 name|nextInt
 argument_list|(
@@ -6633,7 +6633,7 @@ index|]
 operator|.
 name|length
 else|:
-name|_TestUtil
+name|TestUtil
 operator|.
 name|nextInt
 argument_list|(
