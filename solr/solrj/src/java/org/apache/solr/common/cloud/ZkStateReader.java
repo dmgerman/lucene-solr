@@ -1121,6 +1121,7 @@ name|cmdExecutor
 decl_stmt|;
 DECL|field|aliases
 specifier|private
+specifier|volatile
 name|Aliases
 name|aliases
 init|=
