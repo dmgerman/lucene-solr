@@ -1,6 +1,6 @@
 begin_unit|revision:0.9.5;language:Java;cregit-version:0.0.1
 begin_comment
-comment|/**  * Licensed to the Apache Software Foundation (ASF) under one or more  * contributor license agreements.  See the NOTICE file distributed with  * this work for additional information regarding copyright ownership.  * The ASF licenses this file to You under the Apache License, Version 2.0  * (the "License"); you may not use this file except in compliance with  * the License.  You may obtain a copy of the License at  *  *     http://www.apache.org/licenses/LICENSE-2.0  *  * Unless required by applicable law or agreed to in writing, software  * distributed under the License is distributed on an "AS IS" BASIS,  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.  * See the License for the specific language governing permissions and  * limitations under the License.  */
+comment|/*  * Licensed to the Apache Software Foundation (ASF) under one or more  * contributor license agreements.  See the NOTICE file distributed with  * this work for additional information regarding copyright ownership.  * The ASF licenses this file to You under the Apache License, Version 2.0  * (the "License"); you may not use this file except in compliance with  * the License.  You may obtain a copy of the License at  *  *     http://www.apache.org/licenses/LICENSE-2.0  *  * Unless required by applicable law or agreed to in writing, software  * distributed under the License is distributed on an "AS IS" BASIS,  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.  * See the License for the specific language governing permissions and  * limitations under the License.  */
 end_comment
 
 begin_package
@@ -345,7 +345,15 @@ name|path
 init|=
 name|RESOURCES_DIR
 operator|+
-literal|"/test-documents"
+name|File
+operator|.
+name|separator
+operator|+
+literal|"test-documents"
+operator|+
+name|File
+operator|.
+name|separator
 decl_stmt|;
 name|expectedRecords
 operator|.
@@ -353,7 +361,7 @@ name|put
 argument_list|(
 name|path
 operator|+
-literal|"/sample-statuses-20120906-141433.avro"
+literal|"sample-statuses-20120906-141433.avro"
 argument_list|,
 literal|2
 argument_list|)
@@ -364,7 +372,7 @@ name|put
 argument_list|(
 name|path
 operator|+
-literal|"/sample-statuses-20120906-141433"
+literal|"sample-statuses-20120906-141433"
 argument_list|,
 literal|2
 argument_list|)
@@ -375,7 +383,7 @@ name|put
 argument_list|(
 name|path
 operator|+
-literal|"/sample-statuses-20120906-141433.gz"
+literal|"sample-statuses-20120906-141433.gz"
 argument_list|,
 literal|2
 argument_list|)
@@ -386,7 +394,7 @@ name|put
 argument_list|(
 name|path
 operator|+
-literal|"/sample-statuses-20120906-141433.bz2"
+literal|"sample-statuses-20120906-141433.bz2"
 argument_list|,
 literal|2
 argument_list|)
@@ -397,7 +405,7 @@ name|put
 argument_list|(
 name|path
 operator|+
-literal|"/cars.csv"
+literal|"cars.csv"
 argument_list|,
 literal|6
 argument_list|)
@@ -408,7 +416,7 @@ name|put
 argument_list|(
 name|path
 operator|+
-literal|"/cars.csv.gz"
+literal|"cars.csv.gz"
 argument_list|,
 literal|6
 argument_list|)
@@ -419,7 +427,7 @@ name|put
 argument_list|(
 name|path
 operator|+
-literal|"/cars.tar.gz"
+literal|"cars.tar.gz"
 argument_list|,
 literal|4
 argument_list|)
@@ -430,7 +438,7 @@ name|put
 argument_list|(
 name|path
 operator|+
-literal|"/cars.tsv"
+literal|"cars.tsv"
 argument_list|,
 literal|6
 argument_list|)
@@ -441,7 +449,7 @@ name|put
 argument_list|(
 name|path
 operator|+
-literal|"/cars.ssv"
+literal|"cars.ssv"
 argument_list|,
 literal|6
 argument_list|)
@@ -452,7 +460,7 @@ name|put
 argument_list|(
 name|path
 operator|+
-literal|"/test-documents.7z"
+literal|"test-documents.7z"
 argument_list|,
 literal|9
 argument_list|)
@@ -463,7 +471,7 @@ name|put
 argument_list|(
 name|path
 operator|+
-literal|"/test-documents.cpio"
+literal|"test-documents.cpio"
 argument_list|,
 literal|9
 argument_list|)
@@ -474,7 +482,7 @@ name|put
 argument_list|(
 name|path
 operator|+
-literal|"/test-documents.tar"
+literal|"test-documents.tar"
 argument_list|,
 literal|9
 argument_list|)
@@ -485,7 +493,7 @@ name|put
 argument_list|(
 name|path
 operator|+
-literal|"/test-documents.tbz2"
+literal|"test-documents.tbz2"
 argument_list|,
 literal|9
 argument_list|)
@@ -496,7 +504,7 @@ name|put
 argument_list|(
 name|path
 operator|+
-literal|"/test-documents.tgz"
+literal|"test-documents.tgz"
 argument_list|,
 literal|9
 argument_list|)
@@ -507,7 +515,7 @@ name|put
 argument_list|(
 name|path
 operator|+
-literal|"/test-documents.zip"
+literal|"test-documents.zip"
 argument_list|,
 literal|9
 argument_list|)
@@ -518,7 +526,7 @@ name|put
 argument_list|(
 name|path
 operator|+
-literal|"/multiline-stacktrace.log"
+literal|"multiline-stacktrace.log"
 argument_list|,
 literal|4
 argument_list|)
@@ -615,7 +623,7 @@ name|file
 init|=
 name|path
 operator|+
-literal|"/testWORD_various.doc"
+literal|"testWORD_various.doc"
 decl_stmt|;
 name|Map
 argument_list|<
@@ -708,7 +716,7 @@ name|file
 init|=
 name|path
 operator|+
-literal|"/testPDF.pdf"
+literal|"testPDF.pdf"
 decl_stmt|;
 name|Map
 argument_list|<
@@ -792,7 +800,7 @@ name|file
 init|=
 name|path
 operator|+
-literal|"/email.eml"
+literal|"email.eml"
 decl_stmt|;
 name|Map
 argument_list|<
@@ -945,7 +953,7 @@ name|file
 init|=
 name|path
 operator|+
-literal|"/testEXCEL.xlsx"
+literal|"testEXCEL.xlsx"
 decl_stmt|;
 name|Map
 argument_list|<
@@ -1050,7 +1058,13 @@ name|morphline
 operator|=
 name|createMorphline
 argument_list|(
-literal|"test-morphlines/solrCellJPGCompressed"
+literal|"test-morphlines"
+operator|+
+name|File
+operator|.
+name|separator
+operator|+
+literal|"solrCellJPGCompressed"
 argument_list|)
 expr_stmt|;
 name|String
@@ -1058,7 +1072,15 @@ name|path
 init|=
 name|RESOURCES_DIR
 operator|+
-literal|"/test-documents"
+name|File
+operator|.
+name|separator
+operator|+
+literal|"test-documents"
+operator|+
+name|File
+operator|.
+name|separator
 decl_stmt|;
 name|String
 index|[]
@@ -1070,17 +1092,17 @@ index|[]
 block|{
 name|path
 operator|+
-literal|"/testJPEG_EXIF.jpg"
+literal|"testJPEG_EXIF.jpg"
 block|,
 name|path
 operator|+
-literal|"/testJPEG_EXIF.jpg.gz"
+literal|"testJPEG_EXIF.jpg.gz"
 block|,
 name|path
 operator|+
-literal|"/testJPEG_EXIF.jpg.tar.gz"
+literal|"testJPEG_EXIF.jpg.tar.gz"
 block|,
-comment|//path + "/jpeg2000.jp2",
+comment|//path + "jpeg2000.jp2",
 block|}
 decl_stmt|;
 name|testDocumentTypesInternal
@@ -1107,7 +1129,13 @@ name|morphline
 operator|=
 name|createMorphline
 argument_list|(
-literal|"test-morphlines/solrCellXML"
+literal|"test-morphlines"
+operator|+
+name|File
+operator|.
+name|separator
+operator|+
+literal|"solrCellXML"
 argument_list|)
 expr_stmt|;
 name|String
@@ -1115,7 +1143,15 @@ name|path
 init|=
 name|RESOURCES_DIR
 operator|+
-literal|"/test-documents"
+name|File
+operator|.
+name|separator
+operator|+
+literal|"test-documents"
+operator|+
+name|File
+operator|.
+name|separator
 decl_stmt|;
 name|String
 index|[]
@@ -1127,7 +1163,7 @@ index|[]
 block|{
 name|path
 operator|+
-literal|"/testXML2.xml"
+literal|"testXML2.xml"
 block|,     }
 decl_stmt|;
 name|testDocumentTypesInternal
@@ -1182,7 +1218,15 @@ name|path
 init|=
 name|RESOURCES_DIR
 operator|+
-literal|"/test-documents"
+name|File
+operator|.
+name|separator
+operator|+
+literal|"test-documents"
+operator|+
+name|File
+operator|.
+name|separator
 decl_stmt|;
 name|String
 index|[]
@@ -1194,73 +1238,73 @@ index|[]
 block|{
 name|path
 operator|+
-literal|"/testBMPfp.txt"
+literal|"testBMPfp.txt"
 block|,
 name|path
 operator|+
-literal|"/boilerplate.html"
+literal|"boilerplate.html"
 block|,
 name|path
 operator|+
-literal|"/NullHeader.docx"
+literal|"NullHeader.docx"
 block|,
 name|path
 operator|+
-literal|"/testWORD_various.doc"
+literal|"testWORD_various.doc"
 block|,
 name|path
 operator|+
-literal|"/testPDF.pdf"
+literal|"testPDF.pdf"
 block|,
 name|path
 operator|+
-literal|"/testJPEG_EXIF.jpg"
+literal|"testJPEG_EXIF.jpg"
 block|,
 name|path
 operator|+
-literal|"/testJPEG_EXIF.jpg.gz"
+literal|"testJPEG_EXIF.jpg.gz"
 block|,
 name|path
 operator|+
-literal|"/testJPEG_EXIF.jpg.tar.gz"
+literal|"testJPEG_EXIF.jpg.tar.gz"
 block|,
 name|path
 operator|+
-literal|"/testXML.xml"
+literal|"testXML.xml"
 block|,
 name|path
 operator|+
-literal|"/cars.csv"
+literal|"cars.csv"
 block|,
-comment|//        path + "/cars.tsv",
-comment|//        path + "/cars.ssv",
+comment|//        path + "cars.tsv",
+comment|//        path + "cars.ssv",
 name|path
 operator|+
-literal|"/cars.csv.gz"
-block|,
-name|path
-operator|+
-literal|"/cars.tar.gz"
+literal|"cars.csv.gz"
 block|,
 name|path
 operator|+
-literal|"/sample-statuses-20120906-141433.avro"
+literal|"cars.tar.gz"
 block|,
 name|path
 operator|+
-literal|"/sample-statuses-20120906-141433"
+literal|"sample-statuses-20120906-141433.avro"
 block|,
 name|path
 operator|+
-literal|"/sample-statuses-20120906-141433.gz"
+literal|"sample-statuses-20120906-141433"
 block|,
 name|path
 operator|+
-literal|"/sample-statuses-20120906-141433.bz2"
+literal|"sample-statuses-20120906-141433.gz"
 block|,
 name|path
 operator|+
-literal|"/email.eml"
+literal|"sample-statuses-20120906-141433.bz2"
+block|,
+name|path
+operator|+
+literal|"email.eml"
 block|,     }
 decl_stmt|;
 name|testDocumentTypesInternal
@@ -1315,7 +1359,15 @@ name|path
 init|=
 name|RESOURCES_DIR
 operator|+
-literal|"/test-documents"
+name|File
+operator|.
+name|separator
+operator|+
+literal|"test-documents"
+operator|+
+name|File
+operator|.
+name|separator
 decl_stmt|;
 name|String
 index|[]
@@ -1327,117 +1379,117 @@ index|[]
 block|{
 name|path
 operator|+
-literal|"/testPPT_various.ppt"
+literal|"testPPT_various.ppt"
 block|,
 name|path
 operator|+
-literal|"/testPPT_various.pptx"
+literal|"testPPT_various.pptx"
 block|,
 name|path
 operator|+
-literal|"/testEXCEL.xlsx"
+literal|"testEXCEL.xlsx"
 block|,
 name|path
 operator|+
-literal|"/testEXCEL.xls"
+literal|"testEXCEL.xls"
 block|,
 name|path
 operator|+
-literal|"/testPages.pages"
+literal|"testPages.pages"
 block|,
-comment|//path + "/testNumbers.numbers",
-comment|//path + "/testKeynote.key",
+comment|//path + "testNumbers.numbers",
+comment|//path + "testKeynote.key",
 name|path
 operator|+
-literal|"/testRTFVarious.rtf"
-block|,
-name|path
-operator|+
-literal|"/complex.mbox"
+literal|"testRTFVarious.rtf"
 block|,
 name|path
 operator|+
-literal|"/test-outlook.msg"
+literal|"complex.mbox"
 block|,
 name|path
 operator|+
-literal|"/testEMLX.emlx"
+literal|"test-outlook.msg"
 block|,
 name|path
 operator|+
-literal|"/testRFC822"
+literal|"testEMLX.emlx"
 block|,
 name|path
 operator|+
-literal|"/rsstest.rss"
-block|,
-comment|//        path + "/testDITA.dita",
-name|path
-operator|+
-literal|"/testMP3i18n.mp3"
+literal|"testRFC822"
 block|,
 name|path
 operator|+
-literal|"/testAIFF.aif"
+literal|"rsstest.rss"
+block|,
+comment|//        path + "testDITA.dita",
+name|path
+operator|+
+literal|"testMP3i18n.mp3"
 block|,
 name|path
 operator|+
-literal|"/testFLAC.flac"
-block|,
-comment|//        path + "/testFLAC.oga",
-comment|//        path + "/testVORBIS.ogg",
-name|path
-operator|+
-literal|"/testMP4.m4a"
+literal|"testAIFF.aif"
 block|,
 name|path
 operator|+
-literal|"/testWAV.wav"
+literal|"testFLAC.flac"
 block|,
-comment|//        path + "/testWMA.wma",
+comment|//        path + "testFLAC.oga",
+comment|//        path + "testVORBIS.ogg",
 name|path
 operator|+
-literal|"/testFLV.flv"
-block|,
-comment|//        path + "/testWMV.wmv",
-name|path
-operator|+
-literal|"/testBMP.bmp"
+literal|"testMP4.m4a"
 block|,
 name|path
 operator|+
-literal|"/testPNG.png"
+literal|"testWAV.wav"
+block|,
+comment|//        path + "testWMA.wma",
+name|path
+operator|+
+literal|"testFLV.flv"
+block|,
+comment|//        path + "testWMV.wmv",
+name|path
+operator|+
+literal|"testBMP.bmp"
 block|,
 name|path
 operator|+
-literal|"/testPSD.psd"
+literal|"testPNG.png"
 block|,
 name|path
 operator|+
-literal|"/testSVG.svg"
+literal|"testPSD.psd"
 block|,
 name|path
 operator|+
-literal|"/testTIFF.tif"
+literal|"testSVG.svg"
 block|,
-comment|//        path + "/test-documents.7z",
-comment|//        path + "/test-documents.cpio",
-comment|//        path + "/test-documents.tar",
-comment|//        path + "/test-documents.tbz2",
-comment|//        path + "/test-documents.tgz",
-comment|//        path + "/test-documents.zip",
-comment|//        path + "/test-zip-of-zip.zip",
-comment|//        path + "/testJAR.jar",
-comment|//        path + "/testKML.kml",
-comment|//        path + "/testRDF.rdf",
 name|path
 operator|+
-literal|"/testVISIO.vsd"
+literal|"testTIFF.tif"
 block|,
-comment|//        path + "/testWAR.war",
-comment|//        path + "/testWindows-x86-32.exe",
-comment|//        path + "/testWINMAIL.dat",
-comment|//        path + "/testWMF.wmf",
+comment|//        path + "test-documents.7z",
+comment|//        path + "test-documents.cpio",
+comment|//        path + "test-documents.tar",
+comment|//        path + "test-documents.tbz2",
+comment|//        path + "test-documents.tgz",
+comment|//        path + "test-documents.zip",
+comment|//        path + "test-zip-of-zip.zip",
+comment|//        path + "testJAR.jar",
+comment|//        path + "testKML.kml",
+comment|//        path + "testRDF.rdf",
+name|path
+operator|+
+literal|"testVISIO.vsd"
+block|,
+comment|//        path + "testWAR.war",
+comment|//        path + "testWindows-x86-32.exe",
+comment|//        path + "testWINMAIL.dat",
+comment|//        path + "testWMF.wmf",
 block|}
 decl_stmt|;
 name|testDocumentTypesInternal
