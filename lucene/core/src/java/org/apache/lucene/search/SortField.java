@@ -65,18 +65,6 @@ import|;
 end_import
 
 begin_comment
-comment|// TODO(simonw) -- for cleaner transition, maybe we should make
-end_comment
-
-begin_comment
-comment|// a new SortField that subclasses this one and always uses
-end_comment
-
-begin_comment
-comment|// index values?
-end_comment
-
-begin_comment
 comment|/**  * Stores information about how to sort documents by terms in an individual  * field.  Fields must be indexed in order to sort by them.  *  *<p>Created: Feb 11, 2004 1:25:29 PM  *  * @since   lucene 1.4  * @see Sort  */
 end_comment
 
@@ -211,12 +199,6 @@ name|Object
 name|missingValue
 init|=
 literal|null
-decl_stmt|;
-comment|// Only used with type=STRING
-DECL|field|sortMissingLast
-specifier|public
-name|boolean
-name|sortMissingLast
 decl_stmt|;
 comment|/** Creates a sort by terms in the given field with the type of term    * values explicitly given.    * @param field  Name of field to sort by.  Can be<code>null</code> if    *<code>type</code> is SCORE or DOC.    * @param type   Type of values in the terms.    */
 DECL|method|SortField
