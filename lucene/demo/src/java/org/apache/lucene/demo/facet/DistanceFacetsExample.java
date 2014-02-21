@@ -480,6 +480,20 @@ name|RAMDirectory
 import|;
 end_import
 
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|util
+operator|.
+name|SloppyMath
+import|;
+end_import
+
 begin_comment
 comment|/** Shows simple usage of dynamic range faceting, using the  *  expressions module to calculate distance. */
 end_comment
@@ -989,7 +1003,16 @@ name|angle
 init|=
 name|maxDistanceKM
 operator|/
-name|EARTH_RADIUS_KM
+operator|(
+name|SloppyMath
+operator|.
+name|earthDiameter
+argument_list|(
+name|originLat
+argument_list|)
+operator|/
+literal|2.0
+operator|)
 decl_stmt|;
 name|double
 name|minLat
