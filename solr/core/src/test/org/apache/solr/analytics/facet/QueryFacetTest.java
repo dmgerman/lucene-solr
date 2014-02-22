@@ -94,7 +94,7 @@ specifier|static
 name|String
 name|fileName
 init|=
-literal|"core/src/test-files/analytics/requestFiles/queryFacets.txt"
+literal|"/analytics/requestFiles/queryFacets.txt"
 decl_stmt|;
 DECL|field|INT
 specifier|public
@@ -673,6 +673,10 @@ name|request
 argument_list|(
 name|fileToStringArr
 argument_list|(
+name|QueryFacetTest
+operator|.
+name|class
+argument_list|,
 name|fileName
 argument_list|)
 argument_list|)

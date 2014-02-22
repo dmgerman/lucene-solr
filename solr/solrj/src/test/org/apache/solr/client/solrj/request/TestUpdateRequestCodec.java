@@ -56,7 +56,7 @@ name|java
 operator|.
 name|io
 operator|.
-name|FileInputStream
+name|InputStream
 import|;
 end_import
 
@@ -189,20 +189,6 @@ operator|.
 name|common
 operator|.
 name|SolrInputField
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|solr
-operator|.
-name|util
-operator|.
-name|ExternalPaths
 import|;
 end_import
 
@@ -1291,23 +1277,24 @@ argument_list|(
 literal|"id:3"
 argument_list|)
 expr_stmt|;
-name|FileInputStream
+name|InputStream
 name|is
 init|=
-operator|new
-name|FileInputStream
-argument_list|(
-operator|new
-name|File
-argument_list|(
-name|ExternalPaths
+name|getClass
+argument_list|()
 operator|.
-name|SOURCE_HOME
-argument_list|,
-literal|"solrj/src/test-files/solrj/updateReq_4_5.bin"
-argument_list|)
+name|getResourceAsStream
+argument_list|(
+literal|"/solrj/updateReq_4_5.bin"
 argument_list|)
 decl_stmt|;
+name|assertNotNull
+argument_list|(
+literal|"updateReq_4_5.bin was not found"
+argument_list|,
+name|is
+argument_list|)
+expr_stmt|;
 name|UpdateRequest
 name|updateUnmarshalled
 init|=

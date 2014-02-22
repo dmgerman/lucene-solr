@@ -489,14 +489,9 @@ name|FileUtils
 operator|.
 name|copyFile
 argument_list|(
-operator|new
-name|File
+name|getFile
 argument_list|(
-name|ExternalPaths
-operator|.
-name|SOURCE_HOME
-argument_list|,
-literal|"core/src/test-files/old-solr-example/solr.xml"
+literal|"old-solr-example/solr.xml"
 argument_list|)
 argument_list|,
 operator|new

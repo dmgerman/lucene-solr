@@ -138,11 +138,9 @@ name|org
 operator|.
 name|apache
 operator|.
-name|lucene
+name|solr
 operator|.
-name|util
-operator|.
-name|LuceneTestCase
+name|SolrTestCaseJ4
 import|;
 end_import
 
@@ -189,20 +187,6 @@ operator|.
 name|dedup
 operator|.
 name|RetainMostRecentUpdateConflictResolver
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|solr
-operator|.
-name|util
-operator|.
-name|ExternalPaths
 import|;
 end_import
 
@@ -272,7 +256,7 @@ specifier|public
 class|class
 name|MapReduceIndexerToolArgumentParserTest
 extends|extends
-name|LuceneTestCase
+name|SolrTestCaseJ4
 block|{
 DECL|field|conf
 specifier|private
@@ -320,11 +304,13 @@ specifier|final
 name|String
 name|RESOURCES_DIR
 init|=
-name|ExternalPaths
+name|getFile
+argument_list|(
+literal|"morphlines-core.marker"
+argument_list|)
 operator|.
-name|SOURCE_HOME
-operator|+
-literal|"/contrib/map-reduce/src/test-files"
+name|getParent
+argument_list|()
 decl_stmt|;
 DECL|field|MINIMR_INSTANCE_DIR
 specifier|private

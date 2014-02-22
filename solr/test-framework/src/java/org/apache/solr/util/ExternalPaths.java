@@ -38,7 +38,7 @@ name|ExternalPaths
 block|{
 comment|/**    *<p>    * The main directory path for the solr source being built if it can be determined.  If it     * can not be determined -- possily because the current context is a client code base     * using hte test frameowrk -- then this variable will be null.    *</p>    *<p>    * Note that all other static paths available in this class are derived from the source     * home, and if it is null, those paths will just be relative to 'null' and may not be     * meaningful.    */
 DECL|field|SOURCE_HOME
-specifier|public
+specifier|private
 specifier|static
 specifier|final
 name|String

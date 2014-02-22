@@ -124,7 +124,7 @@ specifier|static
 name|String
 name|fileName
 init|=
-literal|"core/src/test-files/analytics/requestFiles/fieldFacetExtras.txt"
+literal|"/analytics/requestFiles/fieldFacetExtras.txt"
 decl_stmt|;
 DECL|field|INT
 specifier|public
@@ -669,6 +669,10 @@ name|request
 argument_list|(
 name|fileToStringArr
 argument_list|(
+name|FieldFacetExtrasTest
+operator|.
+name|class
+argument_list|,
 name|fileName
 argument_list|)
 argument_list|)
