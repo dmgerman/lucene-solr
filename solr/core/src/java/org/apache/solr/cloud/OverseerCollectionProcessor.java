@@ -1189,6 +1189,8 @@ operator|.
 name|of
 argument_list|(
 literal|"legacyCloud"
+argument_list|,
+literal|"urlScheme"
 argument_list|)
 decl_stmt|;
 DECL|field|COLL_PROPS
