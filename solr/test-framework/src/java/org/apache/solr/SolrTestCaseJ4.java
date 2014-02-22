@@ -9442,11 +9442,21 @@ return|;
 block|}
 catch|catch
 parameter_list|(
-name|URISyntaxException
-name|use
+name|Exception
+name|e
 parameter_list|)
 block|{
-comment|// ignore + fall-through
+throw|throw
+operator|new
+name|RuntimeException
+argument_list|(
+literal|"Resource was found on classpath, but cannot be resolved to a "
+operator|+
+literal|"normal file (maybe it is part of a JAR file): "
+operator|+
+name|name
+argument_list|)
+throw|;
 block|}
 block|}
 specifier|final
