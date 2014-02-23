@@ -1205,6 +1205,15 @@ argument_list|)
 expr_stmt|;
 name|assumeFalse
 argument_list|(
+literal|"FIXME: This test does not work with Windows because of native library requirements"
+argument_list|,
+name|Constants
+operator|.
+name|WINDOWS
+argument_list|)
+expr_stmt|;
+name|assumeFalse
+argument_list|(
 literal|"FIXME: This test fails under Java 8 due to the Saxon dependency - see SOLR-1301"
 argument_list|,
 name|Constants
