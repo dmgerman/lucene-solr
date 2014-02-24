@@ -390,6 +390,14 @@ name|FullSolrCloudDistribCmdsTest
 extends|extends
 name|AbstractFullDistribZkTestBase
 block|{
+static|static
+block|{
+comment|// No SSL for now - it can be too slow
+name|ALLOW_SSL
+operator|=
+literal|false
+expr_stmt|;
+block|}
 annotation|@
 name|BeforeClass
 DECL|method|beforeSuperClass
