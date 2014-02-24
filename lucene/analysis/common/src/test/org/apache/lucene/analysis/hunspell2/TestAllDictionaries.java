@@ -120,15 +120,26 @@ name|RamUsageEstimator
 import|;
 end_import
 
+begin_import
+import|import
+name|org
+operator|.
+name|junit
+operator|.
+name|Ignore
+import|;
+end_import
+
 begin_comment
 comment|/**  * Can be retrieved via:  * wget --mirror -np http://archive.services.openoffice.org/pub/mirror/OpenOffice.org/contrib/dictionaries/  * Note some of the files differ only in case. This may be a problem on your operating system!  */
 end_comment
 
-begin_comment
-comment|//@Ignore("enable manually")
-end_comment
-
 begin_class
+annotation|@
+name|Ignore
+argument_list|(
+literal|"enable manually"
+argument_list|)
 DECL|class|TestAllDictionaries
 specifier|public
 class|class
