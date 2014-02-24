@@ -2702,7 +2702,26 @@ argument_list|(
 literal|"msg"
 argument_list|)
 expr_stmt|;
-comment|// TODO? get the trace?
+if|if
+condition|(
+name|reason
+operator|==
+literal|null
+condition|)
+block|{
+name|reason
+operator|=
+operator|(
+name|String
+operator|)
+name|err
+operator|.
+name|get
+argument_list|(
+literal|"trace"
+argument_list|)
+expr_stmt|;
+block|}
 block|}
 block|}
 catch|catch
