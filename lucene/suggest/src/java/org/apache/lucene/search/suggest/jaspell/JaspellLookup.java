@@ -1211,12 +1211,10 @@ name|sizeInBytes
 parameter_list|()
 block|{
 return|return
-name|RamUsageEstimator
-operator|.
-name|sizeOf
-argument_list|(
 name|trie
-argument_list|)
+operator|.
+name|sizeInBytes
+argument_list|()
 return|;
 block|}
 annotation|@

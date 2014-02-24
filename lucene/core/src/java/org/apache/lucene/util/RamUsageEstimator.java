@@ -1492,6 +1492,36 @@ name|length
 argument_list|)
 return|;
 block|}
+comment|/** Returns the size in bytes of the String object. */
+DECL|method|sizeOf
+specifier|public
+specifier|static
+name|long
+name|sizeOf
+parameter_list|(
+name|String
+name|s
+parameter_list|)
+block|{
+return|return
+name|shallowSizeOf
+argument_list|(
+name|s
+argument_list|)
+operator|+
+name|alignObjectSize
+argument_list|(
+name|NUM_BYTES_ARRAY_HEADER
+operator|+
+name|NUM_BYTES_CHAR
+operator|*
+name|s
+operator|.
+name|length
+argument_list|()
+argument_list|)
+return|;
+block|}
 comment|/**     * Estimates the RAM usage by the given object. It will    * walk the object tree and sum up all referenced objects.    *     *<p><b>Resource Usage:</b> This method internally uses a set of    * every object seen during traversals so it does allocate memory    * (it isn't side-effect free). After the method exits, this memory    * should be GCed.</p>    */
 DECL|method|sizeOf
 specifier|public
