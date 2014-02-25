@@ -134,12 +134,11 @@ begin_comment
 comment|/**  * Can be retrieved via:  * wget --mirror -np http://archive.services.openoffice.org/pub/mirror/OpenOffice.org/contrib/dictionaries/  * Note some of the files differ only in case. This may be a problem on your operating system!  */
 end_comment
 
+begin_comment
+comment|//@Ignore("enable manually")
+end_comment
+
 begin_class
-annotation|@
-name|Ignore
-argument_list|(
-literal|"enable manually"
-argument_list|)
 DECL|class|TestAllDictionaries
 specifier|public
 class|class
@@ -157,7 +156,7 @@ init|=
 operator|new
 name|File
 argument_list|(
-literal|"/Users/rmuir/hunspell/archive.services.openoffice.org/pub/mirror/OpenOffice.org/contrib/dictionaries"
+literal|"/data/archive.services.openoffice.org/pub/mirror/OpenOffice.org/contrib/dictionaries"
 argument_list|)
 decl_stmt|;
 DECL|field|tests
@@ -1039,6 +1038,60 @@ name|humanSizeOf
 argument_list|(
 name|dic
 argument_list|)
+operator|+
+literal|"\t("
+operator|+
+literal|"words="
+operator|+
+name|RamUsageEstimator
+operator|.
+name|humanSizeOf
+argument_list|(
+name|dic
+operator|.
+name|words
+argument_list|)
+operator|+
+literal|", "
+operator|+
+literal|"flags="
+operator|+
+name|RamUsageEstimator
+operator|.
+name|humanSizeOf
+argument_list|(
+name|dic
+operator|.
+name|flagLookup
+argument_list|)
+operator|+
+literal|", "
+operator|+
+literal|"prefixes="
+operator|+
+name|RamUsageEstimator
+operator|.
+name|humanSizeOf
+argument_list|(
+name|dic
+operator|.
+name|prefixes
+argument_list|)
+operator|+
+literal|", "
+operator|+
+literal|"suffixes="
+operator|+
+name|RamUsageEstimator
+operator|.
+name|humanSizeOf
+argument_list|(
+name|dic
+operator|.
+name|suffixes
+argument_list|)
+operator|+
+literal|")"
 argument_list|)
 expr_stmt|;
 block|}

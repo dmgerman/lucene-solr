@@ -348,6 +348,18 @@ name|Map
 import|;
 end_import
 
+begin_import
+import|import
+name|java
+operator|.
+name|util
+operator|.
+name|regex
+operator|.
+name|Pattern
+import|;
+end_import
+
 begin_comment
 comment|/**  * In-memory structure for the dictionary (.dic) and affix (.aff)  * data of a hunspell dictionary.  */
 end_comment
@@ -473,6 +485,23 @@ name|Affix
 argument_list|>
 argument_list|>
 name|suffixes
+decl_stmt|;
+comment|// all Patterns used by prefixes and suffixes. these are typically re-used across
+comment|// many affix stripping rules. so these are deduplicated, to save RAM.
+comment|// TODO: maybe don't use Pattern for the condition check...
+comment|// TODO: when we cut over Affix to FST, just store integer index to this.
+DECL|field|patterns
+specifier|public
+name|ArrayList
+argument_list|<
+name|Pattern
+argument_list|>
+name|patterns
+init|=
+operator|new
+name|ArrayList
+argument_list|<>
+argument_list|()
 decl_stmt|;
 comment|// the entries in the .dic file, mapping to their set of flags.
 comment|// the fst output is the ordinal for flagLookup
@@ -1067,6 +1096,19 @@ argument_list|,
 literal|false
 argument_list|)
 expr_stmt|;
+name|Map
+argument_list|<
+name|String
+argument_list|,
+name|Integer
+argument_list|>
+name|seenPatterns
+init|=
+operator|new
+name|HashMap
+argument_list|<>
+argument_list|()
+decl_stmt|;
 name|LineNumberReader
 name|reader
 init|=
@@ -1137,6 +1179,8 @@ argument_list|,
 name|reader
 argument_list|,
 name|PREFIX_CONDITION_REGEX_PATTERN
+argument_list|,
+name|seenPatterns
 argument_list|)
 expr_stmt|;
 block|}
@@ -1160,6 +1204,8 @@ argument_list|,
 name|reader
 argument_list|,
 name|SUFFIX_CONDITION_REGEX_PATTERN
+argument_list|,
+name|seenPatterns
 argument_list|)
 expr_stmt|;
 block|}
@@ -1186,7 +1232,7 @@ expr_stmt|;
 block|}
 block|}
 block|}
-comment|/**    * Parses a specific affix rule putting the result into the provided affix map    *     * @param affixes Map where the result of the parsing will be put    * @param header Header line of the affix rule    * @param reader BufferedReader to read the content of the rule from    * @param conditionPattern {@link String#format(String, Object...)} pattern to be used to generate the condition regex    *                         pattern    * @throws IOException Can be thrown while reading the rule    */
+comment|/**    * Parses a specific affix rule putting the result into the provided affix map    *     * @param affixes Map where the result of the parsing will be put    * @param header Header line of the affix rule    * @param reader BufferedReader to read the content of the rule from    * @param conditionPattern {@link String#format(String, Object...)} pattern to be used to generate the condition regex    *                         pattern    * @param seenPatterns map from condition -> index of patterns, for deduplication.    * @throws IOException Can be thrown while reading the rule    */
 DECL|method|parseAffix
 specifier|private
 name|void
@@ -1209,6 +1255,14 @@ name|reader
 parameter_list|,
 name|String
 name|conditionPattern
+parameter_list|,
+name|Map
+argument_list|<
+name|String
+argument_list|,
+name|Integer
+argument_list|>
+name|seenPatterns
 parameter_list|)
 throws|throws
 name|IOException
@@ -1519,12 +1573,10 @@ literal|"\\-"
 argument_list|)
 expr_stmt|;
 block|}
-name|affix
-operator|.
-name|setCondition
-argument_list|(
-name|condition
-argument_list|,
+comment|// deduplicate patterns
+name|String
+name|regex
+init|=
 name|String
 operator|.
 name|format
@@ -1536,6 +1588,68 @@ argument_list|,
 name|conditionPattern
 argument_list|,
 name|condition
+argument_list|)
+decl_stmt|;
+name|Integer
+name|patternIndex
+init|=
+name|seenPatterns
+operator|.
+name|get
+argument_list|(
+name|regex
+argument_list|)
+decl_stmt|;
+if|if
+condition|(
+name|patternIndex
+operator|==
+literal|null
+condition|)
+block|{
+name|patternIndex
+operator|=
+name|patterns
+operator|.
+name|size
+argument_list|()
+expr_stmt|;
+name|seenPatterns
+operator|.
+name|put
+argument_list|(
+name|regex
+argument_list|,
+name|patternIndex
+argument_list|)
+expr_stmt|;
+name|Pattern
+name|pattern
+init|=
+name|Pattern
+operator|.
+name|compile
+argument_list|(
+name|regex
+argument_list|)
+decl_stmt|;
+name|patterns
+operator|.
+name|add
+argument_list|(
+name|pattern
+argument_list|)
+expr_stmt|;
+block|}
+name|affix
+operator|.
+name|setCondition
+argument_list|(
+name|patterns
+operator|.
+name|get
+argument_list|(
+name|patternIndex
 argument_list|)
 argument_list|)
 expr_stmt|;

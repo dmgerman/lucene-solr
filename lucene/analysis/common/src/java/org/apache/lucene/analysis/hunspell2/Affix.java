@@ -58,11 +58,6 @@ specifier|private
 name|String
 name|strip
 decl_stmt|;
-DECL|field|condition
-specifier|private
-name|String
-name|condition
-decl_stmt|;
 DECL|field|conditionPattern
 specifier|private
 name|Pattern
@@ -186,46 +181,21 @@ operator|=
 name|strip
 expr_stmt|;
 block|}
-comment|/**    * Returns the condition that must be met before the affix can be applied    *    * @return Condition that must be met before the affix can be applied    */
-DECL|method|getCondition
-specifier|public
-name|String
-name|getCondition
-parameter_list|()
-block|{
-return|return
-name|condition
-return|;
-block|}
-comment|/**    * Sets the condition that must be met before the affix can be applied    *    * @param condition Condition to be met before affix application    * @param pattern Condition as a regular expression pattern    */
+comment|/**    * Sets the condition that must be met before the affix can be applied    *    * @param pattern Condition as a regular expression pattern    */
 DECL|method|setCondition
 specifier|public
 name|void
 name|setCondition
 parameter_list|(
-name|String
-name|condition
-parameter_list|,
-name|String
+name|Pattern
 name|pattern
 parameter_list|)
 block|{
 name|this
 operator|.
-name|condition
-operator|=
-name|condition
-expr_stmt|;
-name|this
-operator|.
 name|conditionPattern
 operator|=
-name|Pattern
-operator|.
-name|compile
-argument_list|(
 name|pattern
-argument_list|)
 expr_stmt|;
 block|}
 comment|/**    * Returns the affix flag    *    * @return Affix flag    */
