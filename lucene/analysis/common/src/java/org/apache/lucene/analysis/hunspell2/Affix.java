@@ -40,12 +40,6 @@ specifier|final
 class|class
 name|Affix
 block|{
-DECL|field|append
-specifier|private
-name|String
-name|append
-decl_stmt|;
-comment|// the affix itself, what is appended
 DECL|field|appendFlags
 specifier|private
 name|char
@@ -94,34 +88,6 @@ operator|.
 name|matches
 argument_list|()
 return|;
-block|}
-comment|/**    * Returns the append defined for the affix    *    * @return Defined append    */
-DECL|method|getAppend
-specifier|public
-name|String
-name|getAppend
-parameter_list|()
-block|{
-return|return
-name|append
-return|;
-block|}
-comment|/**    * Sets the append defined for the affix    *    * @param append Defined append for the affix    */
-DECL|method|setAppend
-specifier|public
-name|void
-name|setAppend
-parameter_list|(
-name|String
-name|append
-parameter_list|)
-block|{
-name|this
-operator|.
-name|append
-operator|=
-name|append
-expr_stmt|;
 block|}
 comment|/**    * Returns the flags defined for the affix append    *    * @return Flags defined for the affix append    */
 DECL|method|getAppendFlags
