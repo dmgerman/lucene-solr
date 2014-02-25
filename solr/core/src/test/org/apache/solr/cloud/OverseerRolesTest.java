@@ -220,6 +220,20 @@ name|apache
 operator|.
 name|solr
 operator|.
+name|SolrTestCaseJ4
+operator|.
+name|SuppressSSL
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|solr
+operator|.
 name|client
 operator|.
 name|solrj
@@ -367,6 +381,9 @@ annotation|@
 name|LuceneTestCase
 operator|.
 name|Slow
+annotation|@
+name|SuppressSSL
+comment|// SSL does not work with this feature for some reason
 DECL|class|OverseerRolesTest
 specifier|public
 class|class
@@ -379,14 +396,6 @@ specifier|private
 name|CloudSolrServer
 name|client
 decl_stmt|;
-static|static
-block|{
-comment|// SSL does not work with this feature for some reason
-name|ALLOW_SSL
-operator|=
-literal|false
-expr_stmt|;
-block|}
 annotation|@
 name|BeforeClass
 DECL|method|beforeThisClass2

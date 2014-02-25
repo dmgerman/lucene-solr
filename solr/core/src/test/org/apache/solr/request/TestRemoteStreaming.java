@@ -50,6 +50,20 @@ name|apache
 operator|.
 name|solr
 operator|.
+name|SolrTestCaseJ4
+operator|.
+name|SuppressSSL
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|solr
+operator|.
 name|client
 operator|.
 name|solrj
@@ -313,6 +327,9 @@ comment|/**  * See SOLR-2854.  */
 end_comment
 
 begin_class
+annotation|@
+name|SuppressSSL
+comment|// does not yet work with ssl - uses raw URL
 DECL|class|TestRemoteStreaming
 specifier|public
 class|class
@@ -335,14 +352,6 @@ argument_list|,
 literal|"TestRemoteStreaming"
 argument_list|)
 decl_stmt|;
-static|static
-block|{
-comment|// does not yet work with ssl - uses raw URL
-name|ALLOW_SSL
-operator|=
-literal|false
-expr_stmt|;
-block|}
 annotation|@
 name|BeforeClass
 DECL|method|beforeTest

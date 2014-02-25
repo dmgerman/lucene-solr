@@ -70,6 +70,20 @@ name|apache
 operator|.
 name|solr
 operator|.
+name|SolrTestCaseJ4
+operator|.
+name|SuppressSSL
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|solr
+operator|.
 name|client
 operator|.
 name|solrj
@@ -383,6 +397,9 @@ end_comment
 begin_class
 annotation|@
 name|Slow
+annotation|@
+name|SuppressSSL
+comment|// No SSL for now - it can be too slow
 DECL|class|FullSolrCloudDistribCmdsTest
 specifier|public
 class|class
@@ -390,14 +407,6 @@ name|FullSolrCloudDistribCmdsTest
 extends|extends
 name|AbstractFullDistribZkTestBase
 block|{
-static|static
-block|{
-comment|// No SSL for now - it can be too slow
-name|ALLOW_SSL
-operator|=
-literal|false
-expr_stmt|;
-block|}
 annotation|@
 name|BeforeClass
 DECL|method|beforeSuperClass

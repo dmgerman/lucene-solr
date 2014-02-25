@@ -120,6 +120,20 @@ name|apache
 operator|.
 name|solr
 operator|.
+name|SolrTestCaseJ4
+operator|.
+name|SuppressSSL
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|solr
+operator|.
 name|client
 operator|.
 name|solrj
@@ -410,7 +424,17 @@ begin_comment
 comment|/**  * This test simply does a bunch of basic things in solrcloud mode and asserts things  * work as expected.  */
 end_comment
 
+begin_comment
+comment|// disable SSL until this test is hardened more to deal with the
+end_comment
+
+begin_comment
+comment|// consequences of how slow it can make some things
+end_comment
+
 begin_class
+annotation|@
+name|SuppressSSL
 DECL|class|BasicDistributedZk2Test
 specifier|public
 class|class
@@ -445,15 +469,6 @@ name|ONE_NODE_COLLECTION
 init|=
 literal|"onenodecollection"
 decl_stmt|;
-static|static
-block|{
-comment|// disable SSL until this test is hardened more to deal with the
-comment|// consequences of how slow it can make some things
-name|ALLOW_SSL
-operator|=
-literal|false
-expr_stmt|;
-block|}
 DECL|method|BasicDistributedZk2Test
 specifier|public
 name|BasicDistributedZk2Test
