@@ -18,18 +18,6 @@ begin_comment
 comment|/*  * Licensed to the Apache Software Foundation (ASF) under one or more  * contributor license agreements.  See the NOTICE file distributed with  * this work for additional information regarding copyright ownership.  * The ASF licenses this file to You under the Apache License, Version 2.0  * (the "License"); you may not use this file except in compliance with  * the License.  You may obtain a copy of the License at  *  *     http://www.apache.org/licenses/LICENSE-2.0  *  * Unless required by applicable law or agreed to in writing, software  * distributed under the License is distributed on an "AS IS" BASIS,  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.  * See the License for the specific language governing permissions and  * limitations under the License.  */
 end_comment
 
-begin_import
-import|import
-name|java
-operator|.
-name|util
-operator|.
-name|regex
-operator|.
-name|Pattern
-import|;
-end_import
-
 begin_comment
 comment|/**  * Wrapper class representing a hunspell affix  */
 end_comment
@@ -42,58 +30,35 @@ name|Affix
 block|{
 DECL|field|appendFlags
 specifier|private
-name|char
+name|int
 name|appendFlags
-index|[]
 decl_stmt|;
 comment|// continuation class flags
-DECL|field|strip
+DECL|field|condition
 specifier|private
-name|String
-name|strip
+name|int
+name|condition
 decl_stmt|;
-DECL|field|conditionPattern
+comment|// check condition
+DECL|field|crossProduct
 specifier|private
-name|Pattern
-name|conditionPattern
+name|boolean
+name|crossProduct
 decl_stmt|;
 DECL|field|flag
 specifier|private
 name|char
 name|flag
 decl_stmt|;
-DECL|field|crossProduct
+DECL|field|strip
 specifier|private
-name|boolean
-name|crossProduct
+name|int
+name|strip
 decl_stmt|;
-comment|/**    * Checks whether the given text matches the conditional pattern on this affix    *    * @param text Text to check if it matches the affix's conditional pattern    * @return {@code true} if the text meets the condition, {@code false} otherwise    */
-DECL|method|checkCondition
-specifier|public
-name|boolean
-name|checkCondition
-parameter_list|(
-name|CharSequence
-name|text
-parameter_list|)
-block|{
-return|return
-name|conditionPattern
-operator|.
-name|matcher
-argument_list|(
-name|text
-argument_list|)
-operator|.
-name|matches
-argument_list|()
-return|;
-block|}
 comment|/**    * Returns the flags defined for the affix append    *    * @return Flags defined for the affix append    */
 DECL|method|getAppendFlags
 specifier|public
-name|char
-index|[]
+name|int
 name|getAppendFlags
 parameter_list|()
 block|{
@@ -107,8 +72,7 @@ specifier|public
 name|void
 name|setAppendFlags
 parameter_list|(
-name|char
-index|[]
+name|int
 name|appendFlags
 parameter_list|)
 block|{
@@ -122,7 +86,7 @@ block|}
 comment|/**    * Returns the stripping characters defined for the affix    *    * @return Stripping characters defined for the affix    */
 DECL|method|getStrip
 specifier|public
-name|String
+name|int
 name|getStrip
 parameter_list|()
 block|{
@@ -136,7 +100,7 @@ specifier|public
 name|void
 name|setStrip
 parameter_list|(
-name|String
+name|int
 name|strip
 parameter_list|)
 block|{
@@ -147,22 +111,32 @@ operator|=
 name|strip
 expr_stmt|;
 block|}
-comment|/**    * Sets the condition that must be met before the affix can be applied    *    * @param pattern Condition as a regular expression pattern    */
+comment|/**    * Sets the condition that must be met before the affix can be applied    */
 DECL|method|setCondition
 specifier|public
 name|void
 name|setCondition
 parameter_list|(
-name|Pattern
-name|pattern
+name|int
+name|condition
 parameter_list|)
 block|{
 name|this
 operator|.
-name|conditionPattern
+name|condition
 operator|=
-name|pattern
+name|condition
 expr_stmt|;
+block|}
+DECL|method|getCondition
+specifier|public
+name|int
+name|getCondition
+parameter_list|()
+block|{
+return|return
+name|condition
+return|;
 block|}
 comment|/**    * Returns the affix flag    *    * @return Affix flag    */
 DECL|method|getFlag
