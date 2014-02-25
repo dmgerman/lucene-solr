@@ -250,11 +250,7 @@ name|getName
 parameter_list|()
 block|{
 return|return
-literal|"function("
-operator|+
 name|name
-operator|+
-literal|")"
 return|;
 block|}
 annotation|@
