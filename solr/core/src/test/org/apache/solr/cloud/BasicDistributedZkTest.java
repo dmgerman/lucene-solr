@@ -240,7 +240,7 @@ name|util
 operator|.
 name|LuceneTestCase
 operator|.
-name|BadApple
+name|Slow
 import|;
 end_import
 
@@ -250,13 +250,11 @@ name|org
 operator|.
 name|apache
 operator|.
-name|lucene
+name|solr
 operator|.
-name|util
+name|SolrTestCaseJ4
 operator|.
-name|LuceneTestCase
-operator|.
-name|Slow
+name|SuppressSSL
 import|;
 end_import
 
@@ -762,7 +760,7 @@ begin_class
 annotation|@
 name|Slow
 annotation|@
-name|BadApple
+name|SuppressSSL
 DECL|class|BasicDistributedZkTest
 specifier|public
 class|class
