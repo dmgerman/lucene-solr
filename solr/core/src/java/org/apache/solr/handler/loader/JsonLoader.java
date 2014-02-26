@@ -2324,12 +2324,13 @@ condition|)
 return|return
 name|sdoc
 return|;
-name|SolrInputField
-name|prev
-init|=
+comment|// pulling out hte pieces may seem weird, but it's because
+comment|// SolrInputDocument.addField will do the right thing
+comment|// if the doc already has another value for this field
+comment|// (ie: repeating fieldname keys)
 name|sdoc
 operator|.
-name|put
+name|addField
 argument_list|(
 name|sif
 operator|.
@@ -2337,32 +2338,16 @@ name|getName
 argument_list|()
 argument_list|,
 name|sif
-argument_list|)
-decl_stmt|;
-if|if
-condition|(
-name|prev
-operator|!=
-literal|null
-condition|)
-block|{
-comment|// blech - repeated keys
-name|sif
-operator|.
-name|addValue
-argument_list|(
-name|prev
 operator|.
 name|getValue
 argument_list|()
 argument_list|,
-name|prev
+name|sif
 operator|.
 name|getBoost
 argument_list|()
 argument_list|)
 expr_stmt|;
-block|}
 block|}
 block|}
 DECL|method|parseField
