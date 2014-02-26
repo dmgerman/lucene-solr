@@ -234,6 +234,7 @@ operator|=
 name|parent
 expr_stmt|;
 block|}
+comment|/** Return an approximate memory usage for this node and its sub-nodes. */
 DECL|method|sizeInBytes
 specifier|public
 name|long
