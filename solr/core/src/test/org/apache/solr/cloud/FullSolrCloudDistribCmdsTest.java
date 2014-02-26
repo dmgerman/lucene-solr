@@ -58,6 +58,22 @@ name|util
 operator|.
 name|LuceneTestCase
 operator|.
+name|BadApple
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|util
+operator|.
+name|LuceneTestCase
+operator|.
 name|Slow
 import|;
 end_import
@@ -400,6 +416,8 @@ name|Slow
 annotation|@
 name|SuppressSSL
 comment|// No SSL for now - it can be too slow
+annotation|@
+name|BadApple
 DECL|class|FullSolrCloudDistribCmdsTest
 specifier|public
 class|class
