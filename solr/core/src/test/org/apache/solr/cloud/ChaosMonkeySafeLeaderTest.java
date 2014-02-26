@@ -187,8 +187,6 @@ end_import
 begin_class
 annotation|@
 name|Slow
-annotation|@
-name|BadApple
 DECL|class|ChaosMonkeySafeLeaderTest
 specifier|public
 class|class
