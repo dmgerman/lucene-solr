@@ -356,7 +356,7 @@ block|}
 block|}
 return|;
 block|}
-comment|/** Holds the cached ordinals in two paralel {@code int[]} arrays. */
+comment|/** Holds the cached ordinals in two parallel {@code int[]} arrays. */
 DECL|class|CachedOrds
 specifier|public
 specifier|static
@@ -615,6 +615,7 @@ name|ords
 expr_stmt|;
 block|}
 block|}
+comment|/** Returns number of bytes used by this cache entry */
 DECL|method|ramBytesUsed
 specifier|public
 name|long
