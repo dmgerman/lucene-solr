@@ -26,13 +26,11 @@ name|org
 operator|.
 name|apache
 operator|.
-name|lucene
+name|solr
 operator|.
-name|util
+name|SolrTestCaseJ4
 operator|.
-name|LuceneTestCase
-operator|.
-name|BadApple
+name|SuppressSSL
 import|;
 end_import
 
@@ -126,7 +124,7 @@ begin_class
 annotation|@
 name|Slow
 annotation|@
-name|BadApple
+name|SuppressSSL
 DECL|class|SolrExampleStreamingBinaryTest
 specifier|public
 class|class
