@@ -226,6 +226,11 @@ block|}
 argument_list|)
 annotation|@
 name|BadApple
+argument_list|(
+name|bugUrl
+operator|=
+literal|"https://issues.apache.org/jira/browse/SOLR-5302"
+argument_list|)
 DECL|class|ExpressionTest
 specifier|public
 class|class

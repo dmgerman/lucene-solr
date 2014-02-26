@@ -993,7 +993,15 @@ DECL|interface|BadApple
 specifier|public
 annotation_defn|@interface
 name|BadApple
-block|{}
+block|{
+comment|/** Point to JIRA entry. */
+DECL|method|bugUrl
+specifier|public
+name|String
+name|bugUrl
+parameter_list|()
+function_decl|;
+block|}
 comment|/**    * Annotation for test classes that should avoid certain codec types    * (because they are expensive, for example).    */
 annotation|@
 name|Documented
