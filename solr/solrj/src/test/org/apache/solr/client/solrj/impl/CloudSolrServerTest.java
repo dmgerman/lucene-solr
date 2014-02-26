@@ -311,8 +311,6 @@ end_comment
 begin_class
 annotation|@
 name|Slow
-annotation|@
-name|BadApple
 DECL|class|CloudSolrServerTest
 specifier|public
 class|class
