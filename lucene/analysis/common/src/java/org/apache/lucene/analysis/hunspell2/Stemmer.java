@@ -508,13 +508,6 @@ name|CharsRef
 argument_list|>
 argument_list|()
 decl_stmt|;
-name|BytesRef
-name|scratch
-init|=
-operator|new
-name|BytesRef
-argument_list|()
-decl_stmt|;
 for|for
 control|(
 name|int
@@ -976,13 +969,6 @@ operator|<
 name|recursionCap
 condition|)
 block|{
-name|BytesRef
-name|scratch
-init|=
-operator|new
-name|BytesRef
-argument_list|()
-decl_stmt|;
 name|dictionary
 operator|.
 name|flagLookup
