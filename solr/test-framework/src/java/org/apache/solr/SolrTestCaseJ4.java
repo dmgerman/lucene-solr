@@ -1186,7 +1186,17 @@ DECL|interface|SuppressSSL
 specifier|public
 annotation_defn|@interface
 name|SuppressSSL
-block|{}
+block|{
+comment|/** Point to JIRA entry. */
+DECL|field|Ó
+specifier|public
+name|String
+name|bugUrl
+parameter_list|()
+default|default
+literal|"None"
+function_decl|;
+block|}
 comment|// these are meant to be accessed sequentially, but are volatile just to ensure any test
 comment|// thread will read the latest value
 DECL|field|sslConfig

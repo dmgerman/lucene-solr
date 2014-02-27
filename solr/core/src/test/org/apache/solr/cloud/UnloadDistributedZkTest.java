@@ -337,6 +337,11 @@ annotation|@
 name|Slow
 annotation|@
 name|SuppressSSL
+argument_list|(
+name|bugUrl
+operator|=
+literal|"https://issues.apache.org/jira/browse/SOLR-5776"
+argument_list|)
 DECL|class|UnloadDistributedZkTest
 specifier|public
 class|class

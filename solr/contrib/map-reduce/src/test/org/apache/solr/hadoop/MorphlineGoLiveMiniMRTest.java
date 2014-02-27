@@ -748,20 +748,6 @@ begin_import
 import|import
 name|org
 operator|.
-name|apache
-operator|.
-name|solr
-operator|.
-name|util
-operator|.
-name|ExternalPaths
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
 name|junit
 operator|.
 name|After
@@ -954,6 +940,7 @@ block|}
 argument_list|)
 annotation|@
 name|SuppressSSL
+comment|// SSL does not work with this test for currently unknown reasons
 annotation|@
 name|Slow
 DECL|class|MorphlineGoLiveMiniMRTest

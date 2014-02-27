@@ -383,7 +383,7 @@ operator|.
 name|Slow
 annotation|@
 name|SuppressSSL
-comment|// SSL does not work with this feature for some reason
+comment|// Currently unknown why SSL does not work
 DECL|class|OverseerRolesTest
 specifier|public
 class|class

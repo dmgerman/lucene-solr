@@ -424,17 +424,14 @@ begin_comment
 comment|/**  * This test simply does a bunch of basic things in solrcloud mode and asserts things  * work as expected.  */
 end_comment
 
-begin_comment
-comment|// disable SSL until this test is hardened more to deal with the
-end_comment
-
-begin_comment
-comment|// consequences of how slow it can make some things
-end_comment
-
 begin_class
 annotation|@
 name|SuppressSSL
+argument_list|(
+name|bugUrl
+operator|=
+literal|"https://issues.apache.org/jira/browse/SOLR-5776"
+argument_list|)
 DECL|class|BasicDistributedZk2Test
 specifier|public
 class|class

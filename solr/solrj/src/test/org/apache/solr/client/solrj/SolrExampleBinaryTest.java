@@ -149,6 +149,11 @@ end_comment
 begin_class
 annotation|@
 name|SuppressSSL
+argument_list|(
+name|bugUrl
+operator|=
+literal|"https://issues.apache.org/jira/browse/SOLR-5776"
+argument_list|)
 DECL|class|SolrExampleBinaryTest
 specifier|public
 class|class

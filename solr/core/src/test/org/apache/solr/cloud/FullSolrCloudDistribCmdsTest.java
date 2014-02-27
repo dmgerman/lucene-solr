@@ -415,7 +415,11 @@ annotation|@
 name|Slow
 annotation|@
 name|SuppressSSL
-comment|// No SSL for now - it can be too slow
+argument_list|(
+name|bugUrl
+operator|=
+literal|"https://issues.apache.org/jira/browse/SOLR-5776"
+argument_list|)
 DECL|class|FullSolrCloudDistribCmdsTest
 specifier|public
 class|class

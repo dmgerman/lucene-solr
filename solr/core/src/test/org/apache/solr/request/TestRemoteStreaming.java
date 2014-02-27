@@ -329,7 +329,7 @@ end_comment
 begin_class
 annotation|@
 name|SuppressSSL
-comment|// does not yet work with ssl - uses raw URL
+comment|// does not yet work with ssl yet - uses raw java.net.URL API rather than HttpClient
 DECL|class|TestRemoteStreaming
 specifier|public
 class|class
