@@ -2063,12 +2063,6 @@ name|ZkStateReader
 operator|.
 name|STATE_PROP
 argument_list|)
-argument_list|,
-name|ZkStateReader
-operator|.
-name|CORE_NODE_NAME_PROP
-argument_list|,
-name|coreNodeName
 argument_list|)
 argument_list|)
 decl_stmt|;
