@@ -2982,7 +2982,7 @@ name|totalDocs
 init|=
 name|atLeast
 argument_list|(
-literal|5000
+literal|500
 argument_list|)
 decl_stmt|;
 comment|// start with a smallish number of documents, and test that we can do a full walk using a
@@ -3173,7 +3173,7 @@ name|numRandomSorts
 init|=
 name|atLeast
 argument_list|(
-literal|5
+literal|3
 argument_list|)
 decl_stmt|;
 for|for
@@ -5474,9 +5474,16 @@ specifier|final
 name|int
 name|numClauses
 init|=
-name|atLeast
+name|TestUtil
+operator|.
+name|nextInt
 argument_list|(
+name|random
+argument_list|()
+argument_list|,
 literal|2
+argument_list|,
+literal|5
 argument_list|)
 decl_stmt|;
 for|for
