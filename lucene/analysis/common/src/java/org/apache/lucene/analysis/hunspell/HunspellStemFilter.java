@@ -253,7 +253,7 @@ literal|2
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**    * Creates a new Hunspell2StemFilter that will stem tokens from the given TokenStream using affix rules in the provided    * Dictionary    *    * @param input TokenStream whose tokens will be stemmed    * @param dictionary HunspellDictionary containing the affix rules and words that will be used to stem the tokens    * @param recursionCap maximum level of recursion stemmer can go into, defaults to<code>2</code>    */
+comment|/**    * Creates a new HunspellStemFilter that will stem tokens from the given TokenStream using affix rules in the provided    * Dictionary    *    * @param input TokenStream whose tokens will be stemmed    * @param dictionary HunspellDictionary containing the affix rules and words that will be used to stem the tokens    * @param recursionCap maximum level of recursion stemmer can go into, defaults to<code>2</code>    */
 DECL|method|HunspellStemFilter
 specifier|public
 name|HunspellStemFilter
