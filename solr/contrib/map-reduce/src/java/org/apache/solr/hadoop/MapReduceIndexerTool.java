@@ -122,26 +122,6 @@ name|java
 operator|.
 name|io
 operator|.
-name|PrintWriter
-import|;
-end_import
-
-begin_import
-import|import
-name|java
-operator|.
-name|io
-operator|.
-name|UnsupportedEncodingException
-import|;
-end_import
-
-begin_import
-import|import
-name|java
-operator|.
-name|io
-operator|.
 name|Writer
 import|;
 end_import
@@ -1221,59 +1201,6 @@ operator|+
 literal|"  --shards 1 \\\n"
 operator|+
 literal|"  hdfs:///user/$USER/test-documents/sample-statuses-20120906-141433.avro\n"
-operator|+
-literal|"\n"
-operator|+
-literal|"# (Re)index all files that match all of the following conditions:\n"
-operator|+
-literal|"# 1) File is contained in dir tree hdfs:///user/$USER/solrloadtest/twitter/tweets\n"
-operator|+
-literal|"# 2) file name matches the glob pattern 'sample-statuses*.gz'\n"
-operator|+
-literal|"# 3) file was last modified less than 100000 minutes ago\n"
-operator|+
-literal|"# 4) file size is between 1 MB and 1 GB\n"
-operator|+
-literal|"# Also include extra library jar file containing JSON tweet Java parser:\n"
-operator|+
-literal|"hadoop jar target/solr-map-reduce-*.jar "
-operator|+
-literal|"com.cloudera.cdk.morphline.hadoop.find.HdfsFindTool"
-operator|+
-literal|" \\\n"
-operator|+
-literal|"  -find hdfs:///user/$USER/solrloadtest/twitter/tweets \\\n"
-operator|+
-literal|"  -type f \\\n"
-operator|+
-literal|"  -name 'sample-statuses*.gz' \\\n"
-operator|+
-literal|"  -mmin -1000000 \\\n"
-operator|+
-literal|"  -size -100000000c \\\n"
-operator|+
-literal|"  -size +1000000c \\\n"
-operator|+
-literal|"| sudo -u hdfs hadoop \\\n"
-operator|+
-literal|"  --config /etc/hadoop/conf.cloudera.mapreduce1 \\\n"
-operator|+
-literal|"  jar target/solr-map-reduce-*.jar \\\n"
-operator|+
-literal|"  -D 'mapred.child.java.opts=-Xmx500m' \\\n"
-operator|+
-comment|//            "  -D 'mapreduce.child.java.opts=-Xmx500m' \\\n" +
-literal|"  --log4j src/test/resources/log4j.properties \\\n"
-operator|+
-literal|"  --morphline-file ../search-core/src/test/resources/test-morphlines/tutorialReadJsonTestTweets.conf \\\n"
-operator|+
-literal|"  --solr-home-dir src/test/resources/solr/minimr \\\n"
-operator|+
-literal|"  --output-dir hdfs://c2202.mycompany.com/user/$USER/test \\\n"
-operator|+
-literal|"  --shards 100 \\\n"
-operator|+
-literal|"  --input-list -\n"
 operator|+
 literal|"\n"
 operator|+
