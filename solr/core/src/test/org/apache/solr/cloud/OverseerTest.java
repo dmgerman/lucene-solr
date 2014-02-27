@@ -384,7 +384,7 @@ name|zookeeper
 operator|.
 name|KeeperException
 operator|.
-name|NodeExistsException
+name|NoNodeException
 import|;
 end_import
 
@@ -396,9 +396,9 @@ name|apache
 operator|.
 name|zookeeper
 operator|.
-name|data
+name|KeeperException
 operator|.
-name|Stat
+name|NodeExistsException
 import|;
 end_import
 
@@ -676,42 +676,33 @@ parameter_list|)
 block|{
 try|try
 block|{
-name|Stat
-name|stat
-init|=
-name|zkClient
-operator|.
-name|exists
-argument_list|(
-name|path
-argument_list|,
-literal|null
-argument_list|,
-literal|true
-argument_list|)
-decl_stmt|;
-if|if
-condition|(
-name|stat
-operator|!=
-literal|null
-condition|)
-block|{
 name|zkClient
 operator|.
 name|delete
 argument_list|(
 name|path
 argument_list|,
-name|stat
-operator|.
-name|getVersion
-argument_list|()
+operator|-
+literal|1
 argument_list|,
 literal|true
 argument_list|)
 expr_stmt|;
 block|}
+catch|catch
+parameter_list|(
+name|NoNodeException
+name|e
+parameter_list|)
+block|{
+comment|// fine
+name|log
+operator|.
+name|warn
+argument_list|(
+literal|"cancelElection did not find election node to remove"
+argument_list|)
+expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
@@ -1100,6 +1091,13 @@ argument_list|,
 name|zkStateReader
 argument_list|)
 decl_stmt|;
+name|elector
+operator|.
+name|setup
+argument_list|(
+name|ctx
+argument_list|)
+expr_stmt|;
 name|elector
 operator|.
 name|joinElection
@@ -3615,7 +3613,7 @@ argument_list|(
 literal|1000
 argument_list|)
 expr_stmt|;
-comment|//wait for overseer to get killed
+comment|// wait for overseer to get killed
 name|mockController
 operator|.
 name|publishState
@@ -5508,7 +5506,32 @@ argument_list|(
 name|zkClient
 argument_list|)
 decl_stmt|;
-comment|// TODO: close Overseer
+if|if
+condition|(
+name|overseers
+operator|.
+name|size
+argument_list|()
+operator|>
+literal|0
+condition|)
+block|{
+name|overseers
+operator|.
+name|get
+argument_list|(
+name|overseers
+operator|.
+name|size
+argument_list|()
+operator|-
+literal|1
+argument_list|)
+operator|.
+name|close
+argument_list|()
+expr_stmt|;
+block|}
 name|Overseer
 name|overseer
 init|=

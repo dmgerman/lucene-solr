@@ -1047,15 +1047,6 @@ name|synonyms
 operator|.
 name|fst
 expr_stmt|;
-name|this
-operator|.
-name|fstReader
-operator|=
-name|fst
-operator|.
-name|getBytesReader
-argument_list|()
-expr_stmt|;
 if|if
 condition|(
 name|fst
@@ -1071,6 +1062,15 @@ literal|"fst must be non-null"
 argument_list|)
 throw|;
 block|}
+name|this
+operator|.
+name|fstReader
+operator|=
+name|fst
+operator|.
+name|getBytesReader
+argument_list|()
+expr_stmt|;
 comment|// Must be 1+ so that when roll buffer is at full
 comment|// lookahead we can distinguish this full buffer from
 comment|// the empty buffer:

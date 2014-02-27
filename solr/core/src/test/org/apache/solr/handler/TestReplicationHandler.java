@@ -370,6 +370,20 @@ name|apache
 operator|.
 name|solr
 operator|.
+name|SolrTestCaseJ4
+operator|.
+name|SuppressSSL
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|solr
+operator|.
 name|client
 operator|.
 name|solrj
@@ -777,6 +791,9 @@ end_comment
 begin_class
 annotation|@
 name|Slow
+annotation|@
+name|SuppressSSL
+comment|// Currently unknown why SSL does not work with this test
 DECL|class|TestReplicationHandler
 specifier|public
 class|class
@@ -861,14 +878,6 @@ name|nDocs
 init|=
 literal|500
 decl_stmt|;
-static|static
-block|{
-comment|// does not yet work with ssl
-name|ALLOW_SSL
-operator|=
-literal|false
-expr_stmt|;
-block|}
 annotation|@
 name|BeforeClass
 DECL|method|beforeClass

@@ -42,6 +42,20 @@ name|Random
 import|;
 end_import
 
+begin_import
+import|import
+name|com
+operator|.
+name|carrotsearch
+operator|.
+name|randomizedtesting
+operator|.
+name|generators
+operator|.
+name|RandomStrings
+import|;
+end_import
+
 begin_class
 DECL|class|TestRamUsageEstimator
 specifier|public

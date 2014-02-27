@@ -847,6 +847,11 @@ comment|// Maps uniqueKeyValue to ShardDoc, which may be used to
 comment|// determine order of the doc or uniqueKey in the final
 comment|// returned sequence.
 comment|// Only valid after STAGE_EXECUTE_QUERY has completed.
+DECL|field|onePassDistributedQuery
+specifier|public
+name|boolean
+name|onePassDistributedQuery
+decl_stmt|;
 DECL|field|_facetInfo
 specifier|public
 name|FacetComponent

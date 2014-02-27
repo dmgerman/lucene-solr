@@ -579,11 +579,6 @@ name|replica
 expr_stmt|;
 block|}
 block|}
-comment|// final Slice shard1 = testcoll.getSlices().iterator().next();
-comment|// if(!shard1.getState().equals(Slice.ACTIVE))
-comment|// fail("shard is not active");
-comment|// for (Replica replica : shard1.getReplicas())
-comment|// if("active".equals(replica.getStr("state"))) replica1 =replica;
 if|if
 condition|(
 name|replica1
