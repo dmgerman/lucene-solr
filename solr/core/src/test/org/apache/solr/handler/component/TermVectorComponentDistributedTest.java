@@ -46,6 +46,16 @@ name|TermVectorParams
 import|;
 end_import
 
+begin_import
+import|import
+name|org
+operator|.
+name|junit
+operator|.
+name|BeforeClass
+import|;
+end_import
+
 begin_class
 DECL|class|TermVectorComponentDistributedTest
 specifier|public
@@ -54,6 +64,35 @@ name|TermVectorComponentDistributedTest
 extends|extends
 name|BaseDistributedSearchTestCase
 block|{
+annotation|@
+name|BeforeClass
+DECL|method|betterNotBeJ9
+specifier|public
+specifier|static
+name|void
+name|betterNotBeJ9
+parameter_list|()
+block|{
+name|assumeFalse
+argument_list|(
+literal|"FIXME: SOLR-5792: This test fails under J9"
+argument_list|,
+name|System
+operator|.
+name|getProperty
+argument_list|(
+literal|"java.vm.info"
+argument_list|,
+literal|"<?>"
+argument_list|)
+operator|.
+name|contains
+argument_list|(
+literal|"IBM J9"
+argument_list|)
+argument_list|)
+expr_stmt|;
+block|}
 annotation|@
 name|Override
 DECL|method|doTest

@@ -102,6 +102,35 @@ name|DistributedQueryElevationComponentTest
 extends|extends
 name|BaseDistributedSearchTestCase
 block|{
+annotation|@
+name|BeforeClass
+DECL|method|betterNotBeJ9
+specifier|public
+specifier|static
+name|void
+name|betterNotBeJ9
+parameter_list|()
+block|{
+name|assumeFalse
+argument_list|(
+literal|"FIXME: SOLR-5791: This test fails under J9"
+argument_list|,
+name|System
+operator|.
+name|getProperty
+argument_list|(
+literal|"java.vm.info"
+argument_list|,
+literal|"<?>"
+argument_list|)
+operator|.
+name|contains
+argument_list|(
+literal|"IBM J9"
+argument_list|)
+argument_list|)
+expr_stmt|;
+block|}
 DECL|method|DistributedQueryElevationComponentTest
 specifier|public
 name|DistributedQueryElevationComponentTest
