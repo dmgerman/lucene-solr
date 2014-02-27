@@ -1,6 +1,6 @@
 begin_unit|revision:0.9.5;language:Java;cregit-version:0.0.1
 begin_package
-DECL|package|org.apache.lucene.analysis.hunspell2
+DECL|package|org.apache.lucene.analysis.hunspell
 package|package
 name|org
 operator|.
@@ -10,7 +10,7 @@ name|lucene
 operator|.
 name|analysis
 operator|.
-name|hunspell2
+name|hunspell
 package|;
 end_package
 
@@ -74,7 +74,7 @@ name|analysis
 operator|.
 name|hunspell
 operator|.
-name|HunspellDictionary
+name|Dictionary
 import|;
 end_import
 
@@ -134,11 +134,12 @@ begin_comment
 comment|/**  * Can be retrieved via:  * wget --mirror -np http://archive.services.openoffice.org/pub/mirror/OpenOffice.org/contrib/dictionaries/  * Note some of the files differ only in case. This may be a problem on your operating system!  */
 end_comment
 
-begin_comment
-comment|//@Ignore("enable manually")
-end_comment
-
 begin_class
+annotation|@
+name|Ignore
+argument_list|(
+literal|"enable manually"
+argument_list|)
 DECL|class|TestAllDictionaries
 specifier|public
 class|class
@@ -920,67 +921,6 @@ name|affEntry
 operator|!=
 literal|null
 assert|;
-comment|// get ram from previous impl
-name|String
-name|oldRAM
-init|=
-literal|"FAIL"
-decl_stmt|;
-try|try
-init|(
-name|InputStream
-name|dictionary
-init|=
-name|zip
-operator|.
-name|getInputStream
-argument_list|(
-name|dicEntry
-argument_list|)
-init|;
-name|InputStream
-name|affix
-operator|=
-name|zip
-operator|.
-name|getInputStream
-argument_list|(
-name|affEntry
-argument_list|)
-init|)
-block|{
-try|try
-block|{
-name|HunspellDictionary
-name|dic
-init|=
-operator|new
-name|HunspellDictionary
-argument_list|(
-name|affix
-argument_list|,
-name|dictionary
-argument_list|,
-name|TEST_VERSION_CURRENT
-argument_list|)
-decl_stmt|;
-name|oldRAM
-operator|=
-name|RamUsageEstimator
-operator|.
-name|humanSizeOf
-argument_list|(
-name|dic
-argument_list|)
-expr_stmt|;
-block|}
-catch|catch
-parameter_list|(
-name|Throwable
-name|t
-parameter_list|)
-block|{}
-block|}
 try|try
 init|(
 name|InputStream
@@ -1025,10 +965,6 @@ name|tests
 index|[
 name|i
 index|]
-operator|+
-literal|"\t"
-operator|+
-name|oldRAM
 operator|+
 literal|"\t"
 operator|+
@@ -1270,9 +1206,6 @@ argument_list|)
 init|;                InputStream affix = zip.getInputStream(affEntry)
 block|)
 block|{
-name|Dictionary
-name|dic
-init|=
 operator|new
 name|Dictionary
 argument_list|(
@@ -1280,7 +1213,7 @@ name|affix
 argument_list|,
 name|dictionary
 argument_list|)
-decl_stmt|;
+expr_stmt|;
 block|}
 block|}
 block|}

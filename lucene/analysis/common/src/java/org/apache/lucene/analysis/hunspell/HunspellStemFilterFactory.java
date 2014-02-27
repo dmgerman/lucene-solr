@@ -155,7 +155,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * TokenFilterFactory that creates instances of {@link org.apache.lucene.analysis.hunspell.HunspellStemFilter}.  * Example config for British English including a custom dictionary, case insensitive matching:  *<pre class="prettyprint">  *&lt;filter class=&quot;solr.HunspellStemFilterFactory&quot;  *    dictionary=&quot;en_GB.dic,my_custom.dic&quot;  *    affix=&quot;en_GB.aff&quot;  *    ignoreCase=&quot;true&quot; /&gt;</pre>  * Both parameters dictionary and affix are mandatory.  *<br/>  * The parameter ignoreCase (true/false) controls whether matching is case sensitive or not. Default false.  *<br/>  * The parameter strictAffixParsing (true/false) controls whether the affix parsing is strict or not. Default true.  * If strict an error while reading an affix rule causes a ParseException, otherwise is ignored.  *<br/>  * Dictionaries for many languages are available through the OpenOffice project.  *   * See<a href="http://wiki.apache.org/solr/Hunspell">http://wiki.apache.org/solr/Hunspell</a>  */
+comment|/**  * TokenFilterFactory that creates instances of {@link HunspellStemFilter}.  * Example config for British English:  *<pre class="prettyprint">  *&lt;filter class=&quot;solr.HunspellStemFilterFactory&quot;  *         dictionary=&quot;en_GB.dic,my_custom.dic&quot;  *         affix=&quot;en_GB.aff&quot;   *         ignoreCase=&quot;false&quot;  *         longestOnly=&quot;false&quot; /&gt;</pre>  * Both parameters dictionary and affix are mandatory.  * Dictionaries for many languages are available through the OpenOffice project.  *   * See<a href="http://wiki.apache.org/solr/Hunspell">http://wiki.apache.org/solr/Hunspell</a>  * @lucene.experimental  */
 end_comment
 
 begin_class
@@ -186,24 +186,6 @@ name|PARAM_AFFIX
 init|=
 literal|"affix"
 decl_stmt|;
-DECL|field|PARAM_IGNORE_CASE
-specifier|private
-specifier|static
-specifier|final
-name|String
-name|PARAM_IGNORE_CASE
-init|=
-literal|"ignoreCase"
-decl_stmt|;
-DECL|field|PARAM_STRICT_AFFIX_PARSING
-specifier|private
-specifier|static
-specifier|final
-name|String
-name|PARAM_STRICT_AFFIX_PARSING
-init|=
-literal|"strictAffixParsing"
-decl_stmt|;
 DECL|field|PARAM_RECURSION_CAP
 specifier|private
 specifier|static
@@ -213,11 +195,29 @@ name|PARAM_RECURSION_CAP
 init|=
 literal|"recursionCap"
 decl_stmt|;
-DECL|field|dictionaryArg
+DECL|field|PARAM_IGNORE_CASE
+specifier|private
+specifier|static
+specifier|final
+name|String
+name|PARAM_IGNORE_CASE
+init|=
+literal|"ignoreCase"
+decl_stmt|;
+DECL|field|PARAM_LONGEST_ONLY
+specifier|private
+specifier|static
+specifier|final
+name|String
+name|PARAM_LONGEST_ONLY
+init|=
+literal|"longestOnly"
+decl_stmt|;
+DECL|field|dictionaryFiles
 specifier|private
 specifier|final
 name|String
-name|dictionaryArg
+name|dictionaryFiles
 decl_stmt|;
 DECL|field|affixFile
 specifier|private
@@ -231,15 +231,15 @@ specifier|final
 name|boolean
 name|ignoreCase
 decl_stmt|;
-DECL|field|strictAffixParsing
+DECL|field|longestOnly
 specifier|private
 specifier|final
 name|boolean
-name|strictAffixParsing
+name|longestOnly
 decl_stmt|;
 DECL|field|dictionary
 specifier|private
-name|HunspellDictionary
+name|Dictionary
 name|dictionary
 decl_stmt|;
 DECL|field|recursionCap
@@ -266,10 +266,7 @@ argument_list|(
 name|args
 argument_list|)
 expr_stmt|;
-name|assureMatchVersion
-argument_list|()
-expr_stmt|;
-name|dictionaryArg
+name|dictionaryFiles
 operator|=
 name|require
 argument_list|(
@@ -298,17 +295,6 @@ argument_list|,
 literal|false
 argument_list|)
 expr_stmt|;
-name|strictAffixParsing
-operator|=
-name|getBoolean
-argument_list|(
-name|args
-argument_list|,
-name|PARAM_STRICT_AFFIX_PARSING
-argument_list|,
-literal|true
-argument_list|)
-expr_stmt|;
 name|recursionCap
 operator|=
 name|getInt
@@ -318,6 +304,28 @@ argument_list|,
 name|PARAM_RECURSION_CAP
 argument_list|,
 literal|2
+argument_list|)
+expr_stmt|;
+name|longestOnly
+operator|=
+name|getBoolean
+argument_list|(
+name|args
+argument_list|,
+name|PARAM_LONGEST_ONLY
+argument_list|,
+literal|false
+argument_list|)
+expr_stmt|;
+comment|// this isnt necessary: we properly load all dictionaries.
+comment|// but recognize and ignore for back compat
+name|getBoolean
+argument_list|(
+name|args
+argument_list|,
+literal|"strictAffixParsing"
+argument_list|,
+literal|true
 argument_list|)
 expr_stmt|;
 if|if
@@ -340,7 +348,6 @@ argument_list|)
 throw|;
 block|}
 block|}
-comment|/**    * Loads the hunspell dictionary and affix files defined in the configuration    *      * @param loader ResourceLoader used to load the files    */
 annotation|@
 name|Override
 DECL|method|inform
@@ -355,10 +362,10 @@ throws|throws
 name|IOException
 block|{
 name|String
-name|dictionaryFiles
+name|dicts
 index|[]
 init|=
-name|dictionaryArg
+name|dictionaryFiles
 operator|.
 name|split
 argument_list|(
@@ -399,7 +406,7 @@ control|(
 name|String
 name|file
 range|:
-name|dictionaryFiles
+name|dicts
 control|)
 block|{
 name|dictionaries
@@ -429,17 +436,13 @@ operator|.
 name|dictionary
 operator|=
 operator|new
-name|HunspellDictionary
+name|Dictionary
 argument_list|(
 name|affix
 argument_list|,
 name|dictionaries
 argument_list|,
-name|luceneMatchVersion
-argument_list|,
 name|ignoreCase
-argument_list|,
-name|strictAffixParsing
 argument_list|)
 expr_stmt|;
 block|}
@@ -455,7 +458,7 @@ name|IOException
 argument_list|(
 literal|"Unable to load hunspell data! [dictionary="
 operator|+
-name|dictionaryArg
+name|dictionaries
 operator|+
 literal|",affix="
 operator|+
@@ -485,7 +488,6 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
-comment|/**    * Creates an instance of {@link org.apache.lucene.analysis.hunspell.HunspellStemFilter} that will filter the given    * TokenStream    *    * @param tokenStream TokenStream that will be filtered    * @return HunspellStemFilter that filters the TokenStream     */
 annotation|@
 name|Override
 DECL|method|create
@@ -505,7 +507,11 @@ name|tokenStream
 argument_list|,
 name|dictionary
 argument_list|,
+literal|true
+argument_list|,
 name|recursionCap
+argument_list|,
+name|longestOnly
 argument_list|)
 return|;
 block|}

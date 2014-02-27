@@ -1,6 +1,6 @@
 begin_unit|revision:0.9.5;language:Java;cregit-version:0.0.1
 begin_package
-DECL|package|org.apache.lucene.analysis.hunspell2
+DECL|package|org.apache.lucene.analysis.hunspell
 package|package
 name|org
 operator|.
@@ -10,7 +10,7 @@ name|lucene
 operator|.
 name|analysis
 operator|.
-name|hunspell2
+name|hunspell
 package|;
 end_package
 
