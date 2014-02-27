@@ -1067,6 +1067,45 @@ argument_list|)
 operator|+
 literal|", "
 operator|+
+literal|"strips="
+operator|+
+name|RamUsageEstimator
+operator|.
+name|humanSizeOf
+argument_list|(
+name|dic
+operator|.
+name|stripLookup
+argument_list|)
+operator|+
+literal|", "
+operator|+
+literal|"conditions="
+operator|+
+name|RamUsageEstimator
+operator|.
+name|humanSizeOf
+argument_list|(
+name|dic
+operator|.
+name|patterns
+argument_list|)
+operator|+
+literal|", "
+operator|+
+literal|"affixData="
+operator|+
+name|RamUsageEstimator
+operator|.
+name|humanSizeOf
+argument_list|(
+name|dic
+operator|.
+name|affixData
+argument_list|)
+operator|+
+literal|", "
+operator|+
 literal|"prefixes="
 operator|+
 name|RamUsageEstimator

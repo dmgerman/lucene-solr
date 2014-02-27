@@ -155,8 +155,7 @@ argument_list|,
 literal|1
 argument_list|)
 operator|.
-name|size
-argument_list|()
+name|length
 argument_list|)
 expr_stmt|;
 name|assertEquals
@@ -179,8 +178,7 @@ argument_list|,
 literal|1
 argument_list|)
 operator|.
-name|size
-argument_list|()
+name|length
 argument_list|)
 expr_stmt|;
 name|char
@@ -334,8 +332,7 @@ argument_list|,
 literal|1
 argument_list|)
 operator|.
-name|size
-argument_list|()
+name|length
 argument_list|)
 expr_stmt|;
 name|assertEquals
@@ -358,8 +355,7 @@ argument_list|,
 literal|1
 argument_list|)
 operator|.
-name|size
-argument_list|()
+name|length
 argument_list|)
 expr_stmt|;
 name|assertEquals
