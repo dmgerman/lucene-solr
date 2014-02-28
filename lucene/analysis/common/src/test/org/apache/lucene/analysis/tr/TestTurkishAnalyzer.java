@@ -144,6 +144,32 @@ index|[]
 block|{}
 argument_list|)
 expr_stmt|;
+comment|// apostrophes
+name|checkOneTerm
+argument_list|(
+name|a
+argument_list|,
+literal|"KÄ±brÄ±s'ta"
+argument_list|,
+literal|"kÄ±brÄ±s"
+argument_list|)
+expr_stmt|;
+name|assertAnalyzesTo
+argument_list|(
+name|a
+argument_list|,
+literal|"Van GÃ¶lÃ¼'ne"
+argument_list|,
+operator|new
+name|String
+index|[]
+block|{
+literal|"van"
+block|,
+literal|"gÃ¶l"
+block|}
+argument_list|)
+expr_stmt|;
 block|}
 comment|/** test use of exclusion set */
 DECL|method|testExclude
