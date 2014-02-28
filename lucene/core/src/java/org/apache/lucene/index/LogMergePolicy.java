@@ -575,6 +575,8 @@ name|segmentIsOriginal
 operator|||
 name|isMerged
 argument_list|(
+name|infos
+argument_list|,
 name|mergeInfo
 argument_list|)
 operator|)
@@ -705,6 +707,8 @@ operator|!
 name|isMerged
 argument_list|(
 name|infos
+argument_list|,
+name|infos
 operator|.
 name|info
 argument_list|(
@@ -801,6 +805,8 @@ operator|||
 operator|!
 name|isMerged
 argument_list|(
+name|infos
+argument_list|,
 name|infos
 operator|.
 name|info
@@ -952,6 +958,8 @@ operator|||
 operator|!
 name|isMerged
 argument_list|(
+name|infos
+argument_list|,
 name|infos
 operator|.
 name|info
@@ -1310,6 +1318,8 @@ literal|1
 operator|&&
 name|isMerged
 argument_list|(
+name|infos
+argument_list|,
 name|infos
 operator|.
 name|info

@@ -2129,6 +2129,8 @@ name|segmentIsOriginal
 operator|||
 name|isMerged
 argument_list|(
+name|infos
+argument_list|,
 name|eligible
 operator|.
 name|get
