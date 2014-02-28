@@ -29,10 +29,10 @@ import|;
 end_import
 
 begin_class
-DECL|class|TestTwoFold
+DECL|class|TestDependencies
 specifier|public
 class|class
-name|TestTwoFold
+name|TestDependencies
 extends|extends
 name|StemmerTestBase
 block|{
@@ -49,20 +49,31 @@ name|Exception
 block|{
 name|init
 argument_list|(
-literal|"twofold.aff"
+literal|"dependencies.aff"
 argument_list|,
-literal|"morph.dic"
+literal|"dependencies.dic"
 argument_list|)
 expr_stmt|;
 block|}
-DECL|method|testExamples
+DECL|method|testDependencies
 specifier|public
 name|void
-name|testExamples
+name|testDependencies
 parameter_list|()
 block|{
 name|assertStemsTo
 argument_list|(
+literal|"drink"
+argument_list|,
+literal|"drink"
+argument_list|,
+literal|"drink"
+argument_list|)
+expr_stmt|;
+name|assertStemsTo
+argument_list|(
+literal|"drinks"
+argument_list|,
 literal|"drink"
 argument_list|,
 literal|"drink"
@@ -75,18 +86,21 @@ argument_list|,
 literal|"drink"
 argument_list|)
 expr_stmt|;
+comment|// TODO: BUG! assertStemsTo("drinkables", "drink");
 name|assertStemsTo
 argument_list|(
-literal|"drinkables"
+literal|"undrinkable"
 argument_list|,
 literal|"drink"
 argument_list|)
 expr_stmt|;
+comment|// TODO: BUG! assertStemsTo("undrinkables", "drink");
 name|assertStemsTo
 argument_list|(
-literal|"drinksable"
+literal|"undrink"
 argument_list|)
 expr_stmt|;
+comment|// TODO: BUG! assertStemsTo("undrinks");
 block|}
 block|}
 end_class
