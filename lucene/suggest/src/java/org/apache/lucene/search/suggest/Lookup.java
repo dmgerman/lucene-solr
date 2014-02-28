@@ -728,6 +728,8 @@ specifier|abstract
 name|long
 name|getCount
 parameter_list|()
+throws|throws
+name|IOException
 function_decl|;
 comment|/**    * Builds up a new internal {@link Lookup} representation based on the given {@link InputIterator}.    * The implementation might re-sort the data internally.    */
 DECL|method|build
@@ -761,6 +763,8 @@ parameter_list|,
 name|int
 name|num
 parameter_list|)
+throws|throws
+name|IOException
 function_decl|;
 comment|/**    * Persist the constructed lookup data to a directory. Optional operation.    * @param output {@link DataOutput} to write the data to.    * @return true if successful, false if unsuccessful or not supported.    * @throws IOException when fatal IO error occurs.    */
 DECL|method|store

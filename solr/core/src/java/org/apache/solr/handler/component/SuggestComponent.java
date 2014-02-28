@@ -534,7 +534,7 @@ specifier|protected
 name|NamedList
 name|initParams
 decl_stmt|;
-comment|/**    * Key is the dictionary name used in SolrConfig, value is the corrosponding {@link SolrSuggester}    */
+comment|/**    * Key is the dictionary name used in SolrConfig, value is the corresponding {@link SolrSuggester}    */
 DECL|field|suggesters
 specifier|protected
 name|Map
