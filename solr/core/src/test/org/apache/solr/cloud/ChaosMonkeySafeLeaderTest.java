@@ -187,6 +187,13 @@ end_import
 begin_class
 annotation|@
 name|Slow
+annotation|@
+name|BadApple
+argument_list|(
+name|bugUrl
+operator|=
+literal|"https://issues.apache.org/jira/browse/SOLR-5735"
+argument_list|)
 DECL|class|ChaosMonkeySafeLeaderTest
 specifier|public
 class|class
