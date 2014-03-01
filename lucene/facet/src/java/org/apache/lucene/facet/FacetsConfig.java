@@ -465,6 +465,17 @@ specifier|public
 name|FacetsConfig
 parameter_list|()
 block|{   }
+comment|/** Get the default configuration for new dimensions.  Useful when    *  the dimension is not known beforehand and may need different     *  global default settings, like {@code multivalue =    *  true}.    *    *  @return The default configuration to be used for dimensions that     *  are not yet set in the {@link FacetsConfig} */
+DECL|method|getDefaultDimConfig
+specifier|protected
+name|DimConfig
+name|getDefaultDimConfig
+parameter_list|()
+block|{
+return|return
+name|DEFAULT_DIM_CONFIG
+return|;
+block|}
 comment|/** Get the current configuration for a dimension. */
 DECL|method|getDimConfig
 specifier|public
@@ -495,7 +506,8 @@ condition|)
 block|{
 name|ft
 operator|=
-name|DEFAULT_DIM_CONFIG
+name|getDefaultDimConfig
+argument_list|()
 expr_stmt|;
 block|}
 return|return
