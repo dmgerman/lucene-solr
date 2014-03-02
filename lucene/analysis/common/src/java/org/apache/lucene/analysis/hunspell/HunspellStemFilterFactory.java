@@ -242,11 +242,6 @@ specifier|private
 name|Dictionary
 name|dictionary
 decl_stmt|;
-DECL|field|recursionCap
-specifier|private
-name|int
-name|recursionCap
-decl_stmt|;
 comment|/** Creates a new HunspellStemFilterFactory */
 DECL|method|HunspellStemFilterFactory
 specifier|public
@@ -295,17 +290,6 @@ argument_list|,
 literal|false
 argument_list|)
 expr_stmt|;
-name|recursionCap
-operator|=
-name|getInt
-argument_list|(
-name|args
-argument_list|,
-name|PARAM_RECURSION_CAP
-argument_list|,
-literal|2
-argument_list|)
-expr_stmt|;
 name|longestOnly
 operator|=
 name|getBoolean
@@ -326,6 +310,18 @@ argument_list|,
 literal|"strictAffixParsing"
 argument_list|,
 literal|true
+argument_list|)
+expr_stmt|;
+comment|// this isn't necessary: multi-stage stripping is fixed and
+comment|// flags like COMPLEXPREFIXES in the data itself control this.
+comment|// but recognize and ignore for back compat
+name|getInt
+argument_list|(
+name|args
+argument_list|,
+literal|"recursionCap"
+argument_list|,
+literal|0
 argument_list|)
 expr_stmt|;
 if|if
@@ -508,8 +504,6 @@ argument_list|,
 name|dictionary
 argument_list|,
 literal|true
-argument_list|,
-name|recursionCap
 argument_list|,
 name|longestOnly
 argument_list|)

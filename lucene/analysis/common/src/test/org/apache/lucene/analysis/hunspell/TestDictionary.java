@@ -605,7 +605,7 @@ argument_list|)
 expr_stmt|;
 name|assertEquals
 argument_list|(
-literal|23
+literal|24
 argument_list|,
 name|expected
 operator|.

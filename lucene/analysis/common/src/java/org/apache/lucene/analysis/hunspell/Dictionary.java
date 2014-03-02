@@ -489,6 +489,15 @@ name|FLAG_KEY
 init|=
 literal|"FLAG"
 decl_stmt|;
+DECL|field|COMPLEXPREFIXES_KEY
+specifier|private
+specifier|static
+specifier|final
+name|String
+name|COMPLEXPREFIXES_KEY
+init|=
+literal|"COMPLEXPREFIXES"
+decl_stmt|;
 DECL|field|NUM_FLAG_TYPE
 specifier|private
 specifier|static
@@ -650,6 +659,10 @@ DECL|field|ignoreCase
 name|boolean
 name|ignoreCase
 decl_stmt|;
+DECL|field|complexPrefixes
+name|boolean
+name|complexPrefixes
+decl_stmt|;
 comment|/**    * Creates a new Dictionary containing the information read from the provided InputStreams to hunspell affix    * and dictionary files.    * You have to close the provided InputStreams yourself.    *    * @param affix InputStream for reading the hunspell affix file (won't be closed).    * @param dictionary InputStream for reading the hunspell dictionary file (won't be closed).    * @throws IOException Can be thrown while reading from the InputStreams    * @throws ParseException Can be thrown if the content of the files does not meet expected formats    */
 DECL|method|Dictionary
 specifier|public
@@ -709,6 +722,7 @@ name|ignoreCase
 operator|=
 name|ignoreCase
 expr_stmt|;
+comment|// hungarian has thousands of AF before the SET, so a 32k buffer is needed
 name|BufferedInputStream
 name|buffered
 init|=
@@ -717,14 +731,14 @@ name|BufferedInputStream
 argument_list|(
 name|affix
 argument_list|,
-literal|8192
+literal|32768
 argument_list|)
 decl_stmt|;
 name|buffered
 operator|.
 name|mark
 argument_list|(
-literal|8192
+literal|32768
 argument_list|)
 expr_stmt|;
 name|String
@@ -732,7 +746,7 @@ name|encoding
 init|=
 name|getDictionaryEncoding
 argument_list|(
-name|affix
+name|buffered
 argument_list|)
 decl_stmt|;
 name|buffered
@@ -1342,6 +1356,23 @@ argument_list|(
 name|line
 argument_list|)
 expr_stmt|;
+block|}
+elseif|else
+if|if
+condition|(
+name|line
+operator|.
+name|equals
+argument_list|(
+name|COMPLEXPREFIXES_KEY
+argument_list|)
+condition|)
+block|{
+name|complexPrefixes
+operator|=
+literal|true
+expr_stmt|;
+comment|// 2-stage prefix+1-stage suffix instead of 2-stage suffix+1-stage prefix
 block|}
 block|}
 name|this

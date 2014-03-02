@@ -231,7 +231,7 @@ specifier|final
 name|boolean
 name|longestOnly
 decl_stmt|;
-comment|/** Create a {@link HunspellStemFilter} which deduplicates stems and has a maximum    *  recursion level of 2.     *  @see #HunspellStemFilter(TokenStream, Dictionary, int) */
+comment|/** Create a {@link HunspellStemFilter} outputting all possible stems.    *  @see #HunspellStemFilter(TokenStream, Dictionary, boolean) */
 DECL|method|HunspellStemFilter
 specifier|public
 name|HunspellStemFilter
@@ -241,31 +241,6 @@ name|input
 parameter_list|,
 name|Dictionary
 name|dictionary
-parameter_list|)
-block|{
-name|this
-argument_list|(
-name|input
-argument_list|,
-name|dictionary
-argument_list|,
-literal|2
-argument_list|)
-expr_stmt|;
-block|}
-comment|/**    * Creates a new HunspellStemFilter that will stem tokens from the given TokenStream using affix rules in the provided    * Dictionary    *    * @param input TokenStream whose tokens will be stemmed    * @param dictionary HunspellDictionary containing the affix rules and words that will be used to stem the tokens    * @param recursionCap maximum level of recursion stemmer can go into, defaults to<code>2</code>    */
-DECL|method|HunspellStemFilter
-specifier|public
-name|HunspellStemFilter
-parameter_list|(
-name|TokenStream
-name|input
-parameter_list|,
-name|Dictionary
-name|dictionary
-parameter_list|,
-name|int
-name|recursionCap
 parameter_list|)
 block|{
 name|this
@@ -275,12 +250,10 @@ argument_list|,
 name|dictionary
 argument_list|,
 literal|true
-argument_list|,
-name|recursionCap
 argument_list|)
 expr_stmt|;
 block|}
-comment|/** Create a {@link HunspellStemFilter} which has a maximum recursion level of 2.     *  @see #HunspellStemFilter(TokenStream, Dictionary, boolean, int) */
+comment|/** Create a {@link HunspellStemFilter} outputting all possible stems.     *  @see #HunspellStemFilter(TokenStream, Dictionary, boolean, boolean) */
 DECL|method|HunspellStemFilter
 specifier|public
 name|HunspellStemFilter
@@ -302,44 +275,12 @@ argument_list|,
 name|dictionary
 argument_list|,
 name|dedup
-argument_list|,
-literal|2
-argument_list|)
-expr_stmt|;
-block|}
-comment|/**    * Creates a new HunspellStemFilter that will stem tokens from the given TokenStream using affix rules in the provided    * Dictionary    *    * @param input TokenStream whose tokens will be stemmed    * @param dictionary HunspellDictionary containing the affix rules and words that will be used to stem the tokens    * @param dedup true if only unique terms should be output.    * @param recursionCap maximum level of recursion stemmer can go into, defaults to<code>2</code>    */
-DECL|method|HunspellStemFilter
-specifier|public
-name|HunspellStemFilter
-parameter_list|(
-name|TokenStream
-name|input
-parameter_list|,
-name|Dictionary
-name|dictionary
-parameter_list|,
-name|boolean
-name|dedup
-parameter_list|,
-name|int
-name|recursionCap
-parameter_list|)
-block|{
-name|this
-argument_list|(
-name|input
-argument_list|,
-name|dictionary
-argument_list|,
-name|dedup
-argument_list|,
-name|recursionCap
 argument_list|,
 literal|false
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**    * Creates a new HunspellStemFilter that will stem tokens from the given TokenStream using affix rules in the provided    * Dictionary    *    * @param input TokenStream whose tokens will be stemmed    * @param dictionary HunspellDictionary containing the affix rules and words that will be used to stem the tokens    * @param dedup true if only unique terms should be output.    * @param recursionCap maximum level of recursion stemmer can go into, defaults to<code>2</code>    * @param longestOnly true if only the longest term should be output.    */
+comment|/**    * Creates a new HunspellStemFilter that will stem tokens from the given TokenStream using affix rules in the provided    * Dictionary    *    * @param input TokenStream whose tokens will be stemmed    * @param dictionary HunspellDictionary containing the affix rules and words that will be used to stem the tokens    * @param longestOnly true if only the longest term should be output.    */
 DECL|method|HunspellStemFilter
 specifier|public
 name|HunspellStemFilter
@@ -352,9 +293,6 @@ name|dictionary
 parameter_list|,
 name|boolean
 name|dedup
-parameter_list|,
-name|int
-name|recursionCap
 parameter_list|,
 name|boolean
 name|longestOnly
@@ -384,8 +322,6 @@ operator|new
 name|Stemmer
 argument_list|(
 name|dictionary
-argument_list|,
-name|recursionCap
 argument_list|)
 expr_stmt|;
 name|this

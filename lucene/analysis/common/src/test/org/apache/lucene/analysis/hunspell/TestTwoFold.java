@@ -87,6 +87,16 @@ argument_list|(
 literal|"drinksable"
 argument_list|)
 expr_stmt|;
+name|assertStemsTo
+argument_list|(
+literal|"drinkableable"
+argument_list|)
+expr_stmt|;
+name|assertStemsTo
+argument_list|(
+literal|"drinks"
+argument_list|)
+expr_stmt|;
 block|}
 block|}
 end_class

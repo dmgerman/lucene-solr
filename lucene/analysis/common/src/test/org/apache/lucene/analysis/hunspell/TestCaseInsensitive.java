@@ -116,11 +116,10 @@ name|void
 name|testRecursiveSuffix
 parameter_list|()
 block|{
+comment|// we should not recurse here! as the suffix has no continuation!
 name|assertStemsTo
 argument_list|(
 literal|"abcd"
-argument_list|,
-literal|"ab"
 argument_list|)
 expr_stmt|;
 block|}
