@@ -782,7 +782,7 @@ name|boolean
 name|weAreReplacement
 parameter_list|,
 name|int
-name|pauseBeforeStart
+name|pauseBeforeStartMs
 parameter_list|)
 throws|throws
 name|KeeperException
@@ -793,6 +793,8 @@ name|IOException
 block|{
 comment|// register as leader - if an ephemeral is already there, wait just a bit
 comment|// to see if it goes away
+try|try
+block|{
 name|RetryUtil
 operator|.
 name|retryOnThrowable
@@ -816,9 +818,7 @@ name|void
 name|execute
 parameter_list|()
 throws|throws
-name|InterruptedException
-block|{
-try|try
+name|Throwable
 block|{
 name|zkClient
 operator|.
@@ -841,12 +841,30 @@ literal|true
 argument_list|)
 expr_stmt|;
 block|}
+block|}
+argument_list|)
+expr_stmt|;
+block|}
 catch|catch
 parameter_list|(
-name|KeeperException
-name|e
+name|Throwable
+name|t
 parameter_list|)
 block|{
+if|if
+condition|(
+name|t
+operator|instanceof
+name|OutOfMemoryError
+condition|)
+block|{
+throw|throw
+operator|(
+name|OutOfMemoryError
+operator|)
+name|t
+throw|;
+block|}
 throw|throw
 operator|new
 name|SolrException
@@ -857,14 +875,10 @@ name|SERVER_ERROR
 argument_list|,
 literal|"Could not register as the leader because creating the ephemeral registration node in ZooKeeper failed"
 argument_list|,
-name|e
+name|t
 argument_list|)
 throw|;
 block|}
-block|}
-block|}
-argument_list|)
-expr_stmt|;
 assert|assert
 name|shardId
 operator|!=
