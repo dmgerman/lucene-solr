@@ -164,6 +164,18 @@ name|util
 operator|.
 name|concurrent
 operator|.
+name|TimeUnit
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
+name|util
+operator|.
+name|concurrent
+operator|.
 name|atomic
 operator|.
 name|AtomicLong
@@ -11314,7 +11326,7 @@ name|warmingStartTime
 init|=
 name|System
 operator|.
-name|currentTimeMillis
+name|nanoTime
 argument_list|()
 decl_stmt|;
 comment|// warm the caches in order...
@@ -11496,12 +11508,23 @@ expr_stmt|;
 block|}
 name|warmupTime
 operator|=
+name|TimeUnit
+operator|.
+name|MILLISECONDS
+operator|.
+name|convert
+argument_list|(
 name|System
 operator|.
-name|currentTimeMillis
+name|nanoTime
 argument_list|()
 operator|-
 name|warmingStartTime
+argument_list|,
+name|TimeUnit
+operator|.
+name|NANOSECONDS
+argument_list|)
 expr_stmt|;
 block|}
 comment|/**    * return the named generic cache    */

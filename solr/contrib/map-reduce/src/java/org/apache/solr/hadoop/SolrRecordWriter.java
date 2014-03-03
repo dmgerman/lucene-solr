@@ -128,6 +128,18 @@ end_import
 
 begin_import
 import|import
+name|java
+operator|.
+name|util
+operator|.
+name|concurrent
+operator|.
+name|TimeUnit
+import|;
+end_import
+
+begin_import
+import|import
 name|org
 operator|.
 name|apache
@@ -573,7 +585,7 @@ name|nextLogTime
 init|=
 name|System
 operator|.
-name|currentTimeMillis
+name|nanoTime
 argument_list|()
 decl_stmt|;
 DECL|field|contextMap
@@ -1609,7 +1621,7 @@ if|if
 condition|(
 name|System
 operator|.
-name|currentTimeMillis
+name|nanoTime
 argument_list|()
 operator|>=
 name|nextLogTime
@@ -1626,7 +1638,18 @@ argument_list|)
 expr_stmt|;
 name|nextLogTime
 operator|+=
-literal|10000
+name|TimeUnit
+operator|.
+name|NANOSECONDS
+operator|.
+name|convert
+argument_list|(
+literal|10
+argument_list|,
+name|TimeUnit
+operator|.
+name|SECONDS
+argument_list|)
 expr_stmt|;
 block|}
 name|batch

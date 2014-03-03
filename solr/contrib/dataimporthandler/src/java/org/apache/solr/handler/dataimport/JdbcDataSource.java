@@ -126,6 +126,18 @@ name|Callable
 import|;
 end_import
 
+begin_import
+import|import
+name|java
+operator|.
+name|util
+operator|.
+name|concurrent
+operator|.
+name|TimeUnit
+import|;
+end_import
+
 begin_comment
 comment|/**  *<p> A DataSource implementation which can fetch data using JDBC.</p><p/><p> Refer to<a  * href="http://wiki.apache.org/solr/DataImportHandler">http://wiki.apache.org/solr/DataImportHandler</a> for more  * details.</p>  *<p/>  *<b>This API is experimental and may change in the future.</b>  *  * @since solr 1.3  */
 end_comment
@@ -781,7 +793,7 @@ name|start
 init|=
 name|System
 operator|.
-name|currentTimeMillis
+name|nanoTime
 argument_list|()
 decl_stmt|;
 name|Connection
@@ -938,14 +950,23 @@ name|info
 argument_list|(
 literal|"Time taken for getConnection(): "
 operator|+
-operator|(
+name|TimeUnit
+operator|.
+name|MILLISECONDS
+operator|.
+name|convert
+argument_list|(
 name|System
 operator|.
-name|currentTimeMillis
+name|nanoTime
 argument_list|()
 operator|-
 name|start
-operator|)
+argument_list|,
+name|TimeUnit
+operator|.
+name|NANOSECONDS
+argument_list|)
 argument_list|)
 expr_stmt|;
 return|return
@@ -1640,7 +1661,7 @@ name|start
 init|=
 name|System
 operator|.
-name|currentTimeMillis
+name|nanoTime
 argument_list|()
 decl_stmt|;
 if|if
@@ -1667,14 +1688,23 @@ name|trace
 argument_list|(
 literal|"Time taken for sql :"
 operator|+
-operator|(
+name|TimeUnit
+operator|.
+name|MILLISECONDS
+operator|.
+name|convert
+argument_list|(
 name|System
 operator|.
-name|currentTimeMillis
+name|nanoTime
 argument_list|()
 operator|-
 name|start
-operator|)
+argument_list|,
+name|TimeUnit
+operator|.
+name|NANOSECONDS
+argument_list|)
 argument_list|)
 expr_stmt|;
 name|colNames
@@ -2219,7 +2249,7 @@ name|currTime
 init|=
 name|System
 operator|.
-name|currentTimeMillis
+name|nanoTime
 argument_list|()
 decl_stmt|;
 if|if
@@ -2251,7 +2281,7 @@ name|connLastUsed
 operator|=
 name|System
 operator|.
-name|currentTimeMillis
+name|nanoTime
 argument_list|()
 expr_stmt|;
 return|return

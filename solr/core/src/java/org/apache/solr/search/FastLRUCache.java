@@ -128,6 +128,18 @@ name|CopyOnWriteArrayList
 import|;
 end_import
 
+begin_import
+import|import
+name|java
+operator|.
+name|util
+operator|.
+name|concurrent
+operator|.
+name|TimeUnit
+import|;
+end_import
+
 begin_comment
 comment|/**  * SolrCache based on ConcurrentLRUCache implementation.  *<p/>  * This implementation does not use a separate cleanup thread. Instead it uses the calling thread  * itself to do the cleanup when the size of the cache exceeds certain limits.  *<p/>  * Also see<a href="http://wiki.apache.org/solr/SolrCaching">SolrCaching</a>  *  *  * @see org.apache.solr.util.ConcurrentLRUCache  * @see org.apache.solr.search.SolrCache  * @since solr 1.4  */
 end_comment
@@ -763,7 +775,7 @@ name|warmingStartTime
 init|=
 name|System
 operator|.
-name|currentTimeMillis
+name|nanoTime
 argument_list|()
 decl_stmt|;
 name|FastLRUCache
@@ -941,12 +953,23 @@ block|}
 block|}
 name|warmupTime
 operator|=
+name|TimeUnit
+operator|.
+name|MILLISECONDS
+operator|.
+name|convert
+argument_list|(
 name|System
 operator|.
-name|currentTimeMillis
+name|nanoTime
 argument_list|()
 operator|-
 name|warmingStartTime
+argument_list|,
+name|TimeUnit
+operator|.
+name|NANOSECONDS
+argument_list|)
 expr_stmt|;
 block|}
 annotation|@
