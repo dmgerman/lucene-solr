@@ -862,6 +862,19 @@ block|}
 annotation|@
 name|Override
 specifier|public
+name|boolean
+name|scoresDocsOutOfOrder
+parameter_list|()
+block|{
+comment|// We have optimized impls below if we are allowed
+comment|// to score out-of-order:
+return|return
+literal|true
+return|;
+block|}
+annotation|@
+name|Override
+specifier|public
 name|Query
 name|getQuery
 parameter_list|()
