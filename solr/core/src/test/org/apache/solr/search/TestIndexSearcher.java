@@ -731,6 +731,7 @@ name|commit
 argument_list|()
 argument_list|)
 expr_stmt|;
+comment|// nothing has changed
 name|SolrQueryRequest
 name|sr4
 init|=
@@ -741,6 +742,21 @@ argument_list|,
 literal|"foo"
 argument_list|)
 decl_stmt|;
+name|assertSame
+argument_list|(
+literal|"nothing changed, searcher should be the same"
+argument_list|,
+name|sr3
+operator|.
+name|getSearcher
+argument_list|()
+argument_list|,
+name|sr4
+operator|.
+name|getSearcher
+argument_list|()
+argument_list|)
+expr_stmt|;
 name|IndexReaderContext
 name|rCtx4
 init|=
@@ -774,8 +790,8 @@ name|commit
 argument_list|()
 argument_list|)
 expr_stmt|;
-comment|// test that reader didn't change (according to equals at least... which uses the wrapped reader)
-name|assertEquals
+comment|// test that reader didn't change
+name|assertSame
 argument_list|(
 name|rCtx3
 operator|.
@@ -791,8 +807,6 @@ expr_stmt|;
 name|assertEquals
 argument_list|(
 name|baseRefCount
-operator|+
-literal|1
 argument_list|,
 name|rCtx4
 operator|.
