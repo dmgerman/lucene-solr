@@ -1688,9 +1688,6 @@ argument_list|()
 operator|)
 condition|)
 block|{
-name|blockUntilFinished
-argument_list|()
-expr_stmt|;
 if|if
 condition|(
 name|req
@@ -1701,6 +1698,9 @@ operator|==
 literal|null
 condition|)
 block|{
+name|blockUntilFinished
+argument_list|()
+expr_stmt|;
 return|return
 name|server
 operator|.
