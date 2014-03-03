@@ -468,6 +468,15 @@ operator|.
 name|COMPONENT_NAME
 argument_list|)
 expr_stmt|;
+name|names
+operator|.
+name|add
+argument_list|(
+name|ExpandComponent
+operator|.
+name|COMPONENT_NAME
+argument_list|)
+expr_stmt|;
 return|return
 name|names
 return|;

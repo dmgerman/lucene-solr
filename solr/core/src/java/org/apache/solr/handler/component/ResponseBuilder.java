@@ -380,6 +380,11 @@ specifier|public
 name|boolean
 name|doFacets
 decl_stmt|;
+DECL|field|doExpand
+specifier|public
+name|boolean
+name|doExpand
+decl_stmt|;
 DECL|field|doStats
 specifier|public
 name|boolean
