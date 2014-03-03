@@ -567,7 +567,7 @@ block|}
 name|int
 name|maxAttempts
 init|=
-literal|20
+literal|40
 decl_stmt|;
 name|long
 name|retryPauseMillis
