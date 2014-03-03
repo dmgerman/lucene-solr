@@ -353,6 +353,11 @@ expr_stmt|;
 block|}
 name|assertTrue
 argument_list|(
+name|caughtSolrException
+argument_list|)
+expr_stmt|;
+name|assertTrue
+argument_list|(
 name|executes3
 operator|.
 name|get
