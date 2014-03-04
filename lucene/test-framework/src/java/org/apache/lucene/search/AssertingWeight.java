@@ -285,7 +285,6 @@ name|IOException
 block|{
 comment|// if the caller asks for in-order scoring or if the weight does not support
 comment|// out-of order scoring then collection will have to happen in-order.
-comment|// nocommit add wrapping:
 name|TopScorer
 name|inScorer
 init|=
@@ -300,10 +299,62 @@ argument_list|,
 name|acceptDocs
 argument_list|)
 decl_stmt|;
-comment|//return AssertingScorer.wrap(new Random(random.nextLong()), inScorer);
-return|return
+if|if
+condition|(
 name|inScorer
+operator|==
+literal|null
+condition|)
+block|{
+return|return
+literal|null
 return|;
+block|}
+if|if
+condition|(
+name|AssertingTopScorer
+operator|.
+name|shouldWrap
+argument_list|(
+name|inScorer
+argument_list|)
+condition|)
+block|{
+return|return
+name|AssertingTopScorer
+operator|.
+name|wrap
+argument_list|(
+operator|new
+name|Random
+argument_list|(
+name|random
+operator|.
+name|nextLong
+argument_list|()
+argument_list|)
+argument_list|,
+name|inScorer
+argument_list|)
+return|;
+block|}
+else|else
+block|{
+comment|// Let super wrap this.scorer instead, so we use
+comment|// AssertingScorer:
+return|return
+name|super
+operator|.
+name|topScorer
+argument_list|(
+name|context
+argument_list|,
+name|scoreDocsInOrder
+argument_list|,
+name|acceptDocs
+argument_list|)
+return|;
+block|}
 block|}
 annotation|@
 name|Override
