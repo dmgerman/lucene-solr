@@ -1510,10 +1510,6 @@ name|scorer
 argument_list|(
 name|context
 argument_list|,
-literal|true
-argument_list|,
-literal|false
-argument_list|,
 name|context
 operator|.
 name|reader
@@ -1913,10 +1909,6 @@ name|scorer
 argument_list|(
 name|ctx
 argument_list|,
-literal|true
-argument_list|,
-literal|false
-argument_list|,
 name|ctx
 operator|.
 name|reader
@@ -2113,10 +2105,6 @@ operator|.
 name|scorer
 argument_list|(
 name|ctx
-argument_list|,
-literal|true
-argument_list|,
-literal|false
 argument_list|,
 name|ctx
 operator|.
@@ -2361,10 +2349,6 @@ argument_list|(
 name|leafPtr
 argument_list|)
 argument_list|,
-literal|true
-argument_list|,
-literal|false
-argument_list|,
 name|liveDocs
 argument_list|)
 decl_stmt|;
@@ -2606,10 +2590,6 @@ operator|.
 name|getTopReaderContext
 argument_list|()
 argument_list|,
-literal|true
-argument_list|,
-literal|false
-argument_list|,
 name|previousReader
 operator|.
 name|getLiveDocs
@@ -2787,10 +2767,6 @@ name|indexSearcher
 operator|.
 name|getTopReaderContext
 argument_list|()
-argument_list|,
-literal|true
-argument_list|,
-literal|false
 argument_list|,
 name|previousReader
 operator|.

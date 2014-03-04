@@ -1923,10 +1923,6 @@ argument_list|(
 literal|0
 argument_list|)
 argument_list|,
-literal|true
-argument_list|,
-literal|false
-argument_list|,
 literal|null
 argument_list|)
 decl_stmt|;
@@ -2039,10 +2035,6 @@ name|get
 argument_list|(
 literal|0
 argument_list|)
-argument_list|,
-literal|true
-argument_list|,
-literal|false
 argument_list|,
 literal|null
 argument_list|)

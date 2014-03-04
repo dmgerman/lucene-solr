@@ -20,6 +20,16 @@ begin_import
 import|import
 name|java
 operator|.
+name|io
+operator|.
+name|IOException
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
 name|util
 operator|.
 name|ArrayList
@@ -33,6 +43,16 @@ operator|.
 name|util
 operator|.
 name|Arrays
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
+name|util
+operator|.
+name|Collections
 import|;
 end_import
 
@@ -528,19 +548,17 @@ argument_list|(
 name|searcher
 argument_list|)
 decl_stmt|;
-name|Scorer
+name|TopScorer
 index|[]
 name|scorers
 init|=
 operator|new
-name|Scorer
+name|TopScorer
 index|[]
 block|{
 operator|new
-name|Scorer
-argument_list|(
-name|weight
-argument_list|)
+name|TopScorer
+argument_list|()
 block|{
 specifier|private
 name|int
@@ -552,67 +570,111 @@ decl_stmt|;
 annotation|@
 name|Override
 specifier|public
-name|float
+name|boolean
 name|score
-parameter_list|()
+parameter_list|(
+name|Collector
+name|c
+parameter_list|,
+name|int
+name|maxDoc
+parameter_list|)
+throws|throws
+name|IOException
 block|{
-return|return
-literal|0
-return|;
-block|}
-function|@Override public int freq
-parameter_list|()
-block|{
-return|return
-literal|0
-return|;
-block|}
-function|@Override public int docID
-parameter_list|()
-block|{
-return|return
-name|doc
-return|;
-block|}
-function|@Override public int nextDoc
-parameter_list|()
-block|{
-return|return
-name|doc
-operator|=
+assert|assert
 name|doc
 operator|==
 operator|-
 literal|1
-condition|?
+assert|;
+name|doc
+operator|=
 literal|3000
-else|:
-name|NO_MORE_DOCS
-return|;
-block|}
-function|@Override public int advance
+expr_stmt|;
+name|c
+operator|.
+name|setScorer
+argument_list|(
+operator|new
+name|Scorer
+argument_list|(
+literal|null
+argument_list|)
+block|{
+annotation|@
+name|Override
+specifier|public
+name|int
+name|advance
 parameter_list|(
 name|int
 name|target
 parameter_list|)
 block|{
+throw|throw
+operator|new
+name|UnsupportedOperationException
+argument_list|(
+literal|"FakeScorer doesn't support advance(int)"
+argument_list|)
+throw|;
+block|}
+function|@Override             public int docID
+parameter_list|()
+block|{
 return|return
 name|doc
-operator|=
-name|target
-operator|<=
-literal|3000
-condition|?
-literal|3000
-else|:
-name|NO_MORE_DOCS
 return|;
 block|}
-function|@Override       public long cost
+function|@Override             public int freq
+parameter_list|()
+block|{
+throw|throw
+operator|new
+name|UnsupportedOperationException
+argument_list|(
+literal|"FakeScorer doesn't support freq()"
+argument_list|)
+throw|;
+block|}
+function|@Override             public int nextDoc
+parameter_list|()
+block|{
+throw|throw
+operator|new
+name|UnsupportedOperationException
+argument_list|(
+literal|"FakeScorer doesn't support nextDoc()"
+argument_list|)
+throw|;
+block|}
+function|@Override             public float score
+parameter_list|()
+block|{
+return|return
+literal|1.0f
+return|;
+block|}
+function|@Override             public long cost
 parameter_list|()
 block|{
 return|return
 literal|1
+return|;
+block|}
+function|}
+block|)
+empty_stmt|;
+name|c
+operator|.
+name|collect
+argument_list|(
+literal|3000
+argument_list|)
+expr_stmt|;
+return|return
+literal|false
 return|;
 block|}
 function|}};
@@ -635,7 +697,13 @@ argument_list|(
 name|scorers
 argument_list|)
 argument_list|,
-literal|null
+name|Collections
+operator|.
+expr|<
+name|TopScorer
+operator|>
+name|emptyList
+argument_list|()
 argument_list|,
 name|scorers
 operator|.
@@ -1085,6 +1153,8 @@ name|close
 argument_list|()
 expr_stmt|;
 block|}
+comment|// nocommit add test verifying that BQ inside BQ can get BS1
+comment|// not BS2 like today
 function|}
 end_class
 

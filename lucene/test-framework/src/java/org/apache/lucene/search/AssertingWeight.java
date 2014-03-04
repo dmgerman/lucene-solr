@@ -225,12 +225,6 @@ parameter_list|(
 name|AtomicReaderContext
 name|context
 parameter_list|,
-name|boolean
-name|scoreDocsInOrder
-parameter_list|,
-name|boolean
-name|topScorer
-parameter_list|,
 name|Bits
 name|acceptDocs
 parameter_list|)
@@ -240,16 +234,6 @@ block|{
 comment|// if the caller asks for in-order scoring or if the weight does not support
 comment|// out-of order scoring then collection will have to happen in-order.
 specifier|final
-name|boolean
-name|inOrder
-init|=
-name|scoreDocsInOrder
-operator|||
-operator|!
-name|scoresDocsOutOfOrder
-argument_list|()
-decl_stmt|;
-specifier|final
 name|Scorer
 name|inScorer
 init|=
@@ -258,10 +242,6 @@ operator|.
 name|scorer
 argument_list|(
 name|context
-argument_list|,
-name|scoreDocsInOrder
-argument_list|,
-name|topScorer
 argument_list|,
 name|acceptDocs
 argument_list|)
@@ -281,11 +261,48 @@ argument_list|()
 argument_list|)
 argument_list|,
 name|inScorer
-argument_list|,
-name|topScorer
-argument_list|,
-name|inOrder
 argument_list|)
+return|;
+block|}
+annotation|@
+name|Override
+DECL|method|topScorer
+specifier|public
+name|TopScorer
+name|topScorer
+parameter_list|(
+name|AtomicReaderContext
+name|context
+parameter_list|,
+name|boolean
+name|scoreDocsInOrder
+parameter_list|,
+name|Bits
+name|acceptDocs
+parameter_list|)
+throws|throws
+name|IOException
+block|{
+comment|// if the caller asks for in-order scoring or if the weight does not support
+comment|// out-of order scoring then collection will have to happen in-order.
+comment|// nocommit add wrapping:
+name|TopScorer
+name|inScorer
+init|=
+name|in
+operator|.
+name|topScorer
+argument_list|(
+name|context
+argument_list|,
+name|scoreDocsInOrder
+argument_list|,
+name|acceptDocs
+argument_list|)
+decl_stmt|;
+comment|//return AssertingScorer.wrap(new Random(random.nextLong()), inScorer);
+return|return
+name|inScorer
 return|;
 block|}
 annotation|@

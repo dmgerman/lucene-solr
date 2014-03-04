@@ -1191,10 +1191,6 @@ name|scorer
 argument_list|(
 name|leave
 argument_list|,
-literal|true
-argument_list|,
-literal|false
-argument_list|,
 name|leave
 operator|.
 name|reader
