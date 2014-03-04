@@ -855,7 +855,9 @@ operator|=
 literal|false
 expr_stmt|;
 comment|// set if we have an OCONV
-comment|// hungarian has thousands of AF before the SET, so a 32k buffer is needed
+comment|// TODO: we really need to probably buffer this on disk since so many newer dictionaries
+comment|// (en_GB, hu_HU, etc) now have tons of AM lines (morph metadata) etc before they finally declare
+comment|// their encoding... but for now this large buffer is a workaround
 name|BufferedInputStream
 name|buffered
 init|=
@@ -864,14 +866,14 @@ name|BufferedInputStream
 argument_list|(
 name|affix
 argument_list|,
-literal|32768
+literal|65536
 argument_list|)
 decl_stmt|;
 name|buffered
 operator|.
 name|mark
 argument_list|(
-literal|32768
+literal|65536
 argument_list|)
 expr_stmt|;
 name|String
