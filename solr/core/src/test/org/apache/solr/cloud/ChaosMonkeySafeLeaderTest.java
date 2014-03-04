@@ -574,6 +574,10 @@ init|=
 operator|new
 name|StopableIndexingThread
 argument_list|(
+name|controlClient
+argument_list|,
+name|cloudClient
+argument_list|,
 name|Integer
 operator|.
 name|toString
