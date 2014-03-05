@@ -918,12 +918,11 @@ name|MaxBytesLengthExceededException
 name|e
 parameter_list|)
 block|{
-comment|// Not enough room in current block
-comment|// Just skip this term, to remain as robust as
-comment|// possible during indexing.  A TokenFilter
-comment|// can be inserted into the analyzer chain if
-comment|// other behavior is wanted (pruning the term
-comment|// to a prefix, throwing an exception, etc).
+comment|// Term is too large; record this here (can't throw an
+comment|// exc because DocInverterPerField will then abort the
+comment|// entire segment) and then throw an exc later in
+comment|// DocInverterPerField.java.  LengthFilter can always be
+comment|// used to prune the term before indexing:
 if|if
 condition|(
 name|docState
