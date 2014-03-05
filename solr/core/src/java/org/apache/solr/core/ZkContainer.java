@@ -464,6 +464,11 @@ argument_list|()
 argument_list|,
 name|config
 operator|.
+name|getLeaderConflictResolveWait
+argument_list|()
+argument_list|,
+name|config
+operator|.
 name|getGenericCoreNodeNames
 argument_list|()
 argument_list|)
@@ -498,6 +503,9 @@ name|host
 parameter_list|,
 name|int
 name|leaderVoteWait
+parameter_list|,
+name|int
+name|leaderConflictResolveWait
 parameter_list|,
 name|boolean
 name|genericCoreNodeNames
@@ -829,6 +837,8 @@ argument_list|,
 name|hostContext
 argument_list|,
 name|leaderVoteWait
+argument_list|,
+name|leaderConflictResolveWait
 argument_list|,
 name|genericCoreNodeNames
 argument_list|,

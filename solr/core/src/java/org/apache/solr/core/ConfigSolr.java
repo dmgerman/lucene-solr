@@ -828,6 +828,15 @@ init|=
 literal|180000
 decl_stmt|;
 comment|// 3 minutes
+DECL|field|DEFAULT_LEADER_CONFLICT_RESOLVE_WAIT
+specifier|private
+specifier|static
+specifier|final
+name|int
+name|DEFAULT_LEADER_CONFLICT_RESOLVE_WAIT
+init|=
+literal|180000
+decl_stmt|;
 DECL|field|DEFAULT_CORE_LOAD_THREADS
 specifier|private
 specifier|static
@@ -911,6 +920,23 @@ operator|.
 name|SOLR_LEADERVOTEWAIT
 argument_list|,
 name|DEFAULT_LEADER_VOTE_WAIT
+argument_list|)
+return|;
+block|}
+DECL|method|getLeaderConflictResolveWait
+specifier|public
+name|int
+name|getLeaderConflictResolveWait
+parameter_list|()
+block|{
+return|return
+name|getInt
+argument_list|(
+name|CfgProp
+operator|.
+name|SOLR_LEADERCONFLICTRESOLVEWAIT
+argument_list|,
+name|DEFAULT_LEADER_CONFLICT_RESOLVE_WAIT
 argument_list|)
 return|;
 block|}
@@ -1310,6 +1336,9 @@ name|SOLR_ZKCLIENTTIMEOUT
 block|,
 DECL|enum constant|SOLR_ZKHOST
 name|SOLR_ZKHOST
+block|,
+DECL|enum constant|SOLR_LEADERCONFLICTRESOLVEWAIT
+name|SOLR_LEADERCONFLICTRESOLVEWAIT
 block|,
 comment|//TODO: Remove all of these elements for 5.0
 DECL|enum constant|SOLR_PERSISTENT
