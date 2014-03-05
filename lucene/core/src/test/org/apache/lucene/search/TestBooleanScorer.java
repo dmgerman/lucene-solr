@@ -1107,7 +1107,7 @@ operator|.
 name|getName
 argument_list|()
 operator|+
-literal|"$BucketScorer"
+literal|"$FakeScorer"
 argument_list|,
 name|clazz
 operator|.
