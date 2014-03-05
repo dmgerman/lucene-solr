@@ -841,6 +841,8 @@ argument_list|(
 name|QUEUE_OPERATION
 argument_list|)
 decl_stmt|;
+try|try
+block|{
 name|clusterState
 operator|=
 name|processMessage
@@ -852,6 +854,28 @@ argument_list|,
 name|operation
 argument_list|)
 expr_stmt|;
+block|}
+catch|catch
+parameter_list|(
+name|Exception
+name|e
+parameter_list|)
+block|{
+comment|// generally there is nothing we can do - in most cases, we have
+comment|// an issue that will fail again on retry or we cannot communicate with
+comment|// ZooKeeper in which case another Overseer should take over
+comment|// TODO: if ordering for the message is not important, we could
+comment|// track retries and put it back on the end of the queue
+name|log
+operator|.
+name|error
+argument_list|(
+literal|"Could not process Overseer message"
+argument_list|,
+name|e
+argument_list|)
+expr_stmt|;
+block|}
 name|zkClient
 operator|.
 name|setData
@@ -1177,6 +1201,8 @@ argument_list|(
 name|QUEUE_OPERATION
 argument_list|)
 decl_stmt|;
+try|try
+block|{
 name|clusterState
 operator|=
 name|processMessage
@@ -1188,6 +1214,28 @@ argument_list|,
 name|operation
 argument_list|)
 expr_stmt|;
+block|}
+catch|catch
+parameter_list|(
+name|Exception
+name|e
+parameter_list|)
+block|{
+comment|// generally there is nothing we can do - in most cases, we have
+comment|// an issue that will fail again on retry or we cannot communicate with
+comment|// ZooKeeper in which case another Overseer should take over
+comment|// TODO: if ordering for the message is not important, we could
+comment|// track retries and put it back on the end of the queue
+name|log
+operator|.
+name|error
+argument_list|(
+literal|"Could not process Overseer message"
+argument_list|,
+name|e
+argument_list|)
+expr_stmt|;
+block|}
 name|workQueue
 operator|.
 name|offer
@@ -1980,6 +2028,13 @@ operator|.
 name|COLLECTION_PROP
 argument_list|)
 decl_stmt|;
+name|checkCollection
+argument_list|(
+name|message
+argument_list|,
+name|coll
+argument_list|)
+expr_stmt|;
 name|String
 name|slice
 init|=
@@ -2291,6 +2346,13 @@ operator|.
 name|COLLECTION_PROP
 argument_list|)
 decl_stmt|;
+name|checkCollection
+argument_list|(
+name|message
+argument_list|,
+name|collection
+argument_list|)
+expr_stmt|;
 name|log
 operator|.
 name|info
@@ -2519,6 +2581,13 @@ operator|.
 name|COLLECTION_PROP
 argument_list|)
 decl_stmt|;
+name|checkCollection
+argument_list|(
+name|message
+argument_list|,
+name|collection
+argument_list|)
+expr_stmt|;
 name|String
 name|shard
 init|=
@@ -2841,6 +2910,46 @@ return|return
 name|clusterState
 return|;
 block|}
+DECL|method|checkCollection
+specifier|private
+name|void
+name|checkCollection
+parameter_list|(
+name|ZkNodeProps
+name|message
+parameter_list|,
+name|String
+name|collection
+parameter_list|)
+block|{
+if|if
+condition|(
+name|collection
+operator|==
+literal|null
+operator|||
+name|collection
+operator|.
+name|trim
+argument_list|()
+operator|.
+name|length
+argument_list|()
+operator|==
+literal|0
+condition|)
+block|{
+name|log
+operator|.
+name|error
+argument_list|(
+literal|"Skipping invalid Overseer message because it has no collection specified: "
+operator|+
+name|message
+argument_list|)
+expr_stmt|;
+block|}
+block|}
 DECL|method|removeRoutingRule
 specifier|private
 name|ClusterState
@@ -2865,6 +2974,13 @@ operator|.
 name|COLLECTION_PROP
 argument_list|)
 decl_stmt|;
+name|checkCollection
+argument_list|(
+name|message
+argument_list|,
+name|collection
+argument_list|)
+expr_stmt|;
 name|String
 name|shard
 init|=
@@ -3049,6 +3165,13 @@ operator|.
 name|COLLECTION_PROP
 argument_list|)
 decl_stmt|;
+name|checkCollection
+argument_list|(
+name|message
+argument_list|,
+name|collection
+argument_list|)
+expr_stmt|;
 name|String
 name|shardId
 init|=
@@ -3410,6 +3533,13 @@ operator|.
 name|COLLECTION_PROP
 argument_list|)
 decl_stmt|;
+name|checkCollection
+argument_list|(
+name|message
+argument_list|,
+name|collection
+argument_list|)
+expr_stmt|;
 name|String
 name|sliceName
 init|=
@@ -3514,16 +3644,13 @@ operator|.
 name|COLLECTION_PROP
 argument_list|)
 decl_stmt|;
-assert|assert
-name|collection
-operator|.
-name|length
-argument_list|()
-operator|>
-literal|0
-operator|:
+name|checkCollection
+argument_list|(
 name|message
-assert|;
+argument_list|,
+name|collection
+argument_list|)
+expr_stmt|;
 name|Integer
 name|numShards
 init|=
@@ -6094,8 +6221,13 @@ argument_list|(
 literal|"name"
 argument_list|)
 decl_stmt|;
-comment|//        final Map<String, DocCollection> newCollections = new LinkedHashMap<String,DocCollection>(clusterState.getCollectionStates()); // shallow copy
-comment|//        newCollections.remove(collection);
+name|checkCollection
+argument_list|(
+name|message
+argument_list|,
+name|collection
+argument_list|)
+expr_stmt|;
 comment|//        ClusterState newState = new ClusterState(clusterState.getLiveNodes(), newCollections);
 return|return
 name|clusterState
@@ -6141,6 +6273,13 @@ operator|.
 name|COLLECTION_PROP
 argument_list|)
 decl_stmt|;
+name|checkCollection
+argument_list|(
+name|message
+argument_list|,
+name|collection
+argument_list|)
+expr_stmt|;
 specifier|final
 name|String
 name|sliceId
@@ -6288,6 +6427,13 @@ operator|.
 name|COLLECTION_PROP
 argument_list|)
 decl_stmt|;
+name|checkCollection
+argument_list|(
+name|message
+argument_list|,
+name|collection
+argument_list|)
+expr_stmt|;
 comment|//        final Map<String, DocCollection> newCollections = new LinkedHashMap<String,DocCollection>(clusterState.getCollectionStates()); // shallow copy
 comment|//        DocCollection coll = newCollections.get(collection);
 name|DocCollection
