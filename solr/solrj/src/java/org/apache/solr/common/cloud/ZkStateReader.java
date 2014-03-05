@@ -3459,7 +3459,7 @@ argument_list|)
 throw|;
 block|}
 block|}
-comment|/**    * Returns the baseURL corrisponding to a given node's nodeName --    * NOTE: does not (currently) imply that the nodeName (or resulting     * baseURL) exists in the cluster.    * @lucene.experimental    */
+comment|/**    * Returns the baseURL corresponding to a given node's nodeName --    * NOTE: does not (currently) imply that the nodeName (or resulting     * baseURL) exists in the cluster.    * @lucene.experimental    */
 DECL|method|getBaseUrlForNodeName
 specifier|public
 name|String
