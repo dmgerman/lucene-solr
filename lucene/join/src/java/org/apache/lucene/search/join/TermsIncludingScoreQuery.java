@@ -1359,7 +1359,6 @@ DECL|field|doc
 name|int
 name|doc
 decl_stmt|;
-comment|// nocommit can we embed this into a BQ and get BS1?
 DECL|method|SVInnerScorer
 name|SVInnerScorer
 parameter_list|(

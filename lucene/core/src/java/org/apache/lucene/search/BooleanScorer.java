@@ -351,6 +351,9 @@ decl_stmt|;
 DECL|field|doc
 name|int
 name|doc
+init|=
+operator|-
+literal|1
 decl_stmt|;
 DECL|field|freq
 name|int

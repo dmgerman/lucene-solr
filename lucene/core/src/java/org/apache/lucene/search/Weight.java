@@ -213,7 +213,6 @@ parameter_list|)
 throws|throws
 name|IOException
 block|{
-specifier|final
 name|Scorer
 name|scorer
 init|=
@@ -240,11 +239,49 @@ comment|// This impl always scores docs in order, so we can
 comment|// ignore scoreDocsInOrder:
 return|return
 operator|new
+name|DefaultTopScorer
+argument_list|(
+name|scorer
+argument_list|)
+return|;
+block|}
+comment|/** Just wraps a Scorer and performs top scoring using it. */
+DECL|class|DefaultTopScorer
+specifier|static
+class|class
+name|DefaultTopScorer
+extends|extends
 name|TopScorer
-argument_list|()
 block|{
+DECL|field|scorer
+specifier|private
+specifier|final
+name|Scorer
+name|scorer
+decl_stmt|;
+DECL|method|DefaultTopScorer
+specifier|public
+name|DefaultTopScorer
+parameter_list|(
+name|Scorer
+name|scorer
+parameter_list|)
+block|{
+assert|assert
+name|scorer
+operator|!=
+literal|null
+assert|;
+name|this
+operator|.
+name|scorer
+operator|=
+name|scorer
+expr_stmt|;
+block|}
 annotation|@
 name|Override
+DECL|method|score
 specifier|public
 name|boolean
 name|score
@@ -258,8 +295,12 @@ parameter_list|)
 throws|throws
 name|IOException
 block|{
-comment|// nocommit weird to do this here?  we do it many,
-comment|// many times from BS1 inside one segment?
+comment|// TODO: this may be sort of weird, when we are
+comment|// embedded in a BooleanScorer, because we are
+comment|// called for every chunk of 2048 documents.  But,
+comment|// then, scorer is a FakeScorer in that case, so any
+comment|// Collector doing something "interesting" in
+comment|// setScorer will be forced to use BS2 anyways:
 name|collector
 operator|.
 name|setScorer
@@ -324,8 +365,6 @@ operator|.
 name|NO_MORE_DOCS
 return|;
 block|}
-block|}
-return|;
 block|}
 comment|/**    * Returns true iff this implementation scores docs only out of order. This    * method is used in conjunction with {@link Collector}'s    * {@link Collector#acceptsDocsOutOfOrder() acceptsDocsOutOfOrder} and    * {@link #scorer(AtomicReaderContext, boolean, boolean, Bits)} to    * create a matching {@link Scorer} instance for a given {@link Collector}, or    * vice versa.    *<p>    *<b>NOTE:</b> the default implementation returns<code>false</code>, i.e.    * the<code>Scorer</code> scores documents in-order.    */
 DECL|method|scoresDocsOutOfOrder
