@@ -155,7 +155,15 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Helper class to sort readers that contain blocks of documents.  */
+comment|/**  * Helper class to sort readers that contain blocks of documents.  *<p>  * Note that this currently has some limitations:  *<ul>  *<li>Cannot yet be used with IndexSearcher.searchAfter  *<li>Filling sort value fields is not yet supported.  *</ul>  * Its intended to be used with {@link SortingMergePolicy}.  */
+end_comment
+
+begin_comment
+comment|// TODO: can/should we clean this thing up (e.g. return a proper sort value)
+end_comment
+
+begin_comment
+comment|// and move to the join/ module?
 end_comment
 
 begin_class
@@ -473,8 +481,8 @@ name|i
 argument_list|)
 expr_stmt|;
 block|}
-comment|// NOTE: not quite right i guess, really our sort "value" is more complex...
-comment|// but at the moment you really should only use this at indexing time.
+comment|// NOTE: we could return parent ID as value but really our sort "value" is more complex...
+comment|// So we throw UOE for now. At the moment you really should only use this at indexing time.
 return|return
 operator|new
 name|FieldComparator
@@ -935,7 +943,6 @@ name|parent2
 condition|)
 block|{
 comment|// both are in the same block
-comment|// nocommit: should not be needed?
 if|if
 condition|(
 name|docID1
@@ -986,7 +993,6 @@ argument_list|,
 name|parentReverseMul
 argument_list|)
 decl_stmt|;
-comment|// nocommit: should not be needed?
 if|if
 condition|(
 name|cmp
