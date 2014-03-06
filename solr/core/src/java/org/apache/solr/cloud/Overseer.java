@@ -870,7 +870,7 @@ name|log
 operator|.
 name|error
 argument_list|(
-literal|"Could not process Overseer message"
+literal|"Overseer could not process the current clusterstate state update message, skipping the message."
 argument_list|,
 name|e
 argument_list|)
@@ -1230,7 +1230,7 @@ name|log
 operator|.
 name|error
 argument_list|(
-literal|"Could not process Overseer message"
+literal|"Overseer could not process the current clusterstate state update message, skipping the message."
 argument_list|,
 name|e
 argument_list|)
