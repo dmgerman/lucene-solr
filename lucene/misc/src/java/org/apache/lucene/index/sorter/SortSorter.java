@@ -227,7 +227,7 @@ index|]
 operator|.
 name|getComparator
 argument_list|(
-literal|2
+literal|1
 argument_list|,
 name|i
 argument_list|)
@@ -296,6 +296,8 @@ name|i
 operator|++
 control|)
 block|{
+comment|// TODO: would be better if copy() didnt cause a term lookup in TermOrdVal& co,
+comment|// the segments are always the same here...
 name|comparators
 index|[
 name|i
@@ -313,11 +315,9 @@ index|[
 name|i
 index|]
 operator|.
-name|copy
+name|setBottom
 argument_list|(
-literal|1
-argument_list|,
-name|docID2
+literal|0
 argument_list|)
 expr_stmt|;
 name|int
@@ -333,11 +333,9 @@ index|[
 name|i
 index|]
 operator|.
-name|compare
+name|compareBottom
 argument_list|(
-literal|0
-argument_list|,
-literal|1
+name|docID2
 argument_list|)
 decl_stmt|;
 if|if
