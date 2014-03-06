@@ -66,6 +66,24 @@ name|apache
 operator|.
 name|lucene
 operator|.
+name|analysis
+operator|.
+name|Analyzer
+import|;
+end_import
+
+begin_comment
+comment|// javadocs
+end_comment
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
 name|index
 operator|.
 name|AtomicReader
@@ -271,7 +289,7 @@ import|;
 end_import
 
 begin_comment
-comment|/** A {@link MergePolicy} that reorders documents according to a {@link Sort}  *  before merging them. As a consequence, all segments resulting from a merge  *  will be sorted while segments resulting from a flush will be in the order  *  in which documents have been added.  *<p><b>NOTE</b>: Never use this {@link MergePolicy} if you rely on  *  {@link IndexWriter#addDocuments(Iterable, org.apache.lucene.analysis.Analyzer)}  *  to have sequentially-assigned doc IDs, this policy will scatter doc IDs.  *<p><b>NOTE</b>: This {@link MergePolicy} should only be used with idempotent  *  {@link Sort}s so that the order of segments is predictable. For example,  *  using {@link SortingMergePolicy} with {@link Sort#INDEXORDER in reverse} (which is  *  not idempotent) will make the order of documents in a segment depend on the  *  number of times the segment has been merged.  *  @lucene.experimental */
+comment|/** A {@link MergePolicy} that reorders documents according to a {@link Sort}  *  before merging them. As a consequence, all segments resulting from a merge  *  will be sorted while segments resulting from a flush will be in the order  *  in which documents have been added.  *<p><b>NOTE</b>: Never use this policy if you rely on  *  {@link IndexWriter#addDocuments(Iterable, Analyzer) IndexWriter.addDocuments}  *  to have sequentially-assigned doc IDs, this policy will scatter doc IDs.  *<p><b>NOTE</b>: This policy should only be used with idempotent {@code Sort}s   *  so that the order of segments is predictable. For example, using   *  {@link Sort#INDEXORDER} in reverse (which is not idempotent) will make   *  the order of documents in a segment depend on the number of times the segment   *  has been merged.  *  @lucene.experimental */
 end_comment
 
 begin_class
@@ -789,7 +807,7 @@ literal|")"
 return|;
 block|}
 block|}
-comment|/** Returns true if the given reader is sorted by the given sort. */
+comment|/** Returns {@code true} if the given {@code reader} is sorted by the specified {@code sort}. */
 DECL|method|isSorted
 specifier|public
 specifier|static
@@ -933,7 +951,7 @@ specifier|final
 name|Sort
 name|sort
 decl_stmt|;
-comment|/** Create a new {@link MergePolicy} that sorts documents with<code>sort</code>. */
+comment|/** Create a new {@code MergePolicy} that sorts documents with the given {@code sort}. */
 DECL|method|SortingMergePolicy
 specifier|public
 name|SortingMergePolicy

@@ -108,6 +108,60 @@ name|lucene
 operator|.
 name|search
 operator|.
+name|IndexSearcher
+import|;
+end_import
+
+begin_comment
+comment|// javadocs
+end_comment
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|search
+operator|.
+name|Query
+import|;
+end_import
+
+begin_comment
+comment|// javadocs
+end_comment
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|search
+operator|.
+name|ScoreDoc
+import|;
+end_import
+
+begin_comment
+comment|// javadocs
+end_comment
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|search
+operator|.
 name|Scorer
 import|;
 end_import
@@ -155,7 +209,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Helper class to sort readers that contain blocks of documents.  *<p>  * Note that this currently has some limitations:  *<ul>  *<li>Cannot yet be used with IndexSearcher.searchAfter  *<li>Filling sort value fields is not yet supported.  *</ul>  * Its intended to be used with {@link SortingMergePolicy}.  */
+comment|/**  * Helper class to sort readers that contain blocks of documents.  *<p>  * Note that this class is intended to used with {@link SortingMergePolicy},  * and for other purposes has some limitations:  *<ul>  *<li>Cannot yet be used with {@link IndexSearcher#searchAfter(ScoreDoc, Query, int, Sort) IndexSearcher.searchAfter}  *<li>Filling sort field values is not yet supported.  *</ul>  */
 end_comment
 
 begin_comment
@@ -842,7 +896,9 @@ comment|// really our sort "value" is more complex...
 throw|throw
 operator|new
 name|UnsupportedOperationException
-argument_list|()
+argument_list|(
+literal|"filling sort field values is not yet supported"
+argument_list|)
 throw|;
 block|}
 annotation|@

@@ -141,7 +141,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * A {@link Collector} that early terminates collection of documents on a  * per-segment basis, if the segment was sorted according to the given  * {@link Sort}.  *   *<p>  *<b>NOTE:</b> the {@link Collector} detects sorted segments according to  * {@link SortingMergePolicy}, so it's best used in conjunction with it. Also,  * it collects up to a specified num docs from each segment, and therefore is  * mostly suitable for use in conjunction with collectors such as  * {@link TopDocsCollector}, and not e.g. {@link TotalHitCountCollector}.  *<p>  *<b>NOTE</b>: If you wrap a {@link TopDocsCollector} that sorts in the same  * order as the index order, the returned {@link TopDocsCollector#topDocs()}  * will be correct. However the total of {@link TopDocsCollector#getTotalHits()  * hit count} will be underestimated since not all matching documents will have  * been collected.  *<p>  *<b>NOTE</b>: This {@link Collector} uses {@link Sort#toString()} to detect  * whether a segment was sorted with the same {@link Sort} as the one given in  * {@link #EarlyTerminatingSortingCollector(Collector, Sort, int)}. This has  * two implications:  *<ul>  *<li>if a custom comparator is not implemented correctly and returns  * different identifiers for equivalent instances, this collector will not  * detect sorted segments,</li>  *<li>if you suddenly change the {@link IndexWriter}'s  * {@link SortingMergePolicy} to sort according to another criterion and if both  * the old and the new {@link Sort}s have the same identifier, this  * {@link Collector} will incorrectly detect sorted segments.</li>  *</ul>  *   * @lucene.experimental  */
+comment|/**  * A {@link Collector} that early terminates collection of documents on a  * per-segment basis, if the segment was sorted according to the given  * {@link Sort}.  *   *<p>  *<b>NOTE:</b> the {@code Collector} detects sorted segments according to  * {@link SortingMergePolicy}, so it's best used in conjunction with it. Also,  * it collects up to a specified {@code numDocsToCollect} from each segment,   * and therefore is mostly suitable for use in conjunction with collectors such as  * {@link TopDocsCollector}, and not e.g. {@link TotalHitCountCollector}.  *<p>  *<b>NOTE</b>: If you wrap a {@code TopDocsCollector} that sorts in the same  * order as the index order, the returned {@link TopDocsCollector#topDocs() TopDocs}  * will be correct. However the total of {@link TopDocsCollector#getTotalHits()  * hit count} will be underestimated since not all matching documents will have  * been collected.  *<p>  *<b>NOTE</b>: This {@code Collector} uses {@link Sort#toString()} to detect  * whether a segment was sorted with the same {@code Sort}. This has  * two implications:  *<ul>  *<li>if a custom comparator is not implemented correctly and returns  * different identifiers for equivalent instances, this collector will not  * detect sorted segments,</li>  *<li>if you suddenly change the {@link IndexWriter}'s  * {@code SortingMergePolicy} to sort according to another criterion and if both  * the old and the new {@code Sort}s have the same identifier, this  * {@code Collector} will incorrectly detect sorted segments.</li>  *</ul>  *   * @lucene.experimental  */
 end_comment
 
 begin_class
@@ -152,29 +152,34 @@ name|EarlyTerminatingSortingCollector
 extends|extends
 name|Collector
 block|{
+comment|/** The wrapped Collector */
 DECL|field|in
 specifier|protected
 specifier|final
 name|Collector
 name|in
 decl_stmt|;
+comment|/** Sort used to sort the search results */
 DECL|field|sort
 specifier|protected
 specifier|final
 name|Sort
 name|sort
 decl_stmt|;
+comment|/** Number of documents to collect in each segment */
 DECL|field|numDocsToCollect
 specifier|protected
 specifier|final
 name|int
 name|numDocsToCollect
 decl_stmt|;
+comment|/** Number of documents to collect in the current segment being processed */
 DECL|field|segmentTotalCollect
 specifier|protected
 name|int
 name|segmentTotalCollect
 decl_stmt|;
+comment|/** True if the current segment being processed is sorted by {@link #sort} */
 DECL|field|segmentSorted
 specifier|protected
 name|boolean
