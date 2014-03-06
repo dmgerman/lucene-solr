@@ -1003,10 +1003,31 @@ name|DEFAULT_MIN_PREFIX_CHARS
 init|=
 literal|4
 decl_stmt|;
-DECL|field|sorter
+comment|/** How we sort the postings and search results. */
+DECL|field|SORT
 specifier|private
+specifier|static
+specifier|final
 name|Sort
-name|sorter
+name|SORT
+init|=
+operator|new
+name|Sort
+argument_list|(
+operator|new
+name|SortField
+argument_list|(
+literal|"weight"
+argument_list|,
+name|SortField
+operator|.
+name|Type
+operator|.
+name|LONG
+argument_list|,
+literal|true
+argument_list|)
+argument_list|)
 decl_stmt|;
 comment|/** Create a new instance, loading from a previously built    *  directory, if it exists. */
 DECL|method|AnalyzingInfixSuggester
@@ -1127,9 +1148,6 @@ argument_list|)
 condition|)
 block|{
 comment|// Already built; open it:
-name|initSorter
-argument_list|()
-expr_stmt|;
 name|writer
 operator|=
 operator|new
@@ -1144,7 +1162,7 @@ argument_list|,
 name|getGramAnalyzer
 argument_list|()
 argument_list|,
-name|sorter
+name|SORT
 argument_list|,
 name|IndexWriterConfig
 operator|.
@@ -1168,7 +1186,7 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
-comment|/** Override this to customize index settings, e.g. which    *  codec to use. Sorter is null if this config is for    *  the first pass writer. */
+comment|/** Override this to customize index settings, e.g. which    *  codec to use. The sort is null if this config is for    *  the first pass writer. */
 DECL|method|getIndexWriterConfig
 specifier|protected
 name|IndexWriterConfig
@@ -1181,7 +1199,7 @@ name|Analyzer
 name|indexAnalyzer
 parameter_list|,
 name|Sort
-name|sorter
+name|sort
 parameter_list|,
 name|IndexWriterConfig
 operator|.
@@ -1218,7 +1236,7 @@ argument_list|)
 expr_stmt|;
 if|if
 condition|(
-name|sorter
+name|sort
 operator|!=
 literal|null
 condition|)
@@ -1238,7 +1256,7 @@ operator|.
 name|getMergePolicy
 argument_list|()
 argument_list|,
-name|sorter
+name|sort
 argument_list|)
 argument_list|)
 expr_stmt|;
@@ -1647,9 +1665,6 @@ operator|.
 name|rollback
 argument_list|()
 expr_stmt|;
-name|initSorter
-argument_list|()
-expr_stmt|;
 name|r
 operator|=
 name|SortingAtomicReader
@@ -1658,7 +1673,7 @@ name|wrap
 argument_list|(
 name|r
 argument_list|,
-name|sorter
+name|SORT
 argument_list|)
 expr_stmt|;
 name|writer
@@ -1675,7 +1690,7 @@ argument_list|,
 name|getGramAnalyzer
 argument_list|()
 argument_list|,
-name|sorter
+name|SORT
 argument_list|,
 name|IndexWriterConfig
 operator|.
@@ -2162,33 +2177,6 @@ name|maybeRefreshBlocking
 argument_list|()
 expr_stmt|;
 block|}
-DECL|method|initSorter
-specifier|private
-name|void
-name|initSorter
-parameter_list|()
-block|{
-name|sorter
-operator|=
-operator|new
-name|Sort
-argument_list|(
-operator|new
-name|SortField
-argument_list|(
-literal|"weight"
-argument_list|,
-name|SortField
-operator|.
-name|Type
-operator|.
-name|LONG
-argument_list|,
-literal|true
-argument_list|)
-argument_list|)
-expr_stmt|;
-block|}
 comment|/**    * Subclass can override this method to change the field type of the text field    * e.g. to change the index options    */
 DECL|method|getTextFieldType
 specifier|protected
@@ -2668,23 +2656,7 @@ name|TopFieldCollector
 operator|.
 name|create
 argument_list|(
-operator|new
-name|Sort
-argument_list|(
-operator|new
-name|SortField
-argument_list|(
-literal|"weight"
-argument_list|,
-name|SortField
-operator|.
-name|Type
-operator|.
-name|LONG
-argument_list|,
-literal|true
-argument_list|)
-argument_list|)
+name|SORT
 argument_list|,
 name|num
 argument_list|,
@@ -2707,7 +2679,7 @@ name|EarlyTerminatingSortingCollector
 argument_list|(
 name|c
 argument_list|,
-name|sorter
+name|SORT
 argument_list|,
 name|num
 argument_list|)
@@ -2752,7 +2724,7 @@ name|topDocs
 argument_list|()
 decl_stmt|;
 comment|// Slower way if postings are not pre-sorted by weight:
-comment|// hits = searcher.search(query, null, num, new Sort(new SortField("weight", SortField.Type.LONG, true)));
+comment|// hits = searcher.search(query, null, num, SORT);
 name|results
 operator|=
 name|createResults
