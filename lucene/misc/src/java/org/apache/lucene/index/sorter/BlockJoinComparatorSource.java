@@ -209,7 +209,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Helper class to sort readers that contain blocks of documents.  *<p>  * Note that this class is intended to used with {@link SortingMergePolicy},  * and for other purposes has some limitations:  *<ul>  *<li>Cannot yet be used with {@link IndexSearcher#searchAfter(ScoreDoc, Query, int, Sort) IndexSearcher.searchAfter}  *<li>Filling sort field values is not yet supported.  *</ul>  */
+comment|/**  * Helper class to sort readers that contain blocks of documents.  *<p>  * Note that this class is intended to used with {@link SortingMergePolicy},  * and for other purposes has some limitations:  *<ul>  *<li>Cannot yet be used with {@link IndexSearcher#searchAfter(ScoreDoc, Query, int, Sort) IndexSearcher.searchAfter}  *<li>Filling sort field values is not yet supported.  *</ul>  * @lucene.experimental  */
 end_comment
 
 begin_comment
