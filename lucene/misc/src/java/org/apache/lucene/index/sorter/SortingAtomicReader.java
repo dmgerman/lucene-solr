@@ -258,6 +258,20 @@ name|apache
 operator|.
 name|lucene
 operator|.
+name|search
+operator|.
+name|Sort
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
 name|store
 operator|.
 name|IndexInput
@@ -3771,8 +3785,8 @@ parameter_list|(
 name|AtomicReader
 name|reader
 parameter_list|,
-name|Sorter
-name|sorter
+name|Sort
+name|sort
 parameter_list|)
 throws|throws
 name|IOException
@@ -3782,7 +3796,11 @@ name|wrap
 argument_list|(
 name|reader
 argument_list|,
-name|sorter
+operator|new
+name|SortSorter
+argument_list|(
+name|sort
+argument_list|)
 operator|.
 name|sort
 argument_list|(
@@ -3791,9 +3809,8 @@ argument_list|)
 argument_list|)
 return|;
 block|}
-comment|/** Expert: same as {@link #wrap(AtomicReader, Sorter)} but operates directly on a {@link Sorter.DocMap}. */
+comment|/** Expert: same as {@link #wrap(AtomicReader, Sort)} but operates directly on a {@link Sorter.DocMap}. */
 DECL|method|wrap
-specifier|public
 specifier|static
 name|AtomicReader
 name|wrap

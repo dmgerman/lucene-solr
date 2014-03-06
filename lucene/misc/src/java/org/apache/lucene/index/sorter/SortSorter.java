@@ -104,7 +104,6 @@ end_comment
 
 begin_class
 DECL|class|SortSorter
-specifier|public
 class|class
 name|SortSorter
 extends|extends

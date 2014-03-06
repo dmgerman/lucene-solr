@@ -516,22 +516,6 @@ name|index
 operator|.
 name|sorter
 operator|.
-name|Sorter
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|index
-operator|.
-name|sorter
-operator|.
 name|SortingAtomicReader
 import|;
 end_import
@@ -549,22 +533,6 @@ operator|.
 name|sorter
 operator|.
 name|SortingMergePolicy
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|index
-operator|.
-name|sorter
-operator|.
-name|SortSorter
 import|;
 end_import
 
@@ -1037,7 +1005,7 @@ literal|4
 decl_stmt|;
 DECL|field|sorter
 specifier|private
-name|Sorter
+name|Sort
 name|sorter
 decl_stmt|;
 comment|/** Create a new instance, loading from a previously built    *  directory, if it exists. */
@@ -1212,7 +1180,7 @@ parameter_list|,
 name|Analyzer
 name|indexAnalyzer
 parameter_list|,
-name|Sorter
+name|Sort
 name|sorter
 parameter_list|,
 name|IndexWriterConfig
@@ -2203,9 +2171,6 @@ block|{
 name|sorter
 operator|=
 operator|new
-name|SortSorter
-argument_list|(
-operator|new
 name|Sort
 argument_list|(
 operator|new
@@ -2220,7 +2185,6 @@ operator|.
 name|LONG
 argument_list|,
 literal|true
-argument_list|)
 argument_list|)
 argument_list|)
 expr_stmt|;
