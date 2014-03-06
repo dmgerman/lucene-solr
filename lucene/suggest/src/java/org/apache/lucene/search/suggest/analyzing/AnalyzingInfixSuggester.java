@@ -400,20 +400,6 @@ name|lucene
 operator|.
 name|index
 operator|.
-name|IndexReader
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|index
-operator|.
 name|IndexWriter
 import|;
 end_import
@@ -470,20 +456,6 @@ name|lucene
 operator|.
 name|index
 operator|.
-name|SlowCompositeReaderWrapper
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|index
-operator|.
 name|Term
 import|;
 end_import
@@ -501,22 +473,6 @@ operator|.
 name|sorter
 operator|.
 name|EarlyTerminatingSortingCollector
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|index
-operator|.
-name|sorter
-operator|.
-name|SortingAtomicReader
 import|;
 end_import
 
@@ -965,21 +921,16 @@ specifier|final
 name|Version
 name|matchVersion
 decl_stmt|;
-DECL|field|indexPath
+DECL|field|dir
 specifier|private
 specifier|final
-name|File
-name|indexPath
+name|Directory
+name|dir
 decl_stmt|;
 DECL|field|minPrefixChars
 specifier|final
 name|int
 name|minPrefixChars
-decl_stmt|;
-DECL|field|dir
-specifier|private
-name|Directory
-name|dir
 decl_stmt|;
 comment|/** Used for ongoing NRT additions/updates. */
 DECL|field|writer
@@ -1029,7 +980,7 @@ literal|true
 argument_list|)
 argument_list|)
 decl_stmt|;
-comment|/** Create a new instance, loading from a previously built    *  directory, if it exists. */
+comment|/** Create a new instance, loading from a previously built    *  directory, if it exists.  Note that {@link #close}    *  will also close the provided directory. */
 DECL|method|AnalyzingInfixSuggester
 specifier|public
 name|AnalyzingInfixSuggester
@@ -1037,8 +988,8 @@ parameter_list|(
 name|Version
 name|matchVersion
 parameter_list|,
-name|File
-name|indexPath
+name|Directory
+name|dir
 parameter_list|,
 name|Analyzer
 name|analyzer
@@ -1050,7 +1001,7 @@ name|this
 argument_list|(
 name|matchVersion
 argument_list|,
-name|indexPath
+name|dir
 argument_list|,
 name|analyzer
 argument_list|,
@@ -1060,7 +1011,7 @@ name|DEFAULT_MIN_PREFIX_CHARS
 argument_list|)
 expr_stmt|;
 block|}
-comment|/** Create a new instance, loading from a previously built    *  directory, if it exists.    *    *  @param minPrefixChars Minimum number of leading characters    *     before PrefixQuery is used (default 4).    *     Prefixes shorter than this are indexed as character    *     ngrams (increasing index size but making lookups    *     faster).    */
+comment|/** Create a new instance, loading from a previously built    *  directory, if it exists. Note that {@link #close}    *  will also close the provided directory.    *    *  @param minPrefixChars Minimum number of leading characters    *     before PrefixQuery is used (default 4).    *     Prefixes shorter than this are indexed as character    *     ngrams (increasing index size but making lookups    *     faster).    */
 DECL|method|AnalyzingInfixSuggester
 specifier|public
 name|AnalyzingInfixSuggester
@@ -1068,8 +1019,8 @@ parameter_list|(
 name|Version
 name|matchVersion
 parameter_list|,
-name|File
-name|indexPath
+name|Directory
+name|dir
 parameter_list|,
 name|Analyzer
 name|indexAnalyzer
@@ -1120,22 +1071,15 @@ name|matchVersion
 expr_stmt|;
 name|this
 operator|.
-name|indexPath
+name|dir
 operator|=
-name|indexPath
+name|dir
 expr_stmt|;
 name|this
 operator|.
 name|minPrefixChars
 operator|=
 name|minPrefixChars
-expr_stmt|;
-name|dir
-operator|=
-name|getDirectory
-argument_list|(
-name|indexPath
-argument_list|)
 expr_stmt|;
 if|if
 condition|(
@@ -1162,8 +1106,6 @@ argument_list|,
 name|getGramAnalyzer
 argument_list|()
 argument_list|,
-name|SORT
-argument_list|,
 name|IndexWriterConfig
 operator|.
 name|OpenMode
@@ -1186,7 +1128,7 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
-comment|/** Override this to customize index settings, e.g. which    *  codec to use. The sort is null if this config is for    *  the first pass writer. */
+comment|/** Override this to customize index settings, e.g. which    *  codec to use. */
 DECL|method|getIndexWriterConfig
 specifier|protected
 name|IndexWriterConfig
@@ -1197,9 +1139,6 @@ name|matchVersion
 parameter_list|,
 name|Analyzer
 name|indexAnalyzer
-parameter_list|,
-name|Sort
-name|sort
 parameter_list|,
 name|IndexWriterConfig
 operator|.
@@ -1234,13 +1173,6 @@ argument_list|(
 name|openMode
 argument_list|)
 expr_stmt|;
-if|if
-condition|(
-name|sort
-operator|!=
-literal|null
-condition|)
-block|{
 comment|// This way all merged segments will be sorted at
 comment|// merge time, allow for per-segment early termination
 comment|// when those segments are searched:
@@ -1256,11 +1188,10 @@ operator|.
 name|getMergePolicy
 argument_list|()
 argument_list|,
-name|sort
+name|SORT
 argument_list|)
 argument_list|)
 expr_stmt|;
-block|}
 return|return
 name|iwc
 return|;
@@ -1333,28 +1264,6 @@ operator|=
 literal|null
 expr_stmt|;
 block|}
-name|Directory
-name|dirTmp
-init|=
-name|getDirectory
-argument_list|(
-operator|new
-name|File
-argument_list|(
-name|indexPath
-operator|.
-name|toString
-argument_list|()
-operator|+
-literal|".tmp"
-argument_list|)
-argument_list|)
-decl_stmt|;
-name|IndexWriter
-name|w
-init|=
-literal|null
-decl_stmt|;
 name|AtomicReader
 name|r
 init|=
@@ -1369,12 +1278,12 @@ try|try
 block|{
 comment|// First pass: build a temporary normal Lucene index,
 comment|// just indexing the suggestions as they iterate:
-name|w
+name|writer
 operator|=
 operator|new
 name|IndexWriter
 argument_list|(
-name|dirTmp
+name|dir
 argument_list|,
 name|getIndexWriterConfig
 argument_list|(
@@ -1382,8 +1291,6 @@ name|matchVersion
 argument_list|,
 name|getGramAnalyzer
 argument_list|()
-argument_list|,
-literal|null
 argument_list|,
 name|IndexWriterConfig
 operator|.
@@ -1630,7 +1537,7 @@ argument_list|()
 argument_list|)
 expr_stmt|;
 block|}
-name|w
+name|writer
 operator|.
 name|addDocument
 argument_list|(
@@ -1639,85 +1546,6 @@ argument_list|)
 expr_stmt|;
 block|}
 comment|//System.out.println("initial indexing time: " + ((System.nanoTime()-t0)/1000000) + " msec");
-comment|// Second pass: sort the entire index:
-name|r
-operator|=
-name|SlowCompositeReaderWrapper
-operator|.
-name|wrap
-argument_list|(
-name|DirectoryReader
-operator|.
-name|open
-argument_list|(
-name|w
-argument_list|,
-literal|false
-argument_list|)
-argument_list|)
-expr_stmt|;
-comment|//long t1 = System.nanoTime();
-comment|// We can rollback the first pass, now that have have
-comment|// the reader open, because we will discard it anyway
-comment|// (no sense in fsync'ing it):
-name|w
-operator|.
-name|rollback
-argument_list|()
-expr_stmt|;
-name|r
-operator|=
-name|SortingAtomicReader
-operator|.
-name|wrap
-argument_list|(
-name|r
-argument_list|,
-name|SORT
-argument_list|)
-expr_stmt|;
-name|writer
-operator|=
-operator|new
-name|IndexWriter
-argument_list|(
-name|dir
-argument_list|,
-name|getIndexWriterConfig
-argument_list|(
-name|matchVersion
-argument_list|,
-name|getGramAnalyzer
-argument_list|()
-argument_list|,
-name|SORT
-argument_list|,
-name|IndexWriterConfig
-operator|.
-name|OpenMode
-operator|.
-name|CREATE
-argument_list|)
-argument_list|)
-expr_stmt|;
-name|writer
-operator|.
-name|addIndexes
-argument_list|(
-operator|new
-name|IndexReader
-index|[]
-block|{
-name|r
-block|}
-argument_list|)
-expr_stmt|;
-name|r
-operator|.
-name|close
-argument_list|()
-expr_stmt|;
-comment|//System.out.println("sort time: " + ((System.nanoTime()-t1)/1000000) + " msec");
 name|searcherMgr
 operator|=
 operator|new
@@ -1746,11 +1574,7 @@ name|IOUtils
 operator|.
 name|close
 argument_list|(
-name|w
-argument_list|,
 name|r
-argument_list|,
-name|dirTmp
 argument_list|)
 expr_stmt|;
 block|}
@@ -1760,13 +1584,9 @@ name|IOUtils
 operator|.
 name|closeWhileHandlingException
 argument_list|(
-name|w
-argument_list|,
 name|writer
 argument_list|,
 name|r
-argument_list|,
-name|dirTmp
 argument_list|)
 expr_stmt|;
 name|writer
@@ -3505,24 +3325,12 @@ operator|.
 name|close
 argument_list|()
 expr_stmt|;
-name|writer
-operator|=
-literal|null
-expr_stmt|;
-block|}
-if|if
-condition|(
-name|dir
-operator|!=
-literal|null
-condition|)
-block|{
 name|dir
 operator|.
 name|close
 argument_list|()
 expr_stmt|;
-name|dir
+name|writer
 operator|=
 literal|null
 expr_stmt|;
