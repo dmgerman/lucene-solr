@@ -186,7 +186,7 @@ name|lucene
 operator|.
 name|search
 operator|.
-name|TopScorer
+name|BulkScorer
 import|;
 end_import
 
@@ -629,8 +629,8 @@ block|}
 annotation|@
 name|Override
 specifier|public
-name|TopScorer
-name|topScorer
+name|BulkScorer
+name|bulkScorer
 parameter_list|(
 name|AtomicReaderContext
 name|context

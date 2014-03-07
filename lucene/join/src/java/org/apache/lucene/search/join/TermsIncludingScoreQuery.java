@@ -240,7 +240,7 @@ name|lucene
 operator|.
 name|search
 operator|.
-name|TopScorer
+name|BulkScorer
 import|;
 end_import
 
@@ -817,7 +817,7 @@ init|=
 operator|(
 name|SVInnerScorer
 operator|)
-name|topScorer
+name|bulkScorer
 argument_list|(
 name|context
 argument_list|,
@@ -1061,8 +1061,8 @@ block|}
 annotation|@
 name|Override
 specifier|public
-name|TopScorer
-name|topScorer
+name|BulkScorer
+name|bulkScorer
 parameter_list|(
 name|AtomicReaderContext
 name|context
@@ -1084,7 +1084,7 @@ block|{
 return|return
 name|super
 operator|.
-name|topScorer
+name|bulkScorer
 argument_list|(
 name|context
 argument_list|,
@@ -1313,7 +1313,7 @@ DECL|class|SVInnerScorer
 class|class
 name|SVInnerScorer
 extends|extends
-name|TopScorer
+name|BulkScorer
 block|{
 DECL|field|spare
 specifier|final

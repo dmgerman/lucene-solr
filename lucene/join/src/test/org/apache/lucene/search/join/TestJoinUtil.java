@@ -1420,7 +1420,7 @@ name|close
 argument_list|()
 expr_stmt|;
 block|}
-comment|/** LUCENE-5487: verify a join query inside a SHOULD BQ    *  will still use the join query's optimized TopScorers */
+comment|/** LUCENE-5487: verify a join query inside a SHOULD BQ    *  will still use the join query's optimized BulkScorers */
 DECL|method|testInsideBooleanQuery
 specifier|public
 name|void
@@ -2067,7 +2067,7 @@ condition|)
 block|{
 name|assertFalse
 argument_list|(
-literal|"optimized topScorer was not used for join query embedded in boolean query!"
+literal|"optimized bulkScorer was not used for join query embedded in boolean query!"
 argument_list|,
 name|sawFive
 argument_list|)

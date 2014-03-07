@@ -2274,12 +2274,12 @@ comment|// there is no doc of interest in this reader context
 comment|// continue with the following leaf
 continue|continue;
 block|}
-name|TopScorer
+name|BulkScorer
 name|scorer
 init|=
 name|weight
 operator|.
-name|topScorer
+name|bulkScorer
 argument_list|(
 name|ctx
 argument_list|,

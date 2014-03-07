@@ -266,10 +266,10 @@ return|;
 block|}
 annotation|@
 name|Override
-DECL|method|topScorer
+DECL|method|bulkScorer
 specifier|public
-name|TopScorer
-name|topScorer
+name|BulkScorer
+name|bulkScorer
 parameter_list|(
 name|AtomicReaderContext
 name|context
@@ -285,12 +285,12 @@ name|IOException
 block|{
 comment|// if the caller asks for in-order scoring or if the weight does not support
 comment|// out-of order scoring then collection will have to happen in-order.
-name|TopScorer
+name|BulkScorer
 name|inScorer
 init|=
 name|in
 operator|.
-name|topScorer
+name|bulkScorer
 argument_list|(
 name|context
 argument_list|,
@@ -312,7 +312,7 @@ return|;
 block|}
 if|if
 condition|(
-name|AssertingTopScorer
+name|AssertingBulkScorer
 operator|.
 name|shouldWrap
 argument_list|(
@@ -321,7 +321,7 @@ argument_list|)
 condition|)
 block|{
 return|return
-name|AssertingTopScorer
+name|AssertingBulkScorer
 operator|.
 name|wrap
 argument_list|(
@@ -345,7 +345,7 @@ comment|// AssertingScorer:
 return|return
 name|super
 operator|.
-name|topScorer
+name|bulkScorer
 argument_list|(
 name|context
 argument_list|,

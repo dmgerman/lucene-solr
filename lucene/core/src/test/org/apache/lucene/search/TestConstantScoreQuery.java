@@ -1099,7 +1099,7 @@ argument_list|()
 expr_stmt|;
 block|}
 comment|// LUCENE-5307
-comment|// don't reuse the scorer of filters since they have been created with topScorer=false
+comment|// don't reuse the scorer of filters since they have been created with bulkScorer=false
 DECL|method|testQueryWrapperFilter
 specifier|public
 name|void

@@ -486,12 +486,12 @@ operator|.
 name|getTopReaderContext
 argument_list|()
 decl_stmt|;
-name|TopScorer
+name|BulkScorer
 name|ts
 init|=
 name|weight
 operator|.
-name|topScorer
+name|bulkScorer
 argument_list|(
 name|context
 argument_list|,

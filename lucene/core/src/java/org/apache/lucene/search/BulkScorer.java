@@ -26,12 +26,16 @@ name|IOException
 import|;
 end_import
 
+begin_comment
+comment|/** This class is used to score a range of documents at  *  once, and is returned by {@link Weight#bulkScorer}.  Only  *  queries that have a more optimized means of scoring  *  across a range of documents need to override this.  *  Otherwise, a default implementation is wrapped around  *  the {@link Scorer} returned by {@link Weight#scorer}. */
+end_comment
+
 begin_class
-DECL|class|TopScorer
+DECL|class|BulkScorer
 specifier|public
 specifier|abstract
 class|class
-name|TopScorer
+name|BulkScorer
 block|{
 comment|/** Scores and collects all matching documents.    * @param collector The collector to which all matching documents are passed.    */
 DECL|method|score
@@ -55,7 +59,7 @@ name|MAX_VALUE
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**    * Expert: Collects matching documents in a range. Hook for optimization.    * Note,<code>firstDocID</code> is added to ensure that {@link #nextDoc()}    * was called before this method.    *     * @param collector    *          The collector to which all matching documents are passed.    * @param max    *          Score up to, but not including, this doc    * @return true if more matching documents may remain.    */
+comment|/**    * Collects matching documents in a range.    *     * @param collector The collector to which all matching documents are passed.    * @param max Score up to, but not including, this doc    * @return true if more matching documents may remain.    */
 DECL|method|score
 specifier|public
 specifier|abstract

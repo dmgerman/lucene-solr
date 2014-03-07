@@ -1218,12 +1218,12 @@ name|size
 argument_list|()
 argument_list|)
 expr_stmt|;
-name|TopScorer
+name|BulkScorer
 name|scorer
 init|=
 name|w
 operator|.
-name|topScorer
+name|bulkScorer
 argument_list|(
 name|s
 operator|.
