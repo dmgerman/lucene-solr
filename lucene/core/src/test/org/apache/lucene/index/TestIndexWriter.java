@@ -11266,6 +11266,8 @@ name|NO
 argument_list|)
 argument_list|)
 expr_stmt|;
+try|try
+block|{
 name|w
 operator|.
 name|addDocument
@@ -11273,6 +11275,20 @@ argument_list|(
 name|doc
 argument_list|)
 expr_stmt|;
+name|fail
+argument_list|(
+literal|"should have hit exception"
+argument_list|)
+expr_stmt|;
+block|}
+catch|catch
+parameter_list|(
+name|IllegalArgumentException
+name|iae
+parameter_list|)
+block|{
+comment|// expected
+block|}
 comment|// Make sure we can add another normal document
 name|doc
 operator|=
@@ -11306,6 +11322,14 @@ argument_list|(
 name|doc
 argument_list|)
 expr_stmt|;
+comment|// So we remove the deleted doc:
+name|w
+operator|.
+name|forceMerge
+argument_list|(
+literal|1
+argument_list|)
+expr_stmt|;
 name|IndexReader
 name|reader
 init|=
@@ -11322,7 +11346,7 @@ expr_stmt|;
 comment|// Make sure all terms< max size were indexed
 name|assertEquals
 argument_list|(
-literal|2
+literal|1
 argument_list|,
 name|reader
 operator|.
@@ -11358,7 +11382,7 @@ argument_list|)
 expr_stmt|;
 name|assertEquals
 argument_list|(
-literal|1
+literal|0
 argument_list|,
 name|reader
 operator|.
@@ -11374,83 +11398,13 @@ argument_list|)
 argument_list|)
 argument_list|)
 expr_stmt|;
-name|assertEquals
-argument_list|(
-literal|1
-argument_list|,
-name|reader
-operator|.
-name|docFreq
-argument_list|(
-operator|new
-name|Term
-argument_list|(
-literal|"content"
-argument_list|,
-literal|"another"
-argument_list|)
-argument_list|)
-argument_list|)
-expr_stmt|;
-comment|// Make sure position is still incremented when
-comment|// massive term is skipped:
-name|DocsAndPositionsEnum
-name|tps
-init|=
-name|MultiFields
-operator|.
-name|getTermPositionsEnum
-argument_list|(
-name|reader
-argument_list|,
-literal|null
-argument_list|,
-literal|"content"
-argument_list|,
-operator|new
-name|BytesRef
-argument_list|(
-literal|"another"
-argument_list|)
-argument_list|)
-decl_stmt|;
-name|assertEquals
-argument_list|(
-literal|0
-argument_list|,
-name|tps
-operator|.
-name|nextDoc
-argument_list|()
-argument_list|)
-expr_stmt|;
-name|assertEquals
-argument_list|(
-literal|1
-argument_list|,
-name|tps
-operator|.
-name|freq
-argument_list|()
-argument_list|)
-expr_stmt|;
-name|assertEquals
-argument_list|(
-literal|3
-argument_list|,
-name|tps
-operator|.
-name|nextPosition
-argument_list|()
-argument_list|)
-expr_stmt|;
-comment|// Make sure the doc that has the massive term is in
+comment|// Make sure the doc that has the massive term is NOT in
 comment|// the index:
 name|assertEquals
 argument_list|(
-literal|"document with wicked long term should is not in the index!"
+literal|"document with wicked long term is in the index!"
 argument_list|,
-literal|2
+literal|1
 argument_list|,
 name|reader
 operator|.

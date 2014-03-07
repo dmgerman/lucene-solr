@@ -182,6 +182,10 @@ name|LoggerFactory
 import|;
 end_import
 
+begin_comment
+comment|/**  * @lucene.experimental  */
+end_comment
+
 begin_class
 DECL|class|HdfsFileWriter
 specifier|public

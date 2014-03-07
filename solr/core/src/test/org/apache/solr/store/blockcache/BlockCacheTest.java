@@ -259,6 +259,13 @@ argument_list|(
 name|file
 argument_list|)
 expr_stmt|;
+name|blockCacheKey
+operator|.
+name|setPath
+argument_list|(
+literal|"/"
+argument_list|)
+expr_stmt|;
 if|if
 condition|(
 name|blockCache
@@ -536,6 +543,13 @@ operator|.
 name|setFile
 argument_list|(
 literal|0
+argument_list|)
+expr_stmt|;
+name|blockCacheKey
+operator|.
+name|setPath
+argument_list|(
+literal|"/"
 argument_list|)
 expr_stmt|;
 name|byte

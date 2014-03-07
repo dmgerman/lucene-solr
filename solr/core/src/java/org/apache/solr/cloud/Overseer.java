@@ -841,6 +841,8 @@ argument_list|(
 name|QUEUE_OPERATION
 argument_list|)
 decl_stmt|;
+try|try
+block|{
 name|clusterState
 operator|=
 name|processMessage
@@ -852,6 +854,28 @@ argument_list|,
 name|operation
 argument_list|)
 expr_stmt|;
+block|}
+catch|catch
+parameter_list|(
+name|Exception
+name|e
+parameter_list|)
+block|{
+comment|// generally there is nothing we can do - in most cases, we have
+comment|// an issue that will fail again on retry or we cannot communicate with
+comment|// ZooKeeper in which case another Overseer should take over
+comment|// TODO: if ordering for the message is not important, we could
+comment|// track retries and put it back on the end of the queue
+name|log
+operator|.
+name|error
+argument_list|(
+literal|"Overseer could not process the current clusterstate state update message, skipping the message."
+argument_list|,
+name|e
+argument_list|)
+expr_stmt|;
+block|}
 name|zkClient
 operator|.
 name|setData
@@ -1177,6 +1201,8 @@ argument_list|(
 name|QUEUE_OPERATION
 argument_list|)
 decl_stmt|;
+try|try
+block|{
 name|clusterState
 operator|=
 name|processMessage
@@ -1188,6 +1214,28 @@ argument_list|,
 name|operation
 argument_list|)
 expr_stmt|;
+block|}
+catch|catch
+parameter_list|(
+name|Exception
+name|e
+parameter_list|)
+block|{
+comment|// generally there is nothing we can do - in most cases, we have
+comment|// an issue that will fail again on retry or we cannot communicate with
+comment|// ZooKeeper in which case another Overseer should take over
+comment|// TODO: if ordering for the message is not important, we could
+comment|// track retries and put it back on the end of the queue
+name|log
+operator|.
+name|error
+argument_list|(
+literal|"Overseer could not process the current clusterstate state update message, skipping the message."
+argument_list|,
+name|e
+argument_list|)
+expr_stmt|;
+block|}
 name|workQueue
 operator|.
 name|offer
@@ -1980,6 +2028,17 @@ operator|.
 name|COLLECTION_PROP
 argument_list|)
 decl_stmt|;
+if|if
+condition|(
+operator|!
+name|checkCollectionKeyExistence
+argument_list|(
+name|message
+argument_list|)
+condition|)
+return|return
+name|clusterState
+return|;
 name|String
 name|slice
 init|=
@@ -2291,6 +2350,17 @@ operator|.
 name|COLLECTION_PROP
 argument_list|)
 decl_stmt|;
+if|if
+condition|(
+operator|!
+name|checkCollectionKeyExistence
+argument_list|(
+name|message
+argument_list|)
+condition|)
+return|return
+name|clusterState
+return|;
 name|log
 operator|.
 name|info
@@ -2519,6 +2589,17 @@ operator|.
 name|COLLECTION_PROP
 argument_list|)
 decl_stmt|;
+if|if
+condition|(
+operator|!
+name|checkCollectionKeyExistence
+argument_list|(
+name|message
+argument_list|)
+condition|)
+return|return
+name|clusterState
+return|;
 name|String
 name|shard
 init|=
@@ -2841,6 +2922,86 @@ return|return
 name|clusterState
 return|;
 block|}
+DECL|method|checkCollectionKeyExistence
+specifier|private
+name|boolean
+name|checkCollectionKeyExistence
+parameter_list|(
+name|ZkNodeProps
+name|message
+parameter_list|)
+block|{
+return|return
+name|checkKeyExistence
+argument_list|(
+name|message
+argument_list|,
+name|ZkStateReader
+operator|.
+name|COLLECTION_PROP
+argument_list|)
+return|;
+block|}
+DECL|method|checkKeyExistence
+specifier|private
+name|boolean
+name|checkKeyExistence
+parameter_list|(
+name|ZkNodeProps
+name|message
+parameter_list|,
+name|String
+name|key
+parameter_list|)
+block|{
+name|String
+name|value
+init|=
+name|message
+operator|.
+name|getStr
+argument_list|(
+name|key
+argument_list|)
+decl_stmt|;
+if|if
+condition|(
+name|value
+operator|==
+literal|null
+operator|||
+name|value
+operator|.
+name|trim
+argument_list|()
+operator|.
+name|length
+argument_list|()
+operator|==
+literal|0
+condition|)
+block|{
+name|log
+operator|.
+name|error
+argument_list|(
+literal|"Skipping invalid Overseer message because it has no "
+operator|+
+name|key
+operator|+
+literal|" specified: "
+operator|+
+name|message
+argument_list|)
+expr_stmt|;
+return|return
+literal|false
+return|;
+block|}
+return|return
+literal|true
+return|;
+block|}
 DECL|method|removeRoutingRule
 specifier|private
 name|ClusterState
@@ -2865,6 +3026,17 @@ operator|.
 name|COLLECTION_PROP
 argument_list|)
 decl_stmt|;
+if|if
+condition|(
+operator|!
+name|checkCollectionKeyExistence
+argument_list|(
+name|message
+argument_list|)
+condition|)
+return|return
+name|clusterState
+return|;
 name|String
 name|shard
 init|=
@@ -3049,6 +3221,17 @@ operator|.
 name|COLLECTION_PROP
 argument_list|)
 decl_stmt|;
+if|if
+condition|(
+operator|!
+name|checkCollectionKeyExistence
+argument_list|(
+name|message
+argument_list|)
+condition|)
+return|return
+name|clusterState
+return|;
 name|String
 name|shardId
 init|=
@@ -3410,6 +3593,17 @@ operator|.
 name|COLLECTION_PROP
 argument_list|)
 decl_stmt|;
+if|if
+condition|(
+operator|!
+name|checkCollectionKeyExistence
+argument_list|(
+name|message
+argument_list|)
+condition|)
+return|return
+name|clusterState
+return|;
 name|String
 name|sliceName
 init|=
@@ -3494,7 +3688,7 @@ name|ClusterState
 name|updateState
 parameter_list|(
 name|ClusterState
-name|state
+name|clusterState
 parameter_list|,
 specifier|final
 name|ZkNodeProps
@@ -3514,16 +3708,17 @@ operator|.
 name|COLLECTION_PROP
 argument_list|)
 decl_stmt|;
-assert|assert
-name|collection
-operator|.
-name|length
-argument_list|()
-operator|>
-literal|0
-operator|:
+if|if
+condition|(
+operator|!
+name|checkCollectionKeyExistence
+argument_list|(
 name|message
-assert|;
+argument_list|)
+condition|)
+return|return
+name|clusterState
+return|;
 name|Integer
 name|numShards
 init|=
@@ -3566,7 +3761,7 @@ comment|//collection does not yet exist, create placeholders if num shards is sp
 name|boolean
 name|collectionExists
 init|=
-name|state
+name|clusterState
 operator|.
 name|hasCollection
 argument_list|(
@@ -3590,11 +3785,11 @@ argument_list|,
 name|shardNames
 argument_list|)
 expr_stmt|;
-name|state
+name|clusterState
 operator|=
 name|createCollection
 argument_list|(
-name|state
+name|clusterState
 argument_list|,
 name|collection
 argument_list|,
@@ -3639,7 +3834,7 @@ name|coreNodeName
 operator|=
 name|getAssignedCoreNodeName
 argument_list|(
-name|state
+name|clusterState
 argument_list|,
 name|message
 argument_list|)
@@ -3674,7 +3869,7 @@ name|assignNode
 argument_list|(
 name|collection
 argument_list|,
-name|state
+name|clusterState
 argument_list|)
 expr_stmt|;
 block|}
@@ -3706,7 +3901,7 @@ name|sliceName
 operator|=
 name|getAssignedId
 argument_list|(
-name|state
+name|clusterState
 argument_list|,
 name|coreNodeName
 argument_list|,
@@ -3749,7 +3944,7 @@ block|{
 comment|// use existing numShards
 name|numShards
 operator|=
-name|state
+name|clusterState
 operator|.
 name|getCollection
 argument_list|(
@@ -3786,7 +3981,7 @@ name|assignShard
 argument_list|(
 name|collection
 argument_list|,
-name|state
+name|clusterState
 argument_list|,
 name|numShards
 argument_list|)
@@ -3804,7 +3999,7 @@ block|}
 name|Slice
 name|slice
 init|=
-name|state
+name|clusterState
 operator|.
 name|getSlice
 argument_list|(
@@ -4114,11 +4309,11 @@ operator|!=
 literal|null
 condition|)
 block|{
-name|state
+name|clusterState
 operator|=
 name|checkAndCompleteShardSplit
 argument_list|(
-name|state
+name|clusterState
 argument_list|,
 name|collection
 argument_list|,
@@ -4132,7 +4327,7 @@ expr_stmt|;
 comment|// get the current slice again because it may have been updated due to checkAndCompleteShardSplit method
 name|slice
 operator|=
-name|state
+name|clusterState
 operator|.
 name|getSlice
 argument_list|(
@@ -4245,7 +4440,7 @@ name|newClusterState
 init|=
 name|updateSlice
 argument_list|(
-name|state
+name|clusterState
 argument_list|,
 name|collection
 argument_list|,
@@ -6094,9 +6289,19 @@ argument_list|(
 literal|"name"
 argument_list|)
 decl_stmt|;
-comment|//        final Map<String, DocCollection> newCollections = new LinkedHashMap<String,DocCollection>(clusterState.getCollectionStates()); // shallow copy
-comment|//        newCollections.remove(collection);
-comment|//        ClusterState newState = new ClusterState(clusterState.getLiveNodes(), newCollections);
+if|if
+condition|(
+operator|!
+name|checkKeyExistence
+argument_list|(
+name|message
+argument_list|,
+literal|"name"
+argument_list|)
+condition|)
+return|return
+name|clusterState
+return|;
 return|return
 name|clusterState
 operator|.
@@ -6130,19 +6335,6 @@ parameter_list|)
 block|{
 specifier|final
 name|String
-name|collection
-init|=
-name|message
-operator|.
-name|getStr
-argument_list|(
-name|ZkStateReader
-operator|.
-name|COLLECTION_PROP
-argument_list|)
-decl_stmt|;
-specifier|final
-name|String
 name|sliceId
 init|=
 name|message
@@ -6154,6 +6346,30 @@ operator|.
 name|SHARD_ID_PROP
 argument_list|)
 decl_stmt|;
+specifier|final
+name|String
+name|collection
+init|=
+name|message
+operator|.
+name|getStr
+argument_list|(
+name|ZkStateReader
+operator|.
+name|COLLECTION_PROP
+argument_list|)
+decl_stmt|;
+if|if
+condition|(
+operator|!
+name|checkCollectionKeyExistence
+argument_list|(
+name|message
+argument_list|)
+condition|)
+return|return
+name|clusterState
+return|;
 name|log
 operator|.
 name|info
@@ -6169,7 +6385,6 @@ operator|+
 literal|" from clusterstate"
 argument_list|)
 expr_stmt|;
-comment|//      final Map<String, DocCollection> newCollections = new LinkedHashMap<String,DocCollection>(clusterState.getCollectionStates()); // shallow copy
 name|DocCollection
 name|coll
 init|=
@@ -6233,7 +6448,6 @@ name|getRouter
 argument_list|()
 argument_list|)
 decl_stmt|;
-comment|//      newCollections.put(newCollection.getName(), newCollection);
 return|return
 name|newState
 argument_list|(
@@ -6247,7 +6461,6 @@ name|newCollection
 argument_list|)
 argument_list|)
 return|;
-comment|//     return new ClusterState(clusterState.getLiveNodes(), newCollections);
 block|}
 comment|/*        * Remove core from cloudstate        */
 DECL|method|removeCore
@@ -6263,6 +6476,7 @@ name|ZkNodeProps
 name|message
 parameter_list|)
 block|{
+specifier|final
 name|String
 name|cnn
 init|=
@@ -6288,6 +6502,17 @@ operator|.
 name|COLLECTION_PROP
 argument_list|)
 decl_stmt|;
+if|if
+condition|(
+operator|!
+name|checkCollectionKeyExistence
+argument_list|(
+name|message
+argument_list|)
+condition|)
+return|return
+name|clusterState
+return|;
 comment|//        final Map<String, DocCollection> newCollections = new LinkedHashMap<String,DocCollection>(clusterState.getCollectionStates()); // shallow copy
 comment|//        DocCollection coll = newCollections.get(collection);
 name|DocCollection
