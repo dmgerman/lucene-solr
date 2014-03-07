@@ -420,8 +420,9 @@ name|fields
 argument_list|)
 return|;
 block|}
-comment|/** Whether the relevance score is needed to sort documents. */
+comment|/** Returns true if the relevance score is needed to sort documents. */
 DECL|method|needsScores
+specifier|public
 name|boolean
 name|needsScores
 parameter_list|()

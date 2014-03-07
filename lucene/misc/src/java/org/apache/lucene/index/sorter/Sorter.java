@@ -175,6 +175,22 @@ name|Sort
 name|sort
 parameter_list|)
 block|{
+if|if
+condition|(
+name|sort
+operator|.
+name|needsScores
+argument_list|()
+condition|)
+block|{
+throw|throw
+operator|new
+name|IllegalArgumentException
+argument_list|(
+literal|"Cannot sort an index with a Sort that refers to the relevance score"
+argument_list|)
+throw|;
+block|}
 name|this
 operator|.
 name|sort
