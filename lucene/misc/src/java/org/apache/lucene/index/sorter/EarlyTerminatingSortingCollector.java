@@ -108,6 +108,20 @@ name|lucene
 operator|.
 name|search
 operator|.
+name|Sort
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|search
+operator|.
 name|TopDocsCollector
 import|;
 end_import
@@ -127,7 +141,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * A {@link Collector} that early terminates collection of documents on a  * per-segment basis, if the segment was sorted according to the given  * {@link Sorter}.  *   *<p>  *<b>NOTE:</b> the {@link Collector} detects sorted segments according to  * {@link SortingMergePolicy}, so it's best used in conjunction with it. Also,  * it collects up to a specified num docs from each segment, and therefore is  * mostly suitable for use in conjunction with collectors such as  * {@link TopDocsCollector}, and not e.g. {@link TotalHitCountCollector}.  *<p>  *<b>NOTE</b>: If you wrap a {@link TopDocsCollector} that sorts in the same  * order as the index order, the returned {@link TopDocsCollector#topDocs()}  * will be correct. However the total of {@link TopDocsCollector#getTotalHits()  * hit count} will be underestimated since not all matching documents will have  * been collected.  *<p>  *<b>NOTE</b>: This {@link Collector} uses {@link Sorter#getID()} to detect  * whether a segment was sorted with the same {@link Sorter} as the one given in  * {@link #EarlyTerminatingSortingCollector(Collector, Sorter, int)}. This has  * two implications:  *<ul>  *<li>if {@link Sorter#getID()} is not implemented correctly and returns  * different identifiers for equivalent {@link Sorter}s, this collector will not  * detect sorted segments,</li>  *<li>if you suddenly change the {@link IndexWriter}'s  * {@link SortingMergePolicy} to sort according to another criterion and if both  * the old and the new {@link Sorter}s have the same identifier, this  * {@link Collector} will incorrectly detect sorted segments.</li>  *</ul>  *   * @lucene.experimental  */
+comment|/**  * A {@link Collector} that early terminates collection of documents on a  * per-segment basis, if the segment was sorted according to the given  * {@link Sort}.  *   *<p>  *<b>NOTE:</b> the {@code Collector} detects sorted segments according to  * {@link SortingMergePolicy}, so it's best used in conjunction with it. Also,  * it collects up to a specified {@code numDocsToCollect} from each segment,   * and therefore is mostly suitable for use in conjunction with collectors such as  * {@link TopDocsCollector}, and not e.g. {@link TotalHitCountCollector}.  *<p>  *<b>NOTE</b>: If you wrap a {@code TopDocsCollector} that sorts in the same  * order as the index order, the returned {@link TopDocsCollector#topDocs() TopDocs}  * will be correct. However the total of {@link TopDocsCollector#getTotalHits()  * hit count} will be underestimated since not all matching documents will have  * been collected.  *<p>  *<b>NOTE</b>: This {@code Collector} uses {@link Sort#toString()} to detect  * whether a segment was sorted with the same {@code Sort}. This has  * two implications:  *<ul>  *<li>if a custom comparator is not implemented correctly and returns  * different identifiers for equivalent instances, this collector will not  * detect sorted segments,</li>  *<li>if you suddenly change the {@link IndexWriter}'s  * {@code SortingMergePolicy} to sort according to another criterion and if both  * the old and the new {@code Sort}s have the same identifier, this  * {@code Collector} will incorrectly detect sorted segments.</li>  *</ul>  *   * @lucene.experimental  */
 end_comment
 
 begin_class
@@ -138,29 +152,34 @@ name|EarlyTerminatingSortingCollector
 extends|extends
 name|Collector
 block|{
+comment|/** The wrapped Collector */
 DECL|field|in
 specifier|protected
 specifier|final
 name|Collector
 name|in
 decl_stmt|;
-DECL|field|sorter
+comment|/** Sort used to sort the search results */
+DECL|field|sort
 specifier|protected
 specifier|final
-name|Sorter
-name|sorter
+name|Sort
+name|sort
 decl_stmt|;
+comment|/** Number of documents to collect in each segment */
 DECL|field|numDocsToCollect
 specifier|protected
 specifier|final
 name|int
 name|numDocsToCollect
 decl_stmt|;
+comment|/** Number of documents to collect in the current segment being processed */
 DECL|field|segmentTotalCollect
 specifier|protected
 name|int
 name|segmentTotalCollect
 decl_stmt|;
+comment|/** True if the current segment being processed is sorted by {@link #sort} */
 DECL|field|segmentSorted
 specifier|protected
 name|boolean
@@ -171,7 +190,7 @@ specifier|private
 name|int
 name|numCollected
 decl_stmt|;
-comment|/**    * Create a new {@link EarlyTerminatingSortingCollector} instance.    *     * @param in    *          the collector to wrap    * @param sorter    *          the same sorter as the one which is used by {@link IndexWriter}'s    *          {@link SortingMergePolicy}    * @param numDocsToCollect    *          the number of documents to collect on each segment. When wrapping    *          a {@link TopDocsCollector}, this number should be the number of    *          hits.    */
+comment|/**    * Create a new {@link EarlyTerminatingSortingCollector} instance.    *     * @param in    *          the collector to wrap    * @param sort    *          the sort you are sorting the search results on    * @param numDocsToCollect    *          the number of documents to collect on each segment. When wrapping    *          a {@link TopDocsCollector}, this number should be the number of    *          hits.    */
 DECL|method|EarlyTerminatingSortingCollector
 specifier|public
 name|EarlyTerminatingSortingCollector
@@ -179,8 +198,8 @@ parameter_list|(
 name|Collector
 name|in
 parameter_list|,
-name|Sorter
-name|sorter
+name|Sort
+name|sort
 parameter_list|,
 name|int
 name|numDocsToCollect
@@ -211,9 +230,9 @@ name|in
 expr_stmt|;
 name|this
 operator|.
-name|sorter
+name|sort
 operator|=
-name|sorter
+name|sort
 expr_stmt|;
 name|this
 operator|.
@@ -309,7 +328,7 @@ operator|.
 name|reader
 argument_list|()
 argument_list|,
-name|sorter
+name|sort
 argument_list|)
 expr_stmt|;
 name|segmentTotalCollect

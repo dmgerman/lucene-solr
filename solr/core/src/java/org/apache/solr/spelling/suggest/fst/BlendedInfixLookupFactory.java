@@ -103,6 +103,8 @@ operator|.
 name|analyzing
 operator|.
 name|BlendedInfixSuggester
+operator|.
+name|BlenderType
 import|;
 end_import
 
@@ -121,8 +123,20 @@ operator|.
 name|analyzing
 operator|.
 name|BlendedInfixSuggester
+import|;
+end_import
+
+begin_import
+import|import
+name|org
 operator|.
-name|BlenderType
+name|apache
+operator|.
+name|lucene
+operator|.
+name|store
+operator|.
+name|FSDirectory
 import|;
 end_import
 
@@ -433,10 +447,15 @@ argument_list|()
 operator|.
 name|luceneMatchVersion
 argument_list|,
+name|FSDirectory
+operator|.
+name|open
+argument_list|(
 operator|new
 name|File
 argument_list|(
 name|indexPath
+argument_list|)
 argument_list|)
 argument_list|,
 name|indexAnalyzer
