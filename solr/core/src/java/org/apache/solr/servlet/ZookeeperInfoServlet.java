@@ -968,6 +968,8 @@ block|}
 else|else
 block|{
 name|path
+operator|=
+name|path
 operator|.
 name|trim
 argument_list|()
