@@ -201,7 +201,12 @@ block|,
 literal|"dictionaries/am_ET.aff"
 block|,
 comment|//BUG! "arabic_spell_checking_dictionary-3.2.20120321-fx+tb.xpi",                        "dictionaries/ar.dic",                "dictionaries/ar.aff",
-comment|//BUG! "armenian_spell_checker_dictionary-0.32-fx+tb+sm.xpi",                            "dictionaries/hy_AM.dic",             "dictionaries/hy_AM.aff",
+literal|"armenian_spell_checker_dictionary-0.32-fx+tb+sm.xpi"
+block|,
+literal|"dictionaries/hy_AM.dic"
+block|,
+literal|"dictionaries/hy_AM.aff"
+block|,
 literal|"azerbaijani_spell_checker-0.3-fx+tb+fn+sm+sb.xpi"
 block|,
 literal|"dictionaries/az-Latn-AZ.dic"
@@ -340,7 +345,12 @@ literal|"dictionaries/roa-ES-val.dic"
 block|,
 literal|"dictionaries/roa-ES-val.aff"
 block|,
-comment|//BUG! "diccionario_papiamentoaruba-0.2-fn+sm+tb+fx.xpi",                                "dictionaries/Papiamento.dic",        "dictionaries/Papiamento.aff",
+literal|"diccionario_papiamentoaruba-0.2-fn+sm+tb+fx.xpi"
+block|,
+literal|"dictionaries/Papiamento.dic"
+block|,
+literal|"dictionaries/Papiamento.aff"
+block|,
 literal|"dictionnaires_francais-5.0.2-fx+tb+sm.xpi"
 block|,
 literal|"dictionaries/fr-classic-reform.dic"
@@ -371,7 +381,12 @@ literal|"dictionaries/br.dic"
 block|,
 literal|"dictionaries/br.aff"
 block|,
-comment|//BUG! "dikshonario_papiamentuantia_hulandes-0.5-fx+tb+fn+sb+sm.xpi",                    "dictionaries/Papiamentu.dic",        "dictionaries/Papiamentu.aff",
+literal|"dikshonario_papiamentuantia_hulandes-0.5-fx+tb+fn+sb+sm.xpi"
+block|,
+literal|"dictionaries/Papiamentu.dic"
+block|,
+literal|"dictionaries/Papiamentu.aff"
+block|,
 literal|"dizionari_furlan-3.1-tb+fx+sm.xpi"
 block|,
 literal|"dictionaries/fur-IT.dic"
@@ -566,8 +581,18 @@ literal|"dictionaries/ln-CD.dic"
 block|,
 literal|"dictionaries/ln-CD.aff"
 block|,
-comment|//BUG! "macedonian_mk_mk_spellchecker-1.2-fn+tb+fx+sm+sb.xpi",                           "dictionaries/mk-MK-Cyrl.dic",        "dictionaries/mk-MK-Cyrl.aff",
-comment|//BUG! "macedonian_mk_mk_spellchecker-1.2-fn+tb+fx+sm+sb.xpi",                           "dictionaries/mk-MK-Latn.dic",        "dictionaries/mk-MK-Latn.aff",
+literal|"macedonian_mk_mk_spellchecker-1.2-fn+tb+fx+sm+sb.xpi"
+block|,
+literal|"dictionaries/mk-MK-Cyrl.dic"
+block|,
+literal|"dictionaries/mk-MK-Cyrl.aff"
+block|,
+literal|"macedonian_mk_mk_spellchecker-1.2-fn+tb+fx+sm+sb.xpi"
+block|,
+literal|"dictionaries/mk-MK-Latn.dic"
+block|,
+literal|"dictionaries/mk-MK-Latn.aff"
+block|,
 literal|"malagasy_spell_checker-0.3-fn+tb+fx+sm+sb.xpi"
 block|,
 literal|"dictionaries/mg_MG.dic"
@@ -634,7 +659,12 @@ literal|"dictionaries/ro_RO-ante1993.dic"
 block|,
 literal|"dictionaries/ro_RO-ante1993.aff"
 block|,
-comment|//BUG! "russian_hunspell_dictionary-1.0.20131101-tb+sm+fn+fx.xpi",                       "dictionaries/ru_RU.dic",             "dictionaries/ru_RU.aff",
+literal|"russian_hunspell_dictionary-1.0.20131101-tb+sm+fn+fx.xpi"
+block|,
+literal|"dictionaries/ru_RU.dic"
+block|,
+literal|"dictionaries/ru_RU.aff"
+block|,
 literal|"sanskrit_spell_checker-1.1-fx+tb+sm+sb+fn.xpi"
 block|,
 literal|"dictionaries/sa_IN.dic"
@@ -787,7 +817,12 @@ literal|"dictionaries/hsb.dic"
 block|,
 literal|"dictionaries/hsb.aff"
 block|,
-comment|//BUG! "urdu_dictionary-0.64-fx+tb+sm+sb.xpi",                                           "dictionaries/ur.dic",                "dictionaries/ur.aff",
+literal|"urdu_dictionary-0.64-fx+tb+sm+sb.xpi"
+block|,
+literal|"dictionaries/ur.dic"
+block|,
+literal|"dictionaries/ur.aff"
+block|,
 literal|"uzbek_spell_checker-0.3-fn+tb+fx+sm+sb.xpi"
 block|,
 literal|"dictionaries/uz.dic"
@@ -1120,7 +1155,7 @@ block|{
 name|String
 name|toTest
 init|=
-literal|"woordenboek_nederlands-3.1.1-sm+tb+fx+fn.xpi"
+literal|"turkmen_spell_checker_dictionary-0.1.6-tb+fx+sm.xpi"
 decl_stmt|;
 for|for
 control|(
