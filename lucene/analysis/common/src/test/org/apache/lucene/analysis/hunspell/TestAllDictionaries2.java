@@ -504,7 +504,7 @@ literal|"dictionaries/hi_IN.dic"
 block|,
 literal|"dictionaries/hi_IN.aff"
 block|,
-comment|//BUG! "hungarian_dictionary-1.6.1.1-fx+tb+sm+fn.xpi",                                   "dictionaries/hu_HU.dic",             "dictionaries/hu_HU.aff",
+comment|//BUG! "hungarian_dictionary-1.6.1.1-fx+tb+sm+fn.xpi",                                   "dictionaries/hu.dic",                "dictionaries/hu.aff",
 comment|//BUG! "icelandic_dictionary-1.3-fx+tb+sm.xpi",                                          "dictionaries/is.dic",                "dictionaries/is.aff",
 literal|"kamus_pengecek_ejaan_bahasa_indonesia-1.1-fx+tb.xpi"
 block|,
@@ -512,7 +512,12 @@ literal|"dictionaries/id.dic"
 block|,
 literal|"dictionaries/id.aff"
 block|,
-comment|//BUG! "kannada_spell_checker-2.0.1-tb+sm+fn+an+fx.xpi",                                 "dictionaries/kn.dic",                "dictionaries/kn.aff",
+literal|"kannada_spell_checker-2.0.1-tb+sm+fn+an+fx.xpi"
+block|,
+literal|"dictionaries/kn.dic"
+block|,
+literal|"dictionaries/kn.aff"
+block|,
 literal|"kashubian_spell_checker_poland-0.9-sm+tb+fx.xpi"
 block|,
 literal|"dictionaries/Kaszebsczi.dic"
@@ -623,7 +628,12 @@ literal|"dictionaries/pa-IN.dic"
 block|,
 literal|"dictionaries/pa-IN.aff"
 block|,
-comment|//BUG! "romanian_spellchecking_dictionary-1.14-sm+tb+fx.xpi",                            "dictionaries/ro_RO-ante1993.dic",    "dictionaries/ro_RO-ante1993.aff",
+literal|"romanian_spellchecking_dictionary-1.14-sm+tb+fx.xpi"
+block|,
+literal|"dictionaries/ro_RO-ante1993.dic"
+block|,
+literal|"dictionaries/ro_RO-ante1993.aff"
+block|,
 comment|//BUG! "russian_hunspell_dictionary-1.0.20131101-tb+sm+fn+fx.xpi",                       "dictionaries/ru_RU.dic",             "dictionaries/ru_RU.aff",
 literal|"sanskrit_spell_checker-1.1-fx+tb+sm+sb+fn.xpi"
 block|,
@@ -814,7 +824,12 @@ literal|"dictionaries/vi-DauMoi.dic"
 block|,
 literal|"dictionaries/vi-DauMoi.aff"
 block|,
-comment|//BUG! "woordenboek_nederlands-3.1.1-sm+tb+fx+fn.xpi",                                   "dictionaries/nl.dic",                "dictionaries/nl.aff",
+literal|"woordenboek_nederlands-3.1.1-sm+tb+fx+fn.xpi"
+block|,
+literal|"dictionaries/nl.dic"
+block|,
+literal|"dictionaries/nl.aff"
+block|,
 literal|"xhosa_spell_checker-20110323-tb+fn+fx+sm.xpi"
 block|,
 literal|"dictionaries/xh-ZA.dic"
@@ -1105,7 +1120,7 @@ block|{
 name|String
 name|toTest
 init|=
-literal|"hausa_spelling_dictionary-0.2-tb+fx.xpi"
+literal|"woordenboek_nederlands-3.1.1-sm+tb+fx+fn.xpi"
 decl_stmt|;
 for|for
 control|(

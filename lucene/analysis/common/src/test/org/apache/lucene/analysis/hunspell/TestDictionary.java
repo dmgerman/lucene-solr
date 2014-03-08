@@ -671,14 +671,17 @@ name|ParseException
 name|expected
 parameter_list|)
 block|{
-name|assertEquals
+name|assertTrue
 argument_list|(
-literal|"The affix file contains a rule with less than five elements"
-argument_list|,
 name|expected
 operator|.
 name|getMessage
 argument_list|()
+operator|.
+name|startsWith
+argument_list|(
+literal|"The affix file contains a rule with less than four elements"
+argument_list|)
 argument_list|)
 expr_stmt|;
 name|assertEquals
