@@ -200,7 +200,12 @@ literal|"dictionaries/am_ET.dic"
 block|,
 literal|"dictionaries/am_ET.aff"
 block|,
-comment|//BUG! "arabic_spell_checking_dictionary-3.2.20120321-fx+tb.xpi",                        "dictionaries/ar.dic",                "dictionaries/ar.aff",
+literal|"arabic_spell_checking_dictionary-3.2.20120321-fx+tb.xpi"
+block|,
+literal|"dictionaries/ar.dic"
+block|,
+literal|"dictionaries/ar.aff"
+block|,
 literal|"armenian_spell_checker_dictionary-0.32-fx+tb+sm.xpi"
 block|,
 literal|"dictionaries/hy_AM.dic"
@@ -519,8 +524,13 @@ literal|"dictionaries/hi_IN.dic"
 block|,
 literal|"dictionaries/hi_IN.aff"
 block|,
-comment|//BUG! "hungarian_dictionary-1.6.1.1-fx+tb+sm+fn.xpi",                                   "dictionaries/hu.dic",                "dictionaries/hu.aff",
-comment|//BUG! "icelandic_dictionary-1.3-fx+tb+sm.xpi",                                          "dictionaries/is.dic",                "dictionaries/is.aff",
+literal|"hungarian_dictionary-1.6.1.1-fx+tb+sm+fn.xpi"
+block|,
+literal|"dictionaries/hu.dic"
+block|,
+literal|"dictionaries/hu.aff"
+block|,
+comment|//BUG: has no encoding declaration "icelandic_dictionary-1.3-fx+tb+sm.xpi",                                          "dictionaries/is.dic",                "dictionaries/is.aff",
 literal|"kamus_pengecek_ejaan_bahasa_indonesia-1.1-fx+tb.xpi"
 block|,
 literal|"dictionaries/id.dic"
@@ -779,7 +789,7 @@ literal|"dictionaries/mi.dic"
 block|,
 literal|"dictionaries/mi.aff"
 block|,
-comment|//BUG! "thamizha_solthiruthitamil_spellchecker-0.8-fx+tb.xpi",                           "dictionaries/ta_IN.dic",             "dictionaries/ta_IN.aff",
+comment|//BUG: broken file (hunspell refuses to load, too)    "thamizha_solthiruthitamil_spellchecker-0.8-fx+tb.xpi",                           "dictionaries/ta_IN.dic",             "dictionaries/ta_IN.aff",
 literal|"tsonga_spell_checker-20110323-tb+sm+fx+fn.xpi"
 block|,
 literal|"dictionaries/ts-ZA.dic"
@@ -798,7 +808,12 @@ literal|"dictionaries/tr.dic"
 block|,
 literal|"dictionaries/tr.aff"
 block|,
-comment|//BUG! "turkmen_spell_checker_dictionary-0.1.6-tb+fx+sm.xpi",                            "dictionaries/tk_TM.dic",             "dictionaries/tk_TM.aff",
+literal|"turkmen_spell_checker_dictionary-0.1.6-tb+fx+sm.xpi"
+block|,
+literal|"dictionaries/tk_TM.dic"
+block|,
+literal|"dictionaries/tk_TM.aff"
+block|,
 literal|"ukrainian_dictionary-1.7.0-sm+an+fx+fn+tb.xpi"
 block|,
 literal|"dictionaries/uk-UA.dic"
@@ -1155,7 +1170,7 @@ block|{
 name|String
 name|toTest
 init|=
-literal|"turkmen_spell_checker_dictionary-0.1.6-tb+fx+sm.xpi"
+literal|"hungarian_dictionary-1.6.1.1-fx+tb+sm+fn.xpi"
 decl_stmt|;
 for|for
 control|(
