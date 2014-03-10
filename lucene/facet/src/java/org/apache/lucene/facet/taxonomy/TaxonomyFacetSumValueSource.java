@@ -69,6 +69,8 @@ operator|.
 name|facet
 operator|.
 name|FacetsCollector
+operator|.
+name|MatchingDocs
 import|;
 end_import
 
@@ -83,8 +85,6 @@ operator|.
 name|facet
 operator|.
 name|FacetsCollector
-operator|.
-name|MatchingDocs
 import|;
 end_import
 
@@ -191,6 +191,20 @@ operator|.
 name|search
 operator|.
 name|Scorer
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|search
+operator|.
+name|Weight
 import|;
 end_import
 
@@ -438,6 +452,20 @@ block|{
 return|return
 literal|0
 return|;
+block|}
+annotation|@
+name|Override
+DECL|method|getWeight
+specifier|public
+name|Weight
+name|getWeight
+parameter_list|()
+block|{
+throw|throw
+operator|new
+name|UnsupportedOperationException
+argument_list|()
+throw|;
 block|}
 block|}
 DECL|method|sumValues

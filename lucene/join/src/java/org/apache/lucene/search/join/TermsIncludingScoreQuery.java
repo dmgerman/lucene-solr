@@ -1307,6 +1307,20 @@ name|UnsupportedOperationException
 argument_list|()
 throw|;
 block|}
+annotation|@
+name|Override
+DECL|method|getWeight
+specifier|public
+name|Weight
+name|getWeight
+parameter_list|()
+block|{
+throw|throw
+operator|new
+name|UnsupportedOperationException
+argument_list|()
+throw|;
+block|}
 block|}
 comment|// This impl assumes that the 'join' values are used uniquely per doc per field. Used for one to many relations.
 DECL|class|SVInnerScorer
