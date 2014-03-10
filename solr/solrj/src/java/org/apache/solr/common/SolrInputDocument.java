@@ -931,6 +931,7 @@ name|values
 argument_list|()
 return|;
 block|}
+comment|/**    * This method is implemented for tests and should not be counted    * on in production code.    *     * @lucene.experimental    */
 annotation|@
 name|Override
 DECL|method|equals
@@ -1043,6 +1044,7 @@ return|return
 literal|true
 return|;
 block|}
+comment|/**    * This method is implemented for tests and should not be counted    * on in production code.    *     * @lucene.experimental    */
 annotation|@
 name|Override
 DECL|method|hashCode
