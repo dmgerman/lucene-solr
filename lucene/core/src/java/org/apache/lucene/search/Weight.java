@@ -366,7 +366,7 @@ name|NO_MORE_DOCS
 return|;
 block|}
 block|}
-comment|/**    * Returns true iff this implementation scores docs only out of order. This    * method is used in conjunction with {@link Collector}'s    * {@link Collector#acceptsDocsOutOfOrder() acceptsDocsOutOfOrder} and    * {@link #scorer(AtomicReaderContext, Bits)} to    * create a matching {@link Scorer} instance for a given {@link Collector}, or    * vice versa.    *<p>    *<b>NOTE:</b> the default implementation returns<code>false</code>, i.e.    * the<code>Scorer</code> scores documents in-order.    */
+comment|/**    * Returns true iff this implementation scores docs only out of order. This    * method is used in conjunction with {@link Collector}'s    * {@link Collector#acceptsDocsOutOfOrder() acceptsDocsOutOfOrder} and    * {@link #bulkScorer(AtomicReaderContext, boolean, Bits)} to    * create a matching {@link Scorer} instance for a given {@link Collector}, or    * vice versa.    *<p>    *<b>NOTE:</b> the default implementation returns<code>false</code>, i.e.    * the<code>Scorer</code> scores documents in-order.    */
 DECL|method|scoresDocsOutOfOrder
 specifier|public
 name|boolean

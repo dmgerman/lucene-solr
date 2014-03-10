@@ -1876,6 +1876,18 @@ name|boolean
 name|scoresDocsOutOfOrder
 parameter_list|()
 block|{
+if|if
+condition|(
+name|minNrShouldMatch
+operator|>
+literal|1
+condition|)
+block|{
+comment|// BS2 (in-order) will be used by scorer()
+return|return
+literal|false
+return|;
+block|}
 for|for
 control|(
 name|BooleanClause
@@ -1892,10 +1904,10 @@ name|isRequired
 argument_list|()
 condition|)
 block|{
+comment|// BS2 (in-order) will be used by scorer()
 return|return
 literal|false
 return|;
-comment|// BS2 (in-order) will be used by scorer()
 block|}
 block|}
 comment|// scorer() will return an out-of-order scorer if requested.
