@@ -606,80 +606,32 @@ name|doc
 operator|=
 literal|3000
 expr_stmt|;
+name|FakeScorer
+name|fs
+init|=
+operator|new
+name|FakeScorer
+argument_list|()
+decl_stmt|;
+name|fs
+operator|.
+name|doc
+operator|=
+name|doc
+expr_stmt|;
+name|fs
+operator|.
+name|score
+operator|=
+literal|1.0f
+expr_stmt|;
 name|c
 operator|.
 name|setScorer
 argument_list|(
-operator|new
-name|Scorer
-argument_list|(
-literal|null
+name|fs
 argument_list|)
-block|{
-annotation|@
-name|Override
-specifier|public
-name|int
-name|advance
-parameter_list|(
-name|int
-name|target
-parameter_list|)
-block|{
-throw|throw
-operator|new
-name|UnsupportedOperationException
-argument_list|(
-literal|"FakeScorer doesn't support advance(int)"
-argument_list|)
-throw|;
-block|}
-function|@Override             public int docID
-parameter_list|()
-block|{
-return|return
-name|doc
-return|;
-block|}
-function|@Override             public int freq
-parameter_list|()
-block|{
-throw|throw
-operator|new
-name|UnsupportedOperationException
-argument_list|(
-literal|"FakeScorer doesn't support freq()"
-argument_list|)
-throw|;
-block|}
-function|@Override             public int nextDoc
-parameter_list|()
-block|{
-throw|throw
-operator|new
-name|UnsupportedOperationException
-argument_list|(
-literal|"FakeScorer doesn't support nextDoc()"
-argument_list|)
-throw|;
-block|}
-function|@Override             public float score
-parameter_list|()
-block|{
-return|return
-literal|1.0f
-return|;
-block|}
-function|@Override             public long cost
-parameter_list|()
-block|{
-return|return
-literal|1
-return|;
-block|}
-function|}
-block|)
-empty_stmt|;
+expr_stmt|;
 name|c
 operator|.
 name|collect
@@ -1100,14 +1052,12 @@ name|assertEquals
 argument_list|(
 literal|"Scorer is implemented by wrong class"
 argument_list|,
-name|BooleanScorer
+name|FakeScorer
 operator|.
 name|class
 operator|.
 name|getName
 argument_list|()
-operator|+
-literal|"$FakeScorer"
 argument_list|,
 name|clazz
 operator|.
@@ -1167,89 +1117,6 @@ name|close
 argument_list|()
 expr_stmt|;
 block|}
-DECL|class|FakeScorer
-function|private static final class FakeScorer extends Scorer
-block|{
-DECL|method|FakeScorer
-specifier|public
-name|FakeScorer
-parameter_list|()
-block|{
-name|super
-argument_list|(
-literal|null
-argument_list|)
-expr_stmt|;
-block|}
-constructor|@Override     public int advance(int target
-DECL|method|advance
-block|)
-block|{
-throw|throw
-operator|new
-name|UnsupportedOperationException
-argument_list|()
-throw|;
-block|}
-function|@Override     public int docID
-DECL|method|docID
-parameter_list|()
-block|{
-throw|throw
-operator|new
-name|UnsupportedOperationException
-argument_list|()
-throw|;
-block|}
-function|@Override     public int freq
-DECL|method|freq
-parameter_list|()
-block|{
-throw|throw
-operator|new
-name|UnsupportedOperationException
-argument_list|()
-throw|;
-block|}
-function|@Override     public int nextDoc
-DECL|method|nextDoc
-parameter_list|()
-block|{
-throw|throw
-operator|new
-name|UnsupportedOperationException
-argument_list|()
-throw|;
-block|}
-function|@Override     public float score
-DECL|method|score
-parameter_list|()
-block|{
-return|return
-literal|1.0f
-return|;
-block|}
-function|@Override     public long cost
-DECL|method|cost
-parameter_list|()
-block|{
-throw|throw
-operator|new
-name|UnsupportedOperationException
-argument_list|()
-throw|;
-block|}
-function|@Override     public Weight getWeight
-DECL|method|getWeight
-parameter_list|()
-block|{
-throw|throw
-operator|new
-name|UnsupportedOperationException
-argument_list|()
-throw|;
-block|}
-function|}
 comment|/** Throws UOE if Weight.scorer is called */
 DECL|class|CrazyMustUseBulkScorerQuery
 function|private static class CrazyMustUseBulkScorerQuery extends Query

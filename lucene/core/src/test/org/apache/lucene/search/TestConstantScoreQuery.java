@@ -796,14 +796,12 @@ specifier|final
 name|String
 name|bucketScorerClass
 init|=
-name|BooleanScorer
+name|FakeScorer
 operator|.
 name|class
 operator|.
 name|getName
 argument_list|()
-operator|+
-literal|"$FakeScorer"
 decl_stmt|;
 name|checkHits
 argument_list|(
