@@ -8812,10 +8812,6 @@ argument_list|(
 literal|0
 argument_list|)
 argument_list|,
-literal|true
-argument_list|,
-literal|true
-argument_list|,
 literal|null
 argument_list|)
 decl_stmt|;
@@ -9135,10 +9131,6 @@ name|get
 argument_list|(
 literal|0
 argument_list|)
-argument_list|,
-literal|true
-argument_list|,
-literal|true
 argument_list|,
 literal|null
 argument_list|)
@@ -10360,17 +10352,6 @@ literal|"parentID"
 argument_list|)
 argument_list|)
 expr_stmt|;
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"group: "
-operator|+
-name|group
-argument_list|)
-expr_stmt|;
 name|group
 operator|=
 name|groups
@@ -10879,17 +10860,6 @@ name|get
 argument_list|(
 literal|"parentID"
 argument_list|)
-argument_list|)
-expr_stmt|;
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"group: "
-operator|+
-name|group
 argument_list|)
 expr_stmt|;
 name|group

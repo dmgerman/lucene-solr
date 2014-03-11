@@ -454,6 +454,7 @@ parameter_list|)
 throws|throws
 name|IOException
 block|{
+comment|// TODO: shouldn't we AssertingCollector.wrap(collector) here?
 name|super
 operator|.
 name|search

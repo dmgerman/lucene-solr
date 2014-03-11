@@ -180,10 +180,6 @@ name|scorer
 argument_list|(
 name|privateContext
 argument_list|,
-literal|true
-argument_list|,
-literal|false
-argument_list|,
 name|acceptDocs
 argument_list|)
 return|;

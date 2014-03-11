@@ -553,19 +553,12 @@ parameter_list|(
 name|AtomicReaderContext
 name|readerContext
 parameter_list|,
-name|boolean
-name|scoreDocsInOrder
-parameter_list|,
-name|boolean
-name|topScorer
-parameter_list|,
 name|Bits
 name|acceptDocs
 parameter_list|)
 throws|throws
 name|IOException
 block|{
-comment|// Pass scoreDocsInOrder true, topScorer false to our sub:
 specifier|final
 name|Scorer
 name|parentScorer
@@ -575,10 +568,6 @@ operator|.
 name|scorer
 argument_list|(
 name|readerContext
-argument_list|,
-literal|true
-argument_list|,
-literal|false
 argument_list|,
 literal|null
 argument_list|)
