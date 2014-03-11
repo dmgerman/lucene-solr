@@ -99,6 +99,11 @@ name|other
 argument_list|)
 return|;
 block|}
+DECL|field|scoresDocsOutOfOrder
+specifier|final
+name|boolean
+name|scoresDocsOutOfOrder
+decl_stmt|;
 DECL|field|random
 specifier|final
 name|Random
@@ -130,6 +135,18 @@ operator|.
 name|in
 operator|=
 name|in
+expr_stmt|;
+name|scoresDocsOutOfOrder
+operator|=
+name|in
+operator|.
+name|scoresDocsOutOfOrder
+argument_list|()
+operator|||
+name|random
+operator|.
+name|nextBoolean
+argument_list|()
 expr_stmt|;
 block|}
 annotation|@
@@ -320,6 +337,8 @@ name|inScorer
 argument_list|)
 condition|)
 block|{
+comment|// The incoming scorer already has a specialized
+comment|// implementation for BulkScorer, so we should use it:
 return|return
 name|AssertingBulkScorer
 operator|.
@@ -335,6 +354,56 @@ argument_list|()
 argument_list|)
 argument_list|,
 name|inScorer
+argument_list|)
+return|;
+block|}
+elseif|else
+if|if
+condition|(
+name|scoreDocsInOrder
+operator|==
+literal|false
+operator|&&
+name|random
+operator|.
+name|nextBoolean
+argument_list|()
+condition|)
+block|{
+comment|// The caller claims it can handle out-of-order
+comment|// docs; let's confirm that by pulling docs and
+comment|// randomly shuffling them before collection:
+comment|//Scorer scorer = in.scorer(context, acceptDocs);
+name|Scorer
+name|scorer
+init|=
+name|scorer
+argument_list|(
+name|context
+argument_list|,
+name|acceptDocs
+argument_list|)
+decl_stmt|;
+comment|// Scorer should not be null if bulkScorer wasn't:
+assert|assert
+name|scorer
+operator|!=
+literal|null
+assert|;
+return|return
+operator|new
+name|AssertingBulkOutOfOrderScorer
+argument_list|(
+operator|new
+name|Random
+argument_list|(
+name|random
+operator|.
+name|nextLong
+argument_list|()
+argument_list|)
+argument_list|,
+name|scorer
 argument_list|)
 return|;
 block|}
@@ -365,10 +434,7 @@ name|scoresDocsOutOfOrder
 parameter_list|()
 block|{
 return|return
-name|in
-operator|.
 name|scoresDocsOutOfOrder
-argument_list|()
 return|;
 block|}
 block|}

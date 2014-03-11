@@ -46,20 +46,6 @@ name|lucene
 operator|.
 name|analysis
 operator|.
-name|Analyzer
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|analysis
-operator|.
 name|MockAnalyzer
 import|;
 end_import
@@ -294,7 +280,24 @@ name|nextLong
 argument_list|()
 decl_stmt|;
 comment|// must use same seed because of random payloads, etc
-name|Analyzer
+name|int
+name|maxTermLength
+init|=
+name|TestUtil
+operator|.
+name|nextInt
+argument_list|(
+name|random
+argument_list|()
+argument_list|,
+literal|1
+argument_list|,
+name|IndexWriter
+operator|.
+name|MAX_TERM_LENGTH
+argument_list|)
+decl_stmt|;
+name|MockAnalyzer
 name|leftAnalyzer
 init|=
 operator|new
@@ -307,7 +310,14 @@ name|seed
 argument_list|)
 argument_list|)
 decl_stmt|;
-name|Analyzer
+name|leftAnalyzer
+operator|.
+name|setMaxTokenLength
+argument_list|(
+name|maxTermLength
+argument_list|)
+expr_stmt|;
+name|MockAnalyzer
 name|rightAnalyzer
 init|=
 operator|new
@@ -320,6 +330,13 @@ name|seed
 argument_list|)
 argument_list|)
 decl_stmt|;
+name|rightAnalyzer
+operator|.
+name|setMaxTokenLength
+argument_list|(
+name|maxTermLength
+argument_list|)
+expr_stmt|;
 comment|// but these can be different
 comment|// TODO: this turns this into a really big test of Multi*, is that what we want?
 name|IndexWriterConfig

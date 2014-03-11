@@ -27,7 +27,7 @@ import|;
 end_import
 
 begin_comment
-comment|/** Used by {@link BulkScorers} that need to pass a {@link  *  Scorer} to {@link Collector#setScorer}. */
+comment|/** Used by {@link BulkScorer}s that need to pass a {@link  *  Scorer} to {@link Collector#setScorer}. */
 end_comment
 
 begin_class
