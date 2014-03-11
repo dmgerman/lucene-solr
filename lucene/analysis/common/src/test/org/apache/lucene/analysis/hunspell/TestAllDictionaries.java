@@ -200,12 +200,7 @@ literal|"ca_ES.dic"
 block|,
 literal|"ca_ES.aff"
 block|,
-literal|"cop_EG.zip"
-block|,
-literal|"cop_EG.dic"
-block|,
-literal|"cop_EG.aff"
-block|,
+comment|// BUG: broken flag "cop_EG.zip",                "cop_EG.dic",          "cop_EG.aff",
 literal|"cs_CZ.zip"
 block|,
 literal|"cs_CZ.dic"

@@ -284,12 +284,7 @@ literal|"dictionaries/gl_ES.dic"
 block|,
 literal|"dictionaries/gl_ES.aff"
 block|,
-literal|"corrector_orthographic_de_interlingua-6.0-fn+sm+tb+fx.xpi"
-block|,
-literal|"dictionaries/ia-ia.dic"
-block|,
-literal|"dictionaries/ia-ia.aff"
-block|,
+comment|//BUG: broken flags "corrector_orthographic_de_interlingua-6.0-fn+sm+tb+fx.xpi",                      "dictionaries/ia-ia.dic",             "dictionaries/ia-ia.aff",
 literal|"corrector_ortografico_aragones-0.2-fx+tb+sm.xpi"
 block|,
 literal|"dictionaries/an_ES.dic"
@@ -802,12 +797,7 @@ literal|"dictionaries/tn-ZA.dic"
 block|,
 literal|"dictionaries/tn-ZA.aff"
 block|,
-literal|"turkce_yazm_denetimi-3.5-sm+tb+fx.xpi"
-block|,
-literal|"dictionaries/tr.dic"
-block|,
-literal|"dictionaries/tr.aff"
-block|,
+comment|//BUG: missing FLAG declaration "turkce_yazm_denetimi-3.5-sm+tb+fx.xpi",                                          "dictionaries/tr.dic",                "dictionaries/tr.aff",
 literal|"turkmen_spell_checker_dictionary-0.1.6-tb+fx+sm.xpi"
 block|,
 literal|"dictionaries/tk_TM.dic"
