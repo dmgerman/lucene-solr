@@ -34,6 +34,8 @@ DECL|field|size
 specifier|private
 name|int
 name|size
+init|=
+literal|0
 decl_stmt|;
 DECL|field|maxSize
 specifier|private
@@ -64,11 +66,6 @@ literal|true
 argument_list|)
 expr_stmt|;
 block|}
-annotation|@
-name|SuppressWarnings
-argument_list|(
-literal|"unchecked"
-argument_list|)
 DECL|method|PriorityQueue
 specifier|public
 name|PriorityQueue
@@ -80,10 +77,7 @@ name|boolean
 name|prepopulate
 parameter_list|)
 block|{
-name|size
-operator|=
-literal|0
-expr_stmt|;
+specifier|final
 name|int
 name|heapSize
 decl_stmt|;
@@ -148,8 +142,17 @@ literal|1
 expr_stmt|;
 block|}
 block|}
-name|heap
-operator|=
+comment|// T is unbounded type, so this unchecked cast works always:
+annotation|@
+name|SuppressWarnings
+argument_list|(
+literal|"unchecked"
+argument_list|)
+specifier|final
+name|T
+index|[]
+name|h
+init|=
 operator|(
 name|T
 index|[]
@@ -159,8 +162,13 @@ name|Object
 index|[
 name|heapSize
 index|]
+decl_stmt|;
+name|this
+operator|.
+name|heap
+operator|=
+name|h
 expr_stmt|;
-comment|// T is unbounded type, so this unchecked cast works always
 name|this
 operator|.
 name|maxSize
