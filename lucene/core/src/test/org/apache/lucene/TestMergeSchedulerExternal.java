@@ -16,11 +16,15 @@ end_comment
 
 begin_import
 import|import
-name|java
+name|org
 operator|.
-name|io
+name|apache
 operator|.
-name|IOException
+name|lucene
+operator|.
+name|analysis
+operator|.
+name|MockAnalyzer
 import|;
 end_import
 
@@ -32,9 +36,9 @@ name|apache
 operator|.
 name|lucene
 operator|.
-name|util
+name|document
 operator|.
-name|LuceneTestCase
+name|Document
 import|;
 end_import
 
@@ -46,9 +50,9 @@ name|apache
 operator|.
 name|lucene
 operator|.
-name|store
+name|document
 operator|.
-name|Directory
+name|Field
 import|;
 end_import
 
@@ -60,23 +64,9 @@ name|apache
 operator|.
 name|lucene
 operator|.
-name|store
+name|index
 operator|.
-name|MockDirectoryWrapper
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|store
-operator|.
-name|RAMDirectory
+name|ConcurrentMergeScheduler
 import|;
 end_import
 
@@ -146,7 +136,9 @@ name|lucene
 operator|.
 name|index
 operator|.
-name|ConcurrentMergeScheduler
+name|MergePolicy
+operator|.
+name|OneMerge
 import|;
 end_import
 
@@ -174,9 +166,7 @@ name|lucene
 operator|.
 name|index
 operator|.
-name|MergePolicy
-operator|.
-name|OneMerge
+name|MergeTrigger
 import|;
 end_import
 
@@ -188,9 +178,9 @@ name|apache
 operator|.
 name|lucene
 operator|.
-name|analysis
+name|store
 operator|.
-name|MockAnalyzer
+name|Directory
 import|;
 end_import
 
@@ -202,9 +192,9 @@ name|apache
 operator|.
 name|lucene
 operator|.
-name|document
+name|store
 operator|.
-name|Document
+name|MockDirectoryWrapper
 import|;
 end_import
 
@@ -216,9 +206,33 @@ name|apache
 operator|.
 name|lucene
 operator|.
-name|document
+name|store
 operator|.
-name|Field
+name|RAMDirectory
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|util
+operator|.
+name|LuceneTestCase
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
+name|io
+operator|.
+name|IOException
 import|;
 end_import
 
@@ -666,6 +680,12 @@ name|merge
 parameter_list|(
 name|IndexWriter
 name|writer
+parameter_list|,
+name|MergeTrigger
+name|trigger
+parameter_list|,
+name|boolean
+name|newMergesFound
 parameter_list|)
 throws|throws
 name|IOException

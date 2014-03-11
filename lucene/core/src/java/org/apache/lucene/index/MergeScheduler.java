@@ -57,7 +57,7 @@ specifier|protected
 name|MergeScheduler
 parameter_list|()
 block|{   }
-comment|/** Run the merges provided by {@link IndexWriter#getNextMerge()}. */
+comment|/** Run the merges provided by {@link IndexWriter#getNextMerge()}.    * @param writer the {@link IndexWriter} to obtain the merges from.    * @param trigger the {@link MergeTrigger} that caused this merge to happen    * @param newMergesFound<code>true</code> iff any new merges were found by the caller otherwise<code>false</code>    * */
 DECL|method|merge
 specifier|public
 specifier|abstract
@@ -66,6 +66,12 @@ name|merge
 parameter_list|(
 name|IndexWriter
 name|writer
+parameter_list|,
+name|MergeTrigger
+name|trigger
+parameter_list|,
+name|boolean
+name|newMergesFound
 parameter_list|)
 throws|throws
 name|IOException
