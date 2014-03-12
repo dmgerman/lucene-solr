@@ -257,26 +257,6 @@ argument_list|(
 literal|"java.vendor"
 argument_list|)
 decl_stmt|;
-comment|/** @deprecated With Lucene 5.0, we are always on Java 7 */
-annotation|@
-name|Deprecated
-DECL|field|JRE_IS_MINIMUM_JAVA7
-specifier|public
-specifier|static
-specifier|final
-name|boolean
-name|JRE_IS_MINIMUM_JAVA7
-init|=
-operator|new
-name|Boolean
-argument_list|(
-literal|true
-argument_list|)
-operator|.
-name|booleanValue
-argument_list|()
-decl_stmt|;
-comment|// prevent inlining in foreign class files
 DECL|field|JRE_IS_MINIMUM_JAVA8
 specifier|public
 specifier|static

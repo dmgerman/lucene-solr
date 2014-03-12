@@ -249,13 +249,6 @@ name|trace
 argument_list|)
 expr_stmt|;
 block|}
-if|if
-condition|(
-name|Constants
-operator|.
-name|JRE_IS_MINIMUM_JAVA7
-condition|)
-block|{
 name|assertTrue
 argument_list|(
 literal|"Stack trace does not contain first suppressed Exception: "
@@ -284,7 +277,6 @@ literal|"java.io.IOException: TEST-IO-EXCEPTION-2"
 argument_list|)
 argument_list|)
 expr_stmt|;
-block|}
 block|}
 catch|catch
 parameter_list|(
@@ -415,13 +407,6 @@ name|trace
 argument_list|)
 expr_stmt|;
 block|}
-if|if
-condition|(
-name|Constants
-operator|.
-name|JRE_IS_MINIMUM_JAVA7
-condition|)
-block|{
 name|assertTrue
 argument_list|(
 literal|"Stack trace does not contain suppressed Exception: "
@@ -436,7 +421,6 @@ literal|"java.io.IOException: TEST-IO-EXCEPTION-2"
 argument_list|)
 argument_list|)
 expr_stmt|;
-block|}
 block|}
 block|}
 block|}
