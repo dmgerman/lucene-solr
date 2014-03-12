@@ -140,6 +140,37 @@ argument_list|()
 argument_list|)
 expr_stmt|;
 block|}
+annotation|@
+name|Test
+DECL|method|testDrillDown
+specifier|public
+name|void
+name|testDrillDown
+parameter_list|()
+throws|throws
+name|Exception
+block|{
+name|FacetResult
+name|result
+init|=
+operator|new
+name|AssociationsFacetsExample
+argument_list|()
+operator|.
+name|runDrillDown
+argument_list|()
+decl_stmt|;
+name|assertEquals
+argument_list|(
+literal|"dim=genre path=[] value=-1.0 childCount=2\n  computing (0.75)\n  software (0.34)\n"
+argument_list|,
+name|result
+operator|.
+name|toString
+argument_list|()
+argument_list|)
+expr_stmt|;
+block|}
 block|}
 end_class
 
