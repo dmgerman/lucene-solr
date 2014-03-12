@@ -367,9 +367,7 @@ name|documents
 operator|=
 operator|new
 name|ArrayList
-argument_list|<
-name|SolrInputDocument
-argument_list|>
+argument_list|<>
 argument_list|(
 name|batch
 argument_list|)
@@ -490,9 +488,7 @@ name|documents
 operator|=
 operator|new
 name|ArrayList
-argument_list|<
-name|SolrInputDocument
-argument_list|>
+argument_list|<>
 argument_list|(
 name|documents
 argument_list|)
@@ -546,9 +542,7 @@ name|documents
 operator|=
 operator|new
 name|ArrayList
-argument_list|<
-name|SolrInputDocument
-argument_list|>
+argument_list|<>
 argument_list|()
 expr_stmt|;
 block|}

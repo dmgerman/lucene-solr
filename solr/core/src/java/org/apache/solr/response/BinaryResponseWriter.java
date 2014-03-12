@@ -316,9 +316,7 @@ name|KNOWN_TYPES
 init|=
 operator|new
 name|HashSet
-argument_list|<
-name|Class
-argument_list|>
+argument_list|<>
 argument_list|()
 decl_stmt|;
 annotation|@

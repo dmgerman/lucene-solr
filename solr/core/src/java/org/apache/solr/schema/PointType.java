@@ -422,9 +422,7 @@ name|f
 init|=
 operator|new
 name|ArrayList
-argument_list|<
-name|StorableField
-argument_list|>
+argument_list|<>
 argument_list|(
 name|dimension
 operator|+
@@ -572,9 +570,7 @@ name|vs
 init|=
 operator|new
 name|ArrayList
-argument_list|<
-name|ValueSource
-argument_list|>
+argument_list|<>
 argument_list|(
 name|dimension
 argument_list|)

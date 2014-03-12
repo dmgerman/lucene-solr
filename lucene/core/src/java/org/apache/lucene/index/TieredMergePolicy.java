@@ -823,9 +823,7 @@ name|toBeMerged
 init|=
 operator|new
 name|HashSet
-argument_list|<
-name|SegmentCommitInfo
-argument_list|>
+argument_list|<>
 argument_list|()
 decl_stmt|;
 specifier|final
@@ -837,9 +835,7 @@ name|infosSorted
 init|=
 operator|new
 name|ArrayList
-argument_list|<
-name|SegmentCommitInfo
-argument_list|>
+argument_list|<>
 argument_list|(
 name|infos
 operator|.
@@ -1146,9 +1142,7 @@ name|eligible
 init|=
 operator|new
 name|ArrayList
-argument_list|<
-name|SegmentCommitInfo
-argument_list|>
+argument_list|<>
 argument_list|()
 decl_stmt|;
 for|for
@@ -1342,9 +1336,7 @@ name|candidate
 init|=
 operator|new
 name|ArrayList
-argument_list|<
-name|SegmentCommitInfo
-argument_list|>
+argument_list|<>
 argument_list|()
 decl_stmt|;
 name|boolean
@@ -1994,9 +1986,7 @@ name|eligible
 init|=
 operator|new
 name|ArrayList
-argument_list|<
-name|SegmentCommitInfo
-argument_list|>
+argument_list|<>
 argument_list|()
 decl_stmt|;
 name|boolean
@@ -2415,9 +2405,7 @@ name|eligible
 init|=
 operator|new
 name|ArrayList
-argument_list|<
-name|SegmentCommitInfo
-argument_list|>
+argument_list|<>
 argument_list|()
 decl_stmt|;
 specifier|final

@@ -475,9 +475,7 @@ name|srq1
 init|=
 operator|new
 name|SpanMultiTermQueryWrapper
-argument_list|<
-name|RegexQuery
-argument_list|>
+argument_list|<>
 argument_list|(
 operator|new
 name|RegexQuery
@@ -494,9 +492,7 @@ name|srq2
 init|=
 operator|new
 name|SpanMultiTermQueryWrapper
-argument_list|<
-name|RegexQuery
-argument_list|>
+argument_list|<>
 argument_list|(
 operator|new
 name|RegexQuery

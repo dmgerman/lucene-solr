@@ -153,14 +153,7 @@ name|sidx
 init|=
 operator|new
 name|WeakHashMap
-argument_list|<
-name|IndexReader
-argument_list|,
-name|ShapeFieldCache
-argument_list|<
-name|T
-argument_list|>
-argument_list|>
+argument_list|<>
 argument_list|()
 decl_stmt|;
 DECL|field|defaultSize
@@ -274,9 +267,7 @@ name|idx
 operator|=
 operator|new
 name|ShapeFieldCache
-argument_list|<
-name|T
-argument_list|>
+argument_list|<>
 argument_list|(
 name|reader
 operator|.

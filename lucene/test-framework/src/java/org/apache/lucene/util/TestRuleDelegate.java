@@ -162,9 +162,7 @@ block|{
 return|return
 operator|new
 name|TestRuleDelegate
-argument_list|<
-name|T
-argument_list|>
+argument_list|<>
 argument_list|(
 name|delegate
 argument_list|)

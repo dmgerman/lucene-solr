@@ -212,9 +212,7 @@ name|clauses
 init|=
 operator|new
 name|ArrayList
-argument_list|<
-name|FilterClause
-argument_list|>
+argument_list|<>
 argument_list|()
 decl_stmt|;
 comment|/**    * Returns the a DocIdSetIterator representing the Boolean composition    * of the filters that have been added.    */

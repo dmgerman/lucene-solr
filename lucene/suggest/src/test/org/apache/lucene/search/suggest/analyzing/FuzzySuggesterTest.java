@@ -470,9 +470,7 @@ name|keys
 init|=
 operator|new
 name|ArrayList
-argument_list|<
-name|Input
-argument_list|>
+argument_list|<>
 argument_list|()
 decl_stmt|;
 name|int
@@ -735,9 +733,7 @@ name|keys
 init|=
 operator|new
 name|ArrayList
-argument_list|<
-name|Input
-argument_list|>
+argument_list|<>
 argument_list|()
 decl_stmt|;
 name|int
@@ -4276,9 +4272,7 @@ name|slowCompletor
 init|=
 operator|new
 name|ArrayList
-argument_list|<
-name|TermFreqPayload2
-argument_list|>
+argument_list|<>
 argument_list|()
 decl_stmt|;
 specifier|final
@@ -4290,9 +4284,7 @@ name|allPrefixes
 init|=
 operator|new
 name|TreeSet
-argument_list|<
-name|String
-argument_list|>
+argument_list|<>
 argument_list|()
 decl_stmt|;
 specifier|final
@@ -4304,9 +4296,7 @@ name|seen
 init|=
 operator|new
 name|HashSet
-argument_list|<
-name|String
-argument_list|>
+argument_list|<>
 argument_list|()
 decl_stmt|;
 name|Input
@@ -4753,9 +4743,7 @@ name|sorted
 init|=
 operator|new
 name|ArrayList
-argument_list|<
-name|TermFreqPayload2
-argument_list|>
+argument_list|<>
 argument_list|(
 name|slowCompletor
 argument_list|)
@@ -4935,9 +4923,7 @@ name|matches
 init|=
 operator|new
 name|ArrayList
-argument_list|<
-name|LookupResult
-argument_list|>
+argument_list|<>
 argument_list|()
 decl_stmt|;
 comment|// "Analyze" the key:
@@ -6573,9 +6559,7 @@ name|answers
 init|=
 operator|new
 name|ArrayList
-argument_list|<
-name|Input
-argument_list|>
+argument_list|<>
 argument_list|()
 decl_stmt|;
 specifier|final
@@ -6587,9 +6571,7 @@ name|seen
 init|=
 operator|new
 name|HashSet
-argument_list|<
-name|String
-argument_list|>
+argument_list|<>
 argument_list|()
 decl_stmt|;
 for|for
@@ -7214,9 +7196,7 @@ name|results
 init|=
 operator|new
 name|ArrayList
-argument_list|<
-name|LookupResult
-argument_list|>
+argument_list|<>
 argument_list|()
 decl_stmt|;
 specifier|final

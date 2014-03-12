@@ -1023,11 +1023,7 @@ name|args
 operator|=
 operator|new
 name|HashMap
-argument_list|<
-name|String
-argument_list|,
-name|Object
-argument_list|>
+argument_list|<>
 argument_list|(
 name|props
 argument_list|)
@@ -1556,9 +1552,7 @@ name|properties
 init|=
 operator|new
 name|SimpleOrderedMap
-argument_list|<
-name|Object
-argument_list|>
+argument_list|<>
 argument_list|()
 decl_stmt|;
 name|properties

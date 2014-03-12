@@ -403,11 +403,7 @@ name|init
 init|=
 operator|new
 name|HashMap
-argument_list|<
-name|String
-argument_list|,
-name|String
-argument_list|>
+argument_list|<>
 argument_list|()
 decl_stmt|;
 name|init
@@ -1870,9 +1866,7 @@ name|results
 init|=
 operator|new
 name|ArrayList
-argument_list|<
-name|String
-argument_list|>
+argument_list|<>
 argument_list|()
 decl_stmt|;
 while|while
@@ -2223,9 +2217,7 @@ name|changeSet
 init|=
 operator|new
 name|HashSet
-argument_list|<
-name|Integer
-argument_list|>
+argument_list|<>
 argument_list|()
 decl_stmt|;
 name|Set
@@ -2236,9 +2228,7 @@ name|deleteSet
 init|=
 operator|new
 name|HashSet
-argument_list|<
-name|Integer
-argument_list|>
+argument_list|<>
 argument_list|()
 decl_stmt|;
 name|Set
@@ -2249,9 +2239,7 @@ name|addSet
 init|=
 operator|new
 name|HashSet
-argument_list|<
-name|Integer
-argument_list|>
+argument_list|<>
 argument_list|()
 decl_stmt|;
 name|Connection
@@ -2798,9 +2786,7 @@ name|changeSet
 init|=
 operator|new
 name|HashSet
-argument_list|<
-name|String
-argument_list|>
+argument_list|<>
 argument_list|()
 decl_stmt|;
 name|Connection

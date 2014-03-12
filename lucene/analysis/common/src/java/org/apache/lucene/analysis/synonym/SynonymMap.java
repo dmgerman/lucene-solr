@@ -390,11 +390,7 @@ name|workingSet
 init|=
 operator|new
 name|HashMap
-argument_list|<
-name|CharsRef
-argument_list|,
-name|MapEntry
-argument_list|>
+argument_list|<>
 argument_list|()
 decl_stmt|;
 DECL|field|words
@@ -466,9 +462,7 @@ name|ords
 init|=
 operator|new
 name|ArrayList
-argument_list|<
-name|Integer
-argument_list|>
+argument_list|<>
 argument_list|()
 decl_stmt|;
 block|}
@@ -1140,9 +1134,7 @@ operator|.
 name|fst
 operator|.
 name|Builder
-argument_list|<
-name|BytesRef
-argument_list|>
+argument_list|<>
 argument_list|(
 name|FST
 operator|.
@@ -1185,9 +1177,7 @@ name|dedupSet
 operator|=
 operator|new
 name|HashSet
-argument_list|<
-name|Integer
-argument_list|>
+argument_list|<>
 argument_list|()
 expr_stmt|;
 block|}

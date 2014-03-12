@@ -656,9 +656,7 @@ block|{
 return|return
 operator|new
 name|SimpleOrderedMap
-argument_list|<
-name|Object
-argument_list|>
+argument_list|<>
 argument_list|()
 return|;
 block|}
@@ -1186,9 +1184,7 @@ name|nl
 init|=
 operator|new
 name|SimpleOrderedMap
-argument_list|<
-name|Object
-argument_list|>
+argument_list|<>
 argument_list|()
 decl_stmt|;
 name|KnownType
@@ -1589,9 +1585,7 @@ name|vals
 init|=
 operator|new
 name|ArrayList
-argument_list|<
-name|Object
-argument_list|>
+argument_list|<>
 argument_list|()
 decl_stmt|;
 name|int

@@ -338,9 +338,7 @@ name|writer
 init|=
 operator|new
 name|SetOnce
-argument_list|<
-name|IndexWriter
-argument_list|>
+argument_list|<>
 argument_list|()
 decl_stmt|;
 comment|/**    * Sets the {@link IndexWriter} this config is attached to.    *     * @throws AlreadySetException    *           if this config is already attached to a writer.    */

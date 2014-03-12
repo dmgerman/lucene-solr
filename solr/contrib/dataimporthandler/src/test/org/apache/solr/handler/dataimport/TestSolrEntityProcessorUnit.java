@@ -189,9 +189,7 @@ name|docs
 init|=
 operator|new
 name|ArrayList
-argument_list|<
-name|Doc
-argument_list|>
+argument_list|<>
 argument_list|()
 decl_stmt|;
 name|List
@@ -202,9 +200,7 @@ name|types
 init|=
 operator|new
 name|ArrayList
-argument_list|<
-name|FldType
-argument_list|>
+argument_list|<>
 argument_list|()
 decl_stmt|;
 name|types
@@ -398,9 +394,7 @@ name|types
 init|=
 operator|new
 name|ArrayList
-argument_list|<
-name|FldType
-argument_list|>
+argument_list|<>
 argument_list|()
 decl_stmt|;
 name|types
@@ -467,9 +461,7 @@ name|previousIds
 init|=
 operator|new
 name|HashSet
-argument_list|<
-name|Comparable
-argument_list|>
+argument_list|<>
 argument_list|()
 decl_stmt|;
 name|List
@@ -480,9 +472,7 @@ name|docs
 init|=
 operator|new
 name|ArrayList
-argument_list|<
-name|Doc
-argument_list|>
+argument_list|<>
 argument_list|(
 name|numDocs
 argument_list|)

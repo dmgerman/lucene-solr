@@ -62207,11 +62207,7 @@ name|upperCaseVariantsAccepted
 init|=
 operator|new
 name|HashMap
-argument_list|<
-name|String
-argument_list|,
-name|String
-argument_list|>
+argument_list|<>
 argument_list|()
 decl_stmt|;
 static|static
@@ -62283,9 +62279,7 @@ name|entityValues
 init|=
 operator|new
 name|CharArrayMap
-argument_list|<
-name|Character
-argument_list|>
+argument_list|<>
 argument_list|(
 name|Version
 operator|.

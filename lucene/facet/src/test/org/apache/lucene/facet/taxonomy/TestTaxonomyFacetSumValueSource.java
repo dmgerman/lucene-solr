@@ -3628,11 +3628,7 @@ index|]
 operator|=
 operator|new
 name|HashMap
-argument_list|<
-name|String
-argument_list|,
-name|Float
-argument_list|>
+argument_list|<>
 argument_list|()
 expr_stmt|;
 block|}
@@ -3767,9 +3763,7 @@ name|expected
 init|=
 operator|new
 name|ArrayList
-argument_list|<
-name|FacetResult
-argument_list|>
+argument_list|<>
 argument_list|()
 decl_stmt|;
 for|for
@@ -3795,9 +3789,7 @@ name|labelValues
 init|=
 operator|new
 name|ArrayList
-argument_list|<
-name|LabelAndValue
-argument_list|>
+argument_list|<>
 argument_list|()
 decl_stmt|;
 name|double

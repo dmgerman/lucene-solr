@@ -240,9 +240,7 @@ name|tests
 init|=
 operator|new
 name|ArrayList
-argument_list|<
-name|SpatialTestQuery
-argument_list|>
+argument_list|<>
 argument_list|()
 decl_stmt|;
 while|while

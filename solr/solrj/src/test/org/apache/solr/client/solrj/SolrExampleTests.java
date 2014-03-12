@@ -834,9 +834,7 @@ name|docs
 init|=
 operator|new
 name|ArrayList
-argument_list|<
-name|SolrInputDocument
-argument_list|>
+argument_list|<>
 argument_list|()
 decl_stmt|;
 name|SolrInputDocument
@@ -1842,9 +1840,7 @@ name|docs
 init|=
 operator|new
 name|ArrayList
-argument_list|<
-name|SolrInputDocument
-argument_list|>
+argument_list|<>
 argument_list|()
 decl_stmt|;
 name|docs
@@ -2432,9 +2428,7 @@ name|docs
 init|=
 operator|new
 name|ArrayList
-argument_list|<
-name|SolrInputDocument
-argument_list|>
+argument_list|<>
 argument_list|()
 decl_stmt|;
 for|for
@@ -5012,9 +5006,7 @@ name|docs
 init|=
 operator|new
 name|ArrayList
-argument_list|<
-name|SolrInputDocument
-argument_list|>
+argument_list|<>
 argument_list|(
 literal|10
 argument_list|)
@@ -5475,9 +5467,7 @@ name|docs
 init|=
 operator|new
 name|ArrayList
-argument_list|<
-name|SolrInputDocument
-argument_list|>
+argument_list|<>
 argument_list|()
 decl_stmt|;
 name|docs
@@ -7842,11 +7832,7 @@ name|oper
 init|=
 operator|new
 name|HashMap
-argument_list|<
-name|String
-argument_list|,
-name|Object
-argument_list|>
+argument_list|<>
 argument_list|()
 decl_stmt|;
 comment|//need better api for this???
@@ -8296,14 +8282,7 @@ name|operation
 init|=
 operator|new
 name|HashMap
-argument_list|<
-name|String
-argument_list|,
-name|List
-argument_list|<
-name|String
-argument_list|>
-argument_list|>
+argument_list|<>
 argument_list|()
 decl_stmt|;
 name|operation

@@ -699,9 +699,7 @@ name|info
 init|=
 operator|new
 name|SimpleOrderedMap
-argument_list|<
-name|Object
-argument_list|>
+argument_list|<>
 argument_list|()
 decl_stmt|;
 if|if
@@ -824,9 +822,7 @@ name|loggers
 init|=
 operator|new
 name|ArrayList
-argument_list|<
-name|LoggerInfo
-argument_list|>
+argument_list|<>
 argument_list|(
 name|watcher
 operator|.
@@ -852,12 +848,7 @@ name|info
 init|=
 operator|new
 name|ArrayList
-argument_list|<
-name|SimpleOrderedMap
-argument_list|<
-name|?
-argument_list|>
-argument_list|>
+argument_list|<>
 argument_list|()
 decl_stmt|;
 for|for

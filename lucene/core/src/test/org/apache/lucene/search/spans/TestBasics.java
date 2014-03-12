@@ -5169,10 +5169,7 @@ name|list
 operator|=
 operator|new
 name|ArrayList
-argument_list|<
-name|byte
-index|[]
-argument_list|>
+argument_list|<>
 argument_list|()
 expr_stmt|;
 name|list
@@ -5520,10 +5517,7 @@ name|list
 operator|=
 operator|new
 name|ArrayList
-argument_list|<
-name|byte
-index|[]
-argument_list|>
+argument_list|<>
 argument_list|()
 expr_stmt|;
 name|list
@@ -5781,10 +5775,7 @@ name|payloads
 init|=
 operator|new
 name|ArrayList
-argument_list|<
-name|byte
-index|[]
-argument_list|>
+argument_list|<>
 argument_list|()
 decl_stmt|;
 name|BytesRef

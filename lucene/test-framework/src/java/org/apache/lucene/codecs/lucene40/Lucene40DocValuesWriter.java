@@ -1114,9 +1114,7 @@ name|uniqueValues
 init|=
 operator|new
 name|HashSet
-argument_list|<
-name|BytesRef
-argument_list|>
+argument_list|<>
 argument_list|()
 decl_stmt|;
 name|int
@@ -2122,9 +2120,7 @@ name|dictionary
 init|=
 operator|new
 name|TreeSet
-argument_list|<
-name|BytesRef
-argument_list|>
+argument_list|<>
 argument_list|()
 decl_stmt|;
 for|for
@@ -2375,9 +2371,7 @@ name|dictionary
 init|=
 operator|new
 name|TreeSet
-argument_list|<
-name|BytesRef
-argument_list|>
+argument_list|<>
 argument_list|()
 decl_stmt|;
 for|for
@@ -2433,11 +2427,7 @@ name|valueToAddress
 init|=
 operator|new
 name|HashMap
-argument_list|<
-name|BytesRef
-argument_list|,
-name|Long
-argument_list|>
+argument_list|<>
 argument_list|()
 decl_stmt|;
 for|for

@@ -834,11 +834,7 @@ name|argsWrap
 init|=
 operator|new
 name|MapListener
-argument_list|<
-name|String
-argument_list|,
-name|String
-argument_list|>
+argument_list|<>
 argument_list|(
 name|args
 argument_list|)
@@ -1045,9 +1041,7 @@ name|result
 init|=
 operator|new
 name|ArrayList
-argument_list|<
-name|StorableField
-argument_list|>
+argument_list|<>
 argument_list|()
 decl_stmt|;
 if|if

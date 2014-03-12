@@ -89,11 +89,7 @@ name|lru
 init|=
 operator|new
 name|LRUHashMap
-argument_list|<
-name|String
-argument_list|,
-name|String
-argument_list|>
+argument_list|<>
 argument_list|(
 literal|3
 argument_list|)

@@ -413,11 +413,7 @@ name|rValues
 init|=
 operator|new
 name|ArrayList
-argument_list|<
-name|PathQueryNode
-operator|.
-name|QueryText
-argument_list|>
+argument_list|<>
 argument_list|()
 decl_stmt|;
 for|for
@@ -684,9 +680,7 @@ name|localValues
 init|=
 operator|new
 name|ArrayList
-argument_list|<
-name|QueryText
-argument_list|>
+argument_list|<>
 argument_list|()
 decl_stmt|;
 for|for

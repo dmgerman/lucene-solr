@@ -99,9 +99,7 @@ name|loader
 init|=
 operator|new
 name|NamedSPILoader
-argument_list|<
-name|Codec
-argument_list|>
+argument_list|<>
 argument_list|(
 name|Codec
 operator|.

@@ -447,11 +447,7 @@ name|fieldWeightedSpanTerms
 operator|=
 operator|new
 name|HashMap
-argument_list|<
-name|String
-argument_list|,
-name|WeightedSpanTerm
-argument_list|>
+argument_list|<>
 argument_list|(
 name|weightedTerms
 operator|.
@@ -958,9 +954,7 @@ name|foundTerms
 operator|=
 operator|new
 name|HashSet
-argument_list|<
-name|String
-argument_list|>
+argument_list|<>
 argument_list|()
 expr_stmt|;
 name|totalScore

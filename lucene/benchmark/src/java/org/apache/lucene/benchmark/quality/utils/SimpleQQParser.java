@@ -204,9 +204,7 @@ name|queryParser
 init|=
 operator|new
 name|ThreadLocal
-argument_list|<
-name|QueryParser
-argument_list|>
+argument_list|<>
 argument_list|()
 decl_stmt|;
 comment|/**    * Constructor of a simple qq parser.    * @param qqNames name-value pairs of quality query to use for creating the query    * @param indexField corresponding index field      */

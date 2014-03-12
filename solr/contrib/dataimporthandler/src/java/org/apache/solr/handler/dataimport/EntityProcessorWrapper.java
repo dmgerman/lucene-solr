@@ -247,9 +247,7 @@ name|children
 init|=
 operator|new
 name|ArrayList
-argument_list|<
-name|EntityProcessorWrapper
-argument_list|>
+argument_list|<>
 argument_list|()
 decl_stmt|;
 DECL|field|docBuilder
@@ -1025,14 +1023,7 @@ name|tmpRows
 init|=
 operator|new
 name|ArrayList
-argument_list|<
-name|Map
-argument_list|<
-name|String
-argument_list|,
-name|Object
-argument_list|>
-argument_list|>
+argument_list|<>
 argument_list|()
 decl_stmt|;
 for|for

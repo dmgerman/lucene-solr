@@ -532,9 +532,7 @@ name|hiddenRet
 init|=
 operator|new
 name|HashSet
-argument_list|<
-name|String
-argument_list|>
+argument_list|<>
 argument_list|()
 decl_stmt|;
 comment|// Build a list of hidden files
@@ -750,12 +748,7 @@ name|files
 init|=
 operator|new
 name|SimpleOrderedMap
-argument_list|<
-name|SimpleOrderedMap
-argument_list|<
-name|Object
-argument_list|>
-argument_list|>
+argument_list|<>
 argument_list|()
 decl_stmt|;
 for|for
@@ -792,9 +785,7 @@ name|fileInfo
 init|=
 operator|new
 name|SimpleOrderedMap
-argument_list|<
-name|Object
-argument_list|>
+argument_list|<>
 argument_list|()
 decl_stmt|;
 name|files
@@ -1166,12 +1157,7 @@ name|files
 init|=
 operator|new
 name|SimpleOrderedMap
-argument_list|<
-name|SimpleOrderedMap
-argument_list|<
-name|Object
-argument_list|>
-argument_list|>
+argument_list|<>
 argument_list|()
 decl_stmt|;
 for|for
@@ -1246,9 +1232,7 @@ name|fileInfo
 init|=
 operator|new
 name|SimpleOrderedMap
-argument_list|<
-name|Object
-argument_list|>
+argument_list|<>
 argument_list|()
 decl_stmt|;
 name|files

@@ -413,9 +413,7 @@ name|srq
 init|=
 operator|new
 name|SpanMultiTermQueryWrapper
-argument_list|<
-name|RegexQuery
-argument_list|>
+argument_list|<>
 argument_list|(
 operator|new
 name|RegexQuery

@@ -335,9 +335,7 @@ name|fieldNames
 init|=
 operator|new
 name|ArrayList
-argument_list|<
-name|String
-argument_list|>
+argument_list|<>
 argument_list|(
 name|doc
 operator|.
@@ -810,9 +808,7 @@ name|classes
 init|=
 operator|new
 name|ArrayList
-argument_list|<
-name|Class
-argument_list|>
+argument_list|<>
 argument_list|(
 name|params
 operator|.

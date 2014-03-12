@@ -889,9 +889,7 @@ name|nodes
 init|=
 operator|new
 name|ArrayList
-argument_list|<
-name|Node
-argument_list|>
+argument_list|<>
 argument_list|()
 decl_stmt|;
 name|ZkNodeProps
@@ -2098,9 +2096,7 @@ name|nodes
 init|=
 operator|new
 name|ArrayList
-argument_list|<
-name|Node
-argument_list|>
+argument_list|<>
 argument_list|()
 decl_stmt|;
 specifier|final
@@ -2343,9 +2339,7 @@ name|nodes
 init|=
 operator|new
 name|ArrayList
-argument_list|<
-name|Node
-argument_list|>
+argument_list|<>
 argument_list|()
 decl_stmt|;
 name|ZkNodeProps
@@ -2654,9 +2648,7 @@ name|nodes
 init|=
 operator|new
 name|ArrayList
-argument_list|<
-name|Node
-argument_list|>
+argument_list|<>
 argument_list|()
 decl_stmt|;
 name|ZkNodeProps
@@ -2944,9 +2936,7 @@ name|nodes
 init|=
 operator|new
 name|ArrayList
-argument_list|<
-name|Node
-argument_list|>
+argument_list|<>
 argument_list|()
 decl_stmt|;
 name|ZkNodeProps

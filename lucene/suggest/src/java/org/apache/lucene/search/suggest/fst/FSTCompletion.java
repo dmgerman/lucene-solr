@@ -237,9 +237,7 @@ name|EMPTY_RESULT
 init|=
 operator|new
 name|ArrayList
-argument_list|<
-name|Completion
-argument_list|>
+argument_list|<>
 argument_list|()
 decl_stmt|;
 comment|/**    * Finite state automaton encoding all the lookup terms. See class notes for    * details.    */
@@ -413,12 +411,7 @@ name|rootArcs
 init|=
 operator|new
 name|ArrayList
-argument_list|<
-name|Arc
-argument_list|<
-name|Object
-argument_list|>
-argument_list|>
+argument_list|<>
 argument_list|()
 decl_stmt|;
 name|Arc
@@ -433,9 +426,7 @@ name|getFirstArc
 argument_list|(
 operator|new
 name|Arc
-argument_list|<
-name|Object
-argument_list|>
+argument_list|<>
 argument_list|()
 argument_list|)
 decl_stmt|;
@@ -471,9 +462,7 @@ name|add
 argument_list|(
 operator|new
 name|Arc
-argument_list|<
-name|Object
-argument_list|>
+argument_list|<>
 argument_list|()
 operator|.
 name|copyFrom
@@ -568,9 +557,7 @@ operator|new
 name|FST
 operator|.
 name|Arc
-argument_list|<
-name|Object
-argument_list|>
+argument_list|<>
 argument_list|()
 decl_stmt|;
 name|FST
@@ -892,9 +879,7 @@ name|res
 init|=
 operator|new
 name|ArrayList
-argument_list|<
-name|Completion
-argument_list|>
+argument_list|<>
 argument_list|(
 name|Math
 operator|.
@@ -961,9 +946,7 @@ operator|new
 name|FST
 operator|.
 name|Arc
-argument_list|<
-name|Object
-argument_list|>
+argument_list|<>
 argument_list|()
 operator|.
 name|copyFrom
@@ -1442,9 +1425,7 @@ name|output
 argument_list|,
 operator|new
 name|Arc
-argument_list|<
-name|Object
-argument_list|>
+argument_list|<>
 argument_list|()
 operator|.
 name|copyFrom

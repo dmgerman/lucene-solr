@@ -161,9 +161,7 @@ name|luceneSubQueries
 init|=
 operator|new
 name|ArrayList
-argument_list|<
-name|Query
-argument_list|>
+argument_list|<>
 argument_list|()
 decl_stmt|;
 name|srndQuery

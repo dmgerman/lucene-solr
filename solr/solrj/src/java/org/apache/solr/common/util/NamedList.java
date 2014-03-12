@@ -159,9 +159,7 @@ name|nvPairs
 operator|=
 operator|new
 name|ArrayList
-argument_list|<
-name|Object
-argument_list|>
+argument_list|<>
 argument_list|()
 expr_stmt|;
 block|}
@@ -244,9 +242,7 @@ name|result
 init|=
 operator|new
 name|ArrayList
-argument_list|<
-name|Object
-argument_list|>
+argument_list|<>
 argument_list|()
 decl_stmt|;
 for|for
@@ -725,9 +721,7 @@ name|result
 init|=
 operator|new
 name|ArrayList
-argument_list|<
-name|T
-argument_list|>
+argument_list|<>
 argument_list|()
 decl_stmt|;
 name|int
@@ -1282,9 +1276,7 @@ name|newList
 init|=
 operator|new
 name|ArrayList
-argument_list|<
-name|Object
-argument_list|>
+argument_list|<>
 argument_list|(
 name|nvPairs
 operator|.
@@ -1302,9 +1294,7 @@ expr_stmt|;
 return|return
 operator|new
 name|NamedList
-argument_list|<
-name|T
-argument_list|>
+argument_list|<>
 argument_list|(
 name|newList
 argument_list|)
@@ -1584,9 +1574,7 @@ name|result
 init|=
 operator|new
 name|ArrayList
-argument_list|<
-name|T
-argument_list|>
+argument_list|<>
 argument_list|()
 decl_stmt|;
 name|result
@@ -1804,9 +1792,7 @@ name|collection
 init|=
 operator|new
 name|ArrayList
-argument_list|<
-name|String
-argument_list|>
+argument_list|<>
 argument_list|(
 name|size
 argument_list|()

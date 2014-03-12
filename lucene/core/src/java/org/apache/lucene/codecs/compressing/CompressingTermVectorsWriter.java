@@ -651,9 +651,7 @@ name|fields
 operator|=
 operator|new
 name|ArrayDeque
-argument_list|<
-name|FieldData
-argument_list|>
+argument_list|<>
 argument_list|(
 name|numFields
 argument_list|)
@@ -1578,9 +1576,7 @@ name|pendingDocs
 operator|=
 operator|new
 name|ArrayDeque
-argument_list|<
-name|DocData
-argument_list|>
+argument_list|<>
 argument_list|()
 expr_stmt|;
 name|termSuffixes
@@ -2570,9 +2566,7 @@ name|fieldNums
 init|=
 operator|new
 name|TreeSet
-argument_list|<
-name|Integer
-argument_list|>
+argument_list|<>
 argument_list|()
 decl_stmt|;
 for|for

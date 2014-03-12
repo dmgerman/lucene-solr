@@ -554,9 +554,7 @@ name|children
 init|=
 operator|new
 name|ArrayList
-argument_list|<
-name|ChildScorer
-argument_list|>
+argument_list|<>
 argument_list|(
 name|docsAndFreqs
 operator|.

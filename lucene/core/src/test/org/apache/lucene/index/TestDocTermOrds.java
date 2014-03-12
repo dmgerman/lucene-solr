@@ -665,9 +665,7 @@ name|terms
 init|=
 operator|new
 name|HashSet
-argument_list|<
-name|BytesRef
-argument_list|>
+argument_list|<>
 argument_list|()
 decl_stmt|;
 while|while
@@ -841,9 +839,7 @@ name|ordsForDocSet
 init|=
 operator|new
 name|HashSet
-argument_list|<
-name|Integer
-argument_list|>
+argument_list|<>
 argument_list|()
 decl_stmt|;
 for|for
@@ -1221,9 +1217,7 @@ name|prefixes
 init|=
 operator|new
 name|HashSet
-argument_list|<
-name|String
-argument_list|>
+argument_list|<>
 argument_list|()
 decl_stmt|;
 specifier|final
@@ -1323,9 +1317,7 @@ name|terms
 init|=
 operator|new
 name|HashSet
-argument_list|<
-name|BytesRef
-argument_list|>
+argument_list|<>
 argument_list|()
 decl_stmt|;
 while|while
@@ -1511,9 +1503,7 @@ name|ordsForDocSet
 init|=
 operator|new
 name|HashSet
-argument_list|<
-name|Integer
-argument_list|>
+argument_list|<>
 argument_list|()
 decl_stmt|;
 for|for
@@ -1842,9 +1832,7 @@ name|newOrds
 init|=
 operator|new
 name|ArrayList
-argument_list|<
-name|Integer
-argument_list|>
+argument_list|<>
 argument_list|()
 decl_stmt|;
 for|for

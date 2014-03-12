@@ -268,9 +268,7 @@ name|stQueue
 init|=
 operator|new
 name|PriorityQueue
-argument_list|<
-name|ScoreTerm
-argument_list|>
+argument_list|<>
 argument_list|()
 decl_stmt|;
 name|collectTerms
@@ -309,11 +307,7 @@ name|visitedTerms
 init|=
 operator|new
 name|HashMap
-argument_list|<
-name|BytesRef
-argument_list|,
-name|ScoreTerm
-argument_list|>
+argument_list|<>
 argument_list|()
 decl_stmt|;
 specifier|private

@@ -135,11 +135,7 @@ name|bufferStores
 init|=
 operator|new
 name|ConcurrentHashMap
-argument_list|<
-name|Integer
-argument_list|,
-name|BufferStore
-argument_list|>
+argument_list|<>
 argument_list|()
 decl_stmt|;
 DECL|field|buffers
@@ -299,10 +295,7 @@ name|queue
 init|=
 operator|new
 name|ArrayBlockingQueue
-argument_list|<
-name|byte
-index|[]
-argument_list|>
+argument_list|<>
 argument_list|(
 name|count
 argument_list|)

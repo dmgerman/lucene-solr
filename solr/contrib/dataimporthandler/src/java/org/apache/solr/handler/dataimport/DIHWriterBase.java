@@ -95,9 +95,7 @@ name|deltaKeys
 operator|=
 operator|new
 name|HashSet
-argument_list|<
-name|Object
-argument_list|>
+argument_list|<>
 argument_list|()
 expr_stmt|;
 for|for

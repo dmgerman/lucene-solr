@@ -702,9 +702,7 @@ name|cloudServers
 init|=
 operator|new
 name|ArrayList
-argument_list|<
-name|CloudSolrServer
-argument_list|>
+argument_list|<>
 argument_list|()
 decl_stmt|;
 name|List
@@ -715,9 +713,7 @@ name|threads
 init|=
 operator|new
 name|ArrayList
-argument_list|<
-name|StopableIndexingThread
-argument_list|>
+argument_list|<>
 argument_list|()
 decl_stmt|;
 for|for

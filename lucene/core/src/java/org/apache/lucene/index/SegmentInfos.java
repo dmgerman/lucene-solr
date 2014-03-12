@@ -418,11 +418,6 @@ name|userData
 init|=
 name|Collections
 operator|.
-expr|<
-name|String
-decl_stmt|,
-name|String
-decl|>
 name|emptyMap
 argument_list|()
 decl_stmt|;
@@ -436,9 +431,7 @@ name|segments
 init|=
 operator|new
 name|ArrayList
-argument_list|<
-name|SegmentCommitInfo
-argument_list|>
+argument_list|<>
 argument_list|()
 decl_stmt|;
 comment|/**    * If non-null, information about loading segments_N files    * will be printed here.  @see #setInfoStream.    */
@@ -1271,14 +1264,7 @@ name|genUpdatesFiles
 operator|=
 operator|new
 name|HashMap
-argument_list|<
-name|Long
-argument_list|,
-name|Set
-argument_list|<
-name|String
-argument_list|>
-argument_list|>
+argument_list|<>
 argument_list|(
 name|numGensUpdatesFiles
 argument_list|)
@@ -1812,9 +1798,7 @@ name|segments
 operator|=
 operator|new
 name|ArrayList
-argument_list|<
-name|SegmentCommitInfo
-argument_list|>
+argument_list|<>
 argument_list|(
 name|size
 argument_list|()
@@ -1857,11 +1841,7 @@ name|userData
 operator|=
 operator|new
 name|HashMap
-argument_list|<
-name|String
-argument_list|,
-name|String
-argument_list|>
+argument_list|<>
 argument_list|(
 name|userData
 argument_list|)
@@ -2927,9 +2907,7 @@ name|files
 init|=
 operator|new
 name|HashSet
-argument_list|<
-name|String
-argument_list|>
+argument_list|<>
 argument_list|()
 decl_stmt|;
 if|if
@@ -3487,9 +3465,7 @@ name|mergedAway
 init|=
 operator|new
 name|HashSet
-argument_list|<
-name|SegmentCommitInfo
-argument_list|>
+argument_list|<>
 argument_list|(
 name|merge
 operator|.
@@ -3659,9 +3635,7 @@ name|list
 init|=
 operator|new
 name|ArrayList
-argument_list|<
-name|SegmentCommitInfo
-argument_list|>
+argument_list|<>
 argument_list|(
 name|size
 argument_list|()

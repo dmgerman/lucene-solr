@@ -306,9 +306,7 @@ name|exclusions
 init|=
 operator|new
 name|ArrayList
-argument_list|<
-name|SelectorParams
-argument_list|>
+argument_list|<>
 argument_list|()
 decl_stmt|;
 DECL|field|selector
@@ -375,9 +373,7 @@ name|fieldName
 operator|=
 operator|new
 name|HashSet
-argument_list|<
-name|String
-argument_list|>
+argument_list|<>
 argument_list|(
 name|args
 operator|.
@@ -393,9 +389,7 @@ name|typeName
 operator|=
 operator|new
 name|HashSet
-argument_list|<
-name|String
-argument_list|>
+argument_list|<>
 argument_list|(
 name|args
 operator|.
@@ -434,9 +428,7 @@ name|fieldRegex
 operator|=
 operator|new
 name|ArrayList
-argument_list|<
-name|Pattern
-argument_list|>
+argument_list|<>
 argument_list|(
 name|patterns
 operator|.
@@ -544,9 +536,7 @@ name|exclusions
 init|=
 operator|new
 name|ArrayList
-argument_list|<
-name|SelectorParams
-argument_list|>
+argument_list|<>
 argument_list|()
 decl_stmt|;
 name|List

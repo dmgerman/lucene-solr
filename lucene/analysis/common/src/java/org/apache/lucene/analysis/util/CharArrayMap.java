@@ -141,9 +141,7 @@ name|EMPTY_MAP
 init|=
 operator|new
 name|EmptyCharArrayMap
-argument_list|<
-name|Object
-argument_list|>
+argument_list|<>
 argument_list|()
 decl_stmt|;
 DECL|field|INIT_SIZE
@@ -2728,9 +2726,7 @@ return|;
 return|return
 operator|new
 name|UnmodifiableCharArrayMap
-argument_list|<
-name|V
-argument_list|>
+argument_list|<>
 argument_list|(
 name|map
 argument_list|)
@@ -2881,9 +2877,7 @@ name|m
 operator|=
 operator|new
 name|CharArrayMap
-argument_list|<
-name|V
-argument_list|>
+argument_list|<>
 argument_list|(
 name|m
 argument_list|)
@@ -2907,9 +2901,7 @@ block|}
 return|return
 operator|new
 name|CharArrayMap
-argument_list|<
-name|V
-argument_list|>
+argument_list|<>
 argument_list|(
 name|matchVersion
 argument_list|,

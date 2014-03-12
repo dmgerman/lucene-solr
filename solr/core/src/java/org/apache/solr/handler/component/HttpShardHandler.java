@@ -628,12 +628,7 @@ name|pending
 operator|=
 operator|new
 name|HashSet
-argument_list|<
-name|Future
-argument_list|<
-name|ShardResponse
-argument_list|>
-argument_list|>
+argument_list|<>
 argument_list|()
 expr_stmt|;
 comment|// maps "localhost:8983|localhost:7574" to a shuffled List("http://localhost:8983","http://localhost:7574")
@@ -643,14 +638,7 @@ name|shardToURLs
 operator|=
 operator|new
 name|HashMap
-argument_list|<
-name|String
-argument_list|,
-name|List
-argument_list|<
-name|String
-argument_list|>
-argument_list|>
+argument_list|<>
 argument_list|()
 expr_stmt|;
 block|}
@@ -1710,11 +1698,7 @@ name|slices
 operator|=
 operator|new
 name|HashMap
-argument_list|<
-name|String
-argument_list|,
-name|Slice
-argument_list|>
+argument_list|<>
 argument_list|()
 expr_stmt|;
 comment|// we need to find out what collections this request is for.

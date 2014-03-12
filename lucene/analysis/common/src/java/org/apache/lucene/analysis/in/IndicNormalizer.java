@@ -140,13 +140,7 @@ name|scripts
 init|=
 operator|new
 name|IdentityHashMap
-argument_list|<
-name|Character
-operator|.
-name|UnicodeBlock
-argument_list|,
-name|ScriptData
-argument_list|>
+argument_list|<>
 argument_list|(
 literal|9
 argument_list|)

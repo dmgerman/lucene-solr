@@ -287,7 +287,7 @@ literal|""
 argument_list|)
 expr_stmt|;
 block|}
-comment|/****** requires original java kstem source code to create map   public void testCreateMap() throws Exception {     String input = getBigDoc();     Reader r = new StringReader(input);     TokenFilter tf = new LowerCaseFilter(new LetterTokenizer(r));     // tf = new KStemFilter(tf);      KStemmer kstem = new KStemmer();     Map<String,String> map = new TreeMap<String,String>();     for(;;) {       Token t = tf.next();       if (t==null) break;       String s = t.termText();       if (map.containsKey(s)) continue;       map.put(s, kstem.stem(s));     }      Writer out = new BufferedWriter(new FileWriter("kstem_examples.txt"));     for (String key : map.keySet()) {       out.write(key);       out.write('\t');       out.write(map.get(key));       out.write('\n');     }     out.close();   }   ******/
+comment|/****** requires original java kstem source code to create map   public void testCreateMap() throws Exception {     String input = getBigDoc();     Reader r = new StringReader(input);     TokenFilter tf = new LowerCaseFilter(new LetterTokenizer(r));     // tf = new KStemFilter(tf);      KStemmer kstem = new KStemmer();     Map<String,String> map = new TreeMap<>();     for(;;) {       Token t = tf.next();       if (t==null) break;       String s = t.termText();       if (map.containsKey(s)) continue;       map.put(s, kstem.stem(s));     }      Writer out = new BufferedWriter(new FileWriter("kstem_examples.txt"));     for (String key : map.keySet()) {       out.write(key);       out.write('\t');       out.write(map.get(key));       out.write('\n');     }     out.close();   }   ******/
 block|}
 end_class
 

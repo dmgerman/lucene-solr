@@ -544,9 +544,7 @@ name|queryTerms
 init|=
 operator|new
 name|HashSet
-argument_list|<
-name|Term
-argument_list|>
+argument_list|<>
 argument_list|()
 decl_stmt|;
 name|q
@@ -733,9 +731,7 @@ name|queryTerms
 init|=
 operator|new
 name|HashSet
-argument_list|<
-name|Term
-argument_list|>
+argument_list|<>
 argument_list|()
 decl_stmt|;
 name|q
@@ -918,9 +914,7 @@ name|queryTerms
 init|=
 operator|new
 name|HashSet
-argument_list|<
-name|Term
-argument_list|>
+argument_list|<>
 argument_list|()
 decl_stmt|;
 name|q
@@ -1089,9 +1083,7 @@ name|queryTerms
 init|=
 operator|new
 name|HashSet
-argument_list|<
-name|Term
-argument_list|>
+argument_list|<>
 argument_list|()
 decl_stmt|;
 name|q

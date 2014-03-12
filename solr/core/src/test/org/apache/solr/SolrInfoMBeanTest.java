@@ -236,9 +236,7 @@ name|classes
 init|=
 operator|new
 name|ArrayList
-argument_list|<
-name|Class
-argument_list|>
+argument_list|<>
 argument_list|()
 decl_stmt|;
 name|classes
@@ -511,9 +509,7 @@ name|directories
 init|=
 operator|new
 name|ArrayList
-argument_list|<
-name|File
-argument_list|>
+argument_list|<>
 argument_list|()
 decl_stmt|;
 name|ClassLoader
@@ -615,9 +611,7 @@ name|classes
 init|=
 operator|new
 name|ArrayList
-argument_list|<
-name|Class
-argument_list|>
+argument_list|<>
 argument_list|()
 decl_stmt|;
 for|for

@@ -241,9 +241,7 @@ name|should
 init|=
 operator|new
 name|ArrayList
-argument_list|<
-name|Query
-argument_list|>
+argument_list|<>
 argument_list|()
 decl_stmt|;
 name|Collection
@@ -254,9 +252,7 @@ name|prohibOrReq
 init|=
 operator|new
 name|ArrayList
-argument_list|<
-name|BooleanClause
-argument_list|>
+argument_list|<>
 argument_list|()
 decl_stmt|;
 name|BooleanQuery

@@ -264,11 +264,7 @@ name|entries
 init|=
 operator|new
 name|HashMap
-argument_list|<
-name|String
-argument_list|,
-name|FileEntry
-argument_list|>
+argument_list|<>
 argument_list|()
 decl_stmt|;
 DECL|field|seenIDs
@@ -282,9 +278,7 @@ name|seenIDs
 init|=
 operator|new
 name|HashSet
-argument_list|<
-name|String
-argument_list|>
+argument_list|<>
 argument_list|()
 decl_stmt|;
 comment|// all entries that are written to a sep. file but not yet moved into CFS
@@ -299,9 +293,7 @@ name|pendingEntries
 init|=
 operator|new
 name|LinkedList
-argument_list|<
-name|FileEntry
-argument_list|>
+argument_list|<>
 argument_list|()
 decl_stmt|;
 DECL|field|closed

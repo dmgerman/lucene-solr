@@ -380,9 +380,7 @@ name|lst
 operator|=
 operator|new
 name|ArrayList
-argument_list|<
-name|ValueSource
-argument_list|>
+argument_list|<>
 argument_list|(
 literal|2
 argument_list|)
@@ -881,9 +879,7 @@ name|sources
 init|=
 operator|new
 name|ArrayList
-argument_list|<
-name|ValueSource
-argument_list|>
+argument_list|<>
 argument_list|(
 literal|3
 argument_list|)

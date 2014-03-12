@@ -123,9 +123,7 @@ name|storedValue
 init|=
 operator|new
 name|CloseableThreadLocal
-argument_list|<
-name|Object
-argument_list|>
+argument_list|<>
 argument_list|()
 decl_stmt|;
 comment|/**    * Create a new Analyzer, reusing the same set of components per-thread    * across calls to {@link #tokenStream(String, Reader)}.     */
@@ -880,11 +878,7 @@ name|componentsPerField
 operator|=
 operator|new
 name|HashMap
-argument_list|<
-name|String
-argument_list|,
-name|TokenStreamComponents
-argument_list|>
+argument_list|<>
 argument_list|()
 expr_stmt|;
 name|setStoredValue

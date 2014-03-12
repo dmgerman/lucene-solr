@@ -960,9 +960,7 @@ name|clients
 init|=
 operator|new
 name|ArrayList
-argument_list|<
-name|SolrServer
-argument_list|>
+argument_list|<>
 argument_list|()
 decl_stmt|;
 DECL|field|jettys
@@ -975,9 +973,7 @@ name|jettys
 init|=
 operator|new
 name|ArrayList
-argument_list|<
-name|JettySolrRunner
-argument_list|>
+argument_list|<>
 argument_list|()
 decl_stmt|;
 DECL|field|context
@@ -1089,11 +1085,7 @@ name|handle
 init|=
 operator|new
 name|HashMap
-argument_list|<
-name|String
-argument_list|,
-name|Integer
-argument_list|>
+argument_list|<>
 argument_list|()
 decl_stmt|;
 DECL|field|id
@@ -1728,9 +1720,7 @@ name|replicas
 init|=
 operator|new
 name|ArrayList
-argument_list|<
-name|String
-argument_list|>
+argument_list|<>
 argument_list|(
 name|Arrays
 operator|.

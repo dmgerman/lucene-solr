@@ -166,11 +166,7 @@ name|routeRanges
 operator|=
 operator|new
 name|ArrayList
-argument_list|<
-name|DocRouter
-operator|.
-name|Range
-argument_list|>
+argument_list|<>
 argument_list|()
 expr_stmt|;
 for|for

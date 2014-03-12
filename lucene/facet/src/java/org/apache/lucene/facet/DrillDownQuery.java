@@ -295,11 +295,7 @@ name|drillDownDims
 init|=
 operator|new
 name|LinkedHashMap
-argument_list|<
-name|String
-argument_list|,
-name|Integer
-argument_list|>
+argument_list|<>
 argument_list|()
 decl_stmt|;
 comment|/** Used by clone() */
@@ -1243,9 +1239,7 @@ name|filters
 init|=
 operator|new
 name|ArrayList
-argument_list|<
-name|Filter
-argument_list|>
+argument_list|<>
 argument_list|()
 decl_stmt|;
 name|List
@@ -1256,9 +1250,7 @@ name|queries
 init|=
 operator|new
 name|ArrayList
-argument_list|<
-name|Query
-argument_list|>
+argument_list|<>
 argument_list|()
 decl_stmt|;
 name|List

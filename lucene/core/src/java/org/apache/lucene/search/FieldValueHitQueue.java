@@ -613,9 +613,7 @@ block|{
 return|return
 operator|new
 name|OneComparatorFieldValueHitQueue
-argument_list|<
-name|T
-argument_list|>
+argument_list|<>
 argument_list|(
 name|fields
 argument_list|,
@@ -628,9 +626,7 @@ block|{
 return|return
 operator|new
 name|MultiComparatorsFieldValueHitQueue
-argument_list|<
-name|T
-argument_list|>
+argument_list|<>
 argument_list|(
 name|fields
 argument_list|,

@@ -594,11 +594,7 @@ name|c
 init|=
 operator|new
 name|DoubleBarrelLRUCache
-argument_list|<
-name|CloneableObject
-argument_list|,
-name|Object
-argument_list|>
+argument_list|<>
 argument_list|(
 literal|1024
 argument_list|)

@@ -132,19 +132,7 @@ name|suggestionsMap
 init|=
 operator|new
 name|HashMap
-argument_list|<
-name|String
-argument_list|,
-name|Map
-argument_list|<
-name|String
-argument_list|,
-name|List
-argument_list|<
-name|LookupResult
-argument_list|>
-argument_list|>
-argument_list|>
+argument_list|<>
 argument_list|()
 decl_stmt|;
 comment|/** Add suggestion results for<code>token</code> */

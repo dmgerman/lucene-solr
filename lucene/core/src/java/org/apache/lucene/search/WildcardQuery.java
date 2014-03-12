@@ -198,9 +198,7 @@ name|automata
 init|=
 operator|new
 name|ArrayList
-argument_list|<
-name|Automaton
-argument_list|>
+argument_list|<>
 argument_list|()
 decl_stmt|;
 name|String

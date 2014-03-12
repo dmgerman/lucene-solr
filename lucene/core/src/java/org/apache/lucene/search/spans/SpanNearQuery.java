@@ -271,9 +271,7 @@ name|clauses
 operator|=
 operator|new
 name|ArrayList
-argument_list|<
-name|SpanQuery
-argument_list|>
+argument_list|<>
 argument_list|(
 name|clauses
 operator|.

@@ -764,9 +764,7 @@ name|results
 init|=
 operator|new
 name|ArrayList
-argument_list|<
-name|FacetResult
-argument_list|>
+argument_list|<>
 argument_list|()
 decl_stmt|;
 comment|// Count both "Publish Date" and "Author" dimensions
@@ -898,9 +896,7 @@ name|results
 init|=
 operator|new
 name|ArrayList
-argument_list|<
-name|FacetResult
-argument_list|>
+argument_list|<>
 argument_list|()
 decl_stmt|;
 comment|// Count both "Publish Date" and "Author" dimensions

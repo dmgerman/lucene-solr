@@ -485,11 +485,7 @@ name|analyzerFactories
 init|=
 operator|new
 name|HashMap
-argument_list|<
-name|String
-argument_list|,
-name|AnalyzerFactory
-argument_list|>
+argument_list|<>
 argument_list|()
 decl_stmt|;
 DECL|field|analyzer
@@ -596,11 +592,7 @@ name|perfObjects
 init|=
 operator|new
 name|HashMap
-argument_list|<
-name|String
-argument_list|,
-name|Object
-argument_list|>
+argument_list|<>
 argument_list|()
 decl_stmt|;
 comment|// constructor
@@ -751,16 +743,7 @@ name|readTaskQueryMaker
 operator|=
 operator|new
 name|HashMap
-argument_list|<
-name|Class
-argument_list|<
-name|?
-extends|extends
-name|ReadTask
-argument_list|>
-argument_list|,
-name|QueryMaker
-argument_list|>
+argument_list|<>
 argument_list|()
 expr_stmt|;
 name|qmkrClass
@@ -893,9 +876,7 @@ name|perfObjectsToClose
 init|=
 operator|new
 name|ArrayList
-argument_list|<
-name|Closeable
-argument_list|>
+argument_list|<>
 argument_list|()
 decl_stmt|;
 for|for

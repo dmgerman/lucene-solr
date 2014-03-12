@@ -302,11 +302,7 @@ name|solrServers
 init|=
 operator|new
 name|HashMap
-argument_list|<
-name|String
-argument_list|,
-name|ConcurrentUpdateSolrServer
-argument_list|>
+argument_list|<>
 argument_list|()
 decl_stmt|;
 DECL|field|errors
@@ -551,9 +547,7 @@ name|queryParams
 init|=
 operator|new
 name|HashSet
-argument_list|<
-name|String
-argument_list|>
+argument_list|<>
 argument_list|(
 literal|2
 argument_list|)

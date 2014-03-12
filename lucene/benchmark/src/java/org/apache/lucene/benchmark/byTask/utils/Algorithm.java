@@ -1591,9 +1591,7 @@ name|pkgs
 init|=
 operator|new
 name|ArrayList
-argument_list|<
-name|String
-argument_list|>
+argument_list|<>
 argument_list|()
 decl_stmt|;
 name|pkgs
@@ -1801,9 +1799,7 @@ name|res
 init|=
 operator|new
 name|ArrayList
-argument_list|<
-name|PerfTask
-argument_list|>
+argument_list|<>
 argument_list|()
 decl_stmt|;
 name|extractTasks

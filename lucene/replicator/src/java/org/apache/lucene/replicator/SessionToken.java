@@ -173,14 +173,7 @@ name|sourceFiles
 operator|=
 operator|new
 name|HashMap
-argument_list|<
-name|String
-argument_list|,
-name|List
-argument_list|<
-name|RevisionFile
-argument_list|>
-argument_list|>
+argument_list|<>
 argument_list|()
 expr_stmt|;
 name|int
@@ -222,9 +215,7 @@ name|files
 init|=
 operator|new
 name|ArrayList
-argument_list|<
-name|RevisionFile
-argument_list|>
+argument_list|<>
 argument_list|(
 name|numFiles
 argument_list|)

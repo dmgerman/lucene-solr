@@ -300,11 +300,7 @@ name|terms
 init|=
 operator|new
 name|HashMap
-argument_list|<
-name|Term
-argument_list|,
-name|Integer
-argument_list|>
+argument_list|<>
 argument_list|()
 decl_stmt|;
 DECL|field|queries
@@ -319,11 +315,7 @@ name|queries
 init|=
 operator|new
 name|HashMap
-argument_list|<
-name|Query
-argument_list|,
-name|Integer
-argument_list|>
+argument_list|<>
 argument_list|()
 decl_stmt|;
 DECL|field|docIDs
@@ -336,9 +328,7 @@ name|docIDs
 init|=
 operator|new
 name|ArrayList
-argument_list|<
-name|Integer
-argument_list|>
+argument_list|<>
 argument_list|()
 decl_stmt|;
 comment|// Map<dvField,Map<updateTerm,NumericUpdate>>
@@ -365,16 +355,7 @@ name|numericUpdates
 init|=
 operator|new
 name|HashMap
-argument_list|<
-name|String
-argument_list|,
-name|LinkedHashMap
-argument_list|<
-name|Term
-argument_list|,
-name|NumericUpdate
-argument_list|>
-argument_list|>
+argument_list|<>
 argument_list|()
 decl_stmt|;
 DECL|field|MAX_INT
@@ -814,11 +795,7 @@ name|fieldUpdates
 operator|=
 operator|new
 name|LinkedHashMap
-argument_list|<
-name|Term
-argument_list|,
-name|NumericUpdate
-argument_list|>
+argument_list|<>
 argument_list|()
 expr_stmt|;
 name|numericUpdates

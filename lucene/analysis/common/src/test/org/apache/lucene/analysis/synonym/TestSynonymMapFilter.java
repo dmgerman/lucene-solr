@@ -2639,11 +2639,7 @@ name|synMap
 init|=
 operator|new
 name|HashMap
-argument_list|<
-name|String
-argument_list|,
-name|OneSyn
-argument_list|>
+argument_list|<>
 argument_list|()
 decl_stmt|;
 specifier|final
@@ -2655,9 +2651,7 @@ name|syns
 init|=
 operator|new
 name|ArrayList
-argument_list|<
-name|OneSyn
-argument_list|>
+argument_list|<>
 argument_list|()
 decl_stmt|;
 specifier|final
@@ -2780,9 +2774,7 @@ name|out
 operator|=
 operator|new
 name|ArrayList
-argument_list|<
-name|String
-argument_list|>
+argument_list|<>
 argument_list|()
 expr_stmt|;
 name|synMap
@@ -3069,9 +3061,7 @@ name|seen
 init|=
 operator|new
 name|HashSet
-argument_list|<
-name|String
-argument_list|>
+argument_list|<>
 argument_list|()
 decl_stmt|;
 for|for

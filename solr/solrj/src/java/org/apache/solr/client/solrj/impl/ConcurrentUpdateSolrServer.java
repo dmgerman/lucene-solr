@@ -780,9 +780,7 @@ name|queue
 operator|=
 operator|new
 name|LinkedBlockingQueue
-argument_list|<
-name|UpdateRequest
-argument_list|>
+argument_list|<>
 argument_list|(
 name|queueSize
 argument_list|)
@@ -797,9 +795,7 @@ name|runners
 operator|=
 operator|new
 name|LinkedList
-argument_list|<
-name|Runner
-argument_list|>
+argument_list|<>
 argument_list|()
 expr_stmt|;
 name|scheduler
@@ -1982,9 +1978,7 @@ name|dummy
 init|=
 operator|new
 name|NamedList
-argument_list|<
-name|Object
-argument_list|>
+argument_list|<>
 argument_list|()
 decl_stmt|;
 name|dummy

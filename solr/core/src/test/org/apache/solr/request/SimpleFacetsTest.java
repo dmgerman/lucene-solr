@@ -230,10 +230,7 @@ name|pendingDocs
 init|=
 operator|new
 name|ArrayList
-argument_list|<
-name|String
-index|[]
-argument_list|>
+argument_list|<>
 argument_list|()
 decl_stmt|;
 comment|// committing randomly gives different looking segments each time

@@ -874,9 +874,7 @@ name|converters
 init|=
 operator|new
 name|ArrayList
-argument_list|<
-name|Converter
-argument_list|>
+argument_list|<>
 argument_list|()
 decl_stmt|;
 name|converters

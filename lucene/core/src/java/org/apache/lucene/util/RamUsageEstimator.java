@@ -341,14 +341,7 @@ name|primitiveSizes
 operator|=
 operator|new
 name|IdentityHashMap
-argument_list|<
-name|Class
-argument_list|<
-name|?
-argument_list|>
-argument_list|,
-name|Integer
-argument_list|>
+argument_list|<>
 argument_list|()
 expr_stmt|;
 name|primitiveSizes
@@ -1794,9 +1787,7 @@ name|seen
 init|=
 operator|new
 name|IdentityHashSet
-argument_list|<
-name|Object
-argument_list|>
+argument_list|<>
 argument_list|()
 decl_stmt|;
 comment|// Class cache with reference Field and precalculated shallow size.
@@ -1814,14 +1805,7 @@ name|classCache
 init|=
 operator|new
 name|IdentityHashMap
-argument_list|<
-name|Class
-argument_list|<
-name|?
-argument_list|>
-argument_list|,
-name|ClassCache
-argument_list|>
+argument_list|<>
 argument_list|()
 decl_stmt|;
 comment|// Stack of objects pending traversal. Recursion caused stack overflows.
@@ -1834,9 +1818,7 @@ name|stack
 init|=
 operator|new
 name|ArrayList
-argument_list|<
-name|Object
-argument_list|>
+argument_list|<>
 argument_list|()
 decl_stmt|;
 name|stack
@@ -2211,9 +2193,7 @@ name|referenceFields
 init|=
 operator|new
 name|ArrayList
-argument_list|<
-name|Field
-argument_list|>
+argument_list|<>
 argument_list|(
 literal|32
 argument_list|)

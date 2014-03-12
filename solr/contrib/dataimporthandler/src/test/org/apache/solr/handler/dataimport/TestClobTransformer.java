@@ -129,14 +129,7 @@ name|flds
 init|=
 operator|new
 name|ArrayList
-argument_list|<
-name|Map
-argument_list|<
-name|String
-argument_list|,
-name|String
-argument_list|>
-argument_list|>
+argument_list|<>
 argument_list|()
 decl_stmt|;
 name|Map
@@ -149,11 +142,7 @@ name|f
 init|=
 operator|new
 name|HashMap
-argument_list|<
-name|String
-argument_list|,
-name|String
-argument_list|>
+argument_list|<>
 argument_list|()
 decl_stmt|;
 comment|//<field column="dsc" clob="true" name="description" />
@@ -238,11 +227,7 @@ name|row
 init|=
 operator|new
 name|HashMap
-argument_list|<
-name|String
-argument_list|,
-name|Object
-argument_list|>
+argument_list|<>
 argument_list|()
 decl_stmt|;
 name|Clob

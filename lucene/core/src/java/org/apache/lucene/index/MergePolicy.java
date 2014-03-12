@@ -406,9 +406,7 @@ name|segments
 operator|=
 operator|new
 name|ArrayList
-argument_list|<
-name|SegmentCommitInfo
-argument_list|>
+argument_list|<>
 argument_list|(
 name|segments
 argument_list|)
@@ -477,9 +475,7 @@ name|readers
 init|=
 operator|new
 name|ArrayList
-argument_list|<
-name|AtomicReader
-argument_list|>
+argument_list|<>
 argument_list|(
 name|this
 operator|.
@@ -977,9 +973,7 @@ name|merges
 init|=
 operator|new
 name|ArrayList
-argument_list|<
-name|OneMerge
-argument_list|>
+argument_list|<>
 argument_list|()
 decl_stmt|;
 comment|/** Sole constructor.  Use {@link      *  #add(MergePolicy.OneMerge)} to add merges. */
@@ -1298,9 +1292,7 @@ name|writer
 operator|=
 operator|new
 name|SetOnce
-argument_list|<
-name|IndexWriter
-argument_list|>
+argument_list|<>
 argument_list|()
 expr_stmt|;
 return|return
@@ -1337,9 +1329,7 @@ name|writer
 operator|=
 operator|new
 name|SetOnce
-argument_list|<
-name|IndexWriter
-argument_list|>
+argument_list|<>
 argument_list|()
 expr_stmt|;
 name|this

@@ -672,9 +672,7 @@ name|filters
 operator|=
 operator|new
 name|ArrayList
-argument_list|<
-name|Query
-argument_list|>
+argument_list|<>
 argument_list|()
 expr_stmt|;
 for|for
@@ -1181,9 +1179,7 @@ name|it
 init|=
 operator|new
 name|NamedList
-argument_list|<
-name|Float
-argument_list|>
+argument_list|<>
 argument_list|()
 decl_stmt|;
 for|for
@@ -1231,9 +1227,7 @@ name|it
 init|=
 operator|new
 name|ArrayList
-argument_list|<
-name|String
-argument_list|>
+argument_list|<>
 argument_list|(
 name|interesting
 operator|.
@@ -1546,9 +1540,7 @@ name|fqs
 init|=
 operator|new
 name|ArrayList
-argument_list|<
-name|String
-argument_list|>
+argument_list|<>
 argument_list|(
 name|filters
 operator|.
@@ -2580,9 +2572,7 @@ name|mlt
 init|=
 operator|new
 name|SimpleOrderedMap
-argument_list|<
-name|DocList
-argument_list|>
+argument_list|<>
 argument_list|()
 decl_stmt|;
 name|DocIterator
@@ -2688,9 +2678,7 @@ name|result
 init|=
 operator|new
 name|NamedList
-argument_list|<
-name|BooleanQuery
-argument_list|>
+argument_list|<>
 argument_list|()
 decl_stmt|;
 name|DocIterator

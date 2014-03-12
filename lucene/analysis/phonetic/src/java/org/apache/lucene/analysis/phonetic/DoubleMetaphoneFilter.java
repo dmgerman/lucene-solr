@@ -147,9 +147,7 @@ name|remainingTokens
 init|=
 operator|new
 name|LinkedList
-argument_list|<
-name|State
-argument_list|>
+argument_list|<>
 argument_list|()
 decl_stmt|;
 DECL|field|encoder

@@ -3056,9 +3056,7 @@ name|cs
 init|=
 operator|new
 name|ArrayList
-argument_list|<
-name|ContentStream
-argument_list|>
+argument_list|<>
 argument_list|()
 decl_stmt|;
 name|cs

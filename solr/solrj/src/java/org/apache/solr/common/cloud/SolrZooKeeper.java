@@ -154,9 +154,7 @@ name|spawnedThreads
 init|=
 operator|new
 name|CopyOnWriteArraySet
-argument_list|<
-name|Thread
-argument_list|>
+argument_list|<>
 argument_list|()
 decl_stmt|;
 comment|// for test debug

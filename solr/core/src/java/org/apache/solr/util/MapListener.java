@@ -130,9 +130,7 @@ name|seenKeys
 operator|=
 operator|new
 name|HashSet
-argument_list|<
-name|K
-argument_list|>
+argument_list|<>
 argument_list|(
 name|target
 operator|.

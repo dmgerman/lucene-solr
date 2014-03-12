@@ -167,9 +167,7 @@ name|deleteTerms
 init|=
 operator|new
 name|ArrayList
-argument_list|<
-name|Term
-argument_list|>
+argument_list|<>
 argument_list|(
 name|segDeletes
 operator|.
@@ -442,9 +440,7 @@ name|allFields
 init|=
 operator|new
 name|ArrayList
-argument_list|<
-name|FreqProxTermsWriterPerField
-argument_list|>
+argument_list|<>
 argument_list|()
 decl_stmt|;
 for|for

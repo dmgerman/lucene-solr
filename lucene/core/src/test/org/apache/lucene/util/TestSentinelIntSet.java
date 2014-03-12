@@ -287,9 +287,7 @@ name|a
 init|=
 operator|new
 name|HashSet
-argument_list|<
-name|Integer
-argument_list|>
+argument_list|<>
 argument_list|(
 name|initSz
 argument_list|)

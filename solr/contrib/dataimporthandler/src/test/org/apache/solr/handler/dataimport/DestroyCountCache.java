@@ -80,11 +80,7 @@ name|destroyed
 init|=
 operator|new
 name|IdentityHashMap
-argument_list|<
-name|DIHCache
-argument_list|,
-name|DIHCache
-argument_list|>
+argument_list|<>
 argument_list|()
 decl_stmt|;
 annotation|@

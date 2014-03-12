@@ -590,9 +590,7 @@ name|tokens
 operator|=
 operator|new
 name|ArrayList
-argument_list|<
-name|Token
-argument_list|>
+argument_list|<>
 argument_list|()
 expr_stmt|;
 name|int
@@ -2531,9 +2529,7 @@ name|as
 init|=
 operator|new
 name|ArrayList
-argument_list|<
-name|Automaton
-argument_list|>
+argument_list|<>
 argument_list|()
 decl_stmt|;
 for|for

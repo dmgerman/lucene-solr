@@ -160,9 +160,7 @@ name|disjuncts
 init|=
 operator|new
 name|ArrayList
-argument_list|<
-name|Query
-argument_list|>
+argument_list|<>
 argument_list|()
 decl_stmt|;
 comment|/* Multiple of the non-max disjunct scores added into our final score.  Non-zero values support tie-breaking. */
@@ -320,9 +318,7 @@ name|weights
 init|=
 operator|new
 name|ArrayList
-argument_list|<
-name|Weight
-argument_list|>
+argument_list|<>
 argument_list|()
 decl_stmt|;
 comment|// The Weight's for our subqueries, in 1-1 correspondence with disjuncts
@@ -519,9 +515,7 @@ name|scorers
 init|=
 operator|new
 name|ArrayList
-argument_list|<
-name|Scorer
-argument_list|>
+argument_list|<>
 argument_list|()
 decl_stmt|;
 for|for

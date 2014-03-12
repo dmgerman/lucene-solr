@@ -160,9 +160,7 @@ name|filteredInfos
 init|=
 operator|new
 name|ArrayList
-argument_list|<
-name|FieldInfo
-argument_list|>
+argument_list|<>
 argument_list|()
 decl_stmt|;
 for|for

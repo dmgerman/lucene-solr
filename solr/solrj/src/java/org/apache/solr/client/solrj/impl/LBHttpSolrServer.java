@@ -297,9 +297,7 @@ name|RETRY_CODES
 init|=
 operator|new
 name|HashSet
-argument_list|<
-name|Integer
-argument_list|>
+argument_list|<>
 argument_list|(
 literal|4
 argument_list|)
@@ -350,11 +348,7 @@ name|aliveServers
 init|=
 operator|new
 name|LinkedHashMap
-argument_list|<
-name|String
-argument_list|,
-name|ServerWrapper
-argument_list|>
+argument_list|<>
 argument_list|()
 decl_stmt|;
 comment|// access to aliveServers should be synchronized on itself
@@ -371,11 +365,7 @@ name|zombieServers
 init|=
 operator|new
 name|ConcurrentHashMap
-argument_list|<
-name|String
-argument_list|,
-name|ServerWrapper
-argument_list|>
+argument_list|<>
 argument_list|()
 decl_stmt|;
 comment|// changes to aliveServers are reflected in this array, no need to synchronize
@@ -1124,9 +1114,7 @@ name|skipped
 init|=
 operator|new
 name|ArrayList
-argument_list|<
-name|ServerWrapper
-argument_list|>
+argument_list|<>
 argument_list|(
 name|req
 operator|.
@@ -2147,11 +2135,7 @@ name|justFailed
 operator|=
 operator|new
 name|HashMap
-argument_list|<
-name|String
-argument_list|,
-name|ServerWrapper
-argument_list|>
+argument_list|<>
 argument_list|()
 expr_stmt|;
 name|justFailed
@@ -2617,9 +2601,7 @@ name|getAliveCheckRunner
 argument_list|(
 operator|new
 name|WeakReference
-argument_list|<
-name|LBHttpSolrServer
-argument_list|>
+argument_list|<>
 argument_list|(
 name|this
 argument_list|)

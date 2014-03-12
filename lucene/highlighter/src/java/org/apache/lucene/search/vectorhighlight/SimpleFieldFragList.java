@@ -137,9 +137,7 @@ name|subInfos
 init|=
 operator|new
 name|ArrayList
-argument_list|<
-name|SubInfo
-argument_list|>
+argument_list|<>
 argument_list|()
 decl_stmt|;
 for|for

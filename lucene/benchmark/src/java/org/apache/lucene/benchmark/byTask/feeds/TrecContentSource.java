@@ -313,9 +313,7 @@ name|dateFormats
 init|=
 operator|new
 name|ThreadLocal
-argument_list|<
-name|DateFormatInfo
-argument_list|>
+argument_list|<>
 argument_list|()
 decl_stmt|;
 DECL|field|trecDocBuffer
@@ -328,9 +326,7 @@ name|trecDocBuffer
 init|=
 operator|new
 name|ThreadLocal
-argument_list|<
-name|StringBuilder
-argument_list|>
+argument_list|<>
 argument_list|()
 decl_stmt|;
 DECL|field|dataDir
@@ -350,9 +346,7 @@ name|inputFiles
 init|=
 operator|new
 name|ArrayList
-argument_list|<
-name|File
-argument_list|>
+argument_list|<>
 argument_list|()
 decl_stmt|;
 DECL|field|nextFile

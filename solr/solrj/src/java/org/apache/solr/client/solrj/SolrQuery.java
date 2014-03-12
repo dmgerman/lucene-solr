@@ -2540,9 +2540,7 @@ name|sortClauses
 operator|=
 operator|new
 name|ArrayList
-argument_list|<
-name|SortClause
-argument_list|>
+argument_list|<>
 argument_list|(
 name|value
 argument_list|)
@@ -2678,9 +2676,7 @@ name|sortClauses
 operator|=
 operator|new
 name|ArrayList
-argument_list|<
-name|SortClause
-argument_list|>
+argument_list|<>
 argument_list|()
 expr_stmt|;
 name|sortClauses

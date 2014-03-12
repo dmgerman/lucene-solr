@@ -310,9 +310,7 @@ literal|"responseHeader"
 argument_list|,
 operator|new
 name|SimpleOrderedMap
-argument_list|<
-name|Object
-argument_list|>
+argument_list|<>
 argument_list|()
 argument_list|)
 expr_stmt|;
@@ -445,9 +443,7 @@ literal|"responseHeader"
 argument_list|,
 operator|new
 name|SimpleOrderedMap
-argument_list|<
-name|Object
-argument_list|>
+argument_list|<>
 argument_list|()
 argument_list|)
 expr_stmt|;

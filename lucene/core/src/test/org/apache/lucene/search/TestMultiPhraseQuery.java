@@ -481,9 +481,7 @@ name|termsWithPrefix
 init|=
 operator|new
 name|LinkedList
-argument_list|<
-name|Term
-argument_list|>
+argument_list|<>
 argument_list|()
 decl_stmt|;
 comment|// this TermEnum gives "piccadilly", "pie" and "pizza".

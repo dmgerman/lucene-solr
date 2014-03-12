@@ -4121,9 +4121,7 @@ name|query
 init|=
 operator|new
 name|SpanMultiTermQueryWrapper
-argument_list|<
-name|WildcardQuery
-argument_list|>
+argument_list|<>
 argument_list|(
 operator|new
 name|WildcardQuery
@@ -4410,9 +4408,7 @@ name|childQuery
 init|=
 operator|new
 name|SpanMultiTermQueryWrapper
-argument_list|<
-name|WildcardQuery
-argument_list|>
+argument_list|<>
 argument_list|(
 operator|new
 name|WildcardQuery
@@ -4713,9 +4709,7 @@ name|childQuery
 init|=
 operator|new
 name|SpanMultiTermQueryWrapper
-argument_list|<
-name|WildcardQuery
-argument_list|>
+argument_list|<>
 argument_list|(
 operator|new
 name|WildcardQuery
@@ -5020,9 +5014,7 @@ name|include
 init|=
 operator|new
 name|SpanMultiTermQueryWrapper
-argument_list|<
-name|WildcardQuery
-argument_list|>
+argument_list|<>
 argument_list|(
 operator|new
 name|WildcardQuery
@@ -5335,9 +5327,7 @@ name|childQuery
 init|=
 operator|new
 name|SpanMultiTermQueryWrapper
-argument_list|<
-name|WildcardQuery
-argument_list|>
+argument_list|<>
 argument_list|(
 operator|new
 name|WildcardQuery

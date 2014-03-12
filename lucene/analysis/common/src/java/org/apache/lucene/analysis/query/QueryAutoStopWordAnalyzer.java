@@ -259,14 +259,7 @@ name|stopWordsPerField
 init|=
 operator|new
 name|HashMap
-argument_list|<
-name|String
-argument_list|,
-name|Set
-argument_list|<
-name|String
-argument_list|>
-argument_list|>
+argument_list|<>
 argument_list|()
 decl_stmt|;
 comment|//The default maximum percentage (40%) of index documents which
@@ -505,9 +498,7 @@ name|stopWords
 init|=
 operator|new
 name|HashSet
-argument_list|<
-name|String
-argument_list|>
+argument_list|<>
 argument_list|()
 decl_stmt|;
 name|Terms
@@ -762,9 +753,7 @@ name|allStopWords
 init|=
 operator|new
 name|ArrayList
-argument_list|<
-name|Term
-argument_list|>
+argument_list|<>
 argument_list|()
 decl_stmt|;
 for|for

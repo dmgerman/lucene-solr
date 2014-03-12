@@ -107,11 +107,7 @@ name|waiting
 init|=
 operator|new
 name|IdentityHashMap
-argument_list|<
-name|Thread
-argument_list|,
-name|Boolean
-argument_list|>
+argument_list|<>
 argument_list|()
 decl_stmt|;
 comment|// only with assert

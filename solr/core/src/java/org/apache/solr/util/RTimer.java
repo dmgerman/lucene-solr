@@ -160,9 +160,7 @@ name|children
 operator|=
 operator|new
 name|SimpleOrderedMap
-argument_list|<
-name|RTimer
-argument_list|>
+argument_list|<>
 argument_list|()
 expr_stmt|;
 name|startTime
@@ -417,9 +415,7 @@ name|m
 init|=
 operator|new
 name|SimpleOrderedMap
-argument_list|<
-name|Object
-argument_list|>
+argument_list|<>
 argument_list|()
 decl_stmt|;
 name|m

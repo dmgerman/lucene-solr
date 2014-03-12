@@ -847,9 +847,7 @@ name|tokens
 init|=
 operator|new
 name|ArrayList
-argument_list|<
-name|Token
-argument_list|>
+argument_list|<>
 argument_list|(
 name|converter
 operator|.
@@ -966,9 +964,7 @@ name|tokens
 init|=
 operator|new
 name|ArrayList
-argument_list|<
-name|Token
-argument_list|>
+argument_list|<>
 argument_list|(
 name|converter
 operator|.
@@ -1083,9 +1079,7 @@ name|tokens
 init|=
 operator|new
 name|ArrayList
-argument_list|<
-name|Token
-argument_list|>
+argument_list|<>
 argument_list|(
 name|converter
 operator|.
@@ -1199,9 +1193,7 @@ name|tokens
 init|=
 operator|new
 name|ArrayList
-argument_list|<
-name|Token
-argument_list|>
+argument_list|<>
 argument_list|(
 name|converter
 operator|.
@@ -1315,9 +1307,7 @@ name|tokens
 init|=
 operator|new
 name|ArrayList
-argument_list|<
-name|Token
-argument_list|>
+argument_list|<>
 argument_list|(
 name|converter
 operator|.
@@ -1430,9 +1420,7 @@ name|tokens
 init|=
 operator|new
 name|ArrayList
-argument_list|<
-name|Token
-argument_list|>
+argument_list|<>
 argument_list|(
 name|converter
 operator|.
@@ -1544,9 +1532,7 @@ name|tokens
 init|=
 operator|new
 name|ArrayList
-argument_list|<
-name|Token
-argument_list|>
+argument_list|<>
 argument_list|(
 name|converter
 operator|.

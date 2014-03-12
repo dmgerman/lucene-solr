@@ -1455,9 +1455,7 @@ name|newList
 init|=
 operator|new
 name|ArrayList
-argument_list|<
-name|Long
-argument_list|>
+argument_list|<>
 argument_list|(
 name|ourUpdates
 argument_list|)
@@ -1550,9 +1548,7 @@ name|ourUpdateSet
 operator|=
 operator|new
 name|HashSet
-argument_list|<
-name|Long
-argument_list|>
+argument_list|<>
 argument_list|(
 name|ourUpdates
 argument_list|)
@@ -1561,9 +1557,7 @@ name|requestedUpdateSet
 operator|=
 operator|new
 name|HashSet
-argument_list|<
-name|Long
-argument_list|>
+argument_list|<>
 argument_list|(
 name|ourUpdates
 argument_list|)
@@ -2308,9 +2302,7 @@ name|toRequest
 init|=
 operator|new
 name|ArrayList
-argument_list|<
-name|Long
-argument_list|>
+argument_list|<>
 argument_list|()
 decl_stmt|;
 for|for

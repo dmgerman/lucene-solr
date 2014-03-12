@@ -141,9 +141,7 @@ name|res
 init|=
 operator|new
 name|ArrayList
-argument_list|<
-name|QualityQuery
-argument_list|>
+argument_list|<>
 argument_list|()
 decl_stmt|;
 name|String
@@ -237,11 +235,7 @@ name|fields
 init|=
 operator|new
 name|HashMap
-argument_list|<
-name|String
-argument_list|,
-name|String
-argument_list|>
+argument_list|<>
 argument_list|()
 decl_stmt|;
 name|fields

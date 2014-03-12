@@ -1675,9 +1675,7 @@ name|pending
 init|=
 operator|new
 name|ArrayList
-argument_list|<
-name|State
-argument_list|>
+argument_list|<>
 argument_list|()
 decl_stmt|;
 name|State

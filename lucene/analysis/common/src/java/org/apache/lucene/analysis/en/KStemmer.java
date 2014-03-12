@@ -2135,9 +2135,7 @@ name|d
 init|=
 operator|new
 name|CharArrayMap
-argument_list|<
-name|DictEntry
-argument_list|>
+argument_list|<>
 argument_list|(
 name|Version
 operator|.
@@ -3828,7 +3826,7 @@ operator|!=
 literal|null
 return|;
 block|}
-comment|// Set<String> lookups = new HashSet<String>();
+comment|// Set<String> lookups = new HashSet<>();
 comment|/* convert past tense (-ed) to present, and `-ied' to `y' */
 DECL|method|pastTense
 specifier|private

@@ -172,9 +172,7 @@ name|theSet
 operator|=
 operator|new
 name|HashSet
-argument_list|<
-name|V
-argument_list|>
+argument_list|<>
 argument_list|(
 literal|23
 argument_list|)
@@ -254,9 +252,7 @@ name|theSet
 operator|=
 operator|new
 name|HashSet
-argument_list|<
-name|V
-argument_list|>
+argument_list|<>
 argument_list|(
 literal|23
 argument_list|)

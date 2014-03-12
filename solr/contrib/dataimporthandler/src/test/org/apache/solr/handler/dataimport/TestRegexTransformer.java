@@ -173,14 +173,7 @@ name|fields
 init|=
 operator|new
 name|ArrayList
-argument_list|<
-name|Map
-argument_list|<
-name|String
-argument_list|,
-name|String
-argument_list|>
-argument_list|>
+argument_list|<>
 argument_list|()
 decl_stmt|;
 comment|//<field column="col1" sourceColName="a" splitBy="," />
@@ -232,11 +225,7 @@ name|src
 init|=
 operator|new
 name|HashMap
-argument_list|<
-name|String
-argument_list|,
-name|Object
-argument_list|>
+argument_list|<>
 argument_list|()
 decl_stmt|;
 name|src
@@ -319,14 +308,7 @@ name|fields
 init|=
 operator|new
 name|ArrayList
-argument_list|<
-name|Map
-argument_list|<
-name|String
-argument_list|,
-name|String
-argument_list|>
-argument_list|>
+argument_list|<>
 argument_list|()
 decl_stmt|;
 comment|//<field column="col1" regex="(\w*)(\w*) (\w*)" groupNames=",firstName,lastName"/>
@@ -340,11 +322,7 @@ name|m
 init|=
 operator|new
 name|HashMap
-argument_list|<
-name|String
-argument_list|,
-name|String
-argument_list|>
+argument_list|<>
 argument_list|()
 decl_stmt|;
 name|m
@@ -411,11 +389,7 @@ name|src
 init|=
 operator|new
 name|HashMap
-argument_list|<
-name|String
-argument_list|,
-name|Object
-argument_list|>
+argument_list|<>
 argument_list|()
 decl_stmt|;
 name|src
@@ -474,11 +448,7 @@ name|src
 operator|=
 operator|new
 name|HashMap
-argument_list|<
-name|String
-argument_list|,
-name|Object
-argument_list|>
+argument_list|<>
 argument_list|()
 expr_stmt|;
 name|List
@@ -623,14 +593,7 @@ name|fields
 init|=
 operator|new
 name|ArrayList
-argument_list|<
-name|Map
-argument_list|<
-name|String
-argument_list|,
-name|String
-argument_list|>
-argument_list|>
+argument_list|<>
 argument_list|()
 decl_stmt|;
 comment|//<field column="name" regexp="'" replaceWith="''" />
@@ -701,11 +664,7 @@ name|src
 init|=
 operator|new
 name|HashMap
-argument_list|<
-name|String
-argument_list|,
-name|Object
-argument_list|>
+argument_list|<>
 argument_list|()
 decl_stmt|;
 name|String
@@ -925,11 +884,7 @@ name|row
 init|=
 operator|new
 name|HashMap
-argument_list|<
-name|String
-argument_list|,
-name|Object
-argument_list|>
+argument_list|<>
 argument_list|()
 decl_stmt|;
 name|String
@@ -1108,14 +1063,7 @@ name|fields
 init|=
 operator|new
 name|ArrayList
-argument_list|<
-name|Map
-argument_list|<
-name|String
-argument_list|,
-name|String
-argument_list|>
-argument_list|>
+argument_list|<>
 argument_list|()
 decl_stmt|;
 comment|//<field column="participant" sourceColName="person" regex="(.*)" />
@@ -1175,9 +1123,7 @@ name|strings
 init|=
 operator|new
 name|ArrayList
-argument_list|<
-name|String
-argument_list|>
+argument_list|<>
 argument_list|()
 decl_stmt|;
 name|strings
@@ -1259,14 +1205,7 @@ name|fields
 init|=
 operator|new
 name|ArrayList
-argument_list|<
-name|Map
-argument_list|<
-name|String
-argument_list|,
-name|String
-argument_list|>
-argument_list|>
+argument_list|<>
 argument_list|()
 decl_stmt|;
 comment|//<field column="city_mileage" sourceColName="rowdata" regexp=

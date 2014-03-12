@@ -890,11 +890,7 @@ name|initAttributes
 init|=
 operator|new
 name|HashMap
-argument_list|<
-name|String
-argument_list|,
-name|Object
-argument_list|>
+argument_list|<>
 argument_list|()
 decl_stmt|;
 comment|// Customize Carrot2's resource lookup to first look for resources
@@ -1399,11 +1395,7 @@ name|attributes
 init|=
 operator|new
 name|HashMap
-argument_list|<
-name|String
-argument_list|,
-name|Object
-argument_list|>
+argument_list|<>
 argument_list|()
 decl_stmt|;
 name|List
@@ -2297,9 +2289,7 @@ name|result
 init|=
 operator|new
 name|ArrayList
-argument_list|<
-name|Document
-argument_list|>
+argument_list|<>
 argument_list|(
 name|solrDocList
 operator|.
@@ -3188,9 +3178,7 @@ name|cluster
 init|=
 operator|new
 name|SimpleOrderedMap
-argument_list|<
-name|Object
-argument_list|>
+argument_list|<>
 argument_list|()
 decl_stmt|;
 name|parent

@@ -332,16 +332,7 @@ name|map
 operator|=
 operator|new
 name|ConcurrentHashMap
-argument_list|<
-name|Object
-argument_list|,
-name|CacheEntry
-argument_list|<
-name|K
-argument_list|,
-name|V
-argument_list|>
-argument_list|>
+argument_list|<>
 argument_list|(
 name|initialSize
 argument_list|)
@@ -624,11 +615,7 @@ name|e
 init|=
 operator|new
 name|CacheEntry
-argument_list|<
-name|K
-argument_list|,
-name|V
-argument_list|>
+argument_list|<>
 argument_list|(
 name|key
 argument_list|,
@@ -854,9 +841,7 @@ name|tree
 init|=
 operator|new
 name|TreeSet
-argument_list|<
-name|CacheEntry
-argument_list|>
+argument_list|<>
 argument_list|()
 decl_stmt|;
 for|for
@@ -1129,11 +1114,7 @@ name|result
 init|=
 operator|new
 name|LinkedHashMap
-argument_list|<
-name|K
-argument_list|,
-name|V
-argument_list|>
+argument_list|<>
 argument_list|()
 decl_stmt|;
 if|if
@@ -1153,9 +1134,7 @@ name|tree
 init|=
 operator|new
 name|TreeSet
-argument_list|<
-name|CacheEntry
-argument_list|>
+argument_list|<>
 argument_list|()
 decl_stmt|;
 comment|// we need to grab the lock since we are changing the copy variables
@@ -1370,11 +1349,7 @@ name|result
 init|=
 operator|new
 name|LinkedHashMap
-argument_list|<
-name|K
-argument_list|,
-name|V
-argument_list|>
+argument_list|<>
 argument_list|()
 decl_stmt|;
 if|if
@@ -1394,9 +1369,7 @@ name|tree
 init|=
 operator|new
 name|TreeSet
-argument_list|<
-name|CacheEntry
-argument_list|>
+argument_list|<>
 argument_list|()
 decl_stmt|;
 comment|// we need to grab the lock since we are changing the copy variables
@@ -2242,9 +2215,7 @@ name|cache
 operator|=
 operator|new
 name|WeakReference
-argument_list|<
-name|ConcurrentLFUCache
-argument_list|>
+argument_list|<>
 argument_list|(
 name|c
 argument_list|)

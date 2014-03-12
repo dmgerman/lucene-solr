@@ -515,9 +515,7 @@ operator|new
 name|FST
 operator|.
 name|Arc
-argument_list|<
-name|Long
-argument_list|>
+argument_list|<>
 argument_list|()
 decl_stmt|;
 specifier|final
@@ -1370,9 +1368,7 @@ operator|new
 name|FST
 operator|.
 name|Arc
-argument_list|<
-name|T
-argument_list|>
+argument_list|<>
 argument_list|()
 decl_stmt|;
 DECL|field|comparator
@@ -1455,18 +1451,11 @@ name|queue
 operator|=
 operator|new
 name|TreeSet
-argument_list|<
-name|FSTPath
-argument_list|<
-name|T
-argument_list|>
-argument_list|>
+argument_list|<>
 argument_list|(
 operator|new
 name|TieBreakByInputComparator
-argument_list|<
-name|T
-argument_list|>
+argument_list|<>
 argument_list|(
 name|comparator
 argument_list|)
@@ -1726,9 +1715,7 @@ name|newPath
 init|=
 operator|new
 name|FSTPath
-argument_list|<
-name|T
-argument_list|>
+argument_list|<>
 argument_list|(
 name|cost
 argument_list|,
@@ -1825,9 +1812,7 @@ name|path
 init|=
 operator|new
 name|FSTPath
-argument_list|<
-name|T
-argument_list|>
+argument_list|<>
 argument_list|(
 name|startOutput
 argument_list|,
@@ -1926,12 +1911,7 @@ name|results
 init|=
 operator|new
 name|ArrayList
-argument_list|<
-name|MinResult
-argument_list|<
-name|T
-argument_list|>
-argument_list|>
+argument_list|<>
 argument_list|()
 decl_stmt|;
 comment|//System.out.println("search topN=" + topN);
@@ -2042,9 +2022,7 @@ name|add
 argument_list|(
 operator|new
 name|MinResult
-argument_list|<
-name|T
-argument_list|>
+argument_list|<>
 argument_list|(
 name|path
 operator|.
@@ -2299,9 +2277,7 @@ name|add
 argument_list|(
 operator|new
 name|MinResult
-argument_list|<
-name|T
-argument_list|>
+argument_list|<>
 argument_list|(
 name|path
 operator|.
@@ -2571,9 +2547,7 @@ name|searcher
 init|=
 operator|new
 name|TopNSearcher
-argument_list|<
-name|T
-argument_list|>
+argument_list|<>
 argument_list|(
 name|fst
 argument_list|,
@@ -2682,14 +2656,7 @@ name|thisLevelQueue
 init|=
 operator|new
 name|ArrayList
-argument_list|<
-name|FST
-operator|.
-name|Arc
-argument_list|<
-name|T
-argument_list|>
-argument_list|>
+argument_list|<>
 argument_list|()
 decl_stmt|;
 comment|// A queue of transitions to consider when processing the next level.
@@ -2707,14 +2674,7 @@ name|nextLevelQueue
 init|=
 operator|new
 name|ArrayList
-argument_list|<
-name|FST
-operator|.
-name|Arc
-argument_list|<
-name|T
-argument_list|>
-argument_list|>
+argument_list|<>
 argument_list|()
 decl_stmt|;
 name|nextLevelQueue
@@ -2735,9 +2695,7 @@ name|sameLevelStates
 init|=
 operator|new
 name|ArrayList
-argument_list|<
-name|Integer
-argument_list|>
+argument_list|<>
 argument_list|()
 decl_stmt|;
 comment|// A bitset of already seen states (target offset).
@@ -2836,7 +2794,7 @@ operator|.
 name|getBytesReader
 argument_list|()
 decl_stmt|;
-comment|// final FST.Arc<T> scratchArc = new FST.Arc<T>();
+comment|// final FST.Arc<T> scratchArc = new FST.Arc<>();
 block|{
 specifier|final
 name|String

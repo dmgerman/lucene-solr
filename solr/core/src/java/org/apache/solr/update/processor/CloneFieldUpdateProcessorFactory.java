@@ -339,9 +339,7 @@ name|srcExclusions
 init|=
 operator|new
 name|ArrayList
-argument_list|<
-name|SelectorParams
-argument_list|>
+argument_list|<>
 argument_list|()
 decl_stmt|;
 DECL|field|srcSelector
@@ -711,9 +709,7 @@ name|fieldName
 operator|=
 operator|new
 name|HashSet
-argument_list|<
-name|String
-argument_list|>
+argument_list|<>
 argument_list|(
 name|args
 operator|.

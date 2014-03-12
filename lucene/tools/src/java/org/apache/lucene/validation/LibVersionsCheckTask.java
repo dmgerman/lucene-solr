@@ -576,11 +576,7 @@ name|referencedCoordinateKeys
 init|=
 operator|new
 name|LinkedHashMap
-argument_list|<
-name|String
-argument_list|,
-name|Boolean
-argument_list|>
+argument_list|<>
 argument_list|()
 decl_stmt|;
 comment|/**    * Adds a set of ivy.xml resources to check.    */
@@ -1761,9 +1757,7 @@ name|tags
 init|=
 operator|new
 name|Stack
-argument_list|<
-name|String
-argument_list|>
+argument_list|<>
 argument_list|()
 decl_stmt|;
 DECL|field|fail

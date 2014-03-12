@@ -73,9 +73,7 @@ name|counts
 init|=
 operator|new
 name|ArrayList
-argument_list|<
-name|Count
-argument_list|>
+argument_list|<>
 argument_list|()
 decl_stmt|;
 DECL|field|start

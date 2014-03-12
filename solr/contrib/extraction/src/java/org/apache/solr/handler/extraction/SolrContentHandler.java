@@ -310,9 +310,7 @@ name|bldrStack
 init|=
 operator|new
 name|LinkedList
-argument_list|<
-name|StringBuilder
-argument_list|>
+argument_list|<>
 argument_list|()
 decl_stmt|;
 DECL|field|captureAttribs
@@ -530,11 +528,7 @@ name|fieldBuilders
 operator|=
 operator|new
 name|HashMap
-argument_list|<
-name|String
-argument_list|,
-name|StringBuilder
-argument_list|>
+argument_list|<>
 argument_list|()
 expr_stmt|;
 for|for
@@ -753,9 +747,7 @@ name|literalFieldNames
 operator|=
 operator|new
 name|HashSet
-argument_list|<
-name|String
-argument_list|>
+argument_list|<>
 argument_list|()
 expr_stmt|;
 while|while

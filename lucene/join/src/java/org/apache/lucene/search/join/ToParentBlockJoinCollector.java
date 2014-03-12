@@ -1466,9 +1466,7 @@ name|queue
 init|=
 operator|new
 name|LinkedList
-argument_list|<
-name|Scorer
-argument_list|>
+argument_list|<>
 argument_list|()
 decl_stmt|;
 comment|//System.out.println("\nqueue: add top scorer=" + scorer);

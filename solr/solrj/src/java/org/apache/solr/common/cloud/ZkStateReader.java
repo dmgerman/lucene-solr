@@ -1797,9 +1797,7 @@ name|liveNodesSet
 init|=
 operator|new
 name|HashSet
-argument_list|<
-name|String
-argument_list|>
+argument_list|<>
 argument_list|()
 decl_stmt|;
 name|liveNodesSet
@@ -1951,9 +1949,7 @@ name|liveNodeSet
 init|=
 operator|new
 name|HashSet
-argument_list|<
-name|String
-argument_list|>
+argument_list|<>
 argument_list|()
 decl_stmt|;
 name|liveNodeSet
@@ -2255,9 +2251,7 @@ name|liveNodesSet
 init|=
 operator|new
 name|HashSet
-argument_list|<
-name|String
-argument_list|>
+argument_list|<>
 argument_list|()
 decl_stmt|;
 name|liveNodesSet
@@ -2420,9 +2414,7 @@ name|liveNodesSet
 init|=
 operator|new
 name|HashSet
-argument_list|<
-name|String
-argument_list|>
+argument_list|<>
 argument_list|()
 decl_stmt|;
 name|liveNodesSet
@@ -3161,9 +3153,7 @@ name|nodes
 init|=
 operator|new
 name|ArrayList
-argument_list|<
-name|ZkCoreNodeProps
-argument_list|>
+argument_list|<>
 argument_list|(
 name|shardMap
 operator|.

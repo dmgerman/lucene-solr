@@ -270,14 +270,7 @@ name|positionTermMap
 init|=
 operator|new
 name|TreeMap
-argument_list|<
-name|Integer
-argument_list|,
-name|List
-argument_list|<
-name|Term
-argument_list|>
-argument_list|>
+argument_list|<>
 argument_list|()
 decl_stmt|;
 for|for
@@ -338,9 +331,7 @@ name|termList
 operator|=
 operator|new
 name|LinkedList
-argument_list|<
-name|Term
-argument_list|>
+argument_list|<>
 argument_list|()
 expr_stmt|;
 name|positionTermMap

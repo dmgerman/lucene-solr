@@ -513,9 +513,7 @@ name|threads
 init|=
 operator|new
 name|ArrayList
-argument_list|<
-name|Thread
-argument_list|>
+argument_list|<>
 argument_list|()
 decl_stmt|;
 specifier|final
@@ -635,11 +633,7 @@ name|newCommittedModel
 operator|=
 operator|new
 name|HashMap
-argument_list|<
-name|Integer
-argument_list|,
-name|DocInfo
-argument_list|>
+argument_list|<>
 argument_list|(
 name|model
 argument_list|)

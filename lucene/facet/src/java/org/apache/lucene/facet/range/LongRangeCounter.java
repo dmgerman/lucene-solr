@@ -130,11 +130,7 @@ name|endsMap
 init|=
 operator|new
 name|HashMap
-argument_list|<
-name|Long
-argument_list|,
-name|Integer
-argument_list|>
+argument_list|<>
 argument_list|()
 decl_stmt|;
 name|endsMap
@@ -275,9 +271,7 @@ name|endsList
 init|=
 operator|new
 name|ArrayList
-argument_list|<
-name|Long
-argument_list|>
+argument_list|<>
 argument_list|(
 name|endsMap
 operator|.
@@ -301,9 +295,7 @@ name|elementaryIntervals
 init|=
 operator|new
 name|ArrayList
-argument_list|<
-name|InclusiveRange
-argument_list|>
+argument_list|<>
 argument_list|()
 decl_stmt|;
 name|int
@@ -1281,9 +1273,7 @@ name|outputs
 operator|=
 operator|new
 name|ArrayList
-argument_list|<
-name|Integer
-argument_list|>
+argument_list|<>
 argument_list|()
 expr_stmt|;
 block|}

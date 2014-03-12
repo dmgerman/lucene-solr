@@ -992,9 +992,7 @@ name|langs
 init|=
 operator|new
 name|ArrayList
-argument_list|<
-name|DetectedLanguage
-argument_list|>
+argument_list|<>
 argument_list|()
 decl_stmt|;
 name|langs
@@ -1804,9 +1802,7 @@ name|langs
 operator|=
 operator|new
 name|ArrayList
-argument_list|<
-name|DetectedLanguage
-argument_list|>
+argument_list|<>
 argument_list|()
 expr_stmt|;
 name|assertEquals
@@ -1870,9 +1866,7 @@ name|langs
 operator|=
 operator|new
 name|ArrayList
-argument_list|<
-name|DetectedLanguage
-argument_list|>
+argument_list|<>
 argument_list|()
 expr_stmt|;
 name|langs

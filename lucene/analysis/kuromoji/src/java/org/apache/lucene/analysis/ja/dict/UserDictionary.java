@@ -302,10 +302,7 @@ name|featureEntries
 init|=
 operator|new
 name|ArrayList
-argument_list|<
-name|String
-index|[]
-argument_list|>
+argument_list|<>
 argument_list|()
 decl_stmt|;
 comment|// text, segmentation, readings, POS
@@ -427,9 +424,7 @@ name|data
 init|=
 operator|new
 name|ArrayList
-argument_list|<
-name|String
-argument_list|>
+argument_list|<>
 argument_list|(
 name|featureEntries
 operator|.
@@ -446,10 +441,7 @@ name|segmentations
 init|=
 operator|new
 name|ArrayList
-argument_list|<
-name|int
-index|[]
-argument_list|>
+argument_list|<>
 argument_list|(
 name|featureEntries
 operator|.
@@ -473,9 +465,7 @@ name|fstBuilder
 init|=
 operator|new
 name|Builder
-argument_list|<
-name|Long
-argument_list|>
+argument_list|<>
 argument_list|(
 name|FST
 operator|.
@@ -839,12 +829,7 @@ name|result
 init|=
 operator|new
 name|TreeMap
-argument_list|<
-name|Integer
-argument_list|,
-name|int
-index|[]
-argument_list|>
+argument_list|<>
 argument_list|()
 decl_stmt|;
 comment|// index, [length, length...]
@@ -877,9 +862,7 @@ operator|new
 name|FST
 operator|.
 name|Arc
-argument_list|<
-name|Long
-argument_list|>
+argument_list|<>
 argument_list|()
 decl_stmt|;
 name|int
@@ -1090,10 +1073,7 @@ name|result
 init|=
 operator|new
 name|ArrayList
-argument_list|<
-name|int
-index|[]
-argument_list|>
+argument_list|<>
 argument_list|()
 decl_stmt|;
 for|for

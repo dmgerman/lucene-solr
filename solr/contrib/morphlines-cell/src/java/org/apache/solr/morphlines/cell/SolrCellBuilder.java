@@ -1284,9 +1284,7 @@ literal|"dateFormats"
 argument_list|,
 operator|new
 name|ArrayList
-argument_list|<
-name|String
-argument_list|>
+argument_list|<>
 argument_list|(
 name|DateUtil
 operator|.
@@ -1404,11 +1402,7 @@ name|mediaTypeToParserMap
 operator|=
 operator|new
 name|HashMap
-argument_list|<
-name|MediaType
-argument_list|,
-name|Parser
-argument_list|>
+argument_list|<>
 argument_list|()
 expr_stmt|;
 comment|//MimeTypes mimeTypes = MimeTypes.getDefaultMimeTypes(); // FIXME getMediaTypeRegistry.normalize()

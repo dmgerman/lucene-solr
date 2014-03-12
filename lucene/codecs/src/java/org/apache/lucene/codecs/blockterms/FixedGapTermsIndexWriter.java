@@ -323,9 +323,7 @@ name|fields
 init|=
 operator|new
 name|ArrayList
-argument_list|<
-name|SimpleFieldWriter
-argument_list|>
+argument_list|<>
 argument_list|()
 decl_stmt|;
 DECL|method|FixedGapTermsIndexWriter

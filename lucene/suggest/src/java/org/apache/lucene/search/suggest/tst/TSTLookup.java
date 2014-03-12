@@ -285,9 +285,7 @@ name|tokens
 init|=
 operator|new
 name|ArrayList
-argument_list|<
-name|String
-argument_list|>
+argument_list|<>
 argument_list|()
 decl_stmt|;
 name|ArrayList
@@ -298,9 +296,7 @@ name|vals
 init|=
 operator|new
 name|ArrayList
-argument_list|<
-name|Number
-argument_list|>
+argument_list|<>
 argument_list|()
 decl_stmt|;
 name|BytesRef
@@ -637,9 +633,7 @@ name|res
 init|=
 operator|new
 name|ArrayList
-argument_list|<
-name|LookupResult
-argument_list|>
+argument_list|<>
 argument_list|()
 decl_stmt|;
 if|if

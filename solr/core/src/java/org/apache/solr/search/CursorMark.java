@@ -748,9 +748,7 @@ name|values
 operator|=
 operator|new
 name|ArrayList
-argument_list|<
-name|Object
-argument_list|>
+argument_list|<>
 argument_list|(
 name|input
 argument_list|)
@@ -779,9 +777,7 @@ literal|null
 else|:
 operator|new
 name|ArrayList
-argument_list|<
-name|Object
-argument_list|>
+argument_list|<>
 argument_list|(
 name|this
 operator|.
@@ -991,9 +987,7 @@ name|values
 operator|=
 operator|new
 name|ArrayList
-argument_list|<
-name|Object
-argument_list|>
+argument_list|<>
 argument_list|(
 name|sortFields
 operator|.
@@ -1130,9 +1124,7 @@ name|marshalledValues
 init|=
 operator|new
 name|ArrayList
-argument_list|<
-name|Object
-argument_list|>
+argument_list|<>
 argument_list|(
 name|values
 operator|.

@@ -1108,9 +1108,7 @@ name|children
 init|=
 operator|new
 name|LinkedList
-argument_list|<
-name|QueryNode
-argument_list|>
+argument_list|<>
 argument_list|()
 decl_stmt|;
 for|for
@@ -1500,9 +1498,7 @@ name|multiTerms
 init|=
 operator|new
 name|ArrayList
-argument_list|<
-name|FieldQueryNode
-argument_list|>
+argument_list|<>
 argument_list|()
 decl_stmt|;
 name|int

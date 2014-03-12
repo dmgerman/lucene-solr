@@ -1094,9 +1094,7 @@ name|h
 init|=
 operator|new
 name|ArrayList
-argument_list|<
-name|Trie
-argument_list|>
+argument_list|<>
 argument_list|()
 decl_stmt|;
 for|for

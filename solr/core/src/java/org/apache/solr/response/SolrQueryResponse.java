@@ -107,9 +107,7 @@ name|values
 init|=
 operator|new
 name|SimpleOrderedMap
-argument_list|<
-name|Object
-argument_list|>
+argument_list|<>
 argument_list|()
 decl_stmt|;
 comment|/**    * Container for storing information that should be logged by Solr before returning.    */
@@ -123,9 +121,7 @@ name|toLog
 init|=
 operator|new
 name|SimpleOrderedMap
-argument_list|<
-name|Object
-argument_list|>
+argument_list|<>
 argument_list|()
 decl_stmt|;
 DECL|field|returnFields

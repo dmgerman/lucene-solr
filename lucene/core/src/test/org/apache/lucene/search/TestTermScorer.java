@@ -517,9 +517,7 @@ name|docs
 init|=
 operator|new
 name|ArrayList
-argument_list|<
-name|TestHit
-argument_list|>
+argument_list|<>
 argument_list|()
 decl_stmt|;
 comment|// must call next first

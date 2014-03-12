@@ -185,9 +185,7 @@ name|ids
 init|=
 operator|new
 name|ArrayList
-argument_list|<
-name|String
-argument_list|>
+argument_list|<>
 argument_list|()
 decl_stmt|;
 comment|/**    * Get Test Queries.  The InputStream is closed.    */
@@ -227,9 +225,7 @@ name|results
 init|=
 operator|new
 name|ArrayList
-argument_list|<
-name|SpatialTestQuery
-argument_list|>
+argument_list|<>
 argument_list|()
 decl_stmt|;
 name|BufferedReader

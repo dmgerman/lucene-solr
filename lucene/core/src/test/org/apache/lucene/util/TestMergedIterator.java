@@ -119,9 +119,7 @@ name|merged
 init|=
 operator|new
 name|MergedIterator
-argument_list|<
-name|Integer
-argument_list|>
+argument_list|<>
 argument_list|()
 decl_stmt|;
 name|assertFalse
@@ -136,9 +134,7 @@ name|merged
 operator|=
 operator|new
 name|MergedIterator
-argument_list|<
-name|Integer
-argument_list|>
+argument_list|<>
 argument_list|(
 operator|new
 name|ArrayList
@@ -215,9 +211,7 @@ name|merged
 operator|=
 operator|new
 name|MergedIterator
-argument_list|<
-name|Integer
-argument_list|>
+argument_list|<>
 argument_list|(
 name|itrs
 argument_list|)
@@ -535,9 +529,7 @@ name|expected
 init|=
 operator|new
 name|ArrayList
-argument_list|<
-name|Integer
-argument_list|>
+argument_list|<>
 argument_list|()
 decl_stmt|;
 name|Random
@@ -611,9 +603,7 @@ index|]
 operator|=
 operator|new
 name|ArrayList
-argument_list|<
-name|Integer
-argument_list|>
+argument_list|<>
 argument_list|()
 expr_stmt|;
 block|}
@@ -873,9 +863,7 @@ name|mergedItr
 init|=
 operator|new
 name|MergedIterator
-argument_list|<
-name|Integer
-argument_list|>
+argument_list|<>
 argument_list|(
 name|removeDups
 argument_list|,

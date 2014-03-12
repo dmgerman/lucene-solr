@@ -109,9 +109,7 @@ name|suggestions
 init|=
 operator|new
 name|ArrayList
-argument_list|<
-name|Suggestion
-argument_list|>
+argument_list|<>
 argument_list|()
 decl_stmt|;
 DECL|field|suggestionMap
@@ -125,11 +123,7 @@ name|suggestionMap
 init|=
 operator|new
 name|LinkedHashMap
-argument_list|<
-name|String
-argument_list|,
-name|Suggestion
-argument_list|>
+argument_list|<>
 argument_list|()
 decl_stmt|;
 DECL|method|SpellCheckResponse
@@ -264,9 +258,7 @@ name|collations
 operator|=
 operator|new
 name|ArrayList
-argument_list|<
-name|Collation
-argument_list|>
+argument_list|<>
 argument_list|(
 name|collationInfo
 operator|.
@@ -715,9 +707,7 @@ name|alternatives
 init|=
 operator|new
 name|ArrayList
-argument_list|<
-name|String
-argument_list|>
+argument_list|<>
 argument_list|()
 decl_stmt|;
 DECL|field|alternativeFrequencies
@@ -943,9 +933,7 @@ name|alternativeFrequencies
 operator|=
 operator|new
 name|ArrayList
-argument_list|<
-name|Integer
-argument_list|>
+argument_list|<>
 argument_list|()
 expr_stmt|;
 for|for
@@ -1151,9 +1139,7 @@ name|misspellingsAndCorrections
 init|=
 operator|new
 name|ArrayList
-argument_list|<
-name|Correction
-argument_list|>
+argument_list|<>
 argument_list|()
 decl_stmt|;
 DECL|field|numberOfHits

@@ -244,9 +244,7 @@ name|inputWindow
 init|=
 operator|new
 name|LinkedList
-argument_list|<
-name|InputWindowToken
-argument_list|>
+argument_list|<>
 argument_list|()
 decl_stmt|;
 comment|/**    * The number of input tokens in the next output token.  This is the "n" in    * "token n-grams".    */

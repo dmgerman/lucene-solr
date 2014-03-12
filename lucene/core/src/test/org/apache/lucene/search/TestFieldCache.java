@@ -2601,15 +2601,11 @@ name|values
 init|=
 operator|new
 name|ArrayList
-argument_list|<
-name|BytesRef
-argument_list|>
+argument_list|<>
 argument_list|(
 operator|new
 name|LinkedHashSet
-argument_list|<
-name|BytesRef
-argument_list|>
+argument_list|<>
 argument_list|(
 name|Arrays
 operator|.

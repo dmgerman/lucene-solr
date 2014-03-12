@@ -597,9 +597,7 @@ name|input
 init|=
 operator|new
 name|ArrayList
-argument_list|<
-name|Input
-argument_list|>
+argument_list|<>
 argument_list|()
 decl_stmt|;
 name|URL
@@ -1237,9 +1235,7 @@ name|input
 init|=
 operator|new
 name|ArrayList
-argument_list|<
-name|String
-argument_list|>
+argument_list|<>
 argument_list|(
 name|benchmarkInput
 operator|.
@@ -1444,9 +1440,7 @@ name|times
 init|=
 operator|new
 name|ArrayList
-argument_list|<
-name|Double
-argument_list|>
+argument_list|<>
 argument_list|()
 decl_stmt|;
 for|for

@@ -145,9 +145,7 @@ name|this
 argument_list|(
 operator|new
 name|CharArrayMap
-argument_list|<
-name|Object
-argument_list|>
+argument_list|<>
 argument_list|(
 name|matchVersion
 argument_list|,

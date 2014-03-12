@@ -256,9 +256,7 @@ name|postingsList
 init|=
 operator|new
 name|ArrayList
-argument_list|<
-name|String
-argument_list|>
+argument_list|<>
 argument_list|()
 decl_stmt|;
 name|int
@@ -442,9 +440,7 @@ name|postings
 init|=
 operator|new
 name|ConcurrentLinkedQueue
-argument_list|<
-name|String
-argument_list|>
+argument_list|<>
 argument_list|(
 name|postingsList
 argument_list|)
@@ -637,9 +633,7 @@ name|visited
 init|=
 operator|new
 name|HashSet
-argument_list|<
-name|String
-argument_list|>
+argument_list|<>
 argument_list|()
 decl_stmt|;
 for|for

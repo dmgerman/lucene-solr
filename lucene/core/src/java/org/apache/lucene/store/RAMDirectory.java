@@ -137,11 +137,7 @@ name|fileMap
 init|=
 operator|new
 name|ConcurrentHashMap
-argument_list|<
-name|String
-argument_list|,
-name|RAMFile
-argument_list|>
+argument_list|<>
 argument_list|()
 decl_stmt|;
 DECL|field|sizeInBytes
@@ -316,9 +312,7 @@ name|names
 init|=
 operator|new
 name|ArrayList
-argument_list|<
-name|String
-argument_list|>
+argument_list|<>
 argument_list|(
 name|fileNames
 operator|.

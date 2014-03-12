@@ -1739,9 +1739,7 @@ name|sfields
 init|=
 operator|new
 name|ArrayList
-argument_list|<
-name|SortField
-argument_list|>
+argument_list|<>
 argument_list|()
 decl_stmt|;
 specifier|final
@@ -1997,9 +1995,7 @@ name|collectedDocs
 init|=
 operator|new
 name|ArrayList
-argument_list|<
-name|MyDoc
-argument_list|>
+argument_list|<>
 argument_list|()
 decl_stmt|;
 comment|// delegate and collect docs ourselves

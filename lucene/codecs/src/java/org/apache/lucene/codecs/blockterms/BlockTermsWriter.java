@@ -586,9 +586,7 @@ name|fields
 init|=
 operator|new
 name|ArrayList
-argument_list|<
-name|FieldMetaData
-argument_list|>
+argument_list|<>
 argument_list|()
 decl_stmt|;
 comment|// private final String segment;

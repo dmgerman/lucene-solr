@@ -1503,9 +1503,7 @@ name|doFail
 init|=
 operator|new
 name|ThreadLocal
-argument_list|<
-name|Thread
-argument_list|>
+argument_list|<>
 argument_list|()
 decl_stmt|;
 DECL|class|TestPoint1
@@ -8406,9 +8404,7 @@ name|docs
 init|=
 operator|new
 name|ArrayList
-argument_list|<
-name|Document
-argument_list|>
+argument_list|<>
 argument_list|()
 decl_stmt|;
 for|for
@@ -8882,9 +8878,7 @@ name|docs
 init|=
 operator|new
 name|ArrayList
-argument_list|<
-name|Document
-argument_list|>
+argument_list|<>
 argument_list|()
 decl_stmt|;
 specifier|final
@@ -10106,9 +10100,7 @@ name|list
 init|=
 operator|new
 name|ArrayList
-argument_list|<
-name|IndexableField
-argument_list|>
+argument_list|<>
 argument_list|()
 decl_stmt|;
 name|List
@@ -10119,9 +10111,7 @@ name|storedList
 init|=
 operator|new
 name|ArrayList
-argument_list|<
-name|StorableField
-argument_list|>
+argument_list|<>
 argument_list|()
 decl_stmt|;
 annotation|@

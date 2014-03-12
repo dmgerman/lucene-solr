@@ -131,9 +131,7 @@ name|queue
 init|=
 operator|new
 name|ReferenceQueue
-argument_list|<
-name|Object
-argument_list|>
+argument_list|<>
 argument_list|()
 decl_stmt|;
 DECL|field|backingStore
@@ -202,11 +200,7 @@ block|{
 return|return
 operator|new
 name|WeakIdentityMap
-argument_list|<
-name|K
-argument_list|,
-name|V
-argument_list|>
+argument_list|<>
 argument_list|(
 operator|new
 name|HashMap
@@ -270,11 +264,7 @@ block|{
 return|return
 operator|new
 name|WeakIdentityMap
-argument_list|<
-name|K
-argument_list|,
-name|V
-argument_list|>
+argument_list|<>
 argument_list|(
 operator|new
 name|ConcurrentHashMap

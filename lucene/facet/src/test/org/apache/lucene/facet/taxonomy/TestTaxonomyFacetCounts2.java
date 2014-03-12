@@ -870,9 +870,7 @@ name|categories_a
 init|=
 operator|new
 name|ArrayList
-argument_list|<
-name|FacetField
-argument_list|>
+argument_list|<>
 argument_list|()
 decl_stmt|;
 name|categories_a
@@ -895,9 +893,7 @@ name|categories_b
 init|=
 operator|new
 name|ArrayList
-argument_list|<
-name|FacetField
-argument_list|>
+argument_list|<>
 argument_list|()
 decl_stmt|;
 name|categories_b
@@ -938,9 +934,7 @@ name|categories
 init|=
 operator|new
 name|ArrayList
-argument_list|<
-name|FacetField
-argument_list|>
+argument_list|<>
 argument_list|()
 decl_stmt|;
 name|categories
@@ -1703,11 +1697,7 @@ name|counts
 init|=
 operator|new
 name|HashMap
-argument_list|<
-name|String
-argument_list|,
-name|Integer
-argument_list|>
+argument_list|<>
 argument_list|()
 decl_stmt|;
 name|counts

@@ -719,11 +719,7 @@ decl_stmt|;
 return|return
 operator|new
 name|SolrRecordWriter
-argument_list|<
-name|K
-argument_list|,
-name|V
-argument_list|>
+argument_list|<>
 argument_list|(
 name|context
 argument_list|,
@@ -1038,9 +1034,7 @@ name|files
 init|=
 operator|new
 name|HashSet
-argument_list|<
-name|File
-argument_list|>
+argument_list|<>
 argument_list|()
 decl_stmt|;
 comment|// take only conf/ and lib/

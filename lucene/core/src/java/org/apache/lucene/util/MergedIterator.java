@@ -172,9 +172,7 @@ name|queue
 operator|=
 operator|new
 name|TermMergeQueue
-argument_list|<
-name|T
-argument_list|>
+argument_list|<>
 argument_list|(
 name|iterators
 operator|.
@@ -223,9 +221,7 @@ name|sub
 init|=
 operator|new
 name|SubIterator
-argument_list|<
-name|T
-argument_list|>
+argument_list|<>
 argument_list|()
 decl_stmt|;
 name|sub

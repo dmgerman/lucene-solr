@@ -185,11 +185,7 @@ name|posToStartOffset
 init|=
 operator|new
 name|HashMap
-argument_list|<
-name|Integer
-argument_list|,
-name|Integer
-argument_list|>
+argument_list|<>
 argument_list|()
 decl_stmt|;
 DECL|field|posToEndOffset
@@ -205,11 +201,7 @@ name|posToEndOffset
 init|=
 operator|new
 name|HashMap
-argument_list|<
-name|Integer
-argument_list|,
-name|Integer
-argument_list|>
+argument_list|<>
 argument_list|()
 decl_stmt|;
 DECL|field|posIncAtt

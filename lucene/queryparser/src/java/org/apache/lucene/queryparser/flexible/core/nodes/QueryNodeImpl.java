@@ -195,11 +195,7 @@ name|tags
 init|=
 operator|new
 name|Hashtable
-argument_list|<
-name|String
-argument_list|,
-name|Object
-argument_list|>
+argument_list|<>
 argument_list|()
 decl_stmt|;
 DECL|field|clauses
@@ -233,9 +229,7 @@ name|clauses
 operator|=
 operator|new
 name|ArrayList
-argument_list|<
-name|QueryNode
-argument_list|>
+argument_list|<>
 argument_list|()
 expr_stmt|;
 block|}
@@ -467,9 +461,7 @@ name|existingChildren
 init|=
 operator|new
 name|ArrayList
-argument_list|<
-name|QueryNode
-argument_list|>
+argument_list|<>
 argument_list|(
 name|getChildren
 argument_list|()
@@ -536,11 +528,7 @@ name|tags
 operator|=
 operator|new
 name|Hashtable
-argument_list|<
-name|String
-argument_list|,
-name|Object
-argument_list|>
+argument_list|<>
 argument_list|()
 expr_stmt|;
 comment|// copy children
@@ -561,9 +549,7 @@ name|localClauses
 init|=
 operator|new
 name|ArrayList
-argument_list|<
-name|QueryNode
-argument_list|>
+argument_list|<>
 argument_list|()
 decl_stmt|;
 for|for
@@ -661,9 +647,7 @@ block|}
 return|return
 operator|new
 name|ArrayList
-argument_list|<
-name|QueryNode
-argument_list|>
+argument_list|<>
 argument_list|(
 name|this
 operator|.

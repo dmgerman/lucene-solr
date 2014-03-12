@@ -255,9 +255,7 @@ name|fixedSets
 init|=
 operator|new
 name|ArrayList
-argument_list|<
-name|BitSet
-argument_list|>
+argument_list|<>
 argument_list|(
 name|numDocIdSets
 argument_list|)
@@ -305,9 +303,7 @@ name|compressedSets
 init|=
 operator|new
 name|ArrayList
-argument_list|<
-name|WAH8DocIdSet
-argument_list|>
+argument_list|<>
 argument_list|(
 name|numDocIdSets
 argument_list|)
@@ -461,9 +457,7 @@ name|fixedSets
 init|=
 operator|new
 name|ArrayList
-argument_list|<
-name|BitSet
-argument_list|>
+argument_list|<>
 argument_list|(
 name|numDocIdSets
 argument_list|)
@@ -509,9 +503,7 @@ name|compressedSets
 init|=
 operator|new
 name|ArrayList
-argument_list|<
-name|WAH8DocIdSet
-argument_list|>
+argument_list|<>
 argument_list|(
 name|numDocIdSets
 argument_list|)

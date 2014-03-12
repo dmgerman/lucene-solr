@@ -50,9 +50,7 @@ block|{
 return|return
 operator|new
 name|ArrayTimSorter
-argument_list|<
-name|Entry
-argument_list|>
+argument_list|<>
 argument_list|(
 name|arr
 argument_list|,

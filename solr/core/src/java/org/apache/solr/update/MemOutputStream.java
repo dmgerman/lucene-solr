@@ -85,10 +85,7 @@ name|buffers
 init|=
 operator|new
 name|LinkedList
-argument_list|<
-name|byte
-index|[]
-argument_list|>
+argument_list|<>
 argument_list|()
 decl_stmt|;
 DECL|method|MemOutputStream

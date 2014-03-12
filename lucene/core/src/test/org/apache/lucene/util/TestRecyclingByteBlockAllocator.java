@@ -173,10 +173,7 @@ name|set
 init|=
 operator|new
 name|HashSet
-argument_list|<
-name|byte
-index|[]
-argument_list|>
+argument_list|<>
 argument_list|()
 decl_stmt|;
 name|byte
@@ -316,10 +313,7 @@ name|allocated
 init|=
 operator|new
 name|HashSet
-argument_list|<
-name|byte
-index|[]
-argument_list|>
+argument_list|<>
 argument_list|()
 decl_stmt|;
 name|byte
@@ -514,10 +508,7 @@ name|selected
 init|=
 operator|new
 name|ArrayList
-argument_list|<
-name|byte
-index|[]
-argument_list|>
+argument_list|<>
 argument_list|()
 decl_stmt|;
 for|for
@@ -627,10 +618,7 @@ name|allocated
 init|=
 operator|new
 name|HashSet
-argument_list|<
-name|byte
-index|[]
-argument_list|>
+argument_list|<>
 argument_list|()
 decl_stmt|;
 name|int

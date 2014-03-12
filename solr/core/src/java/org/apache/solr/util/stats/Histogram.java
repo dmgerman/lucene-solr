@@ -197,10 +197,7 @@ name|variance
 init|=
 operator|new
 name|AtomicReference
-argument_list|<
-name|double
-index|[]
-argument_list|>
+argument_list|<>
 argument_list|(
 operator|new
 name|double

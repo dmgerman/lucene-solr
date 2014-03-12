@@ -543,9 +543,7 @@ name|threads
 init|=
 operator|new
 name|ArrayList
-argument_list|<
-name|StopableIndexingThread
-argument_list|>
+argument_list|<>
 argument_list|()
 decl_stmt|;
 name|int
@@ -877,9 +875,7 @@ name|numShardsNumReplicas
 init|=
 operator|new
 name|ArrayList
-argument_list|<
-name|Integer
-argument_list|>
+argument_list|<>
 argument_list|(
 literal|2
 argument_list|)

@@ -475,9 +475,7 @@ name|DEFAULT_STEM_DICT
 operator|=
 operator|new
 name|CharArrayMap
-argument_list|<
-name|String
-argument_list|>
+argument_list|<>
 argument_list|(
 name|Version
 operator|.

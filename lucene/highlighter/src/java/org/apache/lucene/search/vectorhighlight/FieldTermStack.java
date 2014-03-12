@@ -209,9 +209,7 @@ name|termList
 init|=
 operator|new
 name|LinkedList
-argument_list|<
-name|TermInfo
-argument_list|>
+argument_list|<>
 argument_list|()
 decl_stmt|;
 comment|//public static void main( String[] args ) throws Exception {

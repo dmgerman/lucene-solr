@@ -135,9 +135,7 @@ name|loader
 init|=
 operator|new
 name|NamedSPILoader
-argument_list|<
-name|PostingsFormat
-argument_list|>
+argument_list|<>
 argument_list|(
 name|PostingsFormat
 operator|.

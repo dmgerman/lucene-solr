@@ -300,9 +300,7 @@ operator|new
 name|FST
 operator|.
 name|Arc
-argument_list|<
-name|BytesRef
-argument_list|>
+argument_list|<>
 argument_list|()
 decl_stmt|;
 DECL|field|spare
@@ -784,9 +782,7 @@ name|outputValues
 init|=
 operator|new
 name|ArrayList
-argument_list|<
-name|CharSequence
-argument_list|>
+argument_list|<>
 argument_list|()
 decl_stmt|;
 DECL|field|ignoreCase
@@ -1018,9 +1014,7 @@ operator|.
 name|fst
 operator|.
 name|Builder
-argument_list|<
-name|BytesRef
-argument_list|>
+argument_list|<>
 argument_list|(
 name|FST
 operator|.

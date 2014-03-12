@@ -210,11 +210,7 @@ name|passwordMap
 init|=
 operator|new
 name|LinkedHashMap
-argument_list|<
-name|Pattern
-argument_list|,
-name|String
-argument_list|>
+argument_list|<>
 argument_list|()
 decl_stmt|;
 DECL|field|explicitPassword
@@ -366,11 +362,7 @@ name|rules
 init|=
 operator|new
 name|LinkedHashMap
-argument_list|<
-name|Pattern
-argument_list|,
-name|String
-argument_list|>
+argument_list|<>
 argument_list|()
 decl_stmt|;
 name|BufferedReader

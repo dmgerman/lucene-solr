@@ -409,9 +409,7 @@ name|res
 init|=
 operator|new
 name|NamedList
-argument_list|<
-name|Integer
-argument_list|>
+argument_list|<>
 argument_list|()
 decl_stmt|;
 specifier|final

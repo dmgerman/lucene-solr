@@ -1392,11 +1392,7 @@ name|indexedShapes
 init|=
 operator|new
 name|LinkedHashMap
-argument_list|<
-name|String
-argument_list|,
-name|Shape
-argument_list|>
+argument_list|<>
 argument_list|()
 decl_stmt|;
 name|Map
@@ -1409,11 +1405,7 @@ name|indexedShapesGS
 init|=
 operator|new
 name|LinkedHashMap
-argument_list|<
-name|String
-argument_list|,
-name|Shape
-argument_list|>
+argument_list|<>
 argument_list|()
 decl_stmt|;
 comment|//grid snapped
@@ -1742,9 +1734,7 @@ name|expectedIds
 init|=
 operator|new
 name|LinkedHashSet
-argument_list|<
-name|String
-argument_list|>
+argument_list|<>
 argument_list|()
 decl_stmt|;
 comment|//true-positives
@@ -1756,9 +1746,7 @@ name|secondaryIds
 init|=
 operator|new
 name|LinkedHashSet
-argument_list|<
-name|String
-argument_list|>
+argument_list|<>
 argument_list|()
 decl_stmt|;
 comment|//false-positives (unless disjoint)
@@ -2005,9 +1993,7 @@ name|remainingExpectedIds
 init|=
 operator|new
 name|LinkedHashSet
-argument_list|<
-name|String
-argument_list|>
+argument_list|<>
 argument_list|(
 name|expectedIds
 argument_list|)
@@ -2278,9 +2264,7 @@ name|cellShapes
 init|=
 operator|new
 name|ArrayList
-argument_list|<
-name|Shape
-argument_list|>
+argument_list|<>
 argument_list|(
 name|cells
 operator|.
@@ -2310,9 +2294,7 @@ block|}
 return|return
 operator|new
 name|ShapeCollection
-argument_list|<
-name|Shape
-argument_list|>
+argument_list|<>
 argument_list|(
 name|cellShapes
 argument_list|,

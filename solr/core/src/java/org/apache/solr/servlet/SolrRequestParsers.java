@@ -605,11 +605,7 @@ name|parsers
 init|=
 operator|new
 name|HashMap
-argument_list|<
-name|String
-argument_list|,
-name|SolrRequestParser
-argument_list|>
+argument_list|<>
 argument_list|()
 decl_stmt|;
 DECL|field|enableRemoteStreams
@@ -902,9 +898,7 @@ name|streams
 init|=
 operator|new
 name|ArrayList
-argument_list|<
-name|ContentStream
-argument_list|>
+argument_list|<>
 argument_list|(
 literal|1
 argument_list|)
@@ -1297,12 +1291,7 @@ name|map
 init|=
 operator|new
 name|HashMap
-argument_list|<
-name|String
-argument_list|,
-name|String
-index|[]
-argument_list|>
+argument_list|<>
 argument_list|()
 decl_stmt|;
 name|parseQueryString
@@ -1546,9 +1535,7 @@ name|supportCharsetParam
 condition|?
 operator|new
 name|LinkedList
-argument_list|<
-name|Object
-argument_list|>
+argument_list|<>
 argument_list|()
 else|:
 literal|null
@@ -3025,12 +3012,7 @@ name|map
 init|=
 operator|new
 name|HashMap
-argument_list|<
-name|String
-argument_list|,
-name|String
-index|[]
-argument_list|>
+argument_list|<>
 argument_list|()
 decl_stmt|;
 comment|// also add possible URL parameters and include into the map (parsed using UTF-8):

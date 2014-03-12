@@ -507,13 +507,7 @@ name|blocks
 init|=
 operator|new
 name|ArrayList
-argument_list|<
-name|List
-argument_list|<
-name|String
-index|[]
-argument_list|>
-argument_list|>
+argument_list|<>
 argument_list|()
 decl_stmt|;
 for|for
@@ -595,10 +589,7 @@ name|block
 init|=
 operator|new
 name|ArrayList
-argument_list|<
-name|String
-index|[]
-argument_list|>
+argument_list|<>
 argument_list|()
 decl_stmt|;
 for|for
@@ -671,9 +662,7 @@ name|grandChildren
 init|=
 operator|new
 name|ArrayList
-argument_list|<
-name|String
-argument_list|>
+argument_list|<>
 argument_list|(
 name|xyz
 argument_list|)

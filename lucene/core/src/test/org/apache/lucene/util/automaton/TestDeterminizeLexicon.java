@@ -98,9 +98,7 @@ name|automata
 init|=
 operator|new
 name|ArrayList
-argument_list|<
-name|Automaton
-argument_list|>
+argument_list|<>
 argument_list|()
 decl_stmt|;
 DECL|field|terms
@@ -113,9 +111,7 @@ name|terms
 init|=
 operator|new
 name|ArrayList
-argument_list|<
-name|String
-argument_list|>
+argument_list|<>
 argument_list|()
 decl_stmt|;
 DECL|method|testLexicon

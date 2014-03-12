@@ -3016,9 +3016,7 @@ name|SpanOrQuery
 argument_list|(
 operator|new
 name|SpanMultiTermQueryWrapper
-argument_list|<
-name|RegexpQuery
-argument_list|>
+argument_list|<>
 argument_list|(
 operator|new
 name|RegexpQuery
@@ -7824,9 +7822,7 @@ name|positionSpans
 init|=
 operator|new
 name|ArrayList
-argument_list|<
-name|PositionSpan
-argument_list|>
+argument_list|<>
 argument_list|()
 decl_stmt|;
 name|positionSpans
@@ -7869,9 +7865,7 @@ name|positionSpans
 operator|=
 operator|new
 name|ArrayList
-argument_list|<
-name|PositionSpan
-argument_list|>
+argument_list|<>
 argument_list|()
 expr_stmt|;
 name|positionSpans
@@ -8095,11 +8089,7 @@ name|synonyms
 init|=
 operator|new
 name|HashMap
-argument_list|<
-name|String
-argument_list|,
-name|String
-argument_list|>
+argument_list|<>
 argument_list|()
 decl_stmt|;
 name|synonyms
@@ -10217,9 +10207,7 @@ name|lst
 operator|=
 operator|new
 name|ArrayList
-argument_list|<
-name|Token
-argument_list|>
+argument_list|<>
 argument_list|()
 expr_stmt|;
 name|Token
@@ -10518,9 +10506,7 @@ name|lst
 operator|=
 operator|new
 name|ArrayList
-argument_list|<
-name|Token
-argument_list|>
+argument_list|<>
 argument_list|()
 expr_stmt|;
 name|Token

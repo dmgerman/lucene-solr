@@ -152,11 +152,7 @@ name|cache
 operator|=
 operator|new
 name|LinkedList
-argument_list|<
-name|AttributeSource
-operator|.
-name|State
-argument_list|>
+argument_list|<>
 argument_list|()
 expr_stmt|;
 name|fillCache

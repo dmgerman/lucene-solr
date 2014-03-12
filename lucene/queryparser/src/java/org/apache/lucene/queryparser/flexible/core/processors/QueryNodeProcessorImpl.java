@@ -123,9 +123,7 @@ name|childrenListPool
 init|=
 operator|new
 name|ArrayList
-argument_list|<
-name|ChildrenList
-argument_list|>
+argument_list|<>
 argument_list|()
 decl_stmt|;
 DECL|field|queryConfig

@@ -610,11 +610,7 @@ name|fields
 init|=
 operator|new
 name|TreeMap
-argument_list|<
-name|String
-argument_list|,
-name|SimpleTVTerms
-argument_list|>
+argument_list|<>
 argument_list|()
 decl_stmt|;
 name|in
@@ -1626,11 +1622,7 @@ name|terms
 operator|=
 operator|new
 name|TreeMap
-argument_list|<
-name|BytesRef
-argument_list|,
-name|SimpleTVPostings
-argument_list|>
+argument_list|<>
 argument_list|()
 expr_stmt|;
 block|}

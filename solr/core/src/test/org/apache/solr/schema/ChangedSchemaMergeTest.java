@@ -291,9 +291,7 @@ name|core
 argument_list|,
 operator|new
 name|NamedList
-argument_list|<
-name|Object
-argument_list|>
+argument_list|<>
 argument_list|()
 argument_list|)
 argument_list|)
@@ -566,9 +564,7 @@ name|changed
 argument_list|,
 operator|new
 name|NamedList
-argument_list|<
-name|Object
-argument_list|>
+argument_list|<>
 argument_list|()
 argument_list|)
 decl_stmt|;

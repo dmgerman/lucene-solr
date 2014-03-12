@@ -570,11 +570,7 @@ name|map
 init|=
 operator|new
 name|HashMap
-argument_list|<
-name|String
-argument_list|,
-name|LoggerInfo
-argument_list|>
+argument_list|<>
 argument_list|()
 decl_stmt|;
 name|Enumeration
@@ -847,9 +843,7 @@ name|history
 operator|=
 operator|new
 name|CircularList
-argument_list|<
-name|LoggingEvent
-argument_list|>
+argument_list|<>
 argument_list|(
 name|cfg
 operator|.

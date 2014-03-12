@@ -332,11 +332,7 @@ block|{
 return|return
 operator|new
 name|HashMap
-argument_list|<
-name|String
-argument_list|,
-name|Object
-argument_list|>
+argument_list|<>
 argument_list|()
 return|;
 block|}
@@ -382,11 +378,7 @@ block|{
 return|return
 operator|new
 name|HashMap
-argument_list|<
-name|String
-argument_list|,
-name|Bits
-argument_list|>
+argument_list|<>
 argument_list|()
 return|;
 block|}
@@ -404,11 +396,7 @@ name|dvProducers
 init|=
 operator|new
 name|HashMap
-argument_list|<
-name|String
-argument_list|,
-name|DocValuesProducer
-argument_list|>
+argument_list|<>
 argument_list|()
 decl_stmt|;
 DECL|field|fieldInfos
@@ -427,9 +415,7 @@ name|dvGens
 init|=
 operator|new
 name|ArrayList
-argument_list|<
-name|Long
-argument_list|>
+argument_list|<>
 argument_list|()
 decl_stmt|;
 comment|/**    * Constructs a new SegmentReader with a new core.    * @throws CorruptIndexException if the index is corrupt    * @throws IOException if there is a low-level IO error    */
@@ -1151,14 +1137,7 @@ name|genInfos
 init|=
 operator|new
 name|HashMap
-argument_list|<
-name|Long
-argument_list|,
-name|List
-argument_list|<
-name|FieldInfo
-argument_list|>
-argument_list|>
+argument_list|<>
 argument_list|()
 decl_stmt|;
 for|for
@@ -1213,9 +1192,7 @@ name|infos
 operator|=
 operator|new
 name|ArrayList
-argument_list|<
-name|FieldInfo
-argument_list|>
+argument_list|<>
 argument_list|()
 expr_stmt|;
 name|genInfos

@@ -746,11 +746,7 @@ name|fields
 init|=
 operator|new
 name|HashMap
-argument_list|<
-name|String
-argument_list|,
-name|Info
-argument_list|>
+argument_list|<>
 argument_list|()
 decl_stmt|;
 comment|/** fields sorted ascending by fieldName; lazily computed on demand */
@@ -816,11 +812,7 @@ name|fieldInfos
 init|=
 operator|new
 name|HashMap
-argument_list|<
-name|String
-argument_list|,
-name|FieldInfo
-argument_list|>
+argument_list|<>
 argument_list|()
 decl_stmt|;
 DECL|field|bytesUsed

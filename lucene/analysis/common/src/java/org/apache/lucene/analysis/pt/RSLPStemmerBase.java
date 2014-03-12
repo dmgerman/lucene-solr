@@ -1083,11 +1083,7 @@ name|steps
 init|=
 operator|new
 name|HashMap
-argument_list|<
-name|String
-argument_list|,
-name|Step
-argument_list|>
+argument_list|<>
 argument_list|()
 decl_stmt|;
 name|String
@@ -1367,9 +1363,7 @@ name|rules
 init|=
 operator|new
 name|ArrayList
-argument_list|<
-name|Rule
-argument_list|>
+argument_list|<>
 argument_list|()
 decl_stmt|;
 name|String

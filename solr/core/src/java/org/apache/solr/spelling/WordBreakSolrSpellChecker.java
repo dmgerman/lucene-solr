@@ -903,9 +903,7 @@ name|termArr
 init|=
 operator|new
 name|ArrayList
-argument_list|<
-name|Term
-argument_list|>
+argument_list|<>
 argument_list|(
 name|options
 operator|.
@@ -925,9 +923,7 @@ name|breakSuggestionList
 init|=
 operator|new
 name|ArrayList
-argument_list|<
-name|ResultEntry
-argument_list|>
+argument_list|<>
 argument_list|()
 decl_stmt|;
 name|boolean
@@ -1291,9 +1287,7 @@ name|combineSuggestionList
 operator|=
 operator|new
 name|ArrayList
-argument_list|<
-name|ResultEntry
-argument_list|>
+argument_list|<>
 argument_list|(
 name|combineSuggestions
 operator|.

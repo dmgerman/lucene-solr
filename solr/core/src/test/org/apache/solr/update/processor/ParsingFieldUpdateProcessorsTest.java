@@ -1737,11 +1737,7 @@ name|mixed
 init|=
 operator|new
 name|HashMap
-argument_list|<
-name|Object
-argument_list|,
-name|Object
-argument_list|>
+argument_list|<>
 argument_list|()
 decl_stmt|;
 name|String
@@ -2605,11 +2601,7 @@ name|mixed
 init|=
 operator|new
 name|HashMap
-argument_list|<
-name|Object
-argument_list|,
-name|Object
-argument_list|>
+argument_list|<>
 argument_list|()
 decl_stmt|;
 name|Float
@@ -3318,11 +3310,7 @@ name|mixed
 init|=
 operator|new
 name|HashMap
-argument_list|<
-name|Object
-argument_list|,
-name|Object
-argument_list|>
+argument_list|<>
 argument_list|()
 decl_stmt|;
 name|Float
@@ -4014,11 +4002,7 @@ name|mixedFloats
 init|=
 operator|new
 name|HashMap
-argument_list|<
-name|Float
-argument_list|,
-name|Object
-argument_list|>
+argument_list|<>
 argument_list|()
 decl_stmt|;
 name|mixedFloats
@@ -4171,11 +4155,7 @@ name|mixed
 init|=
 operator|new
 name|HashMap
-argument_list|<
-name|Object
-argument_list|,
-name|Object
-argument_list|>
+argument_list|<>
 argument_list|()
 decl_stmt|;
 name|Long
@@ -4866,11 +4846,7 @@ name|mixed
 init|=
 operator|new
 name|HashMap
-argument_list|<
-name|Object
-argument_list|,
-name|Object
-argument_list|>
+argument_list|<>
 argument_list|()
 decl_stmt|;
 name|Long
@@ -5753,11 +5729,7 @@ name|mixed
 init|=
 operator|new
 name|HashMap
-argument_list|<
-name|Object
-argument_list|,
-name|Object
-argument_list|>
+argument_list|<>
 argument_list|()
 decl_stmt|;
 name|Long
@@ -5955,11 +5927,7 @@ name|booleans
 init|=
 operator|new
 name|HashMap
-argument_list|<
-name|Boolean
-argument_list|,
-name|String
-argument_list|>
+argument_list|<>
 argument_list|()
 decl_stmt|;
 name|booleans
@@ -6058,11 +6026,7 @@ name|ints
 init|=
 operator|new
 name|HashMap
-argument_list|<
-name|Integer
-argument_list|,
-name|String
-argument_list|>
+argument_list|<>
 argument_list|()
 decl_stmt|;
 name|ints
@@ -6170,11 +6134,7 @@ name|longs
 init|=
 operator|new
 name|HashMap
-argument_list|<
-name|Long
-argument_list|,
-name|String
-argument_list|>
+argument_list|<>
 argument_list|()
 decl_stmt|;
 name|longs
@@ -6283,11 +6243,7 @@ name|doubles
 init|=
 operator|new
 name|HashMap
-argument_list|<
-name|Double
-argument_list|,
-name|String
-argument_list|>
+argument_list|<>
 argument_list|()
 decl_stmt|;
 name|doubles
@@ -6398,11 +6354,7 @@ name|dates
 init|=
 operator|new
 name|HashMap
-argument_list|<
-name|Date
-argument_list|,
-name|String
-argument_list|>
+argument_list|<>
 argument_list|()
 decl_stmt|;
 name|String
@@ -6521,11 +6473,7 @@ name|mixedLongsAndDoubles
 init|=
 operator|new
 name|LinkedHashMap
-argument_list|<
-name|Double
-argument_list|,
-name|String
-argument_list|>
+argument_list|<>
 argument_list|()
 decl_stmt|;
 comment|// preserve order
@@ -6643,9 +6591,7 @@ name|mixed
 init|=
 operator|new
 name|HashSet
-argument_list|<
-name|String
-argument_list|>
+argument_list|<>
 argument_list|()
 decl_stmt|;
 name|mixed
@@ -6743,11 +6689,7 @@ name|mixedDoubles
 init|=
 operator|new
 name|LinkedHashMap
-argument_list|<
-name|Double
-argument_list|,
-name|Object
-argument_list|>
+argument_list|<>
 argument_list|()
 decl_stmt|;
 comment|// preserve order
@@ -6870,11 +6812,7 @@ name|mixedInts
 init|=
 operator|new
 name|LinkedHashMap
-argument_list|<
-name|Integer
-argument_list|,
-name|Object
-argument_list|>
+argument_list|<>
 argument_list|()
 decl_stmt|;
 comment|// preserve order
@@ -6994,11 +6932,7 @@ name|mixedLongs
 init|=
 operator|new
 name|LinkedHashMap
-argument_list|<
-name|Long
-argument_list|,
-name|Object
-argument_list|>
+argument_list|<>
 argument_list|()
 decl_stmt|;
 comment|// preserve order
@@ -7117,11 +7051,7 @@ name|mixedBooleans
 init|=
 operator|new
 name|LinkedHashMap
-argument_list|<
-name|Boolean
-argument_list|,
-name|Object
-argument_list|>
+argument_list|<>
 argument_list|()
 decl_stmt|;
 comment|// preserve order
@@ -7250,11 +7180,7 @@ name|mixedDates
 init|=
 operator|new
 name|HashMap
-argument_list|<
-name|Date
-argument_list|,
-name|Object
-argument_list|>
+argument_list|<>
 argument_list|()
 decl_stmt|;
 name|dateStrings

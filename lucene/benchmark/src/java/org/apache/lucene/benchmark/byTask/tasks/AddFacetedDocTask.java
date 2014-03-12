@@ -264,9 +264,7 @@ name|facets
 init|=
 operator|new
 name|ArrayList
-argument_list|<
-name|FacetField
-argument_list|>
+argument_list|<>
 argument_list|()
 decl_stmt|;
 name|getRunData

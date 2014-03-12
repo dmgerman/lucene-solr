@@ -74,9 +74,7 @@ name|positionSpans
 init|=
 operator|new
 name|ArrayList
-argument_list|<
-name|PositionSpan
-argument_list|>
+argument_list|<>
 argument_list|()
 decl_stmt|;
 DECL|method|WeightedSpanTerm
@@ -103,9 +101,7 @@ name|positionSpans
 operator|=
 operator|new
 name|ArrayList
-argument_list|<
-name|PositionSpan
-argument_list|>
+argument_list|<>
 argument_list|()
 expr_stmt|;
 block|}

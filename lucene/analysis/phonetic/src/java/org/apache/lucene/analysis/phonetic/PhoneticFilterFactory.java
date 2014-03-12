@@ -328,16 +328,7 @@ name|registry
 init|=
 operator|new
 name|HashMap
-argument_list|<
-name|String
-argument_list|,
-name|Class
-argument_list|<
-name|?
-extends|extends
-name|Encoder
-argument_list|>
-argument_list|>
+argument_list|<>
 argument_list|(
 literal|6
 argument_list|)

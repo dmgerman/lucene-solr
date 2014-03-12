@@ -219,9 +219,7 @@ name|flushQueue
 init|=
 operator|new
 name|LinkedList
-argument_list|<
-name|DocumentsWriterPerThread
-argument_list|>
+argument_list|<>
 argument_list|()
 decl_stmt|;
 comment|// only for safety reasons if a DWPT is close to the RAM limit
@@ -236,9 +234,7 @@ name|blockedFlushes
 init|=
 operator|new
 name|LinkedList
-argument_list|<
-name|BlockedFlush
-argument_list|>
+argument_list|<>
 argument_list|()
 decl_stmt|;
 DECL|field|flushingWriters
@@ -254,11 +250,7 @@ name|flushingWriters
 init|=
 operator|new
 name|IdentityHashMap
-argument_list|<
-name|DocumentsWriterPerThread
-argument_list|,
-name|Long
-argument_list|>
+argument_list|<>
 argument_list|()
 decl_stmt|;
 DECL|field|maxConfiguredRamBuffer
@@ -2295,9 +2287,7 @@ name|fullFlushBuffer
 init|=
 operator|new
 name|ArrayList
-argument_list|<
-name|DocumentsWriterPerThread
-argument_list|>
+argument_list|<>
 argument_list|()
 decl_stmt|;
 DECL|method|addFlushableState

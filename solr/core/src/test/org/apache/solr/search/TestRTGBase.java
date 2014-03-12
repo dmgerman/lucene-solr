@@ -353,11 +353,7 @@ name|model
 init|=
 operator|new
 name|ConcurrentHashMap
-argument_list|<
-name|Integer
-argument_list|,
-name|DocInfo
-argument_list|>
+argument_list|<>
 argument_list|()
 decl_stmt|;
 DECL|field|committedModel
@@ -372,11 +368,7 @@ name|committedModel
 init|=
 operator|new
 name|HashMap
-argument_list|<
-name|Integer
-argument_list|,
-name|DocInfo
-argument_list|>
+argument_list|<>
 argument_list|()
 decl_stmt|;
 DECL|field|snapshotCount

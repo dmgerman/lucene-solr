@@ -1982,9 +1982,7 @@ name|infos
 init|=
 operator|new
 name|LinkedList
-argument_list|<
-name|TermInfo
-argument_list|>
+argument_list|<>
 argument_list|()
 decl_stmt|;
 name|infos

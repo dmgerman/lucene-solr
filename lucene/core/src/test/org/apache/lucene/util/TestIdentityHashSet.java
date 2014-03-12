@@ -100,9 +100,7 @@ operator|new
 name|RamUsageEstimator
 operator|.
 name|IdentityHashSet
-argument_list|<
-name|Object
-argument_list|>
+argument_list|<>
 argument_list|()
 decl_stmt|;
 name|int

@@ -185,9 +185,7 @@ name|ordered
 init|=
 operator|new
 name|ArrayList
-argument_list|<
-name|SpansCell
-argument_list|>
+argument_list|<>
 argument_list|()
 decl_stmt|;
 comment|// spans in query order
@@ -581,10 +579,7 @@ block|{
 return|return
 operator|new
 name|ArrayList
-argument_list|<
-name|byte
-index|[]
-argument_list|>
+argument_list|<>
 argument_list|(
 name|spans
 operator|.
@@ -1182,10 +1177,7 @@ name|matchPayload
 init|=
 operator|new
 name|HashSet
-argument_list|<
-name|byte
-index|[]
-argument_list|>
+argument_list|<>
 argument_list|()
 decl_stmt|;
 for|for

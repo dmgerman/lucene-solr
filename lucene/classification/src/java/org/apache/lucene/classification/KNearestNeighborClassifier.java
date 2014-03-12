@@ -506,11 +506,7 @@ name|classCounts
 init|=
 operator|new
 name|HashMap
-argument_list|<
-name|BytesRef
-argument_list|,
-name|Integer
-argument_list|>
+argument_list|<>
 argument_list|()
 decl_stmt|;
 for|for
@@ -663,9 +659,7 @@ decl_stmt|;
 return|return
 operator|new
 name|ClassificationResult
-argument_list|<
-name|BytesRef
-argument_list|>
+argument_list|<>
 argument_list|(
 name|assignedClass
 argument_list|,

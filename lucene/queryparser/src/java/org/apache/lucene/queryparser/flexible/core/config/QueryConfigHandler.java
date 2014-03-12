@@ -96,9 +96,7 @@ name|listeners
 init|=
 operator|new
 name|LinkedList
-argument_list|<
-name|FieldConfigListener
-argument_list|>
+argument_list|<>
 argument_list|()
 decl_stmt|;
 comment|/**    * Returns an implementation of    * {@link FieldConfig} for a specific field name. If the implemented    * {@link QueryConfigHandler} does not know a specific field name, it may    * return<code>null</code>, indicating there is no configuration for that    * field.    *     * @param fieldName    *          the field name    * @return a {@link FieldConfig} object containing the field name    *         configuration or<code>null</code>, if the implemented    *         {@link QueryConfigHandler} has no configuration for that field    */

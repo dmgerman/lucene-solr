@@ -706,9 +706,7 @@ name|ranges
 init|=
 operator|new
 name|ArrayList
-argument_list|<
-name|FacetRange
-argument_list|>
+argument_list|<>
 argument_list|()
 decl_stmt|;
 name|int

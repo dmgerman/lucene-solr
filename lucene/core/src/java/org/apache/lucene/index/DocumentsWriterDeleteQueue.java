@@ -201,9 +201,7 @@ name|tail
 operator|=
 operator|new
 name|Node
-argument_list|<
-name|Object
-argument_list|>
+argument_list|<>
 argument_list|(
 literal|null
 argument_list|)

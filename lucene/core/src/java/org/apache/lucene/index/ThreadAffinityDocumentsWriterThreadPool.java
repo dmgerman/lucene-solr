@@ -81,11 +81,7 @@ name|threadBindings
 init|=
 operator|new
 name|ConcurrentHashMap
-argument_list|<
-name|Thread
-argument_list|,
-name|ThreadState
-argument_list|>
+argument_list|<>
 argument_list|()
 decl_stmt|;
 comment|/**    * Creates a new {@link ThreadAffinityDocumentsWriterThreadPool} with a given maximum of {@link ThreadState}s.    */
@@ -264,11 +260,7 @@ name|threadBindings
 operator|=
 operator|new
 name|ConcurrentHashMap
-argument_list|<
-name|Thread
-argument_list|,
-name|ThreadState
-argument_list|>
+argument_list|<>
 argument_list|()
 expr_stmt|;
 return|return

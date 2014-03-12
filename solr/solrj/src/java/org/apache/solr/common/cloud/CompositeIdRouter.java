@@ -465,9 +465,7 @@ name|targetSlices
 init|=
 operator|new
 name|ArrayList
-argument_list|<
-name|Slice
-argument_list|>
+argument_list|<>
 argument_list|(
 literal|1
 argument_list|)
@@ -541,9 +539,7 @@ name|result
 init|=
 operator|new
 name|ArrayList
-argument_list|<
-name|Range
-argument_list|>
+argument_list|<>
 argument_list|(
 literal|3
 argument_list|)
@@ -828,9 +824,7 @@ name|ranges
 init|=
 operator|new
 name|ArrayList
-argument_list|<
-name|Range
-argument_list|>
+argument_list|<>
 argument_list|(
 name|partitions
 argument_list|)

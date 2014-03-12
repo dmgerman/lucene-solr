@@ -885,9 +885,7 @@ name|unwrappedDocs
 init|=
 operator|new
 name|ArrayList
-argument_list|<
-name|SolrInputDocument
-argument_list|>
+argument_list|<>
 argument_list|()
 decl_stmt|;
 name|recUnwrapp

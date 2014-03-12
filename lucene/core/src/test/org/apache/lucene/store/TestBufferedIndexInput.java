@@ -1699,9 +1699,7 @@ name|allIndexInputs
 init|=
 operator|new
 name|ArrayList
-argument_list|<
-name|IndexInput
-argument_list|>
+argument_list|<>
 argument_list|()
 decl_stmt|;
 DECL|field|rand

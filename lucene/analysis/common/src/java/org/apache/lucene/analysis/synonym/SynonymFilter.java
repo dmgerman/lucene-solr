@@ -1139,9 +1139,7 @@ operator|new
 name|FST
 operator|.
 name|Arc
-argument_list|<
-name|BytesRef
-argument_list|>
+argument_list|<>
 argument_list|()
 expr_stmt|;
 block|}

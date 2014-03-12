@@ -197,11 +197,7 @@ name|timers
 init|=
 operator|new
 name|ConcurrentHashMap
-argument_list|<
-name|MiniDFSCluster
-argument_list|,
-name|Timer
-argument_list|>
+argument_list|<>
 argument_list|()
 decl_stmt|;
 DECL|method|setupClass

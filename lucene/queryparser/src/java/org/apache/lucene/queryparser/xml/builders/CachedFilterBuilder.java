@@ -226,11 +226,7 @@ name|filterCache
 operator|=
 operator|new
 name|LRUCache
-argument_list|<
-name|Object
-argument_list|,
-name|Filter
-argument_list|>
+argument_list|<>
 argument_list|(
 name|cacheSize
 argument_list|)

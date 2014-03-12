@@ -187,9 +187,7 @@ name|ignore
 init|=
 operator|new
 name|TreeSet
-argument_list|<
-name|Integer
-argument_list|>
+argument_list|<>
 argument_list|()
 decl_stmt|;
 for|for
@@ -367,9 +365,7 @@ name|correct
 init|=
 operator|new
 name|TreeSet
-argument_list|<
-name|Integer
-argument_list|>
+argument_list|<>
 argument_list|()
 decl_stmt|;
 for|for
@@ -414,9 +410,7 @@ name|actual
 init|=
 operator|new
 name|TreeSet
-argument_list|<
-name|Integer
-argument_list|>
+argument_list|<>
 argument_list|()
 decl_stmt|;
 specifier|final
@@ -685,9 +679,7 @@ name|correct
 init|=
 operator|new
 name|TreeSet
-argument_list|<
-name|Integer
-argument_list|>
+argument_list|<>
 argument_list|()
 decl_stmt|;
 for|for
@@ -731,9 +723,7 @@ name|actual
 init|=
 operator|new
 name|TreeSet
-argument_list|<
-name|Integer
-argument_list|>
+argument_list|<>
 argument_list|()
 decl_stmt|;
 for|for

@@ -2202,9 +2202,7 @@ name|matchedTokens
 init|=
 operator|new
 name|HashSet
-argument_list|<
-name|String
-argument_list|>
+argument_list|<>
 argument_list|()
 decl_stmt|;
 name|String
@@ -2287,9 +2285,7 @@ name|matchedTokens
 operator|=
 operator|new
 name|HashSet
-argument_list|<
-name|String
-argument_list|>
+argument_list|<>
 argument_list|()
 expr_stmt|;
 while|while
@@ -2657,9 +2653,7 @@ name|results
 init|=
 operator|new
 name|ArrayList
-argument_list|<
-name|LookupResult
-argument_list|>
+argument_list|<>
 argument_list|()
 decl_stmt|;
 name|BytesRef

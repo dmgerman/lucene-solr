@@ -3420,9 +3420,7 @@ name|names
 init|=
 operator|new
 name|ArrayList
-argument_list|<
-name|String
-argument_list|>
+argument_list|<>
 argument_list|(
 literal|37
 argument_list|)
@@ -4187,11 +4185,7 @@ name|facetCounts
 init|=
 operator|new
 name|HashMap
-argument_list|<
-name|String
-argument_list|,
-name|MutableValueInt
-argument_list|>
+argument_list|<>
 argument_list|()
 decl_stmt|;
 name|SentinelIntSet
@@ -5434,9 +5428,7 @@ name|shuffledNames
 init|=
 operator|new
 name|ArrayList
-argument_list|<
-name|String
-argument_list|>
+argument_list|<>
 argument_list|(
 name|fieldNames
 argument_list|)

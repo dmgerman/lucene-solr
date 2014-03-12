@@ -350,9 +350,7 @@ name|children
 init|=
 operator|new
 name|ArrayList
-argument_list|<
-name|PluginInfo
-argument_list|>
+argument_list|<>
 argument_list|()
 decl_stmt|;
 comment|//if there is another sub tag with a non namedlist tag that has to be another plugin
@@ -687,9 +685,7 @@ name|result
 init|=
 operator|new
 name|ArrayList
-argument_list|<
-name|PluginInfo
-argument_list|>
+argument_list|<>
 argument_list|()
 decl_stmt|;
 for|for
@@ -768,9 +764,7 @@ name|NL_TAGS
 init|=
 operator|new
 name|HashSet
-argument_list|<
-name|String
-argument_list|>
+argument_list|<>
 argument_list|(
 name|Arrays
 operator|.

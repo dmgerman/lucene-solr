@@ -541,9 +541,7 @@ name|skipServers
 init|=
 operator|new
 name|ArrayList
-argument_list|<
-name|CloudJettyRunner
-argument_list|>
+argument_list|<>
 argument_list|()
 decl_stmt|;
 name|int
@@ -915,9 +913,7 @@ name|jetties
 init|=
 operator|new
 name|HashSet
-argument_list|<
-name|CloudJettyRunner
-argument_list|>
+argument_list|<>
 argument_list|()
 decl_stmt|;
 name|jetties
@@ -1179,9 +1175,7 @@ name|jetties
 operator|=
 operator|new
 name|HashSet
-argument_list|<
-name|CloudJettyRunner
-argument_list|>
+argument_list|<>
 argument_list|()
 expr_stmt|;
 name|jetties
@@ -1554,9 +1548,7 @@ name|skipServers
 init|=
 operator|new
 name|ArrayList
-argument_list|<
-name|CloudJettyRunner
-argument_list|>
+argument_list|<>
 argument_list|()
 decl_stmt|;
 name|List
@@ -1567,9 +1559,7 @@ name|candidates
 init|=
 operator|new
 name|ArrayList
-argument_list|<
-name|CloudJettyRunner
-argument_list|>
+argument_list|<>
 argument_list|()
 decl_stmt|;
 name|candidates

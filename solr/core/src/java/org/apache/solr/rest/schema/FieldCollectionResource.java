@@ -408,12 +408,7 @@ name|props
 init|=
 operator|new
 name|ArrayList
-argument_list|<
-name|SimpleOrderedMap
-argument_list|<
-name|Object
-argument_list|>
-argument_list|>
+argument_list|<>
 argument_list|()
 decl_stmt|;
 if|if
@@ -432,9 +427,7 @@ name|fieldNames
 init|=
 operator|new
 name|TreeSet
-argument_list|<
-name|String
-argument_list|>
+argument_list|<>
 argument_list|(
 name|getSchema
 argument_list|()
@@ -851,9 +844,7 @@ name|newFields
 init|=
 operator|new
 name|ArrayList
-argument_list|<
-name|SchemaField
-argument_list|>
+argument_list|<>
 argument_list|()
 decl_stmt|;
 name|IndexSchema

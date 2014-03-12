@@ -120,9 +120,7 @@ name|debugDocuments
 init|=
 operator|new
 name|ArrayList
-argument_list|<
-name|SolrInputDocument
-argument_list|>
+argument_list|<>
 argument_list|(
 literal|0
 argument_list|)
@@ -178,9 +176,7 @@ name|debugVerboseOutput
 operator|=
 operator|new
 name|NamedList
-argument_list|<
-name|String
-argument_list|>
+argument_list|<>
 argument_list|()
 expr_stmt|;
 block|}

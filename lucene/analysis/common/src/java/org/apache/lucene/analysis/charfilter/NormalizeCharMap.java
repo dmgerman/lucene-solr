@@ -205,16 +205,7 @@ name|cachedRootArcs
 init|=
 operator|new
 name|HashMap
-argument_list|<
-name|Character
-argument_list|,
-name|FST
-operator|.
-name|Arc
-argument_list|<
-name|CharsRef
-argument_list|>
-argument_list|>
+argument_list|<>
 argument_list|()
 decl_stmt|;
 comment|// Use the builder to create:
@@ -258,9 +249,7 @@ operator|new
 name|FST
 operator|.
 name|Arc
-argument_list|<
-name|CharsRef
-argument_list|>
+argument_list|<>
 argument_list|()
 decl_stmt|;
 specifier|final
@@ -409,11 +398,7 @@ name|pendingPairs
 init|=
 operator|new
 name|TreeMap
-argument_list|<
-name|String
-argument_list|,
-name|String
-argument_list|>
+argument_list|<>
 argument_list|()
 decl_stmt|;
 comment|/** Records a replacement to be applied to the input      *  stream.  Whenever<code>singleMatch</code> occurs in      *  the input, it will be replaced with      *<code>replacement</code>.      *      * @param match input String to be replaced      * @param replacement output String      * @throws IllegalArgumentException if      *<code>match</code> is the empty string, or was      * already previously added      */
@@ -536,9 +521,7 @@ operator|.
 name|fst
 operator|.
 name|Builder
-argument_list|<
-name|CharsRef
-argument_list|>
+argument_list|<>
 argument_list|(
 name|FST
 operator|.

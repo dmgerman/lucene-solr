@@ -210,11 +210,7 @@ name|prefixToOrdRange
 init|=
 operator|new
 name|HashMap
-argument_list|<
-name|String
-argument_list|,
-name|OrdRange
-argument_list|>
+argument_list|<>
 argument_list|()
 decl_stmt|;
 comment|/** Creates this, pulling doc values from the default {@link    *  FacetsConfig#DEFAULT_INDEX_FIELD_NAME}. */

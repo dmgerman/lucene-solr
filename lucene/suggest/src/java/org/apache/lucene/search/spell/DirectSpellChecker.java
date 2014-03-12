@@ -1111,9 +1111,7 @@ name|moreTerms
 init|=
 operator|new
 name|HashSet
-argument_list|<
-name|ScoreTerm
-argument_list|>
+argument_list|<>
 argument_list|()
 decl_stmt|;
 name|moreTerms
@@ -1427,9 +1425,7 @@ name|stQueue
 init|=
 operator|new
 name|PriorityQueue
-argument_list|<
-name|ScoreTerm
-argument_list|>
+argument_list|<>
 argument_list|()
 decl_stmt|;
 name|BytesRef

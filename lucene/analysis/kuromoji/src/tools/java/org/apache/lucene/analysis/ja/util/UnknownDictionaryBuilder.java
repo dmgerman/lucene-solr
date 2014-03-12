@@ -373,10 +373,7 @@ name|lines
 init|=
 operator|new
 name|ArrayList
-argument_list|<
-name|String
-index|[]
-argument_list|>
+argument_list|<>
 argument_list|()
 decl_stmt|;
 name|String

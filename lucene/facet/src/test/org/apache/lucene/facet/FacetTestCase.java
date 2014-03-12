@@ -1156,11 +1156,7 @@ name|aByDim
 init|=
 operator|new
 name|HashMap
-argument_list|<
-name|String
-argument_list|,
-name|FacetResult
-argument_list|>
+argument_list|<>
 argument_list|()
 decl_stmt|;
 for|for
@@ -1250,11 +1246,7 @@ name|bByDim
 init|=
 operator|new
 name|HashMap
-argument_list|<
-name|String
-argument_list|,
-name|FacetResult
-argument_list|>
+argument_list|<>
 argument_list|()
 decl_stmt|;
 for|for

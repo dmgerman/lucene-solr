@@ -138,9 +138,7 @@ name|languages
 init|=
 operator|new
 name|ArrayList
-argument_list|<
-name|DetectedLanguage
-argument_list|>
+argument_list|<>
 argument_list|()
 decl_stmt|;
 if|if

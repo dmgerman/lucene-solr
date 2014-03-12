@@ -270,11 +270,7 @@ name|methodAlias
 init|=
 operator|new
 name|HashMap
-argument_list|<
-name|Method
-argument_list|,
-name|String
-argument_list|>
+argument_list|<>
 argument_list|()
 decl_stmt|;
 DECL|class|Method
@@ -522,11 +518,7 @@ name|coreInfoMap
 init|=
 operator|new
 name|WeakHashMap
-argument_list|<
-name|SolrCore
-argument_list|,
-name|CoreInfo
-argument_list|>
+argument_list|<>
 argument_list|()
 decl_stmt|;
 comment|// TODO: use something that survives across a core reload?
@@ -542,11 +534,7 @@ name|classAliases
 init|=
 operator|new
 name|HashMap
-argument_list|<
-name|String
-argument_list|,
-name|String
-argument_list|>
+argument_list|<>
 argument_list|()
 decl_stmt|;
 annotation|@
@@ -1976,9 +1964,7 @@ name|threadLocal
 init|=
 operator|new
 name|ThreadLocal
-argument_list|<
-name|String
-argument_list|>
+argument_list|<>
 argument_list|()
 decl_stmt|;
 DECL|method|main

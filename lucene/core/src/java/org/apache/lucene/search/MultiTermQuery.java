@@ -259,9 +259,7 @@ name|ConstantScoreQuery
 argument_list|(
 operator|new
 name|MultiTermQueryWrapperFilter
-argument_list|<
-name|MultiTermQuery
-argument_list|>
+argument_list|<>
 argument_list|(
 name|query
 argument_list|)

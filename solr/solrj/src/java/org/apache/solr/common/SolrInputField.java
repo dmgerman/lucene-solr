@@ -149,9 +149,7 @@ name|c
 init|=
 operator|new
 name|ArrayList
-argument_list|<
-name|Object
-argument_list|>
+argument_list|<>
 argument_list|(
 name|arr
 operator|.
@@ -227,9 +225,7 @@ name|c
 init|=
 operator|new
 name|ArrayList
-argument_list|<
-name|Object
-argument_list|>
+argument_list|<>
 argument_list|(
 literal|3
 argument_list|)
@@ -316,9 +312,7 @@ name|vals
 operator|=
 operator|new
 name|ArrayList
-argument_list|<
-name|Object
-argument_list|>
+argument_list|<>
 argument_list|(
 literal|3
 argument_list|)
@@ -524,9 +518,7 @@ name|vals
 init|=
 operator|new
 name|ArrayList
-argument_list|<
-name|Object
-argument_list|>
+argument_list|<>
 argument_list|(
 literal|1
 argument_list|)
@@ -815,9 +807,7 @@ name|cloneValues
 init|=
 operator|new
 name|ArrayList
-argument_list|<
-name|Object
-argument_list|>
+argument_list|<>
 argument_list|(
 name|values
 operator|.

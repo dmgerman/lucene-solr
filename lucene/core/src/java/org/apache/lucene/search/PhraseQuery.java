@@ -313,9 +313,7 @@ name|terms
 init|=
 operator|new
 name|ArrayList
-argument_list|<
-name|Term
-argument_list|>
+argument_list|<>
 argument_list|(
 literal|4
 argument_list|)
@@ -330,9 +328,7 @@ name|positions
 init|=
 operator|new
 name|ArrayList
-argument_list|<
-name|Integer
-argument_list|>
+argument_list|<>
 argument_list|(
 literal|4
 argument_list|)

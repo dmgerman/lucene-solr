@@ -166,14 +166,7 @@ name|genDVProducers
 init|=
 operator|new
 name|HashMap
-argument_list|<
-name|Long
-argument_list|,
-name|RefCount
-argument_list|<
-name|DocValuesProducer
-argument_list|>
-argument_list|>
+argument_list|<>
 argument_list|()
 decl_stmt|;
 DECL|method|newDocValuesProducer

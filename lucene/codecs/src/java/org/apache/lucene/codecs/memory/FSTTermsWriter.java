@@ -440,9 +440,7 @@ name|fields
 init|=
 operator|new
 name|ArrayList
-argument_list|<
-name|FieldMetaData
-argument_list|>
+argument_list|<>
 argument_list|()
 decl_stmt|;
 DECL|method|FSTTermsWriter
@@ -1206,11 +1204,7 @@ name|builder
 operator|=
 operator|new
 name|Builder
-argument_list|<
-name|FSTTermOutputs
-operator|.
-name|TermData
-argument_list|>
+argument_list|<>
 argument_list|(
 name|FST
 operator|.

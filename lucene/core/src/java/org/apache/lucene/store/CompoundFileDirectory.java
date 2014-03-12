@@ -553,11 +553,7 @@ name|mapping
 init|=
 operator|new
 name|HashMap
-argument_list|<
-name|String
-argument_list|,
-name|FileEntry
-argument_list|>
+argument_list|<>
 argument_list|(
 name|numEntries
 argument_list|)

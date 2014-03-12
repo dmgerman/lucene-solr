@@ -322,11 +322,7 @@ name|rootMaps
 init|=
 operator|new
 name|HashMap
-argument_list|<
-name|String
-argument_list|,
-name|QueryPhraseMap
-argument_list|>
+argument_list|<>
 argument_list|()
 decl_stmt|;
 comment|// fieldMatch==true,  Map<fieldName,setOfTermsInQueries>
@@ -345,14 +341,7 @@ name|termSetMap
 init|=
 operator|new
 name|HashMap
-argument_list|<
-name|String
-argument_list|,
-name|Set
-argument_list|<
-name|String
-argument_list|>
-argument_list|>
+argument_list|<>
 argument_list|()
 decl_stmt|;
 DECL|field|termOrPhraseNumber
@@ -402,9 +391,7 @@ name|flatQueries
 init|=
 operator|new
 name|LinkedHashSet
-argument_list|<
-name|Query
-argument_list|>
+argument_list|<>
 argument_list|()
 decl_stmt|;
 name|flatten
@@ -1022,9 +1009,7 @@ name|expandQueries
 init|=
 operator|new
 name|LinkedHashSet
-argument_list|<
-name|Query
-argument_list|>
+argument_list|<>
 argument_list|()
 decl_stmt|;
 for|for
@@ -1856,9 +1841,7 @@ name|set
 operator|=
 operator|new
 name|HashSet
-argument_list|<
-name|String
-argument_list|>
+argument_list|<>
 argument_list|()
 expr_stmt|;
 name|termSetMap
@@ -2053,11 +2036,7 @@ name|subMap
 init|=
 operator|new
 name|HashMap
-argument_list|<
-name|String
-argument_list|,
-name|QueryPhraseMap
-argument_list|>
+argument_list|<>
 argument_list|()
 decl_stmt|;
 DECL|method|QueryPhraseMap

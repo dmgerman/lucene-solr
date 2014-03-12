@@ -488,11 +488,7 @@ name|fields
 operator|=
 operator|new
 name|TreeMap
-argument_list|<
-name|Integer
-argument_list|,
-name|Integer
-argument_list|>
+argument_list|<>
 argument_list|()
 expr_stmt|;
 name|String
@@ -3245,11 +3241,7 @@ name|enums
 init|=
 operator|new
 name|IdentityHashMap
-argument_list|<
-name|PulsingPostingsReader
-argument_list|,
-name|DocsEnum
-argument_list|>
+argument_list|<>
 argument_list|()
 decl_stmt|;
 annotation|@

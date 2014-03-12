@@ -441,11 +441,7 @@ name|formats
 init|=
 operator|new
 name|HashMap
-argument_list|<
-name|DocValuesFormat
-argument_list|,
-name|ConsumerAndSuffix
-argument_list|>
+argument_list|<>
 argument_list|()
 decl_stmt|;
 DECL|field|suffixes
@@ -461,11 +457,7 @@ name|suffixes
 init|=
 operator|new
 name|HashMap
-argument_list|<
-name|String
-argument_list|,
-name|Integer
-argument_list|>
+argument_list|<>
 argument_list|()
 decl_stmt|;
 DECL|field|segmentWriteState
@@ -1120,11 +1112,7 @@ name|fields
 init|=
 operator|new
 name|TreeMap
-argument_list|<
-name|String
-argument_list|,
-name|DocValuesProducer
-argument_list|>
+argument_list|<>
 argument_list|()
 decl_stmt|;
 DECL|field|formats
@@ -1140,11 +1128,7 @@ name|formats
 init|=
 operator|new
 name|HashMap
-argument_list|<
-name|String
-argument_list|,
-name|DocValuesProducer
-argument_list|>
+argument_list|<>
 argument_list|()
 decl_stmt|;
 DECL|method|FieldsReader
@@ -1348,11 +1332,7 @@ name|oldToNew
 init|=
 operator|new
 name|IdentityHashMap
-argument_list|<
-name|DocValuesProducer
-argument_list|,
-name|DocValuesProducer
-argument_list|>
+argument_list|<>
 argument_list|()
 decl_stmt|;
 comment|// First clone all formats

@@ -234,9 +234,7 @@ name|recallPoints
 operator|=
 operator|new
 name|ArrayList
-argument_list|<
-name|RecallPoint
-argument_list|>
+argument_list|<>
 argument_list|()
 expr_stmt|;
 name|pAt

@@ -131,11 +131,7 @@ name|phases
 init|=
 operator|new
 name|ArrayList
-argument_list|<
-name|AnalysisResponseBase
-operator|.
-name|AnalysisPhase
-argument_list|>
+argument_list|<>
 argument_list|(
 literal|1
 argument_list|)

@@ -506,11 +506,7 @@ name|standardValueSourceParsers
 init|=
 operator|new
 name|HashMap
-argument_list|<
-name|String
-argument_list|,
-name|ValueSourceParser
-argument_list|>
+argument_list|<>
 argument_list|()
 decl_stmt|;
 comment|/** Adds a new parser for the name and returns any existing one that was overriden.    *  This is not thread safe.    */
@@ -5135,9 +5131,7 @@ name|sources1
 init|=
 operator|new
 name|ArrayList
-argument_list|<
-name|ValueSource
-argument_list|>
+argument_list|<>
 argument_list|(
 name|dim
 argument_list|)
@@ -5150,9 +5144,7 @@ name|sources2
 init|=
 operator|new
 name|ArrayList
-argument_list|<
-name|ValueSource
-argument_list|>
+argument_list|<>
 argument_list|(
 name|dim
 argument_list|)

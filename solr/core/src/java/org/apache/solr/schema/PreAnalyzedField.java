@@ -943,9 +943,7 @@ name|states
 init|=
 operator|new
 name|LinkedList
-argument_list|<
-name|State
-argument_list|>
+argument_list|<>
 argument_list|()
 decl_stmt|;
 block|}
@@ -1319,11 +1317,7 @@ name|cachedStates
 init|=
 operator|new
 name|LinkedList
-argument_list|<
-name|AttributeSource
-operator|.
-name|State
-argument_list|>
+argument_list|<>
 argument_list|()
 decl_stmt|;
 DECL|field|it

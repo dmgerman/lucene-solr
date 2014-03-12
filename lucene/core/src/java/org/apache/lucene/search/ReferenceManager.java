@@ -152,9 +152,7 @@ name|refreshListeners
 init|=
 operator|new
 name|CopyOnWriteArrayList
-argument_list|<
-name|RefreshListener
-argument_list|>
+argument_list|<>
 argument_list|()
 decl_stmt|;
 DECL|method|ensureOpen

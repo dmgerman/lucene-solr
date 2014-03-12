@@ -197,9 +197,7 @@ name|numShardsNumReplicaList
 init|=
 operator|new
 name|ArrayList
-argument_list|<
-name|Integer
-argument_list|>
+argument_list|<>
 argument_list|(
 literal|2
 argument_list|)

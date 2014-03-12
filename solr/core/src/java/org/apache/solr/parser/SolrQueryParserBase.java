@@ -762,11 +762,7 @@ name|lookup
 init|=
 operator|new
 name|HashMap
-argument_list|<
-name|String
-argument_list|,
-name|MagicFieldName
-argument_list|>
+argument_list|<>
 argument_list|()
 decl_stmt|;
 static|static
@@ -2924,11 +2920,7 @@ name|leadingWildcards
 operator|=
 operator|new
 name|HashMap
-argument_list|<
-name|FieldType
-argument_list|,
-name|ReversedWildcardFilterFactory
-argument_list|>
+argument_list|<>
 argument_list|()
 expr_stmt|;
 name|ReversedWildcardFilterFactory

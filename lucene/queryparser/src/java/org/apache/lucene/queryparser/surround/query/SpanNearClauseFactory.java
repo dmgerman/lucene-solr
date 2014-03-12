@@ -211,11 +211,7 @@ name|weightBySpanQuery
 operator|=
 operator|new
 name|HashMap
-argument_list|<
-name|SpanQuery
-argument_list|,
-name|Float
-argument_list|>
+argument_list|<>
 argument_list|()
 expr_stmt|;
 name|this

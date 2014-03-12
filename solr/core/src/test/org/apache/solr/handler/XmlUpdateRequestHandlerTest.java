@@ -1049,9 +1049,7 @@ name|deleteCommands
 init|=
 operator|new
 name|LinkedList
-argument_list|<
-name|DeleteUpdateCommand
-argument_list|>
+argument_list|<>
 argument_list|()
 decl_stmt|;
 DECL|method|MockUpdateRequestProcessor

@@ -1461,9 +1461,7 @@ name|fields
 init|=
 operator|new
 name|ArrayList
-argument_list|<
-name|StorableField
-argument_list|>
+argument_list|<>
 argument_list|()
 decl_stmt|;
 name|fields

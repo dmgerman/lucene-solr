@@ -177,9 +177,7 @@ name|inValidTokens
 init|=
 operator|new
 name|HashSet
-argument_list|<
-name|Object
-argument_list|>
+argument_list|<>
 argument_list|()
 decl_stmt|;
 annotation|@

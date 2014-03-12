@@ -212,9 +212,7 @@ operator|new
 name|FST
 operator|.
 name|Arc
-argument_list|<
-name|CharsRef
-argument_list|>
+argument_list|<>
 argument_list|()
 decl_stmt|;
 DECL|field|cachedRootArcs

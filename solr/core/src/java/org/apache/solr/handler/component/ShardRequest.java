@@ -220,9 +220,7 @@ name|responses
 init|=
 operator|new
 name|ArrayList
-argument_list|<
-name|ShardResponse
-argument_list|>
+argument_list|<>
 argument_list|()
 decl_stmt|;
 comment|/** actual shards to send the request to, filled out by framework */

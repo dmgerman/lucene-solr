@@ -322,10 +322,7 @@ name|termArrays
 init|=
 operator|new
 name|ArrayList
-argument_list|<
-name|Term
-index|[]
-argument_list|>
+argument_list|<>
 argument_list|()
 decl_stmt|;
 DECL|field|positions
@@ -338,9 +335,7 @@ name|positions
 init|=
 operator|new
 name|ArrayList
-argument_list|<
-name|Integer
-argument_list|>
+argument_list|<>
 argument_list|()
 decl_stmt|;
 DECL|field|slop
@@ -724,11 +719,7 @@ name|termContexts
 init|=
 operator|new
 name|HashMap
-argument_list|<
-name|Term
-argument_list|,
-name|TermContext
-argument_list|>
+argument_list|<>
 argument_list|()
 decl_stmt|;
 DECL|method|MultiPhraseWeight
@@ -768,9 +759,7 @@ name|allTermStats
 init|=
 operator|new
 name|ArrayList
-argument_list|<
-name|TermStatistics
-argument_list|>
+argument_list|<>
 argument_list|()
 decl_stmt|;
 for|for
@@ -2674,9 +2663,7 @@ name|docsEnums
 init|=
 operator|new
 name|LinkedList
-argument_list|<
-name|DocsAndPositionsEnum
-argument_list|>
+argument_list|<>
 argument_list|()
 decl_stmt|;
 for|for

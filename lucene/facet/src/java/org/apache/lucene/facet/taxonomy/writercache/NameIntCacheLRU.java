@@ -178,11 +178,7 @@ name|cache
 operator|=
 operator|new
 name|LinkedHashMap
-argument_list|<
-name|Object
-argument_list|,
-name|Integer
-argument_list|>
+argument_list|<>
 argument_list|(
 literal|1000
 argument_list|,
@@ -202,11 +198,7 @@ name|cache
 operator|=
 operator|new
 name|HashMap
-argument_list|<
-name|Object
-argument_list|,
-name|Integer
-argument_list|>
+argument_list|<>
 argument_list|(
 literal|1000
 argument_list|,

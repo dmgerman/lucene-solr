@@ -532,11 +532,7 @@ name|dictionaryMap
 init|=
 operator|new
 name|EnumMap
-argument_list|<
-name|Type
-argument_list|,
-name|Dictionary
-argument_list|>
+argument_list|<>
 argument_list|(
 name|Type
 operator|.
@@ -594,9 +590,7 @@ operator|new
 name|FST
 operator|.
 name|Arc
-argument_list|<
-name|Long
-argument_list|>
+argument_list|<>
 argument_list|()
 decl_stmt|;
 DECL|field|fstReader
@@ -721,9 +715,7 @@ name|pending
 init|=
 operator|new
 name|ArrayList
-argument_list|<
-name|Token
-argument_list|>
+argument_list|<>
 argument_list|()
 decl_stmt|;
 DECL|field|termAtt

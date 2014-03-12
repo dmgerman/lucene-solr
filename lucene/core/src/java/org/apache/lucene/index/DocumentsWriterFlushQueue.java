@@ -110,9 +110,7 @@ name|queue
 init|=
 operator|new
 name|LinkedList
-argument_list|<
-name|FlushTicket
-argument_list|>
+argument_list|<>
 argument_list|()
 decl_stmt|;
 comment|// we track tickets separately since count must be present even before the ticket is

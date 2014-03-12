@@ -117,9 +117,7 @@ name|processors
 init|=
 operator|new
 name|LinkedList
-argument_list|<
-name|QueryNodeProcessor
-argument_list|>
+argument_list|<>
 argument_list|()
 decl_stmt|;
 DECL|field|queryConfig

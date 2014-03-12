@@ -634,9 +634,7 @@ name|result
 init|=
 operator|new
 name|LinkedList
-argument_list|<
-name|String
-argument_list|>
+argument_list|<>
 argument_list|()
 decl_stmt|;
 for|for
@@ -868,9 +866,7 @@ decl_stmt|;
 return|return
 operator|new
 name|ClassificationResult
-argument_list|<
-name|BytesRef
-argument_list|>
+argument_list|<>
 argument_list|(
 name|foundClass
 argument_list|,

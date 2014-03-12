@@ -360,11 +360,7 @@ name|map
 init|=
 operator|new
 name|LinkedHashMap
-argument_list|<
-name|String
-argument_list|,
-name|Object
-argument_list|>
+argument_list|<>
 argument_list|()
 decl_stmt|;
 for|for
@@ -482,11 +478,7 @@ name|routerMap
 operator|=
 operator|new
 name|HashMap
-argument_list|<
-name|String
-argument_list|,
-name|DocRouter
-argument_list|>
+argument_list|<>
 argument_list|()
 expr_stmt|;
 name|PlainIdRouter
@@ -1056,9 +1048,7 @@ name|ranges
 init|=
 operator|new
 name|ArrayList
-argument_list|<
-name|Range
-argument_list|>
+argument_list|<>
 argument_list|(
 name|partitions
 argument_list|)
@@ -1267,9 +1257,7 @@ name|allSlices
 init|=
 operator|new
 name|HashSet
-argument_list|<
-name|Slice
-argument_list|>
+argument_list|<>
 argument_list|()
 decl_stmt|;
 for|for

@@ -94,9 +94,7 @@ name|list
 init|=
 operator|new
 name|CircularList
-argument_list|<
-name|Integer
-argument_list|>
+argument_list|<>
 argument_list|(
 literal|10
 argument_list|)

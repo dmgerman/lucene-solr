@@ -546,9 +546,7 @@ name|fields
 init|=
 operator|new
 name|HashSet
-argument_list|<
-name|String
-argument_list|>
+argument_list|<>
 argument_list|()
 decl_stmt|;
 name|fields
@@ -1044,11 +1042,7 @@ name|e1
 init|=
 operator|new
 name|HashMap
-argument_list|<
-name|String
-argument_list|,
-name|Float
-argument_list|>
+argument_list|<>
 argument_list|()
 decl_stmt|;
 name|e1
@@ -1154,11 +1148,7 @@ name|e2
 init|=
 operator|new
 name|HashMap
-argument_list|<
-name|String
-argument_list|,
-name|Float
-argument_list|>
+argument_list|<>
 argument_list|()
 decl_stmt|;
 name|assertEquals

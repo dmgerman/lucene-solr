@@ -196,9 +196,7 @@ name|other
 argument_list|,
 operator|new
 name|WeakReference
-argument_list|<
-name|AssertingScorer
-argument_list|>
+argument_list|<>
 argument_list|(
 name|assertScorer
 argument_list|)

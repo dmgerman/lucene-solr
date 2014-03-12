@@ -110,12 +110,7 @@ name|t
 init|=
 operator|new
 name|ThreadLocal
-argument_list|<
-name|WeakReference
-argument_list|<
-name|T
-argument_list|>
-argument_list|>
+argument_list|<>
 argument_list|()
 decl_stmt|;
 comment|// Use a WeakHashMap so that if a Thread exits and is
@@ -132,11 +127,7 @@ name|hardRefs
 init|=
 operator|new
 name|WeakHashMap
-argument_list|<
-name|Thread
-argument_list|,
-name|T
-argument_list|>
+argument_list|<>
 argument_list|()
 decl_stmt|;
 comment|// Increase this to decrease frequency of purging in get:
@@ -255,9 +246,7 @@ name|set
 argument_list|(
 operator|new
 name|WeakReference
-argument_list|<
-name|T
-argument_list|>
+argument_list|<>
 argument_list|(
 name|object
 argument_list|)

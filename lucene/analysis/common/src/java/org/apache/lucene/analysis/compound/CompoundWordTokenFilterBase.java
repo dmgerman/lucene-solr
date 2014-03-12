@@ -402,9 +402,7 @@ name|tokens
 operator|=
 operator|new
 name|LinkedList
-argument_list|<
-name|CompoundToken
-argument_list|>
+argument_list|<>
 argument_list|()
 expr_stmt|;
 if|if

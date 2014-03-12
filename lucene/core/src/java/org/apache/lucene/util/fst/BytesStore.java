@@ -103,10 +103,7 @@ name|blocks
 init|=
 operator|new
 name|ArrayList
-argument_list|<
-name|byte
-index|[]
-argument_list|>
+argument_list|<>
 argument_list|()
 decl_stmt|;
 DECL|field|blockSize

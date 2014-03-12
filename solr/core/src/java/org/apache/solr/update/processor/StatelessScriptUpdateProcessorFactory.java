@@ -499,9 +499,7 @@ name|scriptFiles
 operator|=
 operator|new
 name|ArrayList
-argument_list|<
-name|ScriptFile
-argument_list|>
+argument_list|<>
 argument_list|()
 expr_stmt|;
 for|for
@@ -791,9 +789,7 @@ name|scriptEngines
 init|=
 operator|new
 name|ArrayList
-argument_list|<
-name|EngineInfo
-argument_list|>
+argument_list|<>
 argument_list|()
 decl_stmt|;
 name|ScriptEngineManager
@@ -1239,9 +1235,7 @@ name|engines
 init|=
 operator|new
 name|LinkedHashSet
-argument_list|<
-name|String
-argument_list|>
+argument_list|<>
 argument_list|(
 name|factories
 operator|.

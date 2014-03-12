@@ -416,10 +416,7 @@ name|payloads
 init|=
 operator|new
 name|ArrayList
-argument_list|<
-name|byte
-index|[]
-argument_list|>
+argument_list|<>
 argument_list|()
 decl_stmt|;
 name|queryToSpanQuery
@@ -968,9 +965,7 @@ index|]
 operator|=
 operator|new
 name|ArrayList
-argument_list|<
-name|Query
-argument_list|>
+argument_list|<>
 argument_list|(
 name|termArray
 operator|.
@@ -1174,11 +1169,7 @@ name|termContexts
 init|=
 operator|new
 name|HashMap
-argument_list|<
-name|Term
-argument_list|,
-name|TermContext
-argument_list|>
+argument_list|<>
 argument_list|()
 decl_stmt|;
 name|TreeSet
@@ -1189,9 +1180,7 @@ name|terms
 init|=
 operator|new
 name|TreeSet
-argument_list|<
-name|Term
-argument_list|>
+argument_list|<>
 argument_list|()
 decl_stmt|;
 name|query

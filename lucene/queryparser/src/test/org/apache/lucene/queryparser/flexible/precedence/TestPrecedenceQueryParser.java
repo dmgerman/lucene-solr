@@ -2838,13 +2838,7 @@ name|fieldMap
 init|=
 operator|new
 name|HashMap
-argument_list|<
-name|CharSequence
-argument_list|,
-name|DateTools
-operator|.
-name|Resolution
-argument_list|>
+argument_list|<>
 argument_list|()
 decl_stmt|;
 comment|// set a field specific date resolution

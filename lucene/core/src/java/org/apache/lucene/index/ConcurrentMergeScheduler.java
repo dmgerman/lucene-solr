@@ -129,9 +129,7 @@ name|mergeThreads
 init|=
 operator|new
 name|ArrayList
-argument_list|<
-name|MergeThread
-argument_list|>
+argument_list|<>
 argument_list|()
 decl_stmt|;
 comment|/**     * Default {@code maxThreadCount}.    * We default to 1: tests on spinning-magnet drives showed slower    * indexing performance if more than one merge thread runs at    * once (though on an SSD it was faster)    */
@@ -476,9 +474,7 @@ name|activeMerges
 init|=
 operator|new
 name|ArrayList
-argument_list|<
-name|MergeThread
-argument_list|>
+argument_list|<>
 argument_list|()
 decl_stmt|;
 name|int
@@ -1931,9 +1927,7 @@ name|mergeThreads
 operator|=
 operator|new
 name|ArrayList
-argument_list|<
-name|MergeThread
-argument_list|>
+argument_list|<>
 argument_list|()
 expr_stmt|;
 return|return

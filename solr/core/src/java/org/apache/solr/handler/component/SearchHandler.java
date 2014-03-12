@@ -398,9 +398,7 @@ name|names
 init|=
 operator|new
 name|ArrayList
-argument_list|<
-name|String
-argument_list|>
+argument_list|<>
 argument_list|(
 literal|6
 argument_list|)
@@ -712,9 +710,7 @@ name|components
 operator|=
 operator|new
 name|ArrayList
-argument_list|<
-name|SearchComponent
-argument_list|>
+argument_list|<>
 argument_list|(
 name|list
 operator|.
@@ -1294,9 +1290,7 @@ name|outgoing
 operator|=
 operator|new
 name|LinkedList
-argument_list|<
-name|ShardRequest
-argument_list|>
+argument_list|<>
 argument_list|()
 expr_stmt|;
 block|}
@@ -1306,9 +1300,7 @@ name|finished
 operator|=
 operator|new
 name|ArrayList
-argument_list|<
-name|ShardRequest
-argument_list|>
+argument_list|<>
 argument_list|()
 expr_stmt|;
 name|int
@@ -1429,9 +1421,7 @@ name|responses
 operator|=
 operator|new
 name|ArrayList
-argument_list|<
-name|ShardResponse
-argument_list|>
+argument_list|<>
 argument_list|()
 expr_stmt|;
 comment|// TODO: map from shard to address[]

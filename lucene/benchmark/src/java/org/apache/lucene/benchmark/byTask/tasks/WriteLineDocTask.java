@@ -322,9 +322,7 @@ name|threadBuffer
 init|=
 operator|new
 name|ThreadLocal
-argument_list|<
-name|StringBuilder
-argument_list|>
+argument_list|<>
 argument_list|()
 decl_stmt|;
 DECL|field|threadNormalizer
@@ -338,9 +336,7 @@ name|threadNormalizer
 init|=
 operator|new
 name|ThreadLocal
-argument_list|<
-name|Matcher
-argument_list|>
+argument_list|<>
 argument_list|()
 decl_stmt|;
 DECL|field|fieldsToWrite
@@ -570,9 +566,7 @@ name|sf
 init|=
 operator|new
 name|HashSet
-argument_list|<
-name|String
-argument_list|>
+argument_list|<>
 argument_list|(
 name|Arrays
 operator|.

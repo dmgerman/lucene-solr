@@ -1439,9 +1439,7 @@ name|dbg
 init|=
 operator|new
 name|SimpleOrderedMap
-argument_list|<
-name|Object
-argument_list|>
+argument_list|<>
 argument_list|()
 decl_stmt|;
 name|dbg
@@ -1778,9 +1776,7 @@ name|resultList
 init|=
 operator|new
 name|ArrayList
-argument_list|<
-name|DocSet
-argument_list|>
+argument_list|<>
 argument_list|(
 literal|10
 argument_list|)

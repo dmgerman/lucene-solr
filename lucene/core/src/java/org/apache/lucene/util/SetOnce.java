@@ -197,9 +197,7 @@ argument_list|()
 else|:
 operator|new
 name|SetOnce
-argument_list|<
-name|T
-argument_list|>
+argument_list|<>
 argument_list|(
 name|obj
 argument_list|)

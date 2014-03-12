@@ -95,11 +95,7 @@ name|cells
 init|=
 operator|new
 name|TreeMap
-argument_list|<
-name|Character
-argument_list|,
-name|Cell
-argument_list|>
+argument_list|<>
 argument_list|()
 decl_stmt|;
 DECL|field|uniformCnt

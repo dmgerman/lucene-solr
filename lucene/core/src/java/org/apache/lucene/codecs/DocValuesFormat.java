@@ -115,9 +115,7 @@ name|loader
 init|=
 operator|new
 name|NamedSPILoader
-argument_list|<
-name|DocValuesFormat
-argument_list|>
+argument_list|<>
 argument_list|(
 name|DocValuesFormat
 operator|.

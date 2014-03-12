@@ -243,9 +243,7 @@ name|updates
 init|=
 operator|new
 name|ArrayList
-argument_list|<
-name|FrozenBufferedUpdates
-argument_list|>
+argument_list|<>
 argument_list|()
 decl_stmt|;
 comment|// Starts at 1 so that SegmentInfos that have never had
@@ -780,9 +778,7 @@ name|infos2
 init|=
 operator|new
 name|ArrayList
-argument_list|<
-name|SegmentCommitInfo
-argument_list|>
+argument_list|<>
 argument_list|()
 decl_stmt|;
 name|infos2
@@ -1208,9 +1204,7 @@ name|allDeleted
 operator|=
 operator|new
 name|ArrayList
-argument_list|<
-name|SegmentCommitInfo
-argument_list|>
+argument_list|<>
 argument_list|()
 expr_stmt|;
 block|}
@@ -1514,9 +1508,7 @@ name|allDeleted
 operator|=
 operator|new
 name|ArrayList
-argument_list|<
-name|SegmentCommitInfo
-argument_list|>
+argument_list|<>
 argument_list|()
 expr_stmt|;
 block|}

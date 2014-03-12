@@ -2912,9 +2912,7 @@ name|writerRef
 init|=
 operator|new
 name|AtomicReference
-argument_list|<
-name|IndexWriter
-argument_list|>
+argument_list|<>
 argument_list|()
 decl_stmt|;
 name|MockAnalyzer

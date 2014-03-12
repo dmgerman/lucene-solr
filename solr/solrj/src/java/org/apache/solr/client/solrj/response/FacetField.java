@@ -395,9 +395,7 @@ name|_values
 operator|=
 operator|new
 name|ArrayList
-argument_list|<
-name|Count
-argument_list|>
+argument_list|<>
 argument_list|(
 literal|30
 argument_list|)
@@ -443,9 +441,7 @@ name|_values
 operator|=
 operator|new
 name|ArrayList
-argument_list|<
-name|Count
-argument_list|>
+argument_list|<>
 argument_list|(
 literal|30
 argument_list|)
@@ -554,9 +550,7 @@ name|_values
 operator|=
 operator|new
 name|ArrayList
-argument_list|<
-name|Count
-argument_list|>
+argument_list|<>
 argument_list|(
 name|_values
 operator|.

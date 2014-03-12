@@ -1621,9 +1621,7 @@ name|tests
 init|=
 operator|new
 name|HashSet
-argument_list|<
-name|BytesRef
-argument_list|>
+argument_list|<>
 argument_list|()
 decl_stmt|;
 name|int
@@ -1822,9 +1820,7 @@ name|shuffledTests
 init|=
 operator|new
 name|ArrayList
-argument_list|<
-name|BytesRef
-argument_list|>
+argument_list|<>
 argument_list|(
 name|tests
 argument_list|)

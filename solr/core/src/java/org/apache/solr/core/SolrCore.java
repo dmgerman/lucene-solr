@@ -2557,9 +2557,7 @@ name|firstSearcherListeners
 init|=
 operator|new
 name|ArrayList
-argument_list|<
-name|SolrEventListener
-argument_list|>
+argument_list|<>
 argument_list|()
 decl_stmt|;
 DECL|field|newSearcherListeners
@@ -2572,9 +2570,7 @@ name|newSearcherListeners
 init|=
 operator|new
 name|ArrayList
-argument_list|<
-name|SolrEventListener
-argument_list|>
+argument_list|<>
 argument_list|()
 decl_stmt|;
 comment|/**    * NOTE: this function is not thread safe.  However, it is safe to call within the    *<code>inform( SolrCore core )</code> function for<code>SolrCoreAware</code> classes.    * Outside<code>inform</code>, this could potentially throw a ConcurrentModificationException    *     * @see SolrCoreAware    */
@@ -3015,9 +3011,7 @@ name|dirs
 init|=
 operator|new
 name|HashSet
-argument_list|<
-name|String
-argument_list|>
+argument_list|<>
 argument_list|()
 decl_stmt|;
 DECL|method|initIndex
@@ -4393,11 +4387,7 @@ name|infoRegistry
 operator|=
 operator|new
 name|ConcurrentHashMap
-argument_list|<
-name|String
-argument_list|,
-name|SolrInfoMBean
-argument_list|>
+argument_list|<>
 argument_list|()
 expr_stmt|;
 block|}
@@ -5367,11 +5357,7 @@ name|map
 init|=
 operator|new
 name|HashMap
-argument_list|<
-name|String
-argument_list|,
-name|UpdateRequestProcessorChain
-argument_list|>
+argument_list|<>
 argument_list|()
 decl_stmt|;
 name|UpdateRequestProcessorChain
@@ -6140,9 +6126,7 @@ name|closeHooks
 operator|=
 operator|new
 name|ArrayList
-argument_list|<
-name|CloseHook
-argument_list|>
+argument_list|<>
 argument_list|()
 expr_stmt|;
 block|}
@@ -6366,11 +6350,7 @@ name|components
 init|=
 operator|new
 name|HashMap
-argument_list|<
-name|String
-argument_list|,
-name|SearchComponent
-argument_list|>
+argument_list|<>
 argument_list|()
 decl_stmt|;
 name|initPlugins
@@ -6821,12 +6801,7 @@ name|_searchers
 init|=
 operator|new
 name|LinkedList
-argument_list|<
-name|RefCounted
-argument_list|<
-name|SolrIndexSearcher
-argument_list|>
-argument_list|>
+argument_list|<>
 argument_list|()
 decl_stmt|;
 DECL|field|_realtimeSearchers
@@ -6843,12 +6818,7 @@ name|_realtimeSearchers
 init|=
 operator|new
 name|LinkedList
-argument_list|<
-name|RefCounted
-argument_list|<
-name|SolrIndexSearcher
-argument_list|>
-argument_list|>
+argument_list|<>
 argument_list|()
 decl_stmt|;
 DECL|field|searcherExecutor
@@ -9193,9 +9163,7 @@ name|responseHeader
 init|=
 operator|new
 name|SimpleOrderedMap
-argument_list|<
-name|Object
-argument_list|>
+argument_list|<>
 argument_list|()
 decl_stmt|;
 name|rsp
@@ -9701,11 +9669,7 @@ name|responseWriters
 init|=
 operator|new
 name|HashMap
-argument_list|<
-name|String
-argument_list|,
-name|QueryResponseWriter
-argument_list|>
+argument_list|<>
 argument_list|()
 decl_stmt|;
 DECL|field|DEFAULT_RESPONSE_WRITERS
@@ -9732,11 +9696,7 @@ name|m
 init|=
 operator|new
 name|HashMap
-argument_list|<
-name|String
-argument_list|,
-name|QueryResponseWriter
-argument_list|>
+argument_list|<>
 argument_list|()
 decl_stmt|;
 name|m
@@ -9891,11 +9851,7 @@ name|writers
 init|=
 operator|new
 name|LinkedHashMap
-argument_list|<
-name|PluginInfo
-argument_list|,
-name|QueryResponseWriter
-argument_list|>
+argument_list|<>
 argument_list|()
 decl_stmt|;
 for|for
@@ -10397,11 +10353,7 @@ name|qParserPlugins
 init|=
 operator|new
 name|HashMap
-argument_list|<
-name|String
-argument_list|,
-name|QParserPlugin
-argument_list|>
+argument_list|<>
 argument_list|()
 decl_stmt|;
 comment|/** Configure the query parsers. */
@@ -10605,11 +10557,7 @@ name|valueSourceParsers
 init|=
 operator|new
 name|HashMap
-argument_list|<
-name|String
-argument_list|,
-name|ValueSourceParser
-argument_list|>
+argument_list|<>
 argument_list|()
 decl_stmt|;
 comment|/** Configure the ValueSource (function) plugins */
@@ -10732,11 +10680,7 @@ name|transformerFactories
 init|=
 operator|new
 name|HashMap
-argument_list|<
-name|String
-argument_list|,
-name|TransformerFactory
-argument_list|>
+argument_list|<>
 argument_list|()
 decl_stmt|;
 comment|/** Configure the TransformerFactory plugins */
@@ -11069,9 +11013,7 @@ name|result
 init|=
 operator|new
 name|ArrayList
-argument_list|<
-name|T
-argument_list|>
+argument_list|<>
 argument_list|()
 decl_stmt|;
 for|for
@@ -11211,9 +11153,7 @@ name|invariants
 init|=
 operator|new
 name|NamedList
-argument_list|<
-name|String
-argument_list|>
+argument_list|<>
 argument_list|()
 decl_stmt|;
 comment|// Hide everything...
@@ -11225,9 +11165,7 @@ name|hide
 init|=
 operator|new
 name|HashSet
-argument_list|<
-name|String
-argument_list|>
+argument_list|<>
 argument_list|()
 decl_stmt|;
 for|for
@@ -11323,9 +11261,7 @@ name|args
 init|=
 operator|new
 name|NamedList
-argument_list|<
-name|Object
-argument_list|>
+argument_list|<>
 argument_list|()
 decl_stmt|;
 name|args
@@ -11515,9 +11451,7 @@ name|lst
 init|=
 operator|new
 name|SimpleOrderedMap
-argument_list|<
-name|Object
-argument_list|>
+argument_list|<>
 argument_list|()
 decl_stmt|;
 name|lst

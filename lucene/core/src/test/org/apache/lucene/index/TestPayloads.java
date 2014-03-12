@@ -2423,11 +2423,7 @@ name|fieldToData
 init|=
 operator|new
 name|HashMap
-argument_list|<
-name|String
-argument_list|,
-name|PayloadData
-argument_list|>
+argument_list|<>
 argument_list|()
 decl_stmt|;
 DECL|method|PayloadAnalyzer
@@ -3432,10 +3428,7 @@ name|pool
 operator|=
 operator|new
 name|ArrayList
-argument_list|<
-name|byte
-index|[]
-argument_list|>
+argument_list|<>
 argument_list|()
 expr_stmt|;
 for|for

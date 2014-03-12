@@ -213,9 +213,7 @@ name|results
 init|=
 operator|new
 name|ArrayList
-argument_list|<
-name|T
-argument_list|>
+argument_list|<>
 argument_list|(
 name|percs
 operator|.

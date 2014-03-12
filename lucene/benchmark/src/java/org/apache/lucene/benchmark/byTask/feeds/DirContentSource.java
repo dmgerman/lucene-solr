@@ -361,9 +361,7 @@ name|stack
 init|=
 operator|new
 name|Stack
-argument_list|<
-name|File
-argument_list|>
+argument_list|<>
 argument_list|()
 decl_stmt|;
 comment|/* this seems silly ... there must be a better way ...        not that this is good, but can it matter? */
@@ -646,9 +644,7 @@ name|dateFormat
 init|=
 operator|new
 name|ThreadLocal
-argument_list|<
-name|DateFormatInfo
-argument_list|>
+argument_list|<>
 argument_list|()
 decl_stmt|;
 DECL|field|dataDir

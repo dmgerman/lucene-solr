@@ -1020,12 +1020,7 @@ name|params
 init|=
 operator|new
 name|HashMap
-argument_list|<
-name|String
-argument_list|,
-name|String
-index|[]
-argument_list|>
+argument_list|<>
 argument_list|()
 decl_stmt|;
 name|params
@@ -1093,9 +1088,7 @@ name|streams
 init|=
 operator|new
 name|ArrayList
-argument_list|<
-name|ContentStream
-argument_list|>
+argument_list|<>
 argument_list|(
 literal|2
 argument_list|)
