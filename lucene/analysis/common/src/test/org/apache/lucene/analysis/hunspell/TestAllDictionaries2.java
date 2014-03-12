@@ -1087,7 +1087,7 @@ name|humanSizeOf
 argument_list|(
 name|dic
 operator|.
-name|stripLookup
+name|stripData
 argument_list|)
 operator|+
 literal|", "
