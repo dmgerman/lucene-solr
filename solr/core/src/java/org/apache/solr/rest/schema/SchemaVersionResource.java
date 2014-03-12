@@ -28,7 +28,7 @@ name|solr
 operator|.
 name|rest
 operator|.
-name|GETable
+name|BaseSolrResource
 import|;
 end_import
 
@@ -42,7 +42,7 @@ name|solr
 operator|.
 name|rest
 operator|.
-name|SolrRestApi
+name|GETable
 import|;
 end_import
 
@@ -114,7 +114,7 @@ specifier|public
 class|class
 name|SchemaVersionResource
 extends|extends
-name|BaseSchemaResource
+name|BaseSolrResource
 implements|implements
 name|GETable
 block|{

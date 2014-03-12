@@ -264,6 +264,20 @@ name|apache
 operator|.
 name|solr
 operator|.
+name|rest
+operator|.
+name|RestManager
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|solr
+operator|.
 name|schema
 operator|.
 name|FieldType
@@ -739,6 +753,8 @@ block|,
 literal|"spelling.suggest."
 block|,
 literal|"spelling.suggest.fst."
+block|,
+literal|"rest.schema.analysis."
 block|}
 decl_stmt|;
 DECL|field|classLoader
@@ -847,6 +863,46 @@ specifier|volatile
 name|boolean
 name|live
 decl_stmt|;
+comment|// Provide a registry so that managed resources can register themselves while the XML configuration
+comment|// documents are being parsed ... after all are registered, they are asked by the RestManager to
+comment|// initialize themselves. This two-step process is required because not all resources are available
+comment|// (such as the SolrZkClient) when XML docs are being parsed.
+DECL|field|managedResourceRegistry
+specifier|private
+name|RestManager
+operator|.
+name|Registry
+name|managedResourceRegistry
+decl_stmt|;
+DECL|method|getManagedResourceRegistry
+specifier|public
+specifier|synchronized
+name|RestManager
+operator|.
+name|Registry
+name|getManagedResourceRegistry
+parameter_list|()
+block|{
+if|if
+condition|(
+name|managedResourceRegistry
+operator|==
+literal|null
+condition|)
+block|{
+name|managedResourceRegistry
+operator|=
+operator|new
+name|RestManager
+operator|.
+name|Registry
+argument_list|()
+expr_stmt|;
+block|}
+return|return
+name|managedResourceRegistry
+return|;
+block|}
 comment|/**    *<p>    * This loader will delegate to the context classloader when possible,    * otherwise it will attempt to resolve resources using any jar files    * found in the "lib/" directory in the specified instance directory.    *</p>    *    * @param instanceDir - base directory for this resource loader, if null locateSolrHome() will be used.    * @see #locateSolrHome    */
 DECL|method|SolrResourceLoader
 specifier|public
