@@ -7457,6 +7457,14 @@ operator|.
 name|get
 argument_list|()
 operator|.
+name|isCachingEnabled
+argument_list|()
+operator|&&
+name|newestSearcher
+operator|.
+name|get
+argument_list|()
+operator|.
 name|getSchema
 argument_list|()
 operator|==
@@ -8928,6 +8936,24 @@ init|)
 block|{
 try|try
 block|{
+if|if
+condition|(
+name|_searcher
+operator|==
+name|newSearcherHolder
+condition|)
+block|{
+comment|// trying to re-register the same searcher... this can now happen when a commit has been done but
+comment|// there were no changes to the index.
+name|newSearcherHolder
+operator|.
+name|decref
+argument_list|()
+expr_stmt|;
+comment|// decref since the caller should have still incref'd (since they didn't know the searcher was the same)
+return|return;
+comment|// still execute the finally block to notify anyone waiting.
+block|}
 if|if
 condition|(
 name|_searcher

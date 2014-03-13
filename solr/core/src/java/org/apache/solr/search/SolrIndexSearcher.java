@@ -2260,6 +2260,16 @@ name|incrementAndGet
 argument_list|()
 expr_stmt|;
 block|}
+DECL|method|isCachingEnabled
+specifier|public
+name|boolean
+name|isCachingEnabled
+parameter_list|()
+block|{
+return|return
+name|cachingEnabled
+return|;
+block|}
 DECL|method|getPath
 specifier|public
 name|String
