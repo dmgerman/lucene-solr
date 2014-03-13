@@ -473,7 +473,7 @@ name|iterator
 argument_list|()
 return|;
 block|}
-comment|/**    * Expert: the Weight for BooleanQuery, used to    * normalize, score and explain these queries.    *    *<p>NOTE: this API and implementation is subject to    * change suddenly in the next release.</p>    */
+comment|/**    * Expert: the Weight for BooleanQuery, used to    * normalize, score and explain these queries.    *    * @lucene.experimental    */
 DECL|class|BooleanWeight
 specifier|protected
 class|class
