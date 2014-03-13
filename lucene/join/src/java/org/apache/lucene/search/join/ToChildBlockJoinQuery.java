@@ -884,7 +884,7 @@ operator|==
 literal|0
 condition|)
 block|{
-comment|// Degenerate but allowed: parent has no children
+comment|// Degenerate but allowed: first parent doc has no children
 comment|// TODO: would be nice to pull initial parent
 comment|// into ctor so we can skip this if... but it's
 comment|// tricky because scorer must return -1 for
@@ -916,6 +916,7 @@ return|return
 name|childDoc
 return|;
 block|}
+comment|// Go to first child for this next parentDoc:
 name|childDoc
 operator|=
 literal|1
@@ -929,6 +930,17 @@ operator|-
 literal|1
 argument_list|)
 expr_stmt|;
+if|if
+condition|(
+name|childDoc
+operator|==
+name|parentDoc
+condition|)
+block|{
+comment|// This parent has no children; continue
+comment|// parent loop so we move to next parent
+continue|continue;
+block|}
 if|if
 condition|(
 name|acceptDocs
