@@ -52,22 +52,6 @@ name|LuceneTestCase
 import|;
 end_import
 
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|solr
-operator|.
-name|common
-operator|.
-name|util
-operator|.
-name|XML
-import|;
-end_import
-
 begin_comment
 comment|/** Test (some of the) character escaping functions of the XML class  */
 end_comment
@@ -122,15 +106,11 @@ argument_list|()
 decl_stmt|;
 name|assertEquals
 argument_list|(
-literal|"Escaped output matches '"
-operator|+
+literal|"Escaped output does not match expected value"
+argument_list|,
 name|expectedOutput
-operator|+
-literal|"'"
 argument_list|,
 name|result
-argument_list|,
-name|expectedOutput
 argument_list|)
 expr_stmt|;
 block|}
