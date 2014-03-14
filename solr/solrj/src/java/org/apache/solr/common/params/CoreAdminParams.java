@@ -257,6 +257,15 @@ name|ROLES
 init|=
 literal|"roles"
 decl_stmt|;
+DECL|field|REQUESTID
+specifier|public
+specifier|static
+specifier|final
+name|String
+name|REQUESTID
+init|=
+literal|"requestid"
+decl_stmt|;
 DECL|field|CORE_NODE_NAME
 specifier|public
 specifier|static
@@ -386,6 +395,9 @@ name|TRANSIENT
 block|,
 DECL|enum constant|OVERSEEROP
 name|OVERSEEROP
+block|,
+DECL|enum constant|REQUESTSTATUS
+name|REQUESTSTATUS
 block|;
 DECL|method|get
 specifier|public

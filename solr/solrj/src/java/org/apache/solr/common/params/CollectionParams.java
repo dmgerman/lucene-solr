@@ -100,6 +100,9 @@ block|,
 DECL|enum constant|CLUSTERPROP
 name|CLUSTERPROP
 block|,
+DECL|enum constant|REQUESTSTATUS
+name|REQUESTSTATUS
+block|,
 DECL|enum constant|ADDREPLICA
 name|ADDREPLICA
 block|;

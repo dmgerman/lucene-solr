@@ -1828,6 +1828,33 @@ expr_stmt|;
 block|}
 try|try
 block|{
+name|coreAdminHandler
+operator|.
+name|shutdown
+argument_list|()
+expr_stmt|;
+block|}
+catch|catch
+parameter_list|(
+name|Exception
+name|e
+parameter_list|)
+block|{
+name|log
+operator|.
+name|warn
+argument_list|(
+literal|"Error shutting down CoreAdminHandler. Continuing to shutdown CoreContainer."
+argument_list|)
+expr_stmt|;
+name|e
+operator|.
+name|printStackTrace
+argument_list|()
+expr_stmt|;
+block|}
+try|try
+block|{
 comment|// First wake up the closer thread, it'll terminate almost immediately since it checks isShutDown.
 synchronized|synchronized
 init|(
