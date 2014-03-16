@@ -3177,7 +3177,9 @@ argument_list|(
 literal|"."
 argument_list|)
 condition|)
-empty_stmt|;
+block|{
+name|base
+operator|=
 name|base
 operator|.
 name|replaceFirst
@@ -3194,6 +3196,7 @@ name|getName
 argument_list|()
 argument_list|)
 expr_stmt|;
+block|}
 if|if
 condition|(
 name|path
@@ -3270,7 +3273,10 @@ operator|.
 name|append
 argument_list|(
 literal|".."
-operator|+
+argument_list|)
+operator|.
+name|append
+argument_list|(
 name|File
 operator|.
 name|separator
