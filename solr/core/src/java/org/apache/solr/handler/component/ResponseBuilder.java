@@ -714,6 +714,11 @@ argument_list|>
 name|finished
 decl_stmt|;
 comment|// requests that have received responses from all shards
+DECL|field|shortCircuitedURL
+specifier|public
+name|String
+name|shortCircuitedURL
+decl_stmt|;
 DECL|method|getShardNum
 specifier|public
 name|int

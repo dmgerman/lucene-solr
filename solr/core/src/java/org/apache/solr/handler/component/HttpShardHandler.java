@@ -1973,6 +1973,25 @@ name|isDistrib
 operator|=
 literal|false
 expr_stmt|;
+name|rb
+operator|.
+name|shortCircuitedURL
+operator|=
+name|ZkCoreNodeProps
+operator|.
+name|getCoreUrl
+argument_list|(
+name|zkController
+operator|.
+name|getBaseUrl
+argument_list|()
+argument_list|,
+name|coreDescriptor
+operator|.
+name|getName
+argument_list|()
+argument_list|)
+expr_stmt|;
 return|return;
 block|}
 comment|// We shouldn't need to do anything to handle "shard.rows" since it was previously meant to be an optimization?
