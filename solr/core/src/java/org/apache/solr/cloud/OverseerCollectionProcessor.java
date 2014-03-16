@@ -2903,13 +2903,11 @@ expr_stmt|;
 name|String
 name|replica
 init|=
-name|nodeName
+name|zkStateReader
 operator|.
-name|replaceFirst
+name|getBaseUrlForNodeName
 argument_list|(
-literal|"_"
-argument_list|,
-literal|"/"
+name|nodeName
 argument_list|)
 decl_stmt|;
 name|sreq
