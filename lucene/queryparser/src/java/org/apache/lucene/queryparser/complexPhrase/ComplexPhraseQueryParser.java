@@ -337,6 +337,31 @@ specifier|private
 name|boolean
 name|isPass2ResolvingPhrases
 decl_stmt|;
+DECL|field|inOrder
+specifier|private
+name|boolean
+name|inOrder
+init|=
+literal|true
+decl_stmt|;
+comment|/**    * When<code>inOrder</code> is true, the search terms must    * exists in the documents as the same order as in query.    *    * @param inOrder parameter to choose between ordered or un-ordered proximity search    */
+DECL|method|setInOrder
+specifier|public
+name|void
+name|setInOrder
+parameter_list|(
+specifier|final
+name|boolean
+name|inOrder
+parameter_list|)
+block|{
+name|this
+operator|.
+name|inOrder
+operator|=
+name|inOrder
+expr_stmt|;
+block|}
 DECL|field|currentPhraseQuery
 specifier|private
 name|ComplexPhraseQuery
@@ -396,6 +421,8 @@ argument_list|,
 name|queryText
 argument_list|,
 name|slop
+argument_list|,
+name|inOrder
 argument_list|)
 decl_stmt|;
 name|complexPhrases
@@ -886,6 +913,12 @@ DECL|field|slopFactor
 name|int
 name|slopFactor
 decl_stmt|;
+DECL|field|inOrder
+specifier|private
+specifier|final
+name|boolean
+name|inOrder
+decl_stmt|;
 DECL|field|contents
 specifier|private
 name|Query
@@ -903,6 +936,9 @@ name|phrasedQueryStringContents
 parameter_list|,
 name|int
 name|slopFactor
+parameter_list|,
+name|boolean
+name|inOrder
 parameter_list|)
 block|{
 name|super
@@ -925,6 +961,12 @@ operator|.
 name|slopFactor
 operator|=
 name|slopFactor
+expr_stmt|;
+name|this
+operator|.
+name|inOrder
+operator|=
+name|inOrder
 expr_stmt|;
 block|}
 comment|// Called by ComplexPhraseQueryParser for each phrase after the main
@@ -1263,7 +1305,7 @@ name|allSpanClauses
 argument_list|,
 name|slopFactor
 argument_list|,
-literal|true
+name|inOrder
 argument_list|)
 return|;
 block|}
@@ -1387,7 +1429,7 @@ name|slopFactor
 operator|+
 name|numNegatives
 argument_list|,
-literal|true
+name|inOrder
 argument_list|)
 expr_stmt|;
 block|}
@@ -1402,7 +1444,7 @@ name|allSpanClauses
 argument_list|,
 name|slopFactor
 argument_list|,
-literal|true
+name|inOrder
 argument_list|)
 decl_stmt|;
 name|SpanNotQuery

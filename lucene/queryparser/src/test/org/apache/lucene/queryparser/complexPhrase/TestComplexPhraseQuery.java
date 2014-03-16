@@ -311,6 +311,12 @@ name|defaultFieldName
 init|=
 literal|"name"
 decl_stmt|;
+DECL|field|inOrder
+name|boolean
+name|inOrder
+init|=
+literal|true
+decl_stmt|;
 DECL|method|testComplexPhrases
 specifier|public
 name|void
@@ -410,6 +416,39 @@ argument_list|)
 expr_stmt|;
 comment|// phrases inside phrases is bad
 block|}
+DECL|method|testUnOrderedProximitySearches
+specifier|public
+name|void
+name|testUnOrderedProximitySearches
+parameter_list|()
+throws|throws
+name|Exception
+block|{
+name|inOrder
+operator|=
+literal|true
+expr_stmt|;
+name|checkMatches
+argument_list|(
+literal|"\"smith jo*\"~2"
+argument_list|,
+literal|""
+argument_list|)
+expr_stmt|;
+comment|// ordered proximity produces empty set
+name|inOrder
+operator|=
+literal|false
+expr_stmt|;
+name|checkMatches
+argument_list|(
+literal|"\"smith jo*\"~2"
+argument_list|,
+literal|"1,2,3"
+argument_list|)
+expr_stmt|;
+comment|// un-ordered proximity
+block|}
 DECL|method|checkBadQuery
 specifier|private
 name|void
@@ -419,7 +458,7 @@ name|String
 name|qString
 parameter_list|)
 block|{
-name|QueryParser
+name|ComplexPhraseQueryParser
 name|qp
 init|=
 operator|new
@@ -432,6 +471,13 @@ argument_list|,
 name|analyzer
 argument_list|)
 decl_stmt|;
+name|qp
+operator|.
+name|setInOrder
+argument_list|(
+name|inOrder
+argument_list|)
+expr_stmt|;
 name|Throwable
 name|expected
 init|=
@@ -482,7 +528,7 @@ parameter_list|)
 throws|throws
 name|Exception
 block|{
-name|QueryParser
+name|ComplexPhraseQueryParser
 name|qp
 init|=
 operator|new
@@ -495,6 +541,13 @@ argument_list|,
 name|analyzer
 argument_list|)
 decl_stmt|;
+name|qp
+operator|.
+name|setInOrder
+argument_list|(
+name|inOrder
+argument_list|)
+expr_stmt|;
 name|qp
 operator|.
 name|setFuzzyPrefixLength
