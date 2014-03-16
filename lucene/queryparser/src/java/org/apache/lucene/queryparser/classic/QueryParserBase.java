@@ -366,6 +366,7 @@ init|=
 literal|false
 decl_stmt|;
 DECL|field|field
+specifier|protected
 name|String
 name|field
 decl_stmt|;

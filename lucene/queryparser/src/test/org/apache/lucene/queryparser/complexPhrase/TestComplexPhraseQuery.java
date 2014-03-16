@@ -268,6 +268,8 @@ argument_list|(
 literal|"john smith"
 argument_list|,
 literal|"1"
+argument_list|,
+literal|"developer"
 argument_list|)
 block|,
 operator|new
@@ -276,6 +278,8 @@ argument_list|(
 literal|"johathon smith"
 argument_list|,
 literal|"2"
+argument_list|,
+literal|"developer"
 argument_list|)
 block|,
 operator|new
@@ -284,6 +288,8 @@ argument_list|(
 literal|"john percival smith"
 argument_list|,
 literal|"3"
+argument_list|,
+literal|"designer"
 argument_list|)
 block|,
 operator|new
@@ -292,6 +298,8 @@ argument_list|(
 literal|"jackson waits tom"
 argument_list|,
 literal|"4"
+argument_list|,
+literal|"project manager"
 argument_list|)
 block|}
 decl_stmt|;
@@ -731,6 +739,78 @@ argument_list|()
 argument_list|)
 expr_stmt|;
 block|}
+DECL|method|testFieldedQuery
+specifier|public
+name|void
+name|testFieldedQuery
+parameter_list|()
+throws|throws
+name|Exception
+block|{
+name|checkMatches
+argument_list|(
+literal|"name:\"john smith\""
+argument_list|,
+literal|"1"
+argument_list|)
+expr_stmt|;
+name|checkMatches
+argument_list|(
+literal|"name:\"j*   smyth~\""
+argument_list|,
+literal|"1,2"
+argument_list|)
+expr_stmt|;
+name|checkMatches
+argument_list|(
+literal|"role:\"developer\""
+argument_list|,
+literal|"1,2"
+argument_list|)
+expr_stmt|;
+name|checkMatches
+argument_list|(
+literal|"role:\"p* manager\""
+argument_list|,
+literal|"4"
+argument_list|)
+expr_stmt|;
+name|checkMatches
+argument_list|(
+literal|"role:de*"
+argument_list|,
+literal|"1,2,3"
+argument_list|)
+expr_stmt|;
+name|checkMatches
+argument_list|(
+literal|"name:\"j* smyth~\"~5"
+argument_list|,
+literal|"1,2,3"
+argument_list|)
+expr_stmt|;
+name|checkMatches
+argument_list|(
+literal|"role:\"p* manager\" AND name:jack*"
+argument_list|,
+literal|"4"
+argument_list|)
+expr_stmt|;
+name|checkMatches
+argument_list|(
+literal|"+role:developer +name:jack*"
+argument_list|,
+literal|""
+argument_list|)
+expr_stmt|;
+name|checkMatches
+argument_list|(
+literal|"name:\"john smith\"~2 AND role:designer AND id:3"
+argument_list|,
+literal|"3"
+argument_list|)
+expr_stmt|;
+block|}
 annotation|@
 name|Override
 DECL|method|setUp
@@ -846,6 +926,29 @@ name|YES
 argument_list|)
 argument_list|)
 expr_stmt|;
+name|doc
+operator|.
+name|add
+argument_list|(
+name|newTextField
+argument_list|(
+literal|"role"
+argument_list|,
+name|docsContent
+index|[
+name|i
+index|]
+operator|.
+name|role
+argument_list|,
+name|Field
+operator|.
+name|Store
+operator|.
+name|YES
+argument_list|)
+argument_list|)
+expr_stmt|;
 name|w
 operator|.
 name|addDocument
@@ -915,6 +1018,10 @@ DECL|field|id
 name|String
 name|id
 decl_stmt|;
+DECL|field|role
+name|String
+name|role
+decl_stmt|;
 DECL|method|DocData
 specifier|public
 name|DocData
@@ -924,6 +1031,9 @@ name|name
 parameter_list|,
 name|String
 name|id
+parameter_list|,
+name|String
+name|role
 parameter_list|)
 block|{
 name|super
@@ -940,6 +1050,12 @@ operator|.
 name|id
 operator|=
 name|id
+expr_stmt|;
+name|this
+operator|.
+name|role
+operator|=
+name|role
 expr_stmt|;
 block|}
 block|}

@@ -977,7 +977,7 @@ specifier|protected
 name|void
 name|parsePhraseElements
 parameter_list|(
-name|QueryParser
+name|ComplexPhraseQueryParser
 name|qp
 parameter_list|)
 throws|throws
@@ -988,6 +988,24 @@ comment|// string below is parsed as
 comment|// field+":("+phrasedQueryStringContents+")"
 comment|// but this will need code in rewrite to unwrap the first layer of
 comment|// boolean query
+name|String
+name|oldDefaultParserField
+init|=
+name|qp
+operator|.
+name|field
+decl_stmt|;
+try|try
+block|{
+comment|//temporarily set the QueryParser to be parsing the default field for this phrase e.g author:"fred* smith"
+name|qp
+operator|.
+name|field
+operator|=
+name|this
+operator|.
+name|field
+expr_stmt|;
 name|contents
 operator|=
 name|qp
@@ -997,6 +1015,16 @@ argument_list|(
 name|phrasedQueryStringContents
 argument_list|)
 expr_stmt|;
+block|}
+finally|finally
+block|{
+name|qp
+operator|.
+name|field
+operator|=
+name|oldDefaultParserField
+expr_stmt|;
+block|}
 block|}
 annotation|@
 name|Override
