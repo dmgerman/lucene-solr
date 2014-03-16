@@ -13195,16 +13195,6 @@ argument_list|,
 name|numSlices
 argument_list|)
 expr_stmt|;
-name|String
-name|replica
-init|=
-name|zkStateReader
-operator|.
-name|getBaseUrlForNodeName
-argument_list|(
-name|nodeName
-argument_list|)
-decl_stmt|;
 name|setupAsyncRequest
 argument_list|(
 name|async
