@@ -6442,6 +6442,18 @@ literal|"sort_values"
 argument_list|)
 argument_list|)
 decl_stmt|;
+name|NamedList
+name|unmarshalledSortFieldValues
+init|=
+name|unmarshalSortValues
+argument_list|(
+name|ss
+argument_list|,
+name|sortFieldValues
+argument_list|,
+name|schema
+argument_list|)
+decl_stmt|;
 comment|// go through every doc in this response, construct a ShardDoc, and
 comment|// put it in the priority queue so it can be ordered.
 for|for
@@ -6605,14 +6617,7 @@ name|shardDoc
 operator|.
 name|sortFieldValues
 operator|=
-name|unmarshalSortValues
-argument_list|(
-name|ss
-argument_list|,
-name|sortFieldValues
-argument_list|,
-name|schema
-argument_list|)
+name|unmarshalledSortFieldValues
 expr_stmt|;
 name|queue
 operator|.
