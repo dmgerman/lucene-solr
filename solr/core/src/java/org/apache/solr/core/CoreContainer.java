@@ -644,7 +644,7 @@ name|ZkContainer
 argument_list|()
 decl_stmt|;
 DECL|field|shardHandlerFactory
-specifier|private
+specifier|protected
 name|ShardHandlerFactory
 name|shardHandlerFactory
 decl_stmt|;
