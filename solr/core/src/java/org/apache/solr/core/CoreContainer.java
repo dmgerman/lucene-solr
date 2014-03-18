@@ -875,6 +875,32 @@ operator|=
 name|locator
 expr_stmt|;
 block|}
+comment|/**    * This method allows subclasses to construct a CoreContainer    * without any default init behavior.    *     * @param testConstructor pass (Object)null.    * @lucene.experimental    */
+DECL|method|CoreContainer
+specifier|protected
+name|CoreContainer
+parameter_list|(
+name|Object
+name|testConstructor
+parameter_list|)
+block|{
+name|solrHome
+operator|=
+literal|null
+expr_stmt|;
+name|loader
+operator|=
+literal|null
+expr_stmt|;
+name|coresLocator
+operator|=
+literal|null
+expr_stmt|;
+name|cfg
+operator|=
+literal|null
+expr_stmt|;
+block|}
 comment|/**    * Create a new CoreContainer and load its cores    * @param solrHome the solr home directory    * @param configFile the file containing this container's configuration    * @return a loaded CoreContainer    */
 DECL|method|createAndLoad
 specifier|public
