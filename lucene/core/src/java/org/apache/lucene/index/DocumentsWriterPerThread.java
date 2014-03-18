@@ -2328,6 +2328,13 @@ name|numericUpdates
 operator|.
 name|isEmpty
 argument_list|()
+operator|&&
+name|pendingUpdates
+operator|.
+name|binaryUpdates
+operator|.
+name|isEmpty
+argument_list|()
 condition|)
 block|{
 name|pendingUpdates
