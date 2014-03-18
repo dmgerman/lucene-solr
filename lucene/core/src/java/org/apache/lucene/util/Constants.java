@@ -484,10 +484,8 @@ name|toString
 argument_list|()
 return|;
 block|}
-comment|// NOTE: we track per-segment version as a String with the "X.Y" format, e.g.
-comment|// "4.0", "3.1", "3.0". Therefore when we change this constant, we should keep
-comment|// the format.
-comment|/**    * This is the internal Lucene version, recorded into each segment.    */
+comment|// We should never change index format with minor versions, so it should always be x.y or x.y.0.z for alpha/beta versions!
+comment|/**    * This is the internal Lucene version, recorded into each segment.    * NOTE: we track per-segment version as a String with the {@code "X.Y"} format    * (no minor version), e.g. {@code "4.0", "3.1", "3.0"}.    *<p>Alpha and Beta versions will have numbers like {@code "X.Y.0.Z"},    * anything else is not allowed. This is done to prevent people from    * using indexes created with ALPHA/BETA versions with the released version.    */
 DECL|field|LUCENE_MAIN_VERSION
 specifier|public
 specifier|static
@@ -541,6 +539,30 @@ operator|==
 literal|null
 condition|)
 block|{
+name|v
+operator|=
+name|mainVersionWithoutAlphaBeta
+argument_list|()
+operator|+
+literal|"-SNAPSHOT"
+expr_stmt|;
+block|}
+name|LUCENE_VERSION
+operator|=
+name|ident
+argument_list|(
+name|v
+argument_list|)
+expr_stmt|;
+block|}
+comment|/**    * Returns a LUCENE_MAIN_VERSION without any ALPHA/BETA qualifier    * Used by test only!    */
+DECL|method|mainVersionWithoutAlphaBeta
+specifier|static
+name|String
+name|mainVersionWithoutAlphaBeta
+parameter_list|()
+block|{
+specifier|final
 name|String
 name|parts
 index|[]
@@ -559,22 +581,19 @@ operator|.
 name|length
 operator|==
 literal|4
-condition|)
-block|{
-comment|// alpha/beta
-assert|assert
+operator|&&
+literal|"0"
+operator|.
+name|equals
+argument_list|(
 name|parts
 index|[
 literal|2
 index|]
-operator|.
-name|equals
-argument_list|(
-literal|"0"
 argument_list|)
-assert|;
-name|v
-operator|=
+condition|)
+block|{
+return|return
 name|parts
 index|[
 literal|0
@@ -586,27 +605,11 @@ name|parts
 index|[
 literal|1
 index|]
-operator|+
-literal|"-SNAPSHOT"
-expr_stmt|;
+return|;
 block|}
-else|else
-block|{
-name|v
-operator|=
+return|return
 name|LUCENE_MAIN_VERSION
-operator|+
-literal|"-SNAPSHOT"
-expr_stmt|;
-block|}
-block|}
-name|LUCENE_VERSION
-operator|=
-name|ident
-argument_list|(
-name|v
-argument_list|)
-expr_stmt|;
+return|;
 block|}
 block|}
 end_class
