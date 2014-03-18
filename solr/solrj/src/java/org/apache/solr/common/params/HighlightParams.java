@@ -48,6 +48,17 @@ name|HIGHLIGHT
 operator|+
 literal|".q"
 decl_stmt|;
+DECL|field|QPARSER
+specifier|public
+specifier|static
+specifier|final
+name|String
+name|QPARSER
+init|=
+name|HIGHLIGHT
+operator|+
+literal|".qparser"
+decl_stmt|;
 DECL|field|FIELDS
 specifier|public
 specifier|static
