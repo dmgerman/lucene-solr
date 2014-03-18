@@ -20,21 +20,15 @@ end_comment
 
 begin_import
 import|import
-name|java
+name|com
 operator|.
-name|io
+name|spatial4j
 operator|.
-name|IOException
-import|;
-end_import
-
-begin_import
-import|import
-name|java
+name|core
 operator|.
-name|util
+name|shape
 operator|.
-name|Iterator
+name|Shape
 import|;
 end_import
 
@@ -160,15 +154,21 @@ end_import
 
 begin_import
 import|import
-name|com
+name|java
 operator|.
-name|spatial4j
+name|io
 operator|.
-name|core
+name|IOException
+import|;
+end_import
+
+begin_import
+import|import
+name|java
 operator|.
-name|shape
+name|util
 operator|.
-name|Shape
+name|Iterator
 import|;
 end_import
 
@@ -284,25 +284,7 @@ return|return
 literal|false
 return|;
 comment|//checks getClass == o.getClass& instanceof
-name|AbstractVisitingPrefixTreeFilter
-name|that
-init|=
-operator|(
-name|AbstractVisitingPrefixTreeFilter
-operator|)
-name|o
-decl_stmt|;
-if|if
-condition|(
-name|prefixGridScanLevel
-operator|!=
-name|that
-operator|.
-name|prefixGridScanLevel
-condition|)
-return|return
-literal|false
-return|;
+comment|//Ignore prefixGridScanLevel as it is merely a tuning parameter.
 return|return
 literal|true
 return|;
@@ -323,19 +305,11 @@ operator|.
 name|hashCode
 argument_list|()
 decl_stmt|;
-name|result
-operator|=
-literal|31
-operator|*
-name|result
-operator|+
-name|prefixGridScanLevel
-expr_stmt|;
 return|return
 name|result
 return|;
 block|}
-comment|/**    * An abstract class designed to make it easy to implement predicates or    * other operations on a {@link SpatialPrefixTree} indexed field. An instance    * of this class is not designed to be re-used across AtomicReaderContext    * instances so simply create a new one for each call to, say a {@link    * org.apache.lucene.search.Filter#getDocIdSet(org.apache.lucene.index.AtomicReaderContext, org.apache.lucene.util.Bits)}.    * The {@link #getDocIdSet()} method here starts the work. It first checks    * that there are indexed terms; if not it quickly returns null. Then it calls    * {@link #start()} so a subclass can set up a return value, like an    * {@link org.apache.lucene.util.FixedBitSet}. Then it starts the traversal    * process, calling {@link #findSubCellsToVisit(org.apache.lucene.spatial.prefix.tree.Cell)}    * which by default finds the top cells that intersect {@code queryShape}. If    * there isn't an indexed cell for a corresponding cell returned for this    * method then it's short-circuited until it finds one, at which point    * {@link #visit(org.apache.lucene.spatial.prefix.tree.Cell)} is called. At    * some depths, of the tree, the algorithm switches to a scanning mode that    * finds calls {@link #visitScanned(org.apache.lucene.spatial.prefix.tree.Cell)}    * for each leaf cell found.    *    * @lucene.internal    */
+comment|/**    * An abstract class designed to make it easy to implement predicates or    * other operations on a {@link SpatialPrefixTree} indexed field. An instance    * of this class is not designed to be re-used across AtomicReaderContext    * instances so simply create a new one for each call to, say a {@link    * org.apache.lucene.search.Filter#getDocIdSet(org.apache.lucene.index.AtomicReaderContext, org.apache.lucene.util.Bits)}.    * The {@link #getDocIdSet()} method here starts the work. It first checks    * that there are indexed terms; if not it quickly returns null. Then it calls    * {@link #start()} so a subclass can set up a return value, like an    * {@link org.apache.lucene.util.FixedBitSet}. Then it starts the traversal    * process, calling {@link #findSubCellsToVisit(org.apache.lucene.spatial.prefix.tree.Cell)}    * which by default finds the top cells that intersect {@code queryShape}. If    * there isn't an indexed cell for a corresponding cell returned for this    * method then it's short-circuited until it finds one, at which point    * {@link #visit(org.apache.lucene.spatial.prefix.tree.Cell)} is called. At    * some depths, of the tree, the algorithm switches to a scanning mode that    * calls {@link #visitScanned(org.apache.lucene.spatial.prefix.tree.Cell)}    * for each leaf cell found.    *    * @lucene.internal    */
 DECL|class|VisitorTemplate
 specifier|public
 specifier|abstract
@@ -816,6 +790,7 @@ argument_list|,
 name|curVNodeTerm
 argument_list|)
 assert|;
+comment|//TODO refactor to use method on curVNode.cell
 name|scanCell
 operator|=
 name|grid
@@ -1001,6 +976,7 @@ argument_list|,
 name|curVNodeTerm
 argument_list|)
 condition|;
+comment|//TODO refactor to use method on curVNode.cell
 name|thisTerm
 operator|=
 name|termsEnum
@@ -1041,22 +1017,40 @@ decl_stmt|;
 if|if
 condition|(
 name|termLevel
-operator|>
+operator|<
 name|scanDetailLevel
 condition|)
-continue|continue;
+block|{
 if|if
 condition|(
-name|termLevel
-operator|==
-name|scanDetailLevel
-operator|||
 name|scanCell
 operator|.
 name|isLeaf
 argument_list|()
 condition|)
+name|visitScanned
+argument_list|(
+name|scanCell
+argument_list|)
+expr_stmt|;
+block|}
+elseif|else
+if|if
+condition|(
+name|termLevel
+operator|==
+name|scanDetailLevel
+condition|)
 block|{
+if|if
+condition|(
+operator|!
+name|scanCell
+operator|.
+name|isLeaf
+argument_list|()
+condition|)
+comment|//LUCENE-5529
 name|visitScanned
 argument_list|(
 name|scanCell

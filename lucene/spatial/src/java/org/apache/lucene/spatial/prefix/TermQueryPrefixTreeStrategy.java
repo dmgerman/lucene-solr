@@ -324,6 +324,7 @@ name|getTokenString
 argument_list|()
 argument_list|)
 expr_stmt|;
+comment|//TODO use cell.getTokenBytes()
 block|}
 return|return
 operator|new
