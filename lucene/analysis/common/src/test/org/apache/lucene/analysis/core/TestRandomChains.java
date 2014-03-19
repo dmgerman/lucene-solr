@@ -6330,7 +6330,7 @@ literal|50
 operator|*
 name|RANDOM_MULTIPLIER
 argument_list|,
-literal|256
+literal|128
 argument_list|,
 literal|false
 argument_list|,
