@@ -378,6 +378,16 @@ name|org
 operator|.
 name|junit
 operator|.
+name|Ignore
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|junit
+operator|.
 name|Test
 import|;
 end_import
@@ -407,6 +417,8 @@ comment|/**  * Test of the MiniSolrCloudCluster functionality.  This doesn't der
 end_comment
 
 begin_class
+annotation|@
+name|Ignore
 DECL|class|TestMiniSolrCloudCluster
 specifier|public
 class|class
