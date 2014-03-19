@@ -841,6 +841,7 @@ argument_list|)
 condition|)
 block|{
 comment|// if the posInc is 1, simply ignore it in the accumulation
+comment|// TODO: proper hole adjustment (FilteringTokenFilter-like) instead of this previous logic!
 if|if
 condition|(
 name|posIncAttribute
@@ -849,6 +850,9 @@ name|getPositionIncrement
 argument_list|()
 operator|==
 literal|1
+operator|&&
+operator|!
+name|first
 condition|)
 block|{
 name|accumPosInc
