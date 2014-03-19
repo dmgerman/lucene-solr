@@ -950,7 +950,7 @@ name|setProperty
 argument_list|(
 literal|"solr.autoCommit.maxTime"
 argument_list|,
-literal|"-1"
+literal|"600000"
 argument_list|)
 expr_stmt|;
 name|System

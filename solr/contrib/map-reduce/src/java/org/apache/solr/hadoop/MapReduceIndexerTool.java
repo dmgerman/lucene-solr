@@ -1789,7 +1789,7 @@ operator|new
 name|RangeArgumentChoice
 argument_list|(
 operator|-
-literal|1
+literal|2
 argument_list|,
 name|Integer
 operator|.
@@ -1808,9 +1808,11 @@ name|help
 argument_list|(
 literal|"Tuning knob that indicates the number of reducers to index into. "
 operator|+
+literal|"0 is reserved for a mapper-only feature that may ship in a future release. "
+operator|+
 literal|"-1 indicates use all reduce slots available on the cluster. "
 operator|+
-literal|"0 indicates use one reducer per output shard, which disables the mtree merge MR algorithm. "
+literal|"-2 indicates use one reducer per output shard, which disables the mtree merge MR algorithm. "
 operator|+
 literal|"The mtree merge MR algorithm improves scalability by spreading load "
 operator|+
@@ -2837,6 +2839,25 @@ argument_list|)
 expr_stmt|;
 try|try
 block|{
+if|if
+condition|(
+name|opts
+operator|.
+name|reducers
+operator|==
+literal|0
+condition|)
+block|{
+throw|throw
+operator|new
+name|ArgumentParserException
+argument_list|(
+literal|"--reducers must not be zero"
+argument_list|,
+name|parser
+argument_list|)
+throw|;
+block|}
 name|verifyGoLiveArgs
 argument_list|(
 name|opts
@@ -3324,6 +3345,16 @@ name|Exception
 block|{
 if|if
 condition|(
+name|getConf
+argument_list|()
+operator|.
+name|getBoolean
+argument_list|(
+literal|"isMR1"
+argument_list|,
+literal|false
+argument_list|)
+operator|&&
 literal|"local"
 operator|.
 name|equals
@@ -5284,7 +5315,8 @@ name|options
 operator|.
 name|reducers
 operator|==
-literal|0
+operator|-
+literal|2
 condition|)
 block|{
 name|reducers
@@ -5320,6 +5352,23 @@ comment|// no need to use many reducers when using few mappers
 block|}
 else|else
 block|{
+if|if
+condition|(
+name|options
+operator|.
+name|reducers
+operator|==
+literal|0
+condition|)
+block|{
+throw|throw
+operator|new
+name|IllegalStateException
+argument_list|(
+literal|"Illegal zero reducers"
+argument_list|)
+throw|;
+block|}
 name|reducers
 operator|=
 name|options
@@ -5536,8 +5585,10 @@ name|Path
 name|path
 parameter_list|)
 block|{
+comment|// ignore "hidden" files and dirs
 return|return
 operator|!
+operator|(
 name|path
 operator|.
 name|getName
@@ -5547,8 +5598,18 @@ name|startsWith
 argument_list|(
 literal|"."
 argument_list|)
+operator|||
+name|path
+operator|.
+name|getName
+argument_list|()
+operator|.
+name|startsWith
+argument_list|(
+literal|"_"
+argument_list|)
+operator|)
 return|;
-comment|// ignore "hidden" files and dirs
 block|}
 block|}
 decl_stmt|;
@@ -6314,7 +6375,7 @@ return|return
 literal|null
 return|;
 block|}
-comment|/*      * Ensure scripting support for Java via morphline "java" command works even in dryRun mode,      * i.e. when executed in the client side driver JVM. To do so, collect all classpath URLs from      * the class loaders chain that org.apache.hadoop.util.RunJar (hadoop jar xyz-job.jar) and      * org.apache.hadoop.util.GenericOptionsParser (--libjars) have installed, then tell      * FastJavaScriptEngine.parse() where to find classes that JavaBuilder scripts might depend on.      * This ensures that scripts that reference external java classes compile without exceptions      * like this:      *       * ... caused by compilation failed: mfm:///MyJavaClass1.java:2: package      * com.cloudera.cdk.morphline.api does not exist      */
+comment|/*      * Ensure scripting support for Java via morphline "java" command works even in dryRun mode,      * i.e. when executed in the client side driver JVM. To do so, collect all classpath URLs from      * the class loaders chain that org.apache.hadoop.util.RunJar (hadoop jar xyz-job.jar) and      * org.apache.hadoop.util.GenericOptionsParser (--libjars) have installed, then tell      * FastJavaScriptEngine.parse() where to find classes that JavaBuilder scripts might depend on.      * This ensures that scripts that reference external java classes compile without exceptions      * like this:      *       * ... caused by compilation failed: mfm:///MyJavaClass1.java:2: package      * org.kitesdk.morphline.api does not exist      */
 name|LOG
 operator|.
 name|trace
