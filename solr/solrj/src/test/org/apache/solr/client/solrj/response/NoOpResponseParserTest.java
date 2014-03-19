@@ -533,6 +533,11 @@ argument_list|(
 name|responseString
 argument_list|)
 expr_stmt|;
+name|server
+operator|.
+name|shutdown
+argument_list|()
+expr_stmt|;
 block|}
 DECL|method|assertResponse
 specifier|private

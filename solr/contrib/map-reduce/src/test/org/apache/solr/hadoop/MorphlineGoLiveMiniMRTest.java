@@ -4633,6 +4633,11 @@ name|found
 operator|=
 name|count
 expr_stmt|;
+name|client
+operator|.
+name|shutdown
+argument_list|()
+expr_stmt|;
 block|}
 block|}
 block|}

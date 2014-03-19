@@ -419,6 +419,17 @@ operator|=
 literal|null
 expr_stmt|;
 block|}
+if|if
+condition|(
+name|server
+operator|!=
+literal|null
+condition|)
+name|server
+operator|.
+name|shutdown
+argument_list|()
+expr_stmt|;
 name|server
 operator|=
 literal|null

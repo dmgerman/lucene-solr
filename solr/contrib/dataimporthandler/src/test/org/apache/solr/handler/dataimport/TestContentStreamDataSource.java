@@ -487,6 +487,11 @@ literal|0
 argument_list|)
 argument_list|)
 expr_stmt|;
+name|solrServer
+operator|.
+name|shutdown
+argument_list|()
+expr_stmt|;
 block|}
 annotation|@
 name|Test
@@ -659,6 +664,11 @@ name|getNumFound
 argument_list|()
 condition|)
 block|{
+name|solrServer
+operator|.
+name|shutdown
+argument_list|()
+expr_stmt|;
 return|return;
 block|}
 name|Thread

@@ -1450,6 +1450,15 @@ name|getNumFound
 argument_list|()
 argument_list|)
 expr_stmt|;
+name|collectionClient
+operator|.
+name|shutdown
+argument_list|()
+expr_stmt|;
+name|collectionClient
+operator|=
+literal|null
+expr_stmt|;
 name|getCommonCloudSolrServer
 argument_list|()
 operator|.

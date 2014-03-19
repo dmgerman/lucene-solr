@@ -822,6 +822,15 @@ argument_list|(
 name|request
 argument_list|)
 expr_stmt|;
+name|baseServer
+operator|.
+name|shutdown
+argument_list|()
+expr_stmt|;
+name|baseServer
+operator|=
+literal|null
+expr_stmt|;
 name|waitForThingsToLevelOut
 argument_list|(
 literal|15
