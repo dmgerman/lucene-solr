@@ -28,6 +28,16 @@ end_import
 
 begin_import
 import|import
+name|java
+operator|.
+name|util
+operator|.
+name|Locale
+import|;
+end_import
+
+begin_import
+import|import
 name|org
 operator|.
 name|apache
@@ -232,6 +242,10 @@ name|out
 operator|.
 name|printf
 argument_list|(
+name|Locale
+operator|.
+name|ROOT
+argument_list|,
 literal|"%s:%s \t totalTF = %,d \t doc freq = %,d \n"
 argument_list|,
 name|term

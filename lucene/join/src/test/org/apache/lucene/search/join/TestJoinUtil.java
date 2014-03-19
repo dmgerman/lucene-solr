@@ -3854,6 +3854,10 @@ name|out
 operator|.
 name|printf
 argument_list|(
+name|Locale
+operator|.
+name|ENGLISH
+argument_list|,
 literal|"Expected doc: %d | Actual doc: %d\n"
 argument_list|,
 name|expectedTopDocs
@@ -3881,6 +3885,10 @@ name|out
 operator|.
 name|printf
 argument_list|(
+name|Locale
+operator|.
+name|ENGLISH
+argument_list|,
 literal|"Expected score: %f | Actual score: %f\n"
 argument_list|,
 name|expectedTopDocs
