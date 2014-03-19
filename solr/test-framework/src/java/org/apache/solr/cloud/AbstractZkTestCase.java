@@ -331,7 +331,15 @@ argument_list|,
 literal|"0000"
 argument_list|)
 expr_stmt|;
-comment|//System.setProperty(ZOOKEEPER_FORCE_SYNC, "false");
+name|System
+operator|.
+name|setProperty
+argument_list|(
+name|ZOOKEEPER_FORCE_SYNC
+argument_list|,
+literal|"false"
+argument_list|)
+expr_stmt|;
 name|buildZooKeeper
 argument_list|(
 name|zkServer
@@ -919,7 +927,13 @@ argument_list|(
 literal|"jetty.port"
 argument_list|)
 expr_stmt|;
-comment|//System.clearProperty(ZOOKEEPER_FORCE_SYNC);
+name|System
+operator|.
+name|clearProperty
+argument_list|(
+name|ZOOKEEPER_FORCE_SYNC
+argument_list|)
+expr_stmt|;
 name|zkServer
 operator|.
 name|shutdown

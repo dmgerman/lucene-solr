@@ -412,7 +412,15 @@ argument_list|,
 literal|"true"
 argument_list|)
 expr_stmt|;
-comment|//System.setProperty(ZOOKEEPER_FORCE_SYNC, "false");
+name|System
+operator|.
+name|setProperty
+argument_list|(
+name|ZOOKEEPER_FORCE_SYNC
+argument_list|,
+literal|"false"
+argument_list|)
+expr_stmt|;
 name|String
 name|schema
 init|=
@@ -1492,7 +1500,13 @@ argument_list|(
 literal|"solr.test.sys.prop2"
 argument_list|)
 expr_stmt|;
-comment|//System.clearProperty(ZOOKEEPER_FORCE_SYNC);
+name|System
+operator|.
+name|clearProperty
+argument_list|(
+name|ZOOKEEPER_FORCE_SYNC
+argument_list|)
+expr_stmt|;
 name|resetExceptionIgnores
 argument_list|()
 expr_stmt|;
