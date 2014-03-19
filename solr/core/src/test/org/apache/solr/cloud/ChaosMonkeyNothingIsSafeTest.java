@@ -792,6 +792,10 @@ decl_stmt|;
 name|int
 name|threadCount
 init|=
+name|TEST_NIGHTLY
+condition|?
+literal|3
+else|:
 literal|1
 decl_stmt|;
 name|int
@@ -1004,11 +1008,11 @@ operator|new
 name|int
 index|[]
 block|{
-literal|145000
+literal|5000
 block|,
-literal|240000
+literal|7000
 block|,
-literal|300000
+literal|15000
 block|}
 expr_stmt|;
 block|}
