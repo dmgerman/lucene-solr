@@ -2642,15 +2642,7 @@ name|message
 argument_list|(
 literal|"DW"
 argument_list|,
-name|Thread
-operator|.
-name|currentThread
-argument_list|()
-operator|.
-name|getName
-argument_list|()
-operator|+
-literal|" startFullFlush"
+literal|"startFullFlush"
 argument_list|)
 expr_stmt|;
 block|}
