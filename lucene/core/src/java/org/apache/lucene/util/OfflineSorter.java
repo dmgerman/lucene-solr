@@ -351,7 +351,7 @@ operator|)
 name|bytes
 expr_stmt|;
 block|}
-comment|/**      * Creates a {@link BufferSize} in MB. The given       * values must be $gt; 0 and&lt; 2048.      */
+comment|/**      * Creates a {@link BufferSize} in MB. The given       * values must be&gt; 0 and&lt; 2048.      */
 DECL|method|megabytes
 specifier|public
 specifier|static
