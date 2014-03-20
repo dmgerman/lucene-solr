@@ -1704,7 +1704,13 @@ if|if
 condition|(
 name|numAdds
 operator|>
-literal|4000
+operator|(
+name|TEST_NIGHTLY
+condition|?
+literal|4002
+else|:
+literal|197
+operator|)
 condition|)
 continue|continue;
 name|SolrInputDocument

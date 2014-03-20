@@ -967,13 +967,11 @@ name|Thread
 operator|.
 name|sleep
 argument_list|(
-literal|2000
+literal|3000
 argument_list|)
 expr_stmt|;
-name|waitForThingsToLevelOut
-argument_list|(
-literal|120
-argument_list|)
+name|waitForNoShardInconsistency
+argument_list|()
 expr_stmt|;
 name|Thread
 operator|.
@@ -1060,7 +1058,7 @@ name|jetty
 argument_list|)
 expr_stmt|;
 comment|// he is not the leader anymore
-name|waitTillRecovered
+name|waitTillAllNodesActive
 argument_list|()
 expr_stmt|;
 name|skipServers
@@ -1226,29 +1224,8 @@ argument_list|(
 name|leaderJetty
 argument_list|)
 expr_stmt|;
-name|Thread
-operator|.
-name|sleep
-argument_list|(
-literal|3000
-argument_list|)
-expr_stmt|;
-name|waitForThingsToLevelOut
-argument_list|(
-literal|120
-argument_list|)
-expr_stmt|;
-name|Thread
-operator|.
-name|sleep
-argument_list|(
-literal|2000
-argument_list|)
-expr_stmt|;
-name|waitForRecoveriesToFinish
-argument_list|(
-literal|false
-argument_list|)
+name|waitForNoShardInconsistency
+argument_list|()
 expr_stmt|;
 name|checkShardConsistency
 argument_list|(
@@ -1262,10 +1239,10 @@ operator|=
 literal|true
 expr_stmt|;
 block|}
-DECL|method|waitTillRecovered
+DECL|method|waitTillAllNodesActive
 specifier|private
 name|void
-name|waitTillRecovered
+name|waitTillAllNodesActive
 parameter_list|()
 throws|throws
 name|Exception
@@ -1410,7 +1387,7 @@ argument_list|()
 expr_stmt|;
 name|fail
 argument_list|(
-literal|"timeout waiting to see recovered node"
+literal|"timeout waiting to see all nodes active"
 argument_list|)
 expr_stmt|;
 block|}
