@@ -108,6 +108,18 @@ end_import
 
 begin_import
 import|import
+name|java
+operator|.
+name|util
+operator|.
+name|concurrent
+operator|.
+name|CountDownLatch
+import|;
+end_import
+
+begin_import
+import|import
 name|org
 operator|.
 name|apache
@@ -3220,6 +3232,11 @@ specifier|final
 name|RandomIndexWriter
 name|iw
 decl_stmt|;
+DECL|field|latch
+specifier|final
+name|CountDownLatch
+name|latch
+decl_stmt|;
 comment|// NOTE: not volatile because we don't want the tests to
 comment|// add memory barriers (ie alter how threads
 comment|// interact)... so this is just "best effort":
@@ -3233,6 +3250,9 @@ name|AnalysisThread
 parameter_list|(
 name|long
 name|seed
+parameter_list|,
+name|CountDownLatch
+name|latch
 parameter_list|,
 name|Analyzer
 name|a
@@ -3304,6 +3324,12 @@ name|iw
 operator|=
 name|iw
 expr_stmt|;
+name|this
+operator|.
+name|latch
+operator|=
+name|latch
+expr_stmt|;
 block|}
 annotation|@
 name|Override
@@ -3320,6 +3346,11 @@ literal|false
 decl_stmt|;
 try|try
 block|{
+name|latch
+operator|.
+name|await
+argument_list|()
+expr_stmt|;
 comment|// see the part in checkRandomData where it replays the same text again
 comment|// to verify reproducability/reuse: hopefully this would catch thread hazards.
 name|checkRandomData
@@ -3352,7 +3383,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
-name|IOException
+name|Exception
 name|e
 parameter_list|)
 block|{
@@ -3597,6 +3628,16 @@ argument_list|,
 literal|4
 argument_list|)
 decl_stmt|;
+specifier|final
+name|CountDownLatch
+name|startingGun
+init|=
+operator|new
+name|CountDownLatch
+argument_list|(
+literal|1
+argument_list|)
+decl_stmt|;
 name|AnalysisThread
 name|threads
 index|[]
@@ -3633,6 +3674,8 @@ operator|new
 name|AnalysisThread
 argument_list|(
 name|seed
+argument_list|,
+name|startingGun
 argument_list|,
 name|a
 argument_list|,
@@ -3676,6 +3719,11 @@ name|start
 argument_list|()
 expr_stmt|;
 block|}
+name|startingGun
+operator|.
+name|countDown
+argument_list|()
+expr_stmt|;
 for|for
 control|(
 name|int
