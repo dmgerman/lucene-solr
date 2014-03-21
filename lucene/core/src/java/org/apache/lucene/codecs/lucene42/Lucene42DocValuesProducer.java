@@ -876,6 +876,49 @@ operator|.
 name|fieldInfos
 argument_list|)
 expr_stmt|;
+if|if
+condition|(
+name|in
+operator|.
+name|getFilePointer
+argument_list|()
+operator|!=
+name|in
+operator|.
+name|length
+argument_list|()
+condition|)
+block|{
+throw|throw
+operator|new
+name|CorruptIndexException
+argument_list|(
+literal|"did not read all bytes from file \""
+operator|+
+name|metaName
+operator|+
+literal|"\": read "
+operator|+
+name|in
+operator|.
+name|getFilePointer
+argument_list|()
+operator|+
+literal|" vs size "
+operator|+
+name|in
+operator|.
+name|length
+argument_list|()
+operator|+
+literal|" (resource: "
+operator|+
+name|in
+operator|+
+literal|")"
+argument_list|)
+throw|;
+block|}
 name|success
 operator|=
 literal|true

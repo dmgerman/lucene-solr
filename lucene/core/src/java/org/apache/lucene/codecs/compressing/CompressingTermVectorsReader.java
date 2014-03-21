@@ -874,6 +874,9 @@ name|formatName
 operator|+
 name|CODEC_SFX_IDX
 decl_stmt|;
+name|int
+name|version
+init|=
 name|CodecUtil
 operator|.
 name|checkHeader
@@ -886,7 +889,7 @@ name|VERSION_START
 argument_list|,
 name|VERSION_CURRENT
 argument_list|)
-expr_stmt|;
+decl_stmt|;
 assert|assert
 name|CodecUtil
 operator|.
@@ -910,6 +913,49 @@ argument_list|,
 name|si
 argument_list|)
 expr_stmt|;
+if|if
+condition|(
+name|indexStream
+operator|.
+name|getFilePointer
+argument_list|()
+operator|!=
+name|indexStream
+operator|.
+name|length
+argument_list|()
+condition|)
+block|{
+throw|throw
+operator|new
+name|CorruptIndexException
+argument_list|(
+literal|"did not read all bytes from file \""
+operator|+
+name|indexStreamFN
+operator|+
+literal|"\": read "
+operator|+
+name|indexStream
+operator|.
+name|getFilePointer
+argument_list|()
+operator|+
+literal|" vs size "
+operator|+
+name|indexStream
+operator|.
+name|length
+argument_list|()
+operator|+
+literal|" (resource: "
+operator|+
+name|indexStream
+operator|+
+literal|")"
+argument_list|)
+throw|;
+block|}
 name|indexStream
 operator|.
 name|close
@@ -954,6 +1000,9 @@ name|formatName
 operator|+
 name|CODEC_SFX_DAT
 decl_stmt|;
+name|int
+name|version2
+init|=
 name|CodecUtil
 operator|.
 name|checkHeader
@@ -966,7 +1015,28 @@ name|VERSION_START
 argument_list|,
 name|VERSION_CURRENT
 argument_list|)
-expr_stmt|;
+decl_stmt|;
+if|if
+condition|(
+name|version
+operator|!=
+name|version2
+condition|)
+block|{
+throw|throw
+operator|new
+name|CorruptIndexException
+argument_list|(
+literal|"Version mismatch between stored fields index and data: "
+operator|+
+name|version
+operator|+
+literal|" != "
+operator|+
+name|version2
+argument_list|)
+throw|;
+block|}
 assert|assert
 name|CodecUtil
 operator|.

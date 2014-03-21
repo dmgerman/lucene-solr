@@ -1013,6 +1013,49 @@ argument_list|,
 name|si
 argument_list|)
 expr_stmt|;
+if|if
+condition|(
+name|indexStream
+operator|.
+name|getFilePointer
+argument_list|()
+operator|!=
+name|indexStream
+operator|.
+name|length
+argument_list|()
+condition|)
+block|{
+throw|throw
+operator|new
+name|CorruptIndexException
+argument_list|(
+literal|"did not read all bytes from file \""
+operator|+
+name|indexStreamFN
+operator|+
+literal|"\": read "
+operator|+
+name|indexStream
+operator|.
+name|getFilePointer
+argument_list|()
+operator|+
+literal|" vs size "
+operator|+
+name|indexStream
+operator|.
+name|length
+argument_list|()
+operator|+
+literal|" (resource: "
+operator|+
+name|indexStream
+operator|+
+literal|")"
+argument_list|)
+throw|;
+block|}
 name|indexStream
 operator|.
 name|close
