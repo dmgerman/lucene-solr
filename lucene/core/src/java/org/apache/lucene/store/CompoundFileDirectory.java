@@ -642,6 +642,49 @@ name|readLong
 argument_list|()
 expr_stmt|;
 block|}
+if|if
+condition|(
+name|entriesStream
+operator|.
+name|getFilePointer
+argument_list|()
+operator|!=
+name|entriesStream
+operator|.
+name|length
+argument_list|()
+condition|)
+block|{
+throw|throw
+operator|new
+name|CorruptIndexException
+argument_list|(
+literal|"did not read all bytes from file \""
+operator|+
+name|entriesFileName
+operator|+
+literal|"\": read "
+operator|+
+name|entriesStream
+operator|.
+name|getFilePointer
+argument_list|()
+operator|+
+literal|" vs size "
+operator|+
+name|entriesStream
+operator|.
+name|length
+argument_list|()
+operator|+
+literal|" (resource: "
+operator|+
+name|entriesStream
+operator|+
+literal|")"
+argument_list|)
+throw|;
+block|}
 return|return
 name|mapping
 return|;
