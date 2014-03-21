@@ -810,22 +810,6 @@ name|lucene
 operator|.
 name|analysis
 operator|.
-name|th
-operator|.
-name|ThaiWordFilter
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|analysis
-operator|.
 name|util
 operator|.
 name|CharArrayMap
@@ -1450,11 +1434,6 @@ name|class
 argument_list|,
 comment|// TODO: it seems to mess up offsets!?
 name|WikipediaTokenizer
-operator|.
-name|class
-argument_list|,
-comment|// TODO: doesn't handle graph inputs
-name|ThaiWordFilter
 operator|.
 name|class
 argument_list|,

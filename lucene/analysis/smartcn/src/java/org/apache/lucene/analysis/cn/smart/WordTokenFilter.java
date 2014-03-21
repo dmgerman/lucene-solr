@@ -147,10 +147,12 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * A {@link TokenFilter} that breaks sentences into words.  * @lucene.experimental  */
+comment|/**  * A {@link TokenFilter} that breaks sentences into words.  * @lucene.experimental  * @deprecated Use {@link HMMChineseTokenizer} instead.  */
 end_comment
 
 begin_class
+annotation|@
+name|Deprecated
 DECL|class|WordTokenFilter
 specifier|public
 specifier|final

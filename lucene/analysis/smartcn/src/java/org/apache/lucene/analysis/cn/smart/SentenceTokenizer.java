@@ -117,10 +117,12 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Tokenizes input text into sentences.  *<p>  * The output tokens can then be broken into words with {@link WordTokenFilter}  *</p>  * @lucene.experimental  */
+comment|/**  * Tokenizes input text into sentences.  *<p>  * The output tokens can then be broken into words with {@link WordTokenFilter}  *</p>  * @lucene.experimental  * @deprecated Use {@link HMMChineseTokenizer} instead  */
 end_comment
 
 begin_class
+annotation|@
+name|Deprecated
 DECL|class|SentenceTokenizer
 specifier|public
 specifier|final

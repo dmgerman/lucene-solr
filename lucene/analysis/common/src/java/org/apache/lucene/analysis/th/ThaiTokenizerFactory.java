@@ -1,6 +1,6 @@
 begin_unit|revision:0.9.5;language:Java;cregit-version:0.0.1
 begin_package
-DECL|package|org.apache.lucene.analysis.cn.smart
+DECL|package|org.apache.lucene.analysis.th
 package|package
 name|org
 operator|.
@@ -10,9 +10,7 @@ name|lucene
 operator|.
 name|analysis
 operator|.
-name|cn
-operator|.
-name|smart
+name|th
 package|;
 end_package
 
@@ -40,39 +38,7 @@ name|lucene
 operator|.
 name|analysis
 operator|.
-name|TokenFilter
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|analysis
-operator|.
-name|TokenStream
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|analysis
-operator|.
-name|cn
-operator|.
-name|smart
-operator|.
-name|WordTokenFilter
+name|Tokenizer
 import|;
 end_import
 
@@ -88,28 +54,40 @@ name|analysis
 operator|.
 name|util
 operator|.
-name|TokenFilterFactory
+name|TokenizerFactory
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|util
+operator|.
+name|AttributeSource
 import|;
 end_import
 
 begin_comment
-comment|/**  * Factory for the SmartChineseAnalyzer {@link WordTokenFilter}  *<p>  * Note: this class will currently emit tokens for punctuation. So you should either add  * a WordDelimiterFilter after to remove these (with concatenate off), or use the   * SmartChinese stoplist with a StopFilterFactory via:  *<code>words="org/apache/lucene/analysis/cn/smart/stopwords.txt"</code>  * @lucene.experimental  * @deprecated Use {@link HMMChineseTokenizerFactory} instead  */
+comment|/**   * Factory for {@link ThaiTokenizer}.  *<pre class="prettyprint">  *&lt;fieldType name="text_thai" class="solr.TextField" positionIncrementGap="100"&gt;  *&lt;analyzer&gt;  *&lt;tokenizer class="solr.ThaiTokenizerFactory"/&gt;  *&lt;/analyzer&gt;  *&lt;/fieldType&gt;</pre>  */
 end_comment
 
 begin_class
-annotation|@
-name|Deprecated
-DECL|class|SmartChineseWordTokenFilterFactory
+DECL|class|ThaiTokenizerFactory
 specifier|public
 class|class
-name|SmartChineseWordTokenFilterFactory
+name|ThaiTokenizerFactory
 extends|extends
-name|TokenFilterFactory
+name|TokenizerFactory
 block|{
-comment|/** Creates a new SmartChineseWordTokenFilterFactory */
-DECL|method|SmartChineseWordTokenFilterFactory
+comment|/** Creates a new ThaiTokenizerFactory */
+DECL|method|ThaiTokenizerFactory
 specifier|public
-name|SmartChineseWordTokenFilterFactory
+name|ThaiTokenizerFactory
 parameter_list|(
 name|Map
 argument_list|<
@@ -149,18 +127,20 @@ annotation|@
 name|Override
 DECL|method|create
 specifier|public
-name|TokenFilter
+name|Tokenizer
 name|create
 parameter_list|(
-name|TokenStream
-name|input
+name|AttributeSource
+operator|.
+name|AttributeFactory
+name|factory
 parameter_list|)
 block|{
 return|return
 operator|new
-name|WordTokenFilter
+name|ThaiTokenizer
 argument_list|(
-name|input
+name|factory
 argument_list|)
 return|;
 block|}

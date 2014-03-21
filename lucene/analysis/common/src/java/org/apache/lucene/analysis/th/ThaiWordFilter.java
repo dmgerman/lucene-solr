@@ -181,10 +181,12 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * {@link TokenFilter} that use {@link java.text.BreakIterator} to break each   * Token that is Thai into separate Token(s) for each Thai word.  *<p>WARNING: this filter may not be supported by all JREs.  *    It is known to work with Sun/Oracle and Harmony JREs.  *    If your application needs to be fully portable, consider using ICUTokenizer instead,  *    which uses an ICU Thai BreakIterator that will always be available.  */
+comment|/**  * {@link TokenFilter} that use {@link java.text.BreakIterator} to break each   * Token that is Thai into separate Token(s) for each Thai word.  *<p>WARNING: this filter may not be supported by all JREs.  *    It is known to work with Sun/Oracle and Harmony JREs.  *    If your application needs to be fully portable, consider using ICUTokenizer instead,  *    which uses an ICU Thai BreakIterator that will always be available.  * @deprecated Use {@link ThaiTokenizer} instead.  */
 end_comment
 
 begin_class
+annotation|@
+name|Deprecated
 DECL|class|ThaiWordFilter
 specifier|public
 specifier|final
@@ -199,6 +201,10 @@ specifier|public
 specifier|static
 specifier|final
 name|boolean
+name|DBBI_AVAILABLE
+init|=
+name|ThaiTokenizer
+operator|.
 name|DBBI_AVAILABLE
 decl_stmt|;
 DECL|field|proto
@@ -219,26 +225,6 @@ literal|"th"
 argument_list|)
 argument_list|)
 decl_stmt|;
-static|static
-block|{
-comment|// check that we have a working dictionary-based break iterator for thai
-name|proto
-operator|.
-name|setText
-argument_list|(
-literal|"à¸ à¸²à¸©à¸²à¹à¸à¸¢"
-argument_list|)
-expr_stmt|;
-name|DBBI_AVAILABLE
-operator|=
-name|proto
-operator|.
-name|isBoundary
-argument_list|(
-literal|4
-argument_list|)
-expr_stmt|;
-block|}
 DECL|field|breaker
 specifier|private
 specifier|final
