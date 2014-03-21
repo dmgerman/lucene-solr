@@ -70,6 +70,20 @@ name|core
 operator|.
 name|shape
 operator|.
+name|Point
+import|;
+end_import
+
+begin_import
+import|import
+name|com
+operator|.
+name|spatial4j
+operator|.
+name|core
+operator|.
+name|shape
+operator|.
 name|Rectangle
 import|;
 end_import
@@ -1839,33 +1853,13 @@ name|randomPoint
 argument_list|()
 expr_stmt|;
 break|break;
-case|case
-literal|1
-case|:
-case|case
-literal|2
-case|:
-case|case
-literal|3
-case|:
-if|if
-condition|(
-operator|!
-name|indexedAtLeastOneShapePair
-condition|)
-block|{
-comment|// avoids ShapePair.relate(ShapePair), which isn't reliable
-name|queryShape
-operator|=
-name|randomShapePairRect
-argument_list|(
-operator|!
-name|biasContains
-argument_list|)
-expr_stmt|;
-comment|//invert biasContains for query side
-break|break;
-block|}
+comment|// LUCENE-5549
+comment|//TODO debug: -Dtests.method=testWithin -Dtests.multiplier=3 -Dtests.seed=5F5294CE2E075A3E:AAD2F0F79288CA64
+comment|//        case 1:case 2:case 3:
+comment|//          if (!indexedAtLeastOneShapePair) { // avoids ShapePair.relate(ShapePair), which isn't reliable
+comment|//            queryShape = randomShapePairRect(!biasContains);//invert biasContains for query side
+comment|//            break;
+comment|//          }
 default|default:
 name|queryShape
 operator|=
@@ -2453,6 +2447,32 @@ operator|.
 name|biasContainsThenWithin
 argument_list|)
 return|;
+block|}
+if|if
+condition|(
+name|ctx
+operator|.
+name|isGeo
+argument_list|()
+condition|)
+block|{
+comment|//A hack; works around issue with (dateline) wrap-around when the point or rect is exactly
+comment|// adjacent to the dateline.
+if|if
+condition|(
+name|snapMe
+operator|instanceof
+name|Point
+condition|)
+block|{
+name|snapMe
+operator|=
+name|snapMe
+operator|.
+name|getBoundingBox
+argument_list|()
+expr_stmt|;
+block|}
 block|}
 comment|//The next 4 lines mimic PrefixTreeStrategy.createIndexableFields()
 name|double
