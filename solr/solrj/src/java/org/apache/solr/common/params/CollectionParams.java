@@ -105,6 +105,9 @@ name|REQUESTSTATUS
 block|,
 DECL|enum constant|ADDREPLICA
 name|ADDREPLICA
+block|,
+DECL|enum constant|OVERSEERSTATUS
+name|OVERSEERSTATUS
 block|;
 DECL|method|get
 specifier|public
