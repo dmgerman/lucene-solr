@@ -350,14 +350,11 @@ index|]
 argument_list|)
 return|;
 block|}
-comment|/** Returns true iff the named file exists in this directory. */
-annotation|@
-name|Override
-DECL|method|fileExists
+DECL|method|fileNameExists
 specifier|public
 specifier|final
 name|boolean
-name|fileExists
+name|fileNameExists
 parameter_list|(
 name|String
 name|name

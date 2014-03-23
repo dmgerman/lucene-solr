@@ -1109,10 +1109,10 @@ argument_list|)
 expr_stmt|;
 name|assertTrue
 argument_list|(
-name|sourceDir
-operator|.
-name|fileExists
+name|slowFileExists
 argument_list|(
+name|sourceDir
+argument_list|,
 name|IndexFileNames
 operator|.
 name|SEGMENTS
@@ -1134,10 +1134,10 @@ expr_stmt|;
 comment|// now the files of revision 1 can be deleted
 name|assertTrue
 argument_list|(
-name|sourceDir
-operator|.
-name|fileExists
+name|slowFileExists
 argument_list|(
+name|sourceDir
+argument_list|,
 name|IndexFileNames
 operator|.
 name|SEGMENTS
@@ -1150,10 +1150,10 @@ name|assertFalse
 argument_list|(
 literal|"segments_1 should not be found in index directory after revision is released"
 argument_list|,
-name|sourceDir
-operator|.
-name|fileExists
+name|slowFileExists
 argument_list|(
+name|sourceDir
+argument_list|,
 name|IndexFileNames
 operator|.
 name|SEGMENTS

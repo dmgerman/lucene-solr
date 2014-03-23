@@ -32,7 +32,29 @@ name|java
 operator|.
 name|io
 operator|.
+name|FileNotFoundException
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
+name|io
+operator|.
 name|IOException
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
+name|nio
+operator|.
+name|file
+operator|.
+name|NoSuchFileException
 import|;
 end_import
 
@@ -43,6 +65,16 @@ operator|.
 name|util
 operator|.
 name|ArrayList
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
+name|util
+operator|.
+name|Arrays
 import|;
 end_import
 
@@ -143,6 +175,8 @@ operator|.
 name|util
 operator|.
 name|Map
+operator|.
+name|Entry
 import|;
 end_import
 
@@ -153,8 +187,6 @@ operator|.
 name|util
 operator|.
 name|Map
-operator|.
-name|Entry
 import|;
 end_import
 
@@ -8365,10 +8397,10 @@ continue|continue;
 block|}
 assert|assert
 operator|!
-name|directory
-operator|.
-name|fileExists
+name|slowFileExists
 argument_list|(
+name|directory
+argument_list|,
 name|newFileName
 argument_list|)
 operator|:
@@ -8776,6 +8808,11 @@ name|UNBOUNDED_MAX_MERGE_SEGMENTS
 argument_list|)
 expr_stmt|;
 block|}
+name|startCommit
+argument_list|(
+name|toCommit
+argument_list|)
+expr_stmt|;
 name|success
 operator|=
 literal|true
@@ -8794,6 +8831,13 @@ init|(
 name|this
 init|)
 block|{
+if|if
+condition|(
+name|filesToCommit
+operator|!=
+literal|null
+condition|)
+block|{
 name|deleter
 operator|.
 name|decRef
@@ -8808,11 +8852,7 @@ expr_stmt|;
 block|}
 block|}
 block|}
-name|startCommit
-argument_list|(
-name|toCommit
-argument_list|)
-expr_stmt|;
+block|}
 block|}
 block|}
 comment|/**    * Sets the commit user data map. That method is considered a transaction by    * {@link IndexWriter} and will be {@link #commit() committed} even if no other    * changes were made to the writer instance. Note that you must call this method    * before {@link #prepareCommit()}, or otherwise it won't be included in the    * follow-on {@link #commit()}.    *<p>    *<b>NOTE:</b> the map is cloned internally, therefore altering the map's    * contents after calling this method has no effect.    */
@@ -15264,10 +15304,10 @@ name|files
 control|)
 block|{
 assert|assert
-name|directory
-operator|.
-name|fileExists
+name|slowFileExists
 argument_list|(
+name|directory
+argument_list|,
 name|fileName
 argument_list|)
 operator|:
@@ -15275,7 +15315,17 @@ literal|"file "
 operator|+
 name|fileName
 operator|+
-literal|" does not exist"
+literal|" does not exist; files="
+operator|+
+name|Arrays
+operator|.
+name|toString
+argument_list|(
+name|directory
+operator|.
+name|listAll
+argument_list|()
+argument_list|)
 assert|;
 comment|// If this trips it means we are missing a call to
 comment|// .checkpoint somewhere, because by the time we
@@ -16647,6 +16697,55 @@ parameter_list|)
 throws|throws
 name|IOException
 function_decl|;
+block|}
+comment|/** Used only by asserts: returns true if the file exists    *  (can be opened), false if it cannot be opened, and    *  (unlike Java's File.exists) throws IOException if    *  there's some unexpected error. */
+DECL|method|slowFileExists
+specifier|private
+specifier|static
+name|boolean
+name|slowFileExists
+parameter_list|(
+name|Directory
+name|dir
+parameter_list|,
+name|String
+name|fileName
+parameter_list|)
+throws|throws
+name|IOException
+block|{
+try|try
+block|{
+name|dir
+operator|.
+name|openInput
+argument_list|(
+name|fileName
+argument_list|,
+name|IOContext
+operator|.
+name|DEFAULT
+argument_list|)
+operator|.
+name|close
+argument_list|()
+expr_stmt|;
+return|return
+literal|true
+return|;
+block|}
+catch|catch
+parameter_list|(
+name|NoSuchFileException
+decl||
+name|FileNotFoundException
+name|e
+parameter_list|)
+block|{
+return|return
+literal|false
+return|;
+block|}
 block|}
 block|}
 end_class

@@ -120,19 +120,6 @@ parameter_list|()
 throws|throws
 name|IOException
 function_decl|;
-comment|/** Returns true iff a file with the given name exists. */
-DECL|method|fileExists
-specifier|public
-specifier|abstract
-name|boolean
-name|fileExists
-parameter_list|(
-name|String
-name|name
-parameter_list|)
-throws|throws
-name|IOException
-function_decl|;
 comment|/** Removes an existing file in the directory. */
 DECL|method|deleteFile
 specifier|public

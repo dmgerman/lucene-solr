@@ -536,17 +536,17 @@ comment|// Create a bogus cfs file shadowing a non-cfs segment:
 comment|// TODO: assert is bogus (relies upon codec-specific filenames)
 name|assertTrue
 argument_list|(
-name|dir
-operator|.
-name|fileExists
+name|slowFileExists
 argument_list|(
+name|dir
+argument_list|,
 literal|"_3.fdt"
 argument_list|)
 operator|||
-name|dir
-operator|.
-name|fileExists
+name|slowFileExists
 argument_list|(
+name|dir
+argument_list|,
 literal|"_3.fld"
 argument_list|)
 argument_list|)
@@ -554,10 +554,10 @@ expr_stmt|;
 name|assertTrue
 argument_list|(
 operator|!
-name|dir
-operator|.
-name|fileExists
+name|slowFileExists
 argument_list|(
+name|dir
+argument_list|,
 literal|"_3.cfs"
 argument_list|)
 argument_list|)

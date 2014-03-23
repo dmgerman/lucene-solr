@@ -1049,28 +1049,6 @@ name|this
 operator|.
 name|directory
 expr_stmt|;
-if|if
-condition|(
-name|directory
-operator|.
-name|fileExists
-argument_list|(
-name|name
-argument_list|)
-condition|)
-block|{
-throw|throw
-operator|new
-name|IllegalArgumentException
-argument_list|(
-literal|"File "
-operator|+
-name|name
-operator|+
-literal|" already exists"
-argument_list|)
-throw|;
-block|}
 name|out
 operator|=
 operator|new

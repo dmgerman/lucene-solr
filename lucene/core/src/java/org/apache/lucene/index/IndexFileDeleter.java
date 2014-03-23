@@ -2381,16 +2381,6 @@ name|e
 parameter_list|)
 block|{
 comment|// if delete fails
-if|if
-condition|(
-name|directory
-operator|.
-name|fileExists
-argument_list|(
-name|fileName
-argument_list|)
-condition|)
-block|{
 comment|// Some operating systems (e.g. Windows) don't
 comment|// permit a file to be deleted while it is opened
 comment|// for read (e.g. by another process or thread). So
@@ -2451,7 +2441,6 @@ name|fileName
 argument_list|)
 expr_stmt|;
 comment|// add to deletable
-block|}
 block|}
 block|}
 comment|/**    * Tracks the reference count for a single index file:    */

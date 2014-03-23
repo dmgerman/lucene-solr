@@ -671,15 +671,7 @@ operator|-
 literal|1
 operator|)
 decl_stmt|;
-if|if
-condition|(
-name|dir
-operator|.
-name|fileExists
-argument_list|(
-name|lastSaveFile
-argument_list|)
-condition|)
+try|try
 block|{
 name|dir
 operator|.
@@ -688,6 +680,14 @@ argument_list|(
 name|lastSaveFile
 argument_list|)
 expr_stmt|;
+block|}
+catch|catch
+parameter_list|(
+name|IOException
+name|ioe
+parameter_list|)
+block|{
+comment|// OK: likely it didn't exist
 block|}
 block|}
 name|nextWriteGen

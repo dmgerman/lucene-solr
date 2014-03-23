@@ -464,10 +464,10 @@ argument_list|()
 expr_stmt|;
 name|assertTrue
 argument_list|(
-name|dir
-operator|.
-name|fileExists
+name|slowFileExists
 argument_list|(
+name|dir
+argument_list|,
 name|IndexFileNames
 operator|.
 name|SEGMENTS
@@ -516,10 +516,10 @@ expr_stmt|;
 comment|// this release should trigger the delete of segments_1
 name|assertFalse
 argument_list|(
-name|dir
-operator|.
-name|fileExists
+name|slowFileExists
 argument_list|(
+name|dir
+argument_list|,
 name|IndexFileNames
 operator|.
 name|SEGMENTS

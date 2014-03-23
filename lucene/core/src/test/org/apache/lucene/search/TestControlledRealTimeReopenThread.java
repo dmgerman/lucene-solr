@@ -3041,10 +3041,10 @@ comment|//distribute, and backup
 comment|//System.out.println(names);
 name|assertTrue
 argument_list|(
-name|dir
-operator|.
-name|fileExists
+name|slowFileExists
 argument_list|(
+name|dir
+argument_list|,
 name|name
 argument_list|)
 argument_list|)

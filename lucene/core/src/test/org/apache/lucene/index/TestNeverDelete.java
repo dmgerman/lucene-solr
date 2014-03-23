@@ -549,10 +549,10 @@ name|fileName
 operator|+
 literal|" does not exist"
 argument_list|,
-name|d
-operator|.
-name|fileExists
+name|slowFileExists
 argument_list|(
+name|d
+argument_list|,
 name|fileName
 argument_list|)
 argument_list|)
