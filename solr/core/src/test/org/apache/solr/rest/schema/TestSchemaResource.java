@@ -273,23 +273,23 @@ literal|"/schema/uniqueKey = 'id'"
 argument_list|,
 literal|"/schema/defaultSearchField = 'text'"
 argument_list|,
-literal|"(/schema/types/fieldType)[1]/@name = 'HTMLstandardtok'"
+literal|"(/schema/fieldType)[1]/@name = 'HTMLstandardtok'"
 argument_list|,
-literal|"(/schema/types/fieldType)[2]/@name = 'HTMLwhitetok'"
+literal|"(/schema/fieldType)[2]/@name = 'HTMLwhitetok'"
 argument_list|,
-literal|"(/schema/types/fieldType)[3]/@name = 'boolean'"
+literal|"(/schema/fieldType)[3]/@name = 'boolean'"
 argument_list|,
-literal|"(/schema/fields/field)[1]/@name = 'HTMLstandardtok'"
+literal|"(/schema/field)[1]/@name = 'HTMLstandardtok'"
 argument_list|,
-literal|"(/schema/fields/field)[2]/@name = 'HTMLwhitetok'"
+literal|"(/schema/field)[2]/@name = 'HTMLwhitetok'"
 argument_list|,
-literal|"(/schema/fields/field)[3]/@name = '_version_'"
+literal|"(/schema/field)[3]/@name = '_version_'"
 argument_list|,
-literal|"(/schema/fields/dynamicField)[1]/@name = '*_coordinate'"
+literal|"(/schema/dynamicField)[1]/@name = '*_coordinate'"
 argument_list|,
-literal|"(/schema/fields/dynamicField)[2]/@name = 'ignored_*'"
+literal|"(/schema/dynamicField)[2]/@name = 'ignored_*'"
 argument_list|,
-literal|"(/schema/fields/dynamicField)[3]/@name = '*_mfacet'"
+literal|"(/schema/dynamicField)[3]/@name = '*_mfacet'"
 argument_list|,
 literal|"/schema/copyField[@source='title'][@dest='title_stemmed'][@maxChars='200']"
 argument_list|,
