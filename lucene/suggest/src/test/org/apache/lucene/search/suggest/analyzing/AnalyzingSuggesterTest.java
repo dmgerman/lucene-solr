@@ -8066,21 +8066,16 @@ block|{
 comment|// expected
 block|}
 block|}
-annotation|@
-name|SafeVarargs
 DECL|method|shuffle
-specifier|public
+specifier|static
 specifier|final
-parameter_list|<
-name|T
-parameter_list|>
 name|Iterable
 argument_list|<
-name|T
+name|Input
 argument_list|>
 name|shuffle
 parameter_list|(
-name|T
+name|Input
 modifier|...
 name|values
 parameter_list|)
@@ -8088,7 +8083,7 @@ block|{
 specifier|final
 name|List
 argument_list|<
-name|T
+name|Input
 argument_list|>
 name|asList
 init|=
@@ -8103,7 +8098,7 @@ argument_list|)
 decl_stmt|;
 for|for
 control|(
-name|T
+name|Input
 name|value
 range|:
 name|values
