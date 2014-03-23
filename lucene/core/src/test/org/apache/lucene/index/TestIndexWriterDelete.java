@@ -3407,6 +3407,13 @@ argument_list|(
 literal|false
 argument_list|)
 expr_stmt|;
+name|dir
+operator|.
+name|setAllowRandomFileNotFoundException
+argument_list|(
+literal|false
+argument_list|)
+expr_stmt|;
 name|IndexWriter
 name|modifier
 init|=

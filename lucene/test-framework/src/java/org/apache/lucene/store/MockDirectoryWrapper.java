@@ -377,6 +377,12 @@ name|wrapLockFactory
 init|=
 literal|true
 decl_stmt|;
+DECL|field|allowRandomFileNotFoundException
+name|boolean
+name|allowRandomFileNotFoundException
+init|=
+literal|true
+decl_stmt|;
 DECL|field|unSyncedFiles
 specifier|private
 name|Set
@@ -687,6 +693,21 @@ name|value
 parameter_list|)
 block|{
 name|preventDoubleWrite
+operator|=
+name|value
+expr_stmt|;
+block|}
+comment|/** If set to true (the default), when we throw random    *  IOException on openInput or createOutput, we may    *  sometimes throw FileNotFoundException or    *  NoSuchFileException. */
+DECL|method|setAllowRandomFileNotFoundException
+specifier|public
+name|void
+name|setAllowRandomFileNotFoundException
+parameter_list|(
+name|boolean
+name|value
+parameter_list|)
+block|{
+name|allowRandomFileNotFoundException
 operator|=
 name|value
 expr_stmt|;
@@ -1760,6 +1781,10 @@ expr_stmt|;
 block|}
 if|if
 condition|(
+name|allowRandomFileNotFoundException
+operator|==
+literal|false
+operator|||
 name|randomState
 operator|.
 name|nextBoolean
