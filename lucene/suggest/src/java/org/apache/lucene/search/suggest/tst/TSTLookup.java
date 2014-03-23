@@ -52,6 +52,16 @@ end_import
 
 begin_import
 import|import
+name|java
+operator|.
+name|util
+operator|.
+name|Set
+import|;
+end_import
+
+begin_import
+import|import
 name|org
 operator|.
 name|apache
@@ -250,6 +260,22 @@ operator|new
 name|IllegalArgumentException
 argument_list|(
 literal|"this suggester doesn't support payloads"
+argument_list|)
+throw|;
+block|}
+if|if
+condition|(
+name|iterator
+operator|.
+name|hasContexts
+argument_list|()
+condition|)
+block|{
+throw|throw
+operator|new
+name|IllegalArgumentException
+argument_list|(
+literal|"this suggester doesn't support contexts"
 argument_list|)
 throw|;
 block|}
@@ -601,6 +627,12 @@ parameter_list|(
 name|CharSequence
 name|key
 parameter_list|,
+name|Set
+argument_list|<
+name|BytesRef
+argument_list|>
+name|contexts
+parameter_list|,
 name|boolean
 name|onlyMorePopular
 parameter_list|,
@@ -608,6 +640,21 @@ name|int
 name|num
 parameter_list|)
 block|{
+if|if
+condition|(
+name|contexts
+operator|!=
+literal|null
+condition|)
+block|{
+throw|throw
+operator|new
+name|IllegalArgumentException
+argument_list|(
+literal|"this suggester doesn't support contexts"
+argument_list|)
+throw|;
+block|}
 name|List
 argument_list|<
 name|TernaryTreeNode

@@ -30,6 +30,16 @@ end_import
 
 begin_import
 import|import
+name|java
+operator|.
+name|util
+operator|.
+name|Set
+import|;
+end_import
+
+begin_import
+import|import
 name|org
 operator|.
 name|apache
@@ -177,6 +187,23 @@ name|boolean
 name|hasPayloads
 parameter_list|()
 function_decl|;
+comment|/**     * A term's contexts context can be used to filter suggestions.    * May return null, if suggest entries do not have any context    * */
+DECL|method|contexts
+specifier|public
+name|Set
+argument_list|<
+name|BytesRef
+argument_list|>
+name|contexts
+parameter_list|()
+function_decl|;
+comment|/** Returns true if the iterator has contexts */
+DECL|method|hasContexts
+specifier|public
+name|boolean
+name|hasContexts
+parameter_list|()
+function_decl|;
 comment|/** Singleton InputIterator that iterates over 0 BytesRefs. */
 DECL|field|EMPTY
 specifier|public
@@ -271,6 +298,33 @@ DECL|method|hasPayloads
 specifier|public
 name|boolean
 name|hasPayloads
+parameter_list|()
+block|{
+return|return
+literal|false
+return|;
+block|}
+annotation|@
+name|Override
+DECL|method|contexts
+specifier|public
+name|Set
+argument_list|<
+name|BytesRef
+argument_list|>
+name|contexts
+parameter_list|()
+block|{
+return|return
+literal|null
+return|;
+block|}
+annotation|@
+name|Override
+DECL|method|hasContexts
+specifier|public
+name|boolean
+name|hasContexts
 parameter_list|()
 block|{
 return|return

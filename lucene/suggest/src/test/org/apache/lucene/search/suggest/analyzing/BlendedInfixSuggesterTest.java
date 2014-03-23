@@ -847,6 +847,8 @@ name|lookup
 argument_list|(
 literal|"the"
 argument_list|,
+literal|null
+argument_list|,
 literal|2
 argument_list|,
 literal|true
@@ -889,6 +891,8 @@ operator|.
 name|lookup
 argument_list|(
 literal|"the"
+argument_list|,
+literal|null
 argument_list|,
 literal|3
 argument_list|,
@@ -1174,6 +1178,8 @@ name|lookup
 argument_list|(
 literal|"the"
 argument_list|,
+literal|null
+argument_list|,
 literal|4
 argument_list|,
 literal|true
@@ -1241,6 +1247,8 @@ operator|.
 name|lookup
 argument_list|(
 name|prefix
+argument_list|,
+literal|null
 argument_list|,
 name|num
 argument_list|,

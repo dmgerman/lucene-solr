@@ -315,7 +315,7 @@ comment|// - allow to use the search score
 end_comment
 
 begin_comment
-comment|/**  * Extension of the AnalyzingInfixSuggester which transforms the weight  * after search to take into account the position of the searched term into  * the indexed text.  * Please note that it increases the number of elements searched and applies the  * ponderation after. It might be costly for long suggestions.  */
+comment|/**  * Extension of the AnalyzingInfixSuggester which transforms the weight  * after search to take into account the position of the searched term into  * the indexed text.  * Please note that it increases the number of elements searched and applies the  * ponderation after. It might be costly for long suggestions.  *  * @lucene.experimental  */
 end_comment
 
 begin_class
@@ -491,6 +491,12 @@ parameter_list|(
 name|CharSequence
 name|key
 parameter_list|,
+name|Set
+argument_list|<
+name|BytesRef
+argument_list|>
+name|contexts
+parameter_list|,
 name|boolean
 name|onlyMorePopular
 parameter_list|,
@@ -507,6 +513,8 @@ operator|.
 name|lookup
 argument_list|(
 name|key
+argument_list|,
+name|contexts
 argument_list|,
 name|onlyMorePopular
 argument_list|,
@@ -531,6 +539,12 @@ parameter_list|(
 name|CharSequence
 name|key
 parameter_list|,
+name|Set
+argument_list|<
+name|BytesRef
+argument_list|>
+name|contexts
+parameter_list|,
 name|int
 name|num
 parameter_list|,
@@ -550,6 +564,8 @@ operator|.
 name|lookup
 argument_list|(
 name|key
+argument_list|,
+name|contexts
 argument_list|,
 name|num
 operator|*
