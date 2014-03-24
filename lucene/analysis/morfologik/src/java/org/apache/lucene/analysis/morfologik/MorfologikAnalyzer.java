@@ -130,7 +130,7 @@ specifier|final
 name|Version
 name|version
 decl_stmt|;
-comment|/**    * Builds an analyzer with the default Morfologik's dictionary (polimorf).    *     * @param version Lucene compatibility version    * @param dictionaryResource A constant specifying which dictionary to choose. The    * dictionary resource must be named<code>morfologik/dictionaries/{dictionaryResource}.dict</code>    * and have an associated<code>.info</code> metadata file. See the Morfologik project    * for details.    *     * @see "http://morfologik.blogspot.com/"    */
+comment|/**    * Builds an analyzer with an explicit dictionary resource.    *     * @param version Lucene compatibility version    * @param dictionaryResource A constant specifying which dictionary to choose. The    * dictionary resource must be named<code>morfologik/dictionaries/{dictionaryResource}.dict</code>    * and have an associated<code>.info</code> metadata file. See the Morfologik project    * for details.    *     * @see "http://morfologik.blogspot.com/"    */
 DECL|method|MorfologikAnalyzer
 specifier|public
 name|MorfologikAnalyzer
@@ -157,6 +157,7 @@ operator|=
 name|dictionaryResource
 expr_stmt|;
 block|}
+comment|/**    * Builds an analyzer with the default Morfologik's Polish dictionary.    */
 DECL|method|MorfologikAnalyzer
 specifier|public
 name|MorfologikAnalyzer
