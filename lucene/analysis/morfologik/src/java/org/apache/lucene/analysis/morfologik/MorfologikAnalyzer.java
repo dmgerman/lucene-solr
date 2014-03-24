@@ -118,13 +118,45 @@ name|MorfologikAnalyzer
 extends|extends
 name|Analyzer
 block|{
+DECL|field|dictionary
+specifier|private
+specifier|final
+name|String
+name|dictionary
+decl_stmt|;
 DECL|field|version
 specifier|private
 specifier|final
 name|Version
 name|version
 decl_stmt|;
-comment|/**    * Builds an analyzer with the default Morfologik's dictionary (polimorf).    *     * @param version    *          Lucene compatibility version    */
+comment|/**    * Builds an analyzer with the default Morfologik's dictionary (polimorf).    *     * @param version Lucene compatibility version    * @param dictionaryResource A constant specifying which dictionary to choose. The    * dictionary resource must be named<code>morfologik/dictionaries/{dictionaryResource}.dict</code>    * and have an associated<code>.info</code> metadata file. See the Morfologik project    * for details.    *     * @see "http://morfologik.blogspot.com/"    */
+DECL|method|MorfologikAnalyzer
+specifier|public
+name|MorfologikAnalyzer
+parameter_list|(
+specifier|final
+name|Version
+name|version
+parameter_list|,
+specifier|final
+name|String
+name|dictionaryResource
+parameter_list|)
+block|{
+name|this
+operator|.
+name|version
+operator|=
+name|version
+expr_stmt|;
+name|this
+operator|.
+name|dictionary
+operator|=
+name|dictionaryResource
+expr_stmt|;
+block|}
 DECL|method|MorfologikAnalyzer
 specifier|public
 name|MorfologikAnalyzer
@@ -135,13 +167,16 @@ name|version
 parameter_list|)
 block|{
 name|this
+argument_list|(
+name|version
+argument_list|,
+name|MorfologikFilterFactory
 operator|.
-name|version
-operator|=
-name|version
+name|DEFAULT_DICTIONARY_RESOURCE
+argument_list|)
 expr_stmt|;
 block|}
-comment|/**    * Creates a    * {@link org.apache.lucene.analysis.Analyzer.TokenStreamComponents}    * which tokenizes all the text in the provided {@link Reader}.    *     * @param field ignored field name    * @return A    *         {@link org.apache.lucene.analysis.Analyzer.TokenStreamComponents}    *         built from an {@link StandardTokenizer} filtered with    *         {@link StandardFilter} and {@link MorfologikFilter}.    */
+comment|/**    * Creates a    * {@link org.apache.lucene.analysis.Analyzer.TokenStreamComponents}    * which tokenizes all the text in the provided {@link Reader}.    *     * @param field ignored field name    * @return A {@link org.apache.lucene.analysis.Analyzer.TokenStreamComponents}    *         built from an {@link StandardTokenizer} filtered with    *         {@link StandardFilter} and {@link MorfologikFilter}.    */
 annotation|@
 name|Override
 DECL|method|createComponents
@@ -184,6 +219,8 @@ name|version
 argument_list|,
 name|src
 argument_list|)
+argument_list|,
+name|dictionary
 argument_list|,
 name|this
 operator|.

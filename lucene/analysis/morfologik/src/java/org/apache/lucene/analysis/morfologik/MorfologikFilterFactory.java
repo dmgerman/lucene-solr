@@ -59,7 +59,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Filter factory for {@link MorfologikFilter}.  *<pre class="prettyprint">  *&lt;fieldType name="text_polish" class="solr.TextField" positionIncrementGap="100"&gt;  *&lt;analyzer&gt;  *&lt;tokenizer class="solr.WhitespaceTokenizerFactory"/&gt;  *&lt;filter class="solr.MorfologikFilterFactory" /&gt;  *&lt;/analyzer&gt;  *&lt;/fieldType&gt;</pre>  *   * @see<a href="http://morfologik.blogspot.com/">Morfologik web site</a>  */
+comment|/**  * Filter factory for {@link MorfologikFilter}. For backward compatibility polish  * dictionary is used as default. You can change dictionary resource   * by dictionary-resource parameter.  *<pre class="prettyprint">  *&lt;fieldType name="text_polish" class="solr.TextField" positionIncrementGap="100"&gt;  *&lt;analyzer&gt;  *&lt;tokenizer class="solr.WhitespaceTokenizerFactory"/&gt;  *&lt;filter class="solr.MorfologikFilterFactory" dictionary-resource="pl" /&gt;  *&lt;/analyzer&gt;  *&lt;/fieldType&gt;</pre>  *   * @see<a href="http://morfologik.blogspot.com/">Morfologik web site</a>  */
 end_comment
 
 begin_class
@@ -70,6 +70,23 @@ name|MorfologikFilterFactory
 extends|extends
 name|TokenFilterFactory
 block|{
+comment|/**    * The default dictionary resource (for Polish).     */
+DECL|field|DEFAULT_DICTIONARY_RESOURCE
+specifier|public
+specifier|static
+specifier|final
+name|String
+name|DEFAULT_DICTIONARY_RESOURCE
+init|=
+literal|"pl"
+decl_stmt|;
+comment|/**    * Stemming dictionary resource. See {@link MorfologikAnalyzer} for more details.     */
+DECL|field|dictionaryResource
+specifier|private
+specifier|final
+name|String
+name|dictionaryResource
+decl_stmt|;
 comment|/** Schema attribute. */
 annotation|@
 name|Deprecated
@@ -81,6 +98,16 @@ name|String
 name|DICTIONARY_SCHEMA_ATTRIBUTE
 init|=
 literal|"dictionary"
+decl_stmt|;
+comment|/** Dictionary resource */
+DECL|field|DICTIONARY_RESOURCE_ATTRIBUTE
+specifier|public
+specifier|static
+specifier|final
+name|String
+name|DICTIONARY_RESOURCE_ATTRIBUTE
+init|=
+literal|"dictionary-resource"
 decl_stmt|;
 comment|/** Creates a new MorfologikFilterFactory */
 DECL|method|MorfologikFilterFactory
@@ -135,12 +162,25 @@ name|DICTIONARY_SCHEMA_ATTRIBUTE
 operator|+
 literal|" attribute is no "
 operator|+
-literal|"longer supported (Morfologik has one dictionary): "
+literal|"longer supported (Morfologik now offers one unified Polish dictionary): "
 operator|+
 name|dictionaryName
+operator|+
+literal|". Perhaps you wanted to use 'dictionary-resource' attribute instead?"
 argument_list|)
 throw|;
 block|}
+name|dictionaryResource
+operator|=
+name|get
+argument_list|(
+name|args
+argument_list|,
+name|DICTIONARY_RESOURCE_ATTRIBUTE
+argument_list|,
+name|DEFAULT_DICTIONARY_RESOURCE
+argument_list|)
+expr_stmt|;
 if|if
 condition|(
 operator|!
@@ -177,6 +217,8 @@ operator|new
 name|MorfologikFilter
 argument_list|(
 name|ts
+argument_list|,
+name|dictionaryResource
 argument_list|,
 name|luceneMatchVersion
 argument_list|)
