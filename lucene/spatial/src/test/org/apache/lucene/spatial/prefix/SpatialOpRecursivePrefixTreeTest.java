@@ -584,7 +584,7 @@ specifier|final
 name|int
 name|ITERATIONS
 init|=
-literal|10
+literal|1
 decl_stmt|;
 comment|//Test Iterations
 DECL|field|grid
@@ -2450,16 +2450,6 @@ return|;
 block|}
 if|if
 condition|(
-name|ctx
-operator|.
-name|isGeo
-argument_list|()
-condition|)
-block|{
-comment|//A hack; works around issue with (dateline) wrap-around when the point or rect is exactly
-comment|// adjacent to the dateline.
-if|if
-condition|(
 name|snapMe
 operator|instanceof
 name|Point
@@ -2472,7 +2462,6 @@ operator|.
 name|getBoundingBox
 argument_list|()
 expr_stmt|;
-block|}
 block|}
 comment|//The next 4 lines mimic PrefixTreeStrategy.createIndexableFields()
 name|double
