@@ -383,6 +383,12 @@ name|allowRandomFileNotFoundException
 init|=
 literal|true
 decl_stmt|;
+DECL|field|allowReadingFilesStillOpenForWrite
+name|boolean
+name|allowReadingFilesStillOpenForWrite
+init|=
+literal|false
+decl_stmt|;
 DECL|field|unSyncedFiles
 specifier|private
 name|Set
@@ -708,6 +714,21 @@ name|value
 parameter_list|)
 block|{
 name|allowRandomFileNotFoundException
+operator|=
+name|value
+expr_stmt|;
+block|}
+comment|/** If set to true, you can open an inputstream on a file    *  that is still open for writes. */
+DECL|method|setAllowReadingFilesStillOpenForWrite
+specifier|public
+name|void
+name|setAllowReadingFilesStillOpenForWrite
+parameter_list|(
+name|boolean
+name|value
+parameter_list|)
+block|{
+name|allowReadingFilesStillOpenForWrite
 operator|=
 name|value
 expr_stmt|;
@@ -2840,6 +2861,9 @@ comment|// cannot open a file for input if it's still open for
 comment|// output, except for segments.gen and segments_N
 if|if
 condition|(
+operator|!
+name|allowReadingFilesStillOpenForWrite
+operator|&&
 name|openFilesForWrite
 operator|.
 name|contains
