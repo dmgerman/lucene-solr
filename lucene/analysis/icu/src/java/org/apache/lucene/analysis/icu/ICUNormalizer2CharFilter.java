@@ -908,14 +908,7 @@ name|addOffCorrectMap
 argument_list|(
 name|charCount
 operator|+
-name|Math
-operator|.
-name|min
-argument_list|(
-literal|1
-argument_list|,
 name|outputLength
-argument_list|)
 argument_list|,
 name|cumuDiff
 operator|+
