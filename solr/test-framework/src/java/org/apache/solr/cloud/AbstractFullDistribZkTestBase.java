@@ -10330,17 +10330,6 @@ return|return
 name|res
 return|;
 block|}
-DECL|method|runCollectionAdminCommand
-specifier|protected
-name|void
-name|runCollectionAdminCommand
-parameter_list|(
-name|ModifiableSolrParams
-name|params
-parameter_list|)
-block|{
-empty_stmt|;
-block|}
 DECL|method|createCollection
 specifier|protected
 name|CollectionAdminResponse
