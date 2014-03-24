@@ -530,14 +530,6 @@ argument_list|)
 decl_stmt|;
 try|try
 block|{
-name|assertTrue
-argument_list|(
-name|cores
-operator|.
-name|isShareSchema
-argument_list|()
-argument_list|)
-expr_stmt|;
 name|CoreDescriptor
 name|descriptor1
 init|=

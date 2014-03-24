@@ -991,6 +991,24 @@ literal|false
 argument_list|)
 argument_list|)
 expr_stmt|;
+name|propMap
+operator|.
+name|put
+argument_list|(
+name|CfgProp
+operator|.
+name|SOLR_CONFIGSETBASEDIR
+argument_list|,
+name|config
+operator|.
+name|getVal
+argument_list|(
+literal|"solr/cores/@configSetBaseDir"
+argument_list|,
+literal|false
+argument_list|)
+argument_list|)
+expr_stmt|;
 comment|// These have no counterpart in 5.0, asking, for any of these in Solr 5.0
 comment|// will result in an error being
 comment|// thrown.

@@ -947,18 +947,6 @@ import|;
 end_import
 
 begin_import
-import|import
-name|java
-operator|.
-name|util
-operator|.
-name|concurrent
-operator|.
-name|TimeUnit
-import|;
-end_import
-
-begin_import
 import|import static
 name|org
 operator|.
@@ -3176,6 +3164,17 @@ argument_list|,
 name|CoreDescriptor
 operator|.
 name|CORE_ULOGDIR
+argument_list|)
+decl|.
+name|put
+argument_list|(
+name|CoreAdminParams
+operator|.
+name|CONFIGSET
+argument_list|,
+name|CoreDescriptor
+operator|.
+name|CORE_CONFIGSET
 argument_list|)
 decl|.
 name|put

@@ -343,6 +343,15 @@ name|CORE_NODE_NAME
 init|=
 literal|"coreNodeName"
 decl_stmt|;
+DECL|field|CORE_CONFIGSET
+specifier|public
+specifier|static
+specifier|final
+name|String
+name|CORE_CONFIGSET
+init|=
+literal|"configSet"
+decl_stmt|;
 DECL|field|SOLR_CORE_PROP_PREFIX
 specifier|public
 specifier|static
@@ -479,6 +488,8 @@ argument_list|,
 name|CORE_LOADONSTARTUP
 argument_list|,
 name|CORE_TRANSIENT
+argument_list|,
+name|CORE_CONFIGSET
 argument_list|,
 comment|// cloud props
 name|CORE_SHARD
@@ -1655,6 +1666,21 @@ argument_list|)
 operator|.
 name|toString
 argument_list|()
+return|;
+block|}
+DECL|method|getConfigSet
+specifier|public
+name|String
+name|getConfigSet
+parameter_list|()
+block|{
+return|return
+name|coreProperties
+operator|.
+name|getProperty
+argument_list|(
+name|CORE_CONFIGSET
+argument_list|)
 return|;
 block|}
 block|}
