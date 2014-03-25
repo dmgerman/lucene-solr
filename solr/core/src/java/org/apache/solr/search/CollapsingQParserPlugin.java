@@ -1225,6 +1225,23 @@ argument_list|(
 literal|"field"
 argument_list|)
 expr_stmt|;
+if|if
+condition|(
+name|this
+operator|.
+name|field
+operator|==
+literal|null
+condition|)
+block|{
+throw|throw
+operator|new
+name|IllegalStateException
+argument_list|(
+literal|"Required 'field' param is missing."
+argument_list|)
+throw|;
+block|}
 name|this
 operator|.
 name|max
