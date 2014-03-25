@@ -746,6 +746,23 @@ argument_list|,
 literal|true
 argument_list|)
 decl_stmt|;
+if|if
+condition|(
+name|blockCacheWriteEnabled
+condition|)
+block|{
+name|LOG
+operator|.
+name|warn
+argument_list|(
+literal|"Using "
+operator|+
+name|BLOCKCACHE_WRITE_ENABLED
+operator|+
+literal|" is currently buggy and can result in readers seeing a corrupted view of the index."
+argument_list|)
+expr_stmt|;
+block|}
 name|Directory
 name|dir
 init|=
