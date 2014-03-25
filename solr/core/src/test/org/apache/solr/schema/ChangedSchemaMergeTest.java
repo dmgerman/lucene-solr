@@ -473,6 +473,8 @@ init|=
 name|init
 argument_list|()
 decl_stmt|;
+try|try
+init|(
 name|SolrCore
 name|changed
 init|=
@@ -482,8 +484,7 @@ name|getCore
 argument_list|(
 literal|"changed"
 argument_list|)
-decl_stmt|;
-try|try
+init|)
 block|{
 comment|// add some documents
 name|addDoc
@@ -684,17 +685,6 @@ expr_stmt|;
 block|}
 finally|finally
 block|{
-if|if
-condition|(
-name|changed
-operator|!=
-literal|null
-condition|)
-name|changed
-operator|.
-name|close
-argument_list|()
-expr_stmt|;
 if|if
 condition|(
 name|cc

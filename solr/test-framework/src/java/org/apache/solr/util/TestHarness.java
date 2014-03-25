@@ -984,12 +984,15 @@ name|String
 name|xml
 parameter_list|)
 block|{
+try|try
+init|(
 name|SolrCore
 name|core
 init|=
 name|getCoreInc
 argument_list|()
-decl_stmt|;
+init|)
+block|{
 name|DirectSolrConnection
 name|connection
 init|=
@@ -1023,8 +1026,6 @@ operator|=
 name|updater
 expr_stmt|;
 block|}
-try|try
-block|{
 return|return
 name|connection
 operator|.
@@ -1070,14 +1071,6 @@ argument_list|,
 name|e
 argument_list|)
 throw|;
-block|}
-finally|finally
-block|{
-name|core
-operator|.
-name|close
-argument_list|()
-expr_stmt|;
 block|}
 block|}
 comment|/**    * Validates a "query" response against an array of XPath test strings    *    * @param req the Query to process    * @return null if all good, otherwise the first test that fails.    * @exception Exception any exception in the response.    * @exception IOException if there is a problem writing the XML    * @see LocalSolrQueryRequest    */
@@ -1159,13 +1152,14 @@ parameter_list|)
 throws|throws
 name|Exception
 block|{
+try|try
+init|(
 name|SolrCore
 name|core
 init|=
 name|getCoreInc
 argument_list|()
-decl_stmt|;
-try|try
+init|)
 block|{
 name|SolrQueryResponse
 name|rsp
@@ -1274,11 +1268,6 @@ operator|.
 name|clearRequestInfo
 argument_list|()
 expr_stmt|;
-name|core
-operator|.
-name|close
-argument_list|()
-expr_stmt|;
 block|}
 block|}
 comment|/** It is the users responsibility to close the request object when done with it.    * This method does not set/clear SolrRequestInfo */
@@ -1296,13 +1285,14 @@ parameter_list|)
 throws|throws
 name|Exception
 block|{
+try|try
+init|(
 name|SolrCore
 name|core
 init|=
 name|getCoreInc
 argument_list|()
-decl_stmt|;
-try|try
+init|)
 block|{
 name|SolrQueryResponse
 name|rsp
@@ -1347,14 +1337,6 @@ block|}
 return|return
 name|rsp
 return|;
-block|}
-finally|finally
-block|{
-name|core
-operator|.
-name|close
-argument_list|()
-expr_stmt|;
 block|}
 block|}
 comment|/**    * Shuts down and frees any resources    */

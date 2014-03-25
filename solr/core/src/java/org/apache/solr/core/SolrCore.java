@@ -1208,6 +1208,16 @@ name|java
 operator|.
 name|io
 operator|.
+name|Closeable
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
+name|io
+operator|.
 name|File
 import|;
 end_import
@@ -1582,6 +1592,8 @@ class|class
 name|SolrCore
 implements|implements
 name|SolrInfoMBean
+implements|,
+name|Closeable
 block|{
 DECL|field|version
 specifier|public

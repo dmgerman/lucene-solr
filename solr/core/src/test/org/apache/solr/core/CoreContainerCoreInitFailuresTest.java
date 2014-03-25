@@ -1967,7 +1967,6 @@ expr_stmt|;
 block|}
 DECL|method|getCoreStartTime
 specifier|private
-specifier|final
 name|long
 name|getCoreStartTime
 parameter_list|(
@@ -1980,6 +1979,8 @@ name|String
 name|name
 parameter_list|)
 block|{
+try|try
+init|(
 name|SolrCore
 name|tmp
 init|=
@@ -1989,8 +1990,7 @@ name|getCore
 argument_list|(
 name|name
 argument_list|)
-decl_stmt|;
-try|try
+init|)
 block|{
 return|return
 name|tmp
@@ -1998,14 +1998,6 @@ operator|.
 name|getStartTime
 argument_list|()
 return|;
-block|}
-finally|finally
-block|{
-name|tmp
-operator|.
-name|close
-argument_list|()
-expr_stmt|;
 block|}
 block|}
 DECL|field|EMPTY_SOLR_XML

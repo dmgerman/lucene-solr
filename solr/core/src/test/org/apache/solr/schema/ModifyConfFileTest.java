@@ -472,8 +472,7 @@ name|init
 argument_list|()
 decl_stmt|;
 try|try
-block|{
-comment|//final CoreAdminHandler admin = new CoreAdminHandler(cc);
+init|(
 name|SolrCore
 name|core
 init|=
@@ -483,7 +482,9 @@ name|getCore
 argument_list|(
 literal|"core1"
 argument_list|)
-decl_stmt|;
+init|)
+block|{
+comment|//final CoreAdminHandler admin = new CoreAdminHandler(cc);
 name|SolrQueryResponse
 name|rsp
 init|=
@@ -1167,11 +1168,6 @@ argument_list|(
 literal|"directory"
 argument_list|)
 argument_list|)
-expr_stmt|;
-name|core
-operator|.
-name|close
-argument_list|()
 expr_stmt|;
 block|}
 finally|finally

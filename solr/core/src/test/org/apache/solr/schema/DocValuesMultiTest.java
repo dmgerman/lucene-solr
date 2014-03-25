@@ -18,16 +18,6 @@ end_comment
 
 begin_import
 import|import
-name|java
-operator|.
-name|io
-operator|.
-name|IOException
-import|;
-end_import
-
-begin_import
-import|import
 name|org
 operator|.
 name|apache
@@ -164,6 +154,16 @@ name|BeforeClass
 import|;
 end_import
 
+begin_import
+import|import
+name|java
+operator|.
+name|io
+operator|.
+name|IOException
+import|;
+end_import
+
 begin_class
 annotation|@
 name|SuppressCodecs
@@ -266,6 +266,8 @@ name|commit
 argument_list|()
 argument_list|)
 expr_stmt|;
+try|try
+init|(
 name|SolrCore
 name|core
 init|=
@@ -273,8 +275,7 @@ name|h
 operator|.
 name|getCoreInc
 argument_list|()
-decl_stmt|;
-try|try
+init|)
 block|{
 specifier|final
 name|RefCounted
@@ -440,14 +441,6 @@ name|decref
 argument_list|()
 expr_stmt|;
 block|}
-block|}
-finally|finally
-block|{
-name|core
-operator|.
-name|close
-argument_list|()
-expr_stmt|;
 block|}
 block|}
 comment|/** Tests the ability to do basic queries (without scoring, just match-only) on    *  string docvalues fields that are not inverted (indexed "forward" only)    */
