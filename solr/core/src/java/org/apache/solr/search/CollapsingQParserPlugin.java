@@ -340,6 +340,20 @@ name|solr
 operator|.
 name|common
 operator|.
+name|SolrException
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|solr
+operator|.
+name|common
+operator|.
 name|params
 operator|.
 name|ModifiableSolrParams
@@ -1236,8 +1250,14 @@ condition|)
 block|{
 throw|throw
 operator|new
-name|IllegalStateException
+name|SolrException
 argument_list|(
+name|SolrException
+operator|.
+name|ErrorCode
+operator|.
+name|BAD_REQUEST
+argument_list|,
 literal|"Required 'field' param is missing."
 argument_list|)
 throw|;
