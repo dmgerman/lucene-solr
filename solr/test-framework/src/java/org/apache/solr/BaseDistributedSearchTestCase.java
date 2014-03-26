@@ -1409,34 +1409,6 @@ block|{
 name|destroyServers
 argument_list|()
 expr_stmt|;
-if|if
-condition|(
-operator|!
-name|AbstractSolrTestCase
-operator|.
-name|recurseDelete
-argument_list|(
-name|testDir
-argument_list|)
-condition|)
-block|{
-name|System
-operator|.
-name|err
-operator|.
-name|println
-argument_list|(
-literal|"!!!! WARNING: best effort to remove "
-operator|+
-name|testDir
-operator|.
-name|getAbsolutePath
-argument_list|()
-operator|+
-literal|" FAILED !!!!!"
-argument_list|)
-expr_stmt|;
-block|}
 name|FieldCache
 operator|.
 name|DEFAULT
