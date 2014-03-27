@@ -2774,7 +2774,7 @@ name|tempDir
 init|=
 name|TestUtil
 operator|.
-name|getTempDir
+name|createTempDir
 argument_list|(
 name|testName
 argument_list|)

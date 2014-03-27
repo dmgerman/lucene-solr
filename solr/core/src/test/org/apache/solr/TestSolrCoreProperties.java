@@ -28,6 +28,20 @@ name|IOUtils
 import|;
 end_import
 
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|util
+operator|.
+name|TestUtil
+import|;
+end_import
+
 begin_comment
 comment|//import org.apache.lucene.util.LuceneTestCase;
 end_comment
@@ -172,16 +186,15 @@ block|{
 name|File
 name|homeDir
 init|=
-operator|new
-name|File
-argument_list|(
-name|TEMP_DIR
-argument_list|,
-literal|"solrtest-TestSolrCoreProperties-"
-operator|+
-name|System
+name|TestUtil
 operator|.
-name|currentTimeMillis
+name|createTempDir
+argument_list|(
+name|TestSolrCoreProperties
+operator|.
+name|class
+operator|.
+name|getSimpleName
 argument_list|()
 argument_list|)
 decl_stmt|;

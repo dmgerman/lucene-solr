@@ -558,7 +558,7 @@ name|tempDir
 init|=
 name|TestUtil
 operator|.
-name|getTempDir
+name|createTempDir
 argument_list|(
 literal|"growingchararray"
 argument_list|)

@@ -255,7 +255,7 @@ name|file
 init|=
 name|TestUtil
 operator|.
-name|getTempDir
+name|createTempDir
 argument_list|(
 literal|"testIndex"
 argument_list|)
@@ -4696,7 +4696,7 @@ name|newFSDirectory
 argument_list|(
 name|TestUtil
 operator|.
-name|getTempDir
+name|createTempDir
 argument_list|(
 literal|"CFSManySubFiles"
 argument_list|)

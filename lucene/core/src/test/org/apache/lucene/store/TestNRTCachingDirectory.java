@@ -839,7 +839,7 @@ name|tempDir
 init|=
 name|TestUtil
 operator|.
-name|getTempDir
+name|createTempDir
 argument_list|(
 literal|"doesnotexist"
 argument_list|)
@@ -915,7 +915,7 @@ name|newFSDirectory
 argument_list|(
 name|TestUtil
 operator|.
-name|getTempDir
+name|createTempDir
 argument_list|(
 literal|"foo"
 argument_list|)

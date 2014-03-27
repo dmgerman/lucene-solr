@@ -338,7 +338,7 @@ name|f
 init|=
 name|TestUtil
 operator|.
-name|getTempDir
+name|createTempDir
 argument_list|(
 literal|"10kpulsed"
 argument_list|)
@@ -710,7 +710,7 @@ name|f
 init|=
 name|TestUtil
 operator|.
-name|getTempDir
+name|createTempDir
 argument_list|(
 literal|"10knotpulsed"
 argument_list|)

@@ -249,7 +249,7 @@ name|tempDir
 init|=
 name|TestUtil
 operator|.
-name|getTempDir
+name|createTempDir
 argument_list|(
 literal|"TestCSVLoader"
 argument_list|)

@@ -263,7 +263,7 @@ name|newFSDirectory
 argument_list|(
 name|TestUtil
 operator|.
-name|getTempDir
+name|createTempDir
 argument_list|(
 literal|"testDFBlockSize"
 argument_list|)

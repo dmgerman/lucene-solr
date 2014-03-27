@@ -444,7 +444,7 @@ name|temp
 init|=
 name|TestUtil
 operator|.
-name|getTempDir
+name|createTempDir
 argument_list|(
 literal|"testEscapeInstanceDir"
 argument_list|)
@@ -1056,7 +1056,7 @@ name|tmpRoot
 init|=
 name|TestUtil
 operator|.
-name|getTempDir
+name|createTempDir
 argument_list|(
 literal|"testClassLoaderLibs"
 argument_list|)

@@ -226,7 +226,7 @@ name|tempDir
 operator|=
 name|TestUtil
 operator|.
-name|getTempDir
+name|createTempDir
 argument_list|(
 literal|"mergesort"
 argument_list|)

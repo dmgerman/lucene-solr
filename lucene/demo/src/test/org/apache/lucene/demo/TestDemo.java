@@ -245,7 +245,7 @@ name|indexDir
 init|=
 name|TestUtil
 operator|.
-name|getTempDir
+name|createTempDir
 argument_list|(
 literal|"ContribDemoTest"
 argument_list|)

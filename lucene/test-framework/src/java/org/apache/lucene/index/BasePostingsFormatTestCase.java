@@ -6704,7 +6704,7 @@ name|path
 init|=
 name|TestUtil
 operator|.
-name|getTempDir
+name|createTempDir
 argument_list|(
 literal|"testPostingsFormat.testExact"
 argument_list|)
@@ -6994,7 +6994,7 @@ name|path
 init|=
 name|TestUtil
 operator|.
-name|getTempDir
+name|createTempDir
 argument_list|(
 literal|"testPostingsFormat"
 argument_list|)

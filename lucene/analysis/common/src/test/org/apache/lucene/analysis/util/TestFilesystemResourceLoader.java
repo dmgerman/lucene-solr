@@ -307,7 +307,7 @@ name|base
 init|=
 name|TestUtil
 operator|.
-name|getTempDir
+name|createTempDir
 argument_list|(
 literal|"fsResourceLoaderBase"
 argument_list|)

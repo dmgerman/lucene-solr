@@ -236,7 +236,7 @@ name|tempDir
 init|=
 name|TestUtil
 operator|.
-name|getTempDir
+name|createTempDir
 argument_list|(
 literal|"BlendedInfixSuggesterTest"
 argument_list|)
@@ -450,7 +450,7 @@ name|tempDir
 init|=
 name|TestUtil
 operator|.
-name|getTempDir
+name|createTempDir
 argument_list|(
 literal|"BlendedInfixSuggesterTest"
 argument_list|)
@@ -776,7 +776,7 @@ name|tempDir
 init|=
 name|TestUtil
 operator|.
-name|getTempDir
+name|createTempDir
 argument_list|(
 literal|"BlendedInfixSuggesterTest"
 argument_list|)
@@ -1102,7 +1102,7 @@ name|tempDir
 init|=
 name|TestUtil
 operator|.
-name|getTempDir
+name|createTempDir
 argument_list|(
 literal|"BlendedInfixSuggesterTest"
 argument_list|)

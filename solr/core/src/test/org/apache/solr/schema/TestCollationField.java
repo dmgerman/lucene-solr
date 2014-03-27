@@ -360,7 +360,7 @@ name|tmpFile
 init|=
 name|TestUtil
 operator|.
-name|getTempDir
+name|createTempDir
 argument_list|(
 literal|"collation1"
 argument_list|)

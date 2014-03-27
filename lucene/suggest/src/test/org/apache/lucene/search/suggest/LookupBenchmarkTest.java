@@ -997,7 +997,7 @@ name|open
 argument_list|(
 name|TestUtil
 operator|.
-name|getTempDir
+name|createTempDir
 argument_list|(
 literal|"LookupBenchmarkTest"
 argument_list|)

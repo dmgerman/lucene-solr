@@ -1013,7 +1013,7 @@ name|dir
 init|=
 name|TestUtil
 operator|.
-name|getTempDir
+name|createTempDir
 argument_list|(
 name|name
 argument_list|)
@@ -1148,7 +1148,7 @@ name|oldIndxeDir
 init|=
 name|TestUtil
 operator|.
-name|getTempDir
+name|createTempDir
 argument_list|(
 name|unsupportedNames
 index|[
@@ -3995,7 +3995,7 @@ name|outputDir
 init|=
 name|TestUtil
 operator|.
-name|getTempDir
+name|createTempDir
 argument_list|(
 name|outputDirName
 argument_list|)
@@ -6298,7 +6298,7 @@ name|dir
 init|=
 name|TestUtil
 operator|.
-name|getTempDir
+name|createTempDir
 argument_list|(
 name|name
 argument_list|)
@@ -6821,7 +6821,7 @@ name|oldIndexDir
 init|=
 name|TestUtil
 operator|.
-name|getTempDir
+name|createTempDir
 argument_list|(
 literal|"moreterms"
 argument_list|)

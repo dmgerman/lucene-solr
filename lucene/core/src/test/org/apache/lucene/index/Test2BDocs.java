@@ -132,7 +132,7 @@ name|newFSDirectory
 argument_list|(
 name|TestUtil
 operator|.
-name|getTempDir
+name|createTempDir
 argument_list|(
 literal|"2Bdocs"
 argument_list|)
@@ -297,7 +297,7 @@ name|newFSDirectory
 argument_list|(
 name|TestUtil
 operator|.
-name|getTempDir
+name|createTempDir
 argument_list|(
 literal|"2BDocs2"
 argument_list|)

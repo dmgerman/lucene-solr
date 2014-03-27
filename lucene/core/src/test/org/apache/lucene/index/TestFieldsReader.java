@@ -1179,7 +1179,7 @@ name|indexDir
 init|=
 name|TestUtil
 operator|.
-name|getTempDir
+name|createTempDir
 argument_list|(
 literal|"testfieldswriterexceptions"
 argument_list|)

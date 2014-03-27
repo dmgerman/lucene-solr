@@ -589,7 +589,7 @@ name|tmpDir
 init|=
 name|TestUtil
 operator|.
-name|getTempDir
+name|createTempDir
 argument_list|(
 literal|"FreeTextSuggesterTest"
 argument_list|)
