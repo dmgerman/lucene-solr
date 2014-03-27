@@ -501,6 +501,13 @@ argument_list|()
 expr_stmt|;
 block|}
 block|}
+name|args
+operator|.
+name|remove
+argument_list|(
+name|PARSER_IMPL
+argument_list|)
+expr_stmt|;
 block|}
 block|}
 annotation|@
