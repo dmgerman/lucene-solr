@@ -22,15 +22,11 @@ end_comment
 
 begin_import
 import|import
-name|org
+name|java
 operator|.
-name|apache
+name|io
 operator|.
-name|lucene
-operator|.
-name|util
-operator|.
-name|LuceneTestCase
+name|File
 import|;
 end_import
 
@@ -80,20 +76,6 @@ begin_import
 import|import
 name|org
 operator|.
-name|apache
-operator|.
-name|solr
-operator|.
-name|util
-operator|.
-name|AbstractSolrTestCase
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
 name|junit
 operator|.
 name|After
@@ -130,16 +112,6 @@ name|LoggerFactory
 import|;
 end_import
 
-begin_import
-import|import
-name|java
-operator|.
-name|io
-operator|.
-name|File
-import|;
-end_import
-
 begin_class
 DECL|class|AbstractEmbeddedSolrServerTestCase
 specifier|public
@@ -147,7 +119,7 @@ specifier|abstract
 class|class
 name|AbstractEmbeddedSolrServerTestCase
 extends|extends
-name|LuceneTestCase
+name|SolrTestCaseJ4
 block|{
 DECL|field|log
 specifier|protected
@@ -208,7 +180,7 @@ operator|=
 operator|new
 name|File
 argument_list|(
-name|TEMP_DIR
+name|dataDir
 argument_list|,
 literal|"solrtest-"
 operator|+

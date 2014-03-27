@@ -363,7 +363,7 @@ init|=
 operator|new
 name|File
 argument_list|(
-name|TEMP_DIR
+name|dataDir
 argument_list|,
 name|AbstractSolrMorphlineZkTestBase
 operator|.
@@ -486,9 +486,6 @@ name|SOLR_INSTANCE_DIR
 argument_list|,
 name|solrHomeDirectory
 argument_list|)
-expr_stmt|;
-name|createTempDir
-argument_list|()
 expr_stmt|;
 block|}
 annotation|@

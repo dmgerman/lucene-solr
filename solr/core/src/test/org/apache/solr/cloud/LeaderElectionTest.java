@@ -359,11 +359,7 @@ specifier|static
 name|void
 name|beforeClass
 parameter_list|()
-block|{
-name|createTempDir
-argument_list|()
-expr_stmt|;
-block|}
+block|{    }
 annotation|@
 name|AfterClass
 DECL|method|afterClass

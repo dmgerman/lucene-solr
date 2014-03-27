@@ -178,6 +178,18 @@ name|apache
 operator|.
 name|solr
 operator|.
+name|SolrTestCaseJ4
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|solr
+operator|.
 name|store
 operator|.
 name|hdfs
@@ -234,7 +246,7 @@ specifier|public
 class|class
 name|BlockDirectoryTest
 extends|extends
-name|LuceneTestCase
+name|SolrTestCaseJ4
 block|{
 DECL|class|MapperCache
 specifier|private
@@ -669,7 +681,7 @@ operator|=
 operator|new
 name|File
 argument_list|(
-name|TEMP_DIR
+name|dataDir
 argument_list|,
 name|HdfsDirectory
 operator|.

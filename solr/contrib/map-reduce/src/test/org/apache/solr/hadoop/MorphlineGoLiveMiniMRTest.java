@@ -1081,7 +1081,7 @@ init|=
 operator|new
 name|File
 argument_list|(
-name|TEMP_DIR
+name|dataDir
 argument_list|,
 name|MorphlineGoLiveMiniMRTest
 operator|.
@@ -1253,7 +1253,7 @@ argument_list|)
 expr_stmt|;
 name|tempDir
 operator|=
-name|TEMP_DIR
+name|dataDir
 operator|+
 literal|"/test-morphlines-"
 operator|+
@@ -1407,9 +1407,6 @@ name|separator
 operator|+
 literal|"nm-logs"
 argument_list|)
-expr_stmt|;
-name|createTempDir
-argument_list|()
 expr_stmt|;
 operator|new
 name|File

@@ -218,15 +218,12 @@ parameter_list|()
 throws|throws
 name|Exception
 block|{
-name|createTempDir
-argument_list|()
-expr_stmt|;
 name|solrHome
 operator|=
 operator|new
 name|File
 argument_list|(
-name|TEMP_DIR
+name|dataDir
 argument_list|,
 name|TestSearcherReuse
 operator|.

@@ -240,14 +240,11 @@ parameter_list|()
 throws|throws
 name|Exception
 block|{
-name|createTempDir
-argument_list|()
-expr_stmt|;
 specifier|final
 name|String
 name|tmpSolrHomePath
 init|=
-name|TEMP_DIR
+name|dataDir
 operator|+
 name|File
 operator|.

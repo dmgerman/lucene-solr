@@ -95,12 +95,9 @@ name|Exception
 block|{
 comment|// Create a temporary directory that holds a core NOT named "collection1". Use the smallest configuration sets
 comment|// we can so we don't copy that much junk around.
-name|createTempDir
-argument_list|()
-expr_stmt|;
 name|tmpSolrHome
 operator|=
-name|TEMP_DIR
+name|dataDir
 operator|+
 name|File
 operator|.

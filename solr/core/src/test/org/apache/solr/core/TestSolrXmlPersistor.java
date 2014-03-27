@@ -262,7 +262,7 @@ init|=
 operator|new
 name|File
 argument_list|(
-name|TEMP_DIR
+name|dataDir
 argument_list|,
 literal|"ZkControllerTest"
 argument_list|)

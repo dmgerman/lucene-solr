@@ -433,9 +433,6 @@ name|getTestName
 argument_list|()
 argument_list|)
 expr_stmt|;
-name|createTempDir
-argument_list|()
-expr_stmt|;
 name|boolean
 name|useNewSolrXml
 init|=
@@ -1404,7 +1401,7 @@ init|=
 operator|new
 name|File
 argument_list|(
-name|TEMP_DIR
+name|dataDir
 argument_list|,
 literal|"solrtest-confdropspot-"
 operator|+
@@ -1833,7 +1830,7 @@ init|=
 operator|new
 name|File
 argument_list|(
-name|TEMP_DIR
+name|dataDir
 argument_list|,
 literal|"solrtest-getfile-"
 operator|+
@@ -1927,7 +1924,7 @@ init|=
 operator|new
 name|File
 argument_list|(
-name|TEMP_DIR
+name|dataDir
 argument_list|,
 literal|"solrtest-getfilenotexists-"
 operator|+

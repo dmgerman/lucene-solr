@@ -322,9 +322,9 @@ init|=
 operator|new
 name|File
 argument_list|(
-name|LuceneTestCase
+name|this
 operator|.
-name|TEMP_DIR
+name|dataDir
 argument_list|,
 name|getClass
 argument_list|()

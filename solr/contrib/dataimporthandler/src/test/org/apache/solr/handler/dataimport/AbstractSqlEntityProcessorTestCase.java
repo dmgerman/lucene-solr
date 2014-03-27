@@ -283,7 +283,7 @@ literal|"test"
 argument_list|,
 literal|"tmp"
 argument_list|,
-name|TEMP_DIR
+name|dataDir
 argument_list|)
 decl_stmt|;
 name|tmpdir

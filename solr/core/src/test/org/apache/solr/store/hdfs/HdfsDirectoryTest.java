@@ -386,16 +386,13 @@ parameter_list|()
 throws|throws
 name|Exception
 block|{
-name|createTempDir
-argument_list|()
-expr_stmt|;
 name|dfsCluster
 operator|=
 name|HdfsTestUtil
 operator|.
 name|setupClass
 argument_list|(
-name|TEMP_DIR
+name|dataDir
 operator|.
 name|getAbsolutePath
 argument_list|()

@@ -232,7 +232,7 @@ block|{
 name|String
 name|tempDir
 init|=
-name|TEMP_DIR
+name|dataDir
 operator|+
 literal|"/test-morphlines-"
 operator|+

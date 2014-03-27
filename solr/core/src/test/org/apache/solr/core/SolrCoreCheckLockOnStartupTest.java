@@ -200,10 +200,6 @@ argument_list|,
 literal|"org.apache.solr.core.SimpleFSDirectoryFactory"
 argument_list|)
 expr_stmt|;
-comment|//explicitly creates the temp dataDir so we know where the index will be located
-name|createTempDir
-argument_list|()
-expr_stmt|;
 name|IndexWriterConfig
 name|indexWriterConfig
 init|=

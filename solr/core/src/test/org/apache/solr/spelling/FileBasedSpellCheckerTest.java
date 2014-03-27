@@ -25,6 +25,20 @@ operator|.
 name|solr
 operator|.
 name|SolrTestCaseJ4
+operator|.
+name|SuppressTempDirCleanUp
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|solr
+operator|.
+name|SolrTestCaseJ4
 import|;
 end_import
 
@@ -175,6 +189,13 @@ comment|/**  *  * @since solr 1.3  **/
 end_comment
 
 begin_class
+annotation|@
+name|SuppressTempDirCleanUp
+argument_list|(
+name|bugUrl
+operator|=
+literal|"https://issues.apache.org/jira/browse/SOLR-1877 Spellcheck IndexReader leak bug?"
+argument_list|)
 DECL|class|FileBasedSpellCheckerTest
 specifier|public
 class|class
@@ -786,7 +807,7 @@ init|=
 operator|new
 name|File
 argument_list|(
-name|TEMP_DIR
+name|dataDir
 argument_list|,
 literal|"spellingIdx"
 operator|+

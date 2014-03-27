@@ -213,15 +213,12 @@ operator|.
 name|setUp
 argument_list|()
 expr_stmt|;
-name|createTempDir
-argument_list|()
-expr_stmt|;
 name|dataDir2
 operator|=
 operator|new
 name|File
 argument_list|(
-name|TEMP_DIR
+name|dataDir
 argument_list|,
 name|getSimpleClassName
 argument_list|()

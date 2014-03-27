@@ -390,14 +390,14 @@ decl_stmt|;
 DECL|field|solrHomeDirectory
 specifier|private
 specifier|static
-specifier|final
+specifier|volatile
 name|File
 name|solrHomeDirectory
 init|=
 operator|new
 name|File
 argument_list|(
-name|TEMP_DIR
+name|dataDir
 argument_list|,
 literal|"ZkControllerTest"
 argument_list|)
@@ -510,9 +510,6 @@ block|{
 name|super
 operator|.
 name|setUp
-argument_list|()
-expr_stmt|;
-name|createTempDir
 argument_list|()
 expr_stmt|;
 name|System

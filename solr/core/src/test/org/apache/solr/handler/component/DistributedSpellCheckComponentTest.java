@@ -64,6 +64,20 @@ name|org
 operator|.
 name|apache
 operator|.
+name|solr
+operator|.
+name|SolrTestCaseJ4
+operator|.
+name|SuppressTempDirCleanUp
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
 name|lucene
 operator|.
 name|util
@@ -185,6 +199,13 @@ end_comment
 begin_class
 annotation|@
 name|Slow
+annotation|@
+name|SuppressTempDirCleanUp
+argument_list|(
+name|bugUrl
+operator|=
+literal|"https://issues.apache.org/jira/browse/SOLR-1877 Spellcheck IndexReader leak bug?"
+argument_list|)
 DECL|class|DistributedSpellCheckComponentTest
 specifier|public
 class|class

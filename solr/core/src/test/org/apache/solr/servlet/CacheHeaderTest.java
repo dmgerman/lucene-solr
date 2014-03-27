@@ -228,7 +228,7 @@ init|=
 operator|new
 name|File
 argument_list|(
-name|TEMP_DIR
+name|dataDir
 argument_list|,
 literal|"CacheHeaderTest"
 argument_list|)
@@ -1526,7 +1526,7 @@ literal|"cachetest_csv"
 argument_list|,
 literal|null
 argument_list|,
-name|TEMP_DIR
+name|dataDir
 argument_list|)
 decl_stmt|;
 name|Writer
