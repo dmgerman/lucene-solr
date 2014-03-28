@@ -301,10 +301,12 @@ block|{
 name|File
 name|workDir
 init|=
-name|TestUtil
-operator|.
-name|createTempDir
+operator|new
+name|File
 argument_list|(
+name|createTempDir
+argument_list|()
+argument_list|,
 name|DistributedDebugComponentTest
 operator|.
 name|class

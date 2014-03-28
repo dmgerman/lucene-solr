@@ -16,6 +16,16 @@ end_comment
 
 begin_import
 import|import
+name|java
+operator|.
+name|io
+operator|.
+name|File
+import|;
+end_import
+
+begin_import
+import|import
 name|org
 operator|.
 name|apache
@@ -25,34 +35,6 @@ operator|.
 name|io
 operator|.
 name|FileUtils
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|util
-operator|.
-name|LuceneTestCase
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|util
-operator|.
-name|TestUtil
 import|;
 end_import
 
@@ -86,16 +68,6 @@ name|Test
 import|;
 end_import
 
-begin_import
-import|import
-name|java
-operator|.
-name|io
-operator|.
-name|File
-import|;
-end_import
-
 begin_class
 DECL|class|SolrTestCaseJ4Test
 specifier|public
@@ -123,23 +95,10 @@ name|Exception
 block|{
 comment|// Create a temporary directory that holds a core NOT named "collection1". Use the smallest configuration sets
 comment|// we can so we don't copy that much junk around.
-name|createTempDir
-argument_list|()
-expr_stmt|;
 name|tmpSolrHome
 operator|=
-name|TestUtil
-operator|.
 name|createTempDir
-argument_list|(
-name|LuceneTestCase
-operator|.
-name|getTestClass
 argument_list|()
-operator|.
-name|getSimpleName
-argument_list|()
-argument_list|)
 operator|.
 name|getAbsolutePath
 argument_list|()

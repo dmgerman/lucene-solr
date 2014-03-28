@@ -77,19 +77,7 @@ name|beforeClass
 parameter_list|()
 throws|throws
 name|Exception
-block|{
-if|if
-condition|(
-name|dataDir
-operator|==
-literal|null
-condition|)
-block|{
-name|createTempDir
-argument_list|()
-expr_stmt|;
-block|}
-block|}
+block|{    }
 annotation|@
 name|Override
 DECL|method|setUp
@@ -131,7 +119,7 @@ literal|"solr.data.dir"
 argument_list|,
 name|this
 operator|.
-name|dataDir
+name|initCoreDataDir
 operator|.
 name|getCanonicalPath
 argument_list|()

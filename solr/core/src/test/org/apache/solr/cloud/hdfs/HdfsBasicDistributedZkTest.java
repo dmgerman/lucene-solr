@@ -202,7 +202,13 @@ operator|=
 name|HdfsTestUtil
 operator|.
 name|setupClass
+argument_list|(
+name|createTempDir
 argument_list|()
+operator|.
+name|getAbsolutePath
+argument_list|()
+argument_list|)
 expr_stmt|;
 block|}
 annotation|@

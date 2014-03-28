@@ -366,9 +366,6 @@ throws|throws
 name|Exception
 block|{
 comment|//write out elevate-data.xml to the Data dir first by copying it from conf, which we know exists, this way we can test both conf and data configurations
-name|createTempDir
-argument_list|()
-expr_stmt|;
 name|File
 name|parent
 init|=
@@ -400,7 +397,7 @@ init|=
 operator|new
 name|File
 argument_list|(
-name|dataDir
+name|initCoreDataDir
 argument_list|,
 literal|"elevate-data.xml"
 argument_list|)

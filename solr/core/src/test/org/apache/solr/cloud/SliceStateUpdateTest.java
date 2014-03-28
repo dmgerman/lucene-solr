@@ -431,9 +431,6 @@ operator|.
 name|setUp
 argument_list|()
 expr_stmt|;
-name|createTempDir
-argument_list|()
-expr_stmt|;
 name|System
 operator|.
 name|setProperty
@@ -445,7 +442,8 @@ argument_list|)
 expr_stmt|;
 name|zkDir
 operator|=
-name|dataDir
+name|createTempDir
+argument_list|()
 operator|.
 name|getAbsolutePath
 argument_list|()
@@ -608,7 +606,8 @@ operator|=
 operator|new
 name|File
 argument_list|(
-name|dataDir
+name|createTempDir
+argument_list|()
 operator|+
 name|File
 operator|.
@@ -617,17 +616,13 @@ operator|+
 literal|"data1"
 argument_list|)
 expr_stmt|;
-name|dataDir1
-operator|.
-name|mkdirs
-argument_list|()
-expr_stmt|;
 name|dataDir2
 operator|=
 operator|new
 name|File
 argument_list|(
-name|dataDir
+name|createTempDir
+argument_list|()
 operator|+
 name|File
 operator|.
@@ -635,11 +630,6 @@ name|separator
 operator|+
 literal|"data2"
 argument_list|)
-expr_stmt|;
-name|dataDir2
-operator|.
-name|mkdirs
-argument_list|()
 expr_stmt|;
 comment|// set some system properties for use by tests
 name|System

@@ -195,7 +195,8 @@ block|{
 name|String
 name|zkDir
 init|=
-name|dataDir
+name|createTempDir
+argument_list|()
 operator|.
 name|getAbsolutePath
 argument_list|()
@@ -272,7 +273,8 @@ block|{
 name|String
 name|zkDir
 init|=
-name|dataDir
+name|createTempDir
+argument_list|()
 operator|.
 name|getAbsolutePath
 argument_list|()
@@ -371,7 +373,8 @@ block|{
 name|String
 name|zkDir
 init|=
-name|dataDir
+name|createTempDir
+argument_list|()
 operator|.
 name|getAbsolutePath
 argument_list|()
@@ -497,7 +500,8 @@ block|{
 name|String
 name|zkDir
 init|=
-name|dataDir
+name|createTempDir
+argument_list|()
 operator|.
 name|getAbsolutePath
 argument_list|()
@@ -899,7 +903,8 @@ block|{
 name|String
 name|zkDir
 init|=
-name|dataDir
+name|createTempDir
+argument_list|()
 operator|.
 name|getAbsolutePath
 argument_list|()

@@ -68,20 +68,6 @@ name|org
 operator|.
 name|apache
 operator|.
-name|lucene
-operator|.
-name|util
-operator|.
-name|TestUtil
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
 name|solr
 operator|.
 name|client
@@ -218,7 +204,7 @@ name|morphline
 operator|.
 name|api
 operator|.
-name|Command
+name|Collector
 import|;
 end_import
 
@@ -232,7 +218,7 @@ name|morphline
 operator|.
 name|api
 operator|.
-name|Collector
+name|Command
 import|;
 end_import
 
@@ -370,8 +356,12 @@ block|{
 DECL|field|solrHomeDirectory
 specifier|private
 specifier|static
+specifier|final
 name|File
 name|solrHomeDirectory
+init|=
+name|createTempDir
+argument_list|()
 decl_stmt|;
 DECL|field|RESOURCES_DIR
 specifier|protected
@@ -472,20 +462,6 @@ parameter_list|()
 throws|throws
 name|Exception
 block|{
-name|solrHomeDirectory
-operator|=
-name|TestUtil
-operator|.
-name|createTempDir
-argument_list|(
-name|AbstractSolrMorphlineZkTestBase
-operator|.
-name|class
-operator|.
-name|getName
-argument_list|()
-argument_list|)
-expr_stmt|;
 name|AbstractZkTestCase
 operator|.
 name|SOLRHOME
@@ -500,9 +476,6 @@ name|SOLR_INSTANCE_DIR
 argument_list|,
 name|solrHomeDirectory
 argument_list|)
-expr_stmt|;
-name|createTempDir
-argument_list|()
 expr_stmt|;
 block|}
 annotation|@

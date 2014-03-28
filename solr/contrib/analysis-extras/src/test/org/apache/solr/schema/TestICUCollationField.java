@@ -380,33 +380,15 @@ parameter_list|()
 throws|throws
 name|Exception
 block|{
-comment|// make a solr home underneath the test's TEMP_DIR
-name|File
+name|String
 name|tmpFile
 init|=
-name|TestUtil
-operator|.
 name|createTempDir
-argument_list|(
-name|LuceneTestCase
-operator|.
-name|getTestClass
 argument_list|()
 operator|.
-name|getSimpleName
+name|getAbsolutePath
 argument_list|()
-argument_list|)
 decl_stmt|;
-name|tmpFile
-operator|.
-name|delete
-argument_list|()
-expr_stmt|;
-name|tmpFile
-operator|.
-name|mkdir
-argument_list|()
-expr_stmt|;
 comment|// make data and conf dirs
 operator|new
 name|File
@@ -560,9 +542,6 @@ argument_list|()
 expr_stmt|;
 return|return
 name|tmpFile
-operator|.
-name|getAbsolutePath
-argument_list|()
 return|;
 block|}
 comment|/**     * Test termquery with german DIN 5007-1 primary strength.    * In this case, Ã¶ is equivalent to o (but not oe)     */

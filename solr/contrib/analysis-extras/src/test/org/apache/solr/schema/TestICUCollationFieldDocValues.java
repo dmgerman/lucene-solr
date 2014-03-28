@@ -405,33 +405,12 @@ parameter_list|()
 throws|throws
 name|Exception
 block|{
-comment|// make a solr home underneath the test's TEMP_DIR
 name|File
 name|tmpFile
 init|=
-name|TestUtil
-operator|.
 name|createTempDir
-argument_list|(
-name|LuceneTestCase
-operator|.
-name|getTestClass
 argument_list|()
-operator|.
-name|getSimpleName
-argument_list|()
-argument_list|)
 decl_stmt|;
-name|tmpFile
-operator|.
-name|delete
-argument_list|()
-expr_stmt|;
-name|tmpFile
-operator|.
-name|mkdir
-argument_list|()
-expr_stmt|;
 comment|// make data and conf dirs
 operator|new
 name|File

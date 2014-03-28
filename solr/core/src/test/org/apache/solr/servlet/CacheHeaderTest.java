@@ -237,10 +237,12 @@ name|Exception
 block|{
 name|solrHomeDirectory
 operator|=
-name|TestUtil
-operator|.
-name|createTempDir
+operator|new
+name|File
 argument_list|(
+name|createTempDir
+argument_list|()
+argument_list|,
 literal|"CacheHeaderTest"
 argument_list|)
 expr_stmt|;
@@ -1525,6 +1527,8 @@ argument_list|(
 literal|"cachetest_csv"
 argument_list|,
 literal|null
+argument_list|,
+name|initCoreDataDir
 argument_list|)
 decl_stmt|;
 name|Writer
