@@ -1074,12 +1074,8 @@ decl_stmt|;
 DECL|field|solrHomeDirectory
 specifier|private
 specifier|static
-specifier|final
 name|File
 name|solrHomeDirectory
-init|=
-name|createTempDir
-argument_list|()
 decl_stmt|;
 annotation|@
 name|Override
@@ -1151,6 +1147,11 @@ parameter_list|()
 throws|throws
 name|Exception
 block|{
+name|solrHomeDirectory
+operator|=
+name|createTempDir
+argument_list|()
+expr_stmt|;
 name|assumeTrue
 argument_list|(
 literal|"Currently this test can only be run without the lucene test security policy in place"
