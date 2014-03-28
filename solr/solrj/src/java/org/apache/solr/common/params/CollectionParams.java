@@ -108,6 +108,12 @@ name|ADDREPLICA
 block|,
 DECL|enum constant|OVERSEERSTATUS
 name|OVERSEERSTATUS
+block|,
+DECL|enum constant|LIST
+name|LIST
+block|,
+DECL|enum constant|CLUSTERSTATUS
+name|CLUSTERSTATUS
 block|;
 DECL|method|get
 specifier|public
