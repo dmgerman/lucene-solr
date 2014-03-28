@@ -5184,7 +5184,7 @@ name|clusterStatus
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**    * Get collection status from cluster state.    * Can return collection status by given shard name.    *    *    * @param clusterState    * @param name  collection name    * @param shardStr comma separated shard names    * @return map of collection properties    */
+comment|/**    * Get collection status from cluster state.    * Can return collection status by given shard name.    */
 DECL|method|getCollectionStatus
 specifier|private
 name|Map
