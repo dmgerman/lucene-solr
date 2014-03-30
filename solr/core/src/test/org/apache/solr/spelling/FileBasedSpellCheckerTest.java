@@ -815,14 +815,8 @@ expr_stmt|;
 name|File
 name|indexDir
 init|=
-operator|new
-name|File
-argument_list|(
 name|createTempDir
 argument_list|()
-argument_list|,
-literal|"spellingIdx"
-argument_list|)
 decl_stmt|;
 name|indexDir
 operator|.

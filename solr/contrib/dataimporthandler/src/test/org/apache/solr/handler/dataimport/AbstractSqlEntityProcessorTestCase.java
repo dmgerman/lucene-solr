@@ -166,29 +166,11 @@ end_import
 
 begin_import
 import|import
-name|org
+name|junit
 operator|.
-name|apache
+name|framework
 operator|.
-name|lucene
-operator|.
-name|util
-operator|.
-name|LuceneTestCase
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|util
-operator|.
-name|TestUtil
+name|Assert
 import|;
 end_import
 
@@ -209,16 +191,6 @@ operator|.
 name|junit
 operator|.
 name|Before
-import|;
-end_import
-
-begin_import
-import|import
-name|junit
-operator|.
-name|framework
-operator|.
-name|Assert
 import|;
 end_import
 

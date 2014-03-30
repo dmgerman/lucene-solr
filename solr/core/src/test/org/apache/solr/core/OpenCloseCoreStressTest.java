@@ -526,14 +526,6 @@ operator|=
 name|createTempDir
 argument_list|()
 expr_stmt|;
-name|FileUtils
-operator|.
-name|deleteDirectory
-argument_list|(
-name|solrHomeDirectory
-argument_list|)
-expr_stmt|;
-comment|// Ensure that a failed test didn't leave something lying around.
 name|jetty
 operator|=
 operator|new
@@ -580,13 +572,6 @@ name|jetty
 operator|.
 name|stop
 argument_list|()
-expr_stmt|;
-name|FileUtils
-operator|.
-name|deleteDirectory
-argument_list|(
-name|solrHomeDirectory
-argument_list|)
 expr_stmt|;
 for|for
 control|(

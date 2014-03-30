@@ -202,12 +202,8 @@ name|directory
 init|=
 name|newFSDirectory
 argument_list|(
-operator|new
-name|File
-argument_list|(
 name|createTempDir
-argument_list|()
-argument_list|,
+argument_list|(
 literal|"index"
 argument_list|)
 argument_list|)

@@ -428,13 +428,7 @@ name|afterTest
 parameter_list|()
 throws|throws
 name|Exception
-block|{
-name|cleanUpJettyHome
-argument_list|(
-name|solrHomeDirectory
-argument_list|)
-expr_stmt|;
-block|}
+block|{    }
 annotation|@
 name|Before
 DECL|method|doBefore

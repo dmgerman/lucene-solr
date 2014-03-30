@@ -400,32 +400,6 @@ init|=
 name|createTempDir
 argument_list|()
 decl_stmt|;
-if|if
-condition|(
-name|workDir
-operator|.
-name|exists
-argument_list|()
-condition|)
-block|{
-name|FileUtils
-operator|.
-name|deleteDirectory
-argument_list|(
-name|workDir
-argument_list|)
-expr_stmt|;
-block|}
-name|assertTrue
-argument_list|(
-literal|"Failed to mkdirs workDir"
-argument_list|,
-name|workDir
-operator|.
-name|mkdirs
-argument_list|()
-argument_list|)
-expr_stmt|;
 specifier|final
 name|CoreContainer
 name|cores
@@ -558,14 +532,6 @@ operator|=
 literal|false
 expr_stmt|;
 block|}
-comment|// cleanup
-name|FileUtils
-operator|.
-name|deleteDirectory
-argument_list|(
-name|workDir
-argument_list|)
-expr_stmt|;
 block|}
 block|}
 end_class

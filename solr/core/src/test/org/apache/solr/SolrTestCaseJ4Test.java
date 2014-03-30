@@ -264,22 +264,7 @@ name|AfterClass
 parameter_list|()
 throws|throws
 name|Exception
-block|{
-name|FileUtils
-operator|.
-name|deleteDirectory
-argument_list|(
-operator|new
-name|File
-argument_list|(
-name|tmpSolrHome
-argument_list|)
-operator|.
-name|getAbsoluteFile
-argument_list|()
-argument_list|)
-expr_stmt|;
-block|}
+block|{    }
 annotation|@
 name|Test
 DECL|method|testCorrectCore

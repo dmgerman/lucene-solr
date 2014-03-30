@@ -747,13 +747,6 @@ operator|.
 name|close
 argument_list|()
 expr_stmt|;
-name|FileUtils
-operator|.
-name|deleteDirectory
-argument_list|(
-name|file
-argument_list|)
-expr_stmt|;
 block|}
 annotation|@
 name|Test

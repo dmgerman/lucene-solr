@@ -810,14 +810,6 @@ name|exists
 argument_list|()
 argument_list|)
 expr_stmt|;
-comment|// Cleanup
-name|FileUtils
-operator|.
-name|deleteDirectory
-argument_list|(
-name|workDir
-argument_list|)
-expr_stmt|;
 block|}
 annotation|@
 name|Test
@@ -833,46 +825,9 @@ specifier|final
 name|File
 name|workDir
 init|=
-operator|new
-name|File
-argument_list|(
-name|initCoreDataDir
-argument_list|,
-name|this
-operator|.
-name|getClass
+name|createTempDir
 argument_list|()
-operator|.
-name|getName
-argument_list|()
-argument_list|)
 decl_stmt|;
-if|if
-condition|(
-name|workDir
-operator|.
-name|exists
-argument_list|()
-condition|)
-block|{
-name|FileUtils
-operator|.
-name|deleteDirectory
-argument_list|(
-name|workDir
-argument_list|)
-expr_stmt|;
-block|}
-name|assertTrue
-argument_list|(
-literal|"Failed to mkdirs workDir"
-argument_list|,
-name|workDir
-operator|.
-name|mkdirs
-argument_list|()
-argument_list|)
-expr_stmt|;
 specifier|final
 name|CoreContainer
 name|cores
@@ -1331,14 +1286,6 @@ argument_list|()
 argument_list|)
 expr_stmt|;
 comment|// :TODO: because of SOLR-3665 we can't ask for status from all cores
-comment|// cleanup
-name|FileUtils
-operator|.
-name|deleteDirectory
-argument_list|(
-name|workDir
-argument_list|)
-expr_stmt|;
 block|}
 annotation|@
 name|Test

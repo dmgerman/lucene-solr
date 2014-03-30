@@ -301,19 +301,8 @@ block|{
 name|File
 name|workDir
 init|=
-operator|new
-name|File
-argument_list|(
 name|createTempDir
 argument_list|()
-argument_list|,
-name|DistributedDebugComponentTest
-operator|.
-name|class
-operator|.
-name|getName
-argument_list|()
-argument_list|)
 decl_stmt|;
 name|setupJettyTestHome
 argument_list|(
@@ -357,13 +346,7 @@ name|afterTest
 parameter_list|()
 throws|throws
 name|Exception
-block|{
-name|cleanUpJettyHome
-argument_list|(
-name|solrHome
-argument_list|)
-expr_stmt|;
-block|}
+block|{      }
 annotation|@
 name|Before
 annotation|@
