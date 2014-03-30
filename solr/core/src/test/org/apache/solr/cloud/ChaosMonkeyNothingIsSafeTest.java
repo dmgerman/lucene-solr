@@ -514,8 +514,9 @@ literal|null
 expr_stmt|;
 block|}
 DECL|field|fieldNames
-specifier|public
+specifier|protected
 specifier|static
+specifier|final
 name|String
 index|[]
 name|fieldNames
@@ -536,8 +537,9 @@ literal|"f_dt"
 block|}
 decl_stmt|;
 DECL|field|randVals
-specifier|public
+specifier|protected
 specifier|static
+specifier|final
 name|RandVal
 index|[]
 name|randVals
@@ -558,7 +560,7 @@ name|rdate
 block|}
 decl_stmt|;
 DECL|method|getFieldNames
-specifier|protected
+specifier|public
 name|String
 index|[]
 name|getFieldNames
@@ -569,7 +571,7 @@ name|fieldNames
 return|;
 block|}
 DECL|method|getRandValues
-specifier|protected
+specifier|public
 name|RandVal
 index|[]
 name|getRandValues
