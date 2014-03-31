@@ -32,20 +32,6 @@ end_import
 
 begin_import
 import|import
-name|com
-operator|.
-name|google
-operator|.
-name|common
-operator|.
-name|base
-operator|.
-name|Charsets
-import|;
-end_import
-
-begin_import
-import|import
 name|org
 operator|.
 name|apache
@@ -345,6 +331,18 @@ operator|.
 name|io
 operator|.
 name|InputStream
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
+name|nio
+operator|.
+name|charset
+operator|.
+name|StandardCharsets
 import|;
 end_import
 
@@ -2220,11 +2218,11 @@ argument_list|,
 literal|"solr.xml"
 argument_list|)
 argument_list|,
-name|Charsets
+name|StandardCharsets
 operator|.
 name|UTF_8
 operator|.
-name|toString
+name|name
 argument_list|()
 argument_list|)
 decl_stmt|;
@@ -2776,7 +2774,7 @@ name|xmlString
 operator|.
 name|getBytes
 argument_list|(
-name|Charsets
+name|StandardCharsets
 operator|.
 name|UTF_8
 argument_list|)
