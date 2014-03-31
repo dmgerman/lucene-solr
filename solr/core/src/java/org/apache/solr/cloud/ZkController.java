@@ -8708,7 +8708,7 @@ parameter_list|)
 block|{
 throw|throw
 operator|new
-name|IllegalStateException
+name|Error
 argument_list|(
 literal|"JVM Does not seem to support UTF-8"
 argument_list|,

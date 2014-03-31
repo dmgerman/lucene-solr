@@ -148,6 +148,18 @@ name|Charset
 import|;
 end_import
 
+begin_import
+import|import
+name|java
+operator|.
+name|nio
+operator|.
+name|charset
+operator|.
+name|StandardCharsets
+import|;
+end_import
+
 begin_comment
 comment|/**  * A RequestWriter is used to write requests to Solr.  *<p/>  * A subclass can override the methods in this class to supply a custom format in which a request can be sent.  *  *  * @since solr 1.4  */
 end_comment
@@ -165,12 +177,9 @@ specifier|final
 name|Charset
 name|UTF_8
 init|=
-name|Charset
+name|StandardCharsets
 operator|.
-name|forName
-argument_list|(
-literal|"UTF-8"
-argument_list|)
+name|UTF_8
 decl_stmt|;
 DECL|method|getContentStreams
 specifier|public

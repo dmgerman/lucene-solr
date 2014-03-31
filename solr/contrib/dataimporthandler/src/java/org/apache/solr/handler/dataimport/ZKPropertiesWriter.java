@@ -495,7 +495,9 @@ name|String
 argument_list|(
 name|data
 argument_list|,
-literal|"UTF-8"
+name|StandardCharsets
+operator|.
+name|UTF_8
 argument_list|)
 argument_list|)
 argument_list|)

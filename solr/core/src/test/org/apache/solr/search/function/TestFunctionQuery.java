@@ -200,6 +200,18 @@ begin_import
 import|import
 name|java
 operator|.
+name|nio
+operator|.
+name|charset
+operator|.
+name|StandardCharsets
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
 name|util
 operator|.
 name|ArrayList
@@ -292,9 +304,6 @@ name|field
 parameter_list|,
 name|String
 name|contents
-parameter_list|,
-name|String
-name|charset
 parameter_list|)
 block|{
 name|String
@@ -338,7 +347,9 @@ argument_list|(
 name|filename
 argument_list|)
 argument_list|,
-name|charset
+name|StandardCharsets
+operator|.
+name|UTF_8
 argument_list|)
 decl_stmt|;
 name|out
@@ -1517,8 +1528,6 @@ argument_list|(
 name|field
 argument_list|,
 literal|"54321=543210\n0=-999\n25=250"
-argument_list|,
-literal|"UTF-8"
 argument_list|)
 expr_stmt|;
 comment|// test identity (straight field value)
@@ -1591,8 +1600,6 @@ argument_list|(
 name|field
 argument_list|,
 literal|"0=1"
-argument_list|,
-literal|"UTF-8"
 argument_list|)
 expr_stmt|;
 name|assertU
@@ -1842,8 +1849,6 @@ name|sb
 operator|.
 name|toString
 argument_list|()
-argument_list|,
-literal|"UTF-8"
 argument_list|)
 expr_stmt|;
 comment|// make it visible
@@ -2060,8 +2065,6 @@ argument_list|(
 name|extField
 argument_list|,
 literal|"AAA=AAA=543210\nBBB=-8\nCCC=CCC=250"
-argument_list|,
-literal|"UTF-8"
 argument_list|)
 expr_stmt|;
 name|singleTest
@@ -2160,8 +2163,6 @@ argument_list|(
 name|extField
 argument_list|,
 literal|"91=543210\n92=-8\n93=250\n=67"
-argument_list|,
-literal|"UTF-8"
 argument_list|)
 expr_stmt|;
 name|singleTest
@@ -4800,8 +4801,6 @@ argument_list|(
 name|field
 argument_list|,
 literal|"54321=543210\n0=-999\n25=250"
-argument_list|,
-literal|"UTF-8"
 argument_list|)
 expr_stmt|;
 comment|// test identity (straight field value)
@@ -4874,8 +4873,6 @@ argument_list|(
 name|field
 argument_list|,
 literal|"0=1"
-argument_list|,
-literal|"UTF-8"
 argument_list|)
 expr_stmt|;
 name|assertU

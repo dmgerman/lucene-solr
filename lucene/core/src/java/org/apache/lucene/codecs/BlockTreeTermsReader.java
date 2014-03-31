@@ -2392,7 +2392,9 @@ name|bos
 operator|.
 name|toString
 argument_list|(
-literal|"UTF-8"
+name|IOUtils
+operator|.
+name|UTF_8
 argument_list|)
 return|;
 block|}

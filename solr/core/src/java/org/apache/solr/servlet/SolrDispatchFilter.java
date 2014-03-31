@@ -4965,13 +4965,6 @@ operator|(
 name|charset
 operator|==
 literal|null
-operator|||
-name|charset
-operator|.
-name|equalsIgnoreCase
-argument_list|(
-literal|"UTF-8"
-argument_list|)
 operator|)
 condition|?
 operator|new

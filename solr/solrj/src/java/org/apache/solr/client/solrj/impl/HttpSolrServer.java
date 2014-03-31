@@ -2029,12 +2029,9 @@ name|StringBody
 argument_list|(
 name|v
 argument_list|,
-name|Charset
+name|StandardCharsets
 operator|.
-name|forName
-argument_list|(
-literal|"UTF-8"
-argument_list|)
+name|UTF_8
 argument_list|)
 argument_list|)
 argument_list|)
@@ -2205,7 +2202,9 @@ name|UrlEncodedFormEntity
 argument_list|(
 name|postParams
 argument_list|,
-literal|"UTF-8"
+name|StandardCharsets
+operator|.
+name|UTF_8
 argument_list|)
 argument_list|)
 expr_stmt|;
