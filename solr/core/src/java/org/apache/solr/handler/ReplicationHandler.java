@@ -124,6 +124,18 @@ name|java
 operator|.
 name|nio
 operator|.
+name|charset
+operator|.
+name|StandardCharsets
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
+name|nio
+operator|.
 name|file
 operator|.
 name|NoSuchFileException
@@ -823,22 +835,6 @@ operator|.
 name|slf4j
 operator|.
 name|LoggerFactory
-import|;
-end_import
-
-begin_import
-import|import static
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|util
-operator|.
-name|IOUtils
-operator|.
-name|CHARSET_UTF_8
 import|;
 end_import
 
@@ -5677,7 +5673,9 @@ name|InputStreamReader
 argument_list|(
 name|is
 argument_list|,
-name|CHARSET_UTF_8
+name|StandardCharsets
+operator|.
+name|UTF_8
 argument_list|)
 argument_list|)
 expr_stmt|;

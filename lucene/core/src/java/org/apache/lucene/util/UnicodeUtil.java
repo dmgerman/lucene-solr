@@ -12,6 +12,18 @@ name|util
 package|;
 end_package
 
+begin_import
+import|import
+name|java
+operator|.
+name|nio
+operator|.
+name|charset
+operator|.
+name|StandardCharsets
+import|;
+end_import
+
 begin_comment
 comment|/*  * Licensed to the Apache Software Foundation (ASF) under one or more  * contributor license agreements.  See the NOTICE file distributed with  * this work for additional information regarding copyright ownership.  * The ASF licenses this file to You under the Apache License, Version 2.0  * (the "License"); you may not use this file except in compliance with  * the License.  You may obtain a copy of the License at  *  *     http://www.apache.org/licenses/LICENSE-2.0  *  * Unless required by applicable law or agreed to in writing, software  * distributed under the License is distributed on an "AS IS" BASIS,  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.  * See the License for the specific language governing permissions and  * limitations under the License.  */
 end_comment
@@ -33,7 +45,7 @@ comment|/*  * Copyright (C) 1999-2010, International Business Machines  * Corpor
 end_comment
 
 begin_comment
-comment|/**  * Class to encode java's UTF16 char[] into UTF8 byte[]  * without always allocating a new byte[] as  * String.getBytes("UTF-8") does.  *  * @lucene.internal  */
+comment|/**  * Class to encode java's UTF16 char[] into UTF8 byte[]  * without always allocating a new byte[] as  * String.getBytes(StandardCharsets.UTF_8) does.  *  * @lucene.internal  */
 end_comment
 
 begin_class

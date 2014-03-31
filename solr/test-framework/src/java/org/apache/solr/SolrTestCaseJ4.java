@@ -2045,10 +2045,7 @@ name|xmlStr
 argument_list|,
 name|IOUtils
 operator|.
-name|CHARSET_UTF_8
-operator|.
-name|toString
-argument_list|()
+name|UTF_8
 argument_list|)
 expr_stmt|;
 name|SolrResourceLoader

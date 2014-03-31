@@ -34,6 +34,18 @@ begin_import
 import|import
 name|java
 operator|.
+name|nio
+operator|.
+name|charset
+operator|.
+name|StandardCharsets
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
 name|util
 operator|.
 name|Arrays
@@ -652,7 +664,7 @@ name|lookupAutomaton
 argument_list|)
 argument_list|)
 decl_stmt|;
-comment|/*       Writer w = new OutputStreamWriter(new FileOutputStream("out.dot"), "UTF-8");       w.write(levA.toDot());       w.close();       System.out.println("Wrote LevA to out.dot");     */
+comment|/*       Writer w = new OutputStreamWriter(new FileOutputStream("out.dot"), StandardCharsets.UTF_8);       w.write(levA.toDot());       w.close();       System.out.println("Wrote LevA to out.dot");     */
 return|return
 name|FSTUtil
 operator|.

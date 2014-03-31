@@ -316,10 +316,7 @@ name|EMPTY_SOLR_XML
 argument_list|,
 name|IOUtils
 operator|.
-name|CHARSET_UTF_8
-operator|.
-name|toString
-argument_list|()
+name|UTF_8
 argument_list|)
 expr_stmt|;
 comment|// ----
@@ -715,10 +712,7 @@ name|BAD_SOLR_XML
 argument_list|,
 name|IOUtils
 operator|.
-name|CHARSET_UTF_8
-operator|.
-name|toString
-argument_list|()
+name|UTF_8
 argument_list|)
 expr_stmt|;
 comment|// our "ok" collection
@@ -1582,10 +1576,7 @@ literal|"This is giberish, not valid XML<"
 argument_list|,
 name|IOUtils
 operator|.
-name|CHARSET_UTF_8
-operator|.
-name|toString
-argument_list|()
+name|UTF_8
 argument_list|)
 expr_stmt|;
 try|try

@@ -36,16 +36,6 @@ name|java
 operator|.
 name|io
 operator|.
-name|ByteArrayOutputStream
-import|;
-end_import
-
-begin_import
-import|import
-name|java
-operator|.
-name|io
-operator|.
 name|IOException
 import|;
 end_import
@@ -64,9 +54,11 @@ begin_import
 import|import
 name|java
 operator|.
-name|io
+name|nio
 operator|.
-name|OutputStreamWriter
+name|charset
+operator|.
+name|StandardCharsets
 import|;
 end_import
 
@@ -105,20 +97,6 @@ operator|.
 name|utils
 operator|.
 name|Config
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|util
-operator|.
-name|IOUtils
 import|;
 end_import
 
@@ -202,9 +180,9 @@ name|docs
 operator|.
 name|getBytes
 argument_list|(
-name|IOUtils
+name|StandardCharsets
 operator|.
-name|CHARSET_UTF_8
+name|UTF_8
 argument_list|)
 argument_list|)
 return|;

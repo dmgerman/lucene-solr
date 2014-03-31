@@ -102,6 +102,18 @@ begin_import
 import|import
 name|java
 operator|.
+name|nio
+operator|.
+name|charset
+operator|.
+name|StandardCharsets
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
 name|util
 operator|.
 name|HashMap
@@ -1662,7 +1674,7 @@ name|allowArrayArcs
 operator|=
 literal|false
 expr_stmt|;
-comment|/*     if (bytes.length == 665) {       Writer w = new OutputStreamWriter(new FileOutputStream("out.dot"), "UTF-8");       Util.toDot(this, w, false, false);       w.close();       System.out.println("Wrote FST to out.dot");     }     */
+comment|/*     if (bytes.length == 665) {       Writer w = new OutputStreamWriter(new FileOutputStream("out.dot"), StandardCharsets.UTF_8);       Util.toDot(this, w, false, false);       w.close();       System.out.println("Wrote FST to out.dot");     }     */
 block|}
 DECL|method|getInputType
 specifier|public

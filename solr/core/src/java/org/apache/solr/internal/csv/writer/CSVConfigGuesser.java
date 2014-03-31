@@ -52,15 +52,13 @@ end_import
 
 begin_import
 import|import
-name|org
+name|java
 operator|.
-name|apache
+name|nio
 operator|.
-name|lucene
+name|charset
 operator|.
-name|util
-operator|.
-name|IOUtils
+name|StandardCharsets
 import|;
 end_import
 
@@ -176,9 +174,9 @@ argument_list|(
 name|getInputStream
 argument_list|()
 argument_list|,
-name|IOUtils
+name|StandardCharsets
 operator|.
-name|CHARSET_UTF_8
+name|UTF_8
 argument_list|)
 argument_list|)
 decl_stmt|;

@@ -226,6 +226,18 @@ name|*
 import|;
 end_import
 
+begin_import
+import|import
+name|java
+operator|.
+name|nio
+operator|.
+name|charset
+operator|.
+name|StandardCharsets
+import|;
+end_import
+
 begin_comment
 comment|/**  * {@link Analyzer} for Czech language.  *<p>  * Supports an external list of stopwords (words that will not be indexed at  * all). A default set of stopwords is used unless an alternative list is  * specified.  *</p>  */
 end_comment
@@ -297,9 +309,9 @@ name|class
 argument_list|,
 name|DEFAULT_STOPWORD_FILE
 argument_list|,
-name|IOUtils
+name|StandardCharsets
 operator|.
-name|CHARSET_UTF_8
+name|UTF_8
 argument_list|)
 argument_list|,
 literal|"#"

@@ -64,15 +64,13 @@ end_import
 
 begin_import
 import|import
-name|org
+name|java
 operator|.
-name|apache
+name|nio
 operator|.
-name|lucene
+name|charset
 operator|.
-name|util
-operator|.
-name|IOUtils
+name|StandardCharsets
 import|;
 end_import
 
@@ -298,9 +296,10 @@ parameter_list|()
 block|{
 name|super
 argument_list|(
-name|IOUtils
+name|StandardCharsets
 operator|.
-name|CHARSET_UTF_8
+name|ISO_8859_1
+comment|/* fake with similar properties */
 argument_list|,
 literal|1f
 argument_list|,

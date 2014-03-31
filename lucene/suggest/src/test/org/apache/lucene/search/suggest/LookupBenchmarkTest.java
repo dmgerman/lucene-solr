@@ -76,6 +76,18 @@ begin_import
 import|import
 name|java
 operator|.
+name|nio
+operator|.
+name|charset
+operator|.
+name|StandardCharsets
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
 name|util
 operator|.
 name|ArrayList
@@ -569,12 +581,9 @@ specifier|final
 name|Charset
 name|UTF_8
 init|=
-name|Charset
+name|StandardCharsets
 operator|.
-name|forName
-argument_list|(
-literal|"UTF-8"
-argument_list|)
+name|UTF_8
 decl_stmt|;
 comment|/**    * Collect the multilingual input for benchmarks/ tests.    */
 DECL|method|readTop50KWiki

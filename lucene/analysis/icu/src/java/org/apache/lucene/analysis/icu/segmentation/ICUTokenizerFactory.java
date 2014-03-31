@@ -54,9 +54,11 @@ begin_import
 import|import
 name|java
 operator|.
-name|io
+name|nio
 operator|.
-name|Reader
+name|charset
+operator|.
+name|StandardCharsets
 import|;
 end_import
 
@@ -635,9 +637,9 @@ name|getDecodingReader
 argument_list|(
 name|rulesStream
 argument_list|,
-name|IOUtils
+name|StandardCharsets
 operator|.
-name|CHARSET_UTF_8
+name|UTF_8
 argument_list|)
 argument_list|)
 decl_stmt|;

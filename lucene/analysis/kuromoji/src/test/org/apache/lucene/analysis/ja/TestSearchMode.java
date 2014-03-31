@@ -72,9 +72,11 @@ begin_import
 import|import
 name|java
 operator|.
-name|io
+name|nio
 operator|.
-name|Reader
+name|charset
+operator|.
+name|StandardCharsets
 import|;
 end_import
 
@@ -135,20 +137,6 @@ operator|.
 name|JapaneseTokenizer
 operator|.
 name|Mode
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|util
-operator|.
-name|IOUtils
 import|;
 end_import
 
@@ -269,9 +257,9 @@ name|InputStreamReader
 argument_list|(
 name|is
 argument_list|,
-name|IOUtils
+name|StandardCharsets
 operator|.
-name|CHARSET_UTF_8
+name|UTF_8
 argument_list|)
 argument_list|)
 decl_stmt|;

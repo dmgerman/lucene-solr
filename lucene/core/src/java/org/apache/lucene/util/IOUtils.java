@@ -156,6 +156,18 @@ name|CodingErrorAction
 import|;
 end_import
 
+begin_import
+import|import
+name|java
+operator|.
+name|nio
+operator|.
+name|charset
+operator|.
+name|StandardCharsets
+import|;
+end_import
+
 begin_comment
 comment|/** This class emulates the new Java 7 "Try-With-Resources" statement.  * Remove once Lucene is on Java 7.  * @lucene.internal */
 end_comment
@@ -167,17 +179,9 @@ specifier|final
 class|class
 name|IOUtils
 block|{
-comment|/**    * UTF-8 charset string    * @see Charset#forName(String)    */
-DECL|field|UTF_8
-specifier|public
-specifier|static
-specifier|final
-name|String
-name|UTF_8
-init|=
-literal|"UTF-8"
-decl_stmt|;
-comment|/**    * UTF-8 {@link Charset} instance to prevent repeated    * {@link Charset#forName(String)} lookups    */
+comment|/**    * UTF-8 {@link Charset} instance to prevent repeated    * {@link Charset#forName(String)} lookups    * @deprecated Use {@link StandardCharsets#UTF_8} instead.    */
+annotation|@
+name|Deprecated
 DECL|field|CHARSET_UTF_8
 specifier|public
 specifier|static
@@ -185,12 +189,24 @@ specifier|final
 name|Charset
 name|CHARSET_UTF_8
 init|=
-name|Charset
+name|StandardCharsets
 operator|.
-name|forName
-argument_list|(
-literal|"UTF-8"
-argument_list|)
+name|UTF_8
+decl_stmt|;
+comment|/**    * UTF-8 charset string.    *<p>Where possible, use {@link StandardCharsets#UTF_8} instead,    * as using the String constant may slow things down.    * @see StandardCharsets#UTF_8    */
+DECL|field|UTF_8
+specifier|public
+specifier|static
+specifier|final
+name|String
+name|UTF_8
+init|=
+name|StandardCharsets
+operator|.
+name|UTF_8
+operator|.
+name|name
+argument_list|()
 decl_stmt|;
 DECL|method|IOUtils
 specifier|private
