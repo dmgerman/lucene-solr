@@ -386,6 +386,21 @@ name|int
 name|length
 parameter_list|)
 block|{
+if|if
+condition|(
+name|length
+operator|<
+literal|1
+condition|)
+block|{
+throw|throw
+operator|new
+name|IllegalArgumentException
+argument_list|(
+literal|"maxTokenLength must be greater than zero"
+argument_list|)
+throw|;
+block|}
 name|this
 operator|.
 name|maxTokenLength

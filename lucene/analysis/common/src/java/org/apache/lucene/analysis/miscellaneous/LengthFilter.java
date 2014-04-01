@@ -141,6 +141,36 @@ argument_list|,
 name|in
 argument_list|)
 expr_stmt|;
+if|if
+condition|(
+name|min
+operator|<
+literal|0
+condition|)
+block|{
+throw|throw
+operator|new
+name|IllegalArgumentException
+argument_list|(
+literal|"minimum length must be greater than or equal to zero"
+argument_list|)
+throw|;
+block|}
+if|if
+condition|(
+name|min
+operator|>
+name|max
+condition|)
+block|{
+throw|throw
+operator|new
+name|IllegalArgumentException
+argument_list|(
+literal|"maximum length must not be greater than minimum length"
+argument_list|)
+throw|;
+block|}
 name|this
 operator|.
 name|min

@@ -82,6 +82,36 @@ name|int
 name|upper
 parameter_list|)
 block|{
+if|if
+condition|(
+name|lower
+operator|<
+literal|1
+condition|)
+block|{
+throw|throw
+operator|new
+name|IllegalArgumentException
+argument_list|(
+literal|"lower must be greater than zero"
+argument_list|)
+throw|;
+block|}
+if|if
+condition|(
+name|lower
+operator|>
+name|upper
+condition|)
+block|{
+throw|throw
+operator|new
+name|IllegalArgumentException
+argument_list|(
+literal|"lower must not be greater than upper"
+argument_list|)
+throw|;
+block|}
 name|this
 operator|.
 name|lower

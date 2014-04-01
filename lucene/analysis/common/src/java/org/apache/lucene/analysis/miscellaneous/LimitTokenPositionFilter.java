@@ -166,6 +166,21 @@ argument_list|(
 name|in
 argument_list|)
 expr_stmt|;
+if|if
+condition|(
+name|maxTokenPosition
+operator|<
+literal|1
+condition|)
+block|{
+throw|throw
+operator|new
+name|IllegalArgumentException
+argument_list|(
+literal|"maxTokenPosition must be greater than zero"
+argument_list|)
+throw|;
+block|}
 name|this
 operator|.
 name|maxTokenPosition
