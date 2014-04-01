@@ -320,6 +320,13 @@ name|files
 argument_list|()
 argument_list|)
 expr_stmt|;
+name|CodecUtil
+operator|.
+name|writeFooter
+argument_list|(
+name|output
+argument_list|)
+expr_stmt|;
 name|success
 operator|=
 literal|true

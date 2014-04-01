@@ -253,7 +253,6 @@ name|DocValuesConsumer
 block|{
 DECL|field|data
 DECL|field|meta
-specifier|final
 name|IndexOutput
 name|data
 decl_stmt|,
@@ -861,6 +860,29 @@ literal|1
 argument_list|)
 expr_stmt|;
 comment|// write EOF marker
+name|CodecUtil
+operator|.
+name|writeFooter
+argument_list|(
+name|meta
+argument_list|)
+expr_stmt|;
+comment|// write checksum
+block|}
+if|if
+condition|(
+name|data
+operator|!=
+literal|null
+condition|)
+block|{
+name|CodecUtil
+operator|.
+name|writeFooter
+argument_list|(
+name|data
+argument_list|)
+expr_stmt|;
 block|}
 name|success
 operator|=
@@ -896,6 +918,12 @@ name|meta
 argument_list|)
 expr_stmt|;
 block|}
+name|data
+operator|=
+name|meta
+operator|=
+literal|null
+expr_stmt|;
 block|}
 block|}
 annotation|@

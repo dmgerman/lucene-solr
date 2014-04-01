@@ -654,6 +654,23 @@ name|numBytes
 argument_list|)
 expr_stmt|;
 block|}
+annotation|@
+name|Override
+DECL|method|getChecksum
+specifier|public
+name|long
+name|getChecksum
+parameter_list|()
+throws|throws
+name|IOException
+block|{
+return|return
+name|delegate
+operator|.
+name|getChecksum
+argument_list|()
+return|;
+block|}
 block|}
 end_class
 

@@ -26,6 +26,18 @@ name|IOException
 import|;
 end_import
 
+begin_import
+import|import
+name|java
+operator|.
+name|util
+operator|.
+name|zip
+operator|.
+name|CRC32
+import|;
+end_import
+
 begin_comment
 comment|/** Base implementation class for buffered {@link IndexOutput}. */
 end_comment
@@ -78,6 +90,16 @@ init|=
 literal|0
 decl_stmt|;
 comment|// position in buffer
+DECL|field|crc
+specifier|private
+specifier|final
+name|CRC32
+name|crc
+init|=
+operator|new
+name|CRC32
+argument_list|()
+decl_stmt|;
 comment|/**    * Creates a new {@link BufferedIndexOutput} with the default buffer size    * ({@value #DEFAULT_BUFFER_SIZE} bytes see {@link #DEFAULT_BUFFER_SIZE})    */
 DECL|method|BufferedIndexOutput
 specifier|public
@@ -253,6 +275,17 @@ name|flush
 argument_list|()
 expr_stmt|;
 comment|// and write data at once
+name|crc
+operator|.
+name|update
+argument_list|(
+name|b
+argument_list|,
+name|offset
+argument_list|,
+name|length
+argument_list|)
+expr_stmt|;
 name|flushBuffer
 argument_list|(
 name|b
@@ -363,6 +396,17 @@ parameter_list|()
 throws|throws
 name|IOException
 block|{
+name|crc
+operator|.
+name|update
+argument_list|(
+name|buffer
+argument_list|,
+literal|0
+argument_list|,
+name|bufferPosition
+argument_list|)
+expr_stmt|;
 name|flushBuffer
 argument_list|(
 name|buffer
@@ -474,6 +518,26 @@ parameter_list|()
 block|{
 return|return
 name|bufferSize
+return|;
+block|}
+annotation|@
+name|Override
+DECL|method|getChecksum
+specifier|public
+name|long
+name|getChecksum
+parameter_list|()
+throws|throws
+name|IOException
+block|{
+name|flush
+argument_list|()
+expr_stmt|;
+return|return
+name|crc
+operator|.
+name|getValue
+argument_list|()
 return|;
 block|}
 block|}

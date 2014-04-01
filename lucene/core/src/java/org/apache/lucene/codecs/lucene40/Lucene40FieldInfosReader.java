@@ -709,49 +709,13 @@ argument_list|)
 argument_list|)
 expr_stmt|;
 block|}
-if|if
-condition|(
-name|input
+name|CodecUtil
 operator|.
-name|getFilePointer
-argument_list|()
-operator|!=
-name|input
-operator|.
-name|length
-argument_list|()
-condition|)
-block|{
-throw|throw
-operator|new
-name|CorruptIndexException
+name|checkEOF
 argument_list|(
-literal|"did not read all bytes from file \""
-operator|+
-name|fileName
-operator|+
-literal|"\": read "
-operator|+
 name|input
-operator|.
-name|getFilePointer
-argument_list|()
-operator|+
-literal|" vs size "
-operator|+
-name|input
-operator|.
-name|length
-argument_list|()
-operator|+
-literal|" (resource: "
-operator|+
-name|input
-operator|+
-literal|")"
 argument_list|)
-throw|;
-block|}
+expr_stmt|;
 name|FieldInfos
 name|fieldInfos
 init|=

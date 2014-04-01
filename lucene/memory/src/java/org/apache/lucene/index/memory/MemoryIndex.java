@@ -3327,6 +3327,18 @@ return|return
 literal|null
 return|;
 block|}
+annotation|@
+name|Override
+DECL|method|checkIntegrity
+specifier|public
+name|void
+name|checkIntegrity
+parameter_list|()
+throws|throws
+name|IOException
+block|{
+comment|// no-op
+block|}
 DECL|class|MemoryFields
 specifier|private
 class|class

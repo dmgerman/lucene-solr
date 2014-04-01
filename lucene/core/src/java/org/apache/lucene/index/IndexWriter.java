@@ -7794,6 +7794,11 @@ argument_list|,
 name|globalFieldNumberMap
 argument_list|,
 name|context
+argument_list|,
+name|config
+operator|.
+name|getCheckIntegrityAtMerge
+argument_list|()
 argument_list|)
 decl_stmt|;
 if|if
@@ -14115,6 +14120,11 @@ argument_list|,
 name|globalFieldNumberMap
 argument_list|,
 name|context
+argument_list|,
+name|config
+operator|.
+name|getCheckIntegrityAtMerge
+argument_list|()
 argument_list|)
 decl_stmt|;
 name|merge

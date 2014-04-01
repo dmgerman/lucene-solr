@@ -187,7 +187,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Class for accessing a compound stream.  * This class implements a directory, but is limited to only read operations.  * Directory methods that would normally modify data throw an exception.  *<p>  * All files belonging to a segment have the same name with varying extensions.  * The extensions correspond to the different file formats used by the {@link Codec}.   * When using the Compound File format these files are collapsed into a   * single<tt>.cfs</tt> file (except for the {@link LiveDocsFormat}, with a   * corresponding<tt>.cfe</tt> file indexing its sub-files.  *<p>  * Files:  *<ul>  *<li><tt>.cfs</tt>: An optional "virtual" file consisting of all the other   *    index files for systems that frequently run out of file handles.  *<li><tt>.cfe</tt>: The "virtual" compound file's entry table holding all   *    entries in the corresponding .cfs file.  *</ul>  *<p>Description:</p>  *<ul>  *<li>Compound (.cfs) --&gt; Header, FileData<sup>FileCount</sup></li>  *<li>Compound Entry Table (.cfe) --&gt; Header, FileCount,&lt;FileName,  *       DataOffset, DataLength&gt;<sup>FileCount</sup></li>  *<li>Header --&gt; {@link CodecUtil#writeHeader CodecHeader}</li>  *<li>FileCount --&gt; {@link DataOutput#writeVInt VInt}</li>  *<li>DataOffset,DataLength --&gt; {@link DataOutput#writeLong UInt64}</li>  *<li>FileName --&gt; {@link DataOutput#writeString String}</li>  *<li>FileData --&gt; raw file data</li>  *</ul>  *<p>Notes:</p>  *<ul>  *<li>FileCount indicates how many files are contained in this compound file.   *       The entry table that follows has that many entries.   *<li>Each directory entry contains a long pointer to the start of this file's data  *       section, the files length, and a String with that file's name.  *</ul>  *   * @lucene.experimental  */
+comment|/**  * Class for accessing a compound stream.  * This class implements a directory, but is limited to only read operations.  * Directory methods that would normally modify data throw an exception.  *<p>  * All files belonging to a segment have the same name with varying extensions.  * The extensions correspond to the different file formats used by the {@link Codec}.   * When using the Compound File format these files are collapsed into a   * single<tt>.cfs</tt> file (except for the {@link LiveDocsFormat}, with a   * corresponding<tt>.cfe</tt> file indexing its sub-files.  *<p>  * Files:  *<ul>  *<li><tt>.cfs</tt>: An optional "virtual" file consisting of all the other   *    index files for systems that frequently run out of file handles.  *<li><tt>.cfe</tt>: The "virtual" compound file's entry table holding all   *    entries in the corresponding .cfs file.  *</ul>  *<p>Description:</p>  *<ul>  *<li>Compound (.cfs) --&gt; Header, FileData<sup>FileCount</sup>, Footer</li>  *<li>Compound Entry Table (.cfe) --&gt; Header, FileCount,&lt;FileName,  *       DataOffset, DataLength&gt;<sup>FileCount</sup></li>  *<li>Header --&gt; {@link CodecUtil#writeHeader CodecHeader}</li>  *<li>FileCount --&gt; {@link DataOutput#writeVInt VInt}</li>  *<li>DataOffset,DataLength,Checksum --&gt; {@link DataOutput#writeLong UInt64}</li>  *<li>FileName --&gt; {@link DataOutput#writeString String}</li>  *<li>FileData --&gt; raw file data</li>  *<li>Footer --&gt; {@link CodecUtil#writeFooter CodecFooter}</li>  *</ul>  *<p>Notes:</p>  *<ul>  *<li>FileCount indicates how many files are contained in this compound file.   *       The entry table that follows has that many entries.   *<li>Each directory entry contains a long pointer to the start of this file's data  *       section, the files length, and a String with that file's name.  *</ul>  *   * @lucene.experimental  */
 end_comment
 
 begin_class
@@ -279,6 +279,11 @@ specifier|private
 specifier|final
 name|IndexInputSlicer
 name|handle
+decl_stmt|;
+DECL|field|version
+specifier|private
+name|int
+name|version
 decl_stmt|;
 comment|/**    * Create a new CompoundFileDirectory.    */
 DECL|method|CompoundFileDirectory
@@ -448,7 +453,6 @@ block|}
 comment|/** Helper method that reads CFS entries from an input stream */
 DECL|method|readEntries
 specifier|private
-specifier|static
 specifier|final
 name|Map
 argument_list|<
@@ -472,7 +476,7 @@ name|priorE
 init|=
 literal|null
 decl_stmt|;
-name|IndexInput
+name|ChecksumIndexInput
 name|entriesStream
 init|=
 literal|null
@@ -505,7 +509,7 @@ name|entriesStream
 operator|=
 name|dir
 operator|.
-name|openInput
+name|openChecksumInput
 argument_list|(
 name|entriesFileName
 argument_list|,
@@ -514,6 +518,8 @@ operator|.
 name|READONCE
 argument_list|)
 expr_stmt|;
+name|version
+operator|=
 name|CodecUtil
 operator|.
 name|checkHeader
@@ -530,7 +536,7 @@ name|VERSION_START
 argument_list|,
 name|CompoundFileWriter
 operator|.
-name|VERSION_START
+name|VERSION_CURRENT
 argument_list|)
 expr_stmt|;
 specifier|final
@@ -644,46 +650,30 @@ expr_stmt|;
 block|}
 if|if
 condition|(
-name|entriesStream
+name|version
+operator|>=
+name|CompoundFileWriter
 operator|.
-name|getFilePointer
-argument_list|()
-operator|!=
-name|entriesStream
-operator|.
-name|length
-argument_list|()
+name|VERSION_CHECKSUM
 condition|)
 block|{
-throw|throw
-operator|new
-name|CorruptIndexException
+name|CodecUtil
+operator|.
+name|checkFooter
 argument_list|(
-literal|"did not read all bytes from file \""
-operator|+
-name|entriesFileName
-operator|+
-literal|"\": read "
-operator|+
 name|entriesStream
-operator|.
-name|getFilePointer
-argument_list|()
-operator|+
-literal|" vs size "
-operator|+
-name|entriesStream
-operator|.
-name|length
-argument_list|()
-operator|+
-literal|" (resource: "
-operator|+
-name|entriesStream
-operator|+
-literal|")"
 argument_list|)
-throw|;
+expr_stmt|;
+block|}
+else|else
+block|{
+name|CodecUtil
+operator|.
+name|checkEOF
+argument_list|(
+name|entriesStream
+argument_list|)
+expr_stmt|;
 block|}
 return|return
 name|mapping

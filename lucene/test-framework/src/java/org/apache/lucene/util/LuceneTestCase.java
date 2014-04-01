@@ -3236,6 +3236,16 @@ name|nextBoolean
 argument_list|()
 argument_list|)
 expr_stmt|;
+name|c
+operator|.
+name|setCheckIntegrityAtMerge
+argument_list|(
+name|r
+operator|.
+name|nextBoolean
+argument_list|()
+argument_list|)
+expr_stmt|;
 return|return
 name|c
 return|;

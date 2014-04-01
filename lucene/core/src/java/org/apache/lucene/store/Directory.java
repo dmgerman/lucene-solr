@@ -194,6 +194,34 @@ parameter_list|)
 throws|throws
 name|IOException
 function_decl|;
+comment|/** Returns a stream reading an existing file, computing checksum as it reads */
+DECL|method|openChecksumInput
+specifier|public
+name|ChecksumIndexInput
+name|openChecksumInput
+parameter_list|(
+name|String
+name|name
+parameter_list|,
+name|IOContext
+name|context
+parameter_list|)
+throws|throws
+name|IOException
+block|{
+return|return
+operator|new
+name|BufferedChecksumIndexInput
+argument_list|(
+name|openInput
+argument_list|(
+name|name
+argument_list|,
+name|context
+argument_list|)
+argument_list|)
+return|;
+block|}
 comment|/** Construct a {@link Lock}.    * @param name the name of the lock file    */
 DECL|method|makeLock
 specifier|public

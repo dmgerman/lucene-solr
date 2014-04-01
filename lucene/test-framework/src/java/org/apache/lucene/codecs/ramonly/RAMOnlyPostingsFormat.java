@@ -584,6 +584,16 @@ return|return
 name|sizeInBytes
 return|;
 block|}
+annotation|@
+name|Override
+DECL|method|checkIntegrity
+specifier|public
+name|void
+name|checkIntegrity
+parameter_list|()
+throws|throws
+name|IOException
+block|{}
 block|}
 DECL|class|RAMField
 specifier|static

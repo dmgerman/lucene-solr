@@ -197,14 +197,14 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Test that a plain default puts codec headers in all files.  */
+comment|/**  * Test that a plain default puts CRC32 footers in all files.  */
 end_comment
 
 begin_class
-DECL|class|TestAllFilesHaveCodecHeader
+DECL|class|TestAllFilesHaveChecksumFooter
 specifier|public
 class|class
-name|TestAllFilesHaveCodecHeader
+name|TestAllFilesHaveChecksumFooter
 extends|extends
 name|LuceneTestCase
 block|{
@@ -398,10 +398,38 @@ name|commit
 argument_list|()
 expr_stmt|;
 block|}
-comment|// TODO: we should make a new format with a clean header...
-comment|// if (random().nextInt(20) == 0) {
-comment|//  riw.deleteDocuments(new Term("id", Integer.toString(i)));
-comment|// }
+if|if
+condition|(
+name|random
+argument_list|()
+operator|.
+name|nextInt
+argument_list|(
+literal|20
+argument_list|)
+operator|==
+literal|0
+condition|)
+block|{
+name|riw
+operator|.
+name|deleteDocuments
+argument_list|(
+operator|new
+name|Term
+argument_list|(
+literal|"id"
+argument_list|,
+name|Integer
+operator|.
+name|toString
+argument_list|(
+name|i
+argument_list|)
+argument_list|)
+argument_list|)
+expr_stmt|;
+block|}
 block|}
 name|riw
 operator|.
@@ -441,21 +469,6 @@ name|listAll
 argument_list|()
 control|)
 block|{
-if|if
-condition|(
-name|file
-operator|.
-name|equals
-argument_list|(
-name|IndexFileNames
-operator|.
-name|SEGMENTS_GEN
-argument_list|)
-condition|)
-block|{
-continue|continue;
-comment|// segments.gen has no header, thats ok
-block|}
 if|if
 condition|(
 name|file
@@ -526,27 +539,11 @@ argument_list|()
 argument_list|)
 argument_list|)
 expr_stmt|;
-name|int
-name|val
-init|=
-name|in
-operator|.
-name|readInt
-argument_list|()
-decl_stmt|;
-name|assertEquals
-argument_list|(
-name|file
-operator|+
-literal|" has no codec header, instead found: "
-operator|+
-name|val
-argument_list|,
 name|CodecUtil
 operator|.
-name|CODEC_MAGIC
-argument_list|,
-name|val
+name|checksumEntireFile
+argument_list|(
+name|in
 argument_list|)
 expr_stmt|;
 name|success

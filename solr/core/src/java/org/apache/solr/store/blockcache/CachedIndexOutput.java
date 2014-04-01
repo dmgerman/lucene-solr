@@ -380,6 +380,26 @@ name|len
 expr_stmt|;
 block|}
 block|}
+annotation|@
+name|Override
+DECL|method|getChecksum
+specifier|public
+name|long
+name|getChecksum
+parameter_list|()
+throws|throws
+name|IOException
+block|{
+name|flush
+argument_list|()
+expr_stmt|;
+return|return
+name|dest
+operator|.
+name|getChecksum
+argument_list|()
+return|;
+block|}
 block|}
 end_class
 
