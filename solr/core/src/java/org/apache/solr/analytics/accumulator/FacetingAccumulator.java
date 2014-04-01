@@ -142,6 +142,16 @@ end_import
 
 begin_import
 import|import
+name|java
+operator|.
+name|util
+operator|.
+name|TreeMap
+import|;
+end_import
+
+begin_import
+import|import
 name|org
 operator|.
 name|apache
@@ -888,14 +898,9 @@ operator|.
 name|fieldFacetExpressions
 operator|=
 operator|new
-name|LinkedHashMap
+name|TreeMap
 argument_list|<>
-argument_list|(
-name|fieldFreqs
-operator|.
-name|size
 argument_list|()
-argument_list|)
 expr_stmt|;
 name|this
 operator|.
@@ -1063,7 +1068,7 @@ name|getName
 argument_list|()
 argument_list|,
 operator|new
-name|LinkedHashMap
+name|TreeMap
 argument_list|<
 name|String
 argument_list|,
@@ -1083,7 +1088,7 @@ name|getName
 argument_list|()
 argument_list|,
 operator|new
-name|LinkedHashMap
+name|TreeMap
 argument_list|<
 name|String
 argument_list|,

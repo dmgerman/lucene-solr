@@ -64,6 +64,16 @@ name|java
 operator|.
 name|util
 operator|.
+name|LinkedHashMap
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
+name|util
+operator|.
 name|List
 import|;
 end_import
@@ -85,6 +95,16 @@ operator|.
 name|util
 operator|.
 name|Set
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
+name|util
+operator|.
+name|TreeMap
 import|;
 end_import
 
@@ -221,22 +241,6 @@ operator|.
 name|expression
 operator|.
 name|ExpressionFactory
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|solr
-operator|.
-name|analytics
-operator|.
-name|request
-operator|.
-name|AnalyticsRequest
 import|;
 end_import
 
@@ -788,6 +792,26 @@ end_import
 
 begin_import
 import|import
+name|org
+operator|.
+name|slf4j
+operator|.
+name|Logger
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|slf4j
+operator|.
+name|LoggerFactory
+import|;
+end_import
+
+begin_import
+import|import
 name|com
 operator|.
 name|google
@@ -806,6 +830,22 @@ specifier|public
 class|class
 name|StatsCollectorSupplierFactory
 block|{
+DECL|field|log
+specifier|private
+specifier|static
+specifier|final
+name|Logger
+name|log
+init|=
+name|LoggerFactory
+operator|.
+name|getLogger
+argument_list|(
+name|StatsCollectorSupplierFactory
+operator|.
+name|class
+argument_list|)
+decl_stmt|;
 comment|// FunctionTypes
 DECL|field|NUMBER_TYPE
 specifier|final
@@ -847,7 +887,7 @@ name|FILTER_TYPE
 init|=
 literal|4
 decl_stmt|;
-comment|/**    * Builds a Supplier that will generate identical arrays of new StatsCollectors.    *     * @param schema The Schema being used.    * @param request The AnalyticsRequest to generate a StatsCollector[] from.    * @return A Supplier that will return an array of new StatsCollector.    */
+comment|/**    * Builds a Supplier that will generate identical arrays of new StatsCollectors.    *     * @param schema The Schema being used.    * @param exRequests The expression requests to generate a StatsCollector[] from.    * @return A Supplier that will return an array of new StatsCollector.    */
 annotation|@
 name|SuppressWarnings
 argument_list|(
@@ -866,8 +906,11 @@ parameter_list|(
 name|IndexSchema
 name|schema
 parameter_list|,
-name|AnalyticsRequest
-name|request
+name|List
+argument_list|<
+name|ExpressionRequest
+argument_list|>
+name|exRequests
 parameter_list|)
 block|{
 specifier|final
@@ -883,7 +926,7 @@ argument_list|>
 name|collectorStats
 init|=
 operator|new
-name|HashMap
+name|TreeMap
 argument_list|<>
 argument_list|()
 decl_stmt|;
@@ -900,7 +943,7 @@ argument_list|>
 name|collectorPercs
 init|=
 operator|new
-name|HashMap
+name|TreeMap
 argument_list|<>
 argument_list|()
 decl_stmt|;
@@ -914,7 +957,7 @@ argument_list|>
 name|collectorSources
 init|=
 operator|new
-name|HashMap
+name|TreeMap
 argument_list|<>
 argument_list|()
 decl_stmt|;
@@ -925,10 +968,7 @@ control|(
 name|ExpressionRequest
 name|expRequest
 range|:
-name|request
-operator|.
-name|getExpressions
-argument_list|()
+name|exRequests
 control|)
 block|{
 name|String
@@ -1360,6 +1400,35 @@ name|stats
 argument_list|)
 expr_stmt|;
 block|}
+if|if
+condition|(
+name|AnalyticsParams
+operator|.
+name|STAT_PERCENTILE
+operator|.
+name|equals
+argument_list|(
+name|stat
+argument_list|)
+condition|)
+block|{
+name|stats
+operator|.
+name|add
+argument_list|(
+name|stat
+operator|+
+literal|"_"
+operator|+
+name|arguments
+index|[
+literal|0
+index|]
+argument_list|)
+expr_stmt|;
+block|}
+else|else
+block|{
 name|stats
 operator|.
 name|add
@@ -1367,6 +1436,7 @@ argument_list|(
 name|stat
 argument_list|)
 expr_stmt|;
+block|}
 block|}
 block|}
 name|String
@@ -1523,10 +1593,7 @@ control|(
 name|ExpressionRequest
 name|er
 range|:
-name|request
-operator|.
-name|getExpressions
-argument_list|()
+name|exRequests
 control|)
 block|{
 name|er
@@ -1587,6 +1654,32 @@ block|}
 block|}
 return|;
 block|}
+name|log
+operator|.
+name|info
+argument_list|(
+literal|"Stats objects: "
+operator|+
+name|collectorStats
+operator|.
+name|size
+argument_list|()
+operator|+
+literal|" sr="
+operator|+
+name|collectorSources
+operator|.
+name|size
+argument_list|()
+operator|+
+literal|" pr="
+operator|+
+name|collectorPercs
+operator|.
+name|size
+argument_list|()
+argument_list|)
+expr_stmt|;
 comment|// All information is stored in final arrays so that nothing
 comment|// has to be computed when the Supplier's get() method is called.
 specifier|final
