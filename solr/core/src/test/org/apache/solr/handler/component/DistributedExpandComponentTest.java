@@ -843,6 +843,42 @@ argument_list|,
 literal|"*,score"
 argument_list|)
 expr_stmt|;
+comment|//Test page 2
+name|query
+argument_list|(
+literal|"q"
+argument_list|,
+literal|"*:*"
+argument_list|,
+literal|"start"
+argument_list|,
+literal|"1"
+argument_list|,
+literal|"rows"
+argument_list|,
+literal|"1"
+argument_list|,
+literal|"fq"
+argument_list|,
+literal|"{!collapse field=group_s}"
+argument_list|,
+literal|"defType"
+argument_list|,
+literal|"edismax"
+argument_list|,
+literal|"bf"
+argument_list|,
+literal|"field(test_ti)"
+argument_list|,
+literal|"expand"
+argument_list|,
+literal|"true"
+argument_list|,
+literal|"fl"
+argument_list|,
+literal|"*,score"
+argument_list|)
+expr_stmt|;
 comment|//First basic test case.
 name|ModifiableSolrParams
 name|params
