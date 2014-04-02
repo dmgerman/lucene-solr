@@ -545,6 +545,8 @@ operator|.
 name|warn
 argument_list|(
 literal|"cancelElection did not find election node to remove"
+argument_list|,
+name|e
 argument_list|)
 expr_stmt|;
 block|}
