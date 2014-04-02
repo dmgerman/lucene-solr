@@ -819,7 +819,7 @@ block|}
 block|}
 comment|/**    * Load synonyms with the given {@link SynonymMap.Parser} class.    */
 DECL|method|loadSynonyms
-specifier|private
+specifier|protected
 name|SynonymMap
 name|loadSynonyms
 parameter_list|(
