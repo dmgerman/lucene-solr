@@ -112,9 +112,9 @@ name|lucene
 operator|.
 name|codecs
 operator|.
-name|mocksep
+name|memory
 operator|.
-name|MockSepPostingsFormat
+name|MemoryPostingsFormat
 import|;
 end_import
 
@@ -387,20 +387,6 @@ operator|.
 name|util
 operator|.
 name|LuceneTestCase
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|util
-operator|.
-name|TestUtil
 import|;
 end_import
 
@@ -1458,13 +1444,13 @@ operator|new
 name|SimpleTextPostingsFormat
 argument_list|()
 decl_stmt|;
-DECL|field|mockSep
+DECL|field|memory
 specifier|final
 name|PostingsFormat
-name|mockSep
+name|memory
 init|=
 operator|new
-name|MockSepPostingsFormat
+name|MemoryPostingsFormat
 argument_list|()
 decl_stmt|;
 annotation|@
@@ -1504,7 +1490,7 @@ argument_list|)
 condition|)
 block|{
 return|return
-name|mockSep
+name|memory
 return|;
 block|}
 else|else

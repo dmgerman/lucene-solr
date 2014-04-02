@@ -1412,36 +1412,6 @@ argument_list|)
 expr_stmt|;
 block|}
 empty_stmt|;
-DECL|field|doesntSupportOffsets
-specifier|protected
-specifier|static
-specifier|final
-name|Set
-argument_list|<
-name|String
-argument_list|>
-name|doesntSupportOffsets
-init|=
-operator|new
-name|HashSet
-argument_list|<>
-argument_list|(
-name|Arrays
-operator|.
-name|asList
-argument_list|(
-literal|"Lucene3x"
-argument_list|,
-literal|"MockFixedIntBlock"
-argument_list|,
-literal|"MockVariableIntBlock"
-argument_list|,
-literal|"MockSep"
-argument_list|,
-literal|"MockRandom"
-argument_list|)
-argument_list|)
-decl_stmt|;
 comment|// -----------------------------------------------------------------
 comment|// Fields initialized in class or instance rules.
 comment|// -----------------------------------------------------------------
