@@ -975,11 +975,11 @@ name|verbose
 condition|?
 name|Project
 operator|.
-name|MSG_INFO
+name|MSG_VERBOSE
 else|:
 name|Project
 operator|.
-name|MSG_VERBOSE
+name|MSG_INFO
 operator|)
 expr_stmt|;
 block|}
@@ -3863,7 +3863,7 @@ name|artifact
 operator|.
 name|replace
 argument_list|(
-literal|"analysis-"
+literal|"(?<!solr-)analysis-"
 argument_list|,
 literal|"analyzers-"
 argument_list|)
