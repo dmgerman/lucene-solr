@@ -1698,6 +1698,20 @@ block|}
 block|}
 finally|finally
 block|{
+name|log
+operator|.
+name|info
+argument_list|(
+literal|"Overseer Loop exiting : {}"
+argument_list|,
+name|LeaderElector
+operator|.
+name|getNodeName
+argument_list|(
+name|myId
+argument_list|)
+argument_list|)
+expr_stmt|;
 operator|new
 name|Thread
 argument_list|(
@@ -2382,7 +2396,14 @@ name|log
 operator|.
 name|info
 argument_list|(
-literal|"################Quit command receive"
+literal|"Quit command received {}"
+argument_list|,
+name|LeaderElector
+operator|.
+name|getNodeName
+argument_list|(
+name|myId
+argument_list|)
 argument_list|)
 expr_stmt|;
 name|overseerCollectionProcessor
