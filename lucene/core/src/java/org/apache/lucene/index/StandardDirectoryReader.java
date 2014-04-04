@@ -96,6 +96,20 @@ name|lucene
 operator|.
 name|store
 operator|.
+name|AlreadyClosedException
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|store
+operator|.
 name|Directory
 import|;
 end_import
@@ -1934,6 +1948,8 @@ operator|!=
 literal|null
 condition|)
 block|{
+try|try
+block|{
 name|writer
 operator|.
 name|decRefDeleter
@@ -1941,13 +1957,19 @@ argument_list|(
 name|segmentInfos
 argument_list|)
 expr_stmt|;
-comment|// Since we just closed, writer may now be able to
-comment|// delete unused files:
-name|writer
-operator|.
-name|deletePendingFiles
-argument_list|()
-expr_stmt|;
+block|}
+catch|catch
+parameter_list|(
+name|AlreadyClosedException
+name|ex
+parameter_list|)
+block|{
+comment|// This is OK, it just means our original writer was
+comment|// closed before we were, and this may leave some
+comment|// un-referenced files in the index, which is
+comment|// harmless.  The next time IW is opened on the
+comment|// index, it will delete them.
+block|}
 block|}
 comment|// throw the first exception
 name|IOUtils

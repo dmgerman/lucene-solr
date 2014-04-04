@@ -3161,12 +3161,11 @@ return|return
 name|size
 return|;
 block|}
+comment|// NOTE: This is off by default; see LUCENE-5574
 DECL|field|assertNoUnreferencedFilesOnClose
 specifier|private
 name|boolean
 name|assertNoUnreferencedFilesOnClose
-init|=
-literal|true
 decl_stmt|;
 DECL|method|setAssertNoUnrefencedFilesOnClose
 specifier|public
