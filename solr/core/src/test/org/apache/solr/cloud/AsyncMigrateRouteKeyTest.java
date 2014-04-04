@@ -261,13 +261,35 @@ argument_list|,
 name|asyncId
 argument_list|)
 expr_stmt|;
+comment|// This task takes long enough to run. Also check for the current state of the task to be running.
 name|message
 operator|=
 name|sendStatusRequestWithRetry
 argument_list|(
 name|params
 argument_list|,
-literal|10
+literal|2
+argument_list|)
+expr_stmt|;
+name|assertEquals
+argument_list|(
+literal|"found "
+operator|+
+name|asyncId
+operator|+
+literal|" in submitted tasks"
+argument_list|,
+name|message
+argument_list|)
+expr_stmt|;
+comment|// Now wait until the task actually completes successfully/fails.
+name|message
+operator|=
+name|sendStatusRequestWithRetry
+argument_list|(
+name|params
+argument_list|,
+literal|20
 argument_list|)
 expr_stmt|;
 name|assertEquals

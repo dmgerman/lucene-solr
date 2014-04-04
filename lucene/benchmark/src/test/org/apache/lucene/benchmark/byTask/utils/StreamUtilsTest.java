@@ -112,6 +112,18 @@ end_import
 
 begin_import
 import|import
+name|java
+operator|.
+name|nio
+operator|.
+name|charset
+operator|.
+name|StandardCharsets
+import|;
+end_import
+
+begin_import
+import|import
 name|org
 operator|.
 name|apache
@@ -137,20 +149,6 @@ operator|.
 name|benchmark
 operator|.
 name|BenchmarkTestCase
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|util
-operator|.
-name|IOUtils
 import|;
 end_import
 
@@ -501,9 +499,9 @@ argument_list|(
 name|f
 argument_list|)
 argument_list|,
-name|IOUtils
+name|StandardCharsets
 operator|.
-name|CHARSET_UTF_8
+name|UTF_8
 argument_list|)
 argument_list|)
 decl_stmt|;
@@ -699,9 +697,9 @@ name|OutputStreamWriter
 argument_list|(
 name|os
 argument_list|,
-name|IOUtils
+name|StandardCharsets
 operator|.
-name|CHARSET_UTF_8
+name|UTF_8
 argument_list|)
 argument_list|)
 decl_stmt|;
@@ -752,9 +750,9 @@ name|InputStreamReader
 argument_list|(
 name|ir
 argument_list|,
-name|IOUtils
+name|StandardCharsets
 operator|.
-name|CHARSET_UTF_8
+name|UTF_8
 argument_list|)
 decl_stmt|;
 name|BufferedReader
@@ -824,7 +822,7 @@ argument_list|)
 expr_stmt|;
 name|TestUtil
 operator|.
-name|rmDir
+name|rm
 argument_list|(
 name|testDir
 argument_list|)
@@ -852,7 +850,7 @@ name|Exception
 block|{
 name|TestUtil
 operator|.
-name|rmDir
+name|rm
 argument_list|(
 name|testDir
 argument_list|)

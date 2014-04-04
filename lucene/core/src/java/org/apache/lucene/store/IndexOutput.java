@@ -81,6 +81,16 @@ name|long
 name|getFilePointer
 parameter_list|()
 function_decl|;
+comment|/** Returns the current checksum of bytes written so far */
+DECL|method|getChecksum
+specifier|public
+specifier|abstract
+name|long
+name|getChecksum
+parameter_list|()
+throws|throws
+name|IOException
+function_decl|;
 comment|/** The number of bytes in the file. */
 DECL|method|length
 specifier|public

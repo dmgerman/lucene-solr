@@ -150,6 +150,18 @@ name|Test
 import|;
 end_import
 
+begin_import
+import|import
+name|java
+operator|.
+name|nio
+operator|.
+name|charset
+operator|.
+name|StandardCharsets
+import|;
+end_import
+
 begin_class
 DECL|class|TestCoreDiscovery
 specifier|public
@@ -256,10 +268,7 @@ name|xmlStr
 argument_list|,
 name|IOUtils
 operator|.
-name|CHARSET_UTF_8
-operator|.
-name|toString
-argument_list|()
+name|UTF_8
 argument_list|)
 expr_stmt|;
 block|}
@@ -475,9 +484,9 @@ argument_list|(
 name|propFile
 argument_list|)
 argument_list|,
-name|IOUtils
+name|StandardCharsets
 operator|.
-name|CHARSET_UTF_8
+name|UTF_8
 argument_list|)
 decl_stmt|;
 try|try

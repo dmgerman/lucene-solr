@@ -64,15 +64,13 @@ end_import
 
 begin_import
 import|import
-name|org
+name|java
 operator|.
-name|apache
+name|nio
 operator|.
-name|lucene
+name|charset
 operator|.
-name|util
-operator|.
-name|BytesRef
+name|StandardCharsets
 import|;
 end_import
 
@@ -86,7 +84,7 @@ name|lucene
 operator|.
 name|util
 operator|.
-name|IOUtils
+name|BytesRef
 import|;
 end_import
 
@@ -223,9 +221,9 @@ comment|// the term might not be text, but usually is. so we make a best effort
 name|CharsetDecoder
 name|decoder
 init|=
-name|IOUtils
+name|StandardCharsets
 operator|.
-name|CHARSET_UTF_8
+name|UTF_8
 operator|.
 name|newDecoder
 argument_list|()

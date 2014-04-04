@@ -3313,6 +3313,22 @@ literal|0
 operator|)
 return|;
 block|}
+annotation|@
+name|Override
+DECL|method|checkIntegrity
+specifier|public
+name|void
+name|checkIntegrity
+parameter_list|()
+throws|throws
+name|IOException
+block|{
+name|wrappedPostingsReader
+operator|.
+name|checkIntegrity
+argument_list|()
+expr_stmt|;
+block|}
 block|}
 end_class
 

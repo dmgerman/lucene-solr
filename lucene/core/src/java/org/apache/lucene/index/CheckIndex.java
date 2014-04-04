@@ -2070,6 +2070,24 @@ name|openReaderPassed
 operator|=
 literal|true
 expr_stmt|;
+if|if
+condition|(
+name|infoStream
+operator|!=
+literal|null
+condition|)
+name|infoStream
+operator|.
+name|print
+argument_list|(
+literal|"    test: check integrity........."
+argument_list|)
+expr_stmt|;
+name|reader
+operator|.
+name|checkIntegrity
+argument_list|()
+expr_stmt|;
 specifier|final
 name|int
 name|numDocs

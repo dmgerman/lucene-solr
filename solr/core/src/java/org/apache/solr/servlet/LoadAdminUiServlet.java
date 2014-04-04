@@ -58,13 +58,13 @@ end_import
 
 begin_import
 import|import
-name|javax
+name|java
 operator|.
-name|servlet
+name|nio
 operator|.
-name|http
+name|charset
 operator|.
-name|HttpServlet
+name|StandardCharsets
 import|;
 end_import
 
@@ -173,7 +173,7 @@ specifier|final
 class|class
 name|LoadAdminUiServlet
 extends|extends
-name|HttpServlet
+name|BaseSolrServlet
 block|{
 annotation|@
 name|Override
@@ -254,7 +254,9 @@ operator|.
 name|getOutputStream
 argument_list|()
 argument_list|,
-literal|"UTF-8"
+name|StandardCharsets
+operator|.
+name|UTF_8
 argument_list|)
 decl_stmt|;
 name|String

@@ -932,6 +932,24 @@ return|;
 block|}
 annotation|@
 name|Override
+DECL|method|getChecksum
+specifier|public
+name|long
+name|getChecksum
+parameter_list|()
+throws|throws
+name|IOException
+block|{
+throw|throw
+operator|new
+name|UnsupportedOperationException
+argument_list|(
+literal|"this directory currently does not work at all!"
+argument_list|)
+throw|;
+block|}
+annotation|@
+name|Override
 DECL|method|close
 specifier|public
 name|void

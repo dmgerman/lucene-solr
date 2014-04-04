@@ -376,6 +376,18 @@ name|Charset
 import|;
 end_import
 
+begin_import
+import|import
+name|java
+operator|.
+name|nio
+operator|.
+name|charset
+operator|.
+name|StandardCharsets
+import|;
+end_import
+
 begin_comment
 comment|/**  * Base class of all Solr Restlet server resource classes.  */
 end_comment
@@ -396,12 +408,9 @@ specifier|final
 name|Charset
 name|UTF8
 init|=
-name|Charset
+name|StandardCharsets
 operator|.
-name|forName
-argument_list|(
-literal|"UTF-8"
-argument_list|)
+name|UTF_8
 decl_stmt|;
 DECL|field|SHOW_DEFAULTS
 specifier|protected
@@ -1003,13 +1012,6 @@ operator|(
 name|charset
 operator|==
 literal|null
-operator|||
-name|charset
-operator|.
-name|equalsIgnoreCase
-argument_list|(
-literal|"UTF-8"
-argument_list|)
 operator|)
 condition|?
 operator|new

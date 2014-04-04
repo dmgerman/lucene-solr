@@ -20,36 +20,6 @@ end_comment
 
 begin_import
 import|import
-name|java
-operator|.
-name|io
-operator|.
-name|IOException
-import|;
-end_import
-
-begin_import
-import|import
-name|java
-operator|.
-name|io
-operator|.
-name|Reader
-import|;
-end_import
-
-begin_import
-import|import
-name|java
-operator|.
-name|io
-operator|.
-name|StringReader
-import|;
-end_import
-
-begin_import
-import|import
 name|org
 operator|.
 name|apache
@@ -150,6 +120,36 @@ name|CharsRef
 import|;
 end_import
 
+begin_import
+import|import
+name|org
+operator|.
+name|junit
+operator|.
+name|Test
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
+name|io
+operator|.
+name|IOException
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
+name|io
+operator|.
+name|StringReader
+import|;
+end_import
+
 begin_class
 DECL|class|TestLimitTokenPositionFilter
 specifier|public
@@ -240,7 +240,7 @@ return|;
 block|}
 block|}
 decl_stmt|;
-comment|// dont use assertAnalyzesTo here, as the end offset is not the end of the string (unless consumeAll is true, in which case its correct)!
+comment|// don't use assertAnalyzesTo here, as the end offset is not the end of the string (unless consumeAll is true, in which case its correct)!
 name|assertTokenStreamContents
 argument_list|(
 name|a
@@ -431,6 +431,22 @@ parameter_list|()
 throws|throws
 name|IOException
 block|{
+for|for
+control|(
+specifier|final
+name|boolean
+name|consumeAll
+range|:
+operator|new
+name|boolean
+index|[]
+block|{
+literal|true
+block|,
+literal|false
+block|}
+control|)
+block|{
 name|MockTokenizer
 name|tokenizer
 init|=
@@ -439,14 +455,14 @@ argument_list|(
 literal|"one two three four five"
 argument_list|)
 decl_stmt|;
+comment|// if we are consuming all tokens, we can use the checks, otherwise we can't
 name|tokenizer
 operator|.
 name|setEnableChecks
 argument_list|(
-literal|false
+name|consumeAll
 argument_list|)
 expr_stmt|;
-comment|// LimitTokenPositionFilter doesn't consume the entire stream that it wraps
 name|SynonymMap
 operator|.
 name|Builder
@@ -623,9 +639,10 @@ argument_list|(
 name|stream
 argument_list|,
 literal|3
+argument_list|,
+name|consumeAll
 argument_list|)
 expr_stmt|;
-comment|// consumeAllTokens defaults to false
 comment|// "only", the 4th word of multi-word synonym "and indubitably single only" is not emitted, since its position is greater than 3.
 name|assertTokenStreamContents
 argument_list|(
@@ -684,6 +701,36 @@ literal|0
 block|,
 literal|0
 block|}
+argument_list|)
+expr_stmt|;
+block|}
+block|}
+annotation|@
+name|Test
+argument_list|(
+name|expected
+operator|=
+name|IllegalArgumentException
+operator|.
+name|class
+argument_list|)
+DECL|method|testIllegalArguments
+specifier|public
+name|void
+name|testIllegalArguments
+parameter_list|()
+throws|throws
+name|Exception
+block|{
+operator|new
+name|LimitTokenPositionFilter
+argument_list|(
+name|whitespaceMockTokenizer
+argument_list|(
+literal|"one two three four five"
+argument_list|)
+argument_list|,
+literal|0
 argument_list|)
 expr_stmt|;
 block|}

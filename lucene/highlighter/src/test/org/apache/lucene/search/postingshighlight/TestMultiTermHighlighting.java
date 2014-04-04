@@ -510,40 +510,11 @@ name|LuceneTestCase
 import|;
 end_import
 
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|util
-operator|.
-name|LuceneTestCase
-operator|.
-name|SuppressCodecs
-import|;
-end_import
-
 begin_comment
 comment|/**   * Some tests that override {@link PostingsHighlighter#getIndexAnalyzer} to  * highlight wilcard, fuzzy, etc queries.  */
 end_comment
 
 begin_class
-annotation|@
-name|SuppressCodecs
-argument_list|(
-block|{
-literal|"MockFixedIntBlock"
-block|,
-literal|"MockVariableIntBlock"
-block|,
-literal|"MockSep"
-block|,
-literal|"MockRandom"
-block|}
-argument_list|)
 DECL|class|TestMultiTermHighlighting
 specifier|public
 class|class

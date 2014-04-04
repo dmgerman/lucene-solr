@@ -72,6 +72,18 @@ begin_import
 import|import
 name|java
 operator|.
+name|nio
+operator|.
+name|charset
+operator|.
+name|StandardCharsets
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
 name|util
 operator|.
 name|Random
@@ -246,20 +258,6 @@ name|lucene
 operator|.
 name|util
 operator|.
-name|IOUtils
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|util
-operator|.
 name|TestUtil
 import|;
 end_import
@@ -350,9 +348,9 @@ name|InputStreamReader
 argument_list|(
 name|is
 argument_list|,
-name|IOUtils
+name|StandardCharsets
 operator|.
-name|CHARSET_UTF_8
+name|UTF_8
 argument_list|)
 decl_stmt|;
 return|return
@@ -3124,7 +3122,7 @@ literal|100
 argument_list|)
 expr_stmt|;
 block|}
-comment|/*   public void testWikipedia() throws Exception {     final FileInputStream fis = new FileInputStream("/q/lucene/jawiki-20120220-pages-articles.xml");     final Reader r = new BufferedReader(new InputStreamReader(fis, "UTF-8"));      final long startTimeNS = System.nanoTime();     boolean done = false;     long compoundCount = 0;     long nonCompoundCount = 0;     long netOffset = 0;     while (!done) {       final TokenStream ts = analyzer.tokenStream("ignored", r);       ts.reset();       final PositionIncrementAttribute posIncAtt = ts.addAttribute(PositionIncrementAttribute.class);       final OffsetAttribute offsetAtt = ts.addAttribute(OffsetAttribute.class);       int count = 0;       while (true) {         if (!ts.incrementToken()) {           done = true;           break;         }         count++;         if (posIncAtt.getPositionIncrement() == 0) {           compoundCount++;         } else {           nonCompoundCount++;           if (nonCompoundCount % 1000000 == 0) {             System.out.println(String.format("%.2f msec [pos=%d, %d, %d]",                                              (System.nanoTime()-startTimeNS)/1000000.0,                                              netOffset + offsetAtt.startOffset(),                                              nonCompoundCount,                                              compoundCount));           }         }         if (count == 100000000) {           System.out.println("  again...");           break;         }       }       ts.end();       netOffset += offsetAtt.endOffset();     }     System.out.println("compoundCount=" + compoundCount + " nonCompoundCount=" + nonCompoundCount);     r.close();   }   */
+comment|/*   public void testWikipedia() throws Exception {     final FileInputStream fis = new FileInputStream("/q/lucene/jawiki-20120220-pages-articles.xml");     final Reader r = new BufferedReader(new InputStreamReader(fis, StandardCharsets.UTF_8));      final long startTimeNS = System.nanoTime();     boolean done = false;     long compoundCount = 0;     long nonCompoundCount = 0;     long netOffset = 0;     while (!done) {       final TokenStream ts = analyzer.tokenStream("ignored", r);       ts.reset();       final PositionIncrementAttribute posIncAtt = ts.addAttribute(PositionIncrementAttribute.class);       final OffsetAttribute offsetAtt = ts.addAttribute(OffsetAttribute.class);       int count = 0;       while (true) {         if (!ts.incrementToken()) {           done = true;           break;         }         count++;         if (posIncAtt.getPositionIncrement() == 0) {           compoundCount++;         } else {           nonCompoundCount++;           if (nonCompoundCount % 1000000 == 0) {             System.out.println(String.format("%.2f msec [pos=%d, %d, %d]",                                              (System.nanoTime()-startTimeNS)/1000000.0,                                              netOffset + offsetAtt.startOffset(),                                              nonCompoundCount,                                              compoundCount));           }         }         if (count == 100000000) {           System.out.println("  again...");           break;         }       }       ts.end();       netOffset += offsetAtt.endOffset();     }     System.out.println("compoundCount=" + compoundCount + " nonCompoundCount=" + nonCompoundCount);     r.close();   }   */
 DECL|method|doTestBocchan
 specifier|private
 name|void
@@ -3155,7 +3153,9 @@ argument_list|(
 literal|"bocchan.utf-8"
 argument_list|)
 argument_list|,
-literal|"UTF-8"
+name|StandardCharsets
+operator|.
+name|UTF_8
 argument_list|)
 argument_list|)
 decl_stmt|;

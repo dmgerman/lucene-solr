@@ -130,6 +130,16 @@ name|long
 name|ramBytesUsed
 parameter_list|()
 function_decl|;
+comment|/**     * Checks consistency of this reader.    *<p>    * Note that this may be costly in terms of I/O, e.g.     * may involve computing a checksum value against large data files.    * @lucene.internal    */
+DECL|method|checkIntegrity
+specifier|public
+specifier|abstract
+name|void
+name|checkIntegrity
+parameter_list|()
+throws|throws
+name|IOException
+function_decl|;
 comment|/** Create a clone that one caller at a time may use to    *  read term vectors. */
 annotation|@
 name|Override

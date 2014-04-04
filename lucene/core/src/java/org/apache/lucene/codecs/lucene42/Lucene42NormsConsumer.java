@@ -224,6 +224,24 @@ name|PackedInts
 import|;
 end_import
 
+begin_import
+import|import static
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|codecs
+operator|.
+name|lucene42
+operator|.
+name|Lucene42DocValuesProducer
+operator|.
+name|VERSION_CURRENT
+import|;
+end_import
+
 begin_comment
 comment|/**  * Writer for {@link Lucene42NormsFormat}  */
 end_comment
@@ -235,30 +253,6 @@ name|Lucene42NormsConsumer
 extends|extends
 name|DocValuesConsumer
 block|{
-DECL|field|VERSION_START
-specifier|static
-specifier|final
-name|int
-name|VERSION_START
-init|=
-literal|0
-decl_stmt|;
-DECL|field|VERSION_GCD_COMPRESSION
-specifier|static
-specifier|final
-name|int
-name|VERSION_GCD_COMPRESSION
-init|=
-literal|1
-decl_stmt|;
-DECL|field|VERSION_CURRENT
-specifier|static
-specifier|final
-name|int
-name|VERSION_CURRENT
-init|=
-name|VERSION_GCD_COMPRESSION
-decl_stmt|;
 DECL|field|NUMBER
 specifier|static
 specifier|final
@@ -309,7 +303,6 @@ literal|3
 decl_stmt|;
 DECL|field|data
 DECL|field|meta
-specifier|final
 name|IndexOutput
 name|data
 decl_stmt|,
@@ -1209,6 +1202,30 @@ literal|1
 argument_list|)
 expr_stmt|;
 comment|// write EOF marker
+name|CodecUtil
+operator|.
+name|writeFooter
+argument_list|(
+name|meta
+argument_list|)
+expr_stmt|;
+comment|// write checksum
+block|}
+if|if
+condition|(
+name|data
+operator|!=
+literal|null
+condition|)
+block|{
+name|CodecUtil
+operator|.
+name|writeFooter
+argument_list|(
+name|data
+argument_list|)
+expr_stmt|;
+comment|// write checksum
 block|}
 name|success
 operator|=
@@ -1244,6 +1261,12 @@ name|meta
 argument_list|)
 expr_stmt|;
 block|}
+name|meta
+operator|=
+name|data
+operator|=
+literal|null
+expr_stmt|;
 block|}
 block|}
 annotation|@

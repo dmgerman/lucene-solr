@@ -439,7 +439,7 @@ argument_list|(
 literal|"max"
 argument_list|)
 operator|&&
-name|min
+name|max
 operator|!=
 literal|null
 condition|)
@@ -493,6 +493,7 @@ block|}
 return|return
 literal|null
 return|;
+comment|//    throw new IllegalArgumentException("No stat named '"+stat+"' in this collector " + this);
 block|}
 DECL|method|getStatsList
 specifier|public

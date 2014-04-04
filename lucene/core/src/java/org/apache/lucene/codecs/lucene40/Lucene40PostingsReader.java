@@ -5064,6 +5064,16 @@ return|return
 literal|0
 return|;
 block|}
+annotation|@
+name|Override
+DECL|method|checkIntegrity
+specifier|public
+name|void
+name|checkIntegrity
+parameter_list|()
+throws|throws
+name|IOException
+block|{}
 block|}
 end_class
 

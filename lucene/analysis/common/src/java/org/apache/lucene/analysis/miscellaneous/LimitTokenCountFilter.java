@@ -137,6 +137,21 @@ argument_list|(
 name|in
 argument_list|)
 expr_stmt|;
+if|if
+condition|(
+name|maxTokenCount
+operator|<
+literal|1
+condition|)
+block|{
+throw|throw
+operator|new
+name|IllegalArgumentException
+argument_list|(
+literal|"maxTokenCount must be greater than zero"
+argument_list|)
+throw|;
+block|}
 name|this
 operator|.
 name|maxTokenCount

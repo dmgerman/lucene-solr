@@ -232,6 +232,26 @@ name|SolrIndexSearcher
 import|;
 end_import
 
+begin_import
+import|import
+name|org
+operator|.
+name|slf4j
+operator|.
+name|Logger
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|slf4j
+operator|.
+name|LoggerFactory
+import|;
+end_import
+
 begin_comment
 comment|/**  * Class which computes the set of {@link AnalyticsRequest}s.  */
 end_comment
@@ -266,6 +286,22 @@ DECL|field|statsCollector
 specifier|protected
 name|AnalyticsStatisticsCollector
 name|statsCollector
+decl_stmt|;
+DECL|field|log
+specifier|private
+specifier|static
+specifier|final
+name|Logger
+name|log
+init|=
+name|LoggerFactory
+operator|.
+name|getLogger
+argument_list|(
+name|AnalyticsStats
+operator|.
+name|class
+argument_list|)
 decl_stmt|;
 DECL|method|AnalyticsStats
 specifier|public
@@ -394,6 +430,15 @@ name|size
 argument_list|()
 argument_list|)
 expr_stmt|;
+comment|// Get filter to all docs
+name|Filter
+name|filter
+init|=
+name|docs
+operator|.
+name|getTopFilter
+argument_list|()
+decl_stmt|;
 comment|// Computing each Analytics Request Seperately
 for|for
 control|(
@@ -484,16 +529,20 @@ name|IOException
 name|e
 parameter_list|)
 block|{
-name|System
+name|log
 operator|.
-name|err
-operator|.
-name|println
+name|warn
 argument_list|(
-name|e
+literal|"Analytics request '"
+operator|+
+name|areq
 operator|.
-name|getMessage
+name|getName
 argument_list|()
+operator|+
+literal|"' failed"
+argument_list|,
+name|e
 argument_list|)
 expr_stmt|;
 continue|continue;
@@ -581,14 +630,6 @@ argument_list|()
 argument_list|)
 expr_stmt|;
 comment|// Loop through the documents returned by the query and add to accumulator
-name|Filter
-name|filter
-init|=
-name|docs
-operator|.
-name|getTopFilter
-argument_list|()
-decl_stmt|;
 name|List
 argument_list|<
 name|AtomicReaderContext

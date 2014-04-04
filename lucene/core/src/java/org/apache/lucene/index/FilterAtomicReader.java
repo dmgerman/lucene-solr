@@ -1376,6 +1376,25 @@ name|field
 argument_list|)
 return|;
 block|}
+annotation|@
+name|Override
+DECL|method|checkIntegrity
+specifier|public
+name|void
+name|checkIntegrity
+parameter_list|()
+throws|throws
+name|IOException
+block|{
+name|ensureOpen
+argument_list|()
+expr_stmt|;
+name|in
+operator|.
+name|checkIntegrity
+argument_list|()
+expr_stmt|;
+block|}
 block|}
 end_class
 

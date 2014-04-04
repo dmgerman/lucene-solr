@@ -98,6 +98,18 @@ begin_import
 import|import
 name|java
 operator|.
+name|nio
+operator|.
+name|charset
+operator|.
+name|StandardCharsets
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
 name|text
 operator|.
 name|ParseException
@@ -807,7 +819,7 @@ block|}
 block|}
 comment|/**    * Load synonyms with the given {@link SynonymMap.Parser} class.    */
 DECL|method|loadSynonyms
-specifier|private
+specifier|protected
 name|SynonymMap
 name|loadSynonyms
 parameter_list|(
@@ -831,12 +843,9 @@ block|{
 name|CharsetDecoder
 name|decoder
 init|=
-name|Charset
+name|StandardCharsets
 operator|.
-name|forName
-argument_list|(
-literal|"UTF-8"
-argument_list|)
+name|UTF_8
 operator|.
 name|newDecoder
 argument_list|()

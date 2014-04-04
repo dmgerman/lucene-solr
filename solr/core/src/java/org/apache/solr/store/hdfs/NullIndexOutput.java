@@ -177,6 +177,21 @@ name|pos
 expr_stmt|;
 block|}
 block|}
+annotation|@
+name|Override
+DECL|method|getChecksum
+specifier|public
+name|long
+name|getChecksum
+parameter_list|()
+throws|throws
+name|IOException
+block|{
+return|return
+literal|0
+return|;
+comment|// we don't write anything.
+block|}
 block|}
 end_class
 

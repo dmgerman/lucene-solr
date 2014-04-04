@@ -212,6 +212,16 @@ name|long
 name|ramBytesUsed
 parameter_list|()
 function_decl|;
+comment|/**     * Checks consistency of this producer    *<p>    * Note that this may be costly in terms of I/O, e.g.     * may involve computing a checksum value against large data files.    * @lucene.internal    */
+DECL|method|checkIntegrity
+specifier|public
+specifier|abstract
+name|void
+name|checkIntegrity
+parameter_list|()
+throws|throws
+name|IOException
+function_decl|;
 comment|/**     * A simple implementation of {@link DocValuesProducer#getDocsWithField} that     * returns {@code true} if a document has an ordinal&gt;= 0    *<p>    * Codecs can choose to use this (or implement it more efficiently another way), but    * in most cases a Bits is unnecessary anyway: users can check this as they go.    */
 DECL|class|SortedDocsWithField
 specifier|public

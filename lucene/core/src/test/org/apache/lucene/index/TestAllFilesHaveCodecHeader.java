@@ -106,6 +106,20 @@ name|apache
 operator|.
 name|lucene
 operator|.
+name|document
+operator|.
+name|NumericDocValuesField
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
 name|store
 operator|.
 name|CompoundFileDirectory
@@ -232,7 +246,6 @@ name|Lucene46Codec
 argument_list|()
 argument_list|)
 expr_stmt|;
-comment|// riw should sometimes create docvalues fields, etc
 name|RandomIndexWriter
 name|riw
 init|=
@@ -287,6 +300,17 @@ operator|.
 name|NO
 argument_list|)
 decl_stmt|;
+name|Field
+name|dvField
+init|=
+operator|new
+name|NumericDocValuesField
+argument_list|(
+literal|"dv"
+argument_list|,
+literal|5
+argument_list|)
+decl_stmt|;
 name|doc
 operator|.
 name|add
@@ -299,6 +323,13 @@ operator|.
 name|add
 argument_list|(
 name|bodyField
+argument_list|)
+expr_stmt|;
+name|doc
+operator|.
+name|add
+argument_list|(
+name|dvField
 argument_list|)
 expr_stmt|;
 for|for
@@ -367,6 +398,10 @@ name|commit
 argument_list|()
 expr_stmt|;
 block|}
+comment|// TODO: we should make a new format with a clean header...
+comment|// if (random().nextInt(20) == 0) {
+comment|//  riw.deleteDocuments(new Term("id", Integer.toString(i)));
+comment|// }
 block|}
 name|riw
 operator|.

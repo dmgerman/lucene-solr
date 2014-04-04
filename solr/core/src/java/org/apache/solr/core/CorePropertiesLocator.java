@@ -24,20 +24,6 @@ name|google
 operator|.
 name|common
 operator|.
-name|base
-operator|.
-name|Charsets
-import|;
-end_import
-
-begin_import
-import|import
-name|com
-operator|.
-name|google
-operator|.
-name|common
-operator|.
 name|collect
 operator|.
 name|Lists
@@ -159,6 +145,18 @@ operator|.
 name|io
 operator|.
 name|Writer
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
+name|nio
+operator|.
+name|charset
+operator|.
+name|StandardCharsets
 import|;
 end_import
 
@@ -434,7 +432,7 @@ argument_list|(
 name|propfile
 argument_list|)
 argument_list|,
-name|Charsets
+name|StandardCharsets
 operator|.
 name|UTF_8
 argument_list|)
@@ -839,7 +837,7 @@ name|InputStreamReader
 argument_list|(
 name|fis
 argument_list|,
-name|Charsets
+name|StandardCharsets
 operator|.
 name|UTF_8
 argument_list|)

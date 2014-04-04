@@ -26,6 +26,18 @@ end_import
 
 begin_import
 import|import
+name|java
+operator|.
+name|nio
+operator|.
+name|charset
+operator|.
+name|StandardCharsets
+import|;
+end_import
+
+begin_import
+import|import
 name|org
 operator|.
 name|apache
@@ -141,7 +153,9 @@ literal|"a line one\na line two\na line three"
 operator|.
 name|getBytes
 argument_list|(
-literal|"UTF-8"
+name|StandardCharsets
+operator|.
+name|UTF_8
 argument_list|)
 argument_list|,
 literal|false
@@ -157,7 +171,9 @@ literal|"b line one\nb line two"
 operator|.
 name|getBytes
 argument_list|(
-literal|"UTF-8"
+name|StandardCharsets
+operator|.
+name|UTF_8
 argument_list|)
 argument_list|,
 literal|false
@@ -173,7 +189,9 @@ literal|"c line one\nc line two\nc line three\nc line four"
 operator|.
 name|getBytes
 argument_list|(
-literal|"UTF-8"
+name|StandardCharsets
+operator|.
+name|UTF_8
 argument_list|)
 argument_list|,
 literal|false

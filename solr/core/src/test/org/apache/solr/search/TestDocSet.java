@@ -1801,6 +1801,15 @@ name|StoredFieldVisitor
 name|visitor
 parameter_list|)
 block|{       }
+annotation|@
+name|Override
+specifier|public
+name|void
+name|checkIntegrity
+parameter_list|()
+throws|throws
+name|IOException
+block|{       }
 block|}
 return|;
 block|}

@@ -232,6 +232,18 @@ name|Charset
 import|;
 end_import
 
+begin_import
+import|import
+name|java
+operator|.
+name|nio
+operator|.
+name|charset
+operator|.
+name|StandardCharsets
+import|;
+end_import
+
 begin_comment
 comment|/**  * Test that quality run does its job.  *<p>  * NOTE: if the default scoring or StandardAnalyzer is changed, then  * this test will not work correctly, as it does not dynamically  * generate its test trec topics/qrels!  */
 end_comment
@@ -349,7 +361,9 @@ name|InputStreamReader
 argument_list|(
 name|topics
 argument_list|,
-literal|"UTF-8"
+name|StandardCharsets
+operator|.
+name|UTF_8
 argument_list|)
 argument_list|)
 argument_list|)
@@ -380,7 +394,9 @@ name|InputStreamReader
 argument_list|(
 name|qrels
 argument_list|,
-literal|"UTF-8"
+name|StandardCharsets
+operator|.
+name|UTF_8
 argument_list|)
 argument_list|)
 argument_list|)
@@ -1032,7 +1048,9 @@ name|InputStreamReader
 argument_list|(
 name|topicsFile
 argument_list|,
-literal|"UTF-8"
+name|StandardCharsets
+operator|.
+name|UTF_8
 argument_list|)
 argument_list|)
 argument_list|)

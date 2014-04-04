@@ -96,6 +96,18 @@ name|CodingErrorAction
 import|;
 end_import
 
+begin_import
+import|import
+name|java
+operator|.
+name|nio
+operator|.
+name|charset
+operator|.
+name|StandardCharsets
+import|;
+end_import
+
 begin_class
 DECL|class|ConnectionCostsBuilder
 specifier|public
@@ -131,12 +143,9 @@ decl_stmt|;
 name|Charset
 name|cs
 init|=
-name|Charset
+name|StandardCharsets
 operator|.
-name|forName
-argument_list|(
-literal|"US-ASCII"
-argument_list|)
+name|US_ASCII
 decl_stmt|;
 name|CharsetDecoder
 name|decoder

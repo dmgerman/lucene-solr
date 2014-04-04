@@ -1308,42 +1308,6 @@ argument_list|(
 name|id
 argument_list|)
 expr_stmt|;
-if|if
-condition|(
-name|doesntSupportOffsets
-operator|.
-name|contains
-argument_list|(
-name|TestUtil
-operator|.
-name|getPostingsFormat
-argument_list|(
-name|DOC_POSITIONS_FIELD
-argument_list|)
-argument_list|)
-condition|)
-block|{
-comment|// codec doesnt support offsets: just index positions for the field
-name|doc
-operator|.
-name|add
-argument_list|(
-operator|new
-name|Field
-argument_list|(
-name|DOC_POSITIONS_FIELD
-argument_list|,
-name|positions
-argument_list|,
-name|TextField
-operator|.
-name|TYPE_NOT_STORED
-argument_list|)
-argument_list|)
-expr_stmt|;
-block|}
-else|else
-block|{
 name|doc
 operator|.
 name|add
@@ -1359,7 +1323,6 @@ name|POSITIONS_TYPE
 argument_list|)
 argument_list|)
 expr_stmt|;
-block|}
 name|doc
 operator|.
 name|add
@@ -2058,22 +2021,6 @@ name|nextPosition
 argument_list|()
 argument_list|)
 expr_stmt|;
-if|if
-condition|(
-operator|!
-name|doesntSupportOffsets
-operator|.
-name|contains
-argument_list|(
-name|TestUtil
-operator|.
-name|getPostingsFormat
-argument_list|(
-name|DOC_POSITIONS_FIELD
-argument_list|)
-argument_list|)
-condition|)
-block|{
 name|assertEquals
 argument_list|(
 literal|"incorrect startOffset for doc="
@@ -2102,7 +2049,6 @@ name|endOffset
 argument_list|()
 argument_list|)
 expr_stmt|;
-block|}
 name|assertEquals
 argument_list|(
 literal|"incorrect payload for doc="
@@ -2263,22 +2209,6 @@ name|nextPosition
 argument_list|()
 argument_list|)
 expr_stmt|;
-if|if
-condition|(
-operator|!
-name|doesntSupportOffsets
-operator|.
-name|contains
-argument_list|(
-name|TestUtil
-operator|.
-name|getPostingsFormat
-argument_list|(
-name|DOC_POSITIONS_FIELD
-argument_list|)
-argument_list|)
-condition|)
-block|{
 name|assertEquals
 argument_list|(
 literal|"incorrect startOffset for doc="
@@ -2307,7 +2237,6 @@ name|endOffset
 argument_list|()
 argument_list|)
 expr_stmt|;
-block|}
 name|assertEquals
 argument_list|(
 literal|"incorrect payload for doc="

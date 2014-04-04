@@ -6112,6 +6112,8 @@ argument_list|,
 literal|"/admin/cores"
 argument_list|,
 name|reader
+argument_list|,
+literal|null
 argument_list|)
 decl_stmt|;
 name|overseers

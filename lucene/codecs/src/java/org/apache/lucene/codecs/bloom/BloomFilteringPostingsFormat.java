@@ -300,7 +300,7 @@ name|lucene
 operator|.
 name|store
 operator|.
-name|DataOutput
+name|ChecksumIndexInput
 import|;
 end_import
 
@@ -314,7 +314,7 @@ name|lucene
 operator|.
 name|store
 operator|.
-name|IndexInput
+name|DataOutput
 import|;
 end_import
 
@@ -405,7 +405,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  *<p>  * A {@link PostingsFormat} useful for low doc-frequency fields such as primary  * keys. Bloom filters are maintained in a ".blm" file which offers "fast-fail"  * for reads in segments known to have no record of the key. A choice of  * delegate PostingsFormat is used to record all other Postings data.  *</p>  *<p>  * A choice of {@link BloomFilterFactory} can be passed to tailor Bloom Filter  * settings on a per-field basis. The default configuration is  * {@link DefaultBloomFilterFactory} which allocates a ~8mb bitset and hashes  * values using {@link MurmurHash2}. This should be suitable for most purposes.  *</p>  *<p>  * The format of the blm file is as follows:  *</p>  *<ul>  *<li>BloomFilter (.blm) --&gt; Header, DelegatePostingsFormatName,  * NumFilteredFields, Filter<sup>NumFilteredFields</sup></li>  *<li>Filter --&gt; FieldNumber, FuzzySet</li>  *<li>FuzzySet --&gt;See {@link FuzzySet#serialize(DataOutput)}</li>  *<li>Header --&gt; {@link CodecUtil#writeHeader CodecHeader}</li>  *<li>DelegatePostingsFormatName --&gt; {@link DataOutput#writeString(String)  * String} The name of a ServiceProvider registered {@link PostingsFormat}</li>  *<li>NumFilteredFields --&gt; {@link DataOutput#writeInt Uint32}</li>  *<li>FieldNumber --&gt; {@link DataOutput#writeInt Uint32} The number of the  * field in this segment</li>  *</ul>  * @lucene.experimental  */
+comment|/**  *<p>  * A {@link PostingsFormat} useful for low doc-frequency fields such as primary  * keys. Bloom filters are maintained in a ".blm" file which offers "fast-fail"  * for reads in segments known to have no record of the key. A choice of  * delegate PostingsFormat is used to record all other Postings data.  *</p>  *<p>  * A choice of {@link BloomFilterFactory} can be passed to tailor Bloom Filter  * settings on a per-field basis. The default configuration is  * {@link DefaultBloomFilterFactory} which allocates a ~8mb bitset and hashes  * values using {@link MurmurHash2}. This should be suitable for most purposes.  *</p>  *<p>  * The format of the blm file is as follows:  *</p>  *<ul>  *<li>BloomFilter (.blm) --&gt; Header, DelegatePostingsFormatName,  * NumFilteredFields, Filter<sup>NumFilteredFields</sup>, Footer</li>  *<li>Filter --&gt; FieldNumber, FuzzySet</li>  *<li>FuzzySet --&gt;See {@link FuzzySet#serialize(DataOutput)}</li>  *<li>Header --&gt; {@link CodecUtil#writeHeader CodecHeader}</li>  *<li>DelegatePostingsFormatName --&gt; {@link DataOutput#writeString(String)  * String} The name of a ServiceProvider registered {@link PostingsFormat}</li>  *<li>NumFilteredFields --&gt; {@link DataOutput#writeInt Uint32}</li>  *<li>FieldNumber --&gt; {@link DataOutput#writeInt Uint32} The number of the  * field in this segment</li>  *<li>Footer --&gt; {@link CodecUtil#writeFooter CodecFooter}</li>  *</ul>  * @lucene.experimental  */
 end_comment
 
 begin_class
@@ -426,14 +426,32 @@ name|BLOOM_CODEC_NAME
 init|=
 literal|"BloomFilter"
 decl_stmt|;
-DECL|field|BLOOM_CODEC_VERSION
+DECL|field|VERSION_START
 specifier|public
 specifier|static
 specifier|final
 name|int
-name|BLOOM_CODEC_VERSION
+name|VERSION_START
 init|=
 literal|1
+decl_stmt|;
+DECL|field|VERSION_CHECKSUM
+specifier|public
+specifier|static
+specifier|final
+name|int
+name|VERSION_CHECKSUM
+init|=
+literal|2
+decl_stmt|;
+DECL|field|VERSION_CURRENT
+specifier|public
+specifier|static
+specifier|final
+name|int
+name|VERSION_CURRENT
+init|=
+name|VERSION_CHECKSUM
 decl_stmt|;
 comment|/** Extension of Bloom Filters file */
 DECL|field|BLOOM_EXTENSION
@@ -652,7 +670,7 @@ argument_list|,
 name|BLOOM_EXTENSION
 argument_list|)
 decl_stmt|;
-name|IndexInput
+name|ChecksumIndexInput
 name|bloomIn
 init|=
 literal|null
@@ -670,7 +688,7 @@ name|state
 operator|.
 name|directory
 operator|.
-name|openInput
+name|openChecksumInput
 argument_list|(
 name|bloomFileName
 argument_list|,
@@ -679,6 +697,9 @@ operator|.
 name|context
 argument_list|)
 expr_stmt|;
+name|int
+name|version
+init|=
 name|CodecUtil
 operator|.
 name|checkHeader
@@ -687,11 +708,11 @@ name|bloomIn
 argument_list|,
 name|BLOOM_CODEC_NAME
 argument_list|,
-name|BLOOM_CODEC_VERSION
+name|VERSION_START
 argument_list|,
-name|BLOOM_CODEC_VERSION
+name|VERSION_CURRENT
 argument_list|)
-expr_stmt|;
+decl_stmt|;
 comment|// // Load the hash function used in the BloomFilter
 comment|// hashFunction = HashFunction.forName(bloomIn.readString());
 comment|// Load the delegate postings format
@@ -781,6 +802,31 @@ operator|.
 name|name
 argument_list|,
 name|bloom
+argument_list|)
+expr_stmt|;
+block|}
+if|if
+condition|(
+name|version
+operator|>=
+name|VERSION_CHECKSUM
+condition|)
+block|{
+name|CodecUtil
+operator|.
+name|checkFooter
+argument_list|(
+name|bloomIn
+argument_list|)
+expr_stmt|;
+block|}
+else|else
+block|{
+name|CodecUtil
+operator|.
+name|checkEOF
+argument_list|(
+name|bloomIn
 argument_list|)
 expr_stmt|;
 block|}
@@ -1658,6 +1704,22 @@ return|return
 name|sizeInBytes
 return|;
 block|}
+annotation|@
+name|Override
+DECL|method|checkIntegrity
+specifier|public
+name|void
+name|checkIntegrity
+parameter_list|()
+throws|throws
+name|IOException
+block|{
+name|delegateFieldsProducer
+operator|.
+name|checkIntegrity
+argument_list|()
+expr_stmt|;
+block|}
 block|}
 DECL|class|BloomFilteredFieldsConsumer
 class|class
@@ -2039,7 +2101,7 @@ name|bloomOutput
 argument_list|,
 name|BLOOM_CODEC_NAME
 argument_list|,
-name|BLOOM_CODEC_VERSION
+name|VERSION_CURRENT
 argument_list|)
 expr_stmt|;
 comment|// remember the name of the postings format we will delegate to
@@ -2112,6 +2174,13 @@ name|fieldInfo
 argument_list|)
 expr_stmt|;
 block|}
+name|CodecUtil
+operator|.
+name|writeFooter
+argument_list|(
+name|bloomOutput
+argument_list|)
+expr_stmt|;
 block|}
 finally|finally
 block|{

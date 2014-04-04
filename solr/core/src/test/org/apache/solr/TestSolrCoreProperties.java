@@ -152,6 +152,18 @@ name|BeforeClass
 import|;
 end_import
 
+begin_import
+import|import
+name|java
+operator|.
+name|nio
+operator|.
+name|charset
+operator|.
+name|StandardCharsets
+import|;
+end_import
+
 begin_comment
 comment|/**  *<p> Test for Loading core properties from a properties file</p>  *  *  * @since solr 1.4  */
 end_comment
@@ -372,9 +384,9 @@ literal|"solrcore.properties"
 argument_list|)
 argument_list|)
 argument_list|,
-name|IOUtils
+name|StandardCharsets
 operator|.
-name|CHARSET_UTF_8
+name|UTF_8
 argument_list|)
 decl_stmt|;
 name|p

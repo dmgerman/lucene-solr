@@ -1203,6 +1203,10 @@ argument_list|,
 name|cmd
 operator|.
 name|expungeDeletes
+argument_list|,
+name|cmd
+operator|.
+name|openSearcher
 argument_list|)
 expr_stmt|;
 block|}

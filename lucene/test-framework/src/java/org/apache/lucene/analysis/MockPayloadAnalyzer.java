@@ -98,6 +98,18 @@ name|Reader
 import|;
 end_import
 
+begin_import
+import|import
+name|java
+operator|.
+name|nio
+operator|.
+name|charset
+operator|.
+name|StandardCharsets
+import|;
+end_import
+
 begin_comment
 comment|/**  * Wraps a whitespace tokenizer with a filter that sets  * the first token, and odd tokens to posinc=1, and all others  * to 0, encoding the position as pos: XXX in the payload.  **/
 end_comment
@@ -290,7 +302,9 @@ operator|)
 operator|.
 name|getBytes
 argument_list|(
-literal|"UTF-8"
+name|StandardCharsets
+operator|.
+name|UTF_8
 argument_list|)
 argument_list|)
 argument_list|)

@@ -702,6 +702,10 @@ block|{
 name|RunListenerPrintReproduceInfo
 operator|.
 name|class
+block|,
+name|FailureMarker
+operator|.
+name|class
 block|}
 argument_list|)
 annotation|@
@@ -1358,36 +1362,6 @@ argument_list|)
 expr_stmt|;
 block|}
 empty_stmt|;
-DECL|field|doesntSupportOffsets
-specifier|protected
-specifier|static
-specifier|final
-name|Set
-argument_list|<
-name|String
-argument_list|>
-name|doesntSupportOffsets
-init|=
-operator|new
-name|HashSet
-argument_list|<>
-argument_list|(
-name|Arrays
-operator|.
-name|asList
-argument_list|(
-literal|"Lucene3x"
-argument_list|,
-literal|"MockFixedIntBlock"
-argument_list|,
-literal|"MockVariableIntBlock"
-argument_list|,
-literal|"MockSep"
-argument_list|,
-literal|"MockRandom"
-argument_list|)
-argument_list|)
-decl_stmt|;
 comment|// -----------------------------------------------------------------
 comment|// Fields initialized in class or instance rules.
 comment|// -----------------------------------------------------------------
@@ -1421,14 +1395,9 @@ decl_stmt|;
 comment|/**    * Suite failure marker (any error in the test or suite scope).    */
 DECL|field|suiteFailureMarker
 specifier|public
-specifier|final
 specifier|static
 name|TestRuleMarkFailure
 name|suiteFailureMarker
-init|=
-operator|new
-name|TestRuleMarkFailure
-argument_list|()
 decl_stmt|;
 comment|/**    * Ignore tests after hitting a designated number of initial failures. This    * is truly a "static" global singleton since it needs to span the lifetime of all    * test classes running inside this JVM (it cannot be part of a class rule).    *     *<p>This poses some problems for the test framework's tests because these sometimes    * trigger intentional failures which add up to the global count. This field contains    * a (possibly) changing reference to {@link TestRuleIgnoreAfterMaxFailures} and we    * dispatch to its current value from the {@link #classRules} chain using {@link TestRuleDelegate}.      */
 DECL|field|ignoreAfterMaxFailuresDelegate
@@ -1642,6 +1611,10 @@ operator|.
 name|around
 argument_list|(
 name|suiteFailureMarker
+operator|=
+operator|new
+name|TestRuleMarkFailure
+argument_list|()
 argument_list|)
 operator|.
 name|around
@@ -3175,6 +3148,16 @@ expr_stmt|;
 name|c
 operator|.
 name|setReaderPooling
+argument_list|(
+name|r
+operator|.
+name|nextBoolean
+argument_list|()
+argument_list|)
+expr_stmt|;
+name|c
+operator|.
+name|setCheckIntegrityAtMerge
 argument_list|(
 name|r
 operator|.

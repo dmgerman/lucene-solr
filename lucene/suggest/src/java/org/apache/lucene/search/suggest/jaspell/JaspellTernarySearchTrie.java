@@ -64,9 +64,11 @@ begin_import
 import|import
 name|java
 operator|.
-name|io
+name|nio
 operator|.
-name|InputStreamReader
+name|charset
+operator|.
+name|StandardCharsets
 import|;
 end_import
 
@@ -461,9 +463,9 @@ name|file
 argument_list|)
 argument_list|)
 argument_list|,
-name|IOUtils
+name|StandardCharsets
 operator|.
-name|CHARSET_UTF_8
+name|UTF_8
 argument_list|)
 argument_list|)
 expr_stmt|;
@@ -485,9 +487,9 @@ name|file
 argument_list|)
 operator|)
 argument_list|,
-name|IOUtils
+name|StandardCharsets
 operator|.
-name|CHARSET_UTF_8
+name|UTF_8
 argument_list|)
 argument_list|)
 expr_stmt|;
@@ -508,11 +510,6 @@ argument_list|(
 literal|1
 argument_list|)
 decl_stmt|;
-name|int
-name|numWords
-init|=
-literal|0
-decl_stmt|;
 while|while
 condition|(
 operator|(
@@ -527,9 +524,6 @@ operator|!=
 literal|null
 condition|)
 block|{
-name|numWords
-operator|++
-expr_stmt|;
 name|pos
 operator|=
 name|word

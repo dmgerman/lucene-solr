@@ -96,6 +96,18 @@ begin_import
 import|import
 name|java
 operator|.
+name|nio
+operator|.
+name|charset
+operator|.
+name|StandardCharsets
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
 name|util
 operator|.
 name|ArrayList
@@ -1457,7 +1469,9 @@ name|postParams
 operator|.
 name|getBytes
 argument_list|(
-literal|"US-ASCII"
+name|StandardCharsets
+operator|.
+name|US_ASCII
 argument_list|)
 decl_stmt|;
 comment|// Set up the expected behavior
@@ -1751,7 +1765,9 @@ name|postParams
 operator|.
 name|getBytes
 argument_list|(
-literal|"US-ASCII"
+name|StandardCharsets
+operator|.
+name|US_ASCII
 argument_list|)
 decl_stmt|;
 specifier|final
@@ -2170,7 +2186,9 @@ argument_list|()
 operator|.
 name|getBytes
 argument_list|(
-literal|"US-ASCII"
+name|StandardCharsets
+operator|.
+name|US_ASCII
 argument_list|)
 argument_list|)
 decl_stmt|;

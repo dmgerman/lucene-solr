@@ -50,6 +50,18 @@ begin_import
 import|import
 name|java
 operator|.
+name|nio
+operator|.
+name|charset
+operator|.
+name|StandardCharsets
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
 name|util
 operator|.
 name|ArrayList
@@ -331,6 +343,20 @@ operator|.
 name|store
 operator|.
 name|RAMDirectory
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|util
+operator|.
+name|IOUtils
 import|;
 end_import
 
@@ -7046,7 +7072,9 @@ name|bos
 argument_list|,
 literal|false
 argument_list|,
-literal|"UTF-8"
+name|IOUtils
+operator|.
+name|UTF_8
 argument_list|)
 argument_list|,
 literal|false
@@ -7078,7 +7106,9 @@ name|bos
 operator|.
 name|toString
 argument_list|(
-literal|"UTF-8"
+name|IOUtils
+operator|.
+name|UTF_8
 argument_list|)
 decl_stmt|;
 comment|// Segment should have deletions:
@@ -7136,7 +7166,9 @@ name|bos
 argument_list|,
 literal|false
 argument_list|,
-literal|"UTF-8"
+name|IOUtils
+operator|.
+name|UTF_8
 argument_list|)
 argument_list|,
 literal|false
@@ -7164,7 +7196,9 @@ name|bos
 operator|.
 name|toString
 argument_list|(
-literal|"UTF-8"
+name|IOUtils
+operator|.
+name|UTF_8
 argument_list|)
 expr_stmt|;
 name|assertFalse
