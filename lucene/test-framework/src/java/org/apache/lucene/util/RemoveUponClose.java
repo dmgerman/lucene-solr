@@ -51,10 +51,10 @@ comment|/**  * A {@link Closeable} that attempts to remove a given file/folder. 
 end_comment
 
 begin_class
-DECL|class|CloseableFile
+DECL|class|RemoveUponClose
 specifier|final
 class|class
-name|CloseableFile
+name|RemoveUponClose
 implements|implements
 name|Closeable
 block|{
@@ -76,9 +76,9 @@ specifier|final
 name|String
 name|creationStack
 decl_stmt|;
-DECL|method|CloseableFile
+DECL|method|RemoveUponClose
 specifier|public
-name|CloseableFile
+name|RemoveUponClose
 parameter_list|(
 name|File
 name|file
@@ -176,25 +176,11 @@ name|exists
 argument_list|()
 condition|)
 block|{
-if|if
-condition|(
-name|file
-operator|.
-name|listFiles
-argument_list|()
-operator|.
-name|length
-operator|>
-literal|0
-condition|)
-block|{
-comment|// throw new IOException("Temporary folder not clean: " + file.getAbsolutePath() + ". Created at stack trace:\n" + creationStack);
-block|}
 try|try
 block|{
 name|TestUtil
 operator|.
-name|rmDir
+name|rm
 argument_list|(
 name|file
 argument_list|)
@@ -206,31 +192,22 @@ name|IOException
 name|e
 parameter_list|)
 block|{
-comment|// Ignore the exception from rmDir.
-block|}
-comment|// Re-check.
-if|if
-condition|(
-name|file
-operator|.
-name|exists
-argument_list|()
-condition|)
-block|{
 throw|throw
 operator|new
 name|IOException
 argument_list|(
-literal|"Could not remove temporary folder: "
+literal|"Could not remove temporary location '"
 operator|+
 name|file
 operator|.
 name|getAbsolutePath
 argument_list|()
 operator|+
-literal|". Created at stack trace:\n"
+literal|"', created at stack trace:\n"
 operator|+
 name|creationStack
+argument_list|,
+name|e
 argument_list|)
 throw|;
 block|}

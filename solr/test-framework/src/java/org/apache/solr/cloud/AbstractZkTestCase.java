@@ -928,6 +928,13 @@ argument_list|(
 name|ZOOKEEPER_FORCE_SYNC
 argument_list|)
 expr_stmt|;
+if|if
+condition|(
+name|zkServer
+operator|!=
+literal|null
+condition|)
+block|{
 name|zkServer
 operator|.
 name|shutdown
@@ -937,17 +944,10 @@ name|zkServer
 operator|=
 literal|null
 expr_stmt|;
+block|}
 name|zkDir
 operator|=
 literal|null
-expr_stmt|;
-comment|// wait just a bit for any zk client threads to outlast timeout
-name|Thread
-operator|.
-name|sleep
-argument_list|(
-literal|2000
-argument_list|)
 expr_stmt|;
 block|}
 DECL|method|printLayout

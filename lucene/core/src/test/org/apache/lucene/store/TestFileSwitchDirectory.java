@@ -727,14 +727,14 @@ argument_list|)
 decl_stmt|;
 name|TestUtil
 operator|.
-name|rmDir
+name|rm
 argument_list|(
 name|primDir
 argument_list|)
 expr_stmt|;
 name|TestUtil
 operator|.
-name|rmDir
+name|rm
 argument_list|(
 name|secondDir
 argument_list|)

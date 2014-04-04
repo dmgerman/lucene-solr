@@ -64,11 +64,13 @@ name|org
 operator|.
 name|apache
 operator|.
-name|solr
+name|lucene
 operator|.
-name|SolrTestCaseJ4
+name|util
 operator|.
-name|SuppressTempDirCleanUp
+name|LuceneTestCase
+operator|.
+name|Slow
 import|;
 end_import
 
@@ -84,7 +86,7 @@ name|util
 operator|.
 name|LuceneTestCase
 operator|.
-name|Slow
+name|SuppressTempFileChecks
 import|;
 end_import
 
@@ -200,7 +202,7 @@ begin_class
 annotation|@
 name|Slow
 annotation|@
-name|SuppressTempDirCleanUp
+name|SuppressTempFileChecks
 argument_list|(
 name|bugUrl
 operator|=

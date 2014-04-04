@@ -1049,6 +1049,40 @@ name|value
 parameter_list|()
 function_decl|;
 block|}
+comment|/**    * Marks any suites which are known not to close all the temporary    * files. This may prevent temp. files and folders from being cleaned    * up after the suite is completed.    *     * @see TestUtil#createTempDir()    * @see TestUtil#createTempFile(String, String)    */
+annotation|@
+name|Documented
+annotation|@
+name|Inherited
+annotation|@
+name|Retention
+argument_list|(
+name|RetentionPolicy
+operator|.
+name|RUNTIME
+argument_list|)
+annotation|@
+name|Target
+argument_list|(
+name|ElementType
+operator|.
+name|TYPE
+argument_list|)
+DECL|interface|SuppressTempFileChecks
+specifier|public
+annotation_defn|@interface
+name|SuppressTempFileChecks
+block|{
+comment|/** Point to JIRA entry. */
+DECL|field|Ó
+specifier|public
+name|String
+name|bugUrl
+parameter_list|()
+default|default
+literal|"None"
+function_decl|;
+block|}
 comment|// -----------------------------------------------------------------
 comment|// Truly immutable fields and constants, initialized once and valid
 comment|// for all suites ever since.
@@ -1294,6 +1328,59 @@ name|Throttling
 operator|.
 name|NEVER
 decl_stmt|;
+comment|/** Leave temporary files on disk, even on successful runs. */
+DECL|field|LEAVE_TEMPORARY
+specifier|public
+specifier|static
+specifier|final
+name|boolean
+name|LEAVE_TEMPORARY
+decl_stmt|;
+static|static
+block|{
+name|boolean
+name|defaultValue
+init|=
+literal|false
+decl_stmt|;
+for|for
+control|(
+name|String
+name|property
+range|:
+name|Arrays
+operator|.
+name|asList
+argument_list|(
+literal|"tests.leaveTemporary"
+comment|/* ANT tasks's (junit4) flag. */
+argument_list|,
+literal|"tests.leavetemporary"
+comment|/* lowercase */
+argument_list|,
+literal|"tests.leavetmpdir"
+comment|/* default */
+argument_list|,
+literal|"solr.test.leavetmpdir"
+comment|/* Solr's legacy */
+argument_list|)
+control|)
+block|{
+name|defaultValue
+operator||=
+name|systemPropertyAsBoolean
+argument_list|(
+name|property
+argument_list|,
+literal|false
+argument_list|)
+expr_stmt|;
+block|}
+name|LEAVE_TEMPORARY
+operator|=
+name|defaultValue
+expr_stmt|;
+block|}
 comment|/**    * These property keys will be ignored in verification of altered properties.    * @see SystemPropertiesInvariantRule    * @see #ruleChain    * @see #classRules    */
 DECL|field|IGNORED_INVARIANT_PROPERTIES
 specifier|private
@@ -5191,10 +5278,14 @@ specifier|final
 name|File
 name|dir
 init|=
+operator|new
+name|File
+argument_list|(
 name|TestUtil
 operator|.
 name|createTempDir
-argument_list|(
+argument_list|()
+argument_list|,
 literal|"index"
 argument_list|)
 decl_stmt|;
