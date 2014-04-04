@@ -1004,8 +1004,6 @@ name|FSDirectory
 operator|.
 name|open
 argument_list|(
-name|TestUtil
-operator|.
 name|createTempDir
 argument_list|(
 literal|"LookupBenchmarkTest"

@@ -397,8 +397,6 @@ block|{
 comment|//this one has handleSelect=true which a test here needs
 name|solrHomeDirectory
 operator|=
-name|TestUtil
-operator|.
 name|createTempDir
 argument_list|(
 name|LuceneTestCase

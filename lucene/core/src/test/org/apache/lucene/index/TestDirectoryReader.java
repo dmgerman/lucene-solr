@@ -3256,8 +3256,6 @@ comment|// Create initial data set
 name|File
 name|dirFile
 init|=
-name|TestUtil
-operator|.
 name|createTempDir
 argument_list|(
 literal|"TestIndexReader.testFilesOpenClose"
@@ -3418,8 +3416,6 @@ block|{
 name|File
 name|dirFile
 init|=
-name|TestUtil
-operator|.
 name|createTempDir
 argument_list|(
 literal|"deletetest"
@@ -5220,8 +5216,6 @@ block|{
 name|File
 name|tempDir
 init|=
-name|TestUtil
-operator|.
 name|createTempDir
 argument_list|(
 literal|"doesnotexist"
@@ -7756,8 +7750,6 @@ block|{
 name|File
 name|tempDir
 init|=
-name|TestUtil
-operator|.
 name|createTempDir
 argument_list|(
 literal|"testIndexExistsOnNonExistentDirectory"

@@ -587,8 +587,6 @@ comment|// Try again after save/load:
 name|File
 name|tmpDir
 init|=
-name|TestUtil
-operator|.
 name|createTempDir
 argument_list|(
 literal|"FreeTextSuggesterTest"

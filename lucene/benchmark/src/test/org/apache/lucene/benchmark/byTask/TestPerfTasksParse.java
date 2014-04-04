@@ -883,8 +883,6 @@ name|set
 argument_list|(
 literal|"work.dir"
 argument_list|,
-name|TestUtil
-operator|.
 name|createTempDir
 argument_list|(
 name|LuceneTestCase
@@ -975,8 +973,6 @@ name|set
 argument_list|(
 literal|"line.file.out"
 argument_list|,
-name|TestUtil
-operator|.
 name|createTempFile
 argument_list|(
 literal|"linefile"

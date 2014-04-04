@@ -474,8 +474,6 @@ parameter_list|()
 block|{
 name|solrHomeDirectory
 operator|=
-name|TestUtil
-operator|.
 name|createTempDir
 argument_list|(
 name|LuceneTestCase

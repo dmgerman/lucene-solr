@@ -358,8 +358,6 @@ comment|// make a solr home underneath the test's TEMP_DIR
 name|File
 name|tmpFile
 init|=
-name|TestUtil
-operator|.
 name|createTempDir
 argument_list|(
 literal|"collation1"

@@ -1899,8 +1899,6 @@ block|{
 name|File
 name|lineFile
 init|=
-name|TestUtil
-operator|.
 name|createTempFile
 argument_list|(
 literal|"test.reuters.lines"

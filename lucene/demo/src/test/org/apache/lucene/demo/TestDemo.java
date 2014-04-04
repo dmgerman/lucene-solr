@@ -243,8 +243,6 @@ decl_stmt|;
 name|File
 name|indexDir
 init|=
-name|TestUtil
-operator|.
 name|createTempDir
 argument_list|(
 literal|"ContribDemoTest"

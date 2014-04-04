@@ -1017,8 +1017,6 @@ block|{
 name|File
 name|dir
 init|=
-name|TestUtil
-operator|.
 name|createTempDir
 argument_list|(
 name|name
@@ -1152,8 +1150,6 @@ block|}
 name|File
 name|oldIndxeDir
 init|=
-name|TestUtil
-operator|.
 name|createTempDir
 argument_list|(
 name|unsupportedNames
@@ -4003,8 +3999,6 @@ decl_stmt|;
 name|File
 name|outputDir
 init|=
-name|TestUtil
-operator|.
 name|createTempDir
 argument_list|(
 name|outputDirName
@@ -6306,8 +6300,6 @@ block|{
 name|File
 name|dir
 init|=
-name|TestUtil
-operator|.
 name|createTempDir
 argument_list|(
 name|name
@@ -6829,8 +6821,6 @@ block|{
 name|File
 name|oldIndexDir
 init|=
-name|TestUtil
-operator|.
 name|createTempDir
 argument_list|(
 literal|"moreterms"

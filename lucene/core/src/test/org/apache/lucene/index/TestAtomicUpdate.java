@@ -905,8 +905,6 @@ comment|// Second in an FSDirectory:
 name|File
 name|dirPath
 init|=
-name|TestUtil
-operator|.
 name|createTempDir
 argument_list|(
 literal|"lucene.test.atomic"

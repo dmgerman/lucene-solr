@@ -336,8 +336,6 @@ decl_stmt|;
 name|File
 name|f
 init|=
-name|TestUtil
-operator|.
 name|createTempDir
 argument_list|(
 literal|"10kpulsed"
@@ -708,8 +706,6 @@ decl_stmt|;
 name|File
 name|f
 init|=
-name|TestUtil
-operator|.
 name|createTempDir
 argument_list|(
 literal|"10knotpulsed"

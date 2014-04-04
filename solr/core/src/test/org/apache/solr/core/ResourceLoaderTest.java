@@ -442,8 +442,6 @@ block|{
 name|File
 name|temp
 init|=
-name|TestUtil
-operator|.
 name|createTempDir
 argument_list|(
 literal|"testEscapeInstanceDir"
@@ -1054,8 +1052,6 @@ block|{
 name|File
 name|tmpRoot
 init|=
-name|TestUtil
-operator|.
 name|createTempDir
 argument_list|(
 literal|"testClassLoaderLibs"

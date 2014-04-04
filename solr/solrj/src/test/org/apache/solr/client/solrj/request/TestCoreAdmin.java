@@ -504,8 +504,6 @@ decl_stmt|;
 name|File
 name|testDir
 init|=
-name|TestUtil
-operator|.
 name|createTempDir
 argument_list|(
 name|LuceneTestCase
