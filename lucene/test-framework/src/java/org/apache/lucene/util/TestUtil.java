@@ -1191,7 +1191,7 @@ return|return
 name|unremoved
 return|;
 block|}
-comment|/**     * Convenience method: Unzip zipName + ".zip" into destDir, cleaning up     * destDir first.     */
+comment|/**     * Convenience method unzipping zipName into destDir, cleaning up     * destDir first.     */
 DECL|method|unzip
 specifier|public
 specifier|static
@@ -1216,11 +1216,6 @@ name|destDir
 operator|.
 name|mkdir
 argument_list|()
-expr_stmt|;
-name|maybeRemoveAfterSuite
-argument_list|(
-name|destDir
-argument_list|)
 expr_stmt|;
 name|ZipFile
 name|zipFile
