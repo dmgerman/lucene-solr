@@ -3039,13 +3039,13 @@ name|e
 parameter_list|)
 block|{
 comment|// Should not happen?
-throw|throw
-operator|new
-name|RuntimeException
+name|Rethrow
+operator|.
+name|rethrow
 argument_list|(
 name|e
 argument_list|)
-throw|;
+expr_stmt|;
 block|}
 if|if
 condition|(
@@ -3147,13 +3147,13 @@ name|Exception
 name|e
 parameter_list|)
 block|{
-throw|throw
-operator|new
-name|RuntimeException
+name|Rethrow
+operator|.
+name|rethrow
 argument_list|(
 name|e
 argument_list|)
-throw|;
+expr_stmt|;
 block|}
 block|}
 name|c
@@ -4219,13 +4219,17 @@ name|Exception
 name|e
 parameter_list|)
 block|{
-throw|throw
-operator|new
-name|RuntimeException
+name|Rethrow
+operator|.
+name|rethrow
 argument_list|(
 name|e
 argument_list|)
+expr_stmt|;
+throw|throw
+literal|null
 throw|;
+comment|// dummy to prevent compiler failure
 block|}
 block|}
 comment|/**    * Returns a new Directory instance, using the specified random    * with contents copied from the provided directory. See     * {@link #newDirectory()} for more information.    */
@@ -5288,13 +5292,17 @@ name|Exception
 name|e
 parameter_list|)
 block|{
-throw|throw
-operator|new
-name|RuntimeException
+name|Rethrow
+operator|.
+name|rethrow
 argument_list|(
 name|e
 argument_list|)
+expr_stmt|;
+throw|throw
+literal|null
 throw|;
+comment|// dummy to prevent compiler failure
 block|}
 block|}
 comment|/**    * Sometimes wrap the IndexReader as slow, parallel or filter reader (or    * combinations of that)    */
@@ -6015,13 +6023,13 @@ name|IOException
 name|e
 parameter_list|)
 block|{
-throw|throw
-operator|new
-name|AssertionError
+name|Rethrow
+operator|.
+name|rethrow
 argument_list|(
 name|e
 argument_list|)
-throw|;
+expr_stmt|;
 block|}
 block|}
 comment|// TODO: this whole check is a coverage hack, we should move it to tests for various filterreaders.
@@ -6060,13 +6068,13 @@ name|IOException
 name|e
 parameter_list|)
 block|{
-throw|throw
-operator|new
-name|AssertionError
+name|Rethrow
+operator|.
+name|rethrow
 argument_list|(
 name|e
 argument_list|)
-throw|;
+expr_stmt|;
 block|}
 block|}
 specifier|final
