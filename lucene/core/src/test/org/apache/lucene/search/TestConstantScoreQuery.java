@@ -369,7 +369,7 @@ argument_list|(
 name|q
 argument_list|,
 operator|new
-name|Collector
+name|SimpleCollector
 argument_list|()
 block|{
 specifier|private
@@ -487,16 +487,6 @@ index|]
 operator|++
 expr_stmt|;
 block|}
-annotation|@
-name|Override
-specifier|public
-name|void
-name|setNextReader
-parameter_list|(
-name|AtomicReaderContext
-name|context
-parameter_list|)
-block|{       }
 annotation|@
 name|Override
 specifier|public

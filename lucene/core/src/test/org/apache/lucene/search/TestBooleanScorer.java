@@ -587,7 +587,7 @@ specifier|public
 name|boolean
 name|score
 parameter_list|(
-name|Collector
+name|LeafCollector
 name|c
 parameter_list|,
 name|int
@@ -693,7 +693,7 @@ operator|.
 name|score
 argument_list|(
 operator|new
-name|Collector
+name|SimpleCollector
 argument_list|()
 block|{
 name|int
@@ -726,11 +726,13 @@ name|doc
 argument_list|)
 expr_stmt|;
 block|}
-function|@Override       public void setNextReader
+function|@Override       protected void doSetNextReader
 parameter_list|(
 name|AtomicReaderContext
 name|context
 parameter_list|)
+throws|throws
+name|IOException
 block|{
 name|docBase
 operator|=
@@ -1003,7 +1005,7 @@ argument_list|(
 name|q
 argument_list|,
 operator|new
-name|Collector
+name|SimpleCollector
 argument_list|()
 block|{
 annotation|@
@@ -1076,13 +1078,6 @@ literal|0
 index|]
 operator|++
 expr_stmt|;
-block|}
-function|@Override       public void setNextReader
-parameter_list|(
-name|AtomicReaderContext
-name|context
-parameter_list|)
-block|{
 block|}
 function|@Override       public boolean acceptsDocsOutOfOrder
 parameter_list|()
@@ -1231,7 +1226,7 @@ specifier|public
 name|boolean
 name|score
 parameter_list|(
-name|Collector
+name|LeafCollector
 name|collector
 parameter_list|,
 name|int

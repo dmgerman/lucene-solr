@@ -80,7 +80,7 @@ parameter_list|<
 name|GROUP_VALUE_TYPE
 parameter_list|>
 extends|extends
-name|Collector
+name|SimpleCollector
 block|{
 DECL|field|groupSort
 specifier|private
@@ -1383,10 +1383,10 @@ return|;
 block|}
 annotation|@
 name|Override
-DECL|method|setNextReader
-specifier|public
+DECL|method|doSetNextReader
+specifier|protected
 name|void
-name|setNextReader
+name|doSetNextReader
 parameter_list|(
 name|AtomicReaderContext
 name|readerContext

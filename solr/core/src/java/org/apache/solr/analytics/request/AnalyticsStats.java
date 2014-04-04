@@ -714,7 +714,7 @@ condition|)
 block|{
 name|accumulator
 operator|.
-name|setNextReader
+name|getLeafCollector
 argument_list|(
 name|context
 argument_list|)

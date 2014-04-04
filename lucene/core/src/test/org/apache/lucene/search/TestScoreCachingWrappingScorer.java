@@ -282,7 +282,7 @@ specifier|final
 class|class
 name|ScoreCachingCollector
 extends|extends
-name|Collector
+name|SimpleCollector
 block|{
 DECL|field|idx
 specifier|private
@@ -378,17 +378,6 @@ operator|++
 name|idx
 expr_stmt|;
 block|}
-DECL|method|setNextReader
-annotation|@
-name|Override
-specifier|public
-name|void
-name|setNextReader
-parameter_list|(
-name|AtomicReaderContext
-name|context
-parameter_list|)
-block|{     }
 DECL|method|setScorer
 annotation|@
 name|Override

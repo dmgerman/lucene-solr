@@ -310,7 +310,7 @@ block|{
 comment|// We advanced to another segment:
 name|collector
 operator|.
-name|setNextReader
+name|getLeafCollector
 argument_list|(
 name|readerContext
 argument_list|)

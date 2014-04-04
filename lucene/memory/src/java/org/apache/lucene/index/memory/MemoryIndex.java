@@ -510,6 +510,20 @@ name|lucene
 operator|.
 name|search
 operator|.
+name|SimpleCollector
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|search
+operator|.
 name|similarities
 operator|.
 name|Similarity
@@ -2195,7 +2209,7 @@ argument_list|(
 name|query
 argument_list|,
 operator|new
-name|Collector
+name|SimpleCollector
 argument_list|()
 block|{
 specifier|private
@@ -2253,16 +2267,6 @@ return|return
 literal|true
 return|;
 block|}
-annotation|@
-name|Override
-specifier|public
-name|void
-name|setNextReader
-parameter_list|(
-name|AtomicReaderContext
-name|context
-parameter_list|)
-block|{ }
 block|}
 argument_list|)
 expr_stmt|;

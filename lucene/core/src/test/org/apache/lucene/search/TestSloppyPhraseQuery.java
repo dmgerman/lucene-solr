@@ -1132,7 +1132,7 @@ specifier|static
 class|class
 name|MaxFreqCollector
 extends|extends
-name|Collector
+name|SimpleCollector
 block|{
 DECL|field|max
 name|float
@@ -1199,19 +1199,6 @@ expr_stmt|;
 block|}
 annotation|@
 name|Override
-DECL|method|setNextReader
-specifier|public
-name|void
-name|setNextReader
-parameter_list|(
-name|AtomicReaderContext
-name|context
-parameter_list|)
-throws|throws
-name|IOException
-block|{           }
-annotation|@
-name|Override
 DECL|method|acceptsDocsOutOfOrder
 specifier|public
 name|boolean
@@ -1245,7 +1232,7 @@ argument_list|(
 name|pq
 argument_list|,
 operator|new
-name|Collector
+name|SimpleCollector
 argument_list|()
 block|{
 name|Scorer
@@ -1306,18 +1293,6 @@ argument_list|()
 argument_list|)
 argument_list|)
 expr_stmt|;
-block|}
-annotation|@
-name|Override
-specifier|public
-name|void
-name|setNextReader
-parameter_list|(
-name|AtomicReaderContext
-name|context
-parameter_list|)
-block|{
-comment|// do nothing
 block|}
 annotation|@
 name|Override

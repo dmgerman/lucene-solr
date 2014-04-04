@@ -184,10 +184,10 @@ block|}
 comment|/**    * Update the readers of the queryFacet {@link StatsCollector}s in FacetingAccumulator    */
 annotation|@
 name|Override
-DECL|method|setNextReader
-specifier|public
+DECL|method|doSetNextReader
+specifier|protected
 name|void
-name|setNextReader
+name|doSetNextReader
 parameter_list|(
 name|AtomicReaderContext
 name|context

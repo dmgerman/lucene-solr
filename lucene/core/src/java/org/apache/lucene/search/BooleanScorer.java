@@ -119,7 +119,7 @@ specifier|final
 class|class
 name|BooleanScorerCollector
 extends|extends
-name|Collector
+name|SimpleCollector
 block|{
 DECL|field|bucketTable
 specifier|private
@@ -288,19 +288,6 @@ block|}
 block|}
 annotation|@
 name|Override
-DECL|method|setNextReader
-specifier|public
-name|void
-name|setNextReader
-parameter_list|(
-name|AtomicReaderContext
-name|context
-parameter_list|)
-block|{
-comment|// not needed by this implementation
-block|}
-annotation|@
-name|Override
 DECL|method|setScorer
 specifier|public
 name|void
@@ -451,7 +438,7 @@ block|}
 block|}
 DECL|method|newCollector
 specifier|public
-name|Collector
+name|LeafCollector
 name|newCollector
 parameter_list|(
 name|int
@@ -499,7 +486,7 @@ name|prohibited
 decl_stmt|;
 DECL|field|collector
 specifier|public
-name|Collector
+name|LeafCollector
 name|collector
 decl_stmt|;
 DECL|field|next
@@ -525,7 +512,7 @@ parameter_list|,
 name|boolean
 name|prohibited
 parameter_list|,
-name|Collector
+name|LeafCollector
 name|collector
 parameter_list|,
 name|SubScorer
@@ -795,7 +782,7 @@ specifier|public
 name|boolean
 name|score
 parameter_list|(
-name|Collector
+name|LeafCollector
 name|collector
 parameter_list|,
 name|int

@@ -44,23 +44,9 @@ name|apache
 operator|.
 name|lucene
 operator|.
-name|index
-operator|.
-name|AtomicReaderContext
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
 name|search
 operator|.
-name|Collector
+name|Scorer
 import|;
 end_import
 
@@ -90,7 +76,7 @@ name|lucene
 operator|.
 name|search
 operator|.
-name|Scorer
+name|SimpleCollector
 import|;
 end_import
 
@@ -103,7 +89,7 @@ DECL|class|AssertingSubDocsAtOnceCollector
 class|class
 name|AssertingSubDocsAtOnceCollector
 extends|extends
-name|Collector
+name|SimpleCollector
 block|{
 comment|// TODO: allow wrapping another Collector
 DECL|field|allScorers
@@ -239,17 +225,6 @@ throw|;
 block|}
 block|}
 block|}
-annotation|@
-name|Override
-DECL|method|setNextReader
-specifier|public
-name|void
-name|setNextReader
-parameter_list|(
-name|AtomicReaderContext
-name|context
-parameter_list|)
-block|{   }
 annotation|@
 name|Override
 DECL|method|acceptsDocsOutOfOrder

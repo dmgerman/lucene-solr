@@ -82,6 +82,20 @@ name|lucene
 operator|.
 name|search
 operator|.
+name|LeafCollector
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|search
+operator|.
 name|IndexSearcher
 import|;
 end_import
@@ -125,6 +139,20 @@ operator|.
 name|search
 operator|.
 name|Query
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|search
+operator|.
+name|SimpleCollector
 import|;
 end_import
 
@@ -275,7 +303,7 @@ DECL|class|TestCollector
 class|class
 name|TestCollector
 extends|extends
-name|Collector
+name|SimpleCollector
 block|{
 comment|// FIXME: use check hits from Lucene tests
 DECL|field|totalMatched
@@ -354,10 +382,10 @@ return|;
 block|}
 annotation|@
 name|Override
-DECL|method|setNextReader
-specifier|public
+DECL|method|doSetNextReader
+specifier|protected
 name|void
-name|setNextReader
+name|doSetNextReader
 parameter_list|(
 name|AtomicReaderContext
 name|context
