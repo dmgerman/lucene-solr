@@ -600,11 +600,16 @@ operator|.
 name|close
 argument_list|()
 expr_stmt|;
+comment|// we don't wrap with AssertingIndexSearcher in order to have the original scorer in setScorer.
 name|searcher
 operator|=
 name|newSearcher
 argument_list|(
 name|reader
+argument_list|,
+literal|true
+argument_list|,
+literal|false
 argument_list|)
 expr_stmt|;
 comment|// set a similarity that does not normalize our boost away

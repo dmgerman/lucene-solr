@@ -898,6 +898,7 @@ operator|.
 name|close
 argument_list|()
 expr_stmt|;
+comment|// we don't wrap with AssertingIndexSearcher in order to have the original scorer in setScorer.
 specifier|final
 name|IndexSearcher
 name|s
@@ -905,6 +906,10 @@ init|=
 name|newSearcher
 argument_list|(
 name|r
+argument_list|,
+literal|true
+argument_list|,
+literal|false
 argument_list|)
 decl_stmt|;
 specifier|final
@@ -1026,23 +1031,6 @@ name|?
 argument_list|>
 name|clazz
 init|=
-name|scorer
-operator|instanceof
-name|AssertingScorer
-condition|?
-operator|(
-operator|(
-name|AssertingScorer
-operator|)
-name|scorer
-operator|)
-operator|.
-name|getIn
-argument_list|()
-operator|.
-name|getClass
-argument_list|()
-else|:
 name|scorer
 operator|.
 name|getClass
