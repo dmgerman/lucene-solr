@@ -12331,11 +12331,11 @@ decl_stmt|;
 comment|/**    * This method is deprecated for a reason. Do not use it. Call {@link #createTempDir()}    * or {@link #createTempDir(String)} or {@link #createTempFile(String, String)}.    */
 annotation|@
 name|Deprecated
-DECL|method|getTempDirBase
+DECL|method|getBaseTempDirForTestClass
 specifier|public
 specifier|static
 name|File
-name|getTempDirBase
+name|getBaseTempDirForTestClass
 parameter_list|()
 block|{
 synchronized|synchronized
@@ -12526,7 +12526,7 @@ return|return
 name|tempDirBase
 return|;
 block|}
-comment|/**    */
+comment|/**    * Creates an empty, temporary folder (when the name of the folder is of no importance).    *     * @see #createTempDir(String)    */
 DECL|method|createTempDir
 specifier|public
 specifier|static
@@ -12541,7 +12541,7 @@ literal|"tempDir"
 argument_list|)
 return|;
 block|}
-comment|/**    */
+comment|/**    * Creates an empty, temporary folder with the given name prefix under the     * test class's {@link #getBaseTempDirForTestClass()}.    *      *<p>The folder will be automatically removed after the    * test class completes successfully. The test should close any file handles that would prevent    * the folder from being removed.     */
 DECL|method|createTempDir
 specifier|public
 specifier|static
@@ -12555,7 +12555,7 @@ block|{
 name|File
 name|base
 init|=
-name|getTempDirBase
+name|getBaseTempDirForTestClass
 argument_list|()
 decl_stmt|;
 name|int
@@ -12633,7 +12633,7 @@ return|return
 name|f
 return|;
 block|}
-comment|/**    */
+comment|/**    * Creates an empty file with the given prefix and suffix under the     * test class's {@link #getBaseTempDirForTestClass()}.    *     *<p>The file will be automatically removed after the    * test class completes successfully. The test should close any file handles that would prevent    * the folder from being removed.     */
 DECL|method|createTempFile
 specifier|public
 specifier|static
@@ -12652,7 +12652,7 @@ block|{
 name|File
 name|base
 init|=
-name|getTempDirBase
+name|getBaseTempDirForTestClass
 argument_list|()
 decl_stmt|;
 name|int
@@ -12732,7 +12732,7 @@ return|return
 name|f
 return|;
 block|}
-comment|/**    */
+comment|/**    * Creates an empty temporary file.    *     * @see #createTempFile(String, String)     */
 DECL|method|createTempFile
 specifier|public
 specifier|static

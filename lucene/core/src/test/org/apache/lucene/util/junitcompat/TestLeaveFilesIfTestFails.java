@@ -321,7 +321,7 @@ name|parent
 operator|=
 name|LuceneTestCase
 operator|.
-name|getTempDirBase
+name|getBaseTempDirForTestClass
 argument_list|()
 expr_stmt|;
 block|}
