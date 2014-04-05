@@ -317,9 +317,7 @@ specifier|final
 name|File
 name|base
 init|=
-name|TestUtil
-operator|.
-name|getTempDir
+name|createTempDir
 argument_list|(
 literal|"fsResourceLoaderBase"
 argument_list|)
@@ -520,7 +518,7 @@ finally|finally
 block|{
 name|TestUtil
 operator|.
-name|rmDir
+name|rm
 argument_list|(
 name|base
 argument_list|)

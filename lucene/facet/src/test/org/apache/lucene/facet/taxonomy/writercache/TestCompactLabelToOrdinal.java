@@ -401,9 +401,7 @@ block|}
 name|File
 name|tmpDir
 init|=
-name|TestUtil
-operator|.
-name|getTempDir
+name|createTempDir
 argument_list|(
 literal|"testLableToOrdinal"
 argument_list|)

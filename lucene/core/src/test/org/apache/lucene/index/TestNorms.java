@@ -745,9 +745,7 @@ name|dir
 init|=
 name|newFSDirectory
 argument_list|(
-name|TestUtil
-operator|.
-name|getTempDir
+name|createTempDir
 argument_list|(
 literal|"TestNorms.testMaxByteNorms"
 argument_list|)

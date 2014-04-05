@@ -479,9 +479,7 @@ expr_stmt|;
 comment|// sets stderr logging to DEBUG level
 name|clientWorkDir
 operator|=
-name|TestUtil
-operator|.
-name|getTempDir
+name|createTempDir
 argument_list|(
 literal|"httpReplicatorTest"
 argument_list|)

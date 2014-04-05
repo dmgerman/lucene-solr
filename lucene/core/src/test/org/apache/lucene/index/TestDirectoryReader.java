@@ -3256,9 +3256,7 @@ comment|// Create initial data set
 name|File
 name|dirFile
 init|=
-name|TestUtil
-operator|.
-name|getTempDir
+name|createTempDir
 argument_list|(
 literal|"TestIndexReader.testFilesOpenClose"
 argument_list|)
@@ -3312,7 +3310,7 @@ expr_stmt|;
 comment|// Try to erase the data - this ensures that the writer closed all files
 name|TestUtil
 operator|.
-name|rmDir
+name|rm
 argument_list|(
 name|dirFile
 argument_list|)
@@ -3401,7 +3399,7 @@ comment|// The following will fail if reader did not close
 comment|// all files
 name|TestUtil
 operator|.
-name|rmDir
+name|rm
 argument_list|(
 name|dirFile
 argument_list|)
@@ -3418,9 +3416,7 @@ block|{
 name|File
 name|dirFile
 init|=
-name|TestUtil
-operator|.
-name|getTempDir
+name|createTempDir
 argument_list|(
 literal|"deletetest"
 argument_list|)
@@ -5220,16 +5216,14 @@ block|{
 name|File
 name|tempDir
 init|=
-name|TestUtil
-operator|.
-name|getTempDir
+name|createTempDir
 argument_list|(
 literal|"doesnotexist"
 argument_list|)
 decl_stmt|;
 name|TestUtil
 operator|.
-name|rmDir
+name|rm
 argument_list|(
 name|tempDir
 argument_list|)
@@ -7756,9 +7750,7 @@ block|{
 name|File
 name|tempDir
 init|=
-name|TestUtil
-operator|.
-name|getTempDir
+name|createTempDir
 argument_list|(
 literal|"testIndexExistsOnNonExistentDirectory"
 argument_list|)

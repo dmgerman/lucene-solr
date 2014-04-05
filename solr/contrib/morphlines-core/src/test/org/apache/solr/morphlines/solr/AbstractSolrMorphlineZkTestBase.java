@@ -204,7 +204,7 @@ name|morphline
 operator|.
 name|api
 operator|.
-name|Command
+name|Collector
 import|;
 end_import
 
@@ -218,7 +218,7 @@ name|morphline
 operator|.
 name|api
 operator|.
-name|Collector
+name|Command
 import|;
 end_import
 
@@ -356,22 +356,8 @@ block|{
 DECL|field|solrHomeDirectory
 specifier|private
 specifier|static
-specifier|final
 name|File
 name|solrHomeDirectory
-init|=
-operator|new
-name|File
-argument_list|(
-name|dataDir
-argument_list|,
-name|AbstractSolrMorphlineZkTestBase
-operator|.
-name|class
-operator|.
-name|getName
-argument_list|()
-argument_list|)
 decl_stmt|;
 DECL|field|RESOURCES_DIR
 specifier|protected
@@ -472,6 +458,11 @@ parameter_list|()
 throws|throws
 name|Exception
 block|{
+name|solrHomeDirectory
+operator|=
+name|createTempDir
+argument_list|()
+expr_stmt|;
 name|AbstractZkTestCase
 operator|.
 name|SOLRHOME

@@ -119,7 +119,7 @@ literal|"solr.data.dir"
 argument_list|,
 name|this
 operator|.
-name|dataDir
+name|initCoreDataDir
 operator|.
 name|getCanonicalPath
 argument_list|()

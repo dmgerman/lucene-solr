@@ -352,7 +352,7 @@ expr_stmt|;
 name|File
 name|data
 init|=
-name|dataDir
+name|initCoreDataDir
 decl_stmt|;
 name|String
 name|config
@@ -362,7 +362,7 @@ decl_stmt|;
 name|deleteCore
 argument_list|()
 expr_stmt|;
-name|dataDir
+name|initCoreDataDir
 operator|=
 name|data
 expr_stmt|;

@@ -822,7 +822,7 @@ argument_list|)
 expr_stmt|;
 name|TestUtil
 operator|.
-name|rmDir
+name|rm
 argument_list|(
 name|testDir
 argument_list|)
@@ -850,7 +850,7 @@ name|Exception
 block|{
 name|TestUtil
 operator|.
-name|rmDir
+name|rm
 argument_list|(
 name|testDir
 argument_list|)

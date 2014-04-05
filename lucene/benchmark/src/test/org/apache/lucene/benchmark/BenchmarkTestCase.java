@@ -170,9 +170,7 @@ parameter_list|()
 block|{
 name|WORKDIR
 operator|=
-name|TestUtil
-operator|.
-name|getTempDir
+name|createTempDir
 argument_list|(
 literal|"benchmark"
 argument_list|)

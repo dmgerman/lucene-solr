@@ -18,6 +18,16 @@ end_comment
 
 begin_import
 import|import
+name|java
+operator|.
+name|io
+operator|.
+name|File
+import|;
+end_import
+
+begin_import
+import|import
 name|org
 operator|.
 name|apache
@@ -71,20 +81,6 @@ operator|.
 name|core
 operator|.
 name|CoreContainer
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|solr
-operator|.
-name|util
-operator|.
-name|AbstractSolrTestCase
 import|;
 end_import
 
@@ -152,16 +148,6 @@ name|LoggerFactory
 import|;
 end_import
 
-begin_import
-import|import
-name|java
-operator|.
-name|io
-operator|.
-name|File
-import|;
-end_import
-
 begin_class
 DECL|class|TestZkChroot
 specifier|public
@@ -226,16 +212,13 @@ argument_list|()
 expr_stmt|;
 name|zkDir
 operator|=
-name|dataDir
+name|createTempDir
+argument_list|(
+literal|"zkData"
+argument_list|)
 operator|.
 name|getAbsolutePath
 argument_list|()
-operator|+
-name|File
-operator|.
-name|separator
-operator|+
-literal|"zookeeper/server1/data"
 expr_stmt|;
 name|zkServer
 operator|=

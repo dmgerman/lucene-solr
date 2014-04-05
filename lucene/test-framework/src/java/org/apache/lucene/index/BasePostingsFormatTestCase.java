@@ -6656,9 +6656,7 @@ block|{
 name|File
 name|path
 init|=
-name|TestUtil
-operator|.
-name|getTempDir
+name|createTempDir
 argument_list|(
 literal|"testPostingsFormat.testExact"
 argument_list|)
@@ -6801,7 +6799,7 @@ argument_list|()
 expr_stmt|;
 name|TestUtil
 operator|.
-name|rmDir
+name|rm
 argument_list|(
 name|path
 argument_list|)
@@ -6946,9 +6944,7 @@ block|{
 name|File
 name|path
 init|=
-name|TestUtil
-operator|.
-name|getTempDir
+name|createTempDir
 argument_list|(
 literal|"testPostingsFormat"
 argument_list|)
@@ -7034,7 +7030,7 @@ argument_list|()
 expr_stmt|;
 name|TestUtil
 operator|.
-name|rmDir
+name|rm
 argument_list|(
 name|path
 argument_list|)

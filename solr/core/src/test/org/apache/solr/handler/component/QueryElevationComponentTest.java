@@ -395,7 +395,7 @@ init|=
 operator|new
 name|File
 argument_list|(
-name|dataDir
+name|initCoreDataDir
 argument_list|,
 literal|"elevate-data.xml"
 argument_list|)

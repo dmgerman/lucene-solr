@@ -6279,9 +6279,7 @@ comment|// Try again after save/load:
 name|File
 name|tmpDir
 init|=
-name|TestUtil
-operator|.
-name|getTempDir
+name|createTempDir
 argument_list|(
 literal|"AnalyzingSuggesterTest"
 argument_list|)
@@ -6705,9 +6703,7 @@ comment|// Try again after save/load:
 name|File
 name|tmpDir
 init|=
-name|TestUtil
-operator|.
-name|getTempDir
+name|createTempDir
 argument_list|(
 literal|"AnalyzingSuggesterTest"
 argument_list|)
@@ -7140,9 +7136,7 @@ comment|// Try again after save/load:
 name|File
 name|tmpDir
 init|=
-name|TestUtil
-operator|.
-name|getTempDir
+name|createTempDir
 argument_list|(
 literal|"AnalyzingSuggesterTest"
 argument_list|)

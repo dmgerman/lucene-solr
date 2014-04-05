@@ -191,9 +191,7 @@ name|dir
 init|=
 name|newFSDirectory
 argument_list|(
-name|TestUtil
-operator|.
-name|getTempDir
+name|createTempDir
 argument_list|(
 literal|"testOverflow"
 argument_list|)
@@ -1089,9 +1087,7 @@ name|dir
 init|=
 name|newFSDirectory
 argument_list|(
-name|TestUtil
-operator|.
-name|getTempDir
+name|createTempDir
 argument_list|(
 literal|"testOverflow"
 argument_list|)

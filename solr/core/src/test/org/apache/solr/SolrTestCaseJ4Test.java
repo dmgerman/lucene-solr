@@ -16,6 +16,16 @@ end_comment
 
 begin_import
 import|import
+name|java
+operator|.
+name|io
+operator|.
+name|File
+import|;
+end_import
+
+begin_import
+import|import
 name|org
 operator|.
 name|apache
@@ -58,16 +68,6 @@ name|Test
 import|;
 end_import
 
-begin_import
-import|import
-name|java
-operator|.
-name|io
-operator|.
-name|File
-import|;
-end_import
-
 begin_class
 DECL|class|SolrTestCaseJ4Test
 specifier|public
@@ -97,22 +97,10 @@ comment|// Create a temporary directory that holds a core NOT named "collection1
 comment|// we can so we don't copy that much junk around.
 name|tmpSolrHome
 operator|=
-name|dataDir
-operator|+
-name|File
-operator|.
-name|separator
-operator|+
-name|SolrTestCaseJ4Test
-operator|.
-name|class
-operator|.
-name|getSimpleName
+name|createTempDir
 argument_list|()
-operator|+
-name|System
 operator|.
-name|currentTimeMillis
+name|getAbsolutePath
 argument_list|()
 expr_stmt|;
 name|File
@@ -276,22 +264,7 @@ name|AfterClass
 parameter_list|()
 throws|throws
 name|Exception
-block|{
-name|FileUtils
-operator|.
-name|deleteDirectory
-argument_list|(
-operator|new
-name|File
-argument_list|(
-name|tmpSolrHome
-argument_list|)
-operator|.
-name|getAbsoluteFile
-argument_list|()
-argument_list|)
-expr_stmt|;
-block|}
+block|{    }
 annotation|@
 name|Test
 DECL|method|testCorrectCore

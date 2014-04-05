@@ -239,13 +239,13 @@ expr_stmt|;
 name|File
 name|myDir
 init|=
-name|dataDir
+name|initCoreDataDir
 decl_stmt|;
 name|deleteCore
 argument_list|()
 expr_stmt|;
 comment|// boot up again over the same index
-name|dataDir
+name|initCoreDataDir
 operator|=
 name|myDir
 expr_stmt|;

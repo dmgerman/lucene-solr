@@ -1289,9 +1289,7 @@ argument_list|()
 expr_stmt|;
 name|clientWorkDir
 operator|=
-name|TestUtil
-operator|.
-name|getTempDir
+name|createTempDir
 argument_list|(
 literal|"replicationClientTest"
 argument_list|)

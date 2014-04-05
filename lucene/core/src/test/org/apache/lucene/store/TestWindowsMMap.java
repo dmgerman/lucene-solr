@@ -369,9 +369,7 @@ comment|// directory up front, or otherwise new IndexWriter will fail.
 name|File
 name|dirPath
 init|=
-name|TestUtil
-operator|.
-name|getTempDir
+name|createTempDir
 argument_list|(
 literal|"testLuceneMmap"
 argument_list|)

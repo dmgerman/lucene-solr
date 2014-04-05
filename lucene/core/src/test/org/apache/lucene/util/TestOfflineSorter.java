@@ -236,16 +236,14 @@ argument_list|()
 expr_stmt|;
 name|tempDir
 operator|=
-name|TestUtil
-operator|.
-name|getTempDir
+name|createTempDir
 argument_list|(
 literal|"mergesort"
 argument_list|)
 expr_stmt|;
 name|TestUtil
 operator|.
-name|rmDir
+name|rm
 argument_list|(
 name|tempDir
 argument_list|)
@@ -274,7 +272,7 @@ literal|null
 condition|)
 name|TestUtil
 operator|.
-name|rmDir
+name|rm
 argument_list|(
 name|tempDir
 argument_list|)

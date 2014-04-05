@@ -1899,12 +1899,11 @@ block|{
 name|File
 name|lineFile
 init|=
-operator|new
-name|File
+name|createTempFile
 argument_list|(
-name|TEMP_DIR
+literal|"test.reuters.lines"
 argument_list|,
-literal|"test.reuters.lines.txt"
+literal|".txt"
 argument_list|)
 decl_stmt|;
 comment|// We will call WriteLineDocs this many times
