@@ -60,16 +60,6 @@ begin_import
 import|import
 name|java
 operator|.
-name|io
-operator|.
-name|UnsupportedEncodingException
-import|;
-end_import
-
-begin_import
-import|import
-name|java
-operator|.
 name|net
 operator|.
 name|MalformedURLException
@@ -329,7 +319,7 @@ name|setProperty
 argument_list|(
 literal|"url"
 argument_list|,
-literal|"http://localhost:5150/solr/update"
+literal|"http://user:password@localhost:5150/solr/update"
 argument_list|)
 expr_stmt|;
 name|t_test
@@ -451,7 +441,7 @@ argument_list|)
 expr_stmt|;
 name|assertEquals
 argument_list|(
-literal|"http://localhost:5150/solr/update?param1=foo&param2=bar"
+literal|"http://user:password@localhost:5150/solr/update?param1=foo&param2=bar"
 argument_list|,
 name|t_test
 operator|.
