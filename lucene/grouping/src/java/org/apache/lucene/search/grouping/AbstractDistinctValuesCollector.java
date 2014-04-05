@@ -20,39 +20,11 @@ end_comment
 
 begin_import
 import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|search
-operator|.
-name|Collector
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|search
-operator|.
-name|Scorer
-import|;
-end_import
-
-begin_import
-import|import
 name|java
 operator|.
-name|io
+name|util
 operator|.
-name|IOException
+name|HashSet
 import|;
 end_import
 
@@ -62,7 +34,31 @@ name|java
 operator|.
 name|util
 operator|.
-name|*
+name|List
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
+name|util
+operator|.
+name|Set
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|search
+operator|.
+name|SimpleCollector
 import|;
 end_import
 
@@ -87,7 +83,7 @@ name|?
 parameter_list|>
 parameter_list|>
 extends|extends
-name|Collector
+name|SimpleCollector
 block|{
 comment|/**    * Returns all unique values for each top N group.    *    * @return all unique values for each top N group    */
 DECL|method|getGroups
@@ -112,19 +108,6 @@ return|return
 literal|true
 return|;
 block|}
-annotation|@
-name|Override
-DECL|method|setScorer
-specifier|public
-name|void
-name|setScorer
-parameter_list|(
-name|Scorer
-name|scorer
-parameter_list|)
-throws|throws
-name|IOException
-block|{   }
 comment|/**    * Returned by {@link AbstractDistinctValuesCollector#getGroups()},    * representing the value and set of distinct values for the group.    */
 DECL|class|GroupCount
 specifier|public

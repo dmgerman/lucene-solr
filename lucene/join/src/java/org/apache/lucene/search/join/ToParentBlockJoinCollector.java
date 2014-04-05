@@ -156,7 +156,7 @@ specifier|public
 class|class
 name|ToParentBlockJoinCollector
 extends|extends
-name|Collector
+name|SimpleCollector
 block|{
 DECL|field|sort
 specifier|private
@@ -1213,10 +1213,10 @@ block|}
 block|}
 annotation|@
 name|Override
-DECL|method|setNextReader
-specifier|public
+DECL|method|doSetNextReader
+specifier|protected
 name|void
-name|setNextReader
+name|doSetNextReader
 parameter_list|(
 name|AtomicReaderContext
 name|context
@@ -1956,7 +1956,7 @@ argument_list|)
 expr_stmt|;
 name|collector
 operator|.
-name|setNextReader
+name|getLeafCollector
 argument_list|(
 name|og
 operator|.

@@ -369,7 +369,7 @@ argument_list|(
 name|q
 argument_list|,
 operator|new
-name|Collector
+name|SimpleCollector
 argument_list|()
 block|{
 specifier|private
@@ -490,16 +490,6 @@ block|}
 annotation|@
 name|Override
 specifier|public
-name|void
-name|setNextReader
-parameter_list|(
-name|AtomicReaderContext
-name|context
-parameter_list|)
-block|{       }
-annotation|@
-name|Override
-specifier|public
 name|boolean
 name|acceptsDocsOutOfOrder
 parameter_list|()
@@ -610,11 +600,16 @@ operator|.
 name|close
 argument_list|()
 expr_stmt|;
+comment|// we don't wrap with AssertingIndexSearcher in order to have the original scorer in setScorer.
 name|searcher
 operator|=
 name|newSearcher
 argument_list|(
 name|reader
+argument_list|,
+literal|true
+argument_list|,
+literal|false
 argument_list|)
 expr_stmt|;
 comment|// set a similarity that does not normalize our boost away

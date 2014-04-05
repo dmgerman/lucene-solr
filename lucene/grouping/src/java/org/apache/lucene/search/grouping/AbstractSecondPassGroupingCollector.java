@@ -100,7 +100,7 @@ parameter_list|<
 name|GROUP_VALUE_TYPE
 parameter_list|>
 extends|extends
-name|Collector
+name|SimpleCollector
 block|{
 DECL|field|groupMap
 specifier|protected
@@ -442,10 +442,10 @@ name|IOException
 function_decl|;
 annotation|@
 name|Override
-DECL|method|setNextReader
-specifier|public
+DECL|method|doSetNextReader
+specifier|protected
 name|void
-name|setNextReader
+name|doSetNextReader
 parameter_list|(
 name|AtomicReaderContext
 name|readerContext
@@ -472,7 +472,7 @@ name|group
 operator|.
 name|collector
 operator|.
-name|setNextReader
+name|getLeafCollector
 argument_list|(
 name|readerContext
 argument_list|)

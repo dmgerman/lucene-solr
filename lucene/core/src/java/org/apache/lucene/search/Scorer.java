@@ -97,7 +97,7 @@ operator|=
 name|weight
 expr_stmt|;
 block|}
-comment|/** Returns the score of the current document matching the query.    * Initially invalid, until {@link #nextDoc()} or {@link #advance(int)}    * is called the first time, or when called from within    * {@link Collector#collect}.    */
+comment|/** Returns the score of the current document matching the query.    * Initially invalid, until {@link #nextDoc()} or {@link #advance(int)}    * is called the first time, or when called from within    * {@link LeafCollector#collect}.    */
 DECL|method|score
 specifier|public
 specifier|abstract

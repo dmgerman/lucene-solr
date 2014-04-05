@@ -4438,7 +4438,7 @@ name|lst
 operator|.
 name|add
 argument_list|(
-literal|"5minRateReqsPerMinute"
+literal|"5minRateRequestsPerMinute"
 argument_list|,
 name|timer
 operator|.
@@ -4450,7 +4450,7 @@ name|lst
 operator|.
 name|add
 argument_list|(
-literal|"15minRateReqsPerMinute"
+literal|"15minRateRequestsPerMinute"
 argument_list|,
 name|timer
 operator|.
@@ -4486,7 +4486,7 @@ name|lst
 operator|.
 name|add
 argument_list|(
-literal|"75thPcRequestTime"
+literal|"75thPctlRequestTime"
 argument_list|,
 name|snapshot
 operator|.
@@ -4498,7 +4498,7 @@ name|lst
 operator|.
 name|add
 argument_list|(
-literal|"95thPcRequestTime"
+literal|"95thPctlRequestTime"
 argument_list|,
 name|snapshot
 operator|.
@@ -4510,7 +4510,7 @@ name|lst
 operator|.
 name|add
 argument_list|(
-literal|"99thPcRequestTime"
+literal|"99thPctlRequestTime"
 argument_list|,
 name|snapshot
 operator|.
@@ -4522,7 +4522,7 @@ name|lst
 operator|.
 name|add
 argument_list|(
-literal|"999thPcRequestTime"
+literal|"999thPctlRequestTime"
 argument_list|,
 name|snapshot
 operator|.

@@ -315,16 +315,13 @@ name|i
 operator|++
 index|]
 operator|=
-operator|new
-name|BytesRef
-argument_list|(
 name|cell
 operator|.
-name|getTokenString
-argument_list|()
+name|getTokenBytesNoLeaf
+argument_list|(
+literal|null
 argument_list|)
 expr_stmt|;
-comment|//TODO use cell.getTokenBytes()
 block|}
 return|return
 operator|new

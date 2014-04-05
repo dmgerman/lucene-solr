@@ -18,15 +18,11 @@ end_package
 
 begin_import
 import|import
-name|org
+name|java
 operator|.
-name|apache
+name|io
 operator|.
-name|lucene
-operator|.
-name|index
-operator|.
-name|IndexReader
+name|IOException
 import|;
 end_import
 
@@ -41,6 +37,20 @@ operator|.
 name|index
 operator|.
 name|AtomicReaderContext
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|search
+operator|.
+name|LeafCollector
 import|;
 end_import
 
@@ -74,11 +84,15 @@ end_import
 
 begin_import
 import|import
-name|java
+name|org
 operator|.
-name|io
+name|apache
 operator|.
-name|IOException
+name|lucene
+operator|.
+name|search
+operator|.
+name|SimpleCollector
 import|;
 end_import
 
@@ -92,7 +106,7 @@ specifier|public
 class|class
 name|DelegatingCollector
 extends|extends
-name|Collector
+name|SimpleCollector
 block|{
 comment|/* for internal testing purposes only to determine the number of times a delegating collector chain was used */
 DECL|field|setLastDelegateCount
@@ -105,6 +119,11 @@ DECL|field|delegate
 specifier|protected
 name|Collector
 name|delegate
+decl_stmt|;
+DECL|field|leafDelegate
+specifier|protected
+name|LeafCollector
+name|leafDelegate
 decl_stmt|;
 DECL|field|scorer
 specifier|protected
@@ -213,13 +232,21 @@ name|scorer
 operator|=
 name|scorer
 expr_stmt|;
-name|delegate
+if|if
+condition|(
+name|leafDelegate
+operator|!=
+literal|null
+condition|)
+block|{
+name|leafDelegate
 operator|.
 name|setScorer
 argument_list|(
 name|scorer
 argument_list|)
 expr_stmt|;
+block|}
 block|}
 annotation|@
 name|Override
@@ -234,7 +261,7 @@ parameter_list|)
 throws|throws
 name|IOException
 block|{
-name|delegate
+name|leafDelegate
 operator|.
 name|collect
 argument_list|(
@@ -244,10 +271,10 @@ expr_stmt|;
 block|}
 annotation|@
 name|Override
-DECL|method|setNextReader
-specifier|public
+DECL|method|doSetNextReader
+specifier|protected
 name|void
-name|setNextReader
+name|doSetNextReader
 parameter_list|(
 name|AtomicReaderContext
 name|context
@@ -269,9 +296,11 @@ name|context
 operator|.
 name|docBase
 expr_stmt|;
+name|leafDelegate
+operator|=
 name|delegate
 operator|.
-name|setNextReader
+name|getLeafCollector
 argument_list|(
 name|context
 argument_list|)
@@ -286,7 +315,7 @@ name|acceptsDocsOutOfOrder
 parameter_list|()
 block|{
 return|return
-name|delegate
+name|leafDelegate
 operator|.
 name|acceptsDocsOutOfOrder
 argument_list|()

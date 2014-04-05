@@ -50,7 +50,7 @@ name|lucene
 operator|.
 name|search
 operator|.
-name|Collector
+name|LeafCollector
 import|;
 end_import
 
@@ -65,6 +65,20 @@ operator|.
 name|search
 operator|.
 name|Scorer
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|search
+operator|.
+name|SimpleCollector
 import|;
 end_import
 
@@ -92,7 +106,7 @@ specifier|public
 class|class
 name|DocSetCollector
 extends|extends
-name|Collector
+name|SimpleCollector
 block|{
 DECL|field|pos
 name|int
@@ -313,10 +327,10 @@ name|IOException
 block|{   }
 annotation|@
 name|Override
-DECL|method|setNextReader
-specifier|public
+DECL|method|doSetNextReader
+specifier|protected
 name|void
-name|setNextReader
+name|doSetNextReader
 parameter_list|(
 name|AtomicReaderContext
 name|context

@@ -136,6 +136,20 @@ name|lucene
 operator|.
 name|search
 operator|.
+name|LeafCollector
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|search
+operator|.
 name|BooleanClause
 import|;
 end_import
@@ -1229,7 +1243,7 @@ argument_list|()
 argument_list|)
 return|;
 block|}
-comment|/** Override this and return true if your collector    *  (e.g., {@code ToParentBlockJoinCollector}) expects all    *  sub-scorers to be positioned on the document being    *  collected.  This will cause some performance loss;    *  default is false.  Note that if you return true from    *  this method (in a subclass) be sure your collector    *  also returns false from {@link    *  Collector#acceptsDocsOutOfOrder}: this will trick    *  {@code BooleanQuery} into also scoring all subDocs at    *  once. */
+comment|/** Override this and return true if your collector    *  (e.g., {@code ToParentBlockJoinCollector}) expects all    *  sub-scorers to be positioned on the document being    *  collected.  This will cause some performance loss;    *  default is false.  Note that if you return true from    *  this method (in a subclass) be sure your collector    *  also returns false from {@link    *  LeafCollector#acceptsDocsOutOfOrder}: this will trick    *  {@code BooleanQuery} into also scoring all subDocs at    *  once. */
 DECL|method|scoreSubDocsAtOnce
 specifier|protected
 name|boolean

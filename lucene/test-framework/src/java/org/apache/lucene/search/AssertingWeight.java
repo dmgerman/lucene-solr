@@ -339,7 +339,8 @@ condition|)
 block|{
 comment|// The incoming scorer already has a specialized
 comment|// implementation for BulkScorer, so we should use it:
-return|return
+name|inScorer
+operator|=
 name|AssertingBulkScorer
 operator|.
 name|wrap
@@ -355,9 +356,33 @@ argument_list|)
 argument_list|,
 name|inScorer
 argument_list|)
-return|;
+expr_stmt|;
 block|}
 elseif|else
+if|if
+condition|(
+name|random
+operator|.
+name|nextBoolean
+argument_list|()
+condition|)
+block|{
+comment|// Let super wrap this.scorer instead, so we use
+comment|// AssertingScorer:
+name|inScorer
+operator|=
+name|super
+operator|.
+name|bulkScorer
+argument_list|(
+name|context
+argument_list|,
+name|scoreDocsInOrder
+argument_list|,
+name|acceptDocs
+argument_list|)
+expr_stmt|;
+block|}
 if|if
 condition|(
 name|scoreDocsInOrder
@@ -373,24 +398,8 @@ block|{
 comment|// The caller claims it can handle out-of-order
 comment|// docs; let's confirm that by pulling docs and
 comment|// randomly shuffling them before collection:
-comment|//Scorer scorer = in.scorer(context, acceptDocs);
-name|Scorer
-name|scorer
-init|=
-name|scorer
-argument_list|(
-name|context
-argument_list|,
-name|acceptDocs
-argument_list|)
-decl_stmt|;
-comment|// Scorer should not be null if bulkScorer wasn't:
-assert|assert
-name|scorer
-operator|!=
-literal|null
-assert|;
-return|return
+name|inScorer
+operator|=
 operator|new
 name|AssertingBulkOutOfOrderScorer
 argument_list|(
@@ -403,27 +412,13 @@ name|nextLong
 argument_list|()
 argument_list|)
 argument_list|,
-name|scorer
+name|inScorer
 argument_list|)
-return|;
+expr_stmt|;
 block|}
-else|else
-block|{
-comment|// Let super wrap this.scorer instead, so we use
-comment|// AssertingScorer:
 return|return
-name|super
-operator|.
-name|bulkScorer
-argument_list|(
-name|context
-argument_list|,
-name|scoreDocsInOrder
-argument_list|,
-name|acceptDocs
-argument_list|)
+name|inScorer
 return|;
-block|}
 block|}
 annotation|@
 name|Override

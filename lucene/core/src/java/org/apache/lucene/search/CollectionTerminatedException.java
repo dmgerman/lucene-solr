@@ -17,7 +17,7 @@ comment|/*  * Licensed to the Apache Software Foundation (ASF) under one or more
 end_comment
 
 begin_comment
-comment|/** Throw this exception in {@link Collector#collect(int)} to prematurely  *  terminate collection of the current leaf.  *<p>Note: IndexSearcher swallows this exception and never re-throws it.  *  As a consequence, you should not catch it when calling  *  {@link IndexSearcher#search} as it is unnecessary and might hide misuse  *  of this exception. */
+comment|/** Throw this exception in {@link LeafCollector#collect(int)} to prematurely  *  terminate collection of the current leaf.  *<p>Note: IndexSearcher swallows this exception and never re-throws it.  *  As a consequence, you should not catch it when calling  *  {@link IndexSearcher#search} as it is unnecessary and might hide misuse  *  of this exception. */
 end_comment
 
 begin_class

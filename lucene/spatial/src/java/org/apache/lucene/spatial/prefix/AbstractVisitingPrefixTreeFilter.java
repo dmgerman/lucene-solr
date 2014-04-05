@@ -140,20 +140,6 @@ end_import
 
 begin_import
 import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|util
-operator|.
-name|StringHelper
-import|;
-end_import
-
-begin_import
-import|import
 name|java
 operator|.
 name|io
@@ -341,7 +327,7 @@ operator|new
 name|BytesRef
 argument_list|()
 decl_stmt|;
-comment|//curVNode.cell's term.
+comment|//curVNode.cell's term, without leaf
 DECL|field|scanCell
 specifier|private
 name|Cell
@@ -566,26 +552,14 @@ block|}
 block|}
 block|}
 comment|//Seek to curVNode's cell (or skip if termsEnum has moved beyond)
-name|curVNodeTerm
-operator|.
-name|bytes
-operator|=
 name|curVNode
 operator|.
 name|cell
 operator|.
-name|getTokenBytes
-argument_list|()
-expr_stmt|;
+name|getTokenBytesNoLeaf
+argument_list|(
 name|curVNodeTerm
-operator|.
-name|length
-operator|=
-name|curVNodeTerm
-operator|.
-name|bytes
-operator|.
-name|length
+argument_list|)
 expr_stmt|;
 name|int
 name|compare
@@ -781,16 +755,17 @@ block|{
 comment|//If the next indexed term just adds a leaf marker ('+') to cell,
 comment|// then add all of those docs
 assert|assert
-name|StringHelper
+name|curVNode
 operator|.
-name|startsWith
+name|cell
+operator|.
+name|isWithin
 argument_list|(
-name|thisTerm
-argument_list|,
 name|curVNodeTerm
+argument_list|,
+name|thisTerm
 argument_list|)
 assert|;
-comment|//TODO refactor to use method on curVNode.cell
 name|scanCell
 operator|=
 name|grid
@@ -967,16 +942,17 @@ name|thisTerm
 operator|!=
 literal|null
 operator|&&
-name|StringHelper
+name|curVNode
 operator|.
-name|startsWith
+name|cell
+operator|.
+name|isWithin
 argument_list|(
-name|thisTerm
-argument_list|,
 name|curVNodeTerm
+argument_list|,
+name|thisTerm
 argument_list|)
 condition|;
-comment|//TODO refactor to use method on curVNode.cell
 name|thisTerm
 operator|=
 name|termsEnum

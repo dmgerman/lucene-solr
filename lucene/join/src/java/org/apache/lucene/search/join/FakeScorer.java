@@ -38,7 +38,7 @@ name|lucene
 operator|.
 name|search
 operator|.
-name|Collector
+name|LeafCollector
 import|;
 end_import
 
@@ -71,7 +71,7 @@ import|;
 end_import
 
 begin_comment
-comment|/** Passed to {@link Collector#setScorer} during join collection. */
+comment|/** Passed to {@link LeafCollector#setScorer} during join collection. */
 end_comment
 
 begin_class

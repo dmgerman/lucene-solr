@@ -208,6 +208,9 @@ condition|)
 return|return
 name|scanCell
 operator|.
+name|getShape
+argument_list|()
+operator|.
 name|getCenter
 argument_list|()
 return|;
