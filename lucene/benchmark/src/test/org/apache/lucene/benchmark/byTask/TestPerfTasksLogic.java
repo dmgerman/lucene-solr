@@ -792,7 +792,7 @@ argument_list|)
 decl_stmt|;
 name|iw
 operator|.
-name|close
+name|shutdown
 argument_list|()
 expr_stmt|;
 name|IndexReader
@@ -1128,7 +1128,7 @@ argument_list|)
 decl_stmt|;
 name|iw
 operator|.
-name|close
+name|shutdown
 argument_list|()
 expr_stmt|;
 name|IndexReader
@@ -1330,7 +1330,7 @@ argument_list|)
 decl_stmt|;
 name|iw
 operator|.
-name|close
+name|shutdown
 argument_list|()
 expr_stmt|;
 name|IndexReader
@@ -1603,7 +1603,7 @@ argument_list|)
 decl_stmt|;
 name|iw
 operator|.
-name|close
+name|shutdown
 argument_list|()
 expr_stmt|;
 name|IndexReader
@@ -2130,7 +2130,7 @@ argument_list|)
 decl_stmt|;
 name|iw
 operator|.
-name|close
+name|shutdown
 argument_list|()
 expr_stmt|;
 name|IndexReader
@@ -2931,7 +2931,7 @@ operator|.
 name|getIndexWriter
 argument_list|()
 operator|.
-name|close
+name|shutdown
 argument_list|()
 expr_stmt|;
 comment|// 3. test number of docs in the index
@@ -3105,7 +3105,7 @@ operator|.
 name|getIndexWriter
 argument_list|()
 operator|.
-name|close
+name|shutdown
 argument_list|()
 expr_stmt|;
 comment|// 3. test number of docs in the index
@@ -3303,7 +3303,7 @@ argument_list|)
 expr_stmt|;
 name|writer
 operator|.
-name|close
+name|shutdown
 argument_list|()
 expr_stmt|;
 name|Directory

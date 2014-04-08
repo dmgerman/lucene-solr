@@ -308,20 +308,6 @@ name|TestUtil
 import|;
 end_import
 
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|util
-operator|.
-name|TestUtil
-import|;
-end_import
-
 begin_comment
 comment|/** random sorting tests */
 end_comment
@@ -730,7 +716,7 @@ argument_list|()
 decl_stmt|;
 name|writer
 operator|.
-name|close
+name|shutdown
 argument_list|()
 expr_stmt|;
 if|if

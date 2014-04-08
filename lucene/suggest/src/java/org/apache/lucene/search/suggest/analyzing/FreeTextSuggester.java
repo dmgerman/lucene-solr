@@ -1977,6 +1977,14 @@ throw|;
 block|}
 comment|//System.out.println("FST: " + fst.getNodeCount() + " nodes");
 comment|/*       PrintWriter pw = new PrintWriter("/x/tmp/out.dot");       Util.toDot(fst, pw, true, true);       pw.close();       */
+comment|// Writer was only temporary, to count up bigrams,
+comment|// which we transferred to the FST, so now we
+comment|// rollback:
+name|writer
+operator|.
+name|rollback
+argument_list|()
+expr_stmt|;
 name|success
 operator|=
 literal|true
@@ -1995,8 +2003,6 @@ name|IOUtils
 operator|.
 name|close
 argument_list|(
-name|writer
-argument_list|,
 name|reader
 argument_list|)
 expr_stmt|;
@@ -2007,9 +2013,9 @@ name|IOUtils
 operator|.
 name|closeWhileHandlingException
 argument_list|(
-name|writer
-argument_list|,
 name|reader
+argument_list|,
+name|writer
 argument_list|)
 expr_stmt|;
 block|}

@@ -427,7 +427,7 @@ argument_list|)
 expr_stmt|;
 name|w
 operator|.
-name|close
+name|shutdown
 argument_list|()
 expr_stmt|;
 comment|//System.out.println("Set up " + getName());

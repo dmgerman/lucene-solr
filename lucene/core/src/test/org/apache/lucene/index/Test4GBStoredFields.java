@@ -582,7 +582,7 @@ argument_list|)
 expr_stmt|;
 name|w
 operator|.
-name|close
+name|shutdown
 argument_list|()
 expr_stmt|;
 if|if

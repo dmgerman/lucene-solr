@@ -1445,7 +1445,7 @@ literal|null
 argument_list|)
 argument_list|)
 operator|.
-name|close
+name|shutdown
 argument_list|()
 expr_stmt|;
 name|DirectoryTaxonomyWriter
@@ -3056,12 +3056,15 @@ name|cp
 argument_list|)
 argument_list|)
 expr_stmt|;
+name|indexWriter
+operator|.
+name|shutdown
+argument_list|()
+expr_stmt|;
 name|IOUtils
 operator|.
 name|close
 argument_list|(
-name|indexWriter
-argument_list|,
 name|taxoWriter
 argument_list|)
 expr_stmt|;

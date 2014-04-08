@@ -981,7 +981,7 @@ expr_stmt|;
 comment|//QueryUtils.check(query,searcher);
 name|writer
 operator|.
-name|close
+name|shutdown
 argument_list|()
 expr_stmt|;
 name|reader
@@ -1459,7 +1459,7 @@ argument_list|()
 decl_stmt|;
 name|iw
 operator|.
-name|close
+name|shutdown
 argument_list|()
 expr_stmt|;
 name|IndexSearcher
@@ -1664,7 +1664,7 @@ argument_list|()
 decl_stmt|;
 name|iw
 operator|.
-name|close
+name|shutdown
 argument_list|()
 expr_stmt|;
 name|IndexSearcher
@@ -1870,7 +1870,7 @@ argument_list|()
 decl_stmt|;
 name|iw
 operator|.
-name|close
+name|shutdown
 argument_list|()
 expr_stmt|;
 name|IndexSearcher

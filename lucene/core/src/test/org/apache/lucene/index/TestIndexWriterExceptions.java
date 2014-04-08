@@ -404,6 +404,20 @@ name|lucene
 operator|.
 name|store
 operator|.
+name|AlreadyClosedException
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|store
+operator|.
 name|BaseDirectoryWrapper
 import|;
 end_import
@@ -475,6 +489,8 @@ operator|.
 name|store
 operator|.
 name|MockDirectoryWrapper
+operator|.
+name|FakeIOException
 import|;
 end_import
 
@@ -489,8 +505,6 @@ operator|.
 name|store
 operator|.
 name|MockDirectoryWrapper
-operator|.
-name|FakeIOException
 import|;
 end_import
 
@@ -1813,7 +1827,7 @@ try|try
 block|{
 name|writer
 operator|.
-name|close
+name|shutdown
 argument_list|()
 expr_stmt|;
 block|}
@@ -2124,7 +2138,7 @@ try|try
 block|{
 name|writer
 operator|.
-name|close
+name|shutdown
 argument_list|()
 expr_stmt|;
 block|}
@@ -2483,7 +2497,7 @@ comment|// expected
 block|}
 name|w
 operator|.
-name|close
+name|shutdown
 argument_list|()
 expr_stmt|;
 name|dir
@@ -2689,7 +2703,7 @@ argument_list|)
 expr_stmt|;
 name|w
 operator|.
-name|close
+name|shutdown
 argument_list|()
 expr_stmt|;
 name|dir
@@ -2938,7 +2952,7 @@ argument_list|)
 expr_stmt|;
 name|w
 operator|.
-name|close
+name|shutdown
 argument_list|()
 expr_stmt|;
 name|dir
@@ -3225,7 +3239,7 @@ argument_list|)
 expr_stmt|;
 name|writer
 operator|.
-name|close
+name|shutdown
 argument_list|()
 expr_stmt|;
 name|IndexReader
@@ -3654,7 +3668,7 @@ argument_list|)
 expr_stmt|;
 name|writer
 operator|.
-name|close
+name|shutdown
 argument_list|()
 expr_stmt|;
 name|IndexReader
@@ -4018,7 +4032,7 @@ expr_stmt|;
 block|}
 name|writer
 operator|.
-name|close
+name|shutdown
 argument_list|()
 expr_stmt|;
 if|if
@@ -4241,7 +4255,7 @@ argument_list|)
 expr_stmt|;
 name|writer
 operator|.
-name|close
+name|shutdown
 argument_list|()
 expr_stmt|;
 name|reader
@@ -4782,7 +4796,7 @@ argument_list|()
 expr_stmt|;
 name|writer
 operator|.
-name|close
+name|shutdown
 argument_list|()
 expr_stmt|;
 block|}
@@ -5005,7 +5019,7 @@ argument_list|)
 expr_stmt|;
 name|writer
 operator|.
-name|close
+name|shutdown
 argument_list|()
 expr_stmt|;
 name|reader
@@ -5449,7 +5463,7 @@ argument_list|()
 expr_stmt|;
 name|writer
 operator|.
-name|close
+name|shutdown
 argument_list|()
 expr_stmt|;
 name|IndexReader
@@ -5927,7 +5941,7 @@ try|try
 block|{
 name|w
 operator|.
-name|close
+name|shutdown
 argument_list|()
 expr_stmt|;
 name|fail
@@ -6076,7 +6090,7 @@ argument_list|)
 expr_stmt|;
 name|w
 operator|.
-name|close
+name|shutdown
 argument_list|()
 expr_stmt|;
 name|int
@@ -6233,7 +6247,7 @@ argument_list|)
 expr_stmt|;
 name|w
 operator|.
-name|close
+name|shutdown
 argument_list|()
 expr_stmt|;
 name|dir
@@ -6321,7 +6335,7 @@ name|message
 operator|.
 name|startsWith
 argument_list|(
-literal|"now flush at close"
+literal|"now flush at shutdown"
 argument_list|)
 operator|&&
 name|thrown
@@ -6374,7 +6388,7 @@ try|try
 block|{
 name|writer
 operator|.
-name|close
+name|shutdown
 argument_list|()
 expr_stmt|;
 name|fail
@@ -6393,7 +6407,7 @@ block|{}
 comment|// throws IllegalStateEx w/o bug fix
 name|writer
 operator|.
-name|close
+name|shutdown
 argument_list|()
 expr_stmt|;
 name|dir
@@ -6609,7 +6623,7 @@ block|}
 comment|// close
 name|writer
 operator|.
-name|close
+name|shutdown
 argument_list|()
 expr_stmt|;
 name|long
@@ -6792,7 +6806,7 @@ literal|null
 argument_list|)
 argument_list|)
 operator|.
-name|close
+name|shutdown
 argument_list|()
 expr_stmt|;
 name|dir
@@ -6876,7 +6890,7 @@ block|}
 comment|// close
 name|writer
 operator|.
-name|close
+name|shutdown
 argument_list|()
 expr_stmt|;
 name|long
@@ -7176,7 +7190,7 @@ block|}
 comment|// close
 name|writer
 operator|.
-name|close
+name|shutdown
 argument_list|()
 expr_stmt|;
 name|long
@@ -7403,7 +7417,7 @@ block|}
 comment|// close
 name|writer
 operator|.
-name|close
+name|shutdown
 argument_list|()
 expr_stmt|;
 name|long
@@ -7646,7 +7660,7 @@ block|}
 comment|// close
 name|writer
 operator|.
-name|close
+name|shutdown
 argument_list|()
 expr_stmt|;
 name|dir
@@ -8071,7 +8085,7 @@ argument_list|)
 expr_stmt|;
 name|w
 operator|.
-name|close
+name|shutdown
 argument_list|()
 expr_stmt|;
 name|IndexReader
@@ -8658,7 +8672,7 @@ argument_list|()
 decl_stmt|;
 name|w
 operator|.
-name|close
+name|shutdown
 argument_list|()
 expr_stmt|;
 specifier|final
@@ -9340,7 +9354,7 @@ argument_list|()
 decl_stmt|;
 name|w
 operator|.
-name|close
+name|shutdown
 argument_list|()
 expr_stmt|;
 specifier|final
@@ -9625,7 +9639,7 @@ argument_list|)
 expr_stmt|;
 name|iw
 operator|.
-name|close
+name|shutdown
 argument_list|()
 expr_stmt|;
 name|uoe
@@ -9809,7 +9823,7 @@ comment|// expected exception
 block|}
 name|iw
 operator|.
-name|close
+name|shutdown
 argument_list|()
 expr_stmt|;
 name|dir
@@ -9946,7 +9960,7 @@ argument_list|)
 expr_stmt|;
 name|iw
 operator|.
-name|close
+name|shutdown
 argument_list|()
 expr_stmt|;
 name|dir
@@ -10284,7 +10298,7 @@ argument_list|()
 expr_stmt|;
 name|iw
 operator|.
-name|close
+name|shutdown
 argument_list|()
 expr_stmt|;
 name|dir
@@ -10485,7 +10499,7 @@ argument_list|()
 expr_stmt|;
 name|iw
 operator|.
-name|close
+name|shutdown
 argument_list|()
 expr_stmt|;
 comment|// Open and close the index a few times
@@ -10563,7 +10577,7 @@ argument_list|()
 expr_stmt|;
 name|iw
 operator|.
-name|close
+name|shutdown
 argument_list|()
 expr_stmt|;
 name|ir
@@ -11666,7 +11680,12 @@ literal|true
 expr_stmt|;
 name|w
 operator|.
-name|close
+name|commit
+argument_list|()
+expr_stmt|;
+name|w
+operator|.
+name|shutdown
 argument_list|()
 expr_stmt|;
 name|w
@@ -11719,7 +11738,7 @@ name|out
 operator|.
 name|println
 argument_list|(
-literal|"TEST: w.close() hit expected IOE"
+literal|"TEST: w.shutdown() hit expected IOE"
 argument_list|)
 expr_stmt|;
 block|}
@@ -11765,11 +11784,22 @@ literal|"  now 2nd close writer"
 argument_list|)
 expr_stmt|;
 block|}
+try|try
+block|{
 name|w
 operator|.
-name|close
+name|shutdown
 argument_list|()
 expr_stmt|;
+block|}
+catch|catch
+parameter_list|(
+name|AlreadyClosedException
+name|ace
+parameter_list|)
+block|{
+comment|// OK
+block|}
 name|w
 operator|=
 literal|null
@@ -12072,7 +12102,7 @@ expr_stmt|;
 block|}
 name|w
 operator|.
-name|close
+name|shutdown
 argument_list|()
 expr_stmt|;
 name|w
@@ -12094,7 +12124,7 @@ condition|)
 block|{
 name|w
 operator|.
-name|close
+name|shutdown
 argument_list|()
 expr_stmt|;
 block|}

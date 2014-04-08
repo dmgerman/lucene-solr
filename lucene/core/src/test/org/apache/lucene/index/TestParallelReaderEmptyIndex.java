@@ -190,7 +190,7 @@ argument_list|)
 decl_stmt|;
 name|iw
 operator|.
-name|close
+name|shutdown
 argument_list|()
 expr_stmt|;
 comment|// create a copy:
@@ -347,7 +347,7 @@ argument_list|)
 expr_stmt|;
 name|iwOut
 operator|.
-name|close
+name|shutdown
 argument_list|()
 expr_stmt|;
 name|rdOut
@@ -528,7 +528,7 @@ argument_list|)
 expr_stmt|;
 name|iw
 operator|.
-name|close
+name|shutdown
 argument_list|()
 expr_stmt|;
 name|IndexWriterConfig
@@ -595,7 +595,7 @@ argument_list|)
 expr_stmt|;
 name|writer
 operator|.
-name|close
+name|shutdown
 argument_list|()
 expr_stmt|;
 name|IndexReader
@@ -669,7 +669,7 @@ argument_list|)
 expr_stmt|;
 name|iw
 operator|.
-name|close
+name|shutdown
 argument_list|()
 expr_stmt|;
 block|}
@@ -717,7 +717,7 @@ argument_list|)
 expr_stmt|;
 name|iw
 operator|.
-name|close
+name|shutdown
 argument_list|()
 expr_stmt|;
 block|}
@@ -843,7 +843,7 @@ argument_list|)
 expr_stmt|;
 name|iwOut
 operator|.
-name|close
+name|shutdown
 argument_list|()
 expr_stmt|;
 name|rdOut

@@ -1881,10 +1881,6 @@ argument_list|()
 decl_stmt|;
 try|try
 block|{
-specifier|final
-name|int
-name|docCount
-init|=
 name|dwpt
 operator|.
 name|updateDocuments
@@ -1895,17 +1891,25 @@ name|analyzer
 argument_list|,
 name|delTerm
 argument_list|)
-decl_stmt|;
-name|numDocsInRAM
-operator|.
-name|addAndGet
-argument_list|(
-name|docCount
-argument_list|)
 expr_stmt|;
 block|}
 finally|finally
 block|{
+comment|// We don't know how many documents were actually
+comment|// counted as indexed, so we must subtract here to
+comment|// accumulate our separate counter:
+name|numDocsInRAM
+operator|.
+name|addAndGet
+argument_list|(
+name|dwpt
+operator|.
+name|getNumDocsInRAM
+argument_list|()
+operator|-
+name|dwptNumDocs
+argument_list|)
+expr_stmt|;
 if|if
 condition|(
 name|dwpt
@@ -2089,14 +2093,24 @@ argument_list|,
 name|delTerm
 argument_list|)
 expr_stmt|;
-name|numDocsInRAM
-operator|.
-name|incrementAndGet
-argument_list|()
-expr_stmt|;
 block|}
 finally|finally
 block|{
+comment|// We don't know whether the document actually
+comment|// counted as being indexed, so we must subtract here to
+comment|// accumulate our separate counter:
+name|numDocsInRAM
+operator|.
+name|addAndGet
+argument_list|(
+name|dwpt
+operator|.
+name|getNumDocsInRAM
+argument_list|()
+operator|-
+name|dwptNumDocs
+argument_list|)
+expr_stmt|;
 if|if
 condition|(
 name|dwpt
@@ -2595,6 +2609,14 @@ name|get
 argument_list|()
 expr_stmt|;
 block|}
+assert|assert
+name|numDocsInRAM
+operator|.
+name|get
+argument_list|()
+operator|>=
+literal|0
+assert|;
 block|}
 comment|// for asserts
 DECL|field|currentFullFlushDelQueue

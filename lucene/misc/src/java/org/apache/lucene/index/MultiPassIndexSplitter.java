@@ -475,7 +475,7 @@ expr_stmt|;
 comment|// TODO: maybe take List<IR> here?
 name|w
 operator|.
-name|close
+name|shutdown
 argument_list|()
 expr_stmt|;
 block|}

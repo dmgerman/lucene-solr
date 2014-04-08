@@ -533,12 +533,15 @@ parameter_list|()
 throws|throws
 name|Exception
 block|{
+name|indexWriter
+operator|.
+name|shutdown
+argument_list|()
+expr_stmt|;
 name|IOUtils
 operator|.
 name|close
 argument_list|(
-name|indexWriter
-argument_list|,
 name|indexReader
 argument_list|,
 name|directory

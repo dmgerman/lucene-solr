@@ -1033,13 +1033,16 @@ expr_stmt|;
 comment|// next level should have this parent
 block|}
 block|}
+name|iw
+operator|.
+name|shutdown
+argument_list|()
+expr_stmt|;
 name|IOUtils
 operator|.
 name|close
 argument_list|(
 name|tw
-argument_list|,
-name|iw
 argument_list|,
 name|tr
 argument_list|,

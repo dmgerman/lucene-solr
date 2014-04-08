@@ -1282,7 +1282,7 @@ argument_list|)
 decl_stmt|;
 name|w
 operator|.
-name|close
+name|shutdown
 argument_list|()
 expr_stmt|;
 name|int
@@ -2744,7 +2744,7 @@ argument_list|()
 decl_stmt|;
 name|w
 operator|.
-name|close
+name|shutdown
 argument_list|()
 expr_stmt|;
 comment|// NOTE: intentional but temporary field cache insanity!

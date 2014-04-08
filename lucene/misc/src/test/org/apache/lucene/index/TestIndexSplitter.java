@@ -411,7 +411,7 @@ argument_list|()
 expr_stmt|;
 name|iw
 operator|.
-name|close
+name|shutdown
 argument_list|()
 expr_stmt|;
 comment|// we should have 2 segments now

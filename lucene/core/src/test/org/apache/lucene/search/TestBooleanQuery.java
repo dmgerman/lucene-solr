@@ -1175,7 +1175,7 @@ argument_list|()
 expr_stmt|;
 name|w
 operator|.
-name|close
+name|shutdown
 argument_list|()
 expr_stmt|;
 name|dir
@@ -1252,7 +1252,7 @@ argument_list|()
 decl_stmt|;
 name|iw1
 operator|.
-name|close
+name|shutdown
 argument_list|()
 expr_stmt|;
 name|Directory
@@ -1315,7 +1315,7 @@ argument_list|()
 decl_stmt|;
 name|iw2
 operator|.
-name|close
+name|shutdown
 argument_list|()
 expr_stmt|;
 name|BooleanQuery
@@ -1732,7 +1732,7 @@ argument_list|)
 decl_stmt|;
 name|w
 operator|.
-name|close
+name|shutdown
 argument_list|()
 expr_stmt|;
 for|for
@@ -2358,7 +2358,7 @@ argument_list|)
 expr_stmt|;
 name|writer
 operator|.
-name|close
+name|shutdown
 argument_list|()
 expr_stmt|;
 name|IndexReader
@@ -2597,7 +2597,7 @@ argument_list|()
 decl_stmt|;
 name|w
 operator|.
-name|close
+name|shutdown
 argument_list|()
 expr_stmt|;
 name|IndexSearcher

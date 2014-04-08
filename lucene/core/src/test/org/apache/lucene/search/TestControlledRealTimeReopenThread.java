@@ -2327,13 +2327,16 @@ operator|.
 name|join
 argument_list|()
 expr_stmt|;
+name|_writer
+operator|.
+name|shutdown
+argument_list|()
+expr_stmt|;
 name|IOUtils
 operator|.
 name|close
 argument_list|(
 name|manager
-argument_list|,
-name|_writer
 argument_list|,
 name|d
 argument_list|)
@@ -2570,7 +2573,7 @@ comment|// expected
 block|}
 name|w
 operator|.
-name|close
+name|shutdown
 argument_list|()
 expr_stmt|;
 name|other
@@ -2726,7 +2729,7 @@ argument_list|()
 expr_stmt|;
 name|iw
 operator|.
-name|close
+name|shutdown
 argument_list|()
 expr_stmt|;
 name|dir
@@ -3252,7 +3255,7 @@ argument_list|()
 expr_stmt|;
 name|iw
 operator|.
-name|close
+name|shutdown
 argument_list|()
 expr_stmt|;
 name|dir

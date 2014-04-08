@@ -703,7 +703,7 @@ expr_stmt|;
 block|}
 name|writer
 operator|.
-name|close
+name|shutdown
 argument_list|()
 expr_stmt|;
 name|IndexReader
@@ -960,7 +960,7 @@ expr_stmt|;
 block|}
 name|writer
 operator|.
-name|close
+name|shutdown
 argument_list|()
 expr_stmt|;
 name|IndexReader
@@ -1117,7 +1117,7 @@ expr_stmt|;
 block|}
 name|writer
 operator|.
-name|close
+name|shutdown
 argument_list|()
 expr_stmt|;
 name|TestIndexWriter
@@ -1165,7 +1165,7 @@ expr_stmt|;
 block|}
 name|writer
 operator|.
-name|close
+name|shutdown
 argument_list|()
 expr_stmt|;
 name|directory
@@ -1386,7 +1386,7 @@ argument_list|()
 expr_stmt|;
 name|writer
 operator|.
-name|close
+name|shutdown
 argument_list|(
 literal|false
 argument_list|)
@@ -1467,7 +1467,7 @@ expr_stmt|;
 block|}
 name|writer
 operator|.
-name|close
+name|shutdown
 argument_list|()
 expr_stmt|;
 name|directory
@@ -1856,7 +1856,7 @@ block|}
 block|}
 name|w
 operator|.
-name|close
+name|shutdown
 argument_list|(
 literal|false
 argument_list|)
@@ -2145,7 +2145,7 @@ argument_list|)
 expr_stmt|;
 name|w
 operator|.
-name|close
+name|shutdown
 argument_list|()
 expr_stmt|;
 name|d

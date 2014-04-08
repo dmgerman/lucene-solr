@@ -776,7 +776,7 @@ argument_list|)
 expr_stmt|;
 name|writer
 operator|.
-name|close
+name|shutdown
 argument_list|()
 expr_stmt|;
 name|dir
@@ -916,7 +916,7 @@ block|{
 comment|// not NRT
 name|writer
 operator|.
-name|close
+name|shutdown
 argument_list|()
 expr_stmt|;
 name|reader
@@ -945,7 +945,7 @@ argument_list|)
 expr_stmt|;
 name|writer
 operator|.
-name|close
+name|shutdown
 argument_list|()
 expr_stmt|;
 block|}
@@ -1220,7 +1220,7 @@ block|{
 comment|// not NRT
 name|writer
 operator|.
-name|close
+name|shutdown
 argument_list|()
 expr_stmt|;
 name|reader
@@ -1249,7 +1249,7 @@ argument_list|)
 expr_stmt|;
 name|writer
 operator|.
-name|close
+name|shutdown
 argument_list|()
 expr_stmt|;
 block|}
@@ -1568,12 +1568,15 @@ literal|0
 argument_list|)
 argument_list|)
 expr_stmt|;
+name|writer
+operator|.
+name|shutdown
+argument_list|()
+expr_stmt|;
 name|IOUtils
 operator|.
 name|close
 argument_list|(
-name|writer
-argument_list|,
 name|reader1
 argument_list|,
 name|reader2
@@ -1760,7 +1763,7 @@ block|{
 comment|// not NRT
 name|writer
 operator|.
-name|close
+name|shutdown
 argument_list|()
 expr_stmt|;
 name|reader
@@ -1789,7 +1792,7 @@ argument_list|)
 expr_stmt|;
 name|writer
 operator|.
-name|close
+name|shutdown
 argument_list|()
 expr_stmt|;
 block|}
@@ -2072,7 +2075,7 @@ block|{
 comment|// not NRT
 name|writer
 operator|.
-name|close
+name|shutdown
 argument_list|()
 expr_stmt|;
 name|reader
@@ -2101,7 +2104,7 @@ argument_list|)
 expr_stmt|;
 name|writer
 operator|.
-name|close
+name|shutdown
 argument_list|()
 expr_stmt|;
 block|}
@@ -2294,7 +2297,7 @@ block|{
 comment|// not NRT
 name|writer
 operator|.
-name|close
+name|shutdown
 argument_list|()
 expr_stmt|;
 name|reader
@@ -2323,7 +2326,7 @@ argument_list|)
 expr_stmt|;
 name|writer
 operator|.
-name|close
+name|shutdown
 argument_list|()
 expr_stmt|;
 block|}
@@ -2610,7 +2613,7 @@ argument_list|)
 expr_stmt|;
 name|writer
 operator|.
-name|close
+name|shutdown
 argument_list|()
 expr_stmt|;
 specifier|final
@@ -3019,7 +3022,7 @@ argument_list|)
 expr_stmt|;
 name|writer
 operator|.
-name|close
+name|shutdown
 argument_list|()
 expr_stmt|;
 specifier|final
@@ -3259,7 +3262,7 @@ argument_list|)
 expr_stmt|;
 name|writer
 operator|.
-name|close
+name|shutdown
 argument_list|()
 expr_stmt|;
 specifier|final
@@ -3478,7 +3481,7 @@ argument_list|)
 expr_stmt|;
 name|writer
 operator|.
-name|close
+name|shutdown
 argument_list|()
 expr_stmt|;
 specifier|final
@@ -3746,7 +3749,7 @@ argument_list|)
 expr_stmt|;
 name|writer
 operator|.
-name|close
+name|shutdown
 argument_list|()
 expr_stmt|;
 specifier|final
@@ -4032,7 +4035,7 @@ comment|// ok
 block|}
 name|writer
 operator|.
-name|close
+name|shutdown
 argument_list|()
 expr_stmt|;
 name|dir
@@ -4204,7 +4207,7 @@ argument_list|)
 expr_stmt|;
 name|writer
 operator|.
-name|close
+name|shutdown
 argument_list|()
 expr_stmt|;
 specifier|final
@@ -4455,7 +4458,7 @@ expr_stmt|;
 comment|// update existing field 2nd time in this commit
 name|writer
 operator|.
-name|close
+name|shutdown
 argument_list|()
 expr_stmt|;
 specifier|final
@@ -4798,7 +4801,7 @@ condition|)
 block|{
 name|writer
 operator|.
-name|close
+name|shutdown
 argument_list|()
 expr_stmt|;
 name|writer
@@ -5031,7 +5034,7 @@ expr_stmt|;
 block|}
 name|writer
 operator|.
-name|close
+name|shutdown
 argument_list|()
 expr_stmt|;
 name|dir
@@ -5194,7 +5197,7 @@ argument_list|)
 expr_stmt|;
 name|writer
 operator|.
-name|close
+name|shutdown
 argument_list|()
 expr_stmt|;
 specifier|final
@@ -6001,12 +6004,15 @@ block|}
 block|}
 comment|//      System.out.println();
 block|}
+name|writer
+operator|.
+name|shutdown
+argument_list|()
+expr_stmt|;
 name|IOUtils
 operator|.
 name|close
 argument_list|(
-name|writer
-argument_list|,
 name|reader
 argument_list|,
 name|dir
@@ -6045,7 +6051,7 @@ argument_list|)
 argument_list|)
 decl_stmt|;
 comment|// prevent merges, otherwise by the time updates are applied
-comment|// (writer.close()), the segments might have merged and that update becomes
+comment|// (writer.shutdown()), the segments might have merged and that update becomes
 comment|// legit.
 name|conf
 operator|.
@@ -6255,7 +6261,7 @@ argument_list|)
 expr_stmt|;
 name|writer
 operator|.
-name|close
+name|shutdown
 argument_list|()
 expr_stmt|;
 name|DirectoryReader
@@ -6400,7 +6406,7 @@ argument_list|)
 argument_list|)
 decl_stmt|;
 comment|// prevent merges, otherwise by the time updates are applied
-comment|// (writer.close()), the segments might have merged and that update becomes
+comment|// (writer.shutdown()), the segments might have merged and that update becomes
 comment|// legit.
 name|conf
 operator|.
@@ -6562,7 +6568,7 @@ argument_list|)
 expr_stmt|;
 name|writer
 operator|.
-name|close
+name|shutdown
 argument_list|()
 expr_stmt|;
 name|DirectoryReader
@@ -6759,7 +6765,7 @@ argument_list|)
 expr_stmt|;
 name|writer
 operator|.
-name|close
+name|shutdown
 argument_list|()
 expr_stmt|;
 name|DirectoryReader
@@ -6957,7 +6963,7 @@ argument_list|)
 expr_stmt|;
 name|writer
 operator|.
-name|close
+name|shutdown
 argument_list|()
 expr_stmt|;
 name|conf
@@ -7009,7 +7015,7 @@ try|try
 block|{
 name|writer
 operator|.
-name|close
+name|shutdown
 argument_list|()
 expr_stmt|;
 name|fail
@@ -7753,7 +7759,7 @@ argument_list|()
 expr_stmt|;
 name|writer
 operator|.
-name|close
+name|shutdown
 argument_list|()
 expr_stmt|;
 name|DirectoryReader
@@ -8273,7 +8279,7 @@ expr_stmt|;
 block|}
 name|writer
 operator|.
-name|close
+name|shutdown
 argument_list|()
 expr_stmt|;
 name|dir
@@ -8423,7 +8429,7 @@ argument_list|)
 expr_stmt|;
 name|writer
 operator|.
-name|close
+name|shutdown
 argument_list|()
 expr_stmt|;
 comment|// change format
@@ -8542,7 +8548,7 @@ argument_list|)
 expr_stmt|;
 name|writer
 operator|.
-name|close
+name|shutdown
 argument_list|()
 expr_stmt|;
 name|DirectoryReader
@@ -8900,7 +8906,7 @@ argument_list|)
 expr_stmt|;
 name|writer
 operator|.
-name|close
+name|shutdown
 argument_list|()
 expr_stmt|;
 name|Directory
@@ -8977,7 +8983,7 @@ expr_stmt|;
 block|}
 name|writer
 operator|.
-name|close
+name|shutdown
 argument_list|()
 expr_stmt|;
 name|DirectoryReader
@@ -9324,7 +9330,7 @@ argument_list|()
 expr_stmt|;
 name|writer
 operator|.
-name|close
+name|shutdown
 argument_list|()
 expr_stmt|;
 name|dir
@@ -9728,7 +9734,7 @@ expr_stmt|;
 block|}
 name|writer
 operator|.
-name|close
+name|shutdown
 argument_list|()
 expr_stmt|;
 name|DirectoryReader
@@ -10070,7 +10076,7 @@ expr_stmt|;
 comment|// update f1 to 4 (but not f2)
 name|writer
 operator|.
-name|close
+name|shutdown
 argument_list|()
 expr_stmt|;
 name|DirectoryReader
@@ -10288,7 +10294,7 @@ argument_list|)
 expr_stmt|;
 name|writer
 operator|.
-name|close
+name|shutdown
 argument_list|()
 expr_stmt|;
 name|DirectoryReader
@@ -10476,7 +10482,7 @@ argument_list|)
 expr_stmt|;
 name|writer
 operator|.
-name|close
+name|shutdown
 argument_list|()
 expr_stmt|;
 name|DirectoryReader

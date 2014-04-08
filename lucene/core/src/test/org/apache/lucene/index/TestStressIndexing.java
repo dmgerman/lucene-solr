@@ -771,7 +771,7 @@ argument_list|()
 expr_stmt|;
 name|modifier
 operator|.
-name|close
+name|shutdown
 argument_list|()
 expr_stmt|;
 for|for

@@ -632,7 +632,7 @@ argument_list|()
 decl_stmt|;
 name|writer
 operator|.
-name|close
+name|shutdown
 argument_list|()
 expr_stmt|;
 name|NumericDocValues
@@ -1058,7 +1058,7 @@ argument_list|()
 expr_stmt|;
 name|writer
 operator|.
-name|close
+name|shutdown
 argument_list|()
 expr_stmt|;
 name|docs

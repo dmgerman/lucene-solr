@@ -1271,12 +1271,15 @@ block|}
 block|}
 comment|//      System.out.println();
 block|}
+name|writer
+operator|.
+name|shutdown
+argument_list|()
+expr_stmt|;
 name|IOUtils
 operator|.
 name|close
 argument_list|(
-name|writer
-argument_list|,
 name|reader
 argument_list|,
 name|dir
@@ -2003,7 +2006,7 @@ argument_list|()
 expr_stmt|;
 name|writer
 operator|.
-name|close
+name|shutdown
 argument_list|()
 expr_stmt|;
 name|DirectoryReader
@@ -2566,7 +2569,7 @@ expr_stmt|;
 block|}
 name|writer
 operator|.
-name|close
+name|shutdown
 argument_list|()
 expr_stmt|;
 name|dir
@@ -2978,7 +2981,7 @@ expr_stmt|;
 block|}
 name|writer
 operator|.
-name|close
+name|shutdown
 argument_list|()
 expr_stmt|;
 name|DirectoryReader

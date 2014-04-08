@@ -1667,6 +1667,43 @@ name|close
 argument_list|()
 expr_stmt|;
 block|}
+comment|/**    * Shuts down this writer    * @see IndexWriter#shutdown()    */
+DECL|method|shutdown
+specifier|public
+name|void
+name|shutdown
+parameter_list|()
+throws|throws
+name|IOException
+block|{
+comment|// if someone isn't using getReader() API, we want to be sure to
+comment|// forceMerge since presumably they might open a reader on the dir.
+if|if
+condition|(
+name|getReaderCalled
+operator|==
+literal|false
+operator|&&
+name|r
+operator|.
+name|nextInt
+argument_list|(
+literal|8
+argument_list|)
+operator|==
+literal|2
+condition|)
+block|{
+name|doRandomForceMerge
+argument_list|()
+expr_stmt|;
+block|}
+name|w
+operator|.
+name|shutdown
+argument_list|()
+expr_stmt|;
+block|}
 comment|/**    * Forces a forceMerge.    *<p>    * NOTE: this should be avoided in tests unless absolutely necessary,    * as it will result in less test coverage.    * @see IndexWriter#forceMerge(int)    */
 DECL|method|forceMerge
 specifier|public

@@ -494,7 +494,7 @@ argument_list|()
 expr_stmt|;
 name|writer
 operator|.
-name|close
+name|shutdown
 argument_list|()
 expr_stmt|;
 name|searcher
@@ -3265,7 +3265,7 @@ expr_stmt|;
 comment|// Commit
 name|writer
 operator|.
-name|close
+name|shutdown
 argument_list|()
 expr_stmt|;
 comment|// Get searcher

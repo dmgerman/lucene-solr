@@ -992,7 +992,7 @@ argument_list|)
 expr_stmt|;
 name|writer
 operator|.
-name|close
+name|shutdown
 argument_list|(
 literal|false
 argument_list|)
@@ -1272,7 +1272,7 @@ expr_stmt|;
 block|}
 name|writer
 operator|.
-name|close
+name|shutdown
 argument_list|(
 literal|false
 argument_list|)
@@ -1642,7 +1642,7 @@ try|try
 block|{
 name|writer
 operator|.
-name|close
+name|shutdown
 argument_list|(
 literal|false
 argument_list|)
@@ -1665,7 +1665,7 @@ argument_list|()
 expr_stmt|;
 name|writer
 operator|.
-name|close
+name|shutdown
 argument_list|(
 literal|false
 argument_list|)
@@ -1964,7 +1964,7 @@ argument_list|)
 expr_stmt|;
 name|writer
 operator|.
-name|close
+name|shutdown
 argument_list|(
 literal|false
 argument_list|)
@@ -2820,7 +2820,7 @@ argument_list|)
 expr_stmt|;
 name|writer
 operator|.
-name|close
+name|shutdown
 argument_list|()
 expr_stmt|;
 block|}
@@ -3420,7 +3420,7 @@ operator|.
 name|get
 argument_list|()
 operator|.
-name|close
+name|shutdown
 argument_list|()
 expr_stmt|;
 name|d

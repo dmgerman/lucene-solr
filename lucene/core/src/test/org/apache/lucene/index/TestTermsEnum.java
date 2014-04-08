@@ -419,7 +419,7 @@ argument_list|()
 decl_stmt|;
 name|w
 operator|.
-name|close
+name|shutdown
 argument_list|()
 expr_stmt|;
 specifier|final
@@ -1567,7 +1567,7 @@ argument_list|()
 decl_stmt|;
 name|w
 operator|.
-name|close
+name|shutdown
 argument_list|()
 expr_stmt|;
 comment|// NOTE: intentional insanity!!
@@ -2557,7 +2557,7 @@ argument_list|()
 expr_stmt|;
 name|w
 operator|.
-name|close
+name|shutdown
 argument_list|()
 expr_stmt|;
 return|return
@@ -3339,7 +3339,7 @@ argument_list|()
 decl_stmt|;
 name|w
 operator|.
-name|close
+name|shutdown
 argument_list|()
 expr_stmt|;
 name|assertEquals
@@ -4780,7 +4780,7 @@ argument_list|()
 decl_stmt|;
 name|w
 operator|.
-name|close
+name|shutdown
 argument_list|()
 expr_stmt|;
 name|AtomicReader
@@ -5342,7 +5342,7 @@ argument_list|()
 decl_stmt|;
 name|w
 operator|.
-name|close
+name|shutdown
 argument_list|()
 expr_stmt|;
 name|AtomicReader
@@ -5811,7 +5811,7 @@ argument_list|()
 decl_stmt|;
 name|w
 operator|.
-name|close
+name|shutdown
 argument_list|()
 expr_stmt|;
 name|AtomicReader

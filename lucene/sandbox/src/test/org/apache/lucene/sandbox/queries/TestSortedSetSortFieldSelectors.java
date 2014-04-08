@@ -628,7 +628,7 @@ argument_list|()
 decl_stmt|;
 name|writer
 operator|.
-name|close
+name|shutdown
 argument_list|()
 expr_stmt|;
 comment|// slow wrapper does not support random access ordinals (there is no need for that!)
@@ -901,7 +901,7 @@ argument_list|()
 decl_stmt|;
 name|writer
 operator|.
-name|close
+name|shutdown
 argument_list|()
 expr_stmt|;
 comment|// slow wrapper does not support random access ordinals (there is no need for that!)
@@ -1205,7 +1205,7 @@ argument_list|()
 decl_stmt|;
 name|writer
 operator|.
-name|close
+name|shutdown
 argument_list|()
 expr_stmt|;
 comment|// slow wrapper does not support random access ordinals (there is no need for that!)
@@ -1548,7 +1548,7 @@ argument_list|()
 decl_stmt|;
 name|writer
 operator|.
-name|close
+name|shutdown
 argument_list|()
 expr_stmt|;
 comment|// slow wrapper does not support random access ordinals (there is no need for that!)
@@ -1843,7 +1843,7 @@ argument_list|()
 decl_stmt|;
 name|writer
 operator|.
-name|close
+name|shutdown
 argument_list|()
 expr_stmt|;
 comment|// slow wrapper does not support random access ordinals (there is no need for that!)
@@ -2150,7 +2150,7 @@ argument_list|()
 decl_stmt|;
 name|writer
 operator|.
-name|close
+name|shutdown
 argument_list|()
 expr_stmt|;
 comment|// slow wrapper does not support random access ordinals (there is no need for that!)
@@ -2457,7 +2457,7 @@ argument_list|()
 decl_stmt|;
 name|writer
 operator|.
-name|close
+name|shutdown
 argument_list|()
 expr_stmt|;
 comment|// slow wrapper does not support random access ordinals (there is no need for that!)
@@ -2795,7 +2795,7 @@ argument_list|()
 decl_stmt|;
 name|writer
 operator|.
-name|close
+name|shutdown
 argument_list|()
 expr_stmt|;
 comment|// slow wrapper does not support random access ordinals (there is no need for that!)
@@ -3172,7 +3172,7 @@ argument_list|()
 decl_stmt|;
 name|writer
 operator|.
-name|close
+name|shutdown
 argument_list|()
 expr_stmt|;
 comment|// slow wrapper does not support random access ordinals (there is no need for that!)
@@ -3467,7 +3467,7 @@ argument_list|()
 decl_stmt|;
 name|writer
 operator|.
-name|close
+name|shutdown
 argument_list|()
 expr_stmt|;
 comment|// slow wrapper does not support random access ordinals (there is no need for that!)
@@ -3774,7 +3774,7 @@ argument_list|()
 decl_stmt|;
 name|writer
 operator|.
-name|close
+name|shutdown
 argument_list|()
 expr_stmt|;
 comment|// slow wrapper does not support random access ordinals (there is no need for that!)
@@ -4081,7 +4081,7 @@ argument_list|()
 decl_stmt|;
 name|writer
 operator|.
-name|close
+name|shutdown
 argument_list|()
 expr_stmt|;
 comment|// slow wrapper does not support random access ordinals (there is no need for that!)
@@ -4419,7 +4419,7 @@ argument_list|()
 decl_stmt|;
 name|writer
 operator|.
-name|close
+name|shutdown
 argument_list|()
 expr_stmt|;
 comment|// slow wrapper does not support random access ordinals (there is no need for that!)
@@ -4796,7 +4796,7 @@ argument_list|()
 decl_stmt|;
 name|writer
 operator|.
-name|close
+name|shutdown
 argument_list|()
 expr_stmt|;
 comment|// slow wrapper does not support random access ordinals (there is no need for that!)
@@ -5091,7 +5091,7 @@ argument_list|()
 decl_stmt|;
 name|writer
 operator|.
-name|close
+name|shutdown
 argument_list|()
 expr_stmt|;
 comment|// slow wrapper does not support random access ordinals (there is no need for that!)

@@ -351,7 +351,7 @@ argument_list|)
 decl_stmt|;
 name|writer
 operator|.
-name|close
+name|shutdown
 argument_list|()
 expr_stmt|;
 name|SlowFuzzyQuery
@@ -2205,7 +2205,7 @@ argument_list|)
 decl_stmt|;
 name|writer
 operator|.
-name|close
+name|shutdown
 argument_list|()
 expr_stmt|;
 name|SlowFuzzyQuery
@@ -2366,7 +2366,7 @@ argument_list|)
 decl_stmt|;
 name|writer
 operator|.
-name|close
+name|shutdown
 argument_list|()
 expr_stmt|;
 name|SlowFuzzyQuery
@@ -3329,12 +3329,12 @@ argument_list|()
 expr_stmt|;
 name|writer
 operator|.
-name|close
+name|shutdown
 argument_list|()
 expr_stmt|;
 name|writer2
 operator|.
-name|close
+name|shutdown
 argument_list|()
 expr_stmt|;
 name|directory
@@ -3406,7 +3406,7 @@ argument_list|)
 decl_stmt|;
 name|writer
 operator|.
-name|close
+name|shutdown
 argument_list|()
 expr_stmt|;
 name|Query
@@ -3655,7 +3655,7 @@ argument_list|)
 decl_stmt|;
 name|writer
 operator|.
-name|close
+name|shutdown
 argument_list|()
 expr_stmt|;
 name|SlowFuzzyQuery
@@ -3918,7 +3918,7 @@ argument_list|()
 decl_stmt|;
 name|w
 operator|.
-name|close
+name|shutdown
 argument_list|()
 expr_stmt|;
 name|Query
@@ -4069,7 +4069,7 @@ argument_list|)
 decl_stmt|;
 name|w
 operator|.
-name|close
+name|shutdown
 argument_list|()
 expr_stmt|;
 name|SlowFuzzyQuery

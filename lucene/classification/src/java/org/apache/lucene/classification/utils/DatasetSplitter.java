@@ -770,17 +770,17 @@ expr_stmt|;
 comment|// close IWs
 name|testWriter
 operator|.
-name|close
+name|shutdown
 argument_list|()
 expr_stmt|;
 name|cvWriter
 operator|.
-name|close
+name|shutdown
 argument_list|()
 expr_stmt|;
 name|trainingWriter
 operator|.
-name|close
+name|shutdown
 argument_list|()
 expr_stmt|;
 block|}

@@ -258,20 +258,6 @@ name|TestUtil
 import|;
 end_import
 
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|util
-operator|.
-name|TestUtil
-import|;
-end_import
-
 begin_class
 DECL|class|TestDocumentWriter
 specifier|public
@@ -406,7 +392,7 @@ argument_list|()
 decl_stmt|;
 name|writer
 operator|.
-name|close
+name|shutdown
 argument_list|()
 expr_stmt|;
 comment|//After adding the document, we should be able to read it back in
@@ -872,7 +858,7 @@ argument_list|()
 decl_stmt|;
 name|writer
 operator|.
-name|close
+name|shutdown
 argument_list|()
 expr_stmt|;
 name|SegmentReader
@@ -1291,7 +1277,7 @@ argument_list|()
 decl_stmt|;
 name|writer
 operator|.
-name|close
+name|shutdown
 argument_list|()
 expr_stmt|;
 name|SegmentReader
@@ -1573,7 +1559,7 @@ argument_list|()
 decl_stmt|;
 name|writer
 operator|.
-name|close
+name|shutdown
 argument_list|()
 expr_stmt|;
 name|SegmentReader
@@ -1893,7 +1879,7 @@ argument_list|)
 expr_stmt|;
 name|writer
 operator|.
-name|close
+name|shutdown
 argument_list|()
 expr_stmt|;
 name|TestUtil
@@ -2154,7 +2140,7 @@ expr_stmt|;
 comment|// be sure to have a single segment
 name|writer
 operator|.
-name|close
+name|shutdown
 argument_list|()
 expr_stmt|;
 name|TestUtil

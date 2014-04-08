@@ -585,7 +585,7 @@ finally|finally
 block|{
 name|indexWriter
 operator|.
-name|close
+name|shutdown
 argument_list|()
 expr_stmt|;
 block|}
@@ -885,7 +885,7 @@ finally|finally
 block|{
 name|indexWriter
 operator|.
-name|close
+name|shutdown
 argument_list|()
 expr_stmt|;
 block|}
@@ -1329,7 +1329,7 @@ finally|finally
 block|{
 name|indexWriter
 operator|.
-name|close
+name|shutdown
 argument_list|()
 expr_stmt|;
 block|}
@@ -1620,7 +1620,7 @@ finally|finally
 block|{
 name|indexWriter
 operator|.
-name|close
+name|shutdown
 argument_list|()
 expr_stmt|;
 block|}
@@ -1911,7 +1911,7 @@ finally|finally
 block|{
 name|indexWriter
 operator|.
-name|close
+name|shutdown
 argument_list|()
 expr_stmt|;
 block|}

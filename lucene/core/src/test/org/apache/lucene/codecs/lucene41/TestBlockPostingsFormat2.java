@@ -332,7 +332,7 @@ name|Exception
 block|{
 name|iw
 operator|.
-name|close
+name|shutdown
 argument_list|()
 expr_stmt|;
 name|TestUtil
@@ -375,7 +375,7 @@ argument_list|)
 expr_stmt|;
 name|iw
 operator|.
-name|close
+name|shutdown
 argument_list|()
 expr_stmt|;
 name|dir

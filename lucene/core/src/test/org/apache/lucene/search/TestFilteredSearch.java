@@ -313,11 +313,6 @@ operator|=
 literal|false
 expr_stmt|;
 name|writer
-operator|.
-name|close
-argument_list|()
-expr_stmt|;
-name|writer
 operator|=
 operator|new
 name|IndexWriter
@@ -366,11 +361,6 @@ name|filter
 argument_list|,
 name|enforceSingleSegment
 argument_list|)
-expr_stmt|;
-name|writer
-operator|.
-name|close
-argument_list|()
 expr_stmt|;
 name|directory
 operator|.
@@ -467,7 +457,7 @@ expr_stmt|;
 block|}
 name|writer
 operator|.
-name|close
+name|shutdown
 argument_list|()
 expr_stmt|;
 name|BooleanQuery

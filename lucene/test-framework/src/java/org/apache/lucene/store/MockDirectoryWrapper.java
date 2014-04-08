@@ -4025,7 +4025,7 @@ literal|null
 argument_list|)
 argument_list|)
 operator|.
-name|close
+name|shutdown
 argument_list|()
 expr_stmt|;
 name|DirectoryReader

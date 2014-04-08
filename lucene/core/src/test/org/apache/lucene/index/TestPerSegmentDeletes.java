@@ -636,7 +636,7 @@ comment|// System.out.println("segdels2:"+writer.docWriter.segmentDeletes.toStri
 comment|//System.out.println("close");
 name|writer
 operator|.
-name|close
+name|shutdown
 argument_list|()
 expr_stmt|;
 name|dir

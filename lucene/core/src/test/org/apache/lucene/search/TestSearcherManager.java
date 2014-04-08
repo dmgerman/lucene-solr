@@ -1615,7 +1615,7 @@ argument_list|)
 expr_stmt|;
 name|writer
 operator|.
-name|close
+name|shutdown
 argument_list|()
 expr_stmt|;
 name|dir
@@ -1677,7 +1677,7 @@ literal|null
 argument_list|)
 argument_list|)
 operator|.
-name|close
+name|shutdown
 argument_list|()
 expr_stmt|;
 name|SearcherManager
@@ -1859,7 +1859,7 @@ block|}
 comment|// sm.close(); -- already closed
 name|writer
 operator|.
-name|close
+name|shutdown
 argument_list|()
 expr_stmt|;
 name|dir
@@ -1896,7 +1896,7 @@ literal|null
 argument_list|)
 argument_list|)
 operator|.
-name|close
+name|shutdown
 argument_list|()
 expr_stmt|;
 name|SearcherManager
@@ -2113,7 +2113,7 @@ argument_list|()
 expr_stmt|;
 name|iw
 operator|.
-name|close
+name|shutdown
 argument_list|()
 expr_stmt|;
 name|dir
@@ -2248,7 +2248,7 @@ comment|// expected
 block|}
 name|w
 operator|.
-name|close
+name|shutdown
 argument_list|()
 expr_stmt|;
 name|other
@@ -2294,7 +2294,7 @@ argument_list|)
 decl_stmt|;
 name|w
 operator|.
-name|close
+name|shutdown
 argument_list|()
 expr_stmt|;
 specifier|final

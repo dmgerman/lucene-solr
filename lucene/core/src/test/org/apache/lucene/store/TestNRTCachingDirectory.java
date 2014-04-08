@@ -603,7 +603,7 @@ block|}
 comment|// Close should force cache to clear since all files are sync'd
 name|w
 operator|.
-name|close
+name|shutdown
 argument_list|()
 expr_stmt|;
 specifier|final

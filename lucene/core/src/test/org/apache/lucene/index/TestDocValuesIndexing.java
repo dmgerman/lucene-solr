@@ -372,7 +372,7 @@ argument_list|()
 decl_stmt|;
 name|w
 operator|.
-name|close
+name|shutdown
 argument_list|()
 expr_stmt|;
 name|Directory
@@ -446,7 +446,7 @@ argument_list|()
 decl_stmt|;
 name|w
 operator|.
-name|close
+name|shutdown
 argument_list|()
 expr_stmt|;
 name|Directory
@@ -522,7 +522,7 @@ argument_list|()
 decl_stmt|;
 name|w
 operator|.
-name|close
+name|shutdown
 argument_list|()
 expr_stmt|;
 name|AtomicReader
@@ -689,7 +689,7 @@ argument_list|()
 decl_stmt|;
 name|w
 operator|.
-name|close
+name|shutdown
 argument_list|()
 expr_stmt|;
 name|assertEquals
@@ -859,7 +859,7 @@ argument_list|()
 decl_stmt|;
 name|w
 operator|.
-name|close
+name|shutdown
 argument_list|()
 expr_stmt|;
 name|assertEquals
@@ -1054,7 +1054,7 @@ argument_list|()
 expr_stmt|;
 name|w
 operator|.
-name|close
+name|shutdown
 argument_list|()
 expr_stmt|;
 name|d
@@ -1288,7 +1288,7 @@ argument_list|()
 expr_stmt|;
 name|w
 operator|.
-name|close
+name|shutdown
 argument_list|()
 expr_stmt|;
 name|d
@@ -1536,7 +1536,7 @@ argument_list|()
 expr_stmt|;
 name|writer
 operator|.
-name|close
+name|shutdown
 argument_list|()
 expr_stmt|;
 name|dir
@@ -1638,7 +1638,7 @@ comment|// expected
 block|}
 name|w
 operator|.
-name|close
+name|shutdown
 argument_list|()
 expr_stmt|;
 name|dir
@@ -1753,7 +1753,7 @@ comment|// expected
 block|}
 name|w
 operator|.
-name|close
+name|shutdown
 argument_list|()
 expr_stmt|;
 name|dir
@@ -1879,10 +1879,28 @@ name|expected
 parameter_list|)
 block|{
 comment|// expected
+name|System
+operator|.
+name|out
+operator|.
+name|println
+argument_list|(
+literal|"hit exc:"
+argument_list|)
+expr_stmt|;
+name|expected
+operator|.
+name|printStackTrace
+argument_list|(
+name|System
+operator|.
+name|out
+argument_list|)
+expr_stmt|;
 block|}
 name|iwriter
 operator|.
-name|close
+name|shutdown
 argument_list|()
 expr_stmt|;
 name|directory
@@ -2011,7 +2029,7 @@ comment|// expected
 block|}
 name|iwriter
 operator|.
-name|close
+name|shutdown
 argument_list|()
 expr_stmt|;
 name|directory
@@ -2132,7 +2150,7 @@ comment|// expected
 block|}
 name|iwriter
 operator|.
-name|close
+name|shutdown
 argument_list|()
 expr_stmt|;
 name|directory
@@ -2267,7 +2285,7 @@ comment|// expected
 block|}
 name|iwriter
 operator|.
-name|close
+name|shutdown
 argument_list|()
 expr_stmt|;
 name|directory
@@ -2410,7 +2428,7 @@ comment|// expected
 block|}
 name|iwriter
 operator|.
-name|close
+name|shutdown
 argument_list|()
 expr_stmt|;
 name|directory
@@ -2530,7 +2548,7 @@ comment|// expected
 block|}
 name|w
 operator|.
-name|close
+name|shutdown
 argument_list|()
 expr_stmt|;
 name|dir
@@ -2639,7 +2657,7 @@ argument_list|)
 expr_stmt|;
 name|w
 operator|.
-name|close
+name|shutdown
 argument_list|()
 expr_stmt|;
 name|dir
@@ -2713,7 +2731,7 @@ argument_list|)
 expr_stmt|;
 name|w
 operator|.
-name|close
+name|shutdown
 argument_list|()
 expr_stmt|;
 name|IndexWriterConfig
@@ -2784,7 +2802,7 @@ argument_list|)
 expr_stmt|;
 name|w
 operator|.
-name|close
+name|shutdown
 argument_list|()
 expr_stmt|;
 name|dir
@@ -3051,7 +3069,7 @@ argument_list|)
 expr_stmt|;
 name|w
 operator|.
-name|close
+name|shutdown
 argument_list|()
 expr_stmt|;
 name|dir
@@ -3183,7 +3201,7 @@ argument_list|)
 expr_stmt|;
 name|w2
 operator|.
-name|close
+name|shutdown
 argument_list|()
 expr_stmt|;
 try|try
@@ -3254,7 +3272,7 @@ argument_list|()
 expr_stmt|;
 name|w
 operator|.
-name|close
+name|shutdown
 argument_list|()
 expr_stmt|;
 name|dir
@@ -3378,7 +3396,7 @@ comment|// expected
 block|}
 name|writer
 operator|.
-name|close
+name|shutdown
 argument_list|()
 expr_stmt|;
 name|dir
@@ -3459,7 +3477,7 @@ argument_list|)
 expr_stmt|;
 name|writer
 operator|.
-name|close
+name|shutdown
 argument_list|()
 expr_stmt|;
 name|writer
@@ -3523,7 +3541,7 @@ comment|// expected
 block|}
 name|writer
 operator|.
-name|close
+name|shutdown
 argument_list|()
 expr_stmt|;
 name|dir
@@ -3604,7 +3622,7 @@ argument_list|)
 expr_stmt|;
 name|writer
 operator|.
-name|close
+name|shutdown
 argument_list|()
 expr_stmt|;
 name|writer
@@ -3657,7 +3675,7 @@ argument_list|)
 expr_stmt|;
 name|writer
 operator|.
-name|close
+name|shutdown
 argument_list|()
 expr_stmt|;
 name|dir
@@ -3770,7 +3788,7 @@ argument_list|)
 expr_stmt|;
 name|writer
 operator|.
-name|close
+name|shutdown
 argument_list|()
 expr_stmt|;
 name|dir
@@ -3888,7 +3906,7 @@ argument_list|)
 expr_stmt|;
 name|writer
 operator|.
-name|close
+name|shutdown
 argument_list|()
 expr_stmt|;
 name|dir
@@ -3969,7 +3987,7 @@ argument_list|)
 expr_stmt|;
 name|writer
 operator|.
-name|close
+name|shutdown
 argument_list|()
 expr_stmt|;
 name|conf
@@ -4028,7 +4046,7 @@ argument_list|)
 expr_stmt|;
 name|writer
 operator|.
-name|close
+name|shutdown
 argument_list|()
 expr_stmt|;
 name|dir
@@ -4109,7 +4127,7 @@ argument_list|)
 expr_stmt|;
 name|writer
 operator|.
-name|close
+name|shutdown
 argument_list|()
 expr_stmt|;
 name|Directory
@@ -4186,7 +4204,7 @@ comment|// expected
 block|}
 name|writer
 operator|.
-name|close
+name|shutdown
 argument_list|()
 expr_stmt|;
 name|dir
@@ -4272,7 +4290,7 @@ argument_list|)
 expr_stmt|;
 name|writer
 operator|.
-name|close
+name|shutdown
 argument_list|()
 expr_stmt|;
 name|Directory
@@ -4373,7 +4391,7 @@ argument_list|()
 expr_stmt|;
 name|writer
 operator|.
-name|close
+name|shutdown
 argument_list|()
 expr_stmt|;
 name|dir
@@ -4459,7 +4477,7 @@ argument_list|)
 expr_stmt|;
 name|writer
 operator|.
-name|close
+name|shutdown
 argument_list|()
 expr_stmt|;
 name|Directory
@@ -4536,7 +4554,7 @@ comment|// expected
 block|}
 name|writer
 operator|.
-name|close
+name|shutdown
 argument_list|()
 expr_stmt|;
 name|dir2
@@ -4622,7 +4640,7 @@ argument_list|)
 expr_stmt|;
 name|writer
 operator|.
-name|close
+name|shutdown
 argument_list|()
 expr_stmt|;
 name|Directory
@@ -4723,7 +4741,7 @@ comment|// expected
 block|}
 name|writer
 operator|.
-name|close
+name|shutdown
 argument_list|()
 expr_stmt|;
 name|dir2
@@ -4859,7 +4877,7 @@ argument_list|()
 decl_stmt|;
 name|writer
 operator|.
-name|close
+name|shutdown
 argument_list|()
 expr_stmt|;
 name|AtomicReader

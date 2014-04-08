@@ -1076,12 +1076,12 @@ argument_list|)
 expr_stmt|;
 name|iw1
 operator|.
-name|close
+name|shutdown
 argument_list|()
 expr_stmt|;
 name|iw2
 operator|.
-name|close
+name|shutdown
 argument_list|()
 expr_stmt|;
 name|reader

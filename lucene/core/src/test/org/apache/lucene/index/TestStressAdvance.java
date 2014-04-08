@@ -638,7 +638,7 @@ expr_stmt|;
 block|}
 name|w
 operator|.
-name|close
+name|shutdown
 argument_list|()
 expr_stmt|;
 name|r
