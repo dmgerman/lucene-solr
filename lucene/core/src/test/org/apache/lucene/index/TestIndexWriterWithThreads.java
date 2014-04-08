@@ -1665,10 +1665,8 @@ argument_list|()
 expr_stmt|;
 name|writer
 operator|.
-name|shutdown
-argument_list|(
-literal|false
-argument_list|)
+name|close
+argument_list|()
 expr_stmt|;
 block|}
 if|if
