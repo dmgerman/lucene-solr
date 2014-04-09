@@ -4413,6 +4413,11 @@ operator|.
 name|finish
 argument_list|(
 name|numDocs
+argument_list|,
+name|vectorsStream
+operator|.
+name|getFilePointer
+argument_list|()
 argument_list|)
 expr_stmt|;
 name|CodecUtil

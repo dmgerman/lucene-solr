@@ -805,6 +805,9 @@ name|finish
 parameter_list|(
 name|int
 name|numDocs
+parameter_list|,
+name|long
+name|maxPointer
 parameter_list|)
 throws|throws
 name|IOException
@@ -849,6 +852,13 @@ literal|0
 argument_list|)
 expr_stmt|;
 comment|// end marker
+name|fieldsIndexOut
+operator|.
+name|writeVLong
+argument_list|(
+name|maxPointer
+argument_list|)
+expr_stmt|;
 name|CodecUtil
 operator|.
 name|writeFooter

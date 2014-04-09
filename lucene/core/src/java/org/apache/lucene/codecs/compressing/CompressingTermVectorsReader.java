@@ -965,6 +965,12 @@ operator|>=
 name|VERSION_CHECKSUM
 condition|)
 block|{
+name|indexStream
+operator|.
+name|readVLong
+argument_list|()
+expr_stmt|;
+comment|// the end of the data file
 name|CodecUtil
 operator|.
 name|checkFooter
