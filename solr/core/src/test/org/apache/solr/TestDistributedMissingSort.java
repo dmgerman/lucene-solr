@@ -76,16 +76,16 @@ DECL|field|sint1_ml
 name|String
 name|sint1_ml
 init|=
-literal|"one_si_ml"
+literal|"one_i1_ml"
 decl_stmt|;
-comment|// SortableIntField, sortMissingLast=true, multiValued=false
+comment|// TrieIntField, sortMissingLast=true, multiValued=false
 DECL|field|sint1_mf
 name|String
 name|sint1_mf
 init|=
-literal|"two_si_mf"
+literal|"two_i1_mf"
 decl_stmt|;
-comment|// SortableIntField, sortMissingFirst=true, multiValued=false
+comment|// TrieIntField, sortMissingFirst=true, multiValued=false
 DECL|field|long1_ml
 name|String
 name|long1_ml
@@ -923,7 +923,6 @@ literal|6
 argument_list|,
 literal|11
 argument_list|,
-comment|// missing field sint1_ml="a_si", ascending id sort
 literal|14
 argument_list|,
 literal|15
@@ -1091,7 +1090,6 @@ literal|8
 argument_list|,
 literal|10
 argument_list|,
-comment|// missing field sint1_ml="a_si", descending id sort
 literal|149
 argument_list|,
 literal|148
@@ -1373,7 +1371,6 @@ literal|6
 argument_list|,
 literal|11
 argument_list|,
-comment|// missing field sint1_ml="a_si", ascending id sort
 literal|14
 argument_list|,
 literal|15
@@ -1541,7 +1538,6 @@ literal|8
 argument_list|,
 literal|10
 argument_list|,
-comment|// missing field sint1_ml="a_si", descending id sort
 literal|149
 argument_list|,
 literal|148
@@ -2147,7 +2143,6 @@ argument_list|()
 argument_list|,
 name|id
 argument_list|,
-comment|// missing field sint1_mf="a_si_mf", ascending id sort
 literal|14
 argument_list|,
 literal|15
@@ -2315,7 +2310,6 @@ argument_list|()
 argument_list|,
 name|id
 argument_list|,
-comment|// missing field sint1_mf="a_si_mf", descending id sort
 literal|149
 argument_list|,
 literal|148
@@ -2487,7 +2481,6 @@ argument_list|()
 argument_list|,
 name|id
 argument_list|,
-comment|// missing field sint1_mf="a_si_mf", ascending id sort
 literal|14
 argument_list|,
 literal|15
@@ -2655,7 +2648,6 @@ argument_list|()
 argument_list|,
 name|id
 argument_list|,
-comment|// missing field sint1_mf="a_si_mf", descending id sort
 literal|149
 argument_list|,
 literal|148

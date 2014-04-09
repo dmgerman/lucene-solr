@@ -74,20 +74,6 @@ name|solr
 operator|.
 name|schema
 operator|.
-name|DateField
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|solr
-operator|.
-name|schema
-operator|.
 name|IndexSchema
 import|;
 end_import
@@ -103,6 +89,20 @@ operator|.
 name|schema
 operator|.
 name|SchemaField
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|solr
+operator|.
+name|schema
+operator|.
+name|TrieDateField
 import|;
 end_import
 
@@ -1608,7 +1608,7 @@ operator|.
 name|getType
 argument_list|()
 operator|instanceof
-name|DateField
+name|TrieDateField
 condition|)
 block|{
 comment|//try to transform the date

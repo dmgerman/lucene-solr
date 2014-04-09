@@ -242,7 +242,7 @@ name|solr
 operator|.
 name|schema
 operator|.
-name|DateField
+name|TrieDateField
 import|;
 end_import
 
@@ -5614,7 +5614,7 @@ name|randomDate
 parameter_list|()
 block|{
 return|return
-name|DateField
+name|TrieDateField
 operator|.
 name|formatExternal
 argument_list|(
@@ -5823,7 +5823,6 @@ decl_stmt|;
 comment|// wrap in a function sometimes
 if|if
 condition|(
-operator|(
 operator|!
 literal|"score"
 operator|.
@@ -5832,16 +5831,6 @@ argument_list|(
 name|field
 argument_list|)
 operator|&&
-operator|!
-name|field
-operator|.
-name|contains
-argument_list|(
-literal|"bcd"
-argument_list|)
-operator|)
-operator|&&
-operator|(
 literal|0
 operator|==
 name|TestUtil
@@ -5855,7 +5844,6 @@ literal|0
 argument_list|,
 literal|7
 argument_list|)
-operator|)
 condition|)
 block|{
 comment|// specific function doesn't matter, just proving that we can handle the concept.

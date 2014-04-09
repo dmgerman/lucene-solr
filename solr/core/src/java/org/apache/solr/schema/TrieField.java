@@ -549,15 +549,15 @@ specifier|protected
 name|Object
 name|missingValue
 decl_stmt|;
-comment|/**    * Used for handling date types following the same semantics as DateField    */
+comment|/**    * Used for handling date types    */
 DECL|field|dateField
 specifier|static
 specifier|final
-name|DateField
+name|TrieDateField
 name|dateField
 init|=
 operator|new
-name|DateField
+name|TrieDateField
 argument_list|()
 decl_stmt|;
 annotation|@

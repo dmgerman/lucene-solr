@@ -152,7 +152,7 @@ DECL|field|i1
 name|String
 name|i1
 init|=
-literal|"a_si"
+literal|"a_i1"
 decl_stmt|;
 DECL|field|s1
 name|String

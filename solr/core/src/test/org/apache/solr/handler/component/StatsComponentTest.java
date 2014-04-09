@@ -346,10 +346,6 @@ index|[]
 block|{
 literal|"stats_ii"
 block|,
-comment|// plain int
-literal|"stats_is"
-block|,
-comment|// sortable int
 literal|"stats_tis"
 block|,
 literal|"stats_tfs"

@@ -4169,7 +4169,7 @@ comment|// make sure it got in
 name|String
 name|f
 init|=
-literal|"val_pi"
+literal|"val_i"
 decl_stmt|;
 name|int
 name|i

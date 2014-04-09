@@ -154,7 +154,7 @@ specifier|static
 name|String
 name|i1
 init|=
-literal|"a_si"
+literal|"a_i"
 decl_stmt|;
 DECL|field|stop
 specifier|private

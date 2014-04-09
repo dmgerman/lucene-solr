@@ -144,20 +144,6 @@ name|solr
 operator|.
 name|schema
 operator|.
-name|DateField
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|solr
-operator|.
-name|schema
-operator|.
 name|FieldType
 import|;
 end_import
@@ -173,6 +159,20 @@ operator|.
 name|schema
 operator|.
 name|SchemaField
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|solr
+operator|.
+name|schema
+operator|.
+name|TrieDateField
 import|;
 end_import
 
@@ -205,11 +205,6 @@ import|;
 end_import
 
 begin_class
-annotation|@
-name|SuppressWarnings
-argument_list|(
-literal|"deprecation"
-argument_list|)
 DECL|class|RangeEndpointCalculator
 specifier|public
 specifier|abstract
@@ -1434,7 +1429,7 @@ if|if
 condition|(
 name|ft
 operator|instanceof
-name|DateField
+name|TrieDateField
 condition|)
 block|{
 name|calc
@@ -1848,7 +1843,7 @@ operator|.
 name|getType
 argument_list|()
 operator|instanceof
-name|DateField
+name|TrieDateField
 operator|)
 condition|)
 block|{
@@ -1856,18 +1851,13 @@ throw|throw
 operator|new
 name|IllegalArgumentException
 argument_list|(
-literal|"SchemaField must use filed type extending DateField"
+literal|"SchemaField must use field type extending TrieDateField"
 argument_list|)
 throw|;
 block|}
 block|}
 annotation|@
 name|Override
-annotation|@
-name|SuppressWarnings
-argument_list|(
-literal|"deprecation"
-argument_list|)
 DECL|method|formatValue
 specifier|public
 name|String
@@ -1880,7 +1870,7 @@ block|{
 return|return
 operator|(
 operator|(
-name|DateField
+name|TrieDateField
 operator|)
 name|field
 operator|.
@@ -1896,11 +1886,6 @@ return|;
 block|}
 annotation|@
 name|Override
-annotation|@
-name|SuppressWarnings
-argument_list|(
-literal|"deprecation"
-argument_list|)
 DECL|method|parseVal
 specifier|protected
 name|Date
@@ -1913,7 +1898,7 @@ block|{
 return|return
 operator|(
 operator|(
-name|DateField
+name|TrieDateField
 operator|)
 name|field
 operator|.

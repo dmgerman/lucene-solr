@@ -4472,7 +4472,7 @@ argument_list|()
 expr_stmt|;
 comment|// testing everything from query level is hard because
 comment|// time marches on ... and there is no easy way to reach into the
-comment|// bowels of DateField and muck with the definition of "now"
+comment|// bowels of TrieDateField and muck with the definition of "now"
 comment|//    ...
 comment|// BUT: we can test that crazy combinations of "NOW" all work correctly,
 comment|// assuming the test doesn't take too long to run...

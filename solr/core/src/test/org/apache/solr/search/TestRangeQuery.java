@@ -713,33 +713,6 @@ name|frange_fields
 operator|.
 name|put
 argument_list|(
-literal|"foo_pi"
-argument_list|,
-name|ints
-argument_list|)
-expr_stmt|;
-name|frange_fields
-operator|.
-name|put
-argument_list|(
-literal|"foo_pl"
-argument_list|,
-name|longs
-argument_list|)
-expr_stmt|;
-name|frange_fields
-operator|.
-name|put
-argument_list|(
-literal|"foo_pd"
-argument_list|,
-name|doubles
-argument_list|)
-expr_stmt|;
-name|frange_fields
-operator|.
-name|put
-argument_list|(
 literal|"foo_s"
 argument_list|,
 name|strings
@@ -1874,16 +1847,6 @@ block|,
 literal|"foo_f"
 block|,
 literal|"foo_d"
-comment|// SortableIntField, etc
-block|,
-literal|"foo_pi"
-block|,
-literal|"foo_pl"
-block|,
-literal|"foo_pf"
-block|,
-literal|"foo_pd"
-comment|// plain int  IntField, etc
 block|,
 literal|"foo_ti"
 block|,
@@ -1892,7 +1855,6 @@ block|,
 literal|"foo_tf"
 block|,
 literal|"foo_td"
-comment|// trie numer fields
 block|}
 decl_stmt|;
 specifier|final
@@ -1982,14 +1944,6 @@ block|,
 literal|"foo_f"
 block|,
 literal|"foo_d"
-block|,
-literal|"foo_pi"
-block|,
-literal|"foo_pl"
-block|,
-literal|"foo_pf"
-block|,
-literal|"foo_pd"
 block|}
 decl_stmt|;
 for|for

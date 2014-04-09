@@ -1110,7 +1110,7 @@ name|adoc
 argument_list|(
 literal|"id"
 argument_list|,
-literal|"A5"
+literal|"5"
 argument_list|,
 literal|"sku1"
 argument_list|,
@@ -1184,7 +1184,7 @@ name|req
 argument_list|,
 literal|"//*[@numFound='1']"
 argument_list|,
-literal|"//result/doc[1]/str[@name='id'][.='A5']"
+literal|"//result/doc[1]/int[@name='id'][.='5']"
 argument_list|)
 expr_stmt|;
 name|args
@@ -1236,7 +1236,7 @@ name|req
 argument_list|,
 literal|"//*[@numFound='1']"
 argument_list|,
-literal|"//result/doc[1]/str[@name='id'][.='A5']"
+literal|"//result/doc[1]/int[@name='id'][.='5']"
 argument_list|,
 literal|"//result/doc[1]/arr[@name='sku1']/str[.='10-1839ACX-93']"
 argument_list|)
@@ -1402,7 +1402,7 @@ name|adoc
 argument_list|(
 literal|"id"
 argument_list|,
-literal|"A5"
+literal|"5"
 argument_list|,
 literal|"sku1"
 argument_list|,
@@ -1476,7 +1476,7 @@ name|req
 argument_list|,
 literal|"//*[@numFound='1']"
 argument_list|,
-literal|"//result/doc[1]/str[@name='id'][.='A5']"
+literal|"//result/doc[1]/int[@name='id'][.='5']"
 argument_list|)
 expr_stmt|;
 block|}
@@ -1515,7 +1515,7 @@ name|adoc
 argument_list|(
 literal|"id"
 argument_list|,
-literal|"A5"
+literal|"5"
 argument_list|,
 literal|"sku1"
 argument_list|,
@@ -1542,7 +1542,7 @@ operator|new
 name|String
 index|[]
 block|{
-literal|"A5"
+literal|"5"
 block|,
 literal|"10-1839ACX-93"
 block|,
@@ -1563,7 +1563,7 @@ argument_list|)
 argument_list|,
 literal|"//*[@numFound='1']"
 argument_list|,
-literal|"//result/doc[1]/str[@name='id'][.='A5']"
+literal|"//result/doc[1]/int[@name='id'][.='5']"
 argument_list|)
 expr_stmt|;
 block|}

@@ -1173,13 +1173,6 @@ literal|"bar_dt"
 argument_list|,
 literal|" string3 "
 argument_list|)
-argument_list|,
-name|f
-argument_list|(
-literal|"bar_pdt"
-argument_list|,
-literal|" string4 "
-argument_list|)
 argument_list|)
 argument_list|)
 expr_stmt|;
@@ -1221,18 +1214,6 @@ operator|.
 name|getFieldValue
 argument_list|(
 literal|"bar_dt"
-argument_list|)
-argument_list|)
-expr_stmt|;
-name|assertEquals
-argument_list|(
-literal|"string4"
-argument_list|,
-name|d
-operator|.
-name|getFieldValue
-argument_list|(
-literal|"bar_pdt"
 argument_list|)
 argument_list|)
 expr_stmt|;
@@ -1285,13 +1266,6 @@ literal|"bar_dt"
 argument_list|,
 literal|" string3 "
 argument_list|)
-argument_list|,
-name|f
-argument_list|(
-literal|"foo_pdt"
-argument_list|,
-literal|" string4 "
-argument_list|)
 argument_list|)
 argument_list|)
 expr_stmt|;
@@ -1333,18 +1307,6 @@ operator|.
 name|getFieldValue
 argument_list|(
 literal|"bar_dt"
-argument_list|)
-argument_list|)
-expr_stmt|;
-name|assertEquals
-argument_list|(
-literal|"string4"
-argument_list|,
-name|d
-operator|.
-name|getFieldValue
-argument_list|(
-literal|"foo_pdt"
 argument_list|)
 argument_list|)
 expr_stmt|;
@@ -1397,13 +1359,6 @@ literal|"bar_dt"
 argument_list|,
 literal|" string3 "
 argument_list|)
-argument_list|,
-name|f
-argument_list|(
-literal|"foo_pdt"
-argument_list|,
-literal|" string4 "
-argument_list|)
 argument_list|)
 argument_list|)
 expr_stmt|;
@@ -1445,18 +1400,6 @@ operator|.
 name|getFieldValue
 argument_list|(
 literal|"bar_dt"
-argument_list|)
-argument_list|)
-expr_stmt|;
-name|assertEquals
-argument_list|(
-literal|"string4"
-argument_list|,
-name|d
-operator|.
-name|getFieldValue
-argument_list|(
-literal|"foo_pdt"
 argument_list|)
 argument_list|)
 expr_stmt|;
@@ -1502,20 +1445,6 @@ literal|"bar_HOSS_s"
 argument_list|,
 literal|" string4 "
 argument_list|)
-argument_list|,
-name|f
-argument_list|(
-literal|"foo_pdt"
-argument_list|,
-literal|" string5 "
-argument_list|)
-argument_list|,
-name|f
-argument_list|(
-literal|"foo_HOSS_pdt"
-argument_list|,
-literal|" string6 "
-argument_list|)
 argument_list|)
 argument_list|)
 expr_stmt|;
@@ -1572,30 +1501,6 @@ literal|"bar_HOSS_s"
 argument_list|)
 argument_list|)
 expr_stmt|;
-name|assertEquals
-argument_list|(
-literal|"string5"
-argument_list|,
-name|d
-operator|.
-name|getFieldValue
-argument_list|(
-literal|"foo_pdt"
-argument_list|)
-argument_list|)
-expr_stmt|;
-name|assertEquals
-argument_list|(
-literal|" string6 "
-argument_list|,
-name|d
-operator|.
-name|getFieldValue
-argument_list|(
-literal|"foo_HOSS_pdt"
-argument_list|)
-argument_list|)
-expr_stmt|;
 name|d
 operator|=
 name|processAdd
@@ -1637,20 +1542,6 @@ argument_list|(
 literal|"bar_HOSS_s"
 argument_list|,
 literal|" string4 "
-argument_list|)
-argument_list|,
-name|f
-argument_list|(
-literal|"foo_pdt"
-argument_list|,
-literal|" string5 "
-argument_list|)
-argument_list|,
-name|f
-argument_list|(
-literal|"foo_HOSS_pdt"
-argument_list|,
-literal|" string6 "
 argument_list|)
 argument_list|)
 argument_list|)
@@ -1708,30 +1599,6 @@ literal|"bar_HOSS_s"
 argument_list|)
 argument_list|)
 expr_stmt|;
-name|assertEquals
-argument_list|(
-literal|" string5 "
-argument_list|,
-name|d
-operator|.
-name|getFieldValue
-argument_list|(
-literal|"foo_pdt"
-argument_list|)
-argument_list|)
-expr_stmt|;
-name|assertEquals
-argument_list|(
-literal|" string6 "
-argument_list|,
-name|d
-operator|.
-name|getFieldValue
-argument_list|(
-literal|"foo_HOSS_pdt"
-argument_list|)
-argument_list|)
-expr_stmt|;
 name|d
 operator|=
 name|processAdd
@@ -1773,20 +1640,6 @@ argument_list|(
 literal|"bar_HOSS_s"
 argument_list|,
 literal|" string4 "
-argument_list|)
-argument_list|,
-name|f
-argument_list|(
-literal|"foo_pdt"
-argument_list|,
-literal|" string5 "
-argument_list|)
-argument_list|,
-name|f
-argument_list|(
-literal|"foo_HOSS_pdt"
-argument_list|,
-literal|" string6 "
 argument_list|)
 argument_list|)
 argument_list|)
@@ -1841,30 +1694,6 @@ operator|.
 name|getFieldValue
 argument_list|(
 literal|"bar_HOSS_s"
-argument_list|)
-argument_list|)
-expr_stmt|;
-name|assertEquals
-argument_list|(
-literal|"string5"
-argument_list|,
-name|d
-operator|.
-name|getFieldValue
-argument_list|(
-literal|"foo_pdt"
-argument_list|)
-argument_list|)
-expr_stmt|;
-name|assertEquals
-argument_list|(
-literal|" string6 "
-argument_list|,
-name|d
-operator|.
-name|getFieldValue
-argument_list|(
-literal|"foo_HOSS_pdt"
 argument_list|)
 argument_list|)
 expr_stmt|;

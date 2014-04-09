@@ -239,13 +239,6 @@ operator|!
 operator|(
 name|ftype
 operator|instanceof
-name|FloatField
-operator|)
-operator|&&
-operator|!
-operator|(
-name|ftype
-operator|instanceof
 name|TrieFloatField
 operator|)
 condition|)
@@ -260,7 +253,7 @@ name|ErrorCode
 operator|.
 name|SERVER_ERROR
 argument_list|,
-literal|"Only float and pfloat (Trie|Float)Field are currently supported as external field type.  Got "
+literal|"Only float (TrieFloatField) is currently supported as external field type.  Got "
 operator|+
 name|ftypeS
 argument_list|)

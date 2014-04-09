@@ -496,19 +496,6 @@ operator|+
 literal|"']"
 argument_list|)
 expr_stmt|;
-name|assertQ
-argument_list|(
-name|req
-argument_list|(
-literal|"q"
-argument_list|,
-literal|"intfield:2*"
-argument_list|)
-argument_list|,
-literal|"//*[@numFound='11']"
-argument_list|)
-expr_stmt|;
-comment|//2 and the 10 in twenties
 comment|//Custom field should query for the range [2,MAX_INT)
 name|assertQ
 argument_list|(

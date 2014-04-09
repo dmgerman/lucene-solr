@@ -258,7 +258,7 @@ name|solr
 operator|.
 name|schema
 operator|.
-name|DateField
+name|TrieDateField
 import|;
 end_import
 
@@ -1582,7 +1582,7 @@ name|expireField
 operator|+
 literal|":[* TO "
 operator|+
-name|DateField
+name|TrieDateField
 operator|.
 name|formatExternal
 argument_list|(

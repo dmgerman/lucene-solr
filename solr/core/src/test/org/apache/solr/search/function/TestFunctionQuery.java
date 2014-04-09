@@ -687,7 +687,7 @@ argument_list|<>
 argument_list|()
 decl_stmt|;
 comment|// Construct xpaths like the following:
-comment|// "//doc[./float[@name='foo_pf']='10.0' and ./float[@name='score']='10.0']"
+comment|// "//doc[./float[@name='foo_f']='10.0' and ./float[@name='score']='10.0']"
 for|for
 control|(
 name|int
@@ -1430,12 +1430,6 @@ name|void
 name|testFunctions
 parameter_list|()
 block|{
-name|doTest
-argument_list|(
-literal|"foo_pf"
-argument_list|)
-expr_stmt|;
-comment|// a plain float field
 name|doTest
 argument_list|(
 literal|"foo_f"
@@ -5464,14 +5458,6 @@ block|,
 literal|"f"
 block|,
 literal|"d"
-block|,
-literal|"pi"
-block|,
-literal|"pl"
-block|,
-literal|"pf"
-block|,
-literal|"pd"
 block|,
 literal|"ti"
 block|,

@@ -286,7 +286,7 @@ specifier|static
 name|int
 name|hcode
 init|=
-name|SortableFloatFieldSource
+name|StrFieldSource
 operator|.
 name|class
 operator|.
