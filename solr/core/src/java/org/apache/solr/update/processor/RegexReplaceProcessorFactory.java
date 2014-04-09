@@ -163,7 +163,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * An updated processor that applies a configured regex to any   * CharSequence values found in the selected fields, and replaces   * any matches with the configured replacement string  *<p>  * By default this processor applies itself to no fields.  *</p>  *  *<p>  * For example, with the configuration listed below, any sequence of multiple   * whitespace characters found in values for field named<code>title</code>   * or<code>content</code> will be replaced by a single space character.  *</p>  *  *<pre class="prettyprint">  *&lt;processor class="solr.RegexReplaceProcessorFactory"&gt;  *&lt;str name="fieldName"&gt;content&lt;/str&gt;  *&lt;str name="fieldName"&gt;title&lt;/str&gt;  *&lt;str name="pattern"&gt;\s+&lt;/str&gt;  *&lt;str name="replacement"&gt;&lt;/str&gt;  *&lt;/processor&gt;</pre>  *   * @see java.util.regex.Pattern  */
+comment|/**  * An updated processor that applies a configured regex to any   * CharSequence values found in the selected fields, and replaces   * any matches with the configured replacement string.  *  *<p>  * By default this processor applies itself to no fields.  *</p>  *  *<p>  * By default,<code>literalReplacement</code> is set to true, in which  * case, the<code>replacement</code> string will be treated literally by  * quoting via {@link Matcher#quoteReplacement(String)}. And hence, '\'  * and '$' signs will not be processed. When<code>literalReplacement</code>  * is set to false, one can perform backreference operations and capture  * group substitutions.  *</p>  *  *<p>  * For example, with the configuration listed below, any sequence of multiple   * whitespace characters found in values for field named<code>title</code>   * or<code>content</code> will be replaced by a single space character.  *</p>  *  *<pre class="prettyprint">  *&lt;processor class="solr.RegexReplaceProcessorFactory"&gt;  *&lt;str name="fieldName"&gt;content&lt;/str&gt;  *&lt;str name="fieldName"&gt;title&lt;/str&gt;  *&lt;str name="pattern"&gt;\s+&lt;/str&gt;  *&lt;str name="replacement"&gt;&lt;/str&gt;  *&lt;bool name="literalReplacement"&gt;true&lt;/bool&gt;  *&lt;/processor&gt;</pre>  *  * @see java.util.regex.Pattern  */
 end_comment
 
 begin_class
@@ -209,6 +209,15 @@ name|PATTERN_PARAM
 init|=
 literal|"pattern"
 decl_stmt|;
+DECL|field|LITERAL_REPLACEMENT_PARAM
+specifier|private
+specifier|static
+specifier|final
+name|String
+name|LITERAL_REPLACEMENT_PARAM
+init|=
+literal|"literalReplacement"
+decl_stmt|;
 DECL|field|pattern
 specifier|private
 name|Pattern
@@ -218,6 +227,14 @@ DECL|field|replacement
 specifier|private
 name|String
 name|replacement
+decl_stmt|;
+comment|// by default, literalReplacementEnabled is set to true to allow backward compatibility
+DECL|field|literalReplacementEnabled
+specifier|private
+name|boolean
+name|literalReplacementEnabled
+init|=
+literal|true
 decl_stmt|;
 annotation|@
 name|SuppressWarnings
@@ -334,6 +351,33 @@ name|REPLACEMENT_PARAM
 argument_list|)
 throw|;
 block|}
+name|Boolean
+name|literalReplacement
+init|=
+name|args
+operator|.
+name|removeBooleanArg
+argument_list|(
+name|LITERAL_REPLACEMENT_PARAM
+argument_list|)
+decl_stmt|;
+if|if
+condition|(
+name|literalReplacement
+operator|!=
+literal|null
+condition|)
+block|{
+name|literalReplacementEnabled
+operator|=
+name|literalReplacement
+expr_stmt|;
+block|}
+if|if
+condition|(
+name|literalReplacementEnabled
+condition|)
+block|{
 name|replacement
 operator|=
 name|Matcher
@@ -346,6 +390,17 @@ name|toString
 argument_list|()
 argument_list|)
 expr_stmt|;
+block|}
+else|else
+block|{
+name|replacement
+operator|=
+name|replacementParam
+operator|.
+name|toString
+argument_list|()
+expr_stmt|;
+block|}
 name|super
 operator|.
 name|init
