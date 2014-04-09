@@ -32,24 +32,6 @@ name|simpletext
 operator|.
 name|SimpleTextSegmentInfoWriter
 operator|.
-name|SI_CHECKSUM
-import|;
-end_import
-
-begin_import
-import|import static
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|codecs
-operator|.
-name|simpletext
-operator|.
-name|SimpleTextSegmentInfoWriter
-operator|.
 name|SI_DIAG_KEY
 import|;
 end_import
@@ -789,8 +771,6 @@ operator|.
 name|checkFooter
 argument_list|(
 name|input
-argument_list|,
-name|SI_CHECKSUM
 argument_list|)
 expr_stmt|;
 name|SegmentInfo
