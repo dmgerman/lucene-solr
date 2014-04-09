@@ -74,6 +74,8 @@ parameter_list|(
 name|long
 name|pos
 parameter_list|)
+throws|throws
+name|IOException
 block|{
 throw|throw
 operator|new

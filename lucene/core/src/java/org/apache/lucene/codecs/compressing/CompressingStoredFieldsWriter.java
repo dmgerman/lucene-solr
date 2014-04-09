@@ -2702,6 +2702,11 @@ operator|<
 name|maxDoc
 condition|)
 do|;
+name|it
+operator|.
+name|checkIntegrity
+argument_list|()
+expr_stmt|;
 block|}
 block|}
 block|}
