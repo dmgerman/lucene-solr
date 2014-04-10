@@ -906,11 +906,24 @@ name|name
 range|:
 name|toSync
 control|)
+block|{
 name|fsync
 argument_list|(
 name|name
 argument_list|)
 expr_stmt|;
+block|}
+comment|// fsync the directory itsself, but only if there was any file fsynced before
+comment|// (otherwise it can happen that the directory does not yet exist)!
+if|if
+condition|(
+operator|!
+name|toSync
+operator|.
+name|isEmpty
+argument_list|()
+condition|)
+block|{
 name|IOUtils
 operator|.
 name|fsync
@@ -920,6 +933,7 @@ argument_list|,
 literal|true
 argument_list|)
 expr_stmt|;
+block|}
 name|staleFiles
 operator|.
 name|removeAll
