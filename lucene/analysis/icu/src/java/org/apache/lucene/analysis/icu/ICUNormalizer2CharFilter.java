@@ -440,6 +440,8 @@ argument_list|,
 literal|0
 argument_list|)
 expr_stmt|;
+comment|// this loop depends on 'isInert' (changes under normalization) but looks only at characters.
+comment|// so we treat all surrogates as non-inert for simplicity
 if|if
 condition|(
 name|normalizer
@@ -457,7 +459,7 @@ operator|&&
 operator|!
 name|Character
 operator|.
-name|isHighSurrogate
+name|isSurrogate
 argument_list|(
 name|tmpBuffer
 index|[
