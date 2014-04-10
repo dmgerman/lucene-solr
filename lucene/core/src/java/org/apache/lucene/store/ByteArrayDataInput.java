@@ -228,12 +228,14 @@ operator|==
 name|limit
 return|;
 block|}
+annotation|@
+name|Override
 DECL|method|skipBytes
 specifier|public
 name|void
 name|skipBytes
 parameter_list|(
-name|int
+name|long
 name|count
 parameter_list|)
 block|{
