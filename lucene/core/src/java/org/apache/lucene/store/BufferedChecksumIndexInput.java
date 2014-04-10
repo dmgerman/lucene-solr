@@ -243,6 +243,20 @@ name|length
 argument_list|()
 return|;
 block|}
+annotation|@
+name|Override
+DECL|method|clone
+specifier|public
+name|IndexInput
+name|clone
+parameter_list|()
+block|{
+throw|throw
+operator|new
+name|UnsupportedOperationException
+argument_list|()
+throw|;
+block|}
 block|}
 end_class
 
