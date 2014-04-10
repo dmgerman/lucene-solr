@@ -1183,7 +1183,7 @@ argument_list|)
 throw|;
 block|}
 block|}
-comment|/**    * Ensure that any writes to the given file is written to the storage device that contains it.    * @param fileToSync the file to fsync    */
+comment|/**    * Ensure that any writes to the given file is written to the storage device that contains it.    * @param fileToSync the file to fsync    * @param isDir if true, the given file is a directory (we open for read and ignore IOExceptions,    *  because not all file systems and operating systems allow to fsync on a directory)    */
 DECL|method|fsync
 specifier|public
 specifier|static
@@ -1192,6 +1192,9 @@ name|fsync
 parameter_list|(
 name|File
 name|fileToSync
+parameter_list|,
+name|boolean
+name|isDir
 parameter_list|)
 throws|throws
 name|IOException
@@ -1201,6 +1204,35 @@ name|exc
 init|=
 literal|null
 decl_stmt|;
+comment|// If the file is a directory we have to open read-only, for regular files we must open r/w for the fsync to have an effect.
+comment|// See http://blog.httrack.com/blog/2013/11/15/everything-you-always-wanted-to-know-about-fsync/
+try|try
+init|(
+specifier|final
+name|FileChannel
+name|file
+init|=
+name|FileChannel
+operator|.
+name|open
+argument_list|(
+name|fileToSync
+operator|.
+name|toPath
+argument_list|()
+argument_list|,
+name|isDir
+condition|?
+name|StandardOpenOption
+operator|.
+name|READ
+else|:
+name|StandardOpenOption
+operator|.
+name|WRITE
+argument_list|)
+init|)
+block|{
 for|for
 control|(
 name|int
@@ -1218,26 +1250,6 @@ control|)
 block|{
 try|try
 block|{
-try|try
-init|(
-name|FileChannel
-name|file
-init|=
-name|FileChannel
-operator|.
-name|open
-argument_list|(
-name|fileToSync
-operator|.
-name|toPath
-argument_list|()
-argument_list|,
-name|StandardOpenOption
-operator|.
-name|WRITE
-argument_list|)
-init|)
-block|{
 name|file
 operator|.
 name|force
@@ -1245,9 +1257,7 @@ argument_list|(
 literal|true
 argument_list|)
 expr_stmt|;
-comment|// TODO: we probably dont care about metadata, but this is what we did before...
 return|return;
-block|}
 block|}
 catch|catch
 parameter_list|(
@@ -1274,7 +1284,7 @@ name|Thread
 operator|.
 name|sleep
 argument_list|(
-literal|5
+literal|5L
 argument_list|)
 expr_stmt|;
 block|}
@@ -1305,6 +1315,53 @@ name|ex
 throw|;
 block|}
 block|}
+block|}
+block|}
+catch|catch
+parameter_list|(
+name|IOException
+name|ioe
+parameter_list|)
+block|{
+if|if
+condition|(
+name|exc
+operator|==
+literal|null
+condition|)
+block|{
+name|exc
+operator|=
+name|ioe
+expr_stmt|;
+block|}
+block|}
+if|if
+condition|(
+name|isDir
+condition|)
+block|{
+assert|assert
+operator|(
+name|Constants
+operator|.
+name|LINUX
+operator|||
+name|Constants
+operator|.
+name|MAC_OS_X
+operator|)
+operator|==
+literal|false
+operator|:
+literal|"On Linux and MacOSX fsyncing a directory should not throw IOException, "
+operator|+
+literal|"we just don't want to rely on that in production (undocumented). Got: "
+operator|+
+name|exc
+assert|;
+comment|// Ignore exception if it is a directory
+return|return;
 block|}
 comment|// Throw original exception
 throw|throw

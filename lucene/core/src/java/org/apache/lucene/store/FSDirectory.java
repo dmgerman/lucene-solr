@@ -911,6 +911,15 @@ argument_list|(
 name|name
 argument_list|)
 expr_stmt|;
+name|IOUtils
+operator|.
+name|fsync
+argument_list|(
+name|directory
+argument_list|,
+literal|true
+argument_list|)
+expr_stmt|;
 name|staleFiles
 operator|.
 name|removeAll
@@ -1366,6 +1375,8 @@ name|directory
 argument_list|,
 name|name
 argument_list|)
+argument_list|,
+literal|false
 argument_list|)
 expr_stmt|;
 block|}
