@@ -2060,7 +2060,7 @@ name|int
 operator|)
 name|ros
 operator|.
-name|length
+name|getFilePointer
 argument_list|()
 index|]
 expr_stmt|;

@@ -327,7 +327,7 @@ name|n
 argument_list|,
 name|out
 operator|.
-name|length
+name|getFilePointer
 argument_list|()
 argument_list|)
 expr_stmt|;
@@ -374,7 +374,7 @@ name|n
 argument_list|,
 name|out
 operator|.
-name|length
+name|getFilePointer
 argument_list|()
 argument_list|)
 expr_stmt|;
@@ -459,7 +459,7 @@ name|n
 argument_list|,
 name|out
 operator|.
-name|length
+name|getFilePointer
 argument_list|()
 argument_list|)
 expr_stmt|;

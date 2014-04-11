@@ -497,17 +497,6 @@ operator|+
 name|bufferPosition
 return|;
 block|}
-annotation|@
-name|Override
-DECL|method|length
-specifier|public
-specifier|abstract
-name|long
-name|length
-parameter_list|()
-throws|throws
-name|IOException
-function_decl|;
 comment|/**    * Returns size of the used output buffer in bytes.    * */
 DECL|method|getBufferSize
 specifier|public
