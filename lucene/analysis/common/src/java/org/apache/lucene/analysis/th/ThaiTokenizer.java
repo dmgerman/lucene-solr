@@ -438,6 +438,8 @@ name|copyBuffer
 argument_list|(
 name|buffer
 argument_list|,
+name|sentenceStart
+operator|+
 name|start
 argument_list|,
 name|end
