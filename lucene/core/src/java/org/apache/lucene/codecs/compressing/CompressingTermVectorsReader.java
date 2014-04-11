@@ -1172,6 +1172,15 @@ return|return
 name|packedIntsVersion
 return|;
 block|}
+DECL|method|getVersion
+name|int
+name|getVersion
+parameter_list|()
+block|{
+return|return
+name|version
+return|;
+block|}
 DECL|method|getIndex
 name|CompressingStoredFieldsIndexReader
 name|getIndex

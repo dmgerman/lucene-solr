@@ -98,11 +98,10 @@ throw|throw
 operator|new
 name|IllegalStateException
 argument_list|(
-name|ChecksumIndexInput
-operator|.
-name|class
+name|getClass
+argument_list|()
 operator|+
-literal|" cannot seed backward"
+literal|" cannot seek backwards"
 argument_list|)
 throw|;
 block|}
