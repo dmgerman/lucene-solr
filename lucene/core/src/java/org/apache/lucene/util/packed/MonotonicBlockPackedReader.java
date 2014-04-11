@@ -28,6 +28,22 @@ name|lucene
 operator|.
 name|util
 operator|.
+name|BitUtil
+operator|.
+name|zigZagDecode
+import|;
+end_import
+
+begin_import
+import|import static
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|util
+operator|.
 name|packed
 operator|.
 name|AbstractBlockPackedWriter
@@ -51,24 +67,6 @@ operator|.
 name|AbstractBlockPackedWriter
 operator|.
 name|MIN_BLOCK_SIZE
-import|;
-end_import
-
-begin_import
-import|import static
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|util
-operator|.
-name|packed
-operator|.
-name|BlockPackedReaderIterator
-operator|.
-name|zigZagDecode
 import|;
 end_import
 

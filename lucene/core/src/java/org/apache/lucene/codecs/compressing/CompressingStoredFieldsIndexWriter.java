@@ -19,6 +19,22 @@ comment|/*  * Licensed to the Apache Software Foundation (ASF) under one or more
 end_comment
 
 begin_import
+import|import static
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|util
+operator|.
+name|BitUtil
+operator|.
+name|zigZagEncode
+import|;
+end_import
+
+begin_import
 import|import
 name|java
 operator|.
@@ -132,29 +148,6 @@ init|=
 literal|1024
 decl_stmt|;
 comment|// number of chunks to serialize at once
-DECL|method|moveSignToLowOrderBit
-specifier|static
-name|long
-name|moveSignToLowOrderBit
-parameter_list|(
-name|long
-name|n
-parameter_list|)
-block|{
-return|return
-operator|(
-name|n
-operator|>>
-literal|63
-operator|)
-operator|^
-operator|(
-name|n
-operator|<<
-literal|1
-operator|)
-return|;
-block|}
 DECL|field|fieldsIndexOut
 specifier|final
 name|IndexOutput
@@ -388,7 +381,7 @@ name|i
 decl_stmt|;
 name|maxDelta
 operator||=
-name|moveSignToLowOrderBit
+name|zigZagEncode
 argument_list|(
 name|delta
 argument_list|)
@@ -477,7 +470,7 @@ name|PackedInts
 operator|.
 name|bitsRequired
 argument_list|(
-name|moveSignToLowOrderBit
+name|zigZagEncode
 argument_list|(
 name|delta
 argument_list|)
@@ -492,7 +485,7 @@ name|writer
 operator|.
 name|add
 argument_list|(
-name|moveSignToLowOrderBit
+name|zigZagEncode
 argument_list|(
 name|delta
 argument_list|)
@@ -602,7 +595,7 @@ name|i
 decl_stmt|;
 name|maxDelta
 operator||=
-name|moveSignToLowOrderBit
+name|zigZagEncode
 argument_list|(
 name|delta
 argument_list|)
@@ -688,7 +681,7 @@ name|PackedInts
 operator|.
 name|bitsRequired
 argument_list|(
-name|moveSignToLowOrderBit
+name|zigZagEncode
 argument_list|(
 name|delta
 argument_list|)
@@ -703,7 +696,7 @@ name|writer
 operator|.
 name|add
 argument_list|(
-name|moveSignToLowOrderBit
+name|zigZagEncode
 argument_list|(
 name|delta
 argument_list|)
