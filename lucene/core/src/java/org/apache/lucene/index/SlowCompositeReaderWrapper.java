@@ -599,9 +599,9 @@ condition|)
 block|{
 name|v
 operator|=
-name|SortedDocValues
+name|DocValues
 operator|.
-name|EMPTY
+name|EMPTY_SORTED
 expr_stmt|;
 block|}
 name|values
@@ -853,9 +853,9 @@ condition|)
 block|{
 name|v
 operator|=
-name|SortedSetDocValues
+name|DocValues
 operator|.
-name|EMPTY
+name|EMPTY_SORTED_SET
 expr_stmt|;
 block|}
 name|values

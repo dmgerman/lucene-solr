@@ -36,7 +36,7 @@ end_comment
 
 begin_class
 DECL|class|SingletonSortedSetDocValues
-specifier|public
+specifier|final
 class|class
 name|SingletonSortedSetDocValues
 extends|extends

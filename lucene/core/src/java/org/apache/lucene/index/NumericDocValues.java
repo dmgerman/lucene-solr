@@ -44,34 +44,6 @@ name|int
 name|docID
 parameter_list|)
 function_decl|;
-comment|/** An empty NumericDocValues which returns zero for every document */
-DECL|field|EMPTY
-specifier|public
-specifier|static
-specifier|final
-name|NumericDocValues
-name|EMPTY
-init|=
-operator|new
-name|NumericDocValues
-argument_list|()
-block|{
-annotation|@
-name|Override
-specifier|public
-name|long
-name|get
-parameter_list|(
-name|int
-name|docID
-parameter_list|)
-block|{
-return|return
-literal|0
-return|;
-block|}
-block|}
-decl_stmt|;
 block|}
 end_class
 

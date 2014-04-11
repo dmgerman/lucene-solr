@@ -16878,9 +16878,9 @@ condition|)
 block|{
 name|assertEquals
 argument_list|(
-name|SortedSetDocValues
+name|DocValues
 operator|.
-name|EMPTY
+name|EMPTY_SORTED_SET
 argument_list|,
 name|expected
 argument_list|)

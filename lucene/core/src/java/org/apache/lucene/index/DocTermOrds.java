@@ -3096,9 +3096,9 @@ argument_list|()
 condition|)
 block|{
 return|return
-name|SortedSetDocValues
+name|DocValues
 operator|.
-name|EMPTY
+name|EMPTY_SORTED_SET
 return|;
 block|}
 else|else

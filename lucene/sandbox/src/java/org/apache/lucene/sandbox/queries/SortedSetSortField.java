@@ -52,7 +52,7 @@ name|lucene
 operator|.
 name|index
 operator|.
-name|RandomAccessOrds
+name|DocValues
 import|;
 end_import
 
@@ -66,7 +66,7 @@ name|lucene
 operator|.
 name|index
 operator|.
-name|SingletonSortedSetDocValues
+name|RandomAccessOrds
 import|;
 end_import
 
@@ -594,26 +594,28 @@ literal|" unique terms are unsupported"
 argument_list|)
 throw|;
 block|}
+name|SortedDocValues
+name|singleton
+init|=
+name|DocValues
+operator|.
+name|unwrapSingleton
+argument_list|(
+name|sortedSet
+argument_list|)
+decl_stmt|;
 if|if
 condition|(
-name|sortedSet
-operator|instanceof
-name|SingletonSortedSetDocValues
+name|singleton
+operator|!=
+literal|null
 condition|)
 block|{
 comment|// it's actually single-valued in practice, but indexed as multi-valued,
 comment|// so just sort on the underlying single-valued dv directly.
 comment|// regardless of selector type, this optimization is safe!
 return|return
-operator|(
-operator|(
-name|SingletonSortedSetDocValues
-operator|)
-name|sortedSet
-operator|)
-operator|.
-name|getSortedDocValues
-argument_list|()
+name|singleton
 return|;
 block|}
 elseif|else
