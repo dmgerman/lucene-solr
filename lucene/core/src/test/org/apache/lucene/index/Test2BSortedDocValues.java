@@ -121,6 +121,8 @@ operator|.
 name|util
 operator|.
 name|LuceneTestCase
+operator|.
+name|SuppressCodecs
 import|;
 end_import
 
@@ -134,7 +136,7 @@ name|lucene
 operator|.
 name|util
 operator|.
-name|TestUtil
+name|LuceneTestCase
 import|;
 end_import
 
@@ -579,7 +581,6 @@ argument_list|()
 expr_stmt|;
 block|}
 comment|// indexes Integer.MAX_VALUE docs with a fixed binary field
-comment|// TODO: must use random.nextBytes (like Test2BTerms) to avoid BytesRefHash probing issues
 DECL|method|test2BOrds
 specifier|public
 name|void
@@ -762,12 +763,57 @@ name|i
 operator|++
 control|)
 block|{
-name|random
-operator|.
-name|nextBytes
-argument_list|(
 name|bytes
+index|[
+literal|0
+index|]
+operator|=
+call|(
+name|byte
+call|)
+argument_list|(
+name|i
+operator|>>
+literal|24
 argument_list|)
+expr_stmt|;
+name|bytes
+index|[
+literal|1
+index|]
+operator|=
+call|(
+name|byte
+call|)
+argument_list|(
+name|i
+operator|>>
+literal|16
+argument_list|)
+expr_stmt|;
+name|bytes
+index|[
+literal|2
+index|]
+operator|=
+call|(
+name|byte
+call|)
+argument_list|(
+name|i
+operator|>>
+literal|8
+argument_list|)
+expr_stmt|;
+name|bytes
+index|[
+literal|3
+index|]
+operator|=
+operator|(
+name|byte
+operator|)
+name|i
 expr_stmt|;
 name|w
 operator|.
