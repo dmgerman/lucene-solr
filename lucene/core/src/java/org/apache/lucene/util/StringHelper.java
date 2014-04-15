@@ -615,6 +615,11 @@ expr_stmt|;
 block|}
 block|}
 comment|/** Returns the MurmurHash3_x86_32 hash.    * Original source/tests at https://github.com/yonik/java_util/    */
+annotation|@
+name|SuppressWarnings
+argument_list|(
+literal|"fallthrough"
+argument_list|)
 DECL|method|murmurhash3_x86_32
 specifier|public
 specifier|static
