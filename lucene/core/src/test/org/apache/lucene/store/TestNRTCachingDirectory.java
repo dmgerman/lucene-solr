@@ -30,6 +30,16 @@ begin_import
 import|import
 name|java
 operator|.
+name|io
+operator|.
+name|IOException
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
 name|util
 operator|.
 name|ArrayList
@@ -250,6 +260,9 @@ name|TestNRTCachingDirectory
 extends|extends
 name|BaseDirectoryTestCase
 block|{
+comment|// TODO: RAMDir used here, because its still too slow to use e.g. SimpleFS
+comment|// for the threads tests... maybe because of the synchronization in listAll?
+comment|// would be good to investigate further...
 annotation|@
 name|Override
 DECL|method|getDirectory
@@ -260,15 +273,16 @@ parameter_list|(
 name|File
 name|path
 parameter_list|)
+throws|throws
+name|IOException
 block|{
 return|return
 operator|new
 name|NRTCachingDirectory
 argument_list|(
-name|newFSDirectory
-argument_list|(
-name|path
-argument_list|)
+operator|new
+name|RAMDirectory
+argument_list|()
 argument_list|,
 literal|.1
 operator|+

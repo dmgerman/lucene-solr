@@ -666,9 +666,7 @@ argument_list|(
 name|bDir
 argument_list|)
 decl_stmt|;
-name|FileSwitchDirectory
-name|switchDir
-init|=
+return|return
 operator|new
 name|FileSwitchDirectory
 argument_list|(
@@ -679,16 +677,6 @@ argument_list|,
 name|b
 argument_list|,
 literal|true
-argument_list|)
-decl_stmt|;
-return|return
-operator|new
-name|MockDirectoryWrapper
-argument_list|(
-name|random
-argument_list|()
-argument_list|,
-name|switchDir
 argument_list|)
 return|;
 block|}

@@ -93,6 +93,25 @@ return|return
 name|dir
 return|;
 block|}
+comment|// since we are rate-limiting, this test gets pretty slow
+annotation|@
+name|Override
+annotation|@
+name|Nightly
+DECL|method|testThreadSafety
+specifier|public
+name|void
+name|testThreadSafety
+parameter_list|()
+throws|throws
+name|Exception
+block|{
+name|super
+operator|.
+name|testThreadSafety
+argument_list|()
+expr_stmt|;
+block|}
 block|}
 end_class
 

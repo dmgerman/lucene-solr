@@ -137,6 +137,25 @@ argument_list|)
 return|;
 block|}
 block|}
+comment|// we wrap the directory in slow stuff, so only run nightly
+annotation|@
+name|Override
+annotation|@
+name|Nightly
+DECL|method|testThreadSafety
+specifier|public
+name|void
+name|testThreadSafety
+parameter_list|()
+throws|throws
+name|Exception
+block|{
+name|super
+operator|.
+name|testThreadSafety
+argument_list|()
+expr_stmt|;
+block|}
 comment|// Test that different instances of FSDirectory can coexist on the same
 comment|// path, can read, write, and lock files.
 DECL|method|testDirectInstantiation
