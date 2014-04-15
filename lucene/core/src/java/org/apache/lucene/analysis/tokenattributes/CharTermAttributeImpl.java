@@ -66,7 +66,7 @@ name|lucene
 operator|.
 name|util
 operator|.
-name|BytesRef
+name|AttributeReflector
 import|;
 end_import
 
@@ -80,7 +80,7 @@ name|lucene
 operator|.
 name|util
 operator|.
-name|AttributeReflector
+name|BytesRef
 import|;
 end_import
 
@@ -417,14 +417,13 @@ annotation|@
 name|Override
 DECL|method|fillBytesRef
 specifier|public
-name|int
+name|void
 name|fillBytesRef
 parameter_list|()
 block|{
-return|return
 name|UnicodeUtil
 operator|.
-name|UTF16toUTF8WithHash
+name|UTF16toUTF8
 argument_list|(
 name|termBuffer
 argument_list|,
@@ -434,7 +433,7 @@ name|termLength
 argument_list|,
 name|bytes
 argument_list|)
-return|;
+expr_stmt|;
 block|}
 annotation|@
 name|Override

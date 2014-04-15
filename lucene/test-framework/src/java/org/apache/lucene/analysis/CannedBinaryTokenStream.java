@@ -323,16 +323,11 @@ annotation|@
 name|Override
 DECL|method|fillBytesRef
 specifier|public
-name|int
+name|void
 name|fillBytesRef
 parameter_list|()
 block|{
-return|return
-name|bytes
-operator|.
-name|hashCode
-argument_list|()
-return|;
+comment|// no-op: we already filled externally during owner's incrementToken
 block|}
 annotation|@
 name|Override

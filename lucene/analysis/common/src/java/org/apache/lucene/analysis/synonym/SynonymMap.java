@@ -852,13 +852,9 @@ operator|+
 name|output
 assert|;
 comment|//System.out.println("fmap.add input=" + input + " numInputWords=" + numInputWords + " output=" + output + " numOutputWords=" + numOutputWords);
-specifier|final
-name|int
-name|hashCode
-init|=
 name|UnicodeUtil
 operator|.
-name|UTF16toUTF8WithHash
+name|UTF16toUTF8
 argument_list|(
 name|output
 operator|.
@@ -874,7 +870,7 @@ name|length
 argument_list|,
 name|utf8Scratch
 argument_list|)
-decl_stmt|;
+expr_stmt|;
 comment|// lookup in hash
 name|int
 name|ord
@@ -884,8 +880,6 @@ operator|.
 name|add
 argument_list|(
 name|utf8Scratch
-argument_list|,
-name|hashCode
 argument_list|)
 decl_stmt|;
 if|if

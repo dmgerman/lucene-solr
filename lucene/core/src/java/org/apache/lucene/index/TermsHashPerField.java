@@ -889,6 +889,11 @@ parameter_list|()
 throws|throws
 name|IOException
 block|{
+name|termAtt
+operator|.
+name|fillBytesRef
+argument_list|()
+expr_stmt|;
 comment|// We are first in the chain so we must "intern" the
 comment|// term text into textStart address
 comment|// Get the text& hash of this term.
@@ -904,11 +909,6 @@ operator|.
 name|add
 argument_list|(
 name|termBytesRef
-argument_list|,
-name|termAtt
-operator|.
-name|fillBytesRef
-argument_list|()
 argument_list|)
 expr_stmt|;
 block|}

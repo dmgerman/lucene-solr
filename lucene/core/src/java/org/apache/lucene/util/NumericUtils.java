@@ -237,11 +237,11 @@ literal|7
 operator|+
 literal|2
 decl_stmt|;
-comment|/**    * Returns prefix coded bits after reducing the precision by<code>shift</code> bits.    * This is method is used by {@link NumericTokenStream}.    * After encoding, {@code bytes.offset} will always be 0.     * @param val the numeric value    * @param shift how many bits to strip from the right    * @param bytes will contain the encoded value    * @return the hash code for indexing (TermsHash)    */
+comment|/**    * Returns prefix coded bits after reducing the precision by<code>shift</code> bits.    * This is method is used by {@link NumericTokenStream}.    * After encoding, {@code bytes.offset} will always be 0.     * @param val the numeric value    * @param shift how many bits to strip from the right    * @param bytes will contain the encoded value    */
 DECL|method|longToPrefixCoded
 specifier|public
 specifier|static
-name|int
+name|void
 name|longToPrefixCoded
 parameter_list|(
 specifier|final
@@ -266,18 +266,12 @@ argument_list|,
 name|bytes
 argument_list|)
 expr_stmt|;
-return|return
-name|bytes
-operator|.
-name|hashCode
-argument_list|()
-return|;
 block|}
-comment|/**    * Returns prefix coded bits after reducing the precision by<code>shift</code> bits.    * This is method is used by {@link NumericTokenStream}.    * After encoding, {@code bytes.offset} will always be 0.    * @param val the numeric value    * @param shift how many bits to strip from the right    * @param bytes will contain the encoded value    * @return the hash code for indexing (TermsHash)    */
+comment|/**    * Returns prefix coded bits after reducing the precision by<code>shift</code> bits.    * This is method is used by {@link NumericTokenStream}.    * After encoding, {@code bytes.offset} will always be 0.    * @param val the numeric value    * @param shift how many bits to strip from the right    * @param bytes will contain the encoded value    */
 DECL|method|intToPrefixCoded
 specifier|public
 specifier|static
-name|int
+name|void
 name|intToPrefixCoded
 parameter_list|(
 specifier|final
@@ -302,12 +296,6 @@ argument_list|,
 name|bytes
 argument_list|)
 expr_stmt|;
-return|return
-name|bytes
-operator|.
-name|hashCode
-argument_list|()
-return|;
 block|}
 comment|/**    * Returns prefix coded bits after reducing the precision by<code>shift</code> bits.    * This is method is used by {@link NumericTokenStream}.    * After encoding, {@code bytes.offset} will always be 0.    * @param val the numeric value    * @param shift how many bits to strip from the right    * @param bytes will contain the encoded value    */
 DECL|method|longToPrefixCodedBytes

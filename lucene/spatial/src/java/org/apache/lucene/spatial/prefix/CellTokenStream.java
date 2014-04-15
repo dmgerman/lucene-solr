@@ -444,7 +444,7 @@ annotation|@
 name|Override
 DECL|method|fillBytesRef
 specifier|public
-name|int
+name|void
 name|fillBytesRef
 parameter_list|()
 block|{
@@ -467,12 +467,6 @@ argument_list|(
 name|bytes
 argument_list|)
 expr_stmt|;
-return|return
-name|bytes
-operator|.
-name|hashCode
-argument_list|()
-return|;
 block|}
 annotation|@
 name|Override

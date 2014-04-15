@@ -58,10 +58,10 @@ name|TermToBytesRefAttribute
 extends|extends
 name|Attribute
 block|{
-comment|/**     * Updates the bytes {@link #getBytesRef()} to contain this term's    * final encoding, and returns its hashcode.    * @return the hashcode as defined by {@link BytesRef#hashCode}:    *<pre class="prettyprint">    *  int hash = 0;    *  for (int i = termBytes.offset; i&lt; termBytes.offset+termBytes.length; i++) {    *    hash = 31*hash + termBytes.bytes[i];    *  }    *</pre>    * Implement this for performance reasons, if your code can calculate    * the hash on-the-fly. If this is not the case, just return    * {@code termBytes.hashCode()}.    */
+comment|/**     * Updates the bytes {@link #getBytesRef()} to contain this term's    * final encoding.    */
 DECL|method|fillBytesRef
 specifier|public
-name|int
+name|void
 name|fillBytesRef
 parameter_list|()
 function_decl|;
