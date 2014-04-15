@@ -2423,11 +2423,19 @@ specifier|final
 name|long
 name|CONN_TIME_OUT
 init|=
+name|TimeUnit
+operator|.
+name|NANOSECONDS
+operator|.
+name|convert
+argument_list|(
 literal|10
-operator|*
-literal|1000
+argument_list|,
+name|TimeUnit
+operator|.
+name|SECONDS
+argument_list|)
 decl_stmt|;
-comment|// 10 seconds
 DECL|field|FETCH_SIZE
 specifier|private
 specifier|static
