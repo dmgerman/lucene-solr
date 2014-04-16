@@ -228,6 +228,22 @@ name|util
 operator|.
 name|LuceneTestCase
 operator|.
+name|Monster
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|util
+operator|.
+name|LuceneTestCase
+operator|.
 name|SuppressCodecs
 import|;
 end_import
@@ -283,6 +299,11 @@ name|TimeUnits
 operator|.
 name|HOUR
 argument_list|)
+annotation|@
+name|Monster
+argument_list|(
+literal|"uses lots of space and takes a few minutes"
+argument_list|)
 DECL|class|Test2BPositions
 specifier|public
 class|class
@@ -290,12 +311,6 @@ name|Test2BPositions
 extends|extends
 name|LuceneTestCase
 block|{
-comment|// uses lots of space and takes a few minutes
-annotation|@
-name|Ignore
-argument_list|(
-literal|"Very slow. Enable manually by removing @Ignore."
-argument_list|)
 DECL|method|test
 specifier|public
 name|void

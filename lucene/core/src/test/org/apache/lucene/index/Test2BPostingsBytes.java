@@ -224,7 +224,7 @@ name|util
 operator|.
 name|LuceneTestCase
 operator|.
-name|SuppressCodecs
+name|Monster
 import|;
 end_import
 
@@ -232,9 +232,15 @@ begin_import
 import|import
 name|org
 operator|.
-name|junit
+name|apache
 operator|.
-name|Ignore
+name|lucene
+operator|.
+name|util
+operator|.
+name|LuceneTestCase
+operator|.
+name|SuppressCodecs
 import|;
 end_import
 
@@ -279,6 +285,11 @@ name|TimeUnits
 operator|.
 name|HOUR
 argument_list|)
+annotation|@
+name|Monster
+argument_list|(
+literal|"takes ~20GB-30GB of space and 10 minutes, and more heap space sometimes"
+argument_list|)
 DECL|class|Test2BPostingsBytes
 specifier|public
 class|class
@@ -286,13 +297,6 @@ name|Test2BPostingsBytes
 extends|extends
 name|LuceneTestCase
 block|{
-comment|// @Absurd @Ignore takes ~20GB-30GB of space and 10 minutes.
-comment|// with some codecs needs more heap space as well.
-annotation|@
-name|Ignore
-argument_list|(
-literal|"Very slow. Enable manually by removing @Ignore."
-argument_list|)
 DECL|method|test
 specifier|public
 name|void

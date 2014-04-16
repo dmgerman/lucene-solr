@@ -100,6 +100,22 @@ begin_import
 import|import
 name|org
 operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|util
+operator|.
+name|LuceneTestCase
+operator|.
+name|Monster
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
 name|junit
 operator|.
 name|Ignore
@@ -108,7 +124,7 @@ end_import
 
 begin_class
 annotation|@
-name|Ignore
+name|Monster
 argument_list|(
 literal|"You must increase heap to> 2 G to run this"
 argument_list|)

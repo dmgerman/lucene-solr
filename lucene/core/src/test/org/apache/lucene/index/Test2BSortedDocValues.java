@@ -121,22 +121,6 @@ operator|.
 name|util
 operator|.
 name|LuceneTestCase
-operator|.
-name|SuppressCodecs
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|util
-operator|.
-name|LuceneTestCase
 import|;
 end_import
 
@@ -158,9 +142,31 @@ begin_import
 import|import
 name|org
 operator|.
-name|junit
+name|apache
 operator|.
-name|Ignore
+name|lucene
+operator|.
+name|util
+operator|.
+name|LuceneTestCase
+operator|.
+name|Monster
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|util
+operator|.
+name|LuceneTestCase
+operator|.
+name|SuppressCodecs
 import|;
 end_import
 
@@ -180,6 +186,17 @@ end_import
 
 begin_class
 annotation|@
+name|SuppressCodecs
+argument_list|(
+block|{
+literal|"SimpleText"
+block|,
+literal|"Memory"
+block|,
+literal|"Direct"
+block|}
+argument_list|)
+annotation|@
 name|TimeoutSuite
 argument_list|(
 name|millis
@@ -191,7 +208,7 @@ operator|.
 name|HOUR
 argument_list|)
 annotation|@
-name|Ignore
+name|Monster
 argument_list|(
 literal|"very slow"
 argument_list|)
