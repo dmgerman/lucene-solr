@@ -108,6 +108,14 @@ name|ROLLBACK
 init|=
 literal|"rollback"
 decl_stmt|;
+DECL|field|COLLECTION
+specifier|public
+specifier|static
+name|String
+name|COLLECTION
+init|=
+literal|"collection"
+decl_stmt|;
 comment|/** Select the update processor chain to use.  A RequestHandler may or may not respect this parameter */
 DECL|field|UPDATE_CHAIN
 specifier|public
