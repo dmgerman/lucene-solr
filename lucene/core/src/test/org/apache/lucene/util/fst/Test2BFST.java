@@ -222,7 +222,7 @@ begin_class
 annotation|@
 name|Ignore
 argument_list|(
-literal|"Requires tons of heap to run (420G works)"
+literal|"Requires tons of heap to run (30 GB hits OOME but 35 GB passes after ~4.5 hours)"
 argument_list|)
 annotation|@
 name|TimeoutSuite
