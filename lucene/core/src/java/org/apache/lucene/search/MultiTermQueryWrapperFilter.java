@@ -302,6 +302,12 @@ name|getField
 argument_list|()
 return|;
 block|}
+DECL|field|rewriteTermCount
+specifier|public
+specifier|static
+name|long
+name|rewriteTermCount
+decl_stmt|;
 comment|/**    * Returns a DocIdSet with documents that should be permitted in search    * results.    */
 annotation|@
 name|Override
@@ -424,6 +430,9 @@ literal|null
 decl_stmt|;
 do|do
 block|{
+name|rewriteTermCount
+operator|++
+expr_stmt|;
 comment|// System.out.println("  iter termCount=" + termCount + " term=" +
 comment|// enumerator.term().toBytesString());
 name|docsEnum

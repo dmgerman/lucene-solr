@@ -1326,6 +1326,19 @@ return|;
 block|}
 name|List
 argument_list|<
+name|Scorer
+argument_list|>
+name|required
+init|=
+operator|new
+name|ArrayList
+argument_list|<
+name|Scorer
+argument_list|>
+argument_list|()
+decl_stmt|;
+name|List
+argument_list|<
 name|BulkScorer
 argument_list|>
 name|prohibited
@@ -1423,18 +1436,35 @@ block|{
 comment|// TODO: there are some cases where BooleanScorer
 comment|// would handle conjunctions faster than
 comment|// BooleanScorer2...
-return|return
-name|super
+comment|//          return super.bulkScorer(context, scoreDocsInOrder, acceptDocs);
+name|Scorer
+name|requiredSubScorer
+init|=
+name|w
 operator|.
-name|bulkScorer
+name|scorer
 argument_list|(
 name|context
 argument_list|,
-name|scoreDocsInOrder
-argument_list|,
 name|acceptDocs
 argument_list|)
+decl_stmt|;
+if|if
+condition|(
+name|requiredSubScorer
+operator|==
+literal|null
+condition|)
+return|return
+literal|null
 return|;
+name|required
+operator|.
+name|add
+argument_list|(
+name|requiredSubScorer
+argument_list|)
+expr_stmt|;
 block|}
 elseif|else
 if|if
@@ -1474,6 +1504,8 @@ argument_list|,
 name|disableCoord
 argument_list|,
 name|minNrShouldMatch
+argument_list|,
+name|required
 argument_list|,
 name|optional
 argument_list|,
