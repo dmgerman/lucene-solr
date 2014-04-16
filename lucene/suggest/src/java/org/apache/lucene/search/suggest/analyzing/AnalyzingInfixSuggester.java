@@ -911,7 +911,7 @@ comment|//     "automatically" keeps in sync w/ your index
 end_comment
 
 begin_comment
-comment|/** Analyzes the input text and then suggests matches based  *  on prefix matches to any tokens in the indexed text.  *  This also highlights the tokens that match.  *  *<p>This just uses an ordinary Lucene index.  It  *  supports payloads, and records these as a  *  {@link BinaryDocValues} field.  Matches are sorted only  *  by the suggest weight; it would be nice to support  *  blended score + weight sort in the future.  This means  *  this suggester best applies when there is a strong  *  apriori ranking of all the suggestions.  *  *<p>This suggester supports contexts, however the  *  contexts must be valid utf8 (arbitrary binary terms will  *  not work).  * @lucene.experimental */
+comment|/** Analyzes the input text and then suggests matches based  *  on prefix matches to any tokens in the indexed text.  *  This also highlights the tokens that match.  *  *<p>This suggester supports payloads.  Matches are sorted only  *  by the suggest weight; it would be nice to support  *  blended score + weight sort in the future.  This means  *  this suggester best applies when there is a strong  *  a-priori ranking of all the suggestions.  *  *<p>This suggester supports contexts, however the  *  contexts must be valid utf8 (arbitrary binary terms will  *  not work).  *  * @lucene.experimental */
 end_comment
 
 begin_class
@@ -1032,7 +1032,7 @@ literal|true
 argument_list|)
 argument_list|)
 decl_stmt|;
-comment|/** Create a new instance, loading from a previously built    *  directory, if it exists.  Note that {@link #close}    *  will also close the provided directory. */
+comment|/** Create a new instance, loading from a previously built    *  AnalyzingInfixSuggester directory, if it exists.  This directory must be    *  private to the infix suggester (i.e., not an external    *  Lucene index).  Note that {@link #close}    *  will also close the provided directory. */
 DECL|method|AnalyzingInfixSuggester
 specifier|public
 name|AnalyzingInfixSuggester
@@ -1063,7 +1063,7 @@ name|DEFAULT_MIN_PREFIX_CHARS
 argument_list|)
 expr_stmt|;
 block|}
-comment|/** Create a new instance, loading from a previously built    *  directory, if it exists. Note that {@link #close}    *  will also close the provided directory.    *    *  @param minPrefixChars Minimum number of leading characters    *     before PrefixQuery is used (default 4).    *     Prefixes shorter than this are indexed as character    *     ngrams (increasing index size but making lookups    *     faster).    */
+comment|/** Create a new instance, loading from a previously built    *  AnalyzingInfixSuggester directory, if it exists.  This directory must be    *  private to the infix suggester (i.e., not an external    *  Lucene index).  Note that {@link #close}    *  will also close the provided directory.    *    *  @param minPrefixChars Minimum number of leading characters    *     before PrefixQuery is used (default 4).    *     Prefixes shorter than this are indexed as character    *     ngrams (increasing index size but making lookups    *     faster).    */
 DECL|method|AnalyzingInfixSuggester
 specifier|public
 name|AnalyzingInfixSuggester
