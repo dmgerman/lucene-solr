@@ -1375,7 +1375,7 @@ name|lbServer
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**    * Used internally to setup the _stateVer_ param to be sent in the query string of requests    * coming from this instance.    * @param lbServer    */
+comment|/**    * Used internally to setup the _stateVer_ param to be sent in the query string of requests    * coming from this instance.    */
 DECL|method|setupStateVerParamOnQueryString
 specifier|protected
 name|void

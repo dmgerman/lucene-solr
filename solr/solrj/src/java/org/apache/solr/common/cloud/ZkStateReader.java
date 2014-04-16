@@ -4842,7 +4842,7 @@ argument_list|)
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**This is not a public API. Only used by ZkController    * @param coll    */
+comment|/**This is not a public API. Only used by ZkController */
 DECL|method|removeZKWatch
 specifier|public
 name|void
