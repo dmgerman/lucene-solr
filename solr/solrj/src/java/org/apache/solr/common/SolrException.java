@@ -146,6 +146,12 @@ argument_list|(
 literal|503
 argument_list|)
 block|,
+DECL|enum constant|INVALID_STATE
+name|INVALID_STATE
+argument_list|(
+literal|510
+argument_list|)
+block|,
 DECL|enum constant|UNKNOWN
 name|UNKNOWN
 argument_list|(
