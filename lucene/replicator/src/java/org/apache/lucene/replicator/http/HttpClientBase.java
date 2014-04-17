@@ -256,6 +256,20 @@ name|AlreadyClosedException
 import|;
 end_import
 
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|util
+operator|.
+name|IOUtils
+import|;
+end_import
+
 begin_comment
 comment|/**  * Base class for Http clients.  *   * @lucene.experimental  * */
 end_comment
@@ -509,6 +523,8 @@ operator|.
 name|SC_OK
 condition|)
 block|{
+try|try
+block|{
 name|throwKnownError
 argument_list|(
 name|response
@@ -516,6 +532,20 @@ argument_list|,
 name|statusLine
 argument_list|)
 expr_stmt|;
+block|}
+finally|finally
+block|{
+name|EntityUtils
+operator|.
+name|consumeQuietly
+argument_list|(
+name|response
+operator|.
+name|getEntity
+argument_list|()
+argument_list|)
+expr_stmt|;
+block|}
 block|}
 block|}
 DECL|method|throwKnownError
@@ -556,8 +586,8 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
-name|Exception
-name|e
+name|Throwable
+name|t
 parameter_list|)
 block|{
 comment|// the response stream is not an exception - could be an error in servlet.init().
@@ -565,9 +595,11 @@ throw|throw
 operator|new
 name|RuntimeException
 argument_list|(
-literal|"Uknown error: "
+literal|"Unknown error: "
 operator|+
 name|statusLine
+argument_list|,
+name|t
 argument_list|)
 throw|;
 block|}
@@ -589,11 +621,10 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
-name|Exception
-name|e
+name|Throwable
+name|th
 parameter_list|)
 block|{
-comment|//not likely
 throw|throw
 operator|new
 name|RuntimeException
@@ -602,7 +633,7 @@ literal|"Failed to read exception object: "
 operator|+
 name|statusLine
 argument_list|,
-name|e
+name|th
 argument_list|)
 throw|;
 block|}
@@ -614,45 +645,13 @@ name|close
 argument_list|()
 expr_stmt|;
 block|}
-if|if
-condition|(
-name|t
-operator|instanceof
-name|IOException
-condition|)
-block|{
-throw|throw
-operator|(
-name|IOException
-operator|)
-name|t
-throw|;
-block|}
-if|if
-condition|(
-name|t
-operator|instanceof
-name|RuntimeException
-condition|)
-block|{
-throw|throw
-operator|(
-name|RuntimeException
-operator|)
-name|t
-throw|;
-block|}
-throw|throw
-operator|new
-name|RuntimeException
+name|IOUtils
+operator|.
+name|reThrow
 argument_list|(
-literal|"unknown exception "
-operator|+
-name|statusLine
-argument_list|,
 name|t
 argument_list|)
-throw|;
+expr_stmt|;
 block|}
 comment|/**    *<b>internal:</b> execute a request and return its result    * The<code>params</code> argument is treated as: name1,value1,name2,value2,...    */
 DECL|method|executePOST
@@ -999,7 +998,7 @@ parameter_list|()
 throws|throws
 name|IOException
 block|{
-name|super
+name|in
 operator|.
 name|close
 argument_list|()
@@ -1201,8 +1200,8 @@ parameter_list|)
 throws|throws
 name|IOException
 block|{
-name|IOException
-name|error
+name|Throwable
+name|th
 init|=
 literal|null
 decl_stmt|;
@@ -1217,28 +1216,13 @@ return|;
 block|}
 catch|catch
 parameter_list|(
-name|IOException
-name|e
+name|Throwable
+name|t
 parameter_list|)
 block|{
-name|error
+name|th
 operator|=
-name|e
-expr_stmt|;
-block|}
-catch|catch
-parameter_list|(
-name|Exception
-name|e
-parameter_list|)
-block|{
-name|error
-operator|=
-operator|new
-name|IOException
-argument_list|(
-name|e
-argument_list|)
+name|t
 expr_stmt|;
 block|}
 finally|finally
@@ -1258,11 +1242,9 @@ condition|(
 name|consume
 condition|)
 block|{
-try|try
-block|{
 name|EntityUtils
 operator|.
-name|consume
+name|consumeQuietly
 argument_list|(
 name|response
 operator|.
@@ -1271,21 +1253,25 @@ argument_list|()
 argument_list|)
 expr_stmt|;
 block|}
-catch|catch
-parameter_list|(
-name|Exception
-name|e
-parameter_list|)
-block|{
-comment|// ignoring on purpose
 block|}
 block|}
-block|}
-block|}
-throw|throw
-name|error
-throw|;
-comment|// should not get here
+assert|assert
+name|th
+operator|!=
+literal|null
+assert|;
+comment|// extra safety - if we get here, it means the callable failed
+name|IOUtils
+operator|.
+name|reThrow
+argument_list|(
+name|th
+argument_list|)
+expr_stmt|;
+return|return
+literal|null
+return|;
+comment|// silly, if we're here, IOUtils.reThrow always throws an exception
 block|}
 annotation|@
 name|Override
