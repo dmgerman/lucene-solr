@@ -146,20 +146,6 @@ name|apache
 operator|.
 name|solr
 operator|.
-name|SolrTestCaseJ4
-operator|.
-name|SuppressSSL
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|solr
-operator|.
 name|client
 operator|.
 name|solrj
@@ -615,8 +601,6 @@ comment|/**  * This should include tests against the example solr config  *   * 
 end_comment
 
 begin_class
-annotation|@
-name|SuppressSSL
 DECL|class|SolrExampleTests
 specifier|abstract
 specifier|public
