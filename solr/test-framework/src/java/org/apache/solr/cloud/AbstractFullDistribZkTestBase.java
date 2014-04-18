@@ -7190,9 +7190,9 @@ name|toString
 argument_list|()
 return|;
 block|}
-DECL|method|checkForLegalDiff
+DECL|method|checkIfDiffIsLegal
 name|boolean
-name|checkForLegalDiff
+name|checkIfDiffIsLegal
 parameter_list|(
 name|SolrDocumentList
 name|a
@@ -7219,9 +7219,6 @@ argument_list|>
 name|deleteFails
 parameter_list|)
 block|{
-comment|// System.err.println("######"+aName+ ": " + toStr(a,10));
-comment|//  System.err.println("######"+bName+ ": " + toStr(b,10));
-comment|//System.err.println("###### sizes=" + a.size() + "," + b.size());
 name|boolean
 name|legal
 init|=
@@ -8345,7 +8342,7 @@ block|{
 name|boolean
 name|legal
 init|=
-name|checkForLegalDiff
+name|checkIfDiffIsLegal
 argument_list|(
 name|controlDocList
 argument_list|,
