@@ -120,20 +120,6 @@ end_import
 
 begin_import
 import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|solr
-operator|.
-name|search
-operator|.
-name|SolrIndexSearcher
-import|;
-end_import
-
-begin_import
-import|import
 name|java
 operator|.
 name|io
@@ -223,10 +209,6 @@ name|id
 decl_stmt|;
 comment|// this is currently the uniqueKeyField but
 comment|// may be replaced with internal docid in a future release.
-DECL|field|score
-name|Float
-name|score
-decl_stmt|;
 DECL|field|sortFieldValues
 name|NamedList
 name|sortFieldValues

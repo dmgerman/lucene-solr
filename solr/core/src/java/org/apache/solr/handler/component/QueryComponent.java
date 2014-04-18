@@ -6997,15 +6997,6 @@ name|SCORE
 argument_list|)
 condition|)
 block|{
-assert|assert
-literal|null
-operator|!=
-name|lastDoc
-operator|.
-name|score
-operator|:
-literal|"lastDoc has null score"
-assert|;
 name|nextCursorMarkValues
 operator|.
 name|add
@@ -7811,12 +7802,6 @@ block|{
 if|if
 condition|(
 name|returnScores
-operator|&&
-name|sdoc
-operator|.
-name|score
-operator|!=
-literal|null
 condition|)
 block|{
 name|doc
