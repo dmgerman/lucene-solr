@@ -1142,7 +1142,7 @@ parameter_list|)
 throws|throws
 name|IOException
 block|{
-comment|// Read _X.per and init each format:
+comment|// Init each unique format:
 name|boolean
 name|success
 init|=
