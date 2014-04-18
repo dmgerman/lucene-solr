@@ -294,6 +294,14 @@ argument_list|,
 literal|"../etc/solrtest.keystore"
 argument_list|)
 decl_stmt|;
+DECL|field|SECURE_RANDOM_ALGORITHM
+specifier|private
+specifier|static
+name|String
+name|SECURE_RANDOM_ALGORITHM
+init|=
+literal|"SHA1PRNG"
+decl_stmt|;
 DECL|field|TEST_KEYSTORE_PATH
 specifier|private
 specifier|static
@@ -410,6 +418,11 @@ argument_list|,
 name|trustStore
 argument_list|,
 name|trustStorePassword
+argument_list|)
+expr_stmt|;
+name|setSecureRandomAlgorithm
+argument_list|(
+name|SECURE_RANDOM_ALGORITHM
 argument_list|)
 expr_stmt|;
 block|}
@@ -750,7 +763,7 @@ return|return
 operator|new
 name|byte
 index|[
-literal|0
+name|numBytes
 index|]
 return|;
 block|}
