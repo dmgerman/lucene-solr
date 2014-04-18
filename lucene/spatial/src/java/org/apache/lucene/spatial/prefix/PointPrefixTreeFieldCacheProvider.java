@@ -99,7 +99,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Implementation of {@link ShapeFieldCacheProvider} designed for {@link PrefixTreeStrategy}s.  *  * Note, due to the fragmented representation of Shapes in these Strategies, this implementation  * can only retrieve the central {@link Point} of the original Shapes.  *  * @lucene.internal  */
+comment|/**  * Implementation of {@link ShapeFieldCacheProvider} designed for {@link PrefixTreeStrategy}s that index points.  *  * @lucene.internal  */
 end_comment
 
 begin_class
@@ -114,11 +114,16 @@ name|Point
 argument_list|>
 block|{
 DECL|field|grid
+specifier|private
 specifier|final
 name|SpatialPrefixTree
 name|grid
 decl_stmt|;
-comment|//
+DECL|field|scanCell
+specifier|private
+name|Cell
+name|scanCell
+decl_stmt|;
 DECL|method|PointPrefixTreeFieldCacheProvider
 specifier|public
 name|PointPrefixTreeFieldCacheProvider
@@ -146,15 +151,17 @@ name|grid
 operator|=
 name|grid
 expr_stmt|;
-block|}
-DECL|field|scanCell
-specifier|private
-name|Cell
+name|this
+operator|.
 name|scanCell
-init|=
-literal|null
-decl_stmt|;
+operator|=
+name|grid
+operator|.
+name|getWorldCell
+argument_list|()
+expr_stmt|;
 comment|//re-used in readShape to save GC
+block|}
 annotation|@
 name|Override
 DECL|method|readShape
@@ -167,24 +174,10 @@ name|term
 parameter_list|)
 block|{
 name|scanCell
-operator|=
-name|grid
 operator|.
-name|getCell
+name|readCell
 argument_list|(
 name|term
-operator|.
-name|bytes
-argument_list|,
-name|term
-operator|.
-name|offset
-argument_list|,
-name|term
-operator|.
-name|length
-argument_list|,
-name|scanCell
 argument_list|)
 expr_stmt|;
 if|if
@@ -205,6 +198,7 @@ operator|.
 name|isLeaf
 argument_list|()
 condition|)
+comment|//points are never flagged as leaf
 return|return
 name|scanCell
 operator|.

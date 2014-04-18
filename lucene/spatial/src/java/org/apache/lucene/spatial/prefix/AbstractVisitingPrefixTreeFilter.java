@@ -106,6 +106,24 @@ name|prefix
 operator|.
 name|tree
 operator|.
+name|CellIterator
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|spatial
+operator|.
+name|prefix
+operator|.
+name|tree
+operator|.
 name|SpatialPrefixTree
 import|;
 end_import
@@ -173,6 +191,10 @@ name|AbstractPrefixTreeFilter
 block|{
 comment|//Historical note: this code resulted from a refactoring of RecursivePrefixTreeFilter,
 comment|// which in turn came out of SOLR-2155
+comment|//This class perhaps could have been implemented in terms of FilteredTermsEnum& MultiTermQuery
+comment|//& MultiTermQueryWrapperFilter.  Maybe so for simple Intersects predicate but not for when we want to collect terms
+comment|//  differently depending on cell state like IsWithin and for fuzzy/accurate collection planned improvements.  At
+comment|//  least it would just make things more complicated.
 DECL|field|prefixGridScanLevel
 specifier|protected
 specifier|final
@@ -304,7 +326,10 @@ name|VisitorTemplate
 extends|extends
 name|BaseTermsEnumTraverser
 block|{
-comment|/* Future potential optimizations:    * Can a polygon query shape be optimized / made-simpler at recursive depths     (e.g. intersection of shape + cell box)    * RE "scan" vs divide& conquer performance decision:     We should use termsEnum.docFreq() as an estimate on the number of places at     this depth.  It would be nice if termsEnum knew how many terms     start with the current term without having to repeatedly next()& test to find out.    * Perhaps don't do intermediate seek()'s to cells above detailLevel that have Intersects     relation because we won't be collecting those docs any way.  However seeking     does act as a short-circuit.  So maybe do some percent of the time or when the level     is above some threshold.    * Each shape.relate(otherShape) result could be cached since much of the same relations     will be invoked when multiple segments are involved.    */
+comment|/* Future potential optimizations:    * Can a polygon query shape be optimized / made-simpler at recursive depths     (e.g. intersection of shape + cell box)    * RE "scan" vs divide& conquer performance decision:     We should use termsEnum.docFreq() as an estimate on the number of places at     this depth.  It would be nice if termsEnum knew how many terms     start with the current term without having to repeatedly next()& test to find out.    * Perhaps don't do intermediate seek()'s to cells above detailLevel that have Intersects     relation because we won't be collecting those docs any way.  However seeking     does act as a short-circuit.  So maybe do some percent of the time or when the level     is above some threshold.    * Once we don't have redundant non-leaves indexed with leaf cells (LUCENE-4942), we can     sometimes know to call next() instead of seek() if we're processing a leaf cell that     didn't have a corresponding non-leaf.    */
+comment|//
+comment|//  TODO MAJOR REFACTOR SIMPLIFICATION BASED ON TreeCellIterator  TODO
+comment|//
 DECL|field|hasIndexedLeaves
 specifier|protected
 specifier|final
@@ -332,6 +357,11 @@ DECL|field|scanCell
 specifier|private
 name|Cell
 name|scanCell
+init|=
+name|grid
+operator|.
+name|getWorldCell
+argument_list|()
 decl_stmt|;
 DECL|field|thisTerm
 specifier|private
@@ -754,39 +784,23 @@ condition|)
 block|{
 comment|//If the next indexed term just adds a leaf marker ('+') to cell,
 comment|// then add all of those docs
+name|scanCell
+operator|.
+name|readCell
+argument_list|(
+name|thisTerm
+argument_list|)
+expr_stmt|;
 assert|assert
 name|curVNode
 operator|.
 name|cell
 operator|.
-name|isWithin
+name|isPrefixOf
 argument_list|(
-name|curVNodeTerm
-argument_list|,
-name|thisTerm
+name|scanCell
 argument_list|)
 assert|;
-name|scanCell
-operator|=
-name|grid
-operator|.
-name|getCell
-argument_list|(
-name|thisTerm
-operator|.
-name|bytes
-argument_list|,
-name|thisTerm
-operator|.
-name|offset
-argument_list|,
-name|thisTerm
-operator|.
-name|length
-argument_list|,
-name|scanCell
-argument_list|)
-expr_stmt|;
 if|if
 condition|(
 name|scanCell
@@ -901,10 +915,7 @@ block|}
 comment|/**      * Called when doing a divide& conquer to find the next intersecting cells      * of the query shape that are beneath {@code cell}. {@code cell} is      * guaranteed to have an intersection and thus this must return some number      * of nodes.      */
 DECL|method|findSubCellsToVisit
 specifier|protected
-name|Iterator
-argument_list|<
-name|Cell
-argument_list|>
+name|CellIterator
 name|findSubCellsToVisit
 parameter_list|(
 name|Cell
@@ -914,13 +925,10 @@ block|{
 return|return
 name|cell
 operator|.
-name|getSubCells
+name|getNextLevelCells
 argument_list|(
 name|queryShape
 argument_list|)
-operator|.
-name|iterator
-argument_list|()
 return|;
 block|}
 comment|/**      * Scans ({@code termsEnum.next()}) terms until a term is found that does      * not start with curVNode's cell. If it finds a leaf cell or a cell at      * level {@code scanDetailLevel} then it calls {@link      * #visitScanned(org.apache.lucene.spatial.prefix.tree.Cell)}.      */
@@ -941,17 +949,6 @@ init|;
 name|thisTerm
 operator|!=
 literal|null
-operator|&&
-name|curVNode
-operator|.
-name|cell
-operator|.
-name|isWithin
-argument_list|(
-name|curVNodeTerm
-argument_list|,
-name|thisTerm
-argument_list|)
 condition|;
 name|thisTerm
 operator|=
@@ -962,26 +959,25 @@ argument_list|()
 control|)
 block|{
 name|scanCell
-operator|=
-name|grid
 operator|.
-name|getCell
+name|readCell
 argument_list|(
 name|thisTerm
-operator|.
-name|bytes
-argument_list|,
-name|thisTerm
-operator|.
-name|offset
-argument_list|,
-name|thisTerm
-operator|.
-name|length
-argument_list|,
-name|scanCell
 argument_list|)
 expr_stmt|;
+if|if
+condition|(
+operator|!
+name|curVNode
+operator|.
+name|cell
+operator|.
+name|isPrefixOf
+argument_list|(
+name|scanCell
+argument_list|)
+condition|)
+break|break;
 name|int
 name|termLevel
 init|=

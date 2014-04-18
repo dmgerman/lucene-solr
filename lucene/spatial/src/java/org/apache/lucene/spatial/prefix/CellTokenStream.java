@@ -462,7 +462,7 @@ expr_stmt|;
 else|else
 name|cell
 operator|.
-name|getTokenBytes
+name|getTokenBytesWithLeaf
 argument_list|(
 name|bytes
 argument_list|)
