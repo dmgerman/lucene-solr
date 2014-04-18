@@ -2308,11 +2308,13 @@ operator|.
 name|getNumFound
 argument_list|()
 decl_stmt|;
+name|CloudInspectUtil
+operator|.
 name|compareResults
 argument_list|(
-name|controlCount
+name|controlClient
 argument_list|,
-name|cloudCount
+name|cloudClient
 argument_list|)
 expr_stmt|;
 name|assertEquals
