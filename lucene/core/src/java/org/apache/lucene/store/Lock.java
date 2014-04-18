@@ -102,6 +102,7 @@ decl_stmt|;
 comment|/** Attempts to obtain an exclusive lock within amount of    *  time given. Polls once per {@link #LOCK_POLL_INTERVAL}    *  (currently 1000) milliseconds until lockWaitTimeout is    *  passed.    * @param lockWaitTimeout length of time to wait in    *        milliseconds or {@link    *        #LOCK_OBTAIN_WAIT_FOREVER} to retry forever    * @return true if lock was obtained    * @throws LockObtainFailedException if lock wait times out    * @throws IllegalArgumentException if lockWaitTimeout is    *         out of bounds    * @throws IOException if obtain() throws IOException    */
 DECL|method|obtain
 specifier|public
+specifier|final
 name|boolean
 name|obtain
 parameter_list|(
