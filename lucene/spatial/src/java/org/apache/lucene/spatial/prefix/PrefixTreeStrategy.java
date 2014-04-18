@@ -450,7 +450,7 @@ return|;
 block|}
 DECL|method|createTokenStream
 specifier|protected
-name|CellTokenStream
+name|TokenStream
 name|createTokenStream
 parameter_list|(
 name|Shape
