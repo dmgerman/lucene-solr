@@ -1098,6 +1098,31 @@ operator|-
 literal|1
 condition|)
 block|{
+comment|// check should be: infos.fieldInfo(fieldNumber) != null, which incorporates negative check
+comment|// but docvalues updates are currently buggy here (loading extra stuff, etc): LUCENE-5616
+if|if
+condition|(
+name|fieldNumber
+operator|<
+literal|0
+condition|)
+block|{
+comment|// trickier to validate more: because we re-use for norms, because we use multiple entries
+comment|// for "composite" types like sortedset, etc.
+throw|throw
+operator|new
+name|CorruptIndexException
+argument_list|(
+literal|"Invalid field number: "
+operator|+
+name|fieldNumber
+operator|+
+literal|", input="
+operator|+
+name|meta
+argument_list|)
+throw|;
+block|}
 name|int
 name|fieldType
 init|=
