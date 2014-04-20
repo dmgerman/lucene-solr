@@ -655,8 +655,10 @@ expr_stmt|;
 block|}
 block|}
 comment|/** Forces any buffered output to be written. */
+comment|// TODO: remove 'public'. Something bogus is happening between this guy and DirectPF,
+comment|// not sure which one (or maybe both?) has the bug.
 DECL|method|flush
-specifier|protected
+specifier|public
 name|void
 name|flush
 parameter_list|()
