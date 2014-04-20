@@ -756,16 +756,6 @@ comment|//public void setLength() throws IOException {
 comment|//   TODO -- how to impl this?  neither FOS nor
 comment|//   FileChannel provides an API?
 comment|//}
-annotation|@
-name|Override
-DECL|method|flush
-specifier|public
-name|void
-name|flush
-parameter_list|()
-block|{
-comment|// TODO -- I don't think this method is necessary?
-block|}
 DECL|method|dump
 specifier|private
 name|void

@@ -76,16 +76,6 @@ name|IOException
 block|{        }
 annotation|@
 name|Override
-DECL|method|flush
-specifier|public
-name|void
-name|flush
-parameter_list|()
-throws|throws
-name|IOException
-block|{        }
-annotation|@
-name|Override
 DECL|method|getFilePointer
 specifier|public
 name|long

@@ -51,16 +51,6 @@ name|DataOutput
 implements|implements
 name|Closeable
 block|{
-comment|/** Forces any buffered output to be written. */
-DECL|method|flush
-specifier|public
-specifier|abstract
-name|void
-name|flush
-parameter_list|()
-throws|throws
-name|IOException
-function_decl|;
 comment|/** Closes this stream to further operations. */
 annotation|@
 name|Override

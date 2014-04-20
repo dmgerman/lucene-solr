@@ -654,10 +654,9 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
-annotation|@
-name|Override
+comment|/** Forces any buffered output to be written. */
 DECL|method|flush
-specifier|public
+specifier|protected
 name|void
 name|flush
 parameter_list|()

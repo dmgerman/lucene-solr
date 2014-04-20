@@ -293,12 +293,25 @@ name|length
 argument_list|)
 expr_stmt|;
 comment|// first write should succeed
-comment|// flush() to ensure the written bytes are not buffered and counted
+comment|// close() to ensure the written bytes are not buffered and counted
 comment|// against the directory size
 name|out
 operator|.
-name|flush
+name|close
 argument_list|()
+expr_stmt|;
+name|out
+operator|=
+name|dir
+operator|.
+name|createOutput
+argument_list|(
+literal|"bar"
+argument_list|,
+name|IOContext
+operator|.
+name|DEFAULT
+argument_list|)
 expr_stmt|;
 try|try
 block|{
@@ -379,12 +392,25 @@ name|length
 argument_list|)
 expr_stmt|;
 comment|// first copy should succeed
-comment|// flush() to ensure the written bytes are not buffered and counted
+comment|// close() to ensure the written bytes are not buffered and counted
 comment|// against the directory size
 name|out
 operator|.
-name|flush
+name|close
 argument_list|()
+expr_stmt|;
+name|out
+operator|=
+name|dir
+operator|.
+name|createOutput
+argument_list|(
+literal|"bar"
+argument_list|,
+name|IOContext
+operator|.
+name|DEFAULT
+argument_list|)
 expr_stmt|;
 try|try
 block|{
