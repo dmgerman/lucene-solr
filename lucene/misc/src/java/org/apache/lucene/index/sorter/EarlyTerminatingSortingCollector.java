@@ -194,11 +194,6 @@ specifier|final
 name|int
 name|numDocsToCollect
 decl_stmt|;
-DECL|field|numCollected
-specifier|private
-name|int
-name|numCollected
-decl_stmt|;
 comment|/**    * Create a new {@link EarlyTerminatingSortingCollector} instance.    *    * @param in    *          the collector to wrap    * @param sort    *          the sort you are sorting the search results on    * @param numDocsToCollect    *          the number of documents to collect on each segment. When wrapping    *          a {@link TopDocsCollector}, this number should be the number of    *          hits.    */
 DECL|method|EarlyTerminatingSortingCollector
 specifier|public
@@ -290,6 +285,10 @@ name|context
 argument_list|)
 argument_list|)
 block|{
+specifier|private
+name|int
+name|numCollected
+decl_stmt|;
 annotation|@
 name|Override
 specifier|public

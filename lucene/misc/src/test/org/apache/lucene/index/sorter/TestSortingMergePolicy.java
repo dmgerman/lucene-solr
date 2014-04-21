@@ -533,17 +533,26 @@ name|Sort
 name|sort
 parameter_list|)
 block|{
-comment|// create a MP with a low merge factor so that many merges happen
+comment|// usually create a MP with a low merge factor so that many merges happen
 name|MergePolicy
 name|mp
 decl_stmt|;
-if|if
-condition|(
+name|int
+name|thingToDo
+init|=
 name|random
 argument_list|()
 operator|.
-name|nextBoolean
-argument_list|()
+name|nextInt
+argument_list|(
+literal|3
+argument_list|)
+decl_stmt|;
+if|if
+condition|(
+name|thingToDo
+operator|==
+literal|0
 condition|)
 block|{
 name|TieredMergePolicy
@@ -600,7 +609,13 @@ operator|=
 name|tmp
 expr_stmt|;
 block|}
-else|else
+elseif|else
+if|if
+condition|(
+name|thingToDo
+operator|==
+literal|1
+condition|)
 block|{
 name|LogMergePolicy
 name|lmp
@@ -631,6 +646,15 @@ expr_stmt|;
 name|mp
 operator|=
 name|lmp
+expr_stmt|;
+block|}
+else|else
+block|{
+comment|// just a regular random one from LTC (could be alcoholic etc)
+name|mp
+operator|=
+name|newMergePolicy
+argument_list|()
 expr_stmt|;
 block|}
 comment|// wrap it with a sorting mp
