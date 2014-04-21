@@ -86,20 +86,6 @@ name|Random
 import|;
 end_import
 
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|util
-operator|.
-name|IOUtils
-import|;
-end_import
-
 begin_comment
 comment|/**  * Simple standalone tool that forever acquires& releases a  * lock using a specific LockFactory.  Run without any args  * to see usage.  *  * @see VerifyingLockFactory  * @see LockVerifyServer  */
 end_comment

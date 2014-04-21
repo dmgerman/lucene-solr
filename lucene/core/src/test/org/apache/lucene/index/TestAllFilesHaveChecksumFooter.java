@@ -473,6 +473,21 @@ if|if
 condition|(
 name|file
 operator|.
+name|equals
+argument_list|(
+name|IndexWriter
+operator|.
+name|WRITE_LOCK_NAME
+argument_list|)
+condition|)
+block|{
+continue|continue;
+comment|// write.lock has no footer, thats ok
+block|}
+if|if
+condition|(
+name|file
+operator|.
 name|endsWith
 argument_list|(
 name|IndexFileNames
