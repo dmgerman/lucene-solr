@@ -1136,6 +1136,23 @@ name|RAMDirectory
 argument_list|()
 argument_list|)
 decl_stmt|;
+if|if
+condition|(
+name|LuceneTestCase
+operator|.
+name|VERBOSE
+condition|)
+block|{
+name|System
+operator|.
+name|out
+operator|.
+name|println
+argument_list|(
+literal|"NOTE: QueryUtils: now create empty index"
+argument_list|)
+expr_stmt|;
+block|}
 name|IndexWriter
 name|w
 init|=
@@ -1194,6 +1211,23 @@ operator|.
 name|shutdown
 argument_list|()
 expr_stmt|;
+if|if
+condition|(
+name|LuceneTestCase
+operator|.
+name|VERBOSE
+condition|)
+block|{
+name|System
+operator|.
+name|out
+operator|.
+name|println
+argument_list|(
+literal|"NOTE: QueryUtils: done create empty index"
+argument_list|)
+expr_stmt|;
+block|}
 name|DirectoryReader
 name|reader
 init|=
