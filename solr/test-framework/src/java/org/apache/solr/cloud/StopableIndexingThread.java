@@ -546,7 +546,7 @@ name|deleteFails
 operator|.
 name|add
 argument_list|(
-name|id
+name|deleteId
 argument_list|)
 expr_stmt|;
 block|}
