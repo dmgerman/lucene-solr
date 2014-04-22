@@ -964,6 +964,18 @@ expr_stmt|;
 try|try
 block|{
 comment|// if there are still refs out, we have to wait for them
+assert|assert
+name|val
+operator|.
+name|refCnt
+operator|>
+operator|-
+literal|1
+operator|:
+name|val
+operator|.
+name|refCnt
+assert|;
 name|int
 name|cnt
 init|=
