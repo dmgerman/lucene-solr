@@ -60,7 +60,7 @@ name|impl
 operator|.
 name|conn
 operator|.
-name|BasicClientConnectionManager
+name|BasicHttpClientConnectionManager
 import|;
 end_import
 
@@ -847,11 +847,11 @@ name|Exception
 block|{
 comment|// tests the behaviour of the client when the server sends an error
 comment|// must use BasicClientConnectionManager to test whether the client is closed correctly
-name|BasicClientConnectionManager
+name|BasicHttpClientConnectionManager
 name|conMgr
 init|=
 operator|new
-name|BasicClientConnectionManager
+name|BasicHttpClientConnectionManager
 argument_list|()
 decl_stmt|;
 name|Replicator

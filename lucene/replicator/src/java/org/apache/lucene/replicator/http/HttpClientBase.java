@@ -148,7 +148,9 @@ name|http
 operator|.
 name|client
 operator|.
-name|HttpClient
+name|config
+operator|.
+name|RequestConfig
 import|;
 end_import
 
@@ -194,7 +196,7 @@ name|http
 operator|.
 name|conn
 operator|.
-name|ClientConnectionManager
+name|HttpClientConnectionManager
 import|;
 end_import
 
@@ -210,7 +212,7 @@ name|impl
 operator|.
 name|client
 operator|.
-name|DefaultHttpClient
+name|CloseableHttpClient
 import|;
 end_import
 
@@ -222,9 +224,11 @@ name|apache
 operator|.
 name|http
 operator|.
-name|params
+name|impl
 operator|.
-name|HttpConnectionParams
+name|client
+operator|.
+name|HttpClientBuilder
 import|;
 end_import
 
@@ -283,7 +287,7 @@ name|HttpClientBase
 implements|implements
 name|Closeable
 block|{
-comment|/**    * Default connection timeout for this client, in milliseconds.    *     * @see #setConnectionTimeout(int)    */
+comment|/** Default connection timeout for this client, in milliseconds. */
 DECL|field|DEFAULT_CONNECTION_TIMEOUT
 specifier|public
 specifier|static
@@ -293,7 +297,7 @@ name|DEFAULT_CONNECTION_TIMEOUT
 init|=
 literal|1000
 decl_stmt|;
-comment|/**    * Default socket timeout for this client, in milliseconds.    *     * @see #setSoTimeout(int)    */
+comment|/** Default socket timeout for this client, in milliseconds. */
 DECL|field|DEFAULT_SO_TIMEOUT
 specifier|public
 specifier|static
@@ -322,10 +326,16 @@ decl_stmt|;
 DECL|field|httpc
 specifier|private
 specifier|final
-name|HttpClient
+name|CloseableHttpClient
 name|httpc
 decl_stmt|;
-comment|/**    * @param conMgr connection manager to use for this http client.    *<b>NOTE:</b>The provided {@link ClientConnectionManager} will not be    *        {@link ClientConnectionManager#shutdown()} by this class.    */
+DECL|field|defaultConfig
+specifier|private
+specifier|final
+name|RequestConfig
+name|defaultConfig
+decl_stmt|;
+comment|/**    * @param conMgr    *          connection manager to use for this http client.<b>NOTE:</b>The    *          provided {@link HttpClientConnectionManager} will not be    *          {@link HttpClientConnectionManager#shutdown()} by this class.    * @param defaultConfig    *          the default {@link RequestConfig} to set on the client. If    *          {@code null} a default config is created w/ the default connection    *          and socket timeouts.    */
 DECL|method|HttpClientBase
 specifier|protected
 name|HttpClientBase
@@ -339,8 +349,11 @@ parameter_list|,
 name|String
 name|path
 parameter_list|,
-name|ClientConnectionManager
+name|HttpClientConnectionManager
 name|conMgr
+parameter_list|,
+name|RequestConfig
+name|defaultConfig
 parameter_list|)
 block|{
 name|url
@@ -354,69 +367,66 @@ argument_list|,
 name|path
 argument_list|)
 expr_stmt|;
-name|httpc
+if|if
+condition|(
+name|defaultConfig
+operator|==
+literal|null
+condition|)
+block|{
+name|this
+operator|.
+name|defaultConfig
 operator|=
-operator|new
-name|DefaultHttpClient
-argument_list|(
-name|conMgr
-argument_list|)
-expr_stmt|;
-name|setConnectionTimeout
+name|RequestConfig
+operator|.
+name|custom
+argument_list|()
+operator|.
+name|setConnectionRequestTimeout
 argument_list|(
 name|DEFAULT_CONNECTION_TIMEOUT
 argument_list|)
-expr_stmt|;
-name|setSoTimeout
+operator|.
+name|setSocketTimeout
 argument_list|(
 name|DEFAULT_SO_TIMEOUT
 argument_list|)
+operator|.
+name|build
+argument_list|()
 expr_stmt|;
 block|}
-comment|/**    * Set the connection timeout for this client, in milliseconds. This setting    * is used to modify {@link HttpConnectionParams#setConnectionTimeout}.    *     * @param timeout timeout to set, in millisecopnds    */
-DECL|method|setConnectionTimeout
-specifier|public
-name|void
-name|setConnectionTimeout
-parameter_list|(
-name|int
-name|timeout
-parameter_list|)
+else|else
 block|{
-name|HttpConnectionParams
+name|this
 operator|.
-name|setConnectionTimeout
-argument_list|(
-name|httpc
-operator|.
-name|getParams
-argument_list|()
-argument_list|,
-name|timeout
-argument_list|)
+name|defaultConfig
+operator|=
+name|defaultConfig
 expr_stmt|;
 block|}
-comment|/**    * Set the socket timeout for this client, in milliseconds. This setting    * is used to modify {@link HttpConnectionParams#setSoTimeout}.    *     * @param timeout timeout to set, in millisecopnds    */
-DECL|method|setSoTimeout
-specifier|public
-name|void
-name|setSoTimeout
-parameter_list|(
-name|int
-name|timeout
-parameter_list|)
-block|{
-name|HttpConnectionParams
-operator|.
-name|setSoTimeout
-argument_list|(
 name|httpc
+operator|=
+name|HttpClientBuilder
 operator|.
-name|getParams
+name|create
 argument_list|()
-argument_list|,
-name|timeout
+operator|.
+name|setConnectionManager
+argument_list|(
+name|conMgr
 argument_list|)
+operator|.
+name|setDefaultRequestConfig
+argument_list|(
+name|this
+operator|.
+name|defaultConfig
+argument_list|)
+operator|.
+name|build
+argument_list|()
 expr_stmt|;
 block|}
 comment|/** Throws {@link AlreadyClosedException} if this client is already closed. */
@@ -1283,6 +1293,11 @@ parameter_list|()
 throws|throws
 name|IOException
 block|{
+name|httpc
+operator|.
+name|close
+argument_list|()
+expr_stmt|;
 name|closed
 operator|=
 literal|true

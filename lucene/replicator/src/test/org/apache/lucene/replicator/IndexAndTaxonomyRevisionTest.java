@@ -987,6 +987,12 @@ operator|.
 name|getKey
 argument_list|()
 decl_stmt|;
+annotation|@
+name|SuppressWarnings
+argument_list|(
+literal|"resource"
+argument_list|)
+comment|// silly, both directories are closed in the end
 name|Directory
 name|dir
 init|=
