@@ -264,7 +264,6 @@ literal|"commitTimeMSec"
 decl_stmt|;
 DECL|field|CLOSE_LOCK
 specifier|private
-specifier|static
 specifier|final
 name|Object
 name|CLOSE_LOCK
