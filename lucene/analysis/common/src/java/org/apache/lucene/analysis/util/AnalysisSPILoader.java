@@ -670,7 +670,7 @@ name|name
 operator|+
 literal|"' does not exist. "
 operator|+
-literal|"You need to add the corresponding JAR file supporting this SPI to your classpath."
+literal|"You need to add the corresponding JAR file supporting this SPI to your classpath. "
 operator|+
 literal|"The current classpath supports the following names: "
 operator|+
