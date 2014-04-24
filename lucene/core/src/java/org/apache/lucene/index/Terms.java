@@ -284,7 +284,7 @@ index|[
 literal|0
 index|]
 decl_stmt|;
-comment|/** Returns the smallest term (in lexicographic order) in the field.     *  Note that, just like other term measures, this measure does not     *  take deleted documents into account. */
+comment|/** Returns the smallest term (in lexicographic order) in the field.     *  Note that, just like other term measures, this measure does not     *  take deleted documents into account.  This returns    *  null when there are no terms. */
 DECL|method|getMin
 specifier|public
 name|BytesRef
@@ -303,7 +303,7 @@ name|next
 argument_list|()
 return|;
 block|}
-comment|/** Returns the largest term (in lexicographic order) in the field.     *  Note that, just like other term measures, this measure does not     *  take deleted documents into account. */
+comment|/** Returns the largest term (in lexicographic order) in the field.     *  Note that, just like other term measures, this measure does not     *  take deleted documents into account.  This returns    *  null when there are no terms. */
 annotation|@
 name|SuppressWarnings
 argument_list|(
