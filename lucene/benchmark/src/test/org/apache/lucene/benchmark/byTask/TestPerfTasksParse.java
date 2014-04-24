@@ -296,19 +296,9 @@ name|lucene
 operator|.
 name|util
 operator|.
-name|TestUtil
-import|;
-end_import
-
-begin_import
-import|import
-name|com
+name|LuceneTestCase
 operator|.
-name|carrotsearch
-operator|.
-name|randomizedtesting
-operator|.
-name|RandomizedTest
+name|SuppressSysoutChecks
 import|;
 end_import
 
@@ -325,6 +315,13 @@ comment|/** Test very simply that perf tasks are parses as expected. */
 end_comment
 
 begin_class
+annotation|@
+name|SuppressSysoutChecks
+argument_list|(
+name|bugUrl
+operator|=
+literal|"Output expected."
+argument_list|)
 DECL|class|TestPerfTasksParse
 specifier|public
 class|class

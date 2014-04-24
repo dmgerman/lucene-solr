@@ -162,6 +162,22 @@ end_import
 
 begin_import
 import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|util
+operator|.
+name|LuceneTestCase
+operator|.
+name|SuppressSysoutChecks
+import|;
+end_import
+
+begin_import
+import|import
 name|java
 operator|.
 name|io
@@ -249,6 +265,13 @@ comment|/**  * Test that quality run does its job.  *<p>  * NOTE: if the default
 end_comment
 
 begin_class
+annotation|@
+name|SuppressSysoutChecks
+argument_list|(
+name|bugUrl
+operator|=
+literal|"Output expected."
+argument_list|)
 DECL|class|TestQualityRun
 specifier|public
 class|class

@@ -1879,6 +1879,11 @@ name|expected
 parameter_list|)
 block|{
 comment|// expected
+if|if
+condition|(
+name|VERBOSE
+condition|)
+block|{
 name|System
 operator|.
 name|out
@@ -1897,6 +1902,7 @@ operator|.
 name|out
 argument_list|)
 expr_stmt|;
+block|}
 block|}
 name|iwriter
 operator|.

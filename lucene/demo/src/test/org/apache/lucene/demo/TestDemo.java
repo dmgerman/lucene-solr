@@ -82,11 +82,20 @@ name|lucene
 operator|.
 name|util
 operator|.
-name|TestUtil
+name|LuceneTestCase
+operator|.
+name|SuppressSysoutChecks
 import|;
 end_import
 
 begin_class
+annotation|@
+name|SuppressSysoutChecks
+argument_list|(
+name|bugUrl
+operator|=
+literal|"Output expected."
+argument_list|)
 DECL|class|TestDemo
 specifier|public
 class|class

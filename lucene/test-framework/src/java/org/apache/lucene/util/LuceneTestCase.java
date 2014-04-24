@@ -2085,6 +2085,16 @@ name|SYSPROP_FAILFAST
 init|=
 literal|"tests.failfast"
 decl_stmt|;
+comment|/**    * If true, enables assertions on writing to system streams.    *     * @see TestRuleDisallowSysouts    */
+DECL|field|SYSPROP_SYSOUTS
+specifier|public
+specifier|static
+specifier|final
+name|String
+name|SYSPROP_SYSOUTS
+init|=
+literal|"tests.sysouts"
+decl_stmt|;
 comment|/**    * Annotation for tests that should only be run during nightly builds.    */
 annotation|@
 name|Documented
@@ -2340,6 +2350,38 @@ default|default
 literal|"None"
 function_decl|;
 block|}
+comment|/**    * Marks any suite which is known to print to {@link System#out} or {@link System#err},    * even when {@link #VERBOSE} is disabled.    *     * @see TestRuleDisallowSysouts    */
+annotation|@
+name|Documented
+annotation|@
+name|Inherited
+annotation|@
+name|Retention
+argument_list|(
+name|RetentionPolicy
+operator|.
+name|RUNTIME
+argument_list|)
+annotation|@
+name|Target
+argument_list|(
+name|ElementType
+operator|.
+name|TYPE
+argument_list|)
+DECL|interface|SuppressSysoutChecks
+specifier|public
+annotation_defn|@interface
+name|SuppressSysoutChecks
+block|{
+comment|/** Point to JIRA entry. */
+DECL|method|bugUrl
+specifier|public
+name|String
+name|bugUrl
+parameter_list|()
+function_decl|;
+block|}
 comment|// -----------------------------------------------------------------
 comment|// Truly immutable fields and constants, initialized once and valid
 comment|// for all suites ever since.
@@ -2357,7 +2399,7 @@ name|Version
 operator|.
 name|LUCENE_50
 decl_stmt|;
-comment|/**    * True if and only if tests are run in verbose mode. If this flag is false    * tests are not expected to print any messages.    */
+comment|/**    * True if and only if tests are run in verbose mode. If this flag is false    * tests are not expected to print any messages. Enforced with {@link TestRuleDisallowSysouts}.    */
 DECL|field|VERBOSE
 specifier|public
 specifier|static
@@ -2372,7 +2414,7 @@ argument_list|,
 literal|false
 argument_list|)
 decl_stmt|;
-comment|/** TODO: javadoc? */
+comment|/**    * Enables or disables dumping of {@link InfoStream} messages.     */
 DECL|field|INFOSTREAM
 specifier|public
 specifier|static
@@ -2738,7 +2780,7 @@ name|classEnvRule
 decl_stmt|;
 comment|/**    * Suite failure marker (any error in the test or suite scope).    */
 DECL|field|suiteFailureMarker
-specifier|public
+specifier|private
 specifier|static
 name|TestRuleMarkFailure
 name|suiteFailureMarker
@@ -2858,6 +2900,23 @@ name|ignoreAfterMaxFailuresDelegate
 argument_list|)
 expr_stmt|;
 block|}
+comment|/**    * Try to capture streams early so that other classes don't have a chance to steal references    * to them (as is the case with ju.logging handlers).    */
+static|static
+block|{
+name|TestRuleDisallowSysouts
+operator|.
+name|checkCaptureStreams
+argument_list|()
+expr_stmt|;
+name|Logger
+operator|.
+name|getGlobal
+argument_list|()
+operator|.
+name|getHandlers
+argument_list|()
+expr_stmt|;
+block|}
 comment|/**    * Temporarily substitute the global {@link TestRuleIgnoreAfterMaxFailures}. See    * {@link #ignoreAfterMaxFailuresDelegate} for some explanation why this method     * is needed.    */
 DECL|method|replaceMaxFailureRule
 specifier|public
@@ -2966,6 +3025,15 @@ argument_list|(
 operator|new
 name|TestRuleAssertionsRequired
 argument_list|()
+argument_list|)
+operator|.
+name|around
+argument_list|(
+operator|new
+name|TestRuleDisallowSysouts
+argument_list|(
+name|suiteFailureMarker
+argument_list|)
 argument_list|)
 operator|.
 name|around
@@ -12904,6 +12972,7 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
+comment|/**    * Checks and cleans up temporary files.    *     * @see LuceneTestCase#createTempDir()    * @see LuceneTestCase#createTempFile()    */
 DECL|class|TemporaryFilesCleanupRule
 specifier|private
 specifier|static

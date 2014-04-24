@@ -714,6 +714,21 @@ name|getRunnerSeedAsString
 argument_list|()
 argument_list|)
 expr_stmt|;
+comment|// Misc switches.
+name|addVmOpt
+argument_list|(
+name|b
+argument_list|,
+name|SYSPROP_SYSOUTS
+argument_list|,
+name|System
+operator|.
+name|getProperty
+argument_list|(
+name|SYSPROP_SYSOUTS
+argument_list|)
+argument_list|)
+expr_stmt|;
 comment|// Test groups and multipliers.
 if|if
 condition|(

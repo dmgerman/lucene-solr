@@ -218,6 +218,22 @@ begin_import
 import|import
 name|org
 operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|util
+operator|.
+name|LuceneTestCase
+operator|.
+name|SuppressSysoutChecks
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
 name|junit
 operator|.
 name|After
@@ -269,6 +285,13 @@ comment|/**  * Testcase for {@link UIMABaseAnalyzer}  */
 end_comment
 
 begin_class
+annotation|@
+name|SuppressSysoutChecks
+argument_list|(
+name|bugUrl
+operator|=
+literal|"UIMA logs via ju.logging"
+argument_list|)
 DECL|class|UIMABaseAnalyzerTest
 specifier|public
 class|class

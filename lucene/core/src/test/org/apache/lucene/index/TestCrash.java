@@ -500,6 +500,11 @@ block|{
 comment|// This test relies on being able to open a reader before any commit
 comment|// happened, so we must create an initial commit just to allow that, but
 comment|// before any documents were added.
+if|if
+condition|(
+name|VERBOSE
+condition|)
+block|{
 name|System
 operator|.
 name|out
@@ -509,6 +514,7 @@ argument_list|(
 literal|"TEST: initIndex"
 argument_list|)
 expr_stmt|;
+block|}
 name|IndexWriter
 name|writer
 init|=
@@ -520,6 +526,11 @@ argument_list|,
 literal|true
 argument_list|)
 decl_stmt|;
+if|if
+condition|(
+name|VERBOSE
+condition|)
+block|{
 name|System
 operator|.
 name|out
@@ -529,6 +540,7 @@ argument_list|(
 literal|"TEST: done initIndex"
 argument_list|)
 expr_stmt|;
+block|}
 name|MockDirectoryWrapper
 name|dir
 init|=
@@ -556,6 +568,11 @@ argument_list|(
 literal|false
 argument_list|)
 expr_stmt|;
+if|if
+condition|(
+name|VERBOSE
+condition|)
+block|{
 name|System
 operator|.
 name|out
@@ -565,6 +582,7 @@ argument_list|(
 literal|"TEST: now crash"
 argument_list|)
 expr_stmt|;
+block|}
 name|crash
 argument_list|(
 name|writer
