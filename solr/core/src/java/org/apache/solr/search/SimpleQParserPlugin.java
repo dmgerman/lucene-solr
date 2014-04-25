@@ -797,7 +797,7 @@ operator|.
 name|getSchema
 argument_list|()
 operator|.
-name|getAnalyzer
+name|getQueryAnalyzer
 argument_list|()
 argument_list|,
 name|queryFields
