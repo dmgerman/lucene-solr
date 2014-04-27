@@ -334,7 +334,7 @@ argument_list|)
 expr_stmt|;
 block|}
 comment|// keys to the maps are currently of the form "http://localhost:8983/solr"
-comment|// which should be equivalent to CommonsHttpSolrServer.getBaseURL()
+comment|// which should be equivalent to HttpSolrServer.getBaseURL()
 DECL|field|aliveServers
 specifier|private
 specifier|final
