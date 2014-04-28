@@ -881,6 +881,7 @@ argument_list|(
 literal|",termVectorPosition"
 argument_list|)
 expr_stmt|;
+block|}
 if|if
 condition|(
 name|storeTermVectorPayloads
@@ -894,7 +895,6 @@ argument_list|(
 literal|",termVectorPayloads"
 argument_list|)
 expr_stmt|;
-block|}
 block|}
 if|if
 condition|(

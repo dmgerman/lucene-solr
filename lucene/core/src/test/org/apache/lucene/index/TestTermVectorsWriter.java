@@ -3800,6 +3800,12 @@ literal|true
 argument_list|)
 expr_stmt|;
 name|document
+operator|=
+operator|new
+name|Document
+argument_list|()
+expr_stmt|;
+name|document
 operator|.
 name|add
 argument_list|(
@@ -4006,6 +4012,12 @@ argument_list|,
 name|customType2
 argument_list|)
 argument_list|)
+expr_stmt|;
+name|document
+operator|=
+operator|new
+name|Document
+argument_list|()
 expr_stmt|;
 name|iw
 operator|.

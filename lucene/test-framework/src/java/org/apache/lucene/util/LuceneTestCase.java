@@ -17,34 +17,6 @@ comment|/*  * Licensed to the Apache Software Foundation (ASF) under one or more
 end_comment
 
 begin_import
-import|import static
-name|com
-operator|.
-name|carrotsearch
-operator|.
-name|randomizedtesting
-operator|.
-name|RandomizedTest
-operator|.
-name|systemPropertyAsBoolean
-import|;
-end_import
-
-begin_import
-import|import static
-name|com
-operator|.
-name|carrotsearch
-operator|.
-name|randomizedtesting
-operator|.
-name|RandomizedTest
-operator|.
-name|systemPropertyAsInt
-import|;
-end_import
-
-begin_import
 import|import
 name|java
 operator|.
@@ -270,6 +242,16 @@ name|java
 operator|.
 name|util
 operator|.
+name|HashMap
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
+name|util
+operator|.
 name|HashSet
 import|;
 end_import
@@ -310,6 +292,16 @@ name|java
 operator|.
 name|util
 operator|.
+name|Map
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
+name|util
+operator|.
 name|Random
 import|;
 end_import
@@ -341,6 +333,18 @@ operator|.
 name|util
 operator|.
 name|TreeSet
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
+name|util
+operator|.
+name|concurrent
+operator|.
+name|ConcurrentHashMap
 import|;
 end_import
 
@@ -445,6 +449,8 @@ operator|.
 name|document
 operator|.
 name|Field
+operator|.
+name|Store
 import|;
 end_import
 
@@ -459,8 +465,6 @@ operator|.
 name|document
 operator|.
 name|Field
-operator|.
-name|Store
 import|;
 end_import
 
@@ -727,6 +731,8 @@ operator|.
 name|index
 operator|.
 name|IndexReader
+operator|.
+name|ReaderClosedListener
 import|;
 end_import
 
@@ -741,8 +747,6 @@ operator|.
 name|index
 operator|.
 name|IndexReader
-operator|.
-name|ReaderClosedListener
 import|;
 end_import
 
@@ -1037,6 +1041,8 @@ operator|.
 name|index
 operator|.
 name|TermsEnum
+operator|.
+name|SeekStatus
 import|;
 end_import
 
@@ -1051,8 +1057,6 @@ operator|.
 name|index
 operator|.
 name|TermsEnum
-operator|.
-name|SeekStatus
 import|;
 end_import
 
@@ -1109,6 +1113,8 @@ operator|.
 name|search
 operator|.
 name|FieldCache
+operator|.
+name|CacheEntry
 import|;
 end_import
 
@@ -1123,8 +1129,6 @@ operator|.
 name|search
 operator|.
 name|FieldCache
-operator|.
-name|CacheEntry
 import|;
 end_import
 
@@ -1225,6 +1229,8 @@ operator|.
 name|store
 operator|.
 name|IOContext
+operator|.
+name|Context
 import|;
 end_import
 
@@ -1239,8 +1245,6 @@ operator|.
 name|store
 operator|.
 name|IOContext
-operator|.
-name|Context
 import|;
 end_import
 
@@ -1283,6 +1287,8 @@ operator|.
 name|store
 operator|.
 name|MockDirectoryWrapper
+operator|.
+name|Throttling
 import|;
 end_import
 
@@ -1297,8 +1303,6 @@ operator|.
 name|store
 operator|.
 name|MockDirectoryWrapper
-operator|.
-name|Throttling
 import|;
 end_import
 
@@ -1649,20 +1653,6 @@ operator|.
 name|annotations
 operator|.
 name|ThreadLeakAction
-import|;
-end_import
-
-begin_import
-import|import
-name|com
-operator|.
-name|carrotsearch
-operator|.
-name|randomizedtesting
-operator|.
-name|annotations
-operator|.
-name|ThreadLeakAction
 operator|.
 name|Action
 import|;
@@ -1678,7 +1668,7 @@ name|randomizedtesting
 operator|.
 name|annotations
 operator|.
-name|ThreadLeakFilters
+name|ThreadLeakAction
 import|;
 end_import
 
@@ -1692,7 +1682,7 @@ name|randomizedtesting
 operator|.
 name|annotations
 operator|.
-name|ThreadLeakGroup
+name|ThreadLeakFilters
 import|;
 end_import
 
@@ -1722,7 +1712,7 @@ name|randomizedtesting
 operator|.
 name|annotations
 operator|.
-name|ThreadLeakLingering
+name|ThreadLeakGroup
 import|;
 end_import
 
@@ -1736,7 +1726,7 @@ name|randomizedtesting
 operator|.
 name|annotations
 operator|.
-name|ThreadLeakScope
+name|ThreadLeakLingering
 import|;
 end_import
 
@@ -1766,7 +1756,7 @@ name|randomizedtesting
 operator|.
 name|annotations
 operator|.
-name|ThreadLeakZombies
+name|ThreadLeakScope
 import|;
 end_import
 
@@ -1783,6 +1773,20 @@ operator|.
 name|ThreadLeakZombies
 operator|.
 name|Consequence
+import|;
+end_import
+
+begin_import
+import|import
+name|com
+operator|.
+name|carrotsearch
+operator|.
+name|randomizedtesting
+operator|.
+name|annotations
+operator|.
+name|ThreadLeakZombies
 import|;
 end_import
 
@@ -1881,6 +1885,34 @@ operator|.
 name|rules
 operator|.
 name|TestRuleAdapter
+import|;
+end_import
+
+begin_import
+import|import static
+name|com
+operator|.
+name|carrotsearch
+operator|.
+name|randomizedtesting
+operator|.
+name|RandomizedTest
+operator|.
+name|systemPropertyAsBoolean
+import|;
+end_import
+
+begin_import
+import|import static
+name|com
+operator|.
+name|carrotsearch
+operator|.
+name|randomizedtesting
+operator|.
+name|RandomizedTest
+operator|.
+name|systemPropertyAsInt
 import|;
 end_import
 
@@ -3220,6 +3252,51 @@ argument_list|(
 name|parentChainCallRule
 argument_list|)
 decl_stmt|;
+DECL|field|fieldTermVectorOptions
+specifier|private
+specifier|static
+specifier|final
+name|Map
+argument_list|<
+name|String
+argument_list|,
+name|FieldType
+argument_list|>
+name|fieldTermVectorOptions
+init|=
+operator|new
+name|HashMap
+argument_list|<
+name|String
+argument_list|,
+name|FieldType
+argument_list|>
+argument_list|()
+decl_stmt|;
+DECL|field|fieldNamesSeen
+specifier|private
+specifier|static
+specifier|final
+name|Set
+argument_list|<
+name|String
+argument_list|>
+name|fieldNamesSeen
+init|=
+name|Collections
+operator|.
+name|newSetFromMap
+argument_list|(
+operator|new
+name|ConcurrentHashMap
+argument_list|<
+name|String
+argument_list|,
+name|Boolean
+argument_list|>
+argument_list|()
+argument_list|)
+decl_stmt|;
 comment|// -----------------------------------------------------------------
 comment|// Suite and test case setup/ cleanup.
 comment|// -----------------------------------------------------------------
@@ -3257,6 +3334,16 @@ operator|.
 name|teardownCalled
 operator|=
 literal|true
+expr_stmt|;
+name|fieldTermVectorOptions
+operator|.
+name|clear
+argument_list|()
+expr_stmt|;
+name|fieldNamesSeen
+operator|.
+name|clear
+argument_list|()
 expr_stmt|;
 block|}
 comment|// -----------------------------------------------------------------
@@ -6030,6 +6117,13 @@ argument_list|()
 condition|)
 block|{
 comment|// most of the time, don't modify the params
+name|fieldNamesSeen
+operator|.
+name|add
+argument_list|(
+name|name
+argument_list|)
+expr_stmt|;
 return|return
 operator|new
 name|Field
@@ -6077,6 +6171,8 @@ argument_list|)
 expr_stmt|;
 comment|// randomly store it
 block|}
+comment|// Randomly turn on term vector options, but always do
+comment|// so consistently for the same field name:
 if|if
 condition|(
 operator|!
@@ -6085,10 +6181,43 @@ operator|.
 name|storeTermVectors
 argument_list|()
 operator|&&
+name|fieldNamesSeen
+operator|.
+name|contains
+argument_list|(
+name|name
+argument_list|)
+operator|==
+literal|false
+operator|&&
 name|random
 operator|.
 name|nextBoolean
 argument_list|()
+condition|)
+block|{
+name|FieldType
+name|prev
+decl_stmt|;
+synchronized|synchronized
+init|(
+name|fieldTermVectorOptions
+init|)
+block|{
+name|prev
+operator|=
+name|fieldTermVectorOptions
+operator|.
+name|get
+argument_list|(
+name|name
+argument_list|)
+expr_stmt|;
+if|if
+condition|(
+name|prev
+operator|==
+literal|null
 condition|)
 block|{
 name|newType
@@ -6098,26 +6227,6 @@ argument_list|(
 literal|true
 argument_list|)
 expr_stmt|;
-if|if
-condition|(
-operator|!
-name|newType
-operator|.
-name|storeTermVectorOffsets
-argument_list|()
-condition|)
-block|{
-name|newType
-operator|.
-name|setStoreTermVectorOffsets
-argument_list|(
-name|random
-operator|.
-name|nextBoolean
-argument_list|()
-argument_list|)
-expr_stmt|;
-block|}
 if|if
 condition|(
 operator|!
@@ -6143,7 +6252,10 @@ name|newType
 operator|.
 name|storeTermVectorPositions
 argument_list|()
-operator|&&
+condition|)
+block|{
+if|if
+condition|(
 operator|!
 name|newType
 operator|.
@@ -6162,8 +6274,108 @@ argument_list|()
 argument_list|)
 expr_stmt|;
 block|}
+if|if
+condition|(
+operator|!
+name|newType
+operator|.
+name|storeTermVectorOffsets
+argument_list|()
+condition|)
+block|{
+name|newType
+operator|.
+name|setStoreTermVectorOffsets
+argument_list|(
+name|random
+operator|.
+name|nextBoolean
+argument_list|()
+argument_list|)
+expr_stmt|;
 block|}
 block|}
+block|}
+name|fieldTermVectorOptions
+operator|.
+name|put
+argument_list|(
+name|name
+argument_list|,
+name|prev
+argument_list|)
+expr_stmt|;
+block|}
+block|}
+if|if
+condition|(
+name|prev
+operator|!=
+literal|null
+condition|)
+block|{
+name|newType
+operator|.
+name|setStoreTermVectors
+argument_list|(
+name|prev
+operator|.
+name|storeTermVectors
+argument_list|()
+argument_list|)
+expr_stmt|;
+name|newType
+operator|.
+name|setStoreTermVectorOffsets
+argument_list|(
+name|prev
+operator|.
+name|storeTermVectorOffsets
+argument_list|()
+argument_list|)
+expr_stmt|;
+name|newType
+operator|.
+name|setStoreTermVectorPositions
+argument_list|(
+name|prev
+operator|.
+name|storeTermVectorPositions
+argument_list|()
+argument_list|)
+expr_stmt|;
+name|newType
+operator|.
+name|setStoreTermVectorPayloads
+argument_list|(
+name|prev
+operator|.
+name|storeTermVectorPayloads
+argument_list|()
+argument_list|)
+expr_stmt|;
+block|}
+name|System
+operator|.
+name|out
+operator|.
+name|println
+argument_list|(
+literal|"  LTC: upgrade name="
+operator|+
+name|name
+operator|+
+literal|" type="
+operator|+
+name|newType
+argument_list|)
+expr_stmt|;
+block|}
+name|newType
+operator|.
+name|freeze
+argument_list|()
+expr_stmt|;
 comment|// TODO: we need to do this, but smarter, ie, most of
 comment|// the time we set the same value for a given field but
 comment|// sometimes (rarely) we change it up:

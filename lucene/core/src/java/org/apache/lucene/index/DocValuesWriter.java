@@ -46,14 +46,6 @@ specifier|abstract
 class|class
 name|DocValuesWriter
 block|{
-DECL|method|abort
-specifier|abstract
-name|void
-name|abort
-parameter_list|()
-throws|throws
-name|IOException
-function_decl|;
 DECL|method|finish
 specifier|abstract
 name|void

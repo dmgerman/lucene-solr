@@ -768,24 +768,96 @@ name|type
 operator|.
 name|indexed
 argument_list|()
-operator|&&
-operator|(
+condition|)
+block|{
+if|if
+condition|(
 name|type
 operator|.
 name|storeTermVectors
 argument_list|()
-operator|)
 condition|)
 block|{
 throw|throw
 operator|new
 name|IllegalArgumentException
 argument_list|(
-literal|"cannot store term vector information "
+literal|"cannot store term vectors "
 operator|+
-literal|"for a field that is not indexed"
+literal|"for a field that is not indexed (field=\""
+operator|+
+name|name
+operator|+
+literal|"\")"
 argument_list|)
 throw|;
+block|}
+if|if
+condition|(
+name|type
+operator|.
+name|storeTermVectorPositions
+argument_list|()
+condition|)
+block|{
+throw|throw
+operator|new
+name|IllegalArgumentException
+argument_list|(
+literal|"cannot store term vector positions "
+operator|+
+literal|"for a field that is not indexed (field=\""
+operator|+
+name|name
+operator|+
+literal|"\")"
+argument_list|)
+throw|;
+block|}
+if|if
+condition|(
+name|type
+operator|.
+name|storeTermVectorOffsets
+argument_list|()
+condition|)
+block|{
+throw|throw
+operator|new
+name|IllegalArgumentException
+argument_list|(
+literal|"cannot store term vector offsets "
+operator|+
+literal|"for a field that is not indexed (field=\""
+operator|+
+name|name
+operator|+
+literal|"\")"
+argument_list|)
+throw|;
+block|}
+if|if
+condition|(
+name|type
+operator|.
+name|storeTermVectorPayloads
+argument_list|()
+condition|)
+block|{
+throw|throw
+operator|new
+name|IllegalArgumentException
+argument_list|(
+literal|"cannot store term vector payloads "
+operator|+
+literal|"for a field that is not indexed (field=\""
+operator|+
+name|name
+operator|+
+literal|"\")"
+argument_list|)
+throw|;
+block|}
 block|}
 name|this
 operator|.

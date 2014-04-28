@@ -308,18 +308,6 @@ argument_list|(
 literal|"doc "
 argument_list|)
 decl_stmt|;
-DECL|field|NUM
-specifier|final
-specifier|static
-name|BytesRef
-name|NUM
-init|=
-operator|new
-name|BytesRef
-argument_list|(
-literal|"  numfields "
-argument_list|)
-decl_stmt|;
 DECL|field|FIELD
 specifier|final
 specifier|static
@@ -458,10 +446,7 @@ DECL|method|startDocument
 specifier|public
 name|void
 name|startDocument
-parameter_list|(
-name|int
-name|numStoredFields
-parameter_list|)
+parameter_list|()
 throws|throws
 name|IOException
 block|{
@@ -477,24 +462,6 @@ operator|.
 name|toString
 argument_list|(
 name|numDocsWritten
-argument_list|)
-argument_list|)
-expr_stmt|;
-name|newLine
-argument_list|()
-expr_stmt|;
-name|write
-argument_list|(
-name|NUM
-argument_list|)
-expr_stmt|;
-name|write
-argument_list|(
-name|Integer
-operator|.
-name|toString
-argument_list|(
-name|numStoredFields
 argument_list|)
 argument_list|)
 expr_stmt|;
