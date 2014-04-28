@@ -2266,7 +2266,7 @@ operator|!
 name|success
 condition|)
 block|{
-comment|// Advance only the nextWriteDocValuesGen so that a 2nd
+comment|// Advance only the nextWriteFieldInfosGen so that a 2nd
 comment|// attempt to write will write to a new file
 name|info
 operator|.
