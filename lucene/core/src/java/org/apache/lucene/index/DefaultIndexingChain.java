@@ -1623,6 +1623,11 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
+name|storedFieldsWriter
+operator|.
+name|finishDocument
+argument_list|()
+expr_stmt|;
 name|success
 operator|=
 literal|true
@@ -1642,14 +1647,6 @@ comment|// stored fields file is now corrupt:
 name|docWriter
 operator|.
 name|setAborting
-argument_list|()
-expr_stmt|;
-block|}
-else|else
-block|{
-name|storedFieldsWriter
-operator|.
-name|finishDocument
 argument_list|()
 expr_stmt|;
 block|}
