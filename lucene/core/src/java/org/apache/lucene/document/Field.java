@@ -761,32 +761,6 @@ literal|"is neither indexed nor stored"
 argument_list|)
 throw|;
 block|}
-if|if
-condition|(
-operator|!
-name|type
-operator|.
-name|indexed
-argument_list|()
-operator|&&
-operator|(
-name|type
-operator|.
-name|storeTermVectors
-argument_list|()
-operator|)
-condition|)
-block|{
-throw|throw
-operator|new
-name|IllegalArgumentException
-argument_list|(
-literal|"cannot store term vector information "
-operator|+
-literal|"for a field that is not indexed"
-argument_list|)
-throw|;
-block|}
 name|this
 operator|.
 name|type

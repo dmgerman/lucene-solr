@@ -110,20 +110,6 @@ name|PositionLengthAttribute
 import|;
 end_import
 
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|util
-operator|.
-name|Attribute
-import|;
-end_import
-
 begin_comment
 comment|// TODO: rename to OffsetsXXXTF?  ie we only validate
 end_comment
@@ -210,7 +196,7 @@ specifier|final
 name|PositionIncrementAttribute
 name|posIncAtt
 init|=
-name|getAttrIfExists
+name|getAttribute
 argument_list|(
 name|PositionIncrementAttribute
 operator|.
@@ -223,7 +209,7 @@ specifier|final
 name|PositionLengthAttribute
 name|posLenAtt
 init|=
-name|getAttrIfExists
+name|getAttribute
 argument_list|(
 name|PositionLengthAttribute
 operator|.
@@ -236,7 +222,7 @@ specifier|final
 name|OffsetAttribute
 name|offsetAtt
 init|=
-name|getAttrIfExists
+name|getAttribute
 argument_list|(
 name|OffsetAttribute
 operator|.
@@ -249,7 +235,7 @@ specifier|final
 name|CharTermAttribute
 name|termAtt
 init|=
-name|getAttrIfExists
+name|getAttribute
 argument_list|(
 name|CharTermAttribute
 operator|.
@@ -268,46 +254,6 @@ specifier|final
 name|String
 name|name
 decl_stmt|;
-comment|// Returns null if the attr wasn't already added
-DECL|method|getAttrIfExists
-specifier|private
-parameter_list|<
-name|A
-extends|extends
-name|Attribute
-parameter_list|>
-name|A
-name|getAttrIfExists
-parameter_list|(
-name|Class
-argument_list|<
-name|A
-argument_list|>
-name|att
-parameter_list|)
-block|{
-if|if
-condition|(
-name|hasAttribute
-argument_list|(
-name|att
-argument_list|)
-condition|)
-block|{
-return|return
-name|getAttribute
-argument_list|(
-name|att
-argument_list|)
-return|;
-block|}
-else|else
-block|{
-return|return
-literal|null
-return|;
-block|}
-block|}
 comment|/** The name arg is used to identify this stage when    *  throwing exceptions (useful if you have more than one    *  instance in your chain). */
 DECL|method|ValidatingTokenFilter
 specifier|public

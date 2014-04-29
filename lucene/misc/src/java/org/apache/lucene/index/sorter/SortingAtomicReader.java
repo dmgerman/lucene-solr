@@ -3079,6 +3079,8 @@ operator|new
 name|RAMOutputStream
 argument_list|(
 name|file
+argument_list|,
+literal|false
 argument_list|)
 decl_stmt|;
 name|int

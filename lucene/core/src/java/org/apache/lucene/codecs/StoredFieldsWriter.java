@@ -135,7 +135,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Codec API for writing stored fields:  *<p>  *<ol>  *<li>For every document, {@link #startDocument(int)} is called,  *       informing the Codec how many fields will be written.  *<li>{@link #writeField(FieldInfo, StorableField)} is called for   *       each field in the document.  *<li>After all documents have been written, {@link #finish(FieldInfos, int)}   *       is called for verification/sanity-checks.  *<li>Finally the writer is closed ({@link #close()})  *</ol>  *   * @lucene.experimental  */
+comment|/**  * Codec API for writing stored fields:  *<p>  *<ol>  *<li>For every document, {@link #startDocument()} is called,  *       informing the Codec that a new document has started.  *<li>{@link #writeField(FieldInfo, StorableField)} is called for   *       each field in the document.  *<li>After all documents have been written, {@link #finish(FieldInfos, int)}   *       is called for verification/sanity-checks.  *<li>Finally the writer is closed ({@link #close()})  *</ol>  *   * @lucene.experimental  */
 end_comment
 
 begin_class
@@ -153,16 +153,13 @@ specifier|protected
 name|StoredFieldsWriter
 parameter_list|()
 block|{   }
-comment|/** Called before writing the stored fields of the document.    *  {@link #writeField(FieldInfo, StorableField)} will be called    *<code>numStoredFields</code> times. Note that this is    *  called even if the document has no stored fields, in    *  this case<code>numStoredFields</code> will be zero. */
+comment|/** Called before writing the stored fields of the document.    *  {@link #writeField(FieldInfo, StorableField)} will be called    *  for each stored field. Note that this is    *  called even if the document has no stored fields. */
 DECL|method|startDocument
 specifier|public
 specifier|abstract
 name|void
 name|startDocument
-parameter_list|(
-name|int
-name|numStoredFields
-parameter_list|)
+parameter_list|()
 throws|throws
 name|IOException
 function_decl|;
@@ -199,7 +196,7 @@ name|void
 name|abort
 parameter_list|()
 function_decl|;
-comment|/** Called before {@link #close()}, passing in the number    *  of documents that were written. Note that this is     *  intentionally redundant (equivalent to the number of    *  calls to {@link #startDocument(int)}, but a Codec should    *  check that this is the case to detect the JRE bug described     *  in LUCENE-1282. */
+comment|/** Called before {@link #close()}, passing in the number    *  of documents that were written. Note that this is     *  intentionally redundant (equivalent to the number of    *  calls to {@link #startDocument()}, but a Codec should    *  check that this is the case to detect the JRE bug described     *  in LUCENE-1282. */
 DECL|method|finish
 specifier|public
 specifier|abstract
@@ -215,7 +212,7 @@ parameter_list|)
 throws|throws
 name|IOException
 function_decl|;
-comment|/** Merges in the stored fields from the readers in     *<code>mergeState</code>. The default implementation skips    *  over deleted documents, and uses {@link #startDocument(int)},    *  {@link #writeField(FieldInfo, StorableField)}, and {@link #finish(FieldInfos, int)},    *  returning the number of documents that were written.    *  Implementations can override this method for more sophisticated    *  merging (bulk-byte copying, etc). */
+comment|/** Merges in the stored fields from the readers in     *<code>mergeState</code>. The default implementation skips    *  over deleted documents, and uses {@link #startDocument()},    *  {@link #writeField(FieldInfo, StorableField)}, and {@link #finish(FieldInfos, int)},    *  returning the number of documents that were written.    *  Implementations can override this method for more sophisticated    *  merging (bulk-byte copying, etc). */
 DECL|method|merge
 specifier|public
 name|int
@@ -366,27 +363,8 @@ parameter_list|)
 throws|throws
 name|IOException
 block|{
-name|int
-name|storedCount
-init|=
-literal|0
-decl_stmt|;
-for|for
-control|(
-name|StorableField
-name|field
-range|:
-name|doc
-control|)
-block|{
-name|storedCount
-operator|++
-expr_stmt|;
-block|}
 name|startDocument
-argument_list|(
-name|storedCount
-argument_list|)
+argument_list|()
 expr_stmt|;
 for|for
 control|(
