@@ -844,7 +844,7 @@ return|return
 literal|true
 return|;
 block|}
-comment|/**    * We're only interested in failing the suite if it was successful. Otherwise    * just propagate the original problem and don't bother.    */
+comment|/**    * We're only interested in failing the suite if it was successful (otherwise    * just propagate the original problem and don't bother doing anything else).    */
 annotation|@
 name|Override
 DECL|method|afterIfSuccessful
@@ -960,7 +960,6 @@ throw|;
 block|}
 block|}
 block|}
-comment|/**    * Restore original streams.    */
 annotation|@
 name|Override
 DECL|method|afterAlways
