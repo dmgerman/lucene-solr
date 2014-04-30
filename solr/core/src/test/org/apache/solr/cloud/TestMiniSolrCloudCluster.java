@@ -86,6 +86,22 @@ name|org
 operator|.
 name|apache
 operator|.
+name|lucene
+operator|.
+name|util
+operator|.
+name|LuceneTestCase
+operator|.
+name|SuppressSysoutChecks
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
 name|solr
 operator|.
 name|SolrTestCaseJ4
@@ -467,6 +483,13 @@ comment|/**  * Test of the MiniSolrCloudCluster functionality. Keep in mind,   *
 end_comment
 
 begin_class
+annotation|@
+name|SuppressSysoutChecks
+argument_list|(
+name|bugUrl
+operator|=
+literal|"Solr logs to JUL"
+argument_list|)
 DECL|class|TestMiniSolrCloudCluster
 specifier|public
 class|class
