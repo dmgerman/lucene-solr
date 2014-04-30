@@ -53,75 +53,75 @@ comment|/**    * Match settings and bugs in Lucene's 4.0 release.    * @deprecat
 DECL|enum constant|Deprecated
 annotation|@
 name|Deprecated
-DECL|enum constant|LUCENE_40
-name|LUCENE_40
+DECL|enum constant|LUCENE_4_0
+name|LUCENE_4_0
 block|,
 comment|/**    * Match settings and bugs in Lucene's 4.1 release.    * @deprecated (5.0) Use latest    */
 DECL|enum constant|Deprecated
 annotation|@
 name|Deprecated
-DECL|enum constant|LUCENE_41
-name|LUCENE_41
+DECL|enum constant|LUCENE_4_1
+name|LUCENE_4_1
 block|,
 comment|/**    * Match settings and bugs in Lucene's 4.2 release.    * @deprecated (5.0) Use latest    */
 DECL|enum constant|Deprecated
 annotation|@
 name|Deprecated
-DECL|enum constant|LUCENE_42
-name|LUCENE_42
+DECL|enum constant|LUCENE_4_2
+name|LUCENE_4_2
 block|,
 comment|/**    * Match settings and bugs in Lucene's 4.3 release.    * @deprecated (5.0) Use latest    */
 DECL|enum constant|Deprecated
 annotation|@
 name|Deprecated
-DECL|enum constant|LUCENE_43
-name|LUCENE_43
+DECL|enum constant|LUCENE_4_3
+name|LUCENE_4_3
 block|,
 comment|/**    * Match settings and bugs in Lucene's 4.4 release.    * @deprecated (5.0) Use latest    */
 DECL|enum constant|Deprecated
 annotation|@
 name|Deprecated
-DECL|enum constant|LUCENE_44
-name|LUCENE_44
+DECL|enum constant|LUCENE_4_4
+name|LUCENE_4_4
 block|,
 comment|/**    * Match settings and bugs in Lucene's 4.5 release.    * @deprecated (5.0) Use latest    */
 DECL|enum constant|Deprecated
 annotation|@
 name|Deprecated
-DECL|enum constant|LUCENE_45
-name|LUCENE_45
+DECL|enum constant|LUCENE_4_5
+name|LUCENE_4_5
 block|,
 comment|/**    * Match settings and bugs in Lucene's 4.6 release.    * @deprecated (5.0) Use latest    */
 DECL|enum constant|Deprecated
 annotation|@
 name|Deprecated
-DECL|enum constant|LUCENE_46
-name|LUCENE_46
+DECL|enum constant|LUCENE_4_6
+name|LUCENE_4_6
 block|,
 comment|/**    * Match settings and bugs in Lucene's 4.7 release.    * @deprecated (5.0) Use latest    */
 DECL|enum constant|Deprecated
 annotation|@
 name|Deprecated
-DECL|enum constant|LUCENE_47
-name|LUCENE_47
+DECL|enum constant|LUCENE_4_7
+name|LUCENE_4_7
 block|,
 comment|/**    * Match settings and bugs in Lucene's 4.8 release.    * @deprecated (5.0) Use latest    */
 DECL|enum constant|Deprecated
 annotation|@
 name|Deprecated
-DECL|enum constant|LUCENE_48
-name|LUCENE_48
+DECL|enum constant|LUCENE_4_8
+name|LUCENE_4_8
 block|,
 comment|/**    * Match settings and bugs in Lucene's 4.9 release.    * @deprecated (5.0) Use latest    */
 DECL|enum constant|Deprecated
 annotation|@
 name|Deprecated
-DECL|enum constant|LUCENE_49
-name|LUCENE_49
+DECL|enum constant|LUCENE_4_9
+name|LUCENE_4_9
 block|,
 comment|/** Match settings and bugs in Lucene's 5.0 release.    *<p>    *  Use this to get the latest&amp; greatest settings, bug    *  fixes, etc, for Lucene.    */
-DECL|enum constant|LUCENE_50
-name|LUCENE_50
+DECL|enum constant|LUCENE_5_0
+name|LUCENE_5_0
 block|,
 comment|/* Add new constants for later versions **here** to respect order! */
 comment|/**    *<p><b>WARNING</b>: if you use this setting, and then    * upgrade to a newer release of Lucene, sizable changes    * may happen.  If backwards compatibility is important    * then you should instead explicitly specify an actual    * version.    *<p>    * If you use this constant then you  may need to     *<b>re-index all of your documents</b> when upgrading    * Lucene, as the way text is indexed may have changed.     * Additionally, you may need to<b>re-test your entire    * application</b> to ensure it behaves as expected, as     * some defaults may have changed and may break functionality     * in your application.     * @deprecated Use an actual version instead.     */
@@ -159,6 +159,7 @@ name|String
 name|version
 parameter_list|)
 block|{
+specifier|final
 name|String
 name|parsedMatchVersion
 init|=
@@ -170,6 +171,20 @@ name|Locale
 operator|.
 name|ROOT
 argument_list|)
+operator|.
+name|replaceFirst
+argument_list|(
+literal|"^(\\d+)\\.(\\d+)$"
+argument_list|,
+literal|"LUCENE_$1_$2"
+argument_list|)
+operator|.
+name|replaceFirst
+argument_list|(
+literal|"^LUCENE_(\\d)(\\d)$"
+argument_list|,
+literal|"LUCENE_$1_$2"
+argument_list|)
 decl_stmt|;
 return|return
 name|Version
@@ -177,13 +192,6 @@ operator|.
 name|valueOf
 argument_list|(
 name|parsedMatchVersion
-operator|.
-name|replaceFirst
-argument_list|(
-literal|"^(\\d)\\.(\\d)$"
-argument_list|,
-literal|"LUCENE_$1$2"
-argument_list|)
 argument_list|)
 return|;
 block|}

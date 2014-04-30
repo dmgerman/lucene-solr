@@ -1204,7 +1204,7 @@ name|IndexWriterConfig
 argument_list|(
 name|Version
 operator|.
-name|LUCENE_50
+name|LUCENE_5_0
 argument_list|,
 literal|null
 argument_list|)

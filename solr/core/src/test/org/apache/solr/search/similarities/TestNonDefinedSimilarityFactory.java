@@ -155,7 +155,7 @@ literal|"tests.luceneMatchVersion"
 argument_list|,
 name|Version
 operator|.
-name|LUCENE_47
+name|LUCENE_4_7
 operator|.
 name|toString
 argument_list|()
@@ -207,7 +207,7 @@ literal|"tests.luceneMatchVersion"
 argument_list|,
 name|Version
 operator|.
-name|LUCENE_46
+name|LUCENE_4_6
 operator|.
 name|toString
 argument_list|()

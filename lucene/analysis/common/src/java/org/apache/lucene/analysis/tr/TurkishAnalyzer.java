@@ -449,7 +449,7 @@ name|onOrAfter
 argument_list|(
 name|Version
 operator|.
-name|LUCENE_48
+name|LUCENE_4_8
 argument_list|)
 condition|)
 name|result

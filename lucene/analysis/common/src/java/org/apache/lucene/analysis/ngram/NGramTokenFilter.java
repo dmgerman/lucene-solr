@@ -167,7 +167,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Tokenizes the input into n-grams of the given size(s).  *<a name="version"/>  *<p>You must specify the required {@link Version} compatibility when  * creating a {@link NGramTokenFilter}. As of Lucene 4.4, this token filters:<ul>  *<li>handles supplementary characters correctly,</li>  *<li>emits all n-grams for the same token at the same position,</li>  *<li>does not modify offsets,</li>  *<li>sorts n-grams by their offset in the original token first, then  * increasing length (meaning that "abc" will give "a", "ab", "abc", "b", "bc",  * "c").</li></ul>  *<p>You can make this filter use the old behavior by providing a version&lt;  * {@link Version#LUCENE_44} in the constructor but this is not recommended as  * it will lead to broken {@link TokenStream}s that will cause highlighting  * bugs.  *<p>If you were using this {@link TokenFilter} to perform partial highlighting,  * this won't work anymore since this filter doesn't update offsets. You should  * modify your analysis chain to use {@link NGramTokenizer}, and potentially  * override {@link NGramTokenizer#isTokenChar(int)} to perform pre-tokenization.  */
+comment|/**  * Tokenizes the input into n-grams of the given size(s).  *<a name="version"/>  *<p>You must specify the required {@link Version} compatibility when  * creating a {@link NGramTokenFilter}. As of Lucene 4.4, this token filters:<ul>  *<li>handles supplementary characters correctly,</li>  *<li>emits all n-grams for the same token at the same position,</li>  *<li>does not modify offsets,</li>  *<li>sorts n-grams by their offset in the original token first, then  * increasing length (meaning that "abc" will give "a", "ab", "abc", "b", "bc",  * "c").</li></ul>  *<p>You can make this filter use the old behavior by providing a version&lt;  * {@link Version#LUCENE_4_4} in the constructor but this is not recommended as  * it will lead to broken {@link TokenStream}s that will cause highlighting  * bugs.  *<p>If you were using this {@link TokenFilter} to perform partial highlighting,  * this won't work anymore since this filter doesn't update offsets. You should  * modify your analysis chain to use {@link NGramTokenizer}, and potentially  * override {@link NGramTokenizer#isTokenChar(int)} to perform pre-tokenization.  */
 end_comment
 
 begin_class
@@ -357,7 +357,7 @@ name|onOrAfter
 argument_list|(
 name|Version
 operator|.
-name|LUCENE_44
+name|LUCENE_4_4
 argument_list|)
 condition|?
 name|CharacterUtils
@@ -422,7 +422,7 @@ name|onOrAfter
 argument_list|(
 name|Version
 operator|.
-name|LUCENE_44
+name|LUCENE_4_4
 argument_list|)
 condition|)
 block|{
@@ -654,7 +654,7 @@ name|onOrAfter
 argument_list|(
 name|Version
 operator|.
-name|LUCENE_44
+name|LUCENE_4_4
 argument_list|)
 condition|)
 block|{

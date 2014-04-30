@@ -221,7 +221,7 @@ name|onOrAfter
 argument_list|(
 name|Version
 operator|.
-name|LUCENE_44
+name|LUCENE_4_4
 argument_list|)
 condition|)
 block|{

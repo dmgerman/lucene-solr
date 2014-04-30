@@ -2860,7 +2860,7 @@ name|IndexWriterConfig
 argument_list|(
 name|Version
 operator|.
-name|LUCENE_46
+name|LUCENE_4_6
 argument_list|,
 operator|new
 name|MockAnalyzer

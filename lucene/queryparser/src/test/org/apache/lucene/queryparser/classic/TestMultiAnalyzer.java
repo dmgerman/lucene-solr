@@ -652,7 +652,7 @@ name|QueryParser
 argument_list|(
 name|Version
 operator|.
-name|LUCENE_40
+name|LUCENE_4_0
 argument_list|,
 literal|""
 argument_list|,

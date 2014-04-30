@@ -1558,7 +1558,7 @@ name|NGramTokenFilter
 argument_list|(
 name|Version
 operator|.
-name|LUCENE_43
+name|LUCENE_4_3
 argument_list|,
 name|input
 argument_list|,

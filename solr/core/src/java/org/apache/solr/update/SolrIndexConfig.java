@@ -593,7 +593,7 @@ operator|.
 name|luceneMatchVersion
 expr_stmt|;
 comment|// Assert that end-of-life parameters or syntax is not in our config.
-comment|// Warn for luceneMatchVersion's before LUCENE_36, fail fast above
+comment|// Warn for luceneMatchVersion's before LUCENE_3_6, fail fast above
 name|assertWarnOrFail
 argument_list|(
 literal|"The<mergeScheduler>myclass</mergeScheduler> syntax is no longer supported in solrconfig.xml. Please use syntax<mergeScheduler class=\"myclass\"/> instead."

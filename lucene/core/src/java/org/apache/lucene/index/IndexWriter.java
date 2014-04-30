@@ -2861,7 +2861,7 @@ block|}
 block|}
 block|}
 block|}
-comment|/**    * Closes all open resources and releases the write lock.    * If there are running merges or uncommitted    * changes:    *<ul>    *<li> If config.matchVersion>= LUCENE_50 then the    *        changes are silently discarded.    *<li> Otherwise, a RuntimeException is thrown to    *        indicate what was lost, but the IndexWriter is    *        still closed.    *</ul>    *    * Use {@link #shutdown} if you want to flush, commit, and    * wait for merges, before closing.    *     * @throws IOException if there is a low-level IO error    *   (the IndexWriter will still be closed)    * @throws RuntimeException if config.matchVersion<    *   LUCENE_50 and there were pending changes that were    *   lost (the IndexWriter will still be closed)    */
+comment|/**    * Closes all open resources and releases the write lock.    * If there are running merges or uncommitted    * changes:    *<ul>    *<li> If config.matchVersion>= LUCENE_5_0 then the    *        changes are silently discarded.    *<li> Otherwise, a RuntimeException is thrown to    *        indicate what was lost, but the IndexWriter is    *        still closed.    *</ul>    *    * Use {@link #shutdown} if you want to flush, commit, and    * wait for merges, before closing.    *     * @throws IOException if there is a low-level IO error    *   (the IndexWriter will still be closed)    * @throws RuntimeException if config.matchVersion<    *   LUCENE_5_0 and there were pending changes that were    *   lost (the IndexWriter will still be closed)    */
 annotation|@
 name|Override
 DECL|method|close
@@ -2893,7 +2893,7 @@ name|onOrAfter
 argument_list|(
 name|Version
 operator|.
-name|LUCENE_50
+name|LUCENE_5_0
 argument_list|)
 operator|==
 literal|false

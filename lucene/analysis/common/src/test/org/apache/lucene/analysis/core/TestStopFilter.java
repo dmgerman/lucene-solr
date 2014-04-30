@@ -555,7 +555,7 @@ name|StopFilter
 argument_list|(
 name|Version
 operator|.
-name|LUCENE_40
+name|LUCENE_4_0
 argument_list|,
 name|in
 argument_list|,
