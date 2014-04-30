@@ -448,62 +448,32 @@ name|indexOptions
 parameter_list|)
 block|{
 comment|//System.out.println("FI.update field=" + name + " indexed=" + indexed + " omitNorms=" + omitNorms + " this.omitNorms=" + this.omitNorms);
-if|if
-condition|(
 name|this
 operator|.
 name|indexed
-operator|!=
+operator||=
 name|indexed
-condition|)
-block|{
-name|this
-operator|.
-name|indexed
-operator|=
-literal|true
 expr_stmt|;
-comment|// once indexed, always index
-block|}
+comment|// once indexed, always indexed
 if|if
 condition|(
 name|indexed
 condition|)
 block|{
 comment|// if updated field data is not for indexing, leave the updates out
-if|if
-condition|(
 name|this
 operator|.
 name|storeTermVector
-operator|!=
+operator||=
 name|storeTermVector
-condition|)
-block|{
-name|this
-operator|.
-name|storeTermVector
-operator|=
-literal|true
 expr_stmt|;
 comment|// once vector, always vector
-block|}
-if|if
-condition|(
 name|this
 operator|.
 name|storePayloads
-operator|!=
+operator||=
 name|storePayloads
-condition|)
-block|{
-name|this
-operator|.
-name|storePayloads
-operator|=
-literal|true
 expr_stmt|;
-block|}
 if|if
 condition|(
 name|this

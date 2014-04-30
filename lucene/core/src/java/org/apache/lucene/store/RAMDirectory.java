@@ -576,6 +576,8 @@ operator|new
 name|RAMOutputStream
 argument_list|(
 name|file
+argument_list|,
+literal|true
 argument_list|)
 return|;
 block|}

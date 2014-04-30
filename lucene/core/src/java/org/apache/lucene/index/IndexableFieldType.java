@@ -91,6 +91,8 @@ name|stored
 parameter_list|()
 function_decl|;
 comment|/**     * True if this field's value should be analyzed by the    * {@link Analyzer}.    *<p>    * This has no effect if {@link #indexed()} returns false.    */
+comment|// TODO: shouldn't we remove this?  Whether/how a field is
+comment|// tokenized is an impl detail under Field?
 DECL|method|tokenized
 specifier|public
 name|boolean

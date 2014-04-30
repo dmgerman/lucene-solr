@@ -1691,8 +1691,9 @@ if|if
 condition|(
 name|doc
 operator|!=
-operator|-
-literal|1
+name|DocsEnum
+operator|.
+name|NO_MORE_DOCS
 condition|)
 block|{
 comment|//Found the document.

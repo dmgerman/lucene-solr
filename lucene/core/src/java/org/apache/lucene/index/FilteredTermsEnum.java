@@ -85,23 +85,21 @@ DECL|field|initialSeekTerm
 specifier|private
 name|BytesRef
 name|initialSeekTerm
-init|=
-literal|null
 decl_stmt|;
 DECL|field|doSeek
 specifier|private
 name|boolean
 name|doSeek
 decl_stmt|;
+comment|/** Which term the enum is currently positioned to. */
 DECL|field|actualTerm
-specifier|private
+specifier|protected
 name|BytesRef
 name|actualTerm
-init|=
-literal|null
 decl_stmt|;
+comment|/** The delegate {@link TermsEnum}. */
 DECL|field|tenum
-specifier|private
+specifier|protected
 specifier|final
 name|TermsEnum
 name|tenum
@@ -691,6 +689,7 @@ comment|// we are supposed to end the enum
 return|return
 literal|null
 return|;
+comment|// NO: we just fall through and iterate again
 block|}
 block|}
 block|}

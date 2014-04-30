@@ -990,6 +990,7 @@ argument_list|,
 name|dvp
 argument_list|)
 expr_stmt|;
+block|}
 name|dvProducers
 operator|.
 name|add
@@ -997,7 +998,6 @@ argument_list|(
 name|dvp
 argument_list|)
 expr_stmt|;
-block|}
 block|}
 name|dvGens
 operator|.

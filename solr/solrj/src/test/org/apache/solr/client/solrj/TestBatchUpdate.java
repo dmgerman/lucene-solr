@@ -263,7 +263,7 @@ throws|throws
 name|Exception
 block|{
 name|HttpSolrServer
-name|commonsHttpSolrServer
+name|httpSolrServer
 init|=
 operator|(
 name|HttpSolrServer
@@ -271,7 +271,7 @@ operator|)
 name|getSolrServer
 argument_list|()
 decl_stmt|;
-name|commonsHttpSolrServer
+name|httpSolrServer
 operator|.
 name|setRequestWriter
 argument_list|(
@@ -280,7 +280,7 @@ name|RequestWriter
 argument_list|()
 argument_list|)
 expr_stmt|;
-name|commonsHttpSolrServer
+name|httpSolrServer
 operator|.
 name|deleteByQuery
 argument_list|(
@@ -290,7 +290,7 @@ expr_stmt|;
 comment|// delete everything!
 name|doIt
 argument_list|(
-name|commonsHttpSolrServer
+name|httpSolrServer
 argument_list|)
 expr_stmt|;
 block|}
@@ -305,7 +305,7 @@ throws|throws
 name|Exception
 block|{
 name|HttpSolrServer
-name|commonsHttpSolrServer
+name|httpSolrServer
 init|=
 operator|(
 name|HttpSolrServer
@@ -313,7 +313,7 @@ operator|)
 name|getSolrServer
 argument_list|()
 decl_stmt|;
-name|commonsHttpSolrServer
+name|httpSolrServer
 operator|.
 name|setRequestWriter
 argument_list|(
@@ -322,7 +322,7 @@ name|BinaryRequestWriter
 argument_list|()
 argument_list|)
 expr_stmt|;
-name|commonsHttpSolrServer
+name|httpSolrServer
 operator|.
 name|deleteByQuery
 argument_list|(
@@ -332,7 +332,7 @@ expr_stmt|;
 comment|// delete everything!
 name|doIt
 argument_list|(
-name|commonsHttpSolrServer
+name|httpSolrServer
 argument_list|)
 expr_stmt|;
 block|}
@@ -347,7 +347,7 @@ throws|throws
 name|Exception
 block|{
 name|HttpSolrServer
-name|commonsHttpSolrServer
+name|httpSolrServer
 init|=
 operator|(
 name|HttpSolrServer
@@ -355,7 +355,7 @@ operator|)
 name|getSolrServer
 argument_list|()
 decl_stmt|;
-name|commonsHttpSolrServer
+name|httpSolrServer
 operator|.
 name|setRequestWriter
 argument_list|(
@@ -364,7 +364,7 @@ name|BinaryRequestWriter
 argument_list|()
 argument_list|)
 expr_stmt|;
-name|commonsHttpSolrServer
+name|httpSolrServer
 operator|.
 name|deleteByQuery
 argument_list|(
@@ -390,7 +390,7 @@ index|]
 operator|=
 literal|0
 expr_stmt|;
-name|commonsHttpSolrServer
+name|httpSolrServer
 operator|.
 name|addBeans
 argument_list|(
@@ -467,7 +467,7 @@ block|}
 block|}
 argument_list|)
 expr_stmt|;
-name|commonsHttpSolrServer
+name|httpSolrServer
 operator|.
 name|commit
 argument_list|()
@@ -484,7 +484,7 @@ decl_stmt|;
 name|QueryResponse
 name|response
 init|=
-name|commonsHttpSolrServer
+name|httpSolrServer
 operator|.
 name|query
 argument_list|(
@@ -540,7 +540,7 @@ name|void
 name|doIt
 parameter_list|(
 name|HttpSolrServer
-name|commonsHttpSolrServer
+name|httpSolrServer
 parameter_list|)
 throws|throws
 name|SolrServerException
@@ -565,7 +565,7 @@ index|]
 operator|=
 literal|0
 expr_stmt|;
-name|commonsHttpSolrServer
+name|httpSolrServer
 operator|.
 name|add
 argument_list|(
@@ -648,7 +648,7 @@ block|}
 block|}
 argument_list|)
 expr_stmt|;
-name|commonsHttpSolrServer
+name|httpSolrServer
 operator|.
 name|commit
 argument_list|()
@@ -665,7 +665,7 @@ decl_stmt|;
 name|QueryResponse
 name|response
 init|=
-name|commonsHttpSolrServer
+name|httpSolrServer
 operator|.
 name|query
 argument_list|(

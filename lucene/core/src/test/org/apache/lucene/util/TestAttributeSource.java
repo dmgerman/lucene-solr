@@ -523,6 +523,11 @@ operator|.
 name|class
 argument_list|)
 decl_stmt|;
+name|assertNotNull
+argument_list|(
+name|flagsAtt2
+argument_list|)
+expr_stmt|;
 specifier|final
 name|TypeAttribute
 name|typeAtt2
@@ -536,6 +541,11 @@ operator|.
 name|class
 argument_list|)
 decl_stmt|;
+name|assertNotNull
+argument_list|(
+name|typeAtt2
+argument_list|)
+expr_stmt|;
 name|assertNotSame
 argument_list|(
 literal|"FlagsAttribute of original and clone must be different instances"

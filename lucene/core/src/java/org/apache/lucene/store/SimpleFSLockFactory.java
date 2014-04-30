@@ -319,12 +319,33 @@ argument_list|()
 argument_list|)
 throw|;
 block|}
+try|try
+block|{
 return|return
 name|lockFile
 operator|.
 name|createNewFile
 argument_list|()
 return|;
+block|}
+catch|catch
+parameter_list|(
+name|IOException
+name|ioe
+parameter_list|)
+block|{
+comment|// On Windows, on concurrent createNewFile, the 2nd process gets "access denied".
+comment|// In that case, the lock was not aquired successfully, so return false.
+comment|// We record the failure reason here; the obtain with timeout (usually the
+comment|// one calling us) will use this as "root cause" if it fails to get the lock.
+name|failureReason
+operator|=
+name|ioe
+expr_stmt|;
+return|return
+literal|false
+return|;
+block|}
 block|}
 annotation|@
 name|Override

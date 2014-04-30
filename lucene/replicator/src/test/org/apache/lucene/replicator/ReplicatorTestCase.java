@@ -36,7 +36,7 @@ name|http
 operator|.
 name|conn
 operator|.
-name|ClientConnectionManager
+name|HttpClientConnectionManager
 import|;
 end_import
 
@@ -52,7 +52,7 @@ name|impl
 operator|.
 name|conn
 operator|.
-name|PoolingClientConnectionManager
+name|PoolingHttpClientConnectionManager
 import|;
 end_import
 
@@ -267,7 +267,7 @@ block|{
 DECL|field|clientConnectionManager
 specifier|private
 specifier|static
-name|ClientConnectionManager
+name|HttpClientConnectionManager
 name|clientConnectionManager
 decl_stmt|;
 annotation|@
@@ -775,12 +775,12 @@ name|join
 argument_list|()
 expr_stmt|;
 block|}
-comment|/**    * Returns a {@link ClientConnectionManager}.    *<p>    *<b>NOTE:</b> do not {@link ClientConnectionManager#shutdown()} this    * connection manager, it will be shutdown automatically after all tests have    * finished.    */
+comment|/**    * Returns a {@link HttpClientConnectionManager}.    *<p>    *<b>NOTE:</b> do not {@link HttpClientConnectionManager#shutdown()} this    * connection manager, it will be shutdown automatically after all tests have    * finished.    */
 DECL|method|getClientConnectionManager
 specifier|public
 specifier|static
 specifier|synchronized
-name|ClientConnectionManager
+name|HttpClientConnectionManager
 name|getClientConnectionManager
 parameter_list|()
 block|{
@@ -791,11 +791,11 @@ operator|==
 literal|null
 condition|)
 block|{
-name|PoolingClientConnectionManager
+name|PoolingHttpClientConnectionManager
 name|ccm
 init|=
 operator|new
-name|PoolingClientConnectionManager
+name|PoolingHttpClientConnectionManager
 argument_list|()
 decl_stmt|;
 name|ccm

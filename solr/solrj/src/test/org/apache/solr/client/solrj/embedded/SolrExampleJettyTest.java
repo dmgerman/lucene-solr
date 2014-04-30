@@ -194,7 +194,7 @@ name|Assert
 operator|.
 name|fail
 argument_list|(
-literal|"CommonsHttpSolrServer should not allow a path with a parameter: "
+literal|"HttpSolrServer should not allow a path with a parameter: "
 operator|+
 name|s
 operator|.

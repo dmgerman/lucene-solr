@@ -82,7 +82,7 @@ name|http
 operator|.
 name|conn
 operator|.
-name|ClientConnectionManager
+name|HttpClientConnectionManager
 import|;
 end_import
 
@@ -174,7 +174,7 @@ parameter_list|,
 name|String
 name|path
 parameter_list|,
-name|ClientConnectionManager
+name|HttpClientConnectionManager
 name|conMgr
 parameter_list|)
 block|{
@@ -187,6 +187,8 @@ argument_list|,
 name|path
 argument_list|,
 name|conMgr
+argument_list|,
+literal|null
 argument_list|)
 expr_stmt|;
 block|}

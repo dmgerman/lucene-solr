@@ -127,9 +127,9 @@ name|Exception
 block|{
 name|initCore
 argument_list|(
-literal|"solrconfig-query-parser-init.xml"
+literal|"solrconfig.xml"
 argument_list|,
-literal|"schema-complex-phrase.xml"
+literal|"schema15.xml"
 argument_list|)
 expr_stmt|;
 block|}
@@ -238,7 +238,7 @@ argument_list|)
 argument_list|,
 literal|"//result[@numFound='1']"
 argument_list|,
-literal|"//doc[./int[@name='id']='1']"
+literal|"//doc[./str[@name='id']='1']"
 argument_list|)
 expr_stmt|;
 name|assertQ
@@ -252,9 +252,9 @@ argument_list|)
 argument_list|,
 literal|"//result[@numFound='2']"
 argument_list|,
-literal|"//doc[./int[@name='id']='1']"
+literal|"//doc[./str[@name='id']='1']"
 argument_list|,
-literal|"//doc[./int[@name='id']='2']"
+literal|"//doc[./str[@name='id']='2']"
 argument_list|)
 expr_stmt|;
 name|assertQ
@@ -268,7 +268,7 @@ argument_list|)
 argument_list|,
 literal|"//result[@numFound='1']"
 argument_list|,
-literal|"//doc[./int[@name='id']='2']"
+literal|"//doc[./str[@name='id']='2']"
 argument_list|)
 expr_stmt|;
 name|assertQ
@@ -282,11 +282,11 @@ argument_list|)
 argument_list|,
 literal|"//result[@numFound='3']"
 argument_list|,
-literal|"//doc[./int[@name='id']='1']"
+literal|"//doc[./str[@name='id']='1']"
 argument_list|,
-literal|"//doc[./int[@name='id']='2']"
+literal|"//doc[./str[@name='id']='2']"
 argument_list|,
-literal|"//doc[./int[@name='id']='3']"
+literal|"//doc[./str[@name='id']='3']"
 argument_list|)
 expr_stmt|;
 name|assertQ
@@ -300,9 +300,9 @@ argument_list|)
 argument_list|,
 literal|"//result[@numFound='2']"
 argument_list|,
-literal|"//doc[./int[@name='id']='1']"
+literal|"//doc[./str[@name='id']='1']"
 argument_list|,
-literal|"//doc[./int[@name='id']='2']"
+literal|"//doc[./str[@name='id']='2']"
 argument_list|)
 expr_stmt|;
 name|assertQ
@@ -316,9 +316,9 @@ argument_list|)
 argument_list|,
 literal|"//result[@numFound='2']"
 argument_list|,
-literal|"//doc[./int[@name='id']='1']"
+literal|"//doc[./str[@name='id']='1']"
 argument_list|,
-literal|"//doc[./int[@name='id']='3']"
+literal|"//doc[./str[@name='id']='3']"
 argument_list|)
 expr_stmt|;
 name|assertQ
@@ -332,9 +332,9 @@ argument_list|)
 argument_list|,
 literal|"//result[@numFound='2']"
 argument_list|,
-literal|"//doc[./int[@name='id']='1']"
+literal|"//doc[./str[@name='id']='1']"
 argument_list|,
-literal|"//doc[./int[@name='id']='2']"
+literal|"//doc[./str[@name='id']='2']"
 argument_list|)
 expr_stmt|;
 block|}
@@ -470,7 +470,7 @@ argument_list|(
 literal|"name:\"john smith\""
 argument_list|)
 argument_list|,
-literal|"//doc[./int[@name='id']='1']"
+literal|"//doc[./str[@name='id']='1']"
 argument_list|,
 literal|"//result[@numFound='1']"
 argument_list|)
@@ -484,7 +484,7 @@ argument_list|,
 literal|"{!complexphrase} name:\"john smith\""
 argument_list|)
 argument_list|,
-literal|"//doc[./int[@name='id']='1']"
+literal|"//doc[./str[@name='id']='1']"
 argument_list|,
 literal|"//result[@numFound='1']"
 argument_list|)
@@ -500,9 +500,9 @@ argument_list|(
 literal|"name:\"j* smyth~\""
 argument_list|)
 argument_list|,
-literal|"//doc[./int[@name='id']='1']"
+literal|"//doc[./str[@name='id']='1']"
 argument_list|,
-literal|"//doc[./int[@name='id']='2']"
+literal|"//doc[./str[@name='id']='2']"
 argument_list|,
 literal|"//result[@numFound='2']"
 argument_list|)
@@ -518,7 +518,7 @@ argument_list|(
 literal|"name:\"(jo* -john) smith\""
 argument_list|)
 argument_list|,
-literal|"//doc[./int[@name='id']='2']"
+literal|"//doc[./str[@name='id']='2']"
 argument_list|,
 literal|"//result[@numFound='1']"
 argument_list|)
@@ -534,11 +534,11 @@ argument_list|(
 literal|"name:\"jo*  smith\"~2"
 argument_list|)
 argument_list|,
-literal|"//doc[./int[@name='id']='1']"
+literal|"//doc[./str[@name='id']='1']"
 argument_list|,
-literal|"//doc[./int[@name='id']='2']"
+literal|"//doc[./str[@name='id']='2']"
 argument_list|,
-literal|"//doc[./int[@name='id']='3']"
+literal|"//doc[./str[@name='id']='3']"
 argument_list|,
 literal|"//result[@numFound='3']"
 argument_list|)
@@ -554,9 +554,9 @@ argument_list|(
 literal|"name:\"jo* [sma TO smz]\""
 argument_list|)
 argument_list|,
-literal|"//doc[./int[@name='id']='1']"
+literal|"//doc[./str[@name='id']='1']"
 argument_list|,
-literal|"//doc[./int[@name='id']='2']"
+literal|"//doc[./str[@name='id']='2']"
 argument_list|,
 literal|"//result[@numFound='2']"
 argument_list|)
@@ -572,9 +572,9 @@ argument_list|(
 literal|"name:\"john\""
 argument_list|)
 argument_list|,
-literal|"//doc[./int[@name='id']='1']"
+literal|"//doc[./str[@name='id']='1']"
 argument_list|,
-literal|"//doc[./int[@name='id']='3']"
+literal|"//doc[./str[@name='id']='3']"
 argument_list|,
 literal|"//result[@numFound='2']"
 argument_list|)
@@ -590,9 +590,9 @@ argument_list|(
 literal|"name:\"(john johathon) smith\""
 argument_list|)
 argument_list|,
-literal|"//doc[./int[@name='id']='1']"
+literal|"//doc[./str[@name='id']='1']"
 argument_list|,
-literal|"//doc[./int[@name='id']='2']"
+literal|"//doc[./str[@name='id']='2']"
 argument_list|,
 literal|"//result[@numFound='2']"
 argument_list|)
@@ -805,11 +805,11 @@ argument_list|(
 literal|"name:[sma TO smz]"
 argument_list|)
 argument_list|,
-literal|"//doc[./int[@name='id']='1']"
+literal|"//doc[./str[@name='id']='1']"
 argument_list|,
-literal|"//doc[./int[@name='id']='2']"
+literal|"//doc[./str[@name='id']='2']"
 argument_list|,
-literal|"//doc[./int[@name='id']='3']"
+literal|"//doc[./str[@name='id']='3']"
 argument_list|,
 literal|"//result[@numFound='3']"
 argument_list|)
@@ -1005,7 +1005,7 @@ argument_list|)
 argument_list|,
 literal|"//result[@numFound='1']"
 argument_list|,
-literal|"//doc[./int[@name='id']='3']"
+literal|"//doc[./str[@name='id']='3']"
 argument_list|)
 expr_stmt|;
 name|assertQ
@@ -1019,7 +1019,7 @@ argument_list|)
 argument_list|,
 literal|"//result[@numFound='1']"
 argument_list|,
-literal|"//doc[./int[@name='id']='3']"
+literal|"//doc[./str[@name='id']='3']"
 argument_list|)
 expr_stmt|;
 name|assertQ
@@ -1033,7 +1033,7 @@ argument_list|)
 argument_list|,
 literal|"//result[@numFound='1']"
 argument_list|,
-literal|"//doc[./int[@name='id']='1']"
+literal|"//doc[./str[@name='id']='1']"
 argument_list|)
 expr_stmt|;
 name|assertQ
@@ -1042,14 +1042,14 @@ name|req
 argument_list|(
 literal|"q"
 argument_list|,
-literal|"{!unorderedcomplexphrase} name:\"protein digest\" AND text:\"dna rules\"~2"
+literal|"{!complexphrase inOrder=false} name:\"protein digest\" AND text:\"dna rules\"~2"
 argument_list|)
 argument_list|,
 literal|"//result[@numFound='2']"
 argument_list|,
-literal|"//doc[./int[@name='id']='3']"
+literal|"//doc[./str[@name='id']='3']"
 argument_list|,
-literal|"//doc[./int[@name='id']='4']"
+literal|"//doc[./str[@name='id']='4']"
 argument_list|)
 expr_stmt|;
 name|assertQ
@@ -1058,12 +1058,12 @@ name|req
 argument_list|(
 literal|"q"
 argument_list|,
-literal|"{!unorderedcomplexphrase inOrder=\"true\"} name:\"protein digest\" AND text:\"dna rules\""
+literal|"{!complexphrase inOrder=\"true\"} name:\"protein digest\" AND text:\"dna rules\""
 argument_list|)
 argument_list|,
 literal|"//result[@numFound='1']"
 argument_list|,
-literal|"//doc[./int[@name='id']='3']"
+literal|"//doc[./str[@name='id']='3']"
 argument_list|)
 expr_stmt|;
 block|}
@@ -1155,7 +1155,7 @@ argument_list|)
 argument_list|,
 literal|"//result[@numFound='1']"
 argument_list|,
-literal|"//doc[./int[@name='id']='1']"
+literal|"//doc[./str[@name='id']='1']"
 argument_list|)
 expr_stmt|;
 name|assertQ
@@ -1169,7 +1169,7 @@ argument_list|)
 argument_list|,
 literal|"//result[@numFound='1']"
 argument_list|,
-literal|"//doc[./int[@name='id']='1']"
+literal|"//doc[./str[@name='id']='1']"
 argument_list|)
 expr_stmt|;
 name|assertQ
@@ -1183,7 +1183,7 @@ argument_list|)
 argument_list|,
 literal|"//result[@numFound='1']"
 argument_list|,
-literal|"//doc[./int[@name='id']='3']"
+literal|"//doc[./str[@name='id']='3']"
 argument_list|)
 expr_stmt|;
 name|assertQ
@@ -1197,7 +1197,7 @@ argument_list|)
 argument_list|,
 literal|"//result[@numFound='1']"
 argument_list|,
-literal|"//doc[./int[@name='id']='3']"
+literal|"//doc[./str[@name='id']='3']"
 argument_list|)
 expr_stmt|;
 comment|/**      * unordered phrase query returns two documents.      */
@@ -1207,14 +1207,14 @@ name|req
 argument_list|(
 literal|"q"
 argument_list|,
-literal|"{!unorderedcomplexphrase} \"digest protein\""
+literal|"{!complexphrase inOrder=false} \"digest protein\""
 argument_list|)
 argument_list|,
 literal|"//result[@numFound='2']"
 argument_list|,
-literal|"//doc[./int[@name='id']='1']"
+literal|"//doc[./str[@name='id']='1']"
 argument_list|,
-literal|"//doc[./int[@name='id']='2']"
+literal|"//doc[./str[@name='id']='2']"
 argument_list|)
 expr_stmt|;
 name|assertQ
@@ -1223,14 +1223,14 @@ name|req
 argument_list|(
 literal|"q"
 argument_list|,
-literal|"{!unorderedcomplexphrase} \"di* pro*\""
+literal|"{!complexphrase inOrder=false} \"di* pro*\""
 argument_list|)
 argument_list|,
 literal|"//result[@numFound='2']"
 argument_list|,
-literal|"//doc[./int[@name='id']='1']"
+literal|"//doc[./str[@name='id']='1']"
 argument_list|,
-literal|"//doc[./int[@name='id']='2']"
+literal|"//doc[./str[@name='id']='2']"
 argument_list|)
 expr_stmt|;
 name|assertQ
@@ -1239,14 +1239,14 @@ name|req
 argument_list|(
 literal|"q"
 argument_list|,
-literal|"{!unorderedcomplexphrase} name:\"digest protein\""
+literal|"{!complexphrase inOrder=false} name:\"digest protein\""
 argument_list|)
 argument_list|,
 literal|"//result[@numFound='2']"
 argument_list|,
-literal|"//doc[./int[@name='id']='3']"
+literal|"//doc[./str[@name='id']='3']"
 argument_list|,
-literal|"//doc[./int[@name='id']='4']"
+literal|"//doc[./str[@name='id']='4']"
 argument_list|)
 expr_stmt|;
 name|assertQ
@@ -1255,14 +1255,14 @@ name|req
 argument_list|(
 literal|"q"
 argument_list|,
-literal|"{!unorderedcomplexphrase} name:\"di* pro*\""
+literal|"{!complexphrase inOrder=false} name:\"di* pro*\""
 argument_list|)
 argument_list|,
 literal|"//result[@numFound='2']"
 argument_list|,
-literal|"//doc[./int[@name='id']='3']"
+literal|"//doc[./str[@name='id']='3']"
 argument_list|,
-literal|"//doc[./int[@name='id']='4']"
+literal|"//doc[./str[@name='id']='4']"
 argument_list|)
 expr_stmt|;
 comment|/**      * inOrder parameter can be defined with local params syntax.      */
@@ -1277,9 +1277,21 @@ argument_list|)
 argument_list|,
 literal|"//result[@numFound='2']"
 argument_list|,
-literal|"//doc[./int[@name='id']='1']"
+literal|"//doc[./str[@name='id']='1']"
 argument_list|,
-literal|"//doc[./int[@name='id']='2']"
+literal|"//doc[./str[@name='id']='2']"
+argument_list|)
+expr_stmt|;
+name|assertQ
+argument_list|(
+name|req
+argument_list|(
+literal|"q"
+argument_list|,
+literal|"{!complexphrase inOrder=true} \"di* pro*\""
+argument_list|)
+argument_list|,
+literal|"//result[@numFound='1']"
 argument_list|)
 expr_stmt|;
 comment|/**      * inOrder and df parameters can be defined with local params syntax.      */
@@ -1294,9 +1306,9 @@ argument_list|)
 argument_list|,
 literal|"//result[@numFound='2']"
 argument_list|,
-literal|"//doc[./int[@name='id']='3']"
+literal|"//doc[./str[@name='id']='3']"
 argument_list|,
-literal|"//doc[./int[@name='id']='4']"
+literal|"//doc[./str[@name='id']='4']"
 argument_list|)
 expr_stmt|;
 block|}
@@ -1388,11 +1400,12 @@ argument_list|)
 argument_list|,
 literal|"//result[@numFound='2']"
 argument_list|,
-literal|"//doc[./int[@name='id']='1']"
+literal|"//doc[./str[@name='id']='1']"
 argument_list|,
-literal|"//doc[./int[@name='id']='2']"
+literal|"//doc[./str[@name='id']='2']"
 argument_list|)
 expr_stmt|;
+comment|// the analysis for "name" currently does not break on "-" (only whitespace) and thus only matches one doc
 name|assertQ
 argument_list|(
 name|req
@@ -1402,11 +1415,7 @@ argument_list|,
 literal|"{!complexphrase} name:\"sulfur-reducing bacteria\""
 argument_list|)
 argument_list|,
-literal|"//result[@numFound='2']"
-argument_list|,
-literal|"//doc[./int[@name='id']='3']"
-argument_list|,
-literal|"//doc[./int[@name='id']='4']"
+literal|"//result[@numFound='1']"
 argument_list|)
 expr_stmt|;
 block|}

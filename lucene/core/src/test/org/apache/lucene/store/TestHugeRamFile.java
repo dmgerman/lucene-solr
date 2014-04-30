@@ -222,6 +222,8 @@ operator|new
 name|RAMOutputStream
 argument_list|(
 name|f
+argument_list|,
+literal|true
 argument_list|)
 decl_stmt|;
 name|byte

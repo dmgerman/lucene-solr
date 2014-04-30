@@ -361,6 +361,7 @@ argument_list|)
 return|;
 block|}
 block|}
+comment|/** Specialized method to bulk-score a range of hits; we      *  separate this from {@link #scoreAll} to help out      *  hotspot.      *  See<a href="https://issues.apache.org/jira/browse/LUCENE-5487">LUCENE-5487</a> */
 DECL|method|scoreRange
 specifier|static
 name|boolean
@@ -411,6 +412,7 @@ operator|.
 name|NO_MORE_DOCS
 return|;
 block|}
+comment|/** Specialized method to bulk-score all hits; we      *  separate this from {@link #scoreRange} to help out      *  hotspot.      *  See<a href="https://issues.apache.org/jira/browse/LUCENE-5487">LUCENE-5487</a> */
 DECL|method|scoreAll
 specifier|static
 name|void

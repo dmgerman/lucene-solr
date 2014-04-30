@@ -153,7 +153,6 @@ argument_list|(
 name|lvalue
 argument_list|)
 decl_stmt|;
-comment|// use getAttribute to test if attributes really exist, if not an IAE will be throwed
 specifier|final
 name|TermToBytesRefAttribute
 name|bytesAtt
@@ -167,6 +166,11 @@ operator|.
 name|class
 argument_list|)
 decl_stmt|;
+name|assertNotNull
+argument_list|(
+name|bytesAtt
+argument_list|)
+expr_stmt|;
 specifier|final
 name|TypeAttribute
 name|typeAtt
@@ -180,6 +184,11 @@ operator|.
 name|class
 argument_list|)
 decl_stmt|;
+name|assertNotNull
+argument_list|(
+name|typeAtt
+argument_list|)
+expr_stmt|;
 specifier|final
 name|NumericTokenStream
 operator|.
@@ -197,6 +206,11 @@ operator|.
 name|class
 argument_list|)
 decl_stmt|;
+name|assertNotNull
+argument_list|(
+name|numericAtt
+argument_list|)
+expr_stmt|;
 specifier|final
 name|BytesRef
 name|bytes
@@ -381,7 +395,6 @@ argument_list|(
 name|ivalue
 argument_list|)
 decl_stmt|;
-comment|// use getAttribute to test if attributes really exist, if not an IAE will be throwed
 specifier|final
 name|TermToBytesRefAttribute
 name|bytesAtt
@@ -395,6 +408,11 @@ operator|.
 name|class
 argument_list|)
 decl_stmt|;
+name|assertNotNull
+argument_list|(
+name|bytesAtt
+argument_list|)
+expr_stmt|;
 specifier|final
 name|TypeAttribute
 name|typeAtt
@@ -408,6 +426,11 @@ operator|.
 name|class
 argument_list|)
 decl_stmt|;
+name|assertNotNull
+argument_list|(
+name|typeAtt
+argument_list|)
+expr_stmt|;
 specifier|final
 name|NumericTokenStream
 operator|.
@@ -425,6 +448,11 @@ operator|.
 name|class
 argument_list|)
 decl_stmt|;
+name|assertNotNull
+argument_list|(
+name|numericAtt
+argument_list|)
+expr_stmt|;
 specifier|final
 name|BytesRef
 name|bytes

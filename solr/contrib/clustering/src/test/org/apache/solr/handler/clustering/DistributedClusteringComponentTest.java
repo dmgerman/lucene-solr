@@ -38,6 +38,20 @@ name|apache
 operator|.
 name|solr
 operator|.
+name|SolrTestCaseJ4
+operator|.
+name|SuppressSSL
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|solr
+operator|.
 name|common
 operator|.
 name|params
@@ -47,6 +61,8 @@ import|;
 end_import
 
 begin_class
+annotation|@
+name|SuppressSSL
 DECL|class|DistributedClusteringComponentTest
 specifier|public
 class|class

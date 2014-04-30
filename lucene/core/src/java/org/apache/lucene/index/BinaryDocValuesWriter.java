@@ -666,14 +666,6 @@ block|}
 argument_list|)
 expr_stmt|;
 block|}
-annotation|@
-name|Override
-DECL|method|abort
-specifier|public
-name|void
-name|abort
-parameter_list|()
-block|{   }
 comment|// iterates over the values we have in ram
 DECL|class|BytesIterator
 specifier|private
