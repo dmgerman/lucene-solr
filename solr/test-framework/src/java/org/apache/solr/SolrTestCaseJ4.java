@@ -1157,7 +1157,7 @@ name|SuppressSysoutChecks
 argument_list|(
 name|bugUrl
 operator|=
-literal|"Solr dumps logs to console."
+literal|"Solr dumps tons of logs to console."
 argument_list|)
 DECL|class|SolrTestCaseJ4
 specifier|public

@@ -117,13 +117,6 @@ import|;
 end_import
 
 begin_class
-annotation|@
-name|SuppressSysoutChecks
-argument_list|(
-name|bugUrl
-operator|=
-literal|"Output expected (external tool)."
-argument_list|)
 DECL|class|TestMultiPassIndexSplitter
 specifier|public
 class|class

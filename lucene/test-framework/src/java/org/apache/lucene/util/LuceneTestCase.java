@@ -2032,6 +2032,17 @@ operator|.
 name|class
 block|}
 argument_list|)
+annotation|@
+name|TestRuleLimitSysouts
+operator|.
+name|Limit
+argument_list|(
+name|bytes
+operator|=
+name|TestRuleLimitSysouts
+operator|.
+name|DEFAULT_SYSOUT_BYTES_THRESHOLD
+argument_list|)
 DECL|class|LuceneTestCase
 specifier|public
 specifier|abstract
@@ -2116,16 +2127,6 @@ name|String
 name|SYSPROP_FAILFAST
 init|=
 literal|"tests.failfast"
-decl_stmt|;
-comment|/**    * If true, enables assertions on writing to system streams.    *     * @see TestRuleLimitSysouts    */
-DECL|field|SYSPROP_SYSOUTS
-specifier|public
-specifier|static
-specifier|final
-name|String
-name|SYSPROP_SYSOUTS
-init|=
-literal|"tests.sysouts"
 decl_stmt|;
 comment|/**    * Annotation for tests that should only be run during nightly builds.    */
 annotation|@
@@ -2382,7 +2383,7 @@ default|default
 literal|"None"
 function_decl|;
 block|}
-comment|/**    * Marks any suite which is known to print to {@link System#out} or {@link System#err},    * even when {@link #VERBOSE} is disabled.    *     * @see TestRuleLimitSysouts    */
+comment|/**    * Ignore {@link TestRuleLimitSysouts} for any suite which is known to print     * over the default limit of bytes to {@link System#out} or {@link System#err}.    *     * @see TestRuleLimitSysouts    */
 annotation|@
 name|Documented
 annotation|@

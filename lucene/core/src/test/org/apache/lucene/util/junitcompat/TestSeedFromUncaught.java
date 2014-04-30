@@ -118,13 +118,6 @@ name|TestSeedFromUncaught
 extends|extends
 name|WithNestedTests
 block|{
-annotation|@
-name|SuppressSysoutChecks
-argument_list|(
-name|bugUrl
-operator|=
-literal|"Expected."
-argument_list|)
 DECL|class|ThrowInUncaught
 specifier|public
 specifier|static

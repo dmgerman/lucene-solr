@@ -315,13 +315,6 @@ comment|/** Test very simply that perf tasks are parses as expected. */
 end_comment
 
 begin_class
-annotation|@
-name|SuppressSysoutChecks
-argument_list|(
-name|bugUrl
-operator|=
-literal|"Output expected."
-argument_list|)
 DECL|class|TestPerfTasksParse
 specifier|public
 class|class

@@ -177,13 +177,6 @@ import|;
 end_import
 
 begin_class
-annotation|@
-name|SuppressSysoutChecks
-argument_list|(
-name|bugUrl
-operator|=
-literal|"External tool."
-argument_list|)
 DECL|class|TestCompile
 specifier|public
 class|class

@@ -97,13 +97,6 @@ comment|/**  * Testcase for {@link UIMATypeAwareAnalyzer}  */
 end_comment
 
 begin_class
-annotation|@
-name|SuppressSysoutChecks
-argument_list|(
-name|bugUrl
-operator|=
-literal|"UIMA logs via ju.logging"
-argument_list|)
 DECL|class|UIMATypeAwareAnalyzerTest
 specifier|public
 class|class

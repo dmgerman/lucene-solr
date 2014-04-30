@@ -265,13 +265,6 @@ comment|/**  * Test that quality run does its job.  *<p>  * NOTE: if the default
 end_comment
 
 begin_class
-annotation|@
-name|SuppressSysoutChecks
-argument_list|(
-name|bugUrl
-operator|=
-literal|"Output expected."
-argument_list|)
 DECL|class|TestQualityRun
 specifier|public
 class|class

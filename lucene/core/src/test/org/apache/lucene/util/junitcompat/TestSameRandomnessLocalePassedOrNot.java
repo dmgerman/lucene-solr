@@ -194,13 +194,6 @@ literal|true
 argument_list|)
 expr_stmt|;
 block|}
-annotation|@
-name|SuppressSysoutChecks
-argument_list|(
-name|bugUrl
-operator|=
-literal|"Expected."
-argument_list|)
 DECL|class|Nested
 specifier|public
 specifier|static
