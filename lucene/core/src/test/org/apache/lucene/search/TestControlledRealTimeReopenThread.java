@@ -389,8 +389,6 @@ operator|.
 name|util
 operator|.
 name|LuceneTestCase
-operator|.
-name|SuppressCodecs
 import|;
 end_import
 
@@ -405,20 +403,8 @@ operator|.
 name|util
 operator|.
 name|LuceneTestCase
-import|;
-end_import
-
-begin_import
-import|import
-name|org
 operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|util
-operator|.
-name|TestUtil
+name|SuppressCodecs
 import|;
 end_import
 
@@ -1905,19 +1891,9 @@ name|conf
 operator|.
 name|setMergePolicy
 argument_list|(
-name|random
-argument_list|()
-operator|.
-name|nextBoolean
-argument_list|()
-condition|?
 name|NoMergePolicy
 operator|.
-name|COMPOUND_FILES
-else|:
-name|NoMergePolicy
-operator|.
-name|NO_COMPOUND_FILES
+name|INSTANCE
 argument_list|)
 expr_stmt|;
 name|Directory

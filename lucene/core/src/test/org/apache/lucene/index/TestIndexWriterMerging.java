@@ -32,16 +32,6 @@ name|java
 operator|.
 name|util
 operator|.
-name|ArrayList
-import|;
-end_import
-
-begin_import
-import|import
-name|java
-operator|.
-name|util
-operator|.
 name|Random
 import|;
 end_import
@@ -904,7 +894,7 @@ name|setMergePolicy
 argument_list|(
 name|NoMergePolicy
 operator|.
-name|COMPOUND_FILES
+name|INSTANCE
 argument_list|)
 decl_stmt|;
 name|writer
@@ -1347,7 +1337,7 @@ name|setMergePolicy
 argument_list|(
 name|NoMergePolicy
 operator|.
-name|COMPOUND_FILES
+name|INSTANCE
 argument_list|)
 decl_stmt|;
 name|writer
@@ -1779,7 +1769,7 @@ name|setMergePolicy
 argument_list|(
 name|NoMergePolicy
 operator|.
-name|COMPOUND_FILES
+name|INSTANCE
 argument_list|)
 decl_stmt|;
 name|writer

@@ -3747,7 +3747,7 @@ name|setMergePolicy
 argument_list|(
 name|NoMergePolicy
 operator|.
-name|COMPOUND_FILES
+name|INSTANCE
 argument_list|)
 expr_stmt|;
 name|writer

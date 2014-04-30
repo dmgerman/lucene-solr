@@ -37,7 +37,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * A {@link MergePolicy} which never returns merges to execute (hence it's  * name). It is also a singleton and can be accessed through  * {@link NoMergePolicy#NO_COMPOUND_FILES} if you want to indicate the index  * does not use compound files, or through {@link NoMergePolicy#COMPOUND_FILES}  * otherwise. Use it if you want to prevent an {@link IndexWriter} from ever  * executing merges, without going through the hassle of tweaking a merge  * policy's settings to achieve that, such as changing its merge factor.  */
+comment|/**  * A {@link MergePolicy} which never returns merges to execute. Use it if you  * want to prevent segment merges.  */
 end_comment
 
 begin_class
@@ -49,65 +49,25 @@ name|NoMergePolicy
 extends|extends
 name|MergePolicy
 block|{
-comment|/**    * A singleton {@link NoMergePolicy} which indicates the index does not use    * compound files.    */
-DECL|field|NO_COMPOUND_FILES
+comment|/** Singleton instance. */
+DECL|field|INSTANCE
 specifier|public
 specifier|static
 specifier|final
 name|MergePolicy
-name|NO_COMPOUND_FILES
+name|INSTANCE
 init|=
 operator|new
 name|NoMergePolicy
-argument_list|(
-literal|false
-argument_list|)
-decl_stmt|;
-comment|/**    * A singleton {@link NoMergePolicy} which indicates the index uses compound    * files.    */
-DECL|field|COMPOUND_FILES
-specifier|public
-specifier|static
-specifier|final
-name|MergePolicy
-name|COMPOUND_FILES
-init|=
-operator|new
-name|NoMergePolicy
-argument_list|(
-literal|true
-argument_list|)
-decl_stmt|;
-DECL|field|useCompoundFile
-specifier|private
-specifier|final
-name|boolean
-name|useCompoundFile
+argument_list|()
 decl_stmt|;
 DECL|method|NoMergePolicy
 specifier|private
 name|NoMergePolicy
-parameter_list|(
-name|boolean
-name|useCompoundFile
-parameter_list|)
+parameter_list|()
 block|{
 name|super
-argument_list|(
-name|useCompoundFile
-condition|?
-literal|1.0
-else|:
-literal|0.0
-argument_list|,
-literal|0
-argument_list|)
-expr_stmt|;
-comment|// prevent instantiation
-name|this
-operator|.
-name|useCompoundFile
-operator|=
-name|useCompoundFile
+argument_list|()
 expr_stmt|;
 block|}
 annotation|@
@@ -192,7 +152,12 @@ name|newSegment
 parameter_list|)
 block|{
 return|return
-name|useCompoundFile
+name|newSegment
+operator|.
+name|info
+operator|.
+name|getUseCompoundFile
+argument_list|()
 return|;
 block|}
 annotation|@

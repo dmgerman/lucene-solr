@@ -100,22 +100,6 @@ name|LuceneTestCase
 import|;
 end_import
 
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|util
-operator|.
-name|LuceneTestCase
-operator|.
-name|SuppressSysoutChecks
-import|;
-end_import
-
 begin_class
 DECL|class|TestMultiPassIndexSplitter
 specifier|public
@@ -182,7 +166,7 @@ name|setMergePolicy
 argument_list|(
 name|NoMergePolicy
 operator|.
-name|COMPOUND_FILES
+name|INSTANCE
 argument_list|)
 argument_list|)
 decl_stmt|;

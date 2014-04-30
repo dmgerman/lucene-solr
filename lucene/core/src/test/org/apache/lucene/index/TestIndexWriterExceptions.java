@@ -499,8 +499,6 @@ operator|.
 name|store
 operator|.
 name|MockDirectoryWrapper
-operator|.
-name|FakeIOException
 import|;
 end_import
 
@@ -515,6 +513,8 @@ operator|.
 name|store
 operator|.
 name|MockDirectoryWrapper
+operator|.
+name|FakeIOException
 import|;
 end_import
 
@@ -4540,19 +4540,9 @@ argument_list|)
 operator|.
 name|setMergePolicy
 argument_list|(
-name|random
-argument_list|()
-operator|.
-name|nextBoolean
-argument_list|()
-condition|?
 name|NoMergePolicy
 operator|.
-name|COMPOUND_FILES
-else|:
-name|NoMergePolicy
-operator|.
-name|NO_COMPOUND_FILES
+name|INSTANCE
 argument_list|)
 argument_list|)
 decl_stmt|;

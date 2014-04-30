@@ -5210,7 +5210,7 @@ name|setMergePolicy
 argument_list|(
 name|NoMergePolicy
 operator|.
-name|COMPOUND_FILES
+name|INSTANCE
 argument_list|)
 argument_list|)
 decl_stmt|;

@@ -1068,7 +1068,7 @@ name|setMergePolicy
 argument_list|(
 name|NoMergePolicy
 operator|.
-name|COMPOUND_FILES
+name|INSTANCE
 argument_list|)
 expr_stmt|;
 comment|// prevent merges for this test
@@ -1632,7 +1632,7 @@ name|setMergePolicy
 argument_list|(
 name|NoMergePolicy
 operator|.
-name|COMPOUND_FILES
+name|INSTANCE
 argument_list|)
 expr_stmt|;
 comment|// prevent merges for this test
@@ -6059,7 +6059,7 @@ name|setMergePolicy
 argument_list|(
 name|NoMergePolicy
 operator|.
-name|COMPOUND_FILES
+name|INSTANCE
 argument_list|)
 expr_stmt|;
 name|IndexWriter
@@ -6414,7 +6414,7 @@ name|setMergePolicy
 argument_list|(
 name|NoMergePolicy
 operator|.
-name|COMPOUND_FILES
+name|INSTANCE
 argument_list|)
 expr_stmt|;
 name|IndexWriter
@@ -8325,7 +8325,7 @@ name|setMergePolicy
 argument_list|(
 name|NoMergePolicy
 operator|.
-name|COMPOUND_FILES
+name|INSTANCE
 argument_list|)
 expr_stmt|;
 comment|// disable merges to simplify test assertions.
