@@ -912,17 +912,6 @@ argument_list|(
 literal|"a"
 argument_list|)
 expr_stmt|;
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"q="
-operator|+
-name|q
-argument_list|)
-expr_stmt|;
 name|QueryUtils
 operator|.
 name|check

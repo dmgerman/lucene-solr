@@ -116,7 +116,9 @@ name|lucene
 operator|.
 name|util
 operator|.
-name|TestUtil
+name|LuceneTestCase
+operator|.
+name|SuppressSysoutChecks
 import|;
 end_import
 

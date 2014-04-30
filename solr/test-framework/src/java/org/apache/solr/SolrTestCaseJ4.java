@@ -468,6 +468,22 @@ name|org
 operator|.
 name|apache
 operator|.
+name|lucene
+operator|.
+name|util
+operator|.
+name|LuceneTestCase
+operator|.
+name|SuppressSysoutChecks
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
 name|solr
 operator|.
 name|client
@@ -1135,6 +1151,13 @@ name|QuickPatchThreadsFilter
 operator|.
 name|class
 block|}
+argument_list|)
+annotation|@
+name|SuppressSysoutChecks
+argument_list|(
+name|bugUrl
+operator|=
+literal|"Solr dumps tons of logs to console."
 argument_list|)
 DECL|class|SolrTestCaseJ4
 specifier|public

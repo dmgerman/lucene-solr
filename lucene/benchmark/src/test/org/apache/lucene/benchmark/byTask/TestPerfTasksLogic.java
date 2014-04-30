@@ -634,6 +634,22 @@ name|TestUtil
 import|;
 end_import
 
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|util
+operator|.
+name|LuceneTestCase
+operator|.
+name|SuppressSysoutChecks
+import|;
+end_import
+
 begin_comment
 comment|/**  * Test very simply that perf tasks - simple algorithms - are doing what they should.  */
 end_comment
