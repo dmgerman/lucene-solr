@@ -1272,7 +1272,7 @@ operator|.
 name|getClusterState
 argument_list|()
 operator|.
-name|getCachedReplica
+name|getReplica
 argument_list|(
 name|collection
 argument_list|,
