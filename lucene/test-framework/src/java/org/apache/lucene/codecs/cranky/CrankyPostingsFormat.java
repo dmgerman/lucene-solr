@@ -191,7 +191,7 @@ name|random
 operator|.
 name|nextInt
 argument_list|(
-literal|1000
+literal|100
 argument_list|)
 operator|==
 literal|0
@@ -301,7 +301,7 @@ name|random
 operator|.
 name|nextInt
 argument_list|(
-literal|1000
+literal|100
 argument_list|)
 operator|==
 literal|0

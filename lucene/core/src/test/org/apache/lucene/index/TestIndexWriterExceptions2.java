@@ -271,10 +271,6 @@ comment|// also sometimes when it fails, the exception-stream printing doesnt se
 end_comment
 
 begin_comment
-comment|// ant test  -Dtestcase=TestIndexWriterExceptions2 -Dtests.method=testSimple -Dtests.seed=A6FF4AD6F371A22E -Dtests.locale=tr_TR -Dtests.timezone=America/Cancun -Dtests.file.encoding=US-ASCII
-end_comment
-
-begin_comment
 comment|//
 end_comment
 
