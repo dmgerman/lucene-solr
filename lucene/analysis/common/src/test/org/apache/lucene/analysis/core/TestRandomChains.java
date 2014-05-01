@@ -342,6 +342,20 @@ name|lucene
 operator|.
 name|analysis
 operator|.
+name|CrankyTokenFilter
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|analysis
+operator|.
 name|MockGraphTokenFilter
 import|;
 end_import
@@ -1324,6 +1338,11 @@ comment|// TODO: can we promote some of these to be only
 comment|// offsets offenders?
 comment|// doesn't actual reset itself!
 name|CachingTokenFilter
+operator|.
+name|class
+argument_list|,
+comment|// Not broken, simulates brokenness:
+name|CrankyTokenFilter
 operator|.
 name|class
 argument_list|,
