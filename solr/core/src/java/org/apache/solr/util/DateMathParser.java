@@ -797,6 +797,32 @@ else|:
 name|DEFAULT_MATH_TZ
 expr_stmt|;
 block|}
+comment|/**    * @return the time zone    */
+DECL|method|getTimeZone
+specifier|public
+name|TimeZone
+name|getTimeZone
+parameter_list|()
+block|{
+return|return
+name|this
+operator|.
+name|zone
+return|;
+block|}
+comment|/**    * @return the locale    */
+DECL|method|getLocale
+specifier|public
+name|Locale
+name|getLocale
+parameter_list|()
+block|{
+return|return
+name|this
+operator|.
+name|loc
+return|;
+block|}
 comment|/**     * Defines this instance's concept of "now".    * @see #getNow    */
 DECL|method|setNow
 specifier|public
