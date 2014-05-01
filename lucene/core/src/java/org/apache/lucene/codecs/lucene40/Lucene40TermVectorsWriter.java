@@ -2529,6 +2529,14 @@ name|int
 name|numDocs
 parameter_list|)
 block|{
+name|long
+name|indexFP
+init|=
+name|tvx
+operator|.
+name|getFilePointer
+argument_list|()
+decl_stmt|;
 if|if
 condition|(
 name|HEADER_LENGTH_INDEX
@@ -2542,10 +2550,7 @@ operator|)
 operator|*
 literal|16
 operator|!=
-name|tvx
-operator|.
-name|getFilePointer
-argument_list|()
+name|indexFP
 condition|)
 comment|// This is most likely a bug in Sun JRE 1.6.0_04/_05;
 comment|// we detect that the bug has struck, here, and
@@ -2562,10 +2567,19 @@ name|numDocs
 operator|+
 literal|" but tvx size is "
 operator|+
-name|tvx
-operator|.
-name|getFilePointer
-argument_list|()
+name|indexFP
+operator|+
+literal|" (wrote numDocs="
+operator|+
+operator|(
+operator|(
+name|indexFP
+operator|-
+name|HEADER_LENGTH_INDEX
+operator|)
+operator|/
+literal|16.0
+operator|)
 operator|+
 literal|" file="
 operator|+
