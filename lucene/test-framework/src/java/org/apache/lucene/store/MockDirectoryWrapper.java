@@ -377,6 +377,12 @@ name|wrapLockFactory
 init|=
 literal|true
 decl_stmt|;
+DECL|field|useSlowOpenClosers
+name|boolean
+name|useSlowOpenClosers
+init|=
+literal|true
+decl_stmt|;
 DECL|field|allowRandomFileNotFoundException
 name|boolean
 name|allowRandomFileNotFoundException
@@ -770,6 +776,21 @@ operator|.
 name|throttling
 operator|=
 name|throttling
+expr_stmt|;
+block|}
+comment|/**     * By default, opening and closing has a rare small sleep to catch race conditions    *<p>    * You can disable this if you dont need it    */
+DECL|method|setUseSlowOpenClosers
+specifier|public
+name|void
+name|setUseSlowOpenClosers
+parameter_list|(
+name|boolean
+name|v
+parameter_list|)
+block|{
+name|useSlowOpenClosers
+operator|=
+name|v
 expr_stmt|;
 block|}
 comment|/**    * Returns true if {@link #in} must sync its files.    * Currently, only {@link NRTCachingDirectory} requires sync'ing its files    * because otherwise they are cached in an internal {@link RAMDirectory}. If    * other directories require that too, they should be added to this method.    */
@@ -2594,7 +2615,7 @@ name|randomState
 operator|.
 name|nextInt
 argument_list|(
-literal|50
+literal|200
 argument_list|)
 operator|==
 literal|0
@@ -2934,6 +2955,8 @@ argument_list|)
 decl_stmt|;
 if|if
 condition|(
+name|useSlowOpenClosers
+operator|&&
 name|randomInt
 operator|==
 literal|0
@@ -2974,6 +2997,8 @@ block|}
 elseif|else
 if|if
 condition|(
+name|useSlowOpenClosers
+operator|&&
 name|randomInt
 operator|==
 literal|1
