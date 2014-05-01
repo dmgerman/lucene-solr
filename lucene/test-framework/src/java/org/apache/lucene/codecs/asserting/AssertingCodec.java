@@ -256,6 +256,22 @@ return|return
 name|norms
 return|;
 block|}
+annotation|@
+name|Override
+DECL|method|toString
+specifier|public
+name|String
+name|toString
+parameter_list|()
+block|{
+return|return
+literal|"Asserting("
+operator|+
+name|delegate
+operator|+
+literal|")"
+return|;
+block|}
 block|}
 end_class
 

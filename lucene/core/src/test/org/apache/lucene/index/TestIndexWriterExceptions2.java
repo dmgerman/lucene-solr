@@ -600,6 +600,15 @@ literal|"Fake IOException"
 argument_list|)
 condition|)
 block|{
+name|System
+operator|.
+name|out
+operator|.
+name|println
+argument_list|(
+literal|"\nTEST: got expected fake exc:"
+argument_list|)
+expr_stmt|;
 name|e
 operator|.
 name|printStackTrace
@@ -685,6 +694,15 @@ literal|"Fake IOException"
 argument_list|)
 condition|)
 block|{
+name|System
+operator|.
+name|out
+operator|.
+name|println
+argument_list|(
+literal|"\nTEST: got expected fake exc:"
+argument_list|)
+expr_stmt|;
 name|e
 operator|.
 name|printStackTrace

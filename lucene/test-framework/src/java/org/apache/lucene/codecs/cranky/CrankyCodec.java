@@ -384,6 +384,22 @@ name|random
 argument_list|)
 return|;
 block|}
+annotation|@
+name|Override
+DECL|method|toString
+specifier|public
+name|String
+name|toString
+parameter_list|()
+block|{
+return|return
+literal|"Cranky("
+operator|+
+name|delegate
+operator|+
+literal|")"
+return|;
+block|}
 block|}
 end_class
 
