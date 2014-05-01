@@ -1836,8 +1836,6 @@ argument_list|(
 name|fields
 argument_list|)
 expr_stmt|;
-try|try
-block|{
 for|for
 control|(
 name|String
@@ -2004,13 +2002,8 @@ block|}
 block|}
 block|}
 block|}
-finally|finally
-block|{
-name|close
-argument_list|()
-expr_stmt|;
-block|}
-block|}
+annotation|@
+name|Override
 DECL|method|close
 specifier|public
 name|void
@@ -2019,6 +2012,11 @@ parameter_list|()
 throws|throws
 name|IOException
 block|{
+name|delegateFieldsConsumer
+operator|.
+name|close
+argument_list|()
+expr_stmt|;
 comment|// Now we are done accumulating values for these fields
 name|List
 argument_list|<

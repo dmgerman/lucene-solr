@@ -629,8 +629,6 @@ parameter_list|)
 throws|throws
 name|IOException
 block|{
-try|try
-block|{
 for|for
 control|(
 name|String
@@ -812,13 +810,8 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
-finally|finally
-block|{
-name|close
-argument_list|()
-expr_stmt|;
-block|}
-block|}
+annotation|@
+name|Override
 DECL|method|close
 specifier|public
 name|void
