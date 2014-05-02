@@ -415,6 +415,8 @@ operator|.
 name|tokenStream
 argument_list|(
 name|analyzer
+argument_list|,
+literal|null
 argument_list|)
 decl_stmt|;
 comment|// reset the TokenStream to the first token

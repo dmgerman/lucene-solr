@@ -258,12 +258,6 @@ specifier|protected
 name|TokenStream
 name|tokenStream
 decl_stmt|;
-DECL|field|internalTokenStream
-specifier|private
-specifier|transient
-name|TokenStream
-name|internalTokenStream
-decl_stmt|;
 comment|/**    * Field's boost    * @see #boost()    */
 DECL|field|boost
 specifier|protected
@@ -1588,6 +1582,9 @@ name|tokenStream
 parameter_list|(
 name|Analyzer
 name|analyzer
+parameter_list|,
+name|TokenStream
+name|reuse
 parameter_list|)
 throws|throws
 name|IOException
@@ -1627,15 +1624,30 @@ if|if
 condition|(
 operator|!
 operator|(
-name|internalTokenStream
+name|reuse
 operator|instanceof
 name|NumericTokenStream
+operator|&&
+operator|(
+operator|(
+name|NumericTokenStream
+operator|)
+name|reuse
+operator|)
+operator|.
+name|getPrecisionStep
+argument_list|()
+operator|==
+name|type
+operator|.
+name|numericPrecisionStep
+argument_list|()
 operator|)
 condition|)
 block|{
 comment|// lazy init the TokenStream as it is heavy to instantiate
 comment|// (attributes,...) if not needed (stored field loading)
-name|internalTokenStream
+name|reuse
 operator|=
 operator|new
 name|NumericTokenStream
@@ -1654,7 +1666,7 @@ init|=
 operator|(
 name|NumericTokenStream
 operator|)
-name|internalTokenStream
+name|reuse
 decl_stmt|;
 comment|// initialize value in TokenStream
 specifier|final
@@ -1737,7 +1749,7 @@ argument_list|)
 throw|;
 block|}
 return|return
-name|internalTokenStream
+name|reuse
 return|;
 block|}
 if|if
@@ -1770,7 +1782,7 @@ if|if
 condition|(
 operator|!
 operator|(
-name|internalTokenStream
+name|reuse
 operator|instanceof
 name|StringTokenStream
 operator|)
@@ -1778,7 +1790,7 @@ condition|)
 block|{
 comment|// lazy init the TokenStream as it is heavy to instantiate
 comment|// (attributes,...) if not needed (stored field loading)
-name|internalTokenStream
+name|reuse
 operator|=
 operator|new
 name|StringTokenStream
@@ -1789,7 +1801,7 @@ operator|(
 operator|(
 name|StringTokenStream
 operator|)
-name|internalTokenStream
+name|reuse
 operator|)
 operator|.
 name|setValue
@@ -1799,7 +1811,7 @@ argument_list|()
 argument_list|)
 expr_stmt|;
 return|return
-name|internalTokenStream
+name|reuse
 return|;
 block|}
 if|if
