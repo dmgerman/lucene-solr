@@ -14677,13 +14677,6 @@ name|dir
 argument_list|)
 expr_stmt|;
 block|}
-annotation|@
-name|AwaitsFix
-argument_list|(
-name|bugUrl
-operator|=
-literal|"https://issues.apache.org/jira/browse/LUCENE-5611"
-argument_list|)
 DECL|method|testIterableThrowsException2
 specifier|public
 name|void
