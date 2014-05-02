@@ -458,16 +458,6 @@ name|java
 operator|.
 name|io
 operator|.
-name|File
-import|;
-end_import
-
-begin_import
-import|import
-name|java
-operator|.
-name|io
-operator|.
 name|IOException
 import|;
 end_import
@@ -1079,10 +1069,10 @@ return|return
 name|dynamicFields
 return|;
 block|}
-DECL|field|analyzer
+DECL|field|indexAnalyzer
 specifier|private
 name|Analyzer
-name|analyzer
+name|indexAnalyzer
 decl_stmt|;
 DECL|field|queryAnalyzer
 specifier|private
@@ -1470,14 +1460,14 @@ name|similarityFactory
 return|;
 block|}
 comment|/**    * Returns the Analyzer used when indexing documents for this index    *    *<p>    * This Analyzer is field (and dynamic field) name aware, and delegates to    * a field specific Analyzer based on the field type.    *</p>    */
-DECL|method|getAnalyzer
+DECL|method|getIndexAnalyzer
 specifier|public
 name|Analyzer
-name|getAnalyzer
+name|getIndexAnalyzer
 parameter_list|()
 block|{
 return|return
-name|analyzer
+name|indexAnalyzer
 return|;
 block|}
 comment|/**    * Returns the Analyzer used when searching this index    *    *<p>    * This Analyzer is field (and dynamic field) name aware, and delegates to    * a field specific Analyzer based on the field type.    *</p>    */
@@ -1675,7 +1665,7 @@ name|void
 name|refreshAnalyzers
 parameter_list|()
 block|{
-name|analyzer
+name|indexAnalyzer
 operator|=
 operator|new
 name|SolrIndexAnalyzer
@@ -1870,7 +1860,7 @@ operator|.
 name|getType
 argument_list|()
 operator|.
-name|getAnalyzer
+name|getIndexAnalyzer
 argument_list|()
 decl_stmt|;
 name|cache
@@ -1923,7 +1913,7 @@ argument_list|(
 name|fieldName
 argument_list|)
 operator|.
-name|getAnalyzer
+name|getIndexAnalyzer
 argument_list|()
 return|;
 block|}

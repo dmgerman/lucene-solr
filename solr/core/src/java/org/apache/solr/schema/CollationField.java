@@ -1097,10 +1097,10 @@ return|;
 block|}
 annotation|@
 name|Override
-DECL|method|getAnalyzer
+DECL|method|getIndexAnalyzer
 specifier|public
 name|Analyzer
-name|getAnalyzer
+name|getIndexAnalyzer
 parameter_list|()
 block|{
 return|return

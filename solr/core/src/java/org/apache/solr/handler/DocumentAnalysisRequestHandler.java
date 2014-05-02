@@ -1102,7 +1102,7 @@ name|analyzer
 init|=
 name|fieldType
 operator|.
-name|getAnalyzer
+name|getIndexAnalyzer
 argument_list|()
 decl_stmt|;
 name|AnalysisContext

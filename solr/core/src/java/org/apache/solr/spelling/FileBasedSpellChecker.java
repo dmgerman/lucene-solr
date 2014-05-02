@@ -573,7 +573,7 @@ name|luceneMatchVersion
 argument_list|,
 name|fieldType
 operator|.
-name|getAnalyzer
+name|getIndexAnalyzer
 argument_list|()
 argument_list|)
 operator|.

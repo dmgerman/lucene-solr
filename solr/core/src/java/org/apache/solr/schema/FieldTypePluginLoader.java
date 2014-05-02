@@ -670,7 +670,7 @@ condition|)
 block|{
 name|ft
 operator|.
-name|setAnalyzer
+name|setIndexAnalyzer
 argument_list|(
 name|analyzer
 argument_list|)

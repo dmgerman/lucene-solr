@@ -1613,7 +1613,7 @@ expr_stmt|;
 comment|// TODO: WTF is up with queryConverter???
 comment|// it aparently *only* works as a singleton? - SOLR-4304
 comment|// and even then -- only if there is a single SpellCheckComponent
-comment|// because of queryConverter.setAnalyzer
+comment|// because of queryConverter.setIndexAnalyzer
 name|loadPluginInfo
 argument_list|(
 name|QueryConverter

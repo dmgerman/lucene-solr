@@ -195,7 +195,7 @@ specifier|protected
 name|boolean
 name|autoGeneratePhraseQueries
 decl_stmt|;
-comment|/**    * Analyzer set by schema for text types to use when searching fields    * of this type, subclasses can set analyzer themselves or override    * getAnalyzer()    * This analyzer is used to process wildcard, prefix, regex and other multiterm queries. It    * assembles a list of tokenizer +filters that "make sense" for this, primarily accent folding and    * lowercasing filters, and charfilters.    *    * @see #getMultiTermAnalyzer    * @see #setMultiTermAnalyzer    */
+comment|/**    * Analyzer set by schema for text types to use when searching fields    * of this type, subclasses can set analyzer themselves or override    * getIndexAnalyzer()    * This analyzer is used to process wildcard, prefix, regex and other multiterm queries. It    * assembles a list of tokenizer +filters that "make sense" for this, primarily accent folding and    * lowercasing filters, and charfilters.    *    * @see #getMultiTermAnalyzer    * @see #setMultiTermAnalyzer    */
 DECL|field|multiTermAnalyzer
 specifier|protected
 name|Analyzer
@@ -315,7 +315,7 @@ name|args
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**    * Returns the Analyzer to be used when searching fields of this type when mult-term queries are specified.    *<p>    * This method may be called many times, at any time.    *</p>    * @see #getAnalyzer    */
+comment|/**    * Returns the Analyzer to be used when searching fields of this type when mult-term queries are specified.    *<p>    * This method may be called many times, at any time.    *</p>    * @see #getIndexAnalyzer    */
 DECL|method|getMultiTermAnalyzer
 specifier|public
 name|Analyzer
@@ -467,39 +467,15 @@ return|;
 block|}
 annotation|@
 name|Override
-DECL|method|setAnalyzer
-specifier|public
-name|void
-name|setAnalyzer
-parameter_list|(
-name|Analyzer
-name|analyzer
-parameter_list|)
+DECL|method|supportsAnalyzers
+specifier|protected
+name|boolean
+name|supportsAnalyzers
+parameter_list|()
 block|{
-name|this
-operator|.
-name|analyzer
-operator|=
-name|analyzer
-expr_stmt|;
-block|}
-annotation|@
-name|Override
-DECL|method|setQueryAnalyzer
-specifier|public
-name|void
-name|setQueryAnalyzer
-parameter_list|(
-name|Analyzer
-name|analyzer
-parameter_list|)
-block|{
-name|this
-operator|.
-name|queryAnalyzer
-operator|=
-name|analyzer
-expr_stmt|;
+return|return
+literal|true
+return|;
 block|}
 annotation|@
 name|Override

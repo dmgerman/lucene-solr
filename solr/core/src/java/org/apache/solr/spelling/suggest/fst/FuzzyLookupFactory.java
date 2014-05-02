@@ -308,7 +308,7 @@ name|indexAnalyzer
 init|=
 name|ft
 operator|.
-name|getAnalyzer
+name|getIndexAnalyzer
 argument_list|()
 decl_stmt|;
 name|Analyzer

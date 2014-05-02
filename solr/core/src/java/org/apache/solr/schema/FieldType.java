@@ -592,16 +592,6 @@ begin_import
 import|import
 name|java
 operator|.
-name|io
-operator|.
-name|Reader
-import|;
-end_import
-
-begin_import
-import|import
-name|java
-operator|.
 name|util
 operator|.
 name|ArrayList
@@ -1046,7 +1036,7 @@ block|{
 name|Analyzer
 name|analyzer
 init|=
-name|getAnalyzer
+name|getIndexAnalyzer
 argument_list|()
 decl_stmt|;
 if|if
@@ -1311,13 +1301,13 @@ argument_list|()
 comment|//            + propertiesToString(properties)
 operator|+
 operator|(
-name|analyzer
+name|indexAnalyzer
 operator|!=
 literal|null
 condition|?
 literal|",analyzer="
 operator|+
-name|analyzer
+name|indexAnalyzer
 operator|.
 name|getClass
 argument_list|()
@@ -2329,11 +2319,10 @@ argument_list|)
 return|;
 block|}
 block|}
-comment|/**    * Analyzer set by schema for text types to use when indexing fields    * of this type, subclasses can set analyzer themselves or override    * getAnalyzer()    * @see #getAnalyzer    * @see #setAnalyzer    */
-DECL|field|analyzer
-specifier|protected
+DECL|field|indexAnalyzer
+specifier|private
 name|Analyzer
-name|analyzer
+name|indexAnalyzer
 init|=
 operator|new
 name|DefaultAnalyzer
@@ -2341,26 +2330,25 @@ argument_list|(
 literal|256
 argument_list|)
 decl_stmt|;
-comment|/**    * Analyzer set by schema for text types to use when searching fields    * of this type, subclasses can set analyzer themselves or override    * getAnalyzer()    * @see #getQueryAnalyzer    * @see #setQueryAnalyzer    */
 DECL|field|queryAnalyzer
-specifier|protected
+specifier|private
 name|Analyzer
 name|queryAnalyzer
 init|=
-name|analyzer
+name|indexAnalyzer
 decl_stmt|;
 comment|/**    * Returns the Analyzer to be used when indexing fields of this type.    *<p>    * This method may be called many times, at any time.    *</p>    * @see #getQueryAnalyzer    */
-DECL|method|getAnalyzer
+DECL|method|getIndexAnalyzer
 specifier|public
 name|Analyzer
-name|getAnalyzer
+name|getIndexAnalyzer
 parameter_list|()
 block|{
 return|return
-name|analyzer
+name|indexAnalyzer
 return|;
 block|}
-comment|/**    * Returns the Analyzer to be used when searching fields of this type.    *<p>    * This method may be called many times, at any time.    *</p>    * @see #getAnalyzer    */
+comment|/**    * Returns the Analyzer to be used when searching fields of this type.    *<p>    * This method may be called many times, at any time.    *</p>    * @see #getIndexAnalyzer    */
 DECL|method|getQueryAnalyzer
 specifier|public
 name|Analyzer
@@ -2371,15 +2359,40 @@ return|return
 name|queryAnalyzer
 return|;
 block|}
-comment|/**    * Sets the Analyzer to be used when indexing fields of this type.    *    *<p>    * The default implementation throws a SolrException.      * Subclasses that override this method need to ensure the behavior     * of the analyzer is consistent with the implementation of toInternal.    *</p>    *     * @see #toInternal    * @see #setQueryAnalyzer    * @see #getAnalyzer    */
-DECL|method|setAnalyzer
+comment|/**    * Returns true if this type supports index and query analyzers, false otherwise.    */
+DECL|method|supportsAnalyzers
+specifier|protected
+name|boolean
+name|supportsAnalyzers
+parameter_list|()
+block|{
+return|return
+literal|false
+return|;
+block|}
+comment|/**    * Sets the Analyzer to be used when indexing fields of this type.    *    *<p>    * Subclasses should override {@link #supportsAnalyzers()} to    * enable this function.    *</p>    *    * @see #supportsAnalyzers()    * @see #setQueryAnalyzer    * @see #getIndexAnalyzer    */
+DECL|method|setIndexAnalyzer
 specifier|public
+specifier|final
 name|void
-name|setAnalyzer
+name|setIndexAnalyzer
 parameter_list|(
 name|Analyzer
 name|analyzer
 parameter_list|)
+block|{
+if|if
+condition|(
+name|supportsAnalyzers
+argument_list|()
+condition|)
+block|{
+name|indexAnalyzer
+operator|=
+name|analyzer
+expr_stmt|;
+block|}
+else|else
 block|{
 throw|throw
 operator|new
@@ -2407,15 +2420,30 @@ literal|") does not support specifying an analyzer"
 argument_list|)
 throw|;
 block|}
-comment|/**    * Sets the Analyzer to be used when querying fields of this type.    *    *<p>    * The default implementation throws a SolrException.      * Subclasses that override this method need to ensure the behavior     * of the analyzer is consistent with the implementation of toInternal.    *</p>    *     * @see #toInternal    * @see #setAnalyzer    * @see #getQueryAnalyzer    */
+block|}
+comment|/**    * Sets the Analyzer to be used when querying fields of this type.    *    *<p>    * Subclasses should override {@link #supportsAnalyzers()} to    * enable this function.    *</p>    *    * @see #supportsAnalyzers()    * @see #setIndexAnalyzer    * @see #getQueryAnalyzer    */
 DECL|method|setQueryAnalyzer
 specifier|public
+specifier|final
 name|void
 name|setQueryAnalyzer
 parameter_list|(
 name|Analyzer
 name|analyzer
 parameter_list|)
+block|{
+if|if
+condition|(
+name|supportsAnalyzers
+argument_list|()
+condition|)
+block|{
+name|queryAnalyzer
+operator|=
+name|analyzer
+expr_stmt|;
+block|}
+else|else
 block|{
 throw|throw
 operator|new
@@ -2442,6 +2470,7 @@ operator|+
 literal|") does not support specifying an analyzer"
 argument_list|)
 throw|;
+block|}
 block|}
 comment|/** @lucene.internal */
 DECL|field|similarityFactory
@@ -3780,7 +3809,7 @@ name|analyzerProperty
 argument_list|,
 name|getAnalyzerProperties
 argument_list|(
-name|getAnalyzer
+name|getIndexAnalyzer
 argument_list|()
 argument_list|)
 argument_list|)

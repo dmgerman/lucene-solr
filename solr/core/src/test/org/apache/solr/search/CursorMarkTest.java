@@ -154,20 +154,6 @@ name|apache
 operator|.
 name|solr
 operator|.
-name|schema
-operator|.
-name|TrieDateField
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|solr
-operator|.
 name|request
 operator|.
 name|SolrQueryRequest
@@ -243,16 +229,6 @@ operator|.
 name|util
 operator|.
 name|ArrayList
-import|;
-end_import
-
-begin_import
-import|import
-name|java
-operator|.
-name|util
-operator|.
-name|Date
 import|;
 end_import
 
@@ -1886,7 +1862,7 @@ operator|.
 name|getType
 argument_list|()
 operator|.
-name|getAnalyzer
+name|getIndexAnalyzer
 argument_list|()
 decl_stmt|;
 name|String

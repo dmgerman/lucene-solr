@@ -512,10 +512,10 @@ block|}
 block|}
 annotation|@
 name|Override
-DECL|method|getAnalyzer
+DECL|method|getIndexAnalyzer
 specifier|public
 name|Analyzer
-name|getAnalyzer
+name|getIndexAnalyzer
 parameter_list|()
 block|{
 return|return
@@ -557,7 +557,7 @@ name|getQueryAnalyzer
 parameter_list|()
 block|{
 return|return
-name|getAnalyzer
+name|getIndexAnalyzer
 argument_list|()
 return|;
 block|}

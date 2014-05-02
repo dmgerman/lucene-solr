@@ -2956,7 +2956,7 @@ name|a
 init|=
 name|fieldType
 operator|.
-name|getAnalyzer
+name|getIndexAnalyzer
 argument_list|()
 decl_stmt|;
 if|if
