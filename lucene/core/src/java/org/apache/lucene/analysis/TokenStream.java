@@ -170,7 +170,11 @@ name|TokenStream
 parameter_list|()
 block|{
 name|super
-argument_list|()
+argument_list|(
+name|Token
+operator|.
+name|TOKEN_ATTRIBUTE_FACTORY
+argument_list|)
 expr_stmt|;
 assert|assert
 name|assertFinal

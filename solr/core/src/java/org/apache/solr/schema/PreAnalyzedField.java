@@ -1367,6 +1367,14 @@ name|PreAnalyzedParser
 name|parser
 parameter_list|)
 block|{
+comment|// we don't pack attributes: since we are used for (de)serialization and dont want bloat.
+name|super
+argument_list|(
+name|AttributeFactory
+operator|.
+name|DEFAULT_ATTRIBUTE_FACTORY
+argument_list|)
+expr_stmt|;
 name|this
 operator|.
 name|parser

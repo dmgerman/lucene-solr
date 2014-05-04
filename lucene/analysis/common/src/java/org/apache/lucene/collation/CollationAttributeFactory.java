@@ -34,6 +34,20 @@ name|apache
 operator|.
 name|lucene
 operator|.
+name|analysis
+operator|.
+name|Token
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
 name|collation
 operator|.
 name|tokenattributes
@@ -112,7 +126,7 @@ operator|.
 name|AttributeFactory
 name|delegate
 decl_stmt|;
-comment|/**    * Create a CollationAttributeFactory, using     * {@link org.apache.lucene.util.AttributeSource.AttributeFactory#DEFAULT_ATTRIBUTE_FACTORY} as the    * factory for all other attributes.    * @param collator CollationKey generator    */
+comment|/**    * Create a CollationAttributeFactory, using     * {@link org.apache.lucene.analysis.Token#TOKEN_ATTRIBUTE_FACTORY} as the    * factory for all other attributes.    * @param collator CollationKey generator    */
 DECL|method|CollationAttributeFactory
 specifier|public
 name|CollationAttributeFactory
@@ -123,11 +137,9 @@ parameter_list|)
 block|{
 name|this
 argument_list|(
-name|AttributeSource
+name|Token
 operator|.
-name|AttributeFactory
-operator|.
-name|DEFAULT_ATTRIBUTE_FACTORY
+name|TOKEN_ATTRIBUTE_FACTORY
 argument_list|,
 name|collator
 argument_list|)
