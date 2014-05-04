@@ -964,18 +964,6 @@ operator|-
 name|id
 return|;
 block|}
-annotation|@
-name|Override
-DECL|method|hashCode
-specifier|public
-name|int
-name|hashCode
-parameter_list|()
-block|{
-return|return
-name|id
-return|;
-block|}
 block|}
 end_class
 
