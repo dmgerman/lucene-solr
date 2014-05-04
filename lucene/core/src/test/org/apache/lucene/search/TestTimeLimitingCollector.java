@@ -218,6 +218,22 @@ name|lucene
 operator|.
 name|util
 operator|.
+name|LuceneTestCase
+operator|.
+name|SuppressSysoutChecks
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|util
+operator|.
 name|ThreadInterruptedException
 import|;
 end_import
@@ -227,6 +243,13 @@ comment|/**  * Tests the {@link TimeLimitingCollector}.  This test checks (1) se
 end_comment
 
 begin_class
+annotation|@
+name|SuppressSysoutChecks
+argument_list|(
+name|bugUrl
+operator|=
+literal|"http://test.is.timing.sensitive.so.it.prints.instead.of.failing"
+argument_list|)
 DECL|class|TestTimeLimitingCollector
 specifier|public
 class|class
