@@ -355,6 +355,9 @@ init|=
 operator|new
 name|PatternTokenizer
 argument_list|(
+name|newAttributeFactory
+argument_list|()
+argument_list|,
 name|Pattern
 operator|.
 name|compile
@@ -516,6 +519,9 @@ init|=
 operator|new
 name|PatternTokenizer
 argument_list|(
+name|newAttributeFactory
+argument_list|()
+argument_list|,
 name|Pattern
 operator|.
 name|compile
@@ -602,6 +608,9 @@ operator|=
 operator|new
 name|PatternTokenizer
 argument_list|(
+name|newAttributeFactory
+argument_list|()
+argument_list|,
 name|Pattern
 operator|.
 name|compile
@@ -805,6 +814,9 @@ init|=
 operator|new
 name|PatternTokenizer
 argument_list|(
+name|newAttributeFactory
+argument_list|()
+argument_list|,
 name|Pattern
 operator|.
 name|compile
@@ -861,6 +873,9 @@ init|=
 operator|new
 name|PatternTokenizer
 argument_list|(
+name|newAttributeFactory
+argument_list|()
+argument_list|,
 name|Pattern
 operator|.
 name|compile

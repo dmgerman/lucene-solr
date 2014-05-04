@@ -12957,6 +12957,11 @@ name|currentRealToken
 operator|=
 operator|new
 name|Token
+argument_list|()
+expr_stmt|;
+name|currentRealToken
+operator|.
+name|setOffset
 argument_list|(
 name|realOffsetAtt
 operator|.

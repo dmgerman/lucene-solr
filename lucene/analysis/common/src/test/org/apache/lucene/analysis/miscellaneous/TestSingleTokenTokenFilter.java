@@ -178,7 +178,12 @@ argument_list|,
 literal|10
 argument_list|,
 literal|20
-argument_list|,
+argument_list|)
+expr_stmt|;
+name|token
+operator|.
+name|setType
+argument_list|(
 literal|"someType"
 argument_list|)
 expr_stmt|;

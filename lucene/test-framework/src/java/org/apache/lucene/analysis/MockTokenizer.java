@@ -437,9 +437,10 @@ parameter_list|)
 block|{
 name|this
 argument_list|(
-name|AttributeFactory
+name|BaseTokenStreamTestCase
 operator|.
-name|DEFAULT_ATTRIBUTE_FACTORY
+name|newAttributeFactory
+argument_list|()
 argument_list|,
 name|runAutomaton
 argument_list|,

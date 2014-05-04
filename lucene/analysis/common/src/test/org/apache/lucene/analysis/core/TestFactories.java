@@ -986,7 +986,10 @@ init|=
 name|tokenizer
 operator|.
 name|create
+argument_list|(
+name|newAttributeFactory
 argument_list|()
+argument_list|)
 decl_stmt|;
 if|if
 condition|(

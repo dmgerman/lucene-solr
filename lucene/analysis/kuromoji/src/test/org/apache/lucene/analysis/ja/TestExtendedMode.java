@@ -208,6 +208,9 @@ init|=
 operator|new
 name|JapaneseTokenizer
 argument_list|(
+name|newAttributeFactory
+argument_list|()
+argument_list|,
 literal|null
 argument_list|,
 literal|true

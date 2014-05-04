@@ -862,8 +862,14 @@ name|TokenStream
 name|stream
 init|=
 operator|new
-name|KeywordTokenizer
-argument_list|()
+name|MockTokenizer
+argument_list|(
+name|MockTokenizer
+operator|.
+name|KEYWORD
+argument_list|,
+literal|false
+argument_list|)
 decl_stmt|;
 operator|(
 operator|(

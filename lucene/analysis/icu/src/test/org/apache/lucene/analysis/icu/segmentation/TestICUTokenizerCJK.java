@@ -104,7 +104,16 @@ name|TokenStreamComponents
 argument_list|(
 operator|new
 name|ICUTokenizer
+argument_list|(
+name|newAttributeFactory
 argument_list|()
+argument_list|,
+operator|new
+name|DefaultICUTokenizerConfig
+argument_list|(
+literal|true
+argument_list|)
+argument_list|)
 argument_list|)
 return|;
 block|}

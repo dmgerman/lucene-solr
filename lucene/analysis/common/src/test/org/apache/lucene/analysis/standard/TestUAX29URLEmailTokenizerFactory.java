@@ -106,7 +106,10 @@ literal|"UAX29URLEmail"
 argument_list|)
 operator|.
 name|create
+argument_list|(
+name|newAttributeFactory
 argument_list|()
+argument_list|)
 decl_stmt|;
 name|stream
 operator|.
@@ -160,7 +163,10 @@ literal|"UAX29URLEmail"
 argument_list|)
 operator|.
 name|create
+argument_list|(
+name|newAttributeFactory
 argument_list|()
+argument_list|)
 decl_stmt|;
 name|stream
 operator|.
@@ -248,7 +254,10 @@ literal|"UAX29URLEmail"
 argument_list|)
 operator|.
 name|create
+argument_list|(
+name|newAttributeFactory
 argument_list|()
+argument_list|)
 decl_stmt|;
 name|stream
 operator|.
@@ -308,7 +317,10 @@ literal|"UAX29URLEmail"
 argument_list|)
 operator|.
 name|create
+argument_list|(
+name|newAttributeFactory
 argument_list|()
+argument_list|)
 decl_stmt|;
 name|stream
 operator|.
@@ -358,7 +370,10 @@ literal|"UAX29URLEmail"
 argument_list|)
 operator|.
 name|create
+argument_list|(
+name|newAttributeFactory
 argument_list|()
+argument_list|)
 decl_stmt|;
 name|stream
 operator|.
@@ -439,7 +454,10 @@ literal|"UAX29URLEmail"
 argument_list|)
 operator|.
 name|create
+argument_list|(
+name|newAttributeFactory
 argument_list|()
+argument_list|)
 decl_stmt|;
 name|stream
 operator|.
@@ -562,7 +580,10 @@ literal|"UAX29URLEmail"
 argument_list|)
 operator|.
 name|create
+argument_list|(
+name|newAttributeFactory
 argument_list|()
+argument_list|)
 decl_stmt|;
 name|stream
 operator|.
@@ -708,7 +729,10 @@ literal|"1000"
 argument_list|)
 operator|.
 name|create
+argument_list|(
+name|newAttributeFactory
 argument_list|()
+argument_list|)
 decl_stmt|;
 name|stream
 operator|.
