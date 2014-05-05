@@ -260,7 +260,7 @@ name|freeze
 argument_list|()
 expr_stmt|;
 block|}
-comment|/** Creates a stored or un-stored LongField with the provided value    *  and default<code>precisionStep</code> {@link    *  NumericUtils#PRECISION_STEP_DEFAULT} (4).     *  @param name field name    *  @param value 64-bit long value    *  @param stored Store.YES if the content should also be stored    *  @throws IllegalArgumentException if the field name is null.    */
+comment|/** Creates a stored or un-stored LongField with the provided value    *  and default<code>precisionStep</code> {@link    *  NumericUtils#PRECISION_STEP_DEFAULT} (16).     *  @param name field name    *  @param value 64-bit long value    *  @param stored Store.YES if the content should also be stored    *  @throws IllegalArgumentException if the field name is null.    */
 DECL|method|LongField
 specifier|public
 name|LongField

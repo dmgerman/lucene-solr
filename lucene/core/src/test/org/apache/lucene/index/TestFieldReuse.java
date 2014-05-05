@@ -462,7 +462,7 @@ name|assertEquals
 argument_list|(
 name|NumericUtils
 operator|.
-name|PRECISION_STEP_DEFAULT
+name|PRECISION_STEP_DEFAULT_32
 argument_list|,
 operator|(
 operator|(

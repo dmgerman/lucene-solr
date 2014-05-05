@@ -785,7 +785,7 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
-comment|/**    * Creates a token stream for numeric values using the default<code>precisionStep</code>    * {@link NumericUtils#PRECISION_STEP_DEFAULT} (4). The stream is not yet initialized,    * before using set a value using the various set<em>???</em>Value() methods.    */
+comment|/**    * Creates a token stream for numeric values using the default<code>precisionStep</code>    * {@link NumericUtils#PRECISION_STEP_DEFAULT} (16). The stream is not yet initialized,    * before using set a value using the various set<em>???</em>Value() methods.    */
 DECL|method|NumericTokenStream
 specifier|public
 name|NumericTokenStream

@@ -217,7 +217,7 @@ name|NumericUtils
 parameter_list|()
 block|{}
 comment|// no instance!
-comment|/**    * The default precision step used by {@link IntField},    * {@link FloatField}, {@link LongField}, {@link    * DoubleField}, {@link NumericTokenStream}, {@link    * NumericRangeQuery}, and {@link NumericRangeFilter}.    */
+comment|/**    * The default precision step used by {@link LongField},    * {@link DoubleField}, {@link NumericTokenStream}, {@link    * NumericRangeQuery}, and {@link NumericRangeFilter}.    */
 DECL|field|PRECISION_STEP_DEFAULT
 specifier|public
 specifier|static
@@ -225,7 +225,17 @@ specifier|final
 name|int
 name|PRECISION_STEP_DEFAULT
 init|=
-literal|4
+literal|16
+decl_stmt|;
+comment|/**    * The default precision step used by {@link IntField} and    * {@link FloatField}.    */
+DECL|field|PRECISION_STEP_DEFAULT_32
+specifier|public
+specifier|static
+specifier|final
+name|int
+name|PRECISION_STEP_DEFAULT_32
+init|=
+literal|8
 decl_stmt|;
 comment|/**    * Longs are stored at lower precision by shifting off lower bits. The shift count is    * stored as<code>SHIFT_START_LONG+shift</code> in the first byte    */
 DECL|field|SHIFT_START_LONG
