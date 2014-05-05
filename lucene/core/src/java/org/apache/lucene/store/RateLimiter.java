@@ -31,7 +31,7 @@ import|;
 end_import
 
 begin_comment
-comment|/** Abstract base class to rate limit IO.  Typically implementations are  *  shared across multiple IndexInputs or IndexOutputs (for example  *  those involved all merging).  Those IndexInputs and  *  IndexOutputs would call {@link #pause} whenever they  *  want to read bytes or write bytes. */
+comment|/** Abstract base class to rate limit IO.  Typically implementations are  *  shared across multiple IndexInputs or IndexOutputs (for example  *  those involved all merging).  Those IndexInputs and  *  IndexOutputs would call {@link #pause} whenever the have read  *  or written more than {@link #getMinPauseCheckBytes} bytes. */
 end_comment
 
 begin_class
@@ -71,6 +71,14 @@ name|long
 name|bytes
 parameter_list|)
 function_decl|;
+comment|/** How many bytes caller should add up itself before invoking {@link #pause}. */
+DECL|method|getMinPauseCheckBytes
+specifier|public
+specifier|abstract
+name|long
+name|getMinPauseCheckBytes
+parameter_list|()
+function_decl|;
 comment|/**    * Simple class to rate limit IO.    */
 DECL|class|SimpleRateLimiter
 specifier|public
@@ -80,21 +88,29 @@ name|SimpleRateLimiter
 extends|extends
 name|RateLimiter
 block|{
+DECL|field|MIN_PAUSE_CHECK_MSEC
+specifier|private
+specifier|final
+specifier|static
+name|int
+name|MIN_PAUSE_CHECK_MSEC
+init|=
+literal|5
+decl_stmt|;
 DECL|field|mbPerSec
 specifier|private
 specifier|volatile
 name|double
 name|mbPerSec
 decl_stmt|;
-DECL|field|nsPerByte
+DECL|field|minPauseCheckBytes
 specifier|private
 specifier|volatile
-name|double
-name|nsPerByte
+name|long
+name|minPauseCheckBytes
 decl_stmt|;
 DECL|field|lastNS
 specifier|private
-specifier|volatile
 name|long
 name|lastNS
 decl_stmt|;
@@ -134,18 +150,37 @@ name|mbPerSec
 operator|=
 name|mbPerSec
 expr_stmt|;
-name|nsPerByte
+name|minPauseCheckBytes
 operator|=
-literal|1000000000.
-operator|/
+call|(
+name|long
+call|)
+argument_list|(
 operator|(
-literal|1024
-operator|*
-literal|1024
+name|MIN_PAUSE_CHECK_MSEC
+operator|/
+literal|1000.0
+operator|)
 operator|*
 name|mbPerSec
-operator|)
+operator|*
+literal|1024
+operator|*
+literal|1024
+argument_list|)
 expr_stmt|;
+block|}
+annotation|@
+name|Override
+DECL|method|getMinPauseCheckBytes
+specifier|public
+name|long
+name|getMinPauseCheckBytes
+parameter_list|()
+block|{
+return|return
+name|minPauseCheckBytes
+return|;
 block|}
 comment|/**      * The current mb per second rate limit.      */
 annotation|@
@@ -162,7 +197,7 @@ operator|.
 name|mbPerSec
 return|;
 block|}
-comment|/** Pauses, if necessary, to keep the instantaneous IO      *  rate at or below the target. NOTE: multiple threads      *  may safely use this, however the implementation is      *  not perfectly thread safe but likely in practice this      *  is harmless (just means in some rare cases the rate      *  might exceed the target).  It's best to call this      *  with a biggish count, not one byte at a time.      *  @return the pause time in nano seconds       * */
+comment|/** Pauses, if necessary, to keep the instantaneous IO      *  rate at or below the target.  Be sure to only call      *  this method when bytes> {@link #getMinPauseCheckBytes},      *  otherwise it will pause way too long!      *      *  @return the pause time in nano seconds */
 annotation|@
 name|Override
 DECL|method|pause
@@ -174,64 +209,81 @@ name|long
 name|bytes
 parameter_list|)
 block|{
-if|if
-condition|(
-name|bytes
-operator|==
-literal|1
-condition|)
-block|{
-return|return
-literal|0
-return|;
-block|}
-comment|// TODO: this is purely instantaneous rate; maybe we
-comment|// should also offer decayed recent history one?
-specifier|final
-name|long
-name|targetNS
-init|=
-name|lastNS
-operator|=
-name|lastNS
-operator|+
-operator|(
-call|(
-name|long
-call|)
-argument_list|(
-name|bytes
-operator|*
-name|nsPerByte
-argument_list|)
-operator|)
-decl_stmt|;
-specifier|final
 name|long
 name|startNS
-decl_stmt|;
-name|long
-name|curNS
 init|=
-name|startNS
-operator|=
 name|System
 operator|.
 name|nanoTime
 argument_list|()
 decl_stmt|;
+name|double
+name|secondsToPause
+init|=
+operator|(
+name|bytes
+operator|/
+literal|1024.
+operator|/
+literal|1024.
+operator|)
+operator|/
+name|mbPerSec
+decl_stmt|;
+name|long
+name|targetNS
+decl_stmt|;
+comment|// Sync'd to read + write lastNS:
+synchronized|synchronized
+init|(
+name|this
+init|)
+block|{
+comment|// Time we should sleep until; this is purely instantaneous
+comment|// rate (just adds seconds onto the last time we had paused to);
+comment|// maybe we should also offer decayed recent history one?
+name|targetNS
+operator|=
+name|lastNS
+operator|+
+call|(
+name|long
+call|)
+argument_list|(
+literal|1000000000
+operator|*
+name|secondsToPause
+argument_list|)
+expr_stmt|;
 if|if
 condition|(
-name|lastNS
-operator|<
-name|curNS
+name|startNS
+operator|>=
+name|targetNS
 condition|)
 block|{
+comment|// OK, current time is already beyond the target sleep time,
+comment|// no pausing to do.
+comment|// Set to startNS, not targetNS, to enforce the instant rate, not
+comment|// the "averaaged over all history" rate:
 name|lastNS
 operator|=
-name|curNS
+name|startNS
+expr_stmt|;
+return|return
+literal|0
+return|;
+block|}
+name|lastNS
+operator|=
+name|targetNS
 expr_stmt|;
 block|}
+name|long
+name|curNS
+init|=
+name|startNS
+decl_stmt|;
 comment|// While loop because Thread.sleep doesn't always sleep
 comment|// enough:
 while|while
@@ -256,6 +308,9 @@ condition|)
 block|{
 try|try
 block|{
+comment|// NOTE: except maybe on real-time JVMs, minimum realistic sleep time
+comment|// is 1 msec; if you pass just 1 nsec the default impl rounds
+comment|// this up to 1 msec:
 name|Thread
 operator|.
 name|sleep
