@@ -1118,8 +1118,8 @@ operator|(
 name|options
 operator|.
 name|alternativeTermCount
-operator|!=
-literal|null
+operator|>
+literal|0
 operator|&&
 name|freq
 operator|>
@@ -1173,8 +1173,8 @@ condition|(
 name|options
 operator|.
 name|alternativeTermCount
-operator|!=
-literal|null
+operator|>
+literal|0
 operator|&&
 name|freq
 operator|>
