@@ -2605,7 +2605,7 @@ specifier|public
 name|void
 name|doFullImport
 parameter_list|(
-name|SolrWriter
+name|DIHWriter
 name|writer
 parameter_list|,
 name|RequestInfo
@@ -2750,7 +2750,7 @@ specifier|private
 name|void
 name|checkWritablePersistFile
 parameter_list|(
-name|SolrWriter
+name|DIHWriter
 name|writer
 parameter_list|,
 name|DIHProperties
@@ -2784,7 +2784,7 @@ specifier|public
 name|void
 name|doDeltaImport
 parameter_list|(
-name|SolrWriter
+name|DIHWriter
 name|writer
 parameter_list|,
 name|RequestInfo
@@ -2932,7 +2932,7 @@ name|RequestInfo
 name|reqParams
 parameter_list|,
 specifier|final
-name|SolrWriter
+name|DIHWriter
 name|sw
 parameter_list|)
 block|{
@@ -2968,7 +2968,7 @@ parameter_list|(
 name|RequestInfo
 name|reqParams
 parameter_list|,
-name|SolrWriter
+name|DIHWriter
 name|sw
 parameter_list|)
 block|{
