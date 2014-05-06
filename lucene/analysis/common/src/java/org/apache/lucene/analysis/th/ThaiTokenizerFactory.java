@@ -68,7 +68,7 @@ name|lucene
 operator|.
 name|util
 operator|.
-name|AttributeSource
+name|AttributeFactory
 import|;
 end_import
 
@@ -130,8 +130,6 @@ specifier|public
 name|Tokenizer
 name|create
 parameter_list|(
-name|AttributeSource
-operator|.
 name|AttributeFactory
 name|factory
 parameter_list|)

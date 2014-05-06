@@ -84,6 +84,20 @@ name|OffsetAttribute
 import|;
 end_import
 
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|util
+operator|.
+name|AttributeFactory
+import|;
+end_import
+
 begin_comment
 comment|/**  * Old broken version of {@link NGramTokenizer}.  */
 end_comment
@@ -203,7 +217,7 @@ name|maxGram
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**    * Creates NGramTokenizer with given min and max n-grams.    * @param factory {@link org.apache.lucene.util.AttributeSource.AttributeFactory} to use    * @param minGram the smallest n-gram to generate    * @param maxGram the largest n-gram to generate    */
+comment|/**    * Creates NGramTokenizer with given min and max n-grams.    * @param factory {@link org.apache.lucene.util.AttributeFactory} to use    * @param minGram the smallest n-gram to generate    * @param maxGram the largest n-gram to generate    */
 DECL|method|Lucene43NGramTokenizer
 specifier|public
 name|Lucene43NGramTokenizer

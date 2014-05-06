@@ -52,6 +52,20 @@ name|lucene
 operator|.
 name|util
 operator|.
+name|AttributeFactory
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|util
+operator|.
 name|Version
 import|;
 end_import
@@ -113,7 +127,7 @@ literal|true
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**    * Creates EdgeNGramTokenizer that can generate n-grams in the sizes of the given range    *    * @param version the Lucene match version    * @param factory {@link org.apache.lucene.util.AttributeSource.AttributeFactory} to use    * @param minGram the smallest n-gram to generate    * @param maxGram the largest n-gram to generate    */
+comment|/**    * Creates EdgeNGramTokenizer that can generate n-grams in the sizes of the given range    *    * @param version the Lucene match version    * @param factory {@link org.apache.lucene.util.AttributeFactory} to use    * @param minGram the smallest n-gram to generate    * @param maxGram the largest n-gram to generate    */
 DECL|method|EdgeNGramTokenizer
 specifier|public
 name|EdgeNGramTokenizer

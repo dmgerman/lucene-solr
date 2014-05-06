@@ -142,6 +142,20 @@ name|lucene
 operator|.
 name|util
 operator|.
+name|AttributeFactory
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|util
+operator|.
 name|Version
 import|;
 end_import
@@ -392,7 +406,7 @@ name|edgesOnly
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**    * Creates NGramTokenizer with given min and max n-grams.    * @param version the lucene compatibility<a href="#version">version</a>    * @param factory {@link org.apache.lucene.util.AttributeSource.AttributeFactory} to use    * @param minGram the smallest n-gram to generate    * @param maxGram the largest n-gram to generate    */
+comment|/**    * Creates NGramTokenizer with given min and max n-grams.    * @param version the lucene compatibility<a href="#version">version</a>    * @param factory {@link org.apache.lucene.util.AttributeFactory} to use    * @param minGram the smallest n-gram to generate    * @param maxGram the largest n-gram to generate    */
 DECL|method|NGramTokenizer
 specifier|public
 name|NGramTokenizer

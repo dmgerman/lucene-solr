@@ -28,7 +28,7 @@ name|lucene
 operator|.
 name|analysis
 operator|.
-name|Token
+name|TokenStream
 import|;
 end_import
 
@@ -56,19 +56,7 @@ name|lucene
 operator|.
 name|util
 operator|.
-name|AttributeSource
-operator|.
 name|AttributeFactory
-import|;
-end_import
-
-begin_import
-import|import
-name|java
-operator|.
-name|io
-operator|.
-name|Reader
 import|;
 end_import
 
@@ -247,9 +235,9 @@ block|{
 return|return
 name|create
 argument_list|(
-name|Token
+name|TokenStream
 operator|.
-name|TOKEN_ATTRIBUTE_FACTORY
+name|DEFAULT_TOKEN_ATTRIBUTE_FACTORY
 argument_list|)
 return|;
 block|}

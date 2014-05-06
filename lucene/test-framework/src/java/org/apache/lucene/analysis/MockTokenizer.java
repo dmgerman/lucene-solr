@@ -30,16 +30,6 @@ begin_import
 import|import
 name|java
 operator|.
-name|io
-operator|.
-name|Reader
-import|;
-end_import
-
-begin_import
-import|import
-name|java
-operator|.
 name|nio
 operator|.
 name|CharBuffer
@@ -85,6 +75,20 @@ operator|.
 name|tokenattributes
 operator|.
 name|OffsetAttribute
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|util
+operator|.
+name|AttributeFactory
 import|;
 end_import
 
@@ -511,7 +515,7 @@ name|DEFAULT_MAX_TOKEN_LENGTH
 argument_list|)
 expr_stmt|;
 block|}
-comment|/** Calls {@link #MockTokenizer(org.apache.lucene.util.AttributeSource.AttributeFactory,CharacterRunAutomaton,boolean)    *                MockTokenizer(AttributeFactory, Reader, WHITESPACE, true)} */
+comment|/** Calls {@link #MockTokenizer(AttributeFactory,CharacterRunAutomaton,boolean)    *                MockTokenizer(AttributeFactory, Reader, WHITESPACE, true)} */
 DECL|method|MockTokenizer
 specifier|public
 name|MockTokenizer

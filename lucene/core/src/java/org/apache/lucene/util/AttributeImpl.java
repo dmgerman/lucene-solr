@@ -48,17 +48,7 @@ name|lang
 operator|.
 name|ref
 operator|.
-name|WeakReference
-import|;
-end_import
-
-begin_import
-import|import
-name|java
-operator|.
-name|util
-operator|.
-name|LinkedList
+name|Reference
 import|;
 end_import
 
@@ -232,9 +222,7 @@ name|getClass
 argument_list|()
 decl_stmt|;
 specifier|final
-name|LinkedList
-argument_list|<
-name|WeakReference
+name|Reference
 argument_list|<
 name|Class
 argument_list|<
@@ -243,7 +231,7 @@ extends|extends
 name|Attribute
 argument_list|>
 argument_list|>
-argument_list|>
+index|[]
 name|interfaces
 init|=
 name|AttributeSource
@@ -257,8 +245,7 @@ if|if
 condition|(
 name|interfaces
 operator|.
-name|size
-argument_list|()
+name|length
 operator|!=
 literal|1
 condition|)
@@ -286,13 +273,22 @@ argument_list|>
 name|interf
 init|=
 name|interfaces
-operator|.
-name|getFirst
-argument_list|()
+index|[
+literal|0
+index|]
 operator|.
 name|get
 argument_list|()
 decl_stmt|;
+assert|assert
+operator|(
+name|interf
+operator|!=
+literal|null
+operator|)
+operator|:
+literal|"We have a strong reference on the class holding the interfaces, so they should never get evicted"
+assert|;
 specifier|final
 name|Field
 index|[]

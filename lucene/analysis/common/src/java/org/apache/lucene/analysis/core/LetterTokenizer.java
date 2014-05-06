@@ -58,6 +58,20 @@ name|lucene
 operator|.
 name|util
 operator|.
+name|AttributeFactory
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|util
+operator|.
 name|Version
 import|;
 end_import
@@ -89,7 +103,7 @@ name|matchVersion
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**    * Construct a new LetterTokenizer using a given    * {@link org.apache.lucene.util.AttributeSource.AttributeFactory}.    *     * @param matchVersion    *          Lucene version to match See {@link<a href="#version">above</a>}    * @param factory    *          the attribute factory to use for this {@link Tokenizer}    */
+comment|/**    * Construct a new LetterTokenizer using a given    * {@link org.apache.lucene.util.AttributeFactory}.    *     * @param matchVersion    *          Lucene version to match See {@link<a href="#version">above</a>}    * @param factory    *          the attribute factory to use for this {@link Tokenizer}    */
 DECL|method|LetterTokenizer
 specifier|public
 name|LetterTokenizer

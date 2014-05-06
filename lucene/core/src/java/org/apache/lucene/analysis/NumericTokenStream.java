@@ -208,6 +208,20 @@ name|lucene
 operator|.
 name|util
 operator|.
+name|AttributeFactory
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|util
+operator|.
 name|AttributeImpl
 import|;
 end_import
@@ -823,7 +837,7 @@ name|precisionStep
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**    * Expert: Creates a token stream for numeric values with the specified    *<code>precisionStep</code> using the given    * {@link org.apache.lucene.util.AttributeSource.AttributeFactory}.    * The stream is not yet initialized,    * before using set a value using the various set<em>???</em>Value() methods.    */
+comment|/**    * Expert: Creates a token stream for numeric values with the specified    *<code>precisionStep</code> using the given    * {@link org.apache.lucene.util.AttributeFactory}.    * The stream is not yet initialized,    * before using set a value using the various set<em>???</em>Value() methods.    */
 DECL|method|NumericTokenStream
 specifier|public
 name|NumericTokenStream

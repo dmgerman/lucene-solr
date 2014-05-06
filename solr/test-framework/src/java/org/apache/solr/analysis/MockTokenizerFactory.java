@@ -86,8 +86,6 @@ name|lucene
 operator|.
 name|util
 operator|.
-name|AttributeSource
-operator|.
 name|AttributeFactory
 import|;
 end_import

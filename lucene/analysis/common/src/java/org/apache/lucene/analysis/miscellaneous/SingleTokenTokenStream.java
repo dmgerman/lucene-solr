@@ -77,10 +77,12 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * A {@link TokenStream} containing a single token.  */
+comment|/**  * A {@link TokenStream} containing a single token.  * @deprecated Do not use this anymore!  */
 end_comment
 
 begin_class
+annotation|@
+name|Deprecated
 DECL|class|SingleTokenTokenStream
 specifier|public
 specifier|final

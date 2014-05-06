@@ -122,6 +122,20 @@ name|lucene
 operator|.
 name|util
 operator|.
+name|AttributeFactory
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|util
+operator|.
 name|AttributeSource
 import|;
 end_import
@@ -676,7 +690,7 @@ name|untokenizedTypes
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**    * Creates a new instance of the {@link org.apache.lucene.analysis.wikipedia.WikipediaTokenizer}.  Attaches the    *<code>input</code> to a the newly created JFlex scanner. Uses the given {@link org.apache.lucene.util.AttributeSource.AttributeFactory}.    *    * @param tokenOutput One of {@link #TOKENS_ONLY}, {@link #UNTOKENIZED_ONLY}, {@link #BOTH}    */
+comment|/**    * Creates a new instance of the {@link org.apache.lucene.analysis.wikipedia.WikipediaTokenizer}.  Attaches the    *<code>input</code> to a the newly created JFlex scanner. Uses the given {@link org.apache.lucene.util.AttributeFactory}.    *    * @param tokenOutput One of {@link #TOKENS_ONLY}, {@link #UNTOKENIZED_ONLY}, {@link #BOTH}    */
 DECL|method|WikipediaTokenizer
 specifier|public
 name|WikipediaTokenizer
