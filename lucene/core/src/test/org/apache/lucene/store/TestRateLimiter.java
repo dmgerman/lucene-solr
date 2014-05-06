@@ -522,6 +522,8 @@ name|actualMBPerSec
 operator|/
 name|targetMBPerSec
 decl_stmt|;
+comment|// Only enforce that it wasn't too fast; if machine is bogged down (can't schedule threads / sleep properly) then it may falsely be too slow:
+comment|//assertTrue("targetMBPerSec=" + targetMBPerSec + " actualMBPerSec=" + actualMBPerSec, ratio>= 0.9&& ratio<= 1.1);
 name|assertTrue
 argument_list|(
 literal|"targetMBPerSec="
@@ -532,10 +534,6 @@ literal|" actualMBPerSec="
 operator|+
 name|actualMBPerSec
 argument_list|,
-name|ratio
-operator|>=
-literal|0.9
-operator|&&
 name|ratio
 operator|<=
 literal|1.1
