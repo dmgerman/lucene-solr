@@ -1352,6 +1352,15 @@ name|FieldCache
 operator|.
 name|DEFAULT
 operator|.
+name|setInfoStream
+argument_list|(
+literal|null
+argument_list|)
+expr_stmt|;
+name|FieldCache
+operator|.
+name|DEFAULT
+operator|.
 name|purgeAllCaches
 argument_list|()
 expr_stmt|;
