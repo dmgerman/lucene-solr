@@ -150,20 +150,6 @@ specifier|public
 class|class
 name|AttributeSource
 block|{
-comment|/**    * This is the default factory that creates {@link AttributeImpl}s using the    * class name of the supplied {@link Attribute} interface class by appending<code>Impl</code> to it.    * @deprecated use {@link AttributeFactory#DEFAULT_ATTRIBUTE_FACTORY}    */
-annotation|@
-name|Deprecated
-DECL|field|DEFAULT_ATTRIBUTE_FACTORY
-specifier|public
-specifier|static
-specifier|final
-name|AttributeFactory
-name|DEFAULT_ATTRIBUTE_FACTORY
-init|=
-name|AttributeFactory
-operator|.
-name|DEFAULT_ATTRIBUTE_FACTORY
-decl_stmt|;
 comment|/**    * This class holds the state of an AttributeSource.    * @see #captureState    * @see #restoreState    */
 DECL|class|State
 specifier|public
