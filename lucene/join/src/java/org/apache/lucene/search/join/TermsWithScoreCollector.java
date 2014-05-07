@@ -1190,6 +1190,15 @@ argument_list|(
 name|scoreSums
 argument_list|)
 expr_stmt|;
+name|scoreCounts
+operator|=
+name|ArrayUtil
+operator|.
+name|grow
+argument_list|(
+name|scoreCounts
+argument_list|)
+expr_stmt|;
 block|}
 block|}
 name|scoreSums
