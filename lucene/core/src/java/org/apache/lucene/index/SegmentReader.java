@@ -971,6 +971,13 @@ argument_list|,
 name|infos
 argument_list|)
 decl_stmt|;
+name|dvGens
+operator|.
+name|add
+argument_list|(
+name|gen
+argument_list|)
+expr_stmt|;
 for|for
 control|(
 name|FieldInfo
@@ -999,16 +1006,6 @@ name|dvp
 argument_list|)
 expr_stmt|;
 block|}
-name|dvGens
-operator|.
-name|addAll
-argument_list|(
-name|genInfos
-operator|.
-name|keySet
-argument_list|()
-argument_list|)
-expr_stmt|;
 block|}
 comment|/**    * Reads the most recent {@link FieldInfos} of the given segment info.    *     * @lucene.internal    */
 DECL|method|readFieldInfos
