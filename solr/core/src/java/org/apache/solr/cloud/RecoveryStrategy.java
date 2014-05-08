@@ -2218,6 +2218,26 @@ argument_list|)
 expr_stmt|;
 return|return;
 block|}
+name|log
+operator|.
+name|info
+argument_list|(
+literal|"Publishing state of core "
+operator|+
+name|core
+operator|.
+name|getName
+argument_list|()
+operator|+
+literal|" as recovering, leader is "
+operator|+
+name|leaderUrl
+operator|+
+literal|" and I am "
+operator|+
+name|ourUrl
+argument_list|)
+expr_stmt|;
 name|zkController
 operator|.
 name|publish
@@ -3467,6 +3487,20 @@ operator|=
 name|mrr
 operator|.
 name|httpUriRequest
+expr_stmt|;
+name|log
+operator|.
+name|info
+argument_list|(
+literal|"Sending prep recovery command to {}; {}"
+argument_list|,
+name|leaderBaseUrl
+argument_list|,
+name|prepCmd
+operator|.
+name|toString
+argument_list|()
+argument_list|)
 expr_stmt|;
 name|mrr
 operator|.

@@ -5229,7 +5229,16 @@ name|log
 operator|.
 name|info
 argument_list|(
-literal|"It has been requested that we recover"
+literal|"It has been requested that we recover: core="
+operator|+
+name|params
+operator|.
+name|get
+argument_list|(
+name|CoreAdminParams
+operator|.
+name|CORE
+argument_list|)
 argument_list|)
 expr_stmt|;
 name|Thread
@@ -5892,6 +5901,10 @@ operator|+
 literal|", onlyIfLeader: "
 operator|+
 name|onlyIfLeader
+operator|+
+literal|", onlyIfLeaderActive: "
+operator|+
+name|onlyIfLeaderActive
 argument_list|)
 expr_stmt|;
 name|int
@@ -6238,6 +6251,82 @@ operator|.
 name|getLastPublished
 argument_list|()
 decl_stmt|;
+comment|// TODO: This is funky but I've seen this in testing where the replica asks the
+comment|// leader to be in recovery? Need to track down how that happens ... in the meantime,
+comment|// this is a safeguard
+name|boolean
+name|leaderDoesNotNeedRecovery
+init|=
+operator|(
+name|onlyIfLeader
+operator|!=
+literal|null
+operator|&&
+name|onlyIfLeader
+operator|&&
+name|core
+operator|.
+name|getName
+argument_list|()
+operator|.
+name|equals
+argument_list|(
+name|nodeProps
+operator|.
+name|getStr
+argument_list|(
+literal|"core"
+argument_list|)
+argument_list|)
+operator|&&
+name|ZkStateReader
+operator|.
+name|RECOVERING
+operator|.
+name|equals
+argument_list|(
+name|waitForState
+argument_list|)
+operator|&&
+name|ZkStateReader
+operator|.
+name|ACTIVE
+operator|.
+name|equals
+argument_list|(
+name|localState
+argument_list|)
+operator|&&
+name|ZkStateReader
+operator|.
+name|ACTIVE
+operator|.
+name|equals
+argument_list|(
+name|state
+argument_list|)
+operator|)
+decl_stmt|;
+if|if
+condition|(
+name|leaderDoesNotNeedRecovery
+condition|)
+block|{
+name|log
+operator|.
+name|warn
+argument_list|(
+literal|"Leader "
+operator|+
+name|core
+operator|.
+name|getName
+argument_list|()
+operator|+
+literal|" ignoring request to be in the recovering state because it is live and active."
+argument_list|)
+expr_stmt|;
+block|}
 name|boolean
 name|onlyIfActiveCheckResult
 init|=
@@ -6263,6 +6352,67 @@ name|ACTIVE
 argument_list|)
 operator|)
 decl_stmt|;
+name|log
+operator|.
+name|info
+argument_list|(
+literal|"In WaitForState("
+operator|+
+name|waitForState
+operator|+
+literal|"): collection="
+operator|+
+name|collection
+operator|+
+literal|", shard="
+operator|+
+name|slice
+operator|.
+name|getName
+argument_list|()
+operator|+
+literal|", isLeader? "
+operator|+
+name|core
+operator|.
+name|getCoreDescriptor
+argument_list|()
+operator|.
+name|getCloudDescriptor
+argument_list|()
+operator|.
+name|isLeader
+argument_list|()
+operator|+
+literal|", live="
+operator|+
+name|live
+operator|+
+literal|", currentState="
+operator|+
+name|state
+operator|+
+literal|", localState="
+operator|+
+name|localState
+operator|+
+literal|", nodeName="
+operator|+
+name|nodeName
+operator|+
+literal|", coreNodeName="
+operator|+
+name|coreNodeName
+operator|+
+literal|", onlyIfActiveCheckResult="
+operator|+
+name|onlyIfActiveCheckResult
+operator|+
+literal|", nodeProps: "
+operator|+
+name|nodeProps
+argument_list|)
+expr_stmt|;
 if|if
 condition|(
 operator|!
@@ -6272,12 +6422,16 @@ name|nodeProps
 operator|!=
 literal|null
 operator|&&
+operator|(
 name|state
 operator|.
 name|equals
 argument_list|(
 name|waitForState
 argument_list|)
+operator|||
+name|leaderDoesNotNeedRecovery
+operator|)
 condition|)
 block|{
 if|if
@@ -6381,7 +6535,7 @@ name|collection
 argument_list|,
 name|shardId
 argument_list|,
-literal|0
+literal|5000
 argument_list|)
 expr_stmt|;
 block|}
