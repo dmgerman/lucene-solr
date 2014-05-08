@@ -1843,6 +1843,15 @@ parameter_list|()
 throws|throws
 name|IOException
 block|{
+if|if
+condition|(
+operator|!
+name|w
+operator|.
+name|isClosed
+argument_list|()
+condition|)
+block|{
 name|LuceneTestCase
 operator|.
 name|maybeChangeLiveIndexWriterConfig
@@ -1855,6 +1864,7 @@ name|getConfig
 argument_list|()
 argument_list|)
 expr_stmt|;
+block|}
 comment|// if someone isn't using getReader() API, we want to be sure to
 comment|// forceMerge since presumably they might open a reader on the dir.
 if|if
