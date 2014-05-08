@@ -5193,6 +5193,11 @@ name|LiveIndexWriterConfig
 name|c
 parameter_list|)
 block|{
+name|boolean
+name|didChange
+init|=
+literal|false
+decl_stmt|;
 if|if
 condition|(
 name|rarely
@@ -5300,6 +5305,10 @@ name|DISABLE_AUTO_FLUSH
 argument_list|)
 expr_stmt|;
 block|}
+name|didChange
+operator|=
+literal|true
+expr_stmt|;
 block|}
 if|if
 condition|(
@@ -5352,6 +5361,10 @@ name|DISABLE_AUTO_FLUSH
 argument_list|)
 expr_stmt|;
 block|}
+name|didChange
+operator|=
+literal|true
+expr_stmt|;
 block|}
 if|if
 condition|(
@@ -5395,6 +5408,10 @@ literal|null
 argument_list|)
 expr_stmt|;
 block|}
+name|didChange
+operator|=
+literal|true
+expr_stmt|;
 block|}
 if|if
 condition|(
@@ -5415,6 +5432,10 @@ name|nextBoolean
 argument_list|()
 argument_list|)
 expr_stmt|;
+name|didChange
+operator|=
+literal|true
+expr_stmt|;
 block|}
 if|if
 condition|(
@@ -5434,6 +5455,10 @@ operator|.
 name|nextBoolean
 argument_list|()
 argument_list|)
+expr_stmt|;
+name|didChange
+operator|=
+literal|true
 expr_stmt|;
 block|}
 if|if
@@ -5505,6 +5530,10 @@ name|maxThreadCount
 argument_list|)
 expr_stmt|;
 block|}
+name|didChange
+operator|=
+literal|true
+expr_stmt|;
 block|}
 if|if
 condition|(
@@ -5821,6 +5850,29 @@ literal|4
 argument_list|)
 expr_stmt|;
 block|}
+name|didChange
+operator|=
+literal|true
+expr_stmt|;
+block|}
+if|if
+condition|(
+name|VERBOSE
+operator|&&
+name|didChange
+condition|)
+block|{
+name|System
+operator|.
+name|out
+operator|.
+name|println
+argument_list|(
+literal|"NOTE: LuceneTestCase: randomly changed IWC's live settings to:\n"
+operator|+
+name|c
+argument_list|)
+expr_stmt|;
 block|}
 block|}
 comment|/**    * Returns a new Directory instance. Use this when the test does not    * care about the specific Directory implementation (most tests).    *<p>    * The Directory is wrapped with {@link BaseDirectoryWrapper}.    * this means usually it will be picky, such as ensuring that you    * properly close it and all open files in your test. It will emulate    * some features of Windows, such as not allowing open files to be    * overwritten.    */
