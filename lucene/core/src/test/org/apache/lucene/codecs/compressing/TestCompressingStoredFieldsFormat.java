@@ -152,6 +152,20 @@ name|lucene
 operator|.
 name|index
 operator|.
+name|IndexWriter
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|index
+operator|.
 name|IndexWriterConfig
 import|;
 end_import
@@ -342,15 +356,13 @@ argument_list|(
 literal|false
 argument_list|)
 expr_stmt|;
-name|RandomIndexWriter
+comment|// Cannot use RIW because this test wants CFS to stay off:
+name|IndexWriter
 name|iw
 init|=
 operator|new
-name|RandomIndexWriter
+name|IndexWriter
 argument_list|(
-name|random
-argument_list|()
-argument_list|,
 name|dir
 argument_list|,
 name|iwConf
@@ -435,6 +447,8 @@ name|String
 name|stringValue
 parameter_list|()
 block|{
+comment|// TODO: really bad& scary that this causes IW to
+comment|// abort the segment!!  We should fix this.
 return|return
 literal|null
 return|;
