@@ -8076,6 +8076,8 @@ index|[
 literal|2
 index|]
 decl_stmt|;
+try|try
+block|{
 name|String
 name|firstBackupTimestamp
 init|=
@@ -8665,35 +8667,29 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
-comment|//nocommit - Should move this to tearDown as it fails to delete the dir in case it fails?
+block|}
+finally|finally
+block|{
 for|for
 control|(
-name|int
-name|i
-init|=
-literal|0
-init|;
-name|i
-operator|<
+name|File
+name|dir
+range|:
 name|snapDir
-operator|.
-name|length
-condition|;
-name|i
-operator|++
 control|)
-block|{
+if|if
+condition|(
+name|dir
+operator|!=
+literal|null
+condition|)
 name|AbstractSolrTestCase
 operator|.
 name|recurseDelete
 argument_list|(
-name|snapDir
-index|[
-name|i
-index|]
+name|dir
 argument_list|)
 expr_stmt|;
-comment|// clean up the snap dir
 block|}
 block|}
 comment|/* character copy of file using UTF-8 */
