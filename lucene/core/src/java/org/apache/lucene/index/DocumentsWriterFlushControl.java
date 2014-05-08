@@ -1911,10 +1911,12 @@ name|success
 condition|)
 block|{
 comment|// make sure we unlock if this fails
-name|perThread
+name|perThreadPool
 operator|.
-name|unlock
-argument_list|()
+name|release
+argument_list|(
+name|perThread
+argument_list|)
 expr_stmt|;
 block|}
 block|}

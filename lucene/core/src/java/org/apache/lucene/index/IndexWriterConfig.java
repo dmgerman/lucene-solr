@@ -847,7 +847,7 @@ return|return
 name|mergePolicy
 return|;
 block|}
-comment|/** Expert: Sets the {@link DocumentsWriterPerThreadPool} instance used by the    * IndexWriter to assign thread-states to incoming indexing threads. If no    * {@link DocumentsWriterPerThreadPool} is set {@link IndexWriter} will use    * {@link ThreadAffinityDocumentsWriterThreadPool} with max number of    * thread-states set to {@link #DEFAULT_MAX_THREAD_STATES} (see    * {@link #DEFAULT_MAX_THREAD_STATES}).    *</p>    *<p>    * NOTE: The given {@link DocumentsWriterPerThreadPool} instance must not be used with    * other {@link IndexWriter} instances once it has been initialized / associated with an    * {@link IndexWriter}.    *</p>    *<p>    * NOTE: This only takes effect when IndexWriter is first created.</p>*/
+comment|/** Expert: Sets the {@link DocumentsWriterPerThreadPool} instance used by the    * IndexWriter to assign thread-states to incoming indexing threads.    *</p>    *<p>    * NOTE: The given {@link DocumentsWriterPerThreadPool} instance must not be used with    * other {@link IndexWriter} instances once it has been initialized / associated with an    * {@link IndexWriter}.    *</p>    *<p>    * NOTE: This only takes effect when IndexWriter is first created.</p>*/
 DECL|method|setIndexerThreadPool
 name|IndexWriterConfig
 name|setIndexerThreadPool
@@ -907,7 +907,7 @@ operator|.
 name|indexerThreadPool
 operator|=
 operator|new
-name|ThreadAffinityDocumentsWriterThreadPool
+name|DocumentsWriterPerThreadPool
 argument_list|(
 name|maxThreadStates
 argument_list|)
@@ -924,34 +924,12 @@ name|int
 name|getMaxThreadStates
 parameter_list|()
 block|{
-try|try
-block|{
 return|return
-operator|(
-operator|(
-name|ThreadAffinityDocumentsWriterThreadPool
-operator|)
 name|indexerThreadPool
-operator|)
 operator|.
 name|getMaxThreadStates
 argument_list|()
 return|;
-block|}
-catch|catch
-parameter_list|(
-name|ClassCastException
-name|cce
-parameter_list|)
-block|{
-throw|throw
-operator|new
-name|IllegalStateException
-argument_list|(
-name|cce
-argument_list|)
-throw|;
-block|}
 block|}
 comment|/** By default, IndexWriter does not pool the    *  SegmentReaders it must open for deletions and    *  merging, unless a near-real-time reader has been    *  obtained by calling {@link DirectoryReader#open(IndexWriter, boolean)}.    *  This method lets you enable pooling without getting a    *  near-real-time reader.  NOTE: if you set this to    *  false, IndexWriter will still pool readers once    *  {@link DirectoryReader#open(IndexWriter, boolean)} is called.    *    *<p>Only takes effect when IndexWriter is first created. */
 DECL|method|setReaderPooling

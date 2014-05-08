@@ -559,7 +559,7 @@ argument_list|)
 expr_stmt|;
 name|assertEquals
 argument_list|(
-name|ThreadAffinityDocumentsWriterThreadPool
+name|DocumentsWriterPerThreadPool
 operator|.
 name|class
 argument_list|,

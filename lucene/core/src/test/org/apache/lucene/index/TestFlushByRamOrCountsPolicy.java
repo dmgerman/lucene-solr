@@ -451,7 +451,7 @@ name|DocumentsWriterPerThreadPool
 name|threadPool
 init|=
 operator|new
-name|ThreadAffinityDocumentsWriterThreadPool
+name|DocumentsWriterPerThreadPool
 argument_list|(
 name|numDWPT
 argument_list|)
@@ -886,7 +886,7 @@ name|DocumentsWriterPerThreadPool
 name|threadPool
 init|=
 operator|new
-name|ThreadAffinityDocumentsWriterThreadPool
+name|DocumentsWriterPerThreadPool
 argument_list|(
 name|numDWPT
 argument_list|)
@@ -1270,7 +1270,7 @@ name|DocumentsWriterPerThreadPool
 name|threadPool
 init|=
 operator|new
-name|ThreadAffinityDocumentsWriterThreadPool
+name|DocumentsWriterPerThreadPool
 argument_list|(
 name|numDWPT
 argument_list|)
@@ -1772,7 +1772,7 @@ name|DocumentsWriterPerThreadPool
 name|threadPool
 init|=
 operator|new
-name|ThreadAffinityDocumentsWriterThreadPool
+name|DocumentsWriterPerThreadPool
 argument_list|(
 name|numThreads
 index|[

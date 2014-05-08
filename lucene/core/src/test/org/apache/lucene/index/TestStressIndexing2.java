@@ -1320,7 +1320,7 @@ operator|.
 name|setIndexerThreadPool
 argument_list|(
 operator|new
-name|ThreadAffinityDocumentsWriterThreadPool
+name|DocumentsWriterPerThreadPool
 argument_list|(
 name|maxThreadStates
 argument_list|)
