@@ -400,6 +400,7 @@ name|newDirectory
 argument_list|()
 decl_stmt|;
 comment|// do not use newMergePolicy that might return a MockMergePolicy that ignores the no-CFS ratio
+comment|// do not use RIW which will change things up!
 name|MergePolicy
 name|mp
 init|=
@@ -439,15 +440,12 @@ argument_list|(
 name|mp
 argument_list|)
 decl_stmt|;
-name|RandomIndexWriter
+name|IndexWriter
 name|w
 init|=
 operator|new
-name|RandomIndexWriter
+name|IndexWriter
 argument_list|(
-name|random
-argument_list|()
-argument_list|,
 name|dir
 argument_list|,
 name|cfg
@@ -570,11 +568,8 @@ expr_stmt|;
 name|w
 operator|=
 operator|new
-name|RandomIndexWriter
+name|IndexWriter
 argument_list|(
-name|random
-argument_list|()
-argument_list|,
 name|dir2
 argument_list|,
 name|cfg
