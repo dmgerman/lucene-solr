@@ -5183,6 +5183,7 @@ comment|// if you want it in LiveIndexWriterConfig: it must and will be tested h
 DECL|method|maybeChangeLiveIndexWriterConfig
 specifier|public
 specifier|static
+specifier|synchronized
 name|void
 name|maybeChangeLiveIndexWriterConfig
 parameter_list|(
