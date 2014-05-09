@@ -263,7 +263,7 @@ name|message
 argument_list|(
 literal|"FP"
 argument_list|,
-literal|"flush: activeBytes="
+literal|"trigger flush: activeBytes="
 operator|+
 name|control
 operator|.
