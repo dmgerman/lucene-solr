@@ -2039,6 +2039,31 @@ name|len
 operator|>=
 literal|0
 assert|;
+if|if
+condition|(
+name|len
+operator|>
+name|Short
+operator|.
+name|MAX_VALUE
+condition|)
+block|{
+throw|throw
+operator|new
+name|IllegalArgumentException
+argument_list|(
+literal|"len must be<= "
+operator|+
+name|Short
+operator|.
+name|MAX_VALUE
+operator|+
+literal|"; got "
+operator|+
+name|len
+argument_list|)
+throw|;
+block|}
 name|os
 operator|.
 name|writeShort
