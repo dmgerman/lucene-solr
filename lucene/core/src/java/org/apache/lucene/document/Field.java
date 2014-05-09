@@ -651,6 +651,21 @@ throw|;
 block|}
 if|if
 condition|(
+name|bytes
+operator|==
+literal|null
+condition|)
+block|{
+throw|throw
+operator|new
+name|IllegalArgumentException
+argument_list|(
+literal|"bytes cannot be null"
+argument_list|)
+throw|;
+block|}
+if|if
+condition|(
 name|type
 operator|.
 name|indexed
@@ -879,6 +894,21 @@ literal|" to String"
 argument_list|)
 throw|;
 block|}
+if|if
+condition|(
+name|value
+operator|==
+literal|null
+condition|)
+block|{
+throw|throw
+operator|new
+name|IllegalArgumentException
+argument_list|(
+literal|"value cannot be null"
+argument_list|)
+throw|;
+block|}
 name|fieldsData
 operator|=
 name|value
@@ -999,6 +1029,21 @@ operator|new
 name|IllegalArgumentException
 argument_list|(
 literal|"cannot set a BytesRef value on an indexed field"
+argument_list|)
+throw|;
+block|}
+if|if
+condition|(
+name|value
+operator|==
+literal|null
+condition|)
+block|{
+throw|throw
+operator|new
+name|IllegalArgumentException
+argument_list|(
+literal|"value cannot be null"
 argument_list|)
 throw|;
 block|}
