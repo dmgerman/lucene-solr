@@ -412,11 +412,6 @@ comment|//no leaf
 DECL|field|nextCell
 name|Cell
 name|nextCell
-init|=
-name|grid
-operator|.
-name|getWorldCell
-argument_list|()
 decl_stmt|;
 comment|//see getLeafDocs
 comment|/** This is the primary algorithm; recursive.  Returns null if finds none. */
@@ -823,10 +818,14 @@ literal|null
 return|;
 block|}
 name|nextCell
+operator|=
+name|grid
 operator|.
 name|readCell
 argument_list|(
 name|nextTerm
+argument_list|,
+name|nextCell
 argument_list|)
 expr_stmt|;
 assert|assert

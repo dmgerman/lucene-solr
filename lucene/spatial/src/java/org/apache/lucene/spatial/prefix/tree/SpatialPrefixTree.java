@@ -182,7 +182,7 @@ name|int
 name|level
 parameter_list|)
 function_decl|;
-comment|/**    * Returns the level 0 cell which encompasses all spatial data. Equivalent to {@link Cell#readCell(BytesRef)}    * with no bytes.    */
+comment|/**    * Returns the level 0 cell which encompasses all spatial data. Equivalent to {@link #readCell(BytesRef,Cell)}    * with no bytes.    */
 DECL|method|getWorldCell
 specifier|public
 specifier|abstract
@@ -191,6 +191,20 @@ name|getWorldCell
 parameter_list|()
 function_decl|;
 comment|//another possible name: getTopCell
+comment|/**    * This creates a new Cell (or re-using {@code scratch} if provided), initialized to the state as read    * by the bytes.    * Warning: An implementation may refer to the same byte array (no copy). If {@link Cell#setLeaf()} is    * subsequently called, it would then modify these bytes.    */
+DECL|method|readCell
+specifier|public
+specifier|abstract
+name|Cell
+name|readCell
+parameter_list|(
+name|BytesRef
+name|term
+parameter_list|,
+name|Cell
+name|scratch
+parameter_list|)
+function_decl|;
 comment|/**    * Gets the intersecting cells for the specified shape, without exceeding    * detail level. If a cell is within the query shape then it's marked as a    * leaf and none of its children are added. For cells at detailLevel, they are marked as    * leaves too, unless it's a point.    *<p>    * IMPORTANT: Cells returned from the iterator can be re-used for cells at the same level. So you can't simply    * iterate to subsequent cells and still refer to the former cell nor the bytes returned from the former cell, unless    * you know the former cell is a parent.    *    * @param shape       the shape; possibly null but the caller should liberally call    *  {@code remove()} if so.    * @param detailLevel the maximum detail level to get cells for    * @return the matching cells    */
 DECL|method|getTreeCellIterator
 specifier|public
