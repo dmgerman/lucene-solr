@@ -725,6 +725,75 @@ operator|-
 literal|1
 index|]
 expr_stmt|;
+if|if
+condition|(
+name|threadState
+operator|.
+name|dwpt
+operator|==
+literal|null
+condition|)
+block|{
+comment|// This thread-state is not initialized, e.g. it
+comment|// was just flushed. See if we can instead find
+comment|// another free thread state that already has docs
+comment|// indexed. This way if incoming thread concurrency
+comment|// has decreased, we don't leave docs
+comment|// indefinitely buffered, tying up RAM.  This
+comment|// will instead get those thread states flushed,
+comment|// freeing up RAM for larger segment flushes:
+for|for
+control|(
+name|int
+name|i
+init|=
+literal|0
+init|;
+name|i
+operator|<
+name|freeCount
+condition|;
+name|i
+operator|++
+control|)
+block|{
+if|if
+condition|(
+name|freeList
+index|[
+name|i
+index|]
+operator|.
+name|dwpt
+operator|!=
+literal|null
+condition|)
+block|{
+comment|// Use this one instead, and swap it with
+comment|// the un-initialized one:
+name|ThreadState
+name|ts
+init|=
+name|freeList
+index|[
+name|i
+index|]
+decl_stmt|;
+name|freeList
+index|[
+name|i
+index|]
+operator|=
+name|threadState
+expr_stmt|;
+name|threadState
+operator|=
+name|ts
+expr_stmt|;
+break|break;
+block|}
+block|}
+block|}
 name|freeCount
 operator|--
 expr_stmt|;
