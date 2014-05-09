@@ -4205,14 +4205,8 @@ argument_list|(
 name|automaton
 argument_list|)
 expr_stmt|;
-assert|assert
-name|SpecialOperations
-operator|.
-name|isFinite
-argument_list|(
-name|automaton
-argument_list|)
-assert|;
+comment|// TODO: LUCENE-5660 re-enable this once we disallow massive suggestion strings
+comment|// assert SpecialOperations.isFinite(automaton);
 comment|// Get all paths from the automaton (there can be
 comment|// more than one path, eg if the analyzer created a
 comment|// graph using SynFilter or WDF):
