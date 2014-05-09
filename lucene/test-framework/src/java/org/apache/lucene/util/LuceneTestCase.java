@@ -5208,6 +5208,12 @@ condition|)
 block|{
 comment|// change flush parameters:
 comment|// this is complicated because the api requires you "invoke setters in a magical order!"
+comment|// LUCENE-5661: workaround for race conditions in the API
+synchronized|synchronized
+init|(
+name|c
+init|)
+block|{
 name|boolean
 name|flushByRam
 init|=
@@ -5304,6 +5310,7 @@ operator|.
 name|DISABLE_AUTO_FLUSH
 argument_list|)
 expr_stmt|;
+block|}
 block|}
 name|didChange
 operator|=
