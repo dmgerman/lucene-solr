@@ -220,6 +220,22 @@ name|lucene
 operator|.
 name|util
 operator|.
+name|LuceneTestCase
+operator|.
+name|SuppressCodecs
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|util
+operator|.
 name|TestUtil
 import|;
 end_import
@@ -243,6 +259,18 @@ comment|/**  * Tests the DocTermOrdsRangeFilter  */
 end_comment
 
 begin_class
+annotation|@
+name|SuppressCodecs
+argument_list|(
+block|{
+literal|"Lucene40"
+block|,
+literal|"Lucene41"
+block|,
+literal|"Lucene42"
+block|}
+argument_list|)
+comment|// needs SORTED_SET
 DECL|class|TestDocTermOrdsRangeFilter
 specifier|public
 class|class
@@ -289,14 +317,6 @@ name|super
 operator|.
 name|setUp
 argument_list|()
-expr_stmt|;
-name|assumeTrue
-argument_list|(
-literal|"requires codec support for SORTED_SET"
-argument_list|,
-name|defaultCodecSupportsSortedSet
-argument_list|()
-argument_list|)
 expr_stmt|;
 name|dir
 operator|=
