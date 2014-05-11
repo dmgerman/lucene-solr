@@ -1235,10 +1235,6 @@ operator|.
 name|INT
 argument_list|,
 name|top
-argument_list|,
-name|FieldCache
-operator|.
-name|NUMERIC_UTILS_INT_PARSER
 argument_list|)
 decl_stmt|;
 name|sf
@@ -1282,10 +1278,6 @@ name|field
 operator|.
 name|getName
 argument_list|()
-argument_list|,
-name|FieldCache
-operator|.
-name|NUMERIC_UTILS_INT_PARSER
 argument_list|,
 name|enumIntToStringMap
 argument_list|,

@@ -22,20 +22,6 @@ name|apache
 operator|.
 name|lucene
 operator|.
-name|search
-operator|.
-name|FieldCache
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
 name|index
 operator|.
 name|LogDocMergePolicy
@@ -3588,14 +3574,8 @@ operator|+
 literal|"==['1',3, '2',3, '3',2, '4',1, '5',1]"
 argument_list|)
 expr_stmt|;
-name|FieldCache
-operator|.
-name|DEFAULT
-operator|.
-name|purgeAllCaches
-argument_list|()
-expr_stmt|;
-comment|// avoid FC insanity
+comment|// nocommit: split test if needed
+comment|// FieldCache.DEFAULT.purgeAllCaches();   // hide FC insanity
 comment|// test that grouping works with highlighting
 name|assertJQ
 argument_list|(
