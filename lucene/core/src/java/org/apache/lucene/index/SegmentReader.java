@@ -218,7 +218,7 @@ name|lucene
 operator|.
 name|search
 operator|.
-name|FieldCache
+name|CachingWrapperFilter
 import|;
 end_import
 
@@ -2389,7 +2389,7 @@ name|fi
 argument_list|)
 return|;
 block|}
-comment|/**    * Called when the shared core for this SegmentReader    * is closed.    *<p>    * This listener is called only once all SegmentReaders     * sharing the same core are closed.  At this point it     * is safe for apps to evict this reader from any caches     * keyed on {@link #getCoreCacheKey}.  This is the same     * interface that {@link FieldCache} uses, internally,     * to evict entries.</p>    *     * @lucene.experimental    */
+comment|/**    * Called when the shared core for this SegmentReader    * is closed.    *<p>    * This listener is called only once all SegmentReaders     * sharing the same core are closed.  At this point it     * is safe for apps to evict this reader from any caches     * keyed on {@link #getCoreCacheKey}.  This is the same     * interface that {@link CachingWrapperFilter} uses, internally,     * to evict entries.</p>    *     * @lucene.experimental    */
 DECL|interface|CoreClosedListener
 specifier|public
 specifier|static

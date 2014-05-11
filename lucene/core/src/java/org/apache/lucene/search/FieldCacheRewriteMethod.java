@@ -50,6 +50,20 @@ name|lucene
 operator|.
 name|index
 operator|.
+name|DocValues
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|index
+operator|.
 name|IndexReader
 import|;
 end_import
@@ -125,7 +139,11 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Rewrites MultiTermQueries into a filter, using the FieldCache for term enumeration.  *<p>  * This can be used to perform these queries against an unindexed docvalues field.  * @lucene.experimental  */
+comment|/**  * Rewrites MultiTermQueries into a filter, using DocValues for term enumeration.  *<p>  * This can be used to perform these queries against an unindexed docvalues field.  * @lucene.experimental  */
+end_comment
+
+begin_comment
+comment|// nocommit: rename this class
 end_comment
 
 begin_class
@@ -347,11 +365,9 @@ specifier|final
 name|SortedDocValues
 name|fcsi
 init|=
-name|FieldCache
+name|DocValues
 operator|.
-name|DEFAULT
-operator|.
-name|getTermsIndex
+name|getSorted
 argument_list|(
 name|context
 operator|.

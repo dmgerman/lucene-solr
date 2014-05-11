@@ -3138,10 +3138,6 @@ operator|new
 name|DateFieldSource
 argument_list|(
 name|expressionString
-argument_list|,
-name|AnalyticsParsers
-operator|.
-name|DEFAULT_DATE_PARSER
 argument_list|)
 block|{
 specifier|public

@@ -34,26 +34,8 @@ begin_comment
 comment|// javadocs
 end_comment
 
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|search
-operator|.
-name|FieldCache
-import|;
-end_import
-
 begin_comment
-comment|// javadocs
-end_comment
-
-begin_comment
-comment|/**  * Syntactic sugar for encoding doubles as NumericDocValues  * via {@link Double#doubleToRawLongBits(double)}.  *<p>  * Per-document double values can be retrieved via  * {@link FieldCache#getDoubles(AtomicReader, String, boolean)}.  *<p>  *<b>NOTE</b>: In most all cases this will be rather inefficient,  * requiring eight bytes per document. Consider encoding double  * values yourself with only as much precision as you require.  */
+comment|/**  * Syntactic sugar for encoding doubles as NumericDocValues  * via {@link Double#doubleToRawLongBits(double)}.  *<p>  * Per-document double values can be retrieved via  * {@link AtomicReader#getNumericDocValues(String)}.  *<p>  *<b>NOTE</b>: In most all cases this will be rather inefficient,  * requiring eight bytes per document. Consider encoding double  * values yourself with only as much precision as you require.  */
 end_comment
 
 begin_class

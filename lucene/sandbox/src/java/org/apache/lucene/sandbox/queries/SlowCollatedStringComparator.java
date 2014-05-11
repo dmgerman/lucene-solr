@@ -74,9 +74,9 @@ name|apache
 operator|.
 name|lucene
 operator|.
-name|search
+name|index
 operator|.
-name|FieldCache
+name|DocValues
 import|;
 end_import
 
@@ -474,11 +474,9 @@ name|IOException
 block|{
 name|currentDocTerms
 operator|=
-name|FieldCache
+name|DocValues
 operator|.
-name|DEFAULT
-operator|.
-name|getTerms
+name|getBinary
 argument_list|(
 name|context
 operator|.
@@ -486,15 +484,11 @@ name|reader
 argument_list|()
 argument_list|,
 name|field
-argument_list|,
-literal|true
 argument_list|)
 expr_stmt|;
 name|docsWithField
 operator|=
-name|FieldCache
-operator|.
-name|DEFAULT
+name|DocValues
 operator|.
 name|getDocsWithField
 argument_list|(
