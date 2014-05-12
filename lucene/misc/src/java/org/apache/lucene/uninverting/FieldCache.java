@@ -800,8 +800,49 @@ parameter_list|)
 throws|throws
 name|IOException
 function_decl|;
-comment|/**    * Checks the internal cache for an appropriate entry, and if none is found, reads the term values    * in<code>field</code> and returns a {@link DocTermOrds} instance, providing a method to retrieve    * the terms (as ords) per document.    *    * @param reader  Used to build a {@link DocTermOrds} instance    * @param field   Which field contains the strings.    * @param prefix  prefix for a subset of the terms which should be uninverted. Can be null.    * @return a {@link DocTermOrds} instance    * @throws IOException  If any error occurs.    */
-comment|// TODO: change this to take Parser
+comment|/** Can be passed to {@link #getDocTermOrds} to filter for 32-bit numeric terms */
+DECL|field|INT32_TERM_PREFIX
+specifier|public
+specifier|static
+specifier|final
+name|BytesRef
+name|INT32_TERM_PREFIX
+init|=
+operator|new
+name|BytesRef
+argument_list|(
+operator|new
+name|byte
+index|[]
+block|{
+name|NumericUtils
+operator|.
+name|SHIFT_START_INT
+block|}
+argument_list|)
+decl_stmt|;
+comment|/** Can be passed to {@link #getDocTermOrds} to filter for 64-bit numeric terms */
+DECL|field|INT64_TERM_PREFIX
+specifier|public
+specifier|static
+specifier|final
+name|BytesRef
+name|INT64_TERM_PREFIX
+init|=
+operator|new
+name|BytesRef
+argument_list|(
+operator|new
+name|byte
+index|[]
+block|{
+name|NumericUtils
+operator|.
+name|SHIFT_START_LONG
+block|}
+argument_list|)
+decl_stmt|;
+comment|/**    * Checks the internal cache for an appropriate entry, and if none is found, reads the term values    * in<code>field</code> and returns a {@link DocTermOrds} instance, providing a method to retrieve    * the terms (as ords) per document.    *    * @param reader  Used to build a {@link DocTermOrds} instance    * @param field   Which field contains the strings.    * @param prefix  prefix for a subset of the terms which should be uninverted. Can be null or    *                {@link #INT32_TERM_PREFIX} or {@link #INT64_TERM_PREFIX}    *                    * @return a {@link DocTermOrds} instance    * @throws IOException  If any error occurs.    */
 DECL|method|getDocTermOrds
 specifier|public
 name|SortedSetDocValues
