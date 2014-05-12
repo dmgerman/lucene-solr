@@ -4495,6 +4495,9 @@ name|reader
 parameter_list|,
 name|String
 name|field
+parameter_list|,
+name|BytesRef
+name|prefix
 parameter_list|)
 throws|throws
 name|IOException
@@ -4639,7 +4642,7 @@ name|CacheKey
 argument_list|(
 name|field
 argument_list|,
-literal|null
+name|prefix
 argument_list|)
 argument_list|,
 literal|false
@@ -4695,6 +4698,16 @@ parameter_list|)
 throws|throws
 name|IOException
 block|{
+name|BytesRef
+name|prefix
+init|=
+operator|(
+name|BytesRef
+operator|)
+name|key
+operator|.
+name|custom
+decl_stmt|;
 return|return
 operator|new
 name|DocTermOrds
@@ -4706,6 +4719,8 @@ argument_list|,
 name|key
 operator|.
 name|field
+argument_list|,
+name|prefix
 argument_list|)
 return|;
 block|}

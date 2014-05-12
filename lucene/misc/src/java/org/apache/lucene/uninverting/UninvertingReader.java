@@ -54,6 +54,168 @@ name|apache
 operator|.
 name|lucene
 operator|.
+name|document
+operator|.
+name|IntField
+import|;
+end_import
+
+begin_comment
+comment|// javadocs
+end_comment
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|document
+operator|.
+name|LongField
+import|;
+end_import
+
+begin_comment
+comment|// javadocs
+end_comment
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|document
+operator|.
+name|FloatField
+import|;
+end_import
+
+begin_comment
+comment|// javadocs
+end_comment
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|document
+operator|.
+name|DoubleField
+import|;
+end_import
+
+begin_comment
+comment|// javadocs
+end_comment
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|document
+operator|.
+name|BinaryDocValuesField
+import|;
+end_import
+
+begin_comment
+comment|// javadocs
+end_comment
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|document
+operator|.
+name|NumericDocValuesField
+import|;
+end_import
+
+begin_comment
+comment|// javadocs
+end_comment
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|document
+operator|.
+name|SortedDocValuesField
+import|;
+end_import
+
+begin_comment
+comment|// javadocs
+end_comment
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|document
+operator|.
+name|SortedSetDocValuesField
+import|;
+end_import
+
+begin_comment
+comment|// javadocs
+end_comment
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|document
+operator|.
+name|StringField
+import|;
+end_import
+
+begin_comment
+comment|// javadocs
+end_comment
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
 name|index
 operator|.
 name|AtomicReader
@@ -200,6 +362,38 @@ name|Bits
 import|;
 end_import
 
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|util
+operator|.
+name|BytesRef
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|util
+operator|.
+name|NumericUtils
+import|;
+end_import
+
+begin_comment
+comment|/**  * A FilterReader that exposes<i>indexed</i> values as if they also had  * docvalues.  *<p>  * This is accomplished by "inverting the inverted index" or "uninversion".  *<p>  * The uninversion process happens lazily: upon the first request for the   * field's docvalues (e.g. via {@link AtomicReader#getNumericDocValues(String)}   * or similar), it will create the docvalues on-the-fly if needed and cache it,  * based on the core cache key of the wrapped AtomicReader.  */
+end_comment
+
 begin_class
 DECL|class|UninvertingReader
 specifier|public
@@ -208,33 +402,58 @@ name|UninvertingReader
 extends|extends
 name|FilterAtomicReader
 block|{
+comment|/**    * Specifies the type of uninversion to apply for the field.     */
 DECL|enum|Type
 specifier|public
 specifier|static
 enum|enum
 name|Type
 block|{
+comment|/**       * Single-valued Integer, (e.g. indexed with {@link IntField})      *<p>      * Fields with this type act as if they were indexed with      * {@link NumericDocValuesField}.      */
 DECL|enum constant|INTEGER
 name|INTEGER
 block|,
+comment|/**       * Single-valued Long, (e.g. indexed with {@link LongField})       *<p>      * Fields with this type act as if they were indexed with      * {@link NumericDocValuesField}.      */
 DECL|enum constant|LONG
 name|LONG
 block|,
+comment|/**       * Single-valued Float, (e.g. indexed with {@link FloatField})       *<p>      * Fields with this type act as if they were indexed with      * {@link NumericDocValuesField}.      */
 DECL|enum constant|FLOAT
 name|FLOAT
 block|,
+comment|/**       * Single-valued Double, (e.g. indexed with {@link DoubleField})       *<p>      * Fields with this type act as if they were indexed with      * {@link NumericDocValuesField}.      */
 DECL|enum constant|DOUBLE
 name|DOUBLE
 block|,
+comment|/**       * Single-valued Binary, (e.g. indexed with {@link StringField})       *<p>      * Fields with this type act as if they were indexed with      * {@link BinaryDocValuesField}.      */
 DECL|enum constant|BINARY
 name|BINARY
 block|,
+comment|/**       * Single-valued Binary, (e.g. indexed with {@link StringField})       *<p>      * Fields with this type act as if they were indexed with      * {@link SortedDocValuesField}.      */
 DECL|enum constant|SORTED
 name|SORTED
 block|,
-DECL|enum constant|SORTED_SET
-name|SORTED_SET
+comment|/**       * Multi-valued Binary, (e.g. indexed with {@link StringField})       *<p>      * Fields with this type act as if they were indexed with      * {@link SortedSetDocValuesField}.      */
+DECL|enum constant|SORTED_SET_BINARY
+name|SORTED_SET_BINARY
+block|,
+comment|/**       * Multi-valued Integer, (e.g. indexed with {@link IntField})       *<p>      * Fields with this type act as if they were indexed with      * {@link SortedSetDocValuesField}.      */
+DECL|enum constant|SORTED_SET_INTEGER
+name|SORTED_SET_INTEGER
+block|,
+comment|/**       * Multi-valued Float, (e.g. indexed with {@link FloatField})       *<p>      * Fields with this type act as if they were indexed with      * {@link SortedSetDocValuesField}.      */
+DECL|enum constant|SORTED_SET_FLOAT
+name|SORTED_SET_FLOAT
+block|,
+comment|/**       * Multi-valued Long, (e.g. indexed with {@link LongField})       *<p>      * Fields with this type act as if they were indexed with      * {@link SortedSetDocValuesField}.      */
+DECL|enum constant|SORTED_SET_LONG
+name|SORTED_SET_LONG
+block|,
+comment|/**       * Multi-valued Double, (e.g. indexed with {@link DoubleField})       *<p>      * Fields with this type act as if they were indexed with      * {@link SortedSetDocValuesField}.      */
+DECL|enum constant|SORTED_SET_DOUBLE
+name|SORTED_SET_DOUBLE
 block|}
+comment|/**    * Wraps a provided DirectoryReader. Note that for convenience, the returned reader    * can be used normally (e.g. passed to {@link DirectoryReader#openIfChanged(DirectoryReader)})    * and so on.     */
 DECL|method|wrap
 specifier|public
 specifier|static
@@ -517,7 +736,19 @@ name|SORTED
 expr_stmt|;
 break|break;
 case|case
-name|SORTED_SET
+name|SORTED_SET_BINARY
+case|:
+case|case
+name|SORTED_SET_INTEGER
+case|:
+case|case
+name|SORTED_SET_FLOAT
+case|:
+case|case
+name|SORTED_SET_LONG
+case|:
+case|case
+name|SORTED_SET_DOUBLE
 case|:
 name|type
 operator|=
@@ -863,6 +1094,45 @@ argument_list|)
 return|;
 block|}
 block|}
+comment|// TODO: clean this up to instead just pass parsers...
+DECL|field|INT32_TERM_PREFIX
+specifier|static
+specifier|final
+name|BytesRef
+name|INT32_TERM_PREFIX
+init|=
+operator|new
+name|BytesRef
+argument_list|(
+operator|new
+name|byte
+index|[]
+block|{
+name|NumericUtils
+operator|.
+name|SHIFT_START_INT
+block|}
+argument_list|)
+decl_stmt|;
+DECL|field|INT64_TERM_PREFIX
+specifier|static
+specifier|final
+name|BytesRef
+name|INT64_TERM_PREFIX
+init|=
+operator|new
+name|BytesRef
+argument_list|(
+operator|new
+name|byte
+index|[]
+block|{
+name|NumericUtils
+operator|.
+name|SHIFT_START_LONG
+block|}
+argument_list|)
+decl_stmt|;
 annotation|@
 name|Override
 DECL|method|getSortedSetDocValues
@@ -876,7 +1146,24 @@ parameter_list|)
 throws|throws
 name|IOException
 block|{
+name|Type
+name|v
+init|=
+name|mapping
+operator|.
+name|get
+argument_list|(
+name|field
+argument_list|)
+decl_stmt|;
 if|if
+condition|(
+name|v
+operator|!=
+literal|null
+condition|)
+block|{
+switch|switch
 condition|(
 name|mapping
 operator|.
@@ -884,12 +1171,14 @@ name|get
 argument_list|(
 name|field
 argument_list|)
-operator|==
-name|Type
-operator|.
-name|SORTED_SET
 condition|)
 block|{
+case|case
+name|SORTED_SET_INTEGER
+case|:
+case|case
+name|SORTED_SET_FLOAT
+case|:
 return|return
 name|FieldCache
 operator|.
@@ -900,11 +1189,49 @@ argument_list|(
 name|in
 argument_list|,
 name|field
+argument_list|,
+name|INT32_TERM_PREFIX
+argument_list|)
+return|;
+case|case
+name|SORTED_SET_LONG
+case|:
+case|case
+name|SORTED_SET_DOUBLE
+case|:
+return|return
+name|FieldCache
+operator|.
+name|DEFAULT
+operator|.
+name|getDocTermOrds
+argument_list|(
+name|in
+argument_list|,
+name|field
+argument_list|,
+name|INT64_TERM_PREFIX
+argument_list|)
+return|;
+case|case
+name|SORTED_SET_BINARY
+case|:
+return|return
+name|FieldCache
+operator|.
+name|DEFAULT
+operator|.
+name|getDocTermOrds
+argument_list|(
+name|in
+argument_list|,
+name|field
+argument_list|,
+literal|null
 argument_list|)
 return|;
 block|}
-else|else
-block|{
+block|}
 return|return
 name|in
 operator|.
@@ -913,7 +1240,6 @@ argument_list|(
 name|field
 argument_list|)
 return|;
-block|}
 block|}
 annotation|@
 name|Override

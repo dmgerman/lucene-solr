@@ -543,6 +543,7 @@ name|MAX_VALUE
 argument_list|)
 expr_stmt|;
 block|}
+comment|// TODO: instead of all these ctors and options, take termsenum!
 comment|/** Inverts only terms starting w/ prefix */
 DECL|method|DocTermOrds
 specifier|public

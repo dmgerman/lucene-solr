@@ -800,7 +800,8 @@ parameter_list|)
 throws|throws
 name|IOException
 function_decl|;
-comment|/**    * Checks the internal cache for an appropriate entry, and if none is found, reads the term values    * in<code>field</code> and returns a {@link DocTermOrds} instance, providing a method to retrieve    * the terms (as ords) per document.    *    * @param reader  Used to build a {@link DocTermOrds} instance    * @param field   Which field contains the strings.    * @return a {@link DocTermOrds} instance    * @throws IOException  If any error occurs.    */
+comment|/**    * Checks the internal cache for an appropriate entry, and if none is found, reads the term values    * in<code>field</code> and returns a {@link DocTermOrds} instance, providing a method to retrieve    * the terms (as ords) per document.    *    * @param reader  Used to build a {@link DocTermOrds} instance    * @param field   Which field contains the strings.    * @param prefix  prefix for a subset of the terms which should be uninverted. Can be null.    * @return a {@link DocTermOrds} instance    * @throws IOException  If any error occurs.    */
+comment|// TODO: change this to take Parser
 DECL|method|getDocTermOrds
 specifier|public
 name|SortedSetDocValues
@@ -811,6 +812,9 @@ name|reader
 parameter_list|,
 name|String
 name|field
+parameter_list|,
+name|BytesRef
+name|prefix
 parameter_list|)
 throws|throws
 name|IOException
