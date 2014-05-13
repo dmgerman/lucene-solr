@@ -283,7 +283,7 @@ return|return
 operator|new
 name|DeleteByQueryWrapper
 argument_list|(
-name|in
+name|rewritten
 argument_list|,
 name|schema
 argument_list|)
