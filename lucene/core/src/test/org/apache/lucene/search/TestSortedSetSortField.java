@@ -1,6 +1,6 @@
 begin_unit|revision:0.9.5;language:Java;cregit-version:0.0.1
 begin_package
-DECL|package|org.apache.lucene.sandbox.queries
+DECL|package|org.apache.lucene.search
 package|package
 name|org
 operator|.
@@ -8,9 +8,7 @@ name|apache
 operator|.
 name|lucene
 operator|.
-name|sandbox
-operator|.
-name|queries
+name|search
 package|;
 end_package
 
@@ -379,14 +377,14 @@ expr_stmt|;
 comment|// for an empty index, any selector should work
 for|for
 control|(
-name|SortedSetSortField
+name|SortedSetSelector
 operator|.
-name|Selector
+name|Type
 name|v
 range|:
-name|SortedSetSortField
+name|SortedSetSelector
 operator|.
-name|Selector
+name|Type
 operator|.
 name|values
 argument_list|()
@@ -549,9 +547,9 @@ literal|"a"
 argument_list|,
 literal|false
 argument_list|,
-name|SortedSetSortField
+name|SortedSetSelector
 operator|.
-name|Selector
+name|Type
 operator|.
 name|MAX
 argument_list|)
