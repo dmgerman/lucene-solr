@@ -417,6 +417,11 @@ name|reverse
 parameter_list|)
 block|{
 comment|/* :TODO: maybe warn if isTokenized(), but doesn't use LimitTokenCountFilter in it's chain? */
+name|field
+operator|.
+name|checkSortability
+argument_list|()
+expr_stmt|;
 return|return
 operator|new
 name|SortedSetSortField
