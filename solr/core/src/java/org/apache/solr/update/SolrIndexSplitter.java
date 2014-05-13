@@ -648,7 +648,7 @@ name|leaves
 init|=
 name|searcher
 operator|.
-name|getTopReaderContext
+name|getRawReader
 argument_list|()
 operator|.
 name|leaves

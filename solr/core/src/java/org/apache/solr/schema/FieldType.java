@@ -376,6 +376,20 @@ name|apache
 operator|.
 name|lucene
 operator|.
+name|uninverting
+operator|.
+name|UninvertingReader
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
 name|util
 operator|.
 name|BytesRef
@@ -2149,6 +2163,19 @@ return|return
 name|query
 return|;
 block|}
+comment|/**    * DocValues is not enabled for a field, but its indexed, docvalues can be constructed     * on the fly (uninverted, aka fieldcache) on the first request to sort, facet, etc.     * This specifies the structure to use.    *     * @param sf field instance    * @return type to uninvert, or {@code null} (to disallow uninversion for the field)    */
+DECL|method|getUninversionType
+specifier|public
+specifier|abstract
+name|UninvertingReader
+operator|.
+name|Type
+name|getUninversionType
+parameter_list|(
+name|SchemaField
+name|sf
+parameter_list|)
+function_decl|;
 comment|/**    * Default analyzer for types that only produce 1 verbatim token...    * A maximum size of chars to be read must be specified    */
 DECL|class|DefaultAnalyzer
 specifier|protected
