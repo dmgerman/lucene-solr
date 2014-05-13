@@ -594,7 +594,9 @@ specifier|final
 name|FieldInfos
 name|fieldInfos
 decl_stmt|;
+comment|/**     * Create a new UninvertingReader with the specified mapping     *<p>    * Expert: This should almost never be used. Use {@link #wrap(DirectoryReader, Map)}    * instead.    *      * @lucene.internal    */
 DECL|method|UninvertingReader
+specifier|public
 name|UninvertingReader
 parameter_list|(
 name|AtomicReader
