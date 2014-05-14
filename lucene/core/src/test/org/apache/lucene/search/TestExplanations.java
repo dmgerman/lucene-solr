@@ -651,7 +651,7 @@ specifier|static
 class|class
 name|ItemizedFilter
 extends|extends
-name|FieldCacheTermsFilter
+name|DocValuesTermsFilter
 block|{
 DECL|method|int2str
 specifier|private

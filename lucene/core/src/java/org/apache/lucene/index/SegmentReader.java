@@ -1676,7 +1676,7 @@ return|;
 block|}
 comment|// This is necessary so that cloned SegmentReaders (which
 comment|// share the underlying postings data) will map to the
-comment|// same entry in the FieldCache.  See LUCENE-1579.
+comment|// same entry for CachingWrapperFilter.  See LUCENE-1579.
 annotation|@
 name|Override
 DECL|method|getCoreCacheKey

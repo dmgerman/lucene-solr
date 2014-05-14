@@ -3574,8 +3574,6 @@ operator|+
 literal|"==['1',3, '2',3, '3',2, '4',1, '5',1]"
 argument_list|)
 expr_stmt|;
-comment|// nocommit: split test if needed
-comment|// FieldCache.DEFAULT.purgeAllCaches();   // hide FC insanity
 comment|// test that grouping works with highlighting
 name|assertJQ
 argument_list|(

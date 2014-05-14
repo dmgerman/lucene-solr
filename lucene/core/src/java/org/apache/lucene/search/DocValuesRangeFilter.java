@@ -215,11 +215,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * A range filter built on top of an uninverted single term field   * (from {@link AtomicReader#getNumericDocValues(String)}).  *   *<p>{@code FieldCacheRangeFilter} builds a single cache for the field the first time it is used.  * Each subsequent {@code FieldCacheRangeFilter} on the same field then reuses this cache,  * even if the range itself changes.   *   *<p>This means that {@code FieldCacheRangeFilter} is much faster (sometimes more than 100x as fast)   * as building a {@link TermRangeFilter}, if using a {@link #newStringRange}.  * However, if the range never changes it is slower (around 2x as slow) than building  * a CachingWrapperFilter on top of a single {@link TermRangeFilter}.  *  * For numeric data types, this filter may be significantly faster than {@link NumericRangeFilter}.  * Furthermore, it does not need the numeric values encoded  * by {@link IntField}, {@link FloatField}, {@link  * LongField} or {@link DoubleField}. But  * it has the problem that it only works with exact one value/document (see below).  *  *<p>As with all {@link AtomicReader#getNumericDocValues} based functionality,   * {@code FieldCacheRangeFilter} is only valid for   * fields which exact one term for each document (except for {@link #newStringRange}  * where 0 terms are also allowed). Due to historical reasons, for numeric ranges  * all terms that do not have a numeric value, 0 is assumed.  *  *<p>Thus it works on dates, prices and other single value fields but will not work on  * regular text fields. It is preferable to use a<code>NOT_ANALYZED</code> field to ensure that  * there is only a single term.   *  *<p>This class does not have an constructor, use one of the static factory methods available,  * that create a correct instance for different data types.  */
-end_comment
-
-begin_comment
-comment|// nocommit: rename this class
+comment|/**  * A range filter built on top of an uninverted single term field   * (from {@link AtomicReader#getNumericDocValues(String)}).  *   *<p>{@code DocValuesRangeFilter} builds a single cache for the field the first time it is used.  * Each subsequent {@code DocValuesRangeFilter} on the same field then reuses this cache,  * even if the range itself changes.   *   *<p>This means that {@code DocValuesRangeFilter} is much faster (sometimes more than 100x as fast)   * as building a {@link TermRangeFilter}, if using a {@link #newStringRange}.  * However, if the range never changes it is slower (around 2x as slow) than building  * a CachingWrapperFilter on top of a single {@link TermRangeFilter}.  *  * For numeric data types, this filter may be significantly faster than {@link NumericRangeFilter}.  * Furthermore, it does not need the numeric values encoded  * by {@link IntField}, {@link FloatField}, {@link  * LongField} or {@link DoubleField}. But  * it has the problem that it only works with exact one value/document (see below).  *  *<p>As with all {@link AtomicReader#getNumericDocValues} based functionality,   * {@code DocValuesRangeFilter} is only valid for   * fields which exact one term for each document (except for {@link #newStringRange}  * where 0 terms are also allowed). Due to historical reasons, for numeric ranges  * all terms that do not have a numeric value, 0 is assumed.  *  *<p>Thus it works on dates, prices and other single value fields but will not work on  * regular text fields. It is preferable to use a<code>NOT_ANALYZED</code> field to ensure that  * there is only a single term.   *  *<p>This class does not have an constructor, use one of the static factory methods available,  * that create a correct instance for different data types.  */
 end_comment
 
 begin_comment
@@ -227,11 +223,11 @@ comment|// TODO: use docsWithField to handle empty properly
 end_comment
 
 begin_class
-DECL|class|FieldCacheRangeFilter
+DECL|class|DocValuesRangeFilter
 specifier|public
 specifier|abstract
 class|class
-name|FieldCacheRangeFilter
+name|DocValuesRangeFilter
 parameter_list|<
 name|T
 parameter_list|>
@@ -263,9 +259,9 @@ specifier|final
 name|boolean
 name|includeUpper
 decl_stmt|;
-DECL|method|FieldCacheRangeFilter
+DECL|method|DocValuesRangeFilter
 specifier|private
-name|FieldCacheRangeFilter
+name|DocValuesRangeFilter
 parameter_list|(
 name|String
 name|field
@@ -336,7 +332,7 @@ comment|/**    * Creates a string range filter using {@link AtomicReader#getSort
 DECL|method|newStringRange
 specifier|public
 specifier|static
-name|FieldCacheRangeFilter
+name|DocValuesRangeFilter
 argument_list|<
 name|String
 argument_list|>
@@ -360,7 +356,7 @@ parameter_list|)
 block|{
 return|return
 operator|new
-name|FieldCacheRangeFilter
+name|DocValuesRangeFilter
 argument_list|<
 name|String
 argument_list|>
@@ -610,7 +606,7 @@ literal|0
 assert|;
 return|return
 operator|new
-name|FieldCacheDocIdSet
+name|DocValuesDocIdSet
 argument_list|(
 name|context
 operator|.
@@ -666,7 +662,7 @@ comment|// TODO: bogus that newStringRange doesnt share this code... generics he
 DECL|method|newBytesRefRange
 specifier|public
 specifier|static
-name|FieldCacheRangeFilter
+name|DocValuesRangeFilter
 argument_list|<
 name|BytesRef
 argument_list|>
@@ -690,7 +686,7 @@ parameter_list|)
 block|{
 return|return
 operator|new
-name|FieldCacheRangeFilter
+name|DocValuesRangeFilter
 argument_list|<
 name|BytesRef
 argument_list|>
@@ -932,7 +928,7 @@ literal|0
 assert|;
 return|return
 operator|new
-name|FieldCacheDocIdSet
+name|DocValuesDocIdSet
 argument_list|(
 name|context
 operator|.
@@ -987,7 +983,7 @@ comment|/**    * Creates a numeric range filter using {@link AtomicReader#getSor
 DECL|method|newIntRange
 specifier|public
 specifier|static
-name|FieldCacheRangeFilter
+name|DocValuesRangeFilter
 argument_list|<
 name|Integer
 argument_list|>
@@ -1011,7 +1007,7 @@ parameter_list|)
 block|{
 return|return
 operator|new
-name|FieldCacheRangeFilter
+name|DocValuesRangeFilter
 argument_list|<
 name|Integer
 argument_list|>
@@ -1177,7 +1173,7 @@ argument_list|)
 decl_stmt|;
 return|return
 operator|new
-name|FieldCacheDocIdSet
+name|DocValuesDocIdSet
 argument_list|(
 name|context
 operator|.
@@ -1234,7 +1230,7 @@ comment|/**    * Creates a numeric range filter using {@link AtomicReader#getNum
 DECL|method|newLongRange
 specifier|public
 specifier|static
-name|FieldCacheRangeFilter
+name|DocValuesRangeFilter
 argument_list|<
 name|Long
 argument_list|>
@@ -1258,7 +1254,7 @@ parameter_list|)
 block|{
 return|return
 operator|new
-name|FieldCacheRangeFilter
+name|DocValuesRangeFilter
 argument_list|<
 name|Long
 argument_list|>
@@ -1424,7 +1420,7 @@ argument_list|)
 decl_stmt|;
 return|return
 operator|new
-name|FieldCacheDocIdSet
+name|DocValuesDocIdSet
 argument_list|(
 name|context
 operator|.
@@ -1478,7 +1474,7 @@ comment|/**    * Creates a numeric range filter using {@link AtomicReader#getNum
 DECL|method|newFloatRange
 specifier|public
 specifier|static
-name|FieldCacheRangeFilter
+name|DocValuesRangeFilter
 argument_list|<
 name|Float
 argument_list|>
@@ -1502,7 +1498,7 @@ parameter_list|)
 block|{
 return|return
 operator|new
-name|FieldCacheRangeFilter
+name|DocValuesRangeFilter
 argument_list|<
 name|Float
 argument_list|>
@@ -1710,7 +1706,7 @@ argument_list|)
 decl_stmt|;
 return|return
 operator|new
-name|FieldCacheDocIdSet
+name|DocValuesDocIdSet
 argument_list|(
 name|context
 operator|.
@@ -1772,7 +1768,7 @@ comment|/**    * Creates a numeric range filter using {@link AtomicReader#getNum
 DECL|method|newDoubleRange
 specifier|public
 specifier|static
-name|FieldCacheRangeFilter
+name|DocValuesRangeFilter
 argument_list|<
 name|Double
 argument_list|>
@@ -1796,7 +1792,7 @@ parameter_list|)
 block|{
 return|return
 operator|new
-name|FieldCacheRangeFilter
+name|DocValuesRangeFilter
 argument_list|<
 name|Double
 argument_list|>
@@ -2005,7 +2001,7 @@ decl_stmt|;
 comment|// ignore deleted docs if range doesn't contain 0
 return|return
 operator|new
-name|FieldCacheDocIdSet
+name|DocValuesDocIdSet
 argument_list|(
 name|context
 operator|.
@@ -2180,17 +2176,17 @@ operator|!
 operator|(
 name|o
 operator|instanceof
-name|FieldCacheRangeFilter
+name|DocValuesRangeFilter
 operator|)
 condition|)
 return|return
 literal|false
 return|;
-name|FieldCacheRangeFilter
+name|DocValuesRangeFilter
 name|other
 init|=
 operator|(
-name|FieldCacheRangeFilter
+name|DocValuesRangeFilter
 operator|)
 name|o
 decl_stmt|;

@@ -3293,13 +3293,6 @@ argument_list|)
 operator|.
 name|around
 argument_list|(
-operator|new
-name|TestRuleFieldCacheSanity
-argument_list|()
-argument_list|)
-operator|.
-name|around
-argument_list|(
 name|parentChainCallRule
 argument_list|)
 decl_stmt|;
@@ -3584,21 +3577,6 @@ name|threadAndTestNameRule
 operator|.
 name|testCaseThread
 return|;
-block|}
-comment|// nocommit: move to SolrTestCaseJ4 ?
-comment|/**    * Asserts that FieldCacheSanityChecker does not detect any    * problems with FieldCache.DEFAULT.    *<p>    * If any problems are found, they are logged to System.err    * (allong with the msg) when the Assertion is thrown.    *</p>    *<p>    * This method is called by tearDown after every test method,    * however IndexReaders scoped inside test methods may be garbage    * collected prior to this method being called, causing errors to    * be overlooked. Tests are encouraged to keep their IndexReaders    * scoped at the class level, or to explicitly call this method    * directly in the same scope as the IndexReader.    *</p>    */
-DECL|method|assertSaneFieldCaches
-specifier|protected
-specifier|static
-name|void
-name|assertSaneFieldCaches
-parameter_list|(
-specifier|final
-name|String
-name|msg
-parameter_list|)
-block|{
-comment|/* final CacheEntry[] entries = FieldCache.DEFAULT.getCacheEntries();     Insanity[] insanity = null;     try {       try {         insanity = FieldCacheSanityChecker.checkSanity(entries);       } catch (RuntimeException e) {         dumpArray(msg + ": FieldCache", entries, System.err);         throw e;       }        assertEquals(msg + ": Insane FieldCache usage(s) found",                    0, insanity.length);       insanity = null;     } finally {        // report this in the event of any exception/failure       // if no failure, then insanity will be null anyway       if (null != insanity) {         dumpArray(msg + ": Insane FieldCache usage(s)", insanity, System.err);       }     } */
 block|}
 comment|/**    * Returns a number of at least<code>i</code>    *<p>    * The actual number returned will be influenced by whether {@link #TEST_NIGHTLY}    * is active and {@link #RANDOM_MULTIPLIER}, but also with some random fudge.    */
 DECL|method|atLeast

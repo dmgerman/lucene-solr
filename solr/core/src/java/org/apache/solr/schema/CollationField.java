@@ -268,7 +268,7 @@ name|lucene
 operator|.
 name|search
 operator|.
-name|FieldCacheRangeFilter
+name|DocValuesRangeFilter
 import|;
 end_import
 
@@ -1403,7 +1403,7 @@ return|return
 operator|new
 name|ConstantScoreQuery
 argument_list|(
-name|FieldCacheRangeFilter
+name|DocValuesRangeFilter
 operator|.
 name|newBytesRefRange
 argument_list|(

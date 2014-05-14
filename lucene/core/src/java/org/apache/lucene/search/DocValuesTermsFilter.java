@@ -147,10 +147,10 @@ comment|/**  * A {@link Filter} that only accepts documents whose single  * term
 end_comment
 
 begin_class
-DECL|class|FieldCacheTermsFilter
+DECL|class|DocValuesTermsFilter
 specifier|public
 class|class
-name|FieldCacheTermsFilter
+name|DocValuesTermsFilter
 extends|extends
 name|Filter
 block|{
@@ -165,9 +165,9 @@ name|BytesRef
 index|[]
 name|terms
 decl_stmt|;
-DECL|method|FieldCacheTermsFilter
+DECL|method|DocValuesTermsFilter
 specifier|public
-name|FieldCacheTermsFilter
+name|DocValuesTermsFilter
 parameter_list|(
 name|String
 name|field
@@ -190,9 +190,9 @@ operator|=
 name|terms
 expr_stmt|;
 block|}
-DECL|method|FieldCacheTermsFilter
+DECL|method|DocValuesTermsFilter
 specifier|public
-name|FieldCacheTermsFilter
+name|DocValuesTermsFilter
 parameter_list|(
 name|String
 name|field
@@ -346,7 +346,7 @@ block|}
 block|}
 return|return
 operator|new
-name|FieldCacheDocIdSet
+name|DocValuesDocIdSet
 argument_list|(
 name|context
 operator|.

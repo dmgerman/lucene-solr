@@ -1711,22 +1711,6 @@ name|reader
 operator|!=
 literal|null
 assert|;
-assert|assert
-operator|!
-name|reader
-operator|.
-name|getClass
-argument_list|()
-operator|.
-name|getSimpleName
-argument_list|()
-operator|.
-name|startsWith
-argument_list|(
-literal|"Uninverting"
-argument_list|)
-assert|;
-comment|// nocommit
 return|return
 name|UninvertingReader
 operator|.

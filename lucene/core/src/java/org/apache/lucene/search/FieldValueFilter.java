@@ -252,7 +252,7 @@ return|;
 block|}
 return|return
 operator|new
-name|FieldCacheDocIdSet
+name|DocValuesDocIdSet
 argument_list|(
 name|context
 operator|.
@@ -327,7 +327,7 @@ return|;
 block|}
 return|return
 operator|new
-name|FieldCacheDocIdSet
+name|DocValuesDocIdSet
 argument_list|(
 name|context
 operator|.

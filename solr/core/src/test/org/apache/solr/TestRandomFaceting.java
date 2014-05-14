@@ -1040,8 +1040,6 @@ parameter_list|()
 throws|throws
 name|Exception
 block|{
-try|try
-block|{
 name|Random
 name|rand
 init|=
@@ -1126,12 +1124,6 @@ name|deleteSomeDocs
 argument_list|()
 expr_stmt|;
 block|}
-block|}
-block|}
-finally|finally
-block|{
-comment|// nocommit: split test if needed
-comment|// FieldCache.DEFAULT.purgeAllCaches();   // hide FC insanity
 block|}
 block|}
 DECL|method|doFacetTests

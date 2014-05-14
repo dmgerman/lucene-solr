@@ -111,7 +111,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * A range filter built on top of a cached multi-valued term field (from {@link AtomicReader#getSortedSetDocValues}).  *   *<p>Like {@link FieldCacheRangeFilter}, this is just a specialized range query versus  *    using a TermRangeQuery with {@link DocTermOrdsRewriteMethod}: it will only do  *    two ordinal to term lookups.</p>  */
+comment|/**  * A range filter built on top of a cached multi-valued term field (from {@link AtomicReader#getSortedSetDocValues}).  *   *<p>Like {@link DocValuesRangeFilter}, this is just a specialized range query versus  *    using a TermRangeQuery with {@link DocTermOrdsRewriteMethod}: it will only do  *    two ordinal to term lookups.</p>  */
 end_comment
 
 begin_class
@@ -481,7 +481,7 @@ literal|0
 assert|;
 return|return
 operator|new
-name|FieldCacheDocIdSet
+name|DocValuesDocIdSet
 argument_list|(
 name|context
 operator|.

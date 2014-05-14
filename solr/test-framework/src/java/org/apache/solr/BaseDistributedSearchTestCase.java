@@ -1374,8 +1374,6 @@ block|{
 name|destroyServers
 argument_list|()
 expr_stmt|;
-comment|// nocommit: split test if needed
-comment|// FieldCache.DEFAULT.purgeAllCaches();   // hide FC insanity
 name|super
 operator|.
 name|tearDown
