@@ -3187,8 +3187,6 @@ argument_list|,
 literal|"*//doc[2]/float[.='121.0']"
 argument_list|)
 expr_stmt|;
-comment|// nocommit: split test if needed
-comment|// FieldCache.DEFAULT.purgeAllCaches();   // hide FC insanity
 block|}
 comment|/**    * test collection-level term stats (new in 4.x indexes)    */
 DECL|method|testTotalTermFreq

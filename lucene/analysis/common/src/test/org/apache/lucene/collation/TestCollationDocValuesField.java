@@ -654,7 +654,12 @@ init|=
 name|Collator
 operator|.
 name|getInstance
+argument_list|(
+name|Locale
+operator|.
+name|getDefault
 argument_list|()
+argument_list|)
 decl_stmt|;
 comment|// uses -Dtests.locale
 if|if

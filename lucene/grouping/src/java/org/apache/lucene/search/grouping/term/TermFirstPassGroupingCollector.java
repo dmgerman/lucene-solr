@@ -165,7 +165,7 @@ specifier|private
 name|String
 name|groupField
 decl_stmt|;
-comment|/**    * Create the first pass collector.    *    *  @param groupField The field used to group    *    documents. This field must be single-valued and    *    indexed (FieldCache is used to access its value    *    per-document).    *  @param groupSort The {@link Sort} used to sort the    *    groups.  The top sorted document within each group    *    according to groupSort, determines how that group    *    sorts against other groups.  This must be non-null,    *    ie, if you want to groupSort by relevance use    *    Sort.RELEVANCE.    *  @param topNGroups How many top groups to keep.    *  @throws IOException When I/O related errors occur    */
+comment|/**    * Create the first pass collector.    *    *  @param groupField The field used to group    *    documents. This field must be single-valued and    *    indexed (DocValues is used to access its value    *    per-document).    *  @param groupSort The {@link Sort} used to sort the    *    groups.  The top sorted document within each group    *    according to groupSort, determines how that group    *    sorts against other groups.  This must be non-null,    *    ie, if you want to groupSort by relevance use    *    Sort.RELEVANCE.    *  @param topNGroups How many top groups to keep.    *  @throws IOException When I/O related errors occur    */
 DECL|method|TermFirstPassGroupingCollector
 specifier|public
 name|TermFirstPassGroupingCollector

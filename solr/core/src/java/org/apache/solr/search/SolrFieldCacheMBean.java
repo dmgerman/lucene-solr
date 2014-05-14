@@ -32,6 +32,20 @@ name|org
 operator|.
 name|apache
 operator|.
+name|lucene
+operator|.
+name|uninverting
+operator|.
+name|UninvertingReader
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
 name|solr
 operator|.
 name|common
@@ -87,14 +101,6 @@ import|;
 end_import
 
 begin_comment
-comment|/* import org.apache.lucene.search.FieldCache; import org.apache.lucene.search.FieldCache.CacheEntry; import org.apache.lucene.util.FieldCacheSanityChecker; import org.apache.lucene.util.FieldCacheSanityChecker.Insanity; */
-end_comment
-
-begin_comment
-comment|// nocommit: maybe provide something useful here instead.
-end_comment
-
-begin_comment
 comment|/**  * A SolrInfoMBean that provides introspection of the Solr FieldCache  *  */
 end_comment
 
@@ -106,7 +112,6 @@ name|SolrFieldCacheMBean
 implements|implements
 name|SolrInfoMBean
 block|{
-comment|//protected FieldCacheSanityChecker checker = new FieldCacheSanityChecker();
 annotation|@
 name|Override
 DECL|method|getName
@@ -205,7 +210,58 @@ operator|new
 name|SimpleOrderedMap
 argument_list|()
 decl_stmt|;
-comment|/*     CacheEntry[] entries = FieldCache.DEFAULT.getCacheEntries();     stats.add("entries_count", entries.length);     for (int i = 0; i< entries.length; i++) {       CacheEntry e = entries[i];       stats.add("entry#" + i, e.toString());     }      Insanity[] insanity = checker.check(entries);      stats.add("insanity_count", insanity.length);     for (int i = 0; i< insanity.length; i++) {              stats.add("insanity#" + i, insanity[i].toString());     }*/
+name|String
+index|[]
+name|entries
+init|=
+name|UninvertingReader
+operator|.
+name|getUninvertedStats
+argument_list|()
+decl_stmt|;
+name|stats
+operator|.
+name|add
+argument_list|(
+literal|"entries_count"
+argument_list|,
+name|entries
+operator|.
+name|length
+argument_list|)
+expr_stmt|;
+for|for
+control|(
+name|int
+name|i
+init|=
+literal|0
+init|;
+name|i
+operator|<
+name|entries
+operator|.
+name|length
+condition|;
+name|i
+operator|++
+control|)
+block|{
+name|stats
+operator|.
+name|add
+argument_list|(
+literal|"entry#"
+operator|+
+name|i
+argument_list|,
+name|entries
+index|[
+name|i
+index|]
+argument_list|)
+expr_stmt|;
+block|}
 return|return
 name|stats
 return|;
