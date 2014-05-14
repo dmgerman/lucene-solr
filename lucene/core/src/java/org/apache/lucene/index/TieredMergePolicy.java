@@ -1273,7 +1273,7 @@ name|eligible
 operator|.
 name|size
 argument_list|()
-operator|>=
+operator|>
 name|allowedSegCountInt
 condition|)
 block|{

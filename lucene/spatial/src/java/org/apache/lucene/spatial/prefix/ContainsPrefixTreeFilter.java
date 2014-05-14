@@ -400,6 +400,7 @@ name|acceptDocs
 argument_list|)
 expr_stmt|;
 block|}
+comment|//The reused value of cell.getTokenBytesNoLeaf which is always then seek()'ed to. It's used in assertions too.
 DECL|field|termBytes
 name|BytesRef
 name|termBytes
@@ -692,6 +693,11 @@ argument_list|(
 name|termBytes
 argument_list|)
 expr_stmt|;
+assert|assert
+name|assertCloneTermBytes
+argument_list|()
+assert|;
+comment|//assertions look at termBytes later on
 return|return
 name|termsEnum
 operator|.
@@ -699,6 +705,25 @@ name|seekExact
 argument_list|(
 name|termBytes
 argument_list|)
+return|;
+block|}
+DECL|method|assertCloneTermBytes
+specifier|private
+name|boolean
+name|assertCloneTermBytes
+parameter_list|()
+block|{
+name|termBytes
+operator|=
+name|BytesRef
+operator|.
+name|deepCopyOf
+argument_list|(
+name|termBytes
+argument_list|)
+expr_stmt|;
+return|return
+literal|true
 return|;
 block|}
 DECL|method|getDocs
@@ -735,21 +760,14 @@ name|acceptContains
 argument_list|)
 return|;
 block|}
-DECL|field|lastLeaf
-specifier|private
-name|Cell
-name|lastLeaf
-init|=
-literal|null
-decl_stmt|;
-comment|//just for assertion
+comment|/** Gets docs on the leaf of the given cell, _if_ there is a leaf cell, otherwise null. */
 DECL|method|getLeafDocs
 specifier|private
 name|SmallDocSet
 name|getLeafDocs
 parameter_list|(
 name|Cell
-name|leafCell
+name|cell
 parameter_list|,
 name|Bits
 name|acceptContains
@@ -758,7 +776,7 @@ throws|throws
 name|IOException
 block|{
 assert|assert
-name|leafCell
+name|cell
 operator|.
 name|getTokenBytesNoLeaf
 argument_list|(
@@ -770,20 +788,6 @@ argument_list|(
 name|termBytes
 argument_list|)
 assert|;
-assert|assert
-operator|!
-name|leafCell
-operator|.
-name|equals
-argument_list|(
-name|lastLeaf
-argument_list|)
-assert|;
-comment|//don't call for same leaf again
-name|lastLeaf
-operator|=
-name|leafCell
-expr_stmt|;
 if|if
 condition|(
 name|termsEnum
@@ -829,7 +833,7 @@ name|nextCell
 argument_list|)
 expr_stmt|;
 assert|assert
-name|leafCell
+name|cell
 operator|.
 name|isPrefixOf
 argument_list|(
@@ -843,7 +847,7 @@ operator|.
 name|getLevel
 argument_list|()
 operator|==
-name|leafCell
+name|cell
 operator|.
 name|getLevel
 argument_list|()

@@ -1893,6 +1893,13 @@ operator|.
 name|getClass
 argument_list|()
 decl_stmt|;
+assert|assert
+name|obClazz
+operator|!=
+literal|null
+operator|:
+literal|"jvm bug detected (Object.getClass() == null). please report this to your vendor"
+assert|;
 if|if
 condition|(
 name|obClazz

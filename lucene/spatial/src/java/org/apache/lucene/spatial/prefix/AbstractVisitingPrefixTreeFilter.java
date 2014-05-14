@@ -777,7 +777,7 @@ operator|!=
 literal|0
 condition|)
 block|{
-comment|//If the next indexed term just adds a leaf marker ('+') to cell,
+comment|//If the next indexed term just adds a leaf marker to cell,
 comment|// then add all of those docs
 name|scanCell
 operator|=
@@ -799,6 +799,8 @@ name|isPrefixOf
 argument_list|(
 name|scanCell
 argument_list|)
+operator|:
+literal|"missing leaf or descendants"
 assert|;
 if|if
 condition|(

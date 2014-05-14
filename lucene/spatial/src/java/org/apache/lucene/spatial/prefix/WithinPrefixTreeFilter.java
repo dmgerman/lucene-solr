@@ -240,18 +240,6 @@ begin_comment
 comment|/**  * Finds docs where its indexed shape is {@link org.apache.lucene.spatial.query.SpatialOperation#IsWithin  * WITHIN} the query shape.  It works by looking at cells outside of the query  * shape to ensure documents there are excluded. By default, it will  * examine all cells, and it's fairly slow.  If you know that the indexed shapes  * are never comprised of multiple disjoint parts (which also means it is not multi-valued),  * then you can pass {@code SpatialPrefixTree.getDistanceForLevel(maxLevels)} as  * the {@code queryBuffer} constructor parameter to minimally look this distance  * beyond the query shape's edge.  Even if the indexed shapes are sometimes  * comprised of multiple disjoint parts, you might want to use this option with  * a large buffer as a faster approximation with minimal false-positives.  *  * @lucene.experimental  */
 end_comment
 
-begin_comment
-comment|//TODO LUCENE-4869: implement faster algorithm based on filtering out false-positives of a
-end_comment
-
-begin_comment
-comment|//  minimal query buffer by looking in a DocValues cache holding a representative
-end_comment
-
-begin_comment
-comment|//  point of each disjoint component of a document's shape(s).
-end_comment
-
 begin_class
 DECL|class|WithinPrefixTreeFilter
 specifier|public
@@ -260,6 +248,11 @@ name|WithinPrefixTreeFilter
 extends|extends
 name|AbstractVisitingPrefixTreeFilter
 block|{
+comment|//TODO LUCENE-4869: implement faster algorithm based on filtering out false-positives of a
+comment|//  minimal query buffer by looking in a DocValues cache holding a representative
+comment|//  point of each disjoint component of a document's shape(s).
+comment|//TODO Could the recursion in allCellsIntersectQuery() be eliminated when non-fuzzy or other
+comment|//  circumstances?
 DECL|field|bufferedQueryShape
 specifier|private
 specifier|final
