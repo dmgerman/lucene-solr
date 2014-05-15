@@ -6566,6 +6566,7 @@ specifier|private
 name|boolean
 name|termExists
 decl_stmt|;
+comment|// nocommit make this public "for casting" and add a getVersion method?
 DECL|field|targetBeforeCurrentLength
 specifier|private
 name|int
@@ -7749,6 +7750,7 @@ return|return
 literal|true
 return|;
 block|}
+comment|// nocommit we need a seekExact(BytesRef target, long minVersion) API?
 annotation|@
 name|Override
 DECL|method|seekExact
