@@ -28,6 +28,8 @@ name|lucene
 operator|.
 name|codecs
 operator|.
+name|blocktree
+operator|.
 name|BlockTreeTermsWriter
 import|;
 end_import
