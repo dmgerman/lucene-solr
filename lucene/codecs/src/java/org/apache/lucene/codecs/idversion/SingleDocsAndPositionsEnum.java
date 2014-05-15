@@ -100,7 +100,9 @@ name|payload
 init|=
 operator|new
 name|BytesRef
-argument_list|()
+argument_list|(
+literal|8
+argument_list|)
 decl_stmt|;
 comment|/** For reuse */
 DECL|method|reset
@@ -302,7 +304,15 @@ name|pos
 operator|=
 literal|0
 expr_stmt|;
-comment|// nocommit re-encode version back into payload here:
+name|IDVersionPostingsFormat
+operator|.
+name|longToBytes
+argument_list|(
+name|version
+argument_list|,
+name|payload
+argument_list|)
+expr_stmt|;
 return|return
 name|pos
 return|;

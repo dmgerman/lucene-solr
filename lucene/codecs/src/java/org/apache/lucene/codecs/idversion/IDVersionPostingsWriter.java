@@ -418,7 +418,7 @@ throw|throw
 operator|new
 name|IllegalArgumentException
 argument_list|(
-literal|"missing payload"
+literal|"token doens't have a payload"
 argument_list|)
 throw|;
 block|}
@@ -427,8 +427,8 @@ condition|(
 name|payload
 operator|.
 name|length
-operator|==
-literal|0
+operator|!=
+literal|8
 condition|)
 block|{
 comment|// nocommit need test
@@ -436,14 +436,24 @@ throw|throw
 operator|new
 name|IllegalArgumentException
 argument_list|(
-literal|"payload.length == 0"
+literal|"payload.length != 8 (got "
+operator|+
+name|payload
+operator|.
+name|length
+operator|+
+literal|")"
 argument_list|)
 throw|;
 block|}
-comment|// nocommit decode payload to long here ... PayloadHelper!?  or keep as byte[]?
 name|lastVersion
 operator|=
-literal|0
+name|IDVersionPostingsFormat
+operator|.
+name|bytesToLong
+argument_list|(
+name|payload
+argument_list|)
 expr_stmt|;
 block|}
 annotation|@
