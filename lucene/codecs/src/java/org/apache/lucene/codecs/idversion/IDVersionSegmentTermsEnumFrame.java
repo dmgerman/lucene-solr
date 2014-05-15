@@ -174,6 +174,10 @@ DECL|field|isFloor
 name|boolean
 name|isFloor
 decl_stmt|;
+DECL|field|maxIDVersion
+name|long
+name|maxIDVersion
+decl_stmt|;
 DECL|field|arc
 name|FST
 operator|.

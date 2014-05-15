@@ -478,8 +478,7 @@ name|clone
 argument_list|,
 name|VersionBlockTreeTermsWriter
 operator|.
-name|getFSTOutputs
-argument_list|()
+name|FST_OUTPUTS
 argument_list|)
 expr_stmt|;
 comment|/*         if (false) {         final String dotFileName = segment + "_" + fieldInfo.name + ".dot";         Writer w = new OutputStreamWriter(new FileOutputStream(dotFileName));         Util.toDot(index, w, false, false);         System.out.println("FST INDEX: SAVED to " + dotFileName);         w.close();         }       */
