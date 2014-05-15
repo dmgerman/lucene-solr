@@ -125,6 +125,10 @@ comment|/** The core terms dictionaries (BlockTermsReader,  *  BlockTreeTermsRea
 end_comment
 
 begin_comment
+comment|// nocommit mv under blocktree?  but ... it's used by others (e.g. block terms)
+end_comment
+
+begin_comment
 comment|// TODO: find a better name; this defines the API that the
 end_comment
 

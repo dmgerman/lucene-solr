@@ -264,8 +264,6 @@ DECL|method|startBlock
 name|void
 name|startBlock
 parameter_list|(
-name|BlockTreeTermsReader
-operator|.
 name|FieldReader
 operator|.
 name|SegmentTermsEnum
@@ -371,8 +369,6 @@ DECL|method|endBlock
 name|void
 name|endBlock
 parameter_list|(
-name|BlockTreeTermsReader
-operator|.
 name|FieldReader
 operator|.
 name|SegmentTermsEnum
