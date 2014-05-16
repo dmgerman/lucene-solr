@@ -287,6 +287,11 @@ init|=
 literal|0
 decl_stmt|;
 comment|// only with assert
+DECL|field|flushByRAMWasDisabled
+name|boolean
+name|flushByRAMWasDisabled
+decl_stmt|;
+comment|// only with assert
 DECL|field|stallControl
 specifier|final
 name|DocumentsWriterStallControl
@@ -505,6 +510,8 @@ operator|.
 name|getRAMBufferSizeMB
 argument_list|()
 decl_stmt|;
+comment|// We can only assert if we have always been flushing by RAM usage; otherwise the assert will false trip if e.g. the
+comment|// flush-by-doc-count * doc size was large enough to use far more RAM than the sudden change to IWC's maxRAMBufferSizeMB:
 if|if
 condition|(
 name|maxRamMB
@@ -512,6 +519,10 @@ operator|!=
 name|IndexWriterConfig
 operator|.
 name|DISABLE_AUTO_FLUSH
+operator|&&
+name|flushByRAMWasDisabled
+operator|==
+literal|false
 condition|)
 block|{
 comment|// for this assert we must be tolerant to ram buffer changes!
@@ -551,7 +562,7 @@ argument_list|)
 decl_stmt|;
 comment|// take peakDelta into account - worst case is that all flushing, pending and blocked DWPT had maxMem and the last doc had the peakDelta
 comment|// 2 * ramBufferBytes -> before we stall we need to cross the 2xRAM Buffer border this is still a valid limit
-comment|// (numPending + numFlushingDWPT() + numBlockedFlushes()) * peakDelta) -> those are the total number of DWPT that are not active but not yet fully fluhsed
+comment|// (numPending + numFlushingDWPT() + numBlockedFlushes()) * peakDelta) -> those are the total number of DWPT that are not active but not yet fully flushed
 comment|// all of them could theoretically be taken out of the loop once they crossed the RAM buffer and the last document was the peak delta
 comment|// (numDocsSinceStalled * peakDelta) -> at any given time there could be n threads in flight that crossed the stall control before we reached the limit and each of them could hold a peak document
 specifier|final
@@ -638,9 +649,22 @@ literal|", peakDelta mem: "
 operator|+
 name|peakDelta
 operator|+
-literal|" byte"
+literal|" bytes, ramBufferBytes="
+operator|+
+name|ramBufferBytes
+operator|+
+literal|", maxConfiguredRamBuffer="
+operator|+
+name|maxConfiguredRamBuffer
 assert|;
 block|}
+block|}
+else|else
+block|{
+name|flushByRAMWasDisabled
+operator|=
+literal|true
+expr_stmt|;
 block|}
 return|return
 literal|true
@@ -1003,7 +1027,6 @@ block|}
 block|}
 DECL|method|updateStallState
 specifier|private
-specifier|final
 name|boolean
 name|updateStallState
 parameter_list|()
