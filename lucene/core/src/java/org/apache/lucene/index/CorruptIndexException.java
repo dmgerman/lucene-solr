@@ -38,7 +38,7 @@ name|CorruptIndexException
 extends|extends
 name|IOException
 block|{
-comment|/** Sole constructor. */
+comment|/** Create exception with a message only */
 DECL|method|CorruptIndexException
 specifier|public
 name|CorruptIndexException
@@ -50,6 +50,26 @@ block|{
 name|super
 argument_list|(
 name|message
+argument_list|)
+expr_stmt|;
+block|}
+comment|/** Create exception with message and root cause. */
+DECL|method|CorruptIndexException
+specifier|public
+name|CorruptIndexException
+parameter_list|(
+name|String
+name|message
+parameter_list|,
+name|Throwable
+name|cause
+parameter_list|)
+block|{
+name|super
+argument_list|(
+name|message
+argument_list|,
+name|cause
 argument_list|)
 expr_stmt|;
 block|}
