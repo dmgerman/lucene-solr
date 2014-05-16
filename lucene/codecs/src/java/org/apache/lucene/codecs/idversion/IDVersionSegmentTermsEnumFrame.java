@@ -174,6 +174,7 @@ DECL|field|isFloor
 name|boolean
 name|isFloor
 decl_stmt|;
+comment|/** Highest version of any term in this block. */
 DECL|field|maxIDVersion
 name|long
 name|maxIDVersion

@@ -529,7 +529,6 @@ extends|extends
 name|FieldsConsumer
 block|{
 DECL|field|FST_OUTPUTS
-specifier|public
 specifier|static
 specifier|final
 name|PairOutputs
@@ -556,7 +555,6 @@ argument_list|()
 argument_list|)
 decl_stmt|;
 DECL|field|NO_OUTPUT
-specifier|public
 specifier|static
 specifier|final
 name|Pair
@@ -965,7 +963,12 @@ name|ArrayList
 argument_list|<>
 argument_list|()
 decl_stmt|;
-comment|// private final String segment;
+DECL|field|segment
+specifier|private
+specifier|final
+name|String
+name|segment
+decl_stmt|;
 comment|/** Create a new writer.  The number of items (terms or    *  sub-blocks) per block will aim to be between    *  minItemsPerBlock and maxItemsPerBlock, though in some    *  cases the blocks may be smaller than the min. */
 DECL|method|VersionBlockTreeTermsWriter
 specifier|public
@@ -986,6 +989,21 @@ parameter_list|)
 throws|throws
 name|IOException
 block|{
+name|System
+operator|.
+name|out
+operator|.
+name|println
+argument_list|(
+literal|"VBTTW minItemsInBlock="
+operator|+
+name|minItemsInBlock
+operator|+
+literal|" maxItemsInBlock="
+operator|+
+name|maxItemsInBlock
+argument_list|)
+expr_stmt|;
 if|if
 condition|(
 name|minItemsInBlock
@@ -1196,7 +1214,14 @@ name|postingsWriter
 operator|=
 name|postingsWriter
 expr_stmt|;
-comment|// segment = state.segmentName;
+name|segment
+operator|=
+name|state
+operator|.
+name|segmentInfo
+operator|.
+name|name
+expr_stmt|;
 comment|// System.out.println("BTW.init seg=" + state.segmentName);
 name|postingsWriter
 operator|.
@@ -2739,6 +2764,7 @@ parameter_list|)
 throws|throws
 name|IOException
 block|{
+comment|// nocommit why can't we do floor blocks for root frame?
 if|if
 condition|(
 name|prefixLength
@@ -2807,13 +2833,85 @@ comment|// label in the suffix to assign to floor blocks.
 comment|// TODO: we could store min& max suffix start byte
 comment|// in each block, to make floor blocks authoritative
 comment|//if (DEBUG) {
-comment|//  final BytesRef prefix = new BytesRef(prefixLength);
-comment|//  for(int m=0;m<prefixLength;m++) {
-comment|//    prefix.bytes[m] = (byte) prevTerm.ints[m];
-comment|//  }
-comment|//  prefix.length = prefixLength;
-comment|//  //System.out.println("\nWBS count=" + count + " prefix=" + prefix.utf8ToString() + " " + prefix);
-comment|//  System.out.println("writeBlocks: prefix=" + prefix + " " + prefix + " count=" + count + " pending.size()=" + pending.size());
+specifier|final
+name|BytesRef
+name|prefix
+init|=
+operator|new
+name|BytesRef
+argument_list|(
+name|prefixLength
+argument_list|)
+decl_stmt|;
+for|for
+control|(
+name|int
+name|m
+init|=
+literal|0
+init|;
+name|m
+operator|<
+name|prefixLength
+condition|;
+name|m
+operator|++
+control|)
+block|{
+name|prefix
+operator|.
+name|bytes
+index|[
+name|m
+index|]
+operator|=
+operator|(
+name|byte
+operator|)
+name|prevTerm
+operator|.
+name|ints
+index|[
+name|m
+index|]
+expr_stmt|;
+block|}
+name|prefix
+operator|.
+name|length
+operator|=
+name|prefixLength
+expr_stmt|;
+comment|//System.out.println("\nWBS count=" + count + " prefix=" + prefix.utf8ToString() + " " + prefix);
+name|System
+operator|.
+name|out
+operator|.
+name|println
+argument_list|(
+literal|"writeBlocks: prefix="
+operator|+
+name|toString
+argument_list|(
+name|prefix
+argument_list|)
+operator|+
+literal|" "
+operator|+
+name|prefix
+operator|+
+literal|" count="
+operator|+
+name|count
+operator|+
+literal|" pending.size()="
+operator|+
+name|pending
+operator|.
+name|size
+argument_list|()
+argument_list|)
+expr_stmt|;
 comment|//}
 comment|//System.out.println("\nwbs count=" + count);
 specifier|final
@@ -3815,7 +3913,80 @@ operator|)
 argument_list|)
 expr_stmt|;
 comment|// if (DEBUG) {
-comment|//   System.out.println("  writeBlock " + (isFloor ? "(floor) " : "") + "seg=" + segment + " pending.size()=" + pending.size() + " prefixLength=" + prefixLength + " indexPrefix=" + toString(prefix) + " entCount=" + length + " startFP=" + startFP + " futureTermCount=" + futureTermCount + (isFloor ? (" floorLeadByte=" + Integer.toHexString(floorLeadByte&0xff)) : "") + " isLastInFloor=" + isLastInFloor);
+name|System
+operator|.
+name|out
+operator|.
+name|println
+argument_list|(
+literal|"  writeBlock "
+operator|+
+operator|(
+name|isFloor
+condition|?
+literal|"(floor) "
+else|:
+literal|""
+operator|)
+operator|+
+literal|"seg="
+operator|+
+name|segment
+operator|+
+literal|" pending.size()="
+operator|+
+name|pending
+operator|.
+name|size
+argument_list|()
+operator|+
+literal|" prefixLength="
+operator|+
+name|prefixLength
+operator|+
+literal|" indexPrefix="
+operator|+
+name|toString
+argument_list|(
+name|prefix
+argument_list|)
+operator|+
+literal|" entCount="
+operator|+
+name|length
+operator|+
+literal|" startFP="
+operator|+
+name|startFP
+operator|+
+literal|" futureTermCount="
+operator|+
+name|futureTermCount
+operator|+
+operator|(
+name|isFloor
+condition|?
+operator|(
+literal|" floorLeadByte="
+operator|+
+name|Integer
+operator|.
+name|toHexString
+argument_list|(
+name|floorLeadByte
+operator|&
+literal|0xff
+argument_list|)
+operator|)
+else|:
+literal|""
+operator|)
+operator|+
+literal|" isLastInFloor="
+operator|+
+name|isLastInFloor
+argument_list|)
+expr_stmt|;
 comment|// }
 comment|// 1st pass: pack term suffix bytes into byte[] blob
 comment|// TODO: cutover to bulk int codec... simple64?
@@ -3927,6 +4098,11 @@ init|=
 operator|-
 literal|1
 decl_stmt|;
+name|int
+name|countx
+init|=
+literal|0
+decl_stmt|;
 if|if
 condition|(
 name|isLeafBlock
@@ -3995,10 +4171,63 @@ operator|-
 name|prefixLength
 decl_stmt|;
 comment|// if (DEBUG) {
-comment|//   BytesRef suffixBytes = new BytesRef(suffix);
-comment|//   System.arraycopy(term.term.bytes, prefixLength, suffixBytes.bytes, 0, suffix);
-comment|//   suffixBytes.length = suffix;
-comment|//   System.out.println("    write term suffix=" + suffixBytes);
+name|BytesRef
+name|suffixBytes
+init|=
+operator|new
+name|BytesRef
+argument_list|(
+name|suffix
+argument_list|)
+decl_stmt|;
+name|System
+operator|.
+name|arraycopy
+argument_list|(
+name|term
+operator|.
+name|term
+operator|.
+name|bytes
+argument_list|,
+name|prefixLength
+argument_list|,
+name|suffixBytes
+operator|.
+name|bytes
+argument_list|,
+literal|0
+argument_list|,
+name|suffix
+argument_list|)
+expr_stmt|;
+name|suffixBytes
+operator|.
+name|length
+operator|=
+name|suffix
+expr_stmt|;
+name|System
+operator|.
+name|out
+operator|.
+name|println
+argument_list|(
+literal|"    "
+operator|+
+operator|(
+name|countx
+operator|++
+operator|)
+operator|+
+literal|": write term suffix="
+operator|+
+name|toString
+argument_list|(
+name|suffixBytes
+argument_list|)
+argument_list|)
+expr_stmt|;
 comment|// }
 comment|// For leaf block we write suffix straight
 name|suffixWriter
@@ -4224,10 +4453,63 @@ operator|-
 name|prefixLength
 decl_stmt|;
 comment|// if (DEBUG) {
-comment|//   BytesRef suffixBytes = new BytesRef(suffix);
-comment|//   System.arraycopy(term.term.bytes, prefixLength, suffixBytes.bytes, 0, suffix);
-comment|//   suffixBytes.length = suffix;
-comment|//   System.out.println("    write term suffix=" + suffixBytes);
+name|BytesRef
+name|suffixBytes
+init|=
+operator|new
+name|BytesRef
+argument_list|(
+name|suffix
+argument_list|)
+decl_stmt|;
+name|System
+operator|.
+name|arraycopy
+argument_list|(
+name|term
+operator|.
+name|term
+operator|.
+name|bytes
+argument_list|,
+name|prefixLength
+argument_list|,
+name|suffixBytes
+operator|.
+name|bytes
+argument_list|,
+literal|0
+argument_list|,
+name|suffix
+argument_list|)
+expr_stmt|;
+name|suffixBytes
+operator|.
+name|length
+operator|=
+name|suffix
+expr_stmt|;
+name|System
+operator|.
+name|out
+operator|.
+name|println
+argument_list|(
+literal|"    "
+operator|+
+operator|(
+name|countx
+operator|++
+operator|)
+operator|+
+literal|": write term suffix="
+operator|+
+name|toString
+argument_list|(
+name|suffixBytes
+argument_list|)
+argument_list|)
+expr_stmt|;
 comment|// }
 comment|// For non-leaf block we borrow 1 bit to record
 comment|// if entry is term or sub-block
@@ -4455,10 +4737,85 @@ operator|<
 name|startFP
 assert|;
 comment|// if (DEBUG) {
-comment|//   BytesRef suffixBytes = new BytesRef(suffix);
-comment|//   System.arraycopy(block.prefix.bytes, prefixLength, suffixBytes.bytes, 0, suffix);
-comment|//   suffixBytes.length = suffix;
-comment|//   System.out.println("    write sub-block suffix=" + toString(suffixBytes) + " subFP=" + block.fp + " subCode=" + (startFP-block.fp) + " floor=" + block.isFloor);
+name|BytesRef
+name|suffixBytes
+init|=
+operator|new
+name|BytesRef
+argument_list|(
+name|suffix
+argument_list|)
+decl_stmt|;
+name|System
+operator|.
+name|arraycopy
+argument_list|(
+name|block
+operator|.
+name|prefix
+operator|.
+name|bytes
+argument_list|,
+name|prefixLength
+argument_list|,
+name|suffixBytes
+operator|.
+name|bytes
+argument_list|,
+literal|0
+argument_list|,
+name|suffix
+argument_list|)
+expr_stmt|;
+name|suffixBytes
+operator|.
+name|length
+operator|=
+name|suffix
+expr_stmt|;
+name|System
+operator|.
+name|out
+operator|.
+name|println
+argument_list|(
+literal|"    "
+operator|+
+operator|(
+name|countx
+operator|++
+operator|)
+operator|+
+literal|": write sub-block suffix="
+operator|+
+name|toString
+argument_list|(
+name|suffixBytes
+argument_list|)
+operator|+
+literal|" subFP="
+operator|+
+name|block
+operator|.
+name|fp
+operator|+
+literal|" subCode="
+operator|+
+operator|(
+name|startFP
+operator|-
+name|block
+operator|.
+name|fp
+operator|)
+operator|+
+literal|" floor="
+operator|+
+name|block
+operator|.
+name|isFloor
+argument_list|)
+expr_stmt|;
 comment|// }
 name|suffixWriter
 operator|.

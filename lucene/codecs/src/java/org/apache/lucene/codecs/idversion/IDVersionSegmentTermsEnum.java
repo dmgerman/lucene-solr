@@ -324,6 +324,14 @@ DECL|field|in
 name|IndexInput
 name|in
 decl_stmt|;
+DECL|field|DEBUG
+specifier|private
+specifier|static
+name|boolean
+name|DEBUG
+init|=
+literal|true
+decl_stmt|;
 DECL|field|stack
 specifier|private
 name|IDVersionSegmentTermsEnumFrame
@@ -1236,6 +1244,51 @@ literal|0
 argument_list|)
 return|;
 block|}
+comment|// for debugging
+annotation|@
+name|SuppressWarnings
+argument_list|(
+literal|"unused"
+argument_list|)
+DECL|method|brToString
+specifier|private
+name|String
+name|brToString
+parameter_list|(
+name|BytesRef
+name|b
+parameter_list|)
+block|{
+try|try
+block|{
+return|return
+name|b
+operator|.
+name|utf8ToString
+argument_list|()
+operator|+
+literal|" "
+operator|+
+name|b
+return|;
+block|}
+catch|catch
+parameter_list|(
+name|Throwable
+name|t
+parameter_list|)
+block|{
+comment|// If BytesRef isn't actually UTF8, or it's eg a
+comment|// prefix of UTF8 that ends mid-unicode-char, we
+comment|// fallback to hex:
+return|return
+name|b
+operator|.
+name|toString
+argument_list|()
+return|;
+block|}
+block|}
 comment|/** Returns false if the term deos not exist, or it exists but its version is< minIDVersion. */
 DECL|method|seekExact
 specifier|public
@@ -1269,21 +1322,7 @@ literal|"terms index was not loaded"
 argument_list|)
 throw|;
 block|}
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"seekExact target="
-operator|+
-name|target
-operator|+
-literal|" minIDVersion="
-operator|+
-name|minIDVersion
-argument_list|)
-expr_stmt|;
+comment|// nocommit would be nice if somehow on doing deletes we didn't have to double-lookup again...
 if|if
 condition|(
 name|term
@@ -1321,10 +1360,68 @@ assert|assert
 name|clearEOF
 argument_list|()
 assert|;
-comment|// if (DEBUG) {
-comment|//   System.out.println("\nBTTR.seekExact seg=" + segment + " target=" + fieldInfo.name + ":" + brToString(target) + " current=" + brToString(term) + " (exists?=" + termExists + ") validIndexPrefix=" + validIndexPrefix);
-comment|//   printSeekState();
-comment|// }
+if|if
+condition|(
+name|DEBUG
+condition|)
+block|{
+name|System
+operator|.
+name|out
+operator|.
+name|println
+argument_list|(
+literal|"\nBTTR.seekExact seg="
+operator|+
+name|fr
+operator|.
+name|parent
+operator|.
+name|segment
+operator|+
+literal|" target="
+operator|+
+name|fr
+operator|.
+name|fieldInfo
+operator|.
+name|name
+operator|+
+literal|":"
+operator|+
+name|brToString
+argument_list|(
+name|target
+argument_list|)
+operator|+
+literal|" minIDVersion="
+operator|+
+name|minIDVersion
+operator|+
+literal|" current="
+operator|+
+name|brToString
+argument_list|(
+name|term
+argument_list|)
+operator|+
+literal|" (exists?="
+operator|+
+name|termExists
+operator|+
+literal|") validIndexPrefix="
+operator|+
+name|validIndexPrefix
+argument_list|)
+expr_stmt|;
+name|printSeekState
+argument_list|(
+name|System
+operator|.
+name|out
+argument_list|)
+expr_stmt|;
+block|}
 name|FST
 operator|.
 name|Arc
@@ -1355,6 +1452,7 @@ name|currentFrame
 operator|.
 name|ord
 expr_stmt|;
+comment|// nocommit we could stop earlier w/ the version check, every time we traverse an index arc we can check?
 if|if
 condition|(
 name|currentFrame
@@ -1368,9 +1466,23 @@ comment|// re-use the corresponding seek state.  For
 comment|// example, if app first seeks to foobar, then
 comment|// seeks to foobaz, we can re-use the seek state
 comment|// for the first 5 bytes.
-comment|// if (DEBUG) {
-comment|//   System.out.println("  re-use current seek state validIndexPrefix=" + validIndexPrefix);
-comment|// }
+if|if
+condition|(
+name|DEBUG
+condition|)
+block|{
+name|System
+operator|.
+name|out
+operator|.
+name|println
+argument_list|(
+literal|"  re-use current seek state validIndexPrefix="
+operator|+
+name|validIndexPrefix
+argument_list|)
+expr_stmt|;
+block|}
 name|arc
 operator|=
 name|arcs
@@ -1408,6 +1520,24 @@ operator|<=
 name|term
 operator|.
 name|length
+operator|:
+literal|"validIndexPrefix="
+operator|+
+name|validIndexPrefix
+operator|+
+literal|" term.length="
+operator|+
+name|term
+operator|.
+name|length
+operator|+
+literal|" seg="
+operator|+
+name|fr
+operator|.
+name|parent
+operator|.
+name|segment
 assert|;
 specifier|final
 name|int
@@ -1467,9 +1597,75 @@ operator|&
 literal|0xFF
 operator|)
 expr_stmt|;
-comment|// if (DEBUG) {
-comment|//   System.out.println("    cycle targetUpto=" + targetUpto + " (vs limit=" + targetLimit + ") cmp=" + cmp + " (targetLabel=" + (char) (target.bytes[target.offset + targetUpto]) + " vs termLabel=" + (char) (term.bytes[targetUpto]) + ")"   + " arc.output=" + arc.output + " output=" + output);
-comment|// }
+if|if
+condition|(
+name|DEBUG
+condition|)
+block|{
+name|System
+operator|.
+name|out
+operator|.
+name|println
+argument_list|(
+literal|"    cycle targetUpto="
+operator|+
+name|targetUpto
+operator|+
+literal|" (vs limit="
+operator|+
+name|targetLimit
+operator|+
+literal|") cmp="
+operator|+
+name|cmp
+operator|+
+literal|" (targetLabel="
+operator|+
+call|(
+name|char
+call|)
+argument_list|(
+name|target
+operator|.
+name|bytes
+index|[
+name|target
+operator|.
+name|offset
+operator|+
+name|targetUpto
+index|]
+argument_list|)
+operator|+
+literal|" vs termLabel="
+operator|+
+call|(
+name|char
+call|)
+argument_list|(
+name|term
+operator|.
+name|bytes
+index|[
+name|targetUpto
+index|]
+argument_list|)
+operator|+
+literal|")"
+operator|+
+literal|" arc.output="
+operator|+
+name|arc
+operator|.
+name|output
+operator|+
+literal|" output="
+operator|+
+name|output
+argument_list|)
+expr_stmt|;
+block|}
 if|if
 condition|(
 name|cmp
@@ -1660,9 +1856,65 @@ operator|&
 literal|0xFF
 operator|)
 expr_stmt|;
-comment|// if (DEBUG) {
-comment|//   System.out.println("    cycle2 targetUpto=" + targetUpto + " (vs limit=" + targetLimit + ") cmp=" + cmp + " (targetLabel=" + (char) (target.bytes[target.offset + targetUpto]) + " vs termLabel=" + (char) (term.bytes[targetUpto]) + ")");
-comment|// }
+if|if
+condition|(
+name|DEBUG
+condition|)
+block|{
+name|System
+operator|.
+name|out
+operator|.
+name|println
+argument_list|(
+literal|"    cycle2 targetUpto="
+operator|+
+name|targetUpto
+operator|+
+literal|" (vs limit="
+operator|+
+name|targetLimit
+operator|+
+literal|") cmp="
+operator|+
+name|cmp
+operator|+
+literal|" (targetLabel="
+operator|+
+call|(
+name|char
+call|)
+argument_list|(
+name|target
+operator|.
+name|bytes
+index|[
+name|target
+operator|.
+name|offset
+operator|+
+name|targetUpto
+index|]
+argument_list|)
+operator|+
+literal|" vs termLabel="
+operator|+
+call|(
+name|char
+call|)
+argument_list|(
+name|term
+operator|.
+name|bytes
+index|[
+name|targetUpto
+index|]
+argument_list|)
+operator|+
+literal|")"
+argument_list|)
+expr_stmt|;
+block|}
 if|if
 condition|(
 name|cmp
@@ -1709,9 +1961,33 @@ block|{
 comment|// Common case: target term is after current
 comment|// term, ie, app is seeking multiple terms
 comment|// in sorted order
-comment|// if (DEBUG) {
-comment|//   System.out.println("  target is after current (shares prefixLen=" + targetUpto + "); frame.ord=" + lastFrame.ord);
-comment|// }
+if|if
+condition|(
+name|DEBUG
+condition|)
+block|{
+name|System
+operator|.
+name|out
+operator|.
+name|println
+argument_list|(
+literal|"  target is after current (shares prefixLen="
+operator|+
+name|targetUpto
+operator|+
+literal|"); frame.ord="
+operator|+
+name|lastFrame
+operator|.
+name|ord
+operator|+
+literal|"; targetUpto="
+operator|+
+name|targetUpto
+argument_list|)
+expr_stmt|;
+block|}
 name|currentFrame
 operator|=
 name|lastFrame
@@ -1733,9 +2009,29 @@ name|targetBeforeCurrentLength
 operator|=
 literal|0
 expr_stmt|;
-comment|// if (DEBUG) {
-comment|//   System.out.println("  target is before current (shares prefixLen=" + targetUpto + "); rewind frame ord=" + lastFrame.ord);
-comment|// }
+if|if
+condition|(
+name|DEBUG
+condition|)
+block|{
+name|System
+operator|.
+name|out
+operator|.
+name|println
+argument_list|(
+literal|"  target is before current (shares prefixLen="
+operator|+
+name|targetUpto
+operator|+
+literal|"); rewind frame ord="
+operator|+
+name|lastFrame
+operator|.
+name|ord
+argument_list|)
+expr_stmt|;
+block|}
 name|currentFrame
 operator|=
 name|lastFrame
@@ -1763,18 +2059,139 @@ condition|(
 name|termExists
 condition|)
 block|{
-comment|// if (DEBUG) {
-comment|//   System.out.println("  target is same as current; return true");
-comment|// }
+if|if
+condition|(
+name|currentFrame
+operator|.
+name|maxIDVersion
+operator|<
+name|minIDVersion
+condition|)
+block|{
+comment|// The max version for all terms in this block is lower than the minVersion
+if|if
+condition|(
+name|DEBUG
+condition|)
+block|{
+name|System
+operator|.
+name|out
+operator|.
+name|println
+argument_list|(
+literal|"  target is same as current maxIDVersion="
+operator|+
+name|currentFrame
+operator|.
+name|maxIDVersion
+operator|+
+literal|" is< minIDVersion="
+operator|+
+name|minIDVersion
+operator|+
+literal|"; return false"
+argument_list|)
+expr_stmt|;
+block|}
+return|return
+literal|false
+return|;
+block|}
+name|currentFrame
+operator|.
+name|decodeMetaData
+argument_list|()
+expr_stmt|;
+if|if
+condition|(
+operator|(
+operator|(
+name|IDVersionTermState
+operator|)
+name|currentFrame
+operator|.
+name|state
+operator|)
+operator|.
+name|idVersion
+operator|<
+name|minIDVersion
+condition|)
+block|{
+comment|// The max version for this term is lower than the minVersion
+if|if
+condition|(
+name|DEBUG
+condition|)
+block|{
+name|System
+operator|.
+name|out
+operator|.
+name|println
+argument_list|(
+literal|"  target is same as current but version="
+operator|+
+operator|(
+operator|(
+name|IDVersionTermState
+operator|)
+name|currentFrame
+operator|.
+name|state
+operator|)
+operator|.
+name|idVersion
+operator|+
+literal|" is< minIDVersion="
+operator|+
+name|minIDVersion
+operator|+
+literal|"; return false"
+argument_list|)
+expr_stmt|;
+block|}
+return|return
+literal|false
+return|;
+block|}
+if|if
+condition|(
+name|DEBUG
+condition|)
+block|{
+name|System
+operator|.
+name|out
+operator|.
+name|println
+argument_list|(
+literal|"  target is same as current; return true"
+argument_list|)
+expr_stmt|;
+block|}
 return|return
 literal|true
 return|;
 block|}
 else|else
 block|{
-comment|// if (DEBUG) {
-comment|//   System.out.println("  target is same as current but term doesn't exist");
-comment|// }
+if|if
+condition|(
+name|DEBUG
+condition|)
+block|{
+name|System
+operator|.
+name|out
+operator|.
+name|println
+argument_list|(
+literal|"  target is same as current but term doesn't exist"
+argument_list|)
+expr_stmt|;
+block|}
 block|}
 comment|//validIndexPrefix = currentFrame.depth;
 comment|//term.length = target.length;
@@ -1802,17 +2219,7 @@ literal|0
 index|]
 argument_list|)
 expr_stmt|;
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"first arc="
-operator|+
-name|arc
-argument_list|)
-expr_stmt|;
+comment|//System.out.println("first arc=" + arc);
 comment|// Empty string prefix must have an output (block) in the index!
 assert|assert
 name|arc
@@ -1827,9 +2234,21 @@ name|output
 operator|!=
 literal|null
 assert|;
-comment|// if (DEBUG) {
-comment|//   System.out.println("    no seek state; push root frame");
-comment|// }
+if|if
+condition|(
+name|DEBUG
+condition|)
+block|{
+name|System
+operator|.
+name|out
+operator|.
+name|println
+argument_list|(
+literal|"    no seek state; push root frame"
+argument_list|)
+expr_stmt|;
+block|}
 name|output
 operator|=
 name|arc
@@ -1868,9 +2287,37 @@ literal|0
 argument_list|)
 expr_stmt|;
 block|}
-comment|// if (DEBUG) {
-comment|//   System.out.println("  start index loop targetUpto=" + targetUpto + " output=" + output + " currentFrame.ord=" + currentFrame.ord + " targetBeforeCurrentLength=" + targetBeforeCurrentLength);
-comment|// }
+if|if
+condition|(
+name|DEBUG
+condition|)
+block|{
+name|System
+operator|.
+name|out
+operator|.
+name|println
+argument_list|(
+literal|"  start index loop targetUpto="
+operator|+
+name|targetUpto
+operator|+
+literal|" output="
+operator|+
+name|output
+operator|+
+literal|" currentFrame.ord="
+operator|+
+name|currentFrame
+operator|.
+name|ord
+operator|+
+literal|" targetBeforeCurrentLength="
+operator|+
+name|targetBeforeCurrentLength
+argument_list|)
+expr_stmt|;
+block|}
 while|while
 condition|(
 name|targetUpto
@@ -1939,9 +2386,37 @@ literal|null
 condition|)
 block|{
 comment|// Index is exhausted
-comment|// if (DEBUG) {
-comment|//   System.out.println("    index: index exhausted label=" + ((char) targetLabel) + " " + toHex(targetLabel));
-comment|// }
+if|if
+condition|(
+name|DEBUG
+condition|)
+block|{
+name|System
+operator|.
+name|out
+operator|.
+name|println
+argument_list|(
+literal|"    index: index exhausted label="
+operator|+
+operator|(
+operator|(
+name|char
+operator|)
+name|targetLabel
+operator|)
+operator|+
+literal|" "
+operator|+
+name|Integer
+operator|.
+name|toHexString
+argument_list|(
+name|targetLabel
+argument_list|)
+argument_list|)
+expr_stmt|;
+block|}
 name|validIndexPrefix
 operator|=
 name|currentFrame
@@ -1988,30 +2463,31 @@ literal|1
 operator|+
 name|targetUpto
 expr_stmt|;
-comment|// if (DEBUG) {
-comment|//   System.out.println("  FAST NOT_FOUND term=" + brToString(term));
-comment|// }
-return|return
-literal|false
-return|;
-block|}
+if|if
+condition|(
+name|DEBUG
+condition|)
+block|{
 name|System
 operator|.
 name|out
 operator|.
 name|println
 argument_list|(
-literal|"  check output="
+literal|"  FAST NOT_FOUND term="
 operator|+
-operator|(
-operator|(
-name|output
-operator|.
-name|output2
-operator|)
-operator|)
+name|brToString
+argument_list|(
+name|term
+argument_list|)
 argument_list|)
 expr_stmt|;
+block|}
+return|return
+literal|false
+return|;
+block|}
+comment|//System.out.println("  check maxVersion=" + currentFrame.maxIDVersion + " vs " + minIDVersion);
 if|if
 condition|(
 name|currentFrame
@@ -2022,6 +2498,39 @@ name|minIDVersion
 condition|)
 block|{
 comment|// The max version for all terms in this block is lower than the minVersion
+comment|//termExists = false;
+comment|//term.bytes[targetUpto] = (byte) targetLabel;
+comment|//term.length = 1+targetUpto;
+if|if
+condition|(
+name|DEBUG
+condition|)
+block|{
+name|System
+operator|.
+name|out
+operator|.
+name|println
+argument_list|(
+literal|"    FAST version NOT_FOUND term="
+operator|+
+name|brToString
+argument_list|(
+name|term
+argument_list|)
+operator|+
+literal|" currentFrame.maxIDVersion="
+operator|+
+name|currentFrame
+operator|.
+name|maxIDVersion
+operator|+
+literal|" validIndexPrefix="
+operator|+
+name|validIndexPrefix
+argument_list|)
+expr_stmt|;
+block|}
 return|return
 literal|false
 return|;
@@ -2053,9 +2562,6 @@ operator|.
 name|FOUND
 condition|)
 block|{
-comment|// if (DEBUG) {
-comment|//   System.out.println("  return FOUND term=" + term.utf8ToString() + " " + term);
-comment|// }
 name|currentFrame
 operator|.
 name|decodeMetaData
@@ -2078,9 +2584,63 @@ name|minIDVersion
 condition|)
 block|{
 comment|// The max version for this term is lower than the minVersion
+if|if
+condition|(
+name|DEBUG
+condition|)
+block|{
+name|System
+operator|.
+name|out
+operator|.
+name|println
+argument_list|(
+literal|"    return NOT_FOUND: idVersion="
+operator|+
+operator|(
+operator|(
+name|IDVersionTermState
+operator|)
+name|currentFrame
+operator|.
+name|state
+operator|)
+operator|.
+name|idVersion
+operator|+
+literal|" vs minIDVersion="
+operator|+
+name|minIDVersion
+argument_list|)
+expr_stmt|;
+block|}
 return|return
 literal|false
 return|;
+block|}
+if|if
+condition|(
+name|DEBUG
+condition|)
+block|{
+name|System
+operator|.
+name|out
+operator|.
+name|println
+argument_list|(
+literal|"  return FOUND term="
+operator|+
+name|term
+operator|.
+name|utf8ToString
+argument_list|()
+operator|+
+literal|" "
+operator|+
+name|term
+argument_list|)
+expr_stmt|;
 block|}
 return|return
 literal|true
@@ -2088,9 +2648,30 @@ return|;
 block|}
 else|else
 block|{
-comment|// if (DEBUG) {
-comment|//   System.out.println("  got " + result + "; return NOT_FOUND term=" + brToString(term));
-comment|// }
+if|if
+condition|(
+name|DEBUG
+condition|)
+block|{
+name|System
+operator|.
+name|out
+operator|.
+name|println
+argument_list|(
+literal|"  got "
+operator|+
+name|result
+operator|+
+literal|"; return NOT_FOUND term="
+operator|+
+name|brToString
+argument_list|(
+name|term
+argument_list|)
+argument_list|)
+expr_stmt|;
+block|}
 return|return
 literal|false
 return|;
@@ -2150,9 +2731,53 @@ name|output
 argument_list|)
 expr_stmt|;
 block|}
-comment|// if (DEBUG) {
-comment|//   System.out.println("    index: follow label=" + toHex(target.bytes[target.offset + targetUpto]&0xff) + " arc.output=" + arc.output + " arc.nfo=" + arc.nextFinalOutput);
-comment|// }
+if|if
+condition|(
+name|DEBUG
+condition|)
+block|{
+name|System
+operator|.
+name|out
+operator|.
+name|println
+argument_list|(
+literal|"    index: follow label="
+operator|+
+name|Integer
+operator|.
+name|toHexString
+argument_list|(
+operator|(
+name|target
+operator|.
+name|bytes
+index|[
+name|target
+operator|.
+name|offset
+operator|+
+name|targetUpto
+index|]
+operator|&
+literal|0xff
+operator|)
+argument_list|)
+operator|+
+literal|" arc.output="
+operator|+
+name|arc
+operator|.
+name|output
+operator|+
+literal|" arc.nfo="
+operator|+
+name|arc
+operator|.
+name|nextFinalOutput
+argument_list|)
+expr_stmt|;
+block|}
 name|targetUpto
 operator|++
 expr_stmt|;
@@ -2164,7 +2789,19 @@ name|isFinal
 argument_list|()
 condition|)
 block|{
-comment|//if (DEBUG) System.out.println("    arc is final!");
+if|if
+condition|(
+name|DEBUG
+condition|)
+name|System
+operator|.
+name|out
+operator|.
+name|println
+argument_list|(
+literal|"    arc is final!"
+argument_list|)
+expr_stmt|;
 name|currentFrame
 operator|=
 name|pushFrame
@@ -2187,7 +2824,29 @@ argument_list|,
 name|targetUpto
 argument_list|)
 expr_stmt|;
-comment|//if (DEBUG) System.out.println("    curFrame.ord=" + currentFrame.ord + " hasTerms=" + currentFrame.hasTerms);
+if|if
+condition|(
+name|DEBUG
+condition|)
+name|System
+operator|.
+name|out
+operator|.
+name|println
+argument_list|(
+literal|"    curFrame.ord="
+operator|+
+name|currentFrame
+operator|.
+name|ord
+operator|+
+literal|" hasTerms="
+operator|+
+name|currentFrame
+operator|.
+name|hasTerms
+argument_list|)
+expr_stmt|;
 block|}
 block|}
 block|}
@@ -2224,9 +2883,50 @@ name|length
 operator|=
 name|targetUpto
 expr_stmt|;
-comment|// if (DEBUG) {
-comment|//   System.out.println("  FAST NOT_FOUND term=" + brToString(term));
-comment|// }
+if|if
+condition|(
+name|DEBUG
+condition|)
+block|{
+name|System
+operator|.
+name|out
+operator|.
+name|println
+argument_list|(
+literal|"  FAST NOT_FOUND term="
+operator|+
+name|brToString
+argument_list|(
+name|term
+argument_list|)
+argument_list|)
+expr_stmt|;
+block|}
+return|return
+literal|false
+return|;
+block|}
+if|if
+condition|(
+name|currentFrame
+operator|.
+name|maxIDVersion
+operator|<
+name|minIDVersion
+condition|)
+block|{
+comment|// The max version for all terms in this block is lower than the minVersion
+name|termExists
+operator|=
+literal|false
+expr_stmt|;
+name|term
+operator|.
+name|length
+operator|=
+name|targetUpto
+expr_stmt|;
 return|return
 literal|false
 return|;
@@ -2258,18 +2958,86 @@ operator|.
 name|FOUND
 condition|)
 block|{
-comment|// if (DEBUG) {
-comment|//   System.out.println("  return FOUND term=" + term.utf8ToString() + " " + term);
-comment|// }
+if|if
+condition|(
+name|DEBUG
+condition|)
+block|{
+name|System
+operator|.
+name|out
+operator|.
+name|println
+argument_list|(
+literal|"  return FOUND term="
+operator|+
+name|term
+operator|.
+name|utf8ToString
+argument_list|()
+operator|+
+literal|" "
+operator|+
+name|term
+argument_list|)
+expr_stmt|;
+block|}
+name|currentFrame
+operator|.
+name|decodeMetaData
+argument_list|()
+expr_stmt|;
+if|if
+condition|(
+operator|(
+operator|(
+name|IDVersionTermState
+operator|)
+name|currentFrame
+operator|.
+name|state
+operator|)
+operator|.
+name|idVersion
+operator|<
+name|minIDVersion
+condition|)
+block|{
+comment|// The max version for this term is lower than the minVersion
+return|return
+literal|false
+return|;
+block|}
 return|return
 literal|true
 return|;
 block|}
 else|else
 block|{
-comment|// if (DEBUG) {
-comment|//   System.out.println("  got result " + result + "; return NOT_FOUND term=" + term.utf8ToString());
-comment|// }
+if|if
+condition|(
+name|DEBUG
+condition|)
+block|{
+name|System
+operator|.
+name|out
+operator|.
+name|println
+argument_list|(
+literal|"  got result "
+operator|+
+name|result
+operator|+
+literal|"; return NOT_FOUND term="
+operator|+
+name|term
+operator|.
+name|utf8ToString
+argument_list|()
+argument_list|)
+expr_stmt|;
+block|}
 return|return
 literal|false
 return|;
@@ -4607,6 +5375,26 @@ operator|new
 name|UnsupportedOperationException
 argument_list|()
 throw|;
+block|}
+annotation|@
+name|Override
+DECL|method|toString
+specifier|public
+name|String
+name|toString
+parameter_list|()
+block|{
+return|return
+literal|"IDVersionSegmentTermsEnum(seg="
+operator|+
+name|fr
+operator|.
+name|parent
+operator|.
+name|segment
+operator|+
+literal|")"
+return|;
 block|}
 block|}
 end_class

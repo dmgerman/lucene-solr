@@ -933,21 +933,6 @@ operator|.
 name|readVLong
 argument_list|()
 decl_stmt|;
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"  read code="
-operator|+
-name|code
-operator|+
-literal|" version="
-operator|+
-name|version
-argument_list|)
-expr_stmt|;
 specifier|final
 name|Pair
 argument_list|<
