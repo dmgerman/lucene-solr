@@ -315,6 +315,13 @@ comment|/** Test very simply that perf tasks are parses as expected. */
 end_comment
 
 begin_class
+annotation|@
+name|SuppressSysoutChecks
+argument_list|(
+name|bugUrl
+operator|=
+literal|"very noisy"
+argument_list|)
 DECL|class|TestPerfTasksParse
 specifier|public
 class|class

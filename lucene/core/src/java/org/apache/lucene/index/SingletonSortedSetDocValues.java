@@ -31,7 +31,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**   * Exposes multi-valued view over a single-valued instance.  *<p>  * This can be used if you want to have one multi-valued implementation  * against e.g. FieldCache.getDocTermOrds that also works for single-valued   * fields.  */
+comment|/**   * Exposes multi-valued view over a single-valued instance.  *<p>  * This can be used if you want to have one multi-valued implementation  * that works for single or multi-valued types.  */
 end_comment
 
 begin_class

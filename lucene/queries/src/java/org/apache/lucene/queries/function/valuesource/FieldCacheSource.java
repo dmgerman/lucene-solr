@@ -36,22 +36,8 @@ name|ValueSource
 import|;
 end_import
 
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|search
-operator|.
-name|FieldCache
-import|;
-end_import
-
 begin_comment
-comment|/**  * A base class for ValueSource implementations that retrieve values for  * a single field from the {@link org.apache.lucene.search.FieldCache}.  *  *  */
+comment|/**  * A base class for ValueSource implementations that retrieve values for  * a single field from DocValues.  *  *  */
 end_comment
 
 begin_class
@@ -69,16 +55,6 @@ specifier|final
 name|String
 name|field
 decl_stmt|;
-DECL|field|cache
-specifier|protected
-specifier|final
-name|FieldCache
-name|cache
-init|=
-name|FieldCache
-operator|.
-name|DEFAULT
-decl_stmt|;
 DECL|method|FieldCacheSource
 specifier|public
 name|FieldCacheSource
@@ -93,16 +69,6 @@ name|field
 operator|=
 name|field
 expr_stmt|;
-block|}
-DECL|method|getFieldCache
-specifier|public
-name|FieldCache
-name|getFieldCache
-parameter_list|()
-block|{
-return|return
-name|cache
-return|;
 block|}
 DECL|method|getField
 specifier|public
@@ -168,14 +134,6 @@ name|other
 operator|.
 name|field
 argument_list|)
-operator|&&
-name|this
-operator|.
-name|cache
-operator|==
-name|other
-operator|.
-name|cache
 return|;
 block|}
 annotation|@
@@ -187,11 +145,6 @@ name|hashCode
 parameter_list|()
 block|{
 return|return
-name|cache
-operator|.
-name|hashCode
-argument_list|()
-operator|+
 name|field
 operator|.
 name|hashCode

@@ -69,15 +69,15 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Base class for DocIdSet to be used with FieldCache. The implementation  * of its iterator is very stupid and slow if the implementation of the  * {@link #matchDoc} method is not optimized, as iterators simply increment  * the document id until {@code matchDoc(int)} returns true. Because of this  * {@code matchDoc(int)} must be as fast as possible and in no case do any  * I/O.  * @lucene.internal  */
+comment|/**  * Base class for DocIdSet to be used with DocValues. The implementation  * of its iterator is very stupid and slow if the implementation of the  * {@link #matchDoc} method is not optimized, as iterators simply increment  * the document id until {@code matchDoc(int)} returns true. Because of this  * {@code matchDoc(int)} must be as fast as possible and in no case do any  * I/O.  * @lucene.internal  */
 end_comment
 
 begin_class
-DECL|class|FieldCacheDocIdSet
+DECL|class|DocValuesDocIdSet
 specifier|public
 specifier|abstract
 class|class
-name|FieldCacheDocIdSet
+name|DocValuesDocIdSet
 extends|extends
 name|DocIdSet
 block|{
@@ -93,9 +93,9 @@ specifier|final
 name|Bits
 name|acceptDocs
 decl_stmt|;
-DECL|method|FieldCacheDocIdSet
+DECL|method|DocValuesDocIdSet
 specifier|public
-name|FieldCacheDocIdSet
+name|DocValuesDocIdSet
 parameter_list|(
 name|int
 name|maxDoc
@@ -412,7 +412,7 @@ name|doc
 parameter_list|)
 block|{
 return|return
-name|FieldCacheDocIdSet
+name|DocValuesDocIdSet
 operator|.
 name|this
 operator|.

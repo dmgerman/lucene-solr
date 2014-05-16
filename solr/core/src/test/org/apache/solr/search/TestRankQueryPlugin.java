@@ -40,6 +40,20 @@ name|lucene
 operator|.
 name|index
 operator|.
+name|DocValues
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|index
+operator|.
 name|IndexReaderContext
 import|;
 end_import
@@ -54,7 +68,7 @@ name|lucene
 operator|.
 name|index
 operator|.
-name|ReaderUtil
+name|NumericDocValues
 import|;
 end_import
 
@@ -66,9 +80,9 @@ name|apache
 operator|.
 name|lucene
 operator|.
-name|search
+name|index
 operator|.
-name|FieldCache
+name|ReaderUtil
 import|;
 end_import
 
@@ -4120,9 +4134,7 @@ argument_list|()
 decl_stmt|;
 DECL|field|values
 specifier|private
-name|FieldCache
-operator|.
-name|Ints
+name|NumericDocValues
 name|values
 decl_stmt|;
 DECL|field|base
@@ -4167,11 +4179,9 @@ name|IOException
 block|{
 name|values
 operator|=
-name|FieldCache
+name|DocValues
 operator|.
-name|DEFAULT
-operator|.
-name|getInts
+name|getNumeric
 argument_list|(
 name|context
 operator|.
@@ -4179,8 +4189,6 @@ name|reader
 argument_list|()
 argument_list|,
 literal|"sort_i"
-argument_list|,
-literal|false
 argument_list|)
 expr_stmt|;
 name|base

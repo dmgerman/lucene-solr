@@ -36,7 +36,35 @@ name|lucene
 operator|.
 name|index
 operator|.
+name|AtomicReader
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|index
+operator|.
 name|AtomicReaderContext
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|index
+operator|.
+name|DocValues
 import|;
 end_import
 
@@ -87,7 +115,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * A {@link Filter} that accepts all documents that have one or more values in a  * given field. This {@link Filter} request {@link Bits} from the  * {@link FieldCache} and build the bits if not present.  */
+comment|/**  * A {@link Filter} that accepts all documents that have one or more values in a  * given field. This {@link Filter} request {@link Bits} from  * {@link AtomicReader#getDocsWithField}  */
 end_comment
 
 begin_class
@@ -194,9 +222,7 @@ specifier|final
 name|Bits
 name|docsWithField
 init|=
-name|FieldCache
-operator|.
-name|DEFAULT
+name|DocValues
 operator|.
 name|getDocsWithField
 argument_list|(
@@ -226,7 +252,7 @@ return|;
 block|}
 return|return
 operator|new
-name|FieldCacheDocIdSet
+name|DocValuesDocIdSet
 argument_list|(
 name|context
 operator|.
@@ -301,7 +327,7 @@ return|;
 block|}
 return|return
 operator|new
-name|FieldCacheDocIdSet
+name|DocValuesDocIdSet
 argument_list|(
 name|context
 operator|.

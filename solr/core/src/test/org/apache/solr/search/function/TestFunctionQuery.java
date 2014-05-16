@@ -56,20 +56,6 @@ name|lucene
 operator|.
 name|search
 operator|.
-name|FieldCache
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|search
-operator|.
 name|similarities
 operator|.
 name|DefaultSimilarity
@@ -1413,14 +1399,6 @@ argument_list|,
 literal|12
 argument_list|)
 expr_stmt|;
-name|FieldCache
-operator|.
-name|DEFAULT
-operator|.
-name|purgeAllCaches
-argument_list|()
-expr_stmt|;
-comment|// avoid FC insanity
 block|}
 annotation|@
 name|Test
@@ -1975,14 +1953,6 @@ argument_list|)
 expr_stmt|;
 comment|// System.out.println("Done test "+i);
 block|}
-name|FieldCache
-operator|.
-name|DEFAULT
-operator|.
-name|purgeAllCaches
-argument_list|()
-expr_stmt|;
-comment|// avoid FC insanity
 block|}
 annotation|@
 name|Test
@@ -3217,14 +3187,6 @@ argument_list|,
 literal|"*//doc[2]/float[.='121.0']"
 argument_list|)
 expr_stmt|;
-name|FieldCache
-operator|.
-name|DEFAULT
-operator|.
-name|purgeAllCaches
-argument_list|()
-expr_stmt|;
-comment|// avoid FC insanity
 block|}
 comment|/**    * test collection-level term stats (new in 4.x indexes)    */
 DECL|method|testTotalTermFreq
@@ -4902,14 +4864,6 @@ operator|.
 name|onlyForTesting
 argument_list|)
 expr_stmt|;
-name|FieldCache
-operator|.
-name|DEFAULT
-operator|.
-name|purgeAllCaches
-argument_list|()
-expr_stmt|;
-comment|// avoid FC insanity
 block|}
 comment|/**    * some platforms don't allow quote characters in filenames, so     * in addition to testExternalFieldValueSourceParser above, test a field     * name with quotes in it that does NOT use ExternalFileField    * @see #testExternalFieldValueSourceParser    */
 annotation|@
@@ -5039,14 +4993,6 @@ argument_list|,
 literal|0
 argument_list|)
 expr_stmt|;
-name|FieldCache
-operator|.
-name|DEFAULT
-operator|.
-name|purgeAllCaches
-argument_list|()
-expr_stmt|;
-comment|// avoid FC insanity
 block|}
 annotation|@
 name|Test

@@ -72,20 +72,6 @@ name|lucene
 operator|.
 name|search
 operator|.
-name|FieldCache
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|search
-operator|.
 name|Filter
 import|;
 end_import
@@ -537,7 +523,7 @@ specifier|private
 name|Bits
 name|matchingGroupHeads
 decl_stmt|;
-comment|/**    * Constructs a<code>GroupingSearch</code> instance that groups documents by index terms using the {@link FieldCache}.    * The group field can only have one token per document. This means that the field must not be analysed.    *    * @param groupField The name of the field to group by.    */
+comment|/**    * Constructs a<code>GroupingSearch</code> instance that groups documents by index terms using DocValues.    * The group field can only have one token per document. This means that the field must not be analysed.    *    * @param groupField The name of the field to group by.    */
 DECL|method|GroupingSearch
 specifier|public
 name|GroupingSearch

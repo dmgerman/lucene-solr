@@ -70,7 +70,7 @@ name|lucene
 operator|.
 name|search
 operator|.
-name|FieldCacheRangeFilter
+name|DocValuesRangeFilter
 import|;
 end_import
 
@@ -79,7 +79,7 @@ comment|// javadoc
 end_comment
 
 begin_comment
-comment|/**  * A Filter that restricts search results to a range of term  * values in a given field.  *  *<p>This filter matches the documents looking for terms that fall into the  * supplied range according to {@link  * String#compareTo(String)}, unless a<code>Collator</code> is provided. It is not intended  * for numerical ranges; use {@link NumericRangeFilter} instead.  *  *<p>If you construct a large number of range filters with different ranges but on the   * same field, {@link FieldCacheRangeFilter} may have significantly better performance.   * @deprecated Index collation keys with CollationKeyAnalyzer or ICUCollationKeyAnalyzer instead.  * This class will be removed in Lucene 5.0  */
+comment|/**  * A Filter that restricts search results to a range of term  * values in a given field.  *  *<p>This filter matches the documents looking for terms that fall into the  * supplied range according to {@link  * String#compareTo(String)}, unless a<code>Collator</code> is provided. It is not intended  * for numerical ranges; use {@link NumericRangeFilter} instead.  *  *<p>If you construct a large number of range filters with different ranges but on the   * same field, {@link DocValuesRangeFilter} may have significantly better performance.   * @deprecated Index collation keys with CollationKeyAnalyzer or ICUCollationKeyAnalyzer instead.  * This class will be removed in Lucene 5.0  */
 end_comment
 
 begin_class

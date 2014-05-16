@@ -412,6 +412,21 @@ name|NamedList
 argument_list|<>
 argument_list|()
 decl_stmt|;
+comment|// TODO: remove multiValuedFieldCache(), check dv type / uninversion type?
+specifier|final
+name|boolean
+name|multiValued
+init|=
+name|schemaField
+operator|.
+name|multiValued
+argument_list|()
+operator|||
+name|ft
+operator|.
+name|multiValuedFieldCache
+argument_list|()
+decl_stmt|;
 specifier|final
 name|SortedSetDocValues
 name|si
@@ -425,10 +440,7 @@ decl_stmt|;
 comment|// for mapping per-segment ords to global ones
 if|if
 condition|(
-name|schemaField
-operator|.
 name|multiValued
-argument_list|()
 condition|)
 block|{
 name|si
@@ -851,10 +863,7 @@ condition|)
 block|{
 if|if
 condition|(
-name|schemaField
-operator|.
 name|multiValued
-argument_list|()
 condition|)
 block|{
 name|SortedSetDocValues

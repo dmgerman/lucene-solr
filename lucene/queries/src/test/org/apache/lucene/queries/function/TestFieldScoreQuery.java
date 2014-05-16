@@ -179,12 +179,6 @@ parameter_list|()
 throws|throws
 name|Exception
 block|{
-comment|// INT field can be parsed as float
-name|doTestRank
-argument_list|(
-name|INT_AS_FLOAT_VALUESOURCE
-argument_list|)
-expr_stmt|;
 comment|// same values, but in flot format
 name|doTestRank
 argument_list|(
@@ -421,12 +415,6 @@ parameter_list|()
 throws|throws
 name|Exception
 block|{
-comment|// INT field can be parsed as float
-name|doTestExactScore
-argument_list|(
-name|INT_AS_FLOAT_VALUESOURCE
-argument_list|)
-expr_stmt|;
 comment|// same values, but in flot format
 name|doTestExactScore
 argument_list|(
