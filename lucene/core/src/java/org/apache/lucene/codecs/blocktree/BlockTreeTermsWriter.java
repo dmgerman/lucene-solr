@@ -2549,8 +2549,7 @@ block|}
 block|}
 block|}
 comment|// Write the top count entries on the pending stack as
-comment|// one or more blocks.  Returns how many blocks were
-comment|// written.  If the entry count is<= maxItemsPerBlock
+comment|// one or more blocks.  If the entry count is<= maxItemsPerBlock
 comment|// we just write a single block; else we break into
 comment|// primary (initial) block and then one or more
 comment|// following floor blocks:
@@ -2570,12 +2569,20 @@ parameter_list|)
 throws|throws
 name|IOException
 block|{
+name|System
+operator|.
+name|out
+operator|.
+name|println
+argument_list|(
+literal|"writeBlocks count="
+operator|+
+name|count
+argument_list|)
+expr_stmt|;
+comment|// nocommit nuke the prefixLength == 0 case, but testVaryingTermsPerSegment fails!!
 if|if
 condition|(
-name|prefixLength
-operator|==
-literal|0
-operator|||
 name|count
 operator|<=
 name|maxItemsInBlock
@@ -2625,6 +2632,15 @@ operator|.
 name|add
 argument_list|(
 name|nonFloorBlock
+argument_list|)
+expr_stmt|;
+name|System
+operator|.
+name|out
+operator|.
+name|println
+argument_list|(
+literal|"  1 block"
 argument_list|)
 expr_stmt|;
 block|}
@@ -3245,6 +3261,17 @@ block|}
 name|curStart
 operator|-=
 name|pendingCount
+expr_stmt|;
+name|System
+operator|.
+name|out
+operator|.
+name|println
+argument_list|(
+literal|"  floor="
+operator|+
+name|pendingCount
+argument_list|)
 expr_stmt|;
 comment|//System.out.println("    = " + pendingCount);
 name|pendingCount

@@ -174,6 +174,13 @@ DECL|field|isFloor
 name|boolean
 name|isFloor
 decl_stmt|;
+DECL|field|DEBUG
+specifier|static
+name|boolean
+name|DEBUG
+init|=
+literal|true
+decl_stmt|;
 comment|/** Highest version of any term in this block. */
 DECL|field|maxIDVersion
 name|long
@@ -921,6 +928,17 @@ name|void
 name|rewind
 parameter_list|()
 block|{
+name|System
+operator|.
+name|out
+operator|.
+name|println
+argument_list|(
+literal|"  rewind frame ord="
+operator|+
+name|ord
+argument_list|)
+expr_stmt|;
 comment|// Force reload:
 name|fp
 operator|=
@@ -931,6 +949,8 @@ operator|=
 operator|-
 literal|1
 expr_stmt|;
+comment|// nocommit move to BT too?
+comment|//state.termBlockOrd = 0;
 name|hasTerms
 operator|=
 name|hasTermsOrig
@@ -1289,9 +1309,33 @@ operator|<=
 name|prefix
 condition|)
 block|{
-comment|// if (DEBUG) {
-comment|//   System.out.println("    scanToFloorFrame skip: isFloor=" + isFloor + " target.length=" + target.length + " vs prefix=" + prefix);
-comment|// }
+if|if
+condition|(
+name|DEBUG
+condition|)
+block|{
+name|System
+operator|.
+name|out
+operator|.
+name|println
+argument_list|(
+literal|"    scanToFloorFrame skip: isFloor="
+operator|+
+name|isFloor
+operator|+
+literal|" target.length="
+operator|+
+name|target
+operator|.
+name|length
+operator|+
+literal|" vs prefix="
+operator|+
+name|prefix
+argument_list|)
+expr_stmt|;
+block|}
 return|return;
 block|}
 specifier|final
@@ -1311,9 +1355,45 @@ index|]
 operator|&
 literal|0xFF
 decl_stmt|;
-comment|// if (DEBUG) {
-comment|//   System.out.println("    scanToFloorFrame fpOrig=" + fpOrig + " targetLabel=" + toHex(targetLabel) + " vs nextFloorLabel=" + toHex(nextFloorLabel) + " numFollowFloorBlocks=" + numFollowFloorBlocks);
-comment|// }
+if|if
+condition|(
+name|DEBUG
+condition|)
+block|{
+name|System
+operator|.
+name|out
+operator|.
+name|println
+argument_list|(
+literal|"    scanToFloorFrame fpOrig="
+operator|+
+name|fpOrig
+operator|+
+literal|" targetLabel="
+operator|+
+operator|(
+operator|(
+name|char
+operator|)
+name|targetLabel
+operator|)
+operator|+
+literal|" vs nextFloorLabel="
+operator|+
+operator|(
+operator|(
+name|char
+operator|)
+name|nextFloorLabel
+operator|)
+operator|+
+literal|" numFollowFloorBlocks="
+operator|+
+name|numFollowFloorBlocks
+argument_list|)
+expr_stmt|;
+block|}
 if|if
 condition|(
 name|targetLabel
@@ -1321,9 +1401,21 @@ operator|<
 name|nextFloorLabel
 condition|)
 block|{
-comment|// if (DEBUG) {
-comment|//   System.out.println("      already on correct block");
-comment|// }
+if|if
+condition|(
+name|DEBUG
+condition|)
+block|{
+name|System
+operator|.
+name|out
+operator|.
+name|println
+argument_list|(
+literal|"      already on correct block"
+argument_list|)
+expr_stmt|;
+block|}
 return|return;
 block|}
 assert|assert
@@ -1370,9 +1462,40 @@ operator|)
 operator|!=
 literal|0
 expr_stmt|;
-comment|// if (DEBUG) {
-comment|//   System.out.println("      label=" + toHex(nextFloorLabel) + " fp=" + newFP + " hasTerms?=" + hasTerms + " numFollowFloor=" + numFollowFloorBlocks);
-comment|// }
+if|if
+condition|(
+name|DEBUG
+condition|)
+block|{
+name|System
+operator|.
+name|out
+operator|.
+name|println
+argument_list|(
+literal|"      label="
+operator|+
+operator|(
+operator|(
+name|char
+operator|)
+name|nextFloorLabel
+operator|)
+operator|+
+literal|" fp="
+operator|+
+name|newFP
+operator|+
+literal|" hasTerms?="
+operator|+
+name|hasTerms
+operator|+
+literal|" numFollowFloor="
+operator|+
+name|numFollowFloorBlocks
+argument_list|)
+expr_stmt|;
+block|}
 name|isLastInFloor
 operator|=
 name|numFollowFloorBlocks
@@ -1391,9 +1514,28 @@ name|nextFloorLabel
 operator|=
 literal|256
 expr_stmt|;
-comment|// if (DEBUG) {
-comment|//   System.out.println("        stop!  last block nextFloorLabel=" + toHex(nextFloorLabel));
-comment|// }
+if|if
+condition|(
+name|DEBUG
+condition|)
+block|{
+name|System
+operator|.
+name|out
+operator|.
+name|println
+argument_list|(
+literal|"        stop!  last block nextFloorLabel="
+operator|+
+operator|(
+operator|(
+name|char
+operator|)
+name|nextFloorLabel
+operator|)
+argument_list|)
+expr_stmt|;
+block|}
 break|break;
 block|}
 else|else
@@ -1414,9 +1556,28 @@ operator|<
 name|nextFloorLabel
 condition|)
 block|{
-comment|// if (DEBUG) {
-comment|//   System.out.println("        stop!  nextFloorLabel=" + toHex(nextFloorLabel));
-comment|// }
+if|if
+condition|(
+name|DEBUG
+condition|)
+block|{
+name|System
+operator|.
+name|out
+operator|.
+name|println
+argument_list|(
+literal|"        stop!  nextFloorLabel="
+operator|+
+operator|(
+operator|(
+name|char
+operator|)
+name|nextFloorLabel
+operator|)
+argument_list|)
+expr_stmt|;
+block|}
 break|break;
 block|}
 block|}
@@ -1429,9 +1590,27 @@ name|fp
 condition|)
 block|{
 comment|// Force re-load of the block:
-comment|// if (DEBUG) {
-comment|//   System.out.println("      force switch to fp=" + newFP + " oldFP=" + fp);
-comment|// }
+if|if
+condition|(
+name|DEBUG
+condition|)
+block|{
+name|System
+operator|.
+name|out
+operator|.
+name|println
+argument_list|(
+literal|"      force switch to fp="
+operator|+
+name|newFP
+operator|+
+literal|" oldFP="
+operator|+
+name|fp
+argument_list|)
+expr_stmt|;
+block|}
 name|nextEnt
 operator|=
 operator|-
@@ -1444,9 +1623,23 @@ expr_stmt|;
 block|}
 else|else
 block|{
-comment|// if (DEBUG) {
-comment|//   System.out.println("      stay on same fp=" + newFP);
-comment|// }
+if|if
+condition|(
+name|DEBUG
+condition|)
+block|{
+name|System
+operator|.
+name|out
+operator|.
+name|println
+argument_list|(
+literal|"      stay on same fp="
+operator|+
+name|newFP
+argument_list|)
+expr_stmt|;
+block|}
 block|}
 block|}
 DECL|method|decodeMetaData
@@ -1458,6 +1651,38 @@ throws|throws
 name|IOException
 block|{
 comment|//if (DEBUG) System.out.println("\nBTTR.decodeMetadata seg=" + segment + " mdUpto=" + metaDataUpto + " vs termBlockOrd=" + state.termBlockOrd);
+name|System
+operator|.
+name|out
+operator|.
+name|println
+argument_list|(
+literal|"\nBTTR.decodeMetadata seg="
+operator|+
+name|ste
+operator|.
+name|fr
+operator|.
+name|parent
+operator|.
+name|segment
+operator|+
+literal|" mdUpto="
+operator|+
+name|metaDataUpto
+operator|+
+literal|" vs termBlockOrd="
+operator|+
+name|state
+operator|.
+name|termBlockOrd
+argument_list|)
+expr_stmt|;
+assert|assert
+name|nextEnt
+operator|>=
+literal|0
+assert|;
 comment|// lazily catch up on metadata decode:
 specifier|final
 name|int
@@ -1473,11 +1698,6 @@ name|metaDataUpto
 operator|==
 literal|0
 decl_stmt|;
-assert|assert
-name|limit
-operator|>
-literal|0
-assert|;
 comment|// TODO: better API would be "jump straight to term=N"???
 while|while
 condition|(
@@ -1859,7 +2079,53 @@ parameter_list|)
 throws|throws
 name|IOException
 block|{
-comment|// if (DEBUG) System.out.println("    scanToTermLeaf: block fp=" + fp + " prefix=" + prefix + " nextEnt=" + nextEnt + " (of " + entCount + ") target=" + brToString(target) + " term=" + brToString(term));
+if|if
+condition|(
+name|DEBUG
+condition|)
+name|System
+operator|.
+name|out
+operator|.
+name|println
+argument_list|(
+literal|"    scanToTermLeaf: block fp="
+operator|+
+name|fp
+operator|+
+literal|" prefix="
+operator|+
+name|prefix
+operator|+
+literal|" nextEnt="
+operator|+
+name|nextEnt
+operator|+
+literal|" (of "
+operator|+
+name|entCount
+operator|+
+literal|") target="
+operator|+
+name|IDVersionSegmentTermsEnum
+operator|.
+name|brToString
+argument_list|(
+name|target
+argument_list|)
+operator|+
+literal|" term="
+operator|+
+name|IDVersionSegmentTermsEnum
+operator|.
+name|brToString
+argument_list|(
+name|ste
+operator|.
+name|term
+argument_list|)
+argument_list|)
+expr_stmt|;
 assert|assert
 name|nextEnt
 operator|!=
@@ -1923,13 +2189,68 @@ operator|.
 name|readVInt
 argument_list|()
 expr_stmt|;
-comment|// if (DEBUG) {
-comment|//   BytesRef suffixBytesRef = new BytesRef();
-comment|//   suffixBytesRef.bytes = suffixBytes;
-comment|//   suffixBytesRef.offset = suffixesReader.getPosition();
-comment|//   suffixBytesRef.length = suffix;
-comment|//   System.out.println("      cycle: term " + (nextEnt-1) + " (of " + entCount + ") suffix=" + brToString(suffixBytesRef));
-comment|// }
+if|if
+condition|(
+name|DEBUG
+condition|)
+block|{
+name|BytesRef
+name|suffixBytesRef
+init|=
+operator|new
+name|BytesRef
+argument_list|()
+decl_stmt|;
+name|suffixBytesRef
+operator|.
+name|bytes
+operator|=
+name|suffixBytes
+expr_stmt|;
+name|suffixBytesRef
+operator|.
+name|offset
+operator|=
+name|suffixesReader
+operator|.
+name|getPosition
+argument_list|()
+expr_stmt|;
+name|suffixBytesRef
+operator|.
+name|length
+operator|=
+name|suffix
+expr_stmt|;
+name|System
+operator|.
+name|out
+operator|.
+name|println
+argument_list|(
+literal|"      cycle: term "
+operator|+
+operator|(
+name|nextEnt
+operator|-
+literal|1
+operator|)
+operator|+
+literal|" (of "
+operator|+
+name|entCount
+operator|+
+literal|") suffix="
+operator|+
+name|IDVersionSegmentTermsEnum
+operator|.
+name|brToString
+argument_list|(
+name|suffixBytesRef
+argument_list|)
+argument_list|)
+expr_stmt|;
+block|}
 specifier|final
 name|int
 name|termLen
@@ -2270,7 +2591,53 @@ parameter_list|)
 throws|throws
 name|IOException
 block|{
-comment|//if (DEBUG) System.out.println("    scanToTermNonLeaf: block fp=" + fp + " prefix=" + prefix + " nextEnt=" + nextEnt + " (of " + entCount + ") target=" + brToString(target) + " term=" + brToString(term));
+if|if
+condition|(
+name|DEBUG
+condition|)
+name|System
+operator|.
+name|out
+operator|.
+name|println
+argument_list|(
+literal|"    scanToTermNonLeaf: block fp="
+operator|+
+name|fp
+operator|+
+literal|" prefix="
+operator|+
+name|prefix
+operator|+
+literal|" nextEnt="
+operator|+
+name|nextEnt
+operator|+
+literal|" (of "
+operator|+
+name|entCount
+operator|+
+literal|") target="
+operator|+
+name|IDVersionSegmentTermsEnum
+operator|.
+name|brToString
+argument_list|(
+name|target
+argument_list|)
+operator|+
+literal|" term="
+operator|+
+name|IDVersionSegmentTermsEnum
+operator|.
+name|brToString
+argument_list|(
+name|ste
+operator|.
+name|term
+argument_list|)
+argument_list|)
+expr_stmt|;
 assert|assert
 name|nextEnt
 operator|!=

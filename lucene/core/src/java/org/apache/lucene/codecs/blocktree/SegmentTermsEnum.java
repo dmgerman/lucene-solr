@@ -314,11 +314,17 @@ specifier|final
 name|FieldReader
 name|fr
 decl_stmt|;
-comment|// nocommit make this public "for casting" and add a getVersion method?
 DECL|field|targetBeforeCurrentLength
 specifier|private
 name|int
 name|targetBeforeCurrentLength
+decl_stmt|;
+DECL|field|DEBUG
+specifier|static
+name|boolean
+name|DEBUG
+init|=
+literal|true
 decl_stmt|;
 DECL|field|scratchReader
 specifier|private
@@ -402,6 +408,15 @@ operator|.
 name|fr
 operator|=
 name|fr
+expr_stmt|;
+name|System
+operator|.
+name|out
+operator|.
+name|println
+argument_list|(
+literal|"STE: init"
+argument_list|)
 expr_stmt|;
 comment|//if (DEBUG) System.out.println("BTTR.init seg=" + segment);
 name|stack
@@ -1545,6 +1560,51 @@ return|return
 literal|true
 return|;
 block|}
+comment|// for debugging
+annotation|@
+name|SuppressWarnings
+argument_list|(
+literal|"unused"
+argument_list|)
+DECL|method|brToString
+specifier|static
+name|String
+name|brToString
+parameter_list|(
+name|BytesRef
+name|b
+parameter_list|)
+block|{
+try|try
+block|{
+return|return
+name|b
+operator|.
+name|utf8ToString
+argument_list|()
+operator|+
+literal|" "
+operator|+
+name|b
+return|;
+block|}
+catch|catch
+parameter_list|(
+name|Throwable
+name|t
+parameter_list|)
+block|{
+comment|// If BytesRef isn't actually UTF8, or it's eg a
+comment|// prefix of UTF8 that ends mid-unicode-char, we
+comment|// fallback to hex:
+return|return
+name|b
+operator|.
+name|toString
+argument_list|()
+return|;
+block|}
+block|}
 comment|// nocommit we need a seekExact(BytesRef target, long minVersion) API?
 annotation|@
 name|Override
@@ -1614,10 +1674,64 @@ assert|assert
 name|clearEOF
 argument_list|()
 assert|;
-comment|// if (DEBUG) {
-comment|//   System.out.println("\nBTTR.seekExact seg=" + segment + " target=" + fieldInfo.name + ":" + brToString(target) + " current=" + brToString(term) + " (exists?=" + termExists + ") validIndexPrefix=" + validIndexPrefix);
-comment|//   printSeekState();
-comment|// }
+if|if
+condition|(
+name|DEBUG
+condition|)
+block|{
+name|System
+operator|.
+name|out
+operator|.
+name|println
+argument_list|(
+literal|"\nBTTR.seekExact seg="
+operator|+
+name|fr
+operator|.
+name|parent
+operator|.
+name|segment
+operator|+
+literal|" target="
+operator|+
+name|fr
+operator|.
+name|fieldInfo
+operator|.
+name|name
+operator|+
+literal|":"
+operator|+
+name|brToString
+argument_list|(
+name|target
+argument_list|)
+operator|+
+literal|" current="
+operator|+
+name|brToString
+argument_list|(
+name|term
+argument_list|)
+operator|+
+literal|" (exists?="
+operator|+
+name|termExists
+operator|+
+literal|") validIndexPrefix="
+operator|+
+name|validIndexPrefix
+argument_list|)
+expr_stmt|;
+name|printSeekState
+argument_list|(
+name|System
+operator|.
+name|out
+argument_list|)
+expr_stmt|;
+block|}
 name|FST
 operator|.
 name|Arc
@@ -1750,9 +1864,75 @@ operator|&
 literal|0xFF
 operator|)
 expr_stmt|;
-comment|// if (DEBUG) {
-comment|//   System.out.println("    cycle targetUpto=" + targetUpto + " (vs limit=" + targetLimit + ") cmp=" + cmp + " (targetLabel=" + (char) (target.bytes[target.offset + targetUpto]) + " vs termLabel=" + (char) (term.bytes[targetUpto]) + ")"   + " arc.output=" + arc.output + " output=" + output);
-comment|// }
+if|if
+condition|(
+name|DEBUG
+condition|)
+block|{
+name|System
+operator|.
+name|out
+operator|.
+name|println
+argument_list|(
+literal|"    cycle targetUpto="
+operator|+
+name|targetUpto
+operator|+
+literal|" (vs limit="
+operator|+
+name|targetLimit
+operator|+
+literal|") cmp="
+operator|+
+name|cmp
+operator|+
+literal|" (targetLabel="
+operator|+
+call|(
+name|char
+call|)
+argument_list|(
+name|target
+operator|.
+name|bytes
+index|[
+name|target
+operator|.
+name|offset
+operator|+
+name|targetUpto
+index|]
+argument_list|)
+operator|+
+literal|" vs termLabel="
+operator|+
+call|(
+name|char
+call|)
+argument_list|(
+name|term
+operator|.
+name|bytes
+index|[
+name|targetUpto
+index|]
+argument_list|)
+operator|+
+literal|")"
+operator|+
+literal|" arc.output="
+operator|+
+name|arc
+operator|.
+name|output
+operator|+
+literal|" output="
+operator|+
+name|output
+argument_list|)
+expr_stmt|;
+block|}
 if|if
 condition|(
 name|cmp
@@ -1771,9 +1951,6 @@ operator|+
 name|targetUpto
 index|]
 expr_stmt|;
-comment|//if (arc.label != (target.bytes[target.offset + targetUpto]& 0xFF)) {
-comment|//System.out.println("FAIL: arc.label=" + (char) arc.label + " targetLabel=" + (char) (target.bytes[target.offset + targetUpto]& 0xFF));
-comment|//}
 assert|assert
 name|arc
 operator|.
@@ -1943,9 +2120,65 @@ operator|&
 literal|0xFF
 operator|)
 expr_stmt|;
-comment|// if (DEBUG) {
-comment|//   System.out.println("    cycle2 targetUpto=" + targetUpto + " (vs limit=" + targetLimit + ") cmp=" + cmp + " (targetLabel=" + (char) (target.bytes[target.offset + targetUpto]) + " vs termLabel=" + (char) (term.bytes[targetUpto]) + ")");
-comment|// }
+if|if
+condition|(
+name|DEBUG
+condition|)
+block|{
+name|System
+operator|.
+name|out
+operator|.
+name|println
+argument_list|(
+literal|"    cycle2 targetUpto="
+operator|+
+name|targetUpto
+operator|+
+literal|" (vs limit="
+operator|+
+name|targetLimit
+operator|+
+literal|") cmp="
+operator|+
+name|cmp
+operator|+
+literal|" (targetLabel="
+operator|+
+call|(
+name|char
+call|)
+argument_list|(
+name|target
+operator|.
+name|bytes
+index|[
+name|target
+operator|.
+name|offset
+operator|+
+name|targetUpto
+index|]
+argument_list|)
+operator|+
+literal|" vs termLabel="
+operator|+
+call|(
+name|char
+call|)
+argument_list|(
+name|term
+operator|.
+name|bytes
+index|[
+name|targetUpto
+index|]
+argument_list|)
+operator|+
+literal|")"
+argument_list|)
+expr_stmt|;
+block|}
 if|if
 condition|(
 name|cmp
@@ -2143,6 +2376,7 @@ block|}
 comment|// if (DEBUG) {
 comment|//   System.out.println("  start index loop targetUpto=" + targetUpto + " output=" + output + " currentFrame.ord=" + currentFrame.ord + " targetBeforeCurrentLength=" + targetBeforeCurrentLength);
 comment|// }
+comment|// We are done sharing the common prefix with the incoming target and where we are currently seek'd; now continue walking the index:
 while|while
 condition|(
 name|targetUpto
@@ -3081,6 +3315,7 @@ block|}
 comment|//if (DEBUG) {
 comment|//System.out.println("  start index loop targetUpto=" + targetUpto + " output=" + output + " currentFrame.ord+1=" + currentFrame.ord + " targetBeforeCurrentLength=" + targetBeforeCurrentLength);
 comment|//}
+comment|// We are done sharing the common prefix with the incoming target and where we are currently seek'd; now continue walking the index:
 while|while
 condition|(
 name|targetUpto

@@ -1082,6 +1082,8 @@ condition|)
 block|{
 name|assertEquals
 argument_list|(
+literal|"term should not have been found (doesn't exist)"
+argument_list|,
 operator|-
 literal|1
 argument_list|,
@@ -1122,6 +1124,8 @@ expr_stmt|;
 block|}
 name|assertTrue
 argument_list|(
+literal|"term should have been found (version too old)"
+argument_list|,
 name|lookup
 operator|.
 name|lookup
@@ -1158,6 +1162,8 @@ expr_stmt|;
 block|}
 name|assertEquals
 argument_list|(
+literal|"term should not have been found (version newer)"
+argument_list|,
 operator|-
 literal|1
 argument_list|,

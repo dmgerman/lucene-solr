@@ -325,7 +325,6 @@ name|IndexInput
 name|in
 decl_stmt|;
 DECL|field|DEBUG
-specifier|private
 specifier|static
 name|boolean
 name|DEBUG
@@ -358,6 +357,7 @@ name|VersionFieldReader
 name|fr
 decl_stmt|;
 comment|// nocommit make this public "for casting" and add a getVersion method?
+comment|// nocommit unused?
 DECL|field|targetBeforeCurrentLength
 specifier|private
 name|int
@@ -1251,7 +1251,7 @@ argument_list|(
 literal|"unused"
 argument_list|)
 DECL|method|brToString
-specifier|private
+specifier|static
 name|String
 name|brToString
 parameter_list|(
@@ -1445,6 +1445,13 @@ argument_list|,
 name|Long
 argument_list|>
 name|output
+decl_stmt|;
+name|long
+name|startFrameFP
+init|=
+name|currentFrame
+operator|.
+name|fp
 decl_stmt|;
 name|targetBeforeCurrentLength
 operator|=
@@ -2041,6 +2048,17 @@ operator|.
 name|rewind
 argument_list|()
 expr_stmt|;
+comment|// nocommit put this back to BT also?
+name|term
+operator|.
+name|length
+operator|=
+name|targetUpto
+expr_stmt|;
+name|termExists
+operator|=
+literal|false
+expr_stmt|;
 block|}
 else|else
 block|{
@@ -2156,6 +2174,38 @@ return|return
 literal|false
 return|;
 block|}
+name|System
+operator|.
+name|out
+operator|.
+name|println
+argument_list|(
+literal|"  term version="
+operator|+
+operator|(
+operator|(
+name|IDVersionTermState
+operator|)
+name|currentFrame
+operator|.
+name|state
+operator|)
+operator|.
+name|idVersion
+operator|+
+literal|" frame version="
+operator|+
+name|currentFrame
+operator|.
+name|maxIDVersion
+operator|+
+literal|" frame ord="
+operator|+
+name|currentFrame
+operator|.
+name|ord
+argument_list|)
+expr_stmt|;
 if|if
 condition|(
 name|DEBUG
@@ -2318,6 +2368,7 @@ name|targetBeforeCurrentLength
 argument_list|)
 expr_stmt|;
 block|}
+comment|// We are done sharing the common prefix with the incoming target and where we are currently seek'd; now continue walking the index:
 while|while
 condition|(
 name|targetUpto
@@ -2490,6 +2541,29 @@ block|}
 comment|//System.out.println("  check maxVersion=" + currentFrame.maxIDVersion + " vs " + minIDVersion);
 if|if
 condition|(
+name|DEBUG
+condition|)
+block|{
+name|System
+operator|.
+name|out
+operator|.
+name|println
+argument_list|(
+literal|"  frame.maxIDVersion="
+operator|+
+name|currentFrame
+operator|.
+name|maxIDVersion
+operator|+
+literal|" vs minIDVersion="
+operator|+
+name|minIDVersion
+argument_list|)
+expr_stmt|;
+block|}
+if|if
+condition|(
 name|currentFrame
 operator|.
 name|maxIDVersion
@@ -2498,9 +2572,72 @@ name|minIDVersion
 condition|)
 block|{
 comment|// The max version for all terms in this block is lower than the minVersion
+if|if
+condition|(
+name|currentFrame
+operator|.
+name|fp
+operator|!=
+name|startFrameFP
+condition|)
+block|{
+comment|//if (targetUpto+1> term.length) {
+name|termExists
+operator|=
+literal|false
+expr_stmt|;
+name|term
+operator|.
+name|bytes
+index|[
+name|targetUpto
+index|]
+operator|=
+operator|(
+name|byte
+operator|)
+name|targetLabel
+expr_stmt|;
+name|term
+operator|.
+name|length
+operator|=
+literal|1
+operator|+
+name|targetUpto
+expr_stmt|;
+if|if
+condition|(
+name|DEBUG
+condition|)
+block|{
+name|System
+operator|.
+name|out
+operator|.
+name|println
+argument_list|(
+literal|"    reset current term"
+argument_list|)
+expr_stmt|;
+block|}
+name|validIndexPrefix
+operator|=
+name|Math
+operator|.
+name|min
+argument_list|(
+name|validIndexPrefix
+argument_list|,
+name|term
+operator|.
+name|length
+argument_list|)
+expr_stmt|;
+block|}
+comment|//if (currentFrame.ord != startFrameOrd) {
 comment|//termExists = false;
-comment|//term.bytes[targetUpto] = (byte) targetLabel;
-comment|//term.length = 1+targetUpto;
+comment|//}
 if|if
 condition|(
 name|DEBUG
@@ -2518,6 +2655,10 @@ name|brToString
 argument_list|(
 name|term
 argument_list|)
+operator|+
+literal|" targetUpto="
+operator|+
+name|targetUpto
 operator|+
 literal|" currentFrame.maxIDVersion="
 operator|+
@@ -2540,6 +2681,25 @@ operator|.
 name|loadBlock
 argument_list|()
 expr_stmt|;
+if|if
+condition|(
+name|DEBUG
+condition|)
+block|{
+name|System
+operator|.
+name|out
+operator|.
+name|println
+argument_list|(
+literal|"    scan currentFrame ord="
+operator|+
+name|currentFrame
+operator|.
+name|ord
+argument_list|)
+expr_stmt|;
+block|}
 specifier|final
 name|SeekStatus
 name|result
@@ -2696,6 +2856,10 @@ name|byte
 operator|)
 name|targetLabel
 expr_stmt|;
+name|termExists
+operator|=
+literal|false
+expr_stmt|;
 comment|// Aggregate output as we go:
 assert|assert
 name|arc
@@ -2744,9 +2908,9 @@ name|println
 argument_list|(
 literal|"    index: follow label="
 operator|+
-name|Integer
-operator|.
-name|toHexString
+call|(
+name|char
+call|)
 argument_list|(
 operator|(
 name|target
@@ -2909,6 +3073,29 @@ return|;
 block|}
 if|if
 condition|(
+name|DEBUG
+condition|)
+block|{
+name|System
+operator|.
+name|out
+operator|.
+name|println
+argument_list|(
+literal|"  frame.maxIDVersion="
+operator|+
+name|currentFrame
+operator|.
+name|maxIDVersion
+operator|+
+literal|" vs minIDVersion="
+operator|+
+name|minIDVersion
+argument_list|)
+expr_stmt|;
+block|}
+if|if
+condition|(
 name|currentFrame
 operator|.
 name|maxIDVersion
@@ -2917,6 +3104,7 @@ name|minIDVersion
 condition|)
 block|{
 comment|// The max version for all terms in this block is lower than the minVersion
+comment|// nocommit need same logic here as above?
 name|termExists
 operator|=
 literal|false
@@ -4140,7 +4328,10 @@ name|prefix
 operator|+
 literal|" prefix="
 operator|+
+name|brToString
+argument_list|(
 name|prefix
+argument_list|)
 operator|+
 operator|(
 name|f
@@ -4286,7 +4477,10 @@ name|prefix
 operator|+
 literal|" prefix="
 operator|+
+name|brToString
+argument_list|(
 name|prefix
+argument_list|)
 operator|+
 literal|" nextEnt="
 operator|+
