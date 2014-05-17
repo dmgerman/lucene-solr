@@ -228,6 +228,22 @@ name|apache
 operator|.
 name|lucene
 operator|.
+name|analysis
+operator|.
+name|Analyzer
+operator|.
+name|TokenStreamComponents
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
 name|document
 operator|.
 name|BinaryDocValuesField
@@ -9628,6 +9644,11 @@ argument_list|(
 name|doc
 argument_list|)
 expr_stmt|;
+name|fail
+argument_list|(
+literal|"didn't get expected exception"
+argument_list|)
+expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
@@ -9768,6 +9789,11 @@ argument_list|(
 name|doc
 argument_list|)
 expr_stmt|;
+name|fail
+argument_list|(
+literal|"didn't get expected exception"
+argument_list|)
+expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
@@ -9901,6 +9927,11 @@ operator|.
 name|addDocument
 argument_list|(
 name|doc
+argument_list|)
+expr_stmt|;
+name|fail
+argument_list|(
+literal|"didn't get expected exception"
 argument_list|)
 expr_stmt|;
 block|}
@@ -10051,6 +10082,11 @@ argument_list|(
 name|doc
 argument_list|)
 expr_stmt|;
+name|fail
+argument_list|(
+literal|"didn't get expected exception"
+argument_list|)
+expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
@@ -10183,6 +10219,11 @@ operator|.
 name|addDocument
 argument_list|(
 name|doc
+argument_list|)
+expr_stmt|;
+name|fail
+argument_list|(
+literal|"didn't get expected exception"
 argument_list|)
 expr_stmt|;
 block|}
@@ -10328,6 +10369,11 @@ operator|.
 name|addDocument
 argument_list|(
 name|doc
+argument_list|)
+expr_stmt|;
+name|fail
+argument_list|(
+literal|"didn't get expected exception"
 argument_list|)
 expr_stmt|;
 block|}
