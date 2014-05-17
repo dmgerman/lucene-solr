@@ -162,6 +162,25 @@ name|clone
 argument_list|()
 return|;
 block|}
+comment|/**    * Creates a slice of this index input, with the given description, offset, and length.     * The slice is seeked to the beginning.    */
+DECL|method|slice
+specifier|public
+specifier|abstract
+name|IndexInput
+name|slice
+parameter_list|(
+name|String
+name|sliceDescription
+parameter_list|,
+name|long
+name|offset
+parameter_list|,
+name|long
+name|length
+parameter_list|)
+throws|throws
+name|IOException
+function_decl|;
 block|}
 end_class
 

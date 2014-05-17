@@ -907,6 +907,8 @@ name|clone
 return|;
 block|}
 comment|/**    * Creates a slice of this index input, with the given description, offset, and length. The slice is seeked to the beginning.    */
+annotation|@
+name|Override
 DECL|method|slice
 specifier|public
 specifier|final
@@ -923,26 +925,6 @@ name|long
 name|length
 parameter_list|)
 block|{
-if|if
-condition|(
-name|isClone
-condition|)
-block|{
-comment|// well we could, but this is stupid
-throw|throw
-operator|new
-name|IllegalStateException
-argument_list|(
-literal|"cannot slice() "
-operator|+
-name|sliceDescription
-operator|+
-literal|" from a cloned IndexInput: "
-operator|+
-name|this
-argument_list|)
-throw|;
-block|}
 specifier|final
 name|ByteBufferIndexInput
 name|clone

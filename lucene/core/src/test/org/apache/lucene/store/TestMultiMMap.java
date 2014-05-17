@@ -124,22 +124,6 @@ name|apache
 operator|.
 name|lucene
 operator|.
-name|store
-operator|.
-name|Directory
-operator|.
-name|IndexInputSlicer
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
 name|util
 operator|.
 name|BytesRef
@@ -603,12 +587,12 @@ operator|.
 name|close
 argument_list|()
 expr_stmt|;
-name|IndexInputSlicer
+name|IndexInput
 name|slicer
 init|=
 name|mmapDir
 operator|.
-name|createSlicer
+name|openInput
 argument_list|(
 literal|"bytes"
 argument_list|,
@@ -624,7 +608,7 @@ name|one
 init|=
 name|slicer
 operator|.
-name|openSlice
+name|slice
 argument_list|(
 literal|"first int"
 argument_list|,
@@ -638,7 +622,7 @@ name|two
 init|=
 name|slicer
 operator|.
-name|openSlice
+name|slice
 argument_list|(
 literal|"second int"
 argument_list|,
@@ -841,12 +825,12 @@ operator|.
 name|close
 argument_list|()
 expr_stmt|;
-name|IndexInputSlicer
+name|IndexInput
 name|slicer
 init|=
 name|mmapDir
 operator|.
-name|createSlicer
+name|openInput
 argument_list|(
 literal|"bytes"
 argument_list|,
@@ -862,7 +846,7 @@ name|one
 init|=
 name|slicer
 operator|.
-name|openSlice
+name|slice
 argument_list|(
 literal|"first int"
 argument_list|,
@@ -876,7 +860,7 @@ name|two
 init|=
 name|slicer
 operator|.
-name|openSlice
+name|slice
 argument_list|(
 literal|"second int"
 argument_list|,
@@ -926,7 +910,7 @@ name|one
 operator|=
 name|slicer
 operator|.
-name|openSlice
+name|slice
 argument_list|(
 literal|"first int"
 argument_list|,
@@ -1125,12 +1109,12 @@ operator|.
 name|close
 argument_list|()
 expr_stmt|;
-name|IndexInputSlicer
+name|IndexInput
 name|slicer
 init|=
 name|mmapDir
 operator|.
-name|createSlicer
+name|openInput
 argument_list|(
 literal|"zeroBytes"
 argument_list|,
@@ -1146,7 +1130,7 @@ name|ii
 init|=
 name|slicer
 operator|.
-name|openSlice
+name|slice
 argument_list|(
 literal|"zero-length slice"
 argument_list|,
@@ -1442,12 +1426,12 @@ operator|.
 name|close
 argument_list|()
 expr_stmt|;
-name|IndexInputSlicer
+name|IndexInput
 name|slicer
 init|=
 name|mmapDir
 operator|.
-name|createSlicer
+name|openInput
 argument_list|(
 literal|"bytes"
 argument_list|,
@@ -1463,7 +1447,7 @@ name|ii
 init|=
 name|slicer
 operator|.
-name|openSlice
+name|slice
 argument_list|(
 literal|"full slice"
 argument_list|,
@@ -1964,12 +1948,12 @@ name|actual
 argument_list|)
 argument_list|)
 expr_stmt|;
-name|IndexInputSlicer
+name|IndexInput
 name|slicer
 init|=
 name|mmapDir
 operator|.
-name|createSlicer
+name|openInput
 argument_list|(
 literal|"bytes"
 argument_list|,
@@ -2031,7 +2015,7 @@ name|input
 init|=
 name|slicer
 operator|.
-name|openSlice
+name|slice
 argument_list|(
 literal|"bytesSlice"
 argument_list|,
