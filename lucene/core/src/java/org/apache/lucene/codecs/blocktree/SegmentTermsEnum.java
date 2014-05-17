@@ -324,7 +324,7 @@ specifier|static
 name|boolean
 name|DEBUG
 init|=
-literal|true
+literal|false
 decl_stmt|;
 DECL|field|scratchReader
 specifier|private
@@ -408,15 +408,6 @@ operator|.
 name|fr
 operator|=
 name|fr
-expr_stmt|;
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"STE: init"
-argument_list|)
 expr_stmt|;
 comment|//if (DEBUG) System.out.println("BTTR.init seg=" + segment);
 name|stack
