@@ -8223,6 +8223,14 @@ name|boolean
 name|limit
 parameter_list|)
 block|{
+synchronized|synchronized
+init|(
+name|getMap
+argument_list|(
+name|map
+argument_list|)
+init|)
+block|{
 if|if
 condition|(
 name|limit
@@ -8276,6 +8284,7 @@ argument_list|,
 name|o
 argument_list|)
 expr_stmt|;
+block|}
 block|}
 DECL|method|addTask
 specifier|protected
