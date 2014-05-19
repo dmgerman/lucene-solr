@@ -209,37 +209,6 @@ name|context
 argument_list|)
 expr_stmt|;
 block|}
-annotation|@
-name|Override
-DECL|method|createSlicer
-specifier|public
-name|Directory
-operator|.
-name|IndexInputSlicer
-name|createSlicer
-parameter_list|(
-specifier|final
-name|String
-name|name
-parameter_list|,
-specifier|final
-name|IOContext
-name|context
-parameter_list|)
-throws|throws
-name|IOException
-block|{
-return|return
-name|in
-operator|.
-name|createSlicer
-argument_list|(
-name|name
-argument_list|,
-name|context
-argument_list|)
-return|;
-block|}
 comment|// maybe clone before returning.... all callers are
 comment|// cloning anyway....
 DECL|method|getCreatedFiles

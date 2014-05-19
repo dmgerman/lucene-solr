@@ -751,37 +751,6 @@ argument_list|)
 throw|;
 block|}
 block|}
-DECL|method|purgeFieldCache
-specifier|public
-specifier|static
-name|void
-name|purgeFieldCache
-parameter_list|(
-name|IndexReader
-name|r
-parameter_list|)
-throws|throws
-name|IOException
-block|{
-comment|// this is just a hack, to get an atomic reader that contains all subreaders for insanity checks
-name|FieldCache
-operator|.
-name|DEFAULT
-operator|.
-name|purgeByCacheKey
-argument_list|(
-name|SlowCompositeReaderWrapper
-operator|.
-name|wrap
-argument_list|(
-name|r
-argument_list|)
-operator|.
-name|getCoreCacheKey
-argument_list|()
-argument_list|)
-expr_stmt|;
-block|}
 comment|/** This is a MultiReader that can be used for randomly wrapping other readers    * without creating FieldCache insanity.    * The trick is to use an opaque/fake cache key. */
 DECL|class|FCInvisibleMultiReader
 specifier|public

@@ -26,7 +26,35 @@ name|lucene
 operator|.
 name|index
 operator|.
+name|AtomicReader
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|index
+operator|.
 name|AtomicReaderContext
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|index
+operator|.
+name|DocValues
 import|;
 end_import
 
@@ -69,20 +97,6 @@ operator|.
 name|search
 operator|.
 name|DocIdSet
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|search
-operator|.
-name|FieldCache
 import|;
 end_import
 
@@ -181,7 +195,7 @@ specifier|final
 name|Filter
 name|intersectsFilter
 decl_stmt|;
-comment|/**    *    * @param strategy Needed to compute intersects    * @param args Used in spatial intersection    * @param field This field is used to determine which docs have spatial data via    *               {@link org.apache.lucene.search.FieldCache#getDocsWithField(org.apache.lucene.index.AtomicReader, String)}.    *              Passing null will assume all docs have spatial data.    */
+comment|/**    *    * @param strategy Needed to compute intersects    * @param args Used in spatial intersection    * @param field This field is used to determine which docs have spatial data via    *               {@link AtomicReader#getDocsWithField(String)}.    *              Passing null will assume all docs have spatial data.    */
 DECL|method|DisjointSpatialFilter
 specifier|public
 name|DisjointSpatialFilter
@@ -407,9 +421,7 @@ comment|// intersects filter against the world bounds. So do we add a method to 
 comment|// strategy, perhaps?  But the strategy can't cache it.
 name|docsWithField
 operator|=
-name|FieldCache
-operator|.
-name|DEFAULT
+name|DocValues
 operator|.
 name|getDocsWithField
 argument_list|(

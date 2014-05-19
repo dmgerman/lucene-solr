@@ -1,6 +1,6 @@
 begin_unit|revision:0.9.5;language:Java;cregit-version:0.0.1
 begin_package
-DECL|package|org.apache.lucene.util
+DECL|package|org.apache.lucene.uninverting
 package|package
 name|org
 operator|.
@@ -8,7 +8,7 @@ name|apache
 operator|.
 name|lucene
 operator|.
-name|util
+name|uninverting
 package|;
 end_package
 
@@ -96,20 +96,6 @@ name|lucene
 operator|.
 name|index
 operator|.
-name|CompositeReader
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|index
-operator|.
 name|IndexReader
 import|;
 end_import
@@ -136,9 +122,9 @@ name|apache
 operator|.
 name|lucene
 operator|.
-name|search
+name|store
 operator|.
-name|FieldCache
+name|AlreadyClosedException
 import|;
 end_import
 
@@ -150,7 +136,7 @@ name|apache
 operator|.
 name|lucene
 operator|.
-name|search
+name|uninverting
 operator|.
 name|FieldCache
 operator|.
@@ -166,9 +152,23 @@ name|apache
 operator|.
 name|lucene
 operator|.
-name|store
+name|util
 operator|.
-name|AlreadyClosedException
+name|Bits
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|util
+operator|.
+name|MapOfSets
 import|;
 end_import
 
@@ -178,7 +178,6 @@ end_comment
 
 begin_class
 DECL|class|FieldCacheSanityChecker
-specifier|public
 specifier|final
 class|class
 name|FieldCacheSanityChecker

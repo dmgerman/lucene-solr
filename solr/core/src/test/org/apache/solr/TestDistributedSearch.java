@@ -76,20 +76,6 @@ name|apache
 operator|.
 name|lucene
 operator|.
-name|search
-operator|.
-name|FieldCache
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
 name|util
 operator|.
 name|LuceneTestCase
@@ -3061,14 +3047,6 @@ comment|// TODO: This test currently fails because debug info is obtained only
 comment|// on shards with matches.
 comment|// query("q","matchesnothing","fl","*,score", "debugQuery", "true");
 comment|// Thread.sleep(10000000000L);
-name|FieldCache
-operator|.
-name|DEFAULT
-operator|.
-name|purgeAllCaches
-argument_list|()
-expr_stmt|;
-comment|// avoid FC insanity
 name|del
 argument_list|(
 literal|"*:*"

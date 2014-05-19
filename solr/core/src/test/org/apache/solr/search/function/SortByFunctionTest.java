@@ -413,7 +413,7 @@ literal|"id"
 argument_list|,
 literal|"4"
 argument_list|,
-literal|"id_s"
+literal|"id_s1"
 argument_list|,
 literal|"D"
 argument_list|,
@@ -439,7 +439,7 @@ literal|"id"
 argument_list|,
 literal|"3"
 argument_list|,
-literal|"id_s"
+literal|"id_s1"
 argument_list|,
 literal|"C"
 argument_list|,
@@ -468,7 +468,7 @@ literal|"id"
 argument_list|,
 literal|"2"
 argument_list|,
-literal|"id_s"
+literal|"id_s1"
 argument_list|,
 literal|"B"
 argument_list|,
@@ -486,7 +486,7 @@ literal|"id"
 argument_list|,
 literal|"1"
 argument_list|,
-literal|"id_s"
+literal|"id_s1"
 argument_list|,
 literal|"A"
 argument_list|)
@@ -536,7 +536,7 @@ literal|"id"
 argument_list|,
 literal|"sort"
 argument_list|,
-literal|"joindf(id_s, links_mfacet) desc"
+literal|"joindf(id_s1, links_mfacet) desc"
 argument_list|)
 argument_list|,
 literal|"//*[@numFound='4']"
@@ -564,7 +564,7 @@ literal|"id"
 argument_list|,
 literal|"sort"
 argument_list|,
-literal|"joindf(id_s, links_mfacet) asc"
+literal|"joindf(id_s1, links_mfacet) asc"
 argument_list|)
 argument_list|,
 literal|"//*[@numFound='4']"

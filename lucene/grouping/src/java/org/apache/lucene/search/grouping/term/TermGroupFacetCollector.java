@@ -44,6 +44,20 @@ name|lucene
 operator|.
 name|index
 operator|.
+name|DocValues
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|index
+operator|.
 name|SortedDocValues
 import|;
 end_import
@@ -87,20 +101,6 @@ operator|.
 name|search
 operator|.
 name|LeafCollector
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|search
-operator|.
-name|FieldCache
 import|;
 end_import
 
@@ -193,7 +193,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * An implementation of {@link AbstractGroupFacetCollector} that computes grouped facets based on the indexed terms  * from the {@link FieldCache}.  *  * @lucene.experimental  */
+comment|/**  * An implementation of {@link AbstractGroupFacetCollector} that computes grouped facets based on the indexed terms  * from DocValues.  *  * @lucene.experimental  */
 end_comment
 
 begin_class
@@ -574,11 +574,9 @@ expr_stmt|;
 block|}
 name|groupFieldTermsIndex
 operator|=
-name|FieldCache
+name|DocValues
 operator|.
-name|DEFAULT
-operator|.
-name|getTermsIndex
+name|getSorted
 argument_list|(
 name|context
 operator|.
@@ -590,11 +588,9 @@ argument_list|)
 expr_stmt|;
 name|facetFieldTermsIndex
 operator|=
-name|FieldCache
+name|DocValues
 operator|.
-name|DEFAULT
-operator|.
-name|getTermsIndex
+name|getSorted
 argument_list|(
 name|context
 operator|.
@@ -1411,11 +1407,9 @@ expr_stmt|;
 block|}
 name|groupFieldTermsIndex
 operator|=
-name|FieldCache
+name|DocValues
 operator|.
-name|DEFAULT
-operator|.
-name|getTermsIndex
+name|getSorted
 argument_list|(
 name|context
 operator|.
@@ -1427,11 +1421,9 @@ argument_list|)
 expr_stmt|;
 name|facetFieldDocTermOrds
 operator|=
-name|FieldCache
+name|DocValues
 operator|.
-name|DEFAULT
-operator|.
-name|getDocTermOrds
+name|getSortedSet
 argument_list|(
 name|context
 operator|.

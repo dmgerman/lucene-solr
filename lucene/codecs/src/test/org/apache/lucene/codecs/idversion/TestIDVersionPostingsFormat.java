@@ -452,6 +452,14 @@ begin_comment
 comment|/**  * Basic tests for IDVersionPostingsFormat  */
 end_comment
 
+begin_comment
+comment|// Cannot extend BasePostingsFormatTestCase because this PF is not
+end_comment
+
+begin_comment
+comment|// general (it requires payloads, only allows 1 doc per term, etc.)
+end_comment
+
 begin_class
 DECL|class|TestIDVersionPostingsFormat
 specifier|public
@@ -2312,6 +2320,7 @@ argument_list|)
 return|;
 comment|/*     Field field = newTextField("id", "", Field.Store.NO);     Token token = new Token(id, 0, id.length());     token.setPayload(payload);     field.setTokenStream(new CannedTokenStream(token));     return field;     */
 block|}
+comment|/*   // Invalid   public void testMoreThanOneDocPerIDOneSegment() throws Exception {     Directory dir = newDirectory();     IndexWriterConfig iwc = newIndexWriterConfig(TEST_VERSION_CURRENT, new MockAnalyzer(random()));     iwc.setCodec(TestUtil.alwaysPostingsFormat(new IDVersionPostingsFormat()));     RandomIndexWriter w = new RandomIndexWriter(random(), dir, iwc);     Document doc = new Document();     doc.add(makeIDField("id", 17));     w.addDocument(doc);     doc = new Document();     doc.add(makeIDField("id", 17));     w.addDocument(doc);     try {       w.commit();       fail("didn't hit expected exception");     } catch (IllegalArgumentException iae) {       // expected       iae.printStackTrace();     }     w.close();     dir.close();   }    // Invalid   public void testMoreThanOneDocPerIDTwoSegments() throws Exception {     Directory dir = newDirectory();     IndexWriterConfig iwc = newIndexWriterConfig(TEST_VERSION_CURRENT, new MockAnalyzer(random()));     iwc.setCodec(TestUtil.alwaysPostingsFormat(new IDVersionPostingsFormat()));     RandomIndexWriter w = new RandomIndexWriter(random(), dir, iwc);     Document doc = new Document();     doc.add(makeIDField("id", 17));     w.addDocument(doc);     w.commit();     doc = new Document();     doc.add(makeIDField("id", 17));     w.addDocument(doc);     w.commit();     w.forceMerge(1);     w.close();     dir.close();   }    public void testMoreThanOneDocPerIDWithDeletes() {        }   */
 block|}
 end_class
 

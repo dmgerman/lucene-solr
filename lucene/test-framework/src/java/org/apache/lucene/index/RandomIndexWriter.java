@@ -1606,7 +1606,14 @@ literal|1
 argument_list|)
 expr_stmt|;
 block|}
-else|else
+elseif|else
+if|if
+condition|(
+name|r
+operator|.
+name|nextBoolean
+argument_list|()
+condition|)
 block|{
 comment|// partial forceMerge
 specifier|final
@@ -1674,6 +1681,31 @@ operator|.
 name|getSegmentCount
 argument_list|()
 assert|;
+block|}
+else|else
+block|{
+if|if
+condition|(
+name|LuceneTestCase
+operator|.
+name|VERBOSE
+condition|)
+block|{
+name|System
+operator|.
+name|out
+operator|.
+name|println
+argument_list|(
+literal|"RIW: do random forceMergeDeletes()"
+argument_list|)
+expr_stmt|;
+block|}
+name|w
+operator|.
+name|forceMergeDeletes
+argument_list|()
+expr_stmt|;
 block|}
 block|}
 block|}

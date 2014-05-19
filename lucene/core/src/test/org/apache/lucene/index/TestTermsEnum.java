@@ -100,9 +100,9 @@ name|apache
 operator|.
 name|lucene
 operator|.
-name|search
+name|document
 operator|.
-name|DocIdSetIterator
+name|NumericDocValuesField
 import|;
 end_import
 
@@ -116,7 +116,7 @@ name|lucene
 operator|.
 name|search
 operator|.
-name|FieldCache
+name|DocIdSetIterator
 import|;
 end_import
 
@@ -1128,6 +1128,19 @@ name|YES
 argument_list|)
 argument_list|)
 expr_stmt|;
+name|doc
+operator|.
+name|add
+argument_list|(
+operator|new
+name|NumericDocValuesField
+argument_list|(
+literal|"id"
+argument_list|,
+name|id
+argument_list|)
+argument_list|)
+expr_stmt|;
 if|if
 condition|(
 name|VERBOSE
@@ -1584,29 +1597,17 @@ operator|.
 name|shutdown
 argument_list|()
 expr_stmt|;
-comment|// NOTE: intentional insanity!!
 specifier|final
-name|FieldCache
-operator|.
-name|Ints
+name|NumericDocValues
 name|docIDToID
 init|=
-name|FieldCache
+name|MultiDocValues
 operator|.
-name|DEFAULT
-operator|.
-name|getInts
-argument_list|(
-name|SlowCompositeReaderWrapper
-operator|.
-name|wrap
+name|getNumericValues
 argument_list|(
 name|r
-argument_list|)
 argument_list|,
 literal|"id"
-argument_list|,
-literal|false
 argument_list|)
 decl_stmt|;
 for|for

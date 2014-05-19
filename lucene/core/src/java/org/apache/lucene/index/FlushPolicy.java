@@ -295,6 +295,37 @@ operator|>
 literal|0
 condition|)
 block|{
+if|if
+condition|(
+name|infoStream
+operator|.
+name|isEnabled
+argument_list|(
+literal|"FP"
+argument_list|)
+condition|)
+block|{
+name|infoStream
+operator|.
+name|message
+argument_list|(
+literal|"FP"
+argument_list|,
+literal|"thread state has "
+operator|+
+name|nextRam
+operator|+
+literal|" bytes; docInRAM="
+operator|+
+name|next
+operator|.
+name|dwpt
+operator|.
+name|getNumDocsInRAM
+argument_list|()
+argument_list|)
+expr_stmt|;
+block|}
 name|count
 operator|++
 expr_stmt|;

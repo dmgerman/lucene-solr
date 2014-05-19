@@ -628,25 +628,14 @@ name|TransformerException
 name|te
 parameter_list|)
 block|{
-specifier|final
-name|IOException
-name|ioe
-init|=
+throw|throw
 operator|new
 name|IOException
 argument_list|(
 literal|"XSLT transformation error"
-argument_list|)
-decl_stmt|;
-name|ioe
-operator|.
-name|initCause
-argument_list|(
+argument_list|,
 name|te
 argument_list|)
-expr_stmt|;
-throw|throw
-name|ioe
 throw|;
 block|}
 block|}

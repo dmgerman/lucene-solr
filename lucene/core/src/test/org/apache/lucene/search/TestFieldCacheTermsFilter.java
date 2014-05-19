@@ -38,6 +38,34 @@ name|apache
 operator|.
 name|lucene
 operator|.
+name|document
+operator|.
+name|SortedDocValuesField
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|util
+operator|.
+name|BytesRef
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
 name|util
 operator|.
 name|LuceneTestCase
@@ -121,7 +149,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * A basic unit test for FieldCacheTermsFilter  *  * @see org.apache.lucene.search.FieldCacheTermsFilter  */
+comment|/**  * A basic unit test for FieldCacheTermsFilter  *  * @see org.apache.lucene.search.DocValuesTermsFilter  */
 end_comment
 
 begin_class
@@ -140,6 +168,14 @@ parameter_list|()
 throws|throws
 name|Exception
 block|{
+name|assumeTrue
+argument_list|(
+literal|"requires support for missing values"
+argument_list|,
+name|defaultCodecSupportsMissingDocValues
+argument_list|()
+argument_list|)
+expr_stmt|;
 name|String
 name|fieldName
 init|=
@@ -210,6 +246,25 @@ operator|.
 name|Store
 operator|.
 name|YES
+argument_list|)
+argument_list|)
+expr_stmt|;
+name|doc
+operator|.
+name|add
+argument_list|(
+operator|new
+name|SortedDocValuesField
+argument_list|(
+name|fieldName
+argument_list|,
+operator|new
+name|BytesRef
+argument_list|(
+literal|""
+operator|+
+name|term
+argument_list|)
 argument_list|)
 argument_list|)
 expr_stmt|;
@@ -288,7 +343,7 @@ argument_list|(
 name|q
 argument_list|,
 operator|new
-name|FieldCacheTermsFilter
+name|DocValuesTermsFilter
 argument_list|(
 name|fieldName
 argument_list|,
@@ -343,7 +398,7 @@ argument_list|(
 name|q
 argument_list|,
 operator|new
-name|FieldCacheTermsFilter
+name|DocValuesTermsFilter
 argument_list|(
 name|fieldName
 argument_list|,
@@ -405,7 +460,7 @@ argument_list|(
 name|q
 argument_list|,
 operator|new
-name|FieldCacheTermsFilter
+name|DocValuesTermsFilter
 argument_list|(
 name|fieldName
 argument_list|,

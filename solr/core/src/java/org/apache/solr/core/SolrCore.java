@@ -7437,7 +7437,7 @@ operator|.
 name|get
 argument_list|()
 operator|.
-name|getIndexReader
+name|getRawReader
 argument_list|()
 decl_stmt|;
 comment|// SolrCore.verbose("start reopen from",previousSearcher,"writer=",writer);
