@@ -329,7 +329,7 @@ specifier|static
 name|boolean
 name|DEBUG
 init|=
-literal|true
+literal|false
 decl_stmt|;
 DECL|field|stack
 specifier|private
@@ -1459,7 +1459,7 @@ operator|.
 name|ord
 expr_stmt|;
 name|boolean
-name|rewind
+name|changed
 init|=
 literal|false
 decl_stmt|;
@@ -2020,7 +2020,7 @@ name|targetBeforeCurrentLength
 operator|=
 literal|0
 expr_stmt|;
-name|rewind
+name|changed
 operator|=
 literal|true
 expr_stmt|;
@@ -2057,16 +2057,9 @@ name|rewind
 argument_list|()
 expr_stmt|;
 comment|// nocommit put this back to BT also?
-name|term
-operator|.
-name|length
-operator|=
-name|targetUpto
-expr_stmt|;
-name|termExists
-operator|=
-literal|false
-expr_stmt|;
+comment|//term.length = targetUpto;
+comment|// nocommit put this back???
+comment|//termExists = false;
 block|}
 else|else
 block|{
@@ -2145,7 +2138,7 @@ operator|<
 name|minIDVersion
 condition|)
 block|{
-comment|// The max version for this term is lower than the minVersion
+comment|// This term's version is lower than the minVersion
 if|if
 condition|(
 name|DEBUG
@@ -2373,6 +2366,10 @@ operator|+
 literal|" targetBeforeCurrentLength="
 operator|+
 name|targetBeforeCurrentLength
+operator|+
+literal|" termExists="
+operator|+
+name|termExists
 argument_list|)
 expr_stmt|;
 block|}
@@ -2473,6 +2470,10 @@ name|toHexString
 argument_list|(
 name|targetLabel
 argument_list|)
+operator|+
+literal|" termExists="
+operator|+
+name|termExists
 argument_list|)
 expr_stmt|;
 block|}
@@ -2588,7 +2589,7 @@ name|fp
 operator|!=
 name|startFrameFP
 operator|||
-name|rewind
+name|changed
 condition|)
 block|{
 comment|//if (targetUpto+1> term.length) {
@@ -2689,6 +2690,10 @@ operator|+
 name|currentFrame
 operator|.
 name|fp
+operator|+
+literal|" termExists="
+operator|+
+name|termExists
 argument_list|)
 expr_stmt|;
 block|}
@@ -2763,7 +2768,7 @@ operator|<
 name|minIDVersion
 condition|)
 block|{
-comment|// The max version for this term is lower than the minVersion
+comment|// This term's version is lower than the minVersion
 if|if
 condition|(
 name|DEBUG
@@ -2864,6 +2869,55 @@ name|arc
 operator|=
 name|nextArc
 expr_stmt|;
+if|if
+condition|(
+name|term
+operator|.
+name|bytes
+index|[
+name|targetUpto
+index|]
+operator|!=
+operator|(
+name|byte
+operator|)
+name|targetLabel
+condition|)
+block|{
+if|if
+condition|(
+name|DEBUG
+condition|)
+block|{
+name|System
+operator|.
+name|out
+operator|.
+name|println
+argument_list|(
+literal|"  now set termExists=false targetUpto="
+operator|+
+name|targetUpto
+operator|+
+literal|" term="
+operator|+
+name|term
+operator|.
+name|bytes
+index|[
+name|targetUpto
+index|]
+operator|+
+literal|" targetLabel="
+operator|+
+name|targetLabel
+argument_list|)
+expr_stmt|;
+block|}
+name|changed
+operator|=
+literal|true
+expr_stmt|;
 name|term
 operator|.
 name|bytes
@@ -2880,6 +2934,7 @@ name|termExists
 operator|=
 literal|false
 expr_stmt|;
+block|}
 comment|// Aggregate output as we go:
 assert|assert
 name|arc
@@ -3211,7 +3266,7 @@ operator|<
 name|minIDVersion
 condition|)
 block|{
-comment|// The max version for this term is lower than the minVersion
+comment|// This term's version is lower than the minVersion
 return|return
 literal|false
 return|;
@@ -3857,6 +3912,7 @@ block|}
 comment|//if (DEBUG) {
 comment|//System.out.println("  start index loop targetUpto=" + targetUpto + " output=" + output + " currentFrame.ord+1=" + currentFrame.ord + " targetBeforeCurrentLength=" + targetBeforeCurrentLength);
 comment|//}
+comment|// We are done sharing the common prefix with the incoming target and where we are currently seek'd; now continue walking the index:
 while|while
 condition|(
 name|targetUpto

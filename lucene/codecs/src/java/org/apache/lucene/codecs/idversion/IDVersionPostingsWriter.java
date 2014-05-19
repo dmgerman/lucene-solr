@@ -455,6 +455,29 @@ argument_list|(
 name|payload
 argument_list|)
 expr_stmt|;
+if|if
+condition|(
+name|lastVersion
+operator|<
+literal|0
+condition|)
+block|{
+throw|throw
+operator|new
+name|IllegalArgumentException
+argument_list|(
+literal|"version must be>= 0 (got: "
+operator|+
+name|lastVersion
+operator|+
+literal|"; payload="
+operator|+
+name|payload
+operator|+
+literal|")"
+argument_list|)
+throw|;
+block|}
 block|}
 annotation|@
 name|Override

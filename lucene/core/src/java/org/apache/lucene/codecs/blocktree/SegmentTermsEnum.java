@@ -336,7 +336,8 @@ operator|new
 name|ByteArrayDataInput
 argument_list|()
 decl_stmt|;
-comment|// What prefix of the current term was present in the index:
+comment|// What prefix of the current term was present in the index; when we only next() through the index, this stays at 0.  It's only set when
+comment|// we seekCeil/Exact:
 DECL|field|validIndexPrefix
 specifier|private
 name|int
@@ -409,7 +410,27 @@ name|fr
 operator|=
 name|fr
 expr_stmt|;
-comment|//if (DEBUG) System.out.println("BTTR.init seg=" + segment);
+if|if
+condition|(
+name|DEBUG
+condition|)
+block|{
+name|System
+operator|.
+name|out
+operator|.
+name|println
+argument_list|(
+literal|"BTTR.init seg="
+operator|+
+name|fr
+operator|.
+name|parent
+operator|.
+name|segment
+argument_list|)
+expr_stmt|;
+block|}
 name|stack
 operator|=
 operator|new
@@ -539,10 +560,6 @@ operator|=
 literal|null
 expr_stmt|;
 block|}
-name|currentFrame
-operator|=
-name|staticFrame
-expr_stmt|;
 comment|//currentFrame = pushFrame(arc, rootCode, 0);
 comment|//currentFrame.loadBlock();
 name|validIndexPrefix
@@ -1441,11 +1458,12 @@ literal|1
 condition|)
 block|{
 comment|//if (DEBUG) System.out.println("      push reused frame ord=" + f.ord + " fp=" + f.fp + " isFloor?=" + f.isFloor + " hasTerms=" + f.hasTerms + " pref=" + term + " nextEnt=" + f.nextEnt + " targetBeforeCurrentLength=" + targetBeforeCurrentLength + " term.length=" + term.length + " vs prefix=" + f.prefix);
+comment|//if (f.prefix> targetBeforeCurrentLength) {
 if|if
 condition|(
 name|f
 operator|.
-name|prefix
+name|ord
 operator|>
 name|targetBeforeCurrentLength
 condition|)
@@ -1596,7 +1614,6 @@ argument_list|()
 return|;
 block|}
 block|}
-comment|// nocommit we need a seekExact(BytesRef target, long minVersion) API?
 annotation|@
 name|Override
 DECL|method|seekExact
@@ -2238,7 +2255,9 @@ comment|// keep the currentFrame but we must rewind it
 comment|// (so we scan from the start)
 name|targetBeforeCurrentLength
 operator|=
-literal|0
+name|lastFrame
+operator|.
+name|ord
 expr_stmt|;
 comment|// if (DEBUG) {
 comment|//   System.out.println("  target is before current (shares prefixLen=" + targetUpto + "); rewind frame ord=" + lastFrame.ord);
@@ -2778,10 +2797,68 @@ assert|assert
 name|clearEOF
 argument_list|()
 assert|;
-comment|//if (DEBUG) {
-comment|//System.out.println("\nBTTR.seekCeil seg=" + segment + " target=" + fieldInfo.name + ":" + target.utf8ToString() + " " + target + " current=" + brToString(term) + " (exists?=" + termExists + ") validIndexPrefix=  " + validIndexPrefix);
-comment|//printSeekState();
-comment|//}
+if|if
+condition|(
+name|DEBUG
+condition|)
+block|{
+name|System
+operator|.
+name|out
+operator|.
+name|println
+argument_list|(
+literal|"\nBTTR.seekCeil seg="
+operator|+
+name|fr
+operator|.
+name|parent
+operator|.
+name|segment
+operator|+
+literal|" target="
+operator|+
+name|fr
+operator|.
+name|fieldInfo
+operator|.
+name|name
+operator|+
+literal|":"
+operator|+
+name|target
+operator|.
+name|utf8ToString
+argument_list|()
+operator|+
+literal|" "
+operator|+
+name|target
+operator|+
+literal|" current="
+operator|+
+name|brToString
+argument_list|(
+name|term
+argument_list|)
+operator|+
+literal|" (exists?="
+operator|+
+name|termExists
+operator|+
+literal|") validIndexPrefix=  "
+operator|+
+name|validIndexPrefix
+argument_list|)
+expr_stmt|;
+name|printSeekState
+argument_list|(
+name|System
+operator|.
+name|out
+argument_list|)
+expr_stmt|;
+block|}
 name|FST
 operator|.
 name|Arc
@@ -4418,10 +4495,65 @@ assert|assert
 operator|!
 name|eof
 assert|;
-comment|//if (DEBUG) {
-comment|//System.out.println("\nBTTR.next seg=" + segment + " term=" + brToString(term) + " termExists?=" + termExists + " field=" + fieldInfo.name + " termBlockOrd=" + currentFrame.state.termBlockOrd + " validIndexPrefix=" + validIndexPrefix);
-comment|//printSeekState();
-comment|//}
+if|if
+condition|(
+name|DEBUG
+condition|)
+block|{
+name|System
+operator|.
+name|out
+operator|.
+name|println
+argument_list|(
+literal|"\nBTTR.next seg="
+operator|+
+name|fr
+operator|.
+name|parent
+operator|.
+name|segment
+operator|+
+literal|" term="
+operator|+
+name|brToString
+argument_list|(
+name|term
+argument_list|)
+operator|+
+literal|" termExists?="
+operator|+
+name|termExists
+operator|+
+literal|" field="
+operator|+
+name|fr
+operator|.
+name|fieldInfo
+operator|.
+name|name
+operator|+
+literal|" termBlockOrd="
+operator|+
+name|currentFrame
+operator|.
+name|state
+operator|.
+name|termBlockOrd
+operator|+
+literal|" validIndexPrefix="
+operator|+
+name|validIndexPrefix
+argument_list|)
+expr_stmt|;
+name|printSeekState
+argument_list|(
+name|System
+operator|.
+name|out
+argument_list|)
+expr_stmt|;
+block|}
 if|if
 condition|(
 name|currentFrame

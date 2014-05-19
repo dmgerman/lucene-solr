@@ -492,8 +492,6 @@ name|text
 argument_list|)
 return|;
 block|}
-comment|// nocommit tests angry about this; need to use VirtualMethod to decide when to call in.X vs super.X, but this is important because BT's
-comment|// seekExact is not being used today!  maybe we are masking bugs
 annotation|@
 name|Override
 DECL|method|seekExact

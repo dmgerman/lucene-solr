@@ -179,7 +179,9 @@ specifier|static
 name|boolean
 name|DEBUG
 init|=
-literal|true
+name|IDVersionSegmentTermsEnum
+operator|.
+name|DEBUG
 decl_stmt|;
 comment|/** Highest version of any term in this block. */
 DECL|field|maxIDVersion
@@ -928,17 +930,6 @@ name|void
 name|rewind
 parameter_list|()
 block|{
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"  rewind frame ord="
-operator|+
-name|ord
-argument_list|)
-expr_stmt|;
 comment|// Force reload:
 name|fp
 operator|=
@@ -1120,7 +1111,29 @@ name|boolean
 name|nextNonLeaf
 parameter_list|()
 block|{
-comment|//if (DEBUG) System.out.println("  frame.next ord=" + ord + " nextEnt=" + nextEnt + " entCount=" + entCount);
+if|if
+condition|(
+name|DEBUG
+condition|)
+name|System
+operator|.
+name|out
+operator|.
+name|println
+argument_list|(
+literal|"  frame.next ord="
+operator|+
+name|ord
+operator|+
+literal|" nextEnt="
+operator|+
+name|nextEnt
+operator|+
+literal|" entCount="
+operator|+
+name|entCount
+argument_list|)
+expr_stmt|;
 assert|assert
 name|nextEnt
 operator|!=
@@ -1277,9 +1290,23 @@ name|fp
 operator|-
 name|subCode
 expr_stmt|;
-comment|//if (DEBUG) {
-comment|//System.out.println("    lastSubFP=" + lastSubFP);
-comment|//}
+if|if
+condition|(
+name|DEBUG
+condition|)
+block|{
+name|System
+operator|.
+name|out
+operator|.
+name|println
+argument_list|(
+literal|"    lastSubFP="
+operator|+
+name|lastSubFP
+argument_list|)
+expr_stmt|;
+block|}
 return|return
 literal|true
 return|;

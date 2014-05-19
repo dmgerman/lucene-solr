@@ -428,7 +428,7 @@ operator|.
 name|offset
 index|]
 operator|&
-literal|0xFF
+literal|0xFFL
 operator|)
 operator|<<
 literal|56
@@ -447,7 +447,7 @@ operator|+
 literal|1
 index|]
 operator|&
-literal|0xFF
+literal|0xFFL
 operator|)
 operator|<<
 literal|48
@@ -466,7 +466,7 @@ operator|+
 literal|2
 index|]
 operator|&
-literal|0xFF
+literal|0xFFL
 operator|)
 operator|<<
 literal|40
@@ -485,7 +485,7 @@ operator|+
 literal|3
 index|]
 operator|&
-literal|0xFF
+literal|0xFFL
 operator|)
 operator|<<
 literal|32
@@ -504,7 +504,7 @@ operator|+
 literal|4
 index|]
 operator|&
-literal|0xFF
+literal|0xFFL
 operator|)
 operator|<<
 literal|24
@@ -523,7 +523,7 @@ operator|+
 literal|5
 index|]
 operator|&
-literal|0xFF
+literal|0xFFL
 operator|)
 operator|<<
 literal|16
@@ -542,7 +542,7 @@ operator|+
 literal|6
 index|]
 operator|&
-literal|0xFF
+literal|0xFFL
 operator|)
 operator|<<
 literal|8
@@ -560,7 +560,7 @@ operator|+
 literal|7
 index|]
 operator|&
-literal|0xFF
+literal|0xFFL
 operator|)
 return|;
 block|}
@@ -577,6 +577,18 @@ name|BytesRef
 name|bytes
 parameter_list|)
 block|{
+name|bytes
+operator|.
+name|offset
+operator|=
+literal|0
+expr_stmt|;
+name|bytes
+operator|.
+name|length
+operator|=
+literal|8
+expr_stmt|;
 name|bytes
 operator|.
 name|bytes
@@ -701,6 +713,27 @@ name|byte
 operator|)
 name|v
 expr_stmt|;
+assert|assert
+name|bytesToLong
+argument_list|(
+name|bytes
+argument_list|)
+operator|==
+name|v
+operator|:
+name|bytesToLong
+argument_list|(
+name|bytes
+argument_list|)
+operator|+
+literal|" vs "
+operator|+
+name|v
+operator|+
+literal|" bytes="
+operator|+
+name|bytes
+assert|;
 block|}
 block|}
 end_class
