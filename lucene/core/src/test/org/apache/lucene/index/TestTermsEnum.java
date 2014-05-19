@@ -6122,13 +6122,13 @@ name|String
 argument_list|>
 argument_list|()
 decl_stmt|;
-comment|// nocommit
+comment|//String prefix = TestUtil.randomSimpleString(random(), 1, 20);
 name|String
 name|prefix
 init|=
 name|TestUtil
 operator|.
-name|randomSimpleString
+name|randomRealisticUnicodeString
 argument_list|(
 name|random
 argument_list|()
@@ -6138,7 +6138,6 @@ argument_list|,
 literal|20
 argument_list|)
 decl_stmt|;
-comment|//String prefix = TestUtil.randomRealisticUnicodeString(random(), 1, 20);
 name|int
 name|numTerms
 init|=

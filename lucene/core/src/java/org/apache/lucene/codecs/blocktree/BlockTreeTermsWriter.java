@@ -2580,7 +2580,6 @@ operator|+
 name|count
 argument_list|)
 expr_stmt|;
-comment|// nocommit nuke the prefixLength == 0 case, but testVaryingTermsPerSegment fails!!
 if|if
 condition|(
 name|count

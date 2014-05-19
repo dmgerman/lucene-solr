@@ -151,6 +151,19 @@ parameter_list|)
 throws|throws
 name|IOException
 block|{
+name|System
+operator|.
+name|out
+operator|.
+name|println
+argument_list|(
+literal|"applyDeletes segUpdates="
+operator|+
+name|state
+operator|.
+name|segUpdates
+argument_list|)
+expr_stmt|;
 comment|// Process any pending Term deletes for this newly
 comment|// flushed segment:
 if|if
@@ -537,7 +550,7 @@ argument_list|(
 name|allFields
 argument_list|)
 expr_stmt|;
-name|Fields
+name|FreqProxFields
 name|fields
 init|=
 operator|new
@@ -551,6 +564,50 @@ argument_list|(
 name|state
 argument_list|,
 name|fields
+argument_list|)
+expr_stmt|;
+if|if
+condition|(
+name|state
+operator|.
+name|liveDocs
+operator|!=
+literal|null
+condition|)
+block|{
+name|fields
+operator|.
+name|setLiveDocs
+argument_list|(
+name|state
+operator|.
+name|liveDocs
+argument_list|)
+expr_stmt|;
+block|}
+name|System
+operator|.
+name|out
+operator|.
+name|println
+argument_list|(
+literal|"now: "
+operator|+
+name|state
+operator|.
+name|liveDocs
+operator|+
+literal|" pf="
+operator|+
+name|state
+operator|.
+name|segmentInfo
+operator|.
+name|getCodec
+argument_list|()
+operator|.
+name|postingsFormat
+argument_list|()
 argument_list|)
 expr_stmt|;
 name|FieldsConsumer
