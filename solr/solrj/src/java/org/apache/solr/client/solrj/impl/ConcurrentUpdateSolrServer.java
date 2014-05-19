@@ -1466,6 +1466,14 @@ argument_list|)
 argument_list|)
 expr_stmt|;
 block|}
+else|else
+block|{
+name|onSuccess
+argument_list|(
+name|response
+argument_list|)
+expr_stmt|;
+block|}
 block|}
 finally|finally
 block|{
@@ -2162,6 +2170,18 @@ argument_list|,
 name|ex
 argument_list|)
 expr_stmt|;
+block|}
+comment|/**    * Intended to be used as an extension point for doing post processing after a request completes.    */
+DECL|method|onSuccess
+specifier|public
+name|void
+name|onSuccess
+parameter_list|(
+name|HttpResponse
+name|resp
+parameter_list|)
+block|{
+comment|// no-op by design, override to add functionality
 block|}
 annotation|@
 name|Override
