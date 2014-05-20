@@ -108,20 +108,6 @@ end_import
 
 begin_import
 import|import
-name|java
-operator|.
-name|util
-operator|.
-name|concurrent
-operator|.
-name|atomic
-operator|.
-name|AtomicInteger
-import|;
-end_import
-
-begin_import
-import|import
 name|org
 operator|.
 name|apache
@@ -414,6 +400,15 @@ name|long
 name|sleepMsBeforeHealPartition
 init|=
 literal|1000L
+decl_stmt|;
+DECL|field|maxWaitSecsToSeeAllActive
+specifier|private
+specifier|static
+specifier|final
+name|int
+name|maxWaitSecsToSeeAllActive
+init|=
+literal|30
 decl_stmt|;
 DECL|field|proxies
 specifier|private
@@ -787,7 +782,7 @@ name|testCollectionName
 argument_list|,
 literal|2
 argument_list|,
-literal|10
+name|maxWaitSecsToSeeAllActive
 argument_list|)
 operator|.
 name|get
@@ -846,10 +841,9 @@ name|testCollectionName
 argument_list|,
 literal|2
 argument_list|,
-literal|20
+name|maxWaitSecsToSeeAllActive
 argument_list|)
 decl_stmt|;
-comment|// shouldn't take 20 secs but just to be safe
 name|sendDoc
 argument_list|(
 literal|3
@@ -975,7 +969,7 @@ name|testCollectionName
 argument_list|,
 literal|2
 argument_list|,
-literal|20
+name|maxWaitSecsToSeeAllActive
 argument_list|)
 expr_stmt|;
 comment|// verify all docs received
@@ -1042,7 +1036,7 @@ name|testCollectionName
 argument_list|,
 literal|3
 argument_list|,
-literal|10
+name|maxWaitSecsToSeeAllActive
 argument_list|)
 decl_stmt|;
 name|assertTrue
@@ -1162,7 +1156,7 @@ name|testCollectionName
 argument_list|,
 literal|3
 argument_list|,
-literal|20
+name|maxWaitSecsToSeeAllActive
 argument_list|)
 expr_stmt|;
 name|sendDoc
@@ -1234,7 +1228,7 @@ name|testCollectionName
 argument_list|,
 literal|3
 argument_list|,
-literal|10
+name|maxWaitSecsToSeeAllActive
 argument_list|)
 decl_stmt|;
 name|assertTrue
@@ -1358,7 +1352,7 @@ name|testCollectionName
 argument_list|,
 literal|3
 argument_list|,
-literal|20
+name|maxWaitSecsToSeeAllActive
 argument_list|)
 expr_stmt|;
 name|sendDoc
@@ -1429,7 +1423,7 @@ name|testCollectionName
 argument_list|,
 literal|3
 argument_list|,
-literal|20
+name|maxWaitSecsToSeeAllActive
 argument_list|)
 expr_stmt|;
 name|proxy0
@@ -1550,12 +1544,12 @@ name|testCollectionName
 argument_list|,
 literal|"shard1"
 argument_list|,
-literal|30000
+literal|60000
 argument_list|)
 decl_stmt|;
 name|assertNotNull
 argument_list|(
-literal|"No new leader was elected after 30 seconds"
+literal|"No new leader was elected after 60 seconds"
 argument_list|,
 name|newLeader
 argument_list|)

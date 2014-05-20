@@ -1813,6 +1813,30 @@ operator|.
 name|getShardId
 argument_list|()
 decl_stmt|;
+if|if
+condition|(
+name|coll
+operator|==
+literal|null
+operator|||
+name|shardId
+operator|==
+literal|null
+condition|)
+block|{
+name|log
+operator|.
+name|error
+argument_list|(
+literal|"Cannot start leader-initiated recovery on new leader (core="
+operator|+
+name|coreName
+operator|+
+literal|") because collection and/or shard is null!"
+argument_list|)
+expr_stmt|;
+return|return;
+block|}
 name|String
 name|znodePath
 init|=

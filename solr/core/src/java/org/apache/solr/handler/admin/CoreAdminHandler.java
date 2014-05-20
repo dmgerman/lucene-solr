@@ -6371,6 +6371,17 @@ operator|.
 name|getName
 argument_list|()
 operator|+
+literal|", thisCore="
+operator|+
+name|core
+operator|.
+name|getName
+argument_list|()
+operator|+
+literal|", leaderDoesNotNeedRecovery="
+operator|+
+name|leaderDoesNotNeedRecovery
+operator|+
 literal|", isLeader? "
 operator|+
 name|core
@@ -6387,6 +6398,10 @@ operator|+
 literal|", live="
 operator|+
 name|live
+operator|+
+literal|", checkLive="
+operator|+
+name|checkLive
 operator|+
 literal|", currentState="
 operator|+
