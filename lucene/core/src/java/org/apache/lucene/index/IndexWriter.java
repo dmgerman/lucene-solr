@@ -541,7 +541,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**   An<code>IndexWriter</code> creates and maintains an index.<p>The {@link OpenMode} option on    {@link IndexWriterConfig#setOpenMode(OpenMode)} determines    whether a new index is created, or whether an existing index is   opened. Note that you can open an index with {@link OpenMode#CREATE}   even while readers are using the index. The old readers will    continue to search the "point in time" snapshot they had opened,    and won't see the newly created index until they re-open. If    {@link OpenMode#CREATE_OR_APPEND} is used IndexWriter will create a    new index if there is not already an index at the provided path   and otherwise open the existing index.</p><p>In either case, documents are added with {@link #addDocument(IndexDocument)   addDocument} and removed with {@link #deleteDocuments(Term)} or {@link   #deleteDocuments(Query)}. A document can be updated with {@link   #updateDocument(Term, IndexDocument) updateDocument} (which just deletes   and then adds the entire document). When finished adding, deleting    and updating documents, {@link #close() close} should be called.</p><a name="flush"></a><p>These changes are buffered in memory and periodically   flushed to the {@link Directory} (during the above method   calls). A flush is triggered when there are enough added documents   since the last flush. Flushing is triggered either by RAM usage of the   documents (see {@link IndexWriterConfig#setRAMBufferSizeMB}) or the   number of added documents (see {@link IndexWriterConfig#setMaxBufferedDocs(int)}).   The default is to flush when RAM usage hits   {@link IndexWriterConfig#DEFAULT_RAM_BUFFER_SIZE_MB} MB. For   best indexing speed you should flush by RAM usage with a   large RAM buffer. Additionally, if IndexWriter reaches the configured number of   buffered deletes (see {@link IndexWriterConfig#setMaxBufferedDeleteTerms})   the deleted terms and queries are flushed and applied to existing segments.   In contrast to the other flush options {@link IndexWriterConfig#setRAMBufferSizeMB} and    {@link IndexWriterConfig#setMaxBufferedDocs(int)}, deleted terms   won't trigger a segment flush. Note that flushing just moves the   internal buffered state in IndexWriter into the index, but   these changes are not visible to IndexReader until either   {@link #commit()} or {@link #close} is called.  A flush may   also trigger one or more segment merges which by default   run with a background thread so as not to block the   addDocument calls (see<a href="#mergePolicy">below</a>   for changing the {@link MergeScheduler}).</p><p>Opening an<code>IndexWriter</code> creates a lock file for the directory in use. Trying to open   another<code>IndexWriter</code> on the same directory will lead to a   {@link LockObtainFailedException}. The {@link LockObtainFailedException}   is also thrown if an IndexReader on the same directory is used to delete documents   from the index.</p><a name="deletionPolicy"></a><p>Expert:<code>IndexWriter</code> allows an optional   {@link IndexDeletionPolicy} implementation to be   specified.  You can use this to control when prior commits   are deleted from the index.  The default policy is {@link   KeepOnlyLastCommitDeletionPolicy} which removes all prior   commits as soon as a new commit is done (this matches   behavior before 2.2).  Creating your own policy can allow   you to explicitly keep previous "point in time" commits   alive in the index for some time, to allow readers to   refresh to the new commit without having the old commit   deleted out from under them.  This is necessary on   filesystems like NFS that do not support "delete on last   close" semantics, which Lucene's "point in time" search   normally relies on.</p><a name="mergePolicy"></a><p>Expert:<code>IndexWriter</code> allows you to separately change   the {@link MergePolicy} and the {@link MergeScheduler}.   The {@link MergePolicy} is invoked whenever there are   changes to the segments in the index.  Its role is to   select which merges to do, if any, and return a {@link   MergePolicy.MergeSpecification} describing the merges.   The default is {@link LogByteSizeMergePolicy}.  Then, the {@link   MergeScheduler} is invoked with the requested merges and   it decides when and how to run the merges.  The default is   {@link ConcurrentMergeScheduler}.</p><a name="OOME"></a><p><b>NOTE</b>: if you hit an   OutOfMemoryError then IndexWriter will quietly record this   fact and block all future segment commits.  This is a   defensive measure in case any internal state (buffered   documents and deletions) were corrupted.  Any subsequent   calls to {@link #commit()} will throw an   IllegalStateException.  The only course of action is to   call {@link #close()}, which internally will call {@link   #rollback()}, to undo any changes to the index since the   last commit.  You can also just call {@link #rollback()}   directly.</p><a name="thread-safety"></a><p><b>NOTE</b>: {@link   IndexWriter} instances are completely thread   safe, meaning multiple threads can call any of its   methods, concurrently.  If your application requires   external synchronization, you should<b>not</b>   synchronize on the<code>IndexWriter</code> instance as   this may cause deadlock; use your own (non-Lucene) objects   instead.</p><p><b>NOTE</b>: If you call<code>Thread.interrupt()</code> on a thread that's within   IndexWriter, IndexWriter will try to catch this (eg, if   it's in a wait() or Thread.sleep()), and will then throw   the unchecked exception {@link ThreadInterruptedException}   and<b>clear</b> the interrupt status on the thread.</p> */
+comment|/**   An<code>IndexWriter</code> creates and maintains an index.<p>The {@link OpenMode} option on    {@link IndexWriterConfig#setOpenMode(OpenMode)} determines    whether a new index is created, or whether an existing index is   opened. Note that you can open an index with {@link OpenMode#CREATE}   even while readers are using the index. The old readers will    continue to search the "point in time" snapshot they had opened,    and won't see the newly created index until they re-open. If    {@link OpenMode#CREATE_OR_APPEND} is used IndexWriter will create a    new index if there is not already an index at the provided path   and otherwise open the existing index.</p><p>In either case, documents are added with {@link #addDocument(IndexDocument)   addDocument} and removed with {@link #deleteDocuments(Term...)} or {@link   #deleteDocuments(Query...)}. A document can be updated with {@link   #updateDocument(Term, IndexDocument) updateDocument} (which just deletes   and then adds the entire document). When finished adding, deleting    and updating documents, {@link #close() close} should be called.</p><a name="flush"></a><p>These changes are buffered in memory and periodically   flushed to the {@link Directory} (during the above method   calls). A flush is triggered when there are enough added documents   since the last flush. Flushing is triggered either by RAM usage of the   documents (see {@link IndexWriterConfig#setRAMBufferSizeMB}) or the   number of added documents (see {@link IndexWriterConfig#setMaxBufferedDocs(int)}).   The default is to flush when RAM usage hits   {@link IndexWriterConfig#DEFAULT_RAM_BUFFER_SIZE_MB} MB. For   best indexing speed you should flush by RAM usage with a   large RAM buffer. Additionally, if IndexWriter reaches the configured number of   buffered deletes (see {@link IndexWriterConfig#setMaxBufferedDeleteTerms})   the deleted terms and queries are flushed and applied to existing segments.   In contrast to the other flush options {@link IndexWriterConfig#setRAMBufferSizeMB} and    {@link IndexWriterConfig#setMaxBufferedDocs(int)}, deleted terms   won't trigger a segment flush. Note that flushing just moves the   internal buffered state in IndexWriter into the index, but   these changes are not visible to IndexReader until either   {@link #commit()} or {@link #close} is called.  A flush may   also trigger one or more segment merges which by default   run with a background thread so as not to block the   addDocument calls (see<a href="#mergePolicy">below</a>   for changing the {@link MergeScheduler}).</p><p>Opening an<code>IndexWriter</code> creates a lock file for the directory in use. Trying to open   another<code>IndexWriter</code> on the same directory will lead to a   {@link LockObtainFailedException}. The {@link LockObtainFailedException}   is also thrown if an IndexReader on the same directory is used to delete documents   from the index.</p><a name="deletionPolicy"></a><p>Expert:<code>IndexWriter</code> allows an optional   {@link IndexDeletionPolicy} implementation to be   specified.  You can use this to control when prior commits   are deleted from the index.  The default policy is {@link   KeepOnlyLastCommitDeletionPolicy} which removes all prior   commits as soon as a new commit is done (this matches   behavior before 2.2).  Creating your own policy can allow   you to explicitly keep previous "point in time" commits   alive in the index for some time, to allow readers to   refresh to the new commit without having the old commit   deleted out from under them.  This is necessary on   filesystems like NFS that do not support "delete on last   close" semantics, which Lucene's "point in time" search   normally relies on.</p><a name="mergePolicy"></a><p>Expert:<code>IndexWriter</code> allows you to separately change   the {@link MergePolicy} and the {@link MergeScheduler}.   The {@link MergePolicy} is invoked whenever there are   changes to the segments in the index.  Its role is to   select which merges to do, if any, and return a {@link   MergePolicy.MergeSpecification} describing the merges.   The default is {@link LogByteSizeMergePolicy}.  Then, the {@link   MergeScheduler} is invoked with the requested merges and   it decides when and how to run the merges.  The default is   {@link ConcurrentMergeScheduler}.</p><a name="OOME"></a><p><b>NOTE</b>: if you hit an   OutOfMemoryError then IndexWriter will quietly record this   fact and block all future segment commits.  This is a   defensive measure in case any internal state (buffered   documents and deletions) were corrupted.  Any subsequent   calls to {@link #commit()} will throw an   IllegalStateException.  The only course of action is to   call {@link #close()}, which internally will call {@link   #rollback()}, to undo any changes to the index since the   last commit.  You can also just call {@link #rollback()}   directly.</p><a name="thread-safety"></a><p><b>NOTE</b>: {@link   IndexWriter} instances are completely thread   safe, meaning multiple threads can call any of its   methods, concurrently.  If your application requires   external synchronization, you should<b>not</b>   synchronize on the<code>IndexWriter</code> instance as   this may cause deadlock; use your own (non-Lucene) objects   instead.</p><p><b>NOTE</b>: If you call<code>Thread.interrupt()</code> on a thread that's within   IndexWriter, IndexWriter will try to catch this (eg, if   it's in a wait() or Thread.sleep()), and will then throw   the unchecked exception {@link ThreadInterruptedException}   and<b>clear</b> the interrupt status on the thread.</p> */
 end_comment
 
 begin_comment
@@ -3427,58 +3427,7 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
-comment|/**    * Deletes the document(s) containing<code>term</code>.    *    *<p><b>NOTE</b>: if this method hits an OutOfMemoryError    * you should immediately close the writer.  See<a    * href="#OOME">above</a> for details.</p>    *    * @param term the term to identify the documents to be deleted    * @throws CorruptIndexException if the index is corrupt    * @throws IOException if there is a low-level IO error    */
-DECL|method|deleteDocuments
-specifier|public
-name|void
-name|deleteDocuments
-parameter_list|(
-name|Term
-name|term
-parameter_list|)
-throws|throws
-name|IOException
-block|{
-name|ensureOpen
-argument_list|()
-expr_stmt|;
-try|try
-block|{
-if|if
-condition|(
-name|docWriter
-operator|.
-name|deleteTerms
-argument_list|(
-name|term
-argument_list|)
-condition|)
-block|{
-name|processEvents
-argument_list|(
-literal|true
-argument_list|,
-literal|false
-argument_list|)
-expr_stmt|;
-block|}
-block|}
-catch|catch
-parameter_list|(
-name|OutOfMemoryError
-name|oom
-parameter_list|)
-block|{
-name|handleOOM
-argument_list|(
-name|oom
-argument_list|,
-literal|"deleteDocuments(Term)"
-argument_list|)
-expr_stmt|;
-block|}
-block|}
-comment|/** Expert: attempts to delete by document ID, as long as    *  the provided reader is a near-real-time reader (from {@link    *  DirectoryReader#open(IndexWriter,boolean)}).  If the    *  provided reader is an NRT reader obtained from this    *  writer, and its segment has not been merged away, then    *  the delete succeeds and this method returns true; else, it    *  returns false the caller must then separately delete by    *  Term or Query.    *    *<b>NOTE</b>: this method can only delete documents    *  visible to the currently open NRT reader.  If you need    *  to delete documents indexed after opening the NRT    *  reader you must use the other deleteDocument methods    *  (e.g., {@link #deleteDocuments(Term)}). */
+comment|/** Expert: attempts to delete by document ID, as long as    *  the provided reader is a near-real-time reader (from {@link    *  DirectoryReader#open(IndexWriter,boolean)}).  If the    *  provided reader is an NRT reader obtained from this    *  writer, and its segment has not been merged away, then    *  the delete succeeds and this method returns true; else, it    *  returns false the caller must then separately delete by    *  Term or Query.    *    *<b>NOTE</b>: this method can only delete documents    *  visible to the currently open NRT reader.  If you need    *  to delete documents indexed after opening the NRT    *  reader you must use {@link #deleteDocuments(Term...)}). */
 DECL|method|tryDeleteDocument
 specifier|public
 specifier|synchronized
@@ -3808,57 +3757,6 @@ argument_list|(
 name|oom
 argument_list|,
 literal|"deleteDocuments(Term..)"
-argument_list|)
-expr_stmt|;
-block|}
-block|}
-comment|/**    * Deletes the document(s) matching the provided query.    *    *<p><b>NOTE</b>: if this method hits an OutOfMemoryError    * you should immediately close the writer.  See<a    * href="#OOME">above</a> for details.</p>    *    * @param query the query to identify the documents to be deleted    * @throws CorruptIndexException if the index is corrupt    * @throws IOException if there is a low-level IO error    */
-DECL|method|deleteDocuments
-specifier|public
-name|void
-name|deleteDocuments
-parameter_list|(
-name|Query
-name|query
-parameter_list|)
-throws|throws
-name|IOException
-block|{
-name|ensureOpen
-argument_list|()
-expr_stmt|;
-try|try
-block|{
-if|if
-condition|(
-name|docWriter
-operator|.
-name|deleteQueries
-argument_list|(
-name|query
-argument_list|)
-condition|)
-block|{
-name|processEvents
-argument_list|(
-literal|true
-argument_list|,
-literal|false
-argument_list|)
-expr_stmt|;
-block|}
-block|}
-catch|catch
-parameter_list|(
-name|OutOfMemoryError
-name|oom
-parameter_list|)
-block|{
-name|handleOOM
-argument_list|(
-name|oom
-argument_list|,
-literal|"deleteDocuments(Query)"
 argument_list|)
 expr_stmt|;
 block|}
@@ -5876,7 +5774,7 @@ expr_stmt|;
 block|}
 block|}
 block|}
-comment|/**    * Delete all documents in the index.    *    *<p>This method will drop all buffered documents and will    *    remove all segments from the index. This change will not be    *    visible until a {@link #commit()} has been called. This method    *    can be rolled back using {@link #rollback()}.</p>    *    *<p>NOTE: this method is much faster than using deleteDocuments( new MatchAllDocsQuery() ).     *    Yet, this method also has different semantics compared to {@link #deleteDocuments(Query)}     *    / {@link #deleteDocuments(Query...)} since internal data-structures are cleared as well     *    as all segment information is forcefully dropped anti-viral semantics like omitting norms    *    are reset or doc value types are cleared. Essentially a call to {@link #deleteAll()} is equivalent    *    to creating a new {@link IndexWriter} with {@link OpenMode#CREATE} which a delete query only marks    *    documents as deleted.</p>    *    *<p>NOTE: this method will forcefully abort all merges    *    in progress.  If other threads are running {@link    *    #forceMerge}, {@link #addIndexes(IndexReader[])} or    *    {@link #forceMergeDeletes} methods, they may receive    *    {@link MergePolicy.MergeAbortedException}s.    */
+comment|/**    * Delete all documents in the index.    *     *<p>    * This method will drop all buffered documents and will remove all segments    * from the index. This change will not be visible until a {@link #commit()}    * has been called. This method can be rolled back using {@link #rollback()}.    *</p>    *     *<p>    * NOTE: this method is much faster than using deleteDocuments( new    * MatchAllDocsQuery() ). Yet, this method also has different semantics    * compared to {@link #deleteDocuments(Query...)} since internal    * data-structures are cleared as well as all segment information is    * forcefully dropped anti-viral semantics like omitting norms are reset or    * doc value types are cleared. Essentially a call to {@link #deleteAll()} is    * equivalent to creating a new {@link IndexWriter} with    * {@link OpenMode#CREATE} which a delete query only marks documents as    * deleted.    *</p>    *     *<p>    * NOTE: this method will forcefully abort all merges in progress. If other    * threads are running {@link #forceMerge}, {@link #addIndexes(IndexReader[])}    * or {@link #forceMergeDeletes} methods, they may receive    * {@link MergePolicy.MergeAbortedException}s.    */
 DECL|method|deleteAll
 specifier|public
 name|void
