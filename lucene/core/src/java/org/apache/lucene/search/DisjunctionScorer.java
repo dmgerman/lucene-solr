@@ -129,7 +129,7 @@ name|i
 init|=
 operator|(
 name|numScorers
-operator|>>
+operator|>>>
 literal|1
 operator|)
 operator|-
@@ -188,7 +188,7 @@ name|i
 operator|<=
 operator|(
 name|numScorers
-operator|>>
+operator|>>>
 literal|1
 operator|)
 operator|-
