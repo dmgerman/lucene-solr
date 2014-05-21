@@ -102,6 +102,16 @@ name|java
 operator|.
 name|util
 operator|.
+name|Locale
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
+name|util
+operator|.
 name|Map
 import|;
 end_import
@@ -1122,6 +1132,11 @@ operator|+
 literal|" for batch but got "
 operator|+
 name|batchRf
+operator|+
+literal|"; clusterState: "
+operator|+
+name|printClusterStateInfo
+argument_list|()
 argument_list|,
 name|batchRf
 operator|==
@@ -1221,7 +1236,7 @@ argument_list|)
 decl_stmt|;
 name|assertTrue
 argument_list|(
-literal|"Expected active 2 replicas for "
+literal|"Expected 2 active replicas for "
 operator|+
 name|testCollectionName
 argument_list|,
@@ -1243,15 +1258,13 @@ argument_list|,
 name|minRf
 argument_list|)
 decl_stmt|;
-name|assertTrue
+name|assertRf
 argument_list|(
-literal|"Expected rf=3 as all replicas are up, but got "
-operator|+
-name|rf
+literal|3
+argument_list|,
+literal|"all replicas should be active"
 argument_list|,
 name|rf
-operator|==
-literal|3
 argument_list|)
 expr_stmt|;
 name|getProxyForReplica
@@ -1276,15 +1289,13 @@ argument_list|,
 name|minRf
 argument_list|)
 expr_stmt|;
-name|assertTrue
+name|assertRf
 argument_list|(
-literal|"Expected rf=2 as one replica should be down, but got "
-operator|+
-name|rf
+literal|2
+argument_list|,
+literal|"one replica should be down"
 argument_list|,
 name|rf
-operator|==
-literal|2
 argument_list|)
 expr_stmt|;
 name|getProxyForReplica
@@ -1309,15 +1320,13 @@ argument_list|,
 name|minRf
 argument_list|)
 expr_stmt|;
-name|assertTrue
+name|assertRf
 argument_list|(
-literal|"Expected rf=1 as both replicas should be down, but got "
-operator|+
-name|rf
+literal|1
+argument_list|,
+literal|"both replicas should be down"
 argument_list|,
 name|rf
-operator|==
-literal|1
 argument_list|)
 expr_stmt|;
 comment|// heal the partitions
@@ -1369,15 +1378,13 @@ argument_list|,
 name|minRf
 argument_list|)
 expr_stmt|;
-name|assertTrue
+name|assertRf
 argument_list|(
-literal|"Expected rf=3 as partitions to replicas have been healed, but got "
-operator|+
-name|rf
+literal|3
+argument_list|,
+literal|"partitions to replicas have been healed"
 argument_list|,
 name|rf
-operator|==
-literal|3
 argument_list|)
 expr_stmt|;
 comment|// now send a batch
@@ -1501,15 +1508,13 @@ name|up
 argument_list|)
 argument_list|)
 decl_stmt|;
-name|assertTrue
+name|assertRf
 argument_list|(
-literal|"Expected rf=3 for batch but got "
-operator|+
-name|batchRf
+literal|3
+argument_list|,
+literal|"batch should have succeeded on all replicas"
 argument_list|,
 name|batchRf
-operator|==
-literal|3
 argument_list|)
 expr_stmt|;
 comment|// add some chaos to the batch
@@ -1641,15 +1646,13 @@ name|up
 argument_list|)
 argument_list|)
 expr_stmt|;
-name|assertTrue
+name|assertRf
 argument_list|(
-literal|"Expected rf=2 for batch (one replica is down) but got "
-operator|+
-name|batchRf
+literal|2
+argument_list|,
+literal|"batch should have succeeded on 2 replicas (only one replica should be down)"
 argument_list|,
 name|batchRf
-operator|==
-literal|2
 argument_list|)
 expr_stmt|;
 comment|// close the 2nd replica, and send a 3rd batch with expected achieved rf=1
@@ -1780,15 +1783,13 @@ name|up
 argument_list|)
 argument_list|)
 expr_stmt|;
-name|assertTrue
+name|assertRf
 argument_list|(
-literal|"Expected rf=1 for batch (two replicas are down) but got "
-operator|+
-name|batchRf
+literal|1
+argument_list|,
+literal|"batch should have succeeded on the leader only (both replicas should be down)"
 argument_list|,
 name|batchRf
-operator|==
-literal|1
 argument_list|)
 expr_stmt|;
 name|getProxyForReplica
@@ -1816,13 +1817,6 @@ argument_list|)
 operator|.
 name|reopen
 argument_list|()
-expr_stmt|;
-name|Thread
-operator|.
-name|sleep
-argument_list|(
-literal|1000
-argument_list|)
 expr_stmt|;
 block|}
 DECL|method|getProxyForReplica
@@ -2342,7 +2336,8 @@ name|maxWaitMs
 operator|+
 literal|" ms! ClusterState: "
 operator|+
-name|cs
+name|printClusterStateInfo
+argument_list|()
 argument_list|)
 expr_stmt|;
 if|if
@@ -2356,7 +2351,8 @@ name|fail
 argument_list|(
 literal|"Didn't isolate any replicas that are not the leader! ClusterState: "
 operator|+
-name|cs
+name|printClusterStateInfo
+argument_list|()
 argument_list|)
 expr_stmt|;
 name|long
@@ -2407,6 +2403,95 @@ argument_list|)
 expr_stmt|;
 return|return
 name|replicas
+return|;
+block|}
+DECL|method|assertRf
+specifier|protected
+name|void
+name|assertRf
+parameter_list|(
+name|int
+name|expected
+parameter_list|,
+name|String
+name|explain
+parameter_list|,
+name|int
+name|actual
+parameter_list|)
+throws|throws
+name|Exception
+block|{
+if|if
+condition|(
+name|actual
+operator|!=
+name|expected
+condition|)
+block|{
+name|String
+name|assertionFailedMessage
+init|=
+name|String
+operator|.
+name|format
+argument_list|(
+name|Locale
+operator|.
+name|ENGLISH
+argument_list|,
+literal|"Expected rf=%d because %s but got %d"
+argument_list|,
+name|expected
+argument_list|,
+name|explain
+argument_list|,
+name|actual
+argument_list|)
+decl_stmt|;
+name|fail
+argument_list|(
+name|assertionFailedMessage
+operator|+
+literal|"; clusterState: "
+operator|+
+name|printClusterStateInfo
+argument_list|()
+argument_list|)
+expr_stmt|;
+block|}
+block|}
+DECL|method|printClusterStateInfo
+specifier|protected
+name|String
+name|printClusterStateInfo
+parameter_list|()
+throws|throws
+name|Exception
+block|{
+name|cloudClient
+operator|.
+name|getZkStateReader
+argument_list|()
+operator|.
+name|updateClusterState
+argument_list|(
+literal|true
+argument_list|)
+expr_stmt|;
+return|return
+name|String
+operator|.
+name|valueOf
+argument_list|(
+name|cloudClient
+operator|.
+name|getZkStateReader
+argument_list|()
+operator|.
+name|getClusterState
+argument_list|()
+argument_list|)
 return|;
 block|}
 block|}
