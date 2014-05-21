@@ -3306,7 +3306,7 @@ argument_list|)
 decl_stmt|;
 name|assertEquals
 argument_list|(
-literal|2
+literal|3
 argument_list|,
 name|reader
 operator|.
@@ -4144,8 +4144,6 @@ decl_stmt|;
 name|assertEquals
 argument_list|(
 name|expected
-operator|-
-literal|1
 argument_list|,
 name|reader
 operator|.
@@ -4897,10 +4895,6 @@ operator|+
 name|i
 argument_list|,
 name|expected
-operator|-
-name|NUM_THREAD
-operator|*
-name|NUM_ITER
 argument_list|,
 name|reader
 operator|.
@@ -4918,10 +4912,6 @@ argument_list|)
 expr_stmt|;
 name|assertEquals
 argument_list|(
-literal|"i="
-operator|+
-name|i
-argument_list|,
 name|expected
 argument_list|,
 name|reader
