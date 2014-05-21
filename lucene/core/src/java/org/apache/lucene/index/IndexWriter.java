@@ -7444,6 +7444,9 @@ literal|1L
 argument_list|,
 operator|-
 literal|1L
+argument_list|,
+operator|-
+literal|1L
 argument_list|)
 decl_stmt|;
 name|info
@@ -7803,6 +7806,11 @@ argument_list|,
 name|info
 operator|.
 name|getFieldInfosGen
+argument_list|()
+argument_list|,
+name|info
+operator|.
+name|getDocValuesGen
 argument_list|()
 argument_list|)
 decl_stmt|;
@@ -12749,6 +12757,9 @@ argument_list|(
 name|si
 argument_list|,
 literal|0
+argument_list|,
+operator|-
+literal|1L
 argument_list|,
 operator|-
 literal|1L

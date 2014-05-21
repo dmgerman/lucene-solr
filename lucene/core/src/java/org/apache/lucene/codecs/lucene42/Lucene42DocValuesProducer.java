@@ -1098,13 +1098,16 @@ operator|-
 literal|1
 condition|)
 block|{
-comment|// check should be: infos.fieldInfo(fieldNumber) != null, which incorporates negative check
-comment|// but docvalues updates are currently buggy here (loading extra stuff, etc): LUCENE-5616
 if|if
 condition|(
+name|infos
+operator|.
+name|fieldInfo
+argument_list|(
 name|fieldNumber
-operator|<
-literal|0
+argument_list|)
+operator|==
+literal|null
 condition|)
 block|{
 comment|// trickier to validate more: because we re-use for norms, because we use multiple entries
@@ -1117,9 +1120,11 @@ literal|"Invalid field number: "
 operator|+
 name|fieldNumber
 operator|+
-literal|", input="
+literal|" (resource="
 operator|+
 name|meta
+operator|+
+literal|")"
 argument_list|)
 throw|;
 block|}
