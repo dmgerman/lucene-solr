@@ -2008,6 +2008,9 @@ literal|1L
 argument_list|,
 operator|-
 literal|1L
+argument_list|,
+operator|-
+literal|1L
 argument_list|)
 decl_stmt|;
 if|if

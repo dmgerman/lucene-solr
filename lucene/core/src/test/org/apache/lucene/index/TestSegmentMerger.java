@@ -176,20 +176,6 @@ name|TestUtil
 import|;
 end_import
 
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|util
-operator|.
-name|TestUtil
-import|;
-end_import
-
 begin_class
 DECL|class|TestSegmentMerger
 specifier|public
@@ -587,6 +573,9 @@ literal|null
 argument_list|)
 argument_list|,
 literal|0
+argument_list|,
+operator|-
+literal|1L
 argument_list|,
 operator|-
 literal|1L
