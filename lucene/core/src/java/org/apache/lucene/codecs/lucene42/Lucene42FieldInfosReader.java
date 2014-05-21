@@ -605,6 +605,9 @@ name|docValuesType
 argument_list|,
 name|normsType
 argument_list|,
+operator|-
+literal|1
+argument_list|,
 name|Collections
 operator|.
 name|unmodifiableMap

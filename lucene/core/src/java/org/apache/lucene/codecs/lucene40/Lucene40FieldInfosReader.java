@@ -700,6 +700,9 @@ name|oldNormsType
 operator|.
 name|mapping
 argument_list|,
+operator|-
+literal|1
+argument_list|,
 name|Collections
 operator|.
 name|unmodifiableMap

@@ -1805,6 +1805,9 @@ name|DocValuesType
 operator|.
 name|NUMERIC
 argument_list|,
+operator|-
+literal|1
+argument_list|,
 literal|null
 argument_list|)
 expr_stmt|;
@@ -3509,6 +3512,9 @@ argument_list|,
 name|DocValuesType
 operator|.
 name|NUMERIC
+argument_list|,
+operator|-
+literal|1
 argument_list|,
 literal|null
 argument_list|)
