@@ -399,7 +399,7 @@ specifier|final
 name|long
 name|sleepMsBeforeHealPartition
 init|=
-literal|1000L
+literal|2000L
 decl_stmt|;
 DECL|field|maxWaitSecsToSeeAllActive
 specifier|private
@@ -1054,12 +1054,7 @@ argument_list|()
 operator|+
 literal|"; clusterState: "
 operator|+
-name|cloudClient
-operator|.
-name|getZkStateReader
-argument_list|()
-operator|.
-name|getClusterState
+name|printClusterStateInfo
 argument_list|()
 argument_list|,
 name|notLeaders
@@ -1246,12 +1241,7 @@ argument_list|()
 operator|+
 literal|"; clusterState: "
 operator|+
-name|cloudClient
-operator|.
-name|getZkStateReader
-argument_list|()
-operator|.
-name|getClusterState
+name|printClusterStateInfo
 argument_list|()
 argument_list|,
 name|notLeaders
@@ -1399,6 +1389,11 @@ argument_list|(
 literal|"Could not find leader for shard1 of "
 operator|+
 name|testCollectionName
+operator|+
+literal|"; clusterState: "
+operator|+
+name|printClusterStateInfo
+argument_list|()
 argument_list|,
 name|leader
 argument_list|)
@@ -1527,9 +1522,10 @@ name|Thread
 operator|.
 name|sleep
 argument_list|(
-name|sleepMsBeforeHealPartition
+literal|10000
 argument_list|)
 expr_stmt|;
+comment|// give chance for new leader to be elected.
 name|Replica
 name|newLeader
 init|=
@@ -1549,7 +1545,10 @@ argument_list|)
 decl_stmt|;
 name|assertNotNull
 argument_list|(
-literal|"No new leader was elected after 60 seconds"
+literal|"No new leader was elected after 60 seconds; clusterState: "
+operator|+
+name|printClusterStateInfo
+argument_list|()
 argument_list|,
 name|newLeader
 argument_list|)
@@ -1562,12 +1561,7 @@ name|shouldNotBeNewLeaderNode
 operator|+
 literal|" to NOT be the new leader b/c it was out-of-sync with the old leader! ClusterState: "
 operator|+
-name|cloudClient
-operator|.
-name|getZkStateReader
-argument_list|()
-operator|.
-name|getClusterState
+name|printClusterStateInfo
 argument_list|()
 argument_list|,
 operator|!
@@ -1629,6 +1623,11 @@ operator|+
 literal|"; "
 operator|+
 name|activeReps
+operator|+
+literal|"; clusterState: "
+operator|+
+name|printClusterStateInfo
+argument_list|()
 argument_list|,
 name|activeReps
 operator|.
@@ -1654,6 +1653,39 @@ argument_list|,
 literal|6
 argument_list|)
 expr_stmt|;
+block|}
+DECL|method|printClusterStateInfo
+specifier|protected
+name|String
+name|printClusterStateInfo
+parameter_list|()
+throws|throws
+name|Exception
+block|{
+name|cloudClient
+operator|.
+name|getZkStateReader
+argument_list|()
+operator|.
+name|updateClusterState
+argument_list|(
+literal|true
+argument_list|)
+expr_stmt|;
+return|return
+name|String
+operator|.
+name|valueOf
+argument_list|(
+name|cloudClient
+operator|.
+name|getZkStateReader
+argument_list|()
+operator|.
+name|getClusterState
+argument_list|()
+argument_list|)
+return|;
 block|}
 DECL|method|getActiveOrRecoveringReplicas
 specifier|protected
@@ -2510,7 +2542,8 @@ name|maxWaitMs
 operator|+
 literal|" ms! ClusterState: "
 operator|+
-name|cs
+name|printClusterStateInfo
+argument_list|()
 argument_list|)
 expr_stmt|;
 if|if
@@ -2524,7 +2557,8 @@ name|fail
 argument_list|(
 literal|"Didn't isolate any replicas that are not the leader! ClusterState: "
 operator|+
-name|cs
+name|printClusterStateInfo
+argument_list|()
 argument_list|)
 expr_stmt|;
 name|long
