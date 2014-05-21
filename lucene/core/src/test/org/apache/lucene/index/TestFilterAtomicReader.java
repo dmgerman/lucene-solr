@@ -1058,8 +1058,15 @@ operator|.
 name|class
 argument_list|)
 expr_stmt|;
-comment|// nocommit this gets angry because I override testExact but this is important!!
-comment|//checkOverrideMethods(FilterAtomicReader.FilterTermsEnum.class);
+name|checkOverrideMethods
+argument_list|(
+name|FilterAtomicReader
+operator|.
+name|FilterTermsEnum
+operator|.
+name|class
+argument_list|)
+expr_stmt|;
 name|checkOverrideMethods
 argument_list|(
 name|FilterAtomicReader

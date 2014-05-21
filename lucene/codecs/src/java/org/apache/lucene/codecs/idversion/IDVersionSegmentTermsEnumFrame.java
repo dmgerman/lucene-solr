@@ -174,15 +174,7 @@ DECL|field|isFloor
 name|boolean
 name|isFloor
 decl_stmt|;
-DECL|field|DEBUG
-specifier|static
-name|boolean
-name|DEBUG
-init|=
-name|IDVersionSegmentTermsEnum
-operator|.
-name|DEBUG
-decl_stmt|;
+comment|// static boolean DEBUG = IDVersionSegmentTermsEnum.DEBUG;
 comment|/** Highest version of any term in this block. */
 DECL|field|maxIDVersion
 name|long
@@ -1030,29 +1022,7 @@ name|boolean
 name|nextNonLeaf
 parameter_list|()
 block|{
-if|if
-condition|(
-name|DEBUG
-condition|)
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"  frame.next ord="
-operator|+
-name|ord
-operator|+
-literal|" nextEnt="
-operator|+
-name|nextEnt
-operator|+
-literal|" entCount="
-operator|+
-name|entCount
-argument_list|)
-expr_stmt|;
+comment|// if (DEBUG) System.out.println("  frame.next ord=" + ord + " nextEnt=" + nextEnt + " entCount=" + entCount);
 assert|assert
 name|nextEnt
 operator|!=
@@ -1209,23 +1179,9 @@ name|fp
 operator|-
 name|subCode
 expr_stmt|;
-if|if
-condition|(
-name|DEBUG
-condition|)
-block|{
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"    lastSubFP="
-operator|+
-name|lastSubFP
-argument_list|)
-expr_stmt|;
-block|}
+comment|// if (DEBUG) {
+comment|//   System.out.println("    lastSubFP=" + lastSubFP);
+comment|// }
 return|return
 literal|true
 return|;
@@ -1255,33 +1211,9 @@ operator|<=
 name|prefix
 condition|)
 block|{
-if|if
-condition|(
-name|DEBUG
-condition|)
-block|{
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"    scanToFloorFrame skip: isFloor="
-operator|+
-name|isFloor
-operator|+
-literal|" target.length="
-operator|+
-name|target
-operator|.
-name|length
-operator|+
-literal|" vs prefix="
-operator|+
-name|prefix
-argument_list|)
-expr_stmt|;
-block|}
+comment|// if (DEBUG) {
+comment|//    System.out.println("    scanToFloorFrame skip: isFloor=" + isFloor + " target.length=" + target.length + " vs prefix=" + prefix);
+comment|//  }
 return|return;
 block|}
 specifier|final
@@ -1301,45 +1233,9 @@ index|]
 operator|&
 literal|0xFF
 decl_stmt|;
-if|if
-condition|(
-name|DEBUG
-condition|)
-block|{
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"    scanToFloorFrame fpOrig="
-operator|+
-name|fpOrig
-operator|+
-literal|" targetLabel="
-operator|+
-operator|(
-operator|(
-name|char
-operator|)
-name|targetLabel
-operator|)
-operator|+
-literal|" vs nextFloorLabel="
-operator|+
-operator|(
-operator|(
-name|char
-operator|)
-name|nextFloorLabel
-operator|)
-operator|+
-literal|" numFollowFloorBlocks="
-operator|+
-name|numFollowFloorBlocks
-argument_list|)
-expr_stmt|;
-block|}
+comment|// if (DEBUG) {
+comment|//    System.out.println("    scanToFloorFrame fpOrig=" + fpOrig + " targetLabel=" + ((char) targetLabel) + " vs nextFloorLabel=" + ((char) nextFloorLabel) + " numFollowFloorBlocks=" + numFollowFloorBlocks);
+comment|//  }
 if|if
 condition|(
 name|targetLabel
@@ -1347,21 +1243,9 @@ operator|<
 name|nextFloorLabel
 condition|)
 block|{
-if|if
-condition|(
-name|DEBUG
-condition|)
-block|{
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"      already on correct block"
-argument_list|)
-expr_stmt|;
-block|}
+comment|// if (DEBUG) {
+comment|//    System.out.println("      already on correct block");
+comment|//  }
 return|return;
 block|}
 assert|assert
@@ -1408,40 +1292,9 @@ operator|)
 operator|!=
 literal|0
 expr_stmt|;
-if|if
-condition|(
-name|DEBUG
-condition|)
-block|{
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"      label="
-operator|+
-operator|(
-operator|(
-name|char
-operator|)
-name|nextFloorLabel
-operator|)
-operator|+
-literal|" fp="
-operator|+
-name|newFP
-operator|+
-literal|" hasTerms?="
-operator|+
-name|hasTerms
-operator|+
-literal|" numFollowFloor="
-operator|+
-name|numFollowFloorBlocks
-argument_list|)
-expr_stmt|;
-block|}
+comment|// if (DEBUG) {
+comment|//    System.out.println("      label=" + ((char) nextFloorLabel) + " fp=" + newFP + " hasTerms?=" + hasTerms + " numFollowFloor=" + numFollowFloorBlocks);
+comment|//  }
 name|isLastInFloor
 operator|=
 name|numFollowFloorBlocks
@@ -1460,28 +1313,9 @@ name|nextFloorLabel
 operator|=
 literal|256
 expr_stmt|;
-if|if
-condition|(
-name|DEBUG
-condition|)
-block|{
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"        stop!  last block nextFloorLabel="
-operator|+
-operator|(
-operator|(
-name|char
-operator|)
-name|nextFloorLabel
-operator|)
-argument_list|)
-expr_stmt|;
-block|}
+comment|// if (DEBUG) {
+comment|//    System.out.println("        stop!  last block nextFloorLabel=" + ((char) nextFloorLabel));
+comment|//  }
 break|break;
 block|}
 else|else
@@ -1502,28 +1336,9 @@ operator|<
 name|nextFloorLabel
 condition|)
 block|{
-if|if
-condition|(
-name|DEBUG
-condition|)
-block|{
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"        stop!  nextFloorLabel="
-operator|+
-operator|(
-operator|(
-name|char
-operator|)
-name|nextFloorLabel
-operator|)
-argument_list|)
-expr_stmt|;
-block|}
+comment|// if (DEBUG) {
+comment|//    System.out.println("        stop!  nextFloorLabel=" + ((char) nextFloorLabel));
+comment|//  }
 break|break;
 block|}
 block|}
@@ -1536,27 +1351,9 @@ name|fp
 condition|)
 block|{
 comment|// Force re-load of the block:
-if|if
-condition|(
-name|DEBUG
-condition|)
-block|{
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"      force switch to fp="
-operator|+
-name|newFP
-operator|+
-literal|" oldFP="
-operator|+
-name|fp
-argument_list|)
-expr_stmt|;
-block|}
+comment|// if (DEBUG) {
+comment|//    System.out.println("      force switch to fp=" + newFP + " oldFP=" + fp);
+comment|//  }
 name|nextEnt
 operator|=
 operator|-
@@ -1569,23 +1366,9 @@ expr_stmt|;
 block|}
 else|else
 block|{
-if|if
-condition|(
-name|DEBUG
-condition|)
-block|{
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"      stay on same fp="
-operator|+
-name|newFP
-argument_list|)
-expr_stmt|;
-block|}
+comment|// if (DEBUG) {
+comment|//    System.out.println("      stay on same fp=" + newFP);
+comment|//  }
 block|}
 block|}
 DECL|method|decodeMetaData
@@ -1970,53 +1753,7 @@ parameter_list|)
 throws|throws
 name|IOException
 block|{
-if|if
-condition|(
-name|DEBUG
-condition|)
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"    scanToTermLeaf: block fp="
-operator|+
-name|fp
-operator|+
-literal|" prefix="
-operator|+
-name|prefix
-operator|+
-literal|" nextEnt="
-operator|+
-name|nextEnt
-operator|+
-literal|" (of "
-operator|+
-name|entCount
-operator|+
-literal|") target="
-operator|+
-name|IDVersionSegmentTermsEnum
-operator|.
-name|brToString
-argument_list|(
-name|target
-argument_list|)
-operator|+
-literal|" term="
-operator|+
-name|IDVersionSegmentTermsEnum
-operator|.
-name|brToString
-argument_list|(
-name|ste
-operator|.
-name|term
-argument_list|)
-argument_list|)
-expr_stmt|;
+comment|// if (DEBUG) System.out.println("    scanToTermLeaf: block fp=" + fp + " prefix=" + prefix + " nextEnt=" + nextEnt + " (of " + entCount + ") target=" + IDVersionSegmentTermsEnum.brToString(target) + " term=" + IDVersionSegmentTermsEnum.brToString(ste.term));
 assert|assert
 name|nextEnt
 operator|!=
@@ -2080,68 +1817,13 @@ operator|.
 name|readVInt
 argument_list|()
 expr_stmt|;
-if|if
-condition|(
-name|DEBUG
-condition|)
-block|{
-name|BytesRef
-name|suffixBytesRef
-init|=
-operator|new
-name|BytesRef
-argument_list|()
-decl_stmt|;
-name|suffixBytesRef
-operator|.
-name|bytes
-operator|=
-name|suffixBytes
-expr_stmt|;
-name|suffixBytesRef
-operator|.
-name|offset
-operator|=
-name|suffixesReader
-operator|.
-name|getPosition
-argument_list|()
-expr_stmt|;
-name|suffixBytesRef
-operator|.
-name|length
-operator|=
-name|suffix
-expr_stmt|;
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"      cycle: term "
-operator|+
-operator|(
-name|nextEnt
-operator|-
-literal|1
-operator|)
-operator|+
-literal|" (of "
-operator|+
-name|entCount
-operator|+
-literal|") suffix="
-operator|+
-name|IDVersionSegmentTermsEnum
-operator|.
-name|brToString
-argument_list|(
-name|suffixBytesRef
-argument_list|)
-argument_list|)
-expr_stmt|;
-block|}
+comment|// if (DEBUG) {
+comment|//    BytesRef suffixBytesRef = new BytesRef();
+comment|//    suffixBytesRef.bytes = suffixBytes;
+comment|//    suffixBytesRef.offset = suffixesReader.getPosition();
+comment|//    suffixBytesRef.length = suffix;
+comment|//    System.out.println("      cycle: term " + (nextEnt-1) + " (of " + entCount + ") suffix=" + IDVersionSegmentTermsEnum.brToString(suffixBytesRef));
+comment|// }
 specifier|final
 name|int
 name|termLen
@@ -2482,53 +2164,7 @@ parameter_list|)
 throws|throws
 name|IOException
 block|{
-if|if
-condition|(
-name|DEBUG
-condition|)
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"    scanToTermNonLeaf: block fp="
-operator|+
-name|fp
-operator|+
-literal|" prefix="
-operator|+
-name|prefix
-operator|+
-literal|" nextEnt="
-operator|+
-name|nextEnt
-operator|+
-literal|" (of "
-operator|+
-name|entCount
-operator|+
-literal|") target="
-operator|+
-name|IDVersionSegmentTermsEnum
-operator|.
-name|brToString
-argument_list|(
-name|target
-argument_list|)
-operator|+
-literal|" term="
-operator|+
-name|IDVersionSegmentTermsEnum
-operator|.
-name|brToString
-argument_list|(
-name|ste
-operator|.
-name|term
-argument_list|)
-argument_list|)
-expr_stmt|;
+comment|// if (DEBUG) System.out.println("    scanToTermNonLeaf: block fp=" + fp + " prefix=" + prefix + " nextEnt=" + nextEnt + " (of " + entCount + ") target=" + IDVersionSegmentTermsEnum.brToString(target) + " term=" + IDVersionSegmentTermsEnum.brToString(ste.term));
 assert|assert
 name|nextEnt
 operator|!=

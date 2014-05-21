@@ -112,6 +112,22 @@ name|apache
 operator|.
 name|lucene
 operator|.
+name|codecs
+operator|.
+name|blocktree
+operator|.
+name|BlockTreeTermsWriter
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
 name|index
 operator|.
 name|FieldInfo
@@ -509,14 +525,6 @@ import|;
 end_import
 
 begin_comment
-comment|// nocommit break out the "don't write del docs on flush"
-end_comment
-
-begin_comment
-comment|// nocommit don't write/read stats
-end_comment
-
-begin_comment
 comment|/*   TODO:        - Currently there is a one-to-one mapping of indexed       term to term block, but we could decouple the two, ie,       put more terms into the index than there are blocks.       The index would take up more RAM but then it'd be able       to avoid seeking more often and could make PK/FuzzyQ       faster if the additional indexed terms could store       the offset into the terms block.      - The blocks are not written in true depth-first       order, meaning if you just next() the file pointer will       sometimes jump backwards.  For example, block foo* will       be written before block f* because it finished before.       This could possibly hurt performance if the terms dict is       not hot, since OSs anticipate sequential file access.  We       could fix the writer to re-order the blocks as a 2nd       pass.      - Each block encodes the term suffixes packed       sequentially using a separate vInt per term, which is       1) wasteful and 2) slow (must linear scan to find a       particular suffix).  We should instead 1) make       random-access array so we can directly access the Nth       suffix, and 2) bulk-encode this array using bulk int[]       codecs; then at search time we can binary search when       we seek a particular term. */
 end_comment
 
@@ -532,16 +540,7 @@ name|VersionBlockTreeTermsWriter
 extends|extends
 name|FieldsConsumer
 block|{
-DECL|field|DEBUG
-specifier|private
-specifier|static
-name|boolean
-name|DEBUG
-init|=
-name|IDVersionSegmentTermsEnum
-operator|.
-name|DEBUG
-decl_stmt|;
+comment|// private static boolean DEBUG = IDVersionSegmentTermsEnum.DEBUG;
 DECL|field|FST_OUTPUTS
 specifier|static
 specifier|final
@@ -584,7 +583,7 @@ operator|.
 name|getNoOutput
 argument_list|()
 decl_stmt|;
-comment|/** Suggested default value for the {@code    *  minItemsInBlock} parameter to {@link    *  #BlockTreeTermsWriter(SegmentWriteState,PostingsWriterBase,int,int)}. */
+comment|/** Suggested default value for the {@code    *  minItemsInBlock} parameter to {@link    *  #VersionBlockTreeTermsWriter(SegmentWriteState,PostingsWriterBase,int,int)}. */
 DECL|field|DEFAULT_MIN_BLOCK_SIZE
 specifier|public
 specifier|final
@@ -594,7 +593,7 @@ name|DEFAULT_MIN_BLOCK_SIZE
 init|=
 literal|25
 decl_stmt|;
-comment|/** Suggested default value for the {@code    *  maxItemsInBlock} parameter to {@link    *  #BlockTreeTermsWriter(SegmentWriteState,PostingsWriterBase,int,int)}. */
+comment|/** Suggested default value for the {@code    *  maxItemsInBlock} parameter to {@link    *  #VersionBlockTreeTermsWriter(SegmentWriteState,PostingsWriterBase,int,int)}. */
 DECL|field|DEFAULT_MAX_BLOCK_SIZE
 specifier|public
 specifier|final
@@ -2696,91 +2695,7 @@ comment|// block and following floor blocks using the first
 comment|// label in the suffix to assign to floor blocks.
 comment|// TODO: we could store min& max suffix start byte
 comment|// in each block, to make floor blocks authoritative
-if|if
-condition|(
-name|DEBUG
-condition|)
-block|{
-specifier|final
-name|BytesRef
-name|prefix
-init|=
-operator|new
-name|BytesRef
-argument_list|(
-name|prefixLength
-argument_list|)
-decl_stmt|;
-for|for
-control|(
-name|int
-name|m
-init|=
-literal|0
-init|;
-name|m
-operator|<
-name|prefixLength
-condition|;
-name|m
-operator|++
-control|)
-block|{
-name|prefix
-operator|.
-name|bytes
-index|[
-name|m
-index|]
-operator|=
-operator|(
-name|byte
-operator|)
-name|prevTerm
-operator|.
-name|ints
-index|[
-name|m
-index|]
-expr_stmt|;
-block|}
-name|prefix
-operator|.
-name|length
-operator|=
-name|prefixLength
-expr_stmt|;
-comment|//System.out.println("\nWBS count=" + count + " prefix=" + prefix.utf8ToString() + " " + prefix);
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"writeBlocks: prefix="
-operator|+
-name|toString
-argument_list|(
-name|prefix
-argument_list|)
-operator|+
-literal|" "
-operator|+
-name|prefix
-operator|+
-literal|" count="
-operator|+
-name|count
-operator|+
-literal|" pending.size()="
-operator|+
-name|pending
-operator|.
-name|size
-argument_list|()
-argument_list|)
-expr_stmt|;
-block|}
+comment|/*         if (DEBUG) {           final BytesRef prefix = new BytesRef(prefixLength);           for(int m=0;m<prefixLength;m++) {             prefix.bytes[m] = (byte) prevTerm.ints[m];           }           prefix.length = prefixLength;           //System.out.println("\nWBS count=" + count + " prefix=" + prefix.utf8ToString() + " " + prefix);           System.out.println("writeBlocks: prefix=" + toString(prefix) + " " + prefix + " count=" + count + " pending.size()=" + pending.size());         }         */
 comment|//System.out.println("\nwbs count=" + count);
 specifier|final
 name|int
@@ -3780,86 +3695,9 @@ literal|0
 operator|)
 argument_list|)
 expr_stmt|;
-if|if
-condition|(
-name|DEBUG
-condition|)
-block|{
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"  writeBlock "
-operator|+
-operator|(
-name|isFloor
-condition|?
-literal|"(floor) "
-else|:
-literal|""
-operator|)
-operator|+
-literal|"seg="
-operator|+
-name|segment
-operator|+
-literal|" pending.size()="
-operator|+
-name|pending
-operator|.
-name|size
-argument_list|()
-operator|+
-literal|" prefixLength="
-operator|+
-name|prefixLength
-operator|+
-literal|" indexPrefix="
-operator|+
-name|toString
-argument_list|(
-name|prefix
-argument_list|)
-operator|+
-literal|" entCount="
-operator|+
-name|length
-operator|+
-literal|" startFP="
-operator|+
-name|startFP
-operator|+
-literal|" futureTermCount="
-operator|+
-name|futureTermCount
-operator|+
-operator|(
-name|isFloor
-condition|?
-operator|(
-literal|" floorLeadByte="
-operator|+
-name|Integer
-operator|.
-name|toHexString
-argument_list|(
-name|floorLeadByte
-operator|&
-literal|0xff
-argument_list|)
-operator|)
-else|:
-literal|""
-operator|)
-operator|+
-literal|" isLastInFloor="
-operator|+
-name|isLastInFloor
-argument_list|)
-expr_stmt|;
-block|}
+comment|// if (DEBUG) {
+comment|//  System.out.println("  writeBlock " + (isFloor ? "(floor) " : "") + "seg=" + segment + " pending.size()=" + pending.size() + " prefixLength=" + prefixLength + " indexPrefix=" + toString(prefix) + " entCount=" + length + " startFP=" + startFP + " futureTermCount=" + futureTermCount + (isFloor ? (" floorLeadByte=" + Integer.toHexString(floorLeadByte&0xff)) : "") + " isLastInFloor=" + isLastInFloor);
+comment|// }
 comment|// 1st pass: pack term suffix bytes into byte[] blob
 comment|// TODO: cutover to bulk int codec... simple64?
 specifier|final
@@ -4042,69 +3880,12 @@ name|length
 operator|-
 name|prefixLength
 decl_stmt|;
-if|if
-condition|(
-name|DEBUG
-condition|)
-block|{
-name|BytesRef
-name|suffixBytes
-init|=
-operator|new
-name|BytesRef
-argument_list|(
-name|suffix
-argument_list|)
-decl_stmt|;
-name|System
-operator|.
-name|arraycopy
-argument_list|(
-name|term
-operator|.
-name|term
-operator|.
-name|bytes
-argument_list|,
-name|prefixLength
-argument_list|,
-name|suffixBytes
-operator|.
-name|bytes
-argument_list|,
-literal|0
-argument_list|,
-name|suffix
-argument_list|)
-expr_stmt|;
-name|suffixBytes
-operator|.
-name|length
-operator|=
-name|suffix
-expr_stmt|;
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"    "
-operator|+
-operator|(
-name|countx
-operator|++
-operator|)
-operator|+
-literal|": write term suffix="
-operator|+
-name|toString
-argument_list|(
-name|suffixBytes
-argument_list|)
-argument_list|)
-expr_stmt|;
-block|}
+comment|// if (DEBUG) {
+comment|//    BytesRef suffixBytes = new BytesRef(suffix);
+comment|//    System.arraycopy(term.term.bytes, prefixLength, suffixBytes.bytes, 0, suffix);
+comment|//    suffixBytes.length = suffix;
+comment|//    System.out.println("    " + (countx++) + ": write term suffix=" + toString(suffixBytes));
+comment|// }
 comment|// For leaf block we write suffix straight
 name|suffixWriter
 operator|.
@@ -4273,69 +4054,12 @@ name|length
 operator|-
 name|prefixLength
 decl_stmt|;
-if|if
-condition|(
-name|DEBUG
-condition|)
-block|{
-name|BytesRef
-name|suffixBytes
-init|=
-operator|new
-name|BytesRef
-argument_list|(
-name|suffix
-argument_list|)
-decl_stmt|;
-name|System
-operator|.
-name|arraycopy
-argument_list|(
-name|term
-operator|.
-name|term
-operator|.
-name|bytes
-argument_list|,
-name|prefixLength
-argument_list|,
-name|suffixBytes
-operator|.
-name|bytes
-argument_list|,
-literal|0
-argument_list|,
-name|suffix
-argument_list|)
-expr_stmt|;
-name|suffixBytes
-operator|.
-name|length
-operator|=
-name|suffix
-expr_stmt|;
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"    "
-operator|+
-operator|(
-name|countx
-operator|++
-operator|)
-operator|+
-literal|": write term suffix="
-operator|+
-name|toString
-argument_list|(
-name|suffixBytes
-argument_list|)
-argument_list|)
-expr_stmt|;
-block|}
+comment|// if (DEBUG) {
+comment|//    BytesRef suffixBytes = new BytesRef(suffix);
+comment|//    System.arraycopy(term.term.bytes, prefixLength, suffixBytes.bytes, 0, suffix);
+comment|//    suffixBytes.length = suffix;
+comment|//    System.out.println("    " + (countx++) + ": write term suffix=" + toString(suffixBytes));
+comment|// }
 comment|// For non-leaf block we borrow 1 bit to record
 comment|// if entry is term or sub-block
 name|suffixWriter
@@ -4516,91 +4240,12 @@ name|fp
 operator|<
 name|startFP
 assert|;
-if|if
-condition|(
-name|DEBUG
-condition|)
-block|{
-name|BytesRef
-name|suffixBytes
-init|=
-operator|new
-name|BytesRef
-argument_list|(
-name|suffix
-argument_list|)
-decl_stmt|;
-name|System
-operator|.
-name|arraycopy
-argument_list|(
-name|block
-operator|.
-name|prefix
-operator|.
-name|bytes
-argument_list|,
-name|prefixLength
-argument_list|,
-name|suffixBytes
-operator|.
-name|bytes
-argument_list|,
-literal|0
-argument_list|,
-name|suffix
-argument_list|)
-expr_stmt|;
-name|suffixBytes
-operator|.
-name|length
-operator|=
-name|suffix
-expr_stmt|;
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"    "
-operator|+
-operator|(
-name|countx
-operator|++
-operator|)
-operator|+
-literal|": write sub-block suffix="
-operator|+
-name|toString
-argument_list|(
-name|suffixBytes
-argument_list|)
-operator|+
-literal|" subFP="
-operator|+
-name|block
-operator|.
-name|fp
-operator|+
-literal|" subCode="
-operator|+
-operator|(
-name|startFP
-operator|-
-name|block
-operator|.
-name|fp
-operator|)
-operator|+
-literal|" floor="
-operator|+
-name|block
-operator|.
-name|isFloor
-argument_list|)
-expr_stmt|;
-block|}
+comment|// if (DEBUG) {
+comment|//    BytesRef suffixBytes = new BytesRef(suffix);
+comment|//    System.arraycopy(block.prefix.bytes, prefixLength, suffixBytes.bytes, 0, suffix);
+comment|//    suffixBytes.length = suffix;
+comment|//    System.out.println("    " + (countx++) + ": write sub-block suffix=" + toString(suffixBytes) + " subFP=" + block.fp + " subCode=" + (startFP-block.fp) + " floor=" + block.isFloor);
+comment|// }
 name|suffixWriter
 operator|.
 name|writeVLong
@@ -4882,6 +4527,7 @@ argument_list|,
 name|docsSeen
 argument_list|)
 decl_stmt|;
+comment|// TODO: LUCENE-5693: we don't need this check if we fix IW to not send deleted docs to us on flush:
 if|if
 condition|(
 name|state

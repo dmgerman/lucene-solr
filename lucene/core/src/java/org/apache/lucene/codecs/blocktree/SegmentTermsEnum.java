@@ -319,13 +319,7 @@ specifier|private
 name|int
 name|targetBeforeCurrentLength
 decl_stmt|;
-DECL|field|DEBUG
-specifier|static
-name|boolean
-name|DEBUG
-init|=
-literal|false
-decl_stmt|;
+comment|// static boolean DEBUG = false;
 DECL|field|scratchReader
 specifier|private
 specifier|final
@@ -410,27 +404,9 @@ name|fr
 operator|=
 name|fr
 expr_stmt|;
-if|if
-condition|(
-name|DEBUG
-condition|)
-block|{
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"BTTR.init seg="
-operator|+
-name|fr
-operator|.
-name|parent
-operator|.
-name|segment
-argument_list|)
-expr_stmt|;
-block|}
+comment|// if (DEBUG) {
+comment|//   System.out.println("BTTR.init seg=" + fr.parent.segment);
+comment|// }
 name|stack
 operator|=
 operator|new
@@ -1682,64 +1658,10 @@ assert|assert
 name|clearEOF
 argument_list|()
 assert|;
-if|if
-condition|(
-name|DEBUG
-condition|)
-block|{
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"\nBTTR.seekExact seg="
-operator|+
-name|fr
-operator|.
-name|parent
-operator|.
-name|segment
-operator|+
-literal|" target="
-operator|+
-name|fr
-operator|.
-name|fieldInfo
-operator|.
-name|name
-operator|+
-literal|":"
-operator|+
-name|brToString
-argument_list|(
-name|target
-argument_list|)
-operator|+
-literal|" current="
-operator|+
-name|brToString
-argument_list|(
-name|term
-argument_list|)
-operator|+
-literal|" (exists?="
-operator|+
-name|termExists
-operator|+
-literal|") validIndexPrefix="
-operator|+
-name|validIndexPrefix
-argument_list|)
-expr_stmt|;
-name|printSeekState
-argument_list|(
-name|System
-operator|.
-name|out
-argument_list|)
-expr_stmt|;
-block|}
+comment|// if (DEBUG) {
+comment|//   System.out.println("\nBTTR.seekExact seg=" + fr.parent.segment + " target=" + fr.fieldInfo.name + ":" + brToString(target) + " current=" + brToString(term) + " (exists?=" + termExists + ") validIndexPrefix=" + validIndexPrefix);
+comment|//   printSeekState(System.out);
+comment|// }
 name|FST
 operator|.
 name|Arc
@@ -1872,75 +1794,9 @@ operator|&
 literal|0xFF
 operator|)
 expr_stmt|;
-if|if
-condition|(
-name|DEBUG
-condition|)
-block|{
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"    cycle targetUpto="
-operator|+
-name|targetUpto
-operator|+
-literal|" (vs limit="
-operator|+
-name|targetLimit
-operator|+
-literal|") cmp="
-operator|+
-name|cmp
-operator|+
-literal|" (targetLabel="
-operator|+
-call|(
-name|char
-call|)
-argument_list|(
-name|target
-operator|.
-name|bytes
-index|[
-name|target
-operator|.
-name|offset
-operator|+
-name|targetUpto
-index|]
-argument_list|)
-operator|+
-literal|" vs termLabel="
-operator|+
-call|(
-name|char
-call|)
-argument_list|(
-name|term
-operator|.
-name|bytes
-index|[
-name|targetUpto
-index|]
-argument_list|)
-operator|+
-literal|")"
-operator|+
-literal|" arc.output="
-operator|+
-name|arc
-operator|.
-name|output
-operator|+
-literal|" output="
-operator|+
-name|output
-argument_list|)
-expr_stmt|;
-block|}
+comment|// if (DEBUG) {
+comment|//    System.out.println("    cycle targetUpto=" + targetUpto + " (vs limit=" + targetLimit + ") cmp=" + cmp + " (targetLabel=" + (char) (target.bytes[target.offset + targetUpto]) + " vs termLabel=" + (char) (term.bytes[targetUpto]) + ")"   + " arc.output=" + arc.output + " output=" + output);
+comment|// }
 if|if
 condition|(
 name|cmp
@@ -2128,65 +1984,9 @@ operator|&
 literal|0xFF
 operator|)
 expr_stmt|;
-if|if
-condition|(
-name|DEBUG
-condition|)
-block|{
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"    cycle2 targetUpto="
-operator|+
-name|targetUpto
-operator|+
-literal|" (vs limit="
-operator|+
-name|targetLimit
-operator|+
-literal|") cmp="
-operator|+
-name|cmp
-operator|+
-literal|" (targetLabel="
-operator|+
-call|(
-name|char
-call|)
-argument_list|(
-name|target
-operator|.
-name|bytes
-index|[
-name|target
-operator|.
-name|offset
-operator|+
-name|targetUpto
-index|]
-argument_list|)
-operator|+
-literal|" vs termLabel="
-operator|+
-call|(
-name|char
-call|)
-argument_list|(
-name|term
-operator|.
-name|bytes
-index|[
-name|targetUpto
-index|]
-argument_list|)
-operator|+
-literal|")"
-argument_list|)
-expr_stmt|;
-block|}
+comment|// if (DEBUG) {
+comment|//    System.out.println("    cycle2 targetUpto=" + targetUpto + " (vs limit=" + targetLimit + ") cmp=" + cmp + " (targetLabel=" + (char) (target.bytes[target.offset + targetUpto]) + " vs termLabel=" + (char) (term.bytes[targetUpto]) + ")");
+comment|// }
 if|if
 condition|(
 name|cmp
@@ -2797,68 +2597,10 @@ assert|assert
 name|clearEOF
 argument_list|()
 assert|;
-if|if
-condition|(
-name|DEBUG
-condition|)
-block|{
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"\nBTTR.seekCeil seg="
-operator|+
-name|fr
-operator|.
-name|parent
-operator|.
-name|segment
-operator|+
-literal|" target="
-operator|+
-name|fr
-operator|.
-name|fieldInfo
-operator|.
-name|name
-operator|+
-literal|":"
-operator|+
-name|target
-operator|.
-name|utf8ToString
-argument_list|()
-operator|+
-literal|" "
-operator|+
-name|target
-operator|+
-literal|" current="
-operator|+
-name|brToString
-argument_list|(
-name|term
-argument_list|)
-operator|+
-literal|" (exists?="
-operator|+
-name|termExists
-operator|+
-literal|") validIndexPrefix=  "
-operator|+
-name|validIndexPrefix
-argument_list|)
-expr_stmt|;
-name|printSeekState
-argument_list|(
-name|System
-operator|.
-name|out
-argument_list|)
-expr_stmt|;
-block|}
+comment|// if (DEBUG) {
+comment|//   System.out.println("\nBTTR.seekCeil seg=" + fr.parent.segment + " target=" + fr.fieldInfo.name + ":" + target.utf8ToString() + " " + target + " current=" + brToString(term) + " (exists?=" + termExists + ") validIndexPrefix=  " + validIndexPrefix);
+comment|//   printSeekState(System.out);
+comment|// }
 name|FST
 operator|.
 name|Arc
@@ -4495,65 +4237,10 @@ assert|assert
 operator|!
 name|eof
 assert|;
-if|if
-condition|(
-name|DEBUG
-condition|)
-block|{
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"\nBTTR.next seg="
-operator|+
-name|fr
-operator|.
-name|parent
-operator|.
-name|segment
-operator|+
-literal|" term="
-operator|+
-name|brToString
-argument_list|(
-name|term
-argument_list|)
-operator|+
-literal|" termExists?="
-operator|+
-name|termExists
-operator|+
-literal|" field="
-operator|+
-name|fr
-operator|.
-name|fieldInfo
-operator|.
-name|name
-operator|+
-literal|" termBlockOrd="
-operator|+
-name|currentFrame
-operator|.
-name|state
-operator|.
-name|termBlockOrd
-operator|+
-literal|" validIndexPrefix="
-operator|+
-name|validIndexPrefix
-argument_list|)
-expr_stmt|;
-name|printSeekState
-argument_list|(
-name|System
-operator|.
-name|out
-argument_list|)
-expr_stmt|;
-block|}
+comment|// if (DEBUG) {
+comment|//   System.out.println("\nBTTR.next seg=" + fr.parent.segment + " term=" + brToString(term) + " termExists?=" + termExists + " field=" + fr.fieldInfo.name + " termBlockOrd=" + currentFrame.state.termBlockOrd + " validIndexPrefix=" + validIndexPrefix);
+comment|//   printSeekState(System.out);
+comment|// }
 if|if
 condition|(
 name|currentFrame

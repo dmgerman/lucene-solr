@@ -2569,17 +2569,7 @@ parameter_list|)
 throws|throws
 name|IOException
 block|{
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"writeBlocks count="
-operator|+
-name|count
-argument_list|)
-expr_stmt|;
+comment|// System.out.println("writeBlocks count=" + count);
 if|if
 condition|(
 name|count
@@ -2633,15 +2623,7 @@ argument_list|(
 name|nonFloorBlock
 argument_list|)
 expr_stmt|;
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"  1 block"
-argument_list|)
-expr_stmt|;
+comment|// System.out.println("  1 block");
 block|}
 else|else
 block|{
@@ -3261,17 +3243,7 @@ name|curStart
 operator|-=
 name|pendingCount
 expr_stmt|;
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"  floor="
-operator|+
-name|pendingCount
-argument_list|)
-expr_stmt|;
+comment|// System.out.println("  floor=" + pendingCount);
 comment|//System.out.println("    = " + pendingCount);
 name|pendingCount
 operator|=

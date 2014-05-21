@@ -170,7 +170,6 @@ end_import
 
 begin_class
 DECL|class|IDVersionPostingsWriter
-specifier|public
 specifier|final
 class|class
 name|IDVersionPostingsWriter
@@ -255,7 +254,7 @@ annotation|@
 name|Override
 DECL|method|newTermState
 specifier|public
-name|IDVersionTermState
+name|BlockTermState
 name|newTermState
 parameter_list|()
 block|{
@@ -368,6 +367,7 @@ parameter_list|)
 throws|throws
 name|IOException
 block|{
+comment|// TODO: LUCENE-5693: we don't need this check if we fix IW to not send deleted docs to us on flush:
 if|if
 condition|(
 name|state
