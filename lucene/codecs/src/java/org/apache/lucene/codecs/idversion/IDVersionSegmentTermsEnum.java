@@ -5291,19 +5291,8 @@ assert|assert
 operator|!
 name|eof
 assert|;
-comment|//if (DEBUG) System.out.println("BTR.docFreq");
-name|currentFrame
-operator|.
-name|decodeMetaData
-argument_list|()
-expr_stmt|;
-comment|//if (DEBUG) System.out.println("  return " + currentFrame.state.docFreq);
 return|return
-name|currentFrame
-operator|.
-name|state
-operator|.
-name|docFreq
+literal|1
 return|;
 block|}
 annotation|@
@@ -5320,17 +5309,8 @@ assert|assert
 operator|!
 name|eof
 assert|;
-name|currentFrame
-operator|.
-name|decodeMetaData
-argument_list|()
-expr_stmt|;
 return|return
-name|currentFrame
-operator|.
-name|state
-operator|.
-name|totalTermFreq
+literal|1
 return|;
 block|}
 annotation|@

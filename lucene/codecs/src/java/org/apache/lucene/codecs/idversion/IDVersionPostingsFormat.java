@@ -274,7 +274,9 @@ name|postingsWriter
 init|=
 operator|new
 name|IDVersionPostingsWriter
-argument_list|()
+argument_list|(
+name|state
+argument_list|)
 decl_stmt|;
 name|boolean
 name|success
