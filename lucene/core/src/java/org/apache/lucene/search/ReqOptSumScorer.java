@@ -59,12 +59,12 @@ name|Scorer
 block|{
 comment|/** The scorers passed from the constructor.    * These are set to null as soon as their next() or skipTo() returns false.    */
 DECL|field|reqScorer
-specifier|private
+specifier|protected
 name|Scorer
 name|reqScorer
 decl_stmt|;
 DECL|field|optScorer
-specifier|private
+specifier|protected
 name|Scorer
 name|optScorer
 decl_stmt|;

@@ -348,7 +348,7 @@ name|ChildScorer
 argument_list|(
 name|reqScorer
 argument_list|,
-literal|"FILTERED"
+literal|"MUST"
 argument_list|)
 argument_list|)
 return|;
