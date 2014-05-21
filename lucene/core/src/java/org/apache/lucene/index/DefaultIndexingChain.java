@@ -535,6 +535,7 @@ operator|.
 name|getDocCount
 argument_list|()
 decl_stmt|;
+comment|// TODO: we could set liveDocs earlier and then fix DVs to also not write deleted docs:
 name|writeNorms
 argument_list|(
 name|state

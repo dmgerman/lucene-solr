@@ -9027,43 +9027,30 @@ argument_list|,
 name|verbose
 argument_list|)
 expr_stmt|;
-comment|// Only agg stats if the doc is live:
-specifier|final
-name|boolean
-name|doStats
-init|=
+if|if
+condition|(
 name|liveDocs
-operator|==
+operator|!=
 literal|null
-operator|||
+operator|&&
 name|liveDocs
 operator|.
 name|get
 argument_list|(
 name|j
 argument_list|)
-decl_stmt|;
-if|if
-condition|(
-name|doStats
 operator|==
 literal|false
 condition|)
 block|{
-comment|// nocommit is it OK to stop verifying deleted docs?
+comment|// Only check live docs
 continue|continue;
 block|}
-if|if
-condition|(
-name|doStats
-condition|)
-block|{
 name|status
 operator|.
 name|docCount
 operator|++
 expr_stmt|;
-block|}
 for|for
 control|(
 name|String
@@ -9072,17 +9059,11 @@ range|:
 name|tfv
 control|)
 block|{
-if|if
-condition|(
-name|doStats
-condition|)
-block|{
 name|status
 operator|.
 name|totVectors
 operator|++
 expr_stmt|;
-block|}
 comment|// Make sure FieldInfo thinks this field is vector'd:
 specifier|final
 name|FieldInfo

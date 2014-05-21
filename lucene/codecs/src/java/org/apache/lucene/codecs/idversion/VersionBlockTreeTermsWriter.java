@@ -513,11 +513,7 @@ comment|/*   TODO:        - Currently there is a one-to-one mapping of indexed  
 end_comment
 
 begin_comment
-comment|/**  * Block-based terms index and dictionary writer.  *<p>  * Writes terms dict and index, block-encoding (column  * stride) each term's metadata for each set of terms  * between two index terms.  *<p>  * Files:  *<ul>  *<li><tt>.tim</tt>:<a href="#Termdictionary">Term Dictionary</a></li>  *<li><tt>.tip</tt>:<a href="#Termindex">Term Index</a></li>  *</ul>  *<p>  *<a name="Termdictionary" id="Termdictionary"></a>  *<h3>Term Dictionary</h3>  *  *<p>The .tim file contains the list of terms in each  * field along with per-term statistics (such as docfreq)  * and per-term metadata (typically pointers to the postings list  * for that term in the inverted index).  *</p>  *  *<p>The .tim is arranged in blocks: with blocks containing  * a variable number of entries (by default 25-48), where  * each entry is either a term or a reference to a  * sub-block.</p>  *  *<p>NOTE: The term dictionary can plug into different postings implementations:  * the postings writer/reader are actually responsible for encoding   * and decoding the Postings Metadata and Term Metadata sections.</p>  *  *<ul>  *<li>TermsDict (.tim) --&gt; Header,<i>PostingsHeader</i>, NodeBlock<sup>NumBlocks</sup>,  *                               FieldSummary, DirOffset, Footer</li>  *<li>NodeBlock --&gt; (OuterNode | InnerNode)</li>  *<li>OuterNode --&gt; EntryCount, SuffixLength, Byte<sup>SuffixLength</sup>, StatsLength,&lt; TermStats&gt;<sup>EntryCount</sup>, MetaLength,&lt;<i>TermMetadata</i>&gt;<sup>EntryCount</sup></li>  *<li>InnerNode --&gt; EntryCount, SuffixLength[,Sub?], Byte<sup>SuffixLength</sup>, StatsLength,&lt; TermStats ?&gt;<sup>EntryCount</sup>, MetaLength,&lt;<i>TermMetadata ?</i>&gt;<sup>EntryCount</sup></li>  *<li>TermStats --&gt; DocFreq, TotalTermFreq</li>  *<li>FieldSummary --&gt; NumFields,&lt;FieldNumber, NumTerms, RootCodeLength, Byte<sup>RootCodeLength</sup>,  *                            SumTotalTermFreq?, SumDocFreq, DocCount, LongsSize, MinTerm, MaxTerm&gt;<sup>NumFields</sup></li>  *<li>Header --&gt; {@link CodecUtil#writeHeader CodecHeader}</li>  *<li>DirOffset --&gt; {@link DataOutput#writeLong Uint64}</li>  *<li>MinTerm,MaxTerm --&gt; {@link DataOutput#writeVInt VInt} length followed by the byte[]</li>  *<li>EntryCount,SuffixLength,StatsLength,DocFreq,MetaLength,NumFields,  *        FieldNumber,RootCodeLength,DocCount,LongsSize --&gt; {@link DataOutput#writeVInt VInt}</li>  *<li>TotalTermFreq,NumTerms,SumTotalTermFreq,SumDocFreq --&gt;   *        {@link DataOutput#writeVLong VLong}</li>  *<li>Footer --&gt; {@link CodecUtil#writeFooter CodecFooter}</li>  *</ul>  *<p>Notes:</p>  *<ul>  *<li>Header is a {@link CodecUtil#writeHeader CodecHeader} storing the version information  *        for the BlockTree implementation.</li>  *<li>DirOffset is a pointer to the FieldSummary section.</li>  *<li>DocFreq is the count of documents which contain the term.</li>  *<li>TotalTermFreq is the total number of occurrences of the term. This is encoded  *        as the difference between the total number of occurrences and the DocFreq.</li>  *<li>FieldNumber is the fields number from {@link FieldInfos}. (.fnm)</li>  *<li>NumTerms is the number of unique terms for the field.</li>  *<li>RootCode points to the root block for the field.</li>  *<li>SumDocFreq is the total number of postings, the number of term-document pairs across  *        the entire field.</li>  *<li>DocCount is the number of documents that have at least one posting for this field.</li>  *<li>LongsSize records how many long values the postings writer/reader record per term  *        (e.g., to hold freq/prox/doc file offsets).  *<li>MinTerm, MaxTerm are the lowest and highest term in this field.</li>  *<li>PostingsHeader and TermMetadata are plugged into by the specific postings implementation:  *        these contain arbitrary per-file data (such as parameters or versioning information)   *        and per-term data (such as pointers to inverted files).</li>  *<li>For inner nodes of the tree, every entry will steal one bit to mark whether it points  *        to child nodes(sub-block). If so, the corresponding TermStats and TermMetaData are omitted</li>  *</ul>  *<a name="Termindex" id="Termindex"></a>  *<h3>Term Index</h3>  *<p>The .tip file contains an index into the term dictionary, so that it can be   * accessed randomly.  The index is also used to determine  * when a given term cannot exist on disk (in the .tim file), saving a disk seek.</p>  *<ul>  *<li>TermsIndex (.tip) --&gt; Header, FSTIndex<sup>NumFields</sup>  *&lt;IndexStartFP&gt;<sup>NumFields</sup>, DirOffset, Footer</li>  *<li>Header --&gt; {@link CodecUtil#writeHeader CodecHeader}</li>  *<li>DirOffset --&gt; {@link DataOutput#writeLong Uint64}</li>  *<li>IndexStartFP --&gt; {@link DataOutput#writeVLong VLong}</li>  *<!-- TODO: better describe FST output here -->  *<li>FSTIndex --&gt; {@link FST FST&lt;byte[]&gt;}</li>  *<li>Footer --&gt; {@link CodecUtil#writeFooter CodecFooter}</li>  *</ul>  *<p>Notes:</p>  *<ul>  *<li>The .tip file contains a separate FST for each  *       field.  The FST maps a term prefix to the on-disk  *       block that holds all terms starting with that  *       prefix.  Each field's IndexStartFP points to its  *       FST.</li>  *<li>DirOffset is a pointer to the start of the IndexStartFPs  *       for all fields</li>  *<li>It's possible that an on-disk block would contain  *       too many terms (more than the allowed maximum  *       (default: 48)).  When this happens, the block is  *       sub-divided into new blocks (called "floor  *       blocks"), and then the output in the FST for the  *       block's prefix encodes the leading byte of each  *       sub-block, and its file pointer.  *</ul>  *  * @see BlockTreeTermsReader  * @lucene.experimental  */
-end_comment
-
-begin_comment
-comment|// nocommit fix jdocs
+comment|/**  * This is just like {@link BlockTreeTermsWriter}, except it also stores a version per term, and adds a method to its TermsEnum  * implementation to seekExact only if the version is>= the specified version.  The version is added to the terms index to avoid seeking if  * no term in the block has a high enough version.  The term blocks file is .tiv and the terms index extension is .tipv.  *  * @lucene.experimental  */
 end_comment
 
 begin_class
@@ -528,6 +524,16 @@ name|VersionBlockTreeTermsWriter
 extends|extends
 name|FieldsConsumer
 block|{
+DECL|field|DEBUG
+specifier|private
+specifier|static
+name|boolean
+name|DEBUG
+init|=
+name|IDVersionSegmentTermsEnum
+operator|.
+name|DEBUG
+decl_stmt|;
 DECL|field|FST_OUTPUTS
 specifier|static
 specifier|final
@@ -651,47 +657,6 @@ name|VERSION_START
 init|=
 literal|0
 decl_stmt|;
-comment|// nocommit nuke all these old versions
-comment|/** Append-only */
-DECL|field|VERSION_APPEND_ONLY
-specifier|public
-specifier|static
-specifier|final
-name|int
-name|VERSION_APPEND_ONLY
-init|=
-literal|1
-decl_stmt|;
-comment|/** Meta data as array */
-DECL|field|VERSION_META_ARRAY
-specifier|public
-specifier|static
-specifier|final
-name|int
-name|VERSION_META_ARRAY
-init|=
-literal|2
-decl_stmt|;
-comment|/** checksums */
-DECL|field|VERSION_CHECKSUM
-specifier|public
-specifier|static
-specifier|final
-name|int
-name|VERSION_CHECKSUM
-init|=
-literal|3
-decl_stmt|;
-comment|/** min/max term */
-DECL|field|VERSION_MIN_MAX_TERMS
-specifier|public
-specifier|static
-specifier|final
-name|int
-name|VERSION_MIN_MAX_TERMS
-init|=
-literal|4
-decl_stmt|;
 comment|/** Current terms format. */
 DECL|field|VERSION_CURRENT
 specifier|public
@@ -700,7 +665,7 @@ specifier|final
 name|int
 name|VERSION_CURRENT
 init|=
-name|VERSION_MIN_MAX_TERMS
+name|VERSION_START
 decl_stmt|;
 comment|/** Extension of terms index file */
 DECL|field|TERMS_INDEX_EXTENSION
@@ -709,7 +674,7 @@ specifier|final
 name|String
 name|TERMS_INDEX_EXTENSION
 init|=
-literal|"tip"
+literal|"tipv"
 decl_stmt|;
 DECL|field|TERMS_INDEX_CODEC_NAME
 specifier|final
@@ -989,21 +954,6 @@ parameter_list|)
 throws|throws
 name|IOException
 block|{
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"VBTTW minItemsInBlock="
-operator|+
-name|minItemsInBlock
-operator|+
-literal|" maxItemsInBlock="
-operator|+
-name|maxItemsInBlock
-argument_list|)
-expr_stmt|;
 if|if
 condition|(
 name|minItemsInBlock
@@ -2764,13 +2714,8 @@ parameter_list|)
 throws|throws
 name|IOException
 block|{
-comment|// nocommit why can't we do floor blocks for root frame?
 if|if
 condition|(
-name|prefixLength
-operator|==
-literal|0
-operator|||
 name|count
 operator|<=
 name|maxItemsInBlock
@@ -2832,7 +2777,11 @@ comment|// block and following floor blocks using the first
 comment|// label in the suffix to assign to floor blocks.
 comment|// TODO: we could store min& max suffix start byte
 comment|// in each block, to make floor blocks authoritative
-comment|//if (DEBUG) {
+if|if
+condition|(
+name|DEBUG
+condition|)
+block|{
 specifier|final
 name|BytesRef
 name|prefix
@@ -2912,7 +2861,7 @@ name|size
 argument_list|()
 argument_list|)
 expr_stmt|;
-comment|//}
+block|}
 comment|//System.out.println("\nwbs count=" + count);
 specifier|final
 name|int
@@ -3912,7 +3861,11 @@ literal|0
 operator|)
 argument_list|)
 expr_stmt|;
-comment|// if (DEBUG) {
+if|if
+condition|(
+name|DEBUG
+condition|)
+block|{
 name|System
 operator|.
 name|out
@@ -3987,7 +3940,7 @@ operator|+
 name|isLastInFloor
 argument_list|)
 expr_stmt|;
-comment|// }
+block|}
 comment|// 1st pass: pack term suffix bytes into byte[] blob
 comment|// TODO: cutover to bulk int codec... simple64?
 specifier|final
@@ -4170,7 +4123,11 @@ name|length
 operator|-
 name|prefixLength
 decl_stmt|;
-comment|// if (DEBUG) {
+if|if
+condition|(
+name|DEBUG
+condition|)
+block|{
 name|BytesRef
 name|suffixBytes
 init|=
@@ -4228,7 +4185,7 @@ name|suffixBytes
 argument_list|)
 argument_list|)
 expr_stmt|;
-comment|// }
+block|}
 comment|// For leaf block we write suffix straight
 name|suffixWriter
 operator|.
@@ -4452,7 +4409,11 @@ name|length
 operator|-
 name|prefixLength
 decl_stmt|;
-comment|// if (DEBUG) {
+if|if
+condition|(
+name|DEBUG
+condition|)
+block|{
 name|BytesRef
 name|suffixBytes
 init|=
@@ -4510,7 +4471,7 @@ name|suffixBytes
 argument_list|)
 argument_list|)
 expr_stmt|;
-comment|// }
+block|}
 comment|// For non-leaf block we borrow 1 bit to record
 comment|// if entry is term or sub-block
 name|suffixWriter
@@ -4736,7 +4697,11 @@ name|fp
 operator|<
 name|startFP
 assert|;
-comment|// if (DEBUG) {
+if|if
+condition|(
+name|DEBUG
+condition|)
+block|{
 name|BytesRef
 name|suffixBytes
 init|=
@@ -4816,7 +4781,7 @@ operator|.
 name|isFloor
 argument_list|)
 expr_stmt|;
-comment|// }
+block|}
 name|suffixWriter
 operator|.
 name|writeVLong

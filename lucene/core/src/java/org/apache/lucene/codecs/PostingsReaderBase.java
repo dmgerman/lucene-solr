@@ -125,7 +125,7 @@ comment|/** The core terms dictionaries (BlockTermsReader,  *  BlockTreeTermsRea
 end_comment
 
 begin_comment
-comment|// nocommit mv under blocktree?  but ... it's used by others (e.g. block terms)
+comment|// TODO: maybe move under blocktree?  but it's used by other terms dicts (e.g. Block)
 end_comment
 
 begin_comment

@@ -147,7 +147,7 @@ import|;
 end_import
 
 begin_comment
-comment|// nocommit can we take a BytesRef token instead?
+comment|// TODO: can we take a BytesRef token instead?
 end_comment
 
 begin_comment

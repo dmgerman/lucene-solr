@@ -940,8 +940,6 @@ operator|=
 operator|-
 literal|1
 expr_stmt|;
-comment|// nocommit move to BT too?
-comment|//state.termBlockOrd = 0;
 name|hasTerms
 operator|=
 name|hasTermsOrig
@@ -1677,34 +1675,7 @@ parameter_list|()
 throws|throws
 name|IOException
 block|{
-comment|//if (DEBUG) System.out.println("\nBTTR.decodeMetadata seg=" + segment + " mdUpto=" + metaDataUpto + " vs termBlockOrd=" + state.termBlockOrd);
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"\nBTTR.decodeMetadata seg="
-operator|+
-name|ste
-operator|.
-name|fr
-operator|.
-name|parent
-operator|.
-name|segment
-operator|+
-literal|" mdUpto="
-operator|+
-name|metaDataUpto
-operator|+
-literal|" vs termBlockOrd="
-operator|+
-name|state
-operator|.
-name|termBlockOrd
-argument_list|)
-expr_stmt|;
+comment|//if (DEBUG) System.out.println("\nBTTR.decodeMetadata seg=" + ste.fr.parent.segment + " mdUpto=" + metaDataUpto + " vs termBlockOrd=" + state.termBlockOrd);
 assert|assert
 name|nextEnt
 operator|>=
