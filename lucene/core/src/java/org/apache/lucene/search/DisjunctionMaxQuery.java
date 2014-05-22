@@ -568,9 +568,30 @@ return|return
 literal|null
 return|;
 block|}
-name|DisjunctionMaxScorer
-name|result
-init|=
+elseif|else
+if|if
+condition|(
+name|scorers
+operator|.
+name|size
+argument_list|()
+operator|==
+literal|1
+condition|)
+block|{
+comment|// only one sub-scorer in this segment
+return|return
+name|scorers
+operator|.
+name|get
+argument_list|(
+literal|0
+argument_list|)
+return|;
+block|}
+else|else
+block|{
+return|return
 operator|new
 name|DisjunctionMaxScorer
 argument_list|(
@@ -592,10 +613,8 @@ argument_list|()
 index|]
 argument_list|)
 argument_list|)
-decl_stmt|;
-return|return
-name|result
 return|;
+block|}
 block|}
 comment|/** Explain the score we computed for doc */
 annotation|@

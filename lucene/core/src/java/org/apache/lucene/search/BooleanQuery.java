@@ -2260,7 +2260,6 @@ argument_list|,
 literal|1F
 argument_list|)
 expr_stmt|;
-comment|// TODO: don't score here.
 return|return
 operator|new
 name|ReqExclScorer
