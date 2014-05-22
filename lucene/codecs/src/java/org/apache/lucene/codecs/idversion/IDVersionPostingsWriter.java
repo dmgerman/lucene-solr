@@ -106,20 +106,6 @@ name|apache
 operator|.
 name|lucene
 operator|.
-name|index
-operator|.
-name|TermState
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
 name|store
 operator|.
 name|DataOutput
@@ -137,20 +123,6 @@ operator|.
 name|store
 operator|.
 name|IndexOutput
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|util
-operator|.
-name|Bits
 import|;
 end_import
 
@@ -326,6 +298,24 @@ operator|new
 name|IllegalArgumentException
 argument_list|(
 literal|"field must be index using IndexOptions.DOCS_AND_FREQS_AND_POSITIONS"
+argument_list|)
+throw|;
+block|}
+comment|// LUCENE-5693: because CheckIndex cross-checks term vectors with postings even for deleted docs, and because our PF only indexes the
+comment|// non-deleted documents on flush, CheckIndex will see this as corruption:
+if|if
+condition|(
+name|fieldInfo
+operator|.
+name|hasVectors
+argument_list|()
+condition|)
+block|{
+throw|throw
+operator|new
+name|IllegalArgumentException
+argument_list|(
+literal|"field cannot index term vectors: CheckIndex will report this as index corruption"
 argument_list|)
 throw|;
 block|}

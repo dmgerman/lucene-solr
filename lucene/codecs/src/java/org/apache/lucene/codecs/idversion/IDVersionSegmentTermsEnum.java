@@ -220,39 +220,7 @@ name|util
 operator|.
 name|fst
 operator|.
-name|ByteSequenceOutputs
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|util
-operator|.
-name|fst
-operator|.
 name|FST
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|util
-operator|.
-name|fst
-operator|.
-name|Outputs
 import|;
 end_import
 
@@ -286,28 +254,12 @@ name|util
 operator|.
 name|fst
 operator|.
-name|PairOutputs
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|util
-operator|.
-name|fst
-operator|.
 name|Util
 import|;
 end_import
 
 begin_comment
-comment|/** Iterates through terms in this field */
+comment|/** Iterates through terms in this field; this class is public so users  *  can cast it to call {@link #seekExact(BytesRef, long)} for  *  optimistic-concurreny, and also {@link #getVersion} to get the  *  version of the currently seek'd term. */
 end_comment
 
 begin_class
@@ -1279,7 +1231,7 @@ argument_list|()
 return|;
 block|}
 block|}
-comment|/** Only valid if we are positioned. */
+comment|/** Get the version of the currently seek'd term; only valid if we are    *  positioned. */
 DECL|method|getVersion
 specifier|public
 name|long
@@ -1299,7 +1251,7 @@ operator|.
 name|idVersion
 return|;
 block|}
-comment|/** Returns false if the term does not exist, or it exists but its version is too old (< minIDVersion). */
+comment|/** Optimized version of {@link #seekExact(BytesRef)} that can    *  sometimes fail-fast if the version indexed with the requested ID    *  is less than the specified minIDVersion.  Applications that index    *  a monotonically increasing global version with each document can    *  use this for fast optimistic concurrency. */
 DECL|method|seekExact
 specifier|public
 name|boolean

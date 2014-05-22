@@ -306,7 +306,6 @@ name|ts
 return|;
 block|}
 DECL|class|SingleTokenWithPayloadTokenStream
-specifier|private
 specifier|static
 specifier|final
 class|class
