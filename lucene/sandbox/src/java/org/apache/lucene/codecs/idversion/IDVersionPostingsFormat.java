@@ -196,6 +196,27 @@ name|IDVersionPostingsFormat
 extends|extends
 name|PostingsFormat
 block|{
+comment|/** version must be>= this. */
+DECL|field|MIN_VERSION
+specifier|public
+specifier|static
+specifier|final
+name|long
+name|MIN_VERSION
+init|=
+literal|0
+decl_stmt|;
+comment|// TODO: we could delta encode instead, and keep the last bit:
+comment|/** version must be<= this, because we encode with ZigZag. */
+DECL|field|MAX_VERSION
+specifier|public
+specifier|static
+specifier|final
+name|long
+name|MAX_VERSION
+init|=
+literal|0x3fffffffffffffffL
+decl_stmt|;
 DECL|field|minTermsInBlock
 specifier|private
 specifier|final
@@ -577,6 +598,37 @@ name|BytesRef
 name|bytes
 parameter_list|)
 block|{
+if|if
+condition|(
+name|v
+operator|>
+name|MAX_VERSION
+operator|||
+name|v
+operator|<
+name|MIN_VERSION
+condition|)
+block|{
+throw|throw
+operator|new
+name|IllegalArgumentException
+argument_list|(
+literal|"version must be>= MIN_VERSION="
+operator|+
+name|MIN_VERSION
+operator|+
+literal|" and<= MAX_VERSION="
+operator|+
+name|MAX_VERSION
+operator|+
+literal|" (got: "
+operator|+
+name|v
+operator|+
+literal|")"
+argument_list|)
+throw|;
+block|}
 name|bytes
 operator|.
 name|offset
