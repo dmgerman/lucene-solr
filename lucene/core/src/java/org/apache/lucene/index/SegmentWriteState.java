@@ -353,6 +353,12 @@ name|state
 operator|.
 name|delCountOnFlush
 expr_stmt|;
+name|liveDocs
+operator|=
+name|state
+operator|.
+name|liveDocs
+expr_stmt|;
 block|}
 block|}
 end_class

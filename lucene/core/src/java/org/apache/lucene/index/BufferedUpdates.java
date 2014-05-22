@@ -383,6 +383,7 @@ operator|new
 name|AtomicInteger
 argument_list|()
 decl_stmt|;
+comment|// TODO: rename thes three: put "deleted" prefix in front:
 DECL|field|terms
 specifier|final
 name|Map

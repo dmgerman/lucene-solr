@@ -1,6 +1,6 @@
 begin_unit|revision:0.9.5;language:Java;cregit-version:0.0.1
 begin_package
-DECL|package|org.apache.lucene.codecs
+DECL|package|org.apache.lucene.codecs.blocktree
 package|package
 name|org
 operator|.
@@ -9,6 +9,8 @@ operator|.
 name|lucene
 operator|.
 name|codecs
+operator|.
+name|blocktree
 package|;
 end_package
 
@@ -43,6 +45,62 @@ operator|.
 name|util
 operator|.
 name|List
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|codecs
+operator|.
+name|BlockTermState
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|codecs
+operator|.
+name|CodecUtil
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|codecs
+operator|.
+name|FieldsConsumer
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|codecs
+operator|.
+name|PostingsWriterBase
 import|;
 end_import
 
@@ -364,6 +422,22 @@ name|util
 operator|.
 name|fst
 operator|.
+name|Outputs
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|util
+operator|.
+name|fst
+operator|.
 name|Util
 import|;
 end_import
@@ -395,11 +469,37 @@ end_comment
 begin_class
 DECL|class|BlockTreeTermsWriter
 specifier|public
+specifier|final
 class|class
 name|BlockTreeTermsWriter
 extends|extends
 name|FieldsConsumer
 block|{
+DECL|field|FST_OUTPUTS
+specifier|static
+specifier|final
+name|Outputs
+argument_list|<
+name|BytesRef
+argument_list|>
+name|FST_OUTPUTS
+init|=
+name|ByteSequenceOutputs
+operator|.
+name|getSingleton
+argument_list|()
+decl_stmt|;
+DECL|field|NO_OUTPUT
+specifier|static
+specifier|final
+name|BytesRef
+name|NO_OUTPUT
+init|=
+name|FST_OUTPUTS
+operator|.
+name|getNoOutput
+argument_list|()
+decl_stmt|;
 comment|/** Suggested default value for the {@code    *  minItemsInBlock} parameter to {@link    *  #BlockTreeTermsWriter(SegmentWriteState,PostingsWriterBase,int,int)}. */
 DECL|field|DEFAULT_MIN_BLOCK_SIZE
 specifier|public
@@ -2449,8 +2549,7 @@ block|}
 block|}
 block|}
 comment|// Write the top count entries on the pending stack as
-comment|// one or more blocks.  Returns how many blocks were
-comment|// written.  If the entry count is<= maxItemsPerBlock
+comment|// one or more blocks.  If the entry count is<= maxItemsPerBlock
 comment|// we just write a single block; else we break into
 comment|// primary (initial) block and then one or more
 comment|// following floor blocks:
@@ -2470,12 +2569,9 @@ parameter_list|)
 throws|throws
 name|IOException
 block|{
+comment|// System.out.println("writeBlocks count=" + count);
 if|if
 condition|(
-name|prefixLength
-operator|==
-literal|0
-operator|||
 name|count
 operator|<=
 name|maxItemsInBlock
@@ -2527,6 +2623,7 @@ argument_list|(
 name|nonFloorBlock
 argument_list|)
 expr_stmt|;
+comment|// System.out.println("  1 block");
 block|}
 else|else
 block|{
@@ -3146,6 +3243,7 @@ name|curStart
 operator|-=
 name|pendingCount
 expr_stmt|;
+comment|// System.out.println("  floor=" + pendingCount);
 comment|//System.out.println("    = " + pendingCount);
 name|pendingCount
 operator|=
