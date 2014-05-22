@@ -9352,6 +9352,49 @@ name|KeeperException
 throws|,
 name|InterruptedException
 block|{
+if|if
+condition|(
+name|collection
+operator|==
+literal|null
+condition|)
+throw|throw
+operator|new
+name|IllegalArgumentException
+argument_list|(
+literal|"collection parameter cannot be null for starting leader-initiated recovery for replica: "
+operator|+
+name|replicaUrl
+argument_list|)
+throw|;
+if|if
+condition|(
+name|shardId
+operator|==
+literal|null
+condition|)
+throw|throw
+operator|new
+name|IllegalArgumentException
+argument_list|(
+literal|"shard parameter cannot be null for starting leader-initiated recovery for replica: "
+operator|+
+name|replicaUrl
+argument_list|)
+throw|;
+if|if
+condition|(
+name|replicaUrl
+operator|==
+literal|null
+condition|)
+throw|throw
+operator|new
+name|IllegalArgumentException
+argument_list|(
+literal|"replicaUrl parameter cannot be null for starting leader-initiated recovery"
+argument_list|)
+throw|;
 comment|// First, determine if this replica is already in recovery handling
 comment|// which is needed because there can be many concurrent errors flooding in
 comment|// about the same replica having trouble and we only need to send the "needs"

@@ -88,6 +88,13 @@ name|void
 name|cancelAll
 parameter_list|()
 function_decl|;
+DECL|method|getShardHandlerFactory
+specifier|public
+specifier|abstract
+name|ShardHandlerFactory
+name|getShardHandlerFactory
+parameter_list|()
+function_decl|;
 block|}
 end_class
 

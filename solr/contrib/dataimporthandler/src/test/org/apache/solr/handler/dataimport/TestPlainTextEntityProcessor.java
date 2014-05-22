@@ -20,11 +20,21 @@ end_package
 
 begin_import
 import|import
-name|org
+name|java
 operator|.
-name|junit
+name|io
 operator|.
-name|Test
+name|File
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
+name|io
+operator|.
+name|IOException
 import|;
 end_import
 
@@ -48,6 +58,16 @@ name|Properties
 import|;
 end_import
 
+begin_import
+import|import
+name|org
+operator|.
+name|junit
+operator|.
+name|Test
+import|;
+end_import
+
 begin_comment
 comment|/**  * Test for PlainTextEntityProcessor  *  *  * @see org.apache.solr.handler.dataimport.PlainTextEntityProcessor  * @since solr 1.4  */
 end_comment
@@ -67,6 +87,8 @@ specifier|public
 name|void
 name|testSimple
 parameter_list|()
+throws|throws
+name|IOException
 block|{
 name|DataImporter
 name|di
@@ -80,6 +102,11 @@ operator|.
 name|loadAndInit
 argument_list|(
 name|DATA_CONFIG
+argument_list|)
+expr_stmt|;
+name|redirectTempProperties
+argument_list|(
+name|di
 argument_list|)
 expr_stmt|;
 name|TestDocBuilder

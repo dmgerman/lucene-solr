@@ -327,7 +327,7 @@ argument_list|)
 expr_stmt|;
 name|assumeTrue
 argument_list|(
-literal|"dataimport.proprties can't be set read only"
+literal|"dataimport.properties can't be set read only"
 argument_list|,
 name|f
 operator|.
@@ -337,7 +337,7 @@ argument_list|)
 expr_stmt|;
 name|assumeFalse
 argument_list|(
-literal|"dataimport.proprties is still writable even though "
+literal|"dataimport.properties is still writable even though "
 operator|+
 literal|"marked readonly - test running as superuser?"
 argument_list|,

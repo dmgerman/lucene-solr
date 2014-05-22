@@ -6371,6 +6371,17 @@ operator|.
 name|getName
 argument_list|()
 operator|+
+literal|", thisCore="
+operator|+
+name|core
+operator|.
+name|getName
+argument_list|()
+operator|+
+literal|", leaderDoesNotNeedRecovery="
+operator|+
+name|leaderDoesNotNeedRecovery
+operator|+
 literal|", isLeader? "
 operator|+
 name|core
@@ -6387,6 +6398,10 @@ operator|+
 literal|", live="
 operator|+
 name|live
+operator|+
+literal|", checkLive="
+operator|+
+name|checkLive
 operator|+
 literal|", currentState="
 operator|+
@@ -8223,6 +8238,14 @@ name|boolean
 name|limit
 parameter_list|)
 block|{
+synchronized|synchronized
+init|(
+name|getMap
+argument_list|(
+name|map
+argument_list|)
+init|)
+block|{
 if|if
 condition|(
 name|limit
@@ -8276,6 +8299,7 @@ argument_list|,
 name|o
 argument_list|)
 expr_stmt|;
+block|}
 block|}
 DECL|method|addTask
 specifier|protected

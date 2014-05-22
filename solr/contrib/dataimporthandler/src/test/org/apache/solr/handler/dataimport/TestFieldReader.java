@@ -92,6 +92,11 @@ argument_list|(
 name|config
 argument_list|)
 expr_stmt|;
+name|redirectTempProperties
+argument_list|(
+name|di
+argument_list|)
+expr_stmt|;
 name|TestDocBuilder
 operator|.
 name|SolrWriterImpl

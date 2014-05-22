@@ -168,6 +168,24 @@ parameter_list|)
 throws|throws
 name|IOException
 function_decl|;
+comment|/** Skip the output; defaults to just calling {@link #read}    *  and discarding the result. */
+DECL|method|skipOutput
+specifier|public
+name|void
+name|skipOutput
+parameter_list|(
+name|DataInput
+name|in
+parameter_list|)
+throws|throws
+name|IOException
+block|{
+name|read
+argument_list|(
+name|in
+argument_list|)
+expr_stmt|;
+block|}
 comment|/** Decode an output value previously written with {@link    *  #writeFinalOutput(Object, DataOutput)}.  By default this    *  just calls {@link #read(DataInput)}. */
 DECL|method|readFinalOutput
 specifier|public
@@ -186,6 +204,24 @@ argument_list|(
 name|in
 argument_list|)
 return|;
+block|}
+comment|/** Skip the output previously written with {@link #writeFinalOutput};    *  defaults to just calling {@link #readFinalOutput} and discarding    *  the result. */
+DECL|method|skipFinalOutput
+specifier|public
+name|void
+name|skipFinalOutput
+parameter_list|(
+name|DataInput
+name|in
+parameter_list|)
+throws|throws
+name|IOException
+block|{
+name|skipOutput
+argument_list|(
+name|in
+argument_list|)
+expr_stmt|;
 block|}
 comment|/** NOTE: this output is compared with == so you must    *  ensure that all methods return the single object if    *  it's really no output */
 DECL|method|getNoOutput

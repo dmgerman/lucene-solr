@@ -342,20 +342,6 @@ name|LuceneTestCase
 import|;
 end_import
 
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|util
-operator|.
-name|TestUtil
-import|;
-end_import
-
 begin_comment
 comment|/** JUnit adaptation of an older test case DocTest. */
 end_comment
@@ -1432,6 +1418,9 @@ argument_list|(
 name|info
 argument_list|,
 literal|0
+argument_list|,
+operator|-
+literal|1L
 argument_list|,
 operator|-
 literal|1L

@@ -292,7 +292,7 @@ name|get
 argument_list|()
 return|;
 block|}
-comment|/** Calls {@link IndexWriter#deleteDocuments(Term)} and    *  returns the generation that reflects this change. */
+comment|/** Calls {@link IndexWriter#deleteDocuments(Term...)} and    *  returns the generation that reflects this change. */
 DECL|method|deleteDocuments
 specifier|public
 name|long
@@ -347,7 +347,7 @@ name|get
 argument_list|()
 return|;
 block|}
-comment|/** Calls {@link IndexWriter#deleteDocuments(Query)} and    *  returns the generation that reflects this change. */
+comment|/** Calls {@link IndexWriter#deleteDocuments(Query...)} and    *  returns the generation that reflects this change. */
 DECL|method|deleteDocuments
 specifier|public
 name|long

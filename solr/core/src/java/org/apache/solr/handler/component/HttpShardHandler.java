@@ -2353,6 +2353,16 @@ name|multiCollection
 argument_list|)
 expr_stmt|;
 block|}
+DECL|method|getShardHandlerFactory
+specifier|public
+name|ShardHandlerFactory
+name|getShardHandlerFactory
+parameter_list|()
+block|{
+return|return
+name|httpShardHandlerFactory
+return|;
+block|}
 block|}
 end_class
 
