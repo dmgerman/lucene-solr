@@ -405,6 +405,11 @@ argument_list|(
 name|dc_deltaConfig
 argument_list|)
 expr_stmt|;
+name|redirectTempProperties
+argument_list|(
+name|di
+argument_list|)
+expr_stmt|;
 name|DIHConfiguration
 name|cfg
 init|=

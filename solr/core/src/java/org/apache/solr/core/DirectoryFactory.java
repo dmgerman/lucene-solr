@@ -712,6 +712,21 @@ throws|throws
 name|IOException
 block|{
 comment|// by default, we go off the instance directory
+name|String
+name|instanceDir
+init|=
+operator|new
+name|File
+argument_list|(
+name|cd
+operator|.
+name|getInstanceDir
+argument_list|()
+argument_list|)
+operator|.
+name|getAbsolutePath
+argument_list|()
+decl_stmt|;
 return|return
 name|normalize
 argument_list|(
@@ -719,10 +734,7 @@ name|SolrResourceLoader
 operator|.
 name|normalizeDir
 argument_list|(
-name|cd
-operator|.
-name|getInstanceDir
-argument_list|()
+name|instanceDir
 argument_list|)
 operator|+
 name|cd

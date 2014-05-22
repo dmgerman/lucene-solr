@@ -1030,18 +1030,8 @@ decl_stmt|;
 DECL|field|SEARCH_ARCHIVES_JAR
 specifier|private
 specifier|static
-specifier|final
 name|String
 name|SEARCH_ARCHIVES_JAR
-init|=
-name|JarFinder
-operator|.
-name|getJar
-argument_list|(
-name|MapReduceIndexerTool
-operator|.
-name|class
-argument_list|)
 decl_stmt|;
 DECL|field|dfsCluster
 specifier|private
@@ -1486,6 +1476,18 @@ operator|.
 name|separator
 operator|+
 literal|"cache"
+argument_list|)
+expr_stmt|;
+comment|// Initialize AFTER test.build.dir is set, JarFinder uses it.
+name|SEARCH_ARCHIVES_JAR
+operator|=
+name|JarFinder
+operator|.
+name|getJar
+argument_list|(
+name|MapReduceIndexerTool
+operator|.
+name|class
 argument_list|)
 expr_stmt|;
 name|dfsCluster
