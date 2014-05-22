@@ -1555,7 +1555,7 @@ parameter_list|)
 throws|throws
 name|IOException
 block|{
-comment|// System.out.println("Q.advance parentTarget=" + parentTarget);
+comment|//System.out.println("Q.advance parentTarget=" + parentTarget);
 if|if
 condition|(
 name|parentTarget
@@ -1598,7 +1598,7 @@ operator|-
 literal|1
 argument_list|)
 expr_stmt|;
-comment|// System.out.println("  rolled back to prevParentDoc=" + prevParentDoc + " vs parentDoc=" + parentDoc);
+comment|//System.out.println("  rolled back to prevParentDoc=" + prevParentDoc + " vs parentDoc=" + parentDoc);
 assert|assert
 name|prevParentDoc
 operator|>=
@@ -1621,10 +1621,8 @@ name|prevParentDoc
 argument_list|)
 expr_stmt|;
 comment|// System.out.println("  childScorer advanced to child docID=" + nextChildDoc);
-block|}
-else|else
-block|{
-comment|// System.out.println("  skip childScorer advance");
+comment|//} else {
+comment|//System.out.println("  skip childScorer advance");
 block|}
 comment|// Parent& child docs are supposed to be orthogonal:
 if|if
@@ -1658,7 +1656,7 @@ init|=
 name|nextDoc
 argument_list|()
 decl_stmt|;
-comment|// System.out.println("  return nextParentDoc=" + nd);
+comment|//System.out.println("  return nextParentDoc=" + nd);
 return|return
 name|nd
 return|;
@@ -1677,39 +1675,18 @@ block|{
 name|int
 name|start
 init|=
+name|docBase
+operator|+
 name|prevParentDoc
 operator|+
 literal|1
 decl_stmt|;
 comment|// +1 b/c prevParentDoc is previous parent doc
-if|if
-condition|(
-name|acceptDocs
-operator|!=
-literal|null
-condition|)
-block|{
-comment|// Skip deleted docs:
-while|while
-condition|(
-name|acceptDocs
-operator|.
-name|get
-argument_list|(
-name|start
-argument_list|)
-operator|==
-literal|false
-condition|)
-block|{
-name|start
-operator|++
-expr_stmt|;
-block|}
-block|}
 name|int
 name|end
 init|=
+name|docBase
+operator|+
 name|parentDoc
 operator|-
 literal|1
@@ -1734,12 +1711,8 @@ name|ROOT
 argument_list|,
 literal|"Score based on child doc range from %d to %d"
 argument_list|,
-name|docBase
-operator|+
 name|start
 argument_list|,
-name|docBase
-operator|+
 name|end
 argument_list|)
 argument_list|)
