@@ -15953,6 +15953,16 @@ operator|.
 name|NAME
 argument_list|)
 decl_stmt|;
+name|String
+name|asyncId
+init|=
+name|message
+operator|.
+name|getStr
+argument_list|(
+literal|"async"
+argument_list|)
+decl_stmt|;
 name|DocCollection
 name|coll
 init|=
@@ -16081,7 +16091,7 @@ name|log
 operator|.
 name|info
 argument_list|(
-literal|"node not provided , Identified {} for creating new replica"
+literal|"Node not provided, Identified {} for creating new replica"
 argument_list|,
 name|node
 argument_list|)
@@ -16594,6 +16604,31 @@ argument_list|,
 name|params
 argument_list|)
 expr_stmt|;
+comment|// For tracking async calls.
+name|HashMap
+argument_list|<
+name|String
+argument_list|,
+name|String
+argument_list|>
+name|requestMap
+init|=
+operator|new
+name|HashMap
+argument_list|<>
+argument_list|()
+decl_stmt|;
+name|setupAsyncRequest
+argument_list|(
+name|asyncId
+argument_list|,
+name|requestMap
+argument_list|,
+name|params
+argument_list|,
+name|node
+argument_list|)
+expr_stmt|;
 name|sendShardRequest
 argument_list|(
 name|node
@@ -16612,6 +16647,15 @@ argument_list|,
 literal|"ADDREPLICA failed to create replica"
 argument_list|,
 name|shardHandler
+argument_list|)
+expr_stmt|;
+name|completeAsyncRequest
+argument_list|(
+name|asyncId
+argument_list|,
+name|requestMap
+argument_list|,
+name|results
 argument_list|)
 expr_stmt|;
 block|}

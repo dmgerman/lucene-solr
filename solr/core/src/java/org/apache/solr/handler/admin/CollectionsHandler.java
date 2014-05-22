@@ -4458,6 +4458,8 @@ argument_list|,
 name|CoreAdminParams
 operator|.
 name|DATA_DIR
+argument_list|,
+name|ASYNC
 argument_list|)
 expr_stmt|;
 name|ZkNodeProps
