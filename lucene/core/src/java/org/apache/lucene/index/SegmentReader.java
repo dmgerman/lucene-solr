@@ -2736,25 +2736,8 @@ name|field
 argument_list|)
 return|;
 block|}
-comment|/**    * Called when the shared core for this SegmentReader    * is closed.    *<p>    * This listener is called only once all SegmentReaders     * sharing the same core are closed.  At this point it     * is safe for apps to evict this reader from any caches     * keyed on {@link #getCoreCacheKey}.  This is the same     * interface that {@link CachingWrapperFilter} uses, internally,     * to evict entries.</p>    *     * @lucene.experimental    */
-DECL|interface|CoreClosedListener
-specifier|public
-specifier|static
-interface|interface
-name|CoreClosedListener
-block|{
-comment|/** Invoked when the shared core of the original {@code      *  SegmentReader} has closed. */
-DECL|method|onClose
-specifier|public
-name|void
-name|onClose
-parameter_list|(
-name|Object
-name|ownerCoreCacheKey
-parameter_list|)
-function_decl|;
-block|}
-comment|/** Expert: adds a CoreClosedListener to this reader's shared core */
+annotation|@
+name|Override
 DECL|method|addCoreClosedListener
 specifier|public
 name|void
@@ -2775,7 +2758,8 @@ name|listener
 argument_list|)
 expr_stmt|;
 block|}
-comment|/** Expert: removes a CoreClosedListener from this reader's shared core */
+annotation|@
+name|Override
 DECL|method|removeCoreClosedListener
 specifier|public
 name|void

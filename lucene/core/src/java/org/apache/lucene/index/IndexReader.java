@@ -291,7 +291,7 @@ argument_list|()
 argument_list|)
 argument_list|)
 decl_stmt|;
-comment|/** Expert: adds a {@link ReaderClosedListener}.  The    * provided listener will be invoked when this reader is closed.    *    * @lucene.experimental */
+comment|/** Expert: adds a {@link ReaderClosedListener}.  The    * provided listener will be invoked when this reader is closed.    * At this point, it is safe for apps to evict this reader from    * any caches keyed on {@link #getCombinedCoreAndDeletesKey()}.    *    * @lucene.experimental */
 DECL|method|addReaderClosedListener
 specifier|public
 specifier|final
