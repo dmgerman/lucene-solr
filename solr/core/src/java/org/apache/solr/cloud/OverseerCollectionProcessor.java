@@ -12053,6 +12053,18 @@ name|Slice
 operator|.
 name|RECOVERY
 argument_list|)
+operator|||
+name|slice
+operator|.
+name|getState
+argument_list|()
+operator|.
+name|equals
+argument_list|(
+name|Slice
+operator|.
+name|CONSTRUCTION
+argument_list|)
 operator|)
 condition|)
 block|{
@@ -12078,7 +12090,7 @@ operator|.
 name|getState
 argument_list|()
 operator|+
-literal|". Only INACTIVE (or custom-hashed) slices can be deleted."
+literal|". Only non-active (or custom-hashed) slices can be deleted."
 argument_list|)
 throw|;
 block|}
