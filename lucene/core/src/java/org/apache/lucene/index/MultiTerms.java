@@ -262,6 +262,30 @@ name|_hasPayloads
 expr_stmt|;
 comment|// if all subs have pos, and at least one has payloads.
 block|}
+comment|/** Expert: returns the Terms being merged. */
+DECL|method|getSubTerms
+specifier|public
+name|Terms
+index|[]
+name|getSubTerms
+parameter_list|()
+block|{
+return|return
+name|subs
+return|;
+block|}
+comment|/** Expert: returns  pointers to the sub-readers corresponding to the Terms being merged. */
+DECL|method|getSubSlices
+specifier|public
+name|ReaderSlice
+index|[]
+name|getSubSlices
+parameter_list|()
+block|{
+return|return
+name|subSlices
+return|;
+block|}
 annotation|@
 name|Override
 DECL|method|intersect
