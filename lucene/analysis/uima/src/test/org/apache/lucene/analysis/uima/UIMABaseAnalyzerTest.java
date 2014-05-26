@@ -793,13 +793,6 @@ argument_list|()
 argument_list|)
 expr_stmt|;
 comment|// do a matchalldocs query to retrieve both docs
-name|indexSearcher
-operator|=
-name|newSearcher
-argument_list|(
-name|directoryReader
-argument_list|)
-expr_stmt|;
 name|result
 operator|=
 name|indexSearcher
