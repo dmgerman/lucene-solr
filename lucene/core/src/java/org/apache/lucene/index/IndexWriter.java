@@ -3944,7 +3944,7 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
-comment|/**    * Updates a document's {@link NumericDocValues} for<code>field</code> to the    * given<code>value</code>. This method can be used to 'unset' a document's    * value by passing {@code null} as the new value. Also, you can only update    * fields that already exist in the index, not add new fields through this    * method.    *     *<p>    *<b>NOTE</b>: if this method hits an OutOfMemoryError you should immediately    * close the writer. See<a href="#OOME">above</a> for details.    *</p>    *     * @param term    *          the term to identify the document(s) to be updated    * @param field    *          field name of the {@link NumericDocValues} field    * @param value    *          new value for the field    * @throws CorruptIndexException    *           if the index is corrupt    * @throws IOException    *           if there is a low-level IO error    */
+comment|/**    * Updates a document's {@link NumericDocValues} for<code>field</code> to the    * given<code>value</code>. You can only update fields that already exist in    * the index, not add new fields through this method.    *     *<p>    *<b>NOTE</b>: if this method hits an OutOfMemoryError you should immediately    * close the writer. See<a href="#OOME">above</a> for details.    *</p>    *     * @param term    *          the term to identify the document(s) to be updated    * @param field    *          field name of the {@link NumericDocValues} field    * @param value    *          new value for the field    * @throws CorruptIndexException    *           if the index is corrupt    * @throws IOException    *           if there is a low-level IO error    */
 DECL|method|updateNumericDocValue
 specifier|public
 name|void
@@ -3956,7 +3956,7 @@ parameter_list|,
 name|String
 name|field
 parameter_list|,
-name|Long
+name|long
 name|value
 parameter_list|)
 throws|throws
@@ -4028,7 +4028,7 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
-comment|/**    * Updates a document's {@link BinaryDocValues} for<code>field</code> to the    * given<code>value</code>. This method can be used to 'unset' a document's    * value by passing {@code null} as the new value. Also, you can only update    * fields that already exist in the index, not add new fields through this    * method.    *     *<p>    *<b>NOTE:</b> this method currently replaces the existing value of all    * affected documents with the new value.    *     *<p>    *<b>NOTE:</b> if this method hits an OutOfMemoryError you should immediately    * close the writer. See<a href="#OOME">above</a> for details.    *</p>    *     * @param term    *          the term to identify the document(s) to be updated    * @param field    *          field name of the {@link BinaryDocValues} field    * @param value    *          new value for the field    * @throws CorruptIndexException    *           if the index is corrupt    * @throws IOException    *           if there is a low-level IO error    */
+comment|/**    * Updates a document's {@link BinaryDocValues} for<code>field</code> to the    * given<code>value</code>. You can only update fields that already exist in    * the index, not add new fields through this method.    *     *<p>    *<b>NOTE:</b> this method currently replaces the existing value of all    * affected documents with the new value.    *     *<p>    *<b>NOTE:</b> if this method hits an OutOfMemoryError you should immediately    * close the writer. See<a href="#OOME">above</a> for details.    *</p>    *     * @param term    *          the term to identify the document(s) to be updated    * @param field    *          field name of the {@link BinaryDocValues} field    * @param value    *          new value for the field    * @throws CorruptIndexException    *           if the index is corrupt    * @throws IOException    *           if there is a low-level IO error    */
 DECL|method|updateBinaryDocValue
 specifier|public
 name|void
@@ -4049,6 +4049,23 @@ block|{
 name|ensureOpen
 argument_list|()
 expr_stmt|;
+if|if
+condition|(
+name|value
+operator|==
+literal|null
+condition|)
+block|{
+throw|throw
+operator|new
+name|IllegalArgumentException
+argument_list|(
+literal|"cannot update a field to a null value: "
+operator|+
+name|field
+argument_list|)
+throw|;
+block|}
 if|if
 condition|(
 operator|!
