@@ -502,11 +502,11 @@ expr_stmt|;
 comment|//Test mergeStrategy that uses score
 name|query
 argument_list|(
+literal|"rq"
+argument_list|,
+literal|"{!rank}"
+argument_list|,
 literal|"q"
-argument_list|,
-literal|"{!rank q=$qq}"
-argument_list|,
-literal|"qq"
 argument_list|,
 literal|"*:*"
 argument_list|,
@@ -542,11 +542,11 @@ expr_stmt|;
 comment|//Test mergeStrategy1 that uses a sort field.
 name|query
 argument_list|(
+literal|"rq"
+argument_list|,
+literal|"{!rank mergeStrategy=1}"
+argument_list|,
 literal|"q"
-argument_list|,
-literal|"{!rank mergeStrategy=1 q=$qq}"
-argument_list|,
-literal|"qq"
 argument_list|,
 literal|"*:*"
 argument_list|,
@@ -570,7 +570,7 @@ name|params
 operator|.
 name|add
 argument_list|(
-literal|"qq"
+literal|"q"
 argument_list|,
 literal|"*:*"
 argument_list|)
@@ -588,9 +588,9 @@ name|params
 operator|.
 name|add
 argument_list|(
-literal|"q"
+literal|"rq"
 argument_list|,
-literal|"{!rank q=$qq}"
+literal|"{!rank}"
 argument_list|)
 expr_stmt|;
 name|params

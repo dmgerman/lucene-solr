@@ -88,6 +88,16 @@ name|Q
 init|=
 literal|"q"
 decl_stmt|;
+comment|/** rank query */
+DECL|field|RQ
+specifier|public
+specifier|static
+specifier|final
+name|String
+name|RQ
+init|=
+literal|"rq"
+decl_stmt|;
 comment|/** distrib string */
 DECL|field|DISTRIB
 specifier|public

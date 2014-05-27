@@ -53,7 +53,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * The MergeStrategy class defines custom merge logic for distributed searches.  **/
+comment|/** * The MergeStrategy class defines custom merge logic for distributed searches. * *<b>Note: This API is experimental and may change in non backward-compatible ways in the future</b> **/
 end_comment
 
 begin_interface

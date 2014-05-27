@@ -323,7 +323,7 @@ name|params
 operator|.
 name|add
 argument_list|(
-literal|"qq"
+literal|"q"
 argument_list|,
 literal|"*:*"
 argument_list|)
@@ -332,9 +332,9 @@ name|params
 operator|.
 name|add
 argument_list|(
-literal|"q"
+literal|"rq"
 argument_list|,
-literal|"{!rank q=$qq}"
+literal|"{!rank}"
 argument_list|)
 expr_stmt|;
 name|params
@@ -378,7 +378,7 @@ name|params
 operator|.
 name|add
 argument_list|(
-literal|"qq"
+literal|"q"
 argument_list|,
 literal|"{!edismax bf=$bff}*:*"
 argument_list|)
@@ -396,9 +396,9 @@ name|params
 operator|.
 name|add
 argument_list|(
-literal|"q"
+literal|"rq"
 argument_list|,
-literal|"{!rank q=$qq collector=1}"
+literal|"{!rank collector=1}"
 argument_list|)
 expr_stmt|;
 name|assertQ
