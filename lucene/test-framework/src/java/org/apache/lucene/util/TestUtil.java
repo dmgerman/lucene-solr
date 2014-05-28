@@ -1104,6 +1104,10 @@ block|{
 if|if
 condition|(
 name|location
+operator|!=
+literal|null
+operator|&&
+name|location
 operator|.
 name|exists
 argument_list|()

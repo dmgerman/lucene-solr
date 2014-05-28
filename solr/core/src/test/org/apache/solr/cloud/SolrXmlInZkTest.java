@@ -331,11 +331,6 @@ init|=
 name|createTempDir
 argument_list|()
 decl_stmt|;
-name|recurseDelete
-argument_list|(
-name|tmpDir
-argument_list|)
-expr_stmt|;
 name|File
 name|solrHome
 init|=

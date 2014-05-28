@@ -118,6 +118,20 @@ name|org
 operator|.
 name|apache
 operator|.
+name|lucene
+operator|.
+name|util
+operator|.
+name|TestUtil
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
 name|solr
 operator|.
 name|SolrTestCaseJ4
@@ -2525,14 +2539,13 @@ index|[
 literal|0
 index|]
 decl_stmt|;
-name|AbstractSolrTestCase
+name|TestUtil
 operator|.
-name|recurseDelete
+name|rm
 argument_list|(
 name|snapDir
 argument_list|)
 expr_stmt|;
-comment|// clean up the snap dir
 block|}
 DECL|method|addNewReplica
 specifier|private
