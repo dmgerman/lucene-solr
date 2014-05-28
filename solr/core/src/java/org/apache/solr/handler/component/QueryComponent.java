@@ -1512,17 +1512,11 @@ name|rq
 decl_stmt|;
 name|rb
 operator|.
-name|setQuery
+name|setRankQuery
 argument_list|(
 name|rankQuery
-operator|.
-name|wrap
-argument_list|(
-name|q
-argument_list|)
 argument_list|)
 expr_stmt|;
-comment|//Wrap the RankQuery around the main query.
 name|MergeStrategy
 name|mergeStrategy
 init|=
