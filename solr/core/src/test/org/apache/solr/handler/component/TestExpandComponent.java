@@ -741,9 +741,10 @@ name|add
 argument_list|(
 literal|"expand.sort"
 argument_list|,
-literal|"test_tl desc"
+literal|"test_tl desc, sub(1,1) asc"
 argument_list|)
 expr_stmt|;
+comment|//the "sub()" just testing function queries
 name|assertQ
 argument_list|(
 name|req
