@@ -772,6 +772,11 @@ name|core
 parameter_list|)
 block|{    }
 annotation|@
+name|SuppressWarnings
+argument_list|(
+literal|"unchecked"
+argument_list|)
+annotation|@
 name|Override
 DECL|method|process
 specifier|public
@@ -1495,6 +1500,12 @@ control|(
 name|IntObjectCursor
 name|cursor
 range|:
+operator|(
+name|Iterable
+argument_list|<
+name|IntObjectCursor
+argument_list|>
+operator|)
 name|groups
 control|)
 block|{
