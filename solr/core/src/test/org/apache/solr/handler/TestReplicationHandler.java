@@ -8700,6 +8700,9 @@ block|}
 block|}
 finally|finally
 block|{
+comment|// FIXME: SOLR-6119 This is a test bug in that it tries to remove snapDirs that are still open.
+try|try
+block|{
 name|TestUtil
 operator|.
 name|rm
@@ -8707,6 +8710,15 @@ argument_list|(
 name|snapDir
 argument_list|)
 expr_stmt|;
+block|}
+catch|catch
+parameter_list|(
+name|IOException
+name|e
+parameter_list|)
+block|{
+comment|// Ignore failures.
+block|}
 block|}
 block|}
 comment|/* character copy of file using UTF-8 */
