@@ -225,7 +225,7 @@ specifier|static
 name|DocRouter
 name|getDocRouter
 parameter_list|(
-name|Object
+name|String
 name|routerName
 parameter_list|)
 block|{

@@ -1607,6 +1607,9 @@ name|DocRouter
 operator|.
 name|getDocRouter
 argument_list|(
+operator|(
+name|String
+operator|)
 name|routerProps
 operator|.
 name|get
