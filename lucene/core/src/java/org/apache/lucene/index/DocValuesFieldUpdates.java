@@ -99,17 +99,6 @@ name|PAGE_SIZE
 init|=
 literal|1024
 decl_stmt|;
-DECL|enum|Type
-DECL|enum constant|NUMERIC
-DECL|enum constant|BINARY
-specifier|static
-enum|enum
-name|Type
-block|{
-name|NUMERIC
-block|,
-name|BINARY
-block|}
 comment|/**    * An iterator over documents and their updated values. Only documents with    * updates are returned by this iterator, and the documents are returned in    * increasing order.    */
 DECL|class|Iterator
 specifier|static
@@ -314,7 +303,9 @@ parameter_list|(
 name|String
 name|field
 parameter_list|,
-name|Type
+name|FieldInfo
+operator|.
+name|DocValuesType
 name|type
 parameter_list|)
 block|{
@@ -364,7 +355,9 @@ parameter_list|(
 name|String
 name|field
 parameter_list|,
-name|Type
+name|FieldInfo
+operator|.
+name|DocValuesType
 name|type
 parameter_list|,
 name|int
@@ -486,7 +479,9 @@ name|field
 decl_stmt|;
 DECL|field|type
 specifier|final
-name|Type
+name|FieldInfo
+operator|.
+name|DocValuesType
 name|type
 decl_stmt|;
 DECL|method|DocValuesFieldUpdates
@@ -496,7 +491,9 @@ parameter_list|(
 name|String
 name|field
 parameter_list|,
-name|Type
+name|FieldInfo
+operator|.
+name|DocValuesType
 name|type
 parameter_list|)
 block|{

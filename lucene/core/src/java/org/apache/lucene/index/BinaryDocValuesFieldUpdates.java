@@ -462,7 +462,9 @@ name|super
 argument_list|(
 name|field
 argument_list|,
-name|Type
+name|FieldInfo
+operator|.
+name|DocValuesType
 operator|.
 name|BINARY
 argument_list|)

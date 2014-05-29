@@ -170,9 +170,9 @@ name|NUM_BYTES_INT
 decl_stmt|;
 DECL|field|type
 specifier|final
-name|DocValuesFieldUpdates
+name|FieldInfo
 operator|.
-name|Type
+name|DocValuesType
 name|type
 decl_stmt|;
 DECL|field|term
@@ -203,9 +203,9 @@ DECL|method|DocValuesUpdate
 specifier|protected
 name|DocValuesUpdate
 parameter_list|(
-name|DocValuesFieldUpdates
+name|FieldInfo
 operator|.
-name|Type
+name|DocValuesType
 name|type
 parameter_list|,
 name|Term
@@ -361,9 +361,9 @@ parameter_list|)
 block|{
 name|super
 argument_list|(
-name|DocValuesFieldUpdates
+name|FieldInfo
 operator|.
-name|Type
+name|DocValuesType
 operator|.
 name|BINARY
 argument_list|,
@@ -422,9 +422,9 @@ parameter_list|)
 block|{
 name|super
 argument_list|(
-name|DocValuesFieldUpdates
+name|FieldInfo
 operator|.
-name|Type
+name|DocValuesType
 operator|.
 name|NUMERIC
 argument_list|,
