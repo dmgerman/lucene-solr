@@ -534,6 +534,27 @@ name|name
 argument_list|)
 argument_list|)
 expr_stmt|;
+name|assertTrue
+argument_list|(
+literal|"IllegalArgumentException didn't mention original message: "
+operator|+
+name|msg
+argument_list|,
+name|msg
+operator|.
+name|contains
+argument_list|(
+literal|"bytes can be at most"
+argument_list|)
+operator|&&
+name|msg
+operator|.
+name|contains
+argument_list|(
+literal|"in length; got"
+argument_list|)
+argument_list|)
+expr_stmt|;
 block|}
 block|}
 finally|finally

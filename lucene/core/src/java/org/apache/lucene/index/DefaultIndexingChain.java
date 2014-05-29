@@ -3060,7 +3060,12 @@ argument_list|(
 name|prefix
 argument_list|)
 operator|+
-literal|"...'"
+literal|"...', original message: "
+operator|+
+name|e
+operator|.
+name|getMessage
+argument_list|()
 decl_stmt|;
 if|if
 condition|(
@@ -3094,6 +3099,8 @@ operator|new
 name|IllegalArgumentException
 argument_list|(
 name|msg
+argument_list|,
+name|e
 argument_list|)
 throw|;
 block|}
