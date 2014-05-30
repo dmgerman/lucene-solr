@@ -53,8 +53,6 @@ DECL|class|DocumentsWriterPerThreadPool
 specifier|final
 class|class
 name|DocumentsWriterPerThreadPool
-implements|implements
-name|Cloneable
 block|{
 comment|/**    * {@link ThreadState} references and guards a    * {@link DocumentsWriterPerThread} instance that is used during indexing to    * build a in-memory index segment. {@link ThreadState} also holds all flush    * related per-thread data controlled by {@link DocumentsWriterFlushControl}.    *<p>    * A {@link ThreadState}, its methods and members should only accessed by one    * thread a time. Users must acquire the lock via {@link ThreadState#lock()}    * and release the lock in a finally block via {@link ThreadState#unlock()}    * before accessing the state.    */
 annotation|@
@@ -348,40 +346,6 @@ index|[
 name|maxNumThreadStates
 index|]
 expr_stmt|;
-block|}
-annotation|@
-name|Override
-DECL|method|clone
-specifier|public
-name|DocumentsWriterPerThreadPool
-name|clone
-parameter_list|()
-block|{
-comment|// We should only be cloned before being used:
-if|if
-condition|(
-name|numThreadStatesActive
-operator|!=
-literal|0
-condition|)
-block|{
-throw|throw
-operator|new
-name|IllegalStateException
-argument_list|(
-literal|"clone this object before it is used!"
-argument_list|)
-throw|;
-block|}
-return|return
-operator|new
-name|DocumentsWriterPerThreadPool
-argument_list|(
-name|threadStates
-operator|.
-name|length
-argument_list|)
-return|;
 block|}
 comment|/**    * Returns the max number of {@link ThreadState} instances available in this    * {@link DocumentsWriterPerThreadPool}    */
 DECL|method|getMaxThreadStates

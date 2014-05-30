@@ -751,9 +751,6 @@ argument_list|,
 name|dir
 argument_list|,
 name|iwc
-operator|.
-name|clone
-argument_list|()
 argument_list|)
 decl_stmt|;
 name|Document
@@ -1171,6 +1168,15 @@ argument_list|)
 expr_stmt|;
 comment|// for some extra coverage, checkIndex before we forceMerge
 name|iwc
+operator|=
+name|newIndexWriterConfig
+argument_list|(
+name|TEST_VERSION_CURRENT
+argument_list|,
+name|analyzer
+argument_list|)
+expr_stmt|;
+name|iwc
 operator|.
 name|setOpenMode
 argument_list|(
@@ -1188,9 +1194,6 @@ argument_list|(
 name|dir
 argument_list|,
 name|iwc
-operator|.
-name|clone
-argument_list|()
 argument_list|)
 decl_stmt|;
 name|iw2

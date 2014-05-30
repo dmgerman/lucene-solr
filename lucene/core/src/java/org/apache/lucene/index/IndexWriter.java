@@ -2178,11 +2178,7 @@ expr_stmt|;
 comment|// prevent reuse by other instances
 name|config
 operator|=
-operator|new
-name|LiveIndexWriterConfig
-argument_list|(
 name|conf
-argument_list|)
 expr_stmt|;
 name|directory
 operator|=
