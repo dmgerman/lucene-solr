@@ -156,6 +156,8 @@ class|class
 name|WAH8DocIdSet
 extends|extends
 name|DocIdSet
+implements|implements
+name|Accountable
 block|{
 comment|// Minimum index interval, intervals below this value can't guarantee anymore
 comment|// that this set implementation won't be significantly larger than a FixedBitSet
@@ -3544,7 +3546,8 @@ return|return
 name|cardinality
 return|;
 block|}
-comment|/** Return the memory usage of this class in bytes. */
+annotation|@
+name|Override
 DECL|method|ramBytesUsed
 specifier|public
 name|long

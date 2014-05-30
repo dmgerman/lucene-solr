@@ -1067,7 +1067,7 @@ literal|" arcs, "
 operator|+
 name|fst
 operator|.
-name|sizeInBytes
+name|ramBytesUsed
 argument_list|()
 operator|+
 literal|" bytes...  "

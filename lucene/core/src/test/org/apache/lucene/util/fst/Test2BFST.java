@@ -519,7 +519,7 @@ literal|": "
 operator|+
 name|b
 operator|.
-name|fstSizeInBytes
+name|fstRamBytesUsed
 argument_list|()
 operator|+
 literal|" bytes; "
@@ -597,7 +597,7 @@ literal|"\nTEST: now verify [fst size="
 operator|+
 name|fst
 operator|.
-name|sizeInBytes
+name|ramBytesUsed
 argument_list|()
 operator|+
 literal|"; nodeCount="
@@ -1108,7 +1108,7 @@ literal|"...: "
 operator|+
 name|b
 operator|.
-name|fstSizeInBytes
+name|fstRamBytesUsed
 argument_list|()
 operator|+
 literal|" bytes"
@@ -1119,7 +1119,7 @@ if|if
 condition|(
 name|b
 operator|.
-name|fstSizeInBytes
+name|fstRamBytesUsed
 argument_list|()
 operator|>
 name|LIMIT
@@ -1171,7 +1171,7 @@ literal|"\nTEST: now verify [fst size="
 operator|+
 name|fst
 operator|.
-name|sizeInBytes
+name|ramBytesUsed
 argument_list|()
 operator|+
 literal|"; nodeCount="
@@ -1621,7 +1621,7 @@ literal|"...: "
 operator|+
 name|b
 operator|.
-name|fstSizeInBytes
+name|fstRamBytesUsed
 argument_list|()
 operator|+
 literal|" bytes"
@@ -1632,7 +1632,7 @@ if|if
 condition|(
 name|b
 operator|.
-name|fstSizeInBytes
+name|fstRamBytesUsed
 argument_list|()
 operator|>
 name|LIMIT
@@ -1684,7 +1684,7 @@ literal|"\nTEST: now verify [fst size="
 operator|+
 name|fst
 operator|.
-name|sizeInBytes
+name|ramBytesUsed
 argument_list|()
 operator|+
 literal|"; nodeCount="

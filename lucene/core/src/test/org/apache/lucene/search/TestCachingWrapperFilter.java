@@ -2027,7 +2027,7 @@ name|assertTrue
 argument_list|(
 name|filter
 operator|.
-name|sizeInBytes
+name|ramBytesUsed
 argument_list|()
 operator|>
 literal|0

@@ -116,6 +116,20 @@ name|lucene
 operator|.
 name|util
 operator|.
+name|Accountable
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|util
+operator|.
 name|Bits
 import|;
 end_import
@@ -132,6 +146,8 @@ class|class
 name|DocValuesProducer
 implements|implements
 name|Closeable
+implements|,
+name|Accountable
 block|{
 comment|/** Sole constructor. (For invocation by subclass     *  constructors, typically implicit.) */
 DECL|method|DocValuesProducer
@@ -203,14 +219,6 @@ name|field
 parameter_list|)
 throws|throws
 name|IOException
-function_decl|;
-comment|/** Returns approximate RAM bytes used */
-DECL|method|ramBytesUsed
-specifier|public
-specifier|abstract
-name|long
-name|ramBytesUsed
-parameter_list|()
 function_decl|;
 comment|/**     * Checks consistency of this producer    *<p>    * Note that this may be costly in terms of I/O, e.g.     * may involve computing a checksum value against large data files.    * @lucene.internal    */
 DECL|method|checkIntegrity

@@ -194,6 +194,20 @@ name|lucene
 operator|.
 name|util
 operator|.
+name|Accountable
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|util
+operator|.
 name|LongValues
 import|;
 end_import
@@ -210,6 +224,8 @@ class|class
 name|BlockPackedReader
 extends|extends
 name|LongValues
+implements|implements
+name|Accountable
 block|{
 DECL|field|blockShift
 DECL|field|blockMask
@@ -621,7 +637,8 @@ name|idx
 argument_list|)
 return|;
 block|}
-comment|/** Returns approximate RAM bytes used */
+annotation|@
+name|Override
 DECL|method|ramBytesUsed
 specifier|public
 name|long

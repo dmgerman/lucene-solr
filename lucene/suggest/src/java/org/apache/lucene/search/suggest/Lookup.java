@@ -160,6 +160,20 @@ name|lucene
 operator|.
 name|util
 operator|.
+name|Accountable
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|util
+operator|.
 name|BytesRef
 import|;
 end_import
@@ -202,6 +216,8 @@ specifier|public
 specifier|abstract
 class|class
 name|Lookup
+implements|implements
+name|Accountable
 block|{
 comment|/**    * Result of a lookup.    * @lucene.experimental    */
 DECL|class|LookupResult
@@ -955,14 +971,6 @@ name|input
 parameter_list|)
 throws|throws
 name|IOException
-function_decl|;
-comment|/**    * Get the size of the underlying lookup implementation in memory    * @return ram size of the lookup implementation in bytes    */
-DECL|method|sizeInBytes
-specifier|public
-specifier|abstract
-name|long
-name|sizeInBytes
-parameter_list|()
 function_decl|;
 block|}
 end_class

@@ -88,6 +88,20 @@ name|Fields
 import|;
 end_import
 
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|util
+operator|.
+name|Accountable
+import|;
+end_import
+
 begin_comment
 comment|/**  * Codec API for reading term vectors:  *   * @lucene.experimental  */
 end_comment
@@ -102,6 +116,8 @@ implements|implements
 name|Cloneable
 implements|,
 name|Closeable
+implements|,
+name|Accountable
 block|{
 comment|/** Sole constructor. (For invocation by subclass     *  constructors, typically implicit.) */
 DECL|method|TermVectorsReader
@@ -121,14 +137,6 @@ name|doc
 parameter_list|)
 throws|throws
 name|IOException
-function_decl|;
-comment|/** Returns approximate RAM bytes used */
-DECL|method|ramBytesUsed
-specifier|public
-specifier|abstract
-name|long
-name|ramBytesUsed
-parameter_list|()
 function_decl|;
 comment|/**     * Checks consistency of this reader.    *<p>    * Note that this may be costly in terms of I/O, e.g.     * may involve computing a checksum value against large data files.    * @lucene.internal    */
 DECL|method|checkIntegrity

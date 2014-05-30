@@ -126,6 +126,20 @@ name|lucene
 operator|.
 name|util
 operator|.
+name|Accountable
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|util
+operator|.
 name|BytesRef
 import|;
 end_import
@@ -1290,6 +1304,8 @@ specifier|private
 specifier|final
 class|class
 name|FieldIndexData
+implements|implements
+name|Accountable
 block|{
 comment|// where this field's terms begin in the packed byte[]
 comment|// data
@@ -1456,7 +1472,8 @@ argument_list|()
 expr_stmt|;
 block|}
 block|}
-comment|/** Returns approximate RAM bytes used */
+annotation|@
+name|Override
 DECL|method|ramBytesUsed
 specifier|public
 name|long

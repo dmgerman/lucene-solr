@@ -112,6 +112,20 @@ name|AtomicLong
 import|;
 end_import
 
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|util
+operator|.
+name|Accountable
+import|;
+end_import
+
 begin_comment
 comment|/**  * A memory-resident {@link Directory} implementation.  Locking  * implementation is by default the {@link SingleInstanceLockFactory}  * but can be changed with {@link #setLockFactory}.  *   *<p><b>Warning:</b> This class is not intended to work with huge  * indexes. Everything beyond several hundred megabytes will waste  * resources (GC cycles), because it uses an internal buffer size  * of 1024 bytes, producing millions of {@code byte[1024]} arrays.  * This class is optimized for small memory-resident indexes.  * It also has bad concurrency on multithreaded environments.  *   *<p>It is recommended to materialize large indexes on disk and use  * {@link MMapDirectory}, which is a high-performance directory  * implementation working directly on the file system cache of the  * operating system, so copying data to Java heap space is not useful.  */
 end_comment
@@ -123,6 +137,8 @@ class|class
 name|RAMDirectory
 extends|extends
 name|BaseDirectory
+implements|implements
+name|Accountable
 block|{
 DECL|field|fileMap
 specifier|protected
@@ -423,11 +439,13 @@ argument_list|()
 return|;
 block|}
 comment|/**    * Return total size in bytes of all files in this directory. This is    * currently quantized to RAMOutputStream.BUFFER_SIZE.    */
-DECL|method|sizeInBytes
+annotation|@
+name|Override
+DECL|method|ramBytesUsed
 specifier|public
 specifier|final
 name|long
-name|sizeInBytes
+name|ramBytesUsed
 parameter_list|()
 block|{
 name|ensureOpen

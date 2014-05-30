@@ -107,8 +107,6 @@ operator|.
 name|suggest
 operator|.
 name|Lookup
-operator|.
-name|LookupResult
 import|;
 end_import
 
@@ -125,6 +123,22 @@ operator|.
 name|suggest
 operator|.
 name|Lookup
+operator|.
+name|LookupResult
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|util
+operator|.
+name|Accountable
 import|;
 end_import
 
@@ -229,6 +243,8 @@ DECL|class|SolrSuggester
 specifier|public
 class|class
 name|SolrSuggester
+implements|implements
+name|Accountable
 block|{
 DECL|field|LOG
 specifier|private
@@ -1057,17 +1073,18 @@ return|return
 name|name
 return|;
 block|}
-comment|/** Returns the size of the in-memory data structure used by the underlying lookup implementation */
-DECL|method|sizeInBytes
+annotation|@
+name|Override
+DECL|method|ramBytesUsed
 specifier|public
 name|long
-name|sizeInBytes
+name|ramBytesUsed
 parameter_list|()
 block|{
 return|return
 name|lookup
 operator|.
-name|sizeInBytes
+name|ramBytesUsed
 argument_list|()
 return|;
 block|}
@@ -1136,7 +1153,7 @@ name|String
 operator|.
 name|valueOf
 argument_list|(
-name|sizeInBytes
+name|ramBytesUsed
 argument_list|()
 argument_list|)
 else|:

@@ -206,6 +206,20 @@ name|lucene
 operator|.
 name|util
 operator|.
+name|Accountable
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|util
+operator|.
 name|ArrayUtil
 import|;
 end_import
@@ -263,8 +277,6 @@ operator|.
 name|util
 operator|.
 name|OfflineSorter
-operator|.
-name|SortInfo
 import|;
 end_import
 
@@ -279,6 +291,8 @@ operator|.
 name|util
 operator|.
 name|OfflineSorter
+operator|.
+name|SortInfo
 import|;
 end_import
 
@@ -353,6 +367,8 @@ class|class
 name|FSTCompletionLookup
 extends|extends
 name|Lookup
+implements|implements
+name|Accountable
 block|{
 comment|/**     * An invalid bucket count if we're creating an object    * of this class from an existing FST.    *     * @see #FSTCompletionLookup(FSTCompletion, boolean)    */
 DECL|field|INVALID_BUCKETS_COUNT
@@ -1387,10 +1403,10 @@ return|;
 block|}
 annotation|@
 name|Override
-DECL|method|sizeInBytes
+DECL|method|ramBytesUsed
 specifier|public
 name|long
-name|sizeInBytes
+name|ramBytesUsed
 parameter_list|()
 block|{
 name|long
@@ -1431,7 +1447,7 @@ operator|.
 name|getFST
 argument_list|()
 operator|.
-name|sizeInBytes
+name|ramBytesUsed
 argument_list|()
 expr_stmt|;
 block|}
@@ -1466,7 +1482,7 @@ operator|.
 name|getFST
 argument_list|()
 operator|.
-name|sizeInBytes
+name|ramBytesUsed
 argument_list|()
 expr_stmt|;
 block|}

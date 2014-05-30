@@ -28,6 +28,20 @@ name|lucene
 operator|.
 name|util
 operator|.
+name|Accountable
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|util
+operator|.
 name|ArrayUtil
 import|;
 end_import
@@ -99,6 +113,8 @@ class|class
 name|AbstractAppendingLongBuffer
 extends|extends
 name|LongValues
+implements|implements
+name|Accountable
 block|{
 DECL|field|MIN_PAGE_SIZE
 specifier|static
@@ -860,7 +876,8 @@ name|NUM_BYTES_LONG
 return|;
 comment|// valuesBytes
 block|}
-comment|/** Return the number of bytes used by this instance. */
+annotation|@
+name|Override
 DECL|method|ramBytesUsed
 specifier|public
 name|long

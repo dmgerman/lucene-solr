@@ -32,48 +32,6 @@ begin_import
 import|import
 name|java
 operator|.
-name|io
-operator|.
-name|FileOutputStream
-import|;
-end_import
-
-begin_comment
-comment|// for toDot
-end_comment
-
-begin_import
-import|import
-name|java
-operator|.
-name|io
-operator|.
-name|OutputStreamWriter
-import|;
-end_import
-
-begin_comment
-comment|// for toDot
-end_comment
-
-begin_import
-import|import
-name|java
-operator|.
-name|io
-operator|.
-name|Writer
-import|;
-end_import
-
-begin_comment
-comment|// for toDot
-end_comment
-
-begin_import
-import|import
-name|java
-operator|.
 name|util
 operator|.
 name|HashMap
@@ -202,6 +160,20 @@ name|lucene
 operator|.
 name|util
 operator|.
+name|Accountable
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|util
+operator|.
 name|BytesRef
 import|;
 end_import
@@ -267,26 +239,6 @@ operator|.
 name|PositiveIntOutputs
 import|;
 end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|util
-operator|.
-name|fst
-operator|.
-name|Util
-import|;
-end_import
-
-begin_comment
-comment|// for toDot
-end_comment
 
 begin_comment
 comment|/** See {@link VariableGapTermsIndexWriter}  *   * @lucene.experimental */
@@ -843,6 +795,8 @@ specifier|private
 specifier|final
 class|class
 name|FieldIndexData
+implements|implements
+name|Accountable
 block|{
 DECL|field|fst
 specifier|private
@@ -902,7 +856,8 @@ argument_list|()
 expr_stmt|;
 comment|/*       final String dotFileName = segment + "_" + fieldInfo.name + ".dot";       Writer w = new OutputStreamWriter(new FileOutputStream(dotFileName));       Util.toDot(fst, w, false, false);       System.out.println("FST INDEX: SAVED to " + dotFileName);       w.close();       */
 block|}
-comment|/** Returns approximate RAM bytes used */
+annotation|@
+name|Override
 DECL|method|ramBytesUsed
 specifier|public
 name|long
@@ -918,7 +873,7 @@ literal|0
 else|:
 name|fst
 operator|.
-name|sizeInBytes
+name|ramBytesUsed
 argument_list|()
 return|;
 block|}

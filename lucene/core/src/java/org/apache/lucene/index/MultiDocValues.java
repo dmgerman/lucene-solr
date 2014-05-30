@@ -78,6 +78,20 @@ name|lucene
 operator|.
 name|util
 operator|.
+name|Accountable
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|util
+operator|.
 name|Bits
 import|;
 end_import
@@ -1759,6 +1773,8 @@ specifier|public
 specifier|static
 class|class
 name|OrdinalMap
+implements|implements
+name|Accountable
 block|{
 comment|// cache key of whoever asked for this awful thing
 DECL|field|owner
@@ -2215,7 +2231,8 @@ name|size
 argument_list|()
 return|;
 block|}
-comment|/**       * Returns total byte size used by this ordinal map.       */
+annotation|@
+name|Override
 DECL|method|ramBytesUsed
 specifier|public
 name|long

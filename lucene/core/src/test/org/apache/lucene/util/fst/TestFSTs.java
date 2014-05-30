@@ -3289,7 +3289,7 @@ literal|" "
 operator|+
 name|fst
 operator|.
-name|sizeInBytes
+name|ramBytesUsed
 argument_list|()
 operator|+
 literal|" bytes"
@@ -4319,7 +4319,7 @@ literal|" arcs w/ output; tot size "
 operator|+
 name|fst
 operator|.
-name|sizeInBytes
+name|ramBytesUsed
 argument_list|()
 argument_list|)
 expr_stmt|;

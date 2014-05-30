@@ -1344,10 +1344,10 @@ block|}
 comment|/** Returns byte size of the underlying TST */
 annotation|@
 name|Override
-DECL|method|sizeInBytes
+DECL|method|ramBytesUsed
 specifier|public
 name|long
-name|sizeInBytes
+name|ramBytesUsed
 parameter_list|()
 block|{
 name|long

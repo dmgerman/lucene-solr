@@ -114,6 +114,20 @@ name|lucene
 operator|.
 name|util
 operator|.
+name|Accountable
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|util
+operator|.
 name|Bits
 import|;
 end_import
@@ -157,6 +171,8 @@ class|class
 name|CachingWrapperFilter
 extends|extends
 name|Filter
+implements|implements
+name|Accountable
 block|{
 DECL|field|filter
 specifier|private
@@ -602,11 +618,12 @@ return|;
 block|}
 block|}
 decl_stmt|;
-comment|/** Returns total byte size used by cached filters. */
-DECL|method|sizeInBytes
+annotation|@
+name|Override
+DECL|method|ramBytesUsed
 specifier|public
 name|long
-name|sizeInBytes
+name|ramBytesUsed
 parameter_list|()
 block|{
 comment|// Sync only to pull the current set of values:

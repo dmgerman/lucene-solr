@@ -22,7 +22,7 @@ name|java
 operator|.
 name|io
 operator|.
-name|IOException
+name|Closeable
 import|;
 end_import
 
@@ -32,21 +32,7 @@ name|java
 operator|.
 name|io
 operator|.
-name|Closeable
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|index
-operator|.
-name|DocsEnum
+name|IOException
 import|;
 end_import
 
@@ -74,7 +60,35 @@ name|lucene
 operator|.
 name|index
 operator|.
+name|DocsEnum
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|index
+operator|.
 name|FieldInfo
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|store
+operator|.
+name|DataInput
 import|;
 end_import
 
@@ -100,9 +114,9 @@ name|apache
 operator|.
 name|lucene
 operator|.
-name|store
+name|util
 operator|.
-name|DataInput
+name|Accountable
 import|;
 end_import
 
@@ -148,6 +162,8 @@ class|class
 name|PostingsReaderBase
 implements|implements
 name|Closeable
+implements|,
+name|Accountable
 block|{
 comment|/** Sole constructor. (For invocation by subclass     *  constructors, typically implicit.) */
 DECL|method|PostingsReaderBase
@@ -253,14 +269,6 @@ name|flags
 parameter_list|)
 throws|throws
 name|IOException
-function_decl|;
-comment|/** Returns approximate RAM bytes used */
-DECL|method|ramBytesUsed
-specifier|public
-specifier|abstract
-name|long
-name|ramBytesUsed
-parameter_list|()
 function_decl|;
 comment|/**     * Checks consistency of this reader.    *<p>    * Note that this may be costly in terms of I/O, e.g.     * may involve computing a checksum value against large data files.    * @lucene.internal    */
 DECL|method|checkIntegrity

@@ -4080,7 +4080,7 @@ name|r
 operator|.
 name|dict
 operator|.
-name|sizeInBytes
+name|ramBytesUsed
 argument_list|()
 expr_stmt|;
 block|}

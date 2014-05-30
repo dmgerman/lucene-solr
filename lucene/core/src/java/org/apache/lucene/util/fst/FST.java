@@ -102,18 +102,6 @@ begin_import
 import|import
 name|java
 operator|.
-name|nio
-operator|.
-name|charset
-operator|.
-name|StandardCharsets
-import|;
-end_import
-
-begin_import
-import|import
-name|java
-operator|.
 name|util
 operator|.
 name|HashMap
@@ -238,6 +226,20 @@ name|lucene
 operator|.
 name|util
 operator|.
+name|Accountable
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|util
+operator|.
 name|ArrayUtil
 import|;
 end_import
@@ -349,14 +351,6 @@ import|;
 end_import
 
 begin_comment
-comment|//import java.io.Writer;
-end_comment
-
-begin_comment
-comment|//import java.io.OutputStreamWriter;
-end_comment
-
-begin_comment
 comment|// TODO: break this into WritableFST and ReadOnlyFST.. then
 end_comment
 
@@ -409,6 +403,8 @@ name|FST
 parameter_list|<
 name|T
 parameter_list|>
+implements|implements
+name|Accountable
 block|{
 comment|/** Specifies allowed range of each int input label for    *  this FST. */
 DECL|enum|INPUT_TYPE
@@ -1686,11 +1682,12 @@ return|return
 name|inputType
 return|;
 block|}
-comment|/** Returns bytes used to represent the FST */
-DECL|method|sizeInBytes
+annotation|@
+name|Override
+DECL|method|ramBytesUsed
 specifier|public
 name|long
-name|sizeInBytes
+name|ramBytesUsed
 parameter_list|()
 block|{
 name|long

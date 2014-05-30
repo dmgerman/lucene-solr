@@ -169,8 +169,6 @@ operator|.
 name|index
 operator|.
 name|FieldInfo
-operator|.
-name|IndexOptions
 import|;
 end_import
 
@@ -185,6 +183,8 @@ operator|.
 name|index
 operator|.
 name|FieldInfo
+operator|.
+name|IndexOptions
 import|;
 end_import
 
@@ -311,6 +311,20 @@ operator|.
 name|store
 operator|.
 name|RAMOutputStream
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|util
+operator|.
+name|Accountable
 import|;
 end_import
 
@@ -866,6 +880,8 @@ class|class
 name|DirectField
 extends|extends
 name|Terms
+implements|implements
+name|Accountable
 block|{
 DECL|class|TermAndSkip
 specifier|private
@@ -873,6 +889,8 @@ specifier|static
 specifier|abstract
 class|class
 name|TermAndSkip
+implements|implements
+name|Accountable
 block|{
 DECL|field|skips
 specifier|public
@@ -880,14 +898,6 @@ name|int
 index|[]
 name|skips
 decl_stmt|;
-comment|/** Returns the approximate number of RAM bytes used */
-DECL|method|ramBytesUsed
-specifier|public
-specifier|abstract
-name|long
-name|ramBytesUsed
-parameter_list|()
-function_decl|;
 block|}
 DECL|class|LowFreqTerm
 specifier|private
@@ -2660,7 +2670,8 @@ operator|==
 name|skipCount
 assert|;
 block|}
-comment|/** Returns approximate RAM bytes used */
+annotation|@
+name|Override
 DECL|method|ramBytesUsed
 specifier|public
 name|long

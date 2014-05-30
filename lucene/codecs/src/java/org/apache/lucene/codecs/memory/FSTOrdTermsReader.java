@@ -4879,7 +4879,7 @@ name|r
 operator|.
 name|index
 operator|.
-name|sizeInBytes
+name|ramBytesUsed
 argument_list|()
 expr_stmt|;
 name|ramBytesUsed

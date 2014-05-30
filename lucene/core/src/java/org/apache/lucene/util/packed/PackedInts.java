@@ -118,6 +118,20 @@ name|lucene
 operator|.
 name|util
 operator|.
+name|Accountable
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|util
+operator|.
 name|LongsRef
 import|;
 end_import
@@ -1370,6 +1384,8 @@ class|class
 name|Reader
 extends|extends
 name|NumericDocValues
+implements|implements
+name|Accountable
 block|{
 comment|/**      * Bulk get: read at least one and at most<code>len</code> longs starting      * from<code>index</code> into<code>arr[off:off+len]</code> and return      * the actual number of values that have been read.      */
 DECL|method|get
@@ -1494,14 +1510,6 @@ specifier|public
 specifier|abstract
 name|int
 name|size
-parameter_list|()
-function_decl|;
-comment|/**      * Return the in-memory size in bytes.      */
-DECL|method|ramBytesUsed
-specifier|public
-specifier|abstract
-name|long
-name|ramBytesUsed
 parameter_list|()
 function_decl|;
 comment|/**      * Expert: if the bit-width of this reader matches one of      * java's native types, returns the underlying array      * (ie, byte[], short[], int[], long[]); else, returns      * null.  Note that when accessing the array you must      * upgrade the type (bitwise AND with all ones), to      * interpret the full value as unsigned.  Ie,      * bytes[idx]&0xFF, shorts[idx]&0xFFFF, etc.      */
