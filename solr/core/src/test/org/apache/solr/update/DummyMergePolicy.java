@@ -71,11 +71,6 @@ block|{
 name|super
 argument_list|()
 expr_stmt|;
-name|setIndexWriter
-argument_list|(
-name|writer
-argument_list|)
-expr_stmt|;
 block|}
 block|}
 end_class
