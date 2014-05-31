@@ -627,6 +627,26 @@ argument_list|<
 name|SegmentCommitInfo
 argument_list|>
 block|{
+DECL|field|writer
+specifier|private
+specifier|final
+name|IndexWriter
+name|writer
+decl_stmt|;
+DECL|method|SegmentByteSizeDescending
+name|SegmentByteSizeDescending
+parameter_list|(
+name|IndexWriter
+name|writer
+parameter_list|)
+block|{
+name|this
+operator|.
+name|writer
+operator|=
+name|writer
+expr_stmt|;
+block|}
 annotation|@
 name|Override
 DECL|method|compare
@@ -650,6 +670,8 @@ init|=
 name|size
 argument_list|(
 name|o1
+argument_list|,
+name|writer
 argument_list|)
 decl_stmt|;
 specifier|final
@@ -659,6 +681,8 @@ init|=
 name|size
 argument_list|(
 name|o2
+argument_list|,
+name|writer
 argument_list|)
 decl_stmt|;
 if|if
@@ -762,6 +786,9 @@ name|mergeTrigger
 parameter_list|,
 name|SegmentInfos
 name|infos
+parameter_list|,
+name|IndexWriter
+name|writer
 parameter_list|)
 throws|throws
 name|IOException
@@ -769,7 +796,9 @@ block|{
 if|if
 condition|(
 name|verbose
-argument_list|()
+argument_list|(
+name|writer
+argument_list|)
 condition|)
 block|{
 name|message
@@ -782,6 +811,8 @@ name|size
 argument_list|()
 operator|+
 literal|" segments"
+argument_list|,
+name|writer
 argument_list|)
 expr_stmt|;
 block|}
@@ -807,9 +838,6 @@ argument_list|>
 name|merging
 init|=
 name|writer
-operator|.
-name|get
-argument_list|()
 operator|.
 name|getMergingSegments
 argument_list|()
@@ -851,7 +879,9 @@ name|infosSorted
 argument_list|,
 operator|new
 name|SegmentByteSizeDescending
-argument_list|()
+argument_list|(
+name|writer
+argument_list|)
 argument_list|)
 expr_stmt|;
 comment|// Compute total index bytes& print details about the index
@@ -882,12 +912,16 @@ init|=
 name|size
 argument_list|(
 name|info
+argument_list|,
+name|writer
 argument_list|)
 decl_stmt|;
 if|if
 condition|(
 name|verbose
-argument_list|()
+argument_list|(
+name|writer
+argument_list|)
 condition|)
 block|{
 name|String
@@ -937,9 +971,6 @@ literal|"  seg="
 operator|+
 name|writer
 operator|.
-name|get
-argument_list|()
-operator|.
 name|segString
 argument_list|(
 name|info
@@ -967,6 +998,8 @@ operator|+
 literal|" MB"
 operator|+
 name|extra
+argument_list|,
+name|writer
 argument_list|)
 expr_stmt|;
 block|}
@@ -1011,6 +1044,8 @@ name|get
 argument_list|(
 name|tooBigCount
 argument_list|)
+argument_list|,
+name|writer
 argument_list|)
 operator|>=
 name|maxMergedSegmentBytes
@@ -1028,6 +1063,8 @@ name|get
 argument_list|(
 name|tooBigCount
 argument_list|)
+argument_list|,
+name|writer
 argument_list|)
 expr_stmt|;
 name|tooBigCount
@@ -1224,7 +1261,9 @@ decl_stmt|;
 if|if
 condition|(
 name|verbose
-argument_list|()
+argument_list|(
+name|writer
+argument_list|)
 condition|)
 block|{
 name|message
@@ -1250,6 +1289,8 @@ operator|+
 literal|") tooBigCount="
 operator|+
 name|tooBigCount
+argument_list|,
+name|writer
 argument_list|)
 expr_stmt|;
 block|}
@@ -1387,6 +1428,8 @@ init|=
 name|size
 argument_list|(
 name|info
+argument_list|,
+name|writer
 argument_list|)
 decl_stmt|;
 if|if
@@ -1433,12 +1476,16 @@ argument_list|,
 name|hitTooLarge
 argument_list|,
 name|mergingBytes
+argument_list|,
+name|writer
 argument_list|)
 decl_stmt|;
 if|if
 condition|(
 name|verbose
-argument_list|()
+argument_list|(
+name|writer
+argument_list|)
 condition|)
 block|{
 name|message
@@ -1446,9 +1493,6 @@ argument_list|(
 literal|"  maybe="
 operator|+
 name|writer
-operator|.
-name|get
-argument_list|()
 operator|.
 name|segString
 argument_list|(
@@ -1491,6 +1535,8 @@ literal|1024.
 operator|/
 literal|1024.
 argument_list|)
+argument_list|,
+name|writer
 argument_list|)
 expr_stmt|;
 block|}
@@ -1601,7 +1647,9 @@ block|}
 if|if
 condition|(
 name|verbose
-argument_list|()
+argument_list|(
+name|writer
+argument_list|)
 condition|)
 block|{
 name|message
@@ -1609,9 +1657,6 @@ argument_list|(
 literal|"  add merge="
 operator|+
 name|writer
-operator|.
-name|get
-argument_list|()
 operator|.
 name|segString
 argument_list|(
@@ -1671,6 +1716,8 @@ literal|" [max merge]"
 else|:
 literal|""
 operator|)
+argument_list|,
+name|writer
 argument_list|)
 expr_stmt|;
 block|}
@@ -1707,6 +1754,9 @@ name|hitTooLarge
 parameter_list|,
 name|long
 name|mergingBytes
+parameter_list|,
+name|IndexWriter
+name|writer
 parameter_list|)
 throws|throws
 name|IOException
@@ -1741,6 +1791,8 @@ init|=
 name|size
 argument_list|(
 name|info
+argument_list|,
+name|writer
 argument_list|)
 decl_stmt|;
 name|totAfterMergeBytes
@@ -1806,6 +1858,8 @@ name|get
 argument_list|(
 literal|0
 argument_list|)
+argument_list|,
+name|writer
 argument_list|)
 argument_list|)
 operator|)
@@ -1944,6 +1998,9 @@ argument_list|,
 name|Boolean
 argument_list|>
 name|segmentsToMerge
+parameter_list|,
+name|IndexWriter
+name|writer
 parameter_list|)
 throws|throws
 name|IOException
@@ -1951,7 +2008,9 @@ block|{
 if|if
 condition|(
 name|verbose
-argument_list|()
+argument_list|(
+name|writer
+argument_list|)
 condition|)
 block|{
 name|message
@@ -1964,9 +2023,6 @@ literal|" infos="
 operator|+
 name|writer
 operator|.
-name|get
-argument_list|()
-operator|.
 name|segString
 argument_list|(
 name|infos
@@ -1975,6 +2031,8 @@ operator|+
 literal|" segmentsToMerge="
 operator|+
 name|segmentsToMerge
+argument_list|,
+name|writer
 argument_list|)
 expr_stmt|;
 block|}
@@ -2002,9 +2060,6 @@ argument_list|>
 name|merging
 init|=
 name|writer
-operator|.
-name|get
-argument_list|()
 operator|.
 name|getMergingSegments
 argument_list|()
@@ -2127,6 +2182,8 @@ name|get
 argument_list|(
 literal|0
 argument_list|)
+argument_list|,
+name|writer
 argument_list|)
 operator|)
 operator|)
@@ -2135,12 +2192,16 @@ block|{
 if|if
 condition|(
 name|verbose
-argument_list|()
+argument_list|(
+name|writer
+argument_list|)
 condition|)
 block|{
 name|message
 argument_list|(
 literal|"already merged"
+argument_list|,
+name|writer
 argument_list|)
 expr_stmt|;
 block|}
@@ -2156,13 +2217,17 @@ name|eligible
 argument_list|,
 operator|new
 name|SegmentByteSizeDescending
-argument_list|()
+argument_list|(
+name|writer
+argument_list|)
 argument_list|)
 expr_stmt|;
 if|if
 condition|(
 name|verbose
-argument_list|()
+argument_list|(
+name|writer
+argument_list|)
 condition|)
 block|{
 name|message
@@ -2170,6 +2235,8 @@ argument_list|(
 literal|"eligible="
 operator|+
 name|eligible
+argument_list|,
+name|writer
 argument_list|)
 expr_stmt|;
 name|message
@@ -2177,6 +2244,8 @@ argument_list|(
 literal|"forceMergeRunning="
 operator|+
 name|forceMergeRunning
+argument_list|,
+name|writer
 argument_list|)
 expr_stmt|;
 block|}
@@ -2241,7 +2310,9 @@ decl_stmt|;
 if|if
 condition|(
 name|verbose
-argument_list|()
+argument_list|(
+name|writer
+argument_list|)
 condition|)
 block|{
 name|message
@@ -2250,15 +2321,14 @@ literal|"add merge="
 operator|+
 name|writer
 operator|.
-name|get
-argument_list|()
-operator|.
 name|segString
 argument_list|(
 name|merge
 operator|.
 name|segments
 argument_list|)
+argument_list|,
+name|writer
 argument_list|)
 expr_stmt|;
 block|}
@@ -2317,7 +2387,9 @@ decl_stmt|;
 if|if
 condition|(
 name|verbose
-argument_list|()
+argument_list|(
+name|writer
+argument_list|)
 condition|)
 block|{
 name|message
@@ -2330,12 +2402,11 @@ name|segString
 argument_list|(
 name|writer
 operator|.
-name|get
-argument_list|()
-operator|.
 name|getDirectory
 argument_list|()
 argument_list|)
+argument_list|,
+name|writer
 argument_list|)
 expr_stmt|;
 block|}
@@ -2366,6 +2437,9 @@ name|findForcedDeletesMerges
 parameter_list|(
 name|SegmentInfos
 name|infos
+parameter_list|,
+name|IndexWriter
+name|writer
 parameter_list|)
 throws|throws
 name|IOException
@@ -2373,7 +2447,9 @@ block|{
 if|if
 condition|(
 name|verbose
-argument_list|()
+argument_list|(
+name|writer
+argument_list|)
 condition|)
 block|{
 name|message
@@ -2381,9 +2457,6 @@ argument_list|(
 literal|"findForcedDeletesMerges infos="
 operator|+
 name|writer
-operator|.
-name|get
-argument_list|()
 operator|.
 name|segString
 argument_list|(
@@ -2393,6 +2466,8 @@ operator|+
 literal|" forceMergeDeletesPctAllowed="
 operator|+
 name|forceMergeDeletesPctAllowed
+argument_list|,
+name|writer
 argument_list|)
 expr_stmt|;
 block|}
@@ -2417,9 +2492,6 @@ name|merging
 init|=
 name|writer
 operator|.
-name|get
-argument_list|()
-operator|.
 name|getMergingSegments
 argument_list|()
 decl_stmt|;
@@ -2441,9 +2513,6 @@ operator|(
 name|double
 operator|)
 name|writer
-operator|.
-name|get
-argument_list|()
 operator|.
 name|numDeletedDocs
 argument_list|(
@@ -2504,13 +2573,17 @@ name|eligible
 argument_list|,
 operator|new
 name|SegmentByteSizeDescending
-argument_list|()
+argument_list|(
+name|writer
+argument_list|)
 argument_list|)
 expr_stmt|;
 if|if
 condition|(
 name|verbose
-argument_list|()
+argument_list|(
+name|writer
+argument_list|)
 condition|)
 block|{
 name|message
@@ -2518,6 +2591,8 @@ argument_list|(
 literal|"eligible="
 operator|+
 name|eligible
+argument_list|,
+name|writer
 argument_list|)
 expr_stmt|;
 block|}
@@ -2596,7 +2671,9 @@ decl_stmt|;
 if|if
 condition|(
 name|verbose
-argument_list|()
+argument_list|(
+name|writer
+argument_list|)
 condition|)
 block|{
 name|message
@@ -2605,15 +2682,14 @@ literal|"add merge="
 operator|+
 name|writer
 operator|.
-name|get
-argument_list|()
-operator|.
 name|segString
 argument_list|(
 name|merge
 operator|.
 name|segments
 argument_list|)
+argument_list|,
+name|writer
 argument_list|)
 expr_stmt|;
 block|}
@@ -2665,23 +2741,17 @@ DECL|method|verbose
 specifier|private
 name|boolean
 name|verbose
-parameter_list|()
-block|{
-specifier|final
+parameter_list|(
 name|IndexWriter
-name|w
-init|=
 name|writer
-operator|.
-name|get
-argument_list|()
-decl_stmt|;
+parameter_list|)
+block|{
 return|return
-name|w
+name|writer
 operator|!=
 literal|null
 operator|&&
-name|w
+name|writer
 operator|.
 name|infoStream
 operator|.
@@ -2698,12 +2768,12 @@ name|message
 parameter_list|(
 name|String
 name|message
+parameter_list|,
+name|IndexWriter
+name|writer
 parameter_list|)
 block|{
 name|writer
-operator|.
-name|get
-argument_list|()
 operator|.
 name|infoStream
 operator|.

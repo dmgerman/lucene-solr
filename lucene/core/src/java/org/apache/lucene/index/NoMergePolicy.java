@@ -90,6 +90,9 @@ name|mergeTrigger
 parameter_list|,
 name|SegmentInfos
 name|segmentInfos
+parameter_list|,
+name|IndexWriter
+name|writer
 parameter_list|)
 block|{
 return|return
@@ -116,6 +119,9 @@ argument_list|,
 name|Boolean
 argument_list|>
 name|segmentsToMerge
+parameter_list|,
+name|IndexWriter
+name|writer
 parameter_list|)
 block|{
 return|return
@@ -131,6 +137,9 @@ name|findForcedDeletesMerges
 parameter_list|(
 name|SegmentInfos
 name|segmentInfos
+parameter_list|,
+name|IndexWriter
+name|writer
 parameter_list|)
 block|{
 return|return
@@ -149,6 +158,9 @@ name|segments
 parameter_list|,
 name|SegmentCommitInfo
 name|newSegment
+parameter_list|,
+name|IndexWriter
+name|writer
 parameter_list|)
 block|{
 return|return
@@ -162,17 +174,6 @@ return|;
 block|}
 annotation|@
 name|Override
-DECL|method|setIndexWriter
-specifier|public
-name|void
-name|setIndexWriter
-parameter_list|(
-name|IndexWriter
-name|writer
-parameter_list|)
-block|{}
-annotation|@
-name|Override
 DECL|method|size
 specifier|protected
 name|long
@@ -180,6 +181,9 @@ name|size
 parameter_list|(
 name|SegmentCommitInfo
 name|info
+parameter_list|,
+name|IndexWriter
+name|writer
 parameter_list|)
 throws|throws
 name|IOException

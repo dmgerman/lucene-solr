@@ -139,7 +139,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  *<p>Expert: a MergePolicy determines the sequence of  * primitive merge operations.</p>  *   *<p>Whenever the segments in an index have been altered by  * {@link IndexWriter}, either the addition of a newly  * flushed segment, addition of many segments from  * addIndexes* calls, or a previous merge that may now need  * to cascade, {@link IndexWriter} invokes {@link  * #findMerges} to give the MergePolicy a chance to pick  * merges that are now required.  This method returns a  * {@link MergeSpecification} instance describing the set of  * merges that should be done, or null if no merges are  * necessary.  When IndexWriter.forceMerge is called, it calls  * {@link #findForcedMerges(SegmentInfos,int,Map)} and the MergePolicy should  * then return the necessary merges.</p>  *  *<p>Note that the policy can return more than one merge at  * a time.  In this case, if the writer is using {@link  * SerialMergeScheduler}, the merges will be run  * sequentially but if it is using {@link  * ConcurrentMergeScheduler} they will be run concurrently.</p>  *   *<p>The default MergePolicy is {@link  * TieredMergePolicy}.</p>  *  * @lucene.experimental  */
+comment|/**  *<p>Expert: a MergePolicy determines the sequence of  * primitive merge operations.</p>  *   *<p>Whenever the segments in an index have been altered by  * {@link IndexWriter}, either the addition of a newly  * flushed segment, addition of many segments from  * addIndexes* calls, or a previous merge that may now need  * to cascade, {@link IndexWriter} invokes {@link  * #findMerges} to give the MergePolicy a chance to pick  * merges that are now required.  This method returns a  * {@link MergeSpecification} instance describing the set of  * merges that should be done, or null if no merges are  * necessary.  When IndexWriter.forceMerge is called, it calls  * {@link #findForcedMerges(SegmentInfos,int,Map, IndexWriter)} and the MergePolicy should  * then return the necessary merges.</p>  *  *<p>Note that the policy can return more than one merge at  * a time.  In this case, if the writer is using {@link  * SerialMergeScheduler}, the merges will be run  * sequentially but if it is using {@link  * ConcurrentMergeScheduler} they will be run concurrently.</p>  *   *<p>The default MergePolicy is {@link  * TieredMergePolicy}.</p>  *  * @lucene.experimental  */
 end_comment
 
 begin_class
@@ -1220,15 +1220,6 @@ name|Long
 operator|.
 name|MAX_VALUE
 decl_stmt|;
-comment|/** {@link IndexWriter} that contains this instance. */
-DECL|field|writer
-specifier|protected
-name|SetOnce
-argument_list|<
-name|IndexWriter
-argument_list|>
-name|writer
-decl_stmt|;
 comment|/** If the size of the merge segment exceeds this ratio of    *  the total index size then it will remain in    *  non-compound format */
 DECL|field|noCFSRatio
 specifier|protected
@@ -1245,7 +1236,7 @@ name|maxCFSSegmentSize
 init|=
 name|DEFAULT_MAX_CFS_SEGMENT_SIZE
 decl_stmt|;
-comment|/**    * Creates a new merge policy instance. Note that if you intend to use it    * without passing it to {@link IndexWriter}, you should call    * {@link #setIndexWriter(IndexWriter)}.    */
+comment|/**    * Creates a new merge policy instance.    */
 DECL|method|MergePolicy
 specifier|public
 name|MergePolicy
@@ -1271,13 +1262,6 @@ name|long
 name|defaultMaxCFSSegmentSize
 parameter_list|)
 block|{
-name|writer
-operator|=
-operator|new
-name|SetOnce
-argument_list|<>
-argument_list|()
-expr_stmt|;
 name|this
 operator|.
 name|noCFSRatio
@@ -1291,27 +1275,7 @@ operator|=
 name|defaultMaxCFSSegmentSize
 expr_stmt|;
 block|}
-comment|/**    * Sets the {@link IndexWriter} to use by this merge policy. This method is    * allowed to be called only once, and is usually set by IndexWriter. If it is    * called more than once, {@link AlreadySetException} is thrown.    *     * @see SetOnce    */
-DECL|method|setIndexWriter
-specifier|public
-name|void
-name|setIndexWriter
-parameter_list|(
-name|IndexWriter
-name|writer
-parameter_list|)
-block|{
-name|this
-operator|.
-name|writer
-operator|.
-name|set
-argument_list|(
-name|writer
-argument_list|)
-expr_stmt|;
-block|}
-comment|/**    * Determine what set of merge operations are now necessary on the index.    * {@link IndexWriter} calls this whenever there is a change to the segments.    * This call is always synchronized on the {@link IndexWriter} instance so    * only one thread at a time will call this method.    * @param mergeTrigger the event that triggered the merge    * @param segmentInfos    *          the total set of segments in the index    */
+comment|/**    * Determine what set of merge operations are now necessary on the index.    * {@link IndexWriter} calls this whenever there is a change to the segments.    * This call is always synchronized on the {@link IndexWriter} instance so    * only one thread at a time will call this method.    * @param mergeTrigger the event that triggered the merge    * @param segmentInfos    *          the total set of segments in the index    * @param writer the IndexWriter to find the merges on    */
 DECL|method|findMerges
 specifier|public
 specifier|abstract
@@ -1323,11 +1287,14 @@ name|mergeTrigger
 parameter_list|,
 name|SegmentInfos
 name|segmentInfos
+parameter_list|,
+name|IndexWriter
+name|writer
 parameter_list|)
 throws|throws
 name|IOException
 function_decl|;
-comment|/**    * Determine what set of merge operations is necessary in    * order to merge to<= the specified segment count. {@link IndexWriter} calls this when its    * {@link IndexWriter#forceMerge} method is called. This call is always    * synchronized on the {@link IndexWriter} instance so only one thread at a    * time will call this method.    *     * @param segmentInfos    *          the total set of segments in the index    * @param maxSegmentCount    *          requested maximum number of segments in the index (currently this    *          is always 1)    * @param segmentsToMerge    *          contains the specific SegmentInfo instances that must be merged    *          away. This may be a subset of all    *          SegmentInfos.  If the value is True for a    *          given SegmentInfo, that means this segment was    *          an original segment present in the    *          to-be-merged index; else, it was a segment    *          produced by a cascaded merge.    */
+comment|/**    * Determine what set of merge operations is necessary in    * order to merge to<= the specified segment count. {@link IndexWriter} calls this when its    * {@link IndexWriter#forceMerge} method is called. This call is always    * synchronized on the {@link IndexWriter} instance so only one thread at a    * time will call this method.    *     * @param segmentInfos    *          the total set of segments in the index    * @param maxSegmentCount    *          requested maximum number of segments in the index (currently this    *          is always 1)    * @param segmentsToMerge    *          contains the specific SegmentInfo instances that must be merged    *          away. This may be a subset of all    *          SegmentInfos.  If the value is True for a    *          given SegmentInfo, that means this segment was    *          an original segment present in the    *          to-be-merged index; else, it was a segment    *          produced by a cascaded merge.    * @param writer the IndexWriter to find the merges on    */
 DECL|method|findForcedMerges
 specifier|public
 specifier|abstract
@@ -1347,11 +1314,14 @@ argument_list|,
 name|Boolean
 argument_list|>
 name|segmentsToMerge
+parameter_list|,
+name|IndexWriter
+name|writer
 parameter_list|)
 throws|throws
 name|IOException
 function_decl|;
-comment|/**    * Determine what set of merge operations is necessary in order to expunge all    * deletes from the index.    *     * @param segmentInfos    *          the total set of segments in the index    */
+comment|/**    * Determine what set of merge operations is necessary in order to expunge all    * deletes from the index.    *     * @param segmentInfos    *          the total set of segments in the index    * @param writer the IndexWriter to find the merges on    */
 DECL|method|findForcedDeletesMerges
 specifier|public
 specifier|abstract
@@ -1360,6 +1330,9 @@ name|findForcedDeletesMerges
 parameter_list|(
 name|SegmentInfos
 name|segmentInfos
+parameter_list|,
+name|IndexWriter
+name|writer
 parameter_list|)
 throws|throws
 name|IOException
@@ -1385,6 +1358,9 @@ name|infos
 parameter_list|,
 name|SegmentCommitInfo
 name|mergedInfo
+parameter_list|,
+name|IndexWriter
+name|writer
 parameter_list|)
 throws|throws
 name|IOException
@@ -1407,6 +1383,8 @@ init|=
 name|size
 argument_list|(
 name|mergedInfo
+argument_list|,
+name|writer
 argument_list|)
 decl_stmt|;
 if|if
@@ -1450,6 +1428,8 @@ operator|+=
 name|size
 argument_list|(
 name|info
+argument_list|,
+name|writer
 argument_list|)
 expr_stmt|;
 block|}
@@ -1470,6 +1450,9 @@ name|size
 parameter_list|(
 name|SegmentCommitInfo
 name|info
+parameter_list|,
+name|IndexWriter
+name|writer
 parameter_list|)
 throws|throws
 name|IOException
@@ -1486,9 +1469,6 @@ name|int
 name|delCount
 init|=
 name|writer
-operator|.
-name|get
-argument_list|()
 operator|.
 name|numDeletedDocs
 argument_list|(
@@ -1573,27 +1553,22 @@ name|infos
 parameter_list|,
 name|SegmentCommitInfo
 name|info
+parameter_list|,
+name|IndexWriter
+name|writer
 parameter_list|)
 throws|throws
 name|IOException
 block|{
-name|IndexWriter
-name|w
-init|=
-name|writer
-operator|.
-name|get
-argument_list|()
-decl_stmt|;
 assert|assert
-name|w
+name|writer
 operator|!=
 literal|null
 assert|;
 name|boolean
 name|hasDeletions
 init|=
-name|w
+name|writer
 operator|.
 name|numDeletedDocs
 argument_list|(
@@ -1612,7 +1587,7 @@ name|info
 operator|.
 name|dir
 operator|==
-name|w
+name|writer
 operator|.
 name|getDirectory
 argument_list|()
@@ -1622,6 +1597,8 @@ argument_list|(
 name|infos
 argument_list|,
 name|info
+argument_list|,
+name|writer
 argument_list|)
 operator|==
 name|info

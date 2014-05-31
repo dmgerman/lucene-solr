@@ -175,6 +175,9 @@ name|mergeTrigger
 parameter_list|,
 name|SegmentInfos
 name|segmentInfos
+parameter_list|,
+name|IndexWriter
+name|writer
 parameter_list|)
 block|{
 name|MergeSpecification
@@ -210,9 +213,6 @@ argument_list|>
 name|merging
 init|=
 name|writer
-operator|.
-name|get
-argument_list|()
 operator|.
 name|getMergingSegments
 argument_list|()
@@ -380,6 +380,9 @@ argument_list|,
 name|Boolean
 argument_list|>
 name|segmentsToMerge
+parameter_list|,
+name|IndexWriter
+name|writer
 parameter_list|)
 throws|throws
 name|IOException
@@ -638,6 +641,9 @@ name|findForcedDeletesMerges
 parameter_list|(
 name|SegmentInfos
 name|segmentInfos
+parameter_list|,
+name|IndexWriter
+name|writer
 parameter_list|)
 throws|throws
 name|IOException
@@ -648,6 +654,8 @@ argument_list|(
 literal|null
 argument_list|,
 name|segmentInfos
+argument_list|,
+name|writer
 argument_list|)
 return|;
 block|}
@@ -671,6 +679,9 @@ name|infos
 parameter_list|,
 name|SegmentCommitInfo
 name|mergedInfo
+parameter_list|,
+name|IndexWriter
+name|writer
 parameter_list|)
 throws|throws
 name|IOException

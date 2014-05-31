@@ -191,6 +191,9 @@ name|size
 parameter_list|(
 name|SegmentCommitInfo
 name|info
+parameter_list|,
+name|IndexWriter
+name|writer
 parameter_list|)
 throws|throws
 name|IOException

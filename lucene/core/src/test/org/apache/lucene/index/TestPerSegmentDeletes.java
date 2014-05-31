@@ -1115,6 +1115,9 @@ name|mergeTrigger
 parameter_list|,
 name|SegmentInfos
 name|segmentInfos
+parameter_list|,
+name|IndexWriter
+name|writer
 parameter_list|)
 throws|throws
 name|IOException
@@ -1191,6 +1194,9 @@ argument_list|,
 name|Boolean
 argument_list|>
 name|segmentsToMerge
+parameter_list|,
+name|IndexWriter
+name|writer
 parameter_list|)
 throws|throws
 name|IOException
@@ -1208,6 +1214,9 @@ name|findForcedDeletesMerges
 parameter_list|(
 name|SegmentInfos
 name|segmentInfos
+parameter_list|,
+name|IndexWriter
+name|writer
 parameter_list|)
 throws|throws
 name|IOException
@@ -1228,6 +1237,9 @@ name|segments
 parameter_list|,
 name|SegmentCommitInfo
 name|newSegment
+parameter_list|,
+name|IndexWriter
+name|writer
 parameter_list|)
 block|{
 return|return

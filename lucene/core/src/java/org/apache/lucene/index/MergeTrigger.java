@@ -17,7 +17,7 @@ comment|/*  * Licensed to the Apache Software Foundation (ASF) under one or more
 end_comment
 
 begin_comment
-comment|/**  * MergeTrigger is passed to  * {@link org.apache.lucene.index.MergePolicy#findMerges(MergeTrigger, org.apache.lucene.index.SegmentInfos)} to indicate the  * event that triggered the merge.  */
+comment|/**  * MergeTrigger is passed to  * {@link org.apache.lucene.index.MergePolicy#findMerges(MergeTrigger, org.apache.lucene.index.SegmentInfos, IndexWriter)} to indicate the  * event that triggered the merge.  */
 end_comment
 
 begin_enum
