@@ -9217,6 +9217,10 @@ argument_list|(
 name|out
 argument_list|,
 name|blockSize
+argument_list|,
+name|PackedInts
+operator|.
+name|COMPACT
 argument_list|)
 decl_stmt|;
 for|for
@@ -10322,6 +10326,10 @@ argument_list|(
 name|out
 argument_list|,
 name|blockSize
+argument_list|,
+name|PackedInts
+operator|.
+name|COMPACT
 argument_list|)
 decl_stmt|;
 name|long

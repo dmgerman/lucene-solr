@@ -1808,6 +1808,10 @@ argument_list|(
 name|vectorsStream
 argument_list|,
 name|BLOCK_SIZE
+argument_list|,
+name|PackedInts
+operator|.
+name|COMPACT
 argument_list|)
 expr_stmt|;
 name|positionsBuf
