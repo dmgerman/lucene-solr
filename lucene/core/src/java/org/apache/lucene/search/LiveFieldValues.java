@@ -62,6 +62,10 @@ begin_comment
 comment|/** Tracks live field values across NRT reader reopens.  *  This holds a map for all updated ids since  *  the last reader reopen.  Once the NRT reader is reopened,  *  it prunes the map.  This means you must reopen your NRT  *  reader periodically otherwise the RAM consumption of  *  this class will grow unbounded!  *  *<p>NOTE: you must ensure the same id is never updated at  *  the same time by two threads, because in this case you  *  cannot in general know which thread "won". */
 end_comment
 
+begin_comment
+comment|// TODO: should this class handle deletions better...?
+end_comment
+
 begin_class
 DECL|class|LiveFieldValues
 specifier|public
@@ -127,6 +131,7 @@ specifier|final
 name|T
 name|missingValue
 decl_stmt|;
+comment|/** The missingValue must be non-null. */
 DECL|method|LiveFieldValues
 specifier|public
 name|LiveFieldValues

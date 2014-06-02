@@ -888,6 +888,11 @@ specifier|private
 name|boolean
 name|stopMerges
 decl_stmt|;
+DECL|field|didMessageState
+specifier|private
+name|boolean
+name|didMessageState
+decl_stmt|;
 DECL|field|flushCount
 specifier|final
 name|AtomicInteger
@@ -2735,8 +2740,16 @@ name|isEnabled
 argument_list|(
 literal|"IW"
 argument_list|)
+operator|&&
+name|didMessageState
+operator|==
+literal|false
 condition|)
 block|{
+name|didMessageState
+operator|=
+literal|true
+expr_stmt|;
 name|infoStream
 operator|.
 name|message
@@ -5364,6 +5377,11 @@ parameter_list|)
 throws|throws
 name|IOException
 block|{
+comment|// In case infoStream was disabled on init, but then enabled at some
+comment|// point, try again to log the config here:
+name|messageState
+argument_list|()
+expr_stmt|;
 assert|assert
 name|maxNumSegments
 operator|==
