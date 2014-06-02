@@ -409,7 +409,10 @@ specifier|private
 specifier|synchronized
 name|IndexOutput
 name|getOutput
-parameter_list|()
+parameter_list|(
+name|IOContext
+name|context
+parameter_list|)
 throws|throws
 name|IOException
 block|{
@@ -435,9 +438,7 @@ name|createOutput
 argument_list|(
 name|dataFileName
 argument_list|,
-name|IOContext
-operator|.
-name|DEFAULT
+name|context
 argument_list|)
 expr_stmt|;
 name|CodecUtil
@@ -556,9 +557,15 @@ name|closed
 operator|=
 literal|true
 expr_stmt|;
-comment|// open the compound stream
+comment|// open the compound stream; we can safely use IOContext.DEFAULT
+comment|// here because this will only open the output if no file was
+comment|// added to the CFS
 name|getOutput
-argument_list|()
+argument_list|(
+name|IOContext
+operator|.
+name|DEFAULT
+argument_list|)
 expr_stmt|;
 assert|assert
 name|dataOut
@@ -1071,7 +1078,9 @@ operator|new
 name|DirectCFSIndexOutput
 argument_list|(
 name|getOutput
-argument_list|()
+argument_list|(
+name|context
+argument_list|)
 argument_list|,
 name|entry
 argument_list|,
@@ -1211,7 +1220,21 @@ decl_stmt|;
 name|copyFileEntry
 argument_list|(
 name|getOutput
-argument_list|()
+argument_list|(
+operator|new
+name|IOContext
+argument_list|(
+operator|new
+name|FlushInfo
+argument_list|(
+literal|0
+argument_list|,
+name|entry
+operator|.
+name|length
+argument_list|)
+argument_list|)
+argument_list|)
 argument_list|,
 name|entry
 argument_list|)
