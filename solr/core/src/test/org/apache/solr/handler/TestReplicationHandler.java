@@ -8106,17 +8106,21 @@ index|[
 literal|2
 index|]
 decl_stmt|;
+name|boolean
+name|namedBackup
+init|=
+name|random
+argument_list|()
+operator|.
+name|nextBoolean
+argument_list|()
+decl_stmt|;
 try|try
 block|{
 name|String
 name|firstBackupTimestamp
 init|=
 literal|null
-decl_stmt|;
-name|boolean
-name|namedBackup
-init|=
-literal|true
 decl_stmt|;
 name|String
 index|[]
@@ -8435,7 +8439,7 @@ if|if
 condition|(
 name|name
 operator|.
-name|startsWith
+name|equals
 argument_list|(
 literal|"snapshot."
 operator|+
@@ -8541,6 +8545,7 @@ operator|.
 name|close
 argument_list|()
 expr_stmt|;
+block|}
 if|if
 condition|(
 operator|!
@@ -8565,7 +8570,12 @@ literal|" was set to 1."
 argument_list|)
 expr_stmt|;
 block|}
-block|}
+comment|//Test Deletion of named backup
+if|if
+condition|(
+name|namedBackup
+condition|)
+block|{
 for|for
 control|(
 name|int
@@ -8581,7 +8591,6 @@ name|i
 operator|++
 control|)
 block|{
-comment|//Test Deletion of named backup
 name|BackupThread
 name|deleteBackupThread
 init|=
@@ -8698,10 +8707,14 @@ expr_stmt|;
 block|}
 block|}
 block|}
+block|}
 finally|finally
 block|{
-comment|// FIXME: SOLR-6119 This is a test bug in that it tries to remove snapDirs that are still open.
-try|try
+if|if
+condition|(
+operator|!
+name|namedBackup
+condition|)
 block|{
 name|TestUtil
 operator|.
@@ -8711,43 +8724,7 @@ name|snapDir
 argument_list|)
 expr_stmt|;
 block|}
-catch|catch
-parameter_list|(
-name|IOException
-name|e
-parameter_list|)
-block|{
-comment|// Ignore failures.
 block|}
-block|}
-block|}
-comment|/* character copy of file using UTF-8 */
-DECL|method|copyFile
-specifier|private
-specifier|static
-name|void
-name|copyFile
-parameter_list|(
-name|File
-name|src
-parameter_list|,
-name|File
-name|dst
-parameter_list|)
-throws|throws
-name|IOException
-block|{
-name|copyFile
-argument_list|(
-name|src
-argument_list|,
-name|dst
-argument_list|,
-literal|null
-argument_list|,
-literal|false
-argument_list|)
-expr_stmt|;
 block|}
 comment|/**    * character copy of file using UTF-8. If port is non-null, will be substituted any time "TEST_PORT" is found.    */
 DECL|method|copyFile
