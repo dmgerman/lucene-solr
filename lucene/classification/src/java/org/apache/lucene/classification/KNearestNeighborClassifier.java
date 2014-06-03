@@ -391,13 +391,13 @@ name|mlt
 operator|.
 name|like
 argument_list|(
+name|textFieldName
+argument_list|,
 operator|new
 name|StringReader
 argument_list|(
 name|text
 argument_list|)
-argument_list|,
-name|textFieldName
 argument_list|)
 argument_list|,
 name|BooleanClause

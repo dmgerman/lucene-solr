@@ -2439,8 +2439,6 @@ name|mlt
 operator|.
 name|like
 argument_list|(
-name|reader
-argument_list|,
 name|mlt
 operator|.
 name|getFieldNames
@@ -2448,6 +2446,8 @@ argument_list|()
 index|[
 literal|0
 index|]
+argument_list|,
+name|reader
 argument_list|)
 expr_stmt|;
 name|boostedMLTQuery
