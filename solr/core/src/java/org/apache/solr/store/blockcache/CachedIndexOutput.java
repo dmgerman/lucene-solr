@@ -190,27 +190,6 @@ argument_list|)
 argument_list|)
 expr_stmt|;
 block|}
-annotation|@
-name|Override
-DECL|method|seekInternal
-specifier|public
-name|void
-name|seekInternal
-parameter_list|(
-name|long
-name|pos
-parameter_list|)
-throws|throws
-name|IOException
-block|{
-throw|throw
-operator|new
-name|IOException
-argument_list|(
-literal|"Seek not supported"
-argument_list|)
-throw|;
-block|}
 DECL|method|writeBlock
 specifier|private
 name|int
