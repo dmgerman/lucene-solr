@@ -378,7 +378,7 @@ argument_list|)
 expr_stmt|;
 name|assertEquals
 argument_list|(
-literal|"Lucene45"
+literal|"Lucene49"
 argument_list|,
 name|format
 operator|.
@@ -405,7 +405,7 @@ argument_list|)
 expr_stmt|;
 name|assertEquals
 argument_list|(
-literal|"Lucene45"
+literal|"Lucene49"
 argument_list|,
 name|format
 operator|.
@@ -601,7 +601,7 @@ argument_list|)
 expr_stmt|;
 name|assertEquals
 argument_list|(
-literal|"Lucene45"
+literal|"Lucene49"
 argument_list|,
 name|format
 operator|.
@@ -616,7 +616,7 @@ argument_list|)
 expr_stmt|;
 name|assertEquals
 argument_list|(
-literal|"Lucene45"
+literal|"Lucene49"
 argument_list|,
 name|format
 operator|.

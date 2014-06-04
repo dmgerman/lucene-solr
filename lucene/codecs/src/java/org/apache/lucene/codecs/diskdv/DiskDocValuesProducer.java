@@ -38,9 +38,9 @@ name|lucene
 operator|.
 name|codecs
 operator|.
-name|lucene45
+name|lucene49
 operator|.
-name|Lucene45DocValuesProducer
+name|Lucene49DocValuesProducer
 import|;
 end_import
 
@@ -107,7 +107,7 @@ DECL|class|DiskDocValuesProducer
 class|class
 name|DiskDocValuesProducer
 extends|extends
-name|Lucene45DocValuesProducer
+name|Lucene49DocValuesProducer
 block|{
 DECL|method|DiskDocValuesProducer
 name|DiskDocValuesProducer

@@ -1437,7 +1437,7 @@ name|Codec
 operator|.
 name|forName
 argument_list|(
-literal|"Lucene46"
+literal|"Lucene49"
 argument_list|)
 argument_list|)
 expr_stmt|;

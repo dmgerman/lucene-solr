@@ -98,9 +98,9 @@ name|lucene
 operator|.
 name|codecs
 operator|.
-name|lucene46
+name|lucene49
 operator|.
-name|Lucene46Codec
+name|Lucene49Codec
 import|;
 end_import
 
@@ -119,7 +119,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * A codec that uses {@link CompressingStoredFieldsFormat} for its stored  * fields and delegates to {@link Lucene46Codec} for everything else.  */
+comment|/**  * A codec that uses {@link CompressingStoredFieldsFormat} for its stored  * fields and delegates to {@link Lucene49Codec} for everything else.  */
 end_comment
 
 begin_class
@@ -314,7 +314,7 @@ argument_list|(
 name|name
 argument_list|,
 operator|new
-name|Lucene46Codec
+name|Lucene49Codec
 argument_list|()
 argument_list|)
 expr_stmt|;
