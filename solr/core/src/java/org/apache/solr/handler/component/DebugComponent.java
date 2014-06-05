@@ -547,8 +547,13 @@ argument_list|()
 argument_list|,
 name|rb
 operator|.
+name|wrap
+argument_list|(
+name|rb
+operator|.
 name|getQuery
 argument_list|()
+argument_list|)
 argument_list|,
 name|results
 argument_list|,
@@ -1644,8 +1649,13 @@ argument_list|()
 argument_list|,
 name|rb
 operator|.
+name|wrap
+argument_list|(
+name|rb
+operator|.
 name|getQuery
 argument_list|()
+argument_list|)
 argument_list|,
 name|rb
 operator|.

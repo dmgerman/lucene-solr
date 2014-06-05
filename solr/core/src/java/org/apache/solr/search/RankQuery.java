@@ -64,6 +64,20 @@ name|org
 operator|.
 name|apache
 operator|.
+name|lucene
+operator|.
+name|search
+operator|.
+name|IndexSearcher
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
 name|solr
 operator|.
 name|handler
@@ -71,6 +85,16 @@ operator|.
 name|component
 operator|.
 name|MergeStrategy
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
+name|io
+operator|.
+name|IOException
 import|;
 end_import
 
@@ -95,7 +119,7 @@ specifier|abstract
 class|class
 name|RankQuery
 extends|extends
-name|Query
+name|ExtendedQueryBase
 block|{
 DECL|method|getTopDocsCollector
 specifier|public
