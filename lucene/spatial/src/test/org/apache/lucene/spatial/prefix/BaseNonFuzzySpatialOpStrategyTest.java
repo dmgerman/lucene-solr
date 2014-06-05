@@ -94,6 +94,16 @@ end_import
 
 begin_import
 import|import
+name|org
+operator|.
+name|junit
+operator|.
+name|Ignore
+import|;
+end_import
+
+begin_import
+import|import
 name|java
 operator|.
 name|io
@@ -175,6 +185,11 @@ comment|/** Base test harness, ideally for SpatialStrategy impls that have exact
 end_comment
 
 begin_class
+annotation|@
+name|Ignore
+argument_list|(
+literal|"not actually a test: can this be renamed to *TestCase????"
+argument_list|)
 DECL|class|BaseNonFuzzySpatialOpStrategyTest
 specifier|public
 specifier|abstract
