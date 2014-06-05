@@ -1496,14 +1496,6 @@ return|return
 name|gets
 return|;
 block|}
-comment|/**      * @return the number of bits used to store any given value.      *         Note: This does not imply that memory usage is      *         {@code bitsPerValue * #values} as implementations are free to      *         use non-space-optimal packing of bits.      */
-DECL|method|getBitsPerValue
-specifier|public
-specifier|abstract
-name|int
-name|getBitsPerValue
-parameter_list|()
-function_decl|;
 comment|/**      * @return the number of values.      */
 DECL|method|size
 specifier|public
@@ -1512,33 +1504,6 @@ name|int
 name|size
 parameter_list|()
 function_decl|;
-comment|/**      * Expert: if the bit-width of this reader matches one of      * java's native types, returns the underlying array      * (ie, byte[], short[], int[], long[]); else, returns      * null.  Note that when accessing the array you must      * upgrade the type (bitwise AND with all ones), to      * interpret the full value as unsigned.  Ie,      * bytes[idx]&0xFF, shorts[idx]&0xFFFF, etc.      */
-DECL|method|getArray
-specifier|public
-name|Object
-name|getArray
-parameter_list|()
-block|{
-assert|assert
-operator|!
-name|hasArray
-argument_list|()
-assert|;
-return|return
-literal|null
-return|;
-block|}
-comment|/**      * Returns true if this implementation is backed by a      * native java array.      *      * @see #getArray      */
-DECL|method|hasArray
-specifier|public
-name|boolean
-name|hasArray
-parameter_list|()
-block|{
-return|return
-literal|false
-return|;
-block|}
 block|}
 comment|/**    * Run-once iterator interface, to decode previously saved PackedInts.    */
 DECL|interface|ReaderIterator
@@ -1731,6 +1696,14 @@ name|Mutable
 extends|extends
 name|Reader
 block|{
+comment|/**      * @return the number of bits used to store any given value.      *         Note: This does not imply that memory usage is      *         {@code bitsPerValue * #values} as implementations are free to      *         use non-space-optimal packing of bits.      */
+DECL|method|getBitsPerValue
+specifier|public
+specifier|abstract
+name|int
+name|getBitsPerValue
+parameter_list|()
+function_decl|;
 comment|/**      * Set the value at the given index in the array.      * @param index where the value should be positioned.      * @param value a value conforming to the constraints set by the array.      */
 DECL|method|set
 specifier|public
@@ -2015,12 +1988,6 @@ name|ReaderImpl
 extends|extends
 name|Reader
 block|{
-DECL|field|bitsPerValue
-specifier|protected
-specifier|final
-name|int
-name|bitsPerValue
-decl_stmt|;
 DECL|field|valueCount
 specifier|protected
 specifier|final
@@ -2033,30 +2000,8 @@ name|ReaderImpl
 parameter_list|(
 name|int
 name|valueCount
-parameter_list|,
-name|int
-name|bitsPerValue
 parameter_list|)
 block|{
-name|this
-operator|.
-name|bitsPerValue
-operator|=
-name|bitsPerValue
-expr_stmt|;
-assert|assert
-name|bitsPerValue
-operator|>
-literal|0
-operator|&&
-name|bitsPerValue
-operator|<=
-literal|64
-operator|:
-literal|"bitsPerValue="
-operator|+
-name|bitsPerValue
-assert|;
 name|this
 operator|.
 name|valueCount
@@ -2076,19 +2021,6 @@ name|int
 name|index
 parameter_list|)
 function_decl|;
-annotation|@
-name|Override
-DECL|method|getBitsPerValue
-specifier|public
-specifier|final
-name|int
-name|getBitsPerValue
-parameter_list|()
-block|{
-return|return
-name|bitsPerValue
-return|;
-block|}
 annotation|@
 name|Override
 DECL|method|size
@@ -2305,18 +2237,6 @@ argument_list|)
 expr_stmt|;
 return|return
 name|len
-return|;
-block|}
-annotation|@
-name|Override
-DECL|method|getBitsPerValue
-specifier|public
-name|int
-name|getBitsPerValue
-parameter_list|()
-block|{
-return|return
-literal|0
 return|;
 block|}
 annotation|@

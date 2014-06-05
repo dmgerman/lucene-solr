@@ -64,6 +64,11 @@ specifier|final
 name|IndexInput
 name|in
 decl_stmt|;
+DECL|field|bitsPerValue
+specifier|final
+name|int
+name|bitsPerValue
+decl_stmt|;
 DECL|field|startPointer
 specifier|final
 name|long
@@ -90,8 +95,6 @@ block|{
 name|super
 argument_list|(
 name|valueCount
-argument_list|,
-name|bitsPerValue
 argument_list|)
 expr_stmt|;
 name|this
@@ -99,6 +102,12 @@ operator|.
 name|in
 operator|=
 name|in
+expr_stmt|;
+name|this
+operator|.
+name|bitsPerValue
+operator|=
+name|bitsPerValue
 expr_stmt|;
 name|startPointer
 operator|=
