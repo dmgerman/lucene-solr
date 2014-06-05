@@ -10145,8 +10145,9 @@ specifier|final
 name|MonotonicBlockPackedReader
 name|reader
 init|=
-operator|new
 name|MonotonicBlockPackedReader
+operator|.
+name|of
 argument_list|(
 name|in
 argument_list|,

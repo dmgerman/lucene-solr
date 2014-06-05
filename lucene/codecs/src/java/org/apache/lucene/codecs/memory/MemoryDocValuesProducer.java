@@ -2330,8 +2330,9 @@ name|bytesAndAddresses
 operator|.
 name|addresses
 operator|=
-operator|new
 name|MonotonicBlockPackedReader
+operator|.
+name|of
 argument_list|(
 name|data
 argument_list|,

@@ -2117,8 +2117,9 @@ specifier|final
 name|MonotonicBlockPackedReader
 name|addresses
 init|=
-operator|new
 name|MonotonicBlockPackedReader
+operator|.
+name|of
 argument_list|(
 name|data
 argument_list|,

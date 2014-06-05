@@ -2887,8 +2887,9 @@ argument_list|)
 expr_stmt|;
 name|addrInstance
 operator|=
-operator|new
 name|MonotonicBlockPackedReader
+operator|.
+name|of
 argument_list|(
 name|data
 argument_list|,
@@ -3217,8 +3218,9 @@ expr_stmt|;
 block|}
 name|addrInstance
 operator|=
-operator|new
 name|MonotonicBlockPackedReader
+operator|.
+name|of
 argument_list|(
 name|data
 argument_list|,
@@ -3615,8 +3617,9 @@ argument_list|)
 expr_stmt|;
 name|ordIndexInstance
 operator|=
-operator|new
 name|MonotonicBlockPackedReader
+operator|.
+name|of
 argument_list|(
 name|data
 argument_list|,

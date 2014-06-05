@@ -239,6 +239,15 @@ name|VERSION_BYTE_ALIGNED
 init|=
 literal|1
 decl_stmt|;
+DECL|field|VERSION_MONOTONIC_WITHOUT_ZIGZAG
+specifier|public
+specifier|static
+specifier|final
+name|int
+name|VERSION_MONOTONIC_WITHOUT_ZIGZAG
+init|=
+literal|2
+decl_stmt|;
 DECL|field|VERSION_CURRENT
 specifier|public
 specifier|final
@@ -246,7 +255,7 @@ specifier|static
 name|int
 name|VERSION_CURRENT
 init|=
-name|VERSION_BYTE_ALIGNED
+name|VERSION_MONOTONIC_WITHOUT_ZIGZAG
 decl_stmt|;
 comment|/**    * Check the validity of a version number.    */
 DECL|method|checkVersion
