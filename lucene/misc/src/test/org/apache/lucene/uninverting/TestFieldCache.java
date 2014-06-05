@@ -2178,24 +2178,6 @@ argument_list|,
 literal|true
 argument_list|)
 decl_stmt|;
-name|assertSame
-argument_list|(
-literal|"Second request to cache return same array"
-argument_list|,
-name|terms
-argument_list|,
-name|cache
-operator|.
-name|getTerms
-argument_list|(
-name|reader
-argument_list|,
-literal|"theRandomUnicodeString"
-argument_list|,
-literal|true
-argument_list|)
-argument_list|)
-expr_stmt|;
 name|Bits
 name|bits
 init|=
