@@ -151,17 +151,15 @@ annotation|@
 name|Override
 DECL|method|lookupOrd
 specifier|public
-name|void
+name|BytesRef
 name|lookupOrd
 parameter_list|(
 name|long
 name|ord
-parameter_list|,
-name|BytesRef
-name|result
 parameter_list|)
 block|{
 comment|// cast is ok: single-valued cannot exceed Integer.MAX_VALUE
+return|return
 name|in
 operator|.
 name|lookupOrd
@@ -170,10 +168,8 @@ operator|(
 name|int
 operator|)
 name|ord
-argument_list|,
-name|result
 argument_list|)
-expr_stmt|;
+return|;
 block|}
 annotation|@
 name|Override

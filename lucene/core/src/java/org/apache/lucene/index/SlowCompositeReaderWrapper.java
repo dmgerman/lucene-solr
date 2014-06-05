@@ -639,7 +639,8 @@ name|v
 operator|=
 name|DocValues
 operator|.
-name|EMPTY_SORTED
+name|emptySorted
+argument_list|()
 expr_stmt|;
 block|}
 name|values
@@ -893,7 +894,8 @@ name|v
 operator|=
 name|DocValues
 operator|.
-name|EMPTY_SORTED_SET
+name|emptySortedSet
+argument_list|()
 expr_stmt|;
 block|}
 name|values

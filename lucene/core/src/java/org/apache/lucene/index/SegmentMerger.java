@@ -1034,7 +1034,8 @@ name|values
 operator|=
 name|DocValues
 operator|.
-name|EMPTY_NUMERIC
+name|emptyNumeric
+argument_list|()
 expr_stmt|;
 name|bits
 operator|=
@@ -1156,7 +1157,8 @@ name|values
 operator|=
 name|DocValues
 operator|.
-name|EMPTY_BINARY
+name|emptyBinary
+argument_list|()
 expr_stmt|;
 name|bits
 operator|=
@@ -1255,7 +1257,8 @@ name|values
 operator|=
 name|DocValues
 operator|.
-name|EMPTY_SORTED
+name|emptySorted
+argument_list|()
 expr_stmt|;
 block|}
 name|toMerge
@@ -1332,7 +1335,8 @@ name|values
 operator|=
 name|DocValues
 operator|.
-name|EMPTY_SORTED_SET
+name|emptySortedSet
+argument_list|()
 expr_stmt|;
 block|}
 name|toMerge
@@ -1505,7 +1509,8 @@ name|norms
 operator|=
 name|DocValues
 operator|.
-name|EMPTY_NUMERIC
+name|emptyNumeric
+argument_list|()
 expr_stmt|;
 block|}
 name|toMerge

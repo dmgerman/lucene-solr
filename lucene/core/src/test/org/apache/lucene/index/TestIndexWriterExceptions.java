@@ -13069,8 +13069,6 @@ argument_list|(
 name|bcf
 argument_list|,
 name|i
-argument_list|,
-name|scratch
 argument_list|)
 argument_list|,
 name|TestBinaryDocValuesUpdates
@@ -13080,8 +13078,6 @@ argument_list|(
 name|bf
 argument_list|,
 name|i
-argument_list|,
-name|scratch
 argument_list|)
 operator|*
 literal|2

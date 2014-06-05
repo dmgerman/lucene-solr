@@ -72,13 +72,23 @@ name|DocValues
 parameter_list|()
 block|{}
 comment|/**     * An empty BinaryDocValues which returns {@link BytesRef#EMPTY_BYTES} for every document     */
-DECL|field|EMPTY_BINARY
+DECL|method|emptyBinary
 specifier|public
 specifier|static
 specifier|final
 name|BinaryDocValues
-name|EMPTY_BINARY
+name|emptyBinary
+parameter_list|()
+block|{
+specifier|final
+name|BytesRef
+name|empty
 init|=
+operator|new
+name|BytesRef
+argument_list|()
+decl_stmt|;
+return|return
 operator|new
 name|BinaryDocValues
 argument_list|()
@@ -86,47 +96,30 @@ block|{
 annotation|@
 name|Override
 specifier|public
-name|void
+name|BytesRef
 name|get
 parameter_list|(
 name|int
 name|docID
-parameter_list|,
-name|BytesRef
-name|result
 parameter_list|)
 block|{
-name|result
-operator|.
-name|bytes
-operator|=
-name|BytesRef
-operator|.
-name|EMPTY_BYTES
-expr_stmt|;
-name|result
-operator|.
-name|offset
-operator|=
-literal|0
-expr_stmt|;
-name|result
-operator|.
-name|length
-operator|=
-literal|0
-expr_stmt|;
+return|return
+name|empty
+return|;
 block|}
 block|}
-decl_stmt|;
+return|;
+block|}
 comment|/**     * An empty NumericDocValues which returns zero for every document     */
-DECL|field|EMPTY_NUMERIC
+DECL|method|emptyNumeric
 specifier|public
 specifier|static
 specifier|final
 name|NumericDocValues
-name|EMPTY_NUMERIC
-init|=
+name|emptyNumeric
+parameter_list|()
+block|{
+return|return
 operator|new
 name|NumericDocValues
 argument_list|()
@@ -146,15 +139,26 @@ literal|0
 return|;
 block|}
 block|}
-decl_stmt|;
+return|;
+block|}
 comment|/**     * An empty SortedDocValues which returns {@link BytesRef#EMPTY_BYTES} for every document     */
-DECL|field|EMPTY_SORTED
+DECL|method|emptySorted
 specifier|public
 specifier|static
 specifier|final
 name|SortedDocValues
-name|EMPTY_SORTED
+name|emptySorted
+parameter_list|()
+block|{
+specifier|final
+name|BytesRef
+name|empty
 init|=
+operator|new
+name|BytesRef
+argument_list|()
+decl_stmt|;
+return|return
 operator|new
 name|SortedDocValues
 argument_list|()
@@ -177,36 +181,16 @@ block|}
 annotation|@
 name|Override
 specifier|public
-name|void
+name|BytesRef
 name|lookupOrd
 parameter_list|(
 name|int
 name|ord
-parameter_list|,
-name|BytesRef
-name|result
 parameter_list|)
 block|{
-name|result
-operator|.
-name|bytes
-operator|=
-name|BytesRef
-operator|.
-name|EMPTY_BYTES
-expr_stmt|;
-name|result
-operator|.
-name|offset
-operator|=
-literal|0
-expr_stmt|;
-name|result
-operator|.
-name|length
-operator|=
-literal|0
-expr_stmt|;
+return|return
+name|empty
+return|;
 block|}
 annotation|@
 name|Override
@@ -220,15 +204,18 @@ literal|0
 return|;
 block|}
 block|}
-decl_stmt|;
+return|;
+block|}
 comment|/**     * An empty SortedDocValues which returns {@link SortedSetDocValues#NO_MORE_ORDS} for every document     */
-DECL|field|EMPTY_SORTED_SET
+DECL|method|emptySortedSet
 specifier|public
 specifier|static
 specifier|final
 name|SortedSetDocValues
-name|EMPTY_SORTED_SET
-init|=
+name|emptySortedSet
+parameter_list|()
+block|{
+return|return
 operator|new
 name|RandomAccessOrds
 argument_list|()
@@ -257,14 +244,11 @@ block|{}
 annotation|@
 name|Override
 specifier|public
-name|void
+name|BytesRef
 name|lookupOrd
 parameter_list|(
 name|long
 name|ord
-parameter_list|,
-name|BytesRef
-name|result
 parameter_list|)
 block|{
 throw|throw
@@ -312,7 +296,8 @@ literal|0
 return|;
 block|}
 block|}
-decl_stmt|;
+return|;
+block|}
 comment|/**     * Returns a multi-valued view over the provided SortedDocValues     */
 DECL|method|singleton
 specifier|public
@@ -490,7 +475,7 @@ return|;
 block|}
 comment|// some helpers, for transition from fieldcache apis.
 comment|// as opposed to the AtomicReader apis (which must be strict for consistency), these are lenient
-comment|/**    * Returns NumericDocValues for the reader, or {@link #EMPTY_NUMERIC} if it has none.     */
+comment|/**    * Returns NumericDocValues for the reader, or {@link #emptyNumeric()} if it has none.     */
 DECL|method|getNumeric
 specifier|public
 specifier|static
@@ -524,7 +509,8 @@ literal|null
 condition|)
 block|{
 return|return
-name|EMPTY_NUMERIC
+name|emptyNumeric
+argument_list|()
 return|;
 block|}
 else|else
@@ -534,7 +520,7 @@ name|dv
 return|;
 block|}
 block|}
-comment|/**    * Returns BinaryDocValues for the reader, or {@link #EMPTY_BINARY} if it has none.     */
+comment|/**    * Returns BinaryDocValues for the reader, or {@link #emptyBinary} if it has none.     */
 DECL|method|getBinary
 specifier|public
 specifier|static
@@ -584,7 +570,8 @@ literal|null
 condition|)
 block|{
 return|return
-name|EMPTY_BINARY
+name|emptyBinary
+argument_list|()
 return|;
 block|}
 block|}
@@ -592,7 +579,7 @@ return|return
 name|dv
 return|;
 block|}
-comment|/**    * Returns SortedDocValues for the reader, or {@link #EMPTY_SORTED} if it has none.     */
+comment|/**    * Returns SortedDocValues for the reader, or {@link #emptySorted} if it has none.     */
 DECL|method|getSorted
 specifier|public
 specifier|static
@@ -626,7 +613,8 @@ literal|null
 condition|)
 block|{
 return|return
-name|EMPTY_SORTED
+name|emptySorted
+argument_list|()
 return|;
 block|}
 else|else
@@ -636,7 +624,7 @@ name|dv
 return|;
 block|}
 block|}
-comment|/**    * Returns SortedSetDocValues for the reader, or {@link #EMPTY_SORTED_SET} if it has none.     */
+comment|/**    * Returns SortedSetDocValues for the reader, or {@link #emptySortedSet} if it has none.     */
 DECL|method|getSortedSet
 specifier|public
 specifier|static
@@ -687,7 +675,8 @@ literal|null
 condition|)
 block|{
 return|return
-name|EMPTY_SORTED_SET
+name|emptySortedSet
+argument_list|()
 return|;
 block|}
 return|return

@@ -77,18 +77,15 @@ name|int
 name|docID
 parameter_list|)
 function_decl|;
-comment|/** Retrieves the value for the specified ordinal.    * @param ord ordinal to lookup    * @param result will be populated with the ordinal's value    * @see #nextOrd    */
+comment|/** Retrieves the value for the specified ordinal. The returned    * {@link BytesRef} may be re-used across calls to lookupOrd so make sure to    * {@link BytesRef#deepCopyOf(BytesRef) copy it} if you want to keep it    * around.    * @param ord ordinal to lookup    * @see #nextOrd    */
 DECL|method|lookupOrd
 specifier|public
 specifier|abstract
-name|void
+name|BytesRef
 name|lookupOrd
 parameter_list|(
 name|long
 name|ord
-parameter_list|,
-name|BytesRef
-name|result
 parameter_list|)
 function_decl|;
 comment|/**    * Returns the number of unique values.    * @return number of unique values in this SortedDocValues. This is    *         also equivalent to one plus the maximum ordinal.    */
@@ -109,13 +106,6 @@ name|BytesRef
 name|key
 parameter_list|)
 block|{
-name|BytesRef
-name|spare
-init|=
-operator|new
-name|BytesRef
-argument_list|()
-decl_stmt|;
 name|long
 name|low
 init|=
@@ -147,17 +137,19 @@ operator|)
 operator|>>>
 literal|1
 decl_stmt|;
+specifier|final
+name|BytesRef
+name|term
+init|=
 name|lookupOrd
 argument_list|(
 name|mid
-argument_list|,
-name|spare
 argument_list|)
-expr_stmt|;
+decl_stmt|;
 name|int
 name|cmp
 init|=
-name|spare
+name|term
 operator|.
 name|compareTo
 argument_list|(

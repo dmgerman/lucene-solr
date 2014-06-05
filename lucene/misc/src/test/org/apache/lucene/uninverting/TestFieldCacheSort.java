@@ -9367,10 +9367,14 @@ name|SORTED
 argument_list|)
 argument_list|)
 decl_stmt|;
+comment|// NOTE: we can't wrap this with newSearcher, because when the API is abused in this way,
+comment|// the number of ords can exceed the number of documents, and AssertingAtomicReader will get angry,
+comment|// rightfully so (its a broken dv)
 name|IndexSearcher
 name|searcher
 init|=
-name|newSearcher
+operator|new
+name|IndexSearcher
 argument_list|(
 name|reader
 argument_list|)

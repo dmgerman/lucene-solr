@@ -47,18 +47,15 @@ specifier|protected
 name|BinaryDocValues
 parameter_list|()
 block|{}
-comment|/** Lookup the value for document. */
+comment|/** Lookup the value for document.  The returned {@link BytesRef} may be    * re-used across calls to {@link #get(int)} so make sure to    * {@link BytesRef#deepCopyOf(BytesRef) copy it} if you want to keep it    * around. */
 DECL|method|get
 specifier|public
 specifier|abstract
-name|void
+name|BytesRef
 name|get
 parameter_list|(
 name|int
 name|docID
-parameter_list|,
-name|BytesRef
-name|result
 parameter_list|)
 function_decl|;
 block|}

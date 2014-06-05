@@ -1070,13 +1070,6 @@ operator|.
 name|getValueCount
 argument_list|()
 decl_stmt|;
-name|BytesRef
-name|br
-init|=
-operator|new
-name|BytesRef
-argument_list|()
-decl_stmt|;
 comment|// if no values in the segment, default trueOrd to something other then -1 (missing)
 name|int
 name|tord
@@ -1099,15 +1092,17 @@ name|i
 operator|++
 control|)
 block|{
+specifier|final
+name|BytesRef
+name|br
+init|=
 name|sindex
 operator|.
 name|lookupOrd
 argument_list|(
 name|i
-argument_list|,
-name|br
 argument_list|)
-expr_stmt|;
+decl_stmt|;
 if|if
 condition|(
 name|br

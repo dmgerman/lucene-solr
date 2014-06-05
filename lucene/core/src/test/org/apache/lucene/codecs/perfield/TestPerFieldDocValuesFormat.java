@@ -793,13 +793,6 @@ operator|.
 name|totalHits
 argument_list|)
 expr_stmt|;
-name|BytesRef
-name|scratch
-init|=
-operator|new
-name|BytesRef
-argument_list|()
-decl_stmt|;
 comment|// Iterate through the results:
 for|for
 control|(
@@ -921,6 +914,10 @@ argument_list|(
 literal|"dv2"
 argument_list|)
 decl_stmt|;
+specifier|final
+name|BytesRef
+name|term
+init|=
 name|dv2
 operator|.
 name|get
@@ -933,10 +930,8 @@ name|i
 index|]
 operator|.
 name|doc
-argument_list|,
-name|scratch
 argument_list|)
-expr_stmt|;
+decl_stmt|;
 name|assertEquals
 argument_list|(
 operator|new
@@ -945,7 +940,7 @@ argument_list|(
 literal|"hello world"
 argument_list|)
 argument_list|,
-name|scratch
+name|term
 argument_list|)
 expr_stmt|;
 block|}

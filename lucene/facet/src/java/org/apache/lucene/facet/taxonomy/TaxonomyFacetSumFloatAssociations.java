@@ -254,13 +254,6 @@ block|{
 comment|// this reader does not have DocValues for the requested category list
 continue|continue;
 block|}
-name|BytesRef
-name|scratch
-init|=
-operator|new
-name|BytesRef
-argument_list|()
-decl_stmt|;
 name|DocIdSetIterator
 name|docs
 init|=
@@ -293,38 +286,40 @@ block|{
 comment|//System.out.println("  doc=" + doc);
 comment|// TODO: use OrdinalsReader?  we'd need to add a
 comment|// BytesRef getAssociation()?
+specifier|final
+name|BytesRef
+name|bytesRef
+init|=
 name|dv
 operator|.
 name|get
 argument_list|(
 name|doc
-argument_list|,
-name|scratch
 argument_list|)
-expr_stmt|;
+decl_stmt|;
 name|byte
 index|[]
 name|bytes
 init|=
-name|scratch
+name|bytesRef
 operator|.
 name|bytes
 decl_stmt|;
 name|int
 name|end
 init|=
-name|scratch
+name|bytesRef
 operator|.
 name|offset
 operator|+
-name|scratch
+name|bytesRef
 operator|.
 name|length
 decl_stmt|;
 name|int
 name|offset
 init|=
-name|scratch
+name|bytesRef
 operator|.
 name|offset
 decl_stmt|;

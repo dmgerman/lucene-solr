@@ -2086,13 +2086,6 @@ operator|.
 name|nextDoc
 argument_list|()
 decl_stmt|;
-name|BytesRef
-name|scratch
-init|=
-operator|new
-name|BytesRef
-argument_list|()
-decl_stmt|;
 annotation|@
 name|Override
 specifier|public
@@ -2183,17 +2176,13 @@ argument_list|)
 condition|)
 block|{
 comment|// only read the current value if the document had a value before
+return|return
 name|currentValues
 operator|.
 name|get
 argument_list|(
 name|curDoc
-argument_list|,
-name|scratch
 argument_list|)
-expr_stmt|;
-return|return
-name|scratch
 return|;
 block|}
 else|else

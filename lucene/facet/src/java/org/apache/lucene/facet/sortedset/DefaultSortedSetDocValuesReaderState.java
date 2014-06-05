@@ -349,13 +349,6 @@ init|=
 operator|-
 literal|1
 decl_stmt|;
-name|BytesRef
-name|spare
-init|=
-operator|new
-name|BytesRef
-argument_list|()
-decl_stmt|;
 comment|// TODO: this approach can work for full hierarchy?;
 comment|// TaxoReader can't do this since ords are not in
 comment|// "sorted order" ... but we should generalize this to
@@ -375,15 +368,17 @@ name|ord
 operator|++
 control|)
 block|{
+specifier|final
+name|BytesRef
+name|term
+init|=
 name|dv
 operator|.
 name|lookupOrd
 argument_list|(
 name|ord
-argument_list|,
-name|spare
 argument_list|)
-expr_stmt|;
+decl_stmt|;
 name|String
 index|[]
 name|components
@@ -392,7 +387,7 @@ name|FacetsConfig
 operator|.
 name|stringToPath
 argument_list|(
-name|spare
+name|term
 operator|.
 name|utf8ToString
 argument_list|()
@@ -422,7 +417,7 @@ argument_list|)
 operator|+
 literal|" "
 operator|+
-name|spare
+name|term
 operator|.
 name|utf8ToString
 argument_list|()
