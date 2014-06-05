@@ -389,6 +389,8 @@ operator|.
 name|util
 operator|.
 name|LuceneTestCase
+operator|.
+name|AwaitsFix
 import|;
 end_import
 
@@ -405,6 +407,20 @@ operator|.
 name|LuceneTestCase
 operator|.
 name|SuppressCodecs
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|util
+operator|.
+name|LuceneTestCase
 import|;
 end_import
 
@@ -2714,6 +2730,14 @@ name|close
 argument_list|()
 expr_stmt|;
 block|}
+comment|// Relies on wall clock time, so it can easily false-fail when the machine is otherwise busy:
+annotation|@
+name|AwaitsFix
+argument_list|(
+name|bugUrl
+operator|=
+literal|"https://issues.apache.org/jira/browse/LUCENE-5737"
+argument_list|)
 comment|// LUCENE-5461
 DECL|method|testCRTReopen
 specifier|public
