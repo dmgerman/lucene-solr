@@ -223,6 +223,17 @@ name|ShardAugmenterFactory
 argument_list|()
 argument_list|)
 expr_stmt|;
+name|defaultFactories
+operator|.
+name|put
+argument_list|(
+literal|"child"
+argument_list|,
+operator|new
+name|ChildDocTransformerFactory
+argument_list|()
+argument_list|)
+expr_stmt|;
 block|}
 block|}
 end_class
