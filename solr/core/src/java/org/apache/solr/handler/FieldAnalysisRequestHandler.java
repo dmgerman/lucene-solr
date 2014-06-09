@@ -58,6 +58,20 @@ name|solr
 operator|.
 name|common
 operator|.
+name|SolrException
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|solr
+operator|.
+name|common
+operator|.
 name|params
 operator|.
 name|AnalysisParams
@@ -241,7 +255,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Provides the ability to specify multiple field types and field names in the same request. Expected parameters:  *<table border="1">  *<tr>  *<th align="left">Name</th>  *<th align="left">Type</th>  *<th align="left">required</th>  *<th align="left">Description</th>  *<th align="left">Multi-valued</th>  *</tr>  *<tr>  *<td>analysis.fieldname</td>  *<td>string</td>  *<td>no</td>  *<td>When present, the text will be analyzed based on the type of this field name.</td>  *<td>Yes, this parameter may hold a comma-separated list of values and the analysis will be performed for each of the specified fields</td>  *</tr>  *<tr>  *<td>analysis.fieldtype</td>  *<td>string</td>  *<td>no</td>  *<td>When present, the text will be analyzed based on the specified type</td>  *<td>Yes, this parameter may hold a comma-separated list of values and the analysis will be performed for each of the specified field types</td>  *</tr>  *<tr>  *<td>analysis.fieldvalue</td>  *<td>string</td>  *<td>yes</td>  *<td>The text that will be analyzed. The analysis will mimic the index-time analysis.</td>  *<td>No</td>  *</tr>  *<tr>  *<td>{@code analysis.query} OR {@code q}</td>  *<td>string</td>  *<td>no</td>  *<td>When present, the text that will be analyzed. The analysis will mimic the query-time analysis. Note that the  * {@code analysis.query} parameter as precedes the {@code q} parameters.</td>  *<td>No</td>  *</tr>  *<tr>  *<td>analysis.showmatch</td>  *<td>boolean</td>  *<td>no</td>  *<td>When set to {@code true} and when query analysis is performed, the produced tokens of the field value  * analysis will be marked as "matched" for every token that is produces by the query analysis</td>  *<td>No</td>  *</tr>  *</table>  *<p>Note that if neither analysis.fieldname and analysis.fieldtype is specified, then the default search field's  * analyzer is used.</p>  *  *  * @since solr 1.4   */
+comment|/**  * Provides the ability to specify multiple field types and field names in the same request. Expected parameters:  *<table border="1">  *<tr>  *<th align="left">Name</th>  *<th align="left">Type</th>  *<th align="left">required</th>  *<th align="left">Description</th>  *<th align="left">Multi-valued</th>  *</tr>  *<tr>  *<td>analysis.fieldname</td>  *<td>string</td>  *<td>no</td>  *<td>When present, the text will be analyzed based on the type of this field name.</td>  *<td>Yes, this parameter may hold a comma-separated list of values and the analysis will be performed for each of the specified fields</td>  *</tr>  *<tr>  *<td>analysis.fieldtype</td>  *<td>string</td>  *<td>no</td>  *<td>When present, the text will be analyzed based on the specified type</td>  *<td>Yes, this parameter may hold a comma-separated list of values and the analysis will be performed for each of the specified field types</td>  *</tr>  *<tr>  *<td>analysis.fieldvalue</td>  *<td>string</td>  *<td>no</td>  *<td>The text that will be analyzed. The analysis will mimic the index-time analysis.</td>  *<td>No</td>  *</tr>  *<tr>  *<td>{@code analysis.query} OR {@code q}</td>  *<td>string</td>  *<td>no</td>  *<td>When present, the text that will be analyzed. The analysis will mimic the query-time analysis. Note that the  * {@code analysis.query} parameter as precedes the {@code q} parameters.</td>  *<td>No</td>  *</tr>  *<tr>  *<td>analysis.showmatch</td>  *<td>boolean</td>  *<td>no</td>  *<td>When set to {@code true} and when query analysis is performed, the produced tokens of the field value  * analysis will be marked as "matched" for every token that is produces by the query analysis</td>  *<td>No</td>  *</tr>  *</table>  *<p>Note that if neither analysis.fieldname and analysis.fieldtype is specified, then the default search field's  * analyzer is used.</p>  *<p>Note that if one of analysis.value or analysis.query or q must be specified</p>  *  * @since solr 1.4   */
 end_comment
 
 begin_class
@@ -478,9 +492,6 @@ name|value
 init|=
 name|solrParams
 operator|.
-name|required
-argument_list|()
-operator|.
 name|get
 argument_list|(
 name|AnalysisParams
@@ -488,6 +499,34 @@ operator|.
 name|FIELD_VALUE
 argument_list|)
 decl_stmt|;
+if|if
+condition|(
+name|analysisRequest
+operator|.
+name|getQuery
+argument_list|()
+operator|==
+literal|null
+operator|&&
+name|value
+operator|==
+literal|null
+condition|)
+block|{
+throw|throw
+operator|new
+name|SolrException
+argument_list|(
+name|SolrException
+operator|.
+name|ErrorCode
+operator|.
+name|BAD_REQUEST
+argument_list|,
+literal|"One of analysis.value or q or analysis.query parameters must be specified"
+argument_list|)
+throw|;
+block|}
 name|Iterable
 argument_list|<
 name|ContentStream
