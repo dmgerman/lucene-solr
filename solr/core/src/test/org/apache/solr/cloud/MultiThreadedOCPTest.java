@@ -1190,20 +1190,6 @@ literal|"running"
 argument_list|)
 argument_list|)
 expr_stmt|;
-name|invokeCollectionApi
-argument_list|(
-literal|"action"
-argument_list|,
-name|CollectionParams
-operator|.
-name|CollectionAction
-operator|.
-name|OVERSEERSTATUS
-operator|.
-name|toLower
-argument_list|()
-argument_list|)
-expr_stmt|;
 comment|// CLUSTERSTATE is always mutually exclusive, it should return with a response before the split completes
 name|ModifiableSolrParams
 name|params
