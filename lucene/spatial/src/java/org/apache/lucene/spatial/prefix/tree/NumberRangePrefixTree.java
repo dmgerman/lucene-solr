@@ -4054,8 +4054,6 @@ argument_list|(
 name|getLVAtLevel
 argument_list|(
 name|nrMaxLevel
-operator|-
-literal|1
 argument_list|)
 argument_list|)
 operator|-
