@@ -189,10 +189,10 @@ import|;
 end_import
 
 begin_class
-DECL|class|TestCloudManagedSchemaAddField
+DECL|class|TestCloudManagedSchemaAddFields
 specifier|public
 class|class
-name|TestCloudManagedSchemaAddField
+name|TestCloudManagedSchemaAddFields
 extends|extends
 name|AbstractFullDistribZkTestBase
 block|{
@@ -212,9 +212,9 @@ operator|.
 name|class
 argument_list|)
 decl_stmt|;
-DECL|method|TestCloudManagedSchemaAddField
+DECL|method|TestCloudManagedSchemaAddFields
 specifier|public
-name|TestCloudManagedSchemaAddField
+name|TestCloudManagedSchemaAddFields
 parameter_list|()
 block|{
 name|super
@@ -442,7 +442,7 @@ comment|// and verify shards' schemas after all of them are added
 name|int
 name|numFields
 init|=
-literal|25
+literal|200
 decl_stmt|;
 for|for
 control|(
@@ -488,23 +488,23 @@ specifier|final
 name|String
 name|content
 init|=
-literal|"{\"type\":\"text\",\"stored\":\"false\"}"
+literal|"[{\"name\":\""
+operator|+
+name|newFieldName
+operator|+
+literal|"\",\"type\":\"text\",\"stored\":\"false\"}]"
 decl_stmt|;
 name|String
 name|request
 init|=
-literal|"/schema/fields/"
-operator|+
-name|newFieldName
-operator|+
-literal|"?wt=xml"
+literal|"/schema/fields/?wt=xml"
 decl_stmt|;
 name|String
 name|response
 init|=
 name|publisher
 operator|.
-name|put
+name|post
 argument_list|(
 name|request
 argument_list|,
@@ -532,7 +532,7 @@ condition|)
 block|{
 name|fail
 argument_list|(
-literal|"PUT REQUEST FAILED: xpath="
+literal|"POST REQUEST FAILED: xpath="
 operator|+
 name|result
 operator|+

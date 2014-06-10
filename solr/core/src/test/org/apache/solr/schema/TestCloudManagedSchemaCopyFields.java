@@ -58,20 +58,6 @@ name|solr
 operator|.
 name|util
 operator|.
-name|BaseTestHarness
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|solr
-operator|.
-name|util
-operator|.
 name|RESTfulServerProvider
 import|;
 end_import
@@ -189,10 +175,10 @@ import|;
 end_import
 
 begin_class
-DECL|class|TestCloudManagedSchemaAddField
+DECL|class|TestCloudManagedSchemaCopyFields
 specifier|public
 class|class
-name|TestCloudManagedSchemaAddField
+name|TestCloudManagedSchemaCopyFields
 extends|extends
 name|AbstractFullDistribZkTestBase
 block|{
@@ -212,9 +198,9 @@ operator|.
 name|class
 argument_list|)
 decl_stmt|;
-DECL|method|TestCloudManagedSchemaAddField
+DECL|method|TestCloudManagedSchemaCopyFields
 specifier|public
-name|TestCloudManagedSchemaAddField
+name|TestCloudManagedSchemaCopyFields
 parameter_list|()
 block|{
 name|super
@@ -437,12 +423,12 @@ block|{
 name|setupHarnesses
 argument_list|()
 expr_stmt|;
-comment|// First. add a bunch of fields, but do it fast enough
-comment|// and verify shards' schemas after all of them are added
+comment|// First, add the same copy field directive a bunch of times.
+comment|// Then verify each shard's schema has it.
 name|int
 name|numFields
 init|=
-literal|25
+literal|200
 decl_stmt|;
 for|for
 control|(
@@ -477,34 +463,27 @@ argument_list|()
 argument_list|)
 argument_list|)
 decl_stmt|;
-name|String
-name|newFieldName
-init|=
-literal|"newfield"
-operator|+
-name|i
-decl_stmt|;
 specifier|final
 name|String
 name|content
 init|=
-literal|"{\"type\":\"text\",\"stored\":\"false\"}"
+literal|"[{\"source\":\""
+operator|+
+literal|"sku1"
+operator|+
+literal|"\",\"dest\":[\"sku2\"]}]"
 decl_stmt|;
 name|String
 name|request
 init|=
-literal|"/schema/fields/"
-operator|+
-name|newFieldName
-operator|+
-literal|"?wt=xml"
+literal|"/schema/copyfields/?wt=xml"
 decl_stmt|;
 name|String
 name|response
 init|=
 name|publisher
 operator|.
-name|put
+name|post
 argument_list|(
 name|request
 argument_list|,
@@ -532,7 +511,7 @@ condition|)
 block|{
 name|fail
 argument_list|(
-literal|"PUT REQUEST FAILED: xpath="
+literal|"POST REQUEST FAILED: xpath="
 operator|+
 name|result
 operator|+
@@ -558,27 +537,10 @@ argument_list|(
 literal|100000
 argument_list|)
 expr_stmt|;
-for|for
-control|(
-name|int
-name|i
-init|=
-literal|1
-init|;
-name|i
-operator|<=
-name|numFields
-condition|;
-operator|++
-name|i
-control|)
-block|{
 name|String
-name|newFieldName
+name|request
 init|=
-literal|"newfield"
-operator|+
-name|i
+literal|"/schema/copyfields/?wt=xml&indent=on&source.fl=sku1"
 decl_stmt|;
 for|for
 control|(
@@ -588,15 +550,6 @@ range|:
 name|restTestHarnesses
 control|)
 block|{
-name|String
-name|request
-init|=
-literal|"/schema/fields/"
-operator|+
-name|newFieldName
-operator|+
-literal|"?wt=xml"
-decl_stmt|;
 name|String
 name|response
 init|=
@@ -618,11 +571,7 @@ name|response
 argument_list|,
 literal|"/response/lst[@name='responseHeader']/int[@name='status'][.='0']"
 argument_list|,
-literal|"/response/lst[@name='field']/str[@name='name'][.='"
-operator|+
-name|newFieldName
-operator|+
-literal|"']"
+literal|"/response/arr[@name='copyFields']/lst/str[@name='dest'][.='sku2']"
 argument_list|)
 decl_stmt|;
 if|if
@@ -632,23 +581,8 @@ operator|!=
 name|result
 condition|)
 block|{
-if|if
-condition|(
-name|response
-operator|.
-name|contains
+name|fail
 argument_list|(
-literal|"Field '"
-operator|+
-name|newFieldName
-operator|+
-literal|"' not found."
-argument_list|)
-condition|)
-block|{
-name|String
-name|msg
-init|=
 literal|"QUERY FAILED: xpath="
 operator|+
 name|result
@@ -660,21 +594,8 @@ operator|+
 literal|"  response="
 operator|+
 name|response
-decl_stmt|;
-name|log
-operator|.
-name|error
-argument_list|(
-name|msg
 argument_list|)
 expr_stmt|;
-name|fail
-argument_list|(
-name|msg
-argument_list|)
-expr_stmt|;
-block|}
-block|}
 block|}
 block|}
 block|}

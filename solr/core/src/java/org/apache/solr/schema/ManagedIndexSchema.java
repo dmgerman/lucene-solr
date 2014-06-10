@@ -727,6 +727,11 @@ name|success
 init|=
 literal|true
 decl_stmt|;
+name|boolean
+name|schemaChangedInZk
+init|=
+literal|false
+decl_stmt|;
 try|try
 block|{
 comment|// Persist the managed schema
@@ -863,20 +868,13 @@ name|BadVersionException
 name|e
 parameter_list|)
 block|{
-name|log
-operator|.
-name|info
-argument_list|(
-literal|"Failed to persist managed schema at "
-operator|+
-name|managedSchemaPath
-operator|+
-literal|" - version mismatch"
-argument_list|)
-expr_stmt|;
 name|success
 operator|=
 literal|false
+expr_stmt|;
+name|schemaChangedInZk
+operator|=
+literal|true
 expr_stmt|;
 block|}
 block|}
@@ -932,6 +930,41 @@ argument_list|,
 name|msg
 argument_list|,
 name|e
+argument_list|)
+throw|;
+block|}
+if|if
+condition|(
+name|schemaChangedInZk
+condition|)
+block|{
+name|String
+name|msg
+init|=
+literal|"Failed to persist managed schema at "
+operator|+
+name|managedSchemaPath
+operator|+
+literal|" - version mismatch"
+decl_stmt|;
+name|log
+operator|.
+name|info
+argument_list|(
+name|msg
+argument_list|)
+expr_stmt|;
+throw|throw
+operator|new
+name|SchemaChangedInZkException
+argument_list|(
+name|ErrorCode
+operator|.
+name|CONFLICT
+argument_list|,
+name|msg
+operator|+
+literal|", retry."
 argument_list|)
 throw|;
 block|}
@@ -1013,6 +1046,33 @@ block|{
 DECL|method|FieldExistsException
 specifier|public
 name|FieldExistsException
+parameter_list|(
+name|ErrorCode
+name|code
+parameter_list|,
+name|String
+name|msg
+parameter_list|)
+block|{
+name|super
+argument_list|(
+name|code
+argument_list|,
+name|msg
+argument_list|)
+expr_stmt|;
+block|}
+block|}
+DECL|class|SchemaChangedInZkException
+specifier|public
+class|class
+name|SchemaChangedInZkException
+extends|extends
+name|SolrException
+block|{
+DECL|method|SchemaChangedInZkException
+specifier|public
+name|SchemaChangedInZkException
 parameter_list|(
 name|ErrorCode
 name|code
@@ -1119,13 +1179,6 @@ name|emptyMap
 argument_list|()
 expr_stmt|;
 block|}
-while|while
-condition|(
-operator|!
-name|success
-condition|)
-block|{
-comment|// optimistic concurrency
 comment|// even though fields is volatile, we need to synchronize to avoid two addFields
 comment|// happening concurrently (and ending up missing one of them)
 synchronized|synchronized
@@ -1364,8 +1417,18 @@ name|newFields
 argument_list|)
 expr_stmt|;
 block|}
+else|else
+block|{
+name|log
+operator|.
+name|error
+argument_list|(
+literal|"Failed to add field(s): {}"
+argument_list|,
+name|newFields
+argument_list|)
+expr_stmt|;
 block|}
-comment|// release the lock between tries to allow the schema reader to update the schema& schemaZkVersion
 block|}
 block|}
 else|else
@@ -1432,13 +1495,6 @@ name|success
 init|=
 literal|false
 decl_stmt|;
-while|while
-condition|(
-operator|!
-name|success
-condition|)
-block|{
-comment|// optimistic concurrency
 comment|// even though fields is volatile, we need to synchronize to avoid two addCopyFields
 comment|// happening concurrently (and ending up missing one of them)
 synchronized|synchronized
@@ -1554,6 +1610,20 @@ argument_list|()
 argument_list|)
 expr_stmt|;
 block|}
+else|else
+block|{
+name|log
+operator|.
+name|error
+argument_list|(
+literal|"Failed to add copy fields for {} sources"
+argument_list|,
+name|copyFields
+operator|.
+name|size
+argument_list|()
+argument_list|)
+expr_stmt|;
 block|}
 block|}
 block|}
