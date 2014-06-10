@@ -807,6 +807,31 @@ parameter_list|()
 throws|throws
 name|ParseException
 block|{
+comment|//note: left range is 264000 at the thousand year level whereas right value is exact year
+name|assertEquals
+argument_list|(
+name|SpatialRelation
+operator|.
+name|WITHIN
+argument_list|,
+name|tree
+operator|.
+name|parseShape
+argument_list|(
+literal|"[-264000 TO -264000-11-20]"
+argument_list|)
+operator|.
+name|relate
+argument_list|(
+name|tree
+operator|.
+name|parseShape
+argument_list|(
+literal|"-264000"
+argument_list|)
+argument_list|)
+argument_list|)
+expr_stmt|;
 name|Shape
 name|shapeA
 init|=
