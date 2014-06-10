@@ -1620,6 +1620,13 @@ argument_list|(
 name|newFields
 argument_list|)
 decl_stmt|;
+if|if
+condition|(
+literal|null
+operator|!=
+name|newSchema
+condition|)
+block|{
 name|cmd
 operator|.
 name|getReq
@@ -1650,6 +1657,23 @@ argument_list|)
 expr_stmt|;
 break|break;
 comment|// success - exit from the retry loop
+block|}
+else|else
+block|{
+throw|throw
+operator|new
+name|SolrException
+argument_list|(
+name|SolrException
+operator|.
+name|ErrorCode
+operator|.
+name|SERVER_ERROR
+argument_list|,
+literal|"Failed to add fields."
+argument_list|)
+throw|;
+block|}
 block|}
 catch|catch
 parameter_list|(
