@@ -1811,6 +1811,13 @@ name|addr
 init|=
 literal|0
 decl_stmt|;
+name|writer
+operator|.
+name|add
+argument_list|(
+name|addr
+argument_list|)
+expr_stmt|;
 for|for
 control|(
 name|BytesRef
@@ -2629,6 +2636,13 @@ name|addr
 init|=
 literal|0
 decl_stmt|;
+name|writer
+operator|.
+name|add
+argument_list|(
+name|addr
+argument_list|)
+expr_stmt|;
 for|for
 control|(
 name|Number
