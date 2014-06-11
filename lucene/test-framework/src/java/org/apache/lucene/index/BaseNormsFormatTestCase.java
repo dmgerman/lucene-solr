@@ -1392,6 +1392,27 @@ argument_list|)
 argument_list|)
 expr_stmt|;
 block|}
+annotation|@
+name|Override
+DECL|method|testMergeStability
+specifier|public
+name|void
+name|testMergeStability
+parameter_list|()
+throws|throws
+name|Exception
+block|{
+comment|// TODO: can we improve this base test to just have subclasses declare the extensions to check,
+comment|// rather than a blacklist to exclude? we need to index stuff to get norms, but we dont care about testing
+comment|// the PFs actually doing that...
+name|assumeTrue
+argument_list|(
+literal|"The MockRandom PF randomizes content on the fly, so we can't check it"
+argument_list|,
+literal|false
+argument_list|)
+expr_stmt|;
+block|}
 comment|// TODO: test thread safety (e.g. across different fields) explicitly here
 block|}
 end_class
