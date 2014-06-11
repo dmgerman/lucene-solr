@@ -50,6 +50,26 @@ literal|false
 argument_list|)
 expr_stmt|;
 block|}
+DECL|method|CharacterRunAutomaton
+specifier|public
+name|CharacterRunAutomaton
+parameter_list|(
+name|LightAutomaton
+name|a
+parameter_list|)
+block|{
+name|super
+argument_list|(
+name|a
+argument_list|,
+name|Character
+operator|.
+name|MAX_CODE_POINT
+argument_list|,
+literal|false
+argument_list|)
+expr_stmt|;
+block|}
 comment|/**    * Returns true if the given string is accepted by this automaton.    */
 DECL|method|run
 specifier|public

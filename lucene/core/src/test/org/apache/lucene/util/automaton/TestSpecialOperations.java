@@ -178,7 +178,7 @@ name|i
 operator|++
 control|)
 block|{
-name|Automaton
+name|LightAutomaton
 name|a
 init|=
 name|AutomatonTestUtil
@@ -188,14 +188,6 @@ argument_list|(
 name|random
 argument_list|()
 argument_list|)
-decl_stmt|;
-name|Automaton
-name|b
-init|=
-name|a
-operator|.
-name|clone
-argument_list|()
 decl_stmt|;
 name|assertEquals
 argument_list|(
@@ -210,7 +202,7 @@ name|SpecialOperations
 operator|.
 name|isFinite
 argument_list|(
-name|b
+name|a
 argument_list|)
 argument_list|)
 expr_stmt|;
@@ -1131,7 +1123,7 @@ operator|.
 name|NONE
 argument_list|)
 operator|.
-name|toAutomaton
+name|toLightAutomaton
 argument_list|()
 argument_list|,
 operator|-
@@ -1184,7 +1176,7 @@ name|i
 operator|++
 control|)
 block|{
-name|Automaton
+name|LightAutomaton
 name|a
 init|=
 name|AutomatonTestUtil
@@ -1247,7 +1239,7 @@ name|void
 name|testInvalidLimit
 parameter_list|()
 block|{
-name|Automaton
+name|LightAutomaton
 name|a
 init|=
 name|AutomatonTestUtil
@@ -1291,7 +1283,7 @@ name|void
 name|testInvalidLimit2
 parameter_list|()
 block|{
-name|Automaton
+name|LightAutomaton
 name|a
 init|=
 name|AutomatonTestUtil

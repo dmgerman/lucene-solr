@@ -9131,7 +9131,7 @@ argument_list|(
 literal|"i[nt]"
 argument_list|)
 operator|.
-name|toAutomaton
+name|toLightAutomaton
 argument_list|()
 argument_list|)
 decl_stmt|;

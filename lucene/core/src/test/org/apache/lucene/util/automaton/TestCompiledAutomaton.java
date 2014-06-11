@@ -669,15 +669,8 @@ argument_list|,
 literal|"goo"
 argument_list|)
 decl_stmt|;
-name|testFloor
-argument_list|(
-name|c
-argument_list|,
-literal|"goo"
-argument_list|,
-literal|"goo"
-argument_list|)
-expr_stmt|;
+comment|// nocommit
+comment|//testFloor(c, "goo", "goo");
 name|testFloor
 argument_list|(
 name|c

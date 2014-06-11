@@ -605,7 +605,7 @@ argument_list|(
 literal|"."
 argument_list|)
 operator|.
-name|toAutomaton
+name|toLightAutomaton
 argument_list|()
 argument_list|)
 decl_stmt|;
@@ -713,7 +713,7 @@ argument_list|(
 literal|".."
 argument_list|)
 operator|.
-name|toAutomaton
+name|toLightAutomaton
 argument_list|()
 argument_list|)
 decl_stmt|;
@@ -858,7 +858,7 @@ argument_list|(
 literal|"..."
 argument_list|)
 operator|.
-name|toAutomaton
+name|toLightAutomaton
 argument_list|()
 argument_list|)
 decl_stmt|;
@@ -989,7 +989,7 @@ argument_list|(
 literal|"[A-Z][a-z]*"
 argument_list|)
 operator|.
-name|toAutomaton
+name|toLightAutomaton
 argument_list|()
 argument_list|)
 decl_stmt|;
@@ -1281,7 +1281,7 @@ argument_list|(
 literal|".{5,}"
 argument_list|)
 operator|.
-name|toAutomaton
+name|toLightAutomaton
 argument_list|()
 argument_list|)
 decl_stmt|;

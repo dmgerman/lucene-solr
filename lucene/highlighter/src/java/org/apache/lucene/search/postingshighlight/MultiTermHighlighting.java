@@ -920,7 +920,7 @@ name|CharacterRunAutomaton
 argument_list|(
 name|aq
 operator|.
-name|getAutomaton
+name|getLightAutomaton
 argument_list|()
 argument_list|)
 block|{
