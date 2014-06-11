@@ -1665,6 +1665,20 @@ comment|// nocommit make sure singleton cases work:
 comment|//if (utf32.isSingleton()) {
 comment|//utf32 = utf32.cloneExpanded();
 comment|//}
+if|if
+condition|(
+name|utf32
+operator|.
+name|getNumStates
+argument_list|()
+operator|==
+literal|0
+condition|)
+block|{
+return|return
+name|utf32
+return|;
+block|}
 name|int
 index|[]
 name|map

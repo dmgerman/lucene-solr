@@ -147,7 +147,7 @@ comment|//   - could encode dest w/ delta from to?
 end_comment
 
 begin_comment
-comment|// nocommit should we keep determinized bit?
+comment|// nocommit should we keep determinized bit?  it could be entirely privately computed now?
 end_comment
 
 begin_comment
