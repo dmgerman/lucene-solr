@@ -881,6 +881,7 @@ operator|!=
 literal|null
 assert|;
 block|}
+comment|// force new liveDocs in initWritableLiveDocs even if it's null
 name|liveDocsShared
 operator|=
 literal|true
@@ -923,13 +924,14 @@ return|;
 block|}
 else|else
 block|{
+comment|// liveDocs == null and reader != null. That can only be if there are no deletes
 assert|assert
 name|reader
 operator|.
 name|getLiveDocs
 argument_list|()
 operator|==
-name|liveDocs
+literal|null
 assert|;
 name|reader
 operator|.
