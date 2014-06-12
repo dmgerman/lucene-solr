@@ -1041,6 +1041,12 @@ operator|!=
 name|DocValuesType
 operator|.
 name|SORTED_SET
+operator|&&
+name|type
+operator|!=
+name|DocValuesType
+operator|.
+name|SORTED_NUMERIC
 condition|)
 block|{
 name|test
