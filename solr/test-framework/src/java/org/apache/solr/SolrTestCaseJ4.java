@@ -10717,10 +10717,10 @@ name|this
 return|;
 block|}
 block|}
-DECL|method|assertSolrDocumentEquals
+DECL|method|compareSolrDocument
 specifier|public
 name|boolean
-name|assertSolrDocumentEquals
+name|compareSolrDocument
 parameter_list|(
 name|Object
 name|expected
@@ -11003,7 +11003,7 @@ block|{
 if|if
 condition|(
 operator|!
-name|assertSolrDocumentEquals
+name|compareSolrDocument
 argument_list|(
 name|childDocsIter1
 operator|.
@@ -11027,10 +11027,10 @@ literal|true
 return|;
 block|}
 block|}
-DECL|method|assertSolrDocumentList
+DECL|method|compareSolrDocumentList
 specifier|public
 name|boolean
-name|assertSolrDocumentList
+name|compareSolrDocumentList
 parameter_list|(
 name|Object
 name|expected
@@ -11152,7 +11152,7 @@ block|{
 if|if
 condition|(
 operator|!
-name|assertSolrDocumentEquals
+name|compareSolrDocument
 argument_list|(
 name|list1
 operator|.
@@ -11179,10 +11179,10 @@ return|return
 literal|true
 return|;
 block|}
-DECL|method|assertSolrInputDocumentEquals
+DECL|method|compareSolrInputDocument
 specifier|public
 name|boolean
-name|assertSolrInputDocumentEquals
+name|compareSolrInputDocument
 parameter_list|(
 name|Object
 name|expected
@@ -11489,7 +11489,7 @@ block|{
 if|if
 condition|(
 operator|!
-name|assertSolrInputDocumentEquals
+name|compareSolrInputDocument
 argument_list|(
 name|childDocsIter1
 operator|.
