@@ -847,7 +847,7 @@ name|decRef
 argument_list|()
 expr_stmt|;
 block|}
-comment|/**    * Returns a ref to a clone. NOTE: you should decRef() the reader when you're    * dont (ie do not call close()).    */
+comment|/**    * Returns a ref to a clone. NOTE: you should decRef() the reader when you're    * done (ie do not call close()).    */
 DECL|method|getReadOnlyClone
 specifier|public
 specifier|synchronized
