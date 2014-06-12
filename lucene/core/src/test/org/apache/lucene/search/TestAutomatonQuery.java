@@ -882,6 +882,7 @@ argument_list|)
 argument_list|)
 expr_stmt|;
 block|}
+comment|// nocommit make a testRandomAutomaton like TestRR2
 comment|/**    * Test that a nondeterministic automaton works correctly. (It should will be    * determinized)    */
 DECL|method|testNFA
 specifier|public

@@ -427,8 +427,7 @@ return|return
 literal|true
 return|;
 block|}
-comment|/**    * Returns the longest string that is a prefix of all accepted strings and    * visits each state at most once.    *     * @return common prefix    */
-comment|// nocommit a must be det?  we should document if so?
+comment|/**    * Returns the longest string that is a prefix of all accepted strings and    * visits each state at most once.  The automaton must be deterministic.    *     * @return common prefix    */
 DECL|method|getCommonPrefix
 specifier|public
 specifier|static
@@ -439,7 +438,14 @@ name|LightAutomaton
 name|a
 parameter_list|)
 block|{
-comment|//a.writeDot("cp");
+assert|assert
+name|BasicOperations
+operator|.
+name|isDeterministic
+argument_list|(
+name|a
+argument_list|)
+assert|;
 name|StringBuilder
 name|b
 init|=

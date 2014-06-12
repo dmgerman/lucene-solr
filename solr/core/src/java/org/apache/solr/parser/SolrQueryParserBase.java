@@ -3609,16 +3609,6 @@ argument_list|(
 name|automaton
 argument_list|)
 expr_stmt|;
-comment|// nocommit why did i have to insert det here?  reverse didn't det before
-name|automaton
-operator|=
-name|BasicOperations
-operator|.
-name|determinize
-argument_list|(
-name|automaton
-argument_list|)
-expr_stmt|;
 block|}
 else|else
 block|{
@@ -3659,7 +3649,6 @@ argument_list|,
 name|falsePositives
 argument_list|)
 expr_stmt|;
-comment|// nocommit and do i need to det here?
 block|}
 return|return
 operator|new
