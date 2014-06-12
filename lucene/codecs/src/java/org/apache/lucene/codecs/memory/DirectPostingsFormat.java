@@ -432,22 +432,6 @@ name|RunAutomaton
 import|;
 end_import
 
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|util
-operator|.
-name|automaton
-operator|.
-name|Transition
-import|;
-end_import
-
 begin_comment
 comment|// TODO:
 end_comment

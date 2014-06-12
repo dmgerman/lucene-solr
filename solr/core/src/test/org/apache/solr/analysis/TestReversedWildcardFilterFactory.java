@@ -126,7 +126,7 @@ name|util
 operator|.
 name|automaton
 operator|.
-name|Automaton
+name|LightAutomaton
 import|;
 end_import
 
@@ -1060,40 +1060,18 @@ condition|)
 return|return
 literal|false
 return|;
-comment|// this is a hack to get the protected Automaton field in AutomatonQuery,
-comment|// may break in later lucene versions - we have no getter... for good reasons.
-specifier|final
-name|Field
-name|automatonField
-init|=
-name|AutomatonQuery
-operator|.
-name|class
-operator|.
-name|getDeclaredField
-argument_list|(
-literal|"automaton"
-argument_list|)
-decl_stmt|;
-name|automatonField
-operator|.
-name|setAccessible
-argument_list|(
-literal|true
-argument_list|)
-expr_stmt|;
-name|Automaton
+name|LightAutomaton
 name|automaton
 init|=
 operator|(
-name|Automaton
+operator|(
+name|AutomatonQuery
 operator|)
-name|automatonField
-operator|.
-name|get
-argument_list|(
 name|q
-argument_list|)
+operator|)
+operator|.
+name|getLightAutomaton
+argument_list|()
 decl_stmt|;
 name|String
 name|prefix

@@ -116,22 +116,6 @@ name|LightAutomaton
 import|;
 end_import
 
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|util
-operator|.
-name|automaton
-operator|.
-name|Transition
-import|;
-end_import
-
 begin_comment
 comment|/**  * A FilteredTermsEnum that enumerates terms based upon what is accepted by a  * DFA.  *<p>  * The algorithm is such:  *<ol>  *<li>As long as matches are successful, keep reading sequentially.  *<li>When a match fails, skip to the next string in lexicographic order that  * does not enter a reject state.  *</ol>  *<p>  * The algorithm does not attempt to actually skip to the next string that is  * completely accepted. This is not possible when the language accepted by the  * FSM is not finite (i.e. * operator).  *</p>  * @lucene.experimental  */
 end_comment

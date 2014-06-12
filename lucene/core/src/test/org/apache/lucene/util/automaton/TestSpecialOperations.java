@@ -1317,7 +1317,7 @@ name|getFiniteStrings
 argument_list|(
 name|BasicAutomata
 operator|.
-name|makeString
+name|makeStringLight
 argument_list|(
 literal|"foobar"
 argument_list|)
@@ -1388,7 +1388,7 @@ name|getFiniteStrings
 argument_list|(
 name|BasicAutomata
 operator|.
-name|makeString
+name|makeStringLight
 argument_list|(
 literal|"foobar"
 argument_list|)

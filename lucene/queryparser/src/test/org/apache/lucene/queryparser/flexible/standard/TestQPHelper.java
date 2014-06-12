@@ -5957,7 +5957,7 @@ name|CharacterRunAutomaton
 argument_list|(
 name|BasicAutomata
 operator|.
-name|makeString
+name|makeStringLight
 argument_list|(
 literal|"on"
 argument_list|)

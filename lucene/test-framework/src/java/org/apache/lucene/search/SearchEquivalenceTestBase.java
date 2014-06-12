@@ -354,7 +354,7 @@ name|CharacterRunAutomaton
 argument_list|(
 name|BasicAutomata
 operator|.
-name|makeString
+name|makeStringLight
 argument_list|(
 name|stopword
 argument_list|)

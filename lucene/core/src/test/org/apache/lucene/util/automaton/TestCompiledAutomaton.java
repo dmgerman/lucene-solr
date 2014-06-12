@@ -178,10 +178,10 @@ name|terms
 argument_list|)
 expr_stmt|;
 specifier|final
-name|Automaton
+name|LightAutomaton
 name|a
 init|=
-name|DaciukMihovAutomatonBuilder
+name|DaciukMihovAutomatonBuilderLight
 operator|.
 name|build
 argument_list|(
@@ -669,8 +669,15 @@ argument_list|,
 literal|"goo"
 argument_list|)
 decl_stmt|;
-comment|// nocommit
-comment|//testFloor(c, "goo", "goo");
+name|testFloor
+argument_list|(
+name|c
+argument_list|,
+literal|"goo"
+argument_list|,
+literal|"goo"
+argument_list|)
+expr_stmt|;
 name|testFloor
 argument_list|(
 name|c

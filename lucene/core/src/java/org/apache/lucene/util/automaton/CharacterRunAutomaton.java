@@ -30,26 +30,7 @@ name|CharacterRunAutomaton
 extends|extends
 name|RunAutomaton
 block|{
-DECL|method|CharacterRunAutomaton
-specifier|public
-name|CharacterRunAutomaton
-parameter_list|(
-name|Automaton
-name|a
-parameter_list|)
-block|{
-name|super
-argument_list|(
-name|a
-argument_list|,
-name|Character
-operator|.
-name|MAX_CODE_POINT
-argument_list|,
-literal|false
-argument_list|)
-expr_stmt|;
-block|}
+comment|/** Sole constructor. */
 DECL|method|CharacterRunAutomaton
 specifier|public
 name|CharacterRunAutomaton

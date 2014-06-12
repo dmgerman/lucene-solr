@@ -646,12 +646,12 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
-name|Automaton
+name|LightAutomaton
 name|alternate
 init|=
 name|BasicAutomata
 operator|.
-name|makeStringUnion
+name|makeStringUnionLight
 argument_list|(
 name|matchedTerms
 argument_list|)
@@ -659,15 +659,6 @@ decl_stmt|;
 comment|//System.out.println("match " + matchedTerms.size() + " " + alternate.getNumberOfStates() + " states, sigma=" + alternate.getStartPoints().length);
 comment|//AutomatonTestUtil.minimizeSimple(alternate);
 comment|//System.out.println("minmize done");
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"\nTEST: make AQ1"
-argument_list|)
-expr_stmt|;
 name|AutomatonQuery
 name|a1
 init|=
@@ -685,15 +676,6 @@ argument_list|,
 name|automaton
 argument_list|)
 decl_stmt|;
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"\nTEST: make AQ2"
-argument_list|)
-expr_stmt|;
 name|AutomatonQuery
 name|a2
 init|=
