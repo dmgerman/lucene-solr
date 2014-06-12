@@ -1181,7 +1181,7 @@ name|Exception
 block|{
 comment|// now let's create a partition in one of the replicas and outright
 comment|// kill the leader ... see what happens
-comment|// create a collection that has 1 shard but 2 replicas
+comment|// create a collection that has 1 shard but 3 replicas
 name|String
 name|testCollectionName
 init|=
