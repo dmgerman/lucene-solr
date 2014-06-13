@@ -2233,7 +2233,7 @@ name|newRamSize
 init|=
 name|writer
 operator|.
-name|ramSizeInBytes
+name|ramBytesUsed
 argument_list|()
 decl_stmt|;
 if|if
