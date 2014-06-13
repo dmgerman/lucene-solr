@@ -617,14 +617,10 @@ expr_stmt|;
 block|}
 DECL|field|scratch
 specifier|private
-name|LightAutomaton
-operator|.
 name|Transition
 name|scratch
 init|=
 operator|new
-name|LightAutomaton
-operator|.
 name|Transition
 argument_list|()
 decl_stmt|;

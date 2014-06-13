@@ -169,6 +169,8 @@ operator|.
 name|index
 operator|.
 name|FieldInfo
+operator|.
+name|IndexOptions
 import|;
 end_import
 
@@ -183,8 +185,6 @@ operator|.
 name|index
 operator|.
 name|FieldInfo
-operator|.
-name|IndexOptions
 import|;
 end_import
 
@@ -429,6 +429,22 @@ operator|.
 name|automaton
 operator|.
 name|RunAutomaton
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|util
+operator|.
+name|automaton
+operator|.
+name|Transition
 import|;
 end_import
 
@@ -4833,14 +4849,10 @@ name|transitionMin
 decl_stmt|;
 DECL|field|transition
 specifier|final
-name|LightAutomaton
-operator|.
 name|Transition
 name|transition
 init|=
 operator|new
-name|LightAutomaton
-operator|.
 name|Transition
 argument_list|()
 decl_stmt|;
