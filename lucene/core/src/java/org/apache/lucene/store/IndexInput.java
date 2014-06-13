@@ -181,7 +181,7 @@ parameter_list|)
 throws|throws
 name|IOException
 function_decl|;
-comment|/**    * Creates a random-access slice of this index input, with the given offset and length.     *<p>    * The default implementation calls {@link #slice}, and implements absolute reads as    * seek+read.    */
+comment|/**    * Creates a random-access slice of this index input, with the given offset and length.     *<p>    * The default implementation calls {@link #slice}, and it doesn't support random access,    * it implements absolute reads as seek+read.    */
 DECL|method|randomAccessSlice
 specifier|public
 name|RandomAccessInput
@@ -209,6 +209,24 @@ argument_list|,
 name|length
 argument_list|)
 decl_stmt|;
+if|if
+condition|(
+name|slice
+operator|instanceof
+name|RandomAccessInput
+condition|)
+block|{
+comment|// slice() already supports random access
+return|return
+operator|(
+name|RandomAccessInput
+operator|)
+name|slice
+return|;
+block|}
+else|else
+block|{
+comment|// return default impl
 return|return
 operator|new
 name|RandomAccessInput
@@ -320,6 +338,7 @@ return|;
 block|}
 block|}
 return|;
+block|}
 block|}
 block|}
 end_class

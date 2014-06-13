@@ -1511,34 +1511,6 @@ name|length
 argument_list|)
 return|;
 block|}
-annotation|@
-name|Override
-DECL|method|randomAccessSlice
-specifier|public
-name|RandomAccessInput
-name|randomAccessSlice
-parameter_list|(
-name|long
-name|offset
-parameter_list|,
-name|long
-name|length
-parameter_list|)
-throws|throws
-name|IOException
-block|{
-comment|// note: technically we could even avoid the clone...
-return|return
-name|slice
-argument_list|(
-literal|null
-argument_list|,
-name|offset
-argument_list|,
-name|length
-argument_list|)
-return|;
-block|}
 comment|/** Builds the actual sliced IndexInput (may apply extra offset in subclasses). **/
 DECL|method|buildSlice
 specifier|protected
