@@ -33,26 +33,28 @@ import|;
 end_import
 
 begin_import
+import|import static
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|util
+operator|.
+name|RamUsageTester
+operator|.
+name|sizeOf
+import|;
+end_import
+
+begin_import
 import|import
 name|java
 operator|.
 name|util
 operator|.
 name|Random
-import|;
-end_import
-
-begin_import
-import|import
-name|com
-operator|.
-name|carrotsearch
-operator|.
-name|randomizedtesting
-operator|.
-name|generators
-operator|.
-name|RandomStrings
 import|;
 end_import
 

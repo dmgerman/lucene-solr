@@ -278,6 +278,20 @@ name|lucene
 operator|.
 name|util
 operator|.
+name|RamUsageTester
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|util
+operator|.
 name|TestUtil
 import|;
 end_import
@@ -1179,7 +1193,7 @@ specifier|final
 name|long
 name|expectedBytesUsed
 init|=
-name|RamUsageEstimator
+name|RamUsageTester
 operator|.
 name|sizeOf
 argument_list|(
@@ -5450,7 +5464,7 @@ argument_list|)
 expr_stmt|;
 name|assertEquals
 argument_list|(
-name|RamUsageEstimator
+name|RamUsageTester
 operator|.
 name|sizeOf
 argument_list|(
@@ -5733,7 +5747,7 @@ block|}
 comment|// test ramBytesUsed
 name|assertEquals
 argument_list|(
-name|RamUsageEstimator
+name|RamUsageTester
 operator|.
 name|sizeOf
 argument_list|(
@@ -6181,14 +6195,14 @@ block|}
 comment|// test ramBytesUsed
 name|assertEquals
 argument_list|(
-name|RamUsageEstimator
+name|RamUsageTester
 operator|.
 name|sizeOf
 argument_list|(
 name|writer
 argument_list|)
 operator|-
-name|RamUsageEstimator
+name|RamUsageTester
 operator|.
 name|sizeOf
 argument_list|(
@@ -8520,7 +8534,7 @@ specifier|final
 name|long
 name|expectedBytesUsed
 init|=
-name|RamUsageEstimator
+name|RamUsageTester
 operator|.
 name|sizeOf
 argument_list|(

@@ -132,7 +132,7 @@ argument_list|()
 operator|)
 expr_stmt|;
 block|}
-name|RamUsageEstimator
+name|RamUsageTester
 operator|.
 name|sizeOf
 argument_list|(

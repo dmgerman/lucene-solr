@@ -240,7 +240,7 @@ decl_stmt|;
 name|long
 name|estimated
 init|=
-name|RamUsageEstimator
+name|RamUsageTester
 operator|.
 name|sizeOf
 argument_list|(

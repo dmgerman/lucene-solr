@@ -214,20 +214,6 @@ name|lucene
 operator|.
 name|index
 operator|.
-name|AtomicReaderContext
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|index
-operator|.
 name|BinaryDocValues
 import|;
 end_import
@@ -455,20 +441,6 @@ operator|.
 name|index
 operator|.
 name|TermsEnum
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|search
-operator|.
-name|Collector
 import|;
 end_import
 
@@ -2323,28 +2295,6 @@ block|}
 end_function
 
 begin_comment
-comment|/**    * Returns a reasonable approximation of the main memory [bytes] consumed by    * this instance. Useful for smart memory sensititive caches/pools.    * @return the main memory consumption    */
-end_comment
-
-begin_function
-DECL|method|getMemorySize
-specifier|public
-name|long
-name|getMemorySize
-parameter_list|()
-block|{
-return|return
-name|RamUsageEstimator
-operator|.
-name|sizeOf
-argument_list|(
-name|this
-argument_list|)
-return|;
-block|}
-end_function
-
-begin_comment
 comment|/** sorts into ascending order (on demand), reusing memory along the way */
 end_comment
 
@@ -2862,25 +2812,6 @@ name|result
 operator|.
 name|append
 argument_list|(
-literal|", memory="
-operator|+
-name|RamUsageEstimator
-operator|.
-name|humanReadableUnits
-argument_list|(
-name|RamUsageEstimator
-operator|.
-name|sizeOf
-argument_list|(
-name|info
-argument_list|)
-argument_list|)
-argument_list|)
-expr_stmt|;
-name|result
-operator|.
-name|append
-argument_list|(
 literal|"\n"
 argument_list|)
 expr_stmt|;
@@ -2925,21 +2856,6 @@ argument_list|(
 literal|", positions="
 operator|+
 name|sumPositions
-argument_list|)
-expr_stmt|;
-name|result
-operator|.
-name|append
-argument_list|(
-literal|", memory="
-operator|+
-name|RamUsageEstimator
-operator|.
-name|humanReadableUnits
-argument_list|(
-name|getMemorySize
-argument_list|()
-argument_list|)
 argument_list|)
 expr_stmt|;
 return|return
