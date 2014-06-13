@@ -128,6 +128,20 @@ name|FixedBitSet
 import|;
 end_import
 
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|util
+operator|.
+name|RamUsageEstimator
+import|;
+end_import
+
 begin_comment
 comment|/**  *<code>SortedIntDocSet</code> represents a sorted set of Lucene Document Ids.  */
 end_comment
@@ -3605,6 +3619,22 @@ parameter_list|()
 block|{
 return|return
 literal|true
+return|;
+block|}
+annotation|@
+name|Override
+specifier|public
+name|long
+name|ramBytesUsed
+parameter_list|()
+block|{
+return|return
+name|RamUsageEstimator
+operator|.
+name|sizeOf
+argument_list|(
+name|docs
+argument_list|)
 return|;
 block|}
 annotation|@

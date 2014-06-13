@@ -74,6 +74,20 @@ begin_comment
 comment|// for javadocs
 end_comment
 
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|util
+operator|.
+name|RamUsageEstimator
+import|;
+end_import
+
 begin_comment
 comment|/** A DocIdSet in Elias-Fano encoding.  * @lucene.internal  */
 end_comment
@@ -431,6 +445,30 @@ name|getClass
 argument_list|()
 operator|.
 name|hashCode
+argument_list|()
+return|;
+block|}
+annotation|@
+name|Override
+DECL|method|ramBytesUsed
+specifier|public
+name|long
+name|ramBytesUsed
+parameter_list|()
+block|{
+return|return
+name|RamUsageEstimator
+operator|.
+name|alignObjectSize
+argument_list|(
+name|RamUsageEstimator
+operator|.
+name|NUM_BYTES_OBJECT_REF
+argument_list|)
+operator|+
+name|efEncoder
+operator|.
+name|ramBytesUsed
 argument_list|()
 return|;
 block|}

@@ -965,6 +965,41 @@ return|return
 literal|true
 return|;
 block|}
+annotation|@
+name|Override
+DECL|method|ramBytesUsed
+specifier|public
+name|long
+name|ramBytesUsed
+parameter_list|()
+block|{
+return|return
+name|RamUsageEstimator
+operator|.
+name|alignObjectSize
+argument_list|(
+name|RamUsageEstimator
+operator|.
+name|NUM_BYTES_OBJECT_REF
+comment|// the reference to the long[]
+operator|+
+name|RamUsageEstimator
+operator|.
+name|NUM_BYTES_INT
+operator|*
+literal|2
+argument_list|)
+comment|// numBits and numWords
+operator|+
+name|RamUsageEstimator
+operator|.
+name|sizeOf
+argument_list|(
+name|bits
+argument_list|)
+return|;
+comment|// the bits
+block|}
 comment|/** Expert. */
 DECL|method|getBits
 specifier|public

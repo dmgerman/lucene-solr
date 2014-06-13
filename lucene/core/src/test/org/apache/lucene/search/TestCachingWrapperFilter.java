@@ -1395,6 +1395,17 @@ return|return
 literal|null
 return|;
 block|}
+annotation|@
+name|Override
+specifier|public
+name|long
+name|ramBytesUsed
+parameter_list|()
+block|{
+return|return
+literal|0L
+return|;
+block|}
 block|}
 return|;
 block|}

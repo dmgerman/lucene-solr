@@ -604,6 +604,37 @@ literal|2
 operator|)
 expr_stmt|;
 block|}
+comment|/** Return the memory footprint of this class in bytes. */
+DECL|method|ramBytesUsed
+specifier|public
+name|long
+name|ramBytesUsed
+parameter_list|()
+block|{
+return|return
+name|RamUsageEstimator
+operator|.
+name|alignObjectSize
+argument_list|(
+name|RamUsageEstimator
+operator|.
+name|NUM_BYTES_INT
+operator|*
+literal|3
+operator|+
+name|RamUsageEstimator
+operator|.
+name|NUM_BYTES_OBJECT_REF
+argument_list|)
+operator|+
+name|RamUsageEstimator
+operator|.
+name|sizeOf
+argument_list|(
+name|keys
+argument_list|)
+return|;
+block|}
 block|}
 end_class
 

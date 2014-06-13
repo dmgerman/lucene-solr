@@ -12810,6 +12810,27 @@ literal|null
 return|;
 comment|// don't use random access
 block|}
+annotation|@
+name|Override
+DECL|method|ramBytesUsed
+specifier|public
+name|long
+name|ramBytesUsed
+parameter_list|()
+block|{
+return|return
+name|docIdSet
+operator|!=
+literal|null
+condition|?
+name|docIdSet
+operator|.
+name|ramBytesUsed
+argument_list|()
+else|:
+literal|0L
+return|;
+block|}
 block|}
 DECL|class|FilterIterator
 specifier|private

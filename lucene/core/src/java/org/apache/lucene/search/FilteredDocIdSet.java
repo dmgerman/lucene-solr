@@ -40,6 +40,20 @@ name|Bits
 import|;
 end_import
 
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|util
+operator|.
+name|RamUsageEstimator
+import|;
+end_import
+
 begin_comment
 comment|/**  * Abstract decorator class for a DocIdSet implementation  * that provides on-demand filtering/validation  * mechanism on a given DocIdSet.  *  *<p/>  *  * Technically, this same functionality could be achieved  * with ChainedFilter (under queries/), however the  * benefit of this class is it never materializes the full  * bitset for the filter.  Instead, the {@link #match}  * method is invoked on-demand, per docID visited during  * searching.  If you know few docIDs will be visited, and  * the logic behind {@link #match} is relatively costly,  * this may be a better way to filter than ChainedFilter.  *  * @see DocIdSet  */
 end_comment
@@ -86,6 +100,25 @@ return|return
 name|_innerSet
 operator|.
 name|isCacheable
+argument_list|()
+return|;
+block|}
+annotation|@
+name|Override
+DECL|method|ramBytesUsed
+specifier|public
+name|long
+name|ramBytesUsed
+parameter_list|()
+block|{
+return|return
+name|RamUsageEstimator
+operator|.
+name|NUM_BYTES_OBJECT_REF
+operator|+
+name|_innerSet
+operator|.
+name|ramBytesUsed
 argument_list|()
 return|;
 block|}

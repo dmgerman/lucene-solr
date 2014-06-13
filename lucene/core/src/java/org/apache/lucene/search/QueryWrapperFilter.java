@@ -187,12 +187,12 @@ block|}
 annotation|@
 name|Override
 specifier|public
-name|boolean
-name|isCacheable
+name|long
+name|ramBytesUsed
 parameter_list|()
 block|{
 return|return
-literal|false
+literal|0L
 return|;
 block|}
 block|}

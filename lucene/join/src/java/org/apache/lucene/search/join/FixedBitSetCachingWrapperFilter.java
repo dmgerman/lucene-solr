@@ -19,6 +19,22 @@ comment|/*  * Licensed to the Apache Software Foundation (ASF) under one or more
 end_comment
 
 begin_import
+import|import static
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|search
+operator|.
+name|DocIdSet
+operator|.
+name|EMPTY
+import|;
+end_import
+
+begin_import
 import|import
 name|java
 operator|.
@@ -164,7 +180,7 @@ literal|null
 condition|)
 block|{
 return|return
-name|EMPTY_DOCIDSET
+name|EMPTY
 return|;
 block|}
 elseif|else
@@ -201,7 +217,7 @@ literal|null
 condition|)
 block|{
 return|return
-name|EMPTY_DOCIDSET
+name|EMPTY
 return|;
 block|}
 else|else
