@@ -982,6 +982,15 @@ name|toString
 argument_list|()
 argument_list|)
 expr_stmt|;
+name|details
+operator|.
+name|add
+argument_list|(
+literal|"snapshotName"
+argument_list|,
+name|snapshotName
+argument_list|)
+expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
