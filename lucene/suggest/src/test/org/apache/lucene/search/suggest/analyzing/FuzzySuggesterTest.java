@@ -5205,12 +5205,10 @@ argument_list|)
 decl_stmt|;
 name|assertTrue
 argument_list|(
-name|BasicOperations
+name|automaton
 operator|.
 name|isDeterministic
-argument_list|(
-name|automaton
-argument_list|)
+argument_list|()
 argument_list|)
 expr_stmt|;
 comment|// TODO: could be faster... but its slowCompletor for a reason

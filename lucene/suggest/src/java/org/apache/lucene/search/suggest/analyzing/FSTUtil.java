@@ -283,12 +283,10 @@ throws|throws
 name|IOException
 block|{
 assert|assert
-name|BasicOperations
+name|a
 operator|.
 name|isDeterministic
-argument_list|(
-name|a
-argument_list|)
+argument_list|()
 assert|;
 specifier|final
 name|List

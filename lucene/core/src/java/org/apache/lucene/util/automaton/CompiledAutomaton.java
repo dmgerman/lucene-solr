@@ -607,7 +607,6 @@ argument_list|,
 literal|true
 argument_list|)
 expr_stmt|;
-comment|//utf8.writeDot("utf8");
 name|lightAutomaton
 operator|=
 name|runAutomaton
