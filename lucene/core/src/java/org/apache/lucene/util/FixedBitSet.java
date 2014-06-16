@@ -79,6 +79,22 @@ name|DocIdSet
 implements|implements
 name|Bits
 block|{
+DECL|field|BASE_RAM_BYTES_USED
+specifier|private
+specifier|static
+specifier|final
+name|long
+name|BASE_RAM_BYTES_USED
+init|=
+name|RamUsageEstimator
+operator|.
+name|shallowSizeOfInstance
+argument_list|(
+name|FixedBitSet
+operator|.
+name|class
+argument_list|)
+decl_stmt|;
 comment|/**    * A {@link DocIdSetIterator} which iterates over set bits in a    * {@link FixedBitSet}.    */
 DECL|class|FixedBitSetIterator
 specifier|public
@@ -974,22 +990,7 @@ name|ramBytesUsed
 parameter_list|()
 block|{
 return|return
-name|RamUsageEstimator
-operator|.
-name|alignObjectSize
-argument_list|(
-name|RamUsageEstimator
-operator|.
-name|NUM_BYTES_OBJECT_REF
-comment|// the reference to the long[]
-operator|+
-name|RamUsageEstimator
-operator|.
-name|NUM_BYTES_INT
-operator|*
-literal|2
-argument_list|)
-comment|// numBits and numWords
+name|BASE_RAM_BYTES_USED
 operator|+
 name|RamUsageEstimator
 operator|.
@@ -998,7 +999,6 @@ argument_list|(
 name|bits
 argument_list|)
 return|;
-comment|// the bits
 block|}
 comment|/** Expert. */
 DECL|method|getBits

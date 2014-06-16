@@ -68,6 +68,36 @@ name|DocIdSet
 implements|implements
 name|Bits
 block|{
+DECL|field|BASE_RAM_BYTES_USED
+specifier|private
+specifier|static
+specifier|final
+name|long
+name|BASE_RAM_BYTES_USED
+init|=
+name|RamUsageEstimator
+operator|.
+name|shallowSizeOfInstance
+argument_list|(
+name|DocIdBitSet
+operator|.
+name|class
+argument_list|)
+operator|+
+name|RamUsageEstimator
+operator|.
+name|shallowSizeOfInstance
+argument_list|(
+name|BitSet
+operator|.
+name|class
+argument_list|)
+operator|+
+name|RamUsageEstimator
+operator|.
+name|NUM_BYTES_ARRAY_HEADER
+decl_stmt|;
+comment|// the array that stores the bits
 DECL|field|bitSet
 specifier|private
 specifier|final
@@ -187,10 +217,10 @@ name|long
 name|ramBytesUsed
 parameter_list|()
 block|{
+comment|// unfortunately this is likely underestimated if the Bitset implementation
+comment|// over-sizes the array that stores the bits
 return|return
-name|RamUsageEstimator
-operator|.
-name|NUM_BYTES_OBJECT_REF
+name|BASE_RAM_BYTES_USED
 operator|+
 operator|(
 name|bitSet
