@@ -2852,7 +2852,7 @@ operator|=
 name|ramBytesUsed
 expr_stmt|;
 block|}
-comment|/** Create an {@link OrdinalMap} with the default overhead ratio.      *  @see #OrdinalMap(Object, TermsEnum[], float)  */
+comment|/** Create an {@link OrdinalMap} with the default overhead ratio. */
 DECL|method|OrdinalMap
 specifier|public
 name|OrdinalMap
