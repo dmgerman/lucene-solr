@@ -439,6 +439,41 @@ argument_list|)
 expr_stmt|;
 block|}
 annotation|@
+name|Test
+DECL|method|testBugInitIterOptimization
+specifier|public
+name|void
+name|testBugInitIterOptimization
+parameter_list|()
+throws|throws
+name|Exception
+block|{
+comment|//bug due to fast path initIter() optimization
+name|testOperation
+argument_list|(
+name|tree
+operator|.
+name|parseShape
+argument_list|(
+literal|"[2014-03-27T23 TO 2014-04-01T01]"
+argument_list|)
+argument_list|,
+name|SpatialOperation
+operator|.
+name|Intersects
+argument_list|,
+name|tree
+operator|.
+name|parseShape
+argument_list|(
+literal|"[2014-04 TO 2014-04-01T02]"
+argument_list|)
+argument_list|,
+literal|true
+argument_list|)
+expr_stmt|;
+block|}
+annotation|@
 name|Override
 DECL|method|randomIndexedShape
 specifier|protected
