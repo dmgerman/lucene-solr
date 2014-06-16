@@ -18,25 +18,13 @@ begin_comment
 comment|/*  * Licensed to the Apache Software Foundation (ASF) under one or more  * contributor license agreements.  See the NOTICE file distributed with  * this work for additional information regarding copyright ownership.  * The ASF licenses this file to You under the Apache License, Version 2.0  * (the "License"); you may not use this file except in compliance with  * the License.  You may obtain a copy of the License at  *  *     http://www.apache.org/licenses/LICENSE-2.0  *  * Unless required by applicable law or agreed to in writing, software  * distributed under the License is distributed on an "AS IS" BASIS,  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.  * See the License for the specific language governing permissions and  * limitations under the License.  */
 end_comment
 
-begin_import
-import|import
-name|java
-operator|.
-name|io
-operator|.
-name|IOException
-import|;
-end_import
+begin_comment
+comment|//import java.io.IOException;
+end_comment
 
-begin_import
-import|import
-name|java
-operator|.
-name|io
-operator|.
-name|PrintWriter
-import|;
-end_import
+begin_comment
+comment|//import java.io.PrintWriter;
+end_comment
 
 begin_import
 import|import
@@ -54,27 +42,7 @@ name|java
 operator|.
 name|util
 operator|.
-name|BitSet
-import|;
-end_import
-
-begin_import
-import|import
-name|java
-operator|.
-name|util
-operator|.
 name|HashSet
-import|;
-end_import
-
-begin_import
-import|import
-name|java
-operator|.
-name|util
-operator|.
-name|LinkedList
 import|;
 end_import
 
@@ -194,7 +162,6 @@ literal|4
 index|]
 decl_stmt|;
 comment|/** Holds toState, min, max for each transition: */
-comment|// nocommit inefficient when labels are really bytes (max 256)
 DECL|field|transitions
 specifier|private
 name|int
@@ -278,6 +245,31 @@ parameter_list|)
 block|{
 if|if
 condition|(
+name|state
+operator|>=
+name|getNumStates
+argument_list|()
+condition|)
+block|{
+throw|throw
+operator|new
+name|IllegalArgumentException
+argument_list|(
+literal|"state="
+operator|+
+name|state
+operator|+
+literal|" is out of bounds (numStates="
+operator|+
+name|getNumStates
+argument_list|()
+operator|+
+literal|")"
+argument_list|)
+throw|;
+block|}
+if|if
+condition|(
 name|isAccept
 condition|)
 block|{
@@ -299,19 +291,6 @@ name|state
 argument_list|)
 expr_stmt|;
 block|}
-block|}
-DECL|method|isEmpty
-specifier|public
-name|boolean
-name|isEmpty
-parameter_list|()
-block|{
-return|return
-name|finalStates
-operator|.
-name|isEmpty
-argument_list|()
-return|;
 block|}
 comment|/** Sugar, but object-heavy; it's better to iterate instead. */
 DECL|method|getSortedTransitions
@@ -869,26 +848,6 @@ name|i
 operator|/
 literal|2
 decl_stmt|;
-if|if
-condition|(
-name|other
-operator|.
-name|isAccept
-argument_list|(
-name|state
-argument_list|)
-condition|)
-block|{
-name|setAccept
-argument_list|(
-name|stateOffset
-operator|+
-name|state
-argument_list|,
-literal|true
-argument_list|)
-expr_stmt|;
-block|}
 block|}
 name|nextState
 operator|+=
@@ -896,6 +855,27 @@ name|other
 operator|.
 name|nextState
 expr_stmt|;
+for|for
+control|(
+name|int
+name|s
+range|:
+name|other
+operator|.
+name|getAcceptStates
+argument_list|()
+control|)
+block|{
+name|setAccept
+argument_list|(
+name|stateOffset
+operator|+
+name|s
+argument_list|,
+literal|true
+argument_list|)
+expr_stmt|;
+block|}
 comment|// Bulk copy and then fixup dest for each transition:
 name|transitions
 operator|=
@@ -1438,10 +1418,11 @@ return|return
 name|deterministic
 return|;
 block|}
-DECL|method|finish
+comment|/** Finishes the current state; call this once you are done adding transitions for a state. */
+DECL|method|finishState
 specifier|public
 name|void
-name|finish
+name|finishState
 parameter_list|()
 block|{
 if|if
@@ -1486,7 +1467,6 @@ name|int
 name|state
 parameter_list|)
 block|{
-comment|//assert curState == -1: "not finished";
 name|int
 name|count
 init|=
@@ -2198,9 +2178,7 @@ return|;
 block|}
 block|}
 decl_stmt|;
-comment|// nocommit createStates(int count)?
-comment|// nocommit kinda awkward iterator api...
-comment|/** Initialize the provided Transition for iteration; you    *  must call {@link #getNextTransition} to get the first    *  transition for the state.  Returns the number of transitions    *  leaving this state. */
+comment|/** Initialize the provided Transition to iterate through all transitions    *  leaving the specified state.  You must call {@link #getNextTransition} to    *  get each transition.  Returns the number of transitions    *  leaving this state. */
 DECL|method|initTransition
 specifier|public
 name|int
@@ -2213,14 +2191,27 @@ name|Transition
 name|t
 parameter_list|)
 block|{
-comment|// assert curState == -1: "not finished";
+assert|assert
+name|state
+operator|<
+name|nextState
+operator|/
+literal|2
+operator|:
+literal|"state="
+operator|+
+name|state
+operator|+
+literal|" nextState="
+operator|+
+name|nextState
+assert|;
 name|t
 operator|.
 name|source
 operator|=
 name|state
 expr_stmt|;
-comment|//System.out.println("initTrans source=" + state  + " numTrans=" + getNumTransitions(state));
 name|t
 operator|.
 name|transitionUpto
@@ -2249,10 +2240,7 @@ name|Transition
 name|t
 parameter_list|)
 block|{
-comment|//assert curState == -1: "not finished";
 comment|// Make sure there is still a transition left:
-comment|//System.out.println("getNextTrans transUpto=" + t.transitionUpto);
-comment|//System.out.println("  states[2*t.source]=" + states[2*t.source] + " numTrans=" + states[2*t.source+1] + " transitionUpto+3=" + (t.transitionUpto+3) + " t=" + t);
 assert|assert
 operator|(
 name|t
@@ -2337,14 +2325,6 @@ name|Transition
 name|t
 parameter_list|)
 block|{
-assert|assert
-name|curState
-operator|==
-operator|-
-literal|1
-operator|:
-literal|"not finished"
-assert|;
 name|int
 name|i
 init|=
@@ -2825,7 +2805,7 @@ block|}
 block|}
 name|result
 operator|.
-name|finish
+name|finishState
 argument_list|()
 expr_stmt|;
 return|return
@@ -2833,77 +2813,7 @@ name|result
 return|;
 block|}
 comment|// nocommit
-DECL|method|writeDot
-specifier|public
-name|void
-name|writeDot
-parameter_list|(
-name|String
-name|fileName
-parameter_list|)
-block|{
-if|if
-condition|(
-name|fileName
-operator|.
-name|indexOf
-argument_list|(
-literal|'/'
-argument_list|)
-operator|==
-operator|-
-literal|1
-condition|)
-block|{
-name|fileName
-operator|=
-literal|"/l/la/lucene/core/"
-operator|+
-name|fileName
-operator|+
-literal|".dot"
-expr_stmt|;
-block|}
-try|try
-block|{
-name|PrintWriter
-name|pw
-init|=
-operator|new
-name|PrintWriter
-argument_list|(
-name|fileName
-argument_list|)
-decl_stmt|;
-name|pw
-operator|.
-name|println
-argument_list|(
-name|toDot
-argument_list|()
-argument_list|)
-expr_stmt|;
-name|pw
-operator|.
-name|close
-argument_list|()
-expr_stmt|;
-block|}
-catch|catch
-parameter_list|(
-name|IOException
-name|ioe
-parameter_list|)
-block|{
-throw|throw
-operator|new
-name|RuntimeException
-argument_list|(
-name|ioe
-argument_list|)
-throw|;
-block|}
-block|}
+comment|/*   public void writeDot(String fileName) {     if (fileName.indexOf('/') == -1) {       fileName = "/l/la/lucene/core/" + fileName + ".dot";     }     try {       PrintWriter pw = new PrintWriter(fileName);       pw.println(toDot());       pw.close();     } catch (IOException ioe) {       throw new RuntimeException(ioe);     }   }   */
 DECL|method|toDot
 specifier|public
 name|String
@@ -3397,8 +3307,7 @@ operator|+
 literal|1
 index|]
 decl_stmt|;
-comment|// nocommit we could do bin search; transitions are sorted
-comment|// System.out.println("la.step state=" + state + " label=" + label + "  trans=" + trans + " limit=" + limit);
+comment|// TODO: we could do bin search; transitions are sorted
 while|while
 condition|(
 name|trans
@@ -3445,7 +3354,6 @@ operator|<=
 name|max
 condition|)
 block|{
-comment|//System.out.println("  ret dest=" + dest);
 return|return
 name|dest
 return|;
@@ -3995,7 +3903,7 @@ expr_stmt|;
 block|}
 name|a
 operator|.
-name|finish
+name|finishState
 argument_list|()
 expr_stmt|;
 return|return

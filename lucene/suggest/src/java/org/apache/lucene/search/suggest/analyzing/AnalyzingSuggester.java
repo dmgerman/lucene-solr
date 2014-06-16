@@ -1400,7 +1400,7 @@ block|}
 block|}
 name|result
 operator|.
-name|finish
+name|finishState
 argument_list|()
 expr_stmt|;
 return|return

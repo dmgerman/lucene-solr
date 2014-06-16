@@ -39,11 +39,10 @@ specifier|abstract
 class|class
 name|RunAutomaton
 block|{
-comment|// nocommit
-DECL|field|a
+DECL|field|automaton
 specifier|final
 name|LightAutomaton
-name|a
+name|automaton
 decl_stmt|;
 DECL|field|maxInterval
 specifier|final
@@ -424,7 +423,7 @@ argument_list|)
 expr_stmt|;
 name|this
 operator|.
-name|a
+name|automaton
 operator|=
 name|a
 expr_stmt|;

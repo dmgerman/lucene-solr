@@ -680,23 +680,6 @@ parameter_list|()
 throws|throws
 name|IOException
 block|{
-comment|// nocommit
-name|assertAutomatonHits
-argument_list|(
-literal|2
-argument_list|,
-name|BasicAutomata
-operator|.
-name|makeIntervalLight
-argument_list|(
-literal|1233
-argument_list|,
-literal|2346
-argument_list|,
-literal|0
-argument_list|)
-argument_list|)
-expr_stmt|;
 name|assertAutomatonHits
 argument_list|(
 literal|0

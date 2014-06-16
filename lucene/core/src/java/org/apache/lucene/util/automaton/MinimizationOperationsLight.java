@@ -107,10 +107,33 @@ if|if
 condition|(
 name|a
 operator|.
-name|isEmpty
+name|getNumStates
 argument_list|()
+operator|==
+literal|0
+operator|||
+operator|(
+name|a
+operator|.
+name|isAccept
+argument_list|(
+literal|0
+argument_list|)
+operator|==
+literal|false
+operator|&&
+name|a
+operator|.
+name|getNumTransitions
+argument_list|(
+literal|0
+argument_list|)
+operator|==
+literal|0
+operator|)
 condition|)
 block|{
+comment|// Fastmatch for common case
 return|return
 operator|new
 name|LightAutomaton
@@ -1300,7 +1323,6 @@ index|[
 name|k
 index|]
 decl_stmt|;
-comment|// nocommit maybe LA should be born already with the initial state?
 name|result
 operator|.
 name|createState
@@ -1501,7 +1523,7 @@ block|}
 block|}
 name|result
 operator|.
-name|finish
+name|finishState
 argument_list|()
 expr_stmt|;
 comment|//System.out.println(result.getNumStates() + " states");

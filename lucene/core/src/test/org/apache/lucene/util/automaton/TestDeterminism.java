@@ -193,7 +193,12 @@ name|BasicOperations
 operator|.
 name|determinize
 argument_list|(
+name|BasicOperations
+operator|.
+name|removeDeadStates
+argument_list|(
 name|a
+argument_list|)
 argument_list|)
 expr_stmt|;
 comment|// complement(complement(a)) = a
@@ -233,11 +238,16 @@ name|determinize
 argument_list|(
 name|BasicOperations
 operator|.
+name|removeDeadStates
+argument_list|(
+name|BasicOperations
+operator|.
 name|unionLight
 argument_list|(
 name|a
 argument_list|,
 name|a
+argument_list|)
 argument_list|)
 argument_list|)
 expr_stmt|;
@@ -262,11 +272,16 @@ name|determinize
 argument_list|(
 name|BasicOperations
 operator|.
+name|removeDeadStates
+argument_list|(
+name|BasicOperations
+operator|.
 name|intersectionLight
 argument_list|(
 name|a
 argument_list|,
 name|a
+argument_list|)
 argument_list|)
 argument_list|)
 expr_stmt|;

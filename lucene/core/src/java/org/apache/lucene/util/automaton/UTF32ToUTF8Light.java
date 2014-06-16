@@ -20,62 +20,6 @@ end_comment
 
 begin_import
 import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|util
-operator|.
-name|RamUsageEstimator
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|util
-operator|.
-name|ArrayUtil
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|util
-operator|.
-name|InPlaceMergeSorter
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|util
-operator|.
-name|Sorter
-import|;
-end_import
-
-begin_import
-import|import
 name|java
 operator|.
 name|util
@@ -1660,11 +1604,6 @@ name|LightAutomaton
 name|utf32
 parameter_list|)
 block|{
-comment|//System.out.println("\nCONVERT");
-comment|// nocommit make sure singleton cases work:
-comment|//if (utf32.isSingleton()) {
-comment|//utf32 = utf32.cloneExpanded();
-comment|//}
 if|if
 condition|(
 name|utf32
@@ -1733,8 +1672,6 @@ operator|.
 name|Builder
 argument_list|()
 expr_stmt|;
-comment|// nocommit we don't track this
-comment|// utf8.setDeterministic(false);
 name|int
 name|utf8State
 init|=
@@ -1936,7 +1873,6 @@ name|finish
 argument_list|()
 return|;
 block|}
-comment|/*   private State newUTF8State() {     State s = new State();     if (utf8StateCount == utf8States.length) {       final State[] newArray = new State[ArrayUtil.oversize(1+utf8StateCount, RamUsageEstimator.NUM_BYTES_OBJECT_REF)];       System.arraycopy(utf8States, 0, newArray, 0, utf8StateCount);       utf8States = newArray;     }     utf8States[utf8StateCount] = s;     s.number = utf8StateCount;     utf8StateCount++;     return s;   }   */
 block|}
 end_class
 
