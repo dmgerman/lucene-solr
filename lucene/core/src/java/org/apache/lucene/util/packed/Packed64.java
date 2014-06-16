@@ -1349,7 +1349,7 @@ block|{
 assert|assert
 name|PackedInts
 operator|.
-name|bitsRequired
+name|unsignedBitsRequired
 argument_list|(
 name|val
 argument_list|)

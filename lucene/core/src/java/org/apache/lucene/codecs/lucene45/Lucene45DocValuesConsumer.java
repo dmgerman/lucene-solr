@@ -858,10 +858,6 @@ operator|!=
 literal|null
 operator|&&
 operator|(
-name|delta
-operator|<
-literal|0L
-operator|||
 name|PackedInts
 operator|.
 name|bitsRequired
@@ -876,7 +872,7 @@ argument_list|)
 operator|<
 name|PackedInts
 operator|.
-name|bitsRequired
+name|unsignedBitsRequired
 argument_list|(
 name|delta
 argument_list|)
