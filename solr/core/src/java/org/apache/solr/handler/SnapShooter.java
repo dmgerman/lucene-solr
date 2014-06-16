@@ -991,6 +991,23 @@ argument_list|,
 name|snapshotName
 argument_list|)
 expr_stmt|;
+name|LOG
+operator|.
+name|info
+argument_list|(
+literal|"Done creating backup snapshot: "
+operator|+
+operator|(
+name|snapshotName
+operator|==
+literal|null
+condition|?
+literal|"<not named>"
+else|:
+name|snapshotName
+operator|)
+argument_list|)
+expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
@@ -1274,6 +1291,20 @@ argument_list|(
 literal|"status"
 argument_list|,
 literal|"success"
+argument_list|)
+expr_stmt|;
+name|details
+operator|.
+name|add
+argument_list|(
+literal|"snapshotDeletedAt"
+argument_list|,
+operator|new
+name|Date
+argument_list|()
+operator|.
+name|toString
+argument_list|()
 argument_list|)
 expr_stmt|;
 block|}
