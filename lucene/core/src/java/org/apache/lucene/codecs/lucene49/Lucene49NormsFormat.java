@@ -179,6 +179,7 @@ end_comment
 begin_class
 DECL|class|Lucene49NormsFormat
 specifier|public
+specifier|final
 class|class
 name|Lucene49NormsFormat
 extends|extends

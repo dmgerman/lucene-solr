@@ -351,7 +351,7 @@ argument_list|()
 decl_stmt|;
 name|assertEquals
 argument_list|(
-literal|"Disk"
+literal|"Lucene49"
 argument_list|,
 name|format
 operator|.
@@ -378,7 +378,7 @@ argument_list|)
 expr_stmt|;
 name|assertEquals
 argument_list|(
-literal|"Lucene49"
+literal|"Memory"
 argument_list|,
 name|format
 operator|.
@@ -571,7 +571,7 @@ argument_list|()
 decl_stmt|;
 name|assertEquals
 argument_list|(
-literal|"Disk"
+literal|"Lucene49"
 argument_list|,
 name|format
 operator|.
@@ -586,7 +586,7 @@ argument_list|)
 expr_stmt|;
 name|assertEquals
 argument_list|(
-literal|"Disk"
+literal|"Lucene49"
 argument_list|,
 name|format
 operator|.
@@ -601,7 +601,7 @@ argument_list|)
 expr_stmt|;
 name|assertEquals
 argument_list|(
-literal|"Lucene49"
+literal|"Memory"
 argument_list|,
 name|format
 operator|.
@@ -616,7 +616,7 @@ argument_list|)
 expr_stmt|;
 name|assertEquals
 argument_list|(
-literal|"Lucene49"
+literal|"Memory"
 argument_list|,
 name|format
 operator|.

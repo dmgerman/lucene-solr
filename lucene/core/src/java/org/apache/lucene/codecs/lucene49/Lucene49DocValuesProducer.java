@@ -642,7 +642,6 @@ end_comment
 
 begin_class
 DECL|class|Lucene49DocValuesProducer
-specifier|public
 class|class
 name|Lucene49DocValuesProducer
 extends|extends
@@ -775,7 +774,6 @@ argument_list|()
 decl_stmt|;
 comment|/** expert: instantiates a new reader */
 DECL|method|Lucene49DocValuesProducer
-specifier|protected
 name|Lucene49DocValuesProducer
 parameter_list|(
 name|SegmentReadState
@@ -2922,9 +2920,9 @@ block|}
 block|}
 return|;
 block|}
-comment|/** returns an address instance for variable-length binary values.    *  @lucene.internal */
+comment|/** returns an address instance for variable-length binary values. */
 DECL|method|getAddressInstance
-specifier|protected
+specifier|private
 name|MonotonicBlockPackedReader
 name|getAddressInstance
 parameter_list|(
@@ -3202,9 +3200,9 @@ block|}
 block|}
 return|;
 block|}
-comment|/** returns an address instance for prefix-compressed binary values.     * @lucene.internal */
+comment|/** returns an address instance for prefix-compressed binary values. */
 DECL|method|getIntervalInstance
-specifier|protected
+specifier|private
 name|MonotonicBlockPackedReader
 name|getIntervalInstance
 parameter_list|(
@@ -3612,9 +3610,9 @@ block|}
 block|}
 return|;
 block|}
-comment|/** returns an address instance for sortedset ordinal lists    * @lucene.internal */
+comment|/** returns an address instance for sortedset ordinal lists */
 DECL|method|getOrdIndexInstance
-specifier|protected
+specifier|private
 name|MonotonicBlockPackedReader
 name|getOrdIndexInstance
 parameter_list|(
@@ -4592,7 +4590,6 @@ expr_stmt|;
 block|}
 comment|/** metadata entry for a numeric docvalues field */
 DECL|class|NumericEntry
-specifier|protected
 specifier|static
 class|class
 name|NumericEntry
@@ -4663,7 +4660,6 @@ decl_stmt|;
 block|}
 comment|/** metadata entry for a binary docvalues field */
 DECL|class|BinaryEntry
-specifier|protected
 specifier|static
 class|class
 name|BinaryEntry
@@ -4728,7 +4724,6 @@ decl_stmt|;
 block|}
 comment|/** metadata entry for a sorted-set docvalues field */
 DECL|class|SortedSetEntry
-specifier|protected
 specifier|static
 class|class
 name|SortedSetEntry
