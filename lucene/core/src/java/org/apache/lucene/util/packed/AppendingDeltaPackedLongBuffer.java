@@ -432,15 +432,9 @@ specifier|final
 name|int
 name|bitsRequired
 init|=
-name|delta
-operator|<
-literal|0
-condition|?
-literal|64
-else|:
 name|PackedInts
 operator|.
-name|bitsRequired
+name|unsignedBitsRequired
 argument_list|(
 name|delta
 argument_list|)

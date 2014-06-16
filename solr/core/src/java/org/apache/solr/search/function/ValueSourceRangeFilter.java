@@ -381,6 +381,17 @@ literal|null
 return|;
 comment|// don't use random access
 block|}
+annotation|@
+name|Override
+specifier|public
+name|long
+name|ramBytesUsed
+parameter_list|()
+block|{
+return|return
+literal|0L
+return|;
+block|}
 block|}
 argument_list|,
 name|acceptDocs

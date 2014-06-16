@@ -229,13 +229,21 @@ name|FORMAT_CHECKSUM
 init|=
 literal|1
 decl_stmt|;
+DECL|field|FORMAT_SORTED_NUMERIC
+specifier|static
+specifier|final
+name|int
+name|FORMAT_SORTED_NUMERIC
+init|=
+literal|2
+decl_stmt|;
 DECL|field|FORMAT_CURRENT
 specifier|static
 specifier|final
 name|int
 name|FORMAT_CURRENT
 init|=
-name|FORMAT_CHECKSUM
+name|FORMAT_SORTED_NUMERIC
 decl_stmt|;
 comment|// Field flags
 DECL|field|IS_INDEXED

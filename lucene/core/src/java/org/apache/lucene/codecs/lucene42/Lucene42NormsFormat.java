@@ -175,23 +175,13 @@ parameter_list|)
 throws|throws
 name|IOException
 block|{
-return|return
+throw|throw
 operator|new
-name|Lucene42NormsConsumer
+name|UnsupportedOperationException
 argument_list|(
-name|state
-argument_list|,
-name|DATA_CODEC
-argument_list|,
-name|DATA_EXTENSION
-argument_list|,
-name|METADATA_CODEC
-argument_list|,
-name|METADATA_EXTENSION
-argument_list|,
-name|acceptableOverheadRatio
+literal|"this codec can only be used for reading"
 argument_list|)
-return|;
+throw|;
 block|}
 annotation|@
 name|Override
@@ -223,7 +213,6 @@ argument_list|)
 return|;
 block|}
 DECL|field|DATA_CODEC
-specifier|private
 specifier|static
 specifier|final
 name|String
@@ -232,7 +221,6 @@ init|=
 literal|"Lucene41NormsData"
 decl_stmt|;
 DECL|field|DATA_EXTENSION
-specifier|private
 specifier|static
 specifier|final
 name|String
@@ -241,7 +229,6 @@ init|=
 literal|"nvd"
 decl_stmt|;
 DECL|field|METADATA_CODEC
-specifier|private
 specifier|static
 specifier|final
 name|String
@@ -250,7 +237,6 @@ init|=
 literal|"Lucene41NormsMetadata"
 decl_stmt|;
 DECL|field|METADATA_EXTENSION
-specifier|private
 specifier|static
 specifier|final
 name|String

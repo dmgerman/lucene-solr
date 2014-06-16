@@ -444,6 +444,20 @@ name|lucene
 operator|.
 name|index
 operator|.
+name|SortedNumericDocValues
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|index
+operator|.
 name|SortedSetDocValues
 import|;
 end_import
@@ -644,7 +658,6 @@ end_comment
 
 begin_class
 DECL|class|Lucene45DocValuesProducer
-specifier|public
 class|class
 name|Lucene45DocValuesProducer
 extends|extends
@@ -3672,6 +3685,27 @@ block|}
 return|return
 name|ordIndex
 return|;
+block|}
+annotation|@
+name|Override
+DECL|method|getSortedNumeric
+specifier|public
+name|SortedNumericDocValues
+name|getSortedNumeric
+parameter_list|(
+name|FieldInfo
+name|field
+parameter_list|)
+throws|throws
+name|IOException
+block|{
+throw|throw
+operator|new
+name|IllegalStateException
+argument_list|(
+literal|"Lucene 4.5 does not support SortedNumeric: how did you pull this off?"
+argument_list|)
+throw|;
 block|}
 annotation|@
 name|Override

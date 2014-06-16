@@ -3628,7 +3628,7 @@ return|return
 name|writer
 return|;
 block|}
-comment|/** Returns how many bits are required to hold values up    *  to and including maxValue    * @param maxValue the maximum value that should be representable.    * @return the amount of bits needed to represent values from 0 to maxValue.    * @lucene.internal    */
+comment|/** Returns how many bits are required to hold values up    *  to and including maxValue    *  NOTE: This method returns at least 1.    * @param maxValue the maximum value that should be representable.    * @return the amount of bits needed to represent values from 0 to maxValue.    * @lucene.internal    */
 DECL|method|bitsRequired
 specifier|public
 specifier|static
@@ -3659,6 +3659,24 @@ argument_list|)
 throw|;
 block|}
 return|return
+name|unsignedBitsRequired
+argument_list|(
+name|maxValue
+argument_list|)
+return|;
+block|}
+comment|/** Returns how many bits are required to store<code>bits</code>,    * interpreted as an unsigned value.    * NOTE: This method returns at least 1.    * @lucene.internal    */
+DECL|method|unsignedBitsRequired
+specifier|public
+specifier|static
+name|int
+name|unsignedBitsRequired
+parameter_list|(
+name|long
+name|bits
+parameter_list|)
+block|{
+return|return
 name|Math
 operator|.
 name|max
@@ -3671,7 +3689,7 @@ name|Long
 operator|.
 name|numberOfLeadingZeros
 argument_list|(
-name|maxValue
+name|bits
 argument_list|)
 argument_list|)
 return|;

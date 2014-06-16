@@ -152,20 +152,6 @@ name|solr
 operator|.
 name|common
 operator|.
-name|SolrDocumentList
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|solr
-operator|.
-name|common
-operator|.
 name|params
 operator|.
 name|CommonParams
@@ -2772,7 +2758,7 @@ argument_list|)
 expr_stmt|;
 name|assertTrue
 argument_list|(
-name|assertSolrDocumentEquals
+name|compareSolrDocument
 argument_list|(
 name|doc1
 argument_list|,
@@ -2791,7 +2777,7 @@ argument_list|)
 expr_stmt|;
 name|assertFalse
 argument_list|(
-name|assertSolrDocumentEquals
+name|compareSolrDocument
 argument_list|(
 name|doc1
 argument_list|,
@@ -2816,7 +2802,7 @@ argument_list|)
 expr_stmt|;
 name|assertFalse
 argument_list|(
-name|assertSolrDocumentEquals
+name|compareSolrDocument
 argument_list|(
 name|doc1
 argument_list|,
@@ -2865,7 +2851,7 @@ argument_list|)
 expr_stmt|;
 name|assertTrue
 argument_list|(
-name|assertSolrDocumentEquals
+name|compareSolrDocument
 argument_list|(
 name|doc1
 argument_list|,
@@ -2890,7 +2876,7 @@ argument_list|)
 expr_stmt|;
 name|assertFalse
 argument_list|(
-name|assertSolrDocumentEquals
+name|compareSolrDocument
 argument_list|(
 name|doc1
 argument_list|,
@@ -2950,7 +2936,7 @@ argument_list|)
 expr_stmt|;
 name|assertTrue
 argument_list|(
-name|assertSolrInputDocumentEquals
+name|compareSolrInputDocument
 argument_list|(
 name|doc1
 argument_list|,
@@ -2967,7 +2953,7 @@ argument_list|)
 expr_stmt|;
 name|assertFalse
 argument_list|(
-name|assertSolrInputDocumentEquals
+name|compareSolrInputDocument
 argument_list|(
 name|doc1
 argument_list|,
@@ -2984,7 +2970,7 @@ argument_list|)
 expr_stmt|;
 name|assertTrue
 argument_list|(
-name|assertSolrInputDocumentEquals
+name|compareSolrInputDocument
 argument_list|(
 name|doc1
 argument_list|,
@@ -3001,7 +2987,7 @@ argument_list|)
 expr_stmt|;
 name|assertFalse
 argument_list|(
-name|assertSolrInputDocumentEquals
+name|compareSolrInputDocument
 argument_list|(
 name|doc1
 argument_list|,
@@ -3064,7 +3050,7 @@ argument_list|)
 expr_stmt|;
 name|assertFalse
 argument_list|(
-name|assertSolrInputDocumentEquals
+name|compareSolrInputDocument
 argument_list|(
 name|doc1
 argument_list|,
@@ -3081,7 +3067,7 @@ argument_list|)
 expr_stmt|;
 name|assertTrue
 argument_list|(
-name|assertSolrInputDocumentEquals
+name|compareSolrInputDocument
 argument_list|(
 name|doc1
 argument_list|,
@@ -3126,7 +3112,7 @@ argument_list|)
 expr_stmt|;
 name|assertFalse
 argument_list|(
-name|assertSolrInputDocumentEquals
+name|compareSolrInputDocument
 argument_list|(
 name|doc1
 argument_list|,

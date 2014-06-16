@@ -847,7 +847,7 @@ name|decRef
 argument_list|()
 expr_stmt|;
 block|}
-comment|/**    * Returns a ref to a clone. NOTE: you should decRef() the reader when you're    * dont (ie do not call close()).    */
+comment|/**    * Returns a ref to a clone. NOTE: you should decRef() the reader when you're    * done (ie do not call close()).    */
 DECL|method|getReadOnlyClone
 specifier|public
 specifier|synchronized
@@ -881,6 +881,7 @@ operator|!=
 literal|null
 assert|;
 block|}
+comment|// force new liveDocs in initWritableLiveDocs even if it's null
 name|liveDocsShared
 operator|=
 literal|true
@@ -923,13 +924,14 @@ return|;
 block|}
 else|else
 block|{
+comment|// liveDocs == null and reader != null. That can only be if there are no deletes
 assert|assert
 name|reader
 operator|.
 name|getLiveDocs
 argument_list|()
 operator|==
-name|liveDocs
+literal|null
 assert|;
 name|reader
 operator|.

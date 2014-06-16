@@ -1780,6 +1780,12 @@ argument_list|(
 name|field
 argument_list|)
 expr_stmt|;
+break|break;
+case|case
+name|SORTED_NUMERIC
+case|:
+comment|// not supported
+return|return;
 default|default:
 throw|throw
 operator|new

@@ -913,25 +913,11 @@ operator|)
 operator|+
 name|RamUsageEstimator
 operator|.
-name|alignObjectSize
+name|shallowSizeOf
 argument_list|(
-name|RamUsageEstimator
-operator|.
-name|NUM_BYTES_ARRAY_HEADER
-operator|+
-operator|(
-name|long
-operator|)
-name|RamUsageEstimator
-operator|.
-name|NUM_BYTES_OBJECT_REF
-operator|*
 name|values
-operator|.
-name|length
 argument_list|)
 decl_stmt|;
-comment|// values
 return|return
 name|bytesUsed
 operator|+
