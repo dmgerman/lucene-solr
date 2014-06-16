@@ -82,9 +82,9 @@ name|lucene
 operator|.
 name|codecs
 operator|.
-name|lucene45
+name|lucene49
 operator|.
-name|Lucene45DocValuesFormat
+name|Lucene49DocValuesFormat
 import|;
 end_import
 
@@ -694,7 +694,7 @@ operator|.
 name|alwaysDocValuesFormat
 argument_list|(
 operator|new
-name|Lucene45DocValuesFormat
+name|Lucene49DocValuesFormat
 argument_list|()
 argument_list|)
 argument_list|)
