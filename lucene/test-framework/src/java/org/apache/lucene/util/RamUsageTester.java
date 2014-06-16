@@ -139,6 +139,18 @@ return|return
 literal|true
 return|;
 block|}
+specifier|public
+name|boolean
+name|accept
+parameter_list|(
+name|Object
+name|o
+parameter_list|)
+block|{
+return|return
+literal|true
+return|;
+block|}
 block|}
 decl_stmt|;
 comment|/** A filter that allows to decide on what to take into account when measuring RAM usage. */
@@ -155,6 +167,15 @@ name|accept
 parameter_list|(
 name|Field
 name|field
+parameter_list|)
+function_decl|;
+comment|/** Whether the provided field value should be taken into account when measuring RAM usage. */
+DECL|method|accept
+name|boolean
+name|accept
+parameter_list|(
+name|Object
+name|o
 parameter_list|)
 function_decl|;
 block|}
@@ -483,6 +504,13 @@ name|contains
 argument_list|(
 name|o
 argument_list|)
+operator|&&
+name|filter
+operator|.
+name|accept
+argument_list|(
+name|o
+argument_list|)
 condition|)
 block|{
 name|stack
@@ -585,6 +613,13 @@ operator|!
 name|seen
 operator|.
 name|contains
+argument_list|(
+name|o
+argument_list|)
+operator|&&
+name|filter
+operator|.
+name|accept
 argument_list|(
 name|o
 argument_list|)

@@ -59,6 +59,34 @@ name|LongValues
 extends|extends
 name|NumericDocValues
 block|{
+comment|/** An instance that returns the provided value. */
+DECL|field|IDENTITY
+specifier|public
+specifier|static
+specifier|final
+name|LongValues
+name|IDENTITY
+init|=
+operator|new
+name|LongValues
+argument_list|()
+block|{
+annotation|@
+name|Override
+specifier|public
+name|long
+name|get
+parameter_list|(
+name|long
+name|index
+parameter_list|)
+block|{
+return|return
+name|index
+return|;
+block|}
+block|}
+decl_stmt|;
 comment|/** Get value at<code>index</code>. */
 DECL|method|get
 specifier|public

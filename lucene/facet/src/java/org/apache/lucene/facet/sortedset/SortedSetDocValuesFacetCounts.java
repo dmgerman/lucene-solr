@@ -310,6 +310,20 @@ name|BytesRef
 import|;
 end_import
 
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|util
+operator|.
+name|LongValues
+import|;
+end_import
+
 begin_comment
 comment|/** Compute facets counts from previously  *  indexed {@link SortedSetDocValuesFacetField},  *  without require a separate taxonomy index.  Faceting is  *  a bit slower (~25%), and there is added cost on every  *  {@link IndexReader} open to create a new {@link  *  SortedSetDocValuesReaderState}.  Furthermore, this does  *  not support hierarchical facets; only flat (dimension +  *  label) facets, but it uses quite a bit less RAM to do  *  so.  *  *<p><b>NOTE</b>: this class should be instantiated and  *  then used from a single thread, because it holds a  *  thread-private instance of {@link SortedSetDocValues}.  *   *<p><b>NOTE:</b>: tie-break is by unicode sort order  *  * @lucene.experimental */
 end_comment
@@ -949,6 +963,7 @@ operator|!=
 literal|null
 condition|)
 block|{
+specifier|final
 name|int
 name|segOrd
 init|=
@@ -957,6 +972,17 @@ operator|.
 name|context
 operator|.
 name|ord
+decl_stmt|;
+specifier|final
+name|LongValues
+name|ordMap
+init|=
+name|ordinalMap
+operator|.
+name|getGlobalOrds
+argument_list|(
+name|segOrd
+argument_list|)
 decl_stmt|;
 name|int
 name|numSegOrds
@@ -1035,12 +1061,10 @@ index|[
 operator|(
 name|int
 operator|)
-name|ordinalMap
+name|ordMap
 operator|.
-name|getGlobalOrd
+name|get
 argument_list|(
-name|segOrd
-argument_list|,
 name|term
 argument_list|)
 index|]
@@ -1177,12 +1201,10 @@ index|[
 operator|(
 name|int
 operator|)
-name|ordinalMap
+name|ordMap
 operator|.
-name|getGlobalOrd
+name|get
 argument_list|(
-name|segOrd
-argument_list|,
 name|ord
 argument_list|)
 index|]
