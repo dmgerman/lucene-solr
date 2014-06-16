@@ -113,7 +113,75 @@ specifier|final
 class|class
 name|RamUsageTester
 block|{
-comment|/**     * Estimates the RAM usage by the given object. It will    * walk the object tree and sum up all referenced objects.    *     *<p><b>Resource Usage:</b> This method internally uses a set of    * every object seen during traversals so it does allocate memory    * (it isn't side-effect free). After the method exits, this memory    * should be GCed.</p>    */
+comment|/**    * A {@link Filter} that accepts all fields.    */
+DECL|field|DEFAULT_FILTER
+specifier|private
+specifier|static
+specifier|final
+name|Filter
+name|DEFAULT_FILTER
+init|=
+operator|new
+name|Filter
+argument_list|()
+block|{
+annotation|@
+name|Override
+specifier|public
+name|boolean
+name|accept
+parameter_list|(
+name|Field
+name|field
+parameter_list|)
+block|{
+return|return
+literal|true
+return|;
+block|}
+block|}
+decl_stmt|;
+comment|/** A filter that allows to decide on what to take into account when measuring RAM usage. */
+DECL|interface|Filter
+specifier|public
+specifier|static
+interface|interface
+name|Filter
+block|{
+comment|/** Whether the provided field should be taken into account when measuring RAM usage. */
+DECL|method|accept
+name|boolean
+name|accept
+parameter_list|(
+name|Field
+name|field
+parameter_list|)
+function_decl|;
+block|}
+comment|/**    * Estimates the RAM usage by the given object. It will    * walk the object tree and sum up all referenced objects.    *    *<p><b>Resource Usage:</b> This method internally uses a set of    * every object seen during traversals so it does allocate memory    * (it isn't side-effect free). After the method exits, this memory    * should be GCed.</p>    */
+DECL|method|sizeOf
+specifier|public
+specifier|static
+name|long
+name|sizeOf
+parameter_list|(
+name|Object
+name|obj
+parameter_list|,
+name|Filter
+name|filter
+parameter_list|)
+block|{
+return|return
+name|measureObjectSize
+argument_list|(
+name|obj
+argument_list|,
+name|filter
+argument_list|)
+return|;
+block|}
+comment|/** Same as calling<code>sizeOf(obj, DEFAULT_FILTER)</code>. */
 DECL|method|sizeOf
 specifier|public
 specifier|static
@@ -125,9 +193,11 @@ name|obj
 parameter_list|)
 block|{
 return|return
-name|measureObjectSize
+name|sizeOf
 argument_list|(
 name|obj
+argument_list|,
+name|DEFAULT_FILTER
 argument_list|)
 return|;
 block|}
@@ -154,7 +224,7 @@ argument_list|)
 argument_list|)
 return|;
 block|}
-comment|/*    * Non-recursive version of object descend. This consumes more memory than recursive in-depth     * traversal but prevents stack overflows on long chains of objects    * or complex graphs (a max. recursion depth on my machine was ~5000 objects linked in a chain    * so not too much).      */
+comment|/*    * Non-recursive version of object descend. This consumes more memory than recursive in-depth    * traversal but prevents stack overflows on long chains of objects    * or complex graphs (a max. recursion depth on my machine was ~5000 objects linked in a chain    * so not too much).    */
 DECL|method|measureObjectSize
 specifier|private
 specifier|static
@@ -163,6 +233,9 @@ name|measureObjectSize
 parameter_list|(
 name|Object
 name|root
+parameter_list|,
+name|Filter
+name|filter
 parameter_list|)
 block|{
 comment|// Objects seen so far.
@@ -480,6 +553,16 @@ operator|.
 name|referenceFields
 control|)
 block|{
+if|if
+condition|(
+name|filter
+operator|.
+name|accept
+argument_list|(
+name|f
+argument_list|)
+condition|)
+block|{
 comment|// Fast path to eliminate redundancies.
 specifier|final
 name|Object
@@ -514,6 +597,7 @@ argument_list|(
 name|o
 argument_list|)
 expr_stmt|;
+block|}
 block|}
 block|}
 name|totalSize

@@ -1438,6 +1438,38 @@ name|length
 argument_list|)
 return|;
 block|}
+comment|/** Returns the shallow size in bytes of the Object[] object. */
+comment|// Use this method instead of #shallowSizeOf(Object) to avoid costly reflection
+DECL|method|shallowSizeOf
+specifier|public
+specifier|static
+name|long
+name|shallowSizeOf
+parameter_list|(
+name|Object
+index|[]
+name|arr
+parameter_list|)
+block|{
+return|return
+name|alignObjectSize
+argument_list|(
+operator|(
+name|long
+operator|)
+name|NUM_BYTES_ARRAY_HEADER
+operator|+
+operator|(
+name|long
+operator|)
+name|NUM_BYTES_OBJECT_REF
+operator|*
+name|arr
+operator|.
+name|length
+argument_list|)
+return|;
+block|}
 comment|/**     * Estimates a "shallow" memory usage of the given object. For arrays, this will be the    * memory taken by array storage (no subreferences will be followed). For objects, this    * will be the memory taken by the fields.    *     * JVM object alignments are also applied.    */
 DECL|method|shallowSizeOf
 specifier|public
