@@ -412,7 +412,7 @@ operator|.
 name|getCoreDescriptor
 argument_list|()
 operator|.
-name|getRawInstanceDir
+name|getInstanceDir
 argument_list|()
 argument_list|)
 decl_stmt|;
