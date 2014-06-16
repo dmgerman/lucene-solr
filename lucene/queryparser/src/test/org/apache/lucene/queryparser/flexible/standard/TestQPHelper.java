@@ -732,7 +732,7 @@ name|util
 operator|.
 name|automaton
 operator|.
-name|BasicAutomata
+name|Automata
 import|;
 end_import
 
@@ -5955,9 +5955,9 @@ init|=
 operator|new
 name|CharacterRunAutomaton
 argument_list|(
-name|BasicAutomata
+name|Automata
 operator|.
-name|makeStringLight
+name|makeString
 argument_list|(
 literal|"on"
 argument_list|)
@@ -7162,7 +7162,7 @@ argument_list|(
 literal|"the|foo"
 argument_list|)
 operator|.
-name|toLightAutomaton
+name|toAutomaton
 argument_list|()
 argument_list|)
 decl_stmt|;

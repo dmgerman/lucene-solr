@@ -61,11 +61,11 @@ comment|/**   * Converts UTF-32 automata to the equivalent UTF-8 representation.
 end_comment
 
 begin_class
-DECL|class|UTF32ToUTF8Light
+DECL|class|UTF32ToUTF8
 specifier|public
 specifier|final
 class|class
-name|UTF32ToUTF8Light
+name|UTF32ToUTF8
 block|{
 comment|// Unicode boundaries for UTF8 bytes 1,2,3,4
 DECL|field|startCodes
@@ -1589,7 +1589,7 @@ comment|// type = all*
 block|}
 block|}
 DECL|field|utf8
-name|LightAutomaton
+name|Automaton
 operator|.
 name|Builder
 name|utf8
@@ -1597,10 +1597,10 @@ decl_stmt|;
 comment|/** Converts an incoming utf32 automaton to an equivalent    *  utf8 one.  The incoming automaton need not be    *  deterministic.  Note that the returned automaton will    *  not in general be deterministic, so you must    *  determinize it if that's needed. */
 DECL|method|convert
 specifier|public
-name|LightAutomaton
+name|Automaton
 name|convert
 parameter_list|(
-name|LightAutomaton
+name|Automaton
 name|utf32
 parameter_list|)
 block|{
@@ -1667,7 +1667,7 @@ expr_stmt|;
 name|utf8
 operator|=
 operator|new
-name|LightAutomaton
+name|Automaton
 operator|.
 name|Builder
 argument_list|()

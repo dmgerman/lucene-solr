@@ -314,7 +314,7 @@ decl_stmt|;
 comment|// the terms we put in the index
 DECL|field|termsAutomaton
 specifier|private
-name|LightAutomaton
+name|Automaton
 name|termsAutomaton
 decl_stmt|;
 comment|// automata of the same
@@ -493,9 +493,9 @@ expr_stmt|;
 block|}
 name|termsAutomaton
 operator|=
-name|BasicAutomata
+name|Automata
 operator|.
-name|makeStringUnionLight
+name|makeStringUnion
 argument_list|(
 name|terms
 argument_list|)
@@ -581,10 +581,10 @@ name|random
 argument_list|()
 argument_list|)
 decl_stmt|;
-name|LightAutomaton
+name|Automaton
 name|automaton
 init|=
-name|BasicOperations
+name|Operations
 operator|.
 name|determinize
 argument_list|(
@@ -598,7 +598,7 @@ operator|.
 name|NONE
 argument_list|)
 operator|.
-name|toLightAutomaton
+name|toAutomaton
 argument_list|()
 argument_list|)
 decl_stmt|;
@@ -624,7 +624,7 @@ control|)
 block|{
 if|if
 condition|(
-name|BasicOperations
+name|Operations
 operator|.
 name|run
 argument_list|(
@@ -646,12 +646,12 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
-name|LightAutomaton
+name|Automaton
 name|alternate
 init|=
-name|BasicAutomata
+name|Automata
 operator|.
-name|makeStringUnionLight
+name|makeStringUnion
 argument_list|(
 name|matchedTerms
 argument_list|)
@@ -771,10 +771,10 @@ name|random
 argument_list|()
 argument_list|)
 decl_stmt|;
-name|LightAutomaton
+name|Automaton
 name|automaton
 init|=
-name|BasicOperations
+name|Operations
 operator|.
 name|determinize
 argument_list|(
@@ -788,7 +788,7 @@ operator|.
 name|NONE
 argument_list|)
 operator|.
-name|toLightAutomaton
+name|toAutomaton
 argument_list|()
 argument_list|)
 decl_stmt|;
@@ -842,7 +842,7 @@ control|)
 block|{
 if|if
 condition|(
-name|BasicOperations
+name|Operations
 operator|.
 name|run
 argument_list|(
@@ -1071,7 +1071,7 @@ name|random
 argument_list|()
 argument_list|)
 decl_stmt|;
-name|LightAutomaton
+name|Automaton
 name|automaton
 init|=
 operator|new
@@ -1084,7 +1084,7 @@ operator|.
 name|NONE
 argument_list|)
 operator|.
-name|toLightAutomaton
+name|toAutomaton
 argument_list|()
 decl_stmt|;
 name|CompiledAutomaton
@@ -1095,7 +1095,7 @@ name|CompiledAutomaton
 argument_list|(
 name|automaton
 argument_list|,
-name|SpecialOperations
+name|Operations
 operator|.
 name|isFinite
 argument_list|(
@@ -1124,16 +1124,16 @@ argument_list|,
 literal|null
 argument_list|)
 decl_stmt|;
-name|LightAutomaton
+name|Automaton
 name|expected
 init|=
-name|BasicOperations
+name|Operations
 operator|.
 name|determinize
 argument_list|(
-name|BasicOperations
+name|Operations
 operator|.
-name|intersectionLight
+name|intersection
 argument_list|(
 name|termsAutomaton
 argument_list|,
@@ -1178,16 +1178,16 @@ argument_list|)
 argument_list|)
 expr_stmt|;
 block|}
-name|LightAutomaton
+name|Automaton
 name|actual
 init|=
-name|BasicOperations
+name|Operations
 operator|.
 name|determinize
 argument_list|(
-name|BasicAutomata
+name|Automata
 operator|.
-name|makeStringUnionLight
+name|makeStringUnion
 argument_list|(
 name|found
 argument_list|)
@@ -1195,7 +1195,7 @@ argument_list|)
 decl_stmt|;
 name|assertTrue
 argument_list|(
-name|BasicOperations
+name|Operations
 operator|.
 name|sameLanguage
 argument_list|(

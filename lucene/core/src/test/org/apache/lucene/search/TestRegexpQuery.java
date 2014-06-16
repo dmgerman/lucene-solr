@@ -146,7 +146,7 @@ name|util
 operator|.
 name|automaton
 operator|.
-name|BasicAutomata
+name|Automata
 import|;
 end_import
 
@@ -162,7 +162,7 @@ name|util
 operator|.
 name|automaton
 operator|.
-name|BasicOperations
+name|Operations
 import|;
 end_import
 
@@ -178,7 +178,7 @@ name|util
 operator|.
 name|automaton
 operator|.
-name|LightAutomaton
+name|Automaton
 import|;
 end_import
 
@@ -194,7 +194,7 @@ name|util
 operator|.
 name|automaton
 operator|.
-name|LightAutomatonProvider
+name|AutomatonProvider
 import|;
 end_import
 
@@ -538,43 +538,43 @@ parameter_list|()
 throws|throws
 name|IOException
 block|{
-name|LightAutomatonProvider
+name|AutomatonProvider
 name|myProvider
 init|=
 operator|new
-name|LightAutomatonProvider
+name|AutomatonProvider
 argument_list|()
 block|{
 comment|// automaton that matches quick or brown
 specifier|private
-name|LightAutomaton
+name|Automaton
 name|quickBrownAutomaton
 init|=
-name|BasicOperations
+name|Operations
 operator|.
-name|unionLight
+name|union
 argument_list|(
 name|Arrays
 operator|.
 name|asList
 argument_list|(
-name|BasicAutomata
+name|Automata
 operator|.
-name|makeStringLight
+name|makeString
 argument_list|(
 literal|"quick"
 argument_list|)
 argument_list|,
-name|BasicAutomata
+name|Automata
 operator|.
-name|makeStringLight
+name|makeString
 argument_list|(
 literal|"brown"
 argument_list|)
 argument_list|,
-name|BasicAutomata
+name|Automata
 operator|.
-name|makeStringLight
+name|makeString
 argument_list|(
 literal|"bob"
 argument_list|)
@@ -584,7 +584,7 @@ decl_stmt|;
 annotation|@
 name|Override
 specifier|public
-name|LightAutomaton
+name|Automaton
 name|getAutomaton
 parameter_list|(
 name|String

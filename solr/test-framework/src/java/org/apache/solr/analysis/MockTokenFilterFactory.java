@@ -255,7 +255,7 @@ name|CharacterRunAutomaton
 argument_list|(
 name|regex
 operator|.
-name|toLightAutomaton
+name|toAutomaton
 argument_list|()
 argument_list|)
 expr_stmt|;

@@ -165,7 +165,7 @@ argument_list|(
 literal|"[^ \t\r\n]+"
 argument_list|)
 operator|.
-name|toLightAutomaton
+name|toAutomaton
 argument_list|()
 argument_list|)
 decl_stmt|;
@@ -186,7 +186,7 @@ argument_list|(
 literal|".*"
 argument_list|)
 operator|.
-name|toLightAutomaton
+name|toAutomaton
 argument_list|()
 argument_list|)
 decl_stmt|;
@@ -208,7 +208,7 @@ argument_list|(
 literal|"[A-Za-zÂªÂµÂºÃ-ÃÃ-Ã¶Ã¸-Ëä¸-é¿]+"
 argument_list|)
 operator|.
-name|toLightAutomaton
+name|toAutomaton
 argument_list|()
 argument_list|)
 decl_stmt|;

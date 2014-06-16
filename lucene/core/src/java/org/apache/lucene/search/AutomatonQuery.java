@@ -124,7 +124,7 @@ name|util
 operator|.
 name|automaton
 operator|.
-name|LightAutomaton
+name|Automaton
 import|;
 end_import
 
@@ -141,11 +141,11 @@ extends|extends
 name|MultiTermQuery
 block|{
 comment|/** the automaton to match index terms against */
-DECL|field|lightAutomaton
+DECL|field|automaton
 specifier|protected
 specifier|final
-name|LightAutomaton
-name|lightAutomaton
+name|Automaton
+name|automaton
 decl_stmt|;
 DECL|field|compiled
 specifier|protected
@@ -169,7 +169,7 @@ specifier|final
 name|Term
 name|term
 parameter_list|,
-name|LightAutomaton
+name|Automaton
 name|automaton
 parameter_list|)
 block|{
@@ -189,7 +189,7 @@ name|term
 expr_stmt|;
 name|this
 operator|.
-name|lightAutomaton
+name|automaton
 operator|=
 name|automaton
 expr_stmt|;
@@ -474,7 +474,7 @@ name|buffer
 operator|.
 name|append
 argument_list|(
-name|lightAutomaton
+name|automaton
 operator|.
 name|toString
 argument_list|()
@@ -508,14 +508,14 @@ argument_list|()
 return|;
 block|}
 comment|/** Returns the light automaton used to create this query */
-DECL|method|getLightAutomaton
+DECL|method|getAutomaton
 specifier|public
-name|LightAutomaton
-name|getLightAutomaton
+name|Automaton
+name|getAutomaton
 parameter_list|()
 block|{
 return|return
-name|lightAutomaton
+name|automaton
 return|;
 block|}
 block|}

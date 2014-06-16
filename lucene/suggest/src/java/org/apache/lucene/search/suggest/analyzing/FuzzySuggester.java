@@ -188,7 +188,7 @@ name|util
 operator|.
 name|automaton
 operator|.
-name|BasicAutomata
+name|Automata
 import|;
 end_import
 
@@ -204,7 +204,7 @@ name|util
 operator|.
 name|automaton
 operator|.
-name|BasicOperations
+name|Operations
 import|;
 end_import
 
@@ -236,7 +236,7 @@ name|util
 operator|.
 name|automaton
 operator|.
-name|LightAutomaton
+name|Automaton
 import|;
 end_import
 
@@ -252,23 +252,7 @@ name|util
 operator|.
 name|automaton
 operator|.
-name|SpecialOperations
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|util
-operator|.
-name|automaton
-operator|.
-name|UTF32ToUTF8Light
+name|UTF32ToUTF8
 import|;
 end_import
 
@@ -641,7 +625,7 @@ argument_list|>
 argument_list|>
 name|prefixPaths
 parameter_list|,
-name|LightAutomaton
+name|Automaton
 name|lookupAutomaton
 parameter_list|,
 name|FST
@@ -667,7 +651,7 @@ comment|// factor is appropriate (eg, say a fuzzy match must be at
 comment|// least 2X better weight than the non-fuzzy match to
 comment|// "compete") ... in which case I think the wFST needs
 comment|// to be log weights or something ...
-name|LightAutomaton
+name|Automaton
 name|levA
 init|=
 name|convertAutomaton
@@ -694,10 +678,10 @@ annotation|@
 name|Override
 DECL|method|convertAutomaton
 specifier|protected
-name|LightAutomaton
+name|Automaton
 name|convertAutomaton
 parameter_list|(
-name|LightAutomaton
+name|Automaton
 name|a
 parameter_list|)
 block|{
@@ -706,11 +690,11 @@ condition|(
 name|unicodeAware
 condition|)
 block|{
-name|LightAutomaton
+name|Automaton
 name|utf8automaton
 init|=
 operator|new
-name|UTF32ToUTF8Light
+name|UTF32ToUTF8
 argument_list|()
 operator|.
 name|convert
@@ -720,7 +704,7 @@ argument_list|)
 decl_stmt|;
 name|utf8automaton
 operator|=
-name|BasicOperations
+name|Operations
 operator|.
 name|determinize
 argument_list|(
@@ -766,10 +750,10 @@ name|tsta
 return|;
 block|}
 DECL|method|toLevenshteinAutomata
-name|LightAutomaton
+name|Automaton
 name|toLevenshteinAutomata
 parameter_list|(
-name|LightAutomaton
+name|Automaton
 name|automaton
 parameter_list|)
 block|{
@@ -780,7 +764,7 @@ name|IntsRef
 argument_list|>
 name|ref
 init|=
-name|SpecialOperations
+name|Operations
 operator|.
 name|getFiniteStrings
 argument_list|(
@@ -790,12 +774,12 @@ operator|-
 literal|1
 argument_list|)
 decl_stmt|;
-name|LightAutomaton
+name|Automaton
 name|subs
 index|[]
 init|=
 operator|new
-name|LightAutomaton
+name|Automaton
 index|[
 name|ref
 operator|.
@@ -836,9 +820,9 @@ index|[
 name|upto
 index|]
 operator|=
-name|BasicAutomata
+name|Automata
 operator|.
-name|makeStringLight
+name|makeString
 argument_list|(
 name|path
 operator|.
@@ -963,9 +947,9 @@ condition|)
 block|{
 comment|// automaton is empty, there is no accepted paths through it
 return|return
-name|BasicAutomata
+name|Automata
 operator|.
-name|makeEmptyLight
+name|makeEmpty
 argument_list|()
 return|;
 comment|// matches nothing
@@ -992,12 +976,12 @@ else|else
 block|{
 comment|// multiple paths: this is really scary! is it slow?
 comment|// maybe we should not do this and throw UOE?
-name|LightAutomaton
+name|Automaton
 name|a
 init|=
-name|BasicOperations
+name|Operations
 operator|.
-name|unionLight
+name|union
 argument_list|(
 name|Arrays
 operator|.
@@ -1010,7 +994,7 @@ decl_stmt|;
 comment|// TODO: we could call toLevenshteinAutomata() before det?
 comment|// this only happens if you have multiple paths anyway (e.g. synonyms)
 return|return
-name|BasicOperations
+name|Operations
 operator|.
 name|determinize
 argument_list|(

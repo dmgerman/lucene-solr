@@ -352,7 +352,7 @@ name|util
 operator|.
 name|automaton
 operator|.
-name|LightAutomaton
+name|Automaton
 import|;
 end_import
 
@@ -727,7 +727,7 @@ block|{
 DECL|field|automaton
 specifier|private
 specifier|final
-name|LightAutomaton
+name|Automaton
 name|automaton
 decl_stmt|;
 DECL|method|DumbRegexpQuery
@@ -766,7 +766,7 @@ name|automaton
 operator|=
 name|re
 operator|.
-name|toLightAutomaton
+name|toAutomaton
 argument_list|()
 expr_stmt|;
 block|}

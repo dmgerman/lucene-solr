@@ -76,7 +76,7 @@ name|util
 operator|.
 name|automaton
 operator|.
-name|LightAutomaton
+name|Automaton
 import|;
 end_import
 
@@ -254,7 +254,7 @@ argument_list|>
 argument_list|>
 name|intersectPrefixPaths
 parameter_list|(
-name|LightAutomaton
+name|Automaton
 name|a
 parameter_list|,
 name|FST

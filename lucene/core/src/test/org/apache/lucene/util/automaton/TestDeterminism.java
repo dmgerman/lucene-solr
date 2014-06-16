@@ -94,7 +94,7 @@ operator|.
 name|NONE
 argument_list|)
 operator|.
-name|toLightAutomaton
+name|toAutomaton
 argument_list|()
 argument_list|)
 expr_stmt|;
@@ -132,7 +132,7 @@ name|i
 operator|++
 control|)
 block|{
-name|LightAutomaton
+name|Automaton
 name|a
 init|=
 name|AutomatonTestUtil
@@ -147,15 +147,15 @@ name|a
 operator|=
 name|AutomatonTestUtil
 operator|.
-name|determinizeSimpleLight
+name|determinizeSimple
 argument_list|(
 name|a
 argument_list|)
 expr_stmt|;
-name|LightAutomaton
+name|Automaton
 name|b
 init|=
-name|BasicOperations
+name|Operations
 operator|.
 name|determinize
 argument_list|(
@@ -165,7 +165,7 @@ decl_stmt|;
 comment|// TODO: more verifications possible?
 name|assertTrue
 argument_list|(
-name|BasicOperations
+name|Operations
 operator|.
 name|sameLanguage
 argument_list|(
@@ -183,17 +183,17 @@ specifier|static
 name|void
 name|assertAutomaton
 parameter_list|(
-name|LightAutomaton
+name|Automaton
 name|a
 parameter_list|)
 block|{
 name|a
 operator|=
-name|BasicOperations
+name|Operations
 operator|.
 name|determinize
 argument_list|(
-name|BasicOperations
+name|Operations
 operator|.
 name|removeDeadStates
 argument_list|(
@@ -202,16 +202,16 @@ argument_list|)
 argument_list|)
 expr_stmt|;
 comment|// complement(complement(a)) = a
-name|LightAutomaton
+name|Automaton
 name|equivalent
 init|=
-name|BasicOperations
+name|Operations
 operator|.
-name|complementLight
+name|complement
 argument_list|(
-name|BasicOperations
+name|Operations
 operator|.
-name|complementLight
+name|complement
 argument_list|(
 name|a
 argument_list|)
@@ -219,7 +219,7 @@ argument_list|)
 decl_stmt|;
 name|assertTrue
 argument_list|(
-name|BasicOperations
+name|Operations
 operator|.
 name|sameLanguage
 argument_list|(
@@ -232,17 +232,17 @@ expr_stmt|;
 comment|// a union a = a
 name|equivalent
 operator|=
-name|BasicOperations
+name|Operations
 operator|.
 name|determinize
 argument_list|(
-name|BasicOperations
+name|Operations
 operator|.
 name|removeDeadStates
 argument_list|(
-name|BasicOperations
+name|Operations
 operator|.
-name|unionLight
+name|union
 argument_list|(
 name|a
 argument_list|,
@@ -253,7 +253,7 @@ argument_list|)
 expr_stmt|;
 name|assertTrue
 argument_list|(
-name|BasicOperations
+name|Operations
 operator|.
 name|sameLanguage
 argument_list|(
@@ -266,17 +266,17 @@ expr_stmt|;
 comment|// a intersect a = a
 name|equivalent
 operator|=
-name|BasicOperations
+name|Operations
 operator|.
 name|determinize
 argument_list|(
-name|BasicOperations
+name|Operations
 operator|.
 name|removeDeadStates
 argument_list|(
-name|BasicOperations
+name|Operations
 operator|.
-name|intersectionLight
+name|intersection
 argument_list|(
 name|a
 argument_list|,
@@ -287,7 +287,7 @@ argument_list|)
 expr_stmt|;
 name|assertTrue
 argument_list|(
-name|BasicOperations
+name|Operations
 operator|.
 name|sameLanguage
 argument_list|(
@@ -298,12 +298,12 @@ argument_list|)
 argument_list|)
 expr_stmt|;
 comment|// a minus a = empty
-name|LightAutomaton
+name|Automaton
 name|empty
 init|=
-name|BasicOperations
+name|Operations
 operator|.
-name|minusLight
+name|minus
 argument_list|(
 name|a
 argument_list|,
@@ -312,7 +312,7 @@ argument_list|)
 decl_stmt|;
 name|assertTrue
 argument_list|(
-name|BasicOperations
+name|Operations
 operator|.
 name|isEmpty
 argument_list|(
@@ -325,7 +325,7 @@ comment|// then optional(a) - empty = a
 if|if
 condition|(
 operator|!
-name|BasicOperations
+name|Operations
 operator|.
 name|run
 argument_list|(
@@ -336,12 +336,12 @@ argument_list|)
 condition|)
 block|{
 comment|//System.out.println("test " + a);
-name|LightAutomaton
+name|Automaton
 name|optional
 init|=
-name|BasicOperations
+name|Operations
 operator|.
-name|optionalLight
+name|optional
 argument_list|(
 name|a
 argument_list|)
@@ -349,22 +349,22 @@ decl_stmt|;
 comment|//System.out.println("optional " + optional);
 name|equivalent
 operator|=
-name|BasicOperations
+name|Operations
 operator|.
-name|minusLight
+name|minus
 argument_list|(
 name|optional
 argument_list|,
-name|BasicAutomata
+name|Automata
 operator|.
-name|makeEmptyStringLight
+name|makeEmptyString
 argument_list|()
 argument_list|)
 expr_stmt|;
 comment|//System.out.println("equiv " + equivalent);
 name|assertTrue
 argument_list|(
-name|BasicOperations
+name|Operations
 operator|.
 name|sameLanguage
 argument_list|(

@@ -136,7 +136,7 @@ name|util
 operator|.
 name|automaton
 operator|.
-name|LightAutomaton
+name|Automaton
 import|;
 end_import
 
@@ -566,7 +566,7 @@ parameter_list|(
 name|int
 name|expected
 parameter_list|,
-name|LightAutomaton
+name|Automaton
 name|automaton
 parameter_list|)
 throws|throws
@@ -672,7 +672,7 @@ parameter_list|()
 throws|throws
 name|IOException
 block|{
-name|LightAutomaton
+name|Automaton
 name|a
 init|=
 operator|new
@@ -681,7 +681,7 @@ argument_list|(
 literal|"((\uD866\uDF05)|\uFB94).*"
 argument_list|)
 operator|.
-name|toLightAutomaton
+name|toAutomaton
 argument_list|()
 decl_stmt|;
 name|assertAutomatonHits

@@ -410,23 +410,7 @@ name|util
 operator|.
 name|automaton
 operator|.
-name|BasicOperations
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|util
-operator|.
-name|automaton
-operator|.
-name|LightAutomaton
+name|Automaton
 import|;
 end_import
 
@@ -5183,7 +5167,7 @@ comment|// NOTE: not great that we ask the suggester to give
 comment|// us the "answer key" (ie maybe we have a bug in
 comment|// suggester.toLevA ...) ... but testRandom2() fixes
 comment|// this:
-name|LightAutomaton
+name|Automaton
 name|automaton
 init|=
 name|suggester

@@ -126,7 +126,7 @@ name|util
 operator|.
 name|automaton
 operator|.
-name|BasicOperations
+name|Operations
 import|;
 end_import
 
@@ -142,23 +142,7 @@ name|util
 operator|.
 name|automaton
 operator|.
-name|LightAutomaton
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|util
-operator|.
-name|automaton
-operator|.
-name|SpecialOperations
+name|Automaton
 import|;
 end_import
 
@@ -1078,7 +1062,7 @@ return|return
 literal|false
 return|;
 block|}
-name|LightAutomaton
+name|Automaton
 name|automaton
 init|=
 operator|(
@@ -1088,17 +1072,17 @@ operator|)
 name|q
 operator|)
 operator|.
-name|getLightAutomaton
+name|getAutomaton
 argument_list|()
 decl_stmt|;
 name|String
 name|prefix
 init|=
-name|SpecialOperations
+name|Operations
 operator|.
 name|getCommonPrefix
 argument_list|(
-name|BasicOperations
+name|Operations
 operator|.
 name|determinize
 argument_list|(

@@ -52,7 +52,7 @@ name|util
 operator|.
 name|automaton
 operator|.
-name|LightAutomaton
+name|Automaton
 import|;
 end_import
 
@@ -68,7 +68,7 @@ name|util
 operator|.
 name|automaton
 operator|.
-name|LightAutomatonProvider
+name|AutomatonProvider
 import|;
 end_import
 
@@ -108,17 +108,17 @@ comment|/**    * A provider that provides no named automata    */
 DECL|field|defaultProvider
 specifier|private
 specifier|static
-name|LightAutomatonProvider
+name|AutomatonProvider
 name|defaultProvider
 init|=
 operator|new
-name|LightAutomatonProvider
+name|AutomatonProvider
 argument_list|()
 block|{
 annotation|@
 name|Override
 specifier|public
-name|LightAutomaton
+name|Automaton
 name|getAutomaton
 parameter_list|(
 name|String
@@ -183,7 +183,7 @@ parameter_list|,
 name|int
 name|flags
 parameter_list|,
-name|LightAutomatonProvider
+name|AutomatonProvider
 name|provider
 parameter_list|)
 block|{
@@ -202,7 +202,7 @@ argument_list|,
 name|flags
 argument_list|)
 operator|.
-name|toLightAutomaton
+name|toAutomaton
 argument_list|(
 name|provider
 argument_list|)

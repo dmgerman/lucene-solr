@@ -112,7 +112,7 @@ name|util
 operator|.
 name|automaton
 operator|.
-name|LightAutomaton
+name|Automaton
 import|;
 end_import
 
@@ -519,7 +519,7 @@ name|ite
 operator|.
 name|compiledAutomaton
 operator|.
-name|lightAutomaton
+name|automaton
 operator|.
 name|getNumTransitions
 argument_list|(
@@ -537,7 +537,7 @@ name|ite
 operator|.
 name|compiledAutomaton
 operator|.
-name|lightAutomaton
+name|automaton
 operator|.
 name|initTransition
 argument_list|(
@@ -550,7 +550,7 @@ name|ite
 operator|.
 name|compiledAutomaton
 operator|.
-name|lightAutomaton
+name|automaton
 operator|.
 name|getNextTransition
 argument_list|(

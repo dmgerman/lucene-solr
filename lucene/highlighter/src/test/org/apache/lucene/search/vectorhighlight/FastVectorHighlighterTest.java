@@ -5070,7 +5070,7 @@ argument_list|(
 literal|"."
 argument_list|)
 operator|.
-name|toLightAutomaton
+name|toAutomaton
 argument_list|()
 argument_list|)
 argument_list|,
@@ -5099,7 +5099,7 @@ argument_list|(
 literal|"..."
 argument_list|)
 operator|.
-name|toLightAutomaton
+name|toAutomaton
 argument_list|()
 argument_list|)
 argument_list|,

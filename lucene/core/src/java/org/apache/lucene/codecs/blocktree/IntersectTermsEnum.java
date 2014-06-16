@@ -1966,7 +1966,7 @@ operator|++
 expr_stmt|;
 name|compiledAutomaton
 operator|.
-name|lightAutomaton
+name|automaton
 operator|.
 name|getNextTransition
 argument_list|(

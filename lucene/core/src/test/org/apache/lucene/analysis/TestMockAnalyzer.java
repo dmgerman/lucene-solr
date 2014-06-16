@@ -254,7 +254,7 @@ name|util
 operator|.
 name|automaton
 operator|.
-name|BasicAutomata
+name|Automata
 import|;
 end_import
 
@@ -270,7 +270,7 @@ name|util
 operator|.
 name|automaton
 operator|.
-name|BasicOperations
+name|Operations
 import|;
 end_import
 
@@ -589,7 +589,7 @@ argument_list|(
 literal|"."
 argument_list|)
 operator|.
-name|toLightAutomaton
+name|toAutomaton
 argument_list|()
 argument_list|)
 decl_stmt|;
@@ -697,7 +697,7 @@ argument_list|(
 literal|".."
 argument_list|)
 operator|.
-name|toLightAutomaton
+name|toAutomaton
 argument_list|()
 argument_list|)
 decl_stmt|;
@@ -842,7 +842,7 @@ argument_list|(
 literal|"..."
 argument_list|)
 operator|.
-name|toLightAutomaton
+name|toAutomaton
 argument_list|()
 argument_list|)
 decl_stmt|;
@@ -973,7 +973,7 @@ argument_list|(
 literal|"[A-Z][a-z]*"
 argument_list|)
 operator|.
-name|toLightAutomaton
+name|toAutomaton
 argument_list|()
 argument_list|)
 decl_stmt|;
@@ -1162,28 +1162,28 @@ init|=
 operator|new
 name|CharacterRunAutomaton
 argument_list|(
-name|BasicOperations
+name|Operations
 operator|.
-name|complementLight
+name|complement
 argument_list|(
-name|BasicOperations
+name|Operations
 operator|.
-name|unionLight
+name|union
 argument_list|(
 name|Arrays
 operator|.
 name|asList
 argument_list|(
-name|BasicAutomata
+name|Automata
 operator|.
-name|makeStringLight
+name|makeString
 argument_list|(
 literal|"foo"
 argument_list|)
 argument_list|,
-name|BasicAutomata
+name|Automata
 operator|.
-name|makeStringLight
+name|makeString
 argument_list|(
 literal|"bar"
 argument_list|)
@@ -1265,7 +1265,7 @@ argument_list|(
 literal|".{5,}"
 argument_list|)
 operator|.
-name|toLightAutomaton
+name|toAutomaton
 argument_list|()
 argument_list|)
 decl_stmt|;

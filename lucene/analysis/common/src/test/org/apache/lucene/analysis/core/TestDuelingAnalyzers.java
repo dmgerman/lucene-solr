@@ -206,7 +206,7 @@ name|util
 operator|.
 name|automaton
 operator|.
-name|BasicOperations
+name|Operations
 import|;
 end_import
 
@@ -238,7 +238,7 @@ name|util
 operator|.
 name|automaton
 operator|.
-name|LightAutomaton
+name|Automaton
 import|;
 end_import
 
@@ -274,11 +274,11 @@ operator|.
 name|setUp
 argument_list|()
 expr_stmt|;
-name|LightAutomaton
+name|Automaton
 name|single
 init|=
 operator|new
-name|LightAutomaton
+name|Automaton
 argument_list|()
 decl_stmt|;
 name|int
@@ -345,12 +345,12 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
-name|LightAutomaton
+name|Automaton
 name|repeat
 init|=
-name|BasicOperations
+name|Operations
 operator|.
-name|repeatLight
+name|repeat
 argument_list|(
 name|single
 argument_list|)

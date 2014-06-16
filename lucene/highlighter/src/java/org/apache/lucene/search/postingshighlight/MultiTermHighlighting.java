@@ -416,7 +416,7 @@ name|util
 operator|.
 name|automaton
 operator|.
-name|BasicAutomata
+name|Automata
 import|;
 end_import
 
@@ -432,7 +432,7 @@ name|util
 operator|.
 name|automaton
 operator|.
-name|BasicOperations
+name|Operations
 import|;
 end_import
 
@@ -480,7 +480,7 @@ name|util
 operator|.
 name|automaton
 operator|.
-name|LightAutomaton
+name|Automaton
 import|;
 end_import
 
@@ -920,7 +920,7 @@ name|CharacterRunAutomaton
 argument_list|(
 name|aq
 operator|.
-name|getLightAutomaton
+name|getAutomaton
 argument_list|()
 argument_list|)
 block|{
@@ -988,13 +988,13 @@ argument_list|(
 operator|new
 name|CharacterRunAutomaton
 argument_list|(
-name|BasicOperations
+name|Operations
 operator|.
-name|concatenateLight
+name|concatenate
 argument_list|(
-name|BasicAutomata
+name|Automata
 operator|.
-name|makeStringLight
+name|makeString
 argument_list|(
 name|prefix
 operator|.
@@ -1002,9 +1002,9 @@ name|text
 argument_list|()
 argument_list|)
 argument_list|,
-name|BasicAutomata
+name|Automata
 operator|.
-name|makeAnyStringLight
+name|makeAnyString
 argument_list|()
 argument_list|)
 argument_list|)
@@ -1203,7 +1203,7 @@ argument_list|,
 name|prefixLength
 argument_list|)
 decl_stmt|;
-name|LightAutomaton
+name|Automaton
 name|automaton
 init|=
 name|builder
@@ -1395,9 +1395,9 @@ argument_list|(
 operator|new
 name|CharacterRunAutomaton
 argument_list|(
-name|BasicAutomata
+name|Automata
 operator|.
-name|makeEmptyLight
+name|makeEmpty
 argument_list|()
 argument_list|)
 block|{

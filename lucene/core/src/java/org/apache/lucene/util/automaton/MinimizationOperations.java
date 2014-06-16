@@ -63,25 +63,25 @@ comment|/**  * Operations for minimizing automata.  *   * @lucene.experimental  
 end_comment
 
 begin_class
-DECL|class|MinimizationOperationsLight
+DECL|class|MinimizationOperations
 specifier|final
 specifier|public
 class|class
-name|MinimizationOperationsLight
+name|MinimizationOperations
 block|{
-DECL|method|MinimizationOperationsLight
+DECL|method|MinimizationOperations
 specifier|private
-name|MinimizationOperationsLight
+name|MinimizationOperations
 parameter_list|()
 block|{}
 comment|/**    * Minimizes (and determinizes if not already deterministic) the given    * automaton.    *     * @see Automaton#setMinimization(int)    */
 DECL|method|minimize
 specifier|public
 specifier|static
-name|LightAutomaton
+name|Automaton
 name|minimize
 parameter_list|(
-name|LightAutomaton
+name|Automaton
 name|a
 parameter_list|)
 block|{
@@ -96,10 +96,10 @@ comment|/**    * Minimizes the given automaton using Hopcroft's algorithm.    */
 DECL|method|minimizeHopcroft
 specifier|public
 specifier|static
-name|LightAutomaton
+name|Automaton
 name|minimizeHopcroft
 parameter_list|(
-name|LightAutomaton
+name|Automaton
 name|a
 parameter_list|)
 block|{
@@ -136,13 +136,13 @@ block|{
 comment|// Fastmatch for common case
 return|return
 operator|new
-name|LightAutomaton
+name|Automaton
 argument_list|()
 return|;
 block|}
 name|a
 operator|=
-name|BasicOperations
+name|Operations
 operator|.
 name|determinize
 argument_list|(
@@ -1287,11 +1287,11 @@ name|clear
 argument_list|()
 expr_stmt|;
 block|}
-name|LightAutomaton
+name|Automaton
 name|result
 init|=
 operator|new
-name|LightAutomaton
+name|Automaton
 argument_list|()
 decl_stmt|;
 name|Transition
@@ -1528,7 +1528,7 @@ argument_list|()
 expr_stmt|;
 comment|//System.out.println(result.getNumStates() + " states");
 return|return
-name|BasicOperations
+name|Operations
 operator|.
 name|removeDeadStates
 argument_list|(

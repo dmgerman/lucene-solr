@@ -178,10 +178,10 @@ name|terms
 argument_list|)
 expr_stmt|;
 specifier|final
-name|LightAutomaton
+name|Automaton
 name|a
 init|=
-name|DaciukMihovAutomatonBuilderLight
+name|DaciukMihovAutomatonBuilder
 operator|.
 name|build
 argument_list|(

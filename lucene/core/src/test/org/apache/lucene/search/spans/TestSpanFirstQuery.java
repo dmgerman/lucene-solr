@@ -239,7 +239,7 @@ argument_list|(
 literal|"the|a|of"
 argument_list|)
 operator|.
-name|toLightAutomaton
+name|toAutomaton
 argument_list|()
 argument_list|)
 decl_stmt|;

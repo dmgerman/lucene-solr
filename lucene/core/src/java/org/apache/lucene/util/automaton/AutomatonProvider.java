@@ -33,15 +33,15 @@ comment|/**  * Automaton provider for<code>RegExp.</code>  * {@link RegExp#toAut
 end_comment
 
 begin_interface
-DECL|interface|LightAutomatonProvider
+DECL|interface|AutomatonProvider
 specifier|public
 interface|interface
-name|LightAutomatonProvider
+name|AutomatonProvider
 block|{
 comment|/**    * Returns automaton of the given name.    *     * @param name automaton name    * @return automaton    * @throws IOException if errors occur    */
 DECL|method|getAutomaton
 specifier|public
-name|LightAutomaton
+name|Automaton
 name|getAutomaton
 parameter_list|(
 name|String

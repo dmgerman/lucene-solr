@@ -35,7 +35,7 @@ DECL|method|ByteRunAutomaton
 specifier|public
 name|ByteRunAutomaton
 parameter_list|(
-name|LightAutomaton
+name|Automaton
 name|a
 parameter_list|)
 block|{
@@ -52,7 +52,7 @@ DECL|method|ByteRunAutomaton
 specifier|public
 name|ByteRunAutomaton
 parameter_list|(
-name|LightAutomaton
+name|Automaton
 name|a
 parameter_list|,
 name|boolean
@@ -66,7 +66,7 @@ condition|?
 name|a
 else|:
 operator|new
-name|UTF32ToUTF8Light
+name|UTF32ToUTF8
 argument_list|()
 operator|.
 name|convert

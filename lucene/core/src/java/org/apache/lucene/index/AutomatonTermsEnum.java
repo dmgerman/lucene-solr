@@ -112,7 +112,7 @@ name|util
 operator|.
 name|automaton
 operator|.
-name|LightAutomaton
+name|Automaton
 import|;
 end_import
 
@@ -165,11 +165,11 @@ name|boolean
 name|finite
 decl_stmt|;
 comment|// array of sorted transitions for each state, indexed by state number
-DECL|field|lightAutomaton
+DECL|field|automaton
 specifier|private
 specifier|final
-name|LightAutomaton
-name|lightAutomaton
+name|Automaton
+name|automaton
 decl_stmt|;
 comment|// for path tracking: each long records gen when we last
 comment|// visited the state; we use gens to avoid having to clear
@@ -271,11 +271,11 @@ name|commonSuffixRef
 expr_stmt|;
 name|this
 operator|.
-name|lightAutomaton
+name|automaton
 operator|=
 name|compiled
 operator|.
-name|lightAutomaton
+name|automaton
 expr_stmt|;
 comment|// used for path tracking, where each bit is a numbered state.
 name|visited
@@ -567,14 +567,14 @@ specifier|final
 name|int
 name|numTransitions
 init|=
-name|lightAutomaton
+name|automaton
 operator|.
 name|getNumTransitions
 argument_list|(
 name|state
 argument_list|)
 decl_stmt|;
-name|lightAutomaton
+name|automaton
 operator|.
 name|initTransition
 argument_list|(
@@ -598,7 +598,7 @@ name|i
 operator|++
 control|)
 block|{
-name|lightAutomaton
+name|automaton
 operator|.
 name|getNextTransition
 argument_list|(
@@ -1048,14 +1048,14 @@ specifier|final
 name|int
 name|numTransitions
 init|=
-name|lightAutomaton
+name|automaton
 operator|.
 name|getNumTransitions
 argument_list|(
 name|state
 argument_list|)
 decl_stmt|;
-name|lightAutomaton
+name|automaton
 operator|.
 name|initTransition
 argument_list|(
@@ -1080,7 +1080,7 @@ name|i
 operator|++
 control|)
 block|{
-name|lightAutomaton
+name|automaton
 operator|.
 name|getNextTransition
 argument_list|(
@@ -1176,7 +1176,7 @@ operator|=
 name|curGen
 expr_stmt|;
 comment|/*             * Note: we work with a DFA with no transitions to dead states.            * so the below is ok, if it is not an accept state,            * then there MUST be at least one transition.            */
-name|lightAutomaton
+name|automaton
 operator|.
 name|initTransition
 argument_list|(
@@ -1185,7 +1185,7 @@ argument_list|,
 name|transition
 argument_list|)
 expr_stmt|;
-name|lightAutomaton
+name|automaton
 operator|.
 name|getNextTransition
 argument_list|(

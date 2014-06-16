@@ -664,7 +664,7 @@ name|util
 operator|.
 name|automaton
 operator|.
-name|LightAutomaton
+name|Automaton
 import|;
 end_import
 
@@ -3026,7 +3026,7 @@ name|ord
 init|=
 literal|0
 decl_stmt|;
-name|LightAutomaton
+name|Automaton
 name|automaton
 init|=
 operator|new
@@ -3039,7 +3039,7 @@ operator|.
 name|NONE
 argument_list|)
 operator|.
-name|toLightAutomaton
+name|toAutomaton
 argument_list|()
 decl_stmt|;
 specifier|final
