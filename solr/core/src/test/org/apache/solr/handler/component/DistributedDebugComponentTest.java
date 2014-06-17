@@ -3011,6 +3011,16 @@ name|getKey
 argument_list|()
 argument_list|)
 expr_stmt|;
+name|assertNotNull
+argument_list|(
+literal|"Exception message should not be null"
+argument_list|,
+name|exception
+operator|.
+name|getValue
+argument_list|()
+argument_list|)
+expr_stmt|;
 name|unIgnoreException
 argument_list|(
 literal|"Server refused connection"
