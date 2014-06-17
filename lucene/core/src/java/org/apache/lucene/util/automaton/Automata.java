@@ -194,6 +194,7 @@ name|MAX_CODE_POINT
 argument_list|)
 return|;
 block|}
+comment|/** Accept any single character starting from the specified state, returning the new state */
 DECL|method|appendAnyChar
 specifier|public
 specifier|static
@@ -256,6 +257,7 @@ name|c
 argument_list|)
 return|;
 block|}
+comment|/** Appends the specified character to the specified state, returning a new state. */
 DECL|method|appendChar
 specifier|public
 specifier|static
@@ -963,7 +965,7 @@ return|return
 name|s
 return|;
 block|}
-comment|/**    * Returns a new automaton that accepts strings representing decimal    * non-negative integers in the given interval.    *     * @param min minimal value of interval    * @param max maximal value of interval (both end points are included in the    *          interval)    * @param digits if>0, use fixed number of digits (strings must be prefixed    *          by 0's to obtain the right length) - otherwise, the number of    *          digits is not fixed    * @exception IllegalArgumentException if min>max or if numbers in the    *              interval cannot be expressed with the given fixed number of    *              digits    */
+comment|/**    * Returns a new automaton that accepts strings representing decimal    * non-negative integers in the given interval.    *     * @param min minimal value of interval    * @param max maximal value of interval (both end points are included in the    *          interval)    * @param digits if>0, use fixed number of digits (strings must be prefixed    *          by 0's to obtain the right length) - otherwise, the number of    *          digits is not fixed (any number of leading 0s is accepted)    * @exception IllegalArgumentException if min>max or if numbers in the    *              interval cannot be expressed with the given fixed number of    *              digits    */
 DECL|method|makeInterval
 specifier|public
 specifier|static

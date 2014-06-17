@@ -74,7 +74,7 @@ specifier|private
 name|MinimizationOperations
 parameter_list|()
 block|{}
-comment|/**    * Minimizes (and determinizes if not already deterministic) the given    * automaton.    *     * @see Automaton#setMinimization(int)    */
+comment|/**    * Minimizes (and determinizes if not already deterministic) the given    * automaton.    */
 DECL|method|minimize
 specifier|public
 specifier|static
@@ -213,10 +213,12 @@ block|}
 block|}
 name|a
 operator|=
-name|a
+name|Operations
 operator|.
 name|totalize
-argument_list|()
+argument_list|(
+name|a
+argument_list|)
 expr_stmt|;
 comment|//a.writeDot("atot");
 comment|// initialize data structures

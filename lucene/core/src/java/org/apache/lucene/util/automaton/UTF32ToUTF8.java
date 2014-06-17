@@ -592,6 +592,12 @@ argument_list|()
 return|;
 block|}
 block|}
+comment|/** Sole constructor. */
+DECL|method|UTF32ToUTF8
+specifier|public
+name|UTF32ToUTF8
+parameter_list|()
+block|{   }
 DECL|field|startUTF8
 specifier|private
 specifier|final

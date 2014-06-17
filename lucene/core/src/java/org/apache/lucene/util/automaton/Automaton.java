@@ -111,7 +111,7 @@ comment|//   - could encode dest w/ delta from to?
 end_comment
 
 begin_comment
-comment|/** Uses only int[]s to represent the automaton, but requires that all  *  transitions for each state are added at once.  If this is too restrictive,  *  use {@link #Builder} instead.  State 0 is always the  *  initial state.  *  * @lucene.experimental */
+comment|/** Represents an automaton and all its states and transitions.  States  *  are integers and must be created using {@link #createState}.  Mark a  *  state as an accept state using {@link #setAccept}.  Add transitions  *  using {@link #addTransition}.  Each state must have all of its  *  transitions added at once; if this is too restrictive then use  *  {@link Automaton.Builder} instead.  State 0 is always the  *  initial state.  Once a state is finished, either  *  because you've starting adding transitions to another state or you  *  call {@link #finishState}, then that states transitions are sorted  *  (first by min, then max, then dest) and reduced (transitions with  *  adjacent labels going to the same dest are combined).  *  * @lucene.experimental */
 end_comment
 
 begin_class
@@ -120,6 +120,7 @@ specifier|public
 class|class
 name|Automaton
 block|{
+comment|/** Where we next write to the int[] states; this increments by 2 for    *  each added state because we pack a pointer to the transitions    *  array and a count of how many transitions leave the state.  */
 DECL|field|nextState
 specifier|private
 name|int
@@ -153,7 +154,7 @@ index|[
 literal|4
 index|]
 decl_stmt|;
-comment|/** Holds toState, min, max for each transition: */
+comment|/** Holds toState, min, max for each transition. */
 DECL|field|transitions
 specifier|private
 name|int
@@ -166,14 +167,14 @@ index|[
 literal|6
 index|]
 decl_stmt|;
-DECL|field|finalStates
+DECL|field|acceptStates
 specifier|private
 specifier|final
 name|Set
 argument_list|<
 name|Integer
 argument_list|>
-name|finalStates
+name|acceptStates
 init|=
 operator|new
 name|HashSet
@@ -190,6 +191,13 @@ name|deterministic
 init|=
 literal|true
 decl_stmt|;
+comment|/** Sole constructor; creates an automaton with no states. */
+DECL|method|Automaton
+specifier|public
+name|Automaton
+parameter_list|()
+block|{   }
+comment|/** Create a new state. */
 DECL|method|createState
 specifier|public
 name|int
@@ -222,7 +230,7 @@ return|return
 name|state
 return|;
 block|}
-comment|/** Mark this state as an accept state. */
+comment|/** Set or clear this state as an accept state. */
 DECL|method|setAccept
 specifier|public
 name|void
@@ -265,7 +273,7 @@ condition|(
 name|isAccept
 condition|)
 block|{
-name|finalStates
+name|acceptStates
 operator|.
 name|add
 argument_list|(
@@ -275,7 +283,7 @@ expr_stmt|;
 block|}
 else|else
 block|{
-name|finalStates
+name|acceptStates
 operator|.
 name|remove
 argument_list|(
@@ -284,7 +292,7 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
-comment|/** Sugar, but object-heavy; it's better to iterate instead. */
+comment|/** Sugar to get all transitions for all states.  This is    *  object-heavy; it's better to iterate state by state instead. */
 DECL|method|getSortedTransitions
 specifier|public
 name|Transition
@@ -392,6 +400,7 @@ return|return
 name|transitions
 return|;
 block|}
+comment|/** Returns accept states. */
 DECL|method|getAcceptStates
 specifier|public
 name|Set
@@ -402,7 +411,7 @@ name|getAcceptStates
 parameter_list|()
 block|{
 return|return
-name|finalStates
+name|acceptStates
 return|;
 block|}
 comment|/** Returns true if this state is an accept state. */
@@ -416,7 +425,7 @@ name|state
 parameter_list|)
 block|{
 return|return
-name|finalStates
+name|acceptStates
 operator|.
 name|contains
 argument_list|(
@@ -424,6 +433,7 @@ name|state
 argument_list|)
 return|;
 block|}
+comment|/** Add a new transition with min = max = label. */
 DECL|method|addTransition
 specifier|public
 name|void
@@ -451,6 +461,7 @@ name|label
 argument_list|)
 expr_stmt|;
 block|}
+comment|/** Add a new transition with the specified source, dest, min, max. */
 DECL|method|addTransition
 specifier|public
 name|void
@@ -538,7 +549,6 @@ literal|")"
 argument_list|)
 throw|;
 block|}
-comment|//System.out.println("  addTransition nextTransition=" + nextTransition + " source=" + source + " dest=" + dest + " min=" + min + " max=" + max);
 name|growTransitions
 argument_list|()
 expr_stmt|;
@@ -549,7 +559,6 @@ operator|!=
 name|source
 condition|)
 block|{
-comment|//System.out.println("    newstate");
 if|if
 condition|(
 name|curState
@@ -650,6 +659,7 @@ index|]
 operator|++
 expr_stmt|;
 block|}
+comment|/** Add a [virtual] epsilon transition between source and dest.    *  Dest state must already have all transitions added because this    *  method simply copies those same transitions over to source. */
 DECL|method|addEpsilon
 specifier|public
 name|void
@@ -744,13 +754,6 @@ name|Automaton
 name|other
 parameter_list|)
 block|{
-name|int
-name|offset
-init|=
-name|getNumStates
-argument_list|()
-decl_stmt|;
-comment|/*     int otherNumStates = other.getNumStates();     for(int s=0;s<otherNumStates;s++) {       createState();       setAccept(offset+s, other.isAccept(s));     }     Transition t = new Transition();     for(int s=0;s<otherNumStates;s++) {       int count = other.initTransition(s, t);       for(int i=0;i<count;i++) {         other.getNextTransition(t);         addTransition(offset + s, offset + t.dest, t.min, t.max);       }     }     */
 comment|// Bulk copy and then fixup the state pointers:
 name|int
 name|stateOffset
@@ -952,7 +955,7 @@ literal|false
 expr_stmt|;
 block|}
 block|}
-comment|/** Freezes the last state, reducing and sorting its transitions. */
+comment|/** Freezes the last state, sorting and reducing the transitions. */
 DECL|method|finishCurrentState
 specifier|private
 name|void
@@ -976,7 +979,6 @@ name|numTransitions
 operator|>
 literal|0
 assert|;
-comment|//System.out.println("finish curState=" + curState + " numTransitions=" + numTransitions);
 name|int
 name|offset
 init|=
@@ -1005,7 +1007,6 @@ operator|+
 name|numTransitions
 argument_list|)
 expr_stmt|;
-comment|/*     for(int i=0;i<numTransitions;i++) {       System.out.println("  " + i + ": dest=" + transitions[offset+3*i] + " (accept?=" + isAccept(transitions[offset+3*i]) + ") min=" + transitions[offset+3*i+1] + " max=" + transitions[offset+3*i+2]);     }     */
 comment|// Reduce any "adjacent" transitions:
 name|int
 name|upto
@@ -1398,8 +1399,8 @@ index|]
 expr_stmt|;
 block|}
 block|}
-comment|/*     System.out.println("after finish: reduce collapsed " + (numTransitions-upto) + " transitions");     for(int i=0;i<upto;i++) {       System.out.println("  " + i + ": dest=" + transitions[offset+3*i] + " (accept?=" + isAccept(transitions[offset+3*i]) + ") min=" + transitions[offset+3*i+1] + " max=" + transitions[offset+3*i+2]);     }     */
 block|}
+comment|/** Returns true if this automaton is deterministic (for ever state    *  there is only one transition for each label). */
 DECL|method|isDeterministic
 specifier|public
 name|boolean
@@ -1410,7 +1411,7 @@ return|return
 name|deterministic
 return|;
 block|}
-comment|/** Finishes the current state; call this once you are done adding transitions for a state. */
+comment|/** Finishes the current state; call this once you are done adding    *  transitions for a state.  This is automatically called if you    *  start adding transitions to a new source state, but for the last    *  state you add you need to this method yourself. */
 DECL|method|finishState
 specifier|public
 name|void
@@ -1425,7 +1426,6 @@ operator|-
 literal|1
 condition|)
 block|{
-comment|//System.out.println("finish: finish current state " + curState);
 name|finishCurrentState
 argument_list|()
 expr_stmt|;
@@ -1437,6 +1437,7 @@ expr_stmt|;
 block|}
 block|}
 comment|// TODO: add finish() to shrink wrap the arrays?
+comment|/** How many states this automaton has. */
 DECL|method|getNumStates
 specifier|public
 name|int
@@ -1449,6 +1450,7 @@ operator|/
 literal|2
 return|;
 block|}
+comment|/** How many transitions this state has. */
 DECL|method|getNumTransitions
 specifier|public
 name|int
@@ -1488,82 +1490,6 @@ return|return
 name|count
 return|;
 block|}
-block|}
-DECL|method|getDest
-specifier|public
-name|int
-name|getDest
-parameter_list|(
-name|int
-name|state
-parameter_list|,
-name|int
-name|transitionIndex
-parameter_list|)
-block|{
-return|return
-name|transitions
-index|[
-name|states
-index|[
-literal|2
-operator|*
-name|state
-index|]
-index|]
-return|;
-block|}
-DECL|method|getMin
-specifier|public
-name|int
-name|getMin
-parameter_list|(
-name|int
-name|state
-parameter_list|,
-name|int
-name|transitionIndex
-parameter_list|)
-block|{
-return|return
-name|transitions
-index|[
-name|states
-index|[
-literal|2
-operator|*
-name|state
-index|]
-operator|+
-literal|1
-index|]
-return|;
-block|}
-DECL|method|getMax
-specifier|public
-name|int
-name|getMax
-parameter_list|(
-name|int
-name|state
-parameter_list|,
-name|int
-name|transitionIndex
-parameter_list|)
-block|{
-return|return
-name|transitions
-index|[
-name|states
-index|[
-literal|2
-operator|*
-name|state
-index|]
-operator|+
-literal|2
-index|]
-return|;
 block|}
 DECL|method|growStates
 specifier|private
@@ -2565,247 +2491,8 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
-comment|// nocommit move to Operations
-DECL|method|totalize
-specifier|public
-name|Automaton
-name|totalize
-parameter_list|()
-block|{
-name|Automaton
-name|result
-init|=
-operator|new
-name|Automaton
-argument_list|()
-decl_stmt|;
-name|int
-name|numStates
-init|=
-name|getNumStates
-argument_list|()
-decl_stmt|;
-for|for
-control|(
-name|int
-name|i
-init|=
-literal|0
-init|;
-name|i
-operator|<
-name|numStates
-condition|;
-name|i
-operator|++
-control|)
-block|{
-name|result
-operator|.
-name|createState
-argument_list|()
-expr_stmt|;
-name|result
-operator|.
-name|setAccept
-argument_list|(
-name|i
-argument_list|,
-name|isAccept
-argument_list|(
-name|i
-argument_list|)
-argument_list|)
-expr_stmt|;
-block|}
-name|int
-name|deadState
-init|=
-name|result
-operator|.
-name|createState
-argument_list|()
-decl_stmt|;
-name|result
-operator|.
-name|addTransition
-argument_list|(
-name|deadState
-argument_list|,
-name|deadState
-argument_list|,
-name|Character
-operator|.
-name|MIN_CODE_POINT
-argument_list|,
-name|Character
-operator|.
-name|MAX_CODE_POINT
-argument_list|)
-expr_stmt|;
-name|Transition
-name|t
-init|=
-operator|new
-name|Transition
-argument_list|()
-decl_stmt|;
-for|for
-control|(
-name|int
-name|i
-init|=
-literal|0
-init|;
-name|i
-operator|<
-name|numStates
-condition|;
-name|i
-operator|++
-control|)
-block|{
-name|int
-name|maxi
-init|=
-name|Character
-operator|.
-name|MIN_CODE_POINT
-decl_stmt|;
-name|int
-name|count
-init|=
-name|initTransition
-argument_list|(
-name|i
-argument_list|,
-name|t
-argument_list|)
-decl_stmt|;
-for|for
-control|(
-name|int
-name|j
-init|=
-literal|0
-init|;
-name|j
-operator|<
-name|count
-condition|;
-name|j
-operator|++
-control|)
-block|{
-name|getNextTransition
-argument_list|(
-name|t
-argument_list|)
-expr_stmt|;
-name|result
-operator|.
-name|addTransition
-argument_list|(
-name|i
-argument_list|,
-name|t
-operator|.
-name|dest
-argument_list|,
-name|t
-operator|.
-name|min
-argument_list|,
-name|t
-operator|.
-name|max
-argument_list|)
-expr_stmt|;
-if|if
-condition|(
-name|t
-operator|.
-name|min
-operator|>
-name|maxi
-condition|)
-block|{
-name|result
-operator|.
-name|addTransition
-argument_list|(
-name|i
-argument_list|,
-name|deadState
-argument_list|,
-name|maxi
-argument_list|,
-name|t
-operator|.
-name|min
-operator|-
-literal|1
-argument_list|)
-expr_stmt|;
-block|}
-if|if
-condition|(
-name|t
-operator|.
-name|max
-operator|+
-literal|1
-operator|>
-name|maxi
-condition|)
-block|{
-name|maxi
-operator|=
-name|t
-operator|.
-name|max
-operator|+
-literal|1
-expr_stmt|;
-block|}
-block|}
-if|if
-condition|(
-name|maxi
-operator|<=
-name|Character
-operator|.
-name|MAX_CODE_POINT
-condition|)
-block|{
-name|result
-operator|.
-name|addTransition
-argument_list|(
-name|i
-argument_list|,
-name|deadState
-argument_list|,
-name|maxi
-argument_list|,
-name|Character
-operator|.
-name|MAX_CODE_POINT
-argument_list|)
-expr_stmt|;
-block|}
-block|}
-name|result
-operator|.
-name|finishState
-argument_list|()
-expr_stmt|;
-return|return
-name|result
-return|;
-block|}
-comment|// nocommit
 comment|/*   public void writeDot(String fileName) {     if (fileName.indexOf('/') == -1) {       fileName = "/l/la/lucene/core/" + fileName + ".dot";     }     try {       PrintWriter pw = new PrintWriter(fileName);       pw.println(toDot());       pw.close();     } catch (IOException ioe) {       throw new RuntimeException(ioe);     }   }   */
+comment|/** Returns the dot (graphviz) representation of this automaton.    *  This is extremely useful for visualizing the automaton. */
 DECL|method|toDot
 specifier|public
 name|String
@@ -3250,7 +2937,7 @@ return|return
 name|points
 return|;
 block|}
-comment|/**    * Performs lookup in transitions, assuming determinism.    *     * @param c codepoint to look up    * @return destination state, -1 if no matching outgoing transition    * @see #step(int, Collection)    */
+comment|/**    * Performs lookup in transitions, assuming determinism.    *     * @param state starting state    * @param label codepoint to look up    * @return destination state, -1 if no matching outgoing transition    */
 DECL|method|step
 specifier|public
 name|int
@@ -3360,7 +3047,7 @@ operator|-
 literal|1
 return|;
 block|}
-comment|/** Records new states and transitions and then {@link    *  #finish} creates the {@link Automaton}.  Use this    *  when it's too restrictive to have to add all transitions    *  leaving each state at once. */
+comment|/** Records new states and transitions and then {@link    *  #finish} creates the {@link Automaton}.  Use this    *  when you cannot create the Automaton directly because    *  it's too restrictive to have to add all transitions    *  leaving each state at once. */
 DECL|class|Builder
 specifier|public
 specifier|static
@@ -3394,16 +3081,23 @@ operator|new
 name|Automaton
 argument_list|()
 decl_stmt|;
+comment|/** Sole constructor. */
+DECL|method|Builder
+specifier|public
+name|Builder
+parameter_list|()
+block|{     }
+comment|/** Add a new transition with min = max = label. */
 DECL|method|addTransition
 specifier|public
 name|void
 name|addTransition
 parameter_list|(
 name|int
-name|from
+name|source
 parameter_list|,
 name|int
-name|to
+name|dest
 parameter_list|,
 name|int
 name|label
@@ -3411,9 +3105,9 @@ parameter_list|)
 block|{
 name|addTransition
 argument_list|(
-name|from
+name|source
 argument_list|,
-name|to
+name|dest
 argument_list|,
 name|label
 argument_list|,
@@ -3421,16 +3115,17 @@ name|label
 argument_list|)
 expr_stmt|;
 block|}
+comment|/** Add a new transition with the specified source, dest, min, max. */
 DECL|method|addTransition
 specifier|public
 name|void
 name|addTransition
 parameter_list|(
 name|int
-name|from
+name|source
 parameter_list|,
 name|int
-name|to
+name|dest
 parameter_list|,
 name|int
 name|min
@@ -3470,7 +3165,7 @@ name|nextTransition
 operator|++
 index|]
 operator|=
-name|from
+name|source
 expr_stmt|;
 name|transitions
 index|[
@@ -3478,7 +3173,7 @@ name|nextTransition
 operator|++
 index|]
 operator|=
-name|to
+name|dest
 expr_stmt|;
 name|transitions
 index|[
@@ -3823,6 +3518,7 @@ return|;
 block|}
 block|}
 decl_stmt|;
+comment|/** Compiles all added states and transitions into a new {@code Automaton}      *  and returns it. */
 DECL|method|finish
 specifier|public
 name|Automaton
@@ -3830,7 +3526,7 @@ name|finish
 parameter_list|()
 block|{
 comment|//System.out.println("LA.Builder.finish: count=" + (nextTransition/4));
-comment|// nocommit: we could make this more efficient,
+comment|// TODO: we could make this more efficient,
 comment|// e.g. somehow xfer the int[] to the automaton, or
 comment|// alloc exactly the right size from the automaton
 comment|//System.out.println("finish pending");
@@ -3902,6 +3598,7 @@ return|return
 name|a
 return|;
 block|}
+comment|/** Create a new state. */
 DECL|method|createState
 specifier|public
 name|int
@@ -3915,6 +3612,7 @@ name|createState
 argument_list|()
 return|;
 block|}
+comment|/** Set or clear this state as an accept state. */
 DECL|method|setAccept
 specifier|public
 name|void
@@ -3937,6 +3635,7 @@ name|accept
 argument_list|)
 expr_stmt|;
 block|}
+comment|/** Returns true if this state is an accept state. */
 DECL|method|isAccept
 specifier|public
 name|boolean
@@ -3955,6 +3654,7 @@ name|state
 argument_list|)
 return|;
 block|}
+comment|/** How many states this automaton has. */
 DECL|method|getNumStates
 specifier|public
 name|int

@@ -71,7 +71,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Builds a minimal, deterministic {@link Automaton} that accepts a set of   * strings. The algorithm requires sorted input data, but is very fast   * (nearly linear with the input size).  *   * @see #build(Collection)  * @see BasicAutomata#makeStringUnion(Collection)  */
+comment|/**  * Builds a minimal, deterministic {@link Automaton} that accepts a set of   * strings. The algorithm requires sorted input data, but is very fast   * (nearly linear with the input size).  *   * @see #build(Collection)  * @see Automata#makeStringUnion(Collection)  */
 end_comment
 
 begin_class

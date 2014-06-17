@@ -19,7 +19,7 @@ comment|/*  * Licensed to the Apache Software Foundation (ASF) under one or more
 end_comment
 
 begin_comment
-comment|/** Used temporarily when iterating through transitions from a {@link LightAutomaton}  *  {@link getTransition} and {@link #getNextTransition}. */
+comment|/** Used temporarily when iterating through transitions from a {@link Automaton}  *  {@link Automaton#initTransition} and {@link Automaton#getNextTransition}. */
 end_comment
 
 begin_class
@@ -28,21 +28,31 @@ specifier|public
 class|class
 name|Transition
 block|{
+comment|/** Sole constructor. */
+DECL|method|Transition
+specifier|public
+name|Transition
+parameter_list|()
+block|{   }
+comment|/** Source state. */
 DECL|field|source
 specifier|public
 name|int
 name|source
 decl_stmt|;
+comment|/** Destination state. */
 DECL|field|dest
 specifier|public
 name|int
 name|dest
 decl_stmt|;
+comment|/** Minimum accepted label (inclusive). */
 DECL|field|min
 specifier|public
 name|int
 name|min
 decl_stmt|;
+comment|/** Maximum accepted label (inclusive). */
 DECL|field|max
 specifier|public
 name|int
