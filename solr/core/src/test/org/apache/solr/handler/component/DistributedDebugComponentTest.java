@@ -3011,21 +3011,6 @@ name|getKey
 argument_list|()
 argument_list|)
 expr_stmt|;
-name|assertTrue
-argument_list|(
-literal|"Unexpected exception message"
-argument_list|,
-name|exception
-operator|.
-name|getValue
-argument_list|()
-operator|.
-name|contains
-argument_list|(
-literal|"Server refused connection"
-argument_list|)
-argument_list|)
-expr_stmt|;
 name|unIgnoreException
 argument_list|(
 literal|"Server refused connection"
