@@ -411,7 +411,6 @@ name|maxInterval
 operator|=
 name|maxInterval
 expr_stmt|;
-comment|//System.out.println("before det a=" + a.getNumStates());
 name|a
 operator|=
 name|Operations
@@ -427,8 +426,6 @@ name|automaton
 operator|=
 name|a
 expr_stmt|;
-comment|//System.out.println("AFTER DET tableize= " + tableize + ": ");
-comment|//System.out.println(a.toDot());
 name|points
 operator|=
 name|a
@@ -436,7 +433,6 @@ operator|.
 name|getStartPoints
 argument_list|()
 expr_stmt|;
-comment|//System.out.println("  points=" + Arrays.toString(points));
 name|initial
 operator|=
 literal|0
@@ -485,7 +481,6 @@ operator|-
 literal|1
 argument_list|)
 expr_stmt|;
-comment|//System.out.println("RA: size=" + size + " points.length=" + points.length + " total=" + (size * points.length));
 for|for
 control|(
 name|int
@@ -513,7 +508,6 @@ argument_list|(
 name|n
 argument_list|)
 expr_stmt|;
-comment|//System.out.println("n=" + n + " acc=" + accept[n] + " size=" + size);
 for|for
 control|(
 name|int
@@ -546,7 +540,6 @@ name|c
 index|]
 argument_list|)
 decl_stmt|;
-comment|//System.out.println("  step from point=" + c + " n=" + n + " label=" + (char) points[c] + " -> " + dest);
 assert|assert
 name|dest
 operator|==
@@ -570,7 +563,6 @@ index|]
 operator|=
 name|dest
 expr_stmt|;
-comment|//System.out.println("  trans label=" + points[c] + " dest=" + transitions[n * points.length + c]);
 block|}
 block|}
 comment|/*      * Set alphabet table for optimal run performance.      */
@@ -640,9 +632,7 @@ index|]
 operator|=
 name|i
 expr_stmt|;
-comment|//System.out.println("classmap[" + (char) j + "]=" + i);
 block|}
-comment|//System.out.println("  after classmap i=" + i + " maxInterval=" + maxInterval);
 block|}
 else|else
 block|{
@@ -666,7 +656,6 @@ name|int
 name|c
 parameter_list|)
 block|{
-comment|//System.out.println("  step state=" + state + " c=" + c + " points.length=" + points.length + " transitions.len=" + transitions.length);
 if|if
 condition|(
 name|classmap
@@ -692,7 +681,6 @@ return|;
 block|}
 else|else
 block|{
-comment|//System.out.println("    classmap[c]=" + classmap[c]);
 return|return
 name|transitions
 index|[

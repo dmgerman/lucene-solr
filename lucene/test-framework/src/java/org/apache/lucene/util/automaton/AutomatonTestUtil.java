@@ -868,7 +868,7 @@ return|return
 name|code
 return|;
 block|}
-comment|/**    * Lets you retrieve random strings accepted    * by a LightAutomaton.    *<p>    * Once created, call {@link #getRandomAcceptedString(Random)}    * to get a new string (in UTF-32 codepoints).    */
+comment|/**    * Lets you retrieve random strings accepted    * by an Automaton.    *<p>    * Once created, call {@link #getRandomAcceptedString(Random)}    * to get a new string (in UTF-32 codepoints).    */
 DECL|class|RandomAcceptedStrings
 specifier|public
 specifier|static

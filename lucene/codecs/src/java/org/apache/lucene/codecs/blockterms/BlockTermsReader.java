@@ -1814,7 +1814,7 @@ literal|"terms index was not loaded"
 argument_list|)
 throw|;
 block|}
-comment|//System.out.println("BTR.seek seg=" + segment + " target=" + fieldInfo.name + ":" + target.utf8ToString() + " " + target + " current=" + term().utf8ToString() + " " + term() + " indexIsCurrent=" + indexIsCurrent + " didIndexNext=" + didIndexNext + " seekPending=" + seekPending + " this="  + this);
+comment|//System.out.println("BTR.seek seg=" + segment + " target=" + fieldInfo.name + ":" + target.utf8ToString() + " " + target + " current=" + term().utf8ToString() + " " + term() + " indexIsCurrent=" + indexIsCurrent + " didIndexNext=" + didIndexNext + " seekPending=" + seekPending + " divisor=" + indexReader.getDivisor() + " this="  + this);
 if|if
 condition|(
 name|didIndexNext
@@ -2072,7 +2072,6 @@ condition|(
 literal|true
 condition|)
 block|{
-comment|//System.out.println("cycle common=" + common + " termBlockPrefix=" + termBlockPrefix + " term=" + term + " target=" + target);
 comment|// First, see if target term matches common prefix
 comment|// in this block:
 if|if

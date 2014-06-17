@@ -670,8 +670,6 @@ argument_list|(
 name|endCodePoint
 argument_list|)
 expr_stmt|;
-comment|//System.out.println("start = " + startUTF8);
-comment|//System.out.println("  end = " + endUTF8);
 name|build
 argument_list|(
 name|start
@@ -1770,7 +1768,6 @@ argument_list|,
 name|scratch
 argument_list|)
 expr_stmt|;
-comment|//System.out.println("  convert state=" + utf32State + " numTransitions=" + numTransitions);
 for|for
 control|(
 name|int
@@ -1808,7 +1805,6 @@ index|[
 name|destUTF32
 index|]
 decl_stmt|;
-comment|//System.out.println("    transition min=" + scratch.min + " max=" + scratch.max);
 if|if
 condition|(
 name|destUTF8
@@ -1824,7 +1820,6 @@ operator|.
 name|createState
 argument_list|()
 expr_stmt|;
-comment|//System.out.println("      create dest=" + destUTF8 +" accept=" + utf32.isAccept(destUTF32));
 name|utf8
 operator|.
 name|setAccept

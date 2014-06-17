@@ -19,7 +19,7 @@ comment|/*  * Licensed to the Apache Software Foundation (ASF) under one or more
 end_comment
 
 begin_comment
-comment|/** Used temporarily when iterating through transitions from a {@link Automaton}  *  {@link Automaton#initTransition} and {@link Automaton#getNextTransition}. */
+comment|/** Holds one transition from an {@link Automaton}.  This is typically  *  used temporarily when iterating through transitions by invoking  *  {@link Automaton#initTransition} and {@link Automaton#getNextTransition}. */
 end_comment
 
 begin_class
