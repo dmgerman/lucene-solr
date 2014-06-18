@@ -197,10 +197,12 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Suggest implementation based on   *<a href="http://jaspell.sourceforge.net/">JaSpell</a>.  *   * @see JaspellTernarySearchTrie  */
+comment|/**  * Suggest implementation based on   *<a href="http://jaspell.sourceforge.net/">JaSpell</a>.  *   * @see JaspellTernarySearchTrie  * @deprecated Migrate to one of the newer suggesters which are much more RAM efficient.  */
 end_comment
 
 begin_class
+annotation|@
+name|Deprecated
 DECL|class|JaspellLookup
 specifier|public
 class|class
