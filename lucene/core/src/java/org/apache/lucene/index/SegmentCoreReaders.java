@@ -288,6 +288,20 @@ name|IOUtils
 import|;
 end_import
 
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|util
+operator|.
+name|RamUsageEstimator
+import|;
+end_import
+
 begin_comment
 comment|/** Holds core readers that are shared (unchanged) when  * SegmentReader is cloned or reopened */
 end_comment
@@ -300,6 +314,22 @@ name|SegmentCoreReaders
 implements|implements
 name|Accountable
 block|{
+DECL|field|BASE_RAM_BYTES_USED
+specifier|private
+specifier|static
+specifier|final
+name|long
+name|BASE_RAM_BYTES_USED
+init|=
+name|RamUsageEstimator
+operator|.
+name|shallowSizeOfInstance
+argument_list|(
+name|SegmentCoreReaders
+operator|.
+name|class
+argument_list|)
+decl_stmt|;
 comment|// Counts how many other readers share the core objects
 comment|// (freqStream, proxStream, tis, etc.) of this reader;
 comment|// when coreRef drops to 0, these core objects may be
@@ -1098,6 +1128,8 @@ name|ramBytesUsed
 parameter_list|()
 block|{
 return|return
+name|BASE_RAM_BYTES_USED
+operator|+
 operator|(
 operator|(
 name|normsProducer

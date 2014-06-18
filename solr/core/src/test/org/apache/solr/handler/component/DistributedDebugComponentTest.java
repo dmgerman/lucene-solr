@@ -3011,19 +3011,14 @@ name|getKey
 argument_list|()
 argument_list|)
 expr_stmt|;
-name|assertTrue
+name|assertNotNull
 argument_list|(
-literal|"Unexpected exception message"
+literal|"Exception message should not be null"
 argument_list|,
 name|exception
 operator|.
 name|getValue
 argument_list|()
-operator|.
-name|contains
-argument_list|(
-literal|"Server refused connection"
-argument_list|)
 argument_list|)
 expr_stmt|;
 name|unIgnoreException

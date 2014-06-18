@@ -1818,6 +1818,8 @@ argument_list|)
 expr_stmt|;
 return|return;
 block|}
+try|try
+block|{
 name|Map
 name|m
 init|=
@@ -1907,8 +1909,21 @@ name|e
 argument_list|)
 expr_stmt|;
 block|}
+block|}
+else|else
+block|{
+name|log
+operator|.
+name|info
+argument_list|(
+literal|"somebody else has already taken up the overseer position"
+argument_list|)
+expr_stmt|;
+block|}
+block|}
 finally|finally
 block|{
+comment|//if I am not shutting down, Then I need to rejoin election
 try|try
 block|{
 if|if
@@ -1930,7 +1945,11 @@ block|{
 name|zkController
 operator|.
 name|rejoinOverseerElection
-argument_list|()
+argument_list|(
+literal|null
+argument_list|,
+literal|false
+argument_list|)
 expr_stmt|;
 block|}
 block|}
@@ -1942,25 +1961,14 @@ parameter_list|)
 block|{
 name|log
 operator|.
-name|error
+name|warn
 argument_list|(
-literal|"error canceling overseer election election  "
+literal|"Unable to rejoinElection "
 argument_list|,
 name|e
 argument_list|)
 expr_stmt|;
 block|}
-block|}
-block|}
-else|else
-block|{
-name|log
-operator|.
-name|info
-argument_list|(
-literal|"somebody else has already taken up the overseer position"
-argument_list|)
-expr_stmt|;
 block|}
 block|}
 DECL|method|processMessage
@@ -2398,6 +2406,21 @@ name|operation
 argument_list|)
 condition|)
 block|{
+if|if
+condition|(
+name|myId
+operator|.
+name|equals
+argument_list|(
+name|message
+operator|.
+name|get
+argument_list|(
+literal|"id"
+argument_list|)
+argument_list|)
+condition|)
+block|{
 name|log
 operator|.
 name|info
@@ -2420,6 +2443,19 @@ expr_stmt|;
 name|close
 argument_list|()
 expr_stmt|;
+block|}
+else|else
+block|{
+name|log
+operator|.
+name|warn
+argument_list|(
+literal|"Overseer received wrong QUIT message {}"
+argument_list|,
+name|message
+argument_list|)
+expr_stmt|;
+block|}
 block|}
 else|else
 block|{

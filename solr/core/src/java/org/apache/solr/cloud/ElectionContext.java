@@ -533,9 +533,9 @@ name|log
 operator|.
 name|warn
 argument_list|(
-literal|"cancelElection did not find election node to remove"
+literal|"cancelElection did not find election node to remove {}"
 argument_list|,
-name|e
+name|leaderSeqPath
 argument_list|)
 expr_stmt|;
 block|}
@@ -570,6 +570,20 @@ name|void
 name|joinedElectionFired
 parameter_list|()
 block|{}
+DECL|method|copy
+specifier|public
+name|ElectionContext
+name|copy
+parameter_list|()
+block|{
+throw|throw
+operator|new
+name|UnsupportedOperationException
+argument_list|(
+literal|"copy"
+argument_list|)
+throw|;
+block|}
 block|}
 end_class
 
@@ -2903,6 +2917,26 @@ operator|.
 name|close
 argument_list|()
 expr_stmt|;
+block|}
+annotation|@
+name|Override
+DECL|method|copy
+specifier|public
+name|ElectionContext
+name|copy
+parameter_list|()
+block|{
+return|return
+operator|new
+name|OverseerElectionContext
+argument_list|(
+name|zkClient
+argument_list|,
+name|overseer
+argument_list|,
+name|id
+argument_list|)
+return|;
 block|}
 annotation|@
 name|Override

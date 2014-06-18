@@ -364,6 +364,20 @@ name|IOUtils
 import|;
 end_import
 
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|util
+operator|.
+name|RamUsageEstimator
+import|;
+end_import
+
 begin_comment
 comment|/**  * Concrete class that reads docId(maybe frq,pos,offset,payloads) list  * with postings format.  *  * @see Lucene41SkipReader for details  * @lucene.experimental  */
 end_comment
@@ -377,6 +391,22 @@ name|Lucene41PostingsReader
 extends|extends
 name|PostingsReaderBase
 block|{
+DECL|field|BASE_RAM_BYTES_USED
+specifier|private
+specifier|static
+specifier|final
+name|long
+name|BASE_RAM_BYTES_USED
+init|=
+name|RamUsageEstimator
+operator|.
+name|shallowSizeOfInstance
+argument_list|(
+name|Lucene41PostingsReader
+operator|.
+name|class
+argument_list|)
+decl_stmt|;
 DECL|field|docIn
 specifier|private
 specifier|final
@@ -6307,7 +6337,7 @@ name|ramBytesUsed
 parameter_list|()
 block|{
 return|return
-literal|0
+name|BASE_RAM_BYTES_USED
 return|;
 block|}
 annotation|@
