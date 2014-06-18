@@ -744,7 +744,9 @@ operator|.
 name|NUM_BYTES_OBJECT_REF
 return|;
 block|}
-return|return
+name|long
+name|v
+init|=
 name|super
 operator|.
 name|accumulateObject
@@ -757,6 +759,10 @@ name|fieldValues
 argument_list|,
 name|queue
 argument_list|)
+decl_stmt|;
+comment|// System.out.println(o.getClass() + "=" + v);
+return|return
+name|v
 return|;
 block|}
 block|}
