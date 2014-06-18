@@ -156,20 +156,6 @@ name|lucene
 operator|.
 name|util
 operator|.
-name|FixedBitSet
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|util
-operator|.
 name|IntsRef
 import|;
 end_import
@@ -1221,7 +1207,7 @@ operator|.
 name|getNumStates
 argument_list|()
 decl_stmt|;
-name|FixedBitSet
+name|BitSet
 name|isAccept
 init|=
 name|a
@@ -4916,7 +4902,7 @@ argument_list|(
 name|numStates
 argument_list|)
 decl_stmt|;
-name|FixedBitSet
+name|BitSet
 name|acceptBits
 init|=
 name|a
@@ -6244,7 +6230,7 @@ name|s
 init|=
 literal|0
 decl_stmt|;
-name|FixedBitSet
+name|BitSet
 name|acceptStates
 init|=
 name|a
