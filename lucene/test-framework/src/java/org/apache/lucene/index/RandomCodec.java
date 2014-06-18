@@ -566,6 +566,15 @@ name|HashSet
 argument_list|<>
 argument_list|()
 decl_stmt|;
+DECL|field|avoidCodecs
+specifier|public
+specifier|final
+name|Set
+argument_list|<
+name|String
+argument_list|>
+name|avoidCodecs
+decl_stmt|;
 comment|/** memorized field->postingsformat mappings */
 comment|// note: we have to sync this map even though its just for debugging/toString,
 comment|// otherwise DWPT's .toString() calls that iterate over the map can
@@ -892,6 +901,12 @@ name|random
 operator|.
 name|nextInt
 argument_list|()
+expr_stmt|;
+name|this
+operator|.
+name|avoidCodecs
+operator|=
+name|avoidCodecs
 expr_stmt|;
 comment|// TODO: make it possible to specify min/max iterms per
 comment|// block via CL:
