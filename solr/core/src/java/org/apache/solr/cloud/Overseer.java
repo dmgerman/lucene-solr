@@ -1924,6 +1924,8 @@ block|}
 finally|finally
 block|{
 comment|//if I am not shutting down, Then I need to rejoin election
+try|try
+block|{
 if|if
 condition|(
 name|zkController
@@ -1947,6 +1949,23 @@ argument_list|(
 literal|null
 argument_list|,
 literal|false
+argument_list|)
+expr_stmt|;
+block|}
+block|}
+catch|catch
+parameter_list|(
+name|Exception
+name|e
+parameter_list|)
+block|{
+name|log
+operator|.
+name|warn
+argument_list|(
+literal|"Unable to rejoinElection "
+argument_list|,
+name|e
 argument_list|)
 expr_stmt|;
 block|}
