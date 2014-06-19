@@ -56,6 +56,20 @@ name|DataOutput
 import|;
 end_import
 
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|util
+operator|.
+name|RamUsageEstimator
+import|;
+end_import
+
 begin_comment
 comment|/**  * An FST {@link Outputs} implementation where each output  * is a non-negative long value.  *  * @lucene.experimental  */
 end_comment
@@ -441,6 +455,26 @@ parameter_list|()
 block|{
 return|return
 literal|"PositiveIntOutputs"
+return|;
+block|}
+annotation|@
+name|Override
+DECL|method|ramBytesUsed
+specifier|public
+name|long
+name|ramBytesUsed
+parameter_list|(
+name|Long
+name|output
+parameter_list|)
+block|{
+return|return
+name|RamUsageEstimator
+operator|.
+name|sizeOf
+argument_list|(
+name|output
+argument_list|)
 return|;
 block|}
 block|}
