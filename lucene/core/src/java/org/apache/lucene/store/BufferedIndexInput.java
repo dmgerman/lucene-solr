@@ -401,14 +401,14 @@ block|{
 if|if
 condition|(
 name|bufferSize
-operator|<=
+operator|<
 name|MIN_BUFFER_SIZE
 condition|)
 throw|throw
 operator|new
 name|IllegalArgumentException
 argument_list|(
-literal|"bufferSize must be greater than MIN_BUFFER_SIZE (got "
+literal|"bufferSize must be at least MIN_BUFFER_SIZE (got "
 operator|+
 name|bufferSize
 operator|+
