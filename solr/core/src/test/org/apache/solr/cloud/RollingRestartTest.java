@@ -592,12 +592,25 @@ name|leader
 argument_list|)
 expr_stmt|;
 block|}
+name|assertTrue
+argument_list|(
+literal|"Unable to restart (#"
+operator|+
+name|i
+operator|+
+literal|"): "
+operator|+
+name|cloudJetty
+argument_list|,
+name|chaosMonkey
+operator|.
+name|start
+argument_list|(
 name|cloudJetty
 operator|.
 name|jetty
-operator|.
-name|start
-argument_list|()
+argument_list|)
+argument_list|)
 expr_stmt|;
 name|success
 operator|=
