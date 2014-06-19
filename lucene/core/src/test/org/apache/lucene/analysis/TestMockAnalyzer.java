@@ -238,22 +238,6 @@ name|util
 operator|.
 name|automaton
 operator|.
-name|Automaton
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|util
-operator|.
-name|automaton
-operator|.
 name|AutomatonTestUtil
 import|;
 end_import
@@ -270,7 +254,7 @@ name|util
 operator|.
 name|automaton
 operator|.
-name|BasicAutomata
+name|Automata
 import|;
 end_import
 
@@ -286,7 +270,7 @@ name|util
 operator|.
 name|automaton
 operator|.
-name|BasicOperations
+name|Operations
 import|;
 end_import
 
@@ -1178,11 +1162,11 @@ init|=
 operator|new
 name|CharacterRunAutomaton
 argument_list|(
-name|BasicOperations
+name|Operations
 operator|.
 name|complement
 argument_list|(
-name|Automaton
+name|Operations
 operator|.
 name|union
 argument_list|(
@@ -1190,14 +1174,14 @@ name|Arrays
 operator|.
 name|asList
 argument_list|(
-name|BasicAutomata
+name|Automata
 operator|.
 name|makeString
 argument_list|(
 literal|"foo"
 argument_list|)
 argument_list|,
-name|BasicAutomata
+name|Automata
 operator|.
 name|makeString
 argument_list|(

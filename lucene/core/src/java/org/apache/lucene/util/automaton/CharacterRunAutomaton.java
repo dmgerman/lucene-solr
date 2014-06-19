@@ -30,6 +30,7 @@ name|CharacterRunAutomaton
 extends|extends
 name|RunAutomaton
 block|{
+comment|/** Sole constructor. */
 DECL|method|CharacterRunAutomaton
 specifier|public
 name|CharacterRunAutomaton

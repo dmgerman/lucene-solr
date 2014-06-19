@@ -609,6 +609,10 @@ name|toHexString
 argument_list|(
 name|s
 argument_list|)
+operator|+
+literal|" "
+operator|+
+name|s
 argument_list|)
 expr_stmt|;
 block|}

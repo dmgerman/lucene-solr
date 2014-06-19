@@ -30,6 +30,7 @@ name|ByteRunAutomaton
 extends|extends
 name|RunAutomaton
 block|{
+comment|/** Converts incoming automaton to byte-based (UTF32ToUTF8) first */
 DECL|method|ByteRunAutomaton
 specifier|public
 name|ByteRunAutomaton

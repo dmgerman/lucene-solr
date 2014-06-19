@@ -908,23 +908,7 @@ name|util
 operator|.
 name|automaton
 operator|.
-name|Automaton
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|util
-operator|.
-name|automaton
-operator|.
-name|BasicAutomata
+name|Automata
 import|;
 end_import
 
@@ -941,6 +925,22 @@ operator|.
 name|automaton
 operator|.
 name|CharacterRunAutomaton
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|util
+operator|.
+name|automaton
+operator|.
+name|Automaton
 import|;
 end_import
 
@@ -13420,7 +13420,7 @@ specifier|final
 name|Automaton
 name|secondSet
 init|=
-name|BasicAutomata
+name|Automata
 operator|.
 name|makeString
 argument_list|(

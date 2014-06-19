@@ -172,9 +172,7 @@ name|lucene
 operator|.
 name|util
 operator|.
-name|automaton
-operator|.
-name|Automaton
+name|UnicodeUtil
 import|;
 end_import
 
@@ -190,7 +188,7 @@ name|util
 operator|.
 name|automaton
 operator|.
-name|BasicAutomata
+name|Automata
 import|;
 end_import
 
@@ -206,7 +204,7 @@ name|util
 operator|.
 name|automaton
 operator|.
-name|BasicOperations
+name|Operations
 import|;
 end_import
 
@@ -238,7 +236,7 @@ name|util
 operator|.
 name|automaton
 operator|.
-name|SpecialOperations
+name|Automaton
 import|;
 end_import
 
@@ -704,7 +702,9 @@ argument_list|(
 name|a
 argument_list|)
 decl_stmt|;
-name|BasicOperations
+name|utf8automaton
+operator|=
+name|Operations
 operator|.
 name|determinize
 argument_list|(
@@ -764,7 +764,7 @@ name|IntsRef
 argument_list|>
 name|ref
 init|=
-name|SpecialOperations
+name|Operations
 operator|.
 name|getFiniteStrings
 argument_list|(
@@ -820,7 +820,7 @@ index|[
 name|upto
 index|]
 operator|=
-name|BasicAutomata
+name|Automata
 operator|.
 name|makeString
 argument_list|(
@@ -843,24 +843,6 @@ expr_stmt|;
 block|}
 else|else
 block|{
-name|Automaton
-name|prefix
-init|=
-name|BasicAutomata
-operator|.
-name|makeString
-argument_list|(
-name|path
-operator|.
-name|ints
-argument_list|,
-name|path
-operator|.
-name|offset
-argument_list|,
-name|nonFuzzyPrefix
-argument_list|)
-decl_stmt|;
 name|int
 name|ints
 index|[]
@@ -922,47 +904,32 @@ argument_list|,
 name|transpositions
 argument_list|)
 decl_stmt|;
-name|Automaton
-name|levAutomaton
-init|=
-name|lev
-operator|.
-name|toAutomaton
-argument_list|(
-name|maxEdits
-argument_list|)
-decl_stmt|;
-name|Automaton
-name|combined
-init|=
-name|BasicOperations
-operator|.
-name|concatenate
-argument_list|(
-name|Arrays
-operator|.
-name|asList
-argument_list|(
-name|prefix
-argument_list|,
-name|levAutomaton
-argument_list|)
-argument_list|)
-decl_stmt|;
-name|combined
-operator|.
-name|setDeterministic
-argument_list|(
-literal|true
-argument_list|)
-expr_stmt|;
-comment|// its like the special case in concatenate itself, except we cloneExpanded already
 name|subs
 index|[
 name|upto
 index|]
 operator|=
-name|combined
+name|lev
+operator|.
+name|toAutomaton
+argument_list|(
+name|maxEdits
+argument_list|,
+name|UnicodeUtil
+operator|.
+name|newString
+argument_list|(
+name|path
+operator|.
+name|ints
+argument_list|,
+name|path
+operator|.
+name|offset
+argument_list|,
+name|nonFuzzyPrefix
+argument_list|)
+argument_list|)
 expr_stmt|;
 name|upto
 operator|++
@@ -980,7 +947,7 @@ condition|)
 block|{
 comment|// automaton is empty, there is no accepted paths through it
 return|return
-name|BasicAutomata
+name|Automata
 operator|.
 name|makeEmpty
 argument_list|()
@@ -1012,7 +979,7 @@ comment|// maybe we should not do this and throw UOE?
 name|Automaton
 name|a
 init|=
-name|BasicOperations
+name|Operations
 operator|.
 name|union
 argument_list|(
@@ -1026,15 +993,13 @@ argument_list|)
 decl_stmt|;
 comment|// TODO: we could call toLevenshteinAutomata() before det?
 comment|// this only happens if you have multiple paths anyway (e.g. synonyms)
-name|BasicOperations
+return|return
+name|Operations
 operator|.
 name|determinize
 argument_list|(
 name|a
 argument_list|)
-expr_stmt|;
-return|return
-name|a
 return|;
 block|}
 block|}

@@ -5056,7 +5056,7 @@ operator|.
 name|nextDoc
 argument_list|()
 operator|!=
-name|parents
+name|DocsEnum
 operator|.
 name|NO_MORE_DOCS
 condition|)
