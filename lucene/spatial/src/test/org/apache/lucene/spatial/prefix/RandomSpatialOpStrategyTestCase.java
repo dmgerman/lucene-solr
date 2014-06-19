@@ -94,16 +94,6 @@ end_import
 
 begin_import
 import|import
-name|org
-operator|.
-name|junit
-operator|.
-name|Ignore
-import|;
-end_import
-
-begin_import
-import|import
 name|java
 operator|.
 name|io
@@ -185,20 +175,15 @@ comment|/** Base test harness, ideally for SpatialStrategy impls that have exact
 end_comment
 
 begin_class
-annotation|@
-name|Ignore
-argument_list|(
-literal|"not actually a test: can this be renamed to *TestCase????"
-argument_list|)
-DECL|class|BaseNonFuzzySpatialOpStrategyTest
+DECL|class|RandomSpatialOpStrategyTestCase
 specifier|public
 specifier|abstract
 class|class
-name|BaseNonFuzzySpatialOpStrategyTest
+name|RandomSpatialOpStrategyTestCase
 extends|extends
 name|StrategyTestCase
 block|{
-comment|//TODO this is partially redundant with StrategyTestCase.runTestQuery& testOperation
+comment|//Note: this is partially redundant with StrategyTestCase.runTestQuery& testOperation
 DECL|method|testOperationRandomShapes
 specifier|protected
 name|void
@@ -693,6 +678,8 @@ argument_list|,
 name|indexedShapes
 argument_list|,
 name|queryShape
+argument_list|,
+name|operation
 argument_list|)
 expr_stmt|;
 block|}
@@ -726,6 +713,8 @@ argument_list|,
 name|indexedShapes
 argument_list|,
 name|queryShape
+argument_list|,
+name|operation
 argument_list|)
 expr_stmt|;
 block|}
@@ -750,10 +739,19 @@ name|indexedShapes
 parameter_list|,
 name|Shape
 name|queryShape
+parameter_list|,
+name|SpatialOperation
+name|operation
 parameter_list|)
 block|{
 name|fail
 argument_list|(
+literal|"["
+operator|+
+name|operation
+operator|+
+literal|"] "
+operator|+
 name|label
 operator|+
 literal|" I#"

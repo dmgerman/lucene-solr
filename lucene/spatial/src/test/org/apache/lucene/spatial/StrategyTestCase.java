@@ -360,16 +360,6 @@ name|java
 operator|.
 name|util
 operator|.
-name|Map
-import|;
-end_import
-
-begin_import
-import|import
-name|java
-operator|.
-name|util
-operator|.
 name|Set
 import|;
 end_import
@@ -1562,6 +1552,7 @@ comment|//    for (int i = 0; i< expectedDocs.length; i++) {
 comment|//      expectedDocs[i] = i;
 comment|//    }
 comment|//    CheckHits.checkHits(random(), q, "", indexSearcher, expectedDocs);
+comment|//TopDocs is sorted but we actually don't care about the order
 name|TopDocs
 name|docs
 init|=

@@ -150,7 +150,7 @@ specifier|public
 class|class
 name|DateNRStrategyTest
 extends|extends
-name|BaseNonFuzzySpatialOpStrategyTest
+name|RandomSpatialOpStrategyTestCase
 block|{
 DECL|field|ITERATIONS
 specifier|static

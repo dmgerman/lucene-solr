@@ -296,20 +296,6 @@ name|lucene
 operator|.
 name|util
 operator|.
-name|TestUtil
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|util
-operator|.
 name|LuceneTestCase
 operator|.
 name|SuppressSysoutChecks
@@ -326,9 +312,7 @@ name|lucene
 operator|.
 name|util
 operator|.
-name|TestRuleLimitSysouts
-operator|.
-name|Limit
+name|TestUtil
 import|;
 end_import
 
@@ -487,6 +471,7 @@ name|ctx
 decl_stmt|;
 comment|//subclass must initialize
 DECL|field|uninvertMap
+specifier|protected
 name|Map
 argument_list|<
 name|String
@@ -587,17 +572,6 @@ argument_list|,
 name|Type
 operator|.
 name|DOUBLE
-argument_list|)
-expr_stmt|;
-name|uninvertMap
-operator|.
-name|put
-argument_list|(
-literal|"SpatialOpRecursivePrefixTreeTest"
-argument_list|,
-name|Type
-operator|.
-name|SORTED
 argument_list|)
 expr_stmt|;
 name|directory
