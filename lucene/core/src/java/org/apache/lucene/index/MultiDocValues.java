@@ -2370,6 +2370,20 @@ operator|.
 name|getMatchArray
 argument_list|()
 decl_stmt|;
+name|int
+name|firstSegmentIndex
+init|=
+name|Integer
+operator|.
+name|MAX_VALUE
+decl_stmt|;
+name|long
+name|globalOrdDelta
+init|=
+name|Long
+operator|.
+name|MAX_VALUE
+decl_stmt|;
 for|for
 control|(
 name|int
@@ -2418,27 +2432,23 @@ name|globalOrd
 operator|-
 name|segmentOrd
 decl_stmt|;
-comment|// for each unique term, just mark the first segment index/delta where it occurs
+comment|// We compute the least segment where the term occurs. In case the
+comment|// first segment contains most (or better all) values, this will
+comment|// help save significant memory
 if|if
 condition|(
-name|i
-operator|==
-literal|0
+name|segmentIndex
+operator|<
+name|firstSegmentIndex
 condition|)
 block|{
-name|firstSegments
-operator|.
-name|add
-argument_list|(
+name|firstSegmentIndex
+operator|=
 name|segmentIndex
-argument_list|)
 expr_stmt|;
-name|globalOrdDeltas
-operator|.
-name|add
-argument_list|(
+name|globalOrdDelta
+operator|=
 name|delta
-argument_list|)
 expr_stmt|;
 block|}
 comment|// for each per-segment ord, map it back to the global term.
@@ -2477,6 +2487,28 @@ operator|++
 expr_stmt|;
 block|}
 block|}
+comment|// for each unique term, just mark the first segment index/delta where it occurs
+assert|assert
+name|firstSegmentIndex
+operator|<
+name|segmentOrds
+operator|.
+name|length
+assert|;
+name|firstSegments
+operator|.
+name|add
+argument_list|(
+name|firstSegmentIndex
+argument_list|)
+expr_stmt|;
+name|globalOrdDeltas
+operator|.
+name|add
+argument_list|(
+name|globalOrdDelta
+argument_list|)
+expr_stmt|;
 name|globalOrd
 operator|++
 expr_stmt|;
