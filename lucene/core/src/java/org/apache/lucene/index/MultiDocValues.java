@@ -2814,9 +2814,6 @@ name|deltas
 operator|.
 name|get
 argument_list|(
-operator|(
-name|int
-operator|)
 name|ord
 argument_list|)
 return|;
