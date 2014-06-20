@@ -121,10 +121,12 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Factory for {@link JaspellLookup}  */
+comment|/**  * Factory for {@link JaspellLookup}  * @deprecated Migrate to one of the newer suggesters which are much more RAM efficient.  */
 end_comment
 
 begin_class
+annotation|@
+name|Deprecated
 DECL|class|JaspellLookupFactory
 specifier|public
 class|class
