@@ -122,6 +122,22 @@ begin_import
 import|import
 name|org
 operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|util
+operator|.
+name|LuceneTestCase
+operator|.
+name|SuppressSysoutChecks
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
 name|junit
 operator|.
 name|Ignore
@@ -137,6 +153,13 @@ annotation|@
 name|Ignore
 argument_list|(
 literal|"enable manually"
+argument_list|)
+annotation|@
+name|SuppressSysoutChecks
+argument_list|(
+name|bugUrl
+operator|=
+literal|"prints important memory utilization stats per dictionary"
 argument_list|)
 DECL|class|TestAllDictionaries2
 specifier|public
