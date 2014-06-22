@@ -4715,7 +4715,7 @@ name|out
 operator|.
 name|println
 argument_list|(
-literal|"TEST: numTerms"
+literal|"TEST: numTerms="
 operator|+
 name|numTerms
 operator|+
@@ -4810,37 +4810,16 @@ name|terms
 operator|.
 name|size
 argument_list|()
-argument_list|)
-expr_stmt|;
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"  terms:"
-argument_list|)
-expr_stmt|;
-for|for
-control|(
-name|BytesRef
-name|term
-range|:
-name|terms
-control|)
-block|{
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"    "
 operator|+
-name|term
+literal|" a.numStates="
+operator|+
+name|a
+operator|.
+name|getNumStates
+argument_list|()
 argument_list|)
 expr_stmt|;
-block|}
+comment|/*         System.out.println("  terms:");         for(BytesRef term : terms) {           System.out.println("    " + term);         }         */
 block|}
 switch|switch
 condition|(
@@ -6460,7 +6439,7 @@ argument_list|()
 operator|<=
 name|numTerms
 operator|*
-literal|10
+literal|3
 condition|)
 block|{
 if|if
