@@ -914,13 +914,13 @@ operator|new
 name|String
 index|[]
 block|{
-literal|"/response/docs/[0]/_childDocuments_/[0]/id==3"
+literal|"/response/docs/[0]/id==1"
 block|,
-literal|"/response/docs/[0]/_childDocuments_/[1]/id==2"
+literal|"/response/docs/[0]/_childDocuments_/[0]/id==2"
 block|,
-literal|"/response/docs/[0]/_childDocuments_/[1]/cat/[0]/=='childDocument'"
+literal|"/response/docs/[0]/_childDocuments_/[0]/cat/[0]/=='childDocument'"
 block|,
-literal|"/response/docs/[0]/_childDocuments_/[1]/title/[0]/=='"
+literal|"/response/docs/[0]/_childDocuments_/[0]/title/[0]/=='"
 operator|+
 name|titleVals
 index|[
@@ -929,13 +929,13 @@ index|]
 operator|+
 literal|"'"
 block|,
-literal|"/response/docs/[1]/_childDocuments_/[0]/id==6"
+literal|"/response/docs/[1]/id==4"
 block|,
-literal|"/response/docs/[1]/_childDocuments_/[1]/id==5"
+literal|"/response/docs/[1]/_childDocuments_/[0]/id==5"
 block|,
-literal|"/response/docs/[1]/_childDocuments_/[1]/cat/[0]/=='childDocument'"
+literal|"/response/docs/[1]/_childDocuments_/[0]/cat/[0]/=='childDocument'"
 block|,
-literal|"/response/docs/[1]/_childDocuments_/[1]/title/[0]/=='"
+literal|"/response/docs/[1]/_childDocuments_/[0]/title/[0]/=='"
 operator|+
 name|titleVals
 index|[
@@ -953,13 +953,17 @@ literal|"q"
 argument_list|,
 literal|"*:*"
 argument_list|,
+literal|"sort"
+argument_list|,
+literal|"id asc"
+argument_list|,
 literal|"fq"
 argument_list|,
 literal|"subject:\"parentDocument\" "
 argument_list|,
 literal|"fl"
 argument_list|,
-literal|"*,[child parentFilter=\"subject:parentDocument\"]"
+literal|"*,[child childFilter='cat:childDocument' parentFilter=\"subject:parentDocument\"]"
 argument_list|)
 argument_list|,
 name|tests
@@ -973,13 +977,17 @@ literal|"q"
 argument_list|,
 literal|"*:*"
 argument_list|,
+literal|"sort"
+argument_list|,
+literal|"id asc"
+argument_list|,
 literal|"fq"
 argument_list|,
 literal|"subject:\"parentDocument\" "
 argument_list|,
 literal|"fl"
 argument_list|,
-literal|"subject,[child parentFilter=\"subject:parentDocument\"]"
+literal|"id,[child childFilter='cat:childDocument' parentFilter=\"subject:parentDocument\"]"
 argument_list|)
 argument_list|,
 name|tests
@@ -1002,13 +1010,13 @@ index|[]
 block|{
 literal|"//*[@numFound='2']"
 block|,
-literal|"/response/result/doc[1]/doc[1]/int[@name='id']='3'"
+literal|"/response/result/doc[1]/int[@name='id']='1'"
 block|,
-literal|"/response/result/doc[1]/doc[2]/int[@name='id']='2'"
+literal|"/response/result/doc[1]/doc[1]/int[@name='id']='2'"
 block|,
-literal|"/response/result/doc[1]/doc/arr[@name='cat']/str[1]='childDocument'"
+literal|"/response/result/doc[1]/doc[1]/arr[@name='cat']/str[1]='childDocument'"
 block|,
-literal|"/response/result/doc[1]/doc/arr[@name='title']/str[1]='"
+literal|"/response/result/doc[1]/doc[1]/arr[@name='title']/str[1]='"
 operator|+
 name|titleVals
 index|[
@@ -1017,13 +1025,13 @@ index|]
 operator|+
 literal|"'"
 block|,
-literal|"/response/result/doc[2]/doc[1]/int[@name='id']='6'"
+literal|"/response/result/doc[2]/int[@name='id']='4'"
 block|,
-literal|"/response/result/doc[2]/doc[2]/int[@name='id']='5'"
+literal|"/response/result/doc[2]/doc[1]/int[@name='id']='5'"
 block|,
-literal|"/response/result/doc[2]/doc/arr[@name='cat']/str[1]='childDocument'"
+literal|"/response/result/doc[2]/doc[1]/arr[@name='cat']/str[1]='childDocument'"
 block|,
-literal|"/response/result/doc[2]/doc/arr[@name='title']/str[1]='"
+literal|"/response/result/doc[2]/doc[1]/arr[@name='title']/str[1]='"
 operator|+
 name|titleVals
 index|[
@@ -1041,13 +1049,17 @@ literal|"q"
 argument_list|,
 literal|"*:*"
 argument_list|,
+literal|"sort"
+argument_list|,
+literal|"id asc"
+argument_list|,
 literal|"fq"
 argument_list|,
 literal|"subject:\"parentDocument\" "
 argument_list|,
 literal|"fl"
 argument_list|,
-literal|"*,[child parentFilter=\"subject:parentDocument\"]"
+literal|"*,[child childFilter='cat:childDocument' parentFilter=\"subject:parentDocument\"]"
 argument_list|)
 argument_list|,
 name|tests
@@ -1061,13 +1073,17 @@ literal|"q"
 argument_list|,
 literal|"*:*"
 argument_list|,
+literal|"sort"
+argument_list|,
+literal|"id asc"
+argument_list|,
 literal|"fq"
 argument_list|,
 literal|"subject:\"parentDocument\" "
 argument_list|,
 literal|"fl"
 argument_list|,
-literal|"subject,[child parentFilter=\"subject:parentDocument\"]"
+literal|"id,[child childFilter='cat:childDocument' parentFilter=\"subject:parentDocument\"]"
 argument_list|)
 argument_list|,
 name|tests
