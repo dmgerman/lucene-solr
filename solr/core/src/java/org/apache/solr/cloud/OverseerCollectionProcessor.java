@@ -3458,6 +3458,11 @@ operator|.
 name|params
 argument_list|)
 expr_stmt|;
+name|shardHandler
+operator|.
+name|takeCompletedOrError
+argument_list|()
+expr_stmt|;
 block|}
 DECL|method|amILeader
 specifier|protected
