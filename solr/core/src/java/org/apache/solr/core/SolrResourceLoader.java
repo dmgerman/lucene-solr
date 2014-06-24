@@ -4189,6 +4189,24 @@ name|classLoader
 argument_list|)
 expr_stmt|;
 block|}
+DECL|method|getInfoMBeans
+specifier|public
+name|List
+argument_list|<
+name|SolrInfoMBean
+argument_list|>
+name|getInfoMBeans
+parameter_list|()
+block|{
+return|return
+name|Collections
+operator|.
+name|unmodifiableList
+argument_list|(
+name|infoMBeans
+argument_list|)
+return|;
+block|}
 block|}
 end_class
 
