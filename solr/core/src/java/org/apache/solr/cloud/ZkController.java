@@ -9578,6 +9578,11 @@ name|nodeIsLive
 init|=
 literal|true
 decl_stmt|;
+name|boolean
+name|publishDownState
+init|=
+literal|false
+decl_stmt|;
 synchronized|synchronized
 init|(
 name|replicasInLeaderInitiatedRecovery
@@ -9599,6 +9604,15 @@ operator|!
 name|forcePublishState
 condition|)
 block|{
+name|log
+operator|.
+name|debug
+argument_list|(
+literal|"Replica {} already in leader-initiated recovery handling."
+argument_list|,
+name|replicaUrl
+argument_list|)
+expr_stmt|;
 return|return
 literal|false
 return|;
@@ -9676,6 +9690,25 @@ operator|.
 name|DOWN
 argument_list|)
 expr_stmt|;
+name|log
+operator|.
+name|info
+argument_list|(
+literal|"Put replica "
+operator|+
+name|replicaCoreName
+operator|+
+literal|" on "
+operator|+
+name|replicaNodeName
+operator|+
+literal|" into leader-initiated recovery."
+argument_list|)
+expr_stmt|;
+name|publishDownState
+operator|=
+literal|true
+expr_stmt|;
 block|}
 else|else
 block|{
@@ -9684,8 +9717,30 @@ operator|=
 literal|false
 expr_stmt|;
 comment|// we really don't need to send the recovery request if the node is NOT live
+name|log
+operator|.
+name|info
+argument_list|(
+literal|"Node "
+operator|+
+name|replicaNodeName
+operator|+
+literal|" is not live, so skipping leader-initiated recovery for replica: "
+operator|+
+name|replicaCoreName
+argument_list|)
+expr_stmt|;
+comment|// publishDownState will be false to avoid publishing the "down" state too many times
+comment|// as many errors can occur together and will each call into this method (SOLR-6189)
 block|}
 block|}
+if|if
+condition|(
+name|publishDownState
+operator|||
+name|forcePublishState
+condition|)
+block|{
 name|String
 name|replicaCoreName
 init|=
@@ -9783,6 +9838,7 @@ name|m
 argument_list|)
 argument_list|)
 expr_stmt|;
+block|}
 return|return
 name|nodeIsLive
 return|;
