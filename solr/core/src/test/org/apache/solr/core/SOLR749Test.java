@@ -366,6 +366,50 @@ literal|"func_q_wrapping_fq"
 argument_list|)
 argument_list|)
 expr_stmt|;
+name|assertQ
+argument_list|(
+literal|"frange in complex bq w/ other mandatory clauses to check skipping"
+argument_list|,
+name|req
+argument_list|(
+literal|"q"
+argument_list|,
+literal|"{!notfoo}(+id:[20 TO 39] -id:25 +{!frange l=4.5 u=4.5 v='countUsage(frange_in_bq,4.5)'})"
+argument_list|)
+argument_list|,
+literal|"//result[@numFound=19]"
+argument_list|)
+expr_stmt|;
+comment|// don't assume specific clause evaluation ordering.
+comment|// ideally this is 19, but could be as high as 20 depending on wether frange's
+comment|// scorer has next() called on it before other clauses skipTo
+name|int
+name|count
+init|=
+name|CountUsageValueSourceParser
+operator|.
+name|getAndClearCount
+argument_list|(
+literal|"frange_in_bq"
+argument_list|)
+decl_stmt|;
+name|assertTrue
+argument_list|(
+literal|"frange_in_bq: "
+operator|+
+name|count
+argument_list|,
+operator|(
+literal|19
+operator|<=
+name|count
+operator|&&
+name|count
+operator|<=
+literal|20
+operator|)
+argument_list|)
+expr_stmt|;
 block|}
 finally|finally
 block|{
