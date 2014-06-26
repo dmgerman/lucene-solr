@@ -12642,6 +12642,13 @@ argument_list|,
 name|results
 argument_list|)
 expr_stmt|;
+name|clusterState
+operator|=
+name|zkStateReader
+operator|.
+name|getClusterState
+argument_list|()
+expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
