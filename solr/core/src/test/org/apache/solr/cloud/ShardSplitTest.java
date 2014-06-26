@@ -1547,9 +1547,24 @@ name|log
 operator|.
 name|error
 argument_list|(
-literal|"Exception while adding docs"
+literal|"Exception while adding doc id = "
+operator|+
+name|id
 argument_list|,
 name|e
+argument_list|)
+expr_stmt|;
+comment|// do not select this id for deletion ever
+name|deleted
+operator|.
+name|add
+argument_list|(
+name|String
+operator|.
+name|valueOf
+argument_list|(
+name|id
+argument_list|)
 argument_list|)
 expr_stmt|;
 block|}
