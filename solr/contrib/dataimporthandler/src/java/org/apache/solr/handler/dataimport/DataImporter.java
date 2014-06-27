@@ -914,6 +914,8 @@ operator|!=
 literal|null
 condition|)
 block|{
+name|config
+operator|=
 name|loadDataConfig
 argument_list|(
 name|is
@@ -1169,6 +1171,7 @@ return|;
 block|}
 comment|/**    * Used by tests    */
 DECL|method|loadAndInit
+specifier|public
 name|void
 name|loadAndInit
 parameter_list|(
@@ -1176,6 +1179,8 @@ name|String
 name|configStr
 parameter_list|)
 block|{
+name|config
+operator|=
 name|loadDataConfig
 argument_list|(
 operator|new
@@ -1191,14 +1196,19 @@ argument_list|)
 expr_stmt|;
 block|}
 DECL|method|loadDataConfig
-specifier|private
-name|void
+specifier|public
+name|DIHConfiguration
 name|loadDataConfig
 parameter_list|(
 name|InputSource
 name|configFile
 parameter_list|)
 block|{
+name|DIHConfiguration
+name|dihcfg
+init|=
+literal|null
+decl_stmt|;
 try|try
 block|{
 name|DocumentBuilderFactory
@@ -1320,7 +1330,7 @@ argument_list|()
 argument_list|)
 expr_stmt|;
 block|}
-name|config
+name|dihcfg
 operator|=
 name|readFromXml
 argument_list|(
@@ -1363,7 +1373,7 @@ control|(
 name|Entity
 name|e
 range|:
-name|config
+name|dihcfg
 operator|.
 name|getEntities
 argument_list|()
@@ -1391,6 +1401,9 @@ expr_stmt|;
 break|break;
 block|}
 block|}
+return|return
+name|dihcfg
+return|;
 block|}
 DECL|method|readFromXml
 specifier|public
@@ -2180,6 +2193,7 @@ name|propWriter
 return|;
 block|}
 DECL|method|getConfig
+specifier|public
 name|DIHConfiguration
 name|getConfig
 parameter_list|()
