@@ -36,6 +36,22 @@ end_import
 
 begin_import
 import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|util
+operator|.
+name|LuceneTestCase
+operator|.
+name|BadApple
+import|;
+end_import
+
+begin_import
+import|import
 name|java
 operator|.
 name|util
@@ -343,6 +359,13 @@ annotation|@
 name|Slow
 annotation|@
 name|SuppressSSL
+annotation|@
+name|BadApple
+argument_list|(
+name|bugUrl
+operator|=
+literal|"https://issues.apache.org/jira/browse/SOLR-6213"
+argument_list|)
 DECL|class|SSLMigrationTest
 specifier|public
 class|class
