@@ -365,7 +365,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * A SpatialStrategy for indexing and searching Rectangles by storing its  * coordinates in numeric fields. It supports all {@link SpatialOperation}s and  * has a custom overlap relevancy. It is based on GeoPortal's<a  * href="http://geoportal.svn.sourceforge.net/svnroot/geoportal/Geoportal/trunk/src/com/esri/gpt/catalog/lucene/SpatialClauseAdapter.java">SpatialClauseAdapter</a>.  *  *<h4>Characteristics:</h4>  *<ul>  *<li>Only indexes Rectangles; just one per field value.</li>  *<li>Can query only by a Rectangle.</li>  *<li>Supports all {@link SpatialOperation}s.</li>  *<li>Uses the DocValues API for any sorting / relevancy.</li>  *</ul>  *  *<h4>Implementation:</h4>  * This uses 4 double fields for minX, maxX, minY, maxY  * and a boolean to mark a dateline cross. Depending on the particular {@link  * SpatialOperation}s, there is a variety of {@link NumericRangeQuery}s to be  * done.  * The {@link #makeBBoxAreaSimilarityValueSource(com.spatial4j.core.shape.Rectangle)}  * works by calculating the query bbox overlap percentage against the indexed  * shape overlap percentage. The indexed shape's coordinates are retrieved from  * {@link AtomicReader#getNumericDocValues}  *  * @lucene.experimental  */
+comment|/**  * A SpatialStrategy for indexing and searching Rectangles by storing its  * coordinates in numeric fields. It supports all {@link SpatialOperation}s and  * has a custom overlap relevancy. It is based on GeoPortal's<a  * href="http://geoportal.svn.sourceforge.net/svnroot/geoportal/Geoportal/trunk/src/com/esri/gpt/catalog/lucene/SpatialClauseAdapter.java">SpatialClauseAdapter</a>.  *  *<h4>Characteristics:</h4>  *<ul>  *<li>Only indexes Rectangles; just one per field value.</li>  *<li>Can query only by a Rectangle.</li>  *<li>Supports most {@link SpatialOperation}s -- not Overlaps.</li>  *<li>Uses the DocValues API for any sorting / relevancy.</li>  *</ul>  *  *<h4>Implementation:</h4>  * This uses 4 double fields for minX, maxX, minY, maxY  * and a boolean to mark a dateline cross. Depending on the particular {@link  * SpatialOperation}s, there is a variety of {@link NumericRangeQuery}s to be  * done.  * The {@link #makeBBoxAreaSimilarityValueSource(com.spatial4j.core.shape.Rectangle)}  * works by calculating the query bbox overlap percentage against the indexed  * shape overlap percentage. The indexed shape's coordinates are retrieved from  * {@link AtomicReader#getNumericDocValues}  *  * @lucene.experimental  */
 end_comment
 
 begin_class
@@ -1089,24 +1089,9 @@ argument_list|(
 name|bbox
 argument_list|)
 expr_stmt|;
-elseif|else
-if|if
-condition|(
-name|op
-operator|==
-name|SpatialOperation
-operator|.
-name|Overlaps
-condition|)
-name|spatial
-operator|=
-name|makeIntersects
-argument_list|(
-name|bbox
-argument_list|)
-expr_stmt|;
 else|else
 block|{
+comment|//no Overlaps support yet
 throw|throw
 operator|new
 name|UnsupportedSpatialOperation
