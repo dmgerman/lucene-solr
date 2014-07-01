@@ -418,6 +418,7 @@ name|String
 name|leaderPath
 decl_stmt|;
 DECL|field|leaderSeqPath
+specifier|volatile
 name|String
 name|leaderSeqPath
 decl_stmt|;
@@ -498,6 +499,13 @@ name|InterruptedException
 throws|,
 name|KeeperException
 block|{
+if|if
+condition|(
+name|leaderSeqPath
+operator|!=
+literal|null
+condition|)
+block|{
 try|try
 block|{
 name|log
@@ -536,6 +544,17 @@ argument_list|(
 literal|"cancelElection did not find election node to remove {}"
 argument_list|,
 name|leaderSeqPath
+argument_list|)
+expr_stmt|;
+block|}
+block|}
+else|else
+block|{
+name|log
+operator|.
+name|warn
+argument_list|(
+literal|"cancelElection skipped as this context has not been initialized"
 argument_list|)
 expr_stmt|;
 block|}

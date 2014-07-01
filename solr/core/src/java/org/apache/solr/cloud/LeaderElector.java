@@ -1512,6 +1512,10 @@ operator|>
 literal|20
 condition|)
 block|{
+name|context
+operator|=
+literal|null
+expr_stmt|;
 throw|throw
 operator|new
 name|ZooKeeperException
@@ -1843,12 +1847,6 @@ name|InterruptedException
 throws|,
 name|KeeperException
 block|{
-name|this
-operator|.
-name|context
-operator|=
-name|context
-expr_stmt|;
 name|String
 name|electZKPath
 init|=
@@ -1868,6 +1866,12 @@ name|electZKPath
 argument_list|,
 name|zkClient
 argument_list|)
+expr_stmt|;
+name|this
+operator|.
+name|context
+operator|=
+name|context
 expr_stmt|;
 block|}
 comment|/**    * Sort n string sequence list.    */
