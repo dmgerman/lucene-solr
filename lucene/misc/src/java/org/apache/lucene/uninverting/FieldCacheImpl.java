@@ -166,20 +166,6 @@ name|lucene
 operator|.
 name|index
 operator|.
-name|IndexReader
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|index
-operator|.
 name|NumericDocValues
 import|;
 end_import
@@ -380,7 +366,7 @@ name|util
 operator|.
 name|packed
 operator|.
-name|MonotonicAppendingLongBuffer
+name|PackedInts
 import|;
 end_import
 
@@ -396,7 +382,7 @@ name|util
 operator|.
 name|packed
 operator|.
-name|PackedInts
+name|PackedLongValues
 import|;
 end_import
 
@@ -3134,7 +3120,7 @@ decl_stmt|;
 DECL|field|termOrdToBytesOffset
 specifier|private
 specifier|final
-name|MonotonicAppendingLongBuffer
+name|PackedLongValues
 name|termOrdToBytesOffset
 decl_stmt|;
 DECL|field|docToTermOrd
@@ -3160,7 +3146,7 @@ operator|.
 name|Reader
 name|bytes
 parameter_list|,
-name|MonotonicAppendingLongBuffer
+name|PackedLongValues
 name|termOrdToBytesOffset
 parameter_list|,
 name|PackedInts
@@ -3706,12 +3692,19 @@ operator|=
 literal|1
 expr_stmt|;
 block|}
-name|MonotonicAppendingLongBuffer
+name|PackedLongValues
+operator|.
+name|Builder
 name|termOrdToBytesOffset
 init|=
-operator|new
-name|MonotonicAppendingLongBuffer
-argument_list|()
+name|PackedLongValues
+operator|.
+name|monotonicBuilder
+argument_list|(
+name|PackedInts
+operator|.
+name|COMPACT
+argument_list|)
 decl_stmt|;
 specifier|final
 name|GrowableWriter
@@ -3858,11 +3851,6 @@ operator|++
 expr_stmt|;
 block|}
 block|}
-name|termOrdToBytesOffset
-operator|.
-name|freeze
-argument_list|()
-expr_stmt|;
 comment|// maybe an int-only impl?
 return|return
 operator|new
@@ -3876,6 +3864,9 @@ literal|true
 argument_list|)
 argument_list|,
 name|termOrdToBytesOffset
+operator|.
+name|build
+argument_list|()
 argument_list|,
 name|docToTermOrd
 operator|.

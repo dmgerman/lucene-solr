@@ -174,7 +174,7 @@ name|util
 operator|.
 name|packed
 operator|.
-name|AppendingDeltaPackedLongBuffer
+name|PackedInts
 import|;
 end_import
 
@@ -190,7 +190,7 @@ name|util
 operator|.
 name|packed
 operator|.
-name|PackedInts
+name|PackedLongValues
 import|;
 end_import
 
@@ -212,7 +212,9 @@ name|hash
 decl_stmt|;
 DECL|field|pending
 specifier|private
-name|AppendingDeltaPackedLongBuffer
+name|PackedLongValues
+operator|.
+name|Builder
 name|pending
 decl_stmt|;
 DECL|field|iwBytesUsed
@@ -300,8 +302,9 @@ argument_list|)
 expr_stmt|;
 name|pending
 operator|=
-operator|new
-name|AppendingDeltaPackedLongBuffer
+name|PackedLongValues
+operator|.
+name|deltaPackedBuilder
 argument_list|(
 name|PackedInts
 operator|.
@@ -608,6 +611,15 @@ name|size
 argument_list|()
 decl_stmt|;
 specifier|final
+name|PackedLongValues
+name|ords
+init|=
+name|pending
+operator|.
+name|build
+argument_list|()
+decl_stmt|;
+specifier|final
 name|int
 index|[]
 name|sortedValues
@@ -690,6 +702,8 @@ argument_list|(
 name|sortedValues
 argument_list|,
 name|valueCount
+argument_list|,
+name|hash
 argument_list|)
 return|;
 block|}
@@ -720,6 +734,8 @@ argument_list|(
 name|ordMap
 argument_list|,
 name|maxDoc
+argument_list|,
+name|ords
 argument_list|)
 return|;
 block|}
@@ -730,6 +746,7 @@ block|}
 comment|// iterates over the unique values we have in ram
 DECL|class|ValuesIterator
 specifier|private
+specifier|static
 class|class
 name|ValuesIterator
 implements|implements
@@ -743,6 +760,11 @@ specifier|final
 name|int
 name|sortedValues
 index|[]
+decl_stmt|;
+DECL|field|hash
+specifier|final
+name|BytesRefHash
+name|hash
 decl_stmt|;
 DECL|field|scratch
 specifier|final
@@ -771,6 +793,9 @@ index|[]
 parameter_list|,
 name|int
 name|valueCount
+parameter_list|,
+name|BytesRefHash
+name|hash
 parameter_list|)
 block|{
 name|this
@@ -784,6 +809,12 @@ operator|.
 name|valueCount
 operator|=
 name|valueCount
+expr_stmt|;
+name|this
+operator|.
+name|hash
+operator|=
+name|hash
 expr_stmt|;
 block|}
 annotation|@
@@ -858,6 +889,7 @@ block|}
 comment|// iterates over the ords for each doc we have in ram
 DECL|class|OrdsIterator
 specifier|private
+specifier|static
 class|class
 name|OrdsIterator
 implements|implements
@@ -868,15 +900,10 @@ argument_list|>
 block|{
 DECL|field|iter
 specifier|final
-name|AppendingDeltaPackedLongBuffer
+name|PackedLongValues
 operator|.
 name|Iterator
 name|iter
-init|=
-name|pending
-operator|.
-name|iterator
-argument_list|()
 decl_stmt|;
 DECL|field|ordMap
 specifier|final
@@ -902,6 +929,9 @@ index|[]
 parameter_list|,
 name|int
 name|maxDoc
+parameter_list|,
+name|PackedLongValues
+name|ords
 parameter_list|)
 block|{
 name|this
@@ -917,13 +947,22 @@ operator|=
 name|maxDoc
 expr_stmt|;
 assert|assert
-name|pending
+name|ords
 operator|.
 name|size
 argument_list|()
 operator|==
 name|maxDoc
 assert|;
+name|this
+operator|.
+name|iter
+operator|=
+name|ords
+operator|.
+name|iterator
+argument_list|()
+expr_stmt|;
 block|}
 annotation|@
 name|Override

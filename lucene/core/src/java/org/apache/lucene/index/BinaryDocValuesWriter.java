@@ -184,7 +184,7 @@ name|util
 operator|.
 name|packed
 operator|.
-name|AppendingDeltaPackedLongBuffer
+name|PackedInts
 import|;
 end_import
 
@@ -200,7 +200,7 @@ name|util
 operator|.
 name|packed
 operator|.
-name|PackedInts
+name|PackedLongValues
 import|;
 end_import
 
@@ -258,7 +258,9 @@ decl_stmt|;
 DECL|field|lengths
 specifier|private
 specifier|final
-name|AppendingDeltaPackedLongBuffer
+name|PackedLongValues
+operator|.
+name|Builder
 name|lengths
 decl_stmt|;
 DECL|field|docsWithField
@@ -322,8 +324,9 @@ name|this
 operator|.
 name|lengths
 operator|=
-operator|new
-name|AppendingDeltaPackedLongBuffer
+name|PackedLongValues
+operator|.
+name|deltaPackedBuilder
 argument_list|(
 name|PackedInts
 operator|.
@@ -631,6 +634,17 @@ argument_list|(
 literal|false
 argument_list|)
 expr_stmt|;
+specifier|final
+name|PackedLongValues
+name|lengths
+init|=
+name|this
+operator|.
+name|lengths
+operator|.
+name|build
+argument_list|()
+decl_stmt|;
 name|dvConsumer
 operator|.
 name|addBinaryField
@@ -659,6 +673,8 @@ operator|new
 name|BytesIterator
 argument_list|(
 name|maxDoc
+argument_list|,
+name|lengths
 argument_list|)
 return|;
 block|}
@@ -688,15 +704,10 @@ argument_list|()
 decl_stmt|;
 DECL|field|lengthsIterator
 specifier|final
-name|AppendingDeltaPackedLongBuffer
+name|PackedLongValues
 operator|.
 name|Iterator
 name|lengthsIterator
-init|=
-name|lengths
-operator|.
-name|iterator
-argument_list|()
 decl_stmt|;
 DECL|field|bytesIterator
 specifier|final
@@ -735,6 +746,9 @@ name|BytesIterator
 parameter_list|(
 name|int
 name|maxDoc
+parameter_list|,
+name|PackedLongValues
+name|lengths
 parameter_list|)
 block|{
 name|this
@@ -742,6 +756,15 @@ operator|.
 name|maxDoc
 operator|=
 name|maxDoc
+expr_stmt|;
+name|this
+operator|.
+name|lengthsIterator
+operator|=
+name|lengths
+operator|.
+name|iterator
+argument_list|()
 expr_stmt|;
 block|}
 annotation|@

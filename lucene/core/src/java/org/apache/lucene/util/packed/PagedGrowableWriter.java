@@ -51,7 +51,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * A {@link PagedGrowableWriter}. This class slices data into fixed-size blocks  * which have independent numbers of bits per value and grow on-demand.  *<p>You should use this class instead of the {@link AbstractAppendingLongBuffer} related ones only when  * you need random write-access. Otherwise this class will likely be slower and  * less memory-efficient.  * @lucene.internal  */
+comment|/**  * A {@link PagedGrowableWriter}. This class slices data into fixed-size blocks  * which have independent numbers of bits per value and grow on-demand.  *<p>You should use this class instead of the {@link PackedLongValues} related ones only when  * you need random write-access. Otherwise this class will likely be slower and  * less memory-efficient.  * @lucene.internal  */
 end_comment
 
 begin_class
