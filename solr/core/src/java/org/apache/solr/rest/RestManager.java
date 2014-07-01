@@ -2084,8 +2084,27 @@ operator|==
 literal|null
 condition|)
 block|{
-return|return;
 comment|// this is OK, just means there are no stored registrations
+comment|// storing an empty list is safe and avoid future warnings about
+comment|// the data not existing
+name|storeManagedData
+argument_list|(
+operator|new
+name|ArrayList
+argument_list|<
+name|Map
+argument_list|<
+name|String
+argument_list|,
+name|String
+argument_list|>
+argument_list|>
+argument_list|(
+literal|0
+argument_list|)
+argument_list|)
+expr_stmt|;
+return|return;
 block|}
 name|List
 argument_list|<

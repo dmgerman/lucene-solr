@@ -478,19 +478,7 @@ operator|.
 name|isEmpty
 argument_list|()
 condition|)
-block|{
-name|log
-operator|.
-name|warn
-argument_list|(
-literal|"No registered observers for {}"
-argument_list|,
-name|getResourceId
-argument_list|()
-argument_list|)
-expr_stmt|;
 return|return;
-block|}
 for|for
 control|(
 name|ManagedResourceObserver
@@ -1102,7 +1090,15 @@ name|storeErr
 parameter_list|)
 block|{
 comment|// store failed, so try to reset the state of this object by reloading
-comment|// from storage and then failing the store request
+comment|// from storage and then failing the store request, but only do that
+comment|// if we've successfully initialized before
+if|if
+condition|(
+name|initializedOn
+operator|!=
+literal|null
+condition|)
+block|{
 try|try
 block|{
 name|reloadFromStorage
@@ -1127,6 +1123,7 @@ operator|+
 name|reloadExc
 argument_list|)
 expr_stmt|;
+block|}
 block|}
 name|String
 name|errMsg
@@ -1180,6 +1177,15 @@ name|String
 name|getInitializedOn
 parameter_list|()
 block|{
+if|if
+condition|(
+name|initializedOn
+operator|==
+literal|null
+condition|)
+return|return
+literal|null
+return|;
 name|StringBuilder
 name|dateBuf
 init|=
@@ -1332,16 +1338,29 @@ argument_list|)
 argument_list|)
 expr_stmt|;
 comment|// report important dates when data was init'd / updated
+name|String
+name|initializedOnStr
+init|=
+name|getInitializedOn
+argument_list|()
+decl_stmt|;
+if|if
+condition|(
+name|initializedOnStr
+operator|!=
+literal|null
+condition|)
+block|{
 name|toStore
 operator|.
 name|put
 argument_list|(
 name|INITIALIZED_ON_JSON_FIELD
 argument_list|,
-name|getInitializedOn
-argument_list|()
+name|initializedOnStr
 argument_list|)
 expr_stmt|;
+block|}
 comment|// if the managed data has been updated since initialization (ie. it's dirty)
 comment|// return that in the response as well ... which gives a good hint that the
 comment|// client needs to re-load the collection / core to apply the updates

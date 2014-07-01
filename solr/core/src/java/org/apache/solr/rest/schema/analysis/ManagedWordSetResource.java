@@ -26,6 +26,16 @@ name|java
 operator|.
 name|util
 operator|.
+name|ArrayList
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
+name|util
+operator|.
 name|Collections
 import|;
 end_import
@@ -47,6 +57,16 @@ operator|.
 name|util
 operator|.
 name|Locale
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
+name|util
+operator|.
+name|Map
 import|;
 end_import
 
@@ -468,6 +488,22 @@ name|wordList
 argument_list|)
 expr_stmt|;
 block|}
+block|}
+else|else
+block|{
+name|storeManagedData
+argument_list|(
+operator|new
+name|ArrayList
+argument_list|<
+name|String
+argument_list|>
+argument_list|(
+literal|0
+argument_list|)
+argument_list|)
+expr_stmt|;
+comment|// stores an empty word set
 block|}
 name|log
 operator|.

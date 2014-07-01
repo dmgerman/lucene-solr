@@ -755,7 +755,7 @@ name|initArgs
 operator|.
 name|get
 argument_list|(
-literal|"storageDir"
+name|STORAGE_DIR_INIT_ARG
 argument_list|)
 decl_stmt|;
 if|if
@@ -778,7 +778,11 @@ throw|throw
 operator|new
 name|IllegalArgumentException
 argument_list|(
-literal|"Required configuration parameter 'storageDir' not provided!"
+literal|"Required configuration parameter '"
+operator|+
+name|STORAGE_DIR_INIT_ARG
+operator|+
+literal|"' not provided!"
 argument_list|)
 throw|;
 name|File
