@@ -2627,7 +2627,10 @@ name|finishState
 argument_list|()
 expr_stmt|;
 return|return
+name|removeDeadStates
+argument_list|(
 name|result
+argument_list|)
 return|;
 block|}
 comment|// Simple custom ArrayList<Transition>
