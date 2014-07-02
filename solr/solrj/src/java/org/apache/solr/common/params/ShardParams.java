@@ -138,6 +138,16 @@ name|_ROUTE_
 init|=
 literal|"_route_"
 decl_stmt|;
+comment|/** Force a single-pass distributed query? (true/false) */
+DECL|field|DISTRIB_SINGLE_PASS
+specifier|public
+specifier|static
+specifier|final
+name|String
+name|DISTRIB_SINGLE_PASS
+init|=
+literal|"distrib.singlePass"
+decl_stmt|;
 block|}
 end_interface
 
