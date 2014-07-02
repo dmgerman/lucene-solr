@@ -1286,6 +1286,8 @@ argument_list|()
 operator|.
 name|getCoreNodeName
 argument_list|()
+argument_list|,
+literal|true
 argument_list|)
 decl_stmt|;
 if|if

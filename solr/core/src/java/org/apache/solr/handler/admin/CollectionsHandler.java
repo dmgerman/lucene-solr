@@ -3330,6 +3330,10 @@ name|CREATE_NODE_SET
 argument_list|,
 name|SHARDS_PROP
 argument_list|,
+name|DocCollection
+operator|.
+name|STATE_FORMAT
+argument_list|,
 name|ASYNC
 argument_list|,
 literal|"router."

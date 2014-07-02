@@ -543,6 +543,16 @@ argument_list|,
 name|liveNodes
 argument_list|,
 name|collectionStates
+argument_list|,
+name|ClusterStateTest
+operator|.
+name|getMockZkStateReader
+argument_list|(
+name|collectionStates
+operator|.
+name|keySet
+argument_list|()
+argument_list|)
 argument_list|)
 decl_stmt|;
 name|String
