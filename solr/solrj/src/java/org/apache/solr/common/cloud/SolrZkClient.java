@@ -2907,7 +2907,6 @@ name|void
 name|close
 parameter_list|()
 block|{
-comment|//    log.warn("closed inst :"+inst, new Exception("leakdebug"));
 if|if
 condition|(
 name|isClosed
