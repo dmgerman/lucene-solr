@@ -1,6 +1,6 @@
 begin_unit|revision:0.9.5;language:Java;cregit-version:0.0.1
 begin_package
-DECL|package|org.apache.lucene.facet.taxonomy.utils
+DECL|package|org.apache.lucene.facet.taxonomy
 package|package
 name|org
 operator|.
@@ -11,8 +11,6 @@ operator|.
 name|facet
 operator|.
 name|taxonomy
-operator|.
-name|utils
 package|;
 end_package
 
