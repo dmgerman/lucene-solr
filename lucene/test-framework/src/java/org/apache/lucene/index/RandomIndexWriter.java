@@ -1969,6 +1969,12 @@ block|{
 name|doRandomForceMerge
 argument_list|()
 expr_stmt|;
+comment|// index may have changed, must commit the changes, or otherwise they are discarded by the call to close()
+name|w
+operator|.
+name|commit
+argument_list|()
+expr_stmt|;
 block|}
 name|w
 operator|.
