@@ -932,6 +932,19 @@ operator|.
 name|responses
 control|)
 block|{
+if|if
+condition|(
+name|r
+operator|.
+name|getException
+argument_list|()
+operator|!=
+literal|null
+condition|)
+block|{
+comment|// This should only happen in case of using shards.tolerant=true. Omit this ShardResponse
+continue|continue;
+block|}
 name|NamedList
 argument_list|<
 name|?

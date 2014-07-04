@@ -1617,12 +1617,12 @@ name|SolrPluginUtils
 operator|.
 name|removeNulls
 argument_list|(
+name|arr
+argument_list|,
 operator|new
 name|SimpleOrderedMap
 argument_list|<>
-argument_list|(
-name|arr
-argument_list|)
+argument_list|()
 argument_list|)
 expr_stmt|;
 block|}
