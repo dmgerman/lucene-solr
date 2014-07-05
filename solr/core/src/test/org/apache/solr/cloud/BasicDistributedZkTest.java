@@ -3167,7 +3167,17 @@ control|)
 block|{
 name|assertEquals
 argument_list|(
-literal|"commitWithin did not work"
+literal|"commitWithin did not work on node: "
+operator|+
+operator|(
+operator|(
+name|HttpSolrServer
+operator|)
+name|client
+operator|)
+operator|.
+name|getBaseURL
+argument_list|()
 argument_list|,
 name|before
 operator|+
