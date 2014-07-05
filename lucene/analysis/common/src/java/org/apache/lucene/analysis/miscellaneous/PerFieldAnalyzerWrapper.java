@@ -42,7 +42,7 @@ name|lucene
 operator|.
 name|analysis
 operator|.
-name|AnalyzerWrapper
+name|DelegatingAnalyzerWrapper
 import|;
 end_import
 
@@ -77,7 +77,7 @@ specifier|final
 class|class
 name|PerFieldAnalyzerWrapper
 extends|extends
-name|AnalyzerWrapper
+name|DelegatingAnalyzerWrapper
 block|{
 DECL|field|defaultAnalyzer
 specifier|private

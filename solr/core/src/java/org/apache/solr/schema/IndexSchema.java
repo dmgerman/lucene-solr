@@ -40,21 +40,7 @@ name|lucene
 operator|.
 name|analysis
 operator|.
-name|AnalyzerWrapper
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|index
-operator|.
-name|DirectoryReader
+name|DelegatingAnalyzerWrapper
 import|;
 end_import
 
@@ -1975,7 +1961,7 @@ specifier|private
 class|class
 name|SolrIndexAnalyzer
 extends|extends
-name|AnalyzerWrapper
+name|DelegatingAnalyzerWrapper
 block|{
 DECL|field|analyzers
 specifier|protected

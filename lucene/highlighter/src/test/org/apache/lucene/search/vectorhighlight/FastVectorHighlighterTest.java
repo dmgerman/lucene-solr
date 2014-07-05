@@ -92,7 +92,7 @@ name|lucene
 operator|.
 name|analysis
 operator|.
-name|AnalyzerWrapper
+name|CannedTokenStream
 import|;
 end_import
 
@@ -106,7 +106,7 @@ name|lucene
 operator|.
 name|analysis
 operator|.
-name|CannedTokenStream
+name|DelegatingAnalyzerWrapper
 import|;
 end_import
 
@@ -5140,8 +5140,12 @@ name|Analyzer
 name|analyzer
 init|=
 operator|new
-name|AnalyzerWrapper
-argument_list|()
+name|DelegatingAnalyzerWrapper
+argument_list|(
+name|Analyzer
+operator|.
+name|PER_FIELD_REUSE_STRATEGY
+argument_list|)
 block|{
 specifier|public
 name|Analyzer
