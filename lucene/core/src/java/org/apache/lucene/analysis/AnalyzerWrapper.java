@@ -27,7 +27,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Extension to {@link Analyzer} suitable for Analyzers which wrap  * other Analyzers.  *<p/>  * {@link #getWrappedAnalyzer(String)} allows the Analyzer  * to wrap multiple Analyzers which are selected on a per field basis.  *<p/>  * {@link #wrapComponents(String, Analyzer.TokenStreamComponents)} allows the  * TokenStreamComponents of the wrapped Analyzer to then be wrapped  * (such as adding a new {@link TokenFilter} to form new TokenStreamComponents.  */
+comment|/**  * Extension to {@link Analyzer} suitable for Analyzers which wrap  * other Analyzers.  *   *<p>{@link #getWrappedAnalyzer(String)} allows the Analyzer  * to wrap multiple Analyzers which are selected on a per field basis.  *   *<p>{@link #wrapComponents(String, Analyzer.TokenStreamComponents)} allows the  * TokenStreamComponents of the wrapped Analyzer to then be wrapped  * (such as adding a new {@link TokenFilter} to form new TokenStreamComponents.  *  *<p>{@link #wrapReader(String, Reader)} allows the Reader of the wrapped  * Analyzer to then be wrapped (such as adding a new {@link CharFilter}.  *  *<p><b>Important:</b> If you do not want to wrap the TokenStream  * using {@link #wrapComponents(String, Analyzer.TokenStreamComponents)}  * or the Reader using {@link #wrapReader(String, Reader)} and just delegate  * to other analyzers (like by field name), use {@link DelegatingAnalyzerWrapper}  * as superclass!  *  * @see DelegatingAnalyzerWrapper  */
 end_comment
 
 begin_class
