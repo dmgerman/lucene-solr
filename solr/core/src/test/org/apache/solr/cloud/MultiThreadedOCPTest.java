@@ -260,6 +260,15 @@ name|MultiThreadedOCPTest
 extends|extends
 name|AbstractFullDistribZkTestBase
 block|{
+DECL|field|REQUEST_STATUS_TIMEOUT
+specifier|private
+specifier|static
+specifier|final
+name|int
+name|REQUEST_STATUS_TIMEOUT
+init|=
+literal|90
+decl_stmt|;
 DECL|field|log
 specifier|private
 specifier|static
@@ -567,7 +576,7 @@ name|i
 operator|+
 literal|""
 argument_list|,
-literal|30
+name|REQUEST_STATUS_TIMEOUT
 argument_list|,
 name|server
 argument_list|)
@@ -767,7 +776,7 @@ operator|||
 name|iterations
 operator|++
 operator|>
-literal|90
+name|REQUEST_STATUS_TIMEOUT
 condition|)
 break|break;
 try|try
@@ -821,7 +830,7 @@ name|i
 operator|+
 literal|""
 argument_list|,
-literal|30
+name|REQUEST_STATUS_TIMEOUT
 argument_list|,
 name|server
 argument_list|)
@@ -981,7 +990,7 @@ name|i
 operator|+
 literal|""
 argument_list|,
-literal|30
+name|REQUEST_STATUS_TIMEOUT
 argument_list|,
 name|server
 argument_list|)
