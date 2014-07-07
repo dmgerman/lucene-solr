@@ -456,7 +456,9 @@ operator|new
 name|ArrayList
 argument_list|<>
 argument_list|(
-name|numScorers
+name|sortedSubScorers
+operator|.
+name|length
 argument_list|)
 decl_stmt|;
 for|for
@@ -468,7 +470,9 @@ literal|0
 init|;
 name|i
 operator|<
-name|numScorers
+name|sortedSubScorers
+operator|.
+name|length
 condition|;
 name|i
 operator|++
@@ -481,7 +485,7 @@ argument_list|(
 operator|new
 name|ChildScorer
 argument_list|(
-name|subScorers
+name|sortedSubScorers
 index|[
 name|i
 index|]
