@@ -171,10 +171,12 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * A Spatial Filter implementing {@link SpatialOperation#IsDisjointTo} in terms  * of a {@link SpatialStrategy}'s support for {@link SpatialOperation#Intersects}.  * A document is considered disjoint if it has spatial data that does not  * intersect with the query shape.  Another way of looking at this is that it's  * a way to invert a query shape.  *  * @lucene.experimental  */
+comment|/**  * A Spatial Filter implementing {@link SpatialOperation#IsDisjointTo} in terms  * of a {@link SpatialStrategy}'s support for {@link SpatialOperation#Intersects}.  * A document is considered disjoint if it has spatial data that does not  * intersect with the query shape.  Another way of looking at this is that it's  * a way to invert a query shape.  *  * @lucene.experimental  *  * @deprecated See https://issues.apache.org/jira/browse/LUCENE-5692  */
 end_comment
 
 begin_class
+annotation|@
+name|Deprecated
 DECL|class|DisjointSpatialFilter
 specifier|public
 class|class
