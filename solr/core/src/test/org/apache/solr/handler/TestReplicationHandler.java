@@ -3180,13 +3180,6 @@ argument_list|)
 argument_list|)
 argument_list|)
 expr_stmt|;
-name|assertVersions
-argument_list|(
-name|masterClient
-argument_list|,
-name|slaveClient
-argument_list|)
-expr_stmt|;
 name|slaveQueryRsp
 operator|=
 name|rQuery
@@ -3194,6 +3187,13 @@ argument_list|(
 literal|1
 argument_list|,
 literal|"*:*"
+argument_list|,
+name|slaveClient
+argument_list|)
+expr_stmt|;
+name|assertVersions
+argument_list|(
+name|masterClient
 argument_list|,
 name|slaveClient
 argument_list|)
