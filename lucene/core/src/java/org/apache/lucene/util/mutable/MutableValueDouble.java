@@ -19,7 +19,7 @@ package|;
 end_package
 
 begin_comment
-comment|/**  * {@link MutableValue} implementation of type   *<code>double</code>.  */
+comment|/**  * {@link MutableValue} implementation of type<code>double</code>.    * When mutating instances of this object, the caller is responsible for ensuring   * that any instance where<code>exists</code> is set to<code>false</code> must also   *<code>value</code> set to<code>0.0D</code> for proper operation.  */
 end_comment
 
 begin_class
@@ -34,6 +34,8 @@ DECL|field|value
 specifier|public
 name|double
 name|value
+init|=
+literal|0.0D
 decl_stmt|;
 annotation|@
 name|Override
@@ -43,6 +45,13 @@ name|Object
 name|toObject
 parameter_list|()
 block|{
+assert|assert
+name|exists
+operator|||
+literal|0.0D
+operator|==
+name|value
+assert|;
 return|return
 name|exists
 condition|?
@@ -129,6 +138,13 @@ name|Object
 name|other
 parameter_list|)
 block|{
+assert|assert
+name|exists
+operator|||
+literal|0.0D
+operator|==
+name|value
+assert|;
 name|MutableValueDouble
 name|b
 init|=
@@ -162,6 +178,13 @@ name|Object
 name|other
 parameter_list|)
 block|{
+assert|assert
+name|exists
+operator|||
+literal|0.0D
+operator|==
+name|value
+assert|;
 name|MutableValueDouble
 name|b
 init|=
@@ -195,25 +218,22 @@ name|c
 return|;
 if|if
 condition|(
-operator|!
 name|exists
-condition|)
-return|return
-operator|-
-literal|1
-return|;
-if|if
-condition|(
-operator|!
+operator|==
 name|b
 operator|.
 name|exists
 condition|)
 return|return
-literal|1
+literal|0
 return|;
 return|return
-literal|0
+name|exists
+condition|?
+literal|1
+else|:
+operator|-
+literal|1
 return|;
 block|}
 annotation|@
@@ -224,6 +244,13 @@ name|int
 name|hashCode
 parameter_list|()
 block|{
+assert|assert
+name|exists
+operator|||
+literal|0.0D
+operator|==
+name|value
+assert|;
 name|long
 name|x
 init|=

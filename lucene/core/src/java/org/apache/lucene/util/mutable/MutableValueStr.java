@@ -33,7 +33,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * {@link MutableValue} implementation of type   * {@link String}.  */
+comment|/**  * {@link MutableValue} implementation of type {@link String}.  * When mutating instances of this object, the caller is responsible for ensuring   * that any instance where<code>exists</code> is set to<code>false</code> must also   * have a<code>value</code> with a length set to 0.  */
 end_comment
 
 begin_class
@@ -61,6 +61,15 @@ name|Object
 name|toObject
 parameter_list|()
 block|{
+assert|assert
+name|exists
+operator|||
+literal|0
+operator|==
+name|value
+operator|.
+name|length
+assert|;
 return|return
 name|exists
 condition|?
@@ -154,6 +163,15 @@ name|Object
 name|other
 parameter_list|)
 block|{
+assert|assert
+name|exists
+operator|||
+literal|0
+operator|==
+name|value
+operator|.
+name|length
+assert|;
 name|MutableValueStr
 name|b
 init|=
@@ -190,6 +208,15 @@ name|Object
 name|other
 parameter_list|)
 block|{
+assert|assert
+name|exists
+operator|||
+literal|0
+operator|==
+name|value
+operator|.
+name|length
+assert|;
 name|MutableValueStr
 name|b
 init|=
@@ -247,6 +274,15 @@ name|int
 name|hashCode
 parameter_list|()
 block|{
+assert|assert
+name|exists
+operator|||
+literal|0
+operator|==
+name|value
+operator|.
+name|length
+assert|;
 return|return
 name|value
 operator|.
