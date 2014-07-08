@@ -226,6 +226,20 @@ name|solr
 operator|.
 name|common
 operator|.
+name|SolrException
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|solr
+operator|.
+name|common
+operator|.
 name|params
 operator|.
 name|CommonParams
@@ -1371,7 +1385,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
-name|IllegalArgumentException
+name|SolrException
 name|ex
 parameter_list|)
 block|{
@@ -2185,8 +2199,14 @@ else|else
 block|{
 throw|throw
 operator|new
-name|IllegalArgumentException
+name|SolrException
 argument_list|(
+name|SolrException
+operator|.
+name|ErrorCode
+operator|.
+name|BAD_REQUEST
+argument_list|,
 literal|"No suggester named "
 operator|+
 name|suggesterName
@@ -2208,9 +2228,19 @@ condition|)
 block|{
 throw|throw
 operator|new
-name|IllegalArgumentException
+name|SolrException
 argument_list|(
-literal|"No default suggester was configured"
+name|SolrException
+operator|.
+name|ErrorCode
+operator|.
+name|BAD_REQUEST
+argument_list|,
+literal|"'"
+operator|+
+name|SUGGEST_DICT
+operator|+
+literal|"' parameter not specified and no default suggester configured"
 argument_list|)
 throw|;
 block|}
