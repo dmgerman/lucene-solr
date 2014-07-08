@@ -7939,7 +7939,7 @@ operator|=
 name|loader
 expr_stmt|;
 block|}
-comment|/**    * Copies this schema, adds the given field to the copy, then persists the new schema.    *    * @param newField the SchemaField to add     * @return a new IndexSchema based on this schema with newField added    * @see #newField(String, String, Map)    */
+comment|/**    * Copies this schema, adds the given field to the copy, then persists the    * new schema.  Requires synchronizing on the object returned by    * {@link #getSchemaUpdateLock()}.    *    * @param newField the SchemaField to add     * @return a new IndexSchema based on this schema with newField added    * @see #newField(String, String, Map)    */
 DECL|method|addField
 specifier|public
 name|IndexSchema
@@ -7973,7 +7973,7 @@ name|msg
 argument_list|)
 throw|;
 block|}
-comment|/**    * Copies this schema, adds the given field to the copy, then persists the new schema.    *    * @param newField the SchemaField to add    * @param copyFieldNames 0 or more names of targets to copy this field to.  The targets must already exist.    * @return a new IndexSchema based on this schema with newField added    * @see #newField(String, String, Map)    */
+comment|/**    * Copies this schema, adds the given field to the copy, then persists the    * new schema.  Requires synchronizing on the object returned by    * {@link #getSchemaUpdateLock()}.    *    * @param newField the SchemaField to add    * @param copyFieldNames 0 or more names of targets to copy this field to.  The targets must already exist.    * @return a new IndexSchema based on this schema with newField added    * @see #newField(String, String, Map)    */
 DECL|method|addField
 specifier|public
 name|IndexSchema
@@ -8013,7 +8013,7 @@ name|msg
 argument_list|)
 throw|;
 block|}
-comment|/**    * Copies this schema, adds the given fields to the copy, then persists the new schema.    *    * @param newFields the SchemaFields to add    * @return a new IndexSchema based on this schema with newFields added    * @see #newField(String, String, Map)    */
+comment|/**    * Copies this schema, adds the given fields to the copy, then persists the    * new schema.  Requires synchronizing on the object returned by    * {@link #getSchemaUpdateLock()}.    *    * @param newFields the SchemaFields to add    * @return a new IndexSchema based on this schema with newFields added    * @see #newField(String, String, Map)    */
 DECL|method|addFields
 specifier|public
 name|IndexSchema
@@ -8050,7 +8050,7 @@ name|msg
 argument_list|)
 throw|;
 block|}
-comment|/**    * Copies this schema, adds the given fields to the copy, then persists the new schema.    *    * @param newFields the SchemaFields to add    * @param copyFieldNames 0 or more names of targets to copy this field to.  The target fields must already exist.    * @return a new IndexSchema based on this schema with newFields added    * @see #newField(String, String, Map)    */
+comment|/**    * Copies this schema, adds the given fields to the copy, then persists the    * new schema.  Requires synchronizing on the object returned by    * {@link #getSchemaUpdateLock()}.    *    * @param newFields the SchemaFields to add    * @param copyFieldNames 0 or more names of targets to copy this field to.  The target fields must already exist.    * @return a new IndexSchema based on this schema with newFields added    * @see #newField(String, String, Map)    */
 DECL|method|addFields
 specifier|public
 name|IndexSchema
@@ -8098,7 +8098,7 @@ name|msg
 argument_list|)
 throw|;
 block|}
-comment|/**    * Copies this schema and adds the new copy fields to the copy, then persists the new schema    * @param copyFields Key is the name of the source field name, value is a collection of target field names.  Fields must exist.    * @return The new Schema with the copy fields added    */
+comment|/**    * Copies this schema and adds the new copy fields to the copy, then    * persists the new schema.  Requires synchronizing on the object returned by    * {@link #getSchemaUpdateLock()}.    *    * @param copyFields Key is the name of the source field name, value is a collection of target field names.  Fields must exist.    * @return The new Schema with the copy fields added    */
 DECL|method|addCopyFields
 specifier|public
 name|IndexSchema
@@ -8160,6 +8160,37 @@ name|?
 argument_list|>
 name|options
 parameter_list|)
+block|{
+name|String
+name|msg
+init|=
+literal|"This IndexSchema is not mutable."
+decl_stmt|;
+name|log
+operator|.
+name|error
+argument_list|(
+name|msg
+argument_list|)
+expr_stmt|;
+throw|throw
+operator|new
+name|SolrException
+argument_list|(
+name|ErrorCode
+operator|.
+name|SERVER_ERROR
+argument_list|,
+name|msg
+argument_list|)
+throw|;
+block|}
+comment|/**    * Returns the schema update lock that should be synchronzied on    * to update the schema.  Only applicable to mutable schemas.    *    * @return the schema update lock object to synchronize on    */
+DECL|method|getSchemaUpdateLock
+specifier|public
+name|Object
+name|getSchemaUpdateLock
+parameter_list|()
 block|{
 name|String
 name|msg

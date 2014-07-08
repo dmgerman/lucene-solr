@@ -1189,14 +1189,6 @@ name|emptyMap
 argument_list|()
 expr_stmt|;
 block|}
-comment|// even though fields is volatile, we need to synchronize to avoid two addFields
-comment|// happening concurrently (and ending up missing one of them)
-synchronized|synchronized
-init|(
-name|getSchemaUpdateLock
-argument_list|()
-init|)
-block|{
 name|newSchema
 operator|=
 name|shallowCopy
@@ -1377,7 +1369,6 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
-block|}
 comment|// Run the callbacks on SchemaAware now that everything else is done
 for|for
 control|(
@@ -1505,14 +1496,6 @@ name|success
 init|=
 literal|false
 decl_stmt|;
-comment|// even though fields is volatile, we need to synchronize to avoid two addCopyFields
-comment|// happening concurrently (and ending up missing one of them)
-synchronized|synchronized
-init|(
-name|getSchemaUpdateLock
-argument_list|()
-init|)
-block|{
 name|newSchema
 operator|=
 name|shallowCopy
@@ -1634,7 +1617,6 @@ name|size
 argument_list|()
 argument_list|)
 expr_stmt|;
-block|}
 block|}
 block|}
 return|return
@@ -2368,6 +2350,8 @@ return|return
 name|newSchema
 return|;
 block|}
+annotation|@
+name|Override
 DECL|method|getSchemaUpdateLock
 specifier|public
 name|Object

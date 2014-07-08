@@ -1106,6 +1106,14 @@ condition|)
 block|{
 try|try
 block|{
+synchronized|synchronized
+init|(
+name|oldSchema
+operator|.
+name|getSchemaUpdateLock
+argument_list|()
+init|)
+block|{
 name|IndexSchema
 name|newSchema
 init|=
@@ -1149,6 +1157,7 @@ argument_list|,
 literal|"Failed to add fields."
 argument_list|)
 throw|;
+block|}
 block|}
 block|}
 catch|catch
