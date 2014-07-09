@@ -116,6 +116,8 @@ literal|"<DOWN>"
 block|,
 literal|"<UP>"
 block|,
+literal|"ARRAY"
+block|,
 literal|"AT_ADD"
 block|,
 literal|"AT_BIT_AND"
@@ -180,6 +182,8 @@ literal|"DECIMALDIGIT"
 block|,
 literal|"DECIMALINTEGER"
 block|,
+literal|"DOUBLE_STRING_CHAR"
+block|,
 literal|"EXPONENT"
 block|,
 literal|"HEX"
@@ -188,11 +192,17 @@ literal|"HEXDIGIT"
 block|,
 literal|"ID"
 block|,
-literal|"NAMESPACE_ID"
+literal|"OBJECT"
 block|,
 literal|"OCTAL"
 block|,
 literal|"OCTALDIGIT"
+block|,
+literal|"SINGLE_STRING_CHAR"
+block|,
+literal|"STRING"
+block|,
+literal|"VARIABLE"
 block|,
 literal|"WS"
 block|}
@@ -207,6 +217,15 @@ init|=
 operator|-
 literal|1
 decl_stmt|;
+DECL|field|ARRAY
+specifier|public
+specifier|static
+specifier|final
+name|int
+name|ARRAY
+init|=
+literal|4
+decl_stmt|;
 DECL|field|AT_ADD
 specifier|public
 specifier|static
@@ -214,7 +233,7 @@ specifier|final
 name|int
 name|AT_ADD
 init|=
-literal|4
+literal|5
 decl_stmt|;
 DECL|field|AT_BIT_AND
 specifier|public
@@ -223,7 +242,7 @@ specifier|final
 name|int
 name|AT_BIT_AND
 init|=
-literal|5
+literal|6
 decl_stmt|;
 DECL|field|AT_BIT_NOT
 specifier|public
@@ -232,7 +251,7 @@ specifier|final
 name|int
 name|AT_BIT_NOT
 init|=
-literal|6
+literal|7
 decl_stmt|;
 DECL|field|AT_BIT_OR
 specifier|public
@@ -241,7 +260,7 @@ specifier|final
 name|int
 name|AT_BIT_OR
 init|=
-literal|7
+literal|8
 decl_stmt|;
 DECL|field|AT_BIT_SHL
 specifier|public
@@ -250,7 +269,7 @@ specifier|final
 name|int
 name|AT_BIT_SHL
 init|=
-literal|8
+literal|9
 decl_stmt|;
 DECL|field|AT_BIT_SHR
 specifier|public
@@ -259,7 +278,7 @@ specifier|final
 name|int
 name|AT_BIT_SHR
 init|=
-literal|9
+literal|10
 decl_stmt|;
 DECL|field|AT_BIT_SHU
 specifier|public
@@ -268,7 +287,7 @@ specifier|final
 name|int
 name|AT_BIT_SHU
 init|=
-literal|10
+literal|11
 decl_stmt|;
 DECL|field|AT_BIT_XOR
 specifier|public
@@ -277,7 +296,7 @@ specifier|final
 name|int
 name|AT_BIT_XOR
 init|=
-literal|11
+literal|12
 decl_stmt|;
 DECL|field|AT_BOOL_AND
 specifier|public
@@ -286,7 +305,7 @@ specifier|final
 name|int
 name|AT_BOOL_AND
 init|=
-literal|12
+literal|13
 decl_stmt|;
 DECL|field|AT_BOOL_NOT
 specifier|public
@@ -295,7 +314,7 @@ specifier|final
 name|int
 name|AT_BOOL_NOT
 init|=
-literal|13
+literal|14
 decl_stmt|;
 DECL|field|AT_BOOL_OR
 specifier|public
@@ -304,7 +323,7 @@ specifier|final
 name|int
 name|AT_BOOL_OR
 init|=
-literal|14
+literal|15
 decl_stmt|;
 DECL|field|AT_CALL
 specifier|public
@@ -313,7 +332,7 @@ specifier|final
 name|int
 name|AT_CALL
 init|=
-literal|15
+literal|16
 decl_stmt|;
 DECL|field|AT_COLON
 specifier|public
@@ -322,7 +341,7 @@ specifier|final
 name|int
 name|AT_COLON
 init|=
-literal|16
+literal|17
 decl_stmt|;
 DECL|field|AT_COMMA
 specifier|public
@@ -331,7 +350,7 @@ specifier|final
 name|int
 name|AT_COMMA
 init|=
-literal|17
+literal|18
 decl_stmt|;
 DECL|field|AT_COMP_EQ
 specifier|public
@@ -340,7 +359,7 @@ specifier|final
 name|int
 name|AT_COMP_EQ
 init|=
-literal|18
+literal|19
 decl_stmt|;
 DECL|field|AT_COMP_GT
 specifier|public
@@ -349,7 +368,7 @@ specifier|final
 name|int
 name|AT_COMP_GT
 init|=
-literal|19
+literal|20
 decl_stmt|;
 DECL|field|AT_COMP_GTE
 specifier|public
@@ -358,7 +377,7 @@ specifier|final
 name|int
 name|AT_COMP_GTE
 init|=
-literal|20
+literal|21
 decl_stmt|;
 DECL|field|AT_COMP_LT
 specifier|public
@@ -367,7 +386,7 @@ specifier|final
 name|int
 name|AT_COMP_LT
 init|=
-literal|21
+literal|22
 decl_stmt|;
 DECL|field|AT_COMP_LTE
 specifier|public
@@ -376,7 +395,7 @@ specifier|final
 name|int
 name|AT_COMP_LTE
 init|=
-literal|22
+literal|23
 decl_stmt|;
 DECL|field|AT_COMP_NEQ
 specifier|public
@@ -385,7 +404,7 @@ specifier|final
 name|int
 name|AT_COMP_NEQ
 init|=
-literal|23
+literal|24
 decl_stmt|;
 DECL|field|AT_COND_QUE
 specifier|public
@@ -394,7 +413,7 @@ specifier|final
 name|int
 name|AT_COND_QUE
 init|=
-literal|24
+literal|25
 decl_stmt|;
 DECL|field|AT_DIVIDE
 specifier|public
@@ -403,7 +422,7 @@ specifier|final
 name|int
 name|AT_DIVIDE
 init|=
-literal|25
+literal|26
 decl_stmt|;
 DECL|field|AT_DOT
 specifier|public
@@ -412,7 +431,7 @@ specifier|final
 name|int
 name|AT_DOT
 init|=
-literal|26
+literal|27
 decl_stmt|;
 DECL|field|AT_LPAREN
 specifier|public
@@ -421,7 +440,7 @@ specifier|final
 name|int
 name|AT_LPAREN
 init|=
-literal|27
+literal|28
 decl_stmt|;
 DECL|field|AT_MODULO
 specifier|public
@@ -430,7 +449,7 @@ specifier|final
 name|int
 name|AT_MODULO
 init|=
-literal|28
+literal|29
 decl_stmt|;
 DECL|field|AT_MULTIPLY
 specifier|public
@@ -439,7 +458,7 @@ specifier|final
 name|int
 name|AT_MULTIPLY
 init|=
-literal|29
+literal|30
 decl_stmt|;
 DECL|field|AT_NEGATE
 specifier|public
@@ -448,7 +467,7 @@ specifier|final
 name|int
 name|AT_NEGATE
 init|=
-literal|30
+literal|31
 decl_stmt|;
 DECL|field|AT_RPAREN
 specifier|public
@@ -457,7 +476,7 @@ specifier|final
 name|int
 name|AT_RPAREN
 init|=
-literal|31
+literal|32
 decl_stmt|;
 DECL|field|AT_SUBTRACT
 specifier|public
@@ -466,7 +485,7 @@ specifier|final
 name|int
 name|AT_SUBTRACT
 init|=
-literal|32
+literal|33
 decl_stmt|;
 DECL|field|DECIMAL
 specifier|public
@@ -475,7 +494,7 @@ specifier|final
 name|int
 name|DECIMAL
 init|=
-literal|33
+literal|34
 decl_stmt|;
 DECL|field|DECIMALDIGIT
 specifier|public
@@ -484,7 +503,7 @@ specifier|final
 name|int
 name|DECIMALDIGIT
 init|=
-literal|34
+literal|35
 decl_stmt|;
 DECL|field|DECIMALINTEGER
 specifier|public
@@ -493,7 +512,16 @@ specifier|final
 name|int
 name|DECIMALINTEGER
 init|=
-literal|35
+literal|36
+decl_stmt|;
+DECL|field|DOUBLE_STRING_CHAR
+specifier|public
+specifier|static
+specifier|final
+name|int
+name|DOUBLE_STRING_CHAR
+init|=
+literal|37
 decl_stmt|;
 DECL|field|EXPONENT
 specifier|public
@@ -502,7 +530,7 @@ specifier|final
 name|int
 name|EXPONENT
 init|=
-literal|36
+literal|38
 decl_stmt|;
 DECL|field|HEX
 specifier|public
@@ -511,7 +539,7 @@ specifier|final
 name|int
 name|HEX
 init|=
-literal|37
+literal|39
 decl_stmt|;
 DECL|field|HEXDIGIT
 specifier|public
@@ -520,7 +548,7 @@ specifier|final
 name|int
 name|HEXDIGIT
 init|=
-literal|38
+literal|40
 decl_stmt|;
 DECL|field|ID
 specifier|public
@@ -529,16 +557,16 @@ specifier|final
 name|int
 name|ID
 init|=
-literal|39
+literal|41
 decl_stmt|;
-DECL|field|NAMESPACE_ID
+DECL|field|OBJECT
 specifier|public
 specifier|static
 specifier|final
 name|int
-name|NAMESPACE_ID
+name|OBJECT
 init|=
-literal|40
+literal|42
 decl_stmt|;
 DECL|field|OCTAL
 specifier|public
@@ -547,7 +575,7 @@ specifier|final
 name|int
 name|OCTAL
 init|=
-literal|41
+literal|43
 decl_stmt|;
 DECL|field|OCTALDIGIT
 specifier|public
@@ -556,7 +584,34 @@ specifier|final
 name|int
 name|OCTALDIGIT
 init|=
-literal|42
+literal|44
+decl_stmt|;
+DECL|field|SINGLE_STRING_CHAR
+specifier|public
+specifier|static
+specifier|final
+name|int
+name|SINGLE_STRING_CHAR
+init|=
+literal|45
+decl_stmt|;
+DECL|field|STRING
+specifier|public
+specifier|static
+specifier|final
+name|int
+name|STRING
+init|=
+literal|46
+decl_stmt|;
+DECL|field|VARIABLE
+specifier|public
+specifier|static
+specifier|final
+name|int
+name|VARIABLE
+init|=
+literal|47
 decl_stmt|;
 DECL|field|WS
 specifier|public
@@ -565,7 +620,7 @@ specifier|final
 name|int
 name|WS
 init|=
-literal|43
+literal|48
 decl_stmt|;
 comment|// delegates
 DECL|method|getDelegates
@@ -5675,10 +5730,10 @@ case|case
 name|HEX
 case|:
 case|case
-name|NAMESPACE_ID
+name|OCTAL
 case|:
 case|case
-name|OCTAL
+name|VARIABLE
 case|:
 block|{
 name|alt12
@@ -6530,7 +6585,7 @@ block|}
 block|}
 empty_stmt|;
 comment|// $ANTLR start "postfix"
-comment|// src/java/org/apache/lucene/expressions/js/Javascript.g:310:1: postfix : ( primary | NAMESPACE_ID arguments -> ^( AT_CALL NAMESPACE_ID ( arguments )? ) );
+comment|// src/java/org/apache/lucene/expressions/js/Javascript.g:310:1: postfix : ( primary | VARIABLE arguments -> ^( AT_CALL VARIABLE ( arguments )? ) );
 DECL|method|postfix
 specifier|public
 specifier|final
@@ -6570,7 +6625,7 @@ init|=
 literal|null
 decl_stmt|;
 name|Token
-name|NAMESPACE_ID47
+name|VARIABLE47
 init|=
 literal|null
 decl_stmt|;
@@ -6585,19 +6640,19 @@ init|=
 literal|null
 decl_stmt|;
 name|CommonTree
-name|NAMESPACE_ID47_tree
+name|VARIABLE47_tree
 init|=
 literal|null
 decl_stmt|;
 name|RewriteRuleTokenStream
-name|stream_NAMESPACE_ID
+name|stream_VARIABLE
 init|=
 operator|new
 name|RewriteRuleTokenStream
 argument_list|(
 name|adaptor
 argument_list|,
-literal|"token NAMESPACE_ID"
+literal|"token VARIABLE"
 argument_list|)
 decl_stmt|;
 name|RewriteRuleSubtreeStream
@@ -6613,7 +6668,7 @@ argument_list|)
 decl_stmt|;
 try|try
 block|{
-comment|// src/java/org/apache/lucene/expressions/js/Javascript.g:311:5: ( primary | NAMESPACE_ID arguments -> ^( AT_CALL NAMESPACE_ID ( arguments )? ) )
+comment|// src/java/org/apache/lucene/expressions/js/Javascript.g:311:5: ( primary | VARIABLE arguments -> ^( AT_CALL VARIABLE ( arguments )? ) )
 name|int
 name|alt14
 init|=
@@ -6634,7 +6689,7 @@ condition|(
 operator|(
 name|LA14_0
 operator|==
-name|NAMESPACE_ID
+name|VARIABLE
 operator|)
 condition|)
 block|{
@@ -6879,9 +6934,9 @@ break|break;
 case|case
 literal|2
 case|:
-comment|// src/java/org/apache/lucene/expressions/js/Javascript.g:312:7: NAMESPACE_ID arguments
+comment|// src/java/org/apache/lucene/expressions/js/Javascript.g:312:7: VARIABLE arguments
 block|{
-name|NAMESPACE_ID47
+name|VARIABLE47
 operator|=
 operator|(
 name|Token
@@ -6890,16 +6945,16 @@ name|match
 argument_list|(
 name|input
 argument_list|,
-name|NAMESPACE_ID
+name|VARIABLE
 argument_list|,
-name|FOLLOW_NAMESPACE_ID_in_postfix1168
+name|FOLLOW_VARIABLE_in_postfix1168
 argument_list|)
 expr_stmt|;
-name|stream_NAMESPACE_ID
+name|stream_VARIABLE
 operator|.
 name|add
 argument_list|(
-name|NAMESPACE_ID47
+name|VARIABLE47
 argument_list|)
 expr_stmt|;
 name|pushFollow
@@ -6928,7 +6983,7 @@ argument_list|()
 argument_list|)
 expr_stmt|;
 comment|// AST REWRITE
-comment|// elements: arguments, NAMESPACE_ID
+comment|// elements: VARIABLE, arguments
 comment|// token labels:
 comment|// rule labels: retval
 comment|// token list labels:
@@ -6972,9 +7027,9 @@ operator|.
 name|nil
 argument_list|()
 expr_stmt|;
-comment|// 312:30: -> ^( AT_CALL NAMESPACE_ID ( arguments )? )
+comment|// 312:26: -> ^( AT_CALL VARIABLE ( arguments )? )
 block|{
-comment|// src/java/org/apache/lucene/expressions/js/Javascript.g:312:33: ^( AT_CALL NAMESPACE_ID ( arguments )? )
+comment|// src/java/org/apache/lucene/expressions/js/Javascript.g:312:29: ^( AT_CALL VARIABLE ( arguments )? )
 block|{
 name|CommonTree
 name|root_1
@@ -7017,13 +7072,13 @@ name|addChild
 argument_list|(
 name|root_1
 argument_list|,
-name|stream_NAMESPACE_ID
+name|stream_VARIABLE
 operator|.
 name|nextNode
 argument_list|()
 argument_list|)
 expr_stmt|;
-comment|// src/java/org/apache/lucene/expressions/js/Javascript.g:312:56: ( arguments )?
+comment|// src/java/org/apache/lucene/expressions/js/Javascript.g:312:48: ( arguments )?
 if|if
 condition|(
 name|stream_arguments
@@ -7197,7 +7252,7 @@ block|}
 block|}
 empty_stmt|;
 comment|// $ANTLR start "primary"
-comment|// src/java/org/apache/lucene/expressions/js/Javascript.g:315:1: primary : ( NAMESPACE_ID | numeric | AT_LPAREN ! conditional AT_RPAREN !);
+comment|// src/java/org/apache/lucene/expressions/js/Javascript.g:315:1: primary : ( VARIABLE | numeric | AT_LPAREN ! conditional AT_RPAREN !);
 DECL|method|primary
 specifier|public
 specifier|final
@@ -7237,7 +7292,7 @@ init|=
 literal|null
 decl_stmt|;
 name|Token
-name|NAMESPACE_ID49
+name|VARIABLE49
 init|=
 literal|null
 decl_stmt|;
@@ -7262,7 +7317,7 @@ init|=
 literal|null
 decl_stmt|;
 name|CommonTree
-name|NAMESPACE_ID49_tree
+name|VARIABLE49_tree
 init|=
 literal|null
 decl_stmt|;
@@ -7278,7 +7333,7 @@ literal|null
 decl_stmt|;
 try|try
 block|{
-comment|// src/java/org/apache/lucene/expressions/js/Javascript.g:316:5: ( NAMESPACE_ID | numeric | AT_LPAREN ! conditional AT_RPAREN !)
+comment|// src/java/org/apache/lucene/expressions/js/Javascript.g:316:5: ( VARIABLE | numeric | AT_LPAREN ! conditional AT_RPAREN !)
 name|int
 name|alt15
 init|=
@@ -7295,7 +7350,7 @@ argument_list|)
 condition|)
 block|{
 case|case
-name|NAMESPACE_ID
+name|VARIABLE
 case|:
 block|{
 name|alt15
@@ -7358,7 +7413,7 @@ block|{
 case|case
 literal|1
 case|:
-comment|// src/java/org/apache/lucene/expressions/js/Javascript.g:316:7: NAMESPACE_ID
+comment|// src/java/org/apache/lucene/expressions/js/Javascript.g:316:7: VARIABLE
 block|{
 name|root_0
 operator|=
@@ -7370,7 +7425,7 @@ operator|.
 name|nil
 argument_list|()
 expr_stmt|;
-name|NAMESPACE_ID49
+name|VARIABLE49
 operator|=
 operator|(
 name|Token
@@ -7379,12 +7434,12 @@ name|match
 argument_list|(
 name|input
 argument_list|,
-name|NAMESPACE_ID
+name|VARIABLE
 argument_list|,
-name|FOLLOW_NAMESPACE_ID_in_primary1198
+name|FOLLOW_VARIABLE_in_primary1198
 argument_list|)
 expr_stmt|;
-name|NAMESPACE_ID49_tree
+name|VARIABLE49_tree
 operator|=
 operator|(
 name|CommonTree
@@ -7393,7 +7448,7 @@ name|adaptor
 operator|.
 name|create
 argument_list|(
-name|NAMESPACE_ID49
+name|VARIABLE49
 argument_list|)
 expr_stmt|;
 name|adaptor
@@ -7402,7 +7457,7 @@ name|addChild
 argument_list|(
 name|root_0
 argument_list|,
-name|NAMESPACE_ID49_tree
+name|VARIABLE49_tree
 argument_list|)
 expr_stmt|;
 block|}
@@ -7808,15 +7863,13 @@ name|LA17_0
 operator|==
 name|HEX
 operator|||
-operator|(
 name|LA17_0
-operator|>=
-name|NAMESPACE_ID
-operator|&&
-name|LA17_0
-operator|<=
+operator|==
 name|OCTAL
-operator|)
+operator|||
+name|LA17_0
+operator|==
+name|VARIABLE
 operator|)
 condition|)
 block|{
@@ -8404,7 +8457,7 @@ operator|new
 name|long
 index|[]
 block|{
-literal|0x0000000001000002L
+literal|0x0000000002000002L
 block|}
 argument_list|)
 decl_stmt|;
@@ -8422,7 +8475,7 @@ operator|new
 name|long
 index|[]
 block|{
-literal|0x0000032308002050L
+literal|0x00008886100040A0L
 block|}
 argument_list|)
 decl_stmt|;
@@ -8440,7 +8493,7 @@ operator|new
 name|long
 index|[]
 block|{
-literal|0x0000000000010000L
+literal|0x0000000000020000L
 block|}
 argument_list|)
 decl_stmt|;
@@ -8458,7 +8511,7 @@ operator|new
 name|long
 index|[]
 block|{
-literal|0x0000032308002050L
+literal|0x00008886100040A0L
 block|}
 argument_list|)
 decl_stmt|;
@@ -8494,7 +8547,7 @@ operator|new
 name|long
 index|[]
 block|{
-literal|0x0000000000004002L
+literal|0x0000000000008002L
 block|}
 argument_list|)
 decl_stmt|;
@@ -8512,7 +8565,7 @@ operator|new
 name|long
 index|[]
 block|{
-literal|0x0000032308002050L
+literal|0x00008886100040A0L
 block|}
 argument_list|)
 decl_stmt|;
@@ -8530,7 +8583,7 @@ operator|new
 name|long
 index|[]
 block|{
-literal|0x0000000000004002L
+literal|0x0000000000008002L
 block|}
 argument_list|)
 decl_stmt|;
@@ -8548,7 +8601,7 @@ operator|new
 name|long
 index|[]
 block|{
-literal|0x0000000000001002L
+literal|0x0000000000002002L
 block|}
 argument_list|)
 decl_stmt|;
@@ -8566,7 +8619,7 @@ operator|new
 name|long
 index|[]
 block|{
-literal|0x0000032308002050L
+literal|0x00008886100040A0L
 block|}
 argument_list|)
 decl_stmt|;
@@ -8584,7 +8637,7 @@ operator|new
 name|long
 index|[]
 block|{
-literal|0x0000000000001002L
+literal|0x0000000000002002L
 block|}
 argument_list|)
 decl_stmt|;
@@ -8602,7 +8655,7 @@ operator|new
 name|long
 index|[]
 block|{
-literal|0x0000000000000082L
+literal|0x0000000000000102L
 block|}
 argument_list|)
 decl_stmt|;
@@ -8620,7 +8673,7 @@ operator|new
 name|long
 index|[]
 block|{
-literal|0x0000032308002050L
+literal|0x00008886100040A0L
 block|}
 argument_list|)
 decl_stmt|;
@@ -8638,7 +8691,7 @@ operator|new
 name|long
 index|[]
 block|{
-literal|0x0000000000000082L
+literal|0x0000000000000102L
 block|}
 argument_list|)
 decl_stmt|;
@@ -8656,7 +8709,7 @@ operator|new
 name|long
 index|[]
 block|{
-literal|0x0000000000000802L
+literal|0x0000000000001002L
 block|}
 argument_list|)
 decl_stmt|;
@@ -8674,7 +8727,7 @@ operator|new
 name|long
 index|[]
 block|{
-literal|0x0000032308002050L
+literal|0x00008886100040A0L
 block|}
 argument_list|)
 decl_stmt|;
@@ -8692,7 +8745,7 @@ operator|new
 name|long
 index|[]
 block|{
-literal|0x0000000000000802L
+literal|0x0000000000001002L
 block|}
 argument_list|)
 decl_stmt|;
@@ -8710,7 +8763,7 @@ operator|new
 name|long
 index|[]
 block|{
-literal|0x0000000000000022L
+literal|0x0000000000000042L
 block|}
 argument_list|)
 decl_stmt|;
@@ -8728,7 +8781,7 @@ operator|new
 name|long
 index|[]
 block|{
-literal|0x0000032308002050L
+literal|0x00008886100040A0L
 block|}
 argument_list|)
 decl_stmt|;
@@ -8746,7 +8799,7 @@ operator|new
 name|long
 index|[]
 block|{
-literal|0x0000000000000022L
+literal|0x0000000000000042L
 block|}
 argument_list|)
 decl_stmt|;
@@ -8764,7 +8817,7 @@ operator|new
 name|long
 index|[]
 block|{
-literal|0x0000000000840002L
+literal|0x0000000001080002L
 block|}
 argument_list|)
 decl_stmt|;
@@ -8782,7 +8835,7 @@ operator|new
 name|long
 index|[]
 block|{
-literal|0x0000032308002050L
+literal|0x00008886100040A0L
 block|}
 argument_list|)
 decl_stmt|;
@@ -8800,7 +8853,7 @@ operator|new
 name|long
 index|[]
 block|{
-literal|0x0000000000840002L
+literal|0x0000000001080002L
 block|}
 argument_list|)
 decl_stmt|;
@@ -8818,7 +8871,7 @@ operator|new
 name|long
 index|[]
 block|{
-literal|0x0000000000780002L
+literal|0x0000000000F00002L
 block|}
 argument_list|)
 decl_stmt|;
@@ -8836,7 +8889,7 @@ operator|new
 name|long
 index|[]
 block|{
-literal|0x0000032308002050L
+literal|0x00008886100040A0L
 block|}
 argument_list|)
 decl_stmt|;
@@ -8854,7 +8907,7 @@ operator|new
 name|long
 index|[]
 block|{
-literal|0x0000000000780002L
+literal|0x0000000000F00002L
 block|}
 argument_list|)
 decl_stmt|;
@@ -8872,7 +8925,7 @@ operator|new
 name|long
 index|[]
 block|{
-literal|0x0000000000000702L
+literal|0x0000000000000E02L
 block|}
 argument_list|)
 decl_stmt|;
@@ -8890,7 +8943,7 @@ operator|new
 name|long
 index|[]
 block|{
-literal|0x0000032308002050L
+literal|0x00008886100040A0L
 block|}
 argument_list|)
 decl_stmt|;
@@ -8908,7 +8961,7 @@ operator|new
 name|long
 index|[]
 block|{
-literal|0x0000000000000702L
+literal|0x0000000000000E02L
 block|}
 argument_list|)
 decl_stmt|;
@@ -8926,7 +8979,7 @@ operator|new
 name|long
 index|[]
 block|{
-literal|0x0000000100000012L
+literal|0x0000000200000022L
 block|}
 argument_list|)
 decl_stmt|;
@@ -8944,7 +8997,7 @@ operator|new
 name|long
 index|[]
 block|{
-literal|0x0000032308002050L
+literal|0x00008886100040A0L
 block|}
 argument_list|)
 decl_stmt|;
@@ -8962,7 +9015,7 @@ operator|new
 name|long
 index|[]
 block|{
-literal|0x0000000100000012L
+literal|0x0000000200000022L
 block|}
 argument_list|)
 decl_stmt|;
@@ -8980,7 +9033,7 @@ operator|new
 name|long
 index|[]
 block|{
-literal|0x0000000032000002L
+literal|0x0000000064000002L
 block|}
 argument_list|)
 decl_stmt|;
@@ -8998,7 +9051,7 @@ operator|new
 name|long
 index|[]
 block|{
-literal|0x0000032308002050L
+literal|0x00008886100040A0L
 block|}
 argument_list|)
 decl_stmt|;
@@ -9016,7 +9069,7 @@ operator|new
 name|long
 index|[]
 block|{
-literal|0x0000000032000002L
+literal|0x0000000064000002L
 block|}
 argument_list|)
 decl_stmt|;
@@ -9052,7 +9105,7 @@ operator|new
 name|long
 index|[]
 block|{
-literal|0x0000032308002050L
+literal|0x00008886100040A0L
 block|}
 argument_list|)
 decl_stmt|;
@@ -9088,7 +9141,7 @@ operator|new
 name|long
 index|[]
 block|{
-literal|0x0000032308002050L
+literal|0x00008886100040A0L
 block|}
 argument_list|)
 decl_stmt|;
@@ -9182,12 +9235,12 @@ literal|0x0000000000000002L
 block|}
 argument_list|)
 decl_stmt|;
-DECL|field|FOLLOW_NAMESPACE_ID_in_postfix1168
+DECL|field|FOLLOW_VARIABLE_in_postfix1168
 specifier|public
 specifier|static
 specifier|final
 name|BitSet
-name|FOLLOW_NAMESPACE_ID_in_postfix1168
+name|FOLLOW_VARIABLE_in_postfix1168
 init|=
 operator|new
 name|BitSet
@@ -9196,7 +9249,7 @@ operator|new
 name|long
 index|[]
 block|{
-literal|0x0000000008000000L
+literal|0x0000000010000000L
 block|}
 argument_list|)
 decl_stmt|;
@@ -9218,12 +9271,12 @@ literal|0x0000000000000002L
 block|}
 argument_list|)
 decl_stmt|;
-DECL|field|FOLLOW_NAMESPACE_ID_in_primary1198
+DECL|field|FOLLOW_VARIABLE_in_primary1198
 specifier|public
 specifier|static
 specifier|final
 name|BitSet
-name|FOLLOW_NAMESPACE_ID_in_primary1198
+name|FOLLOW_VARIABLE_in_primary1198
 init|=
 operator|new
 name|BitSet
@@ -9268,7 +9321,7 @@ operator|new
 name|long
 index|[]
 block|{
-literal|0x0000032308002050L
+literal|0x00008886100040A0L
 block|}
 argument_list|)
 decl_stmt|;
@@ -9286,7 +9339,7 @@ operator|new
 name|long
 index|[]
 block|{
-literal|0x0000000080000000L
+literal|0x0000000100000000L
 block|}
 argument_list|)
 decl_stmt|;
@@ -9322,7 +9375,7 @@ operator|new
 name|long
 index|[]
 block|{
-literal|0x0000032388002050L
+literal|0x00008887100040A0L
 block|}
 argument_list|)
 decl_stmt|;
@@ -9340,7 +9393,7 @@ operator|new
 name|long
 index|[]
 block|{
-literal|0x0000000080020000L
+literal|0x0000000100040000L
 block|}
 argument_list|)
 decl_stmt|;
@@ -9358,7 +9411,7 @@ operator|new
 name|long
 index|[]
 block|{
-literal|0x0000032308002050L
+literal|0x00008886100040A0L
 block|}
 argument_list|)
 decl_stmt|;
@@ -9376,7 +9429,7 @@ operator|new
 name|long
 index|[]
 block|{
-literal|0x0000000080020000L
+literal|0x0000000100040000L
 block|}
 argument_list|)
 decl_stmt|;
