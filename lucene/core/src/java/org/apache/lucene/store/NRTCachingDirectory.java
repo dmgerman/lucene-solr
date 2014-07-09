@@ -128,7 +128,7 @@ specifier|public
 class|class
 name|NRTCachingDirectory
 extends|extends
-name|Directory
+name|FilterDirectory
 block|{
 DECL|field|cache
 specifier|private
@@ -139,12 +139,6 @@ init|=
 operator|new
 name|RAMDirectory
 argument_list|()
-decl_stmt|;
-DECL|field|delegate
-specifier|private
-specifier|final
-name|Directory
-name|delegate
 decl_stmt|;
 DECL|field|maxMergeSizeBytes
 specifier|private
@@ -182,11 +176,10 @@ name|double
 name|maxCachedMB
 parameter_list|)
 block|{
-name|this
-operator|.
+name|super
+argument_list|(
 name|delegate
-operator|=
-name|delegate
+argument_list|)
 expr_stmt|;
 name|maxMergeSizeBytes
 operator|=
@@ -215,16 +208,6 @@ literal|1024
 argument_list|)
 expr_stmt|;
 block|}
-DECL|method|getDelegate
-specifier|public
-name|Directory
-name|getDelegate
-parameter_list|()
-block|{
-return|return
-name|delegate
-return|;
-block|}
 annotation|@
 name|Override
 DECL|method|getLockFactory
@@ -234,7 +217,7 @@ name|getLockFactory
 parameter_list|()
 block|{
 return|return
-name|delegate
+name|in
 operator|.
 name|getLockFactory
 argument_list|()
@@ -253,7 +236,7 @@ parameter_list|)
 throws|throws
 name|IOException
 block|{
-name|delegate
+name|in
 operator|.
 name|setLockFactory
 argument_list|(
@@ -270,7 +253,7 @@ name|getLockID
 parameter_list|()
 block|{
 return|return
-name|delegate
+name|in
 operator|.
 name|getLockID
 argument_list|()
@@ -288,7 +271,7 @@ name|name
 parameter_list|)
 block|{
 return|return
-name|delegate
+name|in
 operator|.
 name|makeLock
 argument_list|(
@@ -309,7 +292,7 @@ parameter_list|)
 throws|throws
 name|IOException
 block|{
-name|delegate
+name|in
 operator|.
 name|clearLock
 argument_list|(
@@ -328,7 +311,7 @@ block|{
 return|return
 literal|"NRTCachingDirectory("
 operator|+
-name|delegate
+name|in
 operator|+
 literal|"; maxCacheMB="
 operator|+
@@ -407,7 +390,7 @@ control|(
 name|String
 name|f
 range|:
-name|delegate
+name|in
 operator|.
 name|listAll
 argument_list|()
@@ -527,7 +510,7 @@ expr_stmt|;
 block|}
 else|else
 block|{
-name|delegate
+name|in
 operator|.
 name|deleteFile
 argument_list|(
@@ -572,7 +555,7 @@ block|}
 else|else
 block|{
 return|return
-name|delegate
+name|in
 operator|.
 name|fileLength
 argument_list|(
@@ -655,7 +638,7 @@ expr_stmt|;
 block|}
 try|try
 block|{
-name|delegate
+name|in
 operator|.
 name|deleteFile
 argument_list|(
@@ -703,7 +686,7 @@ block|{
 comment|// This is fine: file may not exist
 block|}
 return|return
-name|delegate
+name|in
 operator|.
 name|createOutput
 argument_list|(
@@ -761,7 +744,7 @@ name|fileName
 argument_list|)
 expr_stmt|;
 block|}
-name|delegate
+name|in
 operator|.
 name|sync
 argument_list|(
@@ -842,7 +825,7 @@ block|}
 else|else
 block|{
 return|return
-name|delegate
+name|in
 operator|.
 name|openInput
 argument_list|(
@@ -891,7 +874,7 @@ operator|.
 name|close
 argument_list|()
 expr_stmt|;
-name|delegate
+name|in
 operator|.
 name|close
 argument_list|()
@@ -1053,7 +1036,7 @@ specifier|final
 name|IndexOutput
 name|out
 init|=
-name|delegate
+name|in
 operator|.
 name|createOutput
 argument_list|(
