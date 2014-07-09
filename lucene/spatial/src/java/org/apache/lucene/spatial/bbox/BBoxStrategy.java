@@ -463,32 +463,6 @@ name|SUFFIX_XDL
 init|=
 literal|"__xdl"
 decl_stmt|;
-DECL|field|T_BYTES
-specifier|private
-specifier|static
-name|BytesRef
-name|T_BYTES
-init|=
-operator|new
-name|BytesRef
-argument_list|(
-literal|"T"
-argument_list|)
-decl_stmt|;
-comment|//same as Solr BoolField
-DECL|field|F_BYTES
-specifier|private
-specifier|static
-name|BytesRef
-name|F_BYTES
-init|=
-operator|new
-name|BytesRef
-argument_list|(
-literal|"F"
-argument_list|)
-decl_stmt|;
-comment|//same as Solr BoolField
 comment|/*    * The Bounding Box gets stored as four fields for x/y min/max and a flag    * that says if the box crosses the dateline (xdl).    */
 DECL|field|field_bbox
 specifier|protected
