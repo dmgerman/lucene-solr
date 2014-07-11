@@ -1203,6 +1203,8 @@ init|;
 name|i
 operator|<
 name|length
+operator|-
+literal|1
 condition|;
 name|i
 operator|++
@@ -1736,7 +1738,7 @@ init|=
 name|length
 init|;
 name|i
-operator|>=
+operator|>
 literal|0
 condition|;
 name|i
