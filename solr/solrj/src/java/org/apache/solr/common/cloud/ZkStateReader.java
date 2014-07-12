@@ -2986,9 +2986,6 @@ name|shardId
 parameter_list|,
 name|String
 name|thisCoreNodeName
-parameter_list|,
-name|String
-name|coreName
 parameter_list|)
 block|{
 return|return
@@ -2999,10 +2996,6 @@ argument_list|,
 name|shardId
 argument_list|,
 name|thisCoreNodeName
-argument_list|,
-name|coreName
-argument_list|,
-literal|null
 argument_list|)
 return|;
 block|}
@@ -3024,9 +3017,6 @@ name|String
 name|thisCoreNodeName
 parameter_list|,
 name|String
-name|coreName
-parameter_list|,
-name|String
 name|mustMatchStateFilter
 parameter_list|)
 block|{
@@ -3038,8 +3028,6 @@ argument_list|,
 name|shardId
 argument_list|,
 name|thisCoreNodeName
-argument_list|,
-name|coreName
 argument_list|,
 name|mustMatchStateFilter
 argument_list|,
@@ -3063,9 +3051,6 @@ name|shardId
 parameter_list|,
 name|String
 name|thisCoreNodeName
-parameter_list|,
-name|String
-name|coreName
 parameter_list|,
 name|String
 name|mustMatchStateFilter
