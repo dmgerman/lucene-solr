@@ -148,6 +148,22 @@ name|common
 operator|.
 name|cloud
 operator|.
+name|Replica
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|solr
+operator|.
+name|common
+operator|.
+name|cloud
+operator|.
 name|ZkCoreNodeProps
 import|;
 end_import
@@ -508,6 +524,22 @@ name|getCoreName
 argument_list|()
 decl_stmt|;
 name|String
+name|replicaCoreNodeName
+init|=
+operator|(
+operator|(
+name|Replica
+operator|)
+name|nodeProps
+operator|.
+name|getNodeProps
+argument_list|()
+operator|)
+operator|.
+name|getName
+argument_list|()
+decl_stmt|;
+name|String
 name|replicaUrl
 init|=
 name|nodeProps
@@ -585,11 +617,7 @@ name|log
 operator|.
 name|warn
 argument_list|(
-literal|"Asking core "
-operator|+
-name|coreNeedingRecovery
-operator|+
-literal|" on  "
+literal|"Asking core={} coreNodeName={} on "
 operator|+
 name|recoveryUrl
 operator|+
@@ -602,6 +630,10 @@ operator|+
 name|maxTries
 operator|+
 literal|" attempts so far ..."
+argument_list|,
+name|coreNeedingRecovery
+argument_list|,
+name|replicaCoreNodeName
 argument_list|)
 expr_stmt|;
 block|}
@@ -611,15 +643,15 @@ name|log
 operator|.
 name|info
 argument_list|(
-literal|"Asking core "
-operator|+
-name|coreNeedingRecovery
-operator|+
-literal|" on  "
+literal|"Asking core={} coreNodeName={} on "
 operator|+
 name|recoveryUrl
 operator|+
 literal|" to recover"
+argument_list|,
+name|coreNeedingRecovery
+argument_list|,
+name|replicaCoreNodeName
 argument_list|)
 expr_stmt|;
 block|}
@@ -667,13 +699,13 @@ name|CoreAdminAction
 operator|.
 name|REQUESTRECOVERY
 operator|+
-literal|" command to core "
-operator|+
-name|coreNeedingRecovery
-operator|+
-literal|" on "
+literal|" command to core={} coreNodeName={} on "
 operator|+
 name|recoveryUrl
+argument_list|,
+name|coreNeedingRecovery
+argument_list|,
+name|replicaCoreNodeName
 argument_list|)
 expr_stmt|;
 name|continueTrying
@@ -796,15 +828,15 @@ name|log
 operator|.
 name|warn
 argument_list|(
-literal|"Stop trying to send recovery command to downed replica "
-operator|+
-name|coreNeedingRecovery
-operator|+
-literal|" on "
+literal|"Stop trying to send recovery command to downed replica core={} coreNodeName={} on "
 operator|+
 name|replicaNodeName
 operator|+
 literal|" because my core container is shutdown."
+argument_list|,
+name|coreNeedingRecovery
+argument_list|,
+name|replicaCoreNodeName
 argument_list|)
 expr_stmt|;
 name|continueTrying
@@ -912,7 +944,7 @@ name|collection
 argument_list|,
 name|shardId
 argument_list|,
-name|coreNeedingRecovery
+name|replicaCoreNodeName
 argument_list|)
 decl_stmt|;
 if|if
@@ -926,9 +958,13 @@ name|log
 operator|.
 name|warn
 argument_list|(
-literal|"Stop trying to send recovery command to downed replica "
+literal|"Stop trying to send recovery command to downed replica core="
 operator|+
 name|coreNeedingRecovery
+operator|+
+literal|",coreNodeName="
+operator|+
+name|replicaCoreNodeName
 operator|+
 literal|" on "
 operator|+
@@ -1080,11 +1116,7 @@ name|log
 operator|.
 name|warn
 argument_list|(
-literal|"Replica "
-operator|+
-name|coreNeedingRecovery
-operator|+
-literal|" set to active but the leader thinks it should be in recovery;"
+literal|"Replica core={} coreNodeName={} set to active but the leader thinks it should be in recovery;"
 operator|+
 literal|" forcing it back to down state to re-run the leader-initiated recovery process; props: "
 operator|+
@@ -1094,6 +1126,10 @@ name|get
 argument_list|(
 literal|0
 argument_list|)
+argument_list|,
+name|coreNeedingRecovery
+argument_list|,
+name|replicaCoreNodeName
 argument_list|)
 expr_stmt|;
 name|zkController
@@ -1127,13 +1163,13 @@ name|log
 operator|.
 name|warn
 argument_list|(
-literal|"Failed to determine state of "
-operator|+
-name|coreNeedingRecovery
-operator|+
-literal|" due to: "
+literal|"Failed to determine state of core={} coreNodeName={} due to: "
 operator|+
 name|ignoreMe
+argument_list|,
+name|coreNeedingRecovery
+argument_list|,
+name|replicaCoreNodeName
 argument_list|)
 expr_stmt|;
 comment|// eventually this loop will exhaust max tries and stop so we can just log this for now

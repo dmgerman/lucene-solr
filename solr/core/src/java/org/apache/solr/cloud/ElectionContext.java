@@ -1846,6 +1846,14 @@ operator|.
 name|getShardId
 argument_list|()
 decl_stmt|;
+name|String
+name|coreNodeName
+init|=
+name|cloudDesc
+operator|.
+name|getCoreNodeName
+argument_list|()
+decl_stmt|;
 if|if
 condition|(
 name|coll
@@ -1864,6 +1872,10 @@ argument_list|(
 literal|"Cannot start leader-initiated recovery on new leader (core="
 operator|+
 name|coreName
+operator|+
+literal|",coreNodeName="
+operator|+
+name|coreNodeName
 operator|+
 literal|") because collection and/or shard is null!"
 argument_list|)
@@ -1931,18 +1943,18 @@ block|{
 for|for
 control|(
 name|String
-name|replicaCore
+name|replicaCoreNodeName
 range|:
 name|replicas
 control|)
 block|{
 if|if
 condition|(
-name|coreName
+name|coreNodeName
 operator|.
 name|equals
 argument_list|(
-name|replicaCore
+name|replicaCoreNodeName
 argument_list|)
 condition|)
 continue|continue;
@@ -1958,7 +1970,7 @@ name|coll
 argument_list|,
 name|shardId
 argument_list|,
-name|replicaCore
+name|replicaCoreNodeName
 argument_list|)
 decl_stmt|;
 if|if
@@ -1986,19 +1998,15 @@ name|log
 operator|.
 name|info
 argument_list|(
-literal|"After "
-operator|+
-name|coreName
-operator|+
-literal|" was elected leader, found "
-operator|+
-name|replicaCore
-operator|+
-literal|" as "
+literal|"After core={} coreNodeName={} was elected leader, it was found in state: "
 operator|+
 name|lirState
 operator|+
 literal|" and needing recovery."
+argument_list|,
+name|coreName
+argument_list|,
+name|coreNodeName
 argument_list|)
 expr_stmt|;
 name|List
@@ -2018,11 +2026,7 @@ name|collection
 argument_list|,
 name|shardId
 argument_list|,
-name|coreName
-argument_list|,
-name|replicaCore
-argument_list|,
-literal|null
+name|coreNodeName
 argument_list|,
 literal|null
 argument_list|)
@@ -2063,7 +2067,7 @@ argument_list|()
 operator|.
 name|equals
 argument_list|(
-name|replicaCore
+name|replicaCoreNodeName
 argument_list|)
 condition|)
 block|{
@@ -2101,7 +2105,10 @@ name|collection
 argument_list|,
 name|shardId
 argument_list|,
-name|replicaCore
+name|coreNodeProps
+operator|.
+name|getCoreUrl
+argument_list|()
 argument_list|,
 name|coreNodeProps
 argument_list|,
@@ -2500,14 +2507,23 @@ name|log
 operator|.
 name|info
 argument_list|(
-literal|"Checking if I ("
-operator|+
+literal|"Checking if I (core={},coreNodeName={}) should try and be the leader."
+argument_list|,
 name|core
 operator|.
 name|getName
 argument_list|()
-operator|+
-literal|") should try and be the leader."
+argument_list|,
+name|core
+operator|.
+name|getCoreDescriptor
+argument_list|()
+operator|.
+name|getCloudDescriptor
+argument_list|()
+operator|.
+name|getCoreNodeName
+argument_list|()
 argument_list|)
 expr_stmt|;
 if|if
@@ -2574,7 +2590,13 @@ name|shardId
 argument_list|,
 name|core
 operator|.
-name|getName
+name|getCoreDescriptor
+argument_list|()
+operator|.
+name|getCloudDescriptor
+argument_list|()
+operator|.
+name|getCoreNodeName
 argument_list|()
 argument_list|)
 decl_stmt|;
