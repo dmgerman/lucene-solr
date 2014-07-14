@@ -957,13 +957,11 @@ name|log
 operator|.
 name|warn
 argument_list|(
-literal|"Stopping recovery for zkNodeName="
-operator|+
-name|coreZkNodeName
-operator|+
-literal|"core="
-operator|+
+literal|"Stopping recovery for core={} coreNodeName={}"
+argument_list|,
 name|coreName
+argument_list|,
+name|coreZkNodeName
 argument_list|)
 expr_stmt|;
 block|}
