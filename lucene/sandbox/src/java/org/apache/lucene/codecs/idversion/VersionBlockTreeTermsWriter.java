@@ -504,6 +504,7 @@ end_comment
 
 begin_class
 DECL|class|VersionBlockTreeTermsWriter
+specifier|public
 specifier|final
 class|class
 name|VersionBlockTreeTermsWriter
