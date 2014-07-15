@@ -709,6 +709,15 @@ name|OCONV_KEY
 init|=
 literal|"OCONV"
 decl_stmt|;
+DECL|field|FULLSTRIP_KEY
+specifier|private
+specifier|static
+specifier|final
+name|String
+name|FULLSTRIP_KEY
+init|=
+literal|"FULLSTRIP"
+decl_stmt|;
 DECL|field|NUM_FLAG_TYPE
 specifier|private
 specifier|static
@@ -958,6 +967,11 @@ decl_stmt|;
 DECL|field|needsOutputCleaning
 name|boolean
 name|needsOutputCleaning
+decl_stmt|;
+comment|// true if we can strip suffixes "down to nothing"
+DECL|field|fullStrip
+name|boolean
+name|fullStrip
 decl_stmt|;
 comment|/**    * Creates a new Dictionary containing the information read from the provided InputStreams to hunspell affix    * and dictionary files.    * You have to close the provided InputStreams yourself.    *    * @param affix InputStream for reading the hunspell affix file (won't be closed).    * @param dictionary InputStream for reading the hunspell dictionary file (won't be closed).    * @throws IOException Can be thrown while reading from the InputStreams    * @throws ParseException Can be thrown if the content of the files does not meet expected formats    */
 DECL|method|Dictionary
@@ -2126,6 +2140,22 @@ operator|!=
 literal|null
 expr_stmt|;
 block|}
+block|}
+elseif|else
+if|if
+condition|(
+name|line
+operator|.
+name|startsWith
+argument_list|(
+name|FULLSTRIP_KEY
+argument_list|)
+condition|)
+block|{
+name|fullStrip
+operator|=
+literal|true
+expr_stmt|;
 block|}
 block|}
 name|this
