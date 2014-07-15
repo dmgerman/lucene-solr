@@ -2496,21 +2496,6 @@ parameter_list|)
 throws|throws
 name|SolrServerException
 block|{
-comment|// XXX client already has this set, is this needed?
-name|method
-operator|.
-name|getParams
-argument_list|()
-operator|.
-name|setParameter
-argument_list|(
-name|ClientPNames
-operator|.
-name|HANDLE_REDIRECTS
-argument_list|,
-name|followRedirects
-argument_list|)
-expr_stmt|;
 name|method
 operator|.
 name|addHeader
