@@ -931,7 +931,7 @@ name|queue
 operator|.
 name|poll
 argument_list|(
-literal|250
+name|pollQueueTime
 argument_list|,
 name|TimeUnit
 operator|.
@@ -1421,14 +1421,7 @@ name|msg
 operator|.
 name|append
 argument_list|(
-literal|"\n\n"
-argument_list|)
-expr_stmt|;
-name|msg
-operator|.
-name|append
-argument_list|(
-literal|"\n\n"
+literal|"\n\n\n\n"
 argument_list|)
 expr_stmt|;
 name|msg
@@ -1584,6 +1577,18 @@ name|remove
 argument_list|(
 name|this
 argument_list|)
+expr_stmt|;
+if|if
+condition|(
+name|runners
+operator|.
+name|isEmpty
+argument_list|()
+condition|)
+name|runners
+operator|.
+name|notifyAll
+argument_list|()
 expr_stmt|;
 block|}
 block|}
@@ -1861,6 +1866,9 @@ init|(
 name|runners
 init|)
 block|{
+comment|// see if queue is half full and we can add more runners
+comment|// special case: if only using a threadCount of 1 and the queue
+comment|// is filling up, allow 1 add'l runner to help process the queue
 if|if
 condition|(
 name|runners
@@ -1878,16 +1886,6 @@ name|queue
 operator|.
 name|size
 argument_list|()
-comment|// queue
-comment|// is
-comment|// half
-comment|// full
-comment|// and
-comment|// we
-comment|// can
-comment|// add
-comment|// more
-comment|// runners
 operator|&&
 name|runners
 operator|.
@@ -2037,84 +2035,76 @@ argument_list|)
 expr_stmt|;
 try|try
 block|{
-comment|// Wait until no runners are running
-for|for
-control|(
-init|;
-condition|;
-control|)
-block|{
-name|Runner
-name|runner
-decl_stmt|;
 synchronized|synchronized
 init|(
 name|runners
 init|)
 block|{
-name|runner
-operator|=
+while|while
+condition|(
+operator|!
 name|runners
 operator|.
-name|peek
+name|isEmpty
+argument_list|()
+condition|)
+block|{
+try|try
+block|{
+name|runners
+operator|.
+name|wait
+argument_list|()
+expr_stmt|;
+block|}
+catch|catch
+parameter_list|(
+name|InterruptedException
+name|e
+parameter_list|)
+block|{
+name|Thread
+operator|.
+name|interrupted
 argument_list|()
 expr_stmt|;
 block|}
 if|if
 condition|(
-operator|(
-name|runner
-operator|==
-literal|null
-operator|&&
-name|queue
-operator|.
-name|isEmpty
-argument_list|()
-operator|)
-operator|||
 name|scheduler
 operator|.
 name|isTerminated
 argument_list|()
 condition|)
 break|break;
-if|if
-condition|(
-name|runner
-operator|!=
-literal|null
-condition|)
-block|{
-name|runner
-operator|.
-name|runnerLock
-operator|.
-name|lock
-argument_list|()
-expr_stmt|;
-name|runner
-operator|.
-name|runnerLock
-operator|.
-name|unlock
-argument_list|()
-expr_stmt|;
-block|}
-elseif|else
-if|if
-condition|(
-operator|!
+comment|// if we reach here, then we probably got the notifyAll, but need to check if
+comment|// the queue is empty before really considering this is finished (SOLR-4260)
+name|int
+name|queueSize
+init|=
 name|queue
 operator|.
-name|isEmpty
+name|size
 argument_list|()
+decl_stmt|;
+if|if
+condition|(
+name|queueSize
+operator|>
+literal|0
 condition|)
 block|{
-comment|// failsafe - should not be necessary, but a good
-comment|// precaution to ensure blockUntilFinished guarantees
-comment|// all updates are emptied from the queue regardless of
-comment|// any bugs around starting or retaining runners
+name|log
+operator|.
+name|warn
+argument_list|(
+literal|"No more runners, but queue still has "
+operator|+
+name|queueSize
+operator|+
+literal|" adding more runners to process remaining requests on queue"
+argument_list|)
+expr_stmt|;
 name|Runner
 name|r
 init|=
@@ -2136,6 +2126,7 @@ argument_list|(
 name|r
 argument_list|)
 expr_stmt|;
+block|}
 block|}
 block|}
 block|}
