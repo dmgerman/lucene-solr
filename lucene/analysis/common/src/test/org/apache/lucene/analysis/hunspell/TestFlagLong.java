@@ -80,6 +80,11 @@ argument_list|(
 literal|"fooss"
 argument_list|)
 expr_stmt|;
+name|assertStemsTo
+argument_list|(
+literal|"foobogus"
+argument_list|)
+expr_stmt|;
 block|}
 block|}
 end_class
