@@ -346,15 +346,10 @@ argument_list|)
 expr_stmt|;
 name|cores
 operator|.
-name|remove
+name|unload
 argument_list|(
 literal|""
 argument_list|)
-expr_stmt|;
-name|core
-operator|.
-name|close
-argument_list|()
 expr_stmt|;
 name|core
 operator|.

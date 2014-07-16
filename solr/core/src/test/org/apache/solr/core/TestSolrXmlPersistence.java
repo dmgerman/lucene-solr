@@ -2512,17 +2512,11 @@ argument_list|,
 literal|"/solr/cores/core[@name='X' and not(@solr.core.instanceDir) and not (@solr.core.configName)]"
 argument_list|)
 expr_stmt|;
-comment|// delete a core, check persistence again
-name|assertNotNull
-argument_list|(
-literal|"removing X returned null"
-argument_list|,
 name|cores
 operator|.
-name|remove
+name|unload
 argument_list|(
 literal|"X"
-argument_list|)
 argument_list|)
 expr_stmt|;
 name|TestHarness
@@ -2555,40 +2549,6 @@ expr_stmt|;
 block|}
 finally|finally
 block|{
-comment|// y is closed by the container, but
-comment|// x has been removed from the container
-if|if
-condition|(
-name|x
-operator|!=
-literal|null
-condition|)
-block|{
-try|try
-block|{
-name|x
-operator|.
-name|close
-argument_list|()
-expr_stmt|;
-block|}
-catch|catch
-parameter_list|(
-name|Exception
-name|e
-parameter_list|)
-block|{
-name|log
-operator|.
-name|error
-argument_list|(
-literal|""
-argument_list|,
-name|e
-argument_list|)
-expr_stmt|;
-block|}
-block|}
 name|cores
 operator|.
 name|shutdown

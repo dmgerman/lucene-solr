@@ -217,7 +217,9 @@ name|Map
 argument_list|<
 name|String
 argument_list|,
-name|Exception
+name|CoreContainer
+operator|.
+name|CoreLoadFailure
 argument_list|>
 name|failures
 init|=
@@ -482,6 +484,8 @@ name|get
 argument_list|(
 literal|"bogus"
 argument_list|)
+operator|.
+name|exception
 expr_stmt|;
 name|assertNotNull
 argument_list|(
@@ -613,7 +617,9 @@ name|Map
 argument_list|<
 name|String
 argument_list|,
-name|Exception
+name|CoreContainer
+operator|.
+name|CoreLoadFailure
 argument_list|>
 name|failures
 init|=
@@ -858,6 +864,8 @@ name|get
 argument_list|(
 literal|"col_bad"
 argument_list|)
+operator|.
+name|exception
 expr_stmt|;
 name|assertNotNull
 argument_list|(
@@ -1258,6 +1266,8 @@ name|get
 argument_list|(
 literal|"bogus"
 argument_list|)
+operator|.
+name|exception
 expr_stmt|;
 name|assertNotNull
 argument_list|(
@@ -1591,6 +1601,8 @@ name|get
 argument_list|(
 literal|"col_bad"
 argument_list|)
+operator|.
+name|exception
 argument_list|)
 decl_stmt|;
 name|assertNotNull
