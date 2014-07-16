@@ -1289,8 +1289,14 @@ name|this
 operator|.
 name|input
 operator|.
-name|clone
-argument_list|()
+name|slice
+argument_list|(
+name|sliceDescription
+argument_list|,
+name|offset
+argument_list|,
+name|length
+argument_list|)
 argument_list|)
 return|;
 block|}
