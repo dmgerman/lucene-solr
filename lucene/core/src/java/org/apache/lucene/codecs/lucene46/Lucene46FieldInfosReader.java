@@ -384,6 +384,33 @@ operator|.
 name|readVInt
 argument_list|()
 decl_stmt|;
+if|if
+condition|(
+name|fieldNumber
+operator|<
+literal|0
+condition|)
+block|{
+throw|throw
+operator|new
+name|CorruptIndexException
+argument_list|(
+literal|"invalid field number for field: "
+operator|+
+name|name
+operator|+
+literal|", fieldNumber="
+operator|+
+name|fieldNumber
+operator|+
+literal|" (resource="
+operator|+
+name|input
+operator|+
+literal|")"
+argument_list|)
+throw|;
+block|}
 name|byte
 name|bits
 init|=

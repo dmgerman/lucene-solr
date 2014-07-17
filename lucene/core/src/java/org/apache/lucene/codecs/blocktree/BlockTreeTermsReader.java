@@ -582,11 +582,29 @@ operator|.
 name|readVLong
 argument_list|()
 decl_stmt|;
-assert|assert
+if|if
+condition|(
 name|numTerms
-operator|>=
+operator|<=
 literal|0
-assert|;
+condition|)
+block|{
+throw|throw
+operator|new
+name|CorruptIndexException
+argument_list|(
+literal|"Illegal numTerms for field number: "
+operator|+
+name|field
+operator|+
+literal|" (resource="
+operator|+
+name|in
+operator|+
+literal|")"
+argument_list|)
+throw|;
+block|}
 specifier|final
 name|int
 name|numBytes
@@ -596,6 +614,33 @@ operator|.
 name|readVInt
 argument_list|()
 decl_stmt|;
+if|if
+condition|(
+name|numBytes
+operator|<
+literal|0
+condition|)
+block|{
+throw|throw
+operator|new
+name|CorruptIndexException
+argument_list|(
+literal|"invalid rootCode for field number: "
+operator|+
+name|field
+operator|+
+literal|", numBytes="
+operator|+
+name|numBytes
+operator|+
+literal|" (resource="
+operator|+
+name|in
+operator|+
+literal|")"
+argument_list|)
+throw|;
+block|}
 specifier|final
 name|BytesRef
 name|rootCode
@@ -640,15 +685,29 @@ argument_list|(
 name|field
 argument_list|)
 decl_stmt|;
-assert|assert
+if|if
+condition|(
 name|fieldInfo
-operator|!=
+operator|==
 literal|null
-operator|:
-literal|"field="
+condition|)
+block|{
+throw|throw
+operator|new
+name|CorruptIndexException
+argument_list|(
+literal|"invalid field number: "
 operator|+
 name|field
-assert|;
+operator|+
+literal|", resource="
+operator|+
+name|in
+operator|+
+literal|")"
+argument_list|)
+throw|;
+block|}
 specifier|final
 name|long
 name|sumTotalTermFreq
@@ -705,6 +764,35 @@ argument_list|()
 else|:
 literal|0
 decl_stmt|;
+if|if
+condition|(
+name|longsSize
+operator|<
+literal|0
+condition|)
+block|{
+throw|throw
+operator|new
+name|CorruptIndexException
+argument_list|(
+literal|"invalid longsSize for field: "
+operator|+
+name|fieldInfo
+operator|.
+name|name
+operator|+
+literal|", longsSize="
+operator|+
+name|longsSize
+operator|+
+literal|" (resource="
+operator|+
+name|in
+operator|+
+literal|")"
+argument_list|)
+throw|;
+block|}
 name|BytesRef
 name|minTerm
 decl_stmt|,
