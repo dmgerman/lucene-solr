@@ -632,9 +632,25 @@ argument_list|(
 name|varName
 argument_list|)
 decl_stmt|;
+name|LOG
+operator|.
+name|info
+argument_list|(
+name|varName
+operator|+
+literal|"="
+operator|+
+name|varValue
+argument_list|)
+expr_stmt|;
 if|if
 condition|(
-literal|"1970-01-01 00:00:00"
+name|varValue
+operator|!=
+literal|null
+operator|&&
+operator|!
+literal|""
 operator|.
 name|equals
 argument_list|(
@@ -655,6 +671,92 @@ argument_list|)
 argument_list|)
 condition|)
 block|{
+comment|// need to check if varValue is the epoch, which we'll take to mean the
+comment|// initial value, in which case means we should use fetchMailsSince instead
+name|Date
+name|tmp
+init|=
+literal|null
+decl_stmt|;
+try|try
+block|{
+name|tmp
+operator|=
+name|sinceDateParser
+operator|.
+name|parse
+argument_list|(
+operator|(
+name|String
+operator|)
+name|varValue
+argument_list|)
+expr_stmt|;
+if|if
+condition|(
+name|tmp
+operator|.
+name|getTime
+argument_list|()
+operator|==
+literal|0
+condition|)
+block|{
+name|LOG
+operator|.
+name|info
+argument_list|(
+literal|"Ignoring initial value "
+operator|+
+name|varValue
+operator|+
+literal|" for "
+operator|+
+name|varName
+operator|+
+literal|" in favor of fetchMailsSince config parameter"
+argument_list|)
+expr_stmt|;
+name|tmp
+operator|=
+literal|null
+expr_stmt|;
+comment|// don't use this value
+block|}
+block|}
+catch|catch
+parameter_list|(
+name|ParseException
+name|e
+parameter_list|)
+block|{
+comment|// probably ok to ignore this since we have other options below
+comment|// as we're just trying to figure out if the date is 0
+name|LOG
+operator|.
+name|warn
+argument_list|(
+literal|"Failed to parse "
+operator|+
+name|varValue
+operator|+
+literal|" from "
+operator|+
+name|varName
+operator|+
+literal|" due to: "
+operator|+
+name|e
+argument_list|)
+expr_stmt|;
+block|}
+if|if
+condition|(
+name|tmp
+operator|==
+literal|null
+condition|)
+block|{
 comment|// favor fetchMailsSince in this case because the value from
 comment|// dataimport.properties is the default/init value
 name|varValue
@@ -666,18 +768,17 @@ argument_list|,
 literal|""
 argument_list|)
 expr_stmt|;
-block|}
 name|LOG
 operator|.
 name|info
 argument_list|(
-name|varName
-operator|+
-literal|"="
+literal|"fetchMailsSince="
 operator|+
 name|varValue
 argument_list|)
 expr_stmt|;
+block|}
+block|}
 if|if
 condition|(
 name|varValue
