@@ -351,6 +351,19 @@ name|CHECKSUM_BYTE_MASK
 init|=
 literal|0xFF
 decl_stmt|;
+DECL|field|FAILURE_MESSAGE
+specifier|private
+specifier|static
+specifier|final
+name|String
+name|FAILURE_MESSAGE
+init|=
+literal|"License check failed. Check the logs.\n"
+operator|+
+literal|"If you recently modified ivy-versions.properties or any module's ivy.xml,\n"
+operator|+
+literal|"make sure you run \"ant clean-jars jar-checksums\" before running precommit."
+decl_stmt|;
 DECL|field|skipSnapshotsChecksum
 specifier|private
 name|boolean
@@ -599,7 +612,7 @@ throw|throw
 operator|new
 name|BuildException
 argument_list|(
-literal|"License check failed. Check the logs."
+name|FAILURE_MESSAGE
 argument_list|)
 throw|;
 block|}
