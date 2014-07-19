@@ -28,6 +28,16 @@ end_import
 
 begin_import
 import|import
+name|java
+operator|.
+name|util
+operator|.
+name|Set
+import|;
+end_import
+
+begin_import
+import|import
 name|org
 operator|.
 name|apache
@@ -149,6 +159,20 @@ operator|.
 name|schema
 operator|.
 name|SchemaField
+import|;
+end_import
+
+begin_import
+import|import
+name|com
+operator|.
+name|google
+operator|.
+name|common
+operator|.
+name|collect
+operator|.
+name|Sets
 import|;
 end_import
 
@@ -336,6 +360,17 @@ operator|.
 name|getDocumentBoost
 argument_list|()
 decl_stmt|;
+name|Set
+argument_list|<
+name|String
+argument_list|>
+name|usedFields
+init|=
+name|Sets
+operator|.
+name|newHashSet
+argument_list|()
+decl_stmt|;
 comment|// Load fields from SolrDocument to Document
 for|for
 control|(
@@ -505,6 +540,32 @@ name|fieldBoost
 operator|*
 name|docBoost
 decl_stmt|;
+name|List
+argument_list|<
+name|CopyField
+argument_list|>
+name|copyFields
+init|=
+name|schema
+operator|.
+name|getCopyFieldsList
+argument_list|(
+name|name
+argument_list|)
+decl_stmt|;
+if|if
+condition|(
+name|copyFields
+operator|.
+name|size
+argument_list|()
+operator|==
+literal|0
+condition|)
+name|copyFields
+operator|=
+literal|null
+expr_stmt|;
 comment|// load each field value
 name|boolean
 name|hasField
@@ -560,22 +621,27 @@ else|:
 literal|1f
 argument_list|)
 expr_stmt|;
+comment|// record the field as having a value
+name|usedFields
+operator|.
+name|add
+argument_list|(
+name|sfield
+operator|.
+name|getName
+argument_list|()
+argument_list|)
+expr_stmt|;
 block|}
 comment|// Check if we should copy this field value to any other fields.
 comment|// This could happen whether it is explicit or not.
-name|List
-argument_list|<
-name|CopyField
-argument_list|>
+if|if
+condition|(
 name|copyFields
-init|=
-name|schema
-operator|.
-name|getCopyFieldsList
-argument_list|(
-name|name
-argument_list|)
-decl_stmt|;
+operator|!=
+literal|null
+condition|)
+block|{
 for|for
 control|(
 name|CopyField
@@ -596,19 +662,15 @@ specifier|final
 name|boolean
 name|destHasValues
 init|=
-operator|(
-literal|null
-operator|!=
-name|out
+name|usedFields
 operator|.
-name|getField
+name|contains
 argument_list|(
 name|destinationField
 operator|.
 name|getName
 argument_list|()
 argument_list|)
-operator|)
 decl_stmt|;
 comment|// check if the copy field is a multivalued or not
 if|if
@@ -733,6 +795,17 @@ argument_list|,
 name|destBoost
 argument_list|)
 expr_stmt|;
+comment|// record the field as having a value
+name|usedFields
+operator|.
+name|add
+argument_list|(
+name|destinationField
+operator|.
+name|getName
+argument_list|()
+argument_list|)
+expr_stmt|;
 block|}
 comment|// The final boost for a given field named is the product of the
 comment|// *all* boosts on values of that field.
@@ -744,6 +817,7 @@ name|compoundBoost
 operator|=
 literal|1.0f
 expr_stmt|;
+block|}
 block|}
 block|}
 catch|catch
