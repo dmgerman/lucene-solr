@@ -1990,7 +1990,16 @@ name|lastTerm
 init|=
 operator|new
 name|BytesRef
-argument_list|()
+argument_list|(
+name|Math
+operator|.
+name|max
+argument_list|(
+literal|0
+argument_list|,
+name|maxLength
+argument_list|)
+argument_list|)
 decl_stmt|;
 name|long
 name|count
