@@ -84,6 +84,20 @@ name|RamUsageEstimator
 import|;
 end_import
 
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|util
+operator|.
+name|StringHelper
+import|;
+end_import
+
 begin_comment
 comment|/**  * An FST {@link Outputs} implementation where each output  * is a sequence of bytes.  *  * @lucene.experimental  */
 end_comment
@@ -338,7 +352,18 @@ return|return
 name|output
 return|;
 block|}
-elseif|else
+else|else
+block|{
+assert|assert
+name|StringHelper
+operator|.
+name|startsWith
+argument_list|(
+name|output
+argument_list|,
+name|inc
+argument_list|)
+assert|;
 if|if
 condition|(
 name|inc
@@ -410,6 +435,7 @@ operator|.
 name|length
 argument_list|)
 return|;
+block|}
 block|}
 block|}
 annotation|@

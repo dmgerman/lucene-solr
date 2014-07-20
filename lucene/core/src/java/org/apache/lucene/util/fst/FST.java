@@ -516,7 +516,9 @@ literal|1
 operator|<<
 literal|3
 decl_stmt|;
+comment|/** This flag is set if the arc has an output. */
 DECL|field|BIT_ARC_HAS_OUTPUT
+specifier|public
 specifier|final
 specifier|static
 name|int
@@ -848,20 +850,27 @@ DECL|field|nextArc
 name|long
 name|nextArc
 decl_stmt|;
-comment|// This is non-zero if current arcs are fixed array:
+comment|/** Where the first arc in the array starts; only valid if      *  bytesPerArc != 0 */
 DECL|field|posArcsStart
+specifier|public
 name|long
 name|posArcsStart
 decl_stmt|;
+comment|/** Non-zero if this arc is part of an array, which means all      *  arcs for the node are encoded with a fixed number of bytes so      *  that we can random access by index.  We do when there are enough      *  arcs leaving one node.  It wastes some bytes but gives faster      *  lookups. */
 DECL|field|bytesPerArc
+specifier|public
 name|int
 name|bytesPerArc
 decl_stmt|;
+comment|/** Where we are in the array; only valid if bytesPerArc != 0. */
 DECL|field|arcIdx
+specifier|public
 name|int
 name|arcIdx
 decl_stmt|;
+comment|/** How many arcs in the array; only valid if bytesPerArc != 0. */
 DECL|field|numArcs
+specifier|public
 name|int
 name|numArcs
 decl_stmt|;
@@ -3142,7 +3151,9 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
+comment|/** Reads one BYTE1/2/4 label from the provided {@link DataInput}. */
 DECL|method|readLabel
+specifier|public
 name|int
 name|readLabel
 parameter_list|(

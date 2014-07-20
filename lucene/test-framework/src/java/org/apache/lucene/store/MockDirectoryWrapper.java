@@ -3440,6 +3440,8 @@ name|this
 argument_list|,
 name|getCrossCheckTermVectorsOnClose
 argument_list|()
+argument_list|,
+literal|true
 argument_list|)
 expr_stmt|;
 comment|// TODO: factor this out / share w/ TestIW.assertNoUnreferencedFiles
