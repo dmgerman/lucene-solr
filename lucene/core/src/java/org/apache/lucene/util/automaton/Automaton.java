@@ -2652,18 +2652,13 @@ block|}
 name|int
 name|numTransitions
 init|=
-name|getNumTransitions
-argument_list|(
-name|state
-argument_list|)
-decl_stmt|;
 name|initTransition
 argument_list|(
 name|state
 argument_list|,
 name|t
 argument_list|)
-expr_stmt|;
+decl_stmt|;
 comment|//System.out.println("toDot: state " + state + " has " + numTransitions + " transitions; t.nextTrans=" + t.transitionUpto);
 for|for
 control|(
