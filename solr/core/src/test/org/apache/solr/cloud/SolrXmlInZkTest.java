@@ -836,22 +836,16 @@ literal|"Should be failing to create default solr.xml in code"
 argument_list|,
 name|ite
 operator|.
-name|getTargetException
-argument_list|()
-operator|.
 name|getCause
 argument_list|()
 operator|.
 name|getMessage
 argument_list|()
 operator|.
-name|indexOf
+name|contains
 argument_list|(
 literal|"solr.xml does not exist"
 argument_list|)
-operator|!=
-operator|-
-literal|1
 argument_list|)
 expr_stmt|;
 block|}
