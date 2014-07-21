@@ -308,6 +308,12 @@ operator|==
 name|Type
 operator|.
 name|STRING
+operator|||
+name|type
+operator|==
+name|Type
+operator|.
+name|STRING_VAL
 condition|)
 block|{
 if|if
@@ -1207,7 +1213,6 @@ return|;
 case|case
 name|STRING_VAL
 case|:
-comment|// TODO: should we remove this?  who really uses it?
 return|return
 operator|new
 name|FieldComparator
@@ -1217,6 +1222,10 @@ argument_list|(
 name|numHits
 argument_list|,
 name|field
+argument_list|,
+name|missingValue
+operator|==
+name|STRING_LAST
 argument_list|)
 return|;
 case|case
