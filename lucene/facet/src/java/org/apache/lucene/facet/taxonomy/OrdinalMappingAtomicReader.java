@@ -454,6 +454,20 @@ name|indexFieldName
 argument_list|)
 expr_stmt|;
 block|}
+comment|// always add the default indexFieldName. This is because FacetsConfig does
+comment|// not explicitly record dimensions that were indexed under the default
+comment|// DimConfig, unless they have a custome DimConfig.
+name|facetFields
+operator|.
+name|add
+argument_list|(
+name|FacetsConfig
+operator|.
+name|DEFAULT_DIM_CONFIG
+operator|.
+name|indexFieldName
+argument_list|)
+expr_stmt|;
 block|}
 comment|/**    * Expert: encodes category ordinals into a BytesRef. Override in case you use    * custom encoding, other than the default done by FacetsConfig.    */
 DECL|method|encode

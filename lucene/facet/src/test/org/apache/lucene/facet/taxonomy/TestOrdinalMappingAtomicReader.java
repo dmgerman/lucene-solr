@@ -437,6 +437,16 @@ argument_list|,
 literal|true
 argument_list|)
 expr_stmt|;
+name|facetConfig
+operator|.
+name|setIndexFieldName
+argument_list|(
+literal|"tag"
+argument_list|,
+literal|"$tags"
+argument_list|)
+expr_stmt|;
+comment|// add custom index field name
 block|}
 annotation|@
 name|Test
@@ -633,12 +643,15 @@ argument_list|,
 name|collector
 argument_list|)
 expr_stmt|;
+comment|// tag facets
 name|Facets
-name|facets
+name|tagFacets
 init|=
 operator|new
 name|FastTaxonomyFacetCounts
 argument_list|(
+literal|"$tags"
+argument_list|,
 name|taxoReader
 argument_list|,
 name|facetConfig
@@ -649,7 +662,7 @@ decl_stmt|;
 name|FacetResult
 name|result
 init|=
-name|facets
+name|tagFacets
 operator|.
 name|getTopChildren
 argument_list|(
@@ -696,6 +709,53 @@ argument_list|()
 argument_list|)
 expr_stmt|;
 block|}
+comment|// id facets
+name|Facets
+name|idFacets
+init|=
+operator|new
+name|FastTaxonomyFacetCounts
+argument_list|(
+name|taxoReader
+argument_list|,
+name|facetConfig
+argument_list|,
+name|collector
+argument_list|)
+decl_stmt|;
+name|FacetResult
+name|idResult
+init|=
+name|idFacets
+operator|.
+name|getTopChildren
+argument_list|(
+literal|10
+argument_list|,
+literal|"id"
+argument_list|)
+decl_stmt|;
+name|assertEquals
+argument_list|(
+name|NUM_DOCS
+argument_list|,
+name|idResult
+operator|.
+name|childCount
+argument_list|)
+expr_stmt|;
+name|assertEquals
+argument_list|(
+name|NUM_DOCS
+operator|*
+literal|2
+argument_list|,
+name|idResult
+operator|.
+name|value
+argument_list|)
+expr_stmt|;
+comment|// each "id" appears twice
 name|BinaryDocValues
 name|bdv
 init|=
@@ -901,7 +961,26 @@ argument_list|)
 argument_list|)
 expr_stmt|;
 block|}
-comment|// make sure OrdinalMappingAtomicReader ignores non-facet fields
+comment|// add a facet under default dim config
+name|doc
+operator|.
+name|add
+argument_list|(
+operator|new
+name|FacetField
+argument_list|(
+literal|"id"
+argument_list|,
+name|Integer
+operator|.
+name|toString
+argument_list|(
+name|i
+argument_list|)
+argument_list|)
+argument_list|)
+expr_stmt|;
+comment|// make sure OrdinalMappingAtomicReader ignores non-facet BinaryDocValues fields
 name|doc
 operator|.
 name|add
