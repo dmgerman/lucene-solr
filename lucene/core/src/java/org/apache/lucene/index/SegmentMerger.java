@@ -1414,7 +1414,12 @@ operator|=
 name|DocValues
 operator|.
 name|emptySortedNumeric
+argument_list|(
+name|reader
+operator|.
+name|maxDoc
 argument_list|()
+argument_list|)
 expr_stmt|;
 block|}
 name|toMerge

@@ -1410,7 +1410,15 @@ operator|=
 name|DocValues
 operator|.
 name|emptySortedNumeric
+argument_list|(
+name|context
+operator|.
+name|reader
 argument_list|()
+operator|.
+name|maxDoc
+argument_list|()
+argument_list|)
 expr_stmt|;
 block|}
 else|else
