@@ -1738,7 +1738,7 @@ name|NoNodeException
 name|nne
 parameter_list|)
 block|{
-comment|//expected . don't do anything
+comment|// expected . don't do anything
 block|}
 catch|catch
 parameter_list|(
