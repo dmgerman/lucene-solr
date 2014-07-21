@@ -1707,7 +1707,7 @@ name|String
 argument_list|,
 name|List
 argument_list|<
-name|Character
+name|Integer
 argument_list|>
 argument_list|>
 name|prefixes
@@ -1723,7 +1723,7 @@ name|String
 argument_list|,
 name|List
 argument_list|<
-name|Character
+name|Integer
 argument_list|>
 argument_list|>
 name|suffixes
@@ -2604,7 +2604,7 @@ name|String
 argument_list|,
 name|List
 argument_list|<
-name|Character
+name|Integer
 argument_list|>
 argument_list|>
 name|affixes
@@ -2656,7 +2656,7 @@ name|String
 argument_list|,
 name|List
 argument_list|<
-name|Character
+name|Integer
 argument_list|>
 argument_list|>
 name|entry
@@ -2681,7 +2681,7 @@ argument_list|)
 expr_stmt|;
 name|List
 argument_list|<
-name|Character
+name|Integer
 argument_list|>
 name|entries
 init|=
@@ -2704,7 +2704,7 @@ argument_list|)
 decl_stmt|;
 for|for
 control|(
-name|Character
+name|Integer
 name|c
 range|:
 name|entries
@@ -2865,7 +2865,7 @@ name|String
 argument_list|,
 name|List
 argument_list|<
-name|Character
+name|Integer
 argument_list|>
 argument_list|>
 name|affixes
@@ -3632,7 +3632,7 @@ expr_stmt|;
 block|}
 name|List
 argument_list|<
-name|Character
+name|Integer
 argument_list|>
 name|list
 init|=
@@ -3671,9 +3671,6 @@ name|list
 operator|.
 name|add
 argument_list|(
-operator|(
-name|char
-operator|)
 name|currentAffix
 argument_list|)
 expr_stmt|;
