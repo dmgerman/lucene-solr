@@ -571,12 +571,6 @@ specifier|final
 name|SolrIndexSearcher
 name|searcher
 decl_stmt|;
-DECL|field|isPlaceholder
-specifier|private
-specifier|final
-name|boolean
-name|isPlaceholder
-decl_stmt|;
 DECL|field|uifPlaceholder
 specifier|private
 specifier|static
@@ -603,10 +597,6 @@ literal|0
 argument_list|)
 expr_stmt|;
 comment|// cheapest initialization I can find.
-name|isPlaceholder
-operator|=
-literal|true
-expr_stmt|;
 name|searcher
 operator|=
 literal|null
@@ -977,10 +967,6 @@ name|DEFAULT_INDEX_INTERVAL_BITS
 argument_list|)
 expr_stmt|;
 comment|//System.out.println("maxTermDocFreq=" + maxTermDocFreq + " maxDoc=" + searcher.maxDoc());
-name|isPlaceholder
-operator|=
-literal|false
-expr_stmt|;
 specifier|final
 name|String
 name|prefix
@@ -3661,6 +3647,7 @@ operator|==
 literal|null
 condition|)
 block|{
+comment|/**          * We use this place holder object to pull the UninvertedField construction out of the sync          * so that if many fields are accessed in a short time, the UninvertedField can be          * built for these fields in parallel rather than sequentially.          */
 name|cache
 operator|.
 name|put
@@ -3670,17 +3657,14 @@ argument_list|,
 name|uifPlaceholder
 argument_list|)
 expr_stmt|;
-comment|// This thread will load this field, don't let other threads try.
 block|}
 else|else
 block|{
 if|if
 condition|(
 name|uif
-operator|.
-name|isPlaceholder
-operator|==
-literal|false
+operator|!=
+name|uifPlaceholder
 condition|)
 block|{
 return|return
@@ -3719,10 +3703,8 @@ comment|// Should at least return the placeholder, NPE if not is OK.
 if|if
 condition|(
 name|uif
-operator|.
-name|isPlaceholder
-operator|==
-literal|false
+operator|!=
+name|uifPlaceholder
 condition|)
 block|{
 comment|// OK, another thread put this in the cache we should be good.
