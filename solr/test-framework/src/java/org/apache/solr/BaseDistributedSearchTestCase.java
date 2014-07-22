@@ -4941,6 +4941,16 @@ name|SolrResponse
 name|b
 parameter_list|)
 block|{
+comment|// SOLR-3345: Checking QTime value can be skipped as there is no guarantee that the numbers will match.
+name|handle
+operator|.
+name|put
+argument_list|(
+literal|"QTime"
+argument_list|,
+name|SKIPVAL
+argument_list|)
+expr_stmt|;
 name|String
 name|cmp
 init|=

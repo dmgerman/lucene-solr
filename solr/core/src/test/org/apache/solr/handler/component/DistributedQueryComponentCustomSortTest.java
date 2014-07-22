@@ -581,15 +581,6 @@ comment|// 12
 name|commit
 argument_list|()
 expr_stmt|;
-name|handle
-operator|.
-name|put
-argument_list|(
-literal|"QTime"
-argument_list|,
-name|SKIPVAL
-argument_list|)
-expr_stmt|;
 name|QueryResponse
 name|rsp
 decl_stmt|;

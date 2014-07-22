@@ -370,15 +370,6 @@ name|handle
 operator|.
 name|put
 argument_list|(
-literal|"QTime"
-argument_list|,
-name|SKIPVAL
-argument_list|)
-expr_stmt|;
-name|handle
-operator|.
-name|put
-argument_list|(
 literal|"maxScore"
 argument_list|,
 name|SKIPVAL
