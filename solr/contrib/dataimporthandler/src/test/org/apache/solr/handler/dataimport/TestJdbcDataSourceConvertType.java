@@ -142,6 +142,16 @@ name|java
 operator|.
 name|util
 operator|.
+name|Locale
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
+name|util
+operator|.
 name|Map
 import|;
 end_import
@@ -208,6 +218,25 @@ parameter_list|()
 throws|throws
 name|Throwable
 block|{
+name|assumeTrue
+argument_list|(
+literal|"Derby is not happy with locale sr__#Latn"
+argument_list|,
+operator|!
+literal|"sr__#Latn"
+operator|.
+name|equals
+argument_list|(
+name|Locale
+operator|.
+name|getDefault
+argument_list|()
+operator|.
+name|toString
+argument_list|()
+argument_list|)
+argument_list|)
+expr_stmt|;
 comment|// ironically convertType=false causes BigDecimal to String conversion
 name|convertTypeTest
 argument_list|(
