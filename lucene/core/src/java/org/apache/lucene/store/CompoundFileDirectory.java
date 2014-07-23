@@ -375,6 +375,42 @@ argument_list|,
 name|fileName
 argument_list|)
 expr_stmt|;
+if|if
+condition|(
+name|version
+operator|>=
+name|CompoundFileWriter
+operator|.
+name|VERSION_CHECKSUM
+condition|)
+block|{
+name|CodecUtil
+operator|.
+name|checkHeader
+argument_list|(
+name|handle
+argument_list|,
+name|CompoundFileWriter
+operator|.
+name|DATA_CODEC
+argument_list|,
+name|version
+argument_list|,
+name|version
+argument_list|)
+expr_stmt|;
+comment|// NOTE: data file is too costly to verify checksum against all the bytes on open,
+comment|// but for now we at least verify proper structure of the checksum footer: which looks
+comment|// for FOOTER_MAGIC + algorithmID. This is cheap and can detect some forms of corruption
+comment|// such as file truncation.
+name|CodecUtil
+operator|.
+name|retrieveChecksum
+argument_list|(
+name|handle
+argument_list|)
+expr_stmt|;
+block|}
 name|success
 operator|=
 literal|true

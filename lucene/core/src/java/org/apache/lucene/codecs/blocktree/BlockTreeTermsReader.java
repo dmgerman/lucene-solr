@@ -502,6 +502,27 @@ argument_list|(
 name|in
 argument_list|)
 expr_stmt|;
+comment|// NOTE: data file is too costly to verify checksum against all the bytes on open,
+comment|// but for now we at least verify proper structure of the checksum footer: which looks
+comment|// for FOOTER_MAGIC + algorithmID. This is cheap and can detect some forms of corruption
+comment|// such as file truncation.
+if|if
+condition|(
+name|version
+operator|>=
+name|BlockTreeTermsWriter
+operator|.
+name|VERSION_CHECKSUM
+condition|)
+block|{
+name|CodecUtil
+operator|.
+name|retrieveChecksum
+argument_list|(
+name|in
+argument_list|)
+expr_stmt|;
+block|}
 comment|// Read per-field details
 name|seekDir
 argument_list|(

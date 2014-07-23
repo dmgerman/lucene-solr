@@ -1083,6 +1083,40 @@ operator|.
 name|getFilePointer
 argument_list|()
 assert|;
+name|long
+name|pos
+init|=
+name|vectorsStream
+operator|.
+name|getFilePointer
+argument_list|()
+decl_stmt|;
+if|if
+condition|(
+name|version
+operator|>=
+name|VERSION_CHECKSUM
+condition|)
+block|{
+comment|// NOTE: data file is too costly to verify checksum against all the bytes on open,
+comment|// but for now we at least verify proper structure of the checksum footer: which looks
+comment|// for FOOTER_MAGIC + algorithmID. This is cheap and can detect some forms of corruption
+comment|// such as file truncation.
+name|CodecUtil
+operator|.
+name|retrieveChecksum
+argument_list|(
+name|vectorsStream
+argument_list|)
+expr_stmt|;
+name|vectorsStream
+operator|.
+name|seek
+argument_list|(
+name|pos
+argument_list|)
+expr_stmt|;
+block|}
 name|packedIntsVersion
 operator|=
 name|vectorsStream
