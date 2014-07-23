@@ -2255,6 +2255,25 @@ name|e
 argument_list|)
 argument_list|)
 expr_stmt|;
+name|log
+operator|.
+name|error
+argument_list|(
+literal|"Error creating core [{}]: {}"
+argument_list|,
+name|dcore
+operator|.
+name|getName
+argument_list|()
+argument_list|,
+name|e
+operator|.
+name|getMessage
+argument_list|()
+argument_list|,
+name|e
+argument_list|)
+expr_stmt|;
 throw|throw
 operator|new
 name|SolrException

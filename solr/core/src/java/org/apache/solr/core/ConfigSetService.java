@@ -283,11 +283,18 @@ name|ErrorCode
 operator|.
 name|SERVER_ERROR
 argument_list|,
-literal|"Could not load core configuration for core "
+literal|"Could not load conf for core "
 operator|+
 name|dcore
 operator|.
 name|getName
+argument_list|()
+operator|+
+literal|": "
+operator|+
+name|e
+operator|.
+name|getMessage
 argument_list|()
 argument_list|,
 name|e
