@@ -474,6 +474,30 @@ name|FACET_RANGE
 operator|+
 literal|".include"
 decl_stmt|;
+comment|/**    * Any field whose values the user wants to enumerate as explicit intervals of terms.    */
+DECL|field|FACET_INTERVAL
+specifier|public
+specifier|static
+specifier|final
+name|String
+name|FACET_INTERVAL
+init|=
+name|FACET
+operator|+
+literal|".interval"
+decl_stmt|;
+comment|/**    * Set of terms for a single interval to facet on.    */
+DECL|field|FACET_INTERVAL_SET
+specifier|public
+specifier|static
+specifier|final
+name|String
+name|FACET_INTERVAL_SET
+init|=
+name|FACET_INTERVAL
+operator|+
+literal|".set"
+decl_stmt|;
 comment|/**    * An enumeration of the legal values for {@link #FACET_RANGE_OTHER} and {@link #FACET_DATE_OTHER} ...    *<ul>    *<li>before = the count of matches before the start</li>    *<li>after = the count of matches after the end</li>    *<li>between = the count of all matches between start and end</li>    *<li>all = all of the above (default value)</li>    *<li>none = no additional info requested</li>    *</ul>    * @see #FACET_RANGE_OTHER    * @see #FACET_DATE_OTHER    */
 DECL|enum|FacetRangeOther
 specifier|public
