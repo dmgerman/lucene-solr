@@ -96,42 +96,6 @@ expr_stmt|;
 block|}
 else|else
 block|{
-if|if
-condition|(
-name|maxSize
-operator|>
-name|ArrayUtil
-operator|.
-name|MAX_ARRAY_LENGTH
-condition|)
-block|{
-comment|// Don't wrap heapSize to -1, in this case, which
-comment|// causes a confusing NegativeArraySizeException.
-comment|// Note that very likely this will simply then hit
-comment|// an OOME, but at least that's more indicative to
-comment|// caller that this values is too big.  We don't +1
-comment|// in this case, but it's very unlikely in practice
-comment|// one will actually insert this many objects into
-comment|// the PQ:
-comment|// Throw exception to prevent confusing OOME:
-throw|throw
-operator|new
-name|IllegalArgumentException
-argument_list|(
-literal|"maxSize must be<= "
-operator|+
-name|ArrayUtil
-operator|.
-name|MAX_ARRAY_LENGTH
-operator|+
-literal|"; got: "
-operator|+
-name|maxSize
-argument_list|)
-throw|;
-block|}
-else|else
-block|{
 comment|// NOTE: we add +1 because all access to heap is
 comment|// 1-based not 0-based.  heap[0] is unused.
 name|heapSize
@@ -140,6 +104,35 @@ name|maxSize
 operator|+
 literal|1
 expr_stmt|;
+if|if
+condition|(
+name|heapSize
+operator|>
+name|ArrayUtil
+operator|.
+name|MAX_ARRAY_LENGTH
+condition|)
+block|{
+comment|// Throw exception to prevent confusing OOME:
+throw|throw
+operator|new
+name|IllegalArgumentException
+argument_list|(
+literal|"maxSize must be<= "
+operator|+
+operator|(
+name|ArrayUtil
+operator|.
+name|MAX_ARRAY_LENGTH
+operator|-
+literal|1
+operator|)
+operator|+
+literal|"; got: "
+operator|+
+name|maxSize
+argument_list|)
+throw|;
 block|}
 block|}
 comment|// T is unbounded type, so this unchecked cast works always:

@@ -47,7 +47,7 @@ specifier|final
 class|class
 name|ArrayUtil
 block|{
-comment|/** Maximum length for an array; we set this to "a    *  bit" below Integer.MAX_VALUE because the exact max    *  allowed byte[] is JVM dependent, so we want to avoid    *  a case where a large value worked during indexing on    *  one JVM but failed later at search time with a    *  different JVM. */
+comment|/** Maximum length for an array (Integer.MAX_VALUE - 8).  stackoverflow    *  consensus seems to be this value and it's also what ArrayList.java    *  uses as its limit.  */
 DECL|field|MAX_ARRAY_LENGTH
 specifier|public
 specifier|static
@@ -59,7 +59,7 @@ name|Integer
 operator|.
 name|MAX_VALUE
 operator|-
-literal|256
+literal|8
 decl_stmt|;
 DECL|method|ArrayUtil
 specifier|private
@@ -465,6 +465,29 @@ return|return
 literal|0
 return|;
 block|}
+if|if
+condition|(
+name|minTargetSize
+operator|>
+name|MAX_ARRAY_LENGTH
+condition|)
+block|{
+throw|throw
+operator|new
+name|IllegalArgumentException
+argument_list|(
+literal|"requested array size "
+operator|+
+name|minTargetSize
+operator|+
+literal|" exceeds maximum array in java ("
+operator|+
+name|MAX_ARRAY_LENGTH
+operator|+
+literal|")"
+argument_list|)
+throw|;
+block|}
 comment|// asymptotic exponential growth by 1/8th, favors
 comment|// spending a bit more CPU to not tie up too much wasted
 comment|// RAM:
@@ -505,13 +528,17 @@ operator|+
 literal|7
 operator|<
 literal|0
+operator|||
+name|newSize
+operator|+
+literal|7
+operator|>
+name|MAX_ARRAY_LENGTH
 condition|)
 block|{
-comment|// int overflowed -- return max allowed array size
+comment|// int overflowed, or we exceeded the maximum array length
 return|return
-name|Integer
-operator|.
-name|MAX_VALUE
+name|MAX_ARRAY_LENGTH
 return|;
 block|}
 if|if
