@@ -2908,8 +2908,6 @@ name|MAX_VALUE
 argument_list|,
 name|outputs
 argument_list|,
-literal|null
-argument_list|,
 name|doRewrite
 argument_list|,
 name|PackedInts
@@ -3983,8 +3981,6 @@ operator|.
 name|MAX_VALUE
 argument_list|,
 name|outputs
-argument_list|,
-literal|null
 argument_list|,
 name|doPack
 argument_list|,
@@ -8164,8 +8160,6 @@ name|MAX_VALUE
 argument_list|,
 name|outputs
 argument_list|,
-literal|null
-argument_list|,
 name|random
 argument_list|()
 operator|.
@@ -8330,8 +8324,6 @@ operator|.
 name|MAX_VALUE
 argument_list|,
 name|outputs
-argument_list|,
-literal|null
 argument_list|,
 name|willRewrite
 argument_list|,

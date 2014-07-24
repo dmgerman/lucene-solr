@@ -1850,8 +1850,6 @@ name|MAX_VALUE
 argument_list|,
 name|outputs
 argument_list|,
-literal|null
-argument_list|,
 name|willRewrite
 argument_list|,
 name|PackedInts

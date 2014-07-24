@@ -622,6 +622,22 @@ name|isLastInFloor
 operator|||
 name|isFloor
 operator|)
+operator|:
+literal|"fp="
+operator|+
+name|fp
+operator|+
+literal|" arc="
+operator|+
+name|arc
+operator|+
+literal|" isFloor="
+operator|+
+name|isFloor
+operator|+
+literal|" isLastInFloor="
+operator|+
+name|isLastInFloor
 assert|;
 comment|// TODO: if suffixes were stored in random-access
 comment|// array structure, then we could do binary search
