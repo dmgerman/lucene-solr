@@ -347,6 +347,15 @@ argument_list|,
 literal|false
 argument_list|)
 expr_stmt|;
+name|log
+operator|.
+name|info
+argument_list|(
+literal|"Creating UpdateShardHandler HTTP client with params: {}"
+argument_list|,
+name|params
+argument_list|)
+expr_stmt|;
 name|client
 operator|=
 name|HttpClientUtil
