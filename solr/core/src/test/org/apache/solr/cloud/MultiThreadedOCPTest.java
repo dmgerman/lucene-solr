@@ -248,6 +248,18 @@ name|Random
 import|;
 end_import
 
+begin_import
+import|import
+name|java
+operator|.
+name|util
+operator|.
+name|concurrent
+operator|.
+name|TimeUnit
+import|;
+end_import
+
 begin_comment
 comment|/**  * Tests the Multi threaded Collections API.  */
 end_comment
@@ -267,7 +279,9 @@ specifier|final
 name|int
 name|REQUEST_STATUS_TIMEOUT
 init|=
-literal|90
+literal|5
+operator|*
+literal|60
 decl_stmt|;
 DECL|field|log
 specifier|private
@@ -287,6 +301,7 @@ decl_stmt|;
 DECL|field|NUM_COLLECTIONS
 specifier|private
 specifier|static
+specifier|final
 name|int
 name|NUM_COLLECTIONS
 init|=
@@ -927,7 +942,7 @@ argument_list|,
 literal|"3002"
 argument_list|)
 expr_stmt|;
-comment|// Now submit another task with the same id. At this time, hopefully the previous 2002 should still be in the queue.
+comment|// Now submit another task with the same id. At this time, hopefully the previous 3002 should still be in the queue.
 name|CollectionAdminResponse
 name|response
 init|=
@@ -1352,12 +1367,35 @@ name|state
 init|=
 literal|null
 decl_stmt|;
+name|long
+name|maxWait
+init|=
+name|System
+operator|.
+name|nanoTime
+argument_list|()
+operator|+
+name|TimeUnit
+operator|.
+name|NANOSECONDS
+operator|.
+name|convert
+argument_list|(
+name|waitForSeconds
+argument_list|,
+name|TimeUnit
+operator|.
+name|SECONDS
+argument_list|)
+decl_stmt|;
 while|while
 condition|(
-name|waitForSeconds
-operator|--
-operator|>
-literal|0
+name|System
+operator|.
+name|nanoTime
+argument_list|()
+operator|<
+name|maxWait
 condition|)
 block|{
 name|state
