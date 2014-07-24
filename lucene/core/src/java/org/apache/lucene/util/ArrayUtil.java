@@ -47,7 +47,7 @@ specifier|final
 class|class
 name|ArrayUtil
 block|{
-comment|/** Maximum length for an array (Integer.MAX_VALUE - 8).  stackoverflow    *  consensus seems to be this value and it's also what ArrayList.java    *  uses as its limit.  */
+comment|/** Maximum length for an array (Integer.MAX_VALUE - RamUsageEstimator.NUM_BYTES_ARRAY_HEADER). */
 DECL|field|MAX_ARRAY_LENGTH
 specifier|public
 specifier|static
@@ -59,7 +59,9 @@ name|Integer
 operator|.
 name|MAX_VALUE
 operator|-
-literal|8
+name|RamUsageEstimator
+operator|.
+name|NUM_BYTES_ARRAY_HEADER
 decl_stmt|;
 DECL|method|ArrayUtil
 specifier|private
