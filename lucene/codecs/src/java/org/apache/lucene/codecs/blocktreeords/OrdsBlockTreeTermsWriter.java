@@ -1198,18 +1198,6 @@ name|field
 argument_list|)
 argument_list|)
 decl_stmt|;
-name|BytesRef
-name|minTerm
-init|=
-literal|null
-decl_stmt|;
-name|BytesRef
-name|maxTerm
-init|=
-operator|new
-name|BytesRef
-argument_list|()
-decl_stmt|;
 while|while
 condition|(
 literal|true
@@ -1232,30 +1220,6 @@ condition|)
 block|{
 break|break;
 block|}
-if|if
-condition|(
-name|minTerm
-operator|==
-literal|null
-condition|)
-block|{
-name|minTerm
-operator|=
-name|BytesRef
-operator|.
-name|deepCopyOf
-argument_list|(
-name|term
-argument_list|)
-expr_stmt|;
-block|}
-name|maxTerm
-operator|.
-name|copyBytes
-argument_list|(
-name|term
-argument_list|)
-expr_stmt|;
 name|termsWriter
 operator|.
 name|write
@@ -1269,17 +1233,7 @@ block|}
 name|termsWriter
 operator|.
 name|finish
-argument_list|(
-name|minTerm
-argument_list|,
-name|minTerm
-operator|==
-literal|null
-condition|?
-literal|null
-else|:
-name|maxTerm
-argument_list|)
+argument_list|()
 expr_stmt|;
 block|}
 block|}
@@ -2405,7 +2359,7 @@ name|longs
 decl_stmt|;
 comment|// Pending stack of terms and blocks.  As terms arrive (in sorted order)
 comment|// we append to this stack, and once the top of the stack has enough
-comment|// terms starting with a common prefix, write write a new block with
+comment|// terms starting with a common prefix, we write a new block with
 comment|// those terms and replace those terms in the stack with a new block:
 DECL|field|pending
 specifier|private
@@ -2435,6 +2389,16 @@ operator|new
 name|ArrayList
 argument_list|<>
 argument_list|()
+decl_stmt|;
+DECL|field|firstPendingTerm
+specifier|private
+name|PendingTerm
+name|firstPendingTerm
+decl_stmt|;
+DECL|field|lastPendingTerm
+specifier|private
+name|PendingTerm
+name|lastPendingTerm
 decl_stmt|;
 comment|/** Writes the top count entries in pending, using prevTerm to compute the prefix. */
 DECL|method|writeBlocks
@@ -4009,6 +3973,22 @@ expr_stmt|;
 name|numTerms
 operator|++
 expr_stmt|;
+if|if
+condition|(
+name|firstPendingTerm
+operator|==
+literal|null
+condition|)
+block|{
+name|firstPendingTerm
+operator|=
+name|term
+expr_stmt|;
+block|}
+name|lastPendingTerm
+operator|=
+name|term
+expr_stmt|;
 block|}
 block|}
 comment|/** Pushes the new term to the top of the stack, and writes new blocks. */
@@ -4205,13 +4185,7 @@ DECL|method|finish
 specifier|public
 name|void
 name|finish
-parameter_list|(
-name|BytesRef
-name|minTerm
-parameter_list|,
-name|BytesRef
-name|maxTerm
-parameter_list|)
+parameter_list|()
 throws|throws
 name|IOException
 block|{
@@ -4324,6 +4298,38 @@ comment|//   Util.toDot(root.index, w, false, false);
 comment|//   System.out.println("SAVED to " + dotFileName);
 comment|//   w.close();
 comment|// }
+assert|assert
+name|firstPendingTerm
+operator|!=
+literal|null
+assert|;
+name|BytesRef
+name|minTerm
+init|=
+operator|new
+name|BytesRef
+argument_list|(
+name|firstPendingTerm
+operator|.
+name|termBytes
+argument_list|)
+decl_stmt|;
+assert|assert
+name|lastPendingTerm
+operator|!=
+literal|null
+assert|;
+name|BytesRef
+name|maxTerm
+init|=
+operator|new
+name|BytesRef
+argument_list|(
+name|lastPendingTerm
+operator|.
+name|termBytes
+argument_list|)
+decl_stmt|;
 name|fields
 operator|.
 name|add
