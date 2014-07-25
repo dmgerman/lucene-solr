@@ -165,6 +165,12 @@ DECL|field|docBuilder
 name|DocBuilder
 name|docBuilder
 decl_stmt|;
+DECL|field|lastException
+name|Exception
+name|lastException
+init|=
+literal|null
+decl_stmt|;
 DECL|method|ContextImpl
 specifier|public
 name|ContextImpl

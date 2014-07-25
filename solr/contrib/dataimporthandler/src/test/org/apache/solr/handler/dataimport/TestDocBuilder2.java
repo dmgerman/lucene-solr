@@ -345,10 +345,10 @@ expr_stmt|;
 block|}
 annotation|@
 name|Test
-DECL|method|testRollbackHandler
+DECL|method|testErrorHandler
 specifier|public
 name|void
-name|testRollbackHandler
+name|testErrorHandler
 parameter_list|()
 throws|throws
 name|Exception
@@ -370,7 +370,7 @@ literal|"id"
 argument_list|,
 literal|"1"
 argument_list|,
-literal|"FORCE_ROLLBACK"
+literal|"FORCE_ERROR"
 argument_list|,
 literal|"true"
 argument_list|)
@@ -390,16 +390,31 @@ argument_list|)
 expr_stmt|;
 name|runFullImport
 argument_list|(
-name|dataConfigWithRollbackHandler
+name|dataConfigWithErrorHandler
 argument_list|)
 expr_stmt|;
 name|assertTrue
 argument_list|(
-literal|"Rollback event listener was not called"
+literal|"Error event listener was not called"
 argument_list|,
-name|RollbackEventListener
+name|ErrorEventListener
 operator|.
 name|executed
+argument_list|)
+expr_stmt|;
+name|assertTrue
+argument_list|(
+name|ErrorEventListener
+operator|.
+name|lastException
+operator|.
+name|getMessage
+argument_list|()
+operator|.
+name|contains
+argument_list|(
+literal|"ForcedException"
+argument_list|)
 argument_list|)
 expr_stmt|;
 block|}
@@ -1923,11 +1938,11 @@ literal|true
 expr_stmt|;
 block|}
 block|}
-DECL|class|RollbackEventListener
+DECL|class|ErrorEventListener
 specifier|public
 specifier|static
 class|class
-name|RollbackEventListener
+name|ErrorEventListener
 implements|implements
 name|EventListener
 block|{
@@ -1938,6 +1953,14 @@ name|boolean
 name|executed
 init|=
 literal|false
+decl_stmt|;
+DECL|field|lastException
+specifier|public
+specifier|static
+name|Exception
+name|lastException
+init|=
+literal|null
 decl_stmt|;
 annotation|@
 name|Override
@@ -1953,6 +1976,17 @@ block|{
 name|executed
 operator|=
 literal|true
+expr_stmt|;
+name|lastException
+operator|=
+operator|(
+operator|(
+name|ContextImpl
+operator|)
+name|ctx
+operator|)
+operator|.
+name|lastException
 expr_stmt|;
 block|}
 block|}
@@ -2080,21 +2114,21 @@ literal|"</document>\n"
 operator|+
 literal|"</dataConfig>"
 decl_stmt|;
-DECL|field|dataConfigWithRollbackHandler
+DECL|field|dataConfigWithErrorHandler
 specifier|private
 specifier|final
 name|String
-name|dataConfigWithRollbackHandler
+name|dataConfigWithErrorHandler
 init|=
 literal|"<dataConfig><dataSource  type=\"MockDataSource\"/>\n"
 operator|+
-literal|"<document onRollback=\"TestDocBuilder2$RollbackEventListener\">\n"
+literal|"<document onError=\"TestDocBuilder2$ErrorEventListener\">\n"
 operator|+
 literal|"<entity name=\"books\" query=\"select * from x\" transformer=\"TestDocBuilder2$ForcedExceptionTransformer\">\n"
 operator|+
 literal|"<field column=\"id\" />\n"
 operator|+
-literal|"<field column=\"FORCE_ROLLBACK\" />\n"
+literal|"<field column=\"FORCE_ERROR\" />\n"
 operator|+
 literal|"</entity>\n"
 operator|+

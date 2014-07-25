@@ -603,7 +603,7 @@ name|log
 operator|.
 name|error
 argument_list|(
-literal|"Exception while solr rollback."
+literal|"Exception during rollback command."
 argument_list|,
 name|e
 argument_list|)
