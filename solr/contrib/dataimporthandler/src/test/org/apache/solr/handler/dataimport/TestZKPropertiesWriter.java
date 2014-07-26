@@ -425,6 +425,10 @@ name|zkDir
 operator|=
 literal|null
 expr_stmt|;
+name|cc
+operator|=
+literal|null
+expr_stmt|;
 block|}
 annotation|@
 name|Test
