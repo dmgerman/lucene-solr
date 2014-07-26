@@ -103,7 +103,7 @@ name|sb
 operator|.
 name|append
 argument_list|(
-literal|"<dataSource name=\"derby\" driver=\"org.apache.derby.jdbc.EmbeddedDriver\" url=\"jdbc:derby:memory:derbyDB;\" /> \n"
+literal|"<dataSource name=\"derby\" driver=\"org.apache.derby.jdbc.EmbeddedDriver\" url=\"jdbc:derby:memory:derbyDB;territory=en_US\" /> \n"
 argument_list|)
 expr_stmt|;
 name|sb
