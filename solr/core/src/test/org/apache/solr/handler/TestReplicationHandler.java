@@ -1327,6 +1327,20 @@ name|server
 argument_list|)
 expr_stmt|;
 block|}
+name|log
+operator|.
+name|info
+argument_list|(
+literal|"Waited for {}ms and found {} docs"
+argument_list|,
+name|timeSlept
+argument_list|,
+name|numFound
+argument_list|(
+name|res
+argument_list|)
+argument_list|)
+expr_stmt|;
 return|return
 name|res
 return|;
