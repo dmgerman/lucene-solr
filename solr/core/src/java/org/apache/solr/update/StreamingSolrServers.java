@@ -741,6 +741,16 @@ return|return
 name|httpClient
 return|;
 block|}
+DECL|method|getUpdateExecutor
+specifier|public
+name|ExecutorService
+name|getUpdateExecutor
+parameter_list|()
+block|{
+return|return
+name|updateExecutor
+return|;
+block|}
 block|}
 end_class
 
