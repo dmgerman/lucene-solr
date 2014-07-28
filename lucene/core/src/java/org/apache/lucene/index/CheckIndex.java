@@ -1940,6 +1940,23 @@ literal|null
 decl_stmt|;
 try|try
 block|{
+name|msg
+argument_list|(
+name|infoStream
+argument_list|,
+literal|"    version="
+operator|+
+operator|(
+name|version
+operator|==
+literal|null
+condition|?
+literal|"3.0"
+else|:
+name|version
+operator|)
+argument_list|)
+expr_stmt|;
 specifier|final
 name|Codec
 name|codec
