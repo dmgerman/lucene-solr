@@ -814,6 +814,8 @@ argument_list|(
 name|indexDir
 argument_list|,
 name|indexSegmentsFile
+argument_list|,
+name|infoStream
 argument_list|)
 expr_stmt|;
 name|IndexReplicationHandler
@@ -823,6 +825,8 @@ argument_list|(
 name|taxoDir
 argument_list|,
 name|taxoSegmentsFile
+argument_list|,
+name|infoStream
 argument_list|)
 expr_stmt|;
 comment|// successfully updated the index, notify the callback that the index is
