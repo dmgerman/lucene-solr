@@ -790,6 +790,13 @@ name|searcher
 operator|=
 literal|null
 expr_stmt|;
+name|TestUtil
+operator|.
+name|checkReader
+argument_list|(
+name|reader
+argument_list|)
+expr_stmt|;
 name|reader
 operator|.
 name|close

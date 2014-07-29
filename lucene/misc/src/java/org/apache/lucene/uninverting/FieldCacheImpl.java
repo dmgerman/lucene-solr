@@ -3596,35 +3596,6 @@ decl_stmt|;
 name|int
 name|startTermsBPV
 decl_stmt|;
-specifier|final
-name|int
-name|termCountHardLimit
-decl_stmt|;
-if|if
-condition|(
-name|maxDoc
-operator|==
-name|Integer
-operator|.
-name|MAX_VALUE
-condition|)
-block|{
-name|termCountHardLimit
-operator|=
-name|Integer
-operator|.
-name|MAX_VALUE
-expr_stmt|;
-block|}
-else|else
-block|{
-name|termCountHardLimit
-operator|=
-name|maxDoc
-operator|+
-literal|1
-expr_stmt|;
-block|}
 comment|// TODO: use Uninvert?
 if|if
 condition|(
@@ -3656,16 +3627,22 @@ if|if
 condition|(
 name|numUniqueTerms
 operator|>
-name|termCountHardLimit
+name|maxDoc
 condition|)
 block|{
-comment|// app is misusing the API (there is more than
-comment|// one term per doc); in this case we make best
-comment|// effort to load what we can (see LUCENE-2142)
-name|numUniqueTerms
-operator|=
-name|termCountHardLimit
-expr_stmt|;
+throw|throw
+operator|new
+name|IllegalStateException
+argument_list|(
+literal|"Type mismatch: "
+operator|+
+name|key
+operator|.
+name|field
+operator|+
+literal|" was indexed with multiple values per document, use SORTED_SET instead"
+argument_list|)
+throw|;
 block|}
 name|startTermsBPV
 operator|=
@@ -3776,10 +3753,22 @@ if|if
 condition|(
 name|termOrd
 operator|>=
-name|termCountHardLimit
+name|maxDoc
 condition|)
 block|{
-break|break;
+throw|throw
+operator|new
+name|IllegalStateException
+argument_list|(
+literal|"Type mismatch: "
+operator|+
+name|key
+operator|.
+name|field
+operator|+
+literal|" was indexed with multiple values per document, use SORTED_SET instead"
+argument_list|)
+throw|;
 block|}
 name|termOrdToBytesOffset
 operator|.
