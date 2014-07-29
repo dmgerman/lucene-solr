@@ -4288,13 +4288,11 @@ operator|.
 name|isLastInFloor
 condition|)
 block|{
-comment|// Advance to next floor block
 name|currentFrame
 operator|.
 name|loadNextFloorBlock
 argument_list|()
 expr_stmt|;
-break|break;
 block|}
 else|else
 block|{
