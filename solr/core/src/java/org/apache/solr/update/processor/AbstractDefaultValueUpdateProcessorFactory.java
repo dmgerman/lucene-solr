@@ -248,7 +248,6 @@ expr_stmt|;
 block|}
 comment|/**    * A simple processor that adds the results of {@link #getDefaultValue}     * to any document which does not already have a value in     *<code>fieldName</code>    */
 DECL|class|DefaultValueUpdateProcessor
-specifier|protected
 specifier|static
 specifier|abstract
 class|class
