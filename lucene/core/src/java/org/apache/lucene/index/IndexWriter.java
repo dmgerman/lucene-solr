@@ -175,6 +175,8 @@ operator|.
 name|util
 operator|.
 name|Map
+operator|.
+name|Entry
 import|;
 end_import
 
@@ -185,8 +187,6 @@ operator|.
 name|util
 operator|.
 name|Map
-operator|.
-name|Entry
 import|;
 end_import
 
@@ -221,6 +221,20 @@ operator|.
 name|atomic
 operator|.
 name|AtomicInteger
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
+name|util
+operator|.
+name|concurrent
+operator|.
+name|atomic
+operator|.
+name|AtomicLong
 import|;
 end_import
 
@@ -620,6 +634,84 @@ name|TwoPhaseCommit
 implements|,
 name|Accountable
 block|{
+comment|/** Hard limit on maximum number of documents that may be added to the    *  index.  If you try to add more than this you'll hit {@code IllegalStateException}. */
+comment|// We defensively subtract 128 to be well below the lowest
+comment|// ArrayUtil.MAX_ARRAY_LENGTH on "typical" JVMs.  We don't just use
+comment|// ArrayUtil.MAX_ARRAY_LENGTH here because this can vary across JVMs:
+DECL|field|MAX_DOCS
+specifier|public
+specifier|static
+specifier|final
+name|int
+name|MAX_DOCS
+init|=
+name|Integer
+operator|.
+name|MAX_VALUE
+operator|-
+literal|128
+decl_stmt|;
+comment|// Use package-private instance var to enforce the limit so testing
+comment|// can use less electricity:
+DECL|field|actualMaxDocs
+specifier|private
+specifier|static
+name|int
+name|actualMaxDocs
+init|=
+name|MAX_DOCS
+decl_stmt|;
+comment|/** Used only for testing. */
+DECL|method|setMaxDocs
+specifier|static
+name|void
+name|setMaxDocs
+parameter_list|(
+name|int
+name|maxDocs
+parameter_list|)
+block|{
+if|if
+condition|(
+name|maxDocs
+operator|>
+name|MAX_DOCS
+condition|)
+block|{
+comment|// Cannot go higher than the hard max:
+throw|throw
+operator|new
+name|IllegalArgumentException
+argument_list|(
+literal|"maxDocs must be<= IndexWriter.MAX_DOCS="
+operator|+
+name|MAX_DOCS
+operator|+
+literal|"; got: "
+operator|+
+name|maxDocs
+argument_list|)
+throw|;
+block|}
+name|IndexWriter
+operator|.
+name|actualMaxDocs
+operator|=
+name|maxDocs
+expr_stmt|;
+block|}
+DECL|method|getActualMaxDocs
+specifier|static
+name|int
+name|getActualMaxDocs
+parameter_list|()
+block|{
+return|return
+name|IndexWriter
+operator|.
+name|actualMaxDocs
+return|;
+block|}
 DECL|field|UNBOUNDED_MAX_MERGE_SEGMENTS
 specifier|private
 specifier|static
@@ -969,6 +1061,16 @@ DECL|field|startCommitTime
 specifier|private
 name|long
 name|startCommitTime
+decl_stmt|;
+comment|/** How many documents are in the index, or are in the process of being    *  added (reserved).  E.g., operations like addIndexes will first reserve    *  the right to add N docs, before they actually change the index,    *  much like how hotels place an "authorization hold" on your credit    *  card to make sure they can later charge you when you check out. */
+DECL|field|pendingNumDocs
+specifier|final
+name|AtomicLong
+name|pendingNumDocs
+init|=
+operator|new
+name|AtomicLong
+argument_list|()
 decl_stmt|;
 DECL|method|getReader
 name|DirectoryReader
@@ -7155,6 +7257,11 @@ name|ArrayList
 argument_list|<>
 argument_list|()
 decl_stmt|;
+name|int
+name|totalDocCount
+init|=
+literal|0
+decl_stmt|;
 name|boolean
 name|success
 init|=
@@ -7206,6 +7313,13 @@ name|read
 argument_list|(
 name|dir
 argument_list|)
+expr_stmt|;
+name|totalDocCount
+operator|+=
+name|sis
+operator|.
+name|totalDocCount
+argument_list|()
 expr_stmt|;
 for|for
 control|(
@@ -7422,6 +7536,13 @@ block|{
 name|ensureOpen
 argument_list|()
 expr_stmt|;
+comment|// Make sure adding the new documents to this index won't
+comment|// exceed the limit:
+name|reserveDocs
+argument_list|(
+name|totalDocCount
+argument_list|)
+expr_stmt|;
 name|success
 operator|=
 literal|true
@@ -7637,6 +7758,13 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
+comment|// Make sure adding the new documents to this index won't
+comment|// exceed the limit:
+name|reserveDocs
+argument_list|(
+name|numDocs
+argument_list|)
+expr_stmt|;
 specifier|final
 name|IOContext
 name|context
@@ -9690,6 +9818,19 @@ argument_list|(
 name|info
 argument_list|)
 expr_stmt|;
+name|pendingNumDocs
+operator|.
+name|addAndGet
+argument_list|(
+operator|-
+name|info
+operator|.
+name|info
+operator|.
+name|getDocCount
+argument_list|()
+argument_list|)
+expr_stmt|;
 name|readerPool
 operator|.
 name|drop
@@ -11636,6 +11777,37 @@ argument_list|,
 name|dropSegment
 argument_list|)
 expr_stmt|;
+comment|// Now deduct the deleted docs that we just reclaimed from this
+comment|// merge:
+name|int
+name|delDocCount
+init|=
+name|merge
+operator|.
+name|totalDocCount
+operator|-
+name|merge
+operator|.
+name|info
+operator|.
+name|info
+operator|.
+name|getDocCount
+argument_list|()
+decl_stmt|;
+assert|assert
+name|delDocCount
+operator|>=
+literal|0
+assert|;
+name|pendingNumDocs
+operator|.
+name|addAndGet
+argument_list|(
+operator|-
+name|delDocCount
+argument_list|)
+expr_stmt|;
 if|if
 condition|(
 name|dropSegment
@@ -12947,6 +13119,19 @@ operator|.
 name|remove
 argument_list|(
 name|info
+argument_list|)
+expr_stmt|;
+name|pendingNumDocs
+operator|.
+name|addAndGet
+argument_list|(
+operator|-
+name|info
+operator|.
+name|info
+operator|.
+name|getDocCount
+argument_list|()
 argument_list|)
 expr_stmt|;
 if|if
@@ -16686,6 +16871,48 @@ block|{
 return|return
 literal|false
 return|;
+block|}
+block|}
+comment|/** Anything that will add N docs to the index should reserve first to    *  make sure it's allowed.  This will throw {@code    *  IllegalStateException} if it's not allowed. */
+DECL|method|reserveDocs
+specifier|private
+name|void
+name|reserveDocs
+parameter_list|(
+name|int
+name|numDocs
+parameter_list|)
+block|{
+if|if
+condition|(
+name|pendingNumDocs
+operator|.
+name|addAndGet
+argument_list|(
+name|numDocs
+argument_list|)
+operator|>
+name|actualMaxDocs
+condition|)
+block|{
+comment|// Reserve failed
+name|pendingNumDocs
+operator|.
+name|addAndGet
+argument_list|(
+operator|-
+name|numDocs
+argument_list|)
+expr_stmt|;
+throw|throw
+operator|new
+name|IllegalStateException
+argument_list|(
+literal|"number of documents in the index cannot exceed "
+operator|+
+name|actualMaxDocs
+argument_list|)
+throw|;
 block|}
 block|}
 block|}

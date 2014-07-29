@@ -1691,6 +1691,10 @@ argument_list|,
 name|deleteQueue
 argument_list|,
 name|infos
+argument_list|,
+name|writer
+operator|.
+name|pendingNumDocs
 argument_list|)
 expr_stmt|;
 block|}

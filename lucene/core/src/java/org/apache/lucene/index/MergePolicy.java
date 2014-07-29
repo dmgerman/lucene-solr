@@ -60,36 +60,6 @@ end_import
 
 begin_import
 import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|util
-operator|.
-name|SetOnce
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|util
-operator|.
-name|SetOnce
-operator|.
-name|AlreadySetException
-import|;
-end_import
-
-begin_import
-import|import
 name|java
 operator|.
 name|io
@@ -350,7 +320,7 @@ name|SegmentCommitInfo
 argument_list|>
 name|segments
 decl_stmt|;
-comment|/** Number of documents in the merged segment. */
+comment|/** Total number of documents in segments to be merged, not accounting for deletions. */
 DECL|field|totalDocCount
 specifier|public
 specifier|final

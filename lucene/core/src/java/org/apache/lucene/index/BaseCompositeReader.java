@@ -209,9 +209,16 @@ comment|// compute maxDocs
 if|if
 condition|(
 name|maxDoc
-operator|<
+argument_list|<
 literal|0
 comment|/* overflow */
+operator|||
+name|maxDoc
+argument_list|>
+name|IndexWriter
+operator|.
+name|getActualMaxDocs
+argument_list|()
 condition|)
 block|{
 throw|throw
@@ -220,9 +227,10 @@ name|IllegalArgumentException
 argument_list|(
 literal|"Too many documents, composite IndexReaders cannot exceed "
 operator|+
-name|Integer
+name|IndexWriter
 operator|.
-name|MAX_VALUE
+name|getActualMaxDocs
+argument_list|()
 argument_list|)
 throw|;
 block|}
