@@ -88,20 +88,6 @@ name|IOUtils
 import|;
 end_import
 
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|util
-operator|.
-name|Version
-import|;
-end_import
-
 begin_comment
 comment|/**  * Base class for Analyzers that need to make use of stopword sets.   *   */
 end_comment
@@ -122,12 +108,6 @@ specifier|final
 name|CharArraySet
 name|stopwords
 decl_stmt|;
-DECL|field|matchVersion
-specifier|protected
-specifier|final
-name|Version
-name|matchVersion
-decl_stmt|;
 comment|/**    * Returns the analyzer's stopword set or an empty set if the analyzer has no    * stopwords    *     * @return the analyzer's stopword set or an empty set if the analyzer has no    *         stopwords    */
 DECL|method|getStopwordSet
 specifier|public
@@ -139,24 +119,16 @@ return|return
 name|stopwords
 return|;
 block|}
-comment|/**    * Creates a new instance initialized with the given stopword set    *     * @param version    *          the Lucene version for cross version compatibility    * @param stopwords    *          the analyzer's stopword set    */
+comment|/**    * Creates a new instance initialized with the given stopword set    *     * @param stopwords    *          the analyzer's stopword set    */
 DECL|method|StopwordAnalyzerBase
 specifier|protected
 name|StopwordAnalyzerBase
 parameter_list|(
 specifier|final
-name|Version
-name|version
-parameter_list|,
-specifier|final
 name|CharArraySet
 name|stopwords
 parameter_list|)
 block|{
-name|matchVersion
-operator|=
-name|version
-expr_stmt|;
 comment|// analyzers should use char array set for stopwords!
 name|this
 operator|.
@@ -178,27 +150,19 @@ name|CharArraySet
 operator|.
 name|copy
 argument_list|(
-name|version
-argument_list|,
 name|stopwords
 argument_list|)
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**    * Creates a new Analyzer with an empty stopword set    *     * @param version    *          the Lucene version for cross version compatibility    */
+comment|/**    * Creates a new Analyzer with an empty stopword set    */
 DECL|method|StopwordAnalyzerBase
 specifier|protected
 name|StopwordAnalyzerBase
-parameter_list|(
-specifier|final
-name|Version
-name|version
-parameter_list|)
+parameter_list|()
 block|{
 name|this
 argument_list|(
-name|version
-argument_list|,
 literal|null
 argument_list|)
 expr_stmt|;
@@ -271,10 +235,6 @@ argument_list|,
 operator|new
 name|CharArraySet
 argument_list|(
-name|Version
-operator|.
-name|LUCENE_CURRENT
-argument_list|,
 literal|16
 argument_list|,
 name|ignoreCase
@@ -293,7 +253,7 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
-comment|/**    * Creates a CharArraySet from a file.    *     * @param stopwords    *          the stopwords file to load    *     * @param matchVersion    *          the Lucene version for cross version compatibility    * @return a CharArraySet containing the distinct stopwords from the given    *         file    * @throws IOException    *           if loading the stopwords throws an {@link IOException}    */
+comment|/**    * Creates a CharArraySet from a file.    *     * @param stopwords    *          the stopwords file to load    * @return a CharArraySet containing the distinct stopwords from the given    *         file    * @throws IOException    *           if loading the stopwords throws an {@link IOException}    */
 DECL|method|loadStopwordSet
 specifier|protected
 specifier|static
@@ -302,9 +262,6 @@ name|loadStopwordSet
 parameter_list|(
 name|File
 name|stopwords
-parameter_list|,
-name|Version
-name|matchVersion
 parameter_list|)
 throws|throws
 name|IOException
@@ -335,8 +292,6 @@ operator|.
 name|getWordSet
 argument_list|(
 name|reader
-argument_list|,
-name|matchVersion
 argument_list|)
 return|;
 block|}
@@ -351,7 +306,7 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
-comment|/**    * Creates a CharArraySet from a file.    *     * @param stopwords    *          the stopwords reader to load    *     * @param matchVersion    *          the Lucene version for cross version compatibility    * @return a CharArraySet containing the distinct stopwords from the given    *         reader    * @throws IOException    *           if loading the stopwords throws an {@link IOException}    */
+comment|/**    * Creates a CharArraySet from a file.    *     * @param stopwords    *          the stopwords reader to load    *     * @return a CharArraySet containing the distinct stopwords from the given    *         reader    * @throws IOException    *           if loading the stopwords throws an {@link IOException}    */
 DECL|method|loadStopwordSet
 specifier|protected
 specifier|static
@@ -360,9 +315,6 @@ name|loadStopwordSet
 parameter_list|(
 name|Reader
 name|stopwords
-parameter_list|,
-name|Version
-name|matchVersion
 parameter_list|)
 throws|throws
 name|IOException
@@ -375,8 +327,6 @@ operator|.
 name|getWordSet
 argument_list|(
 name|stopwords
-argument_list|,
-name|matchVersion
 argument_list|)
 return|;
 block|}

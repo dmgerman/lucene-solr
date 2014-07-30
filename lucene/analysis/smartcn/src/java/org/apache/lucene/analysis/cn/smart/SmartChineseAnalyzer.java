@@ -311,10 +311,6 @@ name|UTF_8
 argument_list|)
 argument_list|,
 name|STOPWORD_FILE_COMMENT
-argument_list|,
-name|Version
-operator|.
-name|LUCENE_CURRENT
 argument_list|)
 argument_list|)
 return|;
@@ -490,8 +486,6 @@ operator|=
 operator|new
 name|StopFilter
 argument_list|(
-name|matchVersion
-argument_list|,
 name|result
 argument_list|,
 name|stopWords

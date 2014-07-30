@@ -32,16 +32,6 @@ begin_import
 import|import
 name|java
 operator|.
-name|io
-operator|.
-name|Reader
-import|;
-end_import
-
-begin_import
-import|import
-name|java
-operator|.
 name|util
 operator|.
 name|HashSet
@@ -202,20 +192,6 @@ name|StopwordAnalyzerBase
 import|;
 end_import
 
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|util
-operator|.
-name|Version
-import|;
-end_import
-
 begin_comment
 comment|/**  * Analyzer for Japanese that uses morphological analysis.  * @see JapaneseTokenizer  */
 end_comment
@@ -252,15 +228,10 @@ decl_stmt|;
 DECL|method|JapaneseAnalyzer
 specifier|public
 name|JapaneseAnalyzer
-parameter_list|(
-name|Version
-name|matchVersion
-parameter_list|)
+parameter_list|()
 block|{
 name|this
 argument_list|(
-name|matchVersion
-argument_list|,
 literal|null
 argument_list|,
 name|JapaneseTokenizer
@@ -281,9 +252,6 @@ DECL|method|JapaneseAnalyzer
 specifier|public
 name|JapaneseAnalyzer
 parameter_list|(
-name|Version
-name|matchVersion
-parameter_list|,
 name|UserDictionary
 name|userDict
 parameter_list|,
@@ -302,8 +270,6 @@ parameter_list|)
 block|{
 name|super
 argument_list|(
-name|matchVersion
-argument_list|,
 name|stopwords
 argument_list|)
 expr_stmt|;
@@ -507,8 +473,6 @@ operator|=
 operator|new
 name|JapanesePartOfSpeechStopFilter
 argument_list|(
-name|matchVersion
-argument_list|,
 name|stream
 argument_list|,
 name|stoptags
@@ -527,8 +491,6 @@ operator|=
 operator|new
 name|StopFilter
 argument_list|(
-name|matchVersion
-argument_list|,
 name|stream
 argument_list|,
 name|stopwords
@@ -547,8 +509,6 @@ operator|=
 operator|new
 name|LowerCaseFilter
 argument_list|(
-name|matchVersion
-argument_list|,
 name|stream
 argument_list|)
 expr_stmt|;

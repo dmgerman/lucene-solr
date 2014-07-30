@@ -96,20 +96,6 @@ end_import
 
 begin_import
 import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|util
-operator|.
-name|Version
-import|;
-end_import
-
-begin_import
-import|import
 name|java
 operator|.
 name|io
@@ -157,7 +143,6 @@ operator|.
 name|class
 argument_list|)
 decl_stmt|;
-comment|// use a fixed version, as we don't care about case sensitivity.
 DECL|field|previous
 specifier|private
 specifier|final
@@ -167,10 +152,6 @@ init|=
 operator|new
 name|CharArraySet
 argument_list|(
-name|Version
-operator|.
-name|LUCENE_CURRENT
-argument_list|,
 literal|8
 argument_list|,
 literal|false

@@ -4761,14 +4761,7 @@ literal|null
 condition|?
 operator|new
 name|WhitespaceAnalyzer
-argument_list|(
-name|core
-operator|.
-name|getSolrConfig
 argument_list|()
-operator|.
-name|luceneMatchVersion
-argument_list|)
 else|:
 name|fieldType
 operator|.

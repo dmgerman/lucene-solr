@@ -72,20 +72,6 @@ name|CharArraySet
 import|;
 end_import
 
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|util
-operator|.
-name|Version
-import|;
-end_import
-
 begin_comment
 comment|/**  * Test the CzechAnalyzer  *   * Before Lucene 3.1, CzechAnalyzer was a StandardAnalyzer with a custom   * stopword list. As of 3.1 it also includes a stemmer.  *  */
 end_comment
@@ -110,9 +96,7 @@ name|assertAnalyzesTo
 argument_list|(
 operator|new
 name|CzechAnalyzer
-argument_list|(
-name|TEST_VERSION_CURRENT
-argument_list|)
+argument_list|()
 argument_list|,
 literal|"Pokud mluvime o volnem"
 argument_list|,
@@ -140,9 +124,7 @@ name|analyzer
 init|=
 operator|new
 name|CzechAnalyzer
-argument_list|(
-name|TEST_VERSION_CURRENT
-argument_list|)
+argument_list|()
 decl_stmt|;
 name|assertAnalyzesTo
 argument_list|(
@@ -191,8 +173,6 @@ init|=
 operator|new
 name|CharArraySet
 argument_list|(
-name|TEST_VERSION_CURRENT
-argument_list|,
 literal|1
 argument_list|,
 literal|true
@@ -211,8 +191,6 @@ init|=
 operator|new
 name|CzechAnalyzer
 argument_list|(
-name|TEST_VERSION_CURRENT
-argument_list|,
 name|CharArraySet
 operator|.
 name|EMPTY_SET
@@ -253,9 +231,7 @@ argument_list|()
 argument_list|,
 operator|new
 name|CzechAnalyzer
-argument_list|(
-name|TEST_VERSION_CURRENT
-argument_list|)
+argument_list|()
 argument_list|,
 literal|1000
 operator|*

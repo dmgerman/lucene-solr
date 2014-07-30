@@ -2971,8 +2971,6 @@ init|=
 operator|new
 name|CharArraySet
 argument_list|(
-name|TEST_VERSION_CURRENT
-argument_list|,
 name|num
 argument_list|,
 name|random
@@ -3692,8 +3690,6 @@ operator|new
 name|CharArrayMap
 argument_list|<>
 argument_list|(
-name|TEST_VERSION_CURRENT
-argument_list|,
 name|num
 argument_list|,
 name|random
@@ -4638,8 +4634,6 @@ operator|=
 operator|new
 name|CommonGramsFilter
 argument_list|(
-name|TEST_VERSION_CURRENT
-argument_list|,
 name|stream
 argument_list|,
 name|newRandomArg

@@ -166,9 +166,6 @@ argument_list|(
 name|args
 argument_list|)
 expr_stmt|;
-name|assureMatchVersion
-argument_list|()
-expr_stmt|;
 name|wordFiles
 operator|=
 name|get
@@ -294,8 +291,6 @@ init|=
 operator|new
 name|KeepWordFilter
 argument_list|(
-name|luceneMatchVersion
-argument_list|,
 name|input
 argument_list|,
 name|words

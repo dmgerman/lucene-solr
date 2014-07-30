@@ -373,8 +373,6 @@ argument_list|,
 operator|new
 name|ReverseStringFilter
 argument_list|(
-name|TEST_VERSION_CURRENT
-argument_list|,
 operator|new
 name|EdgeNGramTokenFilter
 argument_list|(
@@ -383,8 +381,6 @@ argument_list|,
 operator|new
 name|ReverseStringFilter
 argument_list|(
-name|TEST_VERSION_CURRENT
-argument_list|,
 name|tokenizer
 argument_list|)
 argument_list|,

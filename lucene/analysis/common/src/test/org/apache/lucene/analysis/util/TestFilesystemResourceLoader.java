@@ -254,8 +254,6 @@ name|StandardCharsets
 operator|.
 name|UTF_8
 argument_list|)
-argument_list|,
-name|TEST_VERSION_CURRENT
 argument_list|)
 decl_stmt|;
 name|assertTrue

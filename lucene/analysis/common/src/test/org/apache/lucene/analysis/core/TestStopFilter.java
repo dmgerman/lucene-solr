@@ -212,8 +212,6 @@ init|=
 operator|new
 name|CharArraySet
 argument_list|(
-name|TEST_VERSION_CURRENT
-argument_list|,
 name|asSet
 argument_list|(
 literal|"is"
@@ -253,8 +251,6 @@ init|=
 operator|new
 name|StopFilter
 argument_list|(
-name|TEST_VERSION_CURRENT
-argument_list|,
 name|in
 argument_list|,
 name|stopWords
@@ -314,8 +310,6 @@ name|StopFilter
 operator|.
 name|makeStopSet
 argument_list|(
-name|TEST_VERSION_CURRENT
-argument_list|,
 name|stopWords
 argument_list|)
 decl_stmt|;
@@ -346,8 +340,6 @@ init|=
 operator|new
 name|StopFilter
 argument_list|(
-name|TEST_VERSION_CURRENT
-argument_list|,
 name|in
 argument_list|,
 name|stopSet
@@ -508,8 +500,6 @@ name|StopFilter
 operator|.
 name|makeStopSet
 argument_list|(
-name|TEST_VERSION_CURRENT
-argument_list|,
 name|stopWords
 argument_list|)
 decl_stmt|;
@@ -553,10 +543,6 @@ init|=
 operator|new
 name|StopFilter
 argument_list|(
-name|Version
-operator|.
-name|LUCENE_4_0
-argument_list|,
 name|in
 argument_list|,
 name|stopSet
@@ -737,8 +723,6 @@ name|StopFilter
 operator|.
 name|makeStopSet
 argument_list|(
-name|TEST_VERSION_CURRENT
-argument_list|,
 name|stopWords0
 argument_list|)
 decl_stmt|;
@@ -749,8 +733,6 @@ name|StopFilter
 operator|.
 name|makeStopSet
 argument_list|(
-name|TEST_VERSION_CURRENT
-argument_list|,
 name|stopWords1
 argument_list|)
 decl_stmt|;
@@ -792,8 +774,6 @@ init|=
 operator|new
 name|StopFilter
 argument_list|(
-name|TEST_VERSION_CURRENT
-argument_list|,
 name|in1
 argument_list|,
 name|stopSet0
@@ -806,8 +786,6 @@ init|=
 operator|new
 name|StopFilter
 argument_list|(
-name|TEST_VERSION_CURRENT
-argument_list|,
 name|stpf0
 argument_list|,
 name|stopSet1
@@ -836,8 +814,6 @@ name|StopFilter
 operator|.
 name|makeStopSet
 argument_list|(
-name|TEST_VERSION_CURRENT
-argument_list|,
 literal|"of"
 argument_list|)
 decl_stmt|;
@@ -872,8 +848,6 @@ init|=
 operator|new
 name|StopFilter
 argument_list|(
-name|TEST_VERSION_CURRENT
-argument_list|,
 name|in
 argument_list|,
 name|stopSet

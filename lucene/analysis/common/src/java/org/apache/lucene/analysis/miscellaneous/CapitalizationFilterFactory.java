@@ -302,8 +302,6 @@ operator|=
 operator|new
 name|CharArraySet
 argument_list|(
-name|luceneMatchVersion
-argument_list|,
 literal|10
 argument_list|,
 name|ignoreCase

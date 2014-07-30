@@ -289,9 +289,7 @@ name|a
 init|=
 operator|new
 name|ClassicAnalyzer
-argument_list|(
-name|TEST_VERSION_CURRENT
-argument_list|)
+argument_list|()
 decl_stmt|;
 DECL|method|testMaxTermLength
 specifier|public
@@ -306,9 +304,7 @@ name|sa
 init|=
 operator|new
 name|ClassicAnalyzer
-argument_list|(
-name|TEST_VERSION_CURRENT
-argument_list|)
+argument_list|()
 decl_stmt|;
 name|sa
 operator|.
@@ -351,9 +347,7 @@ name|sa
 init|=
 operator|new
 name|ClassicAnalyzer
-argument_list|(
-name|TEST_VERSION_CURRENT
-argument_list|)
+argument_list|()
 decl_stmt|;
 name|assertAnalyzesTo
 argument_list|(
@@ -873,9 +867,7 @@ name|analyzer
 init|=
 operator|new
 name|ClassicAnalyzer
-argument_list|(
-name|TEST_VERSION_CURRENT
-argument_list|)
+argument_list|()
 decl_stmt|;
 name|assertAnalyzesTo
 argument_list|(
@@ -926,9 +918,7 @@ name|a2
 init|=
 operator|new
 name|ClassicAnalyzer
-argument_list|(
-name|TEST_VERSION_CURRENT
-argument_list|)
+argument_list|()
 decl_stmt|;
 comment|// domain names
 name|assertAnalyzesTo
@@ -977,9 +967,7 @@ name|a2
 operator|=
 operator|new
 name|ClassicAnalyzer
-argument_list|(
-name|TEST_VERSION_CURRENT
-argument_list|)
+argument_list|()
 expr_stmt|;
 name|assertAnalyzesTo
 argument_list|(
@@ -1619,9 +1607,7 @@ name|sa
 init|=
 operator|new
 name|ClassicAnalyzer
-argument_list|(
-name|TEST_VERSION_CURRENT
-argument_list|)
+argument_list|()
 decl_stmt|;
 name|assertAnalyzesTo
 argument_list|(
@@ -1671,9 +1657,7 @@ name|TEST_VERSION_CURRENT
 argument_list|,
 operator|new
 name|ClassicAnalyzer
-argument_list|(
-name|TEST_VERSION_CURRENT
-argument_list|)
+argument_list|()
 argument_list|)
 argument_list|)
 decl_stmt|;
@@ -1982,9 +1966,7 @@ name|sa
 init|=
 operator|new
 name|ClassicAnalyzer
-argument_list|(
-name|TEST_VERSION_CURRENT
-argument_list|)
+argument_list|()
 decl_stmt|;
 name|sa
 operator|.
@@ -2075,9 +2057,7 @@ argument_list|()
 argument_list|,
 operator|new
 name|ClassicAnalyzer
-argument_list|(
-name|TEST_VERSION_CURRENT
-argument_list|)
+argument_list|()
 argument_list|,
 literal|1000
 operator|*
@@ -2106,9 +2086,7 @@ name|random
 argument_list|,
 operator|new
 name|ClassicAnalyzer
-argument_list|(
-name|TEST_VERSION_CURRENT
-argument_list|)
+argument_list|()
 argument_list|,
 literal|100
 operator|*

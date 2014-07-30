@@ -74,20 +74,6 @@ name|FilteringTokenFilter
 import|;
 end_import
 
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|util
-operator|.
-name|Version
-import|;
-end_import
-
 begin_comment
 comment|/**  * Removes tokens whose types appear in a set of blocked types from a token stream.  */
 end_comment
@@ -129,14 +115,11 @@ specifier|final
 name|boolean
 name|useWhiteList
 decl_stmt|;
-comment|/**    * Create a new {@link TypeTokenFilter}.    * @param version      the Lucene match version    * @param input        the {@link TokenStream} to consume    * @param stopTypes    the types to filter    * @param useWhiteList if true, then tokens whose type is in stopTypes will    *                     be kept, otherwise they will be filtered out    */
+comment|/**    * Create a new {@link TypeTokenFilter}.    * @param input        the {@link TokenStream} to consume    * @param stopTypes    the types to filter    * @param useWhiteList if true, then tokens whose type is in stopTypes will    *                     be kept, otherwise they will be filtered out    */
 DECL|method|TypeTokenFilter
 specifier|public
 name|TypeTokenFilter
 parameter_list|(
-name|Version
-name|version
-parameter_list|,
 name|TokenStream
 name|input
 parameter_list|,
@@ -152,8 +135,6 @@ parameter_list|)
 block|{
 name|super
 argument_list|(
-name|version
-argument_list|,
 name|input
 argument_list|)
 expr_stmt|;
@@ -170,14 +151,11 @@ operator|=
 name|useWhiteList
 expr_stmt|;
 block|}
-comment|/**    * Create a new {@link TypeTokenFilter} that filters tokens out    * (useWhiteList=false).    * @see #TypeTokenFilter(Version, TokenStream, Set, boolean)    */
+comment|/**    * Create a new {@link TypeTokenFilter} that filters tokens out    * (useWhiteList=false).    */
 DECL|method|TypeTokenFilter
 specifier|public
 name|TypeTokenFilter
 parameter_list|(
-name|Version
-name|version
-parameter_list|,
 name|TokenStream
 name|input
 parameter_list|,
@@ -190,8 +168,6 @@ parameter_list|)
 block|{
 name|this
 argument_list|(
-name|version
-argument_list|,
 name|input
 argument_list|,
 name|stopTypes

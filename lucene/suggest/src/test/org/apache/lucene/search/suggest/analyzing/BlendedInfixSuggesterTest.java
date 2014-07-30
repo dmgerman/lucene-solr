@@ -231,8 +231,6 @@ init|=
 operator|new
 name|StandardAnalyzer
 argument_list|(
-name|TEST_VERSION_CURRENT
-argument_list|,
 name|CharArraySet
 operator|.
 name|EMPTY_SET
@@ -443,8 +441,6 @@ init|=
 operator|new
 name|StandardAnalyzer
 argument_list|(
-name|TEST_VERSION_CURRENT
-argument_list|,
 name|CharArraySet
 operator|.
 name|EMPTY_SET
@@ -767,8 +763,6 @@ init|=
 operator|new
 name|StandardAnalyzer
 argument_list|(
-name|TEST_VERSION_CURRENT
-argument_list|,
 name|CharArraySet
 operator|.
 name|EMPTY_SET
@@ -1091,8 +1085,6 @@ init|=
 operator|new
 name|StandardAnalyzer
 argument_list|(
-name|TEST_VERSION_CURRENT
-argument_list|,
 name|CharArraySet
 operator|.
 name|EMPTY_SET

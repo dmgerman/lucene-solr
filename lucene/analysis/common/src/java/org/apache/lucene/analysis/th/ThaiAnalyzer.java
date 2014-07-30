@@ -108,22 +108,6 @@ name|analysis
 operator|.
 name|core
 operator|.
-name|StopAnalyzer
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|analysis
-operator|.
-name|core
-operator|.
 name|StopFilter
 import|;
 end_import
@@ -219,6 +203,12 @@ name|ThaiAnalyzer
 extends|extends
 name|StopwordAnalyzerBase
 block|{
+DECL|field|matchVersion
+specifier|private
+specifier|final
+name|Version
+name|matchVersion
+decl_stmt|;
 comment|/** File containing default Thai stopwords. */
 DECL|field|DEFAULT_STOPWORD_FILE
 specifier|public
@@ -337,10 +327,14 @@ parameter_list|)
 block|{
 name|super
 argument_list|(
-name|matchVersion
-argument_list|,
 name|stopwords
 argument_list|)
+expr_stmt|;
+name|this
+operator|.
+name|matchVersion
+operator|=
+name|matchVersion
 expr_stmt|;
 block|}
 comment|/**    * Creates    * {@link org.apache.lucene.analysis.Analyzer.TokenStreamComponents}    * used to tokenize all the text in the provided {@link Reader}.    *     * @return {@link org.apache.lucene.analysis.Analyzer.TokenStreamComponents}    *         built from a {@link StandardTokenizer} filtered with    *         {@link StandardFilter}, {@link LowerCaseFilter}, {@link ThaiWordFilter}, and    *         {@link StopFilter}    */
@@ -381,8 +375,6 @@ init|=
 operator|new
 name|LowerCaseFilter
 argument_list|(
-name|matchVersion
-argument_list|,
 name|source
 argument_list|)
 decl_stmt|;
@@ -391,8 +383,6 @@ operator|=
 operator|new
 name|StopFilter
 argument_list|(
-name|matchVersion
-argument_list|,
 name|result
 argument_list|,
 name|stopwords
@@ -416,9 +406,7 @@ name|source
 init|=
 operator|new
 name|StandardTokenizer
-argument_list|(
-name|matchVersion
-argument_list|)
+argument_list|()
 decl_stmt|;
 name|TokenStream
 name|result
@@ -426,8 +414,6 @@ init|=
 operator|new
 name|StandardFilter
 argument_list|(
-name|matchVersion
-argument_list|,
 name|source
 argument_list|)
 decl_stmt|;
@@ -436,8 +422,6 @@ operator|=
 operator|new
 name|LowerCaseFilter
 argument_list|(
-name|matchVersion
-argument_list|,
 name|result
 argument_list|)
 expr_stmt|;
@@ -446,8 +430,6 @@ operator|=
 operator|new
 name|ThaiWordFilter
 argument_list|(
-name|matchVersion
-argument_list|,
 name|result
 argument_list|)
 expr_stmt|;
@@ -460,8 +442,6 @@ argument_list|,
 operator|new
 name|StopFilter
 argument_list|(
-name|matchVersion
-argument_list|,
 name|result
 argument_list|,
 name|stopwords

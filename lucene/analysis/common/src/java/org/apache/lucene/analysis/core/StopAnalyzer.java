@@ -130,22 +130,8 @@ name|WordlistLoader
 import|;
 end_import
 
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|util
-operator|.
-name|Version
-import|;
-end_import
-
 begin_comment
-comment|/** Filters {@link LetterTokenizer} with {@link LowerCaseFilter} and {@link StopFilter}.  *  *<a name="version"/>  *<p>You must specify the required {@link Version}  * compatibility when creating StopAnalyzer:  *<ul>  *<li> As of 3.1, StopFilter correctly handles Unicode 4.0  *         supplementary characters in stopwords  *<li> As of 2.9, position increments are preserved  *</ul> */
+comment|/**   * Filters {@link LetterTokenizer} with {@link LowerCaseFilter} and {@link StopFilter}.  */
 end_comment
 
 begin_class
@@ -252,10 +238,6 @@ init|=
 operator|new
 name|CharArraySet
 argument_list|(
-name|Version
-operator|.
-name|LUCENE_CURRENT
-argument_list|,
 name|stopWords
 argument_list|,
 literal|false
@@ -271,51 +253,38 @@ name|stopSet
 argument_list|)
 expr_stmt|;
 block|}
-comment|/** Builds an analyzer which removes words in    *  {@link #ENGLISH_STOP_WORDS_SET}.    * @param matchVersion See<a href="#version">above</a>    */
+comment|/** Builds an analyzer which removes words in    *  {@link #ENGLISH_STOP_WORDS_SET}.    */
 DECL|method|StopAnalyzer
 specifier|public
 name|StopAnalyzer
-parameter_list|(
-name|Version
-name|matchVersion
-parameter_list|)
+parameter_list|()
 block|{
 name|this
 argument_list|(
-name|matchVersion
-argument_list|,
 name|ENGLISH_STOP_WORDS_SET
 argument_list|)
 expr_stmt|;
 block|}
-comment|/** Builds an analyzer with the stop words from the given set.    * @param matchVersion See<a href="#version">above</a>    * @param stopWords Set of stop words */
+comment|/** Builds an analyzer with the stop words from the given set.    * @param stopWords Set of stop words */
 DECL|method|StopAnalyzer
 specifier|public
 name|StopAnalyzer
 parameter_list|(
-name|Version
-name|matchVersion
-parameter_list|,
 name|CharArraySet
 name|stopWords
 parameter_list|)
 block|{
 name|super
 argument_list|(
-name|matchVersion
-argument_list|,
 name|stopWords
 argument_list|)
 expr_stmt|;
 block|}
-comment|/** Builds an analyzer with the stop words from the given file.    * @see WordlistLoader#getWordSet(Reader, Version)    * @param matchVersion See<a href="#version">above</a>    * @param stopwordsFile File to load stop words from */
+comment|/** Builds an analyzer with the stop words from the given file.    * @see WordlistLoader#getWordSet(Reader)    * @param stopwordsFile File to load stop words from */
 DECL|method|StopAnalyzer
 specifier|public
 name|StopAnalyzer
 parameter_list|(
-name|Version
-name|matchVersion
-parameter_list|,
 name|File
 name|stopwordsFile
 parameter_list|)
@@ -324,25 +293,18 @@ name|IOException
 block|{
 name|this
 argument_list|(
-name|matchVersion
-argument_list|,
 name|loadStopwordSet
 argument_list|(
 name|stopwordsFile
-argument_list|,
-name|matchVersion
 argument_list|)
 argument_list|)
 expr_stmt|;
 block|}
-comment|/** Builds an analyzer with the stop words from the given reader.    * @see WordlistLoader#getWordSet(Reader, Version)    * @param matchVersion See<a href="#version">above</a>    * @param stopwords Reader to load stop words from */
+comment|/** Builds an analyzer with the stop words from the given reader.    * @see WordlistLoader#getWordSet(Reader)    * @param stopwords Reader to load stop words from */
 DECL|method|StopAnalyzer
 specifier|public
 name|StopAnalyzer
 parameter_list|(
-name|Version
-name|matchVersion
-parameter_list|,
 name|Reader
 name|stopwords
 parameter_list|)
@@ -351,13 +313,9 @@ name|IOException
 block|{
 name|this
 argument_list|(
-name|matchVersion
-argument_list|,
 name|loadStopwordSet
 argument_list|(
 name|stopwords
-argument_list|,
-name|matchVersion
 argument_list|)
 argument_list|)
 expr_stmt|;
@@ -380,9 +338,7 @@ name|source
 init|=
 operator|new
 name|LowerCaseTokenizer
-argument_list|(
-name|matchVersion
-argument_list|)
+argument_list|()
 decl_stmt|;
 return|return
 operator|new
@@ -393,8 +349,6 @@ argument_list|,
 operator|new
 name|StopFilter
 argument_list|(
-name|matchVersion
-argument_list|,
 name|source
 argument_list|,
 name|stopwords

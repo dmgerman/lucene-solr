@@ -80,20 +80,6 @@ name|CharArraySet
 import|;
 end_import
 
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|util
-operator|.
-name|Version
-import|;
-end_import
-
 begin_comment
 comment|/**  * A TokenFilter that only keeps tokens with text contained in the  * required words.  This filter behaves like the inverse of StopFilter.  *   * @since solr 1.3  */
 end_comment
@@ -126,14 +112,11 @@ operator|.
 name|class
 argument_list|)
 decl_stmt|;
-comment|/**    * Create a new {@link KeepWordFilter}.    *<p><b>NOTE</b>: The words set passed to this constructor will be directly    * used by this filter and should not be modified.    * @param version the Lucene match version    * @param in      the {@link TokenStream} to consume    * @param words   the words to keep    */
+comment|/**    * Create a new {@link KeepWordFilter}.    *<p><b>NOTE</b>: The words set passed to this constructor will be directly    * used by this filter and should not be modified.    * @param in      the {@link TokenStream} to consume    * @param words   the words to keep    */
 DECL|method|KeepWordFilter
 specifier|public
 name|KeepWordFilter
 parameter_list|(
-name|Version
-name|version
-parameter_list|,
 name|TokenStream
 name|in
 parameter_list|,
@@ -143,8 +126,6 @@ parameter_list|)
 block|{
 name|super
 argument_list|(
-name|version
-argument_list|,
 name|in
 argument_list|)
 expr_stmt|;

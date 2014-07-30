@@ -112,9 +112,7 @@ name|ra
 init|=
 operator|new
 name|RussianAnalyzer
-argument_list|(
-name|TEST_VERSION_CURRENT
-argument_list|)
+argument_list|()
 decl_stmt|;
 name|assertAnalyzesTo
 argument_list|(
@@ -146,9 +144,7 @@ name|a
 init|=
 operator|new
 name|RussianAnalyzer
-argument_list|(
-name|TEST_VERSION_CURRENT
-argument_list|)
+argument_list|()
 decl_stmt|;
 name|assertAnalyzesTo
 argument_list|(
@@ -209,8 +205,6 @@ init|=
 operator|new
 name|CharArraySet
 argument_list|(
-name|TEST_VERSION_CURRENT
-argument_list|,
 literal|1
 argument_list|,
 literal|true
@@ -229,8 +223,6 @@ init|=
 operator|new
 name|RussianAnalyzer
 argument_list|(
-name|TEST_VERSION_CURRENT
-argument_list|,
 name|RussianAnalyzer
 operator|.
 name|getDefaultStopSet
@@ -280,9 +272,7 @@ argument_list|()
 argument_list|,
 operator|new
 name|RussianAnalyzer
-argument_list|(
-name|TEST_VERSION_CURRENT
-argument_list|)
+argument_list|()
 argument_list|,
 literal|1000
 operator|*

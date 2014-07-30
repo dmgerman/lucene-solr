@@ -392,8 +392,6 @@ init|=
 operator|new
 name|CharArraySet
 argument_list|(
-name|TEST_VERSION_CURRENT
-argument_list|,
 literal|3
 argument_list|,
 literal|false
@@ -507,8 +505,6 @@ init|=
 operator|new
 name|CommonGramsFilter
 argument_list|(
-name|TEST_VERSION_CURRENT
-argument_list|,
 name|t
 argument_list|,
 name|cas
@@ -1422,8 +1418,6 @@ init|=
 operator|new
 name|CharArraySet
 argument_list|(
-name|TEST_VERSION_CURRENT
-argument_list|,
 operator|new
 name|HashSet
 argument_list|<>

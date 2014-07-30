@@ -329,8 +329,6 @@ argument_list|(
 operator|new
 name|CodepointCountFilter
 argument_list|(
-name|version
-argument_list|,
 name|input
 argument_list|,
 name|minGram
@@ -363,9 +361,7 @@ condition|?
 name|CharacterUtils
 operator|.
 name|getInstance
-argument_list|(
-name|version
-argument_list|)
+argument_list|()
 else|:
 name|CharacterUtils
 operator|.

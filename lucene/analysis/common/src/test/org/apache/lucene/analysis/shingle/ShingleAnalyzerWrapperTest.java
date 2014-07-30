@@ -2299,8 +2299,6 @@ name|StopFilter
 operator|.
 name|makeStopSet
 argument_list|(
-name|TEST_VERSION_CURRENT
-argument_list|,
 literal|"into"
 argument_list|)
 decl_stmt|;
@@ -2323,8 +2321,6 @@ init|=
 operator|new
 name|StopFilter
 argument_list|(
-name|TEST_VERSION_CURRENT
-argument_list|,
 name|tokenizer
 argument_list|,
 name|stopSet
