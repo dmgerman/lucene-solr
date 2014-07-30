@@ -358,8 +358,6 @@ name|leftConfig
 init|=
 name|newIndexWriterConfig
 argument_list|(
-name|TEST_VERSION_CURRENT
-argument_list|,
 name|leftAnalyzer
 argument_list|)
 decl_stmt|;
@@ -384,8 +382,6 @@ name|rightConfig
 init|=
 name|newIndexWriterConfig
 argument_list|(
-name|TEST_VERSION_CURRENT
-argument_list|,
 name|rightAnalyzer
 argument_list|)
 decl_stmt|;

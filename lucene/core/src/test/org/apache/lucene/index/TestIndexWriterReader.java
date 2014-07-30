@@ -500,8 +500,6 @@ name|iwc
 init|=
 name|newIndexWriterConfig
 argument_list|(
-name|TEST_VERSION_CURRENT
-argument_list|,
 operator|new
 name|MockAnalyzer
 argument_list|(
@@ -756,8 +754,6 @@ name|iwc
 operator|=
 name|newIndexWriterConfig
 argument_list|(
-name|TEST_VERSION_CURRENT
-argument_list|,
 operator|new
 name|MockAnalyzer
 argument_list|(
@@ -866,8 +862,6 @@ name|iwc
 init|=
 name|newIndexWriterConfig
 argument_list|(
-name|TEST_VERSION_CURRENT
-argument_list|,
 operator|new
 name|MockAnalyzer
 argument_list|(
@@ -1218,8 +1212,6 @@ name|dir1
 argument_list|,
 name|newIndexWriterConfig
 argument_list|(
-name|TEST_VERSION_CURRENT
-argument_list|,
 operator|new
 name|MockAnalyzer
 argument_list|(
@@ -1334,8 +1326,6 @@ name|iwc
 init|=
 name|newIndexWriterConfig
 argument_list|(
-name|TEST_VERSION_CURRENT
-argument_list|,
 operator|new
 name|MockAnalyzer
 argument_list|(
@@ -1396,8 +1386,6 @@ name|iwc
 operator|=
 name|newIndexWriterConfig
 argument_list|(
-name|TEST_VERSION_CURRENT
-argument_list|,
 operator|new
 name|MockAnalyzer
 argument_list|(
@@ -1615,8 +1603,6 @@ name|iwc
 init|=
 name|newIndexWriterConfig
 argument_list|(
-name|TEST_VERSION_CURRENT
-argument_list|,
 operator|new
 name|MockAnalyzer
 argument_list|(
@@ -1701,8 +1687,6 @@ name|dir2
 argument_list|,
 name|newIndexWriterConfig
 argument_list|(
-name|TEST_VERSION_CURRENT
-argument_list|,
 operator|new
 name|MockAnalyzer
 argument_list|(
@@ -1924,8 +1908,6 @@ name|dir1
 argument_list|,
 name|newIndexWriterConfig
 argument_list|(
-name|TEST_VERSION_CURRENT
-argument_list|,
 operator|new
 name|MockAnalyzer
 argument_list|(
@@ -1952,8 +1934,6 @@ name|dir2
 argument_list|,
 name|newIndexWriterConfig
 argument_list|(
-name|TEST_VERSION_CURRENT
-argument_list|,
 operator|new
 name|MockAnalyzer
 argument_list|(
@@ -2085,8 +2065,6 @@ name|dir1
 argument_list|,
 name|newIndexWriterConfig
 argument_list|(
-name|TEST_VERSION_CURRENT
-argument_list|,
 operator|new
 name|MockAnalyzer
 argument_list|(
@@ -2408,8 +2386,6 @@ name|dir1
 argument_list|,
 name|newIndexWriterConfig
 argument_list|(
-name|TEST_VERSION_CURRENT
-argument_list|,
 operator|new
 name|MockAnalyzer
 argument_list|(
@@ -2499,8 +2475,6 @@ name|mainDir
 argument_list|,
 name|newIndexWriterConfig
 argument_list|(
-name|TEST_VERSION_CURRENT
-argument_list|,
 operator|new
 name|MockAnalyzer
 argument_list|(
@@ -2755,8 +2729,6 @@ name|addDir
 argument_list|,
 name|newIndexWriterConfig
 argument_list|(
-name|TEST_VERSION_CURRENT
-argument_list|,
 operator|new
 name|MockAnalyzer
 argument_list|(
@@ -3316,8 +3288,6 @@ name|dir1
 argument_list|,
 name|newIndexWriterConfig
 argument_list|(
-name|TEST_VERSION_CURRENT
-argument_list|,
 operator|new
 name|MockAnalyzer
 argument_list|(
@@ -3543,8 +3513,6 @@ name|dir1
 argument_list|,
 name|newIndexWriterConfig
 argument_list|(
-name|TEST_VERSION_CURRENT
-argument_list|,
 operator|new
 name|MockAnalyzer
 argument_list|(
@@ -3826,8 +3794,6 @@ name|dir1
 argument_list|,
 name|newIndexWriterConfig
 argument_list|(
-name|TEST_VERSION_CURRENT
-argument_list|,
 operator|new
 name|MockAnalyzer
 argument_list|(
@@ -4045,8 +4011,6 @@ name|dir1
 argument_list|,
 name|newIndexWriterConfig
 argument_list|(
-name|TEST_VERSION_CURRENT
-argument_list|,
 operator|new
 name|MockAnalyzer
 argument_list|(
@@ -4245,8 +4209,6 @@ name|dir1
 argument_list|,
 name|newIndexWriterConfig
 argument_list|(
-name|TEST_VERSION_CURRENT
-argument_list|,
 operator|new
 name|MockAnalyzer
 argument_list|(
@@ -4399,8 +4361,6 @@ name|dir1
 argument_list|,
 name|newIndexWriterConfig
 argument_list|(
-name|TEST_VERSION_CURRENT
-argument_list|,
 operator|new
 name|MockAnalyzer
 argument_list|(
@@ -4967,8 +4927,6 @@ name|dir1
 argument_list|,
 name|newIndexWriterConfig
 argument_list|(
-name|TEST_VERSION_CURRENT
-argument_list|,
 operator|new
 name|MockAnalyzer
 argument_list|(
@@ -5487,8 +5445,6 @@ name|dir
 argument_list|,
 name|newIndexWriterConfig
 argument_list|(
-name|TEST_VERSION_CURRENT
-argument_list|,
 operator|new
 name|MockAnalyzer
 argument_list|(
@@ -5679,8 +5635,6 @@ name|dir
 argument_list|,
 name|newIndexWriterConfig
 argument_list|(
-name|TEST_VERSION_CURRENT
-argument_list|,
 operator|new
 name|MockAnalyzer
 argument_list|(
@@ -5895,8 +5849,6 @@ name|dir
 argument_list|,
 name|newIndexWriterConfig
 argument_list|(
-name|TEST_VERSION_CURRENT
-argument_list|,
 operator|new
 name|MockAnalyzer
 argument_list|(
@@ -5972,8 +5924,6 @@ name|dir
 argument_list|,
 name|newIndexWriterConfig
 argument_list|(
-name|TEST_VERSION_CURRENT
-argument_list|,
 operator|new
 name|MockAnalyzer
 argument_list|(
@@ -6239,8 +6189,6 @@ name|dir
 argument_list|,
 name|newIndexWriterConfig
 argument_list|(
-name|TEST_VERSION_CURRENT
-argument_list|,
 operator|new
 name|MockAnalyzer
 argument_list|(
@@ -6381,8 +6329,6 @@ name|d
 argument_list|,
 name|newIndexWriterConfig
 argument_list|(
-name|TEST_VERSION_CURRENT
-argument_list|,
 operator|new
 name|MockAnalyzer
 argument_list|(
@@ -6704,8 +6650,6 @@ name|conf
 init|=
 name|newIndexWriterConfig
 argument_list|(
-name|TEST_VERSION_CURRENT
-argument_list|,
 operator|new
 name|MockAnalyzer
 argument_list|(

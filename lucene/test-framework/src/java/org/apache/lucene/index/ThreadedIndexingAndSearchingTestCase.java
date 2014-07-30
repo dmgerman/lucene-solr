@@ -2844,8 +2844,6 @@ name|conf
 init|=
 name|newIndexWriterConfig
 argument_list|(
-name|TEST_VERSION_CURRENT
-argument_list|,
 name|analyzer
 argument_list|)
 decl_stmt|;

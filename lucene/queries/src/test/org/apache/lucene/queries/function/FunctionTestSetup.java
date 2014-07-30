@@ -528,8 +528,6 @@ name|iwc
 init|=
 name|newIndexWriterConfig
 argument_list|(
-name|TEST_VERSION_CURRENT
-argument_list|,
 name|anlzr
 argument_list|)
 operator|.

@@ -177,8 +177,6 @@ name|rd1
 argument_list|,
 name|newIndexWriterConfig
 argument_list|(
-name|TEST_VERSION_CURRENT
-argument_list|,
 operator|new
 name|MockAnalyzer
 argument_list|(
@@ -218,8 +216,6 @@ name|rdOut
 argument_list|,
 name|newIndexWriterConfig
 argument_list|(
-name|TEST_VERSION_CURRENT
-argument_list|,
 operator|new
 name|MockAnalyzer
 argument_list|(
@@ -407,8 +403,6 @@ name|rd1
 argument_list|,
 name|newIndexWriterConfig
 argument_list|(
-name|TEST_VERSION_CURRENT
-argument_list|,
 operator|new
 name|MockAnalyzer
 argument_list|(
@@ -638,8 +632,6 @@ name|rd1
 argument_list|,
 name|newIndexWriterConfig
 argument_list|(
-name|TEST_VERSION_CURRENT
-argument_list|,
 operator|new
 name|MockAnalyzer
 argument_list|(
@@ -686,8 +678,6 @@ name|rd2
 argument_list|,
 name|newIndexWriterConfig
 argument_list|(
-name|TEST_VERSION_CURRENT
-argument_list|,
 operator|new
 name|MockAnalyzer
 argument_list|(
@@ -733,8 +723,6 @@ name|rdOut
 argument_list|,
 name|newIndexWriterConfig
 argument_list|(
-name|TEST_VERSION_CURRENT
-argument_list|,
 operator|new
 name|MockAnalyzer
 argument_list|(

@@ -1979,7 +1979,7 @@ literal|"2.2"
 argument_list|)
 expr_stmt|;
 block|}
-comment|/** sets system properties based on     * {@link #newIndexWriterConfig(org.apache.lucene.util.Version, org.apache.lucene.analysis.Analyzer)}    *     * configs can use these system properties to vary the indexwriter settings    */
+comment|/** sets system properties based on     * {@link #newIndexWriterConfig(org.apache.lucene.analysis.Analyzer)}    *     * configs can use these system properties to vary the indexwriter settings    */
 DECL|method|newRandomConfig
 specifier|public
 specifier|static
@@ -1992,8 +1992,6 @@ name|iwc
 init|=
 name|newIndexWriterConfig
 argument_list|(
-name|TEST_VERSION_CURRENT
-argument_list|,
 operator|new
 name|MockAnalyzer
 argument_list|(
