@@ -20,6 +20,16 @@ end_comment
 
 begin_import
 import|import
+name|java
+operator|.
+name|io
+operator|.
+name|Reader
+import|;
+end_import
+
+begin_import
+import|import
 name|org
 operator|.
 name|apache
@@ -32,8 +42,38 @@ name|Analyzer
 import|;
 end_import
 
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|analysis
+operator|.
+name|util
+operator|.
+name|CharTokenizer
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|util
+operator|.
+name|Version
+import|;
+end_import
+
 begin_comment
-comment|/**  * An Analyzer that uses {@link WhitespaceTokenizer}.  **/
+comment|/**  * An Analyzer that uses {@link WhitespaceTokenizer}.  *<p>  *<a name="version">You must specify the required {@link Version} compatibility  * when creating {@link CharTokenizer}:  *<ul>  *<li>As of 3.1, {@link WhitespaceTokenizer} uses an int based API to normalize and  * detect token codepoints. See {@link CharTokenizer#isTokenChar(int)} and  * {@link CharTokenizer#normalize(int)} for details.</li>  *</ul>  *<p>  **/
 end_comment
 
 begin_class
@@ -45,12 +85,28 @@ name|WhitespaceAnalyzer
 extends|extends
 name|Analyzer
 block|{
-comment|/**    * Creates a new {@link WhitespaceAnalyzer}    */
+DECL|field|matchVersion
+specifier|private
+specifier|final
+name|Version
+name|matchVersion
+decl_stmt|;
+comment|/**    * Creates a new {@link WhitespaceAnalyzer}    * @param matchVersion Lucene version to match See {@link<a href="#version">above</a>}    */
 DECL|method|WhitespaceAnalyzer
 specifier|public
 name|WhitespaceAnalyzer
-parameter_list|()
-block|{   }
+parameter_list|(
+name|Version
+name|matchVersion
+parameter_list|)
+block|{
+name|this
+operator|.
+name|matchVersion
+operator|=
+name|matchVersion
+expr_stmt|;
+block|}
 annotation|@
 name|Override
 DECL|method|createComponents
@@ -69,7 +125,9 @@ name|TokenStreamComponents
 argument_list|(
 operator|new
 name|WhitespaceTokenizer
-argument_list|()
+argument_list|(
+name|matchVersion
+argument_list|)
 argument_list|)
 return|;
 block|}

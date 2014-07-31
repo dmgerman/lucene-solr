@@ -30,6 +30,16 @@ end_import
 
 begin_import
 import|import
+name|java
+operator|.
+name|io
+operator|.
+name|Reader
+import|;
+end_import
+
+begin_import
+import|import
 name|org
 operator|.
 name|apache
@@ -96,11 +106,39 @@ name|apache
 operator|.
 name|lucene
 operator|.
+name|util
+operator|.
+name|AttributeSource
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
 name|analysis
 operator|.
 name|util
 operator|.
 name|CharacterUtils
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|util
+operator|.
+name|Version
 import|;
 end_import
 
@@ -135,17 +173,33 @@ name|CharTokenizer
 extends|extends
 name|Tokenizer
 block|{
-comment|/**    * Creates a new {@link CharTokenizer} instance    */
-DECL|method|CharTokenizer
-specifier|public
-name|CharTokenizer
-parameter_list|()
-block|{   }
-comment|/**    * Creates a new {@link CharTokenizer} instance    *     * @param factory    *          the attribute factory to use for this {@link Tokenizer}    */
+comment|/**    * Creates a new {@link CharTokenizer} instance    *     * @param matchVersion    *          Lucene version to match    */
 DECL|method|CharTokenizer
 specifier|public
 name|CharTokenizer
 parameter_list|(
+name|Version
+name|matchVersion
+parameter_list|)
+block|{
+name|charUtils
+operator|=
+name|CharacterUtils
+operator|.
+name|getInstance
+argument_list|(
+name|matchVersion
+argument_list|)
+expr_stmt|;
+block|}
+comment|/**    * Creates a new {@link CharTokenizer} instance    *     * @param matchVersion    *          Lucene version to match    * @param factory    *          the attribute factory to use for this {@link Tokenizer}    */
+DECL|method|CharTokenizer
+specifier|public
+name|CharTokenizer
+parameter_list|(
+name|Version
+name|matchVersion
+parameter_list|,
 name|AttributeFactory
 name|factory
 parameter_list|)
@@ -153,6 +207,15 @@ block|{
 name|super
 argument_list|(
 name|factory
+argument_list|)
+expr_stmt|;
+name|charUtils
+operator|=
+name|CharacterUtils
+operator|.
+name|getInstance
+argument_list|(
+name|matchVersion
 argument_list|)
 expr_stmt|;
 block|}
@@ -227,11 +290,6 @@ specifier|private
 specifier|final
 name|CharacterUtils
 name|charUtils
-init|=
-name|CharacterUtils
-operator|.
-name|getInstance
-argument_list|()
 decl_stmt|;
 DECL|field|ioBuffer
 specifier|private

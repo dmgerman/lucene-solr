@@ -20,6 +20,16 @@ end_comment
 
 begin_import
 import|import
+name|java
+operator|.
+name|io
+operator|.
+name|Reader
+import|;
+end_import
+
+begin_import
+import|import
 name|org
 operator|.
 name|apache
@@ -62,8 +72,36 @@ name|AttributeFactory
 import|;
 end_import
 
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|util
+operator|.
+name|AttributeSource
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|util
+operator|.
+name|Version
+import|;
+end_import
+
 begin_comment
-comment|/**  * A WhitespaceTokenizer is a tokenizer that divides text at whitespace.  * Adjacent sequences of non-Whitespace characters form tokens.  */
+comment|/**  * A WhitespaceTokenizer is a tokenizer that divides text at whitespace.  * Adjacent sequences of non-Whitespace characters form tokens.<a  * name="version"/>  *<p>  * You must specify the required {@link Version} compatibility when creating  * {@link WhitespaceTokenizer}:  *<ul>  *<li>As of 3.1, {@link CharTokenizer} uses an int based API to normalize and  * detect token characters. See {@link CharTokenizer#isTokenChar(int)} and  * {@link CharTokenizer#normalize(int)} for details.</li>  *</ul>  */
 end_comment
 
 begin_class
@@ -75,23 +113,37 @@ name|WhitespaceTokenizer
 extends|extends
 name|CharTokenizer
 block|{
-comment|/**    * Construct a new WhitespaceTokenizer.    */
-DECL|method|WhitespaceTokenizer
-specifier|public
-name|WhitespaceTokenizer
-parameter_list|()
-block|{   }
-comment|/**    * Construct a new WhitespaceTokenizer using a given    * {@link org.apache.lucene.util.AttributeFactory}.    *    * @param factory    *          the attribute factory to use for this {@link Tokenizer}    */
+comment|/**    * Construct a new WhitespaceTokenizer. * @param matchVersion Lucene version    * to match See {@link<a href="#version">above</a>}    *    */
 DECL|method|WhitespaceTokenizer
 specifier|public
 name|WhitespaceTokenizer
 parameter_list|(
+name|Version
+name|matchVersion
+parameter_list|)
+block|{
+name|super
+argument_list|(
+name|matchVersion
+argument_list|)
+expr_stmt|;
+block|}
+comment|/**    * Construct a new WhitespaceTokenizer using a given    * {@link org.apache.lucene.util.AttributeFactory}.    *    * @param    *          matchVersion Lucene version to match See    *          {@link<a href="#version">above</a>}    * @param factory    *          the attribute factory to use for this {@link Tokenizer}    */
+DECL|method|WhitespaceTokenizer
+specifier|public
+name|WhitespaceTokenizer
+parameter_list|(
+name|Version
+name|matchVersion
+parameter_list|,
 name|AttributeFactory
 name|factory
 parameter_list|)
 block|{
 name|super
 argument_list|(
+name|matchVersion
+argument_list|,
 name|factory
 argument_list|)
 expr_stmt|;

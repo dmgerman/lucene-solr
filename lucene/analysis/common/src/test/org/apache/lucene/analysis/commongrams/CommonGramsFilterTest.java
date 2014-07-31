@@ -132,6 +132,8 @@ init|=
 operator|new
 name|CharArraySet
 argument_list|(
+name|TEST_VERSION_CURRENT
+argument_list|,
 name|Arrays
 operator|.
 name|asList
@@ -173,7 +175,9 @@ name|wt
 init|=
 operator|new
 name|WhitespaceTokenizer
-argument_list|()
+argument_list|(
+name|TEST_VERSION_CURRENT
+argument_list|)
 decl_stmt|;
 name|wt
 operator|.
@@ -192,6 +196,8 @@ init|=
 operator|new
 name|CommonGramsFilter
 argument_list|(
+name|TEST_VERSION_CURRENT
+argument_list|,
 name|wt
 argument_list|,
 name|commonWords
@@ -345,7 +351,9 @@ name|wt
 init|=
 operator|new
 name|WhitespaceTokenizer
-argument_list|()
+argument_list|(
+name|TEST_VERSION_CURRENT
+argument_list|)
 decl_stmt|;
 name|wt
 operator|.
@@ -364,6 +372,8 @@ init|=
 operator|new
 name|CommonGramsFilter
 argument_list|(
+name|TEST_VERSION_CURRENT
+argument_list|,
 name|wt
 argument_list|,
 name|commonWords
@@ -522,6 +532,8 @@ argument_list|(
 operator|new
 name|CommonGramsFilter
 argument_list|(
+name|TEST_VERSION_CURRENT
+argument_list|,
 name|tokenizer
 argument_list|,
 name|commonWords
@@ -934,6 +946,8 @@ argument_list|,
 operator|new
 name|CommonGramsFilter
 argument_list|(
+name|TEST_VERSION_CURRENT
+argument_list|,
 name|tokenizer
 argument_list|,
 name|commonWords
@@ -1693,6 +1707,8 @@ init|=
 operator|new
 name|CommonGramsFilter
 argument_list|(
+name|TEST_VERSION_CURRENT
+argument_list|,
 name|wt
 argument_list|,
 name|commonWords
@@ -1792,6 +1808,8 @@ init|=
 operator|new
 name|CommonGramsFilter
 argument_list|(
+name|TEST_VERSION_CURRENT
+argument_list|,
 name|wt
 argument_list|,
 name|commonWords
@@ -1864,6 +1882,8 @@ init|=
 operator|new
 name|CommonGramsFilter
 argument_list|(
+name|TEST_VERSION_CURRENT
+argument_list|,
 name|wt
 argument_list|,
 name|commonWords
@@ -1936,6 +1956,8 @@ init|=
 operator|new
 name|CommonGramsFilter
 argument_list|(
+name|TEST_VERSION_CURRENT
+argument_list|,
 name|wt
 argument_list|,
 name|commonWords
@@ -2008,6 +2030,8 @@ init|=
 operator|new
 name|CommonGramsFilter
 argument_list|(
+name|TEST_VERSION_CURRENT
+argument_list|,
 name|wt
 argument_list|,
 name|commonWords
@@ -2080,6 +2104,8 @@ init|=
 operator|new
 name|CommonGramsFilter
 argument_list|(
+name|TEST_VERSION_CURRENT
+argument_list|,
 name|wt
 argument_list|,
 name|commonWords
@@ -2152,6 +2178,8 @@ init|=
 operator|new
 name|CommonGramsFilter
 argument_list|(
+name|TEST_VERSION_CURRENT
+argument_list|,
 name|t
 argument_list|,
 name|commonWords
@@ -2217,6 +2245,8 @@ init|=
 operator|new
 name|CommonGramsFilter
 argument_list|(
+name|TEST_VERSION_CURRENT
+argument_list|,
 name|t
 argument_list|,
 name|commonWords

@@ -992,7 +992,9 @@ name|tokenizer
 init|=
 operator|new
 name|WhitespaceTokenizer
-argument_list|()
+argument_list|(
+name|TEST_VERSION_CURRENT
+argument_list|)
 decl_stmt|;
 name|tokenizer
 operator|.
@@ -1318,7 +1320,9 @@ name|tk
 init|=
 operator|new
 name|LetterTokenizer
-argument_list|()
+argument_list|(
+name|TEST_VERSION_CURRENT
+argument_list|)
 decl_stmt|;
 operator|(
 operator|(

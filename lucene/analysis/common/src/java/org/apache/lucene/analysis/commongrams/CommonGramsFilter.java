@@ -306,6 +306,9 @@ DECL|method|CommonGramsFilter
 specifier|public
 name|CommonGramsFilter
 parameter_list|(
+name|Version
+name|matchVersion
+parameter_list|,
 name|TokenStream
 name|input
 parameter_list|,

@@ -95,6 +95,9 @@ argument_list|(
 name|args
 argument_list|)
 expr_stmt|;
+name|assureMatchVersion
+argument_list|()
+expr_stmt|;
 name|maxTokenLength
 operator|=
 name|getInt
@@ -145,6 +148,8 @@ init|=
 operator|new
 name|StandardTokenizer
 argument_list|(
+name|luceneMatchVersion
+argument_list|,
 name|factory
 argument_list|)
 decl_stmt|;

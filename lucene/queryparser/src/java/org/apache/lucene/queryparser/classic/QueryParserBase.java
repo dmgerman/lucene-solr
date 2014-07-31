@@ -224,6 +224,20 @@ name|QueryBuilder
 import|;
 end_import
 
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|util
+operator|.
+name|Version
+import|;
+end_import
+
 begin_comment
 comment|/** This class is overridden by QueryParser in QueryParser.jj  * and acts to separate the majority of the Java code from the .jj grammar file.   */
 end_comment
@@ -443,12 +457,15 @@ literal|null
 argument_list|)
 expr_stmt|;
 block|}
-comment|/** Initializes a query parser.  Called by the QueryParser constructor    *  @param f  the default field for query terms.    *  @param a   used to find terms in the query text.    */
+comment|/** Initializes a query parser.  Called by the QueryParser constructor    *  @param matchVersion  Lucene version to match.    *  @param f  the default field for query terms.    *  @param a   used to find terms in the query text.    */
 DECL|method|init
 specifier|public
 name|void
 name|init
 parameter_list|(
+name|Version
+name|matchVersion
+parameter_list|,
 name|String
 name|f
 parameter_list|,

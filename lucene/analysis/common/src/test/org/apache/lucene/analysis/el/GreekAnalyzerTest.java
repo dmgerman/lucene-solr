@@ -72,7 +72,9 @@ name|a
 init|=
 operator|new
 name|GreekAnalyzer
-argument_list|()
+argument_list|(
+name|TEST_VERSION_CURRENT
+argument_list|)
 decl_stmt|;
 comment|// Verify the correct analysis of capitals and small accented letters, and
 comment|// stemming
@@ -160,7 +162,9 @@ name|a
 init|=
 operator|new
 name|GreekAnalyzer
-argument_list|()
+argument_list|(
+name|TEST_VERSION_CURRENT
+argument_list|)
 decl_stmt|;
 comment|// Verify the correct analysis of capitals and small accented letters, and
 comment|// stemming
@@ -251,7 +255,9 @@ argument_list|()
 argument_list|,
 operator|new
 name|GreekAnalyzer
-argument_list|()
+argument_list|(
+name|TEST_VERSION_CURRENT
+argument_list|)
 argument_list|,
 literal|1000
 operator|*

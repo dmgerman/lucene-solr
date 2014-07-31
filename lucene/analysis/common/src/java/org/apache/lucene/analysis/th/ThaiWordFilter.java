@@ -166,6 +166,20 @@ name|AttributeSource
 import|;
 end_import
 
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|util
+operator|.
+name|Version
+import|;
+end_import
+
 begin_comment
 comment|/**  * {@link TokenFilter} that use {@link java.text.BreakIterator} to break each   * Token that is Thai into separate Token(s) for each Thai word.  *<p>WARNING: this filter may not be supported by all JREs.  *    It is known to work with Sun/Oracle and Harmony JREs.  *    If your application needs to be fully portable, consider using ICUTokenizer instead,  *    which uses an ICU Thai BreakIterator that will always be available.  * @deprecated Use {@link ThaiTokenizer} instead.  */
 end_comment
@@ -316,6 +330,9 @@ DECL|method|ThaiWordFilter
 specifier|public
 name|ThaiWordFilter
 parameter_list|(
+name|Version
+name|matchVersion
+parameter_list|,
 name|TokenStream
 name|input
 parameter_list|)

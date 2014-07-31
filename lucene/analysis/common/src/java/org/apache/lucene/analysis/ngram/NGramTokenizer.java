@@ -513,7 +513,9 @@ condition|?
 name|CharacterUtils
 operator|.
 name|getInstance
-argument_list|()
+argument_list|(
+name|version
+argument_list|)
 else|:
 name|CharacterUtils
 operator|.

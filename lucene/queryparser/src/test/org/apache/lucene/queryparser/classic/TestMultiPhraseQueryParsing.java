@@ -499,6 +499,8 @@ init|=
 operator|new
 name|QueryParser
 argument_list|(
+name|TEST_VERSION_CURRENT
+argument_list|,
 literal|"field"
 argument_list|,
 operator|new

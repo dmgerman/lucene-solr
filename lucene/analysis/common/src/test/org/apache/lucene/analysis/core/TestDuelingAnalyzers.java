@@ -414,6 +414,8 @@ init|=
 operator|new
 name|LetterTokenizer
 argument_list|(
+name|TEST_VERSION_CURRENT
+argument_list|,
 name|newAttributeFactory
 argument_list|()
 argument_list|)
@@ -551,6 +553,8 @@ init|=
 operator|new
 name|LetterTokenizer
 argument_list|(
+name|TEST_VERSION_CURRENT
+argument_list|,
 name|newAttributeFactory
 argument_list|()
 argument_list|)
@@ -683,6 +687,8 @@ init|=
 operator|new
 name|LetterTokenizer
 argument_list|(
+name|TEST_VERSION_CURRENT
+argument_list|,
 name|newAttributeFactory
 argument_list|()
 argument_list|)
@@ -821,6 +827,8 @@ init|=
 operator|new
 name|LetterTokenizer
 argument_list|(
+name|TEST_VERSION_CURRENT
+argument_list|,
 name|newAttributeFactory
 argument_list|()
 argument_list|)
@@ -954,6 +962,8 @@ init|=
 operator|new
 name|LetterTokenizer
 argument_list|(
+name|TEST_VERSION_CURRENT
+argument_list|,
 name|newAttributeFactory
 argument_list|()
 argument_list|)
@@ -1090,6 +1100,8 @@ init|=
 operator|new
 name|LetterTokenizer
 argument_list|(
+name|TEST_VERSION_CURRENT
+argument_list|,
 name|newAttributeFactory
 argument_list|()
 argument_list|)

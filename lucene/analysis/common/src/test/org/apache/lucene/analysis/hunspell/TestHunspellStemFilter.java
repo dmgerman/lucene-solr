@@ -398,6 +398,8 @@ init|=
 operator|new
 name|CharArraySet
 argument_list|(
+name|TEST_VERSION_CURRENT
+argument_list|,
 name|Arrays
 operator|.
 name|asList

@@ -1295,6 +1295,10 @@ init|=
 operator|new
 name|CharArraySet
 argument_list|(
+name|Version
+operator|.
+name|LUCENE_CURRENT
+argument_list|,
 literal|8
 argument_list|,
 name|dictionary

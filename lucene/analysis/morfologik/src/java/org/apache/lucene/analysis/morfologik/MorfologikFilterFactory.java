@@ -219,6 +219,8 @@ argument_list|(
 name|ts
 argument_list|,
 name|dictionaryResource
+argument_list|,
+name|luceneMatchVersion
 argument_list|)
 return|;
 block|}

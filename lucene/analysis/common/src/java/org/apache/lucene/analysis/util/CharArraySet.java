@@ -58,8 +58,22 @@ name|Set
 import|;
 end_import
 
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|util
+operator|.
+name|Version
+import|;
+end_import
+
 begin_comment
-comment|/**  * A simple class that stores Strings as char[]'s in a  * hash table.  Note that this is not a general purpose  * class.  For example, it cannot remove items from the  * set, nor does it resize its hash table to be smaller,  * etc.  It is designed to be quick to test if a char[]  * is in the set without the necessity of converting it  * to a String first.  *  *<P>  *<em>Please note:</em> This class implements {@link java.util.Set Set} but  * does not behave like it should in all cases. The generic type is  * {@code Set<Object>}, because you can add any object to it,  * that has a string representation. The add methods will use  * {@link Object#toString} and store the result using a {@code char[]}  * buffer. The same behavior have the {@code contains()} methods.  * The {@link #iterator()} returns an {@code Iterator<char[]>}.  */
+comment|/**  * A simple class that stores Strings as char[]'s in a  * hash table.  Note that this is not a general purpose  * class.  For example, it cannot remove items from the  * set, nor does it resize its hash table to be smaller,  * etc.  It is designed to be quick to test if a char[]  * is in the set without the necessity of converting it  * to a String first.  *  *<a name="version"></a>  *<p>You must specify the required {@link Version}  * compatibility when creating {@link CharArraySet}:  *<ul>  *<li> As of 3.1, supplementary characters are  *       properly lowercased.</li>  *</ul>  * Before 3.1 supplementary characters could not be  * lowercased correctly due to the lack of Unicode 4  * support in JDK 1.4. To use instances of  * {@link CharArraySet} with the behavior before Lucene  * 3.1 pass a {@link Version}< 3.1 to the constructors.  *<P>  *<em>Please note:</em> This class implements {@link java.util.Set Set} but  * does not behave like it should in all cases. The generic type is  * {@code Set<Object>}, because you can add any object to it,  * that has a string representation. The add methods will use  * {@link Object#toString} and store the result using a {@code char[]}  * buffer. The same behavior have the {@code contains()} methods.  * The {@link #iterator()} returns an {@code Iterator<char[]>}.  */
 end_comment
 
 begin_class
@@ -112,11 +126,14 @@ name|Object
 argument_list|>
 name|map
 decl_stmt|;
-comment|/**    * Create set with enough capacity to hold startSize terms    *     * @param startSize    *          the initial capacity    * @param ignoreCase    *<code>false</code> if and only if the set should be case sensitive    *          otherwise<code>true</code>.    */
+comment|/**    * Create set with enough capacity to hold startSize terms    *     * @param matchVersion    *          compatibility match version see<a href="#version">Version    *          note</a> above for details.    * @param startSize    *          the initial capacity    * @param ignoreCase    *<code>false</code> if and only if the set should be case sensitive    *          otherwise<code>true</code>.    */
 DECL|method|CharArraySet
 specifier|public
 name|CharArraySet
 parameter_list|(
+name|Version
+name|matchVersion
+parameter_list|,
 name|int
 name|startSize
 parameter_list|,
@@ -130,6 +147,8 @@ operator|new
 name|CharArrayMap
 argument_list|<>
 argument_list|(
+name|matchVersion
+argument_list|,
 name|startSize
 argument_list|,
 name|ignoreCase
@@ -137,11 +156,14 @@ argument_list|)
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**    * Creates a set from a Collection of objects.     *     * @param c    *          a collection whose elements to be placed into the set    * @param ignoreCase    *<code>false</code> if and only if the set should be case sensitive    *          otherwise<code>true</code>.    */
+comment|/**    * Creates a set from a Collection of objects.     *     * @param matchVersion    *          compatibility match version see<a href="#version">Version    *          note</a> above for details.    * @param c    *          a collection whose elements to be placed into the set    * @param ignoreCase    *<code>false</code> if and only if the set should be case sensitive    *          otherwise<code>true</code>.    */
 DECL|method|CharArraySet
 specifier|public
 name|CharArraySet
 parameter_list|(
+name|Version
+name|matchVersion
+parameter_list|,
 name|Collection
 argument_list|<
 name|?
@@ -154,6 +176,8 @@ parameter_list|)
 block|{
 name|this
 argument_list|(
+name|matchVersion
+argument_list|,
 name|c
 operator|.
 name|size
@@ -441,13 +465,17 @@ argument_list|)
 argument_list|)
 return|;
 block|}
-comment|/**    * Returns a copy of the given set as a {@link CharArraySet}. If the given set    * is a {@link CharArraySet} the ignoreCase property will be preserved.    *     * @param set    *          a set to copy    * @return a copy of the given set as a {@link CharArraySet}. If the given set    *         is a {@link CharArraySet} the ignoreCase property as well as the    *         matchVersion will be of the given set will be preserved.    */
+comment|/**    * Returns a copy of the given set as a {@link CharArraySet}. If the given set    * is a {@link CharArraySet} the ignoreCase property will be preserved.    *<p>    *<b>Note:</b> If you intend to create a copy of another {@link CharArraySet} where    * the {@link Version} of the source set differs from its copy    * {@link #CharArraySet(Version, Collection, boolean)} should be used instead.    * The {@link #copy(Version, Set)} will preserve the {@link Version} of the    * source set it is an instance of {@link CharArraySet}.    *</p>    *     * @param matchVersion    *          compatibility match version see<a href="#version">Version    *          note</a> above for details. This argument will be ignored if the    *          given set is a {@link CharArraySet}.    * @param set    *          a set to copy    * @return a copy of the given set as a {@link CharArraySet}. If the given set    *         is a {@link CharArraySet} the ignoreCase property as well as the    *         matchVersion will be of the given set will be preserved.    */
 DECL|method|copy
 specifier|public
 specifier|static
 name|CharArraySet
 name|copy
 parameter_list|(
+specifier|final
+name|Version
+name|matchVersion
+parameter_list|,
 specifier|final
 name|Set
 argument_list|<
@@ -492,6 +520,12 @@ argument_list|(
 name|source
 operator|.
 name|map
+operator|.
+name|matchVersion
+argument_list|,
+name|source
+operator|.
+name|map
 argument_list|)
 argument_list|)
 return|;
@@ -500,6 +534,8 @@ return|return
 operator|new
 name|CharArraySet
 argument_list|(
+name|matchVersion
+argument_list|,
 name|set
 argument_list|,
 literal|false

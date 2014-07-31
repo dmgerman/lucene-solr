@@ -104,6 +104,8 @@ operator|new
 name|CharArrayMap
 argument_list|<>
 argument_list|(
+name|TEST_VERSION_CURRENT
+argument_list|,
 literal|1
 argument_list|,
 name|ignoreCase
@@ -404,6 +406,8 @@ operator|new
 name|CharArrayMap
 argument_list|<>
 argument_list|(
+name|TEST_VERSION_CURRENT
+argument_list|,
 literal|2
 argument_list|,
 literal|false
@@ -962,6 +966,8 @@ operator|new
 name|CharArrayMap
 argument_list|<>
 argument_list|(
+name|TEST_VERSION_CURRENT
+argument_list|,
 literal|2
 argument_list|,
 literal|false
@@ -1593,6 +1599,8 @@ operator|new
 name|CharArrayMap
 argument_list|<>
 argument_list|(
+name|TEST_VERSION_CURRENT
+argument_list|,
 name|Collections
 operator|.
 name|singletonMap

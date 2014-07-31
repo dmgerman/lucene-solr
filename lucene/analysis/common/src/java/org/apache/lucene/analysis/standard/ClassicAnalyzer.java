@@ -28,7 +28,7 @@ name|lucene
 operator|.
 name|analysis
 operator|.
-name|TokenStream
+name|*
 import|;
 end_import
 
@@ -130,6 +130,30 @@ end_import
 
 begin_import
 import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|util
+operator|.
+name|Version
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
+name|io
+operator|.
+name|File
+import|;
+end_import
+
+begin_import
+import|import
 name|java
 operator|.
 name|io
@@ -149,7 +173,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Filters {@link ClassicTokenizer} with {@link ClassicFilter}, {@link  * LowerCaseFilter} and {@link StopFilter}, using a list of  * English stop words.  *   * ClassicAnalyzer was named StandardAnalyzer in Lucene versions prior to 3.1.   * As of 3.1, {@link StandardAnalyzer} implements Unicode text segmentation,  * as specified by UAX#29.  */
+comment|/**  * Filters {@link ClassicTokenizer} with {@link ClassicFilter}, {@link  * LowerCaseFilter} and {@link StopFilter}, using a list of  * English stop words.  *  *<a name="version"/>  *<p>You must specify the required {@link Version}  * compatibility when creating ClassicAnalyzer:  *<ul>  *<li> As of 3.1, StopFilter correctly handles Unicode 4.0  *         supplementary characters in stopwords  *<li> As of 2.9, StopFilter preserves position  *        increments  *<li> As of 2.4, Tokens incorrectly identified as acronyms  *        are corrected (see<a href="https://issues.apache.org/jira/browse/LUCENE-1068">LUCENE-1068</a>)  *</ul>  *   * ClassicAnalyzer was named StandardAnalyzer in Lucene versions prior to 3.1.   * As of 3.1, {@link StandardAnalyzer} implements Unicode text segmentation,  * as specified by UAX#29.  */
 end_comment
 
 begin_class
@@ -190,38 +214,51 @@ name|StopAnalyzer
 operator|.
 name|ENGLISH_STOP_WORDS_SET
 decl_stmt|;
-comment|/** Builds an analyzer with the given stop words.    * @param stopWords stop words */
+comment|/** Builds an analyzer with the given stop words.    * @param matchVersion Lucene version to match See {@link    *<a href="#version">above</a>}    * @param stopWords stop words */
 DECL|method|ClassicAnalyzer
 specifier|public
 name|ClassicAnalyzer
 parameter_list|(
+name|Version
+name|matchVersion
+parameter_list|,
 name|CharArraySet
 name|stopWords
 parameter_list|)
 block|{
 name|super
 argument_list|(
+name|matchVersion
+argument_list|,
 name|stopWords
 argument_list|)
 expr_stmt|;
 block|}
-comment|/** Builds an analyzer with the default stop words ({@link    * #STOP_WORDS_SET}).    */
-DECL|method|ClassicAnalyzer
-specifier|public
-name|ClassicAnalyzer
-parameter_list|()
-block|{
-name|this
-argument_list|(
-name|STOP_WORDS_SET
-argument_list|)
-expr_stmt|;
-block|}
-comment|/** Builds an analyzer with the stop words from the given reader.    * @see WordlistLoader#getWordSet(Reader)    * @param stopwords Reader to read stop words from */
+comment|/** Builds an analyzer with the default stop words ({@link    * #STOP_WORDS_SET}).    * @param matchVersion Lucene version to match See {@link    *<a href="#version">above</a>}    */
 DECL|method|ClassicAnalyzer
 specifier|public
 name|ClassicAnalyzer
 parameter_list|(
+name|Version
+name|matchVersion
+parameter_list|)
+block|{
+name|this
+argument_list|(
+name|matchVersion
+argument_list|,
+name|STOP_WORDS_SET
+argument_list|)
+expr_stmt|;
+block|}
+comment|/** Builds an analyzer with the stop words from the given reader.    * @see WordlistLoader#getWordSet(Reader, Version)    * @param matchVersion Lucene version to match See {@link    *<a href="#version">above</a>}    * @param stopwords Reader to read stop words from */
+DECL|method|ClassicAnalyzer
+specifier|public
+name|ClassicAnalyzer
+parameter_list|(
+name|Version
+name|matchVersion
+parameter_list|,
 name|Reader
 name|stopwords
 parameter_list|)
@@ -230,9 +267,13 @@ name|IOException
 block|{
 name|this
 argument_list|(
+name|matchVersion
+argument_list|,
 name|loadStopwordSet
 argument_list|(
 name|stopwords
+argument_list|,
+name|matchVersion
 argument_list|)
 argument_list|)
 expr_stmt|;
@@ -281,7 +322,9 @@ name|src
 init|=
 operator|new
 name|ClassicTokenizer
-argument_list|()
+argument_list|(
+name|matchVersion
+argument_list|)
 decl_stmt|;
 name|src
 operator|.
@@ -304,6 +347,8 @@ operator|=
 operator|new
 name|LowerCaseFilter
 argument_list|(
+name|matchVersion
+argument_list|,
 name|tok
 argument_list|)
 expr_stmt|;
@@ -312,6 +357,8 @@ operator|=
 operator|new
 name|StopFilter
 argument_list|(
+name|matchVersion
+argument_list|,
 name|tok
 argument_list|,
 name|stopwords

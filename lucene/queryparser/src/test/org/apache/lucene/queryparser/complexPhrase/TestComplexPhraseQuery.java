@@ -472,6 +472,8 @@ init|=
 operator|new
 name|ComplexPhraseQueryParser
 argument_list|(
+name|TEST_VERSION_CURRENT
+argument_list|,
 name|defaultFieldName
 argument_list|,
 name|analyzer
@@ -540,6 +542,8 @@ init|=
 operator|new
 name|ComplexPhraseQueryParser
 argument_list|(
+name|TEST_VERSION_CURRENT
+argument_list|,
 name|defaultFieldName
 argument_list|,
 name|analyzer
@@ -821,6 +825,8 @@ init|=
 operator|new
 name|ComplexPhraseQueryParser
 argument_list|(
+name|TEST_VERSION_CURRENT
+argument_list|,
 name|defaultFieldName
 argument_list|,
 name|analyzer

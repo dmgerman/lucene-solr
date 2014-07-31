@@ -160,7 +160,9 @@ name|setAnalyzer
 argument_list|(
 operator|new
 name|WhitespaceAnalyzer
-argument_list|()
+argument_list|(
+name|TEST_VERSION_CURRENT
+argument_list|)
 argument_list|)
 expr_stmt|;
 name|Collection
@@ -237,7 +239,9 @@ name|setAnalyzer
 argument_list|(
 operator|new
 name|WhitespaceAnalyzer
-argument_list|()
+argument_list|(
+name|TEST_VERSION_CURRENT
+argument_list|)
 argument_list|)
 expr_stmt|;
 name|String
@@ -561,7 +565,9 @@ name|setAnalyzer
 argument_list|(
 operator|new
 name|WhitespaceAnalyzer
-argument_list|()
+argument_list|(
+name|TEST_VERSION_CURRENT
+argument_list|)
 argument_list|)
 expr_stmt|;
 comment|// chinese text value
@@ -711,7 +717,9 @@ name|setAnalyzer
 argument_list|(
 operator|new
 name|WhitespaceAnalyzer
-argument_list|()
+argument_list|(
+name|TEST_VERSION_CURRENT
+argument_list|)
 argument_list|)
 expr_stmt|;
 comment|// two field:value pairs should give two tokens
@@ -825,7 +833,9 @@ name|setAnalyzer
 argument_list|(
 operator|new
 name|WhitespaceAnalyzer
-argument_list|()
+argument_list|(
+name|TEST_VERSION_CURRENT
+argument_list|)
 argument_list|)
 expr_stmt|;
 block|{

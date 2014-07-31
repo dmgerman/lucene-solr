@@ -296,6 +296,20 @@ name|SpanTermQuery
 import|;
 end_import
 
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|util
+operator|.
+name|Version
+import|;
+end_import
+
 begin_comment
 comment|/**  * QueryParser which permits complex phrase query syntax eg "(john jon  * jonathan~) peters*".  *<p>  * Performs potentially multiple passes over Query text to parse any nested  * logic in PhraseQueries. - First pass takes any PhraseQuery content between  * quotes and stores for subsequent pass. All other query content is parsed as  * normal - Second pass parses any stored PhraseQuery content, checking all  * embedded clauses are referring to the same field and therefore can be  * rewritten as Span queries. All PhraseQuery clauses are expressed as  * ComplexPhraseQuery objects  *</p>  *<p>  * This could arguably be done in one pass using a new QueryParser but here I am  * working within the constraints of the existing parser as a base class. This  * currently simply feeds all phrase content through an analyzer to select  * phrase terms - any "special" syntax such as * ~ * etc are not given special  * status  *</p>  *   */
 end_comment
@@ -359,6 +373,9 @@ DECL|method|ComplexPhraseQueryParser
 specifier|public
 name|ComplexPhraseQueryParser
 parameter_list|(
+name|Version
+name|matchVersion
+parameter_list|,
 name|String
 name|f
 parameter_list|,
@@ -368,6 +385,8 @@ parameter_list|)
 block|{
 name|super
 argument_list|(
+name|matchVersion
+argument_list|,
 name|f
 argument_list|,
 name|a

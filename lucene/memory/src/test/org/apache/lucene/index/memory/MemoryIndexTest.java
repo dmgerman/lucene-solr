@@ -1924,6 +1924,8 @@ init|=
 operator|new
 name|QueryParser
 argument_list|(
+name|TEST_VERSION_CURRENT
+argument_list|,
 literal|"foo"
 argument_list|,
 name|analyzer

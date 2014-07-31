@@ -72,6 +72,20 @@ name|CharTermAttribute
 import|;
 end_import
 
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|util
+operator|.
+name|Version
+import|;
+end_import
+
 begin_comment
 comment|/**  * TokenFilter that removes possessives (trailing 's) from words.  */
 end_comment
@@ -98,10 +112,14 @@ operator|.
 name|class
 argument_list|)
 decl_stmt|;
+comment|// NOTE: version now unused
 DECL|method|EnglishPossessiveFilter
 specifier|public
 name|EnglishPossessiveFilter
 parameter_list|(
+name|Version
+name|version
+parameter_list|,
 name|TokenStream
 name|input
 parameter_list|)

@@ -100,8 +100,22 @@ name|CharArraySet
 import|;
 end_import
 
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|util
+operator|.
+name|Version
+import|;
+end_import
+
 begin_comment
-comment|/**  * Removes stop words from a token stream.  */
+comment|/**  * Removes stop words from a token stream.  *   *<a name="version"/>  *<p>You must specify the required {@link Version}  * compatibility when creating StopFilter:  *<ul>  *<li> As of 3.1, StopFilter correctly handles Unicode 4.0  *         supplementary characters in stopwords and position  *         increments are preserved  *</ul>  */
 end_comment
 
 begin_class
@@ -132,11 +146,14 @@ operator|.
 name|class
 argument_list|)
 decl_stmt|;
-comment|/**    * Constructs a filter which removes words from the input TokenStream that are    * named in the Set.    *     * @param in    *          Input stream    * @param stopWords    *          A {@link CharArraySet} representing the stopwords.    * @see #makeStopSet(java.lang.String...)    */
+comment|/**    * Constructs a filter which removes words from the input TokenStream that are    * named in the Set.    *     * @param matchVersion    *          Lucene version to enable correct Unicode 4.0 behavior in the stop    *          set if Version> 3.0.  See<a href="#version">above</a> for details.    * @param in    *          Input stream    * @param stopWords    *          A {@link CharArraySet} representing the stopwords.    * @see #makeStopSet(Version, java.lang.String...)    */
 DECL|method|StopFilter
 specifier|public
 name|StopFilter
 parameter_list|(
+name|Version
+name|matchVersion
+parameter_list|,
 name|TokenStream
 name|in
 parameter_list|,
@@ -146,6 +163,8 @@ parameter_list|)
 block|{
 name|super
 argument_list|(
+name|matchVersion
+argument_list|,
 name|in
 argument_list|)
 expr_stmt|;
@@ -156,13 +175,16 @@ operator|=
 name|stopWords
 expr_stmt|;
 block|}
-comment|/**    * Builds a Set from an array of stop words,    * appropriate for passing into the StopFilter constructor.    * This permits this stopWords construction to be cached once when    * an Analyzer is constructed.    *     * @param stopWords An array of stopwords    * @see #makeStopSet(java.lang.String[], boolean) passing false to ignoreCase    */
+comment|/**    * Builds a Set from an array of stop words,    * appropriate for passing into the StopFilter constructor.    * This permits this stopWords construction to be cached once when    * an Analyzer is constructed.    *     * @param matchVersion Lucene version to enable correct Unicode 4.0 behavior in the returned set if Version> 3.0    * @param stopWords An array of stopwords    * @see #makeStopSet(Version, java.lang.String[], boolean) passing false to ignoreCase    */
 DECL|method|makeStopSet
 specifier|public
 specifier|static
 name|CharArraySet
 name|makeStopSet
 parameter_list|(
+name|Version
+name|matchVersion
+parameter_list|,
 name|String
 modifier|...
 name|stopWords
@@ -171,19 +193,24 @@ block|{
 return|return
 name|makeStopSet
 argument_list|(
+name|matchVersion
+argument_list|,
 name|stopWords
 argument_list|,
 literal|false
 argument_list|)
 return|;
 block|}
-comment|/**    * Builds a Set from an array of stop words,    * appropriate for passing into the StopFilter constructor.    * This permits this stopWords construction to be cached once when    * an Analyzer is constructed.    *     * @param stopWords A List of Strings or char[] or any other toString()-able list representing the stopwords    * @return A Set ({@link CharArraySet}) containing the words    * @see #makeStopSet(java.lang.String[], boolean) passing false to ignoreCase    */
+comment|/**    * Builds a Set from an array of stop words,    * appropriate for passing into the StopFilter constructor.    * This permits this stopWords construction to be cached once when    * an Analyzer is constructed.    *     * @param matchVersion Lucene version to enable correct Unicode 4.0 behavior in the returned set if Version> 3.0    * @param stopWords A List of Strings or char[] or any other toString()-able list representing the stopwords    * @return A Set ({@link CharArraySet}) containing the words    * @see #makeStopSet(Version, java.lang.String[], boolean) passing false to ignoreCase    */
 DECL|method|makeStopSet
 specifier|public
 specifier|static
 name|CharArraySet
 name|makeStopSet
 parameter_list|(
+name|Version
+name|matchVersion
+parameter_list|,
 name|List
 argument_list|<
 name|?
@@ -194,19 +221,24 @@ block|{
 return|return
 name|makeStopSet
 argument_list|(
+name|matchVersion
+argument_list|,
 name|stopWords
 argument_list|,
 literal|false
 argument_list|)
 return|;
 block|}
-comment|/**    * Creates a stopword set from the given stopword array.    *     * @param stopWords An array of stopwords    * @param ignoreCase If true, all words are lower cased first.      * @return a Set containing the words    */
+comment|/**    * Creates a stopword set from the given stopword array.    *     * @param matchVersion Lucene version to enable correct Unicode 4.0 behavior in the returned set if Version> 3.0    * @param stopWords An array of stopwords    * @param ignoreCase If true, all words are lower cased first.      * @return a Set containing the words    */
 DECL|method|makeStopSet
 specifier|public
 specifier|static
 name|CharArraySet
 name|makeStopSet
 parameter_list|(
+name|Version
+name|matchVersion
+parameter_list|,
 name|String
 index|[]
 name|stopWords
@@ -221,6 +253,8 @@ init|=
 operator|new
 name|CharArraySet
 argument_list|(
+name|matchVersion
+argument_list|,
 name|stopWords
 operator|.
 name|length
@@ -244,13 +278,16 @@ return|return
 name|stopSet
 return|;
 block|}
-comment|/**    * Creates a stopword set from the given stopword list.    * @param stopWords A List of Strings or char[] or any other toString()-able list representing the stopwords    * @param ignoreCase if true, all words are lower cased first    * @return A Set ({@link CharArraySet}) containing the words    */
+comment|/**    * Creates a stopword set from the given stopword list.    * @param matchVersion Lucene version to enable correct Unicode 4.0 behavior in the returned set if Version> 3.0    * @param stopWords A List of Strings or char[] or any other toString()-able list representing the stopwords    * @param ignoreCase if true, all words are lower cased first    * @return A Set ({@link CharArraySet}) containing the words    */
 DECL|method|makeStopSet
 specifier|public
 specifier|static
 name|CharArraySet
 name|makeStopSet
 parameter_list|(
+name|Version
+name|matchVersion
+parameter_list|,
 name|List
 argument_list|<
 name|?
@@ -267,6 +304,8 @@ init|=
 operator|new
 name|CharArraySet
 argument_list|(
+name|matchVersion
+argument_list|,
 name|stopWords
 operator|.
 name|size

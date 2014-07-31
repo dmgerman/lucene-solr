@@ -64,6 +64,20 @@ end_import
 
 begin_import
 import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|util
+operator|.
+name|Version
+import|;
+end_import
+
+begin_import
+import|import
 name|java
 operator|.
 name|io
@@ -103,6 +117,12 @@ specifier|private
 specifier|final
 name|char
 name|marker
+decl_stmt|;
+DECL|field|matchVersion
+specifier|private
+specifier|final
+name|Version
+name|matchVersion
 decl_stmt|;
 DECL|field|NOMARKER
 specifier|private
@@ -153,28 +173,36 @@ name|RTL_DIRECTION_MARKER
 init|=
 literal|'\u200F'
 decl_stmt|;
-comment|/**    * Create a new ReverseStringFilter that reverses all tokens in the     * supplied {@link TokenStream}.    *<p>    * The reversed tokens will not be marked.     *</p>    *     * @param in {@link TokenStream} to filter    */
+comment|/**    * Create a new ReverseStringFilter that reverses all tokens in the     * supplied {@link TokenStream}.    *<p>    * The reversed tokens will not be marked.     *</p>    *     * @param matchVersion Lucene compatibility version    * @param in {@link TokenStream} to filter    */
 DECL|method|ReverseStringFilter
 specifier|public
 name|ReverseStringFilter
 parameter_list|(
+name|Version
+name|matchVersion
+parameter_list|,
 name|TokenStream
 name|in
 parameter_list|)
 block|{
 name|this
 argument_list|(
+name|matchVersion
+argument_list|,
 name|in
 argument_list|,
 name|NOMARKER
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**    * Create a new ReverseStringFilter that reverses and marks all tokens in the    * supplied {@link TokenStream}.    *<p>    * The reversed tokens will be prepended (marked) by the<code>marker</code>    * character.    *</p>    *     * @param in {@link TokenStream} to filter    * @param marker A character used to mark reversed tokens    */
+comment|/**    * Create a new ReverseStringFilter that reverses and marks all tokens in the    * supplied {@link TokenStream}.    *<p>    * The reversed tokens will be prepended (marked) by the<code>marker</code>    * character.    *</p>    *     * @param matchVersion compatibility version    * @param in {@link TokenStream} to filter    * @param marker A character used to mark reversed tokens    */
 DECL|method|ReverseStringFilter
 specifier|public
 name|ReverseStringFilter
 parameter_list|(
+name|Version
+name|matchVersion
+parameter_list|,
 name|TokenStream
 name|in
 parameter_list|,
@@ -186,6 +214,12 @@ name|super
 argument_list|(
 name|in
 argument_list|)
+expr_stmt|;
+name|this
+operator|.
+name|matchVersion
+operator|=
+name|matchVersion
 expr_stmt|;
 name|this
 operator|.
@@ -252,6 +286,8 @@ expr_stmt|;
 block|}
 name|reverse
 argument_list|(
+name|matchVersion
+argument_list|,
 name|termAtt
 operator|.
 name|buffer
@@ -280,13 +316,16 @@ literal|false
 return|;
 block|}
 block|}
-comment|/**    * Reverses the given input string    *     * @param input the string to reverse    * @return the given input string in reversed order    */
+comment|/**    * Reverses the given input string    *     * @param matchVersion compatibility version    * @param input the string to reverse    * @return the given input string in reversed order    */
 DECL|method|reverse
 specifier|public
 specifier|static
 name|String
 name|reverse
 parameter_list|(
+name|Version
+name|matchVersion
+parameter_list|,
 specifier|final
 name|String
 name|input
@@ -304,6 +343,8 @@ argument_list|()
 decl_stmt|;
 name|reverse
 argument_list|(
+name|matchVersion
+argument_list|,
 name|charInput
 argument_list|,
 literal|0
@@ -321,13 +362,16 @@ name|charInput
 argument_list|)
 return|;
 block|}
-comment|/**    * Reverses the given input buffer in-place    * @param buffer the input char array to reverse    */
+comment|/**    * Reverses the given input buffer in-place    * @param matchVersion compatibility version    * @param buffer the input char array to reverse    */
 DECL|method|reverse
 specifier|public
 specifier|static
 name|void
 name|reverse
 parameter_list|(
+name|Version
+name|matchVersion
+parameter_list|,
 specifier|final
 name|char
 index|[]
@@ -336,6 +380,8 @@ parameter_list|)
 block|{
 name|reverse
 argument_list|(
+name|matchVersion
+argument_list|,
 name|buffer
 argument_list|,
 literal|0
@@ -346,13 +392,16 @@ name|length
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**    * Partially reverses the given input buffer in-place from offset 0    * up to the given length.    * @param buffer the input char array to reverse    * @param len the length in the buffer up to where the    *        buffer should be reversed    */
+comment|/**    * Partially reverses the given input buffer in-place from offset 0    * up to the given length.    * @param matchVersion compatibility version    * @param buffer the input char array to reverse    * @param len the length in the buffer up to where the    *        buffer should be reversed    */
 DECL|method|reverse
 specifier|public
 specifier|static
 name|void
 name|reverse
 parameter_list|(
+name|Version
+name|matchVersion
+parameter_list|,
 specifier|final
 name|char
 index|[]
@@ -365,6 +414,8 @@ parameter_list|)
 block|{
 name|reverse
 argument_list|(
+name|matchVersion
+argument_list|,
 name|buffer
 argument_list|,
 literal|0
@@ -373,13 +424,16 @@ name|len
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**    * Partially reverses the given input buffer in-place from the given offset    * up to the given length.    * @param buffer the input char array to reverse    * @param start the offset from where to reverse the buffer    * @param len the length in the buffer up to where the    *        buffer should be reversed    */
+comment|/**    * Partially reverses the given input buffer in-place from the given offset    * up to the given length.    * @param matchVersion compatibility version    * @param buffer the input char array to reverse    * @param start the offset from where to reverse the buffer    * @param len the length in the buffer up to where the    *        buffer should be reversed    */
 DECL|method|reverse
 specifier|public
 specifier|static
 name|void
 name|reverse
 parameter_list|(
+name|Version
+name|matchVersion
+parameter_list|,
 specifier|final
 name|char
 index|[]

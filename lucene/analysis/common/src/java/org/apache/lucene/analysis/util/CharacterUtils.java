@@ -85,21 +85,23 @@ operator|new
 name|Java5CharacterUtils
 argument_list|()
 decl_stmt|;
-comment|/**    * Returns a {@link CharacterUtils} implementation.    * @return a {@link CharacterUtils} implementation according to the given    *         {@link Version} instance.    */
+comment|/**    * Returns a {@link CharacterUtils} implementation according to the given    * {@link Version} instance.    *     * @param matchVersion    *          a version instance    * @return a {@link CharacterUtils} implementation according to the given    *         {@link Version} instance.    */
 DECL|method|getInstance
 specifier|public
 specifier|static
 name|CharacterUtils
 name|getInstance
-parameter_list|()
+parameter_list|(
+specifier|final
+name|Version
+name|matchVersion
+parameter_list|)
 block|{
 return|return
 name|JAVA_5
 return|;
 block|}
-comment|/**     * explicitly returns a version matching java 4 semantics     * @deprecated Only for n-gram backwards compat    */
-annotation|@
-name|Deprecated
+comment|/** explicitly returns a version matching java 4 semantics */
 DECL|method|getJava4Instance
 specifier|public
 specifier|static
@@ -111,7 +113,7 @@ return|return
 name|JAVA_4
 return|;
 block|}
-comment|/**    * Returns the code point at the given index of the {@link CharSequence}.    *     * @param seq    *          a character sequence    * @param offset    *          the offset to the char values in the chars array to be converted    *     * @return the Unicode code point at the given index    * @throws NullPointerException    *           - if the sequence is null.    * @throws IndexOutOfBoundsException    *           - if the value offset is negative or not less than the length of    *           the character sequence.    */
+comment|/**    * Returns the code point at the given index of the {@link CharSequence}.    * Depending on the {@link Version} passed to    * {@link CharacterUtils#getInstance(Version)} this method mimics the behavior    * of {@link Character#codePointAt(char[], int)} as it would have been    * available on a Java 1.4 JVM or on a later virtual machine version.    *     * @param seq    *          a character sequence    * @param offset    *          the offset to the char values in the chars array to be converted    *     * @return the Unicode code point at the given index    * @throws NullPointerException    *           - if the sequence is null.    * @throws IndexOutOfBoundsException    *           - if the value offset is negative or not less than the length of    *           the character sequence.    */
 DECL|method|codePointAt
 specifier|public
 specifier|abstract
@@ -127,7 +129,7 @@ name|int
 name|offset
 parameter_list|)
 function_decl|;
-comment|/**    * Returns the code point at the given index of the char array where only elements    * with index less than the limit are used.    *     * @param chars    *          a character array    * @param offset    *          the offset to the char values in the chars array to be converted    * @param limit the index afer the last element that should be used to calculate    *        codepoint.      *     * @return the Unicode code point at the given index    * @throws NullPointerException    *           - if the array is null.    * @throws IndexOutOfBoundsException    *           - if the value offset is negative or not less than the length of    *           the char array.    */
+comment|/**    * Returns the code point at the given index of the char array where only elements    * with index less than the limit are used.    * Depending on the {@link Version} passed to    * {@link CharacterUtils#getInstance(Version)} this method mimics the behavior    * of {@link Character#codePointAt(char[], int)} as it would have been    * available on a Java 1.4 JVM or on a later virtual machine version.    *     * @param chars    *          a character array    * @param offset    *          the offset to the char values in the chars array to be converted    * @param limit the index afer the last element that should be used to calculate    *        codepoint.      *     * @return the Unicode code point at the given index    * @throws NullPointerException    *           - if the array is null.    * @throws IndexOutOfBoundsException    *           - if the value offset is negative or not less than the length of    *           the char array.    */
 DECL|method|codePointAt
 specifier|public
 specifier|abstract
@@ -550,7 +552,7 @@ return|return
 name|written
 return|;
 block|}
-comment|/**    * Fills the {@link CharacterBuffer} with characters read from the given    * reader {@link Reader}. This method tries to read<code>numChars</code>    * characters into the {@link CharacterBuffer}, each call to fill will start    * filling the buffer from offset<code>0</code> up to<code>numChars</code>.    * In case code points can span across 2 java characters, this method may    * only fill<code>numChars - 1</code> characters in order not to split in    * the middle of a surrogate pair, even if there are remaining characters in    * the {@link Reader}.    *<p>    * This method guarantees    * that the given {@link CharacterBuffer} will never contain a high surrogate    * character as the last element in the buffer unless it is the last available    * character in the reader. In other words, high and low surrogate pairs will    * always be preserved across buffer boarders.    *</p>    *<p>    * A return value of<code>false</code> means that this method call exhausted    * the reader, but there may be some bytes which have been read, which can be    * verified by checking whether<code>buffer.getLength()&gt; 0</code>.    *</p>    *     * @param buffer    *          the buffer to fill.    * @param reader    *          the reader to read characters from.    * @param numChars    *          the number of chars to read    * @return<code>false</code> if and only if reader.read returned -1 while trying to fill the buffer    * @throws IOException    *           if the reader throws an {@link IOException}.    */
+comment|/**    * Fills the {@link CharacterBuffer} with characters read from the given    * reader {@link Reader}. This method tries to read<code>numChars</code>    * characters into the {@link CharacterBuffer}, each call to fill will start    * filling the buffer from offset<code>0</code> up to<code>numChars</code>.    * In case code points can span across 2 java characters, this method may    * only fill<code>numChars - 1</code> characters in order not to split in    * the middle of a surrogate pair, even if there are remaining characters in    * the {@link Reader}.    *<p>    * Depending on the {@link Version} passed to    * {@link CharacterUtils#getInstance(Version)} this method implements    * supplementary character awareness when filling the given buffer. For all    * {@link Version}&gt; 3.0 {@link #fill(CharacterBuffer, Reader, int)} guarantees    * that the given {@link CharacterBuffer} will never contain a high surrogate    * character as the last element in the buffer unless it is the last available    * character in the reader. In other words, high and low surrogate pairs will    * always be preserved across buffer boarders.    *</p>    *<p>    * A return value of<code>false</code> means that this method call exhausted    * the reader, but there may be some bytes which have been read, which can be    * verified by checking whether<code>buffer.getLength()&gt; 0</code>.    *</p>    *     * @param buffer    *          the buffer to fill.    * @param reader    *          the reader to read characters from.    * @param numChars    *          the number of chars to read    * @return<code>false</code> if and only if reader.read returned -1 while trying to fill the buffer    * @throws IOException    *           if the reader throws an {@link IOException}.    */
 DECL|method|fill
 specifier|public
 specifier|abstract

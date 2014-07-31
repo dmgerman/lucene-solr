@@ -30,6 +30,16 @@ end_import
 
 begin_import
 import|import
+name|java
+operator|.
+name|io
+operator|.
+name|Reader
+import|;
+end_import
+
+begin_import
+import|import
 name|org
 operator|.
 name|apache
@@ -150,6 +160,20 @@ name|StopwordAnalyzerBase
 import|;
 end_import
 
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|util
+operator|.
+name|Version
+import|;
+end_import
+
 begin_comment
 comment|/**  * An {@link Analyzer} that tokenizes text with {@link StandardTokenizer},  * normalizes content with {@link CJKWidthFilter}, folds case with  * {@link LowerCaseFilter}, forms bigrams of CJK with {@link CJKBigramFilter},  * and filters stopwords with {@link StopFilter}  */
 end_comment
@@ -241,27 +265,37 @@ comment|/**    * Builds an analyzer which removes words in {@link #getDefaultSto
 DECL|method|CJKAnalyzer
 specifier|public
 name|CJKAnalyzer
-parameter_list|()
+parameter_list|(
+name|Version
+name|matchVersion
+parameter_list|)
 block|{
 name|this
 argument_list|(
+name|matchVersion
+argument_list|,
 name|DefaultSetHolder
 operator|.
 name|DEFAULT_STOP_SET
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**    * Builds an analyzer with the given stop words    *     * @param stopwords    *          a stopword set    */
+comment|/**    * Builds an analyzer with the given stop words    *     * @param matchVersion    *          lucene compatibility version    * @param stopwords    *          a stopword set    */
 DECL|method|CJKAnalyzer
 specifier|public
 name|CJKAnalyzer
 parameter_list|(
+name|Version
+name|matchVersion
+parameter_list|,
 name|CharArraySet
 name|stopwords
 parameter_list|)
 block|{
 name|super
 argument_list|(
+name|matchVersion
+argument_list|,
 name|stopwords
 argument_list|)
 expr_stmt|;
@@ -283,7 +317,9 @@ name|source
 init|=
 operator|new
 name|StandardTokenizer
-argument_list|()
+argument_list|(
+name|matchVersion
+argument_list|)
 decl_stmt|;
 comment|// run the widthfilter first before bigramming, it sometimes combines characters.
 name|TokenStream
@@ -300,6 +336,8 @@ operator|=
 operator|new
 name|LowerCaseFilter
 argument_list|(
+name|matchVersion
+argument_list|,
 name|result
 argument_list|)
 expr_stmt|;
@@ -320,6 +358,8 @@ argument_list|,
 operator|new
 name|StopFilter
 argument_list|(
+name|matchVersion
+argument_list|,
 name|result
 argument_list|,
 name|stopwords

@@ -737,6 +737,8 @@ init|=
 operator|new
 name|AnalyzingQueryParser
 argument_list|(
+name|TEST_VERSION_CURRENT
+argument_list|,
 name|FIELD
 argument_list|,
 name|a
@@ -1371,6 +1373,8 @@ init|=
 operator|new
 name|AnalyzingQueryParser
 argument_list|(
+name|TEST_VERSION_CURRENT
+argument_list|,
 name|FIELD
 argument_list|,
 name|a
@@ -1621,6 +1625,8 @@ init|=
 operator|new
 name|AnalyzingQueryParser
 argument_list|(
+name|TEST_VERSION_CURRENT
+argument_list|,
 name|FIELD
 argument_list|,
 name|analyzer

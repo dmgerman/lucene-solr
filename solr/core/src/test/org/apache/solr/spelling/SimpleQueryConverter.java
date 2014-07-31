@@ -241,7 +241,11 @@ name|analyzer
 init|=
 operator|new
 name|WhitespaceAnalyzer
-argument_list|()
+argument_list|(
+name|LuceneTestCase
+operator|.
+name|TEST_VERSION_CURRENT
+argument_list|)
 decl_stmt|;
 try|try
 init|(

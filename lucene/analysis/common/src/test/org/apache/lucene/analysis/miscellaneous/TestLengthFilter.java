@@ -174,6 +174,8 @@ init|=
 operator|new
 name|LengthFilter
 argument_list|(
+name|TEST_VERSION_CURRENT
+argument_list|,
 name|stream
 argument_list|,
 literal|2
@@ -250,6 +252,8 @@ argument_list|,
 operator|new
 name|LengthFilter
 argument_list|(
+name|TEST_VERSION_CURRENT
+argument_list|,
 name|tokenizer
 argument_list|,
 literal|0
@@ -292,6 +296,8 @@ block|{
 operator|new
 name|LengthFilter
 argument_list|(
+name|TEST_VERSION_CURRENT
+argument_list|,
 name|whitespaceMockTokenizer
 argument_list|(
 literal|"accept only valid arguments"

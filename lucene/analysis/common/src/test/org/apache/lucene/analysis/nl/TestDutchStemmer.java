@@ -675,7 +675,9 @@ name|a
 init|=
 operator|new
 name|DutchAnalyzer
-argument_list|()
+argument_list|(
+name|TEST_VERSION_CURRENT
+argument_list|)
 decl_stmt|;
 name|checkOneTerm
 argument_list|(
@@ -718,7 +720,9 @@ name|a
 init|=
 operator|new
 name|DutchAnalyzer
-argument_list|()
+argument_list|(
+name|TEST_VERSION_CURRENT
+argument_list|)
 decl_stmt|;
 name|checkOneTerm
 argument_list|(
@@ -771,6 +775,8 @@ init|=
 operator|new
 name|CharArraySet
 argument_list|(
+name|TEST_VERSION_CURRENT
+argument_list|,
 literal|1
 argument_list|,
 literal|true
@@ -789,6 +795,8 @@ init|=
 operator|new
 name|DutchAnalyzer
 argument_list|(
+name|TEST_VERSION_CURRENT
+argument_list|,
 name|CharArraySet
 operator|.
 name|EMPTY_SET
@@ -817,6 +825,8 @@ operator|=
 operator|new
 name|DutchAnalyzer
 argument_list|(
+name|TEST_VERSION_CURRENT
+argument_list|,
 name|CharArraySet
 operator|.
 name|EMPTY_SET
@@ -856,6 +866,8 @@ init|=
 operator|new
 name|DutchAnalyzer
 argument_list|(
+name|TEST_VERSION_CURRENT
+argument_list|,
 name|CharArraySet
 operator|.
 name|EMPTY_SET
@@ -885,6 +897,8 @@ init|=
 operator|new
 name|DutchAnalyzer
 argument_list|(
+name|TEST_VERSION_CURRENT
+argument_list|,
 name|CharArraySet
 operator|.
 name|EMPTY_SET
@@ -926,7 +940,9 @@ name|a
 init|=
 operator|new
 name|DutchAnalyzer
-argument_list|()
+argument_list|(
+name|TEST_VERSION_CURRENT
+argument_list|)
 decl_stmt|;
 name|assertAnalyzesTo
 argument_list|(
@@ -961,7 +977,9 @@ name|checkOneTerm
 argument_list|(
 operator|new
 name|DutchAnalyzer
-argument_list|()
+argument_list|(
+name|TEST_VERSION_CURRENT
+argument_list|)
 argument_list|,
 name|input
 argument_list|,
@@ -985,7 +1003,9 @@ argument_list|()
 argument_list|,
 operator|new
 name|DutchAnalyzer
-argument_list|()
+argument_list|(
+name|TEST_VERSION_CURRENT
+argument_list|)
 argument_list|,
 literal|1000
 operator|*

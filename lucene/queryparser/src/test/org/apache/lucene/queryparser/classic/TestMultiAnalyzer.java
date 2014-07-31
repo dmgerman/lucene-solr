@@ -178,6 +178,8 @@ init|=
 operator|new
 name|QueryParser
 argument_list|(
+name|TEST_VERSION_CURRENT
+argument_list|,
 literal|""
 argument_list|,
 operator|new
@@ -648,6 +650,10 @@ init|=
 operator|new
 name|QueryParser
 argument_list|(
+name|Version
+operator|.
+name|LUCENE_4_0
+argument_list|,
 literal|""
 argument_list|,
 operator|new
@@ -1227,6 +1233,8 @@ parameter_list|)
 block|{
 name|super
 argument_list|(
+name|TEST_VERSION_CURRENT
+argument_list|,
 name|f
 argument_list|,
 name|a

@@ -126,6 +126,20 @@ name|Query
 import|;
 end_import
 
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|util
+operator|.
+name|Version
+import|;
+end_import
+
 begin_comment
 comment|/**  * Overrides Lucene's default QueryParser so that Fuzzy-, Prefix-, Range-, and WildcardQuerys  * are also passed through the given analyzer, but wildcard characters<code>*</code> and  *<code>?</code> don't get removed from the search terms.  *   *<p><b>Warning:</b> This class should only be used with analyzers that do not use stopwords  * or that add tokens. Also, several stemming analyzers are inappropriate: for example, GermanAnalyzer   * will turn<code>H&auml;user</code> into<code>hau</code>, but<code>H?user</code> will   * become<code>h?user</code> when using this parser and thus no match would be found (i.e.  * using this parser will be no improvement over QueryParser in such cases).   */
 end_comment
@@ -166,6 +180,9 @@ DECL|method|AnalyzingQueryParser
 specifier|public
 name|AnalyzingQueryParser
 parameter_list|(
+name|Version
+name|matchVersion
+parameter_list|,
 name|String
 name|field
 parameter_list|,
@@ -175,6 +192,8 @@ parameter_list|)
 block|{
 name|super
 argument_list|(
+name|matchVersion
+argument_list|,
 name|field
 argument_list|,
 name|analyzer

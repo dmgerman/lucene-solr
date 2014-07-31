@@ -132,6 +132,20 @@ name|Query
 import|;
 end_import
 
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|util
+operator|.
+name|Version
+import|;
+end_import
+
 begin_comment
 comment|/**  * A QueryParser which constructs queries to search multiple fields.  *  */
 end_comment
@@ -165,6 +179,9 @@ DECL|method|MultiFieldQueryParser
 specifier|public
 name|MultiFieldQueryParser
 parameter_list|(
+name|Version
+name|matchVersion
+parameter_list|,
 name|String
 index|[]
 name|fields
@@ -183,6 +200,8 @@ parameter_list|)
 block|{
 name|this
 argument_list|(
+name|matchVersion
+argument_list|,
 name|fields
 argument_list|,
 name|analyzer
@@ -200,6 +219,9 @@ DECL|method|MultiFieldQueryParser
 specifier|public
 name|MultiFieldQueryParser
 parameter_list|(
+name|Version
+name|matchVersion
+parameter_list|,
 name|String
 index|[]
 name|fields
@@ -210,6 +232,8 @@ parameter_list|)
 block|{
 name|super
 argument_list|(
+name|matchVersion
+argument_list|,
 literal|null
 argument_list|,
 name|analyzer
@@ -1159,13 +1183,16 @@ name|termStr
 argument_list|)
 return|;
 block|}
-comment|/**    * Parses a query which searches on the fields specified.    *<p>    * If x fields are specified, this effectively constructs:    *<pre>    *<code>    * (field1:query1) (field2:query2) (field3:query3)...(fieldx:queryx)    *</code>    *</pre>    * @param queries Queries strings to parse    * @param fields Fields to search on    * @param analyzer Analyzer to use    * @throws ParseException if query parsing fails    * @throws IllegalArgumentException if the length of the queries array differs    *  from the length of the fields array    */
+comment|/**    * Parses a query which searches on the fields specified.    *<p>    * If x fields are specified, this effectively constructs:    *<pre>    *<code>    * (field1:query1) (field2:query2) (field3:query3)...(fieldx:queryx)    *</code>    *</pre>    * @param matchVersion Lucene version to match; this is passed through to QueryParser.    * @param queries Queries strings to parse    * @param fields Fields to search on    * @param analyzer Analyzer to use    * @throws ParseException if query parsing fails    * @throws IllegalArgumentException if the length of the queries array differs    *  from the length of the fields array    */
 DECL|method|parse
 specifier|public
 specifier|static
 name|Query
 name|parse
 parameter_list|(
+name|Version
+name|matchVersion
+parameter_list|,
 name|String
 index|[]
 name|queries
@@ -1227,6 +1254,8 @@ init|=
 operator|new
 name|QueryParser
 argument_list|(
+name|matchVersion
+argument_list|,
 name|fields
 index|[
 name|i
@@ -1298,13 +1327,16 @@ return|return
 name|bQuery
 return|;
 block|}
-comment|/**    * Parses a query, searching on the fields specified.    * Use this if you need to specify certain fields as required,    * and others as prohibited.    *<p>    * Usage:    *<pre class="prettyprint">    *<code>    * String[] fields = {"filename", "contents", "description"};    * BooleanClause.Occur[] flags = {BooleanClause.Occur.SHOULD,    *                BooleanClause.Occur.MUST,    *                BooleanClause.Occur.MUST_NOT};    * MultiFieldQueryParser.parse("query", fields, flags, analyzer);    *</code>    *</pre>    *<p>    * The code above would construct a query:    *<pre>    *<code>    * (filename:query) +(contents:query) -(description:query)    *</code>    *</pre>    *    * @param query Query string to parse    * @param fields Fields to search on    * @param flags Flags describing the fields    * @param analyzer Analyzer to use    * @throws ParseException if query parsing fails    * @throws IllegalArgumentException if the length of the fields array differs    *  from the length of the flags array    */
+comment|/**    * Parses a query, searching on the fields specified.    * Use this if you need to specify certain fields as required,    * and others as prohibited.    *<p>    * Usage:    *<pre class="prettyprint">    *<code>    * String[] fields = {"filename", "contents", "description"};    * BooleanClause.Occur[] flags = {BooleanClause.Occur.SHOULD,    *                BooleanClause.Occur.MUST,    *                BooleanClause.Occur.MUST_NOT};    * MultiFieldQueryParser.parse("query", fields, flags, analyzer);    *</code>    *</pre>    *<p>    * The code above would construct a query:    *<pre>    *<code>    * (filename:query) +(contents:query) -(description:query)    *</code>    *</pre>    *    * @param matchVersion Lucene version to match; this is passed through to QueryParser.    * @param query Query string to parse    * @param fields Fields to search on    * @param flags Flags describing the fields    * @param analyzer Analyzer to use    * @throws ParseException if query parsing fails    * @throws IllegalArgumentException if the length of the fields array differs    *  from the length of the flags array    */
 DECL|method|parse
 specifier|public
 specifier|static
 name|Query
 name|parse
 parameter_list|(
+name|Version
+name|matchVersion
+parameter_list|,
 name|String
 name|query
 parameter_list|,
@@ -1371,6 +1403,8 @@ init|=
 operator|new
 name|QueryParser
 argument_list|(
+name|matchVersion
+argument_list|,
 name|fields
 index|[
 name|i
@@ -1438,13 +1472,16 @@ return|return
 name|bQuery
 return|;
 block|}
-comment|/**    * Parses a query, searching on the fields specified.    * Use this if you need to specify certain fields as required,    * and others as prohibited.    *<p>    * Usage:    *<pre class="prettyprint">    *<code>    * String[] query = {"query1", "query2", "query3"};    * String[] fields = {"filename", "contents", "description"};    * BooleanClause.Occur[] flags = {BooleanClause.Occur.SHOULD,    *                BooleanClause.Occur.MUST,    *                BooleanClause.Occur.MUST_NOT};    * MultiFieldQueryParser.parse(query, fields, flags, analyzer);    *</code>    *</pre>    *<p>    * The code above would construct a query:    *<pre>    *<code>    * (filename:query1) +(contents:query2) -(description:query3)    *</code>    *</pre>    *    * @param queries Queries string to parse    * @param fields Fields to search on    * @param flags Flags describing the fields    * @param analyzer Analyzer to use    * @throws ParseException if query parsing fails    * @throws IllegalArgumentException if the length of the queries, fields,    *  and flags array differ    */
+comment|/**    * Parses a query, searching on the fields specified.    * Use this if you need to specify certain fields as required,    * and others as prohibited.    *<p>    * Usage:    *<pre class="prettyprint">    *<code>    * String[] query = {"query1", "query2", "query3"};    * String[] fields = {"filename", "contents", "description"};    * BooleanClause.Occur[] flags = {BooleanClause.Occur.SHOULD,    *                BooleanClause.Occur.MUST,    *                BooleanClause.Occur.MUST_NOT};    * MultiFieldQueryParser.parse(query, fields, flags, analyzer);    *</code>    *</pre>    *<p>    * The code above would construct a query:    *<pre>    *<code>    * (filename:query1) +(contents:query2) -(description:query3)    *</code>    *</pre>    *    * @param matchVersion Lucene version to match; this is passed through to QueryParser.    * @param queries Queries string to parse    * @param fields Fields to search on    * @param flags Flags describing the fields    * @param analyzer Analyzer to use    * @throws ParseException if query parsing fails    * @throws IllegalArgumentException if the length of the queries, fields,    *  and flags array differ    */
 DECL|method|parse
 specifier|public
 specifier|static
 name|Query
 name|parse
 parameter_list|(
+name|Version
+name|matchVersion
+parameter_list|,
 name|String
 index|[]
 name|queries
@@ -1523,6 +1560,8 @@ init|=
 operator|new
 name|QueryParser
 argument_list|(
+name|matchVersion
+argument_list|,
 name|fields
 index|[
 name|i

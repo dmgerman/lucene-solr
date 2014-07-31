@@ -251,11 +251,6 @@ specifier|private
 specifier|final
 name|CharacterUtils
 name|charUtils
-init|=
-name|CharacterUtils
-operator|.
-name|getInstance
-argument_list|()
 decl_stmt|;
 DECL|field|current
 specifier|private
@@ -309,6 +304,10 @@ parameter_list|(
 specifier|final
 name|TokenStream
 name|in
+parameter_list|,
+specifier|final
+name|Version
+name|version
 parameter_list|)
 block|{
 name|this
@@ -318,10 +317,12 @@ argument_list|,
 name|MorfologikFilterFactory
 operator|.
 name|DEFAULT_DICTIONARY_RESOURCE
+argument_list|,
+name|version
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**    * Creates a filter with a given dictionary resource.    *    * @param in input token stream.    * @param dict Dictionary resource from classpath.    */
+comment|/**    * Creates a filter with a given dictionary resource.    *    * @param in input token stream.    * @param dict Dictionary resource from classpath.    * @param version Lucene version compatibility for lowercasing.    */
 DECL|method|MorfologikFilter
 specifier|public
 name|MorfologikFilter
@@ -333,6 +334,10 @@ parameter_list|,
 specifier|final
 name|String
 name|dict
+parameter_list|,
+specifier|final
+name|Version
+name|version
 parameter_list|)
 block|{
 name|super
@@ -398,6 +403,17 @@ name|getForLanguage
 argument_list|(
 name|dict
 argument_list|)
+argument_list|)
+expr_stmt|;
+name|this
+operator|.
+name|charUtils
+operator|=
+name|CharacterUtils
+operator|.
+name|getInstance
+argument_list|(
+name|version
 argument_list|)
 expr_stmt|;
 name|this

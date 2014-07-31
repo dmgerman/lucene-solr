@@ -143,6 +143,8 @@ init|=
 operator|new
 name|TrimFilter
 argument_list|(
+name|luceneMatchVersion
+argument_list|,
 name|input
 argument_list|)
 decl_stmt|;
