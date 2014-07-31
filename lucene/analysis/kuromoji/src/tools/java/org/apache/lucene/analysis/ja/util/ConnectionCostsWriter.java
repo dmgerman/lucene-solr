@@ -411,14 +411,9 @@ name|last
 decl_stmt|;
 name|out
 operator|.
-name|writeVInt
-argument_list|(
-name|BitUtil
-operator|.
-name|zigZagEncode
+name|writeZInt
 argument_list|(
 name|delta
-argument_list|)
 argument_list|)
 expr_stmt|;
 name|last

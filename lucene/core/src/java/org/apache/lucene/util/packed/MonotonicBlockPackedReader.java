@@ -459,13 +459,10 @@ index|[
 name|i
 index|]
 operator|=
-name|zigZagDecode
-argument_list|(
 name|in
 operator|.
-name|readVLong
+name|readZLong
 argument_list|()
-argument_list|)
 expr_stmt|;
 block|}
 name|averages

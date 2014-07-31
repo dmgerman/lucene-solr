@@ -769,14 +769,9 @@ name|lastEncodedVersion
 decl_stmt|;
 name|out
 operator|.
-name|writeVLong
-argument_list|(
-name|BitUtil
-operator|.
-name|zigZagEncode
+name|writeZLong
 argument_list|(
 name|delta
-argument_list|)
 argument_list|)
 expr_stmt|;
 block|}

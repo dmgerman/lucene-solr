@@ -314,15 +314,10 @@ control|)
 block|{
 name|accum
 operator|+=
-name|BitUtil
-operator|.
-name|zigZagDecode
-argument_list|(
 name|in
 operator|.
-name|readVInt
+name|readZInt
 argument_list|()
-argument_list|)
 expr_stmt|;
 name|a
 index|[

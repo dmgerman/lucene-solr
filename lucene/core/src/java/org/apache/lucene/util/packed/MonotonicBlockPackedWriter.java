@@ -314,12 +314,9 @@ expr_stmt|;
 block|}
 name|out
 operator|.
-name|writeVLong
-argument_list|(
-name|zigZagEncode
+name|writeZLong
 argument_list|(
 name|min
-argument_list|)
 argument_list|)
 expr_stmt|;
 name|out
