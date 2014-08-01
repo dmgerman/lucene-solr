@@ -171,6 +171,17 @@ literal|"schema15.xml"
 expr_stmt|;
 comment|// we need a string id
 block|}
+DECL|field|MAX_WAIT_SECONDS
+specifier|private
+specifier|static
+specifier|final
+name|int
+name|MAX_WAIT_SECONDS
+init|=
+literal|2
+operator|*
+literal|60
+decl_stmt|;
 annotation|@
 name|Override
 annotation|@
@@ -268,7 +279,7 @@ name|sendStatusRequestWithRetry
 argument_list|(
 name|params
 argument_list|,
-literal|2
+literal|5
 argument_list|)
 expr_stmt|;
 name|assertEquals
@@ -289,7 +300,7 @@ name|sendStatusRequestWithRetry
 argument_list|(
 name|params
 argument_list|,
-literal|20
+name|MAX_WAIT_SECONDS
 argument_list|)
 expr_stmt|;
 name|assertEquals
