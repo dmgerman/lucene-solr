@@ -1681,7 +1681,7 @@ return|return
 name|effectiveUseCompountFileSetting
 return|;
 block|}
-comment|/**    * Lucene 4.4 removed the setUseCompoundFile(boolean) method from the two     * conrete MergePolicies provided with Lucene/Solr and added it to the     * IndexWRiterConfig.      * In the event that users have a value explicitly configured for this     * setter in their MergePolicy init args, we remove it from the MergePolicy     * init args, update the 'effective' useCompoundFile setting used by the     * IndexWriterConfig, and warn about discontinuing to use this init arg.    *     * @see #getUseCompoundFile    */
+comment|/**    * Lucene 4.4 removed the setUseCompoundFile(boolean) method from the two     * conrete MergePolicies provided with Lucene/Solr and added it to the     * IndexWriterConfig.      * In the event that users have a value explicitly configured for this     * setter in their MergePolicy init args, we remove it from the MergePolicy     * init args, update the 'effective' useCompoundFile setting used by the     * IndexWriterConfig, and warn about discontinuing to use this init arg.    *     * @see #getUseCompoundFile    */
 DECL|method|fixUseCFMergePolicyInitArg
 specifier|private
 name|void
