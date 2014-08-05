@@ -278,7 +278,7 @@ block|}
 if|if
 condition|(
 name|maxExpansions
-operator|<
+operator|<=
 literal|0
 condition|)
 block|{
@@ -286,7 +286,7 @@ throw|throw
 operator|new
 name|IllegalArgumentException
 argument_list|(
-literal|"maxExpansions cannot be negative."
+literal|"maxExpansions must be positive."
 argument_list|)
 throw|;
 block|}
