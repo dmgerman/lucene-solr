@@ -1249,6 +1249,23 @@ name|String
 argument_list|>
 argument_list|()
 decl_stmt|;
+comment|// This is an expert and unsupported development mode that does not create
+comment|// an Overseer or register a /live node. This let's you monitor the cluster
+comment|// and interact with zookeeper via the Solr admin UI on a node outside the cluster,
+comment|// and so one that will not be killed or stopped when testing. See developer cloud-scripts.
+DECL|field|zkRunOnly
+specifier|private
+name|boolean
+name|zkRunOnly
+init|=
+name|Boolean
+operator|.
+name|getBoolean
+argument_list|(
+literal|"zkRunOnly"
+argument_list|)
+decl_stmt|;
+comment|// expert
 DECL|method|ZkController
 specifier|public
 name|ZkController
@@ -1445,6 +1462,12 @@ argument_list|,
 literal|false
 argument_list|)
 expr_stmt|;
+if|if
+condition|(
+operator|!
+name|zkRunOnly
+condition|)
+block|{
 name|ElectionContext
 name|context
 init|=
@@ -1496,6 +1519,7 @@ argument_list|,
 literal|true
 argument_list|)
 expr_stmt|;
+block|}
 name|zkStateReader
 operator|.
 name|createClusterStateWatchersAndUpdate
@@ -3635,6 +3659,13 @@ name|KeeperException
 throws|,
 name|InterruptedException
 block|{
+if|if
+condition|(
+name|zkRunOnly
+condition|)
+block|{
+return|return;
+block|}
 name|String
 name|nodeName
 init|=
