@@ -711,6 +711,83 @@ literal|"/error/code==404"
 argument_list|)
 expr_stmt|;
 block|}
+comment|/**    * Can we add and remove stopwords with umlauts    */
+annotation|@
+name|Test
+DECL|method|testCanHandleDecodingAndEncodingForStopwords
+specifier|public
+name|void
+name|testCanHandleDecodingAndEncodingForStopwords
+parameter_list|()
+throws|throws
+name|Exception
+block|{
+name|String
+name|endpoint
+init|=
+literal|"/schema/analysis/stopwords/german"
+decl_stmt|;
+comment|//initially it should not exist
+name|assertJQ
+argument_list|(
+name|endpoint
+operator|+
+literal|"/schÃ¶n"
+argument_list|,
+literal|"/error/code==404"
+argument_list|)
+expr_stmt|;
+comment|//now we put a stopword with an umlaut
+name|assertJPut
+argument_list|(
+name|endpoint
+argument_list|,
+name|JSONUtil
+operator|.
+name|toJSON
+argument_list|(
+name|Arrays
+operator|.
+name|asList
+argument_list|(
+literal|"schÃ¶n"
+argument_list|)
+argument_list|)
+argument_list|,
+literal|"/responseHeader/status==0"
+argument_list|)
+expr_stmt|;
+comment|//let's check if it exists
+name|assertJQ
+argument_list|(
+name|endpoint
+operator|+
+literal|"/schÃ¶n"
+argument_list|,
+literal|"/schÃ¶n=='schÃ¶n'"
+argument_list|)
+expr_stmt|;
+comment|//now let's remove it
+name|assertJDelete
+argument_list|(
+name|endpoint
+operator|+
+literal|"/schÃ¶n"
+argument_list|,
+literal|"/responseHeader/status==0"
+argument_list|)
+expr_stmt|;
+comment|//and of it is unavailable again
+name|assertJQ
+argument_list|(
+name|endpoint
+operator|+
+literal|"/schÃ¶n"
+argument_list|,
+literal|"/error/code==404"
+argument_list|)
+expr_stmt|;
+block|}
 block|}
 end_class
 

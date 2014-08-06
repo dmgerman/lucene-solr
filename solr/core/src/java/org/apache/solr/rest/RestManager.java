@@ -446,6 +446,15 @@ argument_list|(
 literal|"(/config|/schema)(/.*)"
 argument_list|)
 decl_stmt|;
+DECL|field|DECODE
+specifier|private
+specifier|static
+specifier|final
+name|boolean
+name|DECODE
+init|=
+literal|true
+decl_stmt|;
 comment|/**    * Used internally to keep track of registrations during core initialization    */
 DECL|class|ManagedResourceRegistration
 specifier|private
@@ -1166,7 +1175,7 @@ return|return
 name|restManager
 return|;
 block|}
-comment|/**    * The Restlet router needs a lightweight extension of ServerResource to delegate a request    * to. ManagedResource implementations are heavy-weight objects that live for the duration of    * a SolrCore, so this class acts as the proxy between Restlet and a ManagedResource when    * doing request processing.    */
+comment|/**    * The Restlet router needs a lightweight extension of ServerResource to delegate a request    * to. ManagedResource implementations are heavy-weight objects that live for the duration of    * a SolrCore, so this class acts as the proxy between Restlet and a ManagedResource when    * doing request processing.    *    */
 DECL|class|ManagedEndpoint
 specifier|public
 specifier|static
@@ -1214,7 +1223,9 @@ argument_list|()
 argument_list|)
 operator|.
 name|getPath
-argument_list|()
+argument_list|(
+name|DECODE
+argument_list|)
 decl_stmt|;
 comment|// all resources are registered with the leading slash
 if|if
