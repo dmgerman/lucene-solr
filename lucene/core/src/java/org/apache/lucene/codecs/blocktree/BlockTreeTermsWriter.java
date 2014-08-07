@@ -2828,7 +2828,6 @@ operator|.
 name|getFilePointer
 argument_list|()
 decl_stmt|;
-comment|// if (DEBUG) System.out.println("    writeBlock fp=" + startFP + " isFloor=" + isFloor + " floorLeadLabel=" + floorLeadLabel + " start=" + start + " end=" + end + " hasTerms=" + hasTerms + " hasSubBlocks=" + hasSubBlocks);
 name|boolean
 name|hasFloorLeadLabel
 init|=
@@ -2920,9 +2919,7 @@ argument_list|(
 name|code
 argument_list|)
 expr_stmt|;
-comment|// if (DEBUG) {
-comment|//   System.out.println("  writeBlock " + (isFloor ? "(floor) " : "") + "seg=" + segment + " pending.size()=" + pending.size() + " prefixLength=" + prefixLength + " indexPrefix=" + brToString(prefix) + " entCount=" + length + " startFP=" + startFP + (isFloor ? (" floorLeadByte=" + Integer.toHexString(floorLeadByte&0xff)) : "") + " isLastInFloor=" + isLastInFloor);
-comment|// }
+comment|/*       if (DEBUG) {         System.out.println("  writeBlock " + (isFloor ? "(floor) " : "") + "seg=" + segment + " pending.size()=" + pending.size() + " prefixLength=" + prefixLength + " indexPrefix=" + brToString(prefix) + " entCount=" + (end-start+1) + " startFP=" + startFP + (isFloor ? (" floorLeadLabel=" + Integer.toHexString(floorLeadLabel)) : ""));       }       */
 comment|// 1st pass: pack term suffix bytes into byte[] blob
 comment|// TODO: cutover to bulk int codec... simple64?
 comment|// We optimize the leaf block case (block has only terms), writing a more
@@ -3042,7 +3039,7 @@ name|length
 operator|-
 name|prefixLength
 decl_stmt|;
-comment|/*           if (DEBUG) {             BytesRef suffixBytes = new BytesRef(suffix);             System.arraycopy(term.term.bytes, prefixLength, suffixBytes.bytes, 0, suffix);             suffixBytes.length = suffix;             System.out.println("    write term suffix=" + suffixBytes);           }           */
+comment|/*           if (DEBUG) {             BytesRef suffixBytes = new BytesRef(suffix);             System.arraycopy(term.termBytes, prefixLength, suffixBytes.bytes, 0, suffix);             suffixBytes.length = suffix;             System.out.println("    write term suffix=" + brToString(suffixBytes));           }           */
 comment|// For leaf block we write suffix straight
 name|suffixWriter
 operator|.
@@ -3297,7 +3294,7 @@ name|length
 operator|-
 name|prefixLength
 decl_stmt|;
-comment|/*             if (DEBUG) {               BytesRef suffixBytes = new BytesRef(suffix);               System.arraycopy(term.term.bytes, prefixLength, suffixBytes.bytes, 0, suffix);               suffixBytes.length = suffix;               System.out.println("    write term suffix=" + suffixBytes);             }             */
+comment|/*             if (DEBUG) {               BytesRef suffixBytes = new BytesRef(suffix);               System.arraycopy(term.termBytes, prefixLength, suffixBytes.bytes, 0, suffix);               suffixBytes.length = suffix;               System.out.println("    write term suffix=" + brToString(suffixBytes));             }             */
 comment|// For non-leaf block we borrow 1 bit to record
 comment|// if entry is term or sub-block
 name|suffixWriter
@@ -4096,6 +4093,14 @@ literal|0
 condition|)
 block|{
 comment|// if (DEBUG) System.out.println("BTTW: finish prefixStarts=" + Arrays.toString(prefixStarts));
+comment|// Add empty term to force closing of all final blocks:
+name|pushTerm
+argument_list|(
+operator|new
+name|BytesRef
+argument_list|()
+argument_list|)
+expr_stmt|;
 comment|// TODO: if pending.size() is already 1 with a non-zero prefix length
 comment|// we can save writing a "degenerate" root block, but we have to
 comment|// fix all the places that assume the root block's prefix is the empty string:
