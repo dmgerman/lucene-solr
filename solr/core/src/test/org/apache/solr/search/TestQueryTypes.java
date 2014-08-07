@@ -107,42 +107,6 @@ return|return
 literal|"basic"
 return|;
 block|}
-annotation|@
-name|Override
-DECL|method|setUp
-specifier|public
-name|void
-name|setUp
-parameter_list|()
-throws|throws
-name|Exception
-block|{
-comment|// if you override setUp or tearDown, you better call
-comment|// the super classes version
-name|super
-operator|.
-name|setUp
-argument_list|()
-expr_stmt|;
-block|}
-annotation|@
-name|Override
-DECL|method|tearDown
-specifier|public
-name|void
-name|tearDown
-parameter_list|()
-throws|throws
-name|Exception
-block|{
-comment|// if you override setUp or tearDown, you better call
-comment|// the super classes version
-name|super
-operator|.
-name|tearDown
-argument_list|()
-expr_stmt|;
-block|}
 DECL|method|testQueryTypes
 specifier|public
 name|void
@@ -518,6 +482,83 @@ argument_list|,
 literal|"//result[@numFound='1']"
 argument_list|)
 expr_stmt|;
+comment|// term qparser
+name|assertQ
+argument_list|(
+name|req
+argument_list|(
+literal|"q"
+argument_list|,
+literal|"{!term f="
+operator|+
+name|f
+operator|+
+literal|"}"
+operator|+
+name|v
+argument_list|)
+argument_list|,
+literal|"//result[@numFound='1']"
+argument_list|)
+expr_stmt|;
+comment|// terms qparser
+comment|//wrap in spaces if space separated
+specifier|final
+name|String
+name|separator
+init|=
+name|f
+operator|==
+literal|"v_s"
+condition|?
+literal|"separator='|'"
+else|:
+literal|""
+decl_stmt|;
+comment|//defaults to space separated
+name|String
+name|vMod
+init|=
+name|separator
+operator|==
+literal|""
+operator|&&
+name|random
+argument_list|()
+operator|.
+name|nextBoolean
+argument_list|()
+condition|?
+literal|" "
+operator|+
+name|v
+operator|+
+literal|" "
+else|:
+name|v
+decl_stmt|;
+name|assertQ
+argument_list|(
+name|req
+argument_list|(
+literal|"q"
+argument_list|,
+literal|"{!terms "
+operator|+
+name|separator
+operator|+
+literal|" f="
+operator|+
+name|f
+operator|+
+literal|"}"
+operator|+
+name|vMod
+argument_list|)
+argument_list|,
+literal|"//result[@numFound='1']"
+argument_list|)
+expr_stmt|;
 comment|// lucene range
 name|assertQ
 argument_list|(
@@ -542,6 +583,64 @@ literal|"//result[@numFound='1']"
 argument_list|)
 expr_stmt|;
 block|}
+comment|// terms qparser, no values matches nothing
+name|assertQ
+argument_list|(
+name|req
+argument_list|(
+literal|"q"
+argument_list|,
+literal|"*:*"
+argument_list|,
+literal|"fq"
+argument_list|,
+literal|"{!terms f=v_s}"
+argument_list|)
+argument_list|,
+literal|"//result[@numFound='0']"
+argument_list|)
+expr_stmt|;
+name|String
+name|termsMethod
+init|=
+operator|new
+name|String
+index|[]
+block|{
+literal|"termsFilter"
+block|,
+literal|"booleanQuery"
+block|,
+literal|"automaton"
+block|,
+literal|"docValuesTermsFilter"
+block|}
+index|[
+name|random
+argument_list|()
+operator|.
+name|nextInt
+argument_list|(
+literal|4
+argument_list|)
+index|]
+decl_stmt|;
+name|assertQ
+argument_list|(
+name|req
+argument_list|(
+literal|"q"
+argument_list|,
+literal|"{!terms f=v_s method="
+operator|+
+name|termsMethod
+operator|+
+literal|" separator=|}other stuff|wow dude"
+argument_list|)
+argument_list|,
+literal|"//result[@numFound='2']"
+argument_list|)
+expr_stmt|;
 comment|// frange and function query only work on single valued field types
 name|Object
 index|[]
