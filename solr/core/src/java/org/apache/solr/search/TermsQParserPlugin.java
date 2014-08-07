@@ -299,7 +299,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Finds documents whose specified field has any of the specified values. It's like  * {@link TermQParserPlugin} but multi-valued, and supports a variety of internal algorithms.  *<br>Parameters:  *<br><code>f</code>: The field name (mandatory)  *<br><code>separator</code>: the separator delimiting the values in the query string. By  * default it's a " " which is special in that it splits on any consecutive whitespace.  *<br><code>method</code>: Any of termsFilter (default), booleanQuery, automaton, docValuesTermsFilter.  *<p>  * Note that if no values are specified then the query matches no documents.  */
+comment|/**  * Finds documents whose specified field has any of the specified values. It's like  * {@link TermQParserPlugin} but multi-valued, and supports a variety of internal algorithms.  *<br>Parameters:  *<br><code>f</code>: The field name (mandatory)  *<br><code>separator</code>: the separator delimiting the values in the query string, defaulting to a comma.  * If it's a " " then it splits on any consecutive whitespace.  *<br><code>method</code>: Any of termsFilter (default), booleanQuery, automaton, docValuesTermsFilter.  *<p>  * Note that if no values are specified then the query matches no documents.  */
 end_comment
 
 begin_class
@@ -626,7 +626,7 @@ name|get
 argument_list|(
 name|SEPARATOR
 argument_list|,
-literal|" "
+literal|","
 argument_list|)
 decl_stmt|;
 name|String

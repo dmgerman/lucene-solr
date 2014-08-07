@@ -502,7 +502,7 @@ literal|"//result[@numFound='1']"
 argument_list|)
 expr_stmt|;
 comment|// terms qparser
-comment|//wrap in spaces if space separated
+comment|//wrap in spaces sometimes if space separated
 specifier|final
 name|String
 name|separator
@@ -511,16 +511,16 @@ name|f
 operator|==
 literal|"v_s"
 condition|?
-literal|"separator='|'"
-else|:
 literal|""
+else|:
+literal|"separator=' '"
 decl_stmt|;
-comment|//defaults to space separated
+comment|//use space separated when field isn't v_s
 name|String
 name|vMod
 init|=
 name|separator
-operator|==
+operator|!=
 literal|""
 operator|&&
 name|random
@@ -635,7 +635,7 @@ literal|"{!terms f=v_s method="
 operator|+
 name|termsMethod
 operator|+
-literal|" separator=|}other stuff|wow dude"
+literal|" }other stuff,wow dude"
 argument_list|)
 argument_list|,
 literal|"//result[@numFound='2']"
