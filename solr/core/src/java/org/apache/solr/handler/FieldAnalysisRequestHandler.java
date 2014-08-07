@@ -317,18 +317,6 @@ return|return
 literal|"Provide a breakdown of the analysis process of field/query text"
 return|;
 block|}
-annotation|@
-name|Override
-DECL|method|getSource
-specifier|public
-name|String
-name|getSource
-parameter_list|()
-block|{
-return|return
-literal|"$URL$"
-return|;
-block|}
 comment|// ================================================= Helper methods ================================================
 comment|/**    * Resolves the AnalysisRequest based on the parameters in the given SolrParams.    *    * @param req the request    *    * @return AnalysisRequest containing all the information about what needs to be analyzed, and using what    *         fields/types    */
 DECL|method|resolveAnalysisRequest

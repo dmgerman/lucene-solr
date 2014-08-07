@@ -2357,18 +2357,6 @@ return|;
 block|}
 annotation|@
 name|Override
-DECL|method|getSource
-specifier|public
-name|String
-name|getSource
-parameter_list|()
-block|{
-return|return
-literal|"$URL: https://svn.apache.org/repos/asf/lucene/dev/trunk/solr/core/src/java/org/apache/solr/handler/component/ExpandComponent.java $"
-return|;
-block|}
-annotation|@
-name|Override
 DECL|method|getDocs
 specifier|public
 name|URL

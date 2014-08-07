@@ -7367,18 +7367,6 @@ return|return
 literal|"Manage Multiple Solr Cores"
 return|;
 block|}
-annotation|@
-name|Override
-DECL|method|getSource
-specifier|public
-name|String
-name|getSource
-parameter_list|()
-block|{
-return|return
-literal|"$URL$"
-return|;
-block|}
 comment|/**    * Class to implement multi-threaded CoreAdminHandler behaviour.    * This accepts all of the context from handleRequestBody.    */
 DECL|class|ParallelCoreAdminHandlerThread
 specifier|protected

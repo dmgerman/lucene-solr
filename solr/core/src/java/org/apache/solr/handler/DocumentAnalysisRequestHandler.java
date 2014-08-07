@@ -579,18 +579,6 @@ return|return
 literal|"Provides a breakdown of the analysis process of provided documents"
 return|;
 block|}
-annotation|@
-name|Override
-DECL|method|getSource
-specifier|public
-name|String
-name|getSource
-parameter_list|()
-block|{
-return|return
-literal|"$URL$"
-return|;
-block|}
 comment|//================================================ Helper Methods ==================================================
 comment|/**    * Resolves the {@link DocumentAnalysisRequest} from the given solr request.    *    * @param req The solr request.    *    * @return The resolved document analysis request.    *    * @throws IOException        Thrown when reading/parsing the content stream of the request fails.    * @throws XMLStreamException Thrown when reading/parsing the content stream of the request fails.    */
 DECL|method|resolveAnalysisRequest

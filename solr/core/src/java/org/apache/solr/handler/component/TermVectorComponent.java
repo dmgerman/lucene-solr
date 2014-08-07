@@ -2781,18 +2781,6 @@ parameter_list|)
 block|{    }
 annotation|@
 name|Override
-DECL|method|getSource
-specifier|public
-name|String
-name|getSource
-parameter_list|()
-block|{
-return|return
-literal|"$URL$"
-return|;
-block|}
-annotation|@
-name|Override
 DECL|method|getDescription
 specifier|public
 name|String

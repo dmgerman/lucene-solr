@@ -991,7 +991,7 @@ name|getSource
 parameter_list|()
 block|{
 return|return
-literal|"$URL$"
+literal|null
 return|;
 block|}
 annotation|@

@@ -1582,18 +1582,6 @@ return|return
 literal|"A Clustering component"
 return|;
 block|}
-annotation|@
-name|Override
-DECL|method|getSource
-specifier|public
-name|String
-name|getSource
-parameter_list|()
-block|{
-return|return
-literal|"$URL$"
-return|;
-block|}
 comment|/**    * Setup the default clustering engine.    * @see "https://issues.apache.org/jira/browse/SOLR-5219"    */
 DECL|method|setupDefaultEngine
 specifier|private

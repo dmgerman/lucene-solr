@@ -3545,18 +3545,6 @@ return|return
 literal|"ReplicationHandler provides replication of index and configuration files from Master to Slaves"
 return|;
 block|}
-annotation|@
-name|Override
-DECL|method|getSource
-specifier|public
-name|String
-name|getSource
-parameter_list|()
-block|{
-return|return
-literal|"$URL$"
-return|;
-block|}
 comment|/**     * returns the CommitVersionInfo for the current searcher, or null on error.    */
 DECL|method|getIndexVersion
 specifier|private

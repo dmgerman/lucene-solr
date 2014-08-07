@@ -253,11 +253,14 @@ annotation|@
 name|Override
 DECL|method|getSource
 specifier|public
-specifier|abstract
 name|String
 name|getSource
 parameter_list|()
-function_decl|;
+block|{
+return|return
+literal|null
+return|;
+block|}
 annotation|@
 name|Override
 DECL|method|getVersion

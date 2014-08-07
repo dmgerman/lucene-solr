@@ -1126,18 +1126,6 @@ return|return
 literal|"Add documents using XML (with XSLT), CSV, JSON, or javabin"
 return|;
 block|}
-annotation|@
-name|Override
-DECL|method|getSource
-specifier|public
-name|String
-name|getSource
-parameter_list|()
-block|{
-return|return
-literal|"$URL$"
-return|;
-block|}
 DECL|method|addImplicits
 specifier|public
 specifier|static

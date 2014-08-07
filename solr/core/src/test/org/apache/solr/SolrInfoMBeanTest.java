@@ -407,20 +407,10 @@ name|assertNotNull
 argument_list|(
 name|info
 operator|.
-name|getSource
-argument_list|()
-argument_list|)
-expr_stmt|;
-name|assertNotNull
-argument_list|(
-name|info
-operator|.
 name|getCategory
 argument_list|()
 argument_list|)
 expr_stmt|;
-comment|// Make sure the URL has the classname in it
-comment|//assertTrue(info.getSource(), info.getSource().indexOf(info.getClass().getSimpleName()+".java")>0 );
 if|if
 condition|(
 name|info

@@ -107,18 +107,6 @@ return|return
 literal|"DefaultEncoder"
 return|;
 block|}
-annotation|@
-name|Override
-DECL|method|getSource
-specifier|public
-name|String
-name|getSource
-parameter_list|()
-block|{
-return|return
-literal|"$URL$"
-return|;
-block|}
 block|}
 end_class
 

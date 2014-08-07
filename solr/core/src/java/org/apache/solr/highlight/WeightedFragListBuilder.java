@@ -106,18 +106,6 @@ return|return
 literal|"WeightedFragListBuilder"
 return|;
 block|}
-annotation|@
-name|Override
-DECL|method|getSource
-specifier|public
-name|String
-name|getSource
-parameter_list|()
-block|{
-return|return
-literal|"$URL: http://svn.apache.org/repos/asf/lucene/dev/branches/branch_4x/solr/core/src/java/org/apache/solr/highlight/WeightedFragListBuilder.java $"
-return|;
-block|}
 block|}
 end_class
 
