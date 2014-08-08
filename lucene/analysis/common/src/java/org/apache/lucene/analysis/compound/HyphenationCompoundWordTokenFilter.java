@@ -20,40 +20,6 @@ end_comment
 
 begin_import
 import|import
-name|java
-operator|.
-name|io
-operator|.
-name|File
-import|;
-end_import
-
-begin_import
-import|import
-name|java
-operator|.
-name|io
-operator|.
-name|IOException
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|analysis
-operator|.
-name|TokenFilter
-import|;
-end_import
-
-begin_import
-import|import
 name|org
 operator|.
 name|apache
@@ -122,20 +88,6 @@ begin_import
 import|import
 name|org
 operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|util
-operator|.
-name|Version
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
 name|xml
 operator|.
 name|sax
@@ -144,8 +96,28 @@ name|InputSource
 import|;
 end_import
 
+begin_import
+import|import
+name|java
+operator|.
+name|io
+operator|.
+name|File
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
+name|io
+operator|.
+name|IOException
+import|;
+end_import
+
 begin_comment
-comment|/**  * A {@link TokenFilter} that decomposes compound words found in many Germanic languages.  *<p>  * "Donaudampfschiff" becomes Donau, dampf, schiff so that you can find  * "Donaudampfschiff" even when you only enter "schiff". It uses a hyphenation  * grammar and a word dictionary to achieve this.  *<p>  * You must specify the required {@link Version} compatibility when creating  * CompoundWordTokenFilterBase:  *<ul>  *<li>As of 3.1, CompoundWordTokenFilterBase correctly handles Unicode 4.0  * supplementary characters in strings and char arrays provided as compound word  * dictionaries.  *</ul>  */
+comment|/**  * A {@link org.apache.lucene.analysis.TokenFilter} that decomposes compound words found in many Germanic languages.  *  * "Donaudampfschiff" becomes Donau, dampf, schiff so that you can find  * "Donaudampfschiff" even when you only enter "schiff". It uses a hyphenation  * grammar and a word dictionary to achieve this.  */
 end_comment
 
 begin_class
@@ -161,14 +133,11 @@ specifier|private
 name|HyphenationTree
 name|hyphenator
 decl_stmt|;
-comment|/**    * Creates a new {@link HyphenationCompoundWordTokenFilter} instance.     *     * @param matchVersion    *          Lucene version to enable correct Unicode 4.0 behavior in the    *          dictionaries if Version> 3.0. See<a    *          href="CompoundWordTokenFilterBase.html#version"    *>CompoundWordTokenFilterBase</a> for details.    * @param input    *          the {@link TokenStream} to process    * @param hyphenator    *          the hyphenation pattern tree to use for hyphenation    * @param dictionary    *          the word dictionary to match against.    */
+comment|/**    * Creates a new {@link HyphenationCompoundWordTokenFilter} instance.    *    * @param input    *          the {@link org.apache.lucene.analysis.TokenStream} to process    * @param hyphenator    *          the hyphenation pattern tree to use for hyphenation    * @param dictionary    *          the word dictionary to match against.    */
 DECL|method|HyphenationCompoundWordTokenFilter
 specifier|public
 name|HyphenationCompoundWordTokenFilter
 parameter_list|(
-name|Version
-name|matchVersion
-parameter_list|,
 name|TokenStream
 name|input
 parameter_list|,
@@ -181,8 +150,6 @@ parameter_list|)
 block|{
 name|this
 argument_list|(
-name|matchVersion
-argument_list|,
 name|input
 argument_list|,
 name|hyphenator
@@ -199,14 +166,11 @@ literal|false
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**    * Creates a new {@link HyphenationCompoundWordTokenFilter} instance.    *     * @param matchVersion    *          Lucene version to enable correct Unicode 4.0 behavior in the    *          dictionaries if Version> 3.0. See<a    *          href="CompoundWordTokenFilterBase.html#version"    *>CompoundWordTokenFilterBase</a> for details.    * @param input    *          the {@link TokenStream} to process    * @param hyphenator    *          the hyphenation pattern tree to use for hyphenation    * @param dictionary    *          the word dictionary to match against.    * @param minWordSize    *          only words longer than this get processed    * @param minSubwordSize    *          only subwords longer than this get to the output stream    * @param maxSubwordSize    *          only subwords shorter than this get to the output stream    * @param onlyLongestMatch    *          Add only the longest matching subword to the stream    */
+comment|/**    * Creates a new {@link HyphenationCompoundWordTokenFilter} instance.    *    * @param input    *          the {@link org.apache.lucene.analysis.TokenStream} to process    * @param hyphenator    *          the hyphenation pattern tree to use for hyphenation    * @param dictionary    *          the word dictionary to match against.    * @param minWordSize    *          only words longer than this get processed    * @param minSubwordSize    *          only subwords longer than this get to the output stream    * @param maxSubwordSize    *          only subwords shorter than this get to the output stream    * @param onlyLongestMatch    *          Add only the longest matching subword to the stream    */
 DECL|method|HyphenationCompoundWordTokenFilter
 specifier|public
 name|HyphenationCompoundWordTokenFilter
 parameter_list|(
-name|Version
-name|matchVersion
-parameter_list|,
 name|TokenStream
 name|input
 parameter_list|,
@@ -231,8 +195,6 @@ parameter_list|)
 block|{
 name|super
 argument_list|(
-name|matchVersion
-argument_list|,
 name|input
 argument_list|,
 name|dictionary
@@ -253,14 +215,11 @@ operator|=
 name|hyphenator
 expr_stmt|;
 block|}
-comment|/**    * Create a HyphenationCompoundWordTokenFilter with no dictionary.    *<p>    * Calls {@link #HyphenationCompoundWordTokenFilter(Version, TokenStream, HyphenationTree, CharArraySet, int, int, int, boolean)    * HyphenationCompoundWordTokenFilter(matchVersion, input, hyphenator,    * null, minWordSize, minSubwordSize, maxSubwordSize }    */
+comment|/**    * Create a HyphenationCompoundWordTokenFilter with no dictionary.    *<p>    * Calls {@link #HyphenationCompoundWordTokenFilter(org.apache.lucene.analysis.TokenStream, org.apache.lucene.analysis.compound.hyphenation.HyphenationTree, org.apache.lucene.analysis.util.CharArraySet, int, int, int, boolean)    * HyphenationCompoundWordTokenFilter(matchVersion, input, hyphenator,    * null, minWordSize, minSubwordSize, maxSubwordSize }    */
 DECL|method|HyphenationCompoundWordTokenFilter
 specifier|public
 name|HyphenationCompoundWordTokenFilter
 parameter_list|(
-name|Version
-name|matchVersion
-parameter_list|,
 name|TokenStream
 name|input
 parameter_list|,
@@ -279,8 +238,6 @@ parameter_list|)
 block|{
 name|this
 argument_list|(
-name|matchVersion
-argument_list|,
 name|input
 argument_list|,
 name|hyphenator
@@ -297,14 +254,11 @@ literal|false
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**    * Create a HyphenationCompoundWordTokenFilter with no dictionary.    *<p>    * Calls {@link #HyphenationCompoundWordTokenFilter(Version, TokenStream, HyphenationTree, int, int, int)     * HyphenationCompoundWordTokenFilter(matchVersion, input, hyphenator,     * DEFAULT_MIN_WORD_SIZE, DEFAULT_MIN_SUBWORD_SIZE, DEFAULT_MAX_SUBWORD_SIZE }    */
+comment|/**    * Create a HyphenationCompoundWordTokenFilter with no dictionary.    *<p>    * Calls {@link #HyphenationCompoundWordTokenFilter(org.apache.lucene.analysis.TokenStream, org.apache.lucene.analysis.compound.hyphenation.HyphenationTree, int, int, int)    * HyphenationCompoundWordTokenFilter(matchVersion, input, hyphenator,    * DEFAULT_MIN_WORD_SIZE, DEFAULT_MIN_SUBWORD_SIZE, DEFAULT_MAX_SUBWORD_SIZE }    */
 DECL|method|HyphenationCompoundWordTokenFilter
 specifier|public
 name|HyphenationCompoundWordTokenFilter
 parameter_list|(
-name|Version
-name|matchVersion
-parameter_list|,
 name|TokenStream
 name|input
 parameter_list|,
@@ -314,8 +268,6 @@ parameter_list|)
 block|{
 name|this
 argument_list|(
-name|matchVersion
-argument_list|,
 name|input
 argument_list|,
 name|hyphenator
@@ -328,7 +280,7 @@ name|DEFAULT_MAX_SUBWORD_SIZE
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**    * Create a hyphenator tree    *     * @param hyphenationFilename the filename of the XML grammar to load    * @return An object representing the hyphenation patterns    * @throws IOException If there is a low-level I/O error.    */
+comment|/**    * Create a hyphenator tree    *    * @param hyphenationFilename the filename of the XML grammar to load    * @return An object representing the hyphenation patterns    * @throws java.io.IOException If there is a low-level I/O error.    */
 DECL|method|getHyphenationTree
 specifier|public
 specifier|static
@@ -352,7 +304,7 @@ argument_list|)
 argument_list|)
 return|;
 block|}
-comment|/**    * Create a hyphenator tree    *     * @param hyphenationFile the file of the XML grammar to load    * @return An object representing the hyphenation patterns    * @throws IOException If there is a low-level I/O error.    */
+comment|/**    * Create a hyphenator tree    *    * @param hyphenationFile the file of the XML grammar to load    * @return An object representing the hyphenation patterns    * @throws java.io.IOException If there is a low-level I/O error.    */
 DECL|method|getHyphenationTree
 specifier|public
 specifier|static
@@ -382,7 +334,7 @@ argument_list|)
 argument_list|)
 return|;
 block|}
-comment|/**    * Create a hyphenator tree    *     * @param hyphenationSource the InputSource pointing to the XML grammar    * @return An object representing the hyphenation patterns    * @throws IOException If there is a low-level I/O error.    */
+comment|/**    * Create a hyphenator tree    *    * @param hyphenationSource the InputSource pointing to the XML grammar    * @return An object representing the hyphenation patterns    * @throws java.io.IOException If there is a low-level I/O error.    */
 DECL|method|getHyphenationTree
 specifier|public
 specifier|static

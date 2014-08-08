@@ -472,19 +472,7 @@ name|analyzer
 init|=
 operator|new
 name|StandardAnalyzer
-argument_list|(
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|util
-operator|.
-name|Version
-operator|.
-name|LUCENE_CURRENT
-argument_list|)
+argument_list|()
 decl_stmt|;
 comment|/** for instantiation by the servlet container */
 DECL|method|FormBasedXmlQueryDemo

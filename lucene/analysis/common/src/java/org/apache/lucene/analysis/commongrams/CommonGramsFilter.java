@@ -152,20 +152,6 @@ name|CharArraySet
 import|;
 end_import
 
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|util
-operator|.
-name|Version
-import|;
-end_import
-
 begin_comment
 comment|/*  * TODO: Consider implementing https://issues.apache.org/jira/browse/LUCENE-1688 changes to stop list and associated constructors   */
 end_comment
@@ -306,9 +292,6 @@ DECL|method|CommonGramsFilter
 specifier|public
 name|CommonGramsFilter
 parameter_list|(
-name|Version
-name|matchVersion
-parameter_list|,
 name|TokenStream
 name|input
 parameter_list|,

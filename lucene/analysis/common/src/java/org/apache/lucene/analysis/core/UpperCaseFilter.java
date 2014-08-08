@@ -88,22 +88,8 @@ name|CharacterUtils
 import|;
 end_import
 
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|util
-operator|.
-name|Version
-import|;
-end_import
-
 begin_comment
-comment|/**  * Normalizes token text to UPPER CASE.  *<a name="version"/>  *<p>You must specify the required {@link Version}  * compatibility when creating UpperCaseFilter  *   *<p><b>NOTE:</b> In Unicode, this transformation may lose information when the  * upper case character represents more than one lower case character. Use this filter  * when you require uppercase tokens.  Use the {@link LowerCaseFilter} for   * general search matching  */
+comment|/**  * Normalizes token text to UPPER CASE.  *   *<p><b>NOTE:</b> In Unicode, this transformation may lose information when the  * upper case character represents more than one lower case character. Use this filter  * when you require uppercase tokens.  Use the {@link LowerCaseFilter} for   * general search matching  */
 end_comment
 
 begin_class
@@ -120,6 +106,11 @@ specifier|private
 specifier|final
 name|CharacterUtils
 name|charUtils
+init|=
+name|CharacterUtils
+operator|.
+name|getInstance
+argument_list|()
 decl_stmt|;
 DECL|field|termAtt
 specifier|private
@@ -134,14 +125,11 @@ operator|.
 name|class
 argument_list|)
 decl_stmt|;
-comment|/**    * Create a new UpperCaseFilter, that normalizes token text to upper case.    *     * @param matchVersion See<a href="#version">above</a>    * @param in TokenStream to filter    */
+comment|/**    * Create a new UpperCaseFilter, that normalizes token text to upper case.    *     * @param in TokenStream to filter    */
 DECL|method|UpperCaseFilter
 specifier|public
 name|UpperCaseFilter
 parameter_list|(
-name|Version
-name|matchVersion
-parameter_list|,
 name|TokenStream
 name|in
 parameter_list|)
@@ -149,15 +137,6 @@ block|{
 name|super
 argument_list|(
 name|in
-argument_list|)
-expr_stmt|;
-name|charUtils
-operator|=
-name|CharacterUtils
-operator|.
-name|getInstance
-argument_list|(
-name|matchVersion
 argument_list|)
 expr_stmt|;
 block|}

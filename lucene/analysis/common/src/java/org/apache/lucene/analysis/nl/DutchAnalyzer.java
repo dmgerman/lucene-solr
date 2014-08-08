@@ -200,26 +200,6 @@ name|lucene
 operator|.
 name|analysis
 operator|.
-name|standard
-operator|.
-name|StandardAnalyzer
-import|;
-end_import
-
-begin_comment
-comment|// for javadoc
-end_comment
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|analysis
-operator|.
 name|util
 operator|.
 name|CharArrayMap
@@ -288,20 +268,6 @@ end_import
 
 begin_import
 import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|util
-operator|.
-name|Version
-import|;
-end_import
-
-begin_import
-import|import
 name|java
 operator|.
 name|io
@@ -333,7 +299,11 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * {@link Analyzer} for Dutch language.   *<p>  * Supports an external list of stopwords (words that  * will not be indexed at all), an external list of exclusions (word that will  * not be stemmed, but indexed) and an external list of word-stem pairs that overrule  * the algorithm (dictionary stemming).  * A default set of stopwords is used unless an alternative list is specified, but the  * exclusion list is empty by default.  *</p>  *   *<p><b>NOTE</b>: This class uses the same {@link Version}  * dependent settings as {@link StandardAnalyzer}.</p>  */
+comment|/**  * {@link Analyzer} for Dutch language.   *<p>  * Supports an external list of stopwords (words that  * will not be indexed at all), an external list of exclusions (word that will  * not be stemmed, but indexed) and an external list of word-stem pairs that overrule  * the algorithm (dictionary stemming).  * A default set of stopwords is used unless an alternative list is specified, but the  * exclusion list is empty by default.  *</p>  */
+end_comment
+
+begin_comment
+comment|// TODO: extend StopwordAnalyzerBase
 end_comment
 
 begin_class
@@ -414,10 +384,6 @@ name|StandardCharsets
 operator|.
 name|UTF_8
 argument_list|)
-argument_list|,
-name|Version
-operator|.
-name|LUCENE_CURRENT
 argument_list|)
 expr_stmt|;
 block|}
@@ -443,10 +409,6 @@ operator|new
 name|CharArrayMap
 argument_list|<>
 argument_list|(
-name|Version
-operator|.
-name|LUCENE_CURRENT
-argument_list|,
 literal|4
 argument_list|,
 literal|false
@@ -515,25 +477,14 @@ specifier|final
 name|StemmerOverrideMap
 name|stemdict
 decl_stmt|;
-DECL|field|matchVersion
-specifier|private
-specifier|final
-name|Version
-name|matchVersion
-decl_stmt|;
 comment|/**    * Builds an analyzer with the default stop words ({@link #getDefaultStopSet()})     * and a few default entries for the stem exclusion table.    *     */
 DECL|method|DutchAnalyzer
 specifier|public
 name|DutchAnalyzer
-parameter_list|(
-name|Version
-name|matchVersion
-parameter_list|)
+parameter_list|()
 block|{
 name|this
 argument_list|(
-name|matchVersion
-argument_list|,
 name|DefaultSetHolder
 operator|.
 name|DEFAULT_STOP_SET
@@ -552,17 +503,12 @@ DECL|method|DutchAnalyzer
 specifier|public
 name|DutchAnalyzer
 parameter_list|(
-name|Version
-name|matchVersion
-parameter_list|,
 name|CharArraySet
 name|stopwords
 parameter_list|)
 block|{
 name|this
 argument_list|(
-name|matchVersion
-argument_list|,
 name|stopwords
 argument_list|,
 name|CharArraySet
@@ -579,9 +525,6 @@ DECL|method|DutchAnalyzer
 specifier|public
 name|DutchAnalyzer
 parameter_list|(
-name|Version
-name|matchVersion
-parameter_list|,
 name|CharArraySet
 name|stopwords
 parameter_list|,
@@ -591,8 +534,6 @@ parameter_list|)
 block|{
 name|this
 argument_list|(
-name|matchVersion
-argument_list|,
 name|stopwords
 argument_list|,
 name|stemExclusionTable
@@ -607,9 +548,6 @@ DECL|method|DutchAnalyzer
 specifier|public
 name|DutchAnalyzer
 parameter_list|(
-name|Version
-name|matchVersion
-parameter_list|,
 name|CharArraySet
 name|stopwords
 parameter_list|,
@@ -625,12 +563,6 @@ parameter_list|)
 block|{
 name|this
 operator|.
-name|matchVersion
-operator|=
-name|matchVersion
-expr_stmt|;
-name|this
-operator|.
 name|stoptable
 operator|=
 name|CharArraySet
@@ -641,8 +573,6 @@ name|CharArraySet
 operator|.
 name|copy
 argument_list|(
-name|matchVersion
-argument_list|,
 name|stopwords
 argument_list|)
 argument_list|)
@@ -659,8 +589,6 @@ name|CharArraySet
 operator|.
 name|copy
 argument_list|(
-name|matchVersion
-argument_list|,
 name|stemExclusionTable
 argument_list|)
 argument_list|)
@@ -810,9 +738,7 @@ name|source
 init|=
 operator|new
 name|StandardTokenizer
-argument_list|(
-name|matchVersion
-argument_list|)
+argument_list|()
 decl_stmt|;
 name|TokenStream
 name|result
@@ -820,8 +746,6 @@ init|=
 operator|new
 name|StandardFilter
 argument_list|(
-name|matchVersion
-argument_list|,
 name|source
 argument_list|)
 decl_stmt|;
@@ -830,8 +754,6 @@ operator|=
 operator|new
 name|LowerCaseFilter
 argument_list|(
-name|matchVersion
-argument_list|,
 name|result
 argument_list|)
 expr_stmt|;
@@ -840,8 +762,6 @@ operator|=
 operator|new
 name|StopFilter
 argument_list|(
-name|matchVersion
-argument_list|,
 name|result
 argument_list|,
 name|stoptable

@@ -30,26 +30,6 @@ end_import
 
 begin_import
 import|import
-name|java
-operator|.
-name|util
-operator|.
-name|HashSet
-import|;
-end_import
-
-begin_import
-import|import
-name|java
-operator|.
-name|util
-operator|.
-name|Set
-import|;
-end_import
-
-begin_import
-import|import
 name|org
 operator|.
 name|apache
@@ -92,20 +72,6 @@ name|CharArraySet
 import|;
 end_import
 
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|util
-operator|.
-name|Version
-import|;
-end_import
-
 begin_class
 DECL|class|TestItalianAnalyzer
 specifier|public
@@ -123,9 +89,7 @@ parameter_list|()
 block|{
 operator|new
 name|ItalianAnalyzer
-argument_list|(
-name|TEST_VERSION_CURRENT
-argument_list|)
+argument_list|()
 expr_stmt|;
 block|}
 comment|/** test stopwords and stemming */
@@ -142,9 +106,7 @@ name|a
 init|=
 operator|new
 name|ItalianAnalyzer
-argument_list|(
-name|TEST_VERSION_CURRENT
-argument_list|)
+argument_list|()
 decl_stmt|;
 comment|// stemming
 name|checkOneTerm
@@ -194,8 +156,6 @@ init|=
 operator|new
 name|CharArraySet
 argument_list|(
-name|TEST_VERSION_CURRENT
-argument_list|,
 name|asSet
 argument_list|(
 literal|"abbandonata"
@@ -210,8 +170,6 @@ init|=
 operator|new
 name|ItalianAnalyzer
 argument_list|(
-name|TEST_VERSION_CURRENT
-argument_list|,
 name|ItalianAnalyzer
 operator|.
 name|getDefaultStopSet
@@ -255,9 +213,7 @@ argument_list|()
 argument_list|,
 operator|new
 name|ItalianAnalyzer
-argument_list|(
-name|TEST_VERSION_CURRENT
-argument_list|)
+argument_list|()
 argument_list|,
 literal|1000
 operator|*
@@ -279,9 +235,7 @@ name|a
 init|=
 operator|new
 name|ItalianAnalyzer
-argument_list|(
-name|TEST_VERSION_CURRENT
-argument_list|)
+argument_list|()
 decl_stmt|;
 name|assertAnalyzesTo
 argument_list|(

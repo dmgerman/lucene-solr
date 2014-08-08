@@ -178,9 +178,7 @@ name|cz
 init|=
 operator|new
 name|CzechAnalyzer
-argument_list|(
-name|TEST_VERSION_CURRENT
-argument_list|)
+argument_list|()
 decl_stmt|;
 comment|/* animate ending with a hard consonant */
 name|assertAnalyzesTo
@@ -889,9 +887,7 @@ name|cz
 init|=
 operator|new
 name|CzechAnalyzer
-argument_list|(
-name|TEST_VERSION_CURRENT
-argument_list|)
+argument_list|()
 decl_stmt|;
 comment|/* ending with hard consonant */
 name|assertAnalyzesTo
@@ -1305,9 +1301,7 @@ name|cz
 init|=
 operator|new
 name|CzechAnalyzer
-argument_list|(
-name|TEST_VERSION_CURRENT
-argument_list|)
+argument_list|()
 decl_stmt|;
 comment|/* ending with o */
 name|assertAnalyzesTo
@@ -1720,9 +1714,7 @@ name|cz
 init|=
 operator|new
 name|CzechAnalyzer
-argument_list|(
-name|TEST_VERSION_CURRENT
-argument_list|)
+argument_list|()
 decl_stmt|;
 comment|/* ending with Ã½/Ã¡/Ã© */
 name|assertAnalyzesTo
@@ -1979,9 +1971,7 @@ name|cz
 init|=
 operator|new
 name|CzechAnalyzer
-argument_list|(
-name|TEST_VERSION_CURRENT
-argument_list|)
+argument_list|()
 decl_stmt|;
 name|assertAnalyzesTo
 argument_list|(
@@ -2026,9 +2016,7 @@ name|cz
 init|=
 operator|new
 name|CzechAnalyzer
-argument_list|(
-name|TEST_VERSION_CURRENT
-argument_list|)
+argument_list|()
 decl_stmt|;
 comment|/* rewrite of Å¡t -> sk */
 name|assertAnalyzesTo
@@ -2291,9 +2279,7 @@ name|cz
 init|=
 operator|new
 name|CzechAnalyzer
-argument_list|(
-name|TEST_VERSION_CURRENT
-argument_list|)
+argument_list|()
 decl_stmt|;
 name|assertAnalyzesTo
 argument_list|(
@@ -2338,8 +2324,6 @@ init|=
 operator|new
 name|CharArraySet
 argument_list|(
-name|TEST_VERSION_CURRENT
-argument_list|,
 literal|1
 argument_list|,
 literal|true

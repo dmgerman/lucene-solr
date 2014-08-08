@@ -368,10 +368,6 @@ return|return
 operator|new
 name|QueryParser
 argument_list|(
-name|Version
-operator|.
-name|LUCENE_CURRENT
-argument_list|,
 name|fieldName
 argument_list|,
 name|analyzer

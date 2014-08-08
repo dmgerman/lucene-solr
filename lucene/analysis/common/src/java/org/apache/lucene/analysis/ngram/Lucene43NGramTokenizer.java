@@ -107,7 +107,6 @@ annotation|@
 name|Deprecated
 DECL|class|Lucene43NGramTokenizer
 specifier|public
-specifier|final
 class|class
 name|Lucene43NGramTokenizer
 extends|extends

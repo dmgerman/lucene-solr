@@ -177,8 +177,6 @@ block|{
 operator|new
 name|EdgeNGramTokenizer
 argument_list|(
-name|TEST_VERSION_CURRENT
-argument_list|,
 literal|0
 argument_list|,
 literal|0
@@ -225,8 +223,6 @@ block|{
 operator|new
 name|EdgeNGramTokenizer
 argument_list|(
-name|TEST_VERSION_CURRENT
-argument_list|,
 literal|2
 argument_list|,
 literal|1
@@ -273,8 +269,6 @@ block|{
 operator|new
 name|EdgeNGramTokenizer
 argument_list|(
-name|TEST_VERSION_CURRENT
-argument_list|,
 operator|-
 literal|1
 argument_list|,
@@ -318,8 +312,6 @@ init|=
 operator|new
 name|EdgeNGramTokenizer
 argument_list|(
-name|TEST_VERSION_CURRENT
-argument_list|,
 literal|1
 argument_list|,
 literal|1
@@ -376,8 +368,6 @@ init|=
 operator|new
 name|EdgeNGramTokenizer
 argument_list|(
-name|TEST_VERSION_CURRENT
-argument_list|,
 literal|6
 argument_list|,
 literal|6
@@ -432,8 +422,6 @@ init|=
 operator|new
 name|EdgeNGramTokenizer
 argument_list|(
-name|TEST_VERSION_CURRENT
-argument_list|,
 literal|1
 argument_list|,
 literal|3
@@ -502,8 +490,6 @@ init|=
 operator|new
 name|EdgeNGramTokenizer
 argument_list|(
-name|TEST_VERSION_CURRENT
-argument_list|,
 literal|1
 argument_list|,
 literal|3
@@ -689,8 +675,6 @@ init|=
 operator|new
 name|EdgeNGramTokenizer
 argument_list|(
-name|TEST_VERSION_CURRENT
-argument_list|,
 name|min
 argument_list|,
 name|max
@@ -752,8 +736,6 @@ init|=
 operator|new
 name|EdgeNGramTokenizer
 argument_list|(
-name|TEST_VERSION_CURRENT
-argument_list|,
 literal|1
 argument_list|,
 literal|3

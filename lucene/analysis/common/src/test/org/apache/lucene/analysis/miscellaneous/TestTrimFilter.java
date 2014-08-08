@@ -234,20 +234,6 @@ name|TypeAttribute
 import|;
 end_import
 
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|util
-operator|.
-name|Version
-import|;
-end_import
-
 begin_comment
 comment|/**  */
 end_comment
@@ -425,8 +411,6 @@ operator|=
 operator|new
 name|TrimFilter
 argument_list|(
-name|TEST_VERSION_CURRENT
-argument_list|,
 name|ts
 argument_list|)
 expr_stmt|;
@@ -713,8 +697,6 @@ argument_list|,
 operator|new
 name|TrimFilter
 argument_list|(
-name|TEST_VERSION_CURRENT
-argument_list|,
 name|tokenizer
 argument_list|)
 argument_list|)
@@ -767,12 +749,6 @@ operator|new
 name|KeywordTokenizer
 argument_list|()
 decl_stmt|;
-specifier|final
-name|Version
-name|version
-init|=
-name|TEST_VERSION_CURRENT
-decl_stmt|;
 return|return
 operator|new
 name|TokenStreamComponents
@@ -782,8 +758,6 @@ argument_list|,
 operator|new
 name|TrimFilter
 argument_list|(
-name|version
-argument_list|,
 name|tokenizer
 argument_list|)
 argument_list|)

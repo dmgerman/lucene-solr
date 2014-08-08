@@ -20,30 +20,6 @@ end_comment
 
 begin_import
 import|import
-name|java
-operator|.
-name|util
-operator|.
-name|Set
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|analysis
-operator|.
-name|TokenFilter
-import|;
-end_import
-
-begin_import
-import|import
 name|org
 operator|.
 name|apache
@@ -72,22 +48,8 @@ name|CharArraySet
 import|;
 end_import
 
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|util
-operator|.
-name|Version
-import|;
-end_import
-
 begin_comment
-comment|/**  * A {@link TokenFilter} that decomposes compound words found in many Germanic languages.  *<p>  * "Donaudampfschiff" becomes Donau, dampf, schiff so that you can find  * "Donaudampfschiff" even when you only enter "schiff".   *  It uses a brute-force algorithm to achieve this.  *<p>  * You must specify the required {@link Version} compatibility when creating  * CompoundWordTokenFilterBase:  *<ul>  *<li>As of 3.1, CompoundWordTokenFilterBase correctly handles Unicode 4.0  * supplementary characters in strings and char arrays provided as compound word  * dictionaries.  *</ul>  */
+comment|/**  * A {@link org.apache.lucene.analysis.TokenFilter} that decomposes compound words found in many Germanic languages.  *<p>  * "Donaudampfschiff" becomes Donau, dampf, schiff so that you can find  * "Donaudampfschiff" even when you only enter "schiff".  *  It uses a brute-force algorithm to achieve this.  *<p>  */
 end_comment
 
 begin_class
@@ -98,14 +60,11 @@ name|DictionaryCompoundWordTokenFilter
 extends|extends
 name|CompoundWordTokenFilterBase
 block|{
-comment|/**    * Creates a new {@link DictionaryCompoundWordTokenFilter}    *     * @param matchVersion    *          Lucene version to enable correct Unicode 4.0 behavior in the    *          dictionaries if Version> 3.0. See<a    *          href="CompoundWordTokenFilterBase.html#version"    *>CompoundWordTokenFilterBase</a> for details.    * @param input    *          the {@link TokenStream} to process    * @param dictionary    *          the word dictionary to match against.    */
+comment|/**    * Creates a new {@link DictionaryCompoundWordTokenFilter}    *    * @param input    *          the {@link org.apache.lucene.analysis.TokenStream} to process    * @param dictionary    *          the word dictionary to match against.    */
 DECL|method|DictionaryCompoundWordTokenFilter
 specifier|public
 name|DictionaryCompoundWordTokenFilter
 parameter_list|(
-name|Version
-name|matchVersion
-parameter_list|,
 name|TokenStream
 name|input
 parameter_list|,
@@ -115,8 +74,6 @@ parameter_list|)
 block|{
 name|super
 argument_list|(
-name|matchVersion
-argument_list|,
 name|input
 argument_list|,
 name|dictionary
@@ -138,14 +95,11 @@ argument_list|)
 throw|;
 block|}
 block|}
-comment|/**    * Creates a new {@link DictionaryCompoundWordTokenFilter}    *     * @param matchVersion    *          Lucene version to enable correct Unicode 4.0 behavior in the    *          dictionaries if Version> 3.0. See<a    *          href="CompoundWordTokenFilterBase.html#version"    *>CompoundWordTokenFilterBase</a> for details.    * @param input    *          the {@link TokenStream} to process    * @param dictionary    *          the word dictionary to match against.    * @param minWordSize    *          only words longer than this get processed    * @param minSubwordSize    *          only subwords longer than this get to the output stream    * @param maxSubwordSize    *          only subwords shorter than this get to the output stream    * @param onlyLongestMatch    *          Add only the longest matching subword to the stream    */
+comment|/**    * Creates a new {@link DictionaryCompoundWordTokenFilter}    *    * @param input    *          the {@link org.apache.lucene.analysis.TokenStream} to process    * @param dictionary    *          the word dictionary to match against.    * @param minWordSize    *          only words longer than this get processed    * @param minSubwordSize    *          only subwords longer than this get to the output stream    * @param maxSubwordSize    *          only subwords shorter than this get to the output stream    * @param onlyLongestMatch    *          Add only the longest matching subword to the stream    */
 DECL|method|DictionaryCompoundWordTokenFilter
 specifier|public
 name|DictionaryCompoundWordTokenFilter
 parameter_list|(
-name|Version
-name|matchVersion
-parameter_list|,
 name|TokenStream
 name|input
 parameter_list|,
@@ -167,8 +121,6 @@ parameter_list|)
 block|{
 name|super
 argument_list|(
-name|matchVersion
-argument_list|,
 name|input
 argument_list|,
 name|dictionary

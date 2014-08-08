@@ -1482,8 +1482,6 @@ operator|=
 operator|new
 name|CharArraySet
 argument_list|(
-name|luceneMatchVersion
-argument_list|,
 name|files
 operator|.
 name|size
@@ -1526,8 +1524,6 @@ name|StopFilter
 operator|.
 name|makeStopSet
 argument_list|(
-name|luceneMatchVersion
-argument_list|,
 name|wlist
 argument_list|,
 name|ignoreCase
@@ -1632,8 +1628,6 @@ operator|=
 operator|new
 name|CharArraySet
 argument_list|(
-name|luceneMatchVersion
-argument_list|,
 name|files
 operator|.
 name|size

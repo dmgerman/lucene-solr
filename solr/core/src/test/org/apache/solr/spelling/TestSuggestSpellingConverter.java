@@ -349,8 +349,6 @@ operator|=
 operator|new
 name|LowerCaseFilter
 argument_list|(
-name|TEST_VERSION_CURRENT
-argument_list|,
 name|filter
 argument_list|)
 expr_stmt|;
@@ -359,8 +357,6 @@ operator|=
 operator|new
 name|TrimFilter
 argument_list|(
-name|TEST_VERSION_CURRENT
-argument_list|,
 name|filter
 argument_list|)
 expr_stmt|;

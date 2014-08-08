@@ -558,11 +558,7 @@ name|analyzer
 init|=
 operator|new
 name|StandardAnalyzer
-argument_list|(
-name|Version
-operator|.
-name|LUCENE_5_0
-argument_list|)
+argument_list|()
 decl_stmt|;
 name|IndexWriterConfig
 name|iwc

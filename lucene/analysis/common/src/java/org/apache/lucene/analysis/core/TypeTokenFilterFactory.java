@@ -329,8 +329,6 @@ init|=
 operator|new
 name|TypeTokenFilter
 argument_list|(
-name|luceneMatchVersion
-argument_list|,
 name|input
 argument_list|,
 name|stopTypes

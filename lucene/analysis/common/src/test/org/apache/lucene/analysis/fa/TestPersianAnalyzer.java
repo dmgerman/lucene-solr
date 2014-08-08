@@ -83,9 +83,7 @@ parameter_list|()
 block|{
 operator|new
 name|PersianAnalyzer
-argument_list|(
-name|TEST_VERSION_CURRENT
-argument_list|)
+argument_list|()
 expr_stmt|;
 block|}
 comment|/**    * This test shows how the combination of tokenization (breaking on zero-width    * non-joiner), normalization (such as treating arabic YEH and farsi YEH the    * same), and stopwords creates a light-stemming effect for verbs.    *     * These verb forms are from http://en.wikipedia.org/wiki/Persian_grammar    */
@@ -102,9 +100,7 @@ name|a
 init|=
 operator|new
 name|PersianAnalyzer
-argument_list|(
-name|TEST_VERSION_CURRENT
-argument_list|)
+argument_list|()
 decl_stmt|;
 comment|// active present indicative
 name|assertAnalyzesTo
@@ -571,9 +567,7 @@ name|a
 init|=
 operator|new
 name|PersianAnalyzer
-argument_list|(
-name|TEST_VERSION_CURRENT
-argument_list|)
+argument_list|()
 decl_stmt|;
 comment|// active present indicative
 name|assertAnalyzesTo
@@ -1040,9 +1034,7 @@ name|a
 init|=
 operator|new
 name|PersianAnalyzer
-argument_list|(
-name|TEST_VERSION_CURRENT
-argument_list|)
+argument_list|()
 decl_stmt|;
 name|assertAnalyzesTo
 argument_list|(
@@ -1087,9 +1079,7 @@ name|a
 init|=
 operator|new
 name|PersianAnalyzer
-argument_list|(
-name|TEST_VERSION_CURRENT
-argument_list|)
+argument_list|()
 decl_stmt|;
 name|assertAnalyzesTo
 argument_list|(
@@ -1122,9 +1112,7 @@ name|a
 init|=
 operator|new
 name|PersianAnalyzer
-argument_list|(
-name|TEST_VERSION_CURRENT
-argument_list|)
+argument_list|()
 decl_stmt|;
 name|assertAnalyzesTo
 argument_list|(
@@ -1170,13 +1158,9 @@ init|=
 operator|new
 name|PersianAnalyzer
 argument_list|(
-name|TEST_VERSION_CURRENT
-argument_list|,
 operator|new
 name|CharArraySet
 argument_list|(
-name|TEST_VERSION_CURRENT
-argument_list|,
 name|asSet
 argument_list|(
 literal|"the"
@@ -1225,9 +1209,7 @@ argument_list|()
 argument_list|,
 operator|new
 name|PersianAnalyzer
-argument_list|(
-name|TEST_VERSION_CURRENT
-argument_list|)
+argument_list|()
 argument_list|,
 literal|1000
 operator|*

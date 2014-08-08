@@ -146,15 +146,11 @@ operator|new
 name|Extensions
 argument_list|()
 decl_stmt|;
-comment|/**    * Creates a new {@link ExtendableQueryParser} instance    *     * @param matchVersion    *          the lucene version to use.    * @param f    *          the default query field    * @param a    *          the analyzer used to find terms in a query string    */
+comment|/**    * Creates a new {@link ExtendableQueryParser} instance    *     * @param f    *          the default query field    * @param a    *          the analyzer used to find terms in a query string    */
 DECL|method|ExtendableQueryParser
 specifier|public
 name|ExtendableQueryParser
 parameter_list|(
-specifier|final
-name|Version
-name|matchVersion
-parameter_list|,
 specifier|final
 name|String
 name|f
@@ -166,8 +162,6 @@ parameter_list|)
 block|{
 name|this
 argument_list|(
-name|matchVersion
-argument_list|,
 name|f
 argument_list|,
 name|a
@@ -176,15 +170,11 @@ name|DEFAULT_EXTENSION
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**    * Creates a new {@link ExtendableQueryParser} instance    *     * @param matchVersion    *          the lucene version to use.    * @param f    *          the default query field    * @param a    *          the analyzer used to find terms in a query string    * @param ext    *          the query parser extensions    */
+comment|/**    * Creates a new {@link ExtendableQueryParser} instance    *     * @param f    *          the default query field    * @param a    *          the analyzer used to find terms in a query string    * @param ext    *          the query parser extensions    */
 DECL|method|ExtendableQueryParser
 specifier|public
 name|ExtendableQueryParser
 parameter_list|(
-specifier|final
-name|Version
-name|matchVersion
-parameter_list|,
 specifier|final
 name|String
 name|f
@@ -200,8 +190,6 @@ parameter_list|)
 block|{
 name|super
 argument_list|(
-name|matchVersion
-argument_list|,
 name|f
 argument_list|,
 name|a

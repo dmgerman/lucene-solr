@@ -164,8 +164,6 @@ init|=
 operator|new
 name|CodepointCountFilter
 argument_list|(
-name|TEST_VERSION_CURRENT
-argument_list|,
 name|stream
 argument_list|,
 literal|2
@@ -242,8 +240,6 @@ argument_list|,
 operator|new
 name|CodepointCountFilter
 argument_list|(
-name|TEST_VERSION_CURRENT
-argument_list|,
 name|tokenizer
 argument_list|,
 literal|0
@@ -406,8 +402,6 @@ operator|=
 operator|new
 name|CodepointCountFilter
 argument_list|(
-name|TEST_VERSION_CURRENT
-argument_list|,
 name|stream
 argument_list|,
 name|min
@@ -463,8 +457,6 @@ block|{
 operator|new
 name|CodepointCountFilter
 argument_list|(
-name|TEST_VERSION_CURRENT
-argument_list|,
 name|whitespaceMockTokenizer
 argument_list|(
 literal|"accept only valid arguments"

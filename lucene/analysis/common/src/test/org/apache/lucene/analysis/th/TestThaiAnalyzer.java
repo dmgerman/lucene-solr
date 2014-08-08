@@ -219,8 +219,6 @@ argument_list|(
 operator|new
 name|ThaiAnalyzer
 argument_list|(
-name|TEST_VERSION_CURRENT
-argument_list|,
 name|CharArraySet
 operator|.
 name|EMPTY_SET
@@ -305,9 +303,7 @@ name|assertAnalyzesTo
 argument_list|(
 operator|new
 name|ThaiAnalyzer
-argument_list|(
-name|TEST_VERSION_CURRENT
-argument_list|)
+argument_list|()
 argument_list|,
 literal|"à¸à¸²à¸£à¸à¸µà¹à¹à¸à¹à¸à¹à¸­à¸à¹à¸ªà¸à¸à¸§à¹à¸²à¸à¸²à¸à¸à¸µ"
 argument_list|,
@@ -374,8 +370,6 @@ init|=
 operator|new
 name|ThaiAnalyzer
 argument_list|(
-name|TEST_VERSION_CURRENT
-argument_list|,
 name|StopAnalyzer
 operator|.
 name|ENGLISH_STOP_WORDS_SET
@@ -579,8 +573,6 @@ init|=
 operator|new
 name|ThaiAnalyzer
 argument_list|(
-name|TEST_VERSION_CURRENT
-argument_list|,
 name|CharArraySet
 operator|.
 name|EMPTY_SET
@@ -671,9 +663,7 @@ argument_list|()
 argument_list|,
 operator|new
 name|ThaiAnalyzer
-argument_list|(
-name|TEST_VERSION_CURRENT
-argument_list|)
+argument_list|()
 argument_list|,
 literal|1000
 operator|*
@@ -702,9 +692,7 @@ name|random
 argument_list|,
 operator|new
 name|ThaiAnalyzer
-argument_list|(
-name|TEST_VERSION_CURRENT
-argument_list|)
+argument_list|()
 argument_list|,
 literal|100
 operator|*
@@ -728,9 +716,7 @@ name|analyzer
 init|=
 operator|new
 name|ThaiAnalyzer
-argument_list|(
-name|TEST_VERSION_CURRENT
-argument_list|)
+argument_list|()
 decl_stmt|;
 comment|// just consume
 name|TokenStream
@@ -808,8 +794,6 @@ argument_list|(
 operator|new
 name|ThaiAnalyzer
 argument_list|(
-name|TEST_VERSION_CURRENT
-argument_list|,
 name|CharArraySet
 operator|.
 name|EMPTY_SET

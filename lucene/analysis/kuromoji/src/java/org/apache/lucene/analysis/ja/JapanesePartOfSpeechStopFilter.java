@@ -76,20 +76,6 @@ name|TokenStream
 import|;
 end_import
 
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|util
-operator|.
-name|Version
-import|;
-end_import
-
 begin_comment
 comment|/**  * Removes tokens that match a set of part-of-speech tags.  */
 end_comment
@@ -125,14 +111,11 @@ operator|.
 name|class
 argument_list|)
 decl_stmt|;
-comment|/**    * Create a new {@link JapanesePartOfSpeechStopFilter}.    * @param version  the Lucene match version    * @param input    the {@link TokenStream} to consume    * @param stopTags the part-of-speech tags that should be removed    */
+comment|/**    * Create a new {@link JapanesePartOfSpeechStopFilter}.    * @param input    the {@link TokenStream} to consume    * @param stopTags the part-of-speech tags that should be removed    */
 DECL|method|JapanesePartOfSpeechStopFilter
 specifier|public
 name|JapanesePartOfSpeechStopFilter
 parameter_list|(
-name|Version
-name|version
-parameter_list|,
 name|TokenStream
 name|input
 parameter_list|,
@@ -145,8 +128,6 @@ parameter_list|)
 block|{
 name|super
 argument_list|(
-name|version
-argument_list|,
 name|input
 argument_list|)
 expr_stmt|;

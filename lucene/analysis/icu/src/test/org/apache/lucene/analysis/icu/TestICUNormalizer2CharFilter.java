@@ -499,8 +499,6 @@ init|=
 operator|new
 name|NGramTokenizer
 argument_list|(
-name|TEST_VERSION_CURRENT
-argument_list|,
 name|newAttributeFactory
 argument_list|()
 argument_list|,

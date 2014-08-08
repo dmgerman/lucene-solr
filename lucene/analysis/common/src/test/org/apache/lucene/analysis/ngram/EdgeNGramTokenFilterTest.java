@@ -330,8 +330,6 @@ block|{
 operator|new
 name|EdgeNGramTokenFilter
 argument_list|(
-name|TEST_VERSION_CURRENT
-argument_list|,
 name|input
 argument_list|,
 literal|0
@@ -375,8 +373,6 @@ block|{
 operator|new
 name|EdgeNGramTokenFilter
 argument_list|(
-name|TEST_VERSION_CURRENT
-argument_list|,
 name|input
 argument_list|,
 literal|2
@@ -420,8 +416,6 @@ block|{
 operator|new
 name|EdgeNGramTokenFilter
 argument_list|(
-name|TEST_VERSION_CURRENT
-argument_list|,
 name|input
 argument_list|,
 operator|-
@@ -462,8 +456,6 @@ init|=
 operator|new
 name|EdgeNGramTokenFilter
 argument_list|(
-name|TEST_VERSION_CURRENT
-argument_list|,
 name|input
 argument_list|,
 literal|1
@@ -512,8 +504,6 @@ init|=
 operator|new
 name|EdgeNGramTokenFilter
 argument_list|(
-name|TEST_VERSION_CURRENT
-argument_list|,
 name|input
 argument_list|,
 literal|6
@@ -559,8 +549,6 @@ init|=
 operator|new
 name|EdgeNGramTokenFilter
 argument_list|(
-name|TEST_VERSION_CURRENT
-argument_list|,
 name|input
 argument_list|,
 literal|1
@@ -629,8 +617,6 @@ init|=
 operator|new
 name|EdgeNGramTokenFilter
 argument_list|(
-name|TEST_VERSION_CURRENT
-argument_list|,
 name|ts
 argument_list|,
 literal|1
@@ -862,8 +848,6 @@ init|=
 operator|new
 name|EdgeNGramTokenFilter
 argument_list|(
-name|TEST_VERSION_CURRENT
-argument_list|,
 name|ts
 argument_list|,
 literal|2
@@ -937,8 +921,6 @@ init|=
 operator|new
 name|EdgeNGramTokenFilter
 argument_list|(
-name|TEST_VERSION_CURRENT
-argument_list|,
 name|input
 argument_list|,
 literal|3
@@ -992,9 +974,7 @@ name|tokenizer
 init|=
 operator|new
 name|WhitespaceTokenizer
-argument_list|(
-name|TEST_VERSION_CURRENT
-argument_list|)
+argument_list|()
 decl_stmt|;
 name|tokenizer
 operator|.
@@ -1013,8 +993,6 @@ init|=
 operator|new
 name|EdgeNGramTokenFilter
 argument_list|(
-name|TEST_VERSION_CURRENT
-argument_list|,
 name|tokenizer
 argument_list|,
 literal|1
@@ -1205,8 +1183,6 @@ argument_list|,
 operator|new
 name|EdgeNGramTokenFilter
 argument_list|(
-name|TEST_VERSION_CURRENT
-argument_list|,
 name|tokenizer
 argument_list|,
 name|min
@@ -1279,8 +1255,6 @@ argument_list|,
 operator|new
 name|EdgeNGramTokenFilter
 argument_list|(
-name|TEST_VERSION_CURRENT
-argument_list|,
 name|tokenizer
 argument_list|,
 literal|2
@@ -1320,9 +1294,7 @@ name|tk
 init|=
 operator|new
 name|LetterTokenizer
-argument_list|(
-name|TEST_VERSION_CURRENT
-argument_list|)
+argument_list|()
 decl_stmt|;
 operator|(
 operator|(
@@ -1353,8 +1325,6 @@ operator|=
 operator|new
 name|EdgeNGramTokenFilter
 argument_list|(
-name|TEST_VERSION_CURRENT
-argument_list|,
 name|tk
 argument_list|,
 literal|7
@@ -1533,8 +1503,6 @@ operator|=
 operator|new
 name|EdgeNGramTokenFilter
 argument_list|(
-name|TEST_VERSION_CURRENT
-argument_list|,
 name|tk
 argument_list|,
 name|minGram

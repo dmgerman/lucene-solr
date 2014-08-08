@@ -34,16 +34,6 @@ name|java
 operator|.
 name|io
 operator|.
-name|Reader
-import|;
-end_import
-
-begin_import
-import|import
-name|java
-operator|.
-name|io
-operator|.
 name|StringReader
 import|;
 end_import
@@ -134,20 +124,6 @@ name|KeywordTokenizer
 import|;
 end_import
 
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|util
-operator|.
-name|Version
-import|;
-end_import
-
 begin_class
 DECL|class|TestReverseStringFilter
 specifier|public
@@ -200,8 +176,6 @@ init|=
 operator|new
 name|ReverseStringFilter
 argument_list|(
-name|TEST_VERSION_CURRENT
-argument_list|,
 name|stream
 argument_list|)
 decl_stmt|;
@@ -270,8 +244,6 @@ init|=
 operator|new
 name|ReverseStringFilter
 argument_list|(
-name|TEST_VERSION_CURRENT
-argument_list|,
 name|stream
 argument_list|,
 literal|'\u0001'
@@ -314,8 +286,6 @@ name|ReverseStringFilter
 operator|.
 name|reverse
 argument_list|(
-name|TEST_VERSION_CURRENT
-argument_list|,
 literal|"A"
 argument_list|)
 argument_list|)
@@ -328,8 +298,6 @@ name|ReverseStringFilter
 operator|.
 name|reverse
 argument_list|(
-name|TEST_VERSION_CURRENT
-argument_list|,
 literal|"AB"
 argument_list|)
 argument_list|)
@@ -342,8 +310,6 @@ name|ReverseStringFilter
 operator|.
 name|reverse
 argument_list|(
-name|TEST_VERSION_CURRENT
-argument_list|,
 literal|"ABC"
 argument_list|)
 argument_list|)
@@ -379,8 +345,6 @@ name|ReverseStringFilter
 operator|.
 name|reverse
 argument_list|(
-name|TEST_VERSION_CURRENT
-argument_list|,
 name|buffer
 argument_list|,
 literal|2
@@ -417,8 +381,6 @@ name|ReverseStringFilter
 operator|.
 name|reverse
 argument_list|(
-name|TEST_VERSION_CURRENT
-argument_list|,
 literal|"çæ¯ä¹éè±ð©¬"
 argument_list|)
 argument_list|)
@@ -432,8 +394,6 @@ name|ReverseStringFilter
 operator|.
 name|reverse
 argument_list|(
-name|TEST_VERSION_CURRENT
-argument_list|,
 literal|"çæ¯ä¹éè±ð©¬a"
 argument_list|)
 argument_list|)
@@ -447,8 +407,6 @@ name|ReverseStringFilter
 operator|.
 name|reverse
 argument_list|(
-name|TEST_VERSION_CURRENT
-argument_list|,
 literal|"ð©¬abcdef"
 argument_list|)
 argument_list|)
@@ -462,8 +420,6 @@ name|ReverseStringFilter
 operator|.
 name|reverse
 argument_list|(
-name|TEST_VERSION_CURRENT
-argument_list|,
 literal|"zð©¬abcdef"
 argument_list|)
 argument_list|)
@@ -477,8 +433,6 @@ name|ReverseStringFilter
 operator|.
 name|reverse
 argument_list|(
-name|TEST_VERSION_CURRENT
-argument_list|,
 literal|"abcdð©¬efg"
 argument_list|)
 argument_list|)
@@ -506,8 +460,6 @@ name|ReverseStringFilter
 operator|.
 name|reverse
 argument_list|(
-name|TEST_VERSION_CURRENT
-argument_list|,
 name|buffer
 argument_list|,
 literal|3
@@ -538,8 +490,6 @@ name|ReverseStringFilter
 operator|.
 name|reverse
 argument_list|(
-name|TEST_VERSION_CURRENT
-argument_list|,
 name|buffer
 argument_list|,
 literal|3
@@ -570,8 +520,6 @@ name|ReverseStringFilter
 operator|.
 name|reverse
 argument_list|(
-name|TEST_VERSION_CURRENT
-argument_list|,
 name|buffer
 argument_list|,
 literal|3
@@ -602,8 +550,6 @@ name|ReverseStringFilter
 operator|.
 name|reverse
 argument_list|(
-name|TEST_VERSION_CURRENT
-argument_list|,
 name|buffer
 argument_list|,
 literal|3
@@ -634,8 +580,6 @@ name|ReverseStringFilter
 operator|.
 name|reverse
 argument_list|(
-name|TEST_VERSION_CURRENT
-argument_list|,
 name|buffer
 argument_list|,
 literal|3
@@ -703,8 +647,6 @@ argument_list|,
 operator|new
 name|ReverseStringFilter
 argument_list|(
-name|TEST_VERSION_CURRENT
-argument_list|,
 name|tokenizer
 argument_list|)
 argument_list|)
@@ -766,8 +708,6 @@ argument_list|,
 operator|new
 name|ReverseStringFilter
 argument_list|(
-name|TEST_VERSION_CURRENT
-argument_list|,
 name|tokenizer
 argument_list|)
 argument_list|)

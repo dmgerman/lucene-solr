@@ -234,20 +234,6 @@ name|NewAnalyzerTask
 import|;
 end_import
 
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|util
-operator|.
-name|Version
-import|;
-end_import
-
 begin_comment
 comment|/**  * A QueryMaker that uses common and uncommon actual Wikipedia queries for  * searching the English Wikipedia collection. 90 queries total.  */
 end_comment
@@ -613,10 +599,6 @@ init|=
 operator|new
 name|QueryParser
 argument_list|(
-name|Version
-operator|.
-name|LUCENE_CURRENT
-argument_list|,
 name|DocMaker
 operator|.
 name|BODY_FIELD

@@ -399,17 +399,6 @@ operator|=
 operator|new
 name|ComplexPhraseQueryParser
 argument_list|(
-name|getReq
-argument_list|()
-operator|.
-name|getCore
-argument_list|()
-operator|.
-name|getSolrConfig
-argument_list|()
-operator|.
-name|luceneMatchVersion
-argument_list|,
 name|defaultField
 argument_list|,
 name|getReq

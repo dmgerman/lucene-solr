@@ -62,20 +62,6 @@ begin_comment
 comment|/**  *<p>Title: Kstemmer</p>  *<p>Description: This is a java version of Bob Krovetz' kstem stemmer</p>  *<p>Copyright: Copyright 2008, Luicid Imagination, Inc.</p>  *<p>Copyright: Copyright 2003, CIIR University of Massachusetts Amherst (http://ciir.cs.umass.edu)</p>  */
 end_comment
 
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|util
-operator|.
-name|Version
-import|;
-end_import
-
 begin_comment
 comment|/**  * This class implements the Kstem algorithm  */
 end_comment
@@ -2137,10 +2123,6 @@ operator|new
 name|CharArrayMap
 argument_list|<>
 argument_list|(
-name|Version
-operator|.
-name|LUCENE_CURRENT
-argument_list|,
 literal|1000
 argument_list|,
 literal|false

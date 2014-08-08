@@ -216,20 +216,6 @@ end_import
 
 begin_import
 import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|util
-operator|.
-name|Version
-import|;
-end_import
-
-begin_import
-import|import
 name|java
 operator|.
 name|io
@@ -580,9 +566,6 @@ DECL|method|WordDelimiterFilter
 specifier|public
 name|WordDelimiterFilter
 parameter_list|(
-name|Version
-name|matchVersion
-parameter_list|,
 name|TokenStream
 name|in
 parameter_list|,
@@ -602,27 +585,6 @@ argument_list|(
 name|in
 argument_list|)
 expr_stmt|;
-if|if
-condition|(
-operator|!
-name|matchVersion
-operator|.
-name|onOrAfter
-argument_list|(
-name|Version
-operator|.
-name|LUCENE_4_8
-argument_list|)
-condition|)
-block|{
-throw|throw
-operator|new
-name|IllegalArgumentException
-argument_list|(
-literal|"This class only works with Lucene 4.8+. To emulate the old (broken) behavior of WordDelimiterFilter, use Lucene47WordDelimiterFilter"
-argument_list|)
-throw|;
-block|}
 name|this
 operator|.
 name|flags
@@ -666,9 +628,6 @@ DECL|method|WordDelimiterFilter
 specifier|public
 name|WordDelimiterFilter
 parameter_list|(
-name|Version
-name|matchVersion
-parameter_list|,
 name|TokenStream
 name|in
 parameter_list|,
@@ -681,8 +640,6 @@ parameter_list|)
 block|{
 name|this
 argument_list|(
-name|matchVersion
-argument_list|,
 name|in
 argument_list|,
 name|WordDelimiterIterator

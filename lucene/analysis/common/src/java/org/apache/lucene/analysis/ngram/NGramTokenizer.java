@@ -30,16 +30,6 @@ end_import
 
 begin_import
 import|import
-name|java
-operator|.
-name|io
-operator|.
-name|Reader
-import|;
-end_import
-
-begin_import
-import|import
 name|org
 operator|.
 name|apache
@@ -143,20 +133,6 @@ operator|.
 name|util
 operator|.
 name|AttributeFactory
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|util
-operator|.
-name|Version
 import|;
 end_import
 
@@ -318,9 +294,6 @@ decl_stmt|;
 DECL|method|NGramTokenizer
 name|NGramTokenizer
 parameter_list|(
-name|Version
-name|version
-parameter_list|,
 name|int
 name|minGram
 parameter_list|,
@@ -333,8 +306,6 @@ parameter_list|)
 block|{
 name|init
 argument_list|(
-name|version
-argument_list|,
 name|minGram
 argument_list|,
 name|maxGram
@@ -343,14 +314,11 @@ name|edgesOnly
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**    * Creates NGramTokenizer with given min and max n-grams.    * @param version the lucene compatibility<a href="#version">version</a>    * @param minGram the smallest n-gram to generate    * @param maxGram the largest n-gram to generate    */
+comment|/**    * Creates NGramTokenizer with given min and max n-grams.    * @param minGram the smallest n-gram to generate    * @param maxGram the largest n-gram to generate    */
 DECL|method|NGramTokenizer
 specifier|public
 name|NGramTokenizer
 parameter_list|(
-name|Version
-name|version
-parameter_list|,
 name|int
 name|minGram
 parameter_list|,
@@ -360,8 +328,6 @@ parameter_list|)
 block|{
 name|this
 argument_list|(
-name|version
-argument_list|,
 name|minGram
 argument_list|,
 name|maxGram
@@ -373,9 +339,6 @@ block|}
 DECL|method|NGramTokenizer
 name|NGramTokenizer
 parameter_list|(
-name|Version
-name|version
-parameter_list|,
 name|AttributeFactory
 name|factory
 parameter_list|,
@@ -396,8 +359,6 @@ argument_list|)
 expr_stmt|;
 name|init
 argument_list|(
-name|version
-argument_list|,
 name|minGram
 argument_list|,
 name|maxGram
@@ -406,14 +367,11 @@ name|edgesOnly
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**    * Creates NGramTokenizer with given min and max n-grams.    * @param version the lucene compatibility<a href="#version">version</a>    * @param factory {@link org.apache.lucene.util.AttributeFactory} to use    * @param minGram the smallest n-gram to generate    * @param maxGram the largest n-gram to generate    */
+comment|/**    * Creates NGramTokenizer with given min and max n-grams.    * @param factory {@link org.apache.lucene.util.AttributeFactory} to use    * @param minGram the smallest n-gram to generate    * @param maxGram the largest n-gram to generate    */
 DECL|method|NGramTokenizer
 specifier|public
 name|NGramTokenizer
 parameter_list|(
-name|Version
-name|version
-parameter_list|,
 name|AttributeFactory
 name|factory
 parameter_list|,
@@ -426,8 +384,6 @@ parameter_list|)
 block|{
 name|this
 argument_list|(
-name|version
-argument_list|,
 name|factory
 argument_list|,
 name|minGram
@@ -438,19 +394,14 @@ literal|false
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**    * Creates NGramTokenizer with default min and max n-grams.    * @param version the lucene compatibility<a href="#version">version</a>    */
+comment|/**    * Creates NGramTokenizer with default min and max n-grams.    */
 DECL|method|NGramTokenizer
 specifier|public
 name|NGramTokenizer
-parameter_list|(
-name|Version
-name|version
-parameter_list|)
+parameter_list|()
 block|{
 name|this
 argument_list|(
-name|version
-argument_list|,
 name|DEFAULT_MIN_NGRAM_SIZE
 argument_list|,
 name|DEFAULT_MAX_NGRAM_SIZE
@@ -462,9 +413,6 @@ specifier|private
 name|void
 name|init
 parameter_list|(
-name|Version
-name|version
-parameter_list|,
 name|int
 name|minGram
 parameter_list|,
@@ -475,51 +423,11 @@ name|boolean
 name|edgesOnly
 parameter_list|)
 block|{
-if|if
-condition|(
-operator|!
-name|edgesOnly
-operator|&&
-operator|!
-name|version
-operator|.
-name|onOrAfter
-argument_list|(
-name|Version
-operator|.
-name|LUCENE_4_4
-argument_list|)
-condition|)
-block|{
-throw|throw
-operator|new
-name|IllegalArgumentException
-argument_list|(
-literal|"This class only works with Lucene 4.4+. To emulate the old (broken) behavior of NGramTokenizer, use Lucene43NGramTokenizer"
-argument_list|)
-throw|;
-block|}
 name|charUtils
 operator|=
-name|version
-operator|.
-name|onOrAfter
-argument_list|(
-name|Version
-operator|.
-name|LUCENE_4_4
-argument_list|)
-condition|?
 name|CharacterUtils
 operator|.
 name|getInstance
-argument_list|(
-name|version
-argument_list|)
-else|:
-name|CharacterUtils
-operator|.
-name|getJava4Instance
 argument_list|()
 expr_stmt|;
 if|if

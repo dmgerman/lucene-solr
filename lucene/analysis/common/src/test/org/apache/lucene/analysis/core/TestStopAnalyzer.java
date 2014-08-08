@@ -96,20 +96,6 @@ end_import
 
 begin_import
 import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|util
-operator|.
-name|Version
-import|;
-end_import
-
-begin_import
-import|import
 name|java
 operator|.
 name|io
@@ -163,9 +149,7 @@ name|stop
 init|=
 operator|new
 name|StopAnalyzer
-argument_list|(
-name|TEST_VERSION_CURRENT
-argument_list|)
+argument_list|()
 decl_stmt|;
 DECL|field|inValidTokens
 specifier|private
@@ -325,8 +309,6 @@ init|=
 operator|new
 name|CharArraySet
 argument_list|(
-name|TEST_VERSION_CURRENT
-argument_list|,
 name|asSet
 argument_list|(
 literal|"good"
@@ -345,8 +327,6 @@ init|=
 operator|new
 name|StopAnalyzer
 argument_list|(
-name|TEST_VERSION_CURRENT
-argument_list|,
 name|stopWordsSet
 argument_list|)
 decl_stmt|;
@@ -435,8 +415,6 @@ init|=
 operator|new
 name|CharArraySet
 argument_list|(
-name|TEST_VERSION_CURRENT
-argument_list|,
 name|asSet
 argument_list|(
 literal|"good"
@@ -455,8 +433,6 @@ init|=
 operator|new
 name|StopAnalyzer
 argument_list|(
-name|TEST_VERSION_CURRENT
-argument_list|,
 name|stopWordsSet
 argument_list|)
 decl_stmt|;

@@ -478,11 +478,7 @@ name|EXAMPLES_VER
 argument_list|,
 operator|new
 name|WhitespaceAnalyzer
-argument_list|(
-name|FacetExamples
-operator|.
-name|EXAMPLES_VER
-argument_list|)
+argument_list|()
 argument_list|)
 argument_list|)
 decl_stmt|;

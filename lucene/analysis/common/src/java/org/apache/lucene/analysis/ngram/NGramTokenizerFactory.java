@@ -227,8 +227,6 @@ return|return
 operator|new
 name|NGramTokenizer
 argument_list|(
-name|luceneMatchVersion
-argument_list|,
 name|factory
 argument_list|,
 name|minGramSize

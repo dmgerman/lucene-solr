@@ -260,20 +260,6 @@ name|FSDirectory
 import|;
 end_import
 
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|util
-operator|.
-name|Version
-import|;
-end_import
-
 begin_comment
 comment|/** Simple command-line based search demo. */
 end_comment
@@ -651,17 +637,12 @@ argument_list|(
 name|reader
 argument_list|)
 decl_stmt|;
-comment|// :Post-Release-Update-Version.LUCENE_XY:
 name|Analyzer
 name|analyzer
 init|=
 operator|new
 name|StandardAnalyzer
-argument_list|(
-name|Version
-operator|.
-name|LUCENE_5_0
-argument_list|)
+argument_list|()
 decl_stmt|;
 name|BufferedReader
 name|in
@@ -717,17 +698,12 @@ argument_list|)
 argument_list|)
 expr_stmt|;
 block|}
-comment|// :Post-Release-Update-Version.LUCENE_XY:
 name|QueryParser
 name|parser
 init|=
 operator|new
 name|QueryParser
 argument_list|(
-name|Version
-operator|.
-name|LUCENE_5_0
-argument_list|,
 name|field
 argument_list|,
 name|analyzer

@@ -201,11 +201,7 @@ name|ca
 init|=
 operator|new
 name|SmartChineseAnalyzer
-argument_list|(
-name|Version
-operator|.
-name|LUCENE_CURRENT
-argument_list|)
+argument_list|()
 decl_stmt|;
 comment|/* will load stopwords */
 name|String
@@ -246,10 +242,6 @@ operator|=
 operator|new
 name|SmartChineseAnalyzer
 argument_list|(
-name|Version
-operator|.
-name|LUCENE_CURRENT
-argument_list|,
 name|SmartChineseAnalyzer
 operator|.
 name|getDefaultStopSet
@@ -280,11 +272,7 @@ name|ca
 init|=
 operator|new
 name|SmartChineseAnalyzer
-argument_list|(
-name|Version
-operator|.
-name|LUCENE_CURRENT
-argument_list|)
+argument_list|()
 decl_stmt|;
 comment|/* will load stopwords */
 name|String
@@ -346,11 +334,7 @@ name|ca
 init|=
 operator|new
 name|SmartChineseAnalyzer
-argument_list|(
-name|Version
-operator|.
-name|LUCENE_CURRENT
-argument_list|)
+argument_list|()
 decl_stmt|;
 comment|/* will load stopwords */
 name|String
@@ -418,10 +402,6 @@ block|{
 operator|new
 name|SmartChineseAnalyzer
 argument_list|(
-name|Version
-operator|.
-name|LUCENE_CURRENT
-argument_list|,
 literal|false
 argument_list|)
 block|,
@@ -429,10 +409,6 @@ comment|/* doesn't load stopwords */
 operator|new
 name|SmartChineseAnalyzer
 argument_list|(
-name|Version
-operator|.
-name|LUCENE_CURRENT
-argument_list|,
 literal|null
 argument_list|)
 comment|/* sets stopwords to empty set */
@@ -505,11 +481,7 @@ name|ca
 init|=
 operator|new
 name|SmartChineseAnalyzer
-argument_list|(
-name|Version
-operator|.
-name|LUCENE_CURRENT
-argument_list|)
+argument_list|()
 decl_stmt|;
 comment|/* will load stopwords */
 name|String
@@ -588,10 +560,6 @@ init|=
 operator|new
 name|SmartChineseAnalyzer
 argument_list|(
-name|Version
-operator|.
-name|LUCENE_CURRENT
-argument_list|,
 literal|true
 argument_list|)
 decl_stmt|;
@@ -642,10 +610,6 @@ argument_list|(
 operator|new
 name|SmartChineseAnalyzer
 argument_list|(
-name|Version
-operator|.
-name|LUCENE_CURRENT
-argument_list|,
 literal|true
 argument_list|)
 argument_list|,
@@ -686,10 +650,6 @@ argument_list|(
 operator|new
 name|SmartChineseAnalyzer
 argument_list|(
-name|Version
-operator|.
-name|LUCENE_CURRENT
-argument_list|,
 literal|true
 argument_list|)
 argument_list|,
@@ -732,10 +692,6 @@ argument_list|(
 operator|new
 name|SmartChineseAnalyzer
 argument_list|(
-name|Version
-operator|.
-name|LUCENE_CURRENT
-argument_list|,
 literal|true
 argument_list|)
 argument_list|,
@@ -778,10 +734,6 @@ argument_list|(
 operator|new
 name|SmartChineseAnalyzer
 argument_list|(
-name|Version
-operator|.
-name|LUCENE_CURRENT
-argument_list|,
 literal|true
 argument_list|)
 argument_list|,
@@ -822,10 +774,6 @@ argument_list|(
 operator|new
 name|SmartChineseAnalyzer
 argument_list|(
-name|Version
-operator|.
-name|LUCENE_CURRENT
-argument_list|,
 literal|true
 argument_list|)
 argument_list|,
@@ -876,10 +824,6 @@ argument_list|(
 operator|new
 name|SmartChineseAnalyzer
 argument_list|(
-name|Version
-operator|.
-name|LUCENE_CURRENT
-argument_list|,
 literal|true
 argument_list|)
 argument_list|,
@@ -912,10 +856,6 @@ argument_list|(
 operator|new
 name|SmartChineseAnalyzer
 argument_list|(
-name|Version
-operator|.
-name|LUCENE_CURRENT
-argument_list|,
 literal|true
 argument_list|)
 argument_list|,
@@ -957,10 +897,6 @@ argument_list|(
 operator|new
 name|SmartChineseAnalyzer
 argument_list|(
-name|Version
-operator|.
-name|LUCENE_CURRENT
-argument_list|,
 literal|true
 argument_list|)
 argument_list|,
@@ -1032,11 +968,7 @@ name|a
 init|=
 operator|new
 name|SmartChineseAnalyzer
-argument_list|(
-name|Version
-operator|.
-name|LUCENE_CURRENT
-argument_list|)
+argument_list|()
 decl_stmt|;
 name|assertAnalyzesTo
 argument_list|(
@@ -1205,9 +1137,7 @@ name|analyzer
 init|=
 operator|new
 name|SmartChineseAnalyzer
-argument_list|(
-name|TEST_VERSION_CURRENT
-argument_list|)
+argument_list|()
 decl_stmt|;
 try|try
 init|(
@@ -1291,9 +1221,7 @@ name|analyzer
 init|=
 operator|new
 name|SmartChineseAnalyzer
-argument_list|(
-name|TEST_VERSION_CURRENT
-argument_list|)
+argument_list|()
 decl_stmt|;
 try|try
 init|(
@@ -1446,9 +1374,7 @@ argument_list|()
 argument_list|,
 operator|new
 name|SmartChineseAnalyzer
-argument_list|(
-name|TEST_VERSION_CURRENT
-argument_list|)
+argument_list|()
 argument_list|,
 literal|1000
 operator|*
@@ -1477,9 +1403,7 @@ name|random
 argument_list|,
 operator|new
 name|SmartChineseAnalyzer
-argument_list|(
-name|TEST_VERSION_CURRENT
-argument_list|)
+argument_list|()
 argument_list|,
 literal|100
 operator|*

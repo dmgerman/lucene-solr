@@ -250,20 +250,6 @@ name|IOUtils
 import|;
 end_import
 
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|util
-operator|.
-name|Version
-import|;
-end_import
-
 begin_comment
 comment|/**  * {@link Analyzer} for Russian language.   *<p>  * Supports an external list of stopwords (words that  * will not be indexed at all).  * A default set of stopwords is used unless an alternative list is specified.  */
 end_comment
@@ -323,10 +309,6 @@ name|StandardCharsets
 operator|.
 name|UTF_8
 argument_list|)
-argument_list|,
-name|Version
-operator|.
-name|LUCENE_CURRENT
 argument_list|)
 expr_stmt|;
 block|}
@@ -373,37 +355,27 @@ block|}
 DECL|method|RussianAnalyzer
 specifier|public
 name|RussianAnalyzer
-parameter_list|(
-name|Version
-name|matchVersion
-parameter_list|)
+parameter_list|()
 block|{
 name|this
 argument_list|(
-name|matchVersion
-argument_list|,
 name|DefaultSetHolder
 operator|.
 name|DEFAULT_STOP_SET
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**      * Builds an analyzer with the given stop words      *       * @param matchVersion      *          lucene compatibility version      * @param stopwords      *          a stopword set      */
+comment|/**      * Builds an analyzer with the given stop words      *       * @param stopwords      *          a stopword set      */
 DECL|method|RussianAnalyzer
 specifier|public
 name|RussianAnalyzer
 parameter_list|(
-name|Version
-name|matchVersion
-parameter_list|,
 name|CharArraySet
 name|stopwords
 parameter_list|)
 block|{
 name|this
 argument_list|(
-name|matchVersion
-argument_list|,
 name|stopwords
 argument_list|,
 name|CharArraySet
@@ -412,14 +384,11 @@ name|EMPTY_SET
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**      * Builds an analyzer with the given stop words      *       * @param matchVersion      *          lucene compatibility version      * @param stopwords      *          a stopword set      * @param stemExclusionSet a set of words not to be stemmed      */
+comment|/**      * Builds an analyzer with the given stop words      *       * @param stopwords      *          a stopword set      * @param stemExclusionSet a set of words not to be stemmed      */
 DECL|method|RussianAnalyzer
 specifier|public
 name|RussianAnalyzer
 parameter_list|(
-name|Version
-name|matchVersion
-parameter_list|,
 name|CharArraySet
 name|stopwords
 parameter_list|,
@@ -429,8 +398,6 @@ parameter_list|)
 block|{
 name|super
 argument_list|(
-name|matchVersion
-argument_list|,
 name|stopwords
 argument_list|)
 expr_stmt|;
@@ -446,8 +413,6 @@ name|CharArraySet
 operator|.
 name|copy
 argument_list|(
-name|matchVersion
-argument_list|,
 name|stemExclusionSet
 argument_list|)
 argument_list|)
@@ -471,9 +436,7 @@ name|source
 init|=
 operator|new
 name|StandardTokenizer
-argument_list|(
-name|matchVersion
-argument_list|)
+argument_list|()
 decl_stmt|;
 name|TokenStream
 name|result
@@ -481,8 +444,6 @@ init|=
 operator|new
 name|StandardFilter
 argument_list|(
-name|matchVersion
-argument_list|,
 name|source
 argument_list|)
 decl_stmt|;
@@ -491,8 +452,6 @@ operator|=
 operator|new
 name|LowerCaseFilter
 argument_list|(
-name|matchVersion
-argument_list|,
 name|result
 argument_list|)
 expr_stmt|;
@@ -501,8 +460,6 @@ operator|=
 operator|new
 name|StopFilter
 argument_list|(
-name|matchVersion
-argument_list|,
 name|result
 argument_list|,
 name|stopwords

@@ -46,6 +46,20 @@ end_import
 
 begin_import
 import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|util
+operator|.
+name|Version
+import|;
+end_import
+
+begin_import
+import|import
 name|java
 operator|.
 name|io
@@ -112,6 +126,15 @@ specifier|private
 specifier|final
 name|ReuseStrategy
 name|reuseStrategy
+decl_stmt|;
+DECL|field|version
+specifier|private
+name|Version
+name|version
+init|=
+name|Version
+operator|.
+name|LUCENE_CURRENT
 decl_stmt|;
 comment|// non final as it gets nulled if closed; pkg private for access by ReuseStrategy's final helper methods:
 DECL|field|storedValue
@@ -424,6 +447,33 @@ parameter_list|()
 block|{
 return|return
 name|reuseStrategy
+return|;
+block|}
+comment|/**    * Set the version of Lucene this analyzer should mimic the behavior for for analysis.    */
+DECL|method|setVersion
+specifier|public
+name|void
+name|setVersion
+parameter_list|(
+name|Version
+name|v
+parameter_list|)
+block|{
+name|version
+operator|=
+name|v
+expr_stmt|;
+comment|// TODO: make write once?
+block|}
+comment|/**    * Return the version of Lucene this analyzer will mimic the behavior of for analysis.    */
+DECL|method|getVersion
+specifier|public
+name|Version
+name|getVersion
+parameter_list|()
+block|{
+return|return
+name|version
 return|;
 block|}
 comment|/** Frees persistent resources used by this Analyzer */

@@ -6262,9 +6262,7 @@ name|wsTokenizer
 init|=
 operator|new
 name|WhitespaceTokenizer
-argument_list|(
-name|TEST_VERSION_CURRENT
-argument_list|)
+argument_list|()
 decl_stmt|;
 name|wsTokenizer
 operator|.

@@ -174,20 +174,6 @@ name|CharArraySet
 import|;
 end_import
 
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|util
-operator|.
-name|Version
-import|;
-end_import
-
 begin_comment
 comment|/**  * TODO: The tests below rely on the order of returned lemmas, which is probably not good.   */
 end_comment
@@ -209,9 +195,7 @@ block|{
 return|return
 operator|new
 name|MorfologikAnalyzer
-argument_list|(
-name|TEST_VERSION_CURRENT
-argument_list|)
+argument_list|()
 return|;
 block|}
 comment|/** Test stemming of single tokens with Morfologik library. */
@@ -1051,20 +1035,12 @@ parameter_list|()
 throws|throws
 name|IOException
 block|{
-specifier|final
-name|Version
-name|version
-init|=
-name|TEST_VERSION_CURRENT
-decl_stmt|;
 name|Analyzer
 name|a
 init|=
 operator|new
 name|MorfologikAnalyzer
-argument_list|(
-name|version
-argument_list|)
+argument_list|()
 block|{
 annotation|@
 name|Override
@@ -1083,8 +1059,6 @@ init|=
 operator|new
 name|CharArraySet
 argument_list|(
-name|version
-argument_list|,
 literal|1
 argument_list|,
 literal|false
@@ -1103,9 +1077,7 @@ name|src
 init|=
 operator|new
 name|StandardTokenizer
-argument_list|(
-name|TEST_VERSION_CURRENT
-argument_list|)
+argument_list|()
 decl_stmt|;
 name|TokenStream
 name|result
@@ -1113,8 +1085,6 @@ init|=
 operator|new
 name|StandardFilter
 argument_list|(
-name|TEST_VERSION_CURRENT
-argument_list|,
 name|src
 argument_list|)
 decl_stmt|;
@@ -1134,8 +1104,6 @@ operator|new
 name|MorfologikFilter
 argument_list|(
 name|result
-argument_list|,
-name|TEST_VERSION_CURRENT
 argument_list|)
 expr_stmt|;
 return|return

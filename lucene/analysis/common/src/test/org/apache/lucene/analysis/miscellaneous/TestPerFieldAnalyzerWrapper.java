@@ -260,9 +260,7 @@ literal|"special"
 argument_list|,
 operator|new
 name|SimpleAnalyzer
-argument_list|(
-name|TEST_VERSION_CURRENT
-argument_list|)
+argument_list|()
 argument_list|)
 decl_stmt|;
 name|PerFieldAnalyzerWrapper
@@ -273,9 +271,7 @@ name|PerFieldAnalyzerWrapper
 argument_list|(
 operator|new
 name|WhitespaceAnalyzer
-argument_list|(
-name|TEST_VERSION_CURRENT
-argument_list|)
+argument_list|()
 argument_list|,
 name|analyzerPerField
 argument_list|)
@@ -433,9 +429,7 @@ name|specialAnalyzer
 init|=
 operator|new
 name|SimpleAnalyzer
-argument_list|(
-name|TEST_VERSION_CURRENT
-argument_list|)
+argument_list|()
 decl_stmt|;
 specifier|final
 name|Analyzer
@@ -443,9 +437,7 @@ name|defaultAnalyzer
 init|=
 operator|new
 name|WhitespaceAnalyzer
-argument_list|(
-name|TEST_VERSION_CURRENT
-argument_list|)
+argument_list|()
 decl_stmt|;
 name|TokenStream
 name|ts1

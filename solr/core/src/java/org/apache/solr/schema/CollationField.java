@@ -846,10 +846,6 @@ operator|=
 operator|new
 name|CollationKeyAnalyzer
 argument_list|(
-name|Version
-operator|.
-name|LUCENE_CURRENT
-argument_list|,
 name|collator
 argument_list|)
 expr_stmt|;

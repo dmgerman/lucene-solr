@@ -279,8 +279,6 @@ init|=
 operator|new
 name|CharArraySet
 argument_list|(
-name|TEST_VERSION_CURRENT
-argument_list|,
 literal|1
 argument_list|,
 literal|true

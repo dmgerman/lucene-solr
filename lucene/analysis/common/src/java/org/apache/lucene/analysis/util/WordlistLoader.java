@@ -104,20 +104,6 @@ name|IOUtils
 import|;
 end_import
 
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|util
-operator|.
-name|Version
-import|;
-end_import
-
 begin_comment
 comment|/**  * Loader for text files that represent a list of stopwords.  *   * @see IOUtils to obtain {@link Reader} instances  * @lucene.internal  */
 end_comment
@@ -218,7 +204,7 @@ return|return
 name|result
 return|;
 block|}
-comment|/**    * Reads lines from a Reader and adds every line as an entry to a CharArraySet (omitting    * leading and trailing whitespace). Every line of the Reader should contain only    * one word. The words need to be in lowercase if you make use of an    * Analyzer which uses LowerCaseFilter (like StandardAnalyzer).    *    * @param reader Reader containing the wordlist    * @param matchVersion the Lucene {@link Version}    * @return A {@link CharArraySet} with the reader's words    */
+comment|/**    * Reads lines from a Reader and adds every line as an entry to a CharArraySet (omitting    * leading and trailing whitespace). Every line of the Reader should contain only    * one word. The words need to be in lowercase if you make use of an    * Analyzer which uses LowerCaseFilter (like StandardAnalyzer).    *    * @param reader Reader containing the wordlist    * @return A {@link CharArraySet} with the reader's words    */
 DECL|method|getWordSet
 specifier|public
 specifier|static
@@ -227,9 +213,6 @@ name|getWordSet
 parameter_list|(
 name|Reader
 name|reader
-parameter_list|,
-name|Version
-name|matchVersion
 parameter_list|)
 throws|throws
 name|IOException
@@ -242,8 +225,6 @@ argument_list|,
 operator|new
 name|CharArraySet
 argument_list|(
-name|matchVersion
-argument_list|,
 name|INITIAL_CAPACITY
 argument_list|,
 literal|false
@@ -251,7 +232,7 @@ argument_list|)
 argument_list|)
 return|;
 block|}
-comment|/**    * Reads lines from a Reader and adds every non-comment line as an entry to a CharArraySet (omitting    * leading and trailing whitespace). Every line of the Reader should contain only    * one word. The words need to be in lowercase if you make use of an    * Analyzer which uses LowerCaseFilter (like StandardAnalyzer).    *    * @param reader Reader containing the wordlist    * @param comment The string representing a comment.    * @param matchVersion the Lucene {@link Version}    * @return A CharArraySet with the reader's words    */
+comment|/**    * Reads lines from a Reader and adds every non-comment line as an entry to a CharArraySet (omitting    * leading and trailing whitespace). Every line of the Reader should contain only    * one word. The words need to be in lowercase if you make use of an    * Analyzer which uses LowerCaseFilter (like StandardAnalyzer).    *    * @param reader Reader containing the wordlist    * @param comment The string representing a comment.    * @return A CharArraySet with the reader's words    */
 DECL|method|getWordSet
 specifier|public
 specifier|static
@@ -263,9 +244,6 @@ name|reader
 parameter_list|,
 name|String
 name|comment
-parameter_list|,
-name|Version
-name|matchVersion
 parameter_list|)
 throws|throws
 name|IOException
@@ -280,8 +258,6 @@ argument_list|,
 operator|new
 name|CharArraySet
 argument_list|(
-name|matchVersion
-argument_list|,
 name|INITIAL_CAPACITY
 argument_list|,
 literal|false
@@ -521,7 +497,7 @@ return|return
 name|result
 return|;
 block|}
-comment|/**    * Reads stopwords from a stopword list in Snowball format.    *<p>    * The snowball format is the following:    *<ul>    *<li>Lines may contain multiple words separated by whitespace.    *<li>The comment character is the vertical line (&#124;).    *<li>Lines may contain trailing comments.    *</ul>    *</p>    *     * @param reader Reader containing a Snowball stopword list    * @param matchVersion the Lucene {@link Version}    * @return A {@link CharArraySet} with the reader's words    */
+comment|/**    * Reads stopwords from a stopword list in Snowball format.    *<p>    * The snowball format is the following:    *<ul>    *<li>Lines may contain multiple words separated by whitespace.    *<li>The comment character is the vertical line (&#124;).    *<li>Lines may contain trailing comments.    *</ul>    *</p>    *     * @param reader Reader containing a Snowball stopword list    * @return A {@link CharArraySet} with the reader's words    */
 DECL|method|getSnowballWordSet
 specifier|public
 specifier|static
@@ -530,9 +506,6 @@ name|getSnowballWordSet
 parameter_list|(
 name|Reader
 name|reader
-parameter_list|,
-name|Version
-name|matchVersion
 parameter_list|)
 throws|throws
 name|IOException
@@ -545,8 +518,6 @@ argument_list|,
 operator|new
 name|CharArraySet
 argument_list|(
-name|matchVersion
-argument_list|,
 name|INITIAL_CAPACITY
 argument_list|,
 literal|false

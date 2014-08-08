@@ -136,20 +136,6 @@ name|CharacterUtils
 import|;
 end_import
 
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|util
-operator|.
-name|Version
-import|;
-end_import
-
 begin_comment
 comment|/**  * Tokenizes the given token into n-grams of given size(s).  *<p>  * This {@link TokenFilter} create n-grams from the beginning edge of a input token.  *<p><a name="match_version" />As of Lucene 4.4, this filter handles correctly  * supplementary characters.  */
 end_comment
@@ -293,14 +279,11 @@ operator|.
 name|class
 argument_list|)
 decl_stmt|;
-comment|/**    * Creates EdgeNGramTokenFilter that can generate n-grams in the sizes of the given range    *    * @param version the Lucene match version    * @param input {@link TokenStream} holding the input to be tokenized    * @param minGram the smallest n-gram to generate    * @param maxGram the largest n-gram to generate    */
+comment|/**    * Creates EdgeNGramTokenFilter that can generate n-grams in the sizes of the given range    *    * @param input {@link TokenStream} holding the input to be tokenized    * @param minGram the smallest n-gram to generate    * @param maxGram the largest n-gram to generate    */
 DECL|method|EdgeNGramTokenFilter
 specifier|public
 name|EdgeNGramTokenFilter
 parameter_list|(
-name|Version
-name|version
-parameter_list|,
 name|TokenStream
 name|input
 parameter_list|,
@@ -316,21 +299,6 @@ argument_list|(
 name|input
 argument_list|)
 expr_stmt|;
-if|if
-condition|(
-name|version
-operator|==
-literal|null
-condition|)
-block|{
-throw|throw
-operator|new
-name|IllegalArgumentException
-argument_list|(
-literal|"version must not be null"
-argument_list|)
-throw|;
-block|}
 if|if
 condition|(
 name|minGram
@@ -365,25 +333,9 @@ name|this
 operator|.
 name|charUtils
 operator|=
-name|version
-operator|.
-name|onOrAfter
-argument_list|(
-name|Version
-operator|.
-name|LUCENE_4_4
-argument_list|)
-condition|?
 name|CharacterUtils
 operator|.
 name|getInstance
-argument_list|(
-name|version
-argument_list|)
-else|:
-name|CharacterUtils
-operator|.
-name|getJava4Instance
 argument_list|()
 expr_stmt|;
 name|this

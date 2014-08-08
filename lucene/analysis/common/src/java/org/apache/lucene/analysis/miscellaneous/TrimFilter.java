@@ -64,36 +64,6 @@ end_import
 
 begin_import
 import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|analysis
-operator|.
-name|tokenattributes
-operator|.
-name|OffsetAttribute
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|util
-operator|.
-name|Version
-import|;
-end_import
-
-begin_import
-import|import
 name|java
 operator|.
 name|io
@@ -103,7 +73,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Trims leading and trailing whitespace from Tokens in the stream.  *<p>As of Lucene 4.4, this filter does not support updateOffsets=true anymore  * as it can lead to broken token streams.  */
+comment|/**  * Trims leading and trailing whitespace from Tokens in the stream.  */
 end_comment
 
 begin_class
@@ -128,14 +98,11 @@ operator|.
 name|class
 argument_list|)
 decl_stmt|;
-comment|/**    * Create a new {@link TrimFilter}.    * @param version       the Lucene match version    * @param in            the stream to consume    */
+comment|/**    * Create a new {@link TrimFilter}.    * @param in            the stream to consume    */
 DECL|method|TrimFilter
 specifier|public
 name|TrimFilter
 parameter_list|(
-name|Version
-name|version
-parameter_list|,
 name|TokenStream
 name|in
 parameter_list|)
