@@ -80,6 +80,13 @@ specifier|public
 class|class
 name|DocToDoubleVectorUtils
 block|{
+DECL|method|DocToDoubleVectorUtils
+specifier|private
+name|DocToDoubleVectorUtils
+parameter_list|()
+block|{
+comment|// no public constructors
+block|}
 comment|/**    * create a sparse<code>Double</code> vector given doc and field term vectors using local frequency of the terms in the doc    * @param docTerms term vectors for a given document    * @param fieldTerms field term vectors    * @return a sparse vector of<code>Double</code>s as an array    * @throws IOException in case accessing the underlying index fails    */
 DECL|method|toSparseLocalFreqDoubleArray
 specifier|public
