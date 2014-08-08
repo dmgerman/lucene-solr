@@ -80,7 +80,7 @@ specifier|public
 class|class
 name|DocToDoubleVectorUtils
 block|{
-comment|/**    * create a sparse<code>Double</code> vector given doc and field term vectors using local frequency of the terms in the doc    * @param docTerms term vectors for a given document    * @param fieldTerms field term vectors    * @return a sparse vector of<code>Double</code>s as an array    * @throws IOException    */
+comment|/**    * create a sparse<code>Double</code> vector given doc and field term vectors using local frequency of the terms in the doc    * @param docTerms term vectors for a given document    * @param fieldTerms field term vectors    * @return a sparse vector of<code>Double</code>s as an array    * @throws IOException in case accessing the underlying index fails    */
 DECL|method|toSparseLocalFreqDoubleArray
 specifier|public
 specifier|static
@@ -260,7 +260,7 @@ return|return
 name|freqVector
 return|;
 block|}
-comment|/**    * create a dense<code>Double</code> vector given doc and field term vectors using local frequency of the terms in the doc    * @param docTerms term vectors for a given document    * @return a dense vector of<code>Double</code>s as an array    * @throws IOException    */
+comment|/**    * create a dense<code>Double</code> vector given doc and field term vectors using local frequency of the terms in the doc    * @param docTerms term vectors for a given document    * @return a dense vector of<code>Double</code>s as an array    * @throws IOException in case accessing the underlying index fails    */
 DECL|method|toDenseLocalFreqDoubleArray
 specifier|public
 specifier|static
