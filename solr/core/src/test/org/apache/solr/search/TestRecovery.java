@@ -3843,7 +3843,7 @@ literal|"]"
 argument_list|)
 expr_stmt|;
 block|}
-comment|// make sure that log isn't needlessly replayed after a clean shutdown
+comment|// make sure that log isn't needlessly replayed after a clean close
 annotation|@
 name|Test
 DECL|method|testCleanShutdown

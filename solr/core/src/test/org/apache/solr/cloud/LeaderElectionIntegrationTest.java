@@ -1150,7 +1150,7 @@ literal|"We didn't find a new leader! "
 operator|+
 name|leaderPort
 operator|+
-literal|" was shutdown, but it's still showing as the leader"
+literal|" was close, but it's still showing as the leader"
 argument_list|)
 expr_stmt|;
 block|}

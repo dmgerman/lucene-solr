@@ -350,7 +350,7 @@ name|DriverManager
 operator|.
 name|getConnection
 argument_list|(
-literal|"jdbc:derby:;shutdown=true;territory=en_US"
+literal|"jdbc:derby:;close=true;territory=en_US"
 argument_list|)
 expr_stmt|;
 block|}

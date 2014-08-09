@@ -522,12 +522,12 @@ block|}
 block|}
 name|wA
 operator|.
-name|shutdown
+name|close
 argument_list|()
 expr_stmt|;
 name|wB
 operator|.
-name|shutdown
+name|close
 argument_list|()
 expr_stmt|;
 name|DirectoryReader

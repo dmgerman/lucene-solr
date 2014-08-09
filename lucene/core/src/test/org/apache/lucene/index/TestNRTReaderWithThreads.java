@@ -449,7 +449,7 @@ comment|//System.out.println("addCount:"+addCount);
 comment|//System.out.println("delCount:"+delCount);
 name|writer
 operator|.
-name|shutdown
+name|close
 argument_list|()
 expr_stmt|;
 name|mainDir

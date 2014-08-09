@@ -566,10 +566,6 @@ init|=
 operator|new
 name|IndexWriterConfig
 argument_list|(
-name|Version
-operator|.
-name|LUCENE_5_0
-argument_list|,
 name|analyzer
 argument_list|)
 decl_stmt|;
@@ -636,7 +632,7 @@ comment|//
 comment|// writer.forceMerge(1);
 name|writer
 operator|.
-name|shutdown
+name|close
 argument_list|()
 expr_stmt|;
 name|Date

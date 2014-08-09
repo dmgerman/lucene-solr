@@ -775,7 +775,7 @@ name|join
 argument_list|()
 expr_stmt|;
 block|}
-comment|/**    * Returns a {@link HttpClientConnectionManager}.    *<p>    *<b>NOTE:</b> do not {@link HttpClientConnectionManager#shutdown()} this    * connection manager, it will be shutdown automatically after all tests have    * finished.    */
+comment|/**    * Returns a {@link HttpClientConnectionManager}.    *<p>    *<b>NOTE:</b> do not {@link HttpClientConnectionManager#shutdown()} this    * connection manager, it will be close automatically after all tests have    * finished.    */
 DECL|method|getClientConnectionManager
 specifier|public
 specifier|static

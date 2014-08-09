@@ -176,7 +176,7 @@ expr_stmt|;
 block|}
 name|rw
 operator|.
-name|shutdown
+name|close
 argument_list|()
 expr_stmt|;
 comment|// If buffer size is small enough to cause a flush, errors ensue...

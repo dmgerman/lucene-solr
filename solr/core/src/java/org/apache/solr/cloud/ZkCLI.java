@@ -1292,7 +1292,7 @@ argument_list|,
 name|solrHome
 argument_list|)
 expr_stmt|;
-comment|// No need to shutdown the CoreContainer, as it wasn't started
+comment|// No need to close the CoreContainer, as it wasn't started
 comment|// up in the first place...
 block|}
 elseif|else

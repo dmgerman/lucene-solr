@@ -412,7 +412,7 @@ decl_stmt|;
 comment|//System.out.println("numDocs=" + r.numDocs());
 name|w
 operator|.
-name|shutdown
+name|close
 argument_list|()
 expr_stmt|;
 specifier|final

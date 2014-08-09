@@ -3638,7 +3638,7 @@ name|EmbeddedSolrServer
 operator|)
 condition|)
 block|{
-comment|/* Do not shutdown in case of using EmbeddedSolrServer,         * as that would shutdown the CoreContainer */
+comment|/* Do not close in case of using EmbeddedSolrServer,        * as that would close the CoreContainer */
 name|server1
 operator|.
 name|shutdown

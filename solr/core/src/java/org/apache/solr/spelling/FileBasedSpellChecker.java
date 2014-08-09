@@ -440,13 +440,6 @@ argument_list|,
 operator|new
 name|IndexWriterConfig
 argument_list|(
-name|core
-operator|.
-name|getSolrConfig
-argument_list|()
-operator|.
-name|luceneMatchVersion
-argument_list|,
 literal|null
 argument_list|)
 argument_list|,
@@ -564,13 +557,6 @@ argument_list|,
 operator|new
 name|IndexWriterConfig
 argument_list|(
-name|core
-operator|.
-name|getSolrConfig
-argument_list|()
-operator|.
-name|luceneMatchVersion
-argument_list|,
 name|fieldType
 operator|.
 name|getIndexAnalyzer
@@ -668,7 +654,7 @@ argument_list|)
 expr_stmt|;
 name|writer
 operator|.
-name|shutdown
+name|close
 argument_list|()
 expr_stmt|;
 name|dictionary

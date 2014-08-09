@@ -2854,7 +2854,7 @@ argument_list|)
 decl_stmt|;
 name|writer
 operator|.
-name|shutdown
+name|close
 argument_list|()
 expr_stmt|;
 specifier|final
@@ -5909,7 +5909,7 @@ argument_list|)
 argument_list|)
 expr_stmt|;
 block|}
-comment|/*   public void testTrivial() throws Exception {      // Get outputs -- passing true means FST will share     // (delta code) the outputs.  This should result in     // smaller FST if the outputs grow monotonically.  But     // if numbers are "random", false should give smaller     // final size:     final NoOutputs outputs = NoOutputs.getSingleton();      String[] strings = new String[] {"station", "commotion", "elation", "elastic", "plastic", "stop", "ftop", "ftation", "stat"};      final Builder<Object> builder = new Builder<Object>(FST.INPUT_TYPE.BYTE1,                                                         0, 0,                                                         true,                                                         true,                                                         Integer.MAX_VALUE,                                                         outputs,                                                         null,                                                         true);     Arrays.sort(strings);     final IntsRef scratch = new IntsRef();     for(String s : strings) {       builder.add(Util.toIntsRef(new BytesRef(s), scratch), outputs.getNoOutput());     }     final FST<Object> fst = builder.finish();     System.out.println("DOT before rewrite");     Writer w = new OutputStreamWriter(new FileOutputStream("/mnt/scratch/before.dot"));     Util.toDot(fst, w, false, false);     w.shutdown();      final FST<Object> rewrite = new FST<Object>(fst, 1, 100);      System.out.println("DOT after rewrite");     w = new OutputStreamWriter(new FileOutputStream("/mnt/scratch/after.dot"));     Util.toDot(rewrite, w, false, false);     w.shutdown();   }   */
+comment|/*   public void testTrivial() throws Exception {      // Get outputs -- passing true means FST will share     // (delta code) the outputs.  This should result in     // smaller FST if the outputs grow monotonically.  But     // if numbers are "random", false should give smaller     // final size:     final NoOutputs outputs = NoOutputs.getSingleton();      String[] strings = new String[] {"station", "commotion", "elation", "elastic", "plastic", "stop", "ftop", "ftation", "stat"};      final Builder<Object> builder = new Builder<Object>(FST.INPUT_TYPE.BYTE1,                                                         0, 0,                                                         true,                                                         true,                                                         Integer.MAX_VALUE,                                                         outputs,                                                         null,                                                         true);     Arrays.sort(strings);     final IntsRef scratch = new IntsRef();     for(String s : strings) {       builder.add(Util.toIntsRef(new BytesRef(s), scratch), outputs.getNoOutput());     }     final FST<Object> fst = builder.finish();     System.out.println("DOT before rewrite");     Writer w = new OutputStreamWriter(new FileOutputStream("/mnt/scratch/before.dot"));     Util.toDot(fst, w, false, false);     w.close();      final FST<Object> rewrite = new FST<Object>(fst, 1, 100);      System.out.println("DOT after rewrite");     w = new OutputStreamWriter(new FileOutputStream("/mnt/scratch/after.dot"));     Util.toDot(rewrite, w, false, false);     w.close();   }   */
 DECL|method|testSimple
 specifier|public
 name|void
@@ -6585,7 +6585,7 @@ argument_list|)
 decl_stmt|;
 name|w
 operator|.
-name|shutdown
+name|close
 argument_list|()
 expr_stmt|;
 specifier|final
@@ -7465,7 +7465,7 @@ argument_list|)
 decl_stmt|;
 name|w
 operator|.
-name|shutdown
+name|close
 argument_list|()
 expr_stmt|;
 specifier|final
@@ -9198,7 +9198,7 @@ argument_list|()
 decl_stmt|;
 comment|//Writer w = new OutputStreamWriter(new FileOutputStream("out.dot"));
 comment|//Util.toDot(fst, w, false, false);
-comment|//w.shutdown();
+comment|//w.close();
 name|Util
 operator|.
 name|TopResults
@@ -10104,7 +10104,7 @@ argument_list|()
 decl_stmt|;
 comment|//Writer w = new OutputStreamWriter(new FileOutputStream("out.dot"));
 comment|//Util.toDot(fst, w, false, false);
-comment|//w.shutdown();
+comment|//w.close();
 name|Util
 operator|.
 name|TopResults
@@ -10642,7 +10642,7 @@ decl_stmt|;
 comment|//System.out.println("SAVE out.dot");
 comment|//Writer w = new OutputStreamWriter(new FileOutputStream("out.dot"));
 comment|//Util.toDot(fst, w, false, false);
-comment|//w.shutdown();
+comment|//w.close();
 name|BytesReader
 name|reader
 init|=
@@ -11492,7 +11492,7 @@ decl_stmt|;
 comment|//System.out.println("SAVE out.dot");
 comment|//Writer w = new OutputStreamWriter(new FileOutputStream("out.dot"));
 comment|//Util.toDot(fst, w, false, false);
-comment|//w.shutdown();
+comment|//w.close();
 name|BytesReader
 name|reader
 init|=

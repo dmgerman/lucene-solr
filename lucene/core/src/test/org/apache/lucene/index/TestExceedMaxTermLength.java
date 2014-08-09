@@ -243,8 +243,6 @@ argument_list|(
 name|random
 argument_list|()
 argument_list|,
-name|TEST_VERSION_CURRENT
-argument_list|,
 operator|new
 name|MockAnalyzer
 argument_list|(
@@ -561,7 +559,7 @@ finally|finally
 block|{
 name|w
 operator|.
-name|shutdown
+name|close
 argument_list|()
 expr_stmt|;
 block|}

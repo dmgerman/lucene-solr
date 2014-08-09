@@ -134,20 +134,6 @@ name|lucene
 operator|.
 name|index
 operator|.
-name|AtomicReaderContext
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|index
-operator|.
 name|IndexReader
 import|;
 end_import
@@ -981,7 +967,7 @@ expr_stmt|;
 comment|//QueryUtils.check(query,searcher);
 name|writer
 operator|.
-name|shutdown
+name|close
 argument_list|()
 expr_stmt|;
 name|reader
@@ -1459,7 +1445,7 @@ argument_list|()
 decl_stmt|;
 name|iw
 operator|.
-name|shutdown
+name|close
 argument_list|()
 expr_stmt|;
 name|IndexSearcher
@@ -1664,7 +1650,7 @@ argument_list|()
 decl_stmt|;
 name|iw
 operator|.
-name|shutdown
+name|close
 argument_list|()
 expr_stmt|;
 name|IndexSearcher
@@ -1870,7 +1856,7 @@ argument_list|()
 decl_stmt|;
 name|iw
 operator|.
-name|shutdown
+name|close
 argument_list|()
 expr_stmt|;
 name|IndexSearcher

@@ -832,7 +832,7 @@ literal|"Stop trying to send recovery command to downed replica core={} coreNode
 operator|+
 name|replicaNodeName
 operator|+
-literal|" because my core container is shutdown."
+literal|" because my core container is close."
 argument_list|,
 name|coreNeedingRecovery
 argument_list|,

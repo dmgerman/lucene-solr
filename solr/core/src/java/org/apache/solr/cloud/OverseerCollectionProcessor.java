@@ -2693,7 +2693,7 @@ name|log
 operator|.
 name|warn
 argument_list|(
-literal|"Thread interrupted while waiting for OCP threadpool shutdown."
+literal|"Thread interrupted while waiting for OCP threadpool close."
 argument_list|)
 expr_stmt|;
 name|Thread

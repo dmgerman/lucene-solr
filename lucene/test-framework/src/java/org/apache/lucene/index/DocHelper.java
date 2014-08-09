@@ -252,22 +252,6 @@ name|Directory
 import|;
 end_import
 
-begin_import
-import|import static
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|util
-operator|.
-name|LuceneTestCase
-operator|.
-name|TEST_VERSION_CURRENT
-import|;
-end_import
-
 begin_class
 DECL|class|DocHelper
 class|class
@@ -1781,8 +1765,6 @@ operator|new
 name|IndexWriterConfig
 argument_list|(
 comment|/* LuceneTestCase.newIndexWriterConfig(random, */
-name|TEST_VERSION_CURRENT
-argument_list|,
 name|analyzer
 argument_list|)
 operator|.
@@ -1824,7 +1806,7 @@ argument_list|()
 decl_stmt|;
 name|writer
 operator|.
-name|shutdown
+name|close
 argument_list|()
 expr_stmt|;
 return|return

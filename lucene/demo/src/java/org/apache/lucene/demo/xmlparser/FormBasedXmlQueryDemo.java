@@ -424,20 +424,6 @@ name|RAMDirectory
 import|;
 end_import
 
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|util
-operator|.
-name|Version
-import|;
-end_import
-
 begin_comment
 comment|/**  * Example servlet that uses the XML queryparser.  *<p>  * NOTE: you must provide CSV data in<code>/WEB-INF/data.tsv</code>  * for the demo to work!  */
 end_comment
@@ -849,10 +835,6 @@ init|=
 operator|new
 name|IndexWriterConfig
 argument_list|(
-name|Version
-operator|.
-name|LUCENE_CURRENT
-argument_list|,
 name|analyzer
 argument_list|)
 decl_stmt|;
@@ -1055,7 +1037,7 @@ expr_stmt|;
 block|}
 name|writer
 operator|.
-name|shutdown
+name|close
 argument_list|()
 expr_stmt|;
 comment|//open searcher

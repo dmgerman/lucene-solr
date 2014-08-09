@@ -342,7 +342,7 @@ expr_stmt|;
 comment|// flush
 name|writer
 operator|.
-name|shutdown
+name|close
 argument_list|()
 expr_stmt|;
 name|SegmentReader
@@ -627,7 +627,7 @@ expr_stmt|;
 comment|// flush
 name|writer
 operator|.
-name|shutdown
+name|close
 argument_list|()
 expr_stmt|;
 name|SegmentReader
@@ -872,7 +872,7 @@ expr_stmt|;
 comment|// flush
 name|writer
 operator|.
-name|shutdown
+name|close
 argument_list|()
 expr_stmt|;
 name|SegmentReader
@@ -1168,7 +1168,7 @@ expr_stmt|;
 comment|// flush
 name|writer
 operator|.
-name|shutdown
+name|close
 argument_list|()
 expr_stmt|;
 name|assertNoNrm
@@ -1779,7 +1779,7 @@ argument_list|()
 expr_stmt|;
 name|riw
 operator|.
-name|shutdown
+name|close
 argument_list|()
 expr_stmt|;
 name|dir

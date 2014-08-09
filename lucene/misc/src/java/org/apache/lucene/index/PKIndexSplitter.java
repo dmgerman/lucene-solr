@@ -164,20 +164,6 @@ name|IOUtils
 import|;
 end_import
 
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|util
-operator|.
-name|Version
-import|;
-end_import
-
 begin_comment
 comment|/**  * Split an index based on a {@link Filter}.  */
 end_comment
@@ -229,9 +215,6 @@ DECL|method|PKIndexSplitter
 specifier|public
 name|PKIndexSplitter
 parameter_list|(
-name|Version
-name|version
-parameter_list|,
 name|Directory
 name|input
 parameter_list|,
@@ -256,14 +239,10 @@ argument_list|,
 name|docsInFirstIndex
 argument_list|,
 name|newDefaultConfig
-argument_list|(
-name|version
-argument_list|)
+argument_list|()
 argument_list|,
 name|newDefaultConfig
-argument_list|(
-name|version
-argument_list|)
+argument_list|()
 argument_list|)
 expr_stmt|;
 block|}
@@ -272,17 +251,12 @@ specifier|private
 specifier|static
 name|IndexWriterConfig
 name|newDefaultConfig
-parameter_list|(
-name|Version
-name|version
-parameter_list|)
+parameter_list|()
 block|{
 return|return
 operator|new
 name|IndexWriterConfig
 argument_list|(
-name|version
-argument_list|,
 literal|null
 argument_list|)
 operator|.
@@ -359,9 +333,6 @@ DECL|method|PKIndexSplitter
 specifier|public
 name|PKIndexSplitter
 parameter_list|(
-name|Version
-name|version
-parameter_list|,
 name|Directory
 name|input
 parameter_list|,
@@ -377,8 +348,6 @@ parameter_list|)
 block|{
 name|this
 argument_list|(
-name|version
-argument_list|,
 name|input
 argument_list|,
 name|dir1
@@ -668,7 +637,7 @@ condition|)
 block|{
 name|w
 operator|.
-name|shutdown
+name|close
 argument_list|()
 expr_stmt|;
 block|}

@@ -1023,7 +1023,7 @@ operator|.
 name|getUpdateLog
 argument_list|()
 expr_stmt|;
-comment|// TODO: shutdown
+comment|// TODO: close
 name|shardHandlerFactory
 operator|=
 operator|(

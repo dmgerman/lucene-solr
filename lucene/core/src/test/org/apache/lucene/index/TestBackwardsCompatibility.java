@@ -753,7 +753,7 @@ comment|// Then move those 2 zip files to your trunk checkout and add them
 comment|// to the oldNames array.
 comment|/*   public void testCreateCFS() throws IOException {     createIndex("index.cfs", true, false);   }    public void testCreateNoCFS() throws IOException {     createIndex("index.nocfs", false, false);   }   */
 comment|/*   // These are only needed for the special upgrade test to verify   // that also single-segment indexes are correctly upgraded by IndexUpgrader.   // You don't need them to be build for non-4.0 (the test is happy with just one   // "old" segment format, version is unimportant:      public void testCreateSingleSegmentCFS() throws IOException {     createIndex("index.singlesegment.cfs", true, true);   }    public void testCreateSingleSegmentNoCFS() throws IOException {     createIndex("index.singlesegment.nocfs", false, true);   }  */
-comment|/*   public void testCreateMoreTermsIndex() throws Exception {     // we use a real directory name that is not cleaned up,     // because this method is only used to create backwards     // indexes:     File indexDir = new File("moreterms");     _TestUtil.rmDir(indexDir);     Directory dir = newFSDirectory(indexDir);      LogByteSizeMergePolicy mp = new LogByteSizeMergePolicy();     mp.setUseCompoundFile(false);     mp.setNoCFSRatio(1.0);     mp.setMaxCFSSegmentSizeMB(Double.POSITIVE_INFINITY);     MockAnalyzer analyzer = new MockAnalyzer(random());     analyzer.setMaxTokenLength(TestUtil.nextInt(random(), 1, IndexWriter.MAX_TERM_LENGTH));      // TODO: remove randomness     IndexWriterConfig conf = new IndexWriterConfig(TEST_VERSION_CURRENT, analyzer)       .setMergePolicy(mp);     conf.setCodec(Codec.forName("Lucene40"));     IndexWriter writer = new IndexWriter(dir, conf);     LineFileDocs docs = new LineFileDocs(null, true);     for(int i=0;i<50;i++) {       writer.addDocument(docs.nextDoc());     }     writer.shutdown();     dir.close();      // Gives you time to copy the index out!: (there is also     // a test option to not remove temp dir...):     Thread.sleep(100000);   }   */
+comment|/*   public void testCreateMoreTermsIndex() throws Exception {     // we use a real directory name that is not cleaned up,     // because this method is only used to create backwards     // indexes:     File indexDir = new File("moreterms");     _TestUtil.rmDir(indexDir);     Directory dir = newFSDirectory(indexDir);      LogByteSizeMergePolicy mp = new LogByteSizeMergePolicy();     mp.setUseCompoundFile(false);     mp.setNoCFSRatio(1.0);     mp.setMaxCFSSegmentSizeMB(Double.POSITIVE_INFINITY);     MockAnalyzer analyzer = new MockAnalyzer(random());     analyzer.setMaxTokenLength(TestUtil.nextInt(random(), 1, IndexWriter.MAX_TERM_LENGTH));      // TODO: remove randomness     IndexWriterConfig conf = new IndexWriterConfig(analyzer)       .setMergePolicy(mp);     conf.setCodec(Codec.forName("Lucene40"));     IndexWriter writer = new IndexWriter(dir, conf);     LineFileDocs docs = new LineFileDocs(null, true);     for(int i=0;i<50;i++) {       writer.addDocument(docs.nextDoc());     }     writer.close();     dir.close();      // Gives you time to copy the index out!: (there is also     // a test option to not remove temp dir...):     Thread.sleep(100000);   }   */
 DECL|method|updateNumeric
 specifier|private
 name|void
@@ -884,7 +884,7 @@ argument_list|)
 argument_list|)
 expr_stmt|;
 block|}
-comment|/*  // Creates an index with DocValues updates   public void testCreateIndexWithDocValuesUpdates() throws Exception {     // we use a real directory name that is not cleaned up,     // because this method is only used to create backwards     // indexes:     File indexDir = new File("/tmp/idx/dvupdates");     TestUtil.rm(indexDir);     Directory dir = newFSDirectory(indexDir);          IndexWriterConfig conf = new IndexWriterConfig(TEST_VERSION_CURRENT, new MockAnalyzer(random()))       .setUseCompoundFile(false).setMergePolicy(NoMergePolicy.INSTANCE);     IndexWriter writer = new IndexWriter(dir, conf);     // create an index w/ few doc-values fields, some with updates and some without     for (int i = 0; i< 30; i++) {       Document doc = new Document();       doc.add(new StringField("id", "" + i, Store.NO));       doc.add(new NumericDocValuesField("ndv1", i));       doc.add(new NumericDocValuesField("ndv1_c", i*2));       doc.add(new NumericDocValuesField("ndv2", i*3));       doc.add(new NumericDocValuesField("ndv2_c", i*6));       doc.add(new BinaryDocValuesField("bdv1", TestBinaryDocValuesUpdates.toBytes(i)));       doc.add(new BinaryDocValuesField("bdv1_c", TestBinaryDocValuesUpdates.toBytes(i*2)));       doc.add(new BinaryDocValuesField("bdv2", TestBinaryDocValuesUpdates.toBytes(i*3)));       doc.add(new BinaryDocValuesField("bdv2_c", TestBinaryDocValuesUpdates.toBytes(i*6)));       writer.addDocument(doc);       if ((i+1) % 10 == 0) {         writer.commit(); // flush every 10 docs       }     }          // first segment: no updates          // second segment: update two fields, same gen     updateNumeric(writer, "10", "ndv1", "ndv1_c", 100L);     updateBinary(writer, "11", "bdv1", "bdv1_c", 100L);     writer.commit();          // third segment: update few fields, different gens, few docs     updateNumeric(writer, "20", "ndv1", "ndv1_c", 100L);     updateBinary(writer, "21", "bdv1", "bdv1_c", 100L);     writer.commit();     updateNumeric(writer, "22", "ndv1", "ndv1_c", 200L); // update the field again     writer.commit();          writer.shutdown();     dir.close();   }*/
+comment|/*  // Creates an index with DocValues updates   public void testCreateIndexWithDocValuesUpdates() throws Exception {     // we use a real directory name that is not cleaned up,     // because this method is only used to create backwards     // indexes:     File indexDir = new File("/tmp/idx/dvupdates");     TestUtil.rm(indexDir);     Directory dir = newFSDirectory(indexDir);          IndexWriterConfig conf = new IndexWriterConfig(new MockAnalyzer(random()))       .setUseCompoundFile(false).setMergePolicy(NoMergePolicy.INSTANCE);     IndexWriter writer = new IndexWriter(dir, conf);     // create an index w/ few doc-values fields, some with updates and some without     for (int i = 0; i< 30; i++) {       Document doc = new Document();       doc.add(new StringField("id", "" + i, Store.NO));       doc.add(new NumericDocValuesField("ndv1", i));       doc.add(new NumericDocValuesField("ndv1_c", i*2));       doc.add(new NumericDocValuesField("ndv2", i*3));       doc.add(new NumericDocValuesField("ndv2_c", i*6));       doc.add(new BinaryDocValuesField("bdv1", TestBinaryDocValuesUpdates.toBytes(i)));       doc.add(new BinaryDocValuesField("bdv1_c", TestBinaryDocValuesUpdates.toBytes(i*2)));       doc.add(new BinaryDocValuesField("bdv2", TestBinaryDocValuesUpdates.toBytes(i*3)));       doc.add(new BinaryDocValuesField("bdv2_c", TestBinaryDocValuesUpdates.toBytes(i*6)));       writer.addDocument(doc);       if ((i+1) % 10 == 0) {         writer.commit(); // flush every 10 docs       }     }          // first segment: no updates          // second segment: update two fields, same gen     updateNumeric(writer, "10", "ndv1", "ndv1_c", 100L);     updateBinary(writer, "11", "bdv1", "bdv1_c", 100L);     writer.commit();          // third segment: update few fields, different gens, few docs     updateNumeric(writer, "20", "ndv1", "ndv1_c", 100L);     updateBinary(writer, "21", "bdv1", "bdv1_c", 100L);     writer.commit();     updateNumeric(writer, "22", "ndv1", "ndv1_c", 200L); // update the field again     writer.commit();          writer.close();     dir.close();   }*/
 DECL|field|oldNames
 specifier|final
 specifier|static
@@ -1044,8 +1044,6 @@ operator|new
 name|IndexUpgrader
 argument_list|(
 name|dir
-argument_list|,
-name|TEST_VERSION_CURRENT
 argument_list|)
 return|;
 case|case
@@ -1056,8 +1054,6 @@ operator|new
 name|IndexUpgrader
 argument_list|(
 name|dir
-argument_list|,
-name|TEST_VERSION_CURRENT
 argument_list|,
 name|streamType
 condition|?
@@ -1432,6 +1428,11 @@ name|random
 argument_list|()
 argument_list|)
 argument_list|)
+operator|.
+name|setCommitOnClose
+argument_list|(
+literal|false
+argument_list|)
 argument_list|)
 expr_stmt|;
 name|fail
@@ -1515,13 +1516,22 @@ operator|!=
 literal|null
 condition|)
 block|{
+try|try
+block|{
 name|writer
 operator|.
-name|shutdown
-argument_list|(
-literal|false
-argument_list|)
+name|commit
+argument_list|()
 expr_stmt|;
+block|}
+finally|finally
+block|{
+name|writer
+operator|.
+name|close
+argument_list|()
+expr_stmt|;
+block|}
 block|}
 name|writer
 operator|=
@@ -1673,8 +1683,6 @@ argument_list|,
 operator|new
 name|IndexWriterConfig
 argument_list|(
-name|TEST_VERSION_CURRENT
-argument_list|,
 operator|new
 name|MockAnalyzer
 argument_list|(
@@ -1693,7 +1701,7 @@ argument_list|)
 expr_stmt|;
 name|w
 operator|.
-name|shutdown
+name|close
 argument_list|()
 expr_stmt|;
 name|dir
@@ -1790,7 +1798,7 @@ expr_stmt|;
 block|}
 name|w
 operator|.
-name|shutdown
+name|close
 argument_list|()
 expr_stmt|;
 name|targetDir
@@ -1865,7 +1873,7 @@ argument_list|)
 expr_stmt|;
 name|w
 operator|.
-name|shutdown
+name|close
 argument_list|()
 expr_stmt|;
 name|reader
@@ -3463,7 +3471,7 @@ argument_list|)
 expr_stmt|;
 name|writer
 operator|.
-name|shutdown
+name|close
 argument_list|()
 expr_stmt|;
 comment|// make sure searching sees right # hits
@@ -3601,7 +3609,7 @@ argument_list|)
 expr_stmt|;
 name|writer
 operator|.
-name|shutdown
+name|close
 argument_list|()
 expr_stmt|;
 name|reader
@@ -3842,7 +3850,7 @@ argument_list|)
 expr_stmt|;
 name|writer
 operator|.
-name|shutdown
+name|close
 argument_list|()
 expr_stmt|;
 name|reader
@@ -3993,8 +4001,6 @@ init|=
 operator|new
 name|IndexWriterConfig
 argument_list|(
-name|TEST_VERSION_CURRENT
-argument_list|,
 operator|new
 name|MockAnalyzer
 argument_list|(
@@ -4074,7 +4080,7 @@ expr_stmt|;
 block|}
 name|writer
 operator|.
-name|shutdown
+name|close
 argument_list|()
 expr_stmt|;
 if|if
@@ -4107,8 +4113,6 @@ operator|=
 operator|new
 name|IndexWriterConfig
 argument_list|(
-name|TEST_VERSION_CURRENT
-argument_list|,
 operator|new
 name|MockAnalyzer
 argument_list|(
@@ -4144,7 +4148,7 @@ argument_list|)
 expr_stmt|;
 name|writer
 operator|.
-name|shutdown
+name|close
 argument_list|()
 expr_stmt|;
 name|writer
@@ -4184,7 +4188,7 @@ argument_list|)
 expr_stmt|;
 name|writer
 operator|.
-name|shutdown
+name|close
 argument_list|()
 expr_stmt|;
 block|}
@@ -5266,7 +5270,7 @@ argument_list|)
 expr_stmt|;
 name|riw
 operator|.
-name|shutdown
+name|close
 argument_list|()
 expr_stmt|;
 name|DirectoryReader
@@ -6498,8 +6502,6 @@ init|=
 operator|new
 name|IndexWriterConfig
 argument_list|(
-name|TEST_VERSION_CURRENT
-argument_list|,
 operator|new
 name|MockAnalyzer
 argument_list|(
@@ -6511,6 +6513,11 @@ operator|.
 name|setMergePolicy
 argument_list|(
 name|mp
+argument_list|)
+operator|.
+name|setCommitOnClose
+argument_list|(
+literal|false
 argument_list|)
 decl_stmt|;
 name|IndexWriter
@@ -6557,13 +6564,22 @@ operator|++
 argument_list|)
 expr_stmt|;
 block|}
+try|try
+block|{
 name|w
 operator|.
-name|shutdown
-argument_list|(
-literal|false
-argument_list|)
+name|commit
+argument_list|()
 expr_stmt|;
+block|}
+finally|finally
+block|{
+name|w
+operator|.
+name|close
+argument_list|()
+expr_stmt|;
+block|}
 block|}
 comment|// add dummy segments (which are all in current
 comment|// version) to single segment index
@@ -6588,14 +6604,17 @@ init|=
 operator|new
 name|IndexWriterConfig
 argument_list|(
-name|TEST_VERSION_CURRENT
-argument_list|,
 literal|null
 argument_list|)
 operator|.
 name|setMergePolicy
 argument_list|(
 name|mp
+argument_list|)
+operator|.
+name|setCommitOnClose
+argument_list|(
+literal|false
 argument_list|)
 decl_stmt|;
 name|IndexWriter
@@ -6616,13 +6635,22 @@ argument_list|(
 name|ramDir
 argument_list|)
 expr_stmt|;
+try|try
+block|{
 name|w
 operator|.
-name|shutdown
-argument_list|(
-literal|false
-argument_list|)
+name|commit
+argument_list|()
 expr_stmt|;
+block|}
+finally|finally
+block|{
+name|w
+operator|.
+name|close
+argument_list|()
+expr_stmt|;
+block|}
 comment|// determine count of segments in modified index
 specifier|final
 name|int
@@ -7021,8 +7049,6 @@ init|=
 operator|new
 name|IndexWriterConfig
 argument_list|(
-name|TEST_VERSION_CURRENT
-argument_list|,
 operator|new
 name|MockAnalyzer
 argument_list|(
@@ -7124,7 +7150,7 @@ argument_list|)
 expr_stmt|;
 name|writer
 operator|.
-name|shutdown
+name|close
 argument_list|()
 expr_stmt|;
 name|dir

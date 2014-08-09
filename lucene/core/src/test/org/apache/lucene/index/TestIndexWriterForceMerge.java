@@ -306,7 +306,7 @@ argument_list|)
 expr_stmt|;
 name|writer
 operator|.
-name|shutdown
+name|close
 argument_list|()
 expr_stmt|;
 name|SegmentInfos
@@ -377,7 +377,7 @@ argument_list|)
 expr_stmt|;
 name|writer
 operator|.
-name|shutdown
+name|close
 argument_list|()
 expr_stmt|;
 name|sis
@@ -668,7 +668,7 @@ expr_stmt|;
 block|}
 name|writer
 operator|.
-name|shutdown
+name|close
 argument_list|()
 expr_stmt|;
 name|dir
@@ -785,7 +785,7 @@ argument_list|)
 expr_stmt|;
 name|writer
 operator|.
-name|shutdown
+name|close
 argument_list|()
 expr_stmt|;
 if|if
@@ -929,7 +929,7 @@ argument_list|)
 expr_stmt|;
 name|writer
 operator|.
-name|shutdown
+name|close
 argument_list|()
 expr_stmt|;
 name|long
@@ -975,7 +975,7 @@ expr_stmt|;
 block|}
 comment|// Test calling forceMerge(1, false) whereby forceMerge is kicked
 comment|// off but we don't wait for it to finish (but
-comment|// writer.shutdown()) does wait
+comment|// writer.close()) does wait
 DECL|method|testBackgroundForceMerge
 specifier|public
 name|void
@@ -1108,7 +1108,7 @@ condition|)
 block|{
 name|writer
 operator|.
-name|shutdown
+name|close
 argument_list|()
 expr_stmt|;
 name|DirectoryReader
@@ -1160,7 +1160,7 @@ argument_list|)
 expr_stmt|;
 name|writer
 operator|.
-name|shutdown
+name|close
 argument_list|()
 expr_stmt|;
 name|DirectoryReader

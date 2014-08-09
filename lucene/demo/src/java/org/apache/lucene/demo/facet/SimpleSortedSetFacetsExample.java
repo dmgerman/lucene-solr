@@ -366,10 +366,6 @@ argument_list|,
 operator|new
 name|IndexWriterConfig
 argument_list|(
-name|FacetExamples
-operator|.
-name|EXAMPLES_VER
-argument_list|,
 operator|new
 name|WhitespaceAnalyzer
 argument_list|()
@@ -599,7 +595,7 @@ argument_list|)
 expr_stmt|;
 name|indexWriter
 operator|.
-name|shutdown
+name|close
 argument_list|()
 expr_stmt|;
 block|}

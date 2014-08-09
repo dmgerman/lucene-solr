@@ -118,16 +118,6 @@ end_import
 
 begin_import
 import|import
-name|junit
-operator|.
-name|framework
-operator|.
-name|Assert
-import|;
-end_import
-
-begin_import
-import|import
 name|org
 operator|.
 name|apache
@@ -443,7 +433,7 @@ name|dw
 operator|.
 name|writer
 operator|.
-name|shutdown
+name|close
 argument_list|()
 expr_stmt|;
 name|dir
@@ -1159,7 +1149,7 @@ argument_list|()
 expr_stmt|;
 block|}
 comment|// w.forceMerge(1);
-comment|//w.shutdown();
+comment|//w.close();
 for|for
 control|(
 name|int
@@ -1487,7 +1477,7 @@ block|}
 comment|//w.forceMerge(1);
 name|w
 operator|.
-name|shutdown
+name|close
 argument_list|()
 expr_stmt|;
 for|for
@@ -1579,8 +1569,6 @@ operator|.
 name|newIndexWriterConfig
 argument_list|(
 name|random
-argument_list|,
-name|TEST_VERSION_CURRENT
 argument_list|,
 operator|new
 name|MockAnalyzer
@@ -1707,7 +1695,7 @@ comment|// System.out.println("indexing "+d1);
 block|}
 name|w
 operator|.
-name|shutdown
+name|close
 argument_list|()
 expr_stmt|;
 block|}

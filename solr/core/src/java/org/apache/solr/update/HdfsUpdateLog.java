@@ -1018,7 +1018,7 @@ block|}
 block|}
 comment|// Record first two logs (oldest first) at startup for potential tlog
 comment|// recovery.
-comment|// It's possible that at abnormal shutdown both "tlog" and "prevTlog" were
+comment|// It's possible that at abnormal close both "tlog" and "prevTlog" were
 comment|// uncapped.
 for|for
 control|(

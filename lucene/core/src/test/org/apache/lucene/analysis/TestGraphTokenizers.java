@@ -2536,7 +2536,7 @@ argument_list|)
 expr_stmt|;
 block|}
 comment|// for debugging!
-comment|/*   private static void toDot(Automaton a) throws IOException {     final String s = a.toDot();     Writer w = new OutputStreamWriter(new FileOutputStream("/x/tmp/out.dot"));     w.write(s);     w.shutdown();     System.out.println("TEST: saved to /x/tmp/out.dot");   }   */
+comment|/*   private static void toDot(Automaton a) throws IOException {     final String s = a.toDot();     Writer w = new OutputStreamWriter(new FileOutputStream("/x/tmp/out.dot"));     w.write(s);     w.close();     System.out.println("TEST: saved to /x/tmp/out.dot");   }   */
 DECL|field|SEP_A
 specifier|private
 specifier|static

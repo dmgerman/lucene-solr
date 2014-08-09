@@ -531,7 +531,7 @@ argument_list|)
 argument_list|)
 condition|)
 block|{
-comment|// TODO: it doesn't matter for this impl when passing a client currently, but we should shutdown this!
+comment|// TODO: it doesn't matter for this impl when passing a client currently, but we should close this!
 name|solrServer
 operator|=
 operator|new
@@ -559,7 +559,7 @@ expr_stmt|;
 block|}
 else|else
 block|{
-comment|// TODO: it doesn't matter for this impl when passing a client currently, but we should shutdown this!
+comment|// TODO: it doesn't matter for this impl when passing a client currently, but we should close this!
 name|solrServer
 operator|=
 operator|new

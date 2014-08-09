@@ -1027,7 +1027,7 @@ argument_list|)
 expr_stmt|;
 name|w2
 operator|.
-name|shutdown
+name|close
 argument_list|()
 expr_stmt|;
 name|AtomicReader
@@ -2071,7 +2071,7 @@ argument_list|)
 expr_stmt|;
 name|w
 operator|.
-name|shutdown
+name|close
 argument_list|()
 expr_stmt|;
 name|DirectoryReader
@@ -2299,7 +2299,7 @@ argument_list|)
 expr_stmt|;
 name|w1
 operator|.
-name|shutdown
+name|close
 argument_list|()
 expr_stmt|;
 return|return
@@ -2443,7 +2443,7 @@ argument_list|)
 expr_stmt|;
 name|w2
 operator|.
-name|shutdown
+name|close
 argument_list|()
 expr_stmt|;
 return|return

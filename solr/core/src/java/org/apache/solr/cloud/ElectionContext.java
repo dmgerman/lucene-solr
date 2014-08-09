@@ -2469,7 +2469,7 @@ name|log
 operator|.
 name|info
 argument_list|(
-literal|"Not rejoining election because CoreContainer is shutdown"
+literal|"Not rejoining election because CoreContainer is close"
 argument_list|)
 expr_stmt|;
 return|return;

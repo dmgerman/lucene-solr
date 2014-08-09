@@ -2846,6 +2846,11 @@ name|newIndexWriterConfig
 argument_list|(
 name|analyzer
 argument_list|)
+operator|.
+name|setCommitOnClose
+argument_list|(
+literal|false
+argument_list|)
 decl_stmt|;
 name|conf
 operator|.
@@ -4202,14 +4207,23 @@ expr_stmt|;
 name|doClose
 argument_list|()
 expr_stmt|;
+try|try
+block|{
 name|writer
 operator|.
-name|shutdown
-argument_list|(
-literal|false
-argument_list|)
+name|commit
+argument_list|()
 expr_stmt|;
-comment|// Cannot shutdown until after writer is closed because
+block|}
+finally|finally
+block|{
+name|writer
+operator|.
+name|close
+argument_list|()
+expr_stmt|;
+block|}
+comment|// Cannot close until after writer is closed because
 comment|// writer has merged segment warmer that uses IS to run
 comment|// searches, and that IS may be using this es!
 if|if

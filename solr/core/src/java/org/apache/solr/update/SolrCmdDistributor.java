@@ -765,7 +765,7 @@ operator|.
 name|e
 argument_list|)
 expr_stmt|;
-comment|// this can happen in certain situations such as shutdown
+comment|// this can happen in certain situations such as close
 if|if
 condition|(
 name|isRetry

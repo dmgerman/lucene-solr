@@ -140,20 +140,6 @@ name|lucene
 operator|.
 name|index
 operator|.
-name|AtomicReader
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|index
-operator|.
 name|AtomicReaderContext
 import|;
 end_import
@@ -211,20 +197,6 @@ operator|.
 name|index
 operator|.
 name|IndexWriterConfig
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|index
-operator|.
-name|ReaderUtil
 import|;
 end_import
 
@@ -423,20 +395,6 @@ operator|.
 name|util
 operator|.
 name|BytesRefIterator
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|util
-operator|.
-name|Version
 import|;
 end_import
 
@@ -684,17 +642,13 @@ argument_list|,
 operator|new
 name|IndexWriterConfig
 argument_list|(
-name|Version
-operator|.
-name|LUCENE_CURRENT
-argument_list|,
 literal|null
 argument_list|)
 argument_list|)
 decl_stmt|;
 name|writer
 operator|.
-name|shutdown
+name|close
 argument_list|()
 expr_stmt|;
 block|}
@@ -1725,10 +1679,6 @@ argument_list|,
 operator|new
 name|IndexWriterConfig
 argument_list|(
-name|Version
-operator|.
-name|LUCENE_CURRENT
-argument_list|,
 literal|null
 argument_list|)
 operator|.
@@ -1742,7 +1692,7 @@ argument_list|)
 decl_stmt|;
 name|writer
 operator|.
-name|shutdown
+name|close
 argument_list|()
 expr_stmt|;
 name|swapSearcher
@@ -2079,7 +2029,7 @@ block|}
 comment|// close writer
 name|writer
 operator|.
-name|shutdown
+name|close
 argument_list|()
 expr_stmt|;
 comment|// TODO: this isn't that great, maybe in the future SpellChecker should take

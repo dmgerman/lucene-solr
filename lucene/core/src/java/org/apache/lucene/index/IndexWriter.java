@@ -600,20 +600,6 @@ name|ThreadInterruptedException
 import|;
 end_import
 
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|util
-operator|.
-name|Version
-import|;
-end_import
-
 begin_comment
 comment|/**   An<code>IndexWriter</code> creates and maintains an index.<p>The {@link OpenMode} option on    {@link IndexWriterConfig#setOpenMode(OpenMode)} determines    whether a new index is created, or whether an existing index is   opened. Note that you can open an index with {@link OpenMode#CREATE}   even while readers are using the index. The old readers will    continue to search the "point in time" snapshot they had opened,    and won't see the newly created index until they re-open. If    {@link OpenMode#CREATE_OR_APPEND} is used IndexWriter will create a    new index if there is not already an index at the provided path   and otherwise open the existing index.</p><p>In either case, documents are added with {@link #addDocument(IndexDocument)   addDocument} and removed with {@link #deleteDocuments(Term...)} or {@link   #deleteDocuments(Query...)}. A document can be updated with {@link   #updateDocument(Term, IndexDocument) updateDocument} (which just deletes   and then adds the entire document). When finished adding, deleting    and updating documents, {@link #close() close} should be called.</p><a name="flush"></a><p>These changes are buffered in memory and periodically   flushed to the {@link Directory} (during the above method   calls). A flush is triggered when there are enough added documents   since the last flush. Flushing is triggered either by RAM usage of the   documents (see {@link IndexWriterConfig#setRAMBufferSizeMB}) or the   number of added documents (see {@link IndexWriterConfig#setMaxBufferedDocs(int)}).   The default is to flush when RAM usage hits   {@link IndexWriterConfig#DEFAULT_RAM_BUFFER_SIZE_MB} MB. For   best indexing speed you should flush by RAM usage with a   large RAM buffer. Additionally, if IndexWriter reaches the configured number of   buffered deletes (see {@link IndexWriterConfig#setMaxBufferedDeleteTerms})   the deleted terms and queries are flushed and applied to existing segments.   In contrast to the other flush options {@link IndexWriterConfig#setRAMBufferSizeMB} and    {@link IndexWriterConfig#setMaxBufferedDocs(int)}, deleted terms   won't trigger a segment flush. Note that flushing just moves the   internal buffered state in IndexWriter into the index, but   these changes are not visible to IndexReader until either   {@link #commit()} or {@link #close} is called.  A flush may   also trigger one or more segment merges which by default   run with a background thread so as not to block the   addDocument calls (see<a href="#mergePolicy">below</a>   for changing the {@link MergeScheduler}).</p><p>Opening an<code>IndexWriter</code> creates a lock file for the directory in use. Trying to open   another<code>IndexWriter</code> on the same directory will lead to a   {@link LockObtainFailedException}. The {@link LockObtainFailedException}   is also thrown if an IndexReader on the same directory is used to delete documents   from the index.</p><a name="deletionPolicy"></a><p>Expert:<code>IndexWriter</code> allows an optional   {@link IndexDeletionPolicy} implementation to be   specified.  You can use this to control when prior commits   are deleted from the index.  The default policy is {@link   KeepOnlyLastCommitDeletionPolicy} which removes all prior   commits as soon as a new commit is done (this matches   behavior before 2.2).  Creating your own policy can allow   you to explicitly keep previous "point in time" commits   alive in the index for some time, to allow readers to   refresh to the new commit without having the old commit   deleted out from under them.  This is necessary on   filesystems like NFS that do not support "delete on last   close" semantics, which Lucene's "point in time" search   normally relies on.</p><a name="mergePolicy"></a><p>Expert:<code>IndexWriter</code> allows you to separately change   the {@link MergePolicy} and the {@link MergeScheduler}.   The {@link MergePolicy} is invoked whenever there are   changes to the segments in the index.  Its role is to   select which merges to do, if any, and return a {@link   MergePolicy.MergeSpecification} describing the merges.   The default is {@link LogByteSizeMergePolicy}.  Then, the {@link   MergeScheduler} is invoked with the requested merges and   it decides when and how to run the merges.  The default is   {@link ConcurrentMergeScheduler}.</p><a name="OOME"></a><p><b>NOTE</b>: if you hit an   OutOfMemoryError then IndexWriter will quietly record this   fact and block all future segment commits.  This is a   defensive measure in case any internal state (buffered   documents and deletions) were corrupted.  Any subsequent   calls to {@link #commit()} will throw an   IllegalStateException.  The only course of action is to   call {@link #close()}, which internally will call {@link   #rollback()}, to undo any changes to the index since the   last commit.  You can also just call {@link #rollback()}   directly.</p><a name="thread-safety"></a><p><b>NOTE</b>: {@link   IndexWriter} instances are completely thread   safe, meaning multiple threads can call any of its   methods, concurrently.  If your application requires   external synchronization, you should<b>not</b>   synchronize on the<code>IndexWriter</code> instance as   this may cause deadlock; use your own (non-Lucene) objects   instead.</p><p><b>NOTE</b>: If you call<code>Thread.interrupt()</code> on a thread that's within   IndexWriter, IndexWriter will try to catch this (eg, if   it's in a wait() or Thread.sleep()), and will then throw   the unchecked exception {@link ThreadInterruptedException}   and<b>clear</b> the interrupt status on the thread.</p> */
 end_comment
@@ -2922,30 +2908,12 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
-comment|/** Gracefully shuts down this {@code IndexWriter} instance,    *  by writing any changes, waiting for any running    *  merges, committing, and closing.  If you don't want to    *  wait for merges, use {@link #shutdown(boolean)} instead.    *    *<p>If you called prepareCommit but failed to call    *  commit, this method will throw {@code    *  IllegalStateException} and the {@code IndexWriter}    *  will not be closed.    *    *<p>If this method throws any other    *  exception, the {@code IndexWriter} will be closed, but    *  changes may have been lost.    *    *<p><b>NOTE</b>: You must ensure no    *  other threads are still making changes at the same    *  time that this method is invoked.  */
+comment|/**    * Implementation for {@link #close()} when {@link IndexWriterConfig#commitOnClose} is true.    */
 DECL|method|shutdown
-specifier|public
+specifier|private
 name|void
 name|shutdown
 parameter_list|()
-throws|throws
-name|IOException
-block|{
-name|shutdown
-argument_list|(
-literal|true
-argument_list|)
-expr_stmt|;
-block|}
-comment|/** Gracefully shut down this {@code IndexWriter}    *  instance, with control over whether to wait for    *  merges.  See {@link #shutdown()}. */
-DECL|method|shutdown
-specifier|public
-name|void
-name|shutdown
-parameter_list|(
-name|boolean
-name|waitForMerges
-parameter_list|)
 throws|throws
 name|IOException
 block|{
@@ -2960,7 +2928,7 @@ throw|throw
 operator|new
 name|IllegalStateException
 argument_list|(
-literal|"cannot shutdown: prepareCommit was already called with no corresponding call to commit"
+literal|"cannot close: prepareCommit was already called with no corresponding call to commit"
 argument_list|)
 throw|;
 block|}
@@ -2980,7 +2948,7 @@ name|message
 argument_list|(
 literal|"IW"
 argument_list|,
-literal|"now flush at shutdown"
+literal|"now flush at close"
 argument_list|)
 expr_stmt|;
 block|}
@@ -2993,27 +2961,23 @@ try|try
 block|{
 name|flush
 argument_list|(
-name|waitForMerges
+literal|true
 argument_list|,
 literal|true
 argument_list|)
 expr_stmt|;
 name|finishMerges
 argument_list|(
-name|waitForMerges
+literal|true
 argument_list|)
 expr_stmt|;
 name|commit
 argument_list|()
 expr_stmt|;
-comment|// TODO: we could just call rollback, but ... it's nice
-comment|// to catch IW bugs where after waitForMerges/commit we
-comment|// still have running merges / uncommitted changes, or
-comment|// tests that illegally leave threads indexing and then
-comment|// try to use shutdown:
-name|close
+name|rollback
 argument_list|()
 expr_stmt|;
+comment|// ie close, since we just committed
 name|success
 operator|=
 literal|true
@@ -3046,7 +3010,7 @@ block|}
 block|}
 block|}
 block|}
-comment|/**    * Closes all open resources and releases the write lock.    * If there are running merges or uncommitted    * changes:    *<ul>    *<li> If config.matchVersion>= LUCENE_5_0 then the    *        changes are silently discarded.    *<li> Otherwise, a RuntimeException is thrown to    *        indicate what was lost, but the IndexWriter is    *        still closed.    *</ul>    *    * Use {@link #shutdown} if you want to flush, commit, and    * wait for merges, before closing.    *     * @throws IOException if there is a low-level IO error    *   (the IndexWriter will still be closed)    * @throws RuntimeException if config.matchVersion<    *   LUCENE_5_0 and there were pending changes that were    *   lost (the IndexWriter will still be closed)    */
+comment|/**    * Closes all open resources and releases the write lock.    *    * If {@link IndexWriterConfig#commitOnClose} is<code>true</code>,    * this will attempt to gracefully shut down by writing any    * changes, waiting for any running merges, committing, and closing.    * In this case, note that:    *<ul>    *<li>If you called prepareCommit but failed to call commit, this    *       method will throw {@code IllegalStateException} and the {@code IndexWriter}    *       will not be closed.</li>    *<li>If this method throws any other exception, the {@code IndexWriter}    *       will be closed, but changes may have been lost.</li>    *</ul>    *    *<p><b>NOTE</b>: You must ensure no other threads are still making    * changes at the same time that this method is invoked.</p>    */
 annotation|@
 name|Override
 DECL|method|close
@@ -3057,100 +3021,31 @@ parameter_list|()
 throws|throws
 name|IOException
 block|{
-comment|// If there are uncommitted changes, or still running
-comment|// merges, we will in fact close, but we'll throw an
-comment|// exception notifying the caller that they lost
-comment|// changes, if IWC.matchVersion is< 5.0:
-name|boolean
-name|lostChanges
-init|=
-literal|false
-decl_stmt|;
-comment|// Only check for lost changes if the version earlier than 5.0:
 if|if
 condition|(
 name|config
 operator|.
-name|getMatchVersion
+name|getCommitOnClose
 argument_list|()
-operator|.
-name|onOrAfter
-argument_list|(
-name|Version
-operator|.
-name|LUCENE_5_0
-argument_list|)
-operator|==
-literal|false
 condition|)
-block|{
-name|lostChanges
-operator|=
-name|hasUncommittedChanges
-argument_list|()
-expr_stmt|;
-if|if
-condition|(
-name|lostChanges
-operator|==
-literal|false
-condition|)
-block|{
-synchronized|synchronized
-init|(
-name|this
-init|)
 block|{
 if|if
 condition|(
-name|pendingMerges
-operator|.
-name|isEmpty
-argument_list|()
+name|closed
 operator|==
 literal|false
 condition|)
 block|{
-name|lostChanges
-operator|=
-literal|true
-expr_stmt|;
-block|}
-if|if
-condition|(
-name|runningMerges
-operator|.
-name|isEmpty
+name|shutdown
 argument_list|()
-operator|==
-literal|false
-condition|)
-block|{
-name|lostChanges
-operator|=
-literal|true
 expr_stmt|;
 block|}
 block|}
-block|}
-block|}
-comment|// As long as there are no pending changes and no
-comment|// running merges, we just rollback to close:
+else|else
+block|{
 name|rollback
 argument_list|()
 expr_stmt|;
-if|if
-condition|(
-name|lostChanges
-condition|)
-block|{
-throw|throw
-operator|new
-name|RuntimeException
-argument_list|(
-literal|"this writer is closed, but some pending changes or running merges were discarded; use shutdown to save pending changes and finish merges before closing"
-argument_list|)
-throw|;
 block|}
 block|}
 comment|// Returns true if this thread should attempt to close, or

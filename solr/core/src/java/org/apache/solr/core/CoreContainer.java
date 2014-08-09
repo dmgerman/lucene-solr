@@ -1525,7 +1525,7 @@ name|log
 operator|.
 name|warn
 argument_list|(
-literal|"Error shutting down CoreAdminHandler. Continuing to shutdown CoreContainer."
+literal|"Error shutting down CoreAdminHandler. Continuing to close CoreContainer."
 argument_list|)
 expr_stmt|;
 name|e
@@ -1774,7 +1774,7 @@ name|log
 operator|.
 name|error
 argument_list|(
-literal|"CoreContainer was not shutdown prior to finalize(), indicates a bug -- POSSIBLE RESOURCE LEAK!!!  instance="
+literal|"CoreContainer was not close prior to finalize(), indicates a bug -- POSSIBLE RESOURCE LEAK!!!  instance="
 operator|+
 name|System
 operator|.
@@ -1936,7 +1936,7 @@ throw|throw
 operator|new
 name|IllegalStateException
 argument_list|(
-literal|"This CoreContainer has been shutdown"
+literal|"This CoreContainer has been close"
 argument_list|)
 throw|;
 block|}
@@ -2113,7 +2113,7 @@ name|ErrorCode
 operator|.
 name|SERVICE_UNAVAILABLE
 argument_list|,
-literal|"Solr has shutdown."
+literal|"Solr has close."
 argument_list|)
 throw|;
 block|}

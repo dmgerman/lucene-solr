@@ -1118,8 +1118,6 @@ init|=
 operator|new
 name|IndexWriterConfig
 argument_list|(
-name|luceneVersion
-argument_list|,
 literal|null
 argument_list|)
 decl_stmt|;

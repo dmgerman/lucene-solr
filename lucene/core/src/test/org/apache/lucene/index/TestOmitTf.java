@@ -136,20 +136,6 @@ name|lucene
 operator|.
 name|search
 operator|.
-name|LeafCollector
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|search
-operator|.
 name|BooleanClause
 operator|.
 name|Occur
@@ -181,20 +167,6 @@ operator|.
 name|search
 operator|.
 name|CollectionStatistics
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|search
-operator|.
-name|Collector
 import|;
 end_import
 
@@ -758,7 +730,7 @@ expr_stmt|;
 comment|// flush
 name|writer
 operator|.
-name|shutdown
+name|close
 argument_list|()
 expr_stmt|;
 name|SegmentReader
@@ -1029,7 +1001,7 @@ expr_stmt|;
 comment|// flush
 name|writer
 operator|.
-name|shutdown
+name|close
 argument_list|()
 expr_stmt|;
 name|SegmentReader
@@ -1256,7 +1228,7 @@ expr_stmt|;
 comment|// flush
 name|writer
 operator|.
-name|shutdown
+name|close
 argument_list|()
 expr_stmt|;
 name|SegmentReader
@@ -1592,7 +1564,7 @@ expr_stmt|;
 comment|// flush
 name|writer
 operator|.
-name|shutdown
+name|close
 argument_list|()
 expr_stmt|;
 name|assertNoPrx
@@ -1802,7 +1774,7 @@ expr_stmt|;
 comment|// flush
 name|writer
 operator|.
-name|shutdown
+name|close
 argument_list|()
 expr_stmt|;
 comment|/*      * Verify the index      */
@@ -2623,7 +2595,7 @@ argument_list|()
 decl_stmt|;
 name|iw
 operator|.
-name|shutdown
+name|close
 argument_list|()
 expr_stmt|;
 name|assertEquals

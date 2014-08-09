@@ -623,7 +623,7 @@ block|}
 comment|// Close should force cache to clear since all files are sync'd
 name|w
 operator|.
-name|shutdown
+name|close
 argument_list|()
 expr_stmt|;
 specifier|final
@@ -767,8 +767,6 @@ init|=
 operator|new
 name|IndexWriterConfig
 argument_list|(
-name|TEST_VERSION_CURRENT
-argument_list|,
 name|analyzer
 argument_list|)
 decl_stmt|;

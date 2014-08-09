@@ -892,20 +892,6 @@ name|lucene
 operator|.
 name|util
 operator|.
-name|Version
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|util
-operator|.
 name|automaton
 operator|.
 name|Automata
@@ -941,22 +927,6 @@ operator|.
 name|automaton
 operator|.
 name|Automaton
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|util
-operator|.
-name|packed
-operator|.
-name|PackedInts
 import|;
 end_import
 
@@ -1111,7 +1081,7 @@ argument_list|)
 expr_stmt|;
 name|writer
 operator|.
-name|shutdown
+name|close
 argument_list|()
 expr_stmt|;
 comment|// delete 40 documents
@@ -1172,7 +1142,7 @@ expr_stmt|;
 block|}
 name|writer
 operator|.
-name|shutdown
+name|close
 argument_list|()
 expr_stmt|;
 name|reader
@@ -1257,7 +1227,7 @@ argument_list|)
 expr_stmt|;
 name|writer
 operator|.
-name|shutdown
+name|close
 argument_list|()
 expr_stmt|;
 comment|// check that the index reader gives the same numbers.
@@ -1344,7 +1314,7 @@ argument_list|)
 expr_stmt|;
 name|writer
 operator|.
-name|shutdown
+name|close
 argument_list|()
 expr_stmt|;
 name|dir
@@ -1490,8 +1460,6 @@ argument_list|,
 operator|new
 name|IndexWriterConfig
 argument_list|(
-name|TEST_VERSION_CURRENT
-argument_list|,
 operator|new
 name|MockAnalyzer
 argument_list|(
@@ -1661,7 +1629,7 @@ argument_list|)
 expr_stmt|;
 name|writer
 operator|.
-name|shutdown
+name|close
 argument_list|()
 expr_stmt|;
 comment|// now open reader:
@@ -1732,7 +1700,7 @@ argument_list|)
 expr_stmt|;
 name|writer
 operator|.
-name|shutdown
+name|close
 argument_list|()
 expr_stmt|;
 name|assertEquals
@@ -1830,7 +1798,7 @@ expr_stmt|;
 comment|// close
 name|writer
 operator|.
-name|shutdown
+name|close
 argument_list|()
 expr_stmt|;
 try|try
@@ -1900,7 +1868,7 @@ argument_list|()
 expr_stmt|;
 name|writer
 operator|.
-name|shutdown
+name|close
 argument_list|()
 expr_stmt|;
 name|IndexReader
@@ -1970,7 +1938,7 @@ argument_list|()
 expr_stmt|;
 name|writer
 operator|.
-name|shutdown
+name|close
 argument_list|()
 expr_stmt|;
 name|reader
@@ -2185,7 +2153,7 @@ expr_stmt|;
 block|}
 name|writer
 operator|.
-name|shutdown
+name|close
 argument_list|()
 expr_stmt|;
 name|IndexReader
@@ -2498,7 +2466,7 @@ expr_stmt|;
 block|}
 name|writer
 operator|.
-name|shutdown
+name|close
 argument_list|()
 expr_stmt|;
 name|dir
@@ -2912,7 +2880,7 @@ block|}
 block|}
 name|writer
 operator|.
-name|shutdown
+name|close
 argument_list|()
 expr_stmt|;
 name|dir
@@ -3379,7 +3347,7 @@ block|}
 block|}
 name|writer
 operator|.
-name|shutdown
+name|close
 argument_list|()
 expr_stmt|;
 name|dir
@@ -3664,7 +3632,7 @@ block|}
 block|}
 name|writer
 operator|.
-name|shutdown
+name|close
 argument_list|()
 expr_stmt|;
 name|IndexReader
@@ -3865,7 +3833,7 @@ expr_stmt|;
 block|}
 name|writer
 operator|.
-name|shutdown
+name|close
 argument_list|()
 expr_stmt|;
 name|Term
@@ -4040,7 +4008,7 @@ expr_stmt|;
 block|}
 name|writer
 operator|.
-name|shutdown
+name|close
 argument_list|()
 expr_stmt|;
 name|reader
@@ -4271,7 +4239,7 @@ argument_list|)
 expr_stmt|;
 name|writer
 operator|.
-name|shutdown
+name|close
 argument_list|()
 expr_stmt|;
 name|IndexReader
@@ -4510,7 +4478,7 @@ expr_stmt|;
 block|}
 name|writer
 operator|.
-name|shutdown
+name|close
 argument_list|()
 expr_stmt|;
 name|Term
@@ -4606,7 +4574,7 @@ argument_list|)
 expr_stmt|;
 name|writer
 operator|.
-name|shutdown
+name|close
 argument_list|()
 expr_stmt|;
 name|dir
@@ -4746,7 +4714,7 @@ argument_list|)
 expr_stmt|;
 name|writer
 operator|.
-name|shutdown
+name|close
 argument_list|()
 expr_stmt|;
 name|SegmentInfos
@@ -4907,7 +4875,7 @@ argument_list|)
 expr_stmt|;
 name|writer
 operator|.
-name|shutdown
+name|close
 argument_list|()
 expr_stmt|;
 name|IndexReader
@@ -5023,7 +4991,7 @@ argument_list|)
 expr_stmt|;
 name|iw
 operator|.
-name|shutdown
+name|close
 argument_list|()
 expr_stmt|;
 name|dir
@@ -5184,7 +5152,7 @@ argument_list|)
 expr_stmt|;
 name|iw
 operator|.
-name|shutdown
+name|close
 argument_list|()
 expr_stmt|;
 name|dir
@@ -5448,7 +5416,7 @@ argument_list|)
 expr_stmt|;
 name|writer
 operator|.
-name|shutdown
+name|close
 argument_list|()
 expr_stmt|;
 if|if
@@ -5489,7 +5457,7 @@ argument_list|)
 expr_stmt|;
 name|writer
 operator|.
-name|shutdown
+name|close
 argument_list|()
 expr_stmt|;
 block|}
@@ -5606,7 +5574,7 @@ argument_list|)
 expr_stmt|;
 name|writer
 operator|.
-name|shutdown
+name|close
 argument_list|()
 expr_stmt|;
 name|IndexReader
@@ -5721,7 +5689,7 @@ argument_list|)
 expr_stmt|;
 name|writer
 operator|.
-name|shutdown
+name|close
 argument_list|()
 expr_stmt|;
 name|dir
@@ -5797,7 +5765,7 @@ argument_list|)
 expr_stmt|;
 name|writer
 operator|.
-name|shutdown
+name|close
 argument_list|()
 expr_stmt|;
 name|DirectoryReader
@@ -6018,7 +5986,7 @@ argument_list|)
 expr_stmt|;
 name|writer
 operator|.
-name|shutdown
+name|close
 argument_list|()
 expr_stmt|;
 name|DirectoryReader
@@ -6335,7 +6303,7 @@ argument_list|)
 expr_stmt|;
 name|w
 operator|.
-name|shutdown
+name|close
 argument_list|()
 expr_stmt|;
 name|IndexReader
@@ -6556,7 +6524,7 @@ comment|// expected
 block|}
 name|w
 operator|.
-name|shutdown
+name|close
 argument_list|()
 expr_stmt|;
 name|dir
@@ -6690,7 +6658,7 @@ argument_list|)
 expr_stmt|;
 name|w
 operator|.
-name|shutdown
+name|close
 argument_list|()
 expr_stmt|;
 name|IndexReader
@@ -7012,7 +6980,7 @@ argument_list|)
 expr_stmt|;
 name|writer2
 operator|.
-name|shutdown
+name|close
 argument_list|()
 expr_stmt|;
 name|IndexReader
@@ -7036,7 +7004,7 @@ argument_list|)
 expr_stmt|;
 name|writer
 operator|.
-name|shutdown
+name|close
 argument_list|()
 expr_stmt|;
 name|IndexReader
@@ -7180,8 +7148,6 @@ init|=
 name|newIndexWriterConfig
 argument_list|(
 name|random
-argument_list|,
-name|TEST_VERSION_CURRENT
 argument_list|,
 operator|new
 name|MockAnalyzer
@@ -7557,7 +7523,7 @@ argument_list|)
 expr_stmt|;
 name|w
 operator|.
-name|shutdown
+name|close
 argument_list|()
 expr_stmt|;
 block|}
@@ -7583,7 +7549,7 @@ name|RAMDirectory
 argument_list|()
 argument_list|)
 decl_stmt|;
-comment|// When interrupt arrives in w.shutdown(), this can
+comment|// When interrupt arrives in w.close(), this can
 comment|// lead to double-write of files:
 name|dir
 operator|.
@@ -7628,7 +7594,7 @@ try|try
 block|{
 name|w
 operator|.
-name|shutdown
+name|close
 argument_list|()
 expr_stmt|;
 block|}
@@ -7651,8 +7617,6 @@ init|=
 name|newIndexWriterConfig
 argument_list|(
 name|random
-argument_list|,
-name|TEST_VERSION_CURRENT
 argument_list|,
 operator|new
 name|MockAnalyzer
@@ -8086,7 +8050,7 @@ block|}
 block|}
 name|w
 operator|.
-name|shutdown
+name|close
 argument_list|()
 expr_stmt|;
 name|w
@@ -9108,7 +9072,7 @@ expr_stmt|;
 comment|// force segment merge.
 name|w
 operator|.
-name|shutdown
+name|close
 argument_list|()
 expr_stmt|;
 name|IndexReader
@@ -9561,7 +9525,7 @@ argument_list|)
 expr_stmt|;
 name|writer
 operator|.
-name|shutdown
+name|close
 argument_list|()
 expr_stmt|;
 name|dir
@@ -10021,7 +9985,7 @@ block|}
 comment|//assertTrue(files.contains("_2.cfs"));
 name|w
 operator|.
-name|shutdown
+name|close
 argument_list|()
 expr_stmt|;
 name|r2
@@ -10264,7 +10228,7 @@ argument_list|)
 expr_stmt|;
 name|writer
 operator|.
-name|shutdown
+name|close
 argument_list|()
 expr_stmt|;
 name|dir
@@ -10316,7 +10280,7 @@ argument_list|)
 argument_list|)
 argument_list|)
 operator|.
-name|shutdown
+name|close
 argument_list|()
 expr_stmt|;
 name|dir
@@ -10866,7 +10830,7 @@ argument_list|)
 decl_stmt|;
 name|w2
 operator|.
-name|shutdown
+name|close
 argument_list|()
 expr_stmt|;
 comment|// If we don't do that, the test fails on Windows
@@ -11143,7 +11107,7 @@ expr_stmt|;
 block|}
 name|indexWriter
 operator|.
-name|shutdown
+name|close
 argument_list|()
 expr_stmt|;
 name|TestUtil
@@ -11606,7 +11570,7 @@ argument_list|()
 decl_stmt|;
 name|w
 operator|.
-name|shutdown
+name|close
 argument_list|()
 expr_stmt|;
 comment|// Make sure all terms< max size were indexed
@@ -11815,7 +11779,7 @@ argument_list|()
 expr_stmt|;
 name|w
 operator|.
-name|shutdown
+name|close
 argument_list|()
 expr_stmt|;
 name|assertEquals
@@ -11880,8 +11844,6 @@ argument_list|,
 operator|new
 name|IndexWriterConfig
 argument_list|(
-name|TEST_VERSION_CURRENT
-argument_list|,
 operator|new
 name|MockAnalyzer
 argument_list|(
@@ -11980,7 +11942,7 @@ expr_stmt|;
 block|}
 name|w
 operator|.
-name|shutdown
+name|close
 argument_list|()
 expr_stmt|;
 name|d
@@ -12022,8 +11984,6 @@ argument_list|,
 operator|new
 name|IndexWriterConfig
 argument_list|(
-name|TEST_VERSION_CURRENT
-argument_list|,
 operator|new
 name|MockAnalyzer
 argument_list|(
@@ -12142,7 +12102,7 @@ argument_list|()
 expr_stmt|;
 name|w
 operator|.
-name|shutdown
+name|close
 argument_list|()
 expr_stmt|;
 name|long
@@ -12256,7 +12216,7 @@ comment|// expected
 block|}
 name|w1
 operator|.
-name|shutdown
+name|close
 argument_list|()
 expr_stmt|;
 name|d
@@ -12290,8 +12250,6 @@ argument_list|,
 operator|new
 name|IndexWriterConfig
 argument_list|(
-name|TEST_VERSION_CURRENT
-argument_list|,
 operator|new
 name|MockAnalyzer
 argument_list|(
@@ -12407,7 +12365,7 @@ argument_list|)
 expr_stmt|;
 name|w
 operator|.
-name|shutdown
+name|close
 argument_list|()
 expr_stmt|;
 name|dir
@@ -12441,8 +12399,6 @@ argument_list|,
 operator|new
 name|IndexWriterConfig
 argument_list|(
-name|TEST_VERSION_CURRENT
-argument_list|,
 operator|new
 name|MockAnalyzer
 argument_list|(
@@ -12490,7 +12446,7 @@ argument_list|)
 expr_stmt|;
 name|w
 operator|.
-name|shutdown
+name|close
 argument_list|()
 expr_stmt|;
 name|dir
@@ -12525,8 +12481,6 @@ argument_list|,
 operator|new
 name|IndexWriterConfig
 argument_list|(
-name|TEST_VERSION_CURRENT
-argument_list|,
 operator|new
 name|MockAnalyzer
 argument_list|(
@@ -12545,7 +12499,7 @@ try|try
 block|{
 name|w
 operator|.
-name|shutdown
+name|close
 argument_list|()
 expr_stmt|;
 name|fail
@@ -12569,7 +12523,7 @@ argument_list|()
 expr_stmt|;
 name|w
 operator|.
-name|shutdown
+name|close
 argument_list|()
 expr_stmt|;
 name|IndexReader
@@ -12629,8 +12583,6 @@ argument_list|,
 operator|new
 name|IndexWriterConfig
 argument_list|(
-name|TEST_VERSION_CURRENT
-argument_list|,
 operator|new
 name|MockAnalyzer
 argument_list|(
@@ -12692,8 +12644,6 @@ argument_list|,
 operator|new
 name|IndexWriterConfig
 argument_list|(
-name|TEST_VERSION_CURRENT
-argument_list|,
 operator|new
 name|MockAnalyzer
 argument_list|(
@@ -12959,7 +12909,7 @@ argument_list|)
 expr_stmt|;
 name|w
 operator|.
-name|shutdown
+name|close
 argument_list|()
 expr_stmt|;
 name|dir
@@ -13014,7 +12964,7 @@ argument_list|)
 expr_stmt|;
 name|iw
 operator|.
-name|shutdown
+name|close
 argument_list|()
 expr_stmt|;
 try|try
@@ -13067,7 +13017,7 @@ argument_list|)
 argument_list|)
 argument_list|)
 operator|.
-name|shutdown
+name|close
 argument_list|()
 expr_stmt|;
 name|assertTrue
@@ -13230,7 +13180,7 @@ argument_list|()
 decl_stmt|;
 name|iw
 operator|.
-name|shutdown
+name|close
 argument_list|()
 expr_stmt|;
 name|IndexSearcher
@@ -13472,7 +13422,7 @@ argument_list|()
 decl_stmt|;
 name|iw
 operator|.
-name|shutdown
+name|close
 argument_list|()
 expr_stmt|;
 name|IndexSearcher
@@ -13574,8 +13524,6 @@ init|=
 operator|new
 name|IndexWriterConfig
 argument_list|(
-name|TEST_VERSION_CURRENT
-argument_list|,
 operator|new
 name|MockAnalyzer
 argument_list|(
@@ -13809,7 +13757,7 @@ block|}
 block|}
 name|w
 operator|.
-name|shutdown
+name|close
 argument_list|()
 expr_stmt|;
 name|dir
@@ -14054,7 +14002,7 @@ argument_list|()
 expr_stmt|;
 name|writer
 operator|.
-name|shutdown
+name|close
 argument_list|()
 expr_stmt|;
 name|dir
@@ -14135,7 +14083,7 @@ argument_list|)
 expr_stmt|;
 name|writer
 operator|.
-name|shutdown
+name|close
 argument_list|()
 expr_stmt|;
 comment|// validate that it's also visible when opening a new IndexWriter
@@ -14176,7 +14124,7 @@ argument_list|)
 expr_stmt|;
 name|writer
 operator|.
-name|shutdown
+name|close
 argument_list|()
 expr_stmt|;
 name|dir
@@ -14347,7 +14295,7 @@ argument_list|()
 expr_stmt|;
 name|iw
 operator|.
-name|shutdown
+name|close
 argument_list|()
 expr_stmt|;
 name|dir
@@ -14483,7 +14431,7 @@ argument_list|()
 expr_stmt|;
 name|iw
 operator|.
-name|shutdown
+name|close
 argument_list|()
 expr_stmt|;
 name|dir
@@ -14619,7 +14567,7 @@ argument_list|()
 expr_stmt|;
 name|iw
 operator|.
-name|shutdown
+name|close
 argument_list|()
 expr_stmt|;
 name|dir
@@ -14790,7 +14738,7 @@ argument_list|()
 expr_stmt|;
 name|iw
 operator|.
-name|shutdown
+name|close
 argument_list|()
 expr_stmt|;
 name|dir
@@ -14958,7 +14906,7 @@ argument_list|()
 expr_stmt|;
 name|iw
 operator|.
-name|shutdown
+name|close
 argument_list|()
 expr_stmt|;
 name|dir
@@ -15413,7 +15361,7 @@ argument_list|)
 expr_stmt|;
 name|w
 operator|.
-name|shutdown
+name|close
 argument_list|()
 expr_stmt|;
 name|IOUtils
@@ -15820,7 +15768,7 @@ argument_list|)
 expr_stmt|;
 name|w
 operator|.
-name|shutdown
+name|close
 argument_list|()
 expr_stmt|;
 name|IOUtils
@@ -15968,7 +15916,7 @@ expr_stmt|;
 block|}
 name|w
 operator|.
-name|shutdown
+name|close
 argument_list|()
 expr_stmt|;
 name|IOUtils
@@ -16300,7 +16248,7 @@ argument_list|,
 name|iwc
 argument_list|)
 operator|.
-name|shutdown
+name|close
 argument_list|()
 expr_stmt|;
 block|}
@@ -16639,7 +16587,7 @@ argument_list|)
 expr_stmt|;
 name|writer
 operator|.
-name|shutdown
+name|close
 argument_list|()
 expr_stmt|;
 name|writer
@@ -16685,7 +16633,7 @@ argument_list|)
 expr_stmt|;
 name|writer
 operator|.
-name|shutdown
+name|close
 argument_list|()
 expr_stmt|;
 name|dir
@@ -16887,7 +16835,7 @@ argument_list|)
 expr_stmt|;
 name|evilWriter
 operator|.
-name|shutdown
+name|close
 argument_list|()
 expr_stmt|;
 name|dir
@@ -16917,8 +16865,6 @@ init|=
 operator|new
 name|IndexWriterConfig
 argument_list|(
-name|TEST_VERSION_CURRENT
-argument_list|,
 operator|new
 name|MockAnalyzer
 argument_list|(
@@ -17010,7 +16956,7 @@ argument_list|()
 decl_stmt|;
 name|w
 operator|.
-name|shutdown
+name|close
 argument_list|()
 expr_stmt|;
 comment|// Make sure document was not (incorrectly) deleted:
@@ -17166,7 +17112,7 @@ argument_list|)
 expr_stmt|;
 name|iwriter
 operator|.
-name|shutdown
+name|close
 argument_list|()
 expr_stmt|;
 name|directory
@@ -17418,129 +17364,6 @@ name|close
 argument_list|()
 expr_stmt|;
 block|}
-DECL|method|testUncommittedChanges
-specifier|public
-name|void
-name|testUncommittedChanges
-parameter_list|()
-throws|throws
-name|IOException
-block|{
-name|Directory
-name|dir
-init|=
-name|newDirectory
-argument_list|()
-decl_stmt|;
-comment|// If version is< 50 IW.close should throw an exception
-comment|// on uncommitted changes:
-name|IndexWriterConfig
-name|iwc
-init|=
-name|newIndexWriterConfig
-argument_list|(
-name|random
-argument_list|()
-argument_list|,
-name|Version
-operator|.
-name|LUCENE_4_8
-argument_list|,
-operator|new
-name|MockAnalyzer
-argument_list|(
-name|random
-argument_list|()
-argument_list|)
-argument_list|)
-decl_stmt|;
-name|IndexWriter
-name|w
-init|=
-operator|new
-name|IndexWriter
-argument_list|(
-name|dir
-argument_list|,
-name|iwc
-argument_list|)
-decl_stmt|;
-name|Document
-name|doc
-init|=
-operator|new
-name|Document
-argument_list|()
-decl_stmt|;
-name|doc
-operator|.
-name|add
-argument_list|(
-operator|new
-name|SortedDocValuesField
-argument_list|(
-literal|"dv"
-argument_list|,
-operator|new
-name|BytesRef
-argument_list|(
-literal|"foo!"
-argument_list|)
-argument_list|)
-argument_list|)
-expr_stmt|;
-name|w
-operator|.
-name|addDocument
-argument_list|(
-name|doc
-argument_list|)
-expr_stmt|;
-try|try
-block|{
-name|w
-operator|.
-name|close
-argument_list|()
-expr_stmt|;
-name|fail
-argument_list|(
-literal|"didn't hit exception"
-argument_list|)
-expr_stmt|;
-block|}
-catch|catch
-parameter_list|(
-name|RuntimeException
-name|re
-parameter_list|)
-block|{
-comment|// expected
-name|assertTrue
-argument_list|(
-name|re
-operator|.
-name|getMessage
-argument_list|()
-operator|.
-name|contains
-argument_list|(
-literal|"this writer is closed, but some pending changes or running merges were discarded"
-argument_list|)
-argument_list|)
-expr_stmt|;
-block|}
-name|w
-operator|.
-name|rollback
-argument_list|()
-expr_stmt|;
-name|dir
-operator|.
-name|close
-argument_list|()
-expr_stmt|;
-block|}
 DECL|method|testCloseWhileMergeIsRunning
 specifier|public
 name|void
@@ -17575,8 +17398,6 @@ argument_list|(
 literal|1
 argument_list|)
 decl_stmt|;
-comment|// If version is< 50 IW.close should throw an exception
-comment|// on still-running merges:
 name|IndexWriterConfig
 name|iwc
 init|=
@@ -17585,16 +17406,17 @@ argument_list|(
 name|random
 argument_list|()
 argument_list|,
-name|Version
-operator|.
-name|LUCENE_4_8
-argument_list|,
 operator|new
 name|MockAnalyzer
 argument_list|(
 name|random
 argument_list|()
 argument_list|)
+argument_list|)
+operator|.
+name|setCommitOnClose
+argument_list|(
+literal|false
 argument_list|)
 decl_stmt|;
 name|LogDocMergePolicy
@@ -17814,63 +17636,9 @@ operator|.
 name|commit
 argument_list|()
 expr_stmt|;
-try|try
-block|{
 name|w
 operator|.
 name|close
-argument_list|()
-expr_stmt|;
-name|fail
-argument_list|(
-literal|"didn't hit exception"
-argument_list|)
-expr_stmt|;
-block|}
-catch|catch
-parameter_list|(
-name|RuntimeException
-name|re
-parameter_list|)
-block|{
-comment|// expected
-if|if
-condition|(
-name|VERBOSE
-condition|)
-block|{
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"GOT: "
-operator|+
-name|re
-operator|.
-name|getMessage
-argument_list|()
-argument_list|)
-expr_stmt|;
-block|}
-name|assertTrue
-argument_list|(
-name|re
-operator|.
-name|getMessage
-argument_list|()
-operator|.
-name|contains
-argument_list|(
-literal|"this writer is closed, but some pending changes or running merges were discarded"
-argument_list|)
-argument_list|)
-expr_stmt|;
-block|}
-name|w
-operator|.
-name|rollback
 argument_list|()
 expr_stmt|;
 name|dir

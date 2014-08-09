@@ -408,8 +408,6 @@ argument_list|,
 operator|new
 name|IndexWriterConfig
 argument_list|(
-name|version
-argument_list|,
 literal|null
 argument_list|)
 operator|.
@@ -475,7 +473,7 @@ expr_stmt|;
 comment|// TODO: maybe take List<IR> here?
 name|w
 operator|.
-name|shutdown
+name|close
 argument_list|()
 expr_stmt|;
 block|}

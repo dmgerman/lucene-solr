@@ -389,7 +389,7 @@ argument_list|)
 expr_stmt|;
 name|indexWriter
 operator|.
-name|shutdown
+name|close
 argument_list|()
 expr_stmt|;
 block|}
@@ -408,7 +408,7 @@ name|log
 operator|.
 name|error
 argument_list|(
-literal|"Error during shutdown of writer."
+literal|"Error during close of writer."
 argument_list|,
 name|e
 argument_list|)
@@ -769,7 +769,7 @@ argument_list|)
 expr_stmt|;
 name|indexWriter
 operator|.
-name|shutdown
+name|close
 argument_list|()
 expr_stmt|;
 block|}
@@ -1288,7 +1288,7 @@ name|log
 operator|.
 name|warn
 argument_list|(
-literal|"Skipping recovery because Solr is shutdown"
+literal|"Skipping recovery because Solr is close"
 argument_list|)
 expr_stmt|;
 return|return;
@@ -1311,7 +1311,7 @@ name|log
 operator|.
 name|warn
 argument_list|(
-literal|"Skipping recovery because Solr is shutdown"
+literal|"Skipping recovery because Solr is close"
 argument_list|)
 expr_stmt|;
 return|return;
@@ -1360,7 +1360,7 @@ name|log
 operator|.
 name|warn
 argument_list|(
-literal|"Skipping recovery because Solr is shutdown"
+literal|"Skipping recovery because Solr is close"
 argument_list|)
 expr_stmt|;
 return|return;

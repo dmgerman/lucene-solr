@@ -216,20 +216,6 @@ end_import
 
 begin_import
 import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|util
-operator|.
-name|Version
-import|;
-end_import
-
-begin_import
-import|import
 name|java
 operator|.
 name|io
@@ -326,10 +312,6 @@ argument_list|,
 operator|new
 name|IndexWriterConfig
 argument_list|(
-name|Version
-operator|.
-name|LUCENE_5_0
-argument_list|,
 name|analyzer
 argument_list|)
 argument_list|)
@@ -345,10 +327,6 @@ argument_list|,
 operator|new
 name|IndexWriterConfig
 argument_list|(
-name|Version
-operator|.
-name|LUCENE_5_0
-argument_list|,
 name|analyzer
 argument_list|)
 argument_list|)
@@ -364,10 +342,6 @@ argument_list|,
 operator|new
 name|IndexWriterConfig
 argument_list|(
-name|Version
-operator|.
-name|LUCENE_5_0
-argument_list|,
 name|analyzer
 argument_list|)
 argument_list|)
@@ -770,17 +744,17 @@ expr_stmt|;
 comment|// close IWs
 name|testWriter
 operator|.
-name|shutdown
+name|close
 argument_list|()
 expr_stmt|;
 name|cvWriter
 operator|.
-name|shutdown
+name|close
 argument_list|()
 expr_stmt|;
 name|trainingWriter
 operator|.
-name|shutdown
+name|close
 argument_list|()
 expr_stmt|;
 block|}

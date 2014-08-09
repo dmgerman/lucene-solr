@@ -757,7 +757,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Handle ZooKeeper interactions.  *   * notes: loads everything on init, creates what's not there - further updates  * are prompted with Watches.  *   * TODO: exceptions during shutdown on attempts to update cloud state  *   */
+comment|/**  * Handle ZooKeeper interactions.  *   * notes: loads everything on init, creates what's not there - further updates  * are prompted with Watches.  *   * TODO: exceptions during close on attempts to update cloud state  *   */
 end_comment
 
 begin_class
@@ -3709,7 +3709,7 @@ decl_stmt|;
 try|try
 block|{
 comment|// we attempt a delete in the case of a quick server bounce -
-comment|// if there was not a graceful shutdown, the node may exist
+comment|// if there was not a graceful close, the node may exist
 comment|// until expiration timeout - so a node won't be created here because
 comment|// it exists, but eventually the node will be removed. So delete
 comment|// in case it exists and create a new node.
@@ -4832,7 +4832,7 @@ name|ErrorCode
 operator|.
 name|SERVICE_UNAVAILABLE
 argument_list|,
-literal|"CoreContainer is shutdown"
+literal|"CoreContainer is close"
 argument_list|)
 throw|;
 block|}

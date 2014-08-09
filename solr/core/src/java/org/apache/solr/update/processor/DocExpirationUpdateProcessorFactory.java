@@ -1045,7 +1045,7 @@ name|log
 operator|.
 name|info
 argument_list|(
-literal|"Triggering hard shutdown of DocExpiration Executor"
+literal|"Triggering hard close of DocExpiration Executor"
 argument_list|)
 expr_stmt|;
 name|executor
@@ -1067,7 +1067,7 @@ name|log
 operator|.
 name|info
 argument_list|(
-literal|"Triggering Graceful shutdown of DocExpiration Executor"
+literal|"Triggering Graceful close of DocExpiration Executor"
 argument_list|)
 expr_stmt|;
 name|executor

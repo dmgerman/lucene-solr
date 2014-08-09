@@ -136,20 +136,6 @@ name|InfoStream
 import|;
 end_import
 
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|util
-operator|.
-name|Version
-import|;
-end_import
-
 begin_comment
 comment|/**  * Holds all the configuration used by {@link IndexWriter} with few setters for  * settings that can be changed on an {@link IndexWriter} instance "live".  *   * @since 4.0  */
 end_comment
@@ -289,13 +275,6 @@ specifier|volatile
 name|int
 name|perThreadHardLimitMB
 decl_stmt|;
-comment|/** {@link Version} that {@link IndexWriter} should emulate. */
-DECL|field|matchVersion
-specifier|protected
-specifier|final
-name|Version
-name|matchVersion
-decl_stmt|;
 comment|/** True if segment flushes should use compound file format */
 DECL|field|useCompoundFile
 specifier|protected
@@ -318,15 +297,22 @@ name|IndexWriterConfig
 operator|.
 name|DEFAULT_CHECK_INTEGRITY_AT_MERGE
 decl_stmt|;
+comment|/** True if calls to {@link IndexWriter#close()} should first do a commit. */
+DECL|field|commitOnClose
+specifier|protected
+name|boolean
+name|commitOnClose
+init|=
+name|IndexWriterConfig
+operator|.
+name|DEFAULT_COMMIT_ON_CLOSE
+decl_stmt|;
 comment|// used by IndexWriterConfig
 DECL|method|LiveIndexWriterConfig
 name|LiveIndexWriterConfig
 parameter_list|(
 name|Analyzer
 name|analyzer
-parameter_list|,
-name|Version
-name|matchVersion
 parameter_list|)
 block|{
 name|this
@@ -334,12 +320,6 @@ operator|.
 name|analyzer
 operator|=
 name|analyzer
-expr_stmt|;
-name|this
-operator|.
-name|matchVersion
-operator|=
-name|matchVersion
 expr_stmt|;
 name|ramBufferSizeMB
 operator|=
@@ -945,6 +925,17 @@ return|return
 name|checkIntegrityAtMerge
 return|;
 block|}
+comment|/**    * Returns<code>true</code> if {@link IndexWriter#close()} should first commit before closing.    */
+DECL|method|getCommitOnClose
+specifier|public
+name|boolean
+name|getCommitOnClose
+parameter_list|()
+block|{
+return|return
+name|commitOnClose
+return|;
+block|}
 annotation|@
 name|Override
 DECL|method|toString
@@ -960,23 +951,6 @@ operator|new
 name|StringBuilder
 argument_list|()
 decl_stmt|;
-name|sb
-operator|.
-name|append
-argument_list|(
-literal|"matchVersion="
-argument_list|)
-operator|.
-name|append
-argument_list|(
-name|matchVersion
-argument_list|)
-operator|.
-name|append
-argument_list|(
-literal|"\n"
-argument_list|)
-expr_stmt|;
 name|sb
 operator|.
 name|append
@@ -1378,22 +1352,29 @@ argument_list|(
 literal|"\n"
 argument_list|)
 expr_stmt|;
+name|sb
+operator|.
+name|append
+argument_list|(
+literal|"commitOnClose="
+argument_list|)
+operator|.
+name|append
+argument_list|(
+name|getCommitOnClose
+argument_list|()
+argument_list|)
+operator|.
+name|append
+argument_list|(
+literal|"\n"
+argument_list|)
+expr_stmt|;
 return|return
 name|sb
 operator|.
 name|toString
 argument_list|()
-return|;
-block|}
-comment|/** Returns the {@code matchVersion} that was provided to    *  the constructor. */
-DECL|method|getMatchVersion
-specifier|public
-name|Version
-name|getMatchVersion
-parameter_list|()
-block|{
-return|return
-name|matchVersion
 return|;
 block|}
 block|}

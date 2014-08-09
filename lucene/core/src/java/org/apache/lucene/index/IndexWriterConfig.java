@@ -160,20 +160,6 @@ name|AlreadySetException
 import|;
 end_import
 
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|util
-operator|.
-name|Version
-import|;
-end_import
-
 begin_comment
 comment|/**  * Holds all the configuration that is used to create an {@link IndexWriter}.  * Once {@link IndexWriter} has been created with this object, changes to this  * object will not affect the {@link IndexWriter} instance. For that, use  * {@link LiveIndexWriterConfig} that is returned from {@link IndexWriter#getConfig()}.  *   *<p>  * All setter methods return {@link IndexWriterConfig} to allow chaining  * settings conveniently, for example:  *   *<pre class="prettyprint">  * IndexWriterConfig conf = new IndexWriterConfig(analyzer);  * conf.setter1().setter2();  *</pre>  *   * @see IndexWriter#getConfig()  *   * @since 3.1  */
 end_comment
@@ -306,6 +292,16 @@ name|DEFAULT_CHECK_INTEGRITY_AT_MERGE
 init|=
 literal|false
 decl_stmt|;
+comment|/** Default value for whether calls to {@link IndexWriter#close()} include a commit. */
+DECL|field|DEFAULT_COMMIT_ON_CLOSE
+specifier|public
+specifier|final
+specifier|static
+name|boolean
+name|DEFAULT_COMMIT_ON_CLOSE
+init|=
+literal|true
+decl_stmt|;
 comment|/**    * Sets the default (for any instance) maximum time to wait for a write lock    * (in milliseconds).    */
 DECL|method|setDefaultWriteLockTimeout
 specifier|public
@@ -371,14 +367,11 @@ return|return
 name|this
 return|;
 block|}
-comment|/**    * Creates a new config that with defaults that match the specified    * {@link Version} as well as the default {@link    * Analyzer}. By default, {@link TieredMergePolicy} is used    * for merging;    * Note that {@link TieredMergePolicy} is free to select    * non-contiguous merges, which means docIDs may not    * remain monotonic over time.  If this is a problem you    * should switch to {@link LogByteSizeMergePolicy} or    * {@link LogDocMergePolicy}.    */
+comment|/**    * Creates a new config that with the default {@link    * Analyzer}. By default, {@link TieredMergePolicy} is used    * for merging;    * Note that {@link TieredMergePolicy} is free to select    * non-contiguous merges, which means docIDs may not    * remain monotonic over time.  If this is a problem you    * should switch to {@link LogByteSizeMergePolicy} or    * {@link LogDocMergePolicy}.    */
 DECL|method|IndexWriterConfig
 specifier|public
 name|IndexWriterConfig
 parameter_list|(
-name|Version
-name|matchVersion
-parameter_list|,
 name|Analyzer
 name|analyzer
 parameter_list|)
@@ -386,8 +379,6 @@ block|{
 name|super
 argument_list|(
 name|analyzer
-argument_list|,
-name|matchVersion
 argument_list|)
 expr_stmt|;
 block|}
@@ -1267,6 +1258,26 @@ name|setUseCompoundFile
 argument_list|(
 name|useCompoundFile
 argument_list|)
+return|;
+block|}
+comment|/**    * Sets if calls {@link IndexWriter#close()} should first commit    * before closing.  Use<code>true</code> to match behavior of Lucene 4.x.    */
+DECL|method|setCommitOnClose
+specifier|public
+name|IndexWriterConfig
+name|setCommitOnClose
+parameter_list|(
+name|boolean
+name|commitOnClose
+parameter_list|)
+block|{
+name|this
+operator|.
+name|commitOnClose
+operator|=
+name|commitOnClose
+expr_stmt|;
+return|return
+name|this
 return|;
 block|}
 annotation|@

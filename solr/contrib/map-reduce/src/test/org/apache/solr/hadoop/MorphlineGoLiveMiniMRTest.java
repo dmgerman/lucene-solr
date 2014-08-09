@@ -1801,7 +1801,7 @@ operator|!=
 literal|null
 condition|)
 block|{
-comment|//mrCluster.shutdown();
+comment|//mrCluster.close();
 name|mrCluster
 operator|=
 literal|null
