@@ -125,6 +125,14 @@ condition|(
 name|docTerms
 operator|!=
 literal|null
+operator|&&
+name|fieldTerms
+operator|.
+name|size
+argument_list|()
+operator|>
+operator|-
+literal|1
 condition|)
 block|{
 name|freqVector
