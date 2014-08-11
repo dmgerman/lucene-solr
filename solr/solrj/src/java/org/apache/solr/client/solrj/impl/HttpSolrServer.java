@@ -1921,15 +1921,6 @@ literal|false
 argument_list|)
 argument_list|)
 decl_stmt|;
-name|post
-operator|.
-name|setHeader
-argument_list|(
-literal|"Content-Charset"
-argument_list|,
-literal|"UTF-8"
-argument_list|)
-expr_stmt|;
 if|if
 condition|(
 operator|!
