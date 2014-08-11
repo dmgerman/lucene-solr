@@ -575,7 +575,7 @@ argument_list|)
 operator|+
 literal|"']"
 argument_list|,
-literal|"substring(//doc/str[@name='COUNTRY_NAME_s'], 1, 8)='MODIFIED'"
+literal|"substring((//doc/str[@name='COUNTRY_NAME_s'])[1], 1, 8)='MODIFIED'"
 argument_list|)
 expr_stmt|;
 block|}
