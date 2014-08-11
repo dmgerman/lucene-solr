@@ -148,7 +148,7 @@ literal|16
 argument_list|,
 literal|1
 operator|<<
-literal|30
+literal|27
 argument_list|,
 literal|8
 argument_list|,
