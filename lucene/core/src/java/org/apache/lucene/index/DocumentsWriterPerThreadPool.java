@@ -38,6 +38,20 @@ name|apache
 operator|.
 name|lucene
 operator|.
+name|store
+operator|.
+name|AlreadyClosedException
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
 name|util
 operator|.
 name|ThreadInterruptedException
@@ -439,9 +453,13 @@ assert|assert
 name|assertUnreleasedThreadStatesInactive
 argument_list|()
 assert|;
-return|return
-literal|null
-return|;
+throw|throw
+operator|new
+name|AlreadyClosedException
+argument_list|(
+literal|"this IndexWriter is closed"
+argument_list|)
+throw|;
 block|}
 finally|finally
 block|{
