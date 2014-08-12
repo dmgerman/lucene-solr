@@ -386,7 +386,11 @@ argument_list|,
 name|path
 argument_list|)
 expr_stmt|;
-comment|//    rootNode.buildOptimise(null);
+name|rootNode
+operator|.
+name|buildOptimize
+argument_list|()
+expr_stmt|;
 block|}
 comment|/**    * Uses {@link #streamRecords streamRecords} to getInst the JSON source but with    * a handler that collects all the emitted records into a single List which    * is returned upon completion.    *    * @param r the stream reader    * @return results a List of emitted records    */
 DECL|method|getAllRecords
@@ -576,19 +580,6 @@ argument_list|<>
 argument_list|()
 decl_stmt|;
 comment|// List of immediate child Nodes of this node
-DECL|field|wildCardNodes
-name|List
-argument_list|<
-name|Node
-argument_list|>
-name|wildCardNodes
-decl_stmt|;
-comment|// List of '//' style decendants of this Node
-DECL|field|wildAncestor
-name|Node
-name|wildAncestor
-decl_stmt|;
-comment|// ancestor Node containing '//' style decendants
 DECL|field|parent
 name|Node
 name|parent
@@ -667,36 +658,41 @@ name|fieldName
 expr_stmt|;
 comment|// name to store collected values against
 block|}
-comment|/**      * Walk the Node tree propagating any wildDescentant information to      * child nodes. This allows us to optimise the performance of the      * main getInst method.      */
-DECL|method|buildOptimise
+comment|/**      * Walk the Node tree propagating any wildDescentant information to      * child nodes.      */
+DECL|method|buildOptimize
 specifier|private
 name|void
-name|buildOptimise
-parameter_list|(
-name|Node
-name|wa
-parameter_list|)
+name|buildOptimize
+parameter_list|()
 block|{
-name|wildAncestor
-operator|=
-name|wa
-expr_stmt|;
 if|if
 condition|(
-name|wildCardNodes
+name|parent
 operator|!=
 literal|null
-condition|)
-name|wa
-operator|=
+operator|&&
+name|parent
+operator|.
+name|recursiveWildCardChild
+operator|!=
+literal|null
+operator|&&
 name|this
-expr_stmt|;
-if|if
-condition|(
-name|childNodes
-operator|!=
+operator|.
+name|recursiveWildCardChild
+operator|==
 literal|null
 condition|)
+block|{
+name|this
+operator|.
+name|recursiveWildCardChild
+operator|=
+name|parent
+operator|.
+name|recursiveWildCardChild
+expr_stmt|;
+block|}
 for|for
 control|(
 name|Node
@@ -709,10 +705,8 @@ argument_list|()
 control|)
 name|n
 operator|.
-name|buildOptimise
-argument_list|(
-name|wa
-argument_list|)
+name|buildOptimize
+argument_list|()
 expr_stmt|;
 block|}
 DECL|field|WILDCARD_PATH
@@ -1049,7 +1043,7 @@ argument_list|>
 name|result
 init|=
 operator|new
-name|HashMap
+name|LinkedHashMap
 argument_list|<>
 argument_list|()
 decl_stmt|;
