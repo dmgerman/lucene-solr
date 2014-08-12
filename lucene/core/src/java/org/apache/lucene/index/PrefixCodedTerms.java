@@ -120,6 +120,20 @@ name|BytesRef
 import|;
 end_import
 
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|util
+operator|.
+name|BytesRefBuilder
+import|;
+end_import
+
 begin_comment
 comment|/**  * Prefix codes term instances (prefixes are shared)  * @lucene.experimental  */
 end_comment
@@ -210,11 +224,11 @@ init|=
 literal|""
 decl_stmt|;
 DECL|field|bytes
-name|BytesRef
+name|BytesRefBuilder
 name|bytes
 init|=
 operator|new
-name|BytesRef
+name|BytesRefBuilder
 argument_list|()
 decl_stmt|;
 DECL|field|term
@@ -227,6 +241,9 @@ argument_list|(
 name|field
 argument_list|,
 name|bytes
+operator|.
+name|get
+argument_list|()
 argument_list|)
 decl_stmt|;
 DECL|method|PrefixCodedTermsIterator
@@ -354,6 +371,7 @@ argument_list|(
 name|bytes
 operator|.
 name|bytes
+argument_list|()
 argument_list|,
 name|prefix
 argument_list|,
@@ -362,11 +380,12 @@ argument_list|)
 expr_stmt|;
 name|bytes
 operator|.
-name|length
-operator|=
+name|setLength
+argument_list|(
 name|prefix
 operator|+
 name|suffix
+argument_list|)
 expr_stmt|;
 name|term
 operator|.
@@ -375,6 +394,9 @@ argument_list|(
 name|field
 argument_list|,
 name|bytes
+operator|.
+name|get
+argument_list|()
 argument_list|)
 expr_stmt|;
 return|return
@@ -450,6 +472,15 @@ name|Term
 argument_list|(
 literal|""
 argument_list|)
+decl_stmt|;
+DECL|field|lastTermBytes
+specifier|private
+name|BytesRefBuilder
+name|lastTermBytes
+init|=
+operator|new
+name|BytesRefBuilder
+argument_list|()
 decl_stmt|;
 comment|/** add a term */
 DECL|method|add
@@ -584,9 +615,7 @@ argument_list|,
 name|suffix
 argument_list|)
 expr_stmt|;
-name|lastTerm
-operator|.
-name|bytes
+name|lastTermBytes
 operator|.
 name|copyBytes
 argument_list|(
@@ -594,6 +623,15 @@ name|term
 operator|.
 name|bytes
 argument_list|)
+expr_stmt|;
+name|lastTerm
+operator|.
+name|bytes
+operator|=
+name|lastTermBytes
+operator|.
+name|get
+argument_list|()
 expr_stmt|;
 name|lastTerm
 operator|.

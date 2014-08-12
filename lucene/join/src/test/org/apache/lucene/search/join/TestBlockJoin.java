@@ -4825,6 +4825,13 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
+name|BytesRefBuilder
+name|term
+init|=
+operator|new
+name|BytesRefBuilder
+argument_list|()
+decl_stmt|;
 for|for
 control|(
 name|int
@@ -4850,13 +4857,6 @@ name|deleteID
 argument_list|)
 expr_stmt|;
 block|}
-name|BytesRef
-name|term
-init|=
-operator|new
-name|BytesRef
-argument_list|()
-decl_stmt|;
 name|NumericUtils
 operator|.
 name|intToPrefixCodedBytes
@@ -4878,6 +4878,9 @@ argument_list|(
 literal|"blockID"
 argument_list|,
 name|term
+operator|.
+name|toBytesRef
+argument_list|()
 argument_list|)
 argument_list|)
 expr_stmt|;
@@ -4891,6 +4894,9 @@ argument_list|(
 literal|"blockID"
 argument_list|,
 name|term
+operator|.
+name|toBytesRef
+argument_list|()
 argument_list|)
 argument_list|)
 expr_stmt|;

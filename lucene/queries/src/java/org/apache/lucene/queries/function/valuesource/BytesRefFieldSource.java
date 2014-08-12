@@ -170,7 +170,7 @@ name|lucene
 operator|.
 name|util
 operator|.
-name|BytesRef
+name|BytesRefBuilder
 import|;
 end_import
 
@@ -348,7 +348,7 @@ parameter_list|(
 name|int
 name|doc
 parameter_list|,
-name|BytesRef
+name|BytesRefBuilder
 name|target
 parameter_list|)
 block|{
@@ -368,6 +368,7 @@ return|return
 name|target
 operator|.
 name|length
+argument_list|()
 operator|>
 literal|0
 return|;
@@ -381,11 +382,11 @@ name|doc
 parameter_list|)
 block|{
 specifier|final
-name|BytesRef
+name|BytesRefBuilder
 name|bytes
 init|=
 operator|new
-name|BytesRef
+name|BytesRefBuilder
 argument_list|()
 decl_stmt|;
 return|return
@@ -397,6 +398,9 @@ name|bytes
 argument_list|)
 condition|?
 name|bytes
+operator|.
+name|get
+argument_list|()
 operator|.
 name|utf8ToString
 argument_list|()
@@ -500,9 +504,8 @@ name|mval
 operator|.
 name|value
 operator|.
-name|length
-operator|=
-literal|0
+name|clear
+argument_list|()
 expr_stmt|;
 name|mval
 operator|.

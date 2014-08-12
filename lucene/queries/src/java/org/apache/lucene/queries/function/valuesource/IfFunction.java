@@ -118,7 +118,7 @@ name|lucene
 operator|.
 name|util
 operator|.
-name|BytesRef
+name|BytesRefBuilder
 import|;
 end_import
 
@@ -548,7 +548,7 @@ parameter_list|(
 name|int
 name|doc
 parameter_list|,
-name|BytesRef
+name|BytesRefBuilder
 name|target
 parameter_list|)
 block|{

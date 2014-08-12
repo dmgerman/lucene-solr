@@ -3025,9 +3025,8 @@ decl_stmt|;
 name|mutableValue
 operator|.
 name|value
-operator|=
-operator|new
-name|BytesRef
+operator|.
+name|copyChars
 argument_list|(
 name|expected
 argument_list|)

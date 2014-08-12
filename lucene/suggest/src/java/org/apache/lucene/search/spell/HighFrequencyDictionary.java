@@ -124,6 +124,20 @@ name|BytesRef
 import|;
 end_import
 
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|util
+operator|.
+name|BytesRefBuilder
+import|;
+end_import
+
 begin_comment
 comment|/**  * HighFrequencyDictionary: terms taken from the given field  * of a Lucene index, which appear in a number of documents  * above a given threshold.  *  * Threshold is a value in [0..1] representing the minimum  * number of documents (of the total) where a term should appear.  *   * Based on LuceneDictionary.  */
 end_comment
@@ -212,11 +226,11 @@ block|{
 DECL|field|spare
 specifier|private
 specifier|final
-name|BytesRef
+name|BytesRefBuilder
 name|spare
 init|=
 operator|new
-name|BytesRef
+name|BytesRefBuilder
 argument_list|()
 decl_stmt|;
 DECL|field|termsEnum
@@ -383,6 +397,9 @@ argument_list|)
 expr_stmt|;
 return|return
 name|spare
+operator|.
+name|get
+argument_list|()
 return|;
 block|}
 block|}

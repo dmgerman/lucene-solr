@@ -158,6 +158,20 @@ name|lucene
 operator|.
 name|util
 operator|.
+name|BytesRefBuilder
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|util
+operator|.
 name|SentinelIntSet
 import|;
 end_import
@@ -1729,6 +1743,9 @@ name|sortValues
 index|[
 name|i
 index|]
+operator|.
+name|get
+argument_list|()
 argument_list|)
 expr_stmt|;
 block|}
@@ -1757,7 +1774,7 @@ name|BytesRef
 argument_list|>
 block|{
 DECL|field|sortValues
-name|BytesRef
+name|BytesRefBuilder
 index|[]
 name|sortValues
 decl_stmt|;
@@ -1798,7 +1815,7 @@ expr_stmt|;
 name|sortValues
 operator|=
 operator|new
-name|BytesRef
+name|BytesRefBuilder
 index|[
 name|sortsIndex
 operator|.
@@ -1893,7 +1910,7 @@ name|i
 index|]
 operator|=
 operator|new
-name|BytesRef
+name|BytesRefBuilder
 argument_list|()
 expr_stmt|;
 if|if
@@ -2036,6 +2053,9 @@ name|sortValues
 index|[
 name|compIDX
 index|]
+operator|.
+name|get
+argument_list|()
 operator|.
 name|compareTo
 argument_list|(
@@ -2723,6 +2743,9 @@ name|sortValues
 index|[
 name|i
 index|]
+operator|.
+name|get
+argument_list|()
 argument_list|)
 expr_stmt|;
 block|}
@@ -2751,7 +2774,7 @@ name|BytesRef
 argument_list|>
 block|{
 DECL|field|sortValues
-name|BytesRef
+name|BytesRefBuilder
 index|[]
 name|sortValues
 decl_stmt|;
@@ -2785,7 +2808,7 @@ expr_stmt|;
 name|sortValues
 operator|=
 operator|new
-name|BytesRef
+name|BytesRefBuilder
 index|[
 name|sortsIndex
 operator|.
@@ -2840,7 +2863,7 @@ name|i
 index|]
 operator|=
 operator|new
-name|BytesRef
+name|BytesRefBuilder
 argument_list|()
 expr_stmt|;
 name|sortValues
@@ -2909,6 +2932,9 @@ name|sortValues
 index|[
 name|compIDX
 index|]
+operator|.
+name|get
+argument_list|()
 operator|.
 name|compareTo
 argument_list|(

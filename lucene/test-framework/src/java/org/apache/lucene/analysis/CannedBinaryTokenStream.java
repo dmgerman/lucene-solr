@@ -108,6 +108,20 @@ name|BytesRef
 import|;
 end_import
 
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|util
+operator|.
+name|BytesRefBuilder
+import|;
+end_import
+
 begin_comment
 comment|/**  * TokenStream from a canned list of binary (BytesRef-based)  * tokens.  */
 end_comment
@@ -312,11 +326,11 @@ block|{
 DECL|field|bytes
 specifier|private
 specifier|final
-name|BytesRef
+name|BytesRefBuilder
 name|bytes
 init|=
 operator|new
-name|BytesRef
+name|BytesRefBuilder
 argument_list|()
 decl_stmt|;
 annotation|@
@@ -327,7 +341,12 @@ name|void
 name|fillBytesRef
 parameter_list|()
 block|{
-comment|// no-op: we already filled externally during owner's incrementToken
+name|bytes
+operator|.
+name|get
+argument_list|()
+expr_stmt|;
+comment|// sets the length on the bytesref
 block|}
 annotation|@
 name|Override
@@ -339,6 +358,9 @@ parameter_list|()
 block|{
 return|return
 name|bytes
+operator|.
+name|get
+argument_list|()
 return|;
 block|}
 annotation|@

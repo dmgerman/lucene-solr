@@ -158,7 +158,7 @@ name|lucene
 operator|.
 name|util
 operator|.
-name|CharsRef
+name|BytesRefBuilder
 import|;
 end_import
 
@@ -172,7 +172,7 @@ name|lucene
 operator|.
 name|util
 operator|.
-name|UnicodeUtil
+name|CharsRefBuilder
 import|;
 end_import
 
@@ -246,11 +246,11 @@ decl_stmt|;
 DECL|field|spareChars
 specifier|protected
 specifier|final
-name|CharsRef
+name|CharsRefBuilder
 name|spareChars
 init|=
 operator|new
-name|CharsRef
+name|CharsRefBuilder
 argument_list|()
 decl_stmt|;
 DECL|method|DocTermsIndexDocValues
@@ -381,15 +381,14 @@ parameter_list|(
 name|int
 name|doc
 parameter_list|,
-name|BytesRef
+name|BytesRefBuilder
 name|target
 parameter_list|)
 block|{
 name|target
 operator|.
-name|length
-operator|=
-literal|0
+name|clear
+argument_list|()
 expr_stmt|;
 name|target
 operator|.
@@ -407,6 +406,7 @@ return|return
 name|target
 operator|.
 name|length
+argument_list|()
 operator|>
 literal|0
 return|;
@@ -446,13 +446,11 @@ return|return
 literal|null
 return|;
 block|}
-name|UnicodeUtil
+name|spareChars
 operator|.
-name|UTF8toUTF16
+name|copyUTF8Bytes
 argument_list|(
 name|term
-argument_list|,
-name|spareChars
 argument_list|)
 expr_stmt|;
 return|return
@@ -787,9 +785,8 @@ name|mval
 operator|.
 name|value
 operator|.
-name|length
-operator|=
-literal|0
+name|clear
+argument_list|()
 expr_stmt|;
 name|mval
 operator|.

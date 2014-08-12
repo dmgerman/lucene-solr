@@ -76,6 +76,9 @@ name|xxx
 operator|.
 name|value
 operator|.
+name|get
+argument_list|()
+operator|.
 name|equals
 argument_list|(
 operator|new
@@ -151,9 +154,8 @@ name|xxx
 operator|.
 name|value
 operator|.
-name|length
-operator|=
-literal|0
+name|clear
+argument_list|()
 expr_stmt|;
 name|xxx
 operator|.
@@ -186,9 +188,8 @@ name|yyy
 operator|.
 name|value
 operator|.
-name|length
-operator|=
-literal|0
+name|clear
+argument_list|()
 expr_stmt|;
 name|yyy
 operator|.
@@ -271,9 +272,8 @@ name|xxx
 operator|.
 name|value
 operator|.
-name|length
-operator|=
-literal|0
+name|clear
+argument_list|()
 expr_stmt|;
 comment|// but leave bytes alone
 name|assertInEquality
@@ -293,9 +293,8 @@ name|yyy
 operator|.
 name|value
 operator|.
-name|length
-operator|=
-literal|0
+name|clear
+argument_list|()
 expr_stmt|;
 comment|// but leave bytes alone
 name|assertEquality

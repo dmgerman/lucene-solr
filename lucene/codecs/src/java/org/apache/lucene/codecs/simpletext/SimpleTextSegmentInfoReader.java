@@ -318,7 +318,7 @@ name|lucene
 operator|.
 name|util
 operator|.
-name|BytesRef
+name|BytesRefBuilder
 import|;
 end_import
 
@@ -381,11 +381,11 @@ parameter_list|)
 throws|throws
 name|IOException
 block|{
-name|BytesRef
+name|BytesRefBuilder
 name|scratch
 init|=
 operator|new
-name|BytesRef
+name|BytesRefBuilder
 argument_list|()
 decl_stmt|;
 name|String
@@ -438,6 +438,9 @@ operator|.
 name|startsWith
 argument_list|(
 name|scratch
+operator|.
+name|get
+argument_list|()
 argument_list|,
 name|SI_VERSION
 argument_list|)
@@ -470,6 +473,9 @@ operator|.
 name|startsWith
 argument_list|(
 name|scratch
+operator|.
+name|get
+argument_list|()
 argument_list|,
 name|SI_DOCCOUNT
 argument_list|)
@@ -507,6 +513,9 @@ operator|.
 name|startsWith
 argument_list|(
 name|scratch
+operator|.
+name|get
+argument_list|()
 argument_list|,
 name|SI_USECOMPOUND
 argument_list|)
@@ -544,6 +553,9 @@ operator|.
 name|startsWith
 argument_list|(
 name|scratch
+operator|.
+name|get
+argument_list|()
 argument_list|,
 name|SI_NUM_DIAG
 argument_list|)
@@ -608,6 +620,9 @@ operator|.
 name|startsWith
 argument_list|(
 name|scratch
+operator|.
+name|get
+argument_list|()
 argument_list|,
 name|SI_DIAG_KEY
 argument_list|)
@@ -639,6 +654,9 @@ operator|.
 name|startsWith
 argument_list|(
 name|scratch
+operator|.
+name|get
+argument_list|()
 argument_list|,
 name|SI_DIAG_VALUE
 argument_list|)
@@ -680,6 +698,9 @@ operator|.
 name|startsWith
 argument_list|(
 name|scratch
+operator|.
+name|get
+argument_list|()
 argument_list|,
 name|SI_NUM_FILES
 argument_list|)
@@ -742,6 +763,9 @@ operator|.
 name|startsWith
 argument_list|(
 name|scratch
+operator|.
+name|get
+argument_list|()
 argument_list|,
 name|SI_FILE
 argument_list|)
@@ -843,7 +867,7 @@ parameter_list|(
 name|int
 name|offset
 parameter_list|,
-name|BytesRef
+name|BytesRefBuilder
 name|scratch
 parameter_list|)
 block|{
@@ -854,16 +878,14 @@ argument_list|(
 name|scratch
 operator|.
 name|bytes
+argument_list|()
 argument_list|,
-name|scratch
-operator|.
-name|offset
-operator|+
 name|offset
 argument_list|,
 name|scratch
 operator|.
 name|length
+argument_list|()
 operator|-
 name|offset
 argument_list|,

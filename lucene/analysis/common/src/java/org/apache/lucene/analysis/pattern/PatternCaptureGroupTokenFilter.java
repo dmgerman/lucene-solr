@@ -126,6 +126,20 @@ name|CharsRef
 import|;
 end_import
 
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|util
+operator|.
+name|CharsRefBuilder
+import|;
+end_import
+
 begin_comment
 comment|/**  * CaptureGroup uses Java regexes to emit multiple tokens - one for each capture  * group in one or more patterns.  *  *<p>  * For example, a pattern like:  *</p>  *  *<p>  *<code>"(https?://([a-zA-Z\-_0-9.]+))"</code>  *</p>  *  *<p>  * when matched against the string "http://www.foo.com/index" would return the  * tokens "https://www.foo.com" and "www.foo.com".  *</p>  *  *<p>  * If none of the patterns match, or if preserveOriginal is true, the original  * token will be preserved.  *</p>  *<p>  * Each pattern is matched as often as it can be, so the pattern  *<code> "(...)"</code>, when matched against<code>"abcdefghi"</code> would  * produce<code>["abc","def","ghi"]</code>  *</p>  *<p>  * A camelCaseFilter could be written as:  *</p>  *<p>  *<code>  *   "([A-Z]{2,})",<br />  *   "(?&lt;![A-Z])([A-Z][a-z]+)",<br />  *   "(?:^|\\b|(?&lt;=[0-9_])|(?&lt;=[A-Z]{2}))([a-z]+)",<br />  *   "([0-9]+)"  *</code>  *</p>  *<p>  * plus if {@link #preserveOriginal} is true, it would also return  *<code>"camelCaseFilter</code>  *</p>  */
 end_comment
@@ -180,11 +194,11 @@ decl_stmt|;
 DECL|field|spare
 specifier|private
 specifier|final
-name|CharsRef
+name|CharsRefBuilder
 name|spare
 init|=
 operator|new
-name|CharsRef
+name|CharsRefBuilder
 argument_list|()
 decl_stmt|;
 DECL|field|groupCounts
@@ -476,6 +490,7 @@ operator|&&
 name|spare
 operator|.
 name|length
+argument_list|()
 operator|==
 name|end
 condition|)
@@ -624,6 +639,7 @@ argument_list|(
 name|spare
 operator|.
 name|chars
+argument_list|()
 argument_list|,
 name|start
 argument_list|,
@@ -713,6 +729,9 @@ operator|.
 name|reset
 argument_list|(
 name|spare
+operator|.
+name|get
+argument_list|()
 argument_list|)
 expr_stmt|;
 name|currentGroup
@@ -800,6 +819,7 @@ argument_list|(
 name|spare
 operator|.
 name|chars
+argument_list|()
 argument_list|,
 name|start
 argument_list|,

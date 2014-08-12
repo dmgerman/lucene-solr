@@ -236,6 +236,20 @@ name|BytesRef
 import|;
 end_import
 
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|util
+operator|.
+name|BytesRefBuilder
+import|;
+end_import
+
 begin_comment
 comment|/**  * Just like {@link Lucene41PostingsFormat} but with additional asserts.  */
 end_comment
@@ -636,7 +650,7 @@ argument_list|(
 name|termsEnum
 argument_list|)
 expr_stmt|;
-name|BytesRef
+name|BytesRefBuilder
 name|lastTerm
 init|=
 literal|null
@@ -761,6 +775,9 @@ literal|null
 operator|||
 name|lastTerm
 operator|.
+name|get
+argument_list|()
+operator|.
 name|compareTo
 argument_list|(
 name|term
@@ -777,9 +794,13 @@ condition|)
 block|{
 name|lastTerm
 operator|=
-name|BytesRef
+operator|new
+name|BytesRefBuilder
+argument_list|()
+expr_stmt|;
+name|lastTerm
 operator|.
-name|deepCopyOf
+name|append
 argument_list|(
 name|term
 argument_list|)

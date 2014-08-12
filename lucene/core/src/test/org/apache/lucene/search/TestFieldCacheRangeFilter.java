@@ -176,7 +176,7 @@ name|lucene
 operator|.
 name|util
 operator|.
-name|BytesRef
+name|BytesRefBuilder
 import|;
 end_import
 
@@ -4775,11 +4775,11 @@ argument_list|(
 literal|1
 argument_list|)
 expr_stmt|;
-name|BytesRef
+name|BytesRefBuilder
 name|term0
 init|=
 operator|new
-name|BytesRef
+name|BytesRefBuilder
 argument_list|()
 decl_stmt|;
 name|NumericUtils
@@ -4803,6 +4803,9 @@ argument_list|(
 literal|"id_int"
 argument_list|,
 name|term0
+operator|.
+name|get
+argument_list|()
 argument_list|)
 argument_list|)
 expr_stmt|;

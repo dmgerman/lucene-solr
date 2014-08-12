@@ -106,6 +106,20 @@ name|CharsRef
 import|;
 end_import
 
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|util
+operator|.
+name|CharsRefBuilder
+import|;
+end_import
+
 begin_comment
 comment|/**  * Parser for the Solr synonyms format.  *<ol>  *<li> Blank lines and lines starting with '#' are comments.  *<li> Explicit mappings match any token sequence on the LHS of "=>"  *        and replace with all alternatives on the RHS.  These types of mappings  *        ignore the expand parameter in the constructor.  *        Example:  *<blockquote>i-pod, i pod => ipod</blockquote>  *<li> Equivalent synonyms may be separated with commas and give  *        no explicit mapping.  In this case the mapping behavior will  *        be taken from the expand parameter in the constructor.  This allows  *        the same synonym file to be used in different synonym handling strategies.  *        Example:  *<blockquote>ipod, i-pod, i pod</blockquote>  *   *<li> Multiple synonym mapping entries are merged.  *        Example:  *<blockquote>  *         foo => foo bar<br>  *         foo => baz<br><br>  *         is equivalent to<br><br>  *         foo => foo bar, baz  *</blockquote>  *</ol>  * @lucene.experimental  */
 end_comment
@@ -387,7 +401,7 @@ name|trim
 argument_list|()
 argument_list|,
 operator|new
-name|CharsRef
+name|CharsRefBuilder
 argument_list|()
 argument_list|)
 expr_stmt|;
@@ -452,7 +466,7 @@ name|trim
 argument_list|()
 argument_list|,
 operator|new
-name|CharsRef
+name|CharsRefBuilder
 argument_list|()
 argument_list|)
 expr_stmt|;
@@ -517,7 +531,7 @@ name|trim
 argument_list|()
 argument_list|,
 operator|new
-name|CharsRef
+name|CharsRefBuilder
 argument_list|()
 argument_list|)
 expr_stmt|;

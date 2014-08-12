@@ -100,6 +100,20 @@ end_import
 
 begin_import
 import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|util
+operator|.
+name|BytesRefBuilder
+import|;
+end_import
+
+begin_import
+import|import
 name|java
 operator|.
 name|util
@@ -224,7 +238,7 @@ parameter_list|(
 name|int
 name|doc
 parameter_list|,
-name|BytesRef
+name|BytesRefBuilder
 name|target
 parameter_list|)
 block|{

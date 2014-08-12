@@ -210,7 +210,7 @@ name|lucene
 operator|.
 name|util
 operator|.
-name|BytesRef
+name|BytesRefBuilder
 import|;
 end_import
 
@@ -321,11 +321,11 @@ argument_list|,
 name|iocontext
 argument_list|)
 decl_stmt|;
-name|BytesRef
+name|BytesRefBuilder
 name|scratch
 init|=
 operator|new
-name|BytesRef
+name|BytesRefBuilder
 argument_list|()
 decl_stmt|;
 name|boolean
@@ -350,6 +350,9 @@ operator|.
 name|startsWith
 argument_list|(
 name|scratch
+operator|.
+name|get
+argument_list|()
 argument_list|,
 name|NUMFIELDS
 argument_list|)
@@ -412,6 +415,9 @@ operator|.
 name|startsWith
 argument_list|(
 name|scratch
+operator|.
+name|get
+argument_list|()
 argument_list|,
 name|NAME
 argument_list|)
@@ -443,6 +449,9 @@ operator|.
 name|startsWith
 argument_list|(
 name|scratch
+operator|.
+name|get
+argument_list|()
 argument_list|,
 name|NUMBER
 argument_list|)
@@ -479,6 +488,9 @@ operator|.
 name|startsWith
 argument_list|(
 name|scratch
+operator|.
+name|get
+argument_list|()
 argument_list|,
 name|ISINDEXED
 argument_list|)
@@ -524,6 +536,9 @@ operator|.
 name|startsWith
 argument_list|(
 name|scratch
+operator|.
+name|get
+argument_list|()
 argument_list|,
 name|INDEXOPTIONS
 argument_list|)
@@ -567,6 +582,9 @@ operator|.
 name|startsWith
 argument_list|(
 name|scratch
+operator|.
+name|get
+argument_list|()
 argument_list|,
 name|STORETV
 argument_list|)
@@ -603,6 +621,9 @@ operator|.
 name|startsWith
 argument_list|(
 name|scratch
+operator|.
+name|get
+argument_list|()
 argument_list|,
 name|PAYLOADS
 argument_list|)
@@ -639,6 +660,9 @@ operator|.
 name|startsWith
 argument_list|(
 name|scratch
+operator|.
+name|get
+argument_list|()
 argument_list|,
 name|NORMS
 argument_list|)
@@ -676,6 +700,9 @@ operator|.
 name|startsWith
 argument_list|(
 name|scratch
+operator|.
+name|get
+argument_list|()
 argument_list|,
 name|NORMS_TYPE
 argument_list|)
@@ -716,6 +743,9 @@ operator|.
 name|startsWith
 argument_list|(
 name|scratch
+operator|.
+name|get
+argument_list|()
 argument_list|,
 name|DOCVALUES
 argument_list|)
@@ -756,6 +786,9 @@ operator|.
 name|startsWith
 argument_list|(
 name|scratch
+operator|.
+name|get
+argument_list|()
 argument_list|,
 name|DOCVALUES_GEN
 argument_list|)
@@ -793,6 +826,9 @@ operator|.
 name|startsWith
 argument_list|(
 name|scratch
+operator|.
+name|get
+argument_list|()
 argument_list|,
 name|NUM_ATTS
 argument_list|)
@@ -857,6 +893,9 @@ operator|.
 name|startsWith
 argument_list|(
 name|scratch
+operator|.
+name|get
+argument_list|()
 argument_list|,
 name|ATT_KEY
 argument_list|)
@@ -888,6 +927,9 @@ operator|.
 name|startsWith
 argument_list|(
 name|scratch
+operator|.
+name|get
+argument_list|()
 argument_list|,
 name|ATT_VALUE
 argument_list|)
@@ -1043,7 +1085,7 @@ parameter_list|(
 name|int
 name|offset
 parameter_list|,
-name|BytesRef
+name|BytesRefBuilder
 name|scratch
 parameter_list|)
 block|{
@@ -1054,16 +1096,14 @@ argument_list|(
 name|scratch
 operator|.
 name|bytes
+argument_list|()
 argument_list|,
-name|scratch
-operator|.
-name|offset
-operator|+
 name|offset
 argument_list|,
 name|scratch
 operator|.
 name|length
+argument_list|()
 operator|-
 name|offset
 argument_list|,

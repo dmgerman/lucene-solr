@@ -366,6 +366,20 @@ name|lucene
 operator|.
 name|util
 operator|.
+name|BytesRefBuilder
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|util
+operator|.
 name|IntsRef
 import|;
 end_import
@@ -5196,11 +5210,11 @@ argument_list|()
 argument_list|)
 expr_stmt|;
 comment|// TODO: could be faster... but its slowCompletor for a reason
-name|BytesRef
+name|BytesRefBuilder
 name|spare
 init|=
 operator|new
-name|BytesRef
+name|BytesRefBuilder
 argument_list|()
 decl_stmt|;
 for|for
@@ -5231,6 +5245,9 @@ operator|.
 name|toFiniteStrings
 argument_list|(
 name|spare
+operator|.
+name|get
+argument_list|()
 argument_list|,
 name|tokenStreamToAutomaton
 argument_list|)

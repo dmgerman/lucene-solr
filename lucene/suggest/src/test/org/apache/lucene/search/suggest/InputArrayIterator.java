@@ -62,6 +62,20 @@ name|BytesRef
 import|;
 end_import
 
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|util
+operator|.
+name|BytesRefBuilder
+import|;
+end_import
+
 begin_comment
 comment|/**  * A {@link InputIterator} over a sequence of {@link Input}s.  */
 end_comment
@@ -109,11 +123,11 @@ decl_stmt|;
 DECL|field|spare
 specifier|private
 specifier|final
-name|BytesRef
+name|BytesRefBuilder
 name|spare
 init|=
 operator|new
-name|BytesRef
+name|BytesRefBuilder
 argument_list|()
 decl_stmt|;
 DECL|method|InputArrayIterator
@@ -294,6 +308,9 @@ argument_list|)
 expr_stmt|;
 return|return
 name|spare
+operator|.
+name|get
+argument_list|()
 return|;
 block|}
 return|return

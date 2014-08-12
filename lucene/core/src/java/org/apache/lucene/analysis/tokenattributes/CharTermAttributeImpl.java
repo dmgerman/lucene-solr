@@ -94,7 +94,7 @@ name|lucene
 operator|.
 name|util
 operator|.
-name|RamUsageEstimator
+name|BytesRefBuilder
 import|;
 end_import
 
@@ -108,7 +108,7 @@ name|lucene
 operator|.
 name|util
 operator|.
-name|UnicodeUtil
+name|RamUsageEstimator
 import|;
 end_import
 
@@ -404,14 +404,12 @@ block|}
 comment|// *** TermToBytesRefAttribute interface ***
 DECL|field|bytes
 specifier|private
-name|BytesRef
+name|BytesRefBuilder
 name|bytes
 init|=
 operator|new
-name|BytesRef
-argument_list|(
-name|MIN_BUFFER_SIZE
-argument_list|)
+name|BytesRefBuilder
+argument_list|()
 decl_stmt|;
 annotation|@
 name|Override
@@ -421,18 +419,21 @@ name|void
 name|fillBytesRef
 parameter_list|()
 block|{
-name|UnicodeUtil
+name|bytes
 operator|.
-name|UTF16toUTF8
+name|copyChars
 argument_list|(
 name|termBuffer
 argument_list|,
 literal|0
 argument_list|,
 name|termLength
-argument_list|,
-name|bytes
 argument_list|)
+expr_stmt|;
+name|bytes
+operator|.
+name|get
+argument_list|()
 expr_stmt|;
 block|}
 annotation|@
@@ -445,6 +446,9 @@ parameter_list|()
 block|{
 return|return
 name|bytes
+operator|.
+name|get
+argument_list|()
 return|;
 block|}
 comment|// *** CharSequence interface ***
@@ -1255,11 +1259,20 @@ name|t
 operator|.
 name|bytes
 operator|=
-name|BytesRef
+operator|new
+name|BytesRefBuilder
+argument_list|()
+expr_stmt|;
+name|t
 operator|.
-name|deepCopyOf
+name|bytes
+operator|.
+name|copyBytes
 argument_list|(
 name|bytes
+operator|.
+name|get
+argument_list|()
 argument_list|)
 expr_stmt|;
 return|return
@@ -1419,12 +1432,10 @@ name|class
 argument_list|,
 literal|"bytes"
 argument_list|,
-name|BytesRef
-operator|.
-name|deepCopyOf
-argument_list|(
 name|bytes
-argument_list|)
+operator|.
+name|toBytesRef
+argument_list|()
 argument_list|)
 expr_stmt|;
 block|}

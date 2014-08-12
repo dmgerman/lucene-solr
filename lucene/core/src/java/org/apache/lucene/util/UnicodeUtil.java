@@ -12,18 +12,6 @@ name|util
 package|;
 end_package
 
-begin_import
-import|import
-name|java
-operator|.
-name|nio
-operator|.
-name|charset
-operator|.
-name|StandardCharsets
-import|;
-end_import
-
 begin_comment
 comment|/*  * Licensed to the Apache Software Foundation (ASF) under one or more  * contributor license agreements.  See the NOTICE file distributed with  * this work for additional information regarding copyright ownership.  * The ASF licenses this file to You under the Apache License, Version 2.0  * (the "License"); you may not use this file except in compliance with  * the License.  You may obtain a copy of the License at  *  *     http://www.apache.org/licenses/LICENSE-2.0  *  * Unless required by applicable law or agreed to in writing, software  * distributed under the License is distributed on an "AS IS" BASIS,  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.  * See the License for the specific language governing permissions and  * limitations under the License.  */
 end_comment
@@ -200,12 +188,21 @@ operator|)
 operator|-
 name|UNI_SUR_LOW_START
 decl_stmt|;
-comment|/** Encode characters from a char[] source, starting at    *  offset for length chars. After encoding, result.offset will always be 0.    */
-comment|// TODO: broken if incoming result.offset != 0
+comment|/** Maximum number of UTF8 bytes per UTF16 character. */
+DECL|field|MAX_UTF8_BYTES_PER_CHAR
+specifier|public
+specifier|static
+specifier|final
+name|int
+name|MAX_UTF8_BYTES_PER_CHAR
+init|=
+literal|4
+decl_stmt|;
+comment|/** Encode characters from a char[] source, starting at    *  offset for length chars. It is the responsibility of the    *  caller to make sure that the destination array is large enough.    */
 DECL|method|UTF16toUTF8
 specifier|public
 specifier|static
-name|void
+name|int
 name|UTF16toUTF8
 parameter_list|(
 specifier|final
@@ -221,8 +218,9 @@ specifier|final
 name|int
 name|length
 parameter_list|,
-name|BytesRef
-name|result
+name|byte
+index|[]
+name|out
 parameter_list|)
 block|{
 name|int
@@ -243,49 +241,6 @@ name|offset
 operator|+
 name|length
 decl_stmt|;
-name|byte
-index|[]
-name|out
-init|=
-name|result
-operator|.
-name|bytes
-decl_stmt|;
-comment|// Pre-allocate for worst case 4-for-1
-specifier|final
-name|int
-name|maxLen
-init|=
-name|length
-operator|*
-literal|4
-decl_stmt|;
-if|if
-condition|(
-name|out
-operator|.
-name|length
-operator|<
-name|maxLen
-condition|)
-name|out
-operator|=
-name|result
-operator|.
-name|bytes
-operator|=
-operator|new
-name|byte
-index|[
-name|maxLen
-index|]
-expr_stmt|;
-name|result
-operator|.
-name|offset
-operator|=
-literal|0
-expr_stmt|;
 while|while
 condition|(
 name|i
@@ -622,19 +577,16 @@ expr_stmt|;
 block|}
 block|}
 comment|//assert matches(source, offset, length, out, upto);
-name|result
-operator|.
-name|length
-operator|=
+return|return
 name|upto
-expr_stmt|;
+return|;
 block|}
-comment|/** Encode characters from this String, starting at offset    *  for length characters. After encoding, result.offset will always be 0.    */
+comment|/** Encode characters from this String, starting at offset    *  for length characters. It is the responsibility of the    *  caller to make sure that the destination array is large enough.    */
 comment|// TODO: broken if incoming result.offset != 0
 DECL|method|UTF16toUTF8
 specifier|public
 specifier|static
-name|void
+name|int
 name|UTF16toUTF8
 parameter_list|(
 specifier|final
@@ -649,8 +601,9 @@ specifier|final
 name|int
 name|length
 parameter_list|,
-name|BytesRef
-name|result
+name|byte
+index|[]
+name|out
 parameter_list|)
 block|{
 specifier|final
@@ -661,49 +614,6 @@ name|offset
 operator|+
 name|length
 decl_stmt|;
-name|byte
-index|[]
-name|out
-init|=
-name|result
-operator|.
-name|bytes
-decl_stmt|;
-name|result
-operator|.
-name|offset
-operator|=
-literal|0
-expr_stmt|;
-comment|// Pre-allocate for worst case 4-for-1
-specifier|final
-name|int
-name|maxLen
-init|=
-name|length
-operator|*
-literal|4
-decl_stmt|;
-if|if
-condition|(
-name|out
-operator|.
-name|length
-operator|<
-name|maxLen
-condition|)
-name|out
-operator|=
-name|result
-operator|.
-name|bytes
-operator|=
-operator|new
-name|byte
-index|[
-name|maxLen
-index|]
-expr_stmt|;
 name|int
 name|upto
 init|=
@@ -1062,12 +972,9 @@ expr_stmt|;
 block|}
 block|}
 comment|//assert matches(s, offset, length, out, upto);
-name|result
-operator|.
-name|length
-operator|=
+return|return
 name|upto
-expr_stmt|;
+return|;
 block|}
 comment|// Only called from assert
 comment|/*   private static boolean matches(char[] source, int offset, int length, byte[] result, int upto) {     try {       String s1 = new String(source, offset, length);       String s2 = new String(result, 0, upto, StandardCharsets.UTF_8);       if (!s1.equals(s2)) {         //System.out.println("DIFF: s1 len=" + s1.length());         //for(int i=0;i<s1.length();i++)         //  System.out.println("    " + i + ": " + (int) s1.charAt(i));         //System.out.println("s2 len=" + s2.length());         //for(int i=0;i<s2.length();i++)         //  System.out.println("    " + i + ": " + (int) s2.charAt(i));          // If the input string was invalid, then the         // difference is OK         if (!validUTF16String(s1))           return true;          return false;       }       return s1.equals(s2);     } catch (UnsupportedEncodingException uee) {       return false;     }   }    // Only called from assert   private static boolean matches(String source, int offset, int length, byte[] result, int upto) {     try {       String s1 = source.substring(offset, offset+length);       String s2 = new String(result, 0, upto, StandardCharsets.UTF_8);       if (!s1.equals(s2)) {         // Allow a difference if s1 is not valid UTF-16          //System.out.println("DIFF: s1 len=" + s1.length());         //for(int i=0;i<s1.length();i++)         //  System.out.println("    " + i + ": " + (int) s1.charAt(i));         //System.out.println("  s2 len=" + s2.length());         //for(int i=0;i<s2.length();i++)         //  System.out.println("    " + i + ": " + (int) s2.charAt(i));          // If the input string was invalid, then the         // difference is OK         if (!validUTF16String(s1))           return true;          return false;       }       return s1.equals(s2);     } catch (UnsupportedEncodingException uee) {       return false;     }   }   */
@@ -1984,11 +1891,11 @@ return|return
 name|codePointCount
 return|;
 block|}
-comment|/**    *<p>This method assumes valid UTF8 input. This method     *<strong>does not perform</strong> full UTF8 validation, it will check only the     * first byte of each codepoint (for multi-byte sequences any bytes after     * the head are skipped).      *     * @throws IllegalArgumentException If invalid codepoint header byte occurs or the     *    content is prematurely truncated.    */
+comment|/**    *<p>This method assumes valid UTF8 input. This method     *<strong>does not perform</strong> full UTF8 validation, it will check only the     * first byte of each codepoint (for multi-byte sequences any bytes after     * the head are skipped). It is the responsibility of the caller to make sure    * that the destination array is large enough.    *     * @throws IllegalArgumentException If invalid codepoint header byte occurs or the     *    content is prematurely truncated.    */
 DECL|method|UTF8toUTF32
 specifier|public
 specifier|static
-name|void
+name|int
 name|UTF8toUTF32
 parameter_list|(
 specifier|final
@@ -1996,45 +1903,12 @@ name|BytesRef
 name|utf8
 parameter_list|,
 specifier|final
-name|IntsRef
-name|utf32
+name|int
+index|[]
+name|ints
 parameter_list|)
 block|{
-comment|// TODO: broken if incoming result.offset != 0
-comment|// pre-alloc for worst case
 comment|// TODO: ints cannot be null, should be an assert
-if|if
-condition|(
-name|utf32
-operator|.
-name|ints
-operator|==
-literal|null
-operator|||
-name|utf32
-operator|.
-name|ints
-operator|.
-name|length
-operator|<
-name|utf8
-operator|.
-name|length
-condition|)
-block|{
-name|utf32
-operator|.
-name|ints
-operator|=
-operator|new
-name|int
-index|[
-name|utf8
-operator|.
-name|length
-index|]
-expr_stmt|;
-block|}
 name|int
 name|utf32Count
 init|=
@@ -2046,15 +1920,6 @@ init|=
 name|utf8
 operator|.
 name|offset
-decl_stmt|;
-specifier|final
-name|int
-index|[]
-name|ints
-init|=
-name|utf32
-operator|.
-name|ints
 decl_stmt|;
 specifier|final
 name|byte
@@ -2220,18 +2085,9 @@ operator|=
 name|v
 expr_stmt|;
 block|}
-name|utf32
-operator|.
-name|offset
-operator|=
-literal|0
-expr_stmt|;
-name|utf32
-operator|.
-name|length
-operator|=
+return|return
 name|utf32Count
-expr_stmt|;
+return|;
 block|}
 comment|/** Shift value for lead surrogate to form a supplementary character. */
 DECL|field|LEAD_SURROGATE_SHIFT_
@@ -2724,12 +2580,12 @@ name|toString
 argument_list|()
 return|;
 block|}
-comment|/**    * Interprets the given byte array as UTF-8 and converts to UTF-16. The {@link CharsRef} will be extended if     * it doesn't provide enough space to hold the worst case of each byte becoming a UTF-16 codepoint.    *<p>    * NOTE: Full characters are read, even if this reads past the length passed (and    * can result in an ArrayOutOfBoundsException if invalid UTF-8 is passed).    * Explicit checks for valid UTF-8 are not performed.     */
+comment|/**    * Interprets the given byte array as UTF-8 and converts to UTF-16. It is the    * responsibility of the caller to make sure that the destination array is large enough.    *<p>    * NOTE: Full characters are read, even if this reads past the length passed (and    * can result in an ArrayOutOfBoundsException if invalid UTF-8 is passed).    * Explicit checks for valid UTF-8 are not performed.     */
 comment|// TODO: broken if chars.offset != 0
 DECL|method|UTF8toUTF16
 specifier|public
 specifier|static
-name|void
+name|int
 name|UTF8toUTF16
 parameter_list|(
 name|byte
@@ -2742,38 +2598,15 @@ parameter_list|,
 name|int
 name|length
 parameter_list|,
-name|CharsRef
-name|chars
+name|char
+index|[]
+name|out
 parameter_list|)
 block|{
 name|int
 name|out_offset
 init|=
-name|chars
-operator|.
-name|offset
-operator|=
 literal|0
-decl_stmt|;
-specifier|final
-name|char
-index|[]
-name|out
-init|=
-name|chars
-operator|.
-name|chars
-operator|=
-name|ArrayUtil
-operator|.
-name|grow
-argument_list|(
-name|chars
-operator|.
-name|chars
-argument_list|,
-name|length
-argument_list|)
 decl_stmt|;
 specifier|final
 name|int
@@ -3064,31 +2897,26 @@ expr_stmt|;
 block|}
 block|}
 block|}
-name|chars
-operator|.
-name|length
-operator|=
+return|return
 name|out_offset
-operator|-
-name|chars
-operator|.
-name|offset
-expr_stmt|;
+return|;
 block|}
-comment|/**    * Utility method for {@link #UTF8toUTF16(byte[], int, int, CharsRef)}    * @see #UTF8toUTF16(byte[], int, int, CharsRef)    */
+comment|/**    * Utility method for {@link #UTF8toUTF16(byte[], int, int, char[])}    * @see #UTF8toUTF16(byte[], int, int, char[])    */
 DECL|method|UTF8toUTF16
 specifier|public
 specifier|static
-name|void
+name|int
 name|UTF8toUTF16
 parameter_list|(
 name|BytesRef
 name|bytesRef
 parameter_list|,
-name|CharsRef
+name|char
+index|[]
 name|chars
 parameter_list|)
 block|{
+return|return
 name|UTF8toUTF16
 argument_list|(
 name|bytesRef
@@ -3105,7 +2933,7 @@ name|length
 argument_list|,
 name|chars
 argument_list|)
-expr_stmt|;
+return|;
 block|}
 block|}
 end_class

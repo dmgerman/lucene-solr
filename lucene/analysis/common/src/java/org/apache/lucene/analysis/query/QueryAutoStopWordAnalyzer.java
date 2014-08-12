@@ -192,7 +192,7 @@ name|lucene
 operator|.
 name|util
 operator|.
-name|CharsRef
+name|CharsRefBuilder
 import|;
 end_import
 
@@ -464,11 +464,11 @@ argument_list|,
 name|field
 argument_list|)
 decl_stmt|;
-name|CharsRef
+name|CharsRefBuilder
 name|spare
 init|=
 operator|new
-name|CharsRef
+name|CharsRefBuilder
 argument_list|()
 decl_stmt|;
 if|if
@@ -515,13 +515,11 @@ operator|>
 name|maxDocFreq
 condition|)
 block|{
-name|UnicodeUtil
+name|spare
 operator|.
-name|UTF8toUTF16
+name|copyUTF8Bytes
 argument_list|(
 name|text
-argument_list|,
-name|spare
 argument_list|)
 expr_stmt|;
 name|stopWords

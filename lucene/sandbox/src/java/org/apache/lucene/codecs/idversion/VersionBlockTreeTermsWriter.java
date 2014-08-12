@@ -300,6 +300,20 @@ name|lucene
 operator|.
 name|util
 operator|.
+name|BytesRefBuilder
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|util
+operator|.
 name|FixedBitSet
 import|;
 end_import
@@ -328,7 +342,7 @@ name|lucene
 operator|.
 name|util
 operator|.
-name|IntsRef
+name|IntsRefBuilder
 import|;
 end_import
 
@@ -1748,7 +1762,7 @@ parameter_list|,
 name|RAMOutputStream
 name|scratchBytes
 parameter_list|,
-name|IntsRef
+name|IntsRefBuilder
 name|scratchIntsRef
 parameter_list|)
 throws|throws
@@ -2158,7 +2172,7 @@ argument_list|>
 argument_list|>
 name|subIndex
 parameter_list|,
-name|IntsRef
+name|IntsRefBuilder
 name|scratchIntsRef
 parameter_list|)
 throws|throws
@@ -2249,11 +2263,11 @@ decl_stmt|;
 DECL|field|scratchIntsRef
 specifier|private
 specifier|final
-name|IntsRef
+name|IntsRefBuilder
 name|scratchIntsRef
 init|=
 operator|new
-name|IntsRef
+name|IntsRefBuilder
 argument_list|()
 decl_stmt|;
 DECL|class|TermsWriter
@@ -2294,11 +2308,11 @@ comment|// to write a new block:
 DECL|field|lastTerm
 specifier|private
 specifier|final
-name|BytesRef
+name|BytesRefBuilder
 name|lastTerm
 init|=
 operator|new
-name|BytesRef
+name|BytesRefBuilder
 argument_list|()
 decl_stmt|;
 DECL|field|prefixStarts
@@ -2871,6 +2885,7 @@ argument_list|(
 name|lastTerm
 operator|.
 name|bytes
+argument_list|()
 argument_list|,
 literal|0
 argument_list|,
@@ -3860,6 +3875,7 @@ argument_list|(
 name|lastTerm
 operator|.
 name|length
+argument_list|()
 argument_list|,
 name|text
 operator|.
@@ -3880,10 +3896,10 @@ name|limit
 operator|&&
 name|lastTerm
 operator|.
-name|bytes
-index|[
+name|byteAt
+argument_list|(
 name|pos
-index|]
+argument_list|)
 operator|==
 name|text
 operator|.
@@ -3911,6 +3927,7 @@ init|=
 name|lastTerm
 operator|.
 name|length
+argument_list|()
 operator|-
 literal|1
 init|;

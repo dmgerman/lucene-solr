@@ -164,6 +164,20 @@ name|BytesRef
 import|;
 end_import
 
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|util
+operator|.
+name|BytesRefBuilder
+import|;
+end_import
+
 begin_comment
 comment|/**  * Base rewrite method for collecting only the top terms  * via a priority queue.  * @lucene.internal Only public to be accessible by spans package.  */
 end_comment
@@ -380,7 +394,7 @@ expr_stmt|;
 block|}
 comment|// for assert:
 specifier|private
-name|BytesRef
+name|BytesRefBuilder
 name|lastTerm
 decl_stmt|;
 specifier|private
@@ -404,9 +418,13 @@ condition|)
 block|{
 name|lastTerm
 operator|=
-name|BytesRef
+operator|new
+name|BytesRefBuilder
+argument_list|()
+expr_stmt|;
+name|lastTerm
 operator|.
-name|deepCopyOf
+name|append
 argument_list|(
 name|t
 argument_list|)
@@ -429,6 +447,9 @@ else|else
 block|{
 assert|assert
 name|lastTerm
+operator|.
+name|get
+argument_list|()
 operator|.
 name|compareTo
 argument_list|(
@@ -533,6 +554,9 @@ argument_list|(
 name|t
 operator|.
 name|bytes
+operator|.
+name|get
+argument_list|()
 argument_list|)
 operator|>
 literal|0
@@ -631,6 +655,9 @@ argument_list|(
 name|st
 operator|.
 name|bytes
+operator|.
+name|get
+argument_list|()
 argument_list|,
 name|st
 argument_list|)
@@ -700,6 +727,9 @@ argument_list|(
 name|st
 operator|.
 name|bytes
+operator|.
+name|get
+argument_list|()
 argument_list|)
 expr_stmt|;
 name|st
@@ -770,6 +800,9 @@ argument_list|(
 name|t
 operator|.
 name|bytes
+operator|.
+name|get
+argument_list|()
 argument_list|)
 expr_stmt|;
 block|}
@@ -839,6 +872,9 @@ argument_list|,
 name|st
 operator|.
 name|bytes
+operator|.
+name|toBytesRef
+argument_list|()
 argument_list|)
 decl_stmt|;
 assert|assert
@@ -1032,11 +1068,17 @@ name|st1
 operator|.
 name|bytes
 operator|.
+name|get
+argument_list|()
+operator|.
 name|compareTo
 argument_list|(
 name|st2
 operator|.
 name|bytes
+operator|.
+name|get
+argument_list|()
 argument_list|)
 return|;
 block|}
@@ -1056,11 +1098,11 @@ block|{
 DECL|field|bytes
 specifier|public
 specifier|final
-name|BytesRef
+name|BytesRefBuilder
 name|bytes
 init|=
 operator|new
-name|BytesRef
+name|BytesRefBuilder
 argument_list|()
 decl_stmt|;
 DECL|field|boost
@@ -1115,11 +1157,17 @@ name|other
 operator|.
 name|bytes
 operator|.
+name|get
+argument_list|()
+operator|.
 name|compareTo
 argument_list|(
 name|this
 operator|.
 name|bytes
+operator|.
+name|get
+argument_list|()
 argument_list|)
 return|;
 else|else

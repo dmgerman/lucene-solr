@@ -238,6 +238,20 @@ name|lucene
 operator|.
 name|util
 operator|.
+name|CharsRefBuilder
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|util
+operator|.
 name|FixedBitSet
 import|;
 end_import
@@ -1182,14 +1196,12 @@ name|docsEnum
 init|=
 literal|null
 decl_stmt|;
-name|CharsRef
+name|CharsRefBuilder
 name|idRef
 init|=
 operator|new
-name|CharsRef
-argument_list|(
-literal|100
-argument_list|)
+name|CharsRefBuilder
+argument_list|()
 decl_stmt|;
 for|for
 control|(
@@ -1214,8 +1226,6 @@ break|break;
 comment|// figure out the hash for the term
 comment|// FUTURE: if conversion to strings costs too much, we could
 comment|// specialize and use the hash function that can work over bytes.
-name|idRef
-operator|=
 name|field
 operator|.
 name|getType
