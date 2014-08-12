@@ -2857,7 +2857,7 @@ name|Thread
 operator|.
 name|sleep
 argument_list|(
-literal|2000
+literal|3000
 argument_list|)
 expr_stmt|;
 try|try
@@ -2883,7 +2883,7 @@ name|Thread
 operator|.
 name|sleep
 argument_list|(
-literal|5000
+literal|10000
 argument_list|)
 expr_stmt|;
 try|try
@@ -2900,13 +2900,39 @@ name|Exception
 name|e3
 parameter_list|)
 block|{
+name|jetty
+operator|.
+name|stop
+argument_list|()
+expr_stmt|;
+name|Thread
+operator|.
+name|sleep
+argument_list|(
+literal|30000
+argument_list|)
+expr_stmt|;
+try|try
+block|{
+name|jetty
+operator|.
+name|start
+argument_list|()
+expr_stmt|;
+block|}
+catch|catch
+parameter_list|(
+name|Exception
+name|e4
+parameter_list|)
+block|{
 name|log
 operator|.
 name|error
 argument_list|(
 literal|"Could not get the port to start jetty again"
 argument_list|,
-name|e3
+name|e4
 argument_list|)
 expr_stmt|;
 comment|// we coud not get the port
@@ -2918,6 +2944,7 @@ expr_stmt|;
 return|return
 literal|false
 return|;
+block|}
 block|}
 block|}
 block|}
