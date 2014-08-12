@@ -837,7 +837,7 @@ literal|"spellcheck"
 argument_list|)
 decl_stmt|;
 name|NamedList
-name|suggestions
+name|collationHolder
 init|=
 operator|(
 name|NamedList
@@ -846,7 +846,7 @@ name|spellCheck
 operator|.
 name|get
 argument_list|(
-literal|"suggestions"
+literal|"collations"
 argument_list|)
 decl_stmt|;
 name|List
@@ -855,7 +855,7 @@ name|String
 argument_list|>
 name|collations
 init|=
-name|suggestions
+name|collationHolder
 operator|.
 name|getAll
 argument_list|(
@@ -1012,7 +1012,7 @@ literal|"spellcheck"
 argument_list|)
 decl_stmt|;
 name|NamedList
-name|suggestions
+name|collationHolder
 init|=
 operator|(
 name|NamedList
@@ -1021,7 +1021,7 @@ name|spellCheck
 operator|.
 name|get
 argument_list|(
-literal|"suggestions"
+literal|"collations"
 argument_list|)
 decl_stmt|;
 name|List
@@ -1030,7 +1030,7 @@ name|String
 argument_list|>
 name|collations
 init|=
-name|suggestions
+name|collationHolder
 operator|.
 name|getAll
 argument_list|(
@@ -1145,7 +1145,7 @@ argument_list|,
 literal|"partisian politcal mashine"
 argument_list|)
 argument_list|,
-literal|"//lst[@name='spellcheck']/lst[@name='suggestions']/str[@name='collation']='parisian political machine'"
+literal|"//lst[@name='spellcheck']/lst[@name='collations']/str[@name='collation']='parisian political machine'"
 argument_list|)
 expr_stmt|;
 name|assertQ
@@ -1219,7 +1219,7 @@ argument_list|,
 literal|"partisian politcal mashine"
 argument_list|)
 argument_list|,
-literal|"//lst[@name='spellcheck']/lst[@name='suggestions']/str[@name='collation']='partisan political machine'"
+literal|"//lst[@name='spellcheck']/lst[@name='collations']/str[@name='collation']='partisan political machine'"
 argument_list|)
 expr_stmt|;
 block|}
@@ -1432,7 +1432,7 @@ literal|"spellcheck"
 argument_list|)
 decl_stmt|;
 name|NamedList
-name|suggestions
+name|collationHolder
 init|=
 operator|(
 name|NamedList
@@ -1441,7 +1441,7 @@ name|spellCheck
 operator|.
 name|get
 argument_list|(
-literal|"suggestions"
+literal|"collations"
 argument_list|)
 decl_stmt|;
 name|List
@@ -1450,7 +1450,7 @@ name|String
 argument_list|>
 name|collations
 init|=
-name|suggestions
+name|collationHolder
 operator|.
 name|getAll
 argument_list|(
@@ -1697,7 +1697,7 @@ literal|"spellcheck"
 argument_list|)
 decl_stmt|;
 name|NamedList
-name|suggestions
+name|collationHolder
 init|=
 operator|(
 name|NamedList
@@ -1706,7 +1706,7 @@ name|spellCheck
 operator|.
 name|get
 argument_list|(
-literal|"suggestions"
+literal|"collations"
 argument_list|)
 decl_stmt|;
 name|String
@@ -1715,7 +1715,7 @@ init|=
 operator|(
 name|String
 operator|)
-name|suggestions
+name|collationHolder
 operator|.
 name|get
 argument_list|(
@@ -1807,7 +1807,7 @@ argument_list|(
 literal|"spellcheck"
 argument_list|)
 expr_stmt|;
-name|suggestions
+name|collationHolder
 operator|=
 operator|(
 name|NamedList
@@ -1816,7 +1816,7 @@ name|spellCheck
 operator|.
 name|get
 argument_list|(
-literal|"suggestions"
+literal|"collations"
 argument_list|)
 expr_stmt|;
 name|singleCollation
@@ -1824,7 +1824,7 @@ operator|=
 operator|(
 name|String
 operator|)
-name|suggestions
+name|collationHolder
 operator|.
 name|get
 argument_list|(
@@ -2039,7 +2039,7 @@ literal|"spellcheck"
 argument_list|)
 decl_stmt|;
 name|NamedList
-name|suggestions
+name|collationHolder
 init|=
 operator|(
 name|NamedList
@@ -2048,7 +2048,7 @@ name|spellCheck
 operator|.
 name|get
 argument_list|(
-literal|"suggestions"
+literal|"collations"
 argument_list|)
 decl_stmt|;
 name|String
@@ -2057,7 +2057,7 @@ init|=
 operator|(
 name|String
 operator|)
-name|suggestions
+name|collationHolder
 operator|.
 name|get
 argument_list|(
@@ -2173,7 +2173,7 @@ argument_list|(
 literal|"spellcheck"
 argument_list|)
 expr_stmt|;
-name|suggestions
+name|collationHolder
 operator|=
 operator|(
 name|NamedList
@@ -2182,7 +2182,7 @@ name|spellCheck
 operator|.
 name|get
 argument_list|(
-literal|"suggestions"
+literal|"collations"
 argument_list|)
 expr_stmt|;
 name|singleCollation
@@ -2190,7 +2190,7 @@ operator|=
 operator|(
 name|String
 operator|)
-name|suggestions
+name|collationHolder
 operator|.
 name|get
 argument_list|(
@@ -2315,7 +2315,7 @@ argument_list|(
 literal|"spellcheck"
 argument_list|)
 expr_stmt|;
-name|suggestions
+name|collationHolder
 operator|=
 operator|(
 name|NamedList
@@ -2324,7 +2324,7 @@ name|spellCheck
 operator|.
 name|get
 argument_list|(
-literal|"suggestions"
+literal|"collations"
 argument_list|)
 expr_stmt|;
 name|List
@@ -2333,7 +2333,7 @@ name|String
 argument_list|>
 name|collations
 init|=
-name|suggestions
+name|collationHolder
 operator|.
 name|getAll
 argument_list|(
@@ -2458,7 +2458,7 @@ argument_list|(
 literal|"spellcheck"
 argument_list|)
 expr_stmt|;
-name|suggestions
+name|collationHolder
 operator|=
 operator|(
 name|NamedList
@@ -2467,7 +2467,7 @@ name|spellCheck
 operator|.
 name|get
 argument_list|(
-literal|"suggestions"
+literal|"collations"
 argument_list|)
 expr_stmt|;
 name|List
@@ -2476,7 +2476,7 @@ name|NamedList
 argument_list|>
 name|expandedCollationList
 init|=
-name|suggestions
+name|collationHolder
 operator|.
 name|getAll
 argument_list|(
@@ -2901,7 +2901,7 @@ literal|"spellcheck"
 argument_list|)
 decl_stmt|;
 name|NamedList
-name|suggestions
+name|collationHolder
 init|=
 operator|(
 name|NamedList
@@ -2910,7 +2910,7 @@ name|spellCheck
 operator|.
 name|get
 argument_list|(
-literal|"suggestions"
+literal|"collations"
 argument_list|)
 decl_stmt|;
 name|List
@@ -2919,7 +2919,7 @@ name|String
 argument_list|>
 name|collations
 init|=
-name|suggestions
+name|collationHolder
 operator|.
 name|getAll
 argument_list|(
@@ -3064,13 +3064,13 @@ argument_list|,
 literal|"//lst[@name='spellcheck']/lst[@name='suggestions']/lst[@name='form']/arr[@name='suggestion']/lst/str[@name='word']='from'"
 argument_list|,
 comment|/* DirectSolrSpellChecker won't suggest if the edit distance> 2, so we can't test for this one...         "//lst[@name='spellcheck']/lst[@name='suggestions']/lst[@name='heathrow']/arr[@name='suggestion']/lst/str[@name='word']='hearth'", */
-literal|"//lst[@name='spellcheck']/lst[@name='suggestions']/bool[@name='correctlySpelled']='false'"
+literal|"//lst[@name='spellcheck']/bool[@name='correctlySpelled']='false'"
 argument_list|,
-literal|"//lst[@name='spellcheck']/lst[@name='suggestions']/lst[@name='collation']/str[@name='collationQuery']='teststop:(flew AND from AND heathrow)'"
+literal|"//lst[@name='spellcheck']/lst[@name='collations']/lst[@name='collation']/str[@name='collationQuery']='teststop:(flew AND from AND heathrow)'"
 argument_list|,
-literal|"//lst[@name='spellcheck']/lst[@name='suggestions']/lst[@name='collation']/int[@name='hits']=1"
+literal|"//lst[@name='spellcheck']/lst[@name='collations']/lst[@name='collation']/int[@name='hits']=1"
 argument_list|,
-literal|"//lst[@name='spellcheck']/lst[@name='suggestions']/lst[@name='collation']/lst[@name='misspellingsAndCorrections']/str[@name='form']='from'"
+literal|"//lst[@name='spellcheck']/lst[@name='collations']/lst[@name='collation']/lst[@name='misspellingsAndCorrections']/str[@name='form']='from'"
 argument_list|)
 expr_stmt|;
 name|assertQ
@@ -3157,13 +3157,13 @@ literal|"//result[@numFound=1]"
 argument_list|,
 literal|"//lst[@name='spellcheck']/lst[@name='suggestions']/lst[@name='june']/arr[@name='suggestion']/lst/str[@name='word']='jane'"
 argument_list|,
-literal|"//lst[@name='spellcheck']/lst[@name='suggestions']/bool[@name='correctlySpelled']='false'"
+literal|"//lst[@name='spellcheck']/bool[@name='correctlySpelled']='false'"
 argument_list|,
-literal|"//lst[@name='spellcheck']/lst[@name='suggestions']/lst[@name='collation']/str[@name='collationQuery']='teststop:(jane AND customs)'"
+literal|"//lst[@name='spellcheck']/lst[@name='collations']/lst[@name='collation']/str[@name='collationQuery']='teststop:(jane AND customs)'"
 argument_list|,
-literal|"//lst[@name='spellcheck']/lst[@name='suggestions']/lst[@name='collation']/int[@name='hits']=1"
+literal|"//lst[@name='spellcheck']/lst[@name='collations']/lst[@name='collation']/int[@name='hits']=1"
 argument_list|,
-literal|"//lst[@name='spellcheck']/lst[@name='suggestions']/lst[@name='collation']/lst[@name='misspellingsAndCorrections']/str[@name='june']='jane'"
+literal|"//lst[@name='spellcheck']/lst[@name='collations']/lst[@name='collation']/lst[@name='misspellingsAndCorrections']/str[@name='june']='jane'"
 argument_list|)
 expr_stmt|;
 comment|//SOLR-5090, alternativeTermCount==0 was being evaluated, sometimes would throw NPE
@@ -3238,7 +3238,7 @@ specifier|final
 name|String
 name|xpathPrefix
 init|=
-literal|"//lst[@name='spellcheck']/lst[@name='suggestions']/lst[@name='collation']/"
+literal|"//lst[@name='spellcheck']/lst[@name='collations']/lst[@name='collation']/"
 decl_stmt|;
 specifier|final
 name|SolrParams
@@ -3689,7 +3689,7 @@ literal|"spellcheck"
 argument_list|)
 decl_stmt|;
 name|NamedList
-name|suggestions
+name|collationList
 init|=
 operator|(
 name|NamedList
@@ -3698,16 +3698,22 @@ name|spellCheck
 operator|.
 name|get
 argument_list|(
-literal|"suggestions"
+literal|"collations"
 argument_list|)
 decl_stmt|;
 name|List
 argument_list|<
-name|String
+name|?
 argument_list|>
 name|collations
 init|=
-name|suggestions
+operator|(
+name|List
+argument_list|<
+name|?
+argument_list|>
+operator|)
+name|collationList
 operator|.
 name|getAll
 argument_list|(

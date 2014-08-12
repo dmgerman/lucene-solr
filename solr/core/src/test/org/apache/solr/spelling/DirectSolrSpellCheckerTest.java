@@ -693,7 +693,7 @@ literal|"//lst[@name='spellcheck']/lst[@name='suggestions']/lst[@name='fox']/arr
 argument_list|,
 literal|"//lst[@name='spellcheck']/lst[@name='suggestions']/lst[@name='fox']/arr[@name='suggestion']/lst/int[@name='freq']=2"
 argument_list|,
-literal|"//lst[@name='spellcheck']/lst[@name='suggestions']/bool[@name='correctlySpelled']='true'"
+literal|"//lst[@name='spellcheck']/bool[@name='correctlySpelled']='true'"
 argument_list|)
 expr_stmt|;
 block|}

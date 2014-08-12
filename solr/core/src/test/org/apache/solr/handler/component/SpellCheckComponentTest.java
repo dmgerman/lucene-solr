@@ -777,7 +777,7 @@ argument_list|,
 literal|"true"
 argument_list|)
 argument_list|,
-literal|"/spellcheck/suggestions/collation=='document'"
+literal|"/spellcheck/collations/collation=='document'"
 argument_list|)
 expr_stmt|;
 name|assertJQ
@@ -809,7 +809,7 @@ argument_list|,
 literal|"true"
 argument_list|)
 argument_list|,
-literal|"/spellcheck/suggestions/collation=='document lowerfilt:brown^4'"
+literal|"/spellcheck/collations/collation=='document lowerfilt:brown^4'"
 argument_list|)
 expr_stmt|;
 name|assertJQ
@@ -841,7 +841,7 @@ argument_list|,
 literal|"true"
 argument_list|)
 argument_list|,
-literal|"/spellcheck/suggestions/collation=='document brown'"
+literal|"/spellcheck/collations/collation=='document brown'"
 argument_list|)
 expr_stmt|;
 name|assertJQ
@@ -873,7 +873,7 @@ argument_list|,
 literal|"true"
 argument_list|)
 argument_list|,
-literal|"/spellcheck/suggestions/collation=='pixmaa'"
+literal|"/spellcheck/collations/collation=='pixmaa'"
 argument_list|)
 expr_stmt|;
 block|}
@@ -917,7 +917,7 @@ argument_list|,
 literal|"true"
 argument_list|)
 argument_list|,
-literal|"/spellcheck/suggestions=={'correctlySpelled':true}"
+literal|"/spellcheck/correctlySpelled==true"
 argument_list|)
 expr_stmt|;
 name|assertJQ
@@ -953,7 +953,7 @@ argument_list|,
 literal|"true"
 argument_list|)
 argument_list|,
-literal|"/spellcheck/suggestions=={'correctlySpelled':true}"
+literal|"/spellcheck/correctlySpelled==true"
 argument_list|)
 expr_stmt|;
 name|assertJQ
@@ -989,7 +989,7 @@ argument_list|,
 literal|"true"
 argument_list|)
 argument_list|,
-literal|"/spellcheck/suggestions/correctlySpelled==false"
+literal|"/spellcheck/correctlySpelled==false"
 argument_list|)
 expr_stmt|;
 block|}
@@ -1707,7 +1707,7 @@ argument_list|(
 operator|(
 name|Boolean
 operator|)
-name|suggestions
+name|spellCheck
 operator|.
 name|get
 argument_list|(
@@ -1826,7 +1826,7 @@ argument_list|(
 operator|(
 name|Boolean
 operator|)
-name|suggestions
+name|spellCheck
 operator|.
 name|get
 argument_list|(

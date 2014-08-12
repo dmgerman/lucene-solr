@@ -752,6 +752,17 @@ literal|"25"
 argument_list|,
 literal|"lowerfilt"
 argument_list|,
+literal|"The quicker red fox jumped over the lazy brown dogs."
+argument_list|)
+expr_stmt|;
+name|index
+argument_list|(
+name|id
+argument_list|,
+literal|"26"
+argument_list|,
+literal|"lowerfilt"
+argument_list|,
 literal|"rod fix"
 argument_list|)
 expr_stmt|;
@@ -1147,7 +1158,7 @@ name|query
 argument_list|(
 name|buildRequest
 argument_list|(
-literal|"lowerfilt:(\"quote red fox\")"
+literal|"lowerfilt:(\"quick red fox\")"
 argument_list|,
 literal|false
 argument_list|,
