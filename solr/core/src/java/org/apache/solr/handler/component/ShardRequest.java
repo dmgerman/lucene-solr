@@ -191,6 +191,15 @@ name|PURPOSE_GET_MLT_RESULTS
 init|=
 literal|0x1000
 decl_stmt|;
+DECL|field|PURPOSE_REFINE_PIVOT_FACETS
+specifier|public
+specifier|final
+specifier|static
+name|int
+name|PURPOSE_REFINE_PIVOT_FACETS
+init|=
+literal|0x2000
+decl_stmt|;
 DECL|field|purpose
 specifier|public
 name|int

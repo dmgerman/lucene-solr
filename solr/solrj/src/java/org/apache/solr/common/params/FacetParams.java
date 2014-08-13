@@ -210,6 +210,40 @@ name|FACET
 operator|+
 literal|".missing"
 decl_stmt|;
+DECL|field|FACET_OVERREQUEST
+specifier|static
+specifier|final
+name|String
+name|FACET_OVERREQUEST
+init|=
+name|FACET
+operator|+
+literal|".overrequest"
+decl_stmt|;
+comment|/**    * The percentage to over-request by when performing initial distributed requests.    *     * default value is 1.5    */
+DECL|field|FACET_OVERREQUEST_RATIO
+specifier|public
+specifier|static
+specifier|final
+name|String
+name|FACET_OVERREQUEST_RATIO
+init|=
+name|FACET_OVERREQUEST
+operator|+
+literal|".ratio"
+decl_stmt|;
+comment|/**    * An additional amount to over-request by when performing initial distributed requests.  This    * value will be added after accounting for the over-request ratio.    *     * default value is 10    */
+DECL|field|FACET_OVERREQUEST_COUNT
+specifier|public
+specifier|static
+specifier|final
+name|String
+name|FACET_OVERREQUEST_COUNT
+init|=
+name|FACET_OVERREQUEST
+operator|+
+literal|".count"
+decl_stmt|;
 comment|/**    * Comma separated list of fields to pivot    *     * example: author,type  (for types by author / types within author)    */
 DECL|field|FACET_PIVOT
 specifier|public
