@@ -212,20 +212,6 @@ name|solr
 operator|.
 name|util
 operator|.
-name|AbstractSolrTestCase
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|solr
-operator|.
-name|util
-operator|.
 name|SolrPluginUtils
 import|;
 end_import
@@ -4424,6 +4410,44 @@ literal|"true"
 argument_list|)
 argument_list|,
 literal|"//str[@name='parsedquery'][contains(.,'phrase_sw:\"zzzz xxxx\"~2^22.0')]"
+argument_list|)
+expr_stmt|;
+name|assertQ
+argument_list|(
+literal|"phrase field queries spanning multiple fields should be within their own dismax queries"
+argument_list|,
+name|req
+argument_list|(
+literal|"q"
+argument_list|,
+literal|"aaaa bbbb cccc"
+argument_list|,
+literal|"qf"
+argument_list|,
+literal|"phrase_sw phrase1_sw"
+argument_list|,
+literal|"pf2"
+argument_list|,
+literal|"phrase_sw phrase1_sw"
+argument_list|,
+literal|"pf3"
+argument_list|,
+literal|"phrase_sw phrase1_sw"
+argument_list|,
+literal|"defType"
+argument_list|,
+literal|"edismax"
+argument_list|,
+literal|"debugQuery"
+argument_list|,
+literal|"true"
+argument_list|)
+argument_list|,
+literal|"//str[@name='parsedquery'][contains(.,'(phrase_sw:\"aaaa bbbb\" | phrase1_sw:\"aaaa bbbb\")')]"
+argument_list|,
+literal|"//str[@name='parsedquery'][contains(.,'(phrase_sw:\"bbbb cccc\" | phrase1_sw:\"bbbb cccc\")')]"
+argument_list|,
+literal|"//str[@name='parsedquery'][contains(.,'(phrase_sw:\"aaaa bbbb cccc\" | phrase1_sw:\"aaaa bbbb cccc\")')]"
 argument_list|)
 expr_stmt|;
 block|}
