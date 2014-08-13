@@ -180,27 +180,6 @@ specifier|public
 class|class
 name|RequestHandlerUtils
 block|{
-comment|/**    * A common way to mark the response format as experimental    */
-DECL|method|addExperimentalFormatWarning
-specifier|public
-specifier|static
-name|void
-name|addExperimentalFormatWarning
-parameter_list|(
-name|SolrQueryResponse
-name|rsp
-parameter_list|)
-block|{
-name|rsp
-operator|.
-name|add
-argument_list|(
-literal|"WARNING"
-argument_list|,
-literal|"This response format is experimental.  It is likely to change in the future."
-argument_list|)
-expr_stmt|;
-block|}
 comment|/**    * Check the request parameters and decide if it should commit or optimize.    * If it does, it will check other related parameters such as "waitFlush" and "waitSearcher"    */
 DECL|method|handleCommit
 specifier|public
