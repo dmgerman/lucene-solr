@@ -366,6 +366,14 @@ block|,
 name|ReRankQParserPlugin
 operator|.
 name|class
+block|,
+name|ExportQParserPlugin
+operator|.
+name|NAME
+block|,
+name|ExportQParserPlugin
+operator|.
+name|class
 block|}
 decl_stmt|;
 comment|/** return a {@link QParser} */
