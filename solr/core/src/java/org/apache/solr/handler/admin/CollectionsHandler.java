@@ -126,39 +126,7 @@ name|cloud
 operator|.
 name|OverseerCollectionProcessor
 operator|.
-name|MAX_SHARDS_PER_NODE
-import|;
-end_import
-
-begin_import
-import|import static
-name|org
-operator|.
-name|apache
-operator|.
-name|solr
-operator|.
-name|cloud
-operator|.
-name|OverseerCollectionProcessor
-operator|.
 name|NUM_SLICES
-import|;
-end_import
-
-begin_import
-import|import static
-name|org
-operator|.
-name|apache
-operator|.
-name|solr
-operator|.
-name|cloud
-operator|.
-name|OverseerCollectionProcessor
-operator|.
-name|REPLICATION_FACTOR
 import|;
 end_import
 
@@ -341,6 +309,42 @@ operator|.
 name|CollectionAction
 operator|.
 name|REMOVEROLE
+import|;
+end_import
+
+begin_import
+import|import static
+name|org
+operator|.
+name|apache
+operator|.
+name|solr
+operator|.
+name|common
+operator|.
+name|cloud
+operator|.
+name|ZkStateReader
+operator|.
+name|MAX_SHARDS_PER_NODE
+import|;
+end_import
+
+begin_import
+import|import static
+name|org
+operator|.
+name|apache
+operator|.
+name|solr
+operator|.
+name|common
+operator|.
+name|cloud
+operator|.
+name|ZkStateReader
+operator|.
+name|AUTO_ADD_REPLICAS
 import|;
 end_import
 
@@ -629,22 +633,6 @@ operator|.
 name|cloud
 operator|.
 name|ClusterState
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|solr
-operator|.
-name|common
-operator|.
-name|cloud
-operator|.
-name|DocCollection
 import|;
 end_import
 
@@ -3318,6 +3306,8 @@ name|props
 argument_list|,
 literal|"name"
 argument_list|,
+name|ZkStateReader
+operator|.
 name|REPLICATION_FACTOR
 argument_list|,
 name|COLL_CONF
@@ -3331,6 +3321,8 @@ argument_list|,
 name|SHARDS_PROP
 argument_list|,
 name|ASYNC
+argument_list|,
+name|AUTO_ADD_REPLICAS
 argument_list|,
 literal|"router."
 argument_list|)
@@ -3596,6 +3588,8 @@ name|COLLECTION_PROP
 argument_list|,
 name|SHARD_ID_PROP
 argument_list|,
+name|ZkStateReader
+operator|.
 name|REPLICATION_FACTOR
 argument_list|,
 name|CREATE_NODE_SET

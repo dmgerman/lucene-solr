@@ -40,9 +40,11 @@ name|apache
 operator|.
 name|solr
 operator|.
+name|common
+operator|.
 name|cloud
 operator|.
-name|OverseerCollectionProcessor
+name|ZkStateReader
 operator|.
 name|MAX_SHARDS_PER_NODE
 import|;
@@ -61,22 +63,6 @@ operator|.
 name|OverseerCollectionProcessor
 operator|.
 name|NUM_SLICES
-import|;
-end_import
-
-begin_import
-import|import static
-name|org
-operator|.
-name|apache
-operator|.
-name|solr
-operator|.
-name|cloud
-operator|.
-name|OverseerCollectionProcessor
-operator|.
-name|REPLICATION_FACTOR
 import|;
 end_import
 
@@ -315,6 +301,22 @@ operator|.
 name|cloud
 operator|.
 name|Slice
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|solr
+operator|.
+name|common
+operator|.
+name|cloud
+operator|.
+name|ZkStateReader
 import|;
 end_import
 
@@ -1061,6 +1063,8 @@ name|props
 init|=
 name|makeMap
 argument_list|(
+name|ZkStateReader
+operator|.
 name|REPLICATION_FACTOR
 argument_list|,
 name|replicationFactor

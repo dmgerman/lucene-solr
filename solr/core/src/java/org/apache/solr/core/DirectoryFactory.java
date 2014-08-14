@@ -460,6 +460,17 @@ name|boolean
 name|isPersistent
 parameter_list|()
 function_decl|;
+comment|/**    * @return true if storage is shared.    */
+DECL|method|isSharedStorage
+specifier|public
+name|boolean
+name|isSharedStorage
+parameter_list|()
+block|{
+return|return
+literal|false
+return|;
+block|}
 comment|/**    * Releases the Directory so that it may be closed when it is no longer    * referenced.    *     * @throws IOException If there is a low-level I/O error.    */
 DECL|method|release
 specifier|public

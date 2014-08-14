@@ -14,6 +14,38 @@ end_package
 
 begin_import
 import|import
+name|java
+operator|.
+name|io
+operator|.
+name|Closeable
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
+name|io
+operator|.
+name|IOException
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
+name|util
+operator|.
+name|concurrent
+operator|.
+name|TimeUnit
+import|;
+end_import
+
+begin_import
+import|import
 name|org
 operator|.
 name|apache
@@ -398,6 +430,8 @@ specifier|public
 specifier|abstract
 class|class
 name|ElectionContext
+implements|implements
+name|Closeable
 block|{
 DECL|field|log
 specifier|static
@@ -504,7 +538,7 @@ specifier|public
 name|void
 name|close
 parameter_list|()
-block|{}
+block|{    }
 DECL|method|cancelElection
 specifier|public
 name|void
@@ -1154,6 +1188,11 @@ name|void
 name|close
 parameter_list|()
 block|{
+name|super
+operator|.
+name|close
+argument_list|()
+expr_stmt|;
 name|this
 operator|.
 name|isClosed
@@ -2962,6 +3001,8 @@ name|id
 argument_list|)
 expr_stmt|;
 block|}
+annotation|@
+name|Override
 DECL|method|cancelElection
 specifier|public
 name|void

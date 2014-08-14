@@ -4650,7 +4650,7 @@ name|params
 operator|.
 name|set
 argument_list|(
-name|OverseerCollectionProcessor
+name|ZkStateReader
 operator|.
 name|REPLICATION_FACTOR
 argument_list|,
@@ -4661,7 +4661,7 @@ name|params
 operator|.
 name|set
 argument_list|(
-name|OverseerCollectionProcessor
+name|ZkStateReader
 operator|.
 name|MAX_SHARDS_PER_NODE
 argument_list|,

@@ -494,6 +494,13 @@ argument_list|(
 literal|"tests.shardhandler.randomSeed"
 argument_list|)
 expr_stmt|;
+name|System
+operator|.
+name|clearProperty
+argument_list|(
+literal|"solr.data.dir"
+argument_list|)
+expr_stmt|;
 name|super
 operator|.
 name|tearDown

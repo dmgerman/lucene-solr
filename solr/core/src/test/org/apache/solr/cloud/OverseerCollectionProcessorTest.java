@@ -2530,7 +2530,7 @@ name|OverseerCollectionProcessor
 operator|.
 name|CREATECOLLECTION
 argument_list|,
-name|OverseerCollectionProcessor
+name|ZkStateReader
 operator|.
 name|REPLICATION_FACTOR
 argument_list|,
@@ -2556,7 +2556,7 @@ operator|.
 name|toString
 argument_list|()
 argument_list|,
-name|OverseerCollectionProcessor
+name|ZkStateReader
 operator|.
 name|MAX_SHARDS_PER_NODE
 argument_list|,
@@ -2603,7 +2603,7 @@ name|OverseerCollectionProcessor
 operator|.
 name|CREATECOLLECTION
 argument_list|,
-name|OverseerCollectionProcessor
+name|ZkStateReader
 operator|.
 name|REPLICATION_FACTOR
 argument_list|,
@@ -2629,7 +2629,7 @@ operator|.
 name|toString
 argument_list|()
 argument_list|,
-name|OverseerCollectionProcessor
+name|ZkStateReader
 operator|.
 name|MAX_SHARDS_PER_NODE
 argument_list|,

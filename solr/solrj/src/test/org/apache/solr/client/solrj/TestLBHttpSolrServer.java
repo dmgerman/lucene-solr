@@ -2044,12 +2044,10 @@ argument_list|,
 name|sslConfig
 argument_list|)
 expr_stmt|;
-name|System
+name|jetty
 operator|.
-name|setProperty
+name|setDataDir
 argument_list|(
-literal|"solr.data.dir"
-argument_list|,
 name|getDataDir
 argument_list|()
 argument_list|)

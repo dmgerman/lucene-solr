@@ -28,39 +28,7 @@ name|cloud
 operator|.
 name|OverseerCollectionProcessor
 operator|.
-name|MAX_SHARDS_PER_NODE
-import|;
-end_import
-
-begin_import
-import|import static
-name|org
-operator|.
-name|apache
-operator|.
-name|solr
-operator|.
-name|cloud
-operator|.
-name|OverseerCollectionProcessor
-operator|.
 name|NUM_SLICES
-import|;
-end_import
-
-begin_import
-import|import static
-name|org
-operator|.
-name|apache
-operator|.
-name|solr
-operator|.
-name|cloud
-operator|.
-name|OverseerCollectionProcessor
-operator|.
-name|REPLICATION_FACTOR
 import|;
 end_import
 
@@ -93,6 +61,42 @@ operator|.
 name|OverseerCollectionProcessor
 operator|.
 name|SHARDS_PROP
+import|;
+end_import
+
+begin_import
+import|import static
+name|org
+operator|.
+name|apache
+operator|.
+name|solr
+operator|.
+name|common
+operator|.
+name|cloud
+operator|.
+name|ZkStateReader
+operator|.
+name|REPLICATION_FACTOR
+import|;
+end_import
+
+begin_import
+import|import static
+name|org
+operator|.
+name|apache
+operator|.
+name|solr
+operator|.
+name|common
+operator|.
+name|cloud
+operator|.
+name|ZkStateReader
+operator|.
+name|MAX_SHARDS_PER_NODE
 import|;
 end_import
 

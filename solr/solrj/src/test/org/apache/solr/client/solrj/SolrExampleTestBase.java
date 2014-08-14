@@ -43,7 +43,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * This should include tests against the example solr config  *   * This lets us try various SolrServer implementations with the same tests.  *   *  * @since solr 1.3  */
+comment|/**  * This should include tests against the example solr config  *   * This lets us try various SolrServer implementations with the same tests.  *   */
 end_comment
 
 begin_class
@@ -77,7 +77,7 @@ name|beforeClass
 parameter_list|()
 throws|throws
 name|Exception
-block|{    }
+block|{        }
 annotation|@
 name|Override
 DECL|method|setUp
@@ -124,6 +124,36 @@ operator|.
 name|getCanonicalPath
 argument_list|()
 argument_list|)
+expr_stmt|;
+block|}
+annotation|@
+name|Override
+DECL|method|tearDown
+specifier|public
+name|void
+name|tearDown
+parameter_list|()
+throws|throws
+name|Exception
+block|{
+name|System
+operator|.
+name|clearProperty
+argument_list|(
+literal|"solr.solr.home"
+argument_list|)
+expr_stmt|;
+name|System
+operator|.
+name|clearProperty
+argument_list|(
+literal|"solr.data.dir"
+argument_list|)
+expr_stmt|;
+name|super
+operator|.
+name|tearDown
+argument_list|()
 expr_stmt|;
 block|}
 comment|/**    * Subclasses need to initialize the server impl    */

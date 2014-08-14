@@ -44,39 +44,7 @@ name|cloud
 operator|.
 name|OverseerCollectionProcessor
 operator|.
-name|MAX_SHARDS_PER_NODE
-import|;
-end_import
-
-begin_import
-import|import static
-name|org
-operator|.
-name|apache
-operator|.
-name|solr
-operator|.
-name|cloud
-operator|.
-name|OverseerCollectionProcessor
-operator|.
 name|NUM_SLICES
-import|;
-end_import
-
-begin_import
-import|import static
-name|org
-operator|.
-name|apache
-operator|.
-name|solr
-operator|.
-name|cloud
-operator|.
-name|OverseerCollectionProcessor
-operator|.
-name|REPLICATION_FACTOR
 import|;
 end_import
 
@@ -111,6 +79,42 @@ operator|.
 name|ZkNodeProps
 operator|.
 name|makeMap
+import|;
+end_import
+
+begin_import
+import|import static
+name|org
+operator|.
+name|apache
+operator|.
+name|solr
+operator|.
+name|common
+operator|.
+name|cloud
+operator|.
+name|ZkStateReader
+operator|.
+name|REPLICATION_FACTOR
+import|;
+end_import
+
+begin_import
+import|import static
+name|org
+operator|.
+name|apache
+operator|.
+name|solr
+operator|.
+name|common
+operator|.
+name|cloud
+operator|.
+name|ZkStateReader
+operator|.
+name|MAX_SHARDS_PER_NODE
 import|;
 end_import
 
@@ -621,22 +625,6 @@ operator|.
 name|cloud
 operator|.
 name|Slice
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|solr
-operator|.
-name|common
-operator|.
-name|cloud
-operator|.
-name|SolrZkClient
 import|;
 end_import
 
@@ -1868,8 +1856,9 @@ argument_list|,
 literal|"control_collection"
 argument_list|)
 expr_stmt|;
+comment|// we want hashes by default for the control, so set to 1 shard as opposed to leaving unset
 name|String
-name|numShards
+name|oldNumShards
 init|=
 name|System
 operator|.
@@ -1880,8 +1869,6 @@ operator|.
 name|NUM_SHARDS_PROP
 argument_list|)
 decl_stmt|;
-comment|// we want hashes by default for the control, so set to 1 shard as opposed to leaving unset
-comment|// System.clearProperty(ZkStateReader.NUM_SHARDS_PROP);
 name|System
 operator|.
 name|setProperty
@@ -1893,6 +1880,8 @@ argument_list|,
 literal|"1"
 argument_list|)
 expr_stmt|;
+try|try
+block|{
 name|File
 name|controlJettyDir
 init|=
@@ -1910,50 +1899,20 @@ name|createJetty
 argument_list|(
 name|controlJettyDir
 argument_list|,
+name|useJettyDataDir
+condition|?
+name|getDataDir
+argument_list|(
 name|testDir
 operator|+
 literal|"/control/data"
 argument_list|)
-expr_stmt|;
-comment|// don't pass shard name... let it default to "shard1"
-name|System
-operator|.
-name|clearProperty
-argument_list|(
-literal|"collection"
-argument_list|)
-expr_stmt|;
-if|if
-condition|(
-name|numShards
-operator|!=
+else|:
 literal|null
-condition|)
-block|{
-name|System
-operator|.
-name|setProperty
-argument_list|(
-name|ZkStateReader
-operator|.
-name|NUM_SHARDS_PROP
-argument_list|,
-name|numShards
 argument_list|)
 expr_stmt|;
-block|}
-else|else
-block|{
-name|System
-operator|.
-name|clearProperty
-argument_list|(
-name|ZkStateReader
-operator|.
-name|NUM_SHARDS_PROP
-argument_list|)
-expr_stmt|;
-block|}
+comment|// don't pass shard name... let it default to
+comment|// "shard1"
 name|controlClient
 operator|=
 name|createNewSolrServer
@@ -1971,7 +1930,8 @@ operator|<=
 literal|0
 condition|)
 block|{
-comment|// for now, just create the cloud client for the control if we don't create the normal cloud client.
+comment|// for now, just create the cloud client for the control if we don't
+comment|// create the normal cloud client.
 comment|// this can change if more tests need it.
 name|controlClientCloud
 operator|=
@@ -2002,8 +1962,51 @@ name|cloudClient
 operator|=
 name|controlClientCloud
 expr_stmt|;
-comment|// temporary - some code needs/uses cloudClient
+comment|// temporary - some code needs/uses
+comment|// cloudClient
 return|return;
+block|}
+block|}
+finally|finally
+block|{
+name|System
+operator|.
+name|clearProperty
+argument_list|(
+literal|"collection"
+argument_list|)
+expr_stmt|;
+if|if
+condition|(
+name|oldNumShards
+operator|!=
+literal|null
+condition|)
+block|{
+name|System
+operator|.
+name|setProperty
+argument_list|(
+name|ZkStateReader
+operator|.
+name|NUM_SHARDS_PROP
+argument_list|,
+name|oldNumShards
+argument_list|)
+expr_stmt|;
+block|}
+else|else
+block|{
+name|System
+operator|.
+name|clearProperty
+argument_list|(
+name|ZkStateReader
+operator|.
+name|NUM_SHARDS_PROP
+argument_list|)
+expr_stmt|;
+block|}
 block|}
 name|initCloud
 argument_list|()
@@ -9086,12 +9089,12 @@ argument_list|)
 decl_stmt|;
 if|if
 condition|(
-name|numShards
+name|replicationFactor
 operator|==
 literal|null
 condition|)
 block|{
-name|numShards
+name|replicationFactor
 operator|=
 operator|(
 name|Integer
@@ -10493,8 +10496,6 @@ operator|.
 name|getClusterState
 argument_list|()
 decl_stmt|;
-comment|//      Map<String,DocCollection> collections = clusterState
-comment|//          .getCollectionStates();
 if|if
 condition|(
 operator|!

@@ -24,6 +24,16 @@ name|java
 operator|.
 name|io
 operator|.
+name|Closeable
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
+name|io
+operator|.
 name|File
 import|;
 end_import
@@ -55,16 +65,6 @@ operator|.
 name|io
 operator|.
 name|StringWriter
-import|;
-end_import
-
-begin_import
-import|import
-name|java
-operator|.
-name|io
-operator|.
-name|UnsupportedEncodingException
 import|;
 end_import
 
@@ -439,6 +439,8 @@ DECL|class|SolrZkClient
 specifier|public
 class|class
 name|SolrZkClient
+implements|implements
+name|Closeable
 block|{
 comment|// These should *only* be used for debugging or monitoring purposes
 DECL|field|numOpens
@@ -561,6 +563,12 @@ return|return
 name|zkClientTimeout
 return|;
 block|}
+comment|// expert: for tests
+DECL|method|SolrZkClient
+specifier|public
+name|SolrZkClient
+parameter_list|()
+block|{        }
 DECL|method|SolrZkClient
 specifier|public
 name|SolrZkClient

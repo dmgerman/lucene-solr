@@ -281,6 +281,13 @@ name|createSystemDefault
 argument_list|()
 argument_list|)
 expr_stmt|;
+if|if
+condition|(
+name|cfg
+operator|!=
+literal|null
+condition|)
+block|{
 name|clientConnectionManager
 operator|.
 name|setMaxTotal
@@ -301,6 +308,7 @@ name|getMaxUpdateConnectionsPerHost
 argument_list|()
 argument_list|)
 expr_stmt|;
+block|}
 name|ModifiableSolrParams
 name|params
 init|=
@@ -308,6 +316,13 @@ operator|new
 name|ModifiableSolrParams
 argument_list|()
 decl_stmt|;
+if|if
+condition|(
+name|cfg
+operator|!=
+literal|null
+condition|)
+block|{
 name|params
 operator|.
 name|set
@@ -336,6 +351,7 @@ name|getDistributedConnectionTimeout
 argument_list|()
 argument_list|)
 expr_stmt|;
+block|}
 name|params
 operator|.
 name|set
