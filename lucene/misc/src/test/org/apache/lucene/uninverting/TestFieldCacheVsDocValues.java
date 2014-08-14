@@ -2418,24 +2418,7 @@ expr_stmt|;
 specifier|final
 name|int
 name|length
-decl_stmt|;
-if|if
-condition|(
-name|minLength
-operator|==
-name|maxLength
-condition|)
-block|{
-name|length
-operator|=
-name|minLength
-expr_stmt|;
-comment|// fixed length
-block|}
-else|else
-block|{
-name|length
-operator|=
+init|=
 name|TestUtil
 operator|.
 name|nextInt
@@ -2447,8 +2430,7 @@ name|minLength
 argument_list|,
 name|maxLength
 argument_list|)
-expr_stmt|;
-block|}
+decl_stmt|;
 name|int
 name|numValues
 init|=
@@ -2497,6 +2479,8 @@ name|randomSimpleString
 argument_list|(
 name|random
 argument_list|()
+argument_list|,
+name|minLength
 argument_list|,
 name|length
 argument_list|)

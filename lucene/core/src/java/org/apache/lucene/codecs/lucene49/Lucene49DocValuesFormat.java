@@ -211,7 +211,6 @@ end_comment
 begin_class
 DECL|class|Lucene49DocValuesFormat
 specifier|public
-specifier|final
 class|class
 name|Lucene49DocValuesFormat
 extends|extends

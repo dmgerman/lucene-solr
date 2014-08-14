@@ -704,10 +704,6 @@ begin_comment
 comment|// @SuppressCodecs("Lucene4x")
 end_comment
 
-begin_comment
-comment|// Sep codec cannot yet handle the offsets in our 4.x index!
-end_comment
-
 begin_class
 annotation|@
 name|SuppressCodecs
@@ -722,6 +718,8 @@ block|,
 literal|"Lucene45"
 block|,
 literal|"Lucene46"
+block|,
+literal|"Lucene49"
 block|}
 argument_list|)
 DECL|class|TestBackwardsCompatibility

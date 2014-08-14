@@ -144,9 +144,9 @@ name|lucene
 operator|.
 name|codecs
 operator|.
-name|lucene49
+name|lucene410
 operator|.
-name|Lucene49Codec
+name|Lucene410Codec
 import|;
 end_import
 
@@ -6329,7 +6329,7 @@ specifier|final
 class|class
 name|CustomPerFieldCodec
 extends|extends
-name|Lucene49Codec
+name|Lucene410Codec
 block|{
 DECL|field|simpleTextFormat
 specifier|private
@@ -6703,7 +6703,7 @@ argument_list|(
 literal|"NotRegistered"
 argument_list|,
 operator|new
-name|Lucene49Codec
+name|Lucene410Codec
 argument_list|()
 argument_list|)
 expr_stmt|;
