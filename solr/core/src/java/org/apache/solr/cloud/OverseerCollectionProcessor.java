@@ -12003,12 +12003,13 @@ name|ErrorCode
 operator|.
 name|BAD_REQUEST
 argument_list|,
-literal|"No shard with the specified name exists: "
+literal|"No shard with name "
 operator|+
-name|slice
-operator|.
-name|getName
-argument_list|()
+name|sliceId
+operator|+
+literal|" exists for collection "
+operator|+
+name|collection
 argument_list|)
 throw|;
 block|}
