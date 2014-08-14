@@ -2901,7 +2901,7 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
-comment|/**    * Implementation for {@link #close()} when {@link IndexWriterConfig#commitOnClose} is true.    */
+comment|/**    * Gracefully closes (commits, waits for merges), but calls rollback    * if there's an exc so the IndexWriter is always closed.  This is called    * from {@link #close} when {@link IndexWriterConfig#commitOnClose} is    * {@code true}.    */
 DECL|method|shutdown
 specifier|private
 name|void
@@ -2925,6 +2925,21 @@ literal|"cannot close: prepareCommit was already called with no corresponding ca
 argument_list|)
 throw|;
 block|}
+comment|// Ensure that only one thread actually gets to do the
+comment|// closing
+if|if
+condition|(
+name|shouldClose
+argument_list|()
+condition|)
+block|{
+name|boolean
+name|success
+init|=
+literal|false
+decl_stmt|;
+try|try
+block|{
 if|if
 condition|(
 name|infoStream
@@ -2945,13 +2960,6 @@ literal|"now flush at close"
 argument_list|)
 expr_stmt|;
 block|}
-name|boolean
-name|success
-init|=
-literal|false
-decl_stmt|;
-try|try
-block|{
 name|flush
 argument_list|(
 literal|true
@@ -2964,10 +2972,15 @@ argument_list|(
 literal|true
 argument_list|)
 expr_stmt|;
-name|commit
+name|commitInternal
+argument_list|(
+name|config
+operator|.
+name|getMergePolicy
 argument_list|()
+argument_list|)
 expr_stmt|;
-name|rollback
+name|rollbackInternal
 argument_list|()
 expr_stmt|;
 comment|// ie close, since we just committed
@@ -2988,7 +3001,7 @@ block|{
 comment|// Be certain to close the index on any exception
 try|try
 block|{
-name|rollback
+name|rollbackInternal
 argument_list|()
 expr_stmt|;
 block|}
@@ -3003,7 +3016,8 @@ block|}
 block|}
 block|}
 block|}
-comment|/**    * Closes all open resources and releases the write lock.    *    * If {@link IndexWriterConfig#commitOnClose} is<code>true</code>,    * this will attempt to gracefully shut down by writing any    * changes, waiting for any running merges, committing, and closing.    * In this case, note that:    *<ul>    *<li>If you called prepareCommit but failed to call commit, this    *       method will throw {@code IllegalStateException} and the {@code IndexWriter}    *       will not be closed.</li>    *<li>If this method throws any other exception, the {@code IndexWriter}    *       will be closed, but changes may have been lost.</li>    *</ul>    *    *<p><b>NOTE</b>: You must ensure no other threads are still making    * changes at the same time that this method is invoked.</p>    */
+block|}
+comment|/**    * Closes all open resources and releases the write lock.    *    * If {@link IndexWriterConfig#commitOnClose} is<code>true</code>,    * this will attempt to gracefully shut down by writing any    * changes, waiting for any running merges, committing, and closing.    * In this case, note that:    *<ul>    *<li>If you called prepareCommit but failed to call commit, this    *       method will throw {@code IllegalStateException} and the {@code IndexWriter}    *       will not be closed.</li>    *<li>If this method throws any other exception, the {@code IndexWriter}    *       will be closed, but changes may have been lost.</li>    *</ul>    *    *<p>    * Note that this may be a costly    * operation, so, try to re-use a single writer instead of    * closing and opening a new one.  See {@link #commit()} for    * caveats about write caching done by some IO devices.    *    *<p><b>NOTE</b>: You must ensure no other threads are still making    * changes at the same time that this method is invoked.</p>    */
 annotation|@
 name|Override
 DECL|method|close
@@ -3022,17 +3036,9 @@ name|getCommitOnClose
 argument_list|()
 condition|)
 block|{
-if|if
-condition|(
-name|closed
-operator|==
-literal|false
-condition|)
-block|{
 name|shutdown
 argument_list|()
 expr_stmt|;
-block|}
 block|}
 else|else
 block|{
