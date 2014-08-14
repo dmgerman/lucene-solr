@@ -118,12 +118,6 @@ specifier|public
 specifier|abstract
 class|class
 name|MergePolicy
-implements|implements
-name|java
-operator|.
-name|io
-operator|.
-name|Closeable
 block|{
 comment|/** A map of doc IDs. */
 DECL|class|DocMap
@@ -1306,16 +1300,6 @@ name|writer
 parameter_list|)
 throws|throws
 name|IOException
-function_decl|;
-comment|/**    * Release all resources for the policy.    */
-annotation|@
-name|Override
-DECL|method|close
-specifier|public
-specifier|abstract
-name|void
-name|close
-parameter_list|()
 function_decl|;
 comment|/**    * Returns true if a new segment (regardless of its origin) should use the    * compound file format. The default implementation returns<code>true</code>    * iff the size of the given mergedInfo is less or equal to    * {@link #getMaxCFSSegmentSizeMB()} and the size is less or equal to the    * TotalIndexSize * {@link #getNoCFSRatio()} otherwise<code>false</code>.    */
 DECL|method|useCompoundFile

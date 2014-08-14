@@ -184,7 +184,7 @@ name|lucene
 operator|.
 name|index
 operator|.
-name|SegmentInfo
+name|SegmentCommitInfo
 import|;
 end_import
 
@@ -198,7 +198,7 @@ name|lucene
 operator|.
 name|index
 operator|.
-name|SegmentCommitInfo
+name|SegmentInfo
 import|;
 end_import
 
@@ -1130,20 +1130,6 @@ name|writer
 argument_list|)
 argument_list|)
 return|;
-block|}
-annotation|@
-name|Override
-DECL|method|close
-specifier|public
-name|void
-name|close
-parameter_list|()
-block|{
-name|in
-operator|.
-name|close
-argument_list|()
-expr_stmt|;
 block|}
 annotation|@
 name|Override

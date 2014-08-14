@@ -916,11 +916,6 @@ name|HashSet
 argument_list|<>
 argument_list|()
 decl_stmt|;
-DECL|field|mergePolicy
-specifier|private
-name|MergePolicy
-name|mergePolicy
-decl_stmt|;
 DECL|field|mergeScheduler
 specifier|private
 specifier|final
@@ -1313,6 +1308,11 @@ condition|)
 block|{
 name|maybeMerge
 argument_list|(
+name|config
+operator|.
+name|getMergePolicy
+argument_list|()
+argument_list|,
 name|MergeTrigger
 operator|.
 name|FULL_FLUSH
@@ -2324,13 +2324,6 @@ operator|=
 name|config
 operator|.
 name|getInfoStream
-argument_list|()
-expr_stmt|;
-name|mergePolicy
-operator|=
-name|config
-operator|.
-name|getMergePolicy
 argument_list|()
 expr_stmt|;
 name|mergeScheduler
@@ -4828,6 +4821,11 @@ block|}
 block|}
 name|maybeMerge
 argument_list|(
+name|config
+operator|.
+name|getMergePolicy
+argument_list|()
+argument_list|,
 name|MergeTrigger
 operator|.
 name|EXPLICIT
@@ -5073,6 +5071,15 @@ argument_list|()
 argument_list|)
 expr_stmt|;
 block|}
+specifier|final
+name|MergePolicy
+name|mergePolicy
+init|=
+name|config
+operator|.
+name|getMergePolicy
+argument_list|()
+decl_stmt|;
 name|MergePolicy
 operator|.
 name|MergeSpecification
@@ -5344,6 +5351,11 @@ name|IOException
 block|{
 name|maybeMerge
 argument_list|(
+name|config
+operator|.
+name|getMergePolicy
+argument_list|()
+argument_list|,
 name|MergeTrigger
 operator|.
 name|EXPLICIT
@@ -5358,6 +5370,9 @@ specifier|final
 name|void
 name|maybeMerge
 parameter_list|(
+name|MergePolicy
+name|mergePolicy
+parameter_list|,
 name|MergeTrigger
 name|trigger
 parameter_list|,
@@ -5377,6 +5392,8 @@ name|newMergesFound
 init|=
 name|updatePendingMerges
 argument_list|(
+name|mergePolicy
+argument_list|,
 name|trigger
 argument_list|,
 name|maxNumSegments
@@ -5400,6 +5417,9 @@ specifier|synchronized
 name|boolean
 name|updatePendingMerges
 parameter_list|(
+name|MergePolicy
+name|mergePolicy
+parameter_list|,
 name|MergeTrigger
 name|trigger
 parameter_list|,
@@ -5820,14 +5840,8 @@ literal|"rollback: done finish merges"
 argument_list|)
 expr_stmt|;
 block|}
-comment|// Must pre-close these two, in case they increment
-comment|// changeCount so that we can then set it to false
-comment|// before calling closeInternal
-name|mergePolicy
-operator|.
-name|close
-argument_list|()
-expr_stmt|;
+comment|// Must pre-close in case it increments changeCount so that we can then
+comment|// set it to false before calling closeInternal
 name|mergeScheduler
 operator|.
 name|close
@@ -6041,14 +6055,12 @@ name|success
 condition|)
 block|{
 comment|// Must not hold IW's lock while closing
-comment|// mergePolicy/Scheduler: this can lead to deadlock,
+comment|// mergeScheduler: this can lead to deadlock,
 comment|// e.g. TestIW.testThreadInterruptDeadlock
 name|IOUtils
 operator|.
 name|closeWhileHandlingException
 argument_list|(
-name|mergePolicy
-argument_list|,
 name|mergeScheduler
 argument_list|)
 expr_stmt|;
@@ -7856,6 +7868,15 @@ argument_list|,
 name|SOURCE_ADDINDEXES_READERS
 argument_list|)
 expr_stmt|;
+specifier|final
+name|MergePolicy
+name|mergePolicy
+init|=
+name|config
+operator|.
+name|getMergePolicy
+argument_list|()
+decl_stmt|;
 name|boolean
 name|useCompoundFile
 decl_stmt|;
@@ -8452,14 +8473,22 @@ name|ensureOpen
 argument_list|()
 expr_stmt|;
 name|prepareCommitInternal
+argument_list|(
+name|config
+operator|.
+name|getMergePolicy
 argument_list|()
+argument_list|)
 expr_stmt|;
 block|}
 DECL|method|prepareCommitInternal
 specifier|private
 name|void
 name|prepareCommitInternal
-parameter_list|()
+parameter_list|(
+name|MergePolicy
+name|mergePolicy
+parameter_list|)
 throws|throws
 name|IOException
 block|{
@@ -8748,6 +8777,8 @@ condition|)
 block|{
 name|maybeMerge
 argument_list|(
+name|mergePolicy
+argument_list|,
 name|MergeTrigger
 operator|.
 name|FULL_FLUSH
@@ -8885,7 +8916,12 @@ name|ensureOpen
 argument_list|()
 expr_stmt|;
 name|commitInternal
+argument_list|(
+name|config
+operator|.
+name|getMergePolicy
 argument_list|()
+argument_list|)
 expr_stmt|;
 block|}
 comment|/** Returns true if there may be changes that have not been    *  committed.  There are cases where this may return true    *  when there are no actual "real" changes to the index,    *  for example if you've deleted by Term or Query but    *  that Term or Query does not match any documents.    *  Also, if a merge kicked off as a result of flushing a    *  new segment during {@link #commit}, or a concurrent    *  merged finished, this method may return true right    *  after you had just called {@link #commit}. */
@@ -8917,7 +8953,10 @@ specifier|private
 specifier|final
 name|void
 name|commitInternal
-parameter_list|()
+parameter_list|(
+name|MergePolicy
+name|mergePolicy
+parameter_list|)
 throws|throws
 name|IOException
 block|{
@@ -8999,7 +9038,9 @@ argument_list|)
 expr_stmt|;
 block|}
 name|prepareCommitInternal
-argument_list|()
+argument_list|(
+name|mergePolicy
+argument_list|)
 expr_stmt|;
 block|}
 else|else
@@ -9307,6 +9348,11 @@ condition|)
 block|{
 name|maybeMerge
 argument_list|(
+name|config
+operator|.
+name|getMergePolicy
+argument_list|()
+argument_list|,
 name|MergeTrigger
 operator|.
 name|FULL_FLUSH
@@ -12003,6 +12049,15 @@ operator|.
 name|currentTimeMillis
 argument_list|()
 decl_stmt|;
+specifier|final
+name|MergePolicy
+name|mergePolicy
+init|=
+name|config
+operator|.
+name|getMergePolicy
+argument_list|()
+decl_stmt|;
 try|try
 block|{
 try|try
@@ -12052,6 +12107,8 @@ block|}
 name|mergeMiddle
 argument_list|(
 name|merge
+argument_list|,
+name|mergePolicy
 argument_list|)
 expr_stmt|;
 name|mergeSuccess
@@ -12184,6 +12241,8 @@ condition|)
 block|{
 name|updatePendingMerges
 argument_list|(
+name|mergePolicy
+argument_list|,
 name|MergeTrigger
 operator|.
 name|MERGE_FINISHED
@@ -13675,6 +13734,9 @@ name|MergePolicy
 operator|.
 name|OneMerge
 name|merge
+parameter_list|,
+name|MergePolicy
+name|mergePolicy
 parameter_list|)
 throws|throws
 name|IOException
@@ -16552,6 +16614,11 @@ condition|)
 block|{
 name|maybeMerge
 argument_list|(
+name|config
+operator|.
+name|getMergePolicy
+argument_list|()
+argument_list|,
 name|MergeTrigger
 operator|.
 name|SEGMENT_FLUSH

@@ -323,14 +323,6 @@ return|return
 name|calibrateSizeByDeletes
 return|;
 block|}
-annotation|@
-name|Override
-DECL|method|close
-specifier|public
-name|void
-name|close
-parameter_list|()
-block|{}
 comment|/** Return the number of documents in the provided {@link    *  SegmentCommitInfo}, pro-rated by percentage of    *  non-deleted documents if {@link    *  #setCalibrateSizeByDeletes} is set. */
 DECL|method|sizeDocs
 specifier|protected

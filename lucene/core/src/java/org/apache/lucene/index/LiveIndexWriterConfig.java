@@ -667,6 +667,41 @@ return|return
 name|maxBufferedDocs
 return|;
 block|}
+comment|/**    * Expert: {@link MergePolicy} is invoked whenever there are changes to the    * segments in the index. Its role is to select which merges to do, if any,    * and return a {@link MergePolicy.MergeSpecification} describing the merges.    * It also selects merges to do for forceMerge.    *     *<p>    * Takes effect on subsequent merge selections. Any merges in flight or any    * merges already registered by the previous {@link MergePolicy} are not    * affected.    */
+DECL|method|setMergePolicy
+specifier|public
+name|LiveIndexWriterConfig
+name|setMergePolicy
+parameter_list|(
+name|MergePolicy
+name|mergePolicy
+parameter_list|)
+block|{
+if|if
+condition|(
+name|mergePolicy
+operator|==
+literal|null
+condition|)
+block|{
+throw|throw
+operator|new
+name|IllegalArgumentException
+argument_list|(
+literal|"mergePolicy must not be null"
+argument_list|)
+throw|;
+block|}
+name|this
+operator|.
+name|mergePolicy
+operator|=
+name|mergePolicy
+expr_stmt|;
+return|return
+name|this
+return|;
+block|}
 comment|/**    * Set the merged segment warmer. See {@link IndexReaderWarmer}.    *     *<p>    * Takes effect on the next merge.    */
 DECL|method|setMergedSegmentWarmer
 specifier|public

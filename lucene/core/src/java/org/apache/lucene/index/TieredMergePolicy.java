@@ -32,17 +32,7 @@ name|java
 operator|.
 name|util
 operator|.
-name|Locale
-import|;
-end_import
-
-begin_import
-import|import
-name|java
-operator|.
-name|util
-operator|.
-name|Map
+name|ArrayList
 import|;
 end_import
 
@@ -72,7 +62,7 @@ name|java
 operator|.
 name|util
 operator|.
-name|HashSet
+name|Comparator
 import|;
 end_import
 
@@ -82,7 +72,7 @@ name|java
 operator|.
 name|util
 operator|.
-name|Comparator
+name|HashSet
 import|;
 end_import
 
@@ -102,7 +92,17 @@ name|java
 operator|.
 name|util
 operator|.
-name|ArrayList
+name|Locale
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
+name|util
+operator|.
+name|Map
 import|;
 end_import
 
@@ -2709,14 +2709,6 @@ return|return
 name|spec
 return|;
 block|}
-annotation|@
-name|Override
-DECL|method|close
-specifier|public
-name|void
-name|close
-parameter_list|()
-block|{   }
 DECL|method|floorSize
 specifier|private
 name|long
