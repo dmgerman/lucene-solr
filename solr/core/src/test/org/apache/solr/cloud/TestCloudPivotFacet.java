@@ -404,6 +404,13 @@ parameter_list|()
 throws|throws
 name|Exception
 block|{
+name|waitForThingsToLevelOut
+argument_list|(
+literal|30000
+argument_list|)
+expr_stmt|;
+comment|// TODO: why whould we have to wait?
+comment|//
 name|handle
 operator|.
 name|clear
