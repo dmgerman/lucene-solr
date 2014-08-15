@@ -145,12 +145,13 @@ parameter_list|()
 throws|throws
 name|Exception
 block|{
+name|ModifiableSolrParams
 name|parameters
-operator|=
+init|=
 operator|new
 name|ModifiableSolrParams
 argument_list|()
-expr_stmt|;
+decl_stmt|;
 name|parameters
 operator|.
 name|add
