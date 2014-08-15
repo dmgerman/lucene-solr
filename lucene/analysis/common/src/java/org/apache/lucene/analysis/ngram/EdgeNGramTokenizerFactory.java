@@ -80,16 +80,6 @@ begin_import
 import|import
 name|java
 operator|.
-name|io
-operator|.
-name|Reader
-import|;
-end_import
-
-begin_import
-import|import
-name|java
-operator|.
 name|util
 operator|.
 name|Map
@@ -204,7 +194,7 @@ name|onOrAfter
 argument_list|(
 name|Version
 operator|.
-name|LUCENE_4_4
+name|LUCENE_4_4_0
 argument_list|)
 condition|)
 block|{

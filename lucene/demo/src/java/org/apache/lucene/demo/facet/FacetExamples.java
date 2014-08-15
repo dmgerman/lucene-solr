@@ -53,7 +53,7 @@ name|EXAMPLES_VER
 init|=
 name|Version
 operator|.
-name|LUCENE_5_0
+name|LUCENE_5_0_0
 decl_stmt|;
 block|}
 end_interface

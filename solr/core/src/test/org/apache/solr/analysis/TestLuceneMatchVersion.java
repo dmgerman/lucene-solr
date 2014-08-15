@@ -173,7 +173,7 @@ name|getProperty
 argument_list|(
 literal|"tests.luceneMatchVersion"
 argument_list|,
-literal|"LUCENE_CURRENT"
+literal|"LATEST"
 argument_list|)
 argument_list|)
 decl_stmt|;
@@ -283,7 +283,7 @@ name|assertEquals
 argument_list|(
 name|Version
 operator|.
-name|LUCENE_4_0
+name|LUCENE_4_0_0
 argument_list|,
 operator|(
 name|ana
@@ -300,7 +300,7 @@ name|assertEquals
 argument_list|(
 name|Version
 operator|.
-name|LUCENE_5_0
+name|LUCENE_5_0_0
 argument_list|,
 operator|(
 name|ana
@@ -340,23 +340,6 @@ operator|instanceof
 name|TurkishAnalyzer
 argument_list|)
 expr_stmt|;
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"DEFAULT_VERSION = "
-operator|+
-name|ana1
-operator|.
-name|getVersion
-argument_list|()
-operator|.
-name|name
-argument_list|()
-argument_list|)
-expr_stmt|;
 name|assertEquals
 argument_list|(
 name|DEFAULT_VERSION
@@ -394,7 +377,7 @@ name|assertEquals
 argument_list|(
 name|Version
 operator|.
-name|LUCENE_4_0
+name|LUCENE_4_0_0
 argument_list|,
 name|ana1
 operator|.

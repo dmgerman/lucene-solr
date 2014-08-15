@@ -134,7 +134,7 @@ name|version
 init|=
 name|Version
 operator|.
-name|LUCENE_CURRENT
+name|LATEST
 decl_stmt|;
 comment|// non final as it gets nulled if closed; pkg private for access by ReuseStrategy's final helper methods:
 DECL|field|storedValue

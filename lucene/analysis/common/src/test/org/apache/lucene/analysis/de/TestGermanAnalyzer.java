@@ -280,7 +280,7 @@ literal|"tischen"
 argument_list|)
 expr_stmt|;
 block|}
-comment|/** test some features of the new snowball filter    * these only pass with LUCENE_CURRENT, not if you use o.a.l.a.de.GermanStemmer    */
+comment|/** test some features of the new snowball filter    * these only pass with LATEST, not if you use o.a.l.a.de.GermanStemmer    */
 DECL|method|testGermanSpecials
 specifier|public
 name|void

@@ -2680,23 +2680,7 @@ name|ErrorCode
 operator|.
 name|SERVER_ERROR
 argument_list|,
-literal|"Invalid luceneMatchVersion '"
-operator|+
-name|matchVersion
-operator|+
-literal|"', valid values are: "
-operator|+
-name|Arrays
-operator|.
-name|toString
-argument_list|(
-name|Version
-operator|.
-name|values
-argument_list|()
-argument_list|)
-operator|+
-literal|" or a string in format 'V.V'"
+literal|"Invalid luceneMatchVersion.  Should be of the form 'V.V.V' (e.g. 4.8.0)"
 argument_list|,
 name|iae
 argument_list|)
@@ -2708,7 +2692,7 @@ name|version
 operator|==
 name|Version
 operator|.
-name|LUCENE_CURRENT
+name|LATEST
 operator|&&
 operator|!
 name|versionWarningAlreadyLogged
@@ -2723,7 +2707,7 @@ name|log
 operator|.
 name|warn
 argument_list|(
-literal|"You should not use LUCENE_CURRENT as luceneMatchVersion property: "
+literal|"You should not use LATEST as luceneMatchVersion property: "
 operator|+
 literal|"if you use this setting, and then Solr upgrades to a newer release of Lucene, "
 operator|+

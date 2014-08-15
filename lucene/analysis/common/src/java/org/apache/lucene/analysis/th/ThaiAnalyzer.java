@@ -338,7 +338,7 @@ name|onOrAfter
 argument_list|(
 name|Version
 operator|.
-name|LUCENE_4_8
+name|LUCENE_4_8_0
 argument_list|)
 condition|)
 block|{

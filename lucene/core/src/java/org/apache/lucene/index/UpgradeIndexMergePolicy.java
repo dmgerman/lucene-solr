@@ -26,7 +26,7 @@ name|lucene
 operator|.
 name|util
 operator|.
-name|Constants
+name|Version
 import|;
 end_import
 
@@ -115,7 +115,7 @@ operator|=
 name|base
 expr_stmt|;
 block|}
-comment|/** Returns if the given segment should be upgraded. The default implementation    * will return {@code !Constants.LUCENE_MAIN_VERSION.equals(si.getVersion())},    * so all segments created with a different version number than this Lucene version will    * get upgraded.    */
+comment|/** Returns if the given segment should be upgraded. The default implementation    * will return {@code !Version.LATEST.equals(si.getVersion())},    * so all segments created with a different version number than this Lucene version will    * get upgraded.    */
 DECL|method|shouldUpgradeSegment
 specifier|protected
 name|boolean
@@ -127,9 +127,9 @@ parameter_list|)
 block|{
 return|return
 operator|!
-name|Constants
+name|Version
 operator|.
-name|LUCENE_MAIN_VERSION
+name|LATEST
 operator|.
 name|equals
 argument_list|(

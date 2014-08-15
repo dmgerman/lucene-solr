@@ -209,12 +209,12 @@ argument_list|<>
 argument_list|()
 decl_stmt|;
 comment|//public static void main( String[] args ) throws Exception {
-comment|//  Analyzer analyzer = new WhitespaceAnalyzer(Version.LUCENE_CURRENT);
-comment|//  QueryParser parser = new QueryParser(Version.LUCENE_CURRENT,  "f", analyzer );
+comment|//  Analyzer analyzer = new WhitespaceAnalyzer(Version.LATEST);
+comment|//  QueryParser parser = new QueryParser(Version.LATEST,  "f", analyzer );
 comment|//  Query query = parser.parse( "a x:b" );
 comment|//  FieldQuery fieldQuery = new FieldQuery( query, true, false );
 comment|//  Directory dir = new RAMDirectory();
-comment|//  IndexWriter writer = new IndexWriter(dir, new IndexWriterConfig(Version.LUCENE_CURRENT, analyzer));
+comment|//  IndexWriter writer = new IndexWriter(dir, new IndexWriterConfig(Version.LATEST, analyzer));
 comment|//  Document doc = new Document();
 comment|//  FieldType ft = new FieldType(TextField.TYPE_STORED);
 comment|//  ft.setStoreTermVectors(true);

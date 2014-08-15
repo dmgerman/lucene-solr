@@ -955,7 +955,7 @@ expr_stmt|;
 name|String
 name|indexConfigPrefix
 decl_stmt|;
-comment|// Old indexDefaults and mainIndex sections are deprecated and fails fast for luceneMatchVersion=>LUCENE_4_0.
+comment|// Old indexDefaults and mainIndex sections are deprecated and fails fast for luceneMatchVersion=>LUCENE_4_0_0.
 comment|// For older solrconfig.xml's we allow the old sections, but never mixed with the new<indexConfig>
 name|boolean
 name|hasDeprecatedIndexConfig
@@ -1007,7 +1007,7 @@ name|onOrAfter
 argument_list|(
 name|Version
 operator|.
-name|LUCENE_4_0
+name|LUCENE_4_0_0
 argument_list|)
 condition|)
 block|{
@@ -1047,7 +1047,7 @@ name|log
 operator|.
 name|warn
 argument_list|(
-literal|"<indexDefaults> and<mainIndex> configuration sections are deprecated and will fail for luceneMatchVersion=LUCENE_4_0 and later. Please use<indexConfig> instead."
+literal|"<indexDefaults> and<mainIndex> configuration sections are deprecated and will fail for luceneMatchVersion=LUCENE_4_0_0 and later. Please use<indexConfig> instead."
 argument_list|)
 expr_stmt|;
 name|defaultIndexConfig

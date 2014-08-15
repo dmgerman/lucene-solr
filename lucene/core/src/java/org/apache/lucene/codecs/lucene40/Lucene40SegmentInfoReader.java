@@ -174,6 +174,20 @@ name|IOUtils
 import|;
 end_import
 
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|util
+operator|.
+name|Version
+import|;
+end_import
+
 begin_comment
 comment|/**  * Lucene 4.0 implementation of {@link SegmentInfoReader}.  *   * @see Lucene40SegmentInfoFormat  * @lucene.experimental  * @deprecated Only for reading old 4.0-4.5 segments  */
 end_comment
@@ -270,13 +284,18 @@ name|VERSION_CURRENT
 argument_list|)
 expr_stmt|;
 specifier|final
-name|String
+name|Version
 name|version
 init|=
+name|Version
+operator|.
+name|parse
+argument_list|(
 name|input
 operator|.
 name|readString
 argument_list|()
+argument_list|)
 decl_stmt|;
 specifier|final
 name|int

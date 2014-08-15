@@ -82,16 +82,6 @@ name|java
 operator|.
 name|util
 operator|.
-name|Comparator
-import|;
-end_import
-
-begin_import
-import|import
-name|java
-operator|.
-name|util
-operator|.
 name|HashMap
 import|;
 end_import
@@ -560,20 +550,6 @@ name|lucene
 operator|.
 name|util
 operator|.
-name|Constants
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|util
-operator|.
 name|IOUtils
 import|;
 end_import
@@ -646,7 +622,7 @@ name|lucene
 operator|.
 name|util
 operator|.
-name|StringHelper
+name|TestUtil
 import|;
 end_import
 
@@ -660,7 +636,7 @@ name|lucene
 operator|.
 name|util
 operator|.
-name|TestUtil
+name|Version
 import|;
 end_import
 
@@ -5300,7 +5276,7 @@ operator|.
 name|reader
 argument_list|()
 decl_stmt|;
-name|String
+name|Version
 name|currentVersion
 init|=
 name|air
@@ -5329,17 +5305,6 @@ operator|.
 name|close
 argument_list|()
 expr_stmt|;
-name|Comparator
-argument_list|<
-name|String
-argument_list|>
-name|comparator
-init|=
-name|StringHelper
-operator|.
-name|getVersionComparator
-argument_list|()
-decl_stmt|;
 comment|// now check all the old indexes, their version should be< the current version
 for|for
 control|(
@@ -5390,7 +5355,7 @@ operator|.
 name|reader
 argument_list|()
 expr_stmt|;
-name|String
+name|Version
 name|oldVersion
 init|=
 name|air
@@ -5411,18 +5376,14 @@ expr_stmt|;
 comment|// only 3.0 segments can have a null version
 name|assertTrue
 argument_list|(
-literal|"current Constants.LUCENE_MAIN_VERSION is<= an old index: did you forget to bump it?!"
-argument_list|,
-name|comparator
-operator|.
-name|compare
-argument_list|(
-name|oldVersion
+literal|"current Version.LATEST is<= an old index: did you forget to bump it?!"
 argument_list|,
 name|currentVersion
+operator|.
+name|onOrAfter
+argument_list|(
+name|oldVersion
 argument_list|)
-operator|<
-literal|0
 argument_list|)
 expr_stmt|;
 block|}
@@ -5946,9 +5907,9 @@ control|)
 block|{
 name|assertEquals
 argument_list|(
-name|Constants
+name|Version
 operator|.
-name|LUCENE_MAIN_VERSION
+name|LATEST
 argument_list|,
 name|si
 operator|.

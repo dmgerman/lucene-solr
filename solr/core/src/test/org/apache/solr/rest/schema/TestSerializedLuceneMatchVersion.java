@@ -201,15 +201,15 @@ literal|"count(/response/lst[@name='fieldType']) = 1"
 argument_list|,
 literal|"//lst[str[@name='class'][.='org.apache.solr.analysis.MockCharFilterFactory']]"
 operator|+
-literal|"     [str[@name='luceneMatchVersion'][.='LUCENE_4_0']]"
+literal|"     [str[@name='luceneMatchVersion'][.='4.0.0']]"
 argument_list|,
 literal|"//lst[str[@name='class'][.='org.apache.solr.analysis.MockTokenizerFactory']]"
 operator|+
-literal|"     [str[@name='luceneMatchVersion'][.='LUCENE_4_0']]"
+literal|"     [str[@name='luceneMatchVersion'][.='4.0.0']]"
 argument_list|,
 literal|"//lst[str[@name='class'][.='org.apache.solr.analysis.MockTokenFilterFactory']]"
 operator|+
-literal|"     [str[@name='luceneMatchVersion'][.='LUCENE_4_0']]"
+literal|"     [str[@name='luceneMatchVersion'][.='4.0.0']]"
 argument_list|)
 expr_stmt|;
 block|}

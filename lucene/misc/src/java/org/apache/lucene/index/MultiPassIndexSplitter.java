@@ -981,7 +981,7 @@ name|split
 argument_list|(
 name|Version
 operator|.
-name|LUCENE_CURRENT
+name|LATEST
 argument_list|,
 name|input
 argument_list|,

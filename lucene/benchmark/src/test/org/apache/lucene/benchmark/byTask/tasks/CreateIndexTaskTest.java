@@ -215,7 +215,7 @@ literal|"writer.version"
 argument_list|,
 name|Version
 operator|.
-name|LUCENE_5_0
+name|LUCENE_5_0_0
 operator|.
 name|toString
 argument_list|()

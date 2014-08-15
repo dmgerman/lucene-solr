@@ -110,6 +110,48 @@ name|TrackingDirectoryWrapper
 import|;
 end_import
 
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|util
+operator|.
+name|Constants
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|util
+operator|.
+name|StringHelper
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|util
+operator|.
+name|Version
+import|;
+end_import
+
 begin_comment
 comment|/**  * Information about a segment such as it's name, directory, and files related  * to the segment.  *  * @lucene.experimental  */
 end_comment
@@ -188,11 +230,11 @@ decl_stmt|;
 comment|// Tracks the Lucene version this segment was created with, since 3.1. Null
 comment|// indicates an older than 3.0 index, and it's used to detect a too old index.
 comment|// The format expected is "x.y" - "2.x" for pre-3.0 indexes (or null), and
-comment|// specific versions afterwards ("3.0", "3.1" etc.).
-comment|// see Constants.LUCENE_MAIN_VERSION.
+comment|// specific versions afterwards ("3.0.0", "3.1.0" etc.).
+comment|// see o.a.l.util.Version.
 DECL|field|version
 specifier|private
-name|String
+name|Version
 name|version
 decl_stmt|;
 DECL|method|setDiagnostics
@@ -239,7 +281,7 @@ parameter_list|(
 name|Directory
 name|dir
 parameter_list|,
-name|String
+name|Version
 name|version
 parameter_list|,
 name|String
@@ -708,27 +750,10 @@ name|hashCode
 argument_list|()
 return|;
 block|}
-comment|/**    * Used by DefaultSegmentInfosReader to upgrade a 3.0 segment to record its    * version is "3.0". This method can be removed when we're not required to    * support 3x indexes anymore, e.g. in 5.0.    *<p>    *<b>NOTE:</b> this method is used for internal purposes only - you should    * not modify the version of a SegmentInfo, or it may result in unexpected    * exceptions thrown when you attempt to open the index.    *    * @lucene.internal    */
-DECL|method|setVersion
-specifier|public
-name|void
-name|setVersion
-parameter_list|(
-name|String
-name|version
-parameter_list|)
-block|{
-name|this
-operator|.
-name|version
-operator|=
-name|version
-expr_stmt|;
-block|}
-comment|/** Returns the version of the code which wrote the segment. */
+comment|/** Returns the version of the code which wrote the segment.    */
 DECL|method|getVersion
 specifier|public
-name|String
+name|Version
 name|getVersion
 parameter_list|()
 block|{

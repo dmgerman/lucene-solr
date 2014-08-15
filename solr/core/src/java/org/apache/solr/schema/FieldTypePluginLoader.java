@@ -250,18 +250,6 @@ end_import
 
 begin_import
 import|import
-name|java
-operator|.
-name|lang
-operator|.
-name|reflect
-operator|.
-name|Constructor
-import|;
-end_import
-
-begin_import
-import|import
 name|org
 operator|.
 name|slf4j
@@ -2314,7 +2302,7 @@ name|onOrAfter
 argument_list|(
 name|Version
 operator|.
-name|LUCENE_4_0
+name|LUCENE_4_0_0
 argument_list|)
 condition|)
 block|{
