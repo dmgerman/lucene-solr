@@ -40,18 +40,6 @@ name|Modifier
 import|;
 end_import
 
-begin_import
-import|import
-name|java
-operator|.
-name|lang
-operator|.
-name|ref
-operator|.
-name|Reference
-import|;
-end_import
-
 begin_comment
 comment|/**  * Base class for Attributes that can be added to a   * {@link org.apache.lucene.util.AttributeSource}.  *<p>  * Attributes are used to add data in a dynamic, yet type-safe way to a source  * of usually streamed objects, e. g. a {@link org.apache.lucene.analysis.TokenStream}.  */
 end_comment
@@ -222,14 +210,11 @@ name|getClass
 argument_list|()
 decl_stmt|;
 specifier|final
-name|Reference
-argument_list|<
 name|Class
 argument_list|<
 name|?
 extends|extends
 name|Attribute
-argument_list|>
 argument_list|>
 index|[]
 name|interfaces
@@ -276,19 +261,7 @@ name|interfaces
 index|[
 literal|0
 index|]
-operator|.
-name|get
-argument_list|()
 decl_stmt|;
-assert|assert
-operator|(
-name|interf
-operator|!=
-literal|null
-operator|)
-operator|:
-literal|"We have a strong reference on the class holding the interfaces, so they should never get evicted"
-assert|;
 specifier|final
 name|Field
 index|[]
