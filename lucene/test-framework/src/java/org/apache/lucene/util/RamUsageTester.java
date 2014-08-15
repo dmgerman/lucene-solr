@@ -839,6 +839,18 @@ name|getSuperclass
 argument_list|()
 control|)
 block|{
+if|if
+condition|(
+name|c
+operator|==
+name|Class
+operator|.
+name|class
+condition|)
+block|{
+comment|// prevent inspection of Class' fields, throws SecurityException in Java 9!
+continue|continue;
+block|}
 specifier|final
 name|Field
 index|[]
