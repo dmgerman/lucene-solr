@@ -570,11 +570,6 @@ name|bytes
 argument_list|)
 expr_stmt|;
 block|}
-name|bytes
-operator|.
-name|get
-argument_list|()
-expr_stmt|;
 block|}
 annotation|@
 name|Override
