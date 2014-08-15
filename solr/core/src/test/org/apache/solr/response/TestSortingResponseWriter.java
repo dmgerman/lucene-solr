@@ -182,6 +182,56 @@ argument_list|)
 expr_stmt|;
 name|assertU
 argument_list|(
+name|adoc
+argument_list|(
+literal|"id"
+argument_list|,
+literal|"7"
+argument_list|,
+literal|"floatdv"
+argument_list|,
+literal|"2.1"
+argument_list|,
+literal|"intdv"
+argument_list|,
+literal|"7"
+argument_list|,
+literal|"longdv"
+argument_list|,
+literal|"323223232323"
+argument_list|,
+literal|"doubledv"
+argument_list|,
+literal|"2344.345"
+argument_list|,
+literal|"floatdv_m"
+argument_list|,
+literal|"123.321"
+argument_list|,
+literal|"floatdv_m"
+argument_list|,
+literal|"345.123"
+argument_list|,
+literal|"doubledv_m"
+argument_list|,
+literal|"3444.222"
+argument_list|,
+literal|"doubledv_m"
+argument_list|,
+literal|"23232.2"
+argument_list|,
+literal|"longdv_m"
+argument_list|,
+literal|"43434343434"
+argument_list|,
+literal|"longdv_m"
+argument_list|,
+literal|"343332"
+argument_list|)
+argument_list|)
+expr_stmt|;
+name|assertU
+argument_list|(
 name|commit
 argument_list|()
 argument_list|)
@@ -348,6 +398,40 @@ argument_list|,
 literal|"{\"numFound\":1, \"docs\":[{\"floatdv\":2.1,\"intdv\":1,\"stringdv\":\"hello world\",\"longdv\":323223232323,\"doubledv\":2344.345}]}"
 argument_list|)
 expr_stmt|;
+comment|//Test null value string:
+name|s
+operator|=
+name|h
+operator|.
+name|query
+argument_list|(
+name|req
+argument_list|(
+literal|"q"
+argument_list|,
+literal|"id:7"
+argument_list|,
+literal|"qt"
+argument_list|,
+literal|"/export"
+argument_list|,
+literal|"fl"
+argument_list|,
+literal|"floatdv,intdv,stringdv,longdv,doubledv"
+argument_list|,
+literal|"sort"
+argument_list|,
+literal|"intdv asc"
+argument_list|)
+argument_list|)
+expr_stmt|;
+name|assertEquals
+argument_list|(
+name|s
+argument_list|,
+literal|"{\"numFound\":1, \"docs\":[{\"floatdv\":2.1,\"intdv\":7,\"stringdv\":\"\",\"longdv\":323223232323,\"doubledv\":2344.345}]}"
+argument_list|)
+expr_stmt|;
 comment|//Test multiValue docValues output
 name|s
 operator|=
@@ -375,20 +459,45 @@ literal|"intdv asc"
 argument_list|)
 argument_list|)
 expr_stmt|;
-name|System
-operator|.
-name|out
-operator|.
-name|println
+name|assertEquals
 argument_list|(
 name|s
+argument_list|,
+literal|"{\"numFound\":1, \"docs\":[{\"intdv_m\":[100,250],\"floatdv_m\":[123.321,345.123],\"doubledv_m\":[3444.222,23232.2],\"longdv_m\":[343332,43434343434],\"stringdv_m\":[\"Everton\",\"liverpool\",\"manchester city\"]}]}"
+argument_list|)
+expr_stmt|;
+comment|//Test multiValues docValues output with nulls
+name|s
+operator|=
+name|h
+operator|.
+name|query
+argument_list|(
+name|req
+argument_list|(
+literal|"q"
+argument_list|,
+literal|"id:7"
+argument_list|,
+literal|"qt"
+argument_list|,
+literal|"/export"
+argument_list|,
+literal|"fl"
+argument_list|,
+literal|"intdv_m,floatdv_m,doubledv_m,longdv_m,stringdv_m"
+argument_list|,
+literal|"sort"
+argument_list|,
+literal|"intdv asc"
+argument_list|)
 argument_list|)
 expr_stmt|;
 name|assertEquals
 argument_list|(
 name|s
 argument_list|,
-literal|"{\"numFound\":1, \"docs\":[{\"intdv_m\":[100,250],\"floatdv_m\":[123.321,345.123],\"doubledv_m\":[3444.222,23232.2],\"longdv_m\":[343332,43434343434],\"stringdv_m\":[\"Everton\",\"liverpool\",\"manchester city\"]}]}"
+literal|"{\"numFound\":1, \"docs\":[{\"intdv_m\":[],\"floatdv_m\":[123.321,345.123],\"doubledv_m\":[3444.222,23232.2],\"longdv_m\":[343332,43434343434],\"stringdv_m\":[]}]}"
 argument_list|)
 expr_stmt|;
 comment|//Test single sort param is working
@@ -416,17 +525,6 @@ literal|"sort"
 argument_list|,
 literal|"intdv desc"
 argument_list|)
-argument_list|)
-expr_stmt|;
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"Output:"
-operator|+
-name|s
 argument_list|)
 expr_stmt|;
 name|assertEquals
@@ -467,6 +565,73 @@ argument_list|(
 name|s
 argument_list|,
 literal|"{\"numFound\":2, \"docs\":[{\"intdv\":1},{\"intdv\":2}]}"
+argument_list|)
+expr_stmt|;
+comment|// Test sort on String will null value. Null value should sort last on desc and first on asc.
+name|s
+operator|=
+name|h
+operator|.
+name|query
+argument_list|(
+name|req
+argument_list|(
+literal|"q"
+argument_list|,
+literal|"id:(1 7)"
+argument_list|,
+literal|"qt"
+argument_list|,
+literal|"/export"
+argument_list|,
+literal|"fl"
+argument_list|,
+literal|"intdv"
+argument_list|,
+literal|"sort"
+argument_list|,
+literal|"stringdv desc"
+argument_list|)
+argument_list|)
+expr_stmt|;
+name|assertEquals
+argument_list|(
+name|s
+argument_list|,
+literal|"{\"numFound\":2, \"docs\":[{\"intdv\":1},{\"intdv\":7}]}"
+argument_list|)
+expr_stmt|;
+name|s
+operator|=
+name|h
+operator|.
+name|query
+argument_list|(
+name|req
+argument_list|(
+literal|"q"
+argument_list|,
+literal|"id:(1 7)"
+argument_list|,
+literal|"qt"
+argument_list|,
+literal|"/export"
+argument_list|,
+literal|"fl"
+argument_list|,
+literal|"intdv"
+argument_list|,
+literal|"sort"
+argument_list|,
+literal|"stringdv asc"
+argument_list|)
+argument_list|)
+expr_stmt|;
+name|assertEquals
+argument_list|(
+name|s
+argument_list|,
+literal|"{\"numFound\":2, \"docs\":[{\"intdv\":7},{\"intdv\":1}]}"
 argument_list|)
 expr_stmt|;
 comment|//Test multi-sort params
@@ -662,17 +827,6 @@ literal|"sort"
 argument_list|,
 literal|"doubledv desc"
 argument_list|)
-argument_list|)
-expr_stmt|;
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"Results:"
-operator|+
-name|s
 argument_list|)
 expr_stmt|;
 name|assertEquals
