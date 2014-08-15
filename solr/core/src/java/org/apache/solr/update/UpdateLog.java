@@ -3909,6 +3909,8 @@ argument_list|(
 literal|"Error inspecting tlog "
 operator|+
 name|ll
+argument_list|,
+name|e
 argument_list|)
 expr_stmt|;
 name|ll
