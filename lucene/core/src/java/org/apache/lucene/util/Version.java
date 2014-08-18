@@ -1166,6 +1166,18 @@ operator|==
 name|encodedValue
 return|;
 block|}
+annotation|@
+name|Override
+DECL|method|hashCode
+specifier|public
+name|int
+name|hashCode
+parameter_list|()
+block|{
+return|return
+name|encodedValue
+return|;
+block|}
 block|}
 end_class
 
