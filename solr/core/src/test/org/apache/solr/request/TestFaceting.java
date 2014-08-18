@@ -3753,9 +3753,9 @@ argument_list|,
 literal|"-1"
 argument_list|)
 argument_list|,
-literal|"*[count(//lst[@name='facet_fields']/lst)=50]"
+literal|"*[count(//lst[@name='facet_fields']/lst)=10]"
 argument_list|,
-literal|"*[count(//lst[@name='facet_fields']/lst/int)=100]"
+literal|"*[count(//lst[@name='facet_fields']/lst/int)=20]"
 argument_list|)
 expr_stmt|;
 block|}
@@ -4307,8 +4307,7 @@ literal|"//lst[@name='f9_ws']/int[@name='nine_11'][.='5']"
 argument_list|)
 expr_stmt|;
 comment|// After this all, the uninverted fields should be exactly the same as they were the first time, even if we
-comment|// blast a whole bunch of identical fields at the facet code. Which, BTW, doesn't detect
-comment|// if you've asked for the same field more than once.
+comment|// blast a whole bunch of identical fields at the facet code.
 comment|// The way fetching the uninverted field is written, all this is really testing is if the cache is working.
 comment|// It's NOT testing whether the pending/sleep is actually functioning, I had to do that by hand since I don't
 comment|// see how to make sure that uninverting the field multiple times actually happens to hit the wait state.
@@ -4547,9 +4546,9 @@ argument_list|,
 literal|"-1"
 argument_list|)
 argument_list|,
-literal|"*[count(//lst[@name='facet_fields']/lst)=50]"
+literal|"*[count(//lst[@name='facet_fields']/lst)=10]"
 argument_list|,
-literal|"*[count(//lst[@name='facet_fields']/lst/int)=100]"
+literal|"*[count(//lst[@name='facet_fields']/lst/int)=20]"
 argument_list|)
 expr_stmt|;
 block|}
