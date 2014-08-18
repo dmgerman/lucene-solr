@@ -2984,10 +2984,8 @@ argument_list|,
 literal|true
 argument_list|)
 expr_stmt|;
-name|finishMerges
-argument_list|(
-literal|true
-argument_list|)
+name|waitForMerges
+argument_list|()
 expr_stmt|;
 name|commitInternal
 argument_list|(
@@ -5833,10 +5831,8 @@ init|(
 name|this
 init|)
 block|{
-name|finishMerges
-argument_list|(
-literal|false
-argument_list|)
+name|abortMerges
+argument_list|()
 expr_stmt|;
 name|stopMerges
 operator|=
@@ -6209,10 +6205,8 @@ block|{
 try|try
 block|{
 comment|// Abort any running merges
-name|finishMerges
-argument_list|(
-literal|false
-argument_list|)
+name|abortMerges
+argument_list|()
 expr_stmt|;
 comment|// Remove all segments
 name|segmentInfos
@@ -6319,31 +6313,10 @@ block|}
 comment|/** Aborts running merges.  Be careful when using this    *  method: when you abort a long-running merge, you lose    *  a lot of work that must later be redone. */
 DECL|method|abortMerges
 specifier|public
+specifier|synchronized
 name|void
 name|abortMerges
 parameter_list|()
-block|{
-name|finishMerges
-argument_list|(
-literal|false
-argument_list|)
-expr_stmt|;
-block|}
-DECL|method|finishMerges
-specifier|private
-specifier|synchronized
-name|void
-name|finishMerges
-parameter_list|(
-name|boolean
-name|waitForMerges
-parameter_list|)
-block|{
-if|if
-condition|(
-operator|!
-name|waitForMerges
-condition|)
 block|{
 name|stopMerges
 operator|=
@@ -6530,25 +6503,35 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
-else|else
-block|{
-comment|// waitForMerges() will ensure any running addIndexes finishes.
-comment|// It's fine if a new one attempts to start because from our
-comment|// caller above the call will see that we are in the
-comment|// process of closing, and will throw an
-comment|// AlreadyClosedException.
-name|waitForMerges
-argument_list|()
-expr_stmt|;
-block|}
-block|}
 comment|/**    * Wait for any currently outstanding merges to finish.    *    *<p>It is guaranteed that any merges started prior to calling this method    *    will have completed once this method completes.</p>    */
 DECL|method|waitForMerges
 specifier|public
-specifier|synchronized
 name|void
 name|waitForMerges
 parameter_list|()
+throws|throws
+name|IOException
+block|{
+comment|// Give merge scheduler last chance to run, in case
+comment|// any pending merges are waiting. We can't hold IW's lock
+comment|// when going into merge because it can lead to deadlock.
+name|mergeScheduler
+operator|.
+name|merge
+argument_list|(
+name|this
+argument_list|,
+name|MergeTrigger
+operator|.
+name|CLOSING
+argument_list|,
+literal|false
+argument_list|)
+expr_stmt|;
+synchronized|synchronized
+init|(
+name|this
+init|)
 block|{
 name|ensureOpen
 argument_list|(
@@ -6624,6 +6607,7 @@ argument_list|,
 literal|"waitForMerges done"
 argument_list|)
 expr_stmt|;
+block|}
 block|}
 block|}
 comment|/**    * Called whenever the SegmentInfos has been updated and    * the index files referenced exist (correctly) in the    * index directory.    */
@@ -13498,7 +13482,7 @@ name|OneMerge
 name|merge
 parameter_list|)
 block|{
-comment|// forceMerge, addIndexes or finishMerges may be waiting
+comment|// forceMerge, addIndexes or waitForMerges may be waiting
 comment|// on merges to finish.
 name|notifyAll
 argument_list|()
