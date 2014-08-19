@@ -1290,6 +1290,7 @@ argument_list|()
 operator|!=
 literal|null
 operator|&&
+operator|(
 name|err
 operator|.
 name|getMessage
@@ -1299,6 +1300,17 @@ name|contains
 argument_list|(
 literal|"posix_spawn"
 argument_list|)
+operator|||
+name|err
+operator|.
+name|getMessage
+argument_list|()
+operator|.
+name|contains
+argument_list|(
+literal|"UNIXProcess"
+argument_list|)
+operator|)
 condition|)
 block|{
 name|log
