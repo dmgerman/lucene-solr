@@ -364,6 +364,14 @@ begin_comment
 comment|// closure to the FST and then determinizing it.
 end_comment
 
+begin_comment
+comment|//
+end_comment
+
+begin_comment
+comment|// Another possible solution is described at http://www.cis.uni-muenchen.de/people/Schulz/Pub/dictle5.ps
+end_comment
+
 begin_class
 DECL|class|SynonymFilter
 specifier|public
