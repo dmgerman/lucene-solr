@@ -15008,7 +15008,7 @@ name|BAD_REQUEST
 argument_list|,
 name|NUM_SLICES
 operator|+
-literal|" is a required param"
+literal|" is a required param (when using CompositeId router)."
 argument_list|)
 throw|;
 block|}
