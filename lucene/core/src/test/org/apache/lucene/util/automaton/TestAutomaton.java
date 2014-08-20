@@ -4429,6 +4429,9 @@ literal|")"
 argument_list|)
 expr_stmt|;
 block|}
+return|return
+name|a
+return|;
 block|}
 case|case
 literal|2
