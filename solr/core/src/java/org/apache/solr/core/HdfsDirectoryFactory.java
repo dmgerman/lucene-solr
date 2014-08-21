@@ -931,8 +931,6 @@ name|blockCache
 init|=
 name|getBlockDirectoryCache
 argument_list|(
-name|path
-argument_list|,
 name|numberOfBlocksPerBank
 argument_list|,
 name|blockSize
@@ -961,6 +959,8 @@ argument_list|,
 name|path
 argument_list|,
 name|metrics
+argument_list|,
+name|blockCacheGlobal
 argument_list|)
 decl_stmt|;
 name|HdfsDirectory
@@ -1076,9 +1076,6 @@ specifier|private
 name|BlockCache
 name|getBlockDirectoryCache
 parameter_list|(
-name|String
-name|path
-parameter_list|,
 name|int
 name|numberOfBlocksPerBank
 parameter_list|,
@@ -1136,13 +1133,6 @@ name|bufferCount
 argument_list|)
 return|;
 block|}
-name|LOG
-operator|.
-name|info
-argument_list|(
-literal|"Creating new global HDFS BlockCache"
-argument_list|)
-expr_stmt|;
 synchronized|synchronized
 init|(
 name|HdfsDirectoryFactory
@@ -1157,6 +1147,13 @@ operator|==
 literal|null
 condition|)
 block|{
+name|LOG
+operator|.
+name|info
+argument_list|(
+literal|"Creating new global HDFS BlockCache"
+argument_list|)
+expr_stmt|;
 name|globalBlockCache
 operator|=
 name|createBlockCache

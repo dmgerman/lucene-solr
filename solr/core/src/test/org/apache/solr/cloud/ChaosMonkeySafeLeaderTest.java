@@ -890,37 +890,6 @@ literal|null
 argument_list|)
 expr_stmt|;
 block|}
-DECL|method|randomlyEnableAutoSoftCommit
-specifier|private
-name|void
-name|randomlyEnableAutoSoftCommit
-parameter_list|()
-block|{
-if|if
-condition|(
-name|r
-operator|.
-name|nextBoolean
-argument_list|()
-condition|)
-block|{
-name|enableAutoSoftCommit
-argument_list|(
-literal|1000
-argument_list|)
-expr_stmt|;
-block|}
-else|else
-block|{
-name|log
-operator|.
-name|info
-argument_list|(
-literal|"Not turning on auto soft commit"
-argument_list|)
-expr_stmt|;
-block|}
-block|}
 comment|// skip the randoms - they can deadlock...
 annotation|@
 name|Override

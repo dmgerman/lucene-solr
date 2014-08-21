@@ -105,6 +105,12 @@ name|String
 name|dest
 parameter_list|)
 function_decl|;
+comment|/**    * Release any resources associated with the cache.    */
+DECL|method|releaseResources
+name|void
+name|releaseResources
+parameter_list|()
+function_decl|;
 block|}
 end_interface
 
