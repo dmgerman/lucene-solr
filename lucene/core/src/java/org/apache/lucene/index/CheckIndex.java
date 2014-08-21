@@ -1576,6 +1576,13 @@ literal|" "
 operator|+
 name|versionString
 operator|+
+literal|" id="
+operator|+
+name|sis
+operator|.
+name|getId
+argument_list|()
+operator|+
 literal|" format="
 operator|+
 name|sFormat
@@ -1935,6 +1942,20 @@ literal|"3.0"
 else|:
 name|version
 operator|)
+argument_list|)
+expr_stmt|;
+name|msg
+argument_list|(
+name|infoStream
+argument_list|,
+literal|"    id="
+operator|+
+name|info
+operator|.
+name|info
+operator|.
+name|getId
+argument_list|()
 argument_list|)
 expr_stmt|;
 specifier|final

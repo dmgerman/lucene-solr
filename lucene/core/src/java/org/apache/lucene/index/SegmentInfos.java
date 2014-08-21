@@ -123,6 +123,8 @@ operator|.
 name|util
 operator|.
 name|Map
+operator|.
+name|Entry
 import|;
 end_import
 
@@ -133,8 +135,6 @@ operator|.
 name|util
 operator|.
 name|Map
-operator|.
-name|Entry
 import|;
 end_import
 
@@ -316,6 +316,20 @@ name|IOUtils
 import|;
 end_import
 
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|util
+operator|.
+name|StringHelper
+import|;
+end_import
+
 begin_comment
 comment|/**  * A collection of segmentInfo objects with methods for operating on those  * segments in relation to the file system.  *<p>  * The active segments in the index are stored in the segment info file,  *<tt>segments_N</tt>. There may be one or more<tt>segments_N</tt> files in  * the index; however, the one with the largest generation is the active one  * (when older segments_N files are present it's because they temporarily cannot  * be deleted, or, a writer is in the process of committing, or a custom  * {@link org.apache.lucene.index.IndexDeletionPolicy IndexDeletionPolicy} is in  * use). This file lists each segment by name and has details about the codec  * and generation of deletes.  *</p>  *<p>  * There is also a file<tt>segments.gen</tt>. This file contains the current  * generation (the<tt>_N</tt> in<tt>segments_N</tt>) of the index. This is  * used only as a fallback in case the current generation cannot be accurately  * determined by directory listing alone (as is the case for some NFS clients  * with time-based directory cache expiration). This file simply contains an  * {@link DataOutput#writeInt Int32} version header (  * {@link #FORMAT_SEGMENTS_GEN_CURRENT}), followed by the generation recorded as  * {@link DataOutput#writeLong Int64}, written twice.  *</p>  *<p>  * Files:  *<ul>  *<li><tt>segments.gen</tt>: GenHeader, Generation, Generation, Footer  *<li><tt>segments_N</tt>: Header, Version, NameCounter, SegCount,&lt;SegName,  * SegCodec, DelGen, DeletionCount, FieldInfosGen, DocValuesGen,  * UpdatesFiles&gt;<sup>SegCount</sup>, CommitUserData, Footer  *</ul>  *</p>  * Data types:  *<p>  *<ul>  *<li>Header --&gt; {@link CodecUtil#writeHeader CodecHeader}</li>  *<li>GenHeader, NameCounter, SegCount, DeletionCount --&gt;  * {@link DataOutput#writeInt Int32}</li>  *<li>Generation, Version, DelGen, Checksum, FieldInfosGen, DocValuesGen --&gt;  * {@link DataOutput#writeLong Int64}</li>  *<li>SegName, SegCodec --&gt; {@link DataOutput#writeString String}</li>  *<li>CommitUserData --&gt; {@link DataOutput#writeStringStringMap  * Map&lt;String,String&gt;}</li>  *<li>UpdatesFiles --&gt; Map&lt;{@link DataOutput#writeInt Int32},  * {@link DataOutput#writeStringSet(Set) Set&lt;String&gt;}&gt;</li>  *<li>Footer --&gt; {@link CodecUtil#writeFooter CodecFooter}</li>  *</ul>  *</p>  * Field Descriptions:  *<p>  *<ul>  *<li>Version counts how often the index has been changed by adding or deleting  * documents.</li>  *<li>NameCounter is used to generate names for new segment files.</li>  *<li>SegName is the name of the segment, and is used as the file name prefix  * for all of the files that compose the segment's index.</li>  *<li>DelGen is the generation count of the deletes file. If this is -1, there  * are no deletes. Anything above zero means there are deletes stored by  * {@link LiveDocsFormat}.</li>  *<li>DeletionCount records the number of deleted documents in this segment.</li>  *<li>SegCodec is the {@link Codec#getName() name} of the Codec that encoded  * this segment.</li>  *<li>CommitUserData stores an optional user-supplied opaque  * Map&lt;String,String&gt; that was passed to  * {@link IndexWriter#setCommitData(java.util.Map)}.</li>  *<li>FieldInfosGen is the generation count of the fieldInfos file. If this is  * -1, there are no updates to the fieldInfos in that segment. Anything above  * zero means there are updates to fieldInfos stored by {@link FieldInfosFormat}  * .</li>  *<li>DocValuesGen is the generation count of the updatable DocValues. If this  * is -1, there are no updates to DocValues in that segment. Anything above zero  * means there are updates to DocValues stored by {@link DocValuesFormat}.</li>  *<li>UpdatesFiles stores the set of files that were updated in that segment  * per field.</li>  *</ul>  *</p>  *   * @lucene.experimental  */
 end_comment
@@ -373,6 +387,16 @@ name|int
 name|VERSION_49
 init|=
 literal|3
+decl_stmt|;
+comment|/** The file format version for the segments_N codec header, since 4.10+ */
+DECL|field|VERSION_410
+specifier|public
+specifier|static
+specifier|final
+name|int
+name|VERSION_410
+init|=
+literal|4
 decl_stmt|;
 comment|// Used for the segments.gen file only!
 comment|// Whenever you add a new format, make it 1 smaller (negative version logic)!
@@ -478,6 +502,12 @@ name|PrintStream
 name|infoStream
 init|=
 literal|null
+decl_stmt|;
+comment|/** Id for this commit; only written starting with Lucene 4.10 */
+DECL|field|id
+specifier|private
+name|String
+name|id
 decl_stmt|;
 comment|/** Sole constructor. Typically you call this and then    *  use {@link #read(Directory) or    *  #read(Directory,String)} to populate each {@link    *  SegmentCommitInfo}.  Alternatively, you can add/remove your    *  own {@link SegmentCommitInfo}s. */
 DECL|method|SegmentInfos
@@ -954,6 +984,17 @@ name|nextGeneration
 argument_list|)
 return|;
 block|}
+comment|/** Since Lucene 4.10, every commit (segments_N) writes a unique id.  This will    *  return that id, or null if this commit was pre-4.10. */
+DECL|method|getId
+specifier|public
+name|String
+name|getId
+parameter_list|()
+block|{
+return|return
+name|id
+return|;
+block|}
 comment|/**    * Read a particular segmentFileName.  Note that this may    * throw an IOException if a commit is in process.    *    * @param directory -- directory containing the segments file    * @param segmentFileName -- segment file to load    * @throws CorruptIndexException if the index is corrupt    * @throws IOException if there is a low-level IO error    */
 DECL|method|read
 specifier|public
@@ -1059,7 +1100,7 @@ literal|"segments"
 argument_list|,
 name|VERSION_40
 argument_list|,
-name|VERSION_49
+name|VERSION_410
 argument_list|)
 decl_stmt|;
 name|version
@@ -1515,6 +1556,21 @@ if|if
 condition|(
 name|format
 operator|>=
+name|VERSION_410
+condition|)
+block|{
+name|id
+operator|=
+name|input
+operator|.
+name|readString
+argument_list|()
+expr_stmt|;
+block|}
+if|if
+condition|(
+name|format
+operator|>=
 name|VERSION_48
 condition|)
 block|{
@@ -1742,7 +1798,7 @@ name|segnOutput
 argument_list|,
 literal|"segments"
 argument_list|,
-name|VERSION_49
+name|VERSION_410
 argument_list|)
 expr_stmt|;
 name|segnOutput
@@ -1978,6 +2034,16 @@ operator|.
 name|writeStringStringMap
 argument_list|(
 name|userData
+argument_list|)
+expr_stmt|;
+name|segnOutput
+operator|.
+name|writeString
+argument_list|(
+name|StringHelper
+operator|.
+name|randomId
+argument_list|()
 argument_list|)
 expr_stmt|;
 name|pendingSegnOutput
