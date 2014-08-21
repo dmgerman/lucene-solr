@@ -503,7 +503,7 @@ name|infoStream
 init|=
 literal|null
 decl_stmt|;
-comment|/** Id for this commit; only written starting with Lucene 4.10 */
+comment|/** Id for this commit; only written starting with Lucene 4.11 */
 DECL|field|id
 specifier|private
 name|String
@@ -984,7 +984,7 @@ name|nextGeneration
 argument_list|)
 return|;
 block|}
-comment|/** Since Lucene 4.10, every commit (segments_N) writes a unique id.  This will    *  return that id, or null if this commit was pre-4.10. */
+comment|/** Since Lucene 4.11, every commit (segments_N) writes a unique id.  This will    *  return that id, or null if this commit was pre-4.11. */
 DECL|method|getId
 specifier|public
 name|String
