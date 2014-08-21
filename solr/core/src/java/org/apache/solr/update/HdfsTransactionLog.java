@@ -1250,15 +1250,6 @@ operator|.
 name|flushBuffer
 argument_list|()
 expr_stmt|;
-comment|// we must flush to hdfs
-comment|// TODO: we probably don't need to
-comment|// hsync below if we do this - I
-comment|// think they are equivalent.
-name|tlogOutStream
-operator|.
-name|hflush
-argument_list|()
-expr_stmt|;
 block|}
 if|if
 condition|(
@@ -1271,13 +1262,17 @@ operator|.
 name|FSYNC
 condition|)
 block|{
-comment|// Since fsync is outside of synchronized block, we can end up with a partial
-comment|// last record on power failure (which is OK, and does not represent an error...
-comment|// we just need to be aware of it when reading).
-comment|//raf.getFD().sync();
 name|tlogOutStream
 operator|.
 name|hsync
+argument_list|()
+expr_stmt|;
+block|}
+else|else
+block|{
+name|tlogOutStream
+operator|.
+name|hflush
 argument_list|()
 expr_stmt|;
 block|}
@@ -1335,17 +1330,13 @@ init|)
 block|{
 name|fos
 operator|.
-name|flush
+name|flushBuffer
 argument_list|()
 expr_stmt|;
+block|}
 name|tlogOutStream
 operator|.
 name|hflush
-argument_list|()
-expr_stmt|;
-name|fos
-operator|.
-name|close
 argument_list|()
 expr_stmt|;
 name|tlogOutStream
@@ -1354,10 +1345,43 @@ name|close
 argument_list|()
 expr_stmt|;
 block|}
+catch|catch
+parameter_list|(
+name|IOException
+name|e
+parameter_list|)
+block|{
+name|log
+operator|.
+name|error
+argument_list|(
+literal|"Exception closing tlog."
+argument_list|,
+name|e
+argument_list|)
+expr_stmt|;
+throw|throw
+operator|new
+name|SolrException
+argument_list|(
+name|SolrException
+operator|.
+name|ErrorCode
+operator|.
+name|SERVER_ERROR
+argument_list|,
+name|e
+argument_list|)
+throw|;
+block|}
+finally|finally
+block|{
 if|if
 condition|(
 name|deleteOnClose
 condition|)
+block|{
+try|try
 block|{
 name|fs
 operator|.
@@ -1368,7 +1392,6 @@ argument_list|,
 literal|true
 argument_list|)
 expr_stmt|;
-block|}
 block|}
 catch|catch
 parameter_list|(
@@ -1389,6 +1412,8 @@ argument_list|,
 name|e
 argument_list|)
 throw|;
+block|}
+block|}
 block|}
 block|}
 DECL|method|toString
