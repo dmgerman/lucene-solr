@@ -441,7 +441,9 @@ argument_list|,
 literal|0
 argument_list|)
 decl_stmt|;
-comment|/**    * Match settings and bugs in Lucene's 4.11.0 release.    */
+comment|/**    * Match settings and bugs in Lucene's 4.11.0 release.    * @deprecated (5.0) Use latest    */
+annotation|@
+name|Deprecated
 DECL|field|LUCENE_4_11_0
 specifier|public
 specifier|static
