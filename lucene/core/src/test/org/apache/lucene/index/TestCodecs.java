@@ -5249,6 +5249,12 @@ literal|18L
 argument_list|)
 argument_list|)
 expr_stmt|;
+name|OLD_FORMAT_IMPERSONATION_IS_ACTIVE
+operator|=
+literal|false
+expr_stmt|;
+try|try
+block|{
 name|writer
 operator|.
 name|addDocument
@@ -5256,12 +5262,6 @@ argument_list|(
 name|doc
 argument_list|)
 expr_stmt|;
-name|OLD_FORMAT_IMPERSONATION_IS_ACTIVE
-operator|=
-literal|false
-expr_stmt|;
-try|try
-block|{
 name|writer
 operator|.
 name|close
