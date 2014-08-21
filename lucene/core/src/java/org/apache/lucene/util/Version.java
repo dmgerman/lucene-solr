@@ -441,6 +441,24 @@ argument_list|,
 literal|0
 argument_list|)
 decl_stmt|;
+comment|/**    * Match settings and bugs in Lucene's 4.11.0 release.    */
+DECL|field|LUCENE_4_11_0
+specifier|public
+specifier|static
+specifier|final
+name|Version
+name|LUCENE_4_11_0
+init|=
+operator|new
+name|Version
+argument_list|(
+literal|4
+argument_list|,
+literal|11
+argument_list|,
+literal|0
+argument_list|)
+decl_stmt|;
 comment|/** Match settings and bugs in Lucene's 5.0 release.    *<p>    *  Use this to get the latest&amp; greatest settings, bug    *  fixes, etc, for Lucene.    */
 DECL|field|LUCENE_5_0_0
 specifier|public
