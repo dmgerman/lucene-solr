@@ -280,9 +280,9 @@ name|lucene
 operator|.
 name|codecs
 operator|.
-name|lucene40
+name|compressing
 operator|.
-name|Lucene40StoredFieldsWriter
+name|CompressingStoredFieldsWriter
 operator|.
 name|FIELDS_EXTENSION
 import|;
@@ -298,9 +298,9 @@ name|lucene
 operator|.
 name|codecs
 operator|.
-name|lucene40
+name|compressing
 operator|.
-name|Lucene40StoredFieldsWriter
+name|CompressingStoredFieldsWriter
 operator|.
 name|FIELDS_INDEX_EXTENSION
 import|;

@@ -112,25 +112,9 @@ name|lucene
 operator|.
 name|codecs
 operator|.
-name|lucene40
+name|lucene41
 operator|.
-name|Lucene40StoredFieldsFormat
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|codecs
-operator|.
-name|lucene40
-operator|.
-name|Lucene40TermVectorsFormat
+name|Lucene41PostingsFormat
 import|;
 end_import
 
@@ -146,7 +130,7 @@ name|codecs
 operator|.
 name|lucene41
 operator|.
-name|Lucene41PostingsFormat
+name|Lucene41StoredFieldsFormat
 import|;
 end_import
 
@@ -179,6 +163,22 @@ operator|.
 name|lucene410
 operator|.
 name|Lucene410DocValuesFormat
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|codecs
+operator|.
+name|lucene42
+operator|.
+name|Lucene42TermVectorsFormat
 import|;
 end_import
 
@@ -233,7 +233,6 @@ argument_list|,
 literal|200
 argument_list|)
 decl_stmt|;
-comment|// uncompressing versions, waste lots of disk but no ram
 DECL|field|storedFields
 specifier|private
 specifier|final
@@ -241,7 +240,7 @@ name|StoredFieldsFormat
 name|storedFields
 init|=
 operator|new
-name|Lucene40StoredFieldsFormat
+name|Lucene41StoredFieldsFormat
 argument_list|()
 decl_stmt|;
 DECL|field|termVectors
@@ -251,7 +250,7 @@ name|TermVectorsFormat
 name|termVectors
 init|=
 operator|new
-name|Lucene40TermVectorsFormat
+name|Lucene42TermVectorsFormat
 argument_list|()
 decl_stmt|;
 DECL|field|docValues

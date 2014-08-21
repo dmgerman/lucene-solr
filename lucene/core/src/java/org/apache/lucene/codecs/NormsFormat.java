@@ -71,11 +71,11 @@ specifier|protected
 name|NormsFormat
 parameter_list|()
 block|{   }
-comment|/** Returns a {@link DocValuesConsumer} to write norms to the    *  index. */
+comment|/** Returns a {@link NormsConsumer} to write norms to the    *  index. */
 DECL|method|normsConsumer
 specifier|public
 specifier|abstract
-name|DocValuesConsumer
+name|NormsConsumer
 name|normsConsumer
 parameter_list|(
 name|SegmentWriteState
@@ -84,11 +84,11 @@ parameter_list|)
 throws|throws
 name|IOException
 function_decl|;
-comment|/**     * Returns a {@link DocValuesProducer} to read norms from the index.     *<p>    * NOTE: by the time this call returns, it must hold open any files it will     * need to use; else, those files may be deleted. Additionally, required files     * may be deleted during the execution of this call before there is a chance     * to open them. Under these circumstances an IOException should be thrown by     * the implementation. IOExceptions are expected and will automatically cause     * a retry of the segment opening logic with the newly revised segments.    */
+comment|/**     * Returns a {@link NormsProducer} to read norms from the index.     *<p>    * NOTE: by the time this call returns, it must hold open any files it will     * need to use; else, those files may be deleted. Additionally, required files     * may be deleted during the execution of this call before there is a chance     * to open them. Under these circumstances an IOException should be thrown by     * the implementation. IOExceptions are expected and will automatically cause     * a retry of the segment opening logic with the newly revised segments.    */
 DECL|method|normsProducer
 specifier|public
 specifier|abstract
-name|DocValuesProducer
+name|NormsProducer
 name|normsProducer
 parameter_list|(
 name|SegmentReadState

@@ -531,21 +531,6 @@ specifier|public
 name|int
 name|checkAbortCount
 decl_stmt|;
-comment|// TODO: get rid of this? it tells you which segments are 'aligned' (e.g. for bulk merging)
-comment|// but is this really so expensive to compute again in different components, versus once in SM?
-comment|/** {@link SegmentReader}s that have identical field    * name/number mapping, so their stored fields and term    * vectors may be bulk merged. */
-DECL|field|matchingSegmentReaders
-specifier|public
-name|SegmentReader
-index|[]
-name|matchingSegmentReaders
-decl_stmt|;
-comment|/** How many {@link #matchingSegmentReaders} are set. */
-DECL|field|matchedCount
-specifier|public
-name|int
-name|matchedCount
-decl_stmt|;
 comment|/** Sole constructor. */
 DECL|method|MergeState
 name|MergeState

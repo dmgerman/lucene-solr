@@ -104,9 +104,9 @@ name|lucene
 operator|.
 name|codecs
 operator|.
-name|lucene40
+name|compressing
 operator|.
-name|Lucene40StoredFieldsWriter
+name|CompressingStoredFieldsWriter
 import|;
 end_import
 
@@ -226,7 +226,7 @@ name|fileExtensions
 operator|.
 name|add
 argument_list|(
-name|Lucene40StoredFieldsWriter
+name|CompressingStoredFieldsWriter
 operator|.
 name|FIELDS_EXTENSION
 argument_list|)
@@ -235,7 +235,7 @@ name|fileExtensions
 operator|.
 name|add
 argument_list|(
-name|Lucene40StoredFieldsWriter
+name|CompressingStoredFieldsWriter
 operator|.
 name|FIELDS_INDEX_EXTENSION
 argument_list|)

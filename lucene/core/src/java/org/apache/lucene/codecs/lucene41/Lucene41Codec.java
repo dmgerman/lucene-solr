@@ -533,7 +533,6 @@ annotation|@
 name|Override
 DECL|method|termVectorsFormat
 specifier|public
-specifier|final
 name|TermVectorsFormat
 name|termVectorsFormat
 parameter_list|()

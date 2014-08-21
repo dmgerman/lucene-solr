@@ -89,11 +89,12 @@ import|;
 end_import
 
 begin_comment
-comment|/** A {@link Fields} implementation that merges multiple  *  Fields into one, and maps around deleted documents.  *  This is used for merging. */
+comment|/** A {@link Fields} implementation that merges multiple  *  Fields into one, and maps around deleted documents.  *  This is used for merging.   *  @lucene.internal  */
 end_comment
 
 begin_class
 DECL|class|MappedMultiFields
+specifier|public
 class|class
 name|MappedMultiFields
 extends|extends
@@ -104,6 +105,7 @@ specifier|final
 name|MergeState
 name|mergeState
 decl_stmt|;
+comment|/** Create a new MappedMultiFields for merging, based on the supplied    * mergestate and merged view of terms. */
 DECL|method|MappedMultiFields
 specifier|public
 name|MappedMultiFields

@@ -231,19 +231,13 @@ parameter_list|)
 throws|throws
 name|IOException
 block|{
-return|return
+throw|throw
 operator|new
-name|Lucene40StoredFieldsWriter
+name|UnsupportedOperationException
 argument_list|(
-name|directory
-argument_list|,
-name|si
-operator|.
-name|name
-argument_list|,
-name|context
+literal|"this codec can only be used for reading"
 argument_list|)
-return|;
+throw|;
 block|}
 block|}
 end_class

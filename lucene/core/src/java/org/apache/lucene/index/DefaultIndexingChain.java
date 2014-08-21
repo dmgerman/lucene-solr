@@ -122,6 +122,20 @@ name|lucene
 operator|.
 name|codecs
 operator|.
+name|NormsConsumer
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|codecs
+operator|.
 name|NormsFormat
 import|;
 end_import
@@ -914,7 +928,7 @@ name|success
 init|=
 literal|false
 decl_stmt|;
-name|DocValuesConsumer
+name|NormsConsumer
 name|normsConsumer
 init|=
 literal|null
@@ -1940,8 +1954,6 @@ operator|.
 name|fieldInfo
 argument_list|,
 name|bytesUsed
-argument_list|,
-literal|true
 argument_list|)
 expr_stmt|;
 block|}
@@ -2492,7 +2504,7 @@ name|next
 decl_stmt|;
 comment|// Lazy init'd:
 DECL|field|norms
-name|NumericDocValuesWriter
+name|NormValuesWriter
 name|norms
 decl_stmt|;
 comment|// reused
@@ -2627,7 +2639,7 @@ expr_stmt|;
 name|norms
 operator|=
 operator|new
-name|NumericDocValuesWriter
+name|NormValuesWriter
 argument_list|(
 name|fieldInfo
 argument_list|,
@@ -2636,8 +2648,6 @@ operator|.
 name|docWriter
 operator|.
 name|bytesUsed
-argument_list|,
-literal|false
 argument_list|)
 expr_stmt|;
 block|}

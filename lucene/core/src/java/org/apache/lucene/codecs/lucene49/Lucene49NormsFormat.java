@@ -52,21 +52,7 @@ name|lucene
 operator|.
 name|codecs
 operator|.
-name|DocValuesConsumer
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|codecs
-operator|.
-name|DocValuesProducer
+name|NormsConsumer
 import|;
 end_import
 
@@ -81,6 +67,20 @@ operator|.
 name|codecs
 operator|.
 name|NormsFormat
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|codecs
+operator|.
+name|NormsProducer
 import|;
 end_import
 
@@ -194,7 +194,7 @@ annotation|@
 name|Override
 DECL|method|normsConsumer
 specifier|public
-name|DocValuesConsumer
+name|NormsConsumer
 name|normsConsumer
 parameter_list|(
 name|SegmentWriteState
@@ -223,7 +223,7 @@ annotation|@
 name|Override
 DECL|method|normsProducer
 specifier|public
-name|DocValuesProducer
+name|NormsProducer
 name|normsProducer
 parameter_list|(
 name|SegmentReadState

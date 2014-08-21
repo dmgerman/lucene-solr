@@ -4893,6 +4893,15 @@ name|idx
 init|=
 literal|0
 decl_stmt|;
+name|MatchingReaders
+name|matching
+init|=
+operator|new
+name|MatchingReaders
+argument_list|(
+name|mergeState
+argument_list|)
+decl_stmt|;
 for|for
 control|(
 name|AtomicReader
@@ -4907,7 +4916,7 @@ specifier|final
 name|SegmentReader
 name|matchingSegmentReader
 init|=
-name|mergeState
+name|matching
 operator|.
 name|matchingSegmentReaders
 index|[

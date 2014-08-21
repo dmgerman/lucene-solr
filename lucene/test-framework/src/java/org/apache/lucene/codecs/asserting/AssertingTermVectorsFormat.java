@@ -80,9 +80,9 @@ name|lucene
 operator|.
 name|codecs
 operator|.
-name|lucene40
+name|lucene42
 operator|.
-name|Lucene40TermVectorsFormat
+name|Lucene42TermVectorsFormat
 import|;
 end_import
 
@@ -199,7 +199,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Just like {@link Lucene40TermVectorsFormat} but with additional asserts.  */
+comment|/**  * Just like {@link Lucene42TermVectorsFormat} but with additional asserts.  */
 end_comment
 
 begin_class
@@ -217,7 +217,7 @@ name|TermVectorsFormat
 name|in
 init|=
 operator|new
-name|Lucene40TermVectorsFormat
+name|Lucene42TermVectorsFormat
 argument_list|()
 decl_stmt|;
 annotation|@

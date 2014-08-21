@@ -38,7 +38,7 @@ name|lucene
 operator|.
 name|codecs
 operator|.
-name|DocValuesConsumer
+name|NormsConsumer
 import|;
 end_import
 
@@ -86,7 +86,7 @@ annotation|@
 name|Override
 DECL|method|normsConsumer
 specifier|public
-name|DocValuesConsumer
+name|NormsConsumer
 name|normsConsumer
 parameter_list|(
 name|SegmentWriteState
