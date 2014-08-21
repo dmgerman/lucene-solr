@@ -207,16 +207,11 @@ name|testableLocalSocketAddress
 argument_list|()
 return|;
 block|}
-comment|/**    * Cause this ZooKeeper object to stop receiving from the ZooKeeperServer    * for the given number of milliseconds.    * @param ms the number of milliseconds to pause.    */
-DECL|method|pauseCnxn
+DECL|method|closeCnxn
 specifier|public
 name|void
-name|pauseCnxn
-parameter_list|(
-specifier|final
-name|long
-name|ms
-parameter_list|)
+name|closeCnxn
+parameter_list|()
 block|{
 specifier|final
 name|Thread
@@ -343,22 +338,7 @@ name|e
 argument_list|)
 throw|;
 block|}
-name|Thread
-operator|.
-name|sleep
-argument_list|(
-name|ms
-argument_list|)
-expr_stmt|;
 block|}
-block|}
-catch|catch
-parameter_list|(
-name|InterruptedException
-name|e
-parameter_list|)
-block|{
-comment|// ignore
 block|}
 finally|finally
 block|{

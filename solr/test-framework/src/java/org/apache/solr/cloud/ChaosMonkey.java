@@ -764,42 +764,34 @@ block|{
 name|causeConnectionLoss
 argument_list|(
 name|jetty
-argument_list|,
+argument_list|)
+expr_stmt|;
+name|long
+name|sessionId
+init|=
 name|cores
 operator|.
 name|getZkController
 argument_list|()
 operator|.
-name|getClientTimeout
+name|getZkClient
 argument_list|()
-operator|+
-literal|200
+operator|.
+name|getSolrZooKeeper
+argument_list|()
+operator|.
+name|getSessionId
+argument_list|()
+decl_stmt|;
+name|zkServer
+operator|.
+name|expire
+argument_list|(
+name|sessionId
 argument_list|)
 expr_stmt|;
 block|}
 block|}
-comment|//    Thread thread = new Thread() {
-comment|//      {
-comment|//        setDaemon(true);
-comment|//      }
-comment|//      public void run() {
-comment|//        SolrDispatchFilter solrDispatchFilter = (SolrDispatchFilter) jetty.getDispatchFilter().getFilter();
-comment|//        if (solrDispatchFilter != null) {
-comment|//          CoreContainer cores = solrDispatchFilter.getCores();
-comment|//          if (cores != null) {
-comment|//            try {
-comment|//              Thread.sleep(ZkTestServer.TICK_TIME * 2 + 800);
-comment|//            } catch (InterruptedException e) {
-comment|//              // we act as only connection loss
-comment|//              return;
-comment|//            }
-comment|//            long sessionId = cores.getZkController().getZkClient().getSolrZooKeeper().getSessionId();
-comment|//            zkServer.expire(sessionId);
-comment|//          }
-comment|//        }
-comment|//      }
-comment|//    };
-comment|//    thread.start();
 block|}
 DECL|method|expireRandomSession
 specifier|public
@@ -910,33 +902,6 @@ name|JettySolrRunner
 name|jetty
 parameter_list|)
 block|{
-name|causeConnectionLoss
-argument_list|(
-name|jetty
-argument_list|,
-name|ZkTestServer
-operator|.
-name|TICK_TIME
-operator|*
-literal|2
-operator|+
-literal|200
-argument_list|)
-expr_stmt|;
-block|}
-DECL|method|causeConnectionLoss
-specifier|public
-specifier|static
-name|void
-name|causeConnectionLoss
-parameter_list|(
-name|JettySolrRunner
-name|jetty
-parameter_list|,
-name|int
-name|pauseTime
-parameter_list|)
-block|{
 name|SolrDispatchFilter
 name|solrDispatchFilter
 init|=
@@ -984,16 +949,13 @@ operator|.
 name|getZkClient
 argument_list|()
 decl_stmt|;
-comment|// must be at least double tick time...
 name|zkClient
 operator|.
 name|getSolrZooKeeper
 argument_list|()
 operator|.
-name|pauseCnxn
-argument_list|(
-name|pauseTime
-argument_list|)
+name|closeCnxn
+argument_list|()
 expr_stmt|;
 block|}
 block|}
