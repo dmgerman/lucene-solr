@@ -118,6 +118,16 @@ parameter_list|()
 throws|throws
 name|IOException
 function_decl|;
+comment|/**    * Sets the scanner buffer size in chars    */
+DECL|method|setBufferSize
+specifier|public
+name|void
+name|setBufferSize
+parameter_list|(
+name|int
+name|numChars
+parameter_list|)
+function_decl|;
 block|}
 end_interface
 

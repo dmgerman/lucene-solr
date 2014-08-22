@@ -347,6 +347,23 @@ name|maxTokenLength
 operator|=
 name|length
 expr_stmt|;
+name|scanner
+operator|.
+name|setBufferSize
+argument_list|(
+name|Math
+operator|.
+name|min
+argument_list|(
+name|length
+argument_list|,
+literal|1024
+operator|*
+literal|1024
+argument_list|)
+argument_list|)
+expr_stmt|;
+comment|// limit buffer size to 1M chars
 block|}
 comment|/** @see #setMaxTokenLength */
 DECL|method|getMaxTokenLength

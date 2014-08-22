@@ -1222,6 +1222,22 @@ name|zzStartRead
 argument_list|)
 expr_stmt|;
 block|}
+DECL|method|setBufferSize
+specifier|public
+specifier|final
+name|void
+name|setBufferSize
+parameter_list|(
+name|int
+name|numChars
+parameter_list|)
+block|{
+throw|throw
+operator|new
+name|UnsupportedOperationException
+argument_list|()
+throw|;
+block|}
 comment|/**    * Creates a new scanner    *    * @param   in  the java.io.Reader to read input from.    */
 DECL|method|ClassicTokenizerImpl
 name|ClassicTokenizerImpl
