@@ -435,6 +435,8 @@ argument_list|,
 name|queryAnalyzer
 argument_list|,
 name|minPrefixChars
+argument_list|,
+literal|true
 argument_list|)
 return|;
 block|}

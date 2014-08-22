@@ -421,7 +421,7 @@ operator|=
 name|DEFAULT_NUM_FACTOR
 expr_stmt|;
 block|}
-comment|/**    * Create a new instance, loading from a previously built    * directory, if it exists.    *    * @param blenderType Type of blending strategy, see BlenderType for more precisions    * @param numFactor   Factor to multiply the number of searched elements before ponderate    * @throws IOException If there are problems opening the underlying Lucene index.    */
+comment|/**    * Create a new instance, loading from a previously built    * directory, if it exists.    *    * @param blenderType Type of blending strategy, see BlenderType for more precisions    * @param numFactor   Factor to multiply the number of searched elements before ponderate    * @param commitOnBuild Call commit after the index has finished building. This would persist the    *                      suggester index to disk and future instances of this suggester can use this pre-built dictionary.    * @throws IOException If there are problems opening the underlying Lucene index.    */
 DECL|method|BlendedInfixSuggester
 specifier|public
 name|BlendedInfixSuggester
@@ -446,6 +446,9 @@ name|blenderType
 parameter_list|,
 name|int
 name|numFactor
+parameter_list|,
+name|boolean
+name|commitOnBuild
 parameter_list|)
 throws|throws
 name|IOException
@@ -461,6 +464,8 @@ argument_list|,
 name|queryAnalyzer
 argument_list|,
 name|minPrefixChars
+argument_list|,
+name|commitOnBuild
 argument_list|)
 expr_stmt|;
 name|this
