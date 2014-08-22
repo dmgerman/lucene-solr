@@ -1101,7 +1101,7 @@ return|return
 name|docCount
 return|;
 block|}
-comment|/**    * tokenize a<code>String</code> on this classifier's text fields and analyzer    *    * @param doc the<code>String</code> representing an input text (to be classified)    * @return    * @throws IOException    */
+comment|/**    * tokenize a<code>String</code> on this classifier's text fields and analyzer    *    * @param doc the<code>String</code> representing an input text (to be classified)    * @return a<code>String</code> array of the resulting tokens    * @throws IOException    */
 DECL|method|tokenizeDoc
 specifier|protected
 name|String
