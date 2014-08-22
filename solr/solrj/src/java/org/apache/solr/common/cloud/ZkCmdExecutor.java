@@ -105,7 +105,7 @@ name|retryDelay
 init|=
 literal|1500L
 decl_stmt|;
-comment|// 500 ms over for padding
+comment|// 1500 ms over for padding
 DECL|field|retryCount
 specifier|private
 name|int
@@ -125,6 +125,11 @@ name|Ids
 operator|.
 name|OPEN_ACL_UNSAFE
 decl_stmt|;
+DECL|field|timeouts
+specifier|private
+name|double
+name|timeouts
+decl_stmt|;
 comment|/**    * TODO: At this point, this should probably take a SolrZkClient in    * it's constructor.    *     * @param timeoutms    *          the client timeout for the ZooKeeper clients that will be used    *          with this class.    */
 DECL|method|ZkCmdExecutor
 specifier|public
@@ -134,13 +139,12 @@ name|int
 name|timeoutms
 parameter_list|)
 block|{
-name|double
 name|timeouts
-init|=
+operator|=
 name|timeoutms
 operator|/
 literal|1000.0
-decl_stmt|;
+expr_stmt|;
 name|this
 operator|.
 name|retryCount
@@ -169,6 +173,8 @@ operator|-
 literal|1.0f
 operator|)
 argument_list|)
+operator|+
+literal|1
 expr_stmt|;
 block|}
 DECL|method|getAcl
@@ -359,11 +365,21 @@ name|exception
 throw|;
 block|}
 block|}
+if|if
+condition|(
+name|i
+operator|!=
+name|retryCount
+operator|-
+literal|1
+condition|)
+block|{
 name|retryDelay
 argument_list|(
 name|i
 argument_list|)
 expr_stmt|;
+block|}
 block|}
 block|}
 throw|throw
@@ -487,7 +503,11 @@ name|Thread
 operator|.
 name|sleep
 argument_list|(
+operator|(
 name|attemptCount
+operator|+
+literal|1
+operator|)
 operator|*
 name|retryDelay
 argument_list|)
