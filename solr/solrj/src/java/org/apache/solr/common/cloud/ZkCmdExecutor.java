@@ -105,7 +105,7 @@ name|retryDelay
 init|=
 literal|1500L
 decl_stmt|;
-comment|// 1500 ms over for padding
+comment|// 1 second would match timeout, so 500 ms over for padding
 DECL|field|retryCount
 specifier|private
 name|int
