@@ -317,32 +317,38 @@ argument_list|<
 name|BytesRef
 argument_list|>
 block|{
+comment|/**    *    */
 DECL|field|atomicReader
 specifier|protected
 name|AtomicReader
 name|atomicReader
 decl_stmt|;
+comment|/**    * names of the fields to be used as input text    */
 DECL|field|textFieldNames
 specifier|protected
 name|String
 index|[]
 name|textFieldNames
 decl_stmt|;
+comment|/**    * name of the field to be used as a class / category output    */
 DECL|field|classFieldName
 specifier|protected
 name|String
 name|classFieldName
 decl_stmt|;
+comment|/**    * {@link org.apache.lucene.analysis.Analyzer} to be used for tokenizing unseen input text    */
 DECL|field|analyzer
 specifier|protected
 name|Analyzer
 name|analyzer
 decl_stmt|;
+comment|/**    * {@link org.apache.lucene.search.IndexSearcher} to run searches on the index for retrieving frequencies    */
 DECL|field|indexSearcher
 specifier|protected
 name|IndexSearcher
 name|indexSearcher
 decl_stmt|;
+comment|/**    * {@link org.apache.lucene.search.Query} used to eventually filter the document set to be used to classify    */
 DECL|field|query
 specifier|protected
 name|Query
@@ -968,6 +974,7 @@ return|return
 name|returnList
 return|;
 block|}
+comment|/**    * count the number of documents in the index having at least a value for the 'class' field    *    * @return the no. of documents having a value for the 'class' field    * @throws IOException    */
 DECL|method|countDocsWithClass
 specifier|protected
 name|int
@@ -1094,6 +1101,7 @@ return|return
 name|docCount
 return|;
 block|}
+comment|/**    * tokenize a<code>String</code> on this classifier's text fields and analyzer    *    * @param doc the<code>String</code> representing an input text (to be classified)    * @return    * @throws IOException    */
 DECL|method|tokenizeDoc
 specifier|protected
 name|String
