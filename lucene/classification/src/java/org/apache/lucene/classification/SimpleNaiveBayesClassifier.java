@@ -974,7 +974,7 @@ return|return
 name|returnList
 return|;
 block|}
-comment|/**    * count the number of documents in the index having at least a value for the 'class' field    *    * @return the no. of documents having a value for the 'class' field    * @throws IOException    */
+comment|/**    * count the number of documents in the index having at least a value for the 'class' field    *    * @return the no. of documents having a value for the 'class' field    * @throws IOException if accessing to term vectors or search fails    */
 DECL|method|countDocsWithClass
 specifier|protected
 name|int
@@ -1101,7 +1101,7 @@ return|return
 name|docCount
 return|;
 block|}
-comment|/**    * tokenize a<code>String</code> on this classifier's text fields and analyzer    *    * @param doc the<code>String</code> representing an input text (to be classified)    * @return a<code>String</code> array of the resulting tokens    * @throws IOException    */
+comment|/**    * tokenize a<code>String</code> on this classifier's text fields and analyzer    *    * @param doc the<code>String</code> representing an input text (to be classified)    * @return a<code>String</code> array of the resulting tokens    * @throws IOException if tokenization fails    */
 DECL|method|tokenizeDoc
 specifier|protected
 name|String
