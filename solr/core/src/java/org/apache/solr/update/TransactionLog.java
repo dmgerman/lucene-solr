@@ -3054,6 +3054,38 @@ literal|"}"
 return|;
 block|}
 block|}
+comment|// returns best effort current position
+comment|// for info purposes
+DECL|method|currentPos
+specifier|public
+name|long
+name|currentPos
+parameter_list|()
+block|{
+return|return
+name|fis
+operator|.
+name|position
+argument_list|()
+return|;
+block|}
+comment|// returns best effort current size
+comment|// for info purposes
+DECL|method|currentSize
+specifier|public
+name|long
+name|currentSize
+parameter_list|()
+throws|throws
+name|IOException
+block|{
+return|return
+name|channel
+operator|.
+name|size
+argument_list|()
+return|;
+block|}
 block|}
 DECL|class|ReverseReader
 specifier|public
