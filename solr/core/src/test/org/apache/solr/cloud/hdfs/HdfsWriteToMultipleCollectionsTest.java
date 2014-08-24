@@ -992,7 +992,8 @@ name|isBlockCacheReadEnabled
 argument_list|()
 argument_list|)
 expr_stmt|;
-name|assertTrue
+comment|// see SOLR-6424
+name|assertFalse
 argument_list|(
 name|blockDirectory
 operator|.
