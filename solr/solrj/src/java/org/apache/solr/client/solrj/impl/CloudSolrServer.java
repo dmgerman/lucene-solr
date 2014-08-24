@@ -34,16 +34,6 @@ begin_import
 import|import
 name|java
 operator|.
-name|net
-operator|.
-name|MalformedURLException
-import|;
-end_import
-
-begin_import
-import|import
-name|java
-operator|.
 name|util
 operator|.
 name|ArrayList
@@ -907,7 +897,7 @@ constructor_decl|;
 comment|// Not supported via SolrCloud
 comment|// NON_ROUTABLE_PARAMS.add(UpdateParams.ROLLBACK);
 block|}
-comment|/**    * @param zkHost The client endpoint of the zookeeper quorum containing the cloud state,    * in the form HOST:PORT.    */
+comment|/**    * Create a new client object that connects to Zookeeper and is always aware    * of the SolrCloud state. If there is a fully redundant Zookeeper quorum and    * SolrCloud has enough replicas for every shard in a collection, there is no    * single point of failure. Updates will be sent to shard leaders by default.    *     * @param zkHost    *          The client endpoint of the zookeeper quorum containing the cloud    *          state. The full specification for this string is one or more comma    *          separated HOST:PORT values, followed by an optional chroot value    *          that starts with a forward slash. Using a chroot allows multiple    *          applications to coexist in one ensemble. For full details, see the    *          Zookeeper documentation. Some examples:    *<p/>    *          "host1:2181"    *<p/>    *          "host1:2181,host2:2181,host3:2181/mysolrchroot"    *<p/>    *          "zoo1.example.com:2181,zoo2.example.com:2181,zoo3.example.com:2181"    */
 DECL|method|CloudSolrServer
 specifier|public
 name|CloudSolrServer
@@ -917,65 +907,14 @@ name|zkHost
 parameter_list|)
 block|{
 name|this
-operator|.
+argument_list|(
 name|zkHost
-operator|=
-name|zkHost
-expr_stmt|;
-name|this
-operator|.
-name|myClient
-operator|=
-name|HttpClientUtil
-operator|.
-name|createClient
-argument_list|(
-literal|null
-argument_list|)
-expr_stmt|;
-name|this
-operator|.
-name|lbServer
-operator|=
-operator|new
-name|LBHttpSolrServer
-argument_list|(
-name|myClient
-argument_list|)
-expr_stmt|;
-name|this
-operator|.
-name|lbServer
-operator|.
-name|setRequestWriter
-argument_list|(
-operator|new
-name|BinaryRequestWriter
-argument_list|()
-argument_list|)
-expr_stmt|;
-name|this
-operator|.
-name|lbServer
-operator|.
-name|setParser
-argument_list|(
-operator|new
-name|BinaryResponseParser
-argument_list|()
-argument_list|)
-expr_stmt|;
-name|this
-operator|.
-name|updatesToLeaders
-operator|=
+argument_list|,
 literal|true
-expr_stmt|;
-name|shutdownLBHttpSolrServer
-operator|=
-literal|true
+argument_list|)
 expr_stmt|;
 block|}
+comment|/**    * @param zkHost    *          A zookeeper client endpoint.    * @param updatesToLeaders    *          If true, sends updates only to shard leaders.    * @see #CloudSolrServer(String) for full description and details on zkHost    */
 DECL|method|CloudSolrServer
 specifier|public
 name|CloudSolrServer
@@ -986,8 +925,6 @@ parameter_list|,
 name|boolean
 name|updatesToLeaders
 parameter_list|)
-throws|throws
-name|MalformedURLException
 block|{
 name|this
 operator|.
@@ -1049,7 +986,7 @@ operator|=
 literal|true
 expr_stmt|;
 block|}
-comment|/**    * @param zkHost The client endpoint of the zookeeper quorum containing the cloud state,    * in the form HOST:PORT.    * @param lbServer LBHttpSolrServer instance for requests.     */
+comment|/**    * @param zkHost    *          A zookeeper client endpoint.    * @param lbServer    *          LBHttpSolrServer instance for requests.    * @see #CloudSolrServer(String) for full description and details on zkHost    */
 DECL|method|CloudSolrServer
 specifier|public
 name|CloudSolrServer
@@ -1062,29 +999,16 @@ name|lbServer
 parameter_list|)
 block|{
 name|this
-operator|.
+argument_list|(
 name|zkHost
-operator|=
-name|zkHost
-expr_stmt|;
-name|this
-operator|.
+argument_list|,
 name|lbServer
-operator|=
-name|lbServer
-expr_stmt|;
-name|this
-operator|.
-name|updatesToLeaders
-operator|=
+argument_list|,
 literal|true
-expr_stmt|;
-name|shutdownLBHttpSolrServer
-operator|=
-literal|false
+argument_list|)
 expr_stmt|;
 block|}
-comment|/**    * @param zkHost The client endpoint of the zookeeper quorum containing the cloud state,    * in the form HOST:PORT.    * @param lbServer LBHttpSolrServer instance for requests.     * @param updatesToLeaders sends updates only to leaders - defaults to true    */
+comment|/**    * @param zkHost    *          A zookeeper client endpoint.    * @param lbServer    *          LBHttpSolrServer instance for requests.    * @param updatesToLeaders    *          If true, sends updates only to shard leaders.    * @see #CloudSolrServer(String) for full description and details on zkHost    */
 DECL|method|CloudSolrServer
 specifier|public
 name|CloudSolrServer

@@ -4736,8 +4736,6 @@ parameter_list|(
 name|String
 name|defaultCollection
 parameter_list|)
-throws|throws
-name|MalformedURLException
 block|{
 name|CloudSolrServer
 name|client
