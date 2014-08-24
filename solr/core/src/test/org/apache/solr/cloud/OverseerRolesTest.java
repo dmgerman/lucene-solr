@@ -180,30 +180,6 @@ end_import
 
 begin_import
 import|import
-name|java
-operator|.
-name|util
-operator|.
-name|regex
-operator|.
-name|Matcher
-import|;
-end_import
-
-begin_import
-import|import
-name|java
-operator|.
-name|util
-operator|.
-name|regex
-operator|.
-name|Pattern
-import|;
-end_import
-
-begin_import
-import|import
 name|org
 operator|.
 name|apache
@@ -449,7 +425,7 @@ operator|.
 name|Slow
 annotation|@
 name|SuppressSSL
-comment|// Currently unknown why SSL does not work
+comment|// See SOLR-5776
 DECL|class|OverseerRolesTest
 specifier|public
 class|class
@@ -567,7 +543,11 @@ literal|2
 expr_stmt|;
 name|shardCount
 operator|=
+name|TEST_NIGHTLY
+condition|?
 literal|6
+else|:
+literal|2
 expr_stmt|;
 name|checkCreatedVsState
 operator|=
