@@ -454,7 +454,7 @@ name|releaseLocation
 argument_list|(
 name|cache
 operator|.
-name|get
+name|remove
 argument_list|(
 name|key
 argument_list|)
