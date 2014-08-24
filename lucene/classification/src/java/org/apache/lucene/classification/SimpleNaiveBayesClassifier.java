@@ -317,7 +317,7 @@ argument_list|<
 name|BytesRef
 argument_list|>
 block|{
-comment|/**    *    */
+comment|/**    * {@link org.apache.lucene.index.AtomicReader} used to access the {@link org.apache.lucene.classification.Classifier}'s    * index    */
 DECL|field|atomicReader
 specifier|protected
 name|AtomicReader
