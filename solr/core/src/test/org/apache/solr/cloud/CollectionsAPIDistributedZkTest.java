@@ -1291,7 +1291,8 @@ name|zkClient
 argument_list|,
 name|solrhome
 argument_list|,
-literal|"solrconfig.xml"
+name|getCloudSolrConfig
+argument_list|()
 argument_list|,
 literal|"solrconfig.xml"
 argument_list|)
