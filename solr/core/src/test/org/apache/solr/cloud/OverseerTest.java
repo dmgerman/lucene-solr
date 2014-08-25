@@ -498,7 +498,7 @@ specifier|final
 name|int
 name|TIMEOUT
 init|=
-literal|10000
+literal|30000
 decl_stmt|;
 DECL|field|DEBUG
 specifier|private
