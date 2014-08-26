@@ -217,24 +217,6 @@ argument_list|()
 argument_list|)
 return|;
 block|}
-annotation|@
-name|Override
-DECL|method|testMergeStability
-specifier|public
-name|void
-name|testMergeStability
-parameter_list|()
-throws|throws
-name|Exception
-block|{
-name|assumeTrue
-argument_list|(
-literal|"The MockRandom PF randomizes content on the fly, so we can't check it"
-argument_list|,
-literal|false
-argument_list|)
-expr_stmt|;
-block|}
 comment|/** Make sure the final sub-block(s) are not skipped. */
 DECL|method|testFinalBlock
 specifier|public
