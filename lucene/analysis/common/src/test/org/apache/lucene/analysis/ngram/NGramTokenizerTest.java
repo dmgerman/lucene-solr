@@ -2043,6 +2043,22 @@ literal|"abcdef"
 argument_list|)
 expr_stmt|;
 block|}
+DECL|method|test43Tokenizer
+specifier|public
+name|void
+name|test43Tokenizer
+parameter_list|()
+block|{
+comment|// TODO: do more than instantiate (ie check the old broken behavior)
+operator|new
+name|Lucene43NGramTokenizer
+argument_list|(
+literal|1
+argument_list|,
+literal|1
+argument_list|)
+expr_stmt|;
+block|}
 block|}
 end_class
 

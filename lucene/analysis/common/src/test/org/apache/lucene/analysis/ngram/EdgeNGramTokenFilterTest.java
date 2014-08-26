@@ -1636,6 +1636,21 @@ argument_list|()
 argument_list|)
 expr_stmt|;
 block|}
+DECL|method|test43Tokenizer
+specifier|public
+name|void
+name|test43Tokenizer
+parameter_list|()
+block|{
+operator|new
+name|Lucene43EdgeNGramTokenizer
+argument_list|(
+literal|1
+argument_list|,
+literal|1
+argument_list|)
+expr_stmt|;
+block|}
 block|}
 end_class
 
