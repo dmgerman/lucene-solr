@@ -6466,7 +6466,7 @@ block|}
 comment|// Todo: Convert from DateField to DateUtil
 comment|//  public void testLocalDateFormat() throws IOException, QueryNodeException {
 comment|//    Directory ramDir = newDirectory();
-comment|//    IndexWriter iw = new IndexWriter(ramDir, newIndexWriterConfig(TEST_VERSION_CURRENT, new MockAnalyzer(random, MockTokenizer.WHITESPACE, false)));
+comment|//    IndexWriter iw = new IndexWriter(ramDir, newIndexWriterConfig(new MockAnalyzer(random, MockTokenizer.WHITESPACE, false)));
 comment|//    addDateDoc("a", 2005, 12, 2, 10, 15, 33, iw);
 comment|//    addDateDoc("b", 2005, 12, 4, 22, 15, 00, iw);
 comment|//    iw.close();

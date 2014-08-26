@@ -100,6 +100,20 @@ name|LuceneTestCase
 import|;
 end_import
 
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|util
+operator|.
+name|Version
+import|;
+end_import
+
 begin_class
 DECL|class|TestMultiPassIndexSplitter
 specifier|public
@@ -358,7 +372,9 @@ name|splitter
 operator|.
 name|split
 argument_list|(
-name|TEST_VERSION_CURRENT
+name|Version
+operator|.
+name|LATEST
 argument_list|,
 name|input
 argument_list|,
@@ -757,7 +773,9 @@ name|splitter
 operator|.
 name|split
 argument_list|(
-name|TEST_VERSION_CURRENT
+name|Version
+operator|.
+name|LATEST
 argument_list|,
 name|input
 argument_list|,

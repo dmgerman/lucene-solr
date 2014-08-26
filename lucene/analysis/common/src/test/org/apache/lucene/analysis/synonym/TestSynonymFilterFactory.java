@@ -132,6 +132,20 @@ name|CJKAnalyzer
 import|;
 end_import
 
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|util
+operator|.
+name|Version
+import|;
+end_import
+
 begin_class
 DECL|class|TestSynonymFilterFactory
 specifier|public
@@ -344,7 +358,9 @@ name|tokenFilterFactory
 argument_list|(
 literal|"Synonym"
 argument_list|,
-name|TEST_VERSION_CURRENT
+name|Version
+operator|.
+name|LATEST
 argument_list|,
 operator|new
 name|StringMockResourceLoader

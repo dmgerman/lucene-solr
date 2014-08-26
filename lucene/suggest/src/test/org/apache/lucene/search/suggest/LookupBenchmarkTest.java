@@ -998,8 +998,6 @@ operator|=
 operator|new
 name|AnalyzingInfixSuggester
 argument_list|(
-name|TEST_VERSION_CURRENT
-argument_list|,
 name|FSDirectory
 operator|.
 name|open

@@ -456,7 +456,7 @@ name|tearDown
 argument_list|()
 expr_stmt|;
 block|}
-comment|/*   public void testPerFieldAnalyzer() throws Exception {     PerFieldAnalyzerWrapper analyzer = new PerFieldAnalyzerWrapper(new SimpleAnalyzer());     analyzer.addAnalyzer("partnum", new KeywordAnalyzer());      QueryParser queryParser = new QueryParser(TEST_VERSION_CURRENT, "description", analyzer);     Query query = queryParser.parse("partnum:Q36 AND SPACE");      ScoreDoc[] hits = searcher.search(query, null, 1000).scoreDocs;     assertEquals("Q36 kept as-is",               "+partnum:Q36 +space", query.toString("description"));     assertEquals("doc found!", 1, hits.length);   }   */
+comment|/*   public void testPerFieldAnalyzer() throws Exception {     PerFieldAnalyzerWrapper analyzer = new PerFieldAnalyzerWrapper(new SimpleAnalyzer());     analyzer.addAnalyzer("partnum", new KeywordAnalyzer());      QueryParser queryParser = new QueryParser("description", analyzer);     Query query = queryParser.parse("partnum:Q36 AND SPACE");      ScoreDoc[] hits = searcher.search(query, null, 1000).scoreDocs;     assertEquals("Q36 kept as-is",               "+partnum:Q36 +space", query.toString("description"));     assertEquals("doc found!", 1, hits.length);   }   */
 DECL|method|testMutipleDocument
 specifier|public
 name|void

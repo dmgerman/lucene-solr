@@ -300,7 +300,6 @@ throws|throws
 name|IOException
 block|{
 comment|// create IWs for train / test / cv IDXs
-comment|// :Post-Release-Update-Version.LUCENE_XY:
 name|IndexWriter
 name|testWriter
 init|=

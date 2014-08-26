@@ -687,7 +687,7 @@ else|:
 literal|null
 decl_stmt|;
 comment|// RAMDirectory dir = new RAMDirectory();
-comment|// final IndexWriter writer = new IndexWriter(dir, new IndexWriterConfig(new WhitespaceAnalyzer(TEST_VERSION_CURRENT)));
+comment|// final IndexWriter writer = new IndexWriter(dir, new IndexWriterConfig(new WhitespaceAnalyzer()));
 name|Directory
 name|dir
 init|=

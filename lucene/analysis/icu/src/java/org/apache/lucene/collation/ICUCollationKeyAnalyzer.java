@@ -121,7 +121,29 @@ specifier|final
 name|ICUCollationAttributeFactory
 name|factory
 decl_stmt|;
-comment|/**    * Create a new ICUCollationKeyAnalyzer, using the specified collator.    *     * @param matchVersion compatibility version    * @param collator CollationKey generator    */
+comment|/**    * Create a new ICUCollationKeyAnalyzer, using the specified collator.    *    * @param collator CollationKey generator    */
+DECL|method|ICUCollationKeyAnalyzer
+specifier|public
+name|ICUCollationKeyAnalyzer
+parameter_list|(
+name|Collator
+name|collator
+parameter_list|)
+block|{
+name|this
+operator|.
+name|factory
+operator|=
+operator|new
+name|ICUCollationAttributeFactory
+argument_list|(
+name|collator
+argument_list|)
+expr_stmt|;
+block|}
+comment|/**    * @deprecated Use {@link #ICUCollationKeyAnalyzer(Collator)}    */
+annotation|@
+name|Deprecated
 DECL|method|ICUCollationKeyAnalyzer
 specifier|public
 name|ICUCollationKeyAnalyzer

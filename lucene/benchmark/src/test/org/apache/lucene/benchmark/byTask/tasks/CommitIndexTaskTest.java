@@ -92,6 +92,20 @@ name|SegmentInfos
 import|;
 end_import
 
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|util
+operator|.
+name|Version
+import|;
+end_import
+
 begin_comment
 comment|/** Tests the functionality of {@link CreateIndexTask}. */
 end_comment
@@ -125,7 +139,9 @@ name|setProperty
 argument_list|(
 literal|"writer.version"
 argument_list|,
-name|TEST_VERSION_CURRENT
+name|Version
+operator|.
+name|LATEST
 operator|.
 name|toString
 argument_list|()

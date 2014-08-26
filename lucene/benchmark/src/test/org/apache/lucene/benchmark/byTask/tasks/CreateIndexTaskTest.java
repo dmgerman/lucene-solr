@@ -206,7 +206,6 @@ operator|new
 name|Properties
 argument_list|()
 decl_stmt|;
-comment|// :Post-Release-Update-Version.LUCENE_XY:
 name|props
 operator|.
 name|setProperty
@@ -215,7 +214,7 @@ literal|"writer.version"
 argument_list|,
 name|Version
 operator|.
-name|LUCENE_5_0_0
+name|LATEST
 operator|.
 name|toString
 argument_list|()

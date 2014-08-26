@@ -264,6 +264,20 @@ name|AttributeFactory
 import|;
 end_import
 
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|util
+operator|.
+name|Version
+import|;
+end_import
+
 begin_comment
 comment|/**  * Sanity check some things about all factories,  * we do our best to see if we can sanely initialize it with  * no parameters and smoke test it, etc.  */
 end_comment
@@ -708,7 +722,9 @@ name|put
 argument_list|(
 literal|"luceneMatchVersion"
 argument_list|,
-name|TEST_VERSION_CURRENT
+name|Version
+operator|.
+name|LATEST
 operator|.
 name|toString
 argument_list|()

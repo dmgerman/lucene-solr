@@ -84,6 +84,20 @@ name|StringMockResourceLoader
 import|;
 end_import
 
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|util
+operator|.
+name|Version
+import|;
+end_import
+
 begin_comment
 comment|/**  * Simple tests to ensure the keyword marker filter factory is working.  */
 end_comment
@@ -127,7 +141,9 @@ name|tokenFilterFactory
 argument_list|(
 literal|"KeywordMarker"
 argument_list|,
-name|TEST_VERSION_CURRENT
+name|Version
+operator|.
+name|LATEST
 argument_list|,
 operator|new
 name|StringMockResourceLoader
@@ -271,7 +287,9 @@ name|tokenFilterFactory
 argument_list|(
 literal|"KeywordMarker"
 argument_list|,
-name|TEST_VERSION_CURRENT
+name|Version
+operator|.
+name|LATEST
 argument_list|,
 operator|new
 name|StringMockResourceLoader
@@ -353,7 +371,9 @@ name|tokenFilterFactory
 argument_list|(
 literal|"KeywordMarker"
 argument_list|,
-name|TEST_VERSION_CURRENT
+name|Version
+operator|.
+name|LATEST
 argument_list|,
 operator|new
 name|StringMockResourceLoader
@@ -510,7 +530,9 @@ name|tokenFilterFactory
 argument_list|(
 literal|"KeywordMarker"
 argument_list|,
-name|TEST_VERSION_CURRENT
+name|Version
+operator|.
+name|LATEST
 argument_list|,
 operator|new
 name|StringMockResourceLoader

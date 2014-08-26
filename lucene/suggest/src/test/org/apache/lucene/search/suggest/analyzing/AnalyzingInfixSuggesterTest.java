@@ -397,8 +397,6 @@ init|=
 operator|new
 name|AnalyzingInfixSuggester
 argument_list|(
-name|TEST_VERSION_CURRENT
-argument_list|,
 name|newDirectory
 argument_list|()
 argument_list|,
@@ -869,8 +867,6 @@ init|=
 operator|new
 name|AnalyzingInfixSuggester
 argument_list|(
-name|TEST_VERSION_CURRENT
-argument_list|,
 name|newFSDirectory
 argument_list|(
 name|tempDir
@@ -916,8 +912,6 @@ operator|=
 operator|new
 name|AnalyzingInfixSuggester
 argument_list|(
-name|TEST_VERSION_CURRENT
-argument_list|,
 name|newFSDirectory
 argument_list|(
 name|tempDir
@@ -1157,8 +1151,6 @@ init|=
 operator|new
 name|AnalyzingInfixSuggester
 argument_list|(
-name|TEST_VERSION_CURRENT
-argument_list|,
 name|newDirectory
 argument_list|()
 argument_list|,
@@ -1771,8 +1763,6 @@ init|=
 operator|new
 name|AnalyzingInfixSuggester
 argument_list|(
-name|TEST_VERSION_CURRENT
-argument_list|,
 name|newFSDirectory
 argument_list|(
 name|tempDir
@@ -2328,8 +2318,6 @@ operator|=
 operator|new
 name|AnalyzingInfixSuggester
 argument_list|(
-name|TEST_VERSION_CURRENT
-argument_list|,
 name|newFSDirectory
 argument_list|(
 name|tempDir
@@ -2404,8 +2392,6 @@ init|=
 operator|new
 name|AnalyzingInfixSuggester
 argument_list|(
-name|TEST_VERSION_CURRENT
-argument_list|,
 name|newDirectory
 argument_list|()
 argument_list|,
@@ -2539,8 +2525,6 @@ init|=
 operator|new
 name|AnalyzingInfixSuggester
 argument_list|(
-name|TEST_VERSION_CURRENT
-argument_list|,
 name|newDirectory
 argument_list|()
 argument_list|,
@@ -2627,8 +2611,6 @@ operator|=
 operator|new
 name|AnalyzingInfixSuggester
 argument_list|(
-name|TEST_VERSION_CURRENT
-argument_list|,
 name|newDirectory
 argument_list|()
 argument_list|,
@@ -2801,8 +2783,6 @@ init|=
 operator|new
 name|AnalyzingInfixSuggester
 argument_list|(
-name|TEST_VERSION_CURRENT
-argument_list|,
 name|newDirectory
 argument_list|()
 argument_list|,
@@ -2946,8 +2926,6 @@ init|=
 operator|new
 name|AnalyzingInfixSuggester
 argument_list|(
-name|TEST_VERSION_CURRENT
-argument_list|,
 name|newDirectory
 argument_list|()
 argument_list|,
@@ -3081,8 +3059,6 @@ init|=
 operator|new
 name|AnalyzingInfixSuggester
 argument_list|(
-name|TEST_VERSION_CURRENT
-argument_list|,
 name|newDirectory
 argument_list|()
 argument_list|,
@@ -3559,8 +3535,6 @@ init|=
 operator|new
 name|AnalyzingInfixSuggester
 argument_list|(
-name|TEST_VERSION_CURRENT
-argument_list|,
 name|newDirectory
 argument_list|()
 argument_list|,
@@ -4020,8 +3994,6 @@ init|=
 operator|new
 name|AnalyzingInfixSuggester
 argument_list|(
-name|TEST_VERSION_CURRENT
-argument_list|,
 name|newFSDirectory
 argument_list|(
 name|tempDir
@@ -4543,8 +4515,6 @@ operator|=
 operator|new
 name|AnalyzingInfixSuggester
 argument_list|(
-name|TEST_VERSION_CURRENT
-argument_list|,
 name|newFSDirectory
 argument_list|(
 name|tempDir
@@ -5632,8 +5602,6 @@ init|=
 operator|new
 name|AnalyzingInfixSuggester
 argument_list|(
-name|TEST_VERSION_CURRENT
-argument_list|,
 name|newDirectory
 argument_list|()
 argument_list|,
@@ -6358,8 +6326,6 @@ init|=
 operator|new
 name|AnalyzingInfixSuggester
 argument_list|(
-name|TEST_VERSION_CURRENT
-argument_list|,
 name|newFSDirectory
 argument_list|(
 name|tempDir
@@ -6562,8 +6528,6 @@ operator|=
 operator|new
 name|AnalyzingInfixSuggester
 argument_list|(
-name|TEST_VERSION_CURRENT
-argument_list|,
 name|newFSDirectory
 argument_list|(
 name|tempDir
@@ -6874,8 +6838,6 @@ operator|=
 operator|new
 name|AnalyzingInfixSuggester
 argument_list|(
-name|TEST_VERSION_CURRENT
-argument_list|,
 name|newFSDirectory
 argument_list|(
 name|tempDir
@@ -6910,8 +6872,6 @@ operator|=
 operator|new
 name|AnalyzingInfixSuggester
 argument_list|(
-name|TEST_VERSION_CURRENT
-argument_list|,
 name|newFSDirectory
 argument_list|(
 name|tempDir
