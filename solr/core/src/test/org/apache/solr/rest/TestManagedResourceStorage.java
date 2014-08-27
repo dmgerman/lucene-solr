@@ -333,7 +333,7 @@ expr_stmt|;
 block|}
 finally|finally
 block|{
-name|zkClient
+name|loader
 operator|.
 name|close
 argument_list|()
@@ -371,6 +371,8 @@ name|getAbsolutePath
 argument_list|()
 argument_list|)
 decl_stmt|;
+try|try
+block|{
 name|NamedList
 argument_list|<
 name|String
@@ -430,6 +432,15 @@ argument_list|,
 name|fileStorageIO
 argument_list|)
 expr_stmt|;
+block|}
+finally|finally
+block|{
+name|loader
+operator|.
+name|close
+argument_list|()
+expr_stmt|;
+block|}
 block|}
 comment|/**    * Called from tests for each storage type to run creation and update tests    * on a persisted managed resource.    */
 annotation|@
