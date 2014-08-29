@@ -1201,6 +1201,40 @@ literal|"org.apache.solr.handler.admin.CoreAdminHandler"
 argument_list|)
 return|;
 block|}
+DECL|method|getZkCredentialProviderClass
+specifier|public
+name|String
+name|getZkCredentialProviderClass
+parameter_list|()
+block|{
+return|return
+name|get
+argument_list|(
+name|CfgProp
+operator|.
+name|SOLR_ZKCREDENTIALPROVIDER
+argument_list|,
+literal|null
+argument_list|)
+return|;
+block|}
+DECL|method|getZkACLProviderClass
+specifier|public
+name|String
+name|getZkACLProviderClass
+parameter_list|()
+block|{
+return|return
+name|get
+argument_list|(
+name|CfgProp
+operator|.
+name|SOLR_ZKACLPROVIDER
+argument_list|,
+literal|null
+argument_list|)
+return|;
+block|}
 DECL|method|getCollectionsHandlerClass
 specifier|public
 name|String
@@ -1525,6 +1559,12 @@ name|SOLR_AUTOREPLICAFAILOVERWORKLOOPDELAY
 block|,
 DECL|enum constant|SOLR_AUTOREPLICAFAILOVERBADNODEEXPIRATION
 name|SOLR_AUTOREPLICAFAILOVERBADNODEEXPIRATION
+block|,
+DECL|enum constant|SOLR_ZKCREDENTIALPROVIDER
+name|SOLR_ZKCREDENTIALPROVIDER
+block|,
+DECL|enum constant|SOLR_ZKACLPROVIDER
+name|SOLR_ZKACLPROVIDER
 block|,
 comment|//TODO: Remove all of these elements for 5.0
 DECL|enum constant|SOLR_PERSISTENT

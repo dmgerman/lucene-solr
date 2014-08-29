@@ -8384,8 +8384,6 @@ name|zkClient
 argument_list|,
 literal|"/overseer/queue"
 argument_list|,
-literal|null
-argument_list|,
 name|zkStats
 argument_list|)
 return|;
@@ -8416,8 +8414,6 @@ argument_list|(
 name|zkClient
 argument_list|,
 literal|"/overseer/queue-work"
-argument_list|,
-literal|null
 argument_list|,
 name|zkStats
 argument_list|)
@@ -8554,8 +8550,6 @@ argument_list|(
 name|zkClient
 argument_list|,
 literal|"/overseer/collection-queue-work"
-argument_list|,
-literal|null
 argument_list|,
 name|zkStats
 argument_list|)

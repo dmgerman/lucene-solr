@@ -303,6 +303,20 @@ literal|"coreZkRegister"
 argument_list|)
 argument_list|)
 decl_stmt|;
+comment|// see ZkController.zkRunOnly
+DECL|field|zkRunOnly
+specifier|private
+name|boolean
+name|zkRunOnly
+init|=
+name|Boolean
+operator|.
+name|getBoolean
+argument_list|(
+literal|"zkRunOnly"
+argument_list|)
+decl_stmt|;
+comment|// expert
 DECL|method|ZkContainer
 specifier|public
 name|ZkContainer
@@ -580,9 +594,15 @@ operator|=
 operator|new
 name|SolrZkServer
 argument_list|(
+name|stripChroot
+argument_list|(
 name|zkRun
+argument_list|)
 argument_list|,
+name|stripChroot
+argument_list|(
 name|zookeeperHost
+argument_list|)
 argument_list|,
 name|zkDataHome
 argument_list|,
@@ -722,6 +742,8 @@ literal|null
 operator|)
 operator|||
 name|boostrapConf
+operator|||
+name|zkRunOnly
 argument_list|)
 condition|)
 block|{
@@ -736,6 +758,8 @@ operator|.
 name|SERVER_ERROR
 argument_list|,
 literal|"A chroot was specified in ZkHost but the znode doesn't exist. "
+operator|+
+name|zookeeperHost
 argument_list|)
 throw|;
 block|}
@@ -1091,6 +1115,31 @@ name|zkController
 operator|=
 name|zkController
 expr_stmt|;
+block|}
+DECL|method|stripChroot
+specifier|private
+name|String
+name|stripChroot
+parameter_list|(
+name|String
+name|zkRun
+parameter_list|)
+block|{
+return|return
+name|zkRun
+operator|.
+name|substring
+argument_list|(
+literal|0
+argument_list|,
+name|zkRun
+operator|.
+name|lastIndexOf
+argument_list|(
+literal|'/'
+argument_list|)
+argument_list|)
+return|;
 block|}
 DECL|method|registerInZk
 specifier|public
