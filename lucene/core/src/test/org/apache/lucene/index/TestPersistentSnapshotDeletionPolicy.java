@@ -206,6 +206,14 @@ init|=
 name|newMockDirectory
 argument_list|()
 decl_stmt|;
+name|dir
+operator|.
+name|setEnableVirusScanner
+argument_list|(
+literal|false
+argument_list|)
+expr_stmt|;
+comment|// test relies on files actually being deleted
 name|IndexWriter
 name|writer
 init|=

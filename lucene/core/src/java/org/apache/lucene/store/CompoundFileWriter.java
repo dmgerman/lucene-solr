@@ -824,12 +824,15 @@ name|is
 argument_list|)
 expr_stmt|;
 comment|// copy successful - delete file
+comment|// if we can't we rely on IFD to pick up and retry
+name|IOUtils
+operator|.
+name|deleteFilesIgnoringExceptions
+argument_list|(
 name|fileEntry
 operator|.
 name|dir
-operator|.
-name|deleteFile
-argument_list|(
+argument_list|,
 name|fileEntry
 operator|.
 name|file

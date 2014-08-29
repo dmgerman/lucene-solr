@@ -383,6 +383,12 @@ name|useSlowOpenClosers
 init|=
 literal|true
 decl_stmt|;
+DECL|field|enableVirusScanner
+name|boolean
+name|enableVirusScanner
+init|=
+literal|true
+decl_stmt|;
 DECL|field|allowRandomFileNotFoundException
 name|boolean
 name|allowRandomFileNotFoundException
@@ -530,6 +536,16 @@ name|String
 argument_list|>
 name|openFilesDeleted
 decl_stmt|;
+comment|// only tracked if virus scanner is enabled:
+comment|// set of files it prevented deletion for
+DECL|field|triedToDelete
+specifier|private
+name|Set
+argument_list|<
+name|String
+argument_list|>
+name|triedToDelete
+decl_stmt|;
 DECL|method|init
 specifier|private
 specifier|synchronized
@@ -552,6 +568,13 @@ argument_list|<>
 argument_list|()
 expr_stmt|;
 name|openFilesDeleted
+operator|=
+operator|new
+name|HashSet
+argument_list|<>
+argument_list|()
+expr_stmt|;
+name|triedToDelete
 operator|=
 operator|new
 name|HashSet
@@ -739,6 +762,34 @@ name|value
 parameter_list|)
 block|{
 name|allowReadingFilesStillOpenForWrite
+operator|=
+name|value
+expr_stmt|;
+block|}
+comment|/** Returns true if the virus scanner is enabled */
+DECL|method|getEnableVirusScanner
+specifier|public
+name|boolean
+name|getEnableVirusScanner
+parameter_list|()
+block|{
+return|return
+name|enableVirusScanner
+return|;
+block|}
+comment|/** If set to true (the default), deleteFile sometimes    *  fails because a virus scanner is open.    */
+DECL|method|setEnableVirusScanner
+specifier|public
+name|void
+name|setEnableVirusScanner
+parameter_list|(
+name|boolean
+name|value
+parameter_list|)
+block|{
+name|this
+operator|.
+name|enableVirusScanner
 operator|=
 name|value
 expr_stmt|;
@@ -2199,6 +2250,70 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
+if|if
+condition|(
+operator|!
+name|forced
+operator|&&
+name|enableVirusScanner
+operator|&&
+operator|(
+name|randomState
+operator|.
+name|nextInt
+argument_list|(
+literal|4
+argument_list|)
+operator|==
+literal|0
+operator|)
+condition|)
+block|{
+name|triedToDelete
+operator|.
+name|add
+argument_list|(
+name|name
+argument_list|)
+expr_stmt|;
+if|if
+condition|(
+name|LuceneTestCase
+operator|.
+name|VERBOSE
+condition|)
+block|{
+name|System
+operator|.
+name|out
+operator|.
+name|println
+argument_list|(
+literal|"MDW: now refuse to delete file: "
+operator|+
+name|name
+argument_list|)
+expr_stmt|;
+block|}
+throw|throw
+operator|new
+name|IOException
+argument_list|(
+literal|"cannot delete file: "
+operator|+
+name|name
+operator|+
+literal|", a virus scanner has it open"
+argument_list|)
+throw|;
+block|}
+name|triedToDelete
+operator|.
+name|remove
+argument_list|(
+name|name
+argument_list|)
+expr_stmt|;
 name|in
 operator|.
 name|deleteFile
@@ -3211,6 +3326,7 @@ name|IOException
 block|{
 comment|// files that we tried to delete, but couldn't because readers were open.
 comment|// all that matters is that we tried! (they will eventually go away)
+comment|//   still open when we tried to delete
 name|Set
 argument_list|<
 name|String
@@ -3224,6 +3340,14 @@ argument_list|(
 name|openFilesDeleted
 argument_list|)
 decl_stmt|;
+comment|//   virus scanner when we tried to delete
+name|pendingDeletions
+operator|.
+name|addAll
+argument_list|(
+name|triedToDelete
+argument_list|)
+expr_stmt|;
 name|maybeYield
 argument_list|()
 expr_stmt|;

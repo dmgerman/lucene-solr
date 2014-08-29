@@ -3685,6 +3685,27 @@ init|=
 name|newMockDirectory
 argument_list|()
 decl_stmt|;
+if|if
+condition|(
+name|dir
+operator|instanceof
+name|MockDirectoryWrapper
+condition|)
+block|{
+comment|// ensure we produce enough of our exceptions
+operator|(
+operator|(
+name|MockDirectoryWrapper
+operator|)
+name|dir
+operator|)
+operator|.
+name|setEnableVirusScanner
+argument_list|(
+literal|false
+argument_list|)
+expr_stmt|;
+block|}
 name|IndexWriterConfig
 name|iwc
 init|=

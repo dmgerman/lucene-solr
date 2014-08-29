@@ -790,22 +790,15 @@ argument_list|(
 name|output
 argument_list|)
 expr_stmt|;
-try|try
-block|{
-name|dir
+name|IOUtils
 operator|.
-name|deleteFile
+name|deleteFilesIgnoringExceptions
 argument_list|(
+name|dir
+argument_list|,
 name|segFileName
 argument_list|)
 expr_stmt|;
-block|}
-catch|catch
-parameter_list|(
-name|Throwable
-name|t
-parameter_list|)
-block|{         }
 block|}
 else|else
 block|{

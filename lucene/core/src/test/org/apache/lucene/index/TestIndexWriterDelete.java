@@ -3199,6 +3199,14 @@ argument_list|(
 literal|false
 argument_list|)
 expr_stmt|;
+comment|// test uses IW unref'ed helper which is unaware of retries
+name|startDir
+operator|.
+name|setEnableVirusScanner
+argument_list|(
+literal|false
+argument_list|)
+expr_stmt|;
 name|IndexWriter
 name|writer
 init|=
@@ -3394,6 +3402,14 @@ expr_stmt|;
 name|dir
 operator|.
 name|setAllowRandomFileNotFoundException
+argument_list|(
+literal|false
+argument_list|)
+expr_stmt|;
+comment|// test uses IW unref'ed helper which is unaware of retries
+name|dir
+operator|.
+name|setEnableVirusScanner
 argument_list|(
 literal|false
 argument_list|)
@@ -4443,7 +4459,7 @@ expr_stmt|;
 block|}
 throw|throw
 operator|new
-name|IOException
+name|RuntimeException
 argument_list|(
 literal|"fail after applyDeletes"
 argument_list|)
@@ -4948,7 +4964,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
-name|IOException
+name|RuntimeException
 name|ioe
 parameter_list|)
 block|{
@@ -5121,6 +5137,14 @@ init|=
 name|newMockDirectory
 argument_list|()
 decl_stmt|;
+comment|// test uses IW unref'ed helper which is unaware of retries
+name|dir
+operator|.
+name|setEnableVirusScanner
+argument_list|(
+literal|false
+argument_list|)
+expr_stmt|;
 name|IndexWriter
 name|modifier
 init|=

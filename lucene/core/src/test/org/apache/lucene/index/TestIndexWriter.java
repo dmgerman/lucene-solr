@@ -1442,6 +1442,8 @@ name|doc
 argument_list|)
 expr_stmt|;
 block|}
+comment|// TODO: we have the logic in MDW to do this check, and its better, because it knows about files it tried
+comment|// to delete but couldn't: we should replace this!!!!
 DECL|method|assertNoUnreferencedFiles
 specifier|public
 specifier|static
@@ -1457,6 +1459,29 @@ parameter_list|)
 throws|throws
 name|IOException
 block|{
+if|if
+condition|(
+name|dir
+operator|instanceof
+name|MockDirectoryWrapper
+condition|)
+block|{
+name|assertFalse
+argument_list|(
+literal|"test is broken: should disable virus scanner"
+argument_list|,
+operator|(
+operator|(
+name|MockDirectoryWrapper
+operator|)
+name|dir
+operator|)
+operator|.
+name|getEnableVirusScanner
+argument_list|()
+argument_list|)
+expr_stmt|;
+block|}
 name|String
 index|[]
 name|startFiles
@@ -2400,14 +2425,12 @@ argument_list|)
 argument_list|)
 decl_stmt|;
 name|int
-name|lastNumFile
+name|lastNumSegments
 init|=
+name|getSegmentCount
+argument_list|(
 name|dir
-operator|.
-name|listAll
-argument_list|()
-operator|.
-name|length
+argument_list|)
 decl_stmt|;
 for|for
 control|(
@@ -2454,28 +2477,26 @@ argument_list|(
 name|doc
 argument_list|)
 expr_stmt|;
-name|int
-name|numFile
-init|=
-name|dir
-operator|.
-name|listAll
-argument_list|()
-operator|.
-name|length
-decl_stmt|;
 comment|// Verify that with a tiny RAM buffer we see new
 comment|// segment after every doc
+name|int
+name|numSegments
+init|=
+name|getSegmentCount
+argument_list|(
+name|dir
+argument_list|)
+decl_stmt|;
 name|assertTrue
 argument_list|(
-name|numFile
+name|numSegments
 operator|>
-name|lastNumFile
+name|lastNumSegments
 argument_list|)
 expr_stmt|;
-name|lastNumFile
+name|lastNumSegments
 operator|=
-name|numFile
+name|numSegments
 expr_stmt|;
 block|}
 name|writer
@@ -2488,6 +2509,61 @@ operator|.
 name|close
 argument_list|()
 expr_stmt|;
+block|}
+comment|/** Returns how many unique segment names are in the directory. */
+DECL|method|getSegmentCount
+specifier|private
+specifier|static
+name|int
+name|getSegmentCount
+parameter_list|(
+name|Directory
+name|dir
+parameter_list|)
+throws|throws
+name|IOException
+block|{
+name|Set
+argument_list|<
+name|String
+argument_list|>
+name|segments
+init|=
+operator|new
+name|HashSet
+argument_list|<>
+argument_list|()
+decl_stmt|;
+for|for
+control|(
+name|String
+name|file
+range|:
+name|dir
+operator|.
+name|listAll
+argument_list|()
+control|)
+block|{
+name|segments
+operator|.
+name|add
+argument_list|(
+name|IndexFileNames
+operator|.
+name|parseSegmentName
+argument_list|(
+name|file
+argument_list|)
+argument_list|)
+expr_stmt|;
+block|}
+return|return
+name|segments
+operator|.
+name|size
+argument_list|()
+return|;
 block|}
 comment|// Make sure it's OK to change RAM buffer size and
 comment|// maxBufferedDocs in a write session
@@ -7122,12 +7198,26 @@ operator|.
 name|UTF_8
 argument_list|)
 decl_stmt|;
+DECL|field|id
+specifier|final
+name|int
+name|id
+decl_stmt|;
 DECL|method|IndexerThreadInterrupt
 name|IndexerThreadInterrupt
-parameter_list|()
+parameter_list|(
+name|int
+name|id
+parameter_list|)
 throws|throws
 name|IOException
 block|{
+name|this
+operator|.
+name|id
+operator|=
+name|id
+expr_stmt|;
 name|this
 operator|.
 name|random
@@ -8110,7 +8200,11 @@ name|log
 operator|.
 name|println
 argument_list|(
-literal|"TEST: got interrupt"
+literal|"TEST thread "
+operator|+
+name|id
+operator|+
+literal|": got interrupt"
 argument_list|)
 expr_stmt|;
 name|re
@@ -8153,7 +8247,11 @@ name|log
 operator|.
 name|println
 argument_list|(
-literal|"FAILED; unexpected exception"
+literal|"thread "
+operator|+
+name|id
+operator|+
+literal|" FAILED; unexpected exception"
 argument_list|)
 expr_stmt|;
 name|t
@@ -8179,7 +8277,11 @@ name|log
 operator|.
 name|println
 argument_list|(
-literal|"TEST: now finish failed="
+literal|"TEST: thread "
+operator|+
+name|id
+operator|+
+literal|": now finish failed="
 operator|+
 name|failed
 argument_list|)
@@ -8200,7 +8302,11 @@ name|log
 operator|.
 name|println
 argument_list|(
-literal|"TEST: now rollback"
+literal|"TEST: thread "
+operator|+
+name|id
+operator|+
+literal|": now rollback"
 argument_list|)
 expr_stmt|;
 block|}
@@ -8264,7 +8370,11 @@ name|log
 operator|.
 name|println
 argument_list|(
-literal|"CheckIndex FAILED: unexpected exception"
+literal|"thread "
+operator|+
+name|id
+operator|+
+literal|": CheckIndex FAILED: unexpected exception"
 argument_list|)
 expr_stmt|;
 name|e
@@ -8308,7 +8418,11 @@ name|log
 operator|.
 name|println
 argument_list|(
-literal|"DirectoryReader.open FAILED: unexpected exception"
+literal|"thread "
+operator|+
+name|id
+operator|+
+literal|": DirectoryReader.open FAILED: unexpected exception"
 argument_list|)
 expr_stmt|;
 name|e
@@ -8336,10 +8450,18 @@ name|IOException
 name|e
 parameter_list|)
 block|{
+name|failed
+operator|=
+literal|true
+expr_stmt|;
 throw|throw
 operator|new
 name|RuntimeException
 argument_list|(
+literal|"thread "
+operator|+
+name|id
+argument_list|,
 name|e
 argument_list|)
 throw|;
@@ -8360,10 +8482,18 @@ name|IOException
 name|e
 parameter_list|)
 block|{
+name|failed
+operator|=
+literal|true
+expr_stmt|;
 throw|throw
 operator|new
 name|RuntimeException
 argument_list|(
+literal|"thread "
+operator|+
+name|id
+argument_list|,
 name|e
 argument_list|)
 throw|;
@@ -8383,7 +8513,9 @@ name|t
 init|=
 operator|new
 name|IndexerThreadInterrupt
-argument_list|()
+argument_list|(
+literal|1
+argument_list|)
 decl_stmt|;
 name|t
 operator|.
@@ -8526,7 +8658,9 @@ name|t1
 init|=
 operator|new
 name|IndexerThreadInterrupt
-argument_list|()
+argument_list|(
+literal|1
+argument_list|)
 decl_stmt|;
 name|t1
 operator|.
@@ -8545,7 +8679,9 @@ name|t2
 init|=
 operator|new
 name|IndexerThreadInterrupt
-argument_list|()
+argument_list|(
+literal|2
+argument_list|)
 decl_stmt|;
 name|t2
 operator|.
@@ -8679,15 +8815,72 @@ operator|.
 name|join
 argument_list|()
 expr_stmt|;
+if|if
+condition|(
+name|t1
+operator|.
+name|failed
+condition|)
+block|{
+name|System
+operator|.
+name|out
+operator|.
+name|println
+argument_list|(
+literal|"Thread1 failed:\n"
+operator|+
+operator|new
+name|String
+argument_list|(
+name|t1
+operator|.
+name|bytesLog
+operator|.
+name|toString
+argument_list|(
+literal|"UTF-8"
+argument_list|)
+argument_list|)
+argument_list|)
+expr_stmt|;
+block|}
+if|if
+condition|(
+name|t2
+operator|.
+name|failed
+condition|)
+block|{
+name|System
+operator|.
+name|out
+operator|.
+name|println
+argument_list|(
+literal|"Thread2 failed:\n"
+operator|+
+operator|new
+name|String
+argument_list|(
+name|t2
+operator|.
+name|bytesLog
+operator|.
+name|toString
+argument_list|(
+literal|"UTF-8"
+argument_list|)
+argument_list|)
+argument_list|)
+expr_stmt|;
+block|}
 name|assertFalse
 argument_list|(
 name|t1
 operator|.
 name|failed
-argument_list|)
-expr_stmt|;
-name|assertFalse
-argument_list|(
+operator|||
 name|t2
 operator|.
 name|failed
@@ -9571,13 +9764,21 @@ name|iter
 operator|++
 control|)
 block|{
-name|Directory
+name|MockDirectoryWrapper
 name|dir
 init|=
 name|newMockDirectory
 argument_list|()
 decl_stmt|;
 comment|// relies on windows semantics
+name|dir
+operator|.
+name|setEnableVirusScanner
+argument_list|(
+literal|false
+argument_list|)
+expr_stmt|;
+comment|// but ensures files are actually deleted
 name|MergePolicy
 name|mergePolicy
 init|=
@@ -10014,10 +10215,10 @@ argument_list|()
 expr_stmt|;
 block|}
 block|}
-DECL|method|testDeleteUnsedFiles2
+DECL|method|testDeleteUnusedFiles2
 specifier|public
 name|void
-name|testDeleteUnsedFiles2
+name|testDeleteUnusedFiles2
 parameter_list|()
 throws|throws
 name|Exception
@@ -10030,6 +10231,27 @@ init|=
 name|newDirectory
 argument_list|()
 decl_stmt|;
+if|if
+condition|(
+name|dir
+operator|instanceof
+name|MockDirectoryWrapper
+condition|)
+block|{
+comment|// otherwise the delete of old commit might not actually succeed temporarily.
+operator|(
+operator|(
+name|MockDirectoryWrapper
+operator|)
+name|dir
+operator|)
+operator|.
+name|setEnableVirusScanner
+argument_list|(
+literal|false
+argument_list|)
+expr_stmt|;
+block|}
 name|IndexWriter
 name|writer
 init|=
@@ -10333,6 +10555,26 @@ init|=
 name|newDirectory
 argument_list|()
 decl_stmt|;
+if|if
+condition|(
+name|dir
+operator|instanceof
+name|MockDirectoryWrapper
+condition|)
+block|{
+operator|(
+operator|(
+name|MockDirectoryWrapper
+operator|)
+name|dir
+operator|)
+operator|.
+name|setEnableVirusScanner
+argument_list|(
+literal|false
+argument_list|)
+expr_stmt|;
+block|}
 name|IndexWriter
 name|writer
 init|=
@@ -10882,6 +11124,27 @@ init|=
 name|newDirectory
 argument_list|()
 decl_stmt|;
+if|if
+condition|(
+name|dir
+operator|instanceof
+name|MockDirectoryWrapper
+condition|)
+block|{
+comment|// test uses IW unref'ed check which is unaware of retries
+operator|(
+operator|(
+name|MockDirectoryWrapper
+operator|)
+name|dir
+operator|)
+operator|.
+name|setEnableVirusScanner
+argument_list|(
+literal|false
+argument_list|)
+expr_stmt|;
+block|}
 name|IndexWriter
 name|indexWriter
 init|=
@@ -11833,7 +12096,7 @@ parameter_list|()
 throws|throws
 name|Exception
 block|{
-name|Directory
+name|MockDirectoryWrapper
 name|d
 init|=
 operator|new
@@ -11847,6 +12110,14 @@ name|RAMDirectory
 argument_list|()
 argument_list|)
 decl_stmt|;
+name|d
+operator|.
+name|setEnableVirusScanner
+argument_list|(
+literal|false
+argument_list|)
+expr_stmt|;
+comment|// needs for files to actually be deleted
 name|IndexWriter
 name|w
 init|=
@@ -12586,6 +12857,27 @@ init|=
 name|newDirectory
 argument_list|()
 decl_stmt|;
+if|if
+condition|(
+name|dir
+operator|instanceof
+name|MockDirectoryWrapper
+condition|)
+block|{
+comment|// indexExists might return true if virus scanner prevents deletions
+operator|(
+operator|(
+name|MockDirectoryWrapper
+operator|)
+name|dir
+operator|)
+operator|.
+name|setEnableVirusScanner
+argument_list|(
+literal|false
+argument_list|)
+expr_stmt|;
+block|}
 name|IndexWriter
 name|w
 init|=
@@ -17687,6 +17979,14 @@ init|=
 name|newMockDirectory
 argument_list|()
 decl_stmt|;
+comment|// don't act like windows either, or the test won't simulate the condition
+name|dir
+operator|.
+name|setEnableVirusScanner
+argument_list|(
+literal|false
+argument_list|)
+expr_stmt|;
 comment|// Allow deletion of still open files:
 name|dir
 operator|.

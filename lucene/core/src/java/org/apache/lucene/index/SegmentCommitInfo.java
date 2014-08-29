@@ -517,6 +517,30 @@ name|nextWriteDelGen
 operator|++
 expr_stmt|;
 block|}
+comment|/** Gets the nextWriteDelGen. */
+DECL|method|getNextWriteDelGen
+name|long
+name|getNextWriteDelGen
+parameter_list|()
+block|{
+return|return
+name|nextWriteDelGen
+return|;
+block|}
+comment|/** Sets the nextWriteDelGen. */
+DECL|method|setNextWriteDelGen
+name|void
+name|setNextWriteDelGen
+parameter_list|(
+name|long
+name|v
+parameter_list|)
+block|{
+name|nextWriteDelGen
+operator|=
+name|v
+expr_stmt|;
+block|}
 comment|/** Called when we succeed in writing a new FieldInfos generation. */
 DECL|method|advanceFieldInfosGen
 name|void
@@ -549,6 +573,30 @@ name|nextWriteFieldInfosGen
 operator|++
 expr_stmt|;
 block|}
+comment|/** Gets the nextWriteFieldInfosGen. */
+DECL|method|getNextWriteFieldInfosGen
+name|long
+name|getNextWriteFieldInfosGen
+parameter_list|()
+block|{
+return|return
+name|nextWriteFieldInfosGen
+return|;
+block|}
+comment|/** Sets the nextWriteFieldInfosGen. */
+DECL|method|setNextWriteFieldInfosGen
+name|void
+name|setNextWriteFieldInfosGen
+parameter_list|(
+name|long
+name|v
+parameter_list|)
+block|{
+name|nextWriteFieldInfosGen
+operator|=
+name|v
+expr_stmt|;
+block|}
 comment|/** Called when we succeed in writing a new DocValues generation. */
 DECL|method|advanceDocValuesGen
 name|void
@@ -579,6 +627,30 @@ parameter_list|()
 block|{
 name|nextWriteDocValuesGen
 operator|++
+expr_stmt|;
+block|}
+comment|/** Gets the nextWriteDocValuesGen. */
+DECL|method|getNextWriteDocValuesGen
+name|long
+name|getNextWriteDocValuesGen
+parameter_list|()
+block|{
+return|return
+name|nextWriteDocValuesGen
+return|;
+block|}
+comment|/** Sets the nextWriteDocValuesGen. */
+DECL|method|setNextWriteDocValuesGen
+name|void
+name|setNextWriteDocValuesGen
+parameter_list|(
+name|long
+name|v
+parameter_list|)
+block|{
+name|nextWriteDocValuesGen
+operator|=
+name|v
 expr_stmt|;
 block|}
 comment|/** Returns total size in bytes of all files for this    *  segment. */

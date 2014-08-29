@@ -360,12 +360,15 @@ argument_list|(
 name|output
 argument_list|)
 expr_stmt|;
+comment|// TODO: are we doing this outside of the tracking wrapper? why must SIWriter cleanup like this?
+name|IOUtils
+operator|.
+name|deleteFilesIgnoringExceptions
+argument_list|(
 name|si
 operator|.
 name|dir
-operator|.
-name|deleteFile
-argument_list|(
+argument_list|,
 name|fileName
 argument_list|)
 expr_stmt|;

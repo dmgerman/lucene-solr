@@ -440,6 +440,7 @@ init|=
 name|FORMAT_SEGMENTS_GEN_CHECKSUM
 decl_stmt|;
 comment|/** Used to name new segments. */
+comment|// TODO: should this be a long ...?
 DECL|field|counter
 specifier|public
 name|int
@@ -914,27 +915,17 @@ parameter_list|)
 block|{
 comment|// It's OK if we fail to write this file since it's
 comment|// used only as one of the retry fallbacks.
-try|try
-block|{
-name|dir
+name|IOUtils
 operator|.
-name|deleteFile
+name|deleteFilesIgnoringExceptions
 argument_list|(
+name|dir
+argument_list|,
 name|IndexFileNames
 operator|.
 name|SEGMENTS_GEN
 argument_list|)
 expr_stmt|;
-block|}
-catch|catch
-parameter_list|(
-name|Throwable
-name|t2
-parameter_list|)
-block|{
-comment|// Ignore; this file is only used in a retry
-comment|// fallback on init.
-block|}
 block|}
 block|}
 comment|/**    * Get the next segments_N filename that will be written.    */
@@ -2072,26 +2063,17 @@ argument_list|(
 name|segnOutput
 argument_list|)
 expr_stmt|;
-try|try
-block|{
 comment|// Try not to leave a truncated segments_N file in
 comment|// the index:
-name|directory
+name|IOUtils
 operator|.
-name|deleteFile
+name|deleteFilesIgnoringExceptions
 argument_list|(
+name|directory
+argument_list|,
 name|segmentFileName
 argument_list|)
 expr_stmt|;
-block|}
-catch|catch
-parameter_list|(
-name|Throwable
-name|t
-parameter_list|)
-block|{
-comment|// Suppress so we keep throwing the original exception
-block|}
 block|}
 block|}
 block|}
@@ -2934,6 +2916,8 @@ name|IOException
 name|err
 parameter_list|)
 block|{
+comment|// TODO: we should use the new IO apis in Java7 to get better exceptions on why the open failed.  E.g. we don't want to fall back
+comment|// if the open failed for a "different" reason (too many open files, access denied) than "the commit was in progress"
 comment|// Save the original root cause:
 if|if
 condition|(
@@ -3162,6 +3146,27 @@ name|generation
 operator|=
 name|other
 operator|.
+name|generation
+expr_stmt|;
+block|}
+DECL|method|setGeneration
+name|void
+name|setGeneration
+parameter_list|(
+name|long
+name|generation
+parameter_list|)
+block|{
+name|this
+operator|.
+name|generation
+operator|=
+name|generation
+expr_stmt|;
+name|this
+operator|.
+name|lastGeneration
+operator|=
 name|generation
 expr_stmt|;
 block|}
@@ -3543,24 +3548,15 @@ operator|!
 name|success
 condition|)
 block|{
-try|try
-block|{
-name|dir
+name|IOUtils
 operator|.
-name|deleteFile
+name|deleteFilesIgnoringExceptions
 argument_list|(
+name|dir
+argument_list|,
 name|fileName
 argument_list|)
 expr_stmt|;
-block|}
-catch|catch
-parameter_list|(
-name|Throwable
-name|t
-parameter_list|)
-block|{
-comment|// Suppress so we keep throwing the original exception
-block|}
 block|}
 block|}
 name|lastGeneration

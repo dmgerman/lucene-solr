@@ -480,6 +480,20 @@ name|lucene
 operator|.
 name|store
 operator|.
+name|MockDirectoryWrapper
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|store
+operator|.
 name|NIOFSDirectory
 import|;
 end_import
@@ -6399,6 +6413,28 @@ name|name
 argument_list|)
 argument_list|)
 decl_stmt|;
+if|if
+condition|(
+name|dir
+operator|instanceof
+name|MockDirectoryWrapper
+condition|)
+block|{
+comment|// we need to ensure we delete old commits for this test,
+comment|// otherwise IndexUpgrader gets angry
+operator|(
+operator|(
+name|MockDirectoryWrapper
+operator|)
+name|dir
+operator|)
+operator|.
+name|setEnableVirusScanner
+argument_list|(
+literal|false
+argument_list|)
+expr_stmt|;
+block|}
 name|assertEquals
 argument_list|(
 literal|"Original index must be single segment"
@@ -6620,6 +6656,22 @@ argument_list|(
 name|dir
 argument_list|)
 decl_stmt|;
+comment|// ensure there is only one commit
+name|assertEquals
+argument_list|(
+literal|1
+argument_list|,
+name|DirectoryReader
+operator|.
+name|listCommits
+argument_list|(
+name|dir
+argument_list|)
+operator|.
+name|size
+argument_list|()
+argument_list|)
+expr_stmt|;
 name|newIndexUpgrader
 argument_list|(
 name|dir

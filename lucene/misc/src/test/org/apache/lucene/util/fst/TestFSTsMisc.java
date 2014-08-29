@@ -280,6 +280,13 @@ argument_list|(
 literal|false
 argument_list|)
 expr_stmt|;
+name|dir
+operator|.
+name|setEnableVirusScanner
+argument_list|(
+literal|false
+argument_list|)
+expr_stmt|;
 block|}
 annotation|@
 name|Override

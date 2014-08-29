@@ -246,6 +246,14 @@ argument_list|(
 literal|false
 argument_list|)
 expr_stmt|;
+comment|// snappuller& co don't seem ready for this:
+name|mockDirWrapper
+operator|.
+name|setEnableVirusScanner
+argument_list|(
+literal|false
+argument_list|)
+expr_stmt|;
 if|if
 condition|(
 name|allowReadingFilesStillOpenForWrite

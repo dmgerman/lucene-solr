@@ -613,6 +613,12 @@ argument_list|,
 name|conf
 argument_list|)
 decl_stmt|;
+name|iw
+operator|.
+name|commit
+argument_list|()
+expr_stmt|;
+comment|// ensure there is always a commit
 specifier|final
 name|Random
 name|r

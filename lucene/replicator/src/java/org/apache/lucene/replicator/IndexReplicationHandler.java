@@ -238,6 +238,20 @@ name|lucene
 operator|.
 name|util
 operator|.
+name|IOUtils
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|util
+operator|.
 name|InfoStream
 import|;
 end_import
@@ -500,25 +514,17 @@ range|:
 name|files
 control|)
 block|{
-try|try
-block|{
-name|dir
+comment|// suppress any exception because if we're here, it means copy
+comment|// failed, and we must cleanup after ourselves.
+name|IOUtils
 operator|.
-name|deleteFile
+name|deleteFilesIgnoringExceptions
 argument_list|(
+name|dir
+argument_list|,
 name|file
 argument_list|)
 expr_stmt|;
-block|}
-catch|catch
-parameter_list|(
-name|Throwable
-name|t
-parameter_list|)
-block|{
-comment|// suppress any exception because if we're here, it means copy
-comment|// failed, and we must cleanup after ourselves.
-block|}
 block|}
 block|}
 comment|/**    * Cleans up the index directory from old index files. This method uses the    * last commit found by {@link #getLastCommit(Directory)}. If it matches the    * expected segmentsFile, then all files not referenced by this commit point    * are deleted.    *<p>    *<b>NOTE:</b> this method does a best effort attempt to clean the index    * directory. It suppresses any exceptions that occur, as this can be retried    * the next time.    */
@@ -653,24 +659,16 @@ argument_list|)
 operator|)
 condition|)
 block|{
-try|try
-block|{
-name|dir
+comment|// suppress exceptions, it's just a best effort
+name|IOUtils
 operator|.
-name|deleteFile
+name|deleteFilesIgnoringExceptions
 argument_list|(
+name|dir
+argument_list|,
 name|file
 argument_list|)
 expr_stmt|;
-block|}
-catch|catch
-parameter_list|(
-name|Throwable
-name|t
-parameter_list|)
-block|{
-comment|// suppress, it's just a best effort
-block|}
 block|}
 block|}
 block|}
@@ -808,26 +806,17 @@ expr_stmt|;
 block|}
 else|else
 block|{
-try|try
-block|{
-name|dir
+name|IOUtils
 operator|.
-name|deleteFile
+name|deleteFilesIgnoringExceptions
 argument_list|(
+name|dir
+argument_list|,
 name|IndexFileNames
 operator|.
 name|SEGMENTS_GEN
 argument_list|)
 expr_stmt|;
-block|}
-catch|catch
-parameter_list|(
-name|Throwable
-name|t
-parameter_list|)
-block|{
-comment|// suppress any errors while deleting this file.
-block|}
 block|}
 block|}
 comment|/**    * Constructor with the given index directory and callback to notify when the    * indexes were updated.    */

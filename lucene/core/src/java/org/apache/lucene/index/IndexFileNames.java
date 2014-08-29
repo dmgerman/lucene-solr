@@ -516,6 +516,87 @@ return|return
 name|filename
 return|;
 block|}
+comment|/** Returns the generation from this file name, or 0 if there is no    *  generation. */
+DECL|method|parseGeneration
+specifier|public
+specifier|static
+name|long
+name|parseGeneration
+parameter_list|(
+name|String
+name|filename
+parameter_list|)
+block|{
+assert|assert
+name|filename
+operator|.
+name|startsWith
+argument_list|(
+literal|"_"
+argument_list|)
+assert|;
+name|String
+name|parts
+index|[]
+init|=
+name|stripExtension
+argument_list|(
+name|filename
+argument_list|)
+operator|.
+name|substring
+argument_list|(
+literal|1
+argument_list|)
+operator|.
+name|split
+argument_list|(
+literal|"_"
+argument_list|)
+decl_stmt|;
+comment|// 4 cases:
+comment|// segment.ext
+comment|// segment_gen.ext
+comment|// segment_codec_suffix.ext
+comment|// segment_gen_codec_suffix.ext
+if|if
+condition|(
+name|parts
+operator|.
+name|length
+operator|==
+literal|2
+operator|||
+name|parts
+operator|.
+name|length
+operator|==
+literal|4
+condition|)
+block|{
+return|return
+name|Long
+operator|.
+name|parseLong
+argument_list|(
+name|parts
+index|[
+literal|1
+index|]
+argument_list|,
+name|Character
+operator|.
+name|MAX_RADIX
+argument_list|)
+return|;
+block|}
+else|else
+block|{
+return|return
+literal|0
+return|;
+block|}
+block|}
 comment|/**    * Parses the segment name out of the given file name.    *     * @return the segment name only, or filename    *         if it does not contain a '.' and '_'.    */
 DECL|method|parseSegmentName
 specifier|public

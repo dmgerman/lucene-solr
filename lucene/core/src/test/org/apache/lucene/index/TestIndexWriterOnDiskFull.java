@@ -395,6 +395,14 @@ argument_list|)
 decl_stmt|;
 name|dir
 operator|.
+name|setEnableVirusScanner
+argument_list|(
+literal|false
+argument_list|)
+expr_stmt|;
+comment|// currently uses the IW unreferenced files method, unaware of retries
+name|dir
+operator|.
 name|setMaxSizeInBytes
 argument_list|(
 name|diskFree
@@ -2757,6 +2765,12 @@ literal|false
 argument_list|)
 argument_list|)
 decl_stmt|;
+name|writer
+operator|.
+name|commit
+argument_list|()
+expr_stmt|;
+comment|// empty commit, to not create confusing situation with first commit
 name|dir
 operator|.
 name|setMaxSizeInBytes
