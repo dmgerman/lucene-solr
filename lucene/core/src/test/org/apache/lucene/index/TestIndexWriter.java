@@ -16429,6 +16429,7 @@ init|=
 name|newDirectory
 argument_list|()
 decl_stmt|;
+comment|// Create a corrupt first commit:
 name|dir
 operator|.
 name|createOutput
@@ -16647,15 +16648,69 @@ literal|false
 argument_list|)
 expr_stmt|;
 block|}
+if|if
+condition|(
+name|dir
+operator|instanceof
+name|MockDirectoryWrapper
+condition|)
+block|{
+name|MockDirectoryWrapper
+name|mdw
+init|=
+operator|(
+name|MockDirectoryWrapper
+operator|)
+name|dir
+decl_stmt|;
+if|if
+condition|(
+name|Arrays
+operator|.
+name|equals
+argument_list|(
+operator|new
+name|String
+index|[]
+block|{
+literal|"segments_0"
+block|}
+operator|,
 name|dir
 operator|.
-name|close
+name|listAll
 argument_list|()
+block|)
+operator|&&
+name|mdw
+operator|.
+name|didTryToDelete
+argument_list|(
+literal|"segments_0"
+argument_list|)
+block|)
+block|{
+comment|// This means virus checker blocked IW deleting the corrupt first commit
+name|dir
+operator|.
+name|setCheckIndexOnClose
+argument_list|(
+literal|false
+argument_list|)
 expr_stmt|;
 block|}
 block|}
+name|dir
+operator|.
+name|close
+parameter_list|()
+constructor_decl|;
+block|}
+end_class
+
+begin_function
+unit|}    public
 DECL|method|testHasUncommittedChanges
-specifier|public
 name|void
 name|testHasUncommittedChanges
 parameter_list|()
@@ -16948,6 +17003,9 @@ name|close
 argument_list|()
 expr_stmt|;
 block|}
+end_function
+
+begin_function
 DECL|method|testMergeAllDeleted
 specifier|public
 name|void
@@ -17150,7 +17208,13 @@ name|close
 argument_list|()
 expr_stmt|;
 block|}
+end_function
+
+begin_comment
 comment|// LUCENE-5239
+end_comment
+
+begin_function
 DECL|method|testDeleteSameTermAcrossFields
 specifier|public
 name|void
@@ -17287,6 +17351,9 @@ name|close
 argument_list|()
 expr_stmt|;
 block|}
+end_function
+
+begin_function
 DECL|method|testHasUncommittedChangesAfterException
 specifier|public
 name|void
@@ -17427,6 +17494,9 @@ name|close
 argument_list|()
 expr_stmt|;
 block|}
+end_function
+
+begin_function
 DECL|method|testDoubleClose
 specifier|public
 name|void
@@ -17508,6 +17578,9 @@ name|close
 argument_list|()
 expr_stmt|;
 block|}
+end_function
+
+begin_function
 DECL|method|testRollbackThenClose
 specifier|public
 name|void
@@ -17589,6 +17662,9 @@ name|close
 argument_list|()
 expr_stmt|;
 block|}
+end_function
+
+begin_function
 DECL|method|testCloseThenRollback
 specifier|public
 name|void
@@ -17670,6 +17746,9 @@ name|close
 argument_list|()
 expr_stmt|;
 block|}
+end_function
+
+begin_function
 DECL|method|testCloseWhileMergeIsRunning
 specifier|public
 name|void
@@ -17953,7 +18032,13 @@ name|close
 argument_list|()
 expr_stmt|;
 block|}
+end_function
+
+begin_comment
 comment|// LUCENE-5574
+end_comment
+
+begin_function
 DECL|method|testClosingNRTReaderDoesNotCorruptYourIndex
 specifier|public
 name|void
@@ -18164,7 +18249,13 @@ name|close
 argument_list|()
 expr_stmt|;
 block|}
+end_function
+
+begin_comment
 comment|/** Make sure that close waits for any still-running commits. */
+end_comment
+
+begin_function
 DECL|method|testCloseDuringCommit
 specifier|public
 name|void
@@ -18402,8 +18493,17 @@ name|close
 argument_list|()
 expr_stmt|;
 block|}
+end_function
+
+begin_comment
 comment|// LUCENE-5895:
+end_comment
+
+begin_comment
 comment|/** Make sure we see ids per segment and per commit. */
+end_comment
+
+begin_function
 DECL|method|testIds
 specifier|public
 name|void
@@ -18728,8 +18828,8 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
-block|}
-end_class
+end_function
 
+unit|}
 end_unit
 

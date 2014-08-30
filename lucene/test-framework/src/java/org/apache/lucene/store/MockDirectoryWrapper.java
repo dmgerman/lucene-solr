@@ -2322,6 +2322,25 @@ name|name
 argument_list|)
 expr_stmt|;
 block|}
+comment|/** Returns true if {@link #deleteFile} was called with this    *  fileName, but the virus checker prevented the deletion. */
+DECL|method|didTryToDelete
+specifier|public
+name|boolean
+name|didTryToDelete
+parameter_list|(
+name|String
+name|fileName
+parameter_list|)
+block|{
+return|return
+name|triedToDelete
+operator|.
+name|contains
+argument_list|(
+name|fileName
+argument_list|)
+return|;
+block|}
 DECL|method|getOpenDeletedFiles
 specifier|public
 specifier|synchronized
