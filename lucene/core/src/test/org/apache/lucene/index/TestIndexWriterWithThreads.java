@@ -3003,6 +3003,15 @@ argument_list|)
 argument_list|)
 argument_list|)
 expr_stmt|;
+comment|// Make initial commit so the test doesn't trip "corrupt first commit" when virus checker refuses to delete partial segments_N file:
+name|writerRef
+operator|.
+name|get
+argument_list|()
+operator|.
+name|commit
+argument_list|()
+expr_stmt|;
 specifier|final
 name|LineFileDocs
 name|docs
