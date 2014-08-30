@@ -222,6 +222,20 @@ name|apache
 operator|.
 name|lucene
 operator|.
+name|store
+operator|.
+name|MockDirectoryWrapper
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
 name|util
 operator|.
 name|CloseableThreadLocal
@@ -476,10 +490,6 @@ parameter_list|,
 name|long
 name|shallowSize
 parameter_list|,
-name|java
-operator|.
-name|util
-operator|.
 name|Map
 argument_list|<
 name|Field
@@ -488,10 +498,6 @@ name|Object
 argument_list|>
 name|fieldValues
 parameter_list|,
-name|java
-operator|.
-name|util
-operator|.
 name|Collection
 argument_list|<
 name|Object
@@ -956,6 +962,28 @@ init|=
 name|newDirectory
 argument_list|()
 decl_stmt|;
+if|if
+condition|(
+name|dir
+operator|instanceof
+name|MockDirectoryWrapper
+condition|)
+block|{
+comment|// Else, the virus checker may prevent deletion of files and cause
+comment|// us to see too many bytes used by extension in the end:
+operator|(
+operator|(
+name|MockDirectoryWrapper
+operator|)
+name|dir
+operator|)
+operator|.
+name|setEnableVirusScanner
+argument_list|(
+literal|false
+argument_list|)
+expr_stmt|;
+block|}
 comment|// do not use newMergePolicy that might return a MockMergePolicy that ignores the no-CFS ratio
 comment|// do not use RIW which will change things up!
 name|MergePolicy
@@ -1083,6 +1111,28 @@ init|=
 name|newDirectory
 argument_list|()
 decl_stmt|;
+if|if
+condition|(
+name|dir2
+operator|instanceof
+name|MockDirectoryWrapper
+condition|)
+block|{
+comment|// Else, the virus checker may prevent deletion of files and cause
+comment|// us to see too many bytes used by extension in the end:
+operator|(
+operator|(
+name|MockDirectoryWrapper
+operator|)
+name|dir2
+operator|)
+operator|.
+name|setEnableVirusScanner
+argument_list|(
+literal|false
+argument_list|)
+expr_stmt|;
+block|}
 name|mp
 operator|=
 name|newTieredMergePolicy
