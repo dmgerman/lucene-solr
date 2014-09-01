@@ -105,6 +105,31 @@ return|return
 literal|false
 return|;
 block|}
+comment|// this codec doesnt support missing (its the same as empty string)
+annotation|@
+name|Override
+DECL|method|codecSupportsDocsWithField
+specifier|protected
+name|boolean
+name|codecSupportsDocsWithField
+parameter_list|()
+block|{
+return|return
+literal|false
+return|;
+block|}
+annotation|@
+name|Override
+DECL|method|codecSupportsSortedNumeric
+specifier|protected
+name|boolean
+name|codecSupportsSortedNumeric
+parameter_list|()
+block|{
+return|return
+literal|false
+return|;
+block|}
 block|}
 end_class
 

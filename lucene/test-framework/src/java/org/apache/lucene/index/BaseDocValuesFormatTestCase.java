@@ -652,7 +652,7 @@ expr_stmt|;
 block|}
 if|if
 condition|(
-name|defaultCodecSupportsSortedSet
+name|codecSupportsSortedSet
 argument_list|()
 condition|)
 block|{
@@ -712,7 +712,7 @@ block|}
 block|}
 if|if
 condition|(
-name|defaultCodecSupportsSortedNumeric
+name|codecSupportsSortedNumeric
 argument_list|()
 condition|)
 block|{
@@ -6182,7 +6182,7 @@ argument_list|)
 decl_stmt|;
 if|if
 condition|(
-name|defaultCodecSupportsDocsWithField
+name|codecSupportsDocsWithField
 argument_list|()
 condition|)
 block|{
@@ -6603,7 +6603,7 @@ argument_list|)
 expr_stmt|;
 if|if
 condition|(
-name|defaultCodecSupportsDocsWithField
+name|codecSupportsDocsWithField
 argument_list|()
 condition|)
 block|{
@@ -8900,7 +8900,7 @@ decl_stmt|;
 if|if
 condition|(
 operator|!
-name|defaultCodecSupportsDocsWithField
+name|codecSupportsDocsWithField
 argument_list|()
 condition|)
 block|{
@@ -9148,7 +9148,7 @@ block|}
 if|if
 condition|(
 operator|!
-name|defaultCodecSupportsDocsWithField
+name|codecSupportsDocsWithField
 argument_list|()
 condition|)
 block|{
@@ -9183,7 +9183,7 @@ block|}
 if|if
 condition|(
 operator|!
-name|defaultCodecSupportsDocsWithField
+name|codecSupportsDocsWithField
 argument_list|()
 condition|)
 block|{
@@ -11930,7 +11930,7 @@ name|assumeTrue
 argument_list|(
 literal|"Codec does not support SORTED_SET"
 argument_list|,
-name|defaultCodecSupportsSortedSet
+name|codecSupportsSortedSet
 argument_list|()
 argument_list|)
 expr_stmt|;
@@ -12080,7 +12080,7 @@ name|assumeTrue
 argument_list|(
 literal|"Codec does not support SORTED_SET"
 argument_list|,
-name|defaultCodecSupportsSortedSet
+name|codecSupportsSortedSet
 argument_list|()
 argument_list|)
 expr_stmt|;
@@ -12306,7 +12306,7 @@ name|assumeTrue
 argument_list|(
 literal|"Codec does not support SORTED_SET"
 argument_list|,
-name|defaultCodecSupportsSortedSet
+name|codecSupportsSortedSet
 argument_list|()
 argument_list|)
 expr_stmt|;
@@ -12583,7 +12583,7 @@ name|assumeTrue
 argument_list|(
 literal|"Codec does not support SORTED_SET"
 argument_list|,
-name|defaultCodecSupportsSortedSet
+name|codecSupportsSortedSet
 argument_list|()
 argument_list|)
 expr_stmt|;
@@ -12780,7 +12780,7 @@ name|assumeTrue
 argument_list|(
 literal|"Codec does not support SORTED_SET"
 argument_list|,
-name|defaultCodecSupportsSortedSet
+name|codecSupportsSortedSet
 argument_list|()
 argument_list|)
 expr_stmt|;
@@ -12977,7 +12977,7 @@ name|assumeTrue
 argument_list|(
 literal|"Codec does not support SORTED_SET"
 argument_list|,
-name|defaultCodecSupportsSortedSet
+name|codecSupportsSortedSet
 argument_list|()
 argument_list|)
 expr_stmt|;
@@ -13328,7 +13328,7 @@ name|assumeTrue
 argument_list|(
 literal|"Codec does not support SORTED_SET"
 argument_list|,
-name|defaultCodecSupportsSortedSet
+name|codecSupportsSortedSet
 argument_list|()
 argument_list|)
 expr_stmt|;
@@ -13536,7 +13536,7 @@ name|assumeTrue
 argument_list|(
 literal|"Codec does not support SORTED_SET"
 argument_list|,
-name|defaultCodecSupportsSortedSet
+name|codecSupportsSortedSet
 argument_list|()
 argument_list|)
 expr_stmt|;
@@ -13749,7 +13749,7 @@ name|assumeTrue
 argument_list|(
 literal|"Codec does not support SORTED_SET"
 argument_list|,
-name|defaultCodecSupportsSortedSet
+name|codecSupportsSortedSet
 argument_list|()
 argument_list|)
 expr_stmt|;
@@ -13957,7 +13957,7 @@ name|assumeTrue
 argument_list|(
 literal|"Codec does not support SORTED_SET"
 argument_list|,
-name|defaultCodecSupportsSortedSet
+name|codecSupportsSortedSet
 argument_list|()
 argument_list|)
 expr_stmt|;
@@ -14170,7 +14170,7 @@ name|assumeTrue
 argument_list|(
 literal|"Codec does not support SORTED_SET"
 argument_list|,
-name|defaultCodecSupportsSortedSet
+name|codecSupportsSortedSet
 argument_list|()
 argument_list|)
 expr_stmt|;
@@ -14386,7 +14386,7 @@ name|assumeTrue
 argument_list|(
 literal|"Codec does not support SORTED_SET"
 argument_list|,
-name|defaultCodecSupportsSortedSet
+name|codecSupportsSortedSet
 argument_list|()
 argument_list|)
 expr_stmt|;
@@ -15664,7 +15664,7 @@ name|assumeTrue
 argument_list|(
 literal|"Codec does not support SORTED_SET"
 argument_list|,
-name|defaultCodecSupportsSortedSet
+name|codecSupportsSortedSet
 argument_list|()
 argument_list|)
 expr_stmt|;
@@ -15734,7 +15734,7 @@ name|assumeTrue
 argument_list|(
 literal|"Codec does not support SORTED_NUMERIC"
 argument_list|,
-name|defaultCodecSupportsSortedNumeric
+name|codecSupportsSortedNumeric
 argument_list|()
 argument_list|)
 expr_stmt|;
@@ -15824,7 +15824,7 @@ name|assumeTrue
 argument_list|(
 literal|"Codec does not support SORTED_NUMERIC"
 argument_list|,
-name|defaultCodecSupportsSortedNumeric
+name|codecSupportsSortedNumeric
 argument_list|()
 argument_list|)
 expr_stmt|;
@@ -15922,7 +15922,7 @@ name|assumeTrue
 argument_list|(
 literal|"Codec does not support SORTED_NUMERIC"
 argument_list|,
-name|defaultCodecSupportsSortedNumeric
+name|codecSupportsSortedNumeric
 argument_list|()
 argument_list|)
 expr_stmt|;
@@ -16022,7 +16022,7 @@ name|assumeTrue
 argument_list|(
 literal|"Codec does not support SORTED_SET"
 argument_list|,
-name|defaultCodecSupportsSortedSet
+name|codecSupportsSortedSet
 argument_list|()
 argument_list|)
 expr_stmt|;
@@ -16077,7 +16077,7 @@ name|assumeTrue
 argument_list|(
 literal|"Codec does not support SORTED_SET"
 argument_list|,
-name|defaultCodecSupportsSortedSet
+name|codecSupportsSortedSet
 argument_list|()
 argument_list|)
 expr_stmt|;
@@ -16147,7 +16147,7 @@ name|assumeTrue
 argument_list|(
 literal|"Codec does not support SORTED_SET"
 argument_list|,
-name|defaultCodecSupportsSortedSet
+name|codecSupportsSortedSet
 argument_list|()
 argument_list|)
 expr_stmt|;
@@ -16394,7 +16394,7 @@ name|assumeTrue
 argument_list|(
 literal|"Codec does not support getDocsWithField"
 argument_list|,
-name|defaultCodecSupportsDocsWithField
+name|codecSupportsDocsWithField
 argument_list|()
 argument_list|)
 expr_stmt|;
@@ -16650,7 +16650,7 @@ name|assumeTrue
 argument_list|(
 literal|"Codec does not support getDocsWithField"
 argument_list|,
-name|defaultCodecSupportsDocsWithField
+name|codecSupportsDocsWithField
 argument_list|()
 argument_list|)
 expr_stmt|;
@@ -16911,7 +16911,7 @@ name|assumeTrue
 argument_list|(
 literal|"Codec does not support getDocsWithField"
 argument_list|,
-name|defaultCodecSupportsDocsWithField
+name|codecSupportsDocsWithField
 argument_list|()
 argument_list|)
 expr_stmt|;
@@ -17239,7 +17239,7 @@ name|assumeTrue
 argument_list|(
 literal|"Codec does not support getDocsWithField"
 argument_list|,
-name|defaultCodecSupportsDocsWithField
+name|codecSupportsDocsWithField
 argument_list|()
 argument_list|)
 expr_stmt|;
@@ -17510,7 +17510,7 @@ name|assumeTrue
 argument_list|(
 literal|"Codec does not support getDocsWithField"
 argument_list|,
-name|defaultCodecSupportsDocsWithField
+name|codecSupportsDocsWithField
 argument_list|()
 argument_list|)
 expr_stmt|;
@@ -17786,7 +17786,7 @@ name|assumeTrue
 argument_list|(
 literal|"Codec does not support getDocsWithField"
 argument_list|,
-name|defaultCodecSupportsDocsWithField
+name|codecSupportsDocsWithField
 argument_list|()
 argument_list|)
 expr_stmt|;
@@ -18822,7 +18822,7 @@ name|assumeTrue
 argument_list|(
 literal|"Codec does not support getDocsWithField"
 argument_list|,
-name|defaultCodecSupportsDocsWithField
+name|codecSupportsDocsWithField
 argument_list|()
 argument_list|)
 expr_stmt|;
@@ -18830,7 +18830,7 @@ name|assumeTrue
 argument_list|(
 literal|"Codec does not support SORTED_SET"
 argument_list|,
-name|defaultCodecSupportsSortedSet
+name|codecSupportsSortedSet
 argument_list|()
 argument_list|)
 expr_stmt|;
@@ -18838,7 +18838,7 @@ name|assumeTrue
 argument_list|(
 literal|"Codec does not support SORTED_NUMERIC"
 argument_list|,
-name|defaultCodecSupportsSortedNumeric
+name|codecSupportsSortedNumeric
 argument_list|()
 argument_list|)
 expr_stmt|;
@@ -20239,7 +20239,7 @@ name|assumeTrue
 argument_list|(
 literal|"Codec does not support getDocsWithField"
 argument_list|,
-name|defaultCodecSupportsDocsWithField
+name|codecSupportsDocsWithField
 argument_list|()
 argument_list|)
 expr_stmt|;
@@ -20247,7 +20247,7 @@ name|assumeTrue
 argument_list|(
 literal|"Codec does not support SORTED_SET"
 argument_list|,
-name|defaultCodecSupportsSortedSet
+name|codecSupportsSortedSet
 argument_list|()
 argument_list|)
 expr_stmt|;
@@ -20255,7 +20255,7 @@ name|assumeTrue
 argument_list|(
 literal|"Codec does not support SORTED_NUMERIC"
 argument_list|,
-name|defaultCodecSupportsSortedNumeric
+name|codecSupportsSortedNumeric
 argument_list|()
 argument_list|)
 expr_stmt|;
@@ -21064,7 +21064,7 @@ name|assumeTrue
 argument_list|(
 literal|"Codec does not support SORTED_NUMERIC"
 argument_list|,
-name|defaultCodecSupportsSortedNumeric
+name|codecSupportsSortedNumeric
 argument_list|()
 argument_list|)
 expr_stmt|;
@@ -21213,7 +21213,7 @@ name|assumeTrue
 argument_list|(
 literal|"Codec does not support SORTED_NUMERIC"
 argument_list|,
-name|defaultCodecSupportsSortedNumeric
+name|codecSupportsSortedNumeric
 argument_list|()
 argument_list|)
 expr_stmt|;
@@ -21442,7 +21442,7 @@ name|assumeTrue
 argument_list|(
 literal|"Codec does not support SORTED_NUMERIC"
 argument_list|,
-name|defaultCodecSupportsSortedNumeric
+name|codecSupportsSortedNumeric
 argument_list|()
 argument_list|)
 expr_stmt|;
@@ -21618,7 +21618,7 @@ name|assumeTrue
 argument_list|(
 literal|"Codec does not support SORTED_NUMERIC"
 argument_list|,
-name|defaultCodecSupportsSortedNumeric
+name|codecSupportsSortedNumeric
 argument_list|()
 argument_list|)
 expr_stmt|;
@@ -21874,7 +21874,7 @@ name|assumeTrue
 argument_list|(
 literal|"Codec does not support SORTED_NUMERIC"
 argument_list|,
-name|defaultCodecSupportsSortedNumeric
+name|codecSupportsSortedNumeric
 argument_list|()
 argument_list|)
 expr_stmt|;
@@ -22108,7 +22108,7 @@ name|assumeTrue
 argument_list|(
 literal|"Codec does not support SORTED_NUMERIC"
 argument_list|,
-name|defaultCodecSupportsSortedNumeric
+name|codecSupportsSortedNumeric
 argument_list|()
 argument_list|)
 expr_stmt|;
@@ -22323,6 +22323,39 @@ parameter_list|(
 name|String
 name|field
 parameter_list|)
+block|{
+return|return
+literal|true
+return|;
+block|}
+comment|/** Returns true if the codec "supports" docsWithField     * (other codecs return MatchAllBits, because you couldnt write missing values before) */
+DECL|method|codecSupportsDocsWithField
+specifier|protected
+name|boolean
+name|codecSupportsDocsWithField
+parameter_list|()
+block|{
+return|return
+literal|true
+return|;
+block|}
+comment|/** Returns true if the default codec supports SORTED_SET docvalues */
+DECL|method|codecSupportsSortedSet
+specifier|protected
+name|boolean
+name|codecSupportsSortedSet
+parameter_list|()
+block|{
+return|return
+literal|true
+return|;
+block|}
+comment|/** Returns true if the default codec supports SORTED_NUMERIC docvalues */
+DECL|method|codecSupportsSortedNumeric
+specifier|protected
+name|boolean
+name|codecSupportsSortedNumeric
+parameter_list|()
 block|{
 return|return
 literal|true

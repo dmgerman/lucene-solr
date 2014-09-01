@@ -356,14 +356,6 @@ parameter_list|()
 throws|throws
 name|Exception
 block|{
-name|assumeTrue
-argument_list|(
-literal|"Test requires SortedSetDV support"
-argument_list|,
-name|defaultCodecSupportsSortedSet
-argument_list|()
-argument_list|)
-expr_stmt|;
 name|Directory
 name|dir
 init|=
@@ -684,14 +676,6 @@ parameter_list|()
 throws|throws
 name|Exception
 block|{
-name|assumeTrue
-argument_list|(
-literal|"Test requires SortedSetDV support"
-argument_list|,
-name|defaultCodecSupportsSortedSet
-argument_list|()
-argument_list|)
-expr_stmt|;
 name|Directory
 name|dir
 init|=
@@ -914,14 +898,6 @@ parameter_list|()
 throws|throws
 name|Exception
 block|{
-name|assumeTrue
-argument_list|(
-literal|"Test requires SortedSetDV support"
-argument_list|,
-name|defaultCodecSupportsSortedSet
-argument_list|()
-argument_list|)
-expr_stmt|;
 name|Directory
 name|dir
 init|=
@@ -1260,14 +1236,6 @@ parameter_list|()
 throws|throws
 name|Exception
 block|{
-name|assumeTrue
-argument_list|(
-literal|"Test requires SortedSetDV support"
-argument_list|,
-name|defaultCodecSupportsSortedSet
-argument_list|()
-argument_list|)
-expr_stmt|;
 name|Directory
 name|dir
 init|=
@@ -1488,14 +1456,6 @@ parameter_list|()
 throws|throws
 name|Exception
 block|{
-name|assumeTrue
-argument_list|(
-literal|"Test requires SortedSetDV support"
-argument_list|,
-name|defaultCodecSupportsSortedSet
-argument_list|()
-argument_list|)
-expr_stmt|;
 name|Directory
 name|dir
 init|=
@@ -1693,14 +1653,6 @@ parameter_list|()
 throws|throws
 name|Exception
 block|{
-name|assumeTrue
-argument_list|(
-literal|"Test requires SortedSetDV support"
-argument_list|,
-name|defaultCodecSupportsSortedSet
-argument_list|()
-argument_list|)
-expr_stmt|;
 name|String
 index|[]
 name|tokens

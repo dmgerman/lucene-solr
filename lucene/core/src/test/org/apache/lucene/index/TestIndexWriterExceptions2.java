@@ -788,12 +788,6 @@ argument_list|)
 argument_list|)
 argument_list|)
 expr_stmt|;
-if|if
-condition|(
-name|defaultCodecSupportsSortedSet
-argument_list|()
-condition|)
-block|{
 name|doc
 operator|.
 name|add
@@ -840,13 +834,6 @@ argument_list|)
 argument_list|)
 argument_list|)
 expr_stmt|;
-block|}
-if|if
-condition|(
-name|defaultCodecSupportsSortedNumeric
-argument_list|()
-condition|)
-block|{
 name|doc
 operator|.
 name|add
@@ -875,7 +862,6 @@ literal|1
 argument_list|)
 argument_list|)
 expr_stmt|;
-block|}
 name|doc
 operator|.
 name|add
@@ -1070,9 +1056,6 @@ condition|(
 name|thingToDo
 operator|==
 literal|1
-operator|&&
-name|defaultCodecSupportsFieldUpdates
-argument_list|()
 condition|)
 block|{
 name|iw
@@ -1106,9 +1089,6 @@ condition|(
 name|thingToDo
 operator|==
 literal|2
-operator|&&
-name|defaultCodecSupportsFieldUpdates
-argument_list|()
 condition|)
 block|{
 name|iw

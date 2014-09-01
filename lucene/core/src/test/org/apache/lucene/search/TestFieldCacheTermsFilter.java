@@ -168,14 +168,6 @@ parameter_list|()
 throws|throws
 name|Exception
 block|{
-name|assumeTrue
-argument_list|(
-literal|"requires support for missing values"
-argument_list|,
-name|defaultCodecSupportsMissingDocValues
-argument_list|()
-argument_list|)
-expr_stmt|;
 name|String
 name|fieldName
 init|=

@@ -757,14 +757,6 @@ parameter_list|()
 throws|throws
 name|Exception
 block|{
-name|assumeTrue
-argument_list|(
-literal|"Codec does not support SORTED_SET"
-argument_list|,
-name|defaultCodecSupportsSortedSet
-argument_list|()
-argument_list|)
-expr_stmt|;
 name|int
 name|numIterations
 init|=
@@ -820,14 +812,6 @@ parameter_list|()
 throws|throws
 name|Exception
 block|{
-name|assumeTrue
-argument_list|(
-literal|"Codec does not support SORTED_SET"
-argument_list|,
-name|defaultCodecSupportsSortedSet
-argument_list|()
-argument_list|)
-expr_stmt|;
 name|int
 name|numIterations
 init|=
@@ -2827,14 +2811,6 @@ parameter_list|)
 throws|throws
 name|Exception
 block|{
-name|assumeTrue
-argument_list|(
-literal|"Codec does not support getDocsWithField"
-argument_list|,
-name|defaultCodecSupportsDocsWithField
-argument_list|()
-argument_list|)
-expr_stmt|;
 name|Directory
 name|dir
 init|=

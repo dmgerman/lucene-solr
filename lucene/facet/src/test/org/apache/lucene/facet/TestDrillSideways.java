@@ -2807,12 +2807,6 @@ parameter_list|()
 throws|throws
 name|Exception
 block|{
-name|boolean
-name|canUseDV
-init|=
-name|defaultCodecSupportsSortedSet
-argument_list|()
-decl_stmt|;
 while|while
 condition|(
 name|aChance
@@ -3412,8 +3406,6 @@ block|}
 name|boolean
 name|doUseDV
 init|=
-name|canUseDV
-operator|&&
 name|random
 argument_list|()
 operator|.

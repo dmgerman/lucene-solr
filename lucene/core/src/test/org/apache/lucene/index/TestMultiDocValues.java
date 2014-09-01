@@ -837,9 +837,6 @@ argument_list|)
 expr_stmt|;
 if|if
 condition|(
-name|defaultCodecSupportsDocsWithField
-argument_list|()
-operator|&&
 name|random
 argument_list|()
 operator|.
@@ -1357,14 +1354,6 @@ parameter_list|()
 throws|throws
 name|Exception
 block|{
-name|assumeTrue
-argument_list|(
-literal|"codec does not support SORTED_SET"
-argument_list|,
-name|defaultCodecSupportsSortedSet
-argument_list|()
-argument_list|)
-expr_stmt|;
 name|Directory
 name|dir
 init|=
@@ -1796,14 +1785,6 @@ parameter_list|()
 throws|throws
 name|Exception
 block|{
-name|assumeTrue
-argument_list|(
-literal|"codec does not support SORTED_SET"
-argument_list|,
-name|defaultCodecSupportsSortedSet
-argument_list|()
-argument_list|)
-expr_stmt|;
 name|Directory
 name|dir
 init|=
@@ -2236,14 +2217,6 @@ parameter_list|()
 throws|throws
 name|Exception
 block|{
-name|assumeTrue
-argument_list|(
-literal|"codec does not support SORTED_NUMERIC"
-argument_list|,
-name|defaultCodecSupportsSortedNumeric
-argument_list|()
-argument_list|)
-expr_stmt|;
 name|Directory
 name|dir
 init|=
@@ -2617,14 +2590,6 @@ parameter_list|()
 throws|throws
 name|Exception
 block|{
-name|assumeTrue
-argument_list|(
-literal|"codec does not support docsWithField"
-argument_list|,
-name|defaultCodecSupportsDocsWithField
-argument_list|()
-argument_list|)
-expr_stmt|;
 name|Directory
 name|dir
 init|=

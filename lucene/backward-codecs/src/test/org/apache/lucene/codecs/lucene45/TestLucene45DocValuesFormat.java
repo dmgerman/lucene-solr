@@ -90,6 +90,18 @@ return|return
 name|codec
 return|;
 block|}
+annotation|@
+name|Override
+DECL|method|codecSupportsSortedNumeric
+specifier|protected
+name|boolean
+name|codecSupportsSortedNumeric
+parameter_list|()
+block|{
+return|return
+literal|false
+return|;
+block|}
 block|}
 end_class
 
