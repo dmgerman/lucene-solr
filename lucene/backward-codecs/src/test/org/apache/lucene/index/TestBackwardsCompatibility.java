@@ -678,40 +678,7 @@ begin_comment
 comment|/*   Verify we can read the pre-5.0 file format, do searches   against it, and add documents to it. */
 end_comment
 
-begin_comment
-comment|// note: add this if we make a 4.x impersonator
-end_comment
-
-begin_comment
-comment|// TODO: don't use 4.x codec, its unrealistic since it means
-end_comment
-
-begin_comment
-comment|// we won't even be running the actual code, only the impostor
-end_comment
-
-begin_comment
-comment|// @SuppressCodecs("Lucene4x")
-end_comment
-
 begin_class
-annotation|@
-name|SuppressCodecs
-argument_list|(
-block|{
-literal|"Lucene40"
-block|,
-literal|"Lucene41"
-block|,
-literal|"Lucene42"
-block|,
-literal|"Lucene45"
-block|,
-literal|"Lucene46"
-block|,
-literal|"Lucene49"
-block|}
-argument_list|)
 DECL|class|TestBackwardsCompatibility
 specifier|public
 class|class

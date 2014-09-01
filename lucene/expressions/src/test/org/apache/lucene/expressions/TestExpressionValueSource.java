@@ -258,22 +258,6 @@ name|LuceneTestCase
 import|;
 end_import
 
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|util
-operator|.
-name|LuceneTestCase
-operator|.
-name|SuppressCodecs
-import|;
-end_import
-
 begin_class
 DECL|class|TestExpressionValueSource
 specifier|public
