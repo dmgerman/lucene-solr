@@ -839,7 +839,7 @@ argument_list|)
 argument_list|,
 name|f
 argument_list|,
-name|TestBinaryDocValuesUpdates
+name|TestDocValuesUpdatesOnOldSegments
 operator|.
 name|toBytes
 argument_list|(
@@ -861,7 +861,7 @@ argument_list|)
 argument_list|,
 name|cf
 argument_list|,
-name|TestBinaryDocValuesUpdates
+name|TestDocValuesUpdatesOnOldSegments
 operator|.
 name|toBytes
 argument_list|(
@@ -872,7 +872,7 @@ argument_list|)
 argument_list|)
 expr_stmt|;
 block|}
-comment|/*  // Creates an index with DocValues updates   public void testCreateIndexWithDocValuesUpdates() throws Exception {     // we use a real directory name that is not cleaned up,     // because this method is only used to create backwards     // indexes:     File indexDir = new File("/tmp/idx/dvupdates");     TestUtil.rm(indexDir);     Directory dir = newFSDirectory(indexDir);          IndexWriterConfig conf = new IndexWriterConfig(new MockAnalyzer(random()))       .setUseCompoundFile(false).setMergePolicy(NoMergePolicy.INSTANCE);     IndexWriter writer = new IndexWriter(dir, conf);     // create an index w/ few doc-values fields, some with updates and some without     for (int i = 0; i< 30; i++) {       Document doc = new Document();       doc.add(new StringField("id", "" + i, Store.NO));       doc.add(new NumericDocValuesField("ndv1", i));       doc.add(new NumericDocValuesField("ndv1_c", i*2));       doc.add(new NumericDocValuesField("ndv2", i*3));       doc.add(new NumericDocValuesField("ndv2_c", i*6));       doc.add(new BinaryDocValuesField("bdv1", TestBinaryDocValuesUpdates.toBytes(i)));       doc.add(new BinaryDocValuesField("bdv1_c", TestBinaryDocValuesUpdates.toBytes(i*2)));       doc.add(new BinaryDocValuesField("bdv2", TestBinaryDocValuesUpdates.toBytes(i*3)));       doc.add(new BinaryDocValuesField("bdv2_c", TestBinaryDocValuesUpdates.toBytes(i*6)));       writer.addDocument(doc);       if ((i+1) % 10 == 0) {         writer.commit(); // flush every 10 docs       }     }          // first segment: no updates          // second segment: update two fields, same gen     updateNumeric(writer, "10", "ndv1", "ndv1_c", 100L);     updateBinary(writer, "11", "bdv1", "bdv1_c", 100L);     writer.commit();          // third segment: update few fields, different gens, few docs     updateNumeric(writer, "20", "ndv1", "ndv1_c", 100L);     updateBinary(writer, "21", "bdv1", "bdv1_c", 100L);     writer.commit();     updateNumeric(writer, "22", "ndv1", "ndv1_c", 200L); // update the field again     writer.commit();          writer.close();     dir.close();   }*/
+comment|/*  // Creates an index with DocValues updates   public void testCreateIndexWithDocValuesUpdates() throws Exception {     // we use a real directory name that is not cleaned up,     // because this method is only used to create backwards     // indexes:     File indexDir = new File("/tmp/idx/dvupdates");     TestUtil.rm(indexDir);     Directory dir = newFSDirectory(indexDir);          IndexWriterConfig conf = new IndexWriterConfig(new MockAnalyzer(random()))       .setUseCompoundFile(false).setMergePolicy(NoMergePolicy.INSTANCE);     IndexWriter writer = new IndexWriter(dir, conf);     // create an index w/ few doc-values fields, some with updates and some without     for (int i = 0; i< 30; i++) {       Document doc = new Document();       doc.add(new StringField("id", "" + i, Store.NO));       doc.add(new NumericDocValuesField("ndv1", i));       doc.add(new NumericDocValuesField("ndv1_c", i*2));       doc.add(new NumericDocValuesField("ndv2", i*3));       doc.add(new NumericDocValuesField("ndv2_c", i*6));       doc.add(new BinaryDocValuesField("bdv1", TestDocValuesUpdatesOnOldSegments.toBytes(i)));       doc.add(new BinaryDocValuesField("bdv1_c", TestDocValuesUpdatesOnOldSegments.toBytes(i*2)));       doc.add(new BinaryDocValuesField("bdv2", TestDocValuesUpdatesOnOldSegments.toBytes(i*3)));       doc.add(new BinaryDocValuesField("bdv2_c", TestDocValuesUpdatesOnOldSegments.toBytes(i*6)));       writer.addDocument(doc);       if ((i+1) % 10 == 0) {         writer.commit(); // flush every 10 docs       }     }          // first segment: no updates          // second segment: update two fields, same gen     updateNumeric(writer, "10", "ndv1", "ndv1_c", 100L);     updateBinary(writer, "11", "bdv1", "bdv1_c", 100L);     writer.commit();          // third segment: update few fields, different gens, few docs     updateNumeric(writer, "20", "ndv1", "ndv1_c", 100L);     updateBinary(writer, "21", "bdv1", "bdv1_c", 100L);     writer.commit();     updateNumeric(writer, "22", "ndv1", "ndv1_c", 200L); // update the field again     writer.commit();          writer.close();     dir.close();   }*/
 DECL|field|oldNames
 specifier|final
 specifier|static
@@ -6906,7 +6906,7 @@ control|)
 block|{
 name|assertEquals
 argument_list|(
-name|TestBinaryDocValuesUpdates
+name|TestDocValuesUpdatesOnOldSegments
 operator|.
 name|getValue
 argument_list|(
@@ -6915,7 +6915,7 @@ argument_list|,
 name|i
 argument_list|)
 argument_list|,
-name|TestBinaryDocValuesUpdates
+name|TestDocValuesUpdatesOnOldSegments
 operator|.
 name|getValue
 argument_list|(

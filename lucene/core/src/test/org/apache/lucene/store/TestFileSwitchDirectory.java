@@ -342,7 +342,7 @@ name|Codec
 operator|.
 name|forName
 argument_list|(
-literal|"Lucene40"
+literal|"Lucene410"
 argument_list|)
 argument_list|)
 operator|.
