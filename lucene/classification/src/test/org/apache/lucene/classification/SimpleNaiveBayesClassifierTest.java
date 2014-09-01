@@ -191,13 +191,6 @@ comment|// TODO : eventually remove this if / when fallback methods exist for al
 end_comment
 
 begin_class
-annotation|@
-name|LuceneTestCase
-operator|.
-name|SuppressCodecs
-argument_list|(
-literal|"Lucene3x"
-argument_list|)
 DECL|class|SimpleNaiveBayesClassifierTest
 specifier|public
 class|class

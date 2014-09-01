@@ -525,18 +525,6 @@ import|;
 end_import
 
 begin_class
-annotation|@
-name|SuppressCodecs
-argument_list|(
-block|{
-literal|"Lucene40"
-block|,
-literal|"Lucene41"
-block|,
-literal|"Lucene42"
-block|}
-argument_list|)
-comment|// we need missing support... i think?
 DECL|class|DistinctValuesCollectorTest
 specifier|public
 class|class

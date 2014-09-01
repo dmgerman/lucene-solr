@@ -355,12 +355,6 @@ comment|/**  */
 end_comment
 
 begin_class
-annotation|@
-name|SuppressCodecs
-argument_list|(
-literal|"Lucene3x"
-argument_list|)
-comment|// binary terms
 DECL|class|TestAnalyzingQueryParser
 specifier|public
 class|class

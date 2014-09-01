@@ -361,11 +361,6 @@ comment|/**  * trivial test of ICUCollationDocValuesField  */
 end_comment
 
 begin_class
-annotation|@
-name|SuppressCodecs
-argument_list|(
-literal|"Lucene3x"
-argument_list|)
 DECL|class|TestICUCollationDocValuesField
 specifier|public
 class|class

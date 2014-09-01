@@ -177,22 +177,6 @@ comment|/** Simple tests for SortedNumericSortField */
 end_comment
 
 begin_class
-annotation|@
-name|SuppressCodecs
-argument_list|(
-block|{
-literal|"Lucene40"
-block|,
-literal|"Lucene41"
-block|,
-literal|"Lucene42"
-block|,
-literal|"Lucene45"
-block|,
-literal|"Lucene46"
-block|}
-argument_list|)
-comment|// avoid codecs that don't support sortednumeric
 DECL|class|TestSortedNumericSortField
 specifier|public
 class|class

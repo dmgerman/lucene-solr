@@ -177,16 +177,6 @@ comment|/** Simple tests for SortedSetSortField, indexing the sortedset up front
 end_comment
 
 begin_class
-annotation|@
-name|SuppressCodecs
-argument_list|(
-block|{
-literal|"Lucene40"
-block|,
-literal|"Lucene41"
-block|}
-argument_list|)
-comment|// avoid codecs that don't support sortedset
 DECL|class|TestSortedSetSortField
 specifier|public
 class|class

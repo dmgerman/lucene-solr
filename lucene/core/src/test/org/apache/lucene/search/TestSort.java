@@ -215,18 +215,6 @@ comment|/*  * Very simple tests of sorting.  *   * THE RULES:  * 1. keywords lik
 end_comment
 
 begin_class
-annotation|@
-name|SuppressCodecs
-argument_list|(
-block|{
-literal|"Lucene40"
-block|,
-literal|"Lucene41"
-block|,
-literal|"Lucene42"
-block|}
-argument_list|)
-comment|// avoid codecs that don't support "missing"
 DECL|class|TestSort
 specifier|public
 class|class
