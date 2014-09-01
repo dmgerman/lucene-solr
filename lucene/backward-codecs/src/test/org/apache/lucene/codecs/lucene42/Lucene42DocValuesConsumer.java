@@ -784,6 +784,25 @@ parameter_list|)
 throws|throws
 name|IOException
 block|{
+if|if
+condition|(
+name|field
+operator|.
+name|getDocValuesGen
+argument_list|()
+operator|!=
+operator|-
+literal|1
+condition|)
+block|{
+throw|throw
+operator|new
+name|UnsupportedOperationException
+argument_list|(
+literal|"4.2 does not support dv updates"
+argument_list|)
+throw|;
+block|}
 name|addNumericField
 argument_list|(
 name|field
@@ -1576,6 +1595,25 @@ parameter_list|)
 throws|throws
 name|IOException
 block|{
+if|if
+condition|(
+name|field
+operator|.
+name|getDocValuesGen
+argument_list|()
+operator|!=
+operator|-
+literal|1
+condition|)
+block|{
+throw|throw
+operator|new
+name|UnsupportedOperationException
+argument_list|(
+literal|"4.2 does not support dv updates"
+argument_list|)
+throw|;
+block|}
 comment|// write the byte[] data
 name|meta
 operator|.
@@ -1992,6 +2030,25 @@ parameter_list|)
 throws|throws
 name|IOException
 block|{
+if|if
+condition|(
+name|field
+operator|.
+name|getDocValuesGen
+argument_list|()
+operator|!=
+operator|-
+literal|1
+condition|)
+block|{
+throw|throw
+operator|new
+name|UnsupportedOperationException
+argument_list|(
+literal|"4.2 does not support dv updates"
+argument_list|)
+throw|;
+block|}
 comment|// three cases for simulating the old writer:
 comment|// 1. no missing
 comment|// 2. missing (and empty string in use): remap ord=-1 -> ord=0
@@ -2148,6 +2205,15 @@ parameter_list|)
 throws|throws
 name|IOException
 block|{
+assert|assert
+name|field
+operator|.
+name|getDocValuesGen
+argument_list|()
+operator|==
+operator|-
+literal|1
+assert|;
 comment|// write the ordinals as a binary field
 name|addBinaryField
 argument_list|(

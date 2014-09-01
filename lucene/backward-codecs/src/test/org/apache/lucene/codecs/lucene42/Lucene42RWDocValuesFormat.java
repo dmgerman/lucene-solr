@@ -100,25 +100,6 @@ parameter_list|)
 throws|throws
 name|IOException
 block|{
-if|if
-condition|(
-operator|!
-name|LuceneTestCase
-operator|.
-name|OLD_FORMAT_IMPERSONATION_IS_ACTIVE
-condition|)
-block|{
-return|return
-name|super
-operator|.
-name|fieldsConsumer
-argument_list|(
-name|state
-argument_list|)
-return|;
-block|}
-else|else
-block|{
 comment|// note: we choose DEFAULT here (its reasonably fast, and for small bpv has tiny waste)
 return|return
 operator|new
@@ -137,7 +118,6 @@ argument_list|,
 name|acceptableOverheadRatio
 argument_list|)
 return|;
-block|}
 block|}
 block|}
 end_class

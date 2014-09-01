@@ -2801,15 +2801,6 @@ empty_stmt|;
 comment|// -----------------------------------------------------------------
 comment|// Fields initialized in class or instance rules.
 comment|// -----------------------------------------------------------------
-comment|/**    * When {@code true}, Codecs for old Lucene version will support writing    * indexes in that format. Defaults to {@code false}, can be disabled by    * specific tests on demand.    *     * @lucene.internal    */
-DECL|field|OLD_FORMAT_IMPERSONATION_IS_ACTIVE
-specifier|public
-specifier|static
-name|boolean
-name|OLD_FORMAT_IMPERSONATION_IS_ACTIVE
-init|=
-literal|false
-decl_stmt|;
 comment|// -----------------------------------------------------------------
 comment|// Class level (suite) rules.
 comment|// -----------------------------------------------------------------

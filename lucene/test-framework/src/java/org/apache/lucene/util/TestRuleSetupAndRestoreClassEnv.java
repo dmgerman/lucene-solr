@@ -1018,13 +1018,6 @@ argument_list|)
 argument_list|)
 expr_stmt|;
 block|}
-comment|// set back to default
-name|LuceneTestCase
-operator|.
-name|OLD_FORMAT_IMPERSONATION_IS_ACTIVE
-operator|=
-literal|false
-expr_stmt|;
 name|savedCodec
 operator|=
 name|Codec

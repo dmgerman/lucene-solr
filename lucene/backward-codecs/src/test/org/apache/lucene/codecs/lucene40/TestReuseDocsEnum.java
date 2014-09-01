@@ -334,21 +334,6 @@ name|TestReuseDocsEnum
 extends|extends
 name|LuceneTestCase
 block|{
-annotation|@
-name|BeforeClass
-DECL|method|beforeClass
-specifier|public
-specifier|static
-name|void
-name|beforeClass
-parameter_list|()
-block|{
-name|OLD_FORMAT_IMPERSONATION_IS_ACTIVE
-operator|=
-literal|true
-expr_stmt|;
-comment|// explicitly instantiates ancient codec
-block|}
 DECL|method|testReuseDocsEnumNoReuse
 specifier|public
 name|void

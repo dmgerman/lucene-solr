@@ -249,6 +249,23 @@ parameter_list|)
 throws|throws
 name|IOException
 block|{
+if|if
+condition|(
+operator|!
+name|segmentSuffix
+operator|.
+name|isEmpty
+argument_list|()
+condition|)
+block|{
+throw|throw
+operator|new
+name|UnsupportedOperationException
+argument_list|(
+literal|"4.0 does not support fieldinfo updates"
+argument_list|)
+throw|;
+block|}
 specifier|final
 name|String
 name|fileName

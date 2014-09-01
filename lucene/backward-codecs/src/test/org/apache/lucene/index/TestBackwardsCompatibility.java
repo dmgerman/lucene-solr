@@ -1094,15 +1094,6 @@ parameter_list|()
 throws|throws
 name|Exception
 block|{
-name|assertFalse
-argument_list|(
-literal|"test infra is broken!"
-argument_list|,
-name|LuceneTestCase
-operator|.
-name|OLD_FORMAT_IMPERSONATION_IS_ACTIVE
-argument_list|)
-expr_stmt|;
 name|List
 argument_list|<
 name|String

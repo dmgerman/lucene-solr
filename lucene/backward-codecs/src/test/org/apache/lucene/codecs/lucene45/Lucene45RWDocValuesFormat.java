@@ -70,20 +70,6 @@ name|SegmentWriteState
 import|;
 end_import
 
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|util
-operator|.
-name|LuceneTestCase
-import|;
-end_import
-
 begin_comment
 comment|/**  * Read-write version of {@link Lucene45DocValuesFormat} for testing.  */
 end_comment
@@ -108,13 +94,6 @@ name|state
 parameter_list|)
 throws|throws
 name|IOException
-block|{
-if|if
-condition|(
-name|LuceneTestCase
-operator|.
-name|OLD_FORMAT_IMPERSONATION_IS_ACTIVE
-condition|)
 block|{
 return|return
 operator|new
@@ -144,18 +123,6 @@ comment|// allow writing all fields
 block|}
 block|}
 return|;
-block|}
-else|else
-block|{
-return|return
-name|super
-operator|.
-name|fieldsConsumer
-argument_list|(
-name|state
-argument_list|)
-return|;
-block|}
 block|}
 block|}
 end_class

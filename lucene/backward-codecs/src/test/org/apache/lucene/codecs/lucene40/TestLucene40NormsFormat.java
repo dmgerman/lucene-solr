@@ -46,16 +46,6 @@ name|BaseNormsFormatTestCase
 import|;
 end_import
 
-begin_import
-import|import
-name|org
-operator|.
-name|junit
-operator|.
-name|BeforeClass
-import|;
-end_import
-
 begin_comment
 comment|/** Tests Lucene40's norms format */
 end_comment
@@ -88,21 +78,6 @@ block|{
 return|return
 name|codec
 return|;
-block|}
-annotation|@
-name|BeforeClass
-DECL|method|beforeClass
-specifier|public
-specifier|static
-name|void
-name|beforeClass
-parameter_list|()
-block|{
-name|OLD_FORMAT_IMPERSONATION_IS_ACTIVE
-operator|=
-literal|true
-expr_stmt|;
-comment|// explicitly instantiates ancient codec
 block|}
 block|}
 end_class

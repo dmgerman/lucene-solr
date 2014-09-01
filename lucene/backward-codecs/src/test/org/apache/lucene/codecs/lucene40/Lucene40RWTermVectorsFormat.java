@@ -129,24 +129,6 @@ parameter_list|)
 throws|throws
 name|IOException
 block|{
-if|if
-condition|(
-operator|!
-name|LuceneTestCase
-operator|.
-name|OLD_FORMAT_IMPERSONATION_IS_ACTIVE
-condition|)
-block|{
-throw|throw
-operator|new
-name|UnsupportedOperationException
-argument_list|(
-literal|"this codec can only be used for reading"
-argument_list|)
-throw|;
-block|}
-else|else
-block|{
 return|return
 operator|new
 name|Lucene40TermVectorsWriter
@@ -160,7 +142,6 @@ argument_list|,
 name|context
 argument_list|)
 return|;
-block|}
 block|}
 block|}
 end_class
