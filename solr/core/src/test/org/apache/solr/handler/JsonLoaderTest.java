@@ -1662,6 +1662,108 @@ argument_list|)
 expr_stmt|;
 name|doc
 operator|=
+literal|"\n"
+operator|+
+literal|"\n"
+operator|+
+literal|"{bool: true,\n"
+operator|+
+literal|" f0: \"v0\",\n"
+operator|+
+literal|" f2: {\n"
+operator|+
+literal|"    \t  \"boost\": 2.3,\n"
+operator|+
+literal|"    \t  \"value\": \"test\"\n"
+operator|+
+literal|"    \t   },\n"
+operator|+
+literal|"array: [ \"aaa\", \"bbb\" ],\n"
+operator|+
+literal|"boosted: {\n"
+operator|+
+literal|"    \t      \"boost\": 6.7,\n"
+operator|+
+literal|"    \t      \"value\": [ \"aaa\", \"bbb\" ]\n"
+operator|+
+literal|"    \t    }\n"
+operator|+
+literal|" }\n"
+operator|+
+literal|"\n"
+operator|+
+literal|"\n"
+operator|+
+literal|" {f1: \"v1\",\n"
+operator|+
+literal|"  f1: \"v2\",\n"
+operator|+
+literal|"   f2: null\n"
+operator|+
+literal|"  }\n"
+expr_stmt|;
+name|req
+operator|=
+name|req
+argument_list|(
+literal|"json.command"
+argument_list|,
+literal|"false"
+argument_list|)
+expr_stmt|;
+name|rsp
+operator|=
+operator|new
+name|SolrQueryResponse
+argument_list|()
+expr_stmt|;
+name|p
+operator|=
+operator|new
+name|BufferingRequestProcessor
+argument_list|(
+literal|null
+argument_list|)
+expr_stmt|;
+name|loader
+operator|=
+operator|new
+name|JsonLoader
+argument_list|()
+expr_stmt|;
+name|loader
+operator|.
+name|load
+argument_list|(
+name|req
+argument_list|,
+name|rsp
+argument_list|,
+operator|new
+name|ContentStreamBase
+operator|.
+name|StringStream
+argument_list|(
+name|doc
+argument_list|)
+argument_list|,
+name|p
+argument_list|)
+expr_stmt|;
+name|assertEquals
+argument_list|(
+literal|2
+argument_list|,
+name|p
+operator|.
+name|addCommands
+operator|.
+name|size
+argument_list|()
+argument_list|)
+expr_stmt|;
+name|doc
+operator|=
 literal|"[{'id':'1'},{'id':'2'}]"
 operator|.
 name|replace
