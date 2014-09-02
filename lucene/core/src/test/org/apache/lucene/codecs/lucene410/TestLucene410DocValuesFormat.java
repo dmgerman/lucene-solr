@@ -160,22 +160,6 @@ name|apache
 operator|.
 name|lucene
 operator|.
-name|codecs
-operator|.
-name|memory
-operator|.
-name|FSTOrdPulsing41PostingsFormat
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
 name|document
 operator|.
 name|Document
@@ -912,8 +896,6 @@ expr_stmt|;
 break|break;
 comment|// TODO: these don't actually support ords!
 comment|//case 2: pf = new FSTOrdPostingsFormat();
-comment|//        break;
-comment|//case 3: pf = new FSTOrdPulsing41PostingsFormat();
 comment|//        break;
 default|default:
 throw|throw

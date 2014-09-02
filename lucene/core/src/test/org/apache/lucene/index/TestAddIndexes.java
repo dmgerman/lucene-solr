@@ -160,9 +160,9 @@ name|lucene
 operator|.
 name|codecs
 operator|.
-name|pulsing
+name|memory
 operator|.
-name|Pulsing41PostingsFormat
+name|MemoryPostingsFormat
 import|;
 end_import
 
@@ -6852,18 +6852,8 @@ operator|.
 name|alwaysPostingsFormat
 argument_list|(
 operator|new
-name|Pulsing41PostingsFormat
-argument_list|(
-literal|1
-operator|+
-name|random
+name|MemoryPostingsFormat
 argument_list|()
-operator|.
-name|nextInt
-argument_list|(
-literal|20
-argument_list|)
-argument_list|)
 argument_list|)
 argument_list|)
 expr_stmt|;

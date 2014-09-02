@@ -188,9 +188,6 @@ parameter_list|()
 throws|throws
 name|Exception
 block|{
-comment|// NOTE: if we see a fail on this test with "NestedPulsing" its because its
-comment|// reuse isnt perfect (but reasonable). see TestPulsingReuse.testNestedPulsing
-comment|// for more details
 specifier|final
 name|MockDirectoryWrapper
 name|dir

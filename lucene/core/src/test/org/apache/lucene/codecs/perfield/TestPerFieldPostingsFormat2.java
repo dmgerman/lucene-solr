@@ -112,9 +112,9 @@ name|lucene
 operator|.
 name|codecs
 operator|.
-name|memory
+name|lucene41vargap
 operator|.
-name|MemoryPostingsFormat
+name|Lucene41VarGapFixedInterval
 import|;
 end_import
 
@@ -128,9 +128,9 @@ name|lucene
 operator|.
 name|codecs
 operator|.
-name|pulsing
+name|memory
 operator|.
-name|Pulsing41PostingsFormat
+name|MemoryPostingsFormat
 import|;
 end_import
 
@@ -1849,10 +1849,8 @@ condition|)
 block|{
 return|return
 operator|new
-name|Pulsing41PostingsFormat
-argument_list|(
-literal|1
-argument_list|)
+name|MemoryPostingsFormat
+argument_list|()
 return|;
 block|}
 elseif|else
@@ -1868,10 +1866,8 @@ condition|)
 block|{
 return|return
 operator|new
-name|Pulsing41PostingsFormat
-argument_list|(
-literal|1
-argument_list|)
+name|MemoryPostingsFormat
+argument_list|()
 return|;
 block|}
 else|else
@@ -1931,7 +1927,7 @@ condition|)
 block|{
 return|return
 operator|new
-name|Pulsing41PostingsFormat
+name|Lucene41VarGapFixedInterval
 argument_list|(
 literal|1
 argument_list|)
@@ -1950,7 +1946,7 @@ condition|)
 block|{
 return|return
 operator|new
-name|Pulsing41PostingsFormat
+name|Lucene41VarGapFixedInterval
 argument_list|(
 literal|2
 argument_list|)

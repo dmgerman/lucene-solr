@@ -146,9 +146,9 @@ name|SolrCore
 name|core
 decl_stmt|;
 comment|// TODO: we need to change how solr does this?
-comment|// rather than a string like "Pulsing" you need to be able to pass parameters
+comment|// rather than a string like "Direct" you need to be able to pass parameters
 comment|// and everything to a field in the schema, e.g. we should provide factories for
-comment|// the Lucene's core formats (Memory, Pulsing, ...) and such.
+comment|// the Lucene's core formats (Memory, Direct, ...) and such.
 comment|//
 comment|// So I think a FieldType should return PostingsFormat, not a String.
 comment|// how it constructs this from the XML... i don't care.

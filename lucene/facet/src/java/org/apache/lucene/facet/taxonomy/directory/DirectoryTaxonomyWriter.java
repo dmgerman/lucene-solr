@@ -1179,7 +1179,7 @@ name|OpenMode
 name|openMode
 parameter_list|)
 block|{
-comment|// TODO: should we use a more optimized Codec, e.g. Pulsing (or write custom)?
+comment|// TODO: should we use a more optimized Codec?
 comment|// The taxonomy has a unique structure, where each term is associated with one document
 comment|// Make sure we use a MergePolicy which always merges adjacent segments and thus
 comment|// keeps the doc IDs ordered as well (this is crucial for the taxonomy index).
