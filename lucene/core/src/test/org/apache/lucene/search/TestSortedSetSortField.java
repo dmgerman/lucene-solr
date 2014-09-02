@@ -156,37 +156,11 @@ name|LuceneTestCase
 import|;
 end_import
 
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|util
-operator|.
-name|LuceneTestCase
-operator|.
-name|SuppressCodecs
-import|;
-end_import
-
 begin_comment
 comment|/** Simple tests for SortedSetSortField, indexing the sortedset up front */
 end_comment
 
 begin_class
-annotation|@
-name|SuppressCodecs
-argument_list|(
-block|{
-literal|"Lucene40"
-block|,
-literal|"Lucene41"
-block|}
-argument_list|)
-comment|// avoid codecs that don't support sortedset
 DECL|class|TestSortedSetSortField
 specifier|public
 class|class

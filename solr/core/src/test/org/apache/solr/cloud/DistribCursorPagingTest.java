@@ -876,12 +876,7 @@ specifier|final
 name|String
 name|intmissingsort
 init|=
-name|defaultCodecSupportsMissingDocValues
-argument_list|()
-condition|?
 name|intsort
-else|:
-literal|"int"
 decl_stmt|;
 comment|// trivial base case: ensure cursorMark against an empty index doesn't blow up
 name|cursorMark

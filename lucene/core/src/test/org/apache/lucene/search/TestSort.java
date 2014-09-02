@@ -194,39 +194,11 @@ name|LuceneTestCase
 import|;
 end_import
 
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|util
-operator|.
-name|LuceneTestCase
-operator|.
-name|SuppressCodecs
-import|;
-end_import
-
 begin_comment
 comment|/*  * Very simple tests of sorting.  *   * THE RULES:  * 1. keywords like 'abstract' and 'static' should not appear in this file.  * 2. each test method should be self-contained and understandable.   * 3. no test methods should share code with other test methods.  * 4. no testing of things unrelated to sorting.  * 5. no tracers.  * 6. keyword 'class' should appear only once in this file, here ----  *                                                                  |  *        -----------------------------------------------------------  *        |  *       \./  */
 end_comment
 
 begin_class
-annotation|@
-name|SuppressCodecs
-argument_list|(
-block|{
-literal|"Lucene40"
-block|,
-literal|"Lucene41"
-block|,
-literal|"Lucene42"
-block|}
-argument_list|)
-comment|// avoid codecs that don't support "missing"
 DECL|class|TestSort
 specifier|public
 class|class

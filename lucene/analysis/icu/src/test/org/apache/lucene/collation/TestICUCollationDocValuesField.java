@@ -314,22 +314,6 @@ end_import
 
 begin_import
 import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|util
-operator|.
-name|LuceneTestCase
-operator|.
-name|SuppressCodecs
-import|;
-end_import
-
-begin_import
-import|import
 name|com
 operator|.
 name|ibm
@@ -361,11 +345,6 @@ comment|/**  * trivial test of ICUCollationDocValuesField  */
 end_comment
 
 begin_class
-annotation|@
-name|SuppressCodecs
-argument_list|(
-literal|"Lucene3x"
-argument_list|)
 DECL|class|TestICUCollationDocValuesField
 specifier|public
 class|class

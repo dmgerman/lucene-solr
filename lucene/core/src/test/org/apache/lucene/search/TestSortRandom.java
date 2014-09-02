@@ -845,22 +845,12 @@ argument_list|,
 name|reverse
 argument_list|)
 expr_stmt|;
-comment|// Can only use sort missing if the DVFormat
-comment|// supports docsWithField:
 name|sortMissingLast
 operator|=
-name|defaultCodecSupportsDocsWithField
-argument_list|()
-operator|&&
 name|random
 argument_list|()
 operator|.
 name|nextBoolean
-argument_list|()
-expr_stmt|;
-name|missingIsNull
-operator|=
-name|defaultCodecSupportsDocsWithField
 argument_list|()
 expr_stmt|;
 if|if
@@ -1305,24 +1295,6 @@ argument_list|(
 name|idx
 argument_list|)
 decl_stmt|;
-if|if
-condition|(
-name|br
-operator|==
-literal|null
-operator|&&
-name|missingIsNull
-operator|==
-literal|false
-condition|)
-block|{
-name|br
-operator|=
-operator|new
-name|BytesRef
-argument_list|()
-expr_stmt|;
-block|}
 name|System
 operator|.
 name|out
@@ -1509,30 +1481,6 @@ argument_list|(
 name|hitIDX
 argument_list|)
 decl_stmt|;
-if|if
-condition|(
-name|br
-operator|==
-literal|null
-operator|&&
-name|missingIsNull
-operator|==
-literal|false
-condition|)
-block|{
-name|br
-operator|=
-operator|new
-name|BytesRef
-argument_list|()
-expr_stmt|;
-block|}
-comment|// Normally, the old codecs (that don't support
-comment|// docsWithField via doc values) will always return
-comment|// an empty BytesRef for the missing case; however,
-comment|// if all docs in a given segment were missing, in
-comment|// that case it will return null!  So we must map
-comment|// null here, too:
 name|BytesRef
 name|br2
 init|=
@@ -1546,24 +1494,6 @@ index|[
 literal|0
 index|]
 decl_stmt|;
-if|if
-condition|(
-name|br2
-operator|==
-literal|null
-operator|&&
-name|missingIsNull
-operator|==
-literal|false
-condition|)
-block|{
-name|br2
-operator|=
-operator|new
-name|BytesRef
-argument_list|()
-expr_stmt|;
-block|}
 name|assertEquals
 argument_list|(
 name|br

@@ -98,22 +98,6 @@ name|apache
 operator|.
 name|lucene
 operator|.
-name|codecs
-operator|.
-name|lucene42
-operator|.
-name|Lucene42DocValuesFormat
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
 name|document
 operator|.
 name|BinaryDocValuesField
@@ -773,14 +757,6 @@ parameter_list|()
 throws|throws
 name|Exception
 block|{
-name|assumeTrue
-argument_list|(
-literal|"Codec does not support SORTED_SET"
-argument_list|,
-name|defaultCodecSupportsSortedSet
-argument_list|()
-argument_list|)
-expr_stmt|;
 name|int
 name|numIterations
 init|=
@@ -836,14 +812,6 @@ parameter_list|()
 throws|throws
 name|Exception
 block|{
-name|assumeTrue
-argument_list|(
-literal|"Codec does not support SORTED_SET"
-argument_list|,
-name|defaultCodecSupportsSortedSet
-argument_list|()
-argument_list|)
-expr_stmt|;
 name|int
 name|numIterations
 init|=
@@ -1459,6 +1427,21 @@ name|close
 argument_list|()
 expr_stmt|;
 block|}
+DECL|field|LARGE_BINARY_FIELD_LENGTH
+specifier|private
+specifier|static
+specifier|final
+name|int
+name|LARGE_BINARY_FIELD_LENGTH
+init|=
+operator|(
+literal|1
+operator|<<
+literal|15
+operator|)
+operator|-
+literal|2
+decl_stmt|;
 comment|// TODO: get this out of here and into the deprecated codecs (4.0, 4.2)
 DECL|method|testHugeBinaryValueLimit
 specifier|public
@@ -1542,9 +1525,7 @@ argument_list|)
 expr_stmt|;
 name|fixedLength
 operator|=
-name|Lucene42DocValuesFormat
-operator|.
-name|MAX_BINARY_FIELD_LENGTH
+name|LARGE_BINARY_FIELD_LENGTH
 expr_stmt|;
 block|}
 else|else
@@ -1647,9 +1628,7 @@ condition|)
 block|{
 name|numBytes
 operator|=
-name|Lucene42DocValuesFormat
-operator|.
-name|MAX_BINARY_FIELD_LENGTH
+name|LARGE_BINARY_FIELD_LENGTH
 expr_stmt|;
 block|}
 else|else
@@ -1665,9 +1644,7 @@ argument_list|()
 argument_list|,
 literal|1
 argument_list|,
-name|Lucene42DocValuesFormat
-operator|.
-name|MAX_BINARY_FIELD_LENGTH
+name|LARGE_BINARY_FIELD_LENGTH
 argument_list|)
 expr_stmt|;
 block|}
@@ -2834,14 +2811,6 @@ parameter_list|)
 throws|throws
 name|Exception
 block|{
-name|assumeTrue
-argument_list|(
-literal|"Codec does not support getDocsWithField"
-argument_list|,
-name|defaultCodecSupportsDocsWithField
-argument_list|()
-argument_list|)
-expr_stmt|;
 name|Directory
 name|dir
 init|=

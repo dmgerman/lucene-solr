@@ -1140,12 +1140,6 @@ argument_list|)
 argument_list|)
 argument_list|)
 expr_stmt|;
-if|if
-condition|(
-name|defaultCodecSupportsSortedSet
-argument_list|()
-condition|)
-block|{
 name|doc
 operator|.
 name|add
@@ -1180,13 +1174,6 @@ argument_list|)
 argument_list|)
 argument_list|)
 expr_stmt|;
-block|}
-if|if
-condition|(
-name|defaultCodecSupportsSortedNumeric
-argument_list|()
-condition|)
-block|{
 name|doc
 operator|.
 name|add
@@ -1213,7 +1200,6 @@ literal|5
 argument_list|)
 argument_list|)
 expr_stmt|;
-block|}
 name|doc
 operator|.
 name|add
@@ -12575,12 +12561,6 @@ literal|false
 decl_stmt|;
 try|try
 block|{
-name|boolean
-name|defaultCodecSupportsFieldUpdates
-init|=
-name|defaultCodecSupportsFieldUpdates
-argument_list|()
-decl_stmt|;
 for|for
 control|(
 name|int
@@ -12612,8 +12592,6 @@ block|{
 name|boolean
 name|fieldUpdate
 init|=
-name|defaultCodecSupportsFieldUpdates
-operator|&&
 name|random
 argument_list|()
 operator|.

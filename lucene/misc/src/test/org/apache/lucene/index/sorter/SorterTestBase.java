@@ -1456,12 +1456,6 @@ argument_list|)
 argument_list|)
 argument_list|)
 expr_stmt|;
-if|if
-condition|(
-name|defaultCodecSupportsSortedSet
-argument_list|()
-condition|)
-block|{
 name|doc
 operator|.
 name|add
@@ -1508,13 +1502,6 @@ argument_list|)
 argument_list|)
 argument_list|)
 expr_stmt|;
-block|}
-if|if
-condition|(
-name|defaultCodecSupportsSortedNumeric
-argument_list|()
-condition|)
-block|{
 name|doc
 operator|.
 name|add
@@ -1543,7 +1530,6 @@ literal|1
 argument_list|)
 argument_list|)
 expr_stmt|;
-block|}
 name|doc
 operator|.
 name|add
@@ -3065,14 +3051,6 @@ parameter_list|()
 throws|throws
 name|Exception
 block|{
-name|assumeTrue
-argument_list|(
-literal|"default codec does not support SORTED_SET"
-argument_list|,
-name|defaultCodecSupportsSortedSet
-argument_list|()
-argument_list|)
-expr_stmt|;
 name|SortedSetDocValues
 name|dv
 init|=
@@ -3219,14 +3197,6 @@ parameter_list|()
 throws|throws
 name|Exception
 block|{
-name|assumeTrue
-argument_list|(
-literal|"default codec does not support SORTED_NUMERIC"
-argument_list|,
-name|defaultCodecSupportsSortedNumeric
-argument_list|()
-argument_list|)
-expr_stmt|;
 name|SortedNumericDocValues
 name|dv
 init|=

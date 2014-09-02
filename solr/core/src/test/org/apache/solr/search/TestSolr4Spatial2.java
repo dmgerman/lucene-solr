@@ -22,20 +22,6 @@ name|org
 operator|.
 name|apache
 operator|.
-name|lucene
-operator|.
-name|util
-operator|.
-name|LuceneTestCase
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
 name|solr
 operator|.
 name|SolrTestCaseJ4
@@ -76,26 +62,7 @@ begin_comment
 comment|//Unlike TestSolr4Spatial, not parameterized / not generic.
 end_comment
 
-begin_comment
-comment|//We exclude Codecs that don't support DocValues (though not sure if this list is quite right)
-end_comment
-
 begin_class
-annotation|@
-name|LuceneTestCase
-operator|.
-name|SuppressCodecs
-argument_list|(
-block|{
-literal|"Lucene3x"
-block|,
-literal|"Appending"
-block|,
-literal|"Lucene40"
-block|,
-literal|"Lucene41"
-block|}
-argument_list|)
 DECL|class|TestSolr4Spatial2
 specifier|public
 class|class

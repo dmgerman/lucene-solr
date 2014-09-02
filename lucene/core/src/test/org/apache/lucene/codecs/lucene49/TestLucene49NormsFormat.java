@@ -40,9 +40,11 @@ name|apache
 operator|.
 name|lucene
 operator|.
-name|index
+name|codecs
 operator|.
-name|BaseNormsFormatTestCase
+name|lucene410
+operator|.
+name|Lucene410Codec
 import|;
 end_import
 
@@ -50,9 +52,13 @@ begin_import
 import|import
 name|org
 operator|.
-name|junit
+name|apache
 operator|.
-name|BeforeClass
+name|lucene
+operator|.
+name|index
+operator|.
+name|BaseNormsFormatTestCase
 import|;
 end_import
 
@@ -75,24 +81,9 @@ name|Codec
 name|codec
 init|=
 operator|new
-name|Lucene49RWCodec
+name|Lucene410Codec
 argument_list|()
 decl_stmt|;
-annotation|@
-name|BeforeClass
-DECL|method|beforeClass
-specifier|public
-specifier|static
-name|void
-name|beforeClass
-parameter_list|()
-block|{
-name|OLD_FORMAT_IMPERSONATION_IS_ACTIVE
-operator|=
-literal|true
-expr_stmt|;
-comment|// explicitly instantiates ancient codec
-block|}
 annotation|@
 name|Override
 DECL|method|getCodec
