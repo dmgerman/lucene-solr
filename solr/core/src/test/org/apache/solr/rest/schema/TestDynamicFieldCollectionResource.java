@@ -167,6 +167,26 @@ literal|"/dynamicFields/[1]/name=='*_s'"
 argument_list|)
 expr_stmt|;
 block|}
+annotation|@
+name|Test
+DECL|method|testJsonPostFieldsToNonMutableIndexSchema
+specifier|public
+name|void
+name|testJsonPostFieldsToNonMutableIndexSchema
+parameter_list|()
+throws|throws
+name|Exception
+block|{
+name|assertJPost
+argument_list|(
+literal|"/schema/dynamicfields"
+argument_list|,
+literal|"[{\"name\":\"foobarbaz\", \"type\":\"text_general\", \"stored\":\"false\"}]"
+argument_list|,
+literal|"/error/msg=='This IndexSchema is not mutable.'"
+argument_list|)
+expr_stmt|;
+block|}
 block|}
 end_class
 
