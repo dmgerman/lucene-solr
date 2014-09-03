@@ -1140,6 +1140,15 @@ name|length
 argument_list|()
 operator|==
 literal|0
+operator|||
+name|zkRun
+operator|.
+name|lastIndexOf
+argument_list|(
+literal|'/'
+argument_list|)
+operator|<
+literal|0
 condition|)
 return|return
 name|zkRun
