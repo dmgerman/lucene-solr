@@ -1231,9 +1231,10 @@ operator|)
 expr_stmt|;
 comment|// b, c
 block|}
-comment|// Concatentate bits of x0 and x1, as unsigned 128 bit integer:
-name|nextId
-operator|=
+comment|// First make unsigned versions of x0, x1:
+name|BigInteger
+name|unsignedX0
+init|=
 operator|new
 name|BigInteger
 argument_list|(
@@ -1246,6 +1247,34 @@ argument_list|(
 name|x0
 argument_list|)
 operator|.
+name|toByteArray
+argument_list|()
+argument_list|)
+decl_stmt|;
+name|BigInteger
+name|unsignedX1
+init|=
+operator|new
+name|BigInteger
+argument_list|(
+literal|1
+argument_list|,
+name|BigInteger
+operator|.
+name|valueOf
+argument_list|(
+name|x1
+argument_list|)
+operator|.
+name|toByteArray
+argument_list|()
+argument_list|)
+decl_stmt|;
+comment|// Concatentate bits of x0 and x1, as unsigned 128 bit integer:
+name|nextId
+operator|=
+name|unsignedX0
+operator|.
 name|shiftLeft
 argument_list|(
 literal|64
@@ -1253,16 +1282,7 @@ argument_list|)
 operator|.
 name|or
 argument_list|(
-name|BigInteger
-operator|.
-name|valueOf
-argument_list|(
-name|x1
-argument_list|)
-argument_list|)
-operator|.
-name|toByteArray
-argument_list|()
+name|unsignedX1
 argument_list|)
 expr_stmt|;
 block|}
