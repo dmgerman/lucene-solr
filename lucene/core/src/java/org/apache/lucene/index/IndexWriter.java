@@ -5918,6 +5918,8 @@ argument_list|(
 name|directory
 argument_list|)
 expr_stmt|;
+try|try
+block|{
 name|deleter
 operator|.
 name|decRef
@@ -5925,6 +5927,9 @@ argument_list|(
 name|pendingCommit
 argument_list|)
 expr_stmt|;
+block|}
+finally|finally
+block|{
 name|pendingCommit
 operator|=
 literal|null
@@ -5932,6 +5937,7 @@ expr_stmt|;
 name|notifyAll
 argument_list|()
 expr_stmt|;
+block|}
 block|}
 comment|// Don't bother saving any changes in our segmentInfos
 name|readerPool
@@ -6140,7 +6146,11 @@ parameter_list|(
 name|Throwable
 name|t
 parameter_list|)
-block|{}
+block|{             }
+name|pendingCommit
+operator|=
+literal|null
+expr_stmt|;
 block|}
 comment|// close all the closeables we can (but important is readerPool and writeLock to prevent leaks)
 name|IOUtils
@@ -8856,7 +8866,7 @@ condition|)
 block|{
 name|deleter
 operator|.
-name|decRef
+name|decRefWhileHandlingException
 argument_list|(
 name|filesToCommit
 argument_list|)
@@ -9214,6 +9224,8 @@ block|}
 finally|finally
 block|{
 comment|// Matches the incRef done in prepareCommit:
+try|try
+block|{
 name|deleter
 operator|.
 name|decRef
@@ -9221,6 +9233,9 @@ argument_list|(
 name|filesToCommit
 argument_list|)
 expr_stmt|;
+block|}
+finally|finally
+block|{
 name|filesToCommit
 operator|=
 literal|null
@@ -9232,6 +9247,7 @@ expr_stmt|;
 name|notifyAll
 argument_list|()
 expr_stmt|;
+block|}
 block|}
 if|if
 condition|(
@@ -15682,6 +15698,8 @@ literal|"  skip startCommit(): no changes pending"
 argument_list|)
 expr_stmt|;
 block|}
+try|try
+block|{
 name|deleter
 operator|.
 name|decRef
@@ -15689,10 +15707,14 @@ argument_list|(
 name|filesToCommit
 argument_list|)
 expr_stmt|;
+block|}
+finally|finally
+block|{
 name|filesToCommit
 operator|=
 literal|null
 expr_stmt|;
+block|}
 return|return;
 block|}
 if|if
@@ -15934,7 +15956,7 @@ block|}
 comment|// Hit exception
 name|deleter
 operator|.
-name|decRef
+name|decRefWhileHandlingException
 argument_list|(
 name|filesToCommit
 argument_list|)
