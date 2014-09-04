@@ -626,7 +626,9 @@ operator|.
 name|getKey
 argument_list|()
 decl_stmt|;
-comment|//Only use this suggestion if all shards reported it as misspelled.
+comment|//Only use this suggestion if all shards reported it as misspelled,
+comment|//unless it was not a term original to the user's query
+comment|//(WordBreakSolrSpellChecker can add new terms to the response, and we want to keep these)
 name|Integer
 name|numShards
 init|=
@@ -646,6 +648,13 @@ operator|<
 name|mergeData
 operator|.
 name|totalNumberShardResponses
+operator|&&
+name|mergeData
+operator|.
+name|isOriginalToQuery
+argument_list|(
+name|original
+argument_list|)
 condition|)
 block|{
 continue|continue;
