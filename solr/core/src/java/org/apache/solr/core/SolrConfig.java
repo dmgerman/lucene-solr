@@ -950,7 +950,7 @@ name|resource
 init|=
 name|loader
 operator|.
-name|getInstanceDir
+name|getConfigDir
 argument_list|()
 operator|+
 name|name
