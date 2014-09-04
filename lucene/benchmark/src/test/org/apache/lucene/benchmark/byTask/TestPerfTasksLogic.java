@@ -74,6 +74,18 @@ begin_import
 import|import
 name|java
 operator|.
+name|nio
+operator|.
+name|file
+operator|.
+name|Files
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
 name|text
 operator|.
 name|Collator
@@ -2092,10 +2104,15 @@ operator|.
 name|close
 argument_list|()
 expr_stmt|;
-name|lineFile
+name|Files
 operator|.
 name|delete
+argument_list|(
+name|lineFile
+operator|.
+name|toPath
 argument_list|()
+argument_list|)
 expr_stmt|;
 block|}
 comment|/**    * Test ReadTokensTask    */

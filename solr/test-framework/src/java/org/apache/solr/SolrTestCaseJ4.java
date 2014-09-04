@@ -5491,7 +5491,7 @@ name|xml
 return|;
 block|}
 block|}
-comment|/**    * @see TestUtil#rm(File...)    */
+comment|/**    * @see IOUtils#rm(File...)    */
 annotation|@
 name|Deprecated
 argument_list|()
@@ -5507,7 +5507,7 @@ parameter_list|)
 block|{
 try|try
 block|{
-name|TestUtil
+name|IOUtils
 operator|.
 name|rm
 argument_list|(

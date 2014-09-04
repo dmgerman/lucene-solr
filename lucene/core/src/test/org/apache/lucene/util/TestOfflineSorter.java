@@ -241,18 +241,6 @@ argument_list|(
 literal|"mergesort"
 argument_list|)
 expr_stmt|;
-name|TestUtil
-operator|.
-name|rm
-argument_list|(
-name|tempDir
-argument_list|)
-expr_stmt|;
-name|tempDir
-operator|.
-name|mkdirs
-argument_list|()
-expr_stmt|;
 block|}
 annotation|@
 name|Override
@@ -270,7 +258,7 @@ name|tempDir
 operator|!=
 literal|null
 condition|)
-name|TestUtil
+name|IOUtils
 operator|.
 name|rm
 argument_list|(

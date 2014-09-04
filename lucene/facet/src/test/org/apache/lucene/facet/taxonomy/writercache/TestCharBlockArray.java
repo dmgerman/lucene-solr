@@ -622,11 +622,6 @@ operator|.
 name|close
 argument_list|()
 expr_stmt|;
-name|f
-operator|.
-name|delete
-argument_list|()
-expr_stmt|;
 block|}
 DECL|method|assertEqualsInternal
 specifier|private

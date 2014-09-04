@@ -349,16 +349,6 @@ argument_list|(
 literal|"collation1"
 argument_list|)
 decl_stmt|;
-name|tmpFile
-operator|.
-name|delete
-argument_list|()
-expr_stmt|;
-name|tmpFile
-operator|.
-name|mkdir
-argument_list|()
-expr_stmt|;
 comment|// make data and conf dirs
 operator|new
 name|File

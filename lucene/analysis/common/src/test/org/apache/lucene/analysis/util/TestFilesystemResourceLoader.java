@@ -514,7 +514,7 @@ expr_stmt|;
 block|}
 finally|finally
 block|{
-name|TestUtil
+name|IOUtils
 operator|.
 name|rm
 argument_list|(

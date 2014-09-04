@@ -50,6 +50,18 @@ end_import
 
 begin_import
 import|import
+name|java
+operator|.
+name|nio
+operator|.
+name|file
+operator|.
+name|Files
+import|;
+end_import
+
+begin_import
+import|import
 name|org
 operator|.
 name|apache
@@ -59,6 +71,20 @@ operator|.
 name|util
 operator|.
 name|Constants
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|util
+operator|.
+name|IOUtils
 import|;
 end_import
 
@@ -205,6 +231,8 @@ specifier|public
 name|void
 name|testLeaveFilesIfTestFails
 parameter_list|()
+throws|throws
+name|IOException
 block|{
 name|Result
 name|r
@@ -248,12 +276,17 @@ name|exists
 argument_list|()
 argument_list|)
 expr_stmt|;
+name|Files
+operator|.
+name|delete
+argument_list|(
 name|Nested1
 operator|.
 name|file
 operator|.
-name|delete
+name|toPath
 argument_list|()
+argument_list|)
 expr_stmt|;
 block|}
 DECL|class|Nested2
@@ -387,7 +420,7 @@ operator|.
 name|close
 argument_list|()
 expr_stmt|;
-name|TestUtil
+name|IOUtils
 operator|.
 name|rm
 argument_list|(

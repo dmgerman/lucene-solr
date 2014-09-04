@@ -806,11 +806,6 @@ operator|.
 name|close
 argument_list|()
 expr_stmt|;
-name|newDir
-operator|.
-name|delete
-argument_list|()
-expr_stmt|;
 block|}
 block|}
 end_class

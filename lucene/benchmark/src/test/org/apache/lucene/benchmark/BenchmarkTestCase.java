@@ -184,16 +184,6 @@ argument_list|(
 literal|"benchmark"
 argument_list|)
 expr_stmt|;
-name|WORKDIR
-operator|.
-name|delete
-argument_list|()
-expr_stmt|;
-name|WORKDIR
-operator|.
-name|mkdirs
-argument_list|()
-expr_stmt|;
 block|}
 annotation|@
 name|AfterClass

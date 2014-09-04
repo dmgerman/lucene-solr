@@ -444,8 +444,10 @@ finally|finally
 block|{
 name|f
 operator|.
-name|delete
-argument_list|()
+name|setWritable
+argument_list|(
+literal|true
+argument_list|)
 expr_stmt|;
 block|}
 block|}

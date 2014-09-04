@@ -64,6 +64,18 @@ name|nio
 operator|.
 name|file
 operator|.
+name|Files
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
+name|nio
+operator|.
+name|file
+operator|.
 name|NoSuchFileException
 import|;
 end_import
@@ -2881,7 +2893,7 @@ argument_list|(
 literal|"doesnotexist"
 argument_list|)
 decl_stmt|;
-name|TestUtil
+name|IOUtils
 operator|.
 name|rm
 argument_list|(
@@ -3597,7 +3609,7 @@ argument_list|(
 literal|"doesnotexist"
 argument_list|)
 decl_stmt|;
-name|TestUtil
+name|IOUtils
 operator|.
 name|rm
 argument_list|(
@@ -4890,7 +4902,9 @@ name|close
 argument_list|()
 expr_stmt|;
 comment|// delete it
-name|assertTrue
+name|Files
+operator|.
+name|delete
 argument_list|(
 operator|new
 name|File
@@ -4900,7 +4914,7 @@ argument_list|,
 literal|"afile"
 argument_list|)
 operator|.
-name|delete
+name|toPath
 argument_list|()
 argument_list|)
 expr_stmt|;

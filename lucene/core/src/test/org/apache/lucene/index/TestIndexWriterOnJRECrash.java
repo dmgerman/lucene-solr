@@ -203,16 +203,6 @@ argument_list|(
 literal|"jrecrash"
 argument_list|)
 expr_stmt|;
-name|tempDir
-operator|.
-name|delete
-argument_list|()
-expr_stmt|;
-name|tempDir
-operator|.
-name|mkdir
-argument_list|()
-expr_stmt|;
 block|}
 annotation|@
 name|Override

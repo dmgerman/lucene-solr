@@ -146,6 +146,18 @@ begin_import
 import|import
 name|java
 operator|.
+name|nio
+operator|.
+name|file
+operator|.
+name|Files
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
 name|util
 operator|.
 name|Map
@@ -189,6 +201,10 @@ expr_stmt|;
 comment|// test tests native and simple in the same jvm in the same exact directory:
 comment|// the file will remain after the native test (it cannot safely be deleted without the risk of deleting another guys lock)
 comment|// its ok, these aren't "compatible" anyway: really this test should not re-use the same directory at all.
+name|Files
+operator|.
+name|deleteIfExists
+argument_list|(
 operator|new
 name|File
 argument_list|(
@@ -205,8 +221,9 @@ operator|.
 name|WRITE_LOCK_NAME
 argument_list|)
 operator|.
-name|delete
+name|toPath
 argument_list|()
+argument_list|)
 expr_stmt|;
 block|}
 annotation|@

@@ -52,6 +52,25 @@ name|message
 argument_list|)
 expr_stmt|;
 block|}
+DECL|method|LockReleaseFailedException
+specifier|public
+name|LockReleaseFailedException
+parameter_list|(
+name|String
+name|message
+parameter_list|,
+name|Throwable
+name|cause
+parameter_list|)
+block|{
+name|super
+argument_list|(
+name|message
+argument_list|,
+name|cause
+argument_list|)
+expr_stmt|;
+block|}
 block|}
 end_class
 

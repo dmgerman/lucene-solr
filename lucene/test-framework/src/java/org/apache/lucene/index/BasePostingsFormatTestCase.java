@@ -7548,7 +7548,7 @@ operator|.
 name|close
 argument_list|()
 expr_stmt|;
-name|TestUtil
+name|IOUtils
 operator|.
 name|rm
 argument_list|(
@@ -7779,7 +7779,7 @@ operator|.
 name|close
 argument_list|()
 expr_stmt|;
-name|TestUtil
+name|IOUtils
 operator|.
 name|rm
 argument_list|(
