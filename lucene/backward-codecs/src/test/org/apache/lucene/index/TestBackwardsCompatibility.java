@@ -138,6 +138,20 @@ name|apache
 operator|.
 name|lucene
 operator|.
+name|codecs
+operator|.
+name|Codec
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
 name|document
 operator|.
 name|BinaryDocValuesField
@@ -686,28 +700,6 @@ name|TestBackwardsCompatibility
 extends|extends
 name|LuceneTestCase
 block|{
-comment|// Uncomment these cases& run them on an older Lucene version,
-comment|// to generate indexes to test backwards compatibility.  These
-comment|// indexes will be created under directory /tmp/idx/.
-comment|//
-comment|// However, you must first disable the Lucene TestSecurityManager,
-comment|// which will otherwise disallow writing outside of the build/
-comment|// directory - to do this, comment out the "java.security.manager"
-comment|//<sysproperty> under the "test-macro"<macrodef>.
-comment|//
-comment|// Be sure to create the indexes with the actual format:
-comment|//  ant test -Dtestcase=TestBackwardsCompatibility -Dversion=x.y.z
-comment|//      -Dtests.codec=LuceneXY -Dtests.postingsformat=LuceneXY -Dtests.docvaluesformat=LuceneXY
-comment|//
-comment|// Zip up the generated indexes:
-comment|//
-comment|//    cd /tmp/idx/index.cfs   ; zip index.<VERSION>.cfs.zip *
-comment|//    cd /tmp/idx/index.nocfs ; zip index.<VERSION>.nocfs.zip *
-comment|//
-comment|// Then move those 2 zip files to your trunk checkout and add them
-comment|// to the oldNames array.
-comment|/*   public void testCreateCFS() throws IOException {     createIndex("index.cfs", true, false);   }    public void testCreateNoCFS() throws IOException {     createIndex("index.nocfs", false, false);   }   */
-comment|/*   // These are only needed for the special upgrade test to verify   // that also single-segment indexes are correctly upgraded by IndexUpgrader.   // You don't need them to be build for non-4.0 (the test is happy with just one   // "old" segment format, version is unimportant:      public void testCreateSingleSegmentCFS() throws IOException {     createIndex("index.singlesegment.cfs", true, true);   }    public void testCreateSingleSegmentNoCFS() throws IOException {     createIndex("index.singlesegment.nocfs", false, true);   }  */
 comment|/*   public void testCreateMoreTermsIndex() throws Exception {     // we use a real directory name that is not cleaned up,     // because this method is only used to create backwards     // indexes:     File indexDir = new File("moreterms");     _TestUtil.rmDir(indexDir);     Directory dir = newFSDirectory(indexDir);      LogByteSizeMergePolicy mp = new LogByteSizeMergePolicy();     mp.setUseCompoundFile(false);     mp.setNoCFSRatio(1.0);     mp.setMaxCFSSegmentSizeMB(Double.POSITIVE_INFINITY);     MockAnalyzer analyzer = new MockAnalyzer(random());     analyzer.setMaxTokenLength(TestUtil.nextInt(random(), 1, IndexWriter.MAX_TERM_LENGTH));      // TODO: remove randomness     IndexWriterConfig conf = new IndexWriterConfig(analyzer)       .setMergePolicy(mp);     conf.setCodec(Codec.forName("Lucene40"));     IndexWriter writer = new IndexWriter(dir, conf);     LineFileDocs docs = new LineFileDocs(null, true);     for(int i=0;i<50;i++) {       writer.addDocument(docs.nextDoc());     }     writer.close();     dir.close();      // Gives you time to copy the index out!: (there is also     // a test option to not remove temp dir...):     Thread.sleep(100000);   }   */
 DECL|method|updateNumeric
 specifier|private
@@ -3941,6 +3933,54 @@ name|POSITIVE_INFINITY
 argument_list|)
 expr_stmt|;
 comment|// TODO: remove randomness
+name|String
+name|codecName
+init|=
+name|System
+operator|.
+name|getProperty
+argument_list|(
+literal|"tests.codec"
+argument_list|)
+decl_stmt|;
+if|if
+condition|(
+name|codecName
+operator|==
+literal|null
+operator|||
+name|codecName
+operator|.
+name|trim
+argument_list|()
+operator|.
+name|isEmpty
+argument_list|()
+operator|||
+name|codecName
+operator|.
+name|equals
+argument_list|(
+literal|"random"
+argument_list|)
+condition|)
+block|{
+name|fail
+argument_list|(
+literal|"Must provide 'tests.codec' property to create BWC index"
+argument_list|)
+expr_stmt|;
+block|}
+name|Codec
+name|codec
+init|=
+name|Codec
+operator|.
+name|forName
+argument_list|(
+name|codecName
+argument_list|)
+decl_stmt|;
 name|IndexWriterConfig
 name|conf
 init|=
@@ -3963,6 +4003,11 @@ operator|.
 name|setMergePolicy
 argument_list|(
 name|mp
+argument_list|)
+operator|.
+name|setCodec
+argument_list|(
+name|codec
 argument_list|)
 decl_stmt|;
 name|IndexWriter
@@ -4076,6 +4121,11 @@ name|setMergePolicy
 argument_list|(
 name|mp
 argument_list|)
+operator|.
+name|setCodec
+argument_list|(
+name|codec
+argument_list|)
 expr_stmt|;
 name|writer
 operator|=
@@ -4097,6 +4147,36 @@ operator|.
 name|close
 argument_list|()
 expr_stmt|;
+name|conf
+operator|=
+operator|new
+name|IndexWriterConfig
+argument_list|(
+operator|new
+name|MockAnalyzer
+argument_list|(
+name|random
+argument_list|()
+argument_list|)
+argument_list|)
+operator|.
+name|setMaxBufferedDocs
+argument_list|(
+literal|10
+argument_list|)
+operator|.
+name|setMergePolicy
+argument_list|(
+name|NoMergePolicy
+operator|.
+name|INSTANCE
+argument_list|)
+operator|.
+name|setCodec
+argument_list|(
+name|codec
+argument_list|)
+expr_stmt|;
 name|writer
 operator|=
 operator|new
@@ -4105,13 +4185,6 @@ argument_list|(
 name|dir
 argument_list|,
 name|conf
-operator|.
-name|setMergePolicy
-argument_list|(
-name|NoMergePolicy
-operator|.
-name|INSTANCE
-argument_list|)
 argument_list|)
 expr_stmt|;
 name|Term
