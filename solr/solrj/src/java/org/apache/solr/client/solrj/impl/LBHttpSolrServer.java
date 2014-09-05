@@ -2013,6 +2013,8 @@ name|counter
 operator|.
 name|incrementAndGet
 argument_list|()
+operator|&
+literal|0x7FFFFFF
 decl_stmt|;
 name|ServerWrapper
 name|wrapper
