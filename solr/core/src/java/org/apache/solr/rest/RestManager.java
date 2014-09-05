@@ -626,6 +626,14 @@ name|TreeMap
 argument_list|<>
 argument_list|()
 decl_stmt|;
+comment|// maybe null until there is a restManager
+DECL|field|initializedRestManager
+specifier|private
+name|RestManager
+name|initializedRestManager
+init|=
+literal|null
+decl_stmt|;
 comment|// REST API endpoints that need to be protected against dynamic endpoint creation
 DECL|field|reservedEndpoints
 specifier|private
@@ -1094,6 +1102,27 @@ name|getName
 argument_list|()
 argument_list|,
 name|resourceId
+argument_list|)
+expr_stmt|;
+block|}
+comment|// there may be a RestManager, in which case, we want to add this new ManagedResource immediately
+if|if
+condition|(
+name|initializedRestManager
+operator|!=
+literal|null
+condition|)
+block|{
+name|initializedRestManager
+operator|.
+name|addRegisteredResource
+argument_list|(
+name|registered
+operator|.
+name|get
+argument_list|(
+name|resourceId
+argument_list|)
 argument_list|)
 expr_stmt|;
 block|}
@@ -2863,6 +2892,14 @@ argument_list|)
 argument_list|)
 expr_stmt|;
 block|}
+comment|// this is for any new registrations that don't come through the API
+comment|// such as from adding a new fieldType to a managed schema that uses a ManagedResource
+name|registry
+operator|.
+name|initializedRestManager
+operator|=
+name|this
+expr_stmt|;
 block|}
 comment|/**    * If not already registered, registers the given {@link ManagedResource} subclass    * at the given resourceId, creates an instance, and attaches it to the appropriate    * Restlet router.  Returns the corresponding instance.    */
 DECL|method|addManagedResource
@@ -2918,9 +2955,7 @@ argument_list|,
 literal|null
 argument_list|)
 expr_stmt|;
-name|res
-operator|=
-name|createManagedResource
+name|addRegisteredResource
 argument_list|(
 name|registry
 operator|.
@@ -2932,6 +2967,49 @@ name|resourceId
 argument_list|)
 argument_list|)
 expr_stmt|;
+block|}
+else|else
+block|{
+name|res
+operator|=
+name|getManagedResource
+argument_list|(
+name|resourceId
+argument_list|)
+expr_stmt|;
+block|}
+return|return
+name|res
+return|;
+block|}
+comment|// used internally to create and attach a ManagedResource to the Restlet router
+comment|// the registry also uses this method directly, which is slightly hacky but necessary
+comment|// in order to support dynamic adding of new fieldTypes using the managed-schema API
+DECL|method|addRegisteredResource
+specifier|private
+specifier|synchronized
+name|ManagedResource
+name|addRegisteredResource
+parameter_list|(
+name|ManagedResourceRegistration
+name|reg
+parameter_list|)
+block|{
+name|String
+name|resourceId
+init|=
+name|reg
+operator|.
+name|resourceId
+decl_stmt|;
+name|ManagedResource
+name|res
+init|=
+name|createManagedResource
+argument_list|(
+name|reg
+argument_list|)
+decl_stmt|;
 name|managed
 operator|.
 name|put
@@ -3026,17 +3104,6 @@ argument_list|,
 name|path
 argument_list|,
 name|router
-argument_list|)
-expr_stmt|;
-block|}
-block|}
-else|else
-block|{
-name|res
-operator|=
-name|getManagedResource
-argument_list|(
-name|resourceId
 argument_list|)
 expr_stmt|;
 block|}
