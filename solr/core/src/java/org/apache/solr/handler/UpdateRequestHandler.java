@@ -589,23 +589,6 @@ literal|"path"
 argument_list|)
 argument_list|)
 decl_stmt|;
-name|log
-operator|.
-name|info
-argument_list|(
-literal|"$$$$$$$ used the pathVsLoaders {} "
-argument_list|,
-name|req
-operator|.
-name|getContext
-argument_list|()
-operator|.
-name|get
-argument_list|(
-literal|"path"
-argument_list|)
-argument_list|)
-expr_stmt|;
 if|if
 condition|(
 name|loader
