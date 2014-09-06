@@ -1349,6 +1349,11 @@ comment|// also randomly pick it:
 name|ValidatingTokenFilter
 operator|.
 name|class
+argument_list|,
+comment|// TODO: needs to be a tokenizer, doesnt handle graph inputs properly (a shingle or similar following will then cause pain)
+name|WordDelimiterFilter
+operator|.
+name|class
 argument_list|)
 control|)
 block|{
@@ -1471,11 +1476,6 @@ name|class
 argument_list|,
 comment|// TODO: doesn't handle graph inputs
 name|CommonGramsQueryFilter
-operator|.
-name|class
-argument_list|,
-comment|// TODO: probably doesnt handle graph inputs, too afraid to try
-name|WordDelimiterFilter
 operator|.
 name|class
 argument_list|)
