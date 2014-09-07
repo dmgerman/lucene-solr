@@ -1267,6 +1267,10 @@ literal|"literal.extractionLiteral"
 argument_list|,
 literal|"two"
 argument_list|,
+literal|"fmap.X-Parsed-By"
+argument_list|,
+literal|"ignored_parser"
+argument_list|,
 literal|"fmap.Last-Modified"
 argument_list|,
 literal|"extractedDate"
@@ -1322,6 +1326,10 @@ argument_list|,
 literal|"literal.extractionLiteral"
 argument_list|,
 literal|"one"
+argument_list|,
+literal|"fmap.X-Parsed-By"
+argument_list|,
+literal|"ignored_parser"
 argument_list|,
 literal|"fmap.Last-Modified"
 argument_list|,
@@ -1412,6 +1420,10 @@ argument_list|,
 literal|"fmap.language"
 argument_list|,
 literal|"extractedLanguage"
+argument_list|,
+literal|"fmap.X-Parsed-By"
+argument_list|,
+literal|"ignored_parser"
 argument_list|,
 literal|"fmap.content"
 argument_list|,
@@ -1518,6 +1530,10 @@ argument_list|,
 literal|"fmap.language"
 argument_list|,
 literal|"extractedLanguage"
+argument_list|,
+literal|"fmap.X-Parsed-By"
+argument_list|,
+literal|"ignored_parser"
 argument_list|,
 literal|"fmap.content"
 argument_list|,
