@@ -1489,6 +1489,14 @@ argument_list|,
 literal|"core1"
 argument_list|)
 decl_stmt|;
+name|assumeTrue
+argument_list|(
+literal|"Cannot make "
+operator|+
+name|toSet
+operator|+
+literal|" non-readable. Test aborted."
+argument_list|,
 name|toSet
 operator|.
 name|setReadable
@@ -1496,6 +1504,7 @@ argument_list|(
 literal|false
 argument_list|,
 literal|false
+argument_list|)
 argument_list|)
 expr_stmt|;
 name|CoreContainer
@@ -1666,6 +1675,14 @@ name|mkdirs
 argument_list|()
 argument_list|)
 expr_stmt|;
+name|assumeTrue
+argument_list|(
+literal|"Cannot make "
+operator|+
+name|toSet
+operator|+
+literal|" non-readable. Test aborted."
+argument_list|,
 name|toSet
 operator|.
 name|setReadable
@@ -1673,6 +1690,7 @@ argument_list|(
 literal|false
 argument_list|,
 literal|false
+argument_list|)
 argument_list|)
 expr_stmt|;
 name|CoreContainer
@@ -1814,6 +1832,14 @@ name|createNewFile
 argument_list|()
 argument_list|)
 expr_stmt|;
+name|assumeTrue
+argument_list|(
+literal|"Cannot make "
+operator|+
+name|toSet
+operator|+
+literal|" non-readable. Test aborted."
+argument_list|,
 name|toSet
 operator|.
 name|setReadable
@@ -1821,6 +1847,7 @@ argument_list|(
 literal|false
 argument_list|,
 literal|false
+argument_list|)
 argument_list|)
 expr_stmt|;
 name|CoreContainer
@@ -2003,6 +2030,14 @@ name|PROPERTIES_FILENAME
 argument_list|)
 argument_list|)
 expr_stmt|;
+name|assumeTrue
+argument_list|(
+literal|"Cannot make "
+operator|+
+name|homeDir
+operator|+
+literal|" non-readable. Test aborted."
+argument_list|,
 name|homeDir
 operator|.
 name|setReadable
@@ -2010,6 +2045,7 @@ argument_list|(
 literal|false
 argument_list|,
 literal|false
+argument_list|)
 argument_list|)
 expr_stmt|;
 name|CoreContainer
