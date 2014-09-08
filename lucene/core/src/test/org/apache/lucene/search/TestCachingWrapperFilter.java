@@ -250,6 +250,20 @@ name|LuceneTestCase
 import|;
 end_import
 
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|util
+operator|.
+name|WAH8DocIdSet
+import|;
+end_import
+
 begin_class
 DECL|class|TestCachingWrapperFilter
 specifier|public
@@ -1607,11 +1621,11 @@ else|else
 block|{
 name|assertTrue
 argument_list|(
-literal|"Cached DocIdSet must be an FixedBitSet if the original one was not cacheable"
+literal|"Cached DocIdSet must be an WAH8DocIdSet if the original one was not cacheable"
 argument_list|,
 name|cachedSet
 operator|instanceof
-name|FixedBitSet
+name|WAH8DocIdSet
 operator|||
 name|cachedSet
 operator|==
@@ -1764,7 +1778,7 @@ argument_list|,
 literal|true
 argument_list|)
 argument_list|,
-literal|true
+literal|false
 argument_list|)
 expr_stmt|;
 comment|// a fixedbitset filter is always cacheable

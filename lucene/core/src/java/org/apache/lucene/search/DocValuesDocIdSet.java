@@ -128,20 +128,6 @@ name|int
 name|doc
 parameter_list|)
 function_decl|;
-comment|/**    * this DocIdSet is always cacheable (does not go back    * to the reader for iteration)    */
-annotation|@
-name|Override
-DECL|method|isCacheable
-specifier|public
-specifier|final
-name|boolean
-name|isCacheable
-parameter_list|()
-block|{
-return|return
-literal|true
-return|;
-block|}
 annotation|@
 name|Override
 DECL|method|ramBytesUsed
