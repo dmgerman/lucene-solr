@@ -140,34 +140,6 @@ name|apache
 operator|.
 name|solr
 operator|.
-name|SolrTestCaseJ4
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|solr
-operator|.
-name|common
-operator|.
-name|params
-operator|.
-name|SolrParams
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|solr
-operator|.
 name|common
 operator|.
 name|params
@@ -189,6 +161,22 @@ operator|.
 name|params
 operator|.
 name|MapSolrParams
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|solr
+operator|.
+name|common
+operator|.
+name|params
+operator|.
+name|SolrParams
 import|;
 end_import
 
@@ -410,8 +398,14 @@ block|,
 literal|"stats_tf_dv"
 block|,
 literal|"stats_td_dv"
-comment|//            , TODO: enable this test after SOLR-6452 is fixed
-comment|//            "stats_ti_ni_dv","stats_tl_ni_dv","stats_tf_ni_dv","stats_td_ni_dv"
+block|,
+literal|"stats_ti_ni_dv"
+block|,
+literal|"stats_tl_ni_dv"
+block|,
+literal|"stats_tf_ni_dv"
+block|,
+literal|"stats_td_ni_dv"
 block|}
 control|)
 block|{
@@ -540,9 +534,16 @@ block|,
 literal|"stats_tls_dv"
 block|,
 literal|"stats_tds_dv"
+block|,
 comment|// Doc Values
-comment|//          , TODO: enable this test after SOLR-6452 is fixed
-comment|//"stats_tis_ni_dv","stats_tfs_ni_dv","stats_tls_ni_dv","stats_tds_ni_dv"  // Doc Values Not indexed
+literal|"stats_tis_ni_dv"
+block|,
+literal|"stats_tfs_ni_dv"
+block|,
+literal|"stats_tls_ni_dv"
+block|,
+literal|"stats_tds_ni_dv"
+comment|// Doc Values Not indexed
 block|}
 control|)
 block|{
@@ -857,6 +858,34 @@ argument_list|)
 expr_stmt|;
 name|assertU
 argument_list|(
+name|adoc
+argument_list|(
+literal|"id"
+argument_list|,
+literal|"6"
+argument_list|,
+literal|"active_s"
+argument_list|,
+literal|"false"
+argument_list|)
+argument_list|)
+expr_stmt|;
+name|assertU
+argument_list|(
+name|adoc
+argument_list|(
+literal|"id"
+argument_list|,
+literal|"7"
+argument_list|,
+literal|"active_s"
+argument_list|,
+literal|"true"
+argument_list|)
+argument_list|)
+expr_stmt|;
+name|assertU
+argument_list|(
 name|commit
 argument_list|()
 argument_list|)
@@ -947,7 +976,7 @@ literal|"//double[@name='sum'][.='9.0']"
 argument_list|,
 literal|"//long[@name='count'][.='8']"
 argument_list|,
-literal|"//long[@name='missing'][.='1']"
+literal|"//long[@name='missing'][.='3']"
 argument_list|,
 literal|"//long[@name='countDistinct'][.='8']"
 argument_list|,
@@ -989,7 +1018,7 @@ literal|"//double[@name='sum'][.='119.0']"
 argument_list|,
 literal|"//long[@name='count'][.='6']"
 argument_list|,
-literal|"//long[@name='missing'][.='1']"
+literal|"//long[@name='missing'][.='3']"
 argument_list|,
 literal|"//long[@name='countDistinct'][.='6']"
 argument_list|,
@@ -1032,7 +1061,7 @@ literal|"//double[@name='sum'][.='9.0']"
 argument_list|,
 literal|"//long[@name='count'][.='8']"
 argument_list|,
-literal|"//long[@name='missing'][.='1']"
+literal|"//long[@name='missing'][.='3']"
 argument_list|,
 literal|"//long[@name='countDistinct'][.='8']"
 argument_list|,
@@ -1078,7 +1107,7 @@ literal|"//lst[@name='true']/double[@name='sum'][.='70.0']"
 argument_list|,
 literal|"//lst[@name='true']/long[@name='count'][.='4']"
 argument_list|,
-literal|"//lst[@name='true']/long[@name='missing'][.='0']"
+literal|"//lst[@name='true']/long[@name='missing'][.='1']"
 argument_list|,
 literal|"//lst[@name='true']//long[@name='countDistinct'][.='4']"
 argument_list|,
@@ -1120,7 +1149,7 @@ literal|"//lst[@name='false']/double[@name='sum'][.='-61.0']"
 argument_list|,
 literal|"//lst[@name='false']/long[@name='count'][.='4']"
 argument_list|,
-literal|"//lst[@name='false']/long[@name='missing'][.='1']"
+literal|"//lst[@name='false']/long[@name='missing'][.='2']"
 argument_list|,
 literal|"//lst[@name='true']//long[@name='countDistinct'][.='4']"
 argument_list|,
@@ -4410,6 +4439,31 @@ return|return
 name|cat_docValues
 return|;
 block|}
+comment|//  public void testOtherFacetStatsResult() throws Exception {
+comment|//
+comment|//    assertU(adoc("id", "1", "stats_tls_dv", "10", "active_i", "1"));
+comment|//    assertU(adoc("id", "2", "stats_tls_dv", "20", "active_i", "1"));
+comment|//    assertU(commit());
+comment|//    assertU(adoc("id", "3", "stats_tls_dv", "30", "active_i", "2"));
+comment|//    assertU(adoc("id", "4", "stats_tls_dv", "40", "active_i", "2"));
+comment|//    assertU(commit());
+comment|//
+comment|//    final String pre = "//lst[@name='stats_fields']/lst[@name='stats_tls_dv']/lst[@name='facets']/lst[@name='active_i']";
+comment|//
+comment|//    assertQ("test value for active_s=true", req("q", "*:*", "stats", "true", "stats.field", "stats_tls_dv", "stats.facet", "active_i","indent", "true")
+comment|//            , "*[count("+pre+")=1]"
+comment|//            , pre+"/lst[@name='1']/double[@name='min'][.='10.0']"
+comment|//            , pre+"/lst[@name='1']/double[@name='max'][.='20.0']"
+comment|//            , pre+"/lst[@name='1']/double[@name='sum'][.='30.0']"
+comment|//            , pre+"/lst[@name='1']/long[@name='count'][.='2']"
+comment|//            , pre+"/lst[@name='1']/long[@name='missing'][.='0']"
+comment|//            , pre + "/lst[@name='true']/long[@name='countDistinct'][.='2']"
+comment|//            , "count(" + pre + "/lst[@name='true']/arr[@name='distinctValues']/*)=2"
+comment|//            , pre+"/lst[@name='1']/double[@name='sumOfSquares'][.='500.0']"
+comment|//            , pre+"/lst[@name='1']/double[@name='mean'][.='15.0']"
+comment|//            , pre+"/lst[@name='1']/double[@name='stddev'][.='7.0710678118654755']"
+comment|//    );
+comment|//  }
 block|}
 end_class
 
