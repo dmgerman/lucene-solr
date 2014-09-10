@@ -56,7 +56,7 @@ literal|0
 argument_list|,
 literal|0
 argument_list|,
-literal|1
+literal|0
 argument_list|)
 decl_stmt|;
 comment|/**    * Match settings and bugs in Lucene's 4.0.0-BETA release.    * @deprecated (5.0) Use latest    */
@@ -78,7 +78,7 @@ literal|0
 argument_list|,
 literal|0
 argument_list|,
-literal|2
+literal|1
 argument_list|)
 decl_stmt|;
 comment|/**    * Match settings and bugs in Lucene's 4.0.0 release.    * @deprecated (5.0) Use latest    */
@@ -99,6 +99,8 @@ argument_list|,
 literal|0
 argument_list|,
 literal|0
+argument_list|,
+literal|2
 argument_list|)
 decl_stmt|;
 comment|/**    * Match settings and bugs in Lucene's 4.1.0 release.    * @deprecated (5.0) Use latest    */
@@ -504,7 +506,7 @@ name|LUCENE_CURRENT
 init|=
 name|LATEST
 decl_stmt|;
-comment|/** @deprecated Bad naming of constant; use {@link #LUCENE_4_0_0} instead. */
+comment|/** @deprecated Bad naming of constant; use {@link #LUCENE_4_0_0} instead (this constant actually points to {@link #LUCENE_4_0_0_ALPHA} to match whole 4.0 series). */
 annotation|@
 name|Deprecated
 DECL|field|LUCENE_4_0
@@ -514,7 +516,7 @@ specifier|final
 name|Version
 name|LUCENE_4_0
 init|=
-name|LUCENE_4_0_0
+name|LUCENE_4_0_0_ALPHA
 decl_stmt|;
 comment|/** @deprecated Bad naming of constant; use {@link #LUCENE_4_1_0} instead. */
 annotation|@
@@ -765,7 +767,7 @@ literal|"Invalid value "
 operator|+
 name|prerelease
 operator|+
-literal|" for prelrease of version "
+literal|" for prerelease of version "
 operator|+
 name|version
 operator|+
@@ -799,29 +801,8 @@ name|String
 name|version
 parameter_list|)
 block|{
-if|if
-condition|(
 name|version
-operator|.
-name|equals
-argument_list|(
-literal|"LATEST"
-argument_list|)
-operator|||
-name|version
-operator|.
-name|equals
-argument_list|(
-literal|"LUCENE_CURRENT"
-argument_list|)
-condition|)
-return|return
-name|LATEST
-return|;
-specifier|final
-name|String
-name|parsedMatchVersion
-init|=
+operator|=
 name|version
 operator|.
 name|toUpperCase
@@ -830,6 +811,43 @@ name|Locale
 operator|.
 name|ROOT
 argument_list|)
+expr_stmt|;
+switch|switch
+condition|(
+name|version
+condition|)
+block|{
+case|case
+literal|"LATEST"
+case|:
+case|case
+literal|"LUCENE_CURRENT"
+case|:
+return|return
+name|LATEST
+return|;
+case|case
+literal|"LUCENE_4_0_0"
+case|:
+return|return
+name|LUCENE_4_0_0
+return|;
+case|case
+literal|"LUCENE_4_0_0_ALPHA"
+case|:
+return|return
+name|LUCENE_4_0_0_ALPHA
+return|;
+case|case
+literal|"LUCENE_4_0_0_BETA"
+case|:
+return|return
+name|LUCENE_4_0_0_BETA
+return|;
+default|default:
+name|version
+operator|=
+name|version
 operator|.
 name|replaceFirst
 argument_list|(
@@ -851,13 +869,14 @@ literal|"^LUCENE_(\\d)(\\d)$"
 argument_list|,
 literal|"$1.$2.0"
 argument_list|)
-decl_stmt|;
+expr_stmt|;
 return|return
 name|parse
 argument_list|(
-name|parsedMatchVersion
+name|version
 argument_list|)
 return|;
+block|}
 block|}
 comment|// stores the version pieces, with most significant pieces in high bits
 comment|// ie:  | 1 byte | 1 byte | 1 byte |   2 bits   |
@@ -1018,19 +1037,6 @@ literal|"Prerelease version only supported with major release"
 argument_list|)
 throw|;
 block|}
-if|if
-condition|(
-name|prerelease
-operator|==
-literal|0
-condition|)
-block|{
-comment|// final release should sort after alpha/beta
-name|prerelease
-operator|=
-literal|3
-expr_stmt|;
-block|}
 name|encodedValue
 operator|=
 name|major
@@ -1118,10 +1124,9 @@ if|if
 condition|(
 name|prerelease
 operator|==
-literal|3
+literal|0
 condition|)
 block|{
-comment|// ie unencoded value is 0
 return|return
 literal|""
 operator|+

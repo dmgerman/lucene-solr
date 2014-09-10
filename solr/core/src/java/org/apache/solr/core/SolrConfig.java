@@ -1069,7 +1069,7 @@ name|onOrAfter
 argument_list|(
 name|Version
 operator|.
-name|LUCENE_4_0_0
+name|LUCENE_4_0_0_ALPHA
 argument_list|)
 condition|)
 block|{

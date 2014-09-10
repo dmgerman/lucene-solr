@@ -283,7 +283,7 @@ name|assertEquals
 argument_list|(
 name|Version
 operator|.
-name|LUCENE_4_0_0
+name|LUCENE_4_0_0_ALPHA
 argument_list|,
 operator|(
 name|ana
@@ -377,7 +377,7 @@ name|assertEquals
 argument_list|(
 name|Version
 operator|.
-name|LUCENE_4_0_0
+name|LUCENE_4_0_0_ALPHA
 argument_list|,
 name|ana1
 operator|.
