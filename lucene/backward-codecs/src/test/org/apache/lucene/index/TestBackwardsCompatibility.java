@@ -876,8 +876,6 @@ literal|"44.cfs"
 block|,
 literal|"44.nocfs"
 block|,
-comment|// nocommit: WTF IS THIS TODO?! this isnt a TODO, its a NORELEASE
-comment|// TODO: these are on 4x, but something is wrong (they seem to be a too old DV format):
 literal|"45.cfs"
 block|,
 literal|"45.nocfs"
