@@ -9321,16 +9321,6 @@ literal|"segments_1"
 argument_list|)
 argument_list|)
 expr_stmt|;
-name|assertTrue
-argument_list|(
-name|files
-operator|.
-name|contains
-argument_list|(
-literal|"segments.gen"
-argument_list|)
-argument_list|)
-expr_stmt|;
 name|assertEquals
 argument_list|(
 name|files
@@ -9343,7 +9333,7 @@ operator|.
 name|size
 argument_list|()
 argument_list|,
-literal|5
+literal|4
 argument_list|)
 expr_stmt|;
 block|}

@@ -316,7 +316,7 @@ name|crashAfterCreateOutput
 operator|.
 name|setCrashAfterCreateOutput
 argument_list|(
-literal|"segments_2"
+literal|"pending_segments_2"
 argument_list|)
 expr_stmt|;
 name|indexWriter

@@ -871,16 +871,6 @@ name|IndexFileNames
 operator|.
 name|SEGMENTS
 argument_list|)
-operator|&&
-operator|!
-name|lastFile
-operator|.
-name|equals
-argument_list|(
-name|IndexFileNames
-operator|.
-name|SEGMENTS_GEN
-argument_list|)
 argument_list|)
 expr_stmt|;
 block|}

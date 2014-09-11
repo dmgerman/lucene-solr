@@ -3849,8 +3849,8 @@ operator|.
 name|Failure
 argument_list|()
 block|{
-name|int
-name|failCount
+name|boolean
+name|failed
 decl_stmt|;
 annotation|@
 name|Override
@@ -3864,13 +3864,9 @@ parameter_list|)
 throws|throws
 name|IOException
 block|{
-comment|// Need to throw exc three times so the logic in
-comment|// SegmentInfos.FindSegmentsFile "really believes" us:
 if|if
 condition|(
-name|failCount
-operator|>=
-literal|3
+name|failed
 condition|)
 block|{
 return|return;
@@ -3947,8 +3943,9 @@ name|out
 argument_list|)
 expr_stmt|;
 block|}
-name|failCount
-operator|++
+name|failed
+operator|=
+literal|true
 expr_stmt|;
 throw|throw
 operator|new

@@ -168,6 +168,22 @@ parameter_list|)
 throws|throws
 name|IOException
 function_decl|;
+comment|/**    * Renames {@code source} to {@code dest} as an atomic operation,    * where {@code dest} does not yet exist in the directory.    *<p>    * Notes: This method is used by IndexWriter to publish commits.    * It is ok if this operation is not truly atomic, for example    * both {@code source} and {@code dest} can be visible temporarily.    * It is just important that the contents of {@code dest} appear    * atomically, or an exception is thrown.    */
+DECL|method|renameFile
+specifier|public
+specifier|abstract
+name|void
+name|renameFile
+parameter_list|(
+name|String
+name|source
+parameter_list|,
+name|String
+name|dest
+parameter_list|)
+throws|throws
+name|IOException
+function_decl|;
 comment|/** Returns a stream reading an existing file, with the    * specified read buffer size.  The particular Directory    * implementation may ignore the buffer size.  Currently    * the only Directory implementations that respect this    * parameter are {@link FSDirectory} and {@link    * CompoundFileDirectory}.    *<p>Throws {@link FileNotFoundException} or {@link NoSuchFileException}    * if the file does not exist.    */
 DECL|method|openInput
 specifier|public

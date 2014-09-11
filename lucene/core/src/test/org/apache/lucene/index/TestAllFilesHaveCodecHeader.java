@@ -493,21 +493,6 @@ if|if
 condition|(
 name|file
 operator|.
-name|equals
-argument_list|(
-name|IndexFileNames
-operator|.
-name|SEGMENTS_GEN
-argument_list|)
-condition|)
-block|{
-continue|continue;
-comment|// segments.gen has no header, thats ok
-block|}
-if|if
-condition|(
-name|file
-operator|.
 name|endsWith
 argument_list|(
 name|IndexFileNames

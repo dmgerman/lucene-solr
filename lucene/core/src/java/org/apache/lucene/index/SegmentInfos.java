@@ -331,7 +331,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * A collection of segmentInfo objects with methods for operating on those  * segments in relation to the file system.  *<p>  * The active segments in the index are stored in the segment info file,  *<tt>segments_N</tt>. There may be one or more<tt>segments_N</tt> files in  * the index; however, the one with the largest generation is the active one  * (when older segments_N files are present it's because they temporarily cannot  * be deleted, or, a writer is in the process of committing, or a custom  * {@link org.apache.lucene.index.IndexDeletionPolicy IndexDeletionPolicy} is in  * use). This file lists each segment by name and has details about the codec  * and generation of deletes.  *</p>  *<p>  * There is also a file<tt>segments.gen</tt>. This file contains the current  * generation (the<tt>_N</tt> in<tt>segments_N</tt>) of the index. This is  * used only as a fallback in case the current generation cannot be accurately  * determined by directory listing alone (as is the case for some NFS clients  * with time-based directory cache expiration). This file simply contains an  * {@link DataOutput#writeInt Int32} version header (  * {@link #FORMAT_SEGMENTS_GEN_CURRENT}), followed by the generation recorded as  * {@link DataOutput#writeLong Int64}, written twice.  *</p>  *<p>  * Files:  *<ul>  *<li><tt>segments.gen</tt>: GenHeader, Generation, Generation, Footer  *<li><tt>segments_N</tt>: Header, Version, NameCounter, SegCount,&lt;SegName,  * SegCodec, DelGen, DeletionCount, FieldInfosGen, DocValuesGen,  * UpdatesFiles&gt;<sup>SegCount</sup>, CommitUserData, Footer  *</ul>  *</p>  * Data types:  *<p>  *<ul>  *<li>Header --&gt; {@link CodecUtil#writeHeader CodecHeader}</li>  *<li>GenHeader, NameCounter, SegCount, DeletionCount --&gt;  * {@link DataOutput#writeInt Int32}</li>  *<li>Generation, Version, DelGen, Checksum, FieldInfosGen, DocValuesGen --&gt;  * {@link DataOutput#writeLong Int64}</li>  *<li>SegName, SegCodec --&gt; {@link DataOutput#writeString String}</li>  *<li>CommitUserData --&gt; {@link DataOutput#writeStringStringMap  * Map&lt;String,String&gt;}</li>  *<li>UpdatesFiles --&gt; Map&lt;{@link DataOutput#writeInt Int32},  * {@link DataOutput#writeStringSet(Set) Set&lt;String&gt;}&gt;</li>  *<li>Footer --&gt; {@link CodecUtil#writeFooter CodecFooter}</li>  *</ul>  *</p>  * Field Descriptions:  *<p>  *<ul>  *<li>Version counts how often the index has been changed by adding or deleting  * documents.</li>  *<li>NameCounter is used to generate names for new segment files.</li>  *<li>SegName is the name of the segment, and is used as the file name prefix  * for all of the files that compose the segment's index.</li>  *<li>DelGen is the generation count of the deletes file. If this is -1, there  * are no deletes. Anything above zero means there are deletes stored by  * {@link LiveDocsFormat}.</li>  *<li>DeletionCount records the number of deleted documents in this segment.</li>  *<li>SegCodec is the {@link Codec#getName() name} of the Codec that encoded  * this segment.</li>  *<li>CommitUserData stores an optional user-supplied opaque  * Map&lt;String,String&gt; that was passed to  * {@link IndexWriter#setCommitData(java.util.Map)}.</li>  *<li>FieldInfosGen is the generation count of the fieldInfos file. If this is  * -1, there are no updates to the fieldInfos in that segment. Anything above  * zero means there are updates to fieldInfos stored by {@link FieldInfosFormat}  * .</li>  *<li>DocValuesGen is the generation count of the updatable DocValues. If this  * is -1, there are no updates to DocValues in that segment. Anything above zero  * means there are updates to DocValues stored by {@link DocValuesFormat}.</li>  *<li>UpdatesFiles stores the set of files that were updated in that segment  * per field.</li>  *</ul>  *</p>  *   * @lucene.experimental  */
+comment|/**  * A collection of segmentInfo objects with methods for operating on those  * segments in relation to the file system.  *<p>  * The active segments in the index are stored in the segment info file,  *<tt>segments_N</tt>. There may be one or more<tt>segments_N</tt> files in  * the index; however, the one with the largest generation is the active one  * (when older segments_N files are present it's because they temporarily cannot  * be deleted, or a custom {@link IndexDeletionPolicy} is in  * use). This file lists each segment by name and has details about the codec  * and generation of deletes.  *</p>  *<p>  * Files:  *<ul>  *<li><tt>segments_N</tt>: Header, Version, NameCounter, SegCount,&lt;SegName,  * SegCodec, DelGen, DeletionCount, FieldInfosGen, DocValuesGen,  * UpdatesFiles&gt;<sup>SegCount</sup>, CommitUserData, Footer  *</ul>  *</p>  * Data types:  *<p>  *<ul>  *<li>Header --&gt; {@link CodecUtil#writeHeader CodecHeader}</li>  *<li>GenHeader, NameCounter, SegCount, DeletionCount --&gt;  * {@link DataOutput#writeInt Int32}</li>  *<li>Generation, Version, DelGen, Checksum, FieldInfosGen, DocValuesGen --&gt;  * {@link DataOutput#writeLong Int64}</li>  *<li>SegName, SegCodec --&gt; {@link DataOutput#writeString String}</li>  *<li>CommitUserData --&gt; {@link DataOutput#writeStringStringMap  * Map&lt;String,String&gt;}</li>  *<li>UpdatesFiles --&gt; Map&lt;{@link DataOutput#writeInt Int32},  * {@link DataOutput#writeStringSet(Set) Set&lt;String&gt;}&gt;</li>  *<li>Footer --&gt; {@link CodecUtil#writeFooter CodecFooter}</li>  *</ul>  *</p>  * Field Descriptions:  *<p>  *<ul>  *<li>Version counts how often the index has been changed by adding or deleting  * documents.</li>  *<li>NameCounter is used to generate names for new segment files.</li>  *<li>SegName is the name of the segment, and is used as the file name prefix  * for all of the files that compose the segment's index.</li>  *<li>DelGen is the generation count of the deletes file. If this is -1, there  * are no deletes. Anything above zero means there are deletes stored by  * {@link LiveDocsFormat}.</li>  *<li>DeletionCount records the number of deleted documents in this segment.</li>  *<li>SegCodec is the {@link Codec#getName() name} of the Codec that encoded  * this segment.</li>  *<li>CommitUserData stores an optional user-supplied opaque  * Map&lt;String,String&gt; that was passed to  * {@link IndexWriter#setCommitData(java.util.Map)}.</li>  *<li>FieldInfosGen is the generation count of the fieldInfos file. If this is  * -1, there are no updates to the fieldInfos in that segment. Anything above  * zero means there are updates to fieldInfos stored by {@link FieldInfosFormat}  * .</li>  *<li>DocValuesGen is the generation count of the updatable DocValues. If this  * is -1, there are no updates to DocValues in that segment. Anything above zero  * means there are updates to DocValues stored by {@link DocValuesFormat}.</li>  *<li>UpdatesFiles stores the set of files that were updated in that segment  * per field.</li>  *</ul>  *</p>  *   * @lucene.experimental  */
 end_comment
 
 begin_class
@@ -397,47 +397,6 @@ name|int
 name|VERSION_411
 init|=
 literal|4
-decl_stmt|;
-comment|// Used for the segments.gen file only!
-comment|// Whenever you add a new format, make it 1 smaller (negative version logic)!
-DECL|field|FORMAT_SEGMENTS_GEN_47
-specifier|private
-specifier|static
-specifier|final
-name|int
-name|FORMAT_SEGMENTS_GEN_47
-init|=
-operator|-
-literal|2
-decl_stmt|;
-DECL|field|FORMAT_SEGMENTS_GEN_CHECKSUM
-specifier|private
-specifier|static
-specifier|final
-name|int
-name|FORMAT_SEGMENTS_GEN_CHECKSUM
-init|=
-operator|-
-literal|3
-decl_stmt|;
-DECL|field|FORMAT_SEGMENTS_GEN_START
-specifier|private
-specifier|static
-specifier|final
-name|int
-name|FORMAT_SEGMENTS_GEN_START
-init|=
-name|FORMAT_SEGMENTS_GEN_47
-decl_stmt|;
-comment|/** Current format of segments.gen */
-DECL|field|FORMAT_SEGMENTS_GEN_CURRENT
-specifier|public
-specifier|static
-specifier|final
-name|int
-name|FORMAT_SEGMENTS_GEN_CURRENT
-init|=
-name|FORMAT_SEGMENTS_GEN_CHECKSUM
 decl_stmt|;
 comment|/** Used to name new segments. */
 comment|// TODO: should this be a long ...?
@@ -591,7 +550,7 @@ name|equals
 argument_list|(
 name|IndexFileNames
 operator|.
-name|SEGMENTS_GEN
+name|OLD_SEGMENTS_GEN
 argument_list|)
 condition|)
 block|{
@@ -821,118 +780,11 @@ argument_list|)
 throw|;
 block|}
 block|}
-comment|/**    * A utility for writing the {@link IndexFileNames#SEGMENTS_GEN} file to a    * {@link Directory}.    *     *<p>    *<b>NOTE:</b> this is an internal utility which is kept public so that it's    * accessible by code from other packages. You should avoid calling this    * method unless you're absolutely sure what you're doing!    *     * @lucene.internal    */
-DECL|method|writeSegmentsGen
-specifier|public
-specifier|static
-name|void
-name|writeSegmentsGen
-parameter_list|(
-name|Directory
-name|dir
-parameter_list|,
-name|long
-name|generation
-parameter_list|)
-block|{
-try|try
-block|{
-name|IndexOutput
-name|genOutput
-init|=
-name|dir
-operator|.
-name|createOutput
-argument_list|(
-name|IndexFileNames
-operator|.
-name|SEGMENTS_GEN
-argument_list|,
-name|IOContext
-operator|.
-name|READONCE
-argument_list|)
-decl_stmt|;
-try|try
-block|{
-name|genOutput
-operator|.
-name|writeInt
-argument_list|(
-name|FORMAT_SEGMENTS_GEN_CURRENT
-argument_list|)
-expr_stmt|;
-name|genOutput
-operator|.
-name|writeLong
-argument_list|(
-name|generation
-argument_list|)
-expr_stmt|;
-name|genOutput
-operator|.
-name|writeLong
-argument_list|(
-name|generation
-argument_list|)
-expr_stmt|;
-name|CodecUtil
-operator|.
-name|writeFooter
-argument_list|(
-name|genOutput
-argument_list|)
-expr_stmt|;
-block|}
-finally|finally
-block|{
-name|genOutput
-operator|.
-name|close
-argument_list|()
-expr_stmt|;
-name|dir
-operator|.
-name|sync
-argument_list|(
-name|Collections
-operator|.
-name|singleton
-argument_list|(
-name|IndexFileNames
-operator|.
-name|SEGMENTS_GEN
-argument_list|)
-argument_list|)
-expr_stmt|;
-block|}
-block|}
-catch|catch
-parameter_list|(
-name|Throwable
-name|t
-parameter_list|)
-block|{
-comment|// It's OK if we fail to write this file since it's
-comment|// used only as one of the retry fallbacks.
-name|IOUtils
-operator|.
-name|deleteFilesIgnoringExceptions
-argument_list|(
-name|dir
-argument_list|,
-name|IndexFileNames
-operator|.
-name|SEGMENTS_GEN
-argument_list|)
-expr_stmt|;
-block|}
-block|}
-comment|/**    * Get the next segments_N filename that will be written.    */
-DECL|method|getNextSegmentFileName
+comment|/**    * Get the next pending_segments_N filename that will be written.    */
+DECL|method|getNextPendingSegmentFileName
 specifier|public
 name|String
-name|getNextSegmentFileName
+name|getNextPendingSegmentFileName
 parameter_list|()
 block|{
 name|long
@@ -967,7 +819,7 @@ name|fileNameFromGeneration
 argument_list|(
 name|IndexFileNames
 operator|.
-name|SEGMENTS
+name|PENDING_SEGMENTS
 argument_list|,
 literal|""
 argument_list|,
@@ -1713,11 +1565,11 @@ name|run
 argument_list|()
 expr_stmt|;
 block|}
-comment|// Only non-null after prepareCommit has been called and
+comment|// Only true after prepareCommit has been called and
 comment|// before finishCommit is called
-DECL|field|pendingSegnOutput
-name|IndexOutput
-name|pendingSegnOutput
+DECL|field|pendingCommit
+name|boolean
+name|pendingCommit
 decl_stmt|;
 DECL|method|write
 specifier|private
@@ -1733,7 +1585,7 @@ block|{
 name|String
 name|segmentFileName
 init|=
-name|getNextSegmentFileName
+name|getNextPendingSegmentFileName
 argument_list|()
 decl_stmt|;
 comment|// Always advance the generation on write:
@@ -2037,9 +1889,29 @@ name|randomId
 argument_list|()
 argument_list|)
 expr_stmt|;
-name|pendingSegnOutput
-operator|=
+name|CodecUtil
+operator|.
+name|writeFooter
+argument_list|(
 name|segnOutput
+argument_list|)
+expr_stmt|;
+name|segnOutput
+operator|.
+name|close
+argument_list|()
+expr_stmt|;
+name|directory
+operator|.
+name|sync
+argument_list|(
+name|Collections
+operator|.
+name|singleton
+argument_list|(
+name|segmentFileName
+argument_list|)
+argument_list|)
 expr_stmt|;
 name|success
 operator|=
@@ -2050,9 +1922,15 @@ finally|finally
 block|{
 if|if
 condition|(
-operator|!
 name|success
 condition|)
+block|{
+name|pendingCommit
+operator|=
+literal|true
+expr_stmt|;
+block|}
+else|else
 block|{
 comment|// We hit an exception above; try to close the file
 comment|// but suppress any exception:
@@ -2227,43 +2105,6 @@ operator|=
 name|infoStream
 expr_stmt|;
 block|}
-comment|/* Advanced configuration of retry logic in loading      segments_N file */
-DECL|field|defaultGenLookaheadCount
-specifier|private
-specifier|static
-name|int
-name|defaultGenLookaheadCount
-init|=
-literal|10
-decl_stmt|;
-comment|/**    * Advanced: set how many times to try incrementing the    * gen when loading the segments file.  This only runs if    * the primary (listing directory) and secondary (opening    * segments.gen file) methods fail to find the segments    * file.    *    * @lucene.experimental    */
-DECL|method|setDefaultGenLookaheadCount
-specifier|public
-specifier|static
-name|void
-name|setDefaultGenLookaheadCount
-parameter_list|(
-name|int
-name|count
-parameter_list|)
-block|{
-name|defaultGenLookaheadCount
-operator|=
-name|count
-expr_stmt|;
-block|}
-comment|/**    * Returns the {@code defaultGenLookaheadCount}.    *    * @see #setDefaultGenLookaheadCount    *    * @lucene.experimental    */
-DECL|method|getDefaultGenLookahedCount
-specifier|public
-specifier|static
-name|int
-name|getDefaultGenLookahedCount
-parameter_list|()
-block|{
-return|return
-name|defaultGenLookaheadCount
-return|;
-block|}
 comment|/**    * Returns {@code infoStream}.    *    * @see #setInfoStream    */
 DECL|method|getInfoStream
 specifier|public
@@ -2397,11 +2238,6 @@ argument_list|()
 argument_list|)
 return|;
 block|}
-name|String
-name|segmentFileName
-init|=
-literal|null
-decl_stmt|;
 name|long
 name|lastGen
 init|=
@@ -2411,31 +2247,17 @@ decl_stmt|;
 name|long
 name|gen
 init|=
-literal|0
-decl_stmt|;
-name|int
-name|genLookaheadCount
-init|=
-literal|0
+operator|-
+literal|1
 decl_stmt|;
 name|IOException
 name|exc
 init|=
 literal|null
 decl_stmt|;
-name|int
-name|retryCount
-init|=
-literal|0
-decl_stmt|;
-name|boolean
-name|useFirstMethod
-init|=
-literal|true
-decl_stmt|;
 comment|// Loop until we succeed in calling doBody() without
 comment|// hitting an IOException.  An IOException most likely
-comment|// means a commit was in process and has finished, in
+comment|// means an IW deleted our commit while opening
 comment|// the time it took us to load the now-old infos files
 comment|// (and segments files).  It's also possible it's a
 comment|// true error (corrupt index).  To distinguish these,
@@ -2443,59 +2265,71 @@ comment|// on each retry we must see "forward progress" on
 comment|// which generation we are trying to load.  If we
 comment|// don't, then the original error is real and we throw
 comment|// it.
-comment|// We have three methods for determining the current
-comment|// generation.  We try the first two in parallel (when
-comment|// useFirstMethod is true), and fall back to the third
-comment|// when necessary.
-while|while
-condition|(
-literal|true
-condition|)
+for|for
+control|(
+init|;
+condition|;
+control|)
 block|{
-if|if
-condition|(
-name|useFirstMethod
-condition|)
-block|{
-comment|// List the directory and use the highest
-comment|// segments_N file.  This method works well as long
-comment|// as there is no stale caching on the directory
-comment|// contents (NOTE: NFS clients often have such stale
-comment|// caching):
-name|String
-index|[]
-name|files
-init|=
-literal|null
-decl_stmt|;
-name|long
-name|genA
-init|=
-operator|-
-literal|1
-decl_stmt|;
-name|files
+name|lastGen
 operator|=
+name|gen
+expr_stmt|;
+name|String
+name|files
+index|[]
+init|=
 name|directory
 operator|.
 name|listAll
 argument_list|()
+decl_stmt|;
+name|String
+name|files2
+index|[]
+init|=
+name|directory
+operator|.
+name|listAll
+argument_list|()
+decl_stmt|;
+name|Arrays
+operator|.
+name|sort
+argument_list|(
+name|files
+argument_list|)
+expr_stmt|;
+name|Arrays
+operator|.
+name|sort
+argument_list|(
+name|files2
+argument_list|)
 expr_stmt|;
 if|if
 condition|(
+operator|!
+name|Arrays
+operator|.
+name|equals
+argument_list|(
 name|files
-operator|!=
-literal|null
+argument_list|,
+name|files2
+argument_list|)
 condition|)
 block|{
-name|genA
+comment|// listAll() is weakly consistent, this means we hit "concurrent modification exception"
+continue|continue;
+block|}
+name|gen
 operator|=
 name|getLastCommitGeneration
 argument_list|(
 name|files
 argument_list|)
 expr_stmt|;
-block|}
 if|if
 condition|(
 name|infoStream
@@ -2505,244 +2339,12 @@ condition|)
 block|{
 name|message
 argument_list|(
-literal|"directory listing genA="
+literal|"directory listing gen="
 operator|+
-name|genA
-argument_list|)
-expr_stmt|;
-block|}
-comment|// Also open segments.gen and read its
-comment|// contents.  Then we take the larger of the two
-comment|// gens.  This way, if either approach is hitting
-comment|// a stale cache (NFS) we have a better chance of
-comment|// getting the right generation.
-name|long
-name|genB
-init|=
-operator|-
-literal|1
-decl_stmt|;
-name|ChecksumIndexInput
-name|genInput
-init|=
-literal|null
-decl_stmt|;
-try|try
-block|{
-name|genInput
-operator|=
-name|directory
-operator|.
-name|openChecksumInput
-argument_list|(
-name|IndexFileNames
-operator|.
-name|SEGMENTS_GEN
-argument_list|,
-name|IOContext
-operator|.
-name|READONCE
-argument_list|)
-expr_stmt|;
-block|}
-catch|catch
-parameter_list|(
-name|IOException
-name|e
-parameter_list|)
-block|{
-if|if
-condition|(
-name|infoStream
-operator|!=
-literal|null
-condition|)
-block|{
-name|message
-argument_list|(
-literal|"segments.gen open: IOException "
-operator|+
-name|e
-argument_list|)
-expr_stmt|;
-block|}
-block|}
-if|if
-condition|(
-name|genInput
-operator|!=
-literal|null
-condition|)
-block|{
-try|try
-block|{
-name|int
-name|version
-init|=
-name|genInput
-operator|.
-name|readInt
-argument_list|()
-decl_stmt|;
-if|if
-condition|(
-name|version
-operator|==
-name|FORMAT_SEGMENTS_GEN_47
-operator|||
-name|version
-operator|==
-name|FORMAT_SEGMENTS_GEN_CHECKSUM
-condition|)
-block|{
-name|long
-name|gen0
-init|=
-name|genInput
-operator|.
-name|readLong
-argument_list|()
-decl_stmt|;
-name|long
-name|gen1
-init|=
-name|genInput
-operator|.
-name|readLong
-argument_list|()
-decl_stmt|;
-if|if
-condition|(
-name|infoStream
-operator|!=
-literal|null
-condition|)
-block|{
-name|message
-argument_list|(
-literal|"fallback check: "
-operator|+
-name|gen0
-operator|+
-literal|"; "
-operator|+
-name|gen1
-argument_list|)
-expr_stmt|;
-block|}
-if|if
-condition|(
-name|version
-operator|==
-name|FORMAT_SEGMENTS_GEN_CHECKSUM
-condition|)
-block|{
-name|CodecUtil
-operator|.
-name|checkFooter
-argument_list|(
-name|genInput
-argument_list|)
-expr_stmt|;
-block|}
-else|else
-block|{
-name|CodecUtil
-operator|.
-name|checkEOF
-argument_list|(
-name|genInput
-argument_list|)
-expr_stmt|;
-block|}
-if|if
-condition|(
-name|gen0
-operator|==
-name|gen1
-condition|)
-block|{
-comment|// The file is consistent.
-name|genB
-operator|=
-name|gen0
-expr_stmt|;
-block|}
-block|}
-else|else
-block|{
-throw|throw
-operator|new
-name|IndexFormatTooNewException
-argument_list|(
-name|genInput
-argument_list|,
-name|version
-argument_list|,
-name|FORMAT_SEGMENTS_GEN_START
-argument_list|,
-name|FORMAT_SEGMENTS_GEN_CURRENT
-argument_list|)
-throw|;
-block|}
-block|}
-catch|catch
-parameter_list|(
-name|IOException
-name|err2
-parameter_list|)
-block|{
-comment|// rethrow any format exception
-if|if
-condition|(
-name|err2
-operator|instanceof
-name|CorruptIndexException
-condition|)
-throw|throw
-name|err2
-throw|;
-block|}
-finally|finally
-block|{
-name|genInput
-operator|.
-name|close
-argument_list|()
-expr_stmt|;
-block|}
-block|}
-if|if
-condition|(
-name|infoStream
-operator|!=
-literal|null
-condition|)
-block|{
-name|message
-argument_list|(
-name|IndexFileNames
-operator|.
-name|SEGMENTS_GEN
-operator|+
-literal|" check: genB="
-operator|+
-name|genB
-argument_list|)
-expr_stmt|;
-block|}
-comment|// Pick the larger of the two gen's:
 name|gen
-operator|=
-name|Math
-operator|.
-name|max
-argument_list|(
-name|genA
-argument_list|,
-name|genB
 argument_list|)
 expr_stmt|;
+block|}
 if|if
 condition|(
 name|gen
@@ -2751,7 +2353,6 @@ operator|-
 literal|1
 condition|)
 block|{
-comment|// Neither approach found a generation
 throw|throw
 operator|new
 name|IndexNotFoundException
@@ -2771,103 +2372,17 @@ argument_list|)
 argument_list|)
 throw|;
 block|}
-block|}
-if|if
-condition|(
-name|useFirstMethod
-operator|&&
-name|lastGen
-operator|==
-name|gen
-operator|&&
-name|retryCount
-operator|>=
-literal|2
-condition|)
-block|{
-comment|// Give up on first method -- this is 3rd cycle on
-comment|// listing directory and checking gen file to
-comment|// attempt to locate the segments file.
-name|useFirstMethod
-operator|=
-literal|false
-expr_stmt|;
-block|}
-comment|// Second method: since both directory cache and
-comment|// file contents cache seem to be stale, just
-comment|// advance the generation.
-if|if
-condition|(
-operator|!
-name|useFirstMethod
-condition|)
-block|{
-if|if
-condition|(
-name|genLookaheadCount
-operator|<
-name|defaultGenLookaheadCount
-condition|)
-block|{
-name|gen
-operator|++
-expr_stmt|;
-name|genLookaheadCount
-operator|++
-expr_stmt|;
-if|if
-condition|(
-name|infoStream
-operator|!=
-literal|null
-condition|)
-block|{
-name|message
-argument_list|(
-literal|"look ahead increment gen to "
-operator|+
-name|gen
-argument_list|)
-expr_stmt|;
-block|}
-block|}
-else|else
-block|{
-comment|// All attempts have failed -- throw first exc:
-throw|throw
-name|exc
-throw|;
-block|}
-block|}
 elseif|else
 if|if
 condition|(
-name|lastGen
-operator|==
 name|gen
+operator|>
+name|lastGen
 condition|)
 block|{
-comment|// This means we're about to try the same
-comment|// segments_N last tried.
-name|retryCount
-operator|++
-expr_stmt|;
-block|}
-else|else
-block|{
-comment|// Segment file has advanced since our last loop
-comment|// (we made "progress"), so reset retryCount:
-name|retryCount
-operator|=
-literal|0
-expr_stmt|;
-block|}
-name|lastGen
-operator|=
-name|gen
-expr_stmt|;
+name|String
 name|segmentFileName
-operator|=
+init|=
 name|IndexFileNames
 operator|.
 name|fileNameFromGeneration
@@ -2880,7 +2395,7 @@ literal|""
 argument_list|,
 name|gen
 argument_list|)
-expr_stmt|;
+decl_stmt|;
 try|try
 block|{
 name|Object
@@ -2916,8 +2431,6 @@ name|IOException
 name|err
 parameter_list|)
 block|{
-comment|// TODO: we should use the new IO apis in Java7 to get better exceptions on why the open failed.  E.g. we don't want to fall back
-comment|// if the open failed for a "different" reason (too many open files, access denied) than "the commit was in progress"
 comment|// Save the original root cause:
 if|if
 condition|(
@@ -2948,168 +2461,19 @@ literal|"': "
 operator|+
 name|err
 operator|+
-literal|"'; will retry: retryCount="
-operator|+
-name|retryCount
-operator|+
-literal|"; gen = "
+literal|"'; will retry: gen = "
 operator|+
 name|gen
 argument_list|)
 expr_stmt|;
 block|}
-if|if
-condition|(
-name|gen
-operator|>
-literal|1
-operator|&&
-name|useFirstMethod
-operator|&&
-name|retryCount
-operator|==
-literal|1
-condition|)
-block|{
-comment|// This is our second time trying this same segments
-comment|// file (because retryCount is 1), and, there is
-comment|// possibly a segments_(N-1) (because gen> 1).
-comment|// So, check if the segments_(N-1) exists and
-comment|// try it if so:
-name|String
-name|prevSegmentFileName
-init|=
-name|IndexFileNames
-operator|.
-name|fileNameFromGeneration
-argument_list|(
-name|IndexFileNames
-operator|.
-name|SEGMENTS
-argument_list|,
-literal|""
-argument_list|,
-name|gen
-operator|-
-literal|1
-argument_list|)
-decl_stmt|;
-name|boolean
-name|prevExists
-decl_stmt|;
-try|try
-block|{
-name|directory
-operator|.
-name|openInput
-argument_list|(
-name|prevSegmentFileName
-argument_list|,
-name|IOContext
-operator|.
-name|DEFAULT
-argument_list|)
-operator|.
-name|close
-argument_list|()
-expr_stmt|;
-name|prevExists
-operator|=
-literal|true
-expr_stmt|;
-block|}
-catch|catch
-parameter_list|(
-name|IOException
-name|ioe
-parameter_list|)
-block|{
-name|prevExists
-operator|=
-literal|false
-expr_stmt|;
-block|}
-if|if
-condition|(
-name|prevExists
-condition|)
-block|{
-if|if
-condition|(
-name|infoStream
-operator|!=
-literal|null
-condition|)
-block|{
-name|message
-argument_list|(
-literal|"fallback to prior segment file '"
-operator|+
-name|prevSegmentFileName
-operator|+
-literal|"'"
-argument_list|)
-expr_stmt|;
-block|}
-try|try
-block|{
-name|Object
-name|v
-init|=
-name|doBody
-argument_list|(
-name|prevSegmentFileName
-argument_list|)
-decl_stmt|;
-if|if
-condition|(
-name|infoStream
-operator|!=
-literal|null
-condition|)
-block|{
-name|message
-argument_list|(
-literal|"success on fallback "
-operator|+
-name|prevSegmentFileName
-argument_list|)
-expr_stmt|;
-block|}
-return|return
-name|v
-return|;
-block|}
-catch|catch
-parameter_list|(
-name|IOException
-name|err2
-parameter_list|)
-block|{
-if|if
-condition|(
-name|infoStream
-operator|!=
-literal|null
-condition|)
-block|{
-name|message
-argument_list|(
-literal|"secondary Exception on '"
-operator|+
-name|prevSegmentFileName
-operator|+
-literal|"': "
-operator|+
-name|err2
-operator|+
-literal|"'; will retry"
-argument_list|)
-expr_stmt|;
 block|}
 block|}
-block|}
-block|}
+else|else
+block|{
+throw|throw
+name|exc
+throw|;
 block|}
 block|}
 block|}
@@ -3181,29 +2545,19 @@ parameter_list|)
 block|{
 if|if
 condition|(
-name|pendingSegnOutput
-operator|!=
-literal|null
+name|pendingCommit
 condition|)
 block|{
-comment|// Suppress so we keep throwing the original exception
-comment|// in our caller
-name|IOUtils
-operator|.
-name|closeWhileHandlingException
-argument_list|(
-name|pendingSegnOutput
-argument_list|)
-expr_stmt|;
-name|pendingSegnOutput
+name|pendingCommit
 operator|=
-literal|null
+literal|false
 expr_stmt|;
+comment|// we try to clean up our pending_segments_N
 comment|// Must carefully compute fileName from "generation"
 comment|// since lastGeneration isn't incremented:
 specifier|final
 name|String
-name|segmentFileName
+name|pending
 init|=
 name|IndexFileNames
 operator|.
@@ -3211,7 +2565,7 @@ name|fileNameFromGeneration
 argument_list|(
 name|IndexFileNames
 operator|.
-name|SEGMENTS
+name|PENDING_SEGMENTS
 argument_list|,
 literal|""
 argument_list|,
@@ -3226,7 +2580,7 @@ name|deleteFilesIgnoringExceptions
 argument_list|(
 name|dir
 argument_list|,
-name|segmentFileName
+name|pending
 argument_list|)
 expr_stmt|;
 block|}
@@ -3245,9 +2599,7 @@ name|IOException
 block|{
 if|if
 condition|(
-name|pendingSegnOutput
-operator|!=
-literal|null
+name|pendingCommit
 condition|)
 block|{
 throw|throw
@@ -3401,9 +2753,9 @@ name|IOException
 block|{
 if|if
 condition|(
-name|pendingSegnOutput
+name|pendingCommit
 operator|==
-literal|null
+literal|false
 condition|)
 block|{
 throw|throw
@@ -3421,88 +2773,26 @@ literal|false
 decl_stmt|;
 try|try
 block|{
-name|CodecUtil
-operator|.
-name|writeFooter
-argument_list|(
-name|pendingSegnOutput
-argument_list|)
-expr_stmt|;
-name|success
-operator|=
-literal|true
-expr_stmt|;
-block|}
-finally|finally
-block|{
-if|if
-condition|(
-operator|!
-name|success
-condition|)
-block|{
-comment|// Closes pendingSegnOutput& deletes partial segments_N:
-name|rollbackCommit
-argument_list|(
-name|dir
-argument_list|)
-expr_stmt|;
-block|}
-else|else
-block|{
-name|success
-operator|=
-literal|false
-expr_stmt|;
-try|try
-block|{
-name|pendingSegnOutput
-operator|.
-name|close
-argument_list|()
-expr_stmt|;
-name|success
-operator|=
-literal|true
-expr_stmt|;
-block|}
-finally|finally
-block|{
-if|if
-condition|(
-operator|!
-name|success
-condition|)
-block|{
-comment|// Closes pendingSegnOutput& deletes partial segments_N:
-name|rollbackCommit
-argument_list|(
-name|dir
-argument_list|)
-expr_stmt|;
-block|}
-else|else
-block|{
-name|pendingSegnOutput
-operator|=
-literal|null
-expr_stmt|;
-block|}
-block|}
-block|}
-block|}
-comment|// NOTE: if we crash here, we have left a segments_N
-comment|// file in the directory in a possibly corrupt state (if
-comment|// some bytes made it to stable storage and others
-comment|// didn't).  But, the segments_N file includes checksum
-comment|// at the end, which should catch this case.  So when a
-comment|// reader tries to read it, it will throw a
-comment|// CorruptIndexException, which should cause the retry
-comment|// logic in SegmentInfos to kick in and load the last
-comment|// good (previous) segments_N-1 file.
 specifier|final
 name|String
-name|fileName
+name|src
+init|=
+name|IndexFileNames
+operator|.
+name|fileNameFromGeneration
+argument_list|(
+name|IndexFileNames
+operator|.
+name|PENDING_SEGMENTS
+argument_list|,
+literal|""
+argument_list|,
+name|generation
+argument_list|)
+decl_stmt|;
+specifier|final
+name|String
+name|dest
 init|=
 name|IndexFileNames
 operator|.
@@ -3517,22 +2807,13 @@ argument_list|,
 name|generation
 argument_list|)
 decl_stmt|;
-name|success
-operator|=
-literal|false
-expr_stmt|;
-try|try
-block|{
 name|dir
 operator|.
-name|sync
+name|renameFile
 argument_list|(
-name|Collections
-operator|.
-name|singleton
-argument_list|(
-name|fileName
-argument_list|)
+name|src
+argument_list|,
+name|dest
 argument_list|)
 expr_stmt|;
 name|success
@@ -3548,27 +2829,21 @@ operator|!
 name|success
 condition|)
 block|{
-name|IOUtils
-operator|.
-name|deleteFilesIgnoringExceptions
+comment|// deletes pending_segments_N:
+name|rollbackCommit
 argument_list|(
 name|dir
-argument_list|,
-name|fileName
 argument_list|)
 expr_stmt|;
 block|}
 block|}
+name|pendingCommit
+operator|=
+literal|false
+expr_stmt|;
 name|lastGeneration
 operator|=
 name|generation
-expr_stmt|;
-name|writeSegmentsGen
-argument_list|(
-name|dir
-argument_list|,
-name|generation
-argument_list|)
 expr_stmt|;
 block|}
 comment|/** Writes& syncs to the Directory dir, taking care to    *  remove the segments file on exception    *<p>    *  Note: {@link #changed()} should be called prior to this    *  method if changes have been made to this {@link SegmentInfos} instance    *</p>      **/

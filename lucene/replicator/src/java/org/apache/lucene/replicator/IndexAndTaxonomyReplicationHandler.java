@@ -572,6 +572,26 @@ argument_list|,
 literal|false
 argument_list|)
 decl_stmt|;
+name|String
+name|taxoPendingFile
+init|=
+name|taxoSegmentsFile
+operator|==
+literal|null
+condition|?
+literal|null
+else|:
+literal|"pending_"
+operator|+
+name|taxoSegmentsFile
+decl_stmt|;
+name|String
+name|indexPendingFile
+init|=
+literal|"pending_"
+operator|+
+name|indexSegmentsFile
+decl_stmt|;
 name|boolean
 name|success
 init|=
@@ -627,7 +647,7 @@ argument_list|(
 name|indexFiles
 argument_list|)
 expr_stmt|;
-comment|// now copy and fsync segmentsFile, taxonomy first because it is ok if a
+comment|// now copy, fsync, and rename segmentsFile, taxonomy first because it is ok if a
 comment|// reader sees a more advanced taxonomy than the index.
 if|if
 condition|(
@@ -644,7 +664,7 @@ name|taxoDir
 argument_list|,
 name|taxoSegmentsFile
 argument_list|,
-name|taxoSegmentsFile
+name|taxoPendingFile
 argument_list|,
 name|IOContext
 operator|.
@@ -660,7 +680,7 @@ name|indexDir
 argument_list|,
 name|indexSegmentsFile
 argument_list|,
-name|indexSegmentsFile
+name|indexPendingFile
 argument_list|,
 name|IOContext
 operator|.
@@ -682,7 +702,7 @@ name|Collections
 operator|.
 name|singletonList
 argument_list|(
-name|taxoSegmentsFile
+name|taxoPendingFile
 argument_list|)
 argument_list|)
 expr_stmt|;
@@ -695,8 +715,34 @@ name|Collections
 operator|.
 name|singletonList
 argument_list|(
-name|indexSegmentsFile
+name|indexPendingFile
 argument_list|)
+argument_list|)
+expr_stmt|;
+if|if
+condition|(
+name|taxoSegmentsFile
+operator|!=
+literal|null
+condition|)
+block|{
+name|taxoDir
+operator|.
+name|renameFile
+argument_list|(
+name|taxoPendingFile
+argument_list|,
+name|taxoSegmentsFile
+argument_list|)
+expr_stmt|;
+block|}
+name|indexDir
+operator|.
+name|renameFile
+argument_list|(
+name|indexPendingFile
+argument_list|,
+name|indexSegmentsFile
 argument_list|)
 expr_stmt|;
 name|success
@@ -712,6 +758,13 @@ operator|!
 name|success
 condition|)
 block|{
+if|if
+condition|(
+name|taxoSegmentsFile
+operator|!=
+literal|null
+condition|)
+block|{
 name|taxoFiles
 operator|.
 name|add
@@ -720,6 +773,14 @@ name|taxoSegmentsFile
 argument_list|)
 expr_stmt|;
 comment|// add it back so it gets deleted too
+name|taxoFiles
+operator|.
+name|add
+argument_list|(
+name|taxoPendingFile
+argument_list|)
+expr_stmt|;
+block|}
 name|IndexReplicationHandler
 operator|.
 name|cleanupFilesOnFailure
@@ -737,6 +798,13 @@ name|indexSegmentsFile
 argument_list|)
 expr_stmt|;
 comment|// add it back so it gets deleted too
+name|indexFiles
+operator|.
+name|add
+argument_list|(
+name|indexPendingFile
+argument_list|)
+expr_stmt|;
 name|IndexReplicationHandler
 operator|.
 name|cleanupFilesOnFailure
@@ -783,25 +851,6 @@ name|currentRevisionFiles
 argument_list|)
 expr_stmt|;
 block|}
-comment|// update the segments.gen file
-name|IndexReplicationHandler
-operator|.
-name|writeSegmentsGen
-argument_list|(
-name|taxoSegmentsFile
-argument_list|,
-name|taxoDir
-argument_list|)
-expr_stmt|;
-name|IndexReplicationHandler
-operator|.
-name|writeSegmentsGen
-argument_list|(
-name|indexSegmentsFile
-argument_list|,
-name|indexDir
-argument_list|)
-expr_stmt|;
 comment|// Cleanup the index directory from old and unused index files.
 comment|// NOTE: we don't use IndexWriter.deleteUnusedFiles here since it may have
 comment|// side-effects, e.g. if it hits sudden IO errors while opening the index

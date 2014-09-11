@@ -307,6 +307,8 @@ block|{
 name|ensureOpen
 argument_list|()
 expr_stmt|;
+comment|// NOTE: this returns a "weakly consistent view". Unless we change Dir API, keep this,
+comment|// and do not synchronize or anything stronger. its great for testing!
 comment|// NOTE: fileMap.keySet().toArray(new String[0]) is broken in non Sun JDKs,
 comment|// and the code below is resilient to map changes during the array population.
 name|Set
@@ -630,6 +632,67 @@ parameter_list|)
 throws|throws
 name|IOException
 block|{   }
+annotation|@
+name|Override
+DECL|method|renameFile
+specifier|public
+name|void
+name|renameFile
+parameter_list|(
+name|String
+name|source
+parameter_list|,
+name|String
+name|dest
+parameter_list|)
+throws|throws
+name|IOException
+block|{
+name|ensureOpen
+argument_list|()
+expr_stmt|;
+name|RAMFile
+name|file
+init|=
+name|fileMap
+operator|.
+name|get
+argument_list|(
+name|source
+argument_list|)
+decl_stmt|;
+if|if
+condition|(
+name|file
+operator|==
+literal|null
+condition|)
+block|{
+throw|throw
+operator|new
+name|FileNotFoundException
+argument_list|(
+name|source
+argument_list|)
+throw|;
+block|}
+name|fileMap
+operator|.
+name|put
+argument_list|(
+name|dest
+argument_list|,
+name|file
+argument_list|)
+expr_stmt|;
+name|fileMap
+operator|.
+name|remove
+argument_list|(
+name|source
+argument_list|)
+expr_stmt|;
+block|}
 comment|/** Returns a stream reading an existing file. */
 annotation|@
 name|Override
