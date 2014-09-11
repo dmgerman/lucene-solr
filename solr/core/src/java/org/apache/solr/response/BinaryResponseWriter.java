@@ -923,6 +923,12 @@ name|returnFields
 operator|.
 name|wantsAllFields
 argument_list|()
+operator|&&
+operator|!
+name|returnFields
+operator|.
+name|hasPatternMatching
+argument_list|()
 operator|)
 operator|||
 operator|(
