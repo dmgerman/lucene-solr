@@ -878,6 +878,34 @@ argument_list|)
 return|;
 block|}
 block|}
+comment|/** Major version, the difference between stable and trunk */
+DECL|field|major
+specifier|public
+specifier|final
+name|int
+name|major
+decl_stmt|;
+comment|/** Minor version, incremented within the stable branch */
+DECL|field|minor
+specifier|public
+specifier|final
+name|int
+name|minor
+decl_stmt|;
+comment|/** Bugfix number, incremented on release branches */
+DECL|field|bugfix
+specifier|public
+specifier|final
+name|int
+name|bugfix
+decl_stmt|;
+comment|/** Prerelease version, currently 0 (alpha), 1 (beta), or 2 (final) */
+DECL|field|prerelease
+specifier|public
+specifier|final
+name|int
+name|prerelease
+decl_stmt|;
 comment|// stores the version pieces, with most significant pieces in high bits
 comment|// ie:  | 1 byte | 1 byte | 1 byte |   2 bits   |
 comment|//         major   minor    bugfix   prerelease
@@ -930,6 +958,30 @@ name|int
 name|prerelease
 parameter_list|)
 block|{
+name|this
+operator|.
+name|major
+operator|=
+name|major
+expr_stmt|;
+name|this
+operator|.
+name|minor
+operator|=
+name|minor
+expr_stmt|;
+name|this
+operator|.
+name|bugfix
+operator|=
+name|bugfix
+expr_stmt|;
+name|this
+operator|.
+name|prerelease
+operator|=
+name|prerelease
+expr_stmt|;
 if|if
 condition|(
 name|major
