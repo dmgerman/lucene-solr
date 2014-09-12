@@ -4835,18 +4835,6 @@ return|return
 literal|"Manage SolrCloud Collections"
 return|;
 block|}
-annotation|@
-name|Override
-DECL|method|getSource
-specifier|public
-name|String
-name|getSource
-parameter_list|()
-block|{
-return|return
-literal|"$URL: https://svn.apache.org/repos/asf/lucene/dev/trunk/solr/core/src/java/org/apache/solr/handler/admin/CollectionHandler.java $"
-return|;
-block|}
 block|}
 end_class
 
