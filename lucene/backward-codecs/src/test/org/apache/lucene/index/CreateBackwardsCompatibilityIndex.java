@@ -26,16 +26,6 @@ name|IOException
 import|;
 end_import
 
-begin_import
-import|import
-name|org
-operator|.
-name|junit
-operator|.
-name|Ignore
-import|;
-end_import
-
 begin_comment
 comment|// This class exists only so it has a name that the junit runner will not pickup,
 end_comment
@@ -45,11 +35,6 @@ comment|// so these index creation "tests" can only be run explicitly
 end_comment
 
 begin_class
-annotation|@
-name|Ignore
-argument_list|(
-literal|"Force IDEs to ignore this test"
-argument_list|)
 DECL|class|CreateBackwardsCompatibilityIndex
 specifier|public
 class|class
