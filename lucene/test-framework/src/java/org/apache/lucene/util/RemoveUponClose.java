@@ -28,7 +28,7 @@ name|java
 operator|.
 name|io
 operator|.
-name|File
+name|IOException
 import|;
 end_import
 
@@ -36,9 +36,23 @@ begin_import
 import|import
 name|java
 operator|.
-name|io
+name|nio
 operator|.
-name|IOException
+name|file
+operator|.
+name|Files
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
+name|nio
+operator|.
+name|file
+operator|.
+name|Path
 import|;
 end_import
 
@@ -58,11 +72,11 @@ name|RemoveUponClose
 implements|implements
 name|Closeable
 block|{
-DECL|field|file
+DECL|field|path
 specifier|private
 specifier|final
-name|File
-name|file
+name|Path
+name|path
 decl_stmt|;
 DECL|field|failureMarker
 specifier|private
@@ -80,8 +94,8 @@ DECL|method|RemoveUponClose
 specifier|public
 name|RemoveUponClose
 parameter_list|(
-name|File
-name|file
+name|Path
+name|path
 parameter_list|,
 name|TestRuleMarkFailure
 name|failureMarker
@@ -89,9 +103,9 @@ parameter_list|)
 block|{
 name|this
 operator|.
-name|file
+name|path
 operator|=
-name|file
+name|path
 expr_stmt|;
 name|this
 operator|.
@@ -170,10 +184,12 @@ condition|)
 block|{
 if|if
 condition|(
-name|file
+name|Files
 operator|.
 name|exists
-argument_list|()
+argument_list|(
+name|path
+argument_list|)
 condition|)
 block|{
 try|try
@@ -182,7 +198,7 @@ name|IOUtils
 operator|.
 name|rm
 argument_list|(
-name|file
+name|path
 argument_list|)
 expr_stmt|;
 block|}
@@ -198,9 +214,9 @@ name|IOException
 argument_list|(
 literal|"Could not remove temporary location '"
 operator|+
-name|file
+name|path
 operator|.
-name|getAbsolutePath
+name|toAbsolutePath
 argument_list|()
 operator|+
 literal|"', created at stack trace:\n"

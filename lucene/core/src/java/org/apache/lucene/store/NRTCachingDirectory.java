@@ -32,6 +32,16 @@ name|java
 operator|.
 name|util
 operator|.
+name|Arrays
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
+name|util
+operator|.
 name|Collection
 import|;
 end_import
@@ -53,20 +63,6 @@ operator|.
 name|util
 operator|.
 name|Set
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|index
-operator|.
-name|IndexFileNames
 import|;
 end_import
 
@@ -129,7 +125,7 @@ comment|//   - rename to MergeCacheingDir?  NRTCachingDir
 end_comment
 
 begin_comment
-comment|/**  * Wraps a {@link RAMDirectory}  * around any provided delegate directory, to  * be used during NRT search.  *  *<p>This class is likely only useful in a near-real-time  * context, where indexing rate is lowish but reopen  * rate is highish, resulting in many tiny files being  * written.  This directory keeps such segments (as well as  * the segments produced by merging them, as long as they  * are small enough), in RAM.</p>  *  *<p>This is safe to use: when your app calls {IndexWriter#commit},  * all cached files will be flushed from the cached and sync'd.</p>  *  *<p>Here's a simple example usage:  *  *<pre class="prettyprint">  *   Directory fsDir = FSDirectory.open(new File("/path/to/index"));  *   NRTCachingDirectory cachedFSDir = new NRTCachingDirectory(fsDir, 5.0, 60.0);  *   IndexWriterConfig conf = new IndexWriterConfig(analyzer);  *   IndexWriter writer = new IndexWriter(cachedFSDir, conf);  *</pre>  *  *<p>This will cache all newly flushed segments, all merges  * whose expected segment size is<= 5 MB, unless the net  * cached bytes exceeds 60 MB at which point all writes will  * not be cached (until the net bytes falls below 60 MB).</p>  *  * @lucene.experimental  */
+comment|/**  * Wraps a {@link RAMDirectory}  * around any provided delegate directory, to  * be used during NRT search.  *  *<p>This class is likely only useful in a near-real-time  * context, where indexing rate is lowish but reopen  * rate is highish, resulting in many tiny files being  * written.  This directory keeps such segments (as well as  * the segments produced by merging them, as long as they  * are small enough), in RAM.</p>  *  *<p>This is safe to use: when your app calls {IndexWriter#commit},  * all cached files will be flushed from the cached and sync'd.</p>  *  *<p>Here's a simple example usage:  *  *<pre class="prettyprint">  *   Directory fsDir = FSDirectory.open(new File("/path/to/index").toPath());  *   NRTCachingDirectory cachedFSDir = new NRTCachingDirectory(fsDir, 5.0, 60.0);  *   IndexWriterConfig conf = new IndexWriterConfig(analyzer);  *   IndexWriter writer = new IndexWriter(cachedFSDir, conf);  *</pre>  *  *<p>This will cache all newly flushed segments, all merges  * whose expected segment size is<= 5 MB, unless the net  * cached bytes exceeds 60 MB at which point all writes will  * not be cached (until the net bytes falls below 60 MB).</p>  *  * @lucene.experimental  */
 end_comment
 
 begin_class
@@ -299,12 +295,6 @@ name|f
 argument_list|)
 expr_stmt|;
 block|}
-comment|// LUCENE-1468: our NRTCachingDirectory will actually exist (RAMDir!),
-comment|// but if the underlying delegate is an FSDir and mkdirs() has not
-comment|// yet been called, because so far everything is a cached write,
-comment|// in this case, we don't want to throw a NoSuchDirectoryException
-try|try
-block|{
 for|for
 control|(
 name|String
@@ -316,36 +306,51 @@ name|listAll
 argument_list|()
 control|)
 block|{
-comment|// Cannot do this -- if lucene calls createOutput but
-comment|// file already exists then this falsely trips:
-comment|//assert !files.contains(f): "file \"" + f + "\" is in both dirs";
+if|if
+condition|(
+operator|!
 name|files
 operator|.
 name|add
 argument_list|(
 name|f
 argument_list|)
-expr_stmt|;
-block|}
-block|}
-catch|catch
-parameter_list|(
-name|NoSuchDirectoryException
-name|ex
-parameter_list|)
-block|{
-comment|// however, if there are no cached files, then the directory truly
-comment|// does not "exist"
-if|if
-condition|(
-name|files
-operator|.
-name|isEmpty
-argument_list|()
 condition|)
 block|{
 throw|throw
-name|ex
+operator|new
+name|IllegalStateException
+argument_list|(
+literal|"file: "
+operator|+
+name|in
+operator|+
+literal|" appears both in delegate and in cache: "
+operator|+
+literal|"cache="
+operator|+
+name|Arrays
+operator|.
+name|toString
+argument_list|(
+name|cache
+operator|.
+name|listAll
+argument_list|()
+argument_list|)
+operator|+
+literal|",delegate="
+operator|+
+name|Arrays
+operator|.
+name|toString
+argument_list|(
+name|in
+operator|.
+name|listAll
+argument_list|()
+argument_list|)
+argument_list|)
 throw|;
 block|}
 block|}

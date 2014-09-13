@@ -20,9 +20,11 @@ begin_import
 import|import
 name|java
 operator|.
-name|io
+name|nio
 operator|.
-name|File
+name|file
+operator|.
+name|Path
 import|;
 end_import
 
@@ -41,7 +43,7 @@ specifier|protected
 name|Directory
 name|getDirectory
 parameter_list|(
-name|File
+name|Path
 name|path
 parameter_list|)
 block|{

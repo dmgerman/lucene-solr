@@ -24,9 +24,11 @@ begin_import
 import|import
 name|java
 operator|.
-name|io
+name|nio
 operator|.
-name|File
+name|file
+operator|.
+name|Path
 import|;
 end_import
 
@@ -226,7 +228,7 @@ DECL|field|testDir
 DECL|field|inputDir
 specifier|private
 specifier|static
-name|File
+name|Path
 name|testDir
 decl_stmt|,
 name|inputDir
@@ -252,11 +254,10 @@ expr_stmt|;
 comment|// create a dummy index under inputDir
 name|inputDir
 operator|=
-operator|new
-name|File
-argument_list|(
 name|testDir
-argument_list|,
+operator|.
+name|resolve
+argument_list|(
 literal|"input"
 argument_list|)
 expr_stmt|;
@@ -383,7 +384,10 @@ name|ADDINDEXES_INPUT_DIR
 argument_list|,
 name|inputDir
 operator|.
-name|getAbsolutePath
+name|toAbsolutePath
+argument_list|()
+operator|.
+name|toString
 argument_list|()
 argument_list|)
 expr_stmt|;

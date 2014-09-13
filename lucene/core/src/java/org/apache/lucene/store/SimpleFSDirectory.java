@@ -56,8 +56,28 @@ name|RandomAccessFile
 import|;
 end_import
 
+begin_import
+import|import
+name|java
+operator|.
+name|nio
+operator|.
+name|file
+operator|.
+name|Path
+import|;
+end_import
+
 begin_comment
 comment|/** A straightforward implementation of {@link FSDirectory}  *  using java.io.RandomAccessFile.  However, this class has  *  poor concurrent performance (multiple threads will  *  bottleneck) as it synchronizes when multiple threads  *  read from the same file.  It's usually better to use  *  {@link NIOFSDirectory} or {@link MMapDirectory} instead. */
+end_comment
+
+begin_comment
+comment|// TODO: we currently mandate .toFile to still use RandomAccessFile, to avoid ClosedByInterruptException.
+end_comment
+
+begin_comment
+comment|// should we change to SeekableByteChannel instead?
 end_comment
 
 begin_class
@@ -73,7 +93,7 @@ DECL|method|SimpleFSDirectory
 specifier|public
 name|SimpleFSDirectory
 parameter_list|(
-name|File
+name|Path
 name|path
 parameter_list|,
 name|LockFactory
@@ -89,13 +109,19 @@ argument_list|,
 name|lockFactory
 argument_list|)
 expr_stmt|;
+name|path
+operator|.
+name|toFile
+argument_list|()
+expr_stmt|;
+comment|// throw exception if we can't get a File for now
 block|}
 comment|/** Create a new SimpleFSDirectory for the named location and {@link NativeFSLockFactory}.    *    * @param path the path of the directory    * @throws IOException if there is a low-level I/O error    */
 DECL|method|SimpleFSDirectory
 specifier|public
 name|SimpleFSDirectory
 parameter_list|(
-name|File
+name|Path
 name|path
 parameter_list|)
 throws|throws
@@ -108,6 +134,12 @@ argument_list|,
 literal|null
 argument_list|)
 expr_stmt|;
+name|path
+operator|.
+name|toFile
+argument_list|()
+expr_stmt|;
+comment|// throw exception if we can't get a File for now
 block|}
 comment|/** Creates an IndexInput for the file with the given name. */
 annotation|@
@@ -133,13 +165,15 @@ specifier|final
 name|File
 name|path
 init|=
-operator|new
-name|File
-argument_list|(
 name|directory
-argument_list|,
+operator|.
+name|resolve
+argument_list|(
 name|name
 argument_list|)
+operator|.
+name|toFile
+argument_list|()
 decl_stmt|;
 name|RandomAccessFile
 name|raf

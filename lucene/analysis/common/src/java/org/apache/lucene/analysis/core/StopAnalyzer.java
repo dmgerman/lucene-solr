@@ -52,6 +52,18 @@ begin_import
 import|import
 name|java
 operator|.
+name|nio
+operator|.
+name|file
+operator|.
+name|Path
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
 name|util
 operator|.
 name|Arrays
@@ -280,12 +292,12 @@ name|stopWords
 argument_list|)
 expr_stmt|;
 block|}
-comment|/** Builds an analyzer with the stop words from the given file.    * @see WordlistLoader#getWordSet(Reader)    * @param stopwordsFile File to load stop words from */
+comment|/** Builds an analyzer with the stop words from the given path.    * @see WordlistLoader#getWordSet(Reader)    * @param stopwordsFile File to load stop words from */
 DECL|method|StopAnalyzer
 specifier|public
 name|StopAnalyzer
 parameter_list|(
-name|File
+name|Path
 name|stopwordsFile
 parameter_list|)
 throws|throws

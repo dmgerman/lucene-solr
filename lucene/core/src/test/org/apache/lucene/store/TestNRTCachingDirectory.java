@@ -22,7 +22,7 @@ name|java
 operator|.
 name|io
 operator|.
-name|File
+name|IOException
 import|;
 end_import
 
@@ -30,9 +30,11 @@ begin_import
 import|import
 name|java
 operator|.
-name|io
+name|nio
 operator|.
-name|IOException
+name|file
+operator|.
+name|Path
 import|;
 end_import
 
@@ -270,7 +272,7 @@ specifier|protected
 name|Directory
 name|getDirectory
 parameter_list|(
-name|File
+name|Path
 name|path
 parameter_list|)
 throws|throws
@@ -741,10 +743,9 @@ name|FSDirectory
 operator|.
 name|open
 argument_list|(
-operator|new
-name|File
+name|createTempDir
 argument_list|(
-literal|"/path/to/index"
+literal|"verify"
 argument_list|)
 argument_list|)
 decl_stmt|;

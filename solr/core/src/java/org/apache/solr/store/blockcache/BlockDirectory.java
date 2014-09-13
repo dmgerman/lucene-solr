@@ -1376,6 +1376,9 @@ operator|)
 operator|.
 name|getDirectory
 argument_list|()
+operator|.
+name|toFile
+argument_list|()
 decl_stmt|;
 name|File
 name|file

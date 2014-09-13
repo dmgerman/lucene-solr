@@ -106,7 +106,7 @@ name|java
 operator|.
 name|io
 operator|.
-name|File
+name|IOException
 import|;
 end_import
 
@@ -114,9 +114,23 @@ begin_import
 import|import
 name|java
 operator|.
-name|io
+name|nio
 operator|.
-name|IOException
+name|file
+operator|.
+name|Paths
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
+name|nio
+operator|.
+name|file
+operator|.
+name|Path
 import|;
 end_import
 
@@ -470,6 +484,16 @@ name|printUsage
 argument_list|()
 expr_stmt|;
 block|}
+name|Path
+name|p
+init|=
+name|Paths
+operator|.
+name|get
+argument_list|(
+name|path
+argument_list|)
+decl_stmt|;
 name|Directory
 name|dir
 init|=
@@ -488,11 +512,7 @@ name|FSDirectory
 operator|.
 name|open
 argument_list|(
-operator|new
-name|File
-argument_list|(
-name|path
-argument_list|)
+name|p
 argument_list|)
 expr_stmt|;
 block|}
@@ -506,11 +526,7 @@ name|newFSDirectory
 argument_list|(
 name|dirImpl
 argument_list|,
-operator|new
-name|File
-argument_list|(
-name|path
-argument_list|)
+name|p
 argument_list|)
 expr_stmt|;
 block|}

@@ -22,7 +22,7 @@ name|java
 operator|.
 name|io
 operator|.
-name|File
+name|IOException
 import|;
 end_import
 
@@ -30,9 +30,23 @@ begin_import
 import|import
 name|java
 operator|.
-name|io
+name|nio
 operator|.
-name|IOException
+name|file
+operator|.
+name|Files
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
+name|nio
+operator|.
+name|file
+operator|.
+name|Path
 import|;
 end_import
 
@@ -206,20 +220,6 @@ name|IOUtils
 import|;
 end_import
 
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|util
-operator|.
-name|TestUtil
-import|;
-end_import
-
 begin_comment
 comment|/**  * JUnit testcase to test RAMDirectory. RAMDirectory itself is used in many testcases,  * but not one of them uses an different constructor other than the default constructor.  */
 end_comment
@@ -239,7 +239,7 @@ specifier|protected
 name|Directory
 name|getDirectory
 parameter_list|(
-name|File
+name|Path
 name|path
 parameter_list|)
 block|{
@@ -260,13 +260,13 @@ literal|500
 decl_stmt|;
 DECL|method|buildIndex
 specifier|private
-name|File
+name|Path
 name|buildIndex
 parameter_list|()
 throws|throws
 name|IOException
 block|{
-name|File
+name|Path
 name|path
 init|=
 name|createTempDir
@@ -403,7 +403,7 @@ parameter_list|()
 throws|throws
 name|Throwable
 block|{
-name|File
+name|Path
 name|path
 init|=
 name|createTempDir
@@ -418,21 +418,17 @@ literal|null
 decl_stmt|;
 try|try
 block|{
-name|path
+name|Files
 operator|.
-name|mkdirs
-argument_list|()
-expr_stmt|;
-operator|new
-name|File
+name|createDirectory
 argument_list|(
 name|path
-argument_list|,
+operator|.
+name|resolve
+argument_list|(
 literal|"subdir"
 argument_list|)
-operator|.
-name|mkdirs
-argument_list|()
+argument_list|)
 expr_stmt|;
 name|fsDir
 operator|=
@@ -490,7 +486,7 @@ parameter_list|()
 throws|throws
 name|IOException
 block|{
-name|File
+name|Path
 name|indexDir
 init|=
 name|buildIndex
@@ -648,7 +644,7 @@ name|IOException
 throws|,
 name|InterruptedException
 block|{
-name|File
+name|Path
 name|indexDir
 init|=
 name|buildIndex

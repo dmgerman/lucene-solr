@@ -6625,6 +6625,9 @@ operator|.
 name|rm
 argument_list|(
 name|dir
+operator|.
+name|toPath
+argument_list|()
 argument_list|)
 expr_stmt|;
 return|return

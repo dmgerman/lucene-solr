@@ -336,6 +336,9 @@ name|dataDir1
 init|=
 name|createTempDir
 argument_list|()
+operator|.
+name|toFile
+argument_list|()
 decl_stmt|;
 comment|// setup datadirs
 name|System
@@ -353,6 +356,9 @@ expr_stmt|;
 name|dataDir2
 operator|=
 name|createTempDir
+argument_list|()
+operator|.
+name|toFile
 argument_list|()
 expr_stmt|;
 name|System

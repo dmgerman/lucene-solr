@@ -26,7 +26,7 @@ name|java
 operator|.
 name|io
 operator|.
-name|File
+name|PrintStream
 import|;
 end_import
 
@@ -34,9 +34,23 @@ begin_import
 import|import
 name|java
 operator|.
-name|io
+name|nio
 operator|.
-name|PrintStream
+name|file
+operator|.
+name|Files
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
+name|nio
+operator|.
+name|file
+operator|.
+name|Path
 import|;
 end_import
 
@@ -1063,15 +1077,14 @@ name|Exception
 block|{
 comment|// DocMaker did not close its ContentSource if resetInputs was called twice,
 comment|// leading to a file handle leak.
-name|File
+name|Path
 name|f
 init|=
-operator|new
-name|File
-argument_list|(
 name|getWorkDir
 argument_list|()
-argument_list|,
+operator|.
+name|resolve
+argument_list|(
 literal|"docMakerLeak.txt"
 argument_list|)
 decl_stmt|;
@@ -1081,7 +1094,14 @@ init|=
 operator|new
 name|PrintStream
 argument_list|(
+name|Files
+operator|.
+name|newOutputStream
+argument_list|(
 name|f
+argument_list|)
+argument_list|,
+literal|true
 argument_list|,
 name|IOUtils
 operator|.
@@ -1122,7 +1142,10 @@ literal|"docs.file"
 argument_list|,
 name|f
 operator|.
-name|getAbsolutePath
+name|toAbsolutePath
+argument_list|()
+operator|.
+name|toString
 argument_list|()
 argument_list|)
 expr_stmt|;

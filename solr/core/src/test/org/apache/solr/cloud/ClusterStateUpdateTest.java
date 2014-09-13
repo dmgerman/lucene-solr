@@ -395,6 +395,9 @@ name|solrHomeDirectory
 operator|=
 name|createTempDir
 argument_list|()
+operator|.
+name|toFile
+argument_list|()
 expr_stmt|;
 name|System
 operator|.
@@ -479,6 +482,9 @@ name|createTempDir
 argument_list|(
 literal|"zkData"
 argument_list|)
+operator|.
+name|toFile
+argument_list|()
 decl_stmt|;
 name|zkDir
 operator|=

@@ -1749,6 +1749,9 @@ name|homeDir
 operator|=
 name|createTempDir
 argument_list|()
+operator|.
+name|toFile
+argument_list|()
 expr_stmt|;
 name|initCoreDataDir
 operator|=
@@ -1893,6 +1896,9 @@ operator|.
 name|rm
 argument_list|(
 name|homeDir
+operator|.
+name|toPath
+argument_list|()
 argument_list|)
 expr_stmt|;
 block|}

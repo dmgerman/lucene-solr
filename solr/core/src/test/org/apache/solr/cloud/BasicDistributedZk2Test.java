@@ -914,6 +914,9 @@ argument_list|(
 name|ONE_NODE_COLLECTION
 argument_list|)
 operator|.
+name|toFile
+argument_list|()
+operator|.
 name|getAbsolutePath
 argument_list|()
 argument_list|)
@@ -2192,6 +2195,9 @@ name|location
 init|=
 name|createTempDir
 argument_list|()
+operator|.
+name|toFile
+argument_list|()
 decl_stmt|;
 name|params
 operator|.
@@ -2549,6 +2555,9 @@ operator|.
 name|rm
 argument_list|(
 name|snapDir
+operator|.
+name|toPath
+argument_list|()
 argument_list|)
 expr_stmt|;
 block|}

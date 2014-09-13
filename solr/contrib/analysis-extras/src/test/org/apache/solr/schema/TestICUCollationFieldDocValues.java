@@ -357,6 +357,9 @@ name|tmpFile
 init|=
 name|createTempDir
 argument_list|()
+operator|.
+name|toFile
+argument_list|()
 decl_stmt|;
 comment|// make data and conf dirs
 operator|new

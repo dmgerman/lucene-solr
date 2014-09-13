@@ -459,7 +459,7 @@ name|assertVocabulary
 argument_list|(
 name|analyzer
 argument_list|,
-name|getDataFile
+name|getDataPath
 argument_list|(
 literal|"ptlighttestdata.zip"
 argument_list|)

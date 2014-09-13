@@ -42,16 +42,6 @@ name|java
 operator|.
 name|io
 operator|.
-name|File
-import|;
-end_import
-
-begin_import
-import|import
-name|java
-operator|.
-name|io
-operator|.
 name|IOException
 import|;
 end_import
@@ -63,6 +53,18 @@ operator|.
 name|io
 operator|.
 name|PrintStream
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
+name|nio
+operator|.
+name|file
+operator|.
+name|Path
 import|;
 end_import
 
@@ -1054,7 +1056,7 @@ name|callback
 decl_stmt|;
 DECL|field|clientWorkDir
 specifier|private
-name|File
+name|Path
 name|clientWorkDir
 decl_stmt|;
 DECL|field|VERSION_ID

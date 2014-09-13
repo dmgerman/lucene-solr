@@ -2804,6 +2804,9 @@ init|=
 name|createTempDir
 argument_list|()
 operator|.
+name|toFile
+argument_list|()
+operator|.
 name|getAbsolutePath
 argument_list|()
 decl_stmt|;
@@ -3919,6 +3922,9 @@ init|=
 name|createTempDir
 argument_list|()
 operator|.
+name|toFile
+argument_list|()
+operator|.
 name|getAbsolutePath
 argument_list|()
 decl_stmt|;
@@ -3984,6 +3990,9 @@ expr_stmt|;
 name|dataDir
 operator|=
 name|createTempDir
+argument_list|()
+operator|.
+name|toFile
 argument_list|()
 operator|.
 name|getAbsolutePath
@@ -4379,6 +4388,9 @@ name|String
 name|dataDir
 init|=
 name|createTempDir
+argument_list|()
+operator|.
+name|toFile
 argument_list|()
 operator|.
 name|getAbsolutePath

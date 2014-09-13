@@ -22,7 +22,7 @@ name|java
 operator|.
 name|io
 operator|.
-name|File
+name|IOException
 import|;
 end_import
 
@@ -30,9 +30,11 @@ begin_import
 import|import
 name|java
 operator|.
-name|io
+name|nio
 operator|.
-name|IOException
+name|file
+operator|.
+name|Path
 import|;
 end_import
 
@@ -213,7 +215,7 @@ extends|extends
 name|LuceneTestCase
 block|{
 DECL|field|path
-name|File
+name|Path
 name|path
 decl_stmt|;
 comment|/**    * LUCENE-3627: This test fails.    */

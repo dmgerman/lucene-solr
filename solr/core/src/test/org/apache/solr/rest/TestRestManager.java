@@ -908,6 +908,9 @@ name|createTempDir
 argument_list|(
 literal|"testRestManager"
 argument_list|)
+operator|.
+name|toFile
+argument_list|()
 decl_stmt|;
 name|assertTrue
 argument_list|(

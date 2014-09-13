@@ -254,7 +254,7 @@ name|assertVocabulary
 argument_list|(
 name|a
 argument_list|,
-name|getDataFile
+name|getDataPath
 argument_list|(
 literal|"porterTestData.zip"
 argument_list|)

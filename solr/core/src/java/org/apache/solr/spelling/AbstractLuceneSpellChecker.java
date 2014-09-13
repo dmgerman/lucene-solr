@@ -1526,6 +1526,9 @@ name|File
 argument_list|(
 name|indexDir
 argument_list|)
+operator|.
+name|toPath
+argument_list|()
 argument_list|)
 expr_stmt|;
 block|}

@@ -22,7 +22,7 @@ name|java
 operator|.
 name|io
 operator|.
-name|File
+name|IOException
 import|;
 end_import
 
@@ -30,9 +30,11 @@ begin_import
 import|import
 name|java
 operator|.
-name|io
+name|nio
 operator|.
-name|IOException
+name|file
+operator|.
+name|Path
 import|;
 end_import
 
@@ -156,10 +158,6 @@ name|TestMultiMMap
 extends|extends
 name|BaseDirectoryTestCase
 block|{
-DECL|field|workDir
-name|File
-name|workDir
-decl_stmt|;
 annotation|@
 name|Override
 DECL|method|getDirectory
@@ -167,7 +165,7 @@ specifier|protected
 name|Directory
 name|getDirectory
 parameter_list|(
-name|File
+name|Path
 name|path
 parameter_list|)
 throws|throws
@@ -2470,7 +2468,7 @@ parameter_list|)
 throws|throws
 name|Exception
 block|{
-name|File
+name|Path
 name|path
 init|=
 name|createTempDir

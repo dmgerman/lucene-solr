@@ -32,16 +32,6 @@ name|java
 operator|.
 name|io
 operator|.
-name|File
-import|;
-end_import
-
-begin_import
-import|import
-name|java
-operator|.
-name|io
-operator|.
 name|IOException
 import|;
 end_import
@@ -75,6 +65,18 @@ operator|.
 name|charset
 operator|.
 name|StandardCharsets
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
+name|nio
+operator|.
+name|file
+operator|.
+name|Path
 import|;
 end_import
 
@@ -351,7 +353,7 @@ parameter_list|(
 name|Analyzer
 name|a
 parameter_list|,
-name|File
+name|Path
 name|zipFile
 parameter_list|,
 name|String
@@ -370,6 +372,9 @@ operator|new
 name|ZipFile
 argument_list|(
 name|zipFile
+operator|.
+name|toFile
+argument_list|()
 argument_list|)
 decl_stmt|;
 name|InputStream
@@ -437,7 +442,7 @@ parameter_list|(
 name|Analyzer
 name|a
 parameter_list|,
-name|File
+name|Path
 name|zipFile
 parameter_list|,
 name|String
@@ -453,6 +458,9 @@ operator|new
 name|ZipFile
 argument_list|(
 name|zipFile
+operator|.
+name|toFile
+argument_list|()
 argument_list|)
 decl_stmt|;
 name|InputStream

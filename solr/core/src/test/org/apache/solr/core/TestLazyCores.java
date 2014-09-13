@@ -414,6 +414,9 @@ name|solrHomeDirectory
 operator|=
 name|createTempDir
 argument_list|()
+operator|.
+name|toFile
+argument_list|()
 expr_stmt|;
 for|for
 control|(
@@ -3477,6 +3480,9 @@ block|{
 name|solrHomeDirectory
 operator|=
 name|createTempDir
+argument_list|()
+operator|.
+name|toFile
 argument_list|()
 expr_stmt|;
 comment|// Don't pollute the log with exception traces when they're expected.

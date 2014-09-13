@@ -24,7 +24,7 @@ name|java
 operator|.
 name|io
 operator|.
-name|File
+name|IOException
 import|;
 end_import
 
@@ -32,9 +32,11 @@ begin_import
 import|import
 name|java
 operator|.
-name|io
+name|nio
 operator|.
-name|IOException
+name|file
+operator|.
+name|Path
 import|;
 end_import
 
@@ -396,7 +398,7 @@ argument_list|)
 decl_stmt|;
 DECL|field|clientWorkDir
 specifier|private
-name|File
+name|Path
 name|clientWorkDir
 decl_stmt|;
 DECL|field|serverReplicator

@@ -646,6 +646,9 @@ literal|"instance-"
 operator|+
 name|i
 argument_list|)
+operator|.
+name|toFile
+argument_list|()
 argument_list|,
 literal|0
 argument_list|)
@@ -2024,6 +2027,9 @@ operator|.
 name|rm
 argument_list|(
 name|homeDir
+operator|.
+name|toPath
+argument_list|()
 argument_list|)
 expr_stmt|;
 block|}

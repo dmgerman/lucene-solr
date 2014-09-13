@@ -26,16 +26,6 @@ name|java
 operator|.
 name|io
 operator|.
-name|File
-import|;
-end_import
-
-begin_import
-import|import
-name|java
-operator|.
-name|io
-operator|.
 name|IOException
 import|;
 end_import
@@ -47,6 +37,18 @@ operator|.
 name|io
 operator|.
 name|StringReader
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
+name|nio
+operator|.
+name|file
+operator|.
+name|Path
 import|;
 end_import
 
@@ -837,7 +839,7 @@ argument_list|)
 argument_list|)
 block|,     }
 decl_stmt|;
-name|File
+name|Path
 name|tempDir
 init|=
 name|createTempDir
@@ -1722,7 +1724,7 @@ argument_list|)
 argument_list|)
 block|,     }
 decl_stmt|;
-name|File
+name|Path
 name|tempDir
 init|=
 name|createTempDir
@@ -3936,7 +3938,7 @@ throws|throws
 name|Exception
 block|{
 specifier|final
-name|File
+name|Path
 name|tempDir
 init|=
 name|createTempDir
@@ -6312,7 +6314,7 @@ argument_list|,
 literal|false
 argument_list|)
 decl_stmt|;
-name|File
+name|Path
 name|tempDir
 init|=
 name|createTempDir
@@ -6784,7 +6786,7 @@ argument_list|)
 argument_list|)
 block|}
 decl_stmt|;
-name|File
+name|Path
 name|tempDir
 init|=
 name|createTempDir

@@ -20,9 +20,11 @@ begin_import
 import|import
 name|java
 operator|.
-name|io
+name|nio
 operator|.
-name|File
+name|file
+operator|.
+name|Path
 import|;
 end_import
 
@@ -183,7 +185,7 @@ throws|throws
 name|Exception
 block|{
 specifier|final
-name|File
+name|Path
 name|tmpDir
 init|=
 name|createTempDir

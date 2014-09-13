@@ -24,16 +24,6 @@ name|java
 operator|.
 name|io
 operator|.
-name|File
-import|;
-end_import
-
-begin_import
-import|import
-name|java
-operator|.
-name|io
-operator|.
 name|IOException
 import|;
 end_import
@@ -57,6 +47,30 @@ operator|.
 name|charset
 operator|.
 name|StandardCharsets
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
+name|nio
+operator|.
+name|file
+operator|.
+name|Files
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
+name|nio
+operator|.
+name|file
+operator|.
+name|Path
 import|;
 end_import
 
@@ -253,14 +267,14 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
-comment|/**    * Creates a CharArraySet from a file.    *     * @param stopwords    *          the stopwords file to load    * @return a CharArraySet containing the distinct stopwords from the given    *         file    * @throws IOException    *           if loading the stopwords throws an {@link IOException}    */
+comment|/**    * Creates a CharArraySet from a path.    *     * @param stopwords    *          the stopwords file to load    * @return a CharArraySet containing the distinct stopwords from the given    *         file    * @throws IOException    *           if loading the stopwords throws an {@link IOException}    */
 DECL|method|loadStopwordSet
 specifier|protected
 specifier|static
 name|CharArraySet
 name|loadStopwordSet
 parameter_list|(
-name|File
+name|Path
 name|stopwords
 parameter_list|)
 throws|throws
@@ -275,9 +289,9 @@ try|try
 block|{
 name|reader
 operator|=
-name|IOUtils
+name|Files
 operator|.
-name|getDecodingReader
+name|newBufferedReader
 argument_list|(
 name|stopwords
 argument_list|,

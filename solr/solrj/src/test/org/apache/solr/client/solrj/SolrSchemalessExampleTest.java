@@ -255,6 +255,9 @@ name|tempSolrHome
 init|=
 name|createTempDir
 argument_list|()
+operator|.
+name|toFile
+argument_list|()
 decl_stmt|;
 comment|// Schemaless renames schema.xml -> schema.xml.bak, and creates + modifies conf/managed-schema,
 comment|// which violates the test security manager's rules, which disallow writes outside the build dir,

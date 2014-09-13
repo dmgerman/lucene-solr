@@ -150,8 +150,20 @@ name|IOException
 import|;
 end_import
 
+begin_import
+import|import
+name|java
+operator|.
+name|nio
+operator|.
+name|file
+operator|.
+name|Path
+import|;
+end_import
+
 begin_comment
-comment|/**  * Directly provide MMapDirectory instead of relying on {@link org.apache.lucene.store.FSDirectory#open}.  *<p>  * Can set the following parameters:  *<ul>  *<li>unmap -- See {@link MMapDirectory#setUseUnmap(boolean)}</li>  *<li>maxChunkSize -- The Max chunk size.  See {@link MMapDirectory#MMapDirectory(File, LockFactory, int)}</li>  *</ul>  *  **/
+comment|/**  * Directly provide MMapDirectory instead of relying on {@link org.apache.lucene.store.FSDirectory#open}.  *<p>  * Can set the following parameters:  *<ul>  *<li>unmap -- See {@link MMapDirectory#setUseUnmap(boolean)}</li>  *<li>maxChunkSize -- The Max chunk size.  See {@link MMapDirectory#MMapDirectory(Path, LockFactory, int)}</li>  *</ul>  *  **/
 end_comment
 
 begin_class
@@ -282,6 +294,9 @@ name|File
 argument_list|(
 name|path
 argument_list|)
+operator|.
+name|toPath
+argument_list|()
 argument_list|,
 literal|null
 argument_list|,

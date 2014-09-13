@@ -170,6 +170,9 @@ name|createTempDir
 argument_list|(
 name|dirSuffix
 argument_list|)
+operator|.
+name|toFile
+argument_list|()
 expr_stmt|;
 block|}
 annotation|@

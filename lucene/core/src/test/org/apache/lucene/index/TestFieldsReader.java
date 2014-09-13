@@ -40,6 +40,18 @@ begin_import
 import|import
 name|java
 operator|.
+name|nio
+operator|.
+name|file
+operator|.
+name|Path
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
 name|util
 operator|.
 name|*
@@ -799,7 +811,7 @@ DECL|method|FaultyFSDirectory
 specifier|public
 name|FaultyFSDirectory
 parameter_list|(
-name|File
+name|Path
 name|dir
 parameter_list|)
 block|{
@@ -1300,7 +1312,7 @@ parameter_list|()
 throws|throws
 name|Throwable
 block|{
-name|File
+name|Path
 name|indexDir
 init|=
 name|createTempDir

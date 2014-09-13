@@ -269,6 +269,9 @@ name|createTempDir
 argument_list|(
 literal|"TestCSVLoader"
 argument_list|)
+operator|.
+name|toFile
+argument_list|()
 decl_stmt|;
 name|file
 operator|=

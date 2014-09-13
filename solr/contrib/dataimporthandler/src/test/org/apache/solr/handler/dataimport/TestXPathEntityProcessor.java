@@ -164,6 +164,9 @@ name|tmpdir
 init|=
 name|createTempDir
 argument_list|()
+operator|.
+name|toFile
+argument_list|()
 decl_stmt|;
 name|createFile
 argument_list|(
@@ -2735,6 +2738,9 @@ name|File
 name|tmpdir
 init|=
 name|createTempDir
+argument_list|()
+operator|.
+name|toFile
 argument_list|()
 decl_stmt|;
 name|AbstractDataImportHandlerTestCase

@@ -22,7 +22,31 @@ name|java
 operator|.
 name|io
 operator|.
-name|File
+name|IOException
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
+name|nio
+operator|.
+name|file
+operator|.
+name|Files
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
+name|nio
+operator|.
+name|file
+operator|.
+name|Path
 import|;
 end_import
 
@@ -42,7 +66,7 @@ block|{
 comment|/**    * Directory for the lock files.    */
 DECL|field|lockDir
 specifier|protected
-name|File
+name|Path
 name|lockDir
 init|=
 literal|null
@@ -54,9 +78,11 @@ specifier|final
 name|void
 name|setLockDir
 parameter_list|(
-name|File
+name|Path
 name|lockDir
 parameter_list|)
+throws|throws
+name|IOException
 block|{
 if|if
 condition|(
@@ -73,6 +99,21 @@ argument_list|(
 literal|"You can set the lock directory for this factory only once."
 argument_list|)
 throw|;
+if|if
+condition|(
+name|lockDir
+operator|!=
+literal|null
+condition|)
+block|{
+name|Files
+operator|.
+name|createDirectories
+argument_list|(
+name|lockDir
+argument_list|)
+expr_stmt|;
+block|}
 name|this
 operator|.
 name|lockDir
@@ -83,7 +124,7 @@ block|}
 comment|/**    * Retrieve the lock directory.    */
 DECL|method|getLockDir
 specifier|public
-name|File
+name|Path
 name|getLockDir
 parameter_list|()
 block|{

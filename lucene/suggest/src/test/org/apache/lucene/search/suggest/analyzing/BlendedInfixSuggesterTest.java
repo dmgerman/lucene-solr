@@ -26,7 +26,7 @@ name|java
 operator|.
 name|io
 operator|.
-name|File
+name|IOException
 import|;
 end_import
 
@@ -34,9 +34,11 @@ begin_import
 import|import
 name|java
 operator|.
-name|io
+name|nio
 operator|.
-name|IOException
+name|file
+operator|.
+name|Path
 import|;
 end_import
 
@@ -217,7 +219,7 @@ name|payload
 argument_list|)
 block|}
 decl_stmt|;
-name|File
+name|Path
 name|tempDir
 init|=
 name|createTempDir
@@ -427,7 +429,7 @@ name|pl
 argument_list|)
 block|}
 decl_stmt|;
-name|File
+name|Path
 name|tempDir
 init|=
 name|createTempDir
@@ -747,7 +749,7 @@ name|ret
 argument_list|)
 block|,     }
 decl_stmt|;
-name|File
+name|Path
 name|tempDir
 init|=
 name|createTempDir
@@ -1069,7 +1071,7 @@ name|ret
 argument_list|)
 block|,     }
 decl_stmt|;
-name|File
+name|Path
 name|tempDir
 init|=
 name|createTempDir

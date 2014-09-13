@@ -46,36 +46,6 @@ name|java
 operator|.
 name|io
 operator|.
-name|File
-import|;
-end_import
-
-begin_import
-import|import
-name|java
-operator|.
-name|io
-operator|.
-name|FileInputStream
-import|;
-end_import
-
-begin_import
-import|import
-name|java
-operator|.
-name|io
-operator|.
-name|FileOutputStream
-import|;
-end_import
-
-begin_import
-import|import
-name|java
-operator|.
-name|io
-operator|.
 name|IOException
 import|;
 end_import
@@ -97,6 +67,30 @@ operator|.
 name|io
 operator|.
 name|OutputStream
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
+name|nio
+operator|.
+name|file
+operator|.
+name|Files
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
+name|nio
+operator|.
+name|file
+operator|.
+name|Path
 import|;
 end_import
 
@@ -421,7 +415,7 @@ specifier|static
 name|InputStream
 name|inputStream
 parameter_list|(
-name|File
+name|Path
 name|file
 parameter_list|)
 throws|throws
@@ -435,8 +429,9 @@ init|=
 operator|new
 name|BufferedInputStream
 argument_list|(
-operator|new
-name|FileInputStream
+name|Files
+operator|.
+name|newInputStream
 argument_list|(
 name|file
 argument_list|)
@@ -469,7 +464,7 @@ specifier|static
 name|Type
 name|fileType
 parameter_list|(
-name|File
+name|Path
 name|file
 parameter_list|)
 block|{
@@ -483,7 +478,10 @@ name|fileName
 init|=
 name|file
 operator|.
-name|getName
+name|getFileName
+argument_list|()
+operator|.
+name|toString
 argument_list|()
 decl_stmt|;
 name|int
@@ -541,7 +539,7 @@ block|}
 end_function
 
 begin_comment
-comment|/**    * Returns an {@link OutputStream} over the requested file, identifying    * the appropriate {@link OutputStream} instance similar to {@link #inputStream(File)}.    */
+comment|/**    * Returns an {@link OutputStream} over the requested file, identifying    * the appropriate {@link OutputStream} instance similar to {@link #inputStream(Path)}.    */
 end_comment
 
 begin_function
@@ -551,7 +549,7 @@ specifier|static
 name|OutputStream
 name|outputStream
 parameter_list|(
-name|File
+name|Path
 name|file
 parameter_list|)
 throws|throws
@@ -565,8 +563,9 @@ init|=
 operator|new
 name|BufferedOutputStream
 argument_list|(
-operator|new
-name|FileOutputStream
+name|Files
+operator|.
+name|newOutputStream
 argument_list|(
 name|file
 argument_list|)

@@ -162,6 +162,9 @@ name|tmpdir
 init|=
 name|createTempDir
 argument_list|()
+operator|.
+name|toFile
+argument_list|()
 decl_stmt|;
 name|createFile
 argument_list|(
@@ -363,6 +366,9 @@ argument_list|,
 literal|"tmp"
 argument_list|,
 name|createTempDir
+argument_list|()
+operator|.
+name|toFile
 argument_list|()
 argument_list|)
 decl_stmt|;
@@ -904,6 +910,9 @@ name|tmpdir
 init|=
 name|createTempDir
 argument_list|()
+operator|.
+name|toFile
+argument_list|()
 decl_stmt|;
 name|createFile
 argument_list|(
@@ -1204,6 +1213,9 @@ name|File
 name|tmpdir
 init|=
 name|createTempDir
+argument_list|()
+operator|.
+name|toFile
 argument_list|()
 decl_stmt|;
 name|File

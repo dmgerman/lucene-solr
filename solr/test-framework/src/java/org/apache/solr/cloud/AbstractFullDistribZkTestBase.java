@@ -1874,6 +1874,9 @@ name|controlJettyDir
 init|=
 name|createTempDir
 argument_list|()
+operator|.
+name|toFile
+argument_list|()
 decl_stmt|;
 name|setupJettySolrHome
 argument_list|(
@@ -2468,6 +2471,9 @@ name|jettyDir
 init|=
 name|createTempDir
 argument_list|()
+operator|.
+name|toFile
+argument_list|()
 decl_stmt|;
 name|jettyDir
 operator|.
@@ -2843,6 +2849,9 @@ name|createTempDir
 argument_list|(
 literal|"jetty"
 argument_list|)
+operator|.
+name|toFile
+argument_list|()
 decl_stmt|;
 name|jettyDir
 operator|.

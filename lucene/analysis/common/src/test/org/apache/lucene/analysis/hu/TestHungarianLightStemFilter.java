@@ -30,16 +30,6 @@ end_import
 
 begin_import
 import|import
-name|java
-operator|.
-name|io
-operator|.
-name|Reader
-import|;
-end_import
-
-begin_import
-import|import
 name|org
 operator|.
 name|apache
@@ -245,7 +235,7 @@ name|assertVocabulary
 argument_list|(
 name|analyzer
 argument_list|,
-name|getDataFile
+name|getDataPath
 argument_list|(
 literal|"hulighttestdata.zip"
 argument_list|)

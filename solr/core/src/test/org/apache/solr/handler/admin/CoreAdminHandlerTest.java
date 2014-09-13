@@ -416,6 +416,9 @@ argument_list|(
 name|getCoreName
 argument_list|()
 argument_list|)
+operator|.
+name|toFile
+argument_list|()
 decl_stmt|;
 name|String
 name|coreName
@@ -801,6 +804,9 @@ name|File
 name|workDir
 init|=
 name|createTempDir
+argument_list|()
+operator|.
+name|toFile
 argument_list|()
 decl_stmt|;
 specifier|final

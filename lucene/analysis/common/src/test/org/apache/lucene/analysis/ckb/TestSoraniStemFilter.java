@@ -495,7 +495,7 @@ name|assertVocabulary
 argument_list|(
 name|a
 argument_list|,
-name|getDataFile
+name|getDataPath
 argument_list|(
 literal|"ckbtestdata.zip"
 argument_list|)

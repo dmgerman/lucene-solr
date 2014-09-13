@@ -22,7 +22,7 @@ name|java
 operator|.
 name|io
 operator|.
-name|File
+name|IOException
 import|;
 end_import
 
@@ -30,9 +30,23 @@ begin_import
 import|import
 name|java
 operator|.
-name|io
+name|nio
 operator|.
-name|IOException
+name|file
+operator|.
+name|NoSuchFileException
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
+name|nio
+operator|.
+name|file
+operator|.
+name|Path
 import|;
 end_import
 
@@ -134,6 +148,20 @@ name|lucene
 operator|.
 name|index
 operator|.
+name|IndexNotFoundException
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|index
+operator|.
 name|IndexReader
 import|;
 end_import
@@ -191,20 +219,6 @@ operator|.
 name|util
 operator|.
 name|IOUtils
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|util
-operator|.
-name|TestUtil
 import|;
 end_import
 
@@ -576,7 +590,7 @@ parameter_list|)
 throws|throws
 name|IOException
 block|{
-name|File
+name|Path
 name|primDir
 init|=
 name|createTempDir
@@ -584,7 +598,7 @@ argument_list|(
 literal|"foo"
 argument_list|)
 decl_stmt|;
-name|File
+name|Path
 name|secondDir
 init|=
 name|createTempDir
@@ -608,10 +622,10 @@ specifier|private
 name|Directory
 name|newFSSwitchDirectory
 parameter_list|(
-name|File
+name|Path
 name|aDir
 parameter_list|,
-name|File
+name|Path
 name|bDir
 parameter_list|,
 name|Set
@@ -664,7 +678,7 @@ parameter_list|()
 throws|throws
 name|Throwable
 block|{
-name|File
+name|Path
 name|primDir
 init|=
 name|createTempDir
@@ -672,7 +686,7 @@ argument_list|(
 literal|"foo"
 argument_list|)
 decl_stmt|;
-name|File
+name|Path
 name|secondDir
 init|=
 name|createTempDir
@@ -724,7 +738,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
-name|NoSuchDirectoryException
+name|IndexNotFoundException
 name|nsde
 parameter_list|)
 block|{
@@ -743,7 +757,7 @@ specifier|protected
 name|Directory
 name|getDirectory
 parameter_list|(
-name|File
+name|Path
 name|path
 parameter_list|)
 throws|throws

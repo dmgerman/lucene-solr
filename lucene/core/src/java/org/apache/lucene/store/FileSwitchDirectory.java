@@ -42,6 +42,18 @@ begin_import
 import|import
 name|java
 operator|.
+name|nio
+operator|.
+name|file
+operator|.
+name|NoSuchFileException
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
 name|util
 operator|.
 name|ArrayList
@@ -264,8 +276,8 @@ decl_stmt|;
 comment|// LUCENE-3380: either or both of our dirs could be FSDirs,
 comment|// but if one underlying delegate is an FSDir and mkdirs() has not
 comment|// yet been called, because so far everything is written to the other,
-comment|// in this case, we don't want to throw a NoSuchDirectoryException
-name|NoSuchDirectoryException
+comment|// in this case, we don't want to throw a NoSuchFileException
+name|NoSuchFileException
 name|exc
 init|=
 literal|null
@@ -294,7 +306,7 @@ block|}
 block|}
 catch|catch
 parameter_list|(
-name|NoSuchDirectoryException
+name|NoSuchFileException
 name|e
 parameter_list|)
 block|{
@@ -327,11 +339,11 @@ block|}
 block|}
 catch|catch
 parameter_list|(
-name|NoSuchDirectoryException
+name|NoSuchFileException
 name|e
 parameter_list|)
 block|{
-comment|// we got NoSuchDirectoryException from both dirs
+comment|// we got NoSuchFileException from both dirs
 comment|// rethrow the first.
 if|if
 condition|(
@@ -344,7 +356,7 @@ throw|throw
 name|exc
 throw|;
 block|}
-comment|// we got NoSuchDirectoryException from the secondary,
+comment|// we got NoSuchFileException from the secondary,
 comment|// and the primary is empty.
 if|if
 condition|(
@@ -359,7 +371,7 @@ name|e
 throw|;
 block|}
 block|}
-comment|// we got NoSuchDirectoryException from the primary,
+comment|// we got NoSuchFileException from the primary,
 comment|// and the secondary is empty.
 if|if
 condition|(

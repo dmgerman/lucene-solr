@@ -190,7 +190,7 @@ name|java
 operator|.
 name|io
 operator|.
-name|File
+name|IOException
 import|;
 end_import
 
@@ -198,9 +198,11 @@ begin_import
 import|import
 name|java
 operator|.
-name|io
+name|nio
 operator|.
-name|IOException
+name|file
+operator|.
+name|Path
 import|;
 end_import
 
@@ -264,7 +266,7 @@ operator|.
 name|setUp
 argument_list|()
 expr_stmt|;
-name|File
+name|Path
 name|file
 init|=
 name|createTempDir

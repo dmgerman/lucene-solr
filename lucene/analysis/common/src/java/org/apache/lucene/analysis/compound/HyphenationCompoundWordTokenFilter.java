@@ -304,36 +304,6 @@ argument_list|)
 argument_list|)
 return|;
 block|}
-comment|/**    * Create a hyphenator tree    *    * @param hyphenationFile the file of the XML grammar to load    * @return An object representing the hyphenation patterns    * @throws java.io.IOException If there is a low-level I/O error.    */
-DECL|method|getHyphenationTree
-specifier|public
-specifier|static
-name|HyphenationTree
-name|getHyphenationTree
-parameter_list|(
-name|File
-name|hyphenationFile
-parameter_list|)
-throws|throws
-name|IOException
-block|{
-return|return
-name|getHyphenationTree
-argument_list|(
-operator|new
-name|InputSource
-argument_list|(
-name|hyphenationFile
-operator|.
-name|toURI
-argument_list|()
-operator|.
-name|toASCIIString
-argument_list|()
-argument_list|)
-argument_list|)
-return|;
-block|}
 comment|/**    * Create a hyphenator tree    *    * @param hyphenationSource the InputSource pointing to the XML grammar    * @return An object representing the hyphenation patterns    * @throws java.io.IOException If there is a low-level I/O error.    */
 DECL|method|getHyphenationTree
 specifier|public

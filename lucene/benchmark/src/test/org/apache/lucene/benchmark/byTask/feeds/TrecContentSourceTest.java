@@ -36,16 +36,6 @@ name|java
 operator|.
 name|io
 operator|.
-name|File
-import|;
-end_import
-
-begin_import
-import|import
-name|java
-operator|.
-name|io
-operator|.
 name|IOException
 import|;
 end_import
@@ -57,6 +47,18 @@ operator|.
 name|io
 operator|.
 name|StringReader
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
+name|nio
+operator|.
+name|file
+operator|.
+name|Path
 import|;
 end_import
 
@@ -173,20 +175,6 @@ operator|.
 name|util
 operator|.
 name|LuceneTestCase
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|util
-operator|.
-name|TestUtil
 import|;
 end_import
 
@@ -1233,7 +1221,7 @@ parameter_list|()
 throws|throws
 name|Exception
 block|{
-name|File
+name|Path
 name|dataDir
 init|=
 name|createTempDir
@@ -1245,7 +1233,7 @@ name|TestUtil
 operator|.
 name|unzip
 argument_list|(
-name|getDataFile
+name|getDataPath
 argument_list|(
 literal|"trecdocs.zip"
 argument_list|)
@@ -1311,7 +1299,10 @@ literal|"docs.dir"
 argument_list|,
 name|dataDir
 operator|.
-name|getCanonicalPath
+name|toRealPath
+argument_list|()
+operator|.
+name|toString
 argument_list|()
 operator|.
 name|replace

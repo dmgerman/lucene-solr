@@ -140,6 +140,9 @@ operator|.
 name|getSimpleName
 argument_list|()
 argument_list|)
+operator|.
+name|toFile
+argument_list|()
 decl_stmt|;
 name|createFile
 argument_list|(

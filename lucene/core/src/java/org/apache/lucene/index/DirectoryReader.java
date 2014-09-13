@@ -110,20 +110,6 @@ name|Directory
 import|;
 end_import
 
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|store
-operator|.
-name|NoSuchDirectoryException
-import|;
-end_import
-
 begin_comment
 comment|/** DirectoryReader is an implementation of {@link CompositeReader}  that can read indexes in a {@link Directory}.<p>DirectoryReader instances are usually constructed with a call to  one of the static<code>open()</code> methods, e.g. {@link  #open(Directory)}.<p> For efficiency, in this API documents are often referred to via<i>document numbers</i>, non-negative integers which each name a unique  document in the index.  These document numbers are ephemeral -- they may change  as documents are added to and deleted from an index.  Clients should thus not  rely on a given document having the same number between sessions.<p><a name="thread-safety"></a><p><b>NOTE</b>: {@link  IndexReader} instances are completely thread  safe, meaning multiple threads can call any of its methods,  concurrently.  If your application requires external  synchronization, you should<b>not</b> synchronize on the<code>IndexReader</code> instance; use your own  (non-Lucene) objects instead. */
 end_comment
@@ -571,37 +557,12 @@ comment|// resolve the situation manually:
 name|String
 index|[]
 name|files
-decl_stmt|;
-try|try
-block|{
-name|files
-operator|=
+init|=
 name|directory
 operator|.
 name|listAll
 argument_list|()
-expr_stmt|;
-block|}
-catch|catch
-parameter_list|(
-name|NoSuchDirectoryException
-name|nsde
-parameter_list|)
-block|{
-comment|// Directory does not exist --> no index exists
-return|return
-literal|false
-return|;
-block|}
-comment|// Defensive: maybe a Directory impl returns null
-comment|// instead of throwing NoSuchDirectoryException:
-if|if
-condition|(
-name|files
-operator|!=
-literal|null
-condition|)
-block|{
+decl_stmt|;
 name|String
 name|prefix
 init|=
@@ -632,7 +593,6 @@ block|{
 return|return
 literal|true
 return|;
-block|}
 block|}
 block|}
 return|return

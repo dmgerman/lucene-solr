@@ -22,16 +22,6 @@ name|java
 operator|.
 name|io
 operator|.
-name|File
-import|;
-end_import
-
-begin_import
-import|import
-name|java
-operator|.
-name|io
-operator|.
 name|IOException
 import|;
 end_import
@@ -43,6 +33,18 @@ operator|.
 name|io
 operator|.
 name|EOFException
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
+name|nio
+operator|.
+name|file
+operator|.
+name|Path
 import|;
 end_import
 
@@ -119,7 +121,7 @@ DECL|method|WindowsDirectory
 specifier|public
 name|WindowsDirectory
 parameter_list|(
-name|File
+name|Path
 name|path
 parameter_list|,
 name|LockFactory
@@ -141,7 +143,7 @@ DECL|method|WindowsDirectory
 specifier|public
 name|WindowsDirectory
 parameter_list|(
-name|File
+name|Path
 name|path
 parameter_list|)
 throws|throws
@@ -178,12 +180,11 @@ return|return
 operator|new
 name|WindowsIndexInput
 argument_list|(
-operator|new
-name|File
-argument_list|(
 name|getDirectory
 argument_list|()
-argument_list|,
+operator|.
+name|resolve
+argument_list|(
 name|name
 argument_list|)
 argument_list|,
@@ -234,7 +235,7 @@ DECL|method|WindowsIndexInput
 specifier|public
 name|WindowsIndexInput
 parameter_list|(
-name|File
+name|Path
 name|file
 parameter_list|,
 name|int
@@ -248,9 +249,6 @@ argument_list|(
 literal|"WindowsIndexInput(path=\""
 operator|+
 name|file
-operator|.
-name|getPath
-argument_list|()
 operator|+
 literal|"\")"
 argument_list|,
@@ -265,7 +263,7 @@ name|open
 argument_list|(
 name|file
 operator|.
-name|getPath
+name|toString
 argument_list|()
 argument_list|)
 expr_stmt|;

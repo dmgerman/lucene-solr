@@ -381,6 +381,9 @@ name|createTempDir
 argument_list|(
 literal|"json-storage"
 argument_list|)
+operator|.
+name|toFile
+argument_list|()
 decl_stmt|;
 name|SolrResourceLoader
 name|loader

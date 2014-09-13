@@ -731,6 +731,9 @@ name|indexDir
 init|=
 name|createTempDir
 argument_list|()
+operator|.
+name|toFile
+argument_list|()
 decl_stmt|;
 name|spellchecker
 operator|.
@@ -1428,6 +1431,9 @@ name|indexDir
 init|=
 name|createTempDir
 argument_list|()
+operator|.
+name|toFile
+argument_list|()
 decl_stmt|;
 name|indexDir
 operator|.
@@ -1910,6 +1916,9 @@ name|indexDir
 init|=
 name|createTempDir
 argument_list|()
+operator|.
+name|toFile
+argument_list|()
 decl_stmt|;
 name|spellchecker
 operator|.
@@ -2161,6 +2170,9 @@ name|tmpDir
 init|=
 name|createTempDir
 argument_list|()
+operator|.
+name|toFile
+argument_list|()
 decl_stmt|;
 name|File
 name|indexDir
@@ -2198,6 +2210,9 @@ init|=
 name|newFSDirectory
 argument_list|(
 name|altIndexDir
+operator|.
+name|toPath
+argument_list|()
 argument_list|)
 decl_stmt|;
 name|IndexWriter

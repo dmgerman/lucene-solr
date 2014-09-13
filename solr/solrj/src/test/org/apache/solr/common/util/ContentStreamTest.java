@@ -286,6 +286,9 @@ name|File
 argument_list|(
 name|createTempDir
 argument_list|()
+operator|.
+name|toFile
+argument_list|()
 argument_list|,
 literal|"README"
 argument_list|)
@@ -474,6 +477,9 @@ operator|new
 name|File
 argument_list|(
 name|createTempDir
+argument_list|()
+operator|.
+name|toFile
 argument_list|()
 argument_list|,
 literal|"README"

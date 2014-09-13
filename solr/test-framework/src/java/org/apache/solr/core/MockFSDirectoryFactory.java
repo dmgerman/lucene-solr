@@ -38,6 +38,18 @@ end_import
 
 begin_import
 import|import
+name|java
+operator|.
+name|nio
+operator|.
+name|file
+operator|.
+name|Path
+import|;
+end_import
+
+begin_import
+import|import
 name|org
 operator|.
 name|apache
@@ -121,7 +133,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Opens a directory with {@link LuceneTestCase#newFSDirectory(File)}  */
+comment|/**  * Opens a directory with {@link LuceneTestCase#newFSDirectory(Path)}  */
 end_comment
 
 begin_class
@@ -160,6 +172,9 @@ name|File
 argument_list|(
 name|path
 argument_list|)
+operator|.
+name|toPath
+argument_list|()
 argument_list|)
 decl_stmt|;
 comment|// we can't currently do this check because of how

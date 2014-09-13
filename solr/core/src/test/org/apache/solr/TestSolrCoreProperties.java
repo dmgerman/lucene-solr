@@ -192,6 +192,9 @@ name|homeDir
 init|=
 name|createTempDir
 argument_list|()
+operator|.
+name|toFile
+argument_list|()
 decl_stmt|;
 name|File
 name|collDir

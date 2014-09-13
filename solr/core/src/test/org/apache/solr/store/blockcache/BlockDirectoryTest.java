@@ -658,6 +658,9 @@ name|file
 operator|=
 name|createTempDir
 argument_list|()
+operator|.
+name|toFile
+argument_list|()
 expr_stmt|;
 name|FSDirectory
 name|dir
@@ -673,6 +676,9 @@ name|file
 argument_list|,
 literal|"base"
 argument_list|)
+operator|.
+name|toPath
+argument_list|()
 argument_list|)
 decl_stmt|;
 name|mapperCache
@@ -750,6 +756,9 @@ name|file
 argument_list|,
 literal|"normal"
 argument_list|)
+operator|.
+name|toPath
+argument_list|()
 argument_list|)
 decl_stmt|;
 name|String
@@ -936,6 +945,9 @@ name|file
 argument_list|,
 literal|"normal"
 argument_list|)
+operator|.
+name|toPath
+argument_list|()
 argument_list|)
 decl_stmt|;
 name|String
@@ -1566,6 +1578,9 @@ operator|.
 name|rm
 argument_list|(
 name|file
+operator|.
+name|toPath
+argument_list|()
 argument_list|)
 expr_stmt|;
 block|}

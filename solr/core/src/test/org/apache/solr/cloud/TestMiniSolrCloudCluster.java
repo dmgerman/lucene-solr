@@ -621,6 +621,9 @@ literal|null
 argument_list|,
 name|createTempDir
 argument_list|()
+operator|.
+name|toFile
+argument_list|()
 argument_list|,
 name|solrXml
 argument_list|,

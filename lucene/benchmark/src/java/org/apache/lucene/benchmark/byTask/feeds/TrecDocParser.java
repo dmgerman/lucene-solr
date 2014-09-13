@@ -26,7 +26,7 @@ name|java
 operator|.
 name|io
 operator|.
-name|File
+name|IOException
 import|;
 end_import
 
@@ -34,9 +34,11 @@ begin_import
 import|import
 name|java
 operator|.
-name|io
+name|nio
 operator|.
-name|IOException
+name|file
+operator|.
+name|Path
 import|;
 end_import
 
@@ -265,7 +267,7 @@ specifier|static
 name|ParsePathType
 name|pathType
 parameter_list|(
-name|File
+name|Path
 name|f
 parameter_list|)
 block|{
@@ -295,7 +297,10 @@ name|get
 argument_list|(
 name|f
 operator|.
-name|getName
+name|getFileName
+argument_list|()
+operator|.
+name|toString
 argument_list|()
 operator|.
 name|toUpperCase
@@ -321,7 +326,7 @@ name|f
 operator|=
 name|f
 operator|.
-name|getParentFile
+name|getParent
 argument_list|()
 expr_stmt|;
 block|}

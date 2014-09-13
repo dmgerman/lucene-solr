@@ -30,16 +30,6 @@ begin_import
 import|import
 name|java
 operator|.
-name|io
-operator|.
-name|File
-import|;
-end_import
-
-begin_import
-import|import
-name|java
-operator|.
 name|nio
 operator|.
 name|ByteBuffer
@@ -85,6 +75,18 @@ operator|.
 name|FileChannel
 operator|.
 name|MapMode
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
+name|nio
+operator|.
+name|file
+operator|.
+name|Path
 import|;
 end_import
 
@@ -183,7 +185,7 @@ import|;
 end_import
 
 begin_comment
-comment|/** File-based {@link Directory} implementation that uses  *  mmap for reading, and {@link  *  FSDirectory.FSIndexOutput} for writing.  *  *<p><b>NOTE</b>: memory mapping uses up a portion of the  * virtual memory address space in your process equal to the  * size of the file being mapped.  Before using this class,  * be sure your have plenty of virtual address space, e.g. by  * using a 64 bit JRE, or a 32 bit JRE with indexes that are  * guaranteed to fit within the address space.  * On 32 bit platforms also consult {@link #MMapDirectory(File, LockFactory, int)}  * if you have problems with mmap failing because of fragmented  * address space. If you get an OutOfMemoryException, it is recommended  * to reduce the chunk size, until it works.  *  *<p>Due to<a href="http://bugs.sun.com/bugdatabase/view_bug.do?bug_id=4724038">  * this bug</a> in Sun's JRE, MMapDirectory's {@link IndexInput#close}  * is unable to close the underlying OS file handle.  Only when GC  * finally collects the underlying objects, which could be quite  * some time later, will the file handle be closed.  *  *<p>This will consume additional transient disk usage: on Windows,  * attempts to delete or overwrite the files will result in an  * exception; on other platforms, which typically have a&quot;delete on  * last close&quot; semantics, while such operations will succeed, the bytes  * are still consuming space on disk.  For many applications this  * limitation is not a problem (e.g. if you have plenty of disk space,  * and you don't rely on overwriting files on Windows) but it's still  * an important limitation to be aware of.  *  *<p>This class supplies the workaround mentioned in the bug report  * (see {@link #setUseUnmap}), which may fail on  * non-Sun JVMs. It forcefully unmaps the buffer on close by using  * an undocumented internal cleanup functionality.  * {@link #UNMAP_SUPPORTED} is<code>true</code>, if the workaround  * can be enabled (with no guarantees).  *<p>  *<b>NOTE:</b> Accessing this class either directly or  * indirectly from a thread while it's interrupted can close the  * underlying channel immediately if at the same time the thread is  * blocked on IO. The channel will remain closed and subsequent access  * to {@link MMapDirectory} will throw a {@link ClosedChannelException}.   *</p>  * @see<a href="http://blog.thetaphi.de/2012/07/use-lucenes-mmapdirectory-on-64bit.html">Blog post about MMapDirectory</a>  */
+comment|/** File-based {@link Directory} implementation that uses  *  mmap for reading, and {@link  *  FSDirectory.FSIndexOutput} for writing.  *  *<p><b>NOTE</b>: memory mapping uses up a portion of the  * virtual memory address space in your process equal to the  * size of the file being mapped.  Before using this class,  * be sure your have plenty of virtual address space, e.g. by  * using a 64 bit JRE, or a 32 bit JRE with indexes that are  * guaranteed to fit within the address space.  * On 32 bit platforms also consult {@link #MMapDirectory(Path, LockFactory, int)}  * if you have problems with mmap failing because of fragmented  * address space. If you get an OutOfMemoryException, it is recommended  * to reduce the chunk size, until it works.  *  *<p>Due to<a href="http://bugs.sun.com/bugdatabase/view_bug.do?bug_id=4724038">  * this bug</a> in Sun's JRE, MMapDirectory's {@link IndexInput#close}  * is unable to close the underlying OS file handle.  Only when GC  * finally collects the underlying objects, which could be quite  * some time later, will the file handle be closed.  *  *<p>This will consume additional transient disk usage: on Windows,  * attempts to delete or overwrite the files will result in an  * exception; on other platforms, which typically have a&quot;delete on  * last close&quot; semantics, while such operations will succeed, the bytes  * are still consuming space on disk.  For many applications this  * limitation is not a problem (e.g. if you have plenty of disk space,  * and you don't rely on overwriting files on Windows) but it's still  * an important limitation to be aware of.  *  *<p>This class supplies the workaround mentioned in the bug report  * (see {@link #setUseUnmap}), which may fail on  * non-Sun JVMs. It forcefully unmaps the buffer on close by using  * an undocumented internal cleanup functionality.  * {@link #UNMAP_SUPPORTED} is<code>true</code>, if the workaround  * can be enabled (with no guarantees).  *<p>  *<b>NOTE:</b> Accessing this class either directly or  * indirectly from a thread while it's interrupted can close the  * underlying channel immediately if at the same time the thread is  * blocked on IO. The channel will remain closed and subsequent access  * to {@link MMapDirectory} will throw a {@link ClosedChannelException}.   *</p>  * @see<a href="http://blog.thetaphi.de/2012/07/use-lucenes-mmapdirectory-on-64bit.html">Blog post about MMapDirectory</a>  */
 end_comment
 
 begin_class
@@ -201,7 +203,7 @@ name|useUnmapHack
 init|=
 name|UNMAP_SUPPORTED
 decl_stmt|;
-comment|/**     * Default max chunk size.    * @see #MMapDirectory(File, LockFactory, int)    */
+comment|/**     * Default max chunk size.    * @see #MMapDirectory(Path, LockFactory, int)    */
 DECL|field|DEFAULT_MAX_BUFF
 specifier|public
 specifier|static
@@ -235,7 +237,7 @@ DECL|method|MMapDirectory
 specifier|public
 name|MMapDirectory
 parameter_list|(
-name|File
+name|Path
 name|path
 parameter_list|,
 name|LockFactory
@@ -259,7 +261,7 @@ DECL|method|MMapDirectory
 specifier|public
 name|MMapDirectory
 parameter_list|(
-name|File
+name|Path
 name|path
 parameter_list|)
 throws|throws
@@ -278,7 +280,7 @@ DECL|method|MMapDirectory
 specifier|public
 name|MMapDirectory
 parameter_list|(
-name|File
+name|Path
 name|path
 parameter_list|,
 name|LockFactory
@@ -437,7 +439,7 @@ return|return
 name|useUnmapHack
 return|;
 block|}
-comment|/**    * Returns the current mmap chunk size.    * @see #MMapDirectory(File, LockFactory, int)    */
+comment|/**    * Returns the current mmap chunk size.    * @see #MMapDirectory(Path, LockFactory, int)    */
 DECL|method|getMaxChunkSize
 specifier|public
 specifier|final
@@ -471,15 +473,13 @@ block|{
 name|ensureOpen
 argument_list|()
 expr_stmt|;
-name|File
-name|file
+name|Path
+name|path
 init|=
-operator|new
-name|File
+name|directory
+operator|.
+name|resolve
 argument_list|(
-name|getDirectory
-argument_list|()
-argument_list|,
 name|name
 argument_list|)
 decl_stmt|;
@@ -492,10 +492,7 @@ name|FileChannel
 operator|.
 name|open
 argument_list|(
-name|file
-operator|.
-name|toPath
-argument_list|()
+name|path
 argument_list|,
 name|StandardOpenOption
 operator|.
@@ -509,7 +506,7 @@ name|resourceDescription
 init|=
 literal|"MMapIndexInput(path=\""
 operator|+
-name|file
+name|path
 operator|.
 name|toString
 argument_list|()
