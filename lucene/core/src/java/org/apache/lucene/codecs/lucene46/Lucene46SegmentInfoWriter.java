@@ -154,6 +154,20 @@ name|IOUtils
 import|;
 end_import
 
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|util
+operator|.
+name|Version
+import|;
+end_import
+
 begin_comment
 comment|/**  * Lucene 4.0 implementation of {@link SegmentInfoWriter}.  *   * @see Lucene46SegmentInfoFormat  * @lucene.experimental  */
 end_comment
@@ -256,15 +270,51 @@ operator|.
 name|VERSION_CURRENT
 argument_list|)
 expr_stmt|;
+name|Version
+name|version
+init|=
+name|si
+operator|.
+name|getVersion
+argument_list|()
+decl_stmt|;
+if|if
+condition|(
+name|version
+operator|.
+name|major
+argument_list|<
+literal|4
+operator|||
+name|version
+operator|.
+name|major
+argument_list|>
+literal|5
+condition|)
+block|{
+throw|throw
+operator|new
+name|IllegalArgumentException
+argument_list|(
+literal|"invalid major version: should be 4 or 5 but got: "
+operator|+
+name|version
+operator|.
+name|major
+operator|+
+literal|" segment="
+operator|+
+name|si
+argument_list|)
+throw|;
+block|}
 comment|// Write the Lucene version that created this segment, since 3.1
 name|output
 operator|.
 name|writeString
 argument_list|(
-name|si
-operator|.
-name|getVersion
-argument_list|()
+name|version
 operator|.
 name|toString
 argument_list|()
