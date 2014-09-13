@@ -1948,12 +1948,6 @@ name|e
 operator|.
 name|getKey
 argument_list|()
-argument_list|,
-operator|new
-name|String
-argument_list|(
-name|data
-argument_list|)
 argument_list|)
 expr_stmt|;
 name|zkClient
