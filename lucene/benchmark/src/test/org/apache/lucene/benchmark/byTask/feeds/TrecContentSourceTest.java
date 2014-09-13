@@ -1233,7 +1233,7 @@ name|TestUtil
 operator|.
 name|unzip
 argument_list|(
-name|getDataPath
+name|getDataInputStream
 argument_list|(
 literal|"trecdocs.zip"
 argument_list|)
