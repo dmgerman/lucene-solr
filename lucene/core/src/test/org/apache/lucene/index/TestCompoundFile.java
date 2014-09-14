@@ -206,38 +206,6 @@ name|Path
 import|;
 end_import
 
-begin_import
-import|import static
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|store
-operator|.
-name|TestHelper
-operator|.
-name|isSimpleFSIndexInput
-import|;
-end_import
-
-begin_import
-import|import static
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|store
-operator|.
-name|TestHelper
-operator|.
-name|isSimpleFSIndexInputOpen
-import|;
-end_import
-
 begin_class
 DECL|class|TestCompoundFile
 specifier|public
@@ -2046,23 +2014,6 @@ argument_list|()
 argument_list|)
 argument_list|)
 decl_stmt|;
-comment|// this test only works for FSIndexInput
-name|assertTrue
-argument_list|(
-name|isSimpleFSIndexInput
-argument_list|(
-name|expected
-argument_list|)
-argument_list|)
-expr_stmt|;
-name|assertTrue
-argument_list|(
-name|isSimpleFSIndexInputOpen
-argument_list|(
-name|expected
-argument_list|)
-argument_list|)
-expr_stmt|;
 name|IndexInput
 name|one
 init|=
