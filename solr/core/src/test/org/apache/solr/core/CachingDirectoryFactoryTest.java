@@ -1008,7 +1008,7 @@ name|DirContext
 operator|.
 name|DEFAULT
 argument_list|,
-literal|null
+literal|"single"
 argument_list|)
 expr_stmt|;
 name|dirs
@@ -1037,7 +1037,7 @@ name|DirContext
 operator|.
 name|DEFAULT
 argument_list|,
-literal|null
+literal|"single"
 argument_list|)
 expr_stmt|;
 block|}
