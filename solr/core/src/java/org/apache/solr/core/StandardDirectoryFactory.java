@@ -116,6 +116,20 @@ name|lucene
 operator|.
 name|store
 operator|.
+name|NoLockFactory
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|store
+operator|.
 name|RateLimitedDirectoryWrapper
 import|;
 end_import
@@ -164,6 +178,7 @@ parameter_list|)
 throws|throws
 name|IOException
 block|{
+comment|// we pass NoLockFactory, because the real lock factory is set later by injectLockFactory:
 return|return
 name|FSDirectory
 operator|.
@@ -176,6 +191,11 @@ name|path
 argument_list|)
 operator|.
 name|toPath
+argument_list|()
+argument_list|,
+name|NoLockFactory
+operator|.
+name|getNoLockFactory
 argument_list|()
 argument_list|)
 return|;

@@ -64,6 +64,20 @@ name|NIOFSDirectory
 import|;
 end_import
 
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|store
+operator|.
+name|NoLockFactory
+import|;
+end_import
+
 begin_comment
 comment|/**  * Factory to instantiate {@link org.apache.lucene.store.NIOFSDirectory}  *  **/
 end_comment
@@ -92,6 +106,7 @@ parameter_list|)
 throws|throws
 name|IOException
 block|{
+comment|// we pass NoLockFactory, because the real lock factory is set later by injectLockFactory:
 return|return
 operator|new
 name|NIOFSDirectory
@@ -103,6 +118,11 @@ name|path
 argument_list|)
 operator|.
 name|toPath
+argument_list|()
+argument_list|,
+name|NoLockFactory
+operator|.
+name|getNoLockFactory
 argument_list|()
 argument_list|)
 return|;
