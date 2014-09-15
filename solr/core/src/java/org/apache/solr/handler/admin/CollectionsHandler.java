@@ -244,6 +244,24 @@ name|cloud
 operator|.
 name|ZkStateReader
 operator|.
+name|ONLY_IF_DOWN
+import|;
+end_import
+
+begin_import
+import|import static
+name|org
+operator|.
+name|apache
+operator|.
+name|solr
+operator|.
+name|common
+operator|.
+name|cloud
+operator|.
+name|ZkStateReader
+operator|.
 name|SHARD_ID_PROP
 import|;
 end_import
@@ -3468,6 +3486,8 @@ argument_list|,
 literal|"replica"
 argument_list|,
 name|ASYNC
+argument_list|,
+name|ONLY_IF_DOWN
 argument_list|)
 expr_stmt|;
 name|ZkNodeProps

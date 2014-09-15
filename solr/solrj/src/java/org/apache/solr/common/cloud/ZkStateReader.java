@@ -750,6 +750,15 @@ name|SHARD_LEADERS_ZKNODE
 init|=
 literal|"leaders"
 decl_stmt|;
+DECL|field|ONLY_IF_DOWN
+specifier|public
+specifier|static
+specifier|final
+name|String
+name|ONLY_IF_DOWN
+init|=
+literal|"onlyIfDown"
+decl_stmt|;
 DECL|field|watchedCollections
 specifier|private
 specifier|final
