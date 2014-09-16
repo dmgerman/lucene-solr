@@ -168,6 +168,7 @@ name|TokenFilterFactory
 implements|implements
 name|ResourceLoaderAware
 block|{
+comment|/** the default format, one word per line, whole line comments start with "#" */
 DECL|field|FORMAT_WORDSET
 specifier|public
 specifier|static
@@ -177,6 +178,7 @@ name|FORMAT_WORDSET
 init|=
 literal|"wordset"
 decl_stmt|;
+comment|/** multiple words may be specified on each line, trailing comments start with "&#124;" */
 DECL|field|FORMAT_SNOWBALL
 specifier|public
 specifier|static
@@ -398,6 +400,7 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
+comment|/** Whether or not to ignore case */
 DECL|method|isIgnoreCase
 specifier|public
 name|boolean
@@ -408,6 +411,7 @@ return|return
 name|ignoreCase
 return|;
 block|}
+comment|/** Returns the configured stopword set */
 DECL|method|getStopWords
 specifier|public
 name|CharArraySet
