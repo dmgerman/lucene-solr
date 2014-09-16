@@ -321,6 +321,18 @@ return|return
 literal|0
 return|;
 block|}
+annotation|@
+name|Override
+DECL|method|toString
+specifier|public
+name|String
+name|toString
+parameter_list|()
+block|{
+return|return
+literal|"NoOutputs"
+return|;
+block|}
 block|}
 end_class
 

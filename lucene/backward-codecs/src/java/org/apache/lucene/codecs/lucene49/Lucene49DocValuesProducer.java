@@ -210,7 +210,37 @@ name|java
 operator|.
 name|util
 operator|.
+name|ArrayList
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
+name|util
+operator|.
+name|Collections
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
+name|util
+operator|.
 name|HashMap
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
+name|util
+operator|.
+name|List
 import|;
 end_import
 
@@ -544,6 +574,34 @@ name|lucene
 operator|.
 name|util
 operator|.
+name|Accountable
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|util
+operator|.
+name|Accountables
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|util
+operator|.
 name|Bits
 import|;
 end_import
@@ -654,7 +712,7 @@ specifier|private
 specifier|final
 name|Map
 argument_list|<
-name|Integer
+name|String
 argument_list|,
 name|NumericEntry
 argument_list|>
@@ -665,7 +723,7 @@ specifier|private
 specifier|final
 name|Map
 argument_list|<
-name|Integer
+name|String
 argument_list|,
 name|BinaryEntry
 argument_list|>
@@ -676,7 +734,7 @@ specifier|private
 specifier|final
 name|Map
 argument_list|<
-name|Integer
+name|String
 argument_list|,
 name|SortedSetEntry
 argument_list|>
@@ -687,7 +745,7 @@ specifier|private
 specifier|final
 name|Map
 argument_list|<
-name|Integer
+name|String
 argument_list|,
 name|SortedSetEntry
 argument_list|>
@@ -698,7 +756,7 @@ specifier|private
 specifier|final
 name|Map
 argument_list|<
-name|Integer
+name|String
 argument_list|,
 name|NumericEntry
 argument_list|>
@@ -709,7 +767,7 @@ specifier|private
 specifier|final
 name|Map
 argument_list|<
-name|Integer
+name|String
 argument_list|,
 name|NumericEntry
 argument_list|>
@@ -726,6 +784,12 @@ specifier|private
 specifier|final
 name|IndexInput
 name|data
+decl_stmt|;
+DECL|field|numFields
+specifier|private
+specifier|final
+name|int
+name|numFields
 decl_stmt|;
 DECL|field|maxDoc
 specifier|private
@@ -745,7 +809,7 @@ specifier|private
 specifier|final
 name|Map
 argument_list|<
-name|Integer
+name|String
 argument_list|,
 name|MonotonicBlockPackedReader
 argument_list|>
@@ -761,7 +825,7 @@ specifier|private
 specifier|final
 name|Map
 argument_list|<
-name|Integer
+name|String
 argument_list|,
 name|MonotonicBlockPackedReader
 argument_list|>
@@ -910,6 +974,8 @@ name|HashMap
 argument_list|<>
 argument_list|()
 expr_stmt|;
+name|numFields
+operator|=
 name|readFields
 argument_list|(
 name|in
@@ -1091,14 +1157,11 @@ specifier|private
 name|void
 name|readSortedField
 parameter_list|(
-name|int
-name|fieldNumber
+name|FieldInfo
+name|info
 parameter_list|,
 name|IndexInput
 name|meta
-parameter_list|,
-name|FieldInfos
-name|infos
 parameter_list|)
 throws|throws
 name|IOException
@@ -1111,7 +1174,9 @@ operator|.
 name|readVInt
 argument_list|()
 operator|!=
-name|fieldNumber
+name|info
+operator|.
+name|number
 condition|)
 block|{
 throw|throw
@@ -1120,7 +1185,9 @@ name|CorruptIndexException
 argument_list|(
 literal|"sorted entry for field: "
 operator|+
-name|fieldNumber
+name|info
+operator|.
+name|name
 operator|+
 literal|" is corrupt (resource="
 operator|+
@@ -1148,7 +1215,9 @@ name|CorruptIndexException
 argument_list|(
 literal|"sorted entry for field: "
 operator|+
-name|fieldNumber
+name|info
+operator|.
+name|name
 operator|+
 literal|" is corrupt (resource="
 operator|+
@@ -1170,7 +1239,9 @@ name|binaries
 operator|.
 name|put
 argument_list|(
-name|fieldNumber
+name|info
+operator|.
+name|name
 argument_list|,
 name|b
 argument_list|)
@@ -1182,7 +1253,9 @@ operator|.
 name|readVInt
 argument_list|()
 operator|!=
-name|fieldNumber
+name|info
+operator|.
+name|number
 condition|)
 block|{
 throw|throw
@@ -1191,7 +1264,9 @@ name|CorruptIndexException
 argument_list|(
 literal|"sorted entry for field: "
 operator|+
-name|fieldNumber
+name|info
+operator|.
+name|name
 operator|+
 literal|" is corrupt (resource="
 operator|+
@@ -1219,7 +1294,9 @@ name|CorruptIndexException
 argument_list|(
 literal|"sorted entry for field: "
 operator|+
-name|fieldNumber
+name|info
+operator|.
+name|name
 operator|+
 literal|" is corrupt (resource="
 operator|+
@@ -1241,7 +1318,9 @@ name|ords
 operator|.
 name|put
 argument_list|(
-name|fieldNumber
+name|info
+operator|.
+name|name
 argument_list|,
 name|n
 argument_list|)
@@ -1252,14 +1331,11 @@ specifier|private
 name|void
 name|readSortedSetFieldWithAddresses
 parameter_list|(
-name|int
-name|fieldNumber
+name|FieldInfo
+name|info
 parameter_list|,
 name|IndexInput
 name|meta
-parameter_list|,
-name|FieldInfos
-name|infos
 parameter_list|)
 throws|throws
 name|IOException
@@ -1272,7 +1348,9 @@ operator|.
 name|readVInt
 argument_list|()
 operator|!=
-name|fieldNumber
+name|info
+operator|.
+name|number
 condition|)
 block|{
 throw|throw
@@ -1281,7 +1359,9 @@ name|CorruptIndexException
 argument_list|(
 literal|"sortedset entry for field: "
 operator|+
-name|fieldNumber
+name|info
+operator|.
+name|name
 operator|+
 literal|" is corrupt (resource="
 operator|+
@@ -1309,7 +1389,9 @@ name|CorruptIndexException
 argument_list|(
 literal|"sortedset entry for field: "
 operator|+
-name|fieldNumber
+name|info
+operator|.
+name|name
 operator|+
 literal|" is corrupt (resource="
 operator|+
@@ -1331,7 +1413,9 @@ name|binaries
 operator|.
 name|put
 argument_list|(
-name|fieldNumber
+name|info
+operator|.
+name|name
 argument_list|,
 name|b
 argument_list|)
@@ -1343,7 +1427,9 @@ operator|.
 name|readVInt
 argument_list|()
 operator|!=
-name|fieldNumber
+name|info
+operator|.
+name|number
 condition|)
 block|{
 throw|throw
@@ -1352,7 +1438,9 @@ name|CorruptIndexException
 argument_list|(
 literal|"sortedset entry for field: "
 operator|+
-name|fieldNumber
+name|info
+operator|.
+name|name
 operator|+
 literal|" is corrupt (resource="
 operator|+
@@ -1380,7 +1468,9 @@ name|CorruptIndexException
 argument_list|(
 literal|"sortedset entry for field: "
 operator|+
-name|fieldNumber
+name|info
+operator|.
+name|name
 operator|+
 literal|" is corrupt (resource="
 operator|+
@@ -1402,7 +1492,9 @@ name|ords
 operator|.
 name|put
 argument_list|(
-name|fieldNumber
+name|info
+operator|.
+name|name
 argument_list|,
 name|n1
 argument_list|)
@@ -1414,7 +1506,9 @@ operator|.
 name|readVInt
 argument_list|()
 operator|!=
-name|fieldNumber
+name|info
+operator|.
+name|number
 condition|)
 block|{
 throw|throw
@@ -1423,7 +1517,9 @@ name|CorruptIndexException
 argument_list|(
 literal|"sortedset entry for field: "
 operator|+
-name|fieldNumber
+name|info
+operator|.
+name|name
 operator|+
 literal|" is corrupt (resource="
 operator|+
@@ -1451,7 +1547,9 @@ name|CorruptIndexException
 argument_list|(
 literal|"sortedset entry for field: "
 operator|+
-name|fieldNumber
+name|info
+operator|.
+name|name
 operator|+
 literal|" is corrupt (resource="
 operator|+
@@ -1473,7 +1571,9 @@ name|ordIndexes
 operator|.
 name|put
 argument_list|(
-name|fieldNumber
+name|info
+operator|.
+name|name
 argument_list|,
 name|n2
 argument_list|)
@@ -1481,7 +1581,7 @@ expr_stmt|;
 block|}
 DECL|method|readFields
 specifier|private
-name|void
+name|int
 name|readFields
 parameter_list|(
 name|IndexInput
@@ -1493,6 +1593,11 @@ parameter_list|)
 throws|throws
 name|IOException
 block|{
+name|int
+name|numFields
+init|=
+literal|0
+decl_stmt|;
 name|int
 name|fieldNumber
 init|=
@@ -1509,20 +1614,27 @@ operator|-
 literal|1
 condition|)
 block|{
-if|if
-condition|(
+name|numFields
+operator|++
+expr_stmt|;
+name|FieldInfo
+name|info
+init|=
 name|infos
 operator|.
 name|fieldInfo
 argument_list|(
 name|fieldNumber
 argument_list|)
+decl_stmt|;
+if|if
+condition|(
+name|info
 operator|==
 literal|null
 condition|)
 block|{
-comment|// trickier to validate more: because we re-use for norms, because we use multiple entries
-comment|// for "composite" types like sortedset, etc.
+comment|// trickier to validate more: because we use multiple entries for "composite" types like sortedset, etc.
 throw|throw
 operator|new
 name|CorruptIndexException
@@ -1560,7 +1672,9 @@ name|numerics
 operator|.
 name|put
 argument_list|(
-name|fieldNumber
+name|info
+operator|.
+name|name
 argument_list|,
 name|readNumericEntry
 argument_list|(
@@ -1591,7 +1705,9 @@ name|binaries
 operator|.
 name|put
 argument_list|(
-name|fieldNumber
+name|info
+operator|.
+name|name
 argument_list|,
 name|b
 argument_list|)
@@ -1609,11 +1725,9 @@ condition|)
 block|{
 name|readSortedField
 argument_list|(
-name|fieldNumber
+name|info
 argument_list|,
 name|meta
-argument_list|,
-name|infos
 argument_list|)
 expr_stmt|;
 block|}
@@ -1639,7 +1753,9 @@ name|sortedSets
 operator|.
 name|put
 argument_list|(
-name|fieldNumber
+name|info
+operator|.
+name|name
 argument_list|,
 name|ss
 argument_list|)
@@ -1655,11 +1771,9 @@ condition|)
 block|{
 name|readSortedSetFieldWithAddresses
 argument_list|(
-name|fieldNumber
+name|info
 argument_list|,
 name|meta
-argument_list|,
-name|infos
 argument_list|)
 expr_stmt|;
 block|}
@@ -1689,7 +1803,9 @@ name|CorruptIndexException
 argument_list|(
 literal|"sortedset entry for field: "
 operator|+
-name|fieldNumber
+name|info
+operator|.
+name|name
 operator|+
 literal|" is corrupt (resource="
 operator|+
@@ -1717,7 +1833,9 @@ name|CorruptIndexException
 argument_list|(
 literal|"sortedset entry for field: "
 operator|+
-name|fieldNumber
+name|info
+operator|.
+name|name
 operator|+
 literal|" is corrupt (resource="
 operator|+
@@ -1729,11 +1847,9 @@ throw|;
 block|}
 name|readSortedField
 argument_list|(
-name|fieldNumber
+name|info
 argument_list|,
 name|meta
-argument_list|,
-name|infos
 argument_list|)
 expr_stmt|;
 block|}
@@ -1768,7 +1884,9 @@ name|sortedNumerics
 operator|.
 name|put
 argument_list|(
-name|fieldNumber
+name|info
+operator|.
+name|name
 argument_list|,
 name|ss
 argument_list|)
@@ -1789,7 +1907,9 @@ name|CorruptIndexException
 argument_list|(
 literal|"sortednumeric entry for field: "
 operator|+
-name|fieldNumber
+name|info
+operator|.
+name|name
 operator|+
 literal|" is corrupt (resource="
 operator|+
@@ -1817,7 +1937,9 @@ name|CorruptIndexException
 argument_list|(
 literal|"sortednumeric entry for field: "
 operator|+
-name|fieldNumber
+name|info
+operator|.
+name|name
 operator|+
 literal|" is corrupt (resource="
 operator|+
@@ -1831,7 +1953,9 @@ name|numerics
 operator|.
 name|put
 argument_list|(
-name|fieldNumber
+name|info
+operator|.
+name|name
 argument_list|,
 name|readNumericEntry
 argument_list|(
@@ -1864,7 +1988,9 @@ name|CorruptIndexException
 argument_list|(
 literal|"sortednumeric entry for field: "
 operator|+
-name|fieldNumber
+name|info
+operator|.
+name|name
 operator|+
 literal|" is corrupt (resource="
 operator|+
@@ -1892,7 +2018,9 @@ name|CorruptIndexException
 argument_list|(
 literal|"sortednumeric entry for field: "
 operator|+
-name|fieldNumber
+name|info
+operator|.
+name|name
 operator|+
 literal|" is corrupt (resource="
 operator|+
@@ -1914,7 +2042,9 @@ name|ordIndexes
 operator|.
 name|put
 argument_list|(
-name|fieldNumber
+name|info
+operator|.
+name|name
 argument_list|,
 name|ordIndex
 argument_list|)
@@ -1961,6 +2091,9 @@ name|readVInt
 argument_list|()
 expr_stmt|;
 block|}
+return|return
+name|numFields
+return|;
 block|}
 DECL|method|readNumericEntry
 specifier|static
@@ -2463,7 +2596,7 @@ name|get
 argument_list|(
 name|field
 operator|.
-name|number
+name|name
 argument_list|)
 decl_stmt|;
 return|return
@@ -2490,6 +2623,68 @@ return|;
 block|}
 annotation|@
 name|Override
+DECL|method|getChildResources
+specifier|public
+specifier|synchronized
+name|Iterable
+argument_list|<
+name|?
+extends|extends
+name|Accountable
+argument_list|>
+name|getChildResources
+parameter_list|()
+block|{
+name|List
+argument_list|<
+name|Accountable
+argument_list|>
+name|resources
+init|=
+operator|new
+name|ArrayList
+argument_list|<>
+argument_list|()
+decl_stmt|;
+name|resources
+operator|.
+name|addAll
+argument_list|(
+name|Accountables
+operator|.
+name|namedAccountables
+argument_list|(
+literal|"addresses field"
+argument_list|,
+name|addressInstances
+argument_list|)
+argument_list|)
+expr_stmt|;
+name|resources
+operator|.
+name|addAll
+argument_list|(
+name|Accountables
+operator|.
+name|namedAccountables
+argument_list|(
+literal|"ord index field"
+argument_list|,
+name|ordIndexInstances
+argument_list|)
+argument_list|)
+expr_stmt|;
+return|return
+name|Collections
+operator|.
+name|unmodifiableList
+argument_list|(
+name|resources
+argument_list|)
+return|;
+block|}
+annotation|@
+name|Override
 DECL|method|checkIntegrity
 specifier|public
 name|void
@@ -2505,6 +2700,28 @@ argument_list|(
 name|data
 argument_list|)
 expr_stmt|;
+block|}
+annotation|@
+name|Override
+DECL|method|toString
+specifier|public
+name|String
+name|toString
+parameter_list|()
+block|{
+return|return
+name|getClass
+argument_list|()
+operator|.
+name|getSimpleName
+argument_list|()
+operator|+
+literal|"(fields="
+operator|+
+name|numFields
+operator|+
+literal|")"
+return|;
 block|}
 DECL|method|getNumeric
 name|LongValues
@@ -2752,7 +2969,7 @@ name|get
 argument_list|(
 name|field
 operator|.
-name|number
+name|name
 argument_list|)
 decl_stmt|;
 switch|switch
@@ -2934,6 +3151,7 @@ block|}
 comment|/** returns an address instance for variable-length binary values. */
 DECL|method|getAddressInstance
 specifier|private
+specifier|synchronized
 name|MonotonicBlockPackedReader
 name|getAddressInstance
 parameter_list|(
@@ -2953,11 +3171,6 @@ specifier|final
 name|MonotonicBlockPackedReader
 name|addresses
 decl_stmt|;
-synchronized|synchronized
-init|(
-name|addressInstances
-init|)
-block|{
 name|MonotonicBlockPackedReader
 name|addrInstance
 init|=
@@ -2967,7 +3180,7 @@ name|get
 argument_list|(
 name|field
 operator|.
-name|number
+name|name
 argument_list|)
 decl_stmt|;
 if|if
@@ -3017,7 +3230,7 @@ name|put
 argument_list|(
 name|field
 operator|.
-name|number
+name|name
 argument_list|,
 name|addrInstance
 argument_list|)
@@ -3041,7 +3254,6 @@ name|addresses
 operator|=
 name|addrInstance
 expr_stmt|;
-block|}
 return|return
 name|addresses
 return|;
@@ -3214,6 +3426,7 @@ block|}
 comment|/** returns an address instance for prefix-compressed binary values. */
 DECL|method|getIntervalInstance
 specifier|private
+specifier|synchronized
 name|MonotonicBlockPackedReader
 name|getIntervalInstance
 parameter_list|(
@@ -3241,11 +3454,6 @@ name|bytes
 operator|.
 name|addressInterval
 decl_stmt|;
-synchronized|synchronized
-init|(
-name|addressInstances
-init|)
-block|{
 name|MonotonicBlockPackedReader
 name|addrInstance
 init|=
@@ -3255,7 +3463,7 @@ name|get
 argument_list|(
 name|field
 operator|.
-name|number
+name|name
 argument_list|)
 decl_stmt|;
 if|if
@@ -3338,7 +3546,7 @@ name|put
 argument_list|(
 name|field
 operator|.
-name|number
+name|name
 argument_list|,
 name|addrInstance
 argument_list|)
@@ -3362,7 +3570,6 @@ name|addresses
 operator|=
 name|addrInstance
 expr_stmt|;
-block|}
 return|return
 name|addresses
 return|;
@@ -3444,7 +3651,7 @@ name|get
 argument_list|(
 name|field
 operator|.
-name|number
+name|name
 argument_list|)
 operator|.
 name|count
@@ -3467,7 +3674,7 @@ name|get
 argument_list|(
 name|field
 operator|.
-name|number
+name|name
 argument_list|)
 decl_stmt|;
 specifier|final
@@ -3624,6 +3831,7 @@ block|}
 comment|/** returns an address instance for sortedset ordinal lists */
 DECL|method|getOrdIndexInstance
 specifier|private
+specifier|synchronized
 name|MonotonicBlockPackedReader
 name|getOrdIndexInstance
 parameter_list|(
@@ -3643,11 +3851,6 @@ specifier|final
 name|MonotonicBlockPackedReader
 name|ordIndex
 decl_stmt|;
-synchronized|synchronized
-init|(
-name|ordIndexInstances
-init|)
-block|{
 name|MonotonicBlockPackedReader
 name|ordIndexInstance
 init|=
@@ -3657,7 +3860,7 @@ name|get
 argument_list|(
 name|field
 operator|.
-name|number
+name|name
 argument_list|)
 decl_stmt|;
 if|if
@@ -3707,7 +3910,7 @@ name|put
 argument_list|(
 name|field
 operator|.
-name|number
+name|name
 argument_list|,
 name|ordIndexInstance
 argument_list|)
@@ -3731,7 +3934,6 @@ name|ordIndex
 operator|=
 name|ordIndexInstance
 expr_stmt|;
-block|}
 return|return
 name|ordIndex
 return|;
@@ -3758,7 +3960,7 @@ name|get
 argument_list|(
 name|field
 operator|.
-name|number
+name|name
 argument_list|)
 decl_stmt|;
 name|NumericEntry
@@ -3770,7 +3972,7 @@ name|get
 argument_list|(
 name|field
 operator|.
-name|number
+name|name
 argument_list|)
 decl_stmt|;
 specifier|final
@@ -3850,7 +4052,7 @@ name|get
 argument_list|(
 name|field
 operator|.
-name|number
+name|name
 argument_list|)
 argument_list|)
 decl_stmt|;
@@ -3969,7 +4171,7 @@ name|get
 argument_list|(
 name|field
 operator|.
-name|number
+name|name
 argument_list|)
 decl_stmt|;
 if|if
@@ -4036,7 +4238,7 @@ name|get
 argument_list|(
 name|field
 operator|.
-name|number
+name|name
 argument_list|)
 operator|.
 name|count
@@ -4066,7 +4268,7 @@ name|get
 argument_list|(
 name|field
 operator|.
-name|number
+name|name
 argument_list|)
 argument_list|)
 decl_stmt|;
@@ -4087,7 +4289,7 @@ name|get
 argument_list|(
 name|field
 operator|.
-name|number
+name|name
 argument_list|)
 argument_list|)
 decl_stmt|;
@@ -4541,7 +4743,7 @@ name|get
 argument_list|(
 name|field
 operator|.
-name|number
+name|name
 argument_list|)
 decl_stmt|;
 return|return
@@ -4564,7 +4766,7 @@ name|get
 argument_list|(
 name|field
 operator|.
-name|number
+name|name
 argument_list|)
 decl_stmt|;
 return|return

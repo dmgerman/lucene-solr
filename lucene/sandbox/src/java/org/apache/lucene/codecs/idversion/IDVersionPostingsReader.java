@@ -30,6 +30,16 @@ end_import
 
 begin_import
 import|import
+name|java
+operator|.
+name|util
+operator|.
+name|Collections
+import|;
+end_import
+
+begin_import
+import|import
 name|org
 operator|.
 name|apache
@@ -137,6 +147,20 @@ operator|.
 name|store
 operator|.
 name|IndexInput
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|util
+operator|.
+name|Accountable
 import|;
 end_import
 
@@ -469,6 +493,26 @@ return|;
 block|}
 annotation|@
 name|Override
+DECL|method|getChildResources
+specifier|public
+name|Iterable
+argument_list|<
+name|?
+extends|extends
+name|Accountable
+argument_list|>
+name|getChildResources
+parameter_list|()
+block|{
+return|return
+name|Collections
+operator|.
+name|emptyList
+argument_list|()
+return|;
+block|}
+annotation|@
+name|Override
 DECL|method|checkIntegrity
 specifier|public
 name|void
@@ -477,6 +521,22 @@ parameter_list|()
 throws|throws
 name|IOException
 block|{   }
+annotation|@
+name|Override
+DECL|method|toString
+specifier|public
+name|String
+name|toString
+parameter_list|()
+block|{
+return|return
+name|getClass
+argument_list|()
+operator|.
+name|getSimpleName
+argument_list|()
+return|;
+block|}
 block|}
 end_class
 

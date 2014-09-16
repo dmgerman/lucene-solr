@@ -32,6 +32,18 @@ name|long
 name|ramBytesUsed
 parameter_list|()
 function_decl|;
+comment|/**    * Returns nested resources of this class.     * The result should be a point-in-time snapshot (to avoid race conditions).    * @see Accountables    */
+comment|// TODO: on java8 make this a default method returning emptyList
+DECL|method|getChildResources
+name|Iterable
+argument_list|<
+name|?
+extends|extends
+name|Accountable
+argument_list|>
+name|getChildResources
+parameter_list|()
+function_decl|;
 block|}
 end_interface
 
