@@ -282,6 +282,13 @@ name|f
 operator|!=
 literal|null
 operator|&&
+name|f
+operator|.
+name|getFileName
+argument_list|()
+operator|!=
+literal|null
+operator|&&
 operator|++
 name|pathLength
 operator|<
