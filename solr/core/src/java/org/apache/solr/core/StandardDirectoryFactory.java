@@ -408,6 +408,14 @@ argument_list|()
 argument_list|)
 return|;
 case|case
+literal|"single"
+case|:
+return|return
+operator|new
+name|SingleInstanceLockFactory
+argument_list|()
+return|;
+case|case
 literal|"none"
 case|:
 return|return
