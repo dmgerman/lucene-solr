@@ -1037,6 +1037,23 @@ argument_list|)
 decl_stmt|;
 if|if
 condition|(
+literal|"default"
+operator|.
+name|equals
+argument_list|(
+name|TEST_CODEC
+argument_list|)
+condition|)
+block|{
+name|codec
+operator|=
+name|savedCodec
+expr_stmt|;
+comment|// just use the default, don't randomize
+block|}
+elseif|else
+if|if
+condition|(
 operator|(
 literal|"random"
 operator|.
