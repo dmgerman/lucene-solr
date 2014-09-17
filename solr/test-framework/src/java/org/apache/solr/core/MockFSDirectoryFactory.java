@@ -72,6 +72,20 @@ name|lucene
 operator|.
 name|store
 operator|.
+name|LockFactory
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|store
+operator|.
 name|MockDirectoryWrapper
 import|;
 end_import
@@ -87,20 +101,6 @@ operator|.
 name|store
 operator|.
 name|NRTCachingDirectory
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|store
-operator|.
-name|NoLockFactory
 import|;
 end_import
 
@@ -168,6 +168,9 @@ parameter_list|(
 name|String
 name|path
 parameter_list|,
+name|LockFactory
+name|lockFactory
+parameter_list|,
 name|DirContext
 name|dirContext
 parameter_list|)
@@ -191,10 +194,7 @@ operator|.
 name|toPath
 argument_list|()
 argument_list|,
-name|NoLockFactory
-operator|.
-name|getNoLockFactory
-argument_list|()
+name|lockFactory
 argument_list|)
 decl_stmt|;
 comment|// we can't currently do this check because of how

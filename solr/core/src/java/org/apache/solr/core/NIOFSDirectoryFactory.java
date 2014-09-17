@@ -60,7 +60,7 @@ name|lucene
 operator|.
 name|store
 operator|.
-name|NIOFSDirectory
+name|LockFactory
 import|;
 end_import
 
@@ -74,7 +74,7 @@ name|lucene
 operator|.
 name|store
 operator|.
-name|NoLockFactory
+name|NIOFSDirectory
 import|;
 end_import
 
@@ -100,6 +100,9 @@ parameter_list|(
 name|String
 name|path
 parameter_list|,
+name|LockFactory
+name|lockFactory
+parameter_list|,
 name|DirContext
 name|dirContext
 parameter_list|)
@@ -120,10 +123,7 @@ operator|.
 name|toPath
 argument_list|()
 argument_list|,
-name|NoLockFactory
-operator|.
-name|getNoLockFactory
-argument_list|()
+name|lockFactory
 argument_list|)
 return|;
 block|}
