@@ -1242,7 +1242,7 @@ return|return
 name|unremoved
 return|;
 block|}
-comment|/**    * Simple utilty method that takes a previously caught    * {@code Throwable} and rethrows either {@code    * IOException} or an unchecked exception.  If the    * argument is null then this method does nothing.    */
+comment|/**    * Simple utility method that takes a previously caught    * {@code Throwable} and rethrows either {@code    * IOException} or an unchecked exception.  If the    * argument is null then this method does nothing.    */
 DECL|method|reThrow
 specifier|public
 specifier|static
@@ -1283,7 +1283,7 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
-comment|/**    * Simple utilty method that takes a previously caught    * {@code Throwable} and rethrows it as an unchecked exception.    * If the argument is null then this method does nothing.    */
+comment|/**    * Simple utility method that takes a previously caught    * {@code Throwable} and rethrows it as an unchecked exception.    * If the argument is null then this method does nothing.    */
 DECL|method|reThrowUnchecked
 specifier|public
 specifier|static

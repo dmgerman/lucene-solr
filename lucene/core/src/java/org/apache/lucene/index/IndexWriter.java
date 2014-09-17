@@ -629,7 +629,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**   An<code>IndexWriter</code> creates and maintains an index.<p>The {@link OpenMode} option on    {@link IndexWriterConfig#setOpenMode(OpenMode)} determines    whether a new index is created, or whether an existing index is   opened. Note that you can open an index with {@link OpenMode#CREATE}   even while readers are using the index. The old readers will    continue to search the "point in time" snapshot they had opened,    and won't see the newly created index until they re-open. If    {@link OpenMode#CREATE_OR_APPEND} is used IndexWriter will create a    new index if there is not already an index at the provided path   and otherwise open the existing index.</p><p>In either case, documents are added with {@link #addDocument(IndexDocument)   addDocument} and removed with {@link #deleteDocuments(Term...)} or {@link   #deleteDocuments(Query...)}. A document can be updated with {@link   #updateDocument(Term, IndexDocument) updateDocument} (which just deletes   and then adds the entire document). When finished adding, deleting    and updating documents, {@link #close() close} should be called.</p><a name="flush"></a><p>These changes are buffered in memory and periodically   flushed to the {@link Directory} (during the above method   calls). A flush is triggered when there are enough added documents   since the last flush. Flushing is triggered either by RAM usage of the   documents (see {@link IndexWriterConfig#setRAMBufferSizeMB}) or the   number of added documents (see {@link IndexWriterConfig#setMaxBufferedDocs(int)}).   The default is to flush when RAM usage hits   {@link IndexWriterConfig#DEFAULT_RAM_BUFFER_SIZE_MB} MB. For   best indexing speed you should flush by RAM usage with a   large RAM buffer. Additionally, if IndexWriter reaches the configured number of   buffered deletes (see {@link IndexWriterConfig#setMaxBufferedDeleteTerms})   the deleted terms and queries are flushed and applied to existing segments.   In contrast to the other flush options {@link IndexWriterConfig#setRAMBufferSizeMB} and    {@link IndexWriterConfig#setMaxBufferedDocs(int)}, deleted terms   won't trigger a segment flush. Note that flushing just moves the   internal buffered state in IndexWriter into the index, but   these changes are not visible to IndexReader until either   {@link #commit()} or {@link #close} is called.  A flush may   also trigger one or more segment merges which by default   run with a background thread so as not to block the   addDocument calls (see<a href="#mergePolicy">below</a>   for changing the {@link MergeScheduler}).</p><p>Opening an<code>IndexWriter</code> creates a lock file for the directory in use. Trying to open   another<code>IndexWriter</code> on the same directory will lead to a   {@link LockObtainFailedException}. The {@link LockObtainFailedException}   is also thrown if an IndexReader on the same directory is used to delete documents   from the index.</p><a name="deletionPolicy"></a><p>Expert:<code>IndexWriter</code> allows an optional   {@link IndexDeletionPolicy} implementation to be   specified.  You can use this to control when prior commits   are deleted from the index.  The default policy is {@link   KeepOnlyLastCommitDeletionPolicy} which removes all prior   commits as soon as a new commit is done (this matches   behavior before 2.2).  Creating your own policy can allow   you to explicitly keep previous "point in time" commits   alive in the index for some time, to allow readers to   refresh to the new commit without having the old commit   deleted out from under them.  This is necessary on   filesystems like NFS that do not support "delete on last   close" semantics, which Lucene's "point in time" search   normally relies on.</p><a name="mergePolicy"></a><p>Expert:<code>IndexWriter</code> allows you to separately change   the {@link MergePolicy} and the {@link MergeScheduler}.   The {@link MergePolicy} is invoked whenever there are   changes to the segments in the index.  Its role is to   select which merges to do, if any, and return a {@link   MergePolicy.MergeSpecification} describing the merges.   The default is {@link LogByteSizeMergePolicy}.  Then, the {@link   MergeScheduler} is invoked with the requested merges and   it decides when and how to run the merges.  The default is   {@link ConcurrentMergeScheduler}.</p><a name="OOME"></a><p><b>NOTE</b>: if you hit an   OutOfMemoryError then IndexWriter will quietly record this   fact and block all future segment commits.  This is a   defensive measure in case any internal state (buffered   documents and deletions) were corrupted.  Any subsequent   calls to {@link #commit()} will throw an   IllegalStateException.  The only course of action is to   call {@link #close()}, which internally will call {@link   #rollback()}, to undo any changes to the index since the   last commit.  You can also just call {@link #rollback()}   directly.</p><a name="thread-safety"></a><p><b>NOTE</b>: {@link   IndexWriter} instances are completely thread   safe, meaning multiple threads can call any of its   methods, concurrently.  If your application requires   external synchronization, you should<b>not</b>   synchronize on the<code>IndexWriter</code> instance as   this may cause deadlock; use your own (non-Lucene) objects   instead.</p><p><b>NOTE</b>: If you call<code>Thread.interrupt()</code> on a thread that's within   IndexWriter, IndexWriter will try to catch this (eg, if   it's in a wait() or Thread.sleep()), and will then throw   the unchecked exception {@link ThreadInterruptedException}   and<b>clear</b> the interrupt status on the thread.</p> */
+comment|/**   An<code>IndexWriter</code> creates and maintains an index.<p>The {@link OpenMode} option on    {@link IndexWriterConfig#setOpenMode(OpenMode)} determines    whether a new index is created, or whether an existing index is   opened. Note that you can open an index with {@link OpenMode#CREATE}   even while readers are using the index. The old readers will    continue to search the "point in time" snapshot they had opened,    and won't see the newly created index until they re-open. If    {@link OpenMode#CREATE_OR_APPEND} is used IndexWriter will create a    new index if there is not already an index at the provided path   and otherwise open the existing index.</p><p>In either case, documents are added with {@link #addDocument(IndexDocument)   addDocument} and removed with {@link #deleteDocuments(Term...)} or {@link   #deleteDocuments(Query...)}. A document can be updated with {@link   #updateDocument(Term, IndexDocument) updateDocument} (which just deletes   and then adds the entire document). When finished adding, deleting    and updating documents, {@link #close() close} should be called.</p><a name="flush"></a><p>These changes are buffered in memory and periodically   flushed to the {@link Directory} (during the above method   calls). A flush is triggered when there are enough added documents   since the last flush. Flushing is triggered either by RAM usage of the   documents (see {@link IndexWriterConfig#setRAMBufferSizeMB}) or the   number of added documents (see {@link IndexWriterConfig#setMaxBufferedDocs(int)}).   The default is to flush when RAM usage hits   {@link IndexWriterConfig#DEFAULT_RAM_BUFFER_SIZE_MB} MB. For   best indexing speed you should flush by RAM usage with a   large RAM buffer. Additionally, if IndexWriter reaches the configured number of   buffered deletes (see {@link IndexWriterConfig#setMaxBufferedDeleteTerms})   the deleted terms and queries are flushed and applied to existing segments.   In contrast to the other flush options {@link IndexWriterConfig#setRAMBufferSizeMB} and    {@link IndexWriterConfig#setMaxBufferedDocs(int)}, deleted terms   won't trigger a segment flush. Note that flushing just moves the   internal buffered state in IndexWriter into the index, but   these changes are not visible to IndexReader until either   {@link #commit()} or {@link #close} is called.  A flush may   also trigger one or more segment merges which by default   run with a background thread so as not to block the   addDocument calls (see<a href="#mergePolicy">below</a>   for changing the {@link MergeScheduler}).</p><p>Opening an<code>IndexWriter</code> creates a lock file for the directory in use. Trying to open   another<code>IndexWriter</code> on the same directory will lead to a   {@link LockObtainFailedException}. The {@link LockObtainFailedException}   is also thrown if an IndexReader on the same directory is used to delete documents   from the index.</p><a name="deletionPolicy"></a><p>Expert:<code>IndexWriter</code> allows an optional   {@link IndexDeletionPolicy} implementation to be   specified.  You can use this to control when prior commits   are deleted from the index.  The default policy is {@link   KeepOnlyLastCommitDeletionPolicy} which removes all prior   commits as soon as a new commit is done (this matches   behavior before 2.2).  Creating your own policy can allow   you to explicitly keep previous "point in time" commits   alive in the index for some time, to allow readers to   refresh to the new commit without having the old commit   deleted out from under them.  This is necessary on   filesystems like NFS that do not support "delete on last   close" semantics, which Lucene's "point in time" search   normally relies on.</p><a name="mergePolicy"></a><p>Expert:<code>IndexWriter</code> allows you to separately change   the {@link MergePolicy} and the {@link MergeScheduler}.   The {@link MergePolicy} is invoked whenever there are   changes to the segments in the index.  Its role is to   select which merges to do, if any, and return a {@link   MergePolicy.MergeSpecification} describing the merges.   The default is {@link LogByteSizeMergePolicy}.  Then, the {@link   MergeScheduler} is invoked with the requested merges and   it decides when and how to run the merges.  The default is   {@link ConcurrentMergeScheduler}.</p><a name="OOME"></a><p><b>NOTE</b>: if you hit an   OutOfMemoryError, or disaster strikes during a checkpoint   then IndexWriter will close itself.  This is a   defensive measure in case any internal state (buffered   documents, deletions, reference counts) were corrupted.     Any subsequent calls will throw an AlreadyClosedException.</p><a name="thread-safety"></a><p><b>NOTE</b>: {@link   IndexWriter} instances are completely thread   safe, meaning multiple threads can call any of its   methods, concurrently.  If your application requires   external synchronization, you should<b>not</b>   synchronize on the<code>IndexWriter</code> instance as   this may cause deadlock; use your own (non-Lucene) objects   instead.</p><p><b>NOTE</b>: If you call<code>Thread.interrupt()</code> on a thread that's within   IndexWriter, IndexWriter will try to catch this (eg, if   it's in a wait() or Thread.sleep()), and will then throw   the unchecked exception {@link ThreadInterruptedException}   and<b>clear</b> the interrupt status on the thread.</p> */
 end_comment
 
 begin_comment
@@ -798,11 +798,11 @@ name|DocumentsWriterPerThread
 operator|.
 name|MAX_TERM_LENGTH_UTF8
 decl_stmt|;
-DECL|field|hitOOM
+comment|// when unrecoverable disaster strikes, we populate this with the reason that we had to close IndexWriter
+DECL|field|tragedy
 specifier|volatile
-specifier|private
-name|boolean
-name|hitOOM
+name|Throwable
+name|tragedy
 decl_stmt|;
 DECL|field|directory
 specifier|private
@@ -1268,7 +1268,7 @@ name|OutOfMemoryError
 name|oom
 parameter_list|)
 block|{
-name|handleOOM
+name|tragicEvent
 argument_list|(
 name|oom
 argument_list|,
@@ -1309,7 +1309,14 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
-comment|// Done: finish the full flush!
+if|if
+condition|(
+name|tragedy
+operator|==
+literal|null
+condition|)
+block|{
+comment|// Done: finish the full flush! (unless we hit OOM or something)
 name|docWriter
 operator|.
 name|finishFullFlush
@@ -1327,6 +1334,7 @@ expr_stmt|;
 name|doAfterFlush
 argument_list|()
 expr_stmt|;
+block|}
 block|}
 block|}
 if|if
@@ -2304,6 +2312,8 @@ operator|new
 name|AlreadyClosedException
 argument_list|(
 literal|"this IndexWriter is closed"
+argument_list|,
+name|tragedy
 argument_list|)
 throw|;
 block|}
@@ -3317,7 +3327,7 @@ return|return
 literal|false
 return|;
 block|}
-comment|/**    * Adds a document to this index.    *    *<p> Note that if an Exception is hit (for example disk full)    * then the index will be consistent, but this document    * may not have been added.  Furthermore, it's possible    * the index will have one segment in non-compound format    * even when using compound files (when a merge has    * partially succeeded).</p>    *    *<p> This method periodically flushes pending documents    * to the Directory (see<a href="#flush">above</a>), and    * also periodically triggers segment merges in the index    * according to the {@link MergePolicy} in use.</p>    *    *<p>Merges temporarily consume space in the    * directory. The amount of space required is up to 1X the    * size of all segments being merged, when no    * readers/searchers are open against the index, and up to    * 2X the size of all segments being merged when    * readers/searchers are open against the index (see    * {@link #forceMerge(int)} for details). The sequence of    * primitive merge operations performed is governed by the    * merge policy.    *    *<p>Note that each term in the document can be no longer    * than {@link #MAX_TERM_LENGTH} in bytes, otherwise an    * IllegalArgumentException will be thrown.</p>    *    *<p>Note that it's possible to create an invalid Unicode    * string in java if a UTF16 surrogate pair is malformed.    * In this case, the invalid characters are silently    * replaced with the Unicode replacement character    * U+FFFD.</p>    *    *<p><b>NOTE</b>: if this method hits an OutOfMemoryError    * you should immediately close the writer.  See<a    * href="#OOME">above</a> for details.</p>    *    * @throws CorruptIndexException if the index is corrupt    * @throws IOException if there is a low-level IO error    */
+comment|/**    * Adds a document to this index.    *    *<p> Note that if an Exception is hit (for example disk full)    * then the index will be consistent, but this document    * may not have been added.  Furthermore, it's possible    * the index will have one segment in non-compound format    * even when using compound files (when a merge has    * partially succeeded).</p>    *    *<p> This method periodically flushes pending documents    * to the Directory (see<a href="#flush">above</a>), and    * also periodically triggers segment merges in the index    * according to the {@link MergePolicy} in use.</p>    *    *<p>Merges temporarily consume space in the    * directory. The amount of space required is up to 1X the    * size of all segments being merged, when no    * readers/searchers are open against the index, and up to    * 2X the size of all segments being merged when    * readers/searchers are open against the index (see    * {@link #forceMerge(int)} for details). The sequence of    * primitive merge operations performed is governed by the    * merge policy.    *    *<p>Note that each term in the document can be no longer    * than {@link #MAX_TERM_LENGTH} in bytes, otherwise an    * IllegalArgumentException will be thrown.</p>    *    *<p>Note that it's possible to create an invalid Unicode    * string in java if a UTF16 surrogate pair is malformed.    * In this case, the invalid characters are silently    * replaced with the Unicode replacement character    * U+FFFD.</p>    *    * @throws CorruptIndexException if the index is corrupt    * @throws IOException if there is a low-level IO error    */
 DECL|method|addDocument
 specifier|public
 name|void
@@ -3337,7 +3347,7 @@ name|analyzer
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**    * Adds a document to this index, using the provided analyzer instead of the    * value of {@link #getAnalyzer()}.    *    *<p>See {@link #addDocument(IndexDocument)} for details on    * index and IndexWriter state after an Exception, and    * flushing/merging temporary free space requirements.</p>    *    *<p><b>NOTE</b>: if this method hits an OutOfMemoryError    * you should immediately close the writer.  See<a    * href="#OOME">above</a> for details.</p>    *    * @throws CorruptIndexException if the index is corrupt    * @throws IOException if there is a low-level IO error    */
+comment|/**    * Adds a document to this index, using the provided analyzer instead of the    * value of {@link #getAnalyzer()}.    *    *<p>See {@link #addDocument(IndexDocument)} for details on    * index and IndexWriter state after an Exception, and    * flushing/merging temporary free space requirements.</p>    *    * @throws CorruptIndexException if the index is corrupt    * @throws IOException if there is a low-level IO error    */
 DECL|method|addDocument
 specifier|public
 name|void
@@ -3362,7 +3372,7 @@ name|analyzer
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**    * Atomically adds a block of documents with sequentially    * assigned document IDs, such that an external reader    * will see all or none of the documents.    *    *<p><b>WARNING</b>: the index does not currently record    * which documents were added as a block.  Today this is    * fine, because merging will preserve a block. The order of    * documents within a segment will be preserved, even when child    * documents within a block are deleted. Most search features    * (like result grouping and block joining) require you to    * mark documents; when these documents are deleted these    * search features will not work as expected. Obviously adding    * documents to an existing block will require you the reindex    * the entire block.    *    *<p>However it's possible that in the future Lucene may    * merge more aggressively re-order documents (for example,    * perhaps to obtain better index compression), in which case    * you may need to fully re-index your documents at that time.    *    *<p>See {@link #addDocument(IndexDocument)} for details on    * index and IndexWriter state after an Exception, and    * flushing/merging temporary free space requirements.</p>    *    *<p><b>NOTE</b>: tools that do offline splitting of an index    * (for example, IndexSplitter in contrib) or    * re-sorting of documents (for example, IndexSorter in    * contrib) are not aware of these atomically added documents    * and will likely break them up.  Use such tools at your    * own risk!    *    *<p><b>NOTE</b>: if this method hits an OutOfMemoryError    * you should immediately close the writer.  See<a    * href="#OOME">above</a> for details.</p>    *    * @throws CorruptIndexException if the index is corrupt    * @throws IOException if there is a low-level IO error    *    * @lucene.experimental    */
+comment|/**    * Atomically adds a block of documents with sequentially    * assigned document IDs, such that an external reader    * will see all or none of the documents.    *    *<p><b>WARNING</b>: the index does not currently record    * which documents were added as a block.  Today this is    * fine, because merging will preserve a block. The order of    * documents within a segment will be preserved, even when child    * documents within a block are deleted. Most search features    * (like result grouping and block joining) require you to    * mark documents; when these documents are deleted these    * search features will not work as expected. Obviously adding    * documents to an existing block will require you the reindex    * the entire block.    *    *<p>However it's possible that in the future Lucene may    * merge more aggressively re-order documents (for example,    * perhaps to obtain better index compression), in which case    * you may need to fully re-index your documents at that time.    *    *<p>See {@link #addDocument(IndexDocument)} for details on    * index and IndexWriter state after an Exception, and    * flushing/merging temporary free space requirements.</p>    *    *<p><b>NOTE</b>: tools that do offline splitting of an index    * (for example, IndexSplitter in contrib) or    * re-sorting of documents (for example, IndexSorter in    * contrib) are not aware of these atomically added documents    * and will likely break them up.  Use such tools at your    * own risk!    *    * @throws CorruptIndexException if the index is corrupt    * @throws IOException if there is a low-level IO error    *    * @lucene.experimental    */
 DECL|method|addDocuments
 specifier|public
 name|void
@@ -3546,7 +3556,7 @@ name|OutOfMemoryError
 name|oom
 parameter_list|)
 block|{
-name|handleOOM
+name|tragicEvent
 argument_list|(
 name|oom
 argument_list|,
@@ -3837,7 +3847,7 @@ return|return
 literal|false
 return|;
 block|}
-comment|/**    * Deletes the document(s) containing any of the    * terms. All given deletes are applied and flushed atomically    * at the same time.    *    *<p><b>NOTE</b>: if this method hits an OutOfMemoryError    * you should immediately close the writer.  See<a    * href="#OOME">above</a> for details.</p>    *    * @param terms array of terms to identify the documents    * to be deleted    * @throws CorruptIndexException if the index is corrupt    * @throws IOException if there is a low-level IO error    */
+comment|/**    * Deletes the document(s) containing any of the    * terms. All given deletes are applied and flushed atomically    * at the same time.    *    * @param terms array of terms to identify the documents    * to be deleted    * @throws CorruptIndexException if the index is corrupt    * @throws IOException if there is a low-level IO error    */
 DECL|method|deleteDocuments
 specifier|public
 name|void
@@ -3880,7 +3890,7 @@ name|OutOfMemoryError
 name|oom
 parameter_list|)
 block|{
-name|handleOOM
+name|tragicEvent
 argument_list|(
 name|oom
 argument_list|,
@@ -3889,7 +3899,7 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
-comment|/**    * Deletes the document(s) matching any of the provided queries.    * All given deletes are applied and flushed atomically at the same time.    *    *<p><b>NOTE</b>: if this method hits an OutOfMemoryError    * you should immediately close the writer.  See<a    * href="#OOME">above</a> for details.</p>    *    * @param queries array of queries to identify the documents    * to be deleted    * @throws CorruptIndexException if the index is corrupt    * @throws IOException if there is a low-level IO error    */
+comment|/**    * Deletes the document(s) matching any of the provided queries.    * All given deletes are applied and flushed atomically at the same time.    *    * @param queries array of queries to identify the documents    * to be deleted    * @throws CorruptIndexException if the index is corrupt    * @throws IOException if there is a low-level IO error    */
 DECL|method|deleteDocuments
 specifier|public
 name|void
@@ -3932,7 +3942,7 @@ name|OutOfMemoryError
 name|oom
 parameter_list|)
 block|{
-name|handleOOM
+name|tragicEvent
 argument_list|(
 name|oom
 argument_list|,
@@ -3941,7 +3951,7 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
-comment|/**    * Updates a document by first deleting the document(s)    * containing<code>term</code> and then adding the new    * document.  The delete and then add are atomic as seen    * by a reader on the same index (flush may happen only after    * the add).    *    *<p><b>NOTE</b>: if this method hits an OutOfMemoryError    * you should immediately close the writer.  See<a    * href="#OOME">above</a> for details.</p>    *    * @param term the term to identify the document(s) to be    * deleted    * @param doc the document to be added    * @throws CorruptIndexException if the index is corrupt    * @throws IOException if there is a low-level IO error    */
+comment|/**    * Updates a document by first deleting the document(s)    * containing<code>term</code> and then adding the new    * document.  The delete and then add are atomic as seen    * by a reader on the same index (flush may happen only after    * the add).    *    * @param term the term to identify the document(s) to be    * deleted    * @param doc the document to be added    * @throws CorruptIndexException if the index is corrupt    * @throws IOException if there is a low-level IO error    */
 DECL|method|updateDocument
 specifier|public
 name|void
@@ -3969,7 +3979,7 @@ name|analyzer
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**    * Updates a document by first deleting the document(s)    * containing<code>term</code> and then adding the new    * document.  The delete and then add are atomic as seen    * by a reader on the same index (flush may happen only after    * the add).    *    *<p><b>NOTE</b>: if this method hits an OutOfMemoryError    * you should immediately close the writer.  See<a    * href="#OOME">above</a> for details.</p>    *    * @param term the term to identify the document(s) to be    * deleted    * @param doc the document to be added    * @param analyzer the analyzer to use when analyzing the document    * @throws CorruptIndexException if the index is corrupt    * @throws IOException if there is a low-level IO error    */
+comment|/**    * Updates a document by first deleting the document(s)    * containing<code>term</code> and then adding the new    * document.  The delete and then add are atomic as seen    * by a reader on the same index (flush may happen only after    * the add).    *    * @param term the term to identify the document(s) to be    * deleted    * @param doc the document to be added    * @param analyzer the analyzer to use when analyzing the document    * @throws CorruptIndexException if the index is corrupt    * @throws IOException if there is a low-level IO error    */
 DECL|method|updateDocument
 specifier|public
 name|void
@@ -4063,7 +4073,7 @@ name|OutOfMemoryError
 name|oom
 parameter_list|)
 block|{
-name|handleOOM
+name|tragicEvent
 argument_list|(
 name|oom
 argument_list|,
@@ -4072,7 +4082,7 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
-comment|/**    * Updates a document's {@link NumericDocValues} for<code>field</code> to the    * given<code>value</code>. You can only update fields that already exist in    * the index, not add new fields through this method.    *     *<p>    *<b>NOTE</b>: if this method hits an OutOfMemoryError you should immediately    * close the writer. See<a href="#OOME">above</a> for details.    *</p>    *     * @param term    *          the term to identify the document(s) to be updated    * @param field    *          field name of the {@link NumericDocValues} field    * @param value    *          new value for the field    * @throws CorruptIndexException    *           if the index is corrupt    * @throws IOException    *           if there is a low-level IO error    */
+comment|/**    * Updates a document's {@link NumericDocValues} for<code>field</code> to the    * given<code>value</code>. You can only update fields that already exist in    * the index, not add new fields through this method.    *     * @param term    *          the term to identify the document(s) to be updated    * @param field    *          field name of the {@link NumericDocValues} field    * @param value    *          new value for the field    * @throws CorruptIndexException    *           if the index is corrupt    * @throws IOException    *           if there is a low-level IO error    */
 DECL|method|updateNumericDocValue
 specifier|public
 name|void
@@ -4151,7 +4161,7 @@ name|OutOfMemoryError
 name|oom
 parameter_list|)
 block|{
-name|handleOOM
+name|tragicEvent
 argument_list|(
 name|oom
 argument_list|,
@@ -4160,7 +4170,7 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
-comment|/**    * Updates a document's {@link BinaryDocValues} for<code>field</code> to the    * given<code>value</code>. You can only update fields that already exist in    * the index, not add new fields through this method.    *     *<p>    *<b>NOTE:</b> this method currently replaces the existing value of all    * affected documents with the new value.    *     *<p>    *<b>NOTE:</b> if this method hits an OutOfMemoryError you should immediately    * close the writer. See<a href="#OOME">above</a> for details.    *</p>    *     * @param term    *          the term to identify the document(s) to be updated    * @param field    *          field name of the {@link BinaryDocValues} field    * @param value    *          new value for the field    * @throws CorruptIndexException    *           if the index is corrupt    * @throws IOException    *           if there is a low-level IO error    */
+comment|/**    * Updates a document's {@link BinaryDocValues} for<code>field</code> to the    * given<code>value</code>. You can only update fields that already exist in    * the index, not add new fields through this method.    *     *<p>    *<b>NOTE:</b> this method currently replaces the existing value of all    * affected documents with the new value.    *     * @param term    *          the term to identify the document(s) to be updated    * @param field    *          field name of the {@link BinaryDocValues} field    * @param value    *          new value for the field    * @throws CorruptIndexException    *           if the index is corrupt    * @throws IOException    *           if there is a low-level IO error    */
 DECL|method|updateBinaryDocValue
 specifier|public
 name|void
@@ -4256,7 +4266,7 @@ name|OutOfMemoryError
 name|oom
 parameter_list|)
 block|{
-name|handleOOM
+name|tragicEvent
 argument_list|(
 name|oom
 argument_list|,
@@ -4265,7 +4275,7 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
-comment|/**    * Updates documents' DocValues fields to the given values. Each field update    * is applied to the set of documents that are associated with the    * {@link Term} to the same value. All updates are atomically applied and    * flushed together.    *     *<p>    *<b>NOTE</b>: if this method hits an OutOfMemoryError you should immediately    * close the writer. See<a href="#OOME">above</a> for details.    *</p>    *     * @param updates    *          the updates to apply    * @throws CorruptIndexException    *           if the index is corrupt    * @throws IOException    *           if there is a low-level IO error    */
+comment|/**    * Updates documents' DocValues fields to the given values. Each field update    * is applied to the set of documents that are associated with the    * {@link Term} to the same value. All updates are atomically applied and    * flushed together.    *     * @param updates    *          the updates to apply    * @throws CorruptIndexException    *           if the index is corrupt    * @throws IOException    *           if there is a low-level IO error    */
 DECL|method|updateDocValues
 specifier|public
 name|void
@@ -4491,7 +4501,7 @@ name|OutOfMemoryError
 name|oom
 parameter_list|)
 block|{
-name|handleOOM
+name|tragicEvent
 argument_list|(
 name|oom
 argument_list|,
@@ -4680,7 +4690,7 @@ specifier|final
 name|InfoStream
 name|infoStream
 decl_stmt|;
-comment|/**    * Forces merge policy to merge segments until there are<=    * maxNumSegments.  The actual merges to be    * executed are determined by the {@link MergePolicy}.    *    *<p>This is a horribly costly operation, especially when    * you pass a small {@code maxNumSegments}; usually you    * should only call this if the index is static (will no    * longer be changed).</p>    *    *<p>Note that this requires up to 2X the index size free    * space in your Directory (3X if you're using compound    * file format).  For example, if your index size is 10 MB    * then you need up to 20 MB free for this to complete (30    * MB if you're using compound file format).  Also,    * it's best to call {@link #commit()} afterwards,    * to allow IndexWriter to free up disk space.</p>    *    *<p>If some but not all readers re-open while merging    * is underway, this will cause> 2X temporary    * space to be consumed as those new readers will then    * hold open the temporary segments at that time.  It is    * best not to re-open readers while merging is running.</p>    *    *<p>The actual temporary usage could be much less than    * these figures (it depends on many factors).</p>    *    *<p>In general, once this completes, the total size of the    * index will be less than the size of the starting index.    * It could be quite a bit smaller (if there were many    * pending deletes) or just slightly smaller.</p>    *    *<p>If an Exception is hit, for example    * due to disk full, the index will not be corrupted and no    * documents will be lost.  However, it may have    * been partially merged (some segments were merged but    * not all), and it's possible that one of the segments in    * the index will be in non-compound format even when    * using compound file format.  This will occur when the    * Exception is hit during conversion of the segment into    * compound format.</p>    *    *<p>This call will merge those segments present in    * the index when the call started.  If other threads are    * still adding documents and flushing segments, those    * newly created segments will not be merged unless you    * call forceMerge again.</p>    *    *<p><b>NOTE</b>: if this method hits an OutOfMemoryError    * you should immediately close the writer.  See<a    * href="#OOME">above</a> for details.</p>    *    *<p><b>NOTE</b>: if you call {@link #abortMerges}, which    * aborts all running merges, then any thread still    * running this method might hit a {@link    * MergePolicy.MergeAbortedException}.    *    * @param maxNumSegments maximum number of segments left    * in the index after merging finishes    *     * @throws CorruptIndexException if the index is corrupt    * @throws IOException if there is a low-level IO error    * @see MergePolicy#findMerges    *   */
+comment|/**    * Forces merge policy to merge segments until there are<=    * maxNumSegments.  The actual merges to be    * executed are determined by the {@link MergePolicy}.    *    *<p>This is a horribly costly operation, especially when    * you pass a small {@code maxNumSegments}; usually you    * should only call this if the index is static (will no    * longer be changed).</p>    *    *<p>Note that this requires up to 2X the index size free    * space in your Directory (3X if you're using compound    * file format).  For example, if your index size is 10 MB    * then you need up to 20 MB free for this to complete (30    * MB if you're using compound file format).  Also,    * it's best to call {@link #commit()} afterwards,    * to allow IndexWriter to free up disk space.</p>    *    *<p>If some but not all readers re-open while merging    * is underway, this will cause> 2X temporary    * space to be consumed as those new readers will then    * hold open the temporary segments at that time.  It is    * best not to re-open readers while merging is running.</p>    *    *<p>The actual temporary usage could be much less than    * these figures (it depends on many factors).</p>    *    *<p>In general, once this completes, the total size of the    * index will be less than the size of the starting index.    * It could be quite a bit smaller (if there were many    * pending deletes) or just slightly smaller.</p>    *    *<p>If an Exception is hit, for example    * due to disk full, the index will not be corrupted and no    * documents will be lost.  However, it may have    * been partially merged (some segments were merged but    * not all), and it's possible that one of the segments in    * the index will be in non-compound format even when    * using compound file format.  This will occur when the    * Exception is hit during conversion of the segment into    * compound format.</p>    *    *<p>This call will merge those segments present in    * the index when the call started.  If other threads are    * still adding documents and flushing segments, those    * newly created segments will not be merged unless you    * call forceMerge again.</p>    *    *<p><b>NOTE</b>: if you call {@link #abortMerges}, which    * aborts all running merges, then any thread still    * running this method might hit a {@link    * MergePolicy.MergeAbortedException}.    *    * @param maxNumSegments maximum number of segments left    * in the index after merging finishes    *     * @throws CorruptIndexException if the index is corrupt    * @throws IOException if there is a low-level IO error    * @see MergePolicy#findMerges    *   */
 DECL|method|forceMerge
 specifier|public
 name|void
@@ -4700,7 +4710,7 @@ literal|true
 argument_list|)
 expr_stmt|;
 block|}
-comment|/** Just like {@link #forceMerge(int)}, except you can    *  specify whether the call should block until    *  all merging completes.  This is only meaningful with a    *  {@link MergeScheduler} that is able to run merges in    *  background threads.    *    *<p><b>NOTE</b>: if this method hits an OutOfMemoryError    *  you should immediately close the writer.  See<a    *  href="#OOME">above</a> for details.</p>    */
+comment|/** Just like {@link #forceMerge(int)}, except you can    *  specify whether the call should block until    *  all merging completes.  This is only meaningful with a    *  {@link MergeScheduler} that is able to run merges in    *  background threads.    */
 DECL|method|forceMerge
 specifier|public
 name|void
@@ -4905,14 +4915,18 @@ condition|)
 block|{
 if|if
 condition|(
-name|hitOOM
+name|tragedy
+operator|!=
+literal|null
 condition|)
 block|{
 throw|throw
 operator|new
 name|IllegalStateException
 argument_list|(
-literal|"this writer hit an OutOfMemoryError; cannot complete forceMerge"
+literal|"this writer hit an unrecoverable error; cannot complete forceMerge"
+argument_list|,
+name|tragedy
 argument_list|)
 throw|;
 block|}
@@ -5081,7 +5095,7 @@ return|return
 literal|false
 return|;
 block|}
-comment|/** Just like {@link #forceMergeDeletes()}, except you can    *  specify whether the call should block until the    *  operation completes.  This is only meaningful with a    *  {@link MergeScheduler} that is able to run merges in    *  background threads.    *    *<p><b>NOTE</b>: if this method hits an OutOfMemoryError    * you should immediately close the writer.  See<a    * href="#OOME">above</a> for details.</p>    *    *<p><b>NOTE</b>: if you call {@link #abortMerges}, which    * aborts all running merges, then any thread still    * running this method might hit a {@link    * MergePolicy.MergeAbortedException}. */
+comment|/** Just like {@link #forceMergeDeletes()}, except you can    *  specify whether the call should block until the    *  operation completes.  This is only meaningful with a    *  {@link MergeScheduler} that is able to run merges in    *  background threads.    *    *<p><b>NOTE</b>: if you call {@link #abortMerges}, which    * aborts all running merges, then any thread still    * running this method might hit a {@link    * MergePolicy.MergeAbortedException}. */
 DECL|method|forceMergeDeletes
 specifier|public
 name|void
@@ -5261,14 +5275,18 @@ condition|)
 block|{
 if|if
 condition|(
-name|hitOOM
+name|tragedy
+operator|!=
+literal|null
 condition|)
 block|{
 throw|throw
 operator|new
 name|IllegalStateException
 argument_list|(
-literal|"this writer hit an OutOfMemoryError; cannot complete forceMergeDeletes"
+literal|"this writer hit an unrecoverable error; cannot complete forceMergeDeletes"
+argument_list|,
+name|tragedy
 argument_list|)
 throw|;
 block|}
@@ -5379,7 +5397,7 @@ comment|// NOTE: in the ConcurrentMergeScheduler case, when
 comment|// doWait is false, we can return immediately while
 comment|// background threads accomplish the merging
 block|}
-comment|/**    *  Forces merging of all segments that have deleted    *  documents.  The actual merges to be executed are    *  determined by the {@link MergePolicy}.  For example,    *  the default {@link TieredMergePolicy} will only    *  pick a segment if the percentage of    *  deleted docs is over 10%.    *    *<p>This is often a horribly costly operation; rarely    *  is it warranted.</p>    *    *<p>To see how    *  many deletions you have pending in your index, call    *  {@link IndexReader#numDeletedDocs}.</p>    *    *<p><b>NOTE</b>: this method first flushes a new    *  segment (if there are indexed documents), and applies    *  all buffered deletes.    *    *<p><b>NOTE</b>: if this method hits an OutOfMemoryError    *  you should immediately close the writer.  See<a    *  href="#OOME">above</a> for details.</p>    */
+comment|/**    *  Forces merging of all segments that have deleted    *  documents.  The actual merges to be executed are    *  determined by the {@link MergePolicy}.  For example,    *  the default {@link TieredMergePolicy} will only    *  pick a segment if the percentage of    *  deleted docs is over 10%.    *    *<p>This is often a horribly costly operation; rarely    *  is it warranted.</p>    *    *<p>To see how    *  many deletions you have pending in your index, call    *  {@link IndexReader#numDeletedDocs}.</p>    *    *<p><b>NOTE</b>: this method first flushes a new    *  segment (if there are indexed documents), and applies    *  all buffered deletes.    */
 DECL|method|forceMergeDeletes
 specifier|public
 name|void
@@ -5394,7 +5412,7 @@ literal|true
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**    * Expert: asks the mergePolicy whether any merges are    * necessary now and if so, runs the requested merges and    * then iterate (test again if merges are needed) until no    * more merges are returned by the mergePolicy.    *    * Explicit calls to maybeMerge() are usually not    * necessary. The most common case is when merge policy    * parameters have changed.    *     * This method will call the {@link MergePolicy} with    * {@link MergeTrigger#EXPLICIT}.    *    *<p><b>NOTE</b>: if this method hits an OutOfMemoryError    * you should immediately close the writer.  See<a    * href="#OOME">above</a> for details.</p>    */
+comment|/**    * Expert: asks the mergePolicy whether any merges are    * necessary now and if so, runs the requested merges and    * then iterate (test again if merges are needed) until no    * more merges are returned by the mergePolicy.    *    * Explicit calls to maybeMerge() are usually not    * necessary. The most common case is when merge policy    * parameters have changed.    *     * This method will call the {@link MergePolicy} with    * {@link MergeTrigger#EXPLICIT}.    */
 DECL|method|maybeMerge
 specifier|public
 specifier|final
@@ -5513,10 +5531,12 @@ return|return
 literal|false
 return|;
 block|}
-comment|// Do not start new merges if we've hit OOME
+comment|// Do not start new merges if disaster struck
 if|if
 condition|(
-name|hitOOM
+name|tragedy
+operator|!=
+literal|null
 condition|)
 block|{
 return|return
@@ -6092,7 +6112,7 @@ name|OutOfMemoryError
 name|oom
 parameter_list|)
 block|{
-name|handleOOM
+name|tragicEvent
 argument_list|(
 name|oom
 argument_list|,
@@ -6297,7 +6317,7 @@ name|OutOfMemoryError
 name|oom
 parameter_list|)
 block|{
-name|handleOOM
+name|tragicEvent
 argument_list|(
 name|oom
 argument_list|,
@@ -7133,7 +7153,7 @@ return|return
 name|locks
 return|;
 block|}
-comment|/**    * Adds all segments from an array of indexes into this index.    *    *<p>This may be used to parallelize batch indexing. A large document    * collection can be broken into sub-collections. Each sub-collection can be    * indexed in parallel, on a different thread, process or machine. The    * complete index can then be created by merging sub-collection indexes    * with this method.    *    *<p>    *<b>NOTE:</b> this method acquires the write lock in    * each directory, to ensure that no {@code IndexWriter}    * is currently open or tries to open while this is    * running.    *    *<p>This method is transactional in how Exceptions are    * handled: it does not commit a new segments_N file until    * all indexes are added.  This means if an Exception    * occurs (for example disk full), then either no indexes    * will have been added or they all will have been.    *    *<p>Note that this requires temporary free space in the    * {@link Directory} up to 2X the sum of all input indexes    * (including the starting index). If readers/searchers    * are open against the starting index, then temporary    * free space required will be higher by the size of the    * starting index (see {@link #forceMerge(int)} for details).    *    *<p>This requires this index not be among those to be added.    *    *<p>    *<b>NOTE</b>: if this method hits an OutOfMemoryError    * you should immediately close the writer. See<a    * href="#OOME">above</a> for details.    *    * @throws CorruptIndexException if the index is corrupt    * @throws IOException if there is a low-level IO error    * @throws LockObtainFailedException if we were unable to    *   acquire the write lock in at least one directory    */
+comment|/**    * Adds all segments from an array of indexes into this index.    *    *<p>This may be used to parallelize batch indexing. A large document    * collection can be broken into sub-collections. Each sub-collection can be    * indexed in parallel, on a different thread, process or machine. The    * complete index can then be created by merging sub-collection indexes    * with this method.    *    *<p>    *<b>NOTE:</b> this method acquires the write lock in    * each directory, to ensure that no {@code IndexWriter}    * is currently open or tries to open while this is    * running.    *    *<p>This method is transactional in how Exceptions are    * handled: it does not commit a new segments_N file until    * all indexes are added.  This means if an Exception    * occurs (for example disk full), then either no indexes    * will have been added or they all will have been.    *    *<p>Note that this requires temporary free space in the    * {@link Directory} up to 2X the sum of all input indexes    * (including the starting index). If readers/searchers    * are open against the starting index, then temporary    * free space required will be higher by the size of the    * starting index (see {@link #forceMerge(int)} for details).    *    *<p>This requires this index not be among those to be added.    *    * @throws CorruptIndexException if the index is corrupt    * @throws IOException if there is a low-level IO error    * @throws LockObtainFailedException if we were unable to    *   acquire the write lock in at least one directory    */
 DECL|method|addIndexes
 specifier|public
 name|void
@@ -7570,7 +7590,7 @@ name|OutOfMemoryError
 name|oom
 parameter_list|)
 block|{
-name|handleOOM
+name|tragicEvent
 argument_list|(
 name|oom
 argument_list|,
@@ -7608,7 +7628,7 @@ name|maybeMerge
 argument_list|()
 expr_stmt|;
 block|}
-comment|/**    * Merges the provided indexes into this index.    *     *<p>    * The provided IndexReaders are not closed.    *     *<p>    * See {@link #addIndexes} for details on transactional semantics, temporary    * free space required in the Directory, and non-CFS segments on an Exception.    *     *<p>    *<b>NOTE</b>: if this method hits an OutOfMemoryError you should immediately    * close the writer. See<a href="#OOME">above</a> for details.    *     *<p>    *<b>NOTE:</b> empty segments are dropped by this method and not added to this    * index.    *     *<p>    *<b>NOTE:</b> this method merges all given {@link IndexReader}s in one    * merge. If you intend to merge a large number of readers, it may be better    * to call this method multiple times, each time with a small set of readers.    * In principle, if you use a merge policy with a {@code mergeFactor} or    * {@code maxMergeAtOnce} parameter, you should pass that many readers in one    * call.    *     *<p>    *<b>NOTE</b>: if you call {@link #abortMerges}, which    * aborts all running merges, then any thread still running this method might    * hit a {@link MergePolicy.MergeAbortedException}.    *     * @throws CorruptIndexException    *           if the index is corrupt    * @throws IOException    *           if there is a low-level IO error    */
+comment|/**    * Merges the provided indexes into this index.    *     *<p>    * The provided IndexReaders are not closed.    *     *<p>    * See {@link #addIndexes} for details on transactional semantics, temporary    * free space required in the Directory, and non-CFS segments on an Exception.    *     *<p>    *<b>NOTE:</b> empty segments are dropped by this method and not added to this    * index.    *     *<p>    *<b>NOTE:</b> this method merges all given {@link IndexReader}s in one    * merge. If you intend to merge a large number of readers, it may be better    * to call this method multiple times, each time with a small set of readers.    * In principle, if you use a merge policy with a {@code mergeFactor} or    * {@code maxMergeAtOnce} parameter, you should pass that many readers in one    * call.    *     *<p>    *<b>NOTE</b>: if you call {@link #abortMerges}, which    * aborts all running merges, then any thread still running this method might    * hit a {@link MergePolicy.MergeAbortedException}.    *     * @throws CorruptIndexException    *           if the index is corrupt    * @throws IOException    *           if there is a low-level IO error    */
 DECL|method|addIndexes
 specifier|public
 name|void
@@ -8152,7 +8172,7 @@ name|OutOfMemoryError
 name|oom
 parameter_list|)
 block|{
-name|handleOOM
+name|tragicEvent
 argument_list|(
 name|oom
 argument_list|,
@@ -8519,7 +8539,7 @@ parameter_list|()
 throws|throws
 name|IOException
 block|{}
-comment|/**<p>Expert: prepare for commit.  This does the    *  first phase of 2-phase commit. This method does all    *  steps necessary to commit changes since this writer    *  was opened: flushes pending added and deleted docs,    *  syncs the index files, writes most of next segments_N    *  file.  After calling this you must call either {@link    *  #commit()} to finish the commit, or {@link    *  #rollback()} to revert the commit and undo all changes    *  done since the writer was opened.</p>    *    *<p>You can also just call {@link #commit()} directly    *  without prepareCommit first in which case that method    *  will internally call prepareCommit.    *    *<p><b>NOTE</b>: if this method hits an OutOfMemoryError    *  you should immediately close the writer.  See<a    *  href="#OOME">above</a> for details.</p>    */
+comment|/**<p>Expert: prepare for commit.  This does the    *  first phase of 2-phase commit. This method does all    *  steps necessary to commit changes since this writer    *  was opened: flushes pending added and deleted docs,    *  syncs the index files, writes most of next segments_N    *  file.  After calling this you must call either {@link    *  #commit()} to finish the commit, or {@link    *  #rollback()} to revert the commit and undo all changes    *  done since the writer was opened.</p>    *    *<p>You can also just call {@link #commit()} directly    *  without prepareCommit first in which case that method    *  will internally call prepareCommit.    */
 annotation|@
 name|Override
 DECL|method|prepareCommit
@@ -8605,14 +8625,18 @@ expr_stmt|;
 block|}
 if|if
 condition|(
-name|hitOOM
+name|tragedy
+operator|!=
+literal|null
 condition|)
 block|{
 throw|throw
 operator|new
 name|IllegalStateException
 argument_list|(
-literal|"this writer hit an OutOfMemoryError; cannot commit"
+literal|"this writer hit an unrecoverable error; cannot commit"
+argument_list|,
+name|tragedy
 argument_list|)
 throw|;
 block|}
@@ -8817,7 +8841,7 @@ name|OutOfMemoryError
 name|oom
 parameter_list|)
 block|{
-name|handleOOM
+name|tragicEvent
 argument_list|(
 name|oom
 argument_list|,
@@ -8962,7 +8986,7 @@ operator|new
 name|Object
 argument_list|()
 decl_stmt|;
-comment|/**    *<p>Commits all pending changes (added& deleted    * documents, segment merges, added    * indexes, etc.) to the index, and syncs all referenced    * index files, such that a reader will see the changes    * and the index updates will survive an OS or machine    * crash or power loss.  Note that this does not wait for    * any running background merges to finish.  This may be a    * costly operation, so you should test the cost in your    * application and do it only when really necessary.</p>    *    *<p> Note that this operation calls Directory.sync on    * the index files.  That call should not return until the    * file contents& metadata are on stable storage.  For    * FSDirectory, this calls the OS's fsync.  But, beware:    * some hardware devices may in fact cache writes even    * during fsync, and return before the bits are actually    * on stable storage, to give the appearance of faster    * performance.  If you have such a device, and it does    * not have a battery backup (for example) then on power    * loss it may still lose data.  Lucene cannot guarantee    * consistency on such devices.</p>    *    *<p><b>NOTE</b>: if this method hits an OutOfMemoryError    * you should immediately close the writer.  See<a    * href="#OOME">above</a> for details.</p>    *    * @see #prepareCommit    */
+comment|/**    *<p>Commits all pending changes (added& deleted    * documents, segment merges, added    * indexes, etc.) to the index, and syncs all referenced    * index files, such that a reader will see the changes    * and the index updates will survive an OS or machine    * crash or power loss.  Note that this does not wait for    * any running background merges to finish.  This may be a    * costly operation, so you should test the cost in your    * application and do it only when really necessary.</p>    *    *<p> Note that this operation calls Directory.sync on    * the index files.  That call should not return until the    * file contents& metadata are on stable storage.  For    * FSDirectory, this calls the OS's fsync.  But, beware:    * some hardware devices may in fact cache writes even    * during fsync, and return before the bits are actually    * on stable storage, to give the appearance of faster    * performance.  If you have such a device, and it does    * not have a battery backup (for example) then on power    * loss it may still lose data.  Lucene cannot guarantee    * consistency on such devices.</p>    *    * @see #prepareCommit    */
 annotation|@
 name|Override
 DECL|method|commit
@@ -9143,6 +9167,11 @@ parameter_list|()
 throws|throws
 name|IOException
 block|{
+name|boolean
+name|success
+init|=
+literal|false
+decl_stmt|;
 if|if
 condition|(
 name|pendingCommit
@@ -9179,6 +9208,13 @@ argument_list|(
 name|directory
 argument_list|)
 expr_stmt|;
+name|success
+operator|=
+literal|true
+expr_stmt|;
+comment|// we committed, if anything goes wrong after this: we are screwed
+try|try
+block|{
 if|if
 condition|(
 name|infoStream
@@ -9236,9 +9272,37 @@ literal|true
 argument_list|)
 expr_stmt|;
 block|}
+catch|catch
+parameter_list|(
+name|Throwable
+name|tragedy
+parameter_list|)
+block|{
+name|tragicEvent
+argument_list|(
+name|tragedy
+argument_list|,
+literal|"finishCommit"
+argument_list|)
+expr_stmt|;
+block|}
+block|}
 finally|finally
 block|{
 comment|// Matches the incRef done in prepareCommit:
+try|try
+block|{
+if|if
+condition|(
+name|success
+operator|==
+literal|false
+operator|||
+name|tragedy
+operator|==
+literal|null
+condition|)
+block|{
 try|try
 block|{
 name|deleter
@@ -9248,6 +9312,30 @@ argument_list|(
 name|filesToCommit
 argument_list|)
 expr_stmt|;
+block|}
+catch|catch
+parameter_list|(
+name|Throwable
+name|t
+parameter_list|)
+block|{
+comment|// if the commit succeeded, we are in screwed state
+comment|// otherwise, throw our original exception
+if|if
+condition|(
+name|success
+condition|)
+block|{
+name|tragicEvent
+argument_list|(
+name|tragedy
+argument_list|,
+literal|"finishCommit"
+argument_list|)
+expr_stmt|;
+block|}
+block|}
+block|}
 block|}
 finally|finally
 block|{
@@ -9443,14 +9531,18 @@ name|IOException
 block|{
 if|if
 condition|(
-name|hitOOM
+name|tragedy
+operator|!=
+literal|null
 condition|)
 block|{
 throw|throw
 operator|new
 name|IllegalStateException
 argument_list|(
-literal|"this writer hit an OutOfMemoryError; cannot flush"
+literal|"this writer hit an unrecoverable error; cannot flush"
+argument_list|,
+name|tragedy
 argument_list|)
 throw|;
 block|}
@@ -9593,7 +9685,7 @@ name|OutOfMemoryError
 name|oom
 parameter_list|)
 block|{
-name|handleOOM
+name|tragicEvent
 argument_list|(
 name|oom
 argument_list|,
@@ -11427,14 +11519,18 @@ argument_list|)
 assert|;
 if|if
 condition|(
-name|hitOOM
+name|tragedy
+operator|!=
+literal|null
 condition|)
 block|{
 throw|throw
 operator|new
 name|IllegalStateException
 argument_list|(
-literal|"this writer hit an OutOfMemoryError; cannot complete merge"
+literal|"this writer hit an unrecoverable error; cannot complete merge"
+argument_list|,
+name|tragedy
 argument_list|)
 throw|;
 block|}
@@ -12330,7 +12426,7 @@ name|OutOfMemoryError
 name|oom
 parameter_list|)
 block|{
-name|handleOOM
+name|tragicEvent
 argument_list|(
 name|oom
 argument_list|,
@@ -13024,14 +13120,18 @@ literal|0
 assert|;
 if|if
 condition|(
-name|hitOOM
+name|tragedy
+operator|!=
+literal|null
 condition|)
 block|{
 throw|throw
 operator|new
 name|IllegalStateException
 argument_list|(
-literal|"this writer hit an OutOfMemoryError; cannot merge"
+literal|"this writer hit an unrecoverable error; cannot merge"
+argument_list|,
+name|tragedy
 argument_list|)
 throw|;
 block|}
@@ -15635,14 +15735,18 @@ literal|null
 assert|;
 if|if
 condition|(
-name|hitOOM
+name|tragedy
+operator|!=
+literal|null
 condition|)
 block|{
 throw|throw
 operator|new
 name|IllegalStateException
 argument_list|(
-literal|"this writer hit an OutOfMemoryError; cannot commit"
+literal|"this writer hit an unrecoverable error; cannot commit"
+argument_list|,
+name|tragedy
 argument_list|)
 throw|;
 block|}
@@ -15990,7 +16094,7 @@ name|OutOfMemoryError
 name|oom
 parameter_list|)
 block|{
-name|handleOOM
+name|tragicEvent
 argument_list|(
 name|oom
 argument_list|,
@@ -16084,13 +16188,13 @@ throws|throws
 name|IOException
 function_decl|;
 block|}
-DECL|method|handleOOM
+DECL|method|tragicEvent
 specifier|private
 name|void
-name|handleOOM
+name|tragicEvent
 parameter_list|(
-name|OutOfMemoryError
-name|oom
+name|Throwable
+name|tragedy
 parameter_list|,
 name|String
 name|location
@@ -16112,19 +16216,76 @@ name|message
 argument_list|(
 literal|"IW"
 argument_list|,
-literal|"hit OutOfMemoryError inside "
+literal|"hit "
+operator|+
+name|tragedy
+operator|.
+name|getClass
+argument_list|()
+operator|.
+name|getSimpleName
+argument_list|()
+operator|+
+literal|" inside "
 operator|+
 name|location
 argument_list|)
 expr_stmt|;
 block|}
-name|hitOOM
+comment|// its possible you could have a really bad day
+if|if
+condition|(
+name|this
+operator|.
+name|tragedy
+operator|==
+literal|null
+condition|)
+block|{
+name|this
+operator|.
+name|tragedy
 operator|=
-literal|true
+name|tragedy
 expr_stmt|;
-throw|throw
-name|oom
-throw|;
+block|}
+comment|// if we are already closed (e.g. called by rollback), this will be a no-op.
+synchronized|synchronized
+init|(
+name|commitLock
+init|)
+block|{
+if|if
+condition|(
+name|closing
+operator|==
+literal|false
+condition|)
+block|{
+try|try
+block|{
+name|rollback
+argument_list|()
+expr_stmt|;
+block|}
+catch|catch
+parameter_list|(
+name|Throwable
+name|ignored
+parameter_list|)
+block|{
+comment|// it would be confusing to addSuppressed here, its unrelated to the disaster,
+comment|// and its possible our internal state is amiss anyway.
+block|}
+block|}
+block|}
+name|IOUtils
+operator|.
+name|reThrowUnchecked
+argument_list|(
+name|tragedy
+argument_list|)
+expr_stmt|;
 block|}
 comment|// Used only by assert for testing.  Current points:
 comment|//   startDoFlush
