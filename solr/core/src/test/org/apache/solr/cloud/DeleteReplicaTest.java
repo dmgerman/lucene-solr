@@ -931,6 +931,9 @@ argument_list|,
 literal|"action"
 argument_list|,
 name|DELETEREPLICA
+operator|.
+name|toLower
+argument_list|()
 argument_list|,
 literal|"shard"
 argument_list|,
