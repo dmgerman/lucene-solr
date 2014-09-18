@@ -99,14 +99,14 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * An Object which represents a paramSet tag  *  */
+comment|/**  * An Object which represents a<args> tag  *  */
 end_comment
 
 begin_class
-DECL|class|ParamSet
+DECL|class|InitParams
 specifier|public
 class|class
-name|ParamSet
+name|InitParams
 block|{
 DECL|field|TYPE
 specifier|public
@@ -115,7 +115,7 @@ specifier|final
 name|String
 name|TYPE
 init|=
-literal|"paramSet"
+literal|"initParams"
 decl_stmt|;
 DECL|field|name
 specifier|public
@@ -144,9 +144,9 @@ name|invariants
 decl_stmt|,
 name|appends
 decl_stmt|;
-DECL|method|ParamSet
+DECL|method|InitParams
 specifier|public
-name|ParamSet
+name|InitParams
 parameter_list|(
 name|PluginInfo
 name|p

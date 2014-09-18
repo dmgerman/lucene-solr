@@ -412,7 +412,7 @@ name|solr
 operator|.
 name|core
 operator|.
-name|ParamSet
+name|InitParams
 import|;
 end_import
 
@@ -942,7 +942,7 @@ name|invariants
 parameter_list|)
 block|{
 name|String
-name|paramSetNames
+name|useParams
 init|=
 name|req
 operator|.
@@ -951,14 +951,12 @@ argument_list|()
 operator|.
 name|get
 argument_list|(
-name|ParamSet
-operator|.
-name|TYPE
+literal|"useParam"
 argument_list|)
 decl_stmt|;
 if|if
 condition|(
-name|paramSetNames
+name|useParams
 operator|!=
 literal|null
 condition|)
@@ -972,14 +970,14 @@ name|StrUtils
 operator|.
 name|splitSmart
 argument_list|(
-name|paramSetNames
+name|useParams
 argument_list|,
 literal|','
 argument_list|)
 control|)
 block|{
-name|ParamSet
-name|paramSet
+name|InitParams
+name|initParams
 init|=
 name|req
 operator|.
@@ -989,7 +987,7 @@ operator|.
 name|getSolrConfig
 argument_list|()
 operator|.
-name|getParamSets
+name|getInitParams
 argument_list|()
 operator|.
 name|get
@@ -999,14 +997,14 @@ argument_list|)
 decl_stmt|;
 if|if
 condition|(
-name|paramSet
+name|initParams
 operator|!=
 literal|null
 condition|)
 block|{
 if|if
 condition|(
-name|paramSet
+name|initParams
 operator|.
 name|defaults
 operator|!=
@@ -1022,7 +1020,7 @@ name|SolrParams
 operator|.
 name|toSolrParams
 argument_list|(
-name|paramSet
+name|initParams
 operator|.
 name|defaults
 argument_list|)
@@ -1032,7 +1030,7 @@ argument_list|)
 expr_stmt|;
 if|if
 condition|(
-name|paramSet
+name|initParams
 operator|.
 name|invariants
 operator|!=
@@ -1050,7 +1048,7 @@ name|SolrParams
 operator|.
 name|toSolrParams
 argument_list|(
-name|paramSet
+name|initParams
 operator|.
 name|invariants
 argument_list|)
@@ -1058,7 +1056,7 @@ argument_list|)
 expr_stmt|;
 if|if
 condition|(
-name|paramSet
+name|initParams
 operator|.
 name|appends
 operator|!=
@@ -1076,7 +1074,7 @@ name|SolrParams
 operator|.
 name|toSolrParams
 argument_list|(
-name|paramSet
+name|initParams
 operator|.
 name|appends
 argument_list|)

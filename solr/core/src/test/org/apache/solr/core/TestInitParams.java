@@ -103,10 +103,10 @@ import|;
 end_import
 
 begin_class
-DECL|class|TestParamSet
+DECL|class|TestInitParams
 specifier|public
 class|class
-name|TestParamSet
+name|TestInitParams
 extends|extends
 name|SolrTestCaseJ4
 block|{
@@ -496,7 +496,7 @@ literal|"param"
 argument_list|,
 literal|"c"
 argument_list|,
-literal|"paramSet"
+literal|"useParam"
 argument_list|,
 literal|"a"
 argument_list|)
