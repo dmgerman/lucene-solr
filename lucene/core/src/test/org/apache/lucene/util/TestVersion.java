@@ -1138,27 +1138,6 @@ parameter_list|)
 block|{
 comment|// pass
 block|}
-try|try
-block|{
-name|Version
-operator|.
-name|parse
-argument_list|(
-literal|"6.0.0"
-argument_list|)
-expr_stmt|;
-name|fail
-argument_list|()
-expr_stmt|;
-block|}
-catch|catch
-parameter_list|(
-name|IllegalArgumentException
-name|iae
-parameter_list|)
-block|{
-comment|// pass
-block|}
 block|}
 DECL|method|testDeprecations
 specifier|public
