@@ -283,21 +283,15 @@ condition|(
 name|version
 operator|.
 name|major
-argument_list|<
+operator|<
 literal|4
-operator|||
-name|version
-operator|.
-name|major
-argument_list|>
-literal|5
 condition|)
 block|{
 throw|throw
 operator|new
 name|IllegalArgumentException
 argument_list|(
-literal|"invalid major version: should be 4 or 5 but got: "
+literal|"invalid major version: should be>= 4 but got: "
 operator|+
 name|version
 operator|.

@@ -443,27 +443,9 @@ argument_list|,
 literal|0
 argument_list|)
 decl_stmt|;
-comment|/**    * Match settings and bugs in Lucene's 4.11.0 release.    * @deprecated (5.0) Use latest    */
+comment|/**    * Match settings and bugs in Lucene's 5.0 release.    * @deprecated (5.0) Use latest    */
 annotation|@
 name|Deprecated
-DECL|field|LUCENE_4_11_0
-specifier|public
-specifier|static
-specifier|final
-name|Version
-name|LUCENE_4_11_0
-init|=
-operator|new
-name|Version
-argument_list|(
-literal|4
-argument_list|,
-literal|11
-argument_list|,
-literal|0
-argument_list|)
-decl_stmt|;
-comment|/** Match settings and bugs in Lucene's 5.0 release.    *<p>    *  Use this to get the latest&amp; greatest settings, bug    *  fixes, etc, for Lucene.    */
 DECL|field|LUCENE_5_0_0
 specifier|public
 specifier|static
@@ -481,6 +463,24 @@ argument_list|,
 literal|0
 argument_list|)
 decl_stmt|;
+comment|/** Match settings and bugs in Lucene's 6.0 release.    *<p>    *  Use this to get the latest&amp; greatest settings, bug    *  fixes, etc, for Lucene.    */
+DECL|field|LUCENE_6_0_0
+specifier|public
+specifier|static
+specifier|final
+name|Version
+name|LUCENE_6_0_0
+init|=
+operator|new
+name|Version
+argument_list|(
+literal|6
+argument_list|,
+literal|0
+argument_list|,
+literal|0
+argument_list|)
+decl_stmt|;
 comment|// To add a new version:
 comment|//  * Only add above this comment
 comment|//  * If the new version is the newest, change LATEST below and deprecate the previous LATEST
@@ -492,7 +492,7 @@ specifier|final
 name|Version
 name|LATEST
 init|=
-name|LUCENE_5_0_0
+name|LUCENE_6_0_0
 decl_stmt|;
 comment|/**    * Constant for backwards compatibility.    * @deprecated Use {@link #LATEST}    */
 annotation|@
@@ -986,18 +986,19 @@ if|if
 condition|(
 name|major
 operator|>
-literal|5
+literal|6
 operator|||
 name|major
 operator|<
 literal|4
 condition|)
 block|{
+comment|// TODO fix this!!!
 throw|throw
 operator|new
 name|IllegalArgumentException
 argument_list|(
-literal|"Lucene 5.x only supports 5.x and 4.x versions"
+literal|"Lucene 6.x only supports 6.x, 5.x, and 4.x versions"
 argument_list|)
 throw|;
 block|}
