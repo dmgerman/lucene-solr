@@ -915,7 +915,14 @@ name|Overseer
 operator|.
 name|QUEUE_OPERATION
 argument_list|,
-literal|"updateshardstate"
+name|Overseer
+operator|.
+name|OverseerAction
+operator|.
+name|UPDATESHARDSTATE
+operator|.
+name|toLower
+argument_list|()
 argument_list|)
 expr_stmt|;
 name|propMap

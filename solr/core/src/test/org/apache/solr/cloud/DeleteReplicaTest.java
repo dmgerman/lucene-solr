@@ -24,22 +24,6 @@ name|apache
 operator|.
 name|solr
 operator|.
-name|cloud
-operator|.
-name|OverseerCollectionProcessor
-operator|.
-name|DELETEREPLICA
-import|;
-end_import
-
-begin_import
-import|import static
-name|org
-operator|.
-name|apache
-operator|.
-name|solr
-operator|.
 name|common
 operator|.
 name|cloud
@@ -81,6 +65,26 @@ operator|.
 name|ZkNodeProps
 operator|.
 name|makeMap
+import|;
+end_import
+
+begin_import
+import|import static
+name|org
+operator|.
+name|apache
+operator|.
+name|solr
+operator|.
+name|common
+operator|.
+name|params
+operator|.
+name|CollectionParams
+operator|.
+name|CollectionAction
+operator|.
+name|DELETEREPLICA
 import|;
 end_import
 
@@ -1021,6 +1025,9 @@ argument_list|,
 literal|"action"
 argument_list|,
 name|DELETEREPLICA
+operator|.
+name|toLower
+argument_list|()
 argument_list|,
 literal|"shard"
 argument_list|,
