@@ -64,7 +64,7 @@ specifier|public
 interface|interface
 name|StandardTokenizerInterface
 block|{
-comment|/** This token type, as returned from {#link #getNextToken()}, denotes the end of file */
+comment|/** This token type, as returned from {@link #getNextToken()}, denotes the end of file */
 DECL|field|YYEOF
 specifier|public
 specifier|static
