@@ -8001,16 +8001,11 @@ try|try
 block|{
 name|zkClient
 operator|.
-name|delete
+name|clean
 argument_list|(
 literal|"/collections/"
 operator|+
 name|collection
-argument_list|,
-operator|-
-literal|1
-argument_list|,
-literal|true
 argument_list|)
 expr_stmt|;
 block|}
