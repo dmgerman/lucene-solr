@@ -619,6 +619,7 @@ name|replica1
 init|=
 literal|null
 decl_stmt|;
+comment|// Get an active replica
 for|for
 control|(
 name|Slice
@@ -630,6 +631,13 @@ name|getSlices
 argument_list|()
 control|)
 block|{
+if|if
+condition|(
+name|replica1
+operator|!=
+literal|null
+condition|)
+break|break;
 if|if
 condition|(
 literal|"active"
@@ -659,6 +667,7 @@ operator|.
 name|getReplicas
 argument_list|()
 control|)
+block|{
 if|if
 condition|(
 literal|"active"
@@ -673,10 +682,14 @@ literal|"state"
 argument_list|)
 argument_list|)
 condition|)
+block|{
 name|replica1
 operator|=
 name|replica
 expr_stmt|;
+break|break;
+block|}
+block|}
 block|}
 block|}
 if|if
@@ -782,8 +795,6 @@ name|shard1
 operator|.
 name|getName
 argument_list|()
-argument_list|,
-name|dataDir
 argument_list|)
 expr_stmt|;
 name|fail
@@ -910,9 +921,6 @@ name|replica
 parameter_list|,
 name|String
 name|shard
-parameter_list|,
-name|String
-name|dataDir
 parameter_list|)
 throws|throws
 name|IOException
@@ -978,19 +986,13 @@ argument_list|(
 literal|"/admin/collections"
 argument_list|)
 expr_stmt|;
-name|NamedList
-argument_list|<
-name|Object
-argument_list|>
-name|resp
-init|=
 name|client
 operator|.
 name|request
 argument_list|(
 name|request
 argument_list|)
-decl_stmt|;
+expr_stmt|;
 block|}
 DECL|method|removeAndWaitForReplicaGone
 specifier|protected
