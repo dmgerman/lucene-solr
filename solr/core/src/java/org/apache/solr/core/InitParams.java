@@ -99,7 +99,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * An Object which represents a<args> tag  *  */
+comment|/**  * An Object which represents a&lt;initParams&gt; tag  */
 end_comment
 
 begin_class
