@@ -2637,6 +2637,36 @@ condition|)
 block|{
 comment|// ok to ignore
 block|}
+elseif|else
+if|if
+condition|(
+name|exc
+operator|instanceof
+name|AlreadyClosedException
+operator|&&
+name|exc
+operator|.
+name|getCause
+argument_list|()
+operator|!=
+literal|null
+operator|&&
+literal|"fake fail"
+operator|.
+name|equals
+argument_list|(
+name|exc
+operator|.
+name|getCause
+argument_list|()
+operator|.
+name|getMessage
+argument_list|()
+argument_list|)
+condition|)
+block|{
+comment|// also ok to ignore
+block|}
 else|else
 block|{
 name|super
