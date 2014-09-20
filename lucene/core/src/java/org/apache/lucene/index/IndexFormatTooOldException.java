@@ -56,15 +56,13 @@ parameter_list|)
 block|{
 name|super
 argument_list|(
-literal|"Format version is not supported (resource: "
-operator|+
-name|resourceDesc
-operator|+
-literal|"): "
+literal|"Format version is not supported: "
 operator|+
 name|version
 operator|+
 literal|". This version of Lucene only supports indexes created with release 4.0 and later."
+argument_list|,
+name|resourceDesc
 argument_list|)
 expr_stmt|;
 assert|assert
@@ -116,11 +114,7 @@ parameter_list|)
 block|{
 name|super
 argument_list|(
-literal|"Format version is not supported (resource: "
-operator|+
-name|resourceDesc
-operator|+
-literal|"): "
+literal|"Format version is not supported: "
 operator|+
 name|version
 operator|+
@@ -133,6 +127,8 @@ operator|+
 name|maxVersion
 operator|+
 literal|"). This version of Lucene only supports indexes created with release 4.0 and later."
+argument_list|,
+name|resourceDesc
 argument_list|)
 expr_stmt|;
 assert|assert

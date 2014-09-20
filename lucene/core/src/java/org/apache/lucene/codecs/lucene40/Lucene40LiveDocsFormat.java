@@ -357,12 +357,8 @@ name|info
 operator|.
 name|getDocCount
 argument_list|()
-operator|+
-literal|" (filename="
-operator|+
+argument_list|,
 name|filename
-operator|+
-literal|")"
 argument_list|)
 throw|;
 block|}
@@ -412,12 +408,8 @@ name|info
 operator|.
 name|getDelCount
 argument_list|()
-operator|+
-literal|" (filename="
-operator|+
+argument_list|,
 name|filename
-operator|+
-literal|")"
 argument_list|)
 throw|;
 block|}

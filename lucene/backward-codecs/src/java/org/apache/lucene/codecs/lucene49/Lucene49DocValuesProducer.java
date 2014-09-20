@@ -1098,7 +1098,15 @@ throw|throw
 operator|new
 name|CorruptIndexException
 argument_list|(
-literal|"Format versions mismatch"
+literal|"Format versions mismatch: meta="
+operator|+
+name|version
+operator|+
+literal|", data="
+operator|+
+name|version2
+argument_list|,
+name|data
 argument_list|)
 throw|;
 block|}
@@ -1189,11 +1197,9 @@ name|info
 operator|.
 name|name
 operator|+
-literal|" is corrupt (resource="
-operator|+
+literal|" is corrupt"
+argument_list|,
 name|meta
-operator|+
-literal|")"
 argument_list|)
 throw|;
 block|}
@@ -1219,11 +1225,9 @@ name|info
 operator|.
 name|name
 operator|+
-literal|" is corrupt (resource="
-operator|+
+literal|" is corrupt"
+argument_list|,
 name|meta
-operator|+
-literal|")"
 argument_list|)
 throw|;
 block|}
@@ -1268,11 +1272,9 @@ name|info
 operator|.
 name|name
 operator|+
-literal|" is corrupt (resource="
-operator|+
+literal|" is corrupt"
+argument_list|,
 name|meta
-operator|+
-literal|")"
 argument_list|)
 throw|;
 block|}
@@ -1298,11 +1300,9 @@ name|info
 operator|.
 name|name
 operator|+
-literal|" is corrupt (resource="
-operator|+
+literal|" is corrupt"
+argument_list|,
 name|meta
-operator|+
-literal|")"
 argument_list|)
 throw|;
 block|}
@@ -1363,11 +1363,9 @@ name|info
 operator|.
 name|name
 operator|+
-literal|" is corrupt (resource="
-operator|+
+literal|" is corrupt"
+argument_list|,
 name|meta
-operator|+
-literal|")"
 argument_list|)
 throw|;
 block|}
@@ -1393,11 +1391,9 @@ name|info
 operator|.
 name|name
 operator|+
-literal|" is corrupt (resource="
-operator|+
+literal|" is corrupt"
+argument_list|,
 name|meta
-operator|+
-literal|")"
 argument_list|)
 throw|;
 block|}
@@ -1442,11 +1438,9 @@ name|info
 operator|.
 name|name
 operator|+
-literal|" is corrupt (resource="
-operator|+
+literal|" is corrupt"
+argument_list|,
 name|meta
-operator|+
-literal|")"
 argument_list|)
 throw|;
 block|}
@@ -1472,11 +1466,9 @@ name|info
 operator|.
 name|name
 operator|+
-literal|" is corrupt (resource="
-operator|+
+literal|" is corrupt"
+argument_list|,
 name|meta
-operator|+
-literal|")"
 argument_list|)
 throw|;
 block|}
@@ -1521,11 +1513,9 @@ name|info
 operator|.
 name|name
 operator|+
-literal|" is corrupt (resource="
-operator|+
+literal|" is corrupt"
+argument_list|,
 name|meta
-operator|+
-literal|")"
 argument_list|)
 throw|;
 block|}
@@ -1551,11 +1541,9 @@ name|info
 operator|.
 name|name
 operator|+
-literal|" is corrupt (resource="
-operator|+
+literal|" is corrupt"
+argument_list|,
 name|meta
-operator|+
-literal|")"
 argument_list|)
 throw|;
 block|}
@@ -1642,12 +1630,8 @@ argument_list|(
 literal|"Invalid field number: "
 operator|+
 name|fieldNumber
-operator|+
-literal|" (resource="
-operator|+
+argument_list|,
 name|meta
-operator|+
-literal|")"
 argument_list|)
 throw|;
 block|}
@@ -1807,11 +1791,9 @@ name|info
 operator|.
 name|name
 operator|+
-literal|" is corrupt (resource="
-operator|+
+literal|" is corrupt"
+argument_list|,
 name|meta
-operator|+
-literal|")"
 argument_list|)
 throw|;
 block|}
@@ -1837,11 +1819,9 @@ name|info
 operator|.
 name|name
 operator|+
-literal|" is corrupt (resource="
-operator|+
+literal|" is corrupt"
+argument_list|,
 name|meta
-operator|+
-literal|")"
 argument_list|)
 throw|;
 block|}
@@ -1911,11 +1891,9 @@ name|info
 operator|.
 name|name
 operator|+
-literal|" is corrupt (resource="
-operator|+
+literal|" is corrupt"
+argument_list|,
 name|meta
-operator|+
-literal|")"
 argument_list|)
 throw|;
 block|}
@@ -1941,11 +1919,9 @@ name|info
 operator|.
 name|name
 operator|+
-literal|" is corrupt (resource="
-operator|+
+literal|" is corrupt"
+argument_list|,
 name|meta
-operator|+
-literal|")"
 argument_list|)
 throw|;
 block|}
@@ -1992,11 +1968,9 @@ name|info
 operator|.
 name|name
 operator|+
-literal|" is corrupt (resource="
-operator|+
+literal|" is corrupt"
+argument_list|,
 name|meta
-operator|+
-literal|")"
 argument_list|)
 throw|;
 block|}
@@ -2022,11 +1996,9 @@ name|info
 operator|.
 name|name
 operator|+
-literal|" is corrupt (resource="
-operator|+
+literal|" is corrupt"
+argument_list|,
 name|meta
-operator|+
-literal|")"
 argument_list|)
 throw|;
 block|}
@@ -2076,9 +2048,7 @@ argument_list|(
 literal|"invalid type: "
 operator|+
 name|type
-operator|+
-literal|", resource="
-operator|+
+argument_list|,
 name|meta
 argument_list|)
 throw|;
@@ -2210,8 +2180,10 @@ throw|throw
 operator|new
 name|CorruptIndexException
 argument_list|(
-literal|"TABLE_COMPRESSED cannot have more than 256 distinct values, input="
+literal|"TABLE_COMPRESSED cannot have more than 256 distinct values, got="
 operator|+
+name|uniqueValues
+argument_list|,
 name|meta
 argument_list|)
 throw|;
@@ -2318,9 +2290,7 @@ operator|+
 name|entry
 operator|.
 name|format
-operator|+
-literal|", input="
-operator|+
+argument_list|,
 name|meta
 argument_list|)
 throw|;
@@ -2502,9 +2472,7 @@ operator|+
 name|entry
 operator|.
 name|format
-operator|+
-literal|", input="
-operator|+
+argument_list|,
 name|meta
 argument_list|)
 throw|;
@@ -2563,9 +2531,7 @@ operator|+
 name|entry
 operator|.
 name|format
-operator|+
-literal|", input="
-operator|+
+argument_list|,
 name|meta
 argument_list|)
 throw|;

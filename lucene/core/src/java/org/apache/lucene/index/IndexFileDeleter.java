@@ -826,11 +826,11 @@ throw|throw
 operator|new
 name|CorruptIndexException
 argument_list|(
-literal|"failed to locate current segments_N file \""
-operator|+
+literal|"unable to read current segments_N file"
+argument_list|,
 name|currentSegmentsFile
-operator|+
-literal|"\""
+argument_list|,
+name|e
 argument_list|)
 throw|;
 block|}

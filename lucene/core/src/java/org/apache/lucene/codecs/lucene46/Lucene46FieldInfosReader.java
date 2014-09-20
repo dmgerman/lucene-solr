@@ -220,20 +220,6 @@ name|IndexInput
 import|;
 end_import
 
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|util
-operator|.
-name|IOUtils
-import|;
-end_import
-
 begin_comment
 comment|/**  * Lucene 4.6 FieldInfos reader.  *   * @lucene.experimental  * @see Lucene46FieldInfosFormat  */
 end_comment
@@ -291,6 +277,8 @@ operator|.
 name|EXTENSION
 argument_list|)
 decl_stmt|;
+try|try
+init|(
 name|ChecksumIndexInput
 name|input
 init|=
@@ -302,13 +290,7 @@ name|fileName
 argument_list|,
 name|context
 argument_list|)
-decl_stmt|;
-name|boolean
-name|success
-init|=
-literal|false
-decl_stmt|;
-try|try
+init|)
 block|{
 name|int
 name|codecVersion
@@ -402,12 +384,8 @@ operator|+
 literal|", fieldNumber="
 operator|+
 name|fieldNumber
-operator|+
-literal|" (resource="
-operator|+
+argument_list|,
 name|input
-operator|+
-literal|")"
 argument_list|)
 throw|;
 block|}
@@ -694,46 +672,13 @@ name|input
 argument_list|)
 expr_stmt|;
 block|}
-name|FieldInfos
-name|fieldInfos
-init|=
+return|return
 operator|new
 name|FieldInfos
 argument_list|(
 name|infos
 argument_list|)
-decl_stmt|;
-name|success
-operator|=
-literal|true
-expr_stmt|;
-return|return
-name|fieldInfos
 return|;
-block|}
-finally|finally
-block|{
-if|if
-condition|(
-name|success
-condition|)
-block|{
-name|input
-operator|.
-name|close
-argument_list|()
-expr_stmt|;
-block|}
-else|else
-block|{
-name|IOUtils
-operator|.
-name|closeWhileHandlingException
-argument_list|(
-name|input
-argument_list|)
-expr_stmt|;
-block|}
 block|}
 block|}
 DECL|method|getDocValuesType
@@ -841,12 +786,8 @@ argument_list|(
 literal|"invalid docvalues byte: "
 operator|+
 name|b
-operator|+
-literal|" (resource="
-operator|+
+argument_list|,
 name|input
-operator|+
-literal|")"
 argument_list|)
 throw|;
 block|}

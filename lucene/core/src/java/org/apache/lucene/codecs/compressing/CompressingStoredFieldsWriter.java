@@ -2432,6 +2432,10 @@ operator|.
 name|bytes
 operator|.
 name|length
+argument_list|,
+name|it
+operator|.
+name|fieldsStream
 argument_list|)
 throw|;
 block|}

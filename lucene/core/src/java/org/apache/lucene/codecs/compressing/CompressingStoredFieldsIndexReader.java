@@ -70,16 +70,6 @@ name|java
 operator|.
 name|util
 operator|.
-name|Collections
-import|;
-end_import
-
-begin_import
-import|import
-name|java
-operator|.
-name|util
-operator|.
 name|List
 import|;
 end_import
@@ -535,11 +525,11 @@ throw|throw
 operator|new
 name|CorruptIndexException
 argument_list|(
-literal|"Corrupted bitsPerDocBase (resource="
+literal|"Corrupted bitsPerDocBase: "
 operator|+
+name|bitsPerDocBase
+argument_list|,
 name|fieldsIndexIn
-operator|+
-literal|")"
 argument_list|)
 throw|;
 block|}
@@ -608,11 +598,11 @@ throw|throw
 operator|new
 name|CorruptIndexException
 argument_list|(
-literal|"Corrupted bitsPerStartPointer (resource="
+literal|"Corrupted bitsPerStartPointer: "
 operator|+
+name|bitsPerStartPointer
+argument_list|,
 name|fieldsIndexIn
-operator|+
-literal|")"
 argument_list|)
 throw|;
 block|}

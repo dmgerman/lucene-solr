@@ -1386,11 +1386,12 @@ literal|"<= "
 operator|+
 name|lastDocID
 operator|+
-literal|" ) (docOut: "
-operator|+
+literal|" )"
+argument_list|,
 name|docOut
-operator|+
-literal|")"
+operator|.
+name|toString
+argument_list|()
 argument_list|)
 throw|;
 block|}

@@ -567,6 +567,8 @@ operator|+
 literal|"="
 operator|+
 name|indexVersion
+argument_list|,
+name|indexIn
 argument_list|)
 throw|;
 block|}
@@ -635,12 +637,8 @@ argument_list|(
 literal|"invalid numFields: "
 operator|+
 name|numFields
-operator|+
-literal|" (resource="
-operator|+
+argument_list|,
 name|in
-operator|+
-literal|")"
 argument_list|)
 throw|;
 block|}
@@ -863,12 +861,8 @@ name|info
 operator|.
 name|getDocCount
 argument_list|()
-operator|+
-literal|" (resource="
-operator|+
+argument_list|,
 name|in
-operator|+
-literal|")"
 argument_list|)
 throw|;
 block|}
@@ -891,12 +885,8 @@ operator|+
 literal|" docCount: "
 operator|+
 name|docCount
-operator|+
-literal|" (resource="
-operator|+
+argument_list|,
 name|in
-operator|+
-literal|")"
 argument_list|)
 throw|;
 block|}
@@ -924,12 +914,8 @@ operator|+
 literal|" sumDocFreq: "
 operator|+
 name|sumDocFreq
-operator|+
-literal|" (resource="
-operator|+
+argument_list|,
 name|in
-operator|+
-literal|")"
 argument_list|)
 throw|;
 block|}
@@ -998,12 +984,8 @@ operator|+
 name|fieldInfo
 operator|.
 name|name
-operator|+
-literal|" (resource="
-operator|+
+argument_list|,
 name|in
-operator|+
-literal|")"
 argument_list|)
 throw|;
 block|}

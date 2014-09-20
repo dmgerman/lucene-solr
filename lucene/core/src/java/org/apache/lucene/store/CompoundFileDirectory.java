@@ -662,8 +662,8 @@ literal|"Duplicate cfs entry id="
 operator|+
 name|id
 operator|+
-literal|" in CFS: "
-operator|+
+literal|" in CFS "
+argument_list|,
 name|entriesStream
 argument_list|)
 throw|;

@@ -928,7 +928,15 @@ throw|throw
 operator|new
 name|CorruptIndexException
 argument_list|(
-literal|"Format versions mismatch"
+literal|"Format versions mismatch: meta="
+operator|+
+name|version
+operator|+
+literal|", data="
+operator|+
+name|version2
+argument_list|,
+name|data
 argument_list|)
 throw|;
 block|}
@@ -1596,9 +1604,7 @@ operator|+
 name|info
 operator|.
 name|name
-operator|+
-literal|", input="
-operator|+
+argument_list|,
 name|meta
 argument_list|)
 throw|;

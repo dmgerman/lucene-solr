@@ -829,12 +829,8 @@ operator|+
 literal|" != tvd="
 operator|+
 name|tvdVersion
-operator|+
-literal|" (resource="
-operator|+
+argument_list|,
 name|tvd
-operator|+
-literal|")"
 argument_list|)
 throw|;
 block|}
@@ -856,12 +852,8 @@ operator|+
 literal|" != tvf="
 operator|+
 name|tvfVersion
-operator|+
-literal|" (resource="
-operator|+
+argument_list|,
 name|tvf
-operator|+
-literal|")"
 argument_list|)
 throw|;
 block|}

@@ -777,11 +777,12 @@ literal|"<= "
 operator|+
 name|lastDocID
 operator|+
-literal|" ) (freqOut: "
-operator|+
+literal|" )"
+argument_list|,
 name|freqOut
-operator|+
-literal|")"
+operator|.
+name|toString
+argument_list|()
 argument_list|)
 throw|;
 block|}

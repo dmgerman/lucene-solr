@@ -1093,12 +1093,8 @@ argument_list|(
 literal|"invalid VAR_INTS header byte: "
 operator|+
 name|header
-operator|+
-literal|" (resource="
-operator|+
+argument_list|,
 name|input
-operator|+
-literal|")"
 argument_list|)
 throw|;
 block|}
@@ -1158,6 +1154,8 @@ argument_list|(
 literal|"invalid valueSize: "
 operator|+
 name|valueSize
+argument_list|,
+name|input
 argument_list|)
 throw|;
 block|}
@@ -1310,6 +1308,8 @@ argument_list|(
 literal|"invalid valueSize: "
 operator|+
 name|valueSize
+argument_list|,
+name|input
 argument_list|)
 throw|;
 block|}
@@ -1477,6 +1477,8 @@ argument_list|(
 literal|"invalid valueSize: "
 operator|+
 name|valueSize
+argument_list|,
+name|input
 argument_list|)
 throw|;
 block|}
@@ -1644,6 +1646,8 @@ argument_list|(
 literal|"invalid valueSize: "
 operator|+
 name|valueSize
+argument_list|,
+name|input
 argument_list|)
 throw|;
 block|}
@@ -1811,6 +1815,8 @@ argument_list|(
 literal|"invalid valueSize: "
 operator|+
 name|valueSize
+argument_list|,
+name|input
 argument_list|)
 throw|;
 block|}
@@ -1978,6 +1984,8 @@ argument_list|(
 literal|"invalid valueSize: "
 operator|+
 name|valueSize
+argument_list|,
+name|input
 argument_list|)
 throw|;
 block|}
