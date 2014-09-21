@@ -4098,12 +4098,20 @@ expr_stmt|;
 block|}
 block|}
 block|}
+if|if
+condition|(
+name|requestedCollections
+operator|!=
+literal|null
+condition|)
+block|{
 name|requestedCollections
 operator|.
 name|clear
 argument_list|()
 expr_stmt|;
 comment|// done with this
+block|}
 comment|// if the state was stale, then we retry the request once with new state pulled from Zk
 if|if
 condition|(
