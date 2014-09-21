@@ -380,6 +380,16 @@ begin_import
 import|import
 name|java
 operator|.
+name|text
+operator|.
+name|ParseException
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
 name|util
 operator|.
 name|Arrays
@@ -2666,8 +2676,8 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
-name|IllegalArgumentException
-name|iae
+name|ParseException
+name|pe
 parameter_list|)
 block|{
 throw|throw
@@ -2682,7 +2692,7 @@ name|SERVER_ERROR
 argument_list|,
 literal|"Invalid luceneMatchVersion.  Should be of the form 'V.V.V' (e.g. 4.8.0)"
 argument_list|,
-name|iae
+name|pe
 argument_list|)
 throw|;
 block|}
