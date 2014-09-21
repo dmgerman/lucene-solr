@@ -163,14 +163,6 @@ literal|10
 argument_list|)
 decl_stmt|;
 comment|// 10 MB / Sec
-name|limiter
-operator|.
-name|pause
-argument_list|(
-literal|2
-argument_list|)
-expr_stmt|;
-comment|//init
 name|long
 name|pause
 init|=
