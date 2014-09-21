@@ -356,20 +356,6 @@ name|NoMergeScheduler
 import|;
 end_import
 
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|util
-operator|.
-name|Version
-import|;
-end_import
-
 begin_comment
 comment|/**  * Create an index.<br>  * Other side effects: index writer object in perfRunData is set.<br>  * Relevant properties:<code>merge.factor (default 10),  * max.buffered (default no flush), compound (default true), ram.flush.mb [default 0],  * merge.policy (default org.apache.lucene.index.LogByteSizeMergePolicy),  * merge.scheduler (default  * org.apache.lucene.index.ConcurrentMergeScheduler),  * concurrent.merge.scheduler.max.thread.count and  * concurrent.merge.scheduler.max.merge.count (defaults per  * ConcurrentMergeScheduler), default.codec</code>.  *<p>  * This task also supports a "writer.info.stream" property with the following  * values:  *<ul>  *<li>SystemOut - sets {@link IndexWriterConfig#setInfoStream(java.io.PrintStream)}  * to {@link System#out}.  *<li>SystemErr - sets {@link IndexWriterConfig#setInfoStream(java.io.PrintStream)}  * to {@link System#err}.  *<li>&lt;file_name&gt; - attempts to create a file given that name and sets  * {@link IndexWriterConfig#setInfoStream(java.io.PrintStream)} to that file. If this  * denotes an invalid file name, or some error occurs, an exception will be  * thrown.  *</ul>  */
 end_comment
