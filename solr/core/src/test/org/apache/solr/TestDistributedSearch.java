@@ -3062,6 +3062,45 @@ literal|"stats"
 argument_list|,
 literal|"true"
 argument_list|,
+comment|// do a really simple query so distributed IDF doesn't cause problems
+comment|// when comparing with control collection
+literal|"stats.field"
+argument_list|,
+literal|"{!lucene key=q_key}"
+operator|+
+name|i1
+operator|+
+literal|"foo_b:true"
+argument_list|,
+literal|"stats.field"
+argument_list|,
+literal|"{!func key=f_key}sum("
+operator|+
+name|tlong
+operator|+
+literal|","
+operator|+
+name|i1
+operator|+
+literal|")"
+argument_list|)
+expr_stmt|;
+name|query
+argument_list|(
+literal|"q"
+argument_list|,
+literal|"*:*"
+argument_list|,
+literal|"sort"
+argument_list|,
+name|i1
+operator|+
+literal|" desc"
+argument_list|,
+literal|"stats"
+argument_list|,
+literal|"true"
+argument_list|,
 literal|"stats.field"
 argument_list|,
 literal|"stats_dt"

@@ -182,21 +182,43 @@ specifier|public
 class|class
 name|StatsValuesFactory
 block|{
-comment|/**    * Creates an instance of StatsValues which supports values from a field of the given FieldType    *    * @param sf SchemaField for the field whose statistics will be created by the resulting StatsValues    * @return Instance of StatsValues that will create statistics from values from a field of the given type    */
+comment|/**    * Creates an instance of StatsValues which supports values from the specified {@link StatsField}    *    * @param statsField {@link StatsField} whose statistics will be created by the resulting {@link StatsValues}    * @return Instance of {@link StatsValues} that will create statistics from values from the specified {@link StatsField}    */
 DECL|method|createStatsValues
 specifier|public
 specifier|static
 name|StatsValues
 name|createStatsValues
 parameter_list|(
-name|SchemaField
-name|sf
-parameter_list|,
-name|boolean
-name|calcDistinct
+name|StatsField
+name|statsField
 parameter_list|)
 block|{
-comment|// TODO: allow for custom field types
+specifier|final
+name|SchemaField
+name|sf
+init|=
+name|statsField
+operator|.
+name|getSchemaField
+argument_list|()
+decl_stmt|;
+if|if
+condition|(
+literal|null
+operator|==
+name|sf
+condition|)
+block|{
+comment|// function stats
+return|return
+operator|new
+name|NumericStatsValues
+argument_list|(
+name|statsField
+argument_list|)
+return|;
+block|}
+specifier|final
 name|FieldType
 name|fieldType
 init|=
@@ -205,6 +227,7 @@ operator|.
 name|getType
 argument_list|()
 decl_stmt|;
+comment|// TODO: allow FieldType to provide impl.
 if|if
 condition|(
 name|TrieDateField
@@ -221,9 +244,7 @@ return|return
 operator|new
 name|DateStatsValues
 argument_list|(
-name|sf
-argument_list|,
-name|calcDistinct
+name|statsField
 argument_list|)
 return|;
 block|}
@@ -244,9 +265,7 @@ return|return
 operator|new
 name|NumericStatsValues
 argument_list|(
-name|sf
-argument_list|,
-name|calcDistinct
+name|statsField
 argument_list|)
 return|;
 block|}
@@ -267,9 +286,7 @@ return|return
 operator|new
 name|StringStatsValues
 argument_list|(
-name|sf
-argument_list|,
-name|calcDistinct
+name|statsField
 argument_list|)
 return|;
 block|}
@@ -296,9 +313,7 @@ return|return
 operator|new
 name|EnumStatsValues
 argument_list|(
-name|sf
-argument_list|,
-name|calcDistinct
+name|statsField
 argument_list|)
 return|;
 block|}
@@ -327,7 +342,7 @@ block|}
 end_class
 
 begin_comment
-comment|/**  * Abstract implementation of {@link org.apache.solr.handler.component.StatsValues} that provides the default behavior  * for most StatsValues implementations.  *  * There are very few requirements placed on what statistics concrete implementations should collect, with the only required  * statistics being the minimum and maximum values.  */
+comment|/**  * Abstract implementation of {@link org.apache.solr.handler.component.StatsValues}   * that provides the default behavior for most StatsValues implementations.  *  * There are very few requirements placed on what statistics concrete implementations   * should collect, with the only required statistics being the minimum and maximum values.  */
 end_comment
 
 begin_class
@@ -350,17 +365,51 @@ name|FACETS
 init|=
 literal|"facets"
 decl_stmt|;
+comment|/** Tracks all data about tthe stats we need to collect */
+DECL|field|statsField
+specifier|final
+specifier|protected
+name|StatsField
+name|statsField
+decl_stmt|;
+comment|/**     * local copy to save method dispatch in tight loops     * @see StatsField#getCalcDistinct    */
+DECL|field|calcDistinct
+specifier|final
+specifier|protected
+name|boolean
+name|calcDistinct
+decl_stmt|;
+comment|/** may be null if we are collecting stats directly from a function ValueSource */
 DECL|field|sf
 specifier|final
 specifier|protected
 name|SchemaField
 name|sf
 decl_stmt|;
+comment|/** may be null if we are collecting stats directly from a function ValueSource */
 DECL|field|ft
 specifier|final
 specifier|protected
 name|FieldType
 name|ft
+decl_stmt|;
+comment|/**     * Either a function value source to collect from, or the ValueSource associated     * with a single valued field we are collecting from.  Will be null until/unless     * {@link #setNextReader} is called at least once    */
+DECL|field|valueSource
+specifier|private
+name|ValueSource
+name|valueSource
+decl_stmt|;
+comment|/**     * Context to use when retrieving FunctionValues, will be null until/unless     * {@link #setNextReader} is called at least once    */
+DECL|field|vsContext
+specifier|private
+name|Map
+name|vsContext
+decl_stmt|;
+comment|/**     * Values to collect, will be null until/unless {@link #setNextReader} is called     * at least once     */
+DECL|field|values
+specifier|protected
+name|FunctionValues
+name|values
 decl_stmt|;
 DECL|field|max
 specifier|protected
@@ -395,23 +444,6 @@ name|T
 argument_list|>
 name|distinctValues
 decl_stmt|;
-DECL|field|valueSource
-specifier|private
-name|ValueSource
-name|valueSource
-decl_stmt|;
-DECL|field|values
-specifier|protected
-name|FunctionValues
-name|values
-decl_stmt|;
-DECL|field|calcDistinct
-specifier|protected
-name|boolean
-name|calcDistinct
-init|=
-literal|false
-decl_stmt|;
 comment|// facetField   facetValue
 DECL|field|facets
 specifier|protected
@@ -437,26 +469,23 @@ DECL|method|AbstractStatsValues
 specifier|protected
 name|AbstractStatsValues
 parameter_list|(
-name|SchemaField
-name|sf
-parameter_list|,
-name|boolean
-name|calcDistinct
+name|StatsField
+name|statsField
 parameter_list|)
 block|{
 name|this
 operator|.
-name|sf
+name|statsField
 operator|=
-name|sf
+name|statsField
 expr_stmt|;
 name|this
 operator|.
-name|ft
+name|calcDistinct
 operator|=
-name|sf
+name|statsField
 operator|.
-name|getType
+name|getCalcDistinct
 argument_list|()
 expr_stmt|;
 name|this
@@ -468,12 +497,84 @@ name|TreeSet
 argument_list|<>
 argument_list|()
 expr_stmt|;
+comment|// alternatively, we could refactor a common base class that doesn't know/care
+comment|// about either SchemaField or ValueSource - but then there would be a lot of
+comment|// duplicate code between "NumericSchemaFieldStatsValues" and
+comment|// "NumericValueSourceStatsValues" which would have diff parent classes
+comment|//
+comment|// part of the complexity here being that the StatsValues API serves two
+comment|// masters: collecting concrete Values from things like DocValuesStats and
+comment|// the distributed aggregation logic, but also collecting docIds which it then
+comment|// uses to go out and pull concreate values from the ValueSource
+comment|// (from a func, or single valued field)
+if|if
+condition|(
+literal|null
+operator|!=
+name|statsField
+operator|.
+name|getSchemaField
+argument_list|()
+condition|)
+block|{
+assert|assert
+literal|null
+operator|==
+name|statsField
+operator|.
+name|getValueSource
+argument_list|()
+assert|;
 name|this
 operator|.
-name|calcDistinct
+name|sf
 operator|=
-name|calcDistinct
+name|statsField
+operator|.
+name|getSchemaField
+argument_list|()
 expr_stmt|;
+name|this
+operator|.
+name|ft
+operator|=
+name|sf
+operator|.
+name|getType
+argument_list|()
+expr_stmt|;
+block|}
+else|else
+block|{
+assert|assert
+literal|null
+operator|!=
+name|statsField
+operator|.
+name|getValueSource
+argument_list|()
+assert|;
+assert|assert
+literal|null
+operator|==
+name|statsField
+operator|.
+name|getSchemaField
+argument_list|()
+assert|;
+name|this
+operator|.
+name|sf
+operator|=
+literal|null
+expr_stmt|;
+name|this
+operator|.
+name|ft
+operator|=
+literal|null
+expr_stmt|;
+block|}
 block|}
 comment|/**    * {@inheritDoc}    */
 annotation|@
@@ -723,9 +824,7 @@ name|StatsValuesFactory
 operator|.
 name|createStatsValues
 argument_list|(
-name|sf
-argument_list|,
-name|calcDistinct
+name|statsField
 argument_list|)
 expr_stmt|;
 name|addTo
@@ -771,6 +870,23 @@ name|int
 name|count
 parameter_list|)
 block|{
+if|if
+condition|(
+literal|null
+operator|==
+name|ft
+condition|)
+block|{
+throw|throw
+operator|new
+name|IllegalStateException
+argument_list|(
+literal|"Can't collect& convert BytesRefs on stats that do't use a a FieldType: "
+operator|+
+name|statsField
+argument_list|)
+throw|;
+block|}
 name|T
 name|typedValue
 init|=
@@ -1113,6 +1229,7 @@ return|return
 name|res
 return|;
 block|}
+comment|/**    * {@inheritDoc}    */
 DECL|method|setNextReader
 specifier|public
 name|void
@@ -1131,8 +1248,20 @@ operator|==
 literal|null
 condition|)
 block|{
+comment|// first time we've collected local values, get the right ValueSource
 name|valueSource
 operator|=
+operator|(
+literal|null
+operator|==
+name|ft
+operator|)
+condition|?
+name|statsField
+operator|.
+name|getValueSource
+argument_list|()
+else|:
 name|ft
 operator|.
 name|getValueSource
@@ -1142,6 +1271,18 @@ argument_list|,
 literal|null
 argument_list|)
 expr_stmt|;
+name|vsContext
+operator|=
+name|ValueSource
+operator|.
+name|newContext
+argument_list|(
+name|statsField
+operator|.
+name|getSearcher
+argument_list|()
+argument_list|)
+expr_stmt|;
 block|}
 name|values
 operator|=
@@ -1149,10 +1290,7 @@ name|valueSource
 operator|.
 name|getValues
 argument_list|(
-name|Collections
-operator|.
-name|emptyMap
-argument_list|()
+name|vsContext
 argument_list|,
 name|ctx
 argument_list|)
@@ -1240,18 +1378,13 @@ DECL|method|NumericStatsValues
 specifier|public
 name|NumericStatsValues
 parameter_list|(
-name|SchemaField
-name|sf
-parameter_list|,
-name|boolean
-name|calcDistinct
+name|StatsField
+name|statsField
 parameter_list|)
 block|{
 name|super
 argument_list|(
-name|sf
-argument_list|,
-name|calcDistinct
+name|statsField
 argument_list|)
 expr_stmt|;
 name|min
@@ -1582,18 +1715,13 @@ DECL|method|EnumStatsValues
 specifier|public
 name|EnumStatsValues
 parameter_list|(
-name|SchemaField
-name|sf
-parameter_list|,
-name|boolean
-name|calcDistinct
+name|StatsField
+name|statsField
 parameter_list|)
 block|{
 name|super
 argument_list|(
-name|sf
-argument_list|,
-name|calcDistinct
+name|statsField
 argument_list|)
 expr_stmt|;
 block|}
@@ -1825,18 +1953,13 @@ DECL|method|DateStatsValues
 specifier|public
 name|DateStatsValues
 parameter_list|(
-name|SchemaField
-name|sf
-parameter_list|,
-name|boolean
-name|calcDistinct
+name|StatsField
+name|statsField
 parameter_list|)
 block|{
 name|super
 argument_list|(
-name|sf
-argument_list|,
-name|calcDistinct
+name|statsField
 argument_list|)
 expr_stmt|;
 block|}
@@ -2212,18 +2335,13 @@ DECL|method|StringStatsValues
 specifier|public
 name|StringStatsValues
 parameter_list|(
-name|SchemaField
-name|sf
-parameter_list|,
-name|boolean
-name|calcDistinct
+name|StatsField
+name|statsField
 parameter_list|)
 block|{
 name|super
 argument_list|(
-name|sf
-argument_list|,
-name|calcDistinct
+name|statsField
 argument_list|)
 expr_stmt|;
 block|}
