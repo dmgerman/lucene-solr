@@ -2640,9 +2640,15 @@ block|}
 elseif|else
 if|if
 condition|(
+operator|(
 name|exc
 operator|instanceof
 name|AlreadyClosedException
+operator|||
+name|exc
+operator|instanceof
+name|IllegalStateException
+operator|)
 operator|&&
 name|exc
 operator|.
