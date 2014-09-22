@@ -153,7 +153,12 @@ parameter_list|)
 block|{
 name|super
 argument_list|(
+name|Objects
+operator|.
+name|toString
+argument_list|(
 name|message
+argument_list|)
 operator|+
 literal|" (resource="
 operator|+

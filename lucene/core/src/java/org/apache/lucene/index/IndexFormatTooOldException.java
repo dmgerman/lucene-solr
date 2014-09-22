@@ -18,6 +18,26 @@ end_package
 
 begin_import
 import|import
+name|java
+operator|.
+name|io
+operator|.
+name|IOException
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
+name|util
+operator|.
+name|Objects
+import|;
+end_import
+
+begin_import
+import|import
 name|org
 operator|.
 name|apache
@@ -40,7 +60,7 @@ specifier|public
 class|class
 name|IndexFormatTooOldException
 extends|extends
-name|CorruptIndexException
+name|IOException
 block|{
 comment|/** Creates an {@code IndexFormatTooOldException}.    *    *  @param resourceDesc describes the file that was too old    *  @param version the version of the file that was too old    *     * @lucene.internal */
 DECL|method|IndexFormatTooOldException
@@ -56,22 +76,19 @@ parameter_list|)
 block|{
 name|super
 argument_list|(
-literal|"Format version is not supported: "
+literal|"Format version is not supported (resource "
+operator|+
+name|resourceDesc
+operator|+
+literal|"): "
 operator|+
 name|version
 operator|+
 literal|". This version of Lucene only supports indexes created with release 4.0 and later."
-argument_list|,
-name|resourceDesc
 argument_list|)
 expr_stmt|;
-assert|assert
-name|resourceDesc
-operator|!=
-literal|null
-assert|;
 block|}
-comment|/** Creates an {@code IndexFormatTooOldException}.    *    *  @param in the open file that's too old    *  @param version the version of the file that was too old    *     * @lucene.internal */
+comment|/** Creates an {@code IndexFormatTooOldException}.    *    *  @param in the open file that's too old    *  @param version the version of the file that was too old    *    * @lucene.internal */
 DECL|method|IndexFormatTooOldException
 specifier|public
 name|IndexFormatTooOldException
@@ -85,10 +102,12 @@ parameter_list|)
 block|{
 name|this
 argument_list|(
-name|in
+name|Objects
 operator|.
 name|toString
-argument_list|()
+argument_list|(
+name|in
+argument_list|)
 argument_list|,
 name|version
 argument_list|)
@@ -114,7 +133,11 @@ parameter_list|)
 block|{
 name|super
 argument_list|(
-literal|"Format version is not supported: "
+literal|"Format version is not supported (resource "
+operator|+
+name|resourceDesc
+operator|+
+literal|"): "
 operator|+
 name|version
 operator|+
@@ -127,15 +150,8 @@ operator|+
 name|maxVersion
 operator|+
 literal|"). This version of Lucene only supports indexes created with release 4.0 and later."
-argument_list|,
-name|resourceDesc
 argument_list|)
 expr_stmt|;
-assert|assert
-name|resourceDesc
-operator|!=
-literal|null
-assert|;
 block|}
 comment|/** Creates an {@code IndexFormatTooOldException}.    *    *  @param in the open file that's too old    *  @param version the version of the file that was too old    *  @param minVersion the minimum version accepted    *  @param maxVersion the maxium version accepted    *    * @lucene.internal */
 DECL|method|IndexFormatTooOldException
@@ -157,10 +173,12 @@ parameter_list|)
 block|{
 name|this
 argument_list|(
-name|in
+name|Objects
 operator|.
 name|toString
-argument_list|()
+argument_list|(
+name|in
+argument_list|)
 argument_list|,
 name|version
 argument_list|,
