@@ -152,7 +152,11 @@ begin_class
 annotation|@
 name|SuppressCodecs
 argument_list|(
+block|{
 literal|"Memory"
+block|,
+literal|"SimpleText"
+block|}
 argument_list|)
 comment|// TODO: fix MemoryDV to support random access to ordinals
 DECL|class|TestSortedSetSelector
