@@ -110,16 +110,14 @@ name|apache
 operator|.
 name|lucene
 operator|.
-name|codecs
+name|util
 operator|.
-name|lucene410
-operator|.
-name|Lucene410Codec
+name|TestUtil
 import|;
 end_import
 
 begin_comment
-comment|/**  * Acts like {@link Lucene410Codec} but with additional asserts.  */
+comment|/**  * Acts like the default codec but with additional asserts.  */
 end_comment
 
 begin_class
@@ -190,8 +188,9 @@ name|super
 argument_list|(
 literal|"Asserting"
 argument_list|,
-operator|new
-name|Lucene410Codec
+name|TestUtil
+operator|.
+name|getDefaultCodec
 argument_list|()
 argument_list|)
 expr_stmt|;

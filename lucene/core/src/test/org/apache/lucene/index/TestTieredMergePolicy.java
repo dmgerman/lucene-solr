@@ -1425,12 +1425,10 @@ name|iwc
 operator|.
 name|setCodec
 argument_list|(
-name|Codec
+name|TestUtil
 operator|.
-name|forName
-argument_list|(
-literal|"Lucene410"
-argument_list|)
+name|getDefaultCodec
+argument_list|()
 argument_list|)
 expr_stmt|;
 name|iwc

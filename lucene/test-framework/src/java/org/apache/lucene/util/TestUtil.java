@@ -5796,6 +5796,20 @@ block|}
 block|}
 return|;
 block|}
+comment|/**     * Returns the actual default codec (e.g. LuceneMNCodec) for this version of Lucene.    * This may be different than {@link Codec#getDefault()} because that is randomized.     */
+DECL|method|getDefaultCodec
+specifier|public
+specifier|static
+name|Codec
+name|getDefaultCodec
+parameter_list|()
+block|{
+return|return
+operator|new
+name|Lucene410Codec
+argument_list|()
+return|;
+block|}
 comment|// TODO: generalize all 'test-checks-for-crazy-codecs' to
 comment|// annotations (LUCENE-3489)
 DECL|method|getPostingsFormat

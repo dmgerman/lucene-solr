@@ -40,11 +40,9 @@ name|apache
 operator|.
 name|lucene
 operator|.
-name|codecs
+name|index
 operator|.
-name|lucene410
-operator|.
-name|Lucene410Codec
+name|BaseNormsFormatTestCase
 import|;
 end_import
 
@@ -56,9 +54,9 @@ name|apache
 operator|.
 name|lucene
 operator|.
-name|index
+name|util
 operator|.
-name|BaseNormsFormatTestCase
+name|TestUtil
 import|;
 end_import
 
@@ -80,8 +78,9 @@ specifier|final
 name|Codec
 name|codec
 init|=
-operator|new
-name|Lucene410Codec
+name|TestUtil
+operator|.
+name|getDefaultCodec
 argument_list|()
 decl_stmt|;
 annotation|@

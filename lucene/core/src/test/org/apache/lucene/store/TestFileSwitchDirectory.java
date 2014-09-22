@@ -34,18 +34,6 @@ name|nio
 operator|.
 name|file
 operator|.
-name|NoSuchFileException
-import|;
-end_import
-
-begin_import
-import|import
-name|java
-operator|.
-name|nio
-operator|.
-name|file
-operator|.
 name|Path
 import|;
 end_import
@@ -91,20 +79,6 @@ operator|.
 name|analysis
 operator|.
 name|MockAnalyzer
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|codecs
-operator|.
-name|Codec
 import|;
 end_import
 
@@ -222,6 +196,20 @@ name|IOUtils
 import|;
 end_import
 
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|util
+operator|.
+name|TestUtil
+import|;
+end_import
+
 begin_class
 DECL|class|TestFileSwitchDirectory
 specifier|public
@@ -327,7 +315,7 @@ argument_list|,
 literal|true
 argument_list|)
 decl_stmt|;
-comment|// for now we wire Lucene410Codec because we rely upon its specific impl
+comment|// for now we wire the default codec because we rely upon its specific impl
 name|IndexWriter
 name|writer
 init|=
@@ -357,12 +345,10 @@ argument_list|)
 operator|.
 name|setCodec
 argument_list|(
-name|Codec
+name|TestUtil
 operator|.
-name|forName
-argument_list|(
-literal|"Lucene410"
-argument_list|)
+name|getDefaultCodec
+argument_list|()
 argument_list|)
 operator|.
 name|setUseCompoundFile

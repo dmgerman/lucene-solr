@@ -1668,12 +1668,10 @@ expr_stmt|;
 name|Codec
 name|codec
 init|=
-name|Codec
+name|TestUtil
 operator|.
-name|forName
-argument_list|(
-literal|"Lucene410"
-argument_list|)
+name|getDefaultCodec
+argument_list|()
 decl_stmt|;
 name|iwc
 operator|.

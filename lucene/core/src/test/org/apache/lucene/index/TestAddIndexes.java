@@ -6710,8 +6710,9 @@ name|super
 argument_list|(
 literal|"NotRegistered"
 argument_list|,
-operator|new
-name|Lucene410Codec
+name|TestUtil
+operator|.
+name|getDefaultCodec
 argument_list|()
 argument_list|)
 expr_stmt|;
