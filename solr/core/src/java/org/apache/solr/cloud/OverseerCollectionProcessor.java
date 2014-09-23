@@ -4106,17 +4106,45 @@ name|Exception
 name|e
 parameter_list|)
 block|{
+name|String
+name|collName
+init|=
+name|message
+operator|.
+name|getStr
+argument_list|(
+literal|"collection"
+argument_list|)
+decl_stmt|;
+if|if
+condition|(
+name|collName
+operator|==
+literal|null
+condition|)
+name|collName
+operator|=
+name|message
+operator|.
+name|getStr
+argument_list|(
+literal|"name"
+argument_list|)
+expr_stmt|;
+if|if
+condition|(
+name|collName
+operator|==
+literal|null
+condition|)
+block|{
 name|SolrException
 operator|.
 name|log
 argument_list|(
 name|log
 argument_list|,
-literal|"Collection "
-operator|+
-name|operation
-operator|+
-literal|" of "
+literal|"Operation "
 operator|+
 name|operation
 operator|+
@@ -4125,6 +4153,29 @@ argument_list|,
 name|e
 argument_list|)
 expr_stmt|;
+block|}
+else|else
+block|{
+name|SolrException
+operator|.
+name|log
+argument_list|(
+name|log
+argument_list|,
+literal|"Collection: "
+operator|+
+name|collName
+operator|+
+literal|" operation: "
+operator|+
+name|operation
+operator|+
+literal|" failed"
+argument_list|,
+name|e
+argument_list|)
+expr_stmt|;
+block|}
 name|results
 operator|.
 name|add
