@@ -60,7 +60,7 @@ name|lucene
 operator|.
 name|index
 operator|.
-name|AtomicReader
+name|LeafReader
 import|;
 end_import
 
@@ -159,14 +159,14 @@ parameter_list|)
 throws|throws
 name|IOException
 function_decl|;
-comment|/**    * Train the classifier using the underlying Lucene index    *    * @param atomicReader   the reader to use to access the Lucene index    * @param textFieldName  the name of the field used to compare documents    * @param classFieldName the name of the field containing the class assigned to documents    * @param analyzer       the analyzer used to tokenize / filter the unseen text    * @throws IOException If there is a low-level I/O error.    */
+comment|/**    * Train the classifier using the underlying Lucene index    *    * @param leafReader   the reader to use to access the Lucene index    * @param textFieldName  the name of the field used to compare documents    * @param classFieldName the name of the field containing the class assigned to documents    * @param analyzer       the analyzer used to tokenize / filter the unseen text    * @throws IOException If there is a low-level I/O error.    */
 DECL|method|train
 specifier|public
 name|void
 name|train
 parameter_list|(
-name|AtomicReader
-name|atomicReader
+name|LeafReader
+name|leafReader
 parameter_list|,
 name|String
 name|textFieldName
@@ -180,14 +180,14 @@ parameter_list|)
 throws|throws
 name|IOException
 function_decl|;
-comment|/**    * Train the classifier using the underlying Lucene index    *    * @param atomicReader   the reader to use to access the Lucene index    * @param textFieldName  the name of the field used to compare documents    * @param classFieldName the name of the field containing the class assigned to documents    * @param analyzer       the analyzer used to tokenize / filter the unseen text    * @param query          the query to filter which documents use for training    * @throws IOException If there is a low-level I/O error.    */
+comment|/**    * Train the classifier using the underlying Lucene index    *    * @param leafReader   the reader to use to access the Lucene index    * @param textFieldName  the name of the field used to compare documents    * @param classFieldName the name of the field containing the class assigned to documents    * @param analyzer       the analyzer used to tokenize / filter the unseen text    * @param query          the query to filter which documents use for training    * @throws IOException If there is a low-level I/O error.    */
 DECL|method|train
 specifier|public
 name|void
 name|train
 parameter_list|(
-name|AtomicReader
-name|atomicReader
+name|LeafReader
+name|leafReader
 parameter_list|,
 name|String
 name|textFieldName
@@ -204,14 +204,14 @@ parameter_list|)
 throws|throws
 name|IOException
 function_decl|;
-comment|/**    * Train the classifier using the underlying Lucene index    *    * @param atomicReader   the reader to use to access the Lucene index    * @param textFieldNames the names of the fields to be used to compare documents    * @param classFieldName the name of the field containing the class assigned to documents    * @param analyzer       the analyzer used to tokenize / filter the unseen text    * @param query          the query to filter which documents use for training    * @throws IOException If there is a low-level I/O error.    */
+comment|/**    * Train the classifier using the underlying Lucene index    *    * @param leafReader   the reader to use to access the Lucene index    * @param textFieldNames the names of the fields to be used to compare documents    * @param classFieldName the name of the field containing the class assigned to documents    * @param analyzer       the analyzer used to tokenize / filter the unseen text    * @param query          the query to filter which documents use for training    * @throws IOException If there is a low-level I/O error.    */
 DECL|method|train
 specifier|public
 name|void
 name|train
 parameter_list|(
-name|AtomicReader
-name|atomicReader
+name|LeafReader
+name|leafReader
 parameter_list|,
 name|String
 index|[]

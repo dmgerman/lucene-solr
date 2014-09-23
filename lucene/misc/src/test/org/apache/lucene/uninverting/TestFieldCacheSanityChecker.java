@@ -134,7 +134,7 @@ name|lucene
 operator|.
 name|index
 operator|.
-name|AtomicReader
+name|LeafReader
 import|;
 end_import
 
@@ -264,22 +264,22 @@ name|LuceneTestCase
 block|{
 DECL|field|readerA
 specifier|protected
-name|AtomicReader
+name|LeafReader
 name|readerA
 decl_stmt|;
 DECL|field|readerB
 specifier|protected
-name|AtomicReader
+name|LeafReader
 name|readerB
 decl_stmt|;
 DECL|field|readerX
 specifier|protected
-name|AtomicReader
+name|LeafReader
 name|readerX
 decl_stmt|;
 DECL|field|readerAclone
 specifier|protected
-name|AtomicReader
+name|LeafReader
 name|readerAclone
 decl_stmt|;
 DECL|field|dirA

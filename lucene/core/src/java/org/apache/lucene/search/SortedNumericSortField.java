@@ -36,7 +36,7 @@ name|lucene
 operator|.
 name|index
 operator|.
-name|AtomicReaderContext
+name|LeafReaderContext
 import|;
 end_import
 
@@ -79,34 +79,6 @@ operator|.
 name|index
 operator|.
 name|SortedNumericDocValues
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|search
-operator|.
-name|FieldComparator
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|search
-operator|.
-name|SortField
 import|;
 end_import
 
@@ -582,7 +554,7 @@ specifier|protected
 name|NumericDocValues
 name|getNumericDocValues
 parameter_list|(
-name|AtomicReaderContext
+name|LeafReaderContext
 name|context
 parameter_list|,
 name|String
@@ -642,7 +614,7 @@ specifier|protected
 name|NumericDocValues
 name|getNumericDocValues
 parameter_list|(
-name|AtomicReaderContext
+name|LeafReaderContext
 name|context
 parameter_list|,
 name|String
@@ -702,7 +674,7 @@ specifier|protected
 name|NumericDocValues
 name|getNumericDocValues
 parameter_list|(
-name|AtomicReaderContext
+name|LeafReaderContext
 name|context
 parameter_list|,
 name|String
@@ -762,7 +734,7 @@ specifier|protected
 name|NumericDocValues
 name|getNumericDocValues
 parameter_list|(
-name|AtomicReaderContext
+name|LeafReaderContext
 name|context
 parameter_list|,
 name|String

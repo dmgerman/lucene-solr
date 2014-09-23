@@ -98,7 +98,7 @@ name|lucene
 operator|.
 name|index
 operator|.
-name|AtomicReader
+name|LeafReader
 import|;
 end_import
 
@@ -271,13 +271,13 @@ operator|=
 name|testRatio
 expr_stmt|;
 block|}
-comment|/**    * Split a given index into 3 indexes for training, test and cross validation tasks respectively    *    * @param originalIndex        an {@link AtomicReader} on the source index    * @param trainingIndex        a {@link Directory} used to write the training index    * @param testIndex            a {@link Directory} used to write the test index    * @param crossValidationIndex a {@link Directory} used to write the cross validation index    * @param analyzer             {@link Analyzer} used to create the new docs    * @param fieldNames           names of fields that need to be put in the new indexes or<code>null</code> if all should be used    * @throws IOException if any writing operation fails on any of the indexes    */
+comment|/**    * Split a given index into 3 indexes for training, test and cross validation tasks respectively    *    * @param originalIndex        an {@link org.apache.lucene.index.LeafReader} on the source index    * @param trainingIndex        a {@link Directory} used to write the training index    * @param testIndex            a {@link Directory} used to write the test index    * @param crossValidationIndex a {@link Directory} used to write the cross validation index    * @param analyzer             {@link Analyzer} used to create the new docs    * @param fieldNames           names of fields that need to be put in the new indexes or<code>null</code> if all should be used    * @throws IOException if any writing operation fails on any of the indexes    */
 DECL|method|split
 specifier|public
 name|void
 name|split
 parameter_list|(
-name|AtomicReader
+name|LeafReader
 name|originalIndex
 parameter_list|,
 name|Directory

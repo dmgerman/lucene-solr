@@ -320,7 +320,7 @@ name|lucene
 operator|.
 name|index
 operator|.
-name|AtomicReader
+name|LeafReader
 import|;
 end_import
 
@@ -621,7 +621,7 @@ block|{
 DECL|field|reader
 specifier|private
 specifier|static
-name|AtomicReader
+name|LeafReader
 name|reader
 decl_stmt|;
 DECL|field|NUM_DOCS
@@ -2542,7 +2542,7 @@ argument_list|(
 name|dir
 argument_list|)
 decl_stmt|;
-name|AtomicReader
+name|LeafReader
 name|reader
 init|=
 name|SlowCompositeReaderWrapper
@@ -3557,7 +3557,7 @@ operator|.
 name|close
 argument_list|()
 expr_stmt|;
-name|AtomicReader
+name|LeafReader
 name|ar
 init|=
 name|getOnlySegmentReader
@@ -4348,7 +4348,7 @@ operator|.
 name|close
 argument_list|()
 expr_stmt|;
-name|AtomicReader
+name|LeafReader
 name|ar
 init|=
 name|getOnlySegmentReader
@@ -4839,7 +4839,7 @@ operator|.
 name|close
 argument_list|()
 expr_stmt|;
-name|AtomicReader
+name|LeafReader
 name|ar
 init|=
 name|getOnlySegmentReader

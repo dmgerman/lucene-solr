@@ -56,7 +56,7 @@ name|lucene
 operator|.
 name|index
 operator|.
-name|AtomicReaderContext
+name|LeafReaderContext
 import|;
 end_import
 
@@ -576,7 +576,7 @@ name|si
 operator|=
 name|searcher
 operator|.
-name|getAtomicReader
+name|getLeafReader
 argument_list|()
 operator|.
 name|getSortedSetDocValues
@@ -611,7 +611,7 @@ name|single
 init|=
 name|searcher
 operator|.
-name|getAtomicReader
+name|getLeafReader
 argument_list|()
 operator|.
 name|getSortedDocValues
@@ -735,7 +735,7 @@ argument_list|()
 decl_stmt|;
 name|List
 argument_list|<
-name|AtomicReaderContext
+name|LeafReaderContext
 argument_list|>
 name|leaves
 init|=
@@ -765,7 +765,7 @@ name|subIndex
 operator|++
 control|)
 block|{
-name|AtomicReaderContext
+name|LeafReaderContext
 name|leaf
 init|=
 name|leaves

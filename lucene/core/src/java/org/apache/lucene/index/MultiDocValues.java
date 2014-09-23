@@ -244,7 +244,7 @@ specifier|private
 name|MultiDocValues
 parameter_list|()
 block|{}
-comment|/** Returns a NumericDocValues for a reader's norms (potentially merging on-the-fly).    *<p>    * This is a slow way to access normalization values. Instead, access them per-segment    * with {@link AtomicReader#getNormValues(String)}    *</p>     */
+comment|/** Returns a NumericDocValues for a reader's norms (potentially merging on-the-fly).    *<p>    * This is a slow way to access normalization values. Instead, access them per-segment    * with {@link LeafReader#getNormValues(String)}    *</p>     */
 DECL|method|getNormValues
 specifier|public
 specifier|static
@@ -265,7 +265,7 @@ block|{
 specifier|final
 name|List
 argument_list|<
-name|AtomicReaderContext
+name|LeafReaderContext
 argument_list|>
 name|leaves
 init|=
@@ -396,7 +396,7 @@ name|i
 operator|++
 control|)
 block|{
-name|AtomicReaderContext
+name|LeafReaderContext
 name|context
 init|=
 name|leaves
@@ -518,7 +518,7 @@ block|}
 block|}
 return|;
 block|}
-comment|/** Returns a NumericDocValues for a reader's docvalues (potentially merging on-the-fly)     *<p>    * This is a slow way to access numeric values. Instead, access them per-segment    * with {@link AtomicReader#getNumericDocValues(String)}    *</p>     * */
+comment|/** Returns a NumericDocValues for a reader's docvalues (potentially merging on-the-fly)     *<p>    * This is a slow way to access numeric values. Instead, access them per-segment    * with {@link LeafReader#getNumericDocValues(String)}    *</p>     * */
 DECL|method|getNumericValues
 specifier|public
 specifier|static
@@ -539,7 +539,7 @@ block|{
 specifier|final
 name|List
 argument_list|<
-name|AtomicReaderContext
+name|LeafReaderContext
 argument_list|>
 name|leaves
 init|=
@@ -637,7 +637,7 @@ name|i
 operator|++
 control|)
 block|{
-name|AtomicReaderContext
+name|LeafReaderContext
 name|context
 init|=
 name|leaves
@@ -769,7 +769,7 @@ block|}
 return|;
 block|}
 block|}
-comment|/** Returns a Bits for a reader's docsWithField (potentially merging on-the-fly)     *<p>    * This is a slow way to access this bitset. Instead, access them per-segment    * with {@link AtomicReader#getDocsWithField(String)}    *</p>     * */
+comment|/** Returns a Bits for a reader's docsWithField (potentially merging on-the-fly)     *<p>    * This is a slow way to access this bitset. Instead, access them per-segment    * with {@link LeafReader#getDocsWithField(String)}    *</p>     * */
 DECL|method|getDocsWithField
 specifier|public
 specifier|static
@@ -790,7 +790,7 @@ block|{
 specifier|final
 name|List
 argument_list|<
-name|AtomicReaderContext
+name|LeafReaderContext
 argument_list|>
 name|leaves
 init|=
@@ -893,7 +893,7 @@ name|i
 operator|++
 control|)
 block|{
-name|AtomicReaderContext
+name|LeafReaderContext
 name|context
 init|=
 name|leaves
@@ -1039,7 +1039,7 @@ argument_list|)
 return|;
 block|}
 block|}
-comment|/** Returns a BinaryDocValues for a reader's docvalues (potentially merging on-the-fly)    *<p>    * This is a slow way to access binary values. Instead, access them per-segment    * with {@link AtomicReader#getBinaryDocValues(String)}    *</p>      */
+comment|/** Returns a BinaryDocValues for a reader's docvalues (potentially merging on-the-fly)    *<p>    * This is a slow way to access binary values. Instead, access them per-segment    * with {@link LeafReader#getBinaryDocValues(String)}    *</p>      */
 DECL|method|getBinaryValues
 specifier|public
 specifier|static
@@ -1060,7 +1060,7 @@ block|{
 specifier|final
 name|List
 argument_list|<
-name|AtomicReaderContext
+name|LeafReaderContext
 argument_list|>
 name|leaves
 init|=
@@ -1158,7 +1158,7 @@ name|i
 operator|++
 control|)
 block|{
-name|AtomicReaderContext
+name|LeafReaderContext
 name|context
 init|=
 name|leaves
@@ -1290,7 +1290,7 @@ block|}
 return|;
 block|}
 block|}
-comment|/** Returns a SortedNumericDocValues for a reader's docvalues (potentially merging on-the-fly)     *<p>    * This is a slow way to access sorted numeric values. Instead, access them per-segment    * with {@link AtomicReader#getSortedNumericDocValues(String)}    *</p>     * */
+comment|/** Returns a SortedNumericDocValues for a reader's docvalues (potentially merging on-the-fly)     *<p>    * This is a slow way to access sorted numeric values. Instead, access them per-segment    * with {@link LeafReader#getSortedNumericDocValues(String)}    *</p>     * */
 DECL|method|getSortedNumericValues
 specifier|public
 specifier|static
@@ -1311,7 +1311,7 @@ block|{
 specifier|final
 name|List
 argument_list|<
-name|AtomicReaderContext
+name|LeafReaderContext
 argument_list|>
 name|leaves
 init|=
@@ -1409,7 +1409,7 @@ name|i
 operator|++
 control|)
 block|{
-name|AtomicReaderContext
+name|LeafReaderContext
 name|context
 init|=
 name|leaves
@@ -1588,7 +1588,7 @@ block|}
 return|;
 block|}
 block|}
-comment|/** Returns a SortedDocValues for a reader's docvalues (potentially doing extremely slow things).    *<p>    * This is an extremely slow way to access sorted values. Instead, access them per-segment    * with {@link AtomicReader#getSortedDocValues(String)}    *</p>      */
+comment|/** Returns a SortedDocValues for a reader's docvalues (potentially doing extremely slow things).    *<p>    * This is an extremely slow way to access sorted values. Instead, access them per-segment    * with {@link LeafReader#getSortedDocValues(String)}    *</p>      */
 DECL|method|getSortedValues
 specifier|public
 specifier|static
@@ -1609,7 +1609,7 @@ block|{
 specifier|final
 name|List
 argument_list|<
-name|AtomicReaderContext
+name|LeafReaderContext
 argument_list|>
 name|leaves
 init|=
@@ -1707,7 +1707,7 @@ name|i
 operator|++
 control|)
 block|{
-name|AtomicReaderContext
+name|LeafReaderContext
 name|context
 init|=
 name|leaves
@@ -1823,7 +1823,7 @@ argument_list|)
 return|;
 block|}
 block|}
-comment|/** Returns a SortedSetDocValues for a reader's docvalues (potentially doing extremely slow things).    *<p>    * This is an extremely slow way to access sorted values. Instead, access them per-segment    * with {@link AtomicReader#getSortedSetDocValues(String)}    *</p>      */
+comment|/** Returns a SortedSetDocValues for a reader's docvalues (potentially doing extremely slow things).    *<p>    * This is an extremely slow way to access sorted values. Instead, access them per-segment    * with {@link LeafReader#getSortedSetDocValues(String)}    *</p>      */
 DECL|method|getSortedSetValues
 specifier|public
 specifier|static
@@ -1844,7 +1844,7 @@ block|{
 specifier|final
 name|List
 argument_list|<
-name|AtomicReaderContext
+name|LeafReaderContext
 argument_list|>
 name|leaves
 init|=
@@ -1942,7 +1942,7 @@ name|i
 operator|++
 control|)
 block|{
-name|AtomicReaderContext
+name|LeafReaderContext
 name|context
 init|=
 name|leaves

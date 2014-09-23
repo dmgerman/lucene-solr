@@ -30,7 +30,7 @@ name|lucene
 operator|.
 name|index
 operator|.
-name|AtomicReaderContext
+name|LeafReaderContext
 import|;
 end_import
 
@@ -255,7 +255,7 @@ parameter_list|(
 name|Map
 name|context
 parameter_list|,
-name|AtomicReaderContext
+name|LeafReaderContext
 name|readerContext
 parameter_list|)
 throws|throws
@@ -264,7 +264,7 @@ block|{
 specifier|final
 name|List
 argument_list|<
-name|AtomicReaderContext
+name|LeafReaderContext
 argument_list|>
 name|leaves
 init|=
@@ -294,7 +294,7 @@ name|NEGATIVE_INFINITY
 decl_stmt|;
 for|for
 control|(
-name|AtomicReaderContext
+name|LeafReaderContext
 name|leaf
 range|:
 name|leaves
@@ -461,7 +461,7 @@ parameter_list|(
 name|Map
 name|context
 parameter_list|,
-name|AtomicReaderContext
+name|LeafReaderContext
 name|readerContext
 parameter_list|)
 throws|throws

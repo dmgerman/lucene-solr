@@ -26,7 +26,7 @@ name|lucene
 operator|.
 name|index
 operator|.
-name|AtomicReader
+name|LeafReader
 import|;
 end_import
 
@@ -280,12 +280,12 @@ decl_stmt|;
 try|try
 block|{
 specifier|final
-name|AtomicReader
+name|LeafReader
 name|reader
 init|=
 name|searcher
 operator|.
-name|getAtomicReader
+name|getLeafReader
 argument_list|()
 decl_stmt|;
 name|assertEquals

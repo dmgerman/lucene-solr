@@ -162,7 +162,7 @@ name|lucene
 operator|.
 name|index
 operator|.
-name|AtomicReader
+name|LeafReader
 import|;
 end_import
 
@@ -176,7 +176,7 @@ name|lucene
 operator|.
 name|index
 operator|.
-name|AtomicReaderContext
+name|LeafReaderContext
 import|;
 end_import
 
@@ -1169,7 +1169,7 @@ argument_list|()
 decl_stmt|;
 name|List
 argument_list|<
-name|AtomicReaderContext
+name|LeafReaderContext
 argument_list|>
 name|leaves
 init|=
@@ -1850,7 +1850,7 @@ name|docids
 parameter_list|,
 name|List
 argument_list|<
-name|AtomicReaderContext
+name|LeafReaderContext
 argument_list|>
 name|leaves
 parameter_list|,
@@ -2067,7 +2067,7 @@ argument_list|,
 name|leaves
 argument_list|)
 decl_stmt|;
-name|AtomicReaderContext
+name|LeafReaderContext
 name|subContext
 init|=
 name|leaves
@@ -2077,7 +2077,7 @@ argument_list|(
 name|leaf
 argument_list|)
 decl_stmt|;
-name|AtomicReader
+name|LeafReader
 name|r
 init|=
 name|subContext

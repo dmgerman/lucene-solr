@@ -50,21 +50,7 @@ name|lucene
 operator|.
 name|index
 operator|.
-name|AtomicReader
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|index
-operator|.
-name|AtomicReaderContext
+name|LeafReaderContext
 import|;
 end_import
 
@@ -79,20 +65,6 @@ operator|.
 name|index
 operator|.
 name|DocValues
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|index
-operator|.
-name|IndexReader
 import|;
 end_import
 
@@ -123,22 +95,6 @@ operator|.
 name|function
 operator|.
 name|FunctionValues
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|queries
-operator|.
-name|function
-operator|.
-name|ValueSourceScorer
 import|;
 end_import
 
@@ -207,7 +163,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Obtains int field values from {@link AtomicReader#getNumericDocValues} and makes those  * values available as other numeric types, casting as needed.  */
+comment|/**  * Obtains int field values from {@link org.apache.lucene.index.LeafReader#getNumericDocValues} and makes those  * values available as other numeric types, casting as needed.  */
 end_comment
 
 begin_class
@@ -258,7 +214,7 @@ parameter_list|(
 name|Map
 name|context
 parameter_list|,
-name|AtomicReaderContext
+name|LeafReaderContext
 name|readerContext
 parameter_list|)
 throws|throws

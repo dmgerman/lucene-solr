@@ -440,7 +440,7 @@ operator|.
 name|close
 argument_list|()
 expr_stmt|;
-name|AtomicReader
+name|LeafReader
 name|open
 init|=
 name|SlowCompositeReaderWrapper
@@ -712,7 +712,7 @@ parameter_list|(
 name|SimWeight
 name|weight
 parameter_list|,
-name|AtomicReaderContext
+name|LeafReaderContext
 name|context
 parameter_list|)
 throws|throws

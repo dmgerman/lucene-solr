@@ -108,7 +108,7 @@ name|lucene
 operator|.
 name|index
 operator|.
-name|AtomicReader
+name|LeafReader
 import|;
 end_import
 
@@ -330,7 +330,7 @@ specifier|private
 name|int
 name|docsWithClassSize
 decl_stmt|;
-comment|/**    * Creates a new NaiveBayes classifier with inside caching. Note that you must    * call {@link #train(AtomicReader, String, String, Analyzer) train()} before    * you can classify any documents. If you want less memory usage you could    * call {@link #reInitCache(int, boolean) reInitCache()}.    */
+comment|/**    * Creates a new NaiveBayes classifier with inside caching. Note that you must    * call {@link #train(org.apache.lucene.index.LeafReader, String, String, Analyzer) train()} before    * you can classify any documents. If you want less memory usage you could    * call {@link #reInitCache(int, boolean) reInitCache()}.    */
 DECL|method|CachingNaiveBayesClassifier
 specifier|public
 name|CachingNaiveBayesClassifier
@@ -344,8 +344,8 @@ specifier|public
 name|void
 name|train
 parameter_list|(
-name|AtomicReader
-name|atomicReader
+name|LeafReader
+name|leafReader
 parameter_list|,
 name|String
 name|textFieldName
@@ -361,7 +361,7 @@ name|IOException
 block|{
 name|train
 argument_list|(
-name|atomicReader
+name|leafReader
 argument_list|,
 name|textFieldName
 argument_list|,
@@ -381,8 +381,8 @@ specifier|public
 name|void
 name|train
 parameter_list|(
-name|AtomicReader
-name|atomicReader
+name|LeafReader
+name|leafReader
 parameter_list|,
 name|String
 name|textFieldName
@@ -401,7 +401,7 @@ name|IOException
 block|{
 name|train
 argument_list|(
-name|atomicReader
+name|leafReader
 argument_list|,
 operator|new
 name|String
@@ -426,8 +426,8 @@ specifier|public
 name|void
 name|train
 parameter_list|(
-name|AtomicReader
-name|atomicReader
+name|LeafReader
+name|leafReader
 parameter_list|,
 name|String
 index|[]
@@ -449,7 +449,7 @@ name|super
 operator|.
 name|train
 argument_list|(
-name|atomicReader
+name|leafReader
 argument_list|,
 name|textFieldNames
 argument_list|,
@@ -488,7 +488,7 @@ name|IOException
 block|{
 if|if
 condition|(
-name|atomicReader
+name|leafReader
 operator|==
 literal|null
 condition|)
@@ -1204,7 +1204,7 @@ block|{
 name|TermsEnum
 name|termsEnum
 init|=
-name|atomicReader
+name|leafReader
 operator|.
 name|terms
 argument_list|(
@@ -1338,7 +1338,7 @@ name|MultiFields
 operator|.
 name|getTerms
 argument_list|(
-name|atomicReader
+name|leafReader
 argument_list|,
 name|classFieldName
 argument_list|)
@@ -1409,7 +1409,7 @@ name|MultiFields
 operator|.
 name|getTerms
 argument_list|(
-name|atomicReader
+name|leafReader
 argument_list|,
 name|textFieldName
 argument_list|)
@@ -1439,7 +1439,7 @@ block|}
 name|int
 name|docsWithC
 init|=
-name|atomicReader
+name|leafReader
 operator|.
 name|docFreq
 argument_list|(

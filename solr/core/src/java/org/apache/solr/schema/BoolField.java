@@ -30,16 +30,6 @@ begin_import
 import|import
 name|java
 operator|.
-name|io
-operator|.
-name|Reader
-import|;
-end_import
-
-begin_import
-import|import
-name|java
-operator|.
 name|util
 operator|.
 name|Map
@@ -100,7 +90,7 @@ name|lucene
 operator|.
 name|index
 operator|.
-name|AtomicReaderContext
+name|LeafReaderContext
 import|;
 end_import
 
@@ -115,20 +105,6 @@ operator|.
 name|index
 operator|.
 name|DocValues
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|index
-operator|.
-name|GeneralField
 import|;
 end_import
 
@@ -1056,7 +1032,7 @@ parameter_list|(
 name|Map
 name|context
 parameter_list|,
-name|AtomicReaderContext
+name|LeafReaderContext
 name|readerContext
 parameter_list|)
 throws|throws

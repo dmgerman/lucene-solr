@@ -161,7 +161,7 @@ comment|// javadocs
 end_comment
 
 begin_comment
-comment|/**  IndexReader is an abstract class, providing an interface for accessing a  point-in-time view of an index.  Any changes made to the index  via {@link IndexWriter} will not be visible until a new  {@code IndexReader} is opened.  It's best to use {@link  DirectoryReader#open(IndexWriter,boolean)} to obtain an  {@code IndexReader}, if your {@link IndexWriter} is  in-process.  When you need to re-open to see changes to the  index, it's best to use {@link DirectoryReader#openIfChanged(DirectoryReader)}  since the new reader will share resources with the previous  one when possible.  Search of an index is done entirely  through this abstract interface, so that any subclass which  implements it is searchable.<p>There are two different types of IndexReaders:<ul><li>{@link AtomicReader}: These indexes do not consist of several sub-readers,   they are atomic. They support retrieval of stored fields, doc values, terms,   and postings.<li>{@link CompositeReader}: Instances (like {@link DirectoryReader})   of this reader can only   be used to get stored fields from the underlying AtomicReaders,   but it is not possible to directly retrieve postings. To do that, get   the sub-readers via {@link CompositeReader#getSequentialSubReaders}.   Alternatively, you can mimic an {@link AtomicReader} (with a serious slowdown),   by wrapping composite readers with {@link SlowCompositeReaderWrapper}.</ul><p>IndexReader instances for indexes on disk are usually constructed  with a call to one of the static<code>DirectoryReader.open()</code> methods,  e.g. {@link DirectoryReader#open(org.apache.lucene.store.Directory)}. {@link DirectoryReader} implements  the {@link CompositeReader} interface, it is not possible to directly get postings.<p> For efficiency, in this API documents are often referred to via<i>document numbers</i>, non-negative integers which each name a unique  document in the index.  These document numbers are ephemeral -- they may change  as documents are added to and deleted from an index.  Clients should thus not  rely on a given document having the same number between sessions.<p><a name="thread-safety"></a><p><b>NOTE</b>: {@link  IndexReader} instances are completely thread  safe, meaning multiple threads can call any of its methods,  concurrently.  If your application requires external  synchronization, you should<b>not</b> synchronize on the<code>IndexReader</code> instance; use your own  (non-Lucene) objects instead. */
+comment|/**  IndexReader is an abstract class, providing an interface for accessing a  point-in-time view of an index.  Any changes made to the index  via {@link IndexWriter} will not be visible until a new  {@code IndexReader} is opened.  It's best to use {@link  DirectoryReader#open(IndexWriter,boolean)} to obtain an  {@code IndexReader}, if your {@link IndexWriter} is  in-process.  When you need to re-open to see changes to the  index, it's best to use {@link DirectoryReader#openIfChanged(DirectoryReader)}  since the new reader will share resources with the previous  one when possible.  Search of an index is done entirely  through this abstract interface, so that any subclass which  implements it is searchable.<p>There are two different types of IndexReaders:<ul><li>{@link LeafReader}: These indexes do not consist of several sub-readers,   they are atomic. They support retrieval of stored fields, doc values, terms,   and postings.<li>{@link CompositeReader}: Instances (like {@link DirectoryReader})   of this reader can only   be used to get stored fields from the underlying AtomicReaders,   but it is not possible to directly retrieve postings. To do that, get   the sub-readers via {@link CompositeReader#getSequentialSubReaders}.   Alternatively, you can mimic an {@link LeafReader} (with a serious slowdown),   by wrapping composite readers with {@link SlowCompositeReaderWrapper}.</ul><p>IndexReader instances for indexes on disk are usually constructed  with a call to one of the static<code>DirectoryReader.open()</code> methods,  e.g. {@link DirectoryReader#open(org.apache.lucene.store.Directory)}. {@link DirectoryReader} implements  the {@link CompositeReader} interface, it is not possible to directly get postings.<p> For efficiency, in this API documents are often referred to via<i>document numbers</i>, non-negative integers which each name a unique  document in the index.  These document numbers are ephemeral -- they may change  as documents are added to and deleted from an index.  Clients should thus not  rely on a given document having the same number between sessions.<p><a name="thread-safety"></a><p><b>NOTE</b>: {@link  IndexReader} instances are completely thread  safe, meaning multiple threads can call any of its methods,  concurrently.  If your application requires external  synchronization, you should<b>not</b> synchronize on the<code>IndexReader</code> instance; use your own  (non-Lucene) objects instead. */
 end_comment
 
 begin_class
@@ -213,7 +213,7 @@ name|CompositeReader
 operator|||
 name|this
 operator|instanceof
-name|AtomicReader
+name|LeafReader
 operator|)
 condition|)
 throw|throw
@@ -335,7 +335,7 @@ name|listener
 argument_list|)
 expr_stmt|;
 block|}
-comment|/** Expert: This method is called by {@code IndexReader}s which wrap other readers    * (e.g. {@link CompositeReader} or {@link FilterAtomicReader}) to register the parent    * at the child (this reader) on construction of the parent. When this reader is closed,    * it will mark all registered parents as closed, too. The references to parent readers    * are weak only, so they can be GCed once they are no longer in use.    * @lucene.experimental */
+comment|/** Expert: This method is called by {@code IndexReader}s which wrap other readers    * (e.g. {@link CompositeReader} or {@link FilterLeafReader}) to register the parent    * at the child (this reader) on construction of the parent. When this reader is closed,    * it will mark all registered parents as closed, too. The references to parent readers    * are weak only, so they can be GCed once they are no longer in use.    * @lucene.experimental */
 DECL|method|registerParentReader
 specifier|public
 specifier|final
@@ -990,7 +990,7 @@ parameter_list|()
 throws|throws
 name|IOException
 function_decl|;
-comment|/**    * Expert: Returns the root {@link IndexReaderContext} for this    * {@link IndexReader}'s sub-reader tree.     *<p>    * Iff this reader is composed of sub    * readers, i.e. this reader being a composite reader, this method returns a    * {@link CompositeReaderContext} holding the reader's direct children as well as a    * view of the reader tree's atomic leaf contexts. All sub-    * {@link IndexReaderContext} instances referenced from this readers top-level    * context are private to this reader and are not shared with another context    * tree. For example, IndexSearcher uses this API to drive searching by one    * atomic leaf reader at a time. If this reader is not composed of child    * readers, this method returns an {@link AtomicReaderContext}.    *<p>    * Note: Any of the sub-{@link CompositeReaderContext} instances referenced    * from this top-level context do not support {@link CompositeReaderContext#leaves()}.    * Only the top-level context maintains the convenience leaf-view    * for performance reasons.    */
+comment|/**    * Expert: Returns the root {@link IndexReaderContext} for this    * {@link IndexReader}'s sub-reader tree.     *<p>    * Iff this reader is composed of sub    * readers, i.e. this reader being a composite reader, this method returns a    * {@link CompositeReaderContext} holding the reader's direct children as well as a    * view of the reader tree's atomic leaf contexts. All sub-    * {@link IndexReaderContext} instances referenced from this readers top-level    * context are private to this reader and are not shared with another context    * tree. For example, IndexSearcher uses this API to drive searching by one    * atomic leaf reader at a time. If this reader is not composed of child    * readers, this method returns an {@link LeafReaderContext}.    *<p>    * Note: Any of the sub-{@link CompositeReaderContext} instances referenced    * from this top-level context do not support {@link CompositeReaderContext#leaves()}.    * Only the top-level context maintains the convenience leaf-view    * for performance reasons.    */
 DECL|method|getContext
 specifier|public
 specifier|abstract
@@ -1004,7 +1004,7 @@ specifier|public
 specifier|final
 name|List
 argument_list|<
-name|AtomicReaderContext
+name|LeafReaderContext
 argument_list|>
 name|leaves
 parameter_list|()

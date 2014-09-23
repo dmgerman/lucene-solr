@@ -2675,7 +2675,7 @@ init|=
 literal|0
 decl_stmt|;
 specifier|final
-name|AtomicReaderContext
+name|LeafReaderContext
 name|readerContext
 init|=
 name|reader

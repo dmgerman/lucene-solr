@@ -86,7 +86,7 @@ name|lucene
 operator|.
 name|index
 operator|.
-name|AtomicReaderContext
+name|LeafReaderContext
 import|;
 end_import
 
@@ -2016,7 +2016,7 @@ specifier|public
 name|Scorer
 name|scorer
 parameter_list|(
-name|AtomicReaderContext
+name|LeafReaderContext
 name|context
 parameter_list|,
 name|Bits
@@ -2211,7 +2211,7 @@ specifier|public
 name|Explanation
 name|explain
 parameter_list|(
-name|AtomicReaderContext
+name|LeafReaderContext
 name|context
 parameter_list|,
 name|int

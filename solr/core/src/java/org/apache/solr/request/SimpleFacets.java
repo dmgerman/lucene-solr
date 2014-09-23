@@ -236,7 +236,7 @@ name|lucene
 operator|.
 name|index
 operator|.
-name|AtomicReader
+name|LeafReader
 import|;
 end_import
 
@@ -250,7 +250,7 @@ name|lucene
 operator|.
 name|index
 operator|.
-name|AtomicReaderContext
+name|LeafReaderContext
 import|;
 end_import
 
@@ -513,20 +513,6 @@ operator|.
 name|util
 operator|.
 name|BytesRef
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|util
-operator|.
-name|CharsRef
 import|;
 end_import
 
@@ -3234,13 +3220,13 @@ specifier|public
 name|LeafCollector
 name|getLeafCollector
 parameter_list|(
-name|AtomicReaderContext
+name|LeafReaderContext
 name|context
 parameter_list|)
 throws|throws
 name|IOException
 block|{
-name|AtomicReader
+name|LeafReader
 name|insane
 init|=
 name|Insanity
@@ -4314,12 +4300,12 @@ operator|.
 name|getSchema
 argument_list|()
 decl_stmt|;
-name|AtomicReader
+name|LeafReader
 name|r
 init|=
 name|searcher
 operator|.
-name|getAtomicReader
+name|getLeafReader
 argument_list|()
 decl_stmt|;
 name|FieldType

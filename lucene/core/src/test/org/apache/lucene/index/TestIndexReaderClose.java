@@ -261,7 +261,7 @@ operator|!
 name|rarely
 argument_list|()
 decl_stmt|;
-name|AtomicReader
+name|LeafReader
 name|wrap
 init|=
 name|SlowCompositeReaderWrapper
@@ -271,11 +271,11 @@ argument_list|(
 name|open
 argument_list|)
 decl_stmt|;
-name|FilterAtomicReader
+name|FilterLeafReader
 name|reader
 init|=
 operator|new
-name|FilterAtomicReader
+name|FilterLeafReader
 argument_list|(
 name|wrap
 argument_list|)
@@ -617,8 +617,8 @@ argument_list|()
 argument_list|)
 decl_stmt|;
 specifier|final
-name|AtomicReader
-name|atomicReader
+name|LeafReader
+name|leafReader
 init|=
 name|SlowCompositeReaderWrapper
 operator|.
@@ -646,7 +646,7 @@ decl_stmt|;
 specifier|final
 name|List
 argument_list|<
-name|AtomicReader
+name|LeafReader
 operator|.
 name|CoreClosedListener
 argument_list|>
@@ -697,7 +697,7 @@ argument_list|(
 name|listener
 argument_list|)
 expr_stmt|;
-name|atomicReader
+name|leafReader
 operator|.
 name|addCoreClosedListener
 argument_list|(
@@ -720,7 +720,7 @@ operator|++
 name|i
 control|)
 block|{
-name|atomicReader
+name|leafReader
 operator|.
 name|addCoreClosedListener
 argument_list|(
@@ -776,7 +776,7 @@ operator|++
 name|i
 control|)
 block|{
-name|atomicReader
+name|leafReader
 operator|.
 name|removeCoreClosedListener
 argument_list|(
@@ -817,7 +817,7 @@ expr_stmt|;
 block|}
 else|else
 block|{
-name|atomicReader
+name|leafReader
 operator|.
 name|close
 argument_list|()
@@ -851,7 +851,7 @@ specifier|final
 class|class
 name|CountCoreListener
 implements|implements
-name|AtomicReader
+name|LeafReader
 operator|.
 name|CoreClosedListener
 block|{

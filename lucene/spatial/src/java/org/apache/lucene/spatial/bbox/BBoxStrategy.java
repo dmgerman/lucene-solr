@@ -140,20 +140,6 @@ name|lucene
 operator|.
 name|index
 operator|.
-name|AtomicReader
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|index
-operator|.
 name|FieldInfo
 import|;
 end_import
@@ -388,20 +374,6 @@ name|lucene
 operator|.
 name|util
 operator|.
-name|BytesRef
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|util
-operator|.
 name|BytesRefBuilder
 import|;
 end_import
@@ -421,7 +393,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * A SpatialStrategy for indexing and searching Rectangles by storing its  * coordinates in numeric fields. It supports all {@link SpatialOperation}s and  * has a custom overlap relevancy. It is based on GeoPortal's<a  * href="http://geoportal.svn.sourceforge.net/svnroot/geoportal/Geoportal/trunk/src/com/esri/gpt/catalog/lucene/SpatialClauseAdapter.java">SpatialClauseAdapter</a>.  *  *<h4>Characteristics:</h4>  *<ul>  *<li>Only indexes Rectangles; just one per field value. Other shapes can be provided  * and the bounding box will be used.</li>  *<li>Can query only by a Rectangle. Providing other shapes is an error.</li>  *<li>Supports most {@link SpatialOperation}s but not Overlaps.</li>  *<li>Uses the DocValues API for any sorting / relevancy.</li>  *</ul>  *  *<h4>Implementation:</h4>  * This uses 4 double fields for minX, maxX, minY, maxY  * and a boolean to mark a dateline cross. Depending on the particular {@link  * SpatialOperation}s, there are a variety of {@link NumericRangeQuery}s to be  * done.  * The {@link #makeOverlapRatioValueSource(com.spatial4j.core.shape.Rectangle, double)}  * works by calculating the query bbox overlap percentage against the indexed  * shape overlap percentage. The indexed shape's coordinates are retrieved from  * {@link AtomicReader#getNumericDocValues}.  *  * @lucene.experimental  */
+comment|/**  * A SpatialStrategy for indexing and searching Rectangles by storing its  * coordinates in numeric fields. It supports all {@link SpatialOperation}s and  * has a custom overlap relevancy. It is based on GeoPortal's<a  * href="http://geoportal.svn.sourceforge.net/svnroot/geoportal/Geoportal/trunk/src/com/esri/gpt/catalog/lucene/SpatialClauseAdapter.java">SpatialClauseAdapter</a>.  *  *<h4>Characteristics:</h4>  *<ul>  *<li>Only indexes Rectangles; just one per field value. Other shapes can be provided  * and the bounding box will be used.</li>  *<li>Can query only by a Rectangle. Providing other shapes is an error.</li>  *<li>Supports most {@link SpatialOperation}s but not Overlaps.</li>  *<li>Uses the DocValues API for any sorting / relevancy.</li>  *</ul>  *  *<h4>Implementation:</h4>  * This uses 4 double fields for minX, maxX, minY, maxY  * and a boolean to mark a dateline cross. Depending on the particular {@link  * SpatialOperation}s, there are a variety of {@link NumericRangeQuery}s to be  * done.  * The {@link #makeOverlapRatioValueSource(com.spatial4j.core.shape.Rectangle, double)}  * works by calculating the query bbox overlap percentage against the indexed  * shape overlap percentage. The indexed shape's coordinates are retrieved from  * {@link org.apache.lucene.index.LeafReader#getNumericDocValues}.  *  * @lucene.experimental  */
 end_comment
 
 begin_class

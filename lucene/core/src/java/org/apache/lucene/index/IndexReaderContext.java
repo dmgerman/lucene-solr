@@ -88,7 +88,7 @@ name|CompositeReaderContext
 operator|||
 name|this
 operator|instanceof
-name|AtomicReaderContext
+name|LeafReaderContext
 operator|)
 condition|)
 throw|throw
@@ -133,13 +133,13 @@ name|IndexReader
 name|reader
 parameter_list|()
 function_decl|;
-comment|/**    * Returns the context's leaves if this context is a top-level context.    * For convenience, if this is an {@link AtomicReaderContext} this    * returns itself as the only leaf.    *<p>Note: this is convenience method since leaves can always be obtained by    * walking the context tree using {@link #children()}.    * @throws UnsupportedOperationException if this is not a top-level context.    * @see #children()    */
+comment|/**    * Returns the context's leaves if this context is a top-level context.    * For convenience, if this is an {@link LeafReaderContext} this    * returns itself as the only leaf.    *<p>Note: this is convenience method since leaves can always be obtained by    * walking the context tree using {@link #children()}.    * @throws UnsupportedOperationException if this is not a top-level context.    * @see #children()    */
 DECL|method|leaves
 specifier|public
 specifier|abstract
 name|List
 argument_list|<
-name|AtomicReaderContext
+name|LeafReaderContext
 argument_list|>
 name|leaves
 parameter_list|()

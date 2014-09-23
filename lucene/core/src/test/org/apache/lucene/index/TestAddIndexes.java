@@ -7330,7 +7330,7 @@ argument_list|)
 decl_stmt|;
 for|for
 control|(
-name|AtomicReaderContext
+name|LeafReaderContext
 name|ctx
 range|:
 name|dr
@@ -7473,7 +7473,7 @@ argument_list|)
 decl_stmt|;
 for|for
 control|(
-name|AtomicReaderContext
+name|LeafReaderContext
 name|ctx
 range|:
 name|dr

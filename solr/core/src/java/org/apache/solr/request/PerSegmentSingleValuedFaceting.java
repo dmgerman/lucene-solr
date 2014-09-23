@@ -58,7 +58,7 @@ name|lucene
 operator|.
 name|index
 operator|.
-name|AtomicReaderContext
+name|LeafReaderContext
 import|;
 end_import
 
@@ -184,20 +184,6 @@ name|lucene
 operator|.
 name|util
 operator|.
-name|CharsRef
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|util
-operator|.
 name|CharsRefBuilder
 import|;
 end_import
@@ -227,22 +213,6 @@ operator|.
 name|util
 operator|.
 name|UnicodeUtil
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|util
-operator|.
-name|packed
-operator|.
-name|PackedInts
 import|;
 end_import
 
@@ -536,7 +506,7 @@ expr_stmt|;
 specifier|final
 name|List
 argument_list|<
-name|AtomicReaderContext
+name|LeafReaderContext
 argument_list|>
 name|leaves
 init|=
@@ -581,7 +551,7 @@ decl_stmt|;
 for|for
 control|(
 specifier|final
-name|AtomicReaderContext
+name|LeafReaderContext
 name|leave
 range|:
 name|leaves
@@ -1286,13 +1256,13 @@ class|class
 name|SegFacet
 block|{
 DECL|field|context
-name|AtomicReaderContext
+name|LeafReaderContext
 name|context
 decl_stmt|;
 DECL|method|SegFacet
 name|SegFacet
 parameter_list|(
-name|AtomicReaderContext
+name|LeafReaderContext
 name|context
 parameter_list|)
 block|{

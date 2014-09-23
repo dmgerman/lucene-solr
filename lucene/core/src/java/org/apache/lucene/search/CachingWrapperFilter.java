@@ -102,7 +102,7 @@ name|lucene
 operator|.
 name|index
 operator|.
-name|AtomicReader
+name|LeafReader
 import|;
 end_import
 
@@ -116,7 +116,7 @@ name|lucene
 operator|.
 name|index
 operator|.
-name|AtomicReaderContext
+name|LeafReaderContext
 import|;
 end_import
 
@@ -248,7 +248,7 @@ return|return
 name|filter
 return|;
 block|}
-comment|/**     *  Provide the DocIdSet to be cached, using the DocIdSet provided    *  by the wrapped Filter.<p>This implementation returns the given {@link DocIdSet},    *  if {@link DocIdSet#isCacheable} returns<code>true</code>, else it calls    *  {@link #cacheImpl(DocIdSetIterator,AtomicReader)}    *<p>Note: This method returns {@linkplain DocIdSet#EMPTY} if the given docIdSet    *  is<code>null</code> or if {@link DocIdSet#iterator()} return<code>null</code>. The empty    *  instance is use as a placeholder in the cache instead of the<code>null</code> value.    */
+comment|/**     *  Provide the DocIdSet to be cached, using the DocIdSet provided    *  by the wrapped Filter.<p>This implementation returns the given {@link DocIdSet},    *  if {@link DocIdSet#isCacheable} returns<code>true</code>, else it calls    *  {@link #cacheImpl(DocIdSetIterator, org.apache.lucene.index.LeafReader)}    *<p>Note: This method returns {@linkplain DocIdSet#EMPTY} if the given docIdSet    *  is<code>null</code> or if {@link DocIdSet#iterator()} return<code>null</code>. The empty    *  instance is use as a placeholder in the cache instead of the<code>null</code> value.    */
 DECL|method|docIdSetToCache
 specifier|protected
 name|DocIdSet
@@ -257,7 +257,7 @@ parameter_list|(
 name|DocIdSet
 name|docIdSet
 parameter_list|,
-name|AtomicReader
+name|LeafReader
 name|reader
 parameter_list|)
 throws|throws
@@ -335,7 +335,7 @@ parameter_list|(
 name|DocIdSetIterator
 name|iterator
 parameter_list|,
-name|AtomicReader
+name|LeafReader
 name|reader
 parameter_list|)
 throws|throws
@@ -381,7 +381,7 @@ specifier|public
 name|DocIdSet
 name|getDocIdSet
 parameter_list|(
-name|AtomicReaderContext
+name|LeafReaderContext
 name|context
 parameter_list|,
 specifier|final
@@ -392,7 +392,7 @@ throws|throws
 name|IOException
 block|{
 specifier|final
-name|AtomicReader
+name|LeafReader
 name|reader
 init|=
 name|context

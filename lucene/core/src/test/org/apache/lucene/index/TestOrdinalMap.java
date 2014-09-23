@@ -615,7 +615,7 @@ operator|.
 name|getReader
 argument_list|()
 decl_stmt|;
-name|AtomicReader
+name|LeafReader
 name|ar
 init|=
 name|SlowCompositeReaderWrapper

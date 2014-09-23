@@ -54,7 +54,7 @@ name|lucene
 operator|.
 name|index
 operator|.
-name|AtomicReader
+name|LeafReader
 import|;
 end_import
 
@@ -166,7 +166,7 @@ parameter_list|(
 name|DocIdSet
 name|docIdSet
 parameter_list|,
-name|AtomicReader
+name|LeafReader
 name|reader
 parameter_list|)
 throws|throws

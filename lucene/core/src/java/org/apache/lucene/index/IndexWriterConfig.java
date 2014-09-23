@@ -282,7 +282,7 @@ name|DEFAULT_USE_COMPOUND_FILE_SYSTEM
 init|=
 literal|true
 decl_stmt|;
-comment|/** Default value for calling {@link AtomicReader#checkIntegrity()} before    *  merging segments (set to<code>false</code>). You can set this    *  to<code>true</code> for additional safety. */
+comment|/** Default value for calling {@link LeafReader#checkIntegrity()} before    *  merging segments (set to<code>false</code>). You can set this    *  to<code>true</code> for additional safety. */
 DECL|field|DEFAULT_CHECK_INTEGRITY_AT_MERGE
 specifier|public
 specifier|final

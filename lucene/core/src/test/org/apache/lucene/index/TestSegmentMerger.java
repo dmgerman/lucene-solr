@@ -478,7 +478,7 @@ argument_list|(
 name|Arrays
 operator|.
 expr|<
-name|AtomicReader
+name|LeafReader
 operator|>
 name|asList
 argument_list|(

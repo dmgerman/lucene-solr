@@ -86,7 +86,7 @@ name|lucene
 operator|.
 name|index
 operator|.
-name|AtomicReader
+name|LeafReader
 import|;
 end_import
 
@@ -350,7 +350,7 @@ block|{
 DECL|field|unsortedReaders
 name|List
 argument_list|<
-name|AtomicReader
+name|LeafReader
 argument_list|>
 name|unsortedReaders
 decl_stmt|;
@@ -361,7 +361,7 @@ name|DocMap
 name|docMap
 decl_stmt|;
 DECL|field|sortedView
-name|AtomicReader
+name|LeafReader
 name|sortedView
 decl_stmt|;
 DECL|method|SortingOneMerge
@@ -386,7 +386,7 @@ DECL|method|getMergeReaders
 specifier|public
 name|List
 argument_list|<
-name|AtomicReader
+name|LeafReader
 argument_list|>
 name|getMergeReaders
 parameter_list|()
@@ -408,7 +408,7 @@ name|getMergeReaders
 argument_list|()
 expr_stmt|;
 specifier|final
-name|AtomicReader
+name|LeafReader
 name|atomicView
 decl_stmt|;
 if|if
@@ -445,7 +445,7 @@ operator|.
 name|toArray
 argument_list|(
 operator|new
-name|AtomicReader
+name|LeafReader
 index|[
 name|unsortedReaders
 operator|.
@@ -476,7 +476,7 @@ argument_list|)
 expr_stmt|;
 name|sortedView
 operator|=
-name|SortingAtomicReader
+name|SortingLeafReader
 operator|.
 name|wrap
 argument_list|(
@@ -555,7 +555,7 @@ name|getDeletes
 parameter_list|(
 name|List
 argument_list|<
-name|AtomicReader
+name|LeafReader
 argument_list|>
 name|readers
 parameter_list|)
@@ -581,7 +581,7 @@ literal|0
 decl_stmt|;
 for|for
 control|(
-name|AtomicReader
+name|LeafReader
 name|reader
 range|:
 name|readers
@@ -849,7 +849,7 @@ specifier|static
 name|boolean
 name|isSorted
 parameter_list|(
-name|AtomicReader
+name|LeafReader
 name|reader
 parameter_list|,
 name|Sort

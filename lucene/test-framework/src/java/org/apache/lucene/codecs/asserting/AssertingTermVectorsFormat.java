@@ -80,7 +80,7 @@ name|lucene
 operator|.
 name|index
 operator|.
-name|AssertingAtomicReader
+name|AssertingLeafReader
 import|;
 end_import
 
@@ -406,7 +406,7 @@ condition|?
 literal|null
 else|:
 operator|new
-name|AssertingAtomicReader
+name|AssertingLeafReader
 operator|.
 name|AssertingFields
 argument_list|(

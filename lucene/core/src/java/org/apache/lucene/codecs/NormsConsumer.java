@@ -86,7 +86,7 @@ name|lucene
 operator|.
 name|index
 operator|.
-name|AtomicReader
+name|LeafReader
 import|;
 end_import
 
@@ -255,7 +255,7 @@ argument_list|()
 decl_stmt|;
 for|for
 control|(
-name|AtomicReader
+name|LeafReader
 name|reader
 range|:
 name|mergeState
@@ -376,7 +376,7 @@ decl_stmt|;
 name|long
 name|nextValue
 decl_stmt|;
-name|AtomicReader
+name|LeafReader
 name|currentReader
 decl_stmt|;
 name|NumericDocValues

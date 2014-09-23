@@ -130,7 +130,7 @@ name|lucene
 operator|.
 name|index
 operator|.
-name|AtomicReader
+name|LeafReader
 import|;
 end_import
 
@@ -317,11 +317,11 @@ argument_list|<
 name|BytesRef
 argument_list|>
 block|{
-comment|/**    * {@link org.apache.lucene.index.AtomicReader} used to access the {@link org.apache.lucene.classification.Classifier}'s    * index    */
-DECL|field|atomicReader
+comment|/**    * {@link org.apache.lucene.index.LeafReader} used to access the {@link org.apache.lucene.classification.Classifier}'s    * index    */
+DECL|field|leafReader
 specifier|protected
-name|AtomicReader
-name|atomicReader
+name|LeafReader
+name|leafReader
 decl_stmt|;
 comment|/**    * names of the fields to be used as input text    */
 DECL|field|textFieldNames
@@ -354,7 +354,7 @@ specifier|protected
 name|Query
 name|query
 decl_stmt|;
-comment|/**    * Creates a new NaiveBayes classifier.    * Note that you must call {@link #train(AtomicReader, String, String, Analyzer) train()} before you can    * classify any documents.    */
+comment|/**    * Creates a new NaiveBayes classifier.    * Note that you must call {@link #train(org.apache.lucene.index.LeafReader, String, String, Analyzer) train()} before you can    * classify any documents.    */
 DECL|method|SimpleNaiveBayesClassifier
 specifier|public
 name|SimpleNaiveBayesClassifier
@@ -368,8 +368,8 @@ specifier|public
 name|void
 name|train
 parameter_list|(
-name|AtomicReader
-name|atomicReader
+name|LeafReader
+name|leafReader
 parameter_list|,
 name|String
 name|textFieldName
@@ -385,7 +385,7 @@ name|IOException
 block|{
 name|train
 argument_list|(
-name|atomicReader
+name|leafReader
 argument_list|,
 name|textFieldName
 argument_list|,
@@ -405,8 +405,8 @@ specifier|public
 name|void
 name|train
 parameter_list|(
-name|AtomicReader
-name|atomicReader
+name|LeafReader
+name|leafReader
 parameter_list|,
 name|String
 name|textFieldName
@@ -425,7 +425,7 @@ name|IOException
 block|{
 name|train
 argument_list|(
-name|atomicReader
+name|leafReader
 argument_list|,
 operator|new
 name|String
@@ -450,8 +450,8 @@ specifier|public
 name|void
 name|train
 parameter_list|(
-name|AtomicReader
-name|atomicReader
+name|LeafReader
+name|leafReader
 parameter_list|,
 name|String
 index|[]
@@ -471,9 +471,9 @@ name|IOException
 block|{
 name|this
 operator|.
-name|atomicReader
+name|leafReader
 operator|=
-name|atomicReader
+name|leafReader
 expr_stmt|;
 name|this
 operator|.
@@ -484,7 +484,7 @@ name|IndexSearcher
 argument_list|(
 name|this
 operator|.
-name|atomicReader
+name|leafReader
 argument_list|)
 expr_stmt|;
 name|this
@@ -716,7 +716,7 @@ name|IOException
 block|{
 if|if
 condition|(
-name|atomicReader
+name|leafReader
 operator|==
 literal|null
 condition|)
@@ -750,7 +750,7 @@ name|MultiFields
 operator|.
 name|getTerms
 argument_list|(
-name|atomicReader
+name|leafReader
 argument_list|,
 name|classFieldName
 argument_list|)
@@ -992,7 +992,7 @@ name|getTerms
 argument_list|(
 name|this
 operator|.
-name|atomicReader
+name|leafReader
 argument_list|,
 name|this
 operator|.
@@ -1324,7 +1324,7 @@ name|MultiFields
 operator|.
 name|getTerms
 argument_list|(
-name|atomicReader
+name|leafReader
 argument_list|,
 name|textFieldName
 argument_list|)
@@ -1355,7 +1355,7 @@ block|}
 name|int
 name|docsWithC
 init|=
-name|atomicReader
+name|leafReader
 operator|.
 name|docFreq
 argument_list|(
@@ -1575,7 +1575,7 @@ throws|throws
 name|IOException
 block|{
 return|return
-name|atomicReader
+name|leafReader
 operator|.
 name|docFreq
 argument_list|(

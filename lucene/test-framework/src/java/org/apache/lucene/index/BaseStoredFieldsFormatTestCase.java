@@ -2308,7 +2308,7 @@ argument_list|)
 expr_stmt|;
 for|for
 control|(
-name|AtomicReaderContext
+name|LeafReaderContext
 name|ctx
 range|:
 name|r
@@ -2318,7 +2318,7 @@ argument_list|()
 control|)
 block|{
 specifier|final
-name|AtomicReader
+name|LeafReader
 name|sub
 init|=
 name|ctx

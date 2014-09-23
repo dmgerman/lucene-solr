@@ -2865,7 +2865,7 @@ block|{
 specifier|final
 name|List
 argument_list|<
-name|AtomicReaderContext
+name|LeafReaderContext
 argument_list|>
 name|leaves
 init|=
@@ -2888,7 +2888,7 @@ name|leaves
 argument_list|)
 decl_stmt|;
 specifier|final
-name|AtomicReaderContext
+name|LeafReaderContext
 name|leaf
 init|=
 name|leaves

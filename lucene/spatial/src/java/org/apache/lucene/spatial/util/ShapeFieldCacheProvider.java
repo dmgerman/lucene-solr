@@ -107,7 +107,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Provides access to a {@link ShapeFieldCache} for a given {@link AtomicReader}.  *  * If a Cache does not exist for the Reader, then it is built by iterating over  * the all terms for a given field, reconstructing the Shape from them, and adding  * them to the Cache.  *  * @lucene.internal  */
+comment|/**  * Provides access to a {@link ShapeFieldCache} for a given {@link org.apache.lucene.index.LeafReader}.  *  * If a Cache does not exist for the Reader, then it is built by iterating over  * the all terms for a given field, reconstructing the Shape from them, and adding  * them to the Cache.  *  * @lucene.internal  */
 end_comment
 
 begin_class
@@ -211,7 +211,7 @@ name|T
 argument_list|>
 name|getCache
 parameter_list|(
-name|AtomicReader
+name|LeafReader
 name|reader
 parameter_list|)
 throws|throws

@@ -140,7 +140,7 @@ name|lucene
 operator|.
 name|index
 operator|.
-name|AtomicReader
+name|LeafReader
 import|;
 end_import
 
@@ -759,7 +759,7 @@ specifier|public
 name|Bits
 name|getDocsWithField
 parameter_list|(
-name|AtomicReader
+name|LeafReader
 name|reader
 parameter_list|,
 name|String
@@ -768,13 +768,13 @@ parameter_list|)
 throws|throws
 name|IOException
 function_decl|;
-comment|/**    * Returns a {@link NumericDocValues} over the values found in documents in the given    * field. If the field was indexed as {@link NumericDocValuesField}, it simply    * uses {@link AtomicReader#getNumericDocValues(String)} to read the values.    * Otherwise, it checks the internal cache for an appropriate entry, and if    * none is found, reads the terms in<code>field</code> as longs and returns    * an array of size<code>reader.maxDoc()</code> of the value each document    * has in the given field.    *     * @param reader    *          Used to get field values.    * @param field    *          Which field contains the longs.    * @param parser    *          Computes long for string values. May be {@code null} if the    *          requested field was indexed as {@link NumericDocValuesField} or    *          {@link LongField}.    * @param setDocsWithField    *          If true then {@link #getDocsWithField} will also be computed and    *          stored in the FieldCache.    * @return The values in the given field for each document.    * @throws IOException    *           If any error occurs.    */
+comment|/**    * Returns a {@link NumericDocValues} over the values found in documents in the given    * field. If the field was indexed as {@link NumericDocValuesField}, it simply    * uses {@link org.apache.lucene.index.LeafReader#getNumericDocValues(String)} to read the values.    * Otherwise, it checks the internal cache for an appropriate entry, and if    * none is found, reads the terms in<code>field</code> as longs and returns    * an array of size<code>reader.maxDoc()</code> of the value each document    * has in the given field.    *     * @param reader    *          Used to get field values.    * @param field    *          Which field contains the longs.    * @param parser    *          Computes long for string values. May be {@code null} if the    *          requested field was indexed as {@link NumericDocValuesField} or    *          {@link LongField}.    * @param setDocsWithField    *          If true then {@link #getDocsWithField} will also be computed and    *          stored in the FieldCache.    * @return The values in the given field for each document.    * @throws IOException    *           If any error occurs.    */
 DECL|method|getNumerics
 specifier|public
 name|NumericDocValues
 name|getNumerics
 parameter_list|(
-name|AtomicReader
+name|LeafReader
 name|reader
 parameter_list|,
 name|String
@@ -795,7 +795,7 @@ specifier|public
 name|BinaryDocValues
 name|getTerms
 parameter_list|(
-name|AtomicReader
+name|LeafReader
 name|reader
 parameter_list|,
 name|String
@@ -807,13 +807,13 @@ parameter_list|)
 throws|throws
 name|IOException
 function_decl|;
-comment|/** Expert: just like {@link #getTerms(AtomicReader,String,boolean)},    *  but you can specify whether more RAM should be consumed in exchange for    *  faster lookups (default is "true").  Note that the    *  first call for a given reader and field "wins",    *  subsequent calls will share the same cache entry. */
+comment|/** Expert: just like {@link #getTerms(org.apache.lucene.index.LeafReader,String,boolean)},    *  but you can specify whether more RAM should be consumed in exchange for    *  faster lookups (default is "true").  Note that the    *  first call for a given reader and field "wins",    *  subsequent calls will share the same cache entry. */
 DECL|method|getTerms
 specifier|public
 name|BinaryDocValues
 name|getTerms
 parameter_list|(
-name|AtomicReader
+name|LeafReader
 name|reader
 parameter_list|,
 name|String
@@ -834,7 +834,7 @@ specifier|public
 name|SortedDocValues
 name|getTermsIndex
 parameter_list|(
-name|AtomicReader
+name|LeafReader
 name|reader
 parameter_list|,
 name|String
@@ -843,13 +843,13 @@ parameter_list|)
 throws|throws
 name|IOException
 function_decl|;
-comment|/** Expert: just like {@link    *  #getTermsIndex(AtomicReader,String)}, but you can specify    *  whether more RAM should be consumed in exchange for    *  faster lookups (default is "true").  Note that the    *  first call for a given reader and field "wins",    *  subsequent calls will share the same cache entry. */
+comment|/** Expert: just like {@link    *  #getTermsIndex(org.apache.lucene.index.LeafReader,String)}, but you can specify    *  whether more RAM should be consumed in exchange for    *  faster lookups (default is "true").  Note that the    *  first call for a given reader and field "wins",    *  subsequent calls will share the same cache entry. */
 DECL|method|getTermsIndex
 specifier|public
 name|SortedDocValues
 name|getTermsIndex
 parameter_list|(
-name|AtomicReader
+name|LeafReader
 name|reader
 parameter_list|,
 name|String
@@ -909,7 +909,7 @@ specifier|public
 name|SortedSetDocValues
 name|getDocTermOrds
 parameter_list|(
-name|AtomicReader
+name|LeafReader
 name|reader
 parameter_list|,
 name|String

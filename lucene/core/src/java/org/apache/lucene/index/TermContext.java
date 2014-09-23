@@ -248,7 +248,7 @@ comment|//if (DEBUG) System.out.println("prts.build term=" + term);
 for|for
 control|(
 specifier|final
-name|AtomicReaderContext
+name|LeafReaderContext
 name|ctx
 range|:
 name|context

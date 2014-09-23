@@ -108,7 +108,7 @@ name|lucene
 operator|.
 name|index
 operator|.
-name|AtomicReaderContext
+name|LeafReaderContext
 import|;
 end_import
 
@@ -1217,8 +1217,8 @@ expr_stmt|;
 block|}
 for|for
 control|(
-name|AtomicReaderContext
-name|atomicReaderContext
+name|LeafReaderContext
+name|leafReaderContext
 range|:
 name|context
 operator|.
@@ -1234,9 +1234,9 @@ name|query
 operator|.
 name|getSpans
 argument_list|(
-name|atomicReaderContext
+name|leafReaderContext
 argument_list|,
-name|atomicReaderContext
+name|leafReaderContext
 operator|.
 name|reader
 argument_list|()

@@ -1815,7 +1815,7 @@ name|Throwable
 block|{
 for|for
 control|(
-name|AtomicReaderContext
+name|LeafReaderContext
 name|ctx
 range|:
 name|r
@@ -1825,7 +1825,7 @@ argument_list|()
 control|)
 block|{
 comment|// TODO: improve this
-name|AtomicReader
+name|LeafReader
 name|sub
 init|=
 name|ctx

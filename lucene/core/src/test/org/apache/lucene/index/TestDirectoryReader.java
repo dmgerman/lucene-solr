@@ -22,16 +22,6 @@ name|java
 operator|.
 name|io
 operator|.
-name|File
-import|;
-end_import
-
-begin_import
-import|import
-name|java
-operator|.
-name|io
-operator|.
 name|FileNotFoundException
 import|;
 end_import
@@ -5533,7 +5523,7 @@ argument_list|(
 name|dir
 argument_list|)
 decl_stmt|;
-name|AtomicReader
+name|LeafReader
 name|r1
 init|=
 name|getOnlySegmentReader
@@ -5605,7 +5595,7 @@ argument_list|()
 expr_stmt|;
 for|for
 control|(
-name|AtomicReaderContext
+name|LeafReaderContext
 name|s
 range|:
 name|r2

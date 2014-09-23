@@ -82,7 +82,7 @@ name|lucene
 operator|.
 name|index
 operator|.
-name|AtomicReaderContext
+name|LeafReaderContext
 import|;
 end_import
 
@@ -273,7 +273,7 @@ specifier|private
 specifier|final
 name|List
 argument_list|<
-name|AtomicReaderContext
+name|LeafReaderContext
 argument_list|>
 name|ctx
 decl_stmt|;
@@ -281,7 +281,7 @@ DECL|method|ShardSearcher
 specifier|public
 name|ShardSearcher
 parameter_list|(
-name|AtomicReaderContext
+name|LeafReaderContext
 name|ctx
 parameter_list|,
 name|IndexReaderContext
@@ -843,7 +843,7 @@ if|if
 condition|(
 name|ctx
 operator|instanceof
-name|AtomicReaderContext
+name|LeafReaderContext
 condition|)
 block|{
 name|subSearchers
@@ -871,7 +871,7 @@ operator|new
 name|ShardSearcher
 argument_list|(
 operator|(
-name|AtomicReaderContext
+name|LeafReaderContext
 operator|)
 name|ctx
 argument_list|,
@@ -948,7 +948,7 @@ operator|++
 control|)
 block|{
 specifier|final
-name|AtomicReaderContext
+name|LeafReaderContext
 name|leave
 init|=
 name|compCTX

@@ -82,7 +82,7 @@ name|lucene
 operator|.
 name|index
 operator|.
-name|AtomicReaderContext
+name|LeafReaderContext
 import|;
 end_import
 
@@ -228,7 +228,7 @@ specifier|synchronized
 name|CachedOrds
 name|getCachedOrds
 parameter_list|(
-name|AtomicReaderContext
+name|LeafReaderContext
 name|context
 parameter_list|)
 throws|throws
@@ -319,7 +319,7 @@ specifier|public
 name|OrdinalsSegmentReader
 name|getReader
 parameter_list|(
-name|AtomicReaderContext
+name|LeafReaderContext
 name|context
 parameter_list|)
 throws|throws

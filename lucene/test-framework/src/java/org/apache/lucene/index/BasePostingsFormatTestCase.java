@@ -22,16 +22,6 @@ name|java
 operator|.
 name|io
 operator|.
-name|File
-import|;
-end_import
-
-begin_import
-import|import
-name|java
-operator|.
-name|io
-operator|.
 name|IOException
 import|;
 end_import
@@ -7884,7 +7874,7 @@ operator|.
 name|getReader
 argument_list|()
 decl_stmt|;
-name|AtomicReader
+name|LeafReader
 name|ar
 init|=
 name|getOnlySegmentReader
@@ -8076,7 +8066,7 @@ operator|.
 name|getReader
 argument_list|()
 decl_stmt|;
-name|AtomicReader
+name|LeafReader
 name|ar
 init|=
 name|getOnlySegmentReader
@@ -8313,7 +8303,7 @@ operator|.
 name|getReader
 argument_list|()
 decl_stmt|;
-name|AtomicReader
+name|LeafReader
 name|ar
 init|=
 name|getOnlySegmentReader

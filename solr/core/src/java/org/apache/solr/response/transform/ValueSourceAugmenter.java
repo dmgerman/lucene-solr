@@ -58,7 +58,7 @@ name|lucene
 operator|.
 name|index
 operator|.
-name|AtomicReaderContext
+name|LeafReaderContext
 import|;
 end_import
 
@@ -361,7 +361,7 @@ decl_stmt|;
 DECL|field|readerContexts
 name|List
 argument_list|<
-name|AtomicReaderContext
+name|LeafReaderContext
 argument_list|>
 name|readerContexts
 decl_stmt|;
@@ -400,7 +400,7 @@ argument_list|,
 name|readerContexts
 argument_list|)
 decl_stmt|;
-name|AtomicReaderContext
+name|LeafReaderContext
 name|rcontext
 init|=
 name|readerContexts

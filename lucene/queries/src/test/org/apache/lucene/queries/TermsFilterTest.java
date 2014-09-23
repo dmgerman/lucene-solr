@@ -134,7 +134,7 @@ name|lucene
 operator|.
 name|index
 operator|.
-name|AtomicReaderContext
+name|LeafReaderContext
 import|;
 end_import
 
@@ -737,14 +737,14 @@ operator|.
 name|getContext
 argument_list|()
 operator|instanceof
-name|AtomicReaderContext
+name|LeafReaderContext
 argument_list|)
 expr_stmt|;
-name|AtomicReaderContext
+name|LeafReaderContext
 name|context
 init|=
 operator|(
-name|AtomicReaderContext
+name|LeafReaderContext
 operator|)
 name|reader
 operator|.
@@ -1160,7 +1160,7 @@ argument_list|)
 decl_stmt|;
 for|for
 control|(
-name|AtomicReaderContext
+name|LeafReaderContext
 name|context
 range|:
 name|multi
@@ -1427,7 +1427,7 @@ name|size
 argument_list|()
 argument_list|)
 expr_stmt|;
-name|AtomicReaderContext
+name|LeafReaderContext
 name|context
 init|=
 name|reader
@@ -1724,7 +1724,7 @@ name|size
 argument_list|()
 argument_list|)
 expr_stmt|;
-name|AtomicReaderContext
+name|LeafReaderContext
 name|context
 init|=
 name|reader

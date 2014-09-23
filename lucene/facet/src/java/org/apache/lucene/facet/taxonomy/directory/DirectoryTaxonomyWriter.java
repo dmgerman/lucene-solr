@@ -366,7 +366,7 @@ name|lucene
 operator|.
 name|index
 operator|.
-name|AtomicReader
+name|LeafReader
 import|;
 end_import
 
@@ -380,7 +380,7 @@ name|lucene
 operator|.
 name|index
 operator|.
-name|AtomicReaderContext
+name|LeafReaderContext
 import|;
 end_import
 
@@ -1529,7 +1529,7 @@ decl_stmt|;
 comment|// reuse
 for|for
 control|(
-name|AtomicReaderContext
+name|LeafReaderContext
 name|ctx
 range|:
 name|reader
@@ -2535,7 +2535,7 @@ literal|null
 decl_stmt|;
 for|for
 control|(
-name|AtomicReaderContext
+name|LeafReaderContext
 name|ctx
 range|:
 name|reader
@@ -2944,7 +2944,7 @@ decl_stmt|;
 for|for
 control|(
 specifier|final
-name|AtomicReaderContext
+name|LeafReaderContext
 name|ctx
 range|:
 name|r
@@ -2954,7 +2954,7 @@ argument_list|()
 control|)
 block|{
 specifier|final
-name|AtomicReader
+name|LeafReader
 name|ar
 init|=
 name|ctx

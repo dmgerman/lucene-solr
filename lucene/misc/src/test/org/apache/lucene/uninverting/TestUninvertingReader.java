@@ -102,7 +102,7 @@ name|lucene
 operator|.
 name|index
 operator|.
-name|AtomicReader
+name|LeafReader
 import|;
 end_import
 
@@ -393,7 +393,7 @@ name|SORTED_SET_INTEGER
 argument_list|)
 argument_list|)
 decl_stmt|;
-name|AtomicReader
+name|LeafReader
 name|ar
 init|=
 name|ir
@@ -725,7 +725,7 @@ name|SORTED_SET_FLOAT
 argument_list|)
 argument_list|)
 decl_stmt|;
-name|AtomicReader
+name|LeafReader
 name|ar
 init|=
 name|ir
@@ -1052,7 +1052,7 @@ name|SORTED_SET_LONG
 argument_list|)
 argument_list|)
 decl_stmt|;
-name|AtomicReader
+name|LeafReader
 name|ar
 init|=
 name|ir
@@ -1384,7 +1384,7 @@ name|SORTED_SET_DOUBLE
 argument_list|)
 argument_list|)
 decl_stmt|;
-name|AtomicReader
+name|LeafReader
 name|ar
 init|=
 name|ir

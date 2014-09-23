@@ -1249,7 +1249,7 @@ name|Integer
 argument_list|>
 name|setNextReader
 parameter_list|(
-name|AtomicReaderContext
+name|LeafReaderContext
 name|context
 parameter_list|)
 throws|throws

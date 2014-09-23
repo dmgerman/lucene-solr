@@ -123,7 +123,7 @@ name|DirectoryReader
 extends|extends
 name|BaseCompositeReader
 argument_list|<
-name|AtomicReader
+name|LeafReader
 argument_list|>
 block|{
 comment|/** The index directory. */
@@ -607,7 +607,7 @@ parameter_list|(
 name|Directory
 name|directory
 parameter_list|,
-name|AtomicReader
+name|LeafReader
 index|[]
 name|segmentReaders
 parameter_list|)

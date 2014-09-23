@@ -199,7 +199,7 @@ block|{
 specifier|final
 name|List
 argument_list|<
-name|AtomicReaderContext
+name|LeafReaderContext
 argument_list|>
 name|leaves
 init|=
@@ -269,14 +269,14 @@ decl_stmt|;
 for|for
 control|(
 specifier|final
-name|AtomicReaderContext
+name|LeafReaderContext
 name|ctx
 range|:
 name|leaves
 control|)
 block|{
 specifier|final
-name|AtomicReader
+name|LeafReader
 name|r
 init|=
 name|ctx
@@ -416,7 +416,7 @@ block|{
 specifier|final
 name|List
 argument_list|<
-name|AtomicReaderContext
+name|LeafReaderContext
 argument_list|>
 name|leaves
 init|=
@@ -504,7 +504,7 @@ control|)
 block|{
 comment|// record all liveDocs, even if they are null
 specifier|final
-name|AtomicReaderContext
+name|LeafReaderContext
 name|ctx
 init|=
 name|leaves
@@ -1195,7 +1195,7 @@ decl_stmt|;
 for|for
 control|(
 specifier|final
-name|AtomicReaderContext
+name|LeafReaderContext
 name|ctx
 range|:
 name|reader

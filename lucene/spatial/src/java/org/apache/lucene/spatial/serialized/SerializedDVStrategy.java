@@ -112,7 +112,7 @@ name|lucene
 operator|.
 name|index
 operator|.
-name|AtomicReaderContext
+name|LeafReaderContext
 import|;
 end_import
 
@@ -771,7 +771,7 @@ name|DocIdSet
 name|getDocIdSet
 parameter_list|(
 specifier|final
-name|AtomicReaderContext
+name|LeafReaderContext
 name|context
 parameter_list|,
 specifier|final
@@ -1038,7 +1038,7 @@ parameter_list|(
 name|Map
 name|context
 parameter_list|,
-name|AtomicReaderContext
+name|LeafReaderContext
 name|readerContext
 parameter_list|)
 throws|throws

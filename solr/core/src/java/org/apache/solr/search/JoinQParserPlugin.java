@@ -86,7 +86,7 @@ name|lucene
 operator|.
 name|index
 operator|.
-name|AtomicReaderContext
+name|LeafReaderContext
 import|;
 end_import
 
@@ -1369,7 +1369,7 @@ specifier|public
 name|Scorer
 name|scorer
 parameter_list|(
-name|AtomicReaderContext
+name|LeafReaderContext
 name|context
 parameter_list|,
 name|Bits
@@ -1830,7 +1830,7 @@ name|fromFields
 init|=
 name|fromSearcher
 operator|.
-name|getAtomicReader
+name|getLeafReader
 argument_list|()
 operator|.
 name|fields
@@ -1847,7 +1847,7 @@ name|fromFields
 else|:
 name|toSearcher
 operator|.
-name|getAtomicReader
+name|getLeafReader
 argument_list|()
 operator|.
 name|fields
@@ -2018,7 +2018,7 @@ name|fromLiveDocs
 init|=
 name|fromSearcher
 operator|.
-name|getAtomicReader
+name|getLeafReader
 argument_list|()
 operator|.
 name|getLiveDocs
@@ -2035,7 +2035,7 @@ name|fromLiveDocs
 else|:
 name|toSearcher
 operator|.
-name|getAtomicReader
+name|getLeafReader
 argument_list|()
 operator|.
 name|getLiveDocs
@@ -3011,7 +3011,7 @@ specifier|public
 name|Explanation
 name|explain
 parameter_list|(
-name|AtomicReaderContext
+name|LeafReaderContext
 name|context
 parameter_list|,
 name|int

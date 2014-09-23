@@ -40,7 +40,7 @@ name|lucene
 operator|.
 name|index
 operator|.
-name|LogDocMergePolicy
+name|LeafReaderContext
 import|;
 end_import
 
@@ -54,7 +54,7 @@ name|lucene
 operator|.
 name|index
 operator|.
-name|AtomicReaderContext
+name|LogDocMergePolicy
 import|;
 end_import
 
@@ -359,7 +359,7 @@ argument_list|()
 decl_stmt|;
 name|List
 argument_list|<
-name|AtomicReaderContext
+name|LeafReaderContext
 argument_list|>
 name|leaves
 init|=
@@ -380,7 +380,7 @@ argument_list|,
 name|leaves
 argument_list|)
 decl_stmt|;
-name|AtomicReaderContext
+name|LeafReaderContext
 name|leaf
 init|=
 name|leaves

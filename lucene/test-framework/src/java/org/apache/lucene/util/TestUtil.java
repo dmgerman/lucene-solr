@@ -552,7 +552,7 @@ name|lucene
 operator|.
 name|index
 operator|.
-name|AtomicReader
+name|FilterLeafReader
 import|;
 end_import
 
@@ -566,7 +566,21 @@ name|lucene
 operator|.
 name|index
 operator|.
-name|AtomicReaderContext
+name|LeafReader
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|index
+operator|.
+name|LeafReaderContext
 import|;
 end_import
 
@@ -729,20 +743,6 @@ operator|.
 name|FieldInfo
 operator|.
 name|DocValuesType
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|index
-operator|.
-name|FilterAtomicReader
 import|;
 end_import
 
@@ -1690,7 +1690,7 @@ name|IOException
 block|{
 for|for
 control|(
-name|AtomicReaderContext
+name|LeafReaderContext
 name|context
 range|:
 name|reader
@@ -1717,7 +1717,7 @@ specifier|static
 name|void
 name|checkReader
 parameter_list|(
-name|AtomicReader
+name|LeafReader
 name|reader
 parameter_list|,
 name|boolean
@@ -1855,10 +1855,10 @@ argument_list|)
 argument_list|)
 expr_stmt|;
 block|}
-name|AtomicReader
+name|LeafReader
 name|unwrapped
 init|=
-name|FilterAtomicReader
+name|FilterLeafReader
 operator|.
 name|unwrap
 argument_list|(

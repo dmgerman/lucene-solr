@@ -66,7 +66,7 @@ name|lucene
 operator|.
 name|index
 operator|.
-name|AtomicReaderContext
+name|LeafReaderContext
 import|;
 end_import
 
@@ -193,7 +193,7 @@ argument_list|)
 expr_stmt|;
 name|List
 argument_list|<
-name|AtomicReaderContext
+name|LeafReaderContext
 argument_list|>
 name|leaves
 init|=
@@ -266,7 +266,7 @@ name|hit
 operator|.
 name|doc
 decl_stmt|;
-name|AtomicReaderContext
+name|LeafReaderContext
 name|readerContext
 init|=
 literal|null

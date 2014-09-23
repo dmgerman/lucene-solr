@@ -36,21 +36,7 @@ name|lucene
 operator|.
 name|index
 operator|.
-name|AtomicReader
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|index
-operator|.
-name|AtomicReaderContext
+name|LeafReaderContext
 import|;
 end_import
 
@@ -153,7 +139,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Expert: a FieldComparator compares hits so as to determine their  * sort order when collecting the top results with {@link  * TopFieldCollector}.  The concrete public FieldComparator  * classes here correspond to the SortField types.  *  *<p>This API is designed to achieve high performance  * sorting, by exposing a tight interaction with {@link  * FieldValueHitQueue} as it visits hits.  Whenever a hit is  * competitive, it's enrolled into a virtual slot, which is  * an int ranging from 0 to numHits-1.  The {@link  * FieldComparator} is made aware of segment transitions  * during searching in case any internal state it's tracking  * needs to be recomputed during these transitions.</p>  *  *<p>A comparator must define these functions:</p>  *  *<ul>  *  *<li> {@link #compare} Compare a hit at 'slot a'  *       with hit 'slot b'.  *  *<li> {@link #setBottom} This method is called by  *       {@link FieldValueHitQueue} to notify the  *       FieldComparator of the current weakest ("bottom")  *       slot.  Note that this slot may not hold the weakest  *       value according to your comparator, in cases where  *       your comparator is not the primary one (ie, is only  *       used to break ties from the comparators before it).  *  *<li> {@link #compareBottom} Compare a new hit (docID)  *       against the "weakest" (bottom) entry in the queue.  *  *<li> {@link #setTopValue} This method is called by  *       {@link TopFieldCollector} to notify the  *       FieldComparator of the top most value, which is  *       used by future calls to {@link #compareTop}.  *  *<li> {@link #compareBottom} Compare a new hit (docID)  *       against the "weakest" (bottom) entry in the queue.  *  *<li> {@link #compareTop} Compare a new hit (docID)  *       against the top value previously set by a call to  *       {@link #setTopValue}.  *  *<li> {@link #copy} Installs a new hit into the  *       priority queue.  The {@link FieldValueHitQueue}  *       calls this method when a new hit is competitive.  *  *<li> {@link #setNextReader(AtomicReaderContext)} Invoked  *       when the search is switching to the next segment.  *       You may need to update internal state of the  *       comparator, for example retrieving new values from  *       DocValues.  *  *<li> {@link #value} Return the sort value stored in  *       the specified slot.  This is only called at the end  *       of the search, in order to populate {@link  *       FieldDoc#fields} when returning the top results.  *</ul>  *  * @lucene.experimental  */
+comment|/**  * Expert: a FieldComparator compares hits so as to determine their  * sort order when collecting the top results with {@link  * TopFieldCollector}.  The concrete public FieldComparator  * classes here correspond to the SortField types.  *  *<p>This API is designed to achieve high performance  * sorting, by exposing a tight interaction with {@link  * FieldValueHitQueue} as it visits hits.  Whenever a hit is  * competitive, it's enrolled into a virtual slot, which is  * an int ranging from 0 to numHits-1.  The {@link  * FieldComparator} is made aware of segment transitions  * during searching in case any internal state it's tracking  * needs to be recomputed during these transitions.</p>  *  *<p>A comparator must define these functions:</p>  *  *<ul>  *  *<li> {@link #compare} Compare a hit at 'slot a'  *       with hit 'slot b'.  *  *<li> {@link #setBottom} This method is called by  *       {@link FieldValueHitQueue} to notify the  *       FieldComparator of the current weakest ("bottom")  *       slot.  Note that this slot may not hold the weakest  *       value according to your comparator, in cases where  *       your comparator is not the primary one (ie, is only  *       used to break ties from the comparators before it).  *  *<li> {@link #compareBottom} Compare a new hit (docID)  *       against the "weakest" (bottom) entry in the queue.  *  *<li> {@link #setTopValue} This method is called by  *       {@link TopFieldCollector} to notify the  *       FieldComparator of the top most value, which is  *       used by future calls to {@link #compareTop}.  *  *<li> {@link #compareBottom} Compare a new hit (docID)  *       against the "weakest" (bottom) entry in the queue.  *  *<li> {@link #compareTop} Compare a new hit (docID)  *       against the top value previously set by a call to  *       {@link #setTopValue}.  *  *<li> {@link #copy} Installs a new hit into the  *       priority queue.  The {@link FieldValueHitQueue}  *       calls this method when a new hit is competitive.  *  *<li> {@link #setNextReader(org.apache.lucene.index.LeafReaderContext)} Invoked  *       when the search is switching to the next segment.  *       You may need to update internal state of the  *       comparator, for example retrieving new values from  *       DocValues.  *  *<li> {@link #value} Return the sort value stored in  *       the specified slot.  This is only called at the end  *       of the search, in order to populate {@link  *       FieldDoc#fields} when returning the top results.  *</ul>  *  * @lucene.experimental  */
 end_comment
 
 begin_class
@@ -245,7 +231,7 @@ parameter_list|)
 throws|throws
 name|IOException
 function_decl|;
-comment|/**    * Set a new {@link AtomicReaderContext}. All subsequent docIDs are relative to    * the current reader (you must add docBase if you need to    * map it to a top-level docID).    *     * @param context current reader context    * @return the comparator to use for this segment; most    *   comparators can just return "this" to reuse the same    *   comparator across segments    * @throws IOException if there is a low-level IO error    */
+comment|/**    * Set a new {@link org.apache.lucene.index.LeafReaderContext}. All subsequent docIDs are relative to    * the current reader (you must add docBase if you need to    * map it to a top-level docID).    *     * @param context current reader context    * @return the comparator to use for this segment; most    *   comparators can just return "this" to reuse the same    *   comparator across segments    * @throws IOException if there is a low-level IO error    */
 DECL|method|setNextReader
 specifier|public
 specifier|abstract
@@ -255,7 +241,7 @@ name|T
 argument_list|>
 name|setNextReader
 parameter_list|(
-name|AtomicReaderContext
+name|LeafReaderContext
 name|context
 parameter_list|)
 throws|throws
@@ -435,7 +421,7 @@ name|T
 argument_list|>
 name|setNextReader
 parameter_list|(
-name|AtomicReaderContext
+name|LeafReaderContext
 name|context
 parameter_list|)
 throws|throws
@@ -504,7 +490,7 @@ specifier|protected
 name|NumericDocValues
 name|getNumericDocValues
 parameter_list|(
-name|AtomicReaderContext
+name|LeafReaderContext
 name|context
 parameter_list|,
 name|String
@@ -528,7 +514,7 @@ argument_list|)
 return|;
 block|}
 block|}
-comment|/** Parses field's values as double (using {@link    *  AtomicReader#getNumericDocValues} and sorts by ascending value */
+comment|/** Parses field's values as double (using {@link    *  org.apache.lucene.index.LeafReader#getNumericDocValues} and sorts by ascending value */
 DECL|class|DoubleComparator
 specifier|public
 specifier|static
@@ -868,7 +854,7 @@ argument_list|)
 return|;
 block|}
 block|}
-comment|/** Parses field's values as float (using {@link    *  AtomicReader#getNumericDocValues(String)} and sorts by ascending value */
+comment|/** Parses field's values as float (using {@link    *  org.apache.lucene.index.LeafReader#getNumericDocValues(String)} and sorts by ascending value */
 DECL|class|FloatComparator
 specifier|public
 specifier|static
@@ -1218,7 +1204,7 @@ argument_list|)
 return|;
 block|}
 block|}
-comment|/** Parses field's values as int (using {@link    *  AtomicReader#getNumericDocValues(String)} and sorts by ascending value */
+comment|/** Parses field's values as int (using {@link    *  org.apache.lucene.index.LeafReader#getNumericDocValues(String)} and sorts by ascending value */
 DECL|class|IntComparator
 specifier|public
 specifier|static
@@ -1553,7 +1539,7 @@ argument_list|)
 return|;
 block|}
 block|}
-comment|/** Parses field's values as long (using {@link    *  AtomicReader#getNumericDocValues(String)} and sorts by ascending value */
+comment|/** Parses field's values as long (using {@link    *  org.apache.lucene.index.LeafReader#getNumericDocValues(String)} and sorts by ascending value */
 DECL|class|LongComparator
 specifier|public
 specifier|static
@@ -2052,7 +2038,7 @@ name|Float
 argument_list|>
 name|setNextReader
 parameter_list|(
-name|AtomicReaderContext
+name|LeafReaderContext
 name|context
 parameter_list|)
 block|{
@@ -2368,7 +2354,7 @@ name|Integer
 argument_list|>
 name|setNextReader
 parameter_list|(
-name|AtomicReaderContext
+name|LeafReaderContext
 name|context
 parameter_list|)
 block|{
@@ -2478,7 +2464,7 @@ argument_list|)
 return|;
 block|}
 block|}
-comment|/** Sorts by field's natural Term sort order, using    *  ordinals.  This is functionally equivalent to {@link    *  org.apache.lucene.search.FieldComparator.TermValComparator}, but it first resolves the string    *  to their relative ordinal positions (using the index    *  returned by {@link AtomicReader#getSortedDocValues(String)}), and    *  does most comparisons using the ordinals.  For medium    *  to large results, this comparator will be much faster    *  than {@link org.apache.lucene.search.FieldComparator.TermValComparator}.  For very small    *  result sets it may be slower. */
+comment|/** Sorts by field's natural Term sort order, using    *  ordinals.  This is functionally equivalent to {@link    *  org.apache.lucene.search.FieldComparator.TermValComparator}, but it first resolves the string    *  to their relative ordinal positions (using the index    *  returned by {@link org.apache.lucene.index.LeafReader#getSortedDocValues(String)}), and    *  does most comparisons using the ordinals.  For medium    *  to large results, this comparator will be much faster    *  than {@link org.apache.lucene.search.FieldComparator.TermValComparator}.  For very small    *  result sets it may be slower. */
 DECL|class|TermOrdValComparator
 specifier|public
 specifier|static
@@ -2987,7 +2973,7 @@ specifier|protected
 name|SortedDocValues
 name|getSortedDocValues
 parameter_list|(
-name|AtomicReaderContext
+name|LeafReaderContext
 name|context
 parameter_list|,
 name|String
@@ -3020,7 +3006,7 @@ name|BytesRef
 argument_list|>
 name|setNextReader
 parameter_list|(
-name|AtomicReaderContext
+name|LeafReaderContext
 name|context
 parameter_list|)
 throws|throws
@@ -3704,7 +3690,7 @@ specifier|protected
 name|BinaryDocValues
 name|getBinaryDocValues
 parameter_list|(
-name|AtomicReaderContext
+name|LeafReaderContext
 name|context
 parameter_list|,
 name|String
@@ -3733,7 +3719,7 @@ specifier|protected
 name|Bits
 name|getDocsWithField
 parameter_list|(
-name|AtomicReaderContext
+name|LeafReaderContext
 name|context
 parameter_list|,
 name|String
@@ -3794,7 +3780,7 @@ name|BytesRef
 argument_list|>
 name|setNextReader
 parameter_list|(
-name|AtomicReaderContext
+name|LeafReaderContext
 name|context
 parameter_list|)
 throws|throws

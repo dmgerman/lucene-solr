@@ -3168,7 +3168,7 @@ operator|.
 name|FieldNormStatus
 name|testFieldNorms
 parameter_list|(
-name|AtomicReader
+name|LeafReader
 name|reader
 parameter_list|,
 name|PrintStream
@@ -6725,7 +6725,7 @@ operator|.
 name|TermIndexStatus
 name|testPostings
 parameter_list|(
-name|AtomicReader
+name|LeafReader
 name|reader
 parameter_list|,
 name|PrintStream
@@ -6756,7 +6756,7 @@ operator|.
 name|TermIndexStatus
 name|testPostings
 parameter_list|(
-name|AtomicReader
+name|LeafReader
 name|reader
 parameter_list|,
 name|PrintStream
@@ -6966,7 +6966,7 @@ operator|.
 name|StoredFieldStatus
 name|testStoredFields
 parameter_list|(
-name|AtomicReader
+name|LeafReader
 name|reader
 parameter_list|,
 name|PrintStream
@@ -7229,7 +7229,7 @@ operator|.
 name|DocValuesStatus
 name|testDocValues
 parameter_list|(
-name|AtomicReader
+name|LeafReader
 name|reader
 parameter_list|,
 name|PrintStream
@@ -7499,7 +7499,7 @@ parameter_list|(
 name|String
 name|fieldName
 parameter_list|,
-name|AtomicReader
+name|LeafReader
 name|reader
 parameter_list|,
 name|BinaryDocValues
@@ -7591,7 +7591,7 @@ parameter_list|(
 name|String
 name|fieldName
 parameter_list|,
-name|AtomicReader
+name|LeafReader
 name|reader
 parameter_list|,
 name|SortedDocValues
@@ -7933,7 +7933,7 @@ parameter_list|(
 name|String
 name|fieldName
 parameter_list|,
-name|AtomicReader
+name|LeafReader
 name|reader
 parameter_list|,
 name|SortedSetDocValues
@@ -8471,7 +8471,7 @@ parameter_list|(
 name|String
 name|fieldName
 parameter_list|,
-name|AtomicReader
+name|LeafReader
 name|reader
 parameter_list|,
 name|SortedNumericDocValues
@@ -8647,7 +8647,7 @@ parameter_list|(
 name|String
 name|fieldName
 parameter_list|,
-name|AtomicReader
+name|LeafReader
 name|reader
 parameter_list|,
 name|NumericDocValues
@@ -8730,7 +8730,7 @@ parameter_list|(
 name|FieldInfo
 name|fi
 parameter_list|,
-name|AtomicReader
+name|LeafReader
 name|reader
 parameter_list|,
 name|PrintStream
@@ -9276,7 +9276,7 @@ parameter_list|(
 name|FieldInfo
 name|fi
 parameter_list|,
-name|AtomicReader
+name|LeafReader
 name|reader
 parameter_list|,
 name|PrintStream
@@ -9350,7 +9350,7 @@ operator|.
 name|TermVectorStatus
 name|testTermVectors
 parameter_list|(
-name|AtomicReader
+name|LeafReader
 name|reader
 parameter_list|,
 name|PrintStream
@@ -9383,7 +9383,7 @@ operator|.
 name|TermVectorStatus
 name|testTermVectors
 parameter_list|(
-name|AtomicReader
+name|LeafReader
 name|reader
 parameter_list|,
 name|PrintStream

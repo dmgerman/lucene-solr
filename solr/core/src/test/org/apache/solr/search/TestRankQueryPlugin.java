@@ -26,7 +26,7 @@ name|lucene
 operator|.
 name|index
 operator|.
-name|AtomicReaderContext
+name|LeafReaderContext
 import|;
 end_import
 
@@ -2092,7 +2092,7 @@ argument_list|()
 decl_stmt|;
 name|List
 argument_list|<
-name|AtomicReaderContext
+name|LeafReaderContext
 argument_list|>
 name|leaves
 init|=
@@ -2101,7 +2101,7 @@ operator|.
 name|leaves
 argument_list|()
 decl_stmt|;
-name|AtomicReaderContext
+name|LeafReaderContext
 name|currentLeaf
 init|=
 literal|null
@@ -4150,7 +4150,7 @@ specifier|public
 name|void
 name|doSetNextReader
 parameter_list|(
-name|AtomicReaderContext
+name|LeafReaderContext
 name|context
 parameter_list|)
 throws|throws
@@ -4429,7 +4429,7 @@ specifier|public
 name|void
 name|doSetNextReader
 parameter_list|(
-name|AtomicReaderContext
+name|LeafReaderContext
 name|context
 parameter_list|)
 throws|throws

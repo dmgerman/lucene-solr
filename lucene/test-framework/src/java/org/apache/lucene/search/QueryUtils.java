@@ -108,7 +108,7 @@ name|lucene
 operator|.
 name|index
 operator|.
-name|AtomicReader
+name|LeafReader
 import|;
 end_import
 
@@ -122,7 +122,7 @@ name|lucene
 operator|.
 name|index
 operator|.
-name|AtomicReaderContext
+name|LeafReaderContext
 import|;
 end_import
 
@@ -1210,7 +1210,7 @@ comment|//System.out.println("Checking "+q);
 specifier|final
 name|List
 argument_list|<
-name|AtomicReaderContext
+name|LeafReaderContext
 argument_list|>
 name|readerContextArray
 init|=
@@ -1365,7 +1365,7 @@ init|=
 literal|1e-5f
 decl_stmt|;
 specifier|final
-name|AtomicReader
+name|LeafReader
 name|lastReader
 index|[]
 init|=
@@ -1458,7 +1458,7 @@ argument_list|(
 name|q
 argument_list|)
 decl_stmt|;
-name|AtomicReaderContext
+name|LeafReaderContext
 name|context
 init|=
 name|readerContextArray
@@ -1798,7 +1798,7 @@ specifier|protected
 name|void
 name|doSetNextReader
 parameter_list|(
-name|AtomicReaderContext
+name|LeafReaderContext
 name|context
 parameter_list|)
 throws|throws
@@ -1817,7 +1817,7 @@ literal|null
 condition|)
 block|{
 specifier|final
-name|AtomicReader
+name|LeafReader
 name|previousReader
 init|=
 name|lastReader
@@ -1855,11 +1855,11 @@ argument_list|(
 name|q
 argument_list|)
 decl_stmt|;
-name|AtomicReaderContext
+name|LeafReaderContext
 name|ctx
 init|=
 operator|(
-name|AtomicReaderContext
+name|LeafReaderContext
 operator|)
 name|indexSearcher
 operator|.
@@ -2015,7 +2015,7 @@ block|{
 comment|// confirm that skipping beyond the last doc, on the
 comment|// previous reader, hits NO_MORE_DOCS
 specifier|final
-name|AtomicReader
+name|LeafReader
 name|previousReader
 init|=
 name|lastReader
@@ -2055,7 +2055,7 @@ argument_list|(
 name|q
 argument_list|)
 decl_stmt|;
-name|AtomicReaderContext
+name|LeafReaderContext
 name|ctx
 init|=
 name|previousReader
@@ -2179,7 +2179,7 @@ literal|1
 block|}
 decl_stmt|;
 specifier|final
-name|AtomicReader
+name|LeafReader
 name|lastReader
 index|[]
 init|=
@@ -2190,7 +2190,7 @@ decl_stmt|;
 specifier|final
 name|List
 argument_list|<
-name|AtomicReaderContext
+name|LeafReaderContext
 argument_list|>
 name|context
 init|=
@@ -2484,7 +2484,7 @@ specifier|protected
 name|void
 name|doSetNextReader
 parameter_list|(
-name|AtomicReaderContext
+name|LeafReaderContext
 name|context
 parameter_list|)
 throws|throws
@@ -2503,7 +2503,7 @@ literal|null
 condition|)
 block|{
 specifier|final
-name|AtomicReader
+name|LeafReader
 name|previousReader
 init|=
 name|lastReader
@@ -2549,7 +2549,7 @@ operator|.
 name|scorer
 argument_list|(
 operator|(
-name|AtomicReaderContext
+name|LeafReaderContext
 operator|)
 name|indexSearcher
 operator|.
@@ -2681,7 +2681,7 @@ block|{
 comment|// confirm that skipping beyond the last doc, on the
 comment|// previous reader, hits NO_MORE_DOCS
 specifier|final
-name|AtomicReader
+name|LeafReader
 name|previousReader
 init|=
 name|lastReader
@@ -2727,7 +2727,7 @@ operator|.
 name|scorer
 argument_list|(
 operator|(
-name|AtomicReaderContext
+name|LeafReaderContext
 operator|)
 name|indexSearcher
 operator|.

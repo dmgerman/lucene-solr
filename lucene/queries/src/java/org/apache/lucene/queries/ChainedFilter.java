@@ -36,7 +36,7 @@ name|lucene
 operator|.
 name|index
 operator|.
-name|AtomicReader
+name|LeafReader
 import|;
 end_import
 
@@ -50,7 +50,7 @@ name|lucene
 operator|.
 name|index
 operator|.
-name|AtomicReaderContext
+name|LeafReaderContext
 import|;
 end_import
 
@@ -297,7 +297,7 @@ specifier|public
 name|DocIdSet
 name|getDocIdSet
 parameter_list|(
-name|AtomicReaderContext
+name|LeafReaderContext
 name|context
 parameter_list|,
 name|Bits
@@ -403,7 +403,7 @@ parameter_list|(
 name|Filter
 name|filter
 parameter_list|,
-name|AtomicReaderContext
+name|LeafReaderContext
 name|context
 parameter_list|)
 throws|throws
@@ -473,7 +473,7 @@ specifier|private
 name|FixedBitSet
 name|initialResult
 parameter_list|(
-name|AtomicReaderContext
+name|LeafReaderContext
 name|context
 parameter_list|,
 name|int
@@ -486,7 +486,7 @@ parameter_list|)
 throws|throws
 name|IOException
 block|{
-name|AtomicReader
+name|LeafReader
 name|reader
 init|=
 name|context
@@ -594,7 +594,7 @@ specifier|private
 name|DocIdSet
 name|getDocIdSet
 parameter_list|(
-name|AtomicReaderContext
+name|LeafReaderContext
 name|context
 parameter_list|,
 name|int
@@ -672,7 +672,7 @@ specifier|private
 name|DocIdSet
 name|getDocIdSet
 parameter_list|(
-name|AtomicReaderContext
+name|LeafReaderContext
 name|context
 parameter_list|,
 name|int

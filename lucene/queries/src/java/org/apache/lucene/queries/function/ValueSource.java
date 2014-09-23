@@ -28,7 +28,7 @@ name|lucene
 operator|.
 name|index
 operator|.
-name|AtomicReaderContext
+name|LeafReaderContext
 import|;
 end_import
 
@@ -139,7 +139,7 @@ parameter_list|(
 name|Map
 name|context
 parameter_list|,
-name|AtomicReaderContext
+name|LeafReaderContext
 name|readerContext
 parameter_list|)
 throws|throws
@@ -236,7 +236,7 @@ block|}
 comment|//
 comment|// Sorting by function
 comment|//
-comment|/**    * EXPERIMENTAL: This method is subject to change.    *<p>    * Get the SortField for this ValueSource.  Uses the {@link #getValues(java.util.Map, AtomicReaderContext)}    * to populate the SortField.    *    * @param reverse true if this is a reverse sort.    * @return The {@link org.apache.lucene.search.SortField} for the ValueSource    */
+comment|/**    * EXPERIMENTAL: This method is subject to change.    *<p>    * Get the SortField for this ValueSource.  Uses the {@link #getValues(java.util.Map, org.apache.lucene.index.LeafReaderContext)}    * to populate the SortField.    *    * @param reverse true if this is a reverse sort.    * @return The {@link org.apache.lucene.search.SortField} for the ValueSource    */
 DECL|method|getSortField
 specifier|public
 name|SortField
@@ -548,7 +548,7 @@ specifier|public
 name|FieldComparator
 name|setNextReader
 parameter_list|(
-name|AtomicReaderContext
+name|LeafReaderContext
 name|context
 parameter_list|)
 throws|throws

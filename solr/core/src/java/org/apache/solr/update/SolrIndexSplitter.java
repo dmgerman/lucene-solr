@@ -56,7 +56,7 @@ name|lucene
 operator|.
 name|index
 operator|.
-name|AtomicReader
+name|FilterLeafReader
 import|;
 end_import
 
@@ -70,7 +70,21 @@ name|lucene
 operator|.
 name|index
 operator|.
-name|AtomicReaderContext
+name|LeafReader
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|index
+operator|.
+name|LeafReaderContext
 import|;
 end_import
 
@@ -99,20 +113,6 @@ operator|.
 name|index
 operator|.
 name|Fields
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|index
-operator|.
-name|FilterAtomicReader
 import|;
 end_import
 
@@ -211,20 +211,6 @@ operator|.
 name|util
 operator|.
 name|BytesRef
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|util
-operator|.
-name|CharsRef
 import|;
 end_import
 
@@ -656,7 +642,7 @@ name|IOException
 block|{
 name|List
 argument_list|<
-name|AtomicReaderContext
+name|LeafReaderContext
 argument_list|>
 name|leaves
 init|=
@@ -703,7 +689,7 @@ argument_list|)
 expr_stmt|;
 for|for
 control|(
-name|AtomicReaderContext
+name|LeafReaderContext
 name|readerContext
 range|:
 name|leaves
@@ -1070,13 +1056,13 @@ name|FixedBitSet
 index|[]
 name|split
 parameter_list|(
-name|AtomicReaderContext
+name|LeafReaderContext
 name|readerContext
 parameter_list|)
 throws|throws
 name|IOException
 block|{
-name|AtomicReader
+name|LeafReader
 name|reader
 init|=
 name|readerContext
@@ -1550,7 +1536,7 @@ specifier|static
 class|class
 name|LiveDocsReader
 extends|extends
-name|FilterAtomicReader
+name|FilterLeafReader
 block|{
 DECL|field|liveDocs
 specifier|final
@@ -1566,7 +1552,7 @@ DECL|method|LiveDocsReader
 specifier|public
 name|LiveDocsReader
 parameter_list|(
-name|AtomicReaderContext
+name|LeafReaderContext
 name|context
 parameter_list|,
 name|FixedBitSet

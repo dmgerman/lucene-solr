@@ -85,17 +85,17 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * A {@link FilterAtomicReader} that exposes only a subset  * of fields from the underlying wrapped reader.  */
+comment|/**  * A {@link FilterLeafReader} that exposes only a subset  * of fields from the underlying wrapped reader.  */
 end_comment
 
 begin_class
-DECL|class|FieldFilterAtomicReader
+DECL|class|FieldFilterLeafReader
 specifier|public
 specifier|final
 class|class
-name|FieldFilterAtomicReader
+name|FieldFilterLeafReader
 extends|extends
-name|FilterAtomicReader
+name|FilterLeafReader
 block|{
 DECL|field|fields
 specifier|private
@@ -118,11 +118,11 @@ specifier|final
 name|FieldInfos
 name|fieldInfos
 decl_stmt|;
-DECL|method|FieldFilterAtomicReader
+DECL|method|FieldFilterLeafReader
 specifier|public
-name|FieldFilterAtomicReader
+name|FieldFilterLeafReader
 parameter_list|(
-name|AtomicReader
+name|LeafReader
 name|in
 parameter_list|,
 name|Set

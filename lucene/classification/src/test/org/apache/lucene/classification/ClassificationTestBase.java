@@ -96,7 +96,7 @@ name|lucene
 operator|.
 name|index
 operator|.
-name|AtomicReader
+name|LeafReader
 import|;
 end_import
 
@@ -513,8 +513,8 @@ parameter_list|)
 throws|throws
 name|Exception
 block|{
-name|AtomicReader
-name|atomicReader
+name|LeafReader
+name|leafReader
 init|=
 literal|null
 decl_stmt|;
@@ -525,7 +525,7 @@ argument_list|(
 name|analyzer
 argument_list|)
 expr_stmt|;
-name|atomicReader
+name|leafReader
 operator|=
 name|SlowCompositeReaderWrapper
 operator|.
@@ -541,7 +541,7 @@ name|classifier
 operator|.
 name|train
 argument_list|(
-name|atomicReader
+name|leafReader
 argument_list|,
 name|textFieldName
 argument_list|,
@@ -612,11 +612,11 @@ finally|finally
 block|{
 if|if
 condition|(
-name|atomicReader
+name|leafReader
 operator|!=
 literal|null
 condition|)
-name|atomicReader
+name|leafReader
 operator|.
 name|close
 argument_list|()
@@ -702,8 +702,8 @@ parameter_list|)
 throws|throws
 name|Exception
 block|{
-name|AtomicReader
-name|atomicReader
+name|LeafReader
+name|leafReader
 init|=
 literal|null
 decl_stmt|;
@@ -714,7 +714,7 @@ argument_list|(
 name|analyzer
 argument_list|)
 expr_stmt|;
-name|atomicReader
+name|leafReader
 operator|=
 name|SlowCompositeReaderWrapper
 operator|.
@@ -730,7 +730,7 @@ name|classifier
 operator|.
 name|train
 argument_list|(
-name|atomicReader
+name|leafReader
 argument_list|,
 name|textFieldName
 argument_list|,
@@ -855,11 +855,11 @@ finally|finally
 block|{
 if|if
 condition|(
-name|atomicReader
+name|leafReader
 operator|!=
 literal|null
 condition|)
-name|atomicReader
+name|leafReader
 operator|.
 name|close
 argument_list|()
@@ -1423,8 +1423,8 @@ parameter_list|)
 throws|throws
 name|Exception
 block|{
-name|AtomicReader
-name|atomicReader
+name|LeafReader
+name|leafReader
 init|=
 literal|null
 decl_stmt|;
@@ -1443,7 +1443,7 @@ argument_list|(
 name|analyzer
 argument_list|)
 expr_stmt|;
-name|atomicReader
+name|leafReader
 operator|=
 name|SlowCompositeReaderWrapper
 operator|.
@@ -1459,7 +1459,7 @@ name|classifier
 operator|.
 name|train
 argument_list|(
-name|atomicReader
+name|leafReader
 argument_list|,
 name|textFieldName
 argument_list|,
@@ -1503,11 +1503,11 @@ finally|finally
 block|{
 if|if
 condition|(
-name|atomicReader
+name|leafReader
 operator|!=
 literal|null
 condition|)
-name|atomicReader
+name|leafReader
 operator|.
 name|close
 argument_list|()

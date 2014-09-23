@@ -200,7 +200,7 @@ name|lucene
 operator|.
 name|index
 operator|.
-name|AtomicReader
+name|LeafReader
 import|;
 end_import
 
@@ -3089,7 +3089,7 @@ specifier|final
 class|class
 name|MemoryIndexReader
 extends|extends
-name|AtomicReader
+name|LeafReader
 block|{
 DECL|field|searcher
 specifier|private

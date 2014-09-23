@@ -218,7 +218,21 @@ name|lucene
 operator|.
 name|index
 operator|.
-name|AtomicReader
+name|FilterLeafReader
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|index
+operator|.
+name|LeafReader
 import|;
 end_import
 
@@ -275,20 +289,6 @@ operator|.
 name|index
 operator|.
 name|FieldInfos
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|index
-operator|.
-name|FilterAtomicReader
 import|;
 end_import
 
@@ -378,36 +378,8 @@ name|Bits
 import|;
 end_import
 
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|util
-operator|.
-name|BytesRef
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|util
-operator|.
-name|NumericUtils
-import|;
-end_import
-
 begin_comment
-comment|/**  * A FilterReader that exposes<i>indexed</i> values as if they also had  * docvalues.  *<p>  * This is accomplished by "inverting the inverted index" or "uninversion".  *<p>  * The uninversion process happens lazily: upon the first request for the   * field's docvalues (e.g. via {@link AtomicReader#getNumericDocValues(String)}   * or similar), it will create the docvalues on-the-fly if needed and cache it,  * based on the core cache key of the wrapped AtomicReader.  */
+comment|/**  * A FilterReader that exposes<i>indexed</i> values as if they also had  * docvalues.  *<p>  * This is accomplished by "inverting the inverted index" or "uninversion".  *<p>  * The uninversion process happens lazily: upon the first request for the   * field's docvalues (e.g. via {@link org.apache.lucene.index.LeafReader#getNumericDocValues(String)}   * or similar), it will create the docvalues on-the-fly if needed and cache it,  * based on the core cache key of the wrapped AtomicReader.  */
 end_comment
 
 begin_class
@@ -416,7 +388,7 @@ specifier|public
 class|class
 name|UninvertingReader
 extends|extends
-name|FilterAtomicReader
+name|FilterLeafReader
 block|{
 comment|/**    * Specifies the type of uninversion to apply for the field.     */
 DECL|enum|Type
@@ -546,10 +518,10 @@ block|{
 annotation|@
 name|Override
 specifier|public
-name|AtomicReader
+name|LeafReader
 name|wrap
 parameter_list|(
-name|AtomicReader
+name|LeafReader
 name|reader
 parameter_list|)
 block|{
@@ -615,7 +587,7 @@ DECL|method|UninvertingReader
 specifier|public
 name|UninvertingReader
 parameter_list|(
-name|AtomicReader
+name|LeafReader
 name|in
 parameter_list|,
 name|Map

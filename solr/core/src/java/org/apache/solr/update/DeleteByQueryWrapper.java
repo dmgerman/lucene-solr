@@ -36,7 +36,7 @@ name|lucene
 operator|.
 name|index
 operator|.
-name|AtomicReader
+name|LeafReader
 import|;
 end_import
 
@@ -50,7 +50,7 @@ name|lucene
 operator|.
 name|index
 operator|.
-name|AtomicReaderContext
+name|LeafReaderContext
 import|;
 end_import
 
@@ -226,10 +226,10 @@ name|schema
 expr_stmt|;
 block|}
 DECL|method|wrap
-name|AtomicReader
+name|LeafReader
 name|wrap
 parameter_list|(
-name|AtomicReader
+name|LeafReader
 name|reader
 parameter_list|)
 block|{
@@ -310,13 +310,13 @@ throws|throws
 name|IOException
 block|{
 specifier|final
-name|AtomicReader
+name|LeafReader
 name|wrapped
 init|=
 name|wrap
 argument_list|(
 operator|(
-name|AtomicReader
+name|LeafReader
 operator|)
 name|searcher
 operator|.
@@ -356,7 +356,7 @@ specifier|public
 name|Explanation
 name|explain
 parameter_list|(
-name|AtomicReaderContext
+name|LeafReaderContext
 name|context
 parameter_list|,
 name|int
@@ -429,7 +429,7 @@ specifier|public
 name|Scorer
 name|scorer
 parameter_list|(
-name|AtomicReaderContext
+name|LeafReaderContext
 name|context
 parameter_list|,
 name|Bits

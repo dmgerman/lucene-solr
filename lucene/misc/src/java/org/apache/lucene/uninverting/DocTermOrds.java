@@ -94,7 +94,7 @@ name|lucene
 operator|.
 name|index
 operator|.
-name|AtomicReader
+name|LeafReader
 import|;
 end_import
 
@@ -545,7 +545,7 @@ DECL|method|DocTermOrds
 specifier|public
 name|DocTermOrds
 parameter_list|(
-name|AtomicReader
+name|LeafReader
 name|reader
 parameter_list|,
 name|Bits
@@ -579,7 +579,7 @@ DECL|method|DocTermOrds
 specifier|public
 name|DocTermOrds
 parameter_list|(
-name|AtomicReader
+name|LeafReader
 name|reader
 parameter_list|,
 name|Bits
@@ -615,7 +615,7 @@ DECL|method|DocTermOrds
 specifier|public
 name|DocTermOrds
 parameter_list|(
-name|AtomicReader
+name|LeafReader
 name|reader
 parameter_list|,
 name|Bits
@@ -654,7 +654,7 @@ DECL|method|DocTermOrds
 specifier|public
 name|DocTermOrds
 parameter_list|(
-name|AtomicReader
+name|LeafReader
 name|reader
 parameter_list|,
 name|Bits
@@ -751,7 +751,7 @@ specifier|public
 name|TermsEnum
 name|getOrdTermsEnum
 parameter_list|(
-name|AtomicReader
+name|LeafReader
 name|reader
 parameter_list|)
 throws|throws
@@ -870,7 +870,7 @@ parameter_list|)
 throws|throws
 name|IOException
 block|{   }
-comment|/** Invoked during {@link #uninvert(AtomicReader,Bits,BytesRef)}    *  to record the document frequency for each uninverted    *  term. */
+comment|/** Invoked during {@link #uninvert(org.apache.lucene.index.LeafReader,Bits,BytesRef)}    *  to record the document frequency for each uninverted    *  term. */
 DECL|method|setActualDocFreq
 specifier|protected
 name|void
@@ -892,7 +892,7 @@ name|void
 name|uninvert
 parameter_list|(
 specifier|final
-name|AtomicReader
+name|LeafReader
 name|reader
 parameter_list|,
 name|Bits
@@ -2530,7 +2530,7 @@ DECL|method|OrdWrappedTermsEnum
 specifier|public
 name|OrdWrappedTermsEnum
 parameter_list|(
-name|AtomicReader
+name|LeafReader
 name|reader
 parameter_list|)
 throws|throws
@@ -3240,7 +3240,7 @@ specifier|public
 name|SortedSetDocValues
 name|iterator
 parameter_list|(
-name|AtomicReader
+name|LeafReader
 name|reader
 parameter_list|)
 throws|throws
@@ -3279,7 +3279,7 @@ name|SortedSetDocValues
 block|{
 DECL|field|reader
 specifier|final
-name|AtomicReader
+name|LeafReader
 name|reader
 decl_stmt|;
 DECL|field|te
@@ -3328,7 +3328,7 @@ decl_stmt|;
 DECL|method|Iterator
 name|Iterator
 parameter_list|(
-name|AtomicReader
+name|LeafReader
 name|reader
 parameter_list|)
 throws|throws

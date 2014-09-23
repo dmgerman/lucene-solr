@@ -106,7 +106,7 @@ name|lucene
 operator|.
 name|index
 operator|.
-name|AtomicReader
+name|LeafReader
 import|;
 end_import
 
@@ -822,7 +822,7 @@ specifier|private
 name|void
 name|initReader
 parameter_list|(
-name|AtomicReader
+name|LeafReader
 name|reader
 parameter_list|)
 block|{
@@ -886,7 +886,7 @@ specifier|abstract
 name|Accountable
 name|createValue
 parameter_list|(
-name|AtomicReader
+name|LeafReader
 name|reader
 parameter_list|,
 name|CacheKey
@@ -928,7 +928,7 @@ specifier|public
 name|void
 name|put
 parameter_list|(
-name|AtomicReader
+name|LeafReader
 name|reader
 parameter_list|,
 name|CacheKey
@@ -1033,7 +1033,7 @@ specifier|public
 name|Object
 name|get
 parameter_list|(
-name|AtomicReader
+name|LeafReader
 name|reader
 parameter_list|,
 name|CacheKey
@@ -1564,7 +1564,7 @@ specifier|public
 name|void
 name|uninvert
 parameter_list|(
-name|AtomicReader
+name|LeafReader
 name|reader
 parameter_list|,
 name|String
@@ -1813,7 +1813,7 @@ DECL|method|setDocsWithField
 name|void
 name|setDocsWithField
 parameter_list|(
-name|AtomicReader
+name|LeafReader
 name|reader
 parameter_list|,
 name|String
@@ -2030,7 +2030,7 @@ specifier|public
 name|Bits
 name|getDocsWithField
 parameter_list|(
-name|AtomicReader
+name|LeafReader
 name|reader
 parameter_list|,
 name|String
@@ -2276,7 +2276,7 @@ specifier|protected
 name|BitsEntry
 name|createValue
 parameter_list|(
-name|AtomicReader
+name|LeafReader
 name|reader
 parameter_list|,
 name|CacheKey
@@ -2545,7 +2545,7 @@ specifier|public
 name|NumericDocValues
 name|getNumerics
 parameter_list|(
-name|AtomicReader
+name|LeafReader
 name|reader
 parameter_list|,
 name|String
@@ -2844,7 +2844,7 @@ name|Accountable
 name|createValue
 parameter_list|(
 specifier|final
-name|AtomicReader
+name|LeafReader
 name|reader
 parameter_list|,
 name|CacheKey
@@ -3465,7 +3465,7 @@ specifier|public
 name|SortedDocValues
 name|getTermsIndex
 parameter_list|(
-name|AtomicReader
+name|LeafReader
 name|reader
 parameter_list|,
 name|String
@@ -3492,7 +3492,7 @@ specifier|public
 name|SortedDocValues
 name|getTermsIndex
 parameter_list|(
-name|AtomicReader
+name|LeafReader
 name|reader
 parameter_list|,
 name|String
@@ -3667,7 +3667,7 @@ specifier|protected
 name|Accountable
 name|createValue
 parameter_list|(
-name|AtomicReader
+name|LeafReader
 name|reader
 parameter_list|,
 name|CacheKey
@@ -4224,7 +4224,7 @@ specifier|public
 name|BinaryDocValues
 name|getTerms
 parameter_list|(
-name|AtomicReader
+name|LeafReader
 name|reader
 parameter_list|,
 name|String
@@ -4256,7 +4256,7 @@ specifier|public
 name|BinaryDocValues
 name|getTerms
 parameter_list|(
-name|AtomicReader
+name|LeafReader
 name|reader
 parameter_list|,
 name|String
@@ -4447,7 +4447,7 @@ specifier|protected
 name|Accountable
 name|createValue
 parameter_list|(
-name|AtomicReader
+name|LeafReader
 name|reader
 parameter_list|,
 name|CacheKey
@@ -4825,7 +4825,7 @@ specifier|public
 name|SortedSetDocValues
 name|getDocTermOrds
 parameter_list|(
-name|AtomicReader
+name|LeafReader
 name|reader
 parameter_list|,
 name|String
@@ -5104,7 +5104,7 @@ specifier|protected
 name|Accountable
 name|createValue
 parameter_list|(
-name|AtomicReader
+name|LeafReader
 name|reader
 parameter_list|,
 name|CacheKey

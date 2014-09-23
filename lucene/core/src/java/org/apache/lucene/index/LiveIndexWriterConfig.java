@@ -929,7 +929,7 @@ return|return
 name|useCompoundFile
 return|;
 block|}
-comment|/**    * Sets if {@link IndexWriter} should call {@link AtomicReader#checkIntegrity()}    * on existing segments before merging them into a new one.    *<p>    * Use<code>true</code> to enable this safety check, which can help    * reduce the risk of propagating index corruption from older segments     * into new ones, at the expense of slower merging.    *</p>    */
+comment|/**    * Sets if {@link IndexWriter} should call {@link LeafReader#checkIntegrity()}    * on existing segments before merging them into a new one.    *<p>    * Use<code>true</code> to enable this safety check, which can help    * reduce the risk of propagating index corruption from older segments     * into new ones, at the expense of slower merging.    *</p>    */
 DECL|method|setCheckIntegrityAtMerge
 specifier|public
 name|LiveIndexWriterConfig
@@ -949,7 +949,7 @@ return|return
 name|this
 return|;
 block|}
-comment|/** Returns true if {@link AtomicReader#checkIntegrity()} is called before     *  merging segments. */
+comment|/** Returns true if {@link LeafReader#checkIntegrity()} is called before     *  merging segments. */
 DECL|method|getCheckIntegrityAtMerge
 specifier|public
 name|boolean

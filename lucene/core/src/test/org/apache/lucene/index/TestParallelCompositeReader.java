@@ -963,7 +963,7 @@ argument_list|)
 expr_stmt|;
 for|for
 control|(
-name|AtomicReaderContext
+name|LeafReaderContext
 name|cxt
 range|:
 name|pr
@@ -1108,7 +1108,7 @@ argument_list|)
 expr_stmt|;
 for|for
 control|(
-name|AtomicReaderContext
+name|LeafReaderContext
 name|cxt
 range|:
 name|pr
@@ -2068,7 +2068,7 @@ argument_list|)
 argument_list|)
 expr_stmt|;
 comment|// check that fields are there
-name|AtomicReader
+name|LeafReader
 name|slow
 init|=
 name|SlowCompositeReaderWrapper

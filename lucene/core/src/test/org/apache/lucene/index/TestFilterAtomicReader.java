@@ -190,7 +190,7 @@ specifier|static
 class|class
 name|TestReader
 extends|extends
-name|FilterAtomicReader
+name|FilterLeafReader
 block|{
 comment|/** Filter that only permits terms containing 'e'.*/
 DECL|class|TestFields
@@ -1031,14 +1031,14 @@ name|Exception
 block|{
 name|checkOverrideMethods
 argument_list|(
-name|FilterAtomicReader
+name|FilterLeafReader
 operator|.
 name|class
 argument_list|)
 expr_stmt|;
 name|checkOverrideMethods
 argument_list|(
-name|FilterAtomicReader
+name|FilterLeafReader
 operator|.
 name|FilterFields
 operator|.
@@ -1047,7 +1047,7 @@ argument_list|)
 expr_stmt|;
 name|checkOverrideMethods
 argument_list|(
-name|FilterAtomicReader
+name|FilterLeafReader
 operator|.
 name|FilterTerms
 operator|.
@@ -1056,7 +1056,7 @@ argument_list|)
 expr_stmt|;
 name|checkOverrideMethods
 argument_list|(
-name|FilterAtomicReader
+name|FilterLeafReader
 operator|.
 name|FilterTermsEnum
 operator|.
@@ -1065,7 +1065,7 @@ argument_list|)
 expr_stmt|;
 name|checkOverrideMethods
 argument_list|(
-name|FilterAtomicReader
+name|FilterLeafReader
 operator|.
 name|FilterDocsEnum
 operator|.
@@ -1074,7 +1074,7 @@ argument_list|)
 expr_stmt|;
 name|checkOverrideMethods
 argument_list|(
-name|FilterAtomicReader
+name|FilterLeafReader
 operator|.
 name|FilterDocsAndPositionsEnum
 operator|.

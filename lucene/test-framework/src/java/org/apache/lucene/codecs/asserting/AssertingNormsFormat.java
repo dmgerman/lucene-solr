@@ -78,25 +78,9 @@ name|apache
 operator|.
 name|lucene
 operator|.
-name|codecs
-operator|.
-name|lucene49
-operator|.
-name|Lucene49NormsFormat
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
 name|index
 operator|.
-name|AssertingAtomicReader
+name|AssertingLeafReader
 import|;
 end_import
 
@@ -536,7 +520,7 @@ literal|null
 assert|;
 return|return
 operator|new
-name|AssertingAtomicReader
+name|AssertingLeafReader
 operator|.
 name|AssertingNumericDocValues
 argument_list|(

@@ -3582,21 +3582,21 @@ throws|throws
 name|IOException
 block|{
 specifier|final
-name|AtomicReader
+name|LeafReader
 name|reader
 decl_stmt|;
 if|if
 condition|(
 name|readerIn
 operator|instanceof
-name|AtomicReader
+name|LeafReader
 condition|)
 block|{
 comment|// Reader is already atomic: use the incoming docID:
 name|reader
 operator|=
 operator|(
-name|AtomicReader
+name|LeafReader
 operator|)
 name|readerIn
 expr_stmt|;
@@ -3606,7 +3606,7 @@ block|{
 comment|// Composite reader: lookup sub-reader and re-base docID:
 name|List
 argument_list|<
-name|AtomicReaderContext
+name|LeafReaderContext
 argument_list|>
 name|leaves
 init|=
@@ -7687,7 +7687,7 @@ decl_stmt|;
 specifier|final
 name|List
 argument_list|<
-name|AtomicReader
+name|LeafReader
 argument_list|>
 name|mergeReaders
 init|=
@@ -7713,7 +7713,7 @@ argument_list|()
 expr_stmt|;
 for|for
 control|(
-name|AtomicReaderContext
+name|LeafReaderContext
 name|ctx
 range|:
 name|indexReader
@@ -14460,7 +14460,7 @@ argument_list|(
 operator|new
 name|ArrayList
 argument_list|<
-name|AtomicReader
+name|LeafReader
 argument_list|>
 argument_list|()
 argument_list|,
@@ -16195,14 +16195,14 @@ specifier|protected
 name|IndexReaderWarmer
 parameter_list|()
 block|{     }
-comment|/** Invoked on the {@link AtomicReader} for the newly      *  merged segment, before that segment is made visible      *  to near-real-time readers. */
+comment|/** Invoked on the {@link LeafReader} for the newly      *  merged segment, before that segment is made visible      *  to near-real-time readers. */
 DECL|method|warm
 specifier|public
 specifier|abstract
 name|void
 name|warm
 parameter_list|(
-name|AtomicReader
+name|LeafReader
 name|reader
 parameter_list|)
 throws|throws

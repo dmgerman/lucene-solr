@@ -48,7 +48,21 @@ name|lucene
 operator|.
 name|index
 operator|.
-name|AtomicReader
+name|FilterLeafReader
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|index
+operator|.
+name|LeafReader
 import|;
 end_import
 
@@ -135,20 +149,6 @@ operator|.
 name|index
 operator|.
 name|Fields
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|index
-operator|.
-name|FilterAtomicReader
 import|;
 end_import
 
@@ -439,16 +439,16 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * An {@link AtomicReader} which supports sorting documents by a given  * {@link Sort}. You can use this class to sort an index as follows:  *   *<pre class="prettyprint">  * IndexWriter writer; // writer to which the sorted index will be added  * DirectoryReader reader; // reader on the input index  * Sort sort; // determines how the documents are sorted  * AtomicReader sortingReader = SortingAtomicReader.wrap(SlowCompositeReaderWrapper.wrap(reader), sort);  * writer.addIndexes(reader);  * writer.close();  * reader.close();  *</pre>  *   * @lucene.experimental  */
+comment|/**  * An {@link org.apache.lucene.index.LeafReader} which supports sorting documents by a given  * {@link Sort}. You can use this class to sort an index as follows:  *   *<pre class="prettyprint">  * IndexWriter writer; // writer to which the sorted index will be added  * DirectoryReader reader; // reader on the input index  * Sort sort; // determines how the documents are sorted  * AtomicReader sortingReader = SortingAtomicReader.wrap(SlowCompositeReaderWrapper.wrap(reader), sort);  * writer.addIndexes(reader);  * writer.close();  * reader.close();  *</pre>  *   * @lucene.experimental  */
 end_comment
 
 begin_class
-DECL|class|SortingAtomicReader
+DECL|class|SortingLeafReader
 specifier|public
 class|class
-name|SortingAtomicReader
+name|SortingLeafReader
 extends|extends
-name|FilterAtomicReader
+name|FilterLeafReader
 block|{
 DECL|class|SortingFields
 specifier|private
@@ -3902,10 +3902,10 @@ comment|/** Return a sorted view of<code>reader</code> according to the order   
 DECL|method|wrap
 specifier|public
 specifier|static
-name|AtomicReader
+name|LeafReader
 name|wrap
 parameter_list|(
-name|AtomicReader
+name|LeafReader
 name|reader
 parameter_list|,
 name|Sort
@@ -3932,13 +3932,13 @@ argument_list|)
 argument_list|)
 return|;
 block|}
-comment|/** Expert: same as {@link #wrap(AtomicReader, Sort)} but operates directly on a {@link Sorter.DocMap}. */
+comment|/** Expert: same as {@link #wrap(org.apache.lucene.index.LeafReader, Sort)} but operates directly on a {@link Sorter.DocMap}. */
 DECL|method|wrap
 specifier|static
-name|AtomicReader
+name|LeafReader
 name|wrap
 parameter_list|(
-name|AtomicReader
+name|LeafReader
 name|reader
 parameter_list|,
 name|Sorter
@@ -4002,7 +4002,7 @@ argument_list|)
 assert|;
 return|return
 operator|new
-name|SortingAtomicReader
+name|SortingLeafReader
 argument_list|(
 name|reader
 argument_list|,
@@ -4018,12 +4018,12 @@ name|DocMap
 name|docMap
 decl_stmt|;
 comment|// pkg-protected to avoid synthetic accessor methods
-DECL|method|SortingAtomicReader
+DECL|method|SortingLeafReader
 specifier|private
-name|SortingAtomicReader
+name|SortingLeafReader
 parameter_list|(
 specifier|final
-name|AtomicReader
+name|LeafReader
 name|in
 parameter_list|,
 specifier|final

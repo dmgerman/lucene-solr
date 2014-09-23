@@ -109,22 +109,22 @@ comment|/*  * Licensed to the Apache Software Foundation (ASF) under one or more
 end_comment
 
 begin_comment
-comment|/**  * A {@link FilterAtomicReader} that can be used to apply  * additional checks for tests.  */
+comment|/**  * A {@link FilterLeafReader} that can be used to apply  * additional checks for tests.  */
 end_comment
 
 begin_class
-DECL|class|AssertingAtomicReader
+DECL|class|AssertingLeafReader
 specifier|public
 class|class
-name|AssertingAtomicReader
+name|AssertingLeafReader
 extends|extends
-name|FilterAtomicReader
+name|FilterLeafReader
 block|{
-DECL|method|AssertingAtomicReader
+DECL|method|AssertingLeafReader
 specifier|public
-name|AssertingAtomicReader
+name|AssertingLeafReader
 parameter_list|(
-name|AtomicReader
+name|LeafReader
 name|in
 parameter_list|)
 block|{

@@ -26,18 +26,6 @@ name|carrotsearch
 operator|.
 name|hppc
 operator|.
-name|IntOpenHashSet
-import|;
-end_import
-
-begin_import
-import|import
-name|com
-operator|.
-name|carrotsearch
-operator|.
-name|hppc
-operator|.
 name|IntIntOpenHashMap
 import|;
 end_import
@@ -96,7 +84,7 @@ name|lucene
 operator|.
 name|index
 operator|.
-name|AtomicReader
+name|LeafReader
 import|;
 end_import
 
@@ -110,7 +98,7 @@ name|lucene
 operator|.
 name|index
 operator|.
-name|AtomicReaderContext
+name|LeafReaderContext
 import|;
 end_import
 
@@ -4066,7 +4054,7 @@ argument_list|)
 expr_stmt|;
 name|List
 argument_list|<
-name|AtomicReaderContext
+name|LeafReaderContext
 argument_list|>
 name|leaves
 init|=
@@ -4090,13 +4078,13 @@ literal|null
 decl_stmt|;
 for|for
 control|(
-name|AtomicReaderContext
+name|LeafReaderContext
 name|leaf
 range|:
 name|leaves
 control|)
 block|{
-name|AtomicReader
+name|LeafReader
 name|reader
 init|=
 name|leaf
@@ -4666,7 +4654,7 @@ specifier|public
 name|FieldComparator
 name|setNextReader
 parameter_list|(
-name|AtomicReaderContext
+name|LeafReaderContext
 name|context
 parameter_list|)
 throws|throws

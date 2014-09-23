@@ -17,7 +17,7 @@ comment|/*  * Licensed to the Apache Software Foundation (ASF) under one or more
 end_comment
 
 begin_comment
-comment|/**  * A {@link DirectoryReader} that wraps all its subreaders with  * {@link AssertingAtomicReader}  */
+comment|/**  * A {@link DirectoryReader} that wraps all its subreaders with  * {@link AssertingLeafReader}  */
 end_comment
 
 begin_class
@@ -39,16 +39,16 @@ annotation|@
 name|Override
 DECL|method|wrap
 specifier|public
-name|AtomicReader
+name|LeafReader
 name|wrap
 parameter_list|(
-name|AtomicReader
+name|LeafReader
 name|reader
 parameter_list|)
 block|{
 return|return
 operator|new
-name|AssertingAtomicReader
+name|AssertingLeafReader
 argument_list|(
 name|reader
 argument_list|)

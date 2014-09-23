@@ -344,7 +344,7 @@ name|lucene
 operator|.
 name|index
 operator|.
-name|AtomicReader
+name|FilterLeafReader
 import|;
 end_import
 
@@ -358,7 +358,21 @@ name|lucene
 operator|.
 name|index
 operator|.
-name|AtomicReaderContext
+name|LeafReader
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|index
+operator|.
+name|LeafReaderContext
 import|;
 end_import
 
@@ -416,7 +430,7 @@ name|lucene
 operator|.
 name|index
 operator|.
-name|FilterAtomicReader
+name|FilterLeafReader
 import|;
 end_import
 
@@ -2892,7 +2906,7 @@ argument_list|)
 decl_stmt|;
 name|List
 argument_list|<
-name|AtomicReaderContext
+name|LeafReaderContext
 argument_list|>
 name|leaves
 init|=
@@ -3748,7 +3762,7 @@ try|try
 block|{
 for|for
 control|(
-name|AtomicReaderContext
+name|LeafReaderContext
 name|context
 range|:
 name|searcher
@@ -3760,10 +3774,10 @@ name|leaves
 argument_list|()
 control|)
 block|{
-name|AtomicReader
+name|LeafReader
 name|reader
 init|=
-name|FilterAtomicReader
+name|FilterLeafReader
 operator|.
 name|unwrap
 argument_list|(
@@ -3873,7 +3887,7 @@ try|try
 block|{
 for|for
 control|(
-name|AtomicReaderContext
+name|LeafReaderContext
 name|context
 range|:
 name|searcher
@@ -3885,10 +3899,10 @@ name|leaves
 argument_list|()
 control|)
 block|{
-name|AtomicReader
+name|LeafReader
 name|reader
 init|=
-name|FilterAtomicReader
+name|FilterLeafReader
 operator|.
 name|unwrap
 argument_list|(

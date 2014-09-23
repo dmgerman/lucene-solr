@@ -118,7 +118,7 @@ name|lucene
 operator|.
 name|index
 operator|.
-name|AtomicReaderContext
+name|LeafReaderContext
 import|;
 end_import
 
@@ -802,7 +802,7 @@ block|}
 specifier|final
 name|List
 argument_list|<
-name|AtomicReaderContext
+name|LeafReaderContext
 argument_list|>
 name|leaves
 init|=
@@ -817,7 +817,7 @@ decl_stmt|;
 specifier|final
 name|Iterator
 argument_list|<
-name|AtomicReaderContext
+name|LeafReaderContext
 argument_list|>
 name|ctxIt
 init|=
@@ -826,7 +826,7 @@ operator|.
 name|iterator
 argument_list|()
 decl_stmt|;
-name|AtomicReaderContext
+name|LeafReaderContext
 name|ctx
 init|=
 literal|null
@@ -1176,7 +1176,7 @@ argument_list|()
 decl_stmt|;
 name|List
 argument_list|<
-name|AtomicReaderContext
+name|LeafReaderContext
 argument_list|>
 name|leaves
 init|=
@@ -1206,7 +1206,7 @@ name|subIndex
 operator|++
 control|)
 block|{
-name|AtomicReaderContext
+name|LeafReaderContext
 name|leaf
 init|=
 name|leaves

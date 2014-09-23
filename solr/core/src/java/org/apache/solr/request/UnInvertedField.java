@@ -70,7 +70,7 @@ name|lucene
 operator|.
 name|index
 operator|.
-name|AtomicReader
+name|LeafReader
 import|;
 end_import
 
@@ -183,20 +183,6 @@ operator|.
 name|util
 operator|.
 name|BytesRefBuilder
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|util
-operator|.
-name|CharsRef
 import|;
 end_import
 
@@ -788,7 +774,7 @@ name|liveDocs
 operator|=
 name|searcher
 operator|.
-name|getAtomicReader
+name|getLeafReader
 argument_list|()
 operator|.
 name|getLiveDocs
@@ -1038,12 +1024,12 @@ name|searcher
 expr_stmt|;
 try|try
 block|{
-name|AtomicReader
+name|LeafReader
 name|r
 init|=
 name|searcher
 operator|.
-name|getAtomicReader
+name|getLeafReader
 argument_list|()
 decl_stmt|;
 name|uninvert
@@ -1355,7 +1341,7 @@ name|getOrdTermsEnum
 argument_list|(
 name|searcher
 operator|.
-name|getAtomicReader
+name|getLeafReader
 argument_list|()
 argument_list|)
 decl_stmt|;
@@ -2725,7 +2711,7 @@ name|getOrdTermsEnum
 argument_list|(
 name|searcher
 operator|.
-name|getAtomicReader
+name|getLeafReader
 argument_list|()
 argument_list|)
 decl_stmt|;

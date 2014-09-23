@@ -97,7 +97,7 @@ specifier|public
 name|void
 name|warm
 parameter_list|(
-name|AtomicReader
+name|LeafReader
 name|reader
 parameter_list|)
 throws|throws

@@ -120,9 +120,9 @@ name|apache
 operator|.
 name|lucene
 operator|.
-name|search
+name|index
 operator|.
-name|*
+name|LeafReaderContext
 import|;
 end_import
 
@@ -134,9 +134,9 @@ name|apache
 operator|.
 name|lucene
 operator|.
-name|index
+name|search
 operator|.
-name|AtomicReaderContext
+name|*
 import|;
 end_import
 
@@ -314,22 +314,6 @@ name|common
 operator|.
 name|util
 operator|.
-name|NamedList
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|solr
-operator|.
-name|common
-operator|.
-name|util
-operator|.
 name|StrUtils
 import|;
 end_import
@@ -419,20 +403,6 @@ operator|.
 name|search
 operator|.
 name|DocSet
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|solr
-operator|.
-name|search
-operator|.
-name|FunctionQParserPlugin
 import|;
 end_import
 
@@ -1597,7 +1567,7 @@ block|}
 specifier|final
 name|Iterator
 argument_list|<
-name|AtomicReaderContext
+name|LeafReaderContext
 argument_list|>
 name|ctxIt
 init|=
@@ -1612,7 +1582,7 @@ operator|.
 name|iterator
 argument_list|()
 decl_stmt|;
-name|AtomicReaderContext
+name|LeafReaderContext
 name|ctx
 init|=
 literal|null

@@ -90,7 +90,7 @@ name|lucene
 operator|.
 name|index
 operator|.
-name|AssertingAtomicReader
+name|AssertingLeafReader
 import|;
 end_import
 
@@ -230,7 +230,7 @@ name|lucene
 operator|.
 name|index
 operator|.
-name|AssertingAtomicReader
+name|AssertingLeafReader
 operator|.
 name|AssertingRandomAccessOrds
 import|;
@@ -246,7 +246,7 @@ name|lucene
 operator|.
 name|index
 operator|.
-name|AssertingAtomicReader
+name|AssertingLeafReader
 operator|.
 name|AssertingSortedSetDocValues
 import|;
@@ -1461,7 +1461,7 @@ literal|null
 assert|;
 return|return
 operator|new
-name|AssertingAtomicReader
+name|AssertingLeafReader
 operator|.
 name|AssertingNumericDocValues
 argument_list|(
@@ -1513,7 +1513,7 @@ literal|null
 assert|;
 return|return
 operator|new
-name|AssertingAtomicReader
+name|AssertingLeafReader
 operator|.
 name|AssertingBinaryDocValues
 argument_list|(
@@ -1565,7 +1565,7 @@ literal|null
 assert|;
 return|return
 operator|new
-name|AssertingAtomicReader
+name|AssertingLeafReader
 operator|.
 name|AssertingSortedDocValues
 argument_list|(
@@ -1617,7 +1617,7 @@ literal|null
 assert|;
 return|return
 operator|new
-name|AssertingAtomicReader
+name|AssertingLeafReader
 operator|.
 name|AssertingSortedNumericDocValues
 argument_list|(
@@ -1746,7 +1746,7 @@ name|maxDoc
 assert|;
 return|return
 operator|new
-name|AssertingAtomicReader
+name|AssertingLeafReader
 operator|.
 name|AssertingBits
 argument_list|(

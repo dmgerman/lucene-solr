@@ -156,7 +156,7 @@ name|lucene
 operator|.
 name|index
 operator|.
-name|AtomicReader
+name|FilterLeafReader
 import|;
 end_import
 
@@ -170,7 +170,21 @@ name|lucene
 operator|.
 name|index
 operator|.
-name|AtomicReaderContext
+name|LeafReader
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|index
+operator|.
+name|LeafReaderContext
 import|;
 end_import
 
@@ -213,20 +227,6 @@ operator|.
 name|index
 operator|.
 name|Fields
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|index
-operator|.
-name|FilterAtomicReader
 import|;
 end_import
 
@@ -563,7 +563,7 @@ name|maxDocCharsToAnalyze
 decl_stmt|;
 DECL|field|internalReader
 specifier|private
-name|AtomicReader
+name|LeafReader
 name|internalReader
 init|=
 literal|null
@@ -1779,7 +1779,7 @@ operator|=
 name|spanQuery
 expr_stmt|;
 block|}
-name|AtomicReaderContext
+name|LeafReaderContext
 name|context
 init|=
 name|getLeafContext
@@ -2151,7 +2151,7 @@ return|;
 block|}
 DECL|method|getLeafContext
 specifier|protected
-name|AtomicReaderContext
+name|LeafReaderContext
 name|getLeafContext
 parameter_list|()
 throws|throws
@@ -2213,7 +2213,7 @@ name|indexer
 operator|.
 name|addField
 argument_list|(
-name|DelegatingAtomicReader
+name|DelegatingLeafReader
 operator|.
 name|FIELD_NAME
 argument_list|,
@@ -2238,11 +2238,11 @@ comment|// MEM index has only atomic ctx
 name|internalReader
 operator|=
 operator|new
-name|DelegatingAtomicReader
+name|DelegatingLeafReader
 argument_list|(
 operator|(
 operator|(
-name|AtomicReaderContext
+name|LeafReaderContext
 operator|)
 name|searcher
 operator|.
@@ -2263,13 +2263,13 @@ argument_list|()
 return|;
 block|}
 comment|/*    * This reader will just delegate every call to a single field in the wrapped    * AtomicReader. This way we only need to build this field once rather than    * N-Times    */
-DECL|class|DelegatingAtomicReader
+DECL|class|DelegatingLeafReader
 specifier|static
 specifier|final
 class|class
-name|DelegatingAtomicReader
+name|DelegatingLeafReader
 extends|extends
-name|FilterAtomicReader
+name|FilterLeafReader
 block|{
 DECL|field|FIELD_NAME
 specifier|private
@@ -2280,10 +2280,10 @@ name|FIELD_NAME
 init|=
 literal|"shadowed_field"
 decl_stmt|;
-DECL|method|DelegatingAtomicReader
-name|DelegatingAtomicReader
+DECL|method|DelegatingLeafReader
+name|DelegatingLeafReader
 parameter_list|(
-name|AtomicReader
+name|LeafReader
 name|in
 parameter_list|)
 block|{
@@ -2344,7 +2344,7 @@ name|super
 operator|.
 name|terms
 argument_list|(
-name|DelegatingAtomicReader
+name|DelegatingLeafReader
 operator|.
 name|FIELD_NAME
 argument_list|)
@@ -2365,7 +2365,7 @@ name|Collections
 operator|.
 name|singletonList
 argument_list|(
-name|DelegatingAtomicReader
+name|DelegatingLeafReader
 operator|.
 name|FIELD_NAME
 argument_list|)

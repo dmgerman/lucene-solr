@@ -36,25 +36,7 @@ name|lucene
 operator|.
 name|index
 operator|.
-name|AtomicReader
-import|;
-end_import
-
-begin_comment
-comment|// javadocs
-end_comment
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|index
-operator|.
-name|AtomicReaderContext
+name|LeafReaderContext
 import|;
 end_import
 
@@ -83,14 +65,14 @@ specifier|abstract
 class|class
 name|Filter
 block|{
-comment|/**    * Creates a {@link DocIdSet} enumerating the documents that should be    * permitted in search results.<b>NOTE:</b> null can be    * returned if no documents are accepted by this Filter.    *<p>    * Note: This method will be called once per segment in    * the index during searching.  The returned {@link DocIdSet}    * must refer to document IDs for that segment, not for    * the top-level reader.    *     * @param context a {@link AtomicReaderContext} instance opened on the index currently    *         searched on. Note, it is likely that the provided reader info does not    *         represent the whole underlying index i.e. if the index has more than    *         one segment the given reader only represents a single segment.    *         The provided context is always an atomic context, so you can call     *         {@link AtomicReader#fields()}    *         on the context's reader, for example.    *    * @param acceptDocs    *          Bits that represent the allowable docs to match (typically deleted docs    *          but possibly filtering other documents)    *              * @return a DocIdSet that provides the documents which should be permitted or    *         prohibited in search results.<b>NOTE:</b><code>null</code> should be returned if    *         the filter doesn't accept any documents otherwise internal optimization might not apply    *         in the case an<i>empty</i> {@link DocIdSet} is returned.    */
+comment|/**    * Creates a {@link DocIdSet} enumerating the documents that should be    * permitted in search results.<b>NOTE:</b> null can be    * returned if no documents are accepted by this Filter.    *<p>    * Note: This method will be called once per segment in    * the index during searching.  The returned {@link DocIdSet}    * must refer to document IDs for that segment, not for    * the top-level reader.    *     * @param context a {@link org.apache.lucene.index.LeafReaderContext} instance opened on the index currently    *         searched on. Note, it is likely that the provided reader info does not    *         represent the whole underlying index i.e. if the index has more than    *         one segment the given reader only represents a single segment.    *         The provided context is always an atomic context, so you can call     *         {@link org.apache.lucene.index.LeafReader#fields()}    *         on the context's reader, for example.    *    * @param acceptDocs    *          Bits that represent the allowable docs to match (typically deleted docs    *          but possibly filtering other documents)    *              * @return a DocIdSet that provides the documents which should be permitted or    *         prohibited in search results.<b>NOTE:</b><code>null</code> should be returned if    *         the filter doesn't accept any documents otherwise internal optimization might not apply    *         in the case an<i>empty</i> {@link DocIdSet} is returned.    */
 DECL|method|getDocIdSet
 specifier|public
 specifier|abstract
 name|DocIdSet
 name|getDocIdSet
 parameter_list|(
-name|AtomicReaderContext
+name|LeafReaderContext
 name|context
 parameter_list|,
 name|Bits

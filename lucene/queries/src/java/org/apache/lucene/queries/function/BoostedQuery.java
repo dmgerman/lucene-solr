@@ -26,9 +26,9 @@ name|apache
 operator|.
 name|lucene
 operator|.
-name|search
+name|index
 operator|.
-name|*
+name|LeafReaderContext
 import|;
 end_import
 
@@ -40,9 +40,9 @@ name|apache
 operator|.
 name|lucene
 operator|.
-name|index
+name|search
 operator|.
-name|AtomicReaderContext
+name|*
 import|;
 end_import
 
@@ -474,7 +474,7 @@ specifier|public
 name|Scorer
 name|scorer
 parameter_list|(
-name|AtomicReaderContext
+name|LeafReaderContext
 name|context
 parameter_list|,
 name|Bits
@@ -532,7 +532,7 @@ specifier|public
 name|Explanation
 name|explain
 parameter_list|(
-name|AtomicReaderContext
+name|LeafReaderContext
 name|readerContext
 parameter_list|,
 name|int
@@ -673,14 +673,14 @@ decl_stmt|;
 DECL|field|readerContext
 specifier|private
 specifier|final
-name|AtomicReaderContext
+name|LeafReaderContext
 name|readerContext
 decl_stmt|;
 DECL|method|CustomScorer
 specifier|private
 name|CustomScorer
 parameter_list|(
-name|AtomicReaderContext
+name|LeafReaderContext
 name|readerContext
 parameter_list|,
 name|BoostedQuery

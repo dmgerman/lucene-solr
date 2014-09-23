@@ -56,7 +56,21 @@ name|lucene
 operator|.
 name|index
 operator|.
-name|AtomicReader
+name|FilterLeafReader
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|index
+operator|.
+name|LeafReader
 import|;
 end_import
 
@@ -99,20 +113,6 @@ operator|.
 name|index
 operator|.
 name|FieldInfos
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|index
-operator|.
-name|FilterAtomicReader
 import|;
 end_import
 
@@ -188,10 +188,10 @@ comment|/**     * Returns a view over {@code sane} where {@code insaneField} is 
 DECL|method|wrapInsanity
 specifier|public
 specifier|static
-name|AtomicReader
+name|LeafReader
 name|wrapInsanity
 parameter_list|(
-name|AtomicReader
+name|LeafReader
 name|sane
 parameter_list|,
 name|String
@@ -232,7 +232,7 @@ specifier|static
 class|class
 name|InsaneReader
 extends|extends
-name|FilterAtomicReader
+name|FilterLeafReader
 block|{
 DECL|field|insaneField
 specifier|final
@@ -247,7 +247,7 @@ decl_stmt|;
 DECL|method|InsaneReader
 name|InsaneReader
 parameter_list|(
-name|AtomicReader
+name|LeafReader
 name|in
 parameter_list|,
 name|String

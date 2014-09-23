@@ -212,7 +212,7 @@ name|lucene
 operator|.
 name|index
 operator|.
-name|AtomicReader
+name|LeafReader
 import|;
 end_import
 
@@ -226,7 +226,7 @@ name|lucene
 operator|.
 name|index
 operator|.
-name|AtomicReaderContext
+name|LeafReaderContext
 import|;
 end_import
 
@@ -670,7 +670,7 @@ name|close
 argument_list|()
 expr_stmt|;
 specifier|final
-name|AtomicReader
+name|LeafReader
 name|ar
 init|=
 name|SlowCompositeReaderWrapper
@@ -1309,7 +1309,7 @@ expr_stmt|;
 block|}
 for|for
 control|(
-name|AtomicReaderContext
+name|LeafReaderContext
 name|ctx
 range|:
 name|r
@@ -1370,7 +1370,7 @@ literal|"TEST: top reader"
 argument_list|)
 expr_stmt|;
 block|}
-name|AtomicReader
+name|LeafReader
 name|slowR
 init|=
 name|SlowCompositeReaderWrapper
@@ -1969,7 +1969,7 @@ name|r
 argument_list|)
 expr_stmt|;
 block|}
-name|AtomicReader
+name|LeafReader
 name|slowR
 init|=
 name|SlowCompositeReaderWrapper
@@ -2134,7 +2134,7 @@ expr_stmt|;
 block|}
 for|for
 control|(
-name|AtomicReaderContext
+name|LeafReaderContext
 name|ctx
 range|:
 name|r
@@ -2235,7 +2235,7 @@ specifier|private
 name|void
 name|verify
 parameter_list|(
-name|AtomicReader
+name|LeafReader
 name|r
 parameter_list|,
 name|int
@@ -3179,7 +3179,7 @@ argument_list|(
 name|dir
 argument_list|)
 decl_stmt|;
-name|AtomicReader
+name|LeafReader
 name|ar
 init|=
 name|getOnlySegmentReader
@@ -3473,7 +3473,7 @@ argument_list|(
 name|dir
 argument_list|)
 decl_stmt|;
-name|AtomicReader
+name|LeafReader
 name|ar
 init|=
 name|getOnlySegmentReader
@@ -3823,7 +3823,7 @@ operator|.
 name|close
 argument_list|()
 expr_stmt|;
-name|AtomicReader
+name|LeafReader
 name|ar
 init|=
 name|getOnlySegmentReader
@@ -4573,7 +4573,7 @@ argument_list|(
 name|dir
 argument_list|)
 decl_stmt|;
-name|AtomicReader
+name|LeafReader
 name|ar
 init|=
 name|getOnlySegmentReader

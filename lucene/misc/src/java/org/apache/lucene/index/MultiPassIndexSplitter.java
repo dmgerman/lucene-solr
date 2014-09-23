@@ -468,7 +468,7 @@ name|List
 argument_list|<
 name|?
 extends|extends
-name|FakeDeleteAtomicIndexReader
+name|FakeDeleteLeafIndexReader
 argument_list|>
 name|sr
 init|=
@@ -1005,7 +1005,7 @@ name|FakeDeleteIndexReader
 extends|extends
 name|BaseCompositeReader
 argument_list|<
-name|FakeDeleteAtomicIndexReader
+name|FakeDeleteLeafIndexReader
 argument_list|>
 block|{
 DECL|method|FakeDeleteIndexReader
@@ -1028,7 +1028,7 @@ block|}
 DECL|method|initSubReaders
 specifier|private
 specifier|static
-name|FakeDeleteAtomicIndexReader
+name|FakeDeleteLeafIndexReader
 index|[]
 name|initSubReaders
 parameter_list|(
@@ -1039,7 +1039,7 @@ block|{
 specifier|final
 name|List
 argument_list|<
-name|AtomicReaderContext
+name|LeafReaderContext
 argument_list|>
 name|leaves
 init|=
@@ -1049,12 +1049,12 @@ name|leaves
 argument_list|()
 decl_stmt|;
 specifier|final
-name|FakeDeleteAtomicIndexReader
+name|FakeDeleteLeafIndexReader
 index|[]
 name|subs
 init|=
 operator|new
-name|FakeDeleteAtomicIndexReader
+name|FakeDeleteLeafIndexReader
 index|[
 name|leaves
 operator|.
@@ -1070,7 +1070,7 @@ decl_stmt|;
 for|for
 control|(
 specifier|final
-name|AtomicReaderContext
+name|LeafReaderContext
 name|ctx
 range|:
 name|leaves
@@ -1083,7 +1083,7 @@ operator|++
 index|]
 operator|=
 operator|new
-name|FakeDeleteAtomicIndexReader
+name|FakeDeleteLeafIndexReader
 argument_list|(
 name|ctx
 operator|.
@@ -1141,7 +1141,7 @@ parameter_list|()
 block|{
 for|for
 control|(
-name|FakeDeleteAtomicIndexReader
+name|FakeDeleteLeafIndexReader
 name|r
 range|:
 name|getSequentialSubReaders
@@ -1166,24 +1166,24 @@ block|{}
 comment|// no need to override numDocs/hasDeletions,
 comment|// as we pass the subreaders directly to IW.addIndexes().
 block|}
-DECL|class|FakeDeleteAtomicIndexReader
+DECL|class|FakeDeleteLeafIndexReader
 specifier|private
 specifier|static
 specifier|final
 class|class
-name|FakeDeleteAtomicIndexReader
+name|FakeDeleteLeafIndexReader
 extends|extends
-name|FilterAtomicReader
+name|FilterLeafReader
 block|{
 DECL|field|liveDocs
 name|FixedBitSet
 name|liveDocs
 decl_stmt|;
-DECL|method|FakeDeleteAtomicIndexReader
+DECL|method|FakeDeleteLeafIndexReader
 specifier|public
-name|FakeDeleteAtomicIndexReader
+name|FakeDeleteLeafIndexReader
 parameter_list|(
-name|AtomicReader
+name|LeafReader
 name|reader
 parameter_list|)
 block|{

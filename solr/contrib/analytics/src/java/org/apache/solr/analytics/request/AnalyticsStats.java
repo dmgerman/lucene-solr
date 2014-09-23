@@ -48,7 +48,7 @@ name|lucene
 operator|.
 name|index
 operator|.
-name|AtomicReaderContext
+name|LeafReaderContext
 import|;
 end_import
 
@@ -632,7 +632,7 @@ expr_stmt|;
 comment|// Loop through the documents returned by the query and add to accumulator
 name|List
 argument_list|<
-name|AtomicReaderContext
+name|LeafReaderContext
 argument_list|>
 name|contexts
 init|=
@@ -662,7 +662,7 @@ name|leafNum
 operator|++
 control|)
 block|{
-name|AtomicReaderContext
+name|LeafReaderContext
 name|context
 init|=
 name|contexts

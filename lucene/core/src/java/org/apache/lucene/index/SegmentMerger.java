@@ -238,7 +238,7 @@ name|SegmentMerger
 parameter_list|(
 name|List
 argument_list|<
-name|AtomicReader
+name|LeafReader
 argument_list|>
 name|readers
 parameter_list|,
@@ -278,7 +278,7 @@ condition|)
 block|{
 for|for
 control|(
-name|AtomicReader
+name|LeafReader
 name|reader
 range|:
 name|readers
@@ -1023,7 +1023,7 @@ name|IOException
 block|{
 for|for
 control|(
-name|AtomicReader
+name|LeafReader
 name|reader
 range|:
 name|mergeState
@@ -1298,7 +1298,7 @@ argument_list|()
 condition|)
 block|{
 specifier|final
-name|AtomicReader
+name|LeafReader
 name|reader
 init|=
 name|mergeState

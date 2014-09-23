@@ -36,21 +36,7 @@ name|lucene
 operator|.
 name|index
 operator|.
-name|AtomicReader
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|index
-operator|.
-name|AtomicReaderContext
+name|LeafReaderContext
 import|;
 end_import
 
@@ -111,7 +97,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * A range filter built on top of a cached multi-valued term field (from {@link AtomicReader#getSortedSetDocValues}).  *   *<p>Like {@link DocValuesRangeFilter}, this is just a specialized range query versus  *    using a TermRangeQuery with {@link DocTermOrdsRewriteMethod}: it will only do  *    two ordinal to term lookups.</p>  */
+comment|/**  * A range filter built on top of a cached multi-valued term field (from {@link org.apache.lucene.index.LeafReader#getSortedSetDocValues}).  *   *<p>Like {@link DocValuesRangeFilter}, this is just a specialized range query versus  *    using a TermRangeQuery with {@link DocTermOrdsRewriteMethod}: it will only do  *    two ordinal to term lookups.</p>  */
 end_comment
 
 begin_class
@@ -208,7 +194,7 @@ specifier|abstract
 name|DocIdSet
 name|getDocIdSet
 parameter_list|(
-name|AtomicReaderContext
+name|LeafReaderContext
 name|context
 parameter_list|,
 name|Bits
@@ -217,7 +203,7 @@ parameter_list|)
 throws|throws
 name|IOException
 function_decl|;
-comment|/**    * Creates a BytesRef range filter using {@link AtomicReader#getSortedSetDocValues}. This works with all    * fields containing zero or one term in the field. The range can be half-open by setting one    * of the values to<code>null</code>.    */
+comment|/**    * Creates a BytesRef range filter using {@link org.apache.lucene.index.LeafReader#getSortedSetDocValues}. This works with all    * fields containing zero or one term in the field. The range can be half-open by setting one    * of the values to<code>null</code>.    */
 DECL|method|newBytesRefRange
 specifier|public
 specifier|static
@@ -261,7 +247,7 @@ specifier|public
 name|DocIdSet
 name|getDocIdSet
 parameter_list|(
-name|AtomicReaderContext
+name|LeafReaderContext
 name|context
 parameter_list|,
 name|Bits

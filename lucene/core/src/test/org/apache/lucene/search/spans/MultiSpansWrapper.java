@@ -98,7 +98,7 @@ name|lucene
 operator|.
 name|index
 operator|.
-name|AtomicReaderContext
+name|LeafReaderContext
 import|;
 end_import
 
@@ -194,7 +194,7 @@ DECL|field|leaves
 specifier|private
 name|List
 argument_list|<
-name|AtomicReaderContext
+name|LeafReaderContext
 argument_list|>
 name|leaves
 decl_stmt|;
@@ -232,7 +232,7 @@ name|MultiSpansWrapper
 parameter_list|(
 name|List
 argument_list|<
-name|AtomicReaderContext
+name|LeafReaderContext
 argument_list|>
 name|leaves
 parameter_list|,
@@ -350,7 +350,7 @@ block|}
 specifier|final
 name|List
 argument_list|<
-name|AtomicReaderContext
+name|LeafReaderContext
 argument_list|>
 name|leaves
 init|=
@@ -370,7 +370,7 @@ literal|1
 condition|)
 block|{
 specifier|final
-name|AtomicReaderContext
+name|LeafReaderContext
 name|ctx
 init|=
 name|leaves
@@ -440,7 +440,7 @@ literal|null
 condition|)
 block|{
 specifier|final
-name|AtomicReaderContext
+name|LeafReaderContext
 name|ctx
 init|=
 name|leaves
@@ -496,7 +496,7 @@ name|numLeaves
 condition|)
 block|{
 specifier|final
-name|AtomicReaderContext
+name|LeafReaderContext
 name|ctx
 init|=
 name|leaves
@@ -588,7 +588,7 @@ name|leafOrd
 condition|)
 block|{
 specifier|final
-name|AtomicReaderContext
+name|LeafReaderContext
 name|ctx
 init|=
 name|leaves
@@ -631,7 +631,7 @@ literal|null
 condition|)
 block|{
 specifier|final
-name|AtomicReaderContext
+name|LeafReaderContext
 name|ctx
 init|=
 name|leaves
@@ -727,7 +727,7 @@ name|numLeaves
 condition|)
 block|{
 specifier|final
-name|AtomicReaderContext
+name|LeafReaderContext
 name|ctx
 init|=
 name|leaves

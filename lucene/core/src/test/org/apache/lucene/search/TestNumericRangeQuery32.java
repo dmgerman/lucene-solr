@@ -110,7 +110,7 @@ name|lucene
 operator|.
 name|index
 operator|.
-name|AtomicReaderContext
+name|LeafReaderContext
 import|;
 end_import
 
@@ -1366,7 +1366,7 @@ parameter_list|()
 throws|throws
 name|Exception
 block|{
-name|AtomicReaderContext
+name|LeafReaderContext
 name|context
 init|=
 name|SlowCompositeReaderWrapper

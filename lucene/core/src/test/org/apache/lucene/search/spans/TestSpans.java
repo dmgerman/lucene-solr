@@ -90,7 +90,7 @@ name|lucene
 operator|.
 name|index
 operator|.
-name|AtomicReaderContext
+name|LeafReaderContext
 import|;
 end_import
 
@@ -2764,7 +2764,7 @@ argument_list|()
 decl_stmt|;
 name|List
 argument_list|<
-name|AtomicReaderContext
+name|LeafReaderContext
 argument_list|>
 name|leaves
 init|=
@@ -2808,7 +2808,7 @@ operator|++
 control|)
 block|{
 specifier|final
-name|AtomicReaderContext
+name|LeafReaderContext
 name|ctx
 init|=
 name|leaves

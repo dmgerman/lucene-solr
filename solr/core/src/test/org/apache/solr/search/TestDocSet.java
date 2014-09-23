@@ -66,7 +66,7 @@ name|lucene
 operator|.
 name|index
 operator|.
-name|AtomicReader
+name|LeafReader
 import|;
 end_import
 
@@ -80,7 +80,7 @@ name|lucene
 operator|.
 name|index
 operator|.
-name|AtomicReaderContext
+name|LeafReaderContext
 import|;
 end_import
 
@@ -1619,7 +1619,7 @@ comment|/****   public void testExistsPerformance() {     loadfactor=.75f;     r
 comment|/**** needs code insertion into HashDocSet    public void testExistsCollisions() {     loadfactor=.75f;     rand=new Random(12345);  // make deterministic     int maxSetsize=4000;     int nSets=512;     int[] maxDocs=new int[] {100000,500000,1000000,5000000,10000000};     int ret=0;      for (int maxDoc : maxDocs) {       int mask = (BitUtil.nextHighestPowerOfTwo(maxDoc)>>1)-1;       DocSet[] sets = getRandomHashSets(nSets,maxSetsize, maxDoc);       int cstart = HashDocSet.collisions;             for (DocSet s1 : sets) {         for (int j=0; j<maxDocs[0]; j++) {           int idx = rand.nextInt()&mask;           ret += s1.exists(idx) ? 1 :0;         }       }       int cend = HashDocSet.collisions;       System.out.println("maxDoc="+maxDoc+"\tcollisions="+(cend-cstart));     }     if (ret==-1)System.out.println("wow!");     System.out.println("collisions="+HashDocSet.collisions);   }   ***/
 DECL|method|dummyIndexReader
 specifier|public
-name|AtomicReader
+name|LeafReader
 name|dummyIndexReader
 parameter_list|(
 specifier|final
@@ -1629,7 +1629,7 @@ parameter_list|)
 block|{
 return|return
 operator|new
-name|AtomicReader
+name|LeafReader
 argument_list|()
 block|{
 annotation|@
@@ -2281,7 +2281,7 @@ name|db
 decl_stmt|;
 name|List
 argument_list|<
-name|AtomicReaderContext
+name|LeafReaderContext
 argument_list|>
 name|leaves
 init|=
@@ -2293,7 +2293,7 @@ decl_stmt|;
 comment|// first test in-sequence sub readers
 for|for
 control|(
-name|AtomicReaderContext
+name|LeafReaderContext
 name|readerContext
 range|:
 name|leaves
@@ -2353,7 +2353,7 @@ name|i
 operator|++
 control|)
 block|{
-name|AtomicReaderContext
+name|LeafReaderContext
 name|readerContext
 init|=
 name|leaves

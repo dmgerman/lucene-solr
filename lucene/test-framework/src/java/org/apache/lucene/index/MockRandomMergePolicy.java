@@ -705,7 +705,7 @@ decl_stmt|;
 DECL|field|readers
 name|ArrayList
 argument_list|<
-name|AtomicReader
+name|LeafReader
 argument_list|>
 name|readers
 decl_stmt|;
@@ -742,7 +742,7 @@ DECL|method|getMergeReaders
 specifier|public
 name|List
 argument_list|<
-name|AtomicReader
+name|LeafReader
 argument_list|>
 name|getMergeReaders
 parameter_list|()
@@ -761,7 +761,7 @@ operator|=
 operator|new
 name|ArrayList
 argument_list|<
-name|AtomicReader
+name|LeafReader
 argument_list|>
 argument_list|(
 name|super
@@ -808,7 +808,7 @@ argument_list|(
 name|i
 argument_list|,
 operator|new
-name|FilterAtomicReader
+name|FilterLeafReader
 argument_list|(
 name|readers
 operator|.

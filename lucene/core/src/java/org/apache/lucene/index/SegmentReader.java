@@ -341,7 +341,7 @@ specifier|final
 class|class
 name|SegmentReader
 extends|extends
-name|AtomicReader
+name|LeafReader
 implements|implements
 name|Accountable
 block|{

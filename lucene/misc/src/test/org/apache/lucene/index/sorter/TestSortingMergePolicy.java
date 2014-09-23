@@ -160,7 +160,7 @@ name|lucene
 operator|.
 name|index
 operator|.
-name|AtomicReader
+name|LeafReader
 import|;
 end_import
 
@@ -1158,7 +1158,7 @@ specifier|static
 name|void
 name|assertSorted
 parameter_list|(
-name|AtomicReader
+name|LeafReader
 name|reader
 parameter_list|)
 throws|throws
@@ -1255,10 +1255,10 @@ throws|throws
 name|IOException
 block|{
 specifier|final
-name|AtomicReader
+name|LeafReader
 name|sortedReader1
 init|=
-name|SortingAtomicReader
+name|SortingLeafReader
 operator|.
 name|wrap
 argument_list|(
@@ -1273,7 +1273,7 @@ name|sort
 argument_list|)
 decl_stmt|;
 specifier|final
-name|AtomicReader
+name|LeafReader
 name|sortedReader2
 init|=
 name|SlowCompositeReaderWrapper

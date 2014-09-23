@@ -40,7 +40,7 @@ name|lucene
 operator|.
 name|index
 operator|.
-name|AtomicReader
+name|LeafReader
 import|;
 end_import
 
@@ -940,8 +940,8 @@ specifier|public
 name|void
 name|train
 parameter_list|(
-name|AtomicReader
-name|atomicReader
+name|LeafReader
+name|leafReader
 parameter_list|,
 name|String
 name|textFieldName
@@ -957,7 +957,7 @@ name|IOException
 block|{
 name|train
 argument_list|(
-name|atomicReader
+name|leafReader
 argument_list|,
 name|textFieldName
 argument_list|,
@@ -977,8 +977,8 @@ specifier|public
 name|void
 name|train
 parameter_list|(
-name|AtomicReader
-name|atomicReader
+name|LeafReader
+name|leafReader
 parameter_list|,
 name|String
 name|textFieldName
@@ -997,7 +997,7 @@ name|IOException
 block|{
 name|train
 argument_list|(
-name|atomicReader
+name|leafReader
 argument_list|,
 operator|new
 name|String
@@ -1022,8 +1022,8 @@ specifier|public
 name|void
 name|train
 parameter_list|(
-name|AtomicReader
-name|atomicReader
+name|LeafReader
+name|leafReader
 parameter_list|,
 name|String
 index|[]
@@ -1058,7 +1058,7 @@ operator|=
 operator|new
 name|MoreLikeThis
 argument_list|(
-name|atomicReader
+name|leafReader
 argument_list|)
 expr_stmt|;
 name|mlt
@@ -1080,7 +1080,7 @@ operator|=
 operator|new
 name|IndexSearcher
 argument_list|(
-name|atomicReader
+name|leafReader
 argument_list|)
 expr_stmt|;
 if|if

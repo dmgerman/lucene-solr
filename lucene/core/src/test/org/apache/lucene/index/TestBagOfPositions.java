@@ -894,7 +894,7 @@ name|size
 argument_list|()
 argument_list|)
 expr_stmt|;
-name|AtomicReader
+name|LeafReader
 name|air
 init|=
 name|ir

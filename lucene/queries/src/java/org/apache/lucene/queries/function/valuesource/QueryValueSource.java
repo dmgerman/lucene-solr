@@ -30,7 +30,7 @@ name|lucene
 operator|.
 name|index
 operator|.
-name|AtomicReaderContext
+name|LeafReaderContext
 import|;
 end_import
 
@@ -274,7 +274,7 @@ parameter_list|(
 name|Map
 name|fcontext
 parameter_list|,
-name|AtomicReaderContext
+name|LeafReaderContext
 name|readerContext
 parameter_list|)
 throws|throws
@@ -411,7 +411,7 @@ name|FloatDocValues
 block|{
 DECL|field|readerContext
 specifier|final
-name|AtomicReaderContext
+name|LeafReaderContext
 name|readerContext
 decl_stmt|;
 DECL|field|acceptDocs
@@ -471,7 +471,7 @@ parameter_list|(
 name|QueryValueSource
 name|vs
 parameter_list|,
-name|AtomicReaderContext
+name|LeafReaderContext
 name|readerContext
 parameter_list|,
 name|Map

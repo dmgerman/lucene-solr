@@ -56,7 +56,7 @@ name|lucene
 operator|.
 name|index
 operator|.
-name|AtomicReaderContext
+name|LeafReaderContext
 import|;
 end_import
 
@@ -4628,7 +4628,7 @@ decl_stmt|;
 specifier|final
 name|List
 argument_list|<
-name|AtomicReaderContext
+name|LeafReaderContext
 argument_list|>
 name|leaves
 init|=
@@ -9704,7 +9704,7 @@ specifier|private
 specifier|final
 name|List
 argument_list|<
-name|AtomicReaderContext
+name|LeafReaderContext
 argument_list|>
 name|ctx
 decl_stmt|;
@@ -9712,7 +9712,7 @@ DECL|method|ShardSearcher
 specifier|public
 name|ShardSearcher
 parameter_list|(
-name|AtomicReaderContext
+name|LeafReaderContext
 name|ctx
 parameter_list|,
 name|IndexReaderContext

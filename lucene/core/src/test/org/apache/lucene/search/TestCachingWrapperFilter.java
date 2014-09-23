@@ -92,7 +92,7 @@ name|lucene
 operator|.
 name|index
 operator|.
-name|AtomicReaderContext
+name|LeafReaderContext
 import|;
 end_import
 
@@ -1064,11 +1064,11 @@ name|dir
 argument_list|)
 argument_list|)
 decl_stmt|;
-name|AtomicReaderContext
+name|LeafReaderContext
 name|context
 init|=
 operator|(
-name|AtomicReaderContext
+name|LeafReaderContext
 operator|)
 name|reader
 operator|.
@@ -1224,11 +1224,11 @@ name|dir
 argument_list|)
 argument_list|)
 decl_stmt|;
-name|AtomicReaderContext
+name|LeafReaderContext
 name|context
 init|=
 operator|(
-name|AtomicReaderContext
+name|LeafReaderContext
 operator|)
 name|reader
 operator|.
@@ -1249,7 +1249,7 @@ specifier|public
 name|DocIdSet
 name|getDocIdSet
 parameter_list|(
-name|AtomicReaderContext
+name|LeafReaderContext
 name|context
 parameter_list|,
 name|Bits
@@ -1347,11 +1347,11 @@ name|dir
 argument_list|)
 argument_list|)
 decl_stmt|;
-name|AtomicReaderContext
+name|LeafReaderContext
 name|context
 init|=
 operator|(
-name|AtomicReaderContext
+name|LeafReaderContext
 operator|)
 name|reader
 operator|.
@@ -1372,7 +1372,7 @@ specifier|public
 name|DocIdSet
 name|getDocIdSet
 parameter_list|(
-name|AtomicReaderContext
+name|LeafReaderContext
 name|context
 parameter_list|,
 name|Bits
@@ -1475,14 +1475,14 @@ operator|.
 name|getContext
 argument_list|()
 operator|instanceof
-name|AtomicReaderContext
+name|LeafReaderContext
 argument_list|)
 expr_stmt|;
-name|AtomicReaderContext
+name|LeafReaderContext
 name|context
 init|=
 operator|(
-name|AtomicReaderContext
+name|LeafReaderContext
 operator|)
 name|reader
 operator|.
@@ -1796,7 +1796,7 @@ specifier|public
 name|DocIdSet
 name|getDocIdSet
 parameter_list|(
-name|AtomicReaderContext
+name|LeafReaderContext
 name|context
 parameter_list|,
 name|Bits

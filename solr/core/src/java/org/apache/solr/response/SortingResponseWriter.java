@@ -26,7 +26,7 @@ name|lucene
 operator|.
 name|index
 operator|.
-name|AtomicReaderContext
+name|LeafReaderContext
 import|;
 end_import
 
@@ -40,7 +40,7 @@ name|lucene
 operator|.
 name|index
 operator|.
-name|AtomicReader
+name|LeafReader
 import|;
 end_import
 
@@ -167,20 +167,6 @@ operator|.
 name|util
 operator|.
 name|BytesRef
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|util
-operator|.
-name|CharsRef
 import|;
 end_import
 
@@ -487,16 +473,6 @@ operator|.
 name|io
 operator|.
 name|PrintWriter
-import|;
-end_import
-
-begin_import
-import|import
-name|java
-operator|.
-name|net
-operator|.
-name|SocketException
 import|;
 end_import
 
@@ -895,7 +871,7 @@ expr_stmt|;
 comment|//Write the data.
 name|List
 argument_list|<
-name|AtomicReaderContext
+name|LeafReaderContext
 argument_list|>
 name|leaves
 init|=
@@ -1361,7 +1337,7 @@ name|sortDoc
 parameter_list|,
 name|List
 argument_list|<
-name|AtomicReaderContext
+name|LeafReaderContext
 argument_list|>
 name|leaves
 parameter_list|,
@@ -1403,7 +1379,7 @@ operator|.
 name|docId
 argument_list|)
 expr_stmt|;
-name|AtomicReaderContext
+name|LeafReaderContext
 name|context
 init|=
 name|leaves
@@ -2115,12 +2091,12 @@ operator|instanceof
 name|StrField
 condition|)
 block|{
-name|AtomicReader
+name|LeafReader
 name|reader
 init|=
 name|searcher
 operator|.
-name|getAtomicReader
+name|getLeafReader
 argument_list|()
 decl_stmt|;
 name|SortedDocValues
@@ -2533,7 +2509,7 @@ specifier|public
 name|void
 name|setNextReader
 parameter_list|(
-name|AtomicReaderContext
+name|LeafReaderContext
 name|context
 parameter_list|)
 throws|throws
@@ -2886,7 +2862,7 @@ specifier|public
 name|void
 name|setNextReader
 parameter_list|(
-name|AtomicReaderContext
+name|LeafReaderContext
 name|context
 parameter_list|)
 throws|throws
@@ -3163,7 +3139,7 @@ specifier|public
 name|void
 name|setNextReader
 parameter_list|(
-name|AtomicReaderContext
+name|LeafReaderContext
 name|context
 parameter_list|)
 throws|throws
@@ -3528,7 +3504,7 @@ specifier|public
 name|void
 name|setNextReader
 parameter_list|(
-name|AtomicReaderContext
+name|LeafReaderContext
 name|context
 parameter_list|)
 throws|throws
@@ -3999,7 +3975,7 @@ specifier|public
 name|void
 name|setNextReader
 parameter_list|(
-name|AtomicReaderContext
+name|LeafReaderContext
 name|context
 parameter_list|)
 throws|throws
@@ -4586,7 +4562,7 @@ specifier|public
 name|void
 name|setNextReader
 parameter_list|(
-name|AtomicReaderContext
+name|LeafReaderContext
 name|context
 parameter_list|)
 throws|throws
@@ -4694,7 +4670,7 @@ specifier|public
 name|void
 name|setNextReader
 parameter_list|(
-name|AtomicReaderContext
+name|LeafReaderContext
 name|context
 parameter_list|)
 throws|throws
@@ -5031,7 +5007,7 @@ specifier|public
 name|void
 name|setNextReader
 parameter_list|(
-name|AtomicReaderContext
+name|LeafReaderContext
 name|context
 parameter_list|)
 throws|throws
@@ -5371,7 +5347,7 @@ specifier|public
 name|void
 name|setNextReader
 parameter_list|(
-name|AtomicReaderContext
+name|LeafReaderContext
 name|context
 parameter_list|)
 throws|throws
@@ -5722,7 +5698,7 @@ specifier|public
 name|void
 name|setNextReader
 parameter_list|(
-name|AtomicReaderContext
+name|LeafReaderContext
 name|context
 parameter_list|)
 throws|throws
@@ -6238,7 +6214,7 @@ specifier|public
 name|void
 name|setNextReader
 parameter_list|(
-name|AtomicReaderContext
+name|LeafReaderContext
 name|context
 parameter_list|)
 block|{
@@ -6359,7 +6335,7 @@ parameter_list|(
 name|int
 name|docId
 parameter_list|,
-name|AtomicReader
+name|LeafReader
 name|reader
 parameter_list|,
 name|Writer
@@ -6403,7 +6379,7 @@ parameter_list|(
 name|int
 name|docId
 parameter_list|,
-name|AtomicReader
+name|LeafReader
 name|reader
 parameter_list|,
 name|Writer
@@ -6552,7 +6528,7 @@ parameter_list|(
 name|int
 name|docId
 parameter_list|,
-name|AtomicReader
+name|LeafReader
 name|reader
 parameter_list|,
 name|Writer
@@ -6763,7 +6739,7 @@ parameter_list|(
 name|int
 name|docId
 parameter_list|,
-name|AtomicReader
+name|LeafReader
 name|reader
 parameter_list|,
 name|Writer
@@ -6872,7 +6848,7 @@ parameter_list|(
 name|int
 name|docId
 parameter_list|,
-name|AtomicReader
+name|LeafReader
 name|reader
 parameter_list|,
 name|Writer
@@ -6989,7 +6965,7 @@ parameter_list|(
 name|int
 name|docId
 parameter_list|,
-name|AtomicReader
+name|LeafReader
 name|reader
 parameter_list|,
 name|Writer
@@ -7126,7 +7102,7 @@ parameter_list|(
 name|int
 name|docId
 parameter_list|,
-name|AtomicReader
+name|LeafReader
 name|reader
 parameter_list|,
 name|Writer

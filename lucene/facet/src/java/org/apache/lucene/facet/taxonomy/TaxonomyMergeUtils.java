@@ -96,7 +96,7 @@ name|lucene
 operator|.
 name|index
 operator|.
-name|AtomicReader
+name|LeafReader
 import|;
 end_import
 
@@ -110,7 +110,7 @@ name|lucene
 operator|.
 name|index
 operator|.
-name|AtomicReaderContext
+name|LeafReaderContext
 import|;
 end_import
 
@@ -251,7 +251,7 @@ try|try
 block|{
 name|List
 argument_list|<
-name|AtomicReaderContext
+name|LeafReaderContext
 argument_list|>
 name|leaves
 init|=
@@ -268,12 +268,12 @@ operator|.
 name|size
 argument_list|()
 decl_stmt|;
-name|AtomicReader
+name|LeafReader
 name|wrappedLeaves
 index|[]
 init|=
 operator|new
-name|AtomicReader
+name|LeafReader
 index|[
 name|numReaders
 index|]
@@ -299,7 +299,7 @@ name|i
 index|]
 operator|=
 operator|new
-name|OrdinalMappingAtomicReader
+name|OrdinalMappingLeafReader
 argument_list|(
 name|leaves
 operator|.
