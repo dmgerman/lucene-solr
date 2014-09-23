@@ -83,7 +83,7 @@ operator|.
 name|alwaysPostingsFormat
 argument_list|(
 operator|new
-name|TestBloomFilteredLucene41Postings
+name|TestBloomFilteredLucenePostings
 argument_list|()
 argument_list|)
 decl_stmt|;

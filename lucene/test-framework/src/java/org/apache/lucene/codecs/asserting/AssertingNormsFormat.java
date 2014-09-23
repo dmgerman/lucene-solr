@@ -185,7 +185,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Just like {@link Lucene49NormsFormat} but with additional asserts.  */
+comment|/**  * Just like the default but with additional asserts.  */
 end_comment
 
 begin_class
@@ -202,8 +202,12 @@ specifier|final
 name|NormsFormat
 name|in
 init|=
-operator|new
-name|Lucene49NormsFormat
+name|TestUtil
+operator|.
+name|getDefaultCodec
+argument_list|()
+operator|.
+name|normsFormat
 argument_list|()
 decl_stmt|;
 annotation|@

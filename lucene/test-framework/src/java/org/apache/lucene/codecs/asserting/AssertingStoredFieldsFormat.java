@@ -78,22 +78,6 @@ name|apache
 operator|.
 name|lucene
 operator|.
-name|codecs
-operator|.
-name|lucene41
-operator|.
-name|Lucene41StoredFieldsFormat
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
 name|index
 operator|.
 name|FieldInfo
@@ -213,7 +197,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Just like {@link Lucene41StoredFieldsFormat} but with additional asserts.  */
+comment|/**  * Just like the default stored fields format but with additional asserts.  */
 end_comment
 
 begin_class
@@ -230,8 +214,12 @@ specifier|final
 name|StoredFieldsFormat
 name|in
 init|=
-operator|new
-name|Lucene41StoredFieldsFormat
+name|TestUtil
+operator|.
+name|getDefaultCodec
+argument_list|()
+operator|.
+name|storedFieldsFormat
 argument_list|()
 decl_stmt|;
 annotation|@

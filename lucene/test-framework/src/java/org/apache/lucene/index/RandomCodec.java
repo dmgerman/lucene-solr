@@ -146,6 +146,22 @@ name|codecs
 operator|.
 name|asserting
 operator|.
+name|AssertingCodec
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|codecs
+operator|.
+name|asserting
+operator|.
 name|AssertingDocValuesFormat
 import|;
 end_import
@@ -176,9 +192,9 @@ name|lucene
 operator|.
 name|codecs
 operator|.
-name|bloom
+name|blocktreeords
 operator|.
-name|TestBloomFilteredLucene41Postings
+name|Ords41PostingsFormat
 import|;
 end_import
 
@@ -192,9 +208,9 @@ name|lucene
 operator|.
 name|codecs
 operator|.
-name|lucene41
+name|bloom
 operator|.
-name|Lucene41PostingsFormat
+name|TestBloomFilteredLucenePostings
 import|;
 end_import
 
@@ -243,38 +259,6 @@ operator|.
 name|lucene41vargap
 operator|.
 name|Lucene41VarGapFixedInterval
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|codecs
-operator|.
-name|lucene410
-operator|.
-name|Lucene410Codec
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|codecs
-operator|.
-name|lucene410
-operator|.
-name|Lucene410DocValuesFormat
 import|;
 end_import
 
@@ -444,7 +428,7 @@ specifier|public
 class|class
 name|RandomCodec
 extends|extends
-name|Lucene410Codec
+name|AssertingCodec
 block|{
 comment|/** Shuffled list of postings formats to use for new mappings */
 DECL|field|formats
@@ -903,8 +887,9 @@ name|add
 argument_list|(
 name|avoidCodecs
 argument_list|,
-operator|new
-name|Lucene41PostingsFormat
+name|TestUtil
+operator|.
+name|getDefaultPostingsFormat
 argument_list|(
 name|minItemsPerBlock
 argument_list|,
@@ -975,13 +960,21 @@ comment|//TODO as a PostingsFormat which wraps others, we should allow TestBloom
 comment|//with a choice of concrete PostingsFormats. Maybe useful to have a generic means of marking and dealing
 comment|//with such "wrapper" classes?
 operator|new
-name|TestBloomFilteredLucene41Postings
+name|TestBloomFilteredLucenePostings
 argument_list|()
 argument_list|,
 operator|new
 name|MockRandomPostingsFormat
 argument_list|(
 name|random
+argument_list|)
+argument_list|,
+operator|new
+name|Ords41PostingsFormat
+argument_list|(
+name|minItemsPerBlock
+argument_list|,
+name|maxItemsPerBlock
 argument_list|)
 argument_list|,
 operator|new
@@ -1075,8 +1068,9 @@ name|addDocValues
 argument_list|(
 name|avoidCodecs
 argument_list|,
-operator|new
-name|Lucene410DocValuesFormat
+name|TestUtil
+operator|.
+name|getDefaultDocValuesFormat
 argument_list|()
 argument_list|,
 operator|new

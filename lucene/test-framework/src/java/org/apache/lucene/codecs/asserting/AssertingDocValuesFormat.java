@@ -88,22 +88,6 @@ name|apache
 operator|.
 name|lucene
 operator|.
-name|codecs
-operator|.
-name|lucene410
-operator|.
-name|Lucene410DocValuesFormat
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
 name|index
 operator|.
 name|AssertingAtomicReader
@@ -353,7 +337,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Just like {@link Lucene410DocValuesFormat} but with additional asserts.  */
+comment|/**  * Just like the default but with additional asserts.  */
 end_comment
 
 begin_class
@@ -370,8 +354,9 @@ specifier|final
 name|DocValuesFormat
 name|in
 init|=
-operator|new
-name|Lucene410DocValuesFormat
+name|TestUtil
+operator|.
+name|getDefaultDocValuesFormat
 argument_list|()
 decl_stmt|;
 DECL|method|AssertingDocValuesFormat

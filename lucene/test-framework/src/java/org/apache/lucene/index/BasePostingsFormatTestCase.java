@@ -284,9 +284,9 @@ name|lucene
 operator|.
 name|codecs
 operator|.
-name|lucene410
+name|asserting
 operator|.
-name|Lucene410Codec
+name|AssertingCodec
 import|;
 end_import
 
@@ -8535,7 +8535,7 @@ operator|.
 name|setCodec
 argument_list|(
 operator|new
-name|Lucene410Codec
+name|AssertingCodec
 argument_list|()
 block|{
 annotation|@
