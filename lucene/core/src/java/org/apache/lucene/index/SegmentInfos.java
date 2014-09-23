@@ -2706,9 +2706,10 @@ return|return
 name|files
 return|;
 block|}
+comment|/** Returns the committed segments_N filename. */
 DECL|method|finishCommit
 specifier|final
-name|void
+name|String
 name|finishCommit
 parameter_list|(
 name|Directory
@@ -2737,6 +2738,10 @@ name|success
 init|=
 literal|false
 decl_stmt|;
+specifier|final
+name|String
+name|dest
+decl_stmt|;
 try|try
 block|{
 specifier|final
@@ -2756,10 +2761,8 @@ argument_list|,
 name|generation
 argument_list|)
 decl_stmt|;
-specifier|final
-name|String
 name|dest
-init|=
+operator|=
 name|IndexFileNames
 operator|.
 name|fileNameFromGeneration
@@ -2772,7 +2775,7 @@ literal|""
 argument_list|,
 name|generation
 argument_list|)
-decl_stmt|;
+expr_stmt|;
 name|dir
 operator|.
 name|renameFile
@@ -2811,6 +2814,9 @@ name|lastGeneration
 operator|=
 name|generation
 expr_stmt|;
+return|return
+name|dest
+return|;
 block|}
 comment|/** Writes& syncs to the Directory dir, taking care to    *  remove the segments file on exception    *<p>    *  Note: {@link #changed()} should be called prior to this    *  method if changes have been made to this {@link SegmentInfos} instance    *</p>      **/
 DECL|method|commit
