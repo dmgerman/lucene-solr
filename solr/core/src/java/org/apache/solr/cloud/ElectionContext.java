@@ -2196,6 +2196,8 @@ argument_list|,
 name|coreNodeProps
 argument_list|,
 literal|120
+argument_list|,
+name|coreNodeName
 argument_list|)
 decl_stmt|;
 name|zkController

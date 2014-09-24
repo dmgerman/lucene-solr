@@ -298,6 +298,11 @@ specifier|protected
 name|int
 name|maxTries
 decl_stmt|;
+DECL|field|leaderCoreNodeName
+specifier|protected
+name|String
+name|leaderCoreNodeName
+decl_stmt|;
 DECL|method|LeaderInitiatedRecoveryThread
 specifier|public
 name|LeaderInitiatedRecoveryThread
@@ -319,6 +324,9 @@ name|nodeProps
 parameter_list|,
 name|int
 name|maxTries
+parameter_list|,
+name|String
+name|leaderCoreNodeName
 parameter_list|)
 block|{
 name|super
@@ -366,6 +374,12 @@ operator|.
 name|maxTries
 operator|=
 name|maxTries
+expr_stmt|;
+name|this
+operator|.
+name|leaderCoreNodeName
+operator|=
+name|leaderCoreNodeName
 expr_stmt|;
 name|setDaemon
 argument_list|(
@@ -602,7 +616,7 @@ name|continueTrying
 operator|&&
 operator|++
 name|tries
-operator|<
+operator|<=
 name|maxTries
 condition|)
 block|{
@@ -832,7 +846,7 @@ literal|"Stop trying to send recovery command to downed replica core={} coreNode
 operator|+
 name|replicaNodeName
 operator|+
-literal|" because my core container is close."
+literal|" because my core container is closed."
 argument_list|,
 name|coreNeedingRecovery
 argument_list|,
@@ -914,6 +928,120 @@ operator|=
 literal|false
 expr_stmt|;
 break|break;
+block|}
+comment|// stop trying if I'm no longer the leader
+if|if
+condition|(
+name|leaderCoreNodeName
+operator|!=
+literal|null
+operator|&&
+name|collection
+operator|!=
+literal|null
+condition|)
+block|{
+name|String
+name|leaderCoreNodeNameFromZk
+init|=
+literal|null
+decl_stmt|;
+try|try
+block|{
+name|leaderCoreNodeNameFromZk
+operator|=
+name|zkController
+operator|.
+name|getZkStateReader
+argument_list|()
+operator|.
+name|getLeaderRetry
+argument_list|(
+name|collection
+argument_list|,
+name|shardId
+argument_list|,
+literal|1000
+argument_list|)
+operator|.
+name|getName
+argument_list|()
+expr_stmt|;
+block|}
+catch|catch
+parameter_list|(
+name|Exception
+name|exc
+parameter_list|)
+block|{
+name|log
+operator|.
+name|error
+argument_list|(
+literal|"Failed to determine if "
+operator|+
+name|leaderCoreNodeName
+operator|+
+literal|" is still the leader for "
+operator|+
+name|collection
+operator|+
+literal|" "
+operator|+
+name|shardId
+operator|+
+literal|" before starting leader-initiated recovery thread for "
+operator|+
+name|replicaUrl
+operator|+
+literal|" due to: "
+operator|+
+name|exc
+argument_list|)
+expr_stmt|;
+block|}
+if|if
+condition|(
+operator|!
+name|leaderCoreNodeName
+operator|.
+name|equals
+argument_list|(
+name|leaderCoreNodeNameFromZk
+argument_list|)
+condition|)
+block|{
+name|log
+operator|.
+name|warn
+argument_list|(
+literal|"Stop trying to send recovery command to downed replica core="
+operator|+
+name|coreNeedingRecovery
+operator|+
+literal|",coreNodeName="
+operator|+
+name|replicaCoreNodeName
+operator|+
+literal|" on "
+operator|+
+name|replicaNodeName
+operator|+
+literal|" because "
+operator|+
+name|leaderCoreNodeName
+operator|+
+literal|" is no longer the leader! New leader is "
+operator|+
+name|leaderCoreNodeNameFromZk
+argument_list|)
+expr_stmt|;
+name|continueTrying
+operator|=
+literal|false
+expr_stmt|;
+break|break;
+block|}
 block|}
 comment|// additional safeguard against the replica trying to be in the active state
 comment|// before acknowledging the leader initiated recovery command

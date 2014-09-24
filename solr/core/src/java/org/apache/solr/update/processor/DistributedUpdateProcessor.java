@@ -4229,7 +4229,9 @@ name|getParamString
 argument_list|()
 argument_list|)
 expr_stmt|;
-throw|throw
+name|SolrException
+name|solrExc
+init|=
 operator|new
 name|SolrException
 argument_list|(
@@ -4239,6 +4241,18 @@ name|SERVICE_UNAVAILABLE
 argument_list|,
 literal|"Request says it is coming from leader, but we are the leader"
 argument_list|)
+decl_stmt|;
+name|solrExc
+operator|.
+name|setMetadata
+argument_list|(
+literal|"cause"
+argument_list|,
+literal|"LeaderChanged"
+argument_list|)
+expr_stmt|;
+throw|throw
+name|solrExc
 throw|;
 block|}
 block|}
@@ -5443,6 +5457,78 @@ operator|.
 name|getUrl
 argument_list|()
 decl_stmt|;
+comment|// if the remote replica failed the request because of leader change (SOLR-6511), then fail the request
+name|String
+name|cause
+init|=
+operator|(
+name|error
+operator|.
+name|e
+operator|instanceof
+name|SolrException
+operator|)
+condition|?
+operator|(
+operator|(
+name|SolrException
+operator|)
+name|error
+operator|.
+name|e
+operator|)
+operator|.
+name|getMetadata
+argument_list|(
+literal|"cause"
+argument_list|)
+else|:
+literal|null
+decl_stmt|;
+if|if
+condition|(
+literal|"LeaderChanged"
+operator|.
+name|equals
+argument_list|(
+name|cause
+argument_list|)
+condition|)
+block|{
+comment|// let's just fail this request and let the client retry? or just call processAdd again?
+name|log
+operator|.
+name|error
+argument_list|(
+literal|"On "
+operator|+
+name|cloudDesc
+operator|.
+name|getCoreNodeName
+argument_list|()
+operator|+
+literal|", replica "
+operator|+
+name|replicaUrl
+operator|+
+literal|" now thinks it is the leader! Failing the request to let the client retry! "
+operator|+
+name|error
+operator|.
+name|e
+argument_list|)
+expr_stmt|;
+name|rsp
+operator|.
+name|setException
+argument_list|(
+name|error
+operator|.
+name|e
+argument_list|)
+expr_stmt|;
+break|break;
+block|}
 name|int
 name|maxTries
 init|=
@@ -5500,6 +5586,80 @@ operator|.
 name|getShardId
 argument_list|()
 expr_stmt|;
+comment|// before we go setting other replicas to down, make sure we're still the leader!
+name|String
+name|leaderCoreNodeName
+init|=
+literal|null
+decl_stmt|;
+try|try
+block|{
+name|leaderCoreNodeName
+operator|=
+name|zkController
+operator|.
+name|getZkStateReader
+argument_list|()
+operator|.
+name|getLeaderRetry
+argument_list|(
+name|collection
+argument_list|,
+name|shardId
+argument_list|)
+operator|.
+name|getName
+argument_list|()
+expr_stmt|;
+block|}
+catch|catch
+parameter_list|(
+name|Exception
+name|exc
+parameter_list|)
+block|{
+name|log
+operator|.
+name|error
+argument_list|(
+literal|"Failed to determine if "
+operator|+
+name|cloudDesc
+operator|.
+name|getCoreNodeName
+argument_list|()
+operator|+
+literal|" is still the leader for "
+operator|+
+name|collection
+operator|+
+literal|" "
+operator|+
+name|shardId
+operator|+
+literal|" before putting "
+operator|+
+name|replicaUrl
+operator|+
+literal|" into leader-initiated recovery due to: "
+operator|+
+name|exc
+argument_list|)
+expr_stmt|;
+block|}
+if|if
+condition|(
+name|cloudDesc
+operator|.
+name|getCoreNodeName
+argument_list|()
+operator|.
+name|equals
+argument_list|(
+name|leaderCoreNodeName
+argument_list|)
+condition|)
+block|{
 try|try
 block|{
 comment|// if false, then the node is probably not "live" anymore
@@ -5538,6 +5698,43 @@ comment|// else the node is no longer "live" so no need to send any recovery com
 block|}
 catch|catch
 parameter_list|(
+name|KeeperException
+operator|.
+name|SessionExpiredException
+name|see
+parameter_list|)
+block|{
+name|log
+operator|.
+name|error
+argument_list|(
+literal|"Leader failed to set replica "
+operator|+
+name|error
+operator|.
+name|req
+operator|.
+name|node
+operator|.
+name|getUrl
+argument_list|()
+operator|+
+literal|" state to DOWN due to: "
+operator|+
+name|see
+argument_list|,
+name|see
+argument_list|)
+expr_stmt|;
+comment|// our session is expired, which means our state is suspect, so don't go
+comment|// putting other replicas in recovery (see SOLR-6511)
+name|sendRecoveryCommand
+operator|=
+literal|false
+expr_stmt|;
+block|}
+catch|catch
+parameter_list|(
 name|Exception
 name|e
 parameter_list|)
@@ -5562,6 +5759,38 @@ operator|+
 name|e
 argument_list|,
 name|e
+argument_list|)
+expr_stmt|;
+comment|// will go ahead and try to send the recovery command once after this error
+block|}
+block|}
+else|else
+block|{
+comment|// not the leader anymore maybe?
+name|sendRecoveryCommand
+operator|=
+literal|false
+expr_stmt|;
+name|log
+operator|.
+name|warn
+argument_list|(
+literal|"Core "
+operator|+
+name|cloudDesc
+operator|.
+name|getCoreNodeName
+argument_list|()
+operator|+
+literal|" is no longer the leader for "
+operator|+
+name|collection
+operator|+
+literal|" "
+operator|+
+name|shardId
+operator|+
+literal|", no request recovery command will be sent!"
 argument_list|)
 expr_stmt|;
 block|}
@@ -5638,8 +5867,14 @@ name|getNodeProps
 argument_list|()
 argument_list|,
 name|maxTries
+argument_list|,
+name|cloudDesc
+operator|.
+name|getCoreNodeName
+argument_list|()
 argument_list|)
 decl_stmt|;
+comment|// core node name of current leader
 name|ExecutorService
 name|executor
 init|=
