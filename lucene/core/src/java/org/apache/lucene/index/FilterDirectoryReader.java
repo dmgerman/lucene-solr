@@ -49,7 +49,7 @@ name|FilterDirectoryReader
 extends|extends
 name|DirectoryReader
 block|{
-comment|/**    * Factory class passed to FilterDirectoryReader constructor that allows    * subclasses to wrap the filtered DirectoryReader's subreaders.  You    * can use this to, e.g., wrap the subreaders with specialised    * FilterAtomicReader implementations.    */
+comment|/**    * Factory class passed to FilterDirectoryReader constructor that allows    * subclasses to wrap the filtered DirectoryReader's subreaders.  You    * can use this to, e.g., wrap the subreaders with specialised    * FilterLeafReader implementations.    */
 DECL|class|SubReaderWrapper
 specifier|public
 specifier|static
@@ -129,7 +129,7 @@ specifier|public
 name|SubReaderWrapper
 parameter_list|()
 block|{}
-comment|/**      * Wrap one of the parent DirectoryReader's subreaders      * @param reader the subreader to wrap      * @return a wrapped/filtered AtomicReader      */
+comment|/**      * Wrap one of the parent DirectoryReader's subreaders      * @param reader the subreader to wrap      * @return a wrapped/filtered LeafReader      */
 DECL|method|wrap
 specifier|public
 specifier|abstract

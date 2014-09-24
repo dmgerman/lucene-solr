@@ -379,7 +379,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * A FilterReader that exposes<i>indexed</i> values as if they also had  * docvalues.  *<p>  * This is accomplished by "inverting the inverted index" or "uninversion".  *<p>  * The uninversion process happens lazily: upon the first request for the   * field's docvalues (e.g. via {@link org.apache.lucene.index.LeafReader#getNumericDocValues(String)}   * or similar), it will create the docvalues on-the-fly if needed and cache it,  * based on the core cache key of the wrapped AtomicReader.  */
+comment|/**  * A FilterReader that exposes<i>indexed</i> values as if they also had  * docvalues.  *<p>  * This is accomplished by "inverting the inverted index" or "uninversion".  *<p>  * The uninversion process happens lazily: upon the first request for the   * field's docvalues (e.g. via {@link org.apache.lucene.index.LeafReader#getNumericDocValues(String)}   * or similar), it will create the docvalues on-the-fly if needed and cache it,  * based on the core cache key of the wrapped LeafReader.  */
 end_comment
 
 begin_class

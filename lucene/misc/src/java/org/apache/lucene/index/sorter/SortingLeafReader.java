@@ -439,7 +439,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * An {@link org.apache.lucene.index.LeafReader} which supports sorting documents by a given  * {@link Sort}. You can use this class to sort an index as follows:  *   *<pre class="prettyprint">  * IndexWriter writer; // writer to which the sorted index will be added  * DirectoryReader reader; // reader on the input index  * Sort sort; // determines how the documents are sorted  * AtomicReader sortingReader = SortingAtomicReader.wrap(SlowCompositeReaderWrapper.wrap(reader), sort);  * writer.addIndexes(reader);  * writer.close();  * reader.close();  *</pre>  *   * @lucene.experimental  */
+comment|/**  * An {@link org.apache.lucene.index.LeafReader} which supports sorting documents by a given  * {@link Sort}. You can use this class to sort an index as follows:  *   *<pre class="prettyprint">  * IndexWriter writer; // writer to which the sorted index will be added  * DirectoryReader reader; // reader on the input index  * Sort sort; // determines how the documents are sorted  * LeafReader sortingReader = SortingLeafReader.wrap(SlowCompositeReaderWrapper.wrap(reader), sort);  * writer.addIndexes(reader);  * writer.close();  * reader.close();  *</pre>  *   * @lucene.experimental  */
 end_comment
 
 begin_class

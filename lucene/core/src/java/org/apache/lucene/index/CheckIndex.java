@@ -622,7 +622,7 @@ specifier|public
 name|long
 name|deletionsGen
 decl_stmt|;
-comment|/** True if we were able to open an AtomicReader on this        *  segment. */
+comment|/** True if we were able to open an LeafReader on this        *  segment. */
 DECL|field|openReaderPassed
 specifier|public
 name|boolean

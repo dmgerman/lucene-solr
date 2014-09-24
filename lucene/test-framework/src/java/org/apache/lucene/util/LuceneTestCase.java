@@ -7077,7 +7077,7 @@ break|break;
 case|case
 literal|1
 case|:
-comment|// will create no FC insanity in atomic case, as ParallelAtomicReader has own cache key:
+comment|// will create no FC insanity in atomic case, as ParallelLeafReader has own cache key:
 name|r
 operator|=
 operator|(
@@ -7218,7 +7218,7 @@ name|end
 argument_list|)
 argument_list|)
 decl_stmt|;
-comment|// will create no FC insanity as ParallelAtomicReader has own cache key:
+comment|// will create no FC insanity as ParallelLeafReader has own cache key:
 name|r
 operator|=
 operator|new

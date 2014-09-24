@@ -2509,7 +2509,7 @@ name|s
 operator|.
 name|startsWith
 argument_list|(
-literal|"ParallelCompositeReader(ParallelAtomicReader("
+literal|"ParallelCompositeReader(ParallelLeafReader("
 argument_list|)
 argument_list|)
 expr_stmt|;
@@ -2588,7 +2588,7 @@ name|s
 operator|.
 name|startsWith
 argument_list|(
-literal|"ParallelCompositeReader(ParallelCompositeReader(ParallelAtomicReader("
+literal|"ParallelCompositeReader(ParallelCompositeReader(ParallelLeafReader("
 argument_list|)
 argument_list|)
 expr_stmt|;

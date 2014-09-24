@@ -635,7 +635,7 @@ block|}
 comment|// A RangeValueSource can't easily be a ValueSource that takes another ValueSource
 comment|// because it needs different behavior depending on the type of fields.  There is also
 comment|// a setup cost - parsing and normalizing params, and doing a binary search on the StringIndex.
-comment|// TODO: change "reader" to AtomicReaderContext
+comment|// TODO: change "reader" to LeafReaderContext
 DECL|method|getRangeScorer
 specifier|public
 name|ValueSourceScorer

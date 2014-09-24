@@ -92,7 +92,7 @@ operator|=
 name|numberScanned
 expr_stmt|;
 block|}
-comment|/**    * The total number of documents in the index that were "scanned" by     * the index when collecting the {@link #getNumberCollected()} documents     * that triggered this exception.    *<p>    * This number represents the sum of:    *</p>    *<ul>    *<li>The total number of documents in all AtomicReaders    *      that were fully exhausted during collection    *</li>    *<li>The id of the last doc collected in the last AtomicReader    *      consulted during collection.    *</li>    *</ul>    **/
+comment|/**    * The total number of documents in the index that were "scanned" by     * the index when collecting the {@link #getNumberCollected()} documents     * that triggered this exception.    *<p>    * This number represents the sum of:    *</p>    *<ul>    *<li>The total number of documents in all LeafReaders    *      that were fully exhausted during collection    *</li>    *<li>The id of the last doc collected in the last LeafReader    *      consulted during collection.    *</li>    *</ul>    **/
 DECL|method|getNumberScanned
 specifier|public
 name|int

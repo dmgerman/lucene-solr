@@ -586,7 +586,7 @@ block|}
 return|;
 block|}
 comment|// some helpers, for transition from fieldcache apis.
-comment|// as opposed to the AtomicReader apis (which must be strict for consistency), these are lenient
+comment|// as opposed to the LeafReader apis (which must be strict for consistency), these are lenient
 comment|/**    * Returns NumericDocValues for the reader, or {@link #emptyNumeric()} if it has none.     */
 DECL|method|getNumeric
 specifier|public

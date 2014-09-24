@@ -118,11 +118,11 @@ name|SorterTestBase
 block|{
 annotation|@
 name|BeforeClass
-DECL|method|beforeClassSortingAtomicReaderTest
+DECL|method|beforeClassSortingLeafReaderTest
 specifier|public
 specifier|static
 name|void
-name|beforeClassSortingAtomicReaderTest
+name|beforeClassSortingLeafReaderTest
 parameter_list|()
 throws|throws
 name|Exception

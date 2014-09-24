@@ -385,10 +385,10 @@ comment|/*  * Licensed to the Apache Software Foundation (ASF) under one or more
 end_comment
 
 begin_class
-DECL|class|TestOrdinalMappingAtomicReader
+DECL|class|TestOrdinalMappingLeafReader
 specifier|public
 class|class
-name|TestOrdinalMappingAtomicReader
+name|TestOrdinalMappingLeafReader
 extends|extends
 name|FacetTestCase
 block|{
@@ -976,7 +976,7 @@ argument_list|)
 argument_list|)
 argument_list|)
 expr_stmt|;
-comment|// make sure OrdinalMappingAtomicReader ignores non-facet BinaryDocValues fields
+comment|// make sure OrdinalMappingLeafReader ignores non-facet BinaryDocValues fields
 name|doc
 operator|.
 name|add

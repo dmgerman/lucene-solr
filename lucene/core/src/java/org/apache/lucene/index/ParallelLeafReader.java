@@ -224,7 +224,7 @@ name|TreeMap
 argument_list|<>
 argument_list|()
 decl_stmt|;
-comment|/** Create a ParallelAtomicReader based on the provided    *  readers; auto-closes the given readers on {@link #close()}. */
+comment|/** Create a ParallelLeafReader based on the provided    *  readers; auto-closes the given readers on {@link #close()}. */
 DECL|method|ParallelLeafReader
 specifier|public
 name|ParallelLeafReader
@@ -244,7 +244,7 @@ name|readers
 argument_list|)
 expr_stmt|;
 block|}
-comment|/** Create a ParallelAtomicReader based on the provided    *  readers. */
+comment|/** Create a ParallelLeafReader based on the provided    *  readers. */
 DECL|method|ParallelLeafReader
 specifier|public
 name|ParallelLeafReader
@@ -269,7 +269,7 @@ name|readers
 argument_list|)
 expr_stmt|;
 block|}
-comment|/** Expert: create a ParallelAtomicReader based on the provided    *  readers and storedFieldReaders; when a document is    *  loaded, only storedFieldsReaders will be used. */
+comment|/** Expert: create a ParallelLeafReader based on the provided    *  readers and storedFieldReaders; when a document is    *  loaded, only storedFieldsReaders will be used. */
 DECL|method|ParallelLeafReader
 specifier|public
 name|ParallelLeafReader
@@ -674,7 +674,7 @@ init|=
 operator|new
 name|StringBuilder
 argument_list|(
-literal|"ParallelAtomicReader("
+literal|"ParallelLeafReader("
 argument_list|)
 decl_stmt|;
 for|for

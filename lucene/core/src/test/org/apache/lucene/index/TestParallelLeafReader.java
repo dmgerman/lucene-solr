@@ -165,10 +165,10 @@ import|;
 end_import
 
 begin_class
-DECL|class|TestParallelAtomicReader
+DECL|class|TestParallelLeafReader
 specifier|public
 class|class
-name|TestParallelAtomicReader
+name|TestParallelLeafReader
 extends|extends
 name|LuceneTestCase
 block|{
@@ -925,7 +925,7 @@ argument_list|)
 expr_stmt|;
 name|fail
 argument_list|(
-literal|"ParallelAtomicReader should be already closed because inner reader was closed!"
+literal|"ParallelLeafReader should be already closed because inner reader was closed!"
 argument_list|)
 expr_stmt|;
 block|}

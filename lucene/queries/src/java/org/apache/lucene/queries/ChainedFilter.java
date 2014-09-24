@@ -588,7 +588,7 @@ return|return
 name|result
 return|;
 block|}
-comment|/**    * Delegates to each filter in the chain.    *    * @param context AtomicReaderContext    * @param logic Logical operation    * @return DocIdSet    */
+comment|/**    * Delegates to each filter in the chain.    *    * @param context LeafReaderContext    * @param logic Logical operation    * @return DocIdSet    */
 DECL|method|getDocIdSet
 specifier|private
 name|DocIdSet
@@ -666,7 +666,7 @@ return|return
 name|result
 return|;
 block|}
-comment|/**    * Delegates to each filter in the chain.    *    * @param context AtomicReaderContext    * @param logic Logical operation    * @return DocIdSet    */
+comment|/**    * Delegates to each filter in the chain.    *    * @param context LeafReaderContext    * @param logic Logical operation    * @return DocIdSet    */
 DECL|method|getDocIdSet
 specifier|private
 name|DocIdSet

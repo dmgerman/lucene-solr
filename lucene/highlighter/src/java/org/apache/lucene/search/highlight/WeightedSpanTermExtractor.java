@@ -2262,7 +2262,7 @@ name|getContext
 argument_list|()
 return|;
 block|}
-comment|/*    * This reader will just delegate every call to a single field in the wrapped    * AtomicReader. This way we only need to build this field once rather than    * N-Times    */
+comment|/*    * This reader will just delegate every call to a single field in the wrapped    * LeafReader. This way we only need to build this field once rather than    * N-Times    */
 DECL|class|DelegatingLeafReader
 specifier|static
 specifier|final

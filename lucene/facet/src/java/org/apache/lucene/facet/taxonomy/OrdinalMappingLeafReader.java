@@ -187,7 +187,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * A {@link org.apache.lucene.index.FilterLeafReader} for updating facets ordinal references,  * based on an ordinal map. You should use this code in conjunction with merging  * taxonomies - after you merge taxonomies, you receive an {@link OrdinalMap}  * which maps the 'old' ordinals to the 'new' ones. You can use that map to  * re-map the doc values which contain the facets information (ordinals) either  * before or while merging the indexes.  *<p>  * For re-mapping the ordinals during index merge, do the following:  *   *<pre class="prettyprint">  * // merge the old taxonomy with the new one.  * OrdinalMap map = new MemoryOrdinalMap();  * DirectoryTaxonomyWriter.addTaxonomy(srcTaxoDir, map);  * int[] ordmap = map.getMap();  *   * // Add the index and re-map ordinals on the go  * DirectoryReader reader = DirectoryReader.open(oldDir);  * IndexWriterConfig conf = new IndexWriterConfig(VER, ANALYZER);  * IndexWriter writer = new IndexWriter(newDir, conf);  * List&lt;AtomicReaderContext&gt; leaves = reader.leaves();  * AtomicReader wrappedLeaves[] = new AtomicReader[leaves.size()];  * for (int i = 0; i< leaves.size(); i++) {  *   wrappedLeaves[i] = new OrdinalMappingAtomicReader(leaves.get(i).reader(), ordmap);  * }  * writer.addIndexes(new MultiReader(wrappedLeaves));  * writer.commit();  *</pre>  *   * @lucene.experimental  */
+comment|/**  * A {@link org.apache.lucene.index.FilterLeafReader} for updating facets ordinal references,  * based on an ordinal map. You should use this code in conjunction with merging  * taxonomies - after you merge taxonomies, you receive an {@link OrdinalMap}  * which maps the 'old' ordinals to the 'new' ones. You can use that map to  * re-map the doc values which contain the facets information (ordinals) either  * before or while merging the indexes.  *<p>  * For re-mapping the ordinals during index merge, do the following:  *   *<pre class="prettyprint">  * // merge the old taxonomy with the new one.  * OrdinalMap map = new MemoryOrdinalMap();  * DirectoryTaxonomyWriter.addTaxonomy(srcTaxoDir, map);  * int[] ordmap = map.getMap();  *   * // Add the index and re-map ordinals on the go  * DirectoryReader reader = DirectoryReader.open(oldDir);  * IndexWriterConfig conf = new IndexWriterConfig(VER, ANALYZER);  * IndexWriter writer = new IndexWriter(newDir, conf);  * List&lt;LeafReaderContext&gt; leaves = reader.leaves();  * LeafReader wrappedLeaves[] = new LeafReader[leaves.size()];  * for (int i = 0; i< leaves.size(); i++) {  *   wrappedLeaves[i] = new OrdinalMappingLeafReader(leaves.get(i).reader(), ordmap);  * }  * writer.addIndexes(new MultiReader(wrappedLeaves));  * writer.commit();  *</pre>  *   * @lucene.experimental  */
 end_comment
 
 begin_class
@@ -390,7 +390,7 @@ name|String
 argument_list|>
 name|facetFields
 decl_stmt|;
-comment|/**    * Wraps an AtomicReader, mapping ordinals according to the ordinalMap, using    * the provided {@link FacetsConfig} which was used to build the wrapped    * reader.    */
+comment|/**    * Wraps an LeafReader, mapping ordinals according to the ordinalMap, using    * the provided {@link FacetsConfig} which was used to build the wrapped    * reader.    */
 DECL|method|OrdinalMappingLeafReader
 specifier|public
 name|OrdinalMappingLeafReader
