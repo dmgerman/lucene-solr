@@ -180,9 +180,9 @@ name|lucene
 operator|.
 name|codecs
 operator|.
-name|lucene410
+name|lucene50
 operator|.
-name|Lucene410Codec
+name|Lucene50Codec
 import|;
 end_import
 
@@ -848,7 +848,7 @@ operator|.
 name|setCodec
 argument_list|(
 operator|new
-name|Lucene410Codec
+name|Lucene50Codec
 argument_list|()
 block|{
 annotation|@
