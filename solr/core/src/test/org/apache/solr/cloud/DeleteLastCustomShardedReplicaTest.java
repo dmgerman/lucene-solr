@@ -381,6 +381,9 @@ end_import
 begin_class
 annotation|@
 name|Ignore
+argument_list|(
+literal|"SOLR-6347"
+argument_list|)
 DECL|class|DeleteLastCustomShardedReplicaTest
 specifier|public
 class|class
