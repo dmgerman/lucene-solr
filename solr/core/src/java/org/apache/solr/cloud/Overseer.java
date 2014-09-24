@@ -2097,6 +2097,22 @@ name|void
 name|checkIfIamStillLeader
 parameter_list|()
 block|{
+if|if
+condition|(
+name|zkController
+operator|!=
+literal|null
+operator|&&
+name|zkController
+operator|.
+name|getCoreContainer
+argument_list|()
+operator|.
+name|isShutDown
+argument_list|()
+condition|)
+return|return;
+comment|//shutting down no need to go further
 name|org
 operator|.
 name|apache
