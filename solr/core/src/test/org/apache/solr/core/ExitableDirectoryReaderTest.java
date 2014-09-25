@@ -79,7 +79,7 @@ specifier|static
 name|int
 name|NUM_DOCS_PER_TYPE
 init|=
-literal|400
+literal|2000
 decl_stmt|;
 DECL|field|assertionString
 specifier|static
