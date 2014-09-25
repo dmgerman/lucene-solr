@@ -33,7 +33,7 @@ import|;
 end_import
 
 begin_comment
-comment|/** read-write version of 4.6 segmentinfos for testing */
+comment|/** read-write version of 4.0 segmentinfos for testing */
 end_comment
 
 begin_class

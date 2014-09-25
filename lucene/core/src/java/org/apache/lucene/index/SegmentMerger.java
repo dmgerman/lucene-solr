@@ -857,8 +857,6 @@ argument_list|,
 name|mergeState
 operator|.
 name|segmentInfo
-operator|.
-name|name
 argument_list|,
 literal|""
 argument_list|,

@@ -693,8 +693,6 @@ argument_list|,
 name|state
 operator|.
 name|segmentInfo
-operator|.
-name|name
 argument_list|,
 literal|""
 argument_list|,
