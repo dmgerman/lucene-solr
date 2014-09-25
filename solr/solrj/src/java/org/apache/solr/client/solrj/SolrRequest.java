@@ -103,6 +103,9 @@ name|GET
 block|,
 DECL|enum constant|POST
 name|POST
+block|,
+DECL|enum constant|PUT
+name|PUT
 block|}
 empty_stmt|;
 DECL|field|method

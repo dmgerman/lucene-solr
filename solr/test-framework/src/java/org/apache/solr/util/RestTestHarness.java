@@ -497,7 +497,7 @@ name|httpDelete
 argument_list|)
 return|;
 block|}
-comment|/**    * Processes a POST request using a URL path (with no context path) + optional query params,    * e.g. "/schema/fields/newfield", PUTs the given content, and returns the response content.    *    * @param request The URL path and optional query params    * @param content The content to include with the POST request    * @return The response to the PUT request    */
+comment|/**    * Processes a POST request using a URL path (with no context path) + optional query params,    * e.g. "/schema/fields/newfield", PUTs the given content, and returns the response content.    *    * @param request The URL path and optional query params    * @param content The content to include with the POST request    * @return The response to the POST request    */
 DECL|method|post
 specifier|public
 name|String
