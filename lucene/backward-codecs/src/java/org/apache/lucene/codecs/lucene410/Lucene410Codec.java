@@ -20,6 +20,16 @@ end_comment
 
 begin_import
 import|import
+name|java
+operator|.
+name|io
+operator|.
+name|IOException
+import|;
+end_import
+
+begin_import
+import|import
 name|org
 operator|.
 name|apache
@@ -85,6 +95,20 @@ operator|.
 name|codecs
 operator|.
 name|LiveDocsFormat
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|codecs
+operator|.
+name|NormsConsumer
 import|;
 end_import
 
@@ -283,6 +307,20 @@ operator|.
 name|perfield
 operator|.
 name|PerFieldPostingsFormat
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|index
+operator|.
+name|SegmentWriteState
 import|;
 end_import
 
@@ -592,6 +630,28 @@ init|=
 operator|new
 name|Lucene49NormsFormat
 argument_list|()
+block|{
+annotation|@
+name|Override
+specifier|public
+name|NormsConsumer
+name|normsConsumer
+parameter_list|(
+name|SegmentWriteState
+name|state
+parameter_list|)
+throws|throws
+name|IOException
+block|{
+throw|throw
+operator|new
+name|UnsupportedOperationException
+argument_list|(
+literal|"this codec can only be used for reading"
+argument_list|)
+throw|;
+block|}
+block|}
 decl_stmt|;
 annotation|@
 name|Override
