@@ -3804,6 +3804,10 @@ literal|"true"
 argument_list|)
 expr_stmt|;
 comment|// test group query
+comment|// TODO: Remove this? This doesn't make any real sense now that timeAllowed might trigger early
+comment|//       termination of the request during Terms enumeration/Query expansion.
+comment|//       During such an exit, partial results isn't supported as it wouldn't make any sense.
+comment|// Increasing the timeAllowed from 1 to 100 for now.
 name|queryPartialResults
 argument_list|(
 name|upShards
@@ -3852,7 +3856,7 @@ name|CommonParams
 operator|.
 name|TIME_ALLOWED
 argument_list|,
-literal|1
+literal|100
 argument_list|,
 name|ShardParams
 operator|.
