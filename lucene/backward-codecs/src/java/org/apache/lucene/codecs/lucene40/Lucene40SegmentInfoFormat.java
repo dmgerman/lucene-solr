@@ -170,16 +170,6 @@ operator|new
 name|Lucene40SegmentInfoReader
 argument_list|()
 decl_stmt|;
-DECL|field|writer
-specifier|private
-specifier|final
-name|SegmentInfoWriter
-name|writer
-init|=
-operator|new
-name|Lucene40SegmentInfoWriter
-argument_list|()
-decl_stmt|;
 comment|/** Sole constructor. */
 DECL|method|Lucene40SegmentInfoFormat
 specifier|public
@@ -198,8 +188,6 @@ return|return
 name|reader
 return|;
 block|}
-comment|// we must unfortunately support write, to allow addIndexes to write a new .si with rewritten filenames:
-comment|// see LUCENE-5377
 annotation|@
 name|Override
 DECL|method|getSegmentInfoWriter
@@ -208,9 +196,13 @@ name|SegmentInfoWriter
 name|getSegmentInfoWriter
 parameter_list|()
 block|{
-return|return
-name|writer
-return|;
+throw|throw
+operator|new
+name|UnsupportedOperationException
+argument_list|(
+literal|"this codec can only be used for reading"
+argument_list|)
+throw|;
 block|}
 comment|/** File extension used to store {@link SegmentInfo}. */
 DECL|field|SI_EXTENSION

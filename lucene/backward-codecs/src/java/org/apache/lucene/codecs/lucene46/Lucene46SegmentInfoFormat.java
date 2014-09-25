@@ -168,16 +168,6 @@ operator|new
 name|Lucene46SegmentInfoReader
 argument_list|()
 decl_stmt|;
-DECL|field|writer
-specifier|private
-specifier|final
-name|SegmentInfoWriter
-name|writer
-init|=
-operator|new
-name|Lucene46SegmentInfoWriter
-argument_list|()
-decl_stmt|;
 comment|/** Sole constructor. */
 DECL|method|Lucene46SegmentInfoFormat
 specifier|public
@@ -204,9 +194,13 @@ name|SegmentInfoWriter
 name|getSegmentInfoWriter
 parameter_list|()
 block|{
-return|return
-name|writer
-return|;
+throw|throw
+operator|new
+name|UnsupportedOperationException
+argument_list|(
+literal|"this codec can only be used for reading"
+argument_list|)
+throw|;
 block|}
 comment|/** File extension used to store {@link SegmentInfo}. */
 DECL|field|SI_EXTENSION
