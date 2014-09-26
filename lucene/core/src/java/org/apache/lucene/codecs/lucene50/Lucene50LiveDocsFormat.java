@@ -76,6 +76,20 @@ name|lucene
 operator|.
 name|index
 operator|.
+name|CorruptIndexException
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|index
+operator|.
 name|IndexFileNames
 import|;
 end_import
@@ -207,7 +221,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**   * Lucene 5.0 live docs format   *<p>  *<p>The .liv file is optional, and only exists when a segment contains  * deletions.</p>  *<p>Although per-segment, this file is maintained exterior to compound segment  * files.</p>  *<p>Deletions (.liv) --&gt; SegmentHeader,Bits</p>  *<ul>  *<li>SegmentHeader --&gt; {@link CodecUtil#writeSegmentHeader SegmentHeader}</li>  *<li>Bits --&gt;&lt;{@link DataOutput#writeLong Int64}&gt;<sup>LongCount</sup></li>  *</ul>  */
+comment|/**   * Lucene 5.0 live docs format   *<p>  *<p>The .liv file is optional, and only exists when a segment contains  * deletions.</p>  *<p>Although per-segment, this file is maintained exterior to compound segment  * files.</p>  *<p>Deletions (.liv) --&gt; SegmentHeader,Generation,Bits</p>  *<ul>  *<li>SegmentHeader --&gt; {@link CodecUtil#writeSegmentHeader SegmentHeader}</li>  *<li>Generation --&gt; {@link DataOutput#writeLong Int64}  *<li>Bits --&gt;&lt;{@link DataOutput#writeLong Int64}&gt;<sup>LongCount</sup></li>  *</ul>  */
 end_comment
 
 begin_class
@@ -339,6 +353,14 @@ parameter_list|)
 throws|throws
 name|IOException
 block|{
+name|long
+name|gen
+init|=
+name|info
+operator|.
+name|getDelGen
+argument_list|()
+decl_stmt|;
 name|String
 name|name
 init|=
@@ -354,10 +376,7 @@ name|name
 argument_list|,
 name|EXTENSION
 argument_list|,
-name|info
-operator|.
-name|getDelGen
-argument_list|()
+name|gen
 argument_list|)
 decl_stmt|;
 specifier|final
@@ -413,6 +432,37 @@ name|getId
 argument_list|()
 argument_list|)
 expr_stmt|;
+name|long
+name|filegen
+init|=
+name|input
+operator|.
+name|readLong
+argument_list|()
+decl_stmt|;
+if|if
+condition|(
+name|gen
+operator|!=
+name|filegen
+condition|)
+block|{
+throw|throw
+operator|new
+name|CorruptIndexException
+argument_list|(
+literal|"file mismatch, expected generation="
+operator|+
+name|gen
+operator|+
+literal|", got="
+operator|+
+name|filegen
+argument_list|,
+name|input
+argument_list|)
+throw|;
+block|}
 name|long
 name|data
 index|[]
@@ -521,6 +571,14 @@ parameter_list|)
 throws|throws
 name|IOException
 block|{
+name|long
+name|gen
+init|=
+name|info
+operator|.
+name|getNextDelGen
+argument_list|()
+decl_stmt|;
 name|String
 name|name
 init|=
@@ -536,10 +594,7 @@ name|name
 argument_list|,
 name|EXTENSION
 argument_list|,
-name|info
-operator|.
-name|getNextDelGen
-argument_list|()
+name|gen
 argument_list|)
 decl_stmt|;
 name|long
@@ -587,6 +642,13 @@ name|info
 operator|.
 name|getId
 argument_list|()
+argument_list|)
+expr_stmt|;
+name|output
+operator|.
+name|writeLong
+argument_list|(
+name|gen
 argument_list|)
 expr_stmt|;
 for|for
