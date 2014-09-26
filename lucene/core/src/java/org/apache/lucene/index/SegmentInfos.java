@@ -374,13 +374,13 @@ name|VERSION_49
 init|=
 literal|3
 decl_stmt|;
-comment|/** The file format version for the segments_N codec header, since 4.11+ */
-DECL|field|VERSION_411
+comment|/** The file format version for the segments_N codec header, since 5.0+ */
+DECL|field|VERSION_50
 specifier|public
 specifier|static
 specifier|final
 name|int
-name|VERSION_411
+name|VERSION_50
 init|=
 literal|4
 decl_stmt|;
@@ -449,10 +449,11 @@ name|infoStream
 init|=
 literal|null
 decl_stmt|;
-comment|/** Id for this commit; only written starting with Lucene 4.11 */
+comment|/** Id for this commit; only written starting with Lucene 5.0 */
 DECL|field|id
 specifier|private
-name|String
+name|byte
+index|[]
 name|id
 decl_stmt|;
 comment|/** Sole constructor. Typically you call this and then    *  use {@link #read(Directory) or    *  #read(Directory,String)} to populate each {@link    *  SegmentCommitInfo}.  Alternatively, you can add/remove your    *  own {@link SegmentCommitInfo}s. */
@@ -787,15 +788,25 @@ name|nextGeneration
 argument_list|)
 return|;
 block|}
-comment|/** Since Lucene 4.11, every commit (segments_N) writes a unique id.  This will    *  return that id, or null if this commit was pre-4.11. */
+comment|/** Since Lucene 5.0, every commit (segments_N) writes a unique id.  This will    *  return that id, or null if this commit was 5.0. */
 DECL|method|getId
 specifier|public
-name|String
+name|byte
+index|[]
 name|getId
 parameter_list|()
 block|{
 return|return
 name|id
+operator|==
+literal|null
+condition|?
+literal|null
+else|:
+name|id
+operator|.
+name|clone
+argument_list|()
 return|;
 block|}
 comment|/**    * Read a particular segmentFileName.  Note that this may    * throw an IOException if a commit is in process.    *    * @param directory -- directory containing the segments file    * @param segmentFileName -- segment file to load    * @throws CorruptIndexException if the index is corrupt    * @throws IOException if there is a low-level IO error    */
@@ -903,7 +914,7 @@ literal|"segments"
 argument_list|,
 name|VERSION_40
 argument_list|,
-name|VERSION_411
+name|VERSION_50
 argument_list|)
 decl_stmt|;
 name|version
@@ -1351,15 +1362,31 @@ if|if
 condition|(
 name|format
 operator|>=
-name|VERSION_411
+name|VERSION_50
 condition|)
 block|{
 name|id
 operator|=
+operator|new
+name|byte
+index|[
+name|StringHelper
+operator|.
+name|ID_LENGTH
+index|]
+expr_stmt|;
 name|input
 operator|.
-name|readString
-argument_list|()
+name|readBytes
+argument_list|(
+name|id
+argument_list|,
+literal|0
+argument_list|,
+name|id
+operator|.
+name|length
+argument_list|)
 expr_stmt|;
 block|}
 if|if
@@ -1607,7 +1634,7 @@ name|segnOutput
 argument_list|,
 literal|"segments"
 argument_list|,
-name|VERSION_411
+name|VERSION_50
 argument_list|)
 expr_stmt|;
 name|segnOutput
@@ -1845,14 +1872,26 @@ argument_list|(
 name|userData
 argument_list|)
 expr_stmt|;
-name|segnOutput
-operator|.
-name|writeString
-argument_list|(
+name|byte
+index|[]
+name|id
+init|=
 name|StringHelper
 operator|.
 name|randomId
 argument_list|()
+decl_stmt|;
+name|segnOutput
+operator|.
+name|writeBytes
+argument_list|(
+name|id
+argument_list|,
+literal|0
+argument_list|,
+name|id
+operator|.
+name|length
 argument_list|)
 expr_stmt|;
 name|CodecUtil

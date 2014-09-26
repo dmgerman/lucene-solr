@@ -367,16 +367,6 @@ name|files
 argument_list|()
 argument_list|)
 expr_stmt|;
-name|output
-operator|.
-name|writeString
-argument_list|(
-name|si
-operator|.
-name|getId
-argument_list|()
-argument_list|)
-expr_stmt|;
 name|CodecUtil
 operator|.
 name|writeFooter

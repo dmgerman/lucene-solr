@@ -28,6 +28,16 @@ end_import
 
 begin_import
 import|import
+name|java
+operator|.
+name|util
+operator|.
+name|Arrays
+import|;
+end_import
+
+begin_import
+import|import
 name|org
 operator|.
 name|apache
@@ -180,6 +190,20 @@ name|IOUtils
 import|;
 end_import
 
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|util
+operator|.
+name|StringHelper
+import|;
+end_import
+
 begin_comment
 comment|/**  * Utility class for reading and writing versioned headers.  *<p>  * Writing codec headers is useful to ensure that a file is in   * the format you think it is.  *   * @lucene.experimental  */
 end_comment
@@ -298,8 +322,7 @@ name|version
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**    * Writes a codec header for a per-segment, which records both a string to    * identify the file, a version number, and the unique ID of the segment.     * This header can be parsed and validated with     * {@link #checkSegmentHeader(DataInput, String, int, int, String) checkSegmentHeader()}.    *<p>    * CodecSegmentHeader --&gt; CodecHeader,SegmentID    *<ul>    *<li>CodecHeader --&gt; {@link #writeHeader}    *<li>SegmentID   --&gt; {@link DataOutput#writeString String}.    *        Unique identifier for the segment.    *</ul>    *<p>    * Note that the length of a segment header depends only upon the    * name of the codec, so this length can be computed at any time    * with {@link #headerLength(String)}.    *     * @param out Output stream    * @param codec String to identify this file. It should be simple ASCII,     *              less than 128 characters in length.    * @param segmentID Unique identifier for the segment    * @param version Version number    * @throws IOException If there is an I/O error writing to the underlying medium.    * @throws IllegalArgumentException If the codec name is not simple ASCII, or is more than 127 characters in length    */
-comment|// nocommit: fix javadocs, add segmentLength()
+comment|/**    * Writes a codec header for a per-segment, which records both a string to    * identify the file, a version number, and the unique ID of the segment.     * This header can be parsed and validated with     * {@link #checkSegmentHeader(DataInput, String, int, int, byte[]) checkSegmentHeader()}.    *<p>    * CodecSegmentHeader --&gt; CodecHeader,SegmentID    *<ul>    *<li>CodecHeader --&gt; {@link #writeHeader}    *<li>SegmentID   --&gt; {@link DataOutput#writeByte byte}<sup>16</sup>.    *        Unique identifier for the segment.    *</ul>    *<p>    * Note that the length of a segment header depends only upon the    * name of the codec, so this length can be computed at any time    * with {@link #headerLength(String)}.    *     * @param out Output stream    * @param codec String to identify this file. It should be simple ASCII,     *              less than 128 characters in length.    * @param segmentID Unique identifier for the segment    * @param version Version number    * @throws IOException If there is an I/O error writing to the underlying medium.    * @throws IllegalArgumentException If the codec name is not simple ASCII, or     *         is more than 127 characters in length, or if segmentID is invalid.    */
 DECL|method|writeSegmentHeader
 specifier|public
 specifier|static
@@ -315,12 +338,39 @@ parameter_list|,
 name|int
 name|version
 parameter_list|,
-name|String
+name|byte
+index|[]
 name|segmentID
 parameter_list|)
 throws|throws
 name|IOException
 block|{
+if|if
+condition|(
+name|segmentID
+operator|.
+name|length
+operator|!=
+name|StringHelper
+operator|.
+name|ID_LENGTH
+condition|)
+block|{
+throw|throw
+operator|new
+name|IllegalArgumentException
+argument_list|(
+literal|"Invalid id: "
+operator|+
+name|StringHelper
+operator|.
+name|idToString
+argument_list|(
+name|segmentID
+argument_list|)
+argument_list|)
+throw|;
+block|}
 name|writeHeader
 argument_list|(
 name|out
@@ -330,12 +380,17 @@ argument_list|,
 name|version
 argument_list|)
 expr_stmt|;
-comment|// nocommit: improve encoding of this ID
 name|out
 operator|.
-name|writeString
+name|writeBytes
 argument_list|(
 name|segmentID
+argument_list|,
+literal|0
+argument_list|,
+name|segmentID
+operator|.
+name|length
 argument_list|)
 expr_stmt|;
 block|}
@@ -357,6 +412,28 @@ name|codec
 operator|.
 name|length
 argument_list|()
+return|;
+block|}
+comment|/**    * Computes the length of a segment header.    *     * @param codec Codec name.    * @return length of the entire segment header.    * @see #writeSegmentHeader(DataOutput, String, int, byte[])    */
+DECL|method|segmentHeaderLength
+specifier|public
+specifier|static
+name|int
+name|segmentHeaderLength
+parameter_list|(
+name|String
+name|codec
+parameter_list|)
+block|{
+return|return
+name|headerLength
+argument_list|(
+name|codec
+argument_list|)
+operator|+
+name|StringHelper
+operator|.
+name|ID_LENGTH
 return|;
 block|}
 comment|/**    * Reads and validates a header previously written with     * {@link #writeHeader(DataOutput, String, int)}.    *<p>    * When reading a file, supply the expected<code>codec</code> and    * an expected version range (<code>minVersion to maxVersion</code>).    *     * @param in Input stream, positioned at the point where the    *        header was previously written. Typically this is located    *        at the beginning of the file.    * @param codec The expected codec name.    * @param minVersion The minimum supported expected version number.    * @param maxVersion The maximum supported expected version number.    * @return The actual version found, when a valid header is found     *         that matches<code>codec</code>, with an actual version     *         where<code>minVersion<= actual<= maxVersion</code>.    *         Otherwise an exception is thrown.    * @throws CorruptIndexException If the first four bytes are not    *         {@link #CODEC_MAGIC}, or if the actual codec found is    *         not<code>codec</code>.    * @throws IndexFormatTooOldException If the actual version is less     *         than<code>minVersion</code>.    * @throws IndexFormatTooNewException If the actual version is greater     *         than<code>maxVersion</code>.    * @throws IOException If there is an I/O error reading from the underlying medium.    * @see #writeHeader(DataOutput, String, int)    */
@@ -540,7 +617,7 @@ return|return
 name|actualVersion
 return|;
 block|}
-comment|/**    * Reads and validates a header previously written with     * {@link #writeSegmentHeader(DataOutput, String, int, String)}.    *<p>    * When reading a file, supply the expected<code>codec</code>,    * expected version range (<code>minVersion to maxVersion</code>),    * and segment ID.    *     * @param in Input stream, positioned at the point where the    *        header was previously written. Typically this is located    *        at the beginning of the file.    * @param codec The expected codec name.    * @param minVersion The minimum supported expected version number.    * @param maxVersion The maximum supported expected version number.    * @param segmentID The expected segment this file belongs to.    * @return The actual version found, when a valid header is found     *         that matches<code>codec</code>, with an actual version     *         where<code>minVersion<= actual<= maxVersion</code>,     *         and matching<code>segmentID</code>    *         Otherwise an exception is thrown.    * @throws CorruptIndexException If the first four bytes are not    *         {@link #CODEC_MAGIC}, or if the actual codec found is    *         not<code>codec</code>, or if the<code>segmentID</code>    *         does not match.    * @throws IndexFormatTooOldException If the actual version is less     *         than<code>minVersion</code>.    * @throws IndexFormatTooNewException If the actual version is greater     *         than<code>maxVersion</code>.    * @throws IOException If there is an I/O error reading from the underlying medium.    * @see #writeSegmentHeader(DataOutput, String, int, String)    */
+comment|/**    * Reads and validates a header previously written with     * {@link #writeSegmentHeader(DataOutput, String, int, byte[])}.    *<p>    * When reading a file, supply the expected<code>codec</code>,    * expected version range (<code>minVersion to maxVersion</code>),    * and segment ID.    *     * @param in Input stream, positioned at the point where the    *        header was previously written. Typically this is located    *        at the beginning of the file.    * @param codec The expected codec name.    * @param minVersion The minimum supported expected version number.    * @param maxVersion The maximum supported expected version number.    * @param segmentID The expected segment this file belongs to.    * @return The actual version found, when a valid header is found     *         that matches<code>codec</code>, with an actual version     *         where<code>minVersion<= actual<= maxVersion</code>,     *         and matching<code>segmentID</code>    *         Otherwise an exception is thrown.    * @throws CorruptIndexException If the first four bytes are not    *         {@link #CODEC_MAGIC}, or if the actual codec found is    *         not<code>codec</code>, or if the<code>segmentID</code>    *         does not match.    * @throws IndexFormatTooOldException If the actual version is less     *         than<code>minVersion</code>.    * @throws IndexFormatTooNewException If the actual version is greater     *         than<code>maxVersion</code>.    * @throws IOException If there is an I/O error reading from the underlying medium.    * @see #writeSegmentHeader(DataOutput, String, int, byte[])    */
 DECL|method|checkSegmentHeader
 specifier|public
 specifier|static
@@ -559,7 +636,8 @@ parameter_list|,
 name|int
 name|maxVersion
 parameter_list|,
-name|String
+name|byte
+index|[]
 name|segmentID
 parameter_list|)
 throws|throws
@@ -579,21 +657,40 @@ argument_list|,
 name|maxVersion
 argument_list|)
 decl_stmt|;
-name|String
+name|byte
 name|id
+index|[]
 init|=
+operator|new
+name|byte
+index|[
+name|StringHelper
+operator|.
+name|ID_LENGTH
+index|]
+decl_stmt|;
 name|in
 operator|.
-name|readString
-argument_list|()
-decl_stmt|;
+name|readBytes
+argument_list|(
+name|id
+argument_list|,
+literal|0
+argument_list|,
+name|id
+operator|.
+name|length
+argument_list|)
+expr_stmt|;
 if|if
 condition|(
 operator|!
-name|id
+name|Arrays
 operator|.
 name|equals
 argument_list|(
+name|id
+argument_list|,
 name|segmentID
 argument_list|)
 condition|)
@@ -604,11 +701,21 @@ name|CorruptIndexException
 argument_list|(
 literal|"file mismatch, expected segment id="
 operator|+
+name|StringHelper
+operator|.
+name|idToString
+argument_list|(
 name|segmentID
+argument_list|)
 operator|+
 literal|", got="
 operator|+
+name|StringHelper
+operator|.
+name|idToString
+argument_list|(
 name|id
+argument_list|)
 argument_list|,
 name|in
 argument_list|)
