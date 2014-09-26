@@ -77,7 +77,7 @@ name|FixedBitSet
 extends|extends
 name|DocIdSet
 implements|implements
-name|Bits
+name|MutableBits
 block|{
 DECL|field|BASE_RAM_BYTES_USED
 specifier|private

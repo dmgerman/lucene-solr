@@ -496,22 +496,7 @@ comment|// TODO: fix this test better
 name|String
 name|ext
 init|=
-name|Codec
-operator|.
-name|getDefault
-argument_list|()
-operator|.
-name|getName
-argument_list|()
-operator|.
-name|equals
-argument_list|(
-literal|"SimpleText"
-argument_list|)
-condition|?
 literal|".liv"
-else|:
-literal|".del"
 decl_stmt|;
 comment|// Create a bogus separate del file for a
 comment|// segment that already has a separate del file:

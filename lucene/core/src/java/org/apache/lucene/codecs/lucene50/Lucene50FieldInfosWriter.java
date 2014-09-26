@@ -265,7 +265,7 @@ init|)
 block|{
 name|CodecUtil
 operator|.
-name|writeHeader
+name|writeSegmentHeader
 argument_list|(
 name|output
 argument_list|,
@@ -276,12 +276,7 @@ argument_list|,
 name|Lucene50FieldInfosFormat
 operator|.
 name|FORMAT_CURRENT
-argument_list|)
-expr_stmt|;
-name|output
-operator|.
-name|writeString
-argument_list|(
+argument_list|,
 name|segmentInfo
 operator|.
 name|getId
