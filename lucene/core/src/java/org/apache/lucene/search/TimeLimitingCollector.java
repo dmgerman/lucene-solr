@@ -129,7 +129,7 @@ literal|"Elapsed time: "
 operator|+
 name|timeElapsed
 operator|+
-literal|"Exceeded allowed search time: "
+literal|".  Exceeded allowed search time: "
 operator|+
 name|timeAllowed
 operator|+
@@ -406,9 +406,11 @@ argument_list|()
 decl_stmt|;
 if|if
 condition|(
-name|timeout
-operator|<
 name|time
+operator|-
+name|timeout
+operator|>
+literal|0L
 condition|)
 block|{
 if|if
