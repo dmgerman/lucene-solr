@@ -87,7 +87,7 @@ specifier|protected
 name|StoredFieldsReader
 parameter_list|()
 block|{   }
-comment|/** Visit the stored fields for document<code>n</code> */
+comment|/** Visit the stored fields for document<code>docID</code> */
 DECL|method|visitDocument
 specifier|public
 specifier|abstract
@@ -95,7 +95,7 @@ name|void
 name|visitDocument
 parameter_list|(
 name|int
-name|n
+name|docID
 parameter_list|,
 name|StoredFieldVisitor
 name|visitor

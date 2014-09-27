@@ -7826,11 +7826,6 @@ argument_list|,
 name|globalFieldNumberMap
 argument_list|,
 name|context
-argument_list|,
-name|config
-operator|.
-name|getCheckIntegrityAtMerge
-argument_list|()
 argument_list|)
 decl_stmt|;
 if|if
@@ -8083,7 +8078,7 @@ name|info
 argument_list|,
 name|mergeState
 operator|.
-name|fieldInfos
+name|mergeFieldInfos
 argument_list|,
 name|context
 argument_list|)
@@ -14300,11 +14295,6 @@ argument_list|,
 name|globalFieldNumberMap
 argument_list|,
 name|context
-argument_list|,
-name|config
-operator|.
-name|getCheckIntegrityAtMerge
-argument_list|()
 argument_list|)
 decl_stmt|;
 name|merge
@@ -14496,7 +14486,7 @@ operator|+
 operator|(
 name|mergeState
 operator|.
-name|fieldInfos
+name|mergeFieldInfos
 operator|.
 name|hasVectors
 argument_list|()
@@ -14511,7 +14501,7 @@ operator|+
 operator|(
 name|mergeState
 operator|.
-name|fieldInfos
+name|mergeFieldInfos
 operator|.
 name|hasNorms
 argument_list|()
@@ -14526,7 +14516,7 @@ operator|+
 operator|(
 name|mergeState
 operator|.
-name|fieldInfos
+name|mergeFieldInfos
 operator|.
 name|hasDocValues
 argument_list|()
@@ -14541,7 +14531,7 @@ operator|+
 operator|(
 name|mergeState
 operator|.
-name|fieldInfos
+name|mergeFieldInfos
 operator|.
 name|hasProx
 argument_list|()
@@ -14556,7 +14546,7 @@ operator|+
 operator|(
 name|mergeState
 operator|.
-name|fieldInfos
+name|mergeFieldInfos
 operator|.
 name|hasProx
 argument_list|()
@@ -14922,7 +14912,7 @@ name|info
 argument_list|,
 name|mergeState
 operator|.
-name|fieldInfos
+name|mergeFieldInfos
 argument_list|,
 name|context
 argument_list|)
