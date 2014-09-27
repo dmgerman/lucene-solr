@@ -754,14 +754,33 @@ block|}
 else|else
 block|{
 comment|// we've already seen this format, so just grab its suffix
-assert|assert
+if|if
+condition|(
+operator|!
 name|suffixes
 operator|.
 name|containsKey
 argument_list|(
 name|formatName
 argument_list|)
-assert|;
+condition|)
+block|{
+throw|throw
+operator|new
+name|IllegalStateException
+argument_list|(
+literal|"no suffix for format name: "
+operator|+
+name|formatName
+operator|+
+literal|", expected: "
+operator|+
+name|group
+operator|.
+name|suffix
+argument_list|)
+throw|;
+block|}
 block|}
 name|group
 operator|.
@@ -784,11 +803,37 @@ argument_list|,
 name|formatName
 argument_list|)
 decl_stmt|;
-assert|assert
+if|if
+condition|(
 name|previousValue
-operator|==
+operator|!=
 literal|null
-assert|;
+condition|)
+block|{
+throw|throw
+operator|new
+name|IllegalStateException
+argument_list|(
+literal|"found existing value for "
+operator|+
+name|PER_FIELD_FORMAT_KEY
+operator|+
+literal|", field="
+operator|+
+name|fieldInfo
+operator|.
+name|name
+operator|+
+literal|", old="
+operator|+
+name|previousValue
+operator|+
+literal|", new="
+operator|+
+name|formatName
+argument_list|)
+throw|;
+block|}
 name|previousValue
 operator|=
 name|fieldInfo
@@ -807,11 +852,39 @@ name|suffix
 argument_list|)
 argument_list|)
 expr_stmt|;
-assert|assert
+if|if
+condition|(
 name|previousValue
-operator|==
+operator|!=
 literal|null
-assert|;
+condition|)
+block|{
+throw|throw
+operator|new
+name|IllegalStateException
+argument_list|(
+literal|"found existing value for "
+operator|+
+name|PER_FIELD_SUFFIX_KEY
+operator|+
+literal|", field="
+operator|+
+name|fieldInfo
+operator|.
+name|name
+operator|+
+literal|", old="
+operator|+
+name|previousValue
+operator|+
+literal|", new="
+operator|+
+name|group
+operator|.
+name|suffix
+argument_list|)
+throw|;
+block|}
 block|}
 comment|// Second pass: write postings
 name|boolean
@@ -1089,11 +1162,27 @@ argument_list|(
 name|PER_FIELD_SUFFIX_KEY
 argument_list|)
 decl_stmt|;
-assert|assert
+if|if
+condition|(
 name|suffix
-operator|!=
+operator|==
 literal|null
-assert|;
+condition|)
+block|{
+throw|throw
+operator|new
+name|IllegalStateException
+argument_list|(
+literal|"missing attribute: "
+operator|+
+name|PER_FIELD_SUFFIX_KEY
+operator|+
+literal|" for field: "
+operator|+
+name|fieldName
+argument_list|)
+throw|;
+block|}
 name|PostingsFormat
 name|format
 init|=
