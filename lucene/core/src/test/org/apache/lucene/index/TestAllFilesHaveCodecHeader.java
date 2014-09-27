@@ -781,8 +781,21 @@ name|extension
 argument_list|)
 condition|)
 block|{
-comment|//TODO: not yet
-comment|// fail("extensions " + previous + " and " + extension + " share same codecName " + codecName);
+name|fail
+argument_list|(
+literal|"extensions "
+operator|+
+name|previous
+operator|+
+literal|" and "
+operator|+
+name|extension
+operator|+
+literal|" share same codecName "
+operator|+
+name|codecName
+argument_list|)
+expr_stmt|;
 block|}
 name|success
 operator|=
