@@ -217,24 +217,6 @@ import|;
 end_import
 
 begin_import
-import|import static
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|codecs
-operator|.
-name|compressing
-operator|.
-name|CompressingTermVectorsWriter
-operator|.
-name|VERSION_CHECKSUM
-import|;
-end_import
-
-begin_import
 import|import
 name|java
 operator|.
@@ -962,7 +944,7 @@ name|version
 operator|=
 name|CodecUtil
 operator|.
-name|checkHeader
+name|checkSegmentHeader
 argument_list|(
 name|indexStream
 argument_list|,
@@ -971,12 +953,17 @@ argument_list|,
 name|VERSION_START
 argument_list|,
 name|VERSION_CURRENT
+argument_list|,
+name|si
+operator|.
+name|getId
+argument_list|()
 argument_list|)
 expr_stmt|;
 assert|assert
 name|CodecUtil
 operator|.
-name|headerLength
+name|segmentHeaderLength
 argument_list|(
 name|codecNameIdx
 argument_list|)
@@ -996,13 +983,6 @@ argument_list|,
 name|si
 argument_list|)
 expr_stmt|;
-if|if
-condition|(
-name|version
-operator|>=
-name|VERSION_CHECKSUM
-condition|)
-block|{
 name|indexStream
 operator|.
 name|readVLong
@@ -1016,17 +996,6 @@ argument_list|(
 name|indexStream
 argument_list|)
 expr_stmt|;
-block|}
-else|else
-block|{
-name|CodecUtil
-operator|.
-name|checkEOF
-argument_list|(
-name|indexStream
-argument_list|)
-expr_stmt|;
-block|}
 name|indexStream
 operator|.
 name|close
@@ -1076,7 +1045,7 @@ name|version2
 init|=
 name|CodecUtil
 operator|.
-name|checkHeader
+name|checkSegmentHeader
 argument_list|(
 name|vectorsStream
 argument_list|,
@@ -1085,6 +1054,11 @@ argument_list|,
 name|VERSION_START
 argument_list|,
 name|VERSION_CURRENT
+argument_list|,
+name|si
+operator|.
+name|getId
+argument_list|()
 argument_list|)
 decl_stmt|;
 if|if
@@ -1113,7 +1087,7 @@ block|}
 assert|assert
 name|CodecUtil
 operator|.
-name|headerLength
+name|segmentHeaderLength
 argument_list|(
 name|codecNameDat
 argument_list|)
@@ -1131,13 +1105,6 @@ operator|.
 name|getFilePointer
 argument_list|()
 decl_stmt|;
-if|if
-condition|(
-name|version
-operator|>=
-name|VERSION_CHECKSUM
-condition|)
-block|{
 comment|// NOTE: data file is too costly to verify checksum against all the bytes on open,
 comment|// but for now we at least verify proper structure of the checksum footer: which looks
 comment|// for FOOTER_MAGIC + algorithmID. This is cheap and can detect some forms of corruption
@@ -1156,7 +1123,6 @@ argument_list|(
 name|pos
 argument_list|)
 expr_stmt|;
-block|}
 name|packedIntsVersion
 operator|=
 name|vectorsStream
@@ -6953,13 +6919,6 @@ parameter_list|()
 throws|throws
 name|IOException
 block|{
-if|if
-condition|(
-name|version
-operator|>=
-name|VERSION_CHECKSUM
-condition|)
-block|{
 name|CodecUtil
 operator|.
 name|checksumEntireFile
@@ -6967,7 +6926,6 @@ argument_list|(
 name|vectorsStream
 argument_list|)
 expr_stmt|;
-block|}
 block|}
 annotation|@
 name|Override
