@@ -44,16 +44,6 @@ name|java
 operator|.
 name|util
 operator|.
-name|Collections
-import|;
-end_import
-
-begin_import
-import|import
-name|java
-operator|.
-name|util
-operator|.
 name|HashMap
 import|;
 end_import
@@ -839,27 +829,45 @@ argument_list|,
 name|formatName
 argument_list|)
 decl_stmt|;
-assert|assert
+if|if
+condition|(
 name|field
 operator|.
 name|getDocValuesGen
 argument_list|()
-operator|!=
+operator|==
 operator|-
 literal|1
-operator|||
+operator|&&
 name|previousValue
-operator|==
+operator|!=
 literal|null
-operator|:
-literal|"formatName="
+condition|)
+block|{
+throw|throw
+operator|new
+name|IllegalStateException
+argument_list|(
+literal|"found existing value for "
+operator|+
+name|PER_FIELD_FORMAT_KEY
+operator|+
+literal|", field="
+operator|+
+name|field
+operator|.
+name|name
+operator|+
+literal|", old="
+operator|+
+name|previousValue
+operator|+
+literal|", new="
 operator|+
 name|formatName
-operator|+
-literal|" prevValue="
-operator|+
-name|previousValue
-assert|;
+argument_list|)
+throw|;
+block|}
 name|Integer
 name|suffix
 init|=
@@ -1070,32 +1078,45 @@ name|suffix
 argument_list|)
 argument_list|)
 expr_stmt|;
-assert|assert
+if|if
+condition|(
 name|field
 operator|.
 name|getDocValuesGen
 argument_list|()
-operator|!=
+operator|==
 operator|-
 literal|1
-operator|||
+operator|&&
 name|previousValue
-operator|==
+operator|!=
 literal|null
-operator|:
-literal|"suffix="
-operator|+
-name|Integer
-operator|.
-name|toString
+condition|)
+block|{
+throw|throw
+operator|new
+name|IllegalStateException
 argument_list|(
+literal|"found existing value for "
+operator|+
+name|PER_FIELD_SUFFIX_KEY
+operator|+
+literal|", field="
+operator|+
+name|field
+operator|.
+name|name
+operator|+
+literal|", old="
+operator|+
+name|previousValue
+operator|+
+literal|", new="
+operator|+
 name|suffix
 argument_list|)
-operator|+
-literal|" prevValue="
-operator|+
-name|previousValue
-assert|;
+throw|;
+block|}
 comment|// TODO: we should only provide the "slice" of FIS
 comment|// that this DVF actually sees ...
 return|return
@@ -1299,11 +1320,27 @@ argument_list|(
 name|PER_FIELD_SUFFIX_KEY
 argument_list|)
 decl_stmt|;
-assert|assert
+if|if
+condition|(
 name|suffix
-operator|!=
+operator|==
 literal|null
-assert|;
+condition|)
+block|{
+throw|throw
+operator|new
+name|IllegalStateException
+argument_list|(
+literal|"missing attribute: "
+operator|+
+name|PER_FIELD_SUFFIX_KEY
+operator|+
+literal|" for field: "
+operator|+
+name|fieldName
+argument_list|)
+throw|;
+block|}
 name|DocValuesFormat
 name|format
 init|=
