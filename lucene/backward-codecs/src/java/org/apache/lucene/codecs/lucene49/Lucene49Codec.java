@@ -516,7 +516,6 @@ annotation|@
 name|Override
 DECL|method|segmentInfoFormat
 specifier|public
-specifier|final
 name|SegmentInfoFormat
 name|segmentInfoFormat
 parameter_list|()

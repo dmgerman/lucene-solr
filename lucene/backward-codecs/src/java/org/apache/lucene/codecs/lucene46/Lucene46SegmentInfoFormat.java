@@ -147,7 +147,7 @@ comment|// javadocs
 end_comment
 
 begin_comment
-comment|/**  * Lucene 4.6 Segment info format.  *<p>  * Files:  *<ul>  *<li><tt>.si</tt>: Header, SegVersion, SegSize, IsCompoundFile, Diagnostics, Files, Id, Footer  *</ul>  *</p>  * Data types:  *<p>  *<ul>  *<li>Header --&gt; {@link CodecUtil#writeHeader CodecHeader}</li>  *<li>SegSize --&gt; {@link DataOutput#writeInt Int32}</li>  *<li>SegVersion --&gt; {@link DataOutput#writeString String}</li>  *<li>Files --&gt; {@link DataOutput#writeStringSet Set&lt;String&gt;}</li>  *<li>Diagnostics --&gt; {@link DataOutput#writeStringStringMap Map&lt;String,String&gt;}</li>  *<li>IsCompoundFile --&gt; {@link DataOutput#writeByte Int8}</li>  *<li>Footer --&gt; {@link CodecUtil#writeFooter CodecFooter}</li>  *<li>Id --&gt; {@link DataOutput#writeString String}</li>  *</ul>  *</p>  * Field Descriptions:  *<p>  *<ul>  *<li>SegVersion is the code version that created the segment.</li>  *<li>SegSize is the number of documents contained in the segment index.</li>  *<li>IsCompoundFile records whether the segment is written as a compound file or  *       not. If this is -1, the segment is not a compound file. If it is 1, the segment  *       is a compound file.</li>  *<li>The Diagnostics Map is privately written by {@link IndexWriter}, as a debugging aid,  *       for each segment it creates. It includes metadata like the current Lucene  *       version, OS, Java version, why the segment was created (merge, flush,  *       addIndexes), etc.</li>  *<li>Files is a list of files referred to by this segment.</li>  *</ul>  *</p>  *   * @see SegmentInfos  * @lucene.experimental  */
+comment|/**  * Lucene 4.6 Segment info format.  *<p>  * Files:  *<ul>  *<li><tt>.si</tt>: Header, SegVersion, SegSize, IsCompoundFile, Diagnostics, Files, Footer  *</ul>  *</p>  * Data types:  *<p>  *<ul>  *<li>Header --&gt; {@link CodecUtil#writeHeader CodecHeader}</li>  *<li>SegSize --&gt; {@link DataOutput#writeInt Int32}</li>  *<li>SegVersion --&gt; {@link DataOutput#writeString String}</li>  *<li>Files --&gt; {@link DataOutput#writeStringSet Set&lt;String&gt;}</li>  *<li>Diagnostics --&gt; {@link DataOutput#writeStringStringMap Map&lt;String,String&gt;}</li>  *<li>IsCompoundFile --&gt; {@link DataOutput#writeByte Int8}</li>  *<li>Footer --&gt; {@link CodecUtil#writeFooter CodecFooter}</li>  *</ul>  *</p>  * Field Descriptions:  *<p>  *<ul>  *<li>SegVersion is the code version that created the segment.</li>  *<li>SegSize is the number of documents contained in the segment index.</li>  *<li>IsCompoundFile records whether the segment is written as a compound file or  *       not. If this is -1, the segment is not a compound file. If it is 1, the segment  *       is a compound file.</li>  *<li>The Diagnostics Map is privately written by {@link IndexWriter}, as a debugging aid,  *       for each segment it creates. It includes metadata like the current Lucene  *       version, OS, Java version, why the segment was created (merge, flush,  *       addIndexes), etc.</li>  *<li>Files is a list of files referred to by this segment.</li>  *</ul>  *</p>  *   * @see SegmentInfos  * @lucene.experimental  */
 end_comment
 
 begin_class
@@ -166,16 +166,6 @@ name|reader
 init|=
 operator|new
 name|Lucene46SegmentInfoReader
-argument_list|()
-decl_stmt|;
-DECL|field|writer
-specifier|private
-specifier|final
-name|SegmentInfoWriter
-name|writer
-init|=
-operator|new
-name|Lucene46SegmentInfoWriter
 argument_list|()
 decl_stmt|;
 comment|/** Sole constructor. */
@@ -204,9 +194,13 @@ name|SegmentInfoWriter
 name|getSegmentInfoWriter
 parameter_list|()
 block|{
-return|return
-name|writer
-return|;
+throw|throw
+operator|new
+name|UnsupportedOperationException
+argument_list|(
+literal|"this codec can only be used for reading"
+argument_list|)
+throw|;
 block|}
 comment|/** File extension used to store {@link SegmentInfo}. */
 DECL|field|SI_EXTENSION
@@ -242,21 +236,13 @@ name|VERSION_CHECKSUM
 init|=
 literal|1
 decl_stmt|;
-DECL|field|VERSION_ID
-specifier|static
-specifier|final
-name|int
-name|VERSION_ID
-init|=
-literal|2
-decl_stmt|;
 DECL|field|VERSION_CURRENT
 specifier|static
 specifier|final
 name|int
 name|VERSION_CURRENT
 init|=
-name|VERSION_ID
+name|VERSION_CHECKSUM
 decl_stmt|;
 block|}
 end_class

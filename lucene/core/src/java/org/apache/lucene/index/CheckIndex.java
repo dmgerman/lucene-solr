@@ -406,6 +406,20 @@ name|lucene
 operator|.
 name|util
 operator|.
+name|StringHelper
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|util
+operator|.
 name|Version
 import|;
 end_import
@@ -1665,10 +1679,15 @@ name|versionString
 operator|+
 literal|" id="
 operator|+
+name|StringHelper
+operator|.
+name|idToString
+argument_list|(
 name|sis
 operator|.
 name|getId
 argument_list|()
+argument_list|)
 operator|+
 literal|" format="
 operator|+
@@ -2037,12 +2056,17 @@ name|infoStream
 argument_list|,
 literal|"    id="
 operator|+
+name|StringHelper
+operator|.
+name|idToString
+argument_list|(
 name|info
 operator|.
 name|info
 operator|.
 name|getId
 argument_list|()
+argument_list|)
 argument_list|)
 expr_stmt|;
 specifier|final

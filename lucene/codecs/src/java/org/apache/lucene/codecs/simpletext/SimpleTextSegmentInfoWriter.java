@@ -746,12 +746,14 @@ name|write
 argument_list|(
 name|output
 argument_list|,
+operator|new
+name|BytesRef
+argument_list|(
 name|si
 operator|.
 name|getId
 argument_list|()
-argument_list|,
-name|scratch
+argument_list|)
 argument_list|)
 expr_stmt|;
 name|SimpleTextUtil

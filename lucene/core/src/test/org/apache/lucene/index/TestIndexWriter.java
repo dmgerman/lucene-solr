@@ -17646,7 +17646,8 @@ argument_list|(
 name|d
 argument_list|)
 expr_stmt|;
-name|String
+name|byte
+index|[]
 name|id1
 init|=
 name|sis
@@ -17659,7 +17660,19 @@ argument_list|(
 name|id1
 argument_list|)
 expr_stmt|;
-name|String
+name|assertEquals
+argument_list|(
+name|StringHelper
+operator|.
+name|ID_LENGTH
+argument_list|,
+name|id1
+operator|.
+name|length
+argument_list|)
+expr_stmt|;
+name|byte
+index|[]
 name|id2
 init|=
 name|sis
@@ -17677,6 +17690,17 @@ decl_stmt|;
 name|assertNotNull
 argument_list|(
 name|id2
+argument_list|)
+expr_stmt|;
+name|assertEquals
+argument_list|(
+name|StringHelper
+operator|.
+name|ID_LENGTH
+argument_list|,
+name|id2
+operator|.
+name|length
 argument_list|)
 expr_stmt|;
 comment|// Make sure CheckIndex includes id output:
@@ -17767,7 +17791,12 @@ name|assertTrue
 argument_list|(
 literal|"missing id="
 operator|+
+name|StringHelper
+operator|.
+name|idToString
+argument_list|(
 name|id1
+argument_list|)
 operator|+
 literal|" in:\n"
 operator|+
@@ -17779,7 +17808,12 @@ name|contains
 argument_list|(
 literal|"id="
 operator|+
+name|StringHelper
+operator|.
+name|idToString
+argument_list|(
 name|id1
+argument_list|)
 argument_list|)
 argument_list|)
 expr_stmt|;
@@ -17787,7 +17821,12 @@ name|assertTrue
 argument_list|(
 literal|"missing id="
 operator|+
-name|id2
+name|StringHelper
+operator|.
+name|idToString
+argument_list|(
+name|id1
+argument_list|)
 operator|+
 literal|" in:\n"
 operator|+
@@ -17799,7 +17838,12 @@ name|contains
 argument_list|(
 literal|"id="
 operator|+
-name|id2
+name|StringHelper
+operator|.
+name|idToString
+argument_list|(
+name|id1
+argument_list|)
 argument_list|)
 argument_list|)
 expr_stmt|;
@@ -17839,8 +17883,13 @@ name|id
 init|=
 name|StringHelper
 operator|.
+name|idToString
+argument_list|(
+name|StringHelper
+operator|.
 name|randomId
 argument_list|()
+argument_list|)
 decl_stmt|;
 name|assertFalse
 argument_list|(
