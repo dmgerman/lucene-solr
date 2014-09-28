@@ -658,20 +658,6 @@ name|lucene
 operator|.
 name|util
 operator|.
-name|StringHelper
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|util
-operator|.
 name|Version
 import|;
 end_import
@@ -725,10 +711,12 @@ import|;
 end_import
 
 begin_comment
-comment|/** reader for {@link Lucene45DocValuesFormat} */
+comment|/**   * reader for 4.5 docvalues format  * @deprecated only for reading old 4.x segments  */
 end_comment
 
 begin_class
+annotation|@
+name|Deprecated
 DECL|class|Lucene45DocValuesProducer
 class|class
 name|Lucene45DocValuesProducer

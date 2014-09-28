@@ -391,7 +391,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Reads the 4.0 format of norms/docvalues  * @lucene.experimental  * @deprecated Only for reading old 4.0 and 4.1 segments  */
+comment|/**  * Reads the 4.0 format of norms/docvalues  * @deprecated Only for reading old 4.0 and 4.1 segments  */
 end_comment
 
 begin_class

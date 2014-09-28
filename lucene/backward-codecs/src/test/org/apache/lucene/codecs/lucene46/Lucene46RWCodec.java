@@ -70,20 +70,6 @@ name|lucene
 operator|.
 name|codecs
 operator|.
-name|SegmentInfoWriter
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|codecs
-operator|.
 name|StoredFieldsFormat
 import|;
 end_import
@@ -167,17 +153,15 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Read-write version of {@link Lucene46Codec} for testing.  */
+comment|/**  * Read-write version of 4.6 codec for testing  * @deprecated for test purposes only  */
 end_comment
 
 begin_class
 annotation|@
-name|SuppressWarnings
-argument_list|(
-literal|"deprecation"
-argument_list|)
+name|Deprecated
 DECL|class|Lucene46RWCodec
 specifier|public
+specifier|final
 class|class
 name|Lucene46RWCodec
 extends|extends

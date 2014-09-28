@@ -665,11 +665,14 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Reader for {@link Lucene42DocValuesFormat}  */
+comment|/**  * Reader for 4.2 docvalues  * @deprecated only for reading old 4.x segments  */
 end_comment
 
 begin_class
+annotation|@
+name|Deprecated
 DECL|class|Lucene42DocValuesProducer
+specifier|final
 class|class
 name|Lucene42DocValuesProducer
 extends|extends

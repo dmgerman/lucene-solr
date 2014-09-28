@@ -85,17 +85,15 @@ import|;
 end_import
 
 begin_comment
-comment|/** Read-write version of {@link Lucene40NormsFormat} for testing */
+comment|/**  * Read-write version of 4.0 norms format for testing  * @deprecated for test purposes only  */
 end_comment
 
 begin_class
 annotation|@
-name|SuppressWarnings
-argument_list|(
-literal|"deprecation"
-argument_list|)
+name|Deprecated
 DECL|class|Lucene40RWNormsFormat
 specifier|public
+specifier|final
 class|class
 name|Lucene40RWNormsFormat
 extends|extends

@@ -199,14 +199,14 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Lucene 4.0 implementation of {@link SegmentInfoReader}.  *   * @see Lucene40SegmentInfoFormat  * @lucene.experimental  * @deprecated Only for reading old 4.0-4.5 segments  */
+comment|/**  * Lucene 4.0 SI reader  * @deprecated Only for reading old 4.0-4.5 segments  */
 end_comment
 
 begin_class
 annotation|@
 name|Deprecated
 DECL|class|Lucene40SegmentInfoReader
-specifier|public
+specifier|final
 class|class
 name|Lucene40SegmentInfoReader
 extends|extends

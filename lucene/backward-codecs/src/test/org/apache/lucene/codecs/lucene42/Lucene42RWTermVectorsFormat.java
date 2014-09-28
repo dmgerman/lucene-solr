@@ -85,12 +85,15 @@ import|;
 end_import
 
 begin_comment
-comment|/** read-write version of lucene 4.2 term vectors for testing */
+comment|/**  * Read-Write version of 4.2 term vectors format for testing  * @deprecated for test purposes only  */
 end_comment
 
 begin_class
+annotation|@
+name|Deprecated
 DECL|class|Lucene42RWTermVectorsFormat
 specifier|public
+specifier|final
 class|class
 name|Lucene42RWTermVectorsFormat
 extends|extends

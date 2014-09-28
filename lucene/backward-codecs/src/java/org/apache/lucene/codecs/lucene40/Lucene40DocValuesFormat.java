@@ -38,20 +38,6 @@ name|lucene
 operator|.
 name|codecs
 operator|.
-name|CodecUtil
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|codecs
-operator|.
 name|DocValuesConsumer
 import|;
 end_import
@@ -126,59 +112,13 @@ name|SegmentWriteState
 import|;
 end_import
 
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|store
-operator|.
-name|CompoundFileDirectory
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|store
-operator|.
-name|DataOutput
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|util
-operator|.
-name|packed
-operator|.
-name|PackedInts
-import|;
-end_import
-
 begin_comment
-comment|/**  * Lucene 4.0 DocValues format.  *<p>  * Files:  *<ul>  *<li><tt>.dv.cfs</tt>: {@link CompoundFileDirectory compound container}</li>  *<li><tt>.dv.cfe</tt>: {@link CompoundFileDirectory compound entries}</li>  *</ul>  * Entries within the compound file:  *<ul>  *<li><tt>&lt;segment&gt;_&lt;fieldNumber&gt;.dat</tt>: data values</li>  *<li><tt>&lt;segment&gt;_&lt;fieldNumber&gt;.idx</tt>: index into the .dat for DEREF types</li>  *</ul>  *<p>  * There are several many types of {@code DocValues} with different encodings.  * From the perspective of filenames, all types store their values in<tt>.dat</tt>  * entries within the compound file. In the case of dereferenced/sorted types, the<tt>.dat</tt>  * actually contains only the unique values, and an additional<tt>.idx</tt> file contains  * pointers to these unique values.  *</p>  * Formats:  *<ul>  *<li>{@code VAR_INTS} .dat --&gt; Header, PackedType, MinValue,   *        DefaultValue, PackedStream</li>  *<li>{@code FIXED_INTS_8} .dat --&gt; Header, ValueSize,   *        {@link DataOutput#writeByte Byte}<sup>maxdoc</sup></li>  *<li>{@code FIXED_INTS_16} .dat --&gt; Header, ValueSize,  *        {@link DataOutput#writeShort Short}<sup>maxdoc</sup></li>  *<li>{@code FIXED_INTS_32} .dat --&gt; Header, ValueSize,  *        {@link DataOutput#writeInt Int32}<sup>maxdoc</sup></li>  *<li>{@code FIXED_INTS_64} .dat --&gt; Header, ValueSize,  *        {@link DataOutput#writeLong Int64}<sup>maxdoc</sup></li>  *<li>{@code FLOAT_32} .dat --&gt; Header, ValueSize, Float32<sup>maxdoc</sup></li>  *<li>{@code FLOAT_64} .dat --&gt; Header, ValueSize, Float64<sup>maxdoc</sup></li>  *<li>{@code BYTES_FIXED_STRAIGHT} .dat --&gt; Header, ValueSize,  *        ({@link DataOutput#writeByte Byte} * ValueSize)<sup>maxdoc</sup></li>  *<li>{@code BYTES_VAR_STRAIGHT} .idx --&gt; Header, TotalBytes, Addresses</li>  *<li>{@code BYTES_VAR_STRAIGHT} .dat --&gt; Header,           ({@link DataOutput#writeByte Byte} *<i>variable ValueSize</i>)<sup>maxdoc</sup></li>  *<li>{@code BYTES_FIXED_DEREF} .idx --&gt; Header, NumValues, Addresses</li>  *<li>{@code BYTES_FIXED_DEREF} .dat --&gt; Header, ValueSize,  *        ({@link DataOutput#writeByte Byte} * ValueSize)<sup>NumValues</sup></li>  *<li>{@code BYTES_VAR_DEREF} .idx --&gt; Header, TotalVarBytes, Addresses</li>  *<li>{@code BYTES_VAR_DEREF} .dat --&gt; Header,  *        (LengthPrefix + {@link DataOutput#writeByte Byte} *<i>variable ValueSize</i>)<sup>NumValues</sup></li>  *<li>{@code BYTES_FIXED_SORTED} .idx --&gt; Header, NumValues, Ordinals</li>  *<li>{@code BYTES_FIXED_SORTED} .dat --&gt; Header, ValueSize,  *        ({@link DataOutput#writeByte Byte} * ValueSize)<sup>NumValues</sup></li>  *<li>{@code BYTES_VAR_SORTED} .idx --&gt; Header, TotalVarBytes, Addresses, Ordinals</li>  *<li>{@code BYTES_VAR_SORTED} .dat --&gt; Header,  *        ({@link DataOutput#writeByte Byte} *<i>variable ValueSize</i>)<sup>NumValues</sup></li>  *</ul>  * Data Types:  *<ul>  *<li>Header --&gt; {@link CodecUtil#writeHeader CodecHeader}</li>  *<li>PackedType --&gt; {@link DataOutput#writeByte Byte}</li>  *<li>MaxAddress, MinValue, DefaultValue --&gt; {@link DataOutput#writeLong Int64}</li>  *<li>PackedStream, Addresses, Ordinals --&gt; {@link PackedInts}</li>  *<li>ValueSize, NumValues --&gt; {@link DataOutput#writeInt Int32}</li>  *<li>Float32 --&gt; 32-bit float encoded with {@link Float#floatToRawIntBits(float)}  *                       then written as {@link DataOutput#writeInt Int32}</li>  *<li>Float64 --&gt; 64-bit float encoded with {@link Double#doubleToRawLongBits(double)}  *                       then written as {@link DataOutput#writeLong Int64}</li>  *<li>TotalBytes --&gt; {@link DataOutput#writeVLong VLong}</li>  *<li>TotalVarBytes --&gt; {@link DataOutput#writeLong Int64}</li>  *<li>LengthPrefix --&gt; Length of the data value as {@link DataOutput#writeVInt VInt} (maximum  *                       of 2 bytes)</li>  *</ul>  * Notes:  *<ul>  *<li>PackedType is a 0 when compressed, 1 when the stream is written as 64-bit integers.</li>  *<li>Addresses stores pointers to the actual byte location (indexed by docid). In the VAR_STRAIGHT  *        case, each entry can have a different length, so to determine the length, docid+1 is   *        retrieved. A sentinel address is written at the end for the VAR_STRAIGHT case, so the Addresses   *        stream contains maxdoc+1 indices. For the deduplicated VAR_DEREF case, each length  *        is encoded as a prefix to the data itself as a {@link DataOutput#writeVInt VInt}   *        (maximum of 2 bytes).</li>  *<li>Ordinals stores the term ID in sorted order (indexed by docid). In the FIXED_SORTED case,  *        the address into the .dat can be computed from the ordinal as   *<code>Header+ValueSize+(ordinal*ValueSize)</code> because the byte length is fixed.  *        In the VAR_SORTED case, there is double indirection (docid -> ordinal -> address), but  *        an additional sentinel ordinal+address is always written (so there are NumValues+1 ordinals). To  *        determine the length, ord+1's address is looked up as well.</li>  *<li>{@code BYTES_VAR_STRAIGHT BYTES_VAR_STRAIGHT} in contrast to other straight   *        variants uses a<tt>.idx</tt> file to improve lookup perfromance. In contrast to   *        {@code BYTES_VAR_DEREF BYTES_VAR_DEREF} it doesn't apply deduplication of the document values.  *</li>  *</ul>  *<p>  * Limitations:  *<ul>  *<li> Binary doc values can be at most {@link #MAX_BINARY_FIELD_LENGTH} in length.  *</ul>  * @deprecated Only for reading old 4.0 and 4.1 segments  */
+comment|/**  * Lucene 4.0 DocValues format.  * @deprecated Only for reading old 4.0 and 4.1 segments  */
 end_comment
 
 begin_class
 annotation|@
 name|Deprecated
-comment|// NOTE: not registered in SPI, doesnt respect segment suffix, etc
-comment|// for back compat only!
 DECL|class|Lucene40DocValuesFormat
 specifier|public
 class|class
@@ -188,7 +128,6 @@ name|DocValuesFormat
 block|{
 comment|/** Maximum length for each binary doc values field. */
 DECL|field|MAX_BINARY_FIELD_LENGTH
-specifier|public
 specifier|static
 specifier|final
 name|int
@@ -239,6 +178,7 @@ annotation|@
 name|Override
 DECL|method|fieldsProducer
 specifier|public
+specifier|final
 name|DocValuesProducer
 name|fieldsProducer
 parameter_list|(

@@ -80,20 +80,6 @@ name|lucene
 operator|.
 name|codecs
 operator|.
-name|FilterCodec
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|codecs
-operator|.
 name|LiveDocsFormat
 import|;
 end_import
@@ -325,22 +311,12 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Implements the Lucene 4.10 index format, with configurable per-field postings  * and docvalues formats.  *<p>  * If you want to reuse functionality of this codec in another codec, extend  * {@link FilterCodec}.  *  * @see org.apache.lucene.codecs.lucene410 package documentation for file format details.  * @lucene.experimental  */
-end_comment
-
-begin_comment
-comment|// NOTE: if we make largish changes in a minor release, easier to just make Lucene411Codec or whatever
-end_comment
-
-begin_comment
-comment|// if they are backwards compatible or smallish we can probably do the backwards in the postingsreader
-end_comment
-
-begin_comment
-comment|// (it writes a minor version, etc).
+comment|/**  * Implements the Lucene 4.10 codec  * @deprecated only for reading old 4.10 segments  */
 end_comment
 
 begin_class
+annotation|@
+name|Deprecated
 DECL|class|Lucene410Codec
 specifier|public
 class|class

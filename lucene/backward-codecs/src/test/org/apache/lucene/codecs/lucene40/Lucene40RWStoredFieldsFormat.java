@@ -85,12 +85,14 @@ import|;
 end_import
 
 begin_comment
-comment|/**   * Simulates writing Lucene 4.0 Stored Fields Format.  */
+comment|/**  * Read-write version of 4.0 stored fields format for testing  * @deprecated for test purposes only  */
 end_comment
 
 begin_class
+annotation|@
+name|Deprecated
 DECL|class|Lucene40RWStoredFieldsFormat
-specifier|public
+specifier|final
 class|class
 name|Lucene40RWStoredFieldsFormat
 extends|extends

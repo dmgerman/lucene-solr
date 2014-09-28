@@ -559,10 +559,12 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * writer for Lucene 4.2 term vectors for testing  */
+comment|/**  * Writer for 4.2 term vectors format for testing  * @deprecated for test purposes only  */
 end_comment
 
 begin_class
+annotation|@
+name|Deprecated
 DECL|class|Lucene42TermVectorsWriter
 specifier|final
 class|class

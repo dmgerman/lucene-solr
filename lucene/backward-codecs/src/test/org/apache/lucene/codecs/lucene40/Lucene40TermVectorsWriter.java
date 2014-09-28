@@ -243,44 +243,13 @@ import|;
 end_import
 
 begin_comment
-comment|// TODO: make a new 4.0 TV format that encodes better
-end_comment
-
-begin_comment
-comment|//   - use startOffset (not endOffset) as base for delta on
-end_comment
-
-begin_comment
-comment|//     next startOffset because today for syns or ngrams or
-end_comment
-
-begin_comment
-comment|//     WDF or shingles etc. we are encoding negative vints
-end_comment
-
-begin_comment
-comment|//     (= slow, 5 bytes per)
-end_comment
-
-begin_comment
-comment|//   - if doc has no term vectors, write 0 into the tvx
-end_comment
-
-begin_comment
-comment|//     file; saves a seek to tvd only to read a 0 vint (and
-end_comment
-
-begin_comment
-comment|//     saves a byte in tvd)
-end_comment
-
-begin_comment
-comment|/**  * Lucene 4.0 Term Vectors writer.  *<p>  * It writes .tvd, .tvf, and .tvx files.  *   * @see Lucene40TermVectorsFormat  */
+comment|/**  * Writer for 4.0 term vectors format for testing  * @deprecated for test purposes only  */
 end_comment
 
 begin_class
+annotation|@
+name|Deprecated
 DECL|class|Lucene40TermVectorsWriter
-specifier|public
 specifier|final
 class|class
 name|Lucene40TermVectorsWriter

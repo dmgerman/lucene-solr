@@ -112,22 +112,8 @@ name|SegmentWriteState
 import|;
 end_import
 
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|store
-operator|.
-name|CompoundFileDirectory
-import|;
-end_import
-
 begin_comment
-comment|/**  * Lucene 4.0 Norms Format.  *<p>  * Files:  *<ul>  *<li><tt>.nrm.cfs</tt>: {@link CompoundFileDirectory compound container}</li>  *<li><tt>.nrm.cfe</tt>: {@link CompoundFileDirectory compound entries}</li>  *</ul>  * Norms are implemented as DocValues, so other than file extension, norms are   * written exactly the same way as {@link Lucene40DocValuesFormat DocValues}.  *   * @see Lucene40DocValuesFormat  * @lucene.experimental  * @deprecated Only for reading old 4.0 and 4.1 segments  */
+comment|/**  * Lucene 4.0 Norms Format.  * @deprecated Only for reading old 4.0 and 4.1 segments  */
 end_comment
 
 begin_class

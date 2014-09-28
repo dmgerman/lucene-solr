@@ -30,16 +30,6 @@ end_import
 
 begin_import
 import|import
-name|java
-operator|.
-name|util
-operator|.
-name|Collections
-import|;
-end_import
-
-begin_import
-import|import
 name|org
 operator|.
 name|apache
@@ -109,13 +99,14 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Reads 4.2-4.8 norms.  * Implemented the same as docvalues, but with a different filename.  * @deprecated Only for reading old segments  */
+comment|/**  * Reads 4.2-4.8 norms.  * @deprecated Only for reading old segments  */
 end_comment
 
 begin_class
 annotation|@
 name|Deprecated
 DECL|class|Lucene42NormsProducer
+specifier|final
 class|class
 name|Lucene42NormsProducer
 extends|extends

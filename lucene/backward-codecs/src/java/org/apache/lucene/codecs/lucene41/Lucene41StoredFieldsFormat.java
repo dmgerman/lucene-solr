@@ -143,7 +143,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Lucene 4.1 stored fields format.  */
+comment|/**  * Lucene 4.1 stored fields format.  * @deprecated only for reading old 4.x segments  */
 end_comment
 
 begin_class

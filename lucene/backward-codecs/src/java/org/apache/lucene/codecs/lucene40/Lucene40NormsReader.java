@@ -99,13 +99,14 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Reads 4.0/4.1 norms.  * Implemented the same as docvalues, but with a different filename.  * @deprecated Only for reading old 4.0 and 4.1 segments  */
+comment|/**  * Reads 4.0/4.1 norms.  * @deprecated Only for reading old 4.0 and 4.1 segments  */
 end_comment
 
 begin_class
 annotation|@
 name|Deprecated
 DECL|class|Lucene40NormsReader
+specifier|final
 class|class
 name|Lucene40NormsReader
 extends|extends
@@ -118,7 +119,6 @@ name|Lucene40DocValuesReader
 name|impl
 decl_stmt|;
 DECL|method|Lucene40NormsReader
-specifier|public
 name|Lucene40NormsReader
 parameter_list|(
 name|SegmentReadState

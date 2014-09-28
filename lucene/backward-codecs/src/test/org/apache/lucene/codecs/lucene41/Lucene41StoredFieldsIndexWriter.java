@@ -99,10 +99,12 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * writer for lucene 4.x stored fields/vectors index for testing  */
+comment|/**  * Writer for 4.1 stored fields/term vectors index for testing  * @deprecated for test purposes only  */
 end_comment
 
 begin_class
+annotation|@
+name|Deprecated
 DECL|class|Lucene41StoredFieldsIndexWriter
 specifier|public
 specifier|final

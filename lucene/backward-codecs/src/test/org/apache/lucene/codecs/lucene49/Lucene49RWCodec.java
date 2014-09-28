@@ -137,17 +137,15 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Read-write version of {@link Lucene49Codec} for testing.  */
+comment|/**  * Read-Write version of 4.9 codec for testing  * @deprecated for test purposes only  */
 end_comment
 
 begin_class
 annotation|@
-name|SuppressWarnings
-argument_list|(
-literal|"deprecation"
-argument_list|)
+name|Deprecated
 DECL|class|Lucene49RWCodec
 specifier|public
+specifier|final
 class|class
 name|Lucene49RWCodec
 extends|extends

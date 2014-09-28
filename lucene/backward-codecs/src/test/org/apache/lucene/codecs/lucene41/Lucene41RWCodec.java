@@ -223,17 +223,15 @@ comment|/*  * Licensed to the Apache Software Foundation (ASF) under one or more
 end_comment
 
 begin_comment
-comment|/**  * Read-write version of {@link Lucene41Codec} for testing.  */
+comment|/**  * Read-write version of 4.1 codec for testing  * @deprecated for test purposes only  */
 end_comment
 
 begin_class
 annotation|@
-name|SuppressWarnings
-argument_list|(
-literal|"deprecation"
-argument_list|)
+name|Deprecated
 DECL|class|Lucene41RWCodec
 specifier|public
+specifier|final
 class|class
 name|Lucene41RWCodec
 extends|extends

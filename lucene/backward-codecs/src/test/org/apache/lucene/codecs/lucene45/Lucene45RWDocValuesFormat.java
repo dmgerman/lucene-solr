@@ -71,12 +71,15 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Read-write version of {@link Lucene45DocValuesFormat} for testing.  */
+comment|/**  * Read-write version of 4.5 docvalues format for testing  * @deprecated for test purposes only  */
 end_comment
 
 begin_class
+annotation|@
+name|Deprecated
 DECL|class|Lucene45RWDocValuesFormat
 specifier|public
+specifier|final
 class|class
 name|Lucene45RWDocValuesFormat
 extends|extends

@@ -56,27 +56,16 @@ name|SegmentWriteState
 import|;
 end_import
 
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|util
-operator|.
-name|LuceneTestCase
-import|;
-end_import
-
 begin_comment
-comment|/**  * Read-write version of {@link Lucene42NormsFormat}  */
+comment|/**  * Read-write version of 4.2 norms format for testing  * @deprecated for test purposes only  */
 end_comment
 
 begin_class
+annotation|@
+name|Deprecated
 DECL|class|Lucene42RWNormsFormat
 specifier|public
+specifier|final
 class|class
 name|Lucene42RWNormsFormat
 extends|extends

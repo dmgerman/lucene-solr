@@ -67,14 +67,14 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Implements the skip list reader for the 4.0 posting list format  * that stores positions and payloads.  *   * @see Lucene40PostingsFormat  * @deprecated Only for reading old 4.0 segments  */
+comment|/**  * Lucene 4.0 skiplist reader  * @deprecated Only for reading old 4.0 segments  */
 end_comment
 
 begin_class
 annotation|@
 name|Deprecated
 DECL|class|Lucene40SkipListReader
-specifier|public
+specifier|final
 class|class
 name|Lucene40SkipListReader
 extends|extends

@@ -271,12 +271,13 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Class responsible for access to stored document fields.  *<p/>  * It uses&lt;segment&gt;.fdt and&lt;segment&gt;.fdx; files.  *   * @see Lucene40StoredFieldsFormat  * @lucene.internal  */
+comment|/**  * Reader for 4.0 stored fields  * @deprecated only for reading 4.0 segments  */
 end_comment
 
 begin_class
+annotation|@
+name|Deprecated
 DECL|class|Lucene40StoredFieldsReader
-specifier|public
 specifier|final
 class|class
 name|Lucene40StoredFieldsReader
@@ -421,7 +422,6 @@ argument_list|)
 decl_stmt|;
 comment|/** Extension of stored fields file */
 DECL|field|FIELDS_EXTENSION
-specifier|public
 specifier|static
 specifier|final
 name|String
@@ -431,7 +431,6 @@ literal|"fdt"
 decl_stmt|;
 comment|/** Extension of stored fields index file */
 DECL|field|FIELDS_INDEX_EXTENSION
-specifier|public
 specifier|static
 specifier|final
 name|String

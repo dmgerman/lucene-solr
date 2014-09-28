@@ -513,10 +513,12 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * writer for Lucene 4.1 stored fields for testing  */
+comment|/**  * Writer for 4.1 stored fields format for testing  * @deprecated for test purposes only  */
 end_comment
 
 begin_class
+annotation|@
+name|Deprecated
 DECL|class|Lucene41StoredFieldsWriter
 specifier|final
 class|class

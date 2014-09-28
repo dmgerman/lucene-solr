@@ -179,18 +179,12 @@ import|;
 end_import
 
 begin_comment
-comment|/** Optimized implementation of a vector of bits.  This is more-or-less like  *  java.util.BitSet, but also includes the following:  *<ul>  *<li>a count() method, which efficiently computes the number of one bits;</li>  *<li>optimized read from and write to disk;</li>  *<li>inlinable get() method;</li>  *<li>store and load, as bit set or d-gaps, depending on sparseness;</li>   *</ul>  *  *  @lucene.internal  */
-end_comment
-
-begin_comment
-comment|// pkg-private: if this thing is generally useful then it can go back in .util,
-end_comment
-
-begin_comment
-comment|// but the serialization must be here underneath the codec.
+comment|/**   * Bitset for support of 4.x live documents  * @deprecated only for old 4.x segments  */
 end_comment
 
 begin_class
+annotation|@
+name|Deprecated
 DECL|class|BitVector
 specifier|final
 class|class
@@ -223,7 +217,6 @@ name|version
 decl_stmt|;
 comment|/** Constructs a vector capable of holding<code>n</code> bits. */
 DECL|method|BitVector
-specifier|public
 name|BitVector
 parameter_list|(
 name|int
@@ -425,118 +418,6 @@ operator|-
 literal|1
 expr_stmt|;
 block|}
-comment|/** Sets the value of<code>bit</code> to true, and    *  returns true if bit was already set */
-DECL|method|getAndSet
-specifier|public
-specifier|final
-name|boolean
-name|getAndSet
-parameter_list|(
-name|int
-name|bit
-parameter_list|)
-block|{
-if|if
-condition|(
-name|bit
-operator|>=
-name|size
-condition|)
-block|{
-throw|throw
-operator|new
-name|ArrayIndexOutOfBoundsException
-argument_list|(
-literal|"bit="
-operator|+
-name|bit
-operator|+
-literal|" size="
-operator|+
-name|size
-argument_list|)
-throw|;
-block|}
-specifier|final
-name|int
-name|pos
-init|=
-name|bit
-operator|>>
-literal|3
-decl_stmt|;
-specifier|final
-name|int
-name|v
-init|=
-name|bits
-index|[
-name|pos
-index|]
-decl_stmt|;
-specifier|final
-name|int
-name|flag
-init|=
-literal|1
-operator|<<
-operator|(
-name|bit
-operator|&
-literal|7
-operator|)
-decl_stmt|;
-if|if
-condition|(
-operator|(
-name|flag
-operator|&
-name|v
-operator|)
-operator|!=
-literal|0
-condition|)
-return|return
-literal|true
-return|;
-else|else
-block|{
-name|bits
-index|[
-name|pos
-index|]
-operator|=
-call|(
-name|byte
-call|)
-argument_list|(
-name|v
-operator||
-name|flag
-argument_list|)
-expr_stmt|;
-if|if
-condition|(
-name|count
-operator|!=
-operator|-
-literal|1
-condition|)
-block|{
-name|count
-operator|++
-expr_stmt|;
-assert|assert
-name|count
-operator|<=
-name|size
-assert|;
-block|}
-return|return
-literal|false
-return|;
-block|}
-block|}
 comment|/** Sets the value of<code>bit</code> to zero. */
 annotation|@
 name|Override
@@ -588,107 +469,6 @@ operator|=
 operator|-
 literal|1
 expr_stmt|;
-block|}
-DECL|method|getAndClear
-specifier|public
-specifier|final
-name|boolean
-name|getAndClear
-parameter_list|(
-name|int
-name|bit
-parameter_list|)
-block|{
-if|if
-condition|(
-name|bit
-operator|>=
-name|size
-condition|)
-block|{
-throw|throw
-operator|new
-name|ArrayIndexOutOfBoundsException
-argument_list|(
-name|bit
-argument_list|)
-throw|;
-block|}
-specifier|final
-name|int
-name|pos
-init|=
-name|bit
-operator|>>
-literal|3
-decl_stmt|;
-specifier|final
-name|int
-name|v
-init|=
-name|bits
-index|[
-name|pos
-index|]
-decl_stmt|;
-specifier|final
-name|int
-name|flag
-init|=
-literal|1
-operator|<<
-operator|(
-name|bit
-operator|&
-literal|7
-operator|)
-decl_stmt|;
-if|if
-condition|(
-operator|(
-name|flag
-operator|&
-name|v
-operator|)
-operator|==
-literal|0
-condition|)
-block|{
-return|return
-literal|false
-return|;
-block|}
-else|else
-block|{
-name|bits
-index|[
-name|pos
-index|]
-operator|&=
-operator|~
-name|flag
-expr_stmt|;
-if|if
-condition|(
-name|count
-operator|!=
-operator|-
-literal|1
-condition|)
-block|{
-name|count
-operator|--
-expr_stmt|;
-assert|assert
-name|count
-operator|>=
-literal|0
-assert|;
-block|}
-return|return
-literal|true
-return|;
-block|}
 block|}
 comment|/** Returns<code>true</code> if<code>bit</code> is one and<code>false</code> if it is zero. */
 annotation|@
@@ -749,7 +529,6 @@ return|;
 block|}
 comment|/** Returns the number of bits in this vector.  This is also one greater than     the number of the largest valid bit number. */
 DECL|method|size
-specifier|public
 specifier|final
 name|int
 name|size
@@ -773,7 +552,6 @@ return|;
 block|}
 comment|/** Returns the total number of one bits in this vector.  This is efficiently     computed and cached, so that, if the vector is not changed, no     recomputation is done for repeated calls. */
 DECL|method|count
-specifier|public
 specifier|final
 name|int
 name|count
@@ -853,7 +631,6 @@ return|;
 block|}
 comment|/** For testing */
 DECL|method|getRecomputedCount
-specifier|public
 specifier|final
 name|int
 name|getRecomputedCount
@@ -914,7 +691,6 @@ literal|"BitVector"
 decl_stmt|;
 comment|// Version before version tracking was added:
 DECL|field|VERSION_PRE
-specifier|public
 specifier|final
 specifier|static
 name|int
@@ -925,7 +701,6 @@ literal|1
 decl_stmt|;
 comment|// First version:
 DECL|field|VERSION_START
-specifier|public
 specifier|final
 specifier|static
 name|int
@@ -936,7 +711,6 @@ decl_stmt|;
 comment|// Changed DGaps to encode gaps between cleared bits, not
 comment|// set:
 DECL|field|VERSION_DGAPS_CLEARED
-specifier|public
 specifier|final
 specifier|static
 name|int
@@ -946,7 +720,6 @@ literal|1
 decl_stmt|;
 comment|// added checksum
 DECL|field|VERSION_CHECKSUM
-specifier|public
 specifier|final
 specifier|static
 name|int
@@ -956,7 +729,6 @@ literal|2
 decl_stmt|;
 comment|// Increment version to change it:
 DECL|field|VERSION_CURRENT
-specifier|public
 specifier|final
 specifier|static
 name|int
@@ -965,7 +737,6 @@ init|=
 name|VERSION_CHECKSUM
 decl_stmt|;
 DECL|method|getVersion
-specifier|public
 name|int
 name|getVersion
 parameter_list|()
@@ -976,7 +747,6 @@ return|;
 block|}
 comment|/** Writes this vector to the file<code>name</code> in Directory<code>d</code>, in a format that can be read by the constructor {@link     #BitVector(Directory, String, IOContext)}.  */
 DECL|method|write
-specifier|public
 specifier|final
 name|void
 name|write
@@ -1071,7 +841,6 @@ block|}
 block|}
 comment|/** Invert all bits */
 DECL|method|invertAll
-specifier|public
 name|void
 name|invertAll
 parameter_list|()
@@ -1196,33 +965,6 @@ name|mask
 expr_stmt|;
 block|}
 block|}
-block|}
-comment|/** Set all bits */
-DECL|method|setAll
-specifier|public
-name|void
-name|setAll
-parameter_list|()
-block|{
-name|Arrays
-operator|.
-name|fill
-argument_list|(
-name|bits
-argument_list|,
-operator|(
-name|byte
-operator|)
-literal|0xff
-argument_list|)
-expr_stmt|;
-name|clearUnusedBits
-argument_list|()
-expr_stmt|;
-name|count
-operator|=
-name|size
-expr_stmt|;
 block|}
 comment|/** Write as a bit set */
 DECL|method|writeBits
@@ -1583,7 +1325,6 @@ return|;
 block|}
 comment|/** Constructs a bit vector from the file<code>name</code> in Directory<code>d</code>, as written by the {@link #write} method.     */
 DECL|method|BitVector
-specifier|public
 name|BitVector
 parameter_list|(
 name|Directory

@@ -56,20 +56,6 @@ name|lucene
 operator|.
 name|codecs
 operator|.
-name|FilterCodec
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|codecs
-operator|.
 name|LiveDocsFormat
 import|;
 end_import
@@ -271,7 +257,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Implements the Lucene 4.1 index format, with configurable per-field postings formats.  *<p>  * If you want to reuse functionality of this codec in another codec, extend  * {@link FilterCodec}.  *  * @see org.apache.lucene.codecs.lucene41 package documentation for file format details.  * @deprecated Only for reading old 4.0 segments  * @lucene.experimental  */
+comment|/**  * Implements the Lucene 4.1 index format  * @deprecated Only for reading old 4.1 segments  */
 end_comment
 
 begin_class
@@ -379,7 +365,6 @@ literal|"Lucene41"
 argument_list|)
 expr_stmt|;
 block|}
-comment|// TODO: slightly evil
 annotation|@
 name|Override
 DECL|method|storedFieldsFormat

@@ -695,10 +695,12 @@ import|;
 end_import
 
 begin_comment
-comment|/** reader for {@link Lucene49DocValuesFormat} */
+comment|/**   * reader for 4.9 docvalues format  * @deprecated only for 4.x segments   */
 end_comment
 
 begin_class
+annotation|@
+name|Deprecated
 DECL|class|Lucene49DocValuesProducer
 class|class
 name|Lucene49DocValuesProducer
