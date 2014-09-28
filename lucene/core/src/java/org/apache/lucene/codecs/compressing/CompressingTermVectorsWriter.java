@@ -5044,6 +5044,19 @@ name|VERSION_CURRENT
 condition|)
 block|{
 comment|// naive merge...
+if|if
+condition|(
+name|vectorsReader
+operator|!=
+literal|null
+condition|)
+block|{
+name|vectorsReader
+operator|.
+name|checkIntegrity
+argument_list|()
+expr_stmt|;
+block|}
 for|for
 control|(
 name|int
