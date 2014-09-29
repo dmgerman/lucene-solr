@@ -1120,6 +1120,11 @@ argument_list|)
 argument_list|)
 expr_stmt|;
 block|}
+name|IndexSchema
+name|newSchema
+init|=
+literal|null
+decl_stmt|;
 name|boolean
 name|firstAttempt
 init|=
@@ -1202,9 +1207,8 @@ name|getSchemaUpdateLock
 argument_list|()
 init|)
 block|{
-name|IndexSchema
 name|newSchema
-init|=
+operator|=
 name|oldSchema
 operator|.
 name|addDynamicFields
@@ -1213,7 +1217,7 @@ name|newDynamicFields
 argument_list|,
 name|copyFields
 argument_list|)
-decl_stmt|;
+expr_stmt|;
 if|if
 condition|(
 literal|null
@@ -1278,6 +1282,11 @@ argument_list|()
 expr_stmt|;
 block|}
 block|}
+name|waitForSchemaUpdateToPropagate
+argument_list|(
+name|newSchema
+argument_list|)
+expr_stmt|;
 block|}
 block|}
 block|}

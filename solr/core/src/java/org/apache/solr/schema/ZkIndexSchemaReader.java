@@ -365,6 +365,9 @@ block|{
 name|updateSchema
 argument_list|(
 name|this
+argument_list|,
+operator|-
+literal|1
 argument_list|)
 expr_stmt|;
 block|}
@@ -524,6 +527,33 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
+DECL|method|refreshSchemaFromZk
+specifier|public
+name|ManagedIndexSchema
+name|refreshSchemaFromZk
+parameter_list|(
+name|int
+name|expectedZkVersion
+parameter_list|)
+throws|throws
+name|KeeperException
+throws|,
+name|InterruptedException
+block|{
+name|updateSchema
+argument_list|(
+literal|null
+argument_list|,
+name|expectedZkVersion
+argument_list|)
+expr_stmt|;
+return|return
+name|managedIndexSchemaFactory
+operator|.
+name|getSchema
+argument_list|()
+return|;
+block|}
 DECL|method|updateSchema
 specifier|private
 name|void
@@ -531,6 +561,9 @@ name|updateSchema
 parameter_list|(
 name|Watcher
 name|watcher
+parameter_list|,
+name|int
+name|expectedZkVersion
 parameter_list|)
 throws|throws
 name|KeeperException
@@ -559,6 +592,20 @@ operator|.
 name|getSchema
 argument_list|()
 decl_stmt|;
+if|if
+condition|(
+name|expectedZkVersion
+operator|==
+operator|-
+literal|1
+operator|||
+name|oldSchema
+operator|.
+name|schemaZkVersion
+operator|<
+name|expectedZkVersion
+condition|)
+block|{
 name|byte
 index|[]
 name|data
@@ -592,7 +639,14 @@ name|log
 operator|.
 name|info
 argument_list|(
-literal|"Retrieved schema from ZooKeeper"
+literal|"Retrieved schema version "
+operator|+
+name|stat
+operator|.
+name|getVersion
+argument_list|()
+operator|+
+literal|" from ZooKeeper"
 argument_list|)
 expr_stmt|;
 name|long
@@ -670,6 +724,7 @@ operator|+
 literal|" ms"
 argument_list|)
 expr_stmt|;
+block|}
 block|}
 block|}
 block|}

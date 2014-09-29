@@ -993,6 +993,11 @@ name|COPY_FIELDS
 argument_list|)
 expr_stmt|;
 block|}
+name|IndexSchema
+name|newSchema
+init|=
+literal|null
+decl_stmt|;
 name|boolean
 name|success
 init|=
@@ -1028,9 +1033,8 @@ name|getSchemaUpdateLock
 argument_list|()
 init|)
 block|{
-name|IndexSchema
 name|newSchema
-init|=
+operator|=
 name|oldSchema
 operator|.
 name|addDynamicField
@@ -1039,7 +1043,7 @@ name|newDynamicField
 argument_list|,
 name|copyFieldNames
 argument_list|)
-decl_stmt|;
+expr_stmt|;
 if|if
 condition|(
 literal|null
@@ -1104,6 +1108,12 @@ argument_list|()
 expr_stmt|;
 block|}
 block|}
+comment|// if in cloud mode, wait for schema updates to propagate to all replicas
+name|waitForSchemaUpdateToPropagate
+argument_list|(
+name|newSchema
+argument_list|)
+expr_stmt|;
 block|}
 block|}
 block|}
