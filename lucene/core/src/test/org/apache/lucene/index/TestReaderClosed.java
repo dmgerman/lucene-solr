@@ -30,6 +30,18 @@ end_import
 
 begin_import
 import|import
+name|java
+operator|.
+name|util
+operator|.
+name|concurrent
+operator|.
+name|RejectedExecutionException
+import|;
+end_import
+
+begin_import
+import|import
 name|org
 operator|.
 name|apache
@@ -417,6 +429,15 @@ name|ace
 parameter_list|)
 block|{
 comment|// expected
+block|}
+catch|catch
+parameter_list|(
+name|RejectedExecutionException
+name|ree
+parameter_list|)
+block|{
+comment|// expected if the searcher has been created with threads since LuceneTestCase
+comment|// closes the thread-pool in a reader close listener
 block|}
 block|}
 comment|// LUCENE-3800
