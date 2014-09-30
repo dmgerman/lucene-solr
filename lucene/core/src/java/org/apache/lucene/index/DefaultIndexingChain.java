@@ -2649,6 +2649,15 @@ name|bytesUsed
 argument_list|)
 expr_stmt|;
 block|}
+if|if
+condition|(
+name|invertState
+operator|.
+name|length
+operator|!=
+literal|0
+condition|)
+block|{
 name|norms
 operator|.
 name|addValue
@@ -2665,6 +2674,7 @@ name|invertState
 argument_list|)
 argument_list|)
 expr_stmt|;
+block|}
 block|}
 name|termsHashPerField
 operator|.
