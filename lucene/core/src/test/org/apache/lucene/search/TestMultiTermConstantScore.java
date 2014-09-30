@@ -1119,7 +1119,7 @@ name|T
 argument_list|,
 name|MultiTermQuery
 operator|.
-name|CONSTANT_SCORE_AUTO_REWRITE_DEFAULT
+name|CONSTANT_SCORE_FILTER_REWRITE
 argument_list|)
 argument_list|,
 literal|null
@@ -1496,7 +1496,7 @@ name|T
 argument_list|,
 name|MultiTermQuery
 operator|.
-name|CONSTANT_SCORE_AUTO_REWRITE_DEFAULT
+name|CONSTANT_SCORE_FILTER_REWRITE
 argument_list|)
 argument_list|,
 name|BooleanClause
@@ -2489,7 +2489,7 @@ name|T
 argument_list|,
 name|MultiTermQuery
 operator|.
-name|CONSTANT_SCORE_AUTO_REWRITE_DEFAULT
+name|CONSTANT_SCORE_FILTER_REWRITE
 argument_list|)
 argument_list|,
 literal|null
@@ -2569,7 +2569,7 @@ name|F
 argument_list|,
 name|MultiTermQuery
 operator|.
-name|CONSTANT_SCORE_AUTO_REWRITE_DEFAULT
+name|CONSTANT_SCORE_FILTER_REWRITE
 argument_list|)
 argument_list|,
 literal|null
@@ -2651,7 +2651,7 @@ name|T
 argument_list|,
 name|MultiTermQuery
 operator|.
-name|CONSTANT_SCORE_AUTO_REWRITE_DEFAULT
+name|CONSTANT_SCORE_FILTER_REWRITE
 argument_list|)
 argument_list|,
 literal|null
@@ -2733,7 +2733,7 @@ name|F
 argument_list|,
 name|MultiTermQuery
 operator|.
-name|CONSTANT_SCORE_AUTO_REWRITE_DEFAULT
+name|CONSTANT_SCORE_FILTER_REWRITE
 argument_list|)
 argument_list|,
 literal|null
@@ -2817,7 +2817,7 @@ name|T
 argument_list|,
 name|MultiTermQuery
 operator|.
-name|CONSTANT_SCORE_AUTO_REWRITE_DEFAULT
+name|CONSTANT_SCORE_FILTER_REWRITE
 argument_list|)
 argument_list|,
 literal|null
@@ -2903,7 +2903,7 @@ name|T
 argument_list|,
 name|MultiTermQuery
 operator|.
-name|CONSTANT_SCORE_AUTO_REWRITE_DEFAULT
+name|CONSTANT_SCORE_FILTER_REWRITE
 argument_list|)
 argument_list|,
 literal|null
@@ -3217,7 +3217,7 @@ name|F
 argument_list|,
 name|MultiTermQuery
 operator|.
-name|CONSTANT_SCORE_AUTO_REWRITE_DEFAULT
+name|CONSTANT_SCORE_FILTER_REWRITE
 argument_list|)
 argument_list|,
 literal|null
@@ -3295,7 +3295,7 @@ name|F
 argument_list|,
 name|MultiTermQuery
 operator|.
-name|CONSTANT_SCORE_AUTO_REWRITE_DEFAULT
+name|CONSTANT_SCORE_FILTER_REWRITE
 argument_list|)
 argument_list|,
 literal|null
@@ -3373,7 +3373,7 @@ name|F
 argument_list|,
 name|MultiTermQuery
 operator|.
-name|CONSTANT_SCORE_AUTO_REWRITE_DEFAULT
+name|CONSTANT_SCORE_FILTER_REWRITE
 argument_list|)
 argument_list|,
 literal|null
@@ -3451,7 +3451,7 @@ name|T
 argument_list|,
 name|MultiTermQuery
 operator|.
-name|CONSTANT_SCORE_AUTO_REWRITE_DEFAULT
+name|CONSTANT_SCORE_FILTER_REWRITE
 argument_list|)
 argument_list|,
 literal|null
@@ -3529,7 +3529,7 @@ name|T
 argument_list|,
 name|MultiTermQuery
 operator|.
-name|CONSTANT_SCORE_AUTO_REWRITE_DEFAULT
+name|CONSTANT_SCORE_FILTER_REWRITE
 argument_list|)
 argument_list|,
 literal|null
@@ -3607,7 +3607,7 @@ name|T
 argument_list|,
 name|MultiTermQuery
 operator|.
-name|CONSTANT_SCORE_AUTO_REWRITE_DEFAULT
+name|CONSTANT_SCORE_FILTER_REWRITE
 argument_list|)
 argument_list|,
 literal|null
@@ -3685,7 +3685,7 @@ name|F
 argument_list|,
 name|MultiTermQuery
 operator|.
-name|CONSTANT_SCORE_AUTO_REWRITE_DEFAULT
+name|CONSTANT_SCORE_FILTER_REWRITE
 argument_list|)
 argument_list|,
 literal|null
@@ -3763,7 +3763,7 @@ name|T
 argument_list|,
 name|MultiTermQuery
 operator|.
-name|CONSTANT_SCORE_AUTO_REWRITE_DEFAULT
+name|CONSTANT_SCORE_FILTER_REWRITE
 argument_list|)
 argument_list|,
 literal|null

@@ -219,7 +219,7 @@ argument_list|<
 name|Q
 argument_list|>
 block|{
-comment|/** A rewrite method that first translates each term into    *  {@link BooleanClause.Occur#SHOULD} clause in a    *  BooleanQuery, and keeps the scores as computed by the    *  query.  Note that typically such scores are    *  meaningless to the user, and require non-trivial CPU    *  to compute, so it's almost always better to use {@link    *  MultiTermQuery#CONSTANT_SCORE_AUTO_REWRITE_DEFAULT} instead.    *    *<p><b>NOTE</b>: This rewrite method will hit {@link    *  BooleanQuery.TooManyClauses} if the number of terms    *  exceeds {@link BooleanQuery#getMaxClauseCount}.    *    *  @see MultiTermQuery#setRewriteMethod */
+comment|/** A rewrite method that first translates each term into    *  {@link BooleanClause.Occur#SHOULD} clause in a    *  BooleanQuery, and keeps the scores as computed by the    *  query.  Note that typically such scores are    *  meaningless to the user, and require non-trivial CPU    *  to compute, so it's almost always better to use {@link    *  MultiTermQuery#CONSTANT_SCORE_FILTER_REWRITE} instead.    *    *<p><b>NOTE</b>: This rewrite method will hit {@link    *  BooleanQuery.TooManyClauses} if the number of terms    *  exceeds {@link BooleanQuery#getMaxClauseCount}.    *    *  @see MultiTermQuery#setRewriteMethod */
 DECL|field|SCORING_BOOLEAN_QUERY_REWRITE
 specifier|public
 specifier|final

@@ -147,7 +147,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * An abstract {@link Query} that matches documents  * containing a subset of terms provided by a {@link  * FilteredTermsEnum} enumeration.  *  *<p>This query cannot be used directly; you must subclass  * it and define {@link #getTermsEnum(Terms,AttributeSource)} to provide a {@link  * FilteredTermsEnum} that iterates through the terms to be  * matched.  *  *<p><b>NOTE</b>: if {@link #setRewriteMethod} is either  * {@link #CONSTANT_SCORE_BOOLEAN_QUERY_REWRITE} or {@link  * #SCORING_BOOLEAN_QUERY_REWRITE}, you may encounter a  * {@link BooleanQuery.TooManyClauses} exception during  * searching, which happens when the number of terms to be  * searched exceeds {@link  * BooleanQuery#getMaxClauseCount()}.  Setting {@link  * #setRewriteMethod} to {@link #CONSTANT_SCORE_FILTER_REWRITE}  * prevents this.  *  *<p>The recommended rewrite method is {@link  * #CONSTANT_SCORE_AUTO_REWRITE_DEFAULT}: it doesn't spend CPU  * computing unhelpful scores, and it tries to pick the most  * performant rewrite method given the query. If you  * need scoring (like {@link FuzzyQuery}, use  * {@link TopTermsScoringBooleanQueryRewrite} which uses  * a priority queue to only collect competitive terms  * and not hit this limitation.  *  * Note that org.apache.lucene.queryparser.classic.QueryParser produces  * MultiTermQueries using {@link  * #CONSTANT_SCORE_AUTO_REWRITE_DEFAULT} by default.  */
+comment|/**  * An abstract {@link Query} that matches documents  * containing a subset of terms provided by a {@link  * FilteredTermsEnum} enumeration.  *  *<p>This query cannot be used directly; you must subclass  * it and define {@link #getTermsEnum(Terms,AttributeSource)} to provide a {@link  * FilteredTermsEnum} that iterates through the terms to be  * matched.  *  *<p><b>NOTE</b>: if {@link #setRewriteMethod} is either  * {@link #CONSTANT_SCORE_BOOLEAN_QUERY_REWRITE} or {@link  * #SCORING_BOOLEAN_QUERY_REWRITE}, you may encounter a  * {@link BooleanQuery.TooManyClauses} exception during  * searching, which happens when the number of terms to be  * searched exceeds {@link  * BooleanQuery#getMaxClauseCount()}.  Setting {@link  * #setRewriteMethod} to {@link #CONSTANT_SCORE_FILTER_REWRITE}  * prevents this.  *  *<p>The recommended rewrite method is {@link  * #CONSTANT_SCORE_FILTER_REWRITE}: it doesn't spend CPU  * computing unhelpful scores, and is the most  * performant rewrite method given the query. If you  * need scoring (like {@link FuzzyQuery}, use  * {@link TopTermsScoringBooleanQueryRewrite} which uses  * a priority queue to only collect competitive terms  * and not hit this limitation.  *  * Note that org.apache.lucene.queryparser.classic.QueryParser produces  * MultiTermQueries using {@link #CONSTANT_SCORE_FILTER_REWRITE}  * by default.  */
 end_comment
 
 begin_class
@@ -170,7 +170,7 @@ specifier|protected
 name|RewriteMethod
 name|rewriteMethod
 init|=
-name|CONSTANT_SCORE_AUTO_REWRITE_DEFAULT
+name|CONSTANT_SCORE_FILTER_REWRITE
 decl_stmt|;
 comment|/** Abstract class that defines how the query is rewritten. */
 DECL|class|RewriteMethod
@@ -281,7 +281,7 @@ return|;
 block|}
 block|}
 decl_stmt|;
-comment|/** A rewrite method that first translates each term into    *  {@link BooleanClause.Occur#SHOULD} clause in a    *  BooleanQuery, and keeps the scores as computed by the    *  query.  Note that typically such scores are    *  meaningless to the user, and require non-trivial CPU    *  to compute, so it's almost always better to use {@link    *  #CONSTANT_SCORE_AUTO_REWRITE_DEFAULT} instead.    *    *<p><b>NOTE</b>: This rewrite method will hit {@link    *  BooleanQuery.TooManyClauses} if the number of terms    *  exceeds {@link BooleanQuery#getMaxClauseCount}.    *    *  @see #setRewriteMethod */
+comment|/** A rewrite method that first translates each term into    *  {@link BooleanClause.Occur#SHOULD} clause in a    *  BooleanQuery, and keeps the scores as computed by the    *  query.  Note that typically such scores are    *  meaningless to the user, and require non-trivial CPU    *  to compute, so it's almost always better to use {@link    *  #CONSTANT_SCORE_FILTER_REWRITE} instead.    *    *<p><b>NOTE</b>: This rewrite method will hit {@link    *  BooleanQuery.TooManyClauses} if the number of terms    *  exceeds {@link BooleanQuery#getMaxClauseCount}.    *    *  @see #setRewriteMethod */
 DECL|field|SCORING_BOOLEAN_QUERY_REWRITE
 specifier|public
 specifier|final
@@ -541,73 +541,6 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
-comment|/** A rewrite method that tries to pick the best    *  constant-score rewrite method based on term and    *  document counts from the query.  If both the number of    *  terms and documents is small enough, then {@link    *  #CONSTANT_SCORE_BOOLEAN_QUERY_REWRITE} is used.    *  Otherwise, {@link #CONSTANT_SCORE_FILTER_REWRITE} is    *  used.    */
-DECL|class|ConstantScoreAutoRewrite
-specifier|public
-specifier|static
-class|class
-name|ConstantScoreAutoRewrite
-extends|extends
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|search
-operator|.
-name|ConstantScoreAutoRewrite
-block|{}
-comment|/** Read-only default instance of {@link    *  ConstantScoreAutoRewrite}, with {@link    *  ConstantScoreAutoRewrite#setTermCountCutoff} set to    *  {@link    *  ConstantScoreAutoRewrite#DEFAULT_TERM_COUNT_CUTOFF}    *  and {@link    *  ConstantScoreAutoRewrite#setDocCountPercent} set to    *  {@link    *  ConstantScoreAutoRewrite#DEFAULT_DOC_COUNT_PERCENT}.    *  Note that you cannot alter the configuration of this    *  instance; you'll need to create a private instance    *  instead. */
-DECL|field|CONSTANT_SCORE_AUTO_REWRITE_DEFAULT
-specifier|public
-specifier|final
-specifier|static
-name|RewriteMethod
-name|CONSTANT_SCORE_AUTO_REWRITE_DEFAULT
-init|=
-operator|new
-name|ConstantScoreAutoRewrite
-argument_list|()
-block|{
-annotation|@
-name|Override
-specifier|public
-name|void
-name|setTermCountCutoff
-parameter_list|(
-name|int
-name|count
-parameter_list|)
-block|{
-throw|throw
-operator|new
-name|UnsupportedOperationException
-argument_list|(
-literal|"Please create a private instance"
-argument_list|)
-throw|;
-block|}
-annotation|@
-name|Override
-specifier|public
-name|void
-name|setDocCountPercent
-parameter_list|(
-name|double
-name|percent
-parameter_list|)
-block|{
-throw|throw
-operator|new
-name|UnsupportedOperationException
-argument_list|(
-literal|"Please create a private instance"
-argument_list|)
-throw|;
-block|}
-block|}
-decl_stmt|;
 comment|/**    * Constructs a query matching terms that cannot be represented with a single    * Term.    */
 DECL|method|MultiTermQuery
 specifier|public

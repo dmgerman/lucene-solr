@@ -131,7 +131,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * A Query that matches documents within an range of terms.  *  *<p>This query matches the documents looking for terms that fall into the  * supplied range according to {@link  * String#compareTo(String)}, unless a<code>Collator</code> is provided. It is not intended  * for numerical ranges; use {@link NumericRangeQuery} instead.  *  *<p>This query uses the {@link  * MultiTermQuery#CONSTANT_SCORE_AUTO_REWRITE_DEFAULT}  * rewrite method.  * @deprecated Index collation keys with CollationKeyAnalyzer or ICUCollationKeyAnalyzer instead.  * This class will be removed in Lucene 5.0  */
+comment|/**  * A Query that matches documents within an range of terms.  *  *<p>This query matches the documents looking for terms that fall into the  * supplied range according to {@link  * String#compareTo(String)}, unless a<code>Collator</code> is provided. It is not intended  * for numerical ranges; use {@link NumericRangeQuery} instead.  *  *<p>This query uses the {@link  * MultiTermQuery#CONSTANT_SCORE_FILTER_REWRITE}  * rewrite method.  * @deprecated Index collation keys with CollationKeyAnalyzer or ICUCollationKeyAnalyzer instead.  * This class will be removed in Lucene 5.0  */
 end_comment
 
 begin_class
