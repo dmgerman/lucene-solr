@@ -1,6 +1,6 @@
 begin_unit|revision:0.9.5;language:Java;cregit-version:0.0.1
 begin_package
-DECL|package|org.apache.lucene.codecs.lucene49
+DECL|package|org.apache.lucene.codecs.lucene50
 package|package
 name|org
 operator|.
@@ -10,7 +10,7 @@ name|lucene
 operator|.
 name|codecs
 operator|.
-name|lucene49
+name|lucene50
 package|;
 end_package
 
@@ -42,21 +42,35 @@ name|lucene
 operator|.
 name|index
 operator|.
-name|BaseCompressingDocValuesFormatTestCase
+name|BaseNormsFormatTestCase
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|util
+operator|.
+name|TestUtil
 import|;
 end_import
 
 begin_comment
-comment|/**  * Tests Lucene49DocValuesFormat  */
+comment|/**  * Tests Lucene49NormsFormat  */
 end_comment
 
 begin_class
-DECL|class|TestLucene49DocValuesFormat
+DECL|class|TestLucene50NormsFormat
 specifier|public
 class|class
-name|TestLucene49DocValuesFormat
+name|TestLucene50NormsFormat
 extends|extends
-name|BaseCompressingDocValuesFormatTestCase
+name|BaseNormsFormatTestCase
 block|{
 DECL|field|codec
 specifier|private
@@ -64,8 +78,9 @@ specifier|final
 name|Codec
 name|codec
 init|=
-operator|new
-name|Lucene49RWCodec
+name|TestUtil
+operator|.
+name|getDefaultCodec
 argument_list|()
 decl_stmt|;
 annotation|@

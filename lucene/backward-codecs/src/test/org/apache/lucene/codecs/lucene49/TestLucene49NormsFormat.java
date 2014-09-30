@@ -42,21 +42,21 @@ name|lucene
 operator|.
 name|index
 operator|.
-name|BaseCompressingDocValuesFormatTestCase
+name|BaseNormsFormatTestCase
 import|;
 end_import
 
 begin_comment
-comment|/**  * Tests Lucene49DocValuesFormat  */
+comment|/**  * Tests Lucene49NormsFormat  */
 end_comment
 
 begin_class
-DECL|class|TestLucene49DocValuesFormat
+DECL|class|TestLucene49NormsFormat
 specifier|public
 class|class
-name|TestLucene49DocValuesFormat
+name|TestLucene49NormsFormat
 extends|extends
-name|BaseCompressingDocValuesFormatTestCase
+name|BaseNormsFormatTestCase
 block|{
 DECL|field|codec
 specifier|private
