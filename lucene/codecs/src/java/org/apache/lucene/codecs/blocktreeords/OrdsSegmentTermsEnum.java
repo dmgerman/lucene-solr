@@ -4815,8 +4815,6 @@ operator|+
 name|fr
 operator|.
 name|parent
-operator|.
-name|segment
 operator|+
 literal|")"
 return|;
