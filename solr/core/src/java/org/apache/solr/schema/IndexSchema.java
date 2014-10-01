@@ -690,6 +690,30 @@ name|Pattern
 import|;
 end_import
 
+begin_import
+import|import static
+name|java
+operator|.
+name|util
+operator|.
+name|Collections
+operator|.
+name|singletonList
+import|;
+end_import
+
+begin_import
+import|import static
+name|java
+operator|.
+name|util
+operator|.
+name|Collections
+operator|.
+name|singletonMap
+import|;
+end_import
+
 begin_comment
 comment|/**  *<code>IndexSchema</code> contains information about the valid fields in an index  * and the types of those fields.  *  *  */
 end_comment
@@ -7910,7 +7934,37 @@ operator|=
 name|loader
 expr_stmt|;
 block|}
-comment|/**    * Copies this schema, adds the given field to the copy, then persists the    * new schema.  Requires synchronizing on the object returned by    * {@link #getSchemaUpdateLock()}.    *    * @param newField the SchemaField to add     * @return a new IndexSchema based on this schema with newField added    * @see #newField(String, String, Map)    */
+comment|/**    * Copies this schema, adds the given field to the copy    * Requires synchronizing on the object returned by    * {@link #getSchemaUpdateLock()}.    *    * @param newField the SchemaField to add     * @param persist to persist the schema or not or not    * @return a new IndexSchema based on this schema with newField added    * @see #newField(String, String, Map)    */
+DECL|method|addField
+specifier|public
+name|IndexSchema
+name|addField
+parameter_list|(
+name|SchemaField
+name|newField
+parameter_list|,
+name|boolean
+name|persist
+parameter_list|)
+block|{
+return|return
+name|addFields
+argument_list|(
+name|Collections
+operator|.
+name|singletonList
+argument_list|(
+name|newField
+argument_list|)
+argument_list|,
+name|Collections
+operator|.
+name|EMPTY_MAP
+argument_list|,
+name|persist
+argument_list|)
+return|;
+block|}
 DECL|method|addField
 specifier|public
 name|IndexSchema
@@ -7920,31 +7974,16 @@ name|SchemaField
 name|newField
 parameter_list|)
 block|{
-name|String
-name|msg
-init|=
-literal|"This IndexSchema is not mutable."
-decl_stmt|;
-name|log
-operator|.
-name|error
+return|return
+name|addField
 argument_list|(
-name|msg
-argument_list|)
-expr_stmt|;
-throw|throw
-operator|new
-name|SolrException
-argument_list|(
-name|ErrorCode
-operator|.
-name|SERVER_ERROR
+name|newField
 argument_list|,
-name|msg
+literal|true
 argument_list|)
-throw|;
+return|;
 block|}
-comment|/**    * Copies this schema, adds the given field to the copy, then persists the    * new schema.  Requires synchronizing on the object returned by    * {@link #getSchemaUpdateLock()}.    *    * @param newField the SchemaField to add    * @param copyFieldNames 0 or more names of targets to copy this field to.  The targets must already exist.    * @return a new IndexSchema based on this schema with newField added    * @see #newField(String, String, Map)    */
+comment|/**    * Copies this schema, adds the given field to the copy    *  Requires synchronizing on the object returned by    * {@link #getSchemaUpdateLock()}.    *    * @param newField the SchemaField to add    * @param copyFieldNames 0 or more names of targets to copy this field to.  The targets must already exist.    * @return a new IndexSchema based on this schema with newField added    * @see #newField(String, String, Map)    */
 DECL|method|addField
 specifier|public
 name|IndexSchema
@@ -7960,31 +7999,29 @@ argument_list|>
 name|copyFieldNames
 parameter_list|)
 block|{
-name|String
-name|msg
-init|=
-literal|"This IndexSchema is not mutable."
-decl_stmt|;
-name|log
-operator|.
-name|error
+return|return
+name|addFields
 argument_list|(
-name|msg
+name|singletonList
+argument_list|(
+name|newField
 argument_list|)
-expr_stmt|;
-throw|throw
-operator|new
-name|SolrException
-argument_list|(
-name|ErrorCode
-operator|.
-name|SERVER_ERROR
 argument_list|,
-name|msg
+name|singletonMap
+argument_list|(
+name|newField
+operator|.
+name|getName
+argument_list|()
+argument_list|,
+name|copyFieldNames
 argument_list|)
-throw|;
+argument_list|,
+literal|true
+argument_list|)
+return|;
 block|}
-comment|/**    * Copies this schema, adds the given fields to the copy, then persists the    * new schema.  Requires synchronizing on the object returned by    * {@link #getSchemaUpdateLock()}.    *    * @param newFields the SchemaFields to add    * @return a new IndexSchema based on this schema with newFields added    * @see #newField(String, String, Map)    */
+comment|/**    * Copies this schema, adds the given fields to the copy.    * Requires synchronizing on the object returned by    * {@link #getSchemaUpdateLock()}.    *    * @param newFields the SchemaFields to add    * @return a new IndexSchema based on this schema with newFields added    * @see #newField(String, String, Map)    */
 DECL|method|addFields
 specifier|public
 name|IndexSchema
@@ -7997,31 +8034,29 @@ argument_list|>
 name|newFields
 parameter_list|)
 block|{
-name|String
-name|msg
-init|=
-literal|"This IndexSchema is not mutable."
-decl_stmt|;
-name|log
-operator|.
-name|error
+return|return
+name|addFields
 argument_list|(
-name|msg
-argument_list|)
-expr_stmt|;
-throw|throw
-operator|new
-name|SolrException
-argument_list|(
-name|ErrorCode
-operator|.
-name|SERVER_ERROR
+name|newFields
 argument_list|,
-name|msg
+name|Collections
+operator|.
+expr|<
+name|String
+argument_list|,
+name|Collection
+argument_list|<
+name|String
+argument_list|>
+operator|>
+name|emptyMap
+argument_list|()
+argument_list|,
+literal|true
 argument_list|)
-throw|;
+return|;
 block|}
-comment|/**    * Copies this schema, adds the given fields to the copy, then persists the    * new schema.  Requires synchronizing on the object returned by    * {@link #getSchemaUpdateLock()}.    *    * @param newFields the SchemaFields to add    * @param copyFieldNames 0 or more names of targets to copy this field to.  The target fields must already exist.    * @return a new IndexSchema based on this schema with newFields added    * @see #newField(String, String, Map)    */
+comment|/**    * Copies this schema, adds the given fields to the copy    * Requires synchronizing on the object returned by    * {@link #getSchemaUpdateLock()}.    *    * @param newFields the SchemaFields to add    * @param copyFieldNames 0 or more names of targets to copy this field to.  The target fields must already exist.    * @param persist Persist the schema or not    * @return a new IndexSchema based on this schema with newFields added    * @see #newField(String, String, Map)    */
 DECL|method|addFields
 specifier|public
 name|IndexSchema
@@ -8043,80 +8078,9 @@ name|String
 argument_list|>
 argument_list|>
 name|copyFieldNames
-parameter_list|)
-block|{
-name|String
-name|msg
-init|=
-literal|"This IndexSchema is not mutable."
-decl_stmt|;
-name|log
-operator|.
-name|error
-argument_list|(
-name|msg
-argument_list|)
-expr_stmt|;
-throw|throw
-operator|new
-name|SolrException
-argument_list|(
-name|ErrorCode
-operator|.
-name|SERVER_ERROR
-argument_list|,
-name|msg
-argument_list|)
-throw|;
-block|}
-comment|/**    * Copies this schema, adds the given dynamic field to the copy, then persists the    * new schema.  Requires synchronizing on the object returned by    * {@link #getSchemaUpdateLock()}.    *    * @param newDynamicField the SchemaField to add     * @return a new IndexSchema based on this schema with newField added    * @see #newDynamicField(String, String, Map)    */
-DECL|method|addDynamicField
-specifier|public
-name|IndexSchema
-name|addDynamicField
-parameter_list|(
-name|SchemaField
-name|newDynamicField
-parameter_list|)
-block|{
-name|String
-name|msg
-init|=
-literal|"This IndexSchema is not mutable."
-decl_stmt|;
-name|log
-operator|.
-name|error
-argument_list|(
-name|msg
-argument_list|)
-expr_stmt|;
-throw|throw
-operator|new
-name|SolrException
-argument_list|(
-name|ErrorCode
-operator|.
-name|SERVER_ERROR
-argument_list|,
-name|msg
-argument_list|)
-throw|;
-block|}
-comment|/**    * Copies this schema, adds the given dynamic field to the copy, then persists the    * new schema.  Requires synchronizing on the object returned by    * {@link #getSchemaUpdateLock()}.    *    * @param newDynamicField the SchemaField to add    * @param copyFieldNames 0 or more names of targets to copy this field to.  The targets must already exist.    * @return a new IndexSchema based on this schema with newDynamicField added    * @see #newDynamicField(String, String, Map)    */
-DECL|method|addDynamicField
-specifier|public
-name|IndexSchema
-name|addDynamicField
-parameter_list|(
-name|SchemaField
-name|newDynamicField
 parameter_list|,
-name|Collection
-argument_list|<
-name|String
-argument_list|>
-name|copyFieldNames
+name|boolean
+name|persist
 parameter_list|)
 block|{
 name|String
@@ -8143,44 +8107,7 @@ name|msg
 argument_list|)
 throw|;
 block|}
-comment|/**    * Copies this schema, adds the given dynamic fields to the copy, then persists the    * new schema.  Requires synchronizing on the object returned by    * {@link #getSchemaUpdateLock()}.    *    * @param newDynamicFields the SchemaFields to add    * @return a new IndexSchema based on this schema with newDynamicFields added    * @see #newDynamicField(String, String, Map)    */
-DECL|method|addDynamicFields
-specifier|public
-name|IndexSchema
-name|addDynamicFields
-parameter_list|(
-name|Collection
-argument_list|<
-name|SchemaField
-argument_list|>
-name|newDynamicFields
-parameter_list|)
-block|{
-name|String
-name|msg
-init|=
-literal|"This IndexSchema is not mutable."
-decl_stmt|;
-name|log
-operator|.
-name|error
-argument_list|(
-name|msg
-argument_list|)
-expr_stmt|;
-throw|throw
-operator|new
-name|SolrException
-argument_list|(
-name|ErrorCode
-operator|.
-name|SERVER_ERROR
-argument_list|,
-name|msg
-argument_list|)
-throw|;
-block|}
-comment|/**    * Copies this schema, adds the given dynamic fields to the copy, then persists the    * new schema.  Requires synchronizing on the object returned by    * {@link #getSchemaUpdateLock()}.    *    * @param newDynamicFields the SchemaFields to add    * @param copyFieldNames 0 or more names of targets to copy this field to.  The target fields must already exist.    * @return a new IndexSchema based on this schema with newDynamicFields added    * @see #newDynamicField(String, String, Map)    */
+comment|/**    * Copies this schema, adds the given dynamic fields to the copy,    * Requires synchronizing on the object returned by    * {@link #getSchemaUpdateLock()}.    *    * @param newDynamicFields the SchemaFields to add    * @param copyFieldNames 0 or more names of targets to copy this field to.  The target fields must already exist.    * @param persist to persist the schema or not or not    * @return a new IndexSchema based on this schema with newDynamicFields added    * @see #newDynamicField(String, String, Map)    */
 DECL|method|addDynamicFields
 specifier|public
 name|IndexSchema
@@ -8202,6 +8129,9 @@ name|String
 argument_list|>
 argument_list|>
 name|copyFieldNames
+parameter_list|,
+name|boolean
+name|persist
 parameter_list|)
 block|{
 name|String
@@ -8228,7 +8158,7 @@ name|msg
 argument_list|)
 throw|;
 block|}
-comment|/**    * Copies this schema and adds the new copy fields to the copy, then    * persists the new schema.  Requires synchronizing on the object returned by    * {@link #getSchemaUpdateLock()}.    *    * @param copyFields Key is the name of the source field name, value is a collection of target field names.  Fields must exist.    * @return The new Schema with the copy fields added    */
+comment|/**    * Copies this schema and adds the new copy fields to the copy    * Requires synchronizing on the object returned by    * {@link #getSchemaUpdateLock()}.    *    * @param copyFields Key is the name of the source field name, value is a collection of target field names.  Fields must exist.    * @param persist to persist the schema or not or not    * @return The new Schema with the copy fields added    */
 DECL|method|addCopyFields
 specifier|public
 name|IndexSchema
@@ -8244,6 +8174,9 @@ name|String
 argument_list|>
 argument_list|>
 name|copyFields
+parameter_list|,
+name|boolean
+name|persist
 parameter_list|)
 block|{
 name|String
@@ -8391,41 +8324,7 @@ name|msg
 argument_list|)
 throw|;
 block|}
-comment|/**    * Copies this schema, adds the given field type to the copy, then persists the    * new schema.  Requires synchronizing on the object returned by    * {@link #getSchemaUpdateLock()}.    *    * @param fieldType the FieldType to add    * @return a new IndexSchema based on this schema with the new FieldType added    * @see #newFieldType(String, String, Map)    */
-DECL|method|addFieldType
-specifier|public
-name|IndexSchema
-name|addFieldType
-parameter_list|(
-name|FieldType
-name|fieldType
-parameter_list|)
-block|{
-name|String
-name|msg
-init|=
-literal|"This IndexSchema is not mutable."
-decl_stmt|;
-name|log
-operator|.
-name|error
-argument_list|(
-name|msg
-argument_list|)
-expr_stmt|;
-throw|throw
-operator|new
-name|SolrException
-argument_list|(
-name|ErrorCode
-operator|.
-name|SERVER_ERROR
-argument_list|,
-name|msg
-argument_list|)
-throw|;
-block|}
-comment|/**    * Copies this schema, adds the given field type to the copy, then persists the    * new schema.  Requires synchronizing on the object returned by    * {@link #getSchemaUpdateLock()}.    *    * @param fieldTypeList a list of FieldTypes to add    * @return a new IndexSchema based on this schema with the new types added    * @see #newFieldType(String, String, Map)    */
+comment|/**    * Copies this schema, adds the given field type to the copy,    * Requires synchronizing on the object returned by    * {@link #getSchemaUpdateLock()}.    *    * @param fieldTypeList a list of FieldTypes to add    * @param persist to persist the schema or not or not    * @return a new IndexSchema based on this schema with the new types added    * @see #newFieldType(String, String, Map)    */
 DECL|method|addFieldTypes
 specifier|public
 name|IndexSchema
@@ -8436,6 +8335,9 @@ argument_list|<
 name|FieldType
 argument_list|>
 name|fieldTypeList
+parameter_list|,
+name|boolean
+name|persist
 parameter_list|)
 block|{
 name|String
@@ -8462,7 +8364,7 @@ name|msg
 argument_list|)
 throw|;
 block|}
-comment|/**    * Returns a FieldType if the given typeName does not already    * exist in this schema. The resulting FieldType can be used in a call    * to {@link #addFieldType(FieldType)}.    *    * @param typeName the name of the type to add    * @param className the name of the FieldType class    * @param options the options to use when creating the FieldType    * @return The created FieldType    * @see #addFieldType(FieldType)    */
+comment|/**    * Returns a FieldType if the given typeName does not already    * exist in this schema. The resulting FieldType can be used in a call    * to {@link #addFieldTypes(java.util.List, boolean)}.    *    * @param typeName the name of the type to add    * @param className the name of the FieldType class    * @param options the options to use when creating the FieldType    * @return The created FieldType    * @see #addFieldTypes(java.util.List, boolean)    */
 DECL|method|newFieldType
 specifier|public
 name|FieldType
