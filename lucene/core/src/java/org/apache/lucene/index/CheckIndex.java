@@ -425,7 +425,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Basic tool and API to check the health of an index and  * write a new segments file that removes reference to  * problematic segments.  *   *<p>As this tool checks every byte in the index, on a large  * index it can take quite a long time to run.  *  * @lucene.experimental Please make a complete backup of your  * index before using this to fix your index!  */
+comment|/**  * Basic tool and API to check the health of an index and  * write a new segments file that removes reference to  * problematic segments.  *   *<p>As this tool checks every byte in the index, on a large  * index it can take quite a long time to run.  *  * @lucene.experimental Please make a complete backup of your  * index before using this to exorcise corrupted documents from your index!  */
 end_comment
 
 begin_class
@@ -531,7 +531,7 @@ specifier|public
 name|Directory
 name|dir
 decl_stmt|;
-comment|/**       * SegmentInfos instance containing only segments that      * had no problems (this is used with the {@link CheckIndex#fixIndex}       * method to repair the index.       */
+comment|/**       * SegmentInfos instance containing only segments that      * had no problems (this is used with the {@link CheckIndex#exorciseIndex}       * method to repair the index.       */
 DECL|field|newSegments
 name|SegmentInfos
 name|newSegments
@@ -2895,7 +2895,7 @@ name|comment
 decl_stmt|;
 name|comment
 operator|=
-literal|"fixIndex() would remove reference to this segment"
+literal|"exorciseIndex() would remove reference to this segment"
 expr_stmt|;
 name|msg
 argument_list|(
@@ -11018,10 +11018,10 @@ name|status
 return|;
 block|}
 comment|/** Repairs the index using previously returned result    *  from {@link #checkIndex}.  Note that this does not    *  remove any of the unreferenced files after it's done;    *  you must separately open an {@link IndexWriter}, which    *  deletes unreferenced files when it's created.    *    *<p><b>WARNING</b>: this writes a    *  new segments file into the index, effectively removing    *  all documents in broken segments from the index.    *  BE CAREFUL.    *    *<p><b>WARNING</b>: Make sure you only call this when the    *  index is not opened  by any writer. */
-DECL|method|fixIndex
+DECL|method|exorciseIndex
 specifier|public
 name|void
-name|fixIndex
+name|exorciseIndex
 parameter_list|(
 name|Status
 name|result
@@ -11039,7 +11039,7 @@ throw|throw
 operator|new
 name|IllegalArgumentException
 argument_list|(
-literal|"can only fix an index that was fully checked (this status checked a subset of segments)"
+literal|"can only exorcise an index that was fully checked (this status checked a subset of segments)"
 argument_list|)
 throw|;
 name|result
@@ -11097,7 +11097,7 @@ return|return
 name|assertsOn
 return|;
 block|}
-comment|/** Command-line interface to check and fix an index.<p>     Run it like this:<pre>     java -ea:org.apache.lucene... org.apache.lucene.index.CheckIndex pathToIndex [-fix] [-verbose] [-segment X] [-segment Y]</pre><ul><li><code>-fix</code>: actually write a new segments_N file, removing any problematic segments<li><code>-segment X</code>: only check the specified     segment(s).  This can be specified multiple times,     to check more than one segment, eg<code>-segment _2     -segment _a</code>.  You can't use this with the -fix     option.</ul><p><b>WARNING</b>:<code>-fix</code> should only be used on an emergency basis as it will cause                        documents (perhaps many) to be permanently removed from the index.  Always make                        a backup copy of your index before running this!  Do not run this tool on an index                        that is actively being written to.  You have been warned!<p>                Run without -fix, this tool will open the index, report version information                        and report any exceptions it hits and what action it would take if -fix were                        specified.  With -fix, this tool will remove any segments that have issues and                        write a new segments_N file.  This means all documents contained in the affected                        segments will be removed.<p>                        This tool exits with exit code 1 if the index cannot be opened or has any                        corruption, else 0.    */
+comment|/** Command-line interface to check and exorcise corrupt segments from an index.<p>     Run it like this:<pre>     java -ea:org.apache.lucene... org.apache.lucene.index.CheckIndex pathToIndex [-exorcise] [-verbose] [-segment X] [-segment Y]</pre><ul><li><code>-exorcise</code>: actually write a new segments_N file, removing any problematic segments. *LOSES DATA*<li><code>-segment X</code>: only check the specified     segment(s).  This can be specified multiple times,     to check more than one segment, eg<code>-segment _2     -segment _a</code>.  You can't use this with the -exorcise     option.</ul><p><b>WARNING</b>:<code>-exorcise</code> should only be used on an emergency basis as it will cause                        documents (perhaps many) to be permanently removed from the index.  Always make                        a backup copy of your index before running this!  Do not run this tool on an index                        that is actively being written to.  You have been warned!<p>                Run without -exorcise, this tool will open the index, report version information                        and report any exceptions it hits and what action it would take if -exorcise were                        specified.  With -exorcise, this tool will remove any segments that have issues and                        write a new segments_N file.  This means all documents contained in the affected                        segments will be removed.<p>                        This tool exits with exit code 1 if the index cannot be opened or has any                        corruption, else 0.    */
 DECL|method|main
 specifier|public
 specifier|static
@@ -11114,7 +11114,7 @@ throws|,
 name|InterruptedException
 block|{
 name|boolean
-name|doFix
+name|doExorcise
 init|=
 literal|false
 decl_stmt|;
@@ -11173,7 +11173,7 @@ index|]
 decl_stmt|;
 if|if
 condition|(
-literal|"-fix"
+literal|"-exorcise"
 operator|.
 name|equals
 argument_list|(
@@ -11181,7 +11181,7 @@ name|arg
 argument_list|)
 condition|)
 block|{
-name|doFix
+name|doExorcise
 operator|=
 literal|true
 expr_stmt|;
@@ -11388,15 +11388,15 @@ name|out
 operator|.
 name|println
 argument_list|(
-literal|"\nUsage: java org.apache.lucene.index.CheckIndex pathToIndex [-fix] [-crossCheckTermVectors] [-segment X] [-segment Y] [-dir-impl X]\n"
+literal|"\nUsage: java org.apache.lucene.index.CheckIndex pathToIndex [-exorcise] [-crossCheckTermVectors] [-segment X] [-segment Y] [-dir-impl X]\n"
 operator|+
 literal|"\n"
 operator|+
-literal|"  -fix: actually write a new segments_N file, removing any problematic segments\n"
+literal|"  -exorcise: actually write a new segments_N file, removing any problematic segments\n"
 operator|+
 literal|"  -crossCheckTermVectors: verifies that term vectors match postings; THIS IS VERY SLOW!\n"
 operator|+
-literal|"  -codec X: when fixing, codec to write the new segments_N file with\n"
+literal|"  -codec X: when exorcising, codec to write the new segments_N file with\n"
 operator|+
 literal|"  -verbose: print additional details\n"
 operator|+
@@ -11404,7 +11404,7 @@ literal|"  -segment X: only check the specified segments.  This can be specified
 operator|+
 literal|"              times, to check more than one segment, eg '-segment _2 -segment _a'.\n"
 operator|+
-literal|"              You can't use this with the -fix option\n"
+literal|"              You can't use this with the -exorcise option\n"
 operator|+
 literal|"  -dir-impl X: use a specific "
 operator|+
@@ -11433,7 +11433,7 @@ literal|" package will be used.\n"
 operator|+
 literal|"\n"
 operator|+
-literal|"**WARNING**: -fix should only be used on an emergency basis as it will cause\n"
+literal|"**WARNING**: -exorcise *LOSES DATA*. This should only be used on an emergency basis as it will cause\n"
 operator|+
 literal|"documents (perhaps many) to be permanently removed from the index.  Always make\n"
 operator|+
@@ -11443,11 +11443,11 @@ literal|"that is actively being written to.  You have been warned!\n"
 operator|+
 literal|"\n"
 operator|+
-literal|"Run without -fix, this tool will open the index, report version information\n"
+literal|"Run without -exorcise, this tool will open the index, report version information\n"
 operator|+
-literal|"and report any exceptions it hits and what action it would take if -fix were\n"
+literal|"and report any exceptions it hits and what action it would take if -exorcise were\n"
 operator|+
-literal|"specified.  With -fix, this tool will remove any segments that have issues and\n"
+literal|"specified.  With -exorcise, this tool will remove any segments that have issues and\n"
 operator|+
 literal|"write a new segments_N file.  This means all documents contained in the affected\n"
 operator|+
@@ -11499,7 +11499,7 @@ expr_stmt|;
 elseif|else
 if|if
 condition|(
-name|doFix
+name|doExorcise
 condition|)
 block|{
 name|System
@@ -11508,7 +11508,7 @@ name|out
 operator|.
 name|println
 argument_list|(
-literal|"ERROR: cannot specify both -fix and -segment"
+literal|"ERROR: cannot specify both -exorcise and -segment"
 argument_list|)
 expr_stmt|;
 name|System
@@ -11680,7 +11680,7 @@ block|{
 if|if
 condition|(
 operator|!
-name|doFix
+name|doExorcise
 condition|)
 block|{
 name|System
@@ -11695,7 +11695,7 @@ name|result
 operator|.
 name|totLoseDocCount
 operator|+
-literal|" documents would be lost, if -fix were specified\n"
+literal|" documents would be lost, if -exorcise were specified\n"
 argument_list|)
 expr_stmt|;
 block|}
@@ -11728,7 +11728,7 @@ name|result
 operator|.
 name|totLoseDocCount
 operator|+
-literal|" docs from the index. THIS IS YOUR LAST CHANCE TO CTRL+C!"
+literal|" docs from the index. YOU WILL LOSE DATA. THIS IS YOUR LAST CHANCE TO CTRL+C!"
 argument_list|)
 expr_stmt|;
 for|for
@@ -11782,7 +11782,7 @@ argument_list|)
 expr_stmt|;
 name|checker
 operator|.
-name|fixIndex
+name|exorciseIndex
 argument_list|(
 name|result
 argument_list|)
