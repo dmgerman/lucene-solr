@@ -324,6 +324,13 @@ name|CompoundFileDirectory
 argument_list|(
 name|state
 operator|.
+name|segmentInfo
+operator|.
+name|getId
+argument_list|()
+argument_list|,
+name|state
+operator|.
 name|directory
 argument_list|,
 name|filename

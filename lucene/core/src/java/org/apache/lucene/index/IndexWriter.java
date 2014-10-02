@@ -16462,6 +16462,11 @@ init|=
 operator|new
 name|CompoundFileDirectory
 argument_list|(
+name|info
+operator|.
+name|getId
+argument_list|()
+argument_list|,
 name|directory
 argument_list|,
 name|fileName
