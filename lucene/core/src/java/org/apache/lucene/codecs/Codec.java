@@ -213,6 +213,14 @@ name|LiveDocsFormat
 name|liveDocsFormat
 parameter_list|()
 function_decl|;
+comment|/** Encodes/decodes compound files */
+DECL|method|compoundFormat
+specifier|public
+specifier|abstract
+name|CompoundFormat
+name|compoundFormat
+parameter_list|()
+function_decl|;
 comment|/** looks up a codec by name */
 DECL|method|forName
 specifier|public

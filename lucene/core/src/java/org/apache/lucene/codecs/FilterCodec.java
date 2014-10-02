@@ -180,6 +180,21 @@ name|termVectorsFormat
 argument_list|()
 return|;
 block|}
+annotation|@
+name|Override
+DECL|method|compoundFormat
+specifier|public
+name|CompoundFormat
+name|compoundFormat
+parameter_list|()
+block|{
+return|return
+name|delegate
+operator|.
+name|compoundFormat
+argument_list|()
+return|;
+block|}
 block|}
 end_class
 

@@ -788,7 +788,7 @@ name|nextGeneration
 argument_list|)
 return|;
 block|}
-comment|/** Since Lucene 5.0, every commit (segments_N) writes a unique id.  This will    *  return that id, or null if this commit was 5.0. */
+comment|/** Since Lucene 5.0, every commit (segments_N) writes a unique id.  This will    *  return that id, or null if this commit was prior to 5.0. */
 DECL|method|getId
 specifier|public
 name|byte

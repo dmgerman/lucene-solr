@@ -1,6 +1,6 @@
 begin_unit|revision:0.9.5;language:Java;cregit-version:0.0.1
 begin_package
-DECL|package|org.apache.lucene.index
+DECL|package|org.apache.lucene.codecs
 package|package
 name|org
 operator|.
@@ -8,7 +8,7 @@ name|apache
 operator|.
 name|lucene
 operator|.
-name|index
+name|codecs
 package|;
 end_package
 
@@ -23,6 +23,46 @@ operator|.
 name|io
 operator|.
 name|IOException
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
+name|util
+operator|.
+name|Collection
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|index
+operator|.
+name|MergeState
+operator|.
+name|CheckAbort
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|index
+operator|.
+name|SegmentInfo
 import|;
 end_import
 
@@ -50,51 +90,77 @@ name|lucene
 operator|.
 name|store
 operator|.
-name|IndexInput
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|util
-operator|.
-name|LuceneTestCase
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|util
-operator|.
-name|StringHelper
+name|IOContext
 import|;
 end_import
 
 begin_comment
-comment|/**   * Setup a large compound file with a number of components, each of  * which is a sequential file (so that we can easily tell that we are  * reading in the right byte). The methods sets up 20 files - f0 to f19,  * the size of each file is 1000 bytes.  */
+comment|/**  * Encodes/decodes compound files  * @lucene.experimental  */
 end_comment
 
 begin_class
-DECL|class|TestCompoundFile2
+DECL|class|CompoundFormat
 specifier|public
+specifier|abstract
 class|class
-name|TestCompoundFile2
-extends|extends
-name|LuceneTestCase
+name|CompoundFormat
 block|{
-comment|/* nocommit: fold all these tests into BaseCompoundFormatTestCase */
+comment|/** Sole constructor. (For invocation by subclass     *  constructors, typically implicit.) */
+DECL|method|CompoundFormat
+specifier|public
+name|CompoundFormat
+parameter_list|()
+block|{   }
+comment|// TODO: this is very minimal. If we need more methods,
+comment|// we can add 'producer' classes.
+comment|/**    * Returns a Directory view (read-only) for the compound files in this segment    */
+DECL|method|getCompoundReader
+specifier|public
+specifier|abstract
+name|Directory
+name|getCompoundReader
+parameter_list|(
+name|Directory
+name|dir
+parameter_list|,
+name|SegmentInfo
+name|si
+parameter_list|,
+name|IOContext
+name|context
+parameter_list|)
+throws|throws
+name|IOException
+function_decl|;
+comment|/**    * Packs the provided files into a compound format.    */
+comment|// TODO: get checkAbort out of here, and everywhere, and have iw do it at a higher level
+DECL|method|write
+specifier|public
+specifier|abstract
+name|void
+name|write
+parameter_list|(
+name|Directory
+name|dir
+parameter_list|,
+name|SegmentInfo
+name|si
+parameter_list|,
+name|Collection
+argument_list|<
+name|String
+argument_list|>
+name|files
+parameter_list|,
+name|CheckAbort
+name|checkAbort
+parameter_list|,
+name|IOContext
+name|context
+parameter_list|)
+throws|throws
+name|IOException
+function_decl|;
 block|}
 end_class
 
