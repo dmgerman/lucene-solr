@@ -2115,6 +2115,21 @@ throw|;
 block|}
 block|}
 block|}
+comment|/** returns current open file handle count */
+DECL|method|getFileHandleCount
+specifier|public
+specifier|synchronized
+name|long
+name|getFileHandleCount
+parameter_list|()
+block|{
+return|return
+name|openFileHandles
+operator|.
+name|size
+argument_list|()
+return|;
+block|}
 annotation|@
 name|Override
 DECL|method|deleteFile
