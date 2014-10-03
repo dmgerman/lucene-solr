@@ -250,20 +250,6 @@ name|lucene
 operator|.
 name|util
 operator|.
-name|StringHelper
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|util
-operator|.
 name|TestUtil
 import|;
 end_import
@@ -806,18 +792,6 @@ operator|.
 name|close
 argument_list|()
 expr_stmt|;
-block|}
-comment|// LUCENE-5724
-DECL|method|testLargeCFS
-specifier|public
-name|void
-name|testLargeCFS
-parameter_list|()
-throws|throws
-name|IOException
-block|{
-comment|// nocommit: make a fake .si etc
-comment|/*     Directory dir = new NRTCachingDirectory(newFSDirectory(createTempDir()), 2.0, 25.0);     IOContext context = new IOContext(new FlushInfo(0, 512*1024*1024));     IndexOutput out = dir.createOutput("big.bin", context);     byte[] bytes = new byte[512];     for(int i=0;i<1024*1024;i++) {       out.writeBytes(bytes, 0, bytes.length);     }     out.close();      Directory cfsDir = new CompoundFileDirectory(StringHelper.randomId(), dir, "big.cfs", context, true);     dir.copy(cfsDir, "big.bin", "big.bin", context);     cfsDir.close();     dir.close();     */
 block|}
 block|}
 end_class

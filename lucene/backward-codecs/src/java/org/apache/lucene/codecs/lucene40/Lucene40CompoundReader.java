@@ -540,6 +540,8 @@ argument_list|(
 name|directory
 argument_list|,
 name|fileName
+argument_list|,
+name|context
 argument_list|)
 expr_stmt|;
 name|handle
