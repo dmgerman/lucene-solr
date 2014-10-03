@@ -318,11 +318,15 @@ name|log
 operator|.
 name|info
 argument_list|(
-literal|"\n\n\n REFRESHING SCHEMA (refreshIfBelowVersion="
+literal|"REFRESHING SCHEMA (refreshIfBelowVersion="
 operator|+
 name|refreshIfBelowVersion
 operator|+
-literal|") before returning version! \n\n\n"
+literal|", currentVersion="
+operator|+
+name|zkVersion
+operator|+
+literal|") before returning version!"
 argument_list|)
 expr_stmt|;
 name|ZkSolrResourceLoader

@@ -1360,6 +1360,22 @@ literal|"zkRunOnly"
 argument_list|)
 decl_stmt|;
 comment|// expert
+comment|// keeps track of a list of objects that need to know a new ZooKeeper session was created after expiration occurred
+DECL|field|reconnectListeners
+specifier|private
+name|List
+argument_list|<
+name|OnReconnect
+argument_list|>
+name|reconnectListeners
+init|=
+operator|new
+name|ArrayList
+argument_list|<
+name|OnReconnect
+argument_list|>
+argument_list|()
+decl_stmt|;
 DECL|method|ZkController
 specifier|public
 name|ZkController
@@ -1657,6 +1673,13 @@ name|void
 name|command
 parameter_list|()
 block|{
+name|log
+operator|.
+name|info
+argument_list|(
+literal|"ZooKeeper session re-connected ... refreshing core states after session expiration."
+argument_list|)
+expr_stmt|;
 try|try
 block|{
 comment|// this is troublesome - we dont want to kill anything the old
@@ -1817,6 +1840,51 @@ argument_list|,
 literal|"Error registering SolrCore"
 argument_list|,
 name|e
+argument_list|)
+expr_stmt|;
+block|}
+block|}
+block|}
+comment|// notify any other objects that need to know when the session was re-connected
+synchronized|synchronized
+init|(
+name|reconnectListeners
+init|)
+block|{
+for|for
+control|(
+name|OnReconnect
+name|listener
+range|:
+name|reconnectListeners
+control|)
+block|{
+try|try
+block|{
+name|listener
+operator|.
+name|command
+argument_list|()
+expr_stmt|;
+block|}
+catch|catch
+parameter_list|(
+name|Exception
+name|exc
+parameter_list|)
+block|{
+comment|// not much we can do here other than warn in the log
+name|log
+operator|.
+name|warn
+argument_list|(
+literal|"Error when notifying OnReconnect listener "
+operator|+
+name|listener
+operator|+
+literal|" after session re-connected."
+argument_list|,
+name|exc
 argument_list|)
 expr_stmt|;
 block|}
@@ -11081,6 +11149,38 @@ name|desc
 argument_list|)
 expr_stmt|;
 block|}
+block|}
+block|}
+block|}
+comment|/**    * Add a listener to be notified once there is a new session created after a ZooKeeper session expiration occurs;    * in most cases, listeners will be components that have watchers that need to be re-created.    */
+DECL|method|addOnReconnectListener
+specifier|public
+name|void
+name|addOnReconnectListener
+parameter_list|(
+name|OnReconnect
+name|listener
+parameter_list|)
+block|{
+if|if
+condition|(
+name|listener
+operator|!=
+literal|null
+condition|)
+block|{
+synchronized|synchronized
+init|(
+name|reconnectListeners
+init|)
+block|{
+name|reconnectListeners
+operator|.
+name|add
+argument_list|(
+name|listener
+argument_list|)
+expr_stmt|;
 block|}
 block|}
 block|}
