@@ -489,6 +489,18 @@ literal|"state"
 argument_list|)
 argument_list|)
 expr_stmt|;
+name|leaderProxy
+operator|.
+name|reopen
+argument_list|()
+expr_stmt|;
+name|Thread
+operator|.
+name|sleep
+argument_list|(
+name|sleepMsBeforeHealPartition
+argument_list|)
+expr_stmt|;
 comment|// try to clean up
 try|try
 block|{
@@ -725,6 +737,18 @@ name|getStr
 argument_list|(
 literal|"state"
 argument_list|)
+argument_list|)
+expr_stmt|;
+name|leaderProxy
+operator|.
+name|reopen
+argument_list|()
+expr_stmt|;
+name|Thread
+operator|.
+name|sleep
+argument_list|(
+name|sleepMsBeforeHealPartition
 argument_list|)
 expr_stmt|;
 comment|// try to clean up
