@@ -482,7 +482,7 @@ argument_list|)
 argument_list|,
 literal|""
 argument_list|,
-name|IndexFileNames
+name|Lucene40CompoundFormat
 operator|.
 name|COMPOUND_FILE_ENTRIES_EXTENSION
 argument_list|)

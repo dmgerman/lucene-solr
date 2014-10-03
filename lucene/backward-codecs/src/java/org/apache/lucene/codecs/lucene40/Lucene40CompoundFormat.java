@@ -171,8 +171,6 @@ name|name
 argument_list|,
 literal|""
 argument_list|,
-name|IndexFileNames
-operator|.
 name|COMPOUND_FILE_EXTENSION
 argument_list|)
 decl_stmt|;
@@ -231,8 +229,6 @@ name|name
 argument_list|,
 literal|""
 argument_list|,
-name|IndexFileNames
-operator|.
 name|COMPOUND_FILE_EXTENSION
 argument_list|)
 decl_stmt|;
@@ -290,6 +286,24 @@ expr_stmt|;
 block|}
 block|}
 block|}
+comment|/** Extension of compound file */
+DECL|field|COMPOUND_FILE_EXTENSION
+specifier|static
+specifier|final
+name|String
+name|COMPOUND_FILE_EXTENSION
+init|=
+literal|"cfs"
+decl_stmt|;
+comment|/** Extension of compound file entries */
+DECL|field|COMPOUND_FILE_ENTRIES_EXTENSION
+specifier|static
+specifier|final
+name|String
+name|COMPOUND_FILE_ENTRIES_EXTENSION
+init|=
+literal|"cfe"
+decl_stmt|;
 block|}
 end_class
 
