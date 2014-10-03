@@ -1030,7 +1030,7 @@ return|return
 name|docValueType
 return|;
 block|}
-comment|/**    * Set's the field's DocValuesType    * @param type DocValues type, or null if no DocValues should be stored.    * @throws IllegalStateException if this FieldType is frozen against    *         future modifications.    * @see #docValueType()    */
+comment|/**    * Sets the field's DocValuesType    * @param type DocValues type, or null if no DocValues should be stored.    * @throws IllegalStateException if this FieldType is frozen against    *         future modifications.    * @see #docValueType()    */
 DECL|method|setDocValueType
 specifier|public
 name|void
