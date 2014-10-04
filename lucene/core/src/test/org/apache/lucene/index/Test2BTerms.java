@@ -353,6 +353,22 @@ operator|.
 name|util
 operator|.
 name|LuceneTestCase
+operator|.
+name|SuppressSysoutChecks
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|util
+operator|.
+name|LuceneTestCase
 import|;
 end_import
 
@@ -415,15 +431,7 @@ comment|//
 end_comment
 
 begin_comment
-comment|//   ant test -Dtests.monster=true -Dtests.heapsize=8g
-end_comment
-
-begin_comment
-comment|//
-end_comment
-
-begin_comment
-comment|//   java -server -Xmx8g -d64 -cp .:lib/junit-4.10.jar:./build/classes/test:./build/classes/test-framework:./build/classes/java -Dlucene.version=4.0-dev -Dtests.directory=MMapDirectory -DtempDir=build -ea org.junit.runner.JUnitCore org.apache.lucene.index.Test2BTerms
+comment|//   ant test -Dtests.monster=true -Dtests.heapsize=8g -Dtests.codec=Lucene50 -Dtestcase=Test2BTerms
 end_comment
 
 begin_comment
@@ -457,6 +465,13 @@ operator|*
 name|TimeUnits
 operator|.
 name|HOUR
+argument_list|)
+annotation|@
+name|SuppressSysoutChecks
+argument_list|(
+name|bugUrl
+operator|=
+literal|"We.print.lots.o.stuff.on.purpose"
 argument_list|)
 DECL|class|Test2BTerms
 specifier|public
