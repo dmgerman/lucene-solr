@@ -475,7 +475,7 @@ expr_stmt|;
 name|FieldInfos
 name|fis1
 init|=
-name|SegmentReader
+name|IndexWriter
 operator|.
 name|readFieldInfos
 argument_list|(
@@ -490,7 +490,7 @@ decl_stmt|;
 name|FieldInfos
 name|fis2
 init|=
-name|SegmentReader
+name|IndexWriter
 operator|.
 name|readFieldInfos
 argument_list|(
@@ -642,7 +642,7 @@ expr_stmt|;
 name|FieldInfos
 name|fis3
 init|=
-name|SegmentReader
+name|IndexWriter
 operator|.
 name|readFieldInfos
 argument_list|(
@@ -1020,7 +1020,7 @@ expr_stmt|;
 name|FieldInfos
 name|fis1
 init|=
-name|SegmentReader
+name|IndexWriter
 operator|.
 name|readFieldInfos
 argument_list|(
@@ -1035,7 +1035,7 @@ decl_stmt|;
 name|FieldInfos
 name|fis2
 init|=
-name|SegmentReader
+name|IndexWriter
 operator|.
 name|readFieldInfos
 argument_list|(
@@ -1291,7 +1291,7 @@ expr_stmt|;
 name|FieldInfos
 name|fis1
 init|=
-name|SegmentReader
+name|IndexWriter
 operator|.
 name|readFieldInfos
 argument_list|(
@@ -1446,7 +1446,7 @@ expr_stmt|;
 name|FieldInfos
 name|fis1
 init|=
-name|SegmentReader
+name|IndexWriter
 operator|.
 name|readFieldInfos
 argument_list|(
@@ -1461,7 +1461,7 @@ decl_stmt|;
 name|FieldInfos
 name|fis2
 init|=
-name|SegmentReader
+name|IndexWriter
 operator|.
 name|readFieldInfos
 argument_list|(
@@ -1677,7 +1677,7 @@ expr_stmt|;
 name|FieldInfos
 name|fis1
 init|=
-name|SegmentReader
+name|IndexWriter
 operator|.
 name|readFieldInfos
 argument_list|(
@@ -1692,7 +1692,7 @@ decl_stmt|;
 name|FieldInfos
 name|fis2
 init|=
-name|SegmentReader
+name|IndexWriter
 operator|.
 name|readFieldInfos
 argument_list|(
@@ -1707,7 +1707,7 @@ decl_stmt|;
 name|FieldInfos
 name|fis3
 init|=
-name|SegmentReader
+name|IndexWriter
 operator|.
 name|readFieldInfos
 argument_list|(
@@ -1953,7 +1953,7 @@ expr_stmt|;
 name|FieldInfos
 name|fis1
 init|=
-name|SegmentReader
+name|IndexWriter
 operator|.
 name|readFieldInfos
 argument_list|(
@@ -2240,7 +2240,7 @@ block|{
 name|FieldInfos
 name|fis
 init|=
-name|SegmentReader
+name|IndexWriter
 operator|.
 name|readFieldInfos
 argument_list|(

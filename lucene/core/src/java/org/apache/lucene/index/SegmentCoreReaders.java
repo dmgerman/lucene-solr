@@ -359,6 +359,12 @@ specifier|final
 name|Directory
 name|cfsReader
 decl_stmt|;
+comment|/**     * fieldinfos for this core: means gen=-1.    * this is the exact fieldinfos these codec components saw at write.    * in the case of DV updates, SR may hold a newer version. */
+DECL|field|coreFieldInfos
+specifier|final
+name|FieldInfos
+name|coreFieldInfos
+decl_stmt|;
 comment|// TODO: make a single thread local w/ a
 comment|// Thingy class holding fieldsReader, termVectorsReader,
 comment|// normsProducer
@@ -582,14 +588,29 @@ operator|=
 name|dir
 expr_stmt|;
 block|}
-specifier|final
-name|FieldInfos
-name|fieldInfos
-init|=
-name|owner
+name|coreFieldInfos
+operator|=
+name|codec
 operator|.
-name|fieldInfos
-decl_stmt|;
+name|fieldInfosFormat
+argument_list|()
+operator|.
+name|getFieldInfosReader
+argument_list|()
+operator|.
+name|read
+argument_list|(
+name|cfsDir
+argument_list|,
+name|si
+operator|.
+name|info
+argument_list|,
+literal|""
+argument_list|,
+name|context
+argument_list|)
+expr_stmt|;
 specifier|final
 name|SegmentReadState
 name|segmentReadState
@@ -603,7 +624,7 @@ name|si
 operator|.
 name|info
 argument_list|,
-name|fieldInfos
+name|coreFieldInfos
 argument_list|,
 name|context
 argument_list|)
@@ -637,7 +658,7 @@ comment|// TODO: since we don't write any norms file if there are no norms,
 comment|// kinda jaky to assume the codec handles the case of no norms file at all gracefully?!
 if|if
 condition|(
-name|fieldInfos
+name|coreFieldInfos
 operator|.
 name|hasNorms
 argument_list|()
@@ -688,14 +709,14 @@ name|si
 operator|.
 name|info
 argument_list|,
-name|fieldInfos
+name|coreFieldInfos
 argument_list|,
 name|context
 argument_list|)
 expr_stmt|;
 if|if
 condition|(
-name|fieldInfos
+name|coreFieldInfos
 operator|.
 name|hasVectors
 argument_list|()
@@ -722,7 +743,7 @@ name|si
 operator|.
 name|info
 argument_list|,
-name|fieldInfos
+name|coreFieldInfos
 argument_list|,
 name|context
 argument_list|)
