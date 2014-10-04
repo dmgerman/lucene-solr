@@ -651,25 +651,6 @@ name|query
 argument_list|)
 argument_list|)
 expr_stmt|;
-name|query
-operator|.
-name|setRewriteMethod
-argument_list|(
-name|MultiTermQuery
-operator|.
-name|CONSTANT_SCORE_AUTO_REWRITE_DEFAULT
-argument_list|)
-expr_stmt|;
-name|assertEquals
-argument_list|(
-name|expected
-argument_list|,
-name|automatonQueryNrHits
-argument_list|(
-name|query
-argument_list|)
-argument_list|)
-expr_stmt|;
 block|}
 comment|/**    * Test some very simple automata.    */
 DECL|method|testAutomata

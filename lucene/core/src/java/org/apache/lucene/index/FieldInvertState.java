@@ -155,6 +155,19 @@ DECL|field|boost
 name|float
 name|boost
 decl_stmt|;
+comment|// we must track these across field instances (multi-valued case)
+DECL|field|lastStartOffset
+name|int
+name|lastStartOffset
+init|=
+literal|0
+decl_stmt|;
+DECL|field|lastPosition
+name|int
+name|lastPosition
+init|=
+literal|0
+decl_stmt|;
 DECL|field|attributeSource
 name|AttributeSource
 name|attributeSource
@@ -286,6 +299,14 @@ expr_stmt|;
 name|boost
 operator|=
 literal|1.0f
+expr_stmt|;
+name|lastStartOffset
+operator|=
+literal|0
+expr_stmt|;
+name|lastPosition
+operator|=
+literal|0
 expr_stmt|;
 block|}
 comment|// TODO: better name?

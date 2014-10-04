@@ -114,6 +114,12 @@ name|LIST
 block|,
 DECL|enum constant|CLUSTERSTATUS
 name|CLUSTERSTATUS
+block|,
+DECL|enum constant|ADDREPLICAPROP
+name|ADDREPLICAPROP
+block|,
+DECL|enum constant|DELETEREPLICAPROP
+name|DELETEREPLICAPROP
 block|;
 DECL|method|get
 specifier|public

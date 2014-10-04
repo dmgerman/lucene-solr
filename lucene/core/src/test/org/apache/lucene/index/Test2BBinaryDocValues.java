@@ -237,7 +237,7 @@ name|Test2BBinaryDocValues
 extends|extends
 name|LuceneTestCase
 block|{
-comment|// indexes Integer.MAX_VALUE docs with a fixed binary field
+comment|// indexes IndexWriter.MAX_DOCS docs with a fixed binary field
 DECL|method|testFixedBinary
 specifier|public
 name|void
@@ -392,9 +392,9 @@ literal|0
 init|;
 name|i
 operator|<
-name|Integer
+name|IndexWriter
 operator|.
-name|MAX_VALUE
+name|MAX_DOCS
 condition|;
 name|i
 operator|++
@@ -664,7 +664,7 @@ name|close
 argument_list|()
 expr_stmt|;
 block|}
-comment|// indexes Integer.MAX_VALUE docs with a variable binary field
+comment|// indexes IndexWriter.MAX_DOCS docs with a variable binary field
 DECL|method|testVariableBinary
 specifier|public
 name|void
@@ -828,9 +828,9 @@ literal|0
 init|;
 name|i
 operator|<
-name|Integer
+name|IndexWriter
 operator|.
-name|MAX_VALUE
+name|MAX_DOCS
 condition|;
 name|i
 operator|++

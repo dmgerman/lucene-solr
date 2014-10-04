@@ -113,7 +113,7 @@ import|;
 end_import
 
 begin_comment
-comment|/** Implements the wildcard search query. Supported wildcards are<code>*</code>, which  * matches any character sequence (including the empty one), and<code>?</code>,  * which matches any single character. '\' is the escape character.  *<p>  * Note this query can be slow, as it  * needs to iterate over many terms. In order to prevent extremely slow WildcardQueries,  * a Wildcard term should not start with the wildcard<code>*</code>  *   *<p>This query uses the {@link  * MultiTermQuery#CONSTANT_SCORE_AUTO_REWRITE_DEFAULT}  * rewrite method.  *  * @see AutomatonQuery  */
+comment|/** Implements the wildcard search query. Supported wildcards are<code>*</code>, which  * matches any character sequence (including the empty one), and<code>?</code>,  * which matches any single character. '\' is the escape character.  *<p>  * Note this query can be slow, as it  * needs to iterate over many terms. In order to prevent extremely slow WildcardQueries,  * a Wildcard term should not start with the wildcard<code>*</code>  *   *<p>This query uses the {@link  * MultiTermQuery#CONSTANT_SCORE_FILTER_REWRITE}  * rewrite method.  *  * @see AutomatonQuery  */
 end_comment
 
 begin_class

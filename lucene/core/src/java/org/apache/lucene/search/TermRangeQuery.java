@@ -111,7 +111,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * A Query that matches documents within an range of terms.  *  *<p>This query matches the documents looking for terms that fall into the  * supplied range according to {@link  * Byte#compareTo(Byte)}. It is not intended  * for numerical ranges; use {@link NumericRangeQuery} instead.  *  *<p>This query uses the {@link  * MultiTermQuery#CONSTANT_SCORE_AUTO_REWRITE_DEFAULT}  * rewrite method.  * @since 2.9  */
+comment|/**  * A Query that matches documents within an range of terms.  *  *<p>This query matches the documents looking for terms that fall into the  * supplied range according to {@link  * Byte#compareTo(Byte)}. It is not intended  * for numerical ranges; use {@link NumericRangeQuery} instead.  *  *<p>This query uses the {@link  * MultiTermQuery#CONSTANT_SCORE_FILTER_REWRITE}  * rewrite method.  * @since 2.9  */
 end_comment
 
 begin_class

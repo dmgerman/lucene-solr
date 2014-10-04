@@ -97,7 +97,7 @@ import|;
 end_import
 
 begin_comment
-comment|/** A Query that matches documents containing terms with a specified prefix. A PrefixQuery  * is built by QueryParser for input like<code>app*</code>.  *  *<p>This query uses the {@link  * MultiTermQuery#CONSTANT_SCORE_AUTO_REWRITE_DEFAULT}  * rewrite method. */
+comment|/** A Query that matches documents containing terms with a specified prefix. A PrefixQuery  * is built by QueryParser for input like<code>app*</code>.  *  *<p>This query uses the {@link  * MultiTermQuery#CONSTANT_SCORE_FILTER_REWRITE}  * rewrite method. */
 end_comment
 
 begin_class

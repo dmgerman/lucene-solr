@@ -18,6 +18,30 @@ end_comment
 
 begin_import
 import|import
+name|java
+operator|.
+name|util
+operator|.
+name|concurrent
+operator|.
+name|ExecutionException
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
+name|util
+operator|.
+name|concurrent
+operator|.
+name|RejectedExecutionException
+import|;
+end_import
+
+begin_import
+import|import
 name|org
 operator|.
 name|apache
@@ -406,6 +430,15 @@ parameter_list|)
 block|{
 comment|// expected
 block|}
+catch|catch
+parameter_list|(
+name|RejectedExecutionException
+name|ree
+parameter_list|)
+block|{
+comment|// expected if the searcher has been created with threads since LuceneTestCase
+comment|// closes the thread-pool in a reader close listener
+block|}
 block|}
 comment|// LUCENE-3800
 DECL|method|testReaderChaining
@@ -502,10 +535,57 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
-name|AlreadyClosedException
-name|ace
+name|Exception
+name|e
 parameter_list|)
 block|{
+name|AlreadyClosedException
+name|ace
+init|=
+literal|null
+decl_stmt|;
+for|for
+control|(
+name|Throwable
+name|t
+init|=
+name|e
+init|;
+name|t
+operator|!=
+literal|null
+condition|;
+name|t
+operator|=
+name|t
+operator|.
+name|getCause
+argument_list|()
+control|)
+block|{
+if|if
+condition|(
+name|t
+operator|instanceof
+name|AlreadyClosedException
+condition|)
+block|{
+name|ace
+operator|=
+operator|(
+name|AlreadyClosedException
+operator|)
+name|t
+expr_stmt|;
+block|}
+block|}
+name|assertNotNull
+argument_list|(
+literal|"Query failed, but not due to an AlreadyClosedException"
+argument_list|,
+name|ace
+argument_list|)
+expr_stmt|;
 name|assertEquals
 argument_list|(
 literal|"this IndexReader cannot be used anymore as one of its child readers was closed"

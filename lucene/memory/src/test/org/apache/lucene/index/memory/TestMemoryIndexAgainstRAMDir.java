@@ -805,10 +805,10 @@ comment|/**  * Verifies that Lucene MemoryIndex and RAMDirectory have the same b
 end_comment
 
 begin_class
-DECL|class|MemoryIndexTest
+DECL|class|TestMemoryIndexAgainstRAMDir
 specifier|public
 class|class
-name|MemoryIndexTest
+name|TestMemoryIndexAgainstRAMDir
 extends|extends
 name|BaseTokenStreamTestCase
 block|{

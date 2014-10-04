@@ -58,6 +58,22 @@ name|common
 operator|.
 name|cloud
 operator|.
+name|OnReconnect
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|solr
+operator|.
+name|common
+operator|.
+name|cloud
+operator|.
 name|SolrZkClient
 import|;
 end_import
@@ -191,6 +207,8 @@ DECL|class|ZkIndexSchemaReader
 specifier|public
 class|class
 name|ZkIndexSchemaReader
+implements|implements
+name|OnReconnect
 block|{
 DECL|field|log
 specifier|private
@@ -278,6 +296,16 @@ expr_stmt|;
 name|createSchemaWatcher
 argument_list|()
 expr_stmt|;
+name|zkLoader
+operator|.
+name|getZkController
+argument_list|()
+operator|.
+name|addOnReconnectListener
+argument_list|(
+name|this
+argument_list|)
+expr_stmt|;
 block|}
 DECL|method|getSchemaUpdateLock
 specifier|public
@@ -305,8 +333,6 @@ argument_list|(
 literal|"Creating ZooKeeper watch for the managed schema at "
 operator|+
 name|managedSchemaPath
-operator|+
-literal|" ..."
 argument_list|)
 expr_stmt|;
 try|try
@@ -365,6 +391,9 @@ block|{
 name|updateSchema
 argument_list|(
 name|this
+argument_list|,
+operator|-
+literal|1
 argument_list|)
 expr_stmt|;
 block|}
@@ -524,6 +553,33 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
+DECL|method|refreshSchemaFromZk
+specifier|public
+name|ManagedIndexSchema
+name|refreshSchemaFromZk
+parameter_list|(
+name|int
+name|expectedZkVersion
+parameter_list|)
+throws|throws
+name|KeeperException
+throws|,
+name|InterruptedException
+block|{
+name|updateSchema
+argument_list|(
+literal|null
+argument_list|,
+name|expectedZkVersion
+argument_list|)
+expr_stmt|;
+return|return
+name|managedIndexSchemaFactory
+operator|.
+name|getSchema
+argument_list|()
+return|;
+block|}
 DECL|method|updateSchema
 specifier|private
 name|void
@@ -531,6 +587,9 @@ name|updateSchema
 parameter_list|(
 name|Watcher
 name|watcher
+parameter_list|,
+name|int
+name|expectedZkVersion
 parameter_list|)
 throws|throws
 name|KeeperException
@@ -559,6 +618,20 @@ operator|.
 name|getSchema
 argument_list|()
 decl_stmt|;
+if|if
+condition|(
+name|expectedZkVersion
+operator|==
+operator|-
+literal|1
+operator|||
+name|oldSchema
+operator|.
+name|schemaZkVersion
+operator|<
+name|expectedZkVersion
+condition|)
+block|{
 name|byte
 index|[]
 name|data
@@ -592,7 +665,14 @@ name|log
 operator|.
 name|info
 argument_list|(
-literal|"Retrieved schema from ZooKeeper"
+literal|"Retrieved schema version "
+operator|+
+name|stat
+operator|.
+name|getVersion
+argument_list|()
+operator|+
+literal|" from ZooKeeper"
 argument_list|)
 expr_stmt|;
 name|long
@@ -671,6 +751,67 @@ literal|" ms"
 argument_list|)
 expr_stmt|;
 block|}
+else|else
+block|{
+name|log
+operator|.
+name|info
+argument_list|(
+literal|"Current schema version "
+operator|+
+name|oldSchema
+operator|.
+name|schemaZkVersion
+operator|+
+literal|" is already the latest"
+argument_list|)
+expr_stmt|;
+block|}
+block|}
+block|}
+block|}
+comment|/**    * Called after a ZooKeeper session expiration occurs; need to re-create the watcher and update the current    * schema from ZooKeeper.    */
+annotation|@
+name|Override
+DECL|method|command
+specifier|public
+name|void
+name|command
+parameter_list|()
+block|{
+try|try
+block|{
+comment|// setup a new watcher to get notified when the managed schema changes
+name|createSchemaWatcher
+argument_list|()
+expr_stmt|;
+comment|// force update now as the schema may have changed while our zk session was expired
+name|updateSchema
+argument_list|(
+literal|null
+argument_list|,
+operator|-
+literal|1
+argument_list|)
+expr_stmt|;
+block|}
+catch|catch
+parameter_list|(
+name|Exception
+name|exc
+parameter_list|)
+block|{
+name|log
+operator|.
+name|error
+argument_list|(
+literal|"Failed to update managed-schema watcher after session expiration due to: "
+operator|+
+name|exc
+argument_list|,
+name|exc
+argument_list|)
+expr_stmt|;
 block|}
 block|}
 block|}

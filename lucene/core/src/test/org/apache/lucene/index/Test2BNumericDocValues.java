@@ -195,7 +195,7 @@ name|Test2BNumericDocValues
 extends|extends
 name|LuceneTestCase
 block|{
-comment|// indexes Integer.MAX_VALUE docs with an increasing dv field
+comment|// indexes IndexWriter.MAX_DOCS docs with an increasing dv field
 DECL|method|testNumerics
 specifier|public
 name|void
@@ -331,9 +331,9 @@ literal|0
 init|;
 name|i
 operator|<
-name|Integer
+name|IndexWriter
 operator|.
-name|MAX_VALUE
+name|MAX_DOCS
 condition|;
 name|i
 operator|++

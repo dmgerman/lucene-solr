@@ -643,25 +643,6 @@ name|query
 argument_list|)
 argument_list|)
 expr_stmt|;
-name|query
-operator|.
-name|setRewriteMethod
-argument_list|(
-name|MultiTermQuery
-operator|.
-name|CONSTANT_SCORE_AUTO_REWRITE_DEFAULT
-argument_list|)
-expr_stmt|;
-name|assertEquals
-argument_list|(
-name|expected
-argument_list|,
-name|automatonQueryNrHits
-argument_list|(
-name|query
-argument_list|)
-argument_list|)
-expr_stmt|;
 block|}
 comment|/**    * Test that AutomatonQuery interacts with lucene's sort order correctly.    *     * This expression matches something either starting with the arabic    * presentation forms block, or a supplementary character.    */
 DECL|method|testSortOrder
