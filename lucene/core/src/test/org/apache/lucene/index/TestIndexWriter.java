@@ -9091,6 +9091,18 @@ parameter_list|()
 throws|throws
 name|Exception
 block|{
+name|assumeFalse
+argument_list|(
+literal|"test relies on exact filenames"
+argument_list|,
+name|Codec
+operator|.
+name|getDefault
+argument_list|()
+operator|instanceof
+name|SimpleTextCodec
+argument_list|)
+expr_stmt|;
 for|for
 control|(
 name|int
