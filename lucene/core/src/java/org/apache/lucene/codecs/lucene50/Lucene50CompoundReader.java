@@ -310,6 +310,8 @@ name|int
 name|version
 decl_stmt|;
 comment|/**    * Create a new CompoundFileDirectory.    */
+comment|// TODO: we should just pre-strip "entries" and append segment name up-front like simpletext?
+comment|// this need not be a "general purpose" directory anymore (it only writes index files)
 DECL|method|Lucene50CompoundReader
 specifier|public
 name|Lucene50CompoundReader
@@ -997,7 +999,6 @@ name|UnsupportedOperationException
 argument_list|()
 throw|;
 block|}
-comment|/** Not implemented    * @throws UnsupportedOperationException always: not supported by CFS */
 annotation|@
 name|Override
 DECL|method|makeLock
@@ -1008,6 +1009,25 @@ parameter_list|(
 name|String
 name|name
 parameter_list|)
+block|{
+throw|throw
+operator|new
+name|UnsupportedOperationException
+argument_list|()
+throw|;
+block|}
+annotation|@
+name|Override
+DECL|method|clearLock
+specifier|public
+name|void
+name|clearLock
+parameter_list|(
+name|String
+name|name
+parameter_list|)
+throws|throws
+name|IOException
 block|{
 throw|throw
 operator|new

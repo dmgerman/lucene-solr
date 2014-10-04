@@ -1245,7 +1245,6 @@ name|UnsupportedOperationException
 argument_list|()
 throw|;
 block|}
-comment|/** Not implemented    * @throws UnsupportedOperationException always: not supported by CFS */
 annotation|@
 name|Override
 DECL|method|makeLock
@@ -1256,6 +1255,25 @@ parameter_list|(
 name|String
 name|name
 parameter_list|)
+block|{
+throw|throw
+operator|new
+name|UnsupportedOperationException
+argument_list|()
+throw|;
+block|}
+annotation|@
+name|Override
+DECL|method|clearLock
+specifier|public
+name|void
+name|clearLock
+parameter_list|(
+name|String
+name|name
+parameter_list|)
+throws|throws
+name|IOException
 block|{
 throw|throw
 operator|new
