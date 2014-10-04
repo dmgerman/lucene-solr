@@ -320,6 +320,12 @@ name|SimpleTextCompoundFormat
 extends|extends
 name|CompoundFormat
 block|{
+comment|/** Sole constructor. */
+DECL|method|SimpleTextCompoundFormat
+specifier|public
+name|SimpleTextCompoundFormat
+parameter_list|()
+block|{   }
 annotation|@
 name|Override
 DECL|method|getCompoundReader

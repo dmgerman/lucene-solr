@@ -139,6 +139,12 @@ name|Lucene40CompoundFormat
 extends|extends
 name|CompoundFormat
 block|{
+comment|/** Sole constructor. */
+DECL|method|Lucene40CompoundFormat
+specifier|public
+name|Lucene40CompoundFormat
+parameter_list|()
+block|{   }
 annotation|@
 name|Override
 DECL|method|getCompoundReader
