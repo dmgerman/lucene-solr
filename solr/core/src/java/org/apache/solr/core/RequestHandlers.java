@@ -320,9 +320,27 @@ name|ConcurrentHashMap
 argument_list|<>
 argument_list|()
 decl_stmt|;
+DECL|field|immutableHandlers
+specifier|private
+specifier|final
+name|Map
+argument_list|<
+name|String
+argument_list|,
+name|SolrRequestHandler
+argument_list|>
+name|immutableHandlers
+init|=
+name|Collections
+operator|.
+name|unmodifiableMap
+argument_list|(
+name|handlers
+argument_list|)
+decl_stmt|;
 comment|/**    * Trim the trailing '/' if its there, and convert null to empty string.    *     * we want:    *  /update/csv   and    *  /update/csv/    * to map to the same handler     *     */
 DECL|method|normalize
-specifier|private
+specifier|public
 specifier|static
 name|String
 name|normalize
@@ -598,12 +616,7 @@ name|getRequestHandlers
 parameter_list|()
 block|{
 return|return
-name|Collections
-operator|.
-name|unmodifiableMap
-argument_list|(
-name|handlers
-argument_list|)
+name|immutableHandlers
 return|;
 block|}
 comment|/**    * Read solrconfig.xml and register the appropriate handlers    *     * This function should<b>only</b> be called from the SolrCore constructor.  It is    * not intended as a public API.    *     * While the normal runtime registration contract is that handlers MUST be initialized    * before they are registered, this function does not do that exactly.    *    * This function registers all handlers first and then calls init() for each one.    *    * This is OK because this function is only called at startup and there is no chance that    * a handler could be asked to handle a request before it is initialized.    *     * The advantage to this approach is that handlers can know what path they are registered    * to and what other handlers are available at startup.    *     * Handlers will be registered and initialized in the order they appear in solrconfig.xml    */

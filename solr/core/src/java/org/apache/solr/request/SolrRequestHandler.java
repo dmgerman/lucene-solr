@@ -95,6 +95,15 @@ name|SolrQueryResponse
 name|rsp
 parameter_list|)
 function_decl|;
+DECL|field|TYPE
+specifier|public
+specifier|static
+specifier|final
+name|String
+name|TYPE
+init|=
+literal|"requestHandler"
+decl_stmt|;
 block|}
 end_interface
 
