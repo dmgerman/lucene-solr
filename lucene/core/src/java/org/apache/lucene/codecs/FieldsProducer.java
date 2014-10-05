@@ -108,6 +108,19 @@ parameter_list|()
 throws|throws
 name|IOException
 function_decl|;
+comment|/**     * Returns an instance optimized for merging.    *<p>    * The default implementation returns {@code this} */
+DECL|method|getMergeInstance
+specifier|public
+name|FieldsProducer
+name|getMergeInstance
+parameter_list|()
+throws|throws
+name|IOException
+block|{
+return|return
+name|this
+return|;
+block|}
 block|}
 end_class
 

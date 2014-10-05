@@ -185,12 +185,14 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Lucene 4.6 implementation of {@link SegmentInfoReader}.  *   * @see Lucene46SegmentInfoFormat  * @lucene.experimental  */
+comment|/**  * Lucene 4.6 segment infos reader  * @deprecated only for old 4.x segments  */
 end_comment
 
 begin_class
+annotation|@
+name|Deprecated
 DECL|class|Lucene46SegmentInfoReader
-specifier|public
+specifier|final
 class|class
 name|Lucene46SegmentInfoReader
 extends|extends

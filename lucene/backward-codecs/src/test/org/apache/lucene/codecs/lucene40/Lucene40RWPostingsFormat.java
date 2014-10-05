@@ -86,37 +86,39 @@ name|SegmentWriteState
 import|;
 end_import
 
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|util
-operator|.
-name|LuceneTestCase
-import|;
-end_import
-
 begin_comment
-comment|/**  * Read-write version of {@link Lucene40PostingsFormat} for testing.  */
+comment|/**  * Read-write version of 4.0 postings format for testing  * @deprecated for test purposes only  */
 end_comment
 
 begin_class
 annotation|@
-name|SuppressWarnings
-argument_list|(
-literal|"deprecation"
-argument_list|)
+name|Deprecated
 DECL|class|Lucene40RWPostingsFormat
 specifier|public
+specifier|final
 class|class
 name|Lucene40RWPostingsFormat
 extends|extends
 name|Lucene40PostingsFormat
 block|{
+comment|/** minimum items (terms or sub-blocks) per block for 4.0 BlockTree */
+DECL|field|MIN_BLOCK_SIZE
+specifier|final
+specifier|static
+name|int
+name|MIN_BLOCK_SIZE
+init|=
+literal|25
+decl_stmt|;
+comment|/** maximum items (terms or sub-blocks) per block for 4.0 BlockTree */
+DECL|field|MAX_BLOCK_SIZE
+specifier|final
+specifier|static
+name|int
+name|MAX_BLOCK_SIZE
+init|=
+literal|48
+decl_stmt|;
 annotation|@
 name|Override
 DECL|method|fieldsConsumer
@@ -160,9 +162,9 @@ name|state
 argument_list|,
 name|docs
 argument_list|,
-name|minBlockSize
+name|MIN_BLOCK_SIZE
 argument_list|,
-name|maxBlockSize
+name|MAX_BLOCK_SIZE
 argument_list|)
 decl_stmt|;
 name|success

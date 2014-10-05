@@ -30,11 +30,15 @@ end_import
 
 begin_import
 import|import
-name|java
+name|org
 operator|.
-name|util
+name|apache
 operator|.
-name|Collections
+name|lucene
+operator|.
+name|codecs
+operator|.
+name|DocValuesProducer
 import|;
 end_import
 
@@ -109,13 +113,14 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Reads 4.2-4.8 norms.  * Implemented the same as docvalues, but with a different filename.  * @deprecated Only for reading old segments  */
+comment|/**  * Reads 4.2-4.8 norms.  * @deprecated Only for reading old segments  */
 end_comment
 
 begin_class
 annotation|@
 name|Deprecated
 DECL|class|Lucene42NormsProducer
+specifier|final
 class|class
 name|Lucene42NormsProducer
 extends|extends
@@ -124,9 +129,29 @@ block|{
 DECL|field|impl
 specifier|private
 specifier|final
-name|Lucene42DocValuesProducer
+name|DocValuesProducer
 name|impl
 decl_stmt|;
+comment|// clone for merge
+DECL|method|Lucene42NormsProducer
+name|Lucene42NormsProducer
+parameter_list|(
+name|DocValuesProducer
+name|impl
+parameter_list|)
+throws|throws
+name|IOException
+block|{
+name|this
+operator|.
+name|impl
+operator|=
+name|impl
+operator|.
+name|getMergeInstance
+argument_list|()
+expr_stmt|;
+block|}
 DECL|method|Lucene42NormsProducer
 name|Lucene42NormsProducer
 parameter_list|(
@@ -253,6 +278,24 @@ operator|.
 name|close
 argument_list|()
 expr_stmt|;
+block|}
+annotation|@
+name|Override
+DECL|method|getMergeInstance
+specifier|public
+name|NormsProducer
+name|getMergeInstance
+parameter_list|()
+throws|throws
+name|IOException
+block|{
+return|return
+operator|new
+name|Lucene42NormsProducer
+argument_list|(
+name|impl
+argument_list|)
+return|;
 block|}
 annotation|@
 name|Override

@@ -539,7 +539,15 @@ throw|throw
 operator|new
 name|IllegalStateException
 argument_list|(
-literal|"docCount was already set"
+literal|"docCount was already set: this.docCount="
+operator|+
+name|this
+operator|.
+name|docCount
+operator|+
+literal|" vs docCount="
+operator|+
+name|docCount
 argument_list|)
 throw|;
 block|}

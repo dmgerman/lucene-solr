@@ -128,20 +128,6 @@ name|lucene
 operator|.
 name|index
 operator|.
-name|BinaryDocValues
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|index
-operator|.
 name|FieldInfo
 import|;
 end_import
@@ -171,20 +157,6 @@ operator|.
 name|index
 operator|.
 name|SegmentWriteState
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|store
-operator|.
-name|CompoundFileDirectory
 import|;
 end_import
 
@@ -260,8 +232,15 @@ name|PackedInts
 import|;
 end_import
 
+begin_comment
+comment|/**  * Writer for 4.0 docvalues format  * @deprecated for test purposes only  */
+end_comment
+
 begin_class
+annotation|@
+name|Deprecated
 DECL|class|Lucene40DocValuesWriter
+specifier|final
 class|class
 name|Lucene40DocValuesWriter
 extends|extends
@@ -327,7 +306,7 @@ operator|.
 name|dir
 operator|=
 operator|new
-name|CompoundFileDirectory
+name|Lucene40CompoundReader
 argument_list|(
 name|state
 operator|.

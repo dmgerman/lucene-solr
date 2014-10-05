@@ -229,11 +229,14 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Writer for {@link Lucene42NormsFormat}  */
+comment|/**  * Writer for 4.2 norms format for testing  * @deprecated for test purposes only  */
 end_comment
 
 begin_class
+annotation|@
+name|Deprecated
 DECL|class|Lucene42NormsConsumer
+specifier|final
 class|class
 name|Lucene42NormsConsumer
 extends|extends

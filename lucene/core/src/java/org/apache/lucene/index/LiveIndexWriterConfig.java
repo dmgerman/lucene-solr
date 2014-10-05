@@ -286,17 +286,6 @@ name|IndexWriterConfig
 operator|.
 name|DEFAULT_USE_COMPOUND_FILE_SYSTEM
 decl_stmt|;
-comment|/** True if merging should check integrity of segments before merge */
-DECL|field|checkIntegrityAtMerge
-specifier|protected
-specifier|volatile
-name|boolean
-name|checkIntegrityAtMerge
-init|=
-name|IndexWriterConfig
-operator|.
-name|DEFAULT_CHECK_INTEGRITY_AT_MERGE
-decl_stmt|;
 comment|/** True if calls to {@link IndexWriter#close()} should first do a commit. */
 DECL|field|commitOnClose
 specifier|protected
@@ -929,37 +918,6 @@ return|return
 name|useCompoundFile
 return|;
 block|}
-comment|/**    * Sets if {@link IndexWriter} should call {@link LeafReader#checkIntegrity()}    * on existing segments before merging them into a new one.    *<p>    * Use<code>true</code> to enable this safety check, which can help    * reduce the risk of propagating index corruption from older segments     * into new ones, at the expense of slower merging.    *</p>    */
-DECL|method|setCheckIntegrityAtMerge
-specifier|public
-name|LiveIndexWriterConfig
-name|setCheckIntegrityAtMerge
-parameter_list|(
-name|boolean
-name|checkIntegrityAtMerge
-parameter_list|)
-block|{
-name|this
-operator|.
-name|checkIntegrityAtMerge
-operator|=
-name|checkIntegrityAtMerge
-expr_stmt|;
-return|return
-name|this
-return|;
-block|}
-comment|/** Returns true if {@link LeafReader#checkIntegrity()} is called before     *  merging segments. */
-DECL|method|getCheckIntegrityAtMerge
-specifier|public
-name|boolean
-name|getCheckIntegrityAtMerge
-parameter_list|()
-block|{
-return|return
-name|checkIntegrityAtMerge
-return|;
-block|}
 comment|/**    * Returns<code>true</code> if {@link IndexWriter#close()} should first commit before closing.    */
 DECL|method|getCommitOnClose
 specifier|public
@@ -1361,24 +1319,6 @@ operator|.
 name|append
 argument_list|(
 name|getUseCompoundFile
-argument_list|()
-argument_list|)
-operator|.
-name|append
-argument_list|(
-literal|"\n"
-argument_list|)
-expr_stmt|;
-name|sb
-operator|.
-name|append
-argument_list|(
-literal|"checkIntegrityAtMerge="
-argument_list|)
-operator|.
-name|append
-argument_list|(
-name|getCheckIntegrityAtMerge
 argument_list|()
 argument_list|)
 operator|.

@@ -33,12 +33,15 @@ import|;
 end_import
 
 begin_comment
-comment|/** read-write version of 4.6 segmentinfos for testing */
+comment|/**  * Read-Write version of 4.6 segmentinfo format for testing  * @deprecated for test purposes only  */
 end_comment
 
 begin_class
+annotation|@
+name|Deprecated
 DECL|class|Lucene46RWSegmentInfoFormat
 specifier|public
+specifier|final
 class|class
 name|Lucene46RWSegmentInfoFormat
 extends|extends

@@ -221,12 +221,13 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Concrete class that writes the 4.0 frq/prx postings format.  *   * @see Lucene40PostingsFormat  * @lucene.experimental   */
+comment|/**  * Writer for 4.0 postings format  * @deprecated for test purposes only  */
 end_comment
 
 begin_class
+annotation|@
+name|Deprecated
 DECL|class|Lucene40PostingsWriter
-specifier|public
 specifier|final
 class|class
 name|Lucene40PostingsWriter

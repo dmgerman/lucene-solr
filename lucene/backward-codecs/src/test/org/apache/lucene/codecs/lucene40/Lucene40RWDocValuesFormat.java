@@ -71,17 +71,15 @@ import|;
 end_import
 
 begin_comment
-comment|/** Read-write version of {@link Lucene40DocValuesFormat} for testing */
+comment|/**  * Read-write version of 4.0 docvalues format for testing  * @deprecated for test purposes only  */
 end_comment
 
 begin_class
 annotation|@
-name|SuppressWarnings
-argument_list|(
-literal|"deprecation"
-argument_list|)
+name|Deprecated
 DECL|class|Lucene40RWDocValuesFormat
 specifier|public
+specifier|final
 class|class
 name|Lucene40RWDocValuesFormat
 extends|extends
@@ -115,7 +113,7 @@ name|name
 argument_list|,
 literal|"dv"
 argument_list|,
-name|IndexFileNames
+name|Lucene40CompoundFormat
 operator|.
 name|COMPOUND_FILE_EXTENSION
 argument_list|)

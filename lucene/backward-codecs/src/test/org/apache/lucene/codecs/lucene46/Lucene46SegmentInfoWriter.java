@@ -169,12 +169,14 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Lucene 4.0 implementation of {@link SegmentInfoWriter}.  *   * @see Lucene46SegmentInfoFormat  * @lucene.experimental  */
+comment|/**  * Writer for 4.0 segmentinfo format for testing  * @deprecated for test purposes only  */
 end_comment
 
 begin_class
+annotation|@
+name|Deprecated
 DECL|class|Lucene46SegmentInfoWriter
-specifier|public
+specifier|final
 class|class
 name|Lucene46SegmentInfoWriter
 extends|extends

@@ -201,7 +201,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Lucene 4.2 FieldInfos writer.  *   * @see Lucene42FieldInfosFormat  * @lucene.experimental  */
+comment|/**  * Writer for 4.2 fieldinfos format for testing  * @deprecated for test purposes only  */
 end_comment
 
 begin_class

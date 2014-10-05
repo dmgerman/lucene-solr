@@ -295,10 +295,12 @@ import|;
 end_import
 
 begin_comment
-comment|/** writer for {@link Lucene45DocValuesFormat} */
+comment|/**   * writer for 4.5 docvalues format  * @deprecated only for old 4.x segments  */
 end_comment
 
 begin_class
+annotation|@
+name|Deprecated
 DECL|class|Lucene45DocValuesConsumer
 class|class
 name|Lucene45DocValuesConsumer

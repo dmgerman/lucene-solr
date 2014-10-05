@@ -187,10 +187,12 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Lucene 4.6 FieldInfos writer.  *   * @see Lucene46FieldInfosFormat  * @lucene.experimental  */
+comment|/**  * Lucene 4.6 FieldInfos writer.  *   * @deprecated only for old 4.x segments  */
 end_comment
 
 begin_class
+annotation|@
+name|Deprecated
 DECL|class|Lucene46FieldInfosWriter
 specifier|final
 class|class

@@ -42,7 +42,7 @@ name|lucene
 operator|.
 name|codecs
 operator|.
-name|FieldInfosFormat
+name|CompoundFormat
 import|;
 end_import
 
@@ -56,7 +56,7 @@ name|lucene
 operator|.
 name|codecs
 operator|.
-name|FilterCodec
+name|FieldInfosFormat
 import|;
 end_import
 
@@ -175,19 +175,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Implements the Lucene 4.0 index format, with configurable per-field postings formats.  *<p>  * If you want to reuse functionality of this codec in another codec, extend  * {@link FilterCodec}.  *  * @see org.apache.lucene.codecs.lucene40 package documentation for file format details.  * @deprecated Only for reading old 4.0 segments  */
-end_comment
-
-begin_comment
-comment|// NOTE: if we make largish changes in a minor release, easier to just make Lucene42Codec or whatever
-end_comment
-
-begin_comment
-comment|// if they are backwards compatible or smallish we can probably do the backwards in the postingsreader
-end_comment
-
-begin_comment
-comment|// (it writes a minor version, etc).
+comment|/**  * Reader for the 4.0 file format  * @deprecated Only for reading old 4.0 segments  */
 end_comment
 
 begin_class
@@ -248,6 +236,16 @@ name|liveDocsFormat
 init|=
 operator|new
 name|Lucene40LiveDocsFormat
+argument_list|()
+decl_stmt|;
+DECL|field|compoundFormat
+specifier|private
+specifier|final
+name|CompoundFormat
+name|compoundFormat
+init|=
+operator|new
+name|Lucene40CompoundFormat
 argument_list|()
 decl_stmt|;
 DECL|field|postingsFormat
@@ -354,6 +352,18 @@ parameter_list|()
 block|{
 return|return
 name|infosFormat
+return|;
+block|}
+annotation|@
+name|Override
+DECL|method|compoundFormat
+specifier|public
+name|CompoundFormat
+name|compoundFormat
+parameter_list|()
+block|{
+return|return
+name|compoundFormat
 return|;
 block|}
 DECL|field|defaultDVFormat

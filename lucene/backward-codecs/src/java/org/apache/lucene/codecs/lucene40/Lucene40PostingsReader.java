@@ -331,14 +331,14 @@ import|;
 end_import
 
 begin_comment
-comment|/**   * Concrete class that reads the 4.0 frq/prox  * postings format.   *    *  @see Lucene40PostingsFormat  *  @deprecated Only for reading old 4.0 segments */
+comment|/**   * Reader for 4.0 postings format  * @deprecated Only for reading old 4.0 segments */
 end_comment
 
 begin_class
 annotation|@
 name|Deprecated
 DECL|class|Lucene40PostingsReader
-specifier|public
+specifier|final
 class|class
 name|Lucene40PostingsReader
 extends|extends

@@ -1,6 +1,6 @@
 begin_unit|revision:0.9.5;language:Java;cregit-version:0.0.1
 begin_package
-DECL|package|org.apache.lucene.codecs.lucene41
+DECL|package|org.apache.lucene.codecs.lucene50
 package|package
 name|org
 operator|.
@@ -10,7 +10,7 @@ name|lucene
 operator|.
 name|codecs
 operator|.
-name|lucene41
+name|lucene50
 package|;
 end_package
 
@@ -61,10 +61,10 @@ import|;
 end_import
 
 begin_class
-DECL|class|TestLucene41StoredFieldsFormat
+DECL|class|TestLucene50StoredFieldsFormat
 specifier|public
 class|class
-name|TestLucene41StoredFieldsFormat
+name|TestLucene50StoredFieldsFormat
 extends|extends
 name|BaseStoredFieldsFormatTestCase
 block|{

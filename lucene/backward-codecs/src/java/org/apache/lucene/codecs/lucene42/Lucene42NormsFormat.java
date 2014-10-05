@@ -38,34 +38,6 @@ name|lucene
 operator|.
 name|codecs
 operator|.
-name|DocValuesConsumer
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|codecs
-operator|.
-name|DocValuesProducer
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|codecs
-operator|.
 name|NormsConsumer
 import|;
 end_import
@@ -143,10 +115,12 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Lucene 4.2 score normalization format.  *<p>  * NOTE: this uses the same format as {@link Lucene42DocValuesFormat}  * Numeric DocValues, but with different file extensions, and passing  * {@link PackedInts#FASTEST} for uncompressed encoding: trading off  * space for performance.  *<p>  * Files:  *<ul>  *<li><tt>.nvd</tt>: DocValues data</li>  *<li><tt>.nvm</tt>: DocValues metadata</li>  *</ul>  * @see Lucene42DocValuesFormat  */
+comment|/**  * Lucene 4.2 score normalization format.  * @deprecated only for reading old 4.x segments  */
 end_comment
 
 begin_class
+annotation|@
+name|Deprecated
 DECL|class|Lucene42NormsFormat
 specifier|public
 class|class
@@ -215,6 +189,7 @@ annotation|@
 name|Override
 DECL|method|normsProducer
 specifier|public
+specifier|final
 name|NormsProducer
 name|normsProducer
 parameter_list|(

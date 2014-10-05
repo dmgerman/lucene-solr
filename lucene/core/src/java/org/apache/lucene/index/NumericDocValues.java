@@ -27,7 +27,7 @@ specifier|abstract
 class|class
 name|NumericDocValues
 block|{
-comment|/** Sole constructor. (For invocation by subclass     * constructors, typically implicit.) */
+comment|/** Sole constructor. (For invocation by subclass     *  constructors, typically implicit.) */
 DECL|method|NumericDocValues
 specifier|protected
 name|NumericDocValues

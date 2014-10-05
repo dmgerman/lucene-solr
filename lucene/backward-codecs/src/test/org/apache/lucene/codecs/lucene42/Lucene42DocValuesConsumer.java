@@ -232,20 +232,6 @@ name|lucene
 operator|.
 name|util
 operator|.
-name|IntsRef
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|util
-operator|.
 name|IntsRefBuilder
 import|;
 end_import
@@ -575,11 +561,14 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Writer for {@link Lucene42DocValuesFormat}  */
+comment|/**  * Writer for 4.2 docvalues format for testing  * @deprecated for test purposes only  */
 end_comment
 
 begin_class
+annotation|@
+name|Deprecated
 DECL|class|Lucene42DocValuesConsumer
+specifier|final
 class|class
 name|Lucene42DocValuesConsumer
 extends|extends

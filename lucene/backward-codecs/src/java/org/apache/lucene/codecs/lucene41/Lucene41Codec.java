@@ -20,16 +20,6 @@ end_comment
 
 begin_import
 import|import
-name|java
-operator|.
-name|io
-operator|.
-name|IOException
-import|;
-end_import
-
-begin_import
-import|import
 name|org
 operator|.
 name|apache
@@ -52,7 +42,7 @@ name|lucene
 operator|.
 name|codecs
 operator|.
-name|FieldInfosFormat
+name|CompoundFormat
 import|;
 end_import
 
@@ -66,7 +56,7 @@ name|lucene
 operator|.
 name|codecs
 operator|.
-name|FilterCodec
+name|FieldInfosFormat
 import|;
 end_import
 
@@ -164,20 +154,6 @@ name|lucene
 operator|.
 name|codecs
 operator|.
-name|StoredFieldsWriter
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|codecs
-operator|.
 name|TermVectorsFormat
 import|;
 end_import
@@ -192,25 +168,9 @@ name|lucene
 operator|.
 name|codecs
 operator|.
-name|compressing
+name|lucene40
 operator|.
-name|CompressingStoredFieldsFormat
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|codecs
-operator|.
-name|compressing
-operator|.
-name|CompressionMode
+name|Lucene40CompoundFormat
 import|;
 end_import
 
@@ -326,50 +286,8 @@ name|PerFieldPostingsFormat
 import|;
 end_import
 
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|index
-operator|.
-name|SegmentInfo
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|store
-operator|.
-name|Directory
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|store
-operator|.
-name|IOContext
-import|;
-end_import
-
 begin_comment
-comment|/**  * Implements the Lucene 4.1 index format, with configurable per-field postings formats.  *<p>  * If you want to reuse functionality of this codec in another codec, extend  * {@link FilterCodec}.  *  * @see org.apache.lucene.codecs.lucene41 package documentation for file format details.  * @deprecated Only for reading old 4.0 segments  * @lucene.experimental  */
+comment|/**  * Implements the Lucene 4.1 index format  * @deprecated Only for reading old 4.1 segments  */
 end_comment
 
 begin_class
@@ -382,7 +300,6 @@ name|Lucene41Codec
 extends|extends
 name|Codec
 block|{
-comment|// TODO: slightly evil
 DECL|field|fieldsFormat
 specifier|private
 specifier|final
@@ -390,46 +307,8 @@ name|StoredFieldsFormat
 name|fieldsFormat
 init|=
 operator|new
-name|CompressingStoredFieldsFormat
-argument_list|(
-literal|"Lucene41StoredFields"
-argument_list|,
-name|CompressionMode
-operator|.
-name|FAST
-argument_list|,
-literal|1
-operator|<<
-literal|14
-argument_list|)
-block|{
-annotation|@
-name|Override
-specifier|public
-name|StoredFieldsWriter
-name|fieldsWriter
-parameter_list|(
-name|Directory
-name|directory
-parameter_list|,
-name|SegmentInfo
-name|si
-parameter_list|,
-name|IOContext
-name|context
-parameter_list|)
-throws|throws
-name|IOException
-block|{
-throw|throw
-operator|new
-name|UnsupportedOperationException
-argument_list|(
-literal|"this codec can only be used for reading"
-argument_list|)
-throw|;
-block|}
-block|}
+name|Lucene41StoredFieldsFormat
+argument_list|()
 decl_stmt|;
 DECL|field|vectorsFormat
 specifier|private
@@ -469,6 +348,16 @@ name|liveDocsFormat
 init|=
 operator|new
 name|Lucene40LiveDocsFormat
+argument_list|()
+decl_stmt|;
+DECL|field|compoundFormat
+specifier|private
+specifier|final
+name|CompoundFormat
+name|compoundFormat
+init|=
+operator|new
+name|Lucene40CompoundFormat
 argument_list|()
 decl_stmt|;
 DECL|field|postingsFormat
@@ -516,7 +405,6 @@ literal|"Lucene41"
 argument_list|)
 expr_stmt|;
 block|}
-comment|// TODO: slightly evil
 annotation|@
 name|Override
 DECL|method|storedFieldsFormat
@@ -589,6 +477,18 @@ parameter_list|()
 block|{
 return|return
 name|liveDocsFormat
+return|;
+block|}
+annotation|@
+name|Override
+DECL|method|compoundFormat
+specifier|public
+name|CompoundFormat
+name|compoundFormat
+parameter_list|()
+block|{
+return|return
+name|compoundFormat
 return|;
 block|}
 comment|/** Returns the postings format that should be used for writing     *  new segments of<code>field</code>.    *      *  The default implementation always returns "Lucene41"    */

@@ -84,27 +84,16 @@ name|IOContext
 import|;
 end_import
 
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|util
-operator|.
-name|LuceneTestCase
-import|;
-end_import
-
 begin_comment
-comment|/**   * Simulates writing Lucene 4.0 Stored Fields Format.  */
+comment|/**  * Read-write version of 4.0 term vectors format for testing  * @deprecated for test purposes only  */
 end_comment
 
 begin_class
+annotation|@
+name|Deprecated
 DECL|class|Lucene40RWTermVectorsFormat
 specifier|public
+specifier|final
 class|class
 name|Lucene40RWTermVectorsFormat
 extends|extends

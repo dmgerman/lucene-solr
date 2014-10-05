@@ -437,6 +437,8 @@ name|info
 operator|.
 name|getId
 argument_list|()
+argument_list|,
+literal|""
 argument_list|)
 expr_stmt|;
 name|long
@@ -757,6 +759,8 @@ name|info
 operator|.
 name|getId
 argument_list|()
+argument_list|,
+literal|""
 argument_list|)
 expr_stmt|;
 name|output

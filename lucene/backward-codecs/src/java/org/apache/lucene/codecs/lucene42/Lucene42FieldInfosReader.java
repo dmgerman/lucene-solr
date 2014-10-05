@@ -235,7 +235,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Lucene 4.2 FieldInfos reader.  *   * @lucene.experimental  * @deprecated Only for reading old 4.2-4.5 segments  * @see Lucene42FieldInfosFormat  */
+comment|/**  * Lucene 4.2 FieldInfos reader.  *   * @deprecated Only for reading old 4.2-4.5 segments  */
 end_comment
 
 begin_class

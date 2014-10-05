@@ -369,12 +369,14 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Lucene 4.0 Term Vectors reader.  *<p>  * It reads .tvd, .tvf, and .tvx files.  *   * @see Lucene40TermVectorsFormat  */
+comment|/**  * Lucene 4.0 Term Vectors reader.  * @deprecated only for reading 4.0 and 4.1 segments  */
 end_comment
 
 begin_class
+annotation|@
+name|Deprecated
 DECL|class|Lucene40TermVectorsReader
-specifier|public
+specifier|final
 class|class
 name|Lucene40TermVectorsReader
 extends|extends
