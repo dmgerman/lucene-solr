@@ -620,6 +620,18 @@ comment|// have the leader lose its Zk session temporarily
 name|testLeaderZkSessionLoss
 argument_list|()
 expr_stmt|;
+name|waitForThingsToLevelOut
+argument_list|(
+literal|30000
+argument_list|)
+expr_stmt|;
+name|log
+operator|.
+name|info
+argument_list|(
+literal|"HttpParitionTest succeeded ... shutting down now!"
+argument_list|)
+expr_stmt|;
 block|}
 DECL|method|testRf2
 specifier|protected
@@ -883,6 +895,17 @@ operator|+
 literal|3
 argument_list|)
 expr_stmt|;
+name|log
+operator|.
+name|info
+argument_list|(
+literal|"testRf2 succeeded ... deleting the "
+operator|+
+name|testCollectionName
+operator|+
+literal|" collection"
+argument_list|)
+expr_stmt|;
 comment|// try to clean up
 try|try
 block|{
@@ -1114,6 +1137,17 @@ argument_list|,
 literal|1
 argument_list|,
 literal|4
+argument_list|)
+expr_stmt|;
+name|log
+operator|.
+name|info
+argument_list|(
+literal|"testRf3 succeeded ... deleting the "
+operator|+
+name|testCollectionName
+operator|+
+literal|" collection"
 argument_list|)
 expr_stmt|;
 comment|// try to clean up
@@ -1626,6 +1660,17 @@ argument_list|,
 literal|1
 argument_list|,
 literal|2
+argument_list|)
+expr_stmt|;
+name|log
+operator|.
+name|info
+argument_list|(
+literal|"testLeaderZkSessionLoss succeeded ... deleting the "
+operator|+
+name|testCollectionName
+operator|+
+literal|" collection"
 argument_list|)
 expr_stmt|;
 comment|// try to clean up
