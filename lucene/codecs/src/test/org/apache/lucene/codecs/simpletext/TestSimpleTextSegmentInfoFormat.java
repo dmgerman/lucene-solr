@@ -1,6 +1,6 @@
 begin_unit|revision:0.9.5;language:Java;cregit-version:0.0.1
 begin_package
-DECL|package|org.apache.lucene.codecs
+DECL|package|org.apache.lucene.codecs.simpletext
 package|package
 name|org
 operator|.
@@ -9,6 +9,8 @@ operator|.
 name|lucene
 operator|.
 name|codecs
+operator|.
+name|simpletext
 package|;
 end_package
 
@@ -18,11 +20,15 @@ end_comment
 
 begin_import
 import|import
-name|java
+name|org
 operator|.
-name|io
+name|apache
 operator|.
-name|IOException
+name|lucene
+operator|.
+name|codecs
+operator|.
+name|Codec
 import|;
 end_import
 
@@ -36,7 +42,7 @@ name|lucene
 operator|.
 name|index
 operator|.
-name|SegmentInfo
+name|BaseSegmentInfoFormatTestCase
 import|;
 end_import
 
@@ -48,62 +54,66 @@ name|apache
 operator|.
 name|lucene
 operator|.
-name|store
+name|util
 operator|.
-name|Directory
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|store
-operator|.
-name|IOContext
+name|Version
 import|;
 end_import
 
 begin_comment
-comment|/**  * Specifies an API for classes that can write out {@link SegmentInfo} data.  * @lucene.experimental  */
+comment|/**  * Tests SimpleTextSegmentInfoFormat  */
 end_comment
 
 begin_class
-DECL|class|SegmentInfoWriter
+DECL|class|TestSimpleTextSegmentInfoFormat
 specifier|public
-specifier|abstract
 class|class
-name|SegmentInfoWriter
+name|TestSimpleTextSegmentInfoFormat
+extends|extends
+name|BaseSegmentInfoFormatTestCase
 block|{
-comment|/** Sole constructor. (For invocation by subclass     *  constructors, typically implicit.) */
-DECL|method|SegmentInfoWriter
+DECL|field|codec
+specifier|private
+specifier|final
+name|Codec
+name|codec
+init|=
+operator|new
+name|SimpleTextCodec
+argument_list|()
+decl_stmt|;
+annotation|@
+name|Override
+DECL|method|getVersions
 specifier|protected
-name|SegmentInfoWriter
+name|Version
+index|[]
+name|getVersions
 parameter_list|()
-block|{   }
-comment|/**    * Write {@link SegmentInfo} data.     * @throws IOException If an I/O error occurs    */
-DECL|method|write
-specifier|public
-specifier|abstract
-name|void
-name|write
-parameter_list|(
-name|Directory
-name|dir
-parameter_list|,
-name|SegmentInfo
-name|info
-parameter_list|,
-name|IOContext
-name|ioContext
-parameter_list|)
-throws|throws
-name|IOException
-function_decl|;
+block|{
+return|return
+operator|new
+name|Version
+index|[]
+block|{
+name|Version
+operator|.
+name|LATEST
+block|}
+return|;
+block|}
+annotation|@
+name|Override
+DECL|method|getCodec
+specifier|protected
+name|Codec
+name|getCodec
+parameter_list|()
+block|{
+return|return
+name|codec
+return|;
+block|}
 block|}
 end_class
 

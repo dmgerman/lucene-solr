@@ -2596,10 +2596,6 @@ name|newSegment
 operator|.
 name|info
 argument_list|,
-name|flushedSegment
-operator|.
-name|fieldInfos
-argument_list|,
 name|context
 argument_list|)
 expr_stmt|;
