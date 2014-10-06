@@ -1967,8 +1967,6 @@ name|path
 argument_list|,
 name|schema
 argument_list|,
-name|config
-argument_list|,
 name|name
 argument_list|,
 name|getReader
@@ -2010,9 +2008,6 @@ name|path
 parameter_list|,
 name|IndexSchema
 name|schema
-parameter_list|,
-name|SolrIndexConfig
-name|config
 parameter_list|,
 name|String
 name|name
