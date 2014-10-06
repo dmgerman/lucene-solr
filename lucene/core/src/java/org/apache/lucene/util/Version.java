@@ -1172,6 +1172,36 @@ throw|;
 block|}
 block|}
 block|}
+comment|/** Returns a new version based on raw numbers    *    *  @lucene.internal */
+DECL|method|fromBits
+specifier|public
+specifier|static
+specifier|final
+name|Version
+name|fromBits
+parameter_list|(
+name|int
+name|major
+parameter_list|,
+name|int
+name|minor
+parameter_list|,
+name|int
+name|bugfix
+parameter_list|)
+block|{
+return|return
+operator|new
+name|Version
+argument_list|(
+name|major
+argument_list|,
+name|minor
+argument_list|,
+name|bugfix
+argument_list|)
+return|;
+block|}
 comment|/** Major version, the difference between stable and trunk */
 DECL|field|major
 specifier|public
