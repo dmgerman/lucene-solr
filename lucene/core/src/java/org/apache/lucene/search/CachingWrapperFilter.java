@@ -176,20 +176,6 @@ name|RoaringDocIdSet
 import|;
 end_import
 
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|util
-operator|.
-name|WAH8DocIdSet
-import|;
-end_import
-
 begin_comment
 comment|/**  * Wraps another {@link Filter}'s result and caches it.  The purpose is to allow  * filters to simply filter, and then wrap with this class  * to add caching.  */
 end_comment
