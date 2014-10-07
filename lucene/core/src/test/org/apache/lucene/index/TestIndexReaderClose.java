@@ -759,6 +759,9 @@ operator|.
 name|shuffle
 argument_list|(
 name|listeners
+argument_list|,
+name|random
+argument_list|()
 argument_list|)
 expr_stmt|;
 for|for

@@ -1694,6 +1694,9 @@ operator|.
 name|shuffle
 argument_list|(
 name|terms
+argument_list|,
+name|random
+argument_list|()
 argument_list|)
 expr_stmt|;
 name|TermsEnum

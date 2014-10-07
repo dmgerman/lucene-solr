@@ -882,6 +882,9 @@ operator|.
 name|shuffle
 argument_list|(
 name|l
+argument_list|,
+name|random
+argument_list|()
 argument_list|)
 expr_stmt|;
 name|String
@@ -1031,6 +1034,9 @@ operator|.
 name|shuffle
 argument_list|(
 name|l
+argument_list|,
+name|random
+argument_list|()
 argument_list|)
 expr_stmt|;
 name|String

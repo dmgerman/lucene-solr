@@ -8092,6 +8092,9 @@ operator|.
 name|shuffle
 argument_list|(
 name|nodeList
+argument_list|,
+name|random
+argument_list|()
 argument_list|)
 expr_stmt|;
 name|CollectionAdminRequest
