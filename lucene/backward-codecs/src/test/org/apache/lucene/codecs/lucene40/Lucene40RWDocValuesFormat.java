@@ -126,7 +126,7 @@ name|state
 argument_list|,
 name|filename
 argument_list|,
-name|Lucene40FieldInfosReader
+name|Lucene40FieldInfosFormat
 operator|.
 name|LEGACY_DV_TYPE_KEY
 argument_list|)

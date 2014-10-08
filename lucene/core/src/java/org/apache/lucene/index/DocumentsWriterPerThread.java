@@ -2585,9 +2585,6 @@ operator|.
 name|segmentInfoFormat
 argument_list|()
 operator|.
-name|getSegmentInfoWriter
-argument_list|()
-operator|.
 name|write
 argument_list|(
 name|directory

@@ -276,7 +276,7 @@ name|lucene
 operator|.
 name|codecs
 operator|.
-name|FieldInfosReader
+name|FieldInfosFormat
 import|;
 end_import
 
@@ -2895,15 +2895,12 @@ operator|.
 name|getCodec
 argument_list|()
 decl_stmt|;
-name|FieldInfosReader
+name|FieldInfosFormat
 name|reader
 init|=
 name|codec
 operator|.
 name|fieldInfosFormat
-argument_list|()
-operator|.
-name|getFieldInfosReader
 argument_list|()
 decl_stmt|;
 if|if
@@ -8292,9 +8289,6 @@ block|{
 name|codec
 operator|.
 name|segmentInfoFormat
-argument_list|()
-operator|.
-name|getSegmentInfoWriter
 argument_list|()
 operator|.
 name|write
@@ -15117,9 +15111,6 @@ block|{
 name|codec
 operator|.
 name|segmentInfoFormat
-argument_list|()
-operator|.
-name|getSegmentInfoWriter
 argument_list|()
 operator|.
 name|write

@@ -108,20 +108,6 @@ name|lucene
 operator|.
 name|codecs
 operator|.
-name|FieldInfosWriter
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|codecs
-operator|.
 name|NormsConsumer
 import|;
 end_import
@@ -669,20 +655,12 @@ comment|// Important to save after asking consumer to flush so
 comment|// consumer can alter the FieldInfo* if necessary.  EG,
 comment|// FreqProxTermsWriter does this with
 comment|// FieldInfo.storePayload.
-name|FieldInfosWriter
-name|infosWriter
-init|=
 name|docWriter
 operator|.
 name|codec
 operator|.
 name|fieldInfosFormat
 argument_list|()
-operator|.
-name|getFieldInfosWriter
-argument_list|()
-decl_stmt|;
-name|infosWriter
 operator|.
 name|write
 argument_list|(

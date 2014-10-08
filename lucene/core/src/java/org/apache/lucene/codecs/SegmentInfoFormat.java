@@ -18,6 +18,16 @@ end_comment
 
 begin_import
 import|import
+name|java
+operator|.
+name|io
+operator|.
+name|IOException
+import|;
+end_import
+
+begin_import
+import|import
 name|org
 operator|.
 name|apache
@@ -27,6 +37,34 @@ operator|.
 name|index
 operator|.
 name|SegmentInfo
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|store
+operator|.
+name|Directory
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|store
+operator|.
+name|IOContext
 import|;
 end_import
 
@@ -47,21 +85,43 @@ specifier|protected
 name|SegmentInfoFormat
 parameter_list|()
 block|{   }
-comment|/** Returns the {@link SegmentInfoReader} for reading    *  {@link SegmentInfo} instances. */
-DECL|method|getSegmentInfoReader
+comment|/**    * Read {@link SegmentInfo} data from a directory.    * @param directory directory to read from    * @param segmentName name of the segment to read    * @return infos instance to be populated with data    * @throws IOException If an I/O error occurs    */
+DECL|method|read
 specifier|public
 specifier|abstract
-name|SegmentInfoReader
-name|getSegmentInfoReader
-parameter_list|()
+name|SegmentInfo
+name|read
+parameter_list|(
+name|Directory
+name|directory
+parameter_list|,
+name|String
+name|segmentName
+parameter_list|,
+name|IOContext
+name|context
+parameter_list|)
+throws|throws
+name|IOException
 function_decl|;
-comment|/** Returns the {@link SegmentInfoWriter} for writing    *  {@link SegmentInfo} instances. */
-DECL|method|getSegmentInfoWriter
+comment|/**    * Write {@link SegmentInfo} data.     * @throws IOException If an I/O error occurs    */
+DECL|method|write
 specifier|public
 specifier|abstract
-name|SegmentInfoWriter
-name|getSegmentInfoWriter
-parameter_list|()
+name|void
+name|write
+parameter_list|(
+name|Directory
+name|dir
+parameter_list|,
+name|SegmentInfo
+name|info
+parameter_list|,
+name|IOContext
+name|ioContext
+parameter_list|)
+throws|throws
+name|IOException
 function_decl|;
 block|}
 end_class

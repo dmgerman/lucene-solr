@@ -278,9 +278,6 @@ operator|.
 name|segmentInfoFormat
 argument_list|()
 operator|.
-name|getSegmentInfoWriter
-argument_list|()
-operator|.
 name|write
 argument_list|(
 name|dir
@@ -298,9 +295,6 @@ init|=
 name|codec
 operator|.
 name|segmentInfoFormat
-argument_list|()
-operator|.
-name|getSegmentInfoReader
 argument_list|()
 operator|.
 name|read
@@ -417,9 +411,6 @@ operator|.
 name|segmentInfoFormat
 argument_list|()
 operator|.
-name|getSegmentInfoWriter
-argument_list|()
-operator|.
 name|write
 argument_list|(
 name|dir
@@ -473,9 +464,6 @@ init|=
 name|codec
 operator|.
 name|segmentInfoFormat
-argument_list|()
-operator|.
-name|getSegmentInfoReader
 argument_list|()
 operator|.
 name|read
@@ -608,9 +596,6 @@ operator|.
 name|segmentInfoFormat
 argument_list|()
 operator|.
-name|getSegmentInfoWriter
-argument_list|()
-operator|.
 name|write
 argument_list|(
 name|dir
@@ -628,9 +613,6 @@ init|=
 name|codec
 operator|.
 name|segmentInfoFormat
-argument_list|()
-operator|.
-name|getSegmentInfoReader
 argument_list|()
 operator|.
 name|read
@@ -743,9 +725,6 @@ operator|.
 name|segmentInfoFormat
 argument_list|()
 operator|.
-name|getSegmentInfoWriter
-argument_list|()
-operator|.
 name|write
 argument_list|(
 name|dir
@@ -763,9 +742,6 @@ init|=
 name|codec
 operator|.
 name|segmentInfoFormat
-argument_list|()
-operator|.
-name|getSegmentInfoReader
 argument_list|()
 operator|.
 name|read
@@ -877,9 +853,6 @@ operator|.
 name|segmentInfoFormat
 argument_list|()
 operator|.
-name|getSegmentInfoWriter
-argument_list|()
-operator|.
 name|write
 argument_list|(
 name|dir
@@ -897,9 +870,6 @@ init|=
 name|codec
 operator|.
 name|segmentInfoFormat
-argument_list|()
-operator|.
-name|getSegmentInfoReader
 argument_list|()
 operator|.
 name|read
@@ -1233,9 +1203,6 @@ operator|.
 name|segmentInfoFormat
 argument_list|()
 operator|.
-name|getSegmentInfoWriter
-argument_list|()
-operator|.
 name|write
 argument_list|(
 name|dir
@@ -1253,9 +1220,6 @@ init|=
 name|codec
 operator|.
 name|segmentInfoFormat
-argument_list|()
-operator|.
-name|getSegmentInfoReader
 argument_list|()
 operator|.
 name|read
