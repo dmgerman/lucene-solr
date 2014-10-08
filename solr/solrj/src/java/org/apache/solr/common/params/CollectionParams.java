@@ -120,6 +120,9 @@ name|ADDREPLICAPROP
 block|,
 DECL|enum constant|DELETEREPLICAPROP
 name|DELETEREPLICAPROP
+block|,
+DECL|enum constant|BALANCESLICEUNIQUE
+name|BALANCESLICEUNIQUE
 block|;
 DECL|method|get
 specifier|public
