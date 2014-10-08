@@ -93,10 +93,10 @@ comment|/**  * Test the Dutch Stem Filter, which only modifies the term text.  *
 end_comment
 
 begin_class
-DECL|class|TestDutchStemmer
+DECL|class|TestDutchAnalyzer
 specifier|public
 class|class
-name|TestDutchStemmer
+name|TestDutchAnalyzer
 extends|extends
 name|BaseTokenStreamTestCase
 block|{

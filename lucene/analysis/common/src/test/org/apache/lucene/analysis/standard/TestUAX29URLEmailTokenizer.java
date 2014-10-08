@@ -1,6 +1,6 @@
 begin_unit|revision:0.9.5;language:Java;cregit-version:0.0.1
 begin_package
-DECL|package|org.apache.lucene.analysis.core
+DECL|package|org.apache.lucene.analysis.standard
 package|package
 name|org
 operator|.
@@ -10,7 +10,7 @@ name|lucene
 operator|.
 name|analysis
 operator|.
-name|core
+name|standard
 package|;
 end_package
 
@@ -110,6 +110,22 @@ name|lucene
 operator|.
 name|analysis
 operator|.
+name|standard
+operator|.
+name|WordBreakTestUnicode_6_3_0
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|analysis
+operator|.
 name|tokenattributes
 operator|.
 name|TypeAttribute
@@ -137,16 +153,6 @@ operator|.
 name|io
 operator|.
 name|BufferedReader
-import|;
-end_import
-
-begin_import
-import|import
-name|java
-operator|.
-name|io
-operator|.
-name|FileInputStream
 import|;
 end_import
 
@@ -239,18 +245,6 @@ operator|.
 name|util
 operator|.
 name|Random
-import|;
-end_import
-
-begin_import
-import|import
-name|java
-operator|.
-name|util
-operator|.
-name|regex
-operator|.
-name|Pattern
 import|;
 end_import
 

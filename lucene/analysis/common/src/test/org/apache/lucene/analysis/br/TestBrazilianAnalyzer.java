@@ -159,10 +159,10 @@ comment|/**  * Test the Brazilian Stem Filter, which only modifies the term text
 end_comment
 
 begin_class
-DECL|class|TestBrazilianStemmer
+DECL|class|TestBrazilianAnalyzer
 specifier|public
 class|class
-name|TestBrazilianStemmer
+name|TestBrazilianAnalyzer
 extends|extends
 name|BaseTokenStreamTestCase
 block|{

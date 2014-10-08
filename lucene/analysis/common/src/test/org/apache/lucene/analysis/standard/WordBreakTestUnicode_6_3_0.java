@@ -1,6 +1,6 @@
 begin_unit|revision:0.9.5;language:Java;cregit-version:0.0.1
 begin_package
-DECL|package|org.apache.lucene.analysis.core
+DECL|package|org.apache.lucene.analysis.standard
 package|package
 name|org
 operator|.
@@ -10,7 +10,7 @@ name|lucene
 operator|.
 name|analysis
 operator|.
-name|core
+name|standard
 package|;
 end_package
 
