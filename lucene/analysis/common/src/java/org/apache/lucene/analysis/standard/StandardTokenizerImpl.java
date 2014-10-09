@@ -48,8 +48,6 @@ specifier|public
 specifier|final
 class|class
 name|StandardTokenizerImpl
-implements|implements
-name|StandardTokenizerInterface
 block|{
 comment|/** This character denotes the end of file */
 DECL|field|YYEOF
@@ -2367,8 +2365,6 @@ literal|true
 expr_stmt|;
 block|{
 return|return
-name|StandardTokenizerInterface
-operator|.
 name|YYEOF
 return|;
 block|}
