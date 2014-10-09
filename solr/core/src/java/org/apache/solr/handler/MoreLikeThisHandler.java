@@ -556,6 +556,26 @@ end_import
 
 begin_import
 import|import
+name|org
+operator|.
+name|slf4j
+operator|.
+name|Logger
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|slf4j
+operator|.
+name|LoggerFactory
+import|;
+end_import
+
+begin_import
+import|import
 name|java
 operator|.
 name|io
@@ -681,6 +701,21 @@ operator|.
 name|compile
 argument_list|(
 literal|",| "
+argument_list|)
+decl_stmt|;
+DECL|field|log
+specifier|protected
+specifier|static
+name|Logger
+name|log
+init|=
+name|LoggerFactory
+operator|.
+name|getLogger
+argument_list|(
+name|MoreLikeThisHandler
+operator|.
+name|class
 argument_list|)
 decl_stmt|;
 annotation|@
@@ -1884,19 +1919,25 @@ name|ExitingReaderException
 name|ex
 parameter_list|)
 block|{
-throw|throw
-operator|new
-name|SolrException
+name|log
+operator|.
+name|warn
 argument_list|(
-name|SolrException
+literal|"Query: "
+operator|+
+name|req
 operator|.
-name|ErrorCode
+name|getParamString
+argument_list|()
+operator|+
+literal|"; "
+operator|+
+name|ex
 operator|.
-name|BAD_REQUEST
-argument_list|,
-literal|"MLTHandler Request took too long during query expansion. Terminating request."
+name|getMessage
+argument_list|()
 argument_list|)
-throw|;
+expr_stmt|;
 block|}
 finally|finally
 block|{
