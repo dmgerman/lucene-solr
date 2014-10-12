@@ -104,6 +104,16 @@ name|java
 operator|.
 name|util
 operator|.
+name|HashSet
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
+name|util
+operator|.
 name|List
 import|;
 end_import
@@ -125,6 +135,16 @@ operator|.
 name|util
 operator|.
 name|Objects
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
+name|util
+operator|.
+name|Set
 import|;
 end_import
 
@@ -225,7 +245,7 @@ block|{
 comment|/* Files that we tried to delete but failed (likely    * because they are open and we are running on Windows),    * so we will retry them again later: */
 DECL|field|deletable
 specifier|private
-name|List
+name|Set
 argument_list|<
 name|String
 argument_list|>
@@ -1645,8 +1665,6 @@ specifier|private
 name|void
 name|deleteCommits
 parameter_list|()
-throws|throws
-name|IOException
 block|{
 name|int
 name|size
@@ -1760,7 +1778,7 @@ expr_stmt|;
 comment|// NOTE: does nothing if firstThrowable is null
 name|IOUtils
 operator|.
-name|reThrow
+name|reThrowUnchecked
 argument_list|(
 name|firstThrowable
 argument_list|)
@@ -2106,8 +2124,6 @@ specifier|public
 name|void
 name|close
 parameter_list|()
-throws|throws
-name|IOException
 block|{
 comment|// DecRef old files from the last checkpoint, if any:
 assert|assert
@@ -2203,8 +2219,6 @@ specifier|public
 name|void
 name|deletePendingFiles
 parameter_list|()
-throws|throws
-name|IOException
 block|{
 assert|assert
 name|locked
@@ -2217,7 +2231,7 @@ operator|!=
 literal|null
 condition|)
 block|{
-name|List
+name|Set
 argument_list|<
 name|String
 argument_list|>
@@ -2229,39 +2243,14 @@ name|deletable
 operator|=
 literal|null
 expr_stmt|;
-name|int
-name|size
-init|=
-name|oldDeletable
-operator|.
-name|size
-argument_list|()
-decl_stmt|;
 for|for
 control|(
-name|int
-name|i
-init|=
-literal|0
-init|;
-name|i
-operator|<
-name|size
-condition|;
-name|i
-operator|++
-control|)
-block|{
 name|String
 name|fileName
-init|=
+range|:
 name|oldDeletable
-operator|.
-name|get
-argument_list|(
-name|i
-argument_list|)
-decl_stmt|;
+control|)
+block|{
 if|if
 condition|(
 name|infoStream
@@ -2684,8 +2673,6 @@ name|String
 argument_list|>
 name|files
 parameter_list|)
-throws|throws
-name|IOException
 block|{
 assert|assert
 name|locked
@@ -2737,7 +2724,7 @@ block|}
 comment|// NOTE: does nothing if firstThrowable is null
 name|IOUtils
 operator|.
-name|reThrow
+name|reThrowUnchecked
 argument_list|(
 name|firstThrowable
 argument_list|)
@@ -2754,8 +2741,6 @@ name|String
 argument_list|>
 name|files
 parameter_list|)
-throws|throws
-name|IOException
 block|{
 assert|assert
 name|locked
@@ -2793,8 +2778,6 @@ parameter_list|(
 name|String
 name|fileName
 parameter_list|)
-throws|throws
-name|IOException
 block|{
 assert|assert
 name|locked
@@ -2978,6 +2961,27 @@ argument_list|(
 name|fileName
 argument_list|)
 expr_stmt|;
+comment|// We should never incRef a file we are already wanting to delete:
+assert|assert
+name|deletable
+operator|==
+literal|null
+operator|||
+name|deletable
+operator|.
+name|contains
+argument_list|(
+name|fileName
+argument_list|)
+operator|==
+literal|false
+operator|:
+literal|"file \""
+operator|+
+name|fileName
+operator|+
+literal|"\" cannot be incRef'd: it's already pending delete"
+assert|;
 name|refCounts
 operator|.
 name|put
@@ -3014,8 +3018,6 @@ name|String
 argument_list|>
 name|files
 parameter_list|)
-throws|throws
-name|IOException
 block|{
 assert|assert
 name|locked
@@ -3048,8 +3050,6 @@ name|String
 argument_list|>
 name|files
 parameter_list|)
-throws|throws
-name|IOException
 block|{
 assert|assert
 name|locked
@@ -3131,8 +3131,6 @@ parameter_list|(
 name|String
 name|fileName
 parameter_list|)
-throws|throws
-name|IOException
 block|{
 assert|assert
 name|locked
@@ -3229,7 +3227,7 @@ block|{
 name|deletable
 operator|=
 operator|new
-name|ArrayList
+name|HashSet
 argument_list|<>
 argument_list|()
 expr_stmt|;
