@@ -601,7 +601,7 @@ name|SolrRequestHandler
 name|getSubHandler
 parameter_list|(
 name|String
-name|path
+name|subPath
 parameter_list|)
 block|{
 return|return

@@ -40,13 +40,14 @@ specifier|public
 interface|interface
 name|NestedRequestHandler
 block|{
+comment|/** Return a Requestandler to handle a subpath from the path this handler is registered.    * @param subPath    * @return a SolrRequestHandler instance    */
 DECL|method|getSubHandler
 specifier|public
 name|SolrRequestHandler
 name|getSubHandler
 parameter_list|(
 name|String
-name|path
+name|subPath
 parameter_list|)
 function_decl|;
 block|}
