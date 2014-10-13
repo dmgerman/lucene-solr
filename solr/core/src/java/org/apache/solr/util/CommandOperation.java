@@ -489,7 +489,7 @@ specifier|final
 name|String
 name|REQD
 init|=
-literal|"'{1}' is a required field"
+literal|"'{0}' is a required field"
 decl_stmt|;
 comment|/**Get collection of values for a key. If only one val is present a    * single value collection is returned    */
 DECL|method|getStrs
