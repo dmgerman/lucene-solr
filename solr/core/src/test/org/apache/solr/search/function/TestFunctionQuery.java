@@ -4157,6 +4157,103 @@ argument_list|,
 literal|"//float[@name='score']='0.875'"
 argument_list|)
 expr_stmt|;
+comment|// strdist on a missing valuesource should itself by missing, so the ValueSourceAugmenter
+comment|// should supress it...
+name|assertQ
+argument_list|(
+name|req
+argument_list|(
+literal|"q"
+argument_list|,
+literal|"id:1"
+argument_list|,
+literal|"fl"
+argument_list|,
+literal|"good:strdist(x_s, 'toil', edit)"
+argument_list|,
+literal|"fl"
+argument_list|,
+literal|"bad1:strdist(missing1_s, missing2_s, edit)"
+argument_list|,
+literal|"fl"
+argument_list|,
+literal|"bad2:strdist(missing1_s, 'something', edit)"
+argument_list|,
+literal|"fl"
+argument_list|,
+literal|"bad3:strdist(missing1_s, x_s, edit)"
+argument_list|)
+argument_list|,
+literal|"//float[@name='good']='0.75'"
+argument_list|,
+literal|"count(//float[starts-with(@name,'bad')])=0"
+argument_list|)
+expr_stmt|;
+comment|// in a query context, there is always a number...
+comment|//
+comment|// if a ValueSource is missing, it is maximally distant from every other
+comment|// value source *except* for another missing value source
+comment|// ie: strdist(null,null)==1 but strdist(null,anything)==0
+name|assertQ
+argument_list|(
+name|req
+argument_list|(
+literal|"fl"
+argument_list|,
+literal|"score"
+argument_list|,
+literal|"fq"
+argument_list|,
+literal|"id:1"
+argument_list|,
+literal|"q"
+argument_list|,
+literal|"{!func}strdist(missing1_s, missing2_s, edit)"
+argument_list|)
+argument_list|,
+literal|"//float[@name='score']='1.0'"
+argument_list|)
+expr_stmt|;
+name|assertQ
+argument_list|(
+name|req
+argument_list|(
+literal|"fl"
+argument_list|,
+literal|"score"
+argument_list|,
+literal|"fq"
+argument_list|,
+literal|"id:1"
+argument_list|,
+literal|"q"
+argument_list|,
+literal|"{!func}strdist(missing1_s, x_s, edit)"
+argument_list|)
+argument_list|,
+literal|"//float[@name='score']='0.0'"
+argument_list|)
+expr_stmt|;
+name|assertQ
+argument_list|(
+name|req
+argument_list|(
+literal|"fl"
+argument_list|,
+literal|"score"
+argument_list|,
+literal|"fq"
+argument_list|,
+literal|"id:1"
+argument_list|,
+literal|"q"
+argument_list|,
+literal|"{!func}strdist(missing1_s, 'const', edit)"
+argument_list|)
+argument_list|,
+literal|"//float[@name='score']='0.0'"
+argument_list|)
+expr_stmt|;
 block|}
 DECL|method|dofunc
 specifier|public
