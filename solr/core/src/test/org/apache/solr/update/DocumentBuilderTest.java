@@ -2224,7 +2224,7 @@ argument_list|,
 literal|0.0F
 argument_list|)
 expr_stmt|;
-comment|// copyField dest with no norms should not have recieved any boost
+comment|// copyField dest with no norms should not have received any boost
 name|assertEquals
 argument_list|(
 literal|1.0F
