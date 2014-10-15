@@ -2746,7 +2746,7 @@ return|return
 name|parser
 return|;
 block|}
-comment|/**    * Changes the {@link ResponseParser} that will be used for the internal    * SolrServer objects. Throws an exception if used after internal server    * objects have been added, so if you want to use this method, you must    * not put any URLs in your constructor.    *    * @param parser Default Response Parser chosen to parse the response if the parser    *               were not specified as part of the request.    * @see org.apache.solr.client.solrj.SolrRequest#getResponseParser()    */
+comment|/**    * Changes the {@link ResponseParser} that will be used for the internal    * SolrServer objects.    *    * @param parser Default Response Parser chosen to parse the response if the parser    *               were not specified as part of the request.    * @see org.apache.solr.client.solrj.SolrRequest#getResponseParser()    */
 DECL|method|setParser
 specifier|public
 name|void
@@ -2763,7 +2763,7 @@ operator|=
 name|parser
 expr_stmt|;
 block|}
-comment|/**    * Changes the {@link RequestWriter} that will be used for the internal    * SolrServer objects. Throws an exception if used after internal server    * objects have been added, so if you want to use this method, you must    * not put any URLs in your constructor.    *    * @param requestWriter Default RequestWriter, used to encode requests sent to the server.    */
+comment|/**    * Changes the {@link RequestWriter} that will be used for the internal    * SolrServer objects.    *    * @param requestWriter Default RequestWriter, used to encode requests sent to the server.    */
 DECL|method|setRequestWriter
 specifier|public
 name|void
