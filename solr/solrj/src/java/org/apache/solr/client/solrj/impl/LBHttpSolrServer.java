@@ -275,7 +275,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * LBHttpSolrServer or "LoadBalanced HttpSolrServer" is a load balancing wrapper around  * {@link org.apache.solr.client.solrj.impl.HttpSolrServer}. This is useful when you  * have multiple SolrServers and the requests need to be Load Balanced among them.  *  * Do<b>NOT</b> use this class for indexing in master/slave scenarios since documents must be sent to the  * correct master; no inter-node routing is done.  *  * In SolrCloud (leader/replica) scenarios, this class may be used for updates since updates will be forwarded  * to the appropriate leader.  *  * Also see the<a href="http://wiki.apache.org/solr/LBHttpSolrServer">wiki</a> page.  *  *<p/>  * It offers automatic failover when a server goes down and it detects when the server comes back up.  *<p/>  * Load balancing is done using a simple round-robin on the list of servers.  *<p/>  * If a request to a server fails by an IOException due to a connection timeout or read timeout then the host is taken  * off the list of live servers and moved to a 'dead server list' and the request is resent to the next live server.  * This process is continued till it tries all the live servers. If at least one server is alive, the request succeeds,  * and if not it fails.  *<blockquote><pre>  * SolrServer lbHttpSolrServer = new LBHttpSolrServer("http://host1:8080/solr/","http://host2:8080/solr","http://host2:8080/solr");  * //or if you wish to pass the HttpClient do as follows  * httpClient httpClient =  new HttpClient();  * SolrServer lbHttpSolrServer = new LBHttpSolrServer(httpClient,"http://host1:8080/solr/","http://host2:8080/solr","http://host2:8080/solr");  *</pre></blockquote>  * This detects if a dead server comes alive automatically. The check is done in fixed intervals in a dedicated thread.  * This interval can be set using {@link #setAliveCheckInterval} , the default is set to one minute.  *<p/>  *<b>When to use this?</b><br/> This can be used as a software load balancer when you do not wish to setup an external  * load balancer. Alternatives to this code are to use  * a dedicated hardware load balancer or using Apache httpd with mod_proxy_balancer as a load balancer. See<a  * href="http://en.wikipedia.org/wiki/Load_balancing_(computing)">Load balancing on Wikipedia</a>  *  * @since solr 1.4  */
+comment|/**  * LBHttpSolrServer or "LoadBalanced HttpSolrServer" is a load balancing wrapper around  * {@link org.apache.solr.client.solrj.impl.HttpSolrServer}. This is useful when you  * have multiple SolrServers and the requests need to be Load Balanced among them.  *  * Do<b>NOT</b> use this class for indexing in master/slave scenarios since documents must be sent to the  * correct master; no inter-node routing is done.  *  * In SolrCloud (leader/replica) scenarios, it is usually better to use  * {@link org.apache.solr.client.solrj.impl.CloudSolrServer}, but this class may be used  * for updates because the server will forward them to the appropriate leader.  *  * Also see the<a href="http://wiki.apache.org/solr/LBHttpSolrServer">wiki</a> page.  *  *<p/>  * It offers automatic failover when a server goes down and it detects when the server comes back up.  *<p/>  * Load balancing is done using a simple round-robin on the list of servers.  *<p/>  * If a request to a server fails by an IOException due to a connection timeout or read timeout then the host is taken  * off the list of live servers and moved to a 'dead server list' and the request is resent to the next live server.  * This process is continued till it tries all the live servers. If at least one server is alive, the request succeeds,  * and if not it fails.  *<blockquote><pre>  * SolrServer lbHttpSolrServer = new LBHttpSolrServer("http://host1:8080/solr/","http://host2:8080/solr","http://host2:8080/solr");  * //or if you wish to pass the HttpClient do as follows  * httpClient httpClient =  new HttpClient();  * SolrServer lbHttpSolrServer = new LBHttpSolrServer(httpClient,"http://host1:8080/solr/","http://host2:8080/solr","http://host2:8080/solr");  *</pre></blockquote>  * This detects if a dead server comes alive automatically. The check is done in fixed intervals in a dedicated thread.  * This interval can be set using {@link #setAliveCheckInterval} , the default is set to one minute.  *<p/>  *<b>When to use this?</b><br/> This can be used as a software load balancer when you do not wish to setup an external  * load balancer. Alternatives to this code are to use  * a dedicated hardware load balancer or using Apache httpd with mod_proxy_balancer as a load balancer. See<a  * href="http://en.wikipedia.org/wiki/Load_balancing_(computing)">Load balancing on Wikipedia</a>  *  * @since solr 1.4  */
 end_comment
 
 begin_class
@@ -2725,6 +2725,7 @@ block|}
 block|}
 return|;
 block|}
+comment|/**    * Return the HttpClient this instance uses.    */
 DECL|method|getHttpClient
 specifier|public
 name|HttpClient
@@ -2745,6 +2746,7 @@ return|return
 name|parser
 return|;
 block|}
+comment|/**    * Changes the {@link ResponseParser} that will be used for the internal    * SolrServer objects. Throws an exception if used after internal server    * objects have been added, so if you want to use this method, you must    * not put any URLs in your constructor.    *    * @param parser Default Response Parser chosen to parse the response if the parser    *               were not specified as part of the request.    * @see org.apache.solr.client.solrj.SolrRequest#getResponseParser()    */
 DECL|method|setParser
 specifier|public
 name|void
@@ -2761,6 +2763,7 @@ operator|=
 name|parser
 expr_stmt|;
 block|}
+comment|/**    * Changes the {@link RequestWriter} that will be used for the internal    * SolrServer objects. Throws an exception if used after internal server    * objects have been added, so if you want to use this method, you must    * not put any URLs in your constructor.    *    * @param requestWriter Default RequestWriter, used to encode requests sent to the server.    */
 DECL|method|setRequestWriter
 specifier|public
 name|void
