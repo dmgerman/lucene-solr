@@ -1789,8 +1789,6 @@ name|DOCS_AND_FREQS_AND_POSITIONS
 argument_list|,
 literal|null
 argument_list|,
-literal|null
-argument_list|,
 operator|-
 literal|1
 argument_list|,

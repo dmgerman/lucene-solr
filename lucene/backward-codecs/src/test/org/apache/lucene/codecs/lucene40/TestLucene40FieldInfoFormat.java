@@ -264,10 +264,8 @@ if|if
 condition|(
 name|fi
 operator|.
-name|getNormType
+name|hasNorms
 argument_list|()
-operator|!=
-literal|null
 condition|)
 block|{
 name|fi

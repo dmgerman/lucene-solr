@@ -508,8 +508,14 @@ name|docValuesByte
 argument_list|(
 name|fi
 operator|.
-name|getNormType
+name|hasNorms
 argument_list|()
+condition|?
+name|DocValuesType
+operator|.
+name|NUMERIC
+else|:
+literal|null
 argument_list|,
 name|fi
 operator|.

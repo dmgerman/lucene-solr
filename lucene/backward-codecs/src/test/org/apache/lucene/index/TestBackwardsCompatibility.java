@@ -72,16 +72,6 @@ begin_import
 import|import
 name|java
 operator|.
-name|net
-operator|.
-name|URL
-import|;
-end_import
-
-begin_import
-import|import
-name|java
-operator|.
 name|nio
 operator|.
 name|file
@@ -897,7 +887,7 @@ argument_list|)
 decl_stmt|;
 name|assumeTrue
 argument_list|(
-literal|"backcompat creation tests must be run with -Dtests,bwcdir=/path/to/write/indexes"
+literal|"backcompat creation tests must be run with -Dtests.bwcdir=/path/to/write/indexes"
 argument_list|,
 name|path
 operator|!=
