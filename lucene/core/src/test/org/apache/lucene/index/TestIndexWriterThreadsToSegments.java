@@ -1974,9 +1974,6 @@ operator|.
 name|segmentInfoFormat
 argument_list|()
 operator|.
-name|getSegmentInfoReader
-argument_list|()
-operator|.
 name|read
 argument_list|(
 name|dir

@@ -630,6 +630,54 @@ literal|6
 decl_stmt|;
 if|if
 condition|(
+operator|(
+name|index
+operator|&
+operator|(
+literal|1L
+operator|<<
+name|i64
+operator|)
+operator|)
+operator|!=
+literal|0
+condition|)
+block|{
+comment|// in that case the sub 64-bits block we are interested in already exists,
+comment|// we just need to set a bit in an existing long: the number of ones on
+comment|// the right of i64 gives us the index of the long we need to update
+name|bits
+index|[
+name|i4096
+index|]
+index|[
+name|Long
+operator|.
+name|bitCount
+argument_list|(
+name|index
+operator|&
+operator|(
+operator|(
+literal|1L
+operator|<<
+name|i64
+operator|)
+operator|-
+literal|1
+operator|)
+argument_list|)
+index|]
+operator||=
+literal|1L
+operator|<<
+name|i
+expr_stmt|;
+comment|// shifts are mod 64 in java
+block|}
+elseif|else
+if|if
+condition|(
 name|index
 operator|==
 literal|0
@@ -637,6 +685,49 @@ condition|)
 block|{
 comment|// if the index is 0, it means that we just found a block of 4096 bits
 comment|// that has no bit that is set yet. So let's initialize a new block:
+name|insertBlock
+argument_list|(
+name|i4096
+argument_list|,
+name|i64
+argument_list|,
+name|i
+argument_list|)
+expr_stmt|;
+block|}
+else|else
+block|{
+comment|// in that case we found a block of 4096 bits that has some values, but
+comment|// the sub-block of 64 bits that we are interested in has no value yet,
+comment|// so we need to insert a new long
+name|insertLong
+argument_list|(
+name|i4096
+argument_list|,
+name|i64
+argument_list|,
+name|i
+argument_list|,
+name|index
+argument_list|)
+expr_stmt|;
+block|}
+block|}
+DECL|method|insertBlock
+specifier|private
+name|void
+name|insertBlock
+parameter_list|(
+name|int
+name|i4096
+parameter_list|,
+name|int
+name|i64
+parameter_list|,
+name|int
+name|i
+parameter_list|)
+block|{
 name|indices
 index|[
 name|i4096
@@ -677,72 +768,6 @@ name|ramBytesUsed
 operator|+=
 name|SINGLE_ELEMENT_ARRAY_BYTES_USED
 expr_stmt|;
-block|}
-elseif|else
-if|if
-condition|(
-operator|(
-name|index
-operator|&
-operator|(
-literal|1L
-operator|<<
-name|i64
-operator|)
-operator|)
-operator|==
-literal|0
-condition|)
-block|{
-comment|// in that case we found a block of 4096 bits that has some values, but
-comment|// the sub-block of 64 bits that we are interested in has no value yet,
-comment|// so we need to insert a new long
-name|insertLong
-argument_list|(
-name|i4096
-argument_list|,
-name|i64
-argument_list|,
-name|i
-argument_list|,
-name|index
-argument_list|)
-expr_stmt|;
-block|}
-else|else
-block|{
-comment|// in that case the sub 64-bits block we are interested in already exists,
-comment|// we just need to set a bit in an existing long: the number of ones on
-comment|// the right of i64 gives us the index of the long we need to update
-name|bits
-index|[
-name|i4096
-index|]
-index|[
-name|Long
-operator|.
-name|bitCount
-argument_list|(
-name|index
-operator|&
-operator|(
-operator|(
-literal|1L
-operator|<<
-name|i64
-operator|)
-operator|-
-literal|1
-operator|)
-argument_list|)
-index|]
-operator||=
-literal|1L
-operator|<<
-name|i
-expr_stmt|;
-comment|// shifts are mod 64 in java
-block|}
 block|}
 DECL|method|insertLong
 specifier|private
@@ -1158,10 +1183,6 @@ name|IOException
 block|{
 if|if
 condition|(
-name|doc
-operator|==
-name|NO_MORE_DOCS
-operator|||
 operator|++
 name|doc
 operator|>=
@@ -1202,42 +1223,6 @@ index|[
 name|i4096
 index|]
 decl_stmt|;
-if|if
-condition|(
-name|index
-operator|==
-literal|0
-condition|)
-block|{
-comment|// if the index is zero, it means that there is no value in the
-comment|// current block, so return the first document of the next block
-return|return
-name|firstDoc
-argument_list|(
-name|i4096
-operator|+
-literal|1
-argument_list|)
-return|;
-block|}
-else|else
-block|{
-comment|// now we are on a block that contains at least one document
-assert|assert
-name|Long
-operator|.
-name|bitCount
-argument_list|(
-name|index
-argument_list|)
-operator|<=
-name|bits
-index|[
-name|i4096
-index|]
-operator|.
-name|length
-assert|;
 name|int
 name|i64
 init|=
@@ -1252,7 +1237,6 @@ name|index
 operator|>>>
 name|i64
 decl_stmt|;
-comment|// shifts are mod 64 in java
 if|if
 condition|(
 name|indexBits
@@ -1260,6 +1244,9 @@ operator|==
 literal|0
 condition|)
 block|{
+comment|// if the index is zero, it means that there is no value in the
+comment|// current block, so return the first document of the next block
+comment|// or
 comment|// if neither the i64-th bit or any other bit on its left is set then
 comment|// it means that there are no more documents in this block, go to the
 comment|// next one
@@ -1272,6 +1259,8 @@ literal|1
 argument_list|)
 return|;
 block|}
+else|else
+block|{
 comment|// We know we still have some 64-bits blocks that have bits set, let's
 comment|// advance to the next one by skipping trailing zeros of the index
 name|int

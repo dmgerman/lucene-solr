@@ -66,6 +66,20 @@ name|apache
 operator|.
 name|lucene
 operator|.
+name|index
+operator|.
+name|ExitableDirectoryReader
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
 name|queries
 operator|.
 name|function
@@ -1424,6 +1438,35 @@ operator|+
 literal|"; "
 operator|+
 name|x
+operator|.
+name|getMessage
+argument_list|()
+argument_list|)
+expr_stmt|;
+block|}
+catch|catch
+parameter_list|(
+name|ExitableDirectoryReader
+operator|.
+name|ExitingReaderException
+name|e
+parameter_list|)
+block|{
+name|partialResults
+operator|=
+literal|true
+expr_stmt|;
+name|logger
+operator|.
+name|warn
+argument_list|(
+literal|"Query: "
+operator|+
+name|query
+operator|+
+literal|"; "
+operator|+
+name|e
 operator|.
 name|getMessage
 argument_list|()

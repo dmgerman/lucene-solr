@@ -453,26 +453,20 @@ argument_list|)
 annotation|@
 name|Monster
 argument_list|(
-literal|"very slow, use 8g heap"
+literal|"very slow, use 5g minimum heap"
 argument_list|)
 annotation|@
 name|TimeoutSuite
 argument_list|(
 name|millis
 operator|=
-literal|6
+literal|80
 operator|*
 name|TimeUnits
 operator|.
 name|HOUR
 argument_list|)
-annotation|@
-name|SuppressSysoutChecks
-argument_list|(
-name|bugUrl
-operator|=
-literal|"We.print.lots.o.stuff.on.purpose"
-argument_list|)
+comment|// effectively no limit
 DECL|class|Test2BTerms
 specifier|public
 class|class
@@ -1098,6 +1092,14 @@ name|OpenMode
 operator|.
 name|CREATE
 argument_list|)
+operator|.
+name|setCodec
+argument_list|(
+name|TestUtil
+operator|.
+name|getDefaultCodec
+argument_list|()
+argument_list|)
 argument_list|)
 decl_stmt|;
 name|MergePolicy
@@ -1694,6 +1696,9 @@ operator|.
 name|shuffle
 argument_list|(
 name|terms
+argument_list|,
+name|random
+argument_list|()
 argument_list|)
 expr_stmt|;
 name|TermsEnum

@@ -1405,17 +1405,6 @@ name|getMessage
 argument_list|()
 argument_list|)
 expr_stmt|;
-throw|throw
-operator|new
-name|SolrException
-argument_list|(
-name|ErrorCode
-operator|.
-name|BAD_REQUEST
-argument_list|,
-literal|"Request took too long during query expansion. Terminating request."
-argument_list|)
-throw|;
 block|}
 finally|finally
 block|{

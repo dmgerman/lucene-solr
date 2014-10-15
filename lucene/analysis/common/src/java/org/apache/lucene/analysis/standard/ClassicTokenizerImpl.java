@@ -60,8 +60,6 @@ begin_class
 DECL|class|ClassicTokenizerImpl
 class|class
 name|ClassicTokenizerImpl
-implements|implements
-name|StandardTokenizerInterface
 block|{
 comment|/** This character denotes the end of file */
 DECL|field|YYEOF

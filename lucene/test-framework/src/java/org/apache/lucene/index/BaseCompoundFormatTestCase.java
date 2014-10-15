@@ -3090,74 +3090,12 @@ argument_list|,
 name|two
 argument_list|)
 expr_stmt|;
-comment|// Now close the first stream
-name|one
-operator|.
-name|close
-argument_list|()
-expr_stmt|;
-comment|// The following should really fail since we couldn't expect to
-comment|// access a file once close has been called on it (regardless of
-comment|// buffering and/or clone magic)
-name|expected
-operator|.
-name|seek
-argument_list|(
-literal|0
-argument_list|)
-expr_stmt|;
-name|two
-operator|.
-name|seek
-argument_list|(
-literal|0
-argument_list|)
-expr_stmt|;
-name|assertSameStreams
-argument_list|(
-literal|"basic clone two/2"
-argument_list|,
-name|expected
-argument_list|,
-name|two
-argument_list|)
-expr_stmt|;
 comment|// Now close the compound reader
 name|cr
 operator|.
 name|close
 argument_list|()
 expr_stmt|;
-comment|// The following may also fail since the compound stream is closed
-name|expected
-operator|.
-name|seek
-argument_list|(
-literal|0
-argument_list|)
-expr_stmt|;
-name|two
-operator|.
-name|seek
-argument_list|(
-literal|0
-argument_list|)
-expr_stmt|;
-comment|//assertSameStreams("basic clone two/3", expected, two);
-comment|// Now close the second clone
-name|two
-operator|.
-name|close
-argument_list|()
-expr_stmt|;
-name|expected
-operator|.
-name|seek
-argument_list|(
-literal|0
-argument_list|)
-expr_stmt|;
-comment|//assertSameStreams("basic clone two/4", expected, two);
 name|expected
 operator|.
 name|close

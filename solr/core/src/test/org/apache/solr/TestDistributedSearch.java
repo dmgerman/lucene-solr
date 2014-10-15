@@ -18,6 +18,16 @@ begin_import
 import|import
 name|java
 operator|.
+name|nio
+operator|.
+name|ByteBuffer
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
 name|util
 operator|.
 name|ArrayList
@@ -3472,6 +3482,87 @@ operator|.
 name|QUERY
 argument_list|)
 expr_stmt|;
+comment|// SOLR-6545, wild card field list
+name|indexr
+argument_list|(
+name|id
+argument_list|,
+literal|"19"
+argument_list|,
+literal|"text"
+argument_list|,
+literal|"d"
+argument_list|,
+literal|"cat_a_sS"
+argument_list|,
+literal|"1"
+argument_list|,
+name|t1
+argument_list|,
+literal|"2"
+argument_list|)
+expr_stmt|;
+name|commit
+argument_list|()
+expr_stmt|;
+name|rsp
+operator|=
+name|query
+argument_list|(
+literal|"q"
+argument_list|,
+literal|"id:19"
+argument_list|,
+literal|"fl"
+argument_list|,
+literal|"id"
+argument_list|,
+literal|"fl"
+argument_list|,
+literal|"*a_sS"
+argument_list|)
+expr_stmt|;
+name|assertFieldValues
+argument_list|(
+name|rsp
+operator|.
+name|getResults
+argument_list|()
+argument_list|,
+literal|"id"
+argument_list|,
+literal|19
+argument_list|)
+expr_stmt|;
+name|rsp
+operator|=
+name|query
+argument_list|(
+literal|"q"
+argument_list|,
+literal|"id:19"
+argument_list|,
+literal|"fl"
+argument_list|,
+literal|"id,"
+operator|+
+name|t1
+operator|+
+literal|",cat*"
+argument_list|)
+expr_stmt|;
+name|assertFieldValues
+argument_list|(
+name|rsp
+operator|.
+name|getResults
+argument_list|()
+argument_list|,
+literal|"id"
+argument_list|,
+literal|19
+argument_list|)
+expr_stmt|;
 comment|// Check Info is added to for each shard
 name|ModifiableSolrParams
 name|q
@@ -3804,24 +3895,69 @@ literal|"true"
 argument_list|)
 expr_stmt|;
 comment|// test group query
-comment|// TODO: Remove this? This doesn't make any real sense now that timeAllowed might trigger early
-comment|//       termination of the request during Terms enumeration/Query expansion.
-comment|//       During such an exit, partial results isn't supported as it wouldn't make any sense.
-comment|// Increasing the timeAllowed from 1 to 100 for now.
-comment|//
-comment|// TODO: still failing in jenkins - see SOLR-5986
-comment|//
-comment|// queryPartialResults(upShards, upClients,
-comment|//     "q", "*:*",
-comment|//     "rows", 100,
-comment|//     "fl", "id," + i1,
-comment|//     "group", "true",
-comment|//     "group.query", t1 + ":kings OR " + t1 + ":eggs",
-comment|//     "group.limit", 10,
-comment|//     "sort", i1 + " asc, id asc",
-comment|//     CommonParams.TIME_ALLOWED, 100,
-comment|//     ShardParams.SHARDS_INFO, "true",
-comment|//     ShardParams.SHARDS_TOLERANT, "true");
+name|queryPartialResults
+argument_list|(
+name|upShards
+argument_list|,
+name|upClients
+argument_list|,
+literal|"q"
+argument_list|,
+literal|"*:*"
+argument_list|,
+literal|"rows"
+argument_list|,
+literal|100
+argument_list|,
+literal|"fl"
+argument_list|,
+literal|"id,"
+operator|+
+name|i1
+argument_list|,
+literal|"group"
+argument_list|,
+literal|"true"
+argument_list|,
+literal|"group.query"
+argument_list|,
+name|t1
+operator|+
+literal|":kings OR "
+operator|+
+name|t1
+operator|+
+literal|":eggs"
+argument_list|,
+literal|"group.limit"
+argument_list|,
+literal|10
+argument_list|,
+literal|"sort"
+argument_list|,
+name|i1
+operator|+
+literal|" asc, id asc"
+argument_list|,
+name|CommonParams
+operator|.
+name|TIME_ALLOWED
+argument_list|,
+literal|1
+argument_list|,
+name|ShardParams
+operator|.
+name|SHARDS_INFO
+argument_list|,
+literal|"true"
+argument_list|,
+name|ShardParams
+operator|.
+name|SHARDS_TOLERANT
+argument_list|,
+literal|"true"
+argument_list|)
+expr_stmt|;
 name|queryPartialResults
 argument_list|(
 name|upShards

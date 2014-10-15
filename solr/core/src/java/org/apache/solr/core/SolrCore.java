@@ -7767,11 +7767,6 @@ argument_list|,
 name|getLatestSchema
 argument_list|()
 argument_list|,
-name|getSolrConfig
-argument_list|()
-operator|.
-name|indexConfig
-argument_list|,
 name|newName
 argument_list|,
 name|newReader
@@ -7818,11 +7813,6 @@ name|newIndexDir
 argument_list|,
 name|getLatestSchema
 argument_list|()
-argument_list|,
-name|getSolrConfig
-argument_list|()
-operator|.
-name|indexConfig
 argument_list|,
 operator|(
 name|realtime
@@ -7911,11 +7901,6 @@ name|newIndexDir
 argument_list|,
 name|getLatestSchema
 argument_list|()
-argument_list|,
-name|getSolrConfig
-argument_list|()
-operator|.
-name|indexConfig
 argument_list|,
 operator|(
 name|realtime

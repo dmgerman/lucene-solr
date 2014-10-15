@@ -113,7 +113,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Default {@link ICUTokenizerConfig} that is generally applicable  * to many languages.  *<p>  * Generally tokenizes Unicode text according to UAX#29   * ({@link BreakIterator#getWordInstance(ULocale) BreakIterator.getWordInstance(ULocale.ROOT)}),   * but with the following tailorings:  *<ul>  *<li>Thai, Lao, and CJK text is broken into words with a dictionary.   *<li>Myanmar, and Khmer text is broken into syllables  *   based on custom BreakIterator rules.  *</ul>  * @lucene.experimental  */
+comment|/**  * Default {@link ICUTokenizerConfig} that is generally applicable  * to many languages.  *<p>  * Generally tokenizes Unicode text according to UAX#29   * ({@link BreakIterator#getWordInstance(ULocale) BreakIterator.getWordInstance(ULocale.ROOT)}),   * but with the following tailorings:  *<ul>  *<li>Thai, Lao, Myanmar, and CJK text is broken into words with a dictionary.   *<li>Khmer text is broken into syllables  *   based on custom BreakIterator rules.  *</ul>  * @lucene.experimental  */
 end_comment
 
 begin_class
@@ -270,18 +270,6 @@ argument_list|(
 literal|"Khmer.brk"
 argument_list|)
 decl_stmt|;
-DECL|field|myanmarBreakIterator
-specifier|private
-specifier|static
-specifier|final
-name|BreakIterator
-name|myanmarBreakIterator
-init|=
-name|readBreakIterator
-argument_list|(
-literal|"Myanmar.brk"
-argument_list|)
-decl_stmt|;
 comment|// TODO: deprecate this boolean? you only care if you are doing super-expert stuff...
 DECL|field|cjkAsWords
 specifier|private
@@ -343,20 +331,6 @@ operator|(
 name|BreakIterator
 operator|)
 name|khmerBreakIterator
-operator|.
-name|clone
-argument_list|()
-return|;
-case|case
-name|UScript
-operator|.
-name|MYANMAR
-case|:
-return|return
-operator|(
-name|BreakIterator
-operator|)
-name|myanmarBreakIterator
 operator|.
 name|clone
 argument_list|()

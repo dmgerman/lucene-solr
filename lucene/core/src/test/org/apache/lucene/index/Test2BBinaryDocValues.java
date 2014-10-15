@@ -184,6 +184,20 @@ name|lucene
 operator|.
 name|util
 operator|.
+name|TestUtil
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|util
+operator|.
 name|TimeUnits
 import|;
 end_import
@@ -225,10 +239,13 @@ name|TimeUnits
 operator|.
 name|HOUR
 argument_list|)
+comment|// effectively no limit
+comment|// The six hour time was achieved on a Linux 3.13 system with these specs:
+comment|// 3-core AMD at 2.5Ghz, 12 GB RAM, 5GB test heap, 2 test JVMs, 2TB SATA.
 annotation|@
 name|Monster
 argument_list|(
-literal|"takes ~ 45 minutes"
+literal|"takes ~ 6 hours if the heap is 5gb"
 argument_list|)
 DECL|class|Test2BBinaryDocValues
 specifier|public
@@ -336,6 +353,14 @@ operator|.
 name|OpenMode
 operator|.
 name|CREATE
+argument_list|)
+operator|.
+name|setCodec
+argument_list|(
+name|TestUtil
+operator|.
+name|getDefaultCodec
+argument_list|()
 argument_list|)
 argument_list|)
 decl_stmt|;
@@ -763,6 +788,14 @@ operator|.
 name|OpenMode
 operator|.
 name|CREATE
+argument_list|)
+operator|.
+name|setCodec
+argument_list|(
+name|TestUtil
+operator|.
+name|getDefaultCodec
+argument_list|()
 argument_list|)
 argument_list|)
 decl_stmt|;

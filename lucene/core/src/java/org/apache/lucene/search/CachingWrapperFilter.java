@@ -172,7 +172,7 @@ name|lucene
 operator|.
 name|util
 operator|.
-name|WAH8DocIdSet
+name|RoaringDocIdSet
 import|;
 end_import
 
@@ -326,7 +326,7 @@ return|;
 block|}
 block|}
 block|}
-comment|/**    * Default cache implementation: uses {@link WAH8DocIdSet}.    */
+comment|/**    * Default cache implementation: uses {@link RoaringDocIdSet}.    */
 DECL|method|cacheImpl
 specifier|protected
 name|DocIdSet
@@ -341,26 +341,22 @@ parameter_list|)
 throws|throws
 name|IOException
 block|{
-name|WAH8DocIdSet
-operator|.
-name|Builder
-name|builder
-init|=
+return|return
 operator|new
-name|WAH8DocIdSet
+name|RoaringDocIdSet
 operator|.
 name|Builder
+argument_list|(
+name|reader
+operator|.
+name|maxDoc
 argument_list|()
-decl_stmt|;
-name|builder
+argument_list|)
 operator|.
 name|add
 argument_list|(
 name|iterator
 argument_list|)
-expr_stmt|;
-return|return
-name|builder
 operator|.
 name|build
 argument_list|()

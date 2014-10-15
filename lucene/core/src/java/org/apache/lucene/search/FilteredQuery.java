@@ -1012,6 +1012,7 @@ comment|/**    * A Scorer that uses a "leap-frog" approach (also called "zig-zag
 DECL|class|LeapFrogScorer
 specifier|private
 specifier|static
+specifier|final
 class|class
 name|LeapFrogScorer
 extends|extends
@@ -1036,7 +1037,7 @@ name|Scorer
 name|scorer
 decl_stmt|;
 DECL|field|primaryDoc
-specifier|protected
+specifier|private
 name|int
 name|primaryDoc
 init|=
@@ -1044,7 +1045,7 @@ operator|-
 literal|1
 decl_stmt|;
 DECL|field|secondaryDoc
-specifier|protected
+specifier|private
 name|int
 name|secondaryDoc
 init|=
@@ -1322,97 +1323,6 @@ name|cost
 argument_list|()
 argument_list|)
 return|;
-block|}
-block|}
-comment|// TODO once we have way to figure out if we use RA or LeapFrog we can remove this scorer
-DECL|class|PrimaryAdvancedLeapFrogScorer
-specifier|private
-specifier|static
-specifier|final
-class|class
-name|PrimaryAdvancedLeapFrogScorer
-extends|extends
-name|LeapFrogScorer
-block|{
-DECL|field|firstFilteredDoc
-specifier|private
-specifier|final
-name|int
-name|firstFilteredDoc
-decl_stmt|;
-DECL|method|PrimaryAdvancedLeapFrogScorer
-specifier|protected
-name|PrimaryAdvancedLeapFrogScorer
-parameter_list|(
-name|Weight
-name|weight
-parameter_list|,
-name|int
-name|firstFilteredDoc
-parameter_list|,
-name|DocIdSetIterator
-name|filterIter
-parameter_list|,
-name|Scorer
-name|other
-parameter_list|)
-block|{
-name|super
-argument_list|(
-name|weight
-argument_list|,
-name|filterIter
-argument_list|,
-name|other
-argument_list|,
-name|other
-argument_list|)
-expr_stmt|;
-name|this
-operator|.
-name|firstFilteredDoc
-operator|=
-name|firstFilteredDoc
-expr_stmt|;
-name|this
-operator|.
-name|primaryDoc
-operator|=
-name|firstFilteredDoc
-expr_stmt|;
-comment|// initialize to prevent and advance call to move it further
-block|}
-annotation|@
-name|Override
-DECL|method|primaryNext
-specifier|protected
-name|int
-name|primaryNext
-parameter_list|()
-throws|throws
-name|IOException
-block|{
-if|if
-condition|(
-name|secondaryDoc
-operator|!=
-operator|-
-literal|1
-condition|)
-block|{
-return|return
-name|super
-operator|.
-name|primaryNext
-argument_list|()
-return|;
-block|}
-else|else
-block|{
-return|return
-name|firstFilteredDoc
-return|;
-block|}
 block|}
 block|}
 comment|/** Rewrites the query. If the wrapped is an instance of    * {@link MatchAllDocsQuery} it returns a {@link ConstantScoreQuery}. Otherwise    * it returns a new {@code FilteredQuery} wrapping the rewritten query. */
@@ -1754,7 +1664,7 @@ return|return
 name|hash
 return|;
 block|}
-comment|/**    * A {@link FilterStrategy} that conditionally uses a random access filter if    * the given {@link DocIdSet} supports random access (returns a non-null value    * from {@link DocIdSet#bits()}) and    * {@link RandomAccessFilterStrategy#useRandomAccess(Bits, int)} returns    *<code>true</code>. Otherwise this strategy falls back to a "zig-zag join" (    * {@link FilteredQuery#LEAP_FROG_FILTER_FIRST_STRATEGY}) strategy.    *     *<p>    * Note: this strategy is the default strategy in {@link FilteredQuery}    *</p>    */
+comment|/**    * A {@link FilterStrategy} that conditionally uses a random access filter if    * the given {@link DocIdSet} supports random access (returns a non-null value    * from {@link DocIdSet#bits()}) and    * {@link RandomAccessFilterStrategy#useRandomAccess(Bits, long)} returns    *<code>true</code>. Otherwise this strategy falls back to a "zig-zag join" (    * {@link FilteredQuery#LEAP_FROG_FILTER_FIRST_STRATEGY}) strategy.    *     *<p>    * Note: this strategy is the default strategy in {@link FilteredQuery}    *</p>    */
 DECL|field|RANDOM_ACCESS_FILTER_STRATEGY
 specifier|public
 specifier|static
@@ -1890,7 +1800,7 @@ argument_list|)
 return|;
 block|}
 block|}
-comment|/**    * A {@link FilterStrategy} that conditionally uses a random access filter if    * the given {@link DocIdSet} supports random access (returns a non-null value    * from {@link DocIdSet#bits()}) and    * {@link RandomAccessFilterStrategy#useRandomAccess(Bits, int)} returns    *<code>true</code>. Otherwise this strategy falls back to a "zig-zag join" (    * {@link FilteredQuery#LEAP_FROG_FILTER_FIRST_STRATEGY}) strategy .    */
+comment|/**    * A {@link FilterStrategy} that conditionally uses a random access filter if    * the given {@link DocIdSet} supports random access (returns a non-null value    * from {@link DocIdSet#bits()}) and    * {@link RandomAccessFilterStrategy#useRandomAccess(Bits, long)} returns    *<code>true</code>. Otherwise this strategy falls back to a "zig-zag join" (    * {@link FilteredQuery#LEAP_FROG_FILTER_FIRST_STRATEGY}) strategy .    */
 DECL|class|RandomAccessFilterStrategy
 specifier|public
 specifier|static
@@ -1940,28 +1850,6 @@ literal|null
 return|;
 block|}
 specifier|final
-name|int
-name|firstFilterDoc
-init|=
-name|filterIter
-operator|.
-name|nextDoc
-argument_list|()
-decl_stmt|;
-if|if
-condition|(
-name|firstFilterDoc
-operator|==
-name|DocIdSetIterator
-operator|.
-name|NO_MORE_DOCS
-condition|)
-block|{
-return|return
-literal|null
-return|;
-block|}
-specifier|final
 name|Bits
 name|filterAcceptDocs
 init|=
@@ -1983,7 +1871,10 @@ name|useRandomAccess
 argument_list|(
 name|filterAcceptDocs
 argument_list|,
-name|firstFilterDoc
+name|filterIter
+operator|.
+name|cost
+argument_list|()
 argument_list|)
 decl_stmt|;
 if|if
@@ -2005,12 +1896,6 @@ return|;
 block|}
 else|else
 block|{
-assert|assert
-name|firstFilterDoc
-operator|>
-operator|-
-literal|1
-assert|;
 comment|// we are gonna advance() this scorer, so we set inorder=true/toplevel=false
 comment|// we pass null as acceptDocs, as our filter has already respected acceptDocs, no need to do twice
 specifier|final
@@ -2026,7 +1911,6 @@ argument_list|,
 literal|null
 argument_list|)
 decl_stmt|;
-comment|// TODO once we have way to figure out if we use RA or LeapFrog we can remove this scorer
 return|return
 operator|(
 name|scorer
@@ -2037,20 +1921,20 @@ condition|?
 literal|null
 else|:
 operator|new
-name|PrimaryAdvancedLeapFrogScorer
+name|LeapFrogScorer
 argument_list|(
 name|weight
 argument_list|,
-name|firstFilterDoc
-argument_list|,
 name|filterIter
+argument_list|,
+name|scorer
 argument_list|,
 name|scorer
 argument_list|)
 return|;
 block|}
 block|}
-comment|/**      * Expert: decides if a filter should be executed as "random-access" or not.      * random-access means the filter "filters" in a similar way as deleted docs are filtered      * in Lucene. This is faster when the filter accepts many documents.      * However, when the filter is very sparse, it can be faster to execute the query+filter      * as a conjunction in some cases.      *       * The default implementation returns<code>true</code> if the first document accepted by the      * filter is< 100.      *       * @lucene.internal      */
+comment|/**      * Expert: decides if a filter should be executed as "random-access" or not.      * random-access means the filter "filters" in a similar way as deleted docs are filtered      * in Lucene. This is faster when the filter accepts many documents.      * However, when the filter is very sparse, it can be faster to execute the query+filter      * as a conjunction in some cases.      *       * The default implementation returns<code>true</code> if the filter matches more than 1%      * of documents      *       * @lucene.internal      */
 DECL|method|useRandomAccess
 specifier|protected
 name|boolean
@@ -2059,15 +1943,20 @@ parameter_list|(
 name|Bits
 name|bits
 parameter_list|,
-name|int
-name|firstFilterDoc
+name|long
+name|filterCost
 parameter_list|)
 block|{
-comment|//TODO once we have a cost API on filters and scorers we should rethink this heuristic
+comment|// if the filter matches more than 1% of documents, we use random-access
 return|return
-name|firstFilterDoc
-operator|<
+name|filterCost
+operator|*
 literal|100
+operator|>
+name|bits
+operator|.
+name|length
+argument_list|()
 return|;
 block|}
 block|}

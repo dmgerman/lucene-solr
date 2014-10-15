@@ -7500,8 +7500,8 @@ parameter_list|(
 name|Bits
 name|bits
 parameter_list|,
-name|int
-name|firstFilterDoc
+name|long
+name|filterCost
 parameter_list|)
 block|{
 return|return

@@ -5802,12 +5802,20 @@ comment|// else the node is no longer "live" so no need to send any recovery com
 block|}
 catch|catch
 parameter_list|(
-name|KeeperException
-operator|.
-name|SessionExpiredException
-name|see
+name|Exception
+name|exc
 parameter_list|)
 block|{
+name|Throwable
+name|setLirZnodeFailedCause
+init|=
+name|SolrException
+operator|.
+name|getRootCause
+argument_list|(
+name|exc
+argument_list|)
+decl_stmt|;
 name|log
 operator|.
 name|error
@@ -5825,11 +5833,26 @@ argument_list|()
 operator|+
 literal|" state to DOWN due to: "
 operator|+
-name|see
+name|setLirZnodeFailedCause
 argument_list|,
-name|see
+name|setLirZnodeFailedCause
 argument_list|)
 expr_stmt|;
+if|if
+condition|(
+name|setLirZnodeFailedCause
+operator|instanceof
+name|KeeperException
+operator|.
+name|SessionExpiredException
+operator|||
+name|setLirZnodeFailedCause
+operator|instanceof
+name|KeeperException
+operator|.
+name|ConnectionLossException
+condition|)
+block|{
 comment|// our session is expired, which means our state is suspect, so don't go
 comment|// putting other replicas in recovery (see SOLR-6511)
 name|sendRecoveryCommand
@@ -5837,35 +5860,7 @@ operator|=
 literal|false
 expr_stmt|;
 block|}
-catch|catch
-parameter_list|(
-name|Exception
-name|e
-parameter_list|)
-block|{
-name|log
-operator|.
-name|error
-argument_list|(
-literal|"Leader failed to set replica "
-operator|+
-name|error
-operator|.
-name|req
-operator|.
-name|node
-operator|.
-name|getUrl
-argument_list|()
-operator|+
-literal|" state to DOWN due to: "
-operator|+
-name|e
-argument_list|,
-name|e
-argument_list|)
-expr_stmt|;
-comment|// will go ahead and try to send the recovery command once after this error
+comment|// else will go ahead and try to send the recovery command once after this error
 block|}
 block|}
 else|else

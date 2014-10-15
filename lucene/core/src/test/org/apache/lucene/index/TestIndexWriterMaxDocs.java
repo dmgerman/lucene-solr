@@ -223,7 +223,7 @@ name|TimeoutSuite
 argument_list|(
 name|millis
 operator|=
-literal|6
+literal|8
 operator|*
 name|TimeUnits
 operator|.
@@ -236,10 +236,12 @@ name|TestIndexWriterMaxDocs
 extends|extends
 name|LuceneTestCase
 block|{
+comment|// The two hour time was achieved on a Linux 3.13 system with these specs:
+comment|// 3-core AMD at 2.5Ghz, 12 GB RAM, 5GB test heap, 2 test JVMs, 2TB SATA.
 annotation|@
 name|Monster
 argument_list|(
-literal|"takes a long time"
+literal|"takes over two hours"
 argument_list|)
 DECL|method|testExactlyAtTrueLimit
 specifier|public

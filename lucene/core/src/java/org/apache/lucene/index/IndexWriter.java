@@ -276,7 +276,7 @@ name|lucene
 operator|.
 name|codecs
 operator|.
-name|FieldInfosReader
+name|FieldInfosFormat
 import|;
 end_import
 
@@ -2895,15 +2895,12 @@ operator|.
 name|getCodec
 argument_list|()
 decl_stmt|;
-name|FieldInfosReader
+name|FieldInfosFormat
 name|reader
 init|=
 name|codec
 operator|.
 name|fieldInfosFormat
-argument_list|()
-operator|.
-name|getFieldInfosReader
 argument_list|()
 decl_stmt|;
 if|if
@@ -6279,6 +6276,12 @@ operator|.
 name|close
 argument_list|()
 expr_stmt|;
+comment|// Must set closed while inside same sync block where we call deleter.refresh, else concurrent threads may try to sneak a flush in,
+comment|// after we leave this sync block and before we enter the sync block in the finally clause below that sets closed:
+name|closed
+operator|=
+literal|true
+expr_stmt|;
 name|IOUtils
 operator|.
 name|close
@@ -7011,6 +7014,11 @@ name|this
 init|)
 block|{
 comment|// Lock order IW -> BDS
+name|ensureOpen
+argument_list|(
+literal|false
+argument_list|)
+expr_stmt|;
 synchronized|synchronized
 init|(
 name|bufferedUpdatesStream
@@ -8066,9 +8074,6 @@ condition|)
 block|{
 return|return;
 block|}
-name|MergeState
-name|mergeState
-decl_stmt|;
 name|boolean
 name|success
 init|=
@@ -8076,8 +8081,6 @@ literal|false
 decl_stmt|;
 try|try
 block|{
-name|mergeState
-operator|=
 name|merger
 operator|.
 name|merge
@@ -8294,18 +8297,11 @@ operator|.
 name|segmentInfoFormat
 argument_list|()
 operator|.
-name|getSegmentInfoWriter
-argument_list|()
-operator|.
 name|write
 argument_list|(
 name|trackingDir
 argument_list|,
 name|info
-argument_list|,
-name|mergeState
-operator|.
-name|mergeFieldInfos
 argument_list|,
 name|context
 argument_list|)
@@ -14050,18 +14046,6 @@ argument_list|(
 name|directory
 argument_list|)
 expr_stmt|;
-specifier|final
-name|String
-name|mergedName
-init|=
-name|merge
-operator|.
-name|info
-operator|.
-name|info
-operator|.
-name|name
-decl_stmt|;
 name|List
 argument_list|<
 name|SegmentCommitInfo
@@ -15123,9 +15107,6 @@ operator|.
 name|segmentInfoFormat
 argument_list|()
 operator|.
-name|getSegmentInfoWriter
-argument_list|()
-operator|.
 name|write
 argument_list|(
 name|directory
@@ -15135,10 +15116,6 @@ operator|.
 name|info
 operator|.
 name|info
-argument_list|,
-name|mergeState
-operator|.
-name|mergeFieldInfos
 argument_list|,
 name|context
 argument_list|)
@@ -16745,7 +16722,6 @@ name|cfsFile
 argument_list|)
 expr_stmt|;
 block|}
-empty_stmt|;
 name|info
 operator|.
 name|setFiles
