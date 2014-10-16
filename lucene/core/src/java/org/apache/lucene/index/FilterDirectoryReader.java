@@ -141,37 +141,6 @@ name|reader
 parameter_list|)
 function_decl|;
 block|}
-comment|/**    * A no-op SubReaderWrapper that simply returns the parent    * DirectoryReader's original subreaders.    */
-DECL|class|StandardReaderWrapper
-specifier|public
-specifier|static
-class|class
-name|StandardReaderWrapper
-extends|extends
-name|SubReaderWrapper
-block|{
-comment|/** Constructor */
-DECL|method|StandardReaderWrapper
-specifier|public
-name|StandardReaderWrapper
-parameter_list|()
-block|{}
-annotation|@
-name|Override
-DECL|method|wrap
-specifier|public
-name|LeafReader
-name|wrap
-parameter_list|(
-name|LeafReader
-name|reader
-parameter_list|)
-block|{
-return|return
-name|reader
-return|;
-block|}
-block|}
 comment|/** The filtered DirectoryReader */
 DECL|field|in
 specifier|protected
@@ -179,25 +148,6 @@ specifier|final
 name|DirectoryReader
 name|in
 decl_stmt|;
-comment|/**    * Create a new FilterDirectoryReader that filters a passed in DirectoryReader.    * @param in the DirectoryReader to filter    */
-DECL|method|FilterDirectoryReader
-specifier|public
-name|FilterDirectoryReader
-parameter_list|(
-name|DirectoryReader
-name|in
-parameter_list|)
-block|{
-name|this
-argument_list|(
-name|in
-argument_list|,
-operator|new
-name|StandardReaderWrapper
-argument_list|()
-argument_list|)
-expr_stmt|;
-block|}
 comment|/**    * Create a new FilterDirectoryReader that filters a passed in DirectoryReader,    * using the supplied SubReaderWrapper to wrap its subreader.    * @param in the DirectoryReader to filter    * @param wrapper the SubReaderWrapper to use to wrap subreaders    */
 DECL|method|FilterDirectoryReader
 specifier|public

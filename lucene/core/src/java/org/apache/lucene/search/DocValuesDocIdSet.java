@@ -54,20 +54,6 @@ name|FixedBitSet
 import|;
 end_import
 
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|util
-operator|.
-name|OpenBitSet
-import|;
-end_import
-
 begin_comment
 comment|/**  * Base class for DocIdSet to be used with DocValues. The implementation  * of its iterator is very stupid and slow if the implementation of the  * {@link #matchDoc} method is not optimized, as iterators simply increment  * the document id until {@code matchDoc(int)} returns true. Because of this  * {@code matchDoc(int)} must be as fast as possible and in no case do any  * I/O.  * @lucene.internal  */
 end_comment
@@ -376,13 +362,9 @@ condition|(
 name|acceptDocs
 operator|instanceof
 name|FixedBitSet
-operator|||
-name|acceptDocs
-operator|instanceof
-name|OpenBitSet
 condition|)
 block|{
-comment|// special case for FixedBitSet / OpenBitSet: use the iterator and filter it
+comment|// special case for FixedBitSet: use the iterator and filter it
 comment|// (used e.g. when Filters are chained by FilteredQuery)
 return|return
 operator|new
