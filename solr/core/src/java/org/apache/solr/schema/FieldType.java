@@ -4538,6 +4538,20 @@ return|return
 name|analyzerProps
 return|;
 block|}
+comment|/**Converts any Object to a java Object native to this field type    */
+DECL|method|toNativeType
+specifier|public
+name|Object
+name|toNativeType
+parameter_list|(
+name|Object
+name|val
+parameter_list|)
+block|{
+return|return
+name|val
+return|;
+block|}
 comment|/**     * Convert a value used by the FieldComparator for this FieldType's SortField    * into a marshalable value for distributed sorting.    */
 DECL|method|marshalSortValue
 specifier|public
