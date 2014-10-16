@@ -495,7 +495,6 @@ name|name
 argument_list|)
 assert|;
 assert|assert
-operator|(
 name|field
 operator|.
 name|getDocValuesType
@@ -509,15 +508,8 @@ name|NUMERIC
 operator|||
 name|field
 operator|.
-name|getNormType
+name|hasNorms
 argument_list|()
-operator|==
-name|FieldInfo
-operator|.
-name|DocValuesType
-operator|.
-name|NUMERIC
-operator|)
 assert|;
 name|writeFieldEntry
 argument_list|(

@@ -112,9 +112,37 @@ name|apache
 operator|.
 name|lucene
 operator|.
+name|codecs
+operator|.
+name|UndeadNormsProducer
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
 name|index
 operator|.
 name|CorruptIndexException
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|index
+operator|.
+name|DocValues
 import|;
 end_import
 
@@ -318,7 +346,7 @@ name|lucene49
 operator|.
 name|Lucene49NormsFormat
 operator|.
-name|VERSION_START
+name|VERSION_CURRENT
 import|;
 end_import
 
@@ -336,7 +364,7 @@ name|lucene49
 operator|.
 name|Lucene49NormsFormat
 operator|.
-name|VERSION_CURRENT
+name|VERSION_START
 import|;
 end_import
 
@@ -1011,6 +1039,24 @@ parameter_list|)
 throws|throws
 name|IOException
 block|{
+if|if
+condition|(
+name|UndeadNormsProducer
+operator|.
+name|isUndead
+argument_list|(
+name|field
+argument_list|)
+condition|)
+block|{
+comment|// Bring undead norms back to life; this is set in Lucene46FieldInfosFormat, to emulate pre-5.0 undead norms
+return|return
+name|DocValues
+operator|.
+name|emptyNumeric
+argument_list|()
+return|;
+block|}
 name|NumericDocValues
 name|instance
 init|=

@@ -494,14 +494,8 @@ block|{
 assert|assert
 name|field
 operator|.
-name|getNormType
+name|hasNorms
 argument_list|()
-operator|==
-name|FieldInfo
-operator|.
-name|DocValuesType
-operator|.
-name|NUMERIC
 assert|;
 name|NumericDocValues
 name|values

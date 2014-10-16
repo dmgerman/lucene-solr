@@ -341,11 +341,6 @@ argument_list|()
 argument_list|,
 literal|null
 argument_list|,
-name|fi
-operator|.
-name|getNormType
-argument_list|()
-argument_list|,
 operator|-
 literal|1
 argument_list|,
