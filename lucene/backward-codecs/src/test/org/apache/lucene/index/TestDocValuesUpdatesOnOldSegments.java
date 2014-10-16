@@ -222,6 +222,10 @@ name|LuceneTestCase
 import|;
 end_import
 
+begin_comment
+comment|/**   * Tests performing docvalues updates against versions of lucene  * that did not support it.  */
+end_comment
+
 begin_class
 DECL|class|TestDocValuesUpdatesOnOldSegments
 specifier|public
@@ -433,6 +437,14 @@ name|Lucene45RWCodec
 argument_list|()
 block|}
 decl_stmt|;
+for|for
+control|(
+name|Codec
+name|codec
+range|:
+name|oldCodecs
+control|)
+block|{
 name|Directory
 name|dir
 init|=
@@ -457,18 +469,7 @@ name|conf
 operator|.
 name|setCodec
 argument_list|(
-name|oldCodecs
-index|[
-name|random
-argument_list|()
-operator|.
-name|nextInt
-argument_list|(
-name|oldCodecs
-operator|.
-name|length
-argument_list|)
-index|]
+name|codec
 argument_list|)
 expr_stmt|;
 name|IndexWriter
@@ -607,6 +608,7 @@ name|close
 argument_list|()
 expr_stmt|;
 block|}
+block|}
 DECL|method|testNumericUpdates
 specifier|public
 name|void
@@ -640,6 +642,14 @@ name|Lucene45RWCodec
 argument_list|()
 block|}
 decl_stmt|;
+for|for
+control|(
+name|Codec
+name|codec
+range|:
+name|oldCodecs
+control|)
+block|{
 name|Directory
 name|dir
 init|=
@@ -664,18 +674,7 @@ name|conf
 operator|.
 name|setCodec
 argument_list|(
-name|oldCodecs
-index|[
-name|random
-argument_list|()
-operator|.
-name|nextInt
-argument_list|(
-name|oldCodecs
-operator|.
-name|length
-argument_list|)
-index|]
+name|codec
 argument_list|)
 expr_stmt|;
 name|IndexWriter
@@ -807,6 +806,7 @@ operator|.
 name|close
 argument_list|()
 expr_stmt|;
+block|}
 block|}
 block|}
 end_class

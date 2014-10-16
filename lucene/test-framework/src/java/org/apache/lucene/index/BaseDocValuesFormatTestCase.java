@@ -22361,6 +22361,7 @@ return|return
 literal|true
 return|;
 block|}
+comment|// nocommit: ensure every type has a *mergeAwayAllValues test, and add simple constant tests
 block|}
 end_class
 

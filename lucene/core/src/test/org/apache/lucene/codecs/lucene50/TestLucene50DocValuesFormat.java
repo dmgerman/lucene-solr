@@ -1,6 +1,6 @@
 begin_unit|revision:0.9.5;language:Java;cregit-version:0.0.1
 begin_package
-DECL|package|org.apache.lucene.codecs.lucene410
+DECL|package|org.apache.lucene.codecs.lucene50
 package|package
 name|org
 operator|.
@@ -10,7 +10,7 @@ name|lucene
 operator|.
 name|codecs
 operator|.
-name|lucene410
+name|lucene50
 package|;
 end_package
 
@@ -407,14 +407,14 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Tests Lucene410DocValuesFormat  */
+comment|/**  * Tests Lucene50DocValuesFormat  */
 end_comment
 
 begin_class
-DECL|class|TestLucene410DocValuesFormat
+DECL|class|TestLucene50DocValuesFormat
 specifier|public
 class|class
-name|TestLucene410DocValuesFormat
+name|TestLucene50DocValuesFormat
 extends|extends
 name|BaseCompressingDocValuesFormatTestCase
 block|{
@@ -429,7 +429,7 @@ operator|.
 name|alwaysDocValuesFormat
 argument_list|(
 operator|new
-name|Lucene410DocValuesFormat
+name|Lucene50DocValuesFormat
 argument_list|()
 argument_list|)
 decl_stmt|;
@@ -909,7 +909,7 @@ name|DocValuesFormat
 name|dv
 init|=
 operator|new
-name|Lucene410DocValuesFormat
+name|Lucene50DocValuesFormat
 argument_list|()
 decl_stmt|;
 name|conf

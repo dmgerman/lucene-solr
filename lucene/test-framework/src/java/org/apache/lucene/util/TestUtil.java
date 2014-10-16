@@ -346,9 +346,9 @@ name|lucene
 operator|.
 name|codecs
 operator|.
-name|lucene410
+name|lucene50
 operator|.
-name|Lucene410DocValuesFormat
+name|Lucene50Codec
 import|;
 end_import
 
@@ -364,7 +364,7 @@ name|codecs
 operator|.
 name|lucene50
 operator|.
-name|Lucene50Codec
+name|Lucene50DocValuesFormat
 import|;
 end_import
 
@@ -5853,7 +5853,7 @@ parameter_list|()
 block|{
 return|return
 operator|new
-name|Lucene410DocValuesFormat
+name|Lucene50DocValuesFormat
 argument_list|()
 return|;
 block|}

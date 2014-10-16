@@ -819,10 +819,12 @@ import|;
 end_import
 
 begin_comment
-comment|/** reader for {@link Lucene410DocValuesFormat} */
+comment|/**   * reader for 4.10 docvalues format  * @deprecated only for old 4.x segments  */
 end_comment
 
 begin_class
+annotation|@
+name|Deprecated
 DECL|class|Lucene410DocValuesProducer
 class|class
 name|Lucene410DocValuesProducer
