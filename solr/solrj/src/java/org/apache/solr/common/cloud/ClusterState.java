@@ -1067,20 +1067,33 @@ block|}
 for|for
 control|(
 name|CollectionRef
-name|coll
+name|ref
 range|:
 name|states
 control|)
 block|{
+name|DocCollection
+name|coll
+init|=
+name|ref
+operator|.
+name|get
+argument_list|()
+decl_stmt|;
+if|if
+condition|(
+name|coll
+operator|==
+literal|null
+condition|)
+continue|continue;
+comment|// this collection go tremoved in between, skip
 for|for
 control|(
 name|Slice
 name|slice
 range|:
 name|coll
-operator|.
-name|get
-argument_list|()
 operator|.
 name|getSlices
 argument_list|()
@@ -1153,7 +1166,6 @@ return|return
 literal|null
 return|;
 block|}
-comment|/*public String getShardIdByCoreNodeName(String collectionName, String coreNodeName) {     Collection<DocCollection> states = collectionStates.values();     if (collectionName != null) {       CollectionRef c = collectionStates.get(collectionName);       if (c != null) states = Collections.singletonList(c);     }      for (DocCollection coll : states) {       for (Slice slice : coll.getSlices()) {         for (Replica replica : slice.getReplicas()) {           if (coreNodeName.equals(replica.getName())) {             return slice.getName();           }         }       }     }     return null;   }*/
 comment|/**    * Check if node is alive.     */
 DECL|method|liveNodesContain
 specifier|public
