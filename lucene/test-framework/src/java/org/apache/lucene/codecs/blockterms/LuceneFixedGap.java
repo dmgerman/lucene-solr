@@ -275,11 +275,11 @@ import|;
 end_import
 
 begin_comment
-comment|// TODO: we could make separate base class that can wrapp
+comment|// TODO: we could make separate base class that can wrap
 end_comment
 
 begin_comment
-comment|// any PostingsBaseFormat and make it ord-able...
+comment|// any PostingsFormat and make it ord-able...
 end_comment
 
 begin_comment
