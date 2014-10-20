@@ -1146,6 +1146,8 @@ operator|.
 name|init
 argument_list|(
 name|out
+argument_list|,
+name|state
 argument_list|)
 expr_stmt|;
 comment|// have consumer write its format/header

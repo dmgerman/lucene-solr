@@ -866,6 +866,8 @@ operator|.
 name|init
 argument_list|(
 name|blockIn
+argument_list|,
+name|state
 argument_list|)
 expr_stmt|;
 name|seekDir

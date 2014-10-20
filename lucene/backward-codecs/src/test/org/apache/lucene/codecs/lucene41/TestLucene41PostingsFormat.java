@@ -176,29 +176,15 @@ name|Directory
 import|;
 end_import
 
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|util
-operator|.
-name|TestUtil
-import|;
-end_import
-
 begin_comment
 comment|/**  * Tests BlockPostingsFormat  */
 end_comment
 
 begin_class
-DECL|class|TestBlockPostingsFormat
+DECL|class|TestLucene41PostingsFormat
 specifier|public
 class|class
-name|TestBlockPostingsFormat
+name|TestLucene41PostingsFormat
 extends|extends
 name|BasePostingsFormatTestCase
 block|{
@@ -208,14 +194,9 @@ specifier|final
 name|Codec
 name|codec
 init|=
-name|TestUtil
-operator|.
-name|alwaysPostingsFormat
-argument_list|(
 operator|new
-name|Lucene41PostingsFormat
+name|Lucene41RWCodec
 argument_list|()
-argument_list|)
 decl_stmt|;
 annotation|@
 name|Override

@@ -42,9 +42,9 @@ name|lucene
 operator|.
 name|codecs
 operator|.
-name|lucene41vargap
+name|blockterms
 operator|.
-name|Lucene41VarGapFixedInterval
+name|LuceneVarGapFixedInterval
 import|;
 end_import
 
@@ -99,7 +99,7 @@ operator|.
 name|alwaysPostingsFormat
 argument_list|(
 operator|new
-name|Lucene41VarGapFixedInterval
+name|LuceneVarGapFixedInterval
 argument_list|(
 name|TestUtil
 operator|.

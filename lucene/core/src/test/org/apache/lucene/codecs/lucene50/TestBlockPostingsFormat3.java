@@ -1,6 +1,6 @@
 begin_unit|revision:0.9.5;language:Java;cregit-version:0.0.1
 begin_package
-DECL|package|org.apache.lucene.codecs.lucene41
+DECL|package|org.apache.lucene.codecs.lucene50
 package|package
 name|org
 operator|.
@@ -10,7 +10,7 @@ name|lucene
 operator|.
 name|codecs
 operator|.
-name|lucene41
+name|lucene50
 package|;
 end_package
 
@@ -564,7 +564,7 @@ specifier|final
 name|int
 name|MAXDOC
 init|=
-name|Lucene41PostingsFormat
+name|Lucene50PostingsFormat
 operator|.
 name|BLOCK_SIZE
 operator|*
@@ -716,7 +716,7 @@ operator|.
 name|alwaysPostingsFormat
 argument_list|(
 operator|new
-name|Lucene41PostingsFormat
+name|Lucene50PostingsFormat
 argument_list|()
 argument_list|)
 argument_list|)
@@ -1167,7 +1167,7 @@ operator|.
 name|alwaysPostingsFormat
 argument_list|(
 operator|new
-name|Lucene41PostingsFormat
+name|Lucene50PostingsFormat
 argument_list|()
 argument_list|)
 argument_list|)

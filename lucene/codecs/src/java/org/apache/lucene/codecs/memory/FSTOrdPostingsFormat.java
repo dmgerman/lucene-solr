@@ -108,9 +108,9 @@ name|lucene
 operator|.
 name|codecs
 operator|.
-name|lucene41
+name|lucene50
 operator|.
-name|Lucene41PostingsReader
+name|Lucene50PostingsReader
 import|;
 end_import
 
@@ -124,9 +124,9 @@ name|lucene
 operator|.
 name|codecs
 operator|.
-name|lucene41
+name|lucene50
 operator|.
-name|Lucene41PostingsWriter
+name|Lucene50PostingsWriter
 import|;
 end_import
 
@@ -173,7 +173,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**   * FSTOrd term dict + Lucene41PBF  */
+comment|/**   * FSTOrd term dict + Lucene50PBF  */
 end_comment
 
 begin_class
@@ -192,7 +192,7 @@ parameter_list|()
 block|{
 name|super
 argument_list|(
-literal|"FSTOrd41"
+literal|"FSTOrd50"
 argument_list|)
 expr_stmt|;
 block|}
@@ -226,7 +226,7 @@ name|PostingsWriterBase
 name|postingsWriter
 init|=
 operator|new
-name|Lucene41PostingsWriter
+name|Lucene50PostingsWriter
 argument_list|(
 name|state
 argument_list|)
@@ -292,27 +292,9 @@ name|PostingsReaderBase
 name|postingsReader
 init|=
 operator|new
-name|Lucene41PostingsReader
+name|Lucene50PostingsReader
 argument_list|(
 name|state
-operator|.
-name|directory
-argument_list|,
-name|state
-operator|.
-name|fieldInfos
-argument_list|,
-name|state
-operator|.
-name|segmentInfo
-argument_list|,
-name|state
-operator|.
-name|context
-argument_list|,
-name|state
-operator|.
-name|segmentSuffix
 argument_list|)
 decl_stmt|;
 name|boolean

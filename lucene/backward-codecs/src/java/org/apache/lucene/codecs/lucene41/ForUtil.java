@@ -165,10 +165,12 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Encode all values in normal area with fixed bit width,   * which is determined by the max value in this block.  */
+comment|/**  * Lucene 4.1 postings format.  * @deprecated only for reading old 4.x segments  */
 end_comment
 
 begin_class
+annotation|@
+name|Deprecated
 DECL|class|ForUtil
 specifier|final
 class|class

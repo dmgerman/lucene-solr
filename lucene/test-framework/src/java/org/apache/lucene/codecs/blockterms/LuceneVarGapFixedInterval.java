@@ -1,6 +1,6 @@
 begin_unit|revision:0.9.5;language:Java;cregit-version:0.0.1
 begin_package
-DECL|package|org.apache.lucene.codecs.lucene41ords
+DECL|package|org.apache.lucene.codecs.blockterms
 package|package
 name|org
 operator|.
@@ -10,7 +10,7 @@ name|lucene
 operator|.
 name|codecs
 operator|.
-name|lucene41ords
+name|blockterms
 package|;
 end_package
 
@@ -142,22 +142,6 @@ name|codecs
 operator|.
 name|blockterms
 operator|.
-name|FixedGapTermsIndexReader
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|codecs
-operator|.
-name|blockterms
-operator|.
 name|FixedGapTermsIndexWriter
 import|;
 end_import
@@ -204,9 +188,41 @@ name|lucene
 operator|.
 name|codecs
 operator|.
-name|lucene41
+name|blockterms
 operator|.
-name|Lucene41PostingsFormat
+name|VariableGapTermsIndexReader
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|codecs
+operator|.
+name|blockterms
+operator|.
+name|VariableGapTermsIndexWriter
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|codecs
+operator|.
+name|lucene50
+operator|.
+name|Lucene50PostingsFormat
 import|;
 end_import
 
@@ -224,9 +240,9 @@ name|lucene
 operator|.
 name|codecs
 operator|.
-name|lucene41
+name|lucene50
 operator|.
-name|Lucene41PostingsReader
+name|Lucene50PostingsReader
 import|;
 end_import
 
@@ -240,9 +256,9 @@ name|lucene
 operator|.
 name|codecs
 operator|.
-name|lucene41
+name|lucene50
 operator|.
-name|Lucene41PostingsWriter
+name|Lucene50PostingsWriter
 import|;
 end_import
 
@@ -283,15 +299,15 @@ comment|// any PostingsBaseFormat and make it ord-able...
 end_comment
 
 begin_comment
-comment|/**  * Customized version of {@link Lucene41PostingsFormat} that uses  * {@link FixedGapTermsIndexWriter}.  */
+comment|/**  * Customized version of {@link Lucene50PostingsFormat} that uses  * {@link VariableGapTermsIndexWriter} with a fixed interval.  */
 end_comment
 
 begin_class
-DECL|class|Lucene41WithOrds
+DECL|class|LuceneVarGapFixedInterval
 specifier|public
 specifier|final
 class|class
-name|Lucene41WithOrds
+name|LuceneVarGapFixedInterval
 extends|extends
 name|PostingsFormat
 block|{
@@ -300,9 +316,9 @@ specifier|final
 name|int
 name|termIndexInterval
 decl_stmt|;
-DECL|method|Lucene41WithOrds
+DECL|method|LuceneVarGapFixedInterval
 specifier|public
-name|Lucene41WithOrds
+name|LuceneVarGapFixedInterval
 parameter_list|()
 block|{
 name|this
@@ -313,9 +329,9 @@ name|DEFAULT_TERM_INDEX_INTERVAL
 argument_list|)
 expr_stmt|;
 block|}
-DECL|method|Lucene41WithOrds
+DECL|method|LuceneVarGapFixedInterval
 specifier|public
-name|Lucene41WithOrds
+name|LuceneVarGapFixedInterval
 parameter_list|(
 name|int
 name|termIndexInterval
@@ -323,7 +339,7 @@ parameter_list|)
 block|{
 name|super
 argument_list|(
-literal|"Lucene41WithOrds"
+literal|"LuceneVarGapFixedInterval"
 argument_list|)
 expr_stmt|;
 name|this
@@ -350,7 +366,7 @@ name|PostingsWriterBase
 name|docs
 init|=
 operator|new
-name|Lucene41PostingsWriter
+name|Lucene50PostingsWriter
 argument_list|(
 name|state
 argument_list|)
@@ -372,11 +388,17 @@ block|{
 name|indexWriter
 operator|=
 operator|new
-name|FixedGapTermsIndexWriter
+name|VariableGapTermsIndexWriter
 argument_list|(
 name|state
 argument_list|,
+operator|new
+name|VariableGapTermsIndexWriter
+operator|.
+name|EveryNTermSelector
+argument_list|(
 name|termIndexInterval
+argument_list|)
 argument_list|)
 expr_stmt|;
 name|success
@@ -472,27 +494,9 @@ name|PostingsReaderBase
 name|postings
 init|=
 operator|new
-name|Lucene41PostingsReader
+name|Lucene50PostingsReader
 argument_list|(
 name|state
-operator|.
-name|directory
-argument_list|,
-name|state
-operator|.
-name|fieldInfos
-argument_list|,
-name|state
-operator|.
-name|segmentInfo
-argument_list|,
-name|state
-operator|.
-name|context
-argument_list|,
-name|state
-operator|.
-name|segmentSuffix
 argument_list|)
 decl_stmt|;
 name|TermsIndexReaderBase
@@ -508,7 +512,7 @@ block|{
 name|indexReader
 operator|=
 operator|new
-name|FixedGapTermsIndexReader
+name|VariableGapTermsIndexReader
 argument_list|(
 name|state
 argument_list|)

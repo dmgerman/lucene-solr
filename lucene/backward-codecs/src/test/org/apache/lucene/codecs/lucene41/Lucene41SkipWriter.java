@@ -67,10 +67,12 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Write skip lists with multiple levels, and support skip within block ints.  *  * Assume that docFreq = 28, skipInterval = blockSize = 12  *  *  |       block#0       | |      block#1        | |vInts|  *  d d d d d d d d d d d d d d d d d d d d d d d d d d d d (posting list)  *                          ^                       ^       (level 0 skip point)  *  * Note that skipWriter will ignore first document in block#0, since   * it is useless as a skip point.  Also, we'll never skip into the vInts  * block, only record skip data at the start its start point(if it exist).  *  * For each skip point, we will record:   * 1. docID in former position, i.e. for position 12, record docID[11], etc.  * 2. its related file points(position, payload),   * 3. related numbers or uptos(position, payload).  * 4. start offset.  *  */
+comment|/**  * Writes 4.1 skiplists for testing  * @deprecated for test purposes only  */
 end_comment
 
 begin_class
+annotation|@
+name|Deprecated
 DECL|class|Lucene41SkipWriter
 specifier|final
 class|class

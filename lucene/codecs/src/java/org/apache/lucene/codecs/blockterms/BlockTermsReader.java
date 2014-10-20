@@ -711,6 +711,8 @@ operator|.
 name|init
 argument_list|(
 name|in
+argument_list|,
+name|state
 argument_list|)
 expr_stmt|;
 comment|// NOTE: data file is too costly to verify checksum against all the bytes on open,

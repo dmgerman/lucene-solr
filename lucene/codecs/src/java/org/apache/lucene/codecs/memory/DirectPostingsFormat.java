@@ -120,9 +120,9 @@ name|lucene
 operator|.
 name|codecs
 operator|.
-name|lucene41
+name|lucene50
 operator|.
-name|Lucene41PostingsFormat
+name|Lucene50PostingsFormat
 import|;
 end_import
 
@@ -459,7 +459,7 @@ comment|//   - or: longer dense skip lists than just next byte?
 end_comment
 
 begin_comment
-comment|/** Wraps {@link Lucene41PostingsFormat} format for on-disk  *  storage, but then at read time loads and stores all  *  terms& postings directly in RAM as byte[], int[].  *  *<p><b><font color=red>WARNING</font></b>: This is  *  exceptionally RAM intensive: it makes no effort to  *  compress the postings data, storing terms as separate  *  byte[] and postings as separate int[], but as a result it   *  gives substantial increase in search performance.  *  *<p>This postings format supports {@link TermsEnum#ord}  *  and {@link TermsEnum#seekExact(long)}.   *<p>Because this holds all term bytes as a single  *  byte[], you cannot have more than 2.1GB worth of term  *  bytes in a single segment.  *  * @lucene.experimental */
+comment|/** Wraps {@link Lucene50PostingsFormat} format for on-disk  *  storage, but then at read time loads and stores all  *  terms& postings directly in RAM as byte[], int[].  *  *<p><b><font color=red>WARNING</font></b>: This is  *  exceptionally RAM intensive: it makes no effort to  *  compress the postings data, storing terms as separate  *  byte[] and postings as separate int[], but as a result it   *  gives substantial increase in search performance.  *  *<p>This postings format supports {@link TermsEnum#ord}  *  and {@link TermsEnum#seekExact(long)}.   *<p>Because this holds all term bytes as a single  *  byte[], you cannot have more than 2.1GB worth of term  *  bytes in a single segment.  *  * @lucene.experimental */
 end_comment
 
 begin_class
@@ -564,7 +564,7 @@ name|PostingsFormat
 operator|.
 name|forName
 argument_list|(
-literal|"Lucene41"
+literal|"Lucene50"
 argument_list|)
 operator|.
 name|fieldsConsumer
@@ -593,7 +593,7 @@ name|PostingsFormat
 operator|.
 name|forName
 argument_list|(
-literal|"Lucene41"
+literal|"Lucene50"
 argument_list|)
 operator|.
 name|fieldsProducer

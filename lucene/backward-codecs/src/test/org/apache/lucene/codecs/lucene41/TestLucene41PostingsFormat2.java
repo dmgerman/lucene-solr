@@ -223,10 +223,10 @@ comment|/**   * Tests special cases of BlockPostingsFormat   */
 end_comment
 
 begin_class
-DECL|class|TestBlockPostingsFormat2
+DECL|class|TestLucene41PostingsFormat2
 specifier|public
 class|class
-name|TestBlockPostingsFormat2
+name|TestLucene41PostingsFormat2
 extends|extends
 name|LuceneTestCase
 block|{
@@ -280,14 +280,9 @@ name|iwc
 operator|.
 name|setCodec
 argument_list|(
-name|TestUtil
-operator|.
-name|alwaysPostingsFormat
-argument_list|(
 operator|new
-name|Lucene41PostingsFormat
+name|Lucene41RWCodec
 argument_list|()
-argument_list|)
 argument_list|)
 expr_stmt|;
 name|iw
@@ -352,14 +347,9 @@ name|iwc
 operator|.
 name|setCodec
 argument_list|(
-name|TestUtil
-operator|.
-name|alwaysPostingsFormat
-argument_list|(
 operator|new
-name|Lucene41PostingsFormat
+name|Lucene41RWCodec
 argument_list|()
-argument_list|)
 argument_list|)
 expr_stmt|;
 name|iwc

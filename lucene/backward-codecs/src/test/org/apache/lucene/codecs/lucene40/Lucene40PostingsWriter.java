@@ -577,6 +577,9 @@ name|init
 parameter_list|(
 name|IndexOutput
 name|termsOut
+parameter_list|,
+name|SegmentWriteState
+name|state
 parameter_list|)
 throws|throws
 name|IOException

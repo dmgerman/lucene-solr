@@ -1,6 +1,6 @@
 begin_unit|revision:0.9.5;language:Java;cregit-version:0.0.1
 begin_package
-DECL|package|org.apache.lucene.codecs.lucene41vargap
+DECL|package|org.apache.lucene.codecs.blockterms
 package|package
 name|org
 operator|.
@@ -10,7 +10,7 @@ name|lucene
 operator|.
 name|codecs
 operator|.
-name|lucene41vargap
+name|blockterms
 package|;
 end_package
 
@@ -220,9 +220,9 @@ name|lucene
 operator|.
 name|codecs
 operator|.
-name|lucene41
+name|lucene50
 operator|.
-name|Lucene41PostingsFormat
+name|Lucene50PostingsFormat
 import|;
 end_import
 
@@ -240,9 +240,9 @@ name|lucene
 operator|.
 name|codecs
 operator|.
-name|lucene41
+name|lucene50
 operator|.
-name|Lucene41PostingsReader
+name|Lucene50PostingsReader
 import|;
 end_import
 
@@ -256,9 +256,9 @@ name|lucene
 operator|.
 name|codecs
 operator|.
-name|lucene41
+name|lucene50
 operator|.
-name|Lucene41PostingsWriter
+name|Lucene50PostingsWriter
 import|;
 end_import
 
@@ -299,15 +299,15 @@ comment|// any PostingsBaseFormat and make it ord-able...
 end_comment
 
 begin_comment
-comment|/**  * Customized version of {@link Lucene41PostingsFormat} that uses  * {@link VariableGapTermsIndexWriter} with a fixed interval.  */
+comment|/**  * Customized version of {@link Lucene50PostingsFormat} that uses  * {@link VariableGapTermsIndexWriter} with a fixed interval, but  * forcing high docfreq terms to be indexed terms.  */
 end_comment
 
 begin_class
-DECL|class|Lucene41VarGapFixedInterval
+DECL|class|LuceneVarGapDocFreqInterval
 specifier|public
 specifier|final
 class|class
-name|Lucene41VarGapFixedInterval
+name|LuceneVarGapDocFreqInterval
 extends|extends
 name|PostingsFormat
 block|{
@@ -316,30 +316,40 @@ specifier|final
 name|int
 name|termIndexInterval
 decl_stmt|;
-DECL|method|Lucene41VarGapFixedInterval
+DECL|field|docFreqThreshold
+specifier|final
+name|int
+name|docFreqThreshold
+decl_stmt|;
+DECL|method|LuceneVarGapDocFreqInterval
 specifier|public
-name|Lucene41VarGapFixedInterval
+name|LuceneVarGapDocFreqInterval
 parameter_list|()
 block|{
 name|this
 argument_list|(
+literal|1000000
+argument_list|,
 name|FixedGapTermsIndexWriter
 operator|.
 name|DEFAULT_TERM_INDEX_INTERVAL
 argument_list|)
 expr_stmt|;
 block|}
-DECL|method|Lucene41VarGapFixedInterval
+DECL|method|LuceneVarGapDocFreqInterval
 specifier|public
-name|Lucene41VarGapFixedInterval
+name|LuceneVarGapDocFreqInterval
 parameter_list|(
+name|int
+name|docFreqThreshold
+parameter_list|,
 name|int
 name|termIndexInterval
 parameter_list|)
 block|{
 name|super
 argument_list|(
-literal|"Lucene41VarGapFixedInterval"
+literal|"LuceneVarGapDocFreqInterval"
 argument_list|)
 expr_stmt|;
 name|this
@@ -347,6 +357,12 @@ operator|.
 name|termIndexInterval
 operator|=
 name|termIndexInterval
+expr_stmt|;
+name|this
+operator|.
+name|docFreqThreshold
+operator|=
+name|docFreqThreshold
 expr_stmt|;
 block|}
 annotation|@
@@ -366,7 +382,7 @@ name|PostingsWriterBase
 name|docs
 init|=
 operator|new
-name|Lucene41PostingsWriter
+name|Lucene50PostingsWriter
 argument_list|(
 name|state
 argument_list|)
@@ -395,8 +411,10 @@ argument_list|,
 operator|new
 name|VariableGapTermsIndexWriter
 operator|.
-name|EveryNTermSelector
+name|EveryNOrDocFreqTermSelector
 argument_list|(
+name|docFreqThreshold
+argument_list|,
 name|termIndexInterval
 argument_list|)
 argument_list|)
@@ -494,27 +512,9 @@ name|PostingsReaderBase
 name|postings
 init|=
 operator|new
-name|Lucene41PostingsReader
+name|Lucene50PostingsReader
 argument_list|(
 name|state
-operator|.
-name|directory
-argument_list|,
-name|state
-operator|.
-name|fieldInfos
-argument_list|,
-name|state
-operator|.
-name|segmentInfo
-argument_list|,
-name|state
-operator|.
-name|context
-argument_list|,
-name|state
-operator|.
-name|segmentSuffix
 argument_list|)
 decl_stmt|;
 name|TermsIndexReaderBase
