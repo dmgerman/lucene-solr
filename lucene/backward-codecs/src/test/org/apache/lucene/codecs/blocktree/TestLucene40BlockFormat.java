@@ -1,6 +1,6 @@
 begin_unit|revision:0.9.5;language:Java;cregit-version:0.0.1
 begin_package
-DECL|package|org.apache.lucene.codecs.lucene41
+DECL|package|org.apache.lucene.codecs.blocktree
 package|package
 name|org
 operator|.
@@ -10,7 +10,7 @@ name|lucene
 operator|.
 name|codecs
 operator|.
-name|lucene41
+name|blocktree
 package|;
 end_package
 
@@ -58,7 +58,7 @@ name|codecs
 operator|.
 name|blocktree
 operator|.
-name|FieldReader
+name|Lucene40FieldReader
 import|;
 end_import
 
@@ -74,7 +74,23 @@ name|codecs
 operator|.
 name|blocktree
 operator|.
-name|Stats
+name|Lucene40Stats
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|codecs
+operator|.
+name|lucene41
+operator|.
+name|Lucene41RWCodec
 import|;
 end_import
 
@@ -181,10 +197,10 @@ comment|/**  * Tests BlockPostingsFormat  */
 end_comment
 
 begin_class
-DECL|class|TestLucene41PostingsFormat
+DECL|class|TestLucene40BlockFormat
 specifier|public
 class|class
-name|TestLucene41PostingsFormat
+name|TestLucene40BlockFormat
 extends|extends
 name|BasePostingsFormatTestCase
 block|{
@@ -369,11 +385,11 @@ name|size
 argument_list|()
 argument_list|)
 expr_stmt|;
-name|FieldReader
+name|Lucene40FieldReader
 name|field
 init|=
 operator|(
-name|FieldReader
+name|Lucene40FieldReader
 operator|)
 name|r
 operator|.
@@ -397,7 +413,7 @@ literal|"field"
 argument_list|)
 decl_stmt|;
 comment|// We should see exactly two blocks: one root block (prefix empty string) and one block for z* terms (prefix z):
-name|Stats
+name|Lucene40Stats
 name|stats
 init|=
 name|field

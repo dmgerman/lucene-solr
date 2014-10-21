@@ -587,6 +587,17 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
+DECL|method|getStats
+specifier|public
+name|String
+name|getStats
+parameter_list|()
+block|{
+comment|// nocommit: add a meaningful default
+return|return
+literal|""
+return|;
+block|}
 block|}
 end_class
 

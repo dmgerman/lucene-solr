@@ -340,20 +340,6 @@ name|lucene
 operator|.
 name|util
 operator|.
-name|IntsRef
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|util
-operator|.
 name|IntsRefBuilder
 import|;
 end_import
@@ -489,15 +475,17 @@ comment|/*   TODO:        - Currently there is a one-to-one mapping of indexed  
 end_comment
 
 begin_comment
-comment|/**  * Block-based terms index and dictionary writer.  *<p>  * Writes terms dict and index, block-encoding (column  * stride) each term's metadata for each set of terms  * between two index terms.  *<p>  * Files:  *<ul>  *<li><tt>.tim</tt>:<a href="#Termdictionary">Term Dictionary</a></li>  *<li><tt>.tip</tt>:<a href="#Termindex">Term Index</a></li>  *</ul>  *<p>  *<a name="Termdictionary" id="Termdictionary"></a>  *<h3>Term Dictionary</h3>  *  *<p>The .tim file contains the list of terms in each  * field along with per-term statistics (such as docfreq)  * and per-term metadata (typically pointers to the postings list  * for that term in the inverted index).  *</p>  *  *<p>The .tim is arranged in blocks: with blocks containing  * a variable number of entries (by default 25-48), where  * each entry is either a term or a reference to a  * sub-block.</p>  *  *<p>NOTE: The term dictionary can plug into different postings implementations:  * the postings writer/reader are actually responsible for encoding   * and decoding the Postings Metadata and Term Metadata sections.</p>  *  *<ul>  *<li>TermsDict (.tim) --&gt; Header,<i>PostingsHeader</i>, NodeBlock<sup>NumBlocks</sup>,  *                               FieldSummary, DirOffset, Footer</li>  *<li>NodeBlock --&gt; (OuterNode | InnerNode)</li>  *<li>OuterNode --&gt; EntryCount, SuffixLength, Byte<sup>SuffixLength</sup>, StatsLength,&lt; TermStats&gt;<sup>EntryCount</sup>, MetaLength,&lt;<i>TermMetadata</i>&gt;<sup>EntryCount</sup></li>  *<li>InnerNode --&gt; EntryCount, SuffixLength[,Sub?], Byte<sup>SuffixLength</sup>, StatsLength,&lt; TermStats ?&gt;<sup>EntryCount</sup>, MetaLength,&lt;<i>TermMetadata ?</i>&gt;<sup>EntryCount</sup></li>  *<li>TermStats --&gt; DocFreq, TotalTermFreq</li>  *<li>FieldSummary --&gt; NumFields,&lt;FieldNumber, NumTerms, RootCodeLength, Byte<sup>RootCodeLength</sup>,  *                            SumTotalTermFreq?, SumDocFreq, DocCount, LongsSize, MinTerm, MaxTerm&gt;<sup>NumFields</sup></li>  *<li>Header --&gt; {@link CodecUtil#writeHeader CodecHeader}</li>  *<li>DirOffset --&gt; {@link DataOutput#writeLong Uint64}</li>  *<li>MinTerm,MaxTerm --&gt; {@link DataOutput#writeVInt VInt} length followed by the byte[]</li>  *<li>EntryCount,SuffixLength,StatsLength,DocFreq,MetaLength,NumFields,  *        FieldNumber,RootCodeLength,DocCount,LongsSize --&gt; {@link DataOutput#writeVInt VInt}</li>  *<li>TotalTermFreq,NumTerms,SumTotalTermFreq,SumDocFreq --&gt;   *        {@link DataOutput#writeVLong VLong}</li>  *<li>Footer --&gt; {@link CodecUtil#writeFooter CodecFooter}</li>  *</ul>  *<p>Notes:</p>  *<ul>  *<li>Header is a {@link CodecUtil#writeHeader CodecHeader} storing the version information  *        for the BlockTree implementation.</li>  *<li>DirOffset is a pointer to the FieldSummary section.</li>  *<li>DocFreq is the count of documents which contain the term.</li>  *<li>TotalTermFreq is the total number of occurrences of the term. This is encoded  *        as the difference between the total number of occurrences and the DocFreq.</li>  *<li>FieldNumber is the fields number from {@link FieldInfos}. (.fnm)</li>  *<li>NumTerms is the number of unique terms for the field.</li>  *<li>RootCode points to the root block for the field.</li>  *<li>SumDocFreq is the total number of postings, the number of term-document pairs across  *        the entire field.</li>  *<li>DocCount is the number of documents that have at least one posting for this field.</li>  *<li>LongsSize records how many long values the postings writer/reader record per term  *        (e.g., to hold freq/prox/doc file offsets).  *<li>MinTerm, MaxTerm are the lowest and highest term in this field.</li>  *<li>PostingsHeader and TermMetadata are plugged into by the specific postings implementation:  *        these contain arbitrary per-file data (such as parameters or versioning information)   *        and per-term data (such as pointers to inverted files).</li>  *<li>For inner nodes of the tree, every entry will steal one bit to mark whether it points  *        to child nodes(sub-block). If so, the corresponding TermStats and TermMetaData are omitted</li>  *</ul>  *<a name="Termindex" id="Termindex"></a>  *<h3>Term Index</h3>  *<p>The .tip file contains an index into the term dictionary, so that it can be   * accessed randomly.  The index is also used to determine  * when a given term cannot exist on disk (in the .tim file), saving a disk seek.</p>  *<ul>  *<li>TermsIndex (.tip) --&gt; Header, FSTIndex<sup>NumFields</sup>  *&lt;IndexStartFP&gt;<sup>NumFields</sup>, DirOffset, Footer</li>  *<li>Header --&gt; {@link CodecUtil#writeHeader CodecHeader}</li>  *<li>DirOffset --&gt; {@link DataOutput#writeLong Uint64}</li>  *<li>IndexStartFP --&gt; {@link DataOutput#writeVLong VLong}</li>  *<!-- TODO: better describe FST output here -->  *<li>FSTIndex --&gt; {@link FST FST&lt;byte[]&gt;}</li>  *<li>Footer --&gt; {@link CodecUtil#writeFooter CodecFooter}</li>  *</ul>  *<p>Notes:</p>  *<ul>  *<li>The .tip file contains a separate FST for each  *       field.  The FST maps a term prefix to the on-disk  *       block that holds all terms starting with that  *       prefix.  Each field's IndexStartFP points to its  *       FST.</li>  *<li>DirOffset is a pointer to the start of the IndexStartFPs  *       for all fields</li>  *<li>It's possible that an on-disk block would contain  *       too many terms (more than the allowed maximum  *       (default: 48)).  When this happens, the block is  *       sub-divided into new blocks (called "floor  *       blocks"), and then the output in the FST for the  *       block's prefix encodes the leading byte of each  *       sub-block, and its file pointer.  *</ul>  *  * @see BlockTreeTermsReader  * @lucene.experimental  */
+comment|/**  * Block-based terms index and dictionary writer.  *<p>  * Writes terms dict and index, block-encoding (column  * stride) each term's metadata for each set of terms  * between two index terms.  *<p>  * Files:  *<ul>  *<li><tt>.tim</tt>:<a href="#Termdictionary">Term Dictionary</a></li>  *<li><tt>.tip</tt>:<a href="#Termindex">Term Index</a></li>  *</ul>  *<p>  *<a name="Termdictionary" id="Termdictionary"></a>  *<h3>Term Dictionary</h3>  *  *<p>The .tim file contains the list of terms in each  * field along with per-term statistics (such as docfreq)  * and per-term metadata (typically pointers to the postings list  * for that term in the inverted index).  *</p>  *  *<p>The .tim is arranged in blocks: with blocks containing  * a variable number of entries (by default 25-48), where  * each entry is either a term or a reference to a  * sub-block.</p>  *  *<p>NOTE: The term dictionary can plug into different postings implementations:  * the postings writer/reader are actually responsible for encoding   * and decoding the Postings Metadata and Term Metadata sections.</p>  *  *<ul>  *<li>TermsDict (.tim) --&gt; Header,<i>PostingsHeader</i>, NodeBlock<sup>NumBlocks</sup>,  *                               FieldSummary, DirOffset, Footer</li>  *<li>NodeBlock --&gt; (OuterNode | InnerNode)</li>  *<li>OuterNode --&gt; EntryCount, SuffixLength, Byte<sup>SuffixLength</sup>, StatsLength,&lt; TermStats&gt;<sup>EntryCount</sup>, MetaLength,&lt;<i>TermMetadata</i>&gt;<sup>EntryCount</sup></li>  *<li>InnerNode --&gt; EntryCount, SuffixLength[,Sub?], Byte<sup>SuffixLength</sup>, StatsLength,&lt; TermStats ?&gt;<sup>EntryCount</sup>, MetaLength,&lt;<i>TermMetadata ?</i>&gt;<sup>EntryCount</sup></li>  *<li>TermStats --&gt; DocFreq, TotalTermFreq</li>  *<li>FieldSummary --&gt; NumFields,&lt;FieldNumber, NumTerms, RootCodeLength, Byte<sup>RootCodeLength</sup>,  *                            SumTotalTermFreq?, SumDocFreq, DocCount, LongsSize, MinTerm, MaxTerm&gt;<sup>NumFields</sup></li>  *<li>Header --&gt; {@link CodecUtil#writeHeader CodecHeader}</li>  *<li>DirOffset --&gt; {@link DataOutput#writeLong Uint64}</li>  *<li>MinTerm,MaxTerm --&gt; {@link DataOutput#writeVInt VInt} length followed by the byte[]</li>  *<li>EntryCount,SuffixLength,StatsLength,DocFreq,MetaLength,NumFields,  *        FieldNumber,RootCodeLength,DocCount,LongsSize --&gt; {@link DataOutput#writeVInt VInt}</li>  *<li>TotalTermFreq,NumTerms,SumTotalTermFreq,SumDocFreq --&gt;   *        {@link DataOutput#writeVLong VLong}</li>  *<li>Footer --&gt; {@link CodecUtil#writeFooter CodecFooter}</li>  *</ul>  *<p>Notes:</p>  *<ul>  *<li>Header is a {@link CodecUtil#writeHeader CodecHeader} storing the version information  *        for the BlockTree implementation.</li>  *<li>DirOffset is a pointer to the FieldSummary section.</li>  *<li>DocFreq is the count of documents which contain the term.</li>  *<li>TotalTermFreq is the total number of occurrences of the term. This is encoded  *        as the difference between the total number of occurrences and the DocFreq.</li>  *<li>FieldNumber is the fields number from {@link FieldInfos}. (.fnm)</li>  *<li>NumTerms is the number of unique terms for the field.</li>  *<li>RootCode points to the root block for the field.</li>  *<li>SumDocFreq is the total number of postings, the number of term-document pairs across  *        the entire field.</li>  *<li>DocCount is the number of documents that have at least one posting for this field.</li>  *<li>LongsSize records how many long values the postings writer/reader record per term  *        (e.g., to hold freq/prox/doc file offsets).  *<li>MinTerm, MaxTerm are the lowest and highest term in this field.</li>  *<li>PostingsHeader and TermMetadata are plugged into by the specific postings implementation:  *        these contain arbitrary per-file data (such as parameters or versioning information)   *        and per-term data (such as pointers to inverted files).</li>  *<li>For inner nodes of the tree, every entry will steal one bit to mark whether it points  *        to child nodes(sub-block). If so, the corresponding TermStats and TermMetaData are omitted</li>  *</ul>  *<a name="Termindex" id="Termindex"></a>  *<h3>Term Index</h3>  *<p>The .tip file contains an index into the term dictionary, so that it can be   * accessed randomly.  The index is also used to determine  * when a given term cannot exist on disk (in the .tim file), saving a disk seek.</p>  *<ul>  *<li>TermsIndex (.tip) --&gt; Header, FSTIndex<sup>NumFields</sup>  *&lt;IndexStartFP&gt;<sup>NumFields</sup>, DirOffset, Footer</li>  *<li>Header --&gt; {@link CodecUtil#writeHeader CodecHeader}</li>  *<li>DirOffset --&gt; {@link DataOutput#writeLong Uint64}</li>  *<li>IndexStartFP --&gt; {@link DataOutput#writeVLong VLong}</li>  *<!-- TODO: better describe FST output here -->  *<li>FSTIndex --&gt; {@link FST FST&lt;byte[]&gt;}</li>  *<li>Footer --&gt; {@link CodecUtil#writeFooter CodecFooter}</li>  *</ul>  *<p>Notes:</p>  *<ul>  *<li>The .tip file contains a separate FST for each  *       field.  The FST maps a term prefix to the on-disk  *       block that holds all terms starting with that  *       prefix.  Each field's IndexStartFP points to its  *       FST.</li>  *<li>DirOffset is a pointer to the start of the IndexStartFPs  *       for all fields</li>  *<li>It's possible that an on-disk block would contain  *       too many terms (more than the allowed maximum  *       (default: 48)).  When this happens, the block is  *       sub-divided into new blocks (called "floor  *       blocks"), and then the output in the FST for the  *       block's prefix encodes the leading byte of each  *       sub-block, and its file pointer.  *</ul>  *  * @see Lucene40BlockTreeTermsReader  * @lucene.experimental  * @deprecated Only for 4.x backcompat  */
 end_comment
 
 begin_class
-DECL|class|BlockTreeTermsWriter
+annotation|@
+name|Deprecated
+DECL|class|Lucene40BlockTreeTermsWriter
 specifier|public
 specifier|final
 class|class
-name|BlockTreeTermsWriter
+name|Lucene40BlockTreeTermsWriter
 extends|extends
 name|FieldsConsumer
 block|{
@@ -526,7 +514,7 @@ operator|.
 name|getNoOutput
 argument_list|()
 decl_stmt|;
-comment|/** Suggested default value for the {@code    *  minItemsInBlock} parameter to {@link    *  #BlockTreeTermsWriter(SegmentWriteState,PostingsWriterBase,int,int)}. */
+comment|/** Suggested default value for the {@code    *  minItemsInBlock} parameter to {@link    *  #Lucene40BlockTreeTermsWriter(SegmentWriteState,PostingsWriterBase,int,int)}. */
 DECL|field|DEFAULT_MIN_BLOCK_SIZE
 specifier|public
 specifier|final
@@ -536,7 +524,7 @@ name|DEFAULT_MIN_BLOCK_SIZE
 init|=
 literal|25
 decl_stmt|;
-comment|/** Suggested default value for the {@code    *  maxItemsInBlock} parameter to {@link    *  #BlockTreeTermsWriter(SegmentWriteState,PostingsWriterBase,int,int)}. */
+comment|/** Suggested default value for the {@code    *  maxItemsInBlock} parameter to {@link    *  #Lucene40BlockTreeTermsWriter(SegmentWriteState,PostingsWriterBase,int,int)}. */
 DECL|field|DEFAULT_MAX_BLOCK_SIZE
 specifier|public
 specifier|final
@@ -607,6 +595,46 @@ name|VERSION_START
 init|=
 literal|0
 decl_stmt|;
+comment|/** Append-only */
+DECL|field|VERSION_APPEND_ONLY
+specifier|public
+specifier|static
+specifier|final
+name|int
+name|VERSION_APPEND_ONLY
+init|=
+literal|1
+decl_stmt|;
+comment|/** Meta data as array */
+DECL|field|VERSION_META_ARRAY
+specifier|public
+specifier|static
+specifier|final
+name|int
+name|VERSION_META_ARRAY
+init|=
+literal|2
+decl_stmt|;
+comment|/** checksums */
+DECL|field|VERSION_CHECKSUM
+specifier|public
+specifier|static
+specifier|final
+name|int
+name|VERSION_CHECKSUM
+init|=
+literal|3
+decl_stmt|;
+comment|/** min/max term */
+DECL|field|VERSION_MIN_MAX_TERMS
+specifier|public
+specifier|static
+specifier|final
+name|int
+name|VERSION_MIN_MAX_TERMS
+init|=
+literal|4
+decl_stmt|;
 comment|/** Current terms format. */
 DECL|field|VERSION_CURRENT
 specifier|public
@@ -615,7 +643,7 @@ specifier|final
 name|int
 name|VERSION_CURRENT
 init|=
-name|VERSION_START
+name|VERSION_MIN_MAX_TERMS
 decl_stmt|;
 comment|/** Extension of terms index file */
 DECL|field|TERMS_INDEX_EXTENSION
@@ -870,9 +898,9 @@ argument_list|()
 decl_stmt|;
 comment|// private final String segment;
 comment|/** Create a new writer.  The number of items (terms or    *  sub-blocks) per block will aim to be between    *  minItemsPerBlock and maxItemsPerBlock, though in some    *  cases the blocks may be smaller than the min. */
-DECL|method|BlockTreeTermsWriter
+DECL|method|Lucene40BlockTreeTermsWriter
 specifier|public
-name|BlockTreeTermsWriter
+name|Lucene40BlockTreeTermsWriter
 parameter_list|(
 name|SegmentWriteState
 name|state
