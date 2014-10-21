@@ -115,7 +115,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * BlockTree statistics for a single field   * returned by {@link Lucene40FieldReader#computeStats()}.  * @deprecated Only for 4.x backcompat  */
+comment|/**  * BlockTree statistics for a single field   * returned by {@link Lucene40FieldReader#getStats()}.  * @deprecated Only for 4.x backcompat  */
 end_comment
 
 begin_class

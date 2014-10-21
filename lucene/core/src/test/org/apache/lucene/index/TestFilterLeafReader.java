@@ -950,6 +950,16 @@ name|equals
 argument_list|(
 literal|"attributes"
 argument_list|)
+operator|||
+name|m
+operator|.
+name|getName
+argument_list|()
+operator|.
+name|equals
+argument_list|(
+literal|"getStats"
+argument_list|)
 condition|)
 block|{
 continue|continue;

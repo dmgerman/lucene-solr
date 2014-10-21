@@ -438,6 +438,23 @@ name|hasPayloads
 argument_list|()
 return|;
 block|}
+annotation|@
+name|Override
+DECL|method|getStats
+specifier|public
+name|Object
+name|getStats
+parameter_list|()
+throws|throws
+name|IOException
+block|{
+return|return
+name|in
+operator|.
+name|getStats
+argument_list|()
+return|;
+block|}
 block|}
 comment|/** Base class for filtering {@link TermsEnum} implementations. */
 DECL|class|FilterTermsEnum

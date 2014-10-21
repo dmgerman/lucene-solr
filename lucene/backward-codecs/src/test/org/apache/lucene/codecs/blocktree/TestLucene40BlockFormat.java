@@ -418,7 +418,7 @@ name|stats
 init|=
 name|field
 operator|.
-name|computeStats
+name|getStats
 argument_list|()
 decl_stmt|;
 name|assertEquals

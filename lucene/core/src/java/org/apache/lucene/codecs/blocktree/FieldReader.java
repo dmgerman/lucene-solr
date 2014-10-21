@@ -600,11 +600,10 @@ return|;
 block|}
 block|}
 comment|/** For debugging -- used by CheckIndex too*/
-comment|// TODO: maybe push this into Terms?
-DECL|method|computeStats
+DECL|method|getStats
 specifier|public
 name|Stats
-name|computeStats
+name|getStats
 parameter_list|()
 throws|throws
 name|IOException
