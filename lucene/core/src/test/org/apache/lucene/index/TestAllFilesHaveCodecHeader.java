@@ -210,12 +210,26 @@ name|lucene
 operator|.
 name|util
 operator|.
+name|StringHelper
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|util
+operator|.
 name|TestUtil
 import|;
 end_import
 
 begin_comment
-comment|/**  * Test that a plain default puts codec headers in all files.  */
+comment|/**  * Test that a plain default puts codec headers in all files  */
 end_comment
 
 begin_class
@@ -579,6 +593,8 @@ name|getSegmentsFileName
 argument_list|()
 argument_list|,
 name|namesToExtensions
+argument_list|,
+literal|null
 argument_list|)
 expr_stmt|;
 for|for
@@ -589,6 +605,16 @@ range|:
 name|sis
 control|)
 block|{
+name|assertNotNull
+argument_list|(
+name|si
+operator|.
+name|info
+operator|.
+name|getId
+argument_list|()
+argument_list|)
+expr_stmt|;
 for|for
 control|(
 name|String
@@ -607,6 +633,13 @@ argument_list|,
 name|file
 argument_list|,
 name|namesToExtensions
+argument_list|,
+name|si
+operator|.
+name|info
+operator|.
+name|getId
+argument_list|()
 argument_list|)
 expr_stmt|;
 block|}
@@ -669,6 +702,13 @@ argument_list|,
 name|cfsFile
 argument_list|,
 name|namesToExtensions
+argument_list|,
+name|si
+operator|.
+name|info
+operator|.
+name|getId
+argument_list|()
 argument_list|)
 expr_stmt|;
 block|}
@@ -694,6 +734,10 @@ argument_list|,
 name|String
 argument_list|>
 name|namesToExtensions
+parameter_list|,
+name|byte
+index|[]
+name|id
 parameter_list|)
 throws|throws
 name|IOException
@@ -830,6 +874,71 @@ operator|+
 literal|" share same codecName "
 operator|+
 name|codecName
+argument_list|)
+expr_stmt|;
+block|}
+comment|// read version
+name|in
+operator|.
+name|readInt
+argument_list|()
+expr_stmt|;
+comment|// read segment id (except for segments_N)
+if|if
+condition|(
+name|id
+operator|!=
+literal|null
+condition|)
+block|{
+name|byte
+name|actualID
+index|[]
+init|=
+operator|new
+name|byte
+index|[
+name|StringHelper
+operator|.
+name|ID_LENGTH
+index|]
+decl_stmt|;
+name|in
+operator|.
+name|readBytes
+argument_list|(
+name|actualID
+argument_list|,
+literal|0
+argument_list|,
+name|actualID
+operator|.
+name|length
+argument_list|)
+expr_stmt|;
+name|assertArrayEquals
+argument_list|(
+literal|"expected "
+operator|+
+name|StringHelper
+operator|.
+name|idToString
+argument_list|(
+name|id
+argument_list|)
+operator|+
+literal|", got "
+operator|+
+name|StringHelper
+operator|.
+name|idToString
+argument_list|(
+name|actualID
+argument_list|)
+argument_list|,
+name|id
+argument_list|,
+name|actualID
 argument_list|)
 expr_stmt|;
 block|}
