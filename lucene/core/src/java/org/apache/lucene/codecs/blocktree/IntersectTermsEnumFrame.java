@@ -661,7 +661,7 @@ condition|(
 operator|(
 name|code
 operator|&
-name|BlockTreeTermsWriter
+name|BlockTreeTermsReader
 operator|.
 name|OUTPUT_FLAG_IS_FLOOR
 operator|)

@@ -229,11 +229,7 @@ import|;
 end_import
 
 begin_comment
-comment|/** BlockTree's implementation of {@link Terms}. */
-end_comment
-
-begin_comment
-comment|// public for CheckIndex:
+comment|/**  * BlockTree's implementation of {@link Terms}.  * @lucene.internal  */
 end_comment
 
 begin_class
@@ -483,7 +479,7 @@ operator|.
 name|readVLong
 argument_list|()
 operator|>>>
-name|BlockTreeTermsWriter
+name|BlockTreeTermsReader
 operator|.
 name|OUTPUT_FLAGS_NUM_BITS
 expr_stmt|;

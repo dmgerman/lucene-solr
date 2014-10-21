@@ -115,7 +115,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * BlockTree statistics for a single field   * returned by {@link FieldReader#getStats()}.  */
+comment|/**  * BlockTree statistics for a single field   * returned by {@link FieldReader#getStats()}.  * @lucene.internal  */
 end_comment
 
 begin_class

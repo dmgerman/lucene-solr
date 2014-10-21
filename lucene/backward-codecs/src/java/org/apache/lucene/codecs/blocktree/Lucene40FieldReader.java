@@ -480,7 +480,7 @@ operator|.
 name|readVLong
 argument_list|()
 operator|>>>
-name|Lucene40BlockTreeTermsWriter
+name|Lucene40BlockTreeTermsReader
 operator|.
 name|OUTPUT_FLAGS_NUM_BITS
 expr_stmt|;

@@ -415,7 +415,7 @@ name|fr
 operator|.
 name|parent
 operator|.
-name|in
+name|termsIn
 operator|.
 name|clone
 argument_list|()

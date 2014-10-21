@@ -667,7 +667,7 @@ condition|(
 operator|(
 name|code
 operator|&
-name|Lucene40BlockTreeTermsWriter
+name|Lucene40BlockTreeTermsReader
 operator|.
 name|OUTPUT_FLAG_IS_FLOOR
 operator|)
