@@ -40,6 +40,22 @@ name|TokenStream
 import|;
 end_import
 
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|index
+operator|.
+name|FieldInfo
+operator|.
+name|IndexOptions
+import|;
+end_import
+
 begin_comment
 comment|/** A field that is indexed and tokenized, without term  *  vectors.  For example this would be used on a 'body'  *  field, that contains the bulk of a document's text. */
 end_comment
@@ -81,9 +97,11 @@ static|static
 block|{
 name|TYPE_NOT_STORED
 operator|.
-name|setIndexed
+name|setIndexOptions
 argument_list|(
-literal|true
+name|IndexOptions
+operator|.
+name|DOCS_AND_FREQS_AND_POSITIONS
 argument_list|)
 expr_stmt|;
 name|TYPE_NOT_STORED
@@ -100,9 +118,11 @@ argument_list|()
 expr_stmt|;
 name|TYPE_STORED
 operator|.
-name|setIndexed
+name|setIndexOptions
 argument_list|(
-literal|true
+name|IndexOptions
+operator|.
+name|DOCS_AND_FREQS_AND_POSITIONS
 argument_list|)
 expr_stmt|;
 name|TYPE_STORED

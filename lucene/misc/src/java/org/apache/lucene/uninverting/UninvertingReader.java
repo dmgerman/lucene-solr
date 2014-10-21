@@ -771,11 +771,6 @@ name|name
 argument_list|,
 name|fi
 operator|.
-name|isIndexed
-argument_list|()
-argument_list|,
-name|fi
-operator|.
 name|number
 argument_list|,
 name|fi

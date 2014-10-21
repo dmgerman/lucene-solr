@@ -1762,8 +1762,6 @@ name|FieldInfo
 argument_list|(
 name|fieldName
 argument_list|,
-literal|true
-argument_list|,
 name|fieldInfos
 operator|.
 name|size

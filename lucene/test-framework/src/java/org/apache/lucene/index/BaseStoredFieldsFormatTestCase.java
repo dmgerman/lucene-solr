@@ -2531,7 +2531,7 @@ operator|.
 name|close
 argument_list|()
 expr_stmt|;
-name|assertFalse
+name|assertNull
 argument_list|(
 name|r
 operator|.
@@ -2548,11 +2548,11 @@ operator|.
 name|fieldType
 argument_list|()
 operator|.
-name|indexed
+name|indexOptions
 argument_list|()
 argument_list|)
 expr_stmt|;
-name|assertTrue
+name|assertNotNull
 argument_list|(
 name|r
 operator|.
@@ -2569,7 +2569,7 @@ operator|.
 name|fieldType
 argument_list|()
 operator|.
-name|indexed
+name|indexOptions
 argument_list|()
 argument_list|)
 expr_stmt|;
@@ -4036,9 +4036,9 @@ argument_list|)
 decl_stmt|;
 name|type
 operator|.
-name|setIndexed
+name|setIndexOptions
 argument_list|(
-literal|false
+literal|null
 argument_list|)
 expr_stmt|;
 name|type
@@ -4733,9 +4733,9 @@ argument_list|)
 decl_stmt|;
 name|onlyStored
 operator|.
-name|setIndexed
+name|setIndexOptions
 argument_list|(
-literal|false
+literal|null
 argument_list|)
 expr_stmt|;
 specifier|final

@@ -1149,6 +1149,43 @@ return|return
 name|precisionStep
 return|;
 block|}
+annotation|@
+name|Override
+DECL|method|toString
+specifier|public
+name|String
+name|toString
+parameter_list|()
+block|{
+comment|// We override default because it can throw cryptic "illegal shift value":
+return|return
+name|getClass
+argument_list|()
+operator|.
+name|getSimpleName
+argument_list|()
+operator|+
+literal|"(precisionStep="
+operator|+
+name|precisionStep
+operator|+
+literal|" valueSize="
+operator|+
+name|numericAtt
+operator|.
+name|getValueSize
+argument_list|()
+operator|+
+literal|" shift="
+operator|+
+name|numericAtt
+operator|.
+name|getShift
+argument_list|()
+operator|+
+literal|")"
+return|;
+block|}
 comment|// members
 DECL|field|numericAtt
 specifier|private

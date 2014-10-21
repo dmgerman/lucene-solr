@@ -151,12 +151,12 @@ name|MAX_TERM_LENGTH
 operator|+
 literal|1
 decl_stmt|;
-DECL|field|maxTestTermLegnth
+DECL|field|maxTestTermLength
 specifier|private
 specifier|final
 specifier|static
 name|int
-name|maxTestTermLegnth
+name|maxTestTermLength
 init|=
 name|IndexWriter
 operator|.
@@ -236,7 +236,7 @@ argument_list|()
 argument_list|,
 name|minTestTermLength
 argument_list|,
-name|maxTestTermLegnth
+name|maxTestTermLength
 argument_list|)
 decl_stmt|;
 specifier|final
@@ -271,7 +271,7 @@ argument_list|()
 argument_list|,
 name|minTestTermLength
 argument_list|,
-name|maxTestTermLegnth
+name|maxTestTermLength
 argument_list|)
 decl_stmt|;
 name|boolean
@@ -501,7 +501,7 @@ argument_list|()
 argument_list|,
 name|minTestTermLength
 argument_list|,
-name|maxTestTermLegnth
+name|maxTestTermLength
 argument_list|)
 decl_stmt|;
 specifier|final
@@ -536,7 +536,7 @@ argument_list|()
 argument_list|,
 name|minTestTermLength
 argument_list|,
-name|maxTestTermLegnth
+name|maxTestTermLength
 argument_list|)
 decl_stmt|;
 name|boolean
@@ -698,7 +698,6 @@ name|Exception
 name|e
 parameter_list|)
 block|{
-comment|//expected
 name|fail
 argument_list|(
 literal|"Should not have failed adding doc "

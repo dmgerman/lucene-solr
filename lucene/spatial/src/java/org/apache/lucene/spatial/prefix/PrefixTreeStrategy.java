@@ -502,13 +502,6 @@ static|static
 block|{
 name|FIELD_TYPE
 operator|.
-name|setIndexed
-argument_list|(
-literal|true
-argument_list|)
-expr_stmt|;
-name|FIELD_TYPE
-operator|.
 name|setTokenized
 argument_list|(
 literal|true

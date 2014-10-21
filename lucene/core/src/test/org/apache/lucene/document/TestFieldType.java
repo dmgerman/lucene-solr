@@ -210,9 +210,11 @@ argument_list|()
 decl_stmt|;
 name|ft5
 operator|.
-name|setIndexed
+name|setIndexOptions
 argument_list|(
-literal|true
+name|IndexOptions
+operator|.
+name|DOCS_AND_FREQS_AND_POSITIONS
 argument_list|)
 expr_stmt|;
 name|assertFalse

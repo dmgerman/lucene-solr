@@ -61,11 +61,6 @@ specifier|final
 name|int
 name|number
 decl_stmt|;
-DECL|field|indexed
-specifier|private
-name|boolean
-name|indexed
-decl_stmt|;
 DECL|field|docValueType
 specifier|private
 name|DocValuesType
@@ -171,9 +166,6 @@ parameter_list|(
 name|String
 name|name
 parameter_list|,
-name|boolean
-name|indexed
-parameter_list|,
 name|int
 name|number
 parameter_list|,
@@ -212,12 +204,6 @@ name|name
 expr_stmt|;
 name|this
 operator|.
-name|indexed
-operator|=
-name|indexed
-expr_stmt|;
-name|this
-operator|.
 name|number
 operator|=
 name|number
@@ -230,7 +216,9 @@ name|docValues
 expr_stmt|;
 if|if
 condition|(
-name|indexed
+name|indexOptions
+operator|!=
+literal|null
 condition|)
 block|{
 name|this
@@ -312,28 +300,11 @@ parameter_list|()
 block|{
 if|if
 condition|(
-name|indexed
-condition|)
-block|{
-if|if
-condition|(
 name|indexOptions
-operator|==
+operator|!=
 literal|null
 condition|)
 block|{
-throw|throw
-operator|new
-name|IllegalStateException
-argument_list|(
-literal|"indexed field '"
-operator|+
-name|name
-operator|+
-literal|"' must have index options"
-argument_list|)
-throw|;
-block|}
 comment|// Cannot store payloads unless positions are indexed:
 if|if
 condition|(
@@ -475,11 +446,6 @@ parameter_list|)
 block|{
 name|update
 argument_list|(
-name|ft
-operator|.
-name|indexed
-argument_list|()
-argument_list|,
 literal|false
 argument_list|,
 name|ft
@@ -502,9 +468,6 @@ name|void
 name|update
 parameter_list|(
 name|boolean
-name|indexed
-parameter_list|,
-name|boolean
 name|storeTermVector
 parameter_list|,
 name|boolean
@@ -518,49 +481,6 @@ name|indexOptions
 parameter_list|)
 block|{
 comment|//System.out.println("FI.update field=" + name + " indexed=" + indexed + " omitNorms=" + omitNorms + " this.omitNorms=" + this.omitNorms);
-name|this
-operator|.
-name|indexed
-operator||=
-name|indexed
-expr_stmt|;
-comment|// once indexed, always indexed
-if|if
-condition|(
-name|indexed
-condition|)
-block|{
-comment|// if updated field data is not for indexing, leave the updates out
-name|this
-operator|.
-name|storeTermVector
-operator||=
-name|storeTermVector
-expr_stmt|;
-comment|// once vector, always vector
-name|this
-operator|.
-name|storePayloads
-operator||=
-name|storePayloads
-expr_stmt|;
-if|if
-condition|(
-name|this
-operator|.
-name|omitNorms
-operator|!=
-name|omitNorms
-condition|)
-block|{
-name|this
-operator|.
-name|omitNorms
-operator|=
-literal|true
-expr_stmt|;
-comment|// if one require omitNorms at least once, it remains off for life
-block|}
 if|if
 condition|(
 name|this
@@ -586,7 +506,13 @@ operator|=
 name|indexOptions
 expr_stmt|;
 block|}
-else|else
+elseif|else
+if|if
+condition|(
+name|indexOptions
+operator|!=
+literal|null
+condition|)
 block|{
 comment|// downgrade
 name|this
@@ -611,8 +537,61 @@ else|:
 name|indexOptions
 expr_stmt|;
 block|}
+block|}
 if|if
 condition|(
+name|this
+operator|.
+name|indexOptions
+operator|!=
+literal|null
+condition|)
+block|{
+comment|// if updated field data is not for indexing, leave the updates out
+name|this
+operator|.
+name|storeTermVector
+operator||=
+name|storeTermVector
+expr_stmt|;
+comment|// once vector, always vector
+name|this
+operator|.
+name|storePayloads
+operator||=
+name|storePayloads
+expr_stmt|;
+comment|// Awkward: only drop norms if incoming update is indexed:
+if|if
+condition|(
+name|indexOptions
+operator|!=
+literal|null
+operator|&&
+name|this
+operator|.
+name|omitNorms
+operator|!=
+name|omitNorms
+condition|)
+block|{
+name|this
+operator|.
+name|omitNorms
+operator|=
+literal|true
+expr_stmt|;
+comment|// if one require omitNorms at least once, it remains off for life
+block|}
+block|}
+if|if
+condition|(
+name|this
+operator|.
+name|indexOptions
+operator|==
+literal|null
+operator|||
 name|this
 operator|.
 name|indexOptions
@@ -634,8 +613,6 @@ name|storePayloads
 operator|=
 literal|false
 expr_stmt|;
-block|}
-block|}
 block|}
 assert|assert
 name|checkConsistency
@@ -777,7 +754,9 @@ parameter_list|()
 block|{
 if|if
 condition|(
-name|indexed
+name|indexOptions
+operator|!=
+literal|null
 operator|&&
 name|indexOptions
 operator|.
@@ -820,14 +799,15 @@ name|hasNorms
 parameter_list|()
 block|{
 return|return
-name|indexed
+name|isIndexed
+argument_list|()
 operator|&&
 name|omitNorms
 operator|==
 literal|false
 return|;
 block|}
-comment|/**    * Returns true if this field is indexed.    */
+comment|/**    * Returns true if this field is indexed (has non-null {@link #getIndexOptions}).    */
 DECL|method|isIndexed
 specifier|public
 name|boolean
@@ -835,7 +815,9 @@ name|isIndexed
 parameter_list|()
 block|{
 return|return
-name|indexed
+name|indexOptions
+operator|!=
+literal|null
 return|;
 block|}
 comment|/**    * Returns true if any payloads exist for this field.    */

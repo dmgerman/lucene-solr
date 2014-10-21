@@ -1227,8 +1227,10 @@ name|field
 operator|.
 name|type
 operator|.
-name|indexed
+name|indexOptions
 argument_list|()
+operator|!=
+literal|null
 return|;
 block|}
 block|}

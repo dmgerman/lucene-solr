@@ -76,13 +76,6 @@ specifier|public
 interface|interface
 name|IndexableFieldType
 block|{
-comment|/** True if this field should be indexed (inverted) */
-DECL|method|indexed
-specifier|public
-name|boolean
-name|indexed
-parameter_list|()
-function_decl|;
 comment|/** True if the field's value should be stored */
 DECL|method|stored
 specifier|public
@@ -90,7 +83,7 @@ name|boolean
 name|stored
 parameter_list|()
 function_decl|;
-comment|/**     * True if this field's value should be analyzed by the    * {@link Analyzer}.    *<p>    * This has no effect if {@link #indexed()} returns false.    */
+comment|/**     * True if this field's value should be analyzed by the    * {@link Analyzer}.    *<p>    * This has no effect if {@link #indexOptions()} returns null.    */
 comment|// TODO: shouldn't we remove this?  Whether/how a field is
 comment|// tokenized is an impl detail under Field?
 DECL|method|tokenized
@@ -99,7 +92,7 @@ name|boolean
 name|tokenized
 parameter_list|()
 function_decl|;
-comment|/**     * True if this field's indexed form should be also stored     * into term vectors.    *<p>    * This builds a miniature inverted-index for this field which    * can be accessed in a document-oriented way from     * {@link IndexReader#getTermVector(int,String)}.    *<p>    * This option is illegal if {@link #indexed()} returns false.    */
+comment|/**     * True if this field's indexed form should be also stored     * into term vectors.    *<p>    * This builds a miniature inverted-index for this field which    * can be accessed in a document-oriented way from     * {@link IndexReader#getTermVector(int,String)}.    *<p>    * This option is illegal if {@link #indexOptions()} returns null.    */
 DECL|method|storeTermVectors
 specifier|public
 name|boolean
@@ -134,7 +127,7 @@ name|boolean
 name|omitNorms
 parameter_list|()
 function_decl|;
-comment|/** {@link IndexOptions}, describing what should be    * recorded into the inverted index */
+comment|/** {@link IndexOptions}, describing what should be    *  recorded into the inverted index, or null if this field    *  is not indexed */
 DECL|method|indexOptions
 specifier|public
 name|IndexOptions
