@@ -30,24 +30,6 @@ name|codecs
 operator|.
 name|lucene50
 operator|.
-name|Lucene50PostingsFormat
-operator|.
-name|BLOCK_SIZE
-import|;
-end_import
-
-begin_import
-import|import static
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|codecs
-operator|.
-name|lucene50
-operator|.
 name|ForUtil
 operator|.
 name|MAX_DATA_SIZE
@@ -84,9 +66,135 @@ name|codecs
 operator|.
 name|lucene50
 operator|.
-name|Lucene50PostingsWriter
+name|Lucene50PostingsFormat
 operator|.
-name|IntBlockTermState
+name|BLOCK_SIZE
+import|;
+end_import
+
+begin_import
+import|import static
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|codecs
+operator|.
+name|lucene50
+operator|.
+name|Lucene50PostingsFormat
+operator|.
+name|DOC_CODEC
+import|;
+end_import
+
+begin_import
+import|import static
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|codecs
+operator|.
+name|lucene50
+operator|.
+name|Lucene50PostingsFormat
+operator|.
+name|MAX_SKIP_LEVELS
+import|;
+end_import
+
+begin_import
+import|import static
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|codecs
+operator|.
+name|lucene50
+operator|.
+name|Lucene50PostingsFormat
+operator|.
+name|PAY_CODEC
+import|;
+end_import
+
+begin_import
+import|import static
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|codecs
+operator|.
+name|lucene50
+operator|.
+name|Lucene50PostingsFormat
+operator|.
+name|POS_CODEC
+import|;
+end_import
+
+begin_import
+import|import static
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|codecs
+operator|.
+name|lucene50
+operator|.
+name|Lucene50PostingsFormat
+operator|.
+name|TERMS_CODEC
+import|;
+end_import
+
+begin_import
+import|import static
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|codecs
+operator|.
+name|lucene50
+operator|.
+name|Lucene50PostingsFormat
+operator|.
+name|VERSION_CURRENT
+import|;
+end_import
+
+begin_import
+import|import static
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|codecs
+operator|.
+name|lucene50
+operator|.
+name|Lucene50PostingsFormat
+operator|.
+name|VERSION_START
 import|;
 end_import
 
@@ -159,6 +267,24 @@ operator|.
 name|codecs
 operator|.
 name|PostingsReaderBase
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|codecs
+operator|.
+name|lucene50
+operator|.
+name|Lucene50PostingsFormat
+operator|.
+name|IntBlockTermState
 import|;
 end_import
 
@@ -361,7 +487,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Concrete class that reads docId(maybe frq,pos,offset,payloads) list  * with postings format.  *  * @see Lucene50SkipReader for details  * @lucene.experimental  */
+comment|/**  * Concrete class that reads docId(maybe frq,pos,offset,payloads) list  * with postings format.  *  * @lucene.experimental  */
 end_comment
 
 begin_class
@@ -449,6 +575,10 @@ name|payIn
 init|=
 literal|null
 decl_stmt|;
+comment|// NOTE: these data files are too costly to verify checksum against all the bytes on open,
+comment|// but for now we at least verify proper structure of the checksum footer: which looks
+comment|// for FOOTER_MAGIC + algorithmID. This is cheap and can detect some forms of corruption
+comment|// such as file truncation.
 name|String
 name|docName
 init|=
@@ -496,16 +626,10 @@ name|checkSegmentHeader
 argument_list|(
 name|docIn
 argument_list|,
-name|Lucene50PostingsWriter
-operator|.
 name|DOC_CODEC
 argument_list|,
-name|Lucene50PostingsWriter
-operator|.
 name|VERSION_START
 argument_list|,
-name|Lucene50PostingsWriter
-operator|.
 name|VERSION_CURRENT
 argument_list|,
 name|state
@@ -528,10 +652,6 @@ argument_list|(
 name|docIn
 argument_list|)
 expr_stmt|;
-comment|// NOTE: data file is too costly to verify checksum against all the bytes on open,
-comment|// but for now we at least verify proper structure of the checksum footer: which looks
-comment|// for FOOTER_MAGIC + algorithmID. This is cheap and can detect some forms of corruption
-comment|// such as file truncation.
 name|CodecUtil
 operator|.
 name|retrieveChecksum
@@ -592,8 +712,6 @@ name|checkSegmentHeader
 argument_list|(
 name|posIn
 argument_list|,
-name|Lucene50PostingsWriter
-operator|.
 name|POS_CODEC
 argument_list|,
 name|version
@@ -612,10 +730,6 @@ operator|.
 name|segmentSuffix
 argument_list|)
 expr_stmt|;
-comment|// NOTE: data file is too costly to verify checksum against all the bytes on open,
-comment|// but for now we at least verify proper structure of the checksum footer: which looks
-comment|// for FOOTER_MAGIC + algorithmID. This is cheap and can detect some forms of corruption
-comment|// such as file truncation.
 name|CodecUtil
 operator|.
 name|retrieveChecksum
@@ -683,8 +797,6 @@ name|checkSegmentHeader
 argument_list|(
 name|payIn
 argument_list|,
-name|Lucene50PostingsWriter
-operator|.
 name|PAY_CODEC
 argument_list|,
 name|version
@@ -703,10 +815,6 @@ operator|.
 name|segmentSuffix
 argument_list|)
 expr_stmt|;
-comment|// NOTE: data file is too costly to verify checksum against all the bytes on open,
-comment|// but for now we at least verify proper structure of the checksum footer: which looks
-comment|// for FOOTER_MAGIC + algorithmID. This is cheap and can detect some forms of corruption
-comment|// such as file truncation.
 name|CodecUtil
 operator|.
 name|retrieveChecksum
@@ -784,16 +892,10 @@ name|checkSegmentHeader
 argument_list|(
 name|termsIn
 argument_list|,
-name|Lucene50PostingsWriter
-operator|.
 name|TERMS_CODEC
 argument_list|,
-name|Lucene50PostingsWriter
-operator|.
 name|VERSION_START
 argument_list|,
-name|Lucene50PostingsWriter
-operator|.
 name|VERSION_CURRENT
 argument_list|,
 name|state
@@ -2293,8 +2395,6 @@ operator|.
 name|clone
 argument_list|()
 argument_list|,
-name|Lucene50PostingsWriter
-operator|.
 name|MAX_SKIP_LEVELS
 argument_list|,
 name|BLOCK_SIZE
@@ -3467,8 +3567,6 @@ operator|.
 name|clone
 argument_list|()
 argument_list|,
-name|Lucene50PostingsWriter
-operator|.
 name|MAX_SKIP_LEVELS
 argument_list|,
 name|BLOCK_SIZE
@@ -5300,8 +5398,6 @@ operator|.
 name|clone
 argument_list|()
 argument_list|,
-name|Lucene50PostingsWriter
-operator|.
 name|MAX_SKIP_LEVELS
 argument_list|,
 name|BLOCK_SIZE
