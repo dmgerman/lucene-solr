@@ -5733,6 +5733,13 @@ name|foundErrorNodeInReplicaList
 init|=
 literal|false
 decl_stmt|;
+if|if
+condition|(
+name|myReplicas
+operator|!=
+literal|null
+condition|)
+block|{
 for|for
 control|(
 name|ZkCoreNodeProps
@@ -5781,6 +5788,7 @@ operator|=
 literal|true
 expr_stmt|;
 break|break;
+block|}
 block|}
 block|}
 if|if
