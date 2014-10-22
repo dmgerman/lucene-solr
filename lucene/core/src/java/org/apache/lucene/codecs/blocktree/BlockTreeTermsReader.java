@@ -393,7 +393,7 @@ specifier|static
 name|String
 name|TERMS_CODEC_NAME
 init|=
-literal|"BLOCK_TREE_TERMS_DICT"
+literal|"BlockTreeTermsDict"
 decl_stmt|;
 comment|/** Initial terms format. */
 DECL|field|VERSION_START
@@ -430,7 +430,7 @@ specifier|static
 name|String
 name|TERMS_INDEX_CODEC_NAME
 init|=
-literal|"BLOCK_TREE_TERMS_INDEX"
+literal|"BlockTreeTermsIndex"
 decl_stmt|;
 comment|// Open input to the main terms dict file (_X.tib)
 DECL|field|termsIn
