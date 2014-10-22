@@ -3019,7 +3019,7 @@ expr_stmt|;
 block|}
 try|try
 block|{
-comment|// start at 1 sec and work up to a couple min
+comment|// start at 1 sec and work up to a min
 name|double
 name|loopCount
 init|=
@@ -3036,7 +3036,7 @@ argument_list|,
 name|retries
 argument_list|)
 argument_list|,
-literal|600
+literal|60
 argument_list|)
 decl_stmt|;
 name|log
