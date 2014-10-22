@@ -18,6 +18,16 @@ end_comment
 
 begin_import
 import|import
+name|java
+operator|.
+name|io
+operator|.
+name|IOException
+import|;
+end_import
+
+begin_import
+import|import
 name|org
 operator|.
 name|apache
@@ -80,6 +90,22 @@ name|apache
 operator|.
 name|lucene
 operator|.
+name|index
+operator|.
+name|FieldInfo
+operator|.
+name|IndexOptions
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
 name|store
 operator|.
 name|Directory
@@ -116,11 +142,11 @@ end_import
 
 begin_import
 import|import
-name|java
+name|org
 operator|.
-name|io
+name|junit
 operator|.
-name|IOException
+name|After
 import|;
 end_import
 
@@ -131,16 +157,6 @@ operator|.
 name|junit
 operator|.
 name|Before
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|junit
-operator|.
-name|After
 import|;
 end_import
 
@@ -264,9 +280,11 @@ argument_list|()
 decl_stmt|;
 name|ft
 operator|.
-name|setIndexed
+name|setIndexOptions
 argument_list|(
-literal|true
+name|IndexOptions
+operator|.
+name|DOCS_AND_FREQS_AND_POSITIONS
 argument_list|)
 expr_stmt|;
 name|ft

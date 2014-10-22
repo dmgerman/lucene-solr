@@ -641,8 +641,6 @@ name|FieldInfo
 argument_list|(
 name|name
 argument_list|,
-name|isIndexed
-argument_list|,
 name|fieldNumber
 argument_list|,
 name|storeTermVector

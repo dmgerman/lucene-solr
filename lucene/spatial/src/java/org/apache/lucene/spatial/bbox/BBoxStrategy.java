@@ -674,11 +674,11 @@ argument_list|)
 expr_stmt|;
 name|xdlFieldType
 operator|.
-name|setIndexed
+name|setIndexOptions
 argument_list|(
 name|fieldType
 operator|.
-name|indexed
+name|indexOptions
 argument_list|()
 argument_list|)
 expr_stmt|;

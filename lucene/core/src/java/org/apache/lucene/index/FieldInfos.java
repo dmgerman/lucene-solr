@@ -1249,11 +1249,6 @@ argument_list|,
 operator|-
 literal|1
 argument_list|,
-name|fieldType
-operator|.
-name|indexed
-argument_list|()
-argument_list|,
 literal|false
 argument_list|,
 name|fieldType
@@ -1285,9 +1280,6 @@ name|name
 parameter_list|,
 name|int
 name|preferredFieldNumber
-parameter_list|,
-name|boolean
-name|isIndexed
 parameter_list|,
 name|boolean
 name|storeTermVector
@@ -1346,8 +1338,6 @@ operator|new
 name|FieldInfo
 argument_list|(
 name|name
-argument_list|,
-name|isIndexed
 argument_list|,
 name|fieldNumber
 argument_list|,
@@ -1420,8 +1410,6 @@ name|fi
 operator|.
 name|update
 argument_list|(
-name|isIndexed
-argument_list|,
 name|storeTermVector
 argument_list|,
 name|omitNorms
@@ -1503,11 +1491,6 @@ argument_list|,
 name|fi
 operator|.
 name|number
-argument_list|,
-name|fi
-operator|.
-name|isIndexed
-argument_list|()
 argument_list|,
 name|fi
 operator|.

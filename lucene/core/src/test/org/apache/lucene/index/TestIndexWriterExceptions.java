@@ -794,9 +794,11 @@ argument_list|)
 expr_stmt|;
 name|custom2
 operator|.
-name|setIndexed
+name|setIndexOptions
 argument_list|(
-literal|true
+name|IndexOptions
+operator|.
+name|DOCS_AND_FREQS_AND_POSITIONS
 argument_list|)
 expr_stmt|;
 name|custom3

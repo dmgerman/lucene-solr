@@ -5408,6 +5408,10 @@ argument_list|,
 literal|"foo_s"
 argument_list|,
 literal|"A"
+argument_list|,
+literal|"yak_i"
+argument_list|,
+literal|"32"
 argument_list|)
 argument_list|)
 expr_stmt|;
@@ -5427,6 +5431,7 @@ name|commit
 argument_list|()
 argument_list|)
 expr_stmt|;
+comment|// if exists() is false, no pseudo-field should be added
 name|assertJQ
 argument_list|(
 name|req
@@ -5439,9 +5444,40 @@ literal|"fl"
 argument_list|,
 literal|"a:1,b:2.0,c:'X',d:{!func}foo_s,e:{!func}bar_s"
 argument_list|)
-comment|// if exists() is false, no pseudo-field should be added
 argument_list|,
 literal|"/response/docs/[0]=={'a':1, 'b':2.0,'c':'X','d':'A'}"
+argument_list|)
+expr_stmt|;
+name|assertJQ
+argument_list|(
+name|req
+argument_list|(
+literal|"q"
+argument_list|,
+literal|"id:1"
+argument_list|,
+literal|"fl"
+argument_list|,
+literal|"a:sum(yak_i,bog_i),b:mul(yak_i,bog_i),c:min(yak_i,bog_i)"
+argument_list|)
+argument_list|,
+literal|"/response/docs/[0]=={ 'c':32.0 }"
+argument_list|)
+expr_stmt|;
+name|assertJQ
+argument_list|(
+name|req
+argument_list|(
+literal|"q"
+argument_list|,
+literal|"id:1"
+argument_list|,
+literal|"fl"
+argument_list|,
+literal|"a:sum(yak_i,def(bog_i,42)), b:max(yak_i,bog_i)"
+argument_list|)
+argument_list|,
+literal|"/response/docs/[0]=={ 'a': 74.0, 'b':32.0 }"
 argument_list|)
 expr_stmt|;
 block|}

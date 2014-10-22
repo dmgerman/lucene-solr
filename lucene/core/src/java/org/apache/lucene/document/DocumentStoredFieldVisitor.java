@@ -276,16 +276,6 @@ argument_list|)
 expr_stmt|;
 name|ft
 operator|.
-name|setIndexed
-argument_list|(
-name|fieldInfo
-operator|.
-name|isIndexed
-argument_list|()
-argument_list|)
-expr_stmt|;
-name|ft
-operator|.
 name|setOmitNorms
 argument_list|(
 name|fieldInfo

@@ -2245,12 +2245,12 @@ operator|.
 name|fieldType
 argument_list|()
 operator|.
-name|indexed
+name|indexOptions
 argument_list|()
 argument_list|,
 name|fi
 operator|.
-name|isIndexed
+name|getIndexOptions
 argument_list|()
 argument_list|)
 expr_stmt|;

@@ -1223,6 +1223,14 @@ argument_list|()
 operator|.
 name|getZkClient
 argument_list|()
+argument_list|,
+name|OverseerElectionContext
+operator|.
+name|PATH
+operator|+
+name|LeaderElector
+operator|.
+name|ELECTION_NODE
 argument_list|)
 argument_list|)
 expr_stmt|;

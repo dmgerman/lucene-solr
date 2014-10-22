@@ -7111,8 +7111,10 @@ if|if
 condition|(
 name|newType
 operator|.
-name|indexed
+name|indexOptions
 argument_list|()
+operator|!=
+literal|null
 operator|&&
 name|oldType
 operator|.
@@ -7239,11 +7241,12 @@ argument_list|(
 name|random
 argument_list|)
 operator|||
-operator|!
 name|type
 operator|.
-name|indexed
+name|indexOptions
 argument_list|()
+operator|==
+literal|null
 operator|||
 name|prevType
 operator|!=

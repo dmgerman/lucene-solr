@@ -976,7 +976,7 @@ block|}
 end_class
 
 begin_comment
-comment|// TODO - this can be much more efficient - use OpenBitSet or Bits
+comment|// TODO - this can be much more efficient - use FixedBitSet or Bits
 end_comment
 
 begin_class

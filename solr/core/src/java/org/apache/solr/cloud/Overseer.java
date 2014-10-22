@@ -909,6 +909,17 @@ name|NO
 block|,
 name|YES
 block|}
+DECL|field|preferredLeaderProp
+specifier|public
+specifier|static
+specifier|final
+name|String
+name|preferredLeaderProp
+init|=
+name|COLL_PROP_PREFIX
+operator|+
+literal|"preferredleader"
+decl_stmt|;
 DECL|field|sliceUniqueBooleanProperties
 specifier|public
 specifier|static
@@ -923,7 +934,7 @@ name|ImmutableSet
 operator|.
 name|of
 argument_list|(
-literal|"property.preferredleader"
+name|preferredLeaderProp
 argument_list|)
 decl_stmt|;
 DECL|field|lastUpdatedTime
@@ -7836,6 +7847,7 @@ literal|null
 return|;
 block|}
 DECL|method|updateSlice
+specifier|private
 name|ClusterState
 name|updateSlice
 parameter_list|(

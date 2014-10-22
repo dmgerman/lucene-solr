@@ -113,7 +113,7 @@ name|threshold
 operator|=
 name|maxDoc
 operator|>>>
-literal|14
+literal|10
 expr_stmt|;
 block|}
 comment|/**    * Add the content of the provided {@link DocIdSetIterator} to this builder.    */

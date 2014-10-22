@@ -552,7 +552,6 @@ comment|//join at the tail again
 return|return;
 block|}
 comment|// first we delete the node advertising the old leader in case the ephem is still there
-comment|// first we delete the node advertising the old leader in case the ephem is still there
 try|try
 block|{
 name|zkClient
@@ -1204,6 +1203,8 @@ operator|.
 name|getSortedElectionNodes
 argument_list|(
 name|zkClient
+argument_list|,
+name|shardsElectZkPath
 argument_list|)
 decl_stmt|;
 if|if

@@ -8352,11 +8352,14 @@ argument_list|,
 name|customType
 argument_list|)
 decl_stmt|;
+comment|// TODO: this is evil, changing the type after creating the field:
 name|customType
 operator|.
-name|setIndexed
+name|setIndexOptions
 argument_list|(
-literal|true
+name|IndexOptions
+operator|.
+name|DOCS_ONLY
 argument_list|)
 expr_stmt|;
 specifier|final

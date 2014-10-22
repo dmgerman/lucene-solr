@@ -123,6 +123,9 @@ name|DELETEREPLICAPROP
 block|,
 DECL|enum constant|BALANCESLICEUNIQUE
 name|BALANCESLICEUNIQUE
+block|,
+DECL|enum constant|REBALANCELEADERS
+name|REBALANCELEADERS
 block|;
 DECL|method|get
 specifier|public
