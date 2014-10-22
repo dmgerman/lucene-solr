@@ -9644,6 +9644,8 @@ name|random
 argument_list|()
 argument_list|,
 name|parentLevel
+operator|+
+literal|1
 argument_list|,
 name|maxDepth
 argument_list|)
@@ -10661,7 +10663,7 @@ index|[]
 block|{
 literal|"java"
 block|,
-literal|"pyhon"
+literal|"python"
 block|,
 literal|"scala"
 block|,
