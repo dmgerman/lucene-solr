@@ -66,7 +66,7 @@ name|lucene
 operator|.
 name|index
 operator|.
-name|LeafReaderContext
+name|DocValues
 import|;
 end_import
 
@@ -80,7 +80,7 @@ name|lucene
 operator|.
 name|index
 operator|.
-name|DocValues
+name|LeafReaderContext
 import|;
 end_import
 
@@ -241,6 +241,22 @@ operator|.
 name|util
 operator|.
 name|FixedBitSet
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|util
+operator|.
+name|FixedBitSet
+operator|.
+name|FixedBitSetIterator
 import|;
 end_import
 
@@ -440,7 +456,7 @@ name|carrotsearch
 operator|.
 name|hppc
 operator|.
-name|IntOpenHashSet
+name|IntIntOpenHashMap
 import|;
 end_import
 
@@ -452,7 +468,7 @@ name|carrotsearch
 operator|.
 name|hppc
 operator|.
-name|IntIntOpenHashMap
+name|IntOpenHashSet
 import|;
 end_import
 
@@ -2688,11 +2704,15 @@ expr_stmt|;
 name|DocIdSetIterator
 name|it
 init|=
+operator|new
+name|FixedBitSetIterator
+argument_list|(
 name|collapsedSet
-operator|.
-name|iterator
-argument_list|()
+argument_list|,
+literal|0L
+argument_list|)
 decl_stmt|;
+comment|// cost is not useful here
 name|int
 name|docId
 init|=
@@ -3409,14 +3429,18 @@ expr_stmt|;
 name|DocIdSetIterator
 name|it
 init|=
+operator|new
+name|FixedBitSetIterator
+argument_list|(
 name|fieldValueCollapse
 operator|.
 name|getCollapsedSet
 argument_list|()
-operator|.
-name|iterator
-argument_list|()
+argument_list|,
+literal|0
+argument_list|)
 decl_stmt|;
+comment|// cost is not useful here
 name|int
 name|docId
 init|=

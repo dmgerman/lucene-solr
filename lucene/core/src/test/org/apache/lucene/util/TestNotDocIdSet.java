@@ -129,7 +129,11 @@ name|NotDocIdSet
 argument_list|(
 name|length
 argument_list|,
+operator|new
+name|FixedBitDocIdSet
+argument_list|(
 name|set
+argument_list|)
 argument_list|)
 return|;
 block|}
@@ -263,9 +267,13 @@ argument_list|(
 literal|3
 argument_list|,
 operator|new
+name|FixedBitDocIdSet
+argument_list|(
+operator|new
 name|FixedBitSet
 argument_list|(
 literal|3
+argument_list|)
 argument_list|)
 argument_list|)
 operator|.

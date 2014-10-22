@@ -68,7 +68,7 @@ name|lucene
 operator|.
 name|index
 operator|.
-name|LeafReaderContext
+name|IndexReader
 import|;
 end_import
 
@@ -82,7 +82,7 @@ name|lucene
 operator|.
 name|index
 operator|.
-name|IndexReader
+name|LeafReaderContext
 import|;
 end_import
 
@@ -209,6 +209,20 @@ operator|.
 name|util
 operator|.
 name|Bits
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|util
+operator|.
+name|FixedBitDocIdSet
 import|;
 end_import
 
@@ -620,7 +634,7 @@ operator|!
 operator|(
 name|parents
 operator|instanceof
-name|FixedBitSet
+name|FixedBitDocIdSet
 operator|)
 condition|)
 block|{
@@ -643,9 +657,14 @@ argument_list|,
 name|parentScorer
 argument_list|,
 operator|(
-name|FixedBitSet
+operator|(
+name|FixedBitDocIdSet
 operator|)
 name|parents
+operator|)
+operator|.
+name|bits
+argument_list|()
 argument_list|,
 name|doScores
 argument_list|,

@@ -18,6 +18,16 @@ end_comment
 
 begin_import
 import|import
+name|java
+operator|.
+name|io
+operator|.
+name|IOException
+import|;
+end_import
+
+begin_import
+import|import
 name|org
 operator|.
 name|apache
@@ -54,17 +64,21 @@ name|lucene
 operator|.
 name|util
 operator|.
-name|FixedBitSet
+name|FixedBitDocIdSet
 import|;
 end_import
 
 begin_import
 import|import
-name|java
+name|org
 operator|.
-name|io
+name|apache
 operator|.
-name|IOException
+name|lucene
+operator|.
+name|util
+operator|.
+name|FixedBitSet
 import|;
 end_import
 
@@ -156,7 +170,11 @@ name|doc
 argument_list|)
 expr_stmt|;
 return|return
+operator|new
+name|FixedBitDocIdSet
+argument_list|(
 name|bits
+argument_list|)
 return|;
 block|}
 block|}

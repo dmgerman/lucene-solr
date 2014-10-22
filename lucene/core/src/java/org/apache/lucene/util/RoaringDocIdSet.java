@@ -431,7 +431,13 @@ index|[
 name|currentBlock
 index|]
 operator|=
+operator|new
+name|FixedBitDocIdSet
+argument_list|(
 name|denseBuffer
+argument_list|,
+name|currentBlockCardinality
+argument_list|)
 expr_stmt|;
 block|}
 name|denseBuffer

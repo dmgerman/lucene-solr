@@ -20,6 +20,16 @@ end_comment
 
 begin_import
 import|import
+name|java
+operator|.
+name|io
+operator|.
+name|IOException
+import|;
+end_import
+
+begin_import
+import|import
 name|org
 operator|.
 name|apache
@@ -98,17 +108,21 @@ name|lucene
 operator|.
 name|util
 operator|.
-name|FixedBitSet
+name|FixedBitDocIdSet
 import|;
 end_import
 
 begin_import
 import|import
-name|java
+name|org
 operator|.
-name|io
+name|apache
 operator|.
-name|IOException
+name|lucene
+operator|.
+name|util
+operator|.
+name|FixedBitSet
 import|;
 end_import
 
@@ -315,7 +329,7 @@ if|if
 condition|(
 name|innerDocuments
 operator|instanceof
-name|FixedBitSet
+name|FixedBitDocIdSet
 condition|)
 block|{
 name|this
@@ -323,9 +337,14 @@ operator|.
 name|childDocuments
 operator|=
 operator|(
-name|FixedBitSet
+operator|(
+name|FixedBitDocIdSet
 operator|)
 name|innerDocuments
+operator|)
+operator|.
+name|bits
+argument_list|()
 expr_stmt|;
 block|}
 else|else
@@ -403,7 +422,7 @@ if|if
 condition|(
 name|rootDocuments
 operator|instanceof
-name|FixedBitSet
+name|FixedBitDocIdSet
 condition|)
 block|{
 name|this
@@ -411,9 +430,14 @@ operator|.
 name|parentDocuments
 operator|=
 operator|(
-name|FixedBitSet
+operator|(
+name|FixedBitDocIdSet
 operator|)
 name|rootDocuments
+operator|)
+operator|.
+name|bits
+argument_list|()
 expr_stmt|;
 block|}
 else|else

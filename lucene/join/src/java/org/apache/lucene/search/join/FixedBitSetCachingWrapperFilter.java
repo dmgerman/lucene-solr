@@ -124,6 +124,20 @@ name|lucene
 operator|.
 name|util
 operator|.
+name|FixedBitDocIdSet
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|util
+operator|.
 name|FixedBitSet
 import|;
 end_import
@@ -188,7 +202,7 @@ if|if
 condition|(
 name|docIdSet
 operator|instanceof
-name|FixedBitSet
+name|FixedBitDocIdSet
 condition|)
 block|{
 comment|// this is different from CachingWrapperFilter: even when the DocIdSet is
@@ -243,7 +257,11 @@ name|it
 argument_list|)
 expr_stmt|;
 return|return
+operator|new
+name|FixedBitDocIdSet
+argument_list|(
 name|copy
+argument_list|)
 return|;
 block|}
 block|}

@@ -144,6 +144,20 @@ name|FixedBitSetIterator
 import|;
 end_import
 
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|util
+operator|.
+name|FixedBitDocIdSet
+import|;
+end_import
+
 begin_comment
 comment|/**  *<code>BitDocSet</code> represents an unordered set of Lucene Document Ids  * using a BitSet.  A set bit represents inclusion in the set for that document.  *  * @since solr 0.9  */
 end_comment
@@ -249,8 +263,11 @@ operator|new
 name|FixedBitSetIterator
 argument_list|(
 name|bits
+argument_list|,
+literal|0L
 argument_list|)
 decl_stmt|;
+comment|// cost is not useful here
 specifier|private
 name|int
 name|pos
@@ -1052,7 +1069,11 @@ name|BitsFilteredDocIdSet
 operator|.
 name|wrap
 argument_list|(
+operator|new
+name|FixedBitDocIdSet
+argument_list|(
 name|bs
+argument_list|)
 argument_list|,
 name|acceptDocs
 argument_list|)

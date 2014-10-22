@@ -18,6 +18,16 @@ end_comment
 
 begin_import
 import|import
+name|java
+operator|.
+name|io
+operator|.
+name|IOException
+import|;
+end_import
+
+begin_import
+import|import
 name|org
 operator|.
 name|apache
@@ -168,6 +178,20 @@ name|lucene
 operator|.
 name|search
 operator|.
+name|DocIdSet
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|search
+operator|.
 name|DocIdSetIterator
 import|;
 end_import
@@ -196,21 +220,7 @@ name|lucene
 operator|.
 name|search
 operator|.
-name|TermRangeFilter
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|search
-operator|.
-name|DocIdSet
+name|QueryWrapperFilter
 import|;
 end_import
 
@@ -238,7 +248,7 @@ name|lucene
 operator|.
 name|search
 operator|.
-name|QueryWrapperFilter
+name|TermRangeFilter
 import|;
 end_import
 
@@ -280,6 +290,20 @@ name|lucene
 operator|.
 name|util
 operator|.
+name|FixedBitDocIdSet
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|util
+operator|.
 name|FixedBitSet
 import|;
 end_import
@@ -295,16 +319,6 @@ operator|.
 name|util
 operator|.
 name|LuceneTestCase
-import|;
-end_import
-
-begin_import
-import|import
-name|java
-operator|.
-name|io
-operator|.
-name|IOException
 import|;
 end_import
 
@@ -710,6 +724,9 @@ parameter_list|)
 block|{
 return|return
 operator|new
+name|FixedBitDocIdSet
+argument_list|(
+operator|new
 name|FixedBitSet
 argument_list|(
 name|context
@@ -719,6 +736,7 @@ argument_list|()
 operator|.
 name|maxDoc
 argument_list|()
+argument_list|)
 argument_list|)
 return|;
 block|}
