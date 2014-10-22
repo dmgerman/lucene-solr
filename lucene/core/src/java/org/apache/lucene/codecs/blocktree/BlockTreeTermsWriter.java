@@ -919,7 +919,7 @@ try|try
 block|{
 name|CodecUtil
 operator|.
-name|writeSegmentHeader
+name|writeIndexHeader
 argument_list|(
 name|termsOut
 argument_list|,
@@ -983,7 +983,7 @@ argument_list|)
 expr_stmt|;
 name|CodecUtil
 operator|.
-name|writeSegmentHeader
+name|writeIndexHeader
 argument_list|(
 name|indexOut
 argument_list|,

@@ -677,7 +677,7 @@ name|fieldInfos
 expr_stmt|;
 name|CodecUtil
 operator|.
-name|writeSegmentHeader
+name|writeIndexHeader
 argument_list|(
 name|out
 argument_list|,

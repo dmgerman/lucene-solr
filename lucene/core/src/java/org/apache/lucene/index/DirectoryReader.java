@@ -360,17 +360,13 @@ decl_stmt|;
 name|SegmentInfos
 name|latest
 init|=
-operator|new
 name|SegmentInfos
-argument_list|()
-decl_stmt|;
-name|latest
 operator|.
-name|read
+name|readLatestCommit
 argument_list|(
 name|dir
 argument_list|)
-expr_stmt|;
+decl_stmt|;
 specifier|final
 name|long
 name|currentGen
@@ -455,17 +451,17 @@ block|{
 name|SegmentInfos
 name|sis
 init|=
-operator|new
-name|SegmentInfos
-argument_list|()
+literal|null
 decl_stmt|;
 try|try
 block|{
 comment|// IOException allowed to throw there, in case
 comment|// segments_N is corrupt
 name|sis
+operator|=
+name|SegmentInfos
 operator|.
-name|read
+name|readCommit
 argument_list|(
 name|dir
 argument_list|,
@@ -488,10 +484,6 @@ comment|// dir listing will be stale and will claim a
 comment|// file segments_X exists when in fact it
 comment|// doesn't.  So, we catch this and handle it
 comment|// as if the file does not exist
-name|sis
-operator|=
-literal|null
-expr_stmt|;
 block|}
 if|if
 condition|(

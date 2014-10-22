@@ -219,7 +219,7 @@ block|{
 comment|// Make sure we are talking to the matching postings writer
 name|CodecUtil
 operator|.
-name|checkSegmentHeader
+name|checkIndexHeader
 argument_list|(
 name|termsIn
 argument_list|,

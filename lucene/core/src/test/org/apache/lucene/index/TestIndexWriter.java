@@ -4123,17 +4123,13 @@ expr_stmt|;
 name|SegmentInfos
 name|sis
 init|=
-operator|new
 name|SegmentInfos
-argument_list|()
-decl_stmt|;
-name|sis
 operator|.
-name|read
+name|readLatestCommit
 argument_list|(
 name|dir
 argument_list|)
-expr_stmt|;
+decl_stmt|;
 comment|// Since we flushed w/o allowing merging we should now
 comment|// have 10 segments
 name|assertEquals
@@ -17661,17 +17657,13 @@ expr_stmt|;
 name|SegmentInfos
 name|sis
 init|=
-operator|new
 name|SegmentInfos
-argument_list|()
-decl_stmt|;
-name|sis
 operator|.
-name|read
+name|readLatestCommit
 argument_list|(
 name|d
 argument_list|)
-expr_stmt|;
+decl_stmt|;
 name|byte
 index|[]
 name|id1

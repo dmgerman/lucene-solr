@@ -268,7 +268,7 @@ name|IOException
 block|{
 name|CodecUtil
 operator|.
-name|writeSegmentHeader
+name|writeIndexHeader
 argument_list|(
 name|termsOut
 argument_list|,

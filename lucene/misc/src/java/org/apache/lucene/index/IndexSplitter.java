@@ -462,13 +462,9 @@ argument_list|)
 expr_stmt|;
 name|infos
 operator|=
-operator|new
 name|SegmentInfos
-argument_list|()
-expr_stmt|;
-name|infos
 operator|.
-name|read
+name|readLatestCommit
 argument_list|(
 name|fsDir
 argument_list|)

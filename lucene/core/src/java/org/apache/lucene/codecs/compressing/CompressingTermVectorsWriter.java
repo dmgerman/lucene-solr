@@ -1732,7 +1732,7 @@ name|CODEC_SFX_DAT
 decl_stmt|;
 name|CodecUtil
 operator|.
-name|writeSegmentHeader
+name|writeIndexHeader
 argument_list|(
 name|indexStream
 argument_list|,
@@ -1750,7 +1750,7 @@ argument_list|)
 expr_stmt|;
 name|CodecUtil
 operator|.
-name|writeSegmentHeader
+name|writeIndexHeader
 argument_list|(
 name|vectorsStream
 argument_list|,
@@ -1769,7 +1769,7 @@ expr_stmt|;
 assert|assert
 name|CodecUtil
 operator|.
-name|segmentHeaderLength
+name|indexHeaderLength
 argument_list|(
 name|codecNameDat
 argument_list|,
@@ -1784,7 +1784,7 @@ assert|;
 assert|assert
 name|CodecUtil
 operator|.
-name|segmentHeaderLength
+name|indexHeaderLength
 argument_list|(
 name|codecNameIdx
 argument_list|,

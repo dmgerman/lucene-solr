@@ -656,7 +656,7 @@ try|try
 block|{
 name|CodecUtil
 operator|.
-name|writeSegmentHeader
+name|writeIndexHeader
 argument_list|(
 name|docOut
 argument_list|,
@@ -743,7 +743,7 @@ argument_list|)
 expr_stmt|;
 name|CodecUtil
 operator|.
-name|writeSegmentHeader
+name|writeIndexHeader
 argument_list|(
 name|posOut
 argument_list|,
@@ -895,7 +895,7 @@ argument_list|)
 expr_stmt|;
 name|CodecUtil
 operator|.
-name|writeSegmentHeader
+name|writeIndexHeader
 argument_list|(
 name|payOut
 argument_list|,
@@ -1059,7 +1059,7 @@ name|IOException
 block|{
 name|CodecUtil
 operator|.
-name|writeSegmentHeader
+name|writeIndexHeader
 argument_list|(
 name|termsOut
 argument_list|,

@@ -1335,9 +1335,7 @@ decl_stmt|;
 name|SegmentInfos
 name|sis
 init|=
-operator|new
-name|SegmentInfos
-argument_list|()
+literal|null
 decl_stmt|;
 name|Status
 name|result
@@ -1402,8 +1400,10 @@ block|{
 comment|// Do not use SegmentInfos.read(Directory) since the spooky
 comment|// retrying it does is not necessary here (we hold the write lock):
 name|sis
+operator|=
+name|SegmentInfos
 operator|.
-name|read
+name|readCommit
 argument_list|(
 name|dir
 argument_list|,

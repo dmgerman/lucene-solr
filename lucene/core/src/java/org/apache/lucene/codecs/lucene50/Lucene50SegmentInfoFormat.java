@@ -275,7 +275,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Lucene 5.0 Segment info format.  *<p>  * Files:  *<ul>  *<li><tt>.si</tt>: Header, SegVersion, SegSize, IsCompoundFile, Diagnostics, Files, Footer  *</ul>  *</p>  * Data types:  *<p>  *<ul>  *<li>Header --&gt; {@link CodecUtil#writeSegmentHeader SegmentHeader}</li>  *<li>SegSize --&gt; {@link DataOutput#writeInt Int32}</li>  *<li>SegVersion --&gt; {@link DataOutput#writeString String}</li>  *<li>Files --&gt; {@link DataOutput#writeStringSet Set&lt;String&gt;}</li>  *<li>Diagnostics --&gt; {@link DataOutput#writeStringStringMap Map&lt;String,String&gt;}</li>  *<li>IsCompoundFile --&gt; {@link DataOutput#writeByte Int8}</li>  *<li>Footer --&gt; {@link CodecUtil#writeFooter CodecFooter}</li>  *</ul>  *</p>  * Field Descriptions:  *<p>  *<ul>  *<li>SegVersion is the code version that created the segment.</li>  *<li>SegSize is the number of documents contained in the segment index.</li>  *<li>IsCompoundFile records whether the segment is written as a compound file or  *       not. If this is -1, the segment is not a compound file. If it is 1, the segment  *       is a compound file.</li>  *<li>The Diagnostics Map is privately written by {@link IndexWriter}, as a debugging aid,  *       for each segment it creates. It includes metadata like the current Lucene  *       version, OS, Java version, why the segment was created (merge, flush,  *       addIndexes), etc.</li>  *<li>Files is a list of files referred to by this segment.</li>  *</ul>  *</p>  *   * @see SegmentInfos  * @lucene.experimental  */
+comment|/**  * Lucene 5.0 Segment info format.  *<p>  * Files:  *<ul>  *<li><tt>.si</tt>: Header, SegVersion, SegSize, IsCompoundFile, Diagnostics, Files, Footer  *</ul>  *</p>  * Data types:  *<p>  *<ul>  *<li>Header --&gt; {@link CodecUtil#writeIndexHeader IndexHeader}</li>  *<li>SegSize --&gt; {@link DataOutput#writeInt Int32}</li>  *<li>SegVersion --&gt; {@link DataOutput#writeString String}</li>  *<li>Files --&gt; {@link DataOutput#writeStringSet Set&lt;String&gt;}</li>  *<li>Diagnostics --&gt; {@link DataOutput#writeStringStringMap Map&lt;String,String&gt;}</li>  *<li>IsCompoundFile --&gt; {@link DataOutput#writeByte Int8}</li>  *<li>Footer --&gt; {@link CodecUtil#writeFooter CodecFooter}</li>  *</ul>  *</p>  * Field Descriptions:  *<p>  *<ul>  *<li>SegVersion is the code version that created the segment.</li>  *<li>SegSize is the number of documents contained in the segment index.</li>  *<li>IsCompoundFile records whether the segment is written as a compound file or  *       not. If this is -1, the segment is not a compound file. If it is 1, the segment  *       is a compound file.</li>  *<li>The Diagnostics Map is privately written by {@link IndexWriter}, as a debugging aid,  *       for each segment it creates. It includes metadata like the current Lucene  *       version, OS, Java version, why the segment was created (merge, flush,  *       addIndexes), etc.</li>  *<li>Files is a list of files referred to by this segment.</li>  *</ul>  *</p>  *   * @see SegmentInfos  * @lucene.experimental  */
 end_comment
 
 begin_class
@@ -304,6 +304,10 @@ name|dir
 parameter_list|,
 name|String
 name|segment
+parameter_list|,
+name|byte
+index|[]
+name|segmentID
 parameter_list|,
 name|IOContext
 name|context
@@ -357,7 +361,7 @@ try|try
 block|{
 name|CodecUtil
 operator|.
-name|checkHeader
+name|checkIndexHeader
 argument_list|(
 name|input
 argument_list|,
@@ -372,62 +376,12 @@ argument_list|,
 name|Lucene50SegmentInfoFormat
 operator|.
 name|VERSION_CURRENT
+argument_list|,
+name|segmentID
+argument_list|,
+literal|""
 argument_list|)
 expr_stmt|;
-name|byte
-name|id
-index|[]
-init|=
-operator|new
-name|byte
-index|[
-name|StringHelper
-operator|.
-name|ID_LENGTH
-index|]
-decl_stmt|;
-name|input
-operator|.
-name|readBytes
-argument_list|(
-name|id
-argument_list|,
-literal|0
-argument_list|,
-name|id
-operator|.
-name|length
-argument_list|)
-expr_stmt|;
-name|String
-name|suffix
-init|=
-name|input
-operator|.
-name|readString
-argument_list|()
-decl_stmt|;
-if|if
-condition|(
-operator|!
-name|suffix
-operator|.
-name|isEmpty
-argument_list|()
-condition|)
-block|{
-throw|throw
-operator|new
-name|CorruptIndexException
-argument_list|(
-literal|"invalid codec header: got unexpected suffix: "
-operator|+
-name|suffix
-argument_list|,
-name|input
-argument_list|)
-throw|;
-block|}
 specifier|final
 name|Version
 name|version
@@ -538,7 +492,7 @@ literal|null
 argument_list|,
 name|diagnostics
 argument_list|,
-name|id
+name|segmentID
 argument_list|)
 expr_stmt|;
 name|si
@@ -642,10 +596,9 @@ name|ioContext
 argument_list|)
 init|)
 block|{
-comment|// NOTE: we encode ID in the segment header, for format consistency with all other per-segment files
 name|CodecUtil
 operator|.
-name|writeSegmentHeader
+name|writeIndexHeader
 argument_list|(
 name|output
 argument_list|,

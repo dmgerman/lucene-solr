@@ -6663,17 +6663,13 @@ comment|// _Y.cfs,_Y.cfe, _Z.si
 name|SegmentInfos
 name|sis
 init|=
-operator|new
 name|SegmentInfos
-argument_list|()
-decl_stmt|;
-name|sis
 operator|.
-name|read
+name|readLatestCommit
 argument_list|(
 name|dir
 argument_list|)
-expr_stmt|;
+decl_stmt|;
 name|assertEquals
 argument_list|(
 literal|"Only one compound segment should exist"

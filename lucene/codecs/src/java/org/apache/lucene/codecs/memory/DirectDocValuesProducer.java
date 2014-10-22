@@ -969,7 +969,7 @@ name|version
 operator|=
 name|CodecUtil
 operator|.
-name|checkSegmentHeader
+name|checkIndexHeader
 argument_list|(
 name|in
 argument_list|,
@@ -1089,7 +1089,7 @@ name|version2
 init|=
 name|CodecUtil
 operator|.
-name|checkSegmentHeader
+name|checkIndexHeader
 argument_list|(
 name|data
 argument_list|,

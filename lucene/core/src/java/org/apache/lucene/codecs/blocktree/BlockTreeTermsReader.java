@@ -562,7 +562,7 @@ name|version
 operator|=
 name|CodecUtil
 operator|.
-name|checkSegmentHeader
+name|checkIndexHeader
 argument_list|(
 name|termsIn
 argument_list|,
@@ -617,7 +617,7 @@ argument_list|)
 expr_stmt|;
 name|CodecUtil
 operator|.
-name|checkSegmentHeader
+name|checkIndexHeader
 argument_list|(
 name|indexIn
 argument_list|,
