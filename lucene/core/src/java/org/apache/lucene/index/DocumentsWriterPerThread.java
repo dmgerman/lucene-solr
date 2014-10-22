@@ -466,24 +466,22 @@ operator|=
 name|infoStream
 expr_stmt|;
 block|}
-comment|// Only called by asserts
 DECL|method|testPoint
 specifier|public
-name|boolean
+name|void
 name|testPoint
 parameter_list|(
 name|String
 name|name
 parameter_list|)
 block|{
-return|return
 name|docWriter
 operator|.
 name|testPoint
 argument_list|(
 name|name
 argument_list|)
-return|;
+expr_stmt|;
 block|}
 DECL|method|clear
 specifier|public
@@ -1125,7 +1123,7 @@ return|;
 block|}
 DECL|method|testPoint
 specifier|final
-name|boolean
+name|void
 name|testPoint
 parameter_list|(
 name|String
@@ -1152,9 +1150,6 @@ name|message
 argument_list|)
 expr_stmt|;
 block|}
-return|return
-literal|true
-return|;
 block|}
 comment|/** Anything that will add N docs to the index should reserve first to    *  make sure it's allowed. */
 DECL|method|reserveDoc
@@ -1213,12 +1208,11 @@ parameter_list|)
 throws|throws
 name|IOException
 block|{
-assert|assert
 name|testPoint
 argument_list|(
 literal|"DocumentsWriterPerThread addDocument start"
 argument_list|)
-assert|;
+expr_stmt|;
 assert|assert
 name|deleteQueue
 operator|!=
@@ -1387,12 +1381,11 @@ parameter_list|)
 throws|throws
 name|IOException
 block|{
-assert|assert
 name|testPoint
 argument_list|(
 literal|"DocumentsWriterPerThread addDocuments start"
 argument_list|)
-assert|;
+expr_stmt|;
 assert|assert
 name|deleteQueue
 operator|!=

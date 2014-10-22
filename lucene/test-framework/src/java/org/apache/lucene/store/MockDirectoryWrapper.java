@@ -4337,9 +4337,10 @@ operator|+
 name|pendingDeletions
 expr_stmt|;
 block|}
-assert|assert
-literal|false
-operator|:
+throw|throw
+operator|new
+name|RuntimeException
+argument_list|(
 literal|"unreferenced files: before delete:\n    "
 operator|+
 name|Arrays
@@ -4359,7 +4360,8 @@ name|endFiles
 argument_list|)
 operator|+
 name|extras
-assert|;
+argument_list|)
+throw|;
 block|}
 name|DirectoryReader
 name|ir1

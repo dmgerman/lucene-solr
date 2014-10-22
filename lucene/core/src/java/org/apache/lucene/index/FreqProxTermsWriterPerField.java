@@ -572,14 +572,6 @@ parameter_list|)
 block|{
 comment|// First time we're seeing this term since the last
 comment|// flush
-assert|assert
-name|docState
-operator|.
-name|testPoint
-argument_list|(
-literal|"FreqProxTermsWriterPerField.newTerm start"
-argument_list|)
-assert|;
 specifier|final
 name|FreqProxPostingsArray
 name|postings
@@ -716,14 +708,6 @@ name|int
 name|termID
 parameter_list|)
 block|{
-assert|assert
-name|docState
-operator|.
-name|testPoint
-argument_list|(
-literal|"FreqProxTermsWriterPerField.addTerm start"
-argument_list|)
-assert|;
 specifier|final
 name|FreqProxPostingsArray
 name|postings

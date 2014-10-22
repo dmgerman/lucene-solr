@@ -22,9 +22,9 @@ name|apache
 operator|.
 name|lucene
 operator|.
-name|util
+name|analysis
 operator|.
-name|LuceneTestCase
+name|TokenStream
 import|;
 end_import
 
@@ -36,9 +36,9 @@ name|apache
 operator|.
 name|lucene
 operator|.
-name|analysis
+name|util
 operator|.
-name|TokenStream
+name|LuceneTestCase
 import|;
 end_import
 
@@ -130,21 +130,23 @@ operator|new
 name|TestTokenStream2
 argument_list|()
 expr_stmt|;
-name|boolean
-name|doFail
-init|=
-literal|false
-decl_stmt|;
 try|try
 block|{
 operator|new
 name|TestTokenStream3
 argument_list|()
 expr_stmt|;
-name|doFail
-operator|=
-literal|true
+if|if
+condition|(
+name|assertsAreEnabled
+condition|)
+block|{
+name|fail
+argument_list|(
+literal|"TestTokenStream3 should fail assertion"
+argument_list|)
 expr_stmt|;
+block|}
 block|}
 catch|catch
 parameter_list|(
@@ -153,14 +155,16 @@ name|e
 parameter_list|)
 block|{
 comment|// expected
-block|}
-name|assertFalse
+name|e
+operator|.
+name|printStackTrace
 argument_list|(
-literal|"TestTokenStream3 should fail assertion"
-argument_list|,
-name|doFail
+name|System
+operator|.
+name|out
 argument_list|)
 expr_stmt|;
+block|}
 block|}
 block|}
 end_class

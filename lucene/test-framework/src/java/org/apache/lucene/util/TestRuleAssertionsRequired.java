@@ -98,21 +98,61 @@ name|Throwable
 block|{
 try|try
 block|{
-assert|assert
-literal|false
-assert|;
+comment|// Make sure -ea matches -Dtests.asserts, to catch accidental mis-use:
+if|if
+condition|(
+name|LuceneTestCase
+operator|.
+name|assertsAreEnabled
+operator|!=
+name|LuceneTestCase
+operator|.
+name|TEST_ASSERTS_ENABLED
+condition|)
+block|{
 name|String
 name|msg
 init|=
-literal|"Test class requires enabled assertions, enable globally (-ea)"
-operator|+
-literal|" or for Solr/Lucene subpackages only: "
-operator|+
-name|description
-operator|.
-name|getClassName
-argument_list|()
+literal|"Assertions mismatch: "
 decl_stmt|;
+if|if
+condition|(
+name|LuceneTestCase
+operator|.
+name|assertsAreEnabled
+condition|)
+block|{
+name|msg
+operator|+=
+literal|"-ea was specified"
+expr_stmt|;
+block|}
+else|else
+block|{
+name|msg
+operator|+=
+literal|"-ea was not specified"
+expr_stmt|;
+block|}
+if|if
+condition|(
+name|LuceneTestCase
+operator|.
+name|TEST_ASSERTS_ENABLED
+condition|)
+block|{
+name|msg
+operator|+=
+literal|" but -Dtests.asserts=true"
+expr_stmt|;
+block|}
+else|else
+block|{
+name|msg
+operator|+=
+literal|" but -Dtests.asserts=false"
+expr_stmt|;
+block|}
 name|System
 operator|.
 name|err
@@ -129,6 +169,7 @@ argument_list|(
 name|msg
 argument_list|)
 throw|;
+block|}
 block|}
 catch|catch
 parameter_list|(
