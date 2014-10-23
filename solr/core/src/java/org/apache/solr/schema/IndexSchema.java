@@ -180,6 +180,20 @@ name|apache
 operator|.
 name|solr
 operator|.
+name|cloud
+operator|.
+name|CloudUtil
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|solr
+operator|.
 name|common
 operator|.
 name|SolrException
@@ -2239,13 +2253,25 @@ name|InputSource
 name|is
 parameter_list|)
 block|{
+name|String
+name|resourcePath
+init|=
+name|CloudUtil
+operator|.
+name|unifiedResourcePath
+argument_list|(
+name|loader
+argument_list|)
+operator|+
+name|resourceName
+decl_stmt|;
 name|log
 operator|.
 name|info
 argument_list|(
 literal|"Reading Solr Schema from "
 operator|+
-name|resourceName
+name|resourcePath
 argument_list|)
 expr_stmt|;
 try|try
@@ -3197,12 +3223,7 @@ argument_list|()
 operator|+
 literal|". Schema file is "
 operator|+
-name|loader
-operator|.
-name|getConfigDir
-argument_list|()
-operator|+
-name|resourceName
+name|resourcePath
 argument_list|,
 name|e
 argument_list|)
@@ -3232,12 +3253,7 @@ argument_list|()
 operator|+
 literal|". Schema file is "
 operator|+
-name|loader
-operator|.
-name|getConfigDir
-argument_list|()
-operator|+
-name|resourceName
+name|resourcePath
 argument_list|,
 name|e
 argument_list|)
