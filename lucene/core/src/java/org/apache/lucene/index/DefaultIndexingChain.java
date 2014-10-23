@@ -761,6 +761,41 @@ condition|)
 block|{
 if|if
 condition|(
+name|perField
+operator|.
+name|fieldInfo
+operator|.
+name|hasDocValues
+argument_list|()
+operator|==
+literal|false
+condition|)
+block|{
+comment|// BUG
+throw|throw
+operator|new
+name|AssertionError
+argument_list|(
+literal|"segment="
+operator|+
+name|state
+operator|.
+name|segmentInfo
+operator|+
+literal|": field=\""
+operator|+
+name|perField
+operator|.
+name|fieldInfo
+operator|.
+name|name
+operator|+
+literal|"\" has no docValues but wrote them"
+argument_list|)
+throw|;
+block|}
+if|if
+condition|(
 name|dvConsumer
 operator|==
 literal|null
@@ -817,6 +852,40 @@ operator|=
 literal|null
 expr_stmt|;
 block|}
+elseif|else
+if|if
+condition|(
+name|perField
+operator|.
+name|fieldInfo
+operator|.
+name|hasDocValues
+argument_list|()
+condition|)
+block|{
+comment|// BUG
+throw|throw
+operator|new
+name|AssertionError
+argument_list|(
+literal|"segment="
+operator|+
+name|state
+operator|.
+name|segmentInfo
+operator|+
+literal|": field=\""
+operator|+
+name|perField
+operator|.
+name|fieldInfo
+operator|.
+name|name
+operator|+
+literal|"\" has docValues but did not write them"
+argument_list|)
+throw|;
+block|}
 name|perField
 operator|=
 name|perField
@@ -859,6 +928,64 @@ name|dvConsumer
 argument_list|)
 expr_stmt|;
 block|}
+block|}
+if|if
+condition|(
+name|state
+operator|.
+name|fieldInfos
+operator|.
+name|hasDocValues
+argument_list|()
+operator|==
+literal|false
+condition|)
+block|{
+if|if
+condition|(
+name|dvConsumer
+operator|!=
+literal|null
+condition|)
+block|{
+comment|// BUG
+throw|throw
+operator|new
+name|AssertionError
+argument_list|(
+literal|"segment="
+operator|+
+name|state
+operator|.
+name|segmentInfo
+operator|+
+literal|": fieldInfos has no docValues but wrote them"
+argument_list|)
+throw|;
+block|}
+block|}
+elseif|else
+if|if
+condition|(
+name|dvConsumer
+operator|==
+literal|null
+condition|)
+block|{
+comment|// BUG
+throw|throw
+operator|new
+name|AssertionError
+argument_list|(
+literal|"segment="
+operator|+
+name|state
+operator|.
+name|segmentInfo
+operator|+
+literal|": fieldInfos has docValues but did not wrote them"
+argument_list|)
+throw|;
 block|}
 block|}
 comment|/** Catch up for all docs before us that had no stored    *  fields, or hit non-aborting exceptions before writing    *  stored fields. */
