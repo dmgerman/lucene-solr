@@ -155,15 +155,6 @@ name|e
 parameter_list|)
 block|{
 comment|// expected
-name|e
-operator|.
-name|printStackTrace
-argument_list|(
-name|System
-operator|.
-name|out
-argument_list|)
-expr_stmt|;
 block|}
 block|}
 block|}
