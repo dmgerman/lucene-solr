@@ -2399,12 +2399,16 @@ name|log
 operator|.
 name|info
 argument_list|(
-literal|"Waiting until we see more replicas up for shard "
+literal|"Waiting until we see more replicas up for shard {}: total={}"
 operator|+
+literal|" found={}"
+operator|+
+name|found
+operator|+
+literal|" timeoutin={}ms"
+argument_list|,
 name|shardId
-operator|+
-literal|": total="
-operator|+
+argument_list|,
 name|slices
 operator|.
 name|getReplicasMap
@@ -2412,32 +2416,26 @@ argument_list|()
 operator|.
 name|size
 argument_list|()
-operator|+
-literal|" found="
-operator|+
+argument_list|,
 name|found
-operator|+
-literal|" timeoutin="
-operator|+
-operator|(
+argument_list|,
+name|TimeUnit
+operator|.
+name|MILLISECONDS
+operator|.
+name|convert
+argument_list|(
 name|timeoutAt
 operator|-
 name|System
 operator|.
 name|nanoTime
 argument_list|()
-operator|/
-call|(
-name|float
-call|)
-argument_list|(
-literal|10
-operator|^
-literal|9
+argument_list|,
+name|TimeUnit
+operator|.
+name|NANOSECONDS
 argument_list|)
-operator|)
-operator|+
-literal|"ms"
 argument_list|)
 expr_stmt|;
 block|}
