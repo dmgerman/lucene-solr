@@ -1457,6 +1457,61 @@ name|bean
 argument_list|)
 expr_stmt|;
 block|}
+annotation|@
+name|Test
+DECL|method|testConfiguration
+specifier|public
+name|void
+name|testConfiguration
+parameter_list|()
+throws|throws
+name|Exception
+block|{
+name|assertEquals
+argument_list|(
+literal|"wrong config for slowQueryThresholdMillis"
+argument_list|,
+literal|2000
+argument_list|,
+name|solrConfig
+operator|.
+name|slowQueryThresholdMillis
+argument_list|)
+expr_stmt|;
+name|assertEquals
+argument_list|(
+literal|"wrong config for maxBooleanClauses"
+argument_list|,
+literal|1024
+argument_list|,
+name|solrConfig
+operator|.
+name|booleanQueryMaxClauseCount
+argument_list|)
+expr_stmt|;
+name|assertEquals
+argument_list|(
+literal|"wrong config for enableLazyFieldLoading"
+argument_list|,
+literal|true
+argument_list|,
+name|solrConfig
+operator|.
+name|enableLazyFieldLoading
+argument_list|)
+expr_stmt|;
+name|assertEquals
+argument_list|(
+literal|"wrong config for queryResultWindowSize"
+argument_list|,
+literal|10
+argument_list|,
+name|solrConfig
+operator|.
+name|queryResultWindowSize
+argument_list|)
+expr_stmt|;
+block|}
 block|}
 end_class
 

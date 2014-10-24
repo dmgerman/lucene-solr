@@ -207,13 +207,24 @@ name|first
 decl_stmt|;
 name|assertEquals
 argument_list|(
-literal|"wrong config for LogUpdateProcessorFactory"
+literal|"wrong config for LogUpdateProcessorFactory.maxNumToLog"
 argument_list|,
 literal|100
 argument_list|,
 name|log
 operator|.
 name|maxNumToLog
+argument_list|)
+expr_stmt|;
+name|assertEquals
+argument_list|(
+literal|"wrong config for LogUpdateProcessorFactory.slowUpdateThresholdMillis"
+argument_list|,
+literal|2000
+argument_list|,
+name|log
+operator|.
+name|slowUpdateThresholdMillis
 argument_list|)
 expr_stmt|;
 name|UpdateRequestProcessorChain

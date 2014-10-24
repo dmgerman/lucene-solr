@@ -1470,6 +1470,15 @@ operator|.
 name|MAX_VALUE
 argument_list|)
 expr_stmt|;
+name|slowQueryThresholdMillis
+operator|=
+name|getInt
+argument_list|(
+literal|"query/slowQueryThresholdMillis"
+argument_list|,
+literal|1000
+argument_list|)
+expr_stmt|;
 name|loadPluginInfo
 argument_list|(
 name|SolrRequestHandler
@@ -2378,6 +2387,13 @@ specifier|protected
 name|String
 name|dataDir
 decl_stmt|;
+DECL|field|slowQueryThresholdMillis
+specifier|public
+specifier|final
+name|int
+name|slowQueryThresholdMillis
+decl_stmt|;
+comment|// threshold above which a query is considered slow
 comment|//JMX configuration
 DECL|field|jmxConfig
 specifier|public
