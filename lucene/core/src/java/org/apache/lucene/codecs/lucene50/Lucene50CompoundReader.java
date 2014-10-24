@@ -410,7 +410,7 @@ try|try
 block|{
 name|CodecUtil
 operator|.
-name|checkSegmentHeader
+name|checkIndexHeader
 argument_list|(
 name|handle
 argument_list|,
@@ -533,7 +533,7 @@ name|version
 operator|=
 name|CodecUtil
 operator|.
-name|checkSegmentHeader
+name|checkIndexHeader
 argument_list|(
 name|entriesStream
 argument_list|,

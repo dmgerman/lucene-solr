@@ -68,7 +68,7 @@ name|codecs
 operator|.
 name|blocktree
 operator|.
-name|BlockTreeTermsWriter
+name|Lucene40BlockTreeTermsWriter
 import|;
 end_import
 
@@ -156,7 +156,7 @@ name|FieldsConsumer
 name|ret
 init|=
 operator|new
-name|BlockTreeTermsWriter
+name|Lucene40BlockTreeTermsWriter
 argument_list|(
 name|state
 argument_list|,

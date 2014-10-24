@@ -496,7 +496,6 @@ annotation|@
 name|Override
 DECL|method|storedFieldsFormat
 specifier|public
-specifier|final
 name|StoredFieldsFormat
 name|storedFieldsFormat
 parameter_list|()
@@ -509,7 +508,6 @@ annotation|@
 name|Override
 DECL|method|termVectorsFormat
 specifier|public
-specifier|final
 name|TermVectorsFormat
 name|termVectorsFormat
 parameter_list|()
@@ -548,7 +546,6 @@ annotation|@
 name|Override
 DECL|method|segmentInfoFormat
 specifier|public
-specifier|final
 name|SegmentInfoFormat
 name|segmentInfoFormat
 parameter_list|()
@@ -614,7 +611,6 @@ annotation|@
 name|Override
 DECL|method|docValuesFormat
 specifier|public
-specifier|final
 name|DocValuesFormat
 name|docValuesFormat
 parameter_list|()
@@ -685,7 +681,6 @@ annotation|@
 name|Override
 DECL|method|normsFormat
 specifier|public
-specifier|final
 name|NormsFormat
 name|normsFormat
 parameter_list|()

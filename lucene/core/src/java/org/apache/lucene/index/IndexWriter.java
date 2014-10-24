@@ -2508,12 +2508,6 @@ expr_stmt|;
 block|}
 comment|// If index is too old, reading the segments will throw
 comment|// IndexFormatTooOldException.
-name|segmentInfos
-operator|=
-operator|new
-name|SegmentInfos
-argument_list|()
-expr_stmt|;
 name|boolean
 name|initialIndexExists
 init|=
@@ -2528,16 +2522,23 @@ comment|// Try to read first.  This is to allow create
 comment|// against an index that's currently open for
 comment|// searching.  In this case we write the next
 comment|// segments_N file with no segments:
+name|SegmentInfos
+name|sis
+init|=
+literal|null
+decl_stmt|;
 try|try
 block|{
-name|segmentInfos
+name|sis
+operator|=
+name|SegmentInfos
 operator|.
-name|read
+name|readLatestCommit
 argument_list|(
 name|directory
 argument_list|)
 expr_stmt|;
-name|segmentInfos
+name|sis
 operator|.
 name|clear
 argument_list|()
@@ -2554,7 +2555,17 @@ name|initialIndexExists
 operator|=
 literal|false
 expr_stmt|;
+name|sis
+operator|=
+operator|new
+name|SegmentInfos
+argument_list|()
+expr_stmt|;
 block|}
+name|segmentInfos
+operator|=
+name|sis
+expr_stmt|;
 comment|// Record that we have a change (zero out all
 comment|// segments) pending:
 name|changed
@@ -2611,8 +2622,10 @@ block|}
 comment|// Do not use SegmentInfos.read(Directory) since the spooky
 comment|// retrying it does is not necessary here (we hold the write lock):
 name|segmentInfos
+operator|=
+name|SegmentInfos
 operator|.
-name|read
+name|readCommit
 argument_list|(
 name|directory
 argument_list|,
@@ -2658,13 +2671,9 @@ throw|;
 name|SegmentInfos
 name|oldInfos
 init|=
-operator|new
 name|SegmentInfos
-argument_list|()
-decl_stmt|;
-name|oldInfos
 operator|.
-name|read
+name|readCommit
 argument_list|(
 name|directory
 argument_list|,
@@ -2673,7 +2682,7 @@ operator|.
 name|getSegmentsFileName
 argument_list|()
 argument_list|)
-expr_stmt|;
+decl_stmt|;
 name|segmentInfos
 operator|.
 name|replace
@@ -7506,18 +7515,14 @@ block|}
 name|SegmentInfos
 name|sis
 init|=
-operator|new
 name|SegmentInfos
-argument_list|()
-decl_stmt|;
-comment|// read infos from dir
-name|sis
 operator|.
-name|read
+name|readLatestCommit
 argument_list|(
 name|dir
 argument_list|)
-expr_stmt|;
+decl_stmt|;
+comment|// read infos from dir
 name|totalDocCount
 operator|+=
 name|sis

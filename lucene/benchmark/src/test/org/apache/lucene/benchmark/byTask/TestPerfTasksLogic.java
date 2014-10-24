@@ -3499,13 +3499,9 @@ comment|// Make sure we have 3 segments:
 name|SegmentInfos
 name|infos
 init|=
-operator|new
 name|SegmentInfos
-argument_list|()
-decl_stmt|;
-name|infos
 operator|.
-name|read
+name|readLatestCommit
 argument_list|(
 name|benchmark
 operator|.
@@ -3515,7 +3511,7 @@ operator|.
 name|getDirectory
 argument_list|()
 argument_list|)
-expr_stmt|;
+decl_stmt|;
 name|assertEquals
 argument_list|(
 literal|3

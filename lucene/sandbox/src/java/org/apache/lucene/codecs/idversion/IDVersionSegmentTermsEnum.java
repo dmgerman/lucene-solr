@@ -2635,7 +2635,7 @@ name|cmp
 init|=
 literal|0
 decl_stmt|;
-comment|// TOOD: we should write our vLong backwards (MSB
+comment|// TODO: we should write our vLong backwards (MSB
 comment|// first) to get better sharing from the FST
 comment|// First compare up to valid seek frames:
 while|while
@@ -2743,7 +2743,7 @@ operator|&
 literal|0xFF
 argument_list|)
 assert|;
-comment|// TOOD: we could save the outputs in local
+comment|// TODO: we could save the outputs in local
 comment|// byte[][] instead of making new objs ever
 comment|// seek; but, often the FST doesn't have any
 comment|// shared bytes (but this could change if we

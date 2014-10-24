@@ -334,12 +334,12 @@ name|version
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**    * Writes a codec header for a per-segment, which records both a string to    * identify the file, a version number, and the unique ID of the segment.     * This header can be parsed and validated with     * {@link #checkSegmentHeader(DataInput, String, int, int, byte[], String) checkSegmentHeader()}.    *<p>    * CodecSegmentHeader --&gt; CodecHeader,SegmentID,SegmentSuffix    *<ul>    *<li>CodecHeader   --&gt; {@link #writeHeader}    *<li>SegmentID     --&gt; {@link DataOutput#writeByte byte}<sup>16</sup>    *<li>SegmentSuffix --&gt; SuffixLength,SuffixBytes    *<li>SuffixLength  --&gt; {@link DataOutput#writeByte byte}    *<li>SuffixBytes   --&gt; {@link DataOutput#writeByte byte}<sup>SuffixLength</sup>    *</ul>    *<p>    * Note that the length of a segment header depends only upon the    * name of the codec and suffix, so this length can be computed at any time    * with {@link #segmentHeaderLength(String,String)}.    *     * @param out Output stream    * @param codec String to identify this file. It should be simple ASCII,     *              less than 128 characters in length.    * @param segmentID Unique identifier for the segment    * @param segmentSuffix auxiliary suffix for the file. It should be simple ASCII,    *              less than 256 characters in length.    * @param version Version number    * @throws IOException If there is an I/O error writing to the underlying medium.    * @throws IllegalArgumentException If the codec name is not simple ASCII, or     *         is more than 127 characters in length, or if segmentID is invalid,    *         or if the segmentSuffix is not simple ASCII, or more than 255 characters    *         in length.    */
-DECL|method|writeSegmentHeader
+comment|/**    * Writes a codec header for an index file, which records both a string to    * identify the format of the file, a version number, and data to identify    * the file instance (ID and auxiliary suffix such as generation).    *<p>    * This header can be parsed and validated with     * {@link #checkIndexHeader(DataInput, String, int, int, byte[], String) checkIndexHeader()}.    *<p>    * IndexHeader --&gt; CodecHeader,ObjectID,ObjectSuffix    *<ul>    *<li>CodecHeader   --&gt; {@link #writeHeader}    *<li>ObjectID     --&gt; {@link DataOutput#writeByte byte}<sup>16</sup>    *<li>ObjectSuffix --&gt; SuffixLength,SuffixBytes    *<li>SuffixLength  --&gt; {@link DataOutput#writeByte byte}    *<li>SuffixBytes   --&gt; {@link DataOutput#writeByte byte}<sup>SuffixLength</sup>    *</ul>    *<p>    * Note that the length of an index header depends only upon the    * name of the codec and suffix, so this length can be computed at any time    * with {@link #indexHeaderLength(String,String)}.    *     * @param out Output stream    * @param codec String to identify the format of this file. It should be simple ASCII,     *              less than 128 characters in length.    * @param id Unique identifier for this particular file instance.    * @param suffix auxiliary suffix information for the file. It should be simple ASCII,    *              less than 256 characters in length.    * @param version Version number    * @throws IOException If there is an I/O error writing to the underlying medium.    * @throws IllegalArgumentException If the codec name is not simple ASCII, or     *         is more than 127 characters in length, or if id is invalid,    *         or if the suffix is not simple ASCII, or more than 255 characters    *         in length.    */
+DECL|method|writeIndexHeader
 specifier|public
 specifier|static
 name|void
-name|writeSegmentHeader
+name|writeIndexHeader
 parameter_list|(
 name|DataOutput
 name|out
@@ -352,17 +352,17 @@ name|version
 parameter_list|,
 name|byte
 index|[]
-name|segmentID
+name|id
 parameter_list|,
 name|String
-name|segmentSuffix
+name|suffix
 parameter_list|)
 throws|throws
 name|IOException
 block|{
 if|if
 condition|(
-name|segmentID
+name|id
 operator|.
 name|length
 operator|!=
@@ -381,7 +381,7 @@ name|StringHelper
 operator|.
 name|idToString
 argument_list|(
-name|segmentID
+name|id
 argument_list|)
 argument_list|)
 throw|;
@@ -399,11 +399,11 @@ name|out
 operator|.
 name|writeBytes
 argument_list|(
-name|segmentID
+name|id
 argument_list|,
 literal|0
 argument_list|,
-name|segmentID
+name|id
 operator|.
 name|length
 argument_list|)
@@ -414,7 +414,7 @@ init|=
 operator|new
 name|BytesRef
 argument_list|(
-name|segmentSuffix
+name|suffix
 argument_list|)
 decl_stmt|;
 if|if
@@ -423,7 +423,7 @@ name|suffixBytes
 operator|.
 name|length
 operator|!=
-name|segmentSuffix
+name|suffix
 operator|.
 name|length
 argument_list|()
@@ -441,7 +441,7 @@ name|IllegalArgumentException
 argument_list|(
 literal|"codec must be simple ASCII, less than 256 characters in length [got "
 operator|+
-name|segmentSuffix
+name|suffix
 operator|+
 literal|"]"
 argument_list|)
@@ -497,18 +497,18 @@ name|length
 argument_list|()
 return|;
 block|}
-comment|/**    * Computes the length of a segment header.    *     * @param codec Codec name.    * @return length of the entire segment header.    * @see #writeSegmentHeader(DataOutput, String, int, byte[], String)    */
-DECL|method|segmentHeaderLength
+comment|/**    * Computes the length of an index header.    *     * @param codec Codec name.    * @return length of the entire index header.    * @see #writeIndexHeader(DataOutput, String, int, byte[], String)    */
+DECL|method|indexHeaderLength
 specifier|public
 specifier|static
 name|int
-name|segmentHeaderLength
+name|indexHeaderLength
 parameter_list|(
 name|String
 name|codec
 parameter_list|,
 name|String
-name|segmentSuffix
+name|suffix
 parameter_list|)
 block|{
 return|return
@@ -523,7 +523,7 @@ name|ID_LENGTH
 operator|+
 literal|1
 operator|+
-name|segmentSuffix
+name|suffix
 operator|.
 name|length
 argument_list|()
@@ -710,12 +710,12 @@ return|return
 name|actualVersion
 return|;
 block|}
-comment|/**    * Reads and validates a header previously written with     * {@link #writeSegmentHeader(DataOutput, String, int, byte[], String)}.    *<p>    * When reading a file, supply the expected<code>codec</code>,    * expected version range (<code>minVersion to maxVersion</code>),    * and segment ID.    *     * @param in Input stream, positioned at the point where the    *        header was previously written. Typically this is located    *        at the beginning of the file.    * @param codec The expected codec name.    * @param minVersion The minimum supported expected version number.    * @param maxVersion The maximum supported expected version number.    * @param segmentID The expected segment this file belongs to.    * @param segmentSuffix The expected auxiliary segment suffix for this file.    * @return The actual version found, when a valid header is found     *         that matches<code>codec</code>, with an actual version     *         where<code>minVersion<= actual<= maxVersion</code>,     *         and matching<code>segmentID</code>    *         Otherwise an exception is thrown.    * @throws CorruptIndexException If the first four bytes are not    *         {@link #CODEC_MAGIC}, or if the actual codec found is    *         not<code>codec</code>, or if the<code>segmentID</code>    *         or<code>segmentSuffix</code> do not match.    * @throws IndexFormatTooOldException If the actual version is less     *         than<code>minVersion</code>.    * @throws IndexFormatTooNewException If the actual version is greater     *         than<code>maxVersion</code>.    * @throws IOException If there is an I/O error reading from the underlying medium.    * @see #writeSegmentHeader(DataOutput, String, int, byte[],String)    */
-DECL|method|checkSegmentHeader
+comment|/**    * Reads and validates a header previously written with     * {@link #writeIndexHeader(DataOutput, String, int, byte[], String)}.    *<p>    * When reading a file, supply the expected<code>codec</code>,    * expected version range (<code>minVersion to maxVersion</code>),    * and object ID and suffix.    *     * @param in Input stream, positioned at the point where the    *        header was previously written. Typically this is located    *        at the beginning of the file.    * @param codec The expected codec name.    * @param minVersion The minimum supported expected version number.    * @param maxVersion The maximum supported expected version number.    * @param expectedID The expected object identifier for this file.    * @param expectedSuffix The expected auxiliary suffix for this file.    * @return The actual version found, when a valid header is found     *         that matches<code>codec</code>, with an actual version     *         where<code>minVersion<= actual<= maxVersion</code>,     *         and matching<code>expectedID</code> and<code>expectedSuffix</code>    *         Otherwise an exception is thrown.    * @throws CorruptIndexException If the first four bytes are not    *         {@link #CODEC_MAGIC}, or if the actual codec found is    *         not<code>codec</code>, or if the<code>expectedID</code>    *         or<code>expectedSuffix</code> do not match.    * @throws IndexFormatTooOldException If the actual version is less     *         than<code>minVersion</code>.    * @throws IndexFormatTooNewException If the actual version is greater     *         than<code>maxVersion</code>.    * @throws IOException If there is an I/O error reading from the underlying medium.    * @see #writeIndexHeader(DataOutput, String, int, byte[],String)    */
+DECL|method|checkIndexHeader
 specifier|public
 specifier|static
 name|int
-name|checkSegmentHeader
+name|checkIndexHeader
 parameter_list|(
 name|DataInput
 name|in
@@ -731,10 +731,10 @@ name|maxVersion
 parameter_list|,
 name|byte
 index|[]
-name|segmentID
+name|expectedID
 parameter_list|,
 name|String
-name|segmentSuffix
+name|expectedSuffix
 parameter_list|)
 throws|throws
 name|IOException
@@ -753,6 +753,42 @@ argument_list|,
 name|maxVersion
 argument_list|)
 decl_stmt|;
+name|checkIndexHeaderID
+argument_list|(
+name|in
+argument_list|,
+name|expectedID
+argument_list|)
+expr_stmt|;
+name|checkIndexHeaderSuffix
+argument_list|(
+name|in
+argument_list|,
+name|expectedSuffix
+argument_list|)
+expr_stmt|;
+return|return
+name|version
+return|;
+block|}
+comment|/** Expert: just reads and verifies the object ID of an index header */
+DECL|method|checkIndexHeaderID
+specifier|public
+specifier|static
+name|byte
+index|[]
+name|checkIndexHeaderID
+parameter_list|(
+name|DataInput
+name|in
+parameter_list|,
+name|byte
+index|[]
+name|expectedID
+parameter_list|)
+throws|throws
+name|IOException
+block|{
 name|byte
 name|id
 index|[]
@@ -787,7 +823,7 @@ name|equals
 argument_list|(
 name|id
 argument_list|,
-name|segmentID
+name|expectedID
 argument_list|)
 condition|)
 block|{
@@ -795,13 +831,13 @@ throw|throw
 operator|new
 name|CorruptIndexException
 argument_list|(
-literal|"file mismatch, expected segment id="
+literal|"file mismatch, expected id="
 operator|+
 name|StringHelper
 operator|.
 name|idToString
 argument_list|(
-name|segmentID
+name|expectedID
 argument_list|)
 operator|+
 literal|", got="
@@ -817,6 +853,26 @@ name|in
 argument_list|)
 throw|;
 block|}
+return|return
+name|id
+return|;
+block|}
+comment|/** Expert: just reads and verifies the suffix of an index header */
+DECL|method|checkIndexHeaderSuffix
+specifier|public
+specifier|static
+name|String
+name|checkIndexHeaderSuffix
+parameter_list|(
+name|DataInput
+name|in
+parameter_list|,
+name|String
+name|expectedSuffix
+parameter_list|)
+throws|throws
+name|IOException
+block|{
 name|int
 name|suffixLength
 init|=
@@ -876,7 +932,7 @@ name|suffix
 operator|.
 name|equals
 argument_list|(
-name|segmentSuffix
+name|expectedSuffix
 argument_list|)
 condition|)
 block|{
@@ -884,9 +940,9 @@ throw|throw
 operator|new
 name|CorruptIndexException
 argument_list|(
-literal|"file mismatch, expected segment suffix="
+literal|"file mismatch, expected suffix="
 operator|+
-name|segmentSuffix
+name|expectedSuffix
 operator|+
 literal|", got="
 operator|+
@@ -897,7 +953,7 @@ argument_list|)
 throw|;
 block|}
 return|return
-name|version
+name|suffix
 return|;
 block|}
 comment|/**    * Writes a codec footer, which records both a checksum    * algorithm ID and a checksum. This footer can    * be parsed and validated with     * {@link #checkFooter(ChecksumIndexInput) checkFooter()}.    *<p>    * CodecFooter --&gt; Magic,AlgorithmID,Checksum    *<ul>    *<li>Magic --&gt; {@link DataOutput#writeInt Uint32}. This    *        identifies the start of the footer. It is always {@value #FOOTER_MAGIC}.    *<li>AlgorithmID --&gt; {@link DataOutput#writeInt Uint32}. This    *        indicates the checksum algorithm used. Currently this is always 0,    *        for zlib-crc32.    *<li>Checksum --&gt; {@link DataOutput#writeLong Uint64}. The    *        actual checksum value for all previous bytes in the stream, including    *        the bytes from Magic and AlgorithmID.    *</ul>    *     * @param out Output stream    * @throws IOException If there is an I/O error writing to the underlying medium.    */

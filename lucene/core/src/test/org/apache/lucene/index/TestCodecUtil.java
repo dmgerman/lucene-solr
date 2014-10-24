@@ -1292,7 +1292,7 @@ argument_list|)
 decl_stmt|;
 name|CodecUtil
 operator|.
-name|writeSegmentHeader
+name|writeIndexHeader
 argument_list|(
 name|output
 argument_list|,
@@ -1337,7 +1337,7 @@ name|seek
 argument_list|(
 name|CodecUtil
 operator|.
-name|segmentHeaderLength
+name|indexHeaderLength
 argument_list|(
 literal|"FooBar"
 argument_list|,
@@ -1421,7 +1421,7 @@ try|try
 block|{
 name|CodecUtil
 operator|.
-name|writeSegmentHeader
+name|writeIndexHeader
 argument_list|(
 name|output
 argument_list|,
@@ -1522,7 +1522,7 @@ argument_list|()
 decl_stmt|;
 name|CodecUtil
 operator|.
-name|writeSegmentHeader
+name|writeIndexHeader
 argument_list|(
 name|output
 argument_list|,
@@ -1556,7 +1556,7 @@ argument_list|)
 decl_stmt|;
 name|CodecUtil
 operator|.
-name|checkSegmentHeader
+name|checkIndexHeader
 argument_list|(
 name|input
 argument_list|,
@@ -1596,7 +1596,7 @@ argument_list|()
 argument_list|,
 name|CodecUtil
 operator|.
-name|segmentHeaderLength
+name|indexHeaderLength
 argument_list|(
 literal|"foobar"
 argument_list|,
@@ -1643,7 +1643,7 @@ try|try
 block|{
 name|CodecUtil
 operator|.
-name|writeSegmentHeader
+name|writeIndexHeader
 argument_list|(
 name|output
 argument_list|,

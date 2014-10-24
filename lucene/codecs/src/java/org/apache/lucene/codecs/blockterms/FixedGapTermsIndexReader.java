@@ -374,7 +374,7 @@ try|try
 block|{
 name|CodecUtil
 operator|.
-name|checkSegmentHeader
+name|checkIndexHeader
 argument_list|(
 name|in
 argument_list|,

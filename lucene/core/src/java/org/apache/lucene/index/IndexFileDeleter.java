@@ -615,15 +615,15 @@ block|}
 name|SegmentInfos
 name|sis
 init|=
-operator|new
-name|SegmentInfos
-argument_list|()
+literal|null
 decl_stmt|;
 try|try
 block|{
 name|sis
+operator|=
+name|SegmentInfos
 operator|.
-name|read
+name|readCommit
 argument_list|(
 name|directory
 argument_list|,
@@ -670,10 +670,6 @@ literal|"\"; skipping this commit point"
 argument_list|)
 expr_stmt|;
 block|}
-name|sis
-operator|=
-literal|null
-expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
@@ -711,10 +707,6 @@ block|{
 comment|// Most likely we are opening an index that
 comment|// has an aborted "future" commit, so suppress
 comment|// exc in this case
-name|sis
-operator|=
-literal|null
-expr_stmt|;
 block|}
 block|}
 if|if
@@ -820,15 +812,15 @@ comment|// try now to explicitly open this commit point:
 name|SegmentInfos
 name|sis
 init|=
-operator|new
-name|SegmentInfos
-argument_list|()
+literal|null
 decl_stmt|;
 try|try
 block|{
 name|sis
+operator|=
+name|SegmentInfos
 operator|.
-name|read
+name|readCommit
 argument_list|(
 name|directory
 argument_list|,

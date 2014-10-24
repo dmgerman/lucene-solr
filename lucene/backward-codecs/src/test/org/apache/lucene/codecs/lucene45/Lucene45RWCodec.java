@@ -70,6 +70,20 @@ name|lucene
 operator|.
 name|codecs
 operator|.
+name|PostingsFormat
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|codecs
+operator|.
 name|SegmentInfoFormat
 import|;
 end_import
@@ -115,6 +129,22 @@ operator|.
 name|lucene40
 operator|.
 name|Lucene40RWSegmentInfoFormat
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|codecs
+operator|.
+name|lucene41
+operator|.
+name|Lucene41RWPostingsFormat
 import|;
 end_import
 
@@ -183,15 +213,12 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Read-write version of {@link Lucene45Codec} for testing.  */
+comment|/**  * Read-write version of {@link Lucene45Codec} for testing.  * @deprecated for test purposes only  */
 end_comment
 
 begin_class
 annotation|@
-name|SuppressWarnings
-argument_list|(
-literal|"deprecation"
-argument_list|)
+name|Deprecated
 DECL|class|Lucene45RWCodec
 specifier|public
 specifier|final
@@ -200,6 +227,31 @@ name|Lucene45RWCodec
 extends|extends
 name|Lucene45Codec
 block|{
+DECL|field|postings
+specifier|private
+specifier|final
+name|PostingsFormat
+name|postings
+init|=
+operator|new
+name|Lucene41RWPostingsFormat
+argument_list|()
+decl_stmt|;
+annotation|@
+name|Override
+DECL|method|getPostingsFormatForField
+specifier|public
+name|PostingsFormat
+name|getPostingsFormatForField
+parameter_list|(
+name|String
+name|field
+parameter_list|)
+block|{
+return|return
+name|postings
+return|;
+block|}
 DECL|field|fieldInfosFormat
 specifier|private
 specifier|static

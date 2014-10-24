@@ -96,9 +96,9 @@ name|lucene
 operator|.
 name|codecs
 operator|.
-name|lucene41vargap
+name|blockterms
 operator|.
-name|Lucene41VarGapFixedInterval
+name|LuceneVarGapFixedInterval
 import|;
 end_import
 
@@ -1913,7 +1913,7 @@ condition|)
 block|{
 return|return
 operator|new
-name|Lucene41VarGapFixedInterval
+name|LuceneVarGapFixedInterval
 argument_list|(
 literal|1
 argument_list|)
@@ -1932,7 +1932,7 @@ condition|)
 block|{
 return|return
 operator|new
-name|Lucene41VarGapFixedInterval
+name|LuceneVarGapFixedInterval
 argument_list|(
 literal|2
 argument_list|)

@@ -221,7 +221,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**   * Lucene 5.0 live docs format   *<p>  *<p>The .liv file is optional, and only exists when a segment contains  * deletions.</p>  *<p>Although per-segment, this file is maintained exterior to compound segment  * files.</p>  *<p>Deletions (.liv) --&gt; SegmentHeader,Generation,Bits</p>  *<ul>  *<li>SegmentHeader --&gt; {@link CodecUtil#writeSegmentHeader SegmentHeader}</li>  *<li>Generation --&gt; {@link DataOutput#writeLong Int64}  *<li>Bits --&gt;&lt;{@link DataOutput#writeLong Int64}&gt;<sup>LongCount</sup></li>  *</ul>  */
+comment|/**   * Lucene 5.0 live docs format   *<p>  *<p>The .liv file is optional, and only exists when a segment contains  * deletions.</p>  *<p>Although per-segment, this file is maintained exterior to compound segment  * files.</p>  *<p>Deletions (.liv) --&gt; IndexHeader,Generation,Bits</p>  *<ul>  *<li>SegmentHeader --&gt; {@link CodecUtil#writeIndexHeader IndexHeader}</li>  *<li>Bits --&gt;&lt;{@link DataOutput#writeLong Int64}&gt;<sup>LongCount</sup></li>  *</ul>  */
 end_comment
 
 begin_class
@@ -421,7 +421,7 @@ try|try
 block|{
 name|CodecUtil
 operator|.
-name|checkSegmentHeader
+name|checkIndexHeader
 argument_list|(
 name|input
 argument_list|,
@@ -438,40 +438,18 @@ operator|.
 name|getId
 argument_list|()
 argument_list|,
-literal|""
+name|Long
+operator|.
+name|toString
+argument_list|(
+name|gen
+argument_list|,
+name|Character
+operator|.
+name|MAX_RADIX
+argument_list|)
 argument_list|)
 expr_stmt|;
-name|long
-name|filegen
-init|=
-name|input
-operator|.
-name|readLong
-argument_list|()
-decl_stmt|;
-if|if
-condition|(
-name|gen
-operator|!=
-name|filegen
-condition|)
-block|{
-throw|throw
-operator|new
-name|CorruptIndexException
-argument_list|(
-literal|"file mismatch, expected generation="
-operator|+
-name|gen
-operator|+
-literal|", got="
-operator|+
-name|filegen
-argument_list|,
-name|input
-argument_list|)
-throw|;
-block|}
 name|long
 name|data
 index|[]
@@ -745,7 +723,7 @@ init|)
 block|{
 name|CodecUtil
 operator|.
-name|writeSegmentHeader
+name|writeIndexHeader
 argument_list|(
 name|output
 argument_list|,
@@ -760,14 +738,16 @@ operator|.
 name|getId
 argument_list|()
 argument_list|,
-literal|""
-argument_list|)
-expr_stmt|;
-name|output
+name|Long
 operator|.
-name|writeLong
+name|toString
 argument_list|(
 name|gen
+argument_list|,
+name|Character
+operator|.
+name|MAX_RADIX
+argument_list|)
 argument_list|)
 expr_stmt|;
 for|for

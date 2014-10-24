@@ -295,6 +295,8 @@ operator|new
 name|IDVersionPostingsWriter
 argument_list|(
 name|state
+operator|.
+name|liveDocs
 argument_list|)
 decl_stmt|;
 name|boolean
@@ -363,9 +365,7 @@ name|postingsReader
 init|=
 operator|new
 name|IDVersionPostingsReader
-argument_list|(
-name|state
-argument_list|)
+argument_list|()
 decl_stmt|;
 name|boolean
 name|success

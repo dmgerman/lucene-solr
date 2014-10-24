@@ -768,7 +768,7 @@ name|version
 init|=
 name|CodecUtil
 operator|.
-name|checkSegmentHeader
+name|checkIndexHeader
 argument_list|(
 name|indexIn
 argument_list|,
@@ -801,7 +801,7 @@ name|version2
 init|=
 name|CodecUtil
 operator|.
-name|checkSegmentHeader
+name|checkIndexHeader
 argument_list|(
 name|blockIn
 argument_list|,
@@ -866,6 +866,8 @@ operator|.
 name|init
 argument_list|(
 name|blockIn
+argument_list|,
+name|state
 argument_list|)
 expr_stmt|;
 name|seekDir
