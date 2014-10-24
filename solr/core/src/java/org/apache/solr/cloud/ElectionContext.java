@@ -2403,8 +2403,6 @@ literal|"Waiting until we see more replicas up for shard {}: total={}"
 operator|+
 literal|" found={}"
 operator|+
-name|found
-operator|+
 literal|" timeoutin={}ms"
 argument_list|,
 name|shardId
@@ -2498,7 +2496,6 @@ argument_list|,
 name|shardId
 argument_list|)
 expr_stmt|;
-comment|// System.out.println("###### waitForReplicasToComeUp  : slices=" + slices + " all=" + zkController.getClusterState().getCollectionStates() );
 name|cnt
 operator|++
 expr_stmt|;
