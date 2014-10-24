@@ -402,7 +402,7 @@ name|lucene
 operator|.
 name|util
 operator|.
-name|FixedBitDocIdSet
+name|BitDocIdSet
 import|;
 end_import
 
@@ -794,11 +794,11 @@ literal|"19"
 argument_list|)
 argument_list|)
 expr_stmt|;
-name|FixedBitDocIdSet
+name|BitDocIdSet
 name|bits
 init|=
 operator|(
-name|FixedBitDocIdSet
+name|BitDocIdSet
 operator|)
 name|termsFilter
 argument_list|(
@@ -847,7 +847,7 @@ expr_stmt|;
 name|bits
 operator|=
 operator|(
-name|FixedBitDocIdSet
+name|BitDocIdSet
 operator|)
 name|termsFilter
 argument_list|(
@@ -904,7 +904,7 @@ expr_stmt|;
 name|bits
 operator|=
 operator|(
-name|FixedBitDocIdSet
+name|BitDocIdSet
 operator|)
 name|termsFilter
 argument_list|(
@@ -961,7 +961,7 @@ expr_stmt|;
 name|bits
 operator|=
 operator|(
-name|FixedBitDocIdSet
+name|BitDocIdSet
 operator|)
 name|termsFilter
 argument_list|(
@@ -1239,11 +1239,11 @@ expr_stmt|;
 block|}
 else|else
 block|{
-name|FixedBitDocIdSet
+name|BitDocIdSet
 name|bits
 init|=
 operator|(
-name|FixedBitDocIdSet
+name|BitDocIdSet
 operator|)
 name|docIdSet
 decl_stmt|;
@@ -1475,11 +1475,11 @@ argument_list|(
 name|terms
 argument_list|)
 decl_stmt|;
-name|FixedBitDocIdSet
+name|BitDocIdSet
 name|bits
 init|=
 operator|(
-name|FixedBitDocIdSet
+name|BitDocIdSet
 operator|)
 name|tf
 operator|.
@@ -1780,11 +1780,11 @@ name|terms
 argument_list|)
 argument_list|)
 decl_stmt|;
-name|FixedBitDocIdSet
+name|BitDocIdSet
 name|bits
 init|=
 operator|(
-name|FixedBitDocIdSet
+name|BitDocIdSet
 operator|)
 name|tf
 operator|.

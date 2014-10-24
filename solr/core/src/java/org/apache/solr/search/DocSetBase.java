@@ -124,7 +124,7 @@ name|lucene
 operator|.
 name|util
 operator|.
-name|FixedBitDocIdSet
+name|BitDocIdSet
 import|;
 end_import
 
@@ -866,7 +866,7 @@ operator|.
 name|wrap
 argument_list|(
 operator|new
-name|FixedBitDocIdSet
+name|BitDocIdSet
 argument_list|(
 name|bs
 argument_list|)
@@ -967,15 +967,9 @@ expr_stmt|;
 return|return
 name|adjustedDoc
 operator|=
-operator|(
-name|pos
-operator|>=
-literal|0
-operator|&&
 name|pos
 operator|<
 name|max
-operator|)
 condition|?
 name|pos
 operator|-
@@ -1019,15 +1013,9 @@ expr_stmt|;
 return|return
 name|adjustedDoc
 operator|=
-operator|(
-name|pos
-operator|>=
-literal|0
-operator|&&
 name|pos
 operator|<
 name|max
-operator|)
 condition|?
 name|pos
 operator|-

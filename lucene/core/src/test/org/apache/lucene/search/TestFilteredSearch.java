@@ -206,7 +206,7 @@ name|lucene
 operator|.
 name|util
 operator|.
-name|FixedBitDocIdSet
+name|BitDocIdSet
 import|;
 end_import
 
@@ -701,7 +701,7 @@ condition|?
 literal|null
 else|:
 operator|new
-name|FixedBitDocIdSet
+name|BitDocIdSet
 argument_list|(
 name|set
 argument_list|)

@@ -222,7 +222,7 @@ name|lucene
 operator|.
 name|util
 operator|.
-name|FixedBitDocIdSet
+name|BitDocIdSet
 import|;
 end_import
 
@@ -633,8 +633,11 @@ condition|(
 operator|!
 operator|(
 name|parents
+operator|.
+name|bits
+argument_list|()
 operator|instanceof
-name|FixedBitDocIdSet
+name|FixedBitSet
 operator|)
 condition|)
 block|{
@@ -645,6 +648,9 @@ argument_list|(
 literal|"parentFilter must return FixedBitSet; got "
 operator|+
 name|parents
+operator|.
+name|bits
+argument_list|()
 argument_list|)
 throw|;
 block|}
@@ -657,11 +663,9 @@ argument_list|,
 name|parentScorer
 argument_list|,
 operator|(
-operator|(
-name|FixedBitDocIdSet
+name|FixedBitSet
 operator|)
 name|parents
-operator|)
 operator|.
 name|bits
 argument_list|()

@@ -169,10 +169,6 @@ decl_stmt|;
 return|return
 operator|(
 name|result
-operator|<
-literal|0
-operator|||
-name|result
 operator|>=
 name|len
 operator|)

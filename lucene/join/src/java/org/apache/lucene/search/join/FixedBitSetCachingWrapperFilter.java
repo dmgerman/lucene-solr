@@ -124,7 +124,7 @@ name|lucene
 operator|.
 name|util
 operator|.
-name|FixedBitDocIdSet
+name|BitDocIdSet
 import|;
 end_import
 
@@ -202,7 +202,7 @@ if|if
 condition|(
 name|docIdSet
 operator|instanceof
-name|FixedBitDocIdSet
+name|BitDocIdSet
 condition|)
 block|{
 comment|// this is different from CachingWrapperFilter: even when the DocIdSet is
@@ -258,7 +258,7 @@ argument_list|)
 expr_stmt|;
 return|return
 operator|new
-name|FixedBitDocIdSet
+name|BitDocIdSet
 argument_list|(
 name|copy
 argument_list|)

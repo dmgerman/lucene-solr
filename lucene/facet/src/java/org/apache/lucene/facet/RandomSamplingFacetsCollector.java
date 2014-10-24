@@ -128,7 +128,7 @@ name|lucene
 operator|.
 name|util
 operator|.
-name|FixedBitDocIdSet
+name|BitDocIdSet
 import|;
 end_import
 
@@ -773,7 +773,7 @@ operator|.
 name|context
 argument_list|,
 operator|new
-name|FixedBitDocIdSet
+name|BitDocIdSet
 argument_list|(
 name|sampleDocs
 argument_list|)

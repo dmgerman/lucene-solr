@@ -1421,8 +1421,9 @@ name|slot0
 argument_list|)
 operator|)
 operator|!=
-operator|-
-literal|1
+name|DocIdSetIterator
+operator|.
+name|NO_MORE_DOCS
 condition|)
 block|{
 name|int

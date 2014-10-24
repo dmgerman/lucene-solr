@@ -46,6 +46,20 @@ name|apache
 operator|.
 name|lucene
 operator|.
+name|search
+operator|.
+name|DocIdSetIterator
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
 name|store
 operator|.
 name|DataInput
@@ -1033,8 +1047,10 @@ expr_stmt|;
 if|if
 condition|(
 name|bitIndex
-operator|>=
-literal|0
+operator|!=
+name|DocIdSetIterator
+operator|.
+name|NO_MORE_DOCS
 condition|)
 block|{
 comment|// Project the larger number into a smaller one effectively

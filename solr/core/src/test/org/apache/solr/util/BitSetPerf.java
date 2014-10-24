@@ -44,9 +44,23 @@ name|apache
 operator|.
 name|lucene
 operator|.
+name|search
+operator|.
+name|DocIdSetIterator
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
 name|util
 operator|.
-name|FixedBitSet
+name|BitSetIterator
 import|;
 end_import
 
@@ -61,8 +75,6 @@ operator|.
 name|util
 operator|.
 name|FixedBitSet
-operator|.
-name|FixedBitSetIterator
 import|;
 end_import
 
@@ -950,8 +962,10 @@ literal|0
 argument_list|)
 init|;
 name|next
-operator|>=
-literal|0
+operator|!=
+name|DocIdSetIterator
+operator|.
+name|NO_MORE_DOCS
 condition|;
 name|next
 operator|=
@@ -1076,11 +1090,11 @@ name|i
 index|]
 decl_stmt|;
 specifier|final
-name|FixedBitSetIterator
+name|BitSetIterator
 name|iterator
 init|=
 operator|new
-name|FixedBitSetIterator
+name|BitSetIterator
 argument_list|(
 name|set
 argument_list|,

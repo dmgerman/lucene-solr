@@ -488,7 +488,7 @@ name|lucene
 operator|.
 name|util
 operator|.
-name|FixedBitDocIdSet
+name|BitDocIdSet
 import|;
 end_import
 
@@ -2538,7 +2538,7 @@ expr_stmt|;
 block|}
 return|return
 operator|new
-name|FixedBitDocIdSet
+name|BitDocIdSet
 argument_list|(
 name|obs
 argument_list|)
