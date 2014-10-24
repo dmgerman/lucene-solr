@@ -98,20 +98,6 @@ end_import
 
 begin_import
 import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|util
-operator|.
-name|Version
-import|;
-end_import
-
-begin_import
-import|import
 name|java
 operator|.
 name|util
@@ -131,7 +117,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**   * Factory for {@link Lucene43DictionaryCompoundWordTokenFilter}.  *<pre class="prettyprint">  *&lt;fieldType name="text_dictcomp" class="solr.TextField" positionIncrementGap="100"&gt;  *&lt;analyzer&gt;  *&lt;tokenizer class="solr.WhitespaceTokenizerFactory"/&gt;  *&lt;filter class="solr.DictionaryCompoundWordTokenFilterFactory" dictionary="dictionary.txt"  *         minWordSize="5" minSubwordSize="2" maxSubwordSize="15" onlyLongestMatch="true"/&gt;  *&lt;/analyzer&gt;  *&lt;/fieldType&gt;</pre>  */
+comment|/**   * Factory for {@link DictionaryCompoundWordTokenFilter}.  *<pre class="prettyprint">  *&lt;fieldType name="text_dictcomp" class="solr.TextField" positionIncrementGap="100"&gt;  *&lt;analyzer&gt;  *&lt;tokenizer class="solr.WhitespaceTokenizerFactory"/&gt;  *&lt;filter class="solr.DictionaryCompoundWordTokenFilterFactory" dictionary="dictionary.txt"  *         minWordSize="5" minSubwordSize="2" maxSubwordSize="15" onlyLongestMatch="true"/&gt;  *&lt;/analyzer&gt;  *&lt;/fieldType&gt;</pre>  */
 end_comment
 
 begin_class
@@ -218,7 +204,7 @@ name|args
 argument_list|,
 literal|"minWordSize"
 argument_list|,
-name|Lucene43CompoundWordTokenFilterBase
+name|CompoundWordTokenFilterBase
 operator|.
 name|DEFAULT_MIN_WORD_SIZE
 argument_list|)
@@ -231,7 +217,7 @@ name|args
 argument_list|,
 literal|"minSubwordSize"
 argument_list|,
-name|Lucene43CompoundWordTokenFilterBase
+name|CompoundWordTokenFilterBase
 operator|.
 name|DEFAULT_MIN_SUBWORD_SIZE
 argument_list|)
@@ -244,7 +230,7 @@ name|args
 argument_list|,
 literal|"maxSubwordSize"
 argument_list|,
-name|Lucene43CompoundWordTokenFilterBase
+name|CompoundWordTokenFilterBase
 operator|.
 name|DEFAULT_MAX_SUBWORD_SIZE
 argument_list|)
@@ -330,39 +316,9 @@ return|return
 name|input
 return|;
 block|}
-if|if
-condition|(
-name|luceneMatchVersion
-operator|.
-name|onOrAfter
-argument_list|(
-name|Version
-operator|.
-name|LUCENE_4_4_0
-argument_list|)
-condition|)
-block|{
 return|return
 operator|new
 name|DictionaryCompoundWordTokenFilter
-argument_list|(
-name|input
-argument_list|,
-name|dictionary
-argument_list|,
-name|minWordSize
-argument_list|,
-name|minSubwordSize
-argument_list|,
-name|maxSubwordSize
-argument_list|,
-name|onlyLongestMatch
-argument_list|)
-return|;
-block|}
-return|return
-operator|new
-name|Lucene43DictionaryCompoundWordTokenFilter
 argument_list|(
 name|input
 argument_list|,

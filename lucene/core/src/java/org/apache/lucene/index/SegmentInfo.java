@@ -382,10 +382,6 @@ expr_stmt|;
 if|if
 condition|(
 name|id
-operator|!=
-literal|null
-operator|&&
-name|id
 operator|.
 name|length
 operator|!=
@@ -832,12 +828,6 @@ name|getId
 parameter_list|()
 block|{
 return|return
-name|id
-operator|==
-literal|null
-condition|?
-literal|null
-else|:
 name|id
 operator|.
 name|clone

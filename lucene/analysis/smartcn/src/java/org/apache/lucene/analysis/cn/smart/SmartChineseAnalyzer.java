@@ -172,20 +172,6 @@ name|IOUtils
 import|;
 end_import
 
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|util
-operator|.
-name|Version
-import|;
-end_import
-
 begin_comment
 comment|/**  *<p>  * SmartChineseAnalyzer is an analyzer for Chinese or mixed Chinese-English text.  * The analyzer uses probabilistic knowledge to find the optimal word segmentation for Simplified Chinese text.  * The text is first broken into sentences, then each sentence is segmented into words.  *</p>  *<p>  * Segmentation is based upon the<a href="http://en.wikipedia.org/wiki/Hidden_Markov_Model">Hidden Markov Model</a>.   * A large training corpus was used to calculate Chinese word frequency probability.  *</p>  *<p>  * This analyzer requires a dictionary to provide statistical data.   * SmartChineseAnalyzer has an included dictionary out-of-box.  *</p>  *<p>  * The included dictionary data is from<a href="http://www.ictclas.org">ICTCLAS1.0</a>.  * Thanks to ICTCLAS for their hard work, and for contributing the data under the Apache 2 License!  *</p>  * @lucene.experimental  */
 end_comment
@@ -388,51 +374,16 @@ block|{
 specifier|final
 name|Tokenizer
 name|tokenizer
-decl_stmt|;
-name|TokenStream
-name|result
-decl_stmt|;
-if|if
-condition|(
-name|getVersion
-argument_list|()
-operator|.
-name|onOrAfter
-argument_list|(
-name|Version
-operator|.
-name|LUCENE_4_8_0
-argument_list|)
-condition|)
-block|{
-name|tokenizer
-operator|=
+init|=
 operator|new
 name|HMMChineseTokenizer
 argument_list|()
-expr_stmt|;
+decl_stmt|;
+name|TokenStream
 name|result
-operator|=
+init|=
 name|tokenizer
-expr_stmt|;
-block|}
-else|else
-block|{
-name|tokenizer
-operator|=
-operator|new
-name|SentenceTokenizer
-argument_list|()
-expr_stmt|;
-name|result
-operator|=
-operator|new
-name|WordTokenFilter
-argument_list|(
-name|tokenizer
-argument_list|)
-expr_stmt|;
-block|}
+decl_stmt|;
 comment|// result = new LowerCaseFilter(result);
 comment|// LowerCaseFilter is not needed, as SegTokenFilter lowercases Basic Latin text.
 comment|// The porter stemming is too strict, this is not a bug, this is a feature:)

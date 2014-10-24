@@ -2302,7 +2302,7 @@ name|onOrAfter
 argument_list|(
 name|Version
 operator|.
-name|LUCENE_4_0_0_ALPHA
+name|LUCENE_6_0_0
 argument_list|)
 condition|)
 block|{
@@ -2316,9 +2316,9 @@ literal|" is using deprecated "
 operator|+
 name|version
 operator|+
-literal|" emulation. You should at some point declare and reindex to at least 4.0, because "
+literal|" emulation. You should at some point declare and reindex to at least 6.0, because "
 operator|+
-literal|"3.x emulation is deprecated and will be removed in 5.0"
+literal|"5.x emulation is deprecated and will be removed in 7.0"
 argument_list|)
 expr_stmt|;
 block|}

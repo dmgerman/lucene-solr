@@ -572,7 +572,7 @@ name|analysis
 operator|.
 name|compound
 operator|.
-name|Lucene43HyphenationCompoundWordTokenFilter
+name|HyphenationCompoundWordTokenFilter
 import|;
 end_import
 
@@ -3312,7 +3312,7 @@ decl_stmt|;
 name|HyphenationTree
 name|hyphenator
 init|=
-name|Lucene43HyphenationCompoundWordTokenFilter
+name|HyphenationCompoundWordTokenFilter
 operator|.
 name|getHyphenationTree
 argument_list|(
