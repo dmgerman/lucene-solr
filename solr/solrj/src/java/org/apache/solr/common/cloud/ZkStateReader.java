@@ -4937,6 +4937,13 @@ argument_list|(
 name|coll
 argument_list|)
 expr_stmt|;
+name|watchedCollectionStates
+operator|.
+name|remove
+argument_list|(
+name|coll
+argument_list|)
+expr_stmt|;
 try|try
 block|{
 name|updateClusterState
