@@ -2564,23 +2564,40 @@ name|getIndividualColls
 argument_list|()
 control|)
 block|{
-name|DocCollection
-name|watched
-init|=
-name|watchedCollectionStates
+synchronized|synchronized
+init|(
+name|this
+init|)
+block|{
+if|if
+condition|(
+name|watchedCollections
 operator|.
-name|get
+name|contains
 argument_list|(
 name|s
 argument_list|)
-decl_stmt|;
-if|if
-condition|(
-name|watched
-operator|!=
-literal|null
 condition|)
 block|{
+name|DocCollection
+name|live
+init|=
+name|getCollectionLive
+argument_list|(
+name|this
+argument_list|,
+name|s
+argument_list|)
+decl_stmt|;
+name|watchedCollectionStates
+operator|.
+name|put
+argument_list|(
+name|s
+argument_list|,
+name|live
+argument_list|)
+expr_stmt|;
 comment|// if it is a watched collection, add too
 name|result
 operator|.
@@ -2593,7 +2610,7 @@ name|ClusterState
 operator|.
 name|CollectionRef
 argument_list|(
-name|watched
+name|live
 argument_list|)
 argument_list|)
 expr_stmt|;
@@ -2602,6 +2619,8 @@ else|else
 block|{
 comment|// if it is not collection, then just create a reference which can fetch
 comment|// the collection object just in time from ZK
+comment|// this is also cheap (lazy loaded) so we put it inside the synchronized
+comment|// block although it is not required
 specifier|final
 name|String
 name|collName
@@ -2643,6 +2662,7 @@ block|}
 block|}
 argument_list|)
 expr_stmt|;
+block|}
 block|}
 block|}
 return|return
