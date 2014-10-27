@@ -388,25 +388,6 @@ literal|"' cannot omit norms"
 argument_list|)
 throw|;
 block|}
-if|if
-condition|(
-name|indexOptions
-operator|!=
-literal|null
-condition|)
-block|{
-throw|throw
-operator|new
-name|IllegalStateException
-argument_list|(
-literal|"non-indexed field '"
-operator|+
-name|name
-operator|+
-literal|"' cannot have index options"
-argument_list|)
-throw|;
-block|}
 block|}
 if|if
 condition|(
