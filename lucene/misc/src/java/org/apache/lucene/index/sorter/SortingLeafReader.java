@@ -3954,7 +3954,7 @@ operator|==
 literal|null
 condition|)
 block|{
-comment|// the reader is already sorter
+comment|// the reader is already sorted
 return|return
 name|reader
 return|;

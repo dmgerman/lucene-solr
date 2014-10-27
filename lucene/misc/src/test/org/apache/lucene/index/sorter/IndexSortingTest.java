@@ -72,6 +72,20 @@ name|lucene
 operator|.
 name|index
 operator|.
+name|IndexReader
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|index
+operator|.
 name|IndexWriter
 import|;
 end_import
@@ -236,12 +250,13 @@ parameter_list|()
 throws|throws
 name|Exception
 block|{
+comment|// NOTE: index was created by by super's @BeforeClass
 comment|// only read the values of the undeleted documents, since after addIndexes,
 comment|// the deleted ones will be dropped from the index.
 name|Bits
 name|liveDocs
 init|=
-name|reader
+name|unsortedReader
 operator|.
 name|getLiveDocs
 argument_list|()
@@ -266,7 +281,7 @@ literal|0
 init|;
 name|i
 operator|<
-name|reader
+name|unsortedReader
 operator|.
 name|maxDoc
 argument_list|()
@@ -297,7 +312,7 @@ name|Integer
 operator|.
 name|valueOf
 argument_list|(
-name|reader
+name|unsortedReader
 operator|.
 name|document
 argument_list|(
@@ -462,17 +477,18 @@ literal|null
 argument_list|)
 argument_list|)
 decl_stmt|;
+name|IndexReader
 name|reader
-operator|=
+init|=
 name|SortingLeafReader
 operator|.
 name|wrap
 argument_list|(
-name|reader
+name|unsortedReader
 argument_list|,
 name|sorter
 argument_list|)
-expr_stmt|;
+decl_stmt|;
 name|writer
 operator|.
 name|addIndexes
@@ -485,6 +501,7 @@ operator|.
 name|close
 argument_list|()
 expr_stmt|;
+comment|// NOTE: also closes unsortedReader
 name|reader
 operator|.
 name|close
@@ -508,7 +525,7 @@ name|dir
 argument_list|)
 expr_stmt|;
 comment|// set reader for tests
-name|reader
+name|sortedReader
 operator|=
 name|SlowCompositeReaderWrapper
 operator|.
@@ -526,7 +543,7 @@ name|assertFalse
 argument_list|(
 literal|"index should not have deletions"
 argument_list|,
-name|reader
+name|sortedReader
 operator|.
 name|hasDeletions
 argument_list|()
