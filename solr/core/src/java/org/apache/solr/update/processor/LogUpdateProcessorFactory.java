@@ -240,7 +240,8 @@ DECL|field|slowUpdateThresholdMillis
 name|int
 name|slowUpdateThresholdMillis
 init|=
-literal|1000
+operator|-
+literal|1
 decl_stmt|;
 annotation|@
 name|Override
@@ -1051,7 +1052,6 @@ argument_list|()
 argument_list|)
 expr_stmt|;
 block|}
-elseif|else
 if|if
 condition|(
 name|log
@@ -1075,6 +1075,10 @@ argument_list|()
 decl_stmt|;
 if|if
 condition|(
+name|slowUpdateThresholdMillis
+operator|>=
+literal|0
+operator|&&
 name|elapsed
 operator|>=
 name|slowUpdateThresholdMillis
@@ -1084,6 +1088,8 @@ name|log
 operator|.
 name|warn
 argument_list|(
+literal|"slow: "
+operator|+
 name|getLogStringAndClearRspToLog
 argument_list|()
 argument_list|)

@@ -1476,7 +1476,8 @@ name|getInt
 argument_list|(
 literal|"query/slowQueryThresholdMillis"
 argument_list|,
-literal|1000
+operator|-
+literal|1
 argument_list|)
 expr_stmt|;
 name|loadPluginInfo

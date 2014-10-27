@@ -4225,7 +4225,8 @@ name|this
 operator|.
 name|slowQueryThresholdMillis
 operator|=
-literal|1000
+operator|-
+literal|1
 expr_stmt|;
 name|this
 operator|.
@@ -9466,7 +9467,6 @@ argument_list|)
 argument_list|)
 expr_stmt|;
 block|}
-elseif|else
 if|if
 condition|(
 name|log
@@ -9496,6 +9496,10 @@ argument_list|)
 decl_stmt|;
 if|if
 condition|(
+name|slowQueryThresholdMillis
+operator|>=
+literal|0
+operator|&&
 name|qtime
 operator|>=
 name|slowQueryThresholdMillis
@@ -9505,6 +9509,8 @@ name|log
 operator|.
 name|warn
 argument_list|(
+literal|"slow: "
+operator|+
 name|rsp
 operator|.
 name|getToLogAsString
