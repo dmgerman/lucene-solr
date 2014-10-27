@@ -780,7 +780,7 @@ name|Locale
 operator|.
 name|ROOT
 argument_list|,
-literal|"A SPI class of type %s with classname %s does not exist, "
+literal|"An SPI class of type %s with classname %s does not exist, "
 operator|+
 literal|"please fix the file '%s%1$s' in your classpath."
 argument_list|,
