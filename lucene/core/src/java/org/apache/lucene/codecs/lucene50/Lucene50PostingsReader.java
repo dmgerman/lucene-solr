@@ -534,7 +534,6 @@ name|IndexInput
 name|payIn
 decl_stmt|;
 DECL|field|forUtil
-specifier|private
 specifier|final
 name|ForUtil
 name|forUtil
