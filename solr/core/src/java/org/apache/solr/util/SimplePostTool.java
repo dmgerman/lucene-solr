@@ -1423,6 +1423,10 @@ argument_list|,
 name|port
 argument_list|,
 name|core
+argument_list|,
+name|Locale
+operator|.
+name|ROOT
 argument_list|)
 argument_list|)
 expr_stmt|;
@@ -2254,6 +2258,10 @@ argument_list|,
 name|DEFAULT_POST_PORT
 argument_list|,
 name|DEFAULT_POST_CORE
+argument_list|,
+name|Locale
+operator|.
+name|ROOT
 argument_list|)
 operator|+
 literal|")\n"
