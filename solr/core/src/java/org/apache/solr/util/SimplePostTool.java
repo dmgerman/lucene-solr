@@ -1416,6 +1416,10 @@ name|String
 operator|.
 name|format
 argument_list|(
+name|Locale
+operator|.
+name|ROOT
+argument_list|,
 literal|"http://%s:%s/solr/%s/update"
 argument_list|,
 name|host
@@ -1423,10 +1427,6 @@ argument_list|,
 name|port
 argument_list|,
 name|core
-argument_list|,
-name|Locale
-operator|.
-name|ROOT
 argument_list|)
 argument_list|)
 expr_stmt|;
@@ -2251,6 +2251,10 @@ name|String
 operator|.
 name|format
 argument_list|(
+name|Locale
+operator|.
+name|ROOT
+argument_list|,
 literal|"http://%s:%s/solr/%s/update"
 argument_list|,
 name|DEFAULT_POST_HOST
@@ -2258,10 +2262,6 @@ argument_list|,
 name|DEFAULT_POST_PORT
 argument_list|,
 name|DEFAULT_POST_CORE
-argument_list|,
-name|Locale
-operator|.
-name|ROOT
 argument_list|)
 operator|+
 literal|")\n"
