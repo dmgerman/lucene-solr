@@ -3386,29 +3386,15 @@ name|commit
 argument_list|()
 argument_list|)
 expr_stmt|;
-name|SolrQueryRequest
-name|req
-init|=
-name|req
-argument_list|(
-literal|"qf"
-argument_list|,
-literal|"lowerfilt"
-argument_list|,
-literal|"id"
-argument_list|,
-literal|"1"
-argument_list|)
-decl_stmt|;
 try|try
 block|{
 name|assertQueryEquals
 argument_list|(
 literal|"mlt"
 argument_list|,
-name|req
+literal|"{!mlt qf=lowerfilt}1"
 argument_list|,
-literal|"{!mlt qf=lowerfilt id=1}"
+literal|"{!mlt qf=lowerfilt v=1}"
 argument_list|)
 expr_stmt|;
 block|}
@@ -3424,11 +3410,6 @@ argument_list|(
 name|commit
 argument_list|()
 argument_list|)
-expr_stmt|;
-name|req
-operator|.
-name|close
-argument_list|()
 expr_stmt|;
 block|}
 block|}

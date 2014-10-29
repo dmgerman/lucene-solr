@@ -196,6 +196,20 @@ end_import
 
 begin_import
 import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|solr
+operator|.
+name|search
+operator|.
+name|QueryParsing
+import|;
+end_import
+
+begin_import
+import|import
 name|java
 operator|.
 name|io
@@ -284,7 +298,9 @@ name|localParams
 operator|.
 name|get
 argument_list|(
-literal|"id"
+name|QueryParsing
+operator|.
+name|V
 argument_list|)
 decl_stmt|;
 comment|// Do a Real Time Get for the document
