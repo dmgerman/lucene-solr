@@ -6712,6 +6712,16 @@ name|collectionName
 argument_list|)
 expr_stmt|;
 block|}
+else|else
+block|{
+name|client
+operator|=
+name|createCloudClient
+argument_list|(
+literal|null
+argument_list|)
+expr_stmt|;
+block|}
 name|createCollection
 argument_list|(
 name|collectionInfos
