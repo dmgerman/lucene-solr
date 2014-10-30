@@ -101,6 +101,17 @@ operator|=
 name|innerSet
 expr_stmt|;
 block|}
+comment|/** Return the wrapped {@link DocIdSet}. */
+DECL|method|getDelegate
+specifier|public
+name|DocIdSet
+name|getDelegate
+parameter_list|()
+block|{
+return|return
+name|_innerSet
+return|;
+block|}
 comment|/** This DocIdSet implementation is cacheable if the inner set is cacheable. */
 annotation|@
 name|Override
