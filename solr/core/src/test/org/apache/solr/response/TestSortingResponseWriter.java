@@ -805,6 +805,39 @@ argument_list|,
 literal|"{\"numFound\":3, \"docs\":[{\"intdv\":3},{\"intdv\":1},{\"intdv\":2}]}"
 argument_list|)
 expr_stmt|;
+name|s
+operator|=
+name|h
+operator|.
+name|query
+argument_list|(
+name|req
+argument_list|(
+literal|"q"
+argument_list|,
+literal|"id:100000"
+argument_list|,
+literal|"qt"
+argument_list|,
+literal|"/export"
+argument_list|,
+literal|"fl"
+argument_list|,
+literal|"intdv"
+argument_list|,
+literal|"sort"
+argument_list|,
+literal|"doubledv desc"
+argument_list|)
+argument_list|)
+expr_stmt|;
+name|assertEquals
+argument_list|(
+name|s
+argument_list|,
+literal|"{\"numFound\":0, \"docs\":[]}"
+argument_list|)
+expr_stmt|;
 block|}
 block|}
 end_class
