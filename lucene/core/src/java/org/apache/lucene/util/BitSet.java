@@ -110,6 +110,17 @@ name|cardinality
 argument_list|()
 return|;
 block|}
+comment|/** Returns the index of the last set bit before or on the index specified.    *  -1 is returned if there are no more set bits.    */
+DECL|method|prevSetBit
+specifier|public
+specifier|abstract
+name|int
+name|prevSetBit
+parameter_list|(
+name|int
+name|index
+parameter_list|)
+function_decl|;
 comment|/** Returns the index of the first set bit starting at the index specified.    *  {@link DocIdSetIterator#NO_MORE_DOCS} is returned if there are no more set bits.    */
 DECL|method|nextSetBit
 specifier|public
@@ -118,7 +129,7 @@ name|int
 name|nextSetBit
 parameter_list|(
 name|int
-name|i
+name|index
 parameter_list|)
 function_decl|;
 comment|/** Assert that the current doc is -1. */

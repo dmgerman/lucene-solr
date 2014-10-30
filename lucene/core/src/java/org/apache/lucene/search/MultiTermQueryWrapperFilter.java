@@ -120,7 +120,7 @@ name|lucene
 operator|.
 name|util
 operator|.
-name|Bits
+name|BitDocIdSet
 import|;
 end_import
 
@@ -134,7 +134,7 @@ name|lucene
 operator|.
 name|util
 operator|.
-name|DocIdSetBuilder
+name|Bits
 import|;
 end_import
 
@@ -390,11 +390,15 @@ name|termsEnum
 operator|!=
 literal|null
 assert|;
-name|DocIdSetBuilder
+name|BitDocIdSet
+operator|.
+name|Builder
 name|builder
 init|=
 operator|new
-name|DocIdSetBuilder
+name|BitDocIdSet
+operator|.
+name|Builder
 argument_list|(
 name|context
 operator|.

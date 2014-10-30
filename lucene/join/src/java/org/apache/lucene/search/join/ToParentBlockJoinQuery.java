@@ -148,20 +148,6 @@ name|lucene
 operator|.
 name|search
 operator|.
-name|DocIdSet
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|search
-operator|.
 name|DocIdSetIterator
 import|;
 end_import
@@ -177,20 +163,6 @@ operator|.
 name|search
 operator|.
 name|Explanation
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|search
-operator|.
-name|Filter
 import|;
 end_import
 
@@ -290,7 +262,7 @@ name|lucene
 operator|.
 name|util
 operator|.
-name|Bits
+name|BitDocIdSet
 import|;
 end_import
 
@@ -304,12 +276,26 @@ name|lucene
 operator|.
 name|util
 operator|.
-name|FixedBitSet
+name|BitSet
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|util
+operator|.
+name|Bits
 import|;
 end_import
 
 begin_comment
-comment|/**  * This query requires that you index  * children and parent docs as a single block, using the  * {@link IndexWriter#addDocuments IndexWriter.addDocuments()} or {@link  * IndexWriter#updateDocuments IndexWriter.updateDocuments()} API.  In each block, the  * child documents must appear first, ending with the parent  * document.  At search time you provide a Filter  * identifying the parents, however this Filter must provide  * an {@link FixedBitSet} per sub-reader.  *  *<p>Once the block index is built, use this query to wrap  * any sub-query matching only child docs and join matches in that  * child document space up to the parent document space.  * You can then use this Query as a clause with  * other queries in the parent document space.</p>  *  *<p>See {@link ToChildBlockJoinQuery} if you need to join  * in the reverse order.  *  *<p>The child documents must be orthogonal to the parent  * documents: the wrapped child query must never  * return a parent document.</p>  *  * If you'd like to retrieve {@link TopGroups} for the  * resulting query, use the {@link ToParentBlockJoinCollector}.  * Note that this is not necessary, ie, if you simply want  * to collect the parent documents and don't need to see  * which child documents matched under that parent, then  * you can use any collector.  *  *<p><b>NOTE</b>: If the overall query contains parent-only  * matches, for example you OR a parent-only query with a  * joined child-only query, then the resulting collected documents  * will be correct, however the {@link TopGroups} you get  * from {@link ToParentBlockJoinCollector} will not contain every  * child for parents that had matched.  *  *<p>See {@link org.apache.lucene.search.join} for an  * overview.</p>  *  * @lucene.experimental  */
+comment|/**  * This query requires that you index  * children and parent docs as a single block, using the  * {@link IndexWriter#addDocuments IndexWriter.addDocuments()} or {@link  * IndexWriter#updateDocuments IndexWriter.updateDocuments()} API.  In each block, the  * child documents must appear first, ending with the parent  * document.  At search time you provide a Filter  * identifying the parents, however this Filter must provide  * an {@link BitSet} per sub-reader.  *  *<p>Once the block index is built, use this query to wrap  * any sub-query matching only child docs and join matches in that  * child document space up to the parent document space.  * You can then use this Query as a clause with  * other queries in the parent document space.</p>  *  *<p>See {@link ToChildBlockJoinQuery} if you need to join  * in the reverse order.  *  *<p>The child documents must be orthogonal to the parent  * documents: the wrapped child query must never  * return a parent document.</p>  *  * If you'd like to retrieve {@link TopGroups} for the  * resulting query, use the {@link ToParentBlockJoinCollector}.  * Note that this is not necessary, ie, if you simply want  * to collect the parent documents and don't need to see  * which child documents matched under that parent, then  * you can use any collector.  *  *<p><b>NOTE</b>: If the overall query contains parent-only  * matches, for example you OR a parent-only query with a  * joined child-only query, then the resulting collected documents  * will be correct, however the {@link TopGroups} you get  * from {@link ToParentBlockJoinCollector} will not contain every  * child for parents that had matched.  *  *<p>See {@link org.apache.lucene.search.join} for an  * overview.</p>  *  * @lucene.experimental  */
 end_comment
 
 begin_class
@@ -323,7 +309,7 @@ block|{
 DECL|field|parentsFilter
 specifier|private
 specifier|final
-name|Filter
+name|BitDocIdSetFilter
 name|parentsFilter
 decl_stmt|;
 DECL|field|childQuery
@@ -349,7 +335,7 @@ specifier|final
 name|ScoreMode
 name|scoreMode
 decl_stmt|;
-comment|/** Create a ToParentBlockJoinQuery.    *     * @param childQuery Query matching child documents.    * @param parentsFilter Filter (must produce FixedBitSet    * per-segment, like {@link FixedBitSetCachingWrapperFilter})    * identifying the parent documents.    * @param scoreMode How to aggregate multiple child scores    * into a single parent score.    **/
+comment|/** Create a ToParentBlockJoinQuery.    *     * @param childQuery Query matching child documents.    * @param parentsFilter Filter identifying the parent documents.    * @param scoreMode How to aggregate multiple child scores    * into a single parent score.    **/
 DECL|method|ToParentBlockJoinQuery
 specifier|public
 name|ToParentBlockJoinQuery
@@ -357,7 +343,7 @@ parameter_list|(
 name|Query
 name|childQuery
 parameter_list|,
-name|Filter
+name|BitDocIdSetFilter
 name|parentsFilter
 parameter_list|,
 name|ScoreMode
@@ -402,7 +388,7 @@ parameter_list|,
 name|Query
 name|childQuery
 parameter_list|,
-name|Filter
+name|BitDocIdSetFilter
 name|parentsFilter
 parameter_list|,
 name|ScoreMode
@@ -492,7 +478,7 @@ decl_stmt|;
 DECL|field|parentsFilter
 specifier|private
 specifier|final
-name|Filter
+name|BitDocIdSetFilter
 name|parentsFilter
 decl_stmt|;
 DECL|field|scoreMode
@@ -511,7 +497,7 @@ parameter_list|,
 name|Weight
 name|childWeight
 parameter_list|,
-name|Filter
+name|BitDocIdSetFilter
 name|parentsFilter
 parameter_list|,
 name|ScoreMode
@@ -686,13 +672,10 @@ return|return
 literal|null
 return|;
 block|}
-comment|// NOTE: we cannot pass acceptDocs here because this
-comment|// will (most likely, justifiably) cause the filter to
-comment|// not return a FixedBitSet but rather a
-comment|// BitsFilteredDocIdSet.  Instead, we filter by
-comment|// acceptDocs when we score:
+comment|// NOTE: this does not take accept docs into account, the responsibility
+comment|// to not match deleted docs is on the scorer
 specifier|final
-name|DocIdSet
+name|BitDocIdSet
 name|parents
 init|=
 name|parentsFilter
@@ -700,8 +683,6 @@ operator|.
 name|getDocIdSet
 argument_list|(
 name|readerContext
-argument_list|,
-literal|null
 argument_list|)
 decl_stmt|;
 if|if
@@ -716,32 +697,6 @@ return|return
 literal|null
 return|;
 block|}
-if|if
-condition|(
-operator|!
-operator|(
-name|parents
-operator|.
-name|bits
-argument_list|()
-operator|instanceof
-name|FixedBitSet
-operator|)
-condition|)
-block|{
-throw|throw
-operator|new
-name|IllegalStateException
-argument_list|(
-literal|"parentFilter must return FixedBitSet; got "
-operator|+
-name|parents
-operator|.
-name|bits
-argument_list|()
-argument_list|)
-throw|;
-block|}
 return|return
 operator|new
 name|BlockJoinScorer
@@ -750,9 +705,6 @@ name|this
 argument_list|,
 name|childScorer
 argument_list|,
-operator|(
-name|FixedBitSet
-operator|)
 name|parents
 operator|.
 name|bits
@@ -869,7 +821,7 @@ decl_stmt|;
 DECL|field|parentBits
 specifier|private
 specifier|final
-name|FixedBitSet
+name|BitSet
 name|parentBits
 decl_stmt|;
 DECL|field|scoreMode
@@ -939,7 +891,7 @@ parameter_list|,
 name|Scorer
 name|childScorer
 parameter_list|,
-name|FixedBitSet
+name|BitSet
 name|parentBits
 parameter_list|,
 name|int

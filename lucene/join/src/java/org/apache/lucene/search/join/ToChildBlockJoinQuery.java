@@ -110,7 +110,7 @@ name|lucene
 operator|.
 name|search
 operator|.
-name|DocIdSet
+name|DocIdSetIterator
 import|;
 end_import
 
@@ -125,20 +125,6 @@ operator|.
 name|search
 operator|.
 name|Explanation
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|search
-operator|.
-name|Filter
 import|;
 end_import
 
@@ -208,20 +194,6 @@ name|lucene
 operator|.
 name|util
 operator|.
-name|Bits
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|util
-operator|.
 name|BitDocIdSet
 import|;
 end_import
@@ -236,7 +208,21 @@ name|lucene
 operator|.
 name|util
 operator|.
-name|FixedBitSet
+name|BitSet
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|util
+operator|.
+name|Bits
 import|;
 end_import
 
@@ -264,7 +250,7 @@ decl_stmt|;
 DECL|field|parentsFilter
 specifier|private
 specifier|final
-name|Filter
+name|BitDocIdSetFilter
 name|parentsFilter
 decl_stmt|;
 DECL|field|parentQuery
@@ -290,7 +276,7 @@ specifier|final
 name|boolean
 name|doScores
 decl_stmt|;
-comment|/**    * Create a ToChildBlockJoinQuery.    *     * @param parentQuery Query that matches parent documents    * @param parentsFilter Filter (must produce FixedBitSet    * per-segment, like {@link FixedBitSetCachingWrapperFilter})    * identifying the parent documents.    * @param doScores true if parent scores should be calculated    */
+comment|/**    * Create a ToChildBlockJoinQuery.    *     * @param parentQuery Query that matches parent documents    * @param parentsFilter Filter identifying the parent documents.    * @param doScores true if parent scores should be calculated    */
 DECL|method|ToChildBlockJoinQuery
 specifier|public
 name|ToChildBlockJoinQuery
@@ -298,7 +284,7 @@ parameter_list|(
 name|Query
 name|parentQuery
 parameter_list|,
-name|Filter
+name|BitDocIdSetFilter
 name|parentsFilter
 parameter_list|,
 name|boolean
@@ -343,7 +329,7 @@ parameter_list|,
 name|Query
 name|parentQuery
 parameter_list|,
-name|Filter
+name|BitDocIdSetFilter
 name|parentsFilter
 parameter_list|,
 name|boolean
@@ -433,7 +419,7 @@ decl_stmt|;
 DECL|field|parentsFilter
 specifier|private
 specifier|final
-name|Filter
+name|BitDocIdSetFilter
 name|parentsFilter
 decl_stmt|;
 DECL|field|doScores
@@ -452,7 +438,7 @@ parameter_list|,
 name|Weight
 name|parentWeight
 parameter_list|,
-name|Filter
+name|BitDocIdSetFilter
 name|parentsFilter
 parameter_list|,
 name|boolean
@@ -598,13 +584,10 @@ return|return
 literal|null
 return|;
 block|}
-comment|// NOTE: we cannot pass acceptDocs here because this
-comment|// will (most likely, justifiably) cause the filter to
-comment|// not return a FixedBitSet but rather a
-comment|// BitsFilteredDocIdSet.  Instead, we filter by
-comment|// acceptDocs when we score:
+comment|// NOTE: this doesn't take acceptDocs into account, the responsibility
+comment|// to not match deleted docs is on the scorer
 specifier|final
-name|DocIdSet
+name|BitDocIdSet
 name|parents
 init|=
 name|parentsFilter
@@ -612,8 +595,6 @@ operator|.
 name|getDocIdSet
 argument_list|(
 name|readerContext
-argument_list|,
-literal|null
 argument_list|)
 decl_stmt|;
 if|if
@@ -623,36 +604,10 @@ operator|==
 literal|null
 condition|)
 block|{
-comment|// No matches
+comment|// No parents
 return|return
 literal|null
 return|;
-block|}
-if|if
-condition|(
-operator|!
-operator|(
-name|parents
-operator|.
-name|bits
-argument_list|()
-operator|instanceof
-name|FixedBitSet
-operator|)
-condition|)
-block|{
-throw|throw
-operator|new
-name|IllegalStateException
-argument_list|(
-literal|"parentFilter must return FixedBitSet; got "
-operator|+
-name|parents
-operator|.
-name|bits
-argument_list|()
-argument_list|)
-throw|;
 block|}
 return|return
 operator|new
@@ -662,9 +617,6 @@ name|this
 argument_list|,
 name|parentScorer
 argument_list|,
-operator|(
-name|FixedBitSet
-operator|)
 name|parents
 operator|.
 name|bits
@@ -736,7 +688,7 @@ decl_stmt|;
 DECL|field|parentBits
 specifier|private
 specifier|final
-name|FixedBitSet
+name|BitSet
 name|parentBits
 decl_stmt|;
 DECL|field|doScores
@@ -786,7 +738,7 @@ parameter_list|,
 name|Scorer
 name|parentScorer
 parameter_list|,
-name|FixedBitSet
+name|BitSet
 name|parentBits
 parameter_list|,
 name|boolean

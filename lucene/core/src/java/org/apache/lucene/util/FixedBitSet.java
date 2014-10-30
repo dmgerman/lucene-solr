@@ -1014,7 +1014,8 @@ operator|.
 name|NO_MORE_DOCS
 return|;
 block|}
-comment|/** Returns the index of the last set bit before or on the index specified.    *  -1 is returned if there are no more set bits.    */
+annotation|@
+name|Override
 DECL|method|prevSetBit
 specifier|public
 name|int
