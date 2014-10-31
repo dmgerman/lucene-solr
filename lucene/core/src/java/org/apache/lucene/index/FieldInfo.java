@@ -61,10 +61,10 @@ specifier|final
 name|int
 name|number
 decl_stmt|;
-DECL|field|docValueType
+DECL|field|docValuesType
 specifier|private
 name|DocValuesType
-name|docValueType
+name|docValuesType
 init|=
 name|DocValuesType
 operator|.
@@ -161,7 +161,11 @@ throw|throw
 operator|new
 name|NullPointerException
 argument_list|(
-literal|"DocValuesType cannot be null"
+literal|"DocValuesType cannot be null (field: \""
+operator|+
+name|name
+operator|+
+literal|"\")"
 argument_list|)
 throw|;
 block|}
@@ -176,7 +180,11 @@ throw|throw
 operator|new
 name|NullPointerException
 argument_list|(
-literal|"IndexOptions cannot be null"
+literal|"IndexOptions cannot be null (field: \""
+operator|+
+name|name
+operator|+
+literal|"\")"
 argument_list|)
 throw|;
 block|}
@@ -194,7 +202,7 @@ name|number
 expr_stmt|;
 name|this
 operator|.
-name|docValueType
+name|docValuesType
 operator|=
 name|docValues
 expr_stmt|;
@@ -378,9 +386,11 @@ operator|!=
 operator|-
 literal|1
 operator|&&
-name|docValueType
+name|docValuesType
 operator|==
-literal|null
+name|DocValuesType
+operator|.
+name|NO
 condition|)
 block|{
 throw|throw
@@ -454,7 +464,11 @@ throw|throw
 operator|new
 name|NullPointerException
 argument_list|(
-literal|"IndexOptions cannot be null"
+literal|"IndexOptions cannot be null (field: \""
+operator|+
+name|name
+operator|+
+literal|"\")"
 argument_list|)
 throw|;
 block|}
@@ -617,13 +631,32 @@ parameter_list|)
 block|{
 if|if
 condition|(
-name|docValueType
+name|type
+operator|==
+literal|null
+condition|)
+block|{
+throw|throw
+operator|new
+name|NullPointerException
+argument_list|(
+literal|"DocValuesType cannot be null (field: \""
+operator|+
+name|name
+operator|+
+literal|"\")"
+argument_list|)
+throw|;
+block|}
+if|if
+condition|(
+name|docValuesType
 operator|!=
 name|DocValuesType
 operator|.
 name|NO
 operator|&&
-name|docValueType
+name|docValuesType
 operator|!=
 name|type
 condition|)
@@ -634,7 +667,7 @@ name|IllegalArgumentException
 argument_list|(
 literal|"cannot change DocValues type from "
 operator|+
-name|docValueType
+name|docValuesType
 operator|+
 literal|" to "
 operator|+
@@ -648,7 +681,7 @@ literal|"\""
 argument_list|)
 throw|;
 block|}
-name|docValueType
+name|docValuesType
 operator|=
 name|type
 expr_stmt|;
@@ -676,7 +709,7 @@ name|hasDocValues
 parameter_list|()
 block|{
 return|return
-name|docValueType
+name|docValuesType
 operator|!=
 name|DocValuesType
 operator|.
@@ -691,7 +724,7 @@ name|getDocValuesType
 parameter_list|()
 block|{
 return|return
-name|docValueType
+name|docValuesType
 return|;
 block|}
 comment|/** Sets the docValues generation of this field. */
