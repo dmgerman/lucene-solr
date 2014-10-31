@@ -268,7 +268,7 @@ name|TEST_KEYSTORE
 init|=
 name|ExternalPaths
 operator|.
-name|EXAMPLE_HOME
+name|SERVER_HOME
 operator|==
 literal|null
 condition|?
@@ -279,7 +279,7 @@ name|File
 argument_list|(
 name|ExternalPaths
 operator|.
-name|EXAMPLE_HOME
+name|SERVER_HOME
 argument_list|,
 literal|"../etc/solrtest.keystore"
 argument_list|)

@@ -142,9 +142,8 @@ name|Exception
 block|{
 name|createJetty
 argument_list|(
-name|ExternalPaths
-operator|.
-name|EXAMPLE_HOME
+name|legacyExampleCollection1SolrHome
+argument_list|()
 argument_list|,
 literal|null
 argument_list|,

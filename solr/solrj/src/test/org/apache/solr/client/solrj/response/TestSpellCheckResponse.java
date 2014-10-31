@@ -229,23 +229,9 @@ parameter_list|()
 throws|throws
 name|Exception
 block|{
-comment|// createJetty(EXAMPLE_HOME, null, null);
 name|initCore
-argument_list|(
-name|ExternalPaths
-operator|.
-name|EXAMPLE_CONFIG
-argument_list|,
-name|ExternalPaths
-operator|.
-name|EXAMPLE_SCHEMA
-argument_list|,
-name|ExternalPaths
-operator|.
-name|EXAMPLE_HOME
-argument_list|)
+argument_list|()
 expr_stmt|;
-comment|// initCore("solrconfig.xml", "schema.xml", null);
 block|}
 DECL|field|field
 specifier|static
