@@ -1318,7 +1318,7 @@ argument_list|()
 operator|!=
 name|IndexOptions
 operator|.
-name|NO
+name|NONE
 condition|)
 name|add
 argument_list|(
@@ -1364,7 +1364,7 @@ argument_list|()
 operator|!=
 name|IndexOptions
 operator|.
-name|NO
+name|NONE
 operator|&&
 operator|!
 name|f

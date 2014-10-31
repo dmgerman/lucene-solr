@@ -3483,7 +3483,7 @@ argument_list|()
 operator|!=
 name|IndexOptions
 operator|.
-name|NO
+name|NONE
 condition|)
 block|{
 name|doc

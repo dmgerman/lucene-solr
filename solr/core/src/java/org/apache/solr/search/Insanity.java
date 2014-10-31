@@ -350,7 +350,7 @@ argument_list|()
 argument_list|,
 name|DocValuesType
 operator|.
-name|NO
+name|NONE
 argument_list|,
 operator|-
 literal|1

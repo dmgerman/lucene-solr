@@ -782,7 +782,7 @@ name|dvType
 operator|!=
 name|DocValuesType
 operator|.
-name|NO
+name|NONE
 condition|)
 block|{
 name|DocValuesType
@@ -819,7 +819,7 @@ name|currentDVType
 operator|!=
 name|DocValuesType
 operator|.
-name|NO
+name|NONE
 operator|&&
 name|currentDVType
 operator|!=
@@ -1064,7 +1064,7 @@ name|dvType
 operator|!=
 name|DocValuesType
 operator|.
-name|NO
+name|NONE
 operator|&&
 name|currentDVType
 operator|!=
@@ -1074,7 +1074,7 @@ name|currentDVType
 operator|!=
 name|DocValuesType
 operator|.
-name|NO
+name|NONE
 operator|&&
 name|dvType
 operator|!=
@@ -1502,7 +1502,7 @@ name|docValues
 operator|!=
 name|DocValuesType
 operator|.
-name|NO
+name|NONE
 condition|)
 block|{
 comment|// Only pay the synchronization cost if fi does not already have a DVType

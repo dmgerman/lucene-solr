@@ -1051,7 +1051,7 @@ name|type
 operator|!=
 name|DocValuesType
 operator|.
-name|NO
+name|NONE
 condition|)
 block|{
 name|test

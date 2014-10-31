@@ -27,8 +27,8 @@ enum|enum
 name|DocValuesType
 block|{
 comment|/**    * No doc values for this field.    */
-DECL|enum constant|NO
-name|NO
+DECL|enum constant|NONE
+name|NONE
 block|,
 comment|/**     * A per-document Number    */
 DECL|enum constant|NUMERIC

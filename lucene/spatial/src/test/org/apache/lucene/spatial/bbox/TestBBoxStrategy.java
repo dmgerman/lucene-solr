@@ -731,7 +731,7 @@ name|setDocValueType
 argument_list|(
 name|DocValuesType
 operator|.
-name|NO
+name|NONE
 argument_list|)
 expr_stmt|;
 name|bboxStrategy
@@ -2058,7 +2058,7 @@ name|setIndexOptions
 argument_list|(
 name|IndexOptions
 operator|.
-name|NO
+name|NONE
 argument_list|)
 expr_stmt|;
 name|bboxStrategy

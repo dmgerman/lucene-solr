@@ -709,7 +709,7 @@ block|{
 return|return
 name|DocValuesType
 operator|.
-name|NO
+name|NONE
 return|;
 block|}
 block|}

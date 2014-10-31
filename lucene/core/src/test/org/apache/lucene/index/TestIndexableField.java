@@ -358,7 +358,7 @@ argument_list|()
 operator|!=
 name|IndexOptions
 operator|.
-name|NO
+name|NONE
 operator|&&
 name|counter
 operator|%
@@ -454,7 +454,7 @@ literal|3
 condition|?
 name|IndexOptions
 operator|.
-name|NO
+name|NONE
 else|:
 name|IndexOptions
 operator|.
@@ -471,7 +471,7 @@ block|{
 return|return
 name|DocValuesType
 operator|.
-name|NO
+name|NONE
 return|;
 block|}
 block|}
@@ -1042,7 +1042,7 @@ argument_list|()
 operator|!=
 name|IndexOptions
 operator|.
-name|NO
+name|NONE
 condition|)
 return|return
 literal|true

@@ -1725,7 +1725,7 @@ argument_list|()
 operator|!=
 name|DocValuesType
 operator|.
-name|NO
+name|NONE
 assert|;
 name|Bits
 name|bits

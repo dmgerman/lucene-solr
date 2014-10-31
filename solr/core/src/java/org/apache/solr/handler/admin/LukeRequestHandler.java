@@ -1250,7 +1250,7 @@ argument_list|()
 operator|!=
 name|IndexOptions
 operator|.
-name|NO
+name|NONE
 operator|)
 condition|?
 name|FieldFlag
@@ -1338,7 +1338,7 @@ argument_list|()
 operator|!=
 name|DocValuesType
 operator|.
-name|NO
+name|NONE
 operator|)
 condition|?
 name|FieldFlag

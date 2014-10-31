@@ -187,7 +187,7 @@ name|indexOptions
 init|=
 name|IndexOptions
 operator|.
-name|NO
+name|NONE
 decl_stmt|;
 DECL|field|numericType
 specifier|private
@@ -215,7 +215,7 @@ name|docValueType
 init|=
 name|DocValuesType
 operator|.
-name|NO
+name|NONE
 decl_stmt|;
 comment|/**    * Create a new mutable FieldType with all of the properties from<code>ref</code>    */
 DECL|method|FieldType
@@ -767,7 +767,7 @@ name|indexOptions
 operator|!=
 name|IndexOptions
 operator|.
-name|NO
+name|NONE
 condition|)
 block|{
 if|if
@@ -944,7 +944,7 @@ name|docValueType
 operator|!=
 name|DocValuesType
 operator|.
-name|NO
+name|NONE
 condition|)
 block|{
 if|if

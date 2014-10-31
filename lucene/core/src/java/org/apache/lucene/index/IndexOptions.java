@@ -30,8 +30,8 @@ comment|// NOTE: order is important here; FieldInfo uses this
 comment|// order to merge two conflicting IndexOptions (always
 comment|// "downgrades" by picking the lowest).
 comment|/** Not indexed */
-DECL|enum constant|NO
-name|NO
+DECL|enum constant|NONE
+name|NONE
 block|,
 comment|/**     * Only documents are indexed: term frequencies and positions are omitted.    * Phrase and other positional queries on the field will throw an exception, and scoring    * will behave as if any term in the document appears only once.    */
 DECL|enum constant|DOCS

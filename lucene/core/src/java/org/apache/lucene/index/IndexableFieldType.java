@@ -51,7 +51,7 @@ name|boolean
 name|stored
 parameter_list|()
 function_decl|;
-comment|/**     * True if this field's value should be analyzed by the    * {@link Analyzer}.    *<p>    * This has no effect if {@link #indexOptions()} returns    * IndexOptions.NO.    */
+comment|/**     * True if this field's value should be analyzed by the    * {@link Analyzer}.    *<p>    * This has no effect if {@link #indexOptions()} returns    * IndexOptions.NONE.    */
 comment|// TODO: shouldn't we remove this?  Whether/how a field is
 comment|// tokenized is an impl detail under Field?
 DECL|method|tokenized
@@ -60,7 +60,7 @@ name|boolean
 name|tokenized
 parameter_list|()
 function_decl|;
-comment|/**     * True if this field's indexed form should be also stored     * into term vectors.    *<p>    * This builds a miniature inverted-index for this field which    * can be accessed in a document-oriented way from     * {@link IndexReader#getTermVector(int,String)}.    *<p>    * This option is illegal if {@link #indexOptions()} returns    * IndexOptions.NO.    */
+comment|/**     * True if this field's indexed form should be also stored     * into term vectors.    *<p>    * This builds a miniature inverted-index for this field which    * can be accessed in a document-oriented way from     * {@link IndexReader#getTermVector(int,String)}.    *<p>    * This option is illegal if {@link #indexOptions()} returns    * IndexOptions.NONE.    */
 DECL|method|storeTermVectors
 specifier|public
 name|boolean

@@ -420,7 +420,7 @@ name|option
 operator|==
 name|IndexOptions
 operator|.
-name|NO
+name|NONE
 condition|)
 block|{
 continue|continue;

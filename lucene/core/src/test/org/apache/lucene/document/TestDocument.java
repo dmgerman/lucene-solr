@@ -450,7 +450,7 @@ name|assertEquals
 argument_list|(
 name|IndexOptions
 operator|.
-name|NO
+name|NONE
 argument_list|,
 name|binaryFld
 operator|.

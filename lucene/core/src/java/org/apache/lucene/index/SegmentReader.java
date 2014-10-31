@@ -1469,7 +1469,7 @@ argument_list|()
 operator|==
 name|DocValuesType
 operator|.
-name|NO
+name|NONE
 condition|)
 block|{
 comment|// Field was not indexed with doc values
@@ -1685,7 +1685,7 @@ argument_list|()
 operator|==
 name|DocValuesType
 operator|.
-name|NO
+name|NONE
 condition|)
 block|{
 comment|// Field was not indexed with doc values

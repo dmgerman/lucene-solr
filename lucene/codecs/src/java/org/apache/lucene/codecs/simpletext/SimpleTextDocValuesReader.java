@@ -853,7 +853,7 @@ name|dvType
 operator|!=
 name|DocValuesType
 operator|.
-name|NO
+name|NONE
 assert|;
 if|if
 condition|(
