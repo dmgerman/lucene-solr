@@ -72,8 +72,6 @@ name|lucene
 operator|.
 name|index
 operator|.
-name|FieldInfo
-operator|.
 name|IndexOptions
 import|;
 end_import
@@ -615,7 +613,6 @@ name|this
 operator|.
 name|hasPos
 operator|=
-operator|(
 name|fieldInfo
 operator|.
 name|getIndexOptions
@@ -623,8 +620,7 @@ argument_list|()
 operator|!=
 name|IndexOptions
 operator|.
-name|DOCS_ONLY
-operator|)
+name|DOCS
 expr_stmt|;
 name|this
 operator|.

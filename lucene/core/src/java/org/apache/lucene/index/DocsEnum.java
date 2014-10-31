@@ -34,22 +34,6 @@ name|apache
 operator|.
 name|lucene
 operator|.
-name|index
-operator|.
-name|FieldInfo
-operator|.
-name|IndexOptions
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
 name|search
 operator|.
 name|DocIdSetIterator
@@ -134,7 +118,7 @@ specifier|protected
 name|DocsEnum
 parameter_list|()
 block|{   }
-comment|/**    * Returns term frequency in the current document, or 1 if the field was    * indexed with {@link IndexOptions#DOCS_ONLY}. Do not call this before    * {@link #nextDoc} is first called, nor after {@link #nextDoc} returns    * {@link DocIdSetIterator#NO_MORE_DOCS}.    *     *<p>    *<b>NOTE:</b> if the {@link DocsEnum} was obtain with {@link #FLAG_NONE},    * the result of this method is undefined.    */
+comment|/**    * Returns term frequency in the current document, or 1 if the field was    * indexed with {@link IndexOptions#DOCS}. Do not call this before    * {@link #nextDoc} is first called, nor after {@link #nextDoc} returns    * {@link DocIdSetIterator#NO_MORE_DOCS}.    *     *<p>    *<b>NOTE:</b> if the {@link DocsEnum} was obtain with {@link #FLAG_NONE},    * the result of this method is undefined.    */
 DECL|method|freq
 specifier|public
 specifier|abstract

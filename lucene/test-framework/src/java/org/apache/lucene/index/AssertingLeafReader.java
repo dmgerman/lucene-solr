@@ -3422,8 +3422,6 @@ operator|.
 name|getDocValuesType
 argument_list|()
 operator|==
-name|FieldInfo
-operator|.
 name|DocValuesType
 operator|.
 name|NUMERIC
@@ -3451,8 +3449,6 @@ operator|.
 name|getDocValuesType
 argument_list|()
 operator|!=
-name|FieldInfo
-operator|.
 name|DocValuesType
 operator|.
 name|NUMERIC
@@ -3514,8 +3510,6 @@ operator|.
 name|getDocValuesType
 argument_list|()
 operator|==
-name|FieldInfo
-operator|.
 name|DocValuesType
 operator|.
 name|BINARY
@@ -3543,8 +3537,6 @@ operator|.
 name|getDocValuesType
 argument_list|()
 operator|!=
-name|FieldInfo
-operator|.
 name|DocValuesType
 operator|.
 name|BINARY
@@ -3606,8 +3598,6 @@ operator|.
 name|getDocValuesType
 argument_list|()
 operator|==
-name|FieldInfo
-operator|.
 name|DocValuesType
 operator|.
 name|SORTED
@@ -3635,8 +3625,6 @@ operator|.
 name|getDocValuesType
 argument_list|()
 operator|!=
-name|FieldInfo
-operator|.
 name|DocValuesType
 operator|.
 name|SORTED
@@ -3698,8 +3686,6 @@ operator|.
 name|getDocValuesType
 argument_list|()
 operator|==
-name|FieldInfo
-operator|.
 name|DocValuesType
 operator|.
 name|SORTED_NUMERIC
@@ -3727,8 +3713,6 @@ operator|.
 name|getDocValuesType
 argument_list|()
 operator|!=
-name|FieldInfo
-operator|.
 name|DocValuesType
 operator|.
 name|SORTED_NUMERIC
@@ -3790,8 +3774,6 @@ operator|.
 name|getDocValuesType
 argument_list|()
 operator|==
-name|FieldInfo
-operator|.
 name|DocValuesType
 operator|.
 name|SORTED_SET
@@ -3843,8 +3825,6 @@ operator|.
 name|getDocValuesType
 argument_list|()
 operator|!=
-name|FieldInfo
-operator|.
 name|DocValuesType
 operator|.
 name|SORTED_SET

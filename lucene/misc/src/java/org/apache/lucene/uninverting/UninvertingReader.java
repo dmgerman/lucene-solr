@@ -246,6 +246,20 @@ name|lucene
 operator|.
 name|index
 operator|.
+name|DocValuesType
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|index
+operator|.
 name|FieldInfo
 import|;
 end_import
@@ -632,8 +646,6 @@ name|getFieldInfos
 argument_list|()
 control|)
 block|{
-name|FieldInfo
-operator|.
 name|DocValuesType
 name|type
 init|=
@@ -694,8 +706,6 @@ name|DOUBLE
 case|:
 name|type
 operator|=
-name|FieldInfo
-operator|.
 name|DocValuesType
 operator|.
 name|NUMERIC
@@ -706,8 +716,6 @@ name|BINARY
 case|:
 name|type
 operator|=
-name|FieldInfo
-operator|.
 name|DocValuesType
 operator|.
 name|BINARY
@@ -718,8 +726,6 @@ name|SORTED
 case|:
 name|type
 operator|=
-name|FieldInfo
-operator|.
 name|DocValuesType
 operator|.
 name|SORTED
@@ -742,8 +748,6 @@ name|SORTED_SET_DOUBLE
 case|:
 name|type
 operator|=
-name|FieldInfo
-operator|.
 name|DocValuesType
 operator|.
 name|SORTED_SET

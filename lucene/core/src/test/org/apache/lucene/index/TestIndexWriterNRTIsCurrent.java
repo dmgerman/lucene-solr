@@ -1053,7 +1053,6 @@ operator|=
 name|e
 expr_stmt|;
 block|}
-return|return;
 block|}
 block|}
 block|}

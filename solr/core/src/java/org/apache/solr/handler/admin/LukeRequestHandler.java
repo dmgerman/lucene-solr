@@ -158,7 +158,19 @@ name|lucene
 operator|.
 name|index
 operator|.
-name|FieldInfo
+name|DocValuesType
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|index
 operator|.
 name|IndexOptions
 import|;
@@ -546,8 +558,6 @@ name|lucene
 operator|.
 name|index
 operator|.
-name|FieldInfo
-operator|.
 name|IndexOptions
 operator|.
 name|DOCS_AND_FREQS_AND_POSITIONS_AND_OFFSETS
@@ -563,8 +573,6 @@ operator|.
 name|lucene
 operator|.
 name|index
-operator|.
-name|FieldInfo
 operator|.
 name|IndexOptions
 operator|.
@@ -582,11 +590,9 @@ name|lucene
 operator|.
 name|index
 operator|.
-name|FieldInfo
-operator|.
 name|IndexOptions
 operator|.
-name|DOCS_ONLY
+name|DOCS
 import|;
 end_import
 
@@ -1242,7 +1248,9 @@ operator|.
 name|indexOptions
 argument_list|()
 operator|!=
-literal|null
+name|IndexOptions
+operator|.
+name|NO
 operator|)
 condition|?
 name|FieldFlag
@@ -1328,7 +1336,9 @@ operator|.
 name|docValueType
 argument_list|()
 operator|!=
-literal|null
+name|DocValuesType
+operator|.
+name|NO
 operator|)
 condition|?
 name|FieldFlag
@@ -1481,7 +1491,7 @@ name|f
 operator|!=
 literal|null
 operator|&&
-name|DOCS_ONLY
+name|DOCS
 operator|==
 name|opts
 operator|)

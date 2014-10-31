@@ -65,6 +65,10 @@ DECL|field|docValueType
 specifier|private
 name|DocValuesType
 name|docValueType
+init|=
+name|DocValuesType
+operator|.
+name|NO
 decl_stmt|;
 comment|// True if any document indexed term vectors
 DECL|field|storeTermVector
@@ -82,6 +86,10 @@ DECL|field|indexOptions
 specifier|private
 name|IndexOptions
 name|indexOptions
+init|=
+name|IndexOptions
+operator|.
+name|NO
 decl_stmt|;
 DECL|field|storePayloads
 specifier|private
@@ -104,60 +112,6 @@ specifier|private
 name|long
 name|dvGen
 decl_stmt|;
-comment|/**    * Controls how much information is stored in the postings lists.    * @lucene.experimental    */
-DECL|enum|IndexOptions
-specifier|public
-specifier|static
-enum|enum
-name|IndexOptions
-block|{
-comment|// NOTE: order is important here; FieldInfo uses this
-comment|// order to merge two conflicting IndexOptions (always
-comment|// "downgrades" by picking the lowest).
-comment|/**       * Only documents are indexed: term frequencies and positions are omitted.      * Phrase and other positional queries on the field will throw an exception, and scoring      * will behave as if any term in the document appears only once.      */
-comment|// TODO: maybe rename to just DOCS?
-DECL|enum constant|DOCS_ONLY
-name|DOCS_ONLY
-block|,
-comment|/**       * Only documents and term frequencies are indexed: positions are omitted.       * This enables normal scoring, except Phrase and other positional queries      * will throw an exception.      */
-DECL|enum constant|DOCS_AND_FREQS
-name|DOCS_AND_FREQS
-block|,
-comment|/**       * Indexes documents, frequencies and positions.      * This is a typical default for full-text search: full scoring is enabled      * and positional queries are supported.      */
-DECL|enum constant|DOCS_AND_FREQS_AND_POSITIONS
-name|DOCS_AND_FREQS_AND_POSITIONS
-block|,
-comment|/**       * Indexes documents, frequencies, positions and offsets.      * Character offsets are encoded alongside the positions.       */
-DECL|enum constant|DOCS_AND_FREQS_AND_POSITIONS_AND_OFFSETS
-name|DOCS_AND_FREQS_AND_POSITIONS_AND_OFFSETS
-block|,   }
-comment|/**    * DocValues types.    * Note that DocValues is strongly typed, so a field cannot have different types    * across different documents.    */
-DECL|enum|DocValuesType
-specifier|public
-specifier|static
-enum|enum
-name|DocValuesType
-block|{
-comment|/**       * A per-document Number      */
-DECL|enum constant|NUMERIC
-name|NUMERIC
-block|,
-comment|/**      * A per-document byte[].  Values may be larger than      * 32766 bytes, but different codecs may enforce their own limits.      */
-DECL|enum constant|BINARY
-name|BINARY
-block|,
-comment|/**       * A pre-sorted byte[]. Fields with this type only store distinct byte values       * and store an additional offset pointer per document to dereference the shared       * byte[]. The stored byte[] is presorted and allows access via document id,       * ordinal and by-value.  Values must be<= 32766 bytes.      */
-DECL|enum constant|SORTED
-name|SORTED
-block|,
-comment|/**       * A pre-sorted Number[]. Fields with this type store numeric values in sorted      * order according to {@link Long#compare(long, long)}.      */
-DECL|enum constant|SORTED_NUMERIC
-name|SORTED_NUMERIC
-block|,
-comment|/**       * A pre-sorted Set&lt;byte[]&gt;. Fields with this type only store distinct byte values       * and store additional offset pointers per document to dereference the shared       * byte[]s. The stored byte[] is presorted and allows access via document id,       * ordinal and by-value.  Values must be<= 32766 bytes.      */
-DECL|enum constant|SORTED_SET
-name|SORTED_SET
-block|}
 comment|/**    * Sole constructor.    *    * @lucene.experimental    */
 DECL|method|FieldInfo
 specifier|public
@@ -196,6 +150,36 @@ argument_list|>
 name|attributes
 parameter_list|)
 block|{
+if|if
+condition|(
+name|docValues
+operator|==
+literal|null
+condition|)
+block|{
+throw|throw
+operator|new
+name|NullPointerException
+argument_list|(
+literal|"DocValuesType cannot be null"
+argument_list|)
+throw|;
+block|}
+if|if
+condition|(
+name|indexOptions
+operator|==
+literal|null
+condition|)
+block|{
+throw|throw
+operator|new
+name|NullPointerException
+argument_list|(
+literal|"IndexOptions cannot be null"
+argument_list|)
+throw|;
+block|}
 name|this
 operator|.
 name|name
@@ -214,11 +198,19 @@ name|docValueType
 operator|=
 name|docValues
 expr_stmt|;
+name|this
+operator|.
+name|indexOptions
+operator|=
+name|indexOptions
+expr_stmt|;
 if|if
 condition|(
 name|indexOptions
 operator|!=
-literal|null
+name|IndexOptions
+operator|.
+name|NO
 condition|)
 block|{
 name|this
@@ -238,12 +230,6 @@ operator|.
 name|omitNorms
 operator|=
 name|omitNorms
-expr_stmt|;
-name|this
-operator|.
-name|indexOptions
-operator|=
-name|indexOptions
 expr_stmt|;
 block|}
 else|else
@@ -266,12 +252,6 @@ operator|.
 name|omitNorms
 operator|=
 literal|false
-expr_stmt|;
-name|this
-operator|.
-name|indexOptions
-operator|=
-literal|null
 expr_stmt|;
 block|}
 name|this
@@ -302,7 +282,9 @@ if|if
 condition|(
 name|indexOptions
 operator|!=
-literal|null
+name|IndexOptions
+operator|.
+name|NO
 condition|)
 block|{
 comment|// Cannot store payloads unless positions are indexed:
@@ -461,6 +443,21 @@ name|IndexOptions
 name|indexOptions
 parameter_list|)
 block|{
+if|if
+condition|(
+name|indexOptions
+operator|==
+literal|null
+condition|)
+block|{
+throw|throw
+operator|new
+name|NullPointerException
+argument_list|(
+literal|"IndexOptions cannot be null"
+argument_list|)
+throw|;
+block|}
 comment|//System.out.println("FI.update field=" + name + " indexed=" + indexed + " omitNorms=" + omitNorms + " this.omitNorms=" + this.omitNorms);
 if|if
 condition|(
@@ -477,7 +474,9 @@ name|this
 operator|.
 name|indexOptions
 operator|==
-literal|null
+name|IndexOptions
+operator|.
+name|NO
 condition|)
 block|{
 name|this
@@ -492,7 +491,9 @@ if|if
 condition|(
 name|indexOptions
 operator|!=
-literal|null
+name|IndexOptions
+operator|.
+name|NO
 condition|)
 block|{
 comment|// downgrade
@@ -525,7 +526,9 @@ name|this
 operator|.
 name|indexOptions
 operator|!=
-literal|null
+name|IndexOptions
+operator|.
+name|NO
 condition|)
 block|{
 comment|// if updated field data is not for indexing, leave the updates out
@@ -547,7 +550,9 @@ if|if
 condition|(
 name|indexOptions
 operator|!=
-literal|null
+name|IndexOptions
+operator|.
+name|NO
 operator|&&
 name|this
 operator|.
@@ -571,7 +576,9 @@ name|this
 operator|.
 name|indexOptions
 operator|==
-literal|null
+name|IndexOptions
+operator|.
+name|NO
 operator|||
 name|this
 operator|.
@@ -612,7 +619,9 @@ if|if
 condition|(
 name|docValueType
 operator|!=
-literal|null
+name|DocValuesType
+operator|.
+name|NO
 operator|&&
 name|docValueType
 operator|!=
@@ -648,7 +657,7 @@ name|checkConsistency
 argument_list|()
 assert|;
 block|}
-comment|/** Returns IndexOptions for the field, or null if the field is not indexed */
+comment|/** Returns IndexOptions for the field, or IndexOptions.NO if the field is not indexed */
 DECL|method|getIndexOptions
 specifier|public
 name|IndexOptions
@@ -669,10 +678,12 @@ block|{
 return|return
 name|docValueType
 operator|!=
-literal|null
+name|DocValuesType
+operator|.
+name|NO
 return|;
 block|}
-comment|/**    * Returns {@link DocValuesType} of the docValues. this may be null if the field has no docvalues.    */
+comment|/**    * Returns {@link DocValuesType} of the docValues; this is    * {@code DocValuesType.NO} if the field has no docvalues.    */
 DECL|method|getDocValuesType
 specifier|public
 name|DocValuesType
@@ -737,7 +748,9 @@ if|if
 condition|(
 name|indexOptions
 operator|!=
-literal|null
+name|IndexOptions
+operator|.
+name|NO
 operator|&&
 name|indexOptions
 operator|.
@@ -788,7 +801,7 @@ operator|==
 literal|false
 return|;
 block|}
-comment|/**    * Returns true if this field is indexed (has non-null {@link #getIndexOptions}).    */
+comment|/**    * Returns true if this field is indexed ({@link #getIndexOptions} is not IndexOptions.NO).    */
 DECL|method|isIndexed
 specifier|public
 name|boolean
@@ -798,7 +811,9 @@ block|{
 return|return
 name|indexOptions
 operator|!=
-literal|null
+name|IndexOptions
+operator|.
+name|NO
 return|;
 block|}
 comment|/**    * Returns true if any payloads exist for this field.    */

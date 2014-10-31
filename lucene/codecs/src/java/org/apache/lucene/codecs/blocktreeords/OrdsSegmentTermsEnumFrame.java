@@ -70,8 +70,6 @@ name|lucene
 operator|.
 name|index
 operator|.
-name|FieldInfo
-operator|.
 name|IndexOptions
 import|;
 end_import
@@ -1767,7 +1765,7 @@ argument_list|()
 operator|!=
 name|IndexOptions
 operator|.
-name|DOCS_ONLY
+name|DOCS
 condition|)
 block|{
 name|state

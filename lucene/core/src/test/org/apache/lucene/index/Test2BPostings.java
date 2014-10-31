@@ -124,22 +124,6 @@ name|apache
 operator|.
 name|lucene
 operator|.
-name|index
-operator|.
-name|FieldInfo
-operator|.
-name|IndexOptions
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
 name|store
 operator|.
 name|BaseDirectoryWrapper
@@ -171,6 +155,8 @@ operator|.
 name|util
 operator|.
 name|LuceneTestCase
+operator|.
+name|SuppressCodecs
 import|;
 end_import
 
@@ -185,8 +171,6 @@ operator|.
 name|util
 operator|.
 name|LuceneTestCase
-operator|.
-name|SuppressCodecs
 import|;
 end_import
 
@@ -429,7 +413,7 @@ name|setIndexOptions
 argument_list|(
 name|IndexOptions
 operator|.
-name|DOCS_ONLY
+name|DOCS
 argument_list|)
 expr_stmt|;
 name|Field

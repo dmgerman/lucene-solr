@@ -26,8 +26,6 @@ name|lucene
 operator|.
 name|index
 operator|.
-name|FieldInfo
-operator|.
 name|IndexOptions
 import|;
 end_import
@@ -84,7 +82,7 @@ name|setIndexOptions
 argument_list|(
 name|IndexOptions
 operator|.
-name|DOCS_ONLY
+name|DOCS
 argument_list|)
 expr_stmt|;
 name|TYPE_NOT_STORED
@@ -112,7 +110,7 @@ name|setIndexOptions
 argument_list|(
 name|IndexOptions
 operator|.
-name|DOCS_ONLY
+name|DOCS
 argument_list|)
 expr_stmt|;
 name|TYPE_STORED

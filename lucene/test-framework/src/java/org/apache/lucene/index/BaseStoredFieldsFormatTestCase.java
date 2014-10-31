@@ -229,20 +229,6 @@ operator|.
 name|document
 operator|.
 name|Field
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|document
-operator|.
-name|Field
 operator|.
 name|Store
 import|;
@@ -258,7 +244,7 @@ name|lucene
 operator|.
 name|document
 operator|.
-name|FieldType
+name|Field
 import|;
 end_import
 
@@ -275,6 +261,20 @@ operator|.
 name|FieldType
 operator|.
 name|NumericType
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|document
+operator|.
+name|FieldType
 import|;
 end_import
 
@@ -485,6 +485,8 @@ operator|.
 name|store
 operator|.
 name|MockDirectoryWrapper
+operator|.
+name|Throttling
 import|;
 end_import
 
@@ -499,8 +501,6 @@ operator|.
 name|store
 operator|.
 name|MockDirectoryWrapper
-operator|.
-name|Throttling
 import|;
 end_import
 
@@ -2531,8 +2531,12 @@ operator|.
 name|close
 argument_list|()
 expr_stmt|;
-name|assertNull
+name|assertEquals
 argument_list|(
+name|IndexOptions
+operator|.
+name|NO
+argument_list|,
 name|r
 operator|.
 name|document
@@ -4038,7 +4042,9 @@ name|type
 operator|.
 name|setIndexOptions
 argument_list|(
-literal|null
+name|IndexOptions
+operator|.
+name|NO
 argument_list|)
 expr_stmt|;
 name|type
@@ -4735,7 +4741,9 @@ name|onlyStored
 operator|.
 name|setIndexOptions
 argument_list|(
-literal|null
+name|IndexOptions
+operator|.
+name|NO
 argument_list|)
 expr_stmt|;
 specifier|final

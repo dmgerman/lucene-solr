@@ -169,22 +169,6 @@ operator|.
 name|index
 operator|.
 name|FieldInfo
-operator|.
-name|IndexOptions
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|index
-operator|.
-name|FieldInfo
 import|;
 end_import
 
@@ -199,6 +183,20 @@ operator|.
 name|index
 operator|.
 name|Fields
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|index
+operator|.
+name|IndexOptions
 import|;
 end_import
 
@@ -1788,7 +1786,7 @@ name|compareTo
 argument_list|(
 name|IndexOptions
 operator|.
-name|DOCS_ONLY
+name|DOCS
 argument_list|)
 operator|>
 literal|0

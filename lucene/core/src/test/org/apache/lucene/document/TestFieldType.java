@@ -42,8 +42,6 @@ name|lucene
 operator|.
 name|index
 operator|.
-name|FieldInfo
-operator|.
 name|DocValuesType
 import|;
 end_import
@@ -57,8 +55,6 @@ operator|.
 name|lucene
 operator|.
 name|index
-operator|.
-name|FieldInfo
 operator|.
 name|IndexOptions
 import|;

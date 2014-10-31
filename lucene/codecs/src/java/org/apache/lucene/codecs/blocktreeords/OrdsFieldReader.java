@@ -67,8 +67,6 @@ operator|.
 name|index
 operator|.
 name|FieldInfo
-operator|.
-name|IndexOptions
 import|;
 end_import
 
@@ -82,7 +80,7 @@ name|lucene
 operator|.
 name|index
 operator|.
-name|FieldInfo
+name|IndexOptions
 import|;
 end_import
 

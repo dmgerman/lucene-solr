@@ -362,8 +362,6 @@ name|super
 argument_list|(
 name|field
 argument_list|,
-name|FieldInfo
-operator|.
 name|DocValuesType
 operator|.
 name|NUMERIC

@@ -471,7 +471,9 @@ operator|.
 name|indexOptions
 argument_list|()
 operator|!=
-literal|null
+name|IndexOptions
+operator|.
+name|NO
 assert|;
 if|if
 condition|(

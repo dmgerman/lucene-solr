@@ -96,7 +96,7 @@ name|lucene
 operator|.
 name|index
 operator|.
-name|FieldInfo
+name|IndexOptions
 import|;
 end_import
 
@@ -624,11 +624,9 @@ name|idFt
 operator|.
 name|setIndexOptions
 argument_list|(
-name|FieldInfo
-operator|.
 name|IndexOptions
 operator|.
-name|DOCS_ONLY
+name|DOCS
 argument_list|)
 expr_stmt|;
 specifier|final

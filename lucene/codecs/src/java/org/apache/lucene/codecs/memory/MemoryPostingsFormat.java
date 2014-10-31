@@ -214,8 +214,6 @@ name|lucene
 operator|.
 name|index
 operator|.
-name|FieldInfo
-operator|.
 name|IndexOptions
 import|;
 end_import
@@ -969,7 +967,7 @@ argument_list|()
 operator|==
 name|IndexOptions
 operator|.
-name|DOCS_ONLY
+name|DOCS
 condition|)
 block|{
 name|buffer
@@ -1415,7 +1413,7 @@ argument_list|()
 operator|!=
 name|IndexOptions
 operator|.
-name|DOCS_ONLY
+name|DOCS
 condition|)
 block|{
 name|buffer2
@@ -1602,7 +1600,7 @@ argument_list|()
 operator|!=
 name|IndexOptions
 operator|.
-name|DOCS_ONLY
+name|DOCS
 condition|)
 block|{
 name|out
@@ -2699,7 +2697,7 @@ name|indexOptions
 operator|==
 name|IndexOptions
 operator|.
-name|DOCS_ONLY
+name|DOCS
 condition|)
 block|{
 name|accum
@@ -3953,7 +3951,7 @@ argument_list|()
 operator|!=
 name|IndexOptions
 operator|.
-name|DOCS_ONLY
+name|DOCS
 condition|)
 block|{
 name|totalTermFreq
@@ -4638,7 +4636,7 @@ argument_list|()
 operator|!=
 name|IndexOptions
 operator|.
-name|DOCS_ONLY
+name|DOCS
 condition|)
 block|{
 name|sumTotalTermFreq

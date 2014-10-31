@@ -160,6 +160,20 @@ name|lucene
 operator|.
 name|index
 operator|.
+name|IndexOptions
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|index
+operator|.
 name|SegmentReadState
 import|;
 end_import
@@ -803,8 +817,6 @@ argument_list|()
 operator|.
 name|compareTo
 argument_list|(
-name|FieldInfo
-operator|.
 name|IndexOptions
 operator|.
 name|DOCS_AND_FREQS
@@ -822,8 +834,6 @@ argument_list|()
 operator|.
 name|compareTo
 argument_list|(
-name|FieldInfo
-operator|.
 name|IndexOptions
 operator|.
 name|DOCS_AND_FREQS_AND_POSITIONS
@@ -841,8 +851,6 @@ argument_list|()
 operator|.
 name|compareTo
 argument_list|(
-name|FieldInfo
-operator|.
 name|IndexOptions
 operator|.
 name|DOCS_AND_FREQS_AND_POSITIONS_AND_OFFSETS

@@ -193,6 +193,8 @@ operator|.
 name|document
 operator|.
 name|Field
+operator|.
+name|Store
 import|;
 end_import
 
@@ -207,8 +209,6 @@ operator|.
 name|document
 operator|.
 name|Field
-operator|.
-name|Store
 import|;
 end_import
 
@@ -320,34 +320,6 @@ name|lucene
 operator|.
 name|index
 operator|.
-name|LeafReader
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|index
-operator|.
-name|LeafReaderContext
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|index
-operator|.
 name|BinaryDocValues
 import|;
 end_import
@@ -404,7 +376,19 @@ name|lucene
 operator|.
 name|index
 operator|.
-name|FieldInfo
+name|FieldInvertState
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|index
 operator|.
 name|IndexOptions
 import|;
@@ -420,7 +404,7 @@ name|lucene
 operator|.
 name|index
 operator|.
-name|FieldInvertState
+name|IndexWriterConfig
 import|;
 end_import
 
@@ -434,7 +418,21 @@ name|lucene
 operator|.
 name|index
 operator|.
-name|IndexWriterConfig
+name|LeafReader
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|index
+operator|.
+name|LeafReaderContext
 import|;
 end_import
 
@@ -561,6 +559,8 @@ operator|.
 name|index
 operator|.
 name|TermsEnum
+operator|.
+name|SeekStatus
 import|;
 end_import
 
@@ -575,8 +575,6 @@ operator|.
 name|index
 operator|.
 name|TermsEnum
-operator|.
-name|SeekStatus
 import|;
 end_import
 

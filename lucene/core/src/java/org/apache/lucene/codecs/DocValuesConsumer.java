@@ -142,8 +142,6 @@ name|lucene
 operator|.
 name|index
 operator|.
-name|FieldInfo
-operator|.
 name|DocValuesType
 import|;
 end_import
@@ -205,6 +203,10 @@ operator|.
 name|SegmentWriteState
 import|;
 end_import
+
+begin_comment
+comment|// javadocs
+end_comment
 
 begin_import
 import|import
@@ -544,7 +546,9 @@ if|if
 condition|(
 name|type
 operator|!=
-literal|null
+name|DocValuesType
+operator|.
+name|NO
 condition|)
 block|{
 if|if
