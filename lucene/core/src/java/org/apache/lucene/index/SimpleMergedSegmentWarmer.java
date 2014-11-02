@@ -141,8 +141,12 @@ if|if
 condition|(
 name|info
 operator|.
-name|isIndexed
+name|getIndexOptions
 argument_list|()
+operator|!=
+name|IndexOptions
+operator|.
+name|NONE
 condition|)
 block|{
 name|reader
@@ -183,8 +187,12 @@ if|if
 condition|(
 name|info
 operator|.
-name|hasDocValues
+name|getDocValuesType
 argument_list|()
+operator|!=
+name|DocValuesType
+operator|.
+name|NONE
 condition|)
 block|{
 switch|switch

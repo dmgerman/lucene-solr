@@ -520,8 +520,12 @@ if|if
 condition|(
 name|fieldInfo
 operator|.
-name|isIndexed
+name|getIndexOptions
 argument_list|()
+operator|!=
+name|IndexOptions
+operator|.
+name|NONE
 condition|)
 block|{
 name|indexedFieldNames
@@ -563,8 +567,12 @@ if|if
 condition|(
 name|fieldInfo
 operator|.
-name|isIndexed
+name|getIndexOptions
 argument_list|()
+operator|!=
+name|IndexOptions
+operator|.
+name|NONE
 condition|)
 block|{
 name|noTVFieldNames

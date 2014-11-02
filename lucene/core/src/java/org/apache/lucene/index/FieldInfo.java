@@ -631,25 +631,6 @@ parameter_list|)
 block|{
 if|if
 condition|(
-name|type
-operator|==
-literal|null
-condition|)
-block|{
-throw|throw
-operator|new
-name|NullPointerException
-argument_list|(
-literal|"DocValuesType cannot be null (field: \""
-operator|+
-name|name
-operator|+
-literal|"\")"
-argument_list|)
-throw|;
-block|}
-if|if
-condition|(
 name|docValuesType
 operator|!=
 name|DocValuesType
@@ -699,21 +680,6 @@ parameter_list|()
 block|{
 return|return
 name|indexOptions
-return|;
-block|}
-comment|/**    * Returns true if this field has any docValues.    */
-DECL|method|hasDocValues
-specifier|public
-name|boolean
-name|hasDocValues
-parameter_list|()
-block|{
-return|return
-name|docValuesType
-operator|!=
-name|DocValuesType
-operator|.
-name|NONE
 return|;
 block|}
 comment|/**    * Returns {@link DocValuesType} of the docValues; this is    * {@code DocValuesType.NONE} if the field has no docvalues.    */
@@ -826,27 +792,15 @@ name|hasNorms
 parameter_list|()
 block|{
 return|return
-name|isIndexed
-argument_list|()
-operator|&&
-name|omitNorms
-operator|==
-literal|false
-return|;
-block|}
-comment|/**    * Returns true if this field is indexed ({@link #getIndexOptions} is not IndexOptions.NONE).    */
-DECL|method|isIndexed
-specifier|public
-name|boolean
-name|isIndexed
-parameter_list|()
-block|{
-return|return
 name|indexOptions
 operator|!=
 name|IndexOptions
 operator|.
 name|NONE
+operator|&&
+name|omitNorms
+operator|==
+literal|false
 return|;
 block|}
 comment|/**    * Returns true if any payloads exist for this field.    */

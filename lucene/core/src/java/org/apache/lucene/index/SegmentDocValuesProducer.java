@@ -352,11 +352,14 @@ control|)
 block|{
 if|if
 condition|(
-operator|!
 name|fi
 operator|.
-name|hasDocValues
+name|getDocValuesType
 argument_list|()
+operator|==
+name|DocValuesType
+operator|.
+name|NONE
 condition|)
 block|{
 continue|continue;

@@ -94,7 +94,7 @@ name|lucene
 operator|.
 name|index
 operator|.
-name|LeafReader
+name|DocValues
 import|;
 end_import
 
@@ -108,7 +108,7 @@ name|lucene
 operator|.
 name|index
 operator|.
-name|DocValues
+name|DocValuesType
 import|;
 end_import
 
@@ -165,6 +165,20 @@ operator|.
 name|index
 operator|.
 name|Fields
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|index
+operator|.
+name|LeafReader
 import|;
 end_import
 
@@ -927,8 +941,12 @@ literal|null
 operator|&&
 name|info
 operator|.
-name|hasDocValues
+name|getDocValuesType
 argument_list|()
+operator|!=
+name|DocValuesType
+operator|.
+name|NONE
 condition|)
 block|{
 throw|throw

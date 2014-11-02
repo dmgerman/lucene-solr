@@ -1344,8 +1344,12 @@ name|assertTrue
 argument_list|(
 name|dvInfo
 operator|.
-name|hasDocValues
+name|getDocValuesType
 argument_list|()
+operator|!=
+name|DocValuesType
+operator|.
+name|NONE
 argument_list|)
 expr_stmt|;
 name|NumericDocValues
