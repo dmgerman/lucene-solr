@@ -2243,6 +2243,54 @@ name|getKey
 argument_list|()
 argument_list|)
 expr_stmt|;
+name|String
+name|parentPath
+init|=
+name|e
+operator|.
+name|getKey
+argument_list|()
+operator|.
+name|substring
+argument_list|(
+literal|0
+argument_list|,
+name|e
+operator|.
+name|getKey
+argument_list|()
+operator|.
+name|lastIndexOf
+argument_list|(
+literal|'/'
+argument_list|)
+argument_list|)
+decl_stmt|;
+if|if
+condition|(
+operator|!
+name|zkClient
+operator|.
+name|exists
+argument_list|(
+name|parentPath
+argument_list|,
+literal|true
+argument_list|)
+condition|)
+block|{
+comment|// if the /collections/collection_name path doesn't exist then it means that
+comment|// 1) the user invoked a DELETE collection API and the OverseerCollectionProcessor has deleted
+comment|// this zk path.
+comment|// 2) these are most likely old "state" messages which are only being processed now because
+comment|// if they were new "state" messages then in legacy mode, a new collection would have been
+comment|// created with stateFormat = 1 (which is the default state format)
+comment|// 3) these can't be new "state" messages created for a new collection because
+comment|// otherwise the OverseerCollectionProcessor would have already created this path
+comment|// as part of the create collection API call -- which is the only way in which a collection
+comment|// with stateFormat> 1 can possibly be created
+continue|continue;
+block|}
 name|zkClient
 operator|.
 name|create
