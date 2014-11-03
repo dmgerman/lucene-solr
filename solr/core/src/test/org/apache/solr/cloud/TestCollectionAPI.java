@@ -272,7 +272,7 @@ name|cloud
 operator|.
 name|OverseerCollectionProcessor
 operator|.
-name|SLICE_UNIQUE
+name|SHARD_UNIQUE
 import|;
 end_import
 
@@ -3109,7 +3109,7 @@ literal|"property.value"
 argument_list|,
 literal|"nonsense"
 argument_list|,
-name|SLICE_UNIQUE
+name|SHARD_UNIQUE
 argument_list|,
 literal|"true"
 argument_list|)
@@ -3219,7 +3219,7 @@ literal|"property.value"
 argument_list|,
 literal|"true"
 argument_list|,
-name|SLICE_UNIQUE
+name|SHARD_UNIQUE
 argument_list|,
 literal|"false"
 argument_list|)
@@ -3431,14 +3431,14 @@ literal|"property.value"
 argument_list|,
 literal|"true"
 argument_list|,
-name|SLICE_UNIQUE
+name|SHARD_UNIQUE
 argument_list|,
 literal|"false"
 argument_list|)
 expr_stmt|;
 name|fail
 argument_list|(
-literal|"Should have thrown an exception, setting sliceUnique=false is not allowed for 'preferredLeader'."
+literal|"Should have thrown an exception, setting shardUnique=false is not allowed for 'preferredLeader'."
 argument_list|)
 expr_stmt|;
 block|}
@@ -3459,7 +3459,7 @@ argument_list|()
 operator|.
 name|contains
 argument_list|(
-literal|"with the sliceUnique parameter set to something other than 'true'"
+literal|"with the shardUnique parameter set to something other than 'true'"
 argument_list|)
 argument_list|)
 expr_stmt|;

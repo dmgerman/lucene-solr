@@ -40,7 +40,7 @@ name|cloud
 operator|.
 name|OverseerCollectionProcessor
 operator|.
-name|SLICE_UNIQUE
+name|SHARD_UNIQUE
 import|;
 end_import
 
@@ -110,7 +110,7 @@ name|CollectionParams
 operator|.
 name|CollectionAction
 operator|.
-name|BALANCESLICEUNIQUE
+name|BALANCESHARDUNIQUE
 import|;
 end_import
 
@@ -2730,7 +2730,7 @@ argument_list|)
 expr_stmt|;
 break|break;
 case|case
-name|BALANCESLICEUNIQUE
+name|BALANCESHARDUNIQUE
 case|:
 name|ExclusiveSliceProperty
 name|dProp
@@ -3289,7 +3289,7 @@ name|PROPERTY_VALUE_PROP
 argument_list|)
 decl_stmt|;
 name|String
-name|sliceUnique
+name|shardUnique
 init|=
 name|message
 operator|.
@@ -3297,7 +3297,7 @@ name|getStr
 argument_list|(
 name|OverseerCollectionProcessor
 operator|.
-name|SLICE_UNIQUE
+name|SHARD_UNIQUE
 argument_list|)
 decl_stmt|;
 name|boolean
@@ -3321,14 +3321,14 @@ name|StringUtils
 operator|.
 name|isNotBlank
 argument_list|(
-name|sliceUnique
+name|shardUnique
 argument_list|)
 operator|&&
 name|Boolean
 operator|.
 name|parseBoolean
 argument_list|(
-name|sliceUnique
+name|shardUnique
 argument_list|)
 operator|==
 literal|false
@@ -3352,7 +3352,7 @@ literal|" cannot have "
 operator|+
 name|OverseerCollectionProcessor
 operator|.
-name|SLICE_UNIQUE
+name|SHARD_UNIQUE
 operator|+
 literal|" set to anything other than"
 operator|+
@@ -3373,7 +3373,7 @@ name|Boolean
 operator|.
 name|parseBoolean
 argument_list|(
-name|sliceUnique
+name|shardUnique
 argument_list|)
 expr_stmt|;
 block|}
@@ -9675,7 +9675,7 @@ argument_list|)
 throw|;
 block|}
 name|Boolean
-name|sliceUnique
+name|shardUnique
 init|=
 name|Boolean
 operator|.
@@ -9685,13 +9685,13 @@ name|message
 operator|.
 name|getStr
 argument_list|(
-name|SLICE_UNIQUE
+name|SHARD_UNIQUE
 argument_list|)
 argument_list|)
 decl_stmt|;
 if|if
 condition|(
-name|sliceUnique
+name|shardUnique
 operator|==
 literal|false
 operator|&&
@@ -9721,7 +9721,7 @@ name|BAD_REQUEST
 argument_list|,
 literal|"Balancing properties amongst replicas in a slice requires that"
 operator|+
-literal|" the property be a pre-defined property (e.g. 'preferredLeader') or that 'sliceUnique' be set to 'true' "
+literal|" the property be a pre-defined property (e.g. 'preferredLeader') or that 'shardUnique' be set to 'true' "
 operator|+
 literal|" Property: "
 operator|+
@@ -9729,13 +9729,13 @@ name|this
 operator|.
 name|property
 operator|+
-literal|" sliceUnique: "
+literal|" shardUnique: "
 operator|+
 name|Boolean
 operator|.
 name|toString
 argument_list|(
-name|sliceUnique
+name|shardUnique
 argument_list|)
 argument_list|)
 throw|;
@@ -9985,7 +9985,7 @@ name|BAD_REQUEST
 argument_list|,
 literal|"'"
 operator|+
-name|BALANCESLICEUNIQUE
+name|BALANCESHARDUNIQUE
 operator|+
 literal|"' should only be called for properties that have at most one member "
 operator|+
