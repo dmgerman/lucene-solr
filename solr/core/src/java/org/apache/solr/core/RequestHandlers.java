@@ -1020,7 +1020,7 @@ argument_list|()
 decl_stmt|;
 name|info
 operator|=
-name|applyParamSet
+name|applyInitParams
 argument_list|(
 name|config
 argument_list|,
@@ -1117,10 +1117,10 @@ literal|"no default request handler is registered (either '/select' or 'standard
 argument_list|)
 expr_stmt|;
 block|}
-DECL|method|applyParamSet
+DECL|method|applyInitParams
 specifier|private
 name|PluginInfo
-name|applyParamSet
+name|applyInitParams
 parameter_list|(
 name|SolrConfig
 name|config
@@ -1233,7 +1233,6 @@ operator|.
 name|values
 argument_list|()
 control|)
-block|{
 if|if
 condition|(
 name|args
@@ -1252,7 +1251,6 @@ argument_list|(
 name|args
 argument_list|)
 expr_stmt|;
-block|}
 if|if
 condition|(
 operator|!
@@ -1290,12 +1288,12 @@ expr_stmt|;
 for|for
 control|(
 name|InitParams
-name|args
+name|initParam
 range|:
 name|ags
 control|)
 block|{
-name|args
+name|initParam
 operator|.
 name|apply
 argument_list|(
