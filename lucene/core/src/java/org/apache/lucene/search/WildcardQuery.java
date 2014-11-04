@@ -92,7 +92,7 @@ name|util
 operator|.
 name|automaton
 operator|.
-name|Operations
+name|Automaton
 import|;
 end_import
 
@@ -108,7 +108,7 @@ name|util
 operator|.
 name|automaton
 operator|.
-name|Automaton
+name|Operations
 import|;
 end_import
 
@@ -171,6 +171,31 @@ name|toAutomaton
 argument_list|(
 name|term
 argument_list|)
+argument_list|)
+expr_stmt|;
+block|}
+comment|/**    * Constructs a query for terms matching<code>term</code>.    * @param maxDeterminizedStates maximum number of states in the resulting    *   automata.  If the automata would need more than this many states    *   TooComplextToDeterminizeException is thrown.  Higher number require more    *   space but can process more complex automata.    */
+DECL|method|WildcardQuery
+specifier|public
+name|WildcardQuery
+parameter_list|(
+name|Term
+name|term
+parameter_list|,
+name|int
+name|maxDeterminizedStates
+parameter_list|)
+block|{
+name|super
+argument_list|(
+name|term
+argument_list|,
+name|toAutomaton
+argument_list|(
+name|term
+argument_list|)
+argument_list|,
+name|maxDeterminizedStates
 argument_list|)
 expr_stmt|;
 block|}

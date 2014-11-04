@@ -662,7 +662,7 @@ argument_list|)
 decl_stmt|;
 comment|//System.out.println("match " + matchedTerms.size() + " " + alternate.getNumberOfStates() + " states, sigma=" + alternate.getStartPoints().length);
 comment|//AutomatonTestUtil.minimizeSimple(alternate);
-comment|//System.out.println("minmize done");
+comment|//System.out.println("minimize done");
 name|AutomatonQuery
 name|a1
 init|=
@@ -695,6 +695,10 @@ literal|""
 argument_list|)
 argument_list|,
 name|alternate
+argument_list|,
+name|Integer
+operator|.
+name|MAX_VALUE
 argument_list|)
 decl_stmt|;
 name|ScoreDoc
