@@ -1387,18 +1387,6 @@ argument_list|(
 name|statsField
 argument_list|)
 expr_stmt|;
-name|min
-operator|=
-name|Double
-operator|.
-name|POSITIVE_INFINITY
-expr_stmt|;
-name|max
-operator|=
-name|Double
-operator|.
-name|NEGATIVE_INFINITY
-expr_stmt|;
 block|}
 annotation|@
 name|Override
@@ -1547,10 +1535,68 @@ name|Number
 name|max
 parameter_list|)
 block|{
+if|if
+condition|(
+literal|null
+operator|==
+name|min
+condition|)
+block|{
+assert|assert
+literal|null
+operator|==
+name|max
+operator|:
+literal|"min is null but max isn't ? ==> "
+operator|+
+name|max
+assert|;
+return|return;
+comment|// No-Op
+block|}
+assert|assert
+literal|null
+operator|!=
+name|max
+operator|:
+literal|"max is null but min isn't ? ==> "
+operator|+
+name|min
+assert|;
+comment|// we always use the double value, because that way the response Object class is
+comment|// consistent regardless of wether we only have 1 value or many that we min/max
+comment|//
+comment|// TODO: would be nice to have subclasses for each type of Number ... breaks backcompat
+name|double
+name|minD
+init|=
+name|min
+operator|.
+name|doubleValue
+argument_list|()
+decl_stmt|;
+name|double
+name|maxD
+init|=
+name|max
+operator|.
+name|doubleValue
+argument_list|()
+decl_stmt|;
 name|this
 operator|.
 name|min
 operator|=
+operator|(
+literal|null
+operator|==
+name|this
+operator|.
+name|min
+operator|)
+condition|?
+name|minD
+else|:
 name|Math
 operator|.
 name|min
@@ -1562,16 +1608,23 @@ operator|.
 name|doubleValue
 argument_list|()
 argument_list|,
-name|min
-operator|.
-name|doubleValue
-argument_list|()
+name|minD
 argument_list|)
 expr_stmt|;
 name|this
 operator|.
 name|max
 operator|=
+operator|(
+literal|null
+operator|==
+name|this
+operator|.
+name|max
+operator|)
+condition|?
+name|maxD
+else|:
 name|Math
 operator|.
 name|max
@@ -1583,10 +1636,7 @@ operator|.
 name|doubleValue
 argument_list|()
 argument_list|,
-name|max
-operator|.
-name|doubleValue
-argument_list|()
+name|maxD
 argument_list|)
 expr_stmt|;
 block|}
@@ -2491,7 +2541,7 @@ parameter_list|)
 block|{
 comment|// Add no statistics
 block|}
-comment|/**    * Determines which of the given Strings is the maximum, as computed by {@link String#compareTo(String)}    *    * @param str1 String to compare against b    * @param str2 String compared against a    * @return str1 if it is considered greater by {@link String#compareTo(String)}, str2 otherwise    */
+comment|/**     * Determines which of the given Strings is the maximum, as computed by {@link String#compareTo(String)}    *    * @param str1 String to compare against b    * @param str2 String compared against a    * @return str1 if it is considered greater by {@link String#compareTo(String)}, str2 otherwise    */
 DECL|method|max
 specifier|private
 specifier|static

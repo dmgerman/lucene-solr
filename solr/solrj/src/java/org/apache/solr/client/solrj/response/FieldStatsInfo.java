@@ -957,6 +957,16 @@ return|return
 name|stddev
 return|;
 block|}
+DECL|method|getSumOfSquares
+specifier|public
+name|Double
+name|getSumOfSquares
+parameter_list|()
+block|{
+return|return
+name|sumOfSquares
+return|;
+block|}
 DECL|method|getFacets
 specifier|public
 name|Map
