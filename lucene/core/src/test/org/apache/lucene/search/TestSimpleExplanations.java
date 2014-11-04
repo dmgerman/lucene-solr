@@ -40,7 +40,7 @@ specifier|public
 class|class
 name|TestSimpleExplanations
 extends|extends
-name|TestExplanations
+name|BaseExplanationTestCase
 block|{
 comment|// we focus on queries that don't rewrite to other queries.
 comment|// if we get those covered well, then the ones that rewrite should

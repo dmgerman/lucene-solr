@@ -74,7 +74,7 @@ name|lucene
 operator|.
 name|search
 operator|.
-name|TestExplanations
+name|BaseExplanationTestCase
 import|;
 end_import
 
@@ -118,7 +118,7 @@ specifier|public
 class|class
 name|TestPayloadExplanations
 extends|extends
-name|TestExplanations
+name|BaseExplanationTestCase
 block|{
 DECL|field|functions
 specifier|private

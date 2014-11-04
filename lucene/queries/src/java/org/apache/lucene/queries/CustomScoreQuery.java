@@ -1419,8 +1419,7 @@ decl_stmt|;
 name|float
 name|sc
 init|=
-name|getBoost
-argument_list|()
+name|queryWeight
 operator|*
 name|customExp
 operator|.
@@ -1461,14 +1460,12 @@ argument_list|(
 operator|new
 name|Explanation
 argument_list|(
-name|getBoost
-argument_list|()
+name|queryWeight
 argument_list|,
-literal|"queryBoost"
+literal|"queryWeight"
 argument_list|)
 argument_list|)
 expr_stmt|;
-comment|// actually using the q boost as q weight (== weight value)
 return|return
 name|res
 return|;

@@ -88,7 +88,7 @@ specifier|public
 class|class
 name|TestComplexExplanations
 extends|extends
-name|TestExplanations
+name|BaseExplanationTestCase
 block|{
 comment|/**    * Override the Similarity used in our searcher with one that plays    * nice with boosts of 0.0    */
 annotation|@

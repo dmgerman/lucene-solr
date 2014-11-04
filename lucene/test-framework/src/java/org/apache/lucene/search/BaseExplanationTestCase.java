@@ -277,10 +277,11 @@ comment|/**  * Tests primitive queries (ie: that rewrite to themselves) to  * in
 end_comment
 
 begin_class
-DECL|class|TestExplanations
+DECL|class|BaseExplanationTestCase
 specifier|public
+specifier|abstract
 class|class
-name|TestExplanations
+name|BaseExplanationTestCase
 extends|extends
 name|LuceneTestCase
 block|{
@@ -1267,15 +1268,6 @@ expr_stmt|;
 return|return
 name|bq
 return|;
-block|}
-comment|/**    * Placeholder: JUnit freaks if you don't have one test ... making    * class abstract doesn't help    */
-DECL|method|testNoop
-specifier|public
-name|void
-name|testNoop
-parameter_list|()
-block|{
-comment|/* NOOP */
 block|}
 block|}
 end_class
