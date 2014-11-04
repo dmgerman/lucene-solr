@@ -213,6 +213,16 @@ specifier|public
 class|class
 name|Operations
 block|{
+comment|/**    * Default maximum number of states that {@link Operations#determinize} should create.    */
+DECL|field|DEFAULT_MAX_DETERMINIZED_STATES
+specifier|public
+specifier|static
+specifier|final
+name|int
+name|DEFAULT_MAX_DETERMINIZED_STATES
+init|=
+literal|10000
+decl_stmt|;
 DECL|method|Operations
 specifier|private
 name|Operations
@@ -955,12 +965,12 @@ name|Automaton
 name|a
 parameter_list|,
 name|int
-name|min
+name|count
 parameter_list|)
 block|{
 if|if
 condition|(
-name|min
+name|count
 operator|==
 literal|0
 condition|)
@@ -985,7 +995,7 @@ argument_list|()
 decl_stmt|;
 while|while
 condition|(
-name|min
+name|count
 operator|--
 operator|>
 literal|0
@@ -1144,6 +1154,24 @@ argument_list|,
 literal|0
 argument_list|)
 decl_stmt|;
+name|Automaton
+operator|.
+name|Builder
+name|builder
+init|=
+operator|new
+name|Automaton
+operator|.
+name|Builder
+argument_list|()
+decl_stmt|;
+name|builder
+operator|.
+name|copy
+argument_list|(
+name|b
+argument_list|)
+expr_stmt|;
 for|for
 control|(
 name|int
@@ -1162,12 +1190,12 @@ block|{
 name|int
 name|numStates
 init|=
-name|b
+name|builder
 operator|.
 name|getNumStates
 argument_list|()
 decl_stmt|;
-name|b
+name|builder
 operator|.
 name|copy
 argument_list|(
@@ -1182,7 +1210,7 @@ range|:
 name|prevAcceptStates
 control|)
 block|{
-name|b
+name|builder
 operator|.
 name|addEpsilon
 argument_list|(
@@ -1202,13 +1230,11 @@ name|numStates
 argument_list|)
 expr_stmt|;
 block|}
-name|b
-operator|.
-name|finishState
-argument_list|()
-expr_stmt|;
 return|return
-name|b
+name|builder
+operator|.
+name|finish
+argument_list|()
 return|;
 block|}
 DECL|method|toSet
@@ -1299,7 +1325,7 @@ return|return
 name|result
 return|;
 block|}
-comment|/**    * Returns a (deterministic) automaton that accepts the complement of the    * language of the given automaton.    *<p>    * Complexity: linear in number of states (if already deterministic).    */
+comment|/**    * Returns a (deterministic) automaton that accepts the complement of the    * language of the given automaton.    *<p>    * Complexity: linear in number of states if already deterministic and    *  exponential otherwise.    * @param maxDeterminizedStates maximum number of states determinizing the    *  automaton can result in.  Set higher to allow more complex queries and    *  lower to prevent memory exhaustion.    */
 DECL|method|complement
 specifier|static
 specifier|public
@@ -1308,6 +1334,9 @@ name|complement
 parameter_list|(
 name|Automaton
 name|a
+parameter_list|,
+name|int
+name|maxDeterminizedStates
 parameter_list|)
 block|{
 name|a
@@ -1317,6 +1346,8 @@ argument_list|(
 name|determinize
 argument_list|(
 name|a
+argument_list|,
+name|maxDeterminizedStates
 argument_list|)
 argument_list|)
 expr_stmt|;
@@ -1366,7 +1397,7 @@ name|a
 argument_list|)
 return|;
 block|}
-comment|/**    * Returns a (deterministic) automaton that accepts the intersection of the    * language of<code>a1</code> and the complement of the language of    *<code>a2</code>. As a side-effect, the automata may be determinized, if not    * already deterministic.    *<p>    * Complexity: quadratic in number of states (if already deterministic).    */
+comment|/**    * Returns a (deterministic) automaton that accepts the intersection of the    * language of<code>a1</code> and the complement of the language of    *<code>a2</code>. As a side-effect, the automata may be determinized, if not    * already deterministic.    *<p>    * Complexity: quadratic in number of states if a2 already deterministic and    *  exponential in number of a2's states otherwise.    */
 DECL|method|minus
 specifier|static
 specifier|public
@@ -1378,6 +1409,9 @@ name|a1
 parameter_list|,
 name|Automaton
 name|a2
+parameter_list|,
+name|int
+name|maxDeterminizedStates
 parameter_list|)
 block|{
 if|if
@@ -1423,6 +1457,8 @@ argument_list|,
 name|complement
 argument_list|(
 name|a2
+argument_list|,
+name|maxDeterminizedStates
 argument_list|)
 argument_list|)
 return|;
@@ -2583,13 +2619,6 @@ name|createState
 argument_list|()
 expr_stmt|;
 comment|// Copy over all automata
-name|Transition
-name|t
-init|=
-operator|new
-name|Transition
-argument_list|()
-decl_stmt|;
 for|for
 control|(
 name|Automaton
@@ -3390,7 +3419,7 @@ argument_list|()
 return|;
 block|}
 block|}
-comment|/**    * Determinizes the given automaton.    *<p>    * Worst case complexity: exponential in number of states.    */
+comment|/**    * Determinizes the given automaton.    *<p>    * Worst case complexity: exponential in number of states.    * @param maxDeterminizedStates Maximum number of states created when    *   determinizing.  Higher numbers allow this operation to consume more    *   memory but allow more complex automatons.  Use    *   DEFAULT_MAX_DETERMINIZED_STATES as a decent default if you don't know    *   how many to allow.    * @throws TooComplexToDeterminizeException if determinizing a creates an    *   automaton with more than maxDeterminizedStates    */
 DECL|method|determinize
 specifier|public
 specifier|static
@@ -3399,6 +3428,9 @@ name|determinize
 parameter_list|(
 name|Automaton
 name|a
+parameter_list|,
+name|int
+name|maxDeterminizedStates
 parameter_list|)
 block|{
 if|if
@@ -3521,31 +3553,6 @@ name|initialset
 argument_list|,
 literal|0
 argument_list|)
-expr_stmt|;
-name|int
-name|newStateUpto
-init|=
-literal|0
-decl_stmt|;
-name|int
-index|[]
-name|newStatesArray
-init|=
-operator|new
-name|int
-index|[
-literal|5
-index|]
-decl_stmt|;
-name|newStatesArray
-index|[
-name|newStateUpto
-index|]
-operator|=
-literal|0
-expr_stmt|;
-name|newStateUpto
-operator|++
 expr_stmt|;
 comment|// like Set<Integer,PointTransitions>
 specifier|final
@@ -3786,6 +3793,23 @@ operator|.
 name|createState
 argument_list|()
 expr_stmt|;
+if|if
+condition|(
+name|q
+operator|>=
+name|maxDeterminizedStates
+condition|)
+block|{
+throw|throw
+operator|new
+name|TooComplexToDeterminizeException
+argument_list|(
+name|a
+argument_list|,
+name|maxDeterminizedStates
+argument_list|)
+throw|;
+block|}
 specifier|final
 name|SortedIntSet
 operator|.
@@ -5884,7 +5908,7 @@ name|get
 argument_list|()
 return|;
 block|}
-comment|/**    * Returns the longest BytesRef that is a suffix of all accepted strings.    * Worst case complexity: exponential in number of states (this calls    * determinize).    *    * @return common suffix    */
+comment|/**    * Returns the longest BytesRef that is a suffix of all accepted strings.    * Worst case complexity: exponential in number of states (this calls    * determinize).    * @param maxDeterminizedStates maximum number of states determinizing the    *  automaton can result in.  Set higher to allow more complex queries and    *  lower to prevent memory exhaustion.    * @return common suffix    */
 DECL|method|getCommonSuffixBytesRef
 specifier|public
 specifier|static
@@ -5893,6 +5917,9 @@ name|getCommonSuffixBytesRef
 parameter_list|(
 name|Automaton
 name|a
+parameter_list|,
+name|int
+name|maxDeterminizedStates
 parameter_list|)
 block|{
 comment|// reverse the language of the automaton, then reverse its common prefix.
@@ -5907,6 +5934,8 @@ name|reverse
 argument_list|(
 name|a
 argument_list|)
+argument_list|,
+name|maxDeterminizedStates
 argument_list|)
 decl_stmt|;
 name|BytesRef

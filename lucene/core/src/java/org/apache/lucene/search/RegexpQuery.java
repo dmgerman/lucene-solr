@@ -12,6 +12,10 @@ name|search
 package|;
 end_package
 
+begin_comment
+comment|/*  * Licensed to the Apache Software Foundation (ASF) under one or more  * contributor license agreements.  See the NOTICE file distributed with  * this work for additional information regarding copyright ownership.  * The ASF licenses this file to You under the Apache License, Version 2.0  * (the "License"); you may not use this file except in compliance with  * the License.  You may obtain a copy of the License at  *  *     http://www.apache.org/licenses/LICENSE-2.0  *  * Unless required by applicable law or agreed to in writing, software  * distributed under the License is distributed on an "AS IS" BASIS,  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.  * See the License for the specific language governing permissions and  * limitations under the License.  */
+end_comment
+
 begin_import
 import|import
 name|org
@@ -84,13 +88,25 @@ name|util
 operator|.
 name|automaton
 operator|.
-name|RegExp
+name|Operations
 import|;
 end_import
 
-begin_comment
-comment|/*  * Licensed to the Apache Software Foundation (ASF) under one or more  * contributor license agreements.  See the NOTICE file distributed with  * this work for additional information regarding copyright ownership.  * The ASF licenses this file to You under the Apache License, Version 2.0  * (the "License"); you may not use this file except in compliance with  * the License.  You may obtain a copy of the License at  *  *     http://www.apache.org/licenses/LICENSE-2.0  *  * Unless required by applicable law or agreed to in writing, software  * distributed under the License is distributed on an "AS IS" BASIS,  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.  * See the License for the specific language governing permissions and  * limitations under the License.  */
-end_comment
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|util
+operator|.
+name|automaton
+operator|.
+name|RegExp
+import|;
+end_import
 
 begin_comment
 comment|/**  * A fast regular expression query based on the  * {@link org.apache.lucene.util.automaton} package.  *<ul>  *<li>Comparisons are<a  * href="http://tusker.org/regex/regex_benchmark.html">fast</a>  *<li>The term dictionary is enumerated in an intelligent way, to avoid  * comparisons. See {@link AutomatonQuery} for more details.  *</ul>  *<p>  * The supported syntax is documented in the {@link RegExp} class.  * Note this might be different than other regular expression implementations.  * For some alternatives with different syntax, look under the sandbox.  *</p>  *<p>  * Note this query can be slow, as it needs to iterate over many terms. In order  * to prevent extremely slow RegexpQueries, a Regexp term should not start with  * the expression<code>.*</code>  *   * @see RegExp  * @lucene.experimental  */
@@ -169,10 +185,41 @@ argument_list|,
 name|flags
 argument_list|,
 name|defaultProvider
+argument_list|,
+name|Operations
+operator|.
+name|DEFAULT_MAX_DETERMINIZED_STATES
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**    * Constructs a query for terms matching<code>term</code>.    *     * @param term regular expression.    * @param flags optional RegExp features from {@link RegExp}    * @param provider custom AutomatonProvider for named automata    */
+comment|/**    * Constructs a query for terms matching<code>term</code>.    *     * @param term regular expression.    * @param flags optional RegExp features from {@link RegExp}    * @param maxDeterminizedStates maximum number of states that compiling the    *  automaton for the regexp can result in.  Set higher to allow more complex    *  queries and lower to prevent memory exhaustion.    */
+DECL|method|RegexpQuery
+specifier|public
+name|RegexpQuery
+parameter_list|(
+name|Term
+name|term
+parameter_list|,
+name|int
+name|flags
+parameter_list|,
+name|int
+name|maxDeterminizedStates
+parameter_list|)
+block|{
+name|this
+argument_list|(
+name|term
+argument_list|,
+name|flags
+argument_list|,
+name|defaultProvider
+argument_list|,
+name|maxDeterminizedStates
+argument_list|)
+expr_stmt|;
+block|}
+comment|/**    * Constructs a query for terms matching<code>term</code>.    *     * @param term regular expression.    * @param flags optional RegExp features from {@link RegExp}    * @param provider custom AutomatonProvider for named automata    * @param maxDeterminizedStates maximum number of states that compiling the    *  automaton for the regexp can result in.  Set higher to allow more complex    *  queries and lower to prevent memory exhaustion.    */
 DECL|method|RegexpQuery
 specifier|public
 name|RegexpQuery
@@ -185,6 +232,9 @@ name|flags
 parameter_list|,
 name|AutomatonProvider
 name|provider
+parameter_list|,
+name|int
+name|maxDeterminizedStates
 parameter_list|)
 block|{
 name|super
@@ -205,6 +255,8 @@ operator|.
 name|toAutomaton
 argument_list|(
 name|provider
+argument_list|,
+name|maxDeterminizedStates
 argument_list|)
 argument_list|)
 expr_stmt|;

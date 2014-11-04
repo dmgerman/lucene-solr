@@ -30,13 +30,35 @@ name|CharacterRunAutomaton
 extends|extends
 name|RunAutomaton
 block|{
-comment|/** Sole constructor. */
+comment|/**    * Construct with a default number of maxDeterminizedStates.    */
 DECL|method|CharacterRunAutomaton
 specifier|public
 name|CharacterRunAutomaton
 parameter_list|(
 name|Automaton
 name|a
+parameter_list|)
+block|{
+name|this
+argument_list|(
+name|a
+argument_list|,
+name|Operations
+operator|.
+name|DEFAULT_MAX_DETERMINIZED_STATES
+argument_list|)
+expr_stmt|;
+block|}
+comment|/**    * Construct specifying maxDeterminizedStates.    * @param a Automaton to match    * @param maxDeterminizedStates maximum number of states that the automataon    *   can have once determinized.  If more states are required to determinize    *   it then a TooComplexToDeterminizeException is thrown.    */
+DECL|method|CharacterRunAutomaton
+specifier|public
+name|CharacterRunAutomaton
+parameter_list|(
+name|Automaton
+name|a
+parameter_list|,
+name|int
+name|maxDeterminizedStates
 parameter_list|)
 block|{
 name|super
@@ -48,6 +70,8 @@ operator|.
 name|MAX_CODE_POINT
 argument_list|,
 literal|false
+argument_list|,
+name|maxDeterminizedStates
 argument_list|)
 expr_stmt|;
 block|}

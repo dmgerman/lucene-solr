@@ -178,6 +178,16 @@ specifier|public
 class|class
 name|AutomatonTestUtil
 block|{
+comment|/**    * Default maximum number of states that {@link Operations#determinize} should create.    */
+DECL|field|DEFAULT_MAX_DETERMINIZED_STATES
+specifier|public
+specifier|static
+specifier|final
+name|int
+name|DEFAULT_MAX_DETERMINIZED_STATES
+init|=
+literal|1000000
+decl_stmt|;
 comment|/** Returns random string, including full unicode range. */
 DECL|method|randomRegexp
 specifier|public
@@ -1571,6 +1581,8 @@ operator|.
 name|complement
 argument_list|(
 name|a1
+argument_list|,
+name|DEFAULT_MAX_DETERMINIZED_STATES
 argument_list|)
 expr_stmt|;
 block|}
@@ -1610,6 +1622,8 @@ operator|.
 name|complement
 argument_list|(
 name|a2
+argument_list|,
+name|DEFAULT_MAX_DETERMINIZED_STATES
 argument_list|)
 expr_stmt|;
 block|}
@@ -1672,6 +1686,8 @@ argument_list|(
 name|a1
 argument_list|,
 name|a2
+argument_list|,
+name|DEFAULT_MAX_DETERMINIZED_STATES
 argument_list|)
 return|;
 block|}

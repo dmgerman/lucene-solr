@@ -32,6 +32,24 @@ name|LuceneTestCase
 import|;
 end_import
 
+begin_import
+import|import static
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|util
+operator|.
+name|automaton
+operator|.
+name|Operations
+operator|.
+name|DEFAULT_MAX_DETERMINIZED_STATES
+import|;
+end_import
+
 begin_comment
 comment|/**   * This test builds some randomish NFA/DFA and minimizes them.  */
 end_comment
@@ -98,6 +116,8 @@ name|removeDeadStates
 argument_list|(
 name|a
 argument_list|)
+argument_list|,
+name|DEFAULT_MAX_DETERMINIZED_STATES
 argument_list|)
 decl_stmt|;
 name|Automaton
@@ -108,6 +128,8 @@ operator|.
 name|minimize
 argument_list|(
 name|a
+argument_list|,
+name|DEFAULT_MAX_DETERMINIZED_STATES
 argument_list|)
 decl_stmt|;
 name|assertTrue
@@ -182,6 +204,8 @@ operator|.
 name|minimize
 argument_list|(
 name|a
+argument_list|,
+name|DEFAULT_MAX_DETERMINIZED_STATES
 argument_list|)
 decl_stmt|;
 name|assertTrue
@@ -304,7 +328,9 @@ name|NONE
 argument_list|)
 operator|.
 name|toAutomaton
-argument_list|()
+argument_list|(
+literal|1000000
+argument_list|)
 expr_stmt|;
 block|}
 block|}

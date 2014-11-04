@@ -224,6 +224,40 @@ name|QueryBuilder
 import|;
 end_import
 
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|util
+operator|.
+name|automaton
+operator|.
+name|RegExp
+import|;
+end_import
+
+begin_import
+import|import static
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|util
+operator|.
+name|automaton
+operator|.
+name|Operations
+operator|.
+name|DEFAULT_MAX_DETERMINIZED_STATES
+import|;
+end_import
+
 begin_comment
 comment|/** This class is overridden by QueryParser in QueryParser.jj  * and acts to separate the majority of the Java code from the .jj grammar file.   */
 end_comment
@@ -430,6 +464,12 @@ decl_stmt|;
 DECL|field|autoGeneratePhraseQueries
 name|boolean
 name|autoGeneratePhraseQueries
+decl_stmt|;
+DECL|field|maxDeterminizedStates
+name|int
+name|maxDeterminizedStates
+init|=
+name|DEFAULT_MAX_DETERMINIZED_STATES
 decl_stmt|;
 comment|// So the generated QueryParser(CharStream) won't error out
 DECL|method|QueryParserBase
@@ -1147,6 +1187,34 @@ parameter_list|()
 block|{
 return|return
 name|analyzeRangeTerms
+return|;
+block|}
+comment|/**    * @param maxDeterminizedStates the maximum number of states that    *   determinizing a regexp query can result in.  If the query results in any    *   more states a TooComplexToDeterminizeException is thrown.    */
+DECL|method|setMaxDeterminizedStates
+specifier|public
+name|void
+name|setMaxDeterminizedStates
+parameter_list|(
+name|int
+name|maxDeterminizedStates
+parameter_list|)
+block|{
+name|this
+operator|.
+name|maxDeterminizedStates
+operator|=
+name|maxDeterminizedStates
+expr_stmt|;
+block|}
+comment|/**    * @return the maximum number of states that determinizing a regexp query    *   can result in.  If the query results in any more states a    *   TooComplexToDeterminizeException is thrown.    */
+DECL|method|getMaxDeterminizedStates
+specifier|public
+name|int
+name|getMaxDeterminizedStates
+parameter_list|()
+block|{
+return|return
+name|maxDeterminizedStates
 return|;
 block|}
 DECL|method|addClause
@@ -1918,6 +1986,12 @@ operator|new
 name|RegexpQuery
 argument_list|(
 name|regexp
+argument_list|,
+name|RegExp
+operator|.
+name|ALL
+argument_list|,
+name|maxDeterminizedStates
 argument_list|)
 decl_stmt|;
 name|query

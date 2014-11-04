@@ -182,6 +182,7 @@ name|RegexpQueryNode
 operator|)
 name|queryNode
 decl_stmt|;
+comment|// TODO: make the maxStates configurable w/ a reasonable default (QueryParserBase uses 10000)
 name|RegexpQuery
 name|q
 init|=

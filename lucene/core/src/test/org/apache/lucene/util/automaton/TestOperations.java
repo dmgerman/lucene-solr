@@ -72,6 +72,24 @@ name|RandomInts
 import|;
 end_import
 
+begin_import
+import|import static
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|util
+operator|.
+name|automaton
+operator|.
+name|Operations
+operator|.
+name|DEFAULT_MAX_DETERMINIZED_STATES
+import|;
+end_import
+
 begin_class
 DECL|class|TestOperations
 specifier|public
@@ -286,6 +304,8 @@ argument_list|(
 name|eachIndividual
 argument_list|)
 argument_list|)
+argument_list|,
+name|DEFAULT_MAX_DETERMINIZED_STATES
 argument_list|)
 return|;
 block|}
@@ -420,6 +440,8 @@ operator|.
 name|determinize
 argument_list|(
 name|concat1
+argument_list|,
+literal|100
 argument_list|)
 argument_list|,
 name|Operations
@@ -427,6 +449,8 @@ operator|.
 name|determinize
 argument_list|(
 name|concat2
+argument_list|,
+literal|100
 argument_list|)
 argument_list|)
 argument_list|)
@@ -442,6 +466,8 @@ operator|.
 name|determinize
 argument_list|(
 name|nfa
+argument_list|,
+literal|100
 argument_list|)
 argument_list|,
 name|Operations
@@ -449,6 +475,8 @@ operator|.
 name|determinize
 argument_list|(
 name|concat1
+argument_list|,
+literal|100
 argument_list|)
 argument_list|)
 argument_list|)
@@ -464,6 +492,8 @@ operator|.
 name|determinize
 argument_list|(
 name|nfa
+argument_list|,
+literal|100
 argument_list|)
 argument_list|,
 name|Operations
@@ -471,6 +501,8 @@ operator|.
 name|determinize
 argument_list|(
 name|concat2
+argument_list|,
+literal|100
 argument_list|)
 argument_list|)
 argument_list|)
@@ -550,6 +582,8 @@ name|re
 operator|.
 name|toAutomaton
 argument_list|()
+argument_list|,
+name|DEFAULT_MAX_DETERMINIZED_STATES
 argument_list|)
 decl_stmt|;
 name|assertFalse
@@ -881,6 +915,8 @@ operator|.
 name|minimize
 argument_list|(
 name|a
+argument_list|,
+name|DEFAULT_MAX_DETERMINIZED_STATES
 argument_list|)
 expr_stmt|;
 name|Set
@@ -1342,6 +1378,8 @@ operator|.
 name|minimize
 argument_list|(
 name|a
+argument_list|,
+literal|1000000
 argument_list|)
 expr_stmt|;
 if|if
@@ -1397,6 +1435,8 @@ operator|.
 name|determinize
 argument_list|(
 name|a
+argument_list|,
+literal|1000000
 argument_list|)
 expr_stmt|;
 block|}

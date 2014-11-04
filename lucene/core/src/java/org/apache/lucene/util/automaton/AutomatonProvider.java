@@ -29,7 +29,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Automaton provider for<code>RegExp.</code>  * {@link RegExp#toAutomaton(AutomatonProvider)}  *   * @lucene.experimental  */
+comment|/**  * Automaton provider for<code>RegExp.</code>  * {@link RegExp#toAutomaton(AutomatonProvider,int)}  *   * @lucene.experimental  */
 end_comment
 
 begin_interface

@@ -52,6 +52,24 @@ name|LuceneTestCase
 import|;
 end_import
 
+begin_import
+import|import static
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|util
+operator|.
+name|automaton
+operator|.
+name|Operations
+operator|.
+name|DEFAULT_MAX_DETERMINIZED_STATES
+import|;
+end_import
+
 begin_class
 DECL|class|TestLevenshteinAutomata
 specifier|public
@@ -773,6 +791,8 @@ operator|.
 name|minimize
 argument_list|(
 name|a
+argument_list|,
+name|DEFAULT_MAX_DETERMINIZED_STATES
 argument_list|)
 expr_stmt|;
 name|a
@@ -796,6 +816,8 @@ operator|.
 name|minimize
 argument_list|(
 name|a
+argument_list|,
+name|DEFAULT_MAX_DETERMINIZED_STATES
 argument_list|)
 expr_stmt|;
 name|a
@@ -819,6 +841,8 @@ operator|.
 name|minimize
 argument_list|(
 name|a
+argument_list|,
+name|DEFAULT_MAX_DETERMINIZED_STATES
 argument_list|)
 expr_stmt|;
 return|return
@@ -864,6 +888,8 @@ operator|.
 name|minimize
 argument_list|(
 name|a
+argument_list|,
+name|DEFAULT_MAX_DETERMINIZED_STATES
 argument_list|)
 expr_stmt|;
 return|return
@@ -986,6 +1012,8 @@ operator|.
 name|minimize
 argument_list|(
 name|a
+argument_list|,
+name|DEFAULT_MAX_DETERMINIZED_STATES
 argument_list|)
 expr_stmt|;
 return|return
@@ -1096,6 +1124,8 @@ operator|.
 name|minimize
 argument_list|(
 name|a
+argument_list|,
+name|DEFAULT_MAX_DETERMINIZED_STATES
 argument_list|)
 expr_stmt|;
 return|return
@@ -1220,6 +1250,8 @@ operator|.
 name|minimize
 argument_list|(
 name|a
+argument_list|,
+name|DEFAULT_MAX_DETERMINIZED_STATES
 argument_list|)
 expr_stmt|;
 return|return
@@ -1400,6 +1432,8 @@ operator|.
 name|minimize
 argument_list|(
 name|a
+argument_list|,
+name|DEFAULT_MAX_DETERMINIZED_STATES
 argument_list|)
 expr_stmt|;
 return|return

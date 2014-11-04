@@ -304,6 +304,24 @@ name|RegExp
 import|;
 end_import
 
+begin_import
+import|import static
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|util
+operator|.
+name|automaton
+operator|.
+name|Operations
+operator|.
+name|DEFAULT_MAX_DETERMINIZED_STATES
+import|;
+end_import
+
 begin_class
 DECL|class|TestMockAnalyzer
 specifier|public
@@ -1187,6 +1205,8 @@ literal|"bar"
 argument_list|)
 argument_list|)
 argument_list|)
+argument_list|,
+name|DEFAULT_MAX_DETERMINIZED_STATES
 argument_list|)
 argument_list|)
 decl_stmt|;
