@@ -2379,20 +2379,7 @@ name|startsWith
 argument_list|(
 literal|"/schema/"
 argument_list|)
-operator|||
-name|path
-operator|.
-name|equals
-argument_list|(
-literal|"/config"
-argument_list|)
-operator|||
-name|path
-operator|.
-name|startsWith
-argument_list|(
-literal|"/config/"
-argument_list|)
+comment|/*|| path.equals("/config") || path.startsWith("/config/")*/
 condition|)
 block|{
 name|solrReq
