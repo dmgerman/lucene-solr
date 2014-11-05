@@ -38,7 +38,38 @@ name|*
 import|;
 end_import
 
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|util
+operator|.
+name|LuceneTestCase
+operator|.
+name|SuppressCodecs
+import|;
+end_import
+
 begin_class
+annotation|@
+name|SuppressCodecs
+argument_list|(
+block|{
+literal|"Lucene3x"
+block|,
+literal|"Lucene40"
+block|,
+literal|"Lucene41"
+block|,
+literal|"Lucene42"
+block|,
+literal|"Lucene45"
+block|}
+argument_list|)
 DECL|class|TestSortingResponseWriter
 specifier|public
 class|class
@@ -364,7 +395,7 @@ name|assertEquals
 argument_list|(
 name|s
 argument_list|,
-literal|"{\"numFound\":1, \"docs\":[{\"floatdv\":2.1,\"intdv\":1,\"stringdv\":\"hello world\",\"longdv\":323223232323,\"doubledv\":2344.345}]}"
+literal|"{\"responseHeader\": {\"status\": 0}, \"response\":{\"numFound\":1, \"docs\":[{\"floatdv\":2.1,\"intdv\":1,\"stringdv\":\"hello world\",\"longdv\":323223232323,\"doubledv\":2344.345}]}}"
 argument_list|)
 expr_stmt|;
 comment|//Test null value string:
@@ -398,7 +429,7 @@ name|assertEquals
 argument_list|(
 name|s
 argument_list|,
-literal|"{\"numFound\":1, \"docs\":[{\"floatdv\":2.1,\"intdv\":7,\"stringdv\":\"\",\"longdv\":323223232323,\"doubledv\":2344.345}]}"
+literal|"{\"responseHeader\": {\"status\": 0}, \"response\":{\"numFound\":1, \"docs\":[{\"floatdv\":2.1,\"intdv\":7,\"stringdv\":\"\",\"longdv\":323223232323,\"doubledv\":2344.345}]}}"
 argument_list|)
 expr_stmt|;
 comment|//Test multiValue docValues output
@@ -432,7 +463,7 @@ name|assertEquals
 argument_list|(
 name|s
 argument_list|,
-literal|"{\"numFound\":1, \"docs\":[{\"intdv_m\":[100,250],\"floatdv_m\":[123.321,345.123],\"doubledv_m\":[3444.222,23232.2],\"longdv_m\":[343332,43434343434],\"stringdv_m\":[\"Everton\",\"liverpool\",\"manchester city\"]}]}"
+literal|"{\"responseHeader\": {\"status\": 0}, \"response\":{\"numFound\":1, \"docs\":[{\"intdv_m\":[100,250],\"floatdv_m\":[123.321,345.123],\"doubledv_m\":[3444.222,23232.2],\"longdv_m\":[343332,43434343434],\"stringdv_m\":[\"Everton\",\"liverpool\",\"manchester city\"]}]}}"
 argument_list|)
 expr_stmt|;
 comment|//Test multiValues docValues output with nulls
@@ -466,7 +497,7 @@ name|assertEquals
 argument_list|(
 name|s
 argument_list|,
-literal|"{\"numFound\":1, \"docs\":[{\"intdv_m\":[],\"floatdv_m\":[123.321,345.123],\"doubledv_m\":[3444.222,23232.2],\"longdv_m\":[343332,43434343434],\"stringdv_m\":[]}]}"
+literal|"{\"responseHeader\": {\"status\": 0}, \"response\":{\"numFound\":1, \"docs\":[{\"intdv_m\":[],\"floatdv_m\":[123.321,345.123],\"doubledv_m\":[3444.222,23232.2],\"longdv_m\":[343332,43434343434],\"stringdv_m\":[]}]}}"
 argument_list|)
 expr_stmt|;
 comment|//Test single sort param is working
@@ -500,7 +531,7 @@ name|assertEquals
 argument_list|(
 name|s
 argument_list|,
-literal|"{\"numFound\":2, \"docs\":[{\"intdv\":2},{\"intdv\":1}]}"
+literal|"{\"responseHeader\": {\"status\": 0}, \"response\":{\"numFound\":2, \"docs\":[{\"intdv\":2},{\"intdv\":1}]}}"
 argument_list|)
 expr_stmt|;
 name|s
@@ -533,7 +564,7 @@ name|assertEquals
 argument_list|(
 name|s
 argument_list|,
-literal|"{\"numFound\":2, \"docs\":[{\"intdv\":1},{\"intdv\":2}]}"
+literal|"{\"responseHeader\": {\"status\": 0}, \"response\":{\"numFound\":2, \"docs\":[{\"intdv\":1},{\"intdv\":2}]}}"
 argument_list|)
 expr_stmt|;
 comment|// Test sort on String will null value. Null value should sort last on desc and first on asc.
@@ -567,7 +598,7 @@ name|assertEquals
 argument_list|(
 name|s
 argument_list|,
-literal|"{\"numFound\":2, \"docs\":[{\"intdv\":1},{\"intdv\":7}]}"
+literal|"{\"responseHeader\": {\"status\": 0}, \"response\":{\"numFound\":2, \"docs\":[{\"intdv\":1},{\"intdv\":7}]}}"
 argument_list|)
 expr_stmt|;
 name|s
@@ -600,7 +631,7 @@ name|assertEquals
 argument_list|(
 name|s
 argument_list|,
-literal|"{\"numFound\":2, \"docs\":[{\"intdv\":7},{\"intdv\":1}]}"
+literal|"{\"responseHeader\": {\"status\": 0}, \"response\":{\"numFound\":2, \"docs\":[{\"intdv\":7},{\"intdv\":1}]}}"
 argument_list|)
 expr_stmt|;
 comment|//Test multi-sort params
@@ -634,7 +665,7 @@ name|assertEquals
 argument_list|(
 name|s
 argument_list|,
-literal|"{\"numFound\":2, \"docs\":[{\"intdv\":2},{\"intdv\":1}]}"
+literal|"{\"responseHeader\": {\"status\": 0}, \"response\":{\"numFound\":2, \"docs\":[{\"intdv\":2},{\"intdv\":1}]}}"
 argument_list|)
 expr_stmt|;
 name|s
@@ -667,7 +698,7 @@ name|assertEquals
 argument_list|(
 name|s
 argument_list|,
-literal|"{\"numFound\":2, \"docs\":[{\"intdv\":1},{\"intdv\":2}]}"
+literal|"{\"responseHeader\": {\"status\": 0}, \"response\":{\"numFound\":2, \"docs\":[{\"intdv\":1},{\"intdv\":2}]}}"
 argument_list|)
 expr_stmt|;
 comment|//Test three sort fields
@@ -701,7 +732,7 @@ name|assertEquals
 argument_list|(
 name|s
 argument_list|,
-literal|"{\"numFound\":3, \"docs\":[{\"intdv\":3},{\"intdv\":2},{\"intdv\":1}]}"
+literal|"{\"responseHeader\": {\"status\": 0}, \"response\":{\"numFound\":3, \"docs\":[{\"intdv\":3},{\"intdv\":2},{\"intdv\":1}]}}"
 argument_list|)
 expr_stmt|;
 comment|//Test three sort fields
@@ -735,7 +766,7 @@ name|assertEquals
 argument_list|(
 name|s
 argument_list|,
-literal|"{\"numFound\":3, \"docs\":[{\"intdv\":1},{\"intdv\":2},{\"intdv\":3}]}"
+literal|"{\"responseHeader\": {\"status\": 0}, \"response\":{\"numFound\":3, \"docs\":[{\"intdv\":1},{\"intdv\":2},{\"intdv\":3}]}}"
 argument_list|)
 expr_stmt|;
 comment|//Test four sort fields
@@ -769,7 +800,7 @@ name|assertEquals
 argument_list|(
 name|s
 argument_list|,
-literal|"{\"numFound\":3, \"docs\":[{\"intdv\":3},{\"intdv\":2},{\"intdv\":1}]}"
+literal|"{\"responseHeader\": {\"status\": 0}, \"response\":{\"numFound\":3, \"docs\":[{\"intdv\":3},{\"intdv\":2},{\"intdv\":1}]}}"
 argument_list|)
 expr_stmt|;
 name|s
@@ -802,40 +833,7 @@ name|assertEquals
 argument_list|(
 name|s
 argument_list|,
-literal|"{\"numFound\":3, \"docs\":[{\"intdv\":3},{\"intdv\":1},{\"intdv\":2}]}"
-argument_list|)
-expr_stmt|;
-name|s
-operator|=
-name|h
-operator|.
-name|query
-argument_list|(
-name|req
-argument_list|(
-literal|"q"
-argument_list|,
-literal|"id:100000"
-argument_list|,
-literal|"qt"
-argument_list|,
-literal|"/export"
-argument_list|,
-literal|"fl"
-argument_list|,
-literal|"intdv"
-argument_list|,
-literal|"sort"
-argument_list|,
-literal|"doubledv desc"
-argument_list|)
-argument_list|)
-expr_stmt|;
-name|assertEquals
-argument_list|(
-name|s
-argument_list|,
-literal|"{\"numFound\":0, \"docs\":[]}"
+literal|"{\"responseHeader\": {\"status\": 0}, \"response\":{\"numFound\":3, \"docs\":[{\"intdv\":3},{\"intdv\":1},{\"intdv\":2}]}}"
 argument_list|)
 expr_stmt|;
 block|}
