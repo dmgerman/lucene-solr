@@ -1125,9 +1125,9 @@ name|Map
 argument_list|<
 name|String
 argument_list|,
-name|ArrayList
+name|Collection
 argument_list|<
-name|String
+name|Object
 argument_list|>
 argument_list|>
 name|filteredDocument
@@ -2044,9 +2044,9 @@ name|Map
 argument_list|<
 name|String
 argument_list|,
-name|ArrayList
+name|Collection
 argument_list|<
-name|String
+name|Object
 argument_list|>
 argument_list|>
 name|fields
@@ -2085,9 +2085,9 @@ name|keySet
 argument_list|()
 control|)
 block|{
-name|ArrayList
+name|Collection
 argument_list|<
-name|String
+name|Object
 argument_list|>
 name|fieldValues
 init|=
@@ -2100,7 +2100,7 @@ argument_list|)
 decl_stmt|;
 for|for
 control|(
-name|String
+name|Object
 name|fieldValue
 range|:
 name|fieldValues
@@ -2118,7 +2118,12 @@ argument_list|(
 operator|new
 name|StringReader
 argument_list|(
+name|String
+operator|.
+name|valueOf
+argument_list|(
 name|fieldValue
+argument_list|)
 argument_list|)
 argument_list|,
 name|termFreqMap
