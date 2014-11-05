@@ -473,6 +473,82 @@ name|multiValued
 argument_list|()
 argument_list|)
 expr_stmt|;
+comment|// Test TrieDate fields. The following asserts are expecting a field type defined as:
+name|String
+name|expectedDefinition
+init|=
+literal|"<fieldtype name=\"tdatedv\" class=\"solr.TrieDateField\" "
+operator|+
+literal|"precisionStep=\"6\" docValues=\"true\" multiValued=\"true\"/>"
+decl_stmt|;
+name|FieldType
+name|tdatedv
+init|=
+name|schema
+operator|.
+name|getFieldType
+argument_list|(
+literal|"foo_tdtdv"
+argument_list|)
+decl_stmt|;
+name|assertTrue
+argument_list|(
+literal|"Expecting a field type defined as "
+operator|+
+name|expectedDefinition
+argument_list|,
+name|tdatedv
+operator|instanceof
+name|TrieDateField
+argument_list|)
+expr_stmt|;
+name|assertTrue
+argument_list|(
+literal|"Expecting a field type defined as "
+operator|+
+name|expectedDefinition
+argument_list|,
+name|tdatedv
+operator|.
+name|hasProperty
+argument_list|(
+name|FieldProperties
+operator|.
+name|DOC_VALUES
+argument_list|)
+argument_list|)
+expr_stmt|;
+name|assertTrue
+argument_list|(
+literal|"Expecting a field type defined as "
+operator|+
+name|expectedDefinition
+argument_list|,
+name|tdatedv
+operator|.
+name|isMultiValued
+argument_list|()
+argument_list|)
+expr_stmt|;
+name|assertEquals
+argument_list|(
+literal|"Expecting a field type defined as "
+operator|+
+name|expectedDefinition
+argument_list|,
+literal|6
+argument_list|,
+operator|(
+operator|(
+name|TrieDateField
+operator|)
+name|tdatedv
+operator|)
+operator|.
+name|getPrecisionStep
+argument_list|()
+argument_list|)
+expr_stmt|;
 block|}
 block|}
 end_class
