@@ -1390,6 +1390,91 @@ argument_list|()
 argument_list|)
 expr_stmt|;
 block|}
+DECL|method|testNestedJsonWithFloats
+specifier|public
+name|void
+name|testNestedJsonWithFloats
+parameter_list|()
+throws|throws
+name|Exception
+block|{
+name|String
+name|json
+init|=
+literal|"{\n"
+operator|+
+literal|"        \"a_string\" : \"abc\",\n"
+operator|+
+literal|"        \"a_num\" : 2.0,\n"
+operator|+
+literal|"        \"a\" : {\n"
+operator|+
+literal|"                        \"b\" : [\n"
+operator|+
+literal|"                                {\"id\":\"1\", \"title\" : \"test1\"},\n"
+operator|+
+literal|"                                {\"id\":\"2\", \"title\" : \"test2\"}\n"
+operator|+
+literal|"                        ]\n"
+operator|+
+literal|"                }\n"
+operator|+
+literal|"}\n"
+decl_stmt|;
+name|JsonRecordReader
+name|streamer
+decl_stmt|;
+name|List
+argument_list|<
+name|Map
+argument_list|<
+name|String
+argument_list|,
+name|Object
+argument_list|>
+argument_list|>
+name|records
+decl_stmt|;
+name|streamer
+operator|=
+name|JsonRecordReader
+operator|.
+name|getInst
+argument_list|(
+literal|"/a/b"
+argument_list|,
+name|Collections
+operator|.
+name|singletonList
+argument_list|(
+literal|"title_s:/a/b/title"
+argument_list|)
+argument_list|)
+expr_stmt|;
+name|records
+operator|=
+name|streamer
+operator|.
+name|getAllRecords
+argument_list|(
+operator|new
+name|StringReader
+argument_list|(
+name|json
+argument_list|)
+argument_list|)
+expr_stmt|;
+name|assertEquals
+argument_list|(
+literal|2
+argument_list|,
+name|records
+operator|.
+name|size
+argument_list|()
+argument_list|)
+expr_stmt|;
+block|}
 block|}
 end_class
 
