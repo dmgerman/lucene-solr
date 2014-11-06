@@ -954,9 +954,9 @@ name|nl
 argument_list|,
 name|CfgProp
 operator|.
-name|SOLR_ZKCREDENTIALPROVIDER
+name|SOLR_ZKCREDENTIALSPROVIDER
 argument_list|,
-literal|"zkCredentialProvider"
+literal|"zkCredentialsProvider"
 argument_list|)
 expr_stmt|;
 name|errorOnLeftOvers

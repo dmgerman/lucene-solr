@@ -1201,10 +1201,10 @@ literal|"org.apache.solr.handler.admin.CoreAdminHandler"
 argument_list|)
 return|;
 block|}
-DECL|method|getZkCredentialProviderClass
+DECL|method|getZkCredentialsProviderClass
 specifier|public
 name|String
-name|getZkCredentialProviderClass
+name|getZkCredentialsProviderClass
 parameter_list|()
 block|{
 return|return
@@ -1212,7 +1212,7 @@ name|get
 argument_list|(
 name|CfgProp
 operator|.
-name|SOLR_ZKCREDENTIALPROVIDER
+name|SOLR_ZKCREDENTIALSPROVIDER
 argument_list|,
 literal|null
 argument_list|)
@@ -1560,8 +1560,8 @@ block|,
 DECL|enum constant|SOLR_AUTOREPLICAFAILOVERBADNODEEXPIRATION
 name|SOLR_AUTOREPLICAFAILOVERBADNODEEXPIRATION
 block|,
-DECL|enum constant|SOLR_ZKCREDENTIALPROVIDER
-name|SOLR_ZKCREDENTIALPROVIDER
+DECL|enum constant|SOLR_ZKCREDENTIALSPROVIDER
+name|SOLR_ZKCREDENTIALSPROVIDER
 block|,
 DECL|enum constant|SOLR_ZKACLPROVIDER
 name|SOLR_ZKACLPROVIDER

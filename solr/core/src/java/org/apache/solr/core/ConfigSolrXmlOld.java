@@ -797,9 +797,9 @@ name|storeConfigPropertyAsString
 argument_list|(
 name|CfgProp
 operator|.
-name|SOLR_ZKCREDENTIALPROVIDER
+name|SOLR_ZKCREDENTIALSPROVIDER
 argument_list|,
-literal|"solr/cores/@zkCredentialProvider"
+literal|"solr/cores/@zkCredentialsProvider"
 argument_list|)
 expr_stmt|;
 name|storeConfigPropertyAsString
