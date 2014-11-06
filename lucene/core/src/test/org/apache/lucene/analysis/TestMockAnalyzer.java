@@ -1647,6 +1647,10 @@ argument_list|(
 name|random
 argument_list|()
 argument_list|)
+argument_list|,
+name|Integer
+operator|.
+name|MAX_VALUE
 argument_list|)
 decl_stmt|;
 specifier|final

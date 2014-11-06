@@ -565,8 +565,6 @@ operator|.
 name|automaton
 operator|.
 name|AutomatonTestUtil
-operator|.
-name|RandomAcceptedStrings
 import|;
 end_import
 
@@ -583,6 +581,8 @@ operator|.
 name|automaton
 operator|.
 name|AutomatonTestUtil
+operator|.
+name|RandomAcceptedStrings
 import|;
 end_import
 
@@ -6967,6 +6967,14 @@ operator|new
 name|CompiledAutomaton
 argument_list|(
 name|a
+argument_list|,
+literal|null
+argument_list|,
+literal|true
+argument_list|,
+name|Integer
+operator|.
+name|MAX_VALUE
 argument_list|)
 decl_stmt|;
 if|if
