@@ -240,6 +240,16 @@ name|java
 operator|.
 name|util
 operator|.
+name|Collection
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
+name|util
+operator|.
 name|LinkedHashMap
 import|;
 end_import
@@ -714,7 +724,7 @@ specifier|static
 name|void
 name|deleteFilesIgnoringExceptions
 parameter_list|(
-name|Iterable
+name|Collection
 argument_list|<
 name|?
 extends|extends
@@ -791,7 +801,7 @@ specifier|static
 name|void
 name|deleteFilesIfExist
 parameter_list|(
-name|Iterable
+name|Collection
 argument_list|<
 name|?
 extends|extends
