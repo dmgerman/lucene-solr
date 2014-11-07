@@ -3038,7 +3038,7 @@ argument_list|()
 expr_stmt|;
 block|}
 name|String
-name|collectionZkPath
+name|configSetZkPath
 init|=
 name|core
 operator|.
@@ -3057,7 +3057,7 @@ name|getResourceLoader
 argument_list|()
 operator|)
 operator|.
-name|getCollectionZkPath
+name|getConfigSetZkPath
 argument_list|()
 else|:
 literal|null
@@ -3105,7 +3105,7 @@ name|name
 argument_list|,
 name|cd
 argument_list|,
-name|collectionZkPath
+name|configSetZkPath
 argument_list|)
 expr_stmt|;
 block|}

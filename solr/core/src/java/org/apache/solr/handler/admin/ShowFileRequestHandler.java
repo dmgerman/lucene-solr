@@ -1650,7 +1650,7 @@ name|confPath
 init|=
 name|loader
 operator|.
-name|getCollectionZkPath
+name|getConfigSetZkPath
 argument_list|()
 decl_stmt|;
 name|String

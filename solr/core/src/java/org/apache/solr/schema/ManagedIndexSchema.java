@@ -1235,7 +1235,7 @@ name|managedSchemaPath
 init|=
 name|zkLoader
 operator|.
-name|getCollectionZkPath
+name|getConfigSetZkPath
 argument_list|()
 operator|+
 literal|"/"

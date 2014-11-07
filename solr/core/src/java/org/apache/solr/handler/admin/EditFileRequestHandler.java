@@ -1482,7 +1482,7 @@ name|getResourceLoader
 argument_list|()
 operator|)
 operator|.
-name|getCollectionZkPath
+name|getConfigSetZkPath
 argument_list|()
 decl_stmt|;
 name|ZkController

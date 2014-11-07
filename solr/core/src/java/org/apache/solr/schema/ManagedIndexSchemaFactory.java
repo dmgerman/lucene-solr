@@ -701,7 +701,7 @@ name|managedSchemaPath
 init|=
 name|zkLoader
 operator|.
-name|getCollectionZkPath
+name|getConfigSetZkPath
 argument_list|()
 operator|+
 literal|"/"
@@ -1284,7 +1284,7 @@ name|nonManagedSchemaPath
 init|=
 name|zkLoader
 operator|.
-name|getCollectionZkPath
+name|getConfigSetZkPath
 argument_list|()
 operator|+
 literal|"/"
@@ -1767,7 +1767,7 @@ name|nonManagedSchemaPath
 init|=
 name|zkLoader
 operator|.
-name|getCollectionZkPath
+name|getConfigSetZkPath
 argument_list|()
 operator|+
 literal|"/"
