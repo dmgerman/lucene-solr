@@ -605,6 +605,25 @@ parameter_list|)
 block|{
 if|if
 condition|(
+name|type
+operator|==
+literal|null
+condition|)
+block|{
+throw|throw
+operator|new
+name|NullPointerException
+argument_list|(
+literal|"DocValuesType cannot be null (field: \""
+operator|+
+name|name
+operator|+
+literal|"\")"
+argument_list|)
+throw|;
+block|}
+if|if
+condition|(
 name|docValuesType
 operator|!=
 name|DocValuesType
