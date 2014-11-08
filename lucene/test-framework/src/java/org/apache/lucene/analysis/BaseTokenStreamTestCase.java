@@ -4372,17 +4372,6 @@ expr_stmt|;
 block|}
 else|else
 block|{
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"add doc="
-operator|+
-name|doc
-argument_list|)
-expr_stmt|;
 name|iw
 operator|.
 name|addDocument
