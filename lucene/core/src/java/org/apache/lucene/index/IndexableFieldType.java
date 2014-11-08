@@ -103,10 +103,10 @@ name|indexOptions
 parameter_list|()
 function_decl|;
 comment|/**     * DocValues {@link DocValuesType}: how the field's value will be indexed    * into docValues.    */
-DECL|method|docValueType
+DECL|method|docValuesType
 specifier|public
 name|DocValuesType
-name|docValueType
+name|docValuesType
 parameter_list|()
 function_decl|;
 block|}

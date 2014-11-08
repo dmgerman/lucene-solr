@@ -180,7 +180,7 @@ argument_list|()
 decl_stmt|;
 name|ft4
 operator|.
-name|setDocValueType
+name|setDocValuesType
 argument_list|(
 name|DocValuesType
 operator|.

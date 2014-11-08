@@ -689,7 +689,7 @@ argument_list|)
 expr_stmt|;
 name|luceneType
 operator|.
-name|setDocValueType
+name|setDocValuesType
 argument_list|(
 name|DocValuesType
 operator|.

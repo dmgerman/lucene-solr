@@ -727,7 +727,7 @@ argument_list|)
 decl_stmt|;
 name|fieldType
 operator|.
-name|setDocValueType
+name|setDocValuesType
 argument_list|(
 name|DocValuesType
 operator|.

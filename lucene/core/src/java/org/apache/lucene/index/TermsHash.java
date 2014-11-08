@@ -373,7 +373,6 @@ parameter_list|(
 name|FieldInvertState
 name|fieldInvertState
 parameter_list|,
-specifier|final
 name|FieldInfo
 name|fieldInfo
 parameter_list|)

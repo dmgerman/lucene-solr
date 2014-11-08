@@ -208,10 +208,10 @@ name|NumericUtils
 operator|.
 name|PRECISION_STEP_DEFAULT
 decl_stmt|;
-DECL|field|docValueType
+DECL|field|docValuesType
 specifier|private
 name|DocValuesType
-name|docValueType
+name|docValuesType
 init|=
 name|DocValuesType
 operator|.
@@ -300,11 +300,11 @@ argument_list|()
 expr_stmt|;
 name|this
 operator|.
-name|docValueType
+name|docValuesType
 operator|=
 name|ref
 operator|.
-name|docValueType
+name|docValuesType
 argument_list|()
 expr_stmt|;
 name|this
@@ -940,7 +940,7 @@ block|}
 block|}
 if|if
 condition|(
-name|docValueType
+name|docValuesType
 operator|!=
 name|DocValuesType
 operator|.
@@ -969,14 +969,14 @@ name|result
 operator|.
 name|append
 argument_list|(
-literal|"docValueType="
+literal|"docValuesType="
 argument_list|)
 expr_stmt|;
 name|result
 operator|.
 name|append
 argument_list|(
-name|docValueType
+name|docValuesType
 argument_list|)
 expr_stmt|;
 block|}
@@ -988,24 +988,24 @@ argument_list|()
 return|;
 block|}
 comment|/* from StorableFieldType */
-comment|/**    * {@inheritDoc}    *<p>    * The default is<code>null</code> (no docValues)     * @see #setDocValueType(DocValuesType)    */
+comment|/**    * {@inheritDoc}    *<p>    * The default is<code>null</code> (no docValues)     * @see #setDocValuesType(DocValuesType)    */
 annotation|@
 name|Override
-DECL|method|docValueType
+DECL|method|docValuesType
 specifier|public
 name|DocValuesType
-name|docValueType
+name|docValuesType
 parameter_list|()
 block|{
 return|return
-name|docValueType
+name|docValuesType
 return|;
 block|}
-comment|/**    * Sets the field's DocValuesType    * @param type DocValues type, or null if no DocValues should be stored.    * @throws IllegalStateException if this FieldType is frozen against    *         future modifications.    * @see #docValueType()    */
-DECL|method|setDocValueType
+comment|/**    * Sets the field's DocValuesType    * @param type DocValues type, or null if no DocValues should be stored.    * @throws IllegalStateException if this FieldType is frozen against    *         future modifications.    * @see #docValuesType()    */
+DECL|method|setDocValuesType
 specifier|public
 name|void
-name|setDocValueType
+name|setDocValuesType
 parameter_list|(
 name|DocValuesType
 name|type
@@ -1029,7 +1029,7 @@ literal|"DocValuesType cannot be null"
 argument_list|)
 throw|;
 block|}
-name|docValueType
+name|docValuesType
 operator|=
 name|type
 expr_stmt|;
@@ -1061,14 +1061,14 @@ name|result
 operator|+
 operator|(
 operator|(
-name|docValueType
+name|docValuesType
 operator|==
 literal|null
 operator|)
 condition|?
 literal|0
 else|:
-name|docValueType
+name|docValuesType
 operator|.
 name|hashCode
 argument_list|()
@@ -1268,11 +1268,11 @@ name|obj
 decl_stmt|;
 if|if
 condition|(
-name|docValueType
+name|docValuesType
 operator|!=
 name|other
 operator|.
-name|docValueType
+name|docValuesType
 condition|)
 return|return
 literal|false

@@ -1275,51 +1275,130 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
-comment|/** NOTE: this method does not carry over termVector      *  the indexer chain must set these fields when they      *  succeed in consuming the document */
-DECL|method|addOrUpdate
+comment|/** Create a new field, or return existing one. */
+DECL|method|getOrAdd
 specifier|public
 name|FieldInfo
-name|addOrUpdate
+name|getOrAdd
 parameter_list|(
 name|String
 name|name
-parameter_list|,
-name|IndexableFieldType
-name|fieldType
 parameter_list|)
 block|{
-comment|// TODO: really, indexer shouldn't even call this
-comment|// method (it's only called from DocFieldProcessor);
-comment|// rather, each component in the chain should update
-comment|// what it "owns".  EG fieldType.indexOptions() should
-comment|// be updated by maybe FreqProxTermsWriterPerField:
-return|return
-name|addOrUpdateInternal
+name|FieldInfo
+name|fi
+init|=
+name|fieldInfo
+argument_list|(
+name|name
+argument_list|)
+decl_stmt|;
+if|if
+condition|(
+name|fi
+operator|==
+literal|null
+condition|)
+block|{
+comment|// This field wasn't yet added to this in-RAM
+comment|// segment's FieldInfo, so now we get a global
+comment|// number for this field.  If the field was seen
+comment|// before then we'll get the same name and number,
+comment|// else we'll allocate a new one:
+specifier|final
+name|int
+name|fieldNumber
+init|=
+name|globalFieldNumbers
+operator|.
+name|addOrGet
 argument_list|(
 name|name
 argument_list|,
 operator|-
 literal|1
 argument_list|,
-literal|false
-argument_list|,
-name|fieldType
+name|DocValuesType
 operator|.
-name|omitNorms
-argument_list|()
-argument_list|,
-literal|false
-argument_list|,
-name|fieldType
-operator|.
-name|indexOptions
-argument_list|()
-argument_list|,
-name|fieldType
-operator|.
-name|docValueType
-argument_list|()
+name|NONE
 argument_list|)
+decl_stmt|;
+name|fi
+operator|=
+operator|new
+name|FieldInfo
+argument_list|(
+name|name
+argument_list|,
+name|fieldNumber
+argument_list|,
+literal|false
+argument_list|,
+literal|false
+argument_list|,
+literal|false
+argument_list|,
+name|IndexOptions
+operator|.
+name|NONE
+argument_list|,
+name|DocValuesType
+operator|.
+name|NONE
+argument_list|,
+operator|-
+literal|1
+argument_list|,
+literal|null
+argument_list|)
+expr_stmt|;
+assert|assert
+operator|!
+name|byName
+operator|.
+name|containsKey
+argument_list|(
+name|fi
+operator|.
+name|name
+argument_list|)
+assert|;
+name|globalFieldNumbers
+operator|.
+name|verifyConsistent
+argument_list|(
+name|Integer
+operator|.
+name|valueOf
+argument_list|(
+name|fi
+operator|.
+name|number
+argument_list|)
+argument_list|,
+name|fi
+operator|.
+name|name
+argument_list|,
+name|DocValuesType
+operator|.
+name|NONE
+argument_list|)
+expr_stmt|;
+name|byName
+operator|.
+name|put
+argument_list|(
+name|fi
+operator|.
+name|name
+argument_list|,
+name|fi
+argument_list|)
+expr_stmt|;
+block|}
+return|return
+name|fi
 return|;
 block|}
 DECL|method|addOrUpdateInternal
@@ -1513,7 +1592,7 @@ name|updateGlobal
 condition|)
 block|{
 comment|// Must also update docValuesType map so it's
-comment|// aware of this field's DocValueType.  This will throw IllegalArgumentException if
+comment|// aware of this field's DocValuesType.  This will throw IllegalArgumentException if
 comment|// an illegal type change was attempted.
 name|globalFieldNumbers
 operator|.

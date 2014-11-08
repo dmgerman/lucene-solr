@@ -5884,7 +5884,7 @@ throws|throws
 name|Exception
 block|{
 comment|// this used to fail because FieldInfos.Builder neglected to update
-comment|// globalFieldMaps.docValueTypes map
+comment|// globalFieldMaps.docValuesTypes map
 name|Directory
 name|dir
 init|=

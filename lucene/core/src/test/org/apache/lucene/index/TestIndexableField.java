@@ -465,7 +465,7 @@ annotation|@
 name|Override
 specifier|public
 name|DocValuesType
-name|docValueType
+name|docValuesType
 parameter_list|()
 block|{
 return|return
