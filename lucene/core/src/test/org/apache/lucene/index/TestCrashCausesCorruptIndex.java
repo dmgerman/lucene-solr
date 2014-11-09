@@ -627,14 +627,6 @@ argument_list|(
 name|realDirectory
 argument_list|)
 expr_stmt|;
-name|setLockFactory
-argument_list|(
-name|realDirectory
-operator|.
-name|getLockFactory
-argument_list|()
-argument_list|)
-expr_stmt|;
 block|}
 DECL|method|setCrashAfterCreateOutput
 specifier|public

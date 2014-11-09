@@ -87,7 +87,7 @@ import|;
 end_import
 
 begin_comment
-comment|/** A Directory is a flat list of files.  Files may be written once, when they  * are created.  Once a file is created it may only be opened for read, or  * deleted.  Random access is permitted both when reading and writing.  *  *<p> Java's i/o APIs not used directly, but rather all i/o is  * through this API.  This permits things such as:<ul>  *<li> implementation of RAM-based indices;  *<li> implementation indices stored in a database, via JDBC;  *<li> implementation of an index as a single file;  *</ul>  *  * Directory locking is implemented by an instance of {@link  * LockFactory}, and can be changed for each Directory  * instance using {@link #setLockFactory}.  *  */
+comment|/** A Directory is a flat list of files.  Files may be written once, when they  * are created.  Once a file is created it may only be opened for read, or  * deleted.  Random access is permitted both when reading and writing.  *  *<p> Java's i/o APIs not used directly, but rather all i/o is  * through this API.  This permits things such as:<ul>  *<li> implementation of RAM-based indices;  *<li> implementation indices stored in a database, via JDBC;  *<li> implementation of an index as a single file;  *</ul>  *  * Directory locking is implemented by an instance of {@link  * LockFactory}.  *  */
 end_comment
 
 begin_class
@@ -239,19 +239,6 @@ name|String
 name|name
 parameter_list|)
 function_decl|;
-comment|/**    * Attempt to clear (forcefully unlock and remove) the    * specified lock.  Only call this at a time when you are    * certain this lock is no longer in use.    * @param name name of the lock to be cleared.    */
-DECL|method|clearLock
-specifier|public
-specifier|abstract
-name|void
-name|clearLock
-parameter_list|(
-name|String
-name|name
-parameter_list|)
-throws|throws
-name|IOException
-function_decl|;
 comment|/** Closes the store. */
 annotation|@
 name|Override
@@ -264,41 +251,6 @@ parameter_list|()
 throws|throws
 name|IOException
 function_decl|;
-comment|/**    * Set the LockFactory that this Directory instance should    * use for its locking implementation.  Each * instance of    * LockFactory should only be used for one directory (ie,    * do not share a single instance across multiple    * Directories).    *    * @param lockFactory instance of {@link LockFactory}.    */
-DECL|method|setLockFactory
-specifier|public
-specifier|abstract
-name|void
-name|setLockFactory
-parameter_list|(
-name|LockFactory
-name|lockFactory
-parameter_list|)
-throws|throws
-name|IOException
-function_decl|;
-comment|/**    * Get the LockFactory that this Directory instance is    * using for its locking implementation.  Note that this    * may be null for Directory implementations that provide    * their own locking implementation.    */
-DECL|method|getLockFactory
-specifier|public
-specifier|abstract
-name|LockFactory
-name|getLockFactory
-parameter_list|()
-function_decl|;
-comment|/**    * Return a string identifier that uniquely differentiates    * this Directory instance from other Directory instances.    * This ID should be the same if two Directory instances    * (even in different JVMs and/or on different machines)    * are considered "the same index".  This is how locking    * "scopes" to the right index.    */
-DECL|method|getLockID
-specifier|public
-name|String
-name|getLockID
-parameter_list|()
-block|{
-return|return
-name|this
-operator|.
-name|toString
-argument_list|()
-return|;
-block|}
 annotation|@
 name|Override
 DECL|method|toString
@@ -323,11 +275,6 @@ argument_list|(
 name|hashCode
 argument_list|()
 argument_list|)
-operator|+
-literal|" lockFactory="
-operator|+
-name|getLockFactory
-argument_list|()
 return|;
 block|}
 comment|/**    * Copies the file<i>src</i> to {@link Directory}<i>to</i> under the new    * file name<i>dest</i>.    *<p>    * If you want to copy the entire source directory to the destination one, you    * can do so like this:    *     *<pre class="prettyprint">    * Directory to; // the directory to copy to    * for (String file : dir.listAll()) {    *   dir.copy(to, file, newFile, IOContext.DEFAULT); // newFile can be either file, or a new name    * }    *</pre>    *<p>    *<b>NOTE:</b> this method does not check whether<i>dest</i> exist and will    * overwrite it if it does.    */

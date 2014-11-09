@@ -236,7 +236,7 @@ specifier|final
 name|Directory
 name|delegate
 decl_stmt|;
-comment|/** Create a new NIOFSDirectory for the named location.    *     * @param path the path of the directory    * @param mergeBufferSize Size of buffer to use for    *    merging.  See {@link #DEFAULT_MERGE_BUFFER_SIZE}.    * @param minBytesDirect Merges, or files to be opened for    *   reading, smaller than this will    *   not use direct IO.  See {@link    *   #DEFAULT_MIN_BYTES_DIRECT}    * @param delegate fallback Directory for non-merges    * @throws IOException If there is a low-level I/O error    */
+comment|/** Create a new NIOFSDirectory for the named location.    *     * @param path the path of the directory    * @param lockFactory to use    * @param mergeBufferSize Size of buffer to use for    *    merging.  See {@link #DEFAULT_MERGE_BUFFER_SIZE}.    * @param minBytesDirect Merges, or files to be opened for    *   reading, smaller than this will    *   not use direct IO.  See {@link    *   #DEFAULT_MIN_BYTES_DIRECT}    * @param delegate fallback Directory for non-merges    * @throws IOException If there is a low-level I/O error    */
 DECL|method|NativeUnixDirectory
 specifier|public
 name|NativeUnixDirectory
@@ -250,6 +250,9 @@ parameter_list|,
 name|long
 name|minBytesDirect
 parameter_list|,
+name|LockFactory
+name|lockFactory
+parameter_list|,
 name|Directory
 name|delegate
 parameter_list|)
@@ -260,10 +263,7 @@ name|super
 argument_list|(
 name|path
 argument_list|,
-name|delegate
-operator|.
-name|getLockFactory
-argument_list|()
+name|lockFactory
 argument_list|)
 expr_stmt|;
 if|if
@@ -312,7 +312,38 @@ operator|=
 name|delegate
 expr_stmt|;
 block|}
-comment|/** Create a new NIOFSDirectory for the named location.    *     * @param path the path of the directory    * @param delegate fallback Directory for non-merges    * @throws IOException If there is a low-level I/O error    */
+comment|/** Create a new NIOFSDirectory for the named location.    *     * @param path the path of the directory    * @param lockFactory the lock factory to use    * @param delegate fallback Directory for non-merges    * @throws IOException If there is a low-level I/O error    */
+DECL|method|NativeUnixDirectory
+specifier|public
+name|NativeUnixDirectory
+parameter_list|(
+name|Path
+name|path
+parameter_list|,
+name|LockFactory
+name|lockFactory
+parameter_list|,
+name|Directory
+name|delegate
+parameter_list|)
+throws|throws
+name|IOException
+block|{
+name|this
+argument_list|(
+name|path
+argument_list|,
+name|DEFAULT_MERGE_BUFFER_SIZE
+argument_list|,
+name|DEFAULT_MIN_BYTES_DIRECT
+argument_list|,
+name|lockFactory
+argument_list|,
+name|delegate
+argument_list|)
+expr_stmt|;
+block|}
+comment|/** Create a new NIOFSDirectory for the named location with {@link FSLockFactory#getDefault()}.    *     * @param path the path of the directory    * @param delegate fallback Directory for non-merges    * @throws IOException If there is a low-level I/O error    */
 DECL|method|NativeUnixDirectory
 specifier|public
 name|NativeUnixDirectory
@@ -333,6 +364,11 @@ argument_list|,
 name|DEFAULT_MERGE_BUFFER_SIZE
 argument_list|,
 name|DEFAULT_MIN_BYTES_DIRECT
+argument_list|,
+name|FSLockFactory
+operator|.
+name|getDefault
+argument_list|()
 argument_list|,
 name|delegate
 argument_list|)

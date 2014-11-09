@@ -252,9 +252,9 @@ operator|.
 name|toPath
 argument_list|()
 argument_list|,
-operator|new
 name|SimpleFSLockFactory
-argument_list|()
+operator|.
+name|INSTANCE
 argument_list|)
 decl_stmt|;
 comment|//creates a new IndexWriter without releasing the lock yet
@@ -392,9 +392,9 @@ operator|.
 name|toPath
 argument_list|()
 argument_list|,
-operator|new
 name|NativeFSLockFactory
-argument_list|()
+operator|.
+name|INSTANCE
 argument_list|)
 decl_stmt|;
 comment|//creates a new IndexWriter without releasing the lock yet

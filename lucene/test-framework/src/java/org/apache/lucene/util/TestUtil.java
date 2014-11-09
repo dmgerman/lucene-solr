@@ -1498,7 +1498,7 @@ argument_list|(
 literal|1024
 argument_list|)
 decl_stmt|;
-comment|// TODO: actually use the dir's lock factory, unless test uses a special method?
+comment|// TODO: actually use the dir's locking, unless test uses a special method?
 comment|// some tests e.g. exception tests become much more complicated if they have to close the writer
 try|try
 init|(
@@ -1512,11 +1512,12 @@ name|dir
 argument_list|,
 name|NoLockFactory
 operator|.
-name|getNoLockFactory
-argument_list|()
+name|INSTANCE
 operator|.
 name|makeLock
 argument_list|(
+name|dir
+argument_list|,
 literal|"bogus"
 argument_list|)
 argument_list|)

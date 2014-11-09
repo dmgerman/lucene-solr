@@ -632,8 +632,7 @@ name|workDir
 argument_list|,
 name|NoLockFactory
 operator|.
-name|getNoLockFactory
-argument_list|()
+name|INSTANCE
 argument_list|,
 name|context
 operator|.
@@ -817,8 +816,7 @@ argument_list|)
 argument_list|,
 name|NoLockFactory
 operator|.
-name|getNoLockFactory
-argument_list|()
+name|INSTANCE
 argument_list|,
 name|context
 operator|.

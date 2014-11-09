@@ -221,7 +221,7 @@ literal|"maxChunkSize"
 argument_list|,
 name|MMapDirectory
 operator|.
-name|DEFAULT_MAX_BUFF
+name|DEFAULT_MAX_CHUNK_SIZE
 argument_list|)
 expr_stmt|;
 if|if

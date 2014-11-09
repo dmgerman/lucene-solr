@@ -204,12 +204,12 @@ init|=
 name|UNMAP_SUPPORTED
 decl_stmt|;
 comment|/**     * Default max chunk size.    * @see #MMapDirectory(Path, LockFactory, int)    */
-DECL|field|DEFAULT_MAX_BUFF
+DECL|field|DEFAULT_MAX_CHUNK_SIZE
 specifier|public
 specifier|static
 specifier|final
 name|int
-name|DEFAULT_MAX_BUFF
+name|DEFAULT_MAX_CHUNK_SIZE
 init|=
 name|Constants
 operator|.
@@ -232,7 +232,7 @@ specifier|final
 name|int
 name|chunkSizePower
 decl_stmt|;
-comment|/** Create a new MMapDirectory for the named location.    *    * @param path the path of the directory    * @param lockFactory the lock factory to use, or null for the default    * ({@link NativeFSLockFactory});    * @throws IOException if there is a low-level I/O error    */
+comment|/** Create a new MMapDirectory for the named location.    *    * @param path the path of the directory    * @param lockFactory the lock factory to use    * @throws IOException if there is a low-level I/O error    */
 DECL|method|MMapDirectory
 specifier|public
 name|MMapDirectory
@@ -252,11 +252,11 @@ name|path
 argument_list|,
 name|lockFactory
 argument_list|,
-name|DEFAULT_MAX_BUFF
+name|DEFAULT_MAX_CHUNK_SIZE
 argument_list|)
 expr_stmt|;
 block|}
-comment|/** Create a new MMapDirectory for the named location and {@link NativeFSLockFactory}.    *    * @param path the path of the directory    * @throws IOException if there is a low-level I/O error    */
+comment|/** Create a new MMapDirectory for the named location and {@link FSLockFactory#getDefault()}.   *   * @param path the path of the directory   * @throws IOException if there is a low-level I/O error   */
 DECL|method|MMapDirectory
 specifier|public
 name|MMapDirectory
@@ -271,7 +271,37 @@ name|this
 argument_list|(
 name|path
 argument_list|,
-literal|null
+name|FSLockFactory
+operator|.
+name|getDefault
+argument_list|()
+argument_list|)
+expr_stmt|;
+block|}
+comment|/** Create a new MMapDirectory for the named location and {@link FSLockFactory#getDefault()}.   *   * @param path the path of the directory   * @param maxChunkSize maximum chunk size (default is 1 GiBytes for   * 64 bit JVMs and 256 MiBytes for 32 bit JVMs) used for memory mapping.   * @throws IOException if there is a low-level I/O error   */
+DECL|method|MMapDirectory
+specifier|public
+name|MMapDirectory
+parameter_list|(
+name|Path
+name|path
+parameter_list|,
+name|int
+name|maxChunkSize
+parameter_list|)
+throws|throws
+name|IOException
+block|{
+name|this
+argument_list|(
+name|path
+argument_list|,
+name|FSLockFactory
+operator|.
+name|getDefault
+argument_list|()
+argument_list|,
+name|maxChunkSize
 argument_list|)
 expr_stmt|;
 block|}

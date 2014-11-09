@@ -326,16 +326,13 @@ parameter_list|)
 throws|throws
 name|IOException
 function_decl|;
-comment|/**    * Creates a new LockFactory for a given path.    * @param lockPath the path of the index directory    * @param rawLockType A string value as passed in config. Every factory should at least support 'none' to disable locking.    * @throws IOException If there is a low-level I/O error.    */
+comment|/**    * Creates a new LockFactory for a given path.    * @param rawLockType A string value as passed in config. Every factory should at least support 'none' to disable locking.    * @throws IOException If there is a low-level I/O error.    */
 DECL|method|createLockFactory
 specifier|protected
 specifier|abstract
 name|LockFactory
 name|createLockFactory
 parameter_list|(
-name|String
-name|lockPath
-parameter_list|,
 name|String
 name|rawLockType
 parameter_list|)

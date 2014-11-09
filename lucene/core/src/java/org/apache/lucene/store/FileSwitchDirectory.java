@@ -100,8 +100,22 @@ name|HashSet
 import|;
 end_import
 
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|util
+operator|.
+name|IOUtils
+import|;
+end_import
+
 begin_comment
-comment|/**  * Expert: A Directory instance that switches files between  * two other Directory instances.   *<p>Files with the specified extensions are placed in the  * primary directory; others are placed in the secondary  * directory.  The provided Set must not change once passed  * to this class, and must allow multiple threads to call  * contains at once.</p>  *  * @lucene.experimental  */
+comment|/**  * Expert: A Directory instance that switches files between  * two other Directory instances.   *<p>Files with the specified extensions are placed in the  * primary directory; others are placed in the secondary  * directory.  The provided Set must not change once passed  * to this class, and must allow multiple threads to call  * contains at once.</p>  *  *<p>Locks with a name having the specified extensions are  * delegated to the primary directory; others are delegated  * to the secondary directory. Ideally, both Directory  * instances should use the same lock factory.</p>  *  * @lucene.experimental  */
 end_comment
 
 begin_class
@@ -110,7 +124,7 @@ specifier|public
 class|class
 name|FileSwitchDirectory
 extends|extends
-name|BaseDirectory
+name|Directory
 block|{
 DECL|field|secondaryDir
 specifier|private
@@ -182,15 +196,6 @@ name|doClose
 operator|=
 name|doClose
 expr_stmt|;
-name|this
-operator|.
-name|lockFactory
-operator|=
-name|primaryDir
-operator|.
-name|getLockFactory
-argument_list|()
-expr_stmt|;
 block|}
 comment|/** Return the primary directory */
 DECL|method|getPrimaryDir
@@ -216,6 +221,29 @@ return|;
 block|}
 annotation|@
 name|Override
+DECL|method|makeLock
+specifier|public
+name|Lock
+name|makeLock
+parameter_list|(
+name|String
+name|name
+parameter_list|)
+block|{
+return|return
+name|getDirectory
+argument_list|(
+name|name
+argument_list|)
+operator|.
+name|makeLock
+argument_list|(
+name|name
+argument_list|)
+return|;
+block|}
+annotation|@
+name|Override
 DECL|method|close
 specifier|public
 name|void
@@ -229,22 +257,15 @@ condition|(
 name|doClose
 condition|)
 block|{
-try|try
-block|{
-name|secondaryDir
+name|IOUtils
 operator|.
 name|close
-argument_list|()
-expr_stmt|;
-block|}
-finally|finally
-block|{
+argument_list|(
 name|primaryDir
-operator|.
-name|close
-argument_list|()
+argument_list|,
+name|secondaryDir
+argument_list|)
 expr_stmt|;
-block|}
 name|doClose
 operator|=
 literal|false

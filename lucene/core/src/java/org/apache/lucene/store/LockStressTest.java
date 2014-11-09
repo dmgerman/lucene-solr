@@ -148,9 +148,9 @@ literal|"  verifierHost = hostname that LockVerifyServer is listening on\n"
 operator|+
 literal|"  verifierPort = port that LockVerifyServer is listening on\n"
 operator|+
-literal|"  lockFactoryClassName = primary LockFactory class that we will use\n"
+literal|"  lockFactoryClassName = primary FSLockFactory class that we will use\n"
 operator|+
-literal|"  lockDirName = path to the lock directory (only set for Simple/NativeFSLockFactory\n"
+literal|"  lockDirName = path to the lock directory\n"
 operator|+
 literal|"  sleepTimeMS = milliseconds to pause betweeen each lock obtain/release\n"
 operator|+
@@ -261,14 +261,19 @@ operator|++
 index|]
 decl_stmt|;
 specifier|final
-name|String
-name|lockDirName
+name|Path
+name|lockDirPath
 init|=
+name|Paths
+operator|.
+name|get
+argument_list|(
 name|args
 index|[
 name|arg
 operator|++
 index|]
+argument_list|)
 decl_stmt|;
 specifier|final
 name|int
@@ -307,8 +312,21 @@ init|=
 name|getNewLockFactory
 argument_list|(
 name|lockFactoryClassName
+argument_list|)
+decl_stmt|;
+comment|// we test the lock factory directly, so we don't need it on the directory itsself (the directory is just for testing)
+specifier|final
+name|FSDirectory
+name|lockDir
+init|=
+operator|new
+name|SimpleFSDirectory
+argument_list|(
+name|lockDirPath
 argument_list|,
-name|lockDirName
+name|NoLockFactory
+operator|.
+name|INSTANCE
 argument_list|)
 decl_stmt|;
 specifier|final
@@ -416,6 +434,8 @@ name|verifyLF
 operator|.
 name|makeLock
 argument_list|(
+name|lockDir
+argument_list|,
 literal|"test.lock"
 argument_list|)
 decl_stmt|;
@@ -524,8 +544,6 @@ argument_list|(
 name|getNewLockFactory
 argument_list|(
 name|lockFactoryClassName
-argument_list|,
-name|lockDirName
 argument_list|)
 argument_list|,
 name|in
@@ -542,6 +560,8 @@ name|verifyLF
 operator|.
 name|makeLock
 argument_list|(
+name|lockDir
+argument_list|,
 literal|"test.lock"
 argument_list|)
 decl_stmt|;
@@ -628,25 +648,52 @@ block|}
 DECL|method|getNewLockFactory
 specifier|private
 specifier|static
-name|LockFactory
+name|FSLockFactory
 name|getNewLockFactory
 parameter_list|(
 name|String
 name|lockFactoryClassName
-parameter_list|,
-name|String
-name|lockDirName
 parameter_list|)
 throws|throws
 name|IOException
 block|{
-name|LockFactory
-name|lockFactory
-decl_stmt|;
+comment|// try to get static INSTANCE field of class
 try|try
 block|{
-name|lockFactory
-operator|=
+return|return
+operator|(
+name|FSLockFactory
+operator|)
+name|Class
+operator|.
+name|forName
+argument_list|(
+name|lockFactoryClassName
+argument_list|)
+operator|.
+name|getField
+argument_list|(
+literal|"INSTANCE"
+argument_list|)
+operator|.
+name|get
+argument_list|(
+literal|null
+argument_list|)
+return|;
+block|}
+catch|catch
+parameter_list|(
+name|ReflectiveOperationException
+name|e
+parameter_list|)
+block|{
+comment|// fall-through
+block|}
+comment|// try to create a new instance
+try|try
+block|{
+return|return
 name|Class
 operator|.
 name|forName
@@ -656,14 +703,14 @@ argument_list|)
 operator|.
 name|asSubclass
 argument_list|(
-name|LockFactory
+name|FSLockFactory
 operator|.
 name|class
 argument_list|)
 operator|.
 name|newInstance
 argument_list|()
-expr_stmt|;
+return|;
 block|}
 catch|catch
 parameter_list|(
@@ -677,56 +724,17 @@ name|ClassNotFoundException
 name|e
 parameter_list|)
 block|{
+comment|// fall-through
+block|}
 throw|throw
 operator|new
 name|IOException
 argument_list|(
-literal|"Cannot instantiate lock factory "
+literal|"Cannot get lock factory singleton of "
 operator|+
 name|lockFactoryClassName
 argument_list|)
 throw|;
-block|}
-name|Path
-name|lockDir
-init|=
-name|Paths
-operator|.
-name|get
-argument_list|(
-name|lockDirName
-argument_list|)
-decl_stmt|;
-if|if
-condition|(
-name|lockFactory
-operator|instanceof
-name|FSLockFactory
-condition|)
-block|{
-operator|(
-operator|(
-name|FSLockFactory
-operator|)
-name|lockFactory
-operator|)
-operator|.
-name|setLockDir
-argument_list|(
-name|lockDir
-argument_list|)
-expr_stmt|;
-block|}
-name|lockFactory
-operator|.
-name|setLockPrefix
-argument_list|(
-literal|"test"
-argument_list|)
-expr_stmt|;
-return|return
-name|lockFactory
-return|;
 block|}
 block|}
 end_class

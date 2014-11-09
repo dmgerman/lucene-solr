@@ -17,12 +17,18 @@ comment|/*  * Licensed to the Apache Software Foundation (ASF) under one or more
 end_comment
 
 begin_import
-import|import
-name|java
+import|import static
+name|org
 operator|.
-name|io
+name|apache
 operator|.
-name|File
+name|hadoop
+operator|.
+name|fs
+operator|.
+name|CommonConfigurationKeysPublic
+operator|.
+name|HADOOP_SECURITY_AUTHENTICATION
 import|;
 end_import
 
@@ -77,22 +83,6 @@ operator|.
 name|conf
 operator|.
 name|Configuration
-import|;
-end_import
-
-begin_import
-import|import static
-name|org
-operator|.
-name|apache
-operator|.
-name|hadoop
-operator|.
-name|fs
-operator|.
-name|CommonConfigurationKeys
-operator|.
-name|HADOOP_SECURITY_AUTHENTICATION
 import|;
 end_import
 
@@ -190,35 +180,7 @@ name|lucene
 operator|.
 name|store
 operator|.
-name|NativeFSLockFactory
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|store
-operator|.
 name|NoLockFactory
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|store
-operator|.
-name|SimpleFSLockFactory
 import|;
 end_import
 
@@ -796,9 +758,6 @@ name|LockFactory
 name|createLockFactory
 parameter_list|(
 name|String
-name|lockPath
-parameter_list|,
-name|String
 name|rawLockType
 parameter_list|)
 throws|throws
@@ -848,18 +807,9 @@ case|case
 literal|"hdfs"
 case|:
 return|return
-operator|new
 name|HdfsLockFactory
-argument_list|(
-operator|new
-name|Path
-argument_list|(
-name|lockPath
-argument_list|)
-argument_list|,
-name|getConf
-argument_list|()
-argument_list|)
+operator|.
+name|INSTANCE
 return|;
 case|case
 literal|"single"
@@ -875,8 +825,7 @@ case|:
 return|return
 name|NoLockFactory
 operator|.
-name|getNoLockFactory
-argument_list|()
+name|INSTANCE
 return|;
 default|default:
 throw|throw

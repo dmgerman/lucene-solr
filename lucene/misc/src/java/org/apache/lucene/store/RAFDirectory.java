@@ -80,7 +80,7 @@ name|RAFDirectory
 extends|extends
 name|FSDirectory
 block|{
-comment|/** Create a new RAFDirectory for the named location.    *    * @param path the path of the directory    * @param lockFactory the lock factory to use, or null for the default    * ({@link NativeFSLockFactory});    * @throws IOException if there is a low-level I/O error    */
+comment|/** Create a new RAFDirectory for the named location.    *    * @param path the path of the directory    * @param lockFactory the lock factory to use    * @throws IOException if there is a low-level I/O error    */
 DECL|method|RAFDirectory
 specifier|public
 name|RAFDirectory
@@ -108,7 +108,7 @@ argument_list|()
 expr_stmt|;
 comment|// throw exception if we can't get a File
 block|}
-comment|/** Create a new SimpleFSDirectory for the named location and {@link NativeFSLockFactory}.    *    * @param path the path of the directory    * @throws IOException if there is a low-level I/O error    */
+comment|/** Create a new SimpleFSDirectory for the named location and {@link FSLockFactory#getDefault()}.    *    * @param path the path of the directory    * @throws IOException if there is a low-level I/O error    */
 DECL|method|RAFDirectory
 specifier|public
 name|RAFDirectory
@@ -119,19 +119,16 @@ parameter_list|)
 throws|throws
 name|IOException
 block|{
-name|super
+name|this
 argument_list|(
 name|path
 argument_list|,
-literal|null
+name|FSLockFactory
+operator|.
+name|getDefault
+argument_list|()
 argument_list|)
 expr_stmt|;
-name|path
-operator|.
-name|toFile
-argument_list|()
-expr_stmt|;
-comment|// throw exception if we can't get a File
 block|}
 comment|/** Creates an IndexInput for the file with the given name. */
 annotation|@

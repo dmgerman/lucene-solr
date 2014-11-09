@@ -167,9 +167,6 @@ name|LockFactory
 name|createLockFactory
 parameter_list|(
 name|String
-name|lockPath
-parameter_list|,
-name|String
 name|rawLockType
 parameter_list|)
 throws|throws
@@ -232,24 +229,12 @@ parameter_list|)
 throws|throws
 name|IOException
 block|{
-specifier|final
-name|Directory
-name|dir
-init|=
+return|return
 operator|new
 name|RAMDirectory
-argument_list|()
-decl_stmt|;
-name|dir
-operator|.
-name|setLockFactory
 argument_list|(
 name|lockFactory
 argument_list|)
-expr_stmt|;
-comment|// more or less a no-op, just for completeness
-return|return
-name|dir
 return|;
 block|}
 block|}

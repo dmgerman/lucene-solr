@@ -189,9 +189,6 @@ name|LockFactory
 name|createLockFactory
 parameter_list|(
 name|String
-name|lockPath
-parameter_list|,
-name|String
 name|rawLockType
 parameter_list|)
 throws|throws
@@ -200,8 +197,7 @@ block|{
 return|return
 name|NoLockFactory
 operator|.
-name|getNoLockFactory
-argument_list|()
+name|INSTANCE
 return|;
 comment|// dummy, actually unused
 block|}

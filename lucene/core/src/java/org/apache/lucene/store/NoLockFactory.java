@@ -27,36 +27,39 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Use this {@link LockFactory} to disable locking entirely.  * Only one instance of this lock is created.  You should call {@link  * #getNoLockFactory()} to get the instance.  *  * @see LockFactory  */
+comment|/**  * Use this {@link LockFactory} to disable locking entirely.  * This is a singleton, you have to use {@link #INSTANCE}.  *  * @see LockFactory  */
 end_comment
 
 begin_class
 DECL|class|NoLockFactory
 specifier|public
+specifier|final
 class|class
 name|NoLockFactory
 extends|extends
 name|LockFactory
 block|{
-comment|// Single instance returned whenever makeLock is called.
-DECL|field|singletonLock
-specifier|private
+comment|/** The singleton */
+DECL|field|INSTANCE
+specifier|public
 specifier|static
-name|NoLock
-name|singletonLock
+specifier|final
+name|NoLockFactory
+name|INSTANCE
 init|=
 operator|new
-name|NoLock
+name|NoLockFactory
 argument_list|()
 decl_stmt|;
-DECL|field|singleton
-specifier|private
+comment|// visible for AssertingLock!
+DECL|field|SINGLETON_LOCK
 specifier|static
-name|NoLockFactory
-name|singleton
+specifier|final
+name|NoLock
+name|SINGLETON_LOCK
 init|=
 operator|new
-name|NoLockFactory
+name|NoLock
 argument_list|()
 decl_stmt|;
 DECL|method|NoLockFactory
@@ -64,17 +67,6 @@ specifier|private
 name|NoLockFactory
 parameter_list|()
 block|{}
-DECL|method|getNoLockFactory
-specifier|public
-specifier|static
-name|NoLockFactory
-name|getNoLockFactory
-parameter_list|()
-block|{
-return|return
-name|singleton
-return|;
-block|}
 annotation|@
 name|Override
 DECL|method|makeLock
@@ -82,30 +74,20 @@ specifier|public
 name|Lock
 name|makeLock
 parameter_list|(
+name|Directory
+name|dir
+parameter_list|,
 name|String
 name|lockName
 parameter_list|)
 block|{
 return|return
-name|singletonLock
+name|SINGLETON_LOCK
 return|;
 block|}
-annotation|@
-name|Override
-DECL|method|clearLock
-specifier|public
-name|void
-name|clearLock
-parameter_list|(
-name|String
-name|lockName
-parameter_list|)
-block|{}
-block|}
-end_class
-
-begin_class
 DECL|class|NoLock
+specifier|private
+specifier|static
 class|class
 name|NoLock
 extends|extends
@@ -132,7 +114,7 @@ specifier|public
 name|void
 name|close
 parameter_list|()
-block|{   }
+block|{     }
 annotation|@
 name|Override
 DECL|method|isLocked
@@ -156,6 +138,7 @@ block|{
 return|return
 literal|"NoLock"
 return|;
+block|}
 block|}
 block|}
 end_class

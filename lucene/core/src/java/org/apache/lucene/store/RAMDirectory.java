@@ -141,7 +141,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * A memory-resident {@link Directory} implementation.  Locking  * implementation is by default the {@link SingleInstanceLockFactory}  * but can be changed with {@link #setLockFactory}.  *   *<p><b>Warning:</b> This class is not intended to work with huge  * indexes. Everything beyond several hundred megabytes will waste  * resources (GC cycles), because it uses an internal buffer size  * of 1024 bytes, producing millions of {@code byte[1024]} arrays.  * This class is optimized for small memory-resident indexes.  * It also has bad concurrency on multithreaded environments.  *   *<p>It is recommended to materialize large indexes on disk and use  * {@link MMapDirectory}, which is a high-performance directory  * implementation working directly on the file system cache of the  * operating system, so copying data to Java heap space is not useful.  */
+comment|/**  * A memory-resident {@link Directory} implementation.  Locking  * implementation is by default the {@link SingleInstanceLockFactory}.  *   *<p><b>Warning:</b> This class is not intended to work with huge  * indexes. Everything beyond several hundred megabytes will waste  * resources (GC cycles), because it uses an internal buffer size  * of 1024 bytes, producing millions of {@code byte[1024]} arrays.  * This class is optimized for small memory-resident indexes.  * It also has bad concurrency on multithreaded environments.  *   *<p>It is recommended to materialize large indexes on disk and use  * {@link MMapDirectory}, which is a high-performance directory  * implementation working directly on the file system cache of the  * operating system, so copying data to Java heap space is not useful.  */
 end_comment
 
 begin_class
@@ -180,18 +180,13 @@ operator|new
 name|AtomicLong
 argument_list|()
 decl_stmt|;
-comment|// *****
-comment|// Lock acquisition sequence:  RAMDirectory, then RAMFile
-comment|// *****
 comment|/** Constructs an empty {@link Directory}. */
 DECL|method|RAMDirectory
 specifier|public
 name|RAMDirectory
 parameter_list|()
 block|{
-try|try
-block|{
-name|setLockFactory
+name|this
 argument_list|(
 operator|new
 name|SingleInstanceLockFactory
@@ -199,14 +194,20 @@ argument_list|()
 argument_list|)
 expr_stmt|;
 block|}
-catch|catch
+comment|/** Constructs an empty {@link Directory} with the given {@link LockFactory}. */
+DECL|method|RAMDirectory
+specifier|public
+name|RAMDirectory
 parameter_list|(
-name|IOException
-name|e
+name|LockFactory
+name|lockFactory
 parameter_list|)
 block|{
-comment|// Cannot happen
-block|}
+name|super
+argument_list|(
+name|lockFactory
+argument_list|)
+expr_stmt|;
 block|}
 comment|/**    * Creates a new<code>RAMDirectory</code> instance from a different    *<code>Directory</code> implementation.  This can be used to load    * a disk-based index into memory.    *     *<p><b>Warning:</b> This class is not intended to work with huge    * indexes. Everything beyond several hundred megabytes will waste    * resources (GC cycles), because it uses an internal buffer size    * of 1024 bytes, producing millions of {@code byte[1024]} arrays.    * This class is optimized for small memory-resident indexes.    * It also has bad concurrency on multithreaded environments.    *     *<p>For disk-based indexes it is recommended to use    * {@link MMapDirectory}, which is a high-performance directory    * implementation working directly on the file system cache of the    * operating system, so copying data to Java heap space is not useful.    *     *<p>Note that the resulting<code>RAMDirectory</code> instance is fully    * independent from the original<code>Directory</code> (it is a    * complete copy).  Any subsequent changes to the    * original<code>Directory</code> will not be visible in the    *<code>RAMDirectory</code> instance.    *    * @param dir a<code>Directory</code> value    * @exception IOException if an error occurs    */
 DECL|method|RAMDirectory
@@ -287,26 +288,6 @@ name|close
 argument_list|()
 expr_stmt|;
 block|}
-block|}
-annotation|@
-name|Override
-DECL|method|getLockID
-specifier|public
-name|String
-name|getLockID
-parameter_list|()
-block|{
-return|return
-literal|"lucene-"
-operator|+
-name|Integer
-operator|.
-name|toHexString
-argument_list|(
-name|hashCode
-argument_list|()
-argument_list|)
-return|;
 block|}
 annotation|@
 name|Override
@@ -496,29 +477,6 @@ literal|"file"
 argument_list|,
 name|fileMap
 argument_list|)
-return|;
-block|}
-annotation|@
-name|Override
-DECL|method|toString
-specifier|public
-name|String
-name|toString
-parameter_list|()
-block|{
-return|return
-name|getClass
-argument_list|()
-operator|.
-name|getSimpleName
-argument_list|()
-operator|+
-literal|"(id="
-operator|+
-name|getLockID
-argument_list|()
-operator|+
-literal|")"
 return|;
 block|}
 comment|/** Removes an existing file in the directory.    * @throws IOException if the file does not exist    */

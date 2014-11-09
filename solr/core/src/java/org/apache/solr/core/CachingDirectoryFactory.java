@@ -1894,8 +1894,6 @@ name|fullPath
 argument_list|,
 name|createLockFactory
 argument_list|(
-name|fullPath
-argument_list|,
 name|rawLockType
 argument_list|)
 argument_list|,

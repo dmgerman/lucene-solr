@@ -369,8 +369,6 @@ operator|new
 name|MMapDirectory
 argument_list|(
 name|dirPath
-argument_list|,
-literal|null
 argument_list|)
 decl_stmt|;
 comment|// plan to add a set of useful stopwords, consider changing some of the

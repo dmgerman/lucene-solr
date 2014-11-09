@@ -66,24 +66,6 @@ begin_comment
 comment|// javadoc
 end_comment
 
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|store
-operator|.
-name|NativeFSLockFactory
-import|;
-end_import
-
-begin_comment
-comment|// javadoc
-end_comment
-
 begin_comment
 comment|/**  * Native {@link Directory} implementation for Microsoft Windows.  *<p>  * Steps:  *<ol>   *<li>Compile the source code to create WindowsDirectory.dll:  *<blockquote>  * c:\mingw\bin\g++ -Wall -D_JNI_IMPLEMENTATION_ -Wl,--kill-at   * -I"%JAVA_HOME%\include" -I"%JAVA_HOME%\include\win32" -static-libgcc   * -static-libstdc++ -shared WindowsDirectory.cpp -o WindowsDirectory.dll  *</blockquote>   *       For 64-bit JREs, use mingw64, with the -m64 option.   *<li>Put WindowsDirectory.dll into some directory in your windows PATH  *<li>Open indexes with WindowsDirectory and use it.  *</ol>  *</p>  * @lucene.experimental  */
 end_comment
@@ -116,7 +98,7 @@ literal|"WindowsDirectory"
 argument_list|)
 expr_stmt|;
 block|}
-comment|/** Create a new WindowsDirectory for the named location.    *     * @param path the path of the directory    * @param lockFactory the lock factory to use, or null for the default    * ({@link NativeFSLockFactory});    * @throws IOException If there is a low-level I/O error    */
+comment|/** Create a new WindowsDirectory for the named location.    *     * @param path the path of the directory    * @param lockFactory the lock factory to use    * @throws IOException If there is a low-level I/O error    */
 DECL|method|WindowsDirectory
 specifier|public
 name|WindowsDirectory
@@ -138,7 +120,7 @@ name|lockFactory
 argument_list|)
 expr_stmt|;
 block|}
-comment|/** Create a new WindowsDirectory for the named location and {@link NativeFSLockFactory}.    *    * @param path the path of the directory    * @throws IOException If there is a low-level I/O error    */
+comment|/** Create a new WindowsDirectory for the named location and {@link FSLockFactory#getDefault()}.    *    * @param path the path of the directory    * @throws IOException If there is a low-level I/O error    */
 DECL|method|WindowsDirectory
 specifier|public
 name|WindowsDirectory
@@ -149,11 +131,14 @@ parameter_list|)
 throws|throws
 name|IOException
 block|{
-name|super
+name|this
 argument_list|(
 name|path
 argument_list|,
-literal|null
+name|FSLockFactory
+operator|.
+name|getDefault
+argument_list|()
 argument_list|)
 expr_stmt|;
 block|}
