@@ -699,17 +699,19 @@ comment|// IndexWriters over& over in 2 threads and making sure
 comment|// no unexpected exceptions are raised:
 annotation|@
 name|Nightly
-DECL|method|testStressLocks
+DECL|method|testStressLocksSimpleFSLockFactory
 specifier|public
 name|void
-name|testStressLocks
+name|testStressLocksSimpleFSLockFactory
 parameter_list|()
 throws|throws
 name|Exception
 block|{
 name|_testStressLocks
 argument_list|(
-literal|null
+name|SimpleFSLockFactory
+operator|.
+name|INSTANCE
 argument_list|,
 name|createTempDir
 argument_list|(
