@@ -1422,6 +1422,7 @@ decl_stmt|;
 comment|// keeps track of replicas that have been asked to recover by leaders running on this node
 DECL|field|replicasInLeaderInitiatedRecovery
 specifier|private
+specifier|final
 name|Map
 argument_list|<
 name|String
@@ -10611,6 +10612,20 @@ name|replicaNodeName
 argument_list|)
 condition|)
 block|{
+comment|// create a znode that requires the replica needs to "ack" to verify it knows it was out-of-sync
+name|updateLeaderInitiatedRecoveryState
+argument_list|(
+name|collection
+argument_list|,
+name|shardId
+argument_list|,
+name|replicaCoreNodeName
+argument_list|,
+name|ZkStateReader
+operator|.
+name|DOWN
+argument_list|)
+expr_stmt|;
 name|replicasInLeaderInitiatedRecovery
 operator|.
 name|put
@@ -10625,20 +10640,6 @@ name|shardId
 argument_list|,
 name|replicaCoreNodeName
 argument_list|)
-argument_list|)
-expr_stmt|;
-comment|// create a znode that requires the replica needs to "ack" to verify it knows it was out-of-sync
-name|updateLeaderInitiatedRecoveryState
-argument_list|(
-name|collection
-argument_list|,
-name|shardId
-argument_list|,
-name|replicaCoreNodeName
-argument_list|,
-name|ZkStateReader
-operator|.
-name|DOWN
 argument_list|)
 expr_stmt|;
 name|log
