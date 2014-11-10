@@ -369,7 +369,7 @@ name|AttributeImpl
 name|target
 parameter_list|)
 function_decl|;
-comment|/**    * Shallow clone. Subclasses must override this if they     * need to clone any members deeply,    */
+comment|/**    * In most cases the clone is, and should be, deep in order to be able to    * properly capture the state of all attributes.    */
 annotation|@
 name|Override
 DECL|method|clone
