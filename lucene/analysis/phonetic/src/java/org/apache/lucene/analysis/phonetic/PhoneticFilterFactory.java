@@ -36,7 +36,7 @@ name|lang
 operator|.
 name|reflect
 operator|.
-name|Method
+name|InvocationTargetException
 import|;
 end_import
 
@@ -48,7 +48,7 @@ name|lang
 operator|.
 name|reflect
 operator|.
-name|InvocationTargetException
+name|Method
 import|;
 end_import
 
@@ -172,6 +172,22 @@ name|codec
 operator|.
 name|language
 operator|.
+name|Nysiis
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|commons
+operator|.
+name|codec
+operator|.
+name|language
+operator|.
 name|RefinedSoundex
 import|;
 end_import
@@ -255,7 +271,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Factory for {@link PhoneticFilter}.  *   * Create tokens based on phonetic encoders from<a href="  * http://commons.apache.org/codec/api-release/org/apache/commons/codec/language/package-summary.html  * ">Apache Commons Codec</a>.  *<p>  * This takes one required argument, "encoder", and the rest are optional:  *<dl>  *<dt>encoder</dt><dd> required, one of "DoubleMetaphone", "Metaphone", "Soundex", "RefinedSoundex", "Caverphone" (v2.0),  *  or "ColognePhonetic" (case insensitive). If encoder isn't one of these, it'll be resolved as a class name either by  *  itself if it already contains a '.' or otherwise as in the same package as these others.</dd>  *<dt>inject</dt><dd> (default=true) add tokens to the stream with the offset=0</dd>  *<dt>maxCodeLength</dt><dd>The maximum length of the phonetic codes, as defined by the encoder. If an encoder doesn't  *  support this then specifying this is an error.</dd>  *</dl>  *  *<pre class="prettyprint">  *&lt;fieldType name="text_phonetic" class="solr.TextField" positionIncrementGap="100"&gt;  *&lt;analyzer&gt;  *&lt;tokenizer class="solr.WhitespaceTokenizerFactory"/&gt;  *&lt;filter class="solr.PhoneticFilterFactory" encoder="DoubleMetaphone" inject="true"/&gt;  *&lt;/analyzer&gt;  *&lt;/fieldType&gt;</pre>  *   * @see PhoneticFilter  */
+comment|/**  * Factory for {@link PhoneticFilter}.  *   * Create tokens based on phonetic encoders from<a href="  * http://commons.apache.org/codec/api-release/org/apache/commons/codec/language/package-summary.html  * ">Apache Commons Codec</a>.  *<p>  * This takes one required argument, "encoder", and the rest are optional:  *<dl>  *<dt>encoder</dt><dd> required, one of "DoubleMetaphone", "Metaphone", "Soundex", "RefinedSoundex", "Caverphone" (v2.0),  *  "ColognePhonetic" or "Nysiis" (case insensitive). If encoder isn't one of these, it'll be resolved as a class name  *  either by itself if it already contains a '.' or otherwise as in the same package as these others.</dd>  *<dt>inject</dt><dd> (default=true) add tokens to the stream with the offset=0</dd>  *<dt>maxCodeLength</dt><dd>The maximum length of the phonetic codes, as defined by the encoder. If an encoder doesn't  *  support this then specifying this is an error.</dd>  *</dl>  *  *<pre class="prettyprint">  *&lt;fieldType name="text_phonetic" class="solr.TextField" positionIncrementGap="100"&gt;  *&lt;analyzer&gt;  *&lt;tokenizer class="solr.WhitespaceTokenizerFactory"/&gt;  *&lt;filter class="solr.PhoneticFilterFactory" encoder="DoubleMetaphone" inject="true"/&gt;  *&lt;/analyzer&gt;  *&lt;/fieldType&gt;</pre>  *   * @see PhoneticFilter  */
 end_comment
 
 begin_class
@@ -439,6 +455,24 @@ name|ROOT
 argument_list|)
 argument_list|,
 name|ColognePhonetic
+operator|.
+name|class
+argument_list|)
+expr_stmt|;
+name|registry
+operator|.
+name|put
+argument_list|(
+literal|"Nysiis"
+operator|.
+name|toUpperCase
+argument_list|(
+name|Locale
+operator|.
+name|ROOT
+argument_list|)
+argument_list|,
+name|Nysiis
 operator|.
 name|class
 argument_list|)
