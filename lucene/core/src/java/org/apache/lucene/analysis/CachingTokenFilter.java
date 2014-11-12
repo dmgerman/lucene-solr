@@ -32,7 +32,7 @@ name|java
 operator|.
 name|util
 operator|.
-name|Iterator
+name|ArrayList
 import|;
 end_import
 
@@ -42,7 +42,7 @@ name|java
 operator|.
 name|util
 operator|.
-name|LinkedList
+name|Iterator
 import|;
 end_import
 
@@ -71,7 +71,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * This class can be used if the token attributes of a TokenStream  * are intended to be consumed more than once. It caches  * all token attribute states locally in a List.  *   *<P>CachingTokenFilter implements the optional method  * {@link TokenStream#reset()}, which repositions the  * stream to the first Token.   */
+comment|/**  * This class can be used if the token attributes of a TokenStream  * are intended to be consumed more than once. It caches  * all token attribute states locally in a List when the first call to  * {@link #incrementToken()} is called.  *   *<P>CachingTokenFilter implements the optional method  * {@link TokenStream#reset()}, which repositions the  * stream to the first Token.   */
 end_comment
 
 begin_class
@@ -151,9 +151,11 @@ comment|// fill cache lazily
 name|cache
 operator|=
 operator|new
-name|LinkedList
+name|ArrayList
 argument_list|<>
-argument_list|()
+argument_list|(
+literal|64
+argument_list|)
 expr_stmt|;
 name|fillCache
 argument_list|()
@@ -277,6 +279,19 @@ operator|=
 name|captureState
 argument_list|()
 expr_stmt|;
+block|}
+comment|/** If the underlying token stream was consumed and cached. */
+DECL|method|isCached
+specifier|public
+name|boolean
+name|isCached
+parameter_list|()
+block|{
+return|return
+name|cache
+operator|!=
+literal|null
+return|;
 block|}
 block|}
 end_class
