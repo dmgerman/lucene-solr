@@ -159,7 +159,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Testcase for {@link org.apache.lucene.classification.CachingNaiveBayesClassifier  */
+comment|/**  * Testcase for {@link org.apache.lucene.classification.CachingNaiveBayesClassifier}  */
 end_comment
 
 begin_class
