@@ -20,6 +20,16 @@ end_comment
 
 begin_import
 import|import
+name|java
+operator|.
+name|io
+operator|.
+name|IOException
+import|;
+end_import
+
+begin_import
+import|import
 name|org
 operator|.
 name|apache
@@ -98,20 +108,6 @@ name|lucene
 operator|.
 name|index
 operator|.
-name|LeafReader
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|index
-operator|.
 name|IndexWriter
 import|;
 end_import
@@ -127,6 +123,20 @@ operator|.
 name|index
 operator|.
 name|IndexWriterConfig
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|index
+operator|.
+name|LeafReader
 import|;
 end_import
 
@@ -211,16 +221,6 @@ operator|.
 name|store
 operator|.
 name|Directory
-import|;
-end_import
-
-begin_import
-import|import
-name|java
-operator|.
-name|io
-operator|.
-name|IOException
 import|;
 end_import
 
