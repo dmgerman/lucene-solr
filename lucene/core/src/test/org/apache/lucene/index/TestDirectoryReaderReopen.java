@@ -138,20 +138,6 @@ name|apache
 operator|.
 name|lucene
 operator|.
-name|codecs
-operator|.
-name|Codec
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
 name|document
 operator|.
 name|Document
@@ -297,8 +283,6 @@ operator|.
 name|store
 operator|.
 name|MockDirectoryWrapper
-operator|.
-name|FakeIOException
 import|;
 end_import
 
@@ -313,6 +297,8 @@ operator|.
 name|store
 operator|.
 name|MockDirectoryWrapper
+operator|.
+name|FakeIOException
 import|;
 end_import
 
@@ -2366,13 +2352,6 @@ parameter_list|)
 throws|throws
 name|IOException
 block|{
-name|IndexWriter
-operator|.
-name|unlock
-argument_list|(
-name|dir
-argument_list|)
-expr_stmt|;
 name|IndexWriter
 name|w
 init|=

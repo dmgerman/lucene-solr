@@ -175,8 +175,6 @@ operator|.
 name|util
 operator|.
 name|Map
-operator|.
-name|Entry
 import|;
 end_import
 
@@ -187,6 +185,8 @@ operator|.
 name|util
 operator|.
 name|Map
+operator|.
+name|Entry
 import|;
 end_import
 
@@ -16205,32 +16205,6 @@ operator|.
 name|isLocked
 argument_list|()
 return|;
-block|}
-comment|/**    * Forcibly unlocks the index in the named directory.    *<P>    * Caution: this should only be used by failure recovery code,    * when it is known that no other process nor thread is in fact    * currently accessing this index.    */
-DECL|method|unlock
-specifier|public
-specifier|static
-name|void
-name|unlock
-parameter_list|(
-name|Directory
-name|directory
-parameter_list|)
-throws|throws
-name|IOException
-block|{
-name|directory
-operator|.
-name|makeLock
-argument_list|(
-name|IndexWriter
-operator|.
-name|WRITE_LOCK_NAME
-argument_list|)
-operator|.
-name|close
-argument_list|()
-expr_stmt|;
 block|}
 comment|/** If {@link DirectoryReader#open(IndexWriter,boolean)} has    *  been called (ie, this writer is in near real-time    *  mode), then after a merge completes, this class can be    *  invoked to warm the reader on the newly merged    *  segment, before the merge commits.  This is not    *  required for near real-time search, but will reduce    *  search latency on opening a new near real-time reader    *  after a merge completes.    *    * @lucene.experimental    *    *<p><b>NOTE</b>: warm is called before any deletes have    * been carried over to the merged segment. */
 DECL|class|IndexReaderWarmer
