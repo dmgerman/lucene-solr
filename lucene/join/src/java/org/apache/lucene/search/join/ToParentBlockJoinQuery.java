@@ -455,6 +455,17 @@ name|scoreMode
 argument_list|)
 return|;
 block|}
+comment|/** Return our child query. */
+DECL|method|getChildQuery
+specifier|public
+name|Query
+name|getChildQuery
+parameter_list|()
+block|{
+return|return
+name|childQuery
+return|;
+block|}
 DECL|class|BlockJoinWeight
 specifier|private
 specifier|static

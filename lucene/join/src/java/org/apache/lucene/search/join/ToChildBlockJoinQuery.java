@@ -396,6 +396,17 @@ name|doScores
 argument_list|)
 return|;
 block|}
+comment|/** Return our parent query. */
+DECL|method|getParentQuery
+specifier|public
+name|Query
+name|getParentQuery
+parameter_list|()
+block|{
+return|return
+name|parentQuery
+return|;
+block|}
 DECL|class|ToChildBlockJoinWeight
 specifier|private
 specifier|static
