@@ -78,16 +78,6 @@ name|java
 operator|.
 name|util
 operator|.
-name|HashSet
-import|;
-end_import
-
-begin_import
-import|import
-name|java
-operator|.
-name|util
-operator|.
 name|HashMap
 import|;
 end_import
@@ -98,7 +88,7 @@ name|java
 operator|.
 name|util
 operator|.
-name|Map
+name|HashSet
 import|;
 end_import
 
@@ -109,6 +99,16 @@ operator|.
 name|util
 operator|.
 name|List
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
+name|util
+operator|.
+name|Map
 import|;
 end_import
 
@@ -763,14 +763,8 @@ operator|.
 name|suggest
 operator|.
 name|Lookup
-operator|.
-name|LookupResult
 import|;
 end_import
-
-begin_comment
-comment|// javadocs
-end_comment
 
 begin_import
 import|import
@@ -785,8 +779,14 @@ operator|.
 name|suggest
 operator|.
 name|Lookup
+operator|.
+name|LookupResult
 import|;
 end_import
+
+begin_comment
+comment|// javadocs
+end_comment
 
 begin_import
 import|import
@@ -3348,9 +3348,13 @@ condition|(
 name|doHighlight
 condition|)
 block|{
-name|Object
-name|highlightKey
-init|=
+name|result
+operator|=
+operator|new
+name|LookupResult
+argument_list|(
+name|text
+argument_list|,
 name|highlight
 argument_list|(
 name|text
@@ -3359,18 +3363,6 @@ name|matchedTokens
 argument_list|,
 name|prefixToken
 argument_list|)
-decl_stmt|;
-name|result
-operator|=
-operator|new
-name|LookupResult
-argument_list|(
-name|highlightKey
-operator|.
-name|toString
-argument_list|()
-argument_list|,
-name|highlightKey
 argument_list|,
 name|score
 argument_list|,
