@@ -279,7 +279,10 @@ name|copyBytes
 argument_list|(
 name|in
 argument_list|,
-name|len
+operator|(
+name|int
+operator|)
+name|freeSpace
 argument_list|)
 expr_stmt|;
 block|}
