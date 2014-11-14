@@ -109,7 +109,7 @@ name|field
 argument_list|)
 expr_stmt|;
 block|}
-comment|/** Sorts in succession by the criteria in each SortField. */
+comment|/** Sets the sort to the given criteria in succession: the    *  first SortField is checked first, but if it produces a    *  tie, then the second SortField is used to break the tie,    *  etc.  Finally, if there is still a tie after all SortFields    *  are checked, the internal Lucene docid is used to break it. */
 DECL|method|Sort
 specifier|public
 name|Sort
@@ -147,7 +147,7 @@ name|field
 block|}
 expr_stmt|;
 block|}
-comment|/** Sets the sort to the given criteria in succession. */
+comment|/** Sets the sort to the given criteria in succession: the    *  first SortField is checked first, but if it produces a    *  tie, then the second SortField is used to break the tie,    *  etc.  Finally, if there is still a tie after all SortFields    *  are checked, the internal Lucene docid is used to break it. */
 DECL|method|setSort
 specifier|public
 name|void
