@@ -948,6 +948,8 @@ literal|"books"
 argument_list|)
 expr_stmt|;
 block|}
+comment|// This test might fail if ignoreCase is true since the map might have twice the same key, once
+comment|// lowercased and once uppercased
 name|StemmerOverrideFilter
 operator|.
 name|Builder
@@ -958,11 +960,7 @@ name|StemmerOverrideFilter
 operator|.
 name|Builder
 argument_list|(
-name|random
-argument_list|()
-operator|.
-name|nextBoolean
-argument_list|()
+literal|false
 argument_list|)
 decl_stmt|;
 name|Set
