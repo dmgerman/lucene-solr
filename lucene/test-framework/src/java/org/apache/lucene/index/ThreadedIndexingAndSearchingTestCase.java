@@ -4354,7 +4354,7 @@ argument_list|(
 operator|new
 name|SortField
 argument_list|(
-literal|"title"
+literal|"titleDV"
 argument_list|,
 name|SortField
 operator|.
@@ -4377,7 +4377,7 @@ argument_list|(
 operator|new
 name|SortField
 argument_list|(
-literal|"title"
+literal|"titleDV"
 argument_list|,
 name|SortField
 operator|.
