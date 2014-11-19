@@ -106,20 +106,6 @@ name|lucene
 operator|.
 name|codecs
 operator|.
-name|DocValuesFormat
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|codecs
-operator|.
 name|DocValuesProducer
 import|;
 end_import
@@ -135,20 +121,6 @@ operator|.
 name|store
 operator|.
 name|Directory
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|store
-operator|.
-name|IOContext
 import|;
 end_import
 
@@ -309,6 +281,7 @@ name|ArrayList
 argument_list|<>
 argument_list|()
 decl_stmt|;
+comment|/**    * Creates a new producer that handles updated docvalues fields    * @param si commit point    * @param dir directory    * @param coreInfos fieldinfos for the segment    * @param allInfos all fieldinfos including updated ones    * @param segDocValues producer map    */
 DECL|method|SegmentDocValuesProducer
 name|SegmentDocValuesProducer
 parameter_list|(
@@ -319,13 +292,13 @@ name|Directory
 name|dir
 parameter_list|,
 name|FieldInfos
-name|fieldInfos
+name|coreInfos
+parameter_list|,
+name|FieldInfos
+name|allInfos
 parameter_list|,
 name|SegmentDocValues
 name|segDocValues
-parameter_list|,
-name|DocValuesFormat
-name|dvFormat
 parameter_list|)
 throws|throws
 name|IOException
@@ -347,7 +320,7 @@ control|(
 name|FieldInfo
 name|fi
 range|:
-name|fieldInfos
+name|allInfos
 control|)
 block|{
 if|if
@@ -387,7 +360,7 @@ operator|==
 literal|null
 condition|)
 block|{
-comment|// the base producer gets all the fields, so the Codec can validate properly
+comment|// the base producer gets the original fieldinfos it wrote
 name|baseProducer
 operator|=
 name|segDocValues
@@ -398,15 +371,9 @@ name|docValuesGen
 argument_list|,
 name|si
 argument_list|,
-name|IOContext
-operator|.
-name|READ
-argument_list|,
 name|dir
 argument_list|,
-name|dvFormat
-argument_list|,
-name|fieldInfos
+name|coreInfos
 argument_list|)
 expr_stmt|;
 name|dvGens
@@ -447,6 +414,7 @@ argument_list|(
 name|docValuesGen
 argument_list|)
 assert|;
+comment|// otherwise, producer sees only the one fieldinfo it wrote
 specifier|final
 name|DocValuesProducer
 name|dvp
@@ -459,13 +427,7 @@ name|docValuesGen
 argument_list|,
 name|si
 argument_list|,
-name|IOContext
-operator|.
-name|READ
-argument_list|,
 name|dir
-argument_list|,
-name|dvFormat
 argument_list|,
 operator|new
 name|FieldInfos
