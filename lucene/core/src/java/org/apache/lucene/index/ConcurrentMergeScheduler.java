@@ -1072,104 +1072,9 @@ condition|(
 literal|true
 condition|)
 block|{
-name|long
-name|startStallTime
-init|=
-literal|0
-decl_stmt|;
-while|while
-condition|(
-name|writer
-operator|.
-name|hasPendingMerges
-argument_list|()
-operator|&&
-name|mergeThreadCount
-argument_list|()
-operator|>=
-name|maxMergeCount
-condition|)
-block|{
-comment|// This means merging has fallen too far behind: we
-comment|// have already created maxMergeCount threads, and
-comment|// now there's at least one more merge pending.
-comment|// Note that only maxThreadCount of
-comment|// those created merge threads will actually be
-comment|// running; the rest will be paused (see
-comment|// updateMergeThreads).  We stall this producer
-comment|// thread to prevent creation of new segments,
-comment|// until merging has caught up:
-name|startStallTime
-operator|=
-name|System
-operator|.
-name|currentTimeMillis
+name|maybeStall
 argument_list|()
 expr_stmt|;
-if|if
-condition|(
-name|verbose
-argument_list|()
-condition|)
-block|{
-name|message
-argument_list|(
-literal|"    too many merges; stalling..."
-argument_list|)
-expr_stmt|;
-block|}
-try|try
-block|{
-name|wait
-argument_list|()
-expr_stmt|;
-block|}
-catch|catch
-parameter_list|(
-name|InterruptedException
-name|ie
-parameter_list|)
-block|{
-throw|throw
-operator|new
-name|ThreadInterruptedException
-argument_list|(
-name|ie
-argument_list|)
-throw|;
-block|}
-block|}
-if|if
-condition|(
-name|verbose
-argument_list|()
-condition|)
-block|{
-if|if
-condition|(
-name|startStallTime
-operator|!=
-literal|0
-condition|)
-block|{
-name|message
-argument_list|(
-literal|"  stalled for "
-operator|+
-operator|(
-name|System
-operator|.
-name|currentTimeMillis
-argument_list|()
-operator|-
-name|startStallTime
-operator|)
-operator|+
-literal|" msec"
-argument_list|)
-expr_stmt|;
-block|}
-block|}
 name|MergePolicy
 operator|.
 name|OneMerge
@@ -1300,6 +1205,113 @@ name|merge
 argument_list|)
 expr_stmt|;
 block|}
+block|}
+block|}
+block|}
+comment|/** This is invoked by {@link #merge} to possibly stall the incoming    *  thread when there are too many merges running or pending.  The     *  default behavior is to force this thread, which is producing too    *  many segments for merging to keep up, to wait until merges catch    *  up. Applications that can take other less drastic measures, such    *  as limiting how many threads are allowed to index, can do nothing    *  here and throttle elsewhere. */
+DECL|method|maybeStall
+specifier|protected
+specifier|synchronized
+name|void
+name|maybeStall
+parameter_list|()
+block|{
+name|long
+name|startStallTime
+init|=
+literal|0
+decl_stmt|;
+while|while
+condition|(
+name|writer
+operator|.
+name|hasPendingMerges
+argument_list|()
+operator|&&
+name|mergeThreadCount
+argument_list|()
+operator|>=
+name|maxMergeCount
+condition|)
+block|{
+comment|// This means merging has fallen too far behind: we
+comment|// have already created maxMergeCount threads, and
+comment|// now there's at least one more merge pending.
+comment|// Note that only maxThreadCount of
+comment|// those created merge threads will actually be
+comment|// running; the rest will be paused (see
+comment|// updateMergeThreads).  We stall this producer
+comment|// thread to prevent creation of new segments,
+comment|// until merging has caught up:
+name|startStallTime
+operator|=
+name|System
+operator|.
+name|currentTimeMillis
+argument_list|()
+expr_stmt|;
+if|if
+condition|(
+name|verbose
+argument_list|()
+condition|)
+block|{
+name|message
+argument_list|(
+literal|"    too many merges; stalling..."
+argument_list|)
+expr_stmt|;
+block|}
+try|try
+block|{
+name|wait
+argument_list|()
+expr_stmt|;
+block|}
+catch|catch
+parameter_list|(
+name|InterruptedException
+name|ie
+parameter_list|)
+block|{
+throw|throw
+operator|new
+name|ThreadInterruptedException
+argument_list|(
+name|ie
+argument_list|)
+throw|;
+block|}
+block|}
+if|if
+condition|(
+name|verbose
+argument_list|()
+condition|)
+block|{
+if|if
+condition|(
+name|startStallTime
+operator|!=
+literal|0
+condition|)
+block|{
+name|message
+argument_list|(
+literal|"  stalled for "
+operator|+
+operator|(
+name|System
+operator|.
+name|currentTimeMillis
+argument_list|()
+operator|-
+name|startStallTime
+operator|)
+operator|+
+literal|" msec"
+argument_list|)
+expr_stmt|;
 block|}
 block|}
 block|}
