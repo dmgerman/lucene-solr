@@ -741,9 +741,6 @@ name|t
 argument_list|)
 throw|;
 block|}
-comment|// The new event thread will call connected
-comment|// we just start the reconnect thread and
-comment|// do nothing else
 if|if
 condition|(
 name|onReconnect
@@ -751,50 +748,9 @@ operator|!=
 literal|null
 condition|)
 block|{
-name|Thread
-name|thread
-init|=
-operator|new
-name|Thread
-argument_list|()
-block|{
-annotation|@
-name|Override
-specifier|public
-name|void
-name|run
-parameter_list|()
-block|{
-try|try
-block|{
 name|onReconnect
 operator|.
 name|command
-argument_list|()
-expr_stmt|;
-block|}
-catch|catch
-parameter_list|(
-name|Exception
-name|e
-parameter_list|)
-block|{
-name|log
-operator|.
-name|warn
-argument_list|(
-literal|"Exception running onReconnect command"
-argument_list|,
-name|e
-argument_list|)
-expr_stmt|;
-block|}
-block|}
-block|}
-decl_stmt|;
-name|thread
-operator|.
-name|start
 argument_list|()
 expr_stmt|;
 block|}
