@@ -5063,7 +5063,7 @@ name|Locale
 operator|.
 name|ROOT
 argument_list|,
-literal|"%s/admin/collections?action=CREATE&name=%s&numShards=%d&replicationFactor=%d&maxShardsPerNode=%d&configSet=%s"
+literal|"%s/admin/collections?action=CREATE&name=%s&numShards=%d&replicationFactor=%d&maxShardsPerNode=%d&collection.configName=%s"
 argument_list|,
 name|baseUrl
 argument_list|,
