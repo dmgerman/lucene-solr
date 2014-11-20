@@ -2100,12 +2100,9 @@ argument_list|()
 argument_list|)
 argument_list|)
 expr_stmt|;
-name|System
-operator|.
-name|setProperty
-argument_list|(
-literal|"solr.tests.mergeScheduler"
-argument_list|,
+name|String
+name|mergeSchedulerClass
+init|=
 name|iwc
 operator|.
 name|getMergeScheduler
@@ -2116,6 +2113,30 @@ argument_list|()
 operator|.
 name|getName
 argument_list|()
+decl_stmt|;
+if|if
+condition|(
+name|mergeSchedulerClass
+operator|.
+name|contains
+argument_list|(
+literal|"$"
+argument_list|)
+condition|)
+block|{
+comment|// anonymous subclass - we can't instantiate via the resource loader, so use CMS instead
+name|mergeSchedulerClass
+operator|=
+literal|"org.apache.lucene.index.ConcurrentMergeScheduler"
+expr_stmt|;
+block|}
+name|System
+operator|.
+name|setProperty
+argument_list|(
+literal|"solr.tests.mergeScheduler"
+argument_list|,
+name|mergeSchedulerClass
 argument_list|)
 expr_stmt|;
 comment|// don't ask iwc.getMaxThreadStates(), sometimes newIWC uses
