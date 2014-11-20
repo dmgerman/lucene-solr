@@ -425,16 +425,23 @@ argument_list|(
 literal|"SpanMultiTermQueryWrapper("
 argument_list|)
 expr_stmt|;
-name|builder
-operator|.
-name|append
-argument_list|(
+comment|// NOTE: query.toString must be placed in a temp local to avoid compile errors on Java 8u20
+comment|// see https://bugs.openjdk.java.net/browse/JDK-8056984?page=com.atlassian.streams.streams-jira-plugin:activity-stream-issue-tab
+name|String
+name|queryStr
+init|=
 name|query
 operator|.
 name|toString
 argument_list|(
 name|field
 argument_list|)
+decl_stmt|;
+name|builder
+operator|.
+name|append
+argument_list|(
+name|queryStr
 argument_list|)
 expr_stmt|;
 name|builder

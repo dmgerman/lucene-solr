@@ -2599,10 +2599,14 @@ argument_list|)
 argument_list|)
 expr_stmt|;
 block|}
+comment|// NOTE: currenlty using diamond operator on TopGroups (without explicit Term class) causes
+comment|// errors on ecj used for javadoc lint
 return|return
 operator|new
 name|TopGroups
-argument_list|<>
+argument_list|<
+name|BytesRef
+argument_list|>
 argument_list|(
 name|mvalTopGroups
 operator|.
