@@ -330,9 +330,6 @@ block|{
 comment|// Deleted but the deletion is not yet reflected in
 comment|// the reader:
 return|return
-operator|(
-name|T
-operator|)
 literal|null
 return|;
 block|}

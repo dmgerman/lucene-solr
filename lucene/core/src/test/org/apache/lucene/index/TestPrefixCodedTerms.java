@@ -764,8 +764,6 @@ operator|.
 name|iterator
 argument_list|()
 decl_stmt|;
-comment|// NOTE: currenlty using diamond operator on MergedIterator (without explicit Term class) causes
-comment|// errors on ecj used for javadoc lint
 name|Iterator
 argument_list|<
 name|Term
@@ -774,9 +772,7 @@ name|actual
 init|=
 operator|new
 name|MergedIterator
-argument_list|<
-name|Term
-argument_list|>
+argument_list|<>
 argument_list|(
 name|subs
 operator|.
