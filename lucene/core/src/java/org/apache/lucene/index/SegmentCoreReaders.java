@@ -1185,26 +1185,6 @@ literal|0
 operator|)
 return|;
 block|}
-annotation|@
-name|Override
-DECL|method|getChildResources
-specifier|public
-name|Iterable
-argument_list|<
-name|?
-extends|extends
-name|Accountable
-argument_list|>
-name|getChildResources
-parameter_list|()
-block|{
-return|return
-name|Collections
-operator|.
-name|emptyList
-argument_list|()
-return|;
-block|}
 block|}
 end_class
 

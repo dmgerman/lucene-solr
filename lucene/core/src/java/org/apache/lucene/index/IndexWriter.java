@@ -1417,26 +1417,6 @@ name|ramBytesUsed
 argument_list|()
 return|;
 block|}
-annotation|@
-name|Override
-DECL|method|getChildResources
-specifier|public
-name|Iterable
-argument_list|<
-name|?
-extends|extends
-name|Accountable
-argument_list|>
-name|getChildResources
-parameter_list|()
-block|{
-return|return
-name|Collections
-operator|.
-name|emptyList
-argument_list|()
-return|;
-block|}
 comment|/** Holds shared SegmentReader instances. IndexWriter uses    *  SegmentReaders for 1) applying deletes, 2) doing    *  merges, 3) handing out a real-time reader.  This pool    *  reuses instances of the SegmentReaders in all these    *  places if it is in "near real-time mode" (getReader()    *  has been called on this instance). */
 DECL|class|ReaderPool
 class|class

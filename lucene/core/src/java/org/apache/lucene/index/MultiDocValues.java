@@ -2402,26 +2402,6 @@ name|oldToNew
 argument_list|)
 return|;
 block|}
-annotation|@
-name|Override
-DECL|method|getChildResources
-specifier|public
-name|Iterable
-argument_list|<
-name|?
-extends|extends
-name|Accountable
-argument_list|>
-name|getChildResources
-parameter_list|()
-block|{
-return|return
-name|Collections
-operator|.
-name|emptyList
-argument_list|()
-return|;
-block|}
 block|}
 comment|/**      * Create an ordinal map that uses the number of unique values of each      * {@link SortedDocValues} instance as a weight.      * @see #build(Object, TermsEnum[], long[], float)      */
 DECL|method|build

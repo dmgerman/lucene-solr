@@ -174,20 +174,6 @@ name|lucene
 operator|.
 name|util
 operator|.
-name|Accountables
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|util
-operator|.
 name|BytesRef
 import|;
 end_import
@@ -986,24 +972,6 @@ parameter_list|)
 throws|throws
 name|IOException
 function_decl|;
-comment|/**    * Returns nested resources of this class.     * The result should be a point-in-time snapshot (to avoid race conditions).    * @see Accountables    */
-annotation|@
-name|Override
-DECL|method|getChildResources
-specifier|public
-name|Iterable
-argument_list|<
-name|?
-extends|extends
-name|Accountable
-argument_list|>
-name|getChildResources
-parameter_list|()
-block|{
-return|return
-literal|null
-return|;
-block|}
 block|}
 end_class
 
