@@ -4745,18 +4745,6 @@ name|getResourceLoader
 argument_list|()
 argument_list|)
 expr_stmt|;
-name|log
-operator|.
-name|info
-argument_list|(
-literal|"$$$overlay_version "
-operator|+
-name|overlay
-operator|.
-name|getZnodeVersion
-argument_list|()
-argument_list|)
-expr_stmt|;
 block|}
 return|return
 name|overlay
