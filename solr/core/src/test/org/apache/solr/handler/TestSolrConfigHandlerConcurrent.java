@@ -958,7 +958,7 @@ decl_stmt|;
 name|long
 name|maxTimeoutSeconds
 init|=
-literal|10
+literal|20
 decl_stmt|;
 while|while
 condition|(
@@ -1051,7 +1051,7 @@ name|MessageFormat
 operator|.
 name|format
 argument_list|(
-literal|"overlay does not exist for cache: {} , iteration: {} response {} "
+literal|"overlay does not exist for cache: {0} , iteration: {1} response {2} "
 argument_list|,
 name|cacheName
 argument_list|,
@@ -1103,7 +1103,7 @@ name|MessageFormat
 operator|.
 name|format
 argument_list|(
-literal|"'size' property not set, expected = {}, actual {}"
+literal|"'size' property not set, expected = {0}, actual {1}"
 argument_list|,
 name|val1
 argument_list|,
@@ -1147,7 +1147,7 @@ name|MessageFormat
 operator|.
 name|format
 argument_list|(
-literal|"'initialSize' property not set, expected = {}, actual {}"
+literal|"'initialSize' property not set, expected = {0}, actual {1}"
 argument_list|,
 name|val2
 argument_list|,
@@ -1191,7 +1191,7 @@ name|MessageFormat
 operator|.
 name|format
 argument_list|(
-literal|"'autowarmCount' property not set, expected = {}, actual {}"
+literal|"'autowarmCount' property not set, expected = {0}, actual {1}"
 argument_list|,
 name|val3
 argument_list|,

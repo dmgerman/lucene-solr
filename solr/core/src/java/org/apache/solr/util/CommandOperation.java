@@ -1130,6 +1130,22 @@ expr_stmt|;
 block|}
 block|}
 block|}
+DECL|method|getCopy
+specifier|public
+name|CommandOperation
+name|getCopy
+parameter_list|()
+block|{
+return|return
+operator|new
+name|CommandOperation
+argument_list|(
+name|name
+argument_list|,
+name|commandData
+argument_list|)
+return|;
+block|}
 block|}
 end_class
 
