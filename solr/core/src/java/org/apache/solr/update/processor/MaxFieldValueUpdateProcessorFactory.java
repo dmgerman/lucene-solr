@@ -130,12 +130,17 @@ name|values
 decl_stmt|;
 try|try
 block|{
+comment|// NOTE: the extra cast to Object is needed to prevent compile
+comment|// errors on Eclipse Compiler (ecj) used for javadoc lint
 name|result
 operator|=
 name|Collections
 operator|.
 name|singletonList
 argument_list|(
+operator|(
+name|Object
+operator|)
 name|Collections
 operator|.
 name|max
