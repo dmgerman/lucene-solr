@@ -2038,18 +2038,6 @@ operator|.
 name|fields
 argument_list|()
 decl_stmt|;
-if|if
-condition|(
-name|fields
-operator|==
-literal|null
-condition|)
-block|{
-comment|// This reader has no postings
-return|return
-literal|0
-return|;
-block|}
 name|TermsEnum
 name|termsEnum
 init|=
@@ -2324,16 +2312,6 @@ operator|.
 name|fields
 argument_list|()
 decl_stmt|;
-if|if
-condition|(
-name|fields
-operator|==
-literal|null
-condition|)
-block|{
-comment|// This reader has no postings
-return|return;
-block|}
 comment|// TODO: we can process the updates per DV field, from last to first so that
 comment|// if multiple terms affect same document for the same field, we add an update
 comment|// only once (that of the last term). To do that, we can keep a bitset which

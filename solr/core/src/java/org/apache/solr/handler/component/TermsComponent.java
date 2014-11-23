@@ -825,12 +825,6 @@ name|Terms
 name|terms
 init|=
 name|lfields
-operator|==
-literal|null
-condition|?
-literal|null
-else|:
-name|lfields
 operator|.
 name|terms
 argument_list|(
@@ -844,7 +838,7 @@ operator|==
 literal|null
 condition|)
 block|{
-comment|// no terms for this field
+comment|// field does not exist
 continue|continue;
 block|}
 name|FieldType

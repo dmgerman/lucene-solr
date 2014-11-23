@@ -4701,12 +4701,12 @@ operator|new
 name|CharsRefBuilder
 argument_list|()
 decl_stmt|;
-name|Fields
-name|fields
+name|Terms
+name|terms
 init|=
 name|MultiFields
 operator|.
-name|getFields
+name|getTerms
 argument_list|(
 name|req
 operator|.
@@ -4715,25 +4715,7 @@ argument_list|()
 operator|.
 name|getIndexReader
 argument_list|()
-argument_list|)
-decl_stmt|;
-if|if
-condition|(
-name|fields
-operator|==
-literal|null
-condition|)
-block|{
-comment|// No indexed fields
-return|return;
-block|}
-name|Terms
-name|terms
-init|=
-name|fields
-operator|.
-name|terms
-argument_list|(
+argument_list|,
 name|field
 argument_list|)
 decl_stmt|;
@@ -4744,7 +4726,7 @@ operator|==
 literal|null
 condition|)
 block|{
-comment|// No terms in the field.
+comment|// field does not exist
 return|return;
 block|}
 name|TermsEnum

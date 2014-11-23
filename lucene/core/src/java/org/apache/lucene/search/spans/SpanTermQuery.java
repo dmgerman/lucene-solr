@@ -529,29 +529,13 @@ block|{
 comment|// this happens with span-not query, as it doesn't include the NOT side in extractTerms()
 comment|// so we seek to the term now in this segment..., this sucks because its ugly mostly!
 specifier|final
-name|Fields
-name|fields
+name|Terms
+name|terms
 init|=
 name|context
 operator|.
 name|reader
 argument_list|()
-operator|.
-name|fields
-argument_list|()
-decl_stmt|;
-if|if
-condition|(
-name|fields
-operator|!=
-literal|null
-condition|)
-block|{
-specifier|final
-name|Terms
-name|terms
-init|=
-name|fields
 operator|.
 name|terms
 argument_list|(
@@ -599,14 +583,6 @@ operator|.
 name|termState
 argument_list|()
 expr_stmt|;
-block|}
-else|else
-block|{
-name|state
-operator|=
-literal|null
-expr_stmt|;
-block|}
 block|}
 else|else
 block|{

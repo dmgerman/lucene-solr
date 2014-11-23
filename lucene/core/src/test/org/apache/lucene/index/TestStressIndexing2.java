@@ -2195,8 +2195,11 @@ decl_stmt|;
 if|if
 condition|(
 name|fields
+operator|.
+name|size
+argument_list|()
 operator|==
-literal|null
+literal|0
 condition|)
 block|{
 comment|// make sure r1 is in fact empty (eg has only all

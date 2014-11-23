@@ -348,15 +348,6 @@ argument_list|(
 name|ir
 argument_list|)
 decl_stmt|;
-if|if
-condition|(
-name|fields
-operator|==
-literal|null
-condition|)
-block|{
-return|return;
-block|}
 for|for
 control|(
 name|String

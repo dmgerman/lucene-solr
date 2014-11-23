@@ -3970,24 +3970,6 @@ name|computedFieldCount
 init|=
 literal|0
 decl_stmt|;
-if|if
-condition|(
-name|fields
-operator|==
-literal|null
-condition|)
-block|{
-name|msg
-argument_list|(
-name|infoStream
-argument_list|,
-literal|"OK [no fields/terms]"
-argument_list|)
-expr_stmt|;
-return|return
-name|status
-return|;
-block|}
 name|DocsEnum
 name|docs
 init|=

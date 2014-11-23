@@ -581,13 +581,6 @@ operator|.
 name|fields
 argument_list|()
 decl_stmt|;
-if|if
-condition|(
-name|readerFields
-operator|!=
-literal|null
-condition|)
-block|{
 for|for
 control|(
 name|String
@@ -625,7 +618,6 @@ name|field
 argument_list|)
 argument_list|)
 expr_stmt|;
-block|}
 block|}
 block|}
 block|}
