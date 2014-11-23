@@ -1369,6 +1369,14 @@ argument_list|,
 name|message
 argument_list|,
 name|operation
+argument_list|,
+name|workQueue
+operator|.
+name|getStats
+argument_list|()
+operator|.
+name|getQueueLength
+argument_list|()
 argument_list|)
 expr_stmt|;
 name|stats
@@ -1849,6 +1857,14 @@ argument_list|,
 name|message
 argument_list|,
 name|operation
+argument_list|,
+name|workQueue
+operator|.
+name|getStats
+argument_list|()
+operator|.
+name|getQueueLength
+argument_list|()
 argument_list|)
 expr_stmt|;
 name|stats
@@ -2661,8 +2677,22 @@ parameter_list|,
 specifier|final
 name|String
 name|operation
+parameter_list|,
+name|int
+name|queueSize
 parameter_list|)
 block|{
+name|log
+operator|.
+name|info
+argument_list|(
+literal|"processMessage: queueSize: {}, message = {}"
+argument_list|,
+name|queueSize
+argument_list|,
+name|message
+argument_list|)
+expr_stmt|;
 name|CollectionParams
 operator|.
 name|CollectionAction
@@ -4314,15 +4344,6 @@ name|ZkNodeProps
 name|message
 parameter_list|)
 block|{
-name|log
-operator|.
-name|info
-argument_list|(
-literal|"createReplica() {} "
-argument_list|,
-name|message
-argument_list|)
-expr_stmt|;
 name|String
 name|coll
 init|=
@@ -4515,8 +4536,8 @@ name|log
 operator|.
 name|info
 argument_list|(
-literal|"building a new collection: "
-operator|+
+literal|"Building a new collection: {}"
+argument_list|,
 name|collection
 argument_list|)
 expr_stmt|;
@@ -4688,13 +4709,9 @@ name|log
 operator|.
 name|info
 argument_list|(
-literal|"Update shard state invoked for collection: "
-operator|+
+literal|"Updating shard state for collection: {}"
+argument_list|,
 name|collection
-operator|+
-literal|" with message: "
-operator|+
-name|message
 argument_list|)
 expr_stmt|;
 for|for
@@ -6098,17 +6115,6 @@ argument_list|,
 literal|null
 argument_list|)
 decl_stmt|;
-name|log
-operator|.
-name|info
-argument_list|(
-literal|"Update state numShards={} message={}"
-argument_list|,
-name|numShards
-argument_list|,
-name|message
-argument_list|)
-expr_stmt|;
 name|List
 argument_list|<
 name|String
@@ -8932,15 +8938,11 @@ name|log
 operator|.
 name|info
 argument_list|(
-literal|"Removing collection: "
-operator|+
+literal|"Removing collection: {}, shard: {} from cluster state"
+argument_list|,
 name|collection
-operator|+
-literal|" shard: "
-operator|+
+argument_list|,
 name|sliceId
-operator|+
-literal|" from clusterstate"
 argument_list|)
 expr_stmt|;
 name|DocCollection
@@ -12361,6 +12363,12 @@ name|ConcurrentHashMap
 argument_list|<>
 argument_list|()
 decl_stmt|;
+DECL|field|queueLength
+specifier|private
+specifier|volatile
+name|int
+name|queueLength
+decl_stmt|;
 DECL|method|getStats
 specifier|public
 name|Map
@@ -12828,6 +12836,32 @@ return|return
 name|ret
 return|;
 block|}
+block|}
+DECL|method|getQueueLength
+specifier|public
+name|int
+name|getQueueLength
+parameter_list|()
+block|{
+return|return
+name|queueLength
+return|;
+block|}
+DECL|method|setQueueLength
+specifier|public
+name|void
+name|setQueueLength
+parameter_list|(
+name|int
+name|queueLength
+parameter_list|)
+block|{
+name|this
+operator|.
+name|queueLength
+operator|=
+name|queueLength
+expr_stmt|;
 block|}
 block|}
 DECL|class|Stat
