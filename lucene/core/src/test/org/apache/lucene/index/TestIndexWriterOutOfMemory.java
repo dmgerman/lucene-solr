@@ -287,6 +287,8 @@ operator|.
 name|store
 operator|.
 name|MockDirectoryWrapper
+operator|.
+name|Failure
 import|;
 end_import
 
@@ -301,8 +303,6 @@ operator|.
 name|store
 operator|.
 name|MockDirectoryWrapper
-operator|.
-name|Failure
 import|;
 end_import
 
@@ -358,7 +358,7 @@ name|lucene
 operator|.
 name|util
 operator|.
-name|TestUtil
+name|Rethrow
 import|;
 end_import
 
@@ -372,7 +372,7 @@ name|lucene
 operator|.
 name|util
 operator|.
-name|Rethrow
+name|TestUtil
 import|;
 end_import
 
@@ -539,7 +539,7 @@ name|TEST_NIGHTLY
 condition|?
 name|atLeast
 argument_list|(
-literal|500
+literal|100
 argument_list|)
 else|:
 name|atLeast
@@ -1830,18 +1830,14 @@ parameter_list|)
 throws|throws
 name|IOException
 block|{
-name|Exception
-name|e
-init|=
-operator|new
-name|Exception
-argument_list|()
-decl_stmt|;
 name|StackTraceElement
 name|stack
 index|[]
 init|=
-name|e
+name|Thread
+operator|.
+name|currentThread
+argument_list|()
 operator|.
 name|getStackTrace
 argument_list|()
