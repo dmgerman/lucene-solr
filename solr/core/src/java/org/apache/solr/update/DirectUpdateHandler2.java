@@ -1133,7 +1133,7 @@ name|SolrException
 operator|.
 name|ErrorCode
 operator|.
-name|SERVER_ERROR
+name|BAD_REQUEST
 argument_list|,
 name|String
 operator|.
