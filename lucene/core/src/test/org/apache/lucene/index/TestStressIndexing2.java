@@ -2192,6 +2192,16 @@ argument_list|(
 name|r2
 argument_list|)
 decl_stmt|;
+name|Terms
+name|terms2
+init|=
+name|fields
+operator|.
+name|terms
+argument_list|(
+name|idField
+argument_list|)
+decl_stmt|;
 if|if
 condition|(
 name|fields
@@ -2200,6 +2210,10 @@ name|size
 argument_list|()
 operator|==
 literal|0
+operator|||
+name|terms2
+operator|==
+literal|null
 condition|)
 block|{
 comment|// make sure r1 is in fact empty (eg has only all
@@ -2270,16 +2284,6 @@ block|}
 block|}
 return|return;
 block|}
-name|Terms
-name|terms2
-init|=
-name|fields
-operator|.
-name|terms
-argument_list|(
-name|idField
-argument_list|)
-decl_stmt|;
 name|TermsEnum
 name|termsEnum2
 init|=
