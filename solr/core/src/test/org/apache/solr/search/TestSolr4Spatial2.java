@@ -32,6 +32,20 @@ begin_import
 import|import
 name|org
 operator|.
+name|apache
+operator|.
+name|solr
+operator|.
+name|common
+operator|.
+name|SolrException
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
 name|junit
 operator|.
 name|Before
@@ -333,6 +347,44 @@ literal|146.39793f
 operator|+
 literal|"]"
 comment|//a bit less than 150
+argument_list|)
+expr_stmt|;
+block|}
+annotation|@
+name|Test
+DECL|method|testBadScoreParam
+specifier|public
+name|void
+name|testBadScoreParam
+parameter_list|()
+throws|throws
+name|Exception
+block|{
+name|String
+name|fieldName
+init|=
+literal|"bbox"
+decl_stmt|;
+name|assertQEx
+argument_list|(
+literal|"expect friendly error message"
+argument_list|,
+literal|"area2D"
+argument_list|,
+name|req
+argument_list|(
+literal|"{!field f="
+operator|+
+name|fieldName
+operator|+
+literal|" filter=false score=bogus}Intersects(ENVELOPE(0,0,12,12))"
+argument_list|)
+argument_list|,
+name|SolrException
+operator|.
+name|ErrorCode
+operator|.
+name|BAD_REQUEST
 argument_list|)
 expr_stmt|;
 block|}
