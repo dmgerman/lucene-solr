@@ -318,10 +318,39 @@ block|{
 comment|// NOTE: except maybe on real-time JVMs, minimum realistic sleep time
 comment|// is 1 msec; if you pass just 1 nsec the default impl rounds
 comment|// this up to 1 msec:
-name|Thread
+name|int
+name|sleepNS
+decl_stmt|;
+name|int
+name|sleepMS
+decl_stmt|;
+if|if
+condition|(
+name|pauseNS
+operator|>
+literal|100000L
+operator|*
+name|Integer
 operator|.
-name|sleep
-argument_list|(
+name|MAX_VALUE
+condition|)
+block|{
+comment|// Not really practical (sleeping for 25 days) but we shouldn't overflow int:
+name|sleepMS
+operator|=
+name|Integer
+operator|.
+name|MAX_VALUE
+expr_stmt|;
+name|sleepNS
+operator|=
+literal|0
+expr_stmt|;
+block|}
+else|else
+block|{
+name|sleepMS
+operator|=
 call|(
 name|int
 call|)
@@ -330,7 +359,9 @@ name|pauseNS
 operator|/
 literal|1000000
 argument_list|)
-argument_list|,
+expr_stmt|;
+name|sleepNS
+operator|=
 call|(
 name|int
 call|)
@@ -339,6 +370,15 @@ name|pauseNS
 operator|%
 literal|1000000
 argument_list|)
+expr_stmt|;
+block|}
+name|Thread
+operator|.
+name|sleep
+argument_list|(
+name|sleepMS
+argument_list|,
+name|sleepNS
 argument_list|)
 expr_stmt|;
 block|}
