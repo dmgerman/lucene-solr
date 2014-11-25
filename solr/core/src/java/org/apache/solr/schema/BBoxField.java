@@ -213,16 +213,16 @@ name|PARAM_MIN_SIDE_LENGTH
 init|=
 literal|"minSideLength"
 decl_stmt|;
-DECL|field|numberFieldName
+DECL|field|numberTypeName
 specifier|private
 name|String
-name|numberFieldName
+name|numberTypeName
 decl_stmt|;
 comment|//required
-DECL|field|booleanFieldName
+DECL|field|booleanTypeName
 specifier|private
 name|String
-name|booleanFieldName
+name|booleanTypeName
 init|=
 literal|"boolean"
 decl_stmt|;
@@ -294,7 +294,7 @@ literal|" must specify the numberType attribute."
 argument_list|)
 throw|;
 block|}
-name|numberFieldName
+name|numberTypeName
 operator|=
 name|v
 expr_stmt|;
@@ -314,7 +314,7 @@ operator|!=
 literal|null
 condition|)
 block|{
-name|booleanFieldName
+name|booleanTypeName
 operator|=
 name|v
 expr_stmt|;
@@ -344,7 +344,7 @@ name|schema
 operator|.
 name|getFieldTypeByName
 argument_list|(
-name|numberFieldName
+name|numberTypeName
 argument_list|)
 decl_stmt|;
 name|FieldType
@@ -354,7 +354,7 @@ name|schema
 operator|.
 name|getFieldTypeByName
 argument_list|(
-name|booleanFieldName
+name|booleanTypeName
 argument_list|)
 decl_stmt|;
 if|if
@@ -370,7 +370,7 @@ name|RuntimeException
 argument_list|(
 literal|"Cannot find number fieldType: "
 operator|+
-name|numberFieldName
+name|numberTypeName
 argument_list|)
 throw|;
 block|}
@@ -387,7 +387,7 @@ name|RuntimeException
 argument_list|(
 literal|"Cannot find boolean fieldType: "
 operator|+
-name|booleanFieldName
+name|booleanTypeName
 argument_list|)
 throw|;
 block|}
@@ -432,6 +432,7 @@ name|numberType
 argument_list|)
 throw|;
 block|}
+comment|//note: this only works for explicit fields, not dynamic fields
 name|List
 argument_list|<
 name|SchemaField
@@ -478,6 +479,38 @@ operator|.
 name|getName
 argument_list|()
 decl_stmt|;
+name|registerSubFields
+argument_list|(
+name|schema
+argument_list|,
+name|name
+argument_list|,
+name|numberType
+argument_list|,
+name|booleanType
+argument_list|)
+expr_stmt|;
+block|}
+block|}
+block|}
+DECL|method|registerSubFields
+specifier|private
+name|void
+name|registerSubFields
+parameter_list|(
+name|IndexSchema
+name|schema
+parameter_list|,
+name|String
+name|name
+parameter_list|,
+name|FieldType
+name|numberType
+parameter_list|,
+name|FieldType
+name|booleanType
+parameter_list|)
+block|{
 name|register
 argument_list|(
 name|schema
@@ -544,8 +577,8 @@ name|booleanType
 argument_list|)
 expr_stmt|;
 block|}
-block|}
-block|}
+comment|// note: Registering the field is probably optional; it makes it show up in the schema browser and may have other
+comment|//  benefits.
 DECL|method|register
 specifier|private
 name|void
@@ -596,9 +629,52 @@ name|BBoxStrategy
 name|newSpatialStrategy
 parameter_list|(
 name|String
-name|s
+name|fieldName
 parameter_list|)
 block|{
+comment|//if it's a dynamic field, we register the sub-fields now.
+name|FieldType
+name|numberType
+init|=
+name|schema
+operator|.
+name|getFieldTypeByName
+argument_list|(
+name|numberTypeName
+argument_list|)
+decl_stmt|;
+name|FieldType
+name|booleanType
+init|=
+name|schema
+operator|.
+name|getFieldTypeByName
+argument_list|(
+name|booleanTypeName
+argument_list|)
+decl_stmt|;
+if|if
+condition|(
+name|schema
+operator|.
+name|isDynamicField
+argument_list|(
+name|fieldName
+argument_list|)
+condition|)
+block|{
+name|registerSubFields
+argument_list|(
+name|schema
+argument_list|,
+name|fieldName
+argument_list|,
+name|numberType
+argument_list|,
+name|booleanType
+argument_list|)
+expr_stmt|;
+block|}
 name|BBoxStrategy
 name|strategy
 init|=
@@ -607,27 +683,23 @@ name|BBoxStrategy
 argument_list|(
 name|ctx
 argument_list|,
-name|s
+name|fieldName
 argument_list|)
 decl_stmt|;
 comment|//Solr's FieldType ought to expose Lucene FieldType. Instead as a hack we create a Field with a dummy value.
+specifier|final
 name|SchemaField
-name|field
+name|solrNumField
 init|=
-name|schema
-operator|.
-name|getField
+operator|new
+name|SchemaField
 argument_list|(
-name|strategy
-operator|.
-name|getFieldName
-argument_list|()
-operator|+
-name|BBoxStrategy
-operator|.
-name|SUFFIX_MINX
+literal|"_"
+argument_list|,
+name|numberType
 argument_list|)
 decl_stmt|;
+comment|//dummy temp
 name|org
 operator|.
 name|apache
@@ -650,7 +722,7 @@ name|document
 operator|.
 name|FieldType
 operator|)
-name|field
+name|solrNumField
 operator|.
 name|createField
 argument_list|(
@@ -662,10 +734,10 @@ operator|.
 name|fieldType
 argument_list|()
 decl_stmt|;
-comment|//and annoyingly this field isn't going to have a docValues format because Solr uses a separate Field for that
+comment|//and annoyingly this Field isn't going to have a docValues format because Solr uses a separate Field for that
 if|if
 condition|(
-name|field
+name|solrNumField
 operator|.
 name|hasDocValues
 argument_list|()

@@ -123,7 +123,15 @@ block|{
 name|String
 name|fieldName
 init|=
+name|random
+argument_list|()
+operator|.
+name|nextBoolean
+argument_list|()
+condition|?
 literal|"bbox"
+else|:
+literal|"bboxD_dynamic"
 decl_stmt|;
 name|assertU
 argument_list|(
@@ -189,7 +197,7 @@ literal|"Intersects(ENVELOPE(10,25,12,10))"
 argument_list|,
 literal|"fl"
 argument_list|,
-literal|"id,score"
+literal|"*,score"
 argument_list|,
 literal|"debug"
 argument_list|,
@@ -208,6 +216,13 @@ argument_list|,
 literal|"/response/docs/[2]/id=='0'"
 argument_list|,
 literal|"/response/docs/[2]/score==0.0"
+argument_list|,
+literal|"/response/docs/[1]/"
+operator|+
+name|fieldName
+operator|+
+literal|"=='ENVELOPE(-10, 20, 15, 10)'"
+comment|//stored value
 argument_list|)
 expr_stmt|;
 comment|//minSideLength with point query
