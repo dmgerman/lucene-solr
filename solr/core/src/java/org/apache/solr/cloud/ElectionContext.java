@@ -14,38 +14,6 @@ end_package
 
 begin_import
 import|import
-name|java
-operator|.
-name|io
-operator|.
-name|Closeable
-import|;
-end_import
-
-begin_import
-import|import
-name|java
-operator|.
-name|io
-operator|.
-name|IOException
-import|;
-end_import
-
-begin_import
-import|import
-name|java
-operator|.
-name|util
-operator|.
-name|concurrent
-operator|.
-name|TimeUnit
-import|;
-end_import
-
-begin_import
-import|import
 name|org
 operator|.
 name|apache
@@ -373,6 +341,16 @@ operator|.
 name|slf4j
 operator|.
 name|LoggerFactory
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
+name|io
+operator|.
+name|Closeable
 import|;
 end_import
 
@@ -2299,8 +2277,6 @@ literal|0
 decl_stmt|;
 while|while
 condition|(
-literal|true
-operator|&&
 operator|!
 name|isClosed
 operator|&&
@@ -2349,6 +2325,35 @@ name|KeeperException
 name|e
 parameter_list|)
 block|{
+if|if
+condition|(
+name|e
+operator|instanceof
+name|KeeperException
+operator|.
+name|SessionExpiredException
+condition|)
+block|{
+comment|// if the session has expired, then another election will be launched, so
+comment|// quit here
+throw|throw
+operator|new
+name|SolrException
+argument_list|(
+name|ErrorCode
+operator|.
+name|SERVER_ERROR
+argument_list|,
+literal|"ZK session expired - cancelling election for "
+operator|+
+name|collection
+operator|+
+literal|" "
+operator|+
+name|shardId
+argument_list|)
+throw|;
+block|}
 name|SolrException
 operator|.
 name|log
