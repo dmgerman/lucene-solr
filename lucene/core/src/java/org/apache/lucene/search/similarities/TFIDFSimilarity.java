@@ -960,6 +960,9 @@ operator|+
 literal|",freq="
 operator|+
 name|freq
+operator|.
+name|getValue
+argument_list|()
 operator|+
 literal|"), product of:"
 argument_list|)
