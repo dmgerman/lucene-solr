@@ -1120,7 +1120,11 @@ specifier|final
 name|int
 name|ITERS
 init|=
-literal|100
+name|TEST_NIGHTLY
+condition|?
+literal|300
+else|:
+literal|10
 decl_stmt|;
 name|Thread
 index|[]
