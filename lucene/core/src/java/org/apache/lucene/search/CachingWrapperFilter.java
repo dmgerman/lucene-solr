@@ -662,30 +662,12 @@ name|getChildResources
 parameter_list|()
 block|{
 comment|// Sync to pull the current set of values:
-specifier|final
-name|Map
-argument_list|<
-name|Object
-argument_list|,
-name|DocIdSet
-argument_list|>
-name|copy
-decl_stmt|;
 synchronized|synchronized
 init|(
 name|cache
 init|)
 block|{
-name|copy
-operator|=
-operator|new
-name|HashMap
-argument_list|<>
-argument_list|(
-name|cache
-argument_list|)
-expr_stmt|;
-block|}
+comment|// no need to clone, Accountable#namedAccountables already copies the data
 return|return
 name|Accountables
 operator|.
@@ -693,9 +675,10 @@ name|namedAccountables
 argument_list|(
 literal|"segment"
 argument_list|,
-name|copy
+name|cache
 argument_list|)
 return|;
+block|}
 block|}
 block|}
 end_class
