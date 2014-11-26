@@ -403,6 +403,15 @@ operator|=
 name|count
 expr_stmt|;
 block|}
+comment|/** Called by {@link IndexWriter} after the merge is done and all readers have been closed. */
+DECL|method|mergeFinished
+specifier|public
+name|void
+name|mergeFinished
+parameter_list|()
+throws|throws
+name|IOException
+block|{     }
 comment|/** Expert: Get the list of readers to merge. Note that this list does not      *  necessarily match the list of segments to merge and should only be used      *  to feed SegmentMerger to initialize a merge. When a {@link OneMerge}      *  reorders doc IDs, it must override {@link #getDocMap} too so that      *  deletes that happened during the merge can be applied to the newly      *  merged segment. */
 DECL|method|getMergeReaders
 specifier|public

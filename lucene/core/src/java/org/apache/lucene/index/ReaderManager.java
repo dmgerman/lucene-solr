@@ -145,6 +145,22 @@ name|dir
 argument_list|)
 expr_stmt|;
 block|}
+comment|/**    * Creates and returns a new ReaderManager from the given    * already-opened {@link DirectoryReader}, stealing    * the incoming reference.    *    * @param reader the directoryReader to use for future reopens    *            * @throws IOException If there is a low-level I/O error    */
+DECL|method|ReaderManager
+specifier|public
+name|ReaderManager
+parameter_list|(
+name|DirectoryReader
+name|reader
+parameter_list|)
+throws|throws
+name|IOException
+block|{
+name|current
+operator|=
+name|reader
+expr_stmt|;
+block|}
 annotation|@
 name|Override
 DECL|method|decRef

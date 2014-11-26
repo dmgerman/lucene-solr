@@ -444,9 +444,23 @@ name|apache
 operator|.
 name|lucene
 operator|.
+name|analysis
+operator|.
+name|MockAnalyzer
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
 name|document
 operator|.
-name|Field
+name|Document
 import|;
 end_import
 
@@ -463,6 +477,20 @@ operator|.
 name|Field
 operator|.
 name|Store
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|document
+operator|.
+name|Field
 import|;
 end_import
 
@@ -729,6 +757,8 @@ operator|.
 name|index
 operator|.
 name|IndexReader
+operator|.
+name|ReaderClosedListener
 import|;
 end_import
 
@@ -743,8 +773,6 @@ operator|.
 name|index
 operator|.
 name|IndexReader
-operator|.
-name|ReaderClosedListener
 import|;
 end_import
 
@@ -1123,6 +1151,8 @@ operator|.
 name|index
 operator|.
 name|TermsEnum
+operator|.
+name|SeekStatus
 import|;
 end_import
 
@@ -1137,8 +1167,6 @@ operator|.
 name|index
 operator|.
 name|TermsEnum
-operator|.
-name|SeekStatus
 import|;
 end_import
 
@@ -1295,6 +1323,8 @@ operator|.
 name|store
 operator|.
 name|IOContext
+operator|.
+name|Context
 import|;
 end_import
 
@@ -1309,8 +1339,6 @@ operator|.
 name|store
 operator|.
 name|IOContext
-operator|.
-name|Context
 import|;
 end_import
 
@@ -1353,6 +1381,8 @@ operator|.
 name|store
 operator|.
 name|MockDirectoryWrapper
+operator|.
+name|Throttling
 import|;
 end_import
 
@@ -1367,8 +1397,6 @@ operator|.
 name|store
 operator|.
 name|MockDirectoryWrapper
-operator|.
-name|Throttling
 import|;
 end_import
 
@@ -1703,20 +1731,6 @@ operator|.
 name|annotations
 operator|.
 name|ThreadLeakAction
-import|;
-end_import
-
-begin_import
-import|import
-name|com
-operator|.
-name|carrotsearch
-operator|.
-name|randomizedtesting
-operator|.
-name|annotations
-operator|.
-name|ThreadLeakAction
 operator|.
 name|Action
 import|;
@@ -1732,7 +1746,7 @@ name|randomizedtesting
 operator|.
 name|annotations
 operator|.
-name|ThreadLeakFilters
+name|ThreadLeakAction
 import|;
 end_import
 
@@ -1746,7 +1760,7 @@ name|randomizedtesting
 operator|.
 name|annotations
 operator|.
-name|ThreadLeakGroup
+name|ThreadLeakFilters
 import|;
 end_import
 
@@ -1776,7 +1790,7 @@ name|randomizedtesting
 operator|.
 name|annotations
 operator|.
-name|ThreadLeakLingering
+name|ThreadLeakGroup
 import|;
 end_import
 
@@ -1790,7 +1804,7 @@ name|randomizedtesting
 operator|.
 name|annotations
 operator|.
-name|ThreadLeakScope
+name|ThreadLeakLingering
 import|;
 end_import
 
@@ -1820,7 +1834,7 @@ name|randomizedtesting
 operator|.
 name|annotations
 operator|.
-name|ThreadLeakZombies
+name|ThreadLeakScope
 import|;
 end_import
 
@@ -1837,6 +1851,20 @@ operator|.
 name|ThreadLeakZombies
 operator|.
 name|Consequence
+import|;
+end_import
+
+begin_import
+import|import
+name|com
+operator|.
+name|carrotsearch
+operator|.
+name|randomizedtesting
+operator|.
+name|annotations
+operator|.
+name|ThreadLeakZombies
 import|;
 end_import
 
@@ -4207,6 +4235,26 @@ argument_list|,
 name|stream
 argument_list|)
 expr_stmt|;
+block|}
+comment|/** create a new index writer config with random defaults */
+DECL|method|newIndexWriterConfig
+specifier|public
+specifier|static
+name|IndexWriterConfig
+name|newIndexWriterConfig
+parameter_list|()
+block|{
+return|return
+name|newIndexWriterConfig
+argument_list|(
+operator|new
+name|MockAnalyzer
+argument_list|(
+name|random
+argument_list|()
+argument_list|)
+argument_list|)
+return|;
 block|}
 comment|/** create a new index writer config with random defaults */
 DECL|method|newIndexWriterConfig

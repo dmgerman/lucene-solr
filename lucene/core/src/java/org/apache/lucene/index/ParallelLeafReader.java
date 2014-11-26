@@ -1487,6 +1487,21 @@ argument_list|()
 expr_stmt|;
 block|}
 block|}
+comment|/** Returns the {@link LeafReader}s that were passed on init. */
+DECL|method|getParallelReaders
+specifier|public
+name|LeafReader
+index|[]
+name|getParallelReaders
+parameter_list|()
+block|{
+name|ensureOpen
+argument_list|()
+expr_stmt|;
+return|return
+name|parallelReaders
+return|;
+block|}
 block|}
 end_class
 
