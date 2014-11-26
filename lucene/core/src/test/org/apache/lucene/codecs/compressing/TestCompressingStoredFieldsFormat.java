@@ -216,20 +216,6 @@ name|carrotsearch
 operator|.
 name|randomizedtesting
 operator|.
-name|annotations
-operator|.
-name|Repeat
-import|;
-end_import
-
-begin_import
-import|import
-name|com
-operator|.
-name|carrotsearch
-operator|.
-name|randomizedtesting
-operator|.
 name|generators
 operator|.
 name|RandomInts
@@ -237,14 +223,6 @@ import|;
 end_import
 
 begin_class
-annotation|@
-name|Repeat
-argument_list|(
-name|iterations
-operator|=
-literal|5
-argument_list|)
-comment|// give it a chance to test various compression modes with different chunk sizes
 DECL|class|TestCompressingStoredFieldsFormat
 specifier|public
 class|class

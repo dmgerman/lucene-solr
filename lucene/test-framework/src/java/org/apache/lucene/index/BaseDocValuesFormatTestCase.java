@@ -19022,6 +19022,8 @@ argument_list|()
 expr_stmt|;
 block|}
 comment|/** Tests dv against stored fields with threads (all types + missing) */
+annotation|@
+name|Slow
 DECL|method|testThreads2
 specifier|public
 name|void
@@ -20439,6 +20441,8 @@ name|close
 argument_list|()
 expr_stmt|;
 block|}
+annotation|@
+name|Slow
 DECL|method|testThreads3
 specifier|public
 name|void

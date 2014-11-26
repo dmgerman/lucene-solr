@@ -410,11 +410,32 @@ name|Rethrow
 import|;
 end_import
 
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|util
+operator|.
+name|LuceneTestCase
+operator|.
+name|SuppressCodecs
+import|;
+end_import
+
 begin_comment
 comment|/**   * Causes a bunch of non-aborting and aborting exceptions and checks that  * no index corruption is ever created  */
 end_comment
 
 begin_class
+annotation|@
+name|SuppressCodecs
+argument_list|(
+literal|"SimpleText"
+argument_list|)
 DECL|class|TestIndexWriterExceptions2
 specifier|public
 class|class
@@ -669,7 +690,7 @@ name|numDocs
 init|=
 name|atLeast
 argument_list|(
-literal|2000
+literal|500
 argument_list|)
 decl_stmt|;
 name|IndexWriter
