@@ -635,41 +635,6 @@ operator|!=
 literal|null
 argument_list|)
 expr_stmt|;
-comment|//System.out.println( handler.getHiddenFiles() );
-comment|// should not contain:<gettableFiles>solrconfig.xml schema.xml admin-extra.html</gettableFiles>
-name|assertFalse
-argument_list|(
-name|handler
-operator|.
-name|getHiddenFiles
-argument_list|()
-operator|.
-name|contains
-argument_list|(
-literal|"schema.xml"
-operator|.
-name|toUpperCase
-argument_list|(
-name|Locale
-operator|.
-name|ROOT
-argument_list|)
-argument_list|)
-argument_list|)
-expr_stmt|;
-name|assertTrue
-argument_list|(
-name|handler
-operator|.
-name|getHiddenFiles
-argument_list|()
-operator|.
-name|contains
-argument_list|(
-literal|"PROTWORDS.TXT"
-argument_list|)
-argument_list|)
-expr_stmt|;
 block|}
 comment|// If defaults change, add test methods to cover each version
 annotation|@

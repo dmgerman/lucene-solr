@@ -335,6 +335,16 @@ condition|)
 block|{
 continue|continue;
 block|}
+if|if
+condition|(
+name|handler
+operator|.
+name|equals
+argument_list|(
+literal|"/admin/ping"
+argument_list|)
+condition|)
+continue|continue;
 name|assertQ
 argument_list|(
 literal|"failure w/handler: '"

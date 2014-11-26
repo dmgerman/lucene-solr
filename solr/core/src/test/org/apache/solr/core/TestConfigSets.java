@@ -756,7 +756,7 @@ name|core
 operator|.
 name|getRequestHandler
 argument_list|(
-literal|"/get"
+literal|"/dump"
 argument_list|)
 argument_list|,
 name|is
@@ -815,7 +815,7 @@ name|core
 operator|.
 name|getRequestHandler
 argument_list|(
-literal|"/get"
+literal|"/dump"
 argument_list|)
 argument_list|,
 name|is

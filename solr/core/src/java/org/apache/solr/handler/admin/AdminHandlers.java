@@ -140,11 +140,33 @@ name|SolrCoreAware
 import|;
 end_import
 
+begin_import
+import|import
+name|org
+operator|.
+name|slf4j
+operator|.
+name|Logger
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|slf4j
+operator|.
+name|LoggerFactory
+import|;
+end_import
+
 begin_comment
 comment|/**  * A special Handler that registers all standard admin handlers  *   * @since solr 1.3  */
 end_comment
 
 begin_class
+annotation|@
+name|Deprecated
 DECL|class|AdminHandlers
 specifier|public
 class|class
@@ -154,6 +176,21 @@ name|SolrCoreAware
 implements|,
 name|SolrRequestHandler
 block|{
+DECL|field|log
+specifier|public
+specifier|static
+name|Logger
+name|log
+init|=
+name|LoggerFactory
+operator|.
+name|getLogger
+argument_list|(
+name|AdminHandlers
+operator|.
+name|class
+argument_list|)
+decl_stmt|;
 DECL|field|initArgs
 name|NamedList
 name|initArgs
@@ -512,6 +549,13 @@ expr_stmt|;
 block|}
 block|}
 block|}
+name|log
+operator|.
+name|warn
+argument_list|(
+literal|"<requestHandler name=\"/admin/\" \n class=\"solr.admin.AdminHandlers\" /> is deprecated . It is not required anymore"
+argument_list|)
+expr_stmt|;
 block|}
 annotation|@
 name|Override

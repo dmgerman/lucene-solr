@@ -626,14 +626,21 @@ name|initHandlersFromConfig
 parameter_list|(
 name|SolrConfig
 name|config
-parameter_list|,
+parameter_list|)
+block|{
 name|List
 argument_list|<
 name|PluginInfo
 argument_list|>
 name|implicits
-parameter_list|)
-block|{
+init|=
+name|PluginsRegistry
+operator|.
+name|getHandlers
+argument_list|(
+name|core
+argument_list|)
+decl_stmt|;
 comment|// use link map so we iterate in the same order
 name|Map
 argument_list|<
