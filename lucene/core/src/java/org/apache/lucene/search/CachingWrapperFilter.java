@@ -68,6 +68,16 @@ name|java
 operator|.
 name|util
 operator|.
+name|HashMap
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
+name|util
+operator|.
 name|List
 import|;
 end_import
@@ -642,7 +652,6 @@ annotation|@
 name|Override
 DECL|method|getChildResources
 specifier|public
-specifier|synchronized
 name|Iterable
 argument_list|<
 name|?
@@ -652,7 +661,31 @@ argument_list|>
 name|getChildResources
 parameter_list|()
 block|{
-comment|// Sync only to pull the current set of values:
+comment|// Sync to pull the current set of values:
+specifier|final
+name|Map
+argument_list|<
+name|Object
+argument_list|,
+name|DocIdSet
+argument_list|>
+name|copy
+decl_stmt|;
+synchronized|synchronized
+init|(
+name|cache
+init|)
+block|{
+name|copy
+operator|=
+operator|new
+name|HashMap
+argument_list|<>
+argument_list|(
+name|cache
+argument_list|)
+expr_stmt|;
+block|}
 return|return
 name|Accountables
 operator|.
@@ -660,7 +693,7 @@ name|namedAccountables
 argument_list|(
 literal|"segment"
 argument_list|,
-name|cache
+name|copy
 argument_list|)
 return|;
 block|}
