@@ -1902,6 +1902,16 @@ literal|0
 decl_stmt|;
 comment|// At this point the writer should have 2 thread states w/ docs; now we index with only 1 thread until we see all 1000 thread0& thread1
 comment|// docs flushed.  If the writer incorrectly holds onto previously indexed docs forever then this will run forever:
+name|long
+name|counter
+init|=
+literal|0
+decl_stmt|;
+name|long
+name|checkAt
+init|=
+literal|100
+decl_stmt|;
 while|while
 condition|(
 name|thread0Count
@@ -1945,6 +1955,14 @@ argument_list|(
 name|doc
 argument_list|)
 expr_stmt|;
+if|if
+condition|(
+name|counter
+operator|++
+operator|==
+name|checkAt
+condition|)
+block|{
 for|for
 control|(
 name|String
@@ -2113,6 +2131,22 @@ expr_stmt|;
 block|}
 block|}
 block|}
+block|}
+name|checkAt
+operator|=
+call|(
+name|long
+call|)
+argument_list|(
+name|checkAt
+operator|*
+literal|1.25
+argument_list|)
+expr_stmt|;
+name|counter
+operator|=
+literal|0
+expr_stmt|;
 block|}
 block|}
 name|w
