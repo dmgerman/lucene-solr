@@ -1580,7 +1580,7 @@ literal|0
 init|;
 name|iter
 operator|<
-literal|10
+literal|3
 operator|*
 name|RANDOM_MULTIPLIER
 condition|;
@@ -1704,7 +1704,7 @@ literal|0
 init|;
 name|iter
 operator|<
-literal|10
+literal|3
 operator|*
 name|RANDOM_MULTIPLIER
 condition|;
@@ -1840,7 +1840,7 @@ literal|0
 init|;
 name|iter
 operator|<
-literal|10
+literal|3
 operator|*
 name|RANDOM_MULTIPLIER
 condition|;
@@ -1976,7 +1976,7 @@ literal|0
 init|;
 name|iter
 operator|<
-literal|10
+literal|3
 operator|*
 name|RANDOM_MULTIPLIER
 condition|;
