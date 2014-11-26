@@ -659,6 +659,28 @@ name|newWatchService
 argument_list|()
 return|;
 block|}
+comment|/** Returns the {@code FileSystem} we wrap. */
+DECL|method|getDelegate
+specifier|public
+name|FileSystem
+name|getDelegate
+parameter_list|()
+block|{
+return|return
+name|delegate
+return|;
+block|}
+comment|/** Returns the {@code FilterFileSystemProvider} sent to this on init. */
+DECL|method|getParent
+specifier|public
+name|FileSystemProvider
+name|getParent
+parameter_list|()
+block|{
+return|return
+name|parent
+return|;
+block|}
 block|}
 end_class
 

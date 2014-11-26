@@ -16884,6 +16884,29 @@ init|=
 name|newMockDirectory
 argument_list|()
 decl_stmt|;
+if|if
+condition|(
+name|TestUtil
+operator|.
+name|isWindowsFS
+argument_list|(
+name|dir
+argument_list|)
+condition|)
+block|{
+name|dir
+operator|.
+name|close
+argument_list|()
+expr_stmt|;
+name|assumeFalse
+argument_list|(
+literal|"this test can't run on Windows"
+argument_list|,
+literal|true
+argument_list|)
+expr_stmt|;
+block|}
 comment|// don't act like windows either, or the test won't simulate the condition
 name|dir
 operator|.
