@@ -68,16 +68,6 @@ name|java
 operator|.
 name|util
 operator|.
-name|Collections
-import|;
-end_import
-
-begin_import
-import|import
-name|java
-operator|.
-name|util
-operator|.
 name|HashMap
 import|;
 end_import
@@ -2658,8 +2648,6 @@ operator|.
 name|reload
 argument_list|(
 name|coreConfig
-argument_list|,
-name|core
 argument_list|)
 decl_stmt|;
 name|registerCore

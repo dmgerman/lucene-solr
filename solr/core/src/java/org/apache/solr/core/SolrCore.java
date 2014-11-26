@@ -2829,9 +2829,6 @@ name|reload
 parameter_list|(
 name|ConfigSet
 name|coreConfig
-parameter_list|,
-name|SolrCore
-name|prev
 parameter_list|)
 throws|throws
 name|IOException
@@ -2845,6 +2842,9 @@ operator|.
 name|increfSolrCoreState
 argument_list|()
 expr_stmt|;
+name|SolrCore
+name|currentCore
+decl_stmt|;
 name|boolean
 name|indexDirChange
 init|=
@@ -2872,9 +2872,16 @@ name|nrtMode
 condition|)
 block|{
 comment|// the directory is changing, don't pass on state
-name|prev
+name|currentCore
 operator|=
 literal|null
+expr_stmt|;
+block|}
+else|else
+block|{
+name|currentCore
+operator|=
+name|this
 expr_stmt|;
 block|}
 name|SolrCore
@@ -2907,7 +2914,7 @@ name|this
 operator|.
 name|solrDelPolicy
 argument_list|,
-name|prev
+name|currentCore
 argument_list|)
 decl_stmt|;
 name|core
