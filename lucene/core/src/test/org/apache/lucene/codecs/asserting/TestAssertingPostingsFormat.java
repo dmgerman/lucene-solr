@@ -42,12 +42,12 @@ name|lucene
 operator|.
 name|index
 operator|.
-name|BaseDocValuesFormatTestCase
+name|BasePostingsFormatTestCase
 import|;
 end_import
 
 begin_comment
-comment|/** Test AssertingDocValuesFormat directly */
+comment|/** Test AssertingPostingsFormat directly */
 end_comment
 
 begin_class
@@ -56,7 +56,7 @@ specifier|public
 class|class
 name|TestAssertingPostingsFormat
 extends|extends
-name|BaseDocValuesFormatTestCase
+name|BasePostingsFormatTestCase
 block|{
 DECL|field|codec
 specifier|private
