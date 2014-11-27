@@ -867,7 +867,7 @@ argument_list|()
 argument_list|,
 name|a
 argument_list|,
-literal|1000
+literal|100
 operator|*
 name|RANDOM_MULTIPLIER
 argument_list|)

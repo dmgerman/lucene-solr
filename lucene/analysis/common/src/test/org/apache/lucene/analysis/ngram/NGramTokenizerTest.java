@@ -815,6 +815,15 @@ parameter_list|()
 throws|throws
 name|Exception
 block|{
+name|int
+name|numIters
+init|=
+name|TEST_NIGHTLY
+condition|?
+literal|10
+else|:
+literal|1
+decl_stmt|;
 for|for
 control|(
 name|int
@@ -824,7 +833,7 @@ literal|0
 init|;
 name|i
 operator|<
-literal|10
+name|numIters
 condition|;
 name|i
 operator|++
