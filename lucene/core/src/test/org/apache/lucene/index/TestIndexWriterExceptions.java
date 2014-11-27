@@ -646,7 +646,29 @@ name|TestUtil
 import|;
 end_import
 
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|util
+operator|.
+name|LuceneTestCase
+operator|.
+name|SuppressCodecs
+import|;
+end_import
+
 begin_class
+annotation|@
+name|SuppressCodecs
+argument_list|(
+literal|"SimpleText"
+argument_list|)
+comment|// too slow here
 DECL|class|TestIndexWriterExceptions
 specifier|public
 class|class
