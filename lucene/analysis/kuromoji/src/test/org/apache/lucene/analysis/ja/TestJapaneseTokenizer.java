@@ -293,8 +293,6 @@ import|;
 end_import
 
 begin_class
-annotation|@
-name|Slow
 DECL|class|TestJapaneseTokenizer
 specifier|public
 class|class
@@ -1296,7 +1294,7 @@ argument_list|()
 argument_list|,
 name|analyzer
 argument_list|,
-literal|1000
+literal|500
 operator|*
 name|RANDOM_MULTIPLIER
 argument_list|)
@@ -1308,7 +1306,7 @@ argument_list|()
 argument_list|,
 name|analyzerNoPunct
 argument_list|,
-literal|1000
+literal|500
 operator|*
 name|RANDOM_MULTIPLIER
 argument_list|)
@@ -1335,7 +1333,7 @@ name|random
 argument_list|,
 name|analyzer
 argument_list|,
-literal|100
+literal|20
 operator|*
 name|RANDOM_MULTIPLIER
 argument_list|,
@@ -1348,7 +1346,7 @@ name|random
 argument_list|,
 name|analyzerNoPunct
 argument_list|,
-literal|100
+literal|20
 operator|*
 name|RANDOM_MULTIPLIER
 argument_list|,
@@ -1432,7 +1430,7 @@ return|;
 block|}
 block|}
 argument_list|,
-literal|100
+literal|20
 operator|*
 name|RANDOM_MULTIPLIER
 argument_list|,
@@ -1457,7 +1455,7 @@ literal|0
 init|;
 name|i
 operator|<
-literal|100
+literal|10
 condition|;
 name|i
 operator|++
