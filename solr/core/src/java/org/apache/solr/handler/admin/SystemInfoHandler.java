@@ -548,6 +548,12 @@ argument_list|()
 argument_list|)
 expr_stmt|;
 block|}
+if|if
+condition|(
+name|cc
+operator|!=
+literal|null
+condition|)
 name|rsp
 operator|.
 name|add
