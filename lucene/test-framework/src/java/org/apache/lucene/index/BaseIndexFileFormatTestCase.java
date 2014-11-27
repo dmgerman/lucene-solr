@@ -1225,6 +1225,8 @@ argument_list|()
 expr_stmt|;
 block|}
 comment|/** Test the accuracy of the ramBytesUsed estimations. */
+annotation|@
+name|Slow
 DECL|method|testRamBytesUsed
 specifier|public
 name|void

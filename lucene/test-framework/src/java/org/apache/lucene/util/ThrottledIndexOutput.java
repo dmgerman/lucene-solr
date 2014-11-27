@@ -233,7 +233,7 @@ block|{
 return|return
 name|mbits
 operator|*
-literal|125000
+literal|125000000
 return|;
 block|}
 DECL|method|ThrottledIndexOutput

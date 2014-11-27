@@ -671,7 +671,7 @@ literal|10
 argument_list|)
 argument_list|)
 argument_list|,
-literal|5
+literal|1
 operator|+
 name|randomState
 operator|.
@@ -798,7 +798,7 @@ comment|/** always emulate a slow hard disk. could be very slow! */
 DECL|enum constant|ALWAYS
 name|ALWAYS
 block|,
-comment|/** sometimes (2% of the time) emulate a slow hard disk. */
+comment|/** sometimes (0.5% of the time) emulate a slow hard disk. */
 DECL|enum constant|SOMETIMES
 name|SOMETIMES
 block|,
