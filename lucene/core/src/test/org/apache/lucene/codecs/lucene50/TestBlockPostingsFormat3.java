@@ -557,16 +557,24 @@ extends|extends
 name|LuceneTestCase
 block|{
 DECL|field|MAXDOC
-specifier|static
+specifier|private
 specifier|final
 name|int
 name|MAXDOC
 init|=
+name|TEST_NIGHTLY
+condition|?
 name|Lucene50PostingsFormat
 operator|.
 name|BLOCK_SIZE
 operator|*
 literal|20
+else|:
+name|Lucene50PostingsFormat
+operator|.
+name|BLOCK_SIZE
+operator|*
+literal|3
 decl_stmt|;
 comment|// creates 8 fields with different options and does "duels" of fields against each other
 DECL|method|test
