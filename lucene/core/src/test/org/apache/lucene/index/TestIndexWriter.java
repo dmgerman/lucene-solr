@@ -6659,6 +6659,26 @@ argument_list|(
 literal|false
 argument_list|)
 expr_stmt|;
+comment|// open/close slowly sometimes
+name|dir
+operator|.
+name|setUseSlowOpenClosers
+argument_list|(
+literal|true
+argument_list|)
+expr_stmt|;
+comment|// throttle a little
+name|dir
+operator|.
+name|setThrottling
+argument_list|(
+name|MockDirectoryWrapper
+operator|.
+name|Throttling
+operator|.
+name|SOMETIMES
+argument_list|)
+expr_stmt|;
 name|IndexWriter
 name|w
 init|=

@@ -319,12 +319,12 @@ name|IOException
 block|{
 try|try
 block|{
-comment|// Sleep for 1s before each .next() call.
+comment|// Sleep for 100ms before each .next() call.
 name|Thread
 operator|.
 name|sleep
 argument_list|(
-literal|1000
+literal|100
 argument_list|)
 expr_stmt|;
 block|}
@@ -552,7 +552,7 @@ literal|"o"
 argument_list|)
 argument_list|)
 decl_stmt|;
-comment|// Set a fairly high timeout value (10 seconds) and expect the query to complete in that time frame.
+comment|// Set a fairly high timeout value (1 second) and expect the query to complete in that time frame.
 comment|// Not checking the validity of the result, all we are bothered about in this test is the timing out.
 name|directoryReader
 operator|=
@@ -573,7 +573,7 @@ argument_list|,
 operator|new
 name|QueryTimeoutImpl
 argument_list|(
-literal|10000
+literal|1000
 argument_list|)
 argument_list|)
 expr_stmt|;

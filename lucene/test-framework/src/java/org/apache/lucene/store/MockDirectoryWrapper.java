@@ -395,7 +395,9 @@ DECL|field|useSlowOpenClosers
 name|boolean
 name|useSlowOpenClosers
 init|=
-literal|true
+name|LuceneTestCase
+operator|.
+name|TEST_NIGHTLY
 decl_stmt|;
 DECL|field|enableVirusScanner
 name|boolean
@@ -482,9 +484,17 @@ specifier|private
 name|Throttling
 name|throttling
 init|=
+name|LuceneTestCase
+operator|.
+name|TEST_NIGHTLY
+condition|?
 name|Throttling
 operator|.
 name|SOMETIMES
+else|:
+name|Throttling
+operator|.
+name|NEVER
 decl_stmt|;
 DECL|field|inputCloneCount
 specifier|final
@@ -822,7 +832,7 @@ operator|=
 name|throttling
 expr_stmt|;
 block|}
-comment|/**     * By default, opening and closing has a rare small sleep to catch race conditions    *<p>    * You can disable this if you dont need it    */
+comment|/**     * Add a rare small sleep to catch race conditions in open/close    *<p>    * You can enable this if you need it.    */
 DECL|method|setUseSlowOpenClosers
 specifier|public
 name|void
