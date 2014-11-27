@@ -1314,6 +1314,8 @@ expr_stmt|;
 block|}
 block|}
 comment|// LUCENE-5269
+annotation|@
+name|Slow
 DECL|method|testUnicodeShinglesAndNgrams
 specifier|public
 name|void

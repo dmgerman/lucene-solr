@@ -151,6 +151,8 @@ extends|extends
 name|BaseTokenStreamTestCase
 block|{
 comment|// LUCENE-5897: slow tokenization of strings of the form (\p{WB:ExtendNumLet}[\p{WB:Format}\p{WB:Extend}]*)+
+annotation|@
+name|Slow
 DECL|method|testLargePartiallyMatchingToken
 specifier|public
 name|void

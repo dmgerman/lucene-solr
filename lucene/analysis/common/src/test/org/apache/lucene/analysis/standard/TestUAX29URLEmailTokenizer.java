@@ -261,6 +261,8 @@ extends|extends
 name|BaseTokenStreamTestCase
 block|{
 comment|// LUCENE-5440: extremely slow tokenization of text matching email<local-part> (before the '@')
+annotation|@
+name|Slow
 DECL|method|testLongEMAILatomText
 specifier|public
 name|void
