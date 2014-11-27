@@ -1613,9 +1613,16 @@ block|{
 name|int
 name|iters
 init|=
+name|TEST_NIGHTLY
+condition|?
 name|atLeast
 argument_list|(
 literal|30
+argument_list|)
+else|:
+name|atLeast
+argument_list|(
+literal|1
 argument_list|)
 decl_stmt|;
 for|for
@@ -1751,7 +1758,7 @@ name|num
 init|=
 name|atLeast
 argument_list|(
-literal|10000
+literal|1000
 argument_list|)
 decl_stmt|;
 for|for
