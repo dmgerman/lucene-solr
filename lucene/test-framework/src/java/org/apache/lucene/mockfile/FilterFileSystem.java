@@ -266,6 +266,12 @@ init|=
 name|delegate
 init|)
 block|{
+assert|assert
+name|d
+operator|!=
+literal|null
+assert|;
+comment|// avoid stupid compiler warning
 name|parent
 operator|.
 name|onClose
