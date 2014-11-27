@@ -2196,7 +2196,8 @@ name|Collections
 operator|.
 name|EMPTY_MAP
 argument_list|,
-literal|0
+operator|-
+literal|1
 argument_list|)
 return|;
 block|}
@@ -2233,6 +2234,15 @@ argument_list|()
 operator|.
 name|getVersion
 argument_list|()
+expr_stmt|;
+name|log
+operator|.
+name|info
+argument_list|(
+literal|"config overlay loaded . version : {} "
+argument_list|,
+name|version
+argument_list|)
 expr_stmt|;
 block|}
 name|Map

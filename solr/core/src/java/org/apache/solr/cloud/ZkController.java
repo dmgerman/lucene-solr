@@ -12382,7 +12382,6 @@ argument_list|)
 expr_stmt|;
 return|return;
 block|}
-specifier|final
 name|Set
 argument_list|<
 name|Runnable
@@ -12409,6 +12408,20 @@ name|isEmpty
 argument_list|()
 condition|)
 block|{
+specifier|final
+name|Set
+argument_list|<
+name|Runnable
+argument_list|>
+name|listenersCopy
+init|=
+operator|new
+name|HashSet
+argument_list|<>
+argument_list|(
+name|listeners
+argument_list|)
+decl_stmt|;
 operator|new
 name|Thread
 argument_list|()
@@ -12425,8 +12438,9 @@ specifier|final
 name|Runnable
 name|listener
 range|:
-name|listeners
+name|listenersCopy
 control|)
+block|{
 try|try
 block|{
 name|listener
@@ -12450,6 +12464,7 @@ argument_list|,
 name|e
 argument_list|)
 expr_stmt|;
+block|}
 block|}
 block|}
 block|}
