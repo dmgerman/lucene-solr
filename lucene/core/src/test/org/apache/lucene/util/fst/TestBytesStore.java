@@ -137,6 +137,16 @@ argument_list|(
 literal|10
 argument_list|)
 decl_stmt|;
+specifier|final
+name|int
+name|maxBytes
+init|=
+name|TEST_NIGHTLY
+condition|?
+literal|200000
+else|:
+literal|20000
+decl_stmt|;
 for|for
 control|(
 name|int
@@ -165,7 +175,7 @@ argument_list|()
 argument_list|,
 literal|1
 argument_list|,
-literal|200000
+name|maxBytes
 argument_list|)
 decl_stmt|;
 specifier|final

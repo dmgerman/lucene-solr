@@ -566,6 +566,15 @@ name|nextLong
 argument_list|()
 argument_list|)
 decl_stmt|;
+name|int
+name|numIters
+init|=
+name|TEST_NIGHTLY
+condition|?
+literal|100
+else|:
+literal|10
+decl_stmt|;
 for|for
 control|(
 name|int
@@ -575,7 +584,7 @@ literal|0
 init|;
 name|i
 operator|<
-literal|100
+name|numIters
 condition|;
 name|i
 operator|++
