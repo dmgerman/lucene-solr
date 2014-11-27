@@ -664,6 +664,8 @@ operator|new
 name|CachingWrapperFilter
 argument_list|(
 name|expected
+argument_list|,
+name|MAYBE_CACHE_POLICY
 argument_list|)
 decl_stmt|;
 name|assertFilterEquals
@@ -752,6 +754,8 @@ operator|new
 name|CachingWrapperFilter
 argument_list|(
 name|expected
+argument_list|,
+name|MAYBE_CACHE_POLICY
 argument_list|)
 decl_stmt|;
 name|assertFilterEquals
@@ -793,6 +797,8 @@ operator|new
 name|CachingWrapperFilter
 argument_list|(
 name|expected
+argument_list|,
+name|MAYBE_CACHE_POLICY
 argument_list|)
 decl_stmt|;
 name|assertFilterEquals
@@ -877,6 +883,8 @@ operator|new
 name|CachingWrapperFilter
 argument_list|(
 name|expected
+argument_list|,
+name|MAYBE_CACHE_POLICY
 argument_list|)
 decl_stmt|;
 name|assertFilterEquals
@@ -979,6 +987,8 @@ operator|new
 name|CachingWrapperFilter
 argument_list|(
 name|expected
+argument_list|,
+name|MAYBE_CACHE_POLICY
 argument_list|)
 decl_stmt|;
 name|assertFilterEquals
@@ -1022,6 +1032,10 @@ operator|new
 name|CachingWrapperFilter
 argument_list|(
 name|expected
+argument_list|,
+name|FilterCachingPolicy
+operator|.
+name|ALWAYS_CACHE
 argument_list|)
 decl_stmt|;
 name|assertFilterEquals
@@ -1103,6 +1117,10 @@ operator|new
 name|CachingWrapperFilter
 argument_list|(
 name|filter
+argument_list|,
+name|FilterCachingPolicy
+operator|.
+name|ALWAYS_CACHE
 argument_list|)
 decl_stmt|;
 comment|// first time, nested filter is called
@@ -1283,6 +1301,8 @@ operator|new
 name|CachingWrapperFilter
 argument_list|(
 name|filter
+argument_list|,
+name|MAYBE_CACHE_POLICY
 argument_list|)
 decl_stmt|;
 comment|// the caching filter should return the empty set constant
@@ -1432,6 +1452,10 @@ operator|new
 name|CachingWrapperFilter
 argument_list|(
 name|filter
+argument_list|,
+name|FilterCachingPolicy
+operator|.
+name|ALWAYS_CACHE
 argument_list|)
 decl_stmt|;
 comment|// the caching filter should return the empty set constant
@@ -1511,6 +1535,10 @@ operator|new
 name|CachingWrapperFilter
 argument_list|(
 name|filter
+argument_list|,
+name|FilterCachingPolicy
+operator|.
+name|ALWAYS_CACHE
 argument_list|)
 decl_stmt|;
 specifier|final
@@ -2033,6 +2061,10 @@ operator|new
 name|CachingWrapperFilter
 argument_list|(
 name|startFilter
+argument_list|,
+name|FilterCachingPolicy
+operator|.
+name|ALWAYS_CACHE
 argument_list|)
 decl_stmt|;
 name|docs
@@ -2284,6 +2316,10 @@ operator|new
 name|CachingWrapperFilter
 argument_list|(
 name|startFilter
+argument_list|,
+name|FilterCachingPolicy
+operator|.
+name|ALWAYS_CACHE
 argument_list|)
 expr_stmt|;
 name|writer
