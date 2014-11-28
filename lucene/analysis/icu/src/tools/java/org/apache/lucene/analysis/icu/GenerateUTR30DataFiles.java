@@ -271,7 +271,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Downloads/generates lucene/analysis/icu/src/data/utr30/*.txt  *  * ASSUMPTION: This class will be run with current directory set to  * lucene/analysis/icu/src/data/utr30/  *  *<ol>  *<li>  *     Downloads nfc.txt, nfkc.txt and nfkc_cf.txt from icu-project.org,  *     overwriting the versions in lucene/analysis/icu/src/data/utr30/.  *</li>  *<li>  *     Converts round-trip mappings in nfc.txt (containing '=')  *     that map to at least one [:Diacritic:] character  *     into one-way mappings ('>' instead of '=').  *</li>  *</ol>  */
+comment|/**  * Downloads/generates lucene/analysis/icu/src/data/utr30/*.txt  *  * ASSUMPTION: This class will be run with current directory set to  * lucene/analysis/icu/src/data/utr30/  *  *<ol>  *<li>  *     Downloads nfc.txt, nfkc.txt and nfkc_cf.txt from icu-project.org,  *     overwriting the versions in lucene/analysis/icu/src/data/utr30/.  *</li>  *<li>  *     Converts round-trip mappings in nfc.txt (containing '=')  *     that map to at least one [:Diacritic:] character  *     into one-way mappings ('&gt;' instead of '=').  *</li>  *</ol>  */
 end_comment
 
 begin_class
