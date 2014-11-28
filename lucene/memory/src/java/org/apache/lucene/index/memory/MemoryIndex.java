@@ -740,7 +740,7 @@ specifier|public
 class|class
 name|MemoryIndex
 block|{
-comment|/** info for each field: Map<String fieldName, Info field> */
+comment|/** info for each field: Map&lt;String fieldName, Info field&gt; */
 DECL|field|fields
 specifier|private
 specifier|final
@@ -2996,7 +2996,7 @@ specifier|final
 class|class
 name|Info
 block|{
-comment|/**      * Term strings and their positions for this field: Map<String      * termText, ArrayIntList positions>      */
+comment|/**      * Term strings and their positions for this field: Map&lt;String      * termText, ArrayIntList positions&gt;      */
 DECL|field|terms
 specifier|private
 specifier|final

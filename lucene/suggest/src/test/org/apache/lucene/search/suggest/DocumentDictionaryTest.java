@@ -396,7 +396,7 @@ name|CONTEXT_FIELD_NAME
 init|=
 literal|"c1"
 decl_stmt|;
-comment|/** Returns Pair(list of invalid document terms, Map of document term -> document) */
+comment|/** Returns Pair(list of invalid document terms, Map of document term -&gt; document) */
 DECL|method|generateIndexDocuments
 specifier|private
 name|Map

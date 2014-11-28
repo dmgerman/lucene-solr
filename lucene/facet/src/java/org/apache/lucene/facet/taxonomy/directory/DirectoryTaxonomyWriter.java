@@ -1986,7 +1986,7 @@ operator|=
 literal|true
 expr_stmt|;
 block|}
-comment|/**      * Set the value we want to keep, as the position increment.      * Note that when TermPositions.nextPosition() is later used to      * retrieve this value, val-1 will be returned, not val.      *<P>      * IMPORTANT NOTE: Before Lucene 2.9, val>=0 were safe (for val==0,      * the retrieved position would be -1). But starting with Lucene 2.9,      * this unfortunately changed, and only val>0 are safe. val=0 can      * still be used, but don't count on the value you retrieve later      * (it could be 0 or -1, depending on circumstances or versions).      * This change is described in Lucene's JIRA: LUCENE-1542.       */
+comment|/**      * Set the value we want to keep, as the position increment.      * Note that when TermPositions.nextPosition() is later used to      * retrieve this value, val-1 will be returned, not val.      *<P>      * IMPORTANT NOTE: Before Lucene 2.9, val&gt;=0 were safe (for val==0,      * the retrieved position would be -1). But starting with Lucene 2.9,      * this unfortunately changed, and only val&gt;0 are safe. val=0 can      * still be used, but don't count on the value you retrieve later      * (it could be 0 or -1, depending on circumstances or versions).      * This change is described in Lucene's JIRA: LUCENE-1542.       */
 DECL|method|set
 specifier|public
 name|void

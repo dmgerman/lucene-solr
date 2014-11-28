@@ -1110,7 +1110,7 @@ expr_stmt|;
 block|}
 block|}
 block|}
-comment|/** weight -> cost */
+comment|/** weight -&gt; cost */
 DECL|method|encodeWeight
 specifier|private
 specifier|static

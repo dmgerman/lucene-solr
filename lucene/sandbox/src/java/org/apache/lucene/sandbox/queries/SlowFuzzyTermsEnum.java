@@ -476,7 +476,7 @@ operator|new
 name|IntsRefBuilder
 argument_list|()
 decl_stmt|;
-comment|/**      *<p>The termCompare method in FuzzyTermEnum uses Levenshtein distance to       * calculate the distance between the given term and the comparing term.       *</p>      *<p>If the minSimilarity is>= 1.0, this uses the maxEdits as the comparison.      * Otherwise, this method uses the following logic to calculate similarity.      *<pre>      *   similarity = 1 - ((float)distance / (float) (prefixLength + Math.min(textlen, targetlen)));      *</pre>      * where distance is the Levenshtein distance for the two words.      *</p>      *       */
+comment|/**      *<p>The termCompare method in FuzzyTermEnum uses Levenshtein distance to       * calculate the distance between the given term and the comparing term.       *</p>      *<p>If the minSimilarity is&gt;= 1.0, this uses the maxEdits as the comparison.      * Otherwise, this method uses the following logic to calculate similarity.      *<pre>      *   similarity = 1 - ((float)distance / (float) (prefixLength + Math.min(textlen, targetlen)));      *</pre>      * where distance is the Levenshtein distance for the two words.      *</p>      *       */
 annotation|@
 name|Override
 DECL|method|accept

@@ -3720,7 +3720,7 @@ name|results
 return|;
 block|}
 block|}
-comment|/** weight -> cost */
+comment|/** weight -&gt; cost */
 DECL|method|encodeWeight
 specifier|private
 name|long
@@ -3738,7 +3738,7 @@ operator|-
 name|ngramCount
 return|;
 block|}
-comment|/** cost -> weight */
+comment|/** cost -&gt; weight */
 comment|//private long decodeWeight(Pair<Long,BytesRef> output) {
 DECL|method|decodeWeight
 specifier|private

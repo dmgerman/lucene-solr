@@ -2705,7 +2705,7 @@ name|getBoundingBox
 argument_list|()
 return|;
 block|}
-comment|/**    * An aggregate of 2 shapes. Unfortunately we can't simply use a ShapeCollection because:    * (a) ambiguity between CONTAINS& WITHIN for equal shapes, and    * (b) adjacent pairs could as a whole contain the input shape.    * The tests here are sensitive to these matters, although in practice ShapeCollection    * is fine.    */
+comment|/**    * An aggregate of 2 shapes. Unfortunately we can't simply use a ShapeCollection because:    * (a) ambiguity between CONTAINS and WITHIN for equal shapes, and    * (b) adjacent pairs could as a whole contain the input shape.    * The tests here are sensitive to these matters, although in practice ShapeCollection    * is fine.    */
 DECL|class|ShapePair
 specifier|private
 class|class

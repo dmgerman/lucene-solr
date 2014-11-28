@@ -650,7 +650,7 @@ name|AnalyzingSuggester
 extends|extends
 name|Lookup
 block|{
-comment|/**    * FST<Weight,Surface>:     *  input is the analyzed form, with a null byte between terms    *  weights are encoded as costs: (Integer.MAX_VALUE-weight)    *  surface is the original, unanalyzed form.    */
+comment|/**    * FST&lt;Weight,Surface&gt;:     *  input is the analyzed form, with a null byte between terms    *  weights are encoded as costs: (Integer.MAX_VALUE-weight)    *  surface is the original, unanalyzed form.    */
 DECL|field|fst
 specifier|private
 name|FST
@@ -4598,7 +4598,7 @@ name|UnsupportedOperationException
 argument_list|()
 throw|;
 block|}
-comment|/** cost -> weight */
+comment|/** cost -&gt; weight */
 DECL|method|decodeWeight
 specifier|private
 specifier|static
@@ -4622,7 +4622,7 @@ name|encoded
 argument_list|)
 return|;
 block|}
-comment|/** weight -> cost */
+comment|/** weight -&gt; cost */
 DECL|method|encodeWeight
 specifier|private
 specifier|static

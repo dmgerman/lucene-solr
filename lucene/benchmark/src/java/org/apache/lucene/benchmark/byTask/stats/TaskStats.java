@@ -68,7 +68,7 @@ specifier|private
 name|long
 name|start
 decl_stmt|;
-comment|/** task elapsed time.  elapsed>= 0 indicates run completion! */
+comment|/** task elapsed time.  elapsed&gt;= 0 indicates run completion! */
 DECL|field|elapsed
 specifier|private
 name|long

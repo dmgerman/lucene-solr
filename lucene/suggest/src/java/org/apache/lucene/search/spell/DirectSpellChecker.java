@@ -344,7 +344,7 @@ name|SpellChecker
 operator|.
 name|DEFAULT_ACCURACY
 decl_stmt|;
-comment|/** value in [0..1] (or absolute number>=1) representing the minimum     * number of documents (of the total) where a term should appear. */
+comment|/** value in [0..1] (or absolute number&gt;= 1) representing the minimum     * number of documents (of the total) where a term should appear. */
 DECL|field|thresholdFrequency
 specifier|private
 name|float
@@ -360,7 +360,7 @@ name|minQueryLength
 init|=
 literal|4
 decl_stmt|;
-comment|/** value in [0..1] (or absolute number>=1) representing the maximum    *  number of documents (of the total) a query term can appear in to    *  be corrected. */
+comment|/** value in [0..1] (or absolute number&gt;= 1) representing the maximum    *  number of documents (of the total) a query term can appear in to    *  be corrected. */
 DECL|field|maxQueryFrequency
 specifier|private
 name|float
