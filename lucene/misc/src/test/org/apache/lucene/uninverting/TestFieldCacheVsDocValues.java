@@ -4071,15 +4071,9 @@ name|equals
 argument_list|(
 literal|"Memory"
 argument_list|)
-operator|||
-name|name
-operator|.
-name|equals
-argument_list|(
-literal|"Direct"
-argument_list|)
 operator|)
 return|;
+comment|// Direct has a different type of limit
 block|}
 block|}
 end_class
