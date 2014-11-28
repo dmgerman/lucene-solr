@@ -300,7 +300,7 @@ argument_list|)
 expr_stmt|;
 comment|// voc. pl.
 block|}
-comment|/**    * decl II nouns with (s,t) -> Å¡ and (d,z) -> Å¾    * palatalization will generally conflate to two stems    * due to the ambiguity (plural and singular).    */
+comment|/**    * decl II nouns with (s,t) -&gt; Å¡ and (d,z) -&gt; Å¾    * palatalization will generally conflate to two stems    * due to the ambiguity (plural and singular).    */
 DECL|method|testNouns2
 specifier|public
 name|void
@@ -1054,7 +1054,7 @@ argument_list|)
 expr_stmt|;
 comment|// voc. pl.
 block|}
-comment|/**    * Genitive plural forms with (s,t) -> Å¡ and (d,z) -> Å¾    * will not conflate due to ambiguity.    */
+comment|/**    * Genitive plural forms with (s,t) -&gt; Å¡ and (d,z) -&gt; Å¾    * will not conflate due to ambiguity.    */
 DECL|method|testNouns5
 specifier|public
 name|void
@@ -1786,7 +1786,7 @@ argument_list|)
 expr_stmt|;
 comment|// voc. fem. pl.
 block|}
-comment|/**    * Note: we intentionally don't handle the ambiguous    * (s,t) -> Å¡ and (d,z) -> Å¾    */
+comment|/**    * Note: we intentionally don't handle the ambiguous    * (s,t) -&gt; Å¡ and (d,z) -&gt; Å¾    */
 DECL|method|testPalatalization
 specifier|public
 name|void

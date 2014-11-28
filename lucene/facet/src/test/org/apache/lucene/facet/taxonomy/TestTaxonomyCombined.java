@@ -1612,7 +1612,7 @@ name|close
 argument_list|()
 expr_stmt|;
 block|}
-comment|/**  Basic tests for TaxonomyReader's category<=> ordinal transformations     (getSize(), getCategory() and getOrdinal()).     We test that after writing the index, it can be read and all the     categories and ordinals are there just as we expected them to be.    */
+comment|/**  Basic tests for TaxonomyReader's category&lt;=&gt; ordinal transformations     (getSize(), getCategory() and getOrdinal()).     We test that after writing the index, it can be read and all the     categories and ordinals are there just as we expected them to be.    */
 annotation|@
 name|Test
 DECL|method|testReaderBasic
@@ -1939,7 +1939,7 @@ name|close
 argument_list|()
 expr_stmt|;
 block|}
-comment|/**  Tests for TaxonomyReader's getParent() method.     We check it by comparing its results to those we could have gotten by     looking at the category string paths (where the parentage is obvious).     Note that after testReaderBasic(), we already know we can trust the     ordinal<=> category conversions.          Note: At the moment, the parent methods in the reader are deprecated,     but this does not mean they should not be tested! Until they are     removed (*if* they are removed), these tests should remain to see     that they still work correctly.    */
+comment|/**  Tests for TaxonomyReader's getParent() method.     We check it by comparing its results to those we could have gotten by     looking at the category string paths (where the parentage is obvious).     Note that after testReaderBasic(), we already know we can trust the     ordinal&lt;=&gt; category conversions.          Note: At the moment, the parent methods in the reader are deprecated,     but this does not mean they should not be tested! Until they are     removed (*if* they are removed), these tests should remain to see     that they still work correctly.    */
 annotation|@
 name|Test
 DECL|method|testReaderParent
@@ -2138,7 +2138,7 @@ name|close
 argument_list|()
 expr_stmt|;
 block|}
-comment|/**    * Tests for TaxonomyWriter's getParent() method. We check it by comparing    * its results to those we could have gotten by looking at the category    * string paths using a TaxonomyReader (where the parentage is obvious).    * Note that after testReaderBasic(), we already know we can trust the    * ordinal<=> category conversions from TaxonomyReader.    *    * The difference between testWriterParent1 and testWriterParent2 is that    * the former closes the taxonomy writer before reopening it, while the    * latter does not.    *     * This test code is virtually identical to that of testReaderParent().    */
+comment|/**    * Tests for TaxonomyWriter's getParent() method. We check it by comparing    * its results to those we could have gotten by looking at the category    * string paths using a TaxonomyReader (where the parentage is obvious).    * Note that after testReaderBasic(), we already know we can trust the    * ordinal&lt;=&gt; category conversions from TaxonomyReader.    *    * The difference between testWriterParent1 and testWriterParent2 is that    * the former closes the taxonomy writer before reopening it, while the    * latter does not.    *     * This test code is virtually identical to that of testReaderParent().    */
 annotation|@
 name|Test
 DECL|method|testWriterParent1

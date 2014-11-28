@@ -152,7 +152,7 @@ parameter_list|<
 name|T
 parameter_list|>
 block|{
-comment|/**    * Compare hit at slot1 with hit at slot2.    *     * @param slot1 first slot to compare    * @param slot2 second slot to compare    * @return any N< 0 if slot2's value is sorted after    * slot1, any N> 0 if the slot2's value is sorted before    * slot1 and 0 if they are equal    */
+comment|/**    * Compare hit at slot1 with hit at slot2.    *     * @param slot1 first slot to compare    * @param slot2 second slot to compare    * @return any {@code N< 0} if slot2's value is sorted after    * slot1, any {@code N> 0} if the slot2's value is sorted before    * slot1 and {@code 0} if they are equal    */
 DECL|method|compare
 specifier|public
 specifier|abstract
@@ -189,7 +189,7 @@ name|T
 name|value
 parameter_list|)
 function_decl|;
-comment|/**    * Compare the bottom of the queue with this doc.  This will    * only invoked after setBottom has been called.  This    * should return the same result as {@link    * #compare(int,int)}} as if bottom were slot1 and the new    * document were slot 2.    *        *<p>For a search that hits many results, this method    * will be the hotspot (invoked by far the most    * frequently).</p>    *     * @param doc that was hit    * @return any N< 0 if the doc's value is sorted after    * the bottom entry (not competitive), any N> 0 if the    * doc's value is sorted before the bottom entry and 0 if    * they are equal.    */
+comment|/**    * Compare the bottom of the queue with this doc.  This will    * only invoked after setBottom has been called.  This    * should return the same result as {@link    * #compare(int,int)}} as if bottom were slot1 and the new    * document were slot 2.    *        *<p>For a search that hits many results, this method    * will be the hotspot (invoked by far the most    * frequently).</p>    *     * @param doc that was hit    * @return any {@code N< 0} if the doc's value is sorted after    * the bottom entry (not competitive), any {@code N> 0} if the    * doc's value is sorted before the bottom entry and {@code 0} if    * they are equal.    */
 DECL|method|compareBottom
 specifier|public
 specifier|abstract
@@ -202,7 +202,7 @@ parameter_list|)
 throws|throws
 name|IOException
 function_decl|;
-comment|/**    * Compare the top value with this doc.  This will    * only invoked after setTopValue has been called.  This    * should return the same result as {@link    * #compare(int,int)}} as if topValue were slot1 and the new    * document were slot 2.  This is only called for searches that    * use searchAfter (deep paging).    *        * @param doc that was hit    * @return any N< 0 if the doc's value is sorted after    * the bottom entry (not competitive), any N> 0 if the    * doc's value is sorted before the bottom entry and 0 if    * they are equal.    */
+comment|/**    * Compare the top value with this doc.  This will    * only invoked after setTopValue has been called.  This    * should return the same result as {@link    * #compare(int,int)}} as if topValue were slot1 and the new    * document were slot 2.  This is only called for searches that    * use searchAfter (deep paging).    *        * @param doc that was hit    * @return any {@code N< 0} if the doc's value is sorted after    * the bottom entry (not competitive), any {@code N> 0} if the    * doc's value is sorted before the bottom entry and {@code 0} if    * they are equal.    */
 DECL|method|compareTop
 specifier|public
 specifier|abstract

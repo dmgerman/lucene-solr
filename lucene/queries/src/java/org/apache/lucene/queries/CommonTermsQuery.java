@@ -335,7 +335,7 @@ name|highFreqMinNrShouldMatch
 init|=
 literal|0
 decl_stmt|;
-comment|/**    * Creates a new {@link CommonTermsQuery}    *     * @param highFreqOccur    *          {@link Occur} used for high frequency terms    * @param lowFreqOccur    *          {@link Occur} used for low frequency terms    * @param maxTermFrequency    *          a value in [0..1) (or absolute number>=1) representing the    *          maximum threshold of a terms document frequency to be considered a    *          low frequency term.    * @throws IllegalArgumentException    *           if {@link Occur#MUST_NOT} is pass as lowFreqOccur or    *           highFreqOccur    */
+comment|/**    * Creates a new {@link CommonTermsQuery}    *     * @param highFreqOccur    *          {@link Occur} used for high frequency terms    * @param lowFreqOccur    *          {@link Occur} used for low frequency terms    * @param maxTermFrequency    *          a value in [0..1) (or absolute number&gt;=1) representing the    *          maximum threshold of a terms document frequency to be considered a    *          low frequency term.    * @throws IllegalArgumentException    *           if {@link Occur#MUST_NOT} is pass as lowFreqOccur or    *           highFreqOccur    */
 DECL|method|CommonTermsQuery
 specifier|public
 name|CommonTermsQuery
@@ -362,7 +362,7 @@ literal|false
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**    * Creates a new {@link CommonTermsQuery}    *     * @param highFreqOccur    *          {@link Occur} used for high frequency terms    * @param lowFreqOccur    *          {@link Occur} used for low frequency terms    * @param maxTermFrequency    *          a value in [0..1) (or absolute number>=1) representing the    *          maximum threshold of a terms document frequency to be considered a    *          low frequency term.    * @param disableCoord    *          disables {@link Similarity#coord(int,int)} in scoring for the low    *          / high frequency sub-queries    * @throws IllegalArgumentException    *           if {@link Occur#MUST_NOT} is pass as lowFreqOccur or    *           highFreqOccur    */
+comment|/**    * Creates a new {@link CommonTermsQuery}    *     * @param highFreqOccur    *          {@link Occur} used for high frequency terms    * @param lowFreqOccur    *          {@link Occur} used for low frequency terms    * @param maxTermFrequency    *          a value in [0..1) (or absolute number&gt;=1) representing the    *          maximum threshold of a terms document frequency to be considered a    *          low frequency term.    * @param disableCoord    *          disables {@link Similarity#coord(int,int)} in scoring for the low    *          / high frequency sub-queries    * @throws IllegalArgumentException    *           if {@link Occur#MUST_NOT} is pass as lowFreqOccur or    *           highFreqOccur    */
 DECL|method|CommonTermsQuery
 specifier|public
 name|CommonTermsQuery

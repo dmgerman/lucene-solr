@@ -465,7 +465,7 @@ comment|/*   TODO:        - Currently there is a one-to-one mapping of indexed  
 end_comment
 
 begin_comment
-comment|/**  * This is just like {@link BlockTreeTermsWriter}, except it also stores a version per term, and adds a method to its TermsEnum  * implementation to seekExact only if the version is>= the specified version.  The version is added to the terms index to avoid seeking if  * no term in the block has a high enough version.  The term blocks file is .tiv and the terms index extension is .tipv.  *  * @lucene.experimental  */
+comment|/**  * This is just like {@link BlockTreeTermsWriter}, except it also stores a version per term, and adds a method to its TermsEnum  * implementation to seekExact only if the version is&gt;= the specified version.  The version is added to the terms index to avoid seeking if  * no term in the block has a high enough version.  The term blocks file is .tiv and the terms index extension is .tipv.  *  * @lucene.experimental  */
 end_comment
 
 begin_class

@@ -177,7 +177,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Traverses a {@link SpatialPrefixTree} indexed field, using the template&  * visitor design patterns for subclasses to guide the traversal and collect  * matching documents.  *<p/>  * Subclasses implement {@link #getDocIdSet(org.apache.lucene.index.LeafReaderContext,  * org.apache.lucene.util.Bits)} by instantiating a custom {@link  * VisitorTemplate} subclass (i.e. an anonymous inner class) and implement the  * required methods.  *  * @lucene.internal  */
+comment|/**  * Traverses a {@link SpatialPrefixTree} indexed field, using the template and  * visitor design patterns for subclasses to guide the traversal and collect  * matching documents.  *<p/>  * Subclasses implement {@link #getDocIdSet(org.apache.lucene.index.LeafReaderContext,  * org.apache.lucene.util.Bits)} by instantiating a custom {@link  * VisitorTemplate} subclass (i.e. an anonymous inner class) and implement the  * required methods.  *  * @lucene.internal  */
 end_comment
 
 begin_class
@@ -913,7 +913,7 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
-comment|/**      * Called when doing a divide& conquer to find the next intersecting cells      * of the query shape that are beneath {@code cell}. {@code cell} is      * guaranteed to have an intersection and thus this must return some number      * of nodes.      */
+comment|/**      * Called when doing a divide and conquer to find the next intersecting cells      * of the query shape that are beneath {@code cell}. {@code cell} is      * guaranteed to have an intersection and thus this must return some number      * of nodes.      */
 DECL|method|findSubCellsToVisit
 specifier|protected
 name|CellIterator

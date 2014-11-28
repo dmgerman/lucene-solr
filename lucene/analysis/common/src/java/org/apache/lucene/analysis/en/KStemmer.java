@@ -1961,7 +1961,7 @@ name|int
 name|k
 decl_stmt|;
 comment|/*                   * INDEX of final letter in word. You must add 1 to k to get                   * the current length of word. When you want the length of                   * word, use the method wordLength, which returns (k+1).                   */
-comment|/***    * private void initializeStemHash() { if (maxCacheSize> 0) cache = new    * CharArrayMap<String>(maxCacheSize,false); }    ***/
+comment|/*    * private void initializeStemHash() { if (maxCacheSize> 0) cache = new    * CharArrayMap<String>(maxCacheSize,false); }    ***/
 DECL|method|finalChar
 specifier|private
 name|char

@@ -71,7 +71,7 @@ comment|// TODO: sometimes remove tokens too...?
 end_comment
 
 begin_comment
-comment|/** Randomly inserts overlapped (posInc=0) tokens with  *  posLength sometimes> 1.  The chain must have  *  an OffsetAttribute.  */
+comment|/** Randomly inserts overlapped (posInc=0) tokens with  *  posLength sometimes&gt; 1.  The chain must have  *  an OffsetAttribute.  */
 end_comment
 
 begin_class

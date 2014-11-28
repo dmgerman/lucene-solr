@@ -204,7 +204,7 @@ operator|.
 name|mbPerSec
 return|;
 block|}
-comment|/** Pauses, if necessary, to keep the instantaneous IO      *  rate at or below the target.  Be sure to only call      *  this method when bytes> {@link #getMinPauseCheckBytes},      *  otherwise it will pause way too long!      *      *  @return the pause time in nano seconds */
+comment|/** Pauses, if necessary, to keep the instantaneous IO      *  rate at or below the target.  Be sure to only call      *  this method when bytes&gt; {@link #getMinPauseCheckBytes},      *  otherwise it will pause way too long!      *      *  @return the pause time in nano seconds */
 annotation|@
 name|Override
 DECL|method|pause

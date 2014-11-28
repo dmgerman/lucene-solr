@@ -1261,7 +1261,7 @@ specifier|static
 class|class
 name|DrillSidewaysResult
 block|{
-comment|/** Combined drill down& sideways results. */
+comment|/** Combined drill down and sideways results. */
 DECL|field|facets
 specifier|public
 specifier|final

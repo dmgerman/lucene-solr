@@ -677,7 +677,7 @@ return|return
 literal|null
 return|;
 block|}
-comment|/**    * 1) Turn to lowercase    * 2) Remove accents    * 3) Ã£ -> a ; Ãµ -> o    * 4) Ã§ -> c    *    * @return null or a string transformed    */
+comment|/**    * 1) Turn to lowercase    * 2) Remove accents    * 3) Ã£ -&gt; a ; Ãµ -&gt; o    * 4) Ã§ -&gt; c    *    * @return null or a string transformed    */
 DECL|method|changeTerm
 specifier|private
 name|String

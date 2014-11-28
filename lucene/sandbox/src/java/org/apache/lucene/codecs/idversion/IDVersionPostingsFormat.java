@@ -185,7 +185,7 @@ import|;
 end_import
 
 begin_comment
-comment|/** A PostingsFormat optimized for primary-key (ID) fields that also  *  record a version (long) for each ID, delivered as a payload  *  created by {@link #longToBytes} during indexing.  At search time,  *  the TermsEnum implementation {@link IDVersionSegmentTermsEnum}  *  enables fast (using only the terms index when possible) lookup for  *  whether a given ID was previously indexed with version> N (see  *  {@link IDVersionSegmentTermsEnum#seekExact(BytesRef,long)}.  *  *<p>This is most effective if the app assigns monotonically  *  increasing global version to each indexed doc.  Then, during  *  indexing, use {@link  *  IDVersionSegmentTermsEnum#seekExact(BytesRef,long)} (along with  *  {@link LiveFieldValues}) to decide whether the document you are  *  about to index was already indexed with a higher version, and skip  *  it if so.  *  *<p>The field is effectively indexed as DOCS_ONLY and the docID is  *  pulsed into the terms dictionary, but the user must feed in the  *  version as a payload on the first token.  *  *<p>NOTE: term vectors cannot be indexed with this field (not that  *  you should really ever want to do this).  *  *  @lucene.experimental */
+comment|/** A PostingsFormat optimized for primary-key (ID) fields that also  *  record a version (long) for each ID, delivered as a payload  *  created by {@link #longToBytes} during indexing.  At search time,  *  the TermsEnum implementation {@link IDVersionSegmentTermsEnum}  *  enables fast (using only the terms index when possible) lookup for  *  whether a given ID was previously indexed with version&gt; N (see  *  {@link IDVersionSegmentTermsEnum#seekExact(BytesRef,long)}.  *  *<p>This is most effective if the app assigns monotonically  *  increasing global version to each indexed doc.  Then, during  *  indexing, use {@link  *  IDVersionSegmentTermsEnum#seekExact(BytesRef,long)} (along with  *  {@link LiveFieldValues}) to decide whether the document you are  *  about to index was already indexed with a higher version, and skip  *  it if so.  *  *<p>The field is effectively indexed as DOCS_ONLY and the docID is  *  pulsed into the terms dictionary, but the user must feed in the  *  version as a payload on the first token.  *  *<p>NOTE: term vectors cannot be indexed with this field (not that  *  you should really ever want to do this).  *  *  @lucene.experimental */
 end_comment
 
 begin_class
@@ -196,7 +196,7 @@ name|IDVersionPostingsFormat
 extends|extends
 name|PostingsFormat
 block|{
-comment|/** version must be>= this. */
+comment|/** version must be&gt;= this. */
 DECL|field|MIN_VERSION
 specifier|public
 specifier|static
@@ -207,7 +207,7 @@ init|=
 literal|0
 decl_stmt|;
 comment|// TODO: we could delta encode instead, and keep the last bit:
-comment|/** version must be<= this, because we encode with ZigZag. */
+comment|/** version must be&lt;= this, because we encode with ZigZag. */
 DECL|field|MAX_VERSION
 specifier|public
 specifier|static

@@ -149,7 +149,7 @@ comment|//   - rename to MergeCacheingDir?  NRTCachingDir
 end_comment
 
 begin_comment
-comment|/**  * Wraps a {@link RAMDirectory}  * around any provided delegate directory, to  * be used during NRT search.  *  *<p>This class is likely only useful in a near-real-time  * context, where indexing rate is lowish but reopen  * rate is highish, resulting in many tiny files being  * written.  This directory keeps such segments (as well as  * the segments produced by merging them, as long as they  * are small enough), in RAM.</p>  *  *<p>This is safe to use: when your app calls {IndexWriter#commit},  * all cached files will be flushed from the cached and sync'd.</p>  *  *<p>Here's a simple example usage:  *  *<pre class="prettyprint">  *   Directory fsDir = FSDirectory.open(new File("/path/to/index").toPath());  *   NRTCachingDirectory cachedFSDir = new NRTCachingDirectory(fsDir, 5.0, 60.0);  *   IndexWriterConfig conf = new IndexWriterConfig(analyzer);  *   IndexWriter writer = new IndexWriter(cachedFSDir, conf);  *</pre>  *  *<p>This will cache all newly flushed segments, all merges  * whose expected segment size is<= 5 MB, unless the net  * cached bytes exceeds 60 MB at which point all writes will  * not be cached (until the net bytes falls below 60 MB).</p>  *  * @lucene.experimental  */
+comment|/**  * Wraps a {@link RAMDirectory}  * around any provided delegate directory, to  * be used during NRT search.  *  *<p>This class is likely only useful in a near-real-time  * context, where indexing rate is lowish but reopen  * rate is highish, resulting in many tiny files being  * written.  This directory keeps such segments (as well as  * the segments produced by merging them, as long as they  * are small enough), in RAM.</p>  *  *<p>This is safe to use: when your app calls {IndexWriter#commit},  * all cached files will be flushed from the cached and sync'd.</p>  *  *<p>Here's a simple example usage:  *  *<pre class="prettyprint">  *   Directory fsDir = FSDirectory.open(new File("/path/to/index").toPath());  *   NRTCachingDirectory cachedFSDir = new NRTCachingDirectory(fsDir, 5.0, 60.0);  *   IndexWriterConfig conf = new IndexWriterConfig(analyzer);  *   IndexWriter writer = new IndexWriter(cachedFSDir, conf);  *</pre>  *  *<p>This will cache all newly flushed segments, all merges  * whose expected segment size is {@code<= 5 MB}, unless the net  * cached bytes exceeds 60 MB at which point all writes will  * not be cached (until the net bytes falls below 60 MB).</p>  *  * @lucene.experimental  */
 end_comment
 
 begin_class
@@ -193,7 +193,7 @@ name|VERBOSE
 init|=
 literal|false
 decl_stmt|;
-comment|/**    *  We will cache a newly created output if 1) it's a    *  flush or a merge and the estimated size of the merged segment is<=    *  maxMergeSizeMB, and 2) the total cached bytes is<=    *  maxCachedMB */
+comment|/**    *  We will cache a newly created output if 1) it's a    *  flush or a merge and the estimated size of the merged segment is     *  {@code<= maxMergeSizeMB}, and 2) the total cached bytes is     *  {@code<= maxCachedMB} */
 DECL|method|NRTCachingDirectory
 specifier|public
 name|NRTCachingDirectory

@@ -160,7 +160,7 @@ literal|2079997
 operator|+
 literal|80000
 decl_stmt|;
-comment|/**    * compare two arrays starting at the specified offsets.    *     * @param larray left array    * @param lstartIndex start offset into larray    * @param rarray right array    * @param rstartIndex start offset into rarray    * @return 0 if the arrays are equalï¼1 if larray> rarray, -1 if larray< rarray    */
+comment|/**    * compare two arrays starting at the specified offsets.    *     * @param larray left array    * @param lstartIndex start offset into larray    * @param rarray right array    * @param rstartIndex start offset into rarray    * @return 0 if the arrays are equalï¼1 if larray&gt; rarray, -1 if larray&lt; rarray    */
 DECL|method|compareArray
 specifier|public
 specifier|static

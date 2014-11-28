@@ -520,7 +520,7 @@ return|return
 name|ft
 return|;
 block|}
-comment|/** Pass {@code true} if this dimension is hierarchical    *  (has depth> 1 paths). */
+comment|/** Pass {@code true} if this dimension is hierarchical    *  (has depth&gt; 1 paths). */
 DECL|method|setHierarchical
 specifier|public
 specifier|synchronized

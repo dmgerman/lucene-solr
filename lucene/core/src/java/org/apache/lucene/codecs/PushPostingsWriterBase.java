@@ -704,7 +704,7 @@ parameter_list|)
 throws|throws
 name|IOException
 function_decl|;
-comment|/** Add a new position& payload, and start/end offset.  A    *  null payload means no payload; a non-null payload with    *  zero length also means no payload.  Caller may reuse    *  the {@link BytesRef} for the payload between calls    *  (method must fully consume the payload).<code>startOffset</code>    *  and<code>endOffset</code> will be -1 when offsets are not indexed. */
+comment|/** Add a new position and payload, and start/end offset.  A    *  null payload means no payload; a non-null payload with    *  zero length also means no payload.  Caller may reuse    *  the {@link BytesRef} for the payload between calls    *  (method must fully consume the payload).<code>startOffset</code>    *  and<code>endOffset</code> will be -1 when offsets are not indexed. */
 DECL|method|addPosition
 specifier|public
 specifier|abstract
@@ -726,7 +726,7 @@ parameter_list|)
 throws|throws
 name|IOException
 function_decl|;
-comment|/** Called when we are done adding positions& payloads    *  for each doc. */
+comment|/** Called when we are done adding positions and payloads    *  for each doc. */
 DECL|method|finishDoc
 specifier|public
 specifier|abstract

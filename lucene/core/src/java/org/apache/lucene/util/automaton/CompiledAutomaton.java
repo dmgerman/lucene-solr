@@ -1079,7 +1079,7 @@ argument_list|)
 throw|;
 block|}
 block|}
-comment|/** Finds largest term accepted by this Automaton, that's    *<= the provided input term.  The result is placed in    *  output; it's fine for output and input to point to    *  the same bytes.  The returned result is either the    *  provided output, or null if there is no floor term    *  (ie, the provided input term is before the first term    *  accepted by this Automaton). */
+comment|/** Finds largest term accepted by this Automaton, that's    *&lt;= the provided input term.  The result is placed in    *  output; it's fine for output and input to point to    *  the same bytes.  The returned result is either the    *  provided output, or null if there is no floor term    *  (ie, the provided input term is before the first term    *  accepted by this Automaton). */
 DECL|method|floor
 specifier|public
 name|BytesRef

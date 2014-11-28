@@ -61,7 +61,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**   * Computes which segments have identical field name->number mappings,  * which allows stored fields and term vectors in this codec to be bulk-merged.  */
+comment|/**   * Computes which segments have identical field name to number mappings,  * which allows stored fields and term vectors in this codec to be bulk-merged.  */
 end_comment
 
 begin_class

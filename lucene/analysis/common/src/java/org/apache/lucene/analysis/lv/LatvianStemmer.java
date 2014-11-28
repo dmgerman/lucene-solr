@@ -599,7 +599,7 @@ name|palatalizes
 expr_stmt|;
 block|}
 block|}
-comment|/**    * Most cases are handled except for the ambiguous ones:    *<ul>    *<li> s -> Å¡    *<li> t -> Å¡    *<li> d -> Å¾    *<li> z -> Å¾    *</ul>    */
+comment|/**    * Most cases are handled except for the ambiguous ones:    *<ul>    *<li> s -&gt; Å¡    *<li> t -&gt; Å¡    *<li> d -&gt; Å¾    *<li> z -&gt; Å¾    *</ul>    */
 DECL|method|unpalatalize
 specifier|private
 name|int

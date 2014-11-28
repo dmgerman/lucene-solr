@@ -235,7 +235,7 @@ argument_list|()
 argument_list|)
 return|;
 block|}
-comment|/**    * Returns the documents in the rage [start .. pq.size()) that were collected    * by this collector. Note that if start>= pq.size(), an empty TopDocs is    * returned.<br>    * This method is convenient to call if the application always asks for the    * last results, starting from the last 'page'.<br>    *<b>NOTE:</b> you cannot call this method more than once for each search    * execution. If you need to call it more than once, passing each time a    * different<code>start</code>, you should call {@link #topDocs()} and work    * with the returned {@link TopDocs} object, which will contain all the    * results this search execution collected.    */
+comment|/**    * Returns the documents in the range [start .. pq.size()) that were collected    * by this collector. Note that if {@code start>= pq.size()}, an empty TopDocs is    * returned.<br>    * This method is convenient to call if the application always asks for the    * last results, starting from the last 'page'.<br>    *<b>NOTE:</b> you cannot call this method more than once for each search    * execution. If you need to call it more than once, passing each time a    * different<code>start</code>, you should call {@link #topDocs()} and work    * with the returned {@link TopDocs} object, which will contain all the    * results this search execution collected.    */
 DECL|method|topDocs
 specifier|public
 name|TopDocs
@@ -258,7 +258,7 @@ argument_list|()
 argument_list|)
 return|;
 block|}
-comment|/**    * Returns the documents in the rage [start .. start+howMany) that were    * collected by this collector. Note that if start>= pq.size(), an empty    * TopDocs is returned, and if pq.size() - start&lt; howMany, then only the    * available documents in [start .. pq.size()) are returned.<br>    * This method is useful to call in case pagination of search results is    * allowed by the search application, as well as it attempts to optimize the    * memory used by allocating only as much as requested by howMany.<br>    *<b>NOTE:</b> you cannot call this method more than once for each search    * execution. If you need to call it more than once, passing each time a    * different range, you should call {@link #topDocs()} and work with the    * returned {@link TopDocs} object, which will contain all the results this    * search execution collected.    */
+comment|/**    * Returns the documents in the range [start .. start+howMany) that were    * collected by this collector. Note that if {@code start>= pq.size()}, an empty    * TopDocs is returned, and if pq.size() - start&lt; howMany, then only the    * available documents in [start .. pq.size()) are returned.<br>    * This method is useful to call in case pagination of search results is    * allowed by the search application, as well as it attempts to optimize the    * memory used by allocating only as much as requested by howMany.<br>    *<b>NOTE:</b> you cannot call this method more than once for each search    * execution. If you need to call it more than once, passing each time a    * different range, you should call {@link #topDocs()} and work with the    * returned {@link TopDocs} object, which will contain all the results this    * search execution collected.    */
 DECL|method|topDocs
 specifier|public
 name|TopDocs

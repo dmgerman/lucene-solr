@@ -33,7 +33,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  *<p>  * This class is the base of {@link QueryConfigHandler} and {@link FieldConfig}.  * It has operations to set, unset and get configuration values.  *</p>  *<p>  * Each configuration is is a key->value pair. The key should be an unique  * {@link ConfigurationKey} instance and it also holds the value's type.  *</p>  *   * @see ConfigurationKey  */
+comment|/**  *<p>  * This class is the base of {@link QueryConfigHandler} and {@link FieldConfig}.  * It has operations to set, unset and get configuration values.  *</p>  *<p>  * Each configuration is is a key-&gt;value pair. The key should be an unique  * {@link ConfigurationKey} instance and it also holds the value's type.  *</p>  *   * @see ConfigurationKey  */
 end_comment
 
 begin_class

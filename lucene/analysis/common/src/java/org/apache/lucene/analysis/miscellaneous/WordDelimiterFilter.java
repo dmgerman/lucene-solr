@@ -235,7 +235,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Splits words into subwords and performs optional transformations on subword  * groups. Words are split into subwords with the following rules:  *<ul>  *<li>split on intra-word delimiters (by default, all non alpha-numeric  * characters):<code>"Wi-Fi"</code>&#8594;<code>"Wi", "Fi"</code></li>  *<li>split on case transitions:<code>"PowerShot"</code>&#8594;  *<code>"Power", "Shot"</code></li>  *<li>split on letter-number transitions:<code>"SD500"</code>&#8594;  *<code>"SD", "500"</code></li>  *<li>leading and trailing intra-word delimiters on each subword are ignored:  *<code>"//hello---there, 'dude'"</code>&#8594;  *<code>"hello", "there", "dude"</code></li>  *<li>trailing "'s" are removed for each subword:<code>"O'Neil's"</code>  *&#8594;<code>"O", "Neil"</code>  *<ul>  *<li>Note: this step isn't performed in a separate filter because of possible  * subword combinations.</li>  *</ul>  *</li>  *</ul>  *   * The<b>combinations</b> parameter affects how subwords are combined:  *<ul>  *<li>combinations="0" causes no subword combinations:<code>"PowerShot"</code>  *&#8594;<code>0:"Power", 1:"Shot"</code> (0 and 1 are the token positions)</li>  *<li>combinations="1" means that in addition to the subwords, maximum runs of  * non-numeric subwords are catenated and produced at the same position of the  * last subword in the run:  *<ul>  *<li><code>"PowerShot"</code>&#8594;  *<code>0:"Power", 1:"Shot" 1:"PowerShot"</code></li>  *<li><code>"A's+B's&C's"</code> -gt;<code>0:"A", 1:"B", 2:"C", 2:"ABC"</code>  *</li>  *<li><code>"Super-Duper-XL500-42-AutoCoder!"</code>&#8594;  *<code>0:"Super", 1:"Duper", 2:"XL", 2:"SuperDuperXL", 3:"500" 4:"42", 5:"Auto", 6:"Coder", 6:"AutoCoder"</code>  *</li>  *</ul>  *</li>  *</ul>  * One use for {@link WordDelimiterFilter} is to help match words with different  * subword delimiters. For example, if the source text contained "wi-fi" one may  * want "wifi" "WiFi" "wi-fi" "wi+fi" queries to all match. One way of doing so  * is to specify combinations="1" in the analyzer used for indexing, and  * combinations="0" (the default) in the analyzer used for querying. Given that  * the current {@link StandardTokenizer} immediately removes many intra-word  * delimiters, it is recommended that this filter be used after a tokenizer that  * does not do this (such as {@link WhitespaceTokenizer}).  */
+comment|/**  * Splits words into subwords and performs optional transformations on subword  * groups. Words are split into subwords with the following rules:  *<ul>  *<li>split on intra-word delimiters (by default, all non alpha-numeric  * characters):<code>"Wi-Fi"</code>&#8594;<code>"Wi", "Fi"</code></li>  *<li>split on case transitions:<code>"PowerShot"</code>&#8594;  *<code>"Power", "Shot"</code></li>  *<li>split on letter-number transitions:<code>"SD500"</code>&#8594;  *<code>"SD", "500"</code></li>  *<li>leading and trailing intra-word delimiters on each subword are ignored:  *<code>"//hello---there, 'dude'"</code>&#8594;  *<code>"hello", "there", "dude"</code></li>  *<li>trailing "'s" are removed for each subword:<code>"O'Neil's"</code>  *&#8594;<code>"O", "Neil"</code>  *<ul>  *<li>Note: this step isn't performed in a separate filter because of possible  * subword combinations.</li>  *</ul>  *</li>  *</ul>  *   * The<b>combinations</b> parameter affects how subwords are combined:  *<ul>  *<li>combinations="0" causes no subword combinations:<code>"PowerShot"</code>  *&#8594;<code>0:"Power", 1:"Shot"</code> (0 and 1 are the token positions)</li>  *<li>combinations="1" means that in addition to the subwords, maximum runs of  * non-numeric subwords are catenated and produced at the same position of the  * last subword in the run:  *<ul>  *<li><code>"PowerShot"</code>&#8594;  *<code>0:"Power", 1:"Shot" 1:"PowerShot"</code></li>  *<li><code>"A's+B's&amp;C's"</code>&gt;<code>0:"A", 1:"B", 2:"C", 2:"ABC"</code>  *</li>  *<li><code>"Super-Duper-XL500-42-AutoCoder!"</code>&#8594;  *<code>0:"Super", 1:"Duper", 2:"XL", 2:"SuperDuperXL", 3:"500" 4:"42", 5:"Auto", 6:"Coder", 6:"AutoCoder"</code>  *</li>  *</ul>  *</li>  *</ul>  * One use for {@link WordDelimiterFilter} is to help match words with different  * subword delimiters. For example, if the source text contained "wi-fi" one may  * want "wifi" "WiFi" "wi-fi" "wi+fi" queries to all match. One way of doing so  * is to specify combinations="1" in the analyzer used for indexing, and  * combinations="0" (the default) in the analyzer used for querying. Given that  * the current {@link StandardTokenizer} immediately removes many intra-word  * delimiters, it is recommended that this filter be used after a tokenizer that  * does not do this (such as {@link WhitespaceTokenizer}).  */
 end_comment
 
 begin_class
@@ -302,7 +302,7 @@ name|ALPHANUM
 init|=
 literal|0x07
 decl_stmt|;
-comment|/**    * Causes parts of words to be generated:    *<p/>    * "PowerShot" => "Power" "Shot"    */
+comment|/**    * Causes parts of words to be generated:    *<p/>    * "PowerShot" =&gt; "Power" "Shot"    */
 DECL|field|GENERATE_WORD_PARTS
 specifier|public
 specifier|static
@@ -312,7 +312,7 @@ name|GENERATE_WORD_PARTS
 init|=
 literal|1
 decl_stmt|;
-comment|/**    * Causes number subwords to be generated:    *<p/>    * "500-42" => "500" "42"    */
+comment|/**    * Causes number subwords to be generated:    *<p/>    * "500-42" =&gt; "500" "42"    */
 DECL|field|GENERATE_NUMBER_PARTS
 specifier|public
 specifier|static
@@ -322,7 +322,7 @@ name|GENERATE_NUMBER_PARTS
 init|=
 literal|2
 decl_stmt|;
-comment|/**    * Causes maximum runs of word parts to be catenated:    *<p/>    * "wi-fi" => "wifi"    */
+comment|/**    * Causes maximum runs of word parts to be catenated:    *<p/>    * "wi-fi" =&gt; "wifi"    */
 DECL|field|CATENATE_WORDS
 specifier|public
 specifier|static
@@ -332,7 +332,7 @@ name|CATENATE_WORDS
 init|=
 literal|4
 decl_stmt|;
-comment|/**    * Causes maximum runs of word parts to be catenated:    *<p/>    * "wi-fi" => "wifi"    */
+comment|/**    * Causes maximum runs of word parts to be catenated:    *<p/>    * "wi-fi" =&gt; "wifi"    */
 DECL|field|CATENATE_NUMBERS
 specifier|public
 specifier|static
@@ -342,7 +342,7 @@ name|CATENATE_NUMBERS
 init|=
 literal|8
 decl_stmt|;
-comment|/**    * Causes all subword parts to be catenated:    *<p/>    * "wi-fi-4000" => "wifi4000"    */
+comment|/**    * Causes all subword parts to be catenated:    *<p/>    * "wi-fi-4000" =&gt; "wifi4000"    */
 DECL|field|CATENATE_ALL
 specifier|public
 specifier|static
@@ -352,7 +352,7 @@ name|CATENATE_ALL
 init|=
 literal|16
 decl_stmt|;
-comment|/**    * Causes original words are preserved and added to the subword list (Defaults to false)    *<p/>    * "500-42" => "500" "42" "500-42"    */
+comment|/**    * Causes original words are preserved and added to the subword list (Defaults to false)    *<p/>    * "500-42" =&gt; "500" "42" "500-42"    */
 DECL|field|PRESERVE_ORIGINAL
 specifier|public
 specifier|static
@@ -382,7 +382,7 @@ name|SPLIT_ON_NUMERICS
 init|=
 literal|128
 decl_stmt|;
-comment|/**    * Causes trailing "'s" to be removed for each subword    *<p/>    * "O'Neil's" => "O", "Neil"    */
+comment|/**    * Causes trailing "'s" to be removed for each subword    *<p/>    * "O'Neil's" =&gt; "O", "Neil"    */
 DECL|field|STEM_ENGLISH_POSSESSIVE
 specifier|public
 specifier|static

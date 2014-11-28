@@ -321,7 +321,7 @@ name|topNGroups
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**    * Returns top groups, starting from offset.  This may    * return null, if no groups were collected, or if the    * number of unique groups collected is<= offset.    *    * @param groupOffset The offset in the collected groups    * @param fillFields Whether to fill to {@link SearchGroup#sortValues}    * @return top groups, starting from offset    */
+comment|/**    * Returns top groups, starting from offset.  This may    * return null, if no groups were collected, or if the    * number of unique groups collected is&lt;= offset.    *    * @param groupOffset The offset in the collected groups    * @param fillFields Whether to fill to {@link SearchGroup#sortValues}    * @return top groups, starting from offset    */
 DECL|method|getTopGroups
 specifier|public
 name|Collection

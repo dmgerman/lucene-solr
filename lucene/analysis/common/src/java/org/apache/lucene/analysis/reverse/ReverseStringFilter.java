@@ -73,7 +73,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Reverse token string, for example "country" => "yrtnuoc".  *<p>  * If<code>marker</code> is supplied, then tokens will be also prepended by  * that character. For example, with a marker of&#x5C;u0001, "country" =>  * "&#x5C;u0001yrtnuoc". This is useful when implementing efficient leading  * wildcards search.  */
+comment|/**  * Reverse token string, for example "country" =&gt; "yrtnuoc".  *<p>  * If<code>marker</code> is supplied, then tokens will be also prepended by  * that character. For example, with a marker of&#x5C;u0001, "country" =&gt;  * "&#x5C;u0001yrtnuoc". This is useful when implementing efficient leading  * wildcards search.  */
 end_comment
 
 begin_class

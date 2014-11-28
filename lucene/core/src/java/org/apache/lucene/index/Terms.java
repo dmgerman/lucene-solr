@@ -100,7 +100,7 @@ parameter_list|)
 throws|throws
 name|IOException
 function_decl|;
-comment|/** Returns a TermsEnum that iterates over all terms that    *  are accepted by the provided {@link    *  CompiledAutomaton}.  If the<code>startTerm</code> is    *  provided then the returned enum will only accept terms    *><code>startTerm</code>, but you still must call    *  next() first to get to the first term.  Note that the    *  provided<code>startTerm</code> must be accepted by    *  the automaton.    *    *<p><b>NOTE</b>: the returned TermsEnum cannot    * seek</p>. */
+comment|/** Returns a TermsEnum that iterates over all terms that    *  are accepted by the provided {@link    *  CompiledAutomaton}.  If the<code>startTerm</code> is    *  provided then the returned enum will only accept terms    *  {@code> startTerm}, but you still must call    *  next() first to get to the first term.  Note that the    *  provided<code>startTerm</code> must be accepted by    *  the automaton.    *    *<p><b>NOTE</b>: the returned TermsEnum cannot    * seek</p>. */
 DECL|method|intersect
 specifier|public
 name|TermsEnum

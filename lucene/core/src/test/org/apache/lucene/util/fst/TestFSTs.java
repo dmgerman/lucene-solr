@@ -7584,7 +7584,7 @@ name|close
 argument_list|()
 expr_stmt|;
 block|}
-comment|/**    * Test state expansion (array format) on close-to-root states. Creates    * synthetic input that has one expanded state on each level.    *    * @see "https://issues.apache.org/jira/browse/LUCENE-2933"    */
+comment|/**    * Test state expansion (array format) on close-to-root states. Creates    * synthetic input that has one expanded state on each level.    *    * @see<a href="https://issues.apache.org/jira/browse/LUCENE-2933">LUCENE-2933</a>    */
 DECL|method|testExpandedCloseToRoot
 specifier|public
 name|void

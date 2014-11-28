@@ -1168,7 +1168,7 @@ expr_stmt|;
 block|}
 block|}
 block|}
-comment|/**     * Flushes a bigram token to output from our buffer     * This is the normal case, e.g. ABC -> AB BC    */
+comment|/**     * Flushes a bigram token to output from our buffer     * This is the normal case, e.g. ABC -&gt; AB BC    */
 DECL|method|flushBigram
 specifier|private
 name|void

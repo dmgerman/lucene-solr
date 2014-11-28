@@ -113,7 +113,7 @@ import|;
 end_import
 
 begin_comment
-comment|/** Tests that> 64k affixes actually works and doesnt overflow some internal int */
+comment|/** Tests that&gt; 64k affixes actually works and doesnt overflow some internal int */
 end_comment
 
 begin_class

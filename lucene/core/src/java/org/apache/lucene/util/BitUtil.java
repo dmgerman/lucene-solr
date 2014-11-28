@@ -560,7 +560,7 @@ comment|// the offsets of the next set bit, that array could be
 comment|// packed inside a 32 bit integer (8 4 bit numbers).  That
 comment|// should be faster than accessing an array for each index, and
 comment|// the total array size is kept smaller (256*sizeof(int))=1K
-comment|/***** the python code that generated bitlist   def bits2int(val):   arr=0   for shift in range(8,0,-1):     if val& 0x80:       arr = (arr<< 4) | shift     val = val<< 1   return arr    def int_table():     tbl = [ hex(bits2int(val)).strip('L') for val in range(256) ]     return ','.join(tbl)   ******/
+comment|/* the python code that generated bitlist   def bits2int(val):   arr=0   for shift in range(8,0,-1):     if val& 0x80:       arr = (arr<< 4) | shift     val = val<< 1   return arr    def int_table():     tbl = [ hex(bits2int(val)).strip('L') for val in range(256) ]     return ','.join(tbl)   */
 DECL|field|BIT_LISTS
 specifier|private
 specifier|static
@@ -1109,7 +1109,7 @@ literal|0xFF
 index|]
 return|;
 block|}
-comment|/** Return the list of bits which are set in b encoded as followed:    *<code>(i>>> (4 * n))& 0x0F</code> is the offset of the n-th set bit of    * the given byte plus one, or 0 if there are n or less bits set in the given    * byte. For example<code>bitList(12)</code> returns 0x43:<ul>    *<li><code>0x43& 0x0F</code> is 3, meaning the the first bit set is at offset 3-1 = 2,</li>    *<li><code>(0x43>>> 4)& 0x0F</code> is 4, meaning there is a second bit set at offset 4-1=3,</li>    *<li><code>(0x43>>> 8)& 0x0F</code> is 0, meaning there is no more bit set in this byte.</li>    *</ul>*/
+comment|/** Return the list of bits which are set in b encoded as followed:    * {@code (i>>> (4 * n))& 0x0F} is the offset of the n-th set bit of    * the given byte plus one, or 0 if there are n or less bits set in the given    * byte. For example<code>bitList(12)</code> returns 0x43:<ul>    *<li>{@code 0x43& 0x0F} is 3, meaning the the first bit set is at offset 3-1 = 2,</li>    *<li>{@code (0x43>>> 4)& 0x0F} is 4, meaning there is a second bit set at offset 4-1=3,</li>    *<li>{@code (0x43>>> 8)& 0x0F} is 0, meaning there is no more bit set in this byte.</li>    *</ul>*/
 DECL|method|bitList
 specifier|public
 specifier|static
@@ -1333,7 +1333,7 @@ return|return
 name|popCount
 return|;
 block|}
-comment|/** Returns the popcount or cardinality of A& ~B.    *  Neither array is modified. */
+comment|/** Returns the popcount or cardinality of {@code A& ~B}.    *  Neither array is modified. */
 DECL|method|pop_andnot
 specifier|public
 specifier|static

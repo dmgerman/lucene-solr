@@ -493,7 +493,7 @@ name|interval
 expr_stmt|;
 block|}
 block|}
-comment|/** Sets an index term when docFreq>= docFreqThresh, or    *  every interval terms.  This should reduce seek time    *  to high docFreq terms.  */
+comment|/** Sets an index term when docFreq&gt;= docFreqThresh, or    *  every interval terms.  This should reduce seek time    *  to high docFreq terms.  */
 DECL|class|EveryNOrDocFreqTermSelector
 specifier|public
 specifier|static

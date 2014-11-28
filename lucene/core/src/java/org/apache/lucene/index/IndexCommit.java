@@ -222,7 +222,7 @@ name|long
 name|getGeneration
 parameter_list|()
 function_decl|;
-comment|/** Returns userData, previously passed to {@link    *  IndexWriter#setCommitData(Map)} for this commit.  Map is    *  String -> String. */
+comment|/** Returns userData, previously passed to {@link    *  IndexWriter#setCommitData(Map)} for this commit.  Map is    *  {@code String -> String}. */
 DECL|method|getUserData
 specifier|public
 specifier|abstract

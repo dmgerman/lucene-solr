@@ -292,7 +292,7 @@ name|maxLevels
 argument_list|)
 throw|;
 block|}
-comment|/** Any more than this and there's no point (double lat& lon are the same). */
+comment|/** Any more than this and there's no point (double lat and lon are the same). */
 DECL|method|getMaxLevelsPossible
 specifier|public
 specifier|static

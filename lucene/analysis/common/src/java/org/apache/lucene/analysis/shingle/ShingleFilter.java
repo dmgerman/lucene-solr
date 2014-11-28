@@ -171,7 +171,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  *<p>A ShingleFilter constructs shingles (token n-grams) from a token stream.  * In other words, it creates combinations of tokens as a single token.  *  *<p>For example, the sentence "please divide this sentence into shingles"  * might be tokenized into shingles "please divide", "divide this",  * "this sentence", "sentence into", and "into shingles".  *  *<p>This filter handles position increments> 1 by inserting filler tokens  * (tokens with termtext "_"). It does not handle a position increment of 0.  */
+comment|/**  *<p>A ShingleFilter constructs shingles (token n-grams) from a token stream.  * In other words, it creates combinations of tokens as a single token.  *  *<p>For example, the sentence "please divide this sentence into shingles"  * might be tokenized into shingles "please divide", "divide this",  * "this sentence", "sentence into", and "into shingles".  *  *<p>This filter handles position increments&gt; 1 by inserting filler tokens  * (tokens with termtext "_"). It does not handle a position increment of 0.  */
 end_comment
 
 begin_class
@@ -1039,7 +1039,7 @@ specifier|private
 name|boolean
 name|exhausted
 decl_stmt|;
-comment|/**    *<p>Get the next token from the input stream.    *<p>If the next token has<code>positionIncrement> 1</code>,    *<code>positionIncrement - 1</code> {@link #fillerToken}s are    * inserted first.    * @param target Where to put the new token; if null, a new instance is created.    * @return On success, the populated token; null otherwise    * @throws IOException if the input stream has a problem    */
+comment|/**    *<p>Get the next token from the input stream.    *<p>If the next token has<code>positionIncrement&gt; 1</code>,    *<code>positionIncrement - 1</code> {@link #fillerToken}s are    * inserted first.    * @param target Where to put the new token; if null, a new instance is created.    * @return On success, the populated token; null otherwise    * @throws IOException if the input stream has a problem    */
 DECL|method|getNextToken
 specifier|private
 name|InputWindowToken

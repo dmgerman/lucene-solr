@@ -1283,7 +1283,7 @@ return|return
 literal|false
 return|;
 block|}
-comment|/** Rehash via MurmurHash.      *       *<p>The implementation is based on the      * finalization step from Austin Appleby's      *<code>MurmurHash3</code>.      *       * @see "http://sites.google.com/site/murmurhash/"      */
+comment|/** Rehash via MurmurHash.      *       *<p>The implementation is based on the      * finalization step from Austin Appleby's      *<code>MurmurHash3</code>.      *       * @see<a href="http://sites.google.com/site/murmurhash/">http://sites.google.com/site/murmurhash/</a>      */
 DECL|method|rehash
 specifier|private
 specifier|static

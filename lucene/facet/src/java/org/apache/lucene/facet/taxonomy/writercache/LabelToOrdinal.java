@@ -37,7 +37,7 @@ comment|/*  * Licensed to the Apache Software Foundation (ASF) under one or more
 end_comment
 
 begin_comment
-comment|/**  * Abstract class for storing Label->Ordinal mappings in a taxonomy.   *   * @lucene.experimental  */
+comment|/**  * Abstract class for storing Label-&gt;Ordinal mappings in a taxonomy.   *   * @lucene.experimental  */
 end_comment
 
 begin_class

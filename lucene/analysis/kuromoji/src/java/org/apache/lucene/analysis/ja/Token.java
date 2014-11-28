@@ -458,7 +458,7 @@ return|return
 name|position
 return|;
 block|}
-comment|/**    * Set the position length (in tokens) of this token.  For normal    * tokens this is 1; for compound tokens it's> 1.    */
+comment|/**    * Set the position length (in tokens) of this token.  For normal    * tokens this is 1; for compound tokens it's&gt; 1.    */
 DECL|method|setPositionLength
 specifier|public
 name|void
@@ -475,7 +475,7 @@ operator|=
 name|positionLength
 expr_stmt|;
 block|}
-comment|/**    * Get the length (in tokens) of this token.  For normal    * tokens this is 1; for compound tokens it's> 1.    * @return position length of token    */
+comment|/**    * Get the length (in tokens) of this token.  For normal    * tokens this is 1; for compound tokens it's&gt; 1.    * @return position length of token    */
 DECL|method|getPositionLength
 specifier|public
 name|int

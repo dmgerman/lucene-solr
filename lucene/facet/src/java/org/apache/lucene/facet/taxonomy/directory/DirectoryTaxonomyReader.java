@@ -1371,7 +1371,7 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
-comment|/** Returns ordinal -> label mapping, up to the provided    *  max ordinal or number of ordinals, whichever is    *  smaller. */
+comment|/** Returns ordinal -&gt; label mapping, up to the provided    *  max ordinal or number of ordinals, whichever is    *  smaller. */
 DECL|method|toString
 specifier|public
 name|String

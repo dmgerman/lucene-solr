@@ -110,7 +110,7 @@ specifier|final
 name|String
 name|dictionary
 decl_stmt|;
-comment|/**    * Builds an analyzer with an explicit dictionary resource.    *     * @param dictionaryResource A constant specifying which dictionary to choose. The    * dictionary resource must be named<code>morfologik/dictionaries/{dictionaryResource}.dict</code>    * and have an associated<code>.info</code> metadata file. See the Morfologik project    * for details.    *     * @see "http://morfologik.blogspot.com/"    */
+comment|/**    * Builds an analyzer with an explicit dictionary resource.    *     * @param dictionaryResource A constant specifying which dictionary to choose. The    * dictionary resource must be named<code>morfologik/dictionaries/{dictionaryResource}.dict</code>    * and have an associated<code>.info</code> metadata file. See the Morfologik project    * for details.    *     * @see<a href="http://morfologik.blogspot.com/">http://morfologik.blogspot.com/</a>    */
 DECL|method|MorfologikAnalyzer
 specifier|public
 name|MorfologikAnalyzer

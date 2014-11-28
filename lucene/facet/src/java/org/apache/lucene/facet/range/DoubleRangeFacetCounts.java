@@ -271,7 +271,7 @@ import|;
 end_import
 
 begin_comment
-comment|/** {@link Facets} implementation that computes counts for  *  dynamic double ranges from a provided {@link  *  ValueSource}, using {@link FunctionValues#doubleVal}.  Use  *  this for dimensions that change in real-time (e.g. a  *  relative time based dimension like "Past day", "Past 2  *  days", etc.) or that change for each request (e.g.  *  distance from the user's location, "< 1 km", "< 2 km",  *  etc.).  *  *<p> If you had indexed your field using {@link  *  FloatDocValuesField} then pass {@link FloatFieldSource}  *  as the {@link ValueSource}; if you used {@link  *  DoubleDocValuesField} then pass {@link  *  DoubleFieldSource} (this is the default used when you  *  pass just a the field name).  *  *  @lucene.experimental */
+comment|/** {@link Facets} implementation that computes counts for  *  dynamic double ranges from a provided {@link  *  ValueSource}, using {@link FunctionValues#doubleVal}.  Use  *  this for dimensions that change in real-time (e.g. a  *  relative time based dimension like "Past day", "Past 2  *  days", etc.) or that change for each request (e.g.  *  distance from the user's location, "&lt; 1 km", "&lt; 2 km",  *  etc.).  *  *<p> If you had indexed your field using {@link  *  FloatDocValuesField} then pass {@link FloatFieldSource}  *  as the {@link ValueSource}; if you used {@link  *  DoubleDocValuesField} then pass {@link  *  DoubleFieldSource} (this is the default used when you  *  pass just a the field name).  *  *  @lucene.experimental */
 end_comment
 
 begin_class

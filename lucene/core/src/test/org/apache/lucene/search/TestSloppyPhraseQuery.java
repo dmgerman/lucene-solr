@@ -426,7 +426,7 @@ argument_list|(
 literal|"H H H H"
 argument_list|)
 decl_stmt|;
-comment|/**    * Test DOC_4 and QUERY_4.    * QUERY_4 has a fuzzy (len=1) match to DOC_4, so all slop values> 0 should succeed.    * But only the 3rd sequence of A's in DOC_4 will do.    */
+comment|/**    * Test DOC_4 and QUERY_4.    * QUERY_4 has a fuzzy (len=1) match to DOC_4, so all slop values&gt; 0 should succeed.    * But only the 3rd sequence of A's in DOC_4 will do.    */
 DECL|method|testDoc4_Query4_All_Slops_Should_match
 specifier|public
 name|void

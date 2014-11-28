@@ -190,7 +190,7 @@ name|setResult
 argument_list|()
 return|;
 block|}
-comment|/** Seeks to smallest term that's>= target. */
+comment|/** Seeks to smallest term that's&gt;= target. */
 DECL|method|seekCeil
 specifier|public
 name|InputOutput
@@ -227,7 +227,7 @@ name|setResult
 argument_list|()
 return|;
 block|}
-comment|/** Seeks to biggest term that's<= target. */
+comment|/** Seeks to biggest term that's&lt;= target. */
 DECL|method|seekFloor
 specifier|public
 name|InputOutput

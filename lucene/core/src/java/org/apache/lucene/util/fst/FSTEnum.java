@@ -478,7 +478,7 @@ expr_stmt|;
 block|}
 comment|// TODO: should we return a status here (SEEK_FOUND / SEEK_NOT_FOUND /
 comment|// SEEK_END)?  saves the eq check above?
-comment|/** Seeks to smallest term that's>= target. */
+comment|/** Seeks to smallest term that's&gt;= target. */
 DECL|method|doSeekCeil
 specifier|protected
 name|void
@@ -1117,7 +1117,7 @@ block|}
 block|}
 comment|// TODO: should we return a status here (SEEK_FOUND / SEEK_NOT_FOUND /
 comment|// SEEK_END)?  saves the eq check above?
-comment|/** Seeks to largest term that's<= target. */
+comment|/** Seeks to largest term that's&lt;= target. */
 DECL|method|doSeekFloor
 specifier|protected
 name|void

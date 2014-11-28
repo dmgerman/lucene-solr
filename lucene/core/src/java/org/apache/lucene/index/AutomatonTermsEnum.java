@@ -1272,7 +1272,7 @@ return|return
 literal|false
 return|;
 block|}
-comment|/**    * Attempts to backtrack thru the string after encountering a dead end    * at some given position. Returns false if no more possible strings     * can match.    *     * @param position current position in the input String    * @return position>=0 if more possible solutions exist for the DFA    */
+comment|/**    * Attempts to backtrack thru the string after encountering a dead end    * at some given position. Returns false if no more possible strings     * can match.    *     * @param position current position in the input String    * @return {@code position>= 0} if more possible solutions exist for the DFA    */
 DECL|method|backtrack
 specifier|private
 name|int

@@ -90,7 +90,7 @@ return|;
 block|}
 comment|// Arguably this belongs here and not on Cell
 comment|//public SpatialRelation getShapeRel()
-comment|/**    * Gets the next cell that is>= {@code fromCell}, compared using non-leaf bytes. If it returns null then    * the iterator is exhausted.    */
+comment|/**    * Gets the next cell that is&gt;= {@code fromCell}, compared using non-leaf bytes. If it returns null then    * the iterator is exhausted.    */
 DECL|method|nextFrom
 specifier|public
 name|Cell

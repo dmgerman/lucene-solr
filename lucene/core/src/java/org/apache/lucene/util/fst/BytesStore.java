@@ -368,7 +368,7 @@ operator|.
 name|length
 expr_stmt|;
 block|}
-comment|/** Absolute write byte; you must ensure dest is< max    *  position written so far. */
+comment|/** Absolute write byte; you must ensure dest is&lt; max    *  position written so far. */
 DECL|method|writeByte
 specifier|public
 name|void

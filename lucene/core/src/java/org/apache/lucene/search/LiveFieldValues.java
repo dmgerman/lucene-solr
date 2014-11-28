@@ -418,7 +418,7 @@ block|}
 block|}
 block|}
 block|}
-comment|/** This is called when the id/value was already flushed& opened    *  in an NRT IndexSearcher.  You must implement this to    *  go look up the value (eg, via doc values, field cache,    *  stored fields, etc.). */
+comment|/** This is called when the id/value was already flushed and opened    *  in an NRT IndexSearcher.  You must implement this to    *  go look up the value (eg, via doc values, field cache,    *  stored fields, etc.). */
 DECL|method|lookupFromSearcher
 specifier|protected
 specifier|abstract

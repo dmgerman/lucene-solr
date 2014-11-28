@@ -115,7 +115,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * This listener listens for every field configuration request and assign a  * {@link ConfigurationKeys#BOOST} to the  * equivalent {@link FieldConfig} based on a defined map: fieldName -> boostValue stored in  * {@link ConfigurationKeys#FIELD_BOOST_MAP}.  *   * @see ConfigurationKeys#FIELD_BOOST_MAP  * @see ConfigurationKeys#BOOST  * @see FieldConfig  * @see FieldConfigListener  */
+comment|/**  * This listener listens for every field configuration request and assign a  * {@link ConfigurationKeys#BOOST} to the  * equivalent {@link FieldConfig} based on a defined map: fieldName -&gt; boostValue stored in  * {@link ConfigurationKeys#FIELD_BOOST_MAP}.  *   * @see ConfigurationKeys#FIELD_BOOST_MAP  * @see ConfigurationKeys#BOOST  * @see FieldConfig  * @see FieldConfigListener  */
 end_comment
 
 begin_class

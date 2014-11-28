@@ -685,7 +685,7 @@ name|boolean
 name|canPublish
 parameter_list|()
 function_decl|;
-comment|/**      * Publishes the flushed segment, segment private deletes (if any) and its      * associated global delete (if present) to IndexWriter.  The actual      * publishing operation is synced on IW -> BDS so that the {@link SegmentInfo}'s      * delete generation is always GlobalPacket_deleteGeneration + 1      */
+comment|/**      * Publishes the flushed segment, segment private deletes (if any) and its      * associated global delete (if present) to IndexWriter.  The actual      * publishing operation is synced on {@code IW -> BDS} so that the {@link SegmentInfo}'s      * delete generation is always GlobalPacket_deleteGeneration + 1      */
 DECL|method|publishFlushedSegment
 specifier|protected
 specifier|final

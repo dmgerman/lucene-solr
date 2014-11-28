@@ -151,7 +151,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Simplistic compression for array of unsigned long values.  * Each value is>= 0 and<= a specified maximum value.  The  * values are stored as packed ints, with each value  * consuming a fixed number of bits.  *  * @lucene.internal  */
+comment|/**  * Simplistic compression for array of unsigned long values.  * Each value is {@code>= 0} and {@code<=} a specified maximum value.  The  * values are stored as packed ints, with each value  * consuming a fixed number of bits.  *  * @lucene.internal  */
 end_comment
 
 begin_class

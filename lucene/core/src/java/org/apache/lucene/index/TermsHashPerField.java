@@ -453,7 +453,7 @@ name|int
 index|[]
 name|sortedTermIDs
 decl_stmt|;
-comment|/** Collapse the hash table& sort in-place; also sets    * this.sortedTermIDs to the results */
+comment|/** Collapse the hash table and sort in-place; also sets    * this.sortedTermIDs to the results */
 DECL|method|sortPostings
 specifier|public
 name|int

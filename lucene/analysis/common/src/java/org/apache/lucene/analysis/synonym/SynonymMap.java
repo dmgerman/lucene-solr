@@ -1093,7 +1093,7 @@ return|return
 name|wordCount
 return|;
 block|}
-comment|/**      * Add a phrase->phrase synonym mapping.      * Phrases are character sequences where words are      * separated with character zero (U+0000).  Empty words      * (two U+0000s in a row) are not allowed in the input nor      * the output!      *       * @param input input phrase      * @param output output phrase      * @param includeOrig true if the original should be included      */
+comment|/**      * Add a phrase-&gt;phrase synonym mapping.      * Phrases are character sequences where words are      * separated with character zero (U+0000).  Empty words      * (two U+0000s in a row) are not allowed in the input nor      * the output!      *       * @param input input phrase      * @param output output phrase      * @param includeOrig true if the original should be included      */
 DECL|method|add
 specifier|public
 name|void

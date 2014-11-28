@@ -471,7 +471,7 @@ argument_list|()
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**    * This is for testing CommonGramsQueryFilter which outputs a set of tokens    * optimized for querying with only one token at each position, either a    * unigram or a bigram It also will not return a token for the final position    * if the final word is already in the preceding bigram Example:(three    * tokens/positions in)    * "foo bar the"=>"foo:1|bar:2,bar-the:2|the:3=> "foo" "bar-the" (2 tokens    * out)    *     */
+comment|/**    * This is for testing CommonGramsQueryFilter which outputs a set of tokens    * optimized for querying with only one token at each position, either a    * unigram or a bigram It also will not return a token for the final position    * if the final word is already in the preceding bigram Example:(three    * tokens/positions in)    * "foo bar the"=&gt;"foo:1|bar:2,bar-the:2|the:3=&gt; "foo" "bar-the" (2 tokens    * out)    *     */
 DECL|method|testCommonGramsQueryFilter
 specifier|public
 name|void

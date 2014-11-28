@@ -147,7 +147,7 @@ specifier|abstract
 class|class
 name|FieldIndexEnum
 block|{
-comment|/** Seeks to "largest" indexed term that's<=      *  term; returns file pointer index (into the main      *  terms index file) for that term */
+comment|/** Seeks to "largest" indexed term that's&lt;=      *  term; returns file pointer index (into the main      *  terms index file) for that term */
 DECL|method|seek
 specifier|public
 specifier|abstract

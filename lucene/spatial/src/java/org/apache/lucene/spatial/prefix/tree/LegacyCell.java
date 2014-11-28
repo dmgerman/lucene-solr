@@ -101,7 +101,7 @@ import|;
 end_import
 
 begin_comment
-comment|/** The base for the original two SPT's: Geohash& Quad. Don't subclass this for new SPTs.  * @lucene.internal */
+comment|/** The base for the original two SPT's: Geohash and Quad. Don't subclass this for new SPTs.  * @lucene.internal */
 end_comment
 
 begin_comment
@@ -630,7 +630,7 @@ argument_list|>
 name|getSubCells
 parameter_list|()
 function_decl|;
-comment|/**    * {@link #getSubCells()}.size() -- usually a constant. Should be>=2    */
+comment|/**    * {@link #getSubCells()}.size() -- usually a constant. Should be&gt;=2    */
 DECL|method|getSubCellsSize
 specifier|public
 specifier|abstract

@@ -186,7 +186,7 @@ specifier|public
 name|Token
 parameter_list|()
 block|{   }
-comment|/** Constructs a Token with the given term text, and start    *& end offsets.  The type defaults to "word."    *<b>NOTE:</b> for better indexing speed you should    *  instead use the char[] termBuffer methods to set the    *  term text.    *  @param text term text    *  @param start start offset in the source text    *  @param end end offset in the source text    */
+comment|/** Constructs a Token with the given term text, start    *  and end offsets.  The type defaults to "word."    *<b>NOTE:</b> for better indexing speed you should    *  instead use the char[] termBuffer methods to set the    *  term text.    *  @param text term text    *  @param start start offset in the source text    *  @param end end offset in the source text    */
 DECL|method|Token
 specifier|public
 name|Token

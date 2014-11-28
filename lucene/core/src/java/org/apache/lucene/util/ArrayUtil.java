@@ -423,7 +423,7 @@ name|result
 return|;
 block|}
 comment|/*   END APACHE HARMONY CODE   */
-comment|/** Returns an array size>= minTargetSize, generally    *  over-allocating exponentially to achieve amortized    *  linear-time cost as the array grows.    *    *  NOTE: this was originally borrowed from Python 2.4.2    *  listobject.c sources (attribution in LICENSE.txt), but    *  has now been substantially changed based on    *  discussions from java-dev thread with subject "Dynamic    *  array reallocation algorithms", started on Jan 12    *  2010.    *    * @param minTargetSize Minimum required value to be returned.    * @param bytesPerElement Bytes used by each element of    * the array.  See constants in {@link RamUsageEstimator}.    *    * @lucene.internal    */
+comment|/** Returns an array size&gt;= minTargetSize, generally    *  over-allocating exponentially to achieve amortized    *  linear-time cost as the array grows.    *    *  NOTE: this was originally borrowed from Python 2.4.2    *  listobject.c sources (attribution in LICENSE.txt), but    *  has now been substantially changed based on    *  discussions from java-dev thread with subject "Dynamic    *  array reallocation algorithms", started on Jan 12    *  2010.    *    * @param minTargetSize Minimum required value to be returned.    * @param bytesPerElement Bytes used by each element of    * the array.  See constants in {@link RamUsageEstimator}.    *    * @lucene.internal    */
 DECL|method|oversize
 specifier|public
 specifier|static

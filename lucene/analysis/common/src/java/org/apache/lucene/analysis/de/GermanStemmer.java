@@ -717,7 +717,7 @@ block|}
 block|}
 block|}
 block|}
-comment|/**      * Do some substitutions for the term to reduce overstemming:      *      * - Substitute Umlauts with their corresponding vowel: Ã¤Ã¶Ã¼ -> aou,      *   "Ã" is substituted by "ss"      * - Substitute a second char of a pair of equal characters with      *   an asterisk: ?? -> ?*      * - Substitute some common character combinations with a token:      *   sch/ch/ei/ie/ig/st -> $/Â§/%/&/#/!      */
+comment|/**      * Do some substitutions for the term to reduce overstemming:      *      * - Substitute Umlauts with their corresponding vowel:{@code Ã¤Ã¶Ã¼ -> aou},      *   "Ã" is substituted by "ss"      * - Substitute a second char of a pair of equal characters with      *   an asterisk: {@code ?? -> ?*}      * - Substitute some common character combinations with a token:      *   {@code sch/ch/ei/ie/ig/st -> $/Â§/%/&/#/!}      */
 DECL|method|substitute
 specifier|private
 name|void

@@ -3507,7 +3507,7 @@ return|return
 name|frame
 return|;
 block|}
-comment|/** Load frame for target arc(node) on fst, so that         *  arc.label>= label and !fsa.reject(arc.label) */
+comment|/** Load frame for target arc(node) on fst, so that         *  arc.label&gt;= label and !fsa.reject(arc.label) */
 DECL|method|loadCeilFrame
 name|Frame
 name|loadCeilFrame

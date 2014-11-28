@@ -465,7 +465,7 @@ name|length
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**    * Converts characters above ASCII to their ASCII equivalents.  For example,    * accents are removed from accented characters.    * @param input     The characters to fold    * @param inputPos  Index of the first character to fold    * @param output    The result of the folding. Should be of size>= {@code length * 4}.    * @param outputPos Index of output where to put the result of the folding    * @param length    The number of characters to fold    * @return length of output    * @lucene.internal    */
+comment|/**    * Converts characters above ASCII to their ASCII equivalents.  For example,    * accents are removed from accented characters.    * @param input     The characters to fold    * @param inputPos  Index of the first character to fold    * @param output    The result of the folding. Should be of size&gt;= {@code length * 4}.    * @param outputPos Index of output where to put the result of the folding    * @param length    The number of characters to fold    * @return length of output    * @lucene.internal    */
 DECL|method|foldToASCII
 specifier|public
 specifier|static

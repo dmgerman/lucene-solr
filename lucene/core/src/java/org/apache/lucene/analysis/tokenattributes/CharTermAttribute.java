@@ -73,7 +73,7 @@ index|[]
 name|buffer
 parameter_list|()
 function_decl|;
-comment|/** Grows the termBuffer to at least size newSize, preserving the    *  existing content.    *  @param newSize minimum size of the new termBuffer    *  @return newly created termBuffer with length>= newSize    */
+comment|/** Grows the termBuffer to at least size newSize, preserving the    *  existing content.    *  @param newSize minimum size of the new termBuffer    *  @return newly created termBuffer with {@code length>= newSize}    */
 DECL|method|resizeBuffer
 specifier|public
 name|char

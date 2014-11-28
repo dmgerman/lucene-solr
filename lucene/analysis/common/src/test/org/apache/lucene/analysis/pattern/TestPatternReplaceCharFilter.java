@@ -1586,7 +1586,7 @@ name|p
 argument_list|)
 return|;
 block|}
-comment|/**    * A demonstration of how backtracking regular expressions can lead to relatively     * easy DoS attacks.    *     * @see "http://swtch.com/~rsc/regexp/regexp1.html"    */
+comment|/**    * A demonstration of how backtracking regular expressions can lead to relatively     * easy DoS attacks.    *     * @see<a href="http://swtch.com/~rsc/regexp/regexp1.html">"http://swtch.com/~rsc/regexp/regexp1.html"</a>    */
 annotation|@
 name|Ignore
 DECL|method|testNastyPattern

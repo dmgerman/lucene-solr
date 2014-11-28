@@ -276,7 +276,7 @@ operator|*
 name|distErrPct
 return|;
 block|}
-comment|/**    * Gets the error distance that specifies how precise the query shape is. This    * looks at {@link #getDistErr()}, {@link #getDistErrPct()}, and {@code    * defaultDistErrPct}.    * @param defaultDistErrPct 0 to 0.5    * @return>= 0    */
+comment|/**    * Gets the error distance that specifies how precise the query shape is. This    * looks at {@link #getDistErr()}, {@link #getDistErrPct()}, and {@code    * defaultDistErrPct}.    * @param defaultDistErrPct 0 to 0.5    * @return {@code>= 0}    */
 DECL|method|resolveDistErr
 specifier|public
 name|double
@@ -458,7 +458,7 @@ operator|=
 name|distErrPct
 expr_stmt|;
 block|}
-comment|/**    * The acceptable error of the shape.  This effectively inflates the    * size of the shape but should not shrink it.    *    * @return>= 0    */
+comment|/**    * The acceptable error of the shape.  This effectively inflates the    * size of the shape but should not shrink it.    *    * @return {@code>= 0}    */
 DECL|method|getDistErr
 specifier|public
 name|Double

@@ -643,7 +643,7 @@ comment|// to disk.
 end_comment
 
 begin_comment
-comment|/** Stores terms& postings (docs, positions, payloads) in  *  RAM, using an FST.  *  *<p>Note that this codec implements advance as a linear  * scan!  This means if you store large fields in here,  * queries that rely on advance will (AND BooleanQuery,  * PhraseQuery) will be relatively slow!  *  * @lucene.experimental */
+comment|/** Stores terms and postings (docs, positions, payloads) in  *  RAM, using an FST.  *  *<p>Note that this codec implements advance as a linear  * scan!  This means if you store large fields in here,  * queries that rely on advance will (AND BooleanQuery,  * PhraseQuery) will be relatively slow!  *  * @lucene.experimental */
 end_comment
 
 begin_comment

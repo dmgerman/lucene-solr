@@ -1292,7 +1292,7 @@ return|return
 name|numHits
 return|;
 block|}
-comment|/**    * Return true if, with search& results traversing, docs should be retrieved.    */
+comment|/**    * Return true if, with search and results traversing, docs should be retrieved.    */
 DECL|method|withRetrieve
 specifier|public
 specifier|abstract

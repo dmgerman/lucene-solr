@@ -522,7 +522,7 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
-comment|/**    * A PrefixTree pruning optimization gone bad, applicable when optimize=true.    * See<a href="https://issues.apache.org/jira/browse/LUCENE-4770>LUCENE-4770</a>.    */
+comment|/**    * A PrefixTree pruning optimization gone bad, applicable when optimize=true.    * See<a href="https://issues.apache.org/jira/browse/LUCENE-4770">LUCENE-4770</a>.    */
 annotation|@
 name|Test
 DECL|method|testBadPrefixTreePrune

@@ -115,7 +115,7 @@ specifier|final
 name|boolean
 name|splitOnNumerics
 decl_stmt|;
-comment|/**    * If true, causes trailing "'s" to be removed for each subword. (Defaults to true)    *<p/>    * "O'Neil's" => "O", "Neil"    */
+comment|/**    * If true, causes trailing "'s" to be removed for each subword. (Defaults to true)    *<p/>    * "O'Neil's" =&gt; "O", "Neil"    */
 DECL|field|stemEnglishPossessive
 specifier|final
 name|boolean
@@ -242,7 +242,7 @@ operator|=
 name|tab
 expr_stmt|;
 block|}
-comment|/**    * Create a new WordDelimiterIterator operating with the supplied rules.    *     * @param charTypeTable table containing character types    * @param splitOnCaseChange if true, causes "PowerShot" to be two tokens; ("Power-Shot" remains two parts regards)    * @param splitOnNumerics if true, causes "j2se" to be three tokens; "j" "2" "se"    * @param stemEnglishPossessive if true, causes trailing "'s" to be removed for each subword: "O'Neil's" => "O", "Neil"    */
+comment|/**    * Create a new WordDelimiterIterator operating with the supplied rules.    *     * @param charTypeTable table containing character types    * @param splitOnCaseChange if true, causes "PowerShot" to be two tokens; ("Power-Shot" remains two parts regards)    * @param splitOnNumerics if true, causes "j2se" to be three tokens; "j" "2" "se"    * @param stemEnglishPossessive if true, causes trailing "'s" to be removed for each subword: "O'Neil's" =&gt; "O", "Neil"    */
 DECL|method|WordDelimiterIterator
 name|WordDelimiterIterator
 parameter_list|(

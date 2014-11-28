@@ -787,7 +787,7 @@ name|toString
 parameter_list|()
 function_decl|;
 comment|// ------------------------------ Norm handling ------------------------------
-comment|/** Norm -> document length map. */
+comment|/** Norm to document length map. */
 DECL|field|NORM_TABLE
 specifier|private
 specifier|static

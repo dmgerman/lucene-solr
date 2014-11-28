@@ -1607,7 +1607,7 @@ return|return
 name|s
 return|;
 block|}
-comment|/** Decrement efindex and setBitForIndex and    * shift curHighLong so that it does not contain the high bits after setBitForIndex.    * @return true iff efindex still>= 0    */
+comment|/** Decrement efindex and setBitForIndex and    * shift curHighLong so that it does not contain the high bits after setBitForIndex.    * @return true iff efindex still {@code>= 0}    */
 DECL|method|toBeforeCurrentHighBit
 specifier|private
 name|boolean

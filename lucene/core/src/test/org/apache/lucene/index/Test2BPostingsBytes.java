@@ -215,7 +215,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Test indexes 2B docs with 65k freqs each,   * so you get> Integer.MAX_VALUE postings data for the term  * @lucene.experimental  */
+comment|/**  * Test indexes 2B docs with 65k freqs each,   * so you get&gt; Integer.MAX_VALUE postings data for the term  * @lucene.experimental  */
 end_comment
 
 begin_class

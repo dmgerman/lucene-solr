@@ -2908,7 +2908,7 @@ name|toString
 argument_list|()
 return|;
 block|}
-comment|/**    * Parses a specific affix rule putting the result into the provided affix map    *     * @param affixes Map where the result of the parsing will be put    * @param header Header line of the affix rule    * @param reader BufferedReader to read the content of the rule from    * @param conditionPattern {@link String#format(String, Object...)} pattern to be used to generate the condition regex    *                         pattern    * @param seenPatterns map from condition -> index of patterns, for deduplication.    * @throws IOException Can be thrown while reading the rule    */
+comment|/**    * Parses a specific affix rule putting the result into the provided affix map    *     * @param affixes Map where the result of the parsing will be put    * @param header Header line of the affix rule    * @param reader BufferedReader to read the content of the rule from    * @param conditionPattern {@link String#format(String, Object...)} pattern to be used to generate the condition regex    *                         pattern    * @param seenPatterns map from condition -&gt; index of patterns, for deduplication.    * @throws IOException Can be thrown while reading the rule    */
 DECL|method|parseAffix
 specifier|private
 name|void

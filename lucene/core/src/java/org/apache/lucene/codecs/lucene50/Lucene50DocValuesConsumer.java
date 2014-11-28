@@ -518,7 +518,7 @@ name|BINARY_PREFIX_COMPRESSED
 init|=
 literal|2
 decl_stmt|;
-comment|/** Standard storage for sorted set values with 1 level of indirection:    *  docId -> address -> ord. */
+comment|/** Standard storage for sorted set values with 1 level of indirection:    *  {@code docId -> address -> ord}. */
 DECL|field|SORTED_WITH_ADDRESSES
 specifier|public
 specifier|static
@@ -528,7 +528,7 @@ name|SORTED_WITH_ADDRESSES
 init|=
 literal|0
 decl_stmt|;
-comment|/** Single-valued sorted set values, encoded as sorted values, so no level    *  of indirection: docId -> ord. */
+comment|/** Single-valued sorted set values, encoded as sorted values, so no level    *  of indirection: {@code docId -> ord}. */
 DECL|field|SORTED_SINGLE_VALUED
 specifier|public
 specifier|static

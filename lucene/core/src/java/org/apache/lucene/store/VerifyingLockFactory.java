@@ -47,7 +47,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * A {@link LockFactory} that wraps another {@link  * LockFactory} and verifies that each lock obtain/release  * is "correct" (never results in two processes holding the  * lock at the same time).  It does this by contacting an  * external server ({@link LockVerifyServer}) to assert that  * at most one process holds the lock at a time.  To use  * this, you should also run {@link LockVerifyServer} on the  * host& port matching what you pass to the constructor.  *  * @see LockVerifyServer  * @see LockStressTest  */
+comment|/**  * A {@link LockFactory} that wraps another {@link  * LockFactory} and verifies that each lock obtain/release  * is "correct" (never results in two processes holding the  * lock at the same time).  It does this by contacting an  * external server ({@link LockVerifyServer}) to assert that  * at most one process holds the lock at a time.  To use  * this, you should also run {@link LockVerifyServer} on the  * host and port matching what you pass to the constructor.  *  * @see LockVerifyServer  * @see LockStressTest  */
 end_comment
 
 begin_class

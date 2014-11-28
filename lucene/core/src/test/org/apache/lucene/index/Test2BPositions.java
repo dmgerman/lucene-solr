@@ -249,7 +249,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Test indexes ~82M docs with 52 positions each, so you get> Integer.MAX_VALUE positions  * @lucene.experimental  */
+comment|/**  * Test indexes ~82M docs with 52 positions each, so you get&gt; Integer.MAX_VALUE positions  * @lucene.experimental  */
 end_comment
 
 begin_class

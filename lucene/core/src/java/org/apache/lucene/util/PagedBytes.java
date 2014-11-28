@@ -920,7 +920,7 @@ break|break;
 block|}
 block|}
 block|}
-comment|/** Copy BytesRef in, setting BytesRef out to the result.    * Do not use this if you will use freeze(true).    * This only supports bytes.length<= blockSize */
+comment|/** Copy BytesRef in, setting BytesRef out to the result.    * Do not use this if you will use freeze(true).    * This only supports bytes.length&lt;= blockSize */
 DECL|method|copy
 specifier|public
 name|void

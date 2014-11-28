@@ -275,7 +275,7 @@ return|return
 name|field
 return|;
 block|}
-comment|/** Subclass& override if you change the encoding. */
+comment|/** Subclass and override if you change the encoding. */
 DECL|method|decode
 specifier|protected
 name|void

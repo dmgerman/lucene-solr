@@ -273,7 +273,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Tests primitive queries (ie: that rewrite to themselves) to  * insure they match the expected set of docs, and that the score of each  * match is equal to the value of the scores explanation.  *  *<p>  * The assumption is that if all of the "primitive" queries work well,  * then anything that rewrites to a primitive will work well also.  *</p>  *  * @see "Subclasses for actual tests"  */
+comment|/**  * Tests primitive queries (ie: that rewrite to themselves) to  * insure they match the expected set of docs, and that the score of each  * match is equal to the value of the scores explanation.  *  *<p>  * The assumption is that if all of the "primitive" queries work well,  * then anything that rewrites to a primitive will work well also.  *</p>  *  */
 end_comment
 
 begin_class

@@ -57,7 +57,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**   * Retrieves an instance previously written by {@link DirectWriter}   *<p>  * Example usage:  *<pre class="prettyprint">  *   int bitsPerValue = 100;  *   IndexInput in = dir.openInput("packed", IOContext.DEFAULT);  *   LongValues values = DirectReader.getInstance(in.randomAccessSlice(start, end), bitsPerValue);  *   for (int i = 0; i< numValues; i++) {  *     long value = values.get(i);  *   }  *</pre>  * @see DirectWriter  */
+comment|/**   * Retrieves an instance previously written by {@link DirectWriter}   *<p>  * Example usage:  *<pre class="prettyprint">  *   int bitsPerValue = 100;  *   IndexInput in = dir.openInput("packed", IOContext.DEFAULT);  *   LongValues values = DirectReader.getInstance(in.randomAccessSlice(start, end), bitsPerValue);  *   for (int i = 0; i&lt; numValues; i++) {  *     long value = values.get(i);  *   }  *</pre>  * @see DirectWriter  */
 end_comment
 
 begin_class

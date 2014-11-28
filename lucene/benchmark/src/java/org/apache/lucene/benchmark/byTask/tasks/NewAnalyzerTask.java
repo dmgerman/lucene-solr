@@ -474,7 +474,7 @@ return|return
 literal|1
 return|;
 block|}
-comment|/**    * Set the params (analyzerName only),  Comma-separate list of Analyzer class names.  If the Analyzer lives in    * org.apache.lucene.analysis, the name can be shortened by dropping the o.a.l.a part of the Fully Qualified Class Name.    *<p/>    * Analyzer names may also refer to previously defined AnalyzerFactory's.    *<p/>    * Example Declaration: {"NewAnalyzer" NewAnalyzer(WhitespaceAnalyzer, SimpleAnalyzer, StopAnalyzer, standard.StandardAnalyzer)>    *<p/>    * Example AnalyzerFactory usage:    *<pre>    * -AnalyzerFactory(name:'whitespace tokenized',WhitespaceTokenizer)    * -NewAnalyzer('whitespace tokenized')    *</pre>    * @param params analyzerClassName, or empty for the StandardAnalyzer    */
+comment|/**    * Set the params (analyzerName only),  Comma-separate list of Analyzer class names.  If the Analyzer lives in    * org.apache.lucene.analysis, the name can be shortened by dropping the o.a.l.a part of the Fully Qualified Class Name.    *<p/>    * Analyzer names may also refer to previously defined AnalyzerFactory's.    *<p/>    * Example Declaration: {"NewAnalyzer" NewAnalyzer(WhitespaceAnalyzer, SimpleAnalyzer, StopAnalyzer, standard.StandardAnalyzer)&gt;    *<p/>    * Example AnalyzerFactory usage:    *<pre>    * -AnalyzerFactory(name:'whitespace tokenized',WhitespaceTokenizer)    * -NewAnalyzer('whitespace tokenized')    *</pre>    * @param params analyzerClassName, or empty for the StandardAnalyzer    */
 annotation|@
 name|Override
 DECL|method|setParams

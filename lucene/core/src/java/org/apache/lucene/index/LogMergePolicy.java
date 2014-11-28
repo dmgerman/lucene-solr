@@ -121,7 +121,7 @@ name|Integer
 operator|.
 name|MAX_VALUE
 decl_stmt|;
-comment|/** Default noCFSRatio.  If a merge's size is>= 10% of    *  the index, then we disable compound file for it.    *  @see MergePolicy#setNoCFSRatio */
+comment|/** Default noCFSRatio.  If a merge's size is {@code>= 10%} of    *  the index, then we disable compound file for it.    *  @see MergePolicy#setNoCFSRatio */
 DECL|field|DEFAULT_NO_CFS_RATIO
 specifier|public
 specifier|static
@@ -265,7 +265,7 @@ return|return
 name|mergeFactor
 return|;
 block|}
-comment|/** Determines how often segment indices are merged by    * addDocument().  With smaller values, less RAM is used    * while indexing, and searches are    * faster, but indexing speed is slower.  With larger    * values, more RAM is used during indexing, and while    * searches is slower, indexing is    * faster.  Thus larger values (> 10) are best for batch    * index creation, and smaller values (< 10) for indices    * that are interactively maintained. */
+comment|/** Determines how often segment indices are merged by    * addDocument().  With smaller values, less RAM is used    * while indexing, and searches are    * faster, but indexing speed is slower.  With larger    * values, more RAM is used during indexing, and while    * searches is slower, indexing is    * faster.  Thus larger values ({@code> 10}) are best for batch    * index creation, and smaller values ({@code< 10}) for indices    * that are interactively maintained. */
 DECL|method|setMergeFactor
 specifier|public
 name|void

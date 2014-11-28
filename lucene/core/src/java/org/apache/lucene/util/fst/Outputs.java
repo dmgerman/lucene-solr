@@ -88,7 +88,7 @@ comment|// TODO: maybe change this API to allow for re-use of the
 comment|// output instances -- this is an insane amount of garbage
 comment|// (new object per byte/char/int) if eg used during
 comment|// analysis
-comment|/** Eg common("foobar", "food") -> "foo" */
+comment|/** Eg common("foobar", "food") -&gt; "foo" */
 DECL|method|common
 specifier|public
 specifier|abstract
@@ -102,7 +102,7 @@ name|T
 name|output2
 parameter_list|)
 function_decl|;
-comment|/** Eg subtract("foobar", "foo") -> "bar" */
+comment|/** Eg subtract("foobar", "foo") -&gt; "bar" */
 DECL|method|subtract
 specifier|public
 specifier|abstract
@@ -116,7 +116,7 @@ name|T
 name|inc
 parameter_list|)
 function_decl|;
-comment|/** Eg add("foo", "bar") -> "foobar" */
+comment|/** Eg add("foo", "bar") -&gt; "foobar" */
 DECL|method|add
 specifier|public
 specifier|abstract

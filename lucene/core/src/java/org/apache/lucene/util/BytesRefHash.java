@@ -1000,7 +1000,7 @@ name|hashSize
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**    * Adds a new {@link BytesRef}    *     * @param bytes    *          the bytes to hash    * @return the id the given bytes are hashed if there was no mapping for the    *         given bytes, otherwise<code>(-(id)-1)</code>. This guarantees    *         that the return value will always be&gt;= 0 if the given bytes    *         haven't been hashed before.    *     * @throws MaxBytesLengthExceededException    *           if the given bytes are> 2 +    *           {@link ByteBlockPool#BYTE_BLOCK_SIZE}    */
+comment|/**    * Adds a new {@link BytesRef}    *     * @param bytes    *          the bytes to hash    * @return the id the given bytes are hashed if there was no mapping for the    *         given bytes, otherwise<code>(-(id)-1)</code>. This guarantees    *         that the return value will always be&gt;= 0 if the given bytes    *         haven't been hashed before.    *     * @throws MaxBytesLengthExceededException    *           if the given bytes are {@code> 2 +}    *           {@link ByteBlockPool#BYTE_BLOCK_SIZE}    */
 DECL|method|add
 specifier|public
 name|int
@@ -1674,7 +1674,7 @@ literal|1
 operator|)
 return|;
 block|}
-comment|/**    * Called when hash is too small (> 50% occupied) or too large (< 20%    * occupied).    */
+comment|/**    * Called when hash is too small ({@code> 50%} occupied) or too large ({@code< 20%}    * occupied).    */
 DECL|method|rehash
 specifier|private
 name|void

@@ -203,7 +203,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Test indexes ~82M docs with 26 terms each, so you get> Integer.MAX_VALUE terms/docs pairs  * @lucene.experimental  */
+comment|/**  * Test indexes ~82M docs with 26 terms each, so you get&gt; Integer.MAX_VALUE terms/docs pairs  * @lucene.experimental  */
 end_comment
 
 begin_class

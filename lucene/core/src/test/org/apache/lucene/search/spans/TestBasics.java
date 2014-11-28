@@ -7064,7 +7064,7 @@ do|do
 block|{
 name|hasMore
 operator|=
-name|skipToAccoringToJavaDocs
+name|skipToAccordingToJavaDocs
 argument_list|(
 name|s1
 argument_list|,
@@ -7113,11 +7113,11 @@ name|hasMore
 condition|)
 do|;
 block|}
-comment|/** Skips to the first match beyond the current, whose document number is    * greater than or equal to<i>target</i>.<p>Returns true iff there is such    * a match.<p>Behaves as if written:<pre>    *   boolean skipTo(int target) {    *     do {    *       if (!next())    *       return false;    *     } while (target> doc());    *     return true;    *   }    *</pre>    */
-DECL|method|skipToAccoringToJavaDocs
+comment|/** Skips to the first match beyond the current, whose document number is    * greater than or equal to<i>target</i>.<p>Returns true iff there is such    * a match.<p>Behaves as if written:<pre>    *   boolean skipTo(int target) {    *     do {    *       if (!next())    *       return false;    *     } while (target&gt; doc());    *     return true;    *   }    *</pre>    */
+DECL|method|skipToAccordingToJavaDocs
 specifier|private
 name|boolean
-name|skipToAccoringToJavaDocs
+name|skipToAccordingToJavaDocs
 parameter_list|(
 name|Spans
 name|s

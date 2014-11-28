@@ -580,7 +580,7 @@ name|MAX_VALUE
 argument_list|)
 expr_stmt|;
 block|}
-comment|/** Inverts only terms starting w/ prefix, and only terms    *  whose docFreq (not taking deletions into account) is    *<=  maxTermDocFreq */
+comment|/** Inverts only terms starting w/ prefix, and only terms    *  whose docFreq (not taking deletions into account) is    *&lt;=  maxTermDocFreq */
 DECL|method|DocTermOrds
 specifier|public
 name|DocTermOrds
@@ -619,7 +619,7 @@ name|DEFAULT_INDEX_INTERVAL_BITS
 argument_list|)
 expr_stmt|;
 block|}
-comment|/** Inverts only terms starting w/ prefix, and only terms    *  whose docFreq (not taking deletions into account) is    *<=  maxTermDocFreq, with a custom indexing interval    *  (default is every 128nd term). */
+comment|/** Inverts only terms starting w/ prefix, and only terms    *  whose docFreq (not taking deletions into account) is    *&lt;=  maxTermDocFreq, with a custom indexing interval    *  (default is every 128nd term). */
 DECL|method|DocTermOrds
 specifier|public
 name|DocTermOrds
