@@ -374,12 +374,12 @@ argument_list|(
 literal|"Highlighting requires offsets from the TokenStream."
 argument_list|)
 throw|;
-comment|//TokenStreamFromTermPositionVector can handle a lack of offsets if there are positions. But
+comment|//TokenStreamFromTermVector can handle a lack of offsets if there are positions. But
 comment|// highlighters require offsets, so we insist here.
 block|}
 return|return
 operator|new
-name|TokenStreamFromTermPositionVector
+name|TokenStreamFromTermVector
 argument_list|(
 name|tpv
 argument_list|)

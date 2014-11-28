@@ -180,16 +180,12 @@ begin_comment
 comment|/**  * TokenStream created from a term vector field. The term vector requires positions and/or offsets (either). If you  * want payloads add PayloadAttributeImpl (as you would normally) but don't assume the attribute is already added just  * because you know the term vector has payloads.  This TokenStream supports an efficient {@link #reset()}, so there's  * no need to wrap with a caching impl.  *<p />  * The implementation will create an array of tokens indexed by token position.  As long as there aren't massive jumps  * in positions, this is fine.  And it assumes there aren't large numbers of tokens at the same position, since it adds  * them to a linked-list per position in O(N^2) complexity.  When there aren't positions in the term vector, it divides  * the startOffset by 8 to use as a temporary substitute. In that case, tokens with the same startOffset will occupy  * the same final position; otherwise tokens become adjacent.  *  * @lucene.internal  */
 end_comment
 
-begin_comment
-comment|//TODO rename to TokenStreamFromTermVector
-end_comment
-
 begin_class
-DECL|class|TokenStreamFromTermPositionVector
+DECL|class|TokenStreamFromTermVector
 specifier|public
 specifier|final
 class|class
-name|TokenStreamFromTermPositionVector
+name|TokenStreamFromTermVector
 extends|extends
 name|TokenStream
 block|{
@@ -240,9 +236,9 @@ init|=
 literal|null
 decl_stmt|;
 comment|/**    * Constructor.    *     * @param vector Terms that contains the data for    *        creating the TokenStream. Must have positions and/or offsets.    */
-DECL|method|TokenStreamFromTermPositionVector
+DECL|method|TokenStreamFromTermVector
 specifier|public
-name|TokenStreamFromTermPositionVector
+name|TokenStreamFromTermVector
 parameter_list|(
 name|Terms
 name|vector
