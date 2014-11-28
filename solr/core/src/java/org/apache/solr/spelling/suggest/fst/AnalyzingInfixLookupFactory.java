@@ -456,13 +456,6 @@ return|return
 operator|new
 name|AnalyzingInfixSuggester
 argument_list|(
-name|core
-operator|.
-name|getSolrConfig
-argument_list|()
-operator|.
-name|luceneMatchVersion
-argument_list|,
 name|FSDirectory
 operator|.
 name|open

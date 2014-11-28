@@ -78,12 +78,12 @@ name|standard
 operator|.
 name|processors
 operator|.
-name|GroupQueryNodeProcessor
+name|BooleanQuery2ModifierNodeProcessor
 import|;
 end_import
 
 begin_comment
-comment|/**  * A {@link BooleanModifierNode} has the same behaviour as  * {@link ModifierQueryNode}, it only indicates that this modifier was added by  * {@link GroupQueryNodeProcessor} and not by the user.<br/>  *   * @see ModifierQueryNode  */
+comment|/**  * A {@link BooleanModifierNode} has the same behaviour as  * {@link ModifierQueryNode}, it only indicates that this modifier was added by  * {@link BooleanQuery2ModifierNodeProcessor} and not by the user.<br/>  *   * @see ModifierQueryNode  */
 end_comment
 
 begin_class

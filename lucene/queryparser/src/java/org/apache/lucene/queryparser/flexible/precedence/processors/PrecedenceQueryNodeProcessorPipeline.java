@@ -76,26 +76,6 @@ name|standard
 operator|.
 name|processors
 operator|.
-name|GroupQueryNodeProcessor
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|queryparser
-operator|.
-name|flexible
-operator|.
-name|standard
-operator|.
-name|processors
-operator|.
 name|StandardQueryNodeProcessorPipeline
 import|;
 end_import
@@ -121,7 +101,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  *<p>  * This processor pipeline extends {@link StandardQueryNodeProcessorPipeline} and enables  * boolean precedence on it.  *</p>  *<p>  * EXPERT: the precedence is enabled by removing {@link GroupQueryNodeProcessor} from the  * {@link StandardQueryNodeProcessorPipeline} and appending {@link BooleanModifiersQueryNodeProcessor}  * to the pipeline.  *</p>  *   * @see PrecedenceQueryParser  *  @see StandardQueryNodeProcessorPipeline  */
+comment|/**  *<p>  * This processor pipeline extends {@link StandardQueryNodeProcessorPipeline} and enables  * boolean precedence on it.  *</p>  *<p>  * EXPERT: the precedence is enabled by removing {@link BooleanQuery2ModifierNodeProcessor} from the  * {@link StandardQueryNodeProcessorPipeline} and appending {@link BooleanModifiersQueryNodeProcessor}  * to the pipeline.  *</p>  *   * @see PrecedenceQueryParser  *  @see StandardQueryNodeProcessorPipeline  */
 end_comment
 
 begin_class

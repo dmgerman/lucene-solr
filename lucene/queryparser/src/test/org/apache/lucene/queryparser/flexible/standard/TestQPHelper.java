@@ -4779,7 +4779,7 @@ argument_list|)
 expr_stmt|;
 name|qp
 operator|.
-name|setDateResolution
+name|setDateResolutionMap
 argument_list|(
 name|dateRes
 argument_list|)
@@ -4812,7 +4812,7 @@ argument_list|)
 expr_stmt|;
 name|qp
 operator|.
-name|setDateResolution
+name|setDateResolutionMap
 argument_list|(
 name|dateRes
 argument_list|)

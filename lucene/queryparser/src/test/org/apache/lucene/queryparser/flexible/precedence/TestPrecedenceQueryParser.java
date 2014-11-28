@@ -2857,7 +2857,7 @@ argument_list|)
 expr_stmt|;
 name|qp
 operator|.
-name|setDateResolution
+name|setDateResolutionMap
 argument_list|(
 name|fieldMap
 argument_list|)
@@ -2890,7 +2890,7 @@ argument_list|)
 expr_stmt|;
 name|qp
 operator|.
-name|setDateResolution
+name|setDateResolutionMap
 argument_list|(
 name|fieldMap
 argument_list|)

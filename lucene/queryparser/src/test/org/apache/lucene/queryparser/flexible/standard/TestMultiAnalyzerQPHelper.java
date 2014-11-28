@@ -569,7 +569,7 @@ expr_stmt|;
 comment|// phrase after changing default slop
 name|qp
 operator|.
-name|setDefaultPhraseSlop
+name|setPhraseSlop
 argument_list|(
 literal|99
 argument_list|)
@@ -610,7 +610,7 @@ argument_list|)
 expr_stmt|;
 name|qp
 operator|.
-name|setDefaultPhraseSlop
+name|setPhraseSlop
 argument_list|(
 literal|0
 argument_list|)

@@ -87,18 +87,6 @@ specifier|final
 name|String
 name|dictionaryResource
 decl_stmt|;
-comment|/** Schema attribute. */
-annotation|@
-name|Deprecated
-DECL|field|DICTIONARY_SCHEMA_ATTRIBUTE
-specifier|public
-specifier|static
-specifier|final
-name|String
-name|DICTIONARY_SCHEMA_ATTRIBUTE
-init|=
-literal|"dictionary"
-decl_stmt|;
 comment|/** Dictionary resource */
 DECL|field|DICTIONARY_RESOURCE_ATTRIBUTE
 specifier|public
@@ -128,48 +116,6 @@ argument_list|(
 name|args
 argument_list|)
 expr_stmt|;
-comment|// Be specific about no-longer-supported dictionary attribute.
-name|String
-name|dictionaryName
-init|=
-name|get
-argument_list|(
-name|args
-argument_list|,
-name|DICTIONARY_SCHEMA_ATTRIBUTE
-argument_list|)
-decl_stmt|;
-if|if
-condition|(
-name|dictionaryName
-operator|!=
-literal|null
-operator|&&
-operator|!
-name|dictionaryName
-operator|.
-name|isEmpty
-argument_list|()
-condition|)
-block|{
-throw|throw
-operator|new
-name|IllegalArgumentException
-argument_list|(
-literal|"The "
-operator|+
-name|DICTIONARY_SCHEMA_ATTRIBUTE
-operator|+
-literal|" attribute is no "
-operator|+
-literal|"longer supported (Morfologik now offers one unified Polish dictionary): "
-operator|+
-name|dictionaryName
-operator|+
-literal|". Perhaps you wanted to use 'dictionary-resource' attribute instead?"
-argument_list|)
-throw|;
-block|}
 name|dictionaryResource
 operator|=
 name|get

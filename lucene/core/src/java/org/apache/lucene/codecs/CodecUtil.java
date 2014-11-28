@@ -1422,57 +1422,6 @@ argument_list|)
 throw|;
 block|}
 block|}
-comment|/**    * Checks that the stream is positioned at the end, and throws exception    * if it is not.     * @deprecated Use {@link #checkFooter} instead, this should only used for files without checksums     */
-annotation|@
-name|Deprecated
-DECL|method|checkEOF
-specifier|public
-specifier|static
-name|void
-name|checkEOF
-parameter_list|(
-name|IndexInput
-name|in
-parameter_list|)
-throws|throws
-name|IOException
-block|{
-if|if
-condition|(
-name|in
-operator|.
-name|getFilePointer
-argument_list|()
-operator|!=
-name|in
-operator|.
-name|length
-argument_list|()
-condition|)
-block|{
-throw|throw
-operator|new
-name|CorruptIndexException
-argument_list|(
-literal|"did not read all bytes from file: read "
-operator|+
-name|in
-operator|.
-name|getFilePointer
-argument_list|()
-operator|+
-literal|" vs size "
-operator|+
-name|in
-operator|.
-name|length
-argument_list|()
-argument_list|,
-name|in
-argument_list|)
-throw|;
-block|}
-block|}
 comment|/**     * Clones the provided input, reads all bytes from the file, and calls {@link #checkFooter}     *<p>    * Note that this method may be slow, as it must process the entire file.    * If you just need to extract the checksum value, call {@link #retrieveChecksum}.    */
 DECL|method|checksumEntireFile
 specifier|public

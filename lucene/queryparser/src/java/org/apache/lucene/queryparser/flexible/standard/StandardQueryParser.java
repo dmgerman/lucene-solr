@@ -999,31 +999,6 @@ name|TIMEZONE
 argument_list|)
 return|;
 block|}
-comment|/**    * Sets the default slop for phrases. If zero, then exact phrase matches are    * required. Default value is zero.    *     * @deprecated renamed to {@link #setPhraseSlop(int)}    */
-annotation|@
-name|Deprecated
-DECL|method|setDefaultPhraseSlop
-specifier|public
-name|void
-name|setDefaultPhraseSlop
-parameter_list|(
-name|int
-name|defaultPhraseSlop
-parameter_list|)
-block|{
-name|getQueryConfigHandler
-argument_list|()
-operator|.
-name|set
-argument_list|(
-name|ConfigurationKeys
-operator|.
-name|PHRASE_SLOP
-argument_list|,
-name|defaultPhraseSlop
-argument_list|)
-expr_stmt|;
-block|}
 comment|/**    * Sets the default slop for phrases. If zero, then exact phrase matches are    * required. Default value is zero.    */
 annotation|@
 name|Override
@@ -1423,31 +1398,6 @@ operator|.
 name|DATE_RESOLUTION
 argument_list|)
 return|;
-block|}
-comment|/**    * Sets the {@link Resolution} used for each field    *     * @param dateRes a collection that maps a field to its {@link Resolution}    *     * @deprecated this method was renamed to {@link #setDateResolutionMap(Map)}     */
-annotation|@
-name|Deprecated
-DECL|method|setDateResolution
-specifier|public
-name|void
-name|setDateResolution
-parameter_list|(
-name|Map
-argument_list|<
-name|CharSequence
-argument_list|,
-name|DateTools
-operator|.
-name|Resolution
-argument_list|>
-name|dateRes
-parameter_list|)
-block|{
-name|setDateResolutionMap
-argument_list|(
-name|dateRes
-argument_list|)
-expr_stmt|;
 block|}
 comment|/**    * Returns the field to {@link Resolution} map used to normalize each date field.    *     * @return the field to {@link Resolution} map    */
 DECL|method|getDateResolutionMap

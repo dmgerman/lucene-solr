@@ -42,6 +42,20 @@ name|lucene
 operator|.
 name|analysis
 operator|.
+name|CannedTokenStream
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|analysis
+operator|.
 name|MockTokenizer
 import|;
 end_import
@@ -105,7 +119,7 @@ operator|new
 name|PrefixAwareTokenFilter
 argument_list|(
 operator|new
-name|SingleTokenTokenStream
+name|CannedTokenStream
 argument_list|(
 name|createToken
 argument_list|(
@@ -118,7 +132,7 @@ argument_list|)
 argument_list|)
 argument_list|,
 operator|new
-name|SingleTokenTokenStream
+name|CannedTokenStream
 argument_list|(
 name|createToken
 argument_list|(
@@ -195,7 +209,7 @@ operator|new
 name|PrefixAwareTokenFilter
 argument_list|(
 operator|new
-name|SingleTokenTokenStream
+name|CannedTokenStream
 argument_list|(
 name|createToken
 argument_list|(
@@ -218,7 +232,7 @@ argument_list|(
 name|ts
 argument_list|,
 operator|new
-name|SingleTokenTokenStream
+name|CannedTokenStream
 argument_list|(
 name|createToken
 argument_list|(

@@ -275,20 +275,6 @@ specifier|final
 class|class
 name|IOUtils
 block|{
-comment|/**    * UTF-8 {@link Charset} instance to prevent repeated    * {@link Charset#forName(String)} lookups    * @deprecated Use {@link StandardCharsets#UTF_8} instead.    */
-annotation|@
-name|Deprecated
-DECL|field|CHARSET_UTF_8
-specifier|public
-specifier|static
-specifier|final
-name|Charset
-name|CHARSET_UTF_8
-init|=
-name|StandardCharsets
-operator|.
-name|UTF_8
-decl_stmt|;
 comment|/**    * UTF-8 charset string.    *<p>Where possible, use {@link StandardCharsets#UTF_8} instead,    * as using the String constant may slow things down.    * @see StandardCharsets#UTF_8    */
 DECL|field|UTF_8
 specifier|public
