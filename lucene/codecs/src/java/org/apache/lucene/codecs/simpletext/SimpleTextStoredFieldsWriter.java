@@ -183,7 +183,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Writes plain-text stored fields.  *<p>  *<b><font color="red">FOR RECREATIONAL USE ONLY</font></B>  * @lucene.experimental  */
+comment|/**  * Writes plain-text stored fields.  *<p>  *<b>FOR RECREATIONAL USE ONLY</b>  * @lucene.experimental  */
 end_comment
 
 begin_class

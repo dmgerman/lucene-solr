@@ -281,7 +281,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * plaintext field infos format  *<p>  *<b><font color="red">FOR RECREATIONAL USE ONLY</font></B>  * @lucene.experimental  */
+comment|/**  * plaintext field infos format  *<p>  *<b>FOR RECREATIONAL USE ONLY</b>  * @lucene.experimental  */
 end_comment
 
 begin_class

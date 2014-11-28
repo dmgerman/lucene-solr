@@ -169,7 +169,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * plain-text norms format.  *<p>  *<b><font color="red">FOR RECREATIONAL USE ONLY</font></B>  *   * @lucene.experimental  */
+comment|/**  * plain-text norms format.  *<p>  *<b>FOR RECREATIONAL USE ONLY</b>  *   * @lucene.experimental  */
 end_comment
 
 begin_class
@@ -231,7 +231,7 @@ name|state
 argument_list|)
 return|;
 block|}
-comment|/**    * Reads plain-text norms.    *<p>    *<b><font color="red">FOR RECREATIONAL USE ONLY</font></B>    *     * @lucene.experimental    */
+comment|/**    * Reads plain-text norms.    *<p>    *<b>FOR RECREATIONAL USE ONLY</b>    *     * @lucene.experimental    */
 DECL|class|SimpleTextNormsProducer
 specifier|public
 specifier|static
@@ -381,7 +381,7 @@ literal|")"
 return|;
 block|}
 block|}
-comment|/**    * Writes plain-text norms.    *<p>    *<b><font color="red">FOR RECREATIONAL USE ONLY</font></B>    *     * @lucene.experimental    */
+comment|/**    * Writes plain-text norms.    *<p>    *<b>FOR RECREATIONAL USE ONLY</b>    *     * @lucene.experimental    */
 DECL|class|SimpleTextNormsConsumer
 specifier|public
 specifier|static

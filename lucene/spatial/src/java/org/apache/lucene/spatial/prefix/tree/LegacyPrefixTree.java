@@ -101,7 +101,7 @@ import|;
 end_import
 
 begin_comment
-comment|/** The base for the original two SPT's: Geohash& Quad. Don't subclass this for new SPTs.  * @lucene.internal */
+comment|/** The base for the original two SPT's: Geohash and Quad. Don't subclass this for new SPTs.  * @lucene.internal */
 end_comment
 
 begin_class
