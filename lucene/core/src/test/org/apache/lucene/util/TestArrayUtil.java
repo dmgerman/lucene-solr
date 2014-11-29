@@ -313,9 +313,9 @@ name|rnd
 operator|.
 name|nextInt
 argument_list|(
-name|Integer
+name|ArrayUtil
 operator|.
-name|MAX_VALUE
+name|MAX_ARRAY_LENGTH
 argument_list|)
 decl_stmt|;
 specifier|final
