@@ -161,7 +161,11 @@ DECL|field|znodeVersion
 specifier|private
 name|int
 name|znodeVersion
+init|=
+operator|-
+literal|1
 decl_stmt|;
+comment|// sentinel
 DECL|field|name
 specifier|private
 specifier|final

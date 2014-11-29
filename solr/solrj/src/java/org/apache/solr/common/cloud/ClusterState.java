@@ -191,6 +191,7 @@ argument_list|)
 decl_stmt|;
 DECL|field|znodeVersion
 specifier|private
+specifier|final
 name|Integer
 name|znodeVersion
 decl_stmt|;
