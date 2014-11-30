@@ -1143,7 +1143,7 @@ name|boundaryScanner
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**    * Return a phrase {@link org.apache.lucene.search.highlight.Highlighter} appropriate for this field.    * @param query The current Query    * @param fieldName The name of the field    * @param request The current SolrQueryRequest    * @param tokenStream document text CachingTokenStream    * @throws IOException If there is a low-level I/O error.    */
+comment|/**    * Return a phrase {@link org.apache.lucene.search.highlight.Highlighter} appropriate for this field.    * @param query The current Query    * @param fieldName The name of the field    * @param request The current SolrQueryRequest    * @param tokenStream document text tokenStream that implements reset() efficiently (e.g. CachingTokenFilter).    *                    If it's used, call reset() first.    * @throws IOException If there is a low-level I/O error.    */
 DECL|method|getPhraseHighlighter
 specifier|protected
 name|Highlighter
@@ -1158,7 +1158,7 @@ parameter_list|,
 name|SolrQueryRequest
 name|request
 parameter_list|,
-name|CachingTokenFilter
+name|TokenStream
 name|tokenStream
 parameter_list|)
 throws|throws
@@ -1175,10 +1175,6 @@ decl_stmt|;
 name|Highlighter
 name|highlighter
 init|=
-literal|null
-decl_stmt|;
-name|highlighter
-operator|=
 operator|new
 name|Highlighter
 argument_list|(
@@ -1207,7 +1203,7 @@ argument_list|,
 name|request
 argument_list|)
 argument_list|)
-expr_stmt|;
+decl_stmt|;
 name|highlighter
 operator|.
 name|setTextFragmenter
@@ -1294,7 +1290,7 @@ return|return
 name|highlighter
 return|;
 block|}
-comment|/**    * Return a {@link org.apache.lucene.search.highlight.QueryScorer} suitable for this Query and field.    * @param query The current query    * @param tokenStream document text CachingTokenStream    * @param fieldName The name of the field    * @param request The SolrQueryRequest    */
+comment|/**    * Return a {@link org.apache.lucene.search.highlight.QueryScorer} suitable for this Query and field.    * @param query The current query    * @param tokenStream document text tokenStream that implements reset() efficiently (e.g. CachingTokenFilter).    *                    If it's used, call reset() first.    * @param fieldName The name of the field    * @param request The SolrQueryRequest    */
 DECL|method|getSpanQueryScorer
 specifier|private
 name|QueryScorer
@@ -1332,7 +1328,7 @@ argument_list|,
 literal|false
 argument_list|)
 decl_stmt|;
-name|Boolean
+name|boolean
 name|highlightMultiTerm
 init|=
 name|request
@@ -1349,18 +1345,6 @@ argument_list|,
 literal|true
 argument_list|)
 decl_stmt|;
-if|if
-condition|(
-name|highlightMultiTerm
-operator|==
-literal|null
-condition|)
-block|{
-name|highlightMultiTerm
-operator|=
-literal|false
-expr_stmt|;
-block|}
 name|QueryScorer
 name|scorer
 decl_stmt|;
@@ -2424,6 +2408,11 @@ return|return
 name|termPosOff
 return|;
 block|}
+annotation|@
+name|SuppressWarnings
+argument_list|(
+literal|"unchecked"
+argument_list|)
 DECL|method|doHighlightingByHighlighter
 specifier|private
 name|void
@@ -2488,8 +2477,6 @@ name|schemaField
 operator|!=
 literal|null
 operator|&&
-operator|(
-operator|(
 name|schemaField
 operator|.
 name|getType
@@ -2504,25 +2491,6 @@ operator|.
 name|schema
 operator|.
 name|TrieField
-operator|)
-operator|||
-operator|(
-name|schemaField
-operator|.
-name|getType
-argument_list|()
-operator|instanceof
-name|org
-operator|.
-name|apache
-operator|.
-name|solr
-operator|.
-name|schema
-operator|.
-name|TrieDateField
-operator|)
-operator|)
 condition|)
 return|return;
 comment|// END: Hack
@@ -2565,24 +2533,17 @@ decl_stmt|;
 if|if
 condition|(
 name|allFields
-operator|!=
+operator|==
 literal|null
-operator|&&
+operator|||
 name|allFields
 operator|.
-name|size
+name|isEmpty
 argument_list|()
-operator|==
-literal|0
 condition|)
 return|return;
 comment|// No explicit contract that getFields returns != null,
 comment|// although currently it can't.
-name|TokenStream
-name|tstream
-init|=
-literal|null
-decl_stmt|;
 name|int
 name|numFragments
 init|=
@@ -2625,7 +2586,7 @@ name|tots
 init|=
 literal|null
 decl_stmt|;
-comment|// to be non-null iff we're using TermOffsets optimization
+comment|// to be non-null iff we're using TermOffsets optimization (multi-valued)
 name|TokenStream
 name|tvStream
 init|=
@@ -2648,6 +2609,18 @@ condition|(
 name|tvStream
 operator|!=
 literal|null
+operator|&&
+name|schemaField
+operator|.
+name|multiValued
+argument_list|()
+operator|&&
+name|isActuallyMultiValued
+argument_list|(
+name|allFields
+argument_list|,
+name|fieldName
+argument_list|)
 condition|)
 block|{
 name|tots
@@ -2762,6 +2735,9 @@ operator|.
 name|stringValue
 argument_list|()
 decl_stmt|;
+name|TokenStream
+name|tstream
+decl_stmt|;
 if|if
 condition|(
 name|tots
@@ -2769,7 +2745,7 @@ operator|!=
 literal|null
 condition|)
 block|{
-comment|// if we're using TermOffsets optimization, then get the next
+comment|// if we're using TermOffsets optimization (multi-valued field with term vectors), then get the next
 comment|// field value's TokenStream (i.e. get field j's TokenStream) from tots:
 name|tstream
 operator|=
@@ -2783,6 +2759,20 @@ name|length
 argument_list|()
 argument_list|)
 expr_stmt|;
+block|}
+elseif|else
+if|if
+condition|(
+name|tvStream
+operator|!=
+literal|null
+condition|)
+block|{
+name|tstream
+operator|=
+name|tvStream
+expr_stmt|;
+comment|// single-valued with term vectors
 block|}
 else|else
 block|{
@@ -2842,6 +2832,21 @@ argument_list|)
 argument_list|)
 condition|)
 block|{
+comment|// We're going to call getPhraseHighlighter and it might consume the tokenStream. If it does, the tokenStream
+comment|// needs to implement reset() efficiently.
+comment|//If the tokenStream is right from the term vectors, then CachingTokenFilter is unnecessary.
+comment|//  It should be okay if OffsetLimit won't get applied in this case.
+specifier|final
+name|TokenStream
+name|tempTokenStream
+decl_stmt|;
+if|if
+condition|(
+name|tstream
+operator|!=
+name|tvStream
+condition|)
+block|{
 if|if
 condition|(
 name|maxCharsToAnalyze
@@ -2849,7 +2854,7 @@ operator|<
 literal|0
 condition|)
 block|{
-name|tstream
+name|tempTokenStream
 operator|=
 operator|new
 name|CachingTokenFilter
@@ -2860,7 +2865,7 @@ expr_stmt|;
 block|}
 else|else
 block|{
-name|tstream
+name|tempTokenStream
 operator|=
 operator|new
 name|CachingTokenFilter
@@ -2875,6 +2880,14 @@ argument_list|)
 argument_list|)
 expr_stmt|;
 block|}
+block|}
+else|else
+block|{
+name|tempTokenStream
+operator|=
+name|tstream
+expr_stmt|;
+block|}
 comment|// get highlighter
 name|highlighter
 operator|=
@@ -2886,18 +2899,33 @@ name|fieldName
 argument_list|,
 name|req
 argument_list|,
+name|tempTokenStream
+argument_list|)
+expr_stmt|;
+comment|// if the CachingTokenFilter was consumed then use it going forward.
+if|if
+condition|(
+name|tempTokenStream
+operator|instanceof
+name|CachingTokenFilter
+operator|&&
+operator|(
 operator|(
 name|CachingTokenFilter
 operator|)
-name|tstream
-argument_list|)
-expr_stmt|;
-comment|// after highlighter initialization, reset tstream since construction of highlighter already used it
-name|tstream
+name|tempTokenStream
+operator|)
 operator|.
-name|reset
+name|isCached
 argument_list|()
+condition|)
+block|{
+name|tstream
+operator|=
+name|tempTokenStream
 expr_stmt|;
+block|}
+comment|//tstream.reset(); not needed; getBestTextFragments will reset it.
 block|}
 else|else
 block|{
@@ -2963,19 +2991,10 @@ argument_list|)
 decl_stmt|;
 for|for
 control|(
-name|int
-name|k
-init|=
-literal|0
-init|;
-name|k
-operator|<
+name|TextFragment
+name|bestTextFragment
+range|:
 name|bestTextFragments
-operator|.
-name|length
-condition|;
-name|k
-operator|++
 control|)
 block|{
 if|if
@@ -2985,10 +3004,7 @@ condition|)
 block|{
 if|if
 condition|(
-name|bestTextFragments
-index|[
-name|k
-index|]
+name|bestTextFragment
 operator|!=
 literal|null
 condition|)
@@ -2997,10 +3013,7 @@ name|frags
 operator|.
 name|add
 argument_list|(
-name|bestTextFragments
-index|[
-name|k
-index|]
+name|bestTextFragment
 argument_list|)
 expr_stmt|;
 operator|--
@@ -3013,19 +3026,13 @@ block|{
 if|if
 condition|(
 operator|(
-name|bestTextFragments
-index|[
-name|k
-index|]
+name|bestTextFragment
 operator|!=
 literal|null
 operator|)
 operator|&&
 operator|(
-name|bestTextFragments
-index|[
-name|k
-index|]
+name|bestTextFragment
 operator|.
 name|getScore
 argument_list|()
@@ -3038,10 +3045,7 @@ name|frags
 operator|.
 name|add
 argument_list|(
-name|bestTextFragments
-index|[
-name|k
-index|]
+name|bestTextFragment
 argument_list|)
 expr_stmt|;
 operator|--
@@ -3072,6 +3076,7 @@ argument_list|)
 throw|;
 block|}
 block|}
+comment|//end field value loop
 comment|// sort such that the fragments with the highest score come first
 if|if
 condition|(
@@ -3285,6 +3290,77 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
+comment|/** Is this field *actually* multi-valued for this document's fields? */
+DECL|method|isActuallyMultiValued
+specifier|private
+name|boolean
+name|isActuallyMultiValued
+parameter_list|(
+name|List
+argument_list|<
+name|StorableField
+argument_list|>
+name|allFields
+parameter_list|,
+name|String
+name|fieldName
+parameter_list|)
+block|{
+name|boolean
+name|foundFirst
+init|=
+literal|false
+decl_stmt|;
+for|for
+control|(
+name|StorableField
+name|field
+range|:
+name|allFields
+control|)
+block|{
+if|if
+condition|(
+name|field
+operator|.
+name|name
+argument_list|()
+operator|.
+name|equals
+argument_list|(
+name|fieldName
+argument_list|)
+condition|)
+block|{
+if|if
+condition|(
+name|foundFirst
+condition|)
+block|{
+return|return
+literal|true
+return|;
+comment|//we found another
+block|}
+else|else
+block|{
+name|foundFirst
+operator|=
+literal|true
+expr_stmt|;
+block|}
+block|}
+block|}
+return|return
+literal|false
+return|;
+comment|//0 or 1 value
+block|}
+annotation|@
+name|SuppressWarnings
+argument_list|(
+literal|"unchecked"
+argument_list|)
 DECL|method|doHighlightingByFastVectorHighlighter
 specifier|private
 name|void
@@ -3454,6 +3530,11 @@ name|fieldName
 argument_list|)
 expr_stmt|;
 block|}
+annotation|@
+name|SuppressWarnings
+argument_list|(
+literal|"unchecked"
+argument_list|)
 DECL|method|alternateField
 specifier|private
 name|void
@@ -3591,10 +3672,6 @@ decl_stmt|;
 if|if
 condition|(
 name|altTexts
-operator|!=
-literal|null
-operator|&&
-name|altTexts
 operator|.
 name|length
 operator|>
@@ -3673,6 +3750,7 @@ expr_stmt|;
 block|}
 else|else
 block|{
+comment|//note: seemingly redundant new String(...) releases memory to the larger text
 name|altList
 operator|.
 name|add
@@ -3759,12 +3837,10 @@ parameter_list|)
 throws|throws
 name|IOException
 block|{
-name|TokenStream
-name|tstream
-decl_stmt|;
-name|TokenStream
-name|ts
-init|=
+return|return
+operator|new
+name|TokenOrderingFilter
+argument_list|(
 name|schema
 operator|.
 name|getIndexAnalyzer
@@ -3776,24 +3852,9 @@ name|fieldName
 argument_list|,
 name|docText
 argument_list|)
-decl_stmt|;
-name|ts
-operator|.
-name|reset
-argument_list|()
-expr_stmt|;
-name|tstream
-operator|=
-operator|new
-name|TokenOrderingFilter
-argument_list|(
-name|ts
 argument_list|,
 literal|10
 argument_list|)
-expr_stmt|;
-return|return
-name|tstream
 return|;
 block|}
 block|}
@@ -3831,6 +3892,7 @@ name|LinkedList
 argument_list|<>
 argument_list|()
 decl_stmt|;
+comment|//TODO replace with Deque, Array impl
 DECL|field|done
 specifier|private
 name|boolean
@@ -4024,18 +4086,6 @@ literal|true
 return|;
 block|}
 block|}
-annotation|@
-name|Override
-DECL|method|reset
-specifier|public
-name|void
-name|reset
-parameter_list|()
-throws|throws
-name|IOException
-block|{
-comment|// this looks wrong: but its correct.
-block|}
 block|}
 end_class
 
@@ -4065,12 +4115,12 @@ class|class
 name|TermOffsetsTokenStream
 block|{
 DECL|field|bufferedTokenStream
+specifier|final
 name|TokenStream
 name|bufferedTokenStream
-init|=
-literal|null
 decl_stmt|;
 DECL|field|bufferedOffsetAtt
+specifier|final
 name|OffsetAttribute
 name|bufferedOffsetAtt
 decl_stmt|;
@@ -4089,10 +4139,18 @@ decl_stmt|;
 DECL|field|startOffset
 name|int
 name|startOffset
+init|=
+literal|0
 decl_stmt|;
 DECL|field|endOffset
 name|int
 name|endOffset
+decl_stmt|;
+DECL|field|bufferedTokenStreamWasReset
+name|boolean
+name|bufferedTokenStreamWasReset
+init|=
+literal|false
 decl_stmt|;
 DECL|method|TermOffsetsTokenStream
 specifier|public
@@ -4116,14 +4174,6 @@ name|OffsetAttribute
 operator|.
 name|class
 argument_list|)
-expr_stmt|;
-name|startOffset
-operator|=
-literal|0
-expr_stmt|;
-name|bufferedToken
-operator|=
-literal|null
 expr_stmt|;
 block|}
 DECL|method|getMultiValuedTokenStream
@@ -4163,6 +4213,13 @@ specifier|final
 name|int
 name|length
 decl_stmt|;
+DECL|field|incrementTokenWasCalled
+specifier|private
+name|boolean
+name|incrementTokenWasCalled
+init|=
+literal|false
+decl_stmt|;
 DECL|field|offsetAtt
 name|OffsetAttribute
 name|offsetAtt
@@ -4189,11 +4246,58 @@ name|cloneAttributes
 argument_list|()
 argument_list|)
 expr_stmt|;
+comment|//clone so we don't manipulate the buffered offsets
 name|this
 operator|.
 name|length
 operator|=
 name|length
+expr_stmt|;
+block|}
+annotation|@
+name|Override
+DECL|method|reset
+specifier|public
+name|void
+name|reset
+parameter_list|()
+throws|throws
+name|IOException
+block|{
+comment|//this flag allows reset() to be called multiple times up-front without a problem
+if|if
+condition|(
+name|incrementTokenWasCalled
+condition|)
+block|{
+throw|throw
+operator|new
+name|IllegalStateException
+argument_list|(
+literal|"This TokenStream does not support being subsequently reset()"
+argument_list|)
+throw|;
+block|}
+if|if
+condition|(
+operator|!
+name|bufferedTokenStreamWasReset
+condition|)
+block|{
+name|bufferedTokenStream
+operator|.
+name|reset
+argument_list|()
+expr_stmt|;
+name|bufferedTokenStreamWasReset
+operator|=
+literal|true
+expr_stmt|;
+block|}
+name|super
+operator|.
+name|reset
+argument_list|()
 expr_stmt|;
 block|}
 annotation|@
@@ -4206,6 +4310,10 @@ parameter_list|()
 throws|throws
 name|IOException
 block|{
+name|incrementTokenWasCalled
+operator|=
+literal|true
+expr_stmt|;
 while|while
 condition|(
 literal|true
@@ -4319,13 +4427,8 @@ expr_stmt|;
 block|}
 block|}
 block|}
-empty_stmt|;
 block|}
 end_class
-
-begin_empty_stmt
-empty_stmt|;
-end_empty_stmt
 
 end_unit
 
