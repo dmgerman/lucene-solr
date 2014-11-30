@@ -470,6 +470,12 @@ expr_stmt|;
 block|}
 finally|finally
 block|{
+comment|// next event will cause IW to delete the old files: we use prepareCommit just as example
+name|iw
+operator|.
+name|prepareCommit
+argument_list|()
+expr_stmt|;
 name|int
 name|counter
 init|=
@@ -518,7 +524,7 @@ argument_list|)
 expr_stmt|;
 name|iw
 operator|.
-name|close
+name|rollback
 argument_list|()
 expr_stmt|;
 name|dir

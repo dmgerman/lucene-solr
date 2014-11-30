@@ -566,10 +566,12 @@ operator|!=
 literal|null
 condition|)
 block|{
-name|writer
+name|IOUtils
 operator|.
-name|abort
-argument_list|()
+name|closeWhileHandlingException
+argument_list|(
+name|writer
+argument_list|)
 expr_stmt|;
 name|writer
 operator|=

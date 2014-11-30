@@ -1176,21 +1176,13 @@ name|void
 name|abort
 parameter_list|()
 block|{
-try|try
-block|{
-comment|// E.g. close any open files in the stored fields writer:
-name|storedFieldsWriter
+name|IOUtils
 operator|.
-name|abort
-argument_list|()
+name|closeWhileHandlingException
+argument_list|(
+name|storedFieldsWriter
+argument_list|)
 expr_stmt|;
-block|}
-catch|catch
-parameter_list|(
-name|Throwable
-name|t
-parameter_list|)
-block|{     }
 try|try
 block|{
 comment|// E.g. close any open files in the term vectors writer:

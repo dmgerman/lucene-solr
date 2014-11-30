@@ -338,14 +338,6 @@ parameter_list|)
 throws|throws
 name|IOException
 function_decl|;
-comment|/** Aborts writing entirely, implementation should remove    *  any partially-written files, etc. */
-DECL|method|abort
-specifier|public
-specifier|abstract
-name|void
-name|abort
-parameter_list|()
-function_decl|;
 comment|/** Called before {@link #close()}, passing in the number    *  of documents that were written. Note that this is     *  intentionally redundant (equivalent to the number of    *  calls to {@link #startDocument(int)}, but a Codec should    *  check that this is the case to detect the JRE bug described     *  in LUCENE-1282. */
 DECL|method|finish
 specifier|public

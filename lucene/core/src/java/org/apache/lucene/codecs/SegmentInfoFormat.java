@@ -108,7 +108,7 @@ parameter_list|)
 throws|throws
 name|IOException
 function_decl|;
-comment|/**    * Write {@link SegmentInfo} data.     * @throws IOException If an I/O error occurs    */
+comment|/**    * Write {@link SegmentInfo} data.    * The codec must add its SegmentInfo filename(s) to {@code info} before doing i/o.     * @throws IOException If an I/O error occurs    */
 DECL|method|write
 specifier|public
 specifier|abstract

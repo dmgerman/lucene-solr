@@ -1549,15 +1549,6 @@ argument_list|(
 name|output
 argument_list|)
 expr_stmt|;
-name|IOUtils
-operator|.
-name|deleteFilesIgnoringExceptions
-argument_list|(
-name|dir
-argument_list|,
-name|segFileName
-argument_list|)
-expr_stmt|;
 block|}
 else|else
 block|{

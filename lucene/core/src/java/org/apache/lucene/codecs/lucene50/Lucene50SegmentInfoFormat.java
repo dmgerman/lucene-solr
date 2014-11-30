@@ -562,11 +562,6 @@ argument_list|(
 name|fileName
 argument_list|)
 expr_stmt|;
-name|boolean
-name|success
-init|=
-literal|false
-decl_stmt|;
 try|try
 init|(
 name|IndexOutput
@@ -783,32 +778,6 @@ argument_list|(
 name|output
 argument_list|)
 expr_stmt|;
-name|success
-operator|=
-literal|true
-expr_stmt|;
-block|}
-finally|finally
-block|{
-if|if
-condition|(
-operator|!
-name|success
-condition|)
-block|{
-comment|// TODO: are we doing this outside of the tracking wrapper? why must SIWriter cleanup like this?
-name|IOUtils
-operator|.
-name|deleteFilesIgnoringExceptions
-argument_list|(
-name|si
-operator|.
-name|dir
-argument_list|,
-name|fileName
-argument_list|)
-expr_stmt|;
-block|}
 block|}
 block|}
 comment|/** File extension used to store {@link SegmentInfo}. */
