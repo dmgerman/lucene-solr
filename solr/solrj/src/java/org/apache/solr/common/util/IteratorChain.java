@@ -49,10 +49,12 @@ import|;
 end_import
 
 begin_comment
-comment|/** Chain several Iterators, so that this iterates  *  over all of them in sequence.  */
+comment|/** Chain several Iterators, so that this iterates  *  over all of them in sequence.  *  * @deprecated This class is no longer used by Solr, and may be removed in future versions  */
 end_comment
 
 begin_class
+annotation|@
+name|Deprecated
 DECL|class|IteratorChain
 specifier|public
 class|class
