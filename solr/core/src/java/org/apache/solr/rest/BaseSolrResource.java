@@ -742,16 +742,6 @@ name|equals
 argument_list|(
 name|path
 argument_list|)
-operator|&&
-operator|!
-name|RestManager
-operator|.
-name|CONFIG_BASE_PATH
-operator|.
-name|equals
-argument_list|(
-name|path
-argument_list|)
 condition|)
 block|{
 comment|// don't set webapp property on the request when context and core/collection are excluded
