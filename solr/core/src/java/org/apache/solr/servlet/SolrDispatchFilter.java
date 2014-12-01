@@ -2337,7 +2337,41 @@ operator|.
 name|getRequestParsers
 argument_list|()
 decl_stmt|;
-comment|// Handle /schema/* and /config/* paths via Restlet
+comment|// Determine the handler from the url path if not set
+comment|// (we might already have selected the cores handler)
+if|if
+condition|(
+name|handler
+operator|==
+literal|null
+operator|&&
+name|path
+operator|.
+name|length
+argument_list|()
+operator|>
+literal|1
+condition|)
+block|{
+comment|// don't match "" or "/" as valid path
+name|handler
+operator|=
+name|core
+operator|.
+name|getRequestHandler
+argument_list|(
+name|path
+argument_list|)
+expr_stmt|;
+if|if
+condition|(
+name|handler
+operator|==
+literal|null
+condition|)
+block|{
+comment|//may be a restlet path
+comment|// Handle /schema/* paths via Restlet
 if|if
 condition|(
 name|path
@@ -2353,7 +2387,6 @@ name|startsWith
 argument_list|(
 literal|"/schema/"
 argument_list|)
-comment|/*|| path.equals("/config") || path.startsWith("/config/")*/
 condition|)
 block|{
 name|solrReq
@@ -2428,32 +2461,7 @@ expr_stmt|;
 block|}
 return|return;
 block|}
-comment|// Determine the handler from the url path if not set
-comment|// (we might already have selected the cores handler)
-if|if
-condition|(
-name|handler
-operator|==
-literal|null
-operator|&&
-name|path
-operator|.
-name|length
-argument_list|()
-operator|>
-literal|1
-condition|)
-block|{
-comment|// don't match "" or "/" as valid path
-name|handler
-operator|=
-name|core
-operator|.
-name|getRequestHandler
-argument_list|(
-name|path
-argument_list|)
-expr_stmt|;
+block|}
 comment|// no handler yet but allowed to handle select; let's check
 if|if
 condition|(

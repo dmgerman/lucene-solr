@@ -11770,7 +11770,7 @@ decl_stmt|;
 name|String
 name|errMsg
 init|=
-literal|"Failed to persist resource at {0} - version mismatch {1}"
+literal|"Failed to persist resource at {0} - old {1}"
 decl_stmt|;
 try|try
 block|{
@@ -11885,7 +11885,7 @@ name|log
 operator|.
 name|info
 argument_list|(
-literal|"failed to set data version in zk is {} and expected version is {} "
+literal|"failed to set data version in zk is {0} and expected version is {1} "
 argument_list|,
 name|stat
 operator|.
@@ -11960,6 +11960,53 @@ name|BadVersionException
 name|bve
 parameter_list|)
 block|{
+name|int
+name|v
+init|=
+operator|-
+literal|1
+decl_stmt|;
+try|try
+block|{
+name|Stat
+name|stat
+init|=
+name|zkClient
+operator|.
+name|exists
+argument_list|(
+name|resourceLocation
+argument_list|,
+literal|null
+argument_list|,
+literal|true
+argument_list|)
+decl_stmt|;
+name|v
+operator|=
+name|stat
+operator|.
+name|getVersion
+argument_list|()
+expr_stmt|;
+block|}
+catch|catch
+parameter_list|(
+name|Exception
+name|e
+parameter_list|)
+block|{
+name|log
+operator|.
+name|error
+argument_list|(
+name|e
+operator|.
+name|getMessage
+argument_list|()
+argument_list|)
+expr_stmt|;
+block|}
 name|log
 operator|.
 name|info
@@ -11969,8 +12016,14 @@ operator|.
 name|format
 argument_list|(
 name|errMsg
+operator|+
+literal|" zkVersion= "
+operator|+
+name|v
 argument_list|,
 name|resourceLocation
+argument_list|,
+name|znodeVersion
 argument_list|)
 argument_list|)
 expr_stmt|;
