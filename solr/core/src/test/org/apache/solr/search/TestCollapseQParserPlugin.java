@@ -22,6 +22,22 @@ name|org
 operator|.
 name|apache
 operator|.
+name|lucene
+operator|.
+name|util
+operator|.
+name|LuceneTestCase
+operator|.
+name|SuppressCodecs
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
 name|solr
 operator|.
 name|SolrTestCaseJ4
@@ -88,49 +104,26 @@ name|Test
 import|;
 end_import
 
-begin_import
-import|import
-name|com
-operator|.
-name|carrotsearch
-operator|.
-name|hppc
-operator|.
-name|IntOpenHashSet
-import|;
-end_import
-
-begin_import
-import|import
-name|java
-operator|.
-name|io
-operator|.
-name|IOException
-import|;
-end_import
-
-begin_import
-import|import
-name|java
-operator|.
-name|util
-operator|.
-name|*
-import|;
-end_import
-
-begin_import
-import|import
-name|java
-operator|.
-name|util
-operator|.
-name|Random
-import|;
-end_import
+begin_comment
+comment|//We want codecs that support DocValues, and ones supporting blank/empty values.
+end_comment
 
 begin_class
+annotation|@
+name|SuppressCodecs
+argument_list|(
+block|{
+literal|"Appending"
+block|,
+literal|"Lucene3x"
+block|,
+literal|"Lucene40"
+block|,
+literal|"Lucene41"
+block|,
+literal|"Lucene42"
+block|}
+argument_list|)
 DECL|class|TestCollapseQParserPlugin
 specifier|public
 class|class
@@ -196,6 +189,22 @@ parameter_list|()
 throws|throws
 name|Exception
 block|{
+specifier|final
+name|String
+name|group
+init|=
+operator|(
+name|random
+argument_list|()
+operator|.
+name|nextBoolean
+argument_list|()
+condition|?
+literal|"group_s"
+else|:
+literal|"group_s_dv"
+operator|)
+decl_stmt|;
 name|String
 index|[]
 name|doc
@@ -209,7 +218,7 @@ literal|"term_s"
 block|,
 literal|"YYYY"
 block|,
-literal|"group_s"
+name|group
 block|,
 literal|"group1"
 block|,
@@ -253,7 +262,7 @@ literal|"term_s"
 block|,
 literal|"YYYY"
 block|,
-literal|"group_s"
+name|group
 block|,
 literal|"group1"
 block|,
@@ -365,7 +374,7 @@ literal|"term_s"
 block|,
 literal|"YYYY"
 block|,
-literal|"group_s"
+name|group
 block|,
 literal|"group2"
 block|,
@@ -409,7 +418,7 @@ literal|"term_s"
 block|,
 literal|"YYYY"
 block|,
-literal|"group_s"
+name|group
 block|,
 literal|"group2"
 block|,
@@ -463,7 +472,11 @@ name|add
 argument_list|(
 literal|"fq"
 argument_list|,
-literal|"{!collapse field=group_s}"
+literal|"{!collapse field="
+operator|+
+name|group
+operator|+
+literal|"}"
 argument_list|)
 expr_stmt|;
 name|params
@@ -489,6 +502,10 @@ argument_list|(
 name|req
 argument_list|(
 name|params
+argument_list|,
+literal|"indent"
+argument_list|,
+literal|"on"
 argument_list|)
 argument_list|,
 literal|"*[count(//doc)=2]"
@@ -520,7 +537,11 @@ name|add
 argument_list|(
 literal|"fq"
 argument_list|,
-literal|"{!collapse field=group_s nullPolicy=expand min=test_tf}"
+literal|"{!collapse field="
+operator|+
+name|group
+operator|+
+literal|" nullPolicy=expand min=test_tf}"
 argument_list|)
 expr_stmt|;
 name|params
@@ -590,7 +611,11 @@ name|add
 argument_list|(
 literal|"fq"
 argument_list|,
-literal|"{!collapse field=group_s nullPolicy=collapse min=field(test_ti)}"
+literal|"{!collapse field="
+operator|+
+name|group
+operator|+
+literal|" nullPolicy=collapse min=field(test_ti)}"
 argument_list|)
 expr_stmt|;
 name|params
@@ -640,7 +665,11 @@ name|add
 argument_list|(
 literal|"fq"
 argument_list|,
-literal|"{!collapse field=group_s nullPolicy=collapse min=cscore()}"
+literal|"{!collapse field="
+operator|+
+name|group
+operator|+
+literal|" nullPolicy=collapse min=cscore()}"
 argument_list|)
 expr_stmt|;
 name|params
@@ -699,7 +728,11 @@ name|add
 argument_list|(
 literal|"fq"
 argument_list|,
-literal|"{!collapse field=group_s nullPolicy=collapse min=sum(cscore(),field(test_ti))}"
+literal|"{!collapse field="
+operator|+
+name|group
+operator|+
+literal|" nullPolicy=collapse min=sum(cscore(),field(test_ti))}"
 argument_list|)
 expr_stmt|;
 name|params
@@ -758,7 +791,11 @@ name|add
 argument_list|(
 literal|"fq"
 argument_list|,
-literal|"{!collapse field=group_s nullPolicy=collapse}"
+literal|"{!collapse field="
+operator|+
+name|group
+operator|+
+literal|" nullPolicy=collapse}"
 argument_list|)
 expr_stmt|;
 name|params
@@ -837,7 +874,11 @@ name|add
 argument_list|(
 literal|"fq"
 argument_list|,
-literal|"{!collapse field=group_s nullPolicy=collapse}"
+literal|"{!collapse field="
+operator|+
+name|group
+operator|+
+literal|" nullPolicy=collapse}"
 argument_list|)
 expr_stmt|;
 name|params
@@ -923,7 +964,11 @@ name|add
 argument_list|(
 literal|"fq"
 argument_list|,
-literal|"{!collapse field=group_s min=test_ti nullPolicy=collapse}"
+literal|"{!collapse field="
+operator|+
+name|group
+operator|+
+literal|" min=test_ti nullPolicy=collapse}"
 argument_list|)
 expr_stmt|;
 name|params
@@ -1009,7 +1054,11 @@ name|add
 argument_list|(
 literal|"fq"
 argument_list|,
-literal|"{!collapse field=group_s}"
+literal|"{!collapse field="
+operator|+
+name|group
+operator|+
+literal|"}"
 argument_list|)
 expr_stmt|;
 name|params
@@ -1097,7 +1146,11 @@ name|add
 argument_list|(
 literal|"fq"
 argument_list|,
-literal|"{!collapse field=group_s min=test_ti}"
+literal|"{!collapse field="
+operator|+
+name|group
+operator|+
+literal|" min=test_ti}"
 argument_list|)
 expr_stmt|;
 name|params
@@ -1144,7 +1197,11 @@ name|add
 argument_list|(
 literal|"fq"
 argument_list|,
-literal|"{!collapse field=group_s min=test_ti}"
+literal|"{!collapse field="
+operator|+
+name|group
+operator|+
+literal|" min=test_ti}"
 argument_list|)
 expr_stmt|;
 name|params
@@ -1191,7 +1248,11 @@ name|add
 argument_list|(
 literal|"fq"
 argument_list|,
-literal|"{!collapse field=group_s min=test_ti}"
+literal|"{!collapse field="
+operator|+
+name|group
+operator|+
+literal|" min=test_ti}"
 argument_list|)
 expr_stmt|;
 name|params
@@ -1238,7 +1299,11 @@ name|add
 argument_list|(
 literal|"fq"
 argument_list|,
-literal|"{!collapse field=group_s min=test_ti}"
+literal|"{!collapse field="
+operator|+
+name|group
+operator|+
+literal|" min=test_ti}"
 argument_list|)
 expr_stmt|;
 name|params
@@ -1304,7 +1369,11 @@ name|add
 argument_list|(
 literal|"fq"
 argument_list|,
-literal|"{!collapse field=group_s max=test_ti}"
+literal|"{!collapse field="
+operator|+
+name|group
+operator|+
+literal|" max=test_ti}"
 argument_list|)
 expr_stmt|;
 name|params
@@ -1352,7 +1421,11 @@ name|add
 argument_list|(
 literal|"fq"
 argument_list|,
-literal|"{!collapse field=group_s min=test_tl}"
+literal|"{!collapse field="
+operator|+
+name|group
+operator|+
+literal|" min=test_tl}"
 argument_list|)
 expr_stmt|;
 name|params
@@ -1400,7 +1473,11 @@ name|add
 argument_list|(
 literal|"fq"
 argument_list|,
-literal|"{!collapse field=group_s max=test_tl}"
+literal|"{!collapse field="
+operator|+
+name|group
+operator|+
+literal|" max=test_tl}"
 argument_list|)
 expr_stmt|;
 name|params
@@ -1448,7 +1525,11 @@ name|add
 argument_list|(
 literal|"fq"
 argument_list|,
-literal|"{!collapse field=group_s min=test_tf}"
+literal|"{!collapse field="
+operator|+
+name|group
+operator|+
+literal|" min=test_tf}"
 argument_list|)
 expr_stmt|;
 name|params
@@ -1496,7 +1577,11 @@ name|add
 argument_list|(
 literal|"fq"
 argument_list|,
-literal|"{!collapse field=group_s max=test_tf}"
+literal|"{!collapse field="
+operator|+
+name|group
+operator|+
+literal|" max=test_tf}"
 argument_list|)
 expr_stmt|;
 name|params
@@ -1544,7 +1629,11 @@ name|add
 argument_list|(
 literal|"fq"
 argument_list|,
-literal|"{!collapse field=group_s max=test_tf}"
+literal|"{!collapse field="
+operator|+
+name|group
+operator|+
+literal|" max=test_tf}"
 argument_list|)
 expr_stmt|;
 name|params
@@ -1637,7 +1726,11 @@ name|add
 argument_list|(
 literal|"fq"
 argument_list|,
-literal|"{!collapse field=group_s max=test_tf nullPolicy=expand}"
+literal|"{!collapse field="
+operator|+
+name|group
+operator|+
+literal|" max=test_tf nullPolicy=expand}"
 argument_list|)
 expr_stmt|;
 name|params
@@ -1689,7 +1782,11 @@ name|add
 argument_list|(
 literal|"fq"
 argument_list|,
-literal|"{!collapse field=group_s max=test_tf nullPolicy=collapse}"
+literal|"{!collapse field="
+operator|+
+name|group
+operator|+
+literal|" max=test_tf nullPolicy=collapse}"
 argument_list|)
 expr_stmt|;
 name|params
@@ -1738,7 +1835,11 @@ name|add
 argument_list|(
 literal|"fq"
 argument_list|,
-literal|"{!collapse field=group_s}"
+literal|"{!collapse field="
+operator|+
+name|group
+operator|+
+literal|"}"
 argument_list|)
 expr_stmt|;
 name|params
@@ -1829,7 +1930,11 @@ name|add
 argument_list|(
 literal|"fq"
 argument_list|,
-literal|"{!collapse field=group_s}"
+literal|"{!collapse field="
+operator|+
+name|group
+operator|+
+literal|"}"
 argument_list|)
 expr_stmt|;
 name|params
@@ -1904,7 +2009,11 @@ name|add
 argument_list|(
 literal|"fq"
 argument_list|,
-literal|"{!collapse field=group_s nullPolicy=collapse}"
+literal|"{!collapse field="
+operator|+
+name|group
+operator|+
+literal|" nullPolicy=collapse}"
 argument_list|)
 expr_stmt|;
 name|params
@@ -2007,6 +2116,102 @@ operator|.
 name|ErrorCode
 operator|.
 name|BAD_REQUEST
+argument_list|)
+expr_stmt|;
+block|}
+annotation|@
+name|Test
+DECL|method|testEmptyCollection
+specifier|public
+name|void
+name|testEmptyCollection
+parameter_list|()
+throws|throws
+name|Exception
+block|{
+comment|// group_s is docValues=false and group_dv_s is docValues=true
+name|String
+name|group
+init|=
+operator|(
+name|random
+argument_list|()
+operator|.
+name|nextBoolean
+argument_list|()
+condition|?
+literal|"group_s"
+else|:
+literal|"group_s_dv"
+operator|)
+decl_stmt|;
+comment|// min-or-max is for CollapsingScoreCollector vs. CollapsingFieldValueCollector
+name|String
+name|optional_min_or_max
+init|=
+operator|(
+name|random
+argument_list|()
+operator|.
+name|nextBoolean
+argument_list|()
+condition|?
+literal|""
+else|:
+operator|(
+name|random
+argument_list|()
+operator|.
+name|nextBoolean
+argument_list|()
+condition|?
+literal|"min=field(test_ti)"
+else|:
+literal|"max=field(test_ti)"
+operator|)
+operator|)
+decl_stmt|;
+name|ModifiableSolrParams
+name|params
+init|=
+operator|new
+name|ModifiableSolrParams
+argument_list|()
+decl_stmt|;
+name|params
+operator|.
+name|add
+argument_list|(
+literal|"q"
+argument_list|,
+literal|"*:*"
+argument_list|)
+expr_stmt|;
+name|params
+operator|.
+name|add
+argument_list|(
+literal|"fq"
+argument_list|,
+literal|"{!collapse field="
+operator|+
+name|group
+operator|+
+literal|" "
+operator|+
+name|optional_min_or_max
+operator|+
+literal|"}"
+argument_list|)
+expr_stmt|;
+name|assertQ
+argument_list|(
+name|req
+argument_list|(
+name|params
+argument_list|)
+argument_list|,
+literal|"*[count(//doc)=0]"
 argument_list|)
 expr_stmt|;
 block|}
