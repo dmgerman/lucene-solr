@@ -8459,6 +8459,18 @@ name|score
 argument_list|)
 expr_stmt|;
 block|}
+else|else
+block|{
+comment|// Score might have been added (in createMainQuery) to shard-requests (and therefore in shard-response-docs)
+comment|// Remove score if the outer request did not ask for it returned
+name|doc
+operator|.
+name|remove
+argument_list|(
+literal|"score"
+argument_list|)
+expr_stmt|;
+block|}
 if|if
 condition|(
 name|removeKeyField
