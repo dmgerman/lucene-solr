@@ -101,6 +101,15 @@ name|String
 name|name
 parameter_list|)
 block|{
+name|super
+argument_list|(
+literal|"MockIndexOutputWrapper("
+operator|+
+name|delegate
+operator|+
+literal|")"
+argument_list|)
+expr_stmt|;
 name|this
 operator|.
 name|dir

@@ -110,6 +110,9 @@ DECL|method|OutputStreamIndexOutput
 specifier|public
 name|OutputStreamIndexOutput
 parameter_list|(
+name|String
+name|resourceDescription
+parameter_list|,
 name|OutputStream
 name|out
 parameter_list|,
@@ -117,6 +120,11 @@ name|int
 name|bufferSize
 parameter_list|)
 block|{
+name|super
+argument_list|(
+name|resourceDescription
+argument_list|)
+expr_stmt|;
 name|this
 operator|.
 name|os

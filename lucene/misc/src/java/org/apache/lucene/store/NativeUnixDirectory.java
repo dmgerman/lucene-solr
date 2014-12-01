@@ -589,6 +589,18 @@ parameter_list|)
 throws|throws
 name|IOException
 block|{
+name|super
+argument_list|(
+literal|"NativeUnixIndexOutput(path=\""
+operator|+
+name|path
+operator|.
+name|toString
+argument_list|()
+operator|+
+literal|"\")"
+argument_list|)
+expr_stmt|;
 comment|//this.path = path;
 specifier|final
 name|FileDescriptor

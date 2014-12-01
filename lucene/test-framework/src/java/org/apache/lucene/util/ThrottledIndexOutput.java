@@ -259,6 +259,15 @@ name|IndexOutput
 name|delegate
 parameter_list|)
 block|{
+name|super
+argument_list|(
+literal|"ThrottledIndexOutput("
+operator|+
+name|delegate
+operator|+
+literal|")"
+argument_list|)
+expr_stmt|;
 assert|assert
 name|bytesPerSecond
 operator|>

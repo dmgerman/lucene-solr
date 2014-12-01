@@ -193,6 +193,14 @@ name|IOException
 block|{
 name|super
 argument_list|(
+literal|"fileSystem="
+operator|+
+name|fileSystem
+operator|+
+literal|" path="
+operator|+
+name|path
+argument_list|,
 name|getOutputStream
 argument_list|(
 name|fileSystem

@@ -51,6 +51,43 @@ name|DataOutput
 implements|implements
 name|Closeable
 block|{
+DECL|field|resourceDescription
+specifier|private
+specifier|final
+name|String
+name|resourceDescription
+decl_stmt|;
+comment|/** Sole constructor.  resourceDescription should be non-null, opaque string    *  describing this resource; it's returned from {@link #toString}. */
+DECL|method|IndexOutput
+specifier|protected
+name|IndexOutput
+parameter_list|(
+name|String
+name|resourceDescription
+parameter_list|)
+block|{
+if|if
+condition|(
+name|resourceDescription
+operator|==
+literal|null
+condition|)
+block|{
+throw|throw
+operator|new
+name|IllegalArgumentException
+argument_list|(
+literal|"resourceDescription must not be null"
+argument_list|)
+throw|;
+block|}
+name|this
+operator|.
+name|resourceDescription
+operator|=
+name|resourceDescription
+expr_stmt|;
+block|}
 comment|/** Closes this stream to further operations. */
 annotation|@
 name|Override
@@ -81,6 +118,18 @@ parameter_list|()
 throws|throws
 name|IOException
 function_decl|;
+annotation|@
+name|Override
+DECL|method|toString
+specifier|public
+name|String
+name|toString
+parameter_list|()
+block|{
+return|return
+name|resourceDescription
+return|;
+block|}
 block|}
 end_class
 

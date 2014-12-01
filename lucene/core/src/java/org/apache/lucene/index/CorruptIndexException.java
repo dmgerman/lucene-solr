@@ -50,6 +50,20 @@ name|DataInput
 import|;
 end_import
 
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|store
+operator|.
+name|DataOutput
+import|;
+end_import
+
 begin_comment
 comment|/**  * This exception is thrown when Lucene detects  * an inconsistency in the index.  */
 end_comment
@@ -84,6 +98,28 @@ literal|null
 argument_list|)
 expr_stmt|;
 block|}
+comment|/** Create exception with a message only */
+DECL|method|CorruptIndexException
+specifier|public
+name|CorruptIndexException
+parameter_list|(
+name|String
+name|message
+parameter_list|,
+name|DataOutput
+name|output
+parameter_list|)
+block|{
+name|this
+argument_list|(
+name|message
+argument_list|,
+name|output
+argument_list|,
+literal|null
+argument_list|)
+expr_stmt|;
+block|}
 comment|/** Create exception with message and root cause. */
 DECL|method|CorruptIndexException
 specifier|public
@@ -108,6 +144,36 @@ operator|.
 name|toString
 argument_list|(
 name|input
+argument_list|)
+argument_list|,
+name|cause
+argument_list|)
+expr_stmt|;
+block|}
+comment|/** Create exception with message and root cause. */
+DECL|method|CorruptIndexException
+specifier|public
+name|CorruptIndexException
+parameter_list|(
+name|String
+name|message
+parameter_list|,
+name|DataOutput
+name|output
+parameter_list|,
+name|Throwable
+name|cause
+parameter_list|)
+block|{
+name|this
+argument_list|(
+name|message
+argument_list|,
+name|Objects
+operator|.
+name|toString
+argument_list|(
+name|output
 argument_list|)
 argument_list|,
 name|cause

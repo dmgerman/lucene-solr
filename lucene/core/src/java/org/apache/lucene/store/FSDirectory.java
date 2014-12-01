@@ -849,6 +849,17 @@ name|IOException
 block|{
 name|super
 argument_list|(
+literal|"FSIndexOutput(path=\""
+operator|+
+name|directory
+operator|.
+name|resolve
+argument_list|(
+name|name
+argument_list|)
+operator|+
+literal|"\")"
+argument_list|,
 operator|new
 name|FilterOutputStream
 argument_list|(

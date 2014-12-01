@@ -74,6 +74,15 @@ name|IndexOutput
 name|delegate
 parameter_list|)
 block|{
+name|super
+argument_list|(
+literal|"RateLimitedIndexOutput("
+operator|+
+name|delegate
+operator|+
+literal|")"
+argument_list|)
+expr_stmt|;
 name|this
 operator|.
 name|delegate

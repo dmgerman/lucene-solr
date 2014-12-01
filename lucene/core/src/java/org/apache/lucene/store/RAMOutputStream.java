@@ -156,6 +156,8 @@ parameter_list|()
 block|{
 name|this
 argument_list|(
+literal|"noname"
+argument_list|,
 operator|new
 name|RAMFile
 argument_list|()
@@ -164,6 +166,7 @@ literal|false
 argument_list|)
 expr_stmt|;
 block|}
+comment|/** Creates this, with no name. */
 DECL|method|RAMOutputStream
 specifier|public
 name|RAMOutputStream
@@ -175,6 +178,40 @@ name|boolean
 name|checksum
 parameter_list|)
 block|{
+name|this
+argument_list|(
+literal|"noname"
+argument_list|,
+name|f
+argument_list|,
+name|checksum
+argument_list|)
+expr_stmt|;
+block|}
+comment|/** Creates this, with specified name. */
+DECL|method|RAMOutputStream
+specifier|public
+name|RAMOutputStream
+parameter_list|(
+name|String
+name|name
+parameter_list|,
+name|RAMFile
+name|f
+parameter_list|,
+name|boolean
+name|checksum
+parameter_list|)
+block|{
+name|super
+argument_list|(
+literal|"RAMOutputStream(name=\""
+operator|+
+name|name
+operator|+
+literal|"\")"
+argument_list|)
+expr_stmt|;
 name|file
 operator|=
 name|f
