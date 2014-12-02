@@ -365,10 +365,20 @@ argument_list|(
 name|cmd
 argument_list|)
 expr_stmt|;
+if|if
+condition|(
+operator|!
+name|cmd
+operator|.
+name|softCommit
+condition|)
+block|{
+comment|// a hard commit means we don't need to flush the transaction log
 name|changesSinceCommit
 operator|=
 literal|false
 expr_stmt|;
+block|}
 block|}
 comment|/**    * @since Solr 1.4    */
 annotation|@
