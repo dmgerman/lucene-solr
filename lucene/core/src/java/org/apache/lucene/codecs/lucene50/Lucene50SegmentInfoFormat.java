@@ -34,6 +34,16 @@ name|java
 operator|.
 name|util
 operator|.
+name|Collections
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
+name|util
+operator|.
 name|Map
 import|;
 end_import
@@ -242,26 +252,12 @@ name|lucene
 operator|.
 name|util
 operator|.
-name|IOUtils
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|util
-operator|.
 name|Version
 import|;
 end_import
 
 begin_comment
-comment|/**  * Lucene 5.0 Segment info format.  *<p>  * Files:  *<ul>  *<li><tt>.si</tt>: Header, SegVersion, SegSize, IsCompoundFile, Diagnostics, Files, Footer  *</ul>  *</p>  * Data types:  *<p>  *<ul>  *<li>Header --&gt; {@link CodecUtil#writeIndexHeader IndexHeader}</li>  *<li>SegSize --&gt; {@link DataOutput#writeInt Int32}</li>  *<li>SegVersion --&gt; {@link DataOutput#writeString String}</li>  *<li>Files --&gt; {@link DataOutput#writeStringSet Set&lt;String&gt;}</li>  *<li>Diagnostics --&gt; {@link DataOutput#writeStringStringMap Map&lt;String,String&gt;}</li>  *<li>IsCompoundFile --&gt; {@link DataOutput#writeByte Int8}</li>  *<li>Footer --&gt; {@link CodecUtil#writeFooter CodecFooter}</li>  *</ul>  *</p>  * Field Descriptions:  *<p>  *<ul>  *<li>SegVersion is the code version that created the segment.</li>  *<li>SegSize is the number of documents contained in the segment index.</li>  *<li>IsCompoundFile records whether the segment is written as a compound file or  *       not. If this is -1, the segment is not a compound file. If it is 1, the segment  *       is a compound file.</li>  *<li>The Diagnostics Map is privately written by {@link IndexWriter}, as a debugging aid,  *       for each segment it creates. It includes metadata like the current Lucene  *       version, OS, Java version, why the segment was created (merge, flush,  *       addIndexes), etc.</li>  *<li>Files is a list of files referred to by this segment.</li>  *</ul>  *</p>  *   * @see SegmentInfos  * @lucene.experimental  */
+comment|/**  * Lucene 5.0 Segment info format.  *<p>  * Files:  *<ul>  *<li><tt>.si</tt>: Header, SegVersion, SegSize, IsCompoundFile, Diagnostics, Files, Attributes, Footer  *</ul>  *</p>  * Data types:  *<p>  *<ul>  *<li>Header --&gt; {@link CodecUtil#writeIndexHeader IndexHeader}</li>  *<li>SegSize --&gt; {@link DataOutput#writeInt Int32}</li>  *<li>SegVersion --&gt; {@link DataOutput#writeString String}</li>  *<li>Files --&gt; {@link DataOutput#writeStringSet Set&lt;String&gt;}</li>  *<li>Diagnostics,Attributes --&gt; {@link DataOutput#writeStringStringMap Map&lt;String,String&gt;}</li>  *<li>IsCompoundFile --&gt; {@link DataOutput#writeByte Int8}</li>  *<li>Footer --&gt; {@link CodecUtil#writeFooter CodecFooter}</li>  *</ul>  *</p>  * Field Descriptions:  *<p>  *<ul>  *<li>SegVersion is the code version that created the segment.</li>  *<li>SegSize is the number of documents contained in the segment index.</li>  *<li>IsCompoundFile records whether the segment is written as a compound file or  *       not. If this is -1, the segment is not a compound file. If it is 1, the segment  *       is a compound file.</li>  *<li>The Diagnostics Map is privately written by {@link IndexWriter}, as a debugging aid,  *       for each segment it creates. It includes metadata like the current Lucene  *       version, OS, Java version, why the segment was created (merge, flush,  *       addIndexes), etc.</li>  *<li>Files is a list of files referred to by this segment.</li>  *</ul>  *</p>  *   * @see SegmentInfos  * @lucene.experimental  */
 end_comment
 
 begin_class
@@ -459,6 +455,20 @@ operator|.
 name|readStringSet
 argument_list|()
 decl_stmt|;
+specifier|final
+name|Map
+argument_list|<
+name|String
+argument_list|,
+name|String
+argument_list|>
+name|attributes
+init|=
+name|input
+operator|.
+name|readStringStringMap
+argument_list|()
+decl_stmt|;
 name|si
 operator|=
 operator|new
@@ -479,6 +489,13 @@ argument_list|,
 name|diagnostics
 argument_list|,
 name|segmentID
+argument_list|,
+name|Collections
+operator|.
+name|unmodifiableMap
+argument_list|(
+name|attributes
+argument_list|)
 argument_list|)
 expr_stmt|;
 name|si
@@ -769,6 +786,16 @@ operator|.
 name|writeStringSet
 argument_list|(
 name|files
+argument_list|)
+expr_stmt|;
+name|output
+operator|.
+name|writeStringStringMap
+argument_list|(
+name|si
+operator|.
+name|getAttributes
+argument_list|()
 argument_list|)
 expr_stmt|;
 name|CodecUtil
