@@ -1412,6 +1412,7 @@ argument_list|,
 literal|"true"
 argument_list|)
 expr_stmt|;
+comment|// see SOLR-6795, distrib.singlePass=true would return score even when not asked for
 name|handle
 operator|.
 name|clear
@@ -1450,6 +1451,32 @@ argument_list|(
 literal|"q"
 argument_list|,
 literal|"{!func}id"
+argument_list|,
+name|ShardParams
+operator|.
+name|DISTRIB_SINGLE_PASS
+argument_list|,
+literal|"true"
+argument_list|)
+expr_stmt|;
+comment|// fix for a bug where not all fields are returned if using multiple fl parameters, see SOLR-6796
+name|query
+argument_list|(
+literal|"q"
+argument_list|,
+literal|"*:*"
+argument_list|,
+literal|"fl"
+argument_list|,
+literal|"id"
+argument_list|,
+literal|"fl"
+argument_list|,
+literal|"dynamic"
+argument_list|,
+literal|"sort"
+argument_list|,
+literal|"payload desc"
 argument_list|,
 name|ShardParams
 operator|.
