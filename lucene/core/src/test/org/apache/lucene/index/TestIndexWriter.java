@@ -16678,7 +16678,7 @@ argument_list|()
 expr_stmt|;
 name|assumeFalse
 argument_list|(
-literal|"this test can't run on Windows"
+literal|"this test can't run on simulated windows (WindowsFS)"
 argument_list|,
 literal|true
 argument_list|)
