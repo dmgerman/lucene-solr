@@ -190,7 +190,13 @@ specifier|final
 name|int
 name|chunkSize
 decl_stmt|;
-comment|/**    * Create a new {@link CompressingStoredFieldsFormat} with an empty segment     * suffix.    *     * @see CompressingStoredFieldsFormat#CompressingStoredFieldsFormat(String, String, CompressionMode, int)    */
+DECL|field|maxDocsPerChunk
+specifier|private
+specifier|final
+name|int
+name|maxDocsPerChunk
+decl_stmt|;
+comment|/**    * Create a new {@link CompressingStoredFieldsFormat} with an empty segment     * suffix.    *     * @see CompressingStoredFieldsFormat#CompressingStoredFieldsFormat(String, String, CompressionMode, int, int)    */
 DECL|method|CompressingStoredFieldsFormat
 specifier|public
 name|CompressingStoredFieldsFormat
@@ -203,6 +209,9 @@ name|compressionMode
 parameter_list|,
 name|int
 name|chunkSize
+parameter_list|,
+name|int
+name|maxDocsPerChunk
 parameter_list|)
 block|{
 name|this
@@ -214,10 +223,12 @@ argument_list|,
 name|compressionMode
 argument_list|,
 name|chunkSize
+argument_list|,
+name|maxDocsPerChunk
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**    * Create a new {@link CompressingStoredFieldsFormat}.    *<p>    *<code>formatName</code> is the name of the format. This name will be used    * in the file formats to perform    * {@link CodecUtil#checkIndexHeader codec header checks}.    *<p>    *<code>segmentSuffix</code> is the segment suffix. This suffix is added to     * the result file name only if it's not the empty string.    *<p>    * The<code>compressionMode</code> parameter allows you to choose between    * compression algorithms that have various compression and decompression    * speeds so that you can pick the one that best fits your indexing and    * searching throughput. You should never instantiate two    * {@link CompressingStoredFieldsFormat}s that have the same name but    * different {@link CompressionMode}s.    *<p>    *<code>chunkSize</code> is the minimum byte size of a chunk of documents.    * A value of<code>1</code> can make sense if there is redundancy across    * fields.    *<p>    * Higher values of<code>chunkSize</code> should improve the compression    * ratio but will require more memory at indexing time and might make document    * loading a little slower (depending on the size of your OS cache compared    * to the size of your index).    *    * @param formatName the name of the {@link StoredFieldsFormat}    * @param compressionMode the {@link CompressionMode} to use    * @param chunkSize the minimum number of bytes of a single chunk of stored documents    * @see CompressionMode    */
+comment|/**    * Create a new {@link CompressingStoredFieldsFormat}.    *<p>    *<code>formatName</code> is the name of the format. This name will be used    * in the file formats to perform    * {@link CodecUtil#checkIndexHeader codec header checks}.    *<p>    *<code>segmentSuffix</code> is the segment suffix. This suffix is added to     * the result file name only if it's not the empty string.    *<p>    * The<code>compressionMode</code> parameter allows you to choose between    * compression algorithms that have various compression and decompression    * speeds so that you can pick the one that best fits your indexing and    * searching throughput. You should never instantiate two    * {@link CompressingStoredFieldsFormat}s that have the same name but    * different {@link CompressionMode}s.    *<p>    *<code>chunkSize</code> is the minimum byte size of a chunk of documents.    * A value of<code>1</code> can make sense if there is redundancy across    * fields.    *<code>maxDocsPerChunk</code> is an upperbound on how many docs may be stored    * in a single chunk. This is to bound the cpu costs for highly compressible data.    *<p>    * Higher values of<code>chunkSize</code> should improve the compression    * ratio but will require more memory at indexing time and might make document    * loading a little slower (depending on the size of your OS cache compared    * to the size of your index).    *    * @param formatName the name of the {@link StoredFieldsFormat}    * @param compressionMode the {@link CompressionMode} to use    * @param chunkSize the minimum number of bytes of a single chunk of stored documents    * @param maxDocsPerChunk the maximum number of documents in a single chunk    * @see CompressionMode    */
 DECL|method|CompressingStoredFieldsFormat
 specifier|public
 name|CompressingStoredFieldsFormat
@@ -233,6 +244,9 @@ name|compressionMode
 parameter_list|,
 name|int
 name|chunkSize
+parameter_list|,
+name|int
+name|maxDocsPerChunk
 parameter_list|)
 block|{
 name|this
@@ -273,6 +287,27 @@ operator|.
 name|chunkSize
 operator|=
 name|chunkSize
+expr_stmt|;
+if|if
+condition|(
+name|maxDocsPerChunk
+operator|<
+literal|1
+condition|)
+block|{
+throw|throw
+operator|new
+name|IllegalArgumentException
+argument_list|(
+literal|"maxDocsPerChunk must be>= 1"
+argument_list|)
+throw|;
+block|}
+name|this
+operator|.
+name|maxDocsPerChunk
+operator|=
+name|maxDocsPerChunk
 expr_stmt|;
 block|}
 annotation|@
@@ -353,6 +388,8 @@ argument_list|,
 name|compressionMode
 argument_list|,
 name|chunkSize
+argument_list|,
+name|maxDocsPerChunk
 argument_list|)
 return|;
 block|}
@@ -378,6 +415,10 @@ operator|+
 literal|", chunkSize="
 operator|+
 name|chunkSize
+operator|+
+literal|", maxDocsPerChunk="
+operator|+
+name|maxDocsPerChunk
 operator|+
 literal|")"
 return|;

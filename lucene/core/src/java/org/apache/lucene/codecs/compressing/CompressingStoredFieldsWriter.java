@@ -385,15 +385,6 @@ name|FIELDS_INDEX_EXTENSION
 init|=
 literal|"fdx"
 decl_stmt|;
-comment|// hard limit on the maximum number of documents per chunk
-DECL|field|MAX_DOCUMENTS_PER_CHUNK
-specifier|static
-specifier|final
-name|int
-name|MAX_DOCUMENTS_PER_CHUNK
-init|=
-literal|128
-decl_stmt|;
 DECL|field|STRING
 specifier|static
 specifier|final
@@ -549,6 +540,12 @@ specifier|final
 name|int
 name|chunkSize
 decl_stmt|;
+DECL|field|maxDocsPerChunk
+specifier|private
+specifier|final
+name|int
+name|maxDocsPerChunk
+decl_stmt|;
 DECL|field|bufferedDocs
 specifier|private
 specifier|final
@@ -606,6 +603,9 @@ name|compressionMode
 parameter_list|,
 name|int
 name|chunkSize
+parameter_list|,
+name|int
+name|maxDocsPerChunk
 parameter_list|)
 throws|throws
 name|IOException
@@ -655,6 +655,12 @@ operator|.
 name|chunkSize
 operator|=
 name|chunkSize
+expr_stmt|;
+name|this
+operator|.
+name|maxDocsPerChunk
+operator|=
+name|maxDocsPerChunk
 expr_stmt|;
 name|this
 operator|.
@@ -1319,7 +1325,7 @@ operator|||
 comment|// chunks of at least chunkSize bytes
 name|numBufferedDocs
 operator|>=
-name|MAX_DOCUMENTS_PER_CHUNK
+name|maxDocsPerChunk
 return|;
 block|}
 DECL|method|flush

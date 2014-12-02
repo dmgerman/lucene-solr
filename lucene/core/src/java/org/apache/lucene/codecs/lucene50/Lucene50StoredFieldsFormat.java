@@ -168,6 +168,8 @@ argument_list|,
 literal|1
 operator|<<
 literal|14
+argument_list|,
+literal|128
 argument_list|)
 expr_stmt|;
 block|}

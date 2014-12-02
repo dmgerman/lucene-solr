@@ -213,13 +213,12 @@ name|Compressor
 name|newCompressor
 parameter_list|()
 block|{
+comment|// 3 is the highest level that doesn't have lazy match evaluation
 return|return
 operator|new
 name|DeflateCompressor
 argument_list|(
-name|Deflater
-operator|.
-name|BEST_COMPRESSION
+literal|3
 argument_list|)
 return|;
 block|}

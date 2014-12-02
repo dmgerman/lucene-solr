@@ -38,6 +38,9 @@ parameter_list|(
 name|int
 name|chunkSize
 parameter_list|,
+name|int
+name|maxDocsPerChunk
+parameter_list|,
 name|boolean
 name|withSegmentSuffix
 parameter_list|)
@@ -57,6 +60,8 @@ operator|.
 name|FAST_DECOMPRESSION
 argument_list|,
 name|chunkSize
+argument_list|,
+name|maxDocsPerChunk
 argument_list|)
 expr_stmt|;
 block|}
@@ -71,6 +76,8 @@ argument_list|(
 literal|1
 operator|<<
 literal|14
+argument_list|,
+literal|256
 argument_list|,
 literal|false
 argument_list|)

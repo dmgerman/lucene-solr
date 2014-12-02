@@ -383,6 +383,9 @@ parameter_list|(
 name|int
 name|chunkSize
 parameter_list|,
+name|int
+name|maxDocsPerChunk
+parameter_list|,
 name|boolean
 name|withSegmentSuffix
 parameter_list|)
@@ -400,6 +403,8 @@ argument_list|,
 name|DUMMY
 argument_list|,
 name|chunkSize
+argument_list|,
+name|maxDocsPerChunk
 argument_list|)
 expr_stmt|;
 block|}
@@ -414,6 +419,8 @@ argument_list|(
 literal|1
 operator|<<
 literal|14
+argument_list|,
+literal|128
 argument_list|,
 literal|false
 argument_list|)
