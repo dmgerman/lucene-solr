@@ -112,6 +112,26 @@ end_import
 
 begin_import
 import|import
+name|org
+operator|.
+name|slf4j
+operator|.
+name|Logger
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|slf4j
+operator|.
+name|LoggerFactory
+import|;
+end_import
+
+begin_import
+import|import
 name|java
 operator|.
 name|util
@@ -148,6 +168,20 @@ name|CloudMLTQParserTest
 extends|extends
 name|AbstractFullDistribZkTestBase
 block|{
+DECL|field|log
+specifier|static
+name|Logger
+name|log
+init|=
+name|LoggerFactory
+operator|.
+name|getLogger
+argument_list|(
+name|CloudMLTQParserTest
+operator|.
+name|class
+argument_list|)
+decl_stmt|;
 DECL|method|CloudMLTQParserTest
 specifier|public
 name|CloudMLTQParserTest
@@ -963,6 +997,8 @@ literal|"lowerfilt:over lowerfilt:fox lowerfilt:lazy lowerfilt:brown "
 operator|+
 literal|"lowerfilt:jumped lowerfilt:red lowerfilt:dogs. lowerfilt:quote lowerfilt:the"
 decl_stmt|;
+try|try
+block|{
 name|ArrayList
 argument_list|<
 name|String
@@ -1018,6 +1054,49 @@ argument_list|(
 name|counter
 argument_list|)
 argument_list|)
+argument_list|)
+expr_stmt|;
+block|}
+block|}
+catch|catch
+parameter_list|(
+name|ClassCastException
+name|ex
+parameter_list|)
+block|{
+comment|// TODO: Adding this to just track a rare test failure.
+comment|// Once SOLR-6755 is resolved, this should be removed.
+name|log
+operator|.
+name|info
+argument_list|(
+literal|"QueryResponse.debugMap: {}"
+argument_list|,
+name|queryResponse
+operator|.
+name|getDebugMap
+argument_list|()
+operator|.
+name|toString
+argument_list|()
+argument_list|)
+expr_stmt|;
+name|log
+operator|.
+name|info
+argument_list|(
+literal|"ClusterState: {}"
+argument_list|,
+name|cloudClient
+operator|.
+name|getZkStateReader
+argument_list|()
+operator|.
+name|getClusterState
+argument_list|()
+operator|.
+name|toString
+argument_list|()
 argument_list|)
 expr_stmt|;
 block|}
