@@ -239,6 +239,11 @@ specifier|protected
 name|boolean
 name|countryCached
 decl_stmt|;
+DECL|field|countryZipper
+specifier|protected
+name|boolean
+name|countryZipper
+decl_stmt|;
 DECL|field|sportsEntity
 specifier|protected
 name|boolean
@@ -248,6 +253,26 @@ DECL|field|sportsCached
 specifier|protected
 name|boolean
 name|sportsCached
+decl_stmt|;
+DECL|field|sportsZipper
+specifier|protected
+name|boolean
+name|sportsZipper
+decl_stmt|;
+DECL|field|wrongPeopleOrder
+specifier|protected
+name|boolean
+name|wrongPeopleOrder
+decl_stmt|;
+DECL|field|wrongSportsOrder
+specifier|protected
+name|boolean
+name|wrongSportsOrder
+decl_stmt|;
+DECL|field|wrongCountryOrder
+specifier|protected
+name|boolean
+name|wrongCountryOrder
 decl_stmt|;
 DECL|field|rootTransformerName
 specifier|protected
@@ -327,11 +352,31 @@ name|countryCached
 operator|=
 literal|false
 expr_stmt|;
+name|countryZipper
+operator|=
+literal|false
+expr_stmt|;
 name|sportsEntity
 operator|=
 literal|false
 expr_stmt|;
 name|sportsCached
+operator|=
+literal|false
+expr_stmt|;
+name|sportsZipper
+operator|=
+literal|false
+expr_stmt|;
+name|wrongPeopleOrder
+operator|=
+literal|false
+expr_stmt|;
+name|wrongSportsOrder
+operator|=
+literal|false
+expr_stmt|;
+name|wrongCountryOrder
 operator|=
 literal|false
 expr_stmt|;
@@ -961,6 +1006,26 @@ literal|true
 expr_stmt|;
 if|if
 condition|(
+name|countryZipper
+operator|||
+name|sportsZipper
+condition|)
+block|{
+comment|// zipper tests fully cover nums of children
+name|countryEntity
+operator|=
+name|countryZipper
+expr_stmt|;
+name|sportsEntity
+operator|=
+name|sportsZipper
+expr_stmt|;
+block|}
+else|else
+block|{
+comment|// apply default randomization on cached cases
+if|if
+condition|(
 name|numChildren
 operator|==
 literal|1
@@ -979,6 +1044,7 @@ operator|=
 operator|!
 name|countryEntity
 expr_stmt|;
+block|}
 block|}
 if|if
 condition|(
@@ -1124,86 +1190,143 @@ condition|(
 name|countryEntity
 condition|)
 block|{
-if|if
-condition|(
-name|personNameExists
-argument_list|(
-literal|"Jayden"
-argument_list|)
-condition|)
 block|{
 name|String
-name|nrName
+index|[]
+name|people
 init|=
-name|countryNameByCode
+name|getStringsFromQuery
 argument_list|(
-literal|"NP"
+literal|"SELECT NAME FROM PEOPLE WHERE DELETED != 'Y'"
 argument_list|)
 decl_stmt|;
-if|if
-condition|(
-name|nrName
-operator|!=
-literal|null
-operator|&&
-name|nrName
+name|String
+name|man
+init|=
+name|people
+index|[
+name|random
+argument_list|()
+operator|.
+name|nextInt
+argument_list|(
+name|people
 operator|.
 name|length
-argument_list|()
-operator|>
-literal|0
-condition|)
-block|{
+argument_list|)
+index|]
+decl_stmt|;
+name|String
+index|[]
+name|countryNames
+init|=
+name|getStringsFromQuery
+argument_list|(
+literal|"SELECT C.COUNTRY_NAME FROM PEOPLE P "
+operator|+
+literal|"INNER JOIN COUNTRIES C ON P.COUNTRY_CODE=C.CODE "
+operator|+
+literal|"WHERE P.DELETED!='Y' AND C.DELETED!='Y' AND P.NAME='"
+operator|+
+name|man
+operator|+
+literal|"'"
+argument_list|)
+decl_stmt|;
 name|assertQ
 argument_list|(
 name|req
 argument_list|(
-literal|"NAME_mult_s:Jayden"
+literal|"{!term f=NAME_mult_s}"
+operator|+
+name|man
 argument_list|)
 argument_list|,
 literal|"//*[@numFound='1']"
 argument_list|,
+name|countryNames
+operator|.
+name|length
+operator|>
+literal|0
+condition|?
 literal|"//doc/str[@name='COUNTRY_NAME_s']='"
 operator|+
-name|nrName
+name|countryNames
+index|[
+name|random
+argument_list|()
+operator|.
+name|nextInt
+argument_list|(
+name|countryNames
+operator|.
+name|length
+argument_list|)
+index|]
 operator|+
 literal|"'"
+else|:
+literal|"//doc[count(*[@name='COUNTRY_NAME_s'])=0]"
 argument_list|)
 expr_stmt|;
 block|}
-block|}
+block|{
 name|String
-name|nrName
+index|[]
+name|countryCodes
 init|=
-name|countryNameByCode
+name|getStringsFromQuery
 argument_list|(
-literal|"NR"
+literal|"SELECT CODE FROM COUNTRIES WHERE DELETED != 'Y'"
 argument_list|)
+decl_stmt|;
+name|String
+name|theCode
+init|=
+name|countryCodes
+index|[
+name|random
+argument_list|()
+operator|.
+name|nextInt
+argument_list|(
+name|countryCodes
+operator|.
+name|length
+argument_list|)
+index|]
 decl_stmt|;
 name|int
 name|num
 init|=
 name|numberPeopleByCountryCode
 argument_list|(
-literal|"NR"
+name|theCode
 argument_list|)
 decl_stmt|;
 if|if
 condition|(
-name|nrName
-operator|!=
-literal|null
-operator|&&
 name|num
 operator|>
 literal|0
 condition|)
 block|{
+name|String
+name|nrName
+init|=
+name|countryNameByCode
+argument_list|(
+name|theCode
+argument_list|)
+decl_stmt|;
 name|assertQ
 argument_list|(
 name|req
 argument_list|(
-literal|"COUNTRY_CODES_mult_s:NR"
+literal|"COUNTRY_CODES_mult_s:"
+operator|+
+name|theCode
 argument_list|)
 argument_list|,
 literal|"//*[@numFound='"
@@ -1219,6 +1342,27 @@ operator|+
 literal|"'"
 argument_list|)
 expr_stmt|;
+block|}
+else|else
+block|{
+comment|// no one lives there anyway
+name|assertQ
+argument_list|(
+name|req
+argument_list|(
+literal|"COUNTRY_CODES_mult_s:"
+operator|+
+name|theCode
+argument_list|)
+argument_list|,
+literal|"//*[@numFound='"
+operator|+
+name|num
+operator|+
+literal|"']"
+argument_list|)
+expr_stmt|;
+block|}
 block|}
 if|if
 condition|(
@@ -1268,11 +1412,40 @@ argument_list|)
 expr_stmt|;
 block|}
 name|String
-name|michaelsName
+index|[]
+name|names
 init|=
-name|personNameById
+name|getStringsFromQuery
 argument_list|(
-literal|3
+literal|"SELECT NAME FROM PEOPLE WHERE DELETED != 'Y'"
+argument_list|)
+decl_stmt|;
+name|String
+name|name
+init|=
+name|names
+index|[
+name|random
+argument_list|()
+operator|.
+name|nextInt
+argument_list|(
+name|names
+operator|.
+name|length
+argument_list|)
+index|]
+decl_stmt|;
+name|int
+name|personId
+init|=
+name|getIntFromQuery
+argument_list|(
+literal|"SELECT ID FROM PEOPLE WHERE DELETED != 'Y' AND NAME='"
+operator|+
+name|name
+operator|+
+literal|"'"
 argument_list|)
 decl_stmt|;
 name|String
@@ -1281,22 +1454,9 @@ name|michaelsSports
 init|=
 name|sportNamesByPersonId
 argument_list|(
-literal|3
+name|personId
 argument_list|)
 decl_stmt|;
-if|if
-condition|(
-name|michaelsName
-operator|!=
-literal|null
-operator|&&
-name|michaelsSports
-operator|.
-name|length
-operator|>
-literal|0
-condition|)
-block|{
 name|String
 index|[]
 name|xpath
@@ -1336,11 +1496,8 @@ index|[
 name|i
 index|]
 operator|=
-literal|"//doc/arr[@name='SPORT_NAME_mult_s']/str["
-operator|+
-name|i
-operator|+
-literal|"]='"
+literal|"//doc/arr[@name='SPORT_NAME_mult_s']/str='"
+comment|//[" + i + "]='" don't care about particular order
 operator|+
 name|ms
 operator|+
@@ -1356,7 +1513,7 @@ name|req
 argument_list|(
 literal|"NAME_mult_s:"
 operator|+
-name|michaelsName
+name|name
 operator|.
 name|replaceAll
 argument_list|(
@@ -1369,7 +1526,6 @@ argument_list|,
 name|xpath
 argument_list|)
 expr_stmt|;
-block|}
 if|if
 condition|(
 operator|!
@@ -1388,7 +1544,7 @@ argument_list|,
 literal|"//*[@numFound='"
 operator|+
 operator|(
-name|totalPeople
+name|totalSportsmen
 argument_list|()
 operator|)
 operator|+
@@ -1396,6 +1552,18 @@ literal|"']"
 argument_list|)
 expr_stmt|;
 block|}
+name|assertQ
+argument_list|(
+literal|"checking orphan sport is absent"
+argument_list|,
+name|req
+argument_list|(
+literal|"{!term f=SPORT_NAME_mult_s}No Fishing"
+argument_list|)
+argument_list|,
+literal|"//*[@numFound='0']"
+argument_list|)
+expr_stmt|;
 block|}
 if|if
 condition|(
@@ -1998,6 +2166,25 @@ return|return
 name|getIntFromQuery
 argument_list|(
 literal|"SELECT COUNT(1) FROM PEOPLE WHERE DELETED != 'Y' "
+argument_list|)
+return|;
+block|}
+DECL|method|totalSportsmen
+specifier|public
+name|int
+name|totalSportsmen
+parameter_list|()
+throws|throws
+name|Exception
+block|{
+return|return
+name|getIntFromQuery
+argument_list|(
+literal|"SELECT COUNT(*) FROM PEOPLE WHERE "
+operator|+
+literal|"EXISTS(SELECT ID FROM PEOPLE_SPORTS WHERE PERSON_ID=PEOPLE.ID AND PEOPLE_SPORTS.DELETED != 'Y')"
+operator|+
+literal|" AND PEOPLE.DELETED != 'Y'"
 argument_list|)
 return|;
 block|}
@@ -3350,7 +3537,29 @@ name|sb
 operator|.
 name|append
 argument_list|(
-literal|"query=''SELECT ID, NAME, COUNTRY_CODE FROM PEOPLE WHERE DELETED != 'Y' '' "
+literal|"query=''SELECT ID, NAME, COUNTRY_CODE FROM PEOPLE WHERE DELETED != 'Y' "
+operator|+
+operator|(
+operator|(
+name|sportsZipper
+operator|||
+name|countryZipper
+condition|?
+literal|"ORDER BY ID"
+else|:
+literal|""
+operator|)
+operator|+
+operator|(
+name|wrongPeopleOrder
+condition|?
+literal|" DESC"
+else|:
+literal|""
+operator|)
+operator|)
+operator|+
+literal|"'' "
 argument_list|)
 expr_stmt|;
 name|sb
@@ -3474,6 +3683,51 @@ expr_stmt|;
 block|}
 else|else
 block|{
+if|if
+condition|(
+name|countryZipper
+condition|)
+block|{
+comment|// really odd join btw. it sends duped countries
+name|sb
+operator|.
+name|append
+argument_list|(
+name|random
+argument_list|()
+operator|.
+name|nextBoolean
+argument_list|()
+condition|?
+literal|"cacheKey=''ID'' cacheLookup=''People.ID'' "
+else|:
+literal|"where=''ID=People.ID'' "
+argument_list|)
+expr_stmt|;
+name|sb
+operator|.
+name|append
+argument_list|(
+literal|"join=''zipper'' query=''SELECT PEOPLE.ID, CODE, COUNTRY_NAME FROM COUNTRIES"
+operator|+
+literal|" JOIN PEOPLE ON COUNTRIES.CODE=PEOPLE.COUNTRY_CODE "
+operator|+
+literal|"WHERE PEOPLE.DELETED != 'Y' ORDER BY PEOPLE.ID "
+operator|+
+operator|(
+name|wrongCountryOrder
+condition|?
+literal|" DESC"
+else|:
+literal|""
+operator|)
+operator|+
+literal|"'' "
+argument_list|)
+expr_stmt|;
+block|}
+else|else
+block|{
 name|sb
 operator|.
 name|append
@@ -3496,6 +3750,7 @@ argument_list|(
 literal|"query=''SELECT CODE, COUNTRY_NAME FROM COUNTRIES'' "
 argument_list|)
 expr_stmt|;
+block|}
 name|sb
 operator|.
 name|append
@@ -3638,6 +3893,31 @@ else|:
 literal|"where=''PERSON_ID=People.ID'' "
 argument_list|)
 expr_stmt|;
+if|if
+condition|(
+name|sportsZipper
+condition|)
+block|{
+name|sb
+operator|.
+name|append
+argument_list|(
+literal|"join=''zipper'' query=''SELECT ID, PERSON_ID, SPORT_NAME FROM PEOPLE_SPORTS ORDER BY PERSON_ID"
+operator|+
+operator|(
+name|wrongSportsOrder
+condition|?
+literal|" DESC"
+else|:
+literal|""
+operator|)
+operator|+
+literal|"'' "
+argument_list|)
+expr_stmt|;
+block|}
+else|else
+block|{
 name|sb
 operator|.
 name|append
@@ -3645,6 +3925,7 @@ argument_list|(
 literal|"query=''SELECT ID, PERSON_ID, SPORT_NAME FROM PEOPLE_SPORTS ORDER BY ID'' "
 argument_list|)
 expr_stmt|;
+block|}
 block|}
 block|}
 else|else
@@ -4305,13 +4586,14 @@ literal|"NF"
 block|}
 block|,
 block|{
-literal|10
+literal|21
 block|,
 literal|"Anthony"
 block|,
 literal|"NE"
 block|}
 block|,
+comment|// there is no ID=10 anymore
 block|{
 literal|11
 block|,
@@ -4496,9 +4778,11 @@ literal|1000
 block|,
 literal|10
 block|,
-literal|"Fishing"
+literal|"No Fishing"
 block|}
 block|,
+comment|// orhpaned sport
+comment|//
 block|{
 literal|1100
 block|,
@@ -4563,14 +4847,7 @@ block|,
 literal|"Rafting"
 block|}
 block|,
-block|{
-literal|1600
-block|,
-literal|16
-block|,
-literal|"Rowing"
-block|}
-block|,
+comment|//{1600, 16, "Rowing"}, Madison has no sport
 block|{
 literal|1700
 block|,
@@ -4601,6 +4878,22 @@ block|,
 literal|20
 block|,
 literal|"Windsurfing"
+block|}
+block|,
+block|{
+literal|2100
+block|,
+literal|21
+block|,
+literal|"Concrete diving"
+block|}
+block|,
+block|{
+literal|2110
+block|,
+literal|21
+block|,
+literal|"Bubble rugby"
 block|}
 block|}
 decl_stmt|;

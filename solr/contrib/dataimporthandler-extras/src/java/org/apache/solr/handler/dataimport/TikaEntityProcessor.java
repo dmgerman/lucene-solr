@@ -532,6 +532,13 @@ name|Context
 name|context
 parameter_list|)
 block|{
+name|super
+operator|.
+name|firstInit
+argument_list|(
+name|context
+argument_list|)
+expr_stmt|;
 try|try
 block|{
 name|String
