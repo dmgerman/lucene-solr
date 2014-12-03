@@ -632,7 +632,9 @@ name|decompressor
 operator|=
 operator|new
 name|Inflater
-argument_list|()
+argument_list|(
+literal|true
+argument_list|)
 expr_stmt|;
 name|compressed
 operator|=
@@ -699,9 +701,19 @@ operator|.
 name|readVInt
 argument_list|()
 decl_stmt|;
+comment|// pad with extra "dummy byte": see javadocs for using Inflater(true)
+comment|// we do it for compliance, but its unnecessary for years in zlib.
+specifier|final
+name|int
+name|paddedLength
+init|=
+name|compressedLength
+operator|+
+literal|1
+decl_stmt|;
 if|if
 condition|(
-name|compressedLength
+name|paddedLength
 operator|>
 name|compressed
 operator|.
@@ -717,7 +729,7 @@ name|ArrayUtil
 operator|.
 name|oversize
 argument_list|(
-name|compressedLength
+name|paddedLength
 argument_list|,
 literal|1
 argument_list|)
@@ -735,11 +747,20 @@ argument_list|,
 name|compressedLength
 argument_list|)
 expr_stmt|;
+name|compressed
+index|[
+name|compressedLength
+index|]
+operator|=
+literal|0
+expr_stmt|;
+comment|// explicitly set dummy byte to 0
 name|decompressor
 operator|.
 name|reset
 argument_list|()
 expr_stmt|;
+comment|// extra "dummy byte"
 name|decompressor
 operator|.
 name|setInput
@@ -748,7 +769,7 @@ name|compressed
 argument_list|,
 literal|0
 argument_list|,
-name|compressedLength
+name|paddedLength
 argument_list|)
 expr_stmt|;
 name|bytes
@@ -937,6 +958,8 @@ operator|new
 name|Deflater
 argument_list|(
 name|level
+argument_list|,
+literal|true
 argument_list|)
 expr_stmt|;
 name|compressed
