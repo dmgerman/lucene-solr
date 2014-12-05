@@ -986,6 +986,36 @@ argument_list|)
 expr_stmt|;
 name|assertEquals
 argument_list|(
+literal|"2014-01"
+argument_list|,
+name|tree
+operator|.
+name|parseShape
+argument_list|(
+literal|"[2014 TO 2014-01]"
+argument_list|)
+operator|.
+name|toString
+argument_list|()
+argument_list|)
+expr_stmt|;
+name|assertEquals
+argument_list|(
+literal|"2014-12"
+argument_list|,
+name|tree
+operator|.
+name|parseShape
+argument_list|(
+literal|"[2014-12 TO 2014]"
+argument_list|)
+operator|.
+name|toString
+argument_list|()
+argument_list|)
+expr_stmt|;
+name|assertEquals
+argument_list|(
 literal|"[2014 TO 2014-04-06]"
 argument_list|,
 name|tree
