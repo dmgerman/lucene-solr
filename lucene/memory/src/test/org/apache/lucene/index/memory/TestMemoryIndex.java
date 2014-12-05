@@ -641,7 +641,7 @@ argument_list|(
 literal|0
 argument_list|)
 decl_stmt|;
-comment|// Norms aren't cached, so we can change the Similarity
+comment|// Norms are re-computed when we change the Similarity
 name|mi
 operator|.
 name|setSimilarity
