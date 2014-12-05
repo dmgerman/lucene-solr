@@ -990,7 +990,7 @@ operator|=
 name|expandMultiTermQuery
 expr_stmt|;
 block|}
-comment|/**    * By default, {@link TokenStream}s that are not of the type    * {@link CachingTokenFilter} are wrapped in a {@link CachingTokenFilter} to    * ensure an efficient reset - if you are already using a different caching    * {@link TokenStream} impl and you don't want it to be wrapped, set this to    * false.    */
+comment|/**    * By default, {@link TokenStream}s that are not of the type    * {@link CachingTokenFilter} are wrapped in a {@link CachingTokenFilter} to    * ensure an efficient reset - if you are already using a different caching    * {@link TokenStream} impl and you don't want it to be wrapped, set this to    * false. Note that term-vector based tokenstreams are detected and won't be    * wrapped either.    */
 DECL|method|setWrapIfNotCachingTokenFilter
 specifier|public
 name|void
