@@ -344,6 +344,26 @@ name|IndexWriter
 name|writer
 parameter_list|)
 block|{
+if|if
+condition|(
+name|this
+operator|.
+name|writer
+operator|.
+name|get
+argument_list|()
+operator|!=
+literal|null
+condition|)
+block|{
+throw|throw
+operator|new
+name|IllegalStateException
+argument_list|(
+literal|"do not share IndexWriterConfig instances across IndexWriters"
+argument_list|)
+throw|;
+block|}
 name|this
 operator|.
 name|writer

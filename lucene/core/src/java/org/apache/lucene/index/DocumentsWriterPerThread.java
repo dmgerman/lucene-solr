@@ -614,18 +614,10 @@ comment|/** Called if we hit an exception at a bad time (when    *  updating the
 DECL|method|abort
 name|void
 name|abort
-parameter_list|(
-name|Set
-argument_list|<
-name|String
-argument_list|>
-name|createdFiles
-parameter_list|)
+parameter_list|()
 block|{
 comment|//System.out.println(Thread.currentThread().getName() + ": now abort seg=" + segmentInfo.name);
-name|hasAborted
-operator|=
-name|aborting
+name|aborted
 operator|=
 literal|true
 expr_stmt|;
@@ -670,23 +662,9 @@ operator|.
 name|clear
 argument_list|()
 expr_stmt|;
-name|createdFiles
-operator|.
-name|addAll
-argument_list|(
-name|directory
-operator|.
-name|getCreatedFiles
-argument_list|()
-argument_list|)
-expr_stmt|;
 block|}
 finally|finally
 block|{
-name|aborting
-operator|=
-literal|false
-expr_stmt|;
 if|if
 condition|(
 name|infoStream
@@ -765,20 +743,13 @@ name|SegmentInfo
 name|segmentInfo
 decl_stmt|;
 comment|// Current segment we are working on
-DECL|field|aborting
+DECL|field|aborted
 name|boolean
-name|aborting
+name|aborted
 init|=
 literal|false
 decl_stmt|;
-comment|// True if an abort is pending
-DECL|field|hasAborted
-name|boolean
-name|hasAborted
-init|=
-literal|false
-decl_stmt|;
-comment|// True if the last exception throws by #updateDocument was aborting
+comment|// True if we aborted
 DECL|field|fieldInfos
 specifier|private
 specifier|final
@@ -1095,16 +1066,6 @@ name|this
 argument_list|)
 expr_stmt|;
 block|}
-DECL|method|setAborting
-name|void
-name|setAborting
-parameter_list|()
-block|{
-name|aborting
-operator|=
-literal|true
-expr_stmt|;
-block|}
 DECL|method|getFieldInfosBuilder
 specifier|public
 name|FieldInfos
@@ -1115,25 +1076,6 @@ parameter_list|()
 block|{
 return|return
 name|fieldInfos
-return|;
-block|}
-DECL|method|checkAndResetHasAborted
-name|boolean
-name|checkAndResetHasAborted
-parameter_list|()
-block|{
-specifier|final
-name|boolean
-name|retval
-init|=
-name|hasAborted
-decl_stmt|;
-name|hasAborted
-operator|=
-literal|false
-expr_stmt|;
-return|return
-name|retval
 return|;
 block|}
 DECL|method|testPoint
@@ -1222,6 +1164,8 @@ name|delTerm
 parameter_list|)
 throws|throws
 name|IOException
+throws|,
+name|AbortingException
 block|{
 name|testPoint
 argument_list|(
@@ -1340,12 +1284,6 @@ operator|!
 name|success
 condition|)
 block|{
-if|if
-condition|(
-operator|!
-name|aborting
-condition|)
-block|{
 comment|// mark document as deleted
 name|deleteDocID
 argument_list|(
@@ -1357,15 +1295,6 @@ expr_stmt|;
 name|numDocsInRAM
 operator|++
 expr_stmt|;
-block|}
-else|else
-block|{
-name|abort
-argument_list|(
-name|filesToDelete
-argument_list|)
-expr_stmt|;
-block|}
 block|}
 block|}
 name|finishDocument
@@ -1395,6 +1324,8 @@ name|delTerm
 parameter_list|)
 throws|throws
 name|IOException
+throws|,
+name|AbortingException
 block|{
 name|testPoint
 argument_list|(
@@ -1525,27 +1456,11 @@ operator|!
 name|success
 condition|)
 block|{
-comment|// An exc is being thrown...
-if|if
-condition|(
-operator|!
-name|aborting
-condition|)
-block|{
 comment|// Incr here because finishDocument will not
 comment|// be called (because an exc is being thrown):
 name|numDocsInRAM
 operator|++
 expr_stmt|;
-block|}
-else|else
-block|{
-name|abort
-argument_list|(
-name|filesToDelete
-argument_list|)
-expr_stmt|;
-block|}
 block|}
 block|}
 name|finishDocument
@@ -1608,7 +1523,7 @@ operator|!
 name|allDocsIndexed
 operator|&&
 operator|!
-name|aborting
+name|aborted
 condition|)
 block|{
 comment|// the iterator threw an exception that is not aborting
@@ -1858,6 +1773,8 @@ name|flush
 parameter_list|()
 throws|throws
 name|IOException
+throws|,
+name|AbortingException
 block|{
 assert|assert
 name|numDocsInRAM
@@ -2013,7 +1930,7 @@ expr_stmt|;
 block|}
 if|if
 condition|(
-name|aborting
+name|aborted
 condition|)
 block|{
 if|if
@@ -2070,11 +1987,6 @@ name|numDocsInRAM
 argument_list|)
 expr_stmt|;
 block|}
-name|boolean
-name|success
-init|=
-literal|false
-decl_stmt|;
 try|try
 block|{
 name|consumer
@@ -2423,28 +2335,26 @@ argument_list|(
 name|fs
 argument_list|)
 expr_stmt|;
-name|success
-operator|=
-literal|true
-expr_stmt|;
 return|return
 name|fs
 return|;
 block|}
-finally|finally
-block|{
-if|if
-condition|(
-operator|!
-name|success
-condition|)
+catch|catch
+parameter_list|(
+name|Throwable
+name|th
+parameter_list|)
 block|{
 name|abort
-argument_list|(
-name|filesToDelete
-argument_list|)
+argument_list|()
 expr_stmt|;
-block|}
+throw|throw
+operator|new
+name|AbortingException
+argument_list|(
+name|th
+argument_list|)
+throw|;
 block|}
 block|}
 DECL|field|filesToDelete
@@ -2956,9 +2866,9 @@ else|:
 literal|"null"
 operator|)
 operator|+
-literal|", aborting="
+literal|", aborted="
 operator|+
-name|aborting
+name|aborted
 operator|+
 literal|", numDocsInRAM="
 operator|+

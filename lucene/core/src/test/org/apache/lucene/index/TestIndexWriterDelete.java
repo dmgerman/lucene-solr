@@ -3992,8 +3992,7 @@ name|rollback
 argument_list|()
 expr_stmt|;
 block|}
-comment|// If the close() succeeded, make sure there are
-comment|// no unreferenced files.
+comment|// If the close() succeeded, make sure index is OK:
 if|if
 condition|(
 name|success
@@ -4004,15 +4003,6 @@ operator|.
 name|checkIndex
 argument_list|(
 name|dir
-argument_list|)
-expr_stmt|;
-name|TestIndexWriter
-operator|.
-name|assertNoUnreferencedFiles
-argument_list|(
-name|dir
-argument_list|,
-literal|"after writer.close"
 argument_list|)
 expr_stmt|;
 block|}
@@ -5368,10 +5358,15 @@ block|}
 break|break;
 block|}
 block|}
+name|assertTrue
+argument_list|(
 name|modifier
 operator|.
-name|close
+name|deleter
+operator|.
+name|isClosed
 argument_list|()
+argument_list|)
 expr_stmt|;
 name|TestIndexWriter
 operator|.

@@ -81,6 +81,8 @@ operator|.
 name|document
 operator|.
 name|Field
+operator|.
+name|Store
 import|;
 end_import
 
@@ -95,8 +97,6 @@ operator|.
 name|document
 operator|.
 name|Field
-operator|.
-name|Store
 import|;
 end_import
 
@@ -167,6 +167,20 @@ operator|.
 name|index
 operator|.
 name|IndexWriterConfig
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|store
+operator|.
+name|AlreadyClosedException
 import|;
 end_import
 
@@ -470,63 +484,7 @@ expr_stmt|;
 block|}
 finally|finally
 block|{
-comment|// next event will cause IW to delete the old files: we use prepareCommit just as example
-name|iw
-operator|.
-name|prepareCommit
-argument_list|()
-expr_stmt|;
-name|int
-name|counter
-init|=
-literal|0
-decl_stmt|;
-for|for
-control|(
-name|String
-name|fileName
-range|:
-name|dir
-operator|.
-name|listAll
-argument_list|()
-control|)
-block|{
-if|if
-condition|(
-name|fileName
-operator|.
-name|endsWith
-argument_list|(
-literal|".fdt"
-argument_list|)
-operator|||
-name|fileName
-operator|.
-name|endsWith
-argument_list|(
-literal|".fdx"
-argument_list|)
-condition|)
-block|{
-name|counter
-operator|++
-expr_stmt|;
-block|}
-block|}
-comment|// Only one .fdt and one .fdx files must have been found
-name|assertEquals
-argument_list|(
-literal|2
-argument_list|,
-name|counter
-argument_list|)
-expr_stmt|;
-name|iw
-operator|.
-name|rollback
-argument_list|()
-expr_stmt|;
+comment|// Abort should have closed the deleter:
 name|dir
 operator|.
 name|close

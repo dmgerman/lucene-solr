@@ -357,6 +357,11 @@ argument_list|,
 literal|300
 argument_list|)
 decl_stmt|;
+name|boolean
+name|indexExists
+init|=
+literal|false
+decl_stmt|;
 while|while
 condition|(
 literal|true
@@ -506,6 +511,10 @@ name|writer
 operator|.
 name|commit
 argument_list|()
+expr_stmt|;
+name|indexExists
+operator|=
+literal|true
 expr_stmt|;
 block|}
 catch|catch
@@ -657,21 +666,9 @@ block|}
 comment|//_TestUtil.syncConcurrentMerges(ms);
 if|if
 condition|(
-name|TestUtil
-operator|.
-name|anyFilesExceptWriteLock
-argument_list|(
-name|dir
-argument_list|)
+name|indexExists
 condition|)
 block|{
-name|assertNoUnreferencedFiles
-argument_list|(
-name|dir
-argument_list|,
-literal|"after disk full during addDocument"
-argument_list|)
-expr_stmt|;
 comment|// Make sure reader can open the index:
 name|DirectoryReader
 operator|.
@@ -2841,70 +2838,26 @@ parameter_list|(
 name|IOException
 name|ioe
 parameter_list|)
-block|{     }
-comment|// Without fix for LUCENE-1130: this call will hang:
-try|try
 block|{
+name|assertTrue
+argument_list|(
 name|writer
 operator|.
-name|addDocument
-argument_list|(
-name|doc
+name|deleter
+operator|.
+name|isClosed
+argument_list|()
 argument_list|)
 expr_stmt|;
-name|fail
+name|assertTrue
 argument_list|(
-literal|"did not hit disk full"
+name|writer
+operator|.
+name|isClosed
+argument_list|()
 argument_list|)
 expr_stmt|;
 block|}
-catch|catch
-parameter_list|(
-name|IOException
-name|ioe
-parameter_list|)
-block|{     }
-try|try
-block|{
-name|writer
-operator|.
-name|commit
-argument_list|()
-expr_stmt|;
-name|fail
-argument_list|(
-literal|"did not hit disk full"
-argument_list|)
-expr_stmt|;
-block|}
-catch|catch
-parameter_list|(
-name|IOException
-name|ioe
-parameter_list|)
-block|{     }
-finally|finally
-block|{
-name|writer
-operator|.
-name|close
-argument_list|()
-expr_stmt|;
-block|}
-comment|// Make sure once disk space is avail again, we can
-comment|// cleanly close:
-name|dir
-operator|.
-name|setMaxSizeInBytes
-argument_list|(
-literal|0
-argument_list|)
-expr_stmt|;
-name|writer
-operator|.
-name|close
-argument_list|()
-expr_stmt|;
 name|dir
 operator|.
 name|close
