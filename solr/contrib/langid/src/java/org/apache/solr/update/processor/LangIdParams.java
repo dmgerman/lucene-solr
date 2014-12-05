@@ -209,6 +209,24 @@ operator|+
 literal|".map.replace"
 decl_stmt|;
 comment|// Replace pattern
+DECL|field|MAX_FIELD_VALUE_CHARS
+name|String
+name|MAX_FIELD_VALUE_CHARS
+init|=
+name|LANGUAGE_ID
+operator|+
+literal|".maxFieldValueChars"
+decl_stmt|;
+comment|// Maximum number of characters to use per field for language detection
+DECL|field|MAX_TOTAL_CHARS
+name|String
+name|MAX_TOTAL_CHARS
+init|=
+name|LANGUAGE_ID
+operator|+
+literal|".maxTotalChars"
+decl_stmt|;
+comment|// Maximum number of characters to use per all concatenated fields for language detection
 DECL|field|DOCID_FIELD_DEFAULT
 name|String
 name|DOCID_FIELD_DEFAULT
@@ -238,6 +256,18 @@ name|String
 name|MAP_REPLACE_DEFAULT
 init|=
 literal|"$1_{lang}"
+decl_stmt|;
+DECL|field|MAX_FIELD_VALUE_CHARS_DEFAULT
+name|int
+name|MAX_FIELD_VALUE_CHARS_DEFAULT
+init|=
+literal|10000
+decl_stmt|;
+DECL|field|MAX_TOTAL_CHARS_DEFAULT
+name|int
+name|MAX_TOTAL_CHARS_DEFAULT
+init|=
+literal|20000
 decl_stmt|;
 comment|// TODO: This default threshold accepts even "uncertain" detections.
 comment|// Increase&langid.threshold above 0.5 to return only certain detections
