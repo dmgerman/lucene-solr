@@ -638,10 +638,10 @@ block|{
 try|try
 block|{
 comment|// In theory we could wait() indefinitely, but we
-comment|// do 1000 msec, defensively
+comment|// do 250 msec, defensively
 name|wait
 argument_list|(
-literal|1000
+literal|250
 argument_list|)
 expr_stmt|;
 block|}
