@@ -104,7 +104,7 @@ name|FilterLeafReader
 extends|extends
 name|LeafReader
 block|{
-comment|/** Get the wrapped instance by<code>reader</code> as long as this reader is    *  an intance of {@link FilterLeafReader}.  */
+comment|/** Get the wrapped instance by<code>reader</code> as long as this reader is    *  an instance of {@link FilterLeafReader}.  */
 DECL|method|unwrap
 specifier|public
 specifier|static
@@ -1550,6 +1550,17 @@ operator|.
 name|checkIntegrity
 argument_list|()
 expr_stmt|;
+block|}
+comment|/** Returns the wrapped {@link LeafReader}. */
+DECL|method|getDelegate
+specifier|public
+name|LeafReader
+name|getDelegate
+parameter_list|()
+block|{
+return|return
+name|in
+return|;
 block|}
 block|}
 end_class
