@@ -2917,7 +2917,7 @@ condition|)
 block|{
 name|mainWriter
 operator|.
-name|waitForMerges
+name|close
 argument_list|()
 expr_stmt|;
 block|}
@@ -2925,15 +2925,10 @@ else|else
 block|{
 name|mainWriter
 operator|.
-name|abortMerges
+name|rollback
 argument_list|()
 expr_stmt|;
 block|}
-name|mainWriter
-operator|.
-name|close
-argument_list|()
-expr_stmt|;
 block|}
 DECL|method|closeDir
 name|void
@@ -2956,6 +2951,7 @@ condition|;
 name|i
 operator|++
 control|)
+block|{
 name|readers
 index|[
 name|i
@@ -2964,6 +2960,7 @@ operator|.
 name|close
 argument_list|()
 expr_stmt|;
+block|}
 name|addDir
 operator|.
 name|close
