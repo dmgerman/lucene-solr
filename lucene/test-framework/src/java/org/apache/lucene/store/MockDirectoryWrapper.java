@@ -710,6 +710,25 @@ name|get
 argument_list|()
 return|;
 block|}
+DECL|field|verboseClone
+name|boolean
+name|verboseClone
+decl_stmt|;
+comment|/**     * If set to true, we print a fake exception    * with filename and stacktrace on every indexinput clone()    */
+DECL|method|setVerboseClone
+specifier|public
+name|void
+name|setVerboseClone
+parameter_list|(
+name|boolean
+name|v
+parameter_list|)
+block|{
+name|verboseClone
+operator|=
+name|v
+expr_stmt|;
+block|}
 DECL|method|setTrackDiskUsage
 specifier|public
 name|void
