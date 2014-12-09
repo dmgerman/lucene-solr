@@ -1368,8 +1368,9 @@ name|th
 parameter_list|)
 block|{
 throw|throw
-operator|new
 name|AbortingException
+operator|.
+name|wrap
 argument_list|(
 name|th
 argument_list|)
@@ -1405,8 +1406,9 @@ name|th
 parameter_list|)
 block|{
 throw|throw
-operator|new
 name|AbortingException
+operator|.
+name|wrap
 argument_list|(
 name|th
 argument_list|)
@@ -1604,8 +1606,9 @@ block|{
 comment|// Must abort, on the possibility that on-disk term
 comment|// vectors are now corrupt:
 throw|throw
-operator|new
 name|AbortingException
+operator|.
+name|wrap
 argument_list|(
 name|th
 argument_list|)
@@ -1711,8 +1714,9 @@ operator|=
 literal|true
 expr_stmt|;
 throw|throw
-operator|new
 name|AbortingException
+operator|.
+name|wrap
 argument_list|(
 name|th
 argument_list|)
@@ -3255,8 +3259,9 @@ name|th
 parameter_list|)
 block|{
 throw|throw
-operator|new
 name|AbortingException
+operator|.
+name|wrap
 argument_list|(
 name|th
 argument_list|)
