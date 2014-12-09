@@ -1613,7 +1613,7 @@ name|req
 argument_list|(
 literal|"srcField"
 argument_list|,
-literal|"_src"
+literal|"_src_"
 argument_list|)
 decl_stmt|;
 name|req
@@ -1730,7 +1730,7 @@ name|req
 argument_list|(
 literal|"srcField"
 argument_list|,
-literal|"_src"
+literal|"_src_"
 argument_list|)
 expr_stmt|;
 name|req
@@ -1815,7 +1815,7 @@ name|solrDoc
 operator|.
 name|getFieldValue
 argument_list|(
-literal|"_src"
+literal|"_src_"
 argument_list|)
 decl_stmt|;
 name|assertNotNull
@@ -1910,7 +1910,7 @@ name|solrDoc
 operator|.
 name|getFieldValue
 argument_list|(
-literal|"_src"
+literal|"_src_"
 argument_list|)
 expr_stmt|;
 name|assertNotNull
@@ -1981,7 +1981,7 @@ name|req
 argument_list|(
 literal|"srcField"
 argument_list|,
-literal|"_src"
+literal|"_src_"
 argument_list|)
 expr_stmt|;
 name|req
@@ -2065,7 +2065,7 @@ name|solrDoc
 operator|.
 name|getFieldValue
 argument_list|(
-literal|"_src"
+literal|"_src_"
 argument_list|)
 expr_stmt|;
 name|assertNotNull
@@ -2115,7 +2115,7 @@ name|solrDoc
 operator|.
 name|getFieldValue
 argument_list|(
-literal|"_src"
+literal|"_src_"
 argument_list|)
 expr_stmt|;
 name|assertNotNull
