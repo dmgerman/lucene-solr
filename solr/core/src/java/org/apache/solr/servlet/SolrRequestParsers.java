@@ -3605,16 +3605,6 @@ name|streams
 argument_list|)
 return|;
 block|}
-if|if
-condition|(
-name|req
-operator|.
-name|getContentType
-argument_list|()
-operator|!=
-literal|null
-condition|)
-block|{
 return|return
 name|raw
 operator|.
@@ -3625,18 +3615,6 @@ argument_list|,
 name|streams
 argument_list|)
 return|;
-block|}
-throw|throw
-operator|new
-name|SolrException
-argument_list|(
-name|ErrorCode
-operator|.
-name|UNSUPPORTED_MEDIA_TYPE
-argument_list|,
-literal|"Must specify a Content-Type header with POST requests"
-argument_list|)
-throw|;
 block|}
 throw|throw
 operator|new

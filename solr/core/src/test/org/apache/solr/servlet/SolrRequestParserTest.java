@@ -24,6 +24,18 @@ name|easymock
 operator|.
 name|EasyMock
 operator|.
+name|anyObject
+import|;
+end_import
+
+begin_import
+import|import static
+name|org
+operator|.
+name|easymock
+operator|.
+name|EasyMock
+operator|.
 name|createMock
 import|;
 end_import
@@ -2996,6 +3008,25 @@ operator|.
 name|anyTimes
 argument_list|()
 expr_stmt|;
+name|expect
+argument_list|(
+name|request
+operator|.
+name|getHeader
+argument_list|(
+name|anyObject
+argument_list|()
+argument_list|)
+argument_list|)
+operator|.
+name|andReturn
+argument_list|(
+literal|null
+argument_list|)
+operator|.
+name|anyTimes
+argument_list|()
+expr_stmt|;
 name|replay
 argument_list|(
 name|request
@@ -3032,11 +3063,6 @@ argument_list|,
 name|request
 argument_list|)
 expr_stmt|;
-name|fail
-argument_list|(
-literal|"should throw SolrException"
-argument_list|)
-expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
@@ -3044,27 +3070,9 @@ name|SolrException
 name|e
 parameter_list|)
 block|{
-name|assertTrue
+name|fail
 argument_list|(
-name|e
-operator|.
-name|getMessage
-argument_list|()
-operator|.
-name|startsWith
-argument_list|(
-literal|"Must specify a Content-Type header with POST requests"
-argument_list|)
-argument_list|)
-expr_stmt|;
-name|assertEquals
-argument_list|(
-literal|415
-argument_list|,
-name|e
-operator|.
-name|code
-argument_list|()
+literal|"should not throw SolrException"
 argument_list|)
 expr_stmt|;
 block|}

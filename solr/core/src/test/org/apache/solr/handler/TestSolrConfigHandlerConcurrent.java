@@ -1496,6 +1496,11 @@ argument_list|(
 name|entity
 argument_list|)
 expr_stmt|;
+name|get
+operator|.
+name|releaseConnection
+argument_list|()
+expr_stmt|;
 block|}
 block|}
 block|}
