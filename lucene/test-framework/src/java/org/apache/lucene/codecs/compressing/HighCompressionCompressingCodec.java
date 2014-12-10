@@ -71,11 +71,11 @@ specifier|public
 name|HighCompressionCompressingCodec
 parameter_list|()
 block|{
-comment|// no need to have a higher block length than 32KB since deflate splits
-comment|// into blocks of 32KB anyway, and this is a lower bound (try to avoid> 32KB)
+comment|// we don't worry about zlib block overhead as its
+comment|// not bad and try to save space instead:
 name|this
 argument_list|(
-literal|24576
+literal|61440
 argument_list|,
 literal|512
 argument_list|,
