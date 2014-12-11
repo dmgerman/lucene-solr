@@ -463,12 +463,6 @@ name|LOCK_TYPE_NONE
 init|=
 literal|"none"
 decl_stmt|;
-DECL|field|checkIntegrityAtMerge
-specifier|public
-specifier|final
-name|boolean
-name|checkIntegrityAtMerge
-decl_stmt|;
 comment|/**    * Internal constructor for setting defaults based on Lucene Version    */
 annotation|@
 name|SuppressWarnings
@@ -549,10 +543,6 @@ expr_stmt|;
 name|mergedSegmentWarmerInfo
 operator|=
 literal|null
-expr_stmt|;
-name|checkIntegrityAtMerge
-operator|=
-literal|false
 expr_stmt|;
 block|}
 comment|/**    * Constructs a SolrIndexConfig which parses the Lucene related config params in solrconfig.xml    * @param solrConfig the overall SolrConfig object    * @param prefix the XPath prefix for which section to parse (mandatory)    * @param def a SolrIndexConfig instance to pick default values from (optional)    */
@@ -1026,19 +1016,26 @@ literal|"Supplying a mergedSegmentWarmer will do nothing since nrtMode is false"
 argument_list|)
 throw|;
 block|}
-name|checkIntegrityAtMerge
-operator|=
+name|assertWarnOrFail
+argument_list|(
+literal|"Begining with Solr 5.0,<checkIntegrityAtMerge> option is no longer supported and should be removed from solrconfig.xml (these integrity checks are now automatic)"
+argument_list|,
+operator|(
+literal|null
+operator|==
 name|solrConfig
 operator|.
-name|getBool
+name|getNode
 argument_list|(
 name|prefix
 operator|+
 literal|"/checkIntegrityAtMerge"
 argument_list|,
-name|def
-operator|.
-name|checkIntegrityAtMerge
+literal|false
+argument_list|)
+operator|)
+argument_list|,
+literal|false
 argument_list|)
 expr_stmt|;
 block|}
