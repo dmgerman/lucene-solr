@@ -194,6 +194,20 @@ name|lucene
 operator|.
 name|index
 operator|.
+name|IndexWriterConfig
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|index
+operator|.
 name|LeafReaderContext
 import|;
 end_import
@@ -209,6 +223,20 @@ operator|.
 name|index
 operator|.
 name|RandomIndexWriter
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|index
+operator|.
+name|SerialMergeScheduler
 import|;
 end_import
 
@@ -2296,6 +2324,21 @@ init|=
 name|newDirectory
 argument_list|()
 decl_stmt|;
+comment|// serial merges so that segments do not get closed while we are measuring ram usage
+comment|// with RamUsageTester
+name|IndexWriterConfig
+name|iwc
+init|=
+name|newIndexWriterConfig
+argument_list|()
+operator|.
+name|setMergeScheduler
+argument_list|(
+operator|new
+name|SerialMergeScheduler
+argument_list|()
+argument_list|)
+decl_stmt|;
 specifier|final
 name|RandomIndexWriter
 name|w
@@ -2307,6 +2350,8 @@ name|random
 argument_list|()
 argument_list|,
 name|dir
+argument_list|,
+name|iwc
 argument_list|)
 decl_stmt|;
 specifier|final
