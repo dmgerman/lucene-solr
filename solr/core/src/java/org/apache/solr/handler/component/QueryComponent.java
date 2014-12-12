@@ -2340,7 +2340,7 @@ operator|<
 name|timeAllowed
 condition|)
 block|{
-comment|// fundementally incompatible
+comment|// fundamentally incompatible
 throw|throw
 operator|new
 name|SolrException
