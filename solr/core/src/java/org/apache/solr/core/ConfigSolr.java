@@ -884,10 +884,10 @@ name|DEFAULT_CORE_ADMIN_PATH
 init|=
 literal|"/admin/cores"
 decl_stmt|;
-DECL|method|getZkHostPort
+DECL|method|getSolrHostPort
 specifier|public
 name|String
-name|getZkHostPort
+name|getSolrHostPort
 parameter_list|()
 block|{
 return|return
