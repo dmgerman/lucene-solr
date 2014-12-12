@@ -20,6 +20,16 @@ end_package
 
 begin_import
 import|import
+name|java
+operator|.
+name|util
+operator|.
+name|Collection
+import|;
+end_import
+
+begin_import
+import|import
 name|org
 operator|.
 name|apache
@@ -149,6 +159,27 @@ name|SolrInputField
 name|src
 parameter_list|)
 block|{
+name|Collection
+argument_list|<
+name|Object
+argument_list|>
+name|values
+init|=
+name|src
+operator|.
+name|getValues
+argument_list|()
+decl_stmt|;
+if|if
+condition|(
+name|values
+operator|==
+literal|null
+condition|)
+return|return
+name|src
+return|;
+comment|//don't mutate
 name|SolrInputField
 name|result
 init|=
@@ -167,10 +198,7 @@ specifier|final
 name|Object
 name|srcVal
 range|:
-name|src
-operator|.
-name|getValues
-argument_list|()
+name|values
 control|)
 block|{
 specifier|final
