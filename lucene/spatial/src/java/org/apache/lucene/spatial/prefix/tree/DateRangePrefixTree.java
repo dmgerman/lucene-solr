@@ -22,20 +22,6 @@ end_comment
 
 begin_import
 import|import
-name|com
-operator|.
-name|spatial4j
-operator|.
-name|core
-operator|.
-name|shape
-operator|.
-name|Shape
-import|;
-end_import
-
-begin_import
-import|import
 name|java
 operator|.
 name|text
@@ -104,8 +90,22 @@ name|TimeZone
 import|;
 end_import
 
+begin_import
+import|import
+name|com
+operator|.
+name|spatial4j
+operator|.
+name|core
+operator|.
+name|shape
+operator|.
+name|Shape
+import|;
+end_import
+
 begin_comment
-comment|/**  * A PrefixTree for date ranges in which the levels of the tree occur at natural periods of time (e.g. years,  * months, ...). You pass in {@link Calendar} objects with the desired fields set and the unspecified  * fields unset, which conveys the precision.  The implementation tries to be generic to the Calendar  * abstraction, making some optimizations when a Gregorian is used, but no others have been tested.  *<p/>  * Warning: If you construct a Calendar and then get something from the object like a field (e.g. year) or  * milliseconds, then every field is fully set by side-effect. So after setting the fields, pass it to this  * API first.  * @lucene.experimental  */
+comment|/**  * A PrefixTree for date ranges in which the levels of the tree occur at natural periods of time (e.g. years,  * months, ...). You pass in {@link Calendar} objects with the desired fields set and the unspecified  * fields unset, which conveys the precision.  The implementation makes some optimization assumptions about a  * {@link java.util.GregorianCalendar}; others could probably be supported easily.  *<p/>  * Warning: If you construct a Calendar and then get something from the object like a field (e.g. year) or  * milliseconds, then every field is fully set by side-effect. So after setting the fields, pass it to this  * API first.  * @lucene.experimental  */
 end_comment
 
 begin_class
@@ -116,7 +116,7 @@ name|DateRangePrefixTree
 extends|extends
 name|NumberRangePrefixTree
 block|{
-comment|/*     WARNING  java.util.Calendar is tricky to work with:     * If you "get" any field value, every fields because "set". This can introduce a Heisenbug effect,         when in a debugger in some cases. Fortunately, Calendar.toString() doesn't apply.     * Beware Calendar underflow of the underlying long.  If you create a Calendar from LONG.MIN_VALUE, and clear      a field, it will underflow and appear close to LONG.MAX_VALUE (BC to AD).      There are no doubt other reasons but those two were hard fought lessons here.      TODO Improvements:     * Make max precision configurable (i.e. to SECOND).     * Make min& max year span configurable. Use that to remove pointless top levels of the SPT.         If year span is> 10k, then add 1k year level. If year span is> 10k of 1k levels, add 1M level.     * NumberRangePrefixTree: override getTreeCellIterator for optimized case where the shape isn't a date span; use       FilterCellIterator of the cell stack.    */
+comment|/*     WARNING  java.util.Calendar is tricky to work with:     * If you "get" any field value, every field becomes "set". This can introduce a Heisenbug effect,         when in a debugger in some cases. Fortunately, Calendar.toString() doesn't apply.     * Beware Calendar underflow of the underlying long.  If you create a Calendar from LONG.MIN_VALUE, and clear      a field, it will underflow and appear close to LONG.MAX_VALUE (BC to AD).      There are no doubt other reasons but those two were hard fought lessons here.      TODO Improvements:     * Make max precision configurable (i.e. to SECOND).     * Make min& max year span configurable. Use that to remove pointless top levels of the SPT.         If year span is> 10k, then add 1k year level. If year span is> 10k of 1k levels, add 1M level.     * NumberRangePrefixTree: override getTreeCellIterator for optimized case where the shape isn't a date span; use       FilterCellIterator of the cell stack.    */
 DECL|field|UTC
 specifier|private
 specifier|static
@@ -441,7 +441,7 @@ DECL|field|minLV
 DECL|field|maxLV
 specifier|private
 specifier|final
-name|LevelledValue
+name|UnitNRShape
 name|minLV
 decl_stmt|,
 name|maxLV
@@ -449,11 +449,11 @@ decl_stmt|;
 DECL|field|gregorianChangeDateLV
 specifier|private
 specifier|final
-name|LevelledValue
+name|UnitNRShape
 name|gregorianChangeDateLV
 decl_stmt|;
 DECL|method|DateRangePrefixTree
-specifier|private
+specifier|protected
 name|DateRangePrefixTree
 parameter_list|()
 block|{
@@ -518,9 +518,6 @@ argument_list|)
 expr_stmt|;
 name|maxLV
 operator|=
-operator|(
-name|LevelledValue
-operator|)
 name|toShape
 argument_list|(
 operator|(
@@ -534,9 +531,6 @@ argument_list|)
 expr_stmt|;
 name|minLV
 operator|=
-operator|(
-name|LevelledValue
-operator|)
 name|toShape
 argument_list|(
 operator|(
@@ -555,7 +549,7 @@ operator|instanceof
 name|GregorianCalendar
 condition|)
 block|{
-comment|//TODO this should be a configurable param by passing a Calendar surving as a template.
+comment|//TODO this should be a configurable param by passing a Calendar serving as a template.
 name|GregorianCalendar
 name|gCal
 init|=
@@ -566,10 +560,7 @@ name|MAXCAL
 decl_stmt|;
 name|gregorianChangeDateLV
 operator|=
-operator|(
-name|LevelledValue
-operator|)
-name|toShape
+name|toUnitShape
 argument_list|(
 name|gCal
 operator|.
@@ -589,18 +580,18 @@ block|}
 annotation|@
 name|Override
 DECL|method|getNumSubCells
-specifier|protected
+specifier|public
 name|int
 name|getNumSubCells
 parameter_list|(
-name|LevelledValue
+name|UnitNRShape
 name|lv
 parameter_list|)
 block|{
 name|int
 name|cmp
 init|=
-name|comparePrefixLV
+name|comparePrefix
 argument_list|(
 name|lv
 argument_list|,
@@ -640,7 +631,7 @@ name|gregorianChangeDateLV
 operator|!=
 literal|null
 condition|?
-name|comparePrefixLV
+name|comparePrefix
 argument_list|(
 name|lv
 argument_list|,
@@ -695,7 +686,7 @@ specifier|private
 name|int
 name|fastSubCells
 parameter_list|(
-name|LevelledValue
+name|UnitNRShape
 name|lv
 parameter_list|)
 block|{
@@ -848,7 +839,7 @@ specifier|private
 name|int
 name|slowSubCells
 parameter_list|(
-name|LevelledValue
+name|UnitNRShape
 name|lv
 parameter_list|)
 block|{
@@ -897,12 +888,12 @@ return|;
 name|Calendar
 name|cal
 init|=
-name|toCalendarLV
+name|toCalendar
 argument_list|(
 name|lv
 argument_list|)
 decl_stmt|;
-comment|//somewhat heavyweight op; ideally should be stored on LevelledValue somehow
+comment|//somewhat heavyweight op; ideally should be stored on UnitNRShape somehow
 return|return
 name|cal
 operator|.
@@ -937,6 +928,76 @@ operator|.
 name|clone
 argument_list|()
 return|;
+block|}
+comment|/** Calendar utility method:    * Returns the spatial prefix tree level for the corresponding {@link java.util.Calendar} field, such as    * {@link java.util.Calendar#YEAR}.  If there's no match, the next greatest level is returned as a negative value.    */
+DECL|method|getTreeLevelForCalendarField
+specifier|public
+name|int
+name|getTreeLevelForCalendarField
+parameter_list|(
+name|int
+name|calField
+parameter_list|)
+block|{
+for|for
+control|(
+name|int
+name|i
+init|=
+name|yearLevel
+init|;
+name|i
+operator|<
+name|FIELD_BY_LEVEL
+operator|.
+name|length
+condition|;
+name|i
+operator|++
+control|)
+block|{
+if|if
+condition|(
+name|FIELD_BY_LEVEL
+index|[
+name|i
+index|]
+operator|==
+name|calField
+condition|)
+block|{
+return|return
+name|i
+return|;
+block|}
+elseif|else
+if|if
+condition|(
+name|FIELD_BY_LEVEL
+index|[
+name|i
+index|]
+operator|>
+name|calField
+condition|)
+block|{
+return|return
+operator|-
+literal|1
+operator|*
+name|i
+return|;
+block|}
+block|}
+throw|throw
+operator|new
+name|IllegalArgumentException
+argument_list|(
+literal|"Bad calendar field?: "
+operator|+
+name|calField
+argument_list|)
+throw|;
 block|}
 comment|/** Calendar utility method:    * Gets the Calendar field code of the last field that is set prior to an unset field. It only    * examines fields relevant to the prefix tree. If no fields are set, it returns -1. */
 DECL|method|getCalPrecisionField
@@ -1113,10 +1174,10 @@ block|}
 comment|/** Converts {@code value} from a {@link Calendar} or {@link Date} to a {@link Shape}. Other arguments    * result in a {@link java.lang.IllegalArgumentException}.    */
 annotation|@
 name|Override
-DECL|method|toShape
+DECL|method|toUnitShape
 specifier|public
-name|Shape
-name|toShape
+name|UnitNRShape
+name|toUnitShape
 parameter_list|(
 name|Object
 name|value
@@ -1186,7 +1247,7 @@ block|}
 comment|/** Converts the Calendar into a Shape.    * The isSet() state of the Calendar is re-instated when done. */
 DECL|method|toShape
 specifier|public
-name|Shape
+name|UnitNRShape
 name|toShape
 parameter_list|(
 name|Calendar
@@ -1397,46 +1458,32 @@ expr_stmt|;
 comment|//restore precision state modified by get()
 block|}
 block|}
+comment|/** Calls {@link #toCalendar(org.apache.lucene.spatial.prefix.tree.NumberRangePrefixTree.UnitNRShape)}. */
+annotation|@
+name|Override
+DECL|method|toObject
+specifier|public
+name|Object
+name|toObject
+parameter_list|(
+name|UnitNRShape
+name|shape
+parameter_list|)
+block|{
+return|return
+name|toCalendar
+argument_list|(
+name|shape
+argument_list|)
+return|;
+block|}
+comment|/** Converts the {@link org.apache.lucene.spatial.prefix.tree.NumberRangePrefixTree.UnitNRShape} shape to a    * corresponding Calendar that is cleared below its level. */
 DECL|method|toCalendar
 specifier|public
 name|Calendar
 name|toCalendar
 parameter_list|(
-name|Shape
-name|shape
-parameter_list|)
-block|{
-if|if
-condition|(
-name|shape
-operator|instanceof
-name|LevelledValue
-condition|)
-return|return
-name|toCalendarLV
-argument_list|(
-operator|(
-name|LevelledValue
-operator|)
-name|shape
-argument_list|)
-return|;
-throw|throw
-operator|new
-name|IllegalArgumentException
-argument_list|(
-literal|"Can't be converted to Calendar: "
-operator|+
-name|shape
-argument_list|)
-throw|;
-block|}
-DECL|method|toCalendarLV
-specifier|private
-name|Calendar
-name|toCalendarLV
-parameter_list|(
-name|LevelledValue
+name|UnitNRShape
 name|lv
 parameter_list|)
 block|{
@@ -1455,7 +1502,7 @@ argument_list|()
 return|;
 if|if
 condition|(
-name|comparePrefixLV
+name|comparePrefix
 argument_list|(
 name|lv
 argument_list|,
@@ -1478,7 +1525,7 @@ return|;
 comment|//full precision; truncation would cause underflow
 block|}
 assert|assert
-name|comparePrefixLV
+name|comparePrefix
 argument_list|(
 name|lv
 argument_list|,
@@ -1694,26 +1741,26 @@ return|;
 block|}
 annotation|@
 name|Override
-DECL|method|toStringLV
+DECL|method|toString
 specifier|protected
 name|String
-name|toStringLV
+name|toString
 parameter_list|(
-name|LevelledValue
+name|UnitNRShape
 name|lv
 parameter_list|)
 block|{
 return|return
 name|toString
 argument_list|(
-name|toCalendarLV
+name|toCalendar
 argument_list|(
 name|lv
 argument_list|)
 argument_list|)
 return|;
 block|}
-comment|/** Calendar utility method:    * Converts to calendar to ISO-8601, to include proper BC handling (1BC is "0000", 2BC is "-0001", etc.);    * and WITHOUT a trailing 'Z'.    * A fully cleared calendar will yield the string "*".    * The isSet() state of the Calendar is re-instated when done. */
+comment|/** Calendar utility method:    * Formats the calendar to ISO-8601 format, to include proper BC handling (1BC is "0000", 2BC is "-0001", etc.);    * and WITHOUT a trailing 'Z'.    * A fully cleared calendar will yield the string "*".    * The isSet() state of the Calendar is re-instated when done. */
 annotation|@
 name|SuppressWarnings
 argument_list|(
@@ -1750,8 +1797,8 @@ literal|"*"
 return|;
 try|try
 block|{
-comment|//TODO not fully optimized because I only expect this to be used in tests / debugging.
-comment|//  Borrow code from Solr DateUtil, and have it reference this back?
+comment|//TODO not fully optimized; but it's at least not used in 'search'.
+comment|//TODO maybe borrow code from Solr DateUtil (put in Lucene util somewhere), and have it reference this back?
 name|String
 name|pattern
 init|=
@@ -2014,10 +2061,10 @@ block|}
 block|}
 annotation|@
 name|Override
-DECL|method|parseShapeLV
+DECL|method|parseUnitShape
 specifier|protected
-name|LevelledValue
-name|parseShapeLV
+name|UnitNRShape
+name|parseUnitShape
 parameter_list|(
 name|String
 name|str
@@ -2026,9 +2073,6 @@ throws|throws
 name|ParseException
 block|{
 return|return
-operator|(
-name|LevelledValue
-operator|)
 name|toShape
 argument_list|(
 name|parseCalendar

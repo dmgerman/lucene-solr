@@ -122,18 +122,8 @@ name|NumberRangePrefixTree
 import|;
 end_import
 
-begin_import
-import|import
-name|java
-operator|.
-name|text
-operator|.
-name|ParseException
-import|;
-end_import
-
 begin_comment
-comment|/** A PrefixTree based on Number/Date ranges. This isn't very "spatial" on the surface (to the user) but  * it's implemented using spatial so that's why it's here extending a SpatialStrategy.  *  * @lucene.experimental  */
+comment|/** A PrefixTree based on Number/Date ranges. This isn't very "spatial" on the surface (to the user) but  * it's implemented using spatial so that's why it's here extending a SpatialStrategy. When using this class, you will  * use various utility methods on the prefix tree implementation to convert objects/strings to/from shapes.  *  * To use with dates, pass in {@link org.apache.lucene.spatial.prefix.tree.DateRangePrefixTree}.  *  * @lucene.experimental  */
 end_comment
 
 begin_class
@@ -254,73 +244,6 @@ index|[]
 block|{
 name|field
 block|}
-return|;
-block|}
-comment|/** For a Date based tree, pass in a Calendar, with unspecified fields marked as cleared.    * See {@link NumberRangePrefixTree#toShape(Object)}. */
-DECL|method|toShape
-specifier|public
-name|Shape
-name|toShape
-parameter_list|(
-name|Object
-name|value
-parameter_list|)
-block|{
-return|return
-name|getGrid
-argument_list|()
-operator|.
-name|toShape
-argument_list|(
-name|value
-argument_list|)
-return|;
-block|}
-comment|/** See {@link NumberRangePrefixTree#toRangeShape(Shape, Shape)}. */
-DECL|method|toRangeShape
-specifier|public
-name|Shape
-name|toRangeShape
-parameter_list|(
-name|Shape
-name|min
-parameter_list|,
-name|Shape
-name|max
-parameter_list|)
-block|{
-return|return
-name|getGrid
-argument_list|()
-operator|.
-name|toRangeShape
-argument_list|(
-name|min
-argument_list|,
-name|max
-argument_list|)
-return|;
-block|}
-comment|/** See {@link NumberRangePrefixTree#parseShape(String)}. */
-DECL|method|parseShape
-specifier|public
-name|Shape
-name|parseShape
-parameter_list|(
-name|String
-name|str
-parameter_list|)
-throws|throws
-name|ParseException
-block|{
-return|return
-name|getGrid
-argument_list|()
-operator|.
-name|parseShape
-argument_list|(
-name|str
-argument_list|)
 return|;
 block|}
 comment|/** Unsupported. */
