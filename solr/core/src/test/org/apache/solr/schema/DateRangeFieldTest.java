@@ -13,7 +13,7 @@ package|;
 end_package
 
 begin_comment
-comment|/*  * Licensed to the Apache Software Foundation (ASF) under one or more  * contributor license agreements.  See the NOTICE file distributed with  * this work for additional information regarding copyright ownership.  * The ASF licenses this file to You under the Apache License, Version 2.0  * (the "License"); you may not use this file except in compliance with  * the License.  You may obtain a copy of the License at  *  *     http://www.apache.org/licenses/LICENSE-2.0  *  * Unless required by applicable law or agreed to in writing, software  * distributed under the License is distributed on an "AS IS" BASIS,  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.  * See the License for the specific language governing permissions and  * limitations under the License.  */
+comment|/*  * Licensed to the Apache Software Foundation (ASF) under one or more  * contributor license agreements.  See the NOTICE file distributed with  * this work for additional information regarding copyright ownership.NRP  * The ASF licenses this file to You under the Apache License, Version 2.0  * (the "License"); you may not use this file except in compliance with  * the License.  You may obtain a copy of the License at  *  *     http://www.apache.org/licenses/LICENSE-2.0  *  * Unless required by applicable law or agreed to in writing, software  * distributed under the License is distributed on an "AS IS" BASIS,  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.  * See the License for the specific language governing permissions and  * limitations under the License.  */
 end_comment
 
 begin_import
@@ -133,11 +133,26 @@ argument_list|)
 expr_stmt|;
 name|assertU
 argument_list|(
+name|adoc
+argument_list|(
+literal|"id"
+argument_list|,
+literal|"3"
+argument_list|,
+literal|"dateRange"
+argument_list|,
+literal|"2020-05-21T12:00:00.000Z/DAY"
+argument_list|)
+argument_list|)
+expr_stmt|;
+comment|//DateMath syntax
+name|assertU
+argument_list|(
 name|commit
 argument_list|()
 argument_list|)
 expr_stmt|;
-comment|//ensure stored value is the same (not toString of Shape)
+comment|//ensure stored value resolves datemath
 name|assertQ
 argument_list|(
 name|req
@@ -151,9 +166,44 @@ argument_list|,
 literal|"dateRange"
 argument_list|)
 argument_list|,
-literal|"//result/doc/arr[@name='dateRange']/str[.='2014-05-21T12:00:00.000Z']"
+literal|"//result/doc/arr[@name='dateRange']/str[.='2014-05-21T12:00:00Z']"
 argument_list|)
 expr_stmt|;
+comment|//no 000 ms
+name|assertQ
+argument_list|(
+name|req
+argument_list|(
+literal|"q"
+argument_list|,
+literal|"id:2"
+argument_list|,
+literal|"fl"
+argument_list|,
+literal|"dateRange"
+argument_list|)
+argument_list|,
+literal|"//result/doc/arr[@name='dateRange']/str[.='[2000 TO 2014-05-21]']"
+argument_list|)
+expr_stmt|;
+comment|//a range; same
+name|assertQ
+argument_list|(
+name|req
+argument_list|(
+literal|"q"
+argument_list|,
+literal|"id:3"
+argument_list|,
+literal|"fl"
+argument_list|,
+literal|"dateRange"
+argument_list|)
+argument_list|,
+literal|"//result/doc/arr[@name='dateRange']/str[.='2020-05-21T00:00:00Z']"
+argument_list|)
+expr_stmt|;
+comment|//resolve datemath
 name|String
 index|[]
 name|commonParams
@@ -186,6 +236,8 @@ argument_list|,
 literal|1
 argument_list|,
 literal|2
+argument_list|,
+literal|3
 argument_list|)
 argument_list|)
 expr_stmt|;
@@ -292,6 +344,22 @@ literal|1
 argument_list|)
 argument_list|)
 expr_stmt|;
+name|assertQ
+argument_list|(
+name|req
+argument_list|(
+literal|"q"
+argument_list|,
+literal|"dateRange:[1998 TO 2000}"
+argument_list|)
+argument_list|,
+name|xpathMatches
+argument_list|(
+literal|0
+argument_list|)
+argument_list|)
+expr_stmt|;
+comment|//exclusive end, so we barely miss one doc
 comment|//show without local-params
 name|assertQ
 argument_list|(
