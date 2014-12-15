@@ -620,6 +620,22 @@ name|Random
 import|;
 end_import
 
+begin_import
+import|import static
+name|org
+operator|.
+name|junit
+operator|.
+name|internal
+operator|.
+name|matchers
+operator|.
+name|StringContains
+operator|.
+name|containsString
+import|;
+end_import
+
 begin_comment
 comment|/**  * This should include tests against the example solr config  *   * This lets us try various SolrServer implementations with the same tests.  *   *  * @since solr 1.3  */
 end_comment
@@ -2755,17 +2771,19 @@ name|code
 argument_list|()
 argument_list|)
 expr_stmt|;
-name|assertEquals
+name|assertThat
 argument_list|(
-literal|"Invalid Number: ignore_exception"
-argument_list|,
 name|ex
 operator|.
 name|getMessage
 argument_list|()
+argument_list|,
+name|containsString
+argument_list|(
+literal|"Invalid Number: ignore_exception"
+argument_list|)
 argument_list|)
 expr_stmt|;
-comment|// The reason should get passed through
 block|}
 catch|catch
 parameter_list|(
