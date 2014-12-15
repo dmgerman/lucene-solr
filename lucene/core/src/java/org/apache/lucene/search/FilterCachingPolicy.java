@@ -112,7 +112,7 @@ annotation|@
 name|Override
 specifier|public
 name|void
-name|onCache
+name|onUse
 parameter_list|(
 name|Filter
 name|filter
@@ -210,10 +210,10 @@ expr_stmt|;
 block|}
 annotation|@
 name|Override
-DECL|method|onCache
+DECL|method|onUse
 specifier|public
 name|void
-name|onCache
+name|onUse
 parameter_list|(
 name|Filter
 name|filter
@@ -280,10 +280,10 @@ return|;
 block|}
 block|}
 empty_stmt|;
-comment|/** Callback that is called on every call to {@link FilterCache#doCache}.    *  This is typically useful if the policy wants to track usage statistics    *  in order to make decisions. */
-DECL|method|onCache
+comment|/** Callback that is called every time that a cached filter is used.    *  This is typically useful if the policy wants to track usage statistics    *  in order to make decisions. */
+DECL|method|onUse
 name|void
-name|onCache
+name|onUse
 parameter_list|(
 name|Filter
 name|filter
