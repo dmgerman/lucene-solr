@@ -164,6 +164,22 @@ name|StandardCharsets
 import|;
 end_import
 
+begin_import
+import|import static
+name|org
+operator|.
+name|junit
+operator|.
+name|internal
+operator|.
+name|matchers
+operator|.
+name|StringContains
+operator|.
+name|containsString
+import|;
+end_import
+
 begin_class
 DECL|class|TestModifyConfFiles
 specifier|public
@@ -279,14 +295,17 @@ name|Exception
 name|e
 parameter_list|)
 block|{
-name|assertEquals
+name|assertThat
 argument_list|(
 name|e
 operator|.
 name|getMessage
 argument_list|()
 argument_list|,
+name|containsString
+argument_list|(
 literal|"Input stream list was null for admin file write operation."
+argument_list|)
 argument_list|)
 expr_stmt|;
 block|}
