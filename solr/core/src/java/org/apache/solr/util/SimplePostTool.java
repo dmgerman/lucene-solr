@@ -18,6 +18,150 @@ end_comment
 
 begin_import
 import|import
+name|org
+operator|.
+name|w3c
+operator|.
+name|dom
+operator|.
+name|Document
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|w3c
+operator|.
+name|dom
+operator|.
+name|Node
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|w3c
+operator|.
+name|dom
+operator|.
+name|NodeList
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|xml
+operator|.
+name|sax
+operator|.
+name|SAXException
+import|;
+end_import
+
+begin_import
+import|import
+name|javax
+operator|.
+name|xml
+operator|.
+name|bind
+operator|.
+name|DatatypeConverter
+import|;
+end_import
+
+begin_import
+import|import
+name|javax
+operator|.
+name|xml
+operator|.
+name|parsers
+operator|.
+name|DocumentBuilderFactory
+import|;
+end_import
+
+begin_import
+import|import
+name|javax
+operator|.
+name|xml
+operator|.
+name|parsers
+operator|.
+name|ParserConfigurationException
+import|;
+end_import
+
+begin_import
+import|import
+name|javax
+operator|.
+name|xml
+operator|.
+name|xpath
+operator|.
+name|XPath
+import|;
+end_import
+
+begin_import
+import|import
+name|javax
+operator|.
+name|xml
+operator|.
+name|xpath
+operator|.
+name|XPathConstants
+import|;
+end_import
+
+begin_import
+import|import
+name|javax
+operator|.
+name|xml
+operator|.
+name|xpath
+operator|.
+name|XPathExpression
+import|;
+end_import
+
+begin_import
+import|import
+name|javax
+operator|.
+name|xml
+operator|.
+name|xpath
+operator|.
+name|XPathExpressionException
+import|;
+end_import
+
+begin_import
+import|import
+name|javax
+operator|.
+name|xml
+operator|.
+name|xpath
+operator|.
+name|XPathFactory
+import|;
+end_import
+
+begin_import
+import|import
 name|java
 operator|.
 name|io
@@ -380,150 +524,6 @@ name|InflaterInputStream
 import|;
 end_import
 
-begin_import
-import|import
-name|javax
-operator|.
-name|xml
-operator|.
-name|bind
-operator|.
-name|DatatypeConverter
-import|;
-end_import
-
-begin_import
-import|import
-name|javax
-operator|.
-name|xml
-operator|.
-name|parsers
-operator|.
-name|DocumentBuilderFactory
-import|;
-end_import
-
-begin_import
-import|import
-name|javax
-operator|.
-name|xml
-operator|.
-name|parsers
-operator|.
-name|ParserConfigurationException
-import|;
-end_import
-
-begin_import
-import|import
-name|javax
-operator|.
-name|xml
-operator|.
-name|xpath
-operator|.
-name|XPath
-import|;
-end_import
-
-begin_import
-import|import
-name|javax
-operator|.
-name|xml
-operator|.
-name|xpath
-operator|.
-name|XPathConstants
-import|;
-end_import
-
-begin_import
-import|import
-name|javax
-operator|.
-name|xml
-operator|.
-name|xpath
-operator|.
-name|XPathExpression
-import|;
-end_import
-
-begin_import
-import|import
-name|javax
-operator|.
-name|xml
-operator|.
-name|xpath
-operator|.
-name|XPathExpressionException
-import|;
-end_import
-
-begin_import
-import|import
-name|javax
-operator|.
-name|xml
-operator|.
-name|xpath
-operator|.
-name|XPathFactory
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|w3c
-operator|.
-name|dom
-operator|.
-name|Document
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|w3c
-operator|.
-name|dom
-operator|.
-name|Node
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|w3c
-operator|.
-name|dom
-operator|.
-name|NodeList
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|xml
-operator|.
-name|sax
-operator|.
-name|SAXException
-import|;
-end_import
-
 begin_comment
 comment|/**  * A simple utility class for posting raw updates to a Solr server,   * has a main method so it can be run on the command line.  * View this not as a best-practice code example, but as a standalone   * example built with an explicit purpose of not having external  * jar dependencies.  */
 end_comment
@@ -551,15 +551,6 @@ name|String
 name|DEFAULT_POST_PORT
 init|=
 literal|"8983"
-decl_stmt|;
-DECL|field|DEFAULT_POST_CORE
-specifier|private
-specifier|static
-specifier|final
-name|String
-name|DEFAULT_POST_CORE
-init|=
-literal|"collection1"
 decl_stmt|;
 DECL|field|VERSION_OF_THIS_TOOL
 specifier|private
@@ -1420,8 +1411,6 @@ operator|.
 name|getProperty
 argument_list|(
 literal|"c"
-argument_list|,
-name|DEFAULT_POST_CORE
 argument_list|)
 decl_stmt|;
 name|urlStr
@@ -1431,7 +1420,36 @@ operator|.
 name|getProperty
 argument_list|(
 literal|"url"
-argument_list|,
+argument_list|)
+expr_stmt|;
+if|if
+condition|(
+name|urlStr
+operator|==
+literal|null
+operator|&&
+name|core
+operator|==
+literal|null
+condition|)
+block|{
+name|fatal
+argument_list|(
+literal|"Specifying either url or core/collection is mandatory.\n"
+operator|+
+name|USAGE_STRING_SHORT
+argument_list|)
+expr_stmt|;
+block|}
+if|if
+condition|(
+name|urlStr
+operator|==
+literal|null
+condition|)
+block|{
+name|urlStr
+operator|=
 name|String
 operator|.
 name|format
@@ -1448,8 +1466,8 @@ name|port
 argument_list|,
 name|core
 argument_list|)
-argument_list|)
 expr_stmt|;
+block|}
 name|urlStr
 operator|=
 name|SimplePostTool
@@ -2253,6 +2271,10 @@ literal|"\n\n"
 operator|+
 literal|"Supported System Properties and their defaults:\n"
 operator|+
+literal|"  -Dc=<core/collection>\n"
+operator|+
+literal|"  -Durl=<solr-update-url> \n"
+operator|+
 literal|"  -Ddata=files|web|args|stdin (default="
 operator|+
 name|DEFAULT_DATA_MODE
@@ -2265,27 +2287,6 @@ name|DEFAULT_CONTENT_TYPE
 operator|+
 literal|")\n"
 operator|+
-literal|"  -Durl=<solr-update-url> (default="
-operator|+
-name|String
-operator|.
-name|format
-argument_list|(
-name|Locale
-operator|.
-name|ROOT
-argument_list|,
-literal|"http://%s:%s/solr/%s/update"
-argument_list|,
-name|DEFAULT_POST_HOST
-argument_list|,
-name|DEFAULT_POST_PORT
-argument_list|,
-name|DEFAULT_POST_CORE
-argument_list|)
-operator|+
-literal|")\n"
-operator|+
 literal|"  -Dhost=<host> (default: "
 operator|+
 name|DEFAULT_POST_HOST
@@ -2295,12 +2296,6 @@ operator|+
 literal|"  -Dport=<port> (default: "
 operator|+
 name|DEFAULT_POST_PORT
-operator|+
-literal|")\n"
-operator|+
-literal|"  -Dc=<core/collection> (default: "
-operator|+
-name|DEFAULT_POST_CORE
 operator|+
 literal|")\n"
 operator|+
@@ -2344,9 +2339,11 @@ name|DEFAULT_OUT
 operator|+
 literal|")\n\n"
 operator|+
-literal|"This is a simple command line tool for POSTing raw data to a Solr\n"
+literal|"This is a simple command line tool for POSTing raw data to a Solr port.\n"
 operator|+
-literal|"port.  Data can be read from files specified as commandline args,\n"
+literal|"NOTE: Specifying the url/core/collection name is mandatory.\n"
+operator|+
+literal|"Data can be read from files specified as commandline args,\n"
 operator|+
 literal|"URLs specified as args, as raw commandline arg strings or via STDIN.\n"
 operator|+
@@ -2354,23 +2351,23 @@ literal|"Examples:\n"
 operator|+
 literal|"  java -jar post.jar *.xml\n"
 operator|+
-literal|"  java -Ddata=args  -jar post.jar '<delete><id>42</id></delete>'\n"
+literal|"  java -Ddata=args -Dc=gettingstarted -jar post.jar '<delete><id>42</id></delete>'\n"
 operator|+
-literal|"  java -Ddata=stdin -jar post.jar< hd.xml\n"
+literal|"  java -Ddata=stdin -Dc=gettingstarted -jar post.jar< hd.xml\n"
 operator|+
-literal|"  java -Ddata=web -jar post.jar http://example.com/\n"
+literal|"  java -Ddata=web -Dc=gettingstarted -jar post.jar http://example.com/\n"
 operator|+
-literal|"  java -Dtype=text/csv -jar post.jar *.csv\n"
+literal|"  java -Dtype=text/csv -Dc=gettingstarted -jar post.jar *.csv\n"
 operator|+
-literal|"  java -Dtype=application/json -jar post.jar *.json\n"
+literal|"  java -Dtype=application/json -Dc=gettingstarted -jar post.jar *.json\n"
 operator|+
 literal|"  java -Durl=http://localhost:8983/solr/update/extract -Dparams=literal.id=a -Dtype=application/pdf -jar post.jar a.pdf\n"
 operator|+
-literal|"  java -Dauto -jar post.jar *\n"
+literal|"  java -Dauto -Dc=gettingstarted -jar post.jar *\n"
 operator|+
-literal|"  java -Dauto -Drecursive -jar post.jar afolder\n"
+literal|"  java -Dauto -Dc=gettingstarted -Drecursive -jar post.jar afolder\n"
 operator|+
-literal|"  java -Dauto -Dfiletypes=ppt,html -jar post.jar afolder\n"
+literal|"  java -Dauto -Dc=gettingstarted -Dfiletypes=ppt,html -jar post.jar afolder\n"
 operator|+
 literal|"The options controlled by System Properties include the Solr\n"
 operator|+
@@ -2380,9 +2377,9 @@ literal|"or optimize should be executed, and whether the response should\n"
 operator|+
 literal|"be written to STDOUT. If auto=yes the tool will try to set type\n"
 operator|+
-literal|"and url automatically from file name. When posting rich documents\n"
+literal|"automatically from file name. When posting rich documents the\n"
 operator|+
-literal|"the file name will be propagated as \"resource.name\" and also used\n"
+literal|"file name will be propagated as \"resource.name\" and also used\n"
 operator|+
 literal|"as \"literal.id\". You may override these or any other request parameter\n"
 operator|+
