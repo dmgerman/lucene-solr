@@ -370,14 +370,17 @@ name|Exception
 name|e
 parameter_list|)
 block|{
-name|assertEquals
+name|assertThat
 argument_list|(
 name|e
 operator|.
 name|getMessage
 argument_list|()
 argument_list|,
+name|containsString
+argument_list|(
 literal|"No file name specified for write operation."
+argument_list|)
 argument_list|)
 expr_stmt|;
 block|}
@@ -435,14 +438,17 @@ name|Exception
 name|e
 parameter_list|)
 block|{
-name|assertEquals
+name|assertThat
 argument_list|(
 name|e
 operator|.
 name|getMessage
 argument_list|()
 argument_list|,
+name|containsString
+argument_list|(
 literal|"Can not access: bogus.txt"
+argument_list|)
 argument_list|)
 expr_stmt|;
 block|}
