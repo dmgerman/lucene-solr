@@ -13437,6 +13437,13 @@ argument_list|,
 name|iwc
 argument_list|)
 decl_stmt|;
+comment|// TODO: cutover to RandomIndexWriter.mockIndexWriter?
+name|iw
+operator|.
+name|enableTestPoints
+operator|=
+literal|true
+expr_stmt|;
 name|Document
 name|doc
 init|=
