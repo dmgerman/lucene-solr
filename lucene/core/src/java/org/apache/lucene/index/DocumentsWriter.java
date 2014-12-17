@@ -1655,6 +1655,10 @@ argument_list|,
 name|writer
 operator|.
 name|pendingNumDocs
+argument_list|,
+name|writer
+operator|.
+name|enableTestPoints
 argument_list|)
 expr_stmt|;
 block|}

@@ -710,6 +710,13 @@ operator|.
 name|actualMaxDocs
 return|;
 block|}
+comment|/** Used only for testing. */
+DECL|field|enableTestPoints
+name|boolean
+name|enableTestPoints
+init|=
+literal|false
+decl_stmt|;
 DECL|field|UNBOUNDED_MAX_MERGE_SEGMENTS
 specifier|private
 specifier|static
@@ -16431,14 +16438,18 @@ parameter_list|)
 block|{
 if|if
 condition|(
+name|enableTestPoints
+condition|)
+block|{
+assert|assert
 name|infoStream
 operator|.
 name|isEnabled
 argument_list|(
 literal|"TP"
 argument_list|)
-condition|)
-block|{
+assert|;
+comment|// don't enable unless you need them.
 name|infoStream
 operator|.
 name|message

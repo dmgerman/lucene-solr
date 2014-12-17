@@ -819,6 +819,12 @@ specifier|final
 name|LiveIndexWriterConfig
 name|indexWriterConfig
 decl_stmt|;
+DECL|field|enableTestPoints
+specifier|private
+specifier|final
+name|boolean
+name|enableTestPoints
+decl_stmt|;
 DECL|method|DocumentsWriterPerThread
 specifier|public
 name|DocumentsWriterPerThread
@@ -845,6 +851,9 @@ name|fieldInfos
 parameter_list|,
 name|AtomicLong
 name|pendingNumDocs
+parameter_list|,
+name|boolean
+name|enableTestPoints
 parameter_list|)
 throws|throws
 name|IOException
@@ -1065,6 +1074,12 @@ argument_list|(
 name|this
 argument_list|)
 expr_stmt|;
+name|this
+operator|.
+name|enableTestPoints
+operator|=
+name|enableTestPoints
+expr_stmt|;
 block|}
 DECL|method|getFieldInfosBuilder
 specifier|public
@@ -1089,14 +1104,18 @@ parameter_list|)
 block|{
 if|if
 condition|(
+name|enableTestPoints
+condition|)
+block|{
+assert|assert
 name|infoStream
 operator|.
 name|isEnabled
 argument_list|(
 literal|"TP"
 argument_list|)
-condition|)
-block|{
+assert|;
+comment|// don't enable unless you need them.
 name|infoStream
 operator|.
 name|message

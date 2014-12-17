@@ -260,6 +260,7 @@ name|Codec
 name|codec
 decl_stmt|;
 comment|// sugar
+comment|/** Returns an indexwriter that randomly mixes up thread scheduling (by yielding at test points) */
 DECL|method|mockIndexWriter
 specifier|public
 specifier|static
@@ -334,6 +335,7 @@ block|}
 argument_list|)
 return|;
 block|}
+comment|/** Returns an indexwriter that enables the specified test point */
 DECL|method|mockIndexWriter
 specifier|public
 specifier|static
@@ -368,7 +370,9 @@ name|testPoint
 argument_list|)
 argument_list|)
 expr_stmt|;
-return|return
+name|IndexWriter
+name|iw
+init|=
 operator|new
 name|IndexWriter
 argument_list|(
@@ -376,6 +380,15 @@ name|dir
 argument_list|,
 name|conf
 argument_list|)
+decl_stmt|;
+name|iw
+operator|.
+name|enableTestPoints
+operator|=
+literal|true
+expr_stmt|;
+return|return
+name|iw
 return|;
 block|}
 comment|/** create a RandomIndexWriter with a random config: Uses MockAnalyzer */
