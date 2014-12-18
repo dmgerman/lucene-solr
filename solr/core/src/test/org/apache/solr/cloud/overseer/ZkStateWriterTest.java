@@ -441,6 +441,8 @@ name|getClusterState
 argument_list|()
 argument_list|,
 name|c1
+argument_list|,
+literal|null
 argument_list|)
 decl_stmt|;
 name|ZkWriteCommand
@@ -661,6 +663,8 @@ argument_list|(
 name|clusterState
 argument_list|,
 name|c3
+argument_list|,
+literal|null
 argument_list|)
 expr_stmt|;
 comment|// simulate three state changes in c3, all should be batched
