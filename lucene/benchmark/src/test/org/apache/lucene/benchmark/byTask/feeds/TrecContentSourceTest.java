@@ -1286,15 +1286,6 @@ name|props
 operator|.
 name|setProperty
 argument_list|(
-literal|"doc.maker.forever"
-argument_list|,
-literal|"false"
-argument_list|)
-expr_stmt|;
-name|props
-operator|.
-name|setProperty
-argument_list|(
 literal|"docs.dir"
 argument_list|,
 name|dataDir
