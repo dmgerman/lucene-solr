@@ -525,9 +525,11 @@ parameter_list|)
 block|{
 if|if
 condition|(
+operator|!
 name|info
 operator|.
 name|isFromSolrConfig
+argument_list|()
 condition|)
 block|{
 comment|//if this is a component implicitly defined in code it should be overridden by initPrams
