@@ -7413,6 +7413,8 @@ argument_list|()
 argument_list|)
 expr_stmt|;
 block|}
+try|try
+block|{
 name|assertEquals
 argument_list|(
 operator|new
@@ -7438,7 +7440,7 @@ argument_list|()
 argument_list|)
 argument_list|)
 operator|.
-name|getAbsolutePath
+name|getCanonicalPath
 argument_list|()
 argument_list|,
 operator|new
@@ -7463,10 +7465,32 @@ argument_list|)
 argument_list|)
 argument_list|)
 operator|.
-name|getAbsolutePath
+name|getCanonicalPath
 argument_list|()
 argument_list|)
 expr_stmt|;
+block|}
+catch|catch
+parameter_list|(
+name|IOException
+name|e
+parameter_list|)
+block|{
+name|log
+operator|.
+name|error
+argument_list|(
+literal|"Failed to get canonical path"
+argument_list|,
+name|e
+argument_list|)
+expr_stmt|;
+name|fail
+argument_list|(
+literal|"Failed to get canonical path"
+argument_list|)
+expr_stmt|;
+block|}
 block|}
 block|}
 DECL|method|waitForReloads
