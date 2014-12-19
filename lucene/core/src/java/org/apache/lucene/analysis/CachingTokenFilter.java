@@ -71,7 +71,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * This class can be used if the token attributes of a TokenStream  * are intended to be consumed more than once. It caches  * all token attribute states locally in a List when the first call to  * {@link #incrementToken()} is called.  *   *<P>CachingTokenFilter implements the optional method  * {@link TokenStream#reset()}, which repositions the  * stream to the first Token.   */
+comment|/**  * This class can be used if the token attributes of a TokenStream  * are intended to be consumed more than once. It caches  * all token attribute states locally in a List when the first call to  * {@link #incrementToken()} is called. Subsequent calls will used the cache.  *<p/>  *<em>Important:</em> Like any proper TokenFilter, {@link #reset()} propagates  * to the input, although only before {@link #incrementToken()} is called the  * first time. Prior to  Lucene 5, it was never propagated.  */
 end_comment
 
 begin_class
@@ -114,7 +114,7 @@ operator|.
 name|State
 name|finalState
 decl_stmt|;
-comment|/**    * Create a new CachingTokenFilter around<code>input</code>,    * caching its token attributes, which can be replayed again    * after a call to {@link #reset()}.    */
+comment|/**    * Create a new CachingTokenFilter around<code>input</code>. As with    * any normal TokenFilter, do<em>not</em> call reset on the input; this filter    * will do it normally.    */
 DECL|method|CachingTokenFilter
 specifier|public
 name|CachingTokenFilter
@@ -129,6 +129,43 @@ name|input
 argument_list|)
 expr_stmt|;
 block|}
+comment|/**    * Propagates reset if incrementToken has not yet been called. Otherwise    * it rewinds the iterator to the beginning of the cached list.    */
+annotation|@
+name|Override
+DECL|method|reset
+specifier|public
+name|void
+name|reset
+parameter_list|()
+throws|throws
+name|IOException
+block|{
+if|if
+condition|(
+name|cache
+operator|==
+literal|null
+condition|)
+block|{
+comment|//first time
+name|input
+operator|.
+name|reset
+argument_list|()
+expr_stmt|;
+block|}
+else|else
+block|{
+name|iterator
+operator|=
+name|cache
+operator|.
+name|iterator
+argument_list|()
+expr_stmt|;
+block|}
+block|}
+comment|/** The first time called, it'll read and cache all tokens from the input. */
 annotation|@
 name|Override
 DECL|method|incrementToken
@@ -147,6 +184,7 @@ operator|==
 literal|null
 condition|)
 block|{
+comment|//first-time
 comment|// fill cache lazily
 name|cache
 operator|=
@@ -215,31 +253,6 @@ name|restoreState
 argument_list|(
 name|finalState
 argument_list|)
-expr_stmt|;
-block|}
-block|}
-comment|/**    * Rewinds the iterator to the beginning of the cached list.    *<p>    * Note that this does not call reset() on the wrapped tokenstream ever, even    * the first time. You should reset() the inner tokenstream before wrapping    * it with CachingTokenFilter.    */
-annotation|@
-name|Override
-DECL|method|reset
-specifier|public
-name|void
-name|reset
-parameter_list|()
-block|{
-if|if
-condition|(
-name|cache
-operator|!=
-literal|null
-condition|)
-block|{
-name|iterator
-operator|=
-name|cache
-operator|.
-name|iterator
-argument_list|()
 expr_stmt|;
 block|}
 block|}

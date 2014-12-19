@@ -1100,11 +1100,6 @@ argument_list|(
 name|theFilter
 argument_list|)
 decl_stmt|;
-name|tee1
-operator|.
-name|reset
-argument_list|()
-expr_stmt|;
 specifier|final
 name|TokenStream
 name|source1
@@ -1249,11 +1244,6 @@ block|,
 literal|"Dogs"
 block|}
 argument_list|)
-expr_stmt|;
-name|source1
-operator|.
-name|reset
-argument_list|()
 expr_stmt|;
 name|TokenStream
 name|lowerCasing

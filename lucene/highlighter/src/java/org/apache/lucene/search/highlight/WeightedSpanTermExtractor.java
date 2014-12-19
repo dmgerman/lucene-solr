@@ -2550,12 +2550,6 @@ argument_list|)
 argument_list|)
 expr_stmt|;
 block|}
-name|tokenStream
-operator|.
-name|reset
-argument_list|()
-expr_stmt|;
-comment|//reset to beginning when we return
 specifier|final
 name|IndexSearcher
 name|searcher

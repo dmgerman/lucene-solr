@@ -687,11 +687,6 @@ name|queryText
 argument_list|)
 init|)
 block|{
-name|source
-operator|.
-name|reset
-argument_list|()
-expr_stmt|;
 name|buffer
 operator|=
 operator|new
@@ -803,6 +798,13 @@ parameter_list|)
 block|{
 comment|// ignore
 block|}
+comment|// rewind the buffer stream
+name|buffer
+operator|.
+name|reset
+argument_list|()
+expr_stmt|;
+comment|//will never through on subsequent reset calls
 block|}
 block|}
 catch|catch
@@ -821,12 +823,6 @@ name|e
 argument_list|)
 throw|;
 block|}
-comment|// rewind the buffer stream
-name|buffer
-operator|.
-name|reset
-argument_list|()
-expr_stmt|;
 name|BytesRef
 name|bytes
 init|=

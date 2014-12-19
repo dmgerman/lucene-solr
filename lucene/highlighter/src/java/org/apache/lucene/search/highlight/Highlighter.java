@@ -588,11 +588,6 @@ operator|.
 name|class
 argument_list|)
 decl_stmt|;
-name|tokenStream
-operator|.
-name|reset
-argument_list|()
-expr_stmt|;
 name|TextFragment
 name|currentFrag
 init|=
@@ -711,6 +706,11 @@ argument_list|(
 name|tokenStream
 argument_list|)
 decl_stmt|;
+name|tokenStream
+operator|.
+name|reset
+argument_list|()
+expr_stmt|;
 for|for
 control|(
 name|boolean
