@@ -1434,6 +1434,22 @@ return|return
 name|cardinality
 return|;
 block|}
+annotation|@
+name|Override
+DECL|method|toString
+specifier|public
+name|String
+name|toString
+parameter_list|()
+block|{
+return|return
+literal|"RoaringDocIdSet(cardinality="
+operator|+
+name|cardinality
+operator|+
+literal|")"
+return|;
+block|}
 block|}
 end_class
 

@@ -2994,6 +2994,25 @@ return|return
 name|ramBytesUsed
 return|;
 block|}
+annotation|@
+name|Override
+DECL|method|toString
+specifier|public
+name|String
+name|toString
+parameter_list|()
+block|{
+return|return
+literal|"SparseFixedBitSet(size="
+operator|+
+name|length
+operator|+
+literal|",cardinality=~"
+operator|+
+name|approximateCardinality
+argument_list|()
+return|;
+block|}
 block|}
 end_class
 
