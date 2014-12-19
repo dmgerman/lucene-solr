@@ -4525,6 +4525,37 @@ name|cms
 argument_list|)
 expr_stmt|;
 block|}
+else|else
+block|{
+comment|// Always use consistent settings, else CMS's dynamic (SSD or not)
+comment|// defaults can change, hurting reproducibility:
+name|ConcurrentMergeScheduler
+name|cms
+init|=
+operator|new
+name|ConcurrentMergeScheduler
+argument_list|()
+decl_stmt|;
+comment|// Only 1 thread can run at once (should maybe help reproducibility),
+comment|// with up to 3 pending merges before segment-producing threads are
+comment|// stalled:
+name|cms
+operator|.
+name|setMaxMergesAndThreads
+argument_list|(
+literal|3
+argument_list|,
+literal|1
+argument_list|)
+expr_stmt|;
+name|c
+operator|.
+name|setMergeScheduler
+argument_list|(
+name|cms
+argument_list|)
+expr_stmt|;
+block|}
 if|if
 condition|(
 name|r
