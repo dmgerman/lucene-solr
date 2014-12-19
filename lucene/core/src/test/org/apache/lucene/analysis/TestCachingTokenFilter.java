@@ -696,6 +696,13 @@ parameter_list|()
 throws|throws
 name|IOException
 block|{
+name|assumeTrue
+argument_list|(
+literal|"We want MockAnalyzer to detect double-reset"
+argument_list|,
+name|TEST_ASSERTS_ENABLED
+argument_list|)
+expr_stmt|;
 name|Analyzer
 name|analyzer
 init|=
