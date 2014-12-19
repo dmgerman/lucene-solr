@@ -226,10 +226,9 @@ name|inputPending
 operator|=
 name|input
 expr_stmt|;
-assert|assert
 name|setReaderTestPoint
 argument_list|()
-assert|;
+expr_stmt|;
 block|}
 annotation|@
 name|Override
@@ -255,16 +254,12 @@ operator|=
 name|ILLEGAL_STATE_READER
 expr_stmt|;
 block|}
-comment|// only used by assert, for testing
+comment|// only used for testing
 DECL|method|setReaderTestPoint
-name|boolean
+name|void
 name|setReaderTestPoint
 parameter_list|()
-block|{
-return|return
-literal|true
-return|;
-block|}
+block|{}
 DECL|field|ILLEGAL_STATE_READER
 specifier|private
 specifier|static
