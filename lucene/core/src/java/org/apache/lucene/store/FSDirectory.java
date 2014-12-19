@@ -262,7 +262,7 @@ argument_list|(
 name|path
 argument_list|)
 expr_stmt|;
-comment|// create directory, if it doesnt exist
+comment|// create directory, if it doesn't exist
 name|directory
 operator|=
 name|path

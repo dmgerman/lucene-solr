@@ -461,8 +461,6 @@ operator|.
 name|document
 operator|.
 name|Field
-operator|.
-name|Store
 import|;
 end_import
 
@@ -477,6 +475,8 @@ operator|.
 name|document
 operator|.
 name|Field
+operator|.
+name|Store
 import|;
 end_import
 
@@ -743,8 +743,6 @@ operator|.
 name|index
 operator|.
 name|IndexReader
-operator|.
-name|ReaderClosedListener
 import|;
 end_import
 
@@ -759,6 +757,8 @@ operator|.
 name|index
 operator|.
 name|IndexReader
+operator|.
+name|ReaderClosedListener
 import|;
 end_import
 
@@ -1137,8 +1137,6 @@ operator|.
 name|index
 operator|.
 name|TermsEnum
-operator|.
-name|SeekStatus
 import|;
 end_import
 
@@ -1153,6 +1151,8 @@ operator|.
 name|index
 operator|.
 name|TermsEnum
+operator|.
+name|SeekStatus
 import|;
 end_import
 
@@ -1351,8 +1351,6 @@ operator|.
 name|store
 operator|.
 name|IOContext
-operator|.
-name|Context
 import|;
 end_import
 
@@ -1367,6 +1365,8 @@ operator|.
 name|store
 operator|.
 name|IOContext
+operator|.
+name|Context
 import|;
 end_import
 
@@ -1409,8 +1409,6 @@ operator|.
 name|store
 operator|.
 name|MockDirectoryWrapper
-operator|.
-name|Throttling
 import|;
 end_import
 
@@ -1425,6 +1423,8 @@ operator|.
 name|store
 operator|.
 name|MockDirectoryWrapper
+operator|.
+name|Throttling
 import|;
 end_import
 
@@ -1759,6 +1759,20 @@ operator|.
 name|annotations
 operator|.
 name|ThreadLeakAction
+import|;
+end_import
+
+begin_import
+import|import
+name|com
+operator|.
+name|carrotsearch
+operator|.
+name|randomizedtesting
+operator|.
+name|annotations
+operator|.
+name|ThreadLeakAction
 operator|.
 name|Action
 import|;
@@ -1774,7 +1788,7 @@ name|randomizedtesting
 operator|.
 name|annotations
 operator|.
-name|ThreadLeakAction
+name|ThreadLeakFilters
 import|;
 end_import
 
@@ -1788,7 +1802,7 @@ name|randomizedtesting
 operator|.
 name|annotations
 operator|.
-name|ThreadLeakFilters
+name|ThreadLeakGroup
 import|;
 end_import
 
@@ -1818,7 +1832,7 @@ name|randomizedtesting
 operator|.
 name|annotations
 operator|.
-name|ThreadLeakGroup
+name|ThreadLeakLingering
 import|;
 end_import
 
@@ -1832,7 +1846,7 @@ name|randomizedtesting
 operator|.
 name|annotations
 operator|.
-name|ThreadLeakLingering
+name|ThreadLeakScope
 import|;
 end_import
 
@@ -1862,7 +1876,7 @@ name|randomizedtesting
 operator|.
 name|annotations
 operator|.
-name|ThreadLeakScope
+name|ThreadLeakZombies
 import|;
 end_import
 
@@ -1879,20 +1893,6 @@ operator|.
 name|ThreadLeakZombies
 operator|.
 name|Consequence
-import|;
-end_import
-
-begin_import
-import|import
-name|com
-operator|.
-name|carrotsearch
-operator|.
-name|randomizedtesting
-operator|.
-name|annotations
-operator|.
-name|ThreadLeakZombies
 import|;
 end_import
 
@@ -4441,36 +4441,6 @@ name|r
 argument_list|)
 condition|)
 block|{
-name|int
-name|maxThreadCount
-init|=
-name|TestUtil
-operator|.
-name|nextInt
-argument_list|(
-name|r
-argument_list|,
-literal|1
-argument_list|,
-literal|4
-argument_list|)
-decl_stmt|;
-name|int
-name|maxMergeCount
-init|=
-name|TestUtil
-operator|.
-name|nextInt
-argument_list|(
-name|r
-argument_list|,
-name|maxThreadCount
-argument_list|,
-name|maxThreadCount
-operator|+
-literal|4
-argument_list|)
-decl_stmt|;
 name|ConcurrentMergeScheduler
 name|cms
 decl_stmt|;
@@ -4508,6 +4478,36 @@ block|{             }
 block|}
 expr_stmt|;
 block|}
+name|int
+name|maxThreadCount
+init|=
+name|TestUtil
+operator|.
+name|nextInt
+argument_list|(
+name|r
+argument_list|,
+literal|1
+argument_list|,
+literal|4
+argument_list|)
+decl_stmt|;
+name|int
+name|maxMergeCount
+init|=
+name|TestUtil
+operator|.
+name|nextInt
+argument_list|(
+name|r
+argument_list|,
+name|maxThreadCount
+argument_list|,
+name|maxThreadCount
+operator|+
+literal|4
+argument_list|)
+decl_stmt|;
 name|cms
 operator|.
 name|setMaxMergesAndThreads

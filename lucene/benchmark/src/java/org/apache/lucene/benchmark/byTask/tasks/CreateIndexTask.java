@@ -100,16 +100,6 @@ end_import
 
 begin_import
 import|import
-name|java
-operator|.
-name|text
-operator|.
-name|ParseException
-import|;
-end_import
-
-begin_import
-import|import
 name|org
 operator|.
 name|apache
@@ -253,8 +243,6 @@ operator|.
 name|index
 operator|.
 name|IndexWriterConfig
-operator|.
-name|OpenMode
 import|;
 end_import
 
@@ -269,6 +257,8 @@ operator|.
 name|index
 operator|.
 name|IndexWriterConfig
+operator|.
+name|OpenMode
 import|;
 end_import
 
@@ -580,6 +570,7 @@ name|commit
 operator|!=
 literal|null
 condition|)
+block|{
 name|iwConf
 operator|.
 name|setIndexCommit
@@ -587,6 +578,7 @@ argument_list|(
 name|commit
 argument_list|)
 expr_stmt|;
+block|}
 specifier|final
 name|String
 name|mergeScheduler
@@ -704,7 +696,7 @@ literal|"concurrent.merge.scheduler.max.thread.count"
 argument_list|,
 name|ConcurrentMergeScheduler
 operator|.
-name|DEFAULT_MAX_THREAD_COUNT
+name|AUTO_DETECT_MERGES_AND_THREADS
 argument_list|)
 decl_stmt|;
 name|int
@@ -718,7 +710,7 @@ literal|"concurrent.merge.scheduler.max.merge.count"
 argument_list|,
 name|ConcurrentMergeScheduler
 operator|.
-name|DEFAULT_MAX_MERGE_COUNT
+name|AUTO_DETECT_MERGES_AND_THREADS
 argument_list|)
 decl_stmt|;
 name|cms
