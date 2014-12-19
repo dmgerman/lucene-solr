@@ -81,6 +81,18 @@ name|UsageTrackingFilterCachingPolicy
 implements|implements
 name|FilterCachingPolicy
 block|{
+comment|// the hash code that we use as a sentinel in the ring buffer.
+DECL|field|SENTINEL
+specifier|private
+specifier|static
+specifier|final
+name|int
+name|SENTINEL
+init|=
+name|Integer
+operator|.
+name|MIN_VALUE
+decl_stmt|;
 DECL|method|isCostly
 specifier|static
 name|boolean
@@ -134,9 +146,6 @@ DECL|field|recentlyUsedFilters
 specifier|private
 specifier|final
 name|FrequencyTrackingRingBuffer
-argument_list|<
-name|Integer
-argument_list|>
 name|recentlyUsedFilters
 decl_stmt|;
 DECL|field|minFrequencyCostlyFilters
@@ -301,9 +310,10 @@ name|recentlyUsedFilters
 operator|=
 operator|new
 name|FrequencyTrackingRingBuffer
-argument_list|<>
 argument_list|(
 name|historySize
+argument_list|,
+name|SENTINEL
 argument_list|)
 expr_stmt|;
 name|this
@@ -336,8 +346,12 @@ name|Filter
 name|filter
 parameter_list|)
 block|{
-comment|// Using the filter hash codes might help keep memory usage a bit lower
-comment|// since some filters might have non-negligible memory usage?
+comment|// we only track hash codes, which
+synchronized|synchronized
+init|(
+name|this
+init|)
+block|{
 name|recentlyUsedFilters
 operator|.
 name|add
@@ -348,6 +362,7 @@ name|hashCode
 argument_list|()
 argument_list|)
 expr_stmt|;
+block|}
 block|}
 annotation|@
 name|Override
@@ -391,7 +406,14 @@ block|}
 specifier|final
 name|int
 name|frequency
-init|=
+decl_stmt|;
+synchronized|synchronized
+init|(
+name|this
+init|)
+block|{
+name|frequency
+operator|=
 name|recentlyUsedFilters
 operator|.
 name|frequency
@@ -401,7 +423,8 @@ operator|.
 name|hashCode
 argument_list|()
 argument_list|)
-decl_stmt|;
+expr_stmt|;
+block|}
 if|if
 condition|(
 name|frequency
