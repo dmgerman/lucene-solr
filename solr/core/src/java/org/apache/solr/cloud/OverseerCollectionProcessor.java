@@ -4360,15 +4360,9 @@ name|message
 argument_list|)
 expr_stmt|;
 break|break;
-case|case
-name|REBALANCELEADERS
-case|:
-name|processAssignLeaders
-argument_list|(
-name|message
-argument_list|)
-expr_stmt|;
-break|break;
+comment|//          case REBALANCELEADERS:
+comment|//            processAssignLeaders(message);
+comment|//            break;
 default|default:
 throw|throw
 operator|new

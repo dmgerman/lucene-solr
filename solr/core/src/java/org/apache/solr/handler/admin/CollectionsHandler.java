@@ -2093,21 +2093,10 @@ argument_list|)
 expr_stmt|;
 break|break;
 block|}
-case|case
-name|REBALANCELEADERS
-case|:
-block|{
-name|this
-operator|.
-name|handleBalanceLeaders
-argument_list|(
-name|req
-argument_list|,
-name|rsp
-argument_list|)
-expr_stmt|;
-break|break;
-block|}
+comment|//      case REBALANCELEADERS: {
+comment|//        this.handleBalanceLeaders(req, rsp);
+comment|//        break;
+comment|//      }
 default|default:
 block|{
 throw|throw
