@@ -630,6 +630,18 @@ specifier|private
 name|String
 name|hostName
 decl_stmt|;
+DECL|field|jarRepository
+specifier|private
+specifier|final
+name|JarRepository
+name|jarRepository
+init|=
+operator|new
+name|JarRepository
+argument_list|(
+name|this
+argument_list|)
+decl_stmt|;
 DECL|field|containerHandlers
 specifier|private
 name|Map
@@ -3486,6 +3498,16 @@ expr_stmt|;
 block|}
 return|return
 name|core
+return|;
+block|}
+DECL|method|getJarRepository
+specifier|public
+name|JarRepository
+name|getJarRepository
+parameter_list|()
+block|{
+return|return
+name|jarRepository
 return|;
 block|}
 comment|// ---------------- CoreContainer request handlers --------------

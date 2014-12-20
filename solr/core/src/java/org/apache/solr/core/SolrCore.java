@@ -6023,6 +6023,17 @@ block|}
 block|}
 block|}
 block|}
+if|if
+condition|(
+name|reqHandlers
+operator|!=
+literal|null
+condition|)
+name|reqHandlers
+operator|.
+name|close
+argument_list|()
+expr_stmt|;
 try|try
 block|{
 if|if
