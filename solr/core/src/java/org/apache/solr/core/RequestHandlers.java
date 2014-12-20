@@ -2748,6 +2748,21 @@ argument_list|(
 name|path
 argument_list|)
 expr_stmt|;
+if|if
+condition|(
+name|buf
+operator|==
+literal|null
+condition|)
+throw|throw
+operator|new
+name|ClassNotFoundException
+argument_list|(
+literal|"class not found in loaded jar"
+operator|+
+name|name
+argument_list|)
+throw|;
 block|}
 catch|catch
 parameter_list|(
