@@ -1071,7 +1071,6 @@ return|return
 name|handler
 return|;
 block|}
-comment|/**    *    * @param pluginInfo    */
 DECL|method|setPluginInfo
 specifier|public
 name|void
