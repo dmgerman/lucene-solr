@@ -17,6 +17,42 @@ comment|/*  * Licensed to the Apache Software Foundation (ASF) under one or more
 end_comment
 
 begin_import
+import|import static
+name|org
+operator|.
+name|apache
+operator|.
+name|solr
+operator|.
+name|common
+operator|.
+name|SolrException
+operator|.
+name|ErrorCode
+operator|.
+name|SERVICE_UNAVAILABLE
+import|;
+end_import
+
+begin_import
+import|import static
+name|org
+operator|.
+name|apache
+operator|.
+name|solr
+operator|.
+name|common
+operator|.
+name|cloud
+operator|.
+name|ZkStateReader
+operator|.
+name|BASE_URL_PROP
+import|;
+end_import
+
+begin_import
 import|import
 name|java
 operator|.
@@ -242,20 +278,6 @@ name|solr
 operator|.
 name|handler
 operator|.
-name|BlobHandler
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|solr
-operator|.
-name|handler
-operator|.
 name|admin
 operator|.
 name|CollectionsHandler
@@ -296,44 +318,8 @@ name|LoggerFactory
 import|;
 end_import
 
-begin_import
-import|import static
-name|org
-operator|.
-name|apache
-operator|.
-name|solr
-operator|.
-name|common
-operator|.
-name|SolrException
-operator|.
-name|ErrorCode
-operator|.
-name|SERVICE_UNAVAILABLE
-import|;
-end_import
-
-begin_import
-import|import static
-name|org
-operator|.
-name|apache
-operator|.
-name|solr
-operator|.
-name|common
-operator|.
-name|cloud
-operator|.
-name|ZkStateReader
-operator|.
-name|BASE_URL_PROP
-import|;
-end_import
-
 begin_comment
-comment|/**The purpose of this class is to store the Jars loaded in memory and to keep  * only one copy of the Jar in a single node.  */
+comment|/**  * The purpose of this class is to store the Jars loaded in memory and to keep only one copy of the Jar in a single node.  */
 end_comment
 
 begin_class
@@ -393,7 +379,7 @@ operator|=
 name|coreContainer
 expr_stmt|;
 block|}
-comment|/**Returns the contents of a jar and increments a reference count. Please return the same    * object to decerease the refcount    * @param key it is a combination of blobname and version like blobName/version    * @return The reference of a jar    */
+comment|/**    * Returns the contents of a jar and increments a reference count. Please return the same object to decerease the refcount    *     * @param key    *          it is a combination of blobname and version like blobName/version    * @return The reference of a jar    */
 DECL|method|getJarIncRef
 specifier|public
 name|JarContentRef
@@ -675,7 +661,7 @@ argument_list|,
 literal|"Jar loading is not supported in non-cloud mode"
 argument_list|)
 throw|;
-comment|//todo
+comment|// todo
 block|}
 block|}
 name|JarContentRef
@@ -708,7 +694,7 @@ return|return
 name|ref
 return|;
 block|}
-comment|/**This is to decrement a ref count    * @param ref The reference that is already there. Doing multiple calls with same ref will not matter    */
+comment|/**    * This is to decrement a ref count    *     * @param ref    *          The reference that is already there. Doing multiple calls with same ref will not matter    */
 DECL|method|decrementJarRefCount
 specifier|public
 name|void
@@ -795,7 +781,7 @@ specifier|final
 name|String
 name|key
 decl_stmt|;
-comment|//TODO move this off-heap
+comment|// TODO move this off-heap
 DECL|field|buffer
 specifier|private
 specifier|final
