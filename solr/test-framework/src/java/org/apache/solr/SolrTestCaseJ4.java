@@ -1759,6 +1759,7 @@ name|SSLTestConfig
 argument_list|()
 return|;
 block|}
+comment|// we don't choose ssl that often because of SOLR-5776
 specifier|final
 name|boolean
 name|trySsl
@@ -1766,8 +1767,12 @@ init|=
 name|random
 argument_list|()
 operator|.
-name|nextBoolean
-argument_list|()
+name|nextInt
+argument_list|(
+literal|10
+argument_list|)
+operator|<
+literal|2
 decl_stmt|;
 name|boolean
 name|trySslClientAuth
@@ -1775,8 +1780,12 @@ init|=
 name|random
 argument_list|()
 operator|.
-name|nextBoolean
-argument_list|()
+name|nextInt
+argument_list|(
+literal|10
+argument_list|)
+operator|<
+literal|2
 decl_stmt|;
 if|if
 condition|(
