@@ -129,6 +129,16 @@ name|SHARD_KEYS
 init|=
 literal|"shard.keys"
 decl_stmt|;
+comment|/** query purpose for shard requests */
+DECL|field|SHARDS_PURPOSE
+specifier|public
+specifier|static
+specifier|final
+name|String
+name|SHARDS_PURPOSE
+init|=
+literal|"shards.purpose"
+decl_stmt|;
 DECL|field|_ROUTE_
 specifier|public
 specifier|static
