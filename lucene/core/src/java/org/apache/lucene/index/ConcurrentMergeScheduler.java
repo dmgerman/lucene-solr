@@ -1456,17 +1456,14 @@ comment|// running; the rest will be paused (see
 comment|// updateMergeThreads).  We stall this producer
 comment|// thread to prevent creation of new segments,
 comment|// until merging has caught up:
-name|startStallTime
-operator|=
-name|System
-operator|.
-name|currentTimeMillis
-argument_list|()
-expr_stmt|;
 if|if
 condition|(
 name|verbose
 argument_list|()
+operator|&&
+name|startStallTime
+operator|==
+literal|0
 condition|)
 block|{
 name|message
@@ -1475,6 +1472,13 @@ literal|"    too many merges; stalling..."
 argument_list|)
 expr_stmt|;
 block|}
+name|startStallTime
+operator|=
+name|System
+operator|.
+name|currentTimeMillis
+argument_list|()
+expr_stmt|;
 try|try
 block|{
 comment|// Only wait 0.25 seconds, so if all merges are aborted (by IW.rollback) we notice:
