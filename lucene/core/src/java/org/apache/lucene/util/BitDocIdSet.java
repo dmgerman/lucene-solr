@@ -327,6 +327,18 @@ literal|false
 argument_list|)
 expr_stmt|;
 block|}
+comment|// pkg-private for testing
+DECL|method|dense
+name|boolean
+name|dense
+parameter_list|()
+block|{
+return|return
+name|denseSet
+operator|!=
+literal|null
+return|;
+block|}
 comment|/**      * Add the content of the provided {@link DocIdSetIterator} to this builder.      */
 DECL|method|or
 specifier|public
@@ -539,12 +551,12 @@ block|}
 elseif|else
 if|if
 condition|(
-name|denseSet
+name|sparseSet
 operator|!=
 literal|null
 condition|)
 block|{
-name|denseSet
+name|sparseSet
 operator|.
 name|andNot
 argument_list|(
