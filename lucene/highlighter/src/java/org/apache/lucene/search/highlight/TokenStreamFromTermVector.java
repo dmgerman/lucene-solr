@@ -86,6 +86,22 @@ name|analysis
 operator|.
 name|tokenattributes
 operator|.
+name|PackedTokenAttributeImpl
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|analysis
+operator|.
+name|tokenattributes
+operator|.
 name|PayloadAttribute
 import|;
 end_import
@@ -158,7 +174,63 @@ name|lucene
 operator|.
 name|util
 operator|.
+name|AttributeFactory
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|util
+operator|.
 name|BytesRef
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|util
+operator|.
+name|BytesRefArray
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|util
+operator|.
+name|BytesRefBuilder
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|util
+operator|.
+name|Counter
 import|;
 end_import
 
@@ -177,7 +249,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * TokenStream created from a term vector field. The term vector requires positions and/or offsets (either). If you  * want payloads add PayloadAttributeImpl (as you would normally) but don't assume the attribute is already added just  * because you know the term vector has payloads.  This TokenStream supports an efficient {@link #reset()}, so there's  * no need to wrap with a caching impl.  *<p />  * The implementation will create an array of tokens indexed by token position.  As long as there aren't massive jumps  * in positions, this is fine.  And it assumes there aren't large numbers of tokens at the same position, since it adds  * them to a linked-list per position in O(N^2) complexity.  When there aren't positions in the term vector, it divides  * the startOffset by 8 to use as a temporary substitute. In that case, tokens with the same startOffset will occupy  * the same final position; otherwise tokens become adjacent.  *  * @lucene.internal  */
+comment|/**  * TokenStream created from a term vector field. The term vector requires positions and/or offsets (either). If you  * want payloads add PayloadAttributeImpl (as you would normally) but don't assume the attribute is already added just  * because you know the term vector has payloads, since the first call to incrementToken() will observe if you asked  * for them and if not then won't get them.  This TokenStream supports an efficient {@link #reset()}, so there's  * no need to wrap with a caching impl.  *<p />  * The implementation will create an array of tokens indexed by token position.  As long as there aren't massive jumps  * in positions, this is fine.  And it assumes there aren't large numbers of tokens at the same position, since it adds  * them to a linked-list per position in O(N^2) complexity.  When there aren't positions in the term vector, it divides  * the startOffset by 8 to use as a temporary substitute. In that case, tokens with the same startOffset will occupy  * the same final position; otherwise tokens become adjacent.  *  * @lucene.internal  */
 end_comment
 
 begin_class
@@ -190,6 +262,27 @@ extends|extends
 name|TokenStream
 block|{
 comment|//TODO add a maxStartOffset filter, which highlighters will find handy
+comment|//This attribute factory uses less memory when captureState() is called.
+DECL|field|ATTRIBUTE_FACTORY
+specifier|public
+specifier|static
+specifier|final
+name|AttributeFactory
+name|ATTRIBUTE_FACTORY
+init|=
+name|AttributeFactory
+operator|.
+name|getStaticImplementation
+argument_list|(
+name|AttributeFactory
+operator|.
+name|DEFAULT_ATTRIBUTE_FACTORY
+argument_list|,
+name|PackedTokenAttributeImpl
+operator|.
+name|class
+argument_list|)
+decl_stmt|;
 DECL|field|vector
 specifier|private
 specifier|final
@@ -220,6 +313,18 @@ name|PayloadAttribute
 name|payloadAttribute
 decl_stmt|;
 comment|//maybe null
+DECL|field|payloadsBytesRefArray
+specifier|private
+name|BytesRefArray
+name|payloadsBytesRefArray
+decl_stmt|;
+comment|//only used when payloadAttribute is non-null
+DECL|field|spareBytesRefBuilder
+specifier|private
+name|BytesRefBuilder
+name|spareBytesRefBuilder
+decl_stmt|;
+comment|//only used when payloadAttribute is non-null
 DECL|field|firstToken
 specifier|private
 name|TokenLL
@@ -235,6 +340,14 @@ name|incrementToken
 init|=
 literal|null
 decl_stmt|;
+DECL|field|initialized
+specifier|private
+name|boolean
+name|initialized
+init|=
+literal|false
+decl_stmt|;
+comment|//lazy
 comment|/**    * Constructor.    *     * @param vector Terms that contains the data for    *        creating the TokenStream. Must have positions and/or offsets.    */
 DECL|method|TokenStreamFromTermVector
 specifier|public
@@ -246,6 +359,22 @@ parameter_list|)
 throws|throws
 name|IOException
 block|{
+name|super
+argument_list|(
+name|ATTRIBUTE_FACTORY
+argument_list|)
+expr_stmt|;
+assert|assert
+operator|!
+name|hasAttribute
+argument_list|(
+name|PayloadAttribute
+operator|.
+name|class
+argument_list|)
+operator|:
+literal|"AttributeFactory shouldn't have payloads *yet*"
+assert|;
 if|if
 condition|(
 operator|!
@@ -320,18 +449,6 @@ parameter_list|()
 throws|throws
 name|IOException
 block|{
-if|if
-condition|(
-name|firstToken
-operator|==
-literal|null
-condition|)
-block|{
-comment|//just the first time
-name|init
-argument_list|()
-expr_stmt|;
-block|}
 name|incrementToken
 operator|=
 literal|null
@@ -342,7 +459,7 @@ name|reset
 argument_list|()
 expr_stmt|;
 block|}
-comment|//We initialize in reset() because we can see which attributes the consumer wants, particularly payloads
+comment|//We delay initialization because we can see which attributes the consumer wants, particularly payloads
 DECL|method|init
 specifier|private
 name|void
@@ -351,6 +468,10 @@ parameter_list|()
 throws|throws
 name|IOException
 block|{
+assert|assert
+operator|!
+name|initialized
+assert|;
 if|if
 condition|(
 name|vector
@@ -392,6 +513,23 @@ name|PayloadAttribute
 operator|.
 name|class
 argument_list|)
+expr_stmt|;
+name|payloadsBytesRefArray
+operator|=
+operator|new
+name|BytesRefArray
+argument_list|(
+name|Counter
+operator|.
+name|newCounter
+argument_list|()
+argument_list|)
+expr_stmt|;
+name|spareBytesRefBuilder
+operator|=
+operator|new
+name|BytesRefBuilder
+argument_list|()
 expr_stmt|;
 block|}
 comment|// Step 1: iterate termsEnum and create a token, placing into an array of tokens by position
@@ -595,9 +733,6 @@ operator|!=
 literal|null
 condition|)
 block|{
-comment|// Must make a deep copy of the returned payload,
-comment|// since D&PEnum API is allowed to re-use on every
-comment|// call:
 specifier|final
 name|BytesRef
 name|payload
@@ -607,26 +742,24 @@ operator|.
 name|getPayload
 argument_list|()
 decl_stmt|;
-if|if
-condition|(
-name|payload
-operator|!=
-literal|null
-condition|)
-block|{
 name|token
 operator|.
-name|payload
+name|payloadIndex
 operator|=
-name|BytesRef
+name|payload
+operator|==
+literal|null
+condition|?
+operator|-
+literal|1
+else|:
+name|payloadsBytesRefArray
 operator|.
-name|deepCopyOf
+name|append
 argument_list|(
 name|payload
 argument_list|)
 expr_stmt|;
-comment|//TODO share a ByteBlockPool& re-use BytesRef
-block|}
 block|}
 comment|//Add token to an array indexed by position
 if|if
@@ -898,6 +1031,10 @@ operator|=
 name|token
 expr_stmt|;
 block|}
+name|initialized
+operator|=
+literal|true
+expr_stmt|;
 block|}
 DECL|method|initTokensArray
 specifier|private
@@ -996,6 +1133,8 @@ specifier|public
 name|boolean
 name|incrementToken
 parameter_list|()
+throws|throws
+name|IOException
 block|{
 if|if
 condition|(
@@ -1004,6 +1143,19 @@ operator|==
 literal|null
 condition|)
 block|{
+if|if
+condition|(
+operator|!
+name|initialized
+condition|)
+block|{
+name|init
+argument_list|()
+expr_stmt|;
+assert|assert
+name|initialized
+assert|;
+block|}
 name|incrementToken
 operator|=
 name|firstToken
@@ -1098,15 +1250,43 @@ operator|!=
 literal|null
 condition|)
 block|{
+if|if
+condition|(
+name|incrementToken
+operator|.
+name|payloadIndex
+operator|==
+operator|-
+literal|1
+condition|)
+block|{
 name|payloadAttribute
 operator|.
 name|setPayload
 argument_list|(
-name|incrementToken
-operator|.
-name|payload
+literal|null
 argument_list|)
 expr_stmt|;
+block|}
+else|else
+block|{
+name|payloadAttribute
+operator|.
+name|setPayload
+argument_list|(
+name|payloadsBytesRefArray
+operator|.
+name|get
+argument_list|(
+name|spareBytesRefBuilder
+argument_list|,
+name|incrementToken
+operator|.
+name|payloadIndex
+argument_list|)
+argument_list|)
+expr_stmt|;
+block|}
 block|}
 return|return
 literal|true
@@ -1139,9 +1319,9 @@ DECL|field|endOffset
 name|int
 name|endOffset
 decl_stmt|;
-DECL|field|payload
-name|BytesRef
-name|payload
+DECL|field|payloadIndex
+name|int
+name|payloadIndex
 decl_stmt|;
 DECL|field|next
 name|TokenLL
