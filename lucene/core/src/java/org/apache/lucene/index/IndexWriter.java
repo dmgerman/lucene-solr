@@ -4913,7 +4913,7 @@ argument_list|)
 return|;
 block|}
 block|}
-comment|/** If non-null, information about merges will be printed to this.    */
+comment|/** If enabled, information about merges will be printed to this.    */
 DECL|field|infoStream
 specifier|final
 name|InfoStream
