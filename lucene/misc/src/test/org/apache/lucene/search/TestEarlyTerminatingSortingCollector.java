@@ -1,6 +1,6 @@
 begin_unit|revision:0.9.5;language:Java;cregit-version:0.0.1
 begin_package
-DECL|package|org.apache.lucene.index.sorter
+DECL|package|org.apache.lucene.search
 package|package
 name|org
 operator|.
@@ -8,9 +8,7 @@ name|apache
 operator|.
 name|lucene
 operator|.
-name|index
-operator|.
-name|sorter
+name|search
 package|;
 end_package
 
@@ -242,6 +240,20 @@ name|apache
 operator|.
 name|lucene
 operator|.
+name|index
+operator|.
+name|TestSortingMergePolicy
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
 name|search
 operator|.
 name|LeafCollector
@@ -417,10 +429,10 @@ import|;
 end_import
 
 begin_class
-DECL|class|TestEarlyTermination
+DECL|class|TestEarlyTerminatingSortingCollector
 specifier|public
 class|class
-name|TestEarlyTermination
+name|TestEarlyTerminatingSortingCollector
 extends|extends
 name|LuceneTestCase
 block|{

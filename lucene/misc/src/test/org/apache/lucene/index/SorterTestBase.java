@@ -1,6 +1,6 @@
 begin_unit|revision:0.9.5;language:Java;cregit-version:0.0.1
 begin_package
-DECL|package|org.apache.lucene.index.sorter
+DECL|package|org.apache.lucene.index
 package|package
 name|org
 operator|.
@@ -9,8 +9,6 @@ operator|.
 name|lucene
 operator|.
 name|index
-operator|.
-name|sorter
 package|;
 end_package
 
@@ -588,8 +586,6 @@ name|lucene
 operator|.
 name|index
 operator|.
-name|sorter
-operator|.
 name|SortingLeafReader
 operator|.
 name|SortingDocsAndPositionsEnum
@@ -605,8 +601,6 @@ operator|.
 name|lucene
 operator|.
 name|index
-operator|.
-name|sorter
 operator|.
 name|SortingLeafReader
 operator|.

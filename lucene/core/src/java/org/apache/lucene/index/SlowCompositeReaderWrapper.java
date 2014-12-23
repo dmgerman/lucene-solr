@@ -139,6 +139,12 @@ specifier|final
 name|Bits
 name|liveDocs
 decl_stmt|;
+DECL|field|merging
+specifier|private
+specifier|final
+name|boolean
+name|merging
+decl_stmt|;
 comment|/** This method is sugar for getting an {@link LeafReader} from    * an {@link IndexReader} of any kind. If the reader is already atomic,    * it is returned unchanged, otherwise wrapped by this class.    */
 DECL|method|wrap
 specifier|public
@@ -167,6 +173,8 @@ operator|(
 name|CompositeReader
 operator|)
 name|reader
+argument_list|,
+literal|false
 argument_list|)
 return|;
 block|}
@@ -186,11 +194,13 @@ return|;
 block|}
 block|}
 DECL|method|SlowCompositeReaderWrapper
-specifier|private
 name|SlowCompositeReaderWrapper
 parameter_list|(
 name|CompositeReader
 name|reader
+parameter_list|,
+name|boolean
+name|merging
 parameter_list|)
 throws|throws
 name|IOException
@@ -226,6 +236,12 @@ name|registerParentReader
 argument_list|(
 name|this
 argument_list|)
+expr_stmt|;
+name|this
+operator|.
+name|merging
+operator|=
+name|merging
 expr_stmt|;
 block|}
 annotation|@
@@ -486,6 +502,10 @@ name|owner
 operator|==
 name|getCoreCacheKey
 argument_list|()
+operator|&&
+name|merging
+operator|==
+literal|false
 condition|)
 block|{
 name|cachedOrdMaps
@@ -736,6 +756,10 @@ name|owner
 operator|==
 name|getCoreCacheKey
 argument_list|()
+operator|&&
+name|merging
+operator|==
+literal|false
 condition|)
 block|{
 name|cachedOrdMaps
