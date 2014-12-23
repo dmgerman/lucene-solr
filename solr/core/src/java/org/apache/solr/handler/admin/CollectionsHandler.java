@@ -110,6 +110,22 @@ name|cloud
 operator|.
 name|OverseerCollectionProcessor
 operator|.
+name|CREATE_NODE_SET_SHUFFLE
+import|;
+end_import
+
+begin_import
+import|import static
+name|org
+operator|.
+name|apache
+operator|.
+name|solr
+operator|.
+name|cloud
+operator|.
+name|OverseerCollectionProcessor
+operator|.
 name|NUM_SLICES
 import|;
 end_import
@@ -5726,6 +5742,8 @@ argument_list|,
 name|MAX_SHARDS_PER_NODE
 argument_list|,
 name|CREATE_NODE_SET
+argument_list|,
+name|CREATE_NODE_SET_SHUFFLE
 argument_list|,
 name|SHARDS_PROP
 argument_list|,
