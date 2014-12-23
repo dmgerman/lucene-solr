@@ -18,6 +18,16 @@ name|java
 operator|.
 name|io
 operator|.
+name|Closeable
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
+name|io
+operator|.
 name|IOException
 import|;
 end_import
@@ -140,6 +150,9 @@ parameter_list|()
 throws|throws
 name|IOException
 block|{
+comment|// TODO turn on the following to look for leaks closing inputs,
+comment|// after fixing TestTransactions
+comment|// dir.maybeThrowDeterministicException();
 if|if
 condition|(
 name|closed
@@ -158,21 +171,23 @@ operator|=
 literal|true
 expr_stmt|;
 try|try
-block|{
-comment|// turn on the following to look for leaks closing inputs,
-comment|// after fixing TestTransactions
-comment|// dir.maybeThrowDeterministicException();
-block|}
-finally|finally
-block|{
+init|(
+name|Closeable
 name|delegate
+init|=
+name|this
 operator|.
-name|close
-argument_list|()
-expr_stmt|;
+name|delegate
+init|)
+block|{
 comment|// Pending resolution on LUCENE-686 we may want to
 comment|// remove the conditional check so we also track that
 comment|// all clones get closed:
+assert|assert
+name|delegate
+operator|!=
+literal|null
+assert|;
 if|if
 condition|(
 operator|!
