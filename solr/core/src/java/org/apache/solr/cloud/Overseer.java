@@ -2406,7 +2406,7 @@ name|getZkStateReader
 argument_list|()
 argument_list|)
 operator|.
-name|removeReplicaProperty
+name|deleteReplicaProperty
 argument_list|(
 name|clusterState
 argument_list|,

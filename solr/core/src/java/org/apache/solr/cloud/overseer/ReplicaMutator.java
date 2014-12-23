@@ -673,7 +673,7 @@ name|ErrorCode
 operator|.
 name|BAD_REQUEST
 argument_list|,
-literal|"Overseer SETREPLICAPROPERTY requires "
+literal|"Overseer ADDREPLICAPROP requires "
 operator|+
 name|ZkStateReader
 operator|.
@@ -866,7 +866,7 @@ name|ErrorCode
 operator|.
 name|BAD_REQUEST
 argument_list|,
-literal|"Overseer SETREPLICAPROPERTY for "
+literal|"Overseer ADDREPLICAPROP for "
 operator|+
 name|property
 operator|+
@@ -1140,10 +1140,10 @@ name|newCollection
 argument_list|)
 return|;
 block|}
-DECL|method|removeReplicaProperty
+DECL|method|deleteReplicaProperty
 specifier|public
 name|ZkWriteCommand
-name|removeReplicaProperty
+name|deleteReplicaProperty
 parameter_list|(
 name|ClusterState
 name|clusterState
@@ -1209,7 +1209,7 @@ name|ErrorCode
 operator|.
 name|BAD_REQUEST
 argument_list|,
-literal|"Overseer DELETEREPLICAPROPERTY requires "
+literal|"Overseer DELETEREPLICAPROP requires "
 operator|+
 name|ZkStateReader
 operator|.
