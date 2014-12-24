@@ -873,7 +873,11 @@ name|recoveryListener
 expr_stmt|;
 name|setName
 argument_list|(
-literal|"RecoveryThread"
+literal|"RecoveryThread-"
+operator|+
+name|this
+operator|.
+name|coreName
 argument_list|)
 expr_stmt|;
 name|zkController
