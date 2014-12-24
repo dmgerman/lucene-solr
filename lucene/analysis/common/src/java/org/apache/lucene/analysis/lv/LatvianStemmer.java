@@ -613,8 +613,8 @@ name|int
 name|len
 parameter_list|)
 block|{
-comment|// we check the character removed: if its -u then
-comment|// its 2,5, or 6 gen pl., and these two can only apply then.
+comment|// we check the character removed: if it's -u then
+comment|// it's 2,5, or 6 gen pl., and these two can only apply then.
 if|if
 condition|(
 name|s

@@ -684,7 +684,7 @@ operator|=
 literal|2
 expr_stmt|;
 block|}
-comment|// we pull this before the seed intentionally: because its not consumed at runtime
+comment|// we pull this before the seed intentionally: because it's not consumed at runtime
 comment|// (the skipInterval is written into postings header).
 comment|// NOTE: Currently not passed to postings writer.
 comment|//       before, it was being passed in wrongly as acceptableOverhead!

@@ -303,7 +303,7 @@ name|ensureOpen
 argument_list|()
 expr_stmt|;
 comment|// NOTE: this returns a "weakly consistent view". Unless we change Dir API, keep this,
-comment|// and do not synchronize or anything stronger. its great for testing!
+comment|// and do not synchronize or anything stronger. it's great for testing!
 comment|// NOTE: fileMap.keySet().toArray(new String[0]) is broken in non Sun JDKs,
 comment|// and the code below is resilient to map changes during the array population.
 name|Set

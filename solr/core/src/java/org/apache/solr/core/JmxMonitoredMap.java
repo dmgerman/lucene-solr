@@ -1731,7 +1731,7 @@ operator|!=
 literal|null
 condition|)
 block|{
-comment|// Its String or one of the simple types, just return it as JMX suggests direct support for such types
+comment|// It's String or one of the simple types, just return it as JMX suggests direct support for such types
 for|for
 control|(
 name|String
@@ -1763,7 +1763,7 @@ name|val
 return|;
 block|}
 block|}
-comment|// Its an arbitrary object which could be something complex and odd, return its toString, assuming that is
+comment|// It's an arbitrary object which could be something complex and odd, return its toString, assuming that is
 comment|// a workable representation of the object
 return|return
 name|val

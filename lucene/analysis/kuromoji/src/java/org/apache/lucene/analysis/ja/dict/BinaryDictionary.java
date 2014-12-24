@@ -1846,7 +1846,7 @@ name|text
 argument_list|)
 return|;
 block|}
-comment|/** flag that the entry has baseform data. otherwise its not inflected (same as surface form) */
+comment|/** flag that the entry has baseform data. otherwise it's not inflected (same as surface form) */
 DECL|field|HAS_BASEFORM
 specifier|public
 specifier|static

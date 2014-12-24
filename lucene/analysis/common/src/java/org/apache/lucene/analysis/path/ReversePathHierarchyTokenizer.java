@@ -786,7 +786,7 @@ operator|>=
 literal|0
 condition|)
 block|{
-comment|// otherwise its ok, because we will skip and return false
+comment|// otherwise it's ok, because we will skip and return false
 name|endPosition
 operator|=
 name|delimiterPositions

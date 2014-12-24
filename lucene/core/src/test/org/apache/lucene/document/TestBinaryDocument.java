@@ -276,7 +276,7 @@ operator|!=
 literal|null
 argument_list|)
 expr_stmt|;
-comment|/** fetch the binary stored field and compare it's content with the original one */
+comment|/** fetch the binary stored field and compare its content with the original one */
 name|BytesRef
 name|bytes
 init|=
@@ -325,7 +325,7 @@ name|binaryValStored
 argument_list|)
 argument_list|)
 expr_stmt|;
-comment|/** fetch the string field and compare it's content with the original one */
+comment|/** fetch the string field and compare its content with the original one */
 name|String
 name|stringFldStoredTest
 init|=
@@ -482,7 +482,7 @@ operator|!=
 literal|null
 argument_list|)
 expr_stmt|;
-comment|/** fetch the binary compressed field and compare it's content with the original one */
+comment|/** fetch the binary compressed field and compare its content with the original one */
 name|String
 name|binaryFldCompressedTest
 init|=

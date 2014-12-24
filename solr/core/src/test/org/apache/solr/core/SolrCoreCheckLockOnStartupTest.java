@@ -200,7 +200,7 @@ argument_list|)
 expr_stmt|;
 comment|// test tests native and simple in the same jvm in the same exact directory:
 comment|// the file will remain after the native test (it cannot safely be deleted without the risk of deleting another guys lock)
-comment|// its ok, these aren't "compatible" anyway: really this test should not re-use the same directory at all.
+comment|// it's ok, these aren't "compatible" anyway: really this test should not re-use the same directory at all.
 name|Files
 operator|.
 name|deleteIfExists

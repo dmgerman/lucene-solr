@@ -527,7 +527,7 @@ literal|null
 condition|)
 block|{
 comment|// this happens with span-not query, as it doesn't include the NOT side in extractTerms()
-comment|// so we seek to the term now in this segment..., this sucks because its ugly mostly!
+comment|// so we seek to the term now in this segment..., this sucks because it's ugly mostly!
 specifier|final
 name|Terms
 name|terms

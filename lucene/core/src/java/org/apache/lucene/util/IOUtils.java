@@ -574,7 +574,7 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
-comment|/**    * Wrapping the given {@link InputStream} in a reader using a {@link CharsetDecoder}.    * Unlike Java's defaults this reader will throw an exception if your it detects     * the read charset doesn't match the expected {@link Charset}.     *<p>    * Decoding readers are useful to load configuration files, stopword lists or synonym files    * to detect character set problems. However, its not recommended to use as a common purpose     * reader.    *     * @param stream the stream to wrap in a reader    * @param charSet the expected charset    * @return a wrapping reader    */
+comment|/**    * Wrapping the given {@link InputStream} in a reader using a {@link CharsetDecoder}.    * Unlike Java's defaults this reader will throw an exception if your it detects     * the read charset doesn't match the expected {@link Charset}.     *<p>    * Decoding readers are useful to load configuration files, stopword lists or synonym files    * to detect character set problems. However, it's not recommended to use as a common purpose     * reader.    *     * @param stream the stream to wrap in a reader    * @param charSet the expected charset    * @return a wrapping reader    */
 DECL|method|getDecodingReader
 specifier|public
 specifier|static
@@ -625,7 +625,7 @@ argument_list|)
 argument_list|)
 return|;
 block|}
-comment|/**    * Opens a Reader for the given resource using a {@link CharsetDecoder}.    * Unlike Java's defaults this reader will throw an exception if your it detects     * the read charset doesn't match the expected {@link Charset}.     *<p>    * Decoding readers are useful to load configuration files, stopword lists or synonym files    * to detect character set problems. However, its not recommended to use as a common purpose     * reader.    * @param clazz the class used to locate the resource    * @param resource the resource name to load    * @param charSet the expected charset    * @return a reader to read the given file    *     */
+comment|/**    * Opens a Reader for the given resource using a {@link CharsetDecoder}.    * Unlike Java's defaults this reader will throw an exception if your it detects     * the read charset doesn't match the expected {@link Charset}.     *<p>    * Decoding readers are useful to load configuration files, stopword lists or synonym files    * to detect character set problems. However, it's not recommended to use as a common purpose     * reader.    * @param clazz the class used to locate the resource    * @param resource the resource name to load    * @param charSet the expected charset    * @return a reader to read the given file    *     */
 DECL|method|getDecodingReader
 specifier|public
 specifier|static
@@ -1921,7 +1921,7 @@ name|devName
 argument_list|)
 expr_stmt|;
 block|}
-comment|// read first byte from rotational, its a 1 if it spins.
+comment|// read first byte from rotational, it's a 1 if it spins.
 name|Path
 name|info
 init|=
@@ -1986,7 +1986,7 @@ argument_list|(
 name|store
 argument_list|)
 decl_stmt|;
-comment|// find the "matching" FileStore from system list, its the one we want.
+comment|// find the "matching" FileStore from system list, it's the one we want.
 for|for
 control|(
 name|FileStore

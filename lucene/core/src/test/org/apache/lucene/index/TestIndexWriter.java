@@ -1398,7 +1398,7 @@ name|doc
 argument_list|)
 expr_stmt|;
 block|}
-comment|// TODO: we have the logic in MDW to do this check, and its better, because it knows about files it tried
+comment|// TODO: we have the logic in MDW to do this check, and it's better, because it knows about files it tried
 comment|// to delete but couldn't: we should replace this!!!!
 DECL|method|assertNoUnreferencedFiles
 specifier|public

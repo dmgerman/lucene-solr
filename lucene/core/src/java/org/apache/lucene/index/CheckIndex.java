@@ -3443,7 +3443,7 @@ operator|!=
 literal|null
 condition|)
 block|{
-comment|// its ok for it to be non-null here, as long as none are set right?
+comment|// it's ok for it to be non-null here, as long as none are set right?
 for|for
 control|(
 name|int

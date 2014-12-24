@@ -794,7 +794,7 @@ operator|instanceof
 name|OutOfMemoryError
 condition|)
 block|{
-comment|// nested OOM confuses users, because its "incorrect", just print a plain message:
+comment|// nested OOM confuses users, because it's "incorrect", just print a plain message:
 name|originalMessage
 operator|=
 literal|"Map failed"

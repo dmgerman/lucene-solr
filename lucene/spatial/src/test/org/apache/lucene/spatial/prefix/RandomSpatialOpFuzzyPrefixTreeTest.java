@@ -1292,7 +1292,7 @@ literal|0
 argument_list|)
 expr_stmt|;
 comment|//no-match
-comment|//this time the rect is a little bigger and is considered a match. It's a
+comment|//this time the rect is a little bigger and is considered a match. It's
 comment|// an acceptable false-positive because of the grid approximation.
 name|assertTrue
 argument_list|(
@@ -3007,7 +3007,7 @@ name|r
 return|;
 comment|//test all 4 corners
 comment|// Note: awkwardly, we use a non-geo context for this because in geo, -180& +180 are the same place, which means
-comment|//  that "other" might wrap the world horizontally and yet all it's corners could be in shape1 (or shape2) even
+comment|//  that "other" might wrap the world horizontally and yet all its corners could be in shape1 (or shape2) even
 comment|//  though shape1 is only adjacent to the dateline. I couldn't think of a better way to handle this.
 name|Rectangle
 name|oRect

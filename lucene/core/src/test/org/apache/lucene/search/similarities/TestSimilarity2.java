@@ -482,7 +482,7 @@ argument_list|)
 argument_list|)
 expr_stmt|;
 block|}
-comment|/** because of stupid things like querynorm, its possible we computeStats on a field that doesnt exist at all    *  test this against a totally empty index, to make sure sims handle it    */
+comment|/** because of stupid things like querynorm, it's possible we computeStats on a field that doesnt exist at all    *  test this against a totally empty index, to make sure sims handle it    */
 DECL|method|testEmptyIndex
 specifier|public
 name|void

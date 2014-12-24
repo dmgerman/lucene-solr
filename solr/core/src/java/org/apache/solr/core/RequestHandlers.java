@@ -539,7 +539,7 @@ literal|"false"
 argument_list|)
 argument_list|)
 decl_stmt|;
-comment|/**    * Trim the trailing '/' if its there, and convert null to empty string.    *     * we want:    *  /update/csv   and    *  /update/csv/    * to map to the same handler     *     */
+comment|/**    * Trim the trailing '/' if it's there, and convert null to empty string.    *     * we want:    *  /update/csv   and    *  /update/csv/    * to map to the same handler     *     */
 DECL|method|normalize
 specifier|public
 specifier|static

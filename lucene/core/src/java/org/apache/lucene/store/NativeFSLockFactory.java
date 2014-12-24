@@ -324,7 +324,7 @@ name|ignore
 parameter_list|)
 block|{
 comment|// we must create the file to have a truly canonical path.
-comment|// if its already created, we don't care. if it cant be created, it will fail below.
+comment|// if it's already created, we don't care. if it cant be created, it will fail below.
 block|}
 specifier|final
 name|Path

@@ -28,7 +28,7 @@ name|OrdTermState
 extends|extends
 name|TermState
 block|{
-comment|/** Term ordinal, i.e. it's position in the full list of    *  sorted terms. */
+comment|/** Term ordinal, i.e. its position in the full list of    *  sorted terms. */
 DECL|field|ord
 specifier|public
 name|long

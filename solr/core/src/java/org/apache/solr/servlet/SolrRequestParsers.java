@@ -2936,7 +2936,7 @@ operator|.
 name|next
 argument_list|()
 decl_stmt|;
-comment|// If its a form field, put it in our parameter map
+comment|// If it's a form field, put it in our parameter map
 if|if
 condition|(
 name|item
@@ -3100,7 +3100,7 @@ name|map
 argument_list|)
 expr_stmt|;
 block|}
-comment|// may be -1, so we check again later. But if its already greater we can stop processing!
+comment|// may be -1, so we check again later. But if it's already greater we can stop processing!
 specifier|final
 name|long
 name|totalLength

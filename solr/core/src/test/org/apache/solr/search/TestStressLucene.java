@@ -1842,7 +1842,7 @@ operator|&&
 name|tombstones
 condition|)
 block|{
-comment|// if we couldn't find the doc, look for it's tombstone
+comment|// if we couldn't find the doc, look for its tombstone
 name|docid
 operator|=
 name|getFirstMatch
@@ -1956,7 +1956,7 @@ operator|>=
 literal|0
 argument_list|)
 expr_stmt|;
-comment|// we should have found the document, or it's tombstone
+comment|// we should have found the document, or its tombstone
 name|StoredDocument
 name|doc
 init|=

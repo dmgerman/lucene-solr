@@ -3970,7 +3970,7 @@ name|length
 argument_list|)
 expr_stmt|;
 block|}
-comment|// float and double tests are a bit minimalistic, but its complicated, because missing precision
+comment|// float and double tests are a bit minimalistic, but it's complicated, because missing precision
 annotation|@
 name|Test
 DECL|method|testFieldCacheRangeFilterFloats

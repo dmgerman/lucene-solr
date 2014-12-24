@@ -69,7 +69,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  *<code>MultiplyDoubleFunction</code> returns the product of it's components.  */
+comment|/**  *<code>MultiplyDoubleFunction</code> returns the product of its components.  */
 end_comment
 
 begin_class

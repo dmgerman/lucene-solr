@@ -495,7 +495,7 @@ operator|)
 argument_list|)
 return|;
 block|}
-comment|/**    *<p>The hash value of a character sequence is defined to be the hash of    * it's unicode code points, according to {@link #lookup3ycs(int[] k, int offset, int length, int initval)}    *</p>    *<p>If you know the number of code points in the {@code CharSequence}, you can    * generate the same hash as the original lookup3    * via {@code lookup3ycs(s, start, end, initval+(numCodePoints<<2))}    */
+comment|/**    *<p>The hash value of a character sequence is defined to be the hash of    * its unicode code points, according to {@link #lookup3ycs(int[] k, int offset, int length, int initval)}    *</p>    *<p>If you know the number of code points in the {@code CharSequence}, you can    * generate the same hash as the original lookup3    * via {@code lookup3ycs(s, start, end, initval+(numCodePoints<<2))}    */
 DECL|method|lookup3ycs
 specifier|public
 specifier|static

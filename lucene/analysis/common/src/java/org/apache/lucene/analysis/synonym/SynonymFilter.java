@@ -1037,7 +1037,7 @@ operator|new
 name|CharsRefBuilder
 argument_list|()
 decl_stmt|;
-comment|/**    * @param input input tokenstream    * @param synonyms synonym map    * @param ignoreCase case-folds input for matching with {@link Character#toLowerCase(int)}.    *                   Note, if you set this to true, its your responsibility to lowercase    *                   the input entries when you create the {@link SynonymMap}    */
+comment|/**    * @param input input tokenstream    * @param synonyms synonym map    * @param ignoreCase case-folds input for matching with {@link Character#toLowerCase(int)}.    *                   Note, if you set this to true, it's your responsibility to lowercase    *                   the input entries when you create the {@link SynonymMap}    */
 DECL|method|SynonymFilter
 specifier|public
 name|SynonymFilter

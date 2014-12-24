@@ -2176,7 +2176,7 @@ return|return
 name|query
 return|;
 block|}
-comment|/**    * DocValues is not enabled for a field, but its indexed, docvalues can be constructed     * on the fly (uninverted, aka fieldcache) on the first request to sort, facet, etc.     * This specifies the structure to use.    *     * @param sf field instance    * @return type to uninvert, or {@code null} (to disallow uninversion for the field)    */
+comment|/**    * DocValues is not enabled for a field, but it's indexed, docvalues can be constructed     * on the fly (uninverted, aka fieldcache) on the first request to sort, facet, etc.     * This specifies the structure to use.    *     * @param sf field instance    * @return type to uninvert, or {@code null} (to disallow uninversion for the field)    */
 DECL|method|getUninversionType
 specifier|public
 specifier|abstract
@@ -3069,7 +3069,7 @@ name|CONSTANT_SCORE_FILTER_REWRITE
 return|;
 block|}
 block|}
-comment|/**    * Check's {@link org.apache.solr.schema.SchemaField} instances constructed     * using this field type to ensure that they are valid.    *    *<p>    * This method is called by the<code>SchemaField</code> constructor to     * check that it's initialization does not violate any fundemental     * requirements of the<code>FieldType</code>.  The default implementation     * does nothing, but subclasses may chose to throw a {@link SolrException}      * if invariants are violated by the<code>SchemaField.</code>    *</p>    */
+comment|/**    * Check's {@link org.apache.solr.schema.SchemaField} instances constructed     * using this field type to ensure that they are valid.    *    *<p>    * This method is called by the<code>SchemaField</code> constructor to     * check that its initialization does not violate any fundemental     * requirements of the<code>FieldType</code>.  The default implementation     * does nothing, but subclasses may chose to throw a {@link SolrException}      * if invariants are violated by the<code>SchemaField.</code>    *</p>    */
 DECL|method|checkSchemaField
 specifier|public
 name|void

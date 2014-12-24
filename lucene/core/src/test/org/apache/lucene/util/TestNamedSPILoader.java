@@ -41,7 +41,7 @@ comment|/*  * Licensed to the Apache Software Foundation (ASF) under one or more
 end_comment
 
 begin_comment
-comment|// TODO: maybe we should test this with mocks, but its easy
+comment|// TODO: maybe we should test this with mocks, but it's easy
 end_comment
 
 begin_comment
@@ -94,7 +94,7 @@ argument_list|()
 argument_list|)
 expr_stmt|;
 block|}
-comment|// we want an exception if its not found.
+comment|// we want an exception if it's not found.
 DECL|method|testBogusLookup
 specifier|public
 name|void

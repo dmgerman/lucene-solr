@@ -926,7 +926,7 @@ block|}
 block|}
 block|}
 block|}
-comment|/** Adds the main query to the query argument. If its blank then false is returned. */
+comment|/** Adds the main query to the query argument. If it's blank then false is returned. */
 DECL|method|addMainQuery
 specifier|protected
 name|boolean

@@ -485,7 +485,7 @@ operator|.
 name|lock
 argument_list|()
 expr_stmt|;
-comment|// Need to find waitingGen inside lock as its used to determine
+comment|// Need to find waitingGen inside lock as it's used to determine
 comment|// stale time
 name|waitingGen
 operator|=

@@ -3541,7 +3541,7 @@ name|docId
 argument_list|)
 condition|)
 block|{
-comment|//Its an elevated doc so no score is needed
+comment|//It's an elevated doc so no score is needed
 name|dummy
 operator|.
 name|score

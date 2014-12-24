@@ -1165,7 +1165,7 @@ return|return
 name|analyzer
 return|;
 block|}
-comment|/**    * analyze the range with the analyzer, instead of the collator.    * because jdk collators might not be thread safe (when they are    * its just that all methods are synced), this keeps things     * simple (we already have a threadlocal clone in the reused TS)    */
+comment|/**    * analyze the range with the analyzer, instead of the collator.    * because jdk collators might not be thread safe (when they are    * it's just that all methods are synced), this keeps things     * simple (we already have a threadlocal clone in the reused TS)    */
 DECL|method|getCollationKey
 specifier|private
 name|BytesRef

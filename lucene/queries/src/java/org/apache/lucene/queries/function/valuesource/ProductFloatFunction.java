@@ -53,7 +53,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  *<code>ProductFloatFunction</code> returns the product of it's components.  */
+comment|/**  *<code>ProductFloatFunction</code> returns the product of its components.  */
 end_comment
 
 begin_class

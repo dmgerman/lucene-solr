@@ -199,7 +199,7 @@ name|textIterator
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**    * If its a RuleBasedBreakIterator, the rule status can be used for token type. If its    * any other BreakIterator, the rulestatus method is not available, so treat    * it like a generic BreakIterator.    */
+comment|/**    * If it's a RuleBasedBreakIterator, the rule status can be used for token type. If it's    * any other BreakIterator, the rulestatus method is not available, so treat    * it like a generic BreakIterator.    */
 DECL|method|wrap
 specifier|static
 name|BreakIteratorWrapper
@@ -234,7 +234,7 @@ name|breakIterator
 argument_list|)
 return|;
 block|}
-comment|/**    * RuleBasedBreakIterator wrapper: RuleBasedBreakIterator (as long as its not    * a DictionaryBasedBreakIterator) behaves correctly.    */
+comment|/**    * RuleBasedBreakIterator wrapper: RuleBasedBreakIterator (as long as it's not    * a DictionaryBasedBreakIterator) behaves correctly.    */
 DECL|class|RBBIWrapper
 specifier|static
 specifier|final

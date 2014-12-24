@@ -16824,7 +16824,7 @@ operator|.
 name|size
 argument_list|()
 operator|+
-literal|"). Its unusual to run two replica of the same slice on the same Solr-instance."
+literal|"). It's unusual to run two replica of the same slice on the same Solr-instance."
 argument_list|)
 expr_stmt|;
 block|}

@@ -276,8 +276,8 @@ parameter_list|()
 throws|throws
 name|Exception
 block|{
-comment|// we don't directly use this core or it's config, we use
-comment|// QueryResponseWriters' constructed programaticly,
+comment|// we don't directly use this core or its config, we use
+comment|// QueryResponseWriters' constructed programmatically,
 comment|// but we do use this core for managing the life cycle of the requests
 comment|// we spin up.
 name|initCore

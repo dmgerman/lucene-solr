@@ -395,7 +395,7 @@ return|;
 block|}
 comment|//----------------------------------------------------------
 comment|// Functions with a default value - pass directly to the
-comment|// wrapped SolrParams (they won't return null - unless its the default)
+comment|// wrapped SolrParams (they won't return null - unless it's the default)
 comment|//----------------------------------------------------------
 annotation|@
 name|Override

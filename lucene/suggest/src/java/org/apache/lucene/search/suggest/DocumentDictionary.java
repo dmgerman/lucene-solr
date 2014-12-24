@@ -979,7 +979,7 @@ return|return
 name|hasPayloads
 return|;
 block|}
-comment|/**       * Returns the value of the<code>weightField</code> for the current document.      * Retrieves the value for the<code>weightField</code> if its stored (using<code>doc</code>)      * or if its indexed as {@link NumericDocValues} (using<code>docId</code>) for the document.      * If no value is found, then the weight is 0.      */
+comment|/**       * Returns the value of the<code>weightField</code> for the current document.      * Retrieves the value for the<code>weightField</code> if it's stored (using<code>doc</code>)      * or if it's indexed as {@link NumericDocValues} (using<code>docId</code>) for the document.      * If no value is found, then the weight is 0.      */
 DECL|method|getWeight
 specifier|protected
 name|long

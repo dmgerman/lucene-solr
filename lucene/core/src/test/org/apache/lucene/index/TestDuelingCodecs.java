@@ -253,7 +253,7 @@ operator|.
 name|setUp
 argument_list|()
 expr_stmt|;
-comment|// for now its SimpleText vs Default(random postings format)
+comment|// for now it's SimpleText vs Default(random postings format)
 comment|// as this gives the best overall coverage. when we have more
 comment|// codecs we should probably pick 2 from Codec.availableCodecs()
 name|leftCodec
@@ -620,7 +620,7 @@ argument_list|(
 name|seed
 argument_list|)
 decl_stmt|;
-comment|// primary source for our data is from linefiledocs, its realistic.
+comment|// primary source for our data is from linefiledocs, it's realistic.
 name|LineFileDocs
 name|lineFileDocs
 init|=

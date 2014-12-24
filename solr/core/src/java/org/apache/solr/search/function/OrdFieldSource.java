@@ -444,7 +444,7 @@ operator|!=
 literal|null
 condition|)
 block|{
-comment|// its a single-valued numeric field: we must currently create insanity :(
+comment|// it's a single-valued numeric field: we must currently create insanity :(
 name|List
 argument_list|<
 name|LeafReaderContext
@@ -560,7 +560,7 @@ name|topReader
 argument_list|)
 expr_stmt|;
 block|}
-comment|// if its e.g. tokenized/multivalued, emulate old behavior of single-valued fc
+comment|// if it's e.g. tokenized/multivalued, emulate old behavior of single-valued fc
 specifier|final
 name|SortedDocValues
 name|sindex

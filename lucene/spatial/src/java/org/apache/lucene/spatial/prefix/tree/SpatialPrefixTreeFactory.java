@@ -126,7 +126,7 @@ specifier|protected
 name|Integer
 name|maxLevels
 decl_stmt|;
-comment|/**    * The factory  is looked up via "prefixTree" in args, expecting "geohash" or "quad".    * If its neither of these, then "geohash" is chosen for a geo context, otherwise "quad" is chosen.    */
+comment|/**    * The factory  is looked up via "prefixTree" in args, expecting "geohash" or "quad".    * If it's neither of these, then "geohash" is chosen for a geo context, otherwise "quad" is chosen.    */
 DECL|method|makeSPT
 specifier|public
 specifier|static

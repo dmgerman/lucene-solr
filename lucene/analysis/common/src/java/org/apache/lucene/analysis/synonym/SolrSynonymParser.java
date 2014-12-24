@@ -570,7 +570,7 @@ block|}
 block|}
 comment|// currently we include the term itself in the map,
 comment|// and use includeOrig = false always.
-comment|// this is how the existing filter does it, but its actually a bug,
+comment|// this is how the existing filter does it, but it's actually a bug,
 comment|// especially if combined with ignoreCase = true
 for|for
 control|(

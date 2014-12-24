@@ -430,7 +430,7 @@ name|boolean
 name|reverse
 parameter_list|)
 block|{
-comment|/* :TODO: maybe warn if isTokenized(), but doesn't use LimitTokenCountFilter in it's chain? */
+comment|/* :TODO: maybe warn if isTokenized(), but doesn't use LimitTokenCountFilter in its chain? */
 name|field
 operator|.
 name|checkSortability

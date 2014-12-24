@@ -227,7 +227,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Runs TestNRTThreads in a separate process, crashes the JRE in the middle  * of execution, then runs checkindex to make sure its not corrupt.  */
+comment|/**  * Runs TestNRTThreads in a separate process, crashes the JRE in the middle  * of execution, then runs checkindex to make sure it's not corrupt.  */
 end_comment
 
 begin_class

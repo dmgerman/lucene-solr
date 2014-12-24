@@ -1169,7 +1169,7 @@ comment|// group, so do nothing but remove it from the eset.
 name|numKept
 operator|++
 expr_stmt|;
-comment|// remove the entry by moving the last element to it's position
+comment|// remove the entry by moving the last element to its position
 name|eset
 index|[
 name|i
@@ -1220,7 +1220,7 @@ expr_stmt|;
 name|numRemoved
 operator|++
 expr_stmt|;
-comment|// remove the entry by moving the last element to it's position
+comment|// remove the entry by moving the last element to its position
 name|eset
 index|[
 name|i

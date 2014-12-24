@@ -1175,7 +1175,7 @@ operator|+
 literal|" "
 return|;
 block|}
-comment|/** Returns true if peer sync was successful, meaning that this core may not be considered to have the latest updates    *  when considering the last N updates between it and it's peers.    *  A commit is not performed.    */
+comment|/** Returns true if peer sync was successful, meaning that this core may not be considered to have the latest updates    *  when considering the last N updates between it and its peers.    *  A commit is not performed.    */
 DECL|method|sync
 specifier|public
 name|boolean

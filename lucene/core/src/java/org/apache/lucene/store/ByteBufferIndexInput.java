@@ -1169,7 +1169,7 @@ name|IndexOutOfBoundsException
 name|ioobe
 parameter_list|)
 block|{
-comment|// either its a boundary, or read past EOF, fall back:
+comment|// either it's a boundary, or read past EOF, fall back:
 name|setPos
 argument_list|(
 name|pos
@@ -1252,7 +1252,7 @@ name|IndexOutOfBoundsException
 name|ioobe
 parameter_list|)
 block|{
-comment|// either its a boundary, or read past EOF, fall back:
+comment|// either it's a boundary, or read past EOF, fall back:
 name|setPos
 argument_list|(
 name|pos
@@ -1335,7 +1335,7 @@ name|IndexOutOfBoundsException
 name|ioobe
 parameter_list|)
 block|{
-comment|// either its a boundary, or read past EOF, fall back:
+comment|// either it's a boundary, or read past EOF, fall back:
 name|setPos
 argument_list|(
 name|pos

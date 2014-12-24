@@ -54,7 +54,7 @@ specifier|public
 class|class
 name|GreekStemmer
 block|{
-comment|/**    * Stems a word contained in a leading portion of a char[] array.    * The word is passed through a number of rules that modify it's length.    *     * @param s A char[] array that contains the word to be stemmed.    * @param len The length of the char[] array.    * @return The new length of the stemmed word.    */
+comment|/**    * Stems a word contained in a leading portion of a char[] array.    * The word is passed through a number of rules that modify its length.    *     * @param s A char[] array that contains the word to be stemmed.    * @param len The length of the char[] array.    * @return The new length of the stemmed word.    */
 DECL|method|stem
 specifier|public
 name|int
@@ -2358,7 +2358,7 @@ name|len
 argument_list|)
 condition|)
 block|{
-comment|// add -Î±Î³Î±Î½ (we removed> 4 chars so its safe)
+comment|// add -Î±Î³Î±Î½ (we removed> 4 chars so it's safe)
 name|len
 operator|+=
 literal|4

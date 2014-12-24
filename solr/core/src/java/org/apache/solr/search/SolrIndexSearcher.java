@@ -8903,7 +8903,7 @@ operator|.
 name|getCursorMark
 argument_list|()
 decl_stmt|;
-comment|// :TODO: make fillFields it's own QueryCommand flag? ...
+comment|// :TODO: make fillFields its own QueryCommand flag? ...
 comment|// ... see comments in populateNextCursorMarkFromTopDocs for cache issues (SOLR-5595)
 specifier|final
 name|boolean

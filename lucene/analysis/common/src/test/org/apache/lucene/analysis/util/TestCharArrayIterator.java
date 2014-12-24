@@ -105,7 +105,7 @@ name|void
 name|testConsumeWordInstance
 parameter_list|()
 block|{
-comment|// we use the default locale, as its randomized by LuceneTestCase
+comment|// we use the default locale, as it's randomized by LuceneTestCase
 name|BreakIterator
 name|bi
 init|=
@@ -179,7 +179,7 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
-comment|/* run this to test if your JRE is buggy   public void testWordInstanceJREBUG() {     // we use the default locale, as its randomized by LuceneTestCase     BreakIterator bi = BreakIterator.getWordInstance(Locale.getDefault());     Segment ci = new Segment();     for (int i = 0; i< 10000; i++) {       char text[] = _TestUtil.randomUnicodeString(random).toCharArray();       ci.array = text;       ci.offset = 0;       ci.count = text.length;       consume(bi, ci);     }   }   */
+comment|/* run this to test if your JRE is buggy   public void testWordInstanceJREBUG() {     // we use the default locale, as it's randomized by LuceneTestCase     BreakIterator bi = BreakIterator.getWordInstance(Locale.getDefault());     Segment ci = new Segment();     for (int i = 0; i< 10000; i++) {       char text[] = _TestUtil.randomUnicodeString(random).toCharArray();       ci.array = text;       ci.offset = 0;       ci.count = text.length;       consume(bi, ci);     }   }   */
 DECL|method|testSentenceInstance
 specifier|public
 name|void
@@ -201,7 +201,7 @@ name|void
 name|testConsumeSentenceInstance
 parameter_list|()
 block|{
-comment|// we use the default locale, as its randomized by LuceneTestCase
+comment|// we use the default locale, as it's randomized by LuceneTestCase
 name|BreakIterator
 name|bi
 init|=
@@ -275,7 +275,7 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
-comment|/* run this to test if your JRE is buggy   public void testSentenceInstanceJREBUG() {     // we use the default locale, as its randomized by LuceneTestCase     BreakIterator bi = BreakIterator.getSentenceInstance(Locale.getDefault());     Segment ci = new Segment();     for (int i = 0; i< 10000; i++) {       char text[] = _TestUtil.randomUnicodeString(random).toCharArray();       ci.array = text;       ci.offset = 0;       ci.count = text.length;       consume(bi, ci);     }   }   */
+comment|/* run this to test if your JRE is buggy   public void testSentenceInstanceJREBUG() {     // we use the default locale, as it's randomized by LuceneTestCase     BreakIterator bi = BreakIterator.getSentenceInstance(Locale.getDefault());     Segment ci = new Segment();     for (int i = 0; i< 10000; i++) {       char text[] = _TestUtil.randomUnicodeString(random).toCharArray();       ci.array = text;       ci.offset = 0;       ci.count = text.length;       consume(bi, ci);     }   }   */
 DECL|method|doTests
 specifier|private
 name|void

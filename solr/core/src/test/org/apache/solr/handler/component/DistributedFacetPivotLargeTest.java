@@ -1062,7 +1062,7 @@ comment|// broken honda
 comment|//
 comment|// This is tricky, here's what i think is happening....
 comment|// - "company:honda" only exists on twoShard, and only w/ "place:cardiff"
-comment|// - twoShard has no other places in it's docs
+comment|// - twoShard has no other places in its docs
 comment|// - twoShard can't return any other places to w/ honda as a count=0 sub-value
 comment|// - if we refined all other companies places, would twoShard return honda==0 ?
 comment|//   ... but there's no refinement since mincount==0

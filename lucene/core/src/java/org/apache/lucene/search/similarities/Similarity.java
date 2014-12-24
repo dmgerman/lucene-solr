@@ -427,7 +427,7 @@ specifier|public
 name|SimWeight
 parameter_list|()
 block|{}
-comment|/** The value for normalization of contained query clauses (e.g. sum of squared weights).      *<p>      * NOTE: a Similarity implementation might not use any query normalization at all,      * its not required. However, if it wants to participate in query normalization,      * it can return a value here.      */
+comment|/** The value for normalization of contained query clauses (e.g. sum of squared weights).      *<p>      * NOTE: a Similarity implementation might not use any query normalization at all,      * it's not required. However, if it wants to participate in query normalization,      * it can return a value here.      */
 DECL|method|getValueForNormalization
 specifier|public
 specifier|abstract
@@ -435,7 +435,7 @@ name|float
 name|getValueForNormalization
 parameter_list|()
 function_decl|;
-comment|/** Assigns the query normalization factor and boost from parent queries to this.      *<p>      * NOTE: a Similarity implementation might not use this normalized value at all,      * its not required. However, its usually a good idea to at least incorporate       * the topLevelBoost (e.g. from an outer BooleanQuery) into its score.      */
+comment|/** Assigns the query normalization factor and boost from parent queries to this.      *<p>      * NOTE: a Similarity implementation might not use this normalized value at all,      * it's not required. However, it's usually a good idea to at least incorporate       * the topLevelBoost (e.g. from an outer BooleanQuery) into its score.      */
 DECL|method|normalize
 specifier|public
 specifier|abstract

@@ -344,7 +344,7 @@ literal|3
 block|}
 argument_list|)
 expr_stmt|;
-comment|// pass a bogus stream and ensure its still ok
+comment|// pass a bogus stream and ensure it's still ok
 name|stringField
 operator|=
 operator|new
@@ -525,7 +525,7 @@ argument_list|,
 name|ts
 argument_list|)
 expr_stmt|;
-comment|// pass a bogus stream and ensure its still ok
+comment|// pass a bogus stream and ensure it's still ok
 name|intField
 operator|=
 operator|new

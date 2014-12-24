@@ -6761,7 +6761,7 @@ operator|.
 name|close
 argument_list|()
 expr_stmt|;
-comment|// Close the top reader, its the only one that should be closed
+comment|// Close the top reader, it's the only one that should be closed
 name|assertEquals
 argument_list|(
 literal|1

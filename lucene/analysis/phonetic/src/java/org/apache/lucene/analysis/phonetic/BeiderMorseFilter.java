@@ -198,7 +198,7 @@ name|LanguageSet
 name|languages
 decl_stmt|;
 comment|// output is a string such as ab|ac|...
-comment|// in complex cases like d'angelo its (anZelo|andZelo|...)-(danZelo|...)
+comment|// in complex cases like d'angelo it's (anZelo|andZelo|...)-(danZelo|...)
 comment|// if there are multiple 's, it starts to nest...
 DECL|field|pattern
 specifier|private

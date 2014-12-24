@@ -3660,7 +3660,7 @@ throw|throw
 operator|new
 name|UnsupportedOperationException
 argument_list|(
-literal|"Its read only mode..."
+literal|"It's read only mode..."
 argument_list|)
 throw|;
 block|}
@@ -3741,7 +3741,7 @@ name|MessagingException
 name|e
 parameter_list|)
 block|{
-comment|// skip bad ones unless its the last one and still no good folder
+comment|// skip bad ones unless it's the last one and still no good folder
 if|if
 condition|(
 name|folders
@@ -4605,7 +4605,7 @@ throw|throw
 operator|new
 name|UnsupportedOperationException
 argument_list|(
-literal|"Its read only mode..."
+literal|"It's read only mode..."
 argument_list|)
 throw|;
 block|}

@@ -1387,7 +1387,7 @@ operator|.
 name|getUTF16SortedAsUTF8Comparator
 argument_list|()
 decl_stmt|;
-comment|// this is *not* an automaton, but its very simple
+comment|// this is *not* an automaton, but it's very simple
 name|list
 operator|.
 name|add

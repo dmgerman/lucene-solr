@@ -161,7 +161,7 @@ name|GLOBAL_REUSE_STRATEGY
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**    * Expert: create a new Analyzer with a custom {@link ReuseStrategy}.    *<p>    * NOTE: if you just want to reuse on a per-field basis, its easier to    * use a subclass of {@link AnalyzerWrapper} such as     *<a href="{@docRoot}/../analyzers-common/org/apache/lucene/analysis/miscellaneous/PerFieldAnalyzerWrapper.html">    * PerFieldAnalyerWrapper</a> instead.    */
+comment|/**    * Expert: create a new Analyzer with a custom {@link ReuseStrategy}.    *<p>    * NOTE: if you just want to reuse on a per-field basis, it's easier to    * use a subclass of {@link AnalyzerWrapper} such as     *<a href="{@docRoot}/../analyzers-common/org/apache/lucene/analysis/miscellaneous/PerFieldAnalyzerWrapper.html">    * PerFieldAnalyerWrapper</a> instead.    */
 DECL|method|Analyzer
 specifier|public
 name|Analyzer

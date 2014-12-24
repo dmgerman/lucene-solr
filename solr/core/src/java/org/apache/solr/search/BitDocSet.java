@@ -1279,7 +1279,7 @@ name|cost
 parameter_list|()
 block|{
 comment|// we don't want to actually compute cardinality, but
-comment|// if its already been computed, we use it (pro-rated for the segment)
+comment|// if it's already been computed, we use it (pro-rated for the segment)
 if|if
 condition|(
 name|size

@@ -520,7 +520,7 @@ index|[
 literal|8192
 index|]
 decl_stmt|;
-comment|// prevent each instance from creating it's own buffer
+comment|// prevent each instance from creating its own buffer
 DECL|class|CSVSharedBufPrinter
 class|class
 name|CSVSharedBufPrinter

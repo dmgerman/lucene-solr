@@ -1020,7 +1020,7 @@ expr_stmt|;
 comment|// Now, open the same taxonomy and add the same categories again.
 comment|// After a few categories, the LuceneTaxonomyWriter implementation
 comment|// will stop looking for each category on disk, and rather read them
-comment|// all into memory and close it's reader. The bug was that it closed
+comment|// all into memory and close its reader. The bug was that it closed
 comment|// the reader, but forgot that it did (because it didn't set the reader
 comment|// reference to null).
 name|tw

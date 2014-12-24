@@ -2061,7 +2061,7 @@ block|}
 comment|/** maps per-segment ordinals to/from global ordinal space */
 comment|// TODO: we could also have a utility method to merge Terms[] and use size() as a weight when we need it
 comment|// TODO: use more efficient packed ints structures?
-comment|// TODO: pull this out? its pretty generic (maps between N ord()-enabled TermsEnums)
+comment|// TODO: pull this out? it's pretty generic (maps between N ord()-enabled TermsEnums)
 DECL|class|OrdinalMap
 specifier|public
 specifier|static

@@ -1496,7 +1496,7 @@ operator|)
 name|numBlocks
 decl_stmt|;
 comment|// just a heuristic, with tiny amounts of blocks our estimate is skewed as we ignore the final "incomplete" block.
-comment|// with at least 4 blocks its pretty accurate. The difference must also be significant (according to acceptable overhead).
+comment|// with at least 4 blocks it's pretty accurate. The difference must also be significant (according to acceptable overhead).
 if|if
 condition|(
 name|numBlocks
@@ -2514,7 +2514,7 @@ argument_list|(
 name|maxLength
 argument_list|)
 expr_stmt|;
-comment|// if minLength == maxLength, its a fixed-length byte[], we are done (the addresses are implicit)
+comment|// if minLength == maxLength, it's a fixed-length byte[], we are done (the addresses are implicit)
 comment|// otherwise, we need to record the length fields...
 if|if
 condition|(
@@ -3054,7 +3054,7 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
-comment|// note: this might not be the most efficient... but its fairly simple
+comment|// note: this might not be the most efficient... but it's fairly simple
 annotation|@
 name|Override
 DECL|method|addSortedSetField

@@ -457,7 +457,7 @@ operator|!=
 literal|null
 condition|)
 block|{
-comment|// check that its actually an ipadic inflection form
+comment|// check that it's actually an ipadic inflection form
 name|assertNotNull
 argument_list|(
 name|ToStringUtil
@@ -500,7 +500,7 @@ operator|!=
 literal|null
 condition|)
 block|{
-comment|// check that its actually an ipadic inflection type
+comment|// check that it's actually an ipadic inflection type
 name|assertNotNull
 argument_list|(
 name|ToStringUtil
@@ -573,7 +573,7 @@ name|pos
 argument_list|)
 argument_list|)
 expr_stmt|;
-comment|// check that its actually an ipadic pos tag
+comment|// check that it's actually an ipadic pos tag
 name|assertNotNull
 argument_list|(
 name|ToStringUtil

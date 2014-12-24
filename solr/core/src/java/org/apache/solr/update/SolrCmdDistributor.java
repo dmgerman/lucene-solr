@@ -791,7 +791,7 @@ operator|=
 literal|true
 expr_stmt|;
 block|}
-comment|// if its a connect exception, lets try again
+comment|// if it's a connect exception, lets try again
 if|if
 condition|(
 name|err

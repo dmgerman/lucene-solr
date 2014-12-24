@@ -257,7 +257,7 @@ index|[
 literal|32
 index|]
 decl_stmt|;
-comment|// its '1' if we have no stem exceptions, otherwise every other form
+comment|// it's '1' if we have no stem exceptions, otherwise every other form
 comment|// is really an ID pointing to the exception table
 DECL|field|formStep
 specifier|private
@@ -743,7 +743,7 @@ return|return
 name|EXACT_CASE
 return|;
 block|}
-comment|// determine if we are title or lowercase (or something funky, in which its exact)
+comment|// determine if we are title or lowercase (or something funky, in which it's exact)
 name|boolean
 name|seenUpper
 init|=
@@ -1111,7 +1111,7 @@ condition|)
 block|{
 continue|continue;
 block|}
-comment|// we can't add this form, its a pseudostem requiring an affix
+comment|// we can't add this form, it's a pseudostem requiring an affix
 if|if
 condition|(
 name|checkNeedAffix
@@ -1644,7 +1644,7 @@ index|[
 literal|3
 index|]
 decl_stmt|;
-comment|/**    * Generates a list of stems for the provided word    *    * @param word Word to generate the stems for    * @param previous previous affix that was removed (so we dont remove same one twice)    * @param prevFlag Flag from a previous stemming step that need to be cross-checked with any affixes in this recursive step    * @param prefixFlag flag of the most inner removed prefix, so that when removing a suffix, its also checked against the word    * @param recursionDepth current recursiondepth    * @param doPrefix true if we should remove prefixes    * @param doSuffix true if we should remove suffixes    * @param previousWasPrefix true if the previous removal was a prefix:    *        if we are removing a suffix, and it has no continuation requirements, its ok.    *        but two prefixes (COMPLEXPREFIXES) or two suffixes must have continuation requirements to recurse.     * @param circumfix true if the previous prefix removal was signed as a circumfix    *        this means inner most suffix must also contain circumfix flag.    * @param caseVariant true if we are searching for a case variant. if the word has KEEPCASE flag it cannot succeed.    * @return List of stems, or empty list if no stems are found    */
+comment|/**    * Generates a list of stems for the provided word    *    * @param word Word to generate the stems for    * @param previous previous affix that was removed (so we dont remove same one twice)    * @param prevFlag Flag from a previous stemming step that need to be cross-checked with any affixes in this recursive step    * @param prefixFlag flag of the most inner removed prefix, so that when removing a suffix, it's also checked against the word    * @param recursionDepth current recursiondepth    * @param doPrefix true if we should remove prefixes    * @param doSuffix true if we should remove suffixes    * @param previousWasPrefix true if the previous removal was a prefix:    *        if we are removing a suffix, and it has no continuation requirements, it's ok.    *        but two prefixes (COMPLEXPREFIXES) or two suffixes must have continuation requirements to recurse.     * @param circumfix true if the previous prefix removal was signed as a circumfix    *        this means inner most suffix must also contain circumfix flag.    * @param caseVariant true if we are searching for a case variant. if the word has KEEPCASE flag it cannot succeed.    * @return List of stems, or empty list if no stems are found    */
 DECL|method|stem
 specifier|private
 name|List
@@ -3125,7 +3125,7 @@ return|return
 literal|true
 return|;
 block|}
-comment|/**    * Applies the affix rule to the given word, producing a list of stems if any are found    *    * @param strippedWord Word the affix has been removed and the strip added    * @param length valid length of stripped word    * @param affix HunspellAffix representing the affix rule itself    * @param prefixFlag when we already stripped a prefix, we cant simply recurse and check the suffix, unless both are compatible    *                   so we must check dictionary form against both to add it as a stem!    * @param recursionDepth current recursion depth    * @param prefix true if we are removing a prefix (false if its a suffix)    * @return List of stems for the word, or an empty list if none are found    */
+comment|/**    * Applies the affix rule to the given word, producing a list of stems if any are found    *    * @param strippedWord Word the affix has been removed and the strip added    * @param length valid length of stripped word    * @param affix HunspellAffix representing the affix rule itself    * @param prefixFlag when we already stripped a prefix, we cant simply recurse and check the suffix, unless both are compatible    *                   so we must check dictionary form against both to add it as a stem!    * @param recursionDepth current recursion depth    * @param prefix true if we are removing a prefix (false if it's a suffix)    * @return List of stems for the word, or an empty list if none are found    */
 DECL|method|applyAffix
 name|List
 argument_list|<

@@ -1185,7 +1185,7 @@ parameter_list|)
 throws|throws
 name|IOException
 block|{
-comment|// TODO: kinda screwed up how we do this, but its easy to get lost. just unravel completely.
+comment|// TODO: kinda screwed up how we do this, but it's easy to get lost. just unravel completely.
 name|delegate
 operator|.
 name|checkAccess

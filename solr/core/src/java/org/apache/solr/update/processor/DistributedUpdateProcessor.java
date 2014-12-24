@@ -2461,7 +2461,7 @@ name|phase
 argument_list|)
 expr_stmt|;
 comment|// if request is coming from another collection then we want it to be sent to all replicas
-comment|// even if it's phase is FROMLEADER
+comment|// even if its phase is FROMLEADER
 name|String
 name|fromCollection
 init|=
@@ -5336,7 +5336,7 @@ name|getErrors
 argument_list|()
 decl_stmt|;
 comment|// TODO - we may need to tell about more than one error...
-comment|// if its a forward, any fail is a problem -
+comment|// if it's a forward, any fail is a problem -
 comment|// otherwise we assume things are fine if we got it locally
 comment|// until we start allowing min replication param
 if|if

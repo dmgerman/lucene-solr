@@ -79,7 +79,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * An iterator that locates ISO 15924 script boundaries in text.   *<p>  * This is not the same as simply looking at the Unicode block, or even the   * Script property. Some characters are 'common' across multiple scripts, and  * some 'inherit' the script value of text surrounding them.  *<p>  * This is similar to ICU (internal-only) UScriptRun, with the following  * differences:  *<ul>  *<li>Doesn't attempt to match paired punctuation. For tokenization purposes, this  * is not necessary. Its also quite expensive.   *<li>Non-spacing marks inherit the script of their base character, following   *  recommendations from UTR #24.  *</ul>  * @lucene.experimental  */
+comment|/**  * An iterator that locates ISO 15924 script boundaries in text.   *<p>  * This is not the same as simply looking at the Unicode block, or even the   * Script property. Some characters are 'common' across multiple scripts, and  * some 'inherit' the script value of text surrounding them.  *<p>  * This is similar to ICU (internal-only) UScriptRun, with the following  * differences:  *<ul>  *<li>Doesn't attempt to match paired punctuation. For tokenization purposes, this  * is not necessary. It's also quite expensive.   *<li>Non-spacing marks inherit the script of their base character, following   *  recommendations from UTR #24.  *</ul>  * @lucene.experimental  */
 end_comment
 
 begin_class

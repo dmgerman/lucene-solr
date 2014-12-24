@@ -319,7 +319,7 @@ argument_list|,
 comment|//should be three pieces to timings
 literal|"//lst[@name='timing']/double[@name='time']"
 argument_list|,
-comment|//make sure we have a time value, but don't specify it's result
+comment|//make sure we have a time value, but don't specify its result
 literal|"count(//lst[@name='prepare']/*)>0"
 argument_list|,
 literal|"//lst[@name='prepare']/double[@name='time']"
@@ -379,7 +379,7 @@ argument_list|,
 comment|//should be three pieces to timings
 literal|"//lst[@name='timing']/double[@name='time']"
 argument_list|,
-comment|//make sure we have a time value, but don't specify it's result
+comment|//make sure we have a time value, but don't specify its result
 literal|"count(//lst[@name='prepare']/*)>0"
 argument_list|,
 literal|"//lst[@name='prepare']/double[@name='time']"
@@ -423,7 +423,7 @@ argument_list|,
 comment|//should be three pieces to timings
 literal|"//lst[@name='timing']/double[@name='time']"
 argument_list|,
-comment|//make sure we have a time value, but don't specify it's result
+comment|//make sure we have a time value, but don't specify its result
 literal|"count(//lst[@name='prepare']/*)>0"
 argument_list|,
 literal|"//lst[@name='prepare']/double[@name='time']"

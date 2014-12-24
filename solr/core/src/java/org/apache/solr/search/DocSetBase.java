@@ -683,7 +683,7 @@ name|this
 argument_list|)
 return|;
 block|}
-comment|// less efficient way: do the intersection then get it's size
+comment|// less efficient way: do the intersection then get its size
 return|return
 name|intersection
 argument_list|(

@@ -730,7 +730,7 @@ parameter_list|)
 block|{
 comment|// LUCENE-4300: in most cases of maxOverlap=1, BQ rewrites itself away,
 comment|// so coord() is not applied. But when BQ cannot optimize itself away
-comment|// for a single clause (minNrShouldMatch, prohibited clauses, etc), its
+comment|// for a single clause (minNrShouldMatch, prohibited clauses, etc), it's
 comment|// important not to apply coord(1,1) for consistency, it might not be 1.0F
 return|return
 name|maxOverlap
@@ -1769,8 +1769,8 @@ return|;
 block|}
 comment|// conjunction-disjunction mix:
 comment|// we create the required and optional pieces with coord disabled, and then
-comment|// combine the two: if minNrShouldMatch> 0, then its a conjunction: because the
-comment|// optional side must match. otherwise its required + optional, factoring the
+comment|// combine the two: if minNrShouldMatch> 0, then it's a conjunction: because the
+comment|// optional side must match. otherwise it's required + optional, factoring the
 comment|// number of optional terms into the coord calculation
 name|Scorer
 name|req
@@ -1799,7 +1799,7 @@ argument_list|,
 literal|true
 argument_list|)
 decl_stmt|;
-comment|// TODO: clean this up: its horrible
+comment|// TODO: clean this up: it's horrible
 if|if
 condition|(
 name|disableCoord

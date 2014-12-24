@@ -393,7 +393,7 @@ block|}
 block|}
 block|}
 block|}
-comment|/**     * Checks that its ok to delete {@code Path}. If the file    * is still open, it throws IOException("access denied").    */
+comment|/**     * Checks that it's ok to delete {@code Path}. If the file    * is still open, it throws IOException("access denied").    */
 DECL|method|checkDeleteAccess
 specifier|private
 name|void

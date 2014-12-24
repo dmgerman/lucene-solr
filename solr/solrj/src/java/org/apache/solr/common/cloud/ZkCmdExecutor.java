@@ -80,7 +80,7 @@ specifier|private
 name|double
 name|timeouts
 decl_stmt|;
-comment|/**    * TODO: At this point, this should probably take a SolrZkClient in    * it's constructor.    *     * @param timeoutms    *          the client timeout for the ZooKeeper clients that will be used    *          with this class.    */
+comment|/**    * TODO: At this point, this should probably take a SolrZkClient in    * its constructor.    *     * @param timeoutms    *          the client timeout for the ZooKeeper clients that will be used    *          with this class.    */
 DECL|method|ZkCmdExecutor
 specifier|public
 name|ZkCmdExecutor
@@ -395,7 +395,7 @@ name|NodeExistsException
 name|e
 parameter_list|)
 block|{
-comment|// its okay if another beats us creating the node
+comment|// it's okay if another beats us creating the node
 block|}
 block|}
 comment|/**    * Performs a retry delay if this is not the first attempt    *     * @param attemptCount    *          the number of the attempts performed so far    */

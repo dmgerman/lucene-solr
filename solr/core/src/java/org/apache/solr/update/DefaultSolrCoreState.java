@@ -691,7 +691,7 @@ name|pauseWriter
 operator|=
 literal|true
 expr_stmt|;
-comment|// then lets wait until its out of use
+comment|// then lets wait until it's out of use
 name|log
 operator|.
 name|info
@@ -931,7 +931,7 @@ name|pauseWriter
 operator|=
 literal|true
 expr_stmt|;
-comment|// then lets wait until its out of use
+comment|// then lets wait until it's out of use
 name|log
 operator|.
 name|info

@@ -184,7 +184,7 @@ name|isEmpty
 argument_list|()
 condition|)
 block|{
-comment|// print the first one as its very verbose otherwise
+comment|// print the first one as it's very verbose otherwise
 name|Exception
 name|cause
 init|=

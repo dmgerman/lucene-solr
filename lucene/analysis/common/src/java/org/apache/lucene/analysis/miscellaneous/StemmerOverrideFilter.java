@@ -851,7 +851,7 @@ operator|=
 name|ignoreCase
 expr_stmt|;
 block|}
-comment|/**      * Adds an input string and it's stemmer override output to this builder.      *       * @param input the input char sequence       * @param output the stemmer override output char sequence      * @return<code>false</code> iff the input has already been added to this builder otherwise<code>true</code>.      */
+comment|/**      * Adds an input string and its stemmer override output to this builder.      *       * @param input the input char sequence       * @param output the stemmer override output char sequence      * @return<code>false</code> iff the input has already been added to this builder otherwise<code>true</code>.      */
 DECL|method|add
 specifier|public
 name|boolean

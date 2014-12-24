@@ -3831,7 +3831,7 @@ expr_stmt|;
 block|}
 else|else
 block|{
-comment|// an empty clause... must be just a + or - on it's own
+comment|// an empty clause... must be just a + or - on its own
 if|if
 condition|(
 name|clause
@@ -4695,7 +4695,7 @@ argument_list|,
 name|defaultField
 argument_list|)
 expr_stmt|;
-comment|// don't trust that our parent class won't ever change it's default
+comment|// don't trust that our parent class won't ever change its default
 name|setDefaultOperator
 argument_list|(
 name|QueryParser
@@ -5800,7 +5800,7 @@ argument_list|)
 decl_stmt|;
 comment|// A BooleanQuery is only possible from getFieldQuery if it came from
 comment|// a single whitespace separated term. In this case, check the coordination
-comment|// factor on the query: if its enabled, that means we aren't a set of synonyms
+comment|// factor on the query: if it's enabled, that means we aren't a set of synonyms
 comment|// but instead multiple terms from one whitespace-separated term, we must
 comment|// apply minShouldMatch here so that it works correctly with other things
 comment|// like aliasing.

@@ -3721,7 +3721,7 @@ name|nextPosition
 argument_list|()
 argument_list|)
 expr_stmt|;
-comment|// we don't compare the payloads, its allowed that one is empty etc
+comment|// we don't compare the payloads, it's allowed that one is empty etc
 block|}
 block|}
 block|}

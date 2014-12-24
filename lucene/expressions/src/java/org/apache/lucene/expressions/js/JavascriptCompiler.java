@@ -566,7 +566,7 @@ name|method
 argument_list|)
 return|;
 block|}
-comment|// This maximum length is theoretically 65535 bytes, but as its CESU-8 encoded we dont know how large it is in bytes, so be safe
+comment|// This maximum length is theoretically 65535 bytes, but as it's CESU-8 encoded we dont know how large it is in bytes, so be safe
 comment|// rcmuir: "If your ranking function is that large you need to check yourself into a mental institution!"
 DECL|field|MAX_SOURCE_LENGTH
 specifier|private

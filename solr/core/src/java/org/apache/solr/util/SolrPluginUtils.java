@@ -1614,7 +1614,7 @@ return|return
 name|debugInterests
 return|;
 block|}
-comment|/**    *<p>    * Returns a NamedList containing many "standard" pieces of debugging    * information.    *</p>    *    *<ul>    *<li>rawquerystring - the 'q' param exactly as specified by the client    *</li>    *<li>querystring - the 'q' param after any preprocessing done by the plugin    *</li>    *<li>parsedquery - the main query executed formated by the Solr    *     QueryParsing utils class (which knows about field types)    *</li>    *<li>parsedquery_toString - the main query executed formated by it's    *     own toString method (in case it has internal state Solr    *     doesn't know about)    *</li>    *<li>explain - the list of score explanations for each document in    *     results against query.    *</li>    *<li>otherQuery - the query string specified in 'explainOther' query param.    *</li>    *<li>explainOther - the list of score explanations for each document in    *     results against 'otherQuery'    *</li>    *</ul>    *    * @param req the request we are dealing with    * @param userQuery the users query as a string, after any basic    *                  preprocessing has been done    * @param query the query built from the userQuery    *              (and perhaps other clauses) that identifies the main    *              result set of the response.    * @param results the main result set of the response    * @return The debug info    * @throws java.io.IOException if there was an IO error    */
+comment|/**    *<p>    * Returns a NamedList containing many "standard" pieces of debugging    * information.    *</p>    *    *<ul>    *<li>rawquerystring - the 'q' param exactly as specified by the client    *</li>    *<li>querystring - the 'q' param after any preprocessing done by the plugin    *</li>    *<li>parsedquery - the main query executed formated by the Solr    *     QueryParsing utils class (which knows about field types)    *</li>    *<li>parsedquery_toString - the main query executed formatted by its    *     own toString method (in case it has internal state Solr    *     doesn't know about)    *</li>    *<li>explain - the list of score explanations for each document in    *     results against query.    *</li>    *<li>otherQuery - the query string specified in 'explainOther' query param.    *</li>    *<li>explainOther - the list of score explanations for each document in    *     results against 'otherQuery'    *</li>    *</ul>    *    * @param req the request we are dealing with    * @param userQuery the users query as a string, after any basic    *                  preprocessing has been done    * @param query the query built from the userQuery    *              (and perhaps other clauses) that identifies the main    *              result set of the response.    * @param results the main result set of the response    * @return The debug info    * @throws java.io.IOException if there was an IO error    */
 DECL|method|doStandardDebug
 specifier|public
 specifier|static
@@ -3602,7 +3602,7 @@ literal|""
 argument_list|)
 return|;
 block|}
-comment|/**    * Returns it's input if there is an even (ie: balanced) number of    * '"' characters -- otherwise returns a String in which all '"'    * characters are striped out.    */
+comment|/**    * Returns its input if there is an even (ie: balanced) number of    * '"' characters -- otherwise returns a String in which all '"'    * characters are striped out.    */
 DECL|method|stripUnbalancedQuotes
 specifier|public
 specifier|static
@@ -3854,7 +3854,7 @@ argument_list|,
 name|defaultField
 argument_list|)
 expr_stmt|;
-comment|// don't trust that our parent class won't ever change it's default
+comment|// don't trust that our parent class won't ever change its default
 name|setDefaultOperator
 argument_list|(
 name|QueryParser

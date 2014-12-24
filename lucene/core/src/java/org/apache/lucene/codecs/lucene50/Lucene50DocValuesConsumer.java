@@ -2052,7 +2052,7 @@ argument_list|(
 name|startFP
 argument_list|)
 expr_stmt|;
-comment|// if minLength == maxLength, its a fixed-length byte[], we are done (the addresses are implicit)
+comment|// if minLength == maxLength, it's a fixed-length byte[], we are done (the addresses are implicit)
 comment|// otherwise, we need to record the length fields...
 if|if
 condition|(
@@ -2167,7 +2167,7 @@ parameter_list|)
 throws|throws
 name|IOException
 block|{
-comment|// first check if its a "fixed-length" terms dict
+comment|// first check if it's a "fixed-length" terms dict
 name|int
 name|minLength
 init|=
@@ -2311,7 +2311,7 @@ name|getFilePointer
 argument_list|()
 decl_stmt|;
 comment|// currently, we have to store the delta from expected for every 1/nth term
-comment|// we could avoid this, but its not much and less overall RAM than the previous approach!
+comment|// we could avoid this, but it's not much and less overall RAM than the previous approach!
 name|RAMOutputStream
 name|addressBuffer
 init|=

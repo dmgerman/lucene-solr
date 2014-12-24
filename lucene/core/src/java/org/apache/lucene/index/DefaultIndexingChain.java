@@ -509,7 +509,7 @@ argument_list|(
 name|state
 argument_list|)
 expr_stmt|;
-comment|// its possible all docs hit non-aborting exceptions...
+comment|// it's possible all docs hit non-aborting exceptions...
 name|initStoredFieldsWriter
 argument_list|()
 expr_stmt|;
@@ -873,7 +873,7 @@ block|}
 comment|// TODO: catch missing DV fields here?  else we have
 comment|// null/"" depending on how docs landed in segments?
 comment|// but we can't detect all cases, and we should leave
-comment|// this behavior undefined. dv is not "schemaless": its column-stride.
+comment|// this behavior undefined. dv is not "schemaless": it's column-stride.
 name|success
 operator|=
 literal|true
@@ -3274,7 +3274,7 @@ operator|.
 name|end
 argument_list|()
 expr_stmt|;
-comment|// TODO: maybe add some safety? then again, its already checked
+comment|// TODO: maybe add some safety? then again, it's already checked
 comment|// when we come back around to the field...
 name|invertState
 operator|.

@@ -238,7 +238,7 @@ operator|==
 literal|null
 condition|)
 block|{
-comment|// if its an OOV term, just try the term text
+comment|// if it's an OOV term, just try the term text
 name|buffer
 operator|.
 name|setLength

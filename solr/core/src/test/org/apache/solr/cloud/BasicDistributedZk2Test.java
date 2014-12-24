@@ -680,7 +680,7 @@ parameter_list|)
 block|{
 comment|// expected
 block|}
-comment|// TODO: bring this to it's own method?
+comment|// TODO: bring this to its own method?
 comment|// try indexing to a leader that has no replicas up
 name|ZkStateReader
 name|zkStateReader

@@ -59,7 +59,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Factory for {@link LimitTokenCountFilter}.   *<pre class="prettyprint">  *&lt;fieldType name="text_lngthcnt" class="solr.TextField" positionIncrementGap="100"&gt;  *&lt;analyzer&gt;  *&lt;tokenizer class="solr.WhitespaceTokenizerFactory"/&gt;  *&lt;filter class="solr.LimitTokenCountFilterFactory" maxTokenCount="10" consumeAllTokens="false" /&gt;  *&lt;/analyzer&gt;  *&lt;/fieldType&gt;</pre>  *<p>  * The {@code consumeAllTokens} property is optional and defaults to {@code false}.    * See {@link LimitTokenCountFilter} for an explanation of it's use.  */
+comment|/**  * Factory for {@link LimitTokenCountFilter}.   *<pre class="prettyprint">  *&lt;fieldType name="text_lngthcnt" class="solr.TextField" positionIncrementGap="100"&gt;  *&lt;analyzer&gt;  *&lt;tokenizer class="solr.WhitespaceTokenizerFactory"/&gt;  *&lt;filter class="solr.LimitTokenCountFilterFactory" maxTokenCount="10" consumeAllTokens="false" /&gt;  *&lt;/analyzer&gt;  *&lt;/fieldType&gt;</pre>  *<p>  * The {@code consumeAllTokens} property is optional and defaults to {@code false}.    * See {@link LimitTokenCountFilter} for an explanation of its use.  */
 end_comment
 
 begin_class

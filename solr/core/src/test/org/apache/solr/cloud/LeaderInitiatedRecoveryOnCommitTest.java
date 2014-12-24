@@ -367,7 +367,7 @@ operator|==
 literal|1
 argument_list|)
 expr_stmt|;
-comment|// let's put the leader in it's own partition, no replicas can contact it now
+comment|// let's put the leader in its own partition, no replicas can contact it now
 name|Replica
 name|leader
 init|=
@@ -623,7 +623,7 @@ operator|==
 literal|2
 argument_list|)
 expr_stmt|;
-comment|// let's put the leader in it's own partition, no replicas can contact it now
+comment|// let's put the leader in its own partition, no replicas can contact it now
 name|Replica
 name|leader
 init|=

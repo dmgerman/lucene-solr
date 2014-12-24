@@ -2161,7 +2161,7 @@ argument_list|,
 literal|0.01F
 argument_list|)
 expr_stmt|;
-comment|// omit the 'the' since its a stopword, its suggested anyway
+comment|// omit the 'the' since it's a stopword, it's suggested anyway
 name|results
 operator|=
 name|suggester
@@ -2226,7 +2226,7 @@ argument_list|,
 literal|0.01F
 argument_list|)
 expr_stmt|;
-comment|// omit the 'the' and 'of' since they are stopwords, its suggested anyway
+comment|// omit the 'the' and 'of' since they are stopwords, it's suggested anyway
 name|results
 operator|=
 name|suggester
@@ -5479,7 +5479,7 @@ name|analyzedKey
 argument_list|)
 expr_stmt|;
 block|}
-comment|// TODO: could be faster... but its slowCompletor for a reason
+comment|// TODO: could be faster... but it's slowCompletor for a reason
 for|for
 control|(
 name|TermFreq2

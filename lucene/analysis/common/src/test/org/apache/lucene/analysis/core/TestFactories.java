@@ -433,7 +433,7 @@ argument_list|(
 name|mtc
 argument_list|)
 expr_stmt|;
-comment|// its not ok to return e.g. a charfilter here: but a tokenizer could wrap a filter around it
+comment|// it's not ok to return e.g. a charfilter here: but a tokenizer could wrap a filter around it
 name|assertFalse
 argument_list|(
 name|mtc
@@ -541,7 +541,7 @@ argument_list|(
 name|mtc
 argument_list|)
 expr_stmt|;
-comment|// its not ok to return a charfilter or tokenizer here, this makes no sense
+comment|// it's not ok to return a charfilter or tokenizer here, this makes no sense
 name|assertTrue
 argument_list|(
 name|mtc
@@ -649,7 +649,7 @@ argument_list|(
 name|mtc
 argument_list|)
 expr_stmt|;
-comment|// its not ok to return a tokenizer or tokenfilter here, this makes no sense
+comment|// it's not ok to return a tokenizer or tokenfilter here, this makes no sense
 name|assertTrue
 argument_list|(
 name|mtc
@@ -831,7 +831,7 @@ operator|instanceof
 name|IllegalArgumentException
 condition|)
 block|{
-comment|// its ok if we dont provide the right parameters to throw this
+comment|// it's ok if we dont provide the right parameters to throw this
 return|return
 literal|null
 return|;
@@ -869,7 +869,7 @@ name|IOException
 name|ignored
 parameter_list|)
 block|{
-comment|// its ok if the right files arent available or whatever to throw this
+comment|// it's ok if the right files arent available or whatever to throw this
 block|}
 catch|catch
 parameter_list|(

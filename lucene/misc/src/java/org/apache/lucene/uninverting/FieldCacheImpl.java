@@ -5016,8 +5016,8 @@ block|}
 else|else
 block|{
 comment|// if #postings = #docswithfield we know that the field is "single valued enough".
-comment|// its possible the same term might appear twice in the same document, but SORTED_SET discards frequency.
-comment|// its still ok with filtering (which we limit to numerics), it just means precisionStep = Inf
+comment|// it's possible the same term might appear twice in the same document, but SORTED_SET discards frequency.
+comment|// it's still ok with filtering (which we limit to numerics), it just means precisionStep = Inf
 name|long
 name|numPostings
 init|=

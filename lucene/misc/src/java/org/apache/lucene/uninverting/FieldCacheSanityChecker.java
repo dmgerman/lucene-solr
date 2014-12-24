@@ -1577,7 +1577,7 @@ return|return
 name|entries
 return|;
 block|}
-comment|/**      * Multi-Line representation of this Insanity object, starting with       * the Type and Msg, followed by each CacheEntry.toString() on it's       * own line prefaced by a tab character      */
+comment|/**      * Multi-Line representation of this Insanity object, starting with       * the Type and Msg, followed by each CacheEntry.toString() on its       * own line prefaced by a tab character      */
 annotation|@
 name|Override
 DECL|method|toString

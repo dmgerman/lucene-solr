@@ -42,7 +42,7 @@ name|PostFilter
 extends|extends
 name|ExtendedQuery
 block|{
-comment|/** Returns a DelegatingCollector to be run after the main query and all of it's filters, but before any sorting or grouping collectors */
+comment|/** Returns a DelegatingCollector to be run after the main query and all of its filters, but before any sorting or grouping collectors */
 DECL|method|getFilterCollector
 specifier|public
 name|DelegatingCollector

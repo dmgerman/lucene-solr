@@ -1901,7 +1901,7 @@ return|return
 name|startingOperation
 return|;
 block|}
-comment|/* Takes over ownership of the log, keeping it until no longer needed      and then decrementing it's reference and dropping it.    */
+comment|/* Takes over ownership of the log, keeping it until no longer needed      and then decrementing its reference and dropping it.    */
 DECL|method|addOldLog
 specifier|protected
 specifier|synchronized

@@ -486,7 +486,7 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
-comment|// not so useful since its all one token?!
+comment|// not so useful since it's all one token?!
 DECL|method|testLetterAsciiHuge
 specifier|public
 name|void

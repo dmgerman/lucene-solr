@@ -2171,7 +2171,7 @@ specifier|static
 class|class
 name|NormMap
 block|{
-comment|// we use short: at most we will add 257 values to this map before its rejected as too big above.
+comment|// we use short: at most we will add 257 values to this map before it's rejected as too big above.
 DECL|field|ords
 specifier|private
 specifier|final

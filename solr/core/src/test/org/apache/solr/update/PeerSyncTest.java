@@ -368,7 +368,7 @@ name|v
 argument_list|)
 argument_list|)
 expr_stmt|;
-comment|// this fails because client0 has no context (i.e. no updates of it's own to judge if applying the updates
+comment|// this fails because client0 has no context (i.e. no updates of its own to judge if applying the updates
 comment|// from client1 will bring it into sync with client1)
 name|assertSync
 argument_list|(

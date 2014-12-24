@@ -702,7 +702,7 @@ name|readVInt
 argument_list|()
 decl_stmt|;
 comment|// pad with extra "dummy byte": see javadocs for using Inflater(true)
-comment|// we do it for compliance, but its unnecessary for years in zlib.
+comment|// we do it for compliance, but it's unnecessary for years in zlib.
 specifier|final
 name|int
 name|paddedLength

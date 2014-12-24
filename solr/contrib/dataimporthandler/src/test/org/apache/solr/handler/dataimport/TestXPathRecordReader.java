@@ -2746,7 +2746,7 @@ literal|"<status>as is<boo>this element</boo></status>\n"
 operator|+
 literal|"<contenido id=\"10097\" idioma=\"cat\">\n"
 operator|+
-literal|"    This one is<boo>not ignored as its</boo> inside a forEach\n"
+literal|"    This one is<boo>not ignored as it's</boo> inside a forEach\n"
 operator|+
 literal|"<antetitulo><i> big<boo>antler</boo></i></antetitulo>\n"
 operator|+
@@ -2895,7 +2895,7 @@ argument_list|)
 expr_stmt|;
 name|assertEquals
 argument_list|(
-literal|"not ignored as its"
+literal|"not ignored as it's"
 argument_list|,
 call|(
 name|String
@@ -3052,7 +3052,7 @@ literal|"<status>as is<boo>this element</boo></status>\n"
 operator|+
 literal|"<contenido id=\"10097\" idioma=\"cat\">\n"
 operator|+
-literal|"    This one is<boo>not ignored as its</boo> inside a forEach\n"
+literal|"    This one is<boo>not ignored as it's</boo> inside a forEach\n"
 operator|+
 literal|"<antetitulo><i> big<boo>antler</boo></i></antetitulo>\n"
 operator|+
@@ -3167,7 +3167,7 @@ argument_list|)
 expr_stmt|;
 name|assertEquals
 argument_list|(
-literal|"not ignored as its"
+literal|"not ignored as it's"
 argument_list|,
 call|(
 name|String
@@ -3331,7 +3331,7 @@ literal|"<status>as is<boo>this element</boo></status>\n"
 operator|+
 literal|"<contenido id=\"10097\" idioma=\"cat\">\n"
 operator|+
-literal|"    This one is<boo>not ignored as its</boo> inside a forEach\n"
+literal|"    This one is<boo>not ignored as it's</boo> inside a forEach\n"
 operator|+
 literal|"<antetitulo><i> big<boo>antler</boo></i></antetitulo>\n"
 operator|+
@@ -3396,7 +3396,7 @@ argument_list|)
 decl_stmt|;
 name|assertEquals
 argument_list|(
-literal|"not ignored as its"
+literal|"not ignored as it's"
 argument_list|,
 operator|(
 operator|(

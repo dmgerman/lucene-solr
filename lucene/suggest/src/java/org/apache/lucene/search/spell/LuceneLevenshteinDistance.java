@@ -83,8 +83,8 @@ comment|// cost array
 comment|// NOTE: if we cared, we could 3*m space instead of m*n space, similar to
 comment|// what LevenshteinDistance does, except cycling thru a ring of three
 comment|// horizontal cost arrays... but this comparator is never actually used by
-comment|// DirectSpellChecker, its only used for merging results from multiple shards
-comment|// in "distributed spellcheck", and its inefficient in other ways too...
+comment|// DirectSpellChecker, it's only used for merging results from multiple shards
+comment|// in "distributed spellcheck", and it's inefficient in other ways too...
 comment|// cheaper to do this up front once
 name|targetPoints
 operator|=

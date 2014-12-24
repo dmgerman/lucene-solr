@@ -1062,7 +1062,7 @@ literal|null
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**    * Adds every file/dir found in the baseDir which passes the specified Filter    * to the ClassLoader used by this ResourceLoader.  This method<b>MUST</b>    * only be called prior to using this ResourceLoader to get any resources, otherwise    * it's behavior will be non-deterministic. You also have to {link @reloadLuceneSPI}    * before using this ResourceLoader.    *     *<p>This method will quietly ignore missing or non-directory<code>baseDir</code>    *  folder.     *    * @param baseDir base directory whose children (either jars or directories of    *                classes) will be in the classpath, will be resolved relative    *                the instance dir.    * @param filter The filter files must satisfy, if null all files will be accepted.    * @param quiet  Be quiet if baseDir does not point to a directory or if no file is     *               left after applying the filter.     */
+comment|/**    * Adds every file/dir found in the baseDir which passes the specified Filter    * to the ClassLoader used by this ResourceLoader.  This method<b>MUST</b>    * only be called prior to using this ResourceLoader to get any resources, otherwise    * its behavior will be non-deterministic. You also have to {link @reloadLuceneSPI}    * before using this ResourceLoader.    *     *<p>This method will quietly ignore missing or non-directory<code>baseDir</code>    *  folder.     *    * @param baseDir base directory whose children (either jars or directories of    *                classes) will be in the classpath, will be resolved relative    *                the instance dir.    * @param filter The filter files must satisfy, if null all files will be accepted.    * @param quiet  Be quiet if baseDir does not point to a directory or if no file is     *               left after applying the filter.     */
 DECL|method|addToClassLoader
 name|void
 name|addToClassLoader
@@ -2265,7 +2265,7 @@ name|empty
 argument_list|)
 return|;
 block|}
-comment|/**    * This method loads a class either with it's FQN or a short-name (solr.class-simplename or class-simplename).    * It tries to load the class with the name that is given first and if it fails, it tries all the known    * solr packages. This method caches the FQN of a short-name in a static map in-order to make subsequent lookups    * for the same class faster. The caching is done only if the class is loaded by the webapp classloader and it    * is loaded using a shortname.    *    * @param cname The name or the short name of the class.    * @param subpackages the packages to be tried if the cname starts with solr.    * @return the loaded class. An exception is thrown if it fails    */
+comment|/**    * This method loads a class either with its FQN or a short-name (solr.class-simplename or class-simplename).    * It tries to load the class with the name that is given first and if it fails, it tries all the known    * solr packages. This method caches the FQN of a short-name in a static map in-order to make subsequent lookups    * for the same class faster. The caching is done only if the class is loaded by the webapp classloader and it    * is loaded using a shortname.    *    * @param cname The name or the short name of the class.    * @param subpackages the packages to be tried if the cname starts with solr.    * @return the loaded class. An exception is thrown if it fails    */
 DECL|method|findClass
 specifier|public
 parameter_list|<

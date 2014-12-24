@@ -641,7 +641,7 @@ operator|.
 name|getSimpleName
 argument_list|()
 operator|+
-literal|" had an error it's thread work loop."
+literal|" had an error in its thread work loop."
 argument_list|,
 name|e
 argument_list|)

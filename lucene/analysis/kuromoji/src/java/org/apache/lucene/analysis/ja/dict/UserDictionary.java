@@ -382,7 +382,7 @@ argument_list|)
 expr_stmt|;
 block|}
 comment|// TODO: should we allow multiple segmentations per input 'phrase'?
-comment|// the old treemap didn't support this either, and i'm not sure if its needed/useful?
+comment|// the old treemap didn't support this either, and i'm not sure if it's needed/useful?
 name|Collections
 operator|.
 name|sort

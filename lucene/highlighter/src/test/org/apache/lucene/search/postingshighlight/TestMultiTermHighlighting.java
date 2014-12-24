@@ -6385,7 +6385,7 @@ range|:
 name|passages
 control|)
 block|{
-comment|// don't add ellipsis if its the first one, or if its connected.
+comment|// don't add ellipsis if it's the first one, or if it's connected.
 if|if
 condition|(
 name|passage
@@ -6450,7 +6450,7 @@ index|[
 name|i
 index|]
 decl_stmt|;
-comment|// its possible to have overlapping terms
+comment|// it's possible to have overlapping terms
 if|if
 condition|(
 name|start
@@ -6545,7 +6545,7 @@ name|end
 expr_stmt|;
 block|}
 block|}
-comment|// its possible a "term" from the analyzer could span a sentence boundary.
+comment|// it's possible a "term" from the analyzer could span a sentence boundary.
 name|sb
 operator|.
 name|append

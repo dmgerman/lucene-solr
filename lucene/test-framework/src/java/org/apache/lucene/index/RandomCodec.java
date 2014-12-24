@@ -512,7 +512,7 @@ argument_list|>
 name|avoidCodecs
 decl_stmt|;
 comment|/** memorized field to postingsformat mappings */
-comment|// note: we have to sync this map even though its just for debugging/toString,
+comment|// note: we have to sync this map even though it's just for debugging/toString,
 comment|// otherwise DWPT's .toString() calls that iterate over the map can
 comment|// cause concurrentmodificationexception if indexwriter's infostream is on
 DECL|field|previousMappings

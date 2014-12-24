@@ -360,7 +360,7 @@ return|return
 literal|false
 return|;
 block|}
-comment|/* We build n-grams before and after stopwords.       * When valid, the buffer always contains at least the separator.      * If its empty, there is nothing before this stopword.      */
+comment|/* We build n-grams before and after stopwords.       * When valid, the buffer always contains at least the separator.      * If it's empty, there is nothing before this stopword.      */
 if|if
 condition|(
 name|lastWasCommon

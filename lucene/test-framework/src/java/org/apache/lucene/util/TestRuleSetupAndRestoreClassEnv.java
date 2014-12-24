@@ -807,7 +807,7 @@ parameter_list|()
 throws|throws
 name|Exception
 block|{
-comment|// enable this by default, for IDE consistency with ant tests (as its the default from ant)
+comment|// enable this by default, for IDE consistency with ant tests (as it's the default from ant)
 comment|// TODO: really should be in solr base classes, but some extend LTC directly.
 comment|// we do this in beforeClass, because some tests currently disable it
 name|restoreProperties

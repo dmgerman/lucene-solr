@@ -102,7 +102,7 @@ name|Reader
 name|reader
 parameter_list|)
 function_decl|;
-comment|/**    * A well behaved ResponseParser will return it's content-type.    *     * @return the content-type this parser expects to parse    */
+comment|/**    * A well behaved ResponseParser will return its content-type.    *     * @return the content-type this parser expects to parse    */
 DECL|method|getContentType
 specifier|public
 name|String

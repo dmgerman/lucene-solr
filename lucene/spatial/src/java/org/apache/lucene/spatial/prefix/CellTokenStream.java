@@ -599,7 +599,7 @@ literal|false
 argument_list|)
 expr_stmt|;
 block|}
-comment|/** Outputs the token of a cell, and if its a leaf, outputs it again with the leaf byte. */
+comment|/** Outputs the token of a cell, and if it's a leaf, outputs it again with the leaf byte. */
 annotation|@
 name|Override
 DECL|method|incrementToken

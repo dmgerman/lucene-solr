@@ -3579,7 +3579,7 @@ operator|.
 name|MAX_VALUE
 condition|)
 block|{
-comment|// this limit is probably flexible, but its a good sanity check too
+comment|// this limit is probably flexible, but it's a good sanity check too
 throw|throw
 operator|new
 name|UnsupportedOperationException
@@ -6424,7 +6424,7 @@ name|String
 name|morphData
 parameter_list|)
 block|{
-comment|// first see if its an alias
+comment|// first see if it's an alias
 if|if
 condition|(
 name|morphAliasCount

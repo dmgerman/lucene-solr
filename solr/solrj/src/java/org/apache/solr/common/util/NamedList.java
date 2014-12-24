@@ -1473,7 +1473,7 @@ name|T
 name|value
 decl_stmt|;
 block|}
-comment|/**    * Iterates over the Map and sequentially adds it's key/value pairs    */
+comment|/**    * Iterates over the Map and sequentially adds its key/value pairs    */
 DECL|method|addAll
 specifier|public
 name|boolean

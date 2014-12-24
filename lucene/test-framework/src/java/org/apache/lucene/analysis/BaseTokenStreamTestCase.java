@@ -361,7 +361,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**   * Base class for all Lucene unit tests that use TokenStreams.   *<p>  * When writing unit tests for analysis components, its highly recommended  * to use the helper methods here (especially in conjunction with {@link MockAnalyzer} or  * {@link MockTokenizer}), as they contain many assertions and checks to   * catch bugs.  *   * @see MockAnalyzer  * @see MockTokenizer  */
+comment|/**   * Base class for all Lucene unit tests that use TokenStreams.   *<p>  * When writing unit tests for analysis components, it's highly recommended  * to use the helper methods here (especially in conjunction with {@link MockAnalyzer} or  * {@link MockTokenizer}), as they contain many assertions and checks to   * catch bugs.  *   * @see MockAnalyzer  * @see MockTokenizer  */
 end_comment
 
 begin_class
@@ -3606,7 +3606,7 @@ name|iw
 argument_list|)
 expr_stmt|;
 comment|// now test with multiple threads: note we do the EXACT same thing we did before in each thread,
-comment|// so this should only really fail from another thread if its an actual thread problem
+comment|// so this should only really fail from another thread if it's an actual thread problem
 name|int
 name|numThreads
 init|=

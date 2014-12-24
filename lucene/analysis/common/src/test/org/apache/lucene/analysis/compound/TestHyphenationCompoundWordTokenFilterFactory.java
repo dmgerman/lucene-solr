@@ -227,7 +227,7 @@ block|}
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**    * Ensure the factory works with no dictionary: using hyphenation grammar only.    * Also change the min/max subword sizes from the default. When using no dictionary,    * its generally necessary to tweak these, or you get lots of expansions.    */
+comment|/**    * Ensure the factory works with no dictionary: using hyphenation grammar only.    * Also change the min/max subword sizes from the default. When using no dictionary,    * it's generally necessary to tweak these, or you get lots of expansions.    */
 DECL|method|testHyphenationOnly
 specifier|public
 name|void

@@ -4454,7 +4454,7 @@ block|}
 end_class
 
 begin_comment
-comment|/** For use with term vectors of multi-valued fields. We want an offset based window into it's TokenStream. */
+comment|/** For use with term vectors of multi-valued fields. We want an offset based window into its TokenStream. */
 end_comment
 
 begin_class

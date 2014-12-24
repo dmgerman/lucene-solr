@@ -16489,8 +16489,8 @@ name|Throwable
 name|ignored
 parameter_list|)
 block|{
-comment|// it would be confusing to addSuppressed here, its unrelated to the disaster,
-comment|// and its possible our internal state is amiss anyway.
+comment|// it would be confusing to addSuppressed here, it's unrelated to the disaster,
+comment|// and it's possible our internal state is amiss anyway.
 block|}
 block|}
 block|}
@@ -17148,7 +17148,7 @@ return|return
 name|processed
 return|;
 block|}
-comment|/**    * Interface for internal atomic events. See {@link DocumentsWriter} for details. Events are executed concurrently and no order is guaranteed.    * Each event should only rely on the serializeability within it's process method. All actions that must happen before or after a certain action must be    * encoded inside the {@link #process(IndexWriter, boolean, boolean)} method.    *    */
+comment|/**    * Interface for internal atomic events. See {@link DocumentsWriter} for details. Events are executed concurrently and no order is guaranteed.    * Each event should only rely on the serializeability within its process method. All actions that must happen before or after a certain action must be    * encoded inside the {@link #process(IndexWriter, boolean, boolean)} method.    *    */
 DECL|interface|Event
 specifier|static
 interface|interface

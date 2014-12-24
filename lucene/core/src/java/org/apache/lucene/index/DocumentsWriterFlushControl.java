@@ -2573,7 +2573,7 @@ name|bytes
 argument_list|)
 argument_list|)
 expr_stmt|;
-comment|// don't decr pending here - its already done when DWPT is blocked
+comment|// don't decr pending here - it's already done when DWPT is blocked
 name|flushQueue
 operator|.
 name|add

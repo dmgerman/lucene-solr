@@ -1222,7 +1222,7 @@ argument_list|,
 name|topN
 argument_list|)
 decl_stmt|;
-comment|// 2. go thru whole treemap (slowCompletor) and check its actually the best suggestion
+comment|// 2. go thru whole treemap (slowCompletor) and check it's actually the best suggestion
 specifier|final
 name|List
 argument_list|<
@@ -1235,7 +1235,7 @@ name|ArrayList
 argument_list|<>
 argument_list|()
 decl_stmt|;
-comment|// TODO: could be faster... but its slowCompletor for a reason
+comment|// TODO: could be faster... but it's slowCompletor for a reason
 for|for
 control|(
 name|Map

@@ -2136,7 +2136,7 @@ operator|new
 name|Document
 argument_list|()
 decl_stmt|;
-comment|// the word field is never queried on... its indexed so it can be quickly
+comment|// the word field is never queried on... it's indexed so it can be quickly
 comment|// checked for rebuild (and stored for retrieval). Doesn't need norms or TF/pos
 name|Field
 name|f

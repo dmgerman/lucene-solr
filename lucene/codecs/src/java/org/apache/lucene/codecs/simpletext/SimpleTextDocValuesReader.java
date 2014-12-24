@@ -1441,7 +1441,7 @@ argument_list|,
 name|scratch
 argument_list|)
 expr_stmt|;
-comment|// read the line telling us if its real or not
+comment|// read the line telling us if it's real or not
 return|return
 name|BigInteger
 operator|.

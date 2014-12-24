@@ -908,7 +908,7 @@ return|return
 name|container
 return|;
 block|}
-comment|/** Gets a core that does not have it's refcount incremented (i.e. there is no need to    * close when done).  This is not MT safe in conjunction with reloads!    */
+comment|/** Gets a core that does not have its refcount incremented (i.e. there is no need to    * close when done).  This is not MT safe in conjunction with reloads!    */
 DECL|method|getCore
 specifier|public
 name|SolrCore
@@ -942,7 +942,7 @@ return|return
 name|core
 return|;
 block|}
-comment|/** Gets the core with it's reference count incremented.    * You must call core.close() when done!    */
+comment|/** Gets the core with its reference count incremented.    * You must call core.close() when done!    */
 DECL|method|getCoreInc
 specifier|public
 name|SolrCore

@@ -255,7 +255,7 @@ name|params
 operator|=
 name|params
 expr_stmt|;
-comment|// cannot just call super.setParams(), b/c it's params differ.
+comment|// cannot just call super.setParams(), b/c its params differ.
 name|fieldsToLoad
 operator|=
 operator|new

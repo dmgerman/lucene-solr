@@ -29,7 +29,7 @@ comment|/* When  it is necessary to suppress double subqueries as much as possib
 end_comment
 
 begin_comment
-comment|/* To be determined:    Are SpanQuery weights handled correctly during search by Lucene?    Should the resulting SpanOrQuery be sorted?    Could other SpanQueries be added for use in this factory:    - SpanOrQuery: in principle yes, but it only has access to it's terms                   via getTerms(); are the corresponding weights available?    - SpanFirstQuery: treat similar to subquery SpanNearQuery. (ok?)    - SpanNotQuery: treat similar to subquery SpanNearQuery. (ok?)  */
+comment|/* To be determined:    Are SpanQuery weights handled correctly during search by Lucene?    Should the resulting SpanOrQuery be sorted?    Could other SpanQueries be added for use in this factory:    - SpanOrQuery: in principle yes, but it only has access to its terms                   via getTerms(); are the corresponding weights available?    - SpanFirstQuery: treat similar to subquery SpanNearQuery. (ok?)    - SpanNotQuery: treat similar to subquery SpanNearQuery. (ok?)  */
 end_comment
 
 begin_import

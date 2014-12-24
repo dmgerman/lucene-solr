@@ -39,7 +39,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * CSVStrategyTest  *  * The test are organized in three different sections:  * The 'setter/getter' section, the lexer section and finally the strategy   * section. In case a test fails, you should follow a top-down approach for   * fixing a potential bug (its likely that the strategy itself fails if the lexer  * has problems...).  */
+comment|/**  * CSVStrategyTest  *  * The test are organized in three different sections:  * The 'setter/getter' section, the lexer section and finally the strategy   * section. In case a test fails, you should follow a top-down approach for   * fixing a potential bug (it's likely that the strategy itself fails if the lexer  * has problems...).  */
 end_comment
 
 begin_class

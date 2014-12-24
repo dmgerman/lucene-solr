@@ -71,7 +71,7 @@ specifier|public
 name|HighCompressionCompressingCodec
 parameter_list|()
 block|{
-comment|// we don't worry about zlib block overhead as its
+comment|// we don't worry about zlib block overhead as it's
 comment|// not bad and try to save space instead:
 name|this
 argument_list|(

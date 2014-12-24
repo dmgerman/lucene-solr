@@ -994,7 +994,7 @@ operator|==
 name|existingLog
 condition|)
 block|{
-comment|// If we are reusing the existing update log, inform the log that it's update handler has changed.
+comment|// If we are reusing the existing update log, inform the log that its update handler has changed.
 comment|// We do this as late as possible.
 name|this
 operator|.

@@ -2621,7 +2621,7 @@ name|SortingDocsAndPositionsEnum
 extends|extends
 name|FilterDocsAndPositionsEnum
 block|{
-comment|/**      * A {@link TimSorter} which sorts two parallel arrays of doc IDs and      * offsets in one go. Everytime a doc ID is 'swapped', its correponding offset      * is swapped too.      */
+comment|/**      * A {@link TimSorter} which sorts two parallel arrays of doc IDs and      * offsets in one go. Everytime a doc ID is 'swapped', its corresponding offset      * is swapped too.      */
 DECL|class|DocOffsetSorter
 specifier|private
 specifier|static

@@ -137,7 +137,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Tokenizer for testing.  *<p>  * This tokenizer is a replacement for {@link #WHITESPACE}, {@link #SIMPLE}, and {@link #KEYWORD}  * tokenizers. If you are writing a component such as a TokenFilter, its a great idea to test  * it wrapping this tokenizer instead for extra checks. This tokenizer has the following behavior:  *<ul>  *<li>An internal state-machine is used for checking consumer consistency. These checks can  *       be disabled with {@link #setEnableChecks(boolean)}.  *<li>For convenience, optionally lowercases terms that it outputs.  *</ul>  */
+comment|/**  * Tokenizer for testing.  *<p>  * This tokenizer is a replacement for {@link #WHITESPACE}, {@link #SIMPLE}, and {@link #KEYWORD}  * tokenizers. If you are writing a component such as a TokenFilter, it's a great idea to test  * it wrapping this tokenizer instead for extra checks. This tokenizer has the following behavior:  *<ul>  *<li>An internal state-machine is used for checking consumer consistency. These checks can  *       be disabled with {@link #setEnableChecks(boolean)}.  *<li>For convenience, optionally lowercases terms that it outputs.  *</ul>  */
 end_comment
 
 begin_class
@@ -279,7 +279,7 @@ init|=
 literal|0
 decl_stmt|;
 comment|// buffered state (previous codepoint and offset). we replay this once we
-comment|// hit a reject state in case its permissible as the start of a new term.
+comment|// hit a reject state in case it's permissible as the start of a new term.
 DECL|field|bufferedCodePoint
 name|int
 name|bufferedCodePoint
@@ -777,7 +777,7 @@ expr_stmt|;
 block|}
 else|else
 block|{
-comment|// otherwise, its because we hit term limit.
+comment|// otherwise, it's because we hit term limit.
 name|bufferedCodePoint
 operator|=
 operator|-

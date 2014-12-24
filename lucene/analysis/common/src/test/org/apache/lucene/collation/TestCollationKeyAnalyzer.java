@@ -88,7 +88,7 @@ name|CollationTestBase
 block|{
 comment|// the sort order of Ã versus U depends on the version of the rules being used
 comment|// for the inherited root locale: Ã's order isnt specified in Locale.US since
-comment|// its not used in english.
+comment|// it's not used in english.
 specifier|private
 name|boolean
 name|oStrokeFirst

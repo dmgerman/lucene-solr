@@ -330,7 +330,7 @@ argument_list|()
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**    * Ugly: but what to do? We want to test custom sort, which reads rules in as a resource.    * These are largish files, and jvm-specific (as our documentation says, you should always    * look out for jvm differences with collation).    * So its preferable to create this file on-the-fly.    */
+comment|/**    * Ugly: but what to do? We want to test custom sort, which reads rules in as a resource.    * These are largish files, and jvm-specific (as our documentation says, you should always    * look out for jvm differences with collation).    * So it's preferable to create this file on-the-fly.    */
 DECL|method|setupSolrHome
 specifier|public
 specifier|static

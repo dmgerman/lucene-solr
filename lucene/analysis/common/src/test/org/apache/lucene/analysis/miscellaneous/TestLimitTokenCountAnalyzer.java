@@ -259,7 +259,7 @@ argument_list|,
 name|consumeAll
 argument_list|)
 decl_stmt|;
-comment|// dont use assertAnalyzesTo here, as the end offset is not the end of the string (unless consumeAll is true, in which case its correct)!
+comment|// dont use assertAnalyzesTo here, as the end offset is not the end of the string (unless consumeAll is true, in which case it's correct)!
 name|assertTokenStreamContents
 argument_list|(
 name|a

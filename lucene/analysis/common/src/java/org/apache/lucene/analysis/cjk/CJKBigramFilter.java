@@ -220,7 +220,7 @@ name|HANGUL
 init|=
 literal|8
 decl_stmt|;
-comment|/** when we emit a bigram, its then marked as this type */
+comment|/** when we emit a bigram, it's then marked as this type */
 DECL|field|DOUBLE_TYPE
 specifier|public
 specifier|static
@@ -230,7 +230,7 @@ name|DOUBLE_TYPE
 init|=
 literal|"<DOUBLE>"
 decl_stmt|;
-comment|/** when we emit a unigram, its then marked as this type */
+comment|/** when we emit a unigram, it's then marked as this type */
 DECL|field|SINGLE_TYPE
 specifier|public
 specifier|static
@@ -763,7 +763,7 @@ argument_list|()
 condition|)
 block|{
 comment|// we have a buffered unigram, and we peeked ahead to see if we could form
-comment|// a bigram, but we can't, because its not a CJK type. capture the state
+comment|// a bigram, but we can't, because it's not a CJK type. capture the state
 comment|// of this peeked data to be revisited next time thru the loop, and dump our unigram.
 name|loneState
 operator|=
@@ -787,7 +787,7 @@ block|{
 comment|// case 3: we have only zero or 1 codepoints buffered,
 comment|// so not enough to form a bigram. But, we also have no
 comment|// more input. So if we have a buffered codepoint, emit
-comment|// a unigram, otherwise, its end of stream.
+comment|// a unigram, otherwise, it's end of stream.
 if|if
 condition|(
 name|hasBufferedUnigram
@@ -1394,7 +1394,7 @@ return|;
 block|}
 else|else
 block|{
-comment|// otherwise its only when we have a lone CJK character
+comment|// otherwise it's only when we have a lone CJK character
 return|return
 name|bufferLen
 operator|==

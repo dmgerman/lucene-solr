@@ -367,7 +367,7 @@ name|liveDocs
 expr_stmt|;
 block|}
 comment|// currently only used by assert? clean up and make real check?
-comment|// either its a segment suffix (_X_Y) or its a parseable generation
+comment|// either it's a segment suffix (_X_Y) or it's a parseable generation
 comment|// TODO: this is very confusing how ReadersAndUpdates passes generations via
 comment|// this mechanism, maybe add 'generation' explicitly to ctor create the 'actual suffix' here?
 DECL|method|assertSegmentSuffix

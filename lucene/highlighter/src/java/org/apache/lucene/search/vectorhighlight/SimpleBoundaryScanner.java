@@ -301,7 +301,7 @@ name|offset
 operator|--
 expr_stmt|;
 block|}
-comment|// if we scanned up to the start of the text, return it, its a "boundary"
+comment|// if we scanned up to the start of the text, return it, it's a "boundary"
 if|if
 condition|(
 name|offset

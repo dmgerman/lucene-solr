@@ -7623,7 +7623,7 @@ literal|false
 argument_list|)
 return|;
 block|}
-comment|/** Opens a new searcher and returns a RefCounted&lt;SolrIndexSearcher&gt; with it's reference incremented.    *    * "realtime" means that we need to open quickly for a realtime view of the index, hence don't do any    * autowarming and add to the _realtimeSearchers queue rather than the _searchers queue (so it won't    * be used for autowarming by a future normal searcher).  A "realtime" searcher will currently never    * become "registered" (since it currently lacks caching).    *    * realtimeSearcher is updated to the latest opened searcher, regardless of the value of "realtime".    *    * This method acquires openSearcherLock - do not call with searckLock held!    */
+comment|/** Opens a new searcher and returns a RefCounted&lt;SolrIndexSearcher&gt; with its reference incremented.    *    * "realtime" means that we need to open quickly for a realtime view of the index, hence don't do any    * autowarming and add to the _realtimeSearchers queue rather than the _searchers queue (so it won't    * be used for autowarming by a future normal searcher).  A "realtime" searcher will currently never    * become "registered" (since it currently lacks caching).    *    * realtimeSearcher is updated to the latest opened searcher, regardless of the value of "realtime".    *    * This method acquires openSearcherLock - do not call with searckLock held!    */
 DECL|method|openNewSearcher
 specifier|public
 name|RefCounted

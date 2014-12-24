@@ -732,7 +732,7 @@ name|i
 index|]
 decl_stmt|;
 comment|// box in an array to match the format of existing highlighters,
-comment|// even though its always one element.
+comment|// even though it's always one element.
 if|if
 condition|(
 name|snippet

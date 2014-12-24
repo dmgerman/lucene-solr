@@ -538,7 +538,7 @@ specifier|final
 name|Directory
 name|cfsDir
 decl_stmt|;
-comment|// confusing name: if (cfs) its the cfsdir, otherwise its the segment's directory.
+comment|// confusing name: if (cfs) it's the cfsdir, otherwise it's the segment's directory.
 name|boolean
 name|success
 init|=

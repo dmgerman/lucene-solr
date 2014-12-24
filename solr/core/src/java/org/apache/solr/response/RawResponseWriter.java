@@ -127,7 +127,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Writes a ContentStream directly to the output.  *  *<p>  * This writer is a special case that extends and alters the  * QueryResponseWriter contract.  If SolrQueryResponse contains a  * ContentStream added with the key {@link #CONTENT}  * then this writer will output that stream exactly as is (with it's  * Content-Type).  if no such ContentStream has been added, then a  * "base" QueryResponseWriter will be used to write the response  * according to the usual contract.  The name of the "base" writer can  * be specified as an initialization param for this writer, or it  * defaults to the "standard" writer.  *</p>  *   *  * @since solr 1.3  */
+comment|/**  * Writes a ContentStream directly to the output.  *  *<p>  * This writer is a special case that extends and alters the  * QueryResponseWriter contract.  If SolrQueryResponse contains a  * ContentStream added with the key {@link #CONTENT}  * then this writer will output that stream exactly as is (with its  * Content-Type).  if no such ContentStream has been added, then a  * "base" QueryResponseWriter will be used to write the response  * according to the usual contract.  The name of the "base" writer can  * be specified as an initialization param for this writer, or it  * defaults to the "standard" writer.  *</p>  *   *  * @since solr 1.3  */
 end_comment
 
 begin_class

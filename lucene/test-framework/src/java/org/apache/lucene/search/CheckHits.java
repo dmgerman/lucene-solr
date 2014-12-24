@@ -1754,7 +1754,7 @@ operator|.
 name|getDetails
 argument_list|()
 decl_stmt|;
-comment|// TODO: can we improve this entire method? its really geared to work only with TF/IDF
+comment|// TODO: can we improve this entire method? it's really geared to work only with TF/IDF
 if|if
 condition|(
 name|expl
@@ -1787,7 +1787,7 @@ operator|==
 literal|1
 condition|)
 block|{
-comment|// simple containment, unless its a freq of: (which lets a query explain how the freq is calculated),
+comment|// simple containment, unless it's a freq of: (which lets a query explain how the freq is calculated),
 comment|// just verify contained expl has same score
 if|if
 condition|(

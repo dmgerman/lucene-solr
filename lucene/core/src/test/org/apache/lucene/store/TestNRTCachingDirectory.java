@@ -262,7 +262,7 @@ name|TestNRTCachingDirectory
 extends|extends
 name|BaseDirectoryTestCase
 block|{
-comment|// TODO: RAMDir used here, because its still too slow to use e.g. SimpleFS
+comment|// TODO: RAMDir used here, because it's still too slow to use e.g. SimpleFS
 comment|// for the threads tests... maybe because of the synchronization in listAll?
 comment|// would be good to investigate further...
 annotation|@

@@ -3455,7 +3455,7 @@ argument_list|)
 expr_stmt|;
 name|assertQ
 argument_list|(
-literal|"1 doc should have it's explicit multiDefault"
+literal|"1 doc should have its explicit multiDefault"
 argument_list|,
 name|req
 argument_list|(
@@ -3479,7 +3479,7 @@ argument_list|)
 expr_stmt|;
 name|assertQ
 argument_list|(
-literal|"1 doc should have it's explicit intDefault"
+literal|"1 doc should have its explicit intDefault"
 argument_list|,
 name|req
 argument_list|(

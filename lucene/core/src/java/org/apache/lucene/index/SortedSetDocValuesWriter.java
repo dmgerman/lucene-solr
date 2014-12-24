@@ -554,7 +554,7 @@ index|[
 name|i
 index|]
 decl_stmt|;
-comment|// if its not a duplicate
+comment|// if it's not a duplicate
 if|if
 condition|(
 name|termID

@@ -669,7 +669,7 @@ return|return
 name|lowerCaseTerms
 return|;
 block|}
-comment|/**     * True if the spellchecker should lowercase terms (default: true)    *<p>    * This is a convenience method, if your index field has more complicated    * analysis (such as StandardTokenizer removing punctuation), its probably    * better to turn this off, and instead run your query terms through your    * Analyzer first.    *<p>    * If this option is not on, case differences count as an edit!     */
+comment|/**     * True if the spellchecker should lowercase terms (default: true)    *<p>    * This is a convenience method, if your index field has more complicated    * analysis (such as StandardTokenizer removing punctuation), it's probably    * better to turn this off, and instead run your query terms through your    * Analyzer first.    *<p>    * If this option is not on, case differences count as an edit!     */
 DECL|method|setLowerCaseTerms
 specifier|public
 name|void

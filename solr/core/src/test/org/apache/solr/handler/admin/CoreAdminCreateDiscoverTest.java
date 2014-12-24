@@ -459,7 +459,7 @@ literal|true
 argument_list|)
 expr_stmt|;
 comment|// create a new core (using CoreAdminHandler) w/ properties
-comment|// Just to be sure its NOT written to the core.properties file
+comment|// Just to be sure it's NOT written to the core.properties file
 name|File
 name|workDir
 init|=
@@ -1274,7 +1274,7 @@ literal|true
 argument_list|)
 expr_stmt|;
 comment|// create a new core (using CoreAdminHandler) w/ properties
-comment|// Just to be sure its NOT written to the core.properties file
+comment|// Just to be sure it's NOT written to the core.properties file
 name|File
 name|workDir
 init|=

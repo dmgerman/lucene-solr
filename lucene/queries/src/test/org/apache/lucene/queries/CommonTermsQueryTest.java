@@ -4563,7 +4563,7 @@ argument_list|(
 name|seed
 argument_list|)
 decl_stmt|;
-comment|// primary source for our data is from linefiledocs, its realistic.
+comment|// primary source for our data is from linefiledocs, it's realistic.
 name|LineFileDocs
 name|lineFileDocs
 init|=

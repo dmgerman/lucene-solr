@@ -1194,7 +1194,7 @@ argument_list|(
 name|i
 argument_list|)
 decl_stmt|;
-comment|// Y doesnt exist in the index, so its not in the scorer tree
+comment|// Y doesnt exist in the index, so it's not in the scorer tree
 name|assertEquals
 argument_list|(
 literal|4
@@ -1271,7 +1271,7 @@ operator|++
 name|i
 argument_list|)
 decl_stmt|;
-comment|// Y doesnt exist in the index, so its not in the scorer tree
+comment|// Y doesnt exist in the index, so it's not in the scorer tree
 name|assertEquals
 argument_list|(
 literal|4

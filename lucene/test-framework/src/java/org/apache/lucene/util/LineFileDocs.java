@@ -574,7 +574,7 @@ operator|==
 literal|null
 condition|)
 block|{
-comment|// if its not in classpath, we load it as absolute filesystem path (e.g. Hudson's home dir)
+comment|// if it's not in classpath, we load it as absolute filesystem path (e.g. Hudson's home dir)
 name|Path
 name|file
 init|=

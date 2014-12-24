@@ -2849,7 +2849,7 @@ argument_list|)
 argument_list|)
 return|;
 block|}
-comment|/**    * Updates or adds a single sort field specification to the current sort    * information. If the sort field already exist in the sort information map,    * it's position is unchanged and the sort order is set; if it does not exist,    * it is appended at the end with the specified order..    *    * @return the modified SolrQuery object, for easy chaining    * @since 4.2    */
+comment|/**    * Updates or adds a single sort field specification to the current sort    * information. If the sort field already exist in the sort information map,    * its position is unchanged and the sort order is set; if it does not exist,    * it is appended at the end with the specified order..    *    * @return the modified SolrQuery object, for easy chaining    * @since 4.2    */
 DECL|method|addOrUpdateSort
 specifier|public
 name|SolrQuery

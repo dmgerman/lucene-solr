@@ -441,7 +441,7 @@ argument_list|()
 operator|==
 literal|0
 assert|;
-comment|// return the empty term, as its valid
+comment|// return the empty term, as it's valid
 if|if
 condition|(
 name|runAutomaton
@@ -1302,7 +1302,7 @@ argument_list|)
 operator|&
 literal|0xff
 decl_stmt|;
-comment|// if a character is 0xff its a dead-end too,
+comment|// if a character is 0xff it's a dead-end too,
 comment|// because there is no higher character in binary sort order.
 if|if
 condition|(

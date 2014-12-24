@@ -192,7 +192,7 @@ name|Shape
 name|queryShape
 decl_stmt|;
 comment|//the right hand side (constant)
-comment|/**    *    * @param shapeValuesource Must yield {@link Shape} instances from it's objectVal(doc). If null    *                         then the result is false. This is the left-hand (indexed) side.    * @param op the predicate    * @param queryShape The shape on the right-hand (query) side.    */
+comment|/**    *    * @param shapeValuesource Must yield {@link Shape} instances from its objectVal(doc). If null    *                         then the result is false. This is the left-hand (indexed) side.    * @param op the predicate    * @param queryShape The shape on the right-hand (query) side.    */
 DECL|method|ShapePredicateValueSource
 specifier|public
 name|ShapePredicateValueSource

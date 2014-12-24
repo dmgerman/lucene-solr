@@ -89,7 +89,7 @@ init|=
 literal|50
 decl_stmt|;
 comment|// the token types
-comment|/** Token has no valid content, i.e. is in its initilized state. */
+comment|/** Token has no valid content, i.e. is in its initialized state. */
 DECL|field|TT_INVALID
 specifier|protected
 specifier|static

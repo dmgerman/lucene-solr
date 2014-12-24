@@ -356,7 +356,7 @@ name|IOException
 function_decl|;
 comment|/**     * Called by IndexWriter when writing new segments.    *<p>    * This is an expert API that allows the codec to consume     * positions and offsets directly from the indexer.    *<p>    * The default implementation calls {@link #addPosition(int, int, int, BytesRef)},    * but subclasses can override this if they want to efficiently write     * all the positions, then all the offsets, for example.    *<p>    * NOTE: This API is extremely expert and subject to change or removal!!!    * @lucene.internal    */
 comment|// TODO: we should probably nuke this and make a more efficient 4.x format
-comment|// PreFlex-RW could then be slow and buffer (its only used in tests...)
+comment|// PreFlex-RW could then be slow and buffer (it's only used in tests...)
 DECL|method|addProx
 specifier|public
 name|void

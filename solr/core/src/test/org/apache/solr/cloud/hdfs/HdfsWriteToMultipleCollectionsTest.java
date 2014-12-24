@@ -1012,7 +1012,7 @@ operator|.
 name|getCache
 argument_list|()
 decl_stmt|;
-comment|// we know its a BlockDirectoryCache, but future proof
+comment|// we know it's a BlockDirectoryCache, but future proof
 name|assertTrue
 argument_list|(
 name|cache

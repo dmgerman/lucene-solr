@@ -1141,7 +1141,7 @@ condition|(
 name|success
 condition|)
 block|{
-comment|// we don't do this stuff with lucene's commit, but its just for completeness
+comment|// we don't do this stuff with lucene's commit, but it's just for completeness
 if|if
 condition|(
 name|unSyncedFiles
@@ -3632,7 +3632,7 @@ operator|>
 literal|0
 condition|)
 block|{
-comment|// print the first one as its very verbose otherwise
+comment|// print the first one as it's very verbose otherwise
 name|Exception
 name|cause
 init|=
@@ -3979,7 +3979,7 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
-comment|// its possible we cannot delete the segments_N on windows if someone has it open and
+comment|// it's possible we cannot delete the segments_N on windows if someone has it open and
 comment|// maybe other files too, depending on timing. normally someone on windows wouldnt have
 comment|// an issue (IFD would nuke this stuff eventually), but we pass NoDeletionPolicy...
 for|for

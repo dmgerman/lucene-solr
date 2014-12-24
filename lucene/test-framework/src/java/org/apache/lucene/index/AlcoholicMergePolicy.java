@@ -220,7 +220,7 @@ name|hourOfDay
 argument_list|>
 literal|20
 operator|||
-comment|// its 5 o'clock somewhere
+comment|// it's 5 o'clock somewhere
 name|random
 operator|.
 name|nextInt

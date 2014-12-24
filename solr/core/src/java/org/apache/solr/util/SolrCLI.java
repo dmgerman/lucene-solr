@@ -5512,7 +5512,7 @@ argument_list|(
 name|leaderUrl
 argument_list|)
 decl_stmt|;
-comment|// if replica's node is not live, it's status is DOWN
+comment|// if replica's node is not live, its status is DOWN
 name|String
 name|nodeName
 init|=

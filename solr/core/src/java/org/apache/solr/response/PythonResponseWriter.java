@@ -349,7 +349,7 @@ expr_stmt|;
 return|return;
 block|}
 comment|// use python unicode strings...
-comment|// python doesn't tolerate newlines in strings in it's eval(), so we must escape them.
+comment|// python doesn't tolerate newlines in strings in its eval(), so we must escape them.
 name|StringBuilder
 name|sb
 init|=
@@ -527,7 +527,7 @@ literal|'\''
 argument_list|)
 expr_stmt|;
 block|}
-comment|/*   old version that always used unicode   public void writeStr(String name, String val, boolean needsEscaping) throws IOException {     // use python unicode strings...     // python doesn't tolerate newlines in strings in it's eval(), so we must escape them.     writer.write("u'");     // it might be more efficient to use a stringbuilder or write substrings     // if writing chars to the stream is slow.     if (needsEscaping) {       for (int i=0; i<val.length(); i++) {         char ch = val.charAt(i);         switch(ch) {           case '\'':           case '\\': writer.write('\\'); writer.write(ch); break;           case '\r': writer.write("\\r"); break;           case '\n': writer.write("\\n"); break;           default:             // we don't strictly have to escape these chars, but it will probably increase             // portability to stick to visible ascii             if (ch<' ' || ch>127) {               unicodeChar(ch);             } else {               writer.write(ch);             }         }       }     } else {       writer.write(val);     }     writer.write('\'');   }   */
+comment|/*   old version that always used unicode   public void writeStr(String name, String val, boolean needsEscaping) throws IOException {     // use python unicode strings...     // python doesn't tolerate newlines in strings in its eval(), so we must escape them.     writer.write("u'");     // it might be more efficient to use a stringbuilder or write substrings     // if writing chars to the stream is slow.     if (needsEscaping) {       for (int i=0; i<val.length(); i++) {         char ch = val.charAt(i);         switch(ch) {           case '\'':           case '\\': writer.write('\\'); writer.write(ch); break;           case '\r': writer.write("\\r"); break;           case '\n': writer.write("\\n"); break;           default:             // we don't strictly have to escape these chars, but it will probably increase             // portability to stick to visible ascii             if (ch<' ' || ch>127) {               unicodeChar(ch);             } else {               writer.write(ch);             }         }       }     } else {       writer.write(val);     }     writer.write('\'');   }   */
 block|}
 end_class
 

@@ -6427,7 +6427,7 @@ operator|instanceof
 name|ConcurrentMergeScheduler
 condition|)
 block|{
-comment|// wtf... shouldnt it be even lower since its 1 by default?!?!
+comment|// wtf... shouldnt it be even lower since it's 1 by default?!?!
 operator|(
 operator|(
 name|ConcurrentMergeScheduler
