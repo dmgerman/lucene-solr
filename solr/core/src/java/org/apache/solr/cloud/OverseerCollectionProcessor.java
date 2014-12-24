@@ -1614,6 +1614,10 @@ argument_list|,
 name|ZkStateReader
 operator|.
 name|URL_SCHEME
+argument_list|,
+name|ZkStateReader
+operator|.
+name|AUTO_ADD_REPLICAS
 argument_list|)
 decl_stmt|;
 DECL|field|COLL_PROPS
