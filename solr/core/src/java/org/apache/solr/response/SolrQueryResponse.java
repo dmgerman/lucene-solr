@@ -150,6 +150,15 @@ specifier|public
 class|class
 name|SolrQueryResponse
 block|{
+DECL|field|NAME
+specifier|public
+specifier|static
+specifier|final
+name|String
+name|NAME
+init|=
+literal|"response"
+decl_stmt|;
 comment|/**    * Container for user defined values    * @see #getValues    * @see #add    * @see #setAllValues    * @see<a href="#returnable_data">Note on Returnable Data</a>    */
 DECL|field|values
 specifier|protected
