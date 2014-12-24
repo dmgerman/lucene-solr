@@ -1079,8 +1079,6 @@ argument_list|)
 expr_stmt|;
 comment|// At this point we've assigned a preferred leader. Make it happen and check that all the nodes that are
 comment|// leaders _also_ have the preferredLeader property set.
-try|try
-block|{
 name|NamedList
 argument_list|<
 name|Object
@@ -1107,38 +1105,13 @@ argument_list|,
 name|COLLECTION_NAME
 argument_list|)
 decl_stmt|;
-name|fail
+name|verifyLeaderAssignment
 argument_list|(
-literal|"Should have thrown 'Unknown action' error"
-argument_list|)
-expr_stmt|;
-block|}
-catch|catch
-parameter_list|(
-name|SolrServerException
-name|e
-parameter_list|)
-block|{
-name|assertTrue
-argument_list|(
-literal|"Should have gotten an error message that REBALANCELEADERS is not supported"
+name|client
 argument_list|,
-name|e
-operator|.
-name|getCause
-argument_list|()
-operator|.
-name|getMessage
-argument_list|()
-operator|.
-name|contains
-argument_list|(
-literal|"Unknown action: REBALANCELEADERS"
-argument_list|)
+name|COLLECTION_NAME
 argument_list|)
 expr_stmt|;
-block|}
-comment|//      verifyLeaderAssignment(client, COLLECTION_NAME);
 block|}
 finally|finally
 block|{
