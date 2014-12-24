@@ -904,7 +904,7 @@ argument_list|)
 condition|)
 block|{
 comment|// if this was a facet request, then the top pivot constraint and pivot
-comment|// stats should match what we expect - regardless of wether refine
+comment|// stats should match what we expect - regardless of whether refine
 comment|// was used, or if the query was initially satisfied by the default overrequest
 name|List
 argument_list|<

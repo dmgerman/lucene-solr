@@ -2565,7 +2565,7 @@ parameter_list|)
 block|{
 name|epw
 operator|.
-name|setInitalized
+name|setInitialized
 argument_list|(
 literal|false
 argument_list|)
@@ -2768,7 +2768,7 @@ condition|(
 operator|!
 name|epw
 operator|.
-name|isInitalized
+name|isInitialized
 argument_list|()
 condition|)
 block|{
@@ -2781,7 +2781,7 @@ argument_list|)
 expr_stmt|;
 name|epw
 operator|.
-name|setInitalized
+name|setInitialized
 argument_list|(
 literal|true
 argument_list|)

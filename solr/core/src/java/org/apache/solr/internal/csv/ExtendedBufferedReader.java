@@ -162,7 +162,7 @@ parameter_list|()
 throws|throws
 name|IOException
 block|{
-comment|// initalize the lookahead
+comment|// initialize the lookahead
 if|if
 condition|(
 name|lookaheadChar

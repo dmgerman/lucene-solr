@@ -134,10 +134,10 @@ literal|"unchecked"
 argument_list|)
 annotation|@
 name|Test
-DECL|method|testInitalization
+DECL|method|testInitialization
 specifier|public
 name|void
-name|testInitalization
+name|testInitialization
 parameter_list|()
 block|{
 name|SolrCore

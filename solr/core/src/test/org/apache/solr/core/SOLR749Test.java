@@ -381,7 +381,7 @@ literal|"//result[@numFound=19]"
 argument_list|)
 expr_stmt|;
 comment|// don't assume specific clause evaluation ordering.
-comment|// ideally this is 19, but could be as high as 20 depending on wether frange's
+comment|// ideally this is 19, but could be as high as 20 depending on whether frange's
 comment|// scorer has next() called on it before other clauses skipTo
 name|int
 name|count

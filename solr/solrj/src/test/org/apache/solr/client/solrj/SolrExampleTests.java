@@ -6956,7 +6956,7 @@ literal|0
 argument_list|)
 expr_stmt|;
 comment|// make sure it got in
-comment|// results of this test should be the same regardless of wether any docs in index
+comment|// results of this test should be the same regardless of whether any docs in index
 if|if
 condition|(
 name|random

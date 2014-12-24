@@ -1564,7 +1564,7 @@ operator|+
 name|min
 assert|;
 comment|// we always use the double value, because that way the response Object class is
-comment|// consistent regardless of wether we only have 1 value or many that we min/max
+comment|// consistent regardless of whether we only have 1 value or many that we min/max
 comment|//
 comment|// TODO: would be nice to have subclasses for each type of Number ... breaks backcompat
 name|double

@@ -1821,7 +1821,7 @@ argument_list|()
 argument_list|)
 return|;
 block|}
-comment|/**    * Builds the neccessary collector chain (via delegate wrapping) and executes the query     * against it.  This method takes into consideration both the explicitly provided collector     * and postFilter as well as any needed collector wrappers for dealing with options     * specified in the QueryCOmmand.    */
+comment|/**    * Builds the necessary collector chain (via delegate wrapping) and executes the query     * against it.  This method takes into consideration both the explicitly provided collector     * and postFilter as well as any needed collector wrappers for dealing with options     * specified in the QueryCOmmand.    */
 DECL|method|buildAndRunCollectorChain
 specifier|private
 name|void

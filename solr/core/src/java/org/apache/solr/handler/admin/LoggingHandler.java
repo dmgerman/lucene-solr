@@ -386,7 +386,7 @@ name|add
 argument_list|(
 literal|"error"
 argument_list|,
-literal|"Logging Not Initalized"
+literal|"Logging Not Initialized"
 argument_list|)
 expr_stmt|;
 return|return;

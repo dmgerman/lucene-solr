@@ -1839,7 +1839,7 @@ return|return
 name|valueSource
 return|;
 block|}
-comment|/**    * Wether or not the effective value of the {@link StatsParams#STATS_CALC_DISTINCT} param    * is true or false for this StatsField    */
+comment|/**    * Whether or not the effective value of the {@link StatsParams#STATS_CALC_DISTINCT} param    * is true or false for this StatsField    */
 DECL|method|getCalcDistinct
 specifier|public
 name|boolean

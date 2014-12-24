@@ -2390,7 +2390,7 @@ argument_list|,
 name|this
 argument_list|)
 decl_stmt|;
-comment|// a minimal Node initalization
+comment|// a minimal Node initialization
 name|Matcher
 name|m
 init|=

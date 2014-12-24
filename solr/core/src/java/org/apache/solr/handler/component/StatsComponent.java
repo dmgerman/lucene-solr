@@ -792,7 +792,7 @@ literal|"stats_fields"
 argument_list|)
 return|;
 block|}
-comment|/**    * Given a map of {@link StatsValues} using the appropriate response key,    * builds up the neccessary "stats" data structure for including in the response --     * including the esoteric "stats_fields" wrapper.    */
+comment|/**    * Given a map of {@link StatsValues} using the appropriate response key,    * builds up the necessary "stats" data structure for including in the response --     * including the esoteric "stats_fields" wrapper.    */
 DECL|method|convertToResponse
 specifier|public
 specifier|static

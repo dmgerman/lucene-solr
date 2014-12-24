@@ -164,7 +164,7 @@ name|int
 index|[]
 name|parents
 decl_stmt|;
-comment|// the following two arrays are lazily intialized. note that we only keep a
+comment|// the following two arrays are lazily initialized. note that we only keep a
 comment|// single boolean member as volatile, instead of declaring the arrays
 comment|// volatile. the code guarantees that only after the boolean is set to true,
 comment|// the arrays are returned.
