@@ -409,6 +409,9 @@ name|OVERSEEROP
 block|,
 DECL|enum constant|REQUESTSTATUS
 name|REQUESTSTATUS
+block|,
+DECL|enum constant|REJOINLEADERELECTION
+name|REJOINLEADERELECTION
 block|;
 DECL|method|get
 specifier|public
