@@ -608,7 +608,7 @@ name|payload
 init|=
 literal|" {\n"
 operator|+
-literal|"  'create' : {'x': {"
+literal|"  'set' : {'x': {"
 operator|+
 literal|"                    'a':'A val',\n"
 operator|+
@@ -985,7 +985,7 @@ name|payload
 operator|=
 literal|" {\n"
 operator|+
-literal|"  'create' : {'y':{\n"
+literal|"  'set' : {'y':{\n"
 operator|+
 literal|"                'c':'CY val',\n"
 operator|+
@@ -1174,7 +1174,7 @@ name|payload
 operator|=
 literal|" {\n"
 operator|+
-literal|"  'modify' : {'y': {\n"
+literal|"  'update' : {'y': {\n"
 operator|+
 literal|"                'c':'CY val modified',\n"
 operator|+
@@ -1291,7 +1291,7 @@ name|payload
 operator|=
 literal|" {\n"
 operator|+
-literal|"  'update' : {'y': {\n"
+literal|"  'set' : {'y': {\n"
 operator|+
 literal|"                'p':'P val',\n"
 operator|+
