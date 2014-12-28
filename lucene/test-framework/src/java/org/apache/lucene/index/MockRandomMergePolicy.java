@@ -308,6 +308,11 @@ decl_stmt|;
 if|if
 condition|(
 name|doNonBulkMerges
+operator|&&
+name|random
+operator|.
+name|nextBoolean
+argument_list|()
 condition|)
 block|{
 name|mergeSpec
@@ -533,6 +538,11 @@ decl_stmt|;
 if|if
 condition|(
 name|doNonBulkMerges
+operator|&&
+name|random
+operator|.
+name|nextBoolean
+argument_list|()
 condition|)
 block|{
 name|mergeSpec
@@ -789,18 +799,24 @@ operator|++
 control|)
 block|{
 comment|// wrap it (e.g. prevent bulk merge etc)
-if|if
-condition|(
+name|int
+name|thingToDo
+init|=
 name|r
 operator|.
 name|nextInt
 argument_list|(
-literal|4
+literal|7
 argument_list|)
+decl_stmt|;
+if|if
+condition|(
+name|thingToDo
 operator|==
 literal|0
 condition|)
 block|{
+comment|// simple no-op FilterReader
 name|readers
 operator|.
 name|set
@@ -820,6 +836,40 @@ argument_list|)
 argument_list|)
 expr_stmt|;
 block|}
+elseif|else
+if|if
+condition|(
+name|thingToDo
+operator|==
+literal|1
+condition|)
+block|{
+comment|// renumber fields
+comment|// NOTE: currently this only "blocks" bulk merges just by
+comment|// being a FilterReader. But it might find bugs elsewhere,
+comment|// and maybe the situation can be improved in the future.
+name|readers
+operator|.
+name|set
+argument_list|(
+name|i
+argument_list|,
+operator|new
+name|MismatchedLeafReader
+argument_list|(
+name|readers
+operator|.
+name|get
+argument_list|(
+name|i
+argument_list|)
+argument_list|,
+name|r
+argument_list|)
+argument_list|)
+expr_stmt|;
+block|}
+comment|// otherwise, reader is unchanged
 block|}
 block|}
 return|return
