@@ -2589,6 +2589,7 @@ index|[
 name|readerIndex
 index|]
 decl_stmt|;
+comment|// if its some other format, or an older version of this format:
 if|if
 condition|(
 name|matchingFieldsReader
@@ -2601,24 +2602,8 @@ name|getVersion
 argument_list|()
 operator|!=
 name|VERSION_CURRENT
-comment|// means reader version is not the same as the writer version
-operator|||
-name|matchingFieldsReader
-operator|.
-name|getCompressionMode
-argument_list|()
-operator|!=
-name|compressionMode
-operator|||
-name|matchingFieldsReader
-operator|.
-name|getChunkSize
-argument_list|()
-operator|!=
-name|chunkSize
 condition|)
 block|{
-comment|// the way data is decompressed depends on the chunk size
 comment|// naive merge...
 name|StoredFieldsReader
 name|storedFieldsReader
