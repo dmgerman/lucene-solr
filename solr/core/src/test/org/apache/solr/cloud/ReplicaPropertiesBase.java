@@ -262,6 +262,8 @@ extends|extends
 name|AbstractFullDistribZkTestBase
 block|{
 DECL|method|doPropertyAction
+specifier|public
+specifier|static
 name|NamedList
 argument_list|<
 name|Object
@@ -368,6 +370,8 @@ argument_list|)
 return|;
 block|}
 DECL|method|verifyPropertyNotPresent
+specifier|public
+specifier|static
 name|void
 name|verifyPropertyNotPresent
 parameter_list|(
@@ -524,6 +528,8 @@ comment|// collection
 comment|// shard
 comment|// replica
 DECL|method|verifyPropertyVal
+specifier|public
+specifier|static
 name|void
 name|verifyPropertyVal
 parameter_list|(
@@ -689,6 +695,8 @@ comment|// Verify that
 comment|// 1> the property is only set once in all the replicas in a slice.
 comment|// 2> the property is balanced evenly across all the nodes hosting collection
 DECL|method|verifyUniqueAcrossCollection
+specifier|public
+specifier|static
 name|void
 name|verifyUniqueAcrossCollection
 parameter_list|(
@@ -719,6 +727,8 @@ argument_list|)
 expr_stmt|;
 block|}
 DECL|method|verifyUniquePropertyWithinCollection
+specifier|public
+specifier|static
 name|void
 name|verifyUniquePropertyWithinCollection
 parameter_list|(
@@ -749,6 +759,8 @@ argument_list|)
 expr_stmt|;
 block|}
 DECL|method|verifyUnique
+specifier|public
+specifier|static
 name|void
 name|verifyUnique
 parameter_list|(

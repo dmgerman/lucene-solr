@@ -1718,7 +1718,7 @@ argument_list|()
 decl_stmt|;
 name|request
 operator|.
-name|setCollectionName
+name|setAliasName
 argument_list|(
 name|alias
 argument_list|)
@@ -1852,7 +1852,7 @@ argument_list|()
 decl_stmt|;
 name|request
 operator|.
-name|setCollectionName
+name|setAliasName
 argument_list|(
 name|alias
 argument_list|)
