@@ -196,7 +196,7 @@ specifier|final
 name|int
 name|MAX_UTF8_BYTES_PER_CHAR
 init|=
-literal|4
+literal|3
 decl_stmt|;
 comment|/** Encode characters from a char[] source, starting at    *  offset for length chars. It is the responsibility of the    *  caller to make sure that the destination array is large enough.    */
 DECL|method|UTF16toUTF8
