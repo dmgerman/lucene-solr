@@ -320,7 +320,7 @@ init|=
 literal|"property."
 decl_stmt|;
 DECL|method|setAction
-specifier|public
+specifier|protected
 name|void
 name|setAction
 parameter_list|(
