@@ -525,7 +525,7 @@ block|}
 DECL|method|newSortingMergePolicy
 specifier|public
 specifier|static
-name|MergePolicy
+name|SortingMergePolicy
 name|newSortingMergePolicy
 parameter_list|(
 name|Sort

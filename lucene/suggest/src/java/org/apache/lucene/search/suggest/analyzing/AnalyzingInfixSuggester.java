@@ -460,6 +460,20 @@ name|lucene
 operator|.
 name|index
 operator|.
+name|MergePolicy
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|index
+operator|.
 name|MultiDocValues
 import|;
 end_import
@@ -2824,6 +2838,18 @@ argument_list|)
 decl_stmt|;
 comment|// We sorted postings by weight during indexing, so we
 comment|// only retrieve the first num hits now:
+specifier|final
+name|MergePolicy
+name|mergePolicy
+init|=
+name|writer
+operator|.
+name|getConfig
+argument_list|()
+operator|.
+name|getMergePolicy
+argument_list|()
+decl_stmt|;
 name|Collector
 name|c2
 init|=
@@ -2835,6 +2861,11 @@ argument_list|,
 name|SORT
 argument_list|,
 name|num
+argument_list|,
+operator|(
+name|SortingMergePolicy
+operator|)
+name|mergePolicy
 argument_list|)
 decl_stmt|;
 name|IndexSearcher

@@ -1054,18 +1054,14 @@ literal|")"
 return|;
 block|}
 block|}
-comment|/** Returns {@code true} if the given {@code reader} is sorted by the specified {@code sort}. */
+comment|/** Returns {@code true} if the given {@code reader} is sorted by the    *  {@code sort} order of this {@link SortingMergePolicy}. */
 DECL|method|isSorted
 specifier|public
-specifier|static
 name|boolean
 name|isSorted
 parameter_list|(
 name|LeafReader
 name|reader
-parameter_list|,
-name|Sort
-name|sort
 parameter_list|)
 block|{
 name|String
@@ -1270,6 +1266,17 @@ name|sort
 operator|=
 name|sort
 expr_stmt|;
+block|}
+comment|/** Return the {@link Sort} order that is used to sort segments when merging. */
+DECL|method|getSort
+specifier|public
+name|Sort
+name|getSort
+parameter_list|()
+block|{
+return|return
+name|sort
+return|;
 block|}
 annotation|@
 name|Override
