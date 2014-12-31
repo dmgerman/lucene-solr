@@ -754,6 +754,11 @@ return|;
 block|}
 block|}
 comment|/** Test the parsing of example scripts **/
+annotation|@
+name|SuppressWarnings
+argument_list|(
+literal|"try"
+argument_list|)
 DECL|method|testParseExamples
 specifier|public
 name|void
