@@ -105,6 +105,13 @@ name|bytesWritten
 init|=
 literal|0L
 decl_stmt|;
+DECL|field|flushedOnClose
+specifier|private
+name|boolean
+name|flushedOnClose
+init|=
+literal|false
+decl_stmt|;
 comment|/**    * Creates a new {@link OutputStreamIndexOutput} with the given buffer size.     * @param bufferSize the buffer size in bytes used to buffer writes internally.    * @throws IllegalArgumentException if the given buffer size is less or equal to<tt>0</tt>    */
 DECL|method|OutputStreamIndexOutput
 specifier|public
@@ -227,13 +234,27 @@ init|)
 block|{
 comment|// We want to make sure that os.flush() was running before close:
 comment|// BufferedOutputStream may ignore IOExceptions while flushing on close().
-comment|// TODO: this is no longer an issue in Java 8:
-comment|// http://hg.openjdk.java.net/jdk8/tl/jdk/rev/759aa847dcaf
+comment|// We keep this also in Java 8, although it claims to be fixed there,
+comment|// because there are more bugs around this! See:
+comment|// # https://bugs.openjdk.java.net/browse/JDK-7015589
+comment|// # https://bugs.openjdk.java.net/browse/JDK-8054565
+if|if
+condition|(
+operator|!
+name|flushedOnClose
+condition|)
+block|{
+name|flushedOnClose
+operator|=
+literal|true
+expr_stmt|;
+comment|// set this BEFORE calling flush!
 name|o
 operator|.
 name|flush
 argument_list|()
 expr_stmt|;
+block|}
 block|}
 block|}
 annotation|@
