@@ -449,9 +449,9 @@ name|resources
 argument_list|)
 return|;
 block|}
-comment|/**     * Returns an accountable with the provided description, bytes, and children.    *<p>    * The resource descriptions are constructed in this format:    * {@code description [toString()]}    *<p>    * This is a point-in-time type safe view: consumers     * will not be able to cast or manipulate the resources in any way..    */
+comment|/**     * Returns an accountable with the provided description, children and bytes.    *<p>    * The resource descriptions are constructed in this format:    * {@code description [toString()]}    *<p>    * This is a point-in-time type safe view: consumers     * will not be able to cast or manipulate the resources in any way, provided    * that the passed in children Accountables (and all their descendants) were created    * with one of the namedAccountable functions.    */
 DECL|method|namedAccountable
-specifier|private
+specifier|public
 specifier|static
 name|Accountable
 name|namedAccountable
