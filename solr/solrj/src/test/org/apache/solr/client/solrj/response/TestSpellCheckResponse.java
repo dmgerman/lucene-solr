@@ -166,20 +166,6 @@ begin_import
 import|import
 name|org
 operator|.
-name|apache
-operator|.
-name|solr
-operator|.
-name|util
-operator|.
-name|ExternalPaths
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
 name|junit
 operator|.
 name|BeforeClass
@@ -250,17 +236,17 @@ parameter_list|()
 throws|throws
 name|Exception
 block|{
-name|getSolrServer
+name|getSolrClient
 argument_list|()
 expr_stmt|;
-name|server
+name|client
 operator|.
 name|deleteByQuery
 argument_list|(
 literal|"*:*"
 argument_list|)
 expr_stmt|;
-name|server
+name|client
 operator|.
 name|commit
 argument_list|(
@@ -294,14 +280,14 @@ argument_list|,
 literal|"Samsung"
 argument_list|)
 expr_stmt|;
-name|server
+name|client
 operator|.
 name|add
 argument_list|(
 name|doc
 argument_list|)
 expr_stmt|;
-name|server
+name|client
 operator|.
 name|commit
 argument_list|(
@@ -366,7 +352,7 @@ name|request
 operator|.
 name|process
 argument_list|(
-name|server
+name|client
 argument_list|)
 operator|.
 name|getSpellCheckResponse
@@ -397,17 +383,17 @@ parameter_list|()
 throws|throws
 name|Exception
 block|{
-name|getSolrServer
+name|getSolrClient
 argument_list|()
 expr_stmt|;
-name|server
+name|client
 operator|.
 name|deleteByQuery
 argument_list|(
 literal|"*:*"
 argument_list|)
 expr_stmt|;
-name|server
+name|client
 operator|.
 name|commit
 argument_list|(
@@ -441,14 +427,14 @@ argument_list|,
 literal|"Samsung"
 argument_list|)
 expr_stmt|;
-name|server
+name|client
 operator|.
 name|add
 argument_list|(
 name|doc
 argument_list|)
 expr_stmt|;
-name|server
+name|client
 operator|.
 name|commit
 argument_list|(
@@ -524,7 +510,7 @@ name|request
 operator|.
 name|process
 argument_list|(
-name|server
+name|client
 argument_list|)
 operator|.
 name|getSpellCheckResponse
@@ -715,17 +701,17 @@ parameter_list|()
 throws|throws
 name|Exception
 block|{
-name|getSolrServer
+name|getSolrClient
 argument_list|()
 expr_stmt|;
-name|server
+name|client
 operator|.
 name|deleteByQuery
 argument_list|(
 literal|"*:*"
 argument_list|)
 expr_stmt|;
-name|server
+name|client
 operator|.
 name|commit
 argument_list|(
@@ -759,7 +745,7 @@ argument_list|,
 literal|"faith hope and love"
 argument_list|)
 expr_stmt|;
-name|server
+name|client
 operator|.
 name|add
 argument_list|(
@@ -790,7 +776,7 @@ argument_list|,
 literal|"faith hope and loaves"
 argument_list|)
 expr_stmt|;
-name|server
+name|client
 operator|.
 name|add
 argument_list|(
@@ -821,7 +807,7 @@ argument_list|,
 literal|"fat hops and loaves"
 argument_list|)
 expr_stmt|;
-name|server
+name|client
 operator|.
 name|add
 argument_list|(
@@ -852,7 +838,7 @@ argument_list|,
 literal|"faith of homer"
 argument_list|)
 expr_stmt|;
-name|server
+name|client
 operator|.
 name|add
 argument_list|(
@@ -883,14 +869,14 @@ argument_list|,
 literal|"fat of homer"
 argument_list|)
 expr_stmt|;
-name|server
+name|client
 operator|.
 name|add
 argument_list|(
 name|doc
 argument_list|)
 expr_stmt|;
-name|server
+name|client
 operator|.
 name|commit
 argument_list|(
@@ -967,7 +953,7 @@ name|request
 operator|.
 name|process
 argument_list|(
-name|server
+name|client
 argument_list|)
 operator|.
 name|getSpellCheckResponse
@@ -979,7 +965,7 @@ name|request
 operator|.
 name|process
 argument_list|(
-name|server
+name|client
 argument_list|)
 operator|.
 name|getSpellCheckResponse
@@ -1046,7 +1032,7 @@ name|request
 operator|.
 name|process
 argument_list|(
-name|server
+name|client
 argument_list|)
 operator|.
 name|getSpellCheckResponse
@@ -1286,7 +1272,7 @@ name|request
 operator|.
 name|process
 argument_list|(
-name|server
+name|client
 argument_list|)
 operator|.
 name|getSpellCheckResponse

@@ -78,7 +78,7 @@ name|solrj
 operator|.
 name|impl
 operator|.
-name|CloudSolrServer
+name|CloudSolrClient
 import|;
 end_import
 
@@ -96,7 +96,7 @@ name|solrj
 operator|.
 name|impl
 operator|.
-name|HttpSolrServer
+name|HttpSolrClient
 import|;
 end_import
 
@@ -244,22 +244,6 @@ name|common
 operator|.
 name|params
 operator|.
-name|CollectionParams
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|solr
-operator|.
-name|common
-operator|.
-name|params
-operator|.
 name|ModifiableSolrParams
 import|;
 end_import
@@ -380,7 +364,7 @@ name|cloud
 operator|.
 name|ZkStateReader
 operator|.
-name|REPLICATION_FACTOR
+name|MAX_SHARDS_PER_NODE
 import|;
 end_import
 
@@ -398,7 +382,7 @@ name|cloud
 operator|.
 name|ZkStateReader
 operator|.
-name|MAX_SHARDS_PER_NODE
+name|REPLICATION_FACTOR
 import|;
 end_import
 
@@ -655,7 +639,7 @@ operator|<
 literal|60000
 condition|)
 block|{
-name|getCommonCloudSolrServer
+name|getCommonCloudSolrClient
 argument_list|()
 operator|.
 name|getZkStateReader
@@ -668,7 +652,7 @@ argument_list|)
 expr_stmt|;
 name|state
 operator|=
-name|getCommonCloudSolrServer
+name|getCommonCloudSolrClient
 argument_list|()
 operator|.
 name|getZkStateReader
@@ -876,7 +860,7 @@ name|baseUrl
 init|=
 operator|(
 operator|(
-name|HttpSolrServer
+name|HttpSolrClient
 operator|)
 name|shardToJetty
 operator|.
@@ -917,23 +901,23 @@ name|length
 argument_list|()
 argument_list|)
 expr_stmt|;
-name|HttpSolrServer
-name|baseServer
+name|HttpSolrClient
+name|baseClient
 init|=
 operator|new
-name|HttpSolrServer
+name|HttpSolrClient
 argument_list|(
 name|baseUrl
 argument_list|)
 decl_stmt|;
-name|baseServer
+name|baseClient
 operator|.
 name|setConnectionTimeout
 argument_list|(
 literal|15000
 argument_list|)
 expr_stmt|;
-name|baseServer
+name|baseClient
 operator|.
 name|setSoTimeout
 argument_list|(
@@ -942,14 +926,14 @@ operator|*
 literal|5
 argument_list|)
 expr_stmt|;
-name|baseServer
+name|baseClient
 operator|.
 name|request
 argument_list|(
 name|request
 argument_list|)
 expr_stmt|;
-name|baseServer
+name|baseClient
 operator|.
 name|shutdown
 argument_list|()
@@ -982,7 +966,7 @@ name|HashMap
 argument_list|<>
 argument_list|()
 decl_stmt|;
-name|CloudSolrServer
+name|CloudSolrClient
 name|client
 init|=
 literal|null
@@ -1296,7 +1280,7 @@ name|CustomCollectionTest
 operator|.
 name|getUrlFromZk
 argument_list|(
-name|getCommonCloudSolrServer
+name|getCommonCloudSolrClient
 argument_list|()
 operator|.
 name|getZkStateReader
@@ -1308,11 +1292,11 @@ argument_list|,
 name|targetCollection
 argument_list|)
 decl_stmt|;
-name|HttpSolrServer
+name|HttpSolrClient
 name|collectionClient
 init|=
 operator|new
-name|HttpSolrServer
+name|HttpSolrClient
 argument_list|(
 name|url
 argument_list|)
@@ -1495,7 +1479,7 @@ name|collectionClient
 operator|=
 literal|null
 expr_stmt|;
-name|getCommonCloudSolrServer
+name|getCommonCloudSolrClient
 argument_list|()
 operator|.
 name|getZkStateReader
@@ -1509,7 +1493,7 @@ expr_stmt|;
 name|ClusterState
 name|state
 init|=
-name|getCommonCloudSolrServer
+name|getCommonCloudSolrClient
 argument_list|()
 operator|.
 name|getZkStateReader
@@ -1606,7 +1590,7 @@ name|seconds
 decl_stmt|;
 DECL|field|cloudClient
 specifier|final
-name|CloudSolrServer
+name|CloudSolrClient
 name|cloudClient
 decl_stmt|;
 DECL|field|splitKey
@@ -1629,7 +1613,7 @@ DECL|method|Indexer
 specifier|public
 name|Indexer
 parameter_list|(
-name|CloudSolrServer
+name|CloudSolrClient
 name|cloudClient
 parameter_list|,
 name|String

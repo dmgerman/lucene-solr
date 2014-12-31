@@ -346,7 +346,7 @@ specifier|abstract
 name|SolrResponse
 name|process
 parameter_list|(
-name|SolrServer
+name|SolrClient
 name|server
 parameter_list|)
 throws|throws

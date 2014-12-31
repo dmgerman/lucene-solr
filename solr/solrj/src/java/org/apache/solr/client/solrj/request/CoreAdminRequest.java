@@ -48,7 +48,7 @@ name|client
 operator|.
 name|solrj
 operator|.
-name|SolrServer
+name|SolrClient
 import|;
 end_import
 
@@ -2447,8 +2447,8 @@ specifier|public
 name|CoreAdminResponse
 name|process
 parameter_list|(
-name|SolrServer
-name|server
+name|SolrClient
+name|client
 parameter_list|)
 throws|throws
 name|SolrServerException
@@ -2485,7 +2485,7 @@ name|res
 operator|.
 name|setResponse
 argument_list|(
-name|server
+name|client
 operator|.
 name|request
 argument_list|(
@@ -2537,8 +2537,8 @@ parameter_list|(
 name|String
 name|name
 parameter_list|,
-name|SolrServer
-name|server
+name|SolrClient
+name|client
 parameter_list|)
 throws|throws
 name|SolrServerException
@@ -2573,7 +2573,7 @@ name|req
 operator|.
 name|process
 argument_list|(
-name|server
+name|client
 argument_list|)
 return|;
 block|}
@@ -2586,8 +2586,8 @@ parameter_list|(
 name|String
 name|name
 parameter_list|,
-name|SolrServer
-name|server
+name|SolrClient
+name|client
 parameter_list|)
 throws|throws
 name|SolrServerException
@@ -2601,7 +2601,7 @@ name|name
 argument_list|,
 literal|false
 argument_list|,
-name|server
+name|client
 argument_list|)
 return|;
 block|}
@@ -2617,8 +2617,8 @@ parameter_list|,
 name|boolean
 name|deleteIndex
 parameter_list|,
-name|SolrServer
-name|server
+name|SolrClient
+name|client
 parameter_list|)
 throws|throws
 name|SolrServerException
@@ -2634,7 +2634,7 @@ name|deleteIndex
 argument_list|,
 literal|false
 argument_list|,
-name|server
+name|client
 argument_list|)
 return|;
 block|}
@@ -2653,8 +2653,8 @@ parameter_list|,
 name|boolean
 name|deleteInstanceDir
 parameter_list|,
-name|SolrServer
-name|server
+name|SolrClient
+name|client
 parameter_list|)
 throws|throws
 name|SolrServerException
@@ -2689,7 +2689,7 @@ name|req
 operator|.
 name|process
 argument_list|(
-name|server
+name|client
 argument_list|)
 return|;
 block|}
@@ -2705,8 +2705,8 @@ parameter_list|,
 name|String
 name|newName
 parameter_list|,
-name|SolrServer
-name|server
+name|SolrClient
+name|client
 parameter_list|)
 throws|throws
 name|SolrServerException
@@ -2748,7 +2748,7 @@ name|req
 operator|.
 name|process
 argument_list|(
-name|server
+name|client
 argument_list|)
 return|;
 block|}
@@ -2761,8 +2761,8 @@ parameter_list|(
 name|String
 name|name
 parameter_list|,
-name|SolrServer
-name|server
+name|SolrClient
+name|client
 parameter_list|)
 throws|throws
 name|SolrServerException
@@ -2797,7 +2797,7 @@ name|req
 operator|.
 name|process
 argument_list|(
-name|server
+name|client
 argument_list|)
 return|;
 block|}
@@ -2813,8 +2813,8 @@ parameter_list|,
 name|String
 name|instanceDir
 parameter_list|,
-name|SolrServer
-name|server
+name|SolrClient
+name|client
 parameter_list|)
 throws|throws
 name|SolrServerException
@@ -2830,7 +2830,7 @@ name|name
 argument_list|,
 name|instanceDir
 argument_list|,
-name|server
+name|client
 argument_list|,
 literal|null
 argument_list|,
@@ -2850,8 +2850,8 @@ parameter_list|,
 name|String
 name|instanceDir
 parameter_list|,
-name|SolrServer
-name|server
+name|SolrClient
+name|client
 parameter_list|,
 name|String
 name|configFile
@@ -2871,7 +2871,7 @@ name|name
 argument_list|,
 name|instanceDir
 argument_list|,
-name|server
+name|client
 argument_list|,
 name|configFile
 argument_list|,
@@ -2895,8 +2895,8 @@ parameter_list|,
 name|String
 name|instanceDir
 parameter_list|,
-name|SolrServer
-name|server
+name|SolrClient
+name|client
 parameter_list|,
 name|String
 name|configFile
@@ -3005,7 +3005,7 @@ name|req
 operator|.
 name|process
 argument_list|(
-name|server
+name|client
 argument_list|)
 return|;
 block|}
@@ -3020,8 +3020,8 @@ parameter_list|(
 name|String
 name|fileName
 parameter_list|,
-name|SolrServer
-name|server
+name|SolrClient
+name|client
 parameter_list|)
 throws|throws
 name|SolrServerException
@@ -3051,7 +3051,7 @@ name|req
 operator|.
 name|process
 argument_list|(
-name|server
+name|client
 argument_list|)
 return|;
 block|}
@@ -3072,8 +3072,8 @@ name|String
 index|[]
 name|srcCores
 parameter_list|,
-name|SolrServer
-name|server
+name|SolrClient
+name|client
 parameter_list|)
 throws|throws
 name|SolrServerException
@@ -3127,7 +3127,7 @@ name|req
 operator|.
 name|process
 argument_list|(
-name|server
+name|client
 argument_list|)
 return|;
 block|}

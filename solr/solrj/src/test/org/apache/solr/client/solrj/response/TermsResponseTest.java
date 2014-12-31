@@ -124,20 +124,6 @@ begin_import
 import|import
 name|org
 operator|.
-name|apache
-operator|.
-name|solr
-operator|.
-name|util
-operator|.
-name|ExternalPaths
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
 name|junit
 operator|.
 name|Before
@@ -259,7 +245,7 @@ argument_list|,
 literal|"samsung"
 argument_list|)
 expr_stmt|;
-name|getSolrServer
+name|getSolrClient
 argument_list|()
 operator|.
 name|add
@@ -267,7 +253,7 @@ argument_list|(
 name|doc
 argument_list|)
 expr_stmt|;
-name|getSolrServer
+name|getSolrClient
 argument_list|()
 operator|.
 name|commit
@@ -352,7 +338,7 @@ name|request
 operator|.
 name|process
 argument_list|(
-name|getSolrServer
+name|getSolrClient
 argument_list|()
 argument_list|)
 operator|.

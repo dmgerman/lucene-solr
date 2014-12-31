@@ -218,7 +218,7 @@ name|solrj
 operator|.
 name|impl
 operator|.
-name|CloudSolrServer
+name|CloudSolrClient
 import|;
 end_import
 
@@ -236,7 +236,7 @@ name|solrj
 operator|.
 name|impl
 operator|.
-name|HttpSolrServer
+name|HttpSolrClient
 import|;
 end_import
 
@@ -603,11 +603,11 @@ name|mergeUrl
 argument_list|)
 expr_stmt|;
 specifier|final
-name|HttpSolrServer
+name|HttpSolrClient
 name|server
 init|=
 operator|new
-name|HttpSolrServer
+name|HttpSolrClient
 argument_list|(
 name|mergeUrl
 argument_list|)
@@ -876,11 +876,11 @@ operator|!=
 literal|null
 condition|)
 block|{
-name|CloudSolrServer
+name|CloudSolrClient
 name|server
 init|=
 operator|new
-name|CloudSolrServer
+name|CloudSolrClient
 argument_list|(
 name|options
 operator|.
@@ -931,11 +931,11 @@ name|urls
 control|)
 block|{
 comment|// TODO: we should do these concurrently
-name|HttpSolrServer
+name|HttpSolrClient
 name|server
 init|=
 operator|new
-name|HttpSolrServer
+name|HttpSolrClient
 argument_list|(
 name|url
 argument_list|)

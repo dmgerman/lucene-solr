@@ -446,7 +446,7 @@ decl_stmt|;
 name|QueryResponse
 name|res
 init|=
-name|getSolrServer
+name|getSolrClient
 argument_list|()
 operator|.
 name|query

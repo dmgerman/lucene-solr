@@ -90,7 +90,7 @@ name|solrj
 operator|.
 name|impl
 operator|.
-name|HttpSolrServer
+name|HttpSolrClient
 import|;
 end_import
 
@@ -1886,11 +1886,11 @@ argument_list|(
 literal|"core_node1"
 argument_list|)
 decl_stmt|;
-name|HttpSolrServer
+name|HttpSolrClient
 name|solrServer
 init|=
 operator|new
-name|HttpSolrServer
+name|HttpSolrClient
 argument_list|(
 name|replica1
 operator|.

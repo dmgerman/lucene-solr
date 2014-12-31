@@ -44,7 +44,7 @@ name|client
 operator|.
 name|solrj
 operator|.
-name|SolrServer
+name|SolrClient
 import|;
 end_import
 
@@ -241,8 +241,8 @@ argument_list|)
 expr_stmt|;
 for|for
 control|(
-name|SolrServer
-name|solrServer
+name|SolrClient
+name|solrClient
 range|:
 name|clients
 control|)
@@ -256,7 +256,7 @@ operator|new
 name|SolrInputDocument
 argument_list|()
 decl_stmt|;
-name|solrServer
+name|solrClient
 operator|.
 name|add
 argument_list|(
@@ -308,7 +308,7 @@ expr_stmt|;
 block|}
 finally|finally
 block|{
-name|solrServer
+name|solrClient
 operator|.
 name|shutdown
 argument_list|()

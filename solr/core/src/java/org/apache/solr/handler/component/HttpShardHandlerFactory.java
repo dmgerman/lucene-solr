@@ -94,7 +94,7 @@ name|solrj
 operator|.
 name|impl
 operator|.
-name|LBHttpSolrServer
+name|LBHttpSolrClient
 import|;
 end_import
 
@@ -461,7 +461,7 @@ name|defaultClient
 decl_stmt|;
 DECL|field|loadbalancer
 specifier|private
-name|LBHttpSolrServer
+name|LBHttpSolrClient
 name|loadbalancer
 decl_stmt|;
 comment|//default values:
@@ -1017,7 +1017,7 @@ return|;
 block|}
 DECL|method|createLoadbalancer
 specifier|protected
-name|LBHttpSolrServer
+name|LBHttpSolrClient
 name|createLoadbalancer
 parameter_list|(
 name|HttpClient
@@ -1026,7 +1026,7 @@ parameter_list|)
 block|{
 return|return
 operator|new
-name|LBHttpSolrServer
+name|LBHttpSolrClient
 argument_list|(
 name|httpClient
 argument_list|)
@@ -1163,7 +1163,7 @@ block|}
 comment|/**    * Makes a request to one or more of the given urls, using the configured load balancer.    *    * @param req The solr search request that should be sent through the load balancer    * @param urls The list of solr server urls to load balance across    * @return The response from the request    */
 DECL|method|makeLoadBalancedRequest
 specifier|public
-name|LBHttpSolrServer
+name|LBHttpSolrClient
 operator|.
 name|Rsp
 name|makeLoadBalancedRequest
@@ -1189,7 +1189,7 @@ operator|.
 name|request
 argument_list|(
 operator|new
-name|LBHttpSolrServer
+name|LBHttpSolrClient
 operator|.
 name|Req
 argument_list|(

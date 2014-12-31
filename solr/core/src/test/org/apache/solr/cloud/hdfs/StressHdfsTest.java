@@ -220,7 +220,7 @@ name|client
 operator|.
 name|solrj
 operator|.
-name|SolrServer
+name|SolrClient
 import|;
 end_import
 
@@ -254,7 +254,7 @@ name|solrj
 operator|.
 name|impl
 operator|.
-name|HttpSolrServer
+name|HttpSolrClient
 import|;
 end_import
 
@@ -947,17 +947,17 @@ literal|0
 decl_stmt|;
 for|for
 control|(
-name|SolrServer
+name|SolrClient
 name|client
 range|:
 name|clients
 control|)
 block|{
-name|HttpSolrServer
+name|HttpSolrClient
 name|c
 init|=
 operator|new
-name|HttpSolrServer
+name|HttpSolrClient
 argument_list|(
 name|getBaseUrl
 argument_list|(

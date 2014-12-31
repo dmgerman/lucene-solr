@@ -18,26 +18,6 @@ end_comment
 
 begin_import
 import|import
-name|java
-operator|.
-name|io
-operator|.
-name|IOException
-import|;
-end_import
-
-begin_import
-import|import
-name|java
-operator|.
-name|util
-operator|.
-name|Arrays
-import|;
-end_import
-
-begin_import
-import|import
 name|org
 operator|.
 name|apache
@@ -74,7 +54,7 @@ name|client
 operator|.
 name|solrj
 operator|.
-name|SolrServer
+name|SolrClient
 import|;
 end_import
 
@@ -161,20 +141,22 @@ import|;
 end_import
 
 begin_import
-import|import static
-name|org
+import|import
+name|java
 operator|.
-name|apache
+name|io
 operator|.
-name|solr
+name|IOException
+import|;
+end_import
+
+begin_import
+import|import
+name|java
 operator|.
-name|update
+name|util
 operator|.
-name|processor
-operator|.
-name|DistributingUpdateProcessorFactory
-operator|.
-name|DISTRIB_UPDATE_PARAM
+name|Arrays
 import|;
 end_import
 
@@ -193,6 +175,24 @@ operator|.
 name|DistributedUpdateProcessor
 operator|.
 name|DistribPhase
+import|;
+end_import
+
+begin_import
+import|import static
+name|org
+operator|.
+name|apache
+operator|.
+name|solr
+operator|.
+name|update
+operator|.
+name|processor
+operator|.
+name|DistributingUpdateProcessorFactory
+operator|.
+name|DISTRIB_UPDATE_PARAM
 import|;
 end_import
 
@@ -314,7 +314,7 @@ argument_list|,
 name|SKIPVAL
 argument_list|)
 expr_stmt|;
-name|SolrServer
+name|SolrClient
 name|client0
 init|=
 name|clients
@@ -324,7 +324,7 @@ argument_list|(
 literal|0
 argument_list|)
 decl_stmt|;
-name|SolrServer
+name|SolrClient
 name|client1
 init|=
 name|clients
@@ -334,7 +334,7 @@ argument_list|(
 literal|1
 argument_list|)
 decl_stmt|;
-name|SolrServer
+name|SolrClient
 name|client2
 init|=
 name|clients
@@ -1049,7 +1049,7 @@ name|v
 operator|=
 literal|2000
 expr_stmt|;
-name|SolrServer
+name|SolrClient
 name|client
 init|=
 name|client0
@@ -1520,8 +1520,8 @@ DECL|method|assertSync
 name|void
 name|assertSync
 parameter_list|(
-name|SolrServer
-name|server
+name|SolrClient
+name|client
 parameter_list|,
 name|int
 name|numVersions
@@ -1580,7 +1580,7 @@ decl_stmt|;
 name|NamedList
 name|rsp
 init|=
-name|server
+name|client
 operator|.
 name|request
 argument_list|(

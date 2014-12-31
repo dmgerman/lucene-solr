@@ -46,7 +46,7 @@ name|solrj
 operator|.
 name|impl
 operator|.
-name|HttpSolrServer
+name|HttpSolrClient
 import|;
 end_import
 
@@ -79,20 +79,6 @@ operator|.
 name|cloud
 operator|.
 name|AbstractFullDistribZkTestBase
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|solr
-operator|.
-name|common
-operator|.
-name|SolrException
 import|;
 end_import
 
@@ -335,11 +321,11 @@ name|size
 argument_list|()
 argument_list|)
 decl_stmt|;
-name|HttpSolrServer
+name|HttpSolrClient
 name|client
 init|=
 operator|(
-name|HttpSolrServer
+name|HttpSolrClient
 operator|)
 name|clients
 operator|.

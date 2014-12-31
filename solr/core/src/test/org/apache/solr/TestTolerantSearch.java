@@ -82,7 +82,7 @@ name|client
 operator|.
 name|solrj
 operator|.
-name|SolrServer
+name|SolrClient
 import|;
 end_import
 
@@ -116,7 +116,7 @@ name|solrj
 operator|.
 name|impl
 operator|.
-name|HttpSolrServer
+name|HttpSolrClient
 import|;
 end_import
 
@@ -293,13 +293,13 @@ block|{
 DECL|field|collection1
 specifier|private
 specifier|static
-name|SolrServer
+name|SolrClient
 name|collection1
 decl_stmt|;
 DECL|field|collection2
 specifier|private
 specifier|static
-name|SolrServer
+name|SolrClient
 name|collection2
 decl_stmt|;
 DECL|field|shard1
@@ -436,7 +436,7 @@ decl_stmt|;
 name|collection1
 operator|=
 operator|new
-name|HttpSolrServer
+name|HttpSolrClient
 argument_list|(
 name|url
 argument_list|)
@@ -444,7 +444,7 @@ expr_stmt|;
 name|collection2
 operator|=
 operator|new
-name|HttpSolrServer
+name|HttpSolrClient
 argument_list|(
 name|url
 operator|+

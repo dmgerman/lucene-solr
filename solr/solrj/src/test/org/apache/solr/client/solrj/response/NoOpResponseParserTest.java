@@ -40,20 +40,6 @@ name|org
 operator|.
 name|apache
 operator|.
-name|lucene
-operator|.
-name|util
-operator|.
-name|LuceneTestCase
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
 name|solr
 operator|.
 name|SolrJettyTestBase
@@ -104,7 +90,7 @@ name|client
 operator|.
 name|solrj
 operator|.
-name|SolrServer
+name|SolrClient
 import|;
 end_import
 
@@ -138,7 +124,7 @@ name|solrj
 operator|.
 name|impl
 operator|.
-name|HttpSolrServer
+name|HttpSolrClient
 import|;
 end_import
 
@@ -251,20 +237,6 @@ operator|.
 name|core
 operator|.
 name|SolrResourceLoader
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|solr
-operator|.
-name|util
-operator|.
-name|ExternalPaths
 import|;
 end_import
 
@@ -431,10 +403,10 @@ throws|,
 name|SolrServerException
 block|{
 comment|//add document and commit, and ensure it's there
-name|SolrServer
-name|server1
+name|SolrClient
+name|client
 init|=
-name|getSolrServer
+name|getSolrClient
 argument_list|()
 decl_stmt|;
 name|SolrInputDocument
@@ -453,14 +425,14 @@ argument_list|,
 literal|"1234"
 argument_list|)
 expr_stmt|;
-name|server1
+name|client
 operator|.
 name|add
 argument_list|(
 name|doc
 argument_list|)
 expr_stmt|;
-name|server1
+name|client
 operator|.
 name|commit
 argument_list|()
@@ -477,13 +449,13 @@ parameter_list|()
 throws|throws
 name|Exception
 block|{
-name|HttpSolrServer
-name|server
+name|HttpSolrClient
+name|client
 init|=
 operator|(
-name|HttpSolrServer
+name|HttpSolrClient
 operator|)
-name|createNewSolrServer
+name|createNewSolrClient
 argument_list|()
 decl_stmt|;
 name|SolrQuery
@@ -504,7 +476,7 @@ argument_list|(
 name|query
 argument_list|)
 decl_stmt|;
-name|server
+name|client
 operator|.
 name|setParser
 argument_list|(
@@ -519,7 +491,7 @@ name|Object
 argument_list|>
 name|resp
 init|=
-name|server
+name|client
 operator|.
 name|request
 argument_list|(
@@ -544,7 +516,7 @@ argument_list|(
 name|responseString
 argument_list|)
 expr_stmt|;
-name|server
+name|client
 operator|.
 name|shutdown
 argument_list|()

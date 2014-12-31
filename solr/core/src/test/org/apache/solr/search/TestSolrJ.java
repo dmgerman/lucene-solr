@@ -40,7 +40,7 @@ name|client
 operator|.
 name|solrj
 operator|.
-name|SolrServer
+name|SolrClient
 import|;
 end_import
 
@@ -74,7 +74,7 @@ name|solrj
 operator|.
 name|impl
 operator|.
-name|ConcurrentUpdateSolrServer
+name|ConcurrentUpdateSolrClient
 import|;
 end_import
 
@@ -92,7 +92,7 @@ name|solrj
 operator|.
 name|impl
 operator|.
-name|HttpSolrServer
+name|HttpSolrClient
 import|;
 end_import
 
@@ -180,11 +180,11 @@ comment|// docs, producers, connections, sleep_time
 comment|//  main(new String[] {"1000000","4", "1", "0"});
 comment|// doCommitPerf();
 block|}
-DECL|field|server
+DECL|field|client
 specifier|public
 specifier|static
-name|SolrServer
-name|server
+name|SolrClient
+name|client
 decl_stmt|;
 DECL|field|idField
 specifier|public
@@ -285,18 +285,18 @@ operator|++
 index|]
 argument_list|)
 decl_stmt|;
-name|ConcurrentUpdateSolrServer
-name|sserver
+name|ConcurrentUpdateSolrClient
+name|concurrentClient
 init|=
 literal|null
 decl_stmt|;
-comment|// server = sserver = new ConcurrentUpdateSolrServer(addr,32,8);
-name|server
+comment|// server = concurrentClient = new ConcurrentUpdateSolrServer(addr,32,8);
+name|client
 operator|=
-name|sserver
+name|concurrentClient
 operator|=
 operator|new
-name|ConcurrentUpdateSolrServer
+name|ConcurrentUpdateSolrClient
 argument_list|(
 name|addr
 argument_list|,
@@ -305,14 +305,14 @@ argument_list|,
 name|nConnections
 argument_list|)
 expr_stmt|;
-name|server
+name|client
 operator|.
 name|deleteByQuery
 argument_list|(
 literal|"*:*"
 argument_list|)
 expr_stmt|;
-name|server
+name|client
 operator|.
 name|commit
 argument_list|()
@@ -462,12 +462,12 @@ expr_stmt|;
 block|}
 if|if
 condition|(
-name|sserver
+name|concurrentClient
 operator|!=
 literal|null
 condition|)
 block|{
-name|sserver
+name|concurrentClient
 operator|.
 name|blockUntilFinished
 argument_list|()
@@ -873,7 +873,7 @@ argument_list|(
 name|i
 argument_list|)
 decl_stmt|;
-name|server
+name|client
 operator|.
 name|add
 argument_list|(
@@ -945,11 +945,11 @@ parameter_list|()
 throws|throws
 name|Exception
 block|{
-name|HttpSolrServer
+name|HttpSolrClient
 name|client
 init|=
 operator|new
-name|HttpSolrServer
+name|HttpSolrClient
 argument_list|(
 literal|"http://127.0.0.1:8983/solr"
 argument_list|)

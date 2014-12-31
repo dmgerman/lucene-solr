@@ -18,52 +18,6 @@ end_comment
 
 begin_import
 import|import
-name|java
-operator|.
-name|io
-operator|.
-name|IOException
-import|;
-end_import
-
-begin_import
-import|import
-name|java
-operator|.
-name|util
-operator|.
-name|ArrayList
-import|;
-end_import
-
-begin_import
-import|import
-name|java
-operator|.
-name|util
-operator|.
-name|List
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|util
-operator|.
-name|LuceneTestCase
-operator|.
-name|BadApple
-import|;
-end_import
-
-begin_import
-import|import
 name|org
 operator|.
 name|apache
@@ -104,7 +58,7 @@ name|client
 operator|.
 name|solrj
 operator|.
-name|SolrQuery
+name|SolrClient
 import|;
 end_import
 
@@ -120,7 +74,7 @@ name|client
 operator|.
 name|solrj
 operator|.
-name|SolrServer
+name|SolrQuery
 import|;
 end_import
 
@@ -154,7 +108,7 @@ name|solrj
 operator|.
 name|impl
 operator|.
-name|ConcurrentUpdateSolrServer
+name|ConcurrentUpdateSolrClient
 import|;
 end_import
 
@@ -172,7 +126,7 @@ name|solrj
 operator|.
 name|impl
 operator|.
-name|HttpSolrServer
+name|HttpSolrClient
 import|;
 end_import
 
@@ -332,7 +286,9 @@ name|common
 operator|.
 name|params
 operator|.
-name|ModifiableSolrParams
+name|CollectionParams
+operator|.
+name|CollectionAction
 import|;
 end_import
 
@@ -348,9 +304,7 @@ name|common
 operator|.
 name|params
 operator|.
-name|CollectionParams
-operator|.
-name|CollectionAction
+name|ModifiableSolrParams
 import|;
 end_import
 
@@ -403,6 +357,36 @@ operator|.
 name|junit
 operator|.
 name|BeforeClass
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
+name|io
+operator|.
+name|IOException
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
+name|util
+operator|.
+name|ArrayList
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
+name|util
+operator|.
+name|List
 import|;
 end_import
 
@@ -808,12 +792,12 @@ argument_list|)
 expr_stmt|;
 name|docId
 operator|=
-name|testIndexingDocPerRequestWithHttpSolrServer
+name|testIndexingDocPerRequestWithHttpSolrClient
 argument_list|(
 name|docId
 argument_list|)
 expr_stmt|;
-name|testIndexingWithSuss
+name|testConcurrentIndexing
 argument_list|(
 name|docId
 argument_list|)
@@ -831,7 +815,7 @@ argument_list|)
 expr_stmt|;
 name|docId
 operator|=
-name|testIndexingBatchPerRequestWithHttpSolrServer
+name|testIndexingBatchPerRequestWithHttpSolrClient
 argument_list|(
 name|docId
 argument_list|)
@@ -1794,10 +1778,10 @@ return|return
 name|docId
 return|;
 block|}
-DECL|method|testIndexingDocPerRequestWithHttpSolrServer
+DECL|method|testIndexingDocPerRequestWithHttpSolrClient
 specifier|private
 name|long
-name|testIndexingDocPerRequestWithHttpSolrServer
+name|testIndexingDocPerRequestWithHttpSolrClient
 parameter_list|(
 name|long
 name|docId
@@ -1886,10 +1870,10 @@ name|docId
 operator|++
 return|;
 block|}
-DECL|method|testIndexingBatchPerRequestWithHttpSolrServer
+DECL|method|testIndexingBatchPerRequestWithHttpSolrClient
 specifier|private
 name|long
-name|testIndexingBatchPerRequestWithHttpSolrServer
+name|testIndexingBatchPerRequestWithHttpSolrClient
 parameter_list|(
 name|long
 name|docId
@@ -2405,10 +2389,10 @@ operator|-
 literal|1
 return|;
 block|}
-DECL|method|testIndexingWithSuss
+DECL|method|testConcurrentIndexing
 specifier|private
 name|long
-name|testIndexingWithSuss
+name|testConcurrentIndexing
 parameter_list|(
 name|long
 name|docId
@@ -2416,15 +2400,15 @@ parameter_list|)
 throws|throws
 name|Exception
 block|{
-name|ConcurrentUpdateSolrServer
-name|suss
+name|ConcurrentUpdateSolrClient
+name|concurrentClient
 init|=
 operator|new
-name|ConcurrentUpdateSolrServer
+name|ConcurrentUpdateSolrClient
 argument_list|(
 operator|(
 operator|(
-name|HttpSolrServer
+name|HttpSolrClient
 operator|)
 name|clients
 operator|.
@@ -2472,7 +2456,7 @@ literal|313
 decl_stmt|;
 try|try
 block|{
-name|suss
+name|concurrentClient
 operator|.
 name|setConnectionTimeout
 argument_list|(
@@ -2496,7 +2480,7 @@ control|)
 block|{
 name|index_specific
 argument_list|(
-name|suss
+name|concurrentClient
 argument_list|,
 name|id
 argument_list|,
@@ -2509,7 +2493,7 @@ literal|"some text so that it not's negligent work to parse this doc, even thoug
 argument_list|)
 expr_stmt|;
 block|}
-name|suss
+name|concurrentClient
 operator|.
 name|blockUntilFinished
 argument_list|()
@@ -2528,7 +2512,7 @@ expr_stmt|;
 block|}
 finally|finally
 block|{
-name|suss
+name|concurrentClient
 operator|.
 name|shutdown
 argument_list|()
@@ -2866,8 +2850,8 @@ specifier|private
 name|QueryResponse
 name|query
 parameter_list|(
-name|SolrServer
-name|server
+name|SolrClient
+name|client
 parameter_list|)
 throws|throws
 name|SolrServerException
@@ -2882,7 +2866,7 @@ literal|"*:*"
 argument_list|)
 decl_stmt|;
 return|return
-name|server
+name|client
 operator|.
 name|query
 argument_list|(

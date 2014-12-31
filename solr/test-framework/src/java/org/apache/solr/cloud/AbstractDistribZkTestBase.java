@@ -648,7 +648,7 @@ expr_stmt|;
 block|}
 name|controlClient
 operator|=
-name|createNewSolrServer
+name|createNewSolrClient
 argument_list|(
 name|controlJetty
 operator|.
@@ -753,7 +753,7 @@ name|clients
 operator|.
 name|add
 argument_list|(
-name|createNewSolrServer
+name|createNewSolrClient
 argument_list|(
 name|j
 operator|.

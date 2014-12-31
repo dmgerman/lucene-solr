@@ -20,26 +20,6 @@ end_package
 
 begin_import
 import|import
-name|java
-operator|.
-name|util
-operator|.
-name|ArrayList
-import|;
-end_import
-
-begin_import
-import|import
-name|java
-operator|.
-name|util
-operator|.
-name|List
-import|;
-end_import
-
-begin_import
-import|import
 name|org
 operator|.
 name|apache
@@ -148,6 +128,26 @@ name|LoggerFactory
 import|;
 end_import
 
+begin_import
+import|import
+name|java
+operator|.
+name|util
+operator|.
+name|ArrayList
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
+name|util
+operator|.
+name|List
+import|;
+end_import
+
 begin_comment
 comment|/**  *  * @since solr 1.3  */
 end_comment
@@ -204,15 +204,15 @@ parameter_list|()
 throws|throws
 name|Exception
 block|{
-name|SolrServer
-name|gserver
+name|SolrClient
+name|client
 init|=
 name|this
 operator|.
-name|getSolrServer
+name|getSolrClient
 argument_list|()
 decl_stmt|;
-name|gserver
+name|client
 operator|.
 name|deleteByQuery
 argument_list|(
@@ -316,7 +316,7 @@ expr_stmt|;
 block|}
 comment|// some of the commits could have failed because maxWarmingSearchers exceeded,
 comment|// so do a final commit to make sure everything is visible.
-name|gserver
+name|client
 operator|.
 name|commit
 argument_list|()
@@ -347,12 +347,12 @@ parameter_list|)
 throws|throws
 name|SolrServerException
 block|{
-name|SolrServer
-name|gserver
+name|SolrClient
+name|client
 init|=
 name|this
 operator|.
-name|getSolrServer
+name|getSolrClient
 argument_list|()
 decl_stmt|;
 name|SolrQuery
@@ -367,7 +367,7 @@ decl_stmt|;
 name|QueryResponse
 name|response
 init|=
-name|gserver
+name|client
 operator|.
 name|query
 argument_list|(
@@ -405,10 +405,10 @@ name|DocThread
 extends|extends
 name|Thread
 block|{
-DECL|field|tserver
+DECL|field|client
 specifier|final
-name|SolrServer
-name|tserver
+name|SolrClient
+name|client
 decl_stmt|;
 DECL|field|name
 specifier|final
@@ -423,9 +423,9 @@ name|String
 name|name
 parameter_list|)
 block|{
-name|tserver
+name|client
 operator|=
-name|createNewSolrServer
+name|createNewSolrClient
 argument_list|()
 expr_stmt|;
 name|this
@@ -491,7 +491,7 @@ condition|)
 block|{
 name|resp
 operator|=
-name|tserver
+name|client
 operator|.
 name|add
 argument_list|(
@@ -543,7 +543,7 @@ argument_list|)
 expr_stmt|;
 name|resp
 operator|=
-name|tserver
+name|client
 operator|.
 name|commit
 argument_list|()
@@ -596,7 +596,7 @@ expr_stmt|;
 block|}
 name|resp
 operator|=
-name|tserver
+name|client
 operator|.
 name|add
 argument_list|(
@@ -617,7 +617,7 @@ try|try
 block|{
 name|resp
 operator|=
-name|tserver
+name|client
 operator|.
 name|commit
 argument_list|()
@@ -634,7 +634,7 @@ argument_list|)
 expr_stmt|;
 name|resp
 operator|=
-name|tserver
+name|client
 operator|.
 name|optimize
 argument_list|()
@@ -674,13 +674,13 @@ if|if
 condition|(
 operator|!
 operator|(
-name|tserver
+name|client
 operator|instanceof
 name|EmbeddedSolrServer
 operator|)
 condition|)
 block|{
-name|tserver
+name|client
 operator|.
 name|shutdown
 argument_list|()

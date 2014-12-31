@@ -78,7 +78,7 @@ name|solrj
 operator|.
 name|impl
 operator|.
-name|HttpSolrServer
+name|HttpSolrClient
 import|;
 end_import
 
@@ -133,11 +133,11 @@ argument_list|,
 literal|1
 argument_list|)
 expr_stmt|;
-name|SolrServer
+name|SolrClient
 name|client
 init|=
 operator|new
-name|HttpSolrServer
+name|HttpSolrClient
 argument_list|(
 literal|"http://[ff01::114]:11235/solr/"
 argument_list|,

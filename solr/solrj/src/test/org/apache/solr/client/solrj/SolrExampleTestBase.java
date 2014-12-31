@@ -157,19 +157,19 @@ argument_list|()
 expr_stmt|;
 block|}
 comment|/**    * Subclasses need to initialize the server impl    */
-DECL|method|getSolrServer
+DECL|method|getSolrClient
 specifier|protected
 specifier|abstract
-name|SolrServer
-name|getSolrServer
+name|SolrClient
+name|getSolrClient
 parameter_list|()
 function_decl|;
 comment|/**    * Create a new solr server    */
-DECL|method|createNewSolrServer
+DECL|method|createNewSolrClient
 specifier|protected
 specifier|abstract
-name|SolrServer
-name|createNewSolrServer
+name|SolrClient
+name|createNewSolrClient
 parameter_list|()
 function_decl|;
 block|}

@@ -76,7 +76,7 @@ name|solrj
 operator|.
 name|impl
 operator|.
-name|CloudSolrServer
+name|CloudSolrClient
 import|;
 end_import
 
@@ -413,7 +413,7 @@ parameter_list|()
 throws|throws
 name|Exception
 block|{
-name|CloudSolrServer
+name|CloudSolrClient
 name|client
 init|=
 name|createCloudClient
@@ -544,7 +544,7 @@ name|IOException
 throws|,
 name|SolrServerException
 block|{
-name|CloudSolrServer
+name|CloudSolrClient
 name|client
 init|=
 name|createCloudClient
@@ -801,7 +801,7 @@ name|IOException
 throws|,
 name|SolrServerException
 block|{
-name|CloudSolrServer
+name|CloudSolrClient
 name|client
 init|=
 name|createCloudClient
@@ -955,7 +955,7 @@ parameter_list|()
 throws|throws
 name|Exception
 block|{
-name|CloudSolrServer
+name|CloudSolrClient
 name|client
 init|=
 name|createCloudClient
@@ -1144,7 +1144,7 @@ name|IOException
 throws|,
 name|SolrServerException
 block|{
-name|CloudSolrServer
+name|CloudSolrClient
 name|client
 init|=
 name|createCloudClient
@@ -1308,7 +1308,7 @@ name|IOException
 throws|,
 name|SolrServerException
 block|{
-name|CloudSolrServer
+name|CloudSolrClient
 name|client
 init|=
 name|createCloudClient
@@ -1594,7 +1594,7 @@ parameter_list|()
 throws|throws
 name|Exception
 block|{
-name|CloudSolrServer
+name|CloudSolrClient
 name|client
 init|=
 name|createCloudClient
@@ -1915,7 +1915,7 @@ parameter_list|()
 throws|throws
 name|Exception
 block|{
-name|CloudSolrServer
+name|CloudSolrClient
 name|client
 init|=
 name|createCloudClient
@@ -2192,7 +2192,7 @@ parameter_list|()
 throws|throws
 name|Exception
 block|{
-name|CloudSolrServer
+name|CloudSolrClient
 name|client
 init|=
 name|createCloudClient
@@ -3986,7 +3986,7 @@ name|String
 argument_list|>
 name|getProps
 parameter_list|(
-name|CloudSolrServer
+name|CloudSolrClient
 name|client
 parameter_list|,
 name|String
@@ -4101,7 +4101,7 @@ specifier|private
 name|void
 name|missingParamsError
 parameter_list|(
-name|CloudSolrServer
+name|CloudSolrClient
 name|client
 parameter_list|,
 name|ModifiableSolrParams

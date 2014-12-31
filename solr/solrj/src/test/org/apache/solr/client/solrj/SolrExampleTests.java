@@ -120,7 +120,7 @@ name|solrj
 operator|.
 name|impl
 operator|.
-name|ConcurrentUpdateSolrServer
+name|ConcurrentUpdateSolrClient
 import|;
 end_import
 
@@ -138,7 +138,7 @@ name|solrj
 operator|.
 name|impl
 operator|.
-name|HttpSolrServer
+name|HttpSolrClient
 import|;
 end_import
 
@@ -685,14 +685,14 @@ parameter_list|()
 throws|throws
 name|Exception
 block|{
-name|SolrServer
-name|server
+name|SolrClient
+name|client
 init|=
-name|getSolrServer
+name|getSolrClient
 argument_list|()
 decl_stmt|;
 comment|// Empty the database...
-name|server
+name|client
 operator|.
 name|deleteByQuery
 argument_list|(
@@ -769,7 +769,7 @@ expr_stmt|;
 name|UpdateResponse
 name|upres
 init|=
-name|server
+name|client
 operator|.
 name|add
 argument_list|(
@@ -791,7 +791,7 @@ argument_list|)
 expr_stmt|;
 name|upres
 operator|=
-name|server
+name|client
 operator|.
 name|commit
 argument_list|(
@@ -815,7 +815,7 @@ argument_list|)
 expr_stmt|;
 name|upres
 operator|=
-name|server
+name|client
 operator|.
 name|optimize
 argument_list|(
@@ -856,7 +856,7 @@ expr_stmt|;
 name|QueryResponse
 name|response
 init|=
-name|server
+name|client
 operator|.
 name|query
 argument_list|(
@@ -1155,7 +1155,7 @@ argument_list|)
 expr_stmt|;
 name|upres
 operator|=
-name|server
+name|client
 operator|.
 name|add
 argument_list|(
@@ -1177,7 +1177,7 @@ argument_list|)
 expr_stmt|;
 name|upres
 operator|=
-name|server
+name|client
 operator|.
 name|commit
 argument_list|(
@@ -1201,7 +1201,7 @@ argument_list|)
 expr_stmt|;
 name|upres
 operator|=
-name|server
+name|client
 operator|.
 name|optimize
 argument_list|(
@@ -1282,7 +1282,7 @@ argument_list|)
 expr_stmt|;
 name|response
 operator|=
-name|server
+name|client
 operator|.
 name|query
 argument_list|(
@@ -1383,7 +1383,7 @@ argument_list|)
 expr_stmt|;
 name|response
 operator|=
-name|server
+name|client
 operator|.
 name|query
 argument_list|(
@@ -1485,7 +1485,7 @@ argument_list|)
 expr_stmt|;
 name|response
 operator|=
-name|server
+name|client
 operator|.
 name|query
 argument_list|(
@@ -1726,11 +1726,11 @@ operator|.
 name|toString
 argument_list|()
 decl_stmt|;
-name|HttpSolrServer
-name|client
+name|HttpSolrClient
+name|adminClient
 init|=
 operator|new
-name|HttpSolrServer
+name|HttpSolrClient
 argument_list|(
 name|url
 argument_list|)
@@ -1754,7 +1754,7 @@ expr_stmt|;
 name|QueryResponse
 name|rsp
 init|=
-name|client
+name|adminClient
 operator|.
 name|query
 argument_list|(
@@ -1787,7 +1787,7 @@ literal|"lucene"
 argument_list|)
 argument_list|)
 expr_stmt|;
-name|client
+name|adminClient
 operator|.
 name|shutdown
 argument_list|()
@@ -1805,14 +1805,14 @@ parameter_list|()
 throws|throws
 name|Exception
 block|{
-name|SolrServer
-name|server
+name|SolrClient
+name|client
 init|=
-name|getSolrServer
+name|getSolrClient
 argument_list|()
 decl_stmt|;
 comment|// Empty the database...
-name|server
+name|client
 operator|.
 name|deleteByQuery
 argument_list|(
@@ -1923,14 +1923,14 @@ name|doc2
 argument_list|)
 expr_stmt|;
 comment|// Add the documents
-name|server
+name|client
 operator|.
 name|add
 argument_list|(
 name|docs
 argument_list|)
 expr_stmt|;
-name|server
+name|client
 operator|.
 name|commit
 argument_list|()
@@ -1965,7 +1965,7 @@ expr_stmt|;
 name|QueryResponse
 name|rsp
 init|=
-name|server
+name|client
 operator|.
 name|query
 argument_list|(
@@ -1987,21 +1987,21 @@ argument_list|)
 expr_stmt|;
 comment|// System.out.println( rsp.getResults() );
 comment|// Now do it again
-name|server
+name|client
 operator|.
 name|add
 argument_list|(
 name|docs
 argument_list|)
 expr_stmt|;
-name|server
+name|client
 operator|.
 name|commit
 argument_list|()
 expr_stmt|;
 name|rsp
 operator|=
-name|server
+name|client
 operator|.
 name|query
 argument_list|(
@@ -2032,7 +2032,7 @@ argument_list|)
 expr_stmt|;
 name|rsp
 operator|=
-name|server
+name|client
 operator|.
 name|query
 argument_list|(
@@ -2064,14 +2064,14 @@ parameter_list|()
 throws|throws
 name|Exception
 block|{
-name|SolrServer
-name|server
+name|SolrClient
+name|client
 init|=
-name|getSolrServer
+name|getSolrClient
 argument_list|()
 decl_stmt|;
 comment|// Empty the database...
-name|server
+name|client
 operator|.
 name|deleteByQuery
 argument_list|(
@@ -2079,7 +2079,7 @@ literal|"*:*"
 argument_list|)
 expr_stmt|;
 comment|// delete everything!
-name|server
+name|client
 operator|.
 name|commit
 argument_list|()
@@ -2123,7 +2123,7 @@ argument_list|,
 literal|10
 argument_list|)
 expr_stmt|;
-name|server
+name|client
 operator|.
 name|add
 argument_list|(
@@ -2147,14 +2147,14 @@ argument_list|,
 literal|1.0f
 argument_list|)
 expr_stmt|;
-name|server
+name|client
 operator|.
 name|add
 argument_list|(
 name|doc
 argument_list|)
 expr_stmt|;
-name|server
+name|client
 operator|.
 name|commit
 argument_list|()
@@ -2163,7 +2163,7 @@ comment|// Make sure we get empty docs for unknown field
 name|SolrDocumentList
 name|out
 init|=
-name|server
+name|client
 operator|.
 name|query
 argument_list|(
@@ -2358,10 +2358,10 @@ argument_list|(
 literal|3
 argument_list|)
 decl_stmt|;
-name|SolrServer
-name|server
+name|SolrClient
+name|client
 init|=
-name|getSolrServer
+name|getSolrClient
 argument_list|()
 decl_stmt|;
 comment|// save the old parser, so we can set it back.
@@ -2372,22 +2372,22 @@ literal|null
 decl_stmt|;
 if|if
 condition|(
-name|server
+name|client
 operator|instanceof
-name|HttpSolrServer
+name|HttpSolrClient
 condition|)
 block|{
-name|HttpSolrServer
-name|cserver
+name|HttpSolrClient
+name|httpSolrClient
 init|=
 operator|(
-name|HttpSolrServer
+name|HttpSolrClient
 operator|)
-name|server
+name|client
 decl_stmt|;
 name|oldParser
 operator|=
-name|cserver
+name|httpSolrClient
 operator|.
 name|getParser
 argument_list|()
@@ -2413,9 +2413,9 @@ block|{
 comment|// choose format
 if|if
 condition|(
-name|server
+name|client
 operator|instanceof
-name|HttpSolrServer
+name|HttpSolrClient
 condition|)
 block|{
 if|if
@@ -2428,9 +2428,9 @@ condition|)
 block|{
 operator|(
 operator|(
-name|HttpSolrServer
+name|HttpSolrClient
 operator|)
-name|server
+name|client
 operator|)
 operator|.
 name|setParser
@@ -2445,9 +2445,9 @@ else|else
 block|{
 operator|(
 operator|(
-name|HttpSolrServer
+name|HttpSolrClient
 operator|)
-name|server
+name|client
 operator|)
 operator|.
 name|setParser
@@ -2477,7 +2477,7 @@ name|RANDOM_MULTIPLIER
 argument_list|)
 decl_stmt|;
 comment|// Empty the database...
-name|server
+name|client
 operator|.
 name|deleteByQuery
 argument_list|(
@@ -2550,14 +2550,14 @@ name|doc
 argument_list|)
 expr_stmt|;
 block|}
-name|server
+name|client
 operator|.
 name|add
 argument_list|(
 name|docs
 argument_list|)
 expr_stmt|;
-name|server
+name|client
 operator|.
 name|commit
 argument_list|()
@@ -2586,7 +2586,7 @@ expr_stmt|;
 name|QueryResponse
 name|rsp
 init|=
-name|server
+name|client
 operator|.
 name|query
 argument_list|(
@@ -2669,9 +2669,9 @@ block|{
 comment|// set the old parser back
 operator|(
 operator|(
-name|HttpSolrServer
+name|HttpSolrClient
 operator|)
-name|server
+name|client
 operator|)
 operator|.
 name|setParser
@@ -2692,10 +2692,10 @@ parameter_list|()
 throws|throws
 name|Exception
 block|{
-name|SolrServer
-name|server
+name|SolrClient
+name|client
 init|=
-name|getSolrServer
+name|getSolrClient
 argument_list|()
 decl_stmt|;
 name|SolrQuery
@@ -2740,7 +2740,7 @@ argument_list|)
 expr_stmt|;
 try|try
 block|{
-name|server
+name|client
 operator|.
 name|query
 argument_list|(
@@ -2810,7 +2810,7 @@ try|try
 block|{
 comment|//the df=text here is a kluge for the test to supply a default field in case there is none in schema.xml
 comment|// alternatively, the resulting assertion could be modified to assert that no default field is specified.
-name|server
+name|client
 operator|.
 name|deleteByQuery
 argument_list|(
@@ -2922,14 +2922,14 @@ argument_list|)
 expr_stmt|;
 if|if
 condition|(
-name|server
+name|client
 operator|instanceof
-name|HttpSolrServer
+name|HttpSolrClient
 condition|)
 block|{
 try|try
 block|{
-name|server
+name|client
 operator|.
 name|add
 argument_list|(
@@ -2995,45 +2995,45 @@ block|}
 elseif|else
 if|if
 condition|(
-name|server
+name|client
 operator|instanceof
-name|ConcurrentUpdateSolrServer
+name|ConcurrentUpdateSolrClient
 condition|)
 block|{
 comment|//XXX concurrentupdatesolrserver reports errors differently
-name|ConcurrentUpdateSolrServer
-name|cs
+name|ConcurrentUpdateSolrClient
+name|concurrentClient
 init|=
 operator|(
-name|ConcurrentUpdateSolrServer
+name|ConcurrentUpdateSolrClient
 operator|)
-name|server
+name|client
 decl_stmt|;
 name|Field
 name|field
 init|=
-name|getCUSSExceptionField
+name|getConcurrentClientExceptionField
 argument_list|(
-name|cs
+name|concurrentClient
 argument_list|)
 decl_stmt|;
 name|field
 operator|.
 name|set
 argument_list|(
-name|cs
+name|concurrentClient
 argument_list|,
 literal|null
 argument_list|)
 expr_stmt|;
-name|cs
+name|concurrentClient
 operator|.
 name|add
 argument_list|(
 name|doc
 argument_list|)
 expr_stmt|;
-name|cs
+name|concurrentClient
 operator|.
 name|blockUntilFinished
 argument_list|()
@@ -3048,7 +3048,7 @@ name|field
 operator|.
 name|get
 argument_list|(
-name|cs
+name|concurrentClient
 argument_list|)
 decl_stmt|;
 name|assertNotNull
@@ -3066,9 +3066,9 @@ name|log
 operator|.
 name|info
 argument_list|(
-literal|"Ignorig update test for client:"
+literal|"Ignoring update test for client:"
 operator|+
-name|server
+name|client
 operator|.
 name|getClass
 argument_list|()
@@ -3079,11 +3079,11 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
-DECL|method|getCUSSExceptionField
+DECL|method|getConcurrentClientExceptionField
 specifier|private
 specifier|static
 name|Field
-name|getCUSSExceptionField
+name|getConcurrentClientExceptionField
 parameter_list|(
 name|Object
 name|cs
@@ -3129,14 +3129,14 @@ parameter_list|()
 throws|throws
 name|Exception
 block|{
-name|SolrServer
-name|server
+name|SolrClient
+name|client
 init|=
-name|getSolrServer
+name|getSolrClient
 argument_list|()
 decl_stmt|;
 comment|// Empty the database...
-name|server
+name|client
 operator|.
 name|deleteByQuery
 argument_list|(
@@ -3183,14 +3183,14 @@ argument_list|,
 literal|11
 argument_list|)
 expr_stmt|;
-name|server
+name|client
 operator|.
 name|add
 argument_list|(
 name|doc
 argument_list|)
 expr_stmt|;
-name|server
+name|client
 operator|.
 name|commit
 argument_list|()
@@ -3233,14 +3233,14 @@ argument_list|,
 literal|22
 argument_list|)
 expr_stmt|;
-name|server
+name|client
 operator|.
 name|add
 argument_list|(
 name|doc
 argument_list|)
 expr_stmt|;
-name|server
+name|client
 operator|.
 name|commit
 argument_list|()
@@ -3286,7 +3286,7 @@ expr_stmt|;
 name|QueryResponse
 name|rsp
 init|=
-name|server
+name|client
 operator|.
 name|query
 argument_list|(
@@ -3498,20 +3498,20 @@ parameter_list|()
 throws|throws
 name|Exception
 block|{
-name|SolrServer
-name|server1
+name|SolrClient
+name|client
 init|=
-name|createNewSolrServer
+name|createNewSolrClient
 argument_list|()
 decl_stmt|;
-name|server1
+name|client
 operator|.
 name|deleteByQuery
 argument_list|(
 literal|"*:*"
 argument_list|)
 expr_stmt|;
-name|server1
+name|client
 operator|.
 name|commit
 argument_list|()
@@ -3555,21 +3555,21 @@ argument_list|(
 name|doc
 argument_list|)
 expr_stmt|;
-name|server1
+name|client
 operator|.
 name|request
 argument_list|(
 name|req
 argument_list|)
 expr_stmt|;
-name|server1
+name|client
 operator|.
 name|request
 argument_list|(
 name|req
 argument_list|)
 expr_stmt|;
-name|server1
+name|client
 operator|.
 name|commit
 argument_list|()
@@ -3591,7 +3591,7 @@ expr_stmt|;
 name|QueryResponse
 name|rsp
 init|=
-name|server1
+name|client
 operator|.
 name|query
 argument_list|(
@@ -3620,14 +3620,14 @@ if|if
 condition|(
 operator|!
 operator|(
-name|server1
+name|client
 operator|instanceof
 name|EmbeddedSolrServer
 operator|)
 condition|)
 block|{
 comment|/* Do not close in case of using EmbeddedSolrServer,        * as that would close the CoreContainer */
-name|server1
+name|client
 operator|.
 name|shutdown
 argument_list|()
@@ -3644,13 +3644,13 @@ parameter_list|()
 throws|throws
 name|Exception
 block|{
-name|SolrServer
-name|server
+name|SolrClient
+name|client
 init|=
-name|getSolrServer
+name|getSolrClient
 argument_list|()
 decl_stmt|;
-name|server
+name|client
 operator|.
 name|deleteByQuery
 argument_list|(
@@ -3658,7 +3658,7 @@ literal|"*:*"
 argument_list|)
 expr_stmt|;
 comment|// delete everything!
-name|server
+name|client
 operator|.
 name|commit
 argument_list|()
@@ -3666,7 +3666,7 @@ expr_stmt|;
 name|QueryResponse
 name|rsp
 init|=
-name|server
+name|client
 operator|.
 name|query
 argument_list|(
@@ -3734,7 +3734,7 @@ name|Object
 argument_list|>
 name|result
 init|=
-name|server
+name|client
 operator|.
 name|request
 argument_list|(
@@ -3750,7 +3750,7 @@ argument_list|)
 expr_stmt|;
 name|rsp
 operator|=
-name|server
+name|client
 operator|.
 name|query
 argument_list|(
@@ -3787,13 +3787,13 @@ parameter_list|()
 throws|throws
 name|Exception
 block|{
-name|SolrServer
-name|server
+name|SolrClient
+name|client
 init|=
-name|getSolrServer
+name|getSolrClient
 argument_list|()
 decl_stmt|;
-name|server
+name|client
 operator|.
 name|deleteByQuery
 argument_list|(
@@ -3801,7 +3801,7 @@ literal|"*:*"
 argument_list|)
 expr_stmt|;
 comment|// delete everything!
-name|server
+name|client
 operator|.
 name|commit
 argument_list|()
@@ -3809,7 +3809,7 @@ expr_stmt|;
 name|QueryResponse
 name|rsp
 init|=
-name|server
+name|client
 operator|.
 name|query
 argument_list|(
@@ -3918,7 +3918,7 @@ name|Object
 argument_list|>
 name|result
 init|=
-name|server
+name|client
 operator|.
 name|request
 argument_list|(
@@ -3968,7 +3968,7 @@ argument_list|)
 expr_stmt|;
 name|rsp
 operator|=
-name|server
+name|client
 operator|.
 name|query
 argument_list|(
@@ -4005,14 +4005,14 @@ parameter_list|()
 throws|throws
 name|Exception
 block|{
-name|SolrServer
-name|server
+name|SolrClient
+name|client
 init|=
-name|getSolrServer
+name|getSolrClient
 argument_list|()
 decl_stmt|;
 comment|// Empty the database...
-name|server
+name|client
 operator|.
 name|deleteByQuery
 argument_list|(
@@ -4072,7 +4072,7 @@ argument_list|,
 literal|1.0f
 argument_list|)
 expr_stmt|;
-name|server
+name|client
 operator|.
 name|add
 argument_list|(
@@ -4083,7 +4083,7 @@ index|]
 argument_list|)
 expr_stmt|;
 block|}
-name|server
+name|client
 operator|.
 name|commit
 argument_list|()
@@ -4119,7 +4119,7 @@ name|luke
 operator|.
 name|process
 argument_list|(
-name|server
+name|client
 argument_list|)
 decl_stmt|;
 name|assertNull
@@ -4144,7 +4144,7 @@ name|luke
 operator|.
 name|process
 argument_list|(
-name|server
+name|client
 argument_list|)
 expr_stmt|;
 name|assertNotNull
@@ -4166,14 +4166,14 @@ parameter_list|()
 throws|throws
 name|Exception
 block|{
-name|SolrServer
-name|server
+name|SolrClient
+name|client
 init|=
-name|getSolrServer
+name|getSolrClient
 argument_list|()
 decl_stmt|;
 comment|// Empty the database...
-name|server
+name|client
 operator|.
 name|deleteByQuery
 argument_list|(
@@ -4181,7 +4181,7 @@ literal|"*:*"
 argument_list|)
 expr_stmt|;
 comment|// delete everything!
-name|server
+name|client
 operator|.
 name|commit
 argument_list|()
@@ -4281,7 +4281,7 @@ argument_list|,
 name|num
 argument_list|)
 expr_stmt|;
-name|server
+name|client
 operator|.
 name|add
 argument_list|(
@@ -4289,7 +4289,7 @@ name|doc
 argument_list|)
 expr_stmt|;
 block|}
-name|server
+name|client
 operator|.
 name|commit
 argument_list|()
@@ -4330,7 +4330,7 @@ expr_stmt|;
 name|QueryResponse
 name|rsp
 init|=
-name|server
+name|client
 operator|.
 name|query
 argument_list|(
@@ -4447,7 +4447,7 @@ argument_list|)
 expr_stmt|;
 comment|// now lets try again with a new set...  (odd median)
 comment|//----------------------------------------------------
-name|server
+name|client
 operator|.
 name|deleteByQuery
 argument_list|(
@@ -4455,7 +4455,7 @@ literal|"*:*"
 argument_list|)
 expr_stmt|;
 comment|// delete everything!
-name|server
+name|client
 operator|.
 name|commit
 argument_list|()
@@ -4532,7 +4532,7 @@ argument_list|,
 name|num
 argument_list|)
 expr_stmt|;
-name|server
+name|client
 operator|.
 name|add
 argument_list|(
@@ -4540,7 +4540,7 @@ name|doc
 argument_list|)
 expr_stmt|;
 block|}
-name|server
+name|client
 operator|.
 name|commit
 argument_list|()
@@ -4557,7 +4557,7 @@ expr_stmt|;
 comment|// make sure they all got in
 name|rsp
 operator|=
-name|server
+name|client
 operator|.
 name|query
 argument_list|(
@@ -4653,7 +4653,7 @@ argument_list|)
 expr_stmt|;
 comment|// Now try again with faceting
 comment|//---------------------------------
-name|server
+name|client
 operator|.
 name|deleteByQuery
 argument_list|(
@@ -4661,7 +4661,7 @@ literal|"*:*"
 argument_list|)
 expr_stmt|;
 comment|// delete everything!
-name|server
+name|client
 operator|.
 name|commit
 argument_list|()
@@ -4774,7 +4774,7 @@ operator|<
 literal|5
 argument_list|)
 expr_stmt|;
-name|server
+name|client
 operator|.
 name|add
 argument_list|(
@@ -4782,7 +4782,7 @@ name|doc
 argument_list|)
 expr_stmt|;
 block|}
-name|server
+name|client
 operator|.
 name|commit
 argument_list|()
@@ -4815,7 +4815,7 @@ argument_list|)
 expr_stmt|;
 name|rsp
 operator|=
-name|server
+name|client
 operator|.
 name|query
 argument_list|(
@@ -5009,14 +5009,14 @@ parameter_list|()
 throws|throws
 name|Exception
 block|{
-name|SolrServer
-name|server
+name|SolrClient
+name|client
 init|=
-name|getSolrServer
+name|getSolrClient
 argument_list|()
 decl_stmt|;
 comment|// Empty the database...
-name|server
+name|client
 operator|.
 name|deleteByQuery
 argument_list|(
@@ -5024,7 +5024,7 @@ literal|"*:*"
 argument_list|)
 expr_stmt|;
 comment|// delete everything!
-name|server
+name|client
 operator|.
 name|commit
 argument_list|()
@@ -5038,7 +5038,7 @@ argument_list|)
 expr_stmt|;
 comment|// make sure it got in
 comment|// should be ok
-name|server
+name|client
 operator|.
 name|ping
 argument_list|()
@@ -5054,14 +5054,14 @@ parameter_list|()
 throws|throws
 name|Exception
 block|{
-name|SolrServer
-name|server
+name|SolrClient
+name|client
 init|=
-name|getSolrServer
+name|getSolrClient
 argument_list|()
 decl_stmt|;
 comment|// Empty the database...
-name|server
+name|client
 operator|.
 name|deleteByQuery
 argument_list|(
@@ -5069,7 +5069,7 @@ literal|"*:*"
 argument_list|)
 expr_stmt|;
 comment|// delete everything!
-name|server
+name|client
 operator|.
 name|commit
 argument_list|()
@@ -5222,14 +5222,14 @@ name|doc
 argument_list|)
 expr_stmt|;
 block|}
-name|server
+name|client
 operator|.
 name|add
 argument_list|(
 name|docs
 argument_list|)
 expr_stmt|;
-name|server
+name|client
 operator|.
 name|commit
 argument_list|()
@@ -5283,7 +5283,7 @@ expr_stmt|;
 name|QueryResponse
 name|rsp
 init|=
-name|server
+name|client
 operator|.
 name|query
 argument_list|(
@@ -5372,7 +5372,7 @@ argument_list|)
 expr_stmt|;
 name|rsp
 operator|=
-name|server
+name|client
 operator|.
 name|query
 argument_list|(
@@ -5411,7 +5411,7 @@ argument_list|)
 expr_stmt|;
 name|rsp
 operator|=
-name|server
+name|client
 operator|.
 name|query
 argument_list|(
@@ -5451,7 +5451,7 @@ argument_list|)
 expr_stmt|;
 name|rsp
 operator|=
-name|server
+name|client
 operator|.
 name|query
 argument_list|(
@@ -5495,14 +5495,14 @@ parameter_list|()
 throws|throws
 name|Exception
 block|{
-name|SolrServer
-name|server
+name|SolrClient
+name|client
 init|=
-name|getSolrServer
+name|getSolrClient
 argument_list|()
 decl_stmt|;
 comment|// Empty the database...
-name|server
+name|client
 operator|.
 name|deleteByQuery
 argument_list|(
@@ -5510,7 +5510,7 @@ literal|"*:*"
 argument_list|)
 expr_stmt|;
 comment|// delete everything!
-name|server
+name|client
 operator|.
 name|commit
 argument_list|()
@@ -5953,14 +5953,14 @@ argument_list|)
 argument_list|)
 expr_stmt|;
 comment|// something not matching all fields
-name|server
+name|client
 operator|.
 name|add
 argument_list|(
 name|docs
 argument_list|)
 expr_stmt|;
-name|server
+name|client
 operator|.
 name|commit
 argument_list|()
@@ -6033,7 +6033,7 @@ expr_stmt|;
 name|QueryResponse
 name|rsp
 init|=
-name|server
+name|client
 operator|.
 name|query
 argument_list|(
@@ -6928,14 +6928,14 @@ parameter_list|()
 throws|throws
 name|Exception
 block|{
-name|SolrServer
-name|server
+name|SolrClient
+name|client
 init|=
-name|getSolrServer
+name|getSolrClient
 argument_list|()
 decl_stmt|;
 comment|// Empty the database...
-name|server
+name|client
 operator|.
 name|deleteByQuery
 argument_list|(
@@ -6943,7 +6943,7 @@ literal|"*:*"
 argument_list|)
 expr_stmt|;
 comment|// delete everything!
-name|server
+name|client
 operator|.
 name|commit
 argument_list|()
@@ -6966,7 +6966,7 @@ name|nextBoolean
 argument_list|()
 condition|)
 block|{
-name|server
+name|client
 operator|.
 name|add
 argument_list|(
@@ -6998,7 +6998,7 @@ literal|.017
 argument_list|)
 argument_list|)
 expr_stmt|;
-name|server
+name|client
 operator|.
 name|commit
 argument_list|()
@@ -7035,7 +7035,7 @@ argument_list|)
 expr_stmt|;
 try|try
 block|{
-name|server
+name|client
 operator|.
 name|query
 argument_list|(
@@ -7134,7 +7134,7 @@ argument_list|)
 expr_stmt|;
 try|try
 block|{
-name|server
+name|client
 operator|.
 name|query
 argument_list|(
@@ -7242,7 +7242,7 @@ argument_list|)
 expr_stmt|;
 try|try
 block|{
-name|server
+name|client
 operator|.
 name|query
 argument_list|(
@@ -7326,14 +7326,14 @@ parameter_list|)
 throws|throws
 name|Exception
 block|{
-name|SolrServer
-name|server
+name|SolrClient
+name|client
 init|=
-name|getSolrServer
+name|getSolrClient
 argument_list|()
 decl_stmt|;
 comment|// Empty the database...
-name|server
+name|client
 operator|.
 name|deleteByQuery
 argument_list|(
@@ -7341,7 +7341,7 @@ literal|"*:*"
 argument_list|)
 expr_stmt|;
 comment|// delete everything!
-name|server
+name|client
 operator|.
 name|commit
 argument_list|()
@@ -7663,14 +7663,14 @@ argument_list|)
 argument_list|)
 expr_stmt|;
 comment|// something not matching all fields
-name|server
+name|client
 operator|.
 name|add
 argument_list|(
 name|docs
 argument_list|)
 expr_stmt|;
-name|server
+name|client
 operator|.
 name|commit
 argument_list|()
@@ -7719,7 +7719,7 @@ expr_stmt|;
 name|QueryResponse
 name|rsp
 init|=
-name|server
+name|client
 operator|.
 name|query
 argument_list|(
@@ -8901,7 +8901,7 @@ argument_list|)
 expr_stmt|;
 name|rsp
 operator|=
-name|server
+name|client
 operator|.
 name|query
 argument_list|(
@@ -9177,14 +9177,14 @@ parameter_list|()
 throws|throws
 name|Exception
 block|{
-name|SolrServer
-name|server
+name|SolrClient
+name|client
 init|=
-name|getSolrServer
+name|getSolrClient
 argument_list|()
 decl_stmt|;
 comment|// Empty the database...
-name|server
+name|client
 operator|.
 name|deleteByQuery
 argument_list|(
@@ -9192,7 +9192,7 @@ literal|"*:*"
 argument_list|)
 expr_stmt|;
 comment|// delete everything!
-name|server
+name|client
 operator|.
 name|commit
 argument_list|()
@@ -9262,7 +9262,7 @@ name|req
 operator|.
 name|process
 argument_list|(
-name|server
+name|client
 argument_list|)
 expr_stmt|;
 comment|// Beijing university should match:
@@ -9278,7 +9278,7 @@ decl_stmt|;
 name|QueryResponse
 name|rsp
 init|=
-name|server
+name|client
 operator|.
 name|query
 argument_list|(
@@ -9309,14 +9309,14 @@ parameter_list|()
 throws|throws
 name|Exception
 block|{
-name|SolrServer
-name|server
+name|SolrClient
+name|client
 init|=
-name|getSolrServer
+name|getSolrClient
 argument_list|()
 decl_stmt|;
 comment|// Empty the database...
-name|server
+name|client
 operator|.
 name|deleteByQuery
 argument_list|(
@@ -9354,14 +9354,14 @@ argument_list|,
 literal|1.0f
 argument_list|)
 expr_stmt|;
-name|server
+name|client
 operator|.
 name|add
 argument_list|(
 name|doc
 argument_list|)
 expr_stmt|;
-name|server
+name|client
 operator|.
 name|commit
 argument_list|()
@@ -9425,7 +9425,7 @@ name|req
 operator|.
 name|process
 argument_list|(
-name|server
+name|client
 argument_list|)
 decl_stmt|;
 name|SolrDocument
@@ -9496,7 +9496,7 @@ name|req
 operator|.
 name|process
 argument_list|(
-name|server
+name|client
 argument_list|)
 expr_stmt|;
 name|out
@@ -9562,20 +9562,20 @@ throws|throws
 name|Exception
 block|{
 comment|//no versions
-name|SolrServer
-name|server
+name|SolrClient
+name|client
 init|=
-name|getSolrServer
+name|getSolrClient
 argument_list|()
 decl_stmt|;
-name|server
+name|client
 operator|.
 name|deleteByQuery
 argument_list|(
 literal|"*:*"
 argument_list|)
 expr_stmt|;
-name|server
+name|client
 operator|.
 name|commit
 argument_list|()
@@ -9614,14 +9614,14 @@ argument_list|,
 literal|1
 argument_list|)
 expr_stmt|;
-name|server
+name|client
 operator|.
 name|add
 argument_list|(
 name|doc
 argument_list|)
 expr_stmt|;
-name|server
+name|client
 operator|.
 name|commit
 argument_list|()
@@ -9651,7 +9651,7 @@ expr_stmt|;
 name|QueryResponse
 name|resp
 init|=
-name|server
+name|client
 operator|.
 name|query
 argument_list|(
@@ -9782,7 +9782,7 @@ argument_list|)
 expr_stmt|;
 try|try
 block|{
-name|server
+name|client
 operator|.
 name|add
 argument_list|(
@@ -9791,12 +9791,12 @@ argument_list|)
 expr_stmt|;
 if|if
 condition|(
-name|server
+name|client
 operator|instanceof
-name|HttpSolrServer
+name|HttpSolrClient
 condition|)
 block|{
-comment|//XXX concurrent server reports exceptions differently
+comment|//XXX concurrent client reports exceptions differently
 name|fail
 argument_list|(
 literal|"Operation should throw an exception!"
@@ -9805,7 +9805,7 @@ expr_stmt|;
 block|}
 else|else
 block|{
-name|server
+name|client
 operator|.
 name|commit
 argument_list|()
@@ -9813,20 +9813,20 @@ expr_stmt|;
 comment|//just to be sure the client has sent the doc
 name|assertTrue
 argument_list|(
-literal|"CUSS did not report an error"
+literal|"ConcurrentUpdateSolrClient did not report an error"
 argument_list|,
 operator|(
 operator|(
 name|Throwable
 operator|)
-name|getCUSSExceptionField
+name|getConcurrentClientExceptionField
 argument_list|(
-name|server
+name|client
 argument_list|)
 operator|.
 name|get
 argument_list|(
-name|server
+name|client
 argument_list|)
 operator|)
 operator|.
@@ -9897,21 +9897,21 @@ argument_list|,
 name|oper
 argument_list|)
 expr_stmt|;
-name|server
+name|client
 operator|.
 name|add
 argument_list|(
 name|doc
 argument_list|)
 expr_stmt|;
-name|server
+name|client
 operator|.
 name|commit
 argument_list|()
 expr_stmt|;
 name|resp
 operator|=
-name|server
+name|client
 operator|.
 name|query
 argument_list|(
@@ -10011,21 +10011,21 @@ argument_list|,
 name|oper
 argument_list|)
 expr_stmt|;
-name|server
+name|client
 operator|.
 name|add
 argument_list|(
 name|doc
 argument_list|)
 expr_stmt|;
-name|server
+name|client
 operator|.
 name|commit
 argument_list|()
 expr_stmt|;
 name|resp
 operator|=
-name|server
+name|client
 operator|.
 name|query
 argument_list|(
@@ -10102,10 +10102,10 @@ parameter_list|()
 throws|throws
 name|Exception
 block|{
-name|SolrServer
-name|solrServer
+name|SolrClient
+name|solrClient
 init|=
-name|getSolrServer
+name|getSolrClient
 argument_list|()
 decl_stmt|;
 name|SolrInputDocument
@@ -10124,14 +10124,14 @@ argument_list|,
 literal|"123"
 argument_list|)
 expr_stmt|;
-name|solrServer
+name|solrClient
 operator|.
 name|add
 argument_list|(
 name|doc
 argument_list|)
 expr_stmt|;
-name|solrServer
+name|solrClient
 operator|.
 name|commit
 argument_list|(
@@ -10143,7 +10143,7 @@ expr_stmt|;
 name|QueryResponse
 name|response
 init|=
-name|solrServer
+name|solrClient
 operator|.
 name|query
 argument_list|(
@@ -10212,14 +10212,14 @@ argument_list|,
 name|operation
 argument_list|)
 expr_stmt|;
-name|solrServer
+name|solrClient
 operator|.
 name|add
 argument_list|(
 name|doc
 argument_list|)
 expr_stmt|;
-name|solrServer
+name|solrClient
 operator|.
 name|commit
 argument_list|(
@@ -10230,7 +10230,7 @@ argument_list|)
 expr_stmt|;
 name|response
 operator|=
-name|solrServer
+name|solrClient
 operator|.
 name|query
 argument_list|(
@@ -10339,14 +10339,14 @@ argument_list|,
 name|operation
 argument_list|)
 expr_stmt|;
-name|solrServer
+name|solrClient
 operator|.
 name|add
 argument_list|(
 name|doc
 argument_list|)
 expr_stmt|;
-name|solrServer
+name|solrClient
 operator|.
 name|commit
 argument_list|(
@@ -10357,7 +10357,7 @@ argument_list|)
 expr_stmt|;
 name|response
 operator|=
-name|solrServer
+name|solrClient
 operator|.
 name|query
 argument_list|(
@@ -10414,10 +10414,10 @@ parameter_list|()
 throws|throws
 name|Exception
 block|{
-name|SolrServer
-name|solrServer
+name|SolrClient
+name|solrClient
 init|=
-name|getSolrServer
+name|getSolrClient
 argument_list|()
 decl_stmt|;
 name|SolrInputDocument
@@ -10461,14 +10461,14 @@ literal|"second"
 argument_list|)
 argument_list|)
 expr_stmt|;
-name|solrServer
+name|solrClient
 operator|.
 name|add
 argument_list|(
 name|doc
 argument_list|)
 expr_stmt|;
-name|solrServer
+name|solrClient
 operator|.
 name|commit
 argument_list|(
@@ -10522,14 +10522,14 @@ argument_list|,
 name|map
 argument_list|)
 expr_stmt|;
-name|solrServer
+name|solrClient
 operator|.
 name|add
 argument_list|(
 name|doc
 argument_list|)
 expr_stmt|;
-name|solrServer
+name|solrClient
 operator|.
 name|commit
 argument_list|(
@@ -10541,7 +10541,7 @@ expr_stmt|;
 name|QueryResponse
 name|response
 init|=
-name|solrServer
+name|solrClient
 operator|.
 name|query
 argument_list|(
@@ -10601,10 +10601,10 @@ parameter_list|()
 throws|throws
 name|Exception
 block|{
-name|SolrServer
-name|solrServer
+name|SolrClient
+name|solrClient
 init|=
-name|getSolrServer
+name|getSolrClient
 argument_list|()
 decl_stmt|;
 name|SolrInputDocument
@@ -10648,14 +10648,14 @@ literal|"second"
 argument_list|)
 argument_list|)
 expr_stmt|;
-name|solrServer
+name|solrClient
 operator|.
 name|add
 argument_list|(
 name|doc
 argument_list|)
 expr_stmt|;
-name|solrServer
+name|solrClient
 operator|.
 name|commit
 argument_list|(
@@ -10719,14 +10719,14 @@ argument_list|,
 literal|"test-value2"
 argument_list|)
 expr_stmt|;
-name|solrServer
+name|solrClient
 operator|.
 name|add
 argument_list|(
 name|doc
 argument_list|)
 expr_stmt|;
-name|solrServer
+name|solrClient
 operator|.
 name|commit
 argument_list|()
@@ -10734,7 +10734,7 @@ expr_stmt|;
 name|QueryResponse
 name|response
 init|=
-name|solrServer
+name|solrClient
 operator|.
 name|query
 argument_list|(
@@ -10778,10 +10778,10 @@ parameter_list|()
 throws|throws
 name|SolrServerException
 block|{
-name|SolrServer
-name|server
+name|SolrClient
+name|client
 init|=
-name|getSolrServer
+name|getSolrClient
 argument_list|()
 decl_stmt|;
 name|SolrQuery
@@ -10805,7 +10805,7 @@ expr_stmt|;
 name|QueryResponse
 name|resp
 init|=
-name|server
+name|client
 operator|.
 name|query
 argument_list|(
@@ -10852,20 +10852,20 @@ name|IOException
 throws|,
 name|SolrServerException
 block|{
-name|SolrServer
-name|server
+name|SolrClient
+name|client
 init|=
-name|getSolrServer
+name|getSolrClient
 argument_list|()
 decl_stmt|;
-name|server
+name|client
 operator|.
 name|deleteByQuery
 argument_list|(
 literal|"*:*"
 argument_list|)
 expr_stmt|;
-name|server
+name|client
 operator|.
 name|commit
 argument_list|()
@@ -10928,7 +10928,7 @@ name|i
 operator|++
 control|)
 block|{
-name|server
+name|client
 operator|.
 name|add
 argument_list|(
@@ -10943,7 +10943,7 @@ argument_list|)
 argument_list|)
 expr_stmt|;
 block|}
-name|server
+name|client
 operator|.
 name|commit
 argument_list|()
@@ -10961,7 +10961,7 @@ decl_stmt|;
 name|QueryResponse
 name|resp
 init|=
-name|server
+name|client
 operator|.
 name|query
 argument_list|(
@@ -11006,7 +11006,7 @@ argument_list|)
 expr_stmt|;
 name|resp
 operator|=
-name|server
+name|client
 operator|.
 name|query
 argument_list|(
@@ -11231,7 +11231,7 @@ argument_list|)
 expr_stmt|;
 name|resp
 operator|=
-name|server
+name|client
 operator|.
 name|query
 argument_list|(
@@ -11582,7 +11582,7 @@ argument_list|)
 expr_stmt|;
 name|resp
 operator|=
-name|server
+name|client
 operator|.
 name|query
 argument_list|(
@@ -11756,10 +11756,10 @@ parameter_list|()
 throws|throws
 name|Exception
 block|{
-name|SolrServer
-name|server
+name|SolrClient
+name|client
 init|=
-name|getSolrServer
+name|getSolrClient
 argument_list|()
 decl_stmt|;
 name|SolrInputDocument
@@ -11805,14 +11805,14 @@ argument_list|,
 literal|"z"
 argument_list|)
 expr_stmt|;
-name|server
+name|client
 operator|.
 name|add
 argument_list|(
 name|doc
 argument_list|)
 expr_stmt|;
-name|server
+name|client
 operator|.
 name|commit
 argument_list|()
@@ -11821,7 +11821,7 @@ comment|// id and glob
 name|QueryResponse
 name|response
 init|=
-name|server
+name|client
 operator|.
 name|query
 argument_list|(
@@ -11883,7 +11883,7 @@ expr_stmt|;
 comment|// just globs
 name|response
 operator|=
-name|server
+name|client
 operator|.
 name|query
 argument_list|(
@@ -11940,7 +11940,7 @@ expr_stmt|;
 comment|// just id
 name|response
 operator|=
-name|server
+name|client
 operator|.
 name|query
 argument_list|(
@@ -11997,7 +11997,7 @@ expr_stmt|;
 comment|// id and pseudo field and glob
 name|response
 operator|=
-name|server
+name|client
 operator|.
 name|query
 argument_list|(
@@ -12064,7 +12064,7 @@ expr_stmt|;
 comment|// pseudo field and glob
 name|response
 operator|=
-name|server
+name|client
 operator|.
 name|query
 argument_list|(
@@ -12126,7 +12126,7 @@ expr_stmt|;
 comment|// just a pseudo field
 name|response
 operator|=
-name|server
+name|client
 operator|.
 name|query
 argument_list|(
@@ -12183,7 +12183,7 @@ expr_stmt|;
 comment|// only score
 name|response
 operator|=
-name|server
+name|client
 operator|.
 name|query
 argument_list|(
@@ -12240,7 +12240,7 @@ expr_stmt|;
 comment|// pseudo field and score
 name|response
 operator|=
-name|server
+name|client
 operator|.
 name|query
 argument_list|(
@@ -12302,7 +12302,7 @@ expr_stmt|;
 comment|// score and globs
 name|response
 operator|=
-name|server
+name|client
 operator|.
 name|query
 argument_list|(

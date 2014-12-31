@@ -48,7 +48,7 @@ name|client
 operator|.
 name|solrj
 operator|.
-name|SolrServer
+name|SolrClient
 import|;
 end_import
 
@@ -347,8 +347,8 @@ specifier|public
 name|QueryResponse
 name|process
 parameter_list|(
-name|SolrServer
-name|server
+name|SolrClient
+name|client
 parameter_list|)
 throws|throws
 name|SolrServerException
@@ -380,14 +380,14 @@ init|=
 operator|new
 name|QueryResponse
 argument_list|(
-name|server
+name|client
 operator|.
 name|request
 argument_list|(
 name|this
 argument_list|)
 argument_list|,
-name|server
+name|client
 argument_list|)
 decl_stmt|;
 name|long

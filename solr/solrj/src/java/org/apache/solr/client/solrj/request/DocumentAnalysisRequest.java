@@ -48,7 +48,7 @@ name|client
 operator|.
 name|solrj
 operator|.
-name|SolrServer
+name|SolrClient
 import|;
 end_import
 
@@ -391,8 +391,8 @@ specifier|public
 name|DocumentAnalysisResponse
 name|process
 parameter_list|(
-name|SolrServer
-name|server
+name|SolrClient
+name|client
 parameter_list|)
 throws|throws
 name|SolrServerException
@@ -429,7 +429,7 @@ name|res
 operator|.
 name|setResponse
 argument_list|(
-name|server
+name|client
 operator|.
 name|request
 argument_list|(

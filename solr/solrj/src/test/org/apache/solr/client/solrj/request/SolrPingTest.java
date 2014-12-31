@@ -258,7 +258,7 @@ argument_list|,
 literal|"samsung"
 argument_list|)
 expr_stmt|;
-name|getSolrServer
+name|getSolrClient
 argument_list|()
 operator|.
 name|add
@@ -266,7 +266,7 @@ argument_list|(
 name|doc
 argument_list|)
 expr_stmt|;
-name|getSolrServer
+name|getSolrClient
 argument_list|()
 operator|.
 name|commit
@@ -308,7 +308,7 @@ name|ping
 operator|.
 name|process
 argument_list|(
-name|getSolrServer
+name|getSolrClient
 argument_list|()
 argument_list|)
 expr_stmt|;
@@ -323,7 +323,7 @@ name|ping
 operator|.
 name|process
 argument_list|(
-name|getSolrServer
+name|getSolrClient
 argument_list|()
 argument_list|)
 expr_stmt|;
@@ -375,7 +375,7 @@ name|ping
 operator|.
 name|process
 argument_list|(
-name|getSolrServer
+name|getSolrClient
 argument_list|()
 argument_list|)
 expr_stmt|;
@@ -405,7 +405,7 @@ name|ping
 operator|.
 name|process
 argument_list|(
-name|getSolrServer
+name|getSolrClient
 argument_list|()
 argument_list|)
 expr_stmt|;

@@ -44,7 +44,7 @@ name|client
 operator|.
 name|solrj
 operator|.
-name|SolrServer
+name|SolrClient
 import|;
 end_import
 
@@ -96,7 +96,7 @@ name|solrj
 operator|.
 name|impl
 operator|.
-name|CloudSolrServer
+name|CloudSolrClient
 import|;
 end_import
 
@@ -1621,7 +1621,7 @@ literal|0
 decl_stmt|;
 for|for
 control|(
-name|SolrServer
+name|SolrClient
 name|client
 range|:
 name|clients

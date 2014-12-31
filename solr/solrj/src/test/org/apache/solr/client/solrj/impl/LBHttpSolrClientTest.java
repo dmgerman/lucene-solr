@@ -21,28 +21,6 @@ package|;
 end_package
 
 begin_import
-import|import static
-name|org
-operator|.
-name|junit
-operator|.
-name|Assert
-operator|.
-name|*
-import|;
-end_import
-
-begin_import
-import|import
-name|java
-operator|.
-name|net
-operator|.
-name|MalformedURLException
-import|;
-end_import
-
-begin_import
 import|import
 name|org
 operator|.
@@ -62,20 +40,6 @@ begin_import
 import|import
 name|org
 operator|.
-name|junit
-operator|.
-name|Test
-import|;
-end_import
-
-begin_comment
-comment|/*  * Licensed to the Apache Software Foundation (ASF) under one or more  * contributor license agreements.  See the NOTICE file distributed with  * this work for additional information regarding copyright ownership.  * The ASF licenses this file to You under the Apache License, Version 2.0  * (the "License"); you may not use this file except in compliance with  * the License.  You may obtain a copy of the License at  *  *     http://www.apache.org/licenses/LICENSE-2.0  *  * Unless required by applicable law or agreed to in writing, software  * distributed under the License is distributed on an "AS IS" BASIS,  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.  * See the License for the specific language governing permissions and  * limitations under the License.  */
-end_comment
-
-begin_import
-import|import
-name|org
-operator|.
 name|apache
 operator|.
 name|solr
@@ -88,32 +52,80 @@ name|ModifiableSolrParams
 import|;
 end_import
 
+begin_import
+import|import
+name|org
+operator|.
+name|junit
+operator|.
+name|Test
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
+name|net
+operator|.
+name|MalformedURLException
+import|;
+end_import
+
+begin_import
+import|import static
+name|org
+operator|.
+name|junit
+operator|.
+name|Assert
+operator|.
+name|assertEquals
+import|;
+end_import
+
+begin_import
+import|import static
+name|org
+operator|.
+name|junit
+operator|.
+name|Assert
+operator|.
+name|assertNull
+import|;
+end_import
+
 begin_comment
-comment|/**  * Test the LBHttpSolrServer.  */
+comment|/*  * Licensed to the Apache Software Foundation (ASF) under one or more  * contributor license agreements.  See the NOTICE file distributed with  * this work for additional information regarding copyright ownership.  * The ASF licenses this file to You under the Apache License, Version 2.0  * (the "License"); you may not use this file except in compliance with  * the License.  You may obtain a copy of the License at  *  *     http://www.apache.org/licenses/LICENSE-2.0  *  * Unless required by applicable law or agreed to in writing, software  * distributed under the License is distributed on an "AS IS" BASIS,  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.  * See the License for the specific language governing permissions and  * limitations under the License.  */
+end_comment
+
+begin_comment
+comment|/**  * Test the LBHttpSolrClient.  */
 end_comment
 
 begin_class
-DECL|class|LBHttpSolrServerTest
+DECL|class|LBHttpSolrClientTest
 specifier|public
 class|class
-name|LBHttpSolrServerTest
+name|LBHttpSolrClientTest
 block|{
-comment|/**    * Test method for {@link org.apache.solr.client.solrj.impl.LBHttpSolrServer#LBHttpSolrServer(org.apache.http.client.HttpClient, org.apache.solr.client.solrj.ResponseParser, java.lang.String[])}.    *     * Validate that the parser passed in is used in the<code>HttpSolrServer</code> instances created.    *     * @throws MalformedURLException If URL is invalid, no URL passed, so won't happen.    */
+comment|/**    * Test method for {@link LBHttpSolrClient#LBHttpSolrClient(org.apache.http.client.HttpClient, org.apache.solr.client.solrj.ResponseParser, java.lang.String[])}.    *     * Validate that the parser passed in is used in the<code>HttpSolrClient</code> instances created.    *     * @throws MalformedURLException If URL is invalid, no URL passed, so won't happen.    */
 annotation|@
 name|Test
-DECL|method|testLBHttpSolrServerHttpClientResponseParserStringArray
+DECL|method|testLBHttpSolrClientHttpClientResponseParserStringArray
 specifier|public
 name|void
-name|testLBHttpSolrServerHttpClientResponseParserStringArray
+name|testLBHttpSolrClientHttpClientResponseParserStringArray
 parameter_list|()
 throws|throws
 name|MalformedURLException
 block|{
-name|LBHttpSolrServer
-name|testServer
+name|LBHttpSolrClient
+name|testClient
 init|=
 operator|new
-name|LBHttpSolrServer
+name|LBHttpSolrClient
 argument_list|(
 name|HttpClientUtil
 operator|.
@@ -130,12 +142,12 @@ operator|)
 literal|null
 argument_list|)
 decl_stmt|;
-name|HttpSolrServer
-name|httpServer
+name|HttpSolrClient
+name|httpSolrClient
 init|=
-name|testServer
+name|testClient
 operator|.
-name|makeServer
+name|makeSolrClient
 argument_list|(
 literal|"http://127.0.0.1:8080"
 argument_list|)
@@ -144,7 +156,7 @@ name|assertNull
 argument_list|(
 literal|"Generated server should have null parser."
 argument_list|,
-name|httpServer
+name|httpSolrClient
 operator|.
 name|getParser
 argument_list|()
@@ -157,10 +169,10 @@ operator|new
 name|BinaryResponseParser
 argument_list|()
 decl_stmt|;
-name|testServer
+name|testClient
 operator|=
 operator|new
-name|LBHttpSolrServer
+name|LBHttpSolrClient
 argument_list|(
 name|HttpClientUtil
 operator|.
@@ -174,11 +186,11 @@ argument_list|,
 name|parser
 argument_list|)
 expr_stmt|;
-name|httpServer
+name|httpSolrClient
 operator|=
-name|testServer
+name|testClient
 operator|.
-name|makeServer
+name|makeSolrClient
 argument_list|(
 literal|"http://127.0.0.1:8080"
 argument_list|)
@@ -189,7 +201,7 @@ literal|"Invalid parser passed to generated server."
 argument_list|,
 name|parser
 argument_list|,
-name|httpServer
+name|httpSolrClient
 operator|.
 name|getParser
 argument_list|()

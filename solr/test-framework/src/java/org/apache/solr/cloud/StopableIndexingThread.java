@@ -74,7 +74,7 @@ name|client
 operator|.
 name|solrj
 operator|.
-name|SolrServer
+name|SolrClient
 import|;
 end_import
 
@@ -222,12 +222,12 @@ name|numCycles
 decl_stmt|;
 DECL|field|controlClient
 specifier|private
-name|SolrServer
+name|SolrClient
 name|controlClient
 decl_stmt|;
 DECL|field|cloudClient
 specifier|private
-name|SolrServer
+name|SolrClient
 name|cloudClient
 decl_stmt|;
 DECL|field|numDeletes
@@ -244,10 +244,10 @@ DECL|method|StopableIndexingThread
 specifier|public
 name|StopableIndexingThread
 parameter_list|(
-name|SolrServer
+name|SolrClient
 name|controlClient
 parameter_list|,
-name|SolrServer
+name|SolrClient
 name|cloudClient
 parameter_list|,
 name|String
@@ -276,10 +276,10 @@ DECL|method|StopableIndexingThread
 specifier|public
 name|StopableIndexingThread
 parameter_list|(
-name|SolrServer
+name|SolrClient
 name|controlClient
 parameter_list|,
-name|SolrServer
+name|SolrClient
 name|cloudClient
 parameter_list|,
 name|String

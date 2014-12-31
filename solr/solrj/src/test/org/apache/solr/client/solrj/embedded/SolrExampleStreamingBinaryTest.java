@@ -62,7 +62,7 @@ name|client
 operator|.
 name|solrj
 operator|.
-name|SolrServer
+name|SolrClient
 import|;
 end_import
 
@@ -116,7 +116,7 @@ name|solrj
 operator|.
 name|impl
 operator|.
-name|ConcurrentUpdateSolrServer
+name|ConcurrentUpdateSolrClient
 import|;
 end_import
 
@@ -139,24 +139,24 @@ name|SolrExampleStreamingTest
 block|{
 annotation|@
 name|Override
-DECL|method|createNewSolrServer
+DECL|method|createNewSolrClient
 specifier|public
-name|SolrServer
-name|createNewSolrServer
+name|SolrClient
+name|createNewSolrClient
 parameter_list|()
 block|{
-name|ConcurrentUpdateSolrServer
-name|s
+name|ConcurrentUpdateSolrClient
+name|client
 init|=
 operator|(
-name|ConcurrentUpdateSolrServer
+name|ConcurrentUpdateSolrClient
 operator|)
 name|super
 operator|.
-name|createNewSolrServer
+name|createNewSolrClient
 argument_list|()
 decl_stmt|;
-name|s
+name|client
 operator|.
 name|setParser
 argument_list|(
@@ -165,7 +165,7 @@ name|BinaryResponseParser
 argument_list|()
 argument_list|)
 expr_stmt|;
-name|s
+name|client
 operator|.
 name|setRequestWriter
 argument_list|(
@@ -175,7 +175,7 @@ argument_list|()
 argument_list|)
 expr_stmt|;
 return|return
-name|s
+name|client
 return|;
 block|}
 block|}

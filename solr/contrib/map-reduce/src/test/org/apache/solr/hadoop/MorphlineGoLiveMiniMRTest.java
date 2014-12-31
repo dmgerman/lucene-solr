@@ -430,7 +430,7 @@ name|client
 operator|.
 name|solrj
 operator|.
-name|SolrServer
+name|SolrClient
 import|;
 end_import
 
@@ -482,7 +482,7 @@ name|solrj
 operator|.
 name|impl
 operator|.
-name|HttpSolrServer
+name|HttpSolrClient
 import|;
 end_import
 
@@ -2696,11 +2696,11 @@ decl_stmt|;
 name|QueryResponse
 name|results
 decl_stmt|;
-name|HttpSolrServer
+name|HttpSolrClient
 name|server
 init|=
 operator|new
-name|HttpSolrServer
+name|HttpSolrClient
 argument_list|(
 name|cloudJettys
 operator|.
@@ -4857,7 +4857,7 @@ specifier|private
 name|SolrDocumentList
 name|executeSolrQuery
 parameter_list|(
-name|SolrServer
+name|SolrClient
 name|collection
 parameter_list|,
 name|String
@@ -4971,11 +4971,11 @@ range|:
 name|replicas
 control|)
 block|{
-name|HttpSolrServer
+name|HttpSolrClient
 name|client
 init|=
 operator|new
-name|HttpSolrServer
+name|HttpSolrClient
 argument_list|(
 operator|new
 name|ZkCoreNodeProps

@@ -885,7 +885,7 @@ name|createCollectionRequest
 operator|.
 name|process
 argument_list|(
-name|getCommonCloudSolrServer
+name|getCommonCloudSolrClient
 argument_list|()
 argument_list|)
 decl_stmt|;

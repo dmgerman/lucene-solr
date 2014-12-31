@@ -48,7 +48,7 @@ name|client
 operator|.
 name|solrj
 operator|.
-name|SolrExampleTests
+name|SolrClient
 import|;
 end_import
 
@@ -64,7 +64,7 @@ name|client
 operator|.
 name|solrj
 operator|.
-name|SolrServer
+name|SolrExampleTests
 import|;
 end_import
 
@@ -82,7 +82,7 @@ name|solrj
 operator|.
 name|impl
 operator|.
-name|ConcurrentUpdateSolrServer
+name|ConcurrentUpdateSolrClient
 import|;
 end_import
 
@@ -158,13 +158,9 @@ begin_import
 import|import
 name|org
 operator|.
-name|apache
+name|junit
 operator|.
-name|solr
-operator|.
-name|util
-operator|.
-name|ExternalPaths
+name|BeforeClass
 import|;
 end_import
 
@@ -174,7 +170,7 @@ name|java
 operator|.
 name|util
 operator|.
-name|EnumSet
+name|ArrayList
 import|;
 end_import
 
@@ -194,7 +190,7 @@ name|java
 operator|.
 name|util
 operator|.
-name|List
+name|EnumSet
 import|;
 end_import
 
@@ -204,27 +200,7 @@ name|java
 operator|.
 name|util
 operator|.
-name|ArrayList
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|junit
-operator|.
-name|BeforeClass
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|junit
-operator|.
-name|After
+name|List
 import|;
 end_import
 
@@ -273,10 +249,10 @@ expr_stmt|;
 block|}
 annotation|@
 name|Override
-DECL|method|createNewSolrServer
+DECL|method|createNewSolrClient
 specifier|public
-name|SolrServer
-name|createNewSolrServer
+name|SolrClient
+name|createNewSolrClient
 parameter_list|()
 block|{
 try|try
@@ -296,11 +272,11 @@ operator|+
 literal|"/collection1"
 decl_stmt|;
 comment|// smaller queue size hits locks more often
-name|ConcurrentUpdateSolrServer
-name|s
+name|ConcurrentUpdateSolrClient
+name|concurrentClient
 init|=
 operator|new
-name|ConcurrentUpdateSolrServer
+name|ConcurrentUpdateSolrClient
 argument_list|(
 name|url
 argument_list|,
@@ -334,7 +310,7 @@ expr_stmt|;
 block|}
 block|}
 decl_stmt|;
-name|s
+name|concurrentClient
 operator|.
 name|setParser
 argument_list|(
@@ -343,7 +319,7 @@ name|XMLResponseParser
 argument_list|()
 argument_list|)
 expr_stmt|;
-name|s
+name|concurrentClient
 operator|.
 name|setRequestWriter
 argument_list|(
@@ -353,7 +329,7 @@ argument_list|()
 argument_list|)
 expr_stmt|;
 return|return
-name|s
+name|concurrentClient
 return|;
 block|}
 catch|catch
@@ -392,11 +368,11 @@ name|ArrayList
 argument_list|<>
 argument_list|()
 decl_stmt|;
-name|ConcurrentUpdateSolrServer
-name|s
+name|ConcurrentUpdateSolrClient
+name|concurrentClient
 init|=
 operator|new
-name|ConcurrentUpdateSolrServer
+name|ConcurrentUpdateSolrClient
 argument_list|(
 name|jetty
 operator|.
@@ -529,7 +505,7 @@ argument_list|,
 name|waitFlush
 argument_list|)
 expr_stmt|;
-name|s
+name|concurrentClient
 operator|.
 name|request
 argument_list|(
@@ -539,17 +515,17 @@ expr_stmt|;
 block|}
 block|}
 block|}
-name|s
+name|concurrentClient
 operator|.
 name|commit
 argument_list|()
 expr_stmt|;
-name|s
+name|concurrentClient
 operator|.
 name|blockUntilFinished
 argument_list|()
 expr_stmt|;
-name|s
+name|concurrentClient
 operator|.
 name|shutdown
 argument_list|()

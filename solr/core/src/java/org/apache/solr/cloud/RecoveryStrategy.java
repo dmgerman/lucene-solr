@@ -90,7 +90,7 @@ name|solrj
 operator|.
 name|impl
 operator|.
-name|HttpSolrServer
+name|HttpSolrClient
 import|;
 end_import
 
@@ -108,7 +108,7 @@ name|solrj
 operator|.
 name|impl
 operator|.
-name|HttpSolrServer
+name|HttpSolrClient
 operator|.
 name|HttpUriRequestResponse
 import|;
@@ -1405,11 +1405,11 @@ name|SolrServerException
 throws|,
 name|IOException
 block|{
-name|HttpSolrServer
+name|HttpSolrClient
 name|server
 init|=
 operator|new
-name|HttpSolrServer
+name|HttpSolrClient
 argument_list|(
 name|leaderUrl
 argument_list|)
@@ -3365,11 +3365,11 @@ name|InterruptedException
 throws|,
 name|ExecutionException
 block|{
-name|HttpSolrServer
+name|HttpSolrClient
 name|server
 init|=
 operator|new
-name|HttpSolrServer
+name|HttpSolrClient
 argument_list|(
 name|leaderBaseUrl
 argument_list|)

@@ -254,7 +254,7 @@ name|solrj
 operator|.
 name|impl
 operator|.
-name|CloudSolrServer
+name|CloudSolrClient
 import|;
 end_import
 
@@ -451,7 +451,7 @@ name|AbstractFullDistribZkTestBase
 block|{
 DECL|field|client
 specifier|private
-name|CloudSolrServer
+name|CloudSolrClient
 name|client
 decl_stmt|;
 annotation|@
@@ -1434,7 +1434,7 @@ parameter_list|(
 name|String
 name|COLL_NAME
 parameter_list|,
-name|CloudSolrServer
+name|CloudSolrClient
 name|client
 parameter_list|)
 throws|throws
@@ -1465,7 +1465,7 @@ operator|*
 name|replicationFactor
 operator|)
 operator|/
-name|getCommonCloudSolrServer
+name|getCommonCloudSolrClient
 argument_list|()
 operator|.
 name|getZkStateReader

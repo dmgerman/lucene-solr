@@ -44,7 +44,7 @@ name|client
 operator|.
 name|solrj
 operator|.
-name|SolrServer
+name|SolrClient
 import|;
 end_import
 
@@ -78,7 +78,7 @@ name|solrj
 operator|.
 name|impl
 operator|.
-name|HttpSolrServer
+name|HttpSolrClient
 import|;
 end_import
 
@@ -445,17 +445,17 @@ name|IOException
 throws|,
 name|SolrServerException
 block|{
-name|SolrServer
-name|server
+name|SolrClient
+name|client
 init|=
-name|createNewSolrServer
+name|createNewSolrClient
 argument_list|(
 literal|""
 argument_list|,
 name|getBaseUrl
 argument_list|(
 operator|(
-name|HttpSolrServer
+name|HttpSolrClient
 operator|)
 name|clients
 operator|.
@@ -527,7 +527,7 @@ name|createCollectionRequest
 operator|.
 name|process
 argument_list|(
-name|server
+name|client
 argument_list|)
 expr_stmt|;
 block|}
@@ -573,7 +573,7 @@ name|i
 operator|+
 literal|""
 argument_list|,
-name|server
+name|client
 argument_list|)
 operator|.
 name|equals
@@ -665,7 +665,7 @@ literal|""
 argument_list|,
 name|REQUEST_STATUS_TIMEOUT
 argument_list|,
-name|server
+name|client
 argument_list|)
 decl_stmt|;
 name|assertTrue
@@ -698,17 +698,17 @@ name|IOException
 throws|,
 name|SolrServerException
 block|{
-name|SolrServer
-name|server
+name|SolrClient
+name|client
 init|=
-name|createNewSolrServer
+name|createNewSolrClient
 argument_list|(
 literal|""
 argument_list|,
 name|getBaseUrl
 argument_list|(
 operator|(
-name|HttpSolrServer
+name|HttpSolrClient
 operator|)
 name|clients
 operator|.
@@ -758,7 +758,7 @@ name|createCollectionRequest
 operator|.
 name|process
 argument_list|(
-name|server
+name|client
 argument_list|)
 expr_stmt|;
 name|SplitShard
@@ -793,7 +793,7 @@ name|splitShardRequest
 operator|.
 name|process
 argument_list|(
-name|server
+name|client
 argument_list|)
 expr_stmt|;
 name|splitShardRequest
@@ -827,7 +827,7 @@ name|splitShardRequest
 operator|.
 name|process
 argument_list|(
-name|server
+name|client
 argument_list|)
 expr_stmt|;
 name|int
@@ -872,7 +872,7 @@ name|getRequestState
 argument_list|(
 name|i
 argument_list|,
-name|server
+name|client
 argument_list|)
 decl_stmt|;
 if|if
@@ -989,7 +989,7 @@ literal|""
 argument_list|,
 name|REQUEST_STATUS_TIMEOUT
 argument_list|,
-name|server
+name|client
 argument_list|)
 decl_stmt|;
 name|assertTrue
@@ -1022,17 +1022,17 @@ name|IOException
 throws|,
 name|SolrServerException
 block|{
-name|SolrServer
-name|server
+name|SolrClient
+name|client
 init|=
-name|createNewSolrServer
+name|createNewSolrClient
 argument_list|(
 literal|""
 argument_list|,
 name|getBaseUrl
 argument_list|(
 operator|(
-name|HttpSolrServer
+name|HttpSolrClient
 operator|)
 name|clients
 operator|.
@@ -1082,7 +1082,7 @@ name|createCollectionRequest
 operator|.
 name|process
 argument_list|(
-name|server
+name|client
 argument_list|)
 expr_stmt|;
 name|SplitShard
@@ -1117,7 +1117,7 @@ name|splitShardRequest
 operator|.
 name|process
 argument_list|(
-name|server
+name|client
 argument_list|)
 expr_stmt|;
 name|splitShardRequest
@@ -1151,7 +1151,7 @@ name|splitShardRequest
 operator|.
 name|process
 argument_list|(
-name|server
+name|client
 argument_list|)
 expr_stmt|;
 comment|// Now submit another task with the same id. At this time, hopefully the previous 3002 should still be in the queue.
@@ -1189,7 +1189,7 @@ name|splitShardRequest
 operator|.
 name|process
 argument_list|(
-name|server
+name|client
 argument_list|)
 decl_stmt|;
 name|NamedList
@@ -1240,7 +1240,7 @@ literal|""
 argument_list|,
 name|REQUEST_STATUS_TIMEOUT
 argument_list|,
-name|server
+name|client
 argument_list|)
 decl_stmt|;
 name|assertTrue
@@ -1360,17 +1360,17 @@ argument_list|()
 expr_stmt|;
 try|try
 block|{
-name|SolrServer
-name|server
+name|SolrClient
+name|client
 init|=
-name|createNewSolrServer
+name|createNewSolrClient
 argument_list|(
 literal|""
 argument_list|,
 name|getBaseUrl
 argument_list|(
 operator|(
-name|HttpSolrServer
+name|HttpSolrClient
 operator|)
 name|clients
 operator|.
@@ -1413,7 +1413,7 @@ name|splitShardRequest
 operator|.
 name|process
 argument_list|(
-name|server
+name|client
 argument_list|)
 expr_stmt|;
 name|String
@@ -1423,7 +1423,7 @@ name|getRequestState
 argument_list|(
 literal|"2000"
 argument_list|,
-name|server
+name|client
 argument_list|)
 decl_stmt|;
 while|while
@@ -1442,7 +1442,7 @@ name|getRequestState
 argument_list|(
 literal|"2000"
 argument_list|,
-name|server
+name|client
 argument_list|)
 expr_stmt|;
 name|Thread
@@ -1518,7 +1518,7 @@ argument_list|(
 literal|"/admin/collections"
 argument_list|)
 expr_stmt|;
-name|server
+name|client
 operator|.
 name|request
 argument_list|(
@@ -1531,7 +1531,7 @@ name|getRequestState
 argument_list|(
 literal|"2000"
 argument_list|,
-name|server
+name|client
 argument_list|)
 expr_stmt|;
 name|assertTrue
@@ -1609,8 +1609,8 @@ parameter_list|,
 name|int
 name|waitForSeconds
 parameter_list|,
-name|SolrServer
-name|server
+name|SolrClient
+name|client
 parameter_list|)
 throws|throws
 name|IOException
@@ -1659,7 +1659,7 @@ name|getRequestState
 argument_list|(
 name|requestId
 argument_list|,
-name|server
+name|client
 argument_list|)
 expr_stmt|;
 if|if
@@ -1710,8 +1710,8 @@ parameter_list|(
 name|int
 name|requestId
 parameter_list|,
-name|SolrServer
-name|server
+name|SolrClient
+name|client
 parameter_list|)
 throws|throws
 name|IOException
@@ -1728,7 +1728,7 @@ argument_list|(
 name|requestId
 argument_list|)
 argument_list|,
-name|server
+name|client
 argument_list|)
 return|;
 block|}
@@ -1740,8 +1740,8 @@ parameter_list|(
 name|String
 name|requestId
 parameter_list|,
-name|SolrServer
-name|server
+name|SolrClient
+name|client
 parameter_list|)
 throws|throws
 name|IOException
@@ -1769,7 +1769,7 @@ name|requestStatusRequest
 operator|.
 name|process
 argument_list|(
-name|server
+name|client
 argument_list|)
 decl_stmt|;
 name|NamedList

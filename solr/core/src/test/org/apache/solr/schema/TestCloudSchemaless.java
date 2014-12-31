@@ -42,7 +42,7 @@ name|client
 operator|.
 name|solrj
 operator|.
-name|SolrServer
+name|SolrClient
 import|;
 end_import
 
@@ -60,7 +60,7 @@ name|solrj
 operator|.
 name|impl
 operator|.
-name|HttpSolrServer
+name|HttpSolrClient
 import|;
 end_import
 
@@ -520,7 +520,7 @@ block|{
 for|for
 control|(
 specifier|final
-name|SolrServer
+name|SolrClient
 name|client
 range|:
 name|clients
@@ -546,7 +546,7 @@ block|{
 return|return
 operator|(
 operator|(
-name|HttpSolrServer
+name|HttpSolrClient
 operator|)
 name|client
 operator|)
@@ -654,7 +654,7 @@ comment|// This tests that the replicas properly handle schema additions.
 name|int
 name|slices
 init|=
-name|getCommonCloudSolrServer
+name|getCommonCloudSolrClient
 argument_list|()
 operator|.
 name|getZkStateReader
@@ -698,8 +698,8 @@ literal|1
 operator|)
 argument_list|)
 decl_stmt|;
-name|SolrServer
-name|ss
+name|SolrClient
+name|randomClient
 init|=
 name|clients
 operator|.
@@ -822,7 +822,7 @@ name|doc
 argument_list|)
 expr_stmt|;
 block|}
-name|ss
+name|randomClient
 operator|.
 name|add
 argument_list|(
@@ -830,7 +830,7 @@ name|docs
 argument_list|)
 expr_stmt|;
 block|}
-name|ss
+name|randomClient
 operator|.
 name|commit
 argument_list|()
@@ -1065,14 +1065,14 @@ expr_stmt|;
 block|}
 try|try
 block|{
-name|ss
+name|randomClient
 operator|.
 name|add
 argument_list|(
 name|docs
 argument_list|)
 expr_stmt|;
-name|ss
+name|randomClient
 operator|.
 name|commit
 argument_list|()

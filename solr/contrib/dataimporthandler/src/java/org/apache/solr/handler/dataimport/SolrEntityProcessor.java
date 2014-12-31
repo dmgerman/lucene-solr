@@ -60,7 +60,7 @@ name|client
 operator|.
 name|solrj
 operator|.
-name|SolrServer
+name|SolrClient
 import|;
 end_import
 
@@ -112,7 +112,7 @@ name|solrj
 operator|.
 name|impl
 operator|.
-name|HttpSolrServer
+name|HttpSolrClient
 import|;
 end_import
 
@@ -388,10 +388,10 @@ name|ROWS_DEFAULT
 init|=
 literal|50
 decl_stmt|;
-DECL|field|solrServer
+DECL|field|solrClient
 specifier|private
-name|SolrServer
-name|solrServer
+name|SolrClient
+name|solrClient
 init|=
 literal|null
 decl_stmt|;
@@ -532,10 +532,10 @@ argument_list|)
 condition|)
 block|{
 comment|// TODO: it doesn't matter for this impl when passing a client currently, but we should close this!
-name|solrServer
+name|solrClient
 operator|=
 operator|new
-name|HttpSolrServer
+name|HttpSolrClient
 argument_list|(
 name|url
 operator|.
@@ -560,10 +560,10 @@ block|}
 else|else
 block|{
 comment|// TODO: it doesn't matter for this impl when passing a client currently, but we should close this!
-name|solrServer
+name|solrClient
 operator|=
 operator|new
-name|HttpSolrServer
+name|HttpSolrClient
 argument_list|(
 name|url
 operator|.
@@ -974,7 +974,7 @@ try|try
 block|{
 name|response
 operator|=
-name|solrServer
+name|solrClient
 operator|.
 name|query
 argument_list|(

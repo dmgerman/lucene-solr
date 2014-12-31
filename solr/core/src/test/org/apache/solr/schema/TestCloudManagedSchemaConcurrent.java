@@ -28,7 +28,7 @@ name|client
 operator|.
 name|solrj
 operator|.
-name|SolrServer
+name|SolrClient
 import|;
 end_import
 
@@ -64,7 +64,7 @@ name|solrj
 operator|.
 name|impl
 operator|.
-name|HttpSolrServer
+name|HttpSolrClient
 import|;
 end_import
 
@@ -578,7 +578,7 @@ block|{
 for|for
 control|(
 specifier|final
-name|SolrServer
+name|SolrClient
 name|client
 range|:
 name|clients
@@ -604,7 +604,7 @@ block|{
 return|return
 operator|(
 operator|(
-name|HttpSolrServer
+name|HttpSolrClient
 operator|)
 name|client
 operator|)

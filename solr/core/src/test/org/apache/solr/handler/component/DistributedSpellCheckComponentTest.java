@@ -114,7 +114,7 @@ name|client
 operator|.
 name|solrj
 operator|.
-name|SolrServer
+name|SolrClient
 import|;
 end_import
 
@@ -367,7 +367,7 @@ name|size
 argument_list|()
 argument_list|)
 decl_stmt|;
-name|SolrServer
+name|SolrClient
 name|client
 init|=
 name|clients

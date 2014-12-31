@@ -42,7 +42,7 @@ name|client
 operator|.
 name|solrj
 operator|.
-name|SolrServer
+name|SolrClient
 import|;
 end_import
 
@@ -508,7 +508,7 @@ name|String
 argument_list|,
 name|List
 argument_list|<
-name|SolrServer
+name|SolrClient
 argument_list|>
 argument_list|>
 name|shardToClient
@@ -2276,7 +2276,7 @@ return|;
 block|}
 DECL|method|getRandomClient
 specifier|public
-name|SolrServer
+name|SolrClient
 name|getRandomClient
 parameter_list|(
 name|String
@@ -2298,7 +2298,7 @@ expr_stmt|;
 comment|// get random shard
 name|List
 argument_list|<
-name|SolrServer
+name|SolrClient
 argument_list|>
 name|clients
 init|=
@@ -2327,7 +2327,7 @@ operator|-
 literal|1
 argument_list|)
 decl_stmt|;
-name|SolrServer
+name|SolrClient
 name|client
 init|=
 name|clients

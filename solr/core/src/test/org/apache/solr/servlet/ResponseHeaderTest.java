@@ -200,7 +200,7 @@ name|solrj
 operator|.
 name|impl
 operator|.
-name|HttpSolrServer
+name|HttpSolrClient
 import|;
 end_import
 
@@ -395,13 +395,13 @@ name|SolrServerException
 throws|,
 name|IOException
 block|{
-name|HttpSolrServer
+name|HttpSolrClient
 name|client
 init|=
 operator|(
-name|HttpSolrServer
+name|HttpSolrClient
 operator|)
-name|getSolrServer
+name|getSolrClient
 argument_list|()
 decl_stmt|;
 name|HttpClient

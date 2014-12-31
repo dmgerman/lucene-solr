@@ -18,16 +18,6 @@ begin_import
 import|import
 name|java
 operator|.
-name|nio
-operator|.
-name|ByteBuffer
-import|;
-end_import
-
-begin_import
-import|import
-name|java
-operator|.
 name|util
 operator|.
 name|ArrayList
@@ -106,7 +96,7 @@ name|client
 operator|.
 name|solrj
 operator|.
-name|SolrServer
+name|SolrClient
 import|;
 end_import
 
@@ -158,7 +148,7 @@ name|solrj
 operator|.
 name|impl
 operator|.
-name|HttpSolrServer
+name|HttpSolrClient
 import|;
 end_import
 
@@ -3708,7 +3698,7 @@ argument_list|)
 decl_stmt|;
 name|List
 argument_list|<
-name|SolrServer
+name|SolrClient
 argument_list|>
 name|upClients
 init|=
@@ -4094,7 +4084,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
-name|HttpSolrServer
+name|HttpSolrClient
 operator|.
 name|RemoteSolrException
 name|e
@@ -4504,7 +4494,7 @@ parameter_list|,
 specifier|final
 name|List
 argument_list|<
-name|SolrServer
+name|SolrClient
 argument_list|>
 name|upClients
 parameter_list|,
@@ -4723,7 +4713,7 @@ name|size
 argument_list|()
 argument_list|)
 decl_stmt|;
-name|SolrServer
+name|SolrClient
 name|client
 init|=
 name|upClients
@@ -4818,7 +4808,7 @@ name|params
 parameter_list|,
 name|List
 argument_list|<
-name|SolrServer
+name|SolrClient
 argument_list|>
 name|upClients
 parameter_list|)
@@ -4839,7 +4829,7 @@ name|size
 argument_list|()
 argument_list|)
 decl_stmt|;
-name|SolrServer
+name|SolrClient
 name|client
 init|=
 name|upClients

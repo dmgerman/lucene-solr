@@ -30,7 +30,7 @@ name|solrj
 operator|.
 name|impl
 operator|.
-name|CloudSolrServer
+name|CloudSolrClient
 import|;
 end_import
 
@@ -186,7 +186,7 @@ name|AbstractFullDistribZkTestBase
 block|{
 DECL|field|client
 specifier|private
-name|CloudSolrServer
+name|CloudSolrClient
 name|client
 decl_stmt|;
 annotation|@

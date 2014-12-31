@@ -168,22 +168,6 @@ name|org
 operator|.
 name|apache
 operator|.
-name|lucene
-operator|.
-name|queryparser
-operator|.
-name|xml
-operator|.
-name|ParserException
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
 name|solr
 operator|.
 name|SolrTestCaseJ4
@@ -202,7 +186,7 @@ name|client
 operator|.
 name|solrj
 operator|.
-name|SolrServer
+name|SolrClient
 import|;
 end_import
 
@@ -220,7 +204,7 @@ name|solrj
 operator|.
 name|impl
 operator|.
-name|CloudSolrServer
+name|CloudSolrClient
 import|;
 end_import
 
@@ -238,7 +222,7 @@ name|solrj
 operator|.
 name|impl
 operator|.
-name|HttpSolrServer
+name|HttpSolrClient
 import|;
 end_import
 
@@ -434,24 +418,6 @@ begin_import
 import|import static
 name|org
 operator|.
-name|apache
-operator|.
-name|solr
-operator|.
-name|rest
-operator|.
-name|schema
-operator|.
-name|TestBulkSchemaAPI
-operator|.
-name|getAsMap
-import|;
-end_import
-
-begin_import
-import|import static
-name|org
-operator|.
 name|noggit
 operator|.
 name|ObjectBuilder
@@ -505,7 +471,7 @@ block|{
 for|for
 control|(
 specifier|final
-name|SolrServer
+name|SolrClient
 name|client
 range|:
 name|clients
@@ -531,7 +497,7 @@ block|{
 return|return
 operator|(
 operator|(
-name|HttpSolrServer
+name|HttpSolrClient
 operator|)
 name|client
 operator|)
@@ -1429,7 +1395,7 @@ parameter_list|(
 name|String
 name|uri
 parameter_list|,
-name|CloudSolrServer
+name|CloudSolrClient
 name|cloudClient
 parameter_list|)
 throws|throws
@@ -1455,7 +1421,7 @@ name|entity
 operator|=
 name|cloudClient
 operator|.
-name|getLbServer
+name|getLbClient
 argument_list|()
 operator|.
 name|getHttpClient

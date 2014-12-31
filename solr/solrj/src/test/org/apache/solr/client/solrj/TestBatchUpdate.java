@@ -94,7 +94,7 @@ name|solrj
 operator|.
 name|impl
 operator|.
-name|HttpSolrServer
+name|HttpSolrClient
 import|;
 end_import
 
@@ -145,20 +145,6 @@ operator|.
 name|common
 operator|.
 name|SolrInputDocument
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|solr
-operator|.
-name|util
-operator|.
-name|ExternalPaths
 import|;
 end_import
 
@@ -261,16 +247,16 @@ parameter_list|()
 throws|throws
 name|Exception
 block|{
-name|HttpSolrServer
-name|httpSolrServer
+name|HttpSolrClient
+name|client
 init|=
 operator|(
-name|HttpSolrServer
+name|HttpSolrClient
 operator|)
-name|getSolrServer
+name|getSolrClient
 argument_list|()
 decl_stmt|;
-name|httpSolrServer
+name|client
 operator|.
 name|setRequestWriter
 argument_list|(
@@ -279,7 +265,7 @@ name|RequestWriter
 argument_list|()
 argument_list|)
 expr_stmt|;
-name|httpSolrServer
+name|client
 operator|.
 name|deleteByQuery
 argument_list|(
@@ -289,7 +275,7 @@ expr_stmt|;
 comment|// delete everything!
 name|doIt
 argument_list|(
-name|httpSolrServer
+name|client
 argument_list|)
 expr_stmt|;
 block|}
@@ -303,16 +289,16 @@ parameter_list|()
 throws|throws
 name|Exception
 block|{
-name|HttpSolrServer
-name|httpSolrServer
+name|HttpSolrClient
+name|client
 init|=
 operator|(
-name|HttpSolrServer
+name|HttpSolrClient
 operator|)
-name|getSolrServer
+name|getSolrClient
 argument_list|()
 decl_stmt|;
-name|httpSolrServer
+name|client
 operator|.
 name|setRequestWriter
 argument_list|(
@@ -321,7 +307,7 @@ name|BinaryRequestWriter
 argument_list|()
 argument_list|)
 expr_stmt|;
-name|httpSolrServer
+name|client
 operator|.
 name|deleteByQuery
 argument_list|(
@@ -331,7 +317,7 @@ expr_stmt|;
 comment|// delete everything!
 name|doIt
 argument_list|(
-name|httpSolrServer
+name|client
 argument_list|)
 expr_stmt|;
 block|}
@@ -345,16 +331,16 @@ parameter_list|()
 throws|throws
 name|Exception
 block|{
-name|HttpSolrServer
-name|httpSolrServer
+name|HttpSolrClient
+name|client
 init|=
 operator|(
-name|HttpSolrServer
+name|HttpSolrClient
 operator|)
-name|getSolrServer
+name|getSolrClient
 argument_list|()
 decl_stmt|;
-name|httpSolrServer
+name|client
 operator|.
 name|setRequestWriter
 argument_list|(
@@ -363,7 +349,7 @@ name|BinaryRequestWriter
 argument_list|()
 argument_list|)
 expr_stmt|;
-name|httpSolrServer
+name|client
 operator|.
 name|deleteByQuery
 argument_list|(
@@ -389,7 +375,7 @@ index|]
 operator|=
 literal|0
 expr_stmt|;
-name|httpSolrServer
+name|client
 operator|.
 name|addBeans
 argument_list|(
@@ -466,7 +452,7 @@ block|}
 block|}
 argument_list|)
 expr_stmt|;
-name|httpSolrServer
+name|client
 operator|.
 name|commit
 argument_list|()
@@ -483,7 +469,7 @@ decl_stmt|;
 name|QueryResponse
 name|response
 init|=
-name|httpSolrServer
+name|client
 operator|.
 name|query
 argument_list|(
@@ -538,8 +524,8 @@ specifier|private
 name|void
 name|doIt
 parameter_list|(
-name|HttpSolrServer
-name|httpSolrServer
+name|HttpSolrClient
+name|client
 parameter_list|)
 throws|throws
 name|SolrServerException
@@ -564,7 +550,7 @@ index|]
 operator|=
 literal|0
 expr_stmt|;
-name|httpSolrServer
+name|client
 operator|.
 name|add
 argument_list|(
@@ -647,7 +633,7 @@ block|}
 block|}
 argument_list|)
 expr_stmt|;
-name|httpSolrServer
+name|client
 operator|.
 name|commit
 argument_list|()
@@ -664,7 +650,7 @@ decl_stmt|;
 name|QueryResponse
 name|response
 init|=
-name|httpSolrServer
+name|client
 operator|.
 name|query
 argument_list|(

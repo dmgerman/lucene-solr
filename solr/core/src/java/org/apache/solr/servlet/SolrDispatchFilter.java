@@ -272,7 +272,7 @@ name|solrj
 operator|.
 name|impl
 operator|.
-name|CloudSolrServer
+name|CloudSolrClient
 import|;
 end_import
 
@@ -2211,7 +2211,7 @@ name|queryParams
 operator|.
 name|get
 argument_list|(
-name|CloudSolrServer
+name|CloudSolrClient
 operator|.
 name|STATE_VERSION
 argument_list|)
@@ -2524,7 +2524,7 @@ argument_list|()
 operator|.
 name|get
 argument_list|(
-name|CloudSolrServer
+name|CloudSolrClient
 operator|.
 name|STATE_VERSION
 argument_list|)

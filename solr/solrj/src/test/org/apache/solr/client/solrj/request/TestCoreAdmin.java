@@ -21,38 +21,30 @@ package|;
 end_package
 
 begin_import
-import|import static
-name|org
+import|import
+name|com
 operator|.
-name|hamcrest
+name|carrotsearch
 operator|.
-name|CoreMatchers
+name|randomizedtesting
 operator|.
-name|notNullValue
-import|;
-end_import
-
-begin_import
-import|import static
-name|org
+name|annotations
 operator|.
-name|hamcrest
-operator|.
-name|core
-operator|.
-name|Is
-operator|.
-name|is
+name|ThreadLeakFilters
 import|;
 end_import
 
 begin_import
 import|import
-name|java
+name|com
 operator|.
-name|io
+name|carrotsearch
 operator|.
-name|File
+name|randomizedtesting
+operator|.
+name|rules
+operator|.
+name|SystemPropertiesRestoreRule
 import|;
 end_import
 
@@ -90,20 +82,6 @@ name|org
 operator|.
 name|apache
 operator|.
-name|lucene
-operator|.
-name|util
-operator|.
-name|TestUtil
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
 name|solr
 operator|.
 name|SolrIgnoredThreadsFilter
@@ -122,7 +100,7 @@ name|client
 operator|.
 name|solrj
 operator|.
-name|SolrServer
+name|SolrClient
 import|;
 end_import
 
@@ -326,29 +304,37 @@ end_import
 
 begin_import
 import|import
-name|com
+name|java
 operator|.
-name|carrotsearch
+name|io
 operator|.
-name|randomizedtesting
-operator|.
-name|annotations
-operator|.
-name|ThreadLeakFilters
+name|File
 import|;
 end_import
 
 begin_import
-import|import
-name|com
+import|import static
+name|org
 operator|.
-name|carrotsearch
+name|hamcrest
 operator|.
-name|randomizedtesting
+name|CoreMatchers
 operator|.
-name|rules
+name|notNullValue
+import|;
+end_import
+
+begin_import
+import|import static
+name|org
 operator|.
-name|SystemPropertiesRestoreRule
+name|hamcrest
+operator|.
+name|core
+operator|.
+name|Is
+operator|.
+name|is
 import|;
 end_import
 
@@ -471,7 +457,7 @@ return|;
 block|}
 DECL|method|getSolrAdmin
 specifier|protected
-name|SolrServer
+name|SolrClient
 name|getSolrAdmin
 parameter_list|()
 block|{
@@ -495,8 +481,8 @@ parameter_list|()
 throws|throws
 name|Exception
 block|{
-name|SolrServer
-name|server
+name|SolrClient
+name|client
 init|=
 name|getSolrAdmin
 argument_list|()
@@ -571,7 +557,7 @@ name|req
 operator|.
 name|process
 argument_list|(
-name|server
+name|client
 argument_list|)
 decl_stmt|;
 name|assertThat
@@ -631,8 +617,8 @@ parameter_list|()
 throws|throws
 name|Exception
 block|{
-name|SolrServer
-name|server
+name|SolrClient
+name|client
 init|=
 name|getSolrAdmin
 argument_list|()
@@ -765,7 +751,7 @@ name|req
 operator|.
 name|process
 argument_list|(
-name|server
+name|client
 argument_list|)
 expr_stmt|;
 comment|// Show that the newly-created core has values for load on startup and transient different than defaults due to the
@@ -883,7 +869,7 @@ name|getAbsolutePath
 argument_list|()
 argument_list|)
 expr_stmt|;
-name|server
+name|client
 operator|.
 name|shutdown
 argument_list|()

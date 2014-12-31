@@ -17,60 +17,6 @@ comment|/*  * Licensed to the Apache Software Foundation (ASF) under one or more
 end_comment
 
 begin_import
-import|import static
-name|org
-operator|.
-name|apache
-operator|.
-name|solr
-operator|.
-name|cloud
-operator|.
-name|CollectionsAPIDistributedZkTest
-operator|.
-name|setClusterProp
-import|;
-end_import
-
-begin_import
-import|import static
-name|org
-operator|.
-name|apache
-operator|.
-name|solr
-operator|.
-name|common
-operator|.
-name|cloud
-operator|.
-name|ZkNodeProps
-operator|.
-name|makeMap
-import|;
-end_import
-
-begin_import
-import|import
-name|java
-operator|.
-name|net
-operator|.
-name|URL
-import|;
-end_import
-
-begin_import
-import|import
-name|java
-operator|.
-name|util
-operator|.
-name|Map
-import|;
-end_import
-
-begin_import
 import|import
 name|org
 operator|.
@@ -82,7 +28,7 @@ name|client
 operator|.
 name|solrj
 operator|.
-name|SolrServer
+name|SolrClient
 import|;
 end_import
 
@@ -118,7 +64,7 @@ name|solrj
 operator|.
 name|impl
 operator|.
-name|CloudSolrServer
+name|CloudSolrClient
 import|;
 end_import
 
@@ -136,7 +82,7 @@ name|solrj
 operator|.
 name|impl
 operator|.
-name|HttpSolrServer
+name|HttpSolrClient
 import|;
 end_import
 
@@ -290,6 +236,60 @@ name|Before
 import|;
 end_import
 
+begin_import
+import|import
+name|java
+operator|.
+name|net
+operator|.
+name|URL
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
+name|util
+operator|.
+name|Map
+import|;
+end_import
+
+begin_import
+import|import static
+name|org
+operator|.
+name|apache
+operator|.
+name|solr
+operator|.
+name|cloud
+operator|.
+name|CollectionsAPIDistributedZkTest
+operator|.
+name|setClusterProp
+import|;
+end_import
+
+begin_import
+import|import static
+name|org
+operator|.
+name|apache
+operator|.
+name|solr
+operator|.
+name|common
+operator|.
+name|cloud
+operator|.
+name|ZkNodeProps
+operator|.
+name|makeMap
+import|;
+end_import
+
 begin_comment
 comment|//@Ignore("Not currently valid see SOLR-5580")
 end_comment
@@ -356,7 +356,7 @@ parameter_list|()
 throws|throws
 name|Exception
 block|{
-name|CloudSolrServer
+name|CloudSolrClient
 name|client
 init|=
 name|createCloudClient
@@ -769,11 +769,11 @@ argument_list|,
 literal|"status"
 argument_list|)
 decl_stmt|;
-name|SolrServer
-name|server
+name|SolrClient
+name|queryClient
 init|=
 operator|new
-name|HttpSolrServer
+name|HttpSolrClient
 argument_list|(
 name|replica1
 operator|.
@@ -791,7 +791,7 @@ name|Object
 argument_list|>
 name|resp
 init|=
-name|server
+name|queryClient
 operator|.
 name|request
 argument_list|(
@@ -833,12 +833,12 @@ argument_list|)
 argument_list|)
 argument_list|)
 expr_stmt|;
-name|server
+name|queryClient
 operator|.
 name|shutdown
 argument_list|()
 expr_stmt|;
-name|server
+name|queryClient
 operator|=
 literal|null
 expr_stmt|;

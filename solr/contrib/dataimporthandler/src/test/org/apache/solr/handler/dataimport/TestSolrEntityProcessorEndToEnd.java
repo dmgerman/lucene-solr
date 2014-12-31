@@ -124,20 +124,6 @@ name|org
 operator|.
 name|apache
 operator|.
-name|lucene
-operator|.
-name|util
-operator|.
-name|TestUtil
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
 name|solr
 operator|.
 name|client
@@ -180,7 +166,7 @@ name|solrj
 operator|.
 name|impl
 operator|.
-name|HttpSolrServer
+name|HttpSolrClient
 import|;
 end_import
 
@@ -1609,11 +1595,11 @@ name|sd
 argument_list|)
 expr_stmt|;
 block|}
-name|HttpSolrServer
+name|HttpSolrClient
 name|solrServer
 init|=
 operator|new
-name|HttpSolrServer
+name|HttpSolrClient
 argument_list|(
 name|getSourceUrl
 argument_list|()

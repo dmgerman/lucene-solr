@@ -62,7 +62,7 @@ name|solrj
 operator|.
 name|impl
 operator|.
-name|CloudSolrServer
+name|CloudSolrClient
 import|;
 end_import
 
@@ -145,22 +145,6 @@ operator|.
 name|cloud
 operator|.
 name|ZkNodeProps
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|solr
-operator|.
-name|common
-operator|.
-name|params
-operator|.
-name|CollectionParams
 import|;
 end_import
 
@@ -393,7 +377,7 @@ name|AbstractFullDistribZkTestBase
 block|{
 DECL|field|client
 specifier|private
-name|CloudSolrServer
+name|CloudSolrClient
 name|client
 decl_stmt|;
 annotation|@
@@ -605,7 +589,7 @@ expr_stmt|;
 name|DocCollection
 name|testcoll
 init|=
-name|getCommonCloudSolrServer
+name|getCommonCloudSolrClient
 argument_list|()
 operator|.
 name|getZkStateReader
@@ -763,7 +747,7 @@ condition|)
 block|{
 name|testcoll
 operator|=
-name|getCommonCloudSolrServer
+name|getCommonCloudSolrClient
 argument_list|()
 operator|.
 name|getZkStateReader
