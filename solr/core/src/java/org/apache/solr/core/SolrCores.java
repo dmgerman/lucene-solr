@@ -1224,7 +1224,6 @@ block|}
 block|}
 comment|/* If you don't increment the reference count, someone could close the core before you use it. */
 DECL|method|getCoreFromAnyList
-specifier|protected
 name|SolrCore
 name|getCoreFromAnyList
 parameter_list|(

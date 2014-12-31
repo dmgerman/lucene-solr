@@ -469,7 +469,6 @@ name|class
 argument_list|)
 decl_stmt|;
 DECL|field|solrCores
-specifier|private
 specifier|final
 name|SolrCores
 name|solrCores
