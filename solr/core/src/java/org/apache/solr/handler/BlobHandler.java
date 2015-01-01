@@ -256,22 +256,6 @@ name|solr
 operator|.
 name|common
 operator|.
-name|cloud
-operator|.
-name|ZkNodeProps
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|solr
-operator|.
-name|common
-operator|.
 name|params
 operator|.
 name|CommonParams
@@ -291,22 +275,6 @@ operator|.
 name|params
 operator|.
 name|MapSolrParams
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|solr
-operator|.
-name|common
-operator|.
-name|params
-operator|.
-name|SolrParams
 import|;
 end_import
 
@@ -399,20 +367,6 @@ operator|.
 name|core
 operator|.
 name|SolrCore
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|solr
-operator|.
-name|request
-operator|.
-name|LocalSolrQueryRequest
 import|;
 end_import
 
@@ -776,6 +730,34 @@ argument_list|)
 expr_stmt|;
 return|return;
 block|}
+name|String
+name|err
+init|=
+name|SolrConfigHandler
+operator|.
+name|validateName
+argument_list|(
+name|blobName
+argument_list|)
+decl_stmt|;
+if|if
+condition|(
+name|err
+operator|!=
+literal|null
+condition|)
+block|{
+name|rsp
+operator|.
+name|add
+argument_list|(
+literal|"error"
+argument_list|,
+name|err
+argument_list|)
+expr_stmt|;
+return|return;
+block|}
 if|if
 condition|(
 name|req
@@ -888,7 +870,7 @@ argument_list|(
 operator|new
 name|Term
 argument_list|(
-literal|"id"
+literal|"md5"
 argument_list|,
 name|md5
 argument_list|)
@@ -931,7 +913,7 @@ name|makeMap
 argument_list|(
 literal|"q"
 argument_list|,
-literal|"id:"
+literal|"md5:"
 operator|+
 name|md5
 argument_list|,
@@ -1046,6 +1028,18 @@ name|longValue
 argument_list|()
 expr_stmt|;
 block|}
+name|version
+operator|++
+expr_stmt|;
+name|String
+name|id
+init|=
+name|blobName
+operator|+
+literal|"/"
+operator|+
+name|version
+decl_stmt|;
 name|indexMap
 argument_list|(
 name|req
@@ -1053,6 +1047,10 @@ argument_list|,
 name|makeMap
 argument_list|(
 literal|"id"
+argument_list|,
+name|id
+argument_list|,
+literal|"md5"
 argument_list|,
 name|md5
 argument_list|,
@@ -1062,7 +1060,6 @@ name|blobName
 argument_list|,
 literal|"version"
 argument_list|,
-operator|++
 name|version
 argument_list|,
 literal|"timestamp"
@@ -1205,8 +1202,8 @@ operator|-
 literal|1
 condition|)
 name|q
-operator|+=
-literal|" AND version:{1}"
+operator|=
+literal|"id:{0}/{1}"
 expr_stmt|;
 name|QParser
 name|qparser
@@ -1449,27 +1446,25 @@ name|blobName
 operator|!=
 literal|null
 condition|)
+block|{
 name|q
 operator|=
-literal|"blobName"
-operator|+
-literal|":"
-operator|+
-name|blobName
+literal|"blobName:{0}"
 expr_stmt|;
 if|if
 condition|(
 name|version
-operator|>
+operator|!=
 operator|-
 literal|1
 condition|)
+block|{
 name|q
-operator|+=
-literal|" AND version:"
-operator|+
-name|version
+operator|=
+literal|"id:{0}/{1}"
 expr_stmt|;
+block|}
+block|}
 name|req
 operator|.
 name|forward
@@ -1486,7 +1481,16 @@ name|makeMap
 argument_list|(
 literal|"q"
 argument_list|,
+name|MessageFormat
+operator|.
+name|format
+argument_list|(
 name|q
+argument_list|,
+name|blobName
+argument_list|,
+name|version
+argument_list|)
 argument_list|,
 literal|"fl"
 argument_list|,
@@ -1695,9 +1699,11 @@ literal|"<fieldType name='date' class='solr.TrieDateField'/>\n"
 operator|+
 literal|"<field name='id'   type='string'   indexed='true'  stored='true'  multiValued='false' required='true'/>\n"
 operator|+
+literal|"<field name='md5'   type='string'   indexed='true'  stored='true'  multiValued='false' required='true'/>\n"
+operator|+
 literal|"<field name='blob'      type='bytes'   indexed='false' stored='true'  multiValued='false' />\n"
 operator|+
-literal|"<field name='size'      type='long'   indexed='false' stored='true'  multiValued='false' />\n"
+literal|"<field name='size'      type='long'   indexed='true' stored='true'  multiValued='false' />\n"
 operator|+
 literal|"<field name='version'   type='long'     indexed='true'  stored='true'  multiValued='false' />\n"
 operator|+
