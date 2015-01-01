@@ -32,7 +32,7 @@ name|compressing
 operator|.
 name|CompressingTermVectorsWriter
 operator|.
-name|BLOCK_SIZE
+name|PACKED_BLOCK_SIZE
 import|;
 end_import
 
@@ -819,7 +819,7 @@ name|vectorsStream
 argument_list|,
 name|packedIntsVersion
 argument_list|,
-name|BLOCK_SIZE
+name|PACKED_BLOCK_SIZE
 argument_list|,
 literal|0
 argument_list|)
@@ -1201,7 +1201,7 @@ name|vectorsStream
 argument_list|,
 name|packedIntsVersion
 argument_list|,
-name|BLOCK_SIZE
+name|PACKED_BLOCK_SIZE
 argument_list|,
 literal|0
 argument_list|)

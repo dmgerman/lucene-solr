@@ -588,6 +588,9 @@ name|chunkSize
 parameter_list|,
 name|int
 name|maxDocsPerChunk
+parameter_list|,
+name|int
+name|blockSize
 parameter_list|)
 throws|throws
 name|IOException
@@ -804,6 +807,8 @@ operator|new
 name|CompressingStoredFieldsIndexWriter
 argument_list|(
 name|indexStream
+argument_list|,
+name|blockSize
 argument_list|)
 expr_stmt|;
 name|indexStream

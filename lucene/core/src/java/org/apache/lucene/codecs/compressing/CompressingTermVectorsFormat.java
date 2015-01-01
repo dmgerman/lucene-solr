@@ -190,7 +190,13 @@ specifier|final
 name|int
 name|chunkSize
 decl_stmt|;
-comment|/**    * Create a new {@link CompressingTermVectorsFormat}.    *<p>    *<code>formatName</code> is the name of the format. This name will be used    * in the file formats to perform    * {@link CodecUtil#checkIndexHeader codec header checks}.    *<p>    * The<code>compressionMode</code> parameter allows you to choose between    * compression algorithms that have various compression and decompression    * speeds so that you can pick the one that best fits your indexing and    * searching throughput. You should never instantiate two    * {@link CompressingTermVectorsFormat}s that have the same name but    * different {@link CompressionMode}s.    *<p>    *<code>chunkSize</code> is the minimum byte size of a chunk of documents.    * Higher values of<code>chunkSize</code> should improve the compression    * ratio but will require more memory at indexing time and might make document    * loading a little slower (depending on the size of your OS cache compared    * to the size of your index).    *    * @param formatName the name of the {@link StoredFieldsFormat}    * @param segmentSuffix a suffix to append to files created by this format    * @param compressionMode the {@link CompressionMode} to use    * @param chunkSize the minimum number of bytes of a single chunk of stored documents    * @see CompressionMode    */
+DECL|field|blockSize
+specifier|private
+specifier|final
+name|int
+name|blockSize
+decl_stmt|;
+comment|/**    * Create a new {@link CompressingTermVectorsFormat}.    *<p>    *<code>formatName</code> is the name of the format. This name will be used    * in the file formats to perform    * {@link CodecUtil#checkIndexHeader codec header checks}.    *<p>    * The<code>compressionMode</code> parameter allows you to choose between    * compression algorithms that have various compression and decompression    * speeds so that you can pick the one that best fits your indexing and    * searching throughput. You should never instantiate two    * {@link CompressingTermVectorsFormat}s that have the same name but    * different {@link CompressionMode}s.    *<p>    *<code>chunkSize</code> is the minimum byte size of a chunk of documents.    * Higher values of<code>chunkSize</code> should improve the compression    * ratio but will require more memory at indexing time and might make document    * loading a little slower (depending on the size of your OS cache compared    * to the size of your index).    *    * @param formatName the name of the {@link StoredFieldsFormat}    * @param segmentSuffix a suffix to append to files created by this format    * @param compressionMode the {@link CompressionMode} to use    * @param chunkSize the minimum number of bytes of a single chunk of stored documents    * @param blockSize the number of chunks to store in an index block.    * @see CompressionMode    */
 DECL|method|CompressingTermVectorsFormat
 specifier|public
 name|CompressingTermVectorsFormat
@@ -206,6 +212,9 @@ name|compressionMode
 parameter_list|,
 name|int
 name|chunkSize
+parameter_list|,
+name|int
+name|blockSize
 parameter_list|)
 block|{
 name|this
@@ -246,6 +255,27 @@ operator|.
 name|chunkSize
 operator|=
 name|chunkSize
+expr_stmt|;
+if|if
+condition|(
+name|blockSize
+operator|<
+literal|1
+condition|)
+block|{
+throw|throw
+operator|new
+name|IllegalArgumentException
+argument_list|(
+literal|"blockSize must be>= 1"
+argument_list|)
+throw|;
+block|}
+name|this
+operator|.
+name|blockSize
+operator|=
+name|blockSize
 expr_stmt|;
 block|}
 annotation|@
@@ -328,6 +358,8 @@ argument_list|,
 name|compressionMode
 argument_list|,
 name|chunkSize
+argument_list|,
+name|blockSize
 argument_list|)
 return|;
 block|}
@@ -353,6 +385,10 @@ operator|+
 literal|", chunkSize="
 operator|+
 name|chunkSize
+operator|+
+literal|", blockSize="
+operator|+
+name|blockSize
 operator|+
 literal|")"
 return|;

@@ -172,6 +172,8 @@ argument_list|,
 literal|1
 operator|<<
 literal|12
+argument_list|,
+literal|1024
 argument_list|)
 expr_stmt|;
 block|}
