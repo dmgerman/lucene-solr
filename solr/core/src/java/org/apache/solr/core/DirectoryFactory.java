@@ -431,11 +431,11 @@ parameter_list|)
 throws|throws
 name|IOException
 block|{
-name|fromDir
-operator|.
-name|copy
-argument_list|(
 name|toDir
+operator|.
+name|copyFrom
+argument_list|(
+name|fromDir
 argument_list|,
 name|fileName
 argument_list|,

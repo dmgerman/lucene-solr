@@ -263,11 +263,9 @@ name|listAll
 argument_list|()
 control|)
 block|{
-name|dir
-operator|.
-name|copy
+name|copyFrom
 argument_list|(
-name|this
+name|dir
 argument_list|,
 name|file
 argument_list|,

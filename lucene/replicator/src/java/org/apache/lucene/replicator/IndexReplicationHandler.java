@@ -727,11 +727,11 @@ range|:
 name|files
 control|)
 block|{
-name|source
-operator|.
-name|copy
-argument_list|(
 name|target
+operator|.
+name|copyFrom
+argument_list|(
+name|source
 argument_list|,
 name|file
 argument_list|,
@@ -1060,11 +1060,11 @@ name|files
 argument_list|)
 expr_stmt|;
 comment|// now copy and fsync segmentsFile as pending, then rename (simulating lucene commit)
-name|clientDir
-operator|.
-name|copy
-argument_list|(
 name|indexDir
+operator|.
+name|copyFrom
+argument_list|(
+name|clientDir
 argument_list|,
 name|segmentsFile
 argument_list|,

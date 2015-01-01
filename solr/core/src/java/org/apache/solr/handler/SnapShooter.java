@@ -1434,11 +1434,11 @@ range|:
 name|files
 control|)
 block|{
-name|sourceDir
-operator|.
-name|copy
-argument_list|(
 name|dir
+operator|.
+name|copyFrom
+argument_list|(
+name|sourceDir
 argument_list|,
 name|indexFile
 argument_list|,
