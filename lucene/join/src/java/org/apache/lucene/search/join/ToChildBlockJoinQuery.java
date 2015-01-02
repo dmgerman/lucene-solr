@@ -247,6 +247,14 @@ name|INVALID_QUERY_MESSAGE
 init|=
 literal|"Parent query yields document which is not matched by parents filter, docID="
 decl_stmt|;
+DECL|field|ILLEGAL_ADVANCE_ON_PARENT
+specifier|static
+specifier|final
+name|String
+name|ILLEGAL_ADVANCE_ON_PARENT
+init|=
+literal|"Expect to be advanced on child docs only. got docID="
+decl_stmt|;
 DECL|field|parentsFilter
 specifier|private
 specifier|final
@@ -1112,22 +1120,6 @@ parameter_list|)
 throws|throws
 name|IOException
 block|{
-assert|assert
-name|childTarget
-operator|>=
-name|parentBits
-operator|.
-name|length
-argument_list|()
-operator|||
-operator|!
-name|parentBits
-operator|.
-name|get
-argument_list|(
-name|childTarget
-argument_list|)
-assert|;
 comment|//System.out.println("Q.advance childTarget=" + childTarget);
 if|if
 condition|(
@@ -1144,6 +1136,26 @@ name|parentDoc
 operator|=
 name|NO_MORE_DOCS
 return|;
+block|}
+if|if
+condition|(
+name|parentBits
+operator|.
+name|get
+argument_list|(
+name|childTarget
+argument_list|)
+condition|)
+block|{
+throw|throw
+operator|new
+name|IllegalStateException
+argument_list|(
+name|ILLEGAL_ADVANCE_ON_PARENT
+operator|+
+name|childTarget
+argument_list|)
+throw|;
 block|}
 assert|assert
 name|childDoc
