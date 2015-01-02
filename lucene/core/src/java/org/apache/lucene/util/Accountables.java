@@ -461,7 +461,7 @@ name|String
 name|description
 parameter_list|,
 specifier|final
-name|Iterable
+name|Collection
 argument_list|<
 name|Accountable
 argument_list|>
@@ -491,7 +491,7 @@ block|}
 annotation|@
 name|Override
 specifier|public
-name|Iterable
+name|Collection
 argument_list|<
 name|Accountable
 argument_list|>

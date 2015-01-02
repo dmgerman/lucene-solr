@@ -30,6 +30,16 @@ end_import
 
 begin_import
 import|import
+name|java
+operator|.
+name|util
+operator|.
+name|Collection
+import|;
+end_import
+
+begin_import
+import|import
 name|org
 operator|.
 name|apache
@@ -581,14 +591,14 @@ annotation|@
 name|Override
 DECL|method|getChildResources
 specifier|public
-name|Iterable
+name|Collection
 argument_list|<
 name|Accountable
 argument_list|>
 name|getChildResources
 parameter_list|()
 block|{
-name|Iterable
+name|Collection
 argument_list|<
 name|Accountable
 argument_list|>
@@ -601,12 +611,9 @@ argument_list|()
 decl_stmt|;
 name|TestUtil
 operator|.
-name|checkIterator
+name|checkReadOnly
 argument_list|(
 name|res
-operator|.
-name|iterator
-argument_list|()
 argument_list|)
 expr_stmt|;
 return|return

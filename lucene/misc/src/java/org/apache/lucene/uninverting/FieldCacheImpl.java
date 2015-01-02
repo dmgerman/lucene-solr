@@ -52,6 +52,16 @@ name|java
 operator|.
 name|util
 operator|.
+name|Collection
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
+name|util
+operator|.
 name|Collections
 import|;
 end_import
@@ -3395,7 +3405,7 @@ annotation|@
 name|Override
 DECL|method|getChildResources
 specifier|public
-name|Iterable
+name|Collection
 argument_list|<
 name|Accountable
 argument_list|>
@@ -3456,7 +3466,12 @@ argument_list|)
 argument_list|)
 expr_stmt|;
 return|return
+name|Collections
+operator|.
+name|unmodifiableList
+argument_list|(
 name|resources
+argument_list|)
 return|;
 block|}
 block|}
@@ -4166,7 +4181,7 @@ annotation|@
 name|Override
 DECL|method|getChildResources
 specifier|public
-name|Iterable
+name|Collection
 argument_list|<
 name|Accountable
 argument_list|>

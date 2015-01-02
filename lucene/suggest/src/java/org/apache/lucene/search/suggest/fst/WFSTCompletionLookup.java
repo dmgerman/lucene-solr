@@ -46,6 +46,16 @@ name|java
 operator|.
 name|util
 operator|.
+name|Collection
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
+name|util
+operator|.
 name|Collections
 import|;
 end_import
@@ -327,6 +337,22 @@ operator|.
 name|fst
 operator|.
 name|FST
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|util
+operator|.
+name|fst
+operator|.
+name|FST
 operator|.
 name|Arc
 import|;
@@ -362,7 +388,7 @@ name|util
 operator|.
 name|fst
 operator|.
-name|FST
+name|PositiveIntOutputs
 import|;
 end_import
 
@@ -378,7 +404,7 @@ name|util
 operator|.
 name|fst
 operator|.
-name|PositiveIntOutputs
+name|Util
 import|;
 end_import
 
@@ -415,22 +441,6 @@ operator|.
 name|Util
 operator|.
 name|TopResults
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|util
-operator|.
-name|fst
-operator|.
-name|Util
 import|;
 end_import
 
@@ -1705,7 +1715,7 @@ annotation|@
 name|Override
 DECL|method|getChildResources
 specifier|public
-name|Iterable
+name|Collection
 argument_list|<
 name|Accountable
 argument_list|>
