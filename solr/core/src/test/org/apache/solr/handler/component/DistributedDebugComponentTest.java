@@ -2726,7 +2726,7 @@ name|distribResponse
 argument_list|,
 name|nonDistribResponse
 argument_list|,
-literal|"filter_qieries"
+literal|"filter_queries"
 argument_list|)
 expr_stmt|;
 name|assertSectionEquals
@@ -2735,7 +2735,7 @@ name|distribResponse
 argument_list|,
 name|nonDistribResponse
 argument_list|,
-literal|"parsed_filter_qieries"
+literal|"parsed_filter_queries"
 argument_list|)
 expr_stmt|;
 comment|// timing should have the same sections:
