@@ -3388,19 +3388,34 @@ name|dataDir
 argument_list|)
 argument_list|)
 expr_stmt|;
-comment|// setup to proxy Http requests to this server unless it is the control
-comment|// server
-name|int
-name|proxyPort
+name|SocketProxy
+name|proxy
 init|=
-name|getNextAvailablePort
+operator|new
+name|SocketProxy
+argument_list|(
+literal|0
+argument_list|,
+name|sslConfig
+operator|==
+literal|null
+condition|?
+literal|false
+else|:
+name|sslConfig
+operator|.
+name|isSSLMode
 argument_list|()
+argument_list|)
 decl_stmt|;
 name|jetty
 operator|.
 name|setProxyPort
 argument_list|(
-name|proxyPort
+name|proxy
+operator|.
+name|getListenPort
+argument_list|()
 argument_list|)
 expr_stmt|;
 name|jetty
@@ -3408,15 +3423,10 @@ operator|.
 name|start
 argument_list|()
 expr_stmt|;
-comment|// create a socket proxy for the jetty server ...
-name|SocketProxy
 name|proxy
-init|=
-operator|new
-name|SocketProxy
+operator|.
+name|open
 argument_list|(
-name|proxyPort
-argument_list|,
 name|jetty
 operator|.
 name|getBaseUrl
@@ -3425,7 +3435,7 @@ operator|.
 name|toURI
 argument_list|()
 argument_list|)
-decl_stmt|;
+expr_stmt|;
 name|proxies
 operator|.
 name|put
