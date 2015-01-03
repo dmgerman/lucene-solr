@@ -79,7 +79,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * One, or several overlapping tokens, along with the score(s) and the scope of  * the original text  */
+comment|/**  * One, or several overlapping tokens, along with the score(s) and the scope of  * the original text.  */
 end_comment
 
 begin_class
@@ -98,6 +98,7 @@ init|=
 literal|50
 decl_stmt|;
 DECL|field|tokens
+specifier|private
 name|Token
 index|[]
 name|tokens
@@ -109,6 +110,7 @@ name|MAX_NUM_TOKENS_PER_GROUP
 index|]
 decl_stmt|;
 DECL|field|scores
+specifier|private
 name|float
 index|[]
 name|scores
@@ -120,32 +122,39 @@ name|MAX_NUM_TOKENS_PER_GROUP
 index|]
 decl_stmt|;
 DECL|field|numTokens
+specifier|private
 name|int
 name|numTokens
 init|=
 literal|0
 decl_stmt|;
 DECL|field|startOffset
+specifier|private
 name|int
 name|startOffset
 init|=
 literal|0
 decl_stmt|;
 DECL|field|endOffset
+specifier|private
 name|int
 name|endOffset
 init|=
 literal|0
 decl_stmt|;
 DECL|field|tot
+specifier|private
 name|float
 name|tot
 decl_stmt|;
 DECL|field|matchStartOffset
-DECL|field|matchEndOffset
+specifier|private
 name|int
 name|matchStartOffset
-decl_stmt|,
+decl_stmt|;
+DECL|field|matchEndOffset
+specifier|private
+name|int
 name|matchEndOffset
 decl_stmt|;
 DECL|field|offsetAtt
@@ -204,6 +213,7 @@ operator|<
 name|MAX_NUM_TOKENS_PER_GROUP
 condition|)
 block|{
+specifier|final
 name|int
 name|termStartOffset
 init|=
@@ -212,6 +222,7 @@ operator|.
 name|startOffset
 argument_list|()
 decl_stmt|;
+specifier|final
 name|int
 name|termEndOffset
 init|=
@@ -284,17 +295,11 @@ condition|)
 block|{
 name|matchStartOffset
 operator|=
-name|offsetAtt
-operator|.
-name|startOffset
-argument_list|()
+name|termStartOffset
 expr_stmt|;
 name|matchEndOffset
 operator|=
-name|offsetAtt
-operator|.
-name|endOffset
-argument_list|()
+name|termEndOffset
 expr_stmt|;
 block|}
 else|else
@@ -401,7 +406,7 @@ operator|=
 literal|0
 expr_stmt|;
 block|}
-comment|/*    * @param index a value between 0 and numTokens -1   * @return the "n"th token   */
+comment|/**    * @param index a value between 0 and numTokens -1    * @return the "n"th token    */
 DECL|method|getToken
 specifier|public
 name|Token
@@ -435,7 +440,18 @@ name|index
 index|]
 return|;
 block|}
-comment|/**    * @return the end position in the original text    */
+comment|/**    * @return the earliest start offset in the original text of a matching token in this group (score&gt; 0), or    * if there are none then the earliest offset of any token in the group.    */
+DECL|method|getStartOffset
+specifier|public
+name|int
+name|getStartOffset
+parameter_list|()
+block|{
+return|return
+name|matchStartOffset
+return|;
+block|}
+comment|/**    * @return the latest end offset in the original text of a matching token in this group (score&gt; 0), or    * if there are none then {@link #getEndOffset()}.    */
 DECL|method|getEndOffset
 specifier|public
 name|int
@@ -443,7 +459,7 @@ name|getEndOffset
 parameter_list|()
 block|{
 return|return
-name|endOffset
+name|matchEndOffset
 return|;
 block|}
 comment|/**    * @return the number of tokens in this group    */
@@ -455,17 +471,6 @@ parameter_list|()
 block|{
 return|return
 name|numTokens
-return|;
-block|}
-comment|/**    * @return the start position in the original text    */
-DECL|method|getStartOffset
-specifier|public
-name|int
-name|getStartOffset
-parameter_list|()
-block|{
-return|return
-name|startOffset
 return|;
 block|}
 comment|/**    * @return all tokens' scores summed up    */
