@@ -18,6 +18,26 @@ end_comment
 
 begin_import
 import|import
+name|java
+operator|.
+name|text
+operator|.
+name|ParseException
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
+name|util
+operator|.
+name|Arrays
+import|;
+end_import
+
+begin_import
+import|import
 name|com
 operator|.
 name|carrotsearch
@@ -209,26 +229,6 @@ operator|.
 name|junit
 operator|.
 name|Test
-import|;
-end_import
-
-begin_import
-import|import
-name|java
-operator|.
-name|text
-operator|.
-name|ParseException
-import|;
-end_import
-
-begin_import
-import|import
-name|java
-operator|.
-name|util
-operator|.
-name|Arrays
 import|;
 end_import
 
@@ -726,6 +726,10 @@ literal|"1,1"
 argument_list|,
 literal|175
 argument_list|,
+name|DistanceUtils
+operator|.
+name|EARTH_MEAN_RADIUS_KM
+argument_list|,
 literal|3
 argument_list|,
 literal|5
@@ -743,6 +747,10 @@ literal|"0,179.8"
 argument_list|,
 literal|200
 argument_list|,
+name|DistanceUtils
+operator|.
+name|EARTH_MEAN_RADIUS_KM
+argument_list|,
 literal|2
 argument_list|,
 literal|8
@@ -757,6 +765,10 @@ argument_list|,
 literal|"89.8, 50"
 argument_list|,
 literal|200
+argument_list|,
+name|DistanceUtils
+operator|.
+name|EARTH_MEAN_RADIUS_KM
 argument_list|,
 literal|2
 argument_list|,
@@ -773,6 +785,10 @@ argument_list|,
 literal|"-89.8, 50"
 argument_list|,
 literal|200
+argument_list|,
+name|DistanceUtils
+operator|.
+name|EARTH_MEAN_RADIUS_KM
 argument_list|,
 literal|2
 argument_list|,
@@ -791,6 +807,10 @@ literal|"33.0,-80.0"
 argument_list|,
 literal|300
 argument_list|,
+name|DistanceUtils
+operator|.
+name|EARTH_MEAN_RADIUS_KM
+argument_list|,
 literal|2
 argument_list|)
 expr_stmt|;
@@ -802,6 +822,10 @@ argument_list|,
 literal|"1,1"
 argument_list|,
 literal|5000
+argument_list|,
+name|DistanceUtils
+operator|.
+name|EARTH_MEAN_RADIUS_KM
 argument_list|,
 literal|3
 argument_list|,
@@ -824,6 +848,10 @@ argument_list|,
 literal|"0.1,0.1"
 argument_list|,
 literal|15
+argument_list|,
+name|DistanceUtils
+operator|.
+name|EARTH_MEAN_RADIUS_KM
 argument_list|,
 literal|2
 argument_list|,
@@ -907,6 +935,10 @@ literal|"0,0"
 argument_list|,
 literal|1000
 argument_list|,
+name|DistanceUtils
+operator|.
+name|EARTH_MEAN_RADIUS_KM
+argument_list|,
 literal|1
 argument_list|,
 literal|14
@@ -919,6 +951,10 @@ argument_list|,
 literal|"0,0"
 argument_list|,
 literal|2000
+argument_list|,
+name|DistanceUtils
+operator|.
+name|EARTH_MEAN_RADIUS_KM
 argument_list|,
 literal|2
 argument_list|,
@@ -937,6 +973,10 @@ literal|"0,0"
 argument_list|,
 literal|3000
 argument_list|,
+name|DistanceUtils
+operator|.
+name|EARTH_MEAN_RADIUS_KM
+argument_list|,
 literal|3
 argument_list|,
 literal|14
@@ -954,6 +994,10 @@ literal|"0,0"
 argument_list|,
 literal|3001
 argument_list|,
+name|DistanceUtils
+operator|.
+name|EARTH_MEAN_RADIUS_KM
+argument_list|,
 literal|3
 argument_list|,
 literal|14
@@ -970,6 +1014,10 @@ argument_list|,
 literal|"0,0"
 argument_list|,
 literal|3000.1
+argument_list|,
+name|DistanceUtils
+operator|.
+name|EARTH_MEAN_RADIUS_KM
 argument_list|,
 literal|3
 argument_list|,
@@ -989,6 +1037,10 @@ literal|"43.517030,-96.789603"
 argument_list|,
 literal|109
 argument_list|,
+name|DistanceUtils
+operator|.
+name|EARTH_MEAN_RADIUS_KM
+argument_list|,
 literal|0
 argument_list|)
 expr_stmt|;
@@ -1003,6 +1055,10 @@ literal|"43.517030,-96.789603"
 argument_list|,
 literal|110
 argument_list|,
+name|DistanceUtils
+operator|.
+name|EARTH_MEAN_RADIUS_KM
+argument_list|,
 literal|0
 argument_list|)
 expr_stmt|;
@@ -1015,6 +1071,10 @@ argument_list|,
 literal|"43.517030,-96.789603"
 argument_list|,
 literal|110
+argument_list|,
+name|DistanceUtils
+operator|.
+name|EARTH_MEAN_RADIUS_KM
 argument_list|,
 literal|1
 argument_list|,
@@ -1126,6 +1186,10 @@ literal|"0,0"
 argument_list|,
 literal|100
 argument_list|,
+name|DistanceUtils
+operator|.
+name|EARTH_MEAN_RADIUS_KM
+argument_list|,
 literal|0
 argument_list|)
 expr_stmt|;
@@ -1144,6 +1208,9 @@ name|pt
 parameter_list|,
 name|double
 name|distKM
+parameter_list|,
+name|double
+name|sphereRadius
 parameter_list|,
 name|int
 name|count
@@ -1164,6 +1231,8 @@ argument_list|,
 name|pt
 argument_list|,
 name|distKM
+argument_list|,
+name|sphereRadius
 argument_list|,
 name|count
 argument_list|,
@@ -1187,6 +1256,9 @@ name|ptStr
 parameter_list|,
 name|double
 name|distKM
+parameter_list|,
+name|double
+name|sphereRadius
 parameter_list|,
 name|int
 name|count
@@ -1530,6 +1602,10 @@ operator|+
 literal|"' d="
 operator|+
 name|distKM
+operator|+
+literal|" sphere_radius="
+operator|+
+name|sphereRadius
 operator|+
 literal|"}"
 argument_list|)
@@ -2064,10 +2140,7 @@ literal|" d="
 operator|+
 operator|(
 name|dDEG
-operator|*
-name|DistanceUtils
-operator|.
-name|DEG_TO_KM
+comment|/* DistanceUtils.DEG_TO_KM*/
 operator|)
 operator|+
 literal|"}"

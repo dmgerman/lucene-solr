@@ -80,6 +80,12 @@ name|SpatialOptions
 name|options
 parameter_list|)
 function_decl|;
+DECL|method|getSphereRadius
+specifier|public
+name|double
+name|getSphereRadius
+parameter_list|()
+function_decl|;
 block|}
 end_interface
 

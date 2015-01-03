@@ -20,6 +20,26 @@ end_comment
 
 begin_import
 import|import
+name|java
+operator|.
+name|io
+operator|.
+name|IOException
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
+name|util
+operator|.
+name|Map
+import|;
+end_import
+
+begin_import
+import|import
 name|com
 operator|.
 name|spatial4j
@@ -138,26 +158,6 @@ name|IndexSearcher
 import|;
 end_import
 
-begin_import
-import|import
-name|java
-operator|.
-name|io
-operator|.
-name|IOException
-import|;
-end_import
-
-begin_import
-import|import
-name|java
-operator|.
-name|util
-operator|.
-name|Map
-import|;
-end_import
-
 begin_comment
 comment|/**  * The area of a Shape retrieved from a ValueSource via  * {@link org.apache.lucene.queries.function.FunctionValues#objectVal(int)}.  *  * @see Shape#getArea(com.spatial4j.core.context.SpatialContext)  *  * @lucene.experimental  */
 end_comment
@@ -189,6 +189,11 @@ specifier|final
 name|boolean
 name|geoArea
 decl_stmt|;
+DECL|field|multiplier
+specifier|private
+name|double
+name|multiplier
+decl_stmt|;
 DECL|method|ShapeAreaValueSource
 specifier|public
 name|ShapeAreaValueSource
@@ -201,6 +206,9 @@ name|ctx
 parameter_list|,
 name|boolean
 name|geoArea
+parameter_list|,
+name|double
+name|multiplier
 parameter_list|)
 block|{
 name|this
@@ -220,6 +228,12 @@ operator|.
 name|geoArea
 operator|=
 name|geoArea
+expr_stmt|;
+name|this
+operator|.
+name|multiplier
+operator|=
+name|multiplier
 expr_stmt|;
 block|}
 annotation|@
@@ -358,6 +372,8 @@ name|ctx
 else|:
 literal|null
 argument_list|)
+operator|*
+name|multiplier
 return|;
 block|}
 annotation|@
