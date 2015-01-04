@@ -2361,7 +2361,7 @@ literal|"  java -Dtype=text/csv -Dc=gettingstarted -jar post.jar *.csv\n"
 operator|+
 literal|"  java -Dtype=application/json -Dc=gettingstarted -jar post.jar *.json\n"
 operator|+
-literal|"  java -Durl=http://localhost:8983/solr/techproducts/update/extract -Dparams=literal.id=a -jar post.jar solr-word.pdf\n"
+literal|"  java -Durl=http://localhost:8983/solr/techproducts/update/extract -Dparams=literal.id=pdf1 -jar post.jar solr-word.pdf\n"
 operator|+
 literal|"  java -Dauto -Dc=gettingstarted -jar post.jar *\n"
 operator|+
