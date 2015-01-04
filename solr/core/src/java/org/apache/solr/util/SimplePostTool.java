@@ -2273,7 +2273,7 @@ literal|"Supported System Properties and their defaults:\n"
 operator|+
 literal|"  -Dc=<core/collection>\n"
 operator|+
-literal|"  -Durl=<solr-update-url> \n"
+literal|"  -Durl=<solr-update-url> (overrides -Dc option if specified)\n"
 operator|+
 literal|"  -Ddata=files|web|args|stdin (default="
 operator|+
@@ -2361,7 +2361,7 @@ literal|"  java -Dtype=text/csv -Dc=gettingstarted -jar post.jar *.csv\n"
 operator|+
 literal|"  java -Dtype=application/json -Dc=gettingstarted -jar post.jar *.json\n"
 operator|+
-literal|"  java -Durl=http://localhost:8983/solr/update/extract -Dparams=literal.id=a -Dtype=application/pdf -jar post.jar a.pdf\n"
+literal|"  java -Durl=http://localhost:8983/solr/techproducts/update/extract -Dparams=literal.id=a -jar post.jar solr-word.pdf\n"
 operator|+
 literal|"  java -Dauto -Dc=gettingstarted -jar post.jar *\n"
 operator|+
