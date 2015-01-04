@@ -19,12 +19,20 @@ package|;
 end_package
 
 begin_import
-import|import
-name|java
+import|import static
+name|org
 operator|.
-name|io
+name|apache
 operator|.
-name|IOException
+name|solr
+operator|.
+name|common
+operator|.
+name|SolrException
+operator|.
+name|ErrorCode
+operator|.
+name|SERVER_ERROR
 import|;
 end_import
 
@@ -32,9 +40,9 @@ begin_import
 import|import
 name|java
 operator|.
-name|util
+name|io
 operator|.
-name|Collection
+name|IOException
 import|;
 end_import
 
@@ -54,7 +62,7 @@ name|java
 operator|.
 name|util
 operator|.
-name|List
+name|Collection
 import|;
 end_import
 
@@ -70,31 +78,11 @@ end_import
 
 begin_import
 import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|solr
-operator|.
-name|core
-operator|.
-name|SolrCore
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|solr
+name|java
 operator|.
 name|util
 operator|.
-name|plugin
-operator|.
-name|SolrCoreAware
+name|List
 import|;
 end_import
 
@@ -108,23 +96,7 @@ name|solr
 operator|.
 name|common
 operator|.
-name|util
-operator|.
-name|NamedList
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|solr
-operator|.
-name|common
-operator|.
-name|SolrInputField
+name|SolrException
 import|;
 end_import
 
@@ -152,12 +124,12 @@ name|solr
 operator|.
 name|common
 operator|.
-name|SolrException
+name|SolrInputField
 import|;
 end_import
 
 begin_import
-import|import static
+import|import
 name|org
 operator|.
 name|apache
@@ -166,11 +138,23 @@ name|solr
 operator|.
 name|common
 operator|.
-name|SolrException
+name|util
 operator|.
-name|ErrorCode
+name|NamedList
+import|;
+end_import
+
+begin_import
+import|import
+name|org
 operator|.
-name|SERVER_ERROR
+name|apache
+operator|.
+name|solr
+operator|.
+name|core
+operator|.
+name|SolrCore
 import|;
 end_import
 
@@ -228,9 +212,9 @@ name|update
 operator|.
 name|processor
 operator|.
-name|FieldMutatingUpdateProcessorFactory
+name|FieldMutatingUpdateProcessor
 operator|.
-name|SelectorParams
+name|FieldNameSelector
 import|;
 end_import
 
@@ -246,9 +230,25 @@ name|update
 operator|.
 name|processor
 operator|.
-name|FieldMutatingUpdateProcessor
+name|FieldMutatingUpdateProcessorFactory
 operator|.
-name|FieldNameSelector
+name|SelectorParams
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|solr
+operator|.
+name|util
+operator|.
+name|plugin
+operator|.
+name|SolrCoreAware
 import|;
 end_import
 
@@ -924,17 +924,37 @@ name|fname
 argument_list|)
 condition|)
 continue|continue;
-for|for
-control|(
+name|Collection
+argument_list|<
 name|Object
-name|val
-range|:
+argument_list|>
+name|srcFieldValues
+init|=
 name|doc
 operator|.
 name|getFieldValues
 argument_list|(
 name|fname
 argument_list|)
+decl_stmt|;
+if|if
+condition|(
+name|srcFieldValues
+operator|==
+literal|null
+operator|||
+name|srcFieldValues
+operator|.
+name|isEmpty
+argument_list|()
+condition|)
+continue|continue;
+for|for
+control|(
+name|Object
+name|val
+range|:
+name|srcFieldValues
 control|)
 block|{
 comment|// preserve existing dest boost (multiplicitive), ignore src boost
