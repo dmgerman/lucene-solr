@@ -850,7 +850,7 @@ literal|0
 init|;
 name|i
 operator|<
-literal|50
+literal|100
 condition|;
 name|i
 operator|++
@@ -932,7 +932,7 @@ literal|0
 init|;
 name|i
 operator|<
-literal|50
+literal|100
 condition|;
 name|i
 operator|++
