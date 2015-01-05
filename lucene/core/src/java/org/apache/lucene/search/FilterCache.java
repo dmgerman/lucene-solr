@@ -17,7 +17,7 @@ comment|/*  * Licensed to the Apache Software Foundation (ASF) under one or more
 end_comment
 
 begin_comment
-comment|/**  * A cache for filters.  *  * @lucene.experimental  */
+comment|/**  * A cache for filters.  *  * @see LRUFilterCache  * @lucene.experimental  */
 end_comment
 
 begin_interface

@@ -83,7 +83,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * A policy defining which filters should be cached.  *  * Implementations of this class must be thread-safe.  *  * @lucene.experimental  */
+comment|/**  * A policy defining which filters should be cached.  *  * Implementations of this class must be thread-safe.  *  * @see UsageTrackingFilterCachingPolicy  * @see LRUFilterCache  * @lucene.experimental  */
 end_comment
 
 begin_comment
