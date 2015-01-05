@@ -64,6 +64,10 @@ name|assertQ
 argument_list|(
 literal|"/schema/copyfields?indent=on&wt=xml"
 argument_list|,
+literal|"/response/arr[@name='copyFields']/lst[    str[@name='source'][.='src_sub_no_ast_i']"
+operator|+
+literal|"                                      and str[@name='dest'][.='title']]"
+argument_list|,
 literal|"/response/arr[@name='copyFields']/lst[    str[@name='source'][.='title']"
 operator|+
 literal|"                                      and str[@name='dest'][.='title_stemmed']"
@@ -123,12 +127,6 @@ operator|+
 literal|"                                      and str[@name='dest'][.='dest_sub_no_ast_s']"
 operator|+
 literal|"                                      and str[@name='destDynamicBase'][.='*_s']]"
-argument_list|,
-literal|"/response/arr[@name='copyFields']/lst[    str[@name='source'][.='src_sub_no_ast_i']"
-operator|+
-literal|"                                      and str[@name='sourceDynamicBase'][.='*_i']"
-operator|+
-literal|"                                      and str[@name='dest'][.='title']]"
 argument_list|,
 literal|"/response/arr[@name='copyFields']/lst[    str[@name='source'][.='src_sub_no_ast_i']"
 operator|+
@@ -200,25 +198,25 @@ name|assertJQ
 argument_list|(
 literal|"/schema/copyfields?indent=on&wt=json"
 argument_list|,
-literal|"/copyFields/[6]=={'source':'title','dest':'dest_sub_no_ast_s','destDynamicBase':'*_s'}"
+literal|"/copyFields/[1]=={'source':'src_sub_no_ast_i','dest':'title'}"
 argument_list|,
-literal|"/copyFields/[7]=={'source':'*_i','dest':'title'}"
+literal|"/copyFields/[7]=={'source':'title','dest':'dest_sub_no_ast_s','destDynamicBase':'*_s'}"
 argument_list|,
-literal|"/copyFields/[8]=={'source':'*_i','dest':'*_s'}"
+literal|"/copyFields/[8]=={'source':'*_i','dest':'title'}"
 argument_list|,
-literal|"/copyFields/[9]=={'source':'*_i','dest':'*_dest_sub_s','destDynamicBase':'*_s'}"
+literal|"/copyFields/[9]=={'source':'*_i','dest':'*_s'}"
 argument_list|,
-literal|"/copyFields/[10]=={'source':'*_i','dest':'dest_sub_no_ast_s','destDynamicBase':'*_s'}"
+literal|"/copyFields/[10]=={'source':'*_i','dest':'*_dest_sub_s','destDynamicBase':'*_s'}"
 argument_list|,
-literal|"/copyFields/[11]=={'source':'*_src_sub_i','sourceDynamicBase':'*_i','dest':'title'}"
+literal|"/copyFields/[11]=={'source':'*_i','dest':'dest_sub_no_ast_s','destDynamicBase':'*_s'}"
 argument_list|,
-literal|"/copyFields/[12]=={'source':'*_src_sub_i','sourceDynamicBase':'*_i','dest':'*_s'}"
+literal|"/copyFields/[12]=={'source':'*_src_sub_i','sourceDynamicBase':'*_i','dest':'title'}"
 argument_list|,
-literal|"/copyFields/[13]=={'source':'*_src_sub_i','sourceDynamicBase':'*_i','dest':'*_dest_sub_s','destDynamicBase':'*_s'}"
+literal|"/copyFields/[13]=={'source':'*_src_sub_i','sourceDynamicBase':'*_i','dest':'*_s'}"
 argument_list|,
-literal|"/copyFields/[14]=={'source':'*_src_sub_i','sourceDynamicBase':'*_i','dest':'dest_sub_no_ast_s','destDynamicBase':'*_s'}"
+literal|"/copyFields/[14]=={'source':'*_src_sub_i','sourceDynamicBase':'*_i','dest':'*_dest_sub_s','destDynamicBase':'*_s'}"
 argument_list|,
-literal|"/copyFields/[15]=={'source':'src_sub_no_ast_i','sourceDynamicBase':'*_i','dest':'title'}"
+literal|"/copyFields/[15]=={'source':'*_src_sub_i','sourceDynamicBase':'*_i','dest':'dest_sub_no_ast_s','destDynamicBase':'*_s'}"
 argument_list|,
 literal|"/copyFields/[16]=={'source':'src_sub_no_ast_i','sourceDynamicBase':'*_i','dest':'*_s'}"
 argument_list|,
