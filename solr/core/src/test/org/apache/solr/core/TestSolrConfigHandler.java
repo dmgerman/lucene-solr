@@ -728,7 +728,7 @@ argument_list|)
 operator|.
 name|get
 argument_list|(
-literal|"solrConfig"
+literal|"config"
 argument_list|)
 expr_stmt|;
 name|assertNotNull

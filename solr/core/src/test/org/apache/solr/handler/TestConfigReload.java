@@ -598,7 +598,7 @@ name|SolrConfig
 operator|.
 name|DEFAULT_CONF_FILE
 argument_list|,
-literal|"solrConfig"
+literal|"config"
 argument_list|,
 literal|"/config"
 argument_list|)

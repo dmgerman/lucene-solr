@@ -632,7 +632,7 @@ name|Arrays
 operator|.
 name|asList
 argument_list|(
-literal|"solrConfig"
+literal|"config"
 argument_list|,
 literal|"requestHandler"
 argument_list|,

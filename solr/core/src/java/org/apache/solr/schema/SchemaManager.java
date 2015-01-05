@@ -941,6 +941,14 @@ operator|instanceof
 name|ZkSolrResourceLoader
 condition|)
 block|{
+name|ZkSolrResourceLoader
+name|zkLoader
+init|=
+operator|(
+name|ZkSolrResourceLoader
+operator|)
+name|loader
+decl_stmt|;
 name|StringWriter
 name|sw
 init|=
@@ -992,7 +1000,7 @@ name|ZkController
 operator|.
 name|persistConfigResourceToZooKeeper
 argument_list|(
-name|loader
+name|zkLoader
 argument_list|,
 name|managedIndexSchema
 operator|.
