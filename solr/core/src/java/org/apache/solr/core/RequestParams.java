@@ -970,13 +970,7 @@ argument_list|)
 throw|;
 block|}
 block|}
-elseif|else
-if|if
-condition|(
-name|requestParams
-operator|==
-literal|null
-condition|)
+else|else
 block|{
 name|Object
 index|[]

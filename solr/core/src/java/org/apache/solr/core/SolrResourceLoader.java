@@ -4272,7 +4272,7 @@ parameter_list|)
 block|{
 comment|// Persist locally
 name|File
-name|managedSchemaFile
+name|confFile
 init|=
 operator|new
 name|File
@@ -4295,7 +4295,7 @@ block|{
 name|File
 name|parentDir
 init|=
-name|managedSchemaFile
+name|confFile
 operator|.
 name|getParentFile
 argument_list|()
@@ -4358,7 +4358,7 @@ init|=
 operator|new
 name|FileOutputStream
 argument_list|(
-name|managedSchemaFile
+name|confFile
 argument_list|)
 decl_stmt|;
 name|out
@@ -4372,12 +4372,9 @@ name|log
 operator|.
 name|info
 argument_list|(
-literal|"Upgraded to managed schema at "
+literal|"Written confile "
 operator|+
-name|managedSchemaFile
-operator|.
-name|getPath
-argument_list|()
+name|resourceName
 argument_list|)
 expr_stmt|;
 block|}
@@ -4391,9 +4388,9 @@ specifier|final
 name|String
 name|msg
 init|=
-literal|"Error persisting managed schema "
+literal|"Error persisting conf file "
 operator|+
-name|managedSchemaFile
+name|resourceName
 decl_stmt|;
 name|log
 operator|.
@@ -4443,7 +4440,7 @@ name|FileUtils
 operator|.
 name|sync
 argument_list|(
-name|managedSchemaFile
+name|confFile
 argument_list|)
 expr_stmt|;
 block|}
@@ -4457,9 +4454,9 @@ specifier|final
 name|String
 name|msg
 init|=
-literal|"Error syncing the managed schema file "
+literal|"Error syncing conf file "
 operator|+
-name|managedSchemaFile
+name|resourceName
 decl_stmt|;
 name|log
 operator|.
