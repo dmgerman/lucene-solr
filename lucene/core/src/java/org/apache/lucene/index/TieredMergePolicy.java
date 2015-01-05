@@ -2407,12 +2407,7 @@ operator|+
 name|merge
 operator|.
 name|segString
-argument_list|(
-name|writer
-operator|.
-name|getDirectory
 argument_list|()
-argument_list|)
 argument_list|,
 name|writer
 argument_list|)

@@ -36,6 +36,20 @@ name|IOException
 import|;
 end_import
 
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|util
+operator|.
+name|InfoStream
+import|;
+end_import
+
 begin_comment
 comment|/**<p>Expert: {@link IndexWriter} uses an instance  *  implementing this interface to execute the merges  *  selected by a {@link MergePolicy}.  The default  *  MergeScheduler is {@link ConcurrentMergeScheduler}.</p>  *<p>Implementers of sub-classes should make sure that {@link #clone()}  *  returns an independent instance able to work with any {@link IndexWriter}  *  instance.</p>  * @lucene.experimental */
 end_comment
@@ -86,6 +100,69 @@ parameter_list|()
 throws|throws
 name|IOException
 function_decl|;
+comment|/** For messages about merge scheduling */
+DECL|field|infoStream
+specifier|protected
+name|InfoStream
+name|infoStream
+decl_stmt|;
+comment|/** IndexWriter calls this on init. */
+DECL|method|setInfoStream
+specifier|final
+name|void
+name|setInfoStream
+parameter_list|(
+name|InfoStream
+name|infoStream
+parameter_list|)
+block|{
+name|this
+operator|.
+name|infoStream
+operator|=
+name|infoStream
+expr_stmt|;
+block|}
+comment|/**    * Returns true if infoStream messages are enabled. This method is usually used in    * conjunction with {@link #message(String)}:    *     *<pre class="prettyprint">    * if (verbose()) {    *   message(&quot;your message&quot;);    * }    *</pre>    */
+DECL|method|verbose
+specifier|protected
+name|boolean
+name|verbose
+parameter_list|()
+block|{
+return|return
+name|infoStream
+operator|!=
+literal|null
+operator|&&
+name|infoStream
+operator|.
+name|isEnabled
+argument_list|(
+literal|"MS"
+argument_list|)
+return|;
+block|}
+comment|/**    * Outputs the given message - this method assumes {@link #verbose()} was    * called and returned true.    */
+DECL|method|message
+specifier|protected
+name|void
+name|message
+parameter_list|(
+name|String
+name|message
+parameter_list|)
+block|{
+name|infoStream
+operator|.
+name|message
+argument_list|(
+literal|"MS"
+argument_list|,
+name|message
+argument_list|)
+expr_stmt|;
+block|}
 block|}
 end_class
 

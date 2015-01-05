@@ -222,11 +222,6 @@ parameter_list|,
 name|Directory
 name|dir
 parameter_list|,
-name|MergeState
-operator|.
-name|CheckAbort
-name|checkAbort
-parameter_list|,
 name|FieldInfos
 operator|.
 name|FieldNumbers
@@ -238,6 +233,31 @@ parameter_list|)
 throws|throws
 name|IOException
 block|{
+if|if
+condition|(
+name|context
+operator|.
+name|context
+operator|!=
+name|IOContext
+operator|.
+name|Context
+operator|.
+name|MERGE
+condition|)
+block|{
+throw|throw
+operator|new
+name|IllegalArgumentException
+argument_list|(
+literal|"IOContext.context should be MERGE; got: "
+operator|+
+name|context
+operator|.
+name|context
+argument_list|)
+throw|;
+block|}
 comment|// validate incoming readers
 for|for
 control|(
@@ -277,8 +297,6 @@ argument_list|,
 name|segmentInfo
 argument_list|,
 name|infoStream
-argument_list|,
-name|checkAbort
 argument_list|)
 expr_stmt|;
 name|directory
@@ -353,12 +371,6 @@ literal|"Merge would result in 0 document segment"
 argument_list|)
 throw|;
 block|}
-comment|// NOTE: it's important to add calls to
-comment|// checkAbort.work(...) if you make any changes to this
-comment|// method that will spend alot of time.  The frequency
-comment|// of this check impacts how long
-comment|// IndexWriter.close(false) takes to actually stop the
-comment|// background merge threads.
 name|mergeFieldInfos
 argument_list|()
 expr_stmt|;

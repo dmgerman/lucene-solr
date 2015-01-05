@@ -16591,6 +16591,9 @@ specifier|public
 name|void
 name|doMerge
 parameter_list|(
+name|IndexWriter
+name|writer
+parameter_list|,
 name|MergePolicy
 operator|.
 name|OneMerge
@@ -16638,6 +16641,8 @@ name|super
 operator|.
 name|doMerge
 argument_list|(
+name|writer
+argument_list|,
 name|merge
 argument_list|)
 expr_stmt|;

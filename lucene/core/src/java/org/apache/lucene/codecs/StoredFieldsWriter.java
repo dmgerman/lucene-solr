@@ -375,15 +375,6 @@ expr_stmt|;
 name|docCount
 operator|++
 expr_stmt|;
-name|mergeState
-operator|.
-name|checkAbort
-operator|.
-name|work
-argument_list|(
-literal|300
-argument_list|)
-expr_stmt|;
 block|}
 block|}
 name|finish

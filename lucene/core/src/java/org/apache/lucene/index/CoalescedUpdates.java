@@ -32,7 +32,7 @@ name|java
 operator|.
 name|util
 operator|.
-name|Iterator
+name|HashMap
 import|;
 end_import
 
@@ -42,7 +42,7 @@ name|java
 operator|.
 name|util
 operator|.
-name|HashMap
+name|Iterator
 import|;
 end_import
 
@@ -63,20 +63,6 @@ operator|.
 name|util
 operator|.
 name|Map
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|search
-operator|.
-name|Query
 import|;
 end_import
 
@@ -125,6 +111,20 @@ operator|.
 name|DocValuesUpdate
 operator|.
 name|NumericDocValuesUpdate
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|search
+operator|.
+name|Query
 import|;
 end_import
 
@@ -218,6 +218,10 @@ name|ArrayList
 argument_list|<>
 argument_list|()
 decl_stmt|;
+DECL|field|totalTermCount
+name|int
+name|totalTermCount
+decl_stmt|;
 annotation|@
 name|Override
 DECL|method|toString
@@ -234,6 +238,10 @@ name|iterables
 operator|.
 name|size
 argument_list|()
+operator|+
+literal|",totalTermCount="
+operator|+
+name|totalTermCount
 operator|+
 literal|",queries="
 operator|+
@@ -267,6 +275,12 @@ name|FrozenBufferedUpdates
 name|in
 parameter_list|)
 block|{
+name|totalTermCount
+operator|+=
+name|in
+operator|.
+name|termCount
+expr_stmt|;
 name|iterables
 operator|.
 name|add

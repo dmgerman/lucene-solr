@@ -82,6 +82,16 @@ name|java
 operator|.
 name|util
 operator|.
+name|Locale
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
+name|util
+operator|.
 name|concurrent
 operator|.
 name|atomic
@@ -814,11 +824,6 @@ name|coalescedDeletes
 init|=
 literal|null
 decl_stmt|;
-name|boolean
-name|anyNewDeletes
-init|=
-literal|false
-decl_stmt|;
 name|int
 name|infosIDX
 init|=
@@ -839,6 +844,16 @@ argument_list|()
 operator|-
 literal|1
 decl_stmt|;
+name|long
+name|totDelCount
+init|=
+literal|0
+decl_stmt|;
+name|long
+name|totTermVisitedCount
+init|=
+literal|0
+decl_stmt|;
 name|List
 argument_list|<
 name|SegmentCommitInfo
@@ -855,6 +870,15 @@ literal|0
 condition|)
 block|{
 comment|//System.out.println("BD: cycle delIDX=" + delIDX + " infoIDX=" + infosIDX);
+specifier|final
+name|long
+name|segStartNS
+init|=
+name|System
+operator|.
+name|nanoTime
+argument_list|()
+decl_stmt|;
 specifier|final
 name|FrozenBufferedUpdates
 name|packet
@@ -1007,6 +1031,11 @@ name|delCount
 init|=
 literal|0
 decl_stmt|;
+name|long
+name|termVisitedCount
+init|=
+literal|0
+decl_stmt|;
 specifier|final
 name|boolean
 name|segAllDeletes
@@ -1032,9 +1061,9 @@ operator|!=
 literal|null
 condition|)
 block|{
-comment|//System.out.println("    del coalesced");
-name|delCount
-operator|+=
+name|TermDeleteCounts
+name|counts
+init|=
 name|applyTermDeletes
 argument_list|(
 name|coalescedDeletes
@@ -1046,6 +1075,18 @@ name|rld
 argument_list|,
 name|reader
 argument_list|)
+decl_stmt|;
+name|delCount
+operator|+=
+name|counts
+operator|.
+name|delCount
+expr_stmt|;
+name|termVisitedCount
+operator|+=
+name|counts
+operator|.
+name|termVisitedCount
 expr_stmt|;
 name|delCount
 operator|+=
@@ -1222,11 +1263,13 @@ name|rld
 argument_list|)
 expr_stmt|;
 block|}
-name|anyNewDeletes
-operator||=
+name|totDelCount
+operator|+=
 name|delCount
-operator|>
-literal|0
+expr_stmt|;
+name|totTermVisitedCount
+operator|+=
+name|termVisitedCount
 expr_stmt|;
 if|if
 condition|(
@@ -1272,7 +1315,31 @@ name|message
 argument_list|(
 literal|"BD"
 argument_list|,
-literal|"seg="
+name|String
+operator|.
+name|format
+argument_list|(
+name|Locale
+operator|.
+name|ROOT
+argument_list|,
+literal|"%.3fs"
+argument_list|,
+operator|(
+operator|(
+name|System
+operator|.
+name|nanoTime
+argument_list|()
+operator|-
+name|segStartNS
+operator|)
+operator|/
+literal|1000000000.0
+operator|)
+argument_list|)
+operator|+
+literal|" seg="
 operator|+
 name|info
 operator|+
@@ -1299,6 +1366,10 @@ operator|+
 literal|"] newDelCount="
 operator|+
 name|delCount
+operator|+
+literal|" termVisitedCount="
+operator|+
+name|termVisitedCount
 operator|+
 operator|(
 name|segAllDeletes
@@ -1389,14 +1460,20 @@ name|delCount
 init|=
 literal|0
 decl_stmt|;
+name|long
+name|termVisitedCount
+init|=
+literal|0
+decl_stmt|;
 specifier|final
 name|boolean
 name|segAllDeletes
 decl_stmt|;
 try|try
 block|{
-name|delCount
-operator|+=
+name|TermDeleteCounts
+name|counts
+init|=
 name|applyTermDeletes
 argument_list|(
 name|coalescedDeletes
@@ -1408,6 +1485,18 @@ name|rld
 argument_list|,
 name|reader
 argument_list|)
+decl_stmt|;
+name|delCount
+operator|+=
+name|counts
+operator|.
+name|delCount
+expr_stmt|;
+name|termVisitedCount
+operator|+=
+name|counts
+operator|.
+name|termVisitedCount
 expr_stmt|;
 name|delCount
 operator|+=
@@ -1541,11 +1630,13 @@ name|rld
 argument_list|)
 expr_stmt|;
 block|}
-name|anyNewDeletes
-operator||=
+name|totDelCount
+operator|+=
 name|delCount
-operator|>
-literal|0
+expr_stmt|;
+name|totTermVisitedCount
+operator|+=
+name|termVisitedCount
 expr_stmt|;
 if|if
 condition|(
@@ -1591,7 +1682,31 @@ name|message
 argument_list|(
 literal|"BD"
 argument_list|,
-literal|"seg="
+name|String
+operator|.
+name|format
+argument_list|(
+name|Locale
+operator|.
+name|ROOT
+argument_list|,
+literal|"%.3fs"
+argument_list|,
+operator|(
+operator|(
+name|System
+operator|.
+name|nanoTime
+argument_list|()
+operator|-
+name|segStartNS
+operator|)
+operator|/
+literal|1000000000.0
+operator|)
+argument_list|)
+operator|+
+literal|" seg="
 operator|+
 name|info
 operator|+
@@ -1606,6 +1721,10 @@ operator|+
 literal|"] newDelCount="
 operator|+
 name|delCount
+operator|+
+literal|" termVisitedCount="
+operator|+
+name|termVisitedCount
 operator|+
 operator|(
 name|segAllDeletes
@@ -1661,7 +1780,22 @@ operator|-
 name|t0
 operator|)
 operator|+
-literal|" msec"
+literal|" msec for "
+operator|+
+name|infos
+operator|.
+name|size
+argument_list|()
+operator|+
+literal|" segments, "
+operator|+
+name|totDelCount
+operator|+
+literal|" deleted docs, "
+operator|+
+name|totTermVisitedCount
+operator|+
+literal|" visited terms"
 argument_list|)
 expr_stmt|;
 block|}
@@ -1670,7 +1804,9 @@ return|return
 operator|new
 name|ApplyDeletesResult
 argument_list|(
-name|anyNewDeletes
+name|totDelCount
+operator|>
+literal|0
 argument_list|,
 name|gen
 argument_list|,
@@ -2003,11 +2139,56 @@ argument_list|()
 expr_stmt|;
 block|}
 block|}
+DECL|class|TermDeleteCounts
+specifier|private
+specifier|static
+class|class
+name|TermDeleteCounts
+block|{
+comment|/** How many documents were actually deleted. */
+DECL|field|delCount
+specifier|public
+specifier|final
+name|int
+name|delCount
+decl_stmt|;
+comment|/** How many terms we checked. */
+DECL|field|termVisitedCount
+specifier|public
+specifier|final
+name|long
+name|termVisitedCount
+decl_stmt|;
+DECL|method|TermDeleteCounts
+specifier|public
+name|TermDeleteCounts
+parameter_list|(
+name|int
+name|delCount
+parameter_list|,
+name|long
+name|termVisitedCount
+parameter_list|)
+block|{
+name|this
+operator|.
+name|delCount
+operator|=
+name|delCount
+expr_stmt|;
+name|this
+operator|.
+name|termVisitedCount
+operator|=
+name|termVisitedCount
+expr_stmt|;
+block|}
+block|}
 comment|// Delete by Term
 DECL|method|applyTermDeletes
 specifier|private
 specifier|synchronized
-name|long
+name|TermDeleteCounts
 name|applyTermDeletes
 parameter_list|(
 name|Iterable
@@ -2025,8 +2206,13 @@ parameter_list|)
 throws|throws
 name|IOException
 block|{
-name|long
+name|int
 name|delCount
+init|=
+literal|0
+decl_stmt|;
+name|long
+name|termVisitedCount
 init|=
 literal|0
 decl_stmt|;
@@ -2064,7 +2250,14 @@ name|any
 init|=
 literal|false
 decl_stmt|;
-comment|//System.out.println(Thread.currentThread().getName() + " del terms reader=" + reader);
+name|long
+name|ns
+init|=
+name|System
+operator|.
+name|nanoTime
+argument_list|()
+decl_stmt|;
 for|for
 control|(
 name|Term
@@ -2073,6 +2266,9 @@ range|:
 name|termsIter
 control|)
 block|{
+name|termVisitedCount
+operator|++
+expr_stmt|;
 comment|// Since we visit terms sorted, we gain performance
 comment|// by re-using the same TermsEnum and seeking only
 comment|// forwards
@@ -2272,7 +2468,13 @@ block|}
 block|}
 block|}
 return|return
+operator|new
+name|TermDeleteCounts
+argument_list|(
 name|delCount
+argument_list|,
+name|termVisitedCount
+argument_list|)
 return|;
 block|}
 comment|// DocValues updates

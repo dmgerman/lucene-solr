@@ -1053,7 +1053,7 @@ expr_stmt|;
 block|}
 else|else
 block|{
-comment|// "Ghetto randomess" from 3 different sources:
+comment|// Randomess from 3 different sources:
 name|x0
 operator|=
 name|System

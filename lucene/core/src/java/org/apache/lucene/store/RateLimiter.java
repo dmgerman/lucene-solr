@@ -18,6 +18,16 @@ end_comment
 
 begin_import
 import|import
+name|java
+operator|.
+name|io
+operator|.
+name|IOException
+import|;
+end_import
+
+begin_import
+import|import
 name|org
 operator|.
 name|apache
@@ -41,23 +51,23 @@ specifier|abstract
 class|class
 name|RateLimiter
 block|{
-comment|/**    * Sets an updated mb per second rate limit.    */
-DECL|method|setMbPerSec
+comment|/**    * Sets an updated MB per second rate limit.    */
+DECL|method|setMBPerSec
 specifier|public
 specifier|abstract
 name|void
-name|setMbPerSec
+name|setMBPerSec
 parameter_list|(
 name|double
 name|mbPerSec
 parameter_list|)
 function_decl|;
-comment|/**    * The current mb per second rate limit.    */
-DECL|method|getMbPerSec
+comment|/**    * The current MB per second rate limit.    */
+DECL|method|getMBPerSec
 specifier|public
 specifier|abstract
 name|double
-name|getMbPerSec
+name|getMBPerSec
 parameter_list|()
 function_decl|;
 comment|/** Pauses, if necessary, to keep the instantaneous IO    *  rate at or below the target.     *<p>    *  Note: the implementation is thread-safe    *</p>    *  @return the pause time in nano seconds     * */
@@ -70,6 +80,8 @@ parameter_list|(
 name|long
 name|bytes
 parameter_list|)
+throws|throws
+name|IOException
 function_decl|;
 comment|/** How many bytes caller should add up itself before invoking {@link #pause}. */
 DECL|method|getMinPauseCheckBytes
@@ -126,7 +138,7 @@ name|double
 name|mbPerSec
 parameter_list|)
 block|{
-name|setMbPerSec
+name|setMBPerSec
 argument_list|(
 name|mbPerSec
 argument_list|)
@@ -142,10 +154,10 @@ block|}
 comment|/**      * Sets an updated mb per second rate limit.      */
 annotation|@
 name|Override
-DECL|method|setMbPerSec
+DECL|method|setMBPerSec
 specifier|public
 name|void
-name|setMbPerSec
+name|setMBPerSec
 parameter_list|(
 name|double
 name|mbPerSec
@@ -192,10 +204,10 @@ block|}
 comment|/**      * The current mb per second rate limit.      */
 annotation|@
 name|Override
-DECL|method|getMbPerSec
+DECL|method|getMBPerSec
 specifier|public
 name|double
-name|getMbPerSec
+name|getMBPerSec
 parameter_list|()
 block|{
 return|return

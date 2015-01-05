@@ -168,20 +168,6 @@ name|lucene
 operator|.
 name|store
 operator|.
-name|RateLimitedDirectoryWrapper
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|store
-operator|.
 name|SimpleFSLockFactory
 import|;
 end_import
@@ -542,7 +528,7 @@ name|dirFile
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**    * Override for more efficient moves.    *     * Intended for use with replication - use    * carefully - some Directory wrappers will    * cache files for example.    *     * This implementation works with two wrappers:    * NRTCachingDirectory and RateLimitedDirectoryWrapper.    *     * You should first {@link Directory#sync(java.util.Collection)} any file that will be     * moved or avoid cached files through settings.    *     * @throws IOException    *           If there is a low-level I/O error.    */
+comment|/**    * Override for more efficient moves.    *     * Intended for use with replication - use    * carefully - some Directory wrappers will    * cache files for example.    *     * This implementation works with NRTCachingDirectory.    *     * You should first {@link Directory#sync(java.util.Collection)} any file that will be     * moved or avoid cached files through settings.    *     * @throws IOException    *           If there is a low-level I/O error.    */
 annotation|@
 name|Override
 DECL|method|move
@@ -678,7 +664,7 @@ name|ioContext
 argument_list|)
 expr_stmt|;
 block|}
-comment|// special hack to work with NRTCachingDirectory and RateLimitedDirectoryWrapper
+comment|// special hack to work with NRTCachingDirectory
 DECL|method|getBaseDir
 specifier|private
 name|Directory
@@ -703,27 +689,6 @@ operator|=
 operator|(
 operator|(
 name|NRTCachingDirectory
-operator|)
-name|dir
-operator|)
-operator|.
-name|getDelegate
-argument_list|()
-expr_stmt|;
-block|}
-elseif|else
-if|if
-condition|(
-name|dir
-operator|instanceof
-name|RateLimitedDirectoryWrapper
-condition|)
-block|{
-name|baseDir
-operator|=
-operator|(
-operator|(
-name|RateLimitedDirectoryWrapper
 operator|)
 name|dir
 operator|)
