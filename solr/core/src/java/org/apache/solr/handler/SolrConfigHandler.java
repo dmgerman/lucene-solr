@@ -1776,9 +1776,9 @@ name|persistConfLocally
 argument_list|(
 name|loader
 argument_list|,
-name|ConfigOverlay
+name|RequestParams
 operator|.
-name|RESOURCE_NAME
+name|RESOURCE
 argument_list|,
 name|params
 operator|.
