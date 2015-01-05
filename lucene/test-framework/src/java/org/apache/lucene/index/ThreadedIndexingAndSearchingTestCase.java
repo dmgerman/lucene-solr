@@ -2974,6 +2974,33 @@ literal|100000
 argument_list|)
 expr_stmt|;
 block|}
+comment|// when running nightly, merging can still have crazy parameters,
+comment|// and might use many per-field codecs. turn on CFS for IW flushes
+comment|// and ensure CFS ratio is reasonable to keep it contained.
+name|conf
+operator|.
+name|setUseCompoundFile
+argument_list|(
+literal|true
+argument_list|)
+expr_stmt|;
+name|mp
+operator|.
+name|setNoCFSRatio
+argument_list|(
+name|Math
+operator|.
+name|max
+argument_list|(
+literal|0.25d
+argument_list|,
+name|mp
+operator|.
+name|getNoCFSRatio
+argument_list|()
+argument_list|)
+argument_list|)
+expr_stmt|;
 block|}
 name|conf
 operator|.
