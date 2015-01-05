@@ -302,6 +302,13 @@ name|DOCUMENTS_DIR
 argument_list|,
 literal|"UTF-8"
 argument_list|)
+operator|.
+name|replace
+argument_list|(
+literal|"+"
+argument_list|,
+literal|"%20"
+argument_list|)
 operator|+
 literal|"/sample-statuses-20120906-141433.avro"
 argument_list|)
