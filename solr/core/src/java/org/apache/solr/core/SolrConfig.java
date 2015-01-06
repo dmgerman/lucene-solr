@@ -1218,7 +1218,7 @@ argument_list|)
 operator|==
 literal|null
 argument_list|,
-literal|false
+literal|true
 argument_list|)
 expr_stmt|;
 comment|// Parse indexConfig section, using mainIndex as backup in case old config is used
