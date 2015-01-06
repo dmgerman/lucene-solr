@@ -218,6 +218,16 @@ name|MIN_MERGE_MB_PER_SEC
 init|=
 literal|5.0
 decl_stmt|;
+comment|/** Ceiling for IO write rate limit (we will never go any higher than this) */
+DECL|field|MAX_MERGE_MB_PER_SEC
+specifier|private
+specifier|static
+specifier|final
+name|double
+name|MAX_MERGE_MB_PER_SEC
+init|=
+literal|10240.0
+decl_stmt|;
 comment|/** Initial value for IO write rate limit when doAutoIOThrottle is true */
 DECL|field|START_MB_PER_SEC
 specifier|private
@@ -1510,6 +1520,24 @@ argument_list|(
 name|writer
 argument_list|)
 expr_stmt|;
+if|if
+condition|(
+name|trigger
+operator|==
+name|MergeTrigger
+operator|.
+name|CLOSING
+condition|)
+block|{
+comment|// Disable throttling on close:
+name|targetMBPerSec
+operator|=
+name|MAX_MERGE_MB_PER_SEC
+expr_stmt|;
+name|updateMergeThreads
+argument_list|()
+expr_stmt|;
+block|}
 comment|// First, quickly run through the newly proposed merges
 comment|// and add any orthogonal merges (ie a merge not
 comment|// involving segments already pending to be merged) to
@@ -2514,12 +2542,12 @@ if|if
 condition|(
 name|targetMBPerSec
 operator|>
-literal|10000
+name|MAX_MERGE_MB_PER_SEC
 condition|)
 block|{
 name|targetMBPerSec
 operator|=
-literal|10000
+name|MAX_MERGE_MB_PER_SEC
 expr_stmt|;
 block|}
 if|if
