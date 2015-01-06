@@ -167,7 +167,7 @@ parameter_list|)
 throws|throws
 name|IOException
 function_decl|;
-comment|/**    * Creates a new IndexReader instance using the given IndexWriter.    *<p>    * This is used for opening the initial reader in NRT mode ({@code nrtMode=true}    * in solrconfig.xml)    *     * @param writer IndexWriter    * @param core {@link SolrCore} instance where this reader will be used. NOTE:    * this SolrCore instance may not be fully configured yet, but basic things like    * {@link SolrCore#getCoreDescriptor()}, {@link SolrCore#getLatestSchema()} and    * {@link SolrCore#getSolrConfig()} are valid.    * @return An IndexReader instance    * @throws IOException If there is a low-level I/O error.    */
+comment|/**    * Creates a new IndexReader instance using the given IndexWriter.    *<p>    * This is used for opening the initial reader in NRT mode    *    * @param writer IndexWriter    * @param core {@link SolrCore} instance where this reader will be used. NOTE:    * this SolrCore instance may not be fully configured yet, but basic things like    * {@link SolrCore#getCoreDescriptor()}, {@link SolrCore#getLatestSchema()} and    * {@link SolrCore#getSolrConfig()} are valid.    * @return An IndexReader instance    * @throws IOException If there is a low-level I/O error.    */
 DECL|method|newReader
 specifier|public
 specifier|abstract

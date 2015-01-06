@@ -1201,15 +1201,24 @@ operator|=
 literal|"indexConfig"
 expr_stmt|;
 block|}
-name|nrtMode
-operator|=
-name|getBool
+name|assertWarnOrFail
+argument_list|(
+literal|"The<nrtMode> config has been discontinued and NRT mode is always used by Solr."
+operator|+
+literal|" This config will be removed in future versions."
+argument_list|,
+name|getNode
 argument_list|(
 name|indexConfigPrefix
 operator|+
 literal|"/nrtMode"
 argument_list|,
-literal|true
+literal|false
+argument_list|)
+operator|!=
+literal|null
+argument_list|,
+literal|false
 argument_list|)
 expr_stmt|;
 comment|// Parse indexConfig section, using mainIndex as backup in case old config is used
@@ -2778,12 +2787,6 @@ specifier|public
 specifier|final
 name|boolean
 name|enableLazyFieldLoading
-decl_stmt|;
-DECL|field|nrtMode
-specifier|public
-specifier|final
-name|boolean
-name|nrtMode
 decl_stmt|;
 comment|// DocSet
 DECL|field|hashSetInverseLoadFactor
