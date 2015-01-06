@@ -290,6 +290,13 @@ specifier|private
 name|int
 name|maxCharsToAnalyze
 decl_stmt|;
+DECL|field|usePayloads
+specifier|private
+name|boolean
+name|usePayloads
+init|=
+literal|false
+decl_stmt|;
 comment|/**    * @param query Query to use for highlighting    */
 DECL|method|QueryScorer
 specifier|public
@@ -851,6 +858,13 @@ argument_list|(
 name|wrapToCaching
 argument_list|)
 expr_stmt|;
+name|qse
+operator|.
+name|setUsePayloads
+argument_list|(
+name|usePayloads
+argument_list|)
+expr_stmt|;
 if|if
 condition|(
 name|reader
@@ -988,6 +1002,33 @@ operator|.
 name|expandMultiTermQuery
 operator|=
 name|expandMultiTermQuery
+expr_stmt|;
+block|}
+comment|/**    * Whether or not we should capture payloads in {@link MemoryIndex} at each position so that queries can access them.    * This does not apply to term vector based TokenStreams, which support payloads only when the term vector has them.    */
+DECL|method|isUsePayloads
+specifier|public
+name|boolean
+name|isUsePayloads
+parameter_list|()
+block|{
+return|return
+name|usePayloads
+return|;
+block|}
+DECL|method|setUsePayloads
+specifier|public
+name|void
+name|setUsePayloads
+parameter_list|(
+name|boolean
+name|usePayloads
+parameter_list|)
+block|{
+name|this
+operator|.
+name|usePayloads
+operator|=
+name|usePayloads
 expr_stmt|;
 block|}
 comment|/**    * By default, {@link TokenStream}s that are not of the type    * {@link CachingTokenFilter} are wrapped in a {@link CachingTokenFilter} to    * ensure an efficient reset - if you are already using a different caching    * {@link TokenStream} impl and you don't want it to be wrapped, set this to    * false. Note that term-vector based tokenstreams are detected and won't be    * wrapped either.    */
