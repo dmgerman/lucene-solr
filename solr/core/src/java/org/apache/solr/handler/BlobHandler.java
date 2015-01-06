@@ -1494,7 +1494,7 @@ argument_list|)
 argument_list|,
 literal|"fl"
 argument_list|,
-literal|"id,size,version,timestamp,blobName"
+literal|"id,size,version,timestamp,blobName,md5"
 argument_list|,
 literal|"sort"
 argument_list|,

@@ -1255,7 +1255,7 @@ name|payload
 operator|=
 literal|"{\n"
 operator|+
-literal|"'update-requesthandler' : { 'name' : '/x', 'class': 'org.apache.solr.handler.DumpRequestHandler' , 'startup' : 'lazy' , 'a':'b'}\n"
+literal|"'update-requesthandler' : { 'name' : '/x', 'class': 'org.apache.solr.handler.DumpRequestHandler' , 'startup' : 'lazy' , 'a':'b' , 'defaults': {'def_a':'def A val'}}\n"
 operator|+
 literal|"}"
 expr_stmt|;
@@ -1292,6 +1292,30 @@ literal|"a"
 argument_list|)
 argument_list|,
 literal|"b"
+argument_list|,
+literal|10
+argument_list|)
+expr_stmt|;
+name|testForResponseElement
+argument_list|(
+name|writeHarness
+argument_list|,
+name|testServerBaseUrl
+argument_list|,
+literal|"/x?wt=json&getdefaults=true&json.nl=map"
+argument_list|,
+name|cloudSolrServer
+argument_list|,
+name|Arrays
+operator|.
+name|asList
+argument_list|(
+literal|"getdefaults"
+argument_list|,
+literal|"def_a"
+argument_list|)
+argument_list|,
+literal|"def A val"
 argument_list|,
 literal|10
 argument_list|)
