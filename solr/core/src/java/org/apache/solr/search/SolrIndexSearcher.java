@@ -10881,6 +10881,11 @@ name|readerIndex
 init|=
 literal|0
 decl_stmt|;
+name|LeafCollector
+name|leafCollector
+init|=
+literal|null
+decl_stmt|;
 while|while
 condition|(
 name|iter
@@ -10933,6 +10938,8 @@ operator|.
 name|maxDoc
 argument_list|()
 expr_stmt|;
+name|leafCollector
+operator|=
 name|topCollector
 operator|.
 name|getLeafCollector
@@ -10942,7 +10949,7 @@ argument_list|)
 expr_stmt|;
 comment|// we should never need to set the scorer given the settings for the collector
 block|}
-name|topCollector
+name|leafCollector
 operator|.
 name|collect
 argument_list|(

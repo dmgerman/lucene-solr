@@ -36,20 +36,6 @@ name|lucene
 operator|.
 name|index
 operator|.
-name|LeafReaderContext
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|index
-operator|.
 name|BinaryDocValues
 import|;
 end_import
@@ -65,6 +51,20 @@ operator|.
 name|index
 operator|.
 name|DocValues
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|index
+operator|.
+name|LeafReaderContext
 import|;
 end_import
 
@@ -139,7 +139,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Expert: a FieldComparator compares hits so as to determine their  * sort order when collecting the top results with {@link  * TopFieldCollector}.  The concrete public FieldComparator  * classes here correspond to the SortField types.  *  *<p>This API is designed to achieve high performance  * sorting, by exposing a tight interaction with {@link  * FieldValueHitQueue} as it visits hits.  Whenever a hit is  * competitive, it's enrolled into a virtual slot, which is  * an int ranging from 0 to numHits-1.  The {@link  * FieldComparator} is made aware of segment transitions  * during searching in case any internal state it's tracking  * needs to be recomputed during these transitions.</p>  *  *<p>A comparator must define these functions:</p>  *  *<ul>  *  *<li> {@link #compare} Compare a hit at 'slot a'  *       with hit 'slot b'.  *  *<li> {@link #setBottom} This method is called by  *       {@link FieldValueHitQueue} to notify the  *       FieldComparator of the current weakest ("bottom")  *       slot.  Note that this slot may not hold the weakest  *       value according to your comparator, in cases where  *       your comparator is not the primary one (ie, is only  *       used to break ties from the comparators before it).  *  *<li> {@link #compareBottom} Compare a new hit (docID)  *       against the "weakest" (bottom) entry in the queue.  *  *<li> {@link #setTopValue} This method is called by  *       {@link TopFieldCollector} to notify the  *       FieldComparator of the top most value, which is  *       used by future calls to {@link #compareTop}.  *  *<li> {@link #compareBottom} Compare a new hit (docID)  *       against the "weakest" (bottom) entry in the queue.  *  *<li> {@link #compareTop} Compare a new hit (docID)  *       against the top value previously set by a call to  *       {@link #setTopValue}.  *  *<li> {@link #copy} Installs a new hit into the  *       priority queue.  The {@link FieldValueHitQueue}  *       calls this method when a new hit is competitive.  *  *<li> {@link #setNextReader(org.apache.lucene.index.LeafReaderContext)} Invoked  *       when the search is switching to the next segment.  *       You may need to update internal state of the  *       comparator, for example retrieving new values from  *       DocValues.  *  *<li> {@link #value} Return the sort value stored in  *       the specified slot.  This is only called at the end  *       of the search, in order to populate {@link  *       FieldDoc#fields} when returning the top results.  *</ul>  *  * @lucene.experimental  */
+comment|/**  * Expert: a FieldComparator compares hits so as to determine their  * sort order when collecting the top results with {@link  * TopFieldCollector}.  The concrete public FieldComparator  * classes here correspond to the SortField types.  *  *<p>This API is designed to achieve high performance  * sorting, by exposing a tight interaction with {@link  * FieldValueHitQueue} as it visits hits.  Whenever a hit is  * competitive, it's enrolled into a virtual slot, which is  * an int ranging from 0 to numHits-1. Segment transitions are  * handled by creating a dedicated per-segment  * {@link LeafFieldComparator} which also needs to interact  * with the {@link FieldValueHitQueue} but can optimize based  * on the segment to collect.</p>  *   *<p>The following functions need to be implemented</p>  *<ul>  *<li> {@link #compare} Compare a hit at 'slot a'  *       with hit 'slot b'.  *   *<li> {@link #setTopValue} This method is called by  *       {@link TopFieldCollector} to notify the  *       FieldComparator of the top most value, which is  *       used by future calls to  *       {@link LeafFieldComparator#compareTop}.  *   *<li> {@link #getLeafComparator(org.apache.lucene.index.LeafReaderContext)} Invoked  *       when the search is switching to the next segment.  *       You may need to update internal state of the  *       comparator, for example retrieving new values from  *       DocValues.  *  *<li> {@link #value} Return the sort value stored in  *       the specified slot.  This is only called at the end  *       of the search, in order to populate {@link  *       FieldDoc#fields} when returning the top results.  *</ul>  *  * @see LeafFieldComparator  * @lucene.experimental  */
 end_comment
 
 begin_class
@@ -166,19 +166,7 @@ name|int
 name|slot2
 parameter_list|)
 function_decl|;
-comment|/**    * Set the bottom slot, ie the "weakest" (sorted last)    * entry in the queue.  When {@link #compareBottom} is    * called, you should compare against this slot.  This    * will always be called before {@link #compareBottom}.    *     * @param slot the currently weakest (sorted last) slot in the queue    */
-DECL|method|setBottom
-specifier|public
-specifier|abstract
-name|void
-name|setBottom
-parameter_list|(
-specifier|final
-name|int
-name|slot
-parameter_list|)
-function_decl|;
-comment|/**    * Record the top value, for future calls to {@link    * #compareTop}.  This is only called for searches that    * use searchAfter (deep paging), and is called before any    * calls to {@link #setNextReader}.    */
+comment|/**    * Record the top value, for future calls to {@link    * LeafFieldComparator#compareTop}.  This is only called for searches that    * use searchAfter (deep paging), and is called before any    * calls to {@link #getLeafComparator(LeafReaderContext)}.    */
 DECL|method|setTopValue
 specifier|public
 specifier|abstract
@@ -189,77 +177,6 @@ name|T
 name|value
 parameter_list|)
 function_decl|;
-comment|/**    * Compare the bottom of the queue with this doc.  This will    * only invoked after setBottom has been called.  This    * should return the same result as {@link    * #compare(int,int)}} as if bottom were slot1 and the new    * document were slot 2.    *        *<p>For a search that hits many results, this method    * will be the hotspot (invoked by far the most    * frequently).</p>    *     * @param doc that was hit    * @return any {@code N< 0} if the doc's value is sorted after    * the bottom entry (not competitive), any {@code N> 0} if the    * doc's value is sorted before the bottom entry and {@code 0} if    * they are equal.    */
-DECL|method|compareBottom
-specifier|public
-specifier|abstract
-name|int
-name|compareBottom
-parameter_list|(
-name|int
-name|doc
-parameter_list|)
-throws|throws
-name|IOException
-function_decl|;
-comment|/**    * Compare the top value with this doc.  This will    * only invoked after setTopValue has been called.  This    * should return the same result as {@link    * #compare(int,int)}} as if topValue were slot1 and the new    * document were slot 2.  This is only called for searches that    * use searchAfter (deep paging).    *        * @param doc that was hit    * @return any {@code N< 0} if the doc's value is sorted after    * the bottom entry (not competitive), any {@code N> 0} if the    * doc's value is sorted before the bottom entry and {@code 0} if    * they are equal.    */
-DECL|method|compareTop
-specifier|public
-specifier|abstract
-name|int
-name|compareTop
-parameter_list|(
-name|int
-name|doc
-parameter_list|)
-throws|throws
-name|IOException
-function_decl|;
-comment|/**    * This method is called when a new hit is competitive.    * You should copy any state associated with this document    * that will be required for future comparisons, into the    * specified slot.    *     * @param slot which slot to copy the hit to    * @param doc docID relative to current reader    */
-DECL|method|copy
-specifier|public
-specifier|abstract
-name|void
-name|copy
-parameter_list|(
-name|int
-name|slot
-parameter_list|,
-name|int
-name|doc
-parameter_list|)
-throws|throws
-name|IOException
-function_decl|;
-comment|/**    * Set a new {@link org.apache.lucene.index.LeafReaderContext}. All subsequent docIDs are relative to    * the current reader (you must add docBase if you need to    * map it to a top-level docID).    *     * @param context current reader context    * @return the comparator to use for this segment; most    *   comparators can just return "this" to reuse the same    *   comparator across segments    * @throws IOException if there is a low-level IO error    */
-DECL|method|setNextReader
-specifier|public
-specifier|abstract
-name|FieldComparator
-argument_list|<
-name|T
-argument_list|>
-name|setNextReader
-parameter_list|(
-name|LeafReaderContext
-name|context
-parameter_list|)
-throws|throws
-name|IOException
-function_decl|;
-comment|/** Sets the Scorer to use in case a document's score is    *  needed.    *     * @param scorer Scorer instance that you should use to    * obtain the current hit's score, if necessary. */
-DECL|method|setScorer
-specifier|public
-name|void
-name|setScorer
-parameter_list|(
-name|Scorer
-name|scorer
-parameter_list|)
-block|{
-comment|// Empty implementation since most comparators don't need the score. This
-comment|// can be overridden by those that need it.
-block|}
 comment|/**    * Return the actual value in the slot.    *    * @param slot the value    * @return value in this slot    */
 DECL|method|value
 specifier|public
@@ -271,7 +188,20 @@ name|int
 name|slot
 parameter_list|)
 function_decl|;
-comment|/** Returns -1 if first is less than second.  Default    *  impl to assume the type implements Comparable and    *  invoke .compareTo; be sure to override this method if    *  your FieldComparator's type isn't a Comparable or    *  if your values may sometimes be null */
+comment|/**    * Get a per-segment {@link LeafFieldComparator} to collect the given    * {@link org.apache.lucene.index.LeafReaderContext}. All docIDs supplied to    * this {@link LeafFieldComparator} are relative to the current reader (you    * must add docBase if you need to map it to a top-level docID).    *     * @param context current reader context    * @return the comparator to use for this segment    * @throws IOException if there is a low-level IO error    */
+DECL|method|getLeafComparator
+specifier|public
+specifier|abstract
+name|LeafFieldComparator
+name|getLeafComparator
+parameter_list|(
+name|LeafReaderContext
+name|context
+parameter_list|)
+throws|throws
+name|IOException
+function_decl|;
+comment|/** Returns a negative integer if first is less than second,    *  0 if they are equal and a positive integer otherwise. Default    *  impl to assume the type implements Comparable and    *  invoke .compareTo; be sure to override this method if    *  your FieldComparator's type isn't a Comparable or    *  if your values may sometimes be null */
 annotation|@
 name|SuppressWarnings
 argument_list|(
@@ -360,7 +290,7 @@ extends|extends
 name|Number
 parameter_list|>
 extends|extends
-name|FieldComparator
+name|SimpleFieldComparator
 argument_list|<
 name|T
 argument_list|>
@@ -413,13 +343,10 @@ expr_stmt|;
 block|}
 annotation|@
 name|Override
-DECL|method|setNextReader
-specifier|public
-name|FieldComparator
-argument_list|<
-name|T
-argument_list|>
-name|setNextReader
+DECL|method|doSetNextReader
+specifier|protected
+name|void
+name|doSetNextReader
 parameter_list|(
 name|LeafReaderContext
 name|context
@@ -480,9 +407,6 @@ operator|=
 literal|null
 expr_stmt|;
 block|}
-return|return
-name|this
-return|;
 block|}
 comment|/** Retrieves the NumericDocValues for the field in this segment */
 DECL|method|getNumericDocValues
@@ -1886,6 +1810,8 @@ name|FieldComparator
 argument_list|<
 name|Float
 argument_list|>
+implements|implements
+name|LeafFieldComparator
 block|{
 DECL|field|scores
 specifier|private
@@ -2040,13 +1966,10 @@ assert|;
 block|}
 annotation|@
 name|Override
-DECL|method|setNextReader
+DECL|method|getLeafComparator
 specifier|public
-name|FieldComparator
-argument_list|<
-name|Float
-argument_list|>
-name|setNextReader
+name|LeafFieldComparator
+name|getLeafComparator
 parameter_list|(
 name|LeafReaderContext
 name|context
@@ -2242,6 +2165,8 @@ name|FieldComparator
 argument_list|<
 name|Integer
 argument_list|>
+implements|implements
+name|LeafFieldComparator
 block|{
 DECL|field|docIDs
 specifier|private
@@ -2358,13 +2283,10 @@ expr_stmt|;
 block|}
 annotation|@
 name|Override
-DECL|method|setNextReader
+DECL|method|getLeafComparator
 specifier|public
-name|FieldComparator
-argument_list|<
-name|Integer
-argument_list|>
-name|setNextReader
+name|LeafFieldComparator
+name|getLeafComparator
 parameter_list|(
 name|LeafReaderContext
 name|context
@@ -2475,6 +2397,17 @@ name|docValue
 argument_list|)
 return|;
 block|}
+annotation|@
+name|Override
+DECL|method|setScorer
+specifier|public
+name|void
+name|setScorer
+parameter_list|(
+name|Scorer
+name|scorer
+parameter_list|)
+block|{}
 block|}
 comment|/** Sorts by field's natural Term sort order, using    *  ordinals.  This is functionally equivalent to {@link    *  org.apache.lucene.search.FieldComparator.TermValComparator}, but it first resolves the string    *  to their relative ordinal positions (using the index    *  returned by {@link org.apache.lucene.index.LeafReader#getSortedDocValues(String)}), and    *  does most comparisons using the ordinals.  For medium    *  to large results, this comparator will be much faster    *  than {@link org.apache.lucene.search.FieldComparator.TermValComparator}.  For very small    *  result sets it may be slower. */
 DECL|class|TermOrdValComparator
@@ -2487,6 +2420,8 @@ name|FieldComparator
 argument_list|<
 name|BytesRef
 argument_list|>
+implements|implements
+name|LeafFieldComparator
 block|{
 comment|/* Ords for each slot.        @lucene.internal */
 DECL|field|ords
@@ -3010,13 +2945,10 @@ return|;
 block|}
 annotation|@
 name|Override
-DECL|method|setNextReader
+DECL|method|getLeafComparator
 specifier|public
-name|FieldComparator
-argument_list|<
-name|BytesRef
-argument_list|>
-name|setNextReader
+name|LeafFieldComparator
+name|getLeafComparator
 parameter_list|(
 name|LeafReaderContext
 name|context
@@ -3096,7 +3028,7 @@ operator|=
 literal|true
 expr_stmt|;
 block|}
-comment|//System.out.println("  setNextReader topOrd=" + topOrd + " topSameReader=" + topSameReader);
+comment|//System.out.println("  getLeafComparator topOrd=" + topOrd + " topSameReader=" + topSameReader);
 if|if
 condition|(
 name|bottomSlot
@@ -3421,6 +3353,17 @@ name|val2
 argument_list|)
 return|;
 block|}
+annotation|@
+name|Override
+DECL|method|setScorer
+specifier|public
+name|void
+name|setScorer
+parameter_list|(
+name|Scorer
+name|scorer
+parameter_list|)
+block|{}
 block|}
 comment|/** Sorts by field's natural Term sort order.  All    *  comparisons are done using BytesRef.compareTo, which is    *  slow for medium to large result sets but possibly    *  very fast for very small results sets. */
 DECL|class|TermValComparator
@@ -3433,6 +3376,8 @@ name|FieldComparator
 argument_list|<
 name|BytesRef
 argument_list|>
+implements|implements
+name|LeafFieldComparator
 block|{
 DECL|field|values
 specifier|private
@@ -3784,13 +3729,10 @@ return|;
 block|}
 annotation|@
 name|Override
-DECL|method|setNextReader
+DECL|method|getLeafComparator
 specifier|public
-name|FieldComparator
-argument_list|<
-name|BytesRef
-argument_list|>
-name|setNextReader
+name|LeafFieldComparator
+name|getLeafComparator
 parameter_list|(
 name|LeafReaderContext
 name|context
@@ -4024,6 +3966,17 @@ return|return
 name|term
 return|;
 block|}
+annotation|@
+name|Override
+DECL|method|setScorer
+specifier|public
+name|void
+name|setScorer
+parameter_list|(
+name|Scorer
+name|scorer
+parameter_list|)
+block|{}
 block|}
 block|}
 end_class

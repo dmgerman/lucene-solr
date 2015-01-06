@@ -230,6 +230,11 @@ name|docBase
 init|=
 literal|0
 decl_stmt|;
+name|LeafCollector
+name|leafCollector
+init|=
+literal|null
+decl_stmt|;
 name|FakeScorer
 name|fakeScorer
 init|=
@@ -308,6 +313,8 @@ literal|null
 condition|)
 block|{
 comment|// We advanced to another segment:
+name|leafCollector
+operator|=
 name|collector
 operator|.
 name|getLeafCollector
@@ -315,7 +322,7 @@ argument_list|(
 name|readerContext
 argument_list|)
 expr_stmt|;
-name|collector
+name|leafCollector
 operator|.
 name|setScorer
 argument_list|(
@@ -345,7 +352,7 @@ name|docID
 operator|-
 name|docBase
 expr_stmt|;
-name|collector
+name|leafCollector
 operator|.
 name|collect
 argument_list|(
