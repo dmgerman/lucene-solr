@@ -580,13 +580,13 @@ name|get
 argument_list|()
 return|;
 block|}
-comment|/** Calls {@link IndexWriter#addIndexes(IndexReader...)}    *  and returns the generation that reflects this change. */
+comment|/** Calls {@link IndexWriter#addIndexes(LeafReader...)}    *  and returns the generation that reflects this change. */
 DECL|method|addIndexes
 specifier|public
 name|long
 name|addIndexes
 parameter_list|(
-name|IndexReader
+name|LeafReader
 modifier|...
 name|readers
 parameter_list|)

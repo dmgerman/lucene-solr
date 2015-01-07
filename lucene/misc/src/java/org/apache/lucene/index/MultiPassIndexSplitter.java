@@ -169,7 +169,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * This tool splits input index into multiple equal parts. The method employed  * here uses {@link IndexWriter#addIndexes(IndexReader[])} where the input data  * comes from the input index with artificially applied deletes to the document  * id-s that fall outside the selected partition.  *<p>Note 1: Deletes are only applied to a buffered list of deleted docs and  * don't affect the source index - this tool works also with read-only indexes.  *<p>Note 2: the disadvantage of this tool is that source index needs to be  * read as many times as there are parts to be created, hence the name of this  * tool.  *  *<p><b>NOTE</b>: this tool is unaware of documents added  * atomically via {@link IndexWriter#addDocuments} or {@link  * IndexWriter#updateDocuments}, which means it can easily  * break up such document groups.  */
+comment|/**  * This tool splits input index into multiple equal parts. The method employed  * here uses {@link IndexWriter#addIndexes(LeafReader[])} where the input data  * comes from the input index with artificially applied deletes to the document  * id-s that fall outside the selected partition.  *<p>Note 1: Deletes are only applied to a buffered list of deleted docs and  * don't affect the source index - this tool works also with read-only indexes.  *<p>Note 2: the disadvantage of this tool is that source index needs to be  * read as many times as there are parts to be created, hence the name of this  * tool.  *  *<p><b>NOTE</b>: this tool is unaware of documents added  * atomically via {@link IndexWriter#addDocuments} or {@link  * IndexWriter#updateDocuments}, which means it can easily  * break up such document groups.  */
 end_comment
 
 begin_class
@@ -486,7 +486,7 @@ operator|.
 name|toArray
 argument_list|(
 operator|new
-name|IndexReader
+name|LeafReader
 index|[
 name|sr
 operator|.

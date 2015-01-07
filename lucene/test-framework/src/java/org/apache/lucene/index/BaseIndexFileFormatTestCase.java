@@ -1383,7 +1383,7 @@ operator|.
 name|close
 argument_list|()
 expr_stmt|;
-name|IndexReader
+name|DirectoryReader
 name|reader
 init|=
 name|DirectoryReader
@@ -1466,10 +1466,12 @@ argument_list|,
 name|cfg
 argument_list|)
 expr_stmt|;
-name|w
+name|TestUtil
 operator|.
-name|addIndexes
+name|addIndexesSlowly
 argument_list|(
+name|w
+argument_list|,
 name|reader
 argument_list|)
 expr_stmt|;

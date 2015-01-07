@@ -1,6 +1,6 @@
 begin_unit|revision:0.9.5;language:Java;cregit-version:0.0.1
 begin_package
-DECL|package|org.apache.lucene.search
+DECL|package|org.apache.lucene.index
 package|package
 name|org
 operator|.
@@ -8,7 +8,7 @@ name|apache
 operator|.
 name|lucene
 operator|.
-name|search
+name|index
 package|;
 end_package
 
@@ -219,6 +219,20 @@ operator|.
 name|util
 operator|.
 name|LuceneTestCase
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|util
+operator|.
+name|TestUtil
 import|;
 end_import
 
@@ -970,7 +984,7 @@ range|:
 name|input
 control|)
 block|{
-name|IndexReader
+name|DirectoryReader
 name|r
 init|=
 name|DirectoryReader
@@ -980,10 +994,12 @@ argument_list|(
 name|dir
 argument_list|)
 decl_stmt|;
-name|writer
+name|TestUtil
 operator|.
-name|addIndexes
+name|addIndexesSlowly
 argument_list|(
+name|writer
+argument_list|,
 name|r
 argument_list|)
 expr_stmt|;

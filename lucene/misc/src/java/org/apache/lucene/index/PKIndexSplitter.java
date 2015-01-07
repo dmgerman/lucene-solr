@@ -586,12 +586,12 @@ name|leaves
 argument_list|()
 decl_stmt|;
 specifier|final
-name|IndexReader
+name|LeafReader
 index|[]
 name|subReaders
 init|=
 operator|new
-name|IndexReader
+name|LeafReader
 index|[
 name|leaves
 operator|.

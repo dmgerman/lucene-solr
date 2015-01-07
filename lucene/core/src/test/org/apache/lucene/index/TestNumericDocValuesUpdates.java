@@ -8803,10 +8803,12 @@ argument_list|(
 name|dir1
 argument_list|)
 decl_stmt|;
-name|writer
+name|TestUtil
 operator|.
-name|addIndexes
+name|addIndexesSlowly
 argument_list|(
+name|writer
+argument_list|,
 name|reader
 argument_list|)
 expr_stmt|;

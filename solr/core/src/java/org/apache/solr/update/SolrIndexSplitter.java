@@ -972,7 +972,7 @@ name|size
 argument_list|()
 argument_list|)
 expr_stmt|;
-name|IndexReader
+name|LeafReader
 name|subReader
 init|=
 operator|new

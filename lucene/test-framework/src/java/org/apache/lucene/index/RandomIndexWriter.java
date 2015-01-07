@@ -1149,7 +1149,7 @@ specifier|public
 name|void
 name|addIndexes
 parameter_list|(
-name|IndexReader
+name|LeafReader
 modifier|...
 name|readers
 parameter_list|)

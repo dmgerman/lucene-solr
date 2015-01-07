@@ -321,11 +321,7 @@ name|destIndexWriter
 operator|.
 name|addIndexes
 argument_list|(
-operator|new
-name|MultiReader
-argument_list|(
 name|wrappedLeaves
-argument_list|)
 argument_list|)
 expr_stmt|;
 comment|// commit changes to taxonomy and index respectively.

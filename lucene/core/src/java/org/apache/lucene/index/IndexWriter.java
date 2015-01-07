@@ -821,7 +821,7 @@ name|SOURCE_FLUSH
 init|=
 literal|"flush"
 decl_stmt|;
-comment|/** Source of a segment which results from a call to {@link #addIndexes(IndexReader...)}. */
+comment|/** Source of a segment which results from a call to {@link #addIndexes(LeafReader...)}. */
 DECL|field|SOURCE_ADDINDEXES_READERS
 specifier|public
 specifier|static
@@ -829,7 +829,7 @@ specifier|final
 name|String
 name|SOURCE_ADDINDEXES_READERS
 init|=
-literal|"addIndexes(IndexReader...)"
+literal|"addIndexes(LeafReader...)"
 decl_stmt|;
 comment|/**    * Absolute hard maximum length for a term, in bytes once    * encoded as UTF8.  If a term arrives from the analyzer    * longer than this length, an    *<code>IllegalArgumentException</code>  is thrown    * and a message is printed to infoStream, if set (see {@link    * IndexWriterConfig#setInfoStream(InfoStream)}).    */
 DECL|field|MAX_TERM_LENGTH
@@ -6540,7 +6540,7 @@ expr_stmt|;
 block|}
 block|}
 block|}
-comment|/**    * Delete all documents in the index.    *     *<p>    * This method will drop all buffered documents and will remove all segments    * from the index. This change will not be visible until a {@link #commit()}    * has been called. This method can be rolled back using {@link #rollback()}.    *</p>    *     *<p>    * NOTE: this method is much faster than using deleteDocuments( new    * MatchAllDocsQuery() ). Yet, this method also has different semantics    * compared to {@link #deleteDocuments(Query...)} since internal    * data-structures are cleared as well as all segment information is    * forcefully dropped anti-viral semantics like omitting norms are reset or    * doc value types are cleared. Essentially a call to {@link #deleteAll()} is    * equivalent to creating a new {@link IndexWriter} with    * {@link OpenMode#CREATE} which a delete query only marks documents as    * deleted.    *</p>    *     *<p>    * NOTE: this method will forcefully abort all merges in progress. If other    * threads are running {@link #forceMerge}, {@link #addIndexes(IndexReader[])}    * or {@link #forceMergeDeletes} methods, they may receive    * {@link MergePolicy.MergeAbortedException}s.    */
+comment|/**    * Delete all documents in the index.    *     *<p>    * This method will drop all buffered documents and will remove all segments    * from the index. This change will not be visible until a {@link #commit()}    * has been called. This method can be rolled back using {@link #rollback()}.    *</p>    *     *<p>    * NOTE: this method is much faster than using deleteDocuments( new    * MatchAllDocsQuery() ). Yet, this method also has different semantics    * compared to {@link #deleteDocuments(Query...)} since internal    * data-structures are cleared as well as all segment information is    * forcefully dropped anti-viral semantics like omitting norms are reset or    * doc value types are cleared. Essentially a call to {@link #deleteAll()} is    * equivalent to creating a new {@link IndexWriter} with    * {@link OpenMode#CREATE} which a delete query only marks documents as    * deleted.    *</p>    *     *<p>    * NOTE: this method will forcefully abort all merges in progress. If other    * threads are running {@link #forceMerge}, {@link #addIndexes(LeafReader[])}    * or {@link #forceMergeDeletes} methods, they may receive    * {@link MergePolicy.MergeAbortedException}s.    */
 DECL|method|deleteAll
 specifier|public
 name|void
@@ -7955,13 +7955,13 @@ name|maybeMerge
 argument_list|()
 expr_stmt|;
 block|}
-comment|/**    * Merges the provided indexes into this index.    *     *<p>    * The provided IndexReaders are not closed.    *     *<p>    * See {@link #addIndexes} for details on transactional semantics, temporary    * free space required in the Directory, and non-CFS segments on an Exception.    *     *<p>    *<b>NOTE:</b> empty segments are dropped by this method and not added to this    * index.    *     *<p>    *<b>NOTE:</b> this method merges all given {@link IndexReader}s in one    * merge. If you intend to merge a large number of readers, it may be better    * to call this method multiple times, each time with a small set of readers.    * In principle, if you use a merge policy with a {@code mergeFactor} or    * {@code maxMergeAtOnce} parameter, you should pass that many readers in one    * call.    *     * @throws CorruptIndexException    *           if the index is corrupt    * @throws IOException    *           if there is a low-level IO error    */
+comment|/**    * Merges the provided indexes into this index.    *     *<p>    * The provided IndexReaders are not closed.    *     *<p>    * See {@link #addIndexes} for details on transactional semantics, temporary    * free space required in the Directory, and non-CFS segments on an Exception.    *     *<p>    *<b>NOTE:</b> empty segments are dropped by this method and not added to this    * index.    *     *<p>    *<b>NOTE:</b> this method merges all given {@link LeafReader}s in one    * merge. If you intend to merge a large number of readers, it may be better    * to call this method multiple times, each time with a small set of readers.    * In principle, if you use a merge policy with a {@code mergeFactor} or    * {@code maxMergeAtOnce} parameter, you should pass that many readers in one    * call.    *     * @throws CorruptIndexException    *           if the index is corrupt    * @throws IOException    *           if there is a low-level IO error    */
 DECL|method|addIndexes
 specifier|public
 name|void
 name|addIndexes
 parameter_list|(
-name|IndexReader
+name|LeafReader
 modifier|...
 name|readers
 parameter_list|)
@@ -7994,7 +7994,7 @@ name|message
 argument_list|(
 literal|"IW"
 argument_list|,
-literal|"flush at addIndexes(IndexReader...)"
+literal|"flush at addIndexes(LeafReader...)"
 argument_list|)
 expr_stmt|;
 block|}
@@ -8011,55 +8011,21 @@ init|=
 name|newSegmentName
 argument_list|()
 decl_stmt|;
-specifier|final
-name|List
-argument_list|<
-name|LeafReader
-argument_list|>
-name|mergeReaders
-init|=
-operator|new
-name|ArrayList
-argument_list|<>
-argument_list|()
-decl_stmt|;
 for|for
 control|(
-name|IndexReader
-name|indexReader
+name|LeafReader
+name|leaf
 range|:
 name|readers
 control|)
 block|{
 name|numDocs
 operator|+=
-name|indexReader
+name|leaf
 operator|.
 name|numDocs
 argument_list|()
 expr_stmt|;
-for|for
-control|(
-name|LeafReaderContext
-name|ctx
-range|:
-name|indexReader
-operator|.
-name|leaves
-argument_list|()
-control|)
-block|{
-name|mergeReaders
-operator|.
-name|add
-argument_list|(
-name|ctx
-operator|.
-name|reader
-argument_list|()
-argument_list|)
-expr_stmt|;
-block|}
 block|}
 comment|// Make sure adding the new documents to this index won't
 comment|// exceed the limit:
@@ -8141,7 +8107,12 @@ init|=
 operator|new
 name|SegmentMerger
 argument_list|(
-name|mergeReaders
+name|Arrays
+operator|.
+name|asList
+argument_list|(
+name|readers
+argument_list|)
 argument_list|,
 name|info
 argument_list|,

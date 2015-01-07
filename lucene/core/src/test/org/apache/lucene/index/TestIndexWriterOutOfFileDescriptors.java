@@ -229,7 +229,7 @@ name|random
 argument_list|()
 argument_list|)
 decl_stmt|;
-name|IndexReader
+name|DirectoryReader
 name|r
 init|=
 literal|null
@@ -424,20 +424,17 @@ name|out
 operator|.
 name|println
 argument_list|(
-literal|"TEST: addIndexes IR[]"
+literal|"TEST: addIndexes LR[]"
 argument_list|)
 expr_stmt|;
 block|}
-name|w
+name|TestUtil
 operator|.
-name|addIndexes
+name|addIndexesSlowly
 argument_list|(
-operator|new
-name|IndexReader
-index|[]
-block|{
+name|w
+argument_list|,
 name|r
-block|}
 argument_list|)
 expr_stmt|;
 block|}
