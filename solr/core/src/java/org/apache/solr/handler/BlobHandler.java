@@ -761,6 +761,13 @@ operator|!=
 literal|null
 condition|)
 block|{
+name|log
+operator|.
+name|warn
+argument_list|(
+literal|"no blob name"
+argument_list|)
+expr_stmt|;
 name|rsp
 operator|.
 name|add
@@ -782,6 +789,13 @@ operator|==
 literal|null
 condition|)
 block|{
+name|log
+operator|.
+name|warn
+argument_list|(
+literal|"no content stream"
+argument_list|)
+expr_stmt|;
 name|rsp
 operator|.
 name|add
@@ -940,6 +954,15 @@ argument_list|,
 name|rsp
 argument_list|)
 expr_stmt|;
+name|log
+operator|.
+name|warn
+argument_list|(
+literal|"duplicate entry for blob :"
+operator|+
+name|blobName
+argument_list|)
+expr_stmt|;
 return|return;
 block|}
 name|TopFieldDocs
@@ -1054,9 +1077,32 @@ literal|"/"
 operator|+
 name|version
 decl_stmt|;
+name|log
+operator|.
+name|info
+argument_list|(
+name|MessageFormat
+operator|.
+name|format
+argument_list|(
+literal|"New blob inserting {0} ,size {1}, md5 {2}"
+argument_list|,
+name|id
+argument_list|,
+name|payload
+operator|.
+name|limit
+argument_list|()
+argument_list|,
+name|md5
+argument_list|)
+argument_list|)
+expr_stmt|;
 name|indexMap
 argument_list|(
 name|req
+argument_list|,
+name|rsp
 argument_list|,
 name|makeMap
 argument_list|(
@@ -1093,6 +1139,20 @@ literal|"blob"
 argument_list|,
 name|payload
 argument_list|)
+argument_list|)
+expr_stmt|;
+name|log
+operator|.
+name|info
+argument_list|(
+literal|" Successfully Added and committed a blob with id {} and size {} "
+argument_list|,
+name|id
+argument_list|,
+name|payload
+operator|.
+name|limit
+argument_list|()
 argument_list|)
 expr_stmt|;
 break|break;
@@ -1531,6 +1591,9 @@ parameter_list|(
 name|SolrQueryRequest
 name|req
 parameter_list|,
+name|SolrQueryResponse
+name|rsp
+parameter_list|,
 name|Map
 argument_list|<
 name|String
@@ -1613,7 +1676,7 @@ name|createProcessor
 argument_list|(
 name|req
 argument_list|,
-literal|null
+name|rsp
 argument_list|)
 decl_stmt|;
 name|AddUpdateCommand
@@ -1631,6 +1694,15 @@ name|solrDoc
 operator|=
 name|solrDoc
 expr_stmt|;
+name|log
+operator|.
+name|info
+argument_list|(
+literal|"Adding doc "
+operator|+
+name|doc
+argument_list|)
+expr_stmt|;
 name|processor
 operator|.
 name|processAdd
@@ -1638,14 +1710,16 @@ argument_list|(
 name|cmd
 argument_list|)
 expr_stmt|;
-name|processorChain
+name|log
 operator|.
-name|createProcessor
+name|info
 argument_list|(
-name|req
-argument_list|,
-literal|null
+literal|"committing doc"
+operator|+
+name|doc
 argument_list|)
+expr_stmt|;
+name|processor
 operator|.
 name|processCommit
 argument_list|(
