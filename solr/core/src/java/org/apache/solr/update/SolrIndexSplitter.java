@@ -56,7 +56,21 @@ name|lucene
 operator|.
 name|index
 operator|.
-name|FilterLeafReader
+name|CodecReader
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|index
+operator|.
+name|FilterCodecReader
 import|;
 end_import
 
@@ -126,7 +140,7 @@ name|lucene
 operator|.
 name|index
 operator|.
-name|IndexReader
+name|IndexWriter
 import|;
 end_import
 
@@ -140,7 +154,7 @@ name|lucene
 operator|.
 name|index
 operator|.
-name|IndexWriter
+name|SlowCodecReaderWrapper
 import|;
 end_import
 
@@ -972,11 +986,12 @@ name|size
 argument_list|()
 argument_list|)
 expr_stmt|;
-name|LeafReader
+name|CodecReader
 name|subReader
 init|=
-operator|new
-name|LiveDocsReader
+name|SlowCodecReaderWrapper
+operator|.
+name|wrap
 argument_list|(
 name|leaves
 operator|.
@@ -984,6 +999,19 @@ name|get
 argument_list|(
 name|segmentNumber
 argument_list|)
+operator|.
+name|reader
+argument_list|()
+argument_list|)
+decl_stmt|;
+name|iw
+operator|.
+name|addIndexes
+argument_list|(
+operator|new
+name|LiveDocsReader
+argument_list|(
+name|subReader
 argument_list|,
 name|segmentDocSets
 operator|.
@@ -995,12 +1023,6 @@ index|[
 name|partitionNumber
 index|]
 argument_list|)
-decl_stmt|;
-name|iw
-operator|.
-name|addIndexes
-argument_list|(
-name|subReader
 argument_list|)
 expr_stmt|;
 block|}
@@ -1536,7 +1558,7 @@ specifier|static
 class|class
 name|LiveDocsReader
 extends|extends
-name|FilterLeafReader
+name|FilterCodecReader
 block|{
 DECL|field|liveDocs
 specifier|final
@@ -1552,8 +1574,8 @@ DECL|method|LiveDocsReader
 specifier|public
 name|LiveDocsReader
 parameter_list|(
-name|LeafReaderContext
-name|context
+name|CodecReader
+name|in
 parameter_list|,
 name|FixedBitSet
 name|liveDocs
@@ -1563,10 +1585,7 @@ name|IOException
 block|{
 name|super
 argument_list|(
-name|context
-operator|.
-name|reader
-argument_list|()
+name|in
 argument_list|)
 expr_stmt|;
 name|this

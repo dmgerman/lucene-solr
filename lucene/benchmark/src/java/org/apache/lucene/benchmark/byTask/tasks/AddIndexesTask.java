@@ -136,6 +136,34 @@ name|apache
 operator|.
 name|lucene
 operator|.
+name|index
+operator|.
+name|CodecReader
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|index
+operator|.
+name|SlowCodecReaderWrapper
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
 name|store
 operator|.
 name|Directory
@@ -157,7 +185,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Adds an input index to an existing index, using  * {@link IndexWriter#addIndexes(Directory...)} or  * {@link IndexWriter#addIndexes(LeafReader...)}. The location of the input  * index is specified by the parameter {@link #ADDINDEXES_INPUT_DIR} and is  * assumed to be a directory on the file system.  *<p>  * Takes optional parameter {@code useAddIndexesDir} which specifies which  * addIndexes variant to use (defaults to true, to use addIndexes(Directory)).  */
+comment|/**  * Adds an input index to an existing index, using  * {@link IndexWriter#addIndexes(Directory...)} or  * {@link IndexWriter#addIndexes(CodecReader...)}. The location of the input  * index is specified by the parameter {@link #ADDINDEXES_INPUT_DIR} and is  * assumed to be a directory on the file system.  *<p>  * Takes optional parameter {@code useAddIndexesDir} which specifies which  * addIndexes variant to use (defaults to true, to use addIndexes(Directory)).  */
 end_comment
 
 begin_class
@@ -315,12 +343,12 @@ name|inputDir
 argument_list|)
 init|)
 block|{
-name|LeafReader
+name|CodecReader
 name|leaves
 index|[]
 init|=
 operator|new
-name|LeafReader
+name|CodecReader
 index|[
 name|r
 operator|.
@@ -353,10 +381,15 @@ name|i
 operator|++
 index|]
 operator|=
+name|SlowCodecReaderWrapper
+operator|.
+name|wrap
+argument_list|(
 name|leaf
 operator|.
 name|reader
 argument_list|()
+argument_list|)
 expr_stmt|;
 block|}
 name|writer
@@ -372,7 +405,7 @@ return|return
 literal|1
 return|;
 block|}
-comment|/**    * Set the params (useAddIndexesDir only)    *     * @param params    *          {@code useAddIndexesDir=true} for using    *          {@link IndexWriter#addIndexes(Directory...)} or {@code false} for    *          using {@link IndexWriter#addIndexes(LeafReader...)}. Defaults to    *          {@code true}.    */
+comment|/**    * Set the params (useAddIndexesDir only)    *     * @param params    *          {@code useAddIndexesDir=true} for using    *          {@link IndexWriter#addIndexes(Directory...)} or {@code false} for    *          using {@link IndexWriter#addIndexes(CodecReader...)}. Defaults to    *          {@code true}.    */
 annotation|@
 name|Override
 DECL|method|setParams

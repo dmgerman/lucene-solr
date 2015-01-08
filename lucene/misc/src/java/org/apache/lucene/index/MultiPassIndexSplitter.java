@@ -169,7 +169,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * This tool splits input index into multiple equal parts. The method employed  * here uses {@link IndexWriter#addIndexes(LeafReader[])} where the input data  * comes from the input index with artificially applied deletes to the document  * id-s that fall outside the selected partition.  *<p>Note 1: Deletes are only applied to a buffered list of deleted docs and  * don't affect the source index - this tool works also with read-only indexes.  *<p>Note 2: the disadvantage of this tool is that source index needs to be  * read as many times as there are parts to be created, hence the name of this  * tool.  *  *<p><b>NOTE</b>: this tool is unaware of documents added  * atomically via {@link IndexWriter#addDocuments} or {@link  * IndexWriter#updateDocuments}, which means it can easily  * break up such document groups.  */
+comment|/**  * This tool splits input index into multiple equal parts. The method employed  * here uses {@link IndexWriter#addIndexes(CodecReader[])} where the input data  * comes from the input index with artificially applied deletes to the document  * id-s that fall outside the selected partition.  *<p>Note 1: Deletes are only applied to a buffered list of deleted docs and  * don't affect the source index - this tool works also with read-only indexes.  *<p>Note 2: the disadvantage of this tool is that source index needs to be  * read as many times as there are parts to be created, hence the name of this  * tool.  *  *<p><b>NOTE</b>: this tool is unaware of documents added  * atomically via {@link IndexWriter#addDocuments} or {@link  * IndexWriter#updateDocuments}, which means it can easily  * break up such document groups.  */
 end_comment
 
 begin_class
@@ -184,9 +184,6 @@ specifier|public
 name|void
 name|split
 parameter_list|(
-name|Version
-name|version
-parameter_list|,
 name|IndexReader
 name|in
 parameter_list|,
@@ -486,7 +483,7 @@ operator|.
 name|toArray
 argument_list|(
 operator|new
-name|LeafReader
+name|CodecReader
 index|[
 name|sr
 operator|.
@@ -983,10 +980,6 @@ name|splitter
 operator|.
 name|split
 argument_list|(
-name|Version
-operator|.
-name|LATEST
-argument_list|,
 name|input
 argument_list|,
 name|dirs
@@ -1015,6 +1008,8 @@ parameter_list|(
 name|IndexReader
 name|reader
 parameter_list|)
+throws|throws
+name|IOException
 block|{
 name|super
 argument_list|(
@@ -1035,6 +1030,8 @@ parameter_list|(
 name|IndexReader
 name|reader
 parameter_list|)
+throws|throws
+name|IOException
 block|{
 specifier|final
 name|List
@@ -1085,10 +1082,15 @@ operator|=
 operator|new
 name|FakeDeleteLeafIndexReader
 argument_list|(
+name|SlowCodecReaderWrapper
+operator|.
+name|wrap
+argument_list|(
 name|ctx
 operator|.
 name|reader
 argument_list|()
+argument_list|)
 argument_list|)
 expr_stmt|;
 block|}
@@ -1173,7 +1175,7 @@ specifier|final
 class|class
 name|FakeDeleteLeafIndexReader
 extends|extends
-name|FilterLeafReader
+name|FilterCodecReader
 block|{
 DECL|field|liveDocs
 name|FixedBitSet
@@ -1183,7 +1185,7 @@ DECL|method|FakeDeleteLeafIndexReader
 specifier|public
 name|FakeDeleteLeafIndexReader
 parameter_list|(
-name|LeafReader
+name|CodecReader
 name|reader
 parameter_list|)
 block|{

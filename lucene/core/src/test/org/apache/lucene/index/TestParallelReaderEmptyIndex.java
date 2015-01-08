@@ -281,7 +281,12 @@ name|iwOut
 operator|.
 name|addIndexes
 argument_list|(
+name|SlowCodecReaderWrapper
+operator|.
+name|wrap
+argument_list|(
 name|apr
+argument_list|)
 argument_list|)
 expr_stmt|;
 name|iwOut
@@ -296,9 +301,14 @@ name|iwOut
 operator|.
 name|addIndexes
 argument_list|(
+name|SlowCodecReaderWrapper
+operator|.
+name|wrap
+argument_list|(
 operator|new
 name|ParallelLeafReader
 argument_list|()
+argument_list|)
 argument_list|)
 expr_stmt|;
 name|iwOut
@@ -332,7 +342,7 @@ decl_stmt|;
 comment|// When unpatched, Lucene crashes here with a NoSuchElementException (caused by ParallelTermEnum)
 name|List
 argument_list|<
-name|LeafReader
+name|CodecReader
 argument_list|>
 name|leaves
 init|=
@@ -356,10 +366,15 @@ name|leaves
 operator|.
 name|add
 argument_list|(
+name|SlowCodecReaderWrapper
+operator|.
+name|wrap
+argument_list|(
 name|leaf
 operator|.
 name|reader
 argument_list|()
+argument_list|)
 argument_list|)
 expr_stmt|;
 block|}
@@ -372,7 +387,7 @@ operator|.
 name|toArray
 argument_list|(
 operator|new
-name|LeafReader
+name|CodecReader
 index|[
 literal|0
 index|]
@@ -821,7 +836,12 @@ name|iwOut
 operator|.
 name|addIndexes
 argument_list|(
+name|SlowCodecReaderWrapper
+operator|.
+name|wrap
+argument_list|(
 name|pr
+argument_list|)
 argument_list|)
 expr_stmt|;
 comment|// ParallelReader closes any IndexReader you added to it:

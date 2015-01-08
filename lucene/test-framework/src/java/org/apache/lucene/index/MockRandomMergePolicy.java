@@ -715,7 +715,7 @@ decl_stmt|;
 DECL|field|readers
 name|ArrayList
 argument_list|<
-name|LeafReader
+name|CodecReader
 argument_list|>
 name|readers
 decl_stmt|;
@@ -752,7 +752,7 @@ DECL|method|getMergeReaders
 specifier|public
 name|List
 argument_list|<
-name|LeafReader
+name|CodecReader
 argument_list|>
 name|getMergeReaders
 parameter_list|()
@@ -771,7 +771,7 @@ operator|=
 operator|new
 name|ArrayList
 argument_list|<
-name|LeafReader
+name|CodecReader
 argument_list|>
 argument_list|(
 name|super
@@ -799,6 +799,8 @@ operator|++
 control|)
 block|{
 comment|// wrap it (e.g. prevent bulk merge etc)
+comment|// TODO: cut this over to FilterCodecReader api, we can explicitly
+comment|// enable/disable bulk merge for portions of the index we want.
 name|int
 name|thingToDo
 init|=
@@ -823,6 +825,10 @@ name|set
 argument_list|(
 name|i
 argument_list|,
+name|SlowCodecReaderWrapper
+operator|.
+name|wrap
+argument_list|(
 operator|new
 name|FilterLeafReader
 argument_list|(
@@ -831,6 +837,7 @@ operator|.
 name|get
 argument_list|(
 name|i
+argument_list|)
 argument_list|)
 argument_list|)
 argument_list|)
@@ -854,6 +861,10 @@ name|set
 argument_list|(
 name|i
 argument_list|,
+name|SlowCodecReaderWrapper
+operator|.
+name|wrap
+argument_list|(
 operator|new
 name|MismatchedLeafReader
 argument_list|(
@@ -865,6 +876,7 @@ name|i
 argument_list|)
 argument_list|,
 name|r
+argument_list|)
 argument_list|)
 argument_list|)
 expr_stmt|;

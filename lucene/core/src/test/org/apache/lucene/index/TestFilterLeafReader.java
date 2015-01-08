@@ -718,7 +718,12 @@ name|writer
 operator|.
 name|addIndexes
 argument_list|(
+name|SlowCodecReaderWrapper
+operator|.
+name|wrap
+argument_list|(
 name|reader
+argument_list|)
 argument_list|)
 expr_stmt|;
 block|}

@@ -1301,7 +1301,7 @@ argument_list|(
 name|Arrays
 operator|.
 expr|<
-name|LeafReader
+name|CodecReader
 operator|>
 name|asList
 argument_list|(

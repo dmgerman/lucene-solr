@@ -209,7 +209,7 @@ name|SegmentMerger
 parameter_list|(
 name|List
 argument_list|<
-name|LeafReader
+name|CodecReader
 argument_list|>
 name|readers
 parameter_list|,
@@ -257,35 +257,6 @@ operator|.
 name|context
 argument_list|)
 throw|;
-block|}
-comment|// validate incoming readers
-for|for
-control|(
-name|LeafReader
-name|reader
-range|:
-name|readers
-control|)
-block|{
-if|if
-condition|(
-operator|(
-name|reader
-operator|instanceof
-name|SegmentReader
-operator|)
-operator|==
-literal|false
-condition|)
-block|{
-comment|// We only validate foreign readers up front: each index component
-comment|// calls .checkIntegrity itself for each incoming producer
-name|reader
-operator|.
-name|checkIntegrity
-argument_list|()
-expr_stmt|;
-block|}
 block|}
 name|mergeState
 operator|=

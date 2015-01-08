@@ -358,7 +358,7 @@ block|{
 DECL|field|unsortedReaders
 name|List
 argument_list|<
-name|LeafReader
+name|CodecReader
 argument_list|>
 name|unsortedReaders
 decl_stmt|;
@@ -408,7 +408,7 @@ DECL|method|getMergeReaders
 specifier|public
 name|List
 argument_list|<
-name|LeafReader
+name|CodecReader
 argument_list|>
 name|getMergeReaders
 parameter_list|()
@@ -688,7 +688,12 @@ name|Collections
 operator|.
 name|singletonList
 argument_list|(
+name|SlowCodecReaderWrapper
+operator|.
+name|wrap
+argument_list|(
 name|sortedView
+argument_list|)
 argument_list|)
 return|;
 block|}
@@ -746,7 +751,7 @@ name|getDeletes
 parameter_list|(
 name|List
 argument_list|<
-name|LeafReader
+name|CodecReader
 argument_list|>
 name|readers
 parameter_list|)

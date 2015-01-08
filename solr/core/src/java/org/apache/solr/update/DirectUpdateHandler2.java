@@ -44,7 +44,7 @@ name|lucene
 operator|.
 name|index
 operator|.
-name|DirectoryReader
+name|CodecReader
 import|;
 end_import
 
@@ -58,7 +58,7 @@ name|lucene
 operator|.
 name|index
 operator|.
-name|IndexReader
+name|DirectoryReader
 import|;
 end_import
 
@@ -86,7 +86,7 @@ name|lucene
 operator|.
 name|index
 operator|.
-name|LeafReader
+name|LeafReaderContext
 import|;
 end_import
 
@@ -100,7 +100,7 @@ name|lucene
 operator|.
 name|index
 operator|.
-name|LeafReaderContext
+name|SlowCodecReaderWrapper
 import|;
 end_import
 
@@ -2605,9 +2605,9 @@ condition|)
 block|{
 name|List
 argument_list|<
-name|LeafReader
+name|CodecReader
 argument_list|>
-name|leaves
+name|mergeReaders
 init|=
 operator|new
 name|ArrayList
@@ -2633,14 +2633,19 @@ name|leaves
 argument_list|()
 control|)
 block|{
-name|leaves
+name|mergeReaders
 operator|.
 name|add
+argument_list|(
+name|SlowCodecReaderWrapper
+operator|.
+name|wrap
 argument_list|(
 name|leaf
 operator|.
 name|reader
 argument_list|()
+argument_list|)
 argument_list|)
 expr_stmt|;
 block|}
@@ -2667,14 +2672,14 @@ argument_list|()
 operator|.
 name|addIndexes
 argument_list|(
-name|leaves
+name|mergeReaders
 operator|.
 name|toArray
 argument_list|(
 operator|new
-name|LeafReader
+name|CodecReader
 index|[
-name|leaves
+name|mergeReaders
 operator|.
 name|size
 argument_list|()

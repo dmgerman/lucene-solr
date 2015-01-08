@@ -821,7 +821,7 @@ name|SOURCE_FLUSH
 init|=
 literal|"flush"
 decl_stmt|;
-comment|/** Source of a segment which results from a call to {@link #addIndexes(LeafReader...)}. */
+comment|/** Source of a segment which results from a call to {@link #addIndexes(CodecReader...)}. */
 DECL|field|SOURCE_ADDINDEXES_READERS
 specifier|public
 specifier|static
@@ -829,7 +829,7 @@ specifier|final
 name|String
 name|SOURCE_ADDINDEXES_READERS
 init|=
-literal|"addIndexes(LeafReader...)"
+literal|"addIndexes(CodecReader...)"
 decl_stmt|;
 comment|/**    * Absolute hard maximum length for a term, in bytes once    * encoded as UTF8.  If a term arrives from the analyzer    * longer than this length, an    *<code>IllegalArgumentException</code>  is thrown    * and a message is printed to infoStream, if set (see {@link    * IndexWriterConfig#setInfoStream(InfoStream)}).    */
 DECL|field|MAX_TERM_LENGTH
@@ -6540,7 +6540,7 @@ expr_stmt|;
 block|}
 block|}
 block|}
-comment|/**    * Delete all documents in the index.    *     *<p>    * This method will drop all buffered documents and will remove all segments    * from the index. This change will not be visible until a {@link #commit()}    * has been called. This method can be rolled back using {@link #rollback()}.    *</p>    *     *<p>    * NOTE: this method is much faster than using deleteDocuments( new    * MatchAllDocsQuery() ). Yet, this method also has different semantics    * compared to {@link #deleteDocuments(Query...)} since internal    * data-structures are cleared as well as all segment information is    * forcefully dropped anti-viral semantics like omitting norms are reset or    * doc value types are cleared. Essentially a call to {@link #deleteAll()} is    * equivalent to creating a new {@link IndexWriter} with    * {@link OpenMode#CREATE} which a delete query only marks documents as    * deleted.    *</p>    *     *<p>    * NOTE: this method will forcefully abort all merges in progress. If other    * threads are running {@link #forceMerge}, {@link #addIndexes(LeafReader[])}    * or {@link #forceMergeDeletes} methods, they may receive    * {@link MergePolicy.MergeAbortedException}s.    */
+comment|/**    * Delete all documents in the index.    *     *<p>    * This method will drop all buffered documents and will remove all segments    * from the index. This change will not be visible until a {@link #commit()}    * has been called. This method can be rolled back using {@link #rollback()}.    *</p>    *     *<p>    * NOTE: this method is much faster than using deleteDocuments( new    * MatchAllDocsQuery() ). Yet, this method also has different semantics    * compared to {@link #deleteDocuments(Query...)} since internal    * data-structures are cleared as well as all segment information is    * forcefully dropped anti-viral semantics like omitting norms are reset or    * doc value types are cleared. Essentially a call to {@link #deleteAll()} is    * equivalent to creating a new {@link IndexWriter} with    * {@link OpenMode#CREATE} which a delete query only marks documents as    * deleted.    *</p>    *     *<p>    * NOTE: this method will forcefully abort all merges in progress. If other    * threads are running {@link #forceMerge}, {@link #addIndexes(CodecReader[])}    * or {@link #forceMergeDeletes} methods, they may receive    * {@link MergePolicy.MergeAbortedException}s.    */
 DECL|method|deleteAll
 specifier|public
 name|void
@@ -7961,7 +7961,7 @@ specifier|public
 name|void
 name|addIndexes
 parameter_list|(
-name|LeafReader
+name|CodecReader
 modifier|...
 name|readers
 parameter_list|)
@@ -7994,7 +7994,7 @@ name|message
 argument_list|(
 literal|"IW"
 argument_list|,
-literal|"flush at addIndexes(LeafReader...)"
+literal|"flush at addIndexes(CodecReader...)"
 argument_list|)
 expr_stmt|;
 block|}
@@ -8013,7 +8013,7 @@ argument_list|()
 decl_stmt|;
 for|for
 control|(
-name|LeafReader
+name|CodecReader
 name|leaf
 range|:
 name|readers
