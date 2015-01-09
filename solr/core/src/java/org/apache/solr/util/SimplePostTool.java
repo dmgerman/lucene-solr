@@ -2349,7 +2349,7 @@ literal|"URLs specified as args, as raw commandline arg strings or via STDIN.\n"
 operator|+
 literal|"Examples:\n"
 operator|+
-literal|"  java -jar post.jar *.xml\n"
+literal|"  java -Dc=gettingstarted -jar post.jar *.xml\n"
 operator|+
 literal|"  java -Ddata=args -Dc=gettingstarted -jar post.jar '<delete><id>42</id></delete>'\n"
 operator|+
