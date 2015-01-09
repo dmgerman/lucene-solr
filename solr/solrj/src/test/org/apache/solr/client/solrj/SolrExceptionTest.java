@@ -26,9 +26,11 @@ name|apache
 operator|.
 name|http
 operator|.
+name|impl
+operator|.
 name|client
 operator|.
-name|HttpClient
+name|CloseableHttpClient
 import|;
 end_import
 
@@ -110,20 +112,24 @@ name|gotExpectedError
 init|=
 literal|false
 decl_stmt|;
+name|CloseableHttpClient
+name|httpClient
+init|=
+literal|null
+decl_stmt|;
 try|try
 block|{
 comment|// switched to a local address to avoid going out on the net, ns lookup issues, etc.
 comment|// set a 1ms timeout to let the connection fail faster.
-name|HttpClient
 name|httpClient
-init|=
+operator|=
 name|HttpClientUtil
 operator|.
 name|createClient
 argument_list|(
 literal|null
 argument_list|)
-decl_stmt|;
+expr_stmt|;
 name|HttpClientUtil
 operator|.
 name|setConnectionTimeout
@@ -160,9 +166,9 @@ argument_list|(
 name|query
 argument_list|)
 expr_stmt|;
-name|client
+name|httpClient
 operator|.
-name|shutdown
+name|close
 argument_list|()
 expr_stmt|;
 block|}
@@ -177,6 +183,22 @@ operator|=
 literal|true
 expr_stmt|;
 comment|/***       assertTrue(UnknownHostException.class == sse.getRootCause().getClass()               //If one is using OpenDNS, then you don't get UnknownHostException, instead you get back that the query couldn't execute               || (sse.getRootCause().getClass() == SolrException.class&& ((SolrException) sse.getRootCause()).code() == 302&& sse.getMessage().equals("Error executing query")));       ***/
+block|}
+finally|finally
+block|{
+if|if
+condition|(
+name|httpClient
+operator|!=
+literal|null
+condition|)
+name|HttpClientUtil
+operator|.
+name|close
+argument_list|(
+name|httpClient
+argument_list|)
+expr_stmt|;
 block|}
 name|assertTrue
 argument_list|(

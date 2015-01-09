@@ -544,7 +544,7 @@ argument_list|(
 literal|"deprecation"
 argument_list|)
 DECL|method|configure
-specifier|protected
+specifier|public
 name|void
 name|configure
 parameter_list|(

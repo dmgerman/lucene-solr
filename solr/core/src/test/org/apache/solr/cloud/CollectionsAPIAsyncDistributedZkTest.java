@@ -377,6 +377,8 @@ argument_list|)
 argument_list|)
 argument_list|)
 decl_stmt|;
+try|try
+block|{
 name|Create
 name|createCollectionRequest
 init|=
@@ -619,6 +621,15 @@ argument_list|,
 name|state
 argument_list|)
 expr_stmt|;
+block|}
+finally|finally
+block|{
+name|client
+operator|.
+name|shutdown
+argument_list|()
+expr_stmt|;
+block|}
 block|}
 DECL|method|getRequestStateAfterCompletion
 specifier|private

@@ -78,7 +78,7 @@ name|cloud
 operator|.
 name|ZkStateReader
 operator|.
-name|REPLICATION_FACTOR
+name|MAX_SHARDS_PER_NODE
 import|;
 end_import
 
@@ -96,7 +96,7 @@ name|cloud
 operator|.
 name|ZkStateReader
 operator|.
-name|MAX_SHARDS_PER_NODE
+name|REPLICATION_FACTOR
 import|;
 end_import
 
@@ -289,6 +289,36 @@ operator|.
 name|util
 operator|.
 name|TestUtil
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|solr
+operator|.
+name|SolrTestCaseJ4
+operator|.
+name|SuppressSSL
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|solr
+operator|.
+name|client
+operator|.
+name|solrj
+operator|.
+name|SolrClient
 import|;
 end_import
 
@@ -615,6 +645,13 @@ end_comment
 begin_class
 annotation|@
 name|Slow
+annotation|@
+name|SuppressSSL
+argument_list|(
+name|bugUrl
+operator|=
+literal|"https://issues.apache.org/jira/browse/SOLR-5776"
+argument_list|)
 DECL|class|CustomCollectionTest
 specifier|public
 class|class
@@ -1420,6 +1457,11 @@ argument_list|,
 name|collectionName
 argument_list|)
 decl_stmt|;
+name|String
+name|shard_fld
+init|=
+literal|"shard_s"
+decl_stmt|;
 name|HttpSolrClient
 name|collectionClient
 init|=
@@ -1429,6 +1471,8 @@ argument_list|(
 name|url
 argument_list|)
 decl_stmt|;
+try|try
+block|{
 comment|// lets try and use the solrj client to index a couple documents
 name|collectionClient
 operator|.
@@ -1883,6 +1927,9 @@ argument_list|(
 literal|"/admin/collections"
 argument_list|)
 expr_stmt|;
+name|SolrClient
+name|server
+init|=
 name|createNewSolrClient
 argument_list|(
 literal|""
@@ -1900,11 +1947,18 @@ literal|0
 argument_list|)
 argument_list|)
 argument_list|)
+decl_stmt|;
+name|server
 operator|.
 name|request
 argument_list|(
 name|request
 argument_list|)
+expr_stmt|;
+name|server
+operator|.
+name|shutdown
+argument_list|()
 expr_stmt|;
 name|waitForCollection
 argument_list|(
@@ -2134,11 +2188,6 @@ name|client
 init|=
 literal|null
 decl_stmt|;
-name|String
-name|shard_fld
-init|=
-literal|"shard_s"
-decl_stmt|;
 try|try
 block|{
 name|client
@@ -2253,11 +2302,15 @@ argument_list|,
 name|collectionName
 argument_list|)
 expr_stmt|;
+block|}
+finally|finally
+block|{
 name|collectionClient
 operator|.
 name|shutdown
 argument_list|()
 expr_stmt|;
+block|}
 name|collectionClient
 operator|=
 operator|new
@@ -2266,17 +2319,23 @@ argument_list|(
 name|url
 argument_list|)
 expr_stmt|;
+try|try
+block|{
 comment|// poll for a second - it can take a moment before we are ready to serve
 name|waitForNon403or404or503
 argument_list|(
 name|collectionClient
 argument_list|)
 expr_stmt|;
+block|}
+finally|finally
+block|{
 name|collectionClient
 operator|.
 name|shutdown
 argument_list|()
 expr_stmt|;
+block|}
 name|collectionClient
 operator|=
 operator|new
@@ -2285,6 +2344,8 @@ argument_list|(
 name|url
 argument_list|)
 expr_stmt|;
+try|try
+block|{
 comment|// lets try and use the solrj client to index a couple documents
 name|collectionClient
 operator|.
@@ -2459,11 +2520,15 @@ name|getNumFound
 argument_list|()
 argument_list|)
 expr_stmt|;
+block|}
+finally|finally
+block|{
 name|collectionClient
 operator|.
 name|shutdown
 argument_list|()
 expr_stmt|;
+block|}
 block|}
 DECL|method|testRouteFieldForHashRouter
 specifier|private
@@ -2656,6 +2721,8 @@ argument_list|(
 name|url
 argument_list|)
 decl_stmt|;
+try|try
+block|{
 comment|// poll for a second - it can take a moment before we are ready to serve
 name|waitForNon403or404or503
 argument_list|(
@@ -2667,6 +2734,15 @@ operator|.
 name|shutdown
 argument_list|()
 expr_stmt|;
+block|}
+finally|finally
+block|{
+name|collectionClient
+operator|.
+name|shutdown
+argument_list|()
+expr_stmt|;
+block|}
 name|collectionClient
 operator|=
 operator|new
@@ -2675,6 +2751,8 @@ argument_list|(
 name|url
 argument_list|)
 expr_stmt|;
+try|try
+block|{
 comment|// lets try and use the solrj client to index a couple documents
 name|collectionClient
 operator|.
@@ -2882,11 +2960,15 @@ name|getNumFound
 argument_list|()
 argument_list|)
 expr_stmt|;
+block|}
+finally|finally
+block|{
 name|collectionClient
 operator|.
 name|shutdown
 argument_list|()
 expr_stmt|;
+block|}
 block|}
 DECL|method|testCreateShardRepFactor
 specifier|private
@@ -3063,6 +3145,9 @@ argument_list|(
 literal|"/admin/collections"
 argument_list|)
 expr_stmt|;
+name|SolrClient
+name|server
+init|=
 name|createNewSolrClient
 argument_list|(
 literal|""
@@ -3080,11 +3165,18 @@ literal|0
 argument_list|)
 argument_list|)
 argument_list|)
+decl_stmt|;
+name|server
 operator|.
 name|request
 argument_list|(
 name|request
 argument_list|)
+expr_stmt|;
+name|server
+operator|.
+name|shutdown
+argument_list|()
 expr_stmt|;
 name|waitForRecoveriesToFinish
 argument_list|(

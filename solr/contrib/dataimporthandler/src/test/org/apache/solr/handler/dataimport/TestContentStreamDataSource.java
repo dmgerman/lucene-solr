@@ -371,7 +371,7 @@ name|params
 argument_list|)
 expr_stmt|;
 name|HttpSolrClient
-name|solrServer
+name|solrClient
 init|=
 operator|new
 name|HttpSolrClient
@@ -387,7 +387,9 @@ literal|"/solr"
 argument_list|)
 argument_list|)
 decl_stmt|;
-name|solrServer
+try|try
+block|{
+name|solrClient
 operator|.
 name|request
 argument_list|(
@@ -413,7 +415,7 @@ expr_stmt|;
 name|QueryResponse
 name|qres
 init|=
-name|solrServer
+name|solrClient
 operator|.
 name|query
 argument_list|(
@@ -482,11 +484,15 @@ literal|0
 argument_list|)
 argument_list|)
 expr_stmt|;
-name|solrServer
+block|}
+finally|finally
+block|{
+name|solrClient
 operator|.
 name|shutdown
 argument_list|()
 expr_stmt|;
+block|}
 block|}
 annotation|@
 name|Test

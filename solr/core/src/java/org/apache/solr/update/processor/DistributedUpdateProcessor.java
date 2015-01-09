@@ -5403,7 +5403,16 @@ name|log
 operator|.
 name|warn
 argument_list|(
-literal|"Error sending update"
+literal|"Error sending update to "
+operator|+
+name|error
+operator|.
+name|req
+operator|.
+name|node
+operator|.
+name|getBaseUrl
+argument_list|()
 argument_list|,
 name|error
 operator|.

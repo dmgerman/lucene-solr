@@ -40,16 +40,6 @@ name|java
 operator|.
 name|io
 operator|.
-name|File
-import|;
-end_import
-
-begin_import
-import|import
-name|java
-operator|.
-name|io
-operator|.
 name|IOException
 import|;
 end_import
@@ -300,7 +290,7 @@ name|cloud
 operator|.
 name|hdfs
 operator|.
-name|HdfsBasicDistributedZk2Test
+name|HdfsTestUtil
 import|;
 end_import
 
@@ -312,11 +302,11 @@ name|apache
 operator|.
 name|solr
 operator|.
-name|cloud
+name|common
 operator|.
-name|hdfs
+name|util
 operator|.
-name|HdfsTestUtil
+name|IOUtils
 import|;
 end_import
 
@@ -405,20 +395,6 @@ operator|.
 name|DistributedUpdateProcessor
 operator|.
 name|DistribPhase
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|solr
-operator|.
-name|util
-operator|.
-name|IOUtils
 import|;
 end_import
 

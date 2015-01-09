@@ -362,6 +362,23 @@ argument_list|(
 literal|"enable.update.log"
 argument_list|)
 expr_stmt|;
+if|if
+condition|(
+name|restTestHarness
+operator|!=
+literal|null
+condition|)
+block|{
+name|restTestHarness
+operator|.
+name|close
+argument_list|()
+expr_stmt|;
+block|}
+name|restTestHarness
+operator|=
+literal|null
+expr_stmt|;
 block|}
 comment|/**    * Test adding managed stopwords to an endpoint defined in the schema,    * then adding docs containing a stopword before and after removing    * the stopword from the managed stopwords set.    */
 annotation|@

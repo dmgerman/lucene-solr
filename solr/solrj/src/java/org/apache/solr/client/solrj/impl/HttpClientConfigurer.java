@@ -79,7 +79,7 @@ class|class
 name|HttpClientConfigurer
 block|{
 DECL|method|configure
-specifier|protected
+specifier|public
 name|void
 name|configure
 parameter_list|(

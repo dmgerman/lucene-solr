@@ -258,11 +258,6 @@ name|getZkHost
 argument_list|()
 argument_list|)
 expr_stmt|;
-name|cc
-operator|.
-name|load
-argument_list|()
-expr_stmt|;
 specifier|final
 name|ZkController
 name|zkController
