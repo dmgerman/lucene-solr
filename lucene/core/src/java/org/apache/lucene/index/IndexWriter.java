@@ -1219,7 +1219,7 @@ name|doBeforeFlush
 argument_list|()
 expr_stmt|;
 name|boolean
-name|anySegmentFlushed
+name|anyChanges
 init|=
 literal|false
 decl_stmt|;
@@ -1243,7 +1243,7 @@ literal|false
 decl_stmt|;
 try|try
 block|{
-name|anySegmentFlushed
+name|anyChanges
 operator|=
 name|docWriter
 operator|.
@@ -1253,7 +1253,7 @@ expr_stmt|;
 if|if
 condition|(
 operator|!
-name|anySegmentFlushed
+name|anyChanges
 condition|)
 block|{
 comment|// prevent double increment since docWriter#doFlush increments the flushcount
@@ -1276,6 +1276,8 @@ init|(
 name|this
 init|)
 block|{
+name|anyChanges
+operator||=
 name|maybeApplyDeletes
 argument_list|(
 name|applyAllDeletes
@@ -1404,7 +1406,7 @@ block|}
 block|}
 if|if
 condition|(
-name|anySegmentFlushed
+name|anyChanges
 condition|)
 block|{
 name|maybeMerge
@@ -9713,6 +9715,7 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
+comment|/** Returns true a segment was flushed or deletes were applied. */
 DECL|method|doFlush
 specifier|private
 name|boolean
@@ -9790,9 +9793,10 @@ argument_list|()
 argument_list|)
 expr_stmt|;
 block|}
-specifier|final
 name|boolean
-name|anySegmentFlushed
+name|anyChanges
+init|=
+literal|false
 decl_stmt|;
 synchronized|synchronized
 init|(
@@ -9806,13 +9810,26 @@ literal|false
 decl_stmt|;
 try|try
 block|{
-name|anySegmentFlushed
+name|anyChanges
 operator|=
 name|docWriter
 operator|.
 name|flushAllThreads
 argument_list|()
 expr_stmt|;
+if|if
+condition|(
+operator|!
+name|anyChanges
+condition|)
+block|{
+comment|// flushCount is incremented in flushAllThreads
+name|flushCount
+operator|.
+name|incrementAndGet
+argument_list|()
+expr_stmt|;
+block|}
 name|flushSuccess
 operator|=
 literal|true
@@ -9841,6 +9858,8 @@ init|(
 name|this
 init|)
 block|{
+name|anyChanges
+operator||=
 name|maybeApplyDeletes
 argument_list|(
 name|applyAllDeletes
@@ -9849,25 +9868,12 @@ expr_stmt|;
 name|doAfterFlush
 argument_list|()
 expr_stmt|;
-if|if
-condition|(
-operator|!
-name|anySegmentFlushed
-condition|)
-block|{
-comment|// flushCount is incremented in flushAllThreads
-name|flushCount
-operator|.
-name|incrementAndGet
-argument_list|()
-expr_stmt|;
-block|}
 name|success
 operator|=
 literal|true
 expr_stmt|;
 return|return
-name|anySegmentFlushed
+name|anyChanges
 return|;
 block|}
 block|}
@@ -9925,7 +9931,7 @@ block|}
 DECL|method|maybeApplyDeletes
 specifier|final
 specifier|synchronized
-name|void
+name|boolean
 name|maybeApplyDeletes
 parameter_list|(
 name|boolean
@@ -9959,9 +9965,10 @@ literal|"apply all deletes during flush"
 argument_list|)
 expr_stmt|;
 block|}
+return|return
 name|applyAllDeletesAndUpdates
 argument_list|()
-expr_stmt|;
+return|;
 block|}
 elseif|else
 if|if
@@ -9996,11 +10003,14 @@ argument_list|()
 argument_list|)
 expr_stmt|;
 block|}
+return|return
+literal|false
+return|;
 block|}
 DECL|method|applyAllDeletesAndUpdates
 specifier|final
 specifier|synchronized
-name|void
+name|boolean
 name|applyAllDeletesAndUpdates
 parameter_list|()
 throws|throws
@@ -10178,6 +10188,11 @@ argument_list|(
 name|segmentInfos
 argument_list|)
 expr_stmt|;
+return|return
+name|result
+operator|.
+name|anyDeletes
+return|;
 block|}
 comment|// for testing only
 DECL|method|getDocsWriter
@@ -17079,9 +17094,27 @@ expr_stmt|;
 block|}
 finally|finally
 block|{
+if|if
+condition|(
 name|applyAllDeletesAndUpdates
 argument_list|()
+condition|)
+block|{
+name|maybeMerge
+argument_list|(
+name|config
+operator|.
+name|getMergePolicy
+argument_list|()
+argument_list|,
+name|MergeTrigger
+operator|.
+name|SEGMENT_FLUSH
+argument_list|,
+name|UNBOUNDED_MAX_MERGE_SEGMENTS
+argument_list|)
 expr_stmt|;
+block|}
 name|flushCount
 operator|.
 name|incrementAndGet
