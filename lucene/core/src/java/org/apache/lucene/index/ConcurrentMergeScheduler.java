@@ -1437,9 +1437,9 @@ argument_list|()
 expr_stmt|;
 block|}
 block|}
-comment|/**    * Returns the number of merge threads that are alive. Note that this number    * is&le; {@link #mergeThreads} size.    */
+comment|/**    * Returns the number of merge threads that are alive. Note that this number    * is&le; {@link #mergeThreads} size.    *    * @lucene.internal    */
 DECL|method|mergeThreadCount
-specifier|protected
+specifier|public
 specifier|synchronized
 name|int
 name|mergeThreadCount

@@ -428,6 +428,10 @@ name|MergePolicy
 operator|.
 name|MergeAbortedException
 block|{
+comment|// Now is a good time to abort the merge:
+name|checkAbort
+argument_list|()
+expr_stmt|;
 name|double
 name|secondsToPause
 init|=
@@ -522,10 +526,6 @@ operator|%
 literal|1000000
 argument_list|)
 decl_stmt|;
-comment|// Now is a good time to abort the merge:
-name|checkAbort
-argument_list|()
-expr_stmt|;
 name|double
 name|rate
 init|=

@@ -8066,7 +8066,7 @@ init|=
 operator|new
 name|TrackingDirectoryWrapper
 argument_list|(
-name|mergeDirectory
+name|directory
 argument_list|)
 decl_stmt|;
 name|SegmentInfo
@@ -17459,6 +17459,16 @@ block|{
 name|ensureOpen
 argument_list|()
 expr_stmt|;
+comment|// Paranoia defense: if this trips we have a bug somewhere...
+name|IndexWriter
+operator|.
+name|this
+operator|.
+name|ensureOpen
+argument_list|(
+literal|false
+argument_list|)
+expr_stmt|;
 comment|// This Directory is only supposed to be used during merging,
 comment|// so all writes should have MERGE context, else there is a bug
 comment|// somewhere that is failing to pass down the right IOContext:
@@ -17479,18 +17489,6 @@ name|context
 operator|.
 name|context
 assert|;
-name|IndexOutput
-name|output
-init|=
-name|in
-operator|.
-name|createOutput
-argument_list|(
-name|name
-argument_list|,
-name|context
-argument_list|)
-decl_stmt|;
 name|MergeRateLimiter
 name|rateLimiter
 init|=
@@ -17510,7 +17508,14 @@ name|RateLimitedIndexOutput
 argument_list|(
 name|rateLimiter
 argument_list|,
-name|output
+name|in
+operator|.
+name|createOutput
+argument_list|(
+name|name
+argument_list|,
+name|context
+argument_list|)
 argument_list|)
 return|;
 block|}
