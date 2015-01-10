@@ -4360,6 +4360,20 @@ argument_list|(
 name|tmp
 argument_list|)
 expr_stmt|;
+if|if
+condition|(
+name|TEST_NIGHTLY
+condition|)
+block|{
+comment|// during nightly tests, we might use too many files if we arent careful
+name|iwc
+operator|.
+name|setUseCompoundFile
+argument_list|(
+literal|true
+argument_list|)
+expr_stmt|;
+block|}
 return|return
 name|iwc
 return|;
