@@ -1840,7 +1840,15 @@ literal|"<updateLog>\n"
 operator|+
 literal|"<str name='dir'>${solr.ulog.dir:}</str>\n"
 operator|+
-literal|"</updateLog>\n"
+literal|"</updateLog>\n     "
+operator|+
+literal|"<autoCommit> \n"
+operator|+
+literal|"<maxDocs>1</maxDocs> \n"
+operator|+
+literal|"<openSearcher>true</openSearcher> \n"
+operator|+
+literal|"</autoCommit>"
 operator|+
 literal|"</updateHandler>\n"
 operator|+
