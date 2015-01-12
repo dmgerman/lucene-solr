@@ -1455,13 +1455,19 @@ name|isProhibited
 argument_list|()
 condition|)
 block|{
-name|prohibited
+comment|// TODO: there are some cases where BooleanScorer could do this faster
+return|return
+name|super
 operator|.
-name|add
+name|bulkScorer
 argument_list|(
-name|subScorer
+name|context
+argument_list|,
+name|scoreDocsInOrder
+argument_list|,
+name|acceptDocs
 argument_list|)
-expr_stmt|;
+return|;
 block|}
 else|else
 block|{
