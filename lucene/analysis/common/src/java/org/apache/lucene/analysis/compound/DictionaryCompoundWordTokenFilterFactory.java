@@ -184,9 +184,6 @@ argument_list|(
 name|args
 argument_list|)
 expr_stmt|;
-name|assureMatchVersion
-argument_list|()
-expr_stmt|;
 name|dictFile
 operator|=
 name|require

@@ -358,7 +358,9 @@ condition|)
 block|{
 name|luceneMatchVersion
 operator|=
-literal|null
+name|Version
+operator|.
+name|LATEST
 expr_stmt|;
 block|}
 else|else
@@ -414,40 +416,6 @@ block|{
 return|return
 name|originalArgs
 return|;
-block|}
-comment|/** this method can be called in the {@link org.apache.lucene.analysis.util.TokenizerFactory#create()}    * or {@link org.apache.lucene.analysis.util.TokenFilterFactory#create(org.apache.lucene.analysis.TokenStream)} methods,    * to inform user, that for this factory a {@link #luceneMatchVersion} is required */
-DECL|method|assureMatchVersion
-specifier|protected
-specifier|final
-name|void
-name|assureMatchVersion
-parameter_list|()
-block|{
-if|if
-condition|(
-name|luceneMatchVersion
-operator|==
-literal|null
-condition|)
-block|{
-throw|throw
-operator|new
-name|IllegalArgumentException
-argument_list|(
-literal|"Configuration Error: Factory '"
-operator|+
-name|this
-operator|.
-name|getClass
-argument_list|()
-operator|.
-name|getName
-argument_list|()
-operator|+
-literal|"' needs a 'luceneMatchVersion' parameter"
-argument_list|)
-throw|;
-block|}
 block|}
 DECL|method|getLuceneMatchVersion
 specifier|public
@@ -1482,9 +1450,6 @@ parameter_list|)
 throws|throws
 name|IOException
 block|{
-name|assureMatchVersion
-argument_list|()
-expr_stmt|;
 name|List
 argument_list|<
 name|String
@@ -1628,9 +1593,6 @@ parameter_list|)
 throws|throws
 name|IOException
 block|{
-name|assureMatchVersion
-argument_list|()
-expr_stmt|;
 name|List
 argument_list|<
 name|String
