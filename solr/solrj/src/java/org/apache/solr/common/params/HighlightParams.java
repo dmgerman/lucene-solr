@@ -345,6 +345,17 @@ name|HIGHLIGHT
 operator|+
 literal|".highlightMultiTerm"
 decl_stmt|;
+DECL|field|PAYLOADS
+specifier|public
+specifier|static
+specifier|final
+name|String
+name|PAYLOADS
+init|=
+name|HIGHLIGHT
+operator|+
+literal|".payloads"
+decl_stmt|;
 DECL|field|MERGE_CONTIGUOUS_FRAGMENTS
 specifier|public
 specifier|static
