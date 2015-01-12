@@ -663,7 +663,7 @@ name|t_web
 operator|.
 name|typeSupported
 argument_list|(
-literal|"text/xml"
+literal|"application/xml"
 argument_list|)
 argument_list|)
 expr_stmt|;
