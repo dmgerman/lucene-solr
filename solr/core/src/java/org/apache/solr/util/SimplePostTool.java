@@ -1878,7 +1878,7 @@ condition|)
 block|{
 name|info
 argument_list|(
-literal|"Posting files to base url "
+literal|"Posting files to [base] url "
 operator|+
 name|solrUrl
 operator|+
@@ -1901,7 +1901,7 @@ else|:
 literal|""
 operator|)
 operator|+
-literal|".."
+literal|"..."
 argument_list|)
 expr_stmt|;
 if|if
@@ -1969,7 +1969,7 @@ literal|"POSTing args to "
 operator|+
 name|solrUrl
 operator|+
-literal|".."
+literal|"..."
 argument_list|)
 expr_stmt|;
 for|for
@@ -2175,7 +2175,7 @@ literal|"POSTing stdin to "
 operator|+
 name|solrUrl
 operator|+
-literal|".."
+literal|"..."
 argument_list|)
 expr_stmt|;
 name|postData
@@ -2273,7 +2273,7 @@ literal|"Supported System Properties and their defaults:\n"
 operator|+
 literal|"  -Dc=<core/collection>\n"
 operator|+
-literal|"  -Durl=<solr-update-url> (overrides -Dc option if specified)\n"
+literal|"  -Durl=<base Solr update URL> (overrides -Dc option if specified)\n"
 operator|+
 literal|"  -Ddata=files|web|args|stdin (default="
 operator|+
@@ -4159,7 +4159,7 @@ literal|"COMMITting Solr index changes to "
 operator|+
 name|solrUrl
 operator|+
-literal|".."
+literal|"..."
 argument_list|)
 expr_stmt|;
 name|doGet
@@ -4189,7 +4189,7 @@ literal|"Performing an OPTIMIZE to "
 operator|+
 name|solrUrl
 operator|+
-literal|".."
+literal|"..."
 argument_list|)
 expr_stmt|;
 name|doGet
@@ -4349,6 +4349,11 @@ name|url
 init|=
 name|solrUrl
 decl_stmt|;
+name|String
+name|suffix
+init|=
+literal|""
+decl_stmt|;
 if|if
 condition|(
 name|auto
@@ -4405,6 +4410,10 @@ block|}
 else|else
 block|{
 comment|// SolrCell
+name|suffix
+operator|=
+literal|"/extract"
+expr_stmt|;
 name|String
 name|urlStr
 init|=
@@ -4412,7 +4421,7 @@ name|appendUrlPath
 argument_list|(
 name|solrUrl
 argument_list|,
-literal|"/extract"
+name|suffix
 argument_list|)
 operator|.
 name|toString
@@ -4544,6 +4553,10 @@ literal|")"
 else|:
 literal|""
 operator|)
+operator|+
+literal|" to [base]"
+operator|+
+name|suffix
 argument_list|)
 expr_stmt|;
 name|is
