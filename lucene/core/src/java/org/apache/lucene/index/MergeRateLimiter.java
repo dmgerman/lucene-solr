@@ -86,14 +86,9 @@ specifier|volatile
 name|long
 name|totalBytesWritten
 decl_stmt|;
-comment|// By default no IO limit:
 DECL|field|mbPerSec
 name|double
 name|mbPerSec
-init|=
-name|Double
-operator|.
-name|POSITIVE_INFINITY
 decl_stmt|;
 DECL|field|lastNS
 specifier|private
@@ -158,6 +153,14 @@ operator|.
 name|merge
 operator|=
 name|merge
+expr_stmt|;
+comment|// Initially no IO limit; use setter here so minPauseCheckBytes is set:
+name|setMBPerSec
+argument_list|(
+name|Double
+operator|.
+name|POSITIVE_INFINITY
+argument_list|)
 expr_stmt|;
 block|}
 annotation|@
