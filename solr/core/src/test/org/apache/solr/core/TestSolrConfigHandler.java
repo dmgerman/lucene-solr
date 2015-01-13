@@ -1702,7 +1702,7 @@ block|}
 DECL|method|testForResponseElement
 specifier|public
 specifier|static
-name|void
+name|Map
 name|testForResponseElement
 parameter_list|(
 name|RestTestHarness
@@ -1871,6 +1871,9 @@ argument_list|,
 name|success
 argument_list|)
 expr_stmt|;
+return|return
+name|m
+return|;
 block|}
 DECL|method|testReqParams
 specifier|public
