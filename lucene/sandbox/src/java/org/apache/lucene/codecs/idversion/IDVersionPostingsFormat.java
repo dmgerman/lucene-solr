@@ -274,6 +274,15 @@ name|maxTermsInBlock
 operator|=
 name|maxTermsInBlock
 expr_stmt|;
+name|BlockTreeTermsWriter
+operator|.
+name|validateSettings
+argument_list|(
+name|minTermsInBlock
+argument_list|,
+name|maxTermsInBlock
+argument_list|)
+expr_stmt|;
 block|}
 annotation|@
 name|Override
