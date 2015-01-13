@@ -1680,6 +1680,18 @@ argument_list|)
 expr_stmt|;
 try|try
 block|{
+comment|// ZooKeeper maintains a static collection of AuthenticationProviders, so
+comment|// we make sure the SASL provider is loaded so that it can be used in
+comment|// subsequent tests.
+name|System
+operator|.
+name|setProperty
+argument_list|(
+literal|"zookeeper.authProvider.1"
+argument_list|,
+literal|"org.apache.zookeeper.server.auth.SASLAuthenticationProvider"
+argument_list|)
+expr_stmt|;
 comment|// Note that this thread isn't going to be doing anything else,
 comment|// so rather than spawning another thread, we will just call
 comment|// run() in this thread.
