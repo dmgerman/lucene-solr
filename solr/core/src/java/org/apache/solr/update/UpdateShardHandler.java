@@ -384,6 +384,9 @@ argument_list|()
 argument_list|)
 expr_stmt|;
 block|}
+comment|// in the update case, we want to do retries, and to use
+comment|// the default Solr retry handler that createClient will
+comment|// give us
 name|params
 operator|.
 name|set
@@ -392,7 +395,7 @@ name|HttpClientUtil
 operator|.
 name|PROP_USE_RETRY
 argument_list|,
-literal|false
+literal|true
 argument_list|)
 expr_stmt|;
 name|log
