@@ -567,7 +567,7 @@ name|Pattern
 operator|.
 name|compile
 argument_list|(
-literal|"[/\\\\](lucene|solr)[/\\\\](?:(?:contrib|(analysis)|(example))[/\\\\])?([^/\\\\]+)[/\\\\]ivy\\.xml"
+literal|"[/\\\\](lucene|solr)[/\\\\](?:(?:contrib|(analysis)|(example)|(server))[/\\\\])?([^/\\\\]+)[/\\\\]ivy\\.xml"
 argument_list|)
 decl_stmt|;
 DECL|field|COORDINATE_KEY_PATTERN
@@ -1389,7 +1389,7 @@ name|setExternalDependencyXmlProperties
 argument_list|()
 expr_stmt|;
 block|}
-comment|/**    * For each module that include other modules' external dependencies via    * including all files under their ".../lib/" dirs in their (test.)classpath,    * add the other modules' dependencies to its set of external dependencies.     */
+comment|/**    * For each module that includes other modules' external dependencies via    * including all files under their ".../lib/" dirs in their (test.)classpath,    * add the other modules' dependencies to its set of external dependencies.     */
 DECL|method|addSharedExternalDependencies
 specifier|private
 name|void
@@ -1854,6 +1854,7 @@ argument_list|)
 operator|)
 condition|)
 block|{
+comment|// make a copy of the dep and set optional=true
 name|dep
 operator|=
 operator|new
@@ -4255,7 +4256,7 @@ argument_list|(
 name|ivyXmlFile
 argument_list|)
 decl_stmt|;
-comment|// Exclude the 'start' configuration in solr/example/ivy.xml
+comment|// Exclude the 'start' configuration in solr/server/ivy.xml
 name|String
 name|dependencyPath
 init|=
@@ -5121,6 +5122,7 @@ literal|"-analyzers"
 argument_list|)
 expr_stmt|;
 block|}
+elseif|else
 if|if
 condition|(
 literal|null
@@ -5142,6 +5144,28 @@ literal|"-example"
 argument_list|)
 expr_stmt|;
 block|}
+elseif|else
+if|if
+condition|(
+literal|null
+operator|!=
+name|matcher
+operator|.
+name|group
+argument_list|(
+literal|4
+argument_list|)
+condition|)
+block|{
+comment|// "solr/server/..."
+name|builder
+operator|.
+name|append
+argument_list|(
+literal|"-server"
+argument_list|)
+expr_stmt|;
+block|}
 name|builder
 operator|.
 name|append
@@ -5157,7 +5181,7 @@ name|matcher
 operator|.
 name|group
 argument_list|(
-literal|4
+literal|5
 argument_list|)
 argument_list|)
 expr_stmt|;
