@@ -684,6 +684,8 @@ literal|"{\"x+y\" : \"name\"}"
 operator|+
 literal|"{\"p%q\" : \"name\"}"
 operator|+
+literal|"{\"p.q\" : \"name\"}"
+operator|+
 literal|"{\"a&b\" : \"name\"}"
 decl_stmt|;
 name|HttpClient
@@ -787,6 +789,8 @@ argument_list|,
 literal|"a_b"
 argument_list|,
 literal|"p_q"
+argument_list|,
+literal|"p.q"
 argument_list|,
 literal|"x_y"
 argument_list|)
