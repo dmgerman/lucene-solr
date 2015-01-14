@@ -343,6 +343,31 @@ literal|100
 argument_list|)
 expr_stmt|;
 comment|//Append the float
+name|floatAppend
+operator|=
+name|Float
+operator|.
+name|toString
+argument_list|(
+name|Float
+operator|.
+name|parseFloat
+argument_list|(
+name|floatAppend
+argument_list|)
+argument_list|)
+expr_stmt|;
+comment|//Create a proper float out of the string.
+name|floatAppend
+operator|=
+name|floatAppend
+operator|.
+name|substring
+argument_list|(
+literal|1
+argument_list|)
+expr_stmt|;
+comment|//Drop off the leading 0, leaving just the decimal
 block|}
 name|String
 name|hint
