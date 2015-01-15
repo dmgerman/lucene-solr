@@ -559,8 +559,9 @@ specifier|final
 name|String
 name|VERSION_OF_THIS_TOOL
 init|=
-literal|"1.5"
+literal|"5.0.0"
 decl_stmt|;
+comment|// TODO: hardcoded for now, but eventually to sync with actual Solr version
 DECL|field|DEFAULT_COMMIT
 specifier|private
 specifier|static
