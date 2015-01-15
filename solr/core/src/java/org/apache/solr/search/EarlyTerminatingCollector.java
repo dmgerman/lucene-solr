@@ -211,18 +211,6 @@ name|context
 argument_list|)
 argument_list|)
 block|{
-comment|/**        * This collector requires that docs be collected in order, otherwise        * the computed number of scanned docs in the resulting        * {@link EarlyTerminatingCollectorException} will be meaningless.        */
-annotation|@
-name|Override
-specifier|public
-name|boolean
-name|acceptsDocsOutOfOrder
-parameter_list|()
-block|{
-return|return
-literal|false
-return|;
-block|}
 annotation|@
 name|Override
 specifier|public

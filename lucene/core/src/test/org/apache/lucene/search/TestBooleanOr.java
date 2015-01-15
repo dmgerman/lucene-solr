@@ -1222,8 +1222,6 @@ argument_list|(
 literal|0
 argument_list|)
 argument_list|,
-literal|false
-argument_list|,
 literal|null
 argument_list|)
 decl_stmt|;
@@ -1287,17 +1285,6 @@ argument_list|(
 name|doc
 argument_list|)
 expr_stmt|;
-block|}
-annotation|@
-name|Override
-specifier|public
-name|boolean
-name|acceptsDocsOutOfOrder
-parameter_list|()
-block|{
-return|return
-literal|true
-return|;
 block|}
 block|}
 decl_stmt|;

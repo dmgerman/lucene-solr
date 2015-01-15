@@ -1082,8 +1082,6 @@ argument_list|,
 name|doDocScores
 argument_list|,
 name|doMaxScore
-argument_list|,
-literal|true
 argument_list|)
 decl_stmt|;
 name|DrillSidewaysResult
@@ -1214,8 +1212,6 @@ argument_list|(
 name|topN
 argument_list|,
 name|after
-argument_list|,
-literal|true
 argument_list|)
 decl_stmt|;
 name|DrillSidewaysResult
@@ -1243,7 +1239,7 @@ argument_list|()
 argument_list|)
 return|;
 block|}
-comment|/** Override this and return true if your collector    *  (e.g., {@code ToParentBlockJoinCollector}) expects all    *  sub-scorers to be positioned on the document being    *  collected.  This will cause some performance loss;    *  default is false.  Note that if you return true from    *  this method (in a subclass) be sure your collector    *  also returns false from {@link    *  LeafCollector#acceptsDocsOutOfOrder}: this will trick    *  {@code BooleanQuery} into also scoring all subDocs at    *  once. */
+comment|/** Override this and return true if your collector    *  (e.g., {@code ToParentBlockJoinCollector}) expects all    *  sub-scorers to be positioned on the document being    *  collected.  This will cause some performance loss;    *  default is false. */
 DECL|method|scoreSubDocsAtOnce
 specifier|protected
 name|boolean

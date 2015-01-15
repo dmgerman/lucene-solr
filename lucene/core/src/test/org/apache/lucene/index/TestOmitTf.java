@@ -2496,18 +2496,6 @@ operator|.
 name|docBase
 expr_stmt|;
 block|}
-annotation|@
-name|Override
-DECL|method|acceptsDocsOutOfOrder
-specifier|public
-name|boolean
-name|acceptsDocsOutOfOrder
-parameter_list|()
-block|{
-return|return
-literal|true
-return|;
-block|}
 block|}
 comment|/** test that when freqs are omitted, that totalTermFreq and sumTotalTermFreq are -1 */
 DECL|method|testStats

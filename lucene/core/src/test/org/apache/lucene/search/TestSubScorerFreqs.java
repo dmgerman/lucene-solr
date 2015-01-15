@@ -765,8 +765,6 @@ operator|.
 name|create
 argument_list|(
 literal|10
-argument_list|,
-literal|true
 argument_list|)
 argument_list|)
 decl_stmt|;
@@ -1110,8 +1108,6 @@ operator|.
 name|create
 argument_list|(
 literal|10
-argument_list|,
-literal|true
 argument_list|)
 argument_list|,
 name|occur
@@ -1387,8 +1383,6 @@ operator|.
 name|create
 argument_list|(
 literal|10
-argument_list|,
-literal|true
 argument_list|)
 argument_list|)
 decl_stmt|;

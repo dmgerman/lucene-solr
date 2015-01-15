@@ -839,6 +839,9 @@ parameter_list|)
 throws|throws
 name|Exception
 block|{
+comment|// The asserting searcher will sometimes return the bulk scorer and
+comment|// sometimes return a default impl around the scorer so that we can
+comment|// compare BS1 and BS2
 name|TopScoreDocCollector
 name|collector
 init|=
@@ -847,8 +850,6 @@ operator|.
 name|create
 argument_list|(
 literal|1000
-argument_list|,
-literal|false
 argument_list|)
 decl_stmt|;
 name|searcher
@@ -880,8 +881,6 @@ operator|.
 name|create
 argument_list|(
 literal|1000
-argument_list|,
-literal|true
 argument_list|)
 expr_stmt|;
 name|searcher
@@ -2159,8 +2158,6 @@ argument_list|,
 literal|true
 argument_list|,
 literal|true
-argument_list|,
-literal|true
 argument_list|)
 decl_stmt|;
 name|searcher
@@ -2200,8 +2197,6 @@ argument_list|,
 literal|true
 argument_list|,
 literal|true
-argument_list|,
-literal|false
 argument_list|)
 expr_stmt|;
 name|searcher

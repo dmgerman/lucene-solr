@@ -147,7 +147,7 @@ import|;
 end_import
 
 begin_comment
-comment|/** Collects parent document hits for a Query containing one more more  *  BlockJoinQuery clauses, sorted by the  *  specified parent Sort.  Note that this cannot perform  *  arbitrary joins; rather, it requires that all joined  *  documents are indexed as a doc block (using {@link  *  IndexWriter#addDocuments} or {@link  *  IndexWriter#updateDocuments}).  Ie, the join is computed  *  at index time.  *  *<p>The parent Sort must only use  *  fields from the parent documents; sorting by field in  *  the child documents is not supported.</p>  *  *<p>You should only use this  *  collector if one or more of the clauses in the query is  *  a {@link ToParentBlockJoinQuery}.  This collector will find those query  *  clauses and record the matching child documents for the  *  top scoring parent documents.</p>  *  *<p>Multiple joins (star join) and nested joins and a mix  *  of the two are allowed, as long as in all cases the  *  documents corresponding to a single row of each joined  *  parent table were indexed as a doc block.</p>  *  *<p>For the simple star join you can retrieve the  *  {@link TopGroups} instance containing each {@link ToParentBlockJoinQuery}'s  *  matching child documents for the top parent groups,  *  using {@link #getTopGroups}.  Ie,  *  a single query, which will contain two or more  *  {@link ToParentBlockJoinQuery}'s as clauses representing the star join,  *  can then retrieve two or more {@link TopGroups} instances.</p>  *  *<p>For nested joins, the query will run correctly (ie,  *  match the right parent and child documents), however,  *  because TopGroups is currently unable to support nesting  *  (each group is not able to hold another TopGroups), you  *  are only able to retrieve the TopGroups of the first  *  join.  The TopGroups of the nested joins will not be  *  correct.  *  *  See {@link org.apache.lucene.search.join} for a code  *  sample.  *  * @lucene.experimental  */
+comment|/** Collects parent document hits for a Query containing one more more  *  BlockJoinQuery clauses, sorted by the  *  specified parent Sort.  Note that this cannot perform  *  arbitrary joins; rather, it requires that all joined  *  documents are indexed as a doc block (using {@link  *  IndexWriter#addDocuments} or {@link  *  IndexWriter#updateDocuments}).  Ie, the join is computed  *  at index time.  *  *<p>This collector MUST be used with {@link ToParentBlockJoinIndexSearcher},  *  in order to work correctly.  *  *<p>The parent Sort must only use  *  fields from the parent documents; sorting by field in  *  the child documents is not supported.</p>  *  *<p>You should only use this  *  collector if one or more of the clauses in the query is  *  a {@link ToParentBlockJoinQuery}.  This collector will find those query  *  clauses and record the matching child documents for the  *  top scoring parent documents.</p>  *  *<p>Multiple joins (star join) and nested joins and a mix  *  of the two are allowed, as long as in all cases the  *  documents corresponding to a single row of each joined  *  parent table were indexed as a doc block.</p>  *  *<p>For the simple star join you can retrieve the  *  {@link TopGroups} instance containing each {@link ToParentBlockJoinQuery}'s  *  matching child documents for the top parent groups,  *  using {@link #getTopGroups}.  Ie,  *  a single query, which will contain two or more  *  {@link ToParentBlockJoinQuery}'s as clauses representing the star join,  *  can then retrieve two or more {@link TopGroups} instances.</p>  *  *<p>For nested joins, the query will run correctly (ie,  *  match the right parent and child documents), however,  *  because TopGroups is currently unable to support nesting  *  (each group is not able to hold another TopGroups), you  *  are only able to retrieve the TopGroups of the first  *  join.  The TopGroups of the nested joins will not be  *  correct.  *  *  See {@link org.apache.lucene.search.join} for a code  *  sample.  *  * @lucene.experimental  */
 end_comment
 
 begin_class
@@ -1321,17 +1321,6 @@ expr_stmt|;
 block|}
 block|}
 block|}
-annotation|@
-name|Override
-specifier|public
-name|boolean
-name|acceptsDocsOutOfOrder
-parameter_list|()
-block|{
-return|return
-literal|false
-return|;
-block|}
 block|}
 return|;
 block|}
@@ -1819,8 +1808,6 @@ operator|.
 name|create
 argument_list|(
 name|numDocsInGroup
-argument_list|,
-literal|true
 argument_list|)
 expr_stmt|;
 block|}
@@ -1842,8 +1829,6 @@ argument_list|,
 name|trackScores
 argument_list|,
 name|trackMaxScore
-argument_list|,
-literal|true
 argument_list|)
 expr_stmt|;
 block|}

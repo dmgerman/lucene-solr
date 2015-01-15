@@ -99,18 +99,6 @@ name|IOException
 block|{
 comment|// NOP
 block|}
-annotation|@
-name|Override
-DECL|method|acceptsDocsOutOfOrder
-specifier|public
-name|boolean
-name|acceptsDocsOutOfOrder
-parameter_list|()
-block|{
-return|return
-literal|true
-return|;
-block|}
 block|}
 end_class
 

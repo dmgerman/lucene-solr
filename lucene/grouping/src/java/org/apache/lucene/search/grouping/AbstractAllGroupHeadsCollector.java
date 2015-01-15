@@ -416,18 +416,6 @@ name|doc
 argument_list|)
 expr_stmt|;
 block|}
-annotation|@
-name|Override
-DECL|method|acceptsDocsOutOfOrder
-specifier|public
-name|boolean
-name|acceptsDocsOutOfOrder
-parameter_list|()
-block|{
-return|return
-literal|false
-return|;
-block|}
 comment|/**    * Contains the result of group head retrieval.    * To prevent new object creations of this class for every collect.    */
 DECL|class|TemporalResult
 specifier|protected

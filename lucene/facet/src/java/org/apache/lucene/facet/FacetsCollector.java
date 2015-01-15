@@ -679,24 +679,6 @@ return|;
 block|}
 annotation|@
 name|Override
-DECL|method|acceptsDocsOutOfOrder
-specifier|public
-specifier|final
-name|boolean
-name|acceptsDocsOutOfOrder
-parameter_list|()
-block|{
-comment|// If we are keeping scores then we require in-order
-comment|// because we append each score to the float[] and
-comment|// expect that they correlate in order to the hits:
-return|return
-name|keepScores
-operator|==
-literal|false
-return|;
-block|}
-annotation|@
-name|Override
 DECL|method|collect
 specifier|public
 specifier|final
@@ -1547,17 +1529,11 @@ argument_list|,
 name|doDocScores
 argument_list|,
 name|doMaxScore
-argument_list|,
-literal|false
 argument_list|)
 expr_stmt|;
 block|}
 else|else
 block|{
-comment|// TODO: can we pass the right boolean for
-comment|// in-order instead of hardwired to false...?  we'd
-comment|// need access to the protected IS.search methods
-comment|// taking Weight... could use reflection...
 name|hitsCollector
 operator|=
 name|TopScoreDocCollector
@@ -1567,8 +1543,6 @@ argument_list|(
 name|n
 argument_list|,
 name|after
-argument_list|,
-literal|false
 argument_list|)
 expr_stmt|;
 block|}

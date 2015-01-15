@@ -288,8 +288,6 @@ operator|.
 name|create
 argument_list|(
 name|maxDocsPerGroup
-argument_list|,
-literal|true
 argument_list|)
 expr_stmt|;
 block|}
@@ -311,8 +309,6 @@ argument_list|,
 name|getScores
 argument_list|,
 name|getMaxScores
-argument_list|,
-literal|true
 argument_list|)
 expr_stmt|;
 block|}
@@ -482,18 +478,6 @@ name|readerContext
 argument_list|)
 expr_stmt|;
 block|}
-block|}
-annotation|@
-name|Override
-DECL|method|acceptsDocsOutOfOrder
-specifier|public
-name|boolean
-name|acceptsDocsOutOfOrder
-parameter_list|()
-block|{
-return|return
-literal|false
-return|;
 block|}
 DECL|method|getTopGroups
 specifier|public

@@ -333,18 +333,6 @@ operator|.
 name|docBase
 expr_stmt|;
 block|}
-annotation|@
-name|Override
-DECL|method|acceptsDocsOutOfOrder
-specifier|public
-name|boolean
-name|acceptsDocsOutOfOrder
-parameter_list|()
-block|{
-return|return
-literal|false
-return|;
-block|}
 block|}
 end_class
 

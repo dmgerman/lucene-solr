@@ -147,7 +147,7 @@ name|float
 name|topLevelBoost
 parameter_list|)
 function_decl|;
-comment|/**    * Returns a {@link Scorer} which scores documents in/out-of order according    * to<code>scoreDocsInOrder</code>.    *<p>    *<b>NOTE:</b> even if<code>scoreDocsInOrder</code> is false, it is    * recommended to check whether the returned<code>Scorer</code> indeed scores    * documents out of order (i.e., call {@link #scoresDocsOutOfOrder()}), as    * some<code>Scorer</code> implementations will always return documents    * in-order.<br>    *<b>NOTE:</b> null can be returned if no documents will be scored by this    * query.    *     * @param context    *          the {@link org.apache.lucene.index.LeafReaderContext} for which to return the {@link Scorer}.    * @param acceptDocs    *          Bits that represent the allowable docs to match (typically deleted docs    *          but possibly filtering other documents)    *              * @return a {@link Scorer} which scores documents in/out-of order.    * @throws IOException if there is a low-level I/O error    */
+comment|/**    * Returns a {@link Scorer} which scores documents in/out-of order according    * to<code>scoreDocsInOrder</code>.    *<p>    *<b>NOTE:</b> null can be returned if no documents will be scored by this    * query.    *     * @param context    *          the {@link org.apache.lucene.index.LeafReaderContext} for which to return the {@link Scorer}.    * @param acceptDocs    *          Bits that represent the allowable docs to match (typically deleted docs    *          but possibly filtering other documents)    *              * @return a {@link Scorer} which scores documents in/out-of order.    * @throws IOException if there is a low-level I/O error    */
 DECL|method|scorer
 specifier|public
 specifier|abstract
@@ -163,7 +163,7 @@ parameter_list|)
 throws|throws
 name|IOException
 function_decl|;
-comment|/**    * Optional method, to return a {@link BulkScorer} to    * score the query and send hits to a {@link Collector}.    * Only queries that have a different top-level approach    * need to override this; the default implementation    * pulls a normal {@link Scorer} and iterates and    * collects the resulting hits.    *    * @param context    *          the {@link org.apache.lucene.index.LeafReaderContext} for which to return the {@link Scorer}.    * @param scoreDocsInOrder    *          specifies whether in-order scoring of documents is required. Note    *          that if set to false (i.e., out-of-order scoring is required),    *          this method can return whatever scoring mode it supports, as every    *          in-order scorer is also an out-of-order one. However, an    *          out-of-order scorer may not support {@link Scorer#nextDoc()}    *          and/or {@link Scorer#advance(int)}, therefore it is recommended to    *          request an in-order scorer if use of these    *          methods is required.    * @param acceptDocs    *          Bits that represent the allowable docs to match (typically deleted docs    *          but possibly filtering other documents)    *    * @return a {@link BulkScorer} which scores documents and    * passes them to a collector.    * @throws IOException if there is a low-level I/O error    */
+comment|/**    * Optional method, to return a {@link BulkScorer} to    * score the query and send hits to a {@link Collector}.    * Only queries that have a different top-level approach    * need to override this; the default implementation    * pulls a normal {@link Scorer} and iterates and    * collects the resulting hits.    *    * @param context    *          the {@link org.apache.lucene.index.LeafReaderContext} for which to return the {@link Scorer}.    * @param acceptDocs    *          Bits that represent the allowable docs to match (typically deleted docs    *          but possibly filtering other documents)    *    * @return a {@link BulkScorer} which scores documents and    * passes them to a collector.    * @throws IOException if there is a low-level I/O error    */
 DECL|method|bulkScorer
 specifier|public
 name|BulkScorer
@@ -171,9 +171,6 @@ name|bulkScorer
 parameter_list|(
 name|LeafReaderContext
 name|context
-parameter_list|,
-name|boolean
-name|scoreDocsInOrder
 parameter_list|,
 name|Bits
 name|acceptDocs
@@ -437,17 +434,6 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
-block|}
-comment|/**    * Returns true iff this implementation scores docs only out of order. This    * method is used in conjunction with {@link Collector}'s    * {@link LeafCollector#acceptsDocsOutOfOrder() acceptsDocsOutOfOrder} and    * {@link #bulkScorer(org.apache.lucene.index.LeafReaderContext, boolean, Bits)} to    * create a matching {@link Scorer} instance for a given {@link Collector}, or    * vice versa.    *<p>    *<b>NOTE:</b> the default implementation returns<code>false</code>, i.e.    * the<code>Scorer</code> scores documents in-order.    */
-DECL|method|scoresDocsOutOfOrder
-specifier|public
-name|boolean
-name|scoresDocsOutOfOrder
-parameter_list|()
-block|{
-return|return
-literal|false
-return|;
 block|}
 block|}
 end_class

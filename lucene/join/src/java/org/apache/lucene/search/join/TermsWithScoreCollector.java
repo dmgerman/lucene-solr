@@ -255,18 +255,6 @@ operator|=
 name|scorer
 expr_stmt|;
 block|}
-annotation|@
-name|Override
-DECL|method|acceptsDocsOutOfOrder
-specifier|public
-name|boolean
-name|acceptsDocsOutOfOrder
-parameter_list|()
-block|{
-return|return
-literal|true
-return|;
-block|}
 comment|/**    * Chooses the right {@link TermsWithScoreCollector} implementation.    *    * @param field                     The field to collect terms for    * @param multipleValuesPerDocument Whether the field to collect terms for has multiple values per document.    * @return a {@link TermsWithScoreCollector} instance    */
 DECL|method|create
 specifier|static

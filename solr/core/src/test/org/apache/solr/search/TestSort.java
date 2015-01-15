@@ -2102,8 +2102,6 @@ argument_list|,
 name|trackScores
 argument_list|,
 name|trackMaxScores
-argument_list|,
-name|scoreInOrder
 argument_list|)
 decl_stmt|;
 specifier|final

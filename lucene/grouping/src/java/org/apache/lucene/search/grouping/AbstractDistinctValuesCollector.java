@@ -96,18 +96,6 @@ argument_list|>
 name|getGroups
 parameter_list|()
 function_decl|;
-annotation|@
-name|Override
-DECL|method|acceptsDocsOutOfOrder
-specifier|public
-name|boolean
-name|acceptsDocsOutOfOrder
-parameter_list|()
-block|{
-return|return
-literal|true
-return|;
-block|}
 comment|/**    * Returned by {@link AbstractDistinctValuesCollector#getGroups()},    * representing the value and set of distinct values for the group.    */
 DECL|class|GroupCount
 specifier|public

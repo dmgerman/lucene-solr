@@ -1749,12 +1749,6 @@ argument_list|(
 name|nDocs
 argument_list|,
 name|after
-argument_list|,
-operator|!
-name|weight
-operator|.
-name|scoresDocsOutOfOrder
-argument_list|()
 argument_list|)
 decl_stmt|;
 name|search
@@ -1941,8 +1935,6 @@ argument_list|,
 name|doDocScores
 argument_list|,
 name|doMaxScore
-argument_list|,
-literal|false
 argument_list|)
 decl_stmt|;
 specifier|final
@@ -2190,12 +2182,6 @@ argument_list|,
 name|doDocScores
 argument_list|,
 name|doMaxScore
-argument_list|,
-operator|!
-name|weight
-operator|.
-name|scoresDocsOutOfOrder
-argument_list|()
 argument_list|)
 decl_stmt|;
 name|search
@@ -2284,12 +2270,6 @@ operator|.
 name|bulkScorer
 argument_list|(
 name|ctx
-argument_list|,
-operator|!
-name|leafCollector
-operator|.
-name|acceptsDocsOutOfOrder
-argument_list|()
 argument_list|,
 name|ctx
 operator|.

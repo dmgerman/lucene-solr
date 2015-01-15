@@ -439,8 +439,6 @@ argument_list|(
 name|scores
 operator|.
 name|length
-argument_list|,
-literal|true
 argument_list|)
 decl_stmt|;
 name|Collector

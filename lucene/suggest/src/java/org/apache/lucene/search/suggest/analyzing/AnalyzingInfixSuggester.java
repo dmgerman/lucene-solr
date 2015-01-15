@@ -2929,8 +2929,6 @@ argument_list|,
 literal|false
 argument_list|,
 literal|false
-argument_list|,
-literal|false
 argument_list|)
 decl_stmt|;
 comment|// We sorted postings by weight during indexing, so we

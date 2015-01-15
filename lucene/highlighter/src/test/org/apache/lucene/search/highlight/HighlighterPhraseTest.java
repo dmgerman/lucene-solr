@@ -972,17 +972,6 @@ decl_stmt|;
 annotation|@
 name|Override
 specifier|public
-name|boolean
-name|acceptsDocsOutOfOrder
-parameter_list|()
-block|{
-return|return
-literal|true
-return|;
-block|}
-annotation|@
-name|Override
-specifier|public
 name|void
 name|collect
 parameter_list|(

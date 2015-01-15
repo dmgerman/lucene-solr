@@ -474,18 +474,6 @@ parameter_list|)
 throws|throws
 name|IOException
 block|{   }
-annotation|@
-name|Override
-DECL|method|acceptsDocsOutOfOrder
-specifier|public
-name|boolean
-name|acceptsDocsOutOfOrder
-parameter_list|()
-block|{
-return|return
-literal|true
-return|;
-block|}
 comment|/**    * The grouped facet result. Containing grouped facet entries, total count and total missing count.    */
 DECL|class|GroupedFacetResult
 specifier|public

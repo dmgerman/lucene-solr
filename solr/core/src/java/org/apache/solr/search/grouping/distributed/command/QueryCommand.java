@@ -576,8 +576,6 @@ operator|.
 name|create
 argument_list|(
 name|docsToCollect
-argument_list|,
-literal|true
 argument_list|)
 expr_stmt|;
 block|}
@@ -598,8 +596,6 @@ argument_list|,
 name|needScores
 argument_list|,
 name|needScores
-argument_list|,
-literal|true
 argument_list|)
 expr_stmt|;
 block|}

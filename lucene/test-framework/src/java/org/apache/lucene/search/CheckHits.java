@@ -619,18 +619,6 @@ operator|.
 name|docBase
 expr_stmt|;
 block|}
-annotation|@
-name|Override
-DECL|method|acceptsDocsOutOfOrder
-specifier|public
-name|boolean
-name|acceptsDocsOutOfOrder
-parameter_list|()
-block|{
-return|return
-literal|true
-return|;
-block|}
 block|}
 comment|/**    * Tests that a query matches the an expected set of documents using Hits.    *    *<p>    * Note that when using the Hits API, documents will only be returned    * if they have a positive normalized score.    *</p>    * @param query the query to test    * @param searcher the searcher to test the query against    * @param defaultFieldName used for displaing the query in assertion messages    * @param results a list of documentIds that must match the query    * @see #checkHitCollector    */
 DECL|method|checkHits
@@ -2656,18 +2644,6 @@ name|context
 operator|.
 name|docBase
 expr_stmt|;
-block|}
-annotation|@
-name|Override
-DECL|method|acceptsDocsOutOfOrder
-specifier|public
-name|boolean
-name|acceptsDocsOutOfOrder
-parameter_list|()
-block|{
-return|return
-literal|true
-return|;
 block|}
 block|}
 block|}

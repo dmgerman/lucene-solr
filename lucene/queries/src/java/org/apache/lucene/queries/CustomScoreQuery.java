@@ -1470,18 +1470,6 @@ return|return
 name|res
 return|;
 block|}
-annotation|@
-name|Override
-DECL|method|scoresDocsOutOfOrder
-specifier|public
-name|boolean
-name|scoresDocsOutOfOrder
-parameter_list|()
-block|{
-return|return
-literal|false
-return|;
-block|}
 block|}
 comment|//=========================== S C O R E R ============================
 comment|/**    * A scorer that applies a (callback) function on scores of the subQuery.    */

@@ -326,17 +326,6 @@ parameter_list|)
 block|{
 comment|// Don't do anything. Assign scores in random
 block|}
-annotation|@
-name|Override
-specifier|public
-name|boolean
-name|acceptsDocsOutOfOrder
-parameter_list|()
-block|{
-return|return
-literal|true
-return|;
-block|}
 block|}
 return|;
 block|}

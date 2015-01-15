@@ -108,15 +108,6 @@ block|}
 comment|// redeclare methods so that javadocs are inherited on sub-classes
 annotation|@
 name|Override
-DECL|method|acceptsDocsOutOfOrder
-specifier|public
-specifier|abstract
-name|boolean
-name|acceptsDocsOutOfOrder
-parameter_list|()
-function_decl|;
-annotation|@
-name|Override
 DECL|method|collect
 specifier|public
 specifier|abstract

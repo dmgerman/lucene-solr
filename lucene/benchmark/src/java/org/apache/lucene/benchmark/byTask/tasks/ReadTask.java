@@ -666,8 +666,6 @@ argument_list|()
 argument_list|,
 name|withMaxScore
 argument_list|()
-argument_list|,
-literal|false
 argument_list|)
 decl_stmt|;
 name|searcher
@@ -1132,8 +1130,6 @@ name|create
 argument_list|(
 name|numHits
 argument_list|()
-argument_list|,
-literal|true
 argument_list|)
 return|;
 block|}
