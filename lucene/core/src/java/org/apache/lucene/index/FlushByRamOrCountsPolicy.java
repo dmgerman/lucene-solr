@@ -142,18 +142,12 @@ operator|.
 name|getDeleteBytesUsed
 argument_list|()
 operator|+
-literal|" vs ramBuffer="
+literal|" vs ramBufferMB="
 operator|+
-operator|(
-literal|1024
-operator|*
-literal|1024
-operator|*
 name|indexWriterConfig
 operator|.
 name|getRAMBufferSizeMB
 argument_list|()
-operator|)
 argument_list|)
 expr_stmt|;
 block|}

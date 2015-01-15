@@ -2292,7 +2292,7 @@ argument_list|)
 operator|+
 literal|" MB"
 operator|+
-literal|" newFlushedSize(includes docstores)="
+literal|" newFlushedSize="
 operator|+
 name|nf
 operator|.
