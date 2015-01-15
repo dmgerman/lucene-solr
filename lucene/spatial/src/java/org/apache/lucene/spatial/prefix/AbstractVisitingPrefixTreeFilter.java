@@ -20,6 +20,26 @@ end_comment
 
 begin_import
 import|import
+name|java
+operator|.
+name|io
+operator|.
+name|IOException
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
+name|util
+operator|.
+name|Iterator
+import|;
+end_import
+
+begin_import
+import|import
 name|com
 operator|.
 name|spatial4j
@@ -153,26 +173,6 @@ operator|.
 name|util
 operator|.
 name|BytesRef
-import|;
-end_import
-
-begin_import
-import|import
-name|java
-operator|.
-name|io
-operator|.
-name|IOException
-import|;
-end_import
-
-begin_import
-import|import
-name|java
-operator|.
-name|util
-operator|.
-name|Iterator
 import|;
 end_import
 
@@ -1160,7 +1160,7 @@ parameter_list|()
 throws|throws
 name|IOException
 function_decl|;
-comment|/**      * Visit an indexed cell returned from      * {@link #findSubCellsToVisit(org.apache.lucene.spatial.prefix.tree.Cell)}.      *      * @param cell An intersecting cell.      * @return true to descend to more levels. It is an error to return true      * if cell.level == detailLevel      */
+comment|/**      * Visit an indexed non-leaf cell returned from      * {@link #findSubCellsToVisit(org.apache.lucene.spatial.prefix.tree.Cell)}      * that is also found in the index.      * It will also be called by the default implementation of      * {@link #visitScanned(org.apache.lucene.spatial.prefix.tree.Cell)} for      * cells at the bottom detail level.      *      * @param cell An intersecting cell; not a leaf.      * @return true to descend to more levels. It is an error to return true      * if cell.level == detailLevel      */
 DECL|method|visit
 specifier|protected
 specifier|abstract
@@ -1173,7 +1173,7 @@ parameter_list|)
 throws|throws
 name|IOException
 function_decl|;
-comment|/**      * Called after visit() returns true and an indexed leaf cell is found. An      * indexed leaf cell means associated documents generally won't be found at      * further detail levels.      */
+comment|/**      * Called when an indexed leaf cell is found. An      * indexed leaf cell means associated documents generally won't be found at      * further detail levels.      */
 DECL|method|visitLeaf
 specifier|protected
 specifier|abstract
@@ -1186,10 +1186,9 @@ parameter_list|)
 throws|throws
 name|IOException
 function_decl|;
-comment|/**      * The cell is either indexed as a leaf or is the last level of detail. It      * might not even intersect the query shape, so be sure to check for that.      */
+comment|/**      * The cell is either indexed as a leaf or is the last level of detail. It      * might not even intersect the query shape, so be sure to check for that.      * The default implementation will check that and if passes then call      * {@link #visitLeaf(org.apache.lucene.spatial.prefix.tree.Cell)} or      * {@link #visit(org.apache.lucene.spatial.prefix.tree.Cell)}.      */
 DECL|method|visitScanned
 specifier|protected
-specifier|abstract
 name|void
 name|visitScanned
 parameter_list|(
@@ -1198,7 +1197,47 @@ name|cell
 parameter_list|)
 throws|throws
 name|IOException
-function_decl|;
+block|{
+if|if
+condition|(
+name|queryShape
+operator|.
+name|relate
+argument_list|(
+name|cell
+operator|.
+name|getShape
+argument_list|()
+argument_list|)
+operator|.
+name|intersects
+argument_list|()
+condition|)
+block|{
+if|if
+condition|(
+name|cell
+operator|.
+name|isLeaf
+argument_list|()
+condition|)
+block|{
+name|visitLeaf
+argument_list|(
+name|cell
+argument_list|)
+expr_stmt|;
+block|}
+else|else
+block|{
+name|visit
+argument_list|(
+name|cell
+argument_list|)
+expr_stmt|;
+block|}
+block|}
+block|}
 DECL|method|preSiblings
 specifier|protected
 name|void

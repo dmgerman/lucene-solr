@@ -20,6 +20,16 @@ end_comment
 
 begin_import
 import|import
+name|java
+operator|.
+name|io
+operator|.
+name|IOException
+import|;
+end_import
+
+begin_import
+import|import
 name|com
 operator|.
 name|spatial4j
@@ -29,6 +39,20 @@ operator|.
 name|shape
 operator|.
 name|Shape
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|index
+operator|.
+name|DocsEnum
 import|;
 end_import
 
@@ -70,20 +94,6 @@ name|lucene
 operator|.
 name|index
 operator|.
-name|DocsEnum
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|index
-operator|.
 name|Terms
 import|;
 end_import
@@ -99,20 +109,6 @@ operator|.
 name|index
 operator|.
 name|TermsEnum
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|search
-operator|.
-name|DocIdSetIterator
 import|;
 end_import
 
@@ -158,7 +154,7 @@ name|lucene
 operator|.
 name|util
 operator|.
-name|Bits
+name|BitSet
 import|;
 end_import
 
@@ -172,22 +168,12 @@ name|lucene
 operator|.
 name|util
 operator|.
-name|FixedBitSet
-import|;
-end_import
-
-begin_import
-import|import
-name|java
-operator|.
-name|io
-operator|.
-name|IOException
+name|Bits
 import|;
 end_import
 
 begin_comment
-comment|/**  * Base class for Lucene Filters on SpatialPrefixTree fields.  *  * @lucene.experimental  */
+comment|/**  * Base class for Lucene Filters on SpatialPrefixTree fields.  * @lucene.experimental  */
 end_comment
 
 begin_class
@@ -395,13 +381,15 @@ return|return
 name|result
 return|;
 block|}
-comment|/** Holds transient state and docid collecting utility methods as part of    * traversing a {@link TermsEnum}. */
+comment|/** Holds transient state and docid collecting utility methods as part of    * traversing a {@link TermsEnum} for a {@link org.apache.lucene.index.LeafReaderContext}. */
 DECL|class|BaseTermsEnumTraverser
 specifier|public
 specifier|abstract
 class|class
 name|BaseTermsEnumTraverser
 block|{
+comment|//TODO rename to LeafTermsEnumTraverser ?
+comment|//note: only 'fieldName' (accessed in constructor) keeps this from being a static inner class
 DECL|field|context
 specifier|protected
 specifier|final
@@ -424,7 +412,7 @@ specifier|protected
 name|TermsEnum
 name|termsEnum
 decl_stmt|;
-comment|//remember to check for null in getDocIdSet
+comment|//remember to check for null!
 DECL|field|docsEnum
 specifier|protected
 name|DocsEnum
@@ -505,13 +493,12 @@ specifier|protected
 name|void
 name|collectDocs
 parameter_list|(
-name|FixedBitSet
+name|BitSet
 name|bitSet
 parameter_list|)
 throws|throws
 name|IOException
 block|{
-comment|//WARN: keep this specialization in sync
 assert|assert
 name|termsEnum
 operator|!=
@@ -532,35 +519,14 @@ operator|.
 name|FLAG_NONE
 argument_list|)
 expr_stmt|;
-name|int
-name|docid
-decl_stmt|;
-while|while
-condition|(
-operator|(
-name|docid
-operator|=
-name|docsEnum
-operator|.
-name|nextDoc
-argument_list|()
-operator|)
-operator|!=
-name|DocIdSetIterator
-operator|.
-name|NO_MORE_DOCS
-condition|)
-block|{
 name|bitSet
 operator|.
-name|set
+name|or
 argument_list|(
-name|docid
+name|docsEnum
 argument_list|)
 expr_stmt|;
 block|}
-block|}
-comment|/* Eventually uncomment when needed.      protected void collectDocs(Collector collector) throws IOException {       //WARN: keep this specialization in sync       assert termsEnum != null;       docsEnum = termsEnum.docs(acceptDocs, docsEnum, DocsEnum.FLAG_NONE);       int docid;       while ((docid = docsEnum.nextDoc()) != DocIdSetIterator.NO_MORE_DOCS) {         collector.collect(docid);       }     }      public abstract class Collector {       abstract void collect(int docid) throws IOException;     }     */
 block|}
 block|}
 end_class
