@@ -1270,17 +1270,13 @@ argument_list|)
 return|;
 block|}
 block|}
-comment|/**    * Creates a {@link CachingCollector} which does not wrap another collector.    * The cached documents and scores can later be {@link #replay(Collector)    * replayed}.    *    * @param acceptDocsOutOfOrder    *          whether documents are allowed to be collected out-of-order    */
+comment|/**    * Creates a {@link CachingCollector} which does not wrap another collector.    * The cached documents and scores can later be {@link #replay(Collector)    * replayed}.    */
 DECL|method|create
 specifier|public
 specifier|static
 name|CachingCollector
 name|create
 parameter_list|(
-specifier|final
-name|boolean
-name|acceptDocsOutOfOrder
-parameter_list|,
 name|boolean
 name|cacheScores
 parameter_list|,

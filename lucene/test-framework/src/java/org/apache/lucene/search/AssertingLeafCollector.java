@@ -37,7 +37,7 @@ import|;
 end_import
 
 begin_comment
-comment|/** Wraps another Collector and checks that  *  acceptsDocsOutOfOrder is respected. */
+comment|/** Wraps another Collector and checks that  *  order is respected. */
 end_comment
 
 begin_class
