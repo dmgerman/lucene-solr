@@ -213,12 +213,14 @@ name|Compressor
 name|newCompressor
 parameter_list|()
 block|{
+comment|// notes:
 comment|// 3 is the highest level that doesn't have lazy match evaluation
+comment|// 6 is the default, higher than that is just a waste of cpu
 return|return
 operator|new
 name|DeflateCompressor
 argument_list|(
-literal|3
+literal|6
 argument_list|)
 return|;
 block|}
