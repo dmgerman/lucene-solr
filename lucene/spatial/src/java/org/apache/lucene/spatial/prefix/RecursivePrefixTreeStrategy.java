@@ -20,6 +20,26 @@ end_comment
 
 begin_import
 import|import
+name|java
+operator|.
+name|util
+operator|.
+name|ArrayList
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
+name|util
+operator|.
+name|List
+import|;
+end_import
+
+begin_import
+import|import
 name|com
 operator|.
 name|spatial4j
@@ -194,26 +214,6 @@ name|UnsupportedSpatialOperation
 import|;
 end_import
 
-begin_import
-import|import
-name|java
-operator|.
-name|util
-operator|.
-name|ArrayList
-import|;
-end_import
-
-begin_import
-import|import
-name|java
-operator|.
-name|util
-operator|.
-name|List
-import|;
-end_import
-
 begin_comment
 comment|/**  * A {@link PrefixTreeStrategy} which uses {@link AbstractVisitingPrefixTreeFilter}.  * This strategy has support for searching non-point shapes (note: not tested).  * Even a query shape with distErrPct=0 (fully precise to the grid) should have  * good performance for typical data, unless there is a lot of indexed data  * coincident with the shape's edge.  *  * @lucene.experimental  */
 end_comment
@@ -241,14 +241,6 @@ name|pruneLeafyBranches
 init|=
 literal|true
 decl_stmt|;
-DECL|field|pointsOnly
-specifier|protected
-name|boolean
-name|pointsOnly
-init|=
-literal|false
-decl_stmt|;
-comment|//if true, there are no leaves
 DECL|field|multiOverlappingIndexedShapes
 specifier|protected
 name|boolean
@@ -285,6 +277,16 @@ literal|4
 expr_stmt|;
 comment|//TODO this default constant is dependent on the prefix grid size
 block|}
+DECL|method|getPrefixGridScanLevel
+specifier|public
+name|int
+name|getPrefixGridScanLevel
+parameter_list|()
+block|{
+return|return
+name|prefixGridScanLevel
+return|;
+block|}
 comment|/**    * Sets the grid level [1-maxLevels] at which indexed terms are scanned brute-force    * instead of by grid decomposition.  By default this is maxLevels - 4.  The    * final level, maxLevels, is always scanned.    *    * @param prefixGridScanLevel 1 to maxLevels    */
 DECL|method|setPrefixGridScanLevel
 specifier|public
@@ -303,22 +305,15 @@ operator|=
 name|prefixGridScanLevel
 expr_stmt|;
 block|}
-comment|/** True if only indexed points shall be supported. There are no "leafs" in such a case.  See    *  {@link IntersectsPrefixTreeFilter#hasIndexedLeaves}. */
-DECL|method|setPointsOnly
+DECL|method|isMultiOverlappingIndexedShapes
 specifier|public
-name|void
-name|setPointsOnly
-parameter_list|(
 name|boolean
-name|pointsOnly
-parameter_list|)
+name|isMultiOverlappingIndexedShapes
+parameter_list|()
 block|{
-name|this
-operator|.
-name|pointsOnly
-operator|=
-name|pointsOnly
-expr_stmt|;
+return|return
+name|multiOverlappingIndexedShapes
+return|;
 block|}
 comment|/** See {@link ContainsPrefixTreeFilter#multiOverlappingIndexedShapes}. */
 DECL|method|setMultiOverlappingIndexedShapes
@@ -336,6 +331,16 @@ name|multiOverlappingIndexedShapes
 operator|=
 name|multiOverlappingIndexedShapes
 expr_stmt|;
+block|}
+DECL|method|isPruneLeafyBranches
+specifier|public
+name|boolean
+name|isPruneLeafyBranches
+parameter_list|()
+block|{
+return|return
+name|pruneLeafyBranches
+return|;
 block|}
 comment|/** An optional hint affecting non-point shapes: it will    * simplify/aggregate sets of complete leaves in a cell to its parent, resulting in ~20-25%    * fewer indexed cells. However, it will likely be removed in the future. (default=true)    */
 DECL|method|setPruneLeafyBranches
