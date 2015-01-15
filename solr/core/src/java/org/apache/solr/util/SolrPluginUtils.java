@@ -154,6 +154,20 @@ end_import
 
 begin_import
 import|import
+name|com
+operator|.
+name|google
+operator|.
+name|common
+operator|.
+name|collect
+operator|.
+name|ImmutableMap
+import|;
+end_import
+
+begin_import
+import|import
 name|org
 operator|.
 name|apache
@@ -415,20 +429,6 @@ operator|.
 name|util
 operator|.
 name|StrUtils
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|solr
-operator|.
-name|core
-operator|.
-name|InitParams
 import|;
 end_import
 
@@ -962,6 +962,39 @@ name|map
 argument_list|)
 expr_stmt|;
 block|}
+DECL|field|maskUseParams
+specifier|private
+specifier|static
+specifier|final
+name|MapSolrParams
+name|maskUseParams
+init|=
+operator|new
+name|MapSolrParams
+argument_list|(
+name|ImmutableMap
+operator|.
+expr|<
+name|String
+argument_list|,
+name|String
+operator|>
+name|builder
+argument_list|()
+operator|.
+name|put
+argument_list|(
+name|RequestParams
+operator|.
+name|USEPARAM
+argument_list|,
+literal|""
+argument_list|)
+operator|.
+name|build
+argument_list|()
+argument_list|)
+decl_stmt|;
 comment|/**    * Set default-ish params on a SolrQueryRequest.    *    * RequestHandlers can use this method to ensure their defaults and    * overrides are visible to other components such as the response writer    *    * @param req The request whose params we are interested i    * @param defaults values to be used if no values are specified in the request params    * @param appends values to be appended to those from the request (or defaults) when dealing with multi-val params, or treated as another layer of defaults for singl-val params.    * @param invariants values which will be used instead of any request, or default values, regardless of context.    */
 DECL|method|setDefaults
 specifier|public
@@ -1008,6 +1041,44 @@ decl_stmt|;
 if|if
 condition|(
 name|useParams
+operator|!=
+literal|null
+operator|&&
+operator|!
+name|useParams
+operator|.
+name|isEmpty
+argument_list|()
+condition|)
+block|{
+comment|// now that we have expanded the request macro useParams with the actual values
+comment|// it makes no sense to keep it visible now on.
+comment|// distrib request sends all params to the nodes down the line and
+comment|// if it sends the useParams to other nodes , they will expand them as well.
+comment|// which is not desirable. At the same time, because we send the useParams
+comment|// value as an empty string to other nodes we get the desired benefit of
+comment|// overriding the useParams specified in the requestHandler directly
+name|req
+operator|.
+name|setParams
+argument_list|(
+name|SolrParams
+operator|.
+name|wrapDefaults
+argument_list|(
+name|maskUseParams
+argument_list|,
+name|req
+operator|.
+name|getParams
+argument_list|()
+argument_list|)
+argument_list|)
+expr_stmt|;
+block|}
+if|if
+condition|(
+name|useParams
 operator|==
 literal|null
 condition|)
@@ -1033,6 +1104,12 @@ condition|(
 name|useParams
 operator|!=
 literal|null
+operator|&&
+operator|!
+name|useParams
+operator|.
+name|isEmpty
+argument_list|()
 condition|)
 name|paramNames
 operator|=

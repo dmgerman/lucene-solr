@@ -212,6 +212,20 @@ name|solr
 operator|.
 name|core
 operator|.
+name|RequestParams
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|solr
+operator|.
+name|core
+operator|.
 name|TestSolrConfigHandler
 import|;
 end_import
@@ -437,9 +451,7 @@ block|{
 name|setupHarnesses
 argument_list|()
 expr_stmt|;
-name|testReqHandlerAPIs
-argument_list|()
-expr_stmt|;
+comment|//    testReqHandlerAPIs();
 name|testReqParams
 argument_list|()
 expr_stmt|;
@@ -831,6 +843,8 @@ argument_list|,
 literal|10
 argument_list|)
 expr_stmt|;
+name|result
+operator|=
 name|TestSolrConfigHandler
 operator|.
 name|testForResponseElement
@@ -867,6 +881,22 @@ argument_list|,
 literal|"A val"
 argument_list|,
 literal|5
+argument_list|)
+expr_stmt|;
+name|compareValues
+argument_list|(
+name|result
+argument_list|,
+literal|""
+argument_list|,
+name|asList
+argument_list|(
+literal|"params"
+argument_list|,
+name|RequestParams
+operator|.
+name|USEPARAM
+argument_list|)
 argument_list|)
 expr_stmt|;
 name|TestSolrConfigHandler
