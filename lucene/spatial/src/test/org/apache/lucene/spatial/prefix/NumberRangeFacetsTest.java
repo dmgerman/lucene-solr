@@ -424,7 +424,7 @@ name|Repeat
 argument_list|(
 name|iterations
 operator|=
-literal|10000
+literal|100
 argument_list|)
 annotation|@
 name|Test
