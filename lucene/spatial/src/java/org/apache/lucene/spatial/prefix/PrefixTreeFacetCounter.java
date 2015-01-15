@@ -1,6 +1,6 @@
 begin_unit|revision:0.9.5;language:Java;cregit-version:0.0.1
 begin_package
-DECL|package|org.apache.lucene.spatial.prefix.tree
+DECL|package|org.apache.lucene.spatial.prefix
 package|package
 name|org
 operator|.
@@ -11,8 +11,6 @@ operator|.
 name|spatial
 operator|.
 name|prefix
-operator|.
-name|tree
 package|;
 end_package
 
@@ -140,7 +138,9 @@ name|spatial
 operator|.
 name|prefix
 operator|.
-name|AbstractVisitingPrefixTreeFilter
+name|tree
+operator|.
+name|Cell
 import|;
 end_import
 
@@ -156,7 +156,9 @@ name|spatial
 operator|.
 name|prefix
 operator|.
-name|PrefixTreeStrategy
+name|tree
+operator|.
+name|SpatialPrefixTree
 import|;
 end_import
 
