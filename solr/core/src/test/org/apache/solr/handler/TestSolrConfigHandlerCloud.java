@@ -451,7 +451,9 @@ block|{
 name|setupHarnesses
 argument_list|()
 expr_stmt|;
-comment|//    testReqHandlerAPIs();
+name|testReqHandlerAPIs
+argument_list|()
+expr_stmt|;
 name|testReqParams
 argument_list|()
 expr_stmt|;
