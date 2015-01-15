@@ -470,7 +470,14 @@ argument_list|,
 name|weight
 argument_list|)
 argument_list|,
+name|AssertingCollector
+operator|.
+name|wrap
+argument_list|(
+name|random
+argument_list|,
 name|collector
+argument_list|)
 argument_list|)
 expr_stmt|;
 block|}
