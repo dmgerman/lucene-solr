@@ -172,6 +172,16 @@ name|java
 operator|.
 name|io
 operator|.
+name|FileOutputStream
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
+name|io
+operator|.
 name|IOException
 import|;
 end_import
@@ -814,7 +824,7 @@ name|payload
 operator|=
 literal|"{\n"
 operator|+
-literal|"'update-requesthandler' : { 'name' : '/test1', 'class': 'org.apache.solr.core.BlobStoreTestRequestHandlerV2' , 'lib':'test','version':'2'}\n"
+literal|"'update-requesthandler' : { 'name' : '/test1', 'class': 'org.apache.solr.core.BlobStoreTestRequestHandlerV2' , 'lib':'test','version':2}\n"
 operator|+
 literal|"}"
 expr_stmt|;
@@ -872,7 +882,7 @@ argument_list|,
 literal|"version"
 argument_list|)
 argument_list|,
-literal|"2"
+literal|2l
 argument_list|,
 literal|10
 argument_list|)

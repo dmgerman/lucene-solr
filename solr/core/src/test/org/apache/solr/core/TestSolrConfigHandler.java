@@ -1723,7 +1723,7 @@ name|String
 argument_list|>
 name|jsonPath
 parameter_list|,
-name|String
+name|Object
 name|expected
 parameter_list|,
 name|long
