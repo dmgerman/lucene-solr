@@ -2572,6 +2572,12 @@ condition|(
 name|_closed
 condition|)
 return|return;
+if|if
+condition|(
+name|classLoader
+operator|!=
+literal|null
+condition|)
 name|classLoader
 operator|.
 name|releaseJar
