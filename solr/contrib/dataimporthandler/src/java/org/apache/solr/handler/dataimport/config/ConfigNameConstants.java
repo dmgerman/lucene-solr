@@ -138,6 +138,15 @@ name|ROOT_ENTITY
 init|=
 literal|"rootEntity"
 decl_stmt|;
+DECL|field|CHILD
+specifier|public
+specifier|static
+specifier|final
+name|String
+name|CHILD
+init|=
+literal|"child"
+decl_stmt|;
 DECL|field|FUNCTION
 specifier|public
 specifier|static
