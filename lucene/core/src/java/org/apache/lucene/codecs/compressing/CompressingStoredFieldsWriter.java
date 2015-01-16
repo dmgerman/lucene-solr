@@ -2903,6 +2903,15 @@ argument_list|()
 operator|==
 name|chunkSize
 operator|&&
+name|matchingFieldsReader
+operator|.
+name|getPackedIntsVersion
+argument_list|()
+operator|==
+name|PackedInts
+operator|.
+name|VERSION_CURRENT
+operator|&&
 name|liveDocs
 operator|==
 literal|null
