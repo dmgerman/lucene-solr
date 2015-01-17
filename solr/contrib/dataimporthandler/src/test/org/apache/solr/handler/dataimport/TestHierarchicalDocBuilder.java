@@ -106,20 +106,6 @@ name|apache
 operator|.
 name|lucene
 operator|.
-name|document
-operator|.
-name|Document
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
 name|index
 operator|.
 name|StoredDocument
@@ -410,18 +396,21 @@ specifier|private
 name|SolrQueryRequest
 name|req
 decl_stmt|;
+comment|/**    * Holds the data related to randomly created index.    * It is used for making assertions.    */
 DECL|class|ContextHolder
 specifier|private
 specifier|static
 class|class
 name|ContextHolder
 block|{
+comment|/** Overall documents number **/
 DECL|field|counter
 name|int
 name|counter
 init|=
 literal|0
 decl_stmt|;
+comment|/**      * Each Hierarchy object represents nested documents with a parent at the root of hierarchy      */
 DECL|field|hierarchies
 name|List
 argument_list|<
@@ -437,16 +426,19 @@ argument_list|>
 argument_list|()
 decl_stmt|;
 block|}
+comment|/**    * Represents a hierarchical document structure    */
 DECL|class|Hierarchy
 specifier|private
 specifier|static
 class|class
 name|Hierarchy
 block|{
+comment|/**      * Type of element, i.e. parent, child, grandchild, etc..      */
 DECL|field|elementType
 name|String
 name|elementType
 decl_stmt|;
+comment|/**      * Fields of a current element      */
 DECL|field|elementData
 name|Map
 argument_list|<
@@ -465,6 +457,7 @@ name|Object
 argument_list|>
 argument_list|()
 decl_stmt|;
+comment|/**      * Nested elements/documents hierarchies.       */
 DECL|field|elements
 name|List
 argument_list|<
@@ -1090,18 +1083,31 @@ name|parentType
 init|=
 literal|"parent"
 decl_stmt|;
+comment|// Be aware that hierarchies grows exponentially, thus
+comment|// numbers bigger than 6 may lead to significant memory usage
+comment|// and cause OOME
 name|int
 name|parentsNum
 init|=
-name|atLeast
+literal|2
+operator|+
+name|random
+argument_list|()
+operator|.
+name|nextInt
 argument_list|(
-literal|5
+literal|3
 argument_list|)
 decl_stmt|;
 name|int
 name|depth
 init|=
-name|atLeast
+literal|2
+operator|+
+name|random
+argument_list|()
+operator|.
+name|nextInt
 argument_list|(
 literal|3
 argument_list|)
@@ -1741,7 +1747,7 @@ return|return
 name|ids
 return|;
 block|}
-comment|/** Internally configures MockDataSource **/
+comment|/**    * Creates randomized configuration of a specified depth. Simple configuration example:    *     *<pre>    *     *&lt;dataConfig>    *<dataSource type="MockDataSource" />    *&lt;document>    *&lt;entity name="parent" query="SELECT * FROM parent">    *&lt;field column="id" />    *&lt;field column="desc" />    *&lt;field column="type_s" />    *&lt;entity child="true" name="parentChild0" query="select * from parentChild0 where parentChild0_parent_id='${parent.id}'">    *&lt;field column="id" />    *&lt;field column="desc" />    *&lt;field column="type_s" />    *&lt;entity child="true" name="parentChild0Child0" query="select * from parentChild0Child0 where parentChild0Child0_parent_id='${parentChild0.id}'">    *&lt;field column="id" />    *&lt;field column="desc" />    *&lt;field column="type_s" />    *&lt;/entity>    *&lt;entity child="true" name="parentChild0Child1" query="select * from parentChild0Child1 where parentChild0Child1_parent_id='${parentChild0.id}'">    *&lt;field column="id" />    *&lt;field column="desc" />    *&lt;field column="type_s" />    *&lt;/entity>    *&lt;/entity>    *&lt;entity child="true" name="parentChild1" query="select * from parentChild1 where parentChild1_parent_id='${parent.id}'">    *&lt;field column="id" />    *&lt;field column="desc" />    *&lt;field column="type_s" />    *&lt;entity child="true" name="parentChild1Child0" query="select * from parentChild1Child0 where parentChild1Child0_parent_id='${parentChild1.id}'">    *&lt;field column="id" />    *&lt;field column="desc" />    *&lt;field column="type_s" />    *&lt;/entity>    *&lt;entity child="true" name="parentChild1Child1" query="select * from parentChild1Child1 where parentChild1Child1_parent_id='${parentChild1.id}'">    *&lt;field column="id" />    *&lt;field column="desc" />    *&lt;field column="type_s" />    *&lt;/entity>    *&lt;/entity>    *&lt;/entity>    *&lt;/document>    *&lt;/dataConfig>    *     *</pre>    *     * Internally configures MockDataSource.    **/
 DECL|method|createRandomizedConfig
 specifier|private
 name|String
@@ -1779,7 +1785,6 @@ argument_list|,
 name|holder
 argument_list|)
 decl_stmt|;
-comment|// each map represents parent and each parent is root of separate hierarchy
 name|holder
 operator|.
 name|hierarchies
@@ -2112,6 +2117,20 @@ argument_list|,
 name|id
 argument_list|)
 decl_stmt|;
+comment|// Number of actual children documents
+name|int
+name|childrenNum
+init|=
+literal|1
+operator|+
+name|random
+argument_list|()
+operator|.
+name|nextInt
+argument_list|(
+literal|3
+argument_list|)
+decl_stmt|;
 name|List
 argument_list|<
 name|Hierarchy
@@ -2124,10 +2143,7 @@ name|type
 argument_list|,
 name|select
 argument_list|,
-name|atLeast
-argument_list|(
-literal|5
-argument_list|)
+name|childrenNum
 argument_list|,
 name|holder
 argument_list|)
@@ -2189,12 +2205,19 @@ return|return
 literal|""
 return|;
 block|}
+comment|// number of different children<b>types</b> of parent, i.e. parentChild0, parentChild1
+comment|// @see #createMockedIterator for the actual number of each children type
 name|int
 name|childrenNumber
 init|=
-name|atLeast
-argument_list|(
 literal|2
+operator|+
+name|random
+argument_list|()
+operator|.
+name|nextInt
+argument_list|(
+literal|3
 argument_list|)
 decl_stmt|;
 name|StringBuilder
