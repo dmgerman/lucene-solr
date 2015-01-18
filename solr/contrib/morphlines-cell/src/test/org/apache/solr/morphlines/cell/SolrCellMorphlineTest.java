@@ -239,13 +239,6 @@ import|;
 end_import
 
 begin_class
-annotation|@
-name|AwaitsFix
-argument_list|(
-name|bugUrl
-operator|=
-literal|"https://issues.apache.org/jira/browse/SOLR-6489"
-argument_list|)
 DECL|class|SolrCellMorphlineTest
 specifier|public
 class|class
@@ -1028,6 +1021,13 @@ expr_stmt|;
 block|}
 annotation|@
 name|Test
+annotation|@
+name|AwaitsFix
+argument_list|(
+name|bugUrl
+operator|=
+literal|"https://issues.apache.org/jira/browse/SOLR-6489"
+argument_list|)
 DECL|method|testSolrCellJPGCompressed
 specifier|public
 name|void
@@ -1160,6 +1160,13 @@ expr_stmt|;
 block|}
 annotation|@
 name|Test
+annotation|@
+name|AwaitsFix
+argument_list|(
+name|bugUrl
+operator|=
+literal|"https://issues.apache.org/jira/browse/SOLR-6489"
+argument_list|)
 DECL|method|testSolrCellDocumentTypes
 specifier|public
 name|void
