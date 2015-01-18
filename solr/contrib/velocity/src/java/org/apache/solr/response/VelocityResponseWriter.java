@@ -382,6 +382,22 @@ name|tools
 operator|.
 name|generic
 operator|.
+name|ContextTool
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|velocity
+operator|.
+name|tools
+operator|.
+name|generic
+operator|.
 name|DisplayTool
 import|;
 end_import
@@ -1285,6 +1301,16 @@ name|context
 operator|.
 name|put
 argument_list|(
+literal|"log"
+argument_list|,
+name|log
+argument_list|)
+expr_stmt|;
+comment|// TODO: add test
+name|context
+operator|.
+name|put
+argument_list|(
 literal|"esc"
 argument_list|,
 operator|new
@@ -1533,7 +1559,7 @@ argument_list|)
 expr_stmt|;
 comment|// Set some engine properties that improve the experience
 comment|//   - these could be considered in the future for parameterization, but can also be overridden by using
-comment|//     the init.properties.file setting.  (TODO: add a test for this)
+comment|//     the init.properties.file setting.  (TODO: add a test for this properties set here overridden)
 comment|// load the built-in _macros.vm first, then load VM_global_library.vm for legacy (pre-5.0) support,
 comment|// and finally allow macros.vm to have the final say and override anything defined in the preceding files.
 name|engine
