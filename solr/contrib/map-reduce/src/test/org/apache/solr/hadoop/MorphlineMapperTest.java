@@ -200,34 +200,6 @@ operator|.
 name|WINDOWS
 argument_list|)
 expr_stmt|;
-name|assumeFalse
-argument_list|(
-literal|"FIXME: This test fails under Java 8 due to the Saxon dependency - see SOLR-1301"
-argument_list|,
-name|Constants
-operator|.
-name|JRE_IS_MINIMUM_JAVA8
-argument_list|)
-expr_stmt|;
-name|assumeFalse
-argument_list|(
-literal|"FIXME: This test fails under J9 due to the Saxon dependency - see SOLR-1301"
-argument_list|,
-name|System
-operator|.
-name|getProperty
-argument_list|(
-literal|"java.vm.info"
-argument_list|,
-literal|"<?>"
-argument_list|)
-operator|.
-name|contains
-argument_list|(
-literal|"IBM J9"
-argument_list|)
-argument_list|)
-expr_stmt|;
 block|}
 annotation|@
 name|Test
