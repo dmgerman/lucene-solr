@@ -173,6 +173,8 @@ name|random
 argument_list|,
 name|in
 argument_list|,
+literal|0
+argument_list|,
 name|DocIdSetIterator
 operator|.
 name|NO_MORE_DOCS

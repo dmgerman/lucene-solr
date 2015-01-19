@@ -965,11 +965,14 @@ annotation|@
 name|Override
 DECL|method|score
 specifier|public
-name|boolean
+name|int
 name|score
 parameter_list|(
 name|LeafCollector
 name|collector
+parameter_list|,
+name|int
+name|min
 parameter_list|,
 name|int
 name|max
@@ -986,6 +989,8 @@ name|wrapCollector
 argument_list|(
 name|collector
 argument_list|)
+argument_list|,
+name|min
 argument_list|,
 name|max
 argument_list|)

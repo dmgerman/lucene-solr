@@ -242,10 +242,11 @@ block|}
 if|if
 condition|(
 name|doc
-operator|==
+operator|>=
 name|maxDoc
 condition|)
 block|{
+comment|// can be> maxDoc when called from advance()
 name|doc
 operator|=
 name|NO_MORE_DOCS

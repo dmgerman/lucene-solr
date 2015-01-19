@@ -53,6 +53,12 @@ specifier|final
 name|Random
 name|random
 decl_stmt|;
+DECL|field|min
+specifier|private
+specifier|final
+name|int
+name|min
+decl_stmt|;
 DECL|field|max
 specifier|private
 specifier|final
@@ -82,6 +88,9 @@ name|LeafCollector
 name|collector
 parameter_list|,
 name|int
+name|min
+parameter_list|,
+name|int
 name|max
 parameter_list|)
 block|{
@@ -95,6 +104,12 @@ operator|.
 name|random
 operator|=
 name|random
+expr_stmt|;
+name|this
+operator|.
+name|min
+operator|=
+name|min
 expr_stmt|;
 name|this
 operator|.
@@ -162,6 +177,19 @@ operator|+
 literal|" "
 operator|+
 name|doc
+assert|;
+assert|assert
+name|doc
+operator|>=
+name|min
+operator|:
+literal|"Out of range: "
+operator|+
+name|doc
+operator|+
+literal|"< "
+operator|+
+name|min
 assert|;
 assert|assert
 name|doc

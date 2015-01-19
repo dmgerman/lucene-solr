@@ -231,8 +231,6 @@ parameter_list|)
 throws|throws
 name|IOException
 block|{
-comment|// if the caller asks for in-order scoring or if the weight does not support
-comment|// out-of order scoring then collection will have to happen in-order.
 specifier|final
 name|Scorer
 name|inScorer
@@ -246,6 +244,19 @@ argument_list|,
 name|acceptDocs
 argument_list|)
 decl_stmt|;
+assert|assert
+name|inScorer
+operator|==
+literal|null
+operator|||
+name|inScorer
+operator|.
+name|docID
+argument_list|()
+operator|==
+operator|-
+literal|1
+assert|;
 return|return
 name|AssertingScorer
 operator|.
@@ -318,6 +329,14 @@ argument_list|()
 argument_list|)
 argument_list|,
 name|inScorer
+argument_list|,
+name|context
+operator|.
+name|reader
+argument_list|()
+operator|.
+name|maxDoc
+argument_list|()
 argument_list|)
 return|;
 block|}

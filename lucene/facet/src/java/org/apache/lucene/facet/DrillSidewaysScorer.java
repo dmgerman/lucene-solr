@@ -318,11 +318,14 @@ annotation|@
 name|Override
 DECL|method|score
 specifier|public
-name|boolean
+name|int
 name|score
 parameter_list|(
 name|LeafCollector
 name|collector
+parameter_list|,
+name|int
+name|min
 parameter_list|,
 name|int
 name|maxDoc
@@ -330,6 +333,23 @@ parameter_list|)
 throws|throws
 name|IOException
 block|{
+if|if
+condition|(
+name|min
+operator|!=
+literal|0
+condition|)
+block|{
+throw|throw
+operator|new
+name|IllegalArgumentException
+argument_list|(
+literal|"min must be 0, got "
+operator|+
+name|min
+argument_list|)
+throw|;
+block|}
 if|if
 condition|(
 name|maxDoc
@@ -756,7 +776,9 @@ argument_list|)
 expr_stmt|;
 block|}
 return|return
-literal|false
+name|Integer
+operator|.
+name|MAX_VALUE
 return|;
 block|}
 comment|/** Used when base query is highly constraining vs the    *  drilldowns, or when the docs must be scored at once    *  (i.e., like BooleanScorer2, not BooleanScorer).  In    *  this case we just .next() on base and .advance() on    *  the dim filters. */
