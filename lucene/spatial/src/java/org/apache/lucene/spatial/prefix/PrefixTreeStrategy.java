@@ -499,16 +499,26 @@ if|if
 condition|(
 name|pointsOnly
 operator|&&
+operator|!
+operator|(
 name|shape
 operator|instanceof
 name|Point
+operator|)
 condition|)
 block|{
 throw|throw
 operator|new
 name|IllegalArgumentException
 argument_list|(
-literal|"pointsOnly is true yet a point is given for indexing"
+literal|"pointsOnly is true yet a "
+operator|+
+name|shape
+operator|.
+name|getClass
+argument_list|()
+operator|+
+literal|" is given for indexing"
 argument_list|)
 throw|;
 block|}
