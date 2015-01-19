@@ -21,7 +21,7 @@ comment|/*  * Licensed to the Apache Software Foundation (ASF) under one or more
 end_comment
 
 begin_comment
-comment|/**  * Exception indicating there is no more data.  * Thrown by Docs Makers if doc.maker.forever is false and docs sources of that maker where exhausted.  * This is useful for iterating all document of a source, in case we don't know in advance how many docs there are.  */
+comment|/**  * Exception indicating there is no more data.  * Thrown by Docs Makers if content.source.forever is false and docs sources of that maker where exhausted.  * This is useful for iterating all document of a source, in case we don't know in advance how many docs there are.  */
 end_comment
 
 begin_class
