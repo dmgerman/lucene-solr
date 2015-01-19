@@ -539,6 +539,10 @@ name|port
 argument_list|,
 name|context
 argument_list|)
+operator|+
+literal|"/"
+operator|+
+name|DEFAULT_TEST_CORENAME
 argument_list|)
 decl_stmt|;
 name|client
@@ -1560,6 +1564,10 @@ argument_list|,
 literal|"/solr"
 argument_list|)
 operator|+
+literal|"/"
+operator|+
+name|DEFAULT_TEST_CORENAME
+operator|+
 literal|"/replication?command="
 operator|+
 name|ReplicationHandler
@@ -1818,6 +1826,10 @@ argument_list|,
 name|context
 argument_list|)
 operator|+
+literal|"/"
+operator|+
+name|DEFAULT_TEST_CORENAME
+operator|+
 literal|"/replication?command="
 operator|+
 name|cmd
@@ -1840,6 +1852,10 @@ argument_list|()
 argument_list|,
 name|context
 argument_list|)
+operator|+
+literal|"/"
+operator|+
+name|DEFAULT_TEST_CORENAME
 operator|+
 literal|"/replication?command="
 operator|+
@@ -1992,6 +2008,10 @@ argument_list|()
 argument_list|,
 name|context
 argument_list|)
+operator|+
+literal|"/"
+operator|+
+name|DEFAULT_TEST_CORENAME
 operator|+
 literal|"/replication?command="
 operator|+

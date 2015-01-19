@@ -647,32 +647,6 @@ name|getZkHost
 argument_list|()
 argument_list|)
 expr_stmt|;
-name|assertEquals
-argument_list|(
-literal|"persistent"
-argument_list|,
-literal|true
-argument_list|,
-name|cfg
-operator|.
-name|isPersistent
-argument_list|()
-argument_list|)
-expr_stmt|;
-name|assertEquals
-argument_list|(
-literal|"core admin path"
-argument_list|,
-name|ConfigSolr
-operator|.
-name|DEFAULT_CORE_ADMIN_PATH
-argument_list|,
-name|cfg
-operator|.
-name|getAdminPath
-argument_list|()
-argument_list|)
-expr_stmt|;
 block|}
 comment|// Test  a few property substitutions that happen to be in solr-50-all.xml.
 DECL|method|testPropertySub

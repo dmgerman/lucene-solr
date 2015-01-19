@@ -251,8 +251,6 @@ init|=
 operator|new
 name|CoreContainer
 argument_list|(
-name|loader
-argument_list|,
 name|ConfigSolr
 operator|.
 name|fromString
@@ -706,8 +704,6 @@ init|=
 operator|new
 name|CoreContainer
 argument_list|(
-name|loader
-argument_list|,
 name|ConfigSolr
 operator|.
 name|fromString
@@ -750,7 +746,7 @@ argument_list|)
 decl_stmt|;
 name|assertThat
 argument_list|(
-literal|"No /get handler should be defined in the initial configuration"
+literal|"No /dump handler should be defined in the initial configuration"
 argument_list|,
 name|core
 operator|.
@@ -809,7 +805,7 @@ argument_list|)
 expr_stmt|;
 name|assertThat
 argument_list|(
-literal|"A /get handler should be defined in the reloaded configuration"
+literal|"A /dump handler should be defined in the reloaded configuration"
 argument_list|,
 name|core
 operator|.

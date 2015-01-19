@@ -360,6 +360,26 @@ name|BeforeClass
 import|;
 end_import
 
+begin_import
+import|import
+name|org
+operator|.
+name|slf4j
+operator|.
+name|Logger
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|slf4j
+operator|.
+name|LoggerFactory
+import|;
+end_import
+
 begin_comment
 comment|/**  * Test sync phase that occurs when Leader goes down and a new Leader is  * elected.  */
 end_comment
@@ -374,6 +394,22 @@ name|AliasIntegrationTest
 extends|extends
 name|AbstractFullDistribZkTestBase
 block|{
+DECL|field|logger
+specifier|private
+specifier|static
+specifier|final
+name|Logger
+name|logger
+init|=
+name|LoggerFactory
+operator|.
+name|getLogger
+argument_list|(
+name|AliasIntegrationTest
+operator|.
+name|class
+argument_list|)
+decl_stmt|;
 annotation|@
 name|BeforeClass
 DECL|method|beforeSuperClass
@@ -499,6 +535,13 @@ expr_stmt|;
 name|waitForThingsToLevelOut
 argument_list|(
 literal|30
+argument_list|)
+expr_stmt|;
+name|logger
+operator|.
+name|info
+argument_list|(
+literal|"### STARTING ACTUAL TEST"
 argument_list|)
 expr_stmt|;
 name|del
@@ -1597,6 +1640,13 @@ block|}
 name|assertTrue
 argument_list|(
 name|sawException
+argument_list|)
+expr_stmt|;
+name|logger
+operator|.
+name|info
+argument_list|(
+literal|"### FINISHED ACTUAL TEST"
 argument_list|)
 expr_stmt|;
 block|}

@@ -732,6 +732,13 @@ name|getAbsolutePath
 argument_list|()
 argument_list|)
 expr_stmt|;
+name|req
+operator|.
+name|setConfigSet
+argument_list|(
+literal|"shared"
+argument_list|)
+expr_stmt|;
 comment|// These should be the inverse of defaults.
 name|req
 operator|.

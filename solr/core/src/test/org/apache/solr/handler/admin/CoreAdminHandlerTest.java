@@ -236,20 +236,6 @@ name|apache
 operator|.
 name|solr
 operator|.
-name|core
-operator|.
-name|SolrXMLCoresLocator
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|solr
-operator|.
 name|response
 operator|.
 name|SolrQueryResponse
@@ -540,21 +526,6 @@ operator|.
 name|getCoreContainer
 argument_list|()
 decl_stmt|;
-name|SolrXMLCoresLocator
-operator|.
-name|NonPersistingLocator
-name|locator
-init|=
-operator|(
-name|SolrXMLCoresLocator
-operator|.
-name|NonPersistingLocator
-operator|)
-name|cores
-operator|.
-name|getCoresLocator
-argument_list|()
-decl_stmt|;
 specifier|final
 name|CoreAdminHandler
 name|admin
@@ -691,44 +662,6 @@ name|resp
 operator|.
 name|getException
 argument_list|()
-argument_list|)
-expr_stmt|;
-comment|// First assert that these values are persisted.
-name|h
-operator|.
-name|validateXPath
-argument_list|(
-name|locator
-operator|.
-name|xml
-argument_list|,
-literal|"/solr/cores/core[@name='"
-operator|+
-name|getCoreName
-argument_list|()
-operator|+
-literal|"' and @instanceDir='${INSTDIR_TEST}']"
-argument_list|,
-literal|"/solr/cores/core[@name='"
-operator|+
-name|getCoreName
-argument_list|()
-operator|+
-literal|"' and @dataDir='${DATA_TEST}']"
-argument_list|,
-literal|"/solr/cores/core[@name='"
-operator|+
-name|getCoreName
-argument_list|()
-operator|+
-literal|"' and @schema='${SCHEMA_TEST}']"
-argument_list|,
-literal|"/solr/cores/core[@name='"
-operator|+
-name|getCoreName
-argument_list|()
-operator|+
-literal|"' and @config='${CONFIG_TEST}']"
 argument_list|)
 expr_stmt|;
 comment|// Now assert that certain values are properly dereferenced in the process of creating the core, see

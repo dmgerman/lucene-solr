@@ -26,16 +26,6 @@ end_import
 
 begin_import
 import|import
-name|java
-operator|.
-name|io
-operator|.
-name|File
-import|;
-end_import
-
-begin_import
-import|import
 name|org
 operator|.
 name|junit
@@ -56,15 +46,6 @@ name|TestImplicitCoreProperties
 extends|extends
 name|SolrTestCaseJ4
 block|{
-DECL|field|SOLRXML
-specifier|public
-specifier|static
-specifier|final
-name|String
-name|SOLRXML
-init|=
-literal|"<solr><cores><core name=\"collection1\" instanceDir=\"collection1\" config=\"solrconfig-implicitproperties.xml\"/></cores></solr>"
-decl_stmt|;
 annotation|@
 name|Test
 DECL|method|testImplicitPropertiesAreSubstitutedInSolrConfig
@@ -78,10 +59,13 @@ name|cc
 init|=
 name|createCoreContainer
 argument_list|(
-name|TEST_HOME
-argument_list|()
+literal|"collection1"
 argument_list|,
-name|SOLRXML
+literal|"data"
+argument_list|,
+literal|"solrconfig-implicitproperties.xml"
+argument_list|,
+literal|"schema.xml"
 argument_list|)
 decl_stmt|;
 try|try
@@ -97,13 +81,7 @@ argument_list|)
 argument_list|,
 literal|"//str[@name='dummy1'][.='collection1']"
 argument_list|,
-literal|"//str[@name='dummy2'][.='data"
-operator|+
-name|File
-operator|.
-name|separator
-operator|+
-literal|"']"
+literal|"//str[@name='dummy2'][.='data']"
 argument_list|,
 literal|"//str[@name='dummy3'][.='solrconfig-implicitproperties.xml']"
 argument_list|,
