@@ -170,6 +170,16 @@ name|StringWriter
 import|;
 end_import
 
+begin_import
+import|import
+name|java
+operator|.
+name|util
+operator|.
+name|Locale
+import|;
+end_import
+
 begin_comment
 comment|/**Testcase for TikaEntityProcessor  *  * @since solr 3.1  */
 end_comment
@@ -282,6 +292,31 @@ parameter_list|()
 throws|throws
 name|Exception
 block|{
+name|assumeFalse
+argument_list|(
+literal|"This test fails on UNIX with Turkish default locale (https://issues.apache.org/jira/browse/SOLR-6387)"
+argument_list|,
+operator|new
+name|Locale
+argument_list|(
+literal|"tr"
+argument_list|)
+operator|.
+name|getLanguage
+argument_list|()
+operator|.
+name|equals
+argument_list|(
+name|Locale
+operator|.
+name|getDefault
+argument_list|()
+operator|.
+name|getLanguage
+argument_list|()
+argument_list|)
+argument_list|)
+expr_stmt|;
 name|initCore
 argument_list|(
 literal|"dataimport-solrconfig.xml"
