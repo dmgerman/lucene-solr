@@ -635,7 +635,7 @@ index|]
 operator|+=
 name|skipStream
 operator|.
-name|readVInt
+name|readVLong
 argument_list|()
 expr_stmt|;
 if|if
@@ -652,7 +652,7 @@ index|]
 operator|+=
 name|skipStream
 operator|.
-name|readVInt
+name|readVLong
 argument_list|()
 expr_stmt|;
 name|posBufferUpto
@@ -697,7 +697,7 @@ index|]
 operator|+=
 name|skipStream
 operator|.
-name|readVInt
+name|readVLong
 argument_list|()
 expr_stmt|;
 block|}
