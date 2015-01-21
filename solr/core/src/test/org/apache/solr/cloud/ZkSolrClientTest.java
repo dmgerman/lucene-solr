@@ -867,11 +867,7 @@ parameter_list|(
 name|KeeperException
 operator|.
 name|SessionExpiredException
-name|e
-parameter_list|)
-block|{          }
-catch|catch
-parameter_list|(
+decl||
 name|KeeperException
 operator|.
 name|ConnectionLossException
@@ -1465,19 +1461,7 @@ block|}
 catch|catch
 parameter_list|(
 name|KeeperException
-name|e
-parameter_list|)
-block|{
-throw|throw
-operator|new
-name|RuntimeException
-argument_list|(
-name|e
-argument_list|)
-throw|;
-block|}
-catch|catch
-parameter_list|(
+decl||
 name|InterruptedException
 name|e
 parameter_list|)

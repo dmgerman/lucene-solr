@@ -725,28 +725,7 @@ block|}
 catch|catch
 parameter_list|(
 name|MalformedURLException
-name|e
-parameter_list|)
-block|{
-name|log
-operator|.
-name|warn
-argument_list|(
-literal|"cannot get the normalized url for \""
-operator|+
-name|url
-operator|+
-literal|"\" due to "
-operator|+
-name|e
-operator|.
-name|getMessage
-argument_list|()
-argument_list|)
-expr_stmt|;
-block|}
-catch|catch
-parameter_list|(
+decl||
 name|URISyntaxException
 name|e
 parameter_list|)

@@ -4678,27 +4678,7 @@ block|}
 catch|catch
 parameter_list|(
 name|KeeperException
-name|e
-parameter_list|)
-block|{
-throw|throw
-operator|new
-name|ZooKeeperException
-argument_list|(
-name|SolrException
-operator|.
-name|ErrorCode
-operator|.
-name|SERVER_ERROR
-argument_list|,
-literal|""
-argument_list|,
-name|e
-argument_list|)
-throw|;
-block|}
-catch|catch
-parameter_list|(
+decl||
 name|IOException
 name|e
 parameter_list|)
@@ -11330,29 +11310,9 @@ block|}
 catch|catch
 parameter_list|(
 name|ConnectionLossException
-name|cle
-parameter_list|)
-block|{
-comment|// sort of safe to ignore ??? Usually these are seen when the core is going down
-comment|// or there are bigger issues to deal with than reading this znode
-name|log
-operator|.
-name|warn
-argument_list|(
-literal|"Unable to read "
-operator|+
-name|znodePath
-operator|+
-literal|" due to: "
-operator|+
-name|cle
-argument_list|)
-expr_stmt|;
-block|}
-catch|catch
-parameter_list|(
+decl||
 name|SessionExpiredException
-name|see
+name|cle
 parameter_list|)
 block|{
 comment|// sort of safe to ignore ??? Usually these are seen when the core is going down
@@ -11367,7 +11327,7 @@ name|znodePath
 operator|+
 literal|" due to: "
 operator|+
-name|see
+name|cle
 argument_list|)
 expr_stmt|;
 block|}

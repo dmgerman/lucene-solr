@@ -4896,30 +4896,7 @@ block|}
 catch|catch
 parameter_list|(
 name|InvocationTargetException
-name|e1
-parameter_list|)
-block|{
-throw|throw
-operator|new
-name|RuntimeException
-argument_list|(
-literal|"Error invoking setter "
-operator|+
-name|setterName
-operator|+
-literal|" on class : "
-operator|+
-name|clazz
-operator|.
-name|getName
-argument_list|()
-argument_list|,
-name|e1
-argument_list|)
-throw|;
-block|}
-catch|catch
-parameter_list|(
+decl||
 name|IllegalAccessException
 name|e1
 parameter_list|)

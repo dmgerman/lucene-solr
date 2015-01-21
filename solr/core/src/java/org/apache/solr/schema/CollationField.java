@@ -1012,25 +1012,12 @@ block|}
 catch|catch
 parameter_list|(
 name|IOException
-name|e
-parameter_list|)
-block|{
-comment|// io error
-throw|throw
-operator|new
-name|RuntimeException
-argument_list|(
-name|e
-argument_list|)
-throw|;
-block|}
-catch|catch
-parameter_list|(
+decl||
 name|ParseException
 name|e
 parameter_list|)
 block|{
-comment|// invalid rules
+comment|// io error or invalid rules
 throw|throw
 operator|new
 name|RuntimeException

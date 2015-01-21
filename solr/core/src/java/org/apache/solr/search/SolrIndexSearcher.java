@@ -1969,39 +1969,11 @@ parameter_list|(
 name|TimeLimitingCollector
 operator|.
 name|TimeExceededException
-name|x
-parameter_list|)
-block|{
-name|log
-operator|.
-name|warn
-argument_list|(
-literal|"Query: "
-operator|+
-name|query
-operator|+
-literal|"; "
-operator|+
-name|x
-operator|.
-name|getMessage
-argument_list|()
-argument_list|)
-expr_stmt|;
-name|qr
-operator|.
-name|setPartialResults
-argument_list|(
-literal|true
-argument_list|)
-expr_stmt|;
-block|}
-catch|catch
-parameter_list|(
+decl||
 name|ExitableDirectoryReader
 operator|.
 name|ExitingReaderException
-name|e
+name|x
 parameter_list|)
 block|{
 name|log
@@ -2014,7 +1986,7 @@ name|query
 operator|+
 literal|"; "
 operator|+
-name|e
+name|x
 operator|.
 name|getMessage
 argument_list|()

@@ -937,30 +937,7 @@ block|}
 catch|catch
 parameter_list|(
 name|ParseException
-name|tme
-parameter_list|)
-block|{
-throw|throw
-operator|new
-name|SyntaxError
-argument_list|(
-literal|"Cannot parse '"
-operator|+
-name|query
-operator|+
-literal|"': "
-operator|+
-name|tme
-operator|.
-name|getMessage
-argument_list|()
-argument_list|,
-name|tme
-argument_list|)
-throw|;
-block|}
-catch|catch
-parameter_list|(
+decl||
 name|TokenMgrError
 name|tme
 parameter_list|)

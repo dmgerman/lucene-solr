@@ -1625,46 +1625,7 @@ block|}
 catch|catch
 parameter_list|(
 name|ScriptException
-name|e
-parameter_list|)
-block|{
-throw|throw
-operator|new
-name|SolrException
-argument_list|(
-name|SolrException
-operator|.
-name|ErrorCode
-operator|.
-name|SERVER_ERROR
-argument_list|,
-literal|"Unable to invoke function "
-operator|+
-name|name
-operator|+
-literal|" in script: "
-operator|+
-name|engine
-operator|.
-name|getScriptFile
-argument_list|()
-operator|.
-name|getFileName
-argument_list|()
-operator|+
-literal|": "
-operator|+
-name|e
-operator|.
-name|getMessage
-argument_list|()
-argument_list|,
-name|e
-argument_list|)
-throw|;
-block|}
-catch|catch
-parameter_list|(
+decl||
 name|NoSuchMethodException
 name|e
 parameter_list|)
