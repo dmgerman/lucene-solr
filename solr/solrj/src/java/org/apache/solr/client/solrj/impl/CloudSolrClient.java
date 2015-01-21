@@ -4849,26 +4849,6 @@ operator|.
 name|_ROUTE_
 argument_list|)
 decl_stmt|;
-if|if
-condition|(
-name|shardKeys
-operator|==
-literal|null
-condition|)
-block|{
-name|shardKeys
-operator|=
-name|reqParams
-operator|.
-name|get
-argument_list|(
-name|ShardParams
-operator|.
-name|SHARD_KEYS
-argument_list|)
-expr_stmt|;
-comment|// deprecated
-block|}
 comment|// TODO: not a big deal because of the caching, but we could avoid looking
 comment|// at every shard
 comment|// when getting leaders if we tweaked some things

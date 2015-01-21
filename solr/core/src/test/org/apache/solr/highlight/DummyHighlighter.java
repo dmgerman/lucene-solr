@@ -18,16 +18,6 @@ end_package
 
 begin_import
 import|import
-name|java
-operator|.
-name|io
-operator|.
-name|IOException
-import|;
-end_import
-
-begin_import
-import|import
 name|org
 operator|.
 name|apache
@@ -80,20 +70,6 @@ name|apache
 operator|.
 name|solr
 operator|.
-name|core
-operator|.
-name|SolrConfig
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|solr
-operator|.
 name|request
 operator|.
 name|SolrQueryRequest
@@ -111,6 +87,16 @@ operator|.
 name|search
 operator|.
 name|DocList
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
+name|io
+operator|.
+name|IOException
 import|;
 end_import
 
@@ -167,19 +153,6 @@ expr_stmt|;
 return|return
 name|fragments
 return|;
-block|}
-annotation|@
-name|Override
-DECL|method|initalize
-specifier|public
-name|void
-name|initalize
-parameter_list|(
-name|SolrConfig
-name|config
-parameter_list|)
-block|{
-comment|// do nothing
 block|}
 block|}
 end_class

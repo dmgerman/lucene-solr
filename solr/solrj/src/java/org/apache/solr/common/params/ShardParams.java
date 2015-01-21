@@ -117,18 +117,6 @@ name|SHARDS_TOLERANT
 init|=
 literal|"shards.tolerant"
 decl_stmt|;
-comment|/** Should things fail if there is an error? (true/false) */
-annotation|@
-name|Deprecated
-DECL|field|SHARD_KEYS
-specifier|public
-specifier|static
-specifier|final
-name|String
-name|SHARD_KEYS
-init|=
-literal|"shard.keys"
-decl_stmt|;
 comment|/** query purpose for shard requests */
 DECL|field|SHARDS_PURPOSE
 specifier|public

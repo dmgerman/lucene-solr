@@ -62,11 +62,8 @@ specifier|final
 name|SolrParams
 name|defaults
 decl_stmt|;
-comment|/**    * @deprecated (3.6) Use {@link SolrParams#wrapDefaults(SolrParams, SolrParams)} instead.    */
-annotation|@
-name|Deprecated
 DECL|method|DefaultSolrParams
-specifier|public
+specifier|protected
 name|DefaultSolrParams
 parameter_list|(
 name|SolrParams

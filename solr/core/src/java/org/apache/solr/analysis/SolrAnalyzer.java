@@ -26,7 +26,7 @@ name|lucene
 operator|.
 name|analysis
 operator|.
-name|*
+name|Analyzer
 import|;
 end_import
 
@@ -37,16 +37,6 @@ operator|.
 name|io
 operator|.
 name|Reader
-import|;
-end_import
-
-begin_import
-import|import
-name|java
-operator|.
-name|io
-operator|.
-name|IOException
 import|;
 end_import
 
@@ -98,22 +88,6 @@ return|return
 name|posIncGap
 return|;
 block|}
-comment|/** wrap the reader in a CharStream, if appropriate */
-annotation|@
-name|Deprecated
-DECL|method|charStream
-specifier|public
-name|Reader
-name|charStream
-parameter_list|(
-name|Reader
-name|reader
-parameter_list|)
-block|{
-return|return
-name|reader
-return|;
-block|}
 annotation|@
 name|Override
 DECL|method|initReader
@@ -129,10 +103,7 @@ name|reader
 parameter_list|)
 block|{
 return|return
-name|charStream
-argument_list|(
 name|reader
-argument_list|)
 return|;
 block|}
 block|}

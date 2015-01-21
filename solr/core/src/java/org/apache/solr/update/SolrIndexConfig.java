@@ -116,20 +116,6 @@ name|solr
 operator|.
 name|core
 operator|.
-name|Config
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|solr
-operator|.
-name|core
-operator|.
 name|MapSerializable
 import|;
 end_import
@@ -299,19 +285,10 @@ specifier|final
 name|Version
 name|luceneVersion
 decl_stmt|;
-comment|/**    * The explicit value of&lt;useCompoundFile&gt; specified on this index config    * @deprecated use {@link #getUseCompoundFile}    */
-annotation|@
-name|Deprecated
-DECL|field|useCompoundFile
-specifier|public
-specifier|final
-name|boolean
-name|useCompoundFile
-decl_stmt|;
-DECL|field|effectiveUseCompountFileSetting
+DECL|field|effectiveUseCompoundFileSetting
 specifier|private
 name|boolean
-name|effectiveUseCompountFileSetting
+name|effectiveUseCompoundFileSetting
 decl_stmt|;
 DECL|field|maxBufferedDocs
 specifier|public
@@ -439,9 +416,7 @@ name|solrConfig
 operator|.
 name|luceneMatchVersion
 expr_stmt|;
-name|useCompoundFile
-operator|=
-name|effectiveUseCompountFileSetting
+name|effectiveUseCompoundFileSetting
 operator|=
 literal|false
 expr_stmt|;
@@ -688,7 +663,7 @@ name|def
 operator|.
 name|defaultMergePolicyClassName
 expr_stmt|;
-name|useCompoundFile
+name|effectiveUseCompoundFileSetting
 operator|=
 name|solrConfig
 operator|.
@@ -700,12 +675,9 @@ literal|"/useCompoundFile"
 argument_list|,
 name|def
 operator|.
-name|useCompoundFile
+name|getUseCompoundFile
+argument_list|()
 argument_list|)
-expr_stmt|;
-name|effectiveUseCompountFileSetting
-operator|=
-name|useCompoundFile
 expr_stmt|;
 name|maxBufferedDocs
 operator|=
@@ -1685,7 +1657,7 @@ name|getUseCompoundFile
 parameter_list|()
 block|{
 return|return
-name|effectiveUseCompountFileSetting
+name|effectiveUseCompoundFileSetting
 return|;
 block|}
 comment|/**    * Lucene 4.4 removed the setUseCompoundFile(boolean) method from the two     * conrete MergePolicies provided with Lucene/Solr and added it to the     * IndexWriterConfig.      * In the event that users have a value explicitly configured for this     * setter in their MergePolicy init args, we remove it from the MergePolicy     * init args, update the 'effective' useCompoundFile setting used by the     * IndexWriterConfig, and warn about discontinuing to use this init arg.    *     * @see #getUseCompoundFile    */
@@ -1773,7 +1745,7 @@ operator|+
 literal|"</useCompoundFile> directly in your<indexConfig> settings."
 argument_list|)
 expr_stmt|;
-name|effectiveUseCompountFileSetting
+name|effectiveUseCompoundFileSetting
 operator|=
 name|cfs
 expr_stmt|;

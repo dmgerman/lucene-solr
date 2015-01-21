@@ -42,22 +42,6 @@ name|io
 operator|.
 name|IOException
 function_decl|;
-annotation|@
-name|Deprecated
-comment|/**    * Returns the column position of the character last read.    * @deprecated    * @see #getEndColumn    */
-DECL|method|getColumn
-name|int
-name|getColumn
-parameter_list|()
-function_decl|;
-annotation|@
-name|Deprecated
-comment|/**    * Returns the line number of the character last read.    * @deprecated    * @see #getEndLine    */
-DECL|method|getLine
-name|int
-name|getLine
-parameter_list|()
-function_decl|;
 comment|/**    * Returns the column number of the last character for current token (being    * matched after the last call to BeginTOken).    */
 DECL|method|getEndColumn
 name|int

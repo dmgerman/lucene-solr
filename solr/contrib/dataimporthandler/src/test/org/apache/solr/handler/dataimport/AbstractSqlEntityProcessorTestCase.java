@@ -16,6 +16,36 @@ end_package
 
 begin_import
 import|import
+name|junit
+operator|.
+name|framework
+operator|.
+name|Assert
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|junit
+operator|.
+name|After
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|junit
+operator|.
+name|Before
+import|;
+end_import
+
+begin_import
+import|import
 name|java
 operator|.
 name|io
@@ -173,36 +203,6 @@ operator|.
 name|util
 operator|.
 name|Set
-import|;
-end_import
-
-begin_import
-import|import
-name|junit
-operator|.
-name|framework
-operator|.
-name|Assert
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|junit
-operator|.
-name|After
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|junit
-operator|.
-name|Before
 import|;
 end_import
 
@@ -3657,15 +3657,7 @@ name|sb
 operator|.
 name|append
 argument_list|(
-name|random
-argument_list|()
-operator|.
-name|nextBoolean
-argument_list|()
-condition|?
 literal|"processor=''SqlEntityProcessor'' cacheImpl=''SortedMapBackedCache'' "
-else|:
-literal|"processor=''CachedSqlEntityProcessor'' "
 argument_list|)
 expr_stmt|;
 if|if
@@ -3852,15 +3844,7 @@ name|sb
 operator|.
 name|append
 argument_list|(
-name|random
-argument_list|()
-operator|.
-name|nextBoolean
-argument_list|()
-condition|?
 literal|"processor=''SqlEntityProcessor'' cacheImpl=''SortedMapBackedCache'' "
-else|:
-literal|"processor=''CachedSqlEntityProcessor'' "
 argument_list|)
 expr_stmt|;
 if|if

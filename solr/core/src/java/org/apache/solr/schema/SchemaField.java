@@ -499,20 +499,6 @@ operator|!=
 literal|0
 return|;
 block|}
-comment|/** @deprecated Use {@link #omitTermFreqAndPositions} */
-annotation|@
-name|Deprecated
-DECL|method|omitTf
-specifier|public
-name|boolean
-name|omitTf
-parameter_list|()
-block|{
-return|return
-name|omitTermFreqAndPositions
-argument_list|()
-return|;
-block|}
 DECL|method|omitTermFreqAndPositions
 specifier|public
 name|boolean

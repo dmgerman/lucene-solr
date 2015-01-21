@@ -256,20 +256,6 @@ name|lucene
 operator|.
 name|util
 operator|.
-name|CharsRef
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|util
-operator|.
 name|CharsRefBuilder
 import|;
 end_import
@@ -406,7 +392,7 @@ name|java
 operator|.
 name|util
 operator|.
-name|Collections
+name|ArrayList
 import|;
 end_import
 
@@ -416,7 +402,7 @@ name|java
 operator|.
 name|util
 operator|.
-name|ArrayList
+name|Collections
 import|;
 end_import
 
@@ -1347,34 +1333,6 @@ name|MapSolrParams
 argument_list|(
 name|localParams
 argument_list|)
-return|;
-block|}
-comment|/**     * Returns the Sort object represented by the string, or null if default sort     * by score descending should be used.    * @see #parseSortSpec    * @deprecated use {@link #parseSortSpec}     */
-annotation|@
-name|Deprecated
-DECL|method|parseSort
-specifier|public
-specifier|static
-name|Sort
-name|parseSort
-parameter_list|(
-name|String
-name|sortSpec
-parameter_list|,
-name|SolrQueryRequest
-name|req
-parameter_list|)
-block|{
-return|return
-name|parseSortSpec
-argument_list|(
-name|sortSpec
-argument_list|,
-name|req
-argument_list|)
-operator|.
-name|getSort
-argument_list|()
 return|;
 block|}
 comment|/**    *<p>    * The form of the sort specification string currently parsed is:    *</p>    *<pre>    * SortSpec ::= SingleSort [, SingleSort]*    * SingleSort ::=&lt;fieldname|function&gt; SortDirection    * SortDirection ::= top | desc | bottom | asc    *</pre>    * Examples:    *<pre>    *   score desc               #normal sort by score (will return null)    *   weight bottom            #sort by weight ascending    *   weight desc              #sort by weight descending    *   height desc,weight desc  #sort by height descending, and use weight descending to break any ties    *   height desc,weight asc   #sort by height descending, using weight ascending as a tiebreaker    *</pre>    * @return a SortSpec object populated with the appropriate Sort (which may be null if     *         default score sort is used) and SchemaFields (where applicable) using     *         hardcoded default count&amp; offset values.    */

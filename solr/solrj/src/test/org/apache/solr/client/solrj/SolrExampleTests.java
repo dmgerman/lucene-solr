@@ -1951,7 +1951,12 @@ argument_list|)
 expr_stmt|;
 name|query
 operator|.
-name|addSortField
+name|addSort
+argument_list|(
+operator|new
+name|SolrQuery
+operator|.
+name|SortClause
 argument_list|(
 literal|"price"
 argument_list|,
@@ -1960,6 +1965,7 @@ operator|.
 name|ORDER
 operator|.
 name|asc
+argument_list|)
 argument_list|)
 expr_stmt|;
 name|QueryResponse
@@ -3272,7 +3278,12 @@ argument_list|)
 expr_stmt|;
 name|query
 operator|.
-name|addSortField
+name|addSort
+argument_list|(
+operator|new
+name|SolrQuery
+operator|.
+name|SortClause
 argument_list|(
 literal|"price"
 argument_list|,
@@ -3281,6 +3292,7 @@ operator|.
 name|ORDER
 operator|.
 name|asc
+argument_list|)
 argument_list|)
 expr_stmt|;
 name|QueryResponse

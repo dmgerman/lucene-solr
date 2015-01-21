@@ -151,8 +151,6 @@ name|NAME
 init|=
 literal|"implicit"
 decl_stmt|;
-comment|//  @Deprecated
-comment|//  public static final String DEFAULT_SHARD_PARAM = "_shard_";
 DECL|field|log
 specifier|private
 specifier|static
@@ -279,22 +277,6 @@ decl_stmt|;
 if|if
 condition|(
 name|o
-operator|==
-literal|null
-condition|)
-name|o
-operator|=
-name|sdoc
-operator|.
-name|getFieldValue
-argument_list|(
-literal|"_shard_"
-argument_list|)
-expr_stmt|;
-comment|//deprecated . for backcompat remove later
-if|if
-condition|(
-name|o
 operator|!=
 literal|null
 condition|)
@@ -325,22 +307,6 @@ argument_list|(
 name|_ROUTE_
 argument_list|)
 expr_stmt|;
-if|if
-condition|(
-name|shard
-operator|==
-literal|null
-condition|)
-name|shard
-operator|=
-name|params
-operator|.
-name|get
-argument_list|(
-literal|"_shard_"
-argument_list|)
-expr_stmt|;
-comment|//deperecated for back compat
 block|}
 if|if
 condition|(

@@ -22,6 +22,22 @@ end_package
 
 begin_import
 import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|solr
+operator|.
+name|handler
+operator|.
+name|dataimport
+operator|.
+name|SolrWriter
+import|;
+end_import
+
+begin_import
+import|import
 name|java
 operator|.
 name|util
@@ -47,22 +63,6 @@ operator|.
 name|util
 operator|.
 name|Set
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|solr
-operator|.
-name|handler
-operator|.
-name|dataimport
-operator|.
-name|SolrWriter
 import|;
 end_import
 
@@ -108,9 +108,6 @@ name|PROPERTY_WRITER
 init|=
 literal|"propertyWriter"
 decl_stmt|;
-comment|/**    * @deprecated use IMPORTER_NS_SHORT instead    */
-annotation|@
-name|Deprecated
 DECL|field|IMPORTER_NS
 specifier|public
 specifier|static

@@ -422,17 +422,6 @@ name|PluginInfoInitialized
 block|{
 annotation|@
 name|Override
-DECL|method|initalize
-specifier|public
-name|void
-name|initalize
-parameter_list|(
-name|SolrConfig
-name|config
-parameter_list|)
-block|{}
-annotation|@
-name|Override
 DECL|method|init
 specifier|public
 name|void

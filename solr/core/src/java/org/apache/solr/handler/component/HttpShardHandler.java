@@ -1675,24 +1675,6 @@ operator|.
 name|_ROUTE_
 argument_list|)
 decl_stmt|;
-if|if
-condition|(
-name|shardKeys
-operator|==
-literal|null
-condition|)
-name|shardKeys
-operator|=
-name|params
-operator|.
-name|get
-argument_list|(
-name|ShardParams
-operator|.
-name|SHARD_KEYS
-argument_list|)
-expr_stmt|;
-comment|//eprecated
 comment|// This will be the complete list of slices we need to query for this request.
 name|slices
 operator|=
