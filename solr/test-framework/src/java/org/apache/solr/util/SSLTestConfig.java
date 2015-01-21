@@ -281,7 +281,7 @@ name|ExternalPaths
 operator|.
 name|SERVER_HOME
 argument_list|,
-literal|"../etc/solrtest.keystore"
+literal|"../etc/test/solrtest.keystore"
 argument_list|)
 decl_stmt|;
 DECL|field|TEST_KEYSTORE_PATH
