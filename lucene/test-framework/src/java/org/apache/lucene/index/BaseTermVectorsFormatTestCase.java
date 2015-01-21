@@ -3538,13 +3538,7 @@ block|}
 catch|catch
 parameter_list|(
 name|Exception
-name|e
-parameter_list|)
-block|{
-comment|// ok
-block|}
-catch|catch
-parameter_list|(
+decl||
 name|AssertionError
 name|e
 parameter_list|)

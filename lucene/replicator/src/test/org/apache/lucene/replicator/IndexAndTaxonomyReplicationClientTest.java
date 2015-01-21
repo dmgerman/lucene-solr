@@ -2497,15 +2497,9 @@ block|}
 catch|catch
 parameter_list|(
 name|IOException
-name|ioe
-parameter_list|)
-block|{
-comment|// ok: we fallback below
-block|}
-catch|catch
-parameter_list|(
+decl||
 name|RuntimeException
-name|re
+name|ioe
 parameter_list|)
 block|{
 comment|// ok: we fallback below

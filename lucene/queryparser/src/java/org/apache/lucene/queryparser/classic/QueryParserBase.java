@@ -586,45 +586,12 @@ block|}
 catch|catch
 parameter_list|(
 name|ParseException
-name|tme
-parameter_list|)
-block|{
-comment|// rethrow to include the original query:
-name|ParseException
-name|e
-init|=
-operator|new
-name|ParseException
-argument_list|(
-literal|"Cannot parse '"
-operator|+
-name|query
-operator|+
-literal|"': "
-operator|+
-name|tme
-operator|.
-name|getMessage
-argument_list|()
-argument_list|)
-decl_stmt|;
-name|e
-operator|.
-name|initCause
-argument_list|(
-name|tme
-argument_list|)
-expr_stmt|;
-throw|throw
-name|e
-throw|;
-block|}
-catch|catch
-parameter_list|(
+decl||
 name|TokenMgrError
 name|tme
 parameter_list|)
 block|{
+comment|// rethrow to include the original query:
 name|ParseException
 name|e
 init|=

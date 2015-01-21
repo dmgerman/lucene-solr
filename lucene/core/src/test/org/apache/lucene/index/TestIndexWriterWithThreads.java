@@ -3422,15 +3422,9 @@ block|}
 catch|catch
 parameter_list|(
 name|AlreadyClosedException
-name|ace
-parameter_list|)
-block|{
-comment|// ok
-block|}
-catch|catch
-parameter_list|(
+decl||
 name|NullPointerException
-name|npe
+name|ace
 parameter_list|)
 block|{
 comment|// ok
@@ -3491,23 +3485,11 @@ block|}
 catch|catch
 parameter_list|(
 name|AlreadyClosedException
-name|ace
-parameter_list|)
-block|{
-comment|// ok
-block|}
-catch|catch
-parameter_list|(
+decl||
 name|NullPointerException
-name|npe
-parameter_list|)
-block|{
-comment|// ok
-block|}
-catch|catch
-parameter_list|(
+decl||
 name|AssertionError
-name|ae
+name|ace
 parameter_list|)
 block|{
 comment|// ok
