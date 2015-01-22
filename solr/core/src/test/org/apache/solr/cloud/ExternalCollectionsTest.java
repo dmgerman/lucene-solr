@@ -350,12 +350,12 @@ annotation|@
 name|Override
 DECL|method|getStateFormat
 specifier|protected
-name|int
+name|String
 name|getStateFormat
 parameter_list|()
 block|{
 return|return
-literal|2
+literal|"2"
 return|;
 block|}
 DECL|method|testConfNameAndCollectionNameSame
