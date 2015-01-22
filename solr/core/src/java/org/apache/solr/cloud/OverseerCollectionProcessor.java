@@ -8486,6 +8486,7 @@ name|KeeperException
 throws|,
 name|InterruptedException
 block|{
+specifier|final
 name|String
 name|collection
 init|=
@@ -8658,12 +8659,7 @@ argument_list|()
 operator|.
 name|hasCollection
 argument_list|(
-name|message
-operator|.
-name|getStr
-argument_list|(
 name|collection
-argument_list|)
 argument_list|)
 expr_stmt|;
 if|if
@@ -8699,12 +8695,7 @@ name|SERVER_ERROR
 argument_list|,
 literal|"Could not fully remove collection: "
 operator|+
-name|message
-operator|.
-name|getStr
-argument_list|(
-literal|"name"
-argument_list|)
+name|collection
 argument_list|)
 throw|;
 block|}
