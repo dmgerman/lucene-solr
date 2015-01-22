@@ -3836,6 +3836,14 @@ name|contains
 argument_list|(
 name|file
 argument_list|)
+operator|&&
+operator|!
+name|file
+operator|.
+name|endsWith
+argument_list|(
+literal|".lock"
+argument_list|)
 condition|)
 block|{
 name|LOG
