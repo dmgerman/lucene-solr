@@ -671,6 +671,7 @@ expr_stmt|;
 block|}
 else|else
 block|{
+comment|// NOTE: this is a very costly operation!  We should test if it's really warranted in practice...
 name|commonSuffixRef
 operator|=
 name|Operations

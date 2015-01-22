@@ -116,6 +116,11 @@ parameter_list|)
 throws|throws
 name|IOException
 block|{
+comment|// TODO: could we factor out a common interface b/w
+comment|// CompiledAutomaton and FST?  Then we could pass FST there too,
+comment|// and likely speed up resolving terms to deleted docs ... but
+comment|// AutomatonTermsEnum makes this tricky because of its on-the-fly cycle
+comment|// detection
 comment|// TODO: eventually we could support seekCeil/Exact on
 comment|// the returned enum, instead of only being able to seek
 comment|// at the start

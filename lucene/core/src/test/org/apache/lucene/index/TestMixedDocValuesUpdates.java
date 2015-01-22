@@ -503,7 +503,7 @@ argument_list|(
 literal|5
 argument_list|)
 decl_stmt|;
-comment|//      System.out.println("[" + Thread.currentThread().getName() + "]: round=" + i + ", numDocs=" + numDocs);
+comment|// System.out.println("TEST: round=" + i + ", numDocs=" + numDocs);
 for|for
 control|(
 name|int
@@ -722,7 +722,7 @@ argument_list|)
 argument_list|)
 expr_stmt|;
 block|}
-comment|//      System.out.println("[" + Thread.currentThread().getName() + "]: updated field '" + updateField + "' to value " + fieldValues[fieldIdx]);
+comment|//System.out.println("TEST: updated field '" + updateField + "' to value " + fieldValues[fieldIdx]);
 if|if
 condition|(
 name|random
@@ -981,7 +981,7 @@ condition|)
 block|{
 name|assertEquals
 argument_list|(
-literal|"invalid value for doc="
+literal|"invalid numeric value for doc="
 operator|+
 name|doc
 operator|+
@@ -1011,7 +1011,7 @@ else|else
 block|{
 name|assertEquals
 argument_list|(
-literal|"invalid value for doc="
+literal|"invalid binary value for doc="
 operator|+
 name|doc
 operator|+
