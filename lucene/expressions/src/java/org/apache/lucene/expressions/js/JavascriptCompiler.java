@@ -3304,9 +3304,7 @@ block|}
 block|}
 catch|catch
 parameter_list|(
-name|NoSuchMethodException
-decl||
-name|ClassNotFoundException
+name|ReflectiveOperationException
 decl||
 name|IOException
 name|e

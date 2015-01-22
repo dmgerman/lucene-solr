@@ -714,13 +714,9 @@ return|;
 block|}
 catch|catch
 parameter_list|(
-name|IllegalAccessException
-decl||
-name|InstantiationException
+name|ReflectiveOperationException
 decl||
 name|ClassCastException
-decl||
-name|ClassNotFoundException
 name|e
 parameter_list|)
 block|{
