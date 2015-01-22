@@ -199,6 +199,22 @@ operator|.
 name|setUp
 argument_list|()
 expr_stmt|;
+name|assertQ
+argument_list|(
+name|req
+argument_list|(
+literal|"qt"
+argument_list|,
+literal|"standard"
+argument_list|,
+literal|"q"
+argument_list|,
+literal|"*:*"
+argument_list|)
+argument_list|,
+literal|"//*[@numFound='0']"
+argument_list|)
+expr_stmt|;
 comment|// id, cat, price, weight
 name|assertU
 argument_list|(
@@ -450,6 +466,9 @@ argument_list|()
 operator|)
 argument_list|)
 expr_stmt|;
+name|waitForWarming
+argument_list|()
+expr_stmt|;
 block|}
 annotation|@
 name|Override
@@ -473,9 +492,6 @@ argument_list|(
 literal|"*:*"
 argument_list|)
 argument_list|)
-expr_stmt|;
-name|optimize
-argument_list|()
 expr_stmt|;
 name|assertU
 argument_list|(
@@ -1133,7 +1149,7 @@ operator|+
 literal|"']/lst[@name='example']/int[@name='numFound'][.='2']"
 argument_list|)
 expr_stmt|;
-comment|// add one more doc, this should not be seen after a core reload (not until the suggester is manually rebuilt)
+comment|// add one more doc, should be visible after core reload
 name|assertU
 argument_list|(
 name|adoc
@@ -2209,11 +2225,7 @@ parameter_list|)
 throws|throws
 name|Exception
 block|{
-if|if
-condition|(
-name|createNewCore
-condition|)
-block|{
+comment|//    if (createNewCore) {
 name|CoreContainer
 name|cores
 init|=
@@ -2286,15 +2298,36 @@ name|getCore
 argument_list|()
 argument_list|)
 expr_stmt|;
-block|}
-else|else
-block|{
-name|h
-operator|.
-name|reload
-argument_list|()
+comment|//    } else {
+comment|//      h.reload();
+comment|//      // On regular reloading, wait until the new searcher is registered
+comment|//      waitForWarming();
+comment|//    }
+name|assertQ
+argument_list|(
+name|req
+argument_list|(
+literal|"qt"
+argument_list|,
+literal|"standard"
+argument_list|,
+literal|"q"
+argument_list|,
+literal|"*:*"
+argument_list|)
+argument_list|,
+literal|"//*[@numFound='11']"
+argument_list|)
 expr_stmt|;
-comment|// On regular reloading, wait until the new searcher is registered
+block|}
+DECL|method|waitForWarming
+specifier|private
+name|void
+name|waitForWarming
+parameter_list|()
+throws|throws
+name|InterruptedException
+block|{
 name|RefCounted
 argument_list|<
 name|SolrIndexSearcher
@@ -2329,6 +2362,10 @@ empty_stmt|;
 while|while
 condition|(
 name|registeredSearcher
+operator|==
+literal|null
+operator|||
+name|registeredSearcher
 operator|.
 name|get
 argument_list|()
@@ -2339,11 +2376,19 @@ name|get
 argument_list|()
 condition|)
 block|{
+if|if
+condition|(
+name|registeredSearcher
+operator|!=
+literal|null
+condition|)
+block|{
 name|registeredSearcher
 operator|.
 name|decref
 argument_list|()
 expr_stmt|;
+block|}
 name|newestSearcher
 operator|.
 name|decref
@@ -2388,23 +2433,6 @@ name|newestSearcher
 operator|.
 name|decref
 argument_list|()
-expr_stmt|;
-block|}
-name|assertQ
-argument_list|(
-name|req
-argument_list|(
-literal|"qt"
-argument_list|,
-literal|"standard"
-argument_list|,
-literal|"q"
-argument_list|,
-literal|"*:*"
-argument_list|)
-argument_list|,
-literal|"//*[@numFound='11']"
-argument_list|)
 expr_stmt|;
 block|}
 block|}
