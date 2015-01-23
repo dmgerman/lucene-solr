@@ -128,6 +128,16 @@ name|NamedList
 import|;
 end_import
 
+begin_import
+import|import
+name|org
+operator|.
+name|junit
+operator|.
+name|Test
+import|;
+end_import
+
 begin_comment
 comment|/**  * TODO? perhaps use:  *  http://docs.codehaus.org/display/JETTY/ServletTester  * rather then open a real connection?  *  * @since solr 4.0  */
 end_comment
@@ -185,11 +195,11 @@ init|=
 literal|"oddField_s"
 decl_stmt|;
 annotation|@
-name|Override
-DECL|method|doTest
+name|Test
+DECL|method|test
 specifier|public
 name|void
-name|doTest
+name|test
 parameter_list|()
 throws|throws
 name|Exception

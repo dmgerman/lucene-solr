@@ -416,6 +416,16 @@ name|Scope
 import|;
 end_import
 
+begin_import
+import|import
+name|org
+operator|.
+name|junit
+operator|.
+name|Test
+import|;
+end_import
+
 begin_class
 annotation|@
 name|Slow
@@ -565,8 +575,8 @@ name|sliceCount
 operator|=
 literal|1
 expr_stmt|;
-name|shardCount
-operator|=
+name|fixShardCount
+argument_list|(
 name|TEST_NIGHTLY
 condition|?
 literal|7
@@ -580,6 +590,7 @@ literal|2
 argument_list|)
 operator|+
 literal|1
+argument_list|)
 expr_stmt|;
 name|testRestartIntoSafeMode
 operator|=
@@ -601,11 +612,11 @@ literal|"solr-no-core.xml"
 return|;
 block|}
 annotation|@
-name|Override
-DECL|method|doTest
+name|Test
+DECL|method|test
 specifier|public
 name|void
-name|doTest
+name|test
 parameter_list|()
 throws|throws
 name|Exception
@@ -819,7 +830,8 @@ condition|)
 block|{
 name|nShards
 operator|=
-name|shardCount
+name|getShardCount
+argument_list|()
 operator|*
 literal|2
 expr_stmt|;
@@ -836,7 +848,8 @@ else|else
 block|{
 name|nShards
 operator|=
-name|shardCount
+name|getShardCount
+argument_list|()
 operator|/
 literal|2
 expr_stmt|;

@@ -48,6 +48,16 @@ name|QueryResponse
 import|;
 end_import
 
+begin_import
+import|import
+name|org
+operator|.
+name|junit
+operator|.
+name|Test
+import|;
+end_import
+
 begin_comment
 comment|/**  * Tests sortMissingFirst and sortMissingLast in distributed sort  */
 end_comment
@@ -115,11 +125,11 @@ literal|"six_s1_mf"
 decl_stmt|;
 comment|// StringField, sortMissingFirst=true, multiValued=false
 annotation|@
-name|Override
-DECL|method|doTest
+name|Test
+DECL|method|test
 specifier|public
 name|void
-name|doTest
+name|test
 parameter_list|()
 throws|throws
 name|Exception

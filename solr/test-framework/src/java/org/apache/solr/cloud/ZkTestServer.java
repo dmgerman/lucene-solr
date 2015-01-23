@@ -2297,7 +2297,7 @@ argument_list|(
 literal|"STARTING ZK TEST SERVER"
 argument_list|)
 expr_stmt|;
-comment|// we don't call super.setUp
+comment|// we don't call super.distribSetUp
 name|zooThread
 operator|=
 operator|new

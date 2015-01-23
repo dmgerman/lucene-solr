@@ -88,6 +88,16 @@ name|BeforeClass
 import|;
 end_import
 
+begin_import
+import|import
+name|org
+operator|.
+name|junit
+operator|.
+name|Test
+import|;
+end_import
+
 begin_comment
 comment|/**  * Test for QueryComponent's distributed querying  *  * @see org.apache.solr.handler.component.QueryComponent  */
 end_comment
@@ -105,14 +115,6 @@ specifier|public
 name|AnalyticsMergeStrategyTest
 parameter_list|()
 block|{
-name|fixShardCount
-operator|=
-literal|true
-expr_stmt|;
-name|shardCount
-operator|=
-literal|3
-expr_stmt|;
 name|stress
 operator|=
 literal|0
@@ -138,11 +140,18 @@ argument_list|)
 expr_stmt|;
 block|}
 annotation|@
-name|Override
-DECL|method|doTest
+name|Test
+annotation|@
+name|ShardsFixed
+argument_list|(
+name|num
+operator|=
+literal|3
+argument_list|)
+DECL|method|test
 specifier|public
 name|void
-name|doTest
+name|test
 parameter_list|()
 throws|throws
 name|Exception

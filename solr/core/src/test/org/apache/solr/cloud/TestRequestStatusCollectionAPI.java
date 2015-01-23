@@ -138,7 +138,7 @@ name|org
 operator|.
 name|junit
 operator|.
-name|Before
+name|Test
 import|;
 end_import
 
@@ -181,28 +181,14 @@ expr_stmt|;
 comment|// we need a string id
 block|}
 annotation|@
-name|Override
-annotation|@
-name|Before
-DECL|method|setUp
+name|Test
+DECL|method|test
 specifier|public
 name|void
-name|setUp
+name|test
 parameter_list|()
 throws|throws
 name|Exception
-block|{
-name|super
-operator|.
-name|setUp
-argument_list|()
-expr_stmt|;
-block|}
-DECL|method|doTest
-specifier|public
-name|void
-name|doTest
-parameter_list|()
 block|{
 name|ModifiableSolrParams
 name|params

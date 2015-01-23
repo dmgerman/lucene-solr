@@ -158,6 +158,16 @@ name|Replica
 import|;
 end_import
 
+begin_import
+import|import
+name|org
+operator|.
+name|junit
+operator|.
+name|Test
+import|;
+end_import
+
 begin_comment
 comment|/**  * Tests leader-initiated recovery scenarios after a leader node fails  * and one of the replicas is out-of-sync.  */
 end_comment
@@ -189,11 +199,11 @@ argument_list|()
 expr_stmt|;
 block|}
 annotation|@
-name|Override
-DECL|method|doTest
+name|Test
+DECL|method|test
 specifier|public
 name|void
-name|doTest
+name|test
 parameter_list|()
 throws|throws
 name|Exception

@@ -350,6 +350,16 @@ name|Slow
 import|;
 end_import
 
+begin_import
+import|import
+name|org
+operator|.
+name|junit
+operator|.
+name|Test
+import|;
+end_import
+
 begin_comment
 comment|/**  * We want to make sure that when migrating between http and https modes the  * replicas will not be rejoined as new nodes, but rather take off where it left  * off in the cluster.  */
 end_comment
@@ -374,11 +384,11 @@ extends|extends
 name|AbstractFullDistribZkTestBase
 block|{
 annotation|@
-name|Override
-DECL|method|doTest
+name|Test
+DECL|method|test
 specifier|public
 name|void
-name|doTest
+name|test
 parameter_list|()
 throws|throws
 name|Exception

@@ -358,6 +358,16 @@ end_import
 
 begin_import
 import|import
+name|org
+operator|.
+name|junit
+operator|.
+name|Test
+import|;
+end_import
+
+begin_import
+import|import
 name|java
 operator|.
 name|io
@@ -565,9 +575,10 @@ name|sliceCount
 operator|=
 literal|1
 expr_stmt|;
-name|shardCount
-operator|=
+name|fixShardCount
+argument_list|(
 literal|3
+argument_list|)
 expr_stmt|;
 block|}
 DECL|method|getSolrXml
@@ -581,11 +592,11 @@ literal|"solr-no-core.xml"
 return|;
 block|}
 annotation|@
-name|Override
-DECL|method|doTest
+name|Test
+DECL|method|test
 specifier|public
 name|void
-name|doTest
+name|test
 parameter_list|()
 throws|throws
 name|Exception

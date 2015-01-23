@@ -152,6 +152,16 @@ name|BeforeClass
 import|;
 end_import
 
+begin_import
+import|import
+name|org
+operator|.
+name|junit
+operator|.
+name|Test
+import|;
+end_import
+
 begin_comment
 comment|// See SOLR-6640
 end_comment
@@ -173,17 +183,14 @@ specifier|public
 name|RecoveryAfterSoftCommitTest
 parameter_list|()
 block|{
-name|fixShardCount
-operator|=
-literal|true
-expr_stmt|;
 name|sliceCount
 operator|=
 literal|1
 expr_stmt|;
-name|shardCount
-operator|=
+name|fixShardCount
+argument_list|(
 literal|2
+argument_list|)
 expr_stmt|;
 block|}
 annotation|@
@@ -264,11 +271,11 @@ argument_list|)
 return|;
 block|}
 annotation|@
-name|Override
-DECL|method|doTest
+name|Test
+DECL|method|test
 specifier|public
 name|void
-name|doTest
+name|test
 parameter_list|()
 throws|throws
 name|Exception

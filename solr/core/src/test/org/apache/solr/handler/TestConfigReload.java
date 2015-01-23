@@ -398,7 +398,7 @@ name|org
 operator|.
 name|junit
 operator|.
-name|After
+name|Test
 import|;
 end_import
 
@@ -535,18 +535,18 @@ expr_stmt|;
 block|}
 block|}
 annotation|@
-name|After
-DECL|method|tearDown
+name|Override
+DECL|method|distribTearDown
 specifier|public
 name|void
-name|tearDown
+name|distribTearDown
 parameter_list|()
 throws|throws
 name|Exception
 block|{
 name|super
 operator|.
-name|tearDown
+name|distribTearDown
 argument_list|()
 expr_stmt|;
 for|for
@@ -565,11 +565,11 @@ expr_stmt|;
 block|}
 block|}
 annotation|@
-name|Override
-DECL|method|doTest
+name|Test
+DECL|method|test
 specifier|public
 name|void
-name|doTest
+name|test
 parameter_list|()
 throws|throws
 name|Exception

@@ -620,27 +620,7 @@ name|org
 operator|.
 name|junit
 operator|.
-name|After
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|junit
-operator|.
 name|AfterClass
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|junit
-operator|.
-name|Before
 import|;
 end_import
 
@@ -1546,20 +1526,18 @@ return|;
 block|}
 block|}
 annotation|@
-name|Before
-annotation|@
 name|Override
-DECL|method|setUp
+DECL|method|distribSetUp
 specifier|public
 name|void
-name|setUp
+name|distribSetUp
 parameter_list|()
 throws|throws
 name|Exception
 block|{
 name|super
 operator|.
-name|setUp
+name|distribSetUp
 argument_list|()
 expr_stmt|;
 comment|// ignoreException(".*");
@@ -1723,17 +1701,14 @@ specifier|public
 name|AbstractFullDistribZkTestBase
 parameter_list|()
 block|{
-name|fixShardCount
-operator|=
-literal|true
-expr_stmt|;
-name|shardCount
-operator|=
-literal|4
-expr_stmt|;
 name|sliceCount
 operator|=
 literal|2
+expr_stmt|;
+name|fixShardCount
+argument_list|(
+literal|4
+argument_list|)
 expr_stmt|;
 comment|// TODO: for now, turn off stress because it uses regular clients, and we
 comment|// need the cloud client because we kill servers
@@ -2714,7 +2689,8 @@ while|while
 condition|(
 name|numShards
 operator|!=
-name|shardCount
+name|getShardCount
+argument_list|()
 condition|)
 block|{
 name|numShards
@@ -2728,7 +2704,8 @@ if|if
 condition|(
 name|numShards
 operator|==
-name|shardCount
+name|getShardCount
+argument_list|()
 condition|)
 break|break;
 if|if
@@ -2751,7 +2728,8 @@ name|numShards
 operator|+
 literal|" vs "
 operator|+
-name|shardCount
+name|getShardCount
+argument_list|()
 argument_list|)
 expr_stmt|;
 block|}
@@ -6140,7 +6118,8 @@ literal|0
 init|;
 name|i
 operator|<
-name|shardCount
+name|getShardCount
+argument_list|()
 condition|;
 name|i
 operator|++
@@ -6533,7 +6512,7 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
-comment|/**    * Executes a query against each live and active replica of the specified shard     * and aserts that the results are identical.    *    * @see #queryAndCompare    */
+comment|/**    * Executes a query against each live and active replica of the specified shard    * and aserts that the results are identical.    *    * @see #queryAndCompare    */
 DECL|method|queryAndCompareReplicas
 specifier|public
 name|QueryResponse
@@ -6686,7 +6665,7 @@ name|shardClients
 argument_list|)
 return|;
 block|}
-comment|/**    * For each Shard, executes a query against each live and active replica of that shard    * and asserts that the results are identical for each replica of the same shard.      * Because results are not compared between replicas of different shards, this method     * should be safe for comparing the results of any query, even if it contains     * "distrib=false", because the replicas should all be identical.    *    * @see AbstractFullDistribZkTestBase#queryAndCompareReplicas(SolrParams, String)    */
+comment|/**    * For each Shard, executes a query against each live and active replica of that shard    * and asserts that the results are identical for each replica of the same shard.    * Because results are not compared between replicas of different shards, this method    * should be safe for comparing the results of any query, even if it contains    * "distrib=false", because the replicas should all be identical.    *    * @see AbstractFullDistribZkTestBase#queryAndCompareReplicas(SolrParams, String)    */
 DECL|method|queryAndCompareShards
 specifier|public
 name|void
@@ -6738,7 +6717,7 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
-comment|/**     * Returns a non-null string if replicas within the same shard do not have a     * consistent number of documents.     */
+comment|/**    * Returns a non-null string if replicas within the same shard do not have a    * consistent number of documents.    */
 DECL|method|checkShardConsistency
 specifier|protected
 name|void
@@ -6760,7 +6739,7 @@ literal|false
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**     * Returns a non-null string if replicas within the same shard do not have a     * consistent number of documents.    * If expectFailure==false, the exact differences found will be logged since     * this would be an unexpected failure.    * verbose causes extra debugging into to be displayed, even if everything is     * consistent.    */
+comment|/**    * Returns a non-null string if replicas within the same shard do not have a    * consistent number of documents.    * If expectFailure==false, the exact differences found will be logged since    * this would be an unexpected failure.    * verbose causes extra debugging into to be displayed, even if everything is    * consistent.    */
 DECL|method|checkShardConsistency
 specifier|protected
 name|String
@@ -9407,12 +9386,10 @@ expr_stmt|;
 block|}
 annotation|@
 name|Override
-annotation|@
-name|After
-DECL|method|tearDown
+DECL|method|distribTearDown
 specifier|public
 name|void
-name|tearDown
+name|distribTearDown
 parameter_list|()
 throws|throws
 name|Exception
@@ -9489,7 +9466,7 @@ expr_stmt|;
 block|}
 name|super
 operator|.
-name|tearDown
+name|distribTearDown
 argument_list|()
 expr_stmt|;
 name|System
@@ -9506,7 +9483,7 @@ argument_list|(
 literal|"numShards"
 argument_list|)
 expr_stmt|;
-comment|// close socket proxies after super.tearDown
+comment|// close socket proxies after super.distribTearDown
 if|if
 condition|(
 operator|!

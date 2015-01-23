@@ -26,6 +26,16 @@ name|BeforeClass
 import|;
 end_import
 
+begin_import
+import|import
+name|org
+operator|.
+name|junit
+operator|.
+name|Test
+import|;
+end_import
+
 begin_class
 DECL|class|ShardRoutingCustomTest
 specifier|public
@@ -74,11 +84,11 @@ literal|0
 expr_stmt|;
 block|}
 annotation|@
-name|Override
-DECL|method|doTest
+name|Test
+DECL|method|test
 specifier|public
 name|void
-name|doTest
+name|test
 parameter_list|()
 throws|throws
 name|Exception

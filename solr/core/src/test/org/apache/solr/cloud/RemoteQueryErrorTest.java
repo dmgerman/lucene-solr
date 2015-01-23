@@ -78,6 +78,16 @@ end_import
 
 begin_import
 import|import
+name|org
+operator|.
+name|junit
+operator|.
+name|Test
+import|;
+end_import
+
+begin_import
+import|import
 name|java
 operator|.
 name|util
@@ -138,8 +148,8 @@ name|sliceCount
 operator|=
 literal|1
 expr_stmt|;
-name|shardCount
-operator|=
+name|fixShardCount
+argument_list|(
 name|random
 argument_list|()
 operator|.
@@ -149,14 +159,15 @@ condition|?
 literal|3
 else|:
 literal|4
+argument_list|)
 expr_stmt|;
 block|}
 annotation|@
-name|Override
-DECL|method|doTest
+name|Test
+DECL|method|test
 specifier|public
 name|void
-name|doTest
+name|test
 parameter_list|()
 throws|throws
 name|Exception

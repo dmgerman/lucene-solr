@@ -268,16 +268,6 @@ name|org
 operator|.
 name|junit
 operator|.
-name|After
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|junit
-operator|.
 name|AfterClass
 import|;
 end_import
@@ -288,7 +278,7 @@ name|org
 operator|.
 name|junit
 operator|.
-name|Before
+name|BeforeClass
 import|;
 end_import
 
@@ -298,7 +288,7 @@ name|org
 operator|.
 name|junit
 operator|.
-name|BeforeClass
+name|Test
 import|;
 end_import
 
@@ -404,20 +394,18 @@ name|afterSuperClass
 parameter_list|()
 block|{        }
 annotation|@
-name|Before
-annotation|@
 name|Override
-DECL|method|setUp
+DECL|method|distribSetUp
 specifier|public
 name|void
-name|setUp
+name|distribSetUp
 parameter_list|()
 throws|throws
 name|Exception
 block|{
 name|super
 operator|.
-name|setUp
+name|distribSetUp
 argument_list|()
 expr_stmt|;
 comment|// we expect this time of exception as shards go up and down...
@@ -439,12 +427,10 @@ expr_stmt|;
 block|}
 annotation|@
 name|Override
-annotation|@
-name|After
-DECL|method|tearDown
+DECL|method|distribTearDown
 specifier|public
 name|void
-name|tearDown
+name|distribTearDown
 parameter_list|()
 throws|throws
 name|Exception
@@ -462,10 +448,7 @@ expr_stmt|;
 block|}
 name|super
 operator|.
-name|tearDown
-argument_list|()
-expr_stmt|;
-name|resetExceptionIgnores
+name|distribTearDown
 argument_list|()
 expr_stmt|;
 block|}
@@ -481,21 +464,22 @@ name|sliceCount
 operator|=
 literal|1
 expr_stmt|;
-name|shardCount
-operator|=
+name|fixShardCount
+argument_list|(
 name|TEST_NIGHTLY
 condition|?
 literal|7
 else|:
 literal|4
+argument_list|)
 expr_stmt|;
 block|}
 annotation|@
-name|Override
-DECL|method|doTest
+name|Test
+DECL|method|test
 specifier|public
 name|void
-name|doTest
+name|test
 parameter_list|()
 throws|throws
 name|Exception
@@ -937,7 +921,8 @@ argument_list|)
 expr_stmt|;
 name|assertEquals
 argument_list|(
-name|shardCount
+name|getShardCount
+argument_list|()
 operator|-
 literal|1
 argument_list|,
@@ -1217,7 +1202,8 @@ argument_list|)
 expr_stmt|;
 name|assertEquals
 argument_list|(
-name|shardCount
+name|getShardCount
+argument_list|()
 operator|-
 literal|1
 argument_list|,
