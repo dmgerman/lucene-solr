@@ -2813,6 +2813,8 @@ literal|0
 condition|)
 block|{
 return|return
+name|_doc
+operator|=
 name|NO_MORE_DOCS
 return|;
 block|}
