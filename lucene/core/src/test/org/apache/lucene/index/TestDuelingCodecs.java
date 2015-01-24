@@ -677,6 +677,13 @@ argument_list|(
 literal|"\\s+"
 argument_list|)
 decl_stmt|;
+name|document
+operator|.
+name|removeFields
+argument_list|(
+literal|"sortedset"
+argument_list|)
+expr_stmt|;
 for|for
 control|(
 name|String
