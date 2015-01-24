@@ -1423,17 +1423,17 @@ argument_list|()
 operator|.
 name|append
 argument_list|(
+literal|' '
+argument_list|)
+operator|.
+name|append
+argument_list|(
 name|attributes
 operator|.
 name|getValue
 argument_list|(
 name|i
 argument_list|)
-argument_list|)
-operator|.
-name|append
-argument_list|(
-literal|' '
 argument_list|)
 expr_stmt|;
 block|}
