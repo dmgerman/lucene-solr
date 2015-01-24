@@ -2320,6 +2320,11 @@ name|missing
 init|=
 literal|false
 decl_stmt|;
+name|int
+name|upto
+init|=
+literal|0
+decl_stmt|;
 for|for
 control|(
 name|BytesRef
@@ -2381,9 +2386,28 @@ operator|+
 name|MemoryDocValuesFormat
 operator|.
 name|MAX_BINARY_FIELD_LENGTH
+operator|+
+literal|" but got length="
+operator|+
+name|length
+operator|+
+literal|" v="
+operator|+
+name|v
+operator|+
+literal|"; upto="
+operator|+
+name|upto
+operator|+
+literal|" values="
+operator|+
+name|values
 argument_list|)
 throw|;
 block|}
+name|upto
+operator|++
+expr_stmt|;
 name|minLength
 operator|=
 name|Math
