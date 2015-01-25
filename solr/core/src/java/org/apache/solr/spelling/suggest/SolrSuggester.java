@@ -618,6 +618,12 @@ condition|(
 name|store
 operator|!=
 literal|null
+operator|&&
+operator|!
+name|store
+operator|.
+name|isEmpty
+argument_list|()
 condition|)
 block|{
 name|storeDir
@@ -823,7 +829,7 @@ name|LOG
 operator|.
 name|info
 argument_list|(
-literal|"build("
+literal|"SolrSuggester.build("
 operator|+
 name|name
 operator|+
@@ -920,7 +926,7 @@ name|LOG
 operator|.
 name|info
 argument_list|(
-literal|"reload("
+literal|"SolrSuggester.reload("
 operator|+
 name|name
 operator|+

@@ -160,7 +160,7 @@ name|concurrent
 operator|.
 name|atomic
 operator|.
-name|AtomicBoolean
+name|AtomicLong
 import|;
 end_import
 
@@ -990,18 +990,16 @@ argument_list|)
 decl_stmt|;
 if|if
 condition|(
-operator|!
-name|core
-operator|.
-name|isReloaded
-argument_list|()
+name|buildOnCommit
+operator|||
+name|buildOnOptimize
+operator|||
+name|buildOnStartup
 condition|)
 block|{
-comment|// Register first searcher event listeners for this Suggester unless it's a core reload
-name|core
-operator|.
-name|registerFirstSearcherListener
-argument_list|(
+name|SuggesterListener
+name|listener
+init|=
 operator|new
 name|SuggesterListener
 argument_list|(
@@ -1009,63 +1007,46 @@ name|core
 argument_list|,
 name|suggester
 argument_list|,
-literal|false
+name|buildOnCommit
 argument_list|,
-literal|false
+name|buildOnOptimize
 argument_list|,
 name|buildOnStartup
 argument_list|,
-literal|false
-argument_list|)
-argument_list|)
-expr_stmt|;
-block|}
-if|if
-condition|(
-name|buildOnCommit
-operator|||
-name|buildOnOptimize
-operator|||
 name|core
 operator|.
 name|isReloaded
 argument_list|()
-condition|)
-block|{
+argument_list|)
+decl_stmt|;
 name|LOG
 operator|.
 name|info
 argument_list|(
-literal|"Registering newSearcher listener for suggester: "
+literal|"Registering searcher listener for suggester: "
 operator|+
 name|suggester
 operator|.
 name|getName
 argument_list|()
+operator|+
+literal|" - "
+operator|+
+name|listener
+argument_list|)
+expr_stmt|;
+name|core
+operator|.
+name|registerFirstSearcherListener
+argument_list|(
+name|listener
 argument_list|)
 expr_stmt|;
 name|core
 operator|.
 name|registerNewSearcherListener
 argument_list|(
-operator|new
-name|SuggesterListener
-argument_list|(
-name|core
-argument_list|,
-name|suggester
-argument_list|,
-name|buildOnCommit
-argument_list|,
-name|buildOnOptimize
-argument_list|,
-name|buildOnStartup
-argument_list|,
-name|core
-operator|.
-name|isReloaded
-argument_list|()
-argument_list|)
+name|listener
 argument_list|)
 expr_stmt|;
 block|}
@@ -3075,17 +3056,17 @@ decl_stmt|;
 comment|// On core reload, immediately after the core is created a new searcher is opened, causing the suggester
 comment|// to trigger a "buildOnCommit". The only event that we want to trigger in that situation is "buildOnStartup"
 comment|// so if buildOnCommit is true and this is a core being reloaded, we will skip the first time this listener
-comment|// is called
-DECL|field|firstCall
+comment|// is called.
+DECL|field|callCount
 specifier|private
 specifier|final
-name|AtomicBoolean
-name|firstCall
+name|AtomicLong
+name|callCount
 init|=
 operator|new
-name|AtomicBoolean
+name|AtomicLong
 argument_list|(
-literal|true
+literal|0
 argument_list|)
 decl_stmt|;
 DECL|field|isCoreReload
@@ -3179,38 +3160,49 @@ name|SolrIndexSearcher
 name|currentSearcher
 parameter_list|)
 block|{
-assert|assert
-operator|!
-operator|(
-name|currentSearcher
-operator|==
-literal|null
-operator|&&
-name|isCoreReload
-operator|)
-operator|:
-literal|"SuggesterListener should not be added as firstSearcherListener in case of a core reload"
-assert|;
-name|boolean
-name|first
+name|long
+name|thisCallCount
 init|=
-name|firstCall
+name|callCount
 operator|.
-name|getAndSet
-argument_list|(
-literal|false
-argument_list|)
+name|incrementAndGet
+argument_list|()
 decl_stmt|;
 if|if
 condition|(
-name|currentSearcher
+name|isCoreReload
+operator|&&
+name|thisCallCount
 operator|==
-literal|null
+literal|1
+condition|)
+block|{
+name|LOG
+operator|.
+name|info
+argument_list|(
+literal|"Skipping first newSearcher call for suggester "
+operator|+
+name|suggester
+operator|+
+literal|" in core reload"
+argument_list|)
+expr_stmt|;
+return|return;
+block|}
+elseif|else
+if|if
+condition|(
+name|thisCallCount
+operator|==
+literal|1
 operator|||
 operator|(
 name|isCoreReload
 operator|&&
-name|first
+name|thisCallCount
+operator|==
+literal|2
 operator|)
 condition|)
 block|{
@@ -3219,6 +3211,18 @@ condition|(
 name|buildOnStartup
 condition|)
 block|{
+name|LOG
+operator|.
+name|info
+argument_list|(
+literal|"buildOnStartup: "
+operator|+
+name|suggester
+operator|.
+name|getName
+argument_list|()
+argument_list|)
+expr_stmt|;
 name|buildSuggesterIndex
 argument_list|(
 name|newSearcher
@@ -3228,12 +3232,23 @@ block|}
 block|}
 else|else
 block|{
-comment|// newSearcher event
 if|if
 condition|(
 name|buildOnCommit
 condition|)
 block|{
+name|LOG
+operator|.
+name|info
+argument_list|(
+literal|"buildOnCommit: "
+operator|+
+name|suggester
+operator|.
+name|getName
+argument_list|()
+argument_list|)
+expr_stmt|;
 name|buildSuggesterIndex
 argument_list|(
 name|newSearcher
@@ -3262,24 +3277,21 @@ operator|==
 literal|1
 condition|)
 block|{
-name|buildSuggesterIndex
-argument_list|(
-name|newSearcher
-argument_list|)
-expr_stmt|;
-block|}
-else|else
-block|{
 name|LOG
 operator|.
 name|info
 argument_list|(
-literal|"Index is not optimized therefore skipping building suggester index for: "
+literal|"buildOnOptimize: "
 operator|+
 name|suggester
 operator|.
 name|getName
 argument_list|()
+argument_list|)
+expr_stmt|;
+name|buildSuggesterIndex
+argument_list|(
+name|newSearcher
 argument_list|)
 expr_stmt|;
 block|}
@@ -3297,18 +3309,6 @@ parameter_list|)
 block|{
 try|try
 block|{
-name|LOG
-operator|.
-name|info
-argument_list|(
-literal|"Building suggester index for: "
-operator|+
-name|suggester
-operator|.
-name|getName
-argument_list|()
-argument_list|)
-expr_stmt|;
 name|suggester
 operator|.
 name|build
@@ -3357,6 +3357,42 @@ name|void
 name|postSoftCommit
 parameter_list|()
 block|{}
+annotation|@
+name|Override
+DECL|method|toString
+specifier|public
+name|String
+name|toString
+parameter_list|()
+block|{
+return|return
+literal|"SuggesterListener [core="
+operator|+
+name|core
+operator|+
+literal|", suggester="
+operator|+
+name|suggester
+operator|+
+literal|", buildOnCommit="
+operator|+
+name|buildOnCommit
+operator|+
+literal|", buildOnOptimize="
+operator|+
+name|buildOnOptimize
+operator|+
+literal|", buildOnStartup="
+operator|+
+name|buildOnStartup
+operator|+
+literal|", isCoreReload="
+operator|+
+name|isCoreReload
+operator|+
+literal|"]"
+return|;
+block|}
 block|}
 block|}
 end_class
