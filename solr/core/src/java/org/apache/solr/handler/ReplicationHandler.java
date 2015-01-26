@@ -1463,10 +1463,6 @@ name|ModifiableSolrParams
 argument_list|(
 name|solrParams
 argument_list|)
-argument_list|,
-name|rsp
-argument_list|,
-name|req
 argument_list|)
 expr_stmt|;
 name|rsp
@@ -1893,12 +1889,6 @@ name|deleteSnapshot
 parameter_list|(
 name|ModifiableSolrParams
 name|params
-parameter_list|,
-name|SolrQueryResponse
-name|rsp
-parameter_list|,
-name|SolrQueryRequest
-name|req
 parameter_list|)
 block|{
 name|String
@@ -5567,19 +5557,10 @@ argument_list|()
 decl_stmt|;
 for|for
 control|(
-name|int
-name|i
-init|=
-literal|0
-init|;
-name|i
-operator|<
+name|String
+name|s1
+range|:
 name|ss
-operator|.
-name|length
-condition|;
-name|i
-operator|++
 control|)
 block|{
 name|l
@@ -5593,10 +5574,7 @@ name|Long
 operator|.
 name|valueOf
 argument_list|(
-name|ss
-index|[
-name|i
-index|]
+name|s1
 argument_list|)
 argument_list|)
 operator|.
@@ -7599,6 +7577,19 @@ operator|.
 name|flush
 argument_list|()
 expr_stmt|;
+name|LOG
+operator|.
+name|debug
+argument_list|(
+literal|"Wrote {} bytes for file {}"
+argument_list|,
+name|offset
+operator|+
+name|read
+argument_list|,
+name|fileName
+argument_list|)
+expr_stmt|;
 comment|//Pause if necessary
 name|maxBytesBeforePause
 operator|+=
@@ -7769,7 +7760,7 @@ block|{
 name|initWrite
 argument_list|()
 expr_stmt|;
-comment|//if if is a conf file read from config diectory
+comment|//if if is a conf file read from config directory
 name|File
 name|file
 init|=
@@ -8347,7 +8338,7 @@ name|NUMBER_BACKUPS_TO_KEEP_INIT_PARAM
 init|=
 literal|"maxNumberOfBackups"
 decl_stmt|;
-comment|/**     * Boolean param for tests that can be specified when using     * {@link #CMD_FETCH_INDEX} to force the current request to block until     * the fetch is complete.<b>NOTE:</b> This param is not advised for     * non-test code, since the the durration of the fetch for non-trivial    * indexes will likeley cause the request to time out.    *    * @lucene.internal    */
+comment|/**     * Boolean param for tests that can be specified when using     * {@link #CMD_FETCH_INDEX} to force the current request to block until     * the fetch is complete.<b>NOTE:</b> This param is not advised for     * non-test code, since the the duration of the fetch for non-trivial    * indexes will likeley cause the request to time out.    *    * @lucene.internal    */
 DECL|field|WAIT
 specifier|public
 specifier|static

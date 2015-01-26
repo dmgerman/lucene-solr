@@ -88,6 +88,26 @@ end_import
 
 begin_import
 import|import
+name|org
+operator|.
+name|slf4j
+operator|.
+name|Logger
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|slf4j
+operator|.
+name|LoggerFactory
+import|;
+end_import
+
+begin_import
+import|import
 name|java
 operator|.
 name|io
@@ -157,6 +177,25 @@ name|IndexDeletionPolicyWrapper
 extends|extends
 name|IndexDeletionPolicy
 block|{
+DECL|field|LOG
+specifier|private
+specifier|static
+specifier|final
+name|Logger
+name|LOG
+init|=
+name|LoggerFactory
+operator|.
+name|getLogger
+argument_list|(
+name|IndexDeletionPolicyWrapper
+operator|.
+name|class
+operator|.
+name|getName
+argument_list|()
+argument_list|)
+decl_stmt|;
 DECL|field|deletionPolicy
 specifier|private
 specifier|final
@@ -317,7 +356,22 @@ name|previousTime
 operator|<=
 name|timeToSet
 condition|)
+block|{
+name|LOG
+operator|.
+name|debug
+argument_list|(
+literal|"Commit point reservation for generation {} set to {} (requested reserve time of {})"
+argument_list|,
+name|indexGen
+argument_list|,
+name|timeToSet
+argument_list|,
+name|reserveTime
+argument_list|)
+expr_stmt|;
 break|break;
+block|}
 comment|// At this point, we overwrote a longer reservation, so we want to restore the older one.
 comment|// the problem is that an even longer reservation may come in concurrently
 comment|// and we don't want to overwrite that one too.  We simply keep retrying in a loop
