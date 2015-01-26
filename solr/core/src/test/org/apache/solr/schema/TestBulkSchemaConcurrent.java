@@ -625,6 +625,10 @@ control|)
 block|{
 if|if
 condition|(
+name|e
+operator|!=
+literal|null
+operator|&&
 operator|!
 name|e
 operator|.
