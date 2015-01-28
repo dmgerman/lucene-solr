@@ -306,6 +306,16 @@ name|java
 operator|.
 name|io
 operator|.
+name|Closeable
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
+name|io
+operator|.
 name|IOException
 import|;
 end_import
@@ -372,6 +382,8 @@ class|class
 name|SolrClient
 implements|implements
 name|Serializable
+implements|,
+name|Closeable
 block|{
 DECL|field|serialVersionUID
 specifier|private
@@ -1516,7 +1528,9 @@ return|return
 name|binder
 return|;
 block|}
-comment|/**    * Release allocated resources.    *    * @since solr 4.0    */
+comment|/**    * Release allocated resources.    *    * @since solr 4.0    * @deprecated Use close() instead.    */
+annotation|@
+name|Deprecated
 DECL|method|shutdown
 specifier|public
 specifier|abstract
@@ -1524,6 +1538,19 @@ name|void
 name|shutdown
 parameter_list|()
 function_decl|;
+comment|//@SuppressWarnings("deprecation")
+DECL|method|close
+specifier|public
+name|void
+name|close
+parameter_list|()
+throws|throws
+name|IOException
+block|{
+name|shutdown
+argument_list|()
+expr_stmt|;
+block|}
 block|}
 end_class
 

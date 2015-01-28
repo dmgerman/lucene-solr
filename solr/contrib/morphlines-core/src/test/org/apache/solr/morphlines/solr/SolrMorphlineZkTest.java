@@ -192,16 +192,6 @@ name|org
 operator|.
 name|junit
 operator|.
-name|BeforeClass
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|junit
-operator|.
 name|Test
 import|;
 end_import
@@ -681,7 +671,7 @@ argument_list|)
 expr_stmt|;
 name|cloudClient
 operator|.
-name|shutdown
+name|close
 argument_list|()
 expr_stmt|;
 block|}

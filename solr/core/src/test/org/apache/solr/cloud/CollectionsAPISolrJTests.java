@@ -1843,8 +1843,10 @@ argument_list|(
 literal|"core_node1"
 argument_list|)
 decl_stmt|;
+try|try
+init|(
 name|HttpSolrClient
-name|solrServer
+name|client
 init|=
 operator|new
 name|HttpSolrClient
@@ -1856,8 +1858,7 @@ argument_list|(
 literal|"base_url"
 argument_list|)
 argument_list|)
-decl_stmt|;
-try|try
+init|)
 block|{
 name|CoreAdminResponse
 name|status
@@ -1873,7 +1874,7 @@ argument_list|(
 literal|"core"
 argument_list|)
 argument_list|,
-name|solrServer
+name|client
 argument_list|)
 decl_stmt|;
 name|NamedList
@@ -1957,14 +1958,6 @@ operator|.
 name|getAbsolutePath
 argument_list|()
 argument_list|)
-expr_stmt|;
-block|}
-finally|finally
-block|{
-name|solrServer
-operator|.
-name|shutdown
-argument_list|()
 expr_stmt|;
 block|}
 name|CollectionAdminRequest

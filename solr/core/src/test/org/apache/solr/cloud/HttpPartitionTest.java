@@ -1921,10 +1921,12 @@ argument_list|)
 expr_stmt|;
 name|leaderSolr
 operator|.
-name|shutdown
+name|close
 argument_list|()
 expr_stmt|;
 comment|// if the add worked, then the doc must exist on the new leader
+try|try
+init|(
 name|HttpSolrClient
 name|newLeaderSolr
 init|=
@@ -1934,8 +1936,7 @@ name|currentLeader
 argument_list|,
 name|testCollectionName
 argument_list|)
-decl_stmt|;
-try|try
+init|)
 block|{
 name|assertDocExists
 argument_list|(
@@ -1947,14 +1948,6 @@ literal|"2"
 argument_list|)
 expr_stmt|;
 block|}
-finally|finally
-block|{
-name|newLeaderSolr
-operator|.
-name|shutdown
-argument_list|()
-expr_stmt|;
-block|}
 block|}
 catch|catch
 parameter_list|(
@@ -1963,18 +1956,20 @@ name|exc
 parameter_list|)
 block|{
 comment|// this is ok provided the doc doesn't exist on the current leader
-name|leaderSolr
-operator|=
+try|try
+init|(
+name|HttpSolrClient
+name|client
+init|=
 name|getHttpSolrClient
 argument_list|(
 name|currentLeader
 argument_list|,
 name|testCollectionName
 argument_list|)
-expr_stmt|;
-try|try
+init|)
 block|{
-name|leaderSolr
+name|client
 operator|.
 name|add
 argument_list|(
@@ -1982,14 +1977,6 @@ name|doc
 argument_list|)
 expr_stmt|;
 comment|// this should work
-block|}
-finally|finally
-block|{
-name|leaderSolr
-operator|.
-name|shutdown
-argument_list|()
-expr_stmt|;
 block|}
 block|}
 name|List
@@ -2437,7 +2424,7 @@ condition|)
 block|{
 name|leaderSolr
 operator|.
-name|shutdown
+name|close
 argument_list|()
 expr_stmt|;
 block|}
@@ -2451,7 +2438,7 @@ control|)
 block|{
 name|replicaSolr
 operator|.
-name|shutdown
+name|close
 argument_list|()
 expr_stmt|;
 block|}

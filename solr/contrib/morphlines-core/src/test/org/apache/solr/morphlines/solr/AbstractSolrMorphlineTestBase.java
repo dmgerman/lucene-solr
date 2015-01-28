@@ -952,7 +952,7 @@ literal|null
 expr_stmt|;
 name|solrClient
 operator|.
-name|shutdown
+name|close
 argument_list|()
 expr_stmt|;
 name|solrClient

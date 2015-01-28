@@ -1635,6 +1635,9 @@ argument_list|(
 name|coreName
 argument_list|)
 expr_stmt|;
+empty_stmt|;
+try|try
+init|(
 name|HttpSolrClient
 name|client
 init|=
@@ -1649,8 +1652,7 @@ name|this
 operator|.
 name|client
 argument_list|)
-decl_stmt|;
-try|try
+init|)
 block|{
 name|client
 operator|.
@@ -1712,14 +1714,6 @@ operator|)
 name|t
 throw|;
 block|}
-block|}
-finally|finally
-block|{
-name|client
-operator|.
-name|shutdown
-argument_list|()
-expr_stmt|;
 block|}
 block|}
 block|}

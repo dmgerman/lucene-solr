@@ -344,14 +344,6 @@ parameter_list|()
 throws|throws
 name|Exception
 block|{
-name|CloudSolrClient
-name|client
-init|=
-name|createCloudClient
-argument_list|(
-literal|null
-argument_list|)
-decl_stmt|;
 name|reps
 operator|=
 name|random
@@ -366,6 +358,15 @@ literal|1
 expr_stmt|;
 comment|// make sure and do at least one.
 try|try
+init|(
+name|CloudSolrClient
+name|client
+init|=
+name|createCloudClient
+argument_list|(
+literal|null
+argument_list|)
+init|)
 block|{
 comment|// Mix up a bunch of different combinations of shards and replicas in order to exercise boundary cases.
 comment|// shards, replicationfactor, maxreplicaspernode
@@ -433,15 +434,6 @@ literal|null
 argument_list|,
 literal|"conf1"
 argument_list|)
-expr_stmt|;
-block|}
-finally|finally
-block|{
-comment|//remove collections
-name|client
-operator|.
-name|shutdown
-argument_list|()
 expr_stmt|;
 block|}
 name|waitForCollection

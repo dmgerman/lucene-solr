@@ -66,20 +66,6 @@ name|http
 operator|.
 name|client
 operator|.
-name|HttpClient
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|http
-operator|.
-name|client
-operator|.
 name|methods
 operator|.
 name|HttpGet
@@ -1004,6 +990,17 @@ parameter_list|()
 throws|throws
 name|Exception
 block|{
+name|SolrQuery
+name|q
+init|=
+operator|new
+name|SolrQuery
+argument_list|(
+literal|"*:*"
+argument_list|)
+decl_stmt|;
+try|try
+init|(
 name|HttpSolrClient
 name|client
 init|=
@@ -1020,16 +1017,8 @@ argument_list|()
 operator|+
 literal|"/slow/foo"
 argument_list|)
-decl_stmt|;
-name|SolrQuery
-name|q
-init|=
-operator|new
-name|SolrQuery
-argument_list|(
-literal|"*:*"
-argument_list|)
-decl_stmt|;
+init|)
+block|{
 name|client
 operator|.
 name|setSoTimeout
@@ -1037,8 +1026,6 @@ argument_list|(
 literal|2000
 argument_list|)
 expr_stmt|;
-try|try
-block|{
 name|QueryResponse
 name|response
 init|=
@@ -1079,11 +1066,6 @@ argument_list|)
 argument_list|)
 expr_stmt|;
 block|}
-name|client
-operator|.
-name|shutdown
-argument_list|()
-expr_stmt|;
 block|}
 comment|/**    * test that SolrExceptions thrown by HttpSolrClient can    * correctly encapsulate http status codes even when not on the list of    * ErrorCodes solr may return.    */
 DECL|method|testSolrExceptionCodeNotFromSolr
@@ -1120,6 +1102,8 @@ name|status
 argument_list|)
 argument_list|)
 expr_stmt|;
+try|try
+init|(
 name|HttpSolrClient
 name|client
 init|=
@@ -1136,8 +1120,7 @@ argument_list|()
 operator|+
 literal|"/debug/foo"
 argument_list|)
-decl_stmt|;
-try|try
+init|)
 block|{
 name|DebugServlet
 operator|.
@@ -1205,11 +1188,6 @@ block|}
 block|}
 finally|finally
 block|{
-name|client
-operator|.
-name|shutdown
-argument_list|()
-expr_stmt|;
 name|DebugServlet
 operator|.
 name|clear
@@ -1224,12 +1202,16 @@ specifier|public
 name|void
 name|testQuery
 parameter_list|()
+throws|throws
+name|IOException
 block|{
 name|DebugServlet
 operator|.
 name|clear
 argument_list|()
 expr_stmt|;
+try|try
+init|(
 name|HttpSolrClient
 name|client
 init|=
@@ -1246,7 +1228,8 @@ argument_list|()
 operator|+
 literal|"/debug/foo"
 argument_list|)
-decl_stmt|;
+init|)
+block|{
 name|SolrQuery
 name|q
 init|=
@@ -1284,7 +1267,7 @@ parameter_list|(
 name|Throwable
 name|t
 parameter_list|)
-block|{}
+block|{       }
 comment|//default method
 name|assertEquals
 argument_list|(
@@ -1514,7 +1497,7 @@ parameter_list|(
 name|Throwable
 name|t
 parameter_list|)
-block|{}
+block|{       }
 name|assertEquals
 argument_list|(
 literal|"post"
@@ -1736,7 +1719,7 @@ parameter_list|(
 name|Throwable
 name|t
 parameter_list|)
-block|{}
+block|{       }
 name|assertEquals
 argument_list|(
 literal|"put"
@@ -1967,7 +1950,7 @@ parameter_list|(
 name|Throwable
 name|t
 parameter_list|)
-block|{}
+block|{       }
 name|assertEquals
 argument_list|(
 literal|"get"
@@ -2184,7 +2167,7 @@ parameter_list|(
 name|Throwable
 name|t
 parameter_list|)
-block|{}
+block|{       }
 name|assertEquals
 argument_list|(
 literal|"post"
@@ -2414,7 +2397,7 @@ parameter_list|(
 name|Throwable
 name|t
 parameter_list|)
-block|{}
+block|{       }
 name|assertEquals
 argument_list|(
 literal|"put"
@@ -2611,11 +2594,7 @@ literal|"Content-Type"
 argument_list|)
 argument_list|)
 expr_stmt|;
-name|client
-operator|.
-name|shutdown
-argument_list|()
-expr_stmt|;
+block|}
 block|}
 annotation|@
 name|Test
@@ -2624,12 +2603,16 @@ specifier|public
 name|void
 name|testDelete
 parameter_list|()
+throws|throws
+name|IOException
 block|{
 name|DebugServlet
 operator|.
 name|clear
 argument_list|()
 expr_stmt|;
+try|try
+init|(
 name|HttpSolrClient
 name|client
 init|=
@@ -2646,7 +2629,8 @@ argument_list|()
 operator|+
 literal|"/debug/foo"
 argument_list|)
-decl_stmt|;
+init|)
+block|{
 try|try
 block|{
 name|client
@@ -2662,7 +2646,7 @@ parameter_list|(
 name|Throwable
 name|t
 parameter_list|)
-block|{}
+block|{       }
 comment|//default method
 name|assertEquals
 argument_list|(
@@ -2843,7 +2827,7 @@ parameter_list|(
 name|Throwable
 name|t
 parameter_list|)
-block|{}
+block|{       }
 name|assertEquals
 argument_list|(
 literal|"post"
@@ -2993,11 +2977,7 @@ literal|"Connection"
 argument_list|)
 argument_list|)
 expr_stmt|;
-name|client
-operator|.
-name|shutdown
-argument_list|()
-expr_stmt|;
+block|}
 block|}
 annotation|@
 name|Test
@@ -3006,12 +2986,16 @@ specifier|public
 name|void
 name|testUpdate
 parameter_list|()
+throws|throws
+name|IOException
 block|{
 name|DebugServlet
 operator|.
 name|clear
 argument_list|()
 expr_stmt|;
+try|try
+init|(
 name|HttpSolrClient
 name|client
 init|=
@@ -3028,7 +3012,8 @@ argument_list|()
 operator|+
 literal|"/debug/foo"
 argument_list|)
-decl_stmt|;
+init|)
+block|{
 name|UpdateRequest
 name|req
 init|=
@@ -3069,7 +3054,7 @@ parameter_list|(
 name|Throwable
 name|t
 parameter_list|)
-block|{}
+block|{       }
 comment|//default method
 name|assertEquals
 argument_list|(
@@ -3260,7 +3245,7 @@ parameter_list|(
 name|Throwable
 name|t
 parameter_list|)
-block|{}
+block|{       }
 name|assertEquals
 argument_list|(
 literal|"post"
@@ -3459,7 +3444,7 @@ parameter_list|(
 name|Throwable
 name|t
 parameter_list|)
-block|{}
+block|{       }
 name|assertEquals
 argument_list|(
 literal|"post"
@@ -3619,11 +3604,7 @@ literal|0
 index|]
 argument_list|)
 expr_stmt|;
-name|client
-operator|.
-name|shutdown
-argument_list|()
-expr_stmt|;
+block|}
 block|}
 annotation|@
 name|Test
@@ -3635,6 +3616,8 @@ parameter_list|()
 throws|throws
 name|Exception
 block|{
+try|try
+init|(
 name|HttpSolrClient
 name|client
 init|=
@@ -3651,7 +3634,8 @@ argument_list|()
 operator|+
 literal|"/redirect/foo"
 argument_list|)
-decl_stmt|;
+init|)
+block|{
 name|SolrQuery
 name|q
 init|=
@@ -3780,11 +3764,7 @@ argument_list|)
 argument_list|)
 expr_stmt|;
 block|}
-name|client
-operator|.
-name|shutdown
-argument_list|()
-expr_stmt|;
+block|}
 block|}
 annotation|@
 name|Test
@@ -3796,6 +3776,8 @@ parameter_list|()
 throws|throws
 name|Exception
 block|{
+try|try
+init|(
 name|HttpSolrClient
 name|client
 init|=
@@ -3812,8 +3794,7 @@ argument_list|()
 operator|+
 literal|"/debug/foo"
 argument_list|)
-decl_stmt|;
-try|try
+init|)
 block|{
 name|SolrQuery
 name|q
@@ -3929,14 +3910,6 @@ argument_list|)
 argument_list|)
 expr_stmt|;
 block|}
-finally|finally
-block|{
-name|client
-operator|.
-name|shutdown
-argument_list|()
-expr_stmt|;
-block|}
 comment|// verify server compresses output
 name|HttpGet
 name|get
@@ -4044,8 +4017,11 @@ argument_list|()
 expr_stmt|;
 block|}
 comment|// verify compressed response can be handled
+try|try
+init|(
+name|HttpSolrClient
 name|client
-operator|=
+init|=
 operator|new
 name|HttpSolrClient
 argument_list|(
@@ -4059,8 +4035,7 @@ argument_list|()
 operator|+
 literal|"/collection1"
 argument_list|)
-expr_stmt|;
-try|try
+init|)
 block|{
 name|client
 operator|.
@@ -4099,14 +4074,6 @@ argument_list|()
 argument_list|)
 expr_stmt|;
 block|}
-finally|finally
-block|{
-name|client
-operator|.
-name|shutdown
-argument_list|()
-expr_stmt|;
-block|}
 block|}
 annotation|@
 name|Test
@@ -4118,6 +4085,8 @@ parameter_list|()
 throws|throws
 name|IOException
 block|{
+try|try
+init|(
 name|CloseableHttpClient
 name|httpClient
 init|=
@@ -4127,10 +4096,10 @@ name|createClient
 argument_list|(
 literal|null
 argument_list|)
-decl_stmt|;
+init|;
 name|HttpSolrClient
 name|solrClient
-init|=
+operator|=
 operator|new
 name|HttpSolrClient
 argument_list|(
@@ -4144,8 +4113,7 @@ argument_list|()
 argument_list|,
 name|httpClient
 argument_list|)
-decl_stmt|;
-try|try
+init|)
 block|{
 try|try
 block|{
@@ -4189,19 +4157,6 @@ name|UnsupportedOperationException
 name|e
 parameter_list|)
 block|{}
-block|}
-finally|finally
-block|{
-name|solrClient
-operator|.
-name|shutdown
-argument_list|()
-expr_stmt|;
-name|httpClient
-operator|.
-name|close
-argument_list|()
-expr_stmt|;
 block|}
 block|}
 annotation|@
@@ -4673,6 +4628,8 @@ parameter_list|()
 throws|throws
 name|Exception
 block|{
+try|try
+init|(
 name|HttpSolrClient
 name|client
 init|=
@@ -4689,8 +4646,7 @@ argument_list|()
 operator|+
 literal|"/debug/foo"
 argument_list|)
-decl_stmt|;
-try|try
+init|)
 block|{
 comment|// test without request query params
 name|DebugServlet
@@ -4978,14 +4934,6 @@ name|client
 argument_list|,
 name|req
 argument_list|)
-expr_stmt|;
-block|}
-finally|finally
-block|{
-name|client
-operator|.
-name|shutdown
-argument_list|()
 expr_stmt|;
 block|}
 block|}

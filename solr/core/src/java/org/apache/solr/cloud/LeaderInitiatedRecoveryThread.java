@@ -669,6 +669,8 @@ name|replicaCoreNodeName
 argument_list|)
 expr_stmt|;
 block|}
+try|try
+init|(
 name|HttpSolrClient
 name|client
 init|=
@@ -677,8 +679,7 @@ name|HttpSolrClient
 argument_list|(
 name|recoveryUrl
 argument_list|)
-decl_stmt|;
-try|try
+init|)
 block|{
 name|client
 operator|.
@@ -790,14 +791,6 @@ literal|false
 expr_stmt|;
 block|}
 block|}
-block|}
-finally|finally
-block|{
-name|client
-operator|.
-name|shutdown
-argument_list|()
-expr_stmt|;
 block|}
 comment|// wait a few seconds
 if|if

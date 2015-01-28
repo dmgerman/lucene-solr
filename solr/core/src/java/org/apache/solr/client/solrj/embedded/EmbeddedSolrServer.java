@@ -1218,6 +1218,8 @@ block|}
 comment|/**    * Shutdown all cores within the EmbeddedSolrServer instance    */
 annotation|@
 name|Override
+annotation|@
+name|Deprecated
 DECL|method|shutdown
 specifier|public
 name|void
@@ -1226,6 +1228,20 @@ parameter_list|()
 block|{
 name|coreContainer
 operator|.
+name|shutdown
+argument_list|()
+expr_stmt|;
+block|}
+annotation|@
+name|Override
+DECL|method|close
+specifier|public
+name|void
+name|close
+parameter_list|()
+throws|throws
+name|IOException
+block|{
 name|shutdown
 argument_list|()
 expr_stmt|;

@@ -773,6 +773,8 @@ name|length
 argument_list|()
 argument_list|)
 expr_stmt|;
+try|try
+init|(
 name|HttpSolrClient
 name|baseClient
 init|=
@@ -781,7 +783,8 @@ name|HttpSolrClient
 argument_list|(
 name|baseUrl
 argument_list|)
-decl_stmt|;
+init|)
+block|{
 comment|// we only set the connect timeout, not so timeout
 name|baseClient
 operator|.
@@ -797,15 +800,7 @@ argument_list|(
 name|request
 argument_list|)
 expr_stmt|;
-name|baseClient
-operator|.
-name|shutdown
-argument_list|()
-expr_stmt|;
-name|baseClient
-operator|=
-literal|null
-expr_stmt|;
+block|}
 name|waitForThingsToLevelOut
 argument_list|(
 literal|15

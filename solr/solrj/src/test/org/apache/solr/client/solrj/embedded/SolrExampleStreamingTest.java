@@ -368,6 +368,8 @@ name|ArrayList
 argument_list|<>
 argument_list|()
 decl_stmt|;
+try|try
+init|(
 name|ConcurrentUpdateSolrClient
 name|concurrentClient
 init|=
@@ -408,7 +410,8 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
-decl_stmt|;
+init|)
+block|{
 name|int
 name|docId
 init|=
@@ -525,11 +528,7 @@ operator|.
 name|blockUntilFinished
 argument_list|()
 expr_stmt|;
-name|concurrentClient
-operator|.
-name|shutdown
-argument_list|()
-expr_stmt|;
+block|}
 if|if
 condition|(
 literal|0

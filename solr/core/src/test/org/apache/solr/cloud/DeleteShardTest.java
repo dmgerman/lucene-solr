@@ -766,6 +766,8 @@ name|length
 argument_list|()
 argument_list|)
 expr_stmt|;
+try|try
+init|(
 name|HttpSolrClient
 name|baseServer
 init|=
@@ -774,8 +776,7 @@ name|HttpSolrClient
 argument_list|(
 name|baseUrl
 argument_list|)
-decl_stmt|;
-try|try
+init|)
 block|{
 name|baseServer
 operator|.
@@ -797,14 +798,6 @@ name|request
 argument_list|(
 name|request
 argument_list|)
-expr_stmt|;
-block|}
-finally|finally
-block|{
-name|baseServer
-operator|.
-name|shutdown
-argument_list|()
 expr_stmt|;
 block|}
 block|}

@@ -1586,6 +1586,8 @@ block|{
 name|blockAndDoRetries
 argument_list|()
 expr_stmt|;
+try|try
+init|(
 name|HttpSolrClient
 name|client
 init|=
@@ -1604,8 +1606,7 @@ operator|.
 name|getHttpClient
 argument_list|()
 argument_list|)
-decl_stmt|;
-try|try
+init|)
 block|{
 name|client
 operator|.
@@ -1646,14 +1647,6 @@ argument_list|,
 name|e
 argument_list|)
 throw|;
-block|}
-finally|finally
-block|{
-name|client
-operator|.
-name|shutdown
-argument_list|()
-expr_stmt|;
 block|}
 return|return;
 block|}

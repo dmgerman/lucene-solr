@@ -1726,6 +1726,8 @@ operator|.
 name|toString
 argument_list|()
 decl_stmt|;
+try|try
+init|(
 name|HttpSolrClient
 name|adminClient
 init|=
@@ -1734,7 +1736,8 @@ name|HttpSolrClient
 argument_list|(
 name|url
 argument_list|)
-decl_stmt|;
+init|)
+block|{
 name|SolrQuery
 name|q
 init|=
@@ -1787,11 +1790,7 @@ literal|"lucene"
 argument_list|)
 argument_list|)
 expr_stmt|;
-name|adminClient
-operator|.
-name|shutdown
-argument_list|()
-expr_stmt|;
+block|}
 block|}
 block|}
 comment|/**    * query the example    */
@@ -3641,7 +3640,7 @@ block|{
 comment|/* Do not close in case of using EmbeddedSolrServer,        * as that would close the CoreContainer */
 name|client
 operator|.
-name|shutdown
+name|close
 argument_list|()
 expr_stmt|;
 block|}

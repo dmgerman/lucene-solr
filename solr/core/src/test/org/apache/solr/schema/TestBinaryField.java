@@ -533,12 +533,15 @@ parameter_list|()
 throws|throws
 name|Exception
 block|{
+try|try
+init|(
 name|SolrClient
 name|client
 init|=
 name|getSolrClient
 argument_list|()
-decl_stmt|;
+init|)
+block|{
 name|byte
 index|[]
 name|buf
@@ -710,11 +713,6 @@ literal|"*:*"
 argument_list|)
 argument_list|)
 decl_stmt|;
-name|client
-operator|.
-name|shutdown
-argument_list|()
-expr_stmt|;
 name|SolrDocumentList
 name|res
 init|=
@@ -1154,6 +1152,7 @@ argument_list|,
 name|b
 argument_list|)
 expr_stmt|;
+block|}
 block|}
 block|}
 block|}

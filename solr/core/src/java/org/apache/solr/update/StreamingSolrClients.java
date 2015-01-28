@@ -677,7 +677,7 @@ control|)
 block|{
 name|client
 operator|.
-name|shutdown
+name|close
 argument_list|()
 expr_stmt|;
 block|}

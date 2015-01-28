@@ -449,6 +449,8 @@ parameter_list|()
 throws|throws
 name|Exception
 block|{
+try|try
+init|(
 name|HttpSolrClient
 name|client
 init|=
@@ -457,7 +459,8 @@ name|HttpSolrClient
 operator|)
 name|createNewSolrClient
 argument_list|()
-decl_stmt|;
+init|)
+block|{
 name|SolrQuery
 name|query
 init|=
@@ -516,11 +519,7 @@ argument_list|(
 name|responseString
 argument_list|)
 expr_stmt|;
-name|client
-operator|.
-name|shutdown
-argument_list|()
-expr_stmt|;
+block|}
 block|}
 DECL|method|assertResponse
 specifier|private

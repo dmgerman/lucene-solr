@@ -3772,6 +3772,22 @@ block|}
 comment|/**    * Close the {@link ClientConnectionManager} from the internal client.    */
 annotation|@
 name|Override
+DECL|method|close
+specifier|public
+name|void
+name|close
+parameter_list|()
+throws|throws
+name|IOException
+block|{
+name|shutdown
+argument_list|()
+expr_stmt|;
+block|}
+annotation|@
+name|Override
+annotation|@
+name|Deprecated
 DECL|method|shutdown
 specifier|public
 name|void
