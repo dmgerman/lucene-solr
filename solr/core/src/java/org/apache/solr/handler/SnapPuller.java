@@ -2944,7 +2944,7 @@ operator|!
 name|isFullCopyNeeded
 condition|)
 block|{
-comment|// a searcher might be using some flushed but committed segments
+comment|// a searcher might be using some flushed but not committed segments
 comment|// because of soft commits (which open a searcher on IW's data)
 comment|// so we need to close the existing searcher on the last commit
 comment|// and wait until we are able to clean up all unused lucene files
