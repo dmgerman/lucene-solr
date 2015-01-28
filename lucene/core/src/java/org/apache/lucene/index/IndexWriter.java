@@ -14535,7 +14535,16 @@ assert|;
 comment|// beware of zombies
 name|SegmentReader
 name|newReader
-init|=
+decl_stmt|;
+synchronized|synchronized
+init|(
+name|this
+init|)
+block|{
+comment|// We must also sync on IW here, because another thread could be writing
+comment|// new DV updates / remove old gen field infos files causing FNFE:
+name|newReader
+operator|=
 operator|new
 name|SegmentReader
 argument_list|(
@@ -14554,7 +14563,8 @@ argument_list|()
 operator|-
 name|delCount
 argument_list|)
-decl_stmt|;
+expr_stmt|;
+block|}
 name|boolean
 name|released
 init|=
