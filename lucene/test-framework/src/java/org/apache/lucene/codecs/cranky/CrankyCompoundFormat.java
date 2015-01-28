@@ -233,27 +233,6 @@ name|context
 argument_list|)
 expr_stmt|;
 block|}
-annotation|@
-name|Override
-DECL|method|files
-specifier|public
-name|String
-index|[]
-name|files
-parameter_list|(
-name|SegmentInfo
-name|si
-parameter_list|)
-block|{
-return|return
-name|delegate
-operator|.
-name|files
-argument_list|(
-name|si
-argument_list|)
-return|;
-block|}
 block|}
 end_class
 

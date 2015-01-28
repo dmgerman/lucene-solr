@@ -141,20 +141,6 @@ parameter_list|)
 throws|throws
 name|IOException
 function_decl|;
-comment|/**    * Returns the compound file names used by this segment.    */
-comment|// TODO: get this out of here, and use trackingdirwrapper. but this is really scary in IW right now...
-comment|// NOTE: generally si.useCompoundFile is not even yet 'set' when this is called.
-DECL|method|files
-specifier|public
-specifier|abstract
-name|String
-index|[]
-name|files
-parameter_list|(
-name|SegmentInfo
-name|si
-parameter_list|)
-function_decl|;
 block|}
 end_class
 
