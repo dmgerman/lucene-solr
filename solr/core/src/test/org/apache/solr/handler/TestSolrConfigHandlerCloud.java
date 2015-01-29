@@ -82,9 +82,13 @@ name|org
 operator|.
 name|apache
 operator|.
-name|solr
+name|lucene
 operator|.
-name|SolrTestCaseJ4
+name|util
+operator|.
+name|LuceneTestCase
+operator|.
+name|BadApple
 import|;
 end_import
 
@@ -329,6 +333,13 @@ import|;
 end_import
 
 begin_class
+annotation|@
+name|BadApple
+argument_list|(
+name|bugUrl
+operator|=
+literal|"https://issues.apache.org/jira/browse/SOLR-6924"
+argument_list|)
 DECL|class|TestSolrConfigHandlerCloud
 specifier|public
 class|class
