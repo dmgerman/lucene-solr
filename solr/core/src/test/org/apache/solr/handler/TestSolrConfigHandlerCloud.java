@@ -42,6 +42,16 @@ name|java
 operator|.
 name|util
 operator|.
+name|Arrays
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
+name|util
+operator|.
 name|List
 import|;
 end_import
@@ -63,6 +73,18 @@ operator|.
 name|util
 operator|.
 name|Objects
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|solr
+operator|.
+name|SolrTestCaseJ4
 import|;
 end_import
 
@@ -1058,7 +1080,11 @@ literal|"  'set' : {'y':{\n"
 operator|+
 literal|"                'c':'CY val',\n"
 operator|+
-literal|"                'b': 'BY val'}\n"
+literal|"                'b': 'BY val', "
+operator|+
+literal|"                'i': 20, "
+operator|+
+literal|"                'd': ['val 1', 'val 2']}\n"
 operator|+
 literal|"             }\n"
 operator|+
@@ -1117,6 +1143,24 @@ argument_list|,
 literal|"CY val"
 argument_list|,
 literal|10
+argument_list|)
+expr_stmt|;
+name|compareValues
+argument_list|(
+name|result
+argument_list|,
+literal|20l
+argument_list|,
+name|asList
+argument_list|(
+literal|"response"
+argument_list|,
+literal|"params"
+argument_list|,
+literal|"y"
+argument_list|,
+literal|"i"
+argument_list|)
 argument_list|)
 expr_stmt|;
 name|result
@@ -1184,6 +1228,41 @@ argument_list|(
 literal|"params"
 argument_list|,
 literal|"a"
+argument_list|)
+argument_list|)
+expr_stmt|;
+name|compareValues
+argument_list|(
+name|result
+argument_list|,
+name|Arrays
+operator|.
+name|asList
+argument_list|(
+literal|"val 1"
+argument_list|,
+literal|"val 2"
+argument_list|)
+argument_list|,
+name|asList
+argument_list|(
+literal|"params"
+argument_list|,
+literal|"d"
+argument_list|)
+argument_list|)
+expr_stmt|;
+name|compareValues
+argument_list|(
+name|result
+argument_list|,
+literal|"20"
+argument_list|,
+name|asList
+argument_list|(
+literal|"params"
+argument_list|,
+literal|"i"
 argument_list|)
 argument_list|)
 expr_stmt|;
@@ -1434,7 +1513,7 @@ parameter_list|(
 name|Map
 name|result
 parameter_list|,
-name|String
+name|Object
 name|expected
 parameter_list|,
 name|List
