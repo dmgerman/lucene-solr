@@ -1279,6 +1279,14 @@ operator|.
 name|doc
 argument_list|(
 name|docid
+argument_list|,
+name|rsp
+operator|.
+name|getReturnFields
+argument_list|()
+operator|.
+name|getLuceneFieldNames
+argument_list|()
 argument_list|)
 decl_stmt|;
 name|SolrDocument
