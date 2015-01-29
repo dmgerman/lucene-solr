@@ -995,12 +995,6 @@ parameter_list|,
 name|SegmentInfo
 name|si
 parameter_list|,
-name|Collection
-argument_list|<
-name|String
-argument_list|>
-name|files
-parameter_list|,
 name|IOContext
 name|context
 parameter_list|)
@@ -1026,7 +1020,10 @@ decl_stmt|;
 name|int
 name|numFiles
 init|=
+name|si
+operator|.
 name|files
+argument_list|()
 operator|.
 name|size
 argument_list|()
@@ -1035,7 +1032,10 @@ name|String
 name|names
 index|[]
 init|=
+name|si
+operator|.
 name|files
+argument_list|()
 operator|.
 name|toArray
 argument_list|(

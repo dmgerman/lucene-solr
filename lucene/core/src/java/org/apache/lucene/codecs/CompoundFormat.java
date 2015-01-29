@@ -28,16 +28,6 @@ end_import
 
 begin_import
 import|import
-name|java
-operator|.
-name|util
-operator|.
-name|Collection
-import|;
-end_import
-
-begin_import
-import|import
 name|org
 operator|.
 name|apache
@@ -116,7 +106,7 @@ parameter_list|)
 throws|throws
 name|IOException
 function_decl|;
-comment|/**    * Packs the provided files into a compound format.    */
+comment|/**    * Packs the provided segment's files into a compound format.    */
 DECL|method|write
 specifier|public
 specifier|abstract
@@ -128,12 +118,6 @@ name|dir
 parameter_list|,
 name|SegmentInfo
 name|si
-parameter_list|,
-name|Collection
-argument_list|<
-name|String
-argument_list|>
-name|files
 parameter_list|,
 name|IOContext
 name|context

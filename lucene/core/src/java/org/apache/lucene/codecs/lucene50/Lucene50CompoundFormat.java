@@ -227,12 +227,6 @@ parameter_list|,
 name|SegmentInfo
 name|si
 parameter_list|,
-name|Collection
-argument_list|<
-name|String
-argument_list|>
-name|files
-parameter_list|,
 name|IOContext
 name|context
 parameter_list|)
@@ -339,7 +333,10 @@ name|entries
 operator|.
 name|writeVInt
 argument_list|(
+name|si
+operator|.
 name|files
+argument_list|()
 operator|.
 name|size
 argument_list|()
@@ -350,7 +347,10 @@ control|(
 name|String
 name|file
 range|:
+name|si
+operator|.
 name|files
+argument_list|()
 control|)
 block|{
 comment|// write bytes for file

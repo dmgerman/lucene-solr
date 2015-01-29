@@ -16939,17 +16939,6 @@ argument_list|)
 expr_stmt|;
 block|}
 comment|// Now merge all added files
-name|Collection
-argument_list|<
-name|String
-argument_list|>
-name|files
-init|=
-name|info
-operator|.
-name|files
-argument_list|()
-decl_stmt|;
 name|boolean
 name|success
 init|=
@@ -16970,8 +16959,6 @@ argument_list|(
 name|directory
 argument_list|,
 name|info
-argument_list|,
-name|files
 argument_list|,
 name|context
 argument_list|)
