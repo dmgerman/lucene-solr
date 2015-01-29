@@ -102,6 +102,20 @@ end_import
 
 begin_import
 import|import
+name|java
+operator|.
+name|util
+operator|.
+name|concurrent
+operator|.
+name|atomic
+operator|.
+name|AtomicLong
+import|;
+end_import
+
+begin_import
+import|import
 name|org
 operator|.
 name|apache
@@ -315,6 +329,17 @@ specifier|private
 specifier|final
 name|String
 name|confDir
+decl_stmt|;
+comment|// used internally by tests to track total count of failed tran log loads in init
+DECL|field|INIT_FAILED_LOGS_COUNT
+specifier|public
+specifier|static
+name|AtomicLong
+name|INIT_FAILED_LOGS_COUNT
+init|=
+operator|new
+name|AtomicLong
+argument_list|()
 decl_stmt|;
 DECL|method|HdfsUpdateLog
 specifier|public
@@ -970,6 +995,11 @@ name|Exception
 name|e
 parameter_list|)
 block|{
+name|INIT_FAILED_LOGS_COUNT
+operator|.
+name|incrementAndGet
+argument_list|()
+expr_stmt|;
 name|SolrException
 operator|.
 name|log
