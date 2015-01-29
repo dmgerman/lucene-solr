@@ -14241,7 +14241,7 @@ operator|=
 name|enabled
 expr_stmt|;
 block|}
-comment|/**     * Compares two strings with a collator, also looking to see if the the strings    * are impacted by jdk bugs. may not avoid all jdk bugs in tests.    * see LUCENE-2606    */
+comment|/**     * Compares two strings with a collator, also looking to see if the the strings    * are impacted by jdk bugs. may not avoid all jdk bugs in tests.    * see https://bugs.openjdk.java.net/browse/JDK-8071862    */
 DECL|method|collate
 specifier|public
 specifier|static
@@ -14295,9 +14295,19 @@ name|assumeTrue
 argument_list|(
 literal|"hit JDK collator bug"
 argument_list|,
+name|Integer
+operator|.
+name|signum
+argument_list|(
 name|v1
+argument_list|)
 operator|==
+name|Integer
+operator|.
+name|signum
+argument_list|(
 name|v2
+argument_list|)
 argument_list|)
 expr_stmt|;
 return|return
