@@ -384,7 +384,9 @@ name|stallControl
 operator|=
 operator|new
 name|DocumentsWriterStallControl
-argument_list|()
+argument_list|(
+name|config
+argument_list|)
 expr_stmt|;
 name|this
 operator|.
