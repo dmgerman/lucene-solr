@@ -3034,11 +3034,6 @@ argument_list|,
 name|watchedCollection
 argument_list|)
 decl_stmt|;
-assert|assert
-name|live
-operator|!=
-literal|null
-assert|;
 if|if
 condition|(
 name|live
