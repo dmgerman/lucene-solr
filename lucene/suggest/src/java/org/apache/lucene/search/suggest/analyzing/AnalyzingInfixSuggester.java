@@ -3040,7 +3040,7 @@ return|return
 name|results
 return|;
 block|}
-comment|/**    * Create the results based on the search hits.    * Can be overridden by subclass to add particular behavior (e.g. weight transformation)    * @throws IOException If there are problems reading fields from the underlying Lucene index.    */
+comment|/**    * Create the results based on the search hits.    * Can be overridden by subclass to add particular behavior (e.g. weight transformation).    * Note that there is no prefix toke (the {@code prefixToken} argument will    * be null) whenever the final token in the incoming request was in fact finished    * (had trailing characters, such as white-space).    *    * @throws IOException If there are problems reading fields from the underlying Lucene index.    */
 DECL|method|createResults
 specifier|protected
 name|List
