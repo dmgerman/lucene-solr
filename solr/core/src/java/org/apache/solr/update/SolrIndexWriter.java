@@ -151,6 +151,8 @@ operator|.
 name|core
 operator|.
 name|DirectoryFactory
+operator|.
+name|DirContext
 import|;
 end_import
 
@@ -165,8 +167,20 @@ operator|.
 name|core
 operator|.
 name|DirectoryFactory
+import|;
+end_import
+
+begin_import
+import|import
+name|org
 operator|.
-name|DirContext
+name|apache
+operator|.
+name|solr
+operator|.
+name|core
+operator|.
+name|SolrCore
 import|;
 end_import
 
@@ -299,6 +313,9 @@ specifier|static
 name|SolrIndexWriter
 name|create
 parameter_list|(
+name|SolrCore
+name|core
+parameter_list|,
 name|String
 name|name
 parameter_list|,
@@ -357,6 +374,8 @@ operator|=
 operator|new
 name|SolrIndexWriter
 argument_list|(
+name|core
+argument_list|,
 name|name
 argument_list|,
 name|path
@@ -419,6 +438,9 @@ DECL|method|SolrIndexWriter
 specifier|private
 name|SolrIndexWriter
 parameter_list|(
+name|SolrCore
+name|core
+parameter_list|,
 name|String
 name|name
 parameter_list|,
@@ -454,7 +476,7 @@ name|config
 operator|.
 name|toIndexWriterConfig
 argument_list|(
-name|schema
+name|core
 argument_list|)
 operator|.
 name|setOpenMode

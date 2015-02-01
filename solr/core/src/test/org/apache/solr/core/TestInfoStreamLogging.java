@@ -128,9 +128,6 @@ name|h
 operator|.
 name|getCore
 argument_list|()
-operator|.
-name|getLatestSchema
-argument_list|()
 argument_list|)
 decl_stmt|;
 name|assertTrue

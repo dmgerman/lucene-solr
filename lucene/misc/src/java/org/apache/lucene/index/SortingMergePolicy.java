@@ -327,7 +327,7 @@ import|;
 end_import
 
 begin_comment
-comment|/** A {@link MergePolicy} that reorders documents according to a {@link Sort}  *  before merging them. As a consequence, all segments resulting from a merge  *  will be sorted while segments resulting from a flush will be in the order  *  in which documents have been added.  *<p><b>NOTE</b>: Never use this policy if you rely on  *  {@link IndexWriter#addDocuments(Iterable, Analyzer) IndexWriter.addDocuments}  *  to have sequentially-assigned doc IDs, this policy will scatter doc IDs.  *<p><b>NOTE</b>: This policy should only be used with idempotent {@code Sort}s   *  so that the order of segments is predictable. For example, using   *  {@link Sort#INDEXORDER} in reverse (which is not idempotent) will make   *  the order of documents in a segment depend on the number of times the segment   *  has been merged.  *  @lucene.experimental */
+comment|/** A {@link MergePolicy} that reorders documents according to a {@link Sort}  *  before merging them. As a consequence, all segments resulting from a merge  *  will be sorted while segments resulting from a flush will be in the order  *  in which documents have been added.  *<p><b>NOTE</b>: Never use this policy if you rely on  *  {@link IndexWriter#addDocuments(Iterable) IndexWriter.addDocuments}  *  to have sequentially-assigned doc IDs, this policy will scatter doc IDs.  *<p><b>NOTE</b>: This policy should only be used with idempotent {@code Sort}s   *  so that the order of segments is predictable. For example, using   *  {@link Sort#INDEXORDER} in reverse (which is not idempotent) will make   *  the order of documents in a segment depend on the number of times the segment   *  has been merged.  *  @lucene.experimental */
 end_comment
 
 begin_class

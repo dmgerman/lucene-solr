@@ -870,6 +870,8 @@ name|SolrIndexWriter
 operator|.
 name|create
 argument_list|(
+name|core
+argument_list|,
 literal|"SplittingIndexWriter"
 operator|+
 name|partitionNumber
