@@ -202,6 +202,12 @@ name|int
 name|prefixGridScanLevel
 decl_stmt|;
 comment|//at least one less than grid.getMaxLevels()
+DECL|field|hasIndexedLeaves
+specifier|protected
+specifier|final
+name|boolean
+name|hasIndexedLeaves
+decl_stmt|;
 DECL|method|AbstractVisitingPrefixTreeFilter
 specifier|public
 name|AbstractVisitingPrefixTreeFilter
@@ -220,6 +226,9 @@ name|detailLevel
 parameter_list|,
 name|int
 name|prefixGridScanLevel
+parameter_list|,
+name|boolean
+name|hasIndexedLeaves
 parameter_list|)
 block|{
 name|super
@@ -258,6 +267,12 @@ literal|1
 argument_list|)
 argument_list|)
 expr_stmt|;
+name|this
+operator|.
+name|hasIndexedLeaves
+operator|=
+name|hasIndexedLeaves
+expr_stmt|;
 assert|assert
 name|detailLevel
 operator|<=
@@ -278,24 +293,17 @@ name|Object
 name|o
 parameter_list|)
 block|{
-if|if
-condition|(
-operator|!
+return|return
 name|super
 operator|.
 name|equals
 argument_list|(
 name|o
 argument_list|)
-condition|)
-return|return
-literal|false
 return|;
 comment|//checks getClass == o.getClass& instanceof
+comment|//Ignore hasIndexedLeaves as it's fixed for a specific field, which super.equals compares
 comment|//Ignore prefixGridScanLevel as it is merely a tuning parameter.
-return|return
-literal|true
-return|;
 block|}
 annotation|@
 name|Override
@@ -305,16 +313,11 @@ name|int
 name|hashCode
 parameter_list|()
 block|{
-name|int
-name|result
-init|=
+return|return
 name|super
 operator|.
 name|hashCode
 argument_list|()
-decl_stmt|;
-return|return
-name|result
 return|;
 block|}
 comment|/**    * An abstract class designed to make it easy to implement predicates or    * other operations on a {@link SpatialPrefixTree} indexed field. An instance    * of this class is not designed to be re-used across LeafReaderContext    * instances so simply create a new one for each call to, say a {@link    * org.apache.lucene.search.Filter#getDocIdSet(org.apache.lucene.index.LeafReaderContext, org.apache.lucene.util.Bits)}.    * The {@link #getDocIdSet()} method here starts the work. It first checks    * that there are indexed terms; if not it quickly returns null. Then it calls    * {@link #start()} so a subclass can set up a return value, like an    * {@link org.apache.lucene.util.FixedBitSet}. Then it starts the traversal    * process, calling {@link #findSubCellsToVisit(org.apache.lucene.spatial.prefix.tree.Cell)}    * which by default finds the top cells that intersect {@code queryShape}. If    * there isn't an indexed cell for a corresponding cell returned for this    * method then it's short-circuited until it finds one, at which point    * {@link #visit(org.apache.lucene.spatial.prefix.tree.Cell)} is called. At    * some depths, of the tree, the algorithm switches to a scanning mode that    * calls {@link #visitScanned(org.apache.lucene.spatial.prefix.tree.Cell)}    * for each leaf cell found.    *    * @lucene.internal    */
@@ -330,13 +333,6 @@ comment|/* Future potential optimizations:    * Can a polygon query shape be opt
 comment|//
 comment|//  TODO MAJOR REFACTOR SIMPLIFICATION BASED ON TreeCellIterator  TODO
 comment|//
-DECL|field|hasIndexedLeaves
-specifier|protected
-specifier|final
-name|boolean
-name|hasIndexedLeaves
-decl_stmt|;
-comment|//if false then we can skip looking for them
 DECL|field|curVNode
 specifier|private
 name|VNode
@@ -373,9 +369,6 @@ name|context
 parameter_list|,
 name|Bits
 name|acceptDocs
-parameter_list|,
-name|boolean
-name|hasIndexedLeaves
 parameter_list|)
 throws|throws
 name|IOException
@@ -386,12 +379,6 @@ name|context
 argument_list|,
 name|acceptDocs
 argument_list|)
-expr_stmt|;
-name|this
-operator|.
-name|hasIndexedLeaves
-operator|=
-name|hasIndexedLeaves
 expr_stmt|;
 block|}
 DECL|method|getDocIdSet
