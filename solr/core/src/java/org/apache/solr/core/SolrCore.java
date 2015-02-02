@@ -9573,6 +9573,38 @@ argument_list|,
 name|rsp
 argument_list|)
 expr_stmt|;
+if|if
+condition|(
+name|log
+operator|.
+name|isDebugEnabled
+argument_list|()
+operator|&&
+name|rsp
+operator|.
+name|getToLog
+argument_list|()
+operator|.
+name|size
+argument_list|()
+operator|>
+literal|0
+condition|)
+block|{
+comment|// log request at debug in case something goes wrong and we aren't able to log later
+name|log
+operator|.
+name|debug
+argument_list|(
+name|rsp
+operator|.
+name|getToLogAsString
+argument_list|(
+name|logid
+argument_list|)
+argument_list|)
+expr_stmt|;
+block|}
 comment|// TODO: this doesn't seem to be working correctly and causes problems with the example server and distrib (for example /spell)
 comment|// if (req.getParams().getBool(ShardParams.IS_SHARD,false)&& !(handler instanceof SearchHandler))
 comment|//   throw new SolrException(SolrException.ErrorCode.BAD_REQUEST,"isShard is only acceptable with search handlers");
