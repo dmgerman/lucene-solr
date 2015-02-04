@@ -386,15 +386,6 @@ argument_list|()
 argument_list|)
 return|;
 block|}
-annotation|@
-name|Test
-argument_list|(
-name|expected
-operator|=
-name|IllegalArgumentException
-operator|.
-name|class
-argument_list|)
 DECL|method|testDeletePartiallyWrittenFilesIfAbort
 specifier|public
 name|void
@@ -606,15 +597,38 @@ name|commit
 argument_list|()
 expr_stmt|;
 block|}
-finally|finally
+catch|catch
+parameter_list|(
+name|IllegalArgumentException
+name|iae
+parameter_list|)
 block|{
-comment|// Abort should have closed the deleter:
+comment|// expected
+name|assertEquals
+argument_list|(
+name|iae
+argument_list|,
+name|iw
+operator|.
+name|getTragicException
+argument_list|()
+argument_list|)
+expr_stmt|;
+block|}
+comment|// Writer should be closed by tragedy
+name|assertFalse
+argument_list|(
+name|iw
+operator|.
+name|isOpen
+argument_list|()
+argument_list|)
+expr_stmt|;
 name|dir
 operator|.
 name|close
 argument_list|()
 expr_stmt|;
-block|}
 block|}
 DECL|method|testZFloat
 specifier|public

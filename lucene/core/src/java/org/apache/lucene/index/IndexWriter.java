@@ -16569,6 +16569,34 @@ name|tragedy
 argument_list|)
 expr_stmt|;
 block|}
+comment|/** If this {@code IndexWriter} was closed as a side-effect of a tragic exception,    *  e.g. disk full while flushing a new segment, this returns the root cause exception.    *  Otherwise (no tragic exception has occurred) it returns null. */
+DECL|method|getTragicException
+specifier|public
+name|Throwable
+name|getTragicException
+parameter_list|()
+block|{
+return|return
+name|tragedy
+return|;
+block|}
+comment|/** Returns {@code true} if this {@code IndexWriter} is still open. */
+DECL|method|isOpen
+specifier|public
+name|boolean
+name|isOpen
+parameter_list|()
+block|{
+return|return
+name|closing
+operator|==
+literal|false
+operator|&&
+name|closed
+operator|==
+literal|false
+return|;
+block|}
 comment|// Used for testing.  Current points:
 comment|//   startDoFlush
 comment|//   startCommitMerge
