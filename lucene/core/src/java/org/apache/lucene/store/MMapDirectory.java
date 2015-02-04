@@ -232,7 +232,7 @@ specifier|final
 name|int
 name|chunkSizePower
 decl_stmt|;
-comment|/** Create a new MMapDirectory for the named location.    *    * @param path the path of the directory    * @param lockFactory the lock factory to use    * @throws IOException if there is a low-level I/O error    */
+comment|/** Create a new MMapDirectory for the named location.    *  The directory is created at the named location if it does not yet exist.    *    * @param path the path of the directory    * @param lockFactory the lock factory to use    * @throws IOException if there is a low-level I/O error    */
 DECL|method|MMapDirectory
 specifier|public
 name|MMapDirectory
@@ -256,7 +256,7 @@ name|DEFAULT_MAX_CHUNK_SIZE
 argument_list|)
 expr_stmt|;
 block|}
-comment|/** Create a new MMapDirectory for the named location and {@link FSLockFactory#getDefault()}.   *   * @param path the path of the directory   * @throws IOException if there is a low-level I/O error   */
+comment|/** Create a new MMapDirectory for the named location and {@link FSLockFactory#getDefault()}.    *  The directory is created at the named location if it does not yet exist.   *   * @param path the path of the directory   * @throws IOException if there is a low-level I/O error   */
 DECL|method|MMapDirectory
 specifier|public
 name|MMapDirectory
@@ -278,7 +278,7 @@ argument_list|()
 argument_list|)
 expr_stmt|;
 block|}
-comment|/** Create a new MMapDirectory for the named location and {@link FSLockFactory#getDefault()}.   *   * @param path the path of the directory   * @param maxChunkSize maximum chunk size (default is 1 GiBytes for   * 64 bit JVMs and 256 MiBytes for 32 bit JVMs) used for memory mapping.   * @throws IOException if there is a low-level I/O error   */
+comment|/** Create a new MMapDirectory for the named location and {@link FSLockFactory#getDefault()}.    *  The directory is created at the named location if it does not yet exist.   *   * @param path the path of the directory   * @param maxChunkSize maximum chunk size (default is 1 GiBytes for   * 64 bit JVMs and 256 MiBytes for 32 bit JVMs) used for memory mapping.   * @throws IOException if there is a low-level I/O error   */
 DECL|method|MMapDirectory
 specifier|public
 name|MMapDirectory
@@ -305,7 +305,7 @@ name|maxChunkSize
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**    * Create a new MMapDirectory for the named location, specifying the     * maximum chunk size used for memory mapping.    *     * @param path the path of the directory    * @param lockFactory the lock factory to use, or null for the default    * ({@link NativeFSLockFactory});    * @param maxChunkSize maximum chunk size (default is 1 GiBytes for    * 64 bit JVMs and 256 MiBytes for 32 bit JVMs) used for memory mapping.    *<p>    * Especially on 32 bit platform, the address space can be very fragmented,    * so large index files cannot be mapped. Using a lower chunk size makes     * the directory implementation a little bit slower (as the correct chunk     * may be resolved on lots of seeks) but the chance is higher that mmap     * does not fail. On 64 bit Java platforms, this parameter should always     * be {@code 1<< 30}, as the address space is big enough.    *<p>    *<b>Please note:</b> The chunk size is always rounded down to a power of 2.    * @throws IOException if there is a low-level I/O error    */
+comment|/**    * Create a new MMapDirectory for the named location, specifying the     * maximum chunk size used for memory mapping.    *  The directory is created at the named location if it does not yet exist.    *     * @param path the path of the directory    * @param lockFactory the lock factory to use, or null for the default    * ({@link NativeFSLockFactory});    * @param maxChunkSize maximum chunk size (default is 1 GiBytes for    * 64 bit JVMs and 256 MiBytes for 32 bit JVMs) used for memory mapping.    *<p>    * Especially on 32 bit platform, the address space can be very fragmented,    * so large index files cannot be mapped. Using a lower chunk size makes     * the directory implementation a little bit slower (as the correct chunk     * may be resolved on lots of seeks) but the chance is higher that mmap     * does not fail. On 64 bit Java platforms, this parameter should always     * be {@code 1<< 30}, as the address space is big enough.    *<p>    *<b>Please note:</b> The chunk size is always rounded down to a power of 2.    * @throws IOException if there is a low-level I/O error    */
 DECL|method|MMapDirectory
 specifier|public
 name|MMapDirectory

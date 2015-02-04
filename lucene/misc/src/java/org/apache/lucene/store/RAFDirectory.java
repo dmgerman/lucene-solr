@@ -80,7 +80,7 @@ name|RAFDirectory
 extends|extends
 name|FSDirectory
 block|{
-comment|/** Create a new RAFDirectory for the named location.    *    * @param path the path of the directory    * @param lockFactory the lock factory to use    * @throws IOException if there is a low-level I/O error    */
+comment|/** Create a new RAFDirectory for the named location.    *  The directory is created at the named location if it does not yet exist.    *    * @param path the path of the directory    * @param lockFactory the lock factory to use    * @throws IOException if there is a low-level I/O error    */
 DECL|method|RAFDirectory
 specifier|public
 name|RAFDirectory
@@ -108,7 +108,7 @@ argument_list|()
 expr_stmt|;
 comment|// throw exception if we can't get a File
 block|}
-comment|/** Create a new SimpleFSDirectory for the named location and {@link FSLockFactory#getDefault()}.    *    * @param path the path of the directory    * @throws IOException if there is a low-level I/O error    */
+comment|/** Create a new SimpleFSDirectory for the named location and {@link FSLockFactory#getDefault()}.    *  The directory is created at the named location if it does not yet exist.    *    * @param path the path of the directory    * @throws IOException if there is a low-level I/O error    */
 DECL|method|RAFDirectory
 specifier|public
 name|RAFDirectory

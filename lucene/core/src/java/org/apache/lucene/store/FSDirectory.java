@@ -184,7 +184,7 @@ name|Path
 name|directory
 decl_stmt|;
 comment|// The underlying filesystem directory
-comment|/** Create a new FSDirectory for the named location (ctor for subclasses).    * @param path the path of the directory    * @param lockFactory the lock factory to use, or null for the default    * ({@link NativeFSLockFactory});    * @throws IOException if there is a low-level I/O error    */
+comment|/** Create a new FSDirectory for the named location (ctor for subclasses).    * The directory is created at the named location if it does not yet exist.    * @param path the path of the directory    * @param lockFactory the lock factory to use, or null for the default    * ({@link NativeFSLockFactory});    * @throws IOException if there is a low-level I/O error    */
 DECL|method|FSDirectory
 specifier|protected
 name|FSDirectory
@@ -219,7 +219,7 @@ name|toRealPath
 argument_list|()
 expr_stmt|;
 block|}
-comment|/** Creates an FSDirectory instance, trying to pick the    *  best implementation given the current environment.    *  The directory returned uses the {@link NativeFSLockFactory}.    *    *<p>Currently this returns {@link MMapDirectory} for most Solaris    *  and Windows 64-bit JREs, {@link NIOFSDirectory} for other    *  non-Windows JREs, and {@link SimpleFSDirectory} for other    *  JREs on Windows. It is highly recommended that you consult the    *  implementation's documentation for your platform before    *  using this method.    *    *<p><b>NOTE</b>: this method may suddenly change which    * implementation is returned from release to release, in    * the event that higher performance defaults become    * possible; if the precise implementation is important to    * your application, please instantiate it directly,    * instead. For optimal performance you should consider using    * {@link MMapDirectory} on 64 bit JVMs.    *    *<p>See<a href="#subclasses">above</a> */
+comment|/** Creates an FSDirectory instance, trying to pick the    *  best implementation given the current environment.    *  The directory returned uses the {@link NativeFSLockFactory}.    *  The directory is created at the named location if it does not yet exist.    *    *<p>Currently this returns {@link MMapDirectory} for most Solaris    *  and Windows 64-bit JREs, {@link NIOFSDirectory} for other    *  non-Windows JREs, and {@link SimpleFSDirectory} for other    *  JREs on Windows. It is highly recommended that you consult the    *  implementation's documentation for your platform before    *  using this method.    *    *<p><b>NOTE</b>: this method may suddenly change which    * implementation is returned from release to release, in    * the event that higher performance defaults become    * possible; if the precise implementation is important to    * your application, please instantiate it directly,    * instead. For optimal performance you should consider using    * {@link MMapDirectory} on 64 bit JVMs.    *    *<p>See<a href="#subclasses">above</a> */
 DECL|method|open
 specifier|public
 specifier|static
