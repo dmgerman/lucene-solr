@@ -1857,7 +1857,7 @@ argument_list|(
 name|threadPool
 argument_list|)
 expr_stmt|;
-comment|// with such a small ram buffer we should be stalled quiet quickly
+comment|// with such a small ram buffer we should be stalled quite quickly
 name|iwc
 operator|.
 name|setRAMBufferSizeMB
