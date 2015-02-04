@@ -91,6 +91,14 @@ parameter_list|)
 throws|throws
 name|IOException
 function_decl|;
+comment|/**    * Same as {@link Scorer#cost()} for bulk scorers.    */
+DECL|method|cost
+specifier|public
+specifier|abstract
+name|long
+name|cost
+parameter_list|()
+function_decl|;
 block|}
 end_class
 

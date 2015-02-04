@@ -1291,12 +1291,11 @@ name|result
 return|;
 block|}
 block|}
-annotation|@
-name|Override
-DECL|method|bulkScorer
-specifier|public
-name|BulkScorer
-name|bulkScorer
+comment|/** Try to build a boolean scorer for this weight. Returns null if {@link BooleanScorer}      *  cannot be used. */
+comment|// pkg-private for forcing use of BooleanScorer in tests
+DECL|method|booleanScorer
+name|BooleanScorer
+name|booleanScorer
 parameter_list|(
 name|LeafReaderContext
 name|context
@@ -1307,26 +1306,6 @@ parameter_list|)
 throws|throws
 name|IOException
 block|{
-if|if
-condition|(
-name|minNrShouldMatch
-operator|>
-literal|1
-condition|)
-block|{
-comment|// TODO: (LUCENE-4872) in some cases BooleanScorer may be faster for minNrShouldMatch
-comment|// but the same is even true of pure conjunctions...
-return|return
-name|super
-operator|.
-name|bulkScorer
-argument_list|(
-name|context
-argument_list|,
-name|acceptDocs
-argument_list|)
-return|;
-block|}
 name|List
 argument_list|<
 name|BulkScorer
@@ -1412,14 +1391,7 @@ comment|// TODO: there are some cases where BooleanScorer
 comment|// would handle conjunctions faster than
 comment|// BooleanScorer2...
 return|return
-name|super
-operator|.
-name|bulkScorer
-argument_list|(
-name|context
-argument_list|,
-name|acceptDocs
-argument_list|)
+literal|null
 return|;
 block|}
 elseif|else
@@ -1433,14 +1405,7 @@ condition|)
 block|{
 comment|// TODO: there are some cases where BooleanScorer could do this faster
 return|return
-name|super
-operator|.
-name|bulkScorer
-argument_list|(
-name|context
-argument_list|,
-name|acceptDocs
-argument_list|)
+literal|null
 return|;
 block|}
 else|else
@@ -1468,6 +1433,20 @@ return|return
 literal|null
 return|;
 block|}
+if|if
+condition|(
+name|minNrShouldMatch
+operator|>
+name|optional
+operator|.
+name|size
+argument_list|()
+condition|)
+block|{
+return|return
+literal|null
+return|;
+block|}
 return|return
 operator|new
 name|BooleanScorer
@@ -1479,6 +1458,118 @@ argument_list|,
 name|maxCoord
 argument_list|,
 name|optional
+argument_list|,
+name|Math
+operator|.
+name|max
+argument_list|(
+literal|1
+argument_list|,
+name|minNrShouldMatch
+argument_list|)
+argument_list|)
+return|;
+block|}
+annotation|@
+name|Override
+DECL|method|bulkScorer
+specifier|public
+name|BulkScorer
+name|bulkScorer
+parameter_list|(
+name|LeafReaderContext
+name|context
+parameter_list|,
+name|Bits
+name|acceptDocs
+parameter_list|)
+throws|throws
+name|IOException
+block|{
+specifier|final
+name|BooleanScorer
+name|bulkScorer
+init|=
+name|booleanScorer
+argument_list|(
+name|context
+argument_list|,
+name|acceptDocs
+argument_list|)
+decl_stmt|;
+if|if
+condition|(
+name|bulkScorer
+operator|!=
+literal|null
+condition|)
+block|{
+comment|// BooleanScorer is applicable
+comment|// TODO: what is the right heuristic here?
+specifier|final
+name|long
+name|costThreshold
+decl_stmt|;
+if|if
+condition|(
+name|minNrShouldMatch
+operator|<=
+literal|1
+condition|)
+block|{
+comment|// when all clauses are optional, use BooleanScorer aggressively
+comment|// TODO: is there actually a threshold under which we should rather
+comment|// use the regular scorer?
+name|costThreshold
+operator|=
+operator|-
+literal|1
+expr_stmt|;
+block|}
+else|else
+block|{
+comment|// when a minimum number of clauses should match, BooleanScorer is
+comment|// going to score all windows that have at least minNrShouldMatch
+comment|// matches in the window. But there is no way to know if there is
+comment|// an intersection (all clauses might match a different doc ID and
+comment|// there will be no matches in the end) so we should only use
+comment|// BooleanScorer if matches are very dense
+name|costThreshold
+operator|=
+name|context
+operator|.
+name|reader
+argument_list|()
+operator|.
+name|maxDoc
+argument_list|()
+operator|/
+literal|3
+expr_stmt|;
+block|}
+if|if
+condition|(
+name|bulkScorer
+operator|.
+name|cost
+argument_list|()
+operator|>
+name|costThreshold
+condition|)
+block|{
+return|return
+name|bulkScorer
+return|;
+block|}
+block|}
+return|return
+name|super
+operator|.
+name|bulkScorer
+argument_list|(
+name|context
+argument_list|,
+name|acceptDocs
 argument_list|)
 return|;
 block|}

@@ -1469,6 +1469,19 @@ argument_list|(
 literal|2
 argument_list|)
 expr_stmt|;
+name|query
+operator|.
+name|add
+argument_list|(
+operator|new
+name|MatchAllDocsQuery
+argument_list|()
+argument_list|,
+name|Occur
+operator|.
+name|MUST
+argument_list|)
+expr_stmt|;
 name|ScorerSummarizingCollector
 name|collector
 init|=
@@ -1519,13 +1532,17 @@ control|)
 block|{
 name|assertEquals
 argument_list|(
-literal|"MinShouldMatchSumScorer\n"
+literal|"CoordinatingConjunctionScorer\n"
 operator|+
-literal|"    SHOULD TermScorer body:nutch\n"
+literal|"    MUST MinShouldMatchSumScorer\n"
 operator|+
-literal|"    SHOULD TermScorer body:web\n"
+literal|"            SHOULD TermScorer body:nutch\n"
 operator|+
-literal|"    SHOULD TermScorer body:crawler"
+literal|"            SHOULD TermScorer body:web\n"
+operator|+
+literal|"            SHOULD TermScorer body:crawler\n"
+operator|+
+literal|"    MUST MatchAllScorer"
 argument_list|,
 name|summary
 argument_list|)

@@ -601,6 +601,17 @@ operator|.
 name|NO_MORE_DOCS
 return|;
 block|}
+annotation|@
+name|Override
+specifier|public
+name|long
+name|cost
+parameter_list|()
+block|{
+return|return
+literal|1
+return|;
+block|}
 block|}
 return|;
 block|}

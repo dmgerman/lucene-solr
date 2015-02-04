@@ -454,6 +454,29 @@ literal|1
 index|]
 return|;
 block|}
+comment|/**    * Replace the top of the pq with {@code newTop} and run {@link #updateTop()}.    */
+DECL|method|updateTop
+specifier|public
+specifier|final
+name|T
+name|updateTop
+parameter_list|(
+name|T
+name|newTop
+parameter_list|)
+block|{
+name|heap
+index|[
+literal|1
+index|]
+operator|=
+name|newTop
+expr_stmt|;
+return|return
+name|updateTop
+argument_list|()
+return|;
+block|}
 comment|/** Returns the number of elements currently stored in the PriorityQueue. */
 DECL|method|size
 specifier|public
