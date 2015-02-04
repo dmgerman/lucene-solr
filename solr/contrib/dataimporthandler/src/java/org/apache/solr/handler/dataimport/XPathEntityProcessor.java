@@ -1847,7 +1847,7 @@ name|SEVERE
 argument_list|,
 name|e
 argument_list|,
-literal|"Exception in applying XSL Transformeation"
+literal|"Exception in applying XSL Transformation"
 argument_list|)
 expr_stmt|;
 block|}
