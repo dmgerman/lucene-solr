@@ -466,6 +466,19 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
+annotation|@
+name|Override
+DECL|method|needsScores
+specifier|public
+name|boolean
+name|needsScores
+parameter_list|()
+block|{
+return|return
+literal|true
+return|;
+comment|// TODO, maybe we don't?
+block|}
 block|}
 end_class
 

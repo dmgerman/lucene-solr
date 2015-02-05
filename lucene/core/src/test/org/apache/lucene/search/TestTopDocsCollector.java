@@ -329,6 +329,18 @@ block|}
 block|}
 return|;
 block|}
+annotation|@
+name|Override
+DECL|method|needsScores
+specifier|public
+name|boolean
+name|needsScores
+parameter_list|()
+block|{
+return|return
+literal|false
+return|;
+block|}
 block|}
 comment|// Scores array to be used by MyTopDocsCollector. If it is changed, MAX_SCORE
 comment|// must also change.

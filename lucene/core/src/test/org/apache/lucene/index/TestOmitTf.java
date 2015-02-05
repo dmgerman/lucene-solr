@@ -2496,6 +2496,18 @@ operator|.
 name|docBase
 expr_stmt|;
 block|}
+annotation|@
+name|Override
+DECL|method|needsScores
+specifier|public
+name|boolean
+name|needsScores
+parameter_list|()
+block|{
+return|return
+literal|false
+return|;
+block|}
 block|}
 comment|/** test that when freqs are omitted, that totalTermFreq and sumTotalTermFreq are -1 */
 DECL|method|testStats

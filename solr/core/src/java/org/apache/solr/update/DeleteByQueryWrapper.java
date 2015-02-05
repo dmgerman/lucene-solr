@@ -434,6 +434,9 @@ name|context
 parameter_list|,
 name|Bits
 name|acceptDocs
+parameter_list|,
+name|boolean
+name|needsScores
 parameter_list|)
 throws|throws
 name|IOException
@@ -457,6 +460,8 @@ literal|0
 argument_list|)
 argument_list|,
 name|acceptDocs
+argument_list|,
+name|needsScores
 argument_list|)
 return|;
 block|}

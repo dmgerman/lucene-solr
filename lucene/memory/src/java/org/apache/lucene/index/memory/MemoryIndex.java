@@ -2253,6 +2253,17 @@ operator|=
 name|scorer
 expr_stmt|;
 block|}
+annotation|@
+name|Override
+specifier|public
+name|boolean
+name|needsScores
+parameter_list|()
+block|{
+return|return
+literal|true
+return|;
+block|}
 block|}
 argument_list|)
 expr_stmt|;

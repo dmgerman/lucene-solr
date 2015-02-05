@@ -313,6 +313,18 @@ name|IOException
 block|{   }
 annotation|@
 name|Override
+DECL|method|needsScores
+specifier|public
+name|boolean
+name|needsScores
+parameter_list|()
+block|{
+return|return
+literal|false
+return|;
+block|}
+annotation|@
+name|Override
 DECL|method|doSetNextReader
 specifier|protected
 name|void

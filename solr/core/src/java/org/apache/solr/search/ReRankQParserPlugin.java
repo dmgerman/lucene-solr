@@ -1255,6 +1255,9 @@ name|context
 parameter_list|,
 name|Bits
 name|bits
+parameter_list|,
+name|boolean
+name|needsScores
 parameter_list|)
 throws|throws
 name|IOException
@@ -1267,6 +1270,8 @@ argument_list|(
 name|context
 argument_list|,
 name|bits
+argument_list|,
+name|needsScores
 argument_list|)
 return|;
 block|}
@@ -1625,6 +1630,18 @@ name|getLeafCollector
 argument_list|(
 name|context
 argument_list|)
+return|;
+block|}
+annotation|@
+name|Override
+DECL|method|needsScores
+specifier|public
+name|boolean
+name|needsScores
+parameter_list|()
+block|{
+return|return
+literal|true
 return|;
 block|}
 DECL|method|topDocs

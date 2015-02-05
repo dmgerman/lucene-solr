@@ -530,6 +530,9 @@ name|context
 parameter_list|,
 name|Bits
 name|acceptDocs
+parameter_list|,
+name|boolean
+name|needsScores
 parameter_list|)
 block|{
 throw|throw
@@ -549,6 +552,9 @@ name|context
 parameter_list|,
 name|Bits
 name|acceptDocs
+parameter_list|,
+name|boolean
+name|needsScores
 parameter_list|)
 block|{
 return|return

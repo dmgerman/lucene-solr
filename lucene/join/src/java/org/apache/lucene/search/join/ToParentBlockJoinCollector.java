@@ -2124,6 +2124,25 @@ return|return
 name|maxScore
 return|;
 block|}
+annotation|@
+name|Override
+DECL|method|needsScores
+specifier|public
+name|boolean
+name|needsScores
+parameter_list|()
+block|{
+return|return
+name|trackScores
+operator|||
+name|trackMaxScore
+operator|||
+name|sort
+operator|.
+name|needsScores
+argument_list|()
+return|;
+block|}
 block|}
 end_class
 

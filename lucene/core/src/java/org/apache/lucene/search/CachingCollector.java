@@ -1301,6 +1301,17 @@ name|int
 name|doc
 parameter_list|)
 block|{}
+annotation|@
+name|Override
+specifier|public
+name|boolean
+name|needsScores
+parameter_list|()
+block|{
+return|return
+literal|true
+return|;
+block|}
 block|}
 decl_stmt|;
 return|return

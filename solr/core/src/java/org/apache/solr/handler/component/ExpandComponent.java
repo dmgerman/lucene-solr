@@ -3613,6 +3613,19 @@ name|mapping
 expr_stmt|;
 block|}
 block|}
+annotation|@
+name|Override
+DECL|method|needsScores
+specifier|public
+name|boolean
+name|needsScores
+parameter_list|()
+block|{
+return|return
+literal|true
+return|;
+comment|// TODO: is this always true?
+block|}
 DECL|method|getLeafCollector
 specifier|public
 name|LeafCollector
@@ -4054,6 +4067,19 @@ name|collapsedSet
 operator|=
 name|collapsedSet
 expr_stmt|;
+block|}
+annotation|@
+name|Override
+DECL|method|needsScores
+specifier|public
+name|boolean
+name|needsScores
+parameter_list|()
+block|{
+return|return
+literal|true
+return|;
+comment|// TODO: is this always true?
 block|}
 DECL|method|getLeafCollector
 specifier|public

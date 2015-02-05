@@ -181,6 +181,8 @@ argument_list|(
 name|privateContext
 argument_list|,
 name|acceptDocs
+argument_list|,
+literal|false
 argument_list|)
 return|;
 block|}

@@ -4780,6 +4780,17 @@ operator|-
 literal|1
 expr_stmt|;
 block|}
+annotation|@
+name|Override
+specifier|public
+name|boolean
+name|needsScores
+parameter_list|()
+block|{
+return|return
+literal|false
+return|;
+block|}
 block|}
 argument_list|)
 expr_stmt|;

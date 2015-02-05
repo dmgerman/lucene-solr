@@ -2048,8 +2048,13 @@ literal|0
 expr_stmt|;
 if|if
 condition|(
-operator|!
 name|indexHasFreq
+operator|==
+literal|false
+operator|||
+name|needsFreq
+operator|==
+literal|false
 condition|)
 block|{
 name|Arrays

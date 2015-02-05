@@ -976,6 +976,19 @@ return|return
 literal|0l
 return|;
 block|}
+annotation|@
+name|Override
+DECL|method|needsScores
+specifier|public
+name|boolean
+name|needsScores
+parameter_list|()
+block|{
+return|return
+literal|true
+return|;
+comment|// TODO: is this true?
+block|}
 block|}
 end_class
 

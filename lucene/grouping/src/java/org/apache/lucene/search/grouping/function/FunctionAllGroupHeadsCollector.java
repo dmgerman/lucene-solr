@@ -894,6 +894,19 @@ name|docBase
 expr_stmt|;
 block|}
 block|}
+annotation|@
+name|Override
+DECL|method|needsScores
+specifier|public
+name|boolean
+name|needsScores
+parameter_list|()
+block|{
+return|return
+literal|true
+return|;
+comment|// TODO, maybe we don't: e.g. return sortWithinGroup.needsScores()
+block|}
 block|}
 end_class
 

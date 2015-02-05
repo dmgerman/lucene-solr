@@ -118,6 +118,21 @@ operator|+
 literal|")"
 return|;
 block|}
+annotation|@
+name|Override
+DECL|method|needsScores
+specifier|public
+name|boolean
+name|needsScores
+parameter_list|()
+block|{
+return|return
+name|in
+operator|.
+name|needsScores
+argument_list|()
+return|;
+block|}
 block|}
 end_class
 

@@ -1478,6 +1478,8 @@ argument_list|()
 operator|.
 name|getLiveDocs
 argument_list|()
+argument_list|,
+literal|true
 argument_list|)
 expr_stmt|;
 block|}
@@ -1789,6 +1791,17 @@ block|}
 block|}
 annotation|@
 name|Override
+specifier|public
+name|boolean
+name|needsScores
+parameter_list|()
+block|{
+return|return
+literal|true
+return|;
+block|}
+annotation|@
+name|Override
 specifier|protected
 name|void
 name|doSetNextReader
@@ -1877,6 +1890,8 @@ argument_list|()
 operator|.
 name|getLiveDocs
 argument_list|()
+argument_list|,
+literal|true
 argument_list|)
 decl_stmt|;
 if|if
@@ -2063,6 +2078,8 @@ argument_list|()
 operator|.
 name|getLiveDocs
 argument_list|()
+argument_list|,
+literal|true
 argument_list|)
 decl_stmt|;
 if|if
@@ -2300,6 +2317,8 @@ name|leafPtr
 argument_list|)
 argument_list|,
 name|liveDocs
+argument_list|,
+literal|true
 argument_list|)
 decl_stmt|;
 name|Assert
@@ -2464,6 +2483,17 @@ block|}
 block|}
 annotation|@
 name|Override
+specifier|public
+name|boolean
+name|needsScores
+parameter_list|()
+block|{
+return|return
+literal|true
+return|;
+block|}
+annotation|@
+name|Override
 specifier|protected
 name|void
 name|doSetNextReader
@@ -2544,6 +2574,8 @@ name|previousReader
 operator|.
 name|getLiveDocs
 argument_list|()
+argument_list|,
+literal|true
 argument_list|)
 decl_stmt|;
 if|if
@@ -2711,6 +2743,8 @@ name|previousReader
 operator|.
 name|getLiveDocs
 argument_list|()
+argument_list|,
+literal|true
 argument_list|)
 decl_stmt|;
 if|if
@@ -2834,6 +2868,8 @@ argument_list|()
 operator|.
 name|getLiveDocs
 argument_list|()
+argument_list|,
+literal|true
 argument_list|)
 decl_stmt|;
 specifier|final
@@ -2853,6 +2889,8 @@ argument_list|()
 operator|.
 name|getLiveDocs
 argument_list|()
+argument_list|,
+literal|true
 argument_list|)
 decl_stmt|;
 if|if

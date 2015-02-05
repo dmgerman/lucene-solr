@@ -89,7 +89,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Expert: Calculate query weights and build query scorers.  *<p>  * The purpose of {@link Weight} is to ensure searching does not modify a  * {@link Query}, so that a {@link Query} instance can be reused.<br>  * {@link IndexSearcher} dependent state of the query should reside in the  * {@link Weight}.<br>  * {@link org.apache.lucene.index.LeafReader} dependent state should reside in the {@link Scorer}.  *<p>  * Since {@link Weight} creates {@link Scorer} instances for a given  * {@link org.apache.lucene.index.LeafReaderContext} ({@link #scorer(org.apache.lucene.index.LeafReaderContext, Bits)})  * callers must maintain the relationship between the searcher's top-level  * {@link IndexReaderContext} and the context used to create a {@link Scorer}.   *<p>  * A<code>Weight</code> is used in the following way:  *<ol>  *<li>A<code>Weight</code> is constructed by a top-level query, given a  *<code>IndexSearcher</code> ({@link Query#createWeight(IndexSearcher)}).  *<li>The {@link #getValueForNormalization()} method is called on the  *<code>Weight</code> to compute the query normalization factor  * {@link Similarity#queryNorm(float)} of the query clauses contained in the  * query.  *<li>The query normalization factor is passed to {@link #normalize(float, float)}. At  * this point the weighting is complete.  *<li>A<code>Scorer</code> is constructed by  * {@link #scorer(org.apache.lucene.index.LeafReaderContext, Bits)}.  *</ol>  *   * @since 2.9  */
+comment|/**  * Expert: Calculate query weights and build query scorers.  *<p>  * The purpose of {@link Weight} is to ensure searching does not modify a  * {@link Query}, so that a {@link Query} instance can be reused.<br>  * {@link IndexSearcher} dependent state of the query should reside in the  * {@link Weight}.<br>  * {@link org.apache.lucene.index.LeafReader} dependent state should reside in the {@link Scorer}.  *<p>  * Since {@link Weight} creates {@link Scorer} instances for a given  * {@link org.apache.lucene.index.LeafReaderContext} ({@link #scorer(org.apache.lucene.index.LeafReaderContext, Bits, boolean)})  * callers must maintain the relationship between the searcher's top-level  * {@link IndexReaderContext} and the context used to create a {@link Scorer}.   *<p>  * A<code>Weight</code> is used in the following way:  *<ol>  *<li>A<code>Weight</code> is constructed by a top-level query, given a  *<code>IndexSearcher</code> ({@link Query#createWeight(IndexSearcher)}).  *<li>The {@link #getValueForNormalization()} method is called on the  *<code>Weight</code> to compute the query normalization factor  * {@link Similarity#queryNorm(float)} of the query clauses contained in the  * query.  *<li>The query normalization factor is passed to {@link #normalize(float, float)}. At  * this point the weighting is complete.  *<li>A<code>Scorer</code> is constructed by  * {@link #scorer(org.apache.lucene.index.LeafReaderContext, Bits, boolean)}.  *</ol>  *   * @since 2.9  */
 end_comment
 
 begin_class
@@ -147,7 +147,7 @@ name|float
 name|topLevelBoost
 parameter_list|)
 function_decl|;
-comment|/**    * Returns a {@link Scorer} which scores documents in/out-of order according    * to<code>scoreDocsInOrder</code>.    *<p>    *<b>NOTE:</b> null can be returned if no documents will be scored by this    * query.    *     * @param context    *          the {@link org.apache.lucene.index.LeafReaderContext} for which to return the {@link Scorer}.    * @param acceptDocs    *          Bits that represent the allowable docs to match (typically deleted docs    *          but possibly filtering other documents)    *              * @return a {@link Scorer} which scores documents in/out-of order.    * @throws IOException if there is a low-level I/O error    */
+comment|/**    * Returns a {@link Scorer} which scores documents in/out-of order according    * to<code>scoreDocsInOrder</code>.    *<p>    *<b>NOTE:</b> null can be returned if no documents will be scored by this    * query.    *     * @param context    *          the {@link org.apache.lucene.index.LeafReaderContext} for which to return the {@link Scorer}.    * @param acceptDocs    *          Bits that represent the allowable docs to match (typically deleted docs    *          but possibly filtering other documents)    * @param needsScores    *          True if document scores ({@link Scorer#score}) or match frequencies ({@link Scorer#freq}) are needed.    *              * @return a {@link Scorer} which scores documents in/out-of order.    * @throws IOException if there is a low-level I/O error    */
 DECL|method|scorer
 specifier|public
 specifier|abstract
@@ -159,11 +159,14 @@ name|context
 parameter_list|,
 name|Bits
 name|acceptDocs
+parameter_list|,
+name|boolean
+name|needsScores
 parameter_list|)
 throws|throws
 name|IOException
 function_decl|;
-comment|/**    * Optional method, to return a {@link BulkScorer} to    * score the query and send hits to a {@link Collector}.    * Only queries that have a different top-level approach    * need to override this; the default implementation    * pulls a normal {@link Scorer} and iterates and    * collects the resulting hits.    *    * @param context    *          the {@link org.apache.lucene.index.LeafReaderContext} for which to return the {@link Scorer}.    * @param acceptDocs    *          Bits that represent the allowable docs to match (typically deleted docs    *          but possibly filtering other documents)    *    * @return a {@link BulkScorer} which scores documents and    * passes them to a collector.    * @throws IOException if there is a low-level I/O error    */
+comment|/**    * Optional method, to return a {@link BulkScorer} to    * score the query and send hits to a {@link Collector}.    * Only queries that have a different top-level approach    * need to override this; the default implementation    * pulls a normal {@link Scorer} and iterates and    * collects the resulting hits.    *    * @param context    *          the {@link org.apache.lucene.index.LeafReaderContext} for which to return the {@link Scorer}.    * @param acceptDocs    *          Bits that represent the allowable docs to match (typically deleted docs    *          but possibly filtering other documents)    * @param needsScores    *          True if document scores are needed.    *    * @return a {@link BulkScorer} which scores documents and    * passes them to a collector.    * @throws IOException if there is a low-level I/O error    */
 DECL|method|bulkScorer
 specifier|public
 name|BulkScorer
@@ -174,6 +177,9 @@ name|context
 parameter_list|,
 name|Bits
 name|acceptDocs
+parameter_list|,
+name|boolean
+name|needsScores
 parameter_list|)
 throws|throws
 name|IOException
@@ -186,6 +192,8 @@ argument_list|(
 name|context
 argument_list|,
 name|acceptDocs
+argument_list|,
+name|needsScores
 argument_list|)
 decl_stmt|;
 if|if

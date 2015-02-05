@@ -2909,6 +2909,8 @@ argument_list|()
 operator|.
 name|getLiveDocs
 argument_list|()
+argument_list|,
+literal|true
 argument_list|)
 expr_stmt|;
 block|}

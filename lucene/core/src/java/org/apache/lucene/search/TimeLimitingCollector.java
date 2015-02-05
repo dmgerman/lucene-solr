@@ -458,6 +458,21 @@ block|}
 block|}
 return|;
 block|}
+annotation|@
+name|Override
+DECL|method|needsScores
+specifier|public
+name|boolean
+name|needsScores
+parameter_list|()
+block|{
+return|return
+name|collector
+operator|.
+name|needsScores
+argument_list|()
+return|;
+block|}
 comment|/**    * This is so the same timer can be used with a multi-phase search process such as grouping.     * We don't want to create a new TimeLimitingCollector for each phase because that would     * reset the timer for each phase.  Once time is up subsequent phases need to timeout quickly.    *    * @param collector The actual collector performing search functionality    */
 DECL|method|setCollector
 specifier|public

@@ -2169,6 +2169,11 @@ argument_list|()
 operator|.
 name|getLiveDocs
 argument_list|()
+argument_list|,
+name|collector
+operator|.
+name|needsScores
+argument_list|()
 argument_list|)
 decl_stmt|;
 if|if

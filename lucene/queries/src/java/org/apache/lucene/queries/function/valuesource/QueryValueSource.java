@@ -674,6 +674,8 @@ argument_list|(
 name|readerContext
 argument_list|,
 name|acceptDocs
+argument_list|,
+literal|true
 argument_list|)
 expr_stmt|;
 if|if
@@ -798,6 +800,8 @@ argument_list|(
 name|readerContext
 argument_list|,
 name|acceptDocs
+argument_list|,
+literal|true
 argument_list|)
 expr_stmt|;
 name|scorerDoc
@@ -1011,6 +1015,8 @@ argument_list|(
 name|readerContext
 argument_list|,
 name|acceptDocs
+argument_list|,
+literal|true
 argument_list|)
 expr_stmt|;
 name|scorerDoc
