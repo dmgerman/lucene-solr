@@ -592,7 +592,7 @@ name|BUILD_ON_OPTIMIZE_LABEL
 init|=
 literal|"buildOnOptimize"
 decl_stmt|;
-comment|/** SolrConfig label to identify boolean value to build suggesters on optimize */
+comment|/** SolrConfig label to identify boolean value to build suggesters on startup */
 DECL|field|BUILD_ON_STARTUP_LABEL
 specifier|private
 specifier|static
