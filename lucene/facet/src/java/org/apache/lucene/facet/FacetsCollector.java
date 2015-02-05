@@ -344,6 +344,10 @@ begin_comment
 comment|/** Collects hits for subsequent faceting.  Once you've run  *  a search and collect hits into this, instantiate one of  *  the {@link Facets} subclasses to do the facet  *  counting.  Use the {@code search} utility methods to  *  perform an "ordinary" search but also collect into a  *  {@link Collector}. */
 end_comment
 
+begin_comment
+comment|// redundant 'implements Collector' to workaround javadocs bugs
+end_comment
+
 begin_class
 DECL|class|FacetsCollector
 specifier|public
@@ -351,6 +355,8 @@ class|class
 name|FacetsCollector
 extends|extends
 name|SimpleCollector
+implements|implements
+name|Collector
 block|{
 DECL|field|context
 specifier|private
