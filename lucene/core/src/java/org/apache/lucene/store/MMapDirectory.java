@@ -146,6 +146,18 @@ begin_import
 import|import
 name|java
 operator|.
+name|util
+operator|.
+name|concurrent
+operator|.
+name|Future
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
 name|lang
 operator|.
 name|reflect
@@ -185,7 +197,7 @@ import|;
 end_import
 
 begin_comment
-comment|/** File-based {@link Directory} implementation that uses  *  mmap for reading, and {@link  *  FSDirectory.FSIndexOutput} for writing.  *  *<p><b>NOTE</b>: memory mapping uses up a portion of the  * virtual memory address space in your process equal to the  * size of the file being mapped.  Before using this class,  * be sure your have plenty of virtual address space, e.g. by  * using a 64 bit JRE, or a 32 bit JRE with indexes that are  * guaranteed to fit within the address space.  * On 32 bit platforms also consult {@link #MMapDirectory(Path, LockFactory, int)}  * if you have problems with mmap failing because of fragmented  * address space. If you get an OutOfMemoryException, it is recommended  * to reduce the chunk size, until it works.  *  *<p>Due to<a href="http://bugs.sun.com/bugdatabase/view_bug.do?bug_id=4724038">  * this bug</a> in Sun's JRE, MMapDirectory's {@link IndexInput#close}  * is unable to close the underlying OS file handle.  Only when GC  * finally collects the underlying objects, which could be quite  * some time later, will the file handle be closed.  *  *<p>This will consume additional transient disk usage: on Windows,  * attempts to delete or overwrite the files will result in an  * exception; on other platforms, which typically have a&quot;delete on  * last close&quot; semantics, while such operations will succeed, the bytes  * are still consuming space on disk.  For many applications this  * limitation is not a problem (e.g. if you have plenty of disk space,  * and you don't rely on overwriting files on Windows) but it's still  * an important limitation to be aware of.  *  *<p>This class supplies the workaround mentioned in the bug report  * (see {@link #setUseUnmap}), which may fail on  * non-Sun JVMs. It forcefully unmaps the buffer on close by using  * an undocumented internal cleanup functionality.  * {@link #UNMAP_SUPPORTED} is<code>true</code>, if the workaround  * can be enabled (with no guarantees).  *<p>  *<b>NOTE:</b> Accessing this class either directly or  * indirectly from a thread while it's interrupted can close the  * underlying channel immediately if at the same time the thread is  * blocked on IO. The channel will remain closed and subsequent access  * to {@link MMapDirectory} will throw a {@link ClosedChannelException}.   *</p>  * @see<a href="http://blog.thetaphi.de/2012/07/use-lucenes-mmapdirectory-on-64bit.html">Blog post about MMapDirectory</a>  */
+comment|/** File-based {@link Directory} implementation that uses  *  mmap for reading, and {@link  *  FSDirectory.FSIndexOutput} for writing.  *  *<p><b>NOTE</b>: memory mapping uses up a portion of the  * virtual memory address space in your process equal to the  * size of the file being mapped.  Before using this class,  * be sure your have plenty of virtual address space, e.g. by  * using a 64 bit JRE, or a 32 bit JRE with indexes that are  * guaranteed to fit within the address space.  * On 32 bit platforms also consult {@link #MMapDirectory(Path, LockFactory, int)}  * if you have problems with mmap failing because of fragmented  * address space. If you get an OutOfMemoryException, it is recommended  * to reduce the chunk size, until it works.  *  *<p>Due to<a href="http://bugs.sun.com/bugdatabase/view_bug.do?bug_id=4724038">  * this bug</a> in Sun's JRE, MMapDirectory's {@link IndexInput#close}  * is unable to close the underlying OS file handle.  Only when GC  * finally collects the underlying objects, which could be quite  * some time later, will the file handle be closed.  *  *<p>This will consume additional transient disk usage: on Windows,  * attempts to delete or overwrite the files will result in an  * exception; on other platforms, which typically have a&quot;delete on  * last close&quot; semantics, while such operations will succeed, the bytes  * are still consuming space on disk.  For many applications this  * limitation is not a problem (e.g. if you have plenty of disk space,  * and you don't rely on overwriting files on Windows) but it's still  * an important limitation to be aware of.  *  *<p>This class supplies the workaround mentioned in the bug report  * (see {@link #setUseUnmap}), which may fail on  * non-Sun JVMs. It forcefully unmaps the buffer on close by using  * an undocumented internal cleanup functionality. If  * {@link #UNMAP_SUPPORTED} is<code>true</code>, the workaround  * will be automatically enabled (with no guarantees; if you discover  * any problems, you can disable it).  *<p>  *<b>NOTE:</b> Accessing this class either directly or  * indirectly from a thread while it's interrupted can close the  * underlying channel immediately if at the same time the thread is  * blocked on IO. The channel will remain closed and subsequent access  * to {@link MMapDirectory} will throw a {@link ClosedChannelException}. If  * your application uses either {@link Thread#interrupt()} or  * {@link Future#cancel(boolean)} you should use the legacy {@code RAFDirectory}  * from the Lucene {@code misc} module in favor of {@link MMapDirectory}.  *</p>  * @see<a href="http://blog.thetaphi.de/2012/07/use-lucenes-mmapdirectory-on-64bit.html">Blog post about MMapDirectory</a>  */
 end_comment
 
 begin_class

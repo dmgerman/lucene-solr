@@ -64,6 +64,22 @@ name|java
 operator|.
 name|nio
 operator|.
+name|channels
+operator|.
+name|ClosedChannelException
+import|;
+end_import
+
+begin_comment
+comment|// javadoc @link
+end_comment
+
+begin_import
+import|import
+name|java
+operator|.
+name|nio
+operator|.
 name|file
 operator|.
 name|Files
@@ -94,8 +110,20 @@ name|StandardOpenOption
 import|;
 end_import
 
+begin_import
+import|import
+name|java
+operator|.
+name|util
+operator|.
+name|concurrent
+operator|.
+name|Future
+import|;
+end_import
+
 begin_comment
-comment|/** A straightforward implementation of {@link FSDirectory}  *  using {@link Files#newByteChannel(Path, java.nio.file.OpenOption...)}.    *  However, this class has  *  poor concurrent performance (multiple threads will  *  bottleneck) as it synchronizes when multiple threads  *  read from the same file.  It's usually better to use  *  {@link NIOFSDirectory} or {@link MMapDirectory} instead. */
+comment|/** A straightforward implementation of {@link FSDirectory}  *  using {@link Files#newByteChannel(Path, java.nio.file.OpenOption...)}.    *  However, this class has  *  poor concurrent performance (multiple threads will  *  bottleneck) as it synchronizes when multiple threads  *  read from the same file.  It's usually better to use  *  {@link NIOFSDirectory} or {@link MMapDirectory} instead.  *<p>  *<b>NOTE:</b> Accessing this class either directly or  * indirectly from a thread while it's interrupted can close the  * underlying file descriptor immediately if at the same time the thread is  * blocked on IO. The file descriptor will remain closed and subsequent access  * to {@link SimpleFSDirectory} will throw a {@link ClosedChannelException}. If  * your application uses either {@link Thread#interrupt()} or  * {@link Future#cancel(boolean)} you should use the legacy {@code RAFDirectory}  * from the Lucene {@code misc} module in favor of {@link SimpleFSDirectory}.  *</p>  */
 end_comment
 
 begin_class
