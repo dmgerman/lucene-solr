@@ -12542,20 +12542,6 @@ argument_list|(
 name|q
 argument_list|)
 decl_stmt|;
-name|System
-operator|.
-name|out
-operator|.
-name|printf
-argument_list|(
-literal|"Results: "
-operator|+
-name|response
-operator|.
-name|getResponse
-argument_list|()
-argument_list|)
-expr_stmt|;
 name|assertEquals
 argument_list|(
 literal|20
@@ -12724,20 +12710,6 @@ operator|.
 name|query
 argument_list|(
 name|q
-argument_list|)
-expr_stmt|;
-name|System
-operator|.
-name|out
-operator|.
-name|printf
-argument_list|(
-literal|"Results: "
-operator|+
-name|response
-operator|.
-name|getResponse
-argument_list|()
 argument_list|)
 expr_stmt|;
 name|assertEquals
