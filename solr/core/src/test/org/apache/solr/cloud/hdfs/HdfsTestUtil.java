@@ -840,6 +840,13 @@ literal|"/"
 argument_list|,
 literal|"_"
 argument_list|)
+operator|.
+name|replaceAll
+argument_list|(
+literal|" "
+argument_list|,
+literal|"_"
+argument_list|)
 decl_stmt|;
 return|return
 name|dir
