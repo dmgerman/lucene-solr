@@ -577,8 +577,6 @@ argument_list|,
 name|weight
 argument_list|,
 name|filterDocIdSet
-argument_list|,
-name|needsScores
 argument_list|)
 return|;
 block|}
@@ -1672,9 +1670,6 @@ name|weight
 parameter_list|,
 name|DocIdSet
 name|docIdSet
-parameter_list|,
-name|boolean
-name|needsScores
 parameter_list|)
 throws|throws
 name|IOException
@@ -2114,9 +2109,6 @@ name|weight
 parameter_list|,
 name|DocIdSet
 name|docIdSet
-parameter_list|,
-name|boolean
-name|needsScores
 parameter_list|)
 throws|throws
 name|IOException
@@ -2148,8 +2140,6 @@ argument_list|,
 name|weight
 argument_list|,
 name|docIdSet
-argument_list|,
-name|needsScores
 argument_list|)
 return|;
 block|}
