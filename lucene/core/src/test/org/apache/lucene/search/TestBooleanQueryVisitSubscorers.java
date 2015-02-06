@@ -2010,6 +2010,8 @@ return|return
 operator|new
 name|BooleanWeight
 argument_list|(
+name|this
+argument_list|,
 name|searcher
 argument_list|,
 name|needsScores
