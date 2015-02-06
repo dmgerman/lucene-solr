@@ -448,6 +448,10 @@ begin_comment
 comment|/**  * Suggester based on a weighted FST: it first traverses the prefix,   * then walks the<i>n</i> shortest paths to retrieve top-ranked  * suggestions.  *<p>  *<b>NOTE</b>:  * Input weights must be between 0 and {@link Integer#MAX_VALUE}, any  * other values will be rejected.  *   * @lucene.experimental  */
 end_comment
 
+begin_comment
+comment|// redundant 'implements Accountable' to workaround javadocs bugs
+end_comment
+
 begin_class
 DECL|class|WFSTCompletionLookup
 specifier|public
@@ -455,6 +459,8 @@ class|class
 name|WFSTCompletionLookup
 extends|extends
 name|Lookup
+implements|implements
+name|Accountable
 block|{
 comment|/**    * FST<Long>, weights are encoded as costs: (Integer.MAX_VALUE-weight)    */
 comment|// NOTE: like FSTSuggester, this is really a WFSA, if you want to

@@ -814,6 +814,10 @@ begin_comment
 comment|/**  * Builds an ngram model from the text sent to {@link  * #build} and predicts based on the last grams-1 tokens in  * the request sent to {@link #lookup}.  This tries to  * handle the "long tail" of suggestions for when the  * incoming query is a never before seen query string.  *  *<p>Likely this suggester would only be used as a  * fallback, when the primary suggester fails to find  * any suggestions.  *  *<p>Note that the weight for each suggestion is unused,  * and the suggestions are the analyzed forms (so your  * analysis process should normally be very "light").  *  *<p>This uses the stupid backoff language model to smooth  * scores across ngram models; see  * "Large language models in machine translation",  * http://citeseerx.ist.psu.edu/viewdoc/summary?doi=10.1.1.76.1126  * for details.  *  *<p> From {@link #lookup}, the key of each result is the  * ngram token; the value is Long.MAX_VALUE * score (fixed  * point, cast to long).  Divide by Long.MAX_VALUE to get  * the score back, which ranges from 0.0 to 1.0.  *   * onlyMorePopular is unused.  *  * @lucene.experimental  */
 end_comment
 
+begin_comment
+comment|// redundant 'implements Accountable' to workaround javadocs bugs
+end_comment
+
 begin_class
 DECL|class|FreeTextSuggester
 specifier|public
@@ -821,6 +825,8 @@ class|class
 name|FreeTextSuggester
 extends|extends
 name|Lookup
+implements|implements
+name|Accountable
 block|{
 comment|/** Codec name used in the header for the saved model. */
 DECL|field|CODEC_NAME
