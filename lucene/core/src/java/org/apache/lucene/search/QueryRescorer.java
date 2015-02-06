@@ -227,6 +227,8 @@ operator|.
 name|createNormalizedWeight
 argument_list|(
 name|query
+argument_list|,
+literal|true
 argument_list|)
 decl_stmt|;
 comment|// Now merge sort docIDs from hits, with reader's leaves:
@@ -342,8 +344,6 @@ argument_list|(
 name|readerContext
 argument_list|,
 literal|null
-argument_list|,
-literal|true
 argument_list|)
 expr_stmt|;
 block|}

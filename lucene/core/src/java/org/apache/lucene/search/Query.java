@@ -138,7 +138,7 @@ literal|""
 argument_list|)
 return|;
 block|}
-comment|/**    * Expert: Constructs an appropriate Weight implementation for this query.    *     *<p>    * Only implemented by primitive queries, which re-write to themselves.    */
+comment|/**    * Expert: Constructs an appropriate Weight implementation for this query.    *<p>    * Only implemented by primitive queries, which re-write to themselves.    *    * @param needsScores   True if document scores ({@link Scorer#score}) or match    *                      frequencies ({@link Scorer#freq}) are needed.    */
 DECL|method|createWeight
 specifier|public
 name|Weight
@@ -146,6 +146,9 @@ name|createWeight
 parameter_list|(
 name|IndexSearcher
 name|searcher
+parameter_list|,
+name|boolean
+name|needsScores
 parameter_list|)
 throws|throws
 name|IOException

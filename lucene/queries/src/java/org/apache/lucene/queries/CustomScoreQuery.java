@@ -960,10 +960,20 @@ name|CustomWeight
 parameter_list|(
 name|IndexSearcher
 name|searcher
+parameter_list|,
+name|boolean
+name|needsScores
 parameter_list|)
 throws|throws
 name|IOException
 block|{
+name|super
+argument_list|(
+name|CustomScoreQuery
+operator|.
+name|this
+argument_list|)
+expr_stmt|;
 name|this
 operator|.
 name|subQueryWeight
@@ -973,6 +983,8 @@ operator|.
 name|createWeight
 argument_list|(
 name|searcher
+argument_list|,
+name|needsScores
 argument_list|)
 expr_stmt|;
 name|this
@@ -1019,6 +1031,8 @@ operator|.
 name|createWeight
 argument_list|(
 name|searcher
+argument_list|,
+name|needsScores
 argument_list|)
 expr_stmt|;
 block|}
@@ -1028,21 +1042,6 @@ name|qStrict
 operator|=
 name|strict
 expr_stmt|;
-block|}
-comment|/*(non-Javadoc) @see org.apache.lucene.search.Weight#getQuery() */
-annotation|@
-name|Override
-DECL|method|getQuery
-specifier|public
-name|Query
-name|getQuery
-parameter_list|()
-block|{
-return|return
-name|CustomScoreQuery
-operator|.
-name|this
-return|;
 block|}
 annotation|@
 name|Override
@@ -1183,9 +1182,6 @@ name|context
 parameter_list|,
 name|Bits
 name|acceptDocs
-parameter_list|,
-name|boolean
-name|needsScores
 parameter_list|)
 throws|throws
 name|IOException
@@ -1200,8 +1196,6 @@ argument_list|(
 name|context
 argument_list|,
 name|acceptDocs
-argument_list|,
-name|needsScores
 argument_list|)
 decl_stmt|;
 if|if
@@ -1259,8 +1253,6 @@ argument_list|(
 name|context
 argument_list|,
 name|acceptDocs
-argument_list|,
-name|needsScores
 argument_list|)
 expr_stmt|;
 block|}
@@ -1910,6 +1902,9 @@ name|createWeight
 parameter_list|(
 name|IndexSearcher
 name|searcher
+parameter_list|,
+name|boolean
+name|needsScores
 parameter_list|)
 throws|throws
 name|IOException
@@ -1919,6 +1914,8 @@ operator|new
 name|CustomWeight
 argument_list|(
 name|searcher
+argument_list|,
+name|needsScores
 argument_list|)
 return|;
 block|}

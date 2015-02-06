@@ -1999,6 +1999,9 @@ name|createWeight
 parameter_list|(
 name|IndexSearcher
 name|searcher
+parameter_list|,
+name|boolean
+name|needsScores
 parameter_list|)
 throws|throws
 name|IOException
@@ -2008,6 +2011,8 @@ operator|new
 name|BooleanWeight
 argument_list|(
 name|searcher
+argument_list|,
+name|needsScores
 argument_list|,
 literal|false
 argument_list|)
@@ -2023,9 +2028,6 @@ name|context
 parameter_list|,
 name|Bits
 name|acceptDocs
-parameter_list|,
-name|boolean
-name|needsScores
 parameter_list|)
 throws|throws
 name|IOException
@@ -2038,8 +2040,6 @@ argument_list|(
 name|context
 argument_list|,
 name|acceptDocs
-argument_list|,
-name|needsScores
 argument_list|)
 decl_stmt|;
 if|if

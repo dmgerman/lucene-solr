@@ -253,6 +253,9 @@ parameter_list|(
 specifier|final
 name|IndexSearcher
 name|searcher
+parameter_list|,
+name|boolean
+name|needsScores
 parameter_list|)
 throws|throws
 name|IOException
@@ -266,12 +269,18 @@ operator|.
 name|createWeight
 argument_list|(
 name|searcher
+argument_list|,
+name|needsScores
 argument_list|)
 decl_stmt|;
 return|return
 operator|new
 name|Weight
-argument_list|()
+argument_list|(
+name|FilteredQuery
+operator|.
+name|this
+argument_list|)
 block|{
 annotation|@
 name|Override
@@ -455,20 +464,6 @@ name|result
 return|;
 block|}
 block|}
-comment|// return this query
-annotation|@
-name|Override
-specifier|public
-name|Query
-name|getQuery
-parameter_list|()
-block|{
-return|return
-name|FilteredQuery
-operator|.
-name|this
-return|;
-block|}
 comment|// return a filtering scorer
 annotation|@
 name|Override
@@ -481,9 +476,6 @@ name|context
 parameter_list|,
 name|Bits
 name|acceptDocs
-parameter_list|,
-name|boolean
-name|needsScores
 parameter_list|)
 throws|throws
 name|IOException
@@ -527,8 +519,6 @@ argument_list|,
 name|weight
 argument_list|,
 name|filterDocIdSet
-argument_list|,
-name|needsScores
 argument_list|)
 return|;
 block|}
@@ -544,9 +534,6 @@ name|context
 parameter_list|,
 name|Bits
 name|acceptDocs
-parameter_list|,
-name|boolean
-name|needsScores
 parameter_list|)
 throws|throws
 name|IOException
@@ -1667,9 +1654,6 @@ name|weight
 parameter_list|,
 name|DocIdSet
 name|docIdSet
-parameter_list|,
-name|boolean
-name|needsScores
 parameter_list|)
 throws|throws
 name|IOException
@@ -1705,8 +1689,6 @@ argument_list|,
 name|weight
 argument_list|,
 name|docIdSet
-argument_list|,
-name|needsScores
 argument_list|)
 decl_stmt|;
 if|if
@@ -1757,9 +1739,6 @@ name|weight
 parameter_list|,
 name|DocIdSet
 name|docIdSet
-parameter_list|,
-name|boolean
-name|needsScores
 parameter_list|)
 throws|throws
 name|IOException
@@ -1827,8 +1806,6 @@ argument_list|(
 name|context
 argument_list|,
 name|filterAcceptDocs
-argument_list|,
-name|needsScores
 argument_list|)
 return|;
 block|}
@@ -1847,8 +1824,6 @@ argument_list|(
 name|context
 argument_list|,
 literal|null
-argument_list|,
-name|needsScores
 argument_list|)
 decl_stmt|;
 return|return
@@ -1945,9 +1920,6 @@ name|weight
 parameter_list|,
 name|DocIdSet
 name|docIdSet
-parameter_list|,
-name|boolean
-name|needsScores
 parameter_list|)
 throws|throws
 name|IOException
@@ -1985,8 +1957,6 @@ argument_list|(
 name|context
 argument_list|,
 literal|null
-argument_list|,
-name|needsScores
 argument_list|)
 decl_stmt|;
 if|if
@@ -2063,9 +2033,6 @@ name|weight
 parameter_list|,
 name|DocIdSet
 name|docIdSet
-parameter_list|,
-name|boolean
-name|needsScores
 parameter_list|)
 throws|throws
 name|IOException
@@ -2097,8 +2064,6 @@ argument_list|,
 name|weight
 argument_list|,
 name|docIdSet
-argument_list|,
-name|needsScores
 argument_list|)
 return|;
 block|}
@@ -2113,8 +2078,6 @@ argument_list|(
 name|context
 argument_list|,
 literal|null
-argument_list|,
-name|needsScores
 argument_list|)
 decl_stmt|;
 return|return
@@ -2201,8 +2164,6 @@ argument_list|(
 name|context
 argument_list|,
 literal|null
-argument_list|,
-name|needsScores
 argument_list|)
 decl_stmt|;
 return|return

@@ -2795,6 +2795,24 @@ name|maxScore
 argument_list|)
 return|;
 block|}
+annotation|@
+name|Override
+DECL|method|topDocs
+specifier|public
+name|TopFieldDocs
+name|topDocs
+parameter_list|()
+block|{
+return|return
+operator|(
+name|TopFieldDocs
+operator|)
+name|super
+operator|.
+name|topDocs
+argument_list|()
+return|;
+block|}
 block|}
 end_class
 

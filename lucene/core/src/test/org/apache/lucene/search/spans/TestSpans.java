@@ -2910,6 +2910,8 @@ operator|.
 name|createNormalizedWeight
 argument_list|(
 name|snq
+argument_list|,
+literal|true
 argument_list|)
 operator|.
 name|scorer
@@ -2923,8 +2925,6 @@ argument_list|()
 operator|.
 name|getLiveDocs
 argument_list|()
-argument_list|,
-literal|true
 argument_list|)
 expr_stmt|;
 block|}

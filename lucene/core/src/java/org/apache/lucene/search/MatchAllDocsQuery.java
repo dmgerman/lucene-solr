@@ -414,7 +414,15 @@ parameter_list|(
 name|IndexSearcher
 name|searcher
 parameter_list|)
-block|{     }
+block|{
+name|super
+argument_list|(
+name|MatchAllDocsQuery
+operator|.
+name|this
+argument_list|)
+expr_stmt|;
+block|}
 annotation|@
 name|Override
 DECL|method|toString
@@ -431,20 +439,6 @@ operator|.
 name|this
 operator|+
 literal|")"
-return|;
-block|}
-annotation|@
-name|Override
-DECL|method|getQuery
-specifier|public
-name|Query
-name|getQuery
-parameter_list|()
-block|{
-return|return
-name|MatchAllDocsQuery
-operator|.
-name|this
 return|;
 block|}
 annotation|@
@@ -507,9 +501,6 @@ name|context
 parameter_list|,
 name|Bits
 name|acceptDocs
-parameter_list|,
-name|boolean
-name|needsScores
 parameter_list|)
 throws|throws
 name|IOException
@@ -609,6 +600,9 @@ name|createWeight
 parameter_list|(
 name|IndexSearcher
 name|searcher
+parameter_list|,
+name|boolean
+name|needsScores
 parameter_list|)
 block|{
 return|return

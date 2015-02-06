@@ -171,6 +171,8 @@ operator|.
 name|createNormalizedWeight
 argument_list|(
 name|query
+argument_list|,
+literal|false
 argument_list|)
 decl_stmt|;
 return|return
@@ -195,8 +197,6 @@ argument_list|(
 name|privateContext
 argument_list|,
 name|acceptDocs
-argument_list|,
-literal|false
 argument_list|)
 return|;
 block|}

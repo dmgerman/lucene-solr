@@ -934,6 +934,8 @@ operator|.
 name|createNormalizedWeight
 argument_list|(
 name|bq
+argument_list|,
+literal|true
 argument_list|)
 decl_stmt|;
 switch|switch
@@ -969,8 +971,6 @@ name|getContext
 argument_list|()
 argument_list|,
 literal|null
-argument_list|,
-literal|true
 argument_list|)
 return|;
 case|case
@@ -990,8 +990,6 @@ name|getContext
 argument_list|()
 argument_list|,
 literal|null
-argument_list|,
-literal|true
 argument_list|)
 decl_stmt|;
 if|if
@@ -1013,8 +1011,6 @@ name|getContext
 argument_list|()
 argument_list|,
 literal|null
-argument_list|,
-literal|true
 argument_list|)
 operator|!=
 literal|null

@@ -768,8 +768,6 @@ argument_list|(
 name|parentQuery
 argument_list|,
 name|parentsFilter
-argument_list|,
-literal|false
 argument_list|)
 decl_stmt|;
 name|DocList

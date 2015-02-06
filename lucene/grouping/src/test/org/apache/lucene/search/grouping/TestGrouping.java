@@ -8924,6 +8924,8 @@ operator|.
 name|createNormalizedWeight
 argument_list|(
 name|query
+argument_list|,
+literal|true
 argument_list|)
 decl_stmt|;
 specifier|final

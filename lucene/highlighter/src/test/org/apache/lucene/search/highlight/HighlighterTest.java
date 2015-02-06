@@ -4647,8 +4647,6 @@ argument_list|)
 argument_list|)
 argument_list|,
 name|parentFilter
-argument_list|,
-literal|false
 argument_list|)
 argument_list|,
 name|Occur

@@ -461,6 +461,8 @@ operator|.
 name|createNormalizedWeight
 argument_list|(
 name|termQuery
+argument_list|,
+literal|true
 argument_list|)
 decl_stmt|;
 name|assertTrue
@@ -500,8 +502,6 @@ argument_list|()
 operator|.
 name|getLiveDocs
 argument_list|()
-argument_list|,
-literal|true
 argument_list|)
 decl_stmt|;
 comment|// we have 2 documents with the term all in them, one document for all the
@@ -775,6 +775,8 @@ operator|.
 name|createNormalizedWeight
 argument_list|(
 name|termQuery
+argument_list|,
+literal|true
 argument_list|)
 decl_stmt|;
 name|assertTrue
@@ -814,8 +816,6 @@ argument_list|()
 operator|.
 name|getLiveDocs
 argument_list|()
-argument_list|,
-literal|true
 argument_list|)
 decl_stmt|;
 name|assertTrue
@@ -921,6 +921,8 @@ operator|.
 name|createNormalizedWeight
 argument_list|(
 name|termQuery
+argument_list|,
+literal|true
 argument_list|)
 decl_stmt|;
 name|assertTrue
@@ -960,8 +962,6 @@ argument_list|()
 operator|.
 name|getLiveDocs
 argument_list|()
-argument_list|,
-literal|true
 argument_list|)
 decl_stmt|;
 name|assertTrue

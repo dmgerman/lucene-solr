@@ -1451,6 +1451,8 @@ operator|.
 name|createNormalizedWeight
 argument_list|(
 name|q
+argument_list|,
+literal|true
 argument_list|)
 decl_stmt|;
 name|LeafReaderContext
@@ -1478,8 +1480,6 @@ argument_list|()
 operator|.
 name|getLiveDocs
 argument_list|()
-argument_list|,
-literal|true
 argument_list|)
 expr_stmt|;
 block|}
@@ -1861,6 +1861,8 @@ operator|.
 name|createNormalizedWeight
 argument_list|(
 name|q
+argument_list|,
+literal|true
 argument_list|)
 decl_stmt|;
 name|LeafReaderContext
@@ -1890,8 +1892,6 @@ argument_list|()
 operator|.
 name|getLiveDocs
 argument_list|()
-argument_list|,
-literal|true
 argument_list|)
 decl_stmt|;
 if|if
@@ -2052,6 +2052,8 @@ operator|.
 name|createNormalizedWeight
 argument_list|(
 name|q
+argument_list|,
+literal|true
 argument_list|)
 decl_stmt|;
 name|LeafReaderContext
@@ -2078,8 +2080,6 @@ argument_list|()
 operator|.
 name|getLiveDocs
 argument_list|()
-argument_list|,
-literal|true
 argument_list|)
 decl_stmt|;
 if|if
@@ -2300,6 +2300,8 @@ operator|.
 name|createNormalizedWeight
 argument_list|(
 name|q
+argument_list|,
+literal|true
 argument_list|)
 decl_stmt|;
 name|Scorer
@@ -2317,8 +2319,6 @@ name|leafPtr
 argument_list|)
 argument_list|,
 name|liveDocs
-argument_list|,
-literal|true
 argument_list|)
 decl_stmt|;
 name|Assert
@@ -2553,6 +2553,8 @@ operator|.
 name|createNormalizedWeight
 argument_list|(
 name|q
+argument_list|,
+literal|true
 argument_list|)
 decl_stmt|;
 name|Scorer
@@ -2574,8 +2576,6 @@ name|previousReader
 operator|.
 name|getLiveDocs
 argument_list|()
-argument_list|,
-literal|true
 argument_list|)
 decl_stmt|;
 if|if
@@ -2722,6 +2722,8 @@ operator|.
 name|createNormalizedWeight
 argument_list|(
 name|q
+argument_list|,
+literal|true
 argument_list|)
 decl_stmt|;
 name|Scorer
@@ -2743,8 +2745,6 @@ name|previousReader
 operator|.
 name|getLiveDocs
 argument_list|()
-argument_list|,
-literal|true
 argument_list|)
 decl_stmt|;
 if|if
@@ -2835,6 +2835,8 @@ operator|.
 name|createNormalizedWeight
 argument_list|(
 name|query
+argument_list|,
+literal|true
 argument_list|)
 decl_stmt|;
 for|for
@@ -2868,8 +2870,6 @@ argument_list|()
 operator|.
 name|getLiveDocs
 argument_list|()
-argument_list|,
-literal|true
 argument_list|)
 decl_stmt|;
 specifier|final
@@ -2889,8 +2889,6 @@ argument_list|()
 operator|.
 name|getLiveDocs
 argument_list|()
-argument_list|,
-literal|true
 argument_list|)
 decl_stmt|;
 if|if
