@@ -3313,8 +3313,8 @@ argument_list|(
 name|dir
 argument_list|)
 decl_stmt|;
-name|DocsEnum
-name|docsEnum
+name|PostingsEnum
+name|postingsEnum
 init|=
 name|TestUtil
 operator|.
@@ -3337,7 +3337,7 @@ literal|null
 argument_list|,
 literal|null
 argument_list|,
-name|DocsEnum
+name|PostingsEnum
 operator|.
 name|FLAG_NONE
 argument_list|)
@@ -3349,7 +3349,7 @@ literal|0
 decl_stmt|;
 while|while
 condition|(
-name|docsEnum
+name|postingsEnum
 operator|.
 name|nextDoc
 argument_list|()

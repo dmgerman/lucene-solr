@@ -18,11 +18,15 @@ end_comment
 
 begin_import
 import|import
-name|java
+name|org
 operator|.
-name|io
+name|apache
 operator|.
-name|IOException
+name|lucene
+operator|.
+name|index
+operator|.
+name|PostingsEnum
 import|;
 end_import
 
@@ -51,6 +55,16 @@ operator|.
 name|util
 operator|.
 name|Bits
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
+name|io
+operator|.
+name|IOException
 import|;
 end_import
 

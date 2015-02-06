@@ -66,35 +66,7 @@ name|lucene
 operator|.
 name|index
 operator|.
-name|LeafReaderContext
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|index
-operator|.
-name|DocsAndPositionsEnum
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|index
-operator|.
-name|DocsEnum
+name|PostingsEnum
 import|;
 end_import
 
@@ -122,6 +94,20 @@ name|lucene
 operator|.
 name|index
 operator|.
+name|IndexReaderContext
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|index
+operator|.
 name|LeafReader
 import|;
 end_import
@@ -136,7 +122,7 @@ name|lucene
 operator|.
 name|index
 operator|.
-name|IndexReaderContext
+name|LeafReaderContext
 import|;
 end_import
 
@@ -223,8 +209,6 @@ operator|.
 name|similarities
 operator|.
 name|Similarity
-operator|.
-name|SimScorer
 import|;
 end_import
 
@@ -241,6 +225,8 @@ operator|.
 name|similarities
 operator|.
 name|Similarity
+operator|.
+name|SimScorer
 import|;
 end_import
 
@@ -708,7 +694,7 @@ argument_list|>
 block|{
 DECL|field|postings
 specifier|final
-name|DocsAndPositionsEnum
+name|PostingsEnum
 name|postings
 decl_stmt|;
 DECL|field|docFreq
@@ -737,7 +723,7 @@ DECL|method|PostingsAndFreq
 specifier|public
 name|PostingsAndFreq
 parameter_list|(
-name|DocsAndPositionsEnum
+name|PostingsEnum
 name|postings
 parameter_list|,
 name|int
@@ -1549,20 +1535,20 @@ argument_list|,
 name|state
 argument_list|)
 expr_stmt|;
-name|DocsAndPositionsEnum
+name|PostingsEnum
 name|postingsEnum
 init|=
 name|te
 operator|.
-name|docsAndPositions
+name|postings
 argument_list|(
 name|liveDocs
 argument_list|,
 literal|null
 argument_list|,
-name|DocsEnum
+name|PostingsEnum
 operator|.
-name|FLAG_NONE
+name|FLAG_POSITIONS
 argument_list|)
 decl_stmt|;
 comment|// PhraseQuery on a field that did not index
@@ -1631,9 +1617,6 @@ name|get
 argument_list|(
 name|i
 argument_list|)
-operator|.
-name|intValue
-argument_list|()
 argument_list|,
 name|t
 argument_list|)

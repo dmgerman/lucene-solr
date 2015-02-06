@@ -415,7 +415,7 @@ operator|!=
 literal|null
 condition|)
 block|{
-name|DocsEnum
+name|PostingsEnum
 name|de
 init|=
 name|TestUtil
@@ -431,7 +431,7 @@ literal|null
 argument_list|,
 literal|null
 argument_list|,
-name|DocsEnum
+name|PostingsEnum
 operator|.
 name|FLAG_NONE
 argument_list|)

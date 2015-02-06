@@ -18,26 +18,6 @@ end_comment
 
 begin_import
 import|import
-name|java
-operator|.
-name|io
-operator|.
-name|Closeable
-import|;
-end_import
-
-begin_import
-import|import
-name|java
-operator|.
-name|io
-operator|.
-name|IOException
-import|;
-end_import
-
-begin_import
-import|import
 name|org
 operator|.
 name|apache
@@ -51,42 +31,6 @@ operator|.
 name|BlockTreeTermsWriter
 import|;
 end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|index
-operator|.
-name|DocsAndPositionsEnum
-import|;
-end_import
-
-begin_comment
-comment|// javadocs
-end_comment
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|index
-operator|.
-name|DocsEnum
-import|;
-end_import
-
-begin_comment
-comment|// javadocs
-end_comment
 
 begin_import
 import|import
@@ -186,6 +130,26 @@ name|FixedBitSet
 import|;
 end_import
 
+begin_import
+import|import
+name|java
+operator|.
+name|io
+operator|.
+name|Closeable
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
+name|io
+operator|.
+name|IOException
+import|;
+end_import
+
 begin_comment
 comment|/**  * Class that plugs into term dictionaries, such as {@link  * BlockTreeTermsWriter}, and handles writing postings.  *   * @see PostingsReaderBase  * @lucene.experimental  */
 end_comment
@@ -233,7 +197,7 @@ parameter_list|)
 throws|throws
 name|IOException
 function_decl|;
-comment|/** Write all postings for one term; use the provided    *  {@link TermsEnum} to pull a {@link DocsEnum} or {@link    *  DocsAndPositionsEnum}.  This method should not    *  re-position the {@code TermsEnum}!  It is already    *  positioned on the term that should be written.  This    *  method must set the bit in the provided {@link    *  FixedBitSet} for every docID written.  If no docs    *  were written, this method should return null, and the    *  terms dict will skip the term. */
+comment|/** Write all postings for one term; use the provided    *  {@link TermsEnum} to pull a {@link org.apache.lucene.index.PostingsEnum}.    *  This method should not    *  re-position the {@code TermsEnum}!  It is already    *  positioned on the term that should be written.  This    *  method must set the bit in the provided {@link    *  FixedBitSet} for every docID written.  If no docs    *  were written, this method should return null, and the    *  terms dict will skip the term. */
 DECL|method|writeTerm
 specifier|public
 specifier|abstract

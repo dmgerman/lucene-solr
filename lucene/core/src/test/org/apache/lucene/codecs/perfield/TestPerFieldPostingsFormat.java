@@ -142,6 +142,24 @@ literal|false
 argument_list|)
 expr_stmt|;
 block|}
+annotation|@
+name|Override
+DECL|method|testPostingsEnumReuse
+specifier|public
+name|void
+name|testPostingsEnumReuse
+parameter_list|()
+throws|throws
+name|Exception
+block|{
+name|assumeTrue
+argument_list|(
+literal|"The MockRandom PF randomizes content on the fly, so we can't check it"
+argument_list|,
+literal|false
+argument_list|)
+expr_stmt|;
+block|}
 block|}
 end_class
 

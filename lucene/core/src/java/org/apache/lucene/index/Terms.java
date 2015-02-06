@@ -256,7 +256,7 @@ parameter_list|()
 throws|throws
 name|IOException
 function_decl|;
-comment|/** Returns true if documents in this field store    *  per-document term frequency ({@link DocsEnum#freq}). */
+comment|/** Returns true if documents in this field store    *  per-document term frequency ({@link PostingsEnum#freq}). */
 DECL|method|hasFreqs
 specifier|public
 specifier|abstract

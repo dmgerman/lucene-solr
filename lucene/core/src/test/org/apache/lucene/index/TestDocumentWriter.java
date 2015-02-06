@@ -846,7 +846,7 @@ argument_list|()
 argument_list|)
 argument_list|)
 decl_stmt|;
-name|DocsAndPositionsEnum
+name|PostingsEnum
 name|termPositions
 init|=
 name|MultiFields
@@ -1263,7 +1263,7 @@ argument_list|()
 argument_list|)
 argument_list|)
 decl_stmt|;
-name|DocsAndPositionsEnum
+name|PostingsEnum
 name|termPositions
 init|=
 name|MultiFields
@@ -1543,12 +1543,12 @@ argument_list|()
 argument_list|)
 argument_list|)
 decl_stmt|;
-name|DocsAndPositionsEnum
+name|PostingsEnum
 name|termPositions
 init|=
 name|reader
 operator|.
-name|termPositionsEnum
+name|termDocsEnum
 argument_list|(
 operator|new
 name|Term
@@ -1557,6 +1557,10 @@ literal|"preanalyzed"
 argument_list|,
 literal|"term1"
 argument_list|)
+argument_list|,
+name|PostingsEnum
+operator|.
+name|FLAG_ALL
 argument_list|)
 decl_stmt|;
 name|assertTrue
@@ -1595,7 +1599,7 @@ name|termPositions
 operator|=
 name|reader
 operator|.
-name|termPositionsEnum
+name|termDocsEnum
 argument_list|(
 operator|new
 name|Term
@@ -1604,6 +1608,10 @@ literal|"preanalyzed"
 argument_list|,
 literal|"term2"
 argument_list|)
+argument_list|,
+name|PostingsEnum
+operator|.
+name|FLAG_ALL
 argument_list|)
 expr_stmt|;
 name|assertTrue
@@ -1652,7 +1660,7 @@ name|termPositions
 operator|=
 name|reader
 operator|.
-name|termPositionsEnum
+name|termDocsEnum
 argument_list|(
 operator|new
 name|Term
@@ -1661,6 +1669,10 @@ literal|"preanalyzed"
 argument_list|,
 literal|"term3"
 argument_list|)
+argument_list|,
+name|PostingsEnum
+operator|.
+name|FLAG_ALL
 argument_list|)
 expr_stmt|;
 name|assertTrue

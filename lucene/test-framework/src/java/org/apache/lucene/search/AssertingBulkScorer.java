@@ -46,7 +46,7 @@ name|lucene
 operator|.
 name|index
 operator|.
-name|DocsEnum
+name|PostingsEnum
 import|;
 end_import
 
@@ -227,7 +227,7 @@ name|collector
 argument_list|,
 literal|0
 argument_list|,
-name|DocsEnum
+name|PostingsEnum
 operator|.
 name|NO_MORE_DOCS
 argument_list|)
@@ -252,7 +252,7 @@ name|collector
 argument_list|,
 literal|0
 argument_list|,
-name|DocsEnum
+name|PostingsEnum
 operator|.
 name|NO_MORE_DOCS
 argument_list|)

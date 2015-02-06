@@ -1587,12 +1587,12 @@ name|docFreq
 argument_list|()
 argument_list|)
 expr_stmt|;
-name|DocsAndPositionsEnum
+name|PostingsEnum
 name|positions
 init|=
 name|tis
 operator|.
-name|docsAndPositions
+name|postings
 argument_list|(
 name|reader
 operator|.
@@ -1600,6 +1600,10 @@ name|getLiveDocs
 argument_list|()
 argument_list|,
 literal|null
+argument_list|,
+name|PostingsEnum
+operator|.
+name|FLAG_POSITIONS
 argument_list|)
 decl_stmt|;
 while|while

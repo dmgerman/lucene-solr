@@ -108,7 +108,7 @@ name|lucene
 operator|.
 name|index
 operator|.
-name|DocsAndPositionsEnum
+name|PostingsEnum
 import|;
 end_import
 
@@ -2211,16 +2211,20 @@ argument_list|()
 argument_list|)
 expr_stmt|;
 specifier|final
-name|DocsAndPositionsEnum
+name|PostingsEnum
 name|dpe
 init|=
 name|te
 operator|.
-name|docsAndPositions
+name|postings
 argument_list|(
 literal|null
 argument_list|,
 literal|null
+argument_list|,
+name|PostingsEnum
+operator|.
+name|FLAG_ALL
 argument_list|)
 decl_stmt|;
 name|assertEquals

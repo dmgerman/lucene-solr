@@ -20,6 +20,16 @@ end_comment
 
 begin_import
 import|import
+name|java
+operator|.
+name|io
+operator|.
+name|IOException
+import|;
+end_import
+
+begin_import
+import|import
 name|org
 operator|.
 name|apache
@@ -29,6 +39,20 @@ operator|.
 name|index
 operator|.
 name|LeafReaderContext
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|index
+operator|.
+name|PostingsEnum
 import|;
 end_import
 
@@ -54,9 +78,23 @@ name|apache
 operator|.
 name|lucene
 operator|.
-name|index
+name|search
 operator|.
-name|DocsAndPositionsEnum
+name|ComplexExplanation
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|search
+operator|.
+name|Explanation
 import|;
 end_import
 
@@ -99,34 +137,6 @@ operator|.
 name|search
 operator|.
 name|Weight
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|search
-operator|.
-name|Explanation
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|search
-operator|.
-name|ComplexExplanation
 import|;
 end_import
 
@@ -208,7 +218,7 @@ name|search
 operator|.
 name|spans
 operator|.
-name|TermSpans
+name|SpanScorer
 import|;
 end_import
 
@@ -256,7 +266,7 @@ name|search
 operator|.
 name|spans
 operator|.
-name|SpanScorer
+name|TermSpans
 import|;
 end_import
 
@@ -285,16 +295,6 @@ operator|.
 name|util
 operator|.
 name|BytesRef
-import|;
-end_import
-
-begin_import
-import|import
-name|java
-operator|.
-name|io
-operator|.
-name|IOException
 import|;
 end_import
 
@@ -659,7 +659,7 @@ argument_list|()
 condition|)
 block|{
 specifier|final
-name|DocsAndPositionsEnum
+name|PostingsEnum
 name|postings
 init|=
 name|termSpans

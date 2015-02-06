@@ -160,22 +160,6 @@ name|lucene
 operator|.
 name|analysis
 operator|.
-name|Analyzer
-operator|.
-name|TokenStreamComponents
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|analysis
-operator|.
 name|MockAnalyzer
 import|;
 end_import
@@ -292,7 +276,7 @@ name|lucene
 operator|.
 name|index
 operator|.
-name|DocsEnum
+name|PostingsEnum
 import|;
 end_import
 
@@ -2250,7 +2234,7 @@ index|]
 argument_list|)
 expr_stmt|;
 block|}
-name|docsEnums
+name|postingsEnums
 index|[
 name|seg
 index|]
@@ -2260,14 +2244,14 @@ index|[
 name|seg
 index|]
 operator|.
-name|docs
+name|postings
 argument_list|(
 name|liveDocs
 index|[
 name|seg
 index|]
 argument_list|,
-name|docsEnums
+name|postingsEnums
 index|[
 name|seg
 index|]
@@ -2278,7 +2262,7 @@ expr_stmt|;
 name|int
 name|docID
 init|=
-name|docsEnums
+name|postingsEnums
 index|[
 name|seg
 index|]
@@ -2290,7 +2274,7 @@ if|if
 condition|(
 name|docID
 operator|!=
-name|DocsEnum
+name|PostingsEnum
 operator|.
 name|NO_MORE_DOCS
 condition|)

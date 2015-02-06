@@ -920,7 +920,7 @@ argument_list|(
 name|directory
 argument_list|)
 decl_stmt|;
-name|DocsAndPositionsEnum
+name|PostingsEnum
 name|tp
 init|=
 name|MultiFields

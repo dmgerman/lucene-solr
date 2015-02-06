@@ -98,7 +98,7 @@ name|lucene
 operator|.
 name|index
 operator|.
-name|LeafReaderContext
+name|IndexReader
 import|;
 end_import
 
@@ -112,7 +112,7 @@ name|lucene
 operator|.
 name|index
 operator|.
-name|IndexReader
+name|LeafReaderContext
 import|;
 end_import
 

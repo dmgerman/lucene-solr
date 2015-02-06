@@ -112,7 +112,7 @@ name|lucene
 operator|.
 name|index
 operator|.
-name|DocsEnum
+name|PostingsEnum
 import|;
 end_import
 
@@ -1201,8 +1201,8 @@ name|term
 init|=
 literal|null
 decl_stmt|;
-name|DocsEnum
-name|docsEnum
+name|PostingsEnum
+name|postingsEnum
 init|=
 literal|null
 decl_stmt|;
@@ -1321,17 +1321,17 @@ literal|null
 argument_list|)
 expr_stmt|;
 block|}
-name|docsEnum
+name|postingsEnum
 operator|=
 name|termsEnum
 operator|.
-name|docs
+name|postings
 argument_list|(
 name|liveDocs
 argument_list|,
-name|docsEnum
+name|postingsEnum
 argument_list|,
-name|DocsEnum
+name|PostingsEnum
 operator|.
 name|FLAG_NONE
 argument_list|)
@@ -1345,7 +1345,7 @@ block|{
 name|int
 name|doc
 init|=
-name|docsEnum
+name|postingsEnum
 operator|.
 name|nextDoc
 argument_list|()

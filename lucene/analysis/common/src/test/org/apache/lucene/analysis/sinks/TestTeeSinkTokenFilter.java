@@ -222,7 +222,7 @@ name|lucene
 operator|.
 name|index
 operator|.
-name|DocsAndPositionsEnum
+name|PostingsEnum
 import|;
 end_import
 
@@ -843,16 +843,20 @@ name|totalTermFreq
 argument_list|()
 argument_list|)
 expr_stmt|;
-name|DocsAndPositionsEnum
+name|PostingsEnum
 name|positions
 init|=
 name|termsEnum
 operator|.
-name|docsAndPositions
+name|postings
 argument_list|(
 literal|null
 argument_list|,
 literal|null
+argument_list|,
+name|PostingsEnum
+operator|.
+name|FLAG_ALL
 argument_list|)
 decl_stmt|;
 name|assertTrue

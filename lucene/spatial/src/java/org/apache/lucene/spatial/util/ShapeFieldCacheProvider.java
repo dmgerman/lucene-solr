@@ -282,7 +282,7 @@ name|count
 init|=
 literal|0
 decl_stmt|;
-name|DocsEnum
+name|PostingsEnum
 name|docs
 init|=
 literal|null
@@ -352,13 +352,13 @@ name|docs
 operator|=
 name|te
 operator|.
-name|docs
+name|postings
 argument_list|(
 literal|null
 argument_list|,
 name|docs
 argument_list|,
-name|DocsEnum
+name|PostingsEnum
 operator|.
 name|FLAG_NONE
 argument_list|)

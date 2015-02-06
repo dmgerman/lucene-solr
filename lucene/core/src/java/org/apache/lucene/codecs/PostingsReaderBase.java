@@ -46,21 +46,7 @@ name|lucene
 operator|.
 name|index
 operator|.
-name|DocsAndPositionsEnum
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|index
-operator|.
-name|DocsEnum
+name|PostingsEnum
 import|;
 end_import
 
@@ -149,7 +135,7 @@ import|;
 end_import
 
 begin_comment
-comment|/** The core terms dictionaries (BlockTermsReader,  *  BlockTreeTermsReader) interact with a single instance  *  of this class to manage creation of {@link DocsEnum} and  *  {@link DocsAndPositionsEnum} instances.  It provides an  *  IndexInput (termsIn) where this class may read any  *  previously stored data that it had written in its  *  corresponding {@link PostingsWriterBase} at indexing  *  time.   *  @lucene.experimental */
+comment|/** The core terms dictionaries (BlockTermsReader,  *  BlockTreeTermsReader) interact with a single instance  *  of this class to manage creation of {@link org.apache.lucene.index.PostingsEnum} and  *  {@link org.apache.lucene.index.PostingsEnum} instances.  It provides an  *  IndexInput (termsIn) where this class may read any  *  previously stored data that it had written in its  *  corresponding {@link PostingsWriterBase} at indexing  *  time.   *  @lucene.experimental */
 end_comment
 
 begin_comment
@@ -238,11 +224,11 @@ throws|throws
 name|IOException
 function_decl|;
 comment|/** Must fully consume state, since after this call that    *  TermState may be reused. */
-DECL|method|docs
+DECL|method|postings
 specifier|public
 specifier|abstract
-name|DocsEnum
-name|docs
+name|PostingsEnum
+name|postings
 parameter_list|(
 name|FieldInfo
 name|fieldInfo
@@ -253,32 +239,7 @@ parameter_list|,
 name|Bits
 name|skipDocs
 parameter_list|,
-name|DocsEnum
-name|reuse
-parameter_list|,
-name|int
-name|flags
-parameter_list|)
-throws|throws
-name|IOException
-function_decl|;
-comment|/** Must fully consume state, since after this call that    *  TermState may be reused. */
-DECL|method|docsAndPositions
-specifier|public
-specifier|abstract
-name|DocsAndPositionsEnum
-name|docsAndPositions
-parameter_list|(
-name|FieldInfo
-name|fieldInfo
-parameter_list|,
-name|BlockTermState
-name|state
-parameter_list|,
-name|Bits
-name|skipDocs
-parameter_list|,
-name|DocsAndPositionsEnum
+name|PostingsEnum
 name|reuse
 parameter_list|,
 name|int

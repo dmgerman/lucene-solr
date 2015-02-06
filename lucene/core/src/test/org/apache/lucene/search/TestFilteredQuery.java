@@ -140,7 +140,7 @@ name|lucene
 operator|.
 name|index
 operator|.
-name|DocsEnum
+name|PostingsEnum
 import|;
 end_import
 
@@ -3430,8 +3430,8 @@ operator|.
 name|reader
 argument_list|()
 decl_stmt|;
-name|DocsEnum
-name|termDocsEnum
+name|PostingsEnum
+name|termPostingsEnum
 init|=
 name|reader
 operator|.
@@ -3448,7 +3448,7 @@ argument_list|)
 decl_stmt|;
 if|if
 condition|(
-name|termDocsEnum
+name|termPostingsEnum
 operator|==
 literal|null
 condition|)
@@ -3479,13 +3479,13 @@ condition|(
 operator|(
 name|d
 operator|=
-name|termDocsEnum
+name|termPostingsEnum
 operator|.
 name|nextDoc
 argument_list|()
 operator|)
 operator|!=
-name|DocsEnum
+name|PostingsEnum
 operator|.
 name|NO_MORE_DOCS
 condition|)
@@ -3889,8 +3889,8 @@ throws|throws
 name|IOException
 block|{
 specifier|final
-name|DocsEnum
-name|termDocsEnum
+name|PostingsEnum
+name|termPostingsEnum
 init|=
 name|context
 operator|.
@@ -3910,7 +3910,7 @@ argument_list|)
 decl_stmt|;
 if|if
 condition|(
-name|termDocsEnum
+name|termPostingsEnum
 operator|==
 literal|null
 condition|)
@@ -3966,7 +3966,7 @@ operator|=
 literal|true
 expr_stmt|;
 return|return
-name|termDocsEnum
+name|termPostingsEnum
 operator|.
 name|nextDoc
 argument_list|()
@@ -3980,7 +3980,7 @@ name|docID
 parameter_list|()
 block|{
 return|return
-name|termDocsEnum
+name|termPostingsEnum
 operator|.
 name|docID
 argument_list|()
@@ -4024,7 +4024,7 @@ operator|=
 literal|true
 expr_stmt|;
 return|return
-name|termDocsEnum
+name|termPostingsEnum
 operator|.
 name|advance
 argument_list|(
@@ -4040,7 +4040,7 @@ name|cost
 parameter_list|()
 block|{
 return|return
-name|termDocsEnum
+name|termPostingsEnum
 operator|.
 name|cost
 argument_list|()

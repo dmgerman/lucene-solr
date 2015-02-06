@@ -239,7 +239,7 @@ name|nextInt
 argument_list|()
 expr_stmt|;
 block|}
-comment|/**    * Simple testcase for {@link DocsAndPositionsEnum}    */
+comment|/**    * Simple testcase for {@link PostingsEnum}    */
 DECL|method|testPositionsSimple
 specifier|public
 name|void
@@ -408,7 +408,7 @@ name|leaves
 argument_list|()
 control|)
 block|{
-name|DocsAndPositionsEnum
+name|PostingsEnum
 name|docsAndPosEnum
 init|=
 name|getDocsAndPositions
@@ -607,7 +607,7 @@ expr_stmt|;
 block|}
 DECL|method|getDocsAndPositions
 specifier|public
-name|DocsAndPositionsEnum
+name|PostingsEnum
 name|getDocsAndPositions
 parameter_list|(
 name|LeafReader
@@ -662,11 +662,15 @@ block|{
 return|return
 name|te
 operator|.
-name|docsAndPositions
+name|postings
 argument_list|(
 name|liveDocs
 argument_list|,
 literal|null
+argument_list|,
+name|PostingsEnum
+operator|.
+name|FLAG_ALL
 argument_list|)
 return|;
 block|}
@@ -1011,7 +1015,7 @@ name|leaves
 argument_list|()
 control|)
 block|{
-name|DocsAndPositionsEnum
+name|PostingsEnum
 name|docsAndPosEnum
 init|=
 name|getDocsAndPositions
@@ -1573,8 +1577,8 @@ operator|.
 name|maxDoc
 argument_list|()
 decl_stmt|;
-name|DocsEnum
-name|docsEnum
+name|PostingsEnum
+name|postingsEnum
 init|=
 name|TestUtil
 operator|.
@@ -1596,7 +1600,7 @@ literal|null
 argument_list|,
 literal|null
 argument_list|,
-name|DocsEnum
+name|PostingsEnum
 operator|.
 name|FLAG_FREQS
 argument_list|)
@@ -1625,17 +1629,17 @@ condition|)
 block|{
 name|assertNull
 argument_list|(
-name|docsEnum
+name|postingsEnum
 argument_list|)
 expr_stmt|;
 continue|continue;
 block|}
 name|assertNotNull
 argument_list|(
-name|docsEnum
+name|postingsEnum
 argument_list|)
 expr_stmt|;
-name|docsEnum
+name|postingsEnum
 operator|.
 name|nextDoc
 argument_list|()
@@ -1673,7 +1677,7 @@ name|assertEquals
 argument_list|(
 name|j
 argument_list|,
-name|docsEnum
+name|postingsEnum
 operator|.
 name|docID
 argument_list|()
@@ -1681,7 +1685,7 @@ argument_list|)
 expr_stmt|;
 name|assertEquals
 argument_list|(
-name|docsEnum
+name|postingsEnum
 operator|.
 name|freq
 argument_list|()
@@ -1744,7 +1748,7 @@ decl_stmt|;
 name|int
 name|advancedTo
 init|=
-name|docsEnum
+name|postingsEnum
 operator|.
 name|advance
 argument_list|(
@@ -1789,7 +1793,7 @@ block|}
 block|}
 else|else
 block|{
-name|docsEnum
+name|postingsEnum
 operator|.
 name|nextDoc
 argument_list|()
@@ -1811,7 +1815,7 @@ name|maxDoc
 operator|+
 literal|" "
 operator|+
-name|docsEnum
+name|postingsEnum
 operator|.
 name|getClass
 argument_list|()
@@ -1820,7 +1824,7 @@ name|DocIdSetIterator
 operator|.
 name|NO_MORE_DOCS
 argument_list|,
-name|docsEnum
+name|postingsEnum
 operator|.
 name|docID
 argument_list|()
@@ -2114,7 +2118,7 @@ name|leaves
 argument_list|()
 control|)
 block|{
-name|DocsAndPositionsEnum
+name|PostingsEnum
 name|docsAndPosEnum
 init|=
 name|getDocsAndPositions
@@ -2339,7 +2343,7 @@ argument_list|(
 name|reader
 argument_list|)
 decl_stmt|;
-name|DocsEnum
+name|PostingsEnum
 name|disi
 init|=
 name|TestUtil
@@ -2363,7 +2367,7 @@ literal|null
 argument_list|,
 literal|null
 argument_list|,
-name|DocsEnum
+name|PostingsEnum
 operator|.
 name|FLAG_NONE
 argument_list|)
@@ -2441,7 +2445,7 @@ literal|null
 argument_list|,
 name|disi
 argument_list|,
-name|DocsEnum
+name|PostingsEnum
 operator|.
 name|FLAG_NONE
 argument_list|)
@@ -2563,12 +2567,12 @@ argument_list|(
 name|reader
 argument_list|)
 decl_stmt|;
-name|DocsAndPositionsEnum
+name|PostingsEnum
 name|disi
 init|=
 name|r
 operator|.
-name|termPositionsEnum
+name|termDocsEnum
 argument_list|(
 operator|new
 name|Term
@@ -2577,6 +2581,10 @@ literal|"foo"
 argument_list|,
 literal|"bar"
 argument_list|)
+argument_list|,
+name|PostingsEnum
+operator|.
+name|FLAG_ALL
 argument_list|)
 decl_stmt|;
 name|int
@@ -2641,11 +2649,15 @@ name|disi
 operator|=
 name|te
 operator|.
-name|docsAndPositions
+name|postings
 argument_list|(
 literal|null
 argument_list|,
 name|disi
+argument_list|,
+name|PostingsEnum
+operator|.
+name|FLAG_ALL
 argument_list|)
 expr_stmt|;
 name|docid

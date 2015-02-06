@@ -40,7 +40,7 @@ name|lucene
 operator|.
 name|index
 operator|.
-name|DocsEnum
+name|PostingsEnum
 import|;
 end_import
 
@@ -322,13 +322,13 @@ block|{
 return|return
 name|termsEnum
 operator|.
-name|docs
+name|postings
 argument_list|(
 name|acceptDocs
 argument_list|,
 literal|null
 argument_list|,
-name|DocsEnum
+name|PostingsEnum
 operator|.
 name|FLAG_NONE
 argument_list|)

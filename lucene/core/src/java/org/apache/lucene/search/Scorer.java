@@ -56,7 +56,7 @@ name|lucene
 operator|.
 name|index
 operator|.
-name|DocsEnum
+name|PostingsEnum
 import|;
 end_import
 
@@ -71,7 +71,7 @@ specifier|abstract
 class|class
 name|Scorer
 extends|extends
-name|DocsEnum
+name|PostingsEnum
 block|{
 comment|/** the Scorer's parent Weight. in some cases this may be null */
 comment|// TODO can we clean this up?

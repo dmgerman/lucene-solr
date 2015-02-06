@@ -88,21 +88,7 @@ name|lucene
 operator|.
 name|index
 operator|.
-name|DocsAndPositionsEnum
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|index
-operator|.
-name|DocsEnum
+name|PostingsEnum
 import|;
 end_import
 
@@ -4264,15 +4250,15 @@ return|;
 block|}
 annotation|@
 name|Override
-DECL|method|docs
+DECL|method|postings
 specifier|public
-name|DocsEnum
-name|docs
+name|PostingsEnum
+name|postings
 parameter_list|(
 name|Bits
 name|skipDocs
 parameter_list|,
-name|DocsEnum
+name|PostingsEnum
 name|reuse
 parameter_list|,
 name|int
@@ -4281,64 +4267,15 @@ parameter_list|)
 throws|throws
 name|IOException
 block|{
-assert|assert
-operator|!
-name|eof
-assert|;
-comment|//if (DEBUG) {
-comment|//System.out.println("BTTR.docs seg=" + segment);
-comment|//}
-name|currentFrame
+if|if
+condition|(
+name|PostingsEnum
 operator|.
-name|decodeMetaData
-argument_list|()
-expr_stmt|;
-comment|//if (DEBUG) {
-comment|//System.out.println("  state=" + currentFrame.state);
-comment|//}
-return|return
-name|fr
-operator|.
-name|parent
-operator|.
-name|postingsReader
-operator|.
-name|docs
+name|requiresPositions
 argument_list|(
-name|fr
-operator|.
-name|fieldInfo
-argument_list|,
-name|currentFrame
-operator|.
-name|state
-argument_list|,
-name|skipDocs
-argument_list|,
-name|reuse
-argument_list|,
 name|flags
 argument_list|)
-return|;
-block|}
-annotation|@
-name|Override
-DECL|method|docsAndPositions
-specifier|public
-name|DocsAndPositionsEnum
-name|docsAndPositions
-parameter_list|(
-name|Bits
-name|skipDocs
-parameter_list|,
-name|DocsAndPositionsEnum
-name|reuse
-parameter_list|,
-name|int
-name|flags
-parameter_list|)
-throws|throws
-name|IOException
+condition|)
 block|{
 if|if
 condition|(
@@ -4364,15 +4301,22 @@ return|return
 literal|null
 return|;
 block|}
+block|}
 assert|assert
 operator|!
 name|eof
 assert|;
+comment|//if (DEBUG) {
+comment|//System.out.println("BTTR.docs seg=" + segment);
+comment|//}
 name|currentFrame
 operator|.
 name|decodeMetaData
 argument_list|()
 expr_stmt|;
+comment|//if (DEBUG) {
+comment|//System.out.println("  state=" + currentFrame.state);
+comment|//}
 return|return
 name|fr
 operator|.
@@ -4380,7 +4324,7 @@ name|parent
 operator|.
 name|postingsReader
 operator|.
-name|docsAndPositions
+name|postings
 argument_list|(
 name|fr
 operator|.

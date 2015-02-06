@@ -52,7 +52,7 @@ name|lucene
 operator|.
 name|index
 operator|.
-name|DocsEnum
+name|PostingsEnum
 import|;
 end_import
 
@@ -413,10 +413,10 @@ name|TermsEnum
 name|termsEnum
 decl_stmt|;
 comment|//remember to check for null!
-DECL|field|docsEnum
+DECL|field|postingsEnum
 specifier|protected
-name|DocsEnum
-name|docsEnum
+name|PostingsEnum
+name|postingsEnum
 decl_stmt|;
 DECL|method|BaseTermsEnumTraverser
 specifier|public
@@ -504,17 +504,17 @@ name|termsEnum
 operator|!=
 literal|null
 assert|;
-name|docsEnum
+name|postingsEnum
 operator|=
 name|termsEnum
 operator|.
-name|docs
+name|postings
 argument_list|(
 name|acceptDocs
 argument_list|,
-name|docsEnum
+name|postingsEnum
 argument_list|,
-name|DocsEnum
+name|PostingsEnum
 operator|.
 name|FLAG_NONE
 argument_list|)
@@ -523,7 +523,7 @@ name|bitSet
 operator|.
 name|or
 argument_list|(
-name|docsEnum
+name|postingsEnum
 argument_list|)
 expr_stmt|;
 block|}

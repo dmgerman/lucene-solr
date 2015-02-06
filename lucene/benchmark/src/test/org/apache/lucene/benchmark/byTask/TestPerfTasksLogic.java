@@ -342,7 +342,7 @@ name|lucene
 operator|.
 name|index
 operator|.
-name|DocsEnum
+name|PostingsEnum
 import|;
 end_import
 
@@ -2321,7 +2321,7 @@ argument_list|(
 literal|null
 argument_list|)
 decl_stmt|;
-name|DocsEnum
+name|PostingsEnum
 name|docs
 init|=
 literal|null
@@ -2356,7 +2356,7 @@ argument_list|)
 argument_list|,
 name|docs
 argument_list|,
-name|DocsEnum
+name|PostingsEnum
 operator|.
 name|FLAG_FREQS
 argument_list|)

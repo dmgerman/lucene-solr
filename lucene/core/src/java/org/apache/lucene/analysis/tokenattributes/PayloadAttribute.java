@@ -26,24 +26,6 @@ name|apache
 operator|.
 name|lucene
 operator|.
-name|index
-operator|.
-name|DocsAndPositionsEnum
-import|;
-end_import
-
-begin_comment
-comment|// javadocs
-end_comment
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
 name|util
 operator|.
 name|Attribute
@@ -65,7 +47,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * The payload of a Token.  *<p>  * The payload is stored in the index at each position, and can  * be used to influence scoring when using Payload-based queries   * in the {@link org.apache.lucene.search.payloads} and  * {@link org.apache.lucene.search.spans} packages.  *<p>  * NOTE: because the payload will be stored at each position, it's usually  * best to use the minimum number of bytes necessary. Some codec implementations  * may optimize payload storage when all payloads have the same length.  *   * @see DocsAndPositionsEnum  */
+comment|/**  * The payload of a Token.  *<p>  * The payload is stored in the index at each position, and can  * be used to influence scoring when using Payload-based queries   * in the {@link org.apache.lucene.search.payloads} and  * {@link org.apache.lucene.search.spans} packages.  *<p>  * NOTE: because the payload will be stored at each position, it's usually  * best to use the minimum number of bytes necessary. Some codec implementations  * may optimize payload storage when all payloads have the same length.  *   * @see org.apache.lucene.index.PostingsEnum  */
 end_comment
 
 begin_interface

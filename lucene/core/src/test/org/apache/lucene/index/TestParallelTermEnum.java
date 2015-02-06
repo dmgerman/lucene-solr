@@ -498,7 +498,7 @@ name|utf8ToString
 argument_list|()
 argument_list|)
 expr_stmt|;
-name|DocsEnum
+name|PostingsEnum
 name|td
 init|=
 name|TestUtil
@@ -514,7 +514,7 @@ name|liveDocs
 argument_list|,
 literal|null
 argument_list|,
-name|DocsEnum
+name|PostingsEnum
 operator|.
 name|FLAG_NONE
 argument_list|)

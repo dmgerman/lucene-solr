@@ -36,7 +36,7 @@ name|lucene
 operator|.
 name|index
 operator|.
-name|LeafReaderContext
+name|IndexReaderContext
 import|;
 end_import
 
@@ -50,13 +50,9 @@ name|lucene
 operator|.
 name|index
 operator|.
-name|IndexReaderContext
+name|LeafReaderContext
 import|;
 end_import
-
-begin_comment
-comment|// javadocs
-end_comment
 
 begin_import
 import|import

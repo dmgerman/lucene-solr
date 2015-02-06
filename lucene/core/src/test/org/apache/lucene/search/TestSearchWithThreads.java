@@ -139,8 +139,6 @@ operator|.
 name|util
 operator|.
 name|LuceneTestCase
-operator|.
-name|SuppressCodecs
 import|;
 end_import
 
@@ -155,6 +153,8 @@ operator|.
 name|util
 operator|.
 name|LuceneTestCase
+operator|.
+name|SuppressCodecs
 import|;
 end_import
 

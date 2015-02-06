@@ -18,6 +18,16 @@ end_comment
 
 begin_import
 import|import
+name|java
+operator|.
+name|io
+operator|.
+name|IOException
+import|;
+end_import
+
+begin_import
+import|import
 name|org
 operator|.
 name|apache
@@ -127,16 +137,6 @@ operator|.
 name|util
 operator|.
 name|LuceneTestCase
-import|;
-end_import
-
-begin_import
-import|import
-name|java
-operator|.
-name|io
-operator|.
-name|IOException
 import|;
 end_import
 
@@ -403,19 +403,19 @@ name|scorer
 operator|instanceof
 name|ConstantScoreQuery
 operator|.
-name|ConstantScorer
+name|ConstantScoreScorer
 condition|)
 block|{
 specifier|final
 name|ConstantScoreQuery
 operator|.
-name|ConstantScorer
+name|ConstantScoreScorer
 name|innerScorer
 init|=
 operator|(
 name|ConstantScoreQuery
 operator|.
-name|ConstantScorer
+name|ConstantScoreScorer
 operator|)
 name|scorer
 decl_stmt|;
@@ -427,7 +427,7 @@ name|innerScorerClassName
 argument_list|,
 name|innerScorer
 operator|.
-name|docIdSetIterator
+name|in
 operator|.
 name|getClass
 argument_list|()
@@ -732,7 +732,7 @@ argument_list|()
 argument_list|,
 name|ConstantScoreQuery
 operator|.
-name|ConstantScorer
+name|ConstantScoreScorer
 operator|.
 name|class
 operator|.
@@ -755,7 +755,7 @@ argument_list|()
 argument_list|,
 name|ConstantScoreQuery
 operator|.
-name|ConstantScorer
+name|ConstantScoreScorer
 operator|.
 name|class
 operator|.
@@ -764,7 +764,7 @@ argument_list|()
 argument_list|,
 name|ConstantScoreQuery
 operator|.
-name|ConstantScorer
+name|ConstantScoreScorer
 operator|.
 name|class
 operator|.
@@ -818,7 +818,7 @@ argument_list|()
 argument_list|,
 name|ConstantScoreQuery
 operator|.
-name|ConstantScorer
+name|ConstantScoreScorer
 operator|.
 name|class
 operator|.

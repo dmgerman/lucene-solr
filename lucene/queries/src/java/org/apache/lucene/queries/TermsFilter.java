@@ -86,7 +86,7 @@ name|lucene
 operator|.
 name|index
 operator|.
-name|DocsEnum
+name|PostingsEnum
 import|;
 end_import
 
@@ -1038,7 +1038,7 @@ name|termsEnum
 init|=
 literal|null
 decl_stmt|;
-name|DocsEnum
+name|PostingsEnum
 name|docs
 init|=
 literal|null
@@ -1139,13 +1139,13 @@ name|docs
 operator|=
 name|termsEnum
 operator|.
-name|docs
+name|postings
 argument_list|(
 name|acceptDocs
 argument_list|,
 name|docs
 argument_list|,
-name|DocsEnum
+name|PostingsEnum
 operator|.
 name|FLAG_NONE
 argument_list|)

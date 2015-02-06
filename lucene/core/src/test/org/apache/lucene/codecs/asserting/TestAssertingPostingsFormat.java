@@ -80,6 +80,18 @@ return|return
 name|codec
 return|;
 block|}
+annotation|@
+name|Override
+DECL|method|isPostingsEnumReuseImplemented
+specifier|protected
+name|boolean
+name|isPostingsEnumReuseImplemented
+parameter_list|()
+block|{
+return|return
+literal|false
+return|;
+block|}
 block|}
 end_class
 

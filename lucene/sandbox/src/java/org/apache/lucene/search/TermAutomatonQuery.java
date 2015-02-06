@@ -86,7 +86,7 @@ name|lucene
 operator|.
 name|index
 operator|.
-name|DocsAndPositionsEnum
+name|PostingsEnum
 import|;
 end_import
 
@@ -1734,7 +1734,7 @@ decl_stmt|;
 DECL|field|posEnum
 specifier|public
 specifier|final
-name|DocsAndPositionsEnum
+name|PostingsEnum
 name|posEnum
 decl_stmt|;
 comment|// How many positions left in the current document:
@@ -1756,7 +1756,7 @@ parameter_list|(
 name|int
 name|termID
 parameter_list|,
-name|DocsAndPositionsEnum
+name|PostingsEnum
 name|posEnum
 parameter_list|)
 block|{
@@ -2208,13 +2208,15 @@ argument_list|()
 argument_list|,
 name|termsEnum
 operator|.
-name|docsAndPositions
+name|postings
 argument_list|(
 name|acceptDocs
 argument_list|,
 literal|null
 argument_list|,
-literal|0
+name|PostingsEnum
+operator|.
+name|FLAG_POSITIONS
 argument_list|)
 argument_list|)
 expr_stmt|;

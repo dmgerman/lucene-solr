@@ -66,24 +66,6 @@ name|lucene
 operator|.
 name|index
 operator|.
-name|DocsAndPositionsEnum
-import|;
-end_import
-
-begin_comment
-comment|// javadocs
-end_comment
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|index
-operator|.
 name|Fields
 import|;
 end_import
@@ -125,7 +107,7 @@ specifier|protected
 name|TermVectorsReader
 parameter_list|()
 block|{   }
-comment|/** Returns term vectors for this document, or null if    *  term vectors were not indexed. If offsets are    *  available they are in an {@link OffsetAttribute}    *  available from the {@link DocsAndPositionsEnum}. */
+comment|/** Returns term vectors for this document, or null if    *  term vectors were not indexed. If offsets are    *  available they are in an {@link OffsetAttribute}    *  available from the {@link org.apache.lucene.index.PostingsEnum}. */
 DECL|method|get
 specifier|public
 specifier|abstract

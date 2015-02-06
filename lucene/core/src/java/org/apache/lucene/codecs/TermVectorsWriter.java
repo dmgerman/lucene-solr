@@ -56,7 +56,7 @@ name|lucene
 operator|.
 name|index
 operator|.
-name|DocsAndPositionsEnum
+name|PostingsEnum
 import|;
 end_import
 
@@ -852,7 +852,7 @@ name|termsEnum
 init|=
 literal|null
 decl_stmt|;
-name|DocsAndPositionsEnum
+name|PostingsEnum
 name|docsAndPositionsEnum
 init|=
 literal|null
@@ -1087,11 +1087,19 @@ name|docsAndPositionsEnum
 operator|=
 name|termsEnum
 operator|.
-name|docsAndPositions
+name|postings
 argument_list|(
 literal|null
 argument_list|,
 name|docsAndPositionsEnum
+argument_list|,
+name|PostingsEnum
+operator|.
+name|FLAG_OFFSETS
+operator||
+name|PostingsEnum
+operator|.
+name|FLAG_PAYLOADS
 argument_list|)
 expr_stmt|;
 assert|assert

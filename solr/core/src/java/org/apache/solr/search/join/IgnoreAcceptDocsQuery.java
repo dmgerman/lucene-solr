@@ -20,15 +20,21 @@ end_package
 
 begin_import
 import|import
-name|org
+name|java
 operator|.
-name|apache
+name|io
 operator|.
-name|lucene
+name|IOException
+import|;
+end_import
+
+begin_import
+import|import
+name|java
 operator|.
-name|index
+name|util
 operator|.
-name|LeafReaderContext
+name|Set
 import|;
 end_import
 
@@ -43,6 +49,20 @@ operator|.
 name|index
 operator|.
 name|IndexReader
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|index
+operator|.
+name|LeafReaderContext
 import|;
 end_import
 
@@ -141,26 +161,6 @@ operator|.
 name|util
 operator|.
 name|Bits
-import|;
-end_import
-
-begin_import
-import|import
-name|java
-operator|.
-name|io
-operator|.
-name|IOException
-import|;
-end_import
-
-begin_import
-import|import
-name|java
-operator|.
-name|util
-operator|.
-name|Set
 import|;
 end_import
 

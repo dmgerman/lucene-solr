@@ -26,21 +26,7 @@ name|lucene
 operator|.
 name|index
 operator|.
-name|DocsEnum
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|index
-operator|.
-name|Fields
+name|PostingsEnum
 import|;
 end_import
 
@@ -755,12 +741,12 @@ operator|-
 literal|1
 return|;
 block|}
-name|DocsEnum
+name|PostingsEnum
 name|docs
 init|=
 name|termsEnum
 operator|.
-name|docs
+name|postings
 argument_list|(
 name|MultiFields
 operator|.
@@ -771,7 +757,7 @@ argument_list|)
 argument_list|,
 literal|null
 argument_list|,
-name|DocsEnum
+name|PostingsEnum
 operator|.
 name|FLAG_NONE
 argument_list|)

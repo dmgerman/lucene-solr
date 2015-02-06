@@ -56,7 +56,7 @@ name|lucene
 operator|.
 name|index
 operator|.
-name|LeafReaderContext
+name|PostingsEnum
 import|;
 end_import
 
@@ -70,7 +70,7 @@ name|lucene
 operator|.
 name|index
 operator|.
-name|DocsEnum
+name|LeafReaderContext
 import|;
 end_import
 
@@ -84,7 +84,7 @@ name|lucene
 operator|.
 name|search
 operator|.
-name|LeafCollector
+name|BulkScorer
 import|;
 end_import
 
@@ -126,7 +126,7 @@ name|lucene
 operator|.
 name|search
 operator|.
-name|Scorer
+name|LeafCollector
 import|;
 end_import
 
@@ -140,7 +140,7 @@ name|lucene
 operator|.
 name|search
 operator|.
-name|BulkScorer
+name|Scorer
 import|;
 end_import
 
@@ -169,6 +169,20 @@ operator|.
 name|util
 operator|.
 name|Bits
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|util
+operator|.
+name|BytesRef
 import|;
 end_import
 
@@ -841,7 +855,7 @@ while|while
 condition|(
 name|docID
 operator|!=
-name|DocsEnum
+name|PostingsEnum
 operator|.
 name|NO_MORE_DOCS
 condition|)
@@ -2649,6 +2663,72 @@ name|dims
 operator|.
 name|length
 return|;
+block|}
+annotation|@
+name|Override
+DECL|method|nextPosition
+specifier|public
+name|int
+name|nextPosition
+parameter_list|()
+throws|throws
+name|IOException
+block|{
+throw|throw
+operator|new
+name|UnsupportedOperationException
+argument_list|(
+literal|"FakeScorer doesn't support nextPosition()"
+argument_list|)
+throw|;
+block|}
+annotation|@
+name|Override
+DECL|method|startOffset
+specifier|public
+name|int
+name|startOffset
+parameter_list|()
+throws|throws
+name|IOException
+block|{
+throw|throw
+operator|new
+name|UnsupportedOperationException
+argument_list|()
+throw|;
+block|}
+annotation|@
+name|Override
+DECL|method|endOffset
+specifier|public
+name|int
+name|endOffset
+parameter_list|()
+throws|throws
+name|IOException
+block|{
+throw|throw
+operator|new
+name|UnsupportedOperationException
+argument_list|()
+throw|;
+block|}
+annotation|@
+name|Override
+DECL|method|getPayload
+specifier|public
+name|BytesRef
+name|getPayload
+parameter_list|()
+throws|throws
+name|IOException
+block|{
+throw|throw
+operator|new
+name|UnsupportedOperationException
+argument_list|()
+throw|;
 block|}
 annotation|@
 name|Override

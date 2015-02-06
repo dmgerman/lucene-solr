@@ -430,7 +430,7 @@ name|count
 init|=
 literal|0
 decl_stmt|;
-name|DocsEnum
+name|PostingsEnum
 name|td
 init|=
 name|TestUtil

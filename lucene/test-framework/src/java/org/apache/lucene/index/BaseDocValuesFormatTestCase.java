@@ -17,22 +17,6 @@ comment|/*  * Licensed to the Apache Software Foundation (ASF) under one or more
 end_comment
 
 begin_import
-import|import static
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|index
-operator|.
-name|SortedSetDocValues
-operator|.
-name|NO_MORE_ORDS
-import|;
-end_import
-
-begin_import
 import|import
 name|java
 operator|.
@@ -571,6 +555,22 @@ operator|.
 name|util
 operator|.
 name|TestUtil
+import|;
+end_import
+
+begin_import
+import|import static
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|index
+operator|.
+name|SortedSetDocValues
+operator|.
+name|NO_MORE_ORDS
 import|;
 end_import
 
@@ -9714,8 +9714,8 @@ name|entrySet
 control|)
 block|{
 comment|// pk lookup
-name|DocsEnum
-name|termDocsEnum
+name|PostingsEnum
+name|termPostingsEnum
 init|=
 name|slowR
 operator|.
@@ -9736,7 +9736,7 @@ decl_stmt|;
 name|int
 name|docId
 init|=
-name|termDocsEnum
+name|termPostingsEnum
 operator|.
 name|nextDoc
 argument_list|()

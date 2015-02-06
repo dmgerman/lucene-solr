@@ -18,16 +18,6 @@ end_package
 
 begin_import
 import|import
-name|java
-operator|.
-name|io
-operator|.
-name|IOException
-import|;
-end_import
-
-begin_import
-import|import
 name|org
 operator|.
 name|apache
@@ -82,7 +72,7 @@ name|lucene
 operator|.
 name|index
 operator|.
-name|DocsAndPositionsEnum
+name|PostingsEnum
 import|;
 end_import
 
@@ -139,6 +129,16 @@ operator|.
 name|util
 operator|.
 name|ArrayUtil
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
+name|io
+operator|.
+name|IOException
 import|;
 end_import
 
@@ -592,7 +592,7 @@ block|}
 comment|// it's ok to use MultiFields because we only iterate on one posting list.
 comment|// breaking it to loop over the leaves() only complicates code for no
 comment|// apparent gain.
-name|DocsAndPositionsEnum
+name|PostingsEnum
 name|positions
 init|=
 name|MultiFields
@@ -611,7 +611,7 @@ name|Consts
 operator|.
 name|PAYLOAD_PARENT_BYTES_REF
 argument_list|,
-name|DocsAndPositionsEnum
+name|PostingsEnum
 operator|.
 name|FLAG_PAYLOADS
 argument_list|)

@@ -669,7 +669,7 @@ name|ret
 init|=
 literal|0
 decl_stmt|;
-name|DocsEnum
+name|PostingsEnum
 name|tdocs
 init|=
 literal|null
@@ -733,7 +733,7 @@ argument_list|)
 argument_list|,
 name|tdocs
 argument_list|,
-name|DocsEnum
+name|PostingsEnum
 operator|.
 name|FLAG_NONE
 argument_list|)

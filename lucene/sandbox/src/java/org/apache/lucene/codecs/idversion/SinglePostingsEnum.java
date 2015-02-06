@@ -28,7 +28,7 @@ name|lucene
 operator|.
 name|index
 operator|.
-name|DocsAndPositionsEnum
+name|PostingsEnum
 import|;
 end_import
 
@@ -61,11 +61,11 @@ import|;
 end_import
 
 begin_class
-DECL|class|SingleDocsAndPositionsEnum
+DECL|class|SinglePostingsEnum
 class|class
-name|SingleDocsAndPositionsEnum
+name|SinglePostingsEnum
 extends|extends
-name|DocsAndPositionsEnum
+name|PostingsEnum
 block|{
 DECL|field|doc
 specifier|private
@@ -98,9 +98,9 @@ specifier|final
 name|BytesRef
 name|payload
 decl_stmt|;
-DECL|method|SingleDocsAndPositionsEnum
+DECL|method|SinglePostingsEnum
 specifier|public
-name|SingleDocsAndPositionsEnum
+name|SinglePostingsEnum
 parameter_list|()
 block|{
 name|payload

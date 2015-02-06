@@ -156,7 +156,7 @@ name|lucene
 operator|.
 name|index
 operator|.
-name|DocsAndPositionsEnum
+name|PostingsEnum
 import|;
 end_import
 
@@ -1244,18 +1244,18 @@ argument_list|)
 operator|)
 condition|)
 block|{
-name|DocsAndPositionsEnum
+name|PostingsEnum
 name|docPosEnum
 init|=
 name|it
 operator|.
-name|docsAndPositions
+name|postings
 argument_list|(
 literal|null
 argument_list|,
 literal|null
 argument_list|,
-name|DocsAndPositionsEnum
+name|PostingsEnum
 operator|.
 name|FLAG_OFFSETS
 argument_list|)

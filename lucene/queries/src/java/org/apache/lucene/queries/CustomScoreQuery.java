@@ -32,6 +32,16 @@ name|java
 operator|.
 name|util
 operator|.
+name|Arrays
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
+name|util
+operator|.
 name|Collection
 import|;
 end_import
@@ -58,11 +68,15 @@ end_import
 
 begin_import
 import|import
-name|java
+name|org
 operator|.
-name|util
+name|apache
 operator|.
-name|Arrays
+name|lucene
+operator|.
+name|index
+operator|.
+name|IndexReader
 import|;
 end_import
 
@@ -77,20 +91,6 @@ operator|.
 name|index
 operator|.
 name|LeafReaderContext
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|index
-operator|.
-name|IndexReader
 import|;
 end_import
 
@@ -178,7 +178,7 @@ name|lucene
 operator|.
 name|search
 operator|.
-name|Query
+name|IndexSearcher
 import|;
 end_import
 
@@ -192,7 +192,7 @@ name|lucene
 operator|.
 name|search
 operator|.
-name|Weight
+name|Query
 import|;
 end_import
 
@@ -220,7 +220,7 @@ name|lucene
 operator|.
 name|search
 operator|.
-name|IndexSearcher
+name|Weight
 import|;
 end_import
 
@@ -235,6 +235,20 @@ operator|.
 name|util
 operator|.
 name|Bits
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|util
+operator|.
+name|BytesRef
 import|;
 end_import
 
@@ -1520,6 +1534,7 @@ index|[]
 name|vScores
 decl_stmt|;
 comment|// reused in score() to avoid allocating this array for each doc
+comment|// TODO : can we use FilterScorer here instead?
 comment|// constructor
 DECL|method|CustomScorer
 specifier|private
@@ -1722,6 +1737,74 @@ return|return
 name|subQueryScorer
 operator|.
 name|freq
+argument_list|()
+return|;
+block|}
+annotation|@
+name|Override
+DECL|method|nextPosition
+specifier|public
+name|int
+name|nextPosition
+parameter_list|()
+throws|throws
+name|IOException
+block|{
+return|return
+name|subQueryScorer
+operator|.
+name|nextPosition
+argument_list|()
+return|;
+block|}
+annotation|@
+name|Override
+DECL|method|startOffset
+specifier|public
+name|int
+name|startOffset
+parameter_list|()
+throws|throws
+name|IOException
+block|{
+return|return
+name|subQueryScorer
+operator|.
+name|startOffset
+argument_list|()
+return|;
+block|}
+annotation|@
+name|Override
+DECL|method|endOffset
+specifier|public
+name|int
+name|endOffset
+parameter_list|()
+throws|throws
+name|IOException
+block|{
+return|return
+name|subQueryScorer
+operator|.
+name|endOffset
+argument_list|()
+return|;
+block|}
+annotation|@
+name|Override
+DECL|method|getPayload
+specifier|public
+name|BytesRef
+name|getPayload
+parameter_list|()
+throws|throws
+name|IOException
+block|{
+return|return
+name|subQueryScorer
+operator|.
+name|getPayload
 argument_list|()
 return|;
 block|}

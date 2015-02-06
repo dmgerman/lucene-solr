@@ -969,7 +969,7 @@ argument_list|)
 expr_stmt|;
 comment|// don't really need to check more than this, as CheckIndex
 comment|// will verify that totalTermFreq == total number of positions seen
-comment|// from a docsAndPositionsEnum.
+comment|// from a postingsEnum.
 block|}
 name|ir
 operator|.

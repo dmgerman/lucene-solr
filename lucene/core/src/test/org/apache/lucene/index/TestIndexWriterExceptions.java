@@ -3399,7 +3399,7 @@ argument_list|)
 expr_stmt|;
 comment|// Make sure the doc that hit the exception was marked
 comment|// as deleted:
-name|DocsEnum
+name|PostingsEnum
 name|tdocs
 init|=
 name|TestUtil

@@ -46,7 +46,7 @@ name|lucene
 operator|.
 name|index
 operator|.
-name|LeafReaderContext
+name|IndexReader
 import|;
 end_import
 
@@ -60,7 +60,21 @@ name|lucene
 operator|.
 name|index
 operator|.
-name|IndexReader
+name|LeafReaderContext
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|search
+operator|.
+name|BulkScorer
 import|;
 end_import
 
@@ -173,20 +187,6 @@ operator|.
 name|search
 operator|.
 name|Scorer
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|search
-operator|.
-name|BulkScorer
 import|;
 end_import
 

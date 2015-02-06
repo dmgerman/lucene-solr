@@ -500,7 +500,7 @@ argument_list|(
 literal|null
 argument_list|)
 decl_stmt|;
-name|DocsEnum
+name|PostingsEnum
 name|de
 init|=
 literal|null
@@ -576,7 +576,7 @@ literal|null
 argument_list|,
 name|de
 argument_list|,
-name|DocsEnum
+name|PostingsEnum
 operator|.
 name|FLAG_NONE
 argument_list|)
@@ -623,7 +623,7 @@ literal|null
 argument_list|,
 name|de
 argument_list|,
-name|DocsEnum
+name|PostingsEnum
 operator|.
 name|FLAG_NONE
 argument_list|)
@@ -658,7 +658,7 @@ specifier|private
 name|void
 name|testOne
 parameter_list|(
-name|DocsEnum
+name|PostingsEnum
 name|docs
 parameter_list|,
 name|List

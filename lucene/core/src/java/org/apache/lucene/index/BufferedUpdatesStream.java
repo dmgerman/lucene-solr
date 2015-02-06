@@ -1883,9 +1883,9 @@ DECL|field|termsEnum
 name|TermsEnum
 name|termsEnum
 decl_stmt|;
-DECL|field|docsEnum
-name|DocsEnum
-name|docsEnum
+DECL|field|postingsEnum
+name|PostingsEnum
+name|postingsEnum
 decl_stmt|;
 DECL|field|term
 name|BytesRef
@@ -2831,13 +2831,13 @@ block|{
 comment|// we don't need term frequencies for this
 name|state
 operator|.
-name|docsEnum
+name|postingsEnum
 operator|=
 name|state
 operator|.
 name|termsEnum
 operator|.
-name|docs
+name|postings
 argument_list|(
 name|state
 operator|.
@@ -2848,9 +2848,9 @@ argument_list|()
 argument_list|,
 name|state
 operator|.
-name|docsEnum
+name|postingsEnum
 argument_list|,
-name|DocsEnum
+name|PostingsEnum
 operator|.
 name|FLAG_NONE
 argument_list|)
@@ -2858,7 +2858,7 @@ expr_stmt|;
 assert|assert
 name|state
 operator|.
-name|docsEnum
+name|postingsEnum
 operator|!=
 literal|null
 assert|;
@@ -2873,7 +2873,7 @@ name|docID
 init|=
 name|state
 operator|.
-name|docsEnum
+name|postingsEnum
 operator|.
 name|nextDoc
 argument_list|()
@@ -3075,8 +3075,8 @@ name|termsEnum
 init|=
 literal|null
 decl_stmt|;
-name|DocsEnum
-name|docsEnum
+name|PostingsEnum
+name|postingsEnum
 init|=
 literal|null
 decl_stmt|;
@@ -3193,11 +3193,11 @@ argument_list|)
 condition|)
 block|{
 comment|// we don't need term frequencies for this
-name|docsEnum
+name|postingsEnum
 operator|=
 name|termsEnum
 operator|.
-name|docs
+name|postings
 argument_list|(
 name|segState
 operator|.
@@ -3206,9 +3206,9 @@ operator|.
 name|getLiveDocs
 argument_list|()
 argument_list|,
-name|docsEnum
+name|postingsEnum
 argument_list|,
-name|DocsEnum
+name|PostingsEnum
 operator|.
 name|FLAG_NONE
 argument_list|)
@@ -3267,7 +3267,7 @@ condition|(
 operator|(
 name|doc
 operator|=
-name|docsEnum
+name|postingsEnum
 operator|.
 name|nextDoc
 argument_list|()

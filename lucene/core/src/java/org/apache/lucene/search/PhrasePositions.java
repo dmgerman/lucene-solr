@@ -78,7 +78,7 @@ decl_stmt|;
 comment|// unique across all PhrasePositions instances
 DECL|field|postings
 specifier|final
-name|DocsAndPositionsEnum
+name|PostingsEnum
 name|postings
 decl_stmt|;
 comment|// stream of docs& positions
@@ -110,7 +110,7 @@ comment|// for repetitions initialization
 DECL|method|PhrasePositions
 name|PhrasePositions
 parameter_list|(
-name|DocsAndPositionsEnum
+name|PostingsEnum
 name|postings
 parameter_list|,
 name|int

@@ -42,7 +42,7 @@ name|lucene
 operator|.
 name|index
 operator|.
-name|DocsAndPositionsEnum
+name|PostingsEnum
 import|;
 end_import
 
@@ -119,7 +119,7 @@ block|{
 DECL|field|postings
 specifier|protected
 specifier|final
-name|DocsAndPositionsEnum
+name|PostingsEnum
 name|postings
 decl_stmt|;
 DECL|field|term
@@ -157,7 +157,7 @@ DECL|method|TermSpans
 specifier|public
 name|TermSpans
 parameter_list|(
-name|DocsAndPositionsEnum
+name|PostingsEnum
 name|postings
 parameter_list|,
 name|Term
@@ -554,7 +554,7 @@ return|;
 block|}
 DECL|method|getPostings
 specifier|public
-name|DocsAndPositionsEnum
+name|PostingsEnum
 name|getPostings
 parameter_list|()
 block|{
