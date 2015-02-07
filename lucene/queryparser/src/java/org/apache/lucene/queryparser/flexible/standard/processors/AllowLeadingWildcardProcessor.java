@@ -231,7 +231,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * This processor verifies if  * {@link ConfigurationKeys#ALLOW_LEADING_WILDCARD} is defined in the  * {@link QueryConfigHandler}. If it is and leading wildcard is not allowed, it  * looks for every {@link WildcardQueryNode} contained in the query node tree  * and throws an exception if any of them has a leading wildcard ('*' or '?').<br/>  *   * @see ConfigurationKeys#ALLOW_LEADING_WILDCARD  */
+comment|/**  * This processor verifies if  * {@link ConfigurationKeys#ALLOW_LEADING_WILDCARD} is defined in the  * {@link QueryConfigHandler}. If it is and leading wildcard is not allowed, it  * looks for every {@link WildcardQueryNode} contained in the query node tree  * and throws an exception if any of them has a leading wildcard ('*' or '?').  *   * @see ConfigurationKeys#ALLOW_LEADING_WILDCARD  */
 end_comment
 
 begin_class

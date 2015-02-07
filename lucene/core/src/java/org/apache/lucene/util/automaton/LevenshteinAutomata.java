@@ -63,7 +63,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Class to construct DFAs that match a word within some edit distance.  *<p>  * Implements the algorithm described in:  * Schulz and Mihov: Fast String Correction with Levenshtein Automata  *<p>  * @lucene.experimental  */
+comment|/**  * Class to construct DFAs that match a word within some edit distance.  *<p>  * Implements the algorithm described in:  * Schulz and Mihov: Fast String Correction with Levenshtein Automata  * @lucene.experimental  */
 end_comment
 
 begin_class
@@ -546,7 +546,7 @@ return|return
 name|word
 return|;
 block|}
-comment|/**    * Compute a DFA that accepts all strings within an edit distance of<code>n</code>.    *<p>    * All automata have the following properties:    *<ul>    *<li>They are deterministic (DFA).    *<li>There are no transitions to dead states.    *<li>They are not minimal (some transitions could be combined).    *</ul>    *</p>    */
+comment|/**    * Compute a DFA that accepts all strings within an edit distance of<code>n</code>.    *<p>    * All automata have the following properties:    *<ul>    *<li>They are deterministic (DFA).    *<li>There are no transitions to dead states.    *<li>They are not minimal (some transitions could be combined).    *</ul>    */
 DECL|method|toAutomaton
 specifier|public
 name|Automaton
@@ -565,7 +565,7 @@ literal|""
 argument_list|)
 return|;
 block|}
-comment|/**    * Compute a DFA that accepts all strings within an edit distance of<code>n</code>,    * matching the specified exact prefix.    *<p>    * All automata have the following properties:    *<ul>    *<li>They are deterministic (DFA).    *<li>There are no transitions to dead states.    *<li>They are not minimal (some transitions could be combined).    *</ul>    *</p>    */
+comment|/**    * Compute a DFA that accepts all strings within an edit distance of<code>n</code>,    * matching the specified exact prefix.    *<p>    * All automata have the following properties:    *<ul>    *<li>They are deterministic (DFA).    *<li>There are no transitions to dead states.    *<li>They are not minimal (some transitions could be combined).    *</ul>    */
 DECL|method|toAutomaton
 specifier|public
 name|Automaton

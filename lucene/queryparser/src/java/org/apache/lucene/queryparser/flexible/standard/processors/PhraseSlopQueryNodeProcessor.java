@@ -151,7 +151,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * This processor removes invalid {@link SlopQueryNode} objects in the query  * node tree. A {@link SlopQueryNode} is invalid if its child is neither a  * {@link TokenizedPhraseQueryNode} nor a {@link MultiPhraseQueryNode}.<br/>  *   * @see SlopQueryNode  */
+comment|/**  * This processor removes invalid {@link SlopQueryNode} objects in the query  * node tree. A {@link SlopQueryNode} is invalid if its child is neither a  * {@link TokenizedPhraseQueryNode} nor a {@link MultiPhraseQueryNode}.  *   * @see SlopQueryNode  */
 end_comment
 
 begin_class

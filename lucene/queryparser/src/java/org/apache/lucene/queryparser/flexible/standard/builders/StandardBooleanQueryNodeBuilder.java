@@ -285,7 +285,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * This builder does the same as the {@link BooleanQueryNodeBuilder}, but this  * considers if the built {@link BooleanQuery} should have its coord disabled or  * not.<br/>  *   * @see BooleanQueryNodeBuilder  * @see BooleanQuery  * @see Similarity#coord(int, int)  */
+comment|/**  * This builder does the same as the {@link BooleanQueryNodeBuilder}, but this  * considers if the built {@link BooleanQuery} should have its coord disabled or  * not.<br>  *   * @see BooleanQueryNodeBuilder  * @see BooleanQuery  * @see Similarity#coord(int, int)  */
 end_comment
 
 begin_class

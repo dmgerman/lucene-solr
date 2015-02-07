@@ -89,7 +89,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * This filter normalize use of the interchangeable Scandinavian characters Ã¦ÃÃ¤ÃÃ¶ÃÃ¸Ã  * and folded variants (aa, ao, ae, oe and oo) by transforming them to Ã¥ÃÃ¦ÃÃ¸Ã.  *<p/>  * It's a semantically less destructive solution than {@link ScandinavianFoldingFilter},  * most useful when a person with a Norwegian or Danish keyboard queries a Swedish index  * and vice versa. This filter does<b>not</b>  the common Swedish folds of Ã¥ and Ã¤ to a nor Ã¶ to o.  *<p/>  * blÃ¥bÃ¦rsyltetÃ¸j == blÃ¥bÃ¤rsyltetÃ¶j == blaabaarsyltetoej but not blabarsyltetoj  * rÃ¤ksmÃ¶rgÃ¥s == rÃ¦ksmÃ¸rgÃ¥s == rÃ¦ksmÃ¶rgaos == raeksmoergaas but not raksmorgas  *<p/>  * @see ScandinavianFoldingFilter  */
+comment|/**  * This filter normalize use of the interchangeable Scandinavian characters Ã¦ÃÃ¤ÃÃ¶ÃÃ¸Ã  * and folded variants (aa, ao, ae, oe and oo) by transforming them to Ã¥ÃÃ¦ÃÃ¸Ã.  *<p>  * It's a semantically less destructive solution than {@link ScandinavianFoldingFilter},  * most useful when a person with a Norwegian or Danish keyboard queries a Swedish index  * and vice versa. This filter does<b>not</b>  the common Swedish folds of Ã¥ and Ã¤ to a nor Ã¶ to o.  *<p>  * blÃ¥bÃ¦rsyltetÃ¸j == blÃ¥bÃ¤rsyltetÃ¶j == blaabaarsyltetoej but not blabarsyltetoj  * rÃ¤ksmÃ¶rgÃ¥s == rÃ¦ksmÃ¸rgÃ¥s == rÃ¦ksmÃ¶rgaos == raeksmoergaas but not raksmorgas  * @see ScandinavianFoldingFilter  */
 end_comment
 
 begin_class

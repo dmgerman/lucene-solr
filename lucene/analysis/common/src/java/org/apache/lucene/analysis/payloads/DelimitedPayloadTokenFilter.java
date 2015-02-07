@@ -89,7 +89,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Characters before the delimiter are the "token", those after are the payload.  *<p/>  * For example, if the delimiter is '|', then for the string "foo|bar", foo is the token  * and "bar" is a payload.  *<p/>  * Note, you can also include a {@link org.apache.lucene.analysis.payloads.PayloadEncoder} to convert the payload in an appropriate way (from characters to bytes).  *<p/>  * Note make sure your Tokenizer doesn't split on the delimiter, or this won't work  *  * @see PayloadEncoder  */
+comment|/**  * Characters before the delimiter are the "token", those after are the payload.  *<p>  * For example, if the delimiter is '|', then for the string "foo|bar", foo is the token  * and "bar" is a payload.  *<p>  * Note, you can also include a {@link org.apache.lucene.analysis.payloads.PayloadEncoder} to convert the payload in an appropriate way (from characters to bytes).  *<p>  * Note make sure your Tokenizer doesn't split on the delimiter, or this won't work  *  * @see PayloadEncoder  */
 end_comment
 
 begin_class

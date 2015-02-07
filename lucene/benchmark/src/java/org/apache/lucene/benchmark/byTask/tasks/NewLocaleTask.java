@@ -57,7 +57,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Set a {@link java.util.Locale} for use in benchmarking.  *<p>  * Locales can be specified in the following ways:  *<ul>  *<li><code>de</code>: Language "de"  *<li><code>en,US</code>: Language "en", country "US"  *<li><code>no,NO,NY</code>: Language "no", country "NO", variant "NY"   *<li><code>ROOT</code>: The root (language-agnostic) Locale  *<li>&lt;empty string&gt;: Erase the Locale (null)  *</ul>  *</p>  */
+comment|/**  * Set a {@link java.util.Locale} for use in benchmarking.  *<p>  * Locales can be specified in the following ways:  *<ul>  *<li><code>de</code>: Language "de"  *<li><code>en,US</code>: Language "en", country "US"  *<li><code>no,NO,NY</code>: Language "no", country "NO", variant "NY"   *<li><code>ROOT</code>: The root (language-agnostic) Locale  *<li>&lt;empty string&gt;: Erase the Locale (null)  *</ul>  */
 end_comment
 
 begin_class

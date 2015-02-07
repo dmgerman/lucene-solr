@@ -149,7 +149,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * A collector that collects all groups that match the  * query. Only the group value is collected, and the order  * is undefined.  This collector does not determine  * the most relevant document of a group.  *  *<p/>  * Implementation detail: Uses {@link ValueSource} and {@link FunctionValues} to retrieve the  * field values to group by.  *  * @lucene.experimental  */
+comment|/**  * A collector that collects all groups that match the  * query. Only the group value is collected, and the order  * is undefined.  This collector does not determine  * the most relevant document of a group.  *<p>  * Implementation detail: Uses {@link ValueSource} and {@link FunctionValues} to retrieve the  * field values to group by.  *  * @lucene.experimental  */
 end_comment
 
 begin_class

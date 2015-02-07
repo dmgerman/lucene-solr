@@ -83,7 +83,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**   * SortField for {@link SortedSetDocValues}.  *<p>  * A SortedSetDocValues contains multiple values for a field, so sorting with  * this technique "selects" a value as the representative sort value for the document.  *<p>  * By default, the minimum value in the set is selected as the sort value, but  * this can be customized. Selectors other than the default do have some limitations  * to ensure that all selections happen in constant-time for performance.  *<p>  * Like sorting by string, this also supports sorting missing values as first or last,  * via {@link #setMissingValue(Object)}.  *<p>  * @see SortedSetSelector  */
+comment|/**   * SortField for {@link SortedSetDocValues}.  *<p>  * A SortedSetDocValues contains multiple values for a field, so sorting with  * this technique "selects" a value as the representative sort value for the document.  *<p>  * By default, the minimum value in the set is selected as the sort value, but  * this can be customized. Selectors other than the default do have some limitations  * to ensure that all selections happen in constant-time for performance.  *<p>  * Like sorting by string, this also supports sorting missing values as first or last,  * via {@link #setMissingValue(Object)}.  * @see SortedSetSelector  */
 end_comment
 
 begin_class

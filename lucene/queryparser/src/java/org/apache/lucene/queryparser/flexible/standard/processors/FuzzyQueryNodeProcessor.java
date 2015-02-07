@@ -187,7 +187,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * This processor iterates the query node tree looking for every  * {@link FuzzyQueryNode}, when this kind of node is found, it checks on the  * query configuration for  * {@link ConfigurationKeys#FUZZY_CONFIG}, gets the  * fuzzy prefix length and default similarity from it and set to the fuzzy node.  * For more information about fuzzy prefix length check: {@link FuzzyQuery}.<br/>  *   * @see ConfigurationKeys#FUZZY_CONFIG  * @see FuzzyQuery  * @see FuzzyQueryNode  */
+comment|/**  * This processor iterates the query node tree looking for every  * {@link FuzzyQueryNode}, when this kind of node is found, it checks on the  * query configuration for  * {@link ConfigurationKeys#FUZZY_CONFIG}, gets the  * fuzzy prefix length and default similarity from it and set to the fuzzy node.  * For more information about fuzzy prefix length check: {@link FuzzyQuery}.  *   * @see ConfigurationKeys#FUZZY_CONFIG  * @see FuzzyQuery  * @see FuzzyQueryNode  */
 end_comment
 
 begin_class

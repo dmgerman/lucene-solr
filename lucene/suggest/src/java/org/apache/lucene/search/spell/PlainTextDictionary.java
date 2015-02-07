@@ -167,7 +167,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Dictionary represented by a text file.  *   *<p/>Format allowed: 1 word per line:<br/>  * word1<br/>  * word2<br/>  * word3<br/>  */
+comment|/**  * Dictionary represented by a text file.  *   *<p>Format allowed: 1 word per line:<br>  * word1<br>  * word2<br>  * word3<br>  */
 end_comment
 
 begin_class

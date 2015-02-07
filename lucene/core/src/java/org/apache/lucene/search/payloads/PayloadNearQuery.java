@@ -337,7 +337,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * This class is very similar to  * {@link org.apache.lucene.search.spans.SpanNearQuery} except that it factors  * in the value of the payloads located at each of the positions where the  * {@link org.apache.lucene.search.spans.TermSpans} occurs.  *<p/>  * NOTE: In order to take advantage of this with the default scoring implementation  * ({@link DefaultSimilarity}), you must override {@link DefaultSimilarity#scorePayload(int, int, int, BytesRef)},  * which returns 1 by default.  *<p/>  * Payload scores are aggregated using a pluggable {@link PayloadFunction}.  *   * @see org.apache.lucene.search.similarities.Similarity.SimScorer#computePayloadFactor(int, int, int, BytesRef)  */
+comment|/**  * This class is very similar to  * {@link org.apache.lucene.search.spans.SpanNearQuery} except that it factors  * in the value of the payloads located at each of the positions where the  * {@link org.apache.lucene.search.spans.TermSpans} occurs.  *<p>  * NOTE: In order to take advantage of this with the default scoring implementation  * ({@link DefaultSimilarity}), you must override {@link DefaultSimilarity#scorePayload(int, int, int, BytesRef)},  * which returns 1 by default.  *<p>  * Payload scores are aggregated using a pluggable {@link PayloadFunction}.  *   * @see org.apache.lucene.search.similarities.Similarity.SimScorer#computePayloadFactor(int, int, int, BytesRef)  */
 end_comment
 
 begin_class

@@ -371,7 +371,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Read index (abstract) task.  * Sub classes implement withSearch(), withWarm(), withTraverse() and withRetrieve()  * methods to configure the actual action.  *<p/>  *<p>Note: All ReadTasks reuse the reader if it is already open.  * Otherwise a reader is opened at start and closed at the end.  *<p>  * The<code>search.num.hits</code> config parameter sets  * the top number of hits to collect during searching.  If  *<code>print.hits.field</code> is set, then each hit is  * printed along with the value of that field.</p>  *  *<p>Other side effects: none.  */
+comment|/**  * Read index (abstract) task.  * Sub classes implement withSearch(), withWarm(), withTraverse() and withRetrieve()  * methods to configure the actual action.  *<p>Note: All ReadTasks reuse the reader if it is already open.  * Otherwise a reader is opened at start and closed at the end.  *<p>  * The<code>search.num.hits</code> config parameter sets  * the top number of hits to collect during searching.  If  *<code>print.hits.field</code> is set, then each hit is  * printed along with the value of that field.</p>  *  *<p>Other side effects: none.  */
 end_comment
 
 begin_class
@@ -1220,7 +1220,7 @@ return|return
 literal|true
 return|;
 block|}
-comment|/**    * Specify the number of hits to traverse.  Tasks should override this if they want to restrict the number    * of hits that are traversed when {@link #withTraverse()} is true. Must be greater than 0.    *<p/>    * Read task calculates the traversal as: Math.min(hits.length(), traversalSize())    *    * @return Integer.MAX_VALUE    */
+comment|/**    * Specify the number of hits to traverse.  Tasks should override this if they want to restrict the number    * of hits that are traversed when {@link #withTraverse()} is true. Must be greater than 0.    *<p>    * Read task calculates the traversal as: Math.min(hits.length(), traversalSize())    *    * @return Integer.MAX_VALUE    */
 DECL|method|traversalSize
 specifier|public
 name|int

@@ -245,7 +245,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * This query configuration handler is used for almost every processor defined  * in the {@link StandardQueryNodeProcessorPipeline} processor pipeline. It holds  * configuration methods that reproduce the configuration methods that could be set on the old  * lucene 2.4 QueryParser class.<br/>  *   * @see StandardQueryNodeProcessorPipeline  */
+comment|/**  * This query configuration handler is used for almost every processor defined  * in the {@link StandardQueryNodeProcessorPipeline} processor pipeline. It holds  * configuration methods that reproduce the configuration methods that could be set on the old  * lucene 2.4 QueryParser class.  *   * @see StandardQueryNodeProcessorPipeline  */
 end_comment
 
 begin_class

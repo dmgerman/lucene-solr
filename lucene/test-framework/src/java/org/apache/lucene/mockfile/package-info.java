@@ -4,7 +4,7 @@ comment|/*  * Licensed to the Apache Software Foundation (ASF) under one or more
 end_comment
 
 begin_comment
-comment|/**  * Support for testing/debugging with virtual filesystems   *<p>  * The primary classes are:  *<ul>  *<li>{@link org.apache.lucene.mockfile.LeakFS}: Fails tests if they leave open filehandles.  *<li>{@link org.apache.lucene.mockfile.VerboseFS}: Prints destructive filesystem operations to infostream.  *<li>{@link org.apache.lucene.mockfile.WindowsFS}: Acts like windows.  *<li>{@link org.apache.lucene.mockfile.DisableFsyncFS}: Makes actual fsync calls a no-op.  *</ul>  *</p>  */
+comment|/**  * Support for testing/debugging with virtual filesystems   *<p>  * The primary classes are:  *<ul>  *<li>{@link org.apache.lucene.mockfile.LeakFS}: Fails tests if they leave open filehandles.  *<li>{@link org.apache.lucene.mockfile.VerboseFS}: Prints destructive filesystem operations to infostream.  *<li>{@link org.apache.lucene.mockfile.WindowsFS}: Acts like windows.  *<li>{@link org.apache.lucene.mockfile.DisableFsyncFS}: Makes actual fsync calls a no-op.  *</ul>  */
 end_comment
 
 begin_package

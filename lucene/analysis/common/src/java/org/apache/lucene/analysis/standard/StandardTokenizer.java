@@ -121,7 +121,7 @@ import|;
 end_import
 
 begin_comment
-comment|/** A grammar-based tokenizer constructed with JFlex.  *<p>  * This class implements the Word Break rules from the  * Unicode Text Segmentation algorithm, as specified in   *<a href="http://unicode.org/reports/tr29/">Unicode Standard Annex #29</a>.  *<p/>  *<p>Many applications have specific tokenizer needs.  If this tokenizer does  * not suit your application, please consider copying this source code  * directory to your project and maintaining your own grammar-based tokenizer.  */
+comment|/** A grammar-based tokenizer constructed with JFlex.  *<p>  * This class implements the Word Break rules from the  * Unicode Text Segmentation algorithm, as specified in   *<a href="http://unicode.org/reports/tr29/">Unicode Standard Annex #29</a>.  *<p>Many applications have specific tokenizer needs.  If this tokenizer does  * not suit your application, please consider copying this source code  * directory to your project and maintaining your own grammar-based tokenizer.  */
 end_comment
 
 begin_class

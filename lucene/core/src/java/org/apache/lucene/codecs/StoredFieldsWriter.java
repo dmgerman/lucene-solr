@@ -173,7 +173,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Codec API for writing stored fields:  *<p>  *<ol>  *<li>For every document, {@link #startDocument()} is called,  *       informing the Codec that a new document has started.  *<li>{@link #writeField(FieldInfo, StorableField)} is called for   *       each field in the document.  *<li>After all documents have been written, {@link #finish(FieldInfos, int)}   *       is called for verification/sanity-checks.  *<li>Finally the writer is closed ({@link #close()})  *</ol>  *   * @lucene.experimental  */
+comment|/**  * Codec API for writing stored fields:  *<ol>  *<li>For every document, {@link #startDocument()} is called,  *       informing the Codec that a new document has started.  *<li>{@link #writeField(FieldInfo, StorableField)} is called for   *       each field in the document.  *<li>After all documents have been written, {@link #finish(FieldInfos, int)}   *       is called for verification/sanity-checks.  *<li>Finally the writer is closed ({@link #close()})  *</ol>  *   * @lucene.experimental  */
 end_comment
 
 begin_class

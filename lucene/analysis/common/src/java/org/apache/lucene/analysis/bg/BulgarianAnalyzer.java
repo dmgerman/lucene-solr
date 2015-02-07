@@ -193,7 +193,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * {@link Analyzer} for Bulgarian.  *<p>  * This analyzer implements light-stemming as specified by:<i> Searching  * Strategies for the Bulgarian Language</i>  * http://members.unine.ch/jacques.savoy/Papers/BUIR.pdf  *<p>  */
+comment|/**  * {@link Analyzer} for Bulgarian.  *<p>  * This analyzer implements light-stemming as specified by:<i> Searching  * Strategies for the Bulgarian Language</i>  * http://members.unine.ch/jacques.savoy/Papers/BUIR.pdf  */
 end_comment
 
 begin_class

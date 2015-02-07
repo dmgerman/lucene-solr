@@ -137,7 +137,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Tokenizes the given token into n-grams of given size(s).  *<p>  * This {@link TokenFilter} create n-grams from the beginning edge of a input token.  *<p><a name="match_version" />As of Lucene 4.4, this filter handles correctly  * supplementary characters.  */
+comment|/**  * Tokenizes the given token into n-grams of given size(s).  *<p>  * This {@link TokenFilter} create n-grams from the beginning edge of a input token.  *<p><a name="match_version"></a>As of Lucene 4.4, this filter handles correctly  * supplementary characters.  */
 end_comment
 
 begin_class

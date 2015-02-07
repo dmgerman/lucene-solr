@@ -71,7 +71,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * A {@link Collector} that sorts by {@link SortField} using  * {@link FieldComparator}s.  *<p/>  * See the {@link #create(org.apache.lucene.search.Sort, int, boolean, boolean, boolean)} method  * for instantiating a TopFieldCollector.  *  * @lucene.experimental  */
+comment|/**  * A {@link Collector} that sorts by {@link SortField} using  * {@link FieldComparator}s.  *<p>  * See the {@link #create(org.apache.lucene.search.Sort, int, boolean, boolean, boolean)} method  * for instantiating a TopFieldCollector.  *  * @lucene.experimental  */
 end_comment
 
 begin_class

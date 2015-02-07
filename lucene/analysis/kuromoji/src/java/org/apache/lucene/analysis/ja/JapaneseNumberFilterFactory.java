@@ -59,7 +59,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Factory for {@link JapaneseNumberFilter}.  *<p>  *<pre class="prettyprint">  *&lt;fieldType name="text_ja" class="solr.TextField"&gt;  *&lt;analyzer&gt;  *&lt;tokenizer class="solr.JapaneseTokenizerFactory" discardPunctuation="false"/&gt;  *&lt;filter class="solr.JapaneseNumberFilter"/&gt;  *&lt;/analyzer&gt;  *&lt;/fieldType&gt;  *</pre>  *<p>  * It is important that punctuation is not discarded by the tokenizer so use  * {@code discardPunctuation="false"} in your {@link JapaneseTokenizerFactory}.  */
+comment|/**  * Factory for {@link JapaneseNumberFilter}.  *<br>  *<pre class="prettyprint">  *&lt;fieldType name="text_ja" class="solr.TextField"&gt;  *&lt;analyzer&gt;  *&lt;tokenizer class="solr.JapaneseTokenizerFactory" discardPunctuation="false"/&gt;  *&lt;filter class="solr.JapaneseNumberFilter"/&gt;  *&lt;/analyzer&gt;  *&lt;/fieldType&gt;  *</pre>  *<p>  * It is important that punctuation is not discarded by the tokenizer so use  * {@code discardPunctuation="false"} in your {@link JapaneseTokenizerFactory}.  */
 end_comment
 
 begin_class

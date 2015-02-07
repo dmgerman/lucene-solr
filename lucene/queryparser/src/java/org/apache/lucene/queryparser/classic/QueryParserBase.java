@@ -823,7 +823,7 @@ return|return
 name|allowLeadingWildcard
 return|;
 block|}
-comment|/**    * Sets the boolean operator of the QueryParser.    * In default mode (<code>OR_OPERATOR</code>) terms without any modifiers    * are considered optional: for example<code>capital of Hungary</code> is equal to    *<code>capital OR of OR Hungary</code>.<br/>    * In<code>AND_OPERATOR</code> mode terms are considered to be in conjunction: the    * above mentioned query is parsed as<code>capital AND of AND Hungary</code>    */
+comment|/**    * Sets the boolean operator of the QueryParser.    * In default mode (<code>OR_OPERATOR</code>) terms without any modifiers    * are considered optional: for example<code>capital of Hungary</code> is equal to    *<code>capital OR of OR Hungary</code>.<br>    * In<code>AND_OPERATOR</code> mode terms are considered to be in conjunction: the    * above mentioned query is parsed as<code>capital AND of AND Hungary</code>    */
 DECL|method|setDefaultOperator
 specifier|public
 name|void

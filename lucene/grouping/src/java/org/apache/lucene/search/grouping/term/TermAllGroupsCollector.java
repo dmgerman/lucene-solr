@@ -147,7 +147,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * A collector that collects all groups that match the  * query. Only the group value is collected, and the order  * is undefined.  This collector does not determine  * the most relevant document of a group.  *  *<p/>  * Implementation detail: an int hash set (SentinelIntSet)  * is used to detect if a group is already added to the  * total count.  For each segment the int set is cleared and filled  * with previous counted groups that occur in the new  * segment.  *  * @lucene.experimental  */
+comment|/**  * A collector that collects all groups that match the  * query. Only the group value is collected, and the order  * is undefined.  This collector does not determine  * the most relevant document of a group.  *<p>  * Implementation detail: an int hash set (SentinelIntSet)  * is used to detect if a group is already added to the  * total count.  For each segment the int set is cleared and filled  * with previous counted groups that occur in the new  * segment.  *  * @lucene.experimental  */
 end_comment
 
 begin_class

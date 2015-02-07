@@ -33,7 +33,7 @@ comment|/*  * Licensed to the Apache Software Foundation (ASF) under one or more
 end_comment
 
 begin_comment
-comment|/**  * Mainly for use with the DelimitedPayloadTokenFilter, converts char buffers to  * {@link BytesRef}.  *<p/>  * NOTE: This interface is subject to change   *  **/
+comment|/**  * Mainly for use with the DelimitedPayloadTokenFilter, converts char buffers to  * {@link BytesRef}.  *<p>  * NOTE: This interface is subject to change   *  **/
 end_comment
 
 begin_interface

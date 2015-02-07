@@ -155,7 +155,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Sets up a query tree builder to build a span query tree from a query node  * tree.<br/>  *<br/>  *   * The defined map is:<br/>  * - every BooleanQueryNode instance is delegated to the SpanOrQueryNodeBuilder<br/>  * - every FieldQueryNode instance is delegated to the SpanTermQueryNodeBuilder<br/>  *   */
+comment|/**  * Sets up a query tree builder to build a span query tree from a query node  * tree.<br>  *<br>  *   * The defined map is:<br>  * - every BooleanQueryNode instance is delegated to the SpanOrQueryNodeBuilder<br>  * - every FieldQueryNode instance is delegated to the SpanTermQueryNodeBuilder<br>  *   */
 end_comment
 
 begin_class

@@ -152,7 +152,7 @@ parameter_list|)
 throws|throws
 name|IOException
 function_decl|;
-comment|/**    * Ensure that any writes to these files are moved to    * stable storage.  Lucene uses this to properly commit    * changes to the index, to prevent a machine/OS crash    * from corrupting the index.<br/>    *<br/>    * NOTE: Clients may call this method for same files over    * and over again, so some impls might optimize for that.    * For other impls the operation can be a noop, for various    * reasons.    */
+comment|/**    * Ensure that any writes to these files are moved to    * stable storage.  Lucene uses this to properly commit    * changes to the index, to prevent a machine/OS crash    * from corrupting the index.    *<br>    * NOTE: Clients may call this method for same files over    * and over again, so some impls might optimize for that.    * For other impls the operation can be a noop, for various    * reasons.    */
 DECL|method|sync
 specifier|public
 specifier|abstract

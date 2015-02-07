@@ -129,7 +129,7 @@ name|int
 name|getLevel
 parameter_list|()
 function_decl|;
-comment|/**    * Gets the cells at the next grid cell level underneath this one, optionally filtered by    * {@code shapeFilter}. The returned cells should have {@link #getShapeRel()} set to    * their relation with {@code shapeFilter}.  In addition, for non-points {@link #isLeaf()}    * must be true when that relation is WITHIN.    *<p/>    * IMPORTANT: Cells returned from this iterator can be shared, as well as the bytes.    *<p/>    * Precondition: Never called when getLevel() == maxLevel.    *    * @param shapeFilter an optional filter for the returned cells.    * @return A set of cells (no dups), sorted. Not Modifiable.    */
+comment|/**    * Gets the cells at the next grid cell level underneath this one, optionally filtered by    * {@code shapeFilter}. The returned cells should have {@link #getShapeRel()} set to    * their relation with {@code shapeFilter}.  In addition, for non-points {@link #isLeaf()}    * must be true when that relation is WITHIN.    *<p>    * IMPORTANT: Cells returned from this iterator can be shared, as well as the bytes.    *<p>    * Precondition: Never called when getLevel() == maxLevel.    *    * @param shapeFilter an optional filter for the returned cells.    * @return A set of cells (no dups), sorted. Not Modifiable.    */
 DECL|method|getNextLevelCells
 name|CellIterator
 name|getNextLevelCells

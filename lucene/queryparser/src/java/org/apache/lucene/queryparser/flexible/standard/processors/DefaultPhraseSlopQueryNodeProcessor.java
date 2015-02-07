@@ -193,7 +193,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * This processor verifies if {@link ConfigurationKeys#PHRASE_SLOP}  * is defined in the {@link QueryConfigHandler}. If it is, it looks for every  * {@link TokenizedPhraseQueryNode} and {@link MultiPhraseQueryNode} that does  * not have any {@link SlopQueryNode} applied to it and creates an  * {@link SlopQueryNode} and apply to it. The new {@link SlopQueryNode} has the  * same slop value defined in the configuration.<br/>  *   * @see SlopQueryNode  * @see ConfigurationKeys#PHRASE_SLOP  */
+comment|/**  * This processor verifies if {@link ConfigurationKeys#PHRASE_SLOP}  * is defined in the {@link QueryConfigHandler}. If it is, it looks for every  * {@link TokenizedPhraseQueryNode} and {@link MultiPhraseQueryNode} that does  * not have any {@link SlopQueryNode} applied to it and creates an  * {@link SlopQueryNode} and apply to it. The new {@link SlopQueryNode} has the  * same slop value defined in the configuration.  *   * @see SlopQueryNode  * @see ConfigurationKeys#PHRASE_SLOP  */
 end_comment
 
 begin_class

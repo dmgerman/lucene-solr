@@ -129,7 +129,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * This processor changes every field name of each {@link FieldableNode} query  * node contained in the query tree to the field name defined in the  * {@link UniqueFieldAttribute}. So, the {@link UniqueFieldAttribute} must be  * defined in the {@link QueryConfigHandler} object set in this processor,  * otherwise it throws an exception.<br/>  *<br/>  *   * @see UniqueFieldAttribute  */
+comment|/**  * This processor changes every field name of each {@link FieldableNode} query  * node contained in the query tree to the field name defined in the  * {@link UniqueFieldAttribute}. So, the {@link UniqueFieldAttribute} must be  * defined in the {@link QueryConfigHandler} object set in this processor,  * otherwise it throws an exception.  *   * @see UniqueFieldAttribute  */
 end_comment
 
 begin_class

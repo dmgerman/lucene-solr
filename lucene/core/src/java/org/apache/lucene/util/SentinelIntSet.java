@@ -27,7 +27,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * A native int hash-based set where one value is reserved to mean "EMPTY" internally. The space overhead is fairly low  * as there is only one power-of-two sized int[] to hold the values.  The set is re-hashed when adding a value that  * would make it&gt;= 75% full.  Consider extending and over-riding {@link #hash(int)} if the values might be poor  * hash keys; Lucene docids should be fine.  * The internal fields are exposed publicly to enable more efficient use at the expense of better O-O principles.  *<p/>  * To iterate over the integers held in this set, simply use code like this:  *<pre class="prettyprint">  * SentinelIntSet set = ...  * for (int v : set.keys) {  *   if (v == set.emptyVal)  *     continue;  *   //use v...  * }</pre>  *  * @lucene.internal  */
+comment|/**  * A native int hash-based set where one value is reserved to mean "EMPTY" internally. The space overhead is fairly low  * as there is only one power-of-two sized int[] to hold the values.  The set is re-hashed when adding a value that  * would make it&gt;= 75% full.  Consider extending and over-riding {@link #hash(int)} if the values might be poor  * hash keys; Lucene docids should be fine.  * The internal fields are exposed publicly to enable more efficient use at the expense of better O-O principles.  *<p>  * To iterate over the integers held in this set, simply use code like this:  *<pre class="prettyprint">  * SentinelIntSet set = ...  * for (int v : set.keys) {  *   if (v == set.emptyVal)  *     continue;  *   //use v...  * }</pre>  *  * @lucene.internal  */
 end_comment
 
 begin_class

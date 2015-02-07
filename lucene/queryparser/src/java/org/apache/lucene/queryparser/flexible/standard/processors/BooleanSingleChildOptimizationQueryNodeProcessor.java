@@ -173,7 +173,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * This processor removes every {@link BooleanQueryNode} that contains only one  * child and returns this child. If this child is {@link ModifierQueryNode} that  * was defined by the user. A modifier is not defined by the user when it's a  * {@link BooleanModifierNode}<br/>  *   * @see ModifierQueryNode  */
+comment|/**  * This processor removes every {@link BooleanQueryNode} that contains only one  * child and returns this child. If this child is {@link ModifierQueryNode} that  * was defined by the user. A modifier is not defined by the user when it's a  * {@link BooleanModifierNode}  *   * @see ModifierQueryNode  */
 end_comment
 
 begin_class

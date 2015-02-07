@@ -69,7 +69,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Expert: Controls the format of the   * {@link SegmentInfo} (segment metadata file).  *<p>  *   * @see SegmentInfo  * @lucene.experimental  */
+comment|/**  * Expert: Controls the format of the   * {@link SegmentInfo} (segment metadata file).  * @see SegmentInfo  * @lucene.experimental  */
 end_comment
 
 begin_class

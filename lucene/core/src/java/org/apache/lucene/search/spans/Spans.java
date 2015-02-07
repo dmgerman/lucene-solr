@@ -96,7 +96,7 @@ name|int
 name|end
 parameter_list|()
 function_decl|;
-comment|/**    * Returns the payload data for the current span.    * This is invalid until {@link #next()} is called for    * the first time.    * This method must not be called more than once after each call    * of {@link #next()}. However, most payloads are loaded lazily,    * so if the payload data for the current position is not needed,    * this method may not be called at all for performance reasons. An ordered    * SpanQuery does not lazy load, so if you have payloads in your index and    * you do not want ordered SpanNearQuerys to collect payloads, you can    * disable collection with a constructor option.<br>    *<br>     * Note that the return type is a collection, thus the ordering should not be relied upon.     *<br/>    * @lucene.experimental    *    * @return a List of byte arrays containing the data of this payload, otherwise null if isPayloadAvailable is false    * @throws IOException if there is a low-level I/O error     */
+comment|/**    * Returns the payload data for the current span.    * This is invalid until {@link #next()} is called for    * the first time.    * This method must not be called more than once after each call    * of {@link #next()}. However, most payloads are loaded lazily,    * so if the payload data for the current position is not needed,    * this method may not be called at all for performance reasons. An ordered    * SpanQuery does not lazy load, so if you have payloads in your index and    * you do not want ordered SpanNearQuerys to collect payloads, you can    * disable collection with a constructor option.<br>    *<br>    * Note that the return type is a collection, thus the ordering should not be relied upon.    *<br>    * @lucene.experimental    *    * @return a List of byte arrays containing the data of this payload, otherwise null if isPayloadAvailable is false    * @throws IOException if there is a low-level I/O error    */
 comment|// TODO: Remove warning after API has been finalized
 DECL|method|getPayload
 specifier|public
@@ -111,7 +111,7 @@ parameter_list|()
 throws|throws
 name|IOException
 function_decl|;
-comment|/**    * Checks if a payload can be loaded at this position.    *<p/>    * Payloads can only be loaded once per call to    * {@link #next()}.    *    * @return true if there is a payload available at this position that can be loaded    */
+comment|/**    * Checks if a payload can be loaded at this position.    *<p>    * Payloads can only be loaded once per call to    * {@link #next()}.    *    * @return true if there is a payload available at this position that can be loaded    */
 DECL|method|isPayloadAvailable
 specifier|public
 specifier|abstract

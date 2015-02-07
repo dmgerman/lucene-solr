@@ -83,7 +83,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**   * SortField for {@link SortedNumericDocValues}.  *<p>  * A SortedNumericDocValues contains multiple values for a field, so sorting with  * this technique "selects" a value as the representative sort value for the document.  *<p>  * By default, the minimum value in the list is selected as the sort value, but  * this can be customized.  *<p>  * Like sorting by string, this also supports sorting missing values as first or last,  * via {@link #setMissingValue(Object)}.  *<p>  * @see SortedNumericSelector  */
+comment|/**   * SortField for {@link SortedNumericDocValues}.  *<p>  * A SortedNumericDocValues contains multiple values for a field, so sorting with  * this technique "selects" a value as the representative sort value for the document.  *<p>  * By default, the minimum value in the list is selected as the sort value, but  * this can be customized.  *<p>  * Like sorting by string, this also supports sorting missing values as first or last,  * via {@link #setMissingValue(Object)}.  * @see SortedNumericSelector  */
 end_comment
 
 begin_class

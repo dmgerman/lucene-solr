@@ -1708,7 +1708,7 @@ return|return
 name|this
 return|;
 block|}
-comment|/**    * Whether to also compute all groups matching the query.    * This can be used to determine the number of groups, which can be used for accurate pagination.    *<p/>    * When grouping by doc block the number of groups are automatically included in the {@link TopGroups} and this    * option doesn't have any influence.    *    * @param allGroups to also compute all groups matching the query    * @return<code>this</code>    */
+comment|/**    * Whether to also compute all groups matching the query.    * This can be used to determine the number of groups, which can be used for accurate pagination.    *<p>    * When grouping by doc block the number of groups are automatically included in the {@link TopGroups} and this    * option doesn't have any influence.    *    * @param allGroups to also compute all groups matching the query    * @return<code>this</code>    */
 DECL|method|setAllGroups
 specifier|public
 name|GroupingSearch
@@ -1760,7 +1760,7 @@ operator|)
 name|matchingGroups
 return|;
 block|}
-comment|/**    * Whether to compute all group heads (most relevant document per group) matching the query.    *<p/>    * This feature isn't enabled when grouping by doc block.    *    * @param allGroupHeads Whether to compute all group heads (most relevant document per group) matching the query    * @return<code>this</code>    */
+comment|/**    * Whether to compute all group heads (most relevant document per group) matching the query.    *<p>    * This feature isn't enabled when grouping by doc block.    *    * @param allGroupHeads Whether to compute all group heads (most relevant document per group) matching the query    * @return<code>this</code>    */
 DECL|method|setAllGroupHeads
 specifier|public
 name|GroupingSearch
@@ -1791,7 +1791,7 @@ return|return
 name|matchingGroupHeads
 return|;
 block|}
-comment|/**    * Sets the initial size of some internal used data structures.    * This prevents growing data structures many times. This can improve the performance of the grouping at the cost of    * more initial RAM.    *<p/>    * The {@link #setAllGroups} and {@link #setAllGroupHeads} features use this option.    * Defaults to 128.    *    * @param initialSize The initial size of some internal used data structures    * @return<code>this</code>    */
+comment|/**    * Sets the initial size of some internal used data structures.    * This prevents growing data structures many times. This can improve the performance of the grouping at the cost of    * more initial RAM.    *<p>    * The {@link #setAllGroups} and {@link #setAllGroupHeads} features use this option.    * Defaults to 128.    *    * @param initialSize The initial size of some internal used data structures    * @return<code>this</code>    */
 DECL|method|setInitialSize
 specifier|public
 name|GroupingSearch

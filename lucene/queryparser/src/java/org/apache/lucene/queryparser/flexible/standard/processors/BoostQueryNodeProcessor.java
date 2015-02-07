@@ -213,7 +213,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * This processor iterates the query node tree looking for every  * {@link FieldableNode} that has {@link ConfigurationKeys#BOOST} in its  * config. If there is, the boost is applied to that {@link FieldableNode}.<br/>  *   * @see ConfigurationKeys#BOOST  * @see QueryConfigHandler  * @see FieldableNode  */
+comment|/**  * This processor iterates the query node tree looking for every  * {@link FieldableNode} that has {@link ConfigurationKeys#BOOST} in its  * config. If there is, the boost is applied to that {@link FieldableNode}.  *   * @see ConfigurationKeys#BOOST  * @see QueryConfigHandler  * @see FieldableNode  */
 end_comment
 
 begin_class

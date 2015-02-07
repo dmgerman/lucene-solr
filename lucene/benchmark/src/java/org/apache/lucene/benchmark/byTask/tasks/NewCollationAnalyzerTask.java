@@ -95,7 +95,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Task to support benchmarking collation.  *<p>  *<ul>  *<li><code>NewCollationAnalyzer</code> with the default jdk impl  *<li><code>NewCollationAnalyzer(impl:icu)</code> specify an impl (jdk,icu)  *</ul>  *</p>  */
+comment|/**  * Task to support benchmarking collation.  *<br>  *<ul>  *<li><code>NewCollationAnalyzer</code> with the default jdk impl  *<li><code>NewCollationAnalyzer(impl:icu)</code> specify an impl (jdk,icu)  *</ul>  */
 end_comment
 
 begin_class

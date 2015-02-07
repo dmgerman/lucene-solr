@@ -205,7 +205,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Generates a file containing JFlex macros to accept valid ASCII TLDs   * (top level domains), for inclusion in JFlex grammars that can accept   * domain names.  *<p/>   * The IANA Root Zone Database is queried via HTTP from URL cmdline arg #0, the  * response is parsed, and the results are written out to a file containing   * a JFlex macro that will accept all valid ASCII-only TLDs, including punycode   * forms of internationalized TLDs (output file cmdline arg #1).  */
+comment|/**  * Generates a file containing JFlex macros to accept valid ASCII TLDs   * (top level domains), for inclusion in JFlex grammars that can accept   * domain names.  *<p>   * The IANA Root Zone Database is queried via HTTP from URL cmdline arg #0, the  * response is parsed, and the results are written out to a file containing   * a JFlex macro that will accept all valid ASCII-only TLDs, including punycode   * forms of internationalized TLDs (output file cmdline arg #1).  */
 end_comment
 
 begin_class

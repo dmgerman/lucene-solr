@@ -284,7 +284,7 @@ name|size
 argument_list|()
 return|;
 block|}
-comment|/**    * Returns the group head and puts it into {@link #temporalResult}.    * If the group head wasn't encountered before then it will be added to the collected group heads.    *<p/>    * The {@link TemporalResult#stop} property will be<code>true</code> if the group head wasn't encountered before    * otherwise<code>false</code>.    *    * @param doc The document to retrieve the group head for.    * @throws IOException If I/O related errors occur    */
+comment|/**    * Returns the group head and puts it into {@link #temporalResult}.    * If the group head wasn't encountered before then it will be added to the collected group heads.    *<p>    * The {@link TemporalResult#stop} property will be<code>true</code> if the group head wasn't encountered before    * otherwise<code>false</code>.    *    * @param doc The document to retrieve the group head for.    * @throws IOException If I/O related errors occur    */
 DECL|method|retrieveGroupHeadAndAddIfNotExist
 specifier|protected
 specifier|abstract

@@ -19,7 +19,7 @@ comment|/*  * Licensed to the Apache Software Foundation (ASF) under one or more
 end_comment
 
 begin_comment
-comment|/**  * Returns the maximum payload score seen, else 1 if there are no payloads on the doc.  *<p/>  * Is thread safe and completely reusable.  *  **/
+comment|/**  * Returns the maximum payload score seen, else 1 if there are no payloads on the doc.  *<p>  * Is thread safe and completely reusable.  *  **/
 end_comment
 
 begin_class

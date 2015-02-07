@@ -356,7 +356,7 @@ return|return
 name|result
 return|;
 block|}
-comment|/**    * Reads stopwords from a stopword list in Snowball format.    *<p>    * The snowball format is the following:    *<ul>    *<li>Lines may contain multiple words separated by whitespace.    *<li>The comment character is the vertical line (&#124;).    *<li>Lines may contain trailing comments.    *</ul>    *</p>    *     * @param reader Reader containing a Snowball stopword list    * @param result the {@link CharArraySet} to fill with the readers words    * @return the given {@link CharArraySet} with the reader's words    */
+comment|/**    * Reads stopwords from a stopword list in Snowball format.    *<p>    * The snowball format is the following:    *<ul>    *<li>Lines may contain multiple words separated by whitespace.    *<li>The comment character is the vertical line (&#124;).    *<li>Lines may contain trailing comments.    *</ul>    *     * @param reader Reader containing a Snowball stopword list    * @param result the {@link CharArraySet} to fill with the readers words    * @return the given {@link CharArraySet} with the reader's words    */
 DECL|method|getSnowballWordSet
 specifier|public
 specifier|static
@@ -497,7 +497,7 @@ return|return
 name|result
 return|;
 block|}
-comment|/**    * Reads stopwords from a stopword list in Snowball format.    *<p>    * The snowball format is the following:    *<ul>    *<li>Lines may contain multiple words separated by whitespace.    *<li>The comment character is the vertical line (&#124;).    *<li>Lines may contain trailing comments.    *</ul>    *</p>    *     * @param reader Reader containing a Snowball stopword list    * @return A {@link CharArraySet} with the reader's words    */
+comment|/**    * Reads stopwords from a stopword list in Snowball format.    *<p>    * The snowball format is the following:    *<ul>    *<li>Lines may contain multiple words separated by whitespace.    *<li>The comment character is the vertical line (&#124;).    *<li>Lines may contain trailing comments.    *</ul>    *     * @param reader Reader containing a Snowball stopword list    * @return A {@link CharArraySet} with the reader's words    */
 DECL|method|getSnowballWordSet
 specifier|public
 specifier|static

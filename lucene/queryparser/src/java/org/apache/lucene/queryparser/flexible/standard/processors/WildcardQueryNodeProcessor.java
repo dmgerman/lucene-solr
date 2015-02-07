@@ -265,7 +265,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * The {@link StandardSyntaxParser} creates {@link PrefixWildcardQueryNode} nodes which  * have values containing the prefixed wildcard. However, Lucene  * {@link PrefixQuery} cannot contain the prefixed wildcard. So, this processor  * basically removed the prefixed wildcard from the  * {@link PrefixWildcardQueryNode} value.<br/>  *   * @see PrefixQuery  * @see PrefixWildcardQueryNode  */
+comment|/**  * The {@link StandardSyntaxParser} creates {@link PrefixWildcardQueryNode} nodes which  * have values containing the prefixed wildcard. However, Lucene  * {@link PrefixQuery} cannot contain the prefixed wildcard. So, this processor  * basically removed the prefixed wildcard from the  * {@link PrefixWildcardQueryNode} value.  *   * @see PrefixQuery  * @see PrefixWildcardQueryNode  */
 end_comment
 
 begin_class

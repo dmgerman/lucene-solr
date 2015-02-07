@@ -272,7 +272,7 @@ operator|=
 name|ticksAllowed
 expr_stmt|;
 block|}
-comment|/**    * Sets the baseline for this collector. By default the collectors baseline is     * initialized once the first reader is passed to the collector.     * To include operations executed in prior to the actual document collection    * set the baseline through this method in your prelude.    *<p>    * Example usage:    *<pre class="prettyprint">    *   Counter clock = ...;    *   long baseline = clock.get();    *   // ... prepare search    *   TimeLimitingCollector collector = new TimeLimitingCollector(c, clock, numTicks);    *   collector.setBaseline(baseline);    *   indexSearcher.search(query, collector);    *</pre>    *</p>    * @see #setBaseline()     */
+comment|/**    * Sets the baseline for this collector. By default the collectors baseline is     * initialized once the first reader is passed to the collector.     * To include operations executed in prior to the actual document collection    * set the baseline through this method in your prelude.    *<p>    * Example usage:    *<pre class="prettyprint">    *   Counter clock = ...;    *   long baseline = clock.get();    *   // ... prepare search    *   TimeLimitingCollector collector = new TimeLimitingCollector(c, clock, numTicks);    *   collector.setBaseline(baseline);    *   indexSearcher.search(query, collector);    *</pre>    * @see #setBaseline()     */
 DECL|method|setBaseline
 specifier|public
 name|void

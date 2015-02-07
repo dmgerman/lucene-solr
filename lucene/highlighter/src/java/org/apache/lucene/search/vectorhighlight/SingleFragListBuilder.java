@@ -85,7 +85,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * An implementation class of {@link FragListBuilder} that generates one {@link WeightedFragInfo} object.  * Typical use case of this class is that you can get an entire field contents  * by using both of this class and {@link SimpleFragmentsBuilder}.<br/>  *<pre class="prettyprint">  * FastVectorHighlighter h = new FastVectorHighlighter( true, true,  *   new SingleFragListBuilder(), new SimpleFragmentsBuilder() );  *</pre>  */
+comment|/**  * An implementation class of {@link FragListBuilder} that generates one {@link WeightedFragInfo} object.  * Typical use case of this class is that you can get an entire field contents  * by using both of this class and {@link SimpleFragmentsBuilder}.<br>  *<pre class="prettyprint">  * FastVectorHighlighter h = new FastVectorHighlighter( true, true,  *   new SingleFragListBuilder(), new SimpleFragmentsBuilder() );  *</pre>  */
 end_comment
 
 begin_class

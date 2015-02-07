@@ -105,7 +105,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * A PrefixTree for date ranges in which the levels of the tree occur at natural periods of time (e.g. years,  * months, ...). You pass in {@link Calendar} objects with the desired fields set and the unspecified  * fields unset, which conveys the precision.  The implementation makes some optimization assumptions about a  * {@link java.util.GregorianCalendar}; others could probably be supported easily.  *<p/>  * Warning: If you construct a Calendar and then get something from the object like a field (e.g. year) or  * milliseconds, then every field is fully set by side-effect. So after setting the fields, pass it to this  * API first.  * @lucene.experimental  */
+comment|/**  * A PrefixTree for date ranges in which the levels of the tree occur at natural periods of time (e.g. years,  * months, ...). You pass in {@link Calendar} objects with the desired fields set and the unspecified  * fields unset, which conveys the precision.  The implementation makes some optimization assumptions about a  * {@link java.util.GregorianCalendar}; others could probably be supported easily.  *<p>  * Warning: If you construct a Calendar and then get something from the object like a field (e.g. year) or  * milliseconds, then every field is fully set by side-effect. So after setting the fields, pass it to this  * API first.  * @lucene.experimental  */
 end_comment
 
 begin_class

@@ -299,7 +299,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * This class is very similar to  * {@link org.apache.lucene.search.spans.SpanTermQuery} except that it factors  * in the value of the payload located at each of the positions where the  * {@link org.apache.lucene.index.Term} occurs.  *<p/>  * NOTE: In order to take advantage of this with the default scoring implementation  * ({@link DefaultSimilarity}), you must override {@link DefaultSimilarity#scorePayload(int, int, int, BytesRef)},  * which returns 1 by default.  *<p/>  * Payload scores are aggregated using a pluggable {@link PayloadFunction}.  * @see org.apache.lucene.search.similarities.Similarity.SimScorer#computePayloadFactor(int, int, int, BytesRef)  **/
+comment|/**  * This class is very similar to  * {@link org.apache.lucene.search.spans.SpanTermQuery} except that it factors  * in the value of the payload located at each of the positions where the  * {@link org.apache.lucene.index.Term} occurs.  *<p>  * NOTE: In order to take advantage of this with the default scoring implementation  * ({@link DefaultSimilarity}), you must override {@link DefaultSimilarity#scorePayload(int, int, int, BytesRef)},  * which returns 1 by default.  *<p>  * Payload scores are aggregated using a pluggable {@link PayloadFunction}.  * @see org.apache.lucene.search.similarities.Similarity.SimScorer#computePayloadFactor(int, int, int, BytesRef)  **/
 end_comment
 
 begin_class
@@ -795,7 +795,7 @@ name|getPayloadScore
 argument_list|()
 return|;
 block|}
-comment|/**        * Returns the SpanScorer score only.        *<p/>        * Should not be overridden without good cause!        *         * @return the score for just the Span part w/o the payload        * @throws IOException if there is a low-level I/O error        *         * @see #score()        */
+comment|/**        * Returns the SpanScorer score only.        *<p>        * Should not be overridden without good cause!        *         * @return the score for just the Span part w/o the payload        * @throws IOException if there is a low-level I/O error        *         * @see #score()        */
 DECL|method|getSpanScore
 specifier|protected
 name|float

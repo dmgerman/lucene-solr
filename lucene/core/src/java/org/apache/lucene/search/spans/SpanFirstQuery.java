@@ -43,7 +43,7 @@ import|;
 end_import
 
 begin_comment
-comment|/** Matches spans near the beginning of a field.  *<p/>   * This class is a simple extension of {@link SpanPositionRangeQuery} in that it assumes the  * start to be zero and only checks the end boundary.  *  *  *  */
+comment|/**   * Matches spans near the beginning of a field.  *<p>   * This class is a simple extension of {@link SpanPositionRangeQuery} in that it assumes the  * start to be zero and only checks the end boundary.  */
 end_comment
 
 begin_class

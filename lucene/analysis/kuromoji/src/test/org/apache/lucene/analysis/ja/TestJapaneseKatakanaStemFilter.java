@@ -207,7 +207,7 @@ return|;
 block|}
 block|}
 decl_stmt|;
-comment|/**    * Test a few common katakana spelling variations.    *<p>    * English translations are as follows:    *<ul>    *<li>copy</li>    *<li>coffee</li>    *<li>taxi</li>    *<li>party</li>    *<li>party (without long sound)</li>    *<li>center</li>    *</ul>    * Note that we remove a long sound in the case of "coffee" that is required.    *</p>    */
+comment|/**    * Test a few common katakana spelling variations.    *<p>    * English translations are as follows:    *<ul>    *<li>copy</li>    *<li>coffee</li>    *<li>taxi</li>    *<li>party</li>    *<li>party (without long sound)</li>    *<li>center</li>    *</ul>    * Note that we remove a long sound in the case of "coffee" that is required.    */
 DECL|method|testStemVariants
 specifier|public
 name|void

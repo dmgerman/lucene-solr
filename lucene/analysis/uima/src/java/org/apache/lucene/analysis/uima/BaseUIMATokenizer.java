@@ -265,7 +265,7 @@ operator|=
 name|configurationParameters
 expr_stmt|;
 block|}
-comment|/**    * analyzes the tokenizer input using the given analysis engine    *<p/>    * {@link #cas} will be filled with  extracted metadata (UIMA annotations, feature structures)    *    * @throws IOException If there is a low-level I/O error.    */
+comment|/**    * analyzes the tokenizer input using the given analysis engine    *<p>    * {@link #cas} will be filled with  extracted metadata (UIMA annotations, feature structures)    *    * @throws IOException If there is a low-level I/O error.    */
 DECL|method|analyzeInput
 specifier|protected
 name|void

@@ -689,7 +689,7 @@ parameter_list|()
 throws|throws
 name|IOException
 function_decl|;
-comment|/**    * Expert: return the IndexCommit that this reader has opened.    *<p/>    * @lucene.experimental    */
+comment|/**    * Expert: return the IndexCommit that this reader has opened.    * @lucene.experimental    */
 DECL|method|getIndexCommit
 specifier|public
 specifier|abstract

@@ -99,7 +99,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**   * A filter to apply normal capitalization rules to Tokens.  It will make the first letter  * capital and the rest lower case.  *<p/>  * This filter is particularly useful to build nice looking facet parameters.  This filter  * is not appropriate if you intend to use a prefix query.  */
+comment|/**   * A filter to apply normal capitalization rules to Tokens.  It will make the first letter  * capital and the rest lower case.  *<p>  * This filter is particularly useful to build nice looking facet parameters.  This filter  * is not appropriate if you intend to use a prefix query.  */
 end_comment
 
 begin_class

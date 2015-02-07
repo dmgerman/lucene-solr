@@ -81,7 +81,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * This query config handler only adds the {@link UniqueFieldAttribute} to it.<br/>  *<br/>  *   * It does not return any configuration for a field in specific.  */
+comment|/**  * This query config handler only adds the {@link UniqueFieldAttribute} to it.<br>  *<br>  *   * It does not return any configuration for a field in specific.  */
 end_comment
 
 begin_class

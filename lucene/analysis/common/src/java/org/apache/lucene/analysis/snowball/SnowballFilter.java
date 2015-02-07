@@ -137,7 +137,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * A filter that stems words using a Snowball-generated stemmer.  *  * Available stemmers are listed in {@link org.tartarus.snowball.ext}.  *<p><b>NOTE</b>: SnowballFilter expects lowercased text.  *<ul>  *<li>For the Turkish language, see {@link TurkishLowerCaseFilter}.  *<li>For other languages, see {@link LowerCaseFilter}.  *</ul>  *</p>  *  *<p>  * Note: This filter is aware of the {@link KeywordAttribute}. To prevent  * certain terms from being passed to the stemmer  * {@link KeywordAttribute#isKeyword()} should be set to<code>true</code>  * in a previous {@link TokenStream}.  *  * Note: For including the original term as well as the stemmed version, see  * {@link org.apache.lucene.analysis.miscellaneous.KeywordRepeatFilterFactory}  *</p>  *  *  */
+comment|/**  * A filter that stems words using a Snowball-generated stemmer.  *  * Available stemmers are listed in {@link org.tartarus.snowball.ext}.  *<p><b>NOTE</b>: SnowballFilter expects lowercased text.  *<ul>  *<li>For the Turkish language, see {@link TurkishLowerCaseFilter}.  *<li>For other languages, see {@link LowerCaseFilter}.  *</ul>  *  *<p>  * Note: This filter is aware of the {@link KeywordAttribute}. To prevent  * certain terms from being passed to the stemmer  * {@link KeywordAttribute#isKeyword()} should be set to<code>true</code>  * in a previous {@link TokenStream}.  *  * Note: For including the original term as well as the stemmed version, see  * {@link org.apache.lucene.analysis.miscellaneous.KeywordRepeatFilterFactory}  *</p>  *  *  */
 end_comment
 
 begin_class

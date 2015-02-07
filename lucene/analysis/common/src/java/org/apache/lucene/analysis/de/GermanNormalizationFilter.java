@@ -89,7 +89,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Normalizes German characters according to the heuristics  * of the<a href="http://snowball.tartarus.org/algorithms/german2/stemmer.html">  * German2 snowball algorithm</a>.  * It allows for the fact that Ã¤, Ã¶ and Ã¼ are sometimes written as ae, oe and ue.  *<p>  *<ul>  *<li> 'Ã' is replaced by 'ss'  *<li> 'Ã¤', 'Ã¶', 'Ã¼' are replaced by 'a', 'o', 'u', respectively.  *<li> 'ae' and 'oe' are replaced by 'a', and 'o', respectively.  *<li> 'ue' is replaced by 'u', when not following a vowel or q.  *</ul>  *<p>  * This is useful if you want this normalization without using  * the German2 stemmer, or perhaps no stemming at all.  */
+comment|/**  * Normalizes German characters according to the heuristics  * of the<a href="http://snowball.tartarus.org/algorithms/german2/stemmer.html">  * German2 snowball algorithm</a>.  * It allows for the fact that Ã¤, Ã¶ and Ã¼ are sometimes written as ae, oe and ue.  *<ul>  *<li> 'Ã' is replaced by 'ss'  *<li> 'Ã¤', 'Ã¶', 'Ã¼' are replaced by 'a', 'o', 'u', respectively.  *<li> 'ae' and 'oe' are replaced by 'a', and 'o', respectively.  *<li> 'ue' is replaced by 'u', when not following a vowel or q.  *</ul>  * This is useful if you want this normalization without using  * the German2 stemmer, or perhaps no stemming at all.  */
 end_comment
 
 begin_class

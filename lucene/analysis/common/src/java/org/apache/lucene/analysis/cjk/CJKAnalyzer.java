@@ -163,7 +163,7 @@ name|CJKAnalyzer
 extends|extends
 name|StopwordAnalyzerBase
 block|{
-comment|/**    * File containing default CJK stopwords.    *<p/>    * Currently it contains some common English words that are not usually    * useful for searching and some double-byte interpunctions.    */
+comment|/**    * File containing default CJK stopwords.    *<p>    * Currently it contains some common English words that are not usually    * useful for searching and some double-byte interpunctions.    */
 DECL|field|DEFAULT_STOPWORD_FILE
 specifier|public
 specifier|final

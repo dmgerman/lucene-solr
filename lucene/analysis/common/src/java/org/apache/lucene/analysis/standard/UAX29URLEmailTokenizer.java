@@ -121,7 +121,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * This class implements Word Break rules from the Unicode Text Segmentation   * algorithm, as specified in   *<a href="http://unicode.org/reports/tr29/">Unicode Standard Annex #29</a>   * URLs and email addresses are also tokenized according to the relevant RFCs.  *<p/>  * Tokens produced are of the following types:  *<ul>  *<li>&lt;ALPHANUM&gt;: A sequence of alphabetic and numeric characters</li>  *<li>&lt;NUM&gt;: A number</li>  *<li>&lt;URL&gt;: A URL</li>  *<li>&lt;EMAIL&gt;: An email address</li>  *<li>&lt;SOUTHEAST_ASIAN&gt;: A sequence of characters from South and Southeast  *       Asian languages, including Thai, Lao, Myanmar, and Khmer</li>  *<li>&lt;IDEOGRAPHIC&gt;: A single CJKV ideographic character</li>  *<li>&lt;HIRAGANA&gt;: A single hiragana character</li>  *</ul>  */
+comment|/**  * This class implements Word Break rules from the Unicode Text Segmentation   * algorithm, as specified in   *<a href="http://unicode.org/reports/tr29/">Unicode Standard Annex #29</a>   * URLs and email addresses are also tokenized according to the relevant RFCs.  *<p>  * Tokens produced are of the following types:  *<ul>  *<li>&lt;ALPHANUM&gt;: A sequence of alphabetic and numeric characters</li>  *<li>&lt;NUM&gt;: A number</li>  *<li>&lt;URL&gt;: A URL</li>  *<li>&lt;EMAIL&gt;: An email address</li>  *<li>&lt;SOUTHEAST_ASIAN&gt;: A sequence of characters from South and Southeast  *       Asian languages, including Thai, Lao, Myanmar, and Khmer</li>  *<li>&lt;IDEOGRAPHIC&gt;: A single CJKV ideographic character</li>  *<li>&lt;HIRAGANA&gt;: A single hiragana character</li>  *</ul>  */
 end_comment
 
 begin_class

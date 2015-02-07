@@ -191,7 +191,7 @@ comment|/**  * Copyright 2004 The Apache Software Foundation  *<p/>  * Licensed 
 end_comment
 
 begin_comment
-comment|/**  * Create queries from a FileReader.  One per line, pass them through the  * QueryParser.  Lines beginning with # are treated as comments  *  * File can be specified as a absolute, relative or resource.  * Two properties can be set:  * file.query.maker.file=&lt;Full path to file containing queries&gt;  *<br/>  * file.query.maker.default.field=&lt;Name of default field - Default value is "body"&gt;  *  * Example:  * file.query.maker.file=c:/myqueries.txt  * file.query.maker.default.field=body  */
+comment|/**  * Create queries from a FileReader.  One per line, pass them through the  * QueryParser.  Lines beginning with # are treated as comments  *  * File can be specified as a absolute, relative or resource.  * Two properties can be set:  * file.query.maker.file=&lt;Full path to file containing queries&gt;  *<br>  * file.query.maker.default.field=&lt;Name of default field - Default value is "body"&gt;  *  * Example:  * file.query.maker.file=c:/myqueries.txt  * file.query.maker.default.field=body  */
 end_comment
 
 begin_class

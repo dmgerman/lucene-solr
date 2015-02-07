@@ -257,7 +257,7 @@ comment|/*  * Licensed to the Apache Software Foundation (ASF) under one or more
 end_comment
 
 begin_comment
-comment|/**  * A simplistic Lucene based NaiveBayes classifier, with caching feature, see  *<code>http://en.wikipedia.org/wiki/Naive_Bayes_classifier</code>  *<p/>  * This is NOT an online classifier.  *  * @lucene.experimental  */
+comment|/**  * A simplistic Lucene based NaiveBayes classifier, with caching feature, see  *<code>http://en.wikipedia.org/wiki/Naive_Bayes_classifier</code>  *<p>  * This is NOT an online classifier.  *  * @lucene.experimental  */
 end_comment
 
 begin_class

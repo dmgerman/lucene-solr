@@ -19,7 +19,7 @@ comment|/*  * Licensed to the Apache Software Foundation (ASF) under one or more
 end_comment
 
 begin_comment
-comment|/**  *  SuggestWord, used in suggestSimilar method in SpellChecker class.  *<p/>  * Default sort is first by score, then by frequency.  *   *  */
+comment|/**  * SuggestWord, used in suggestSimilar method in SpellChecker class.  *<p>  * Default sort is first by score, then by frequency.  */
 end_comment
 
 begin_class

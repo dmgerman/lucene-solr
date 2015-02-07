@@ -19,7 +19,7 @@ comment|/*  * Licensed to the Apache Software Foundation (ASF) under one or more
 end_comment
 
 begin_comment
-comment|/**  * Calculate the final score as the average score of all payloads seen.  *<p/>  * Is thread safe and completely reusable.   *  **/
+comment|/**  * Calculate the final score as the average score of all payloads seen.  *<p>  * Is thread safe and completely reusable.   *  **/
 end_comment
 
 begin_class

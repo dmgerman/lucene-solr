@@ -283,7 +283,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * This processor verifies if   * {@link ConfigurationKeys#LOWERCASE_EXPANDED_TERMS} is defined in the  * {@link QueryConfigHandler}. If it is and the expanded terms should be  * lower-cased, it looks for every {@link WildcardQueryNode},  * {@link FuzzyQueryNode} and children of a {@link RangeQueryNode} and lower-case its  * term.<br/>  *   * @see ConfigurationKeys#LOWERCASE_EXPANDED_TERMS  */
+comment|/**  * This processor verifies if   * {@link ConfigurationKeys#LOWERCASE_EXPANDED_TERMS} is defined in the  * {@link QueryConfigHandler}. If it is and the expanded terms should be  * lower-cased, it looks for every {@link WildcardQueryNode},  * {@link FuzzyQueryNode} and children of a {@link RangeQueryNode} and lower-case its  * term.  *   * @see ConfigurationKeys#LOWERCASE_EXPANDED_TERMS  */
 end_comment
 
 begin_class
