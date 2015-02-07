@@ -3033,6 +3033,8 @@ name|READONCE
 argument_list|)
 init|)
 block|{
+try|try
+block|{
 name|fileMeta
 operator|.
 name|put
@@ -3047,6 +3049,23 @@ name|in
 argument_list|)
 argument_list|)
 expr_stmt|;
+block|}
+catch|catch
+parameter_list|(
+name|Exception
+name|e
+parameter_list|)
+block|{
+name|LOG
+operator|.
+name|warn
+argument_list|(
+literal|"Could not read checksum from index file."
+argument_list|,
+name|e
+argument_list|)
+expr_stmt|;
+block|}
 block|}
 block|}
 name|result
