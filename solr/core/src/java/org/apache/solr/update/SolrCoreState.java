@@ -62,6 +62,20 @@ name|apache
 operator|.
 name|solr
 operator|.
+name|cloud
+operator|.
+name|ActionThrottle
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|solr
+operator|.
 name|core
 operator|.
 name|CoreContainer
@@ -455,6 +469,14 @@ parameter_list|(
 name|IndexWriterCloser
 name|closer
 parameter_list|)
+function_decl|;
+comment|/**    * @return throttle to limit how fast a core attempts to become leader    */
+DECL|method|getLeaderThrottle
+specifier|public
+specifier|abstract
+name|ActionThrottle
+name|getLeaderThrottle
+parameter_list|()
 function_decl|;
 block|}
 end_class
