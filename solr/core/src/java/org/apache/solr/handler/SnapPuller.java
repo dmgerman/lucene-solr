@@ -1296,6 +1296,15 @@ specifier|public
 class|class
 name|SnapPuller
 block|{
+DECL|field|_100K
+specifier|private
+specifier|static
+specifier|final
+name|int
+name|_100K
+init|=
+literal|100000
+decl_stmt|;
 DECL|field|INDEX_PROPERTIES
 specifier|public
 specifier|static
@@ -5362,7 +5371,7 @@ name|compareResult
 parameter_list|)
 block|{
 comment|// without checksums to compare, we always download .si, .liv, segments_N,
-comment|// and any file under 100kb
+comment|// and any very small files
 return|return
 operator|!
 name|compareResult
@@ -5393,7 +5402,7 @@ argument_list|)
 operator|||
 name|size
 operator|<
-literal|100000
+name|_100K
 operator|)
 return|;
 block|}
@@ -5547,15 +5556,9 @@ name|LOG
 operator|.
 name|warn
 argument_list|(
-literal|"File {} did not match. "
-operator|+
-literal|"expected length is {} and actual length is {}"
+literal|"File {} did not match. expected length is {} and actual length is {}"
 argument_list|,
 name|filename
-argument_list|,
-name|backupIndexFileChecksum
-argument_list|,
-name|indexFileChecksum
 argument_list|,
 name|backupIndexFileLen
 argument_list|,
