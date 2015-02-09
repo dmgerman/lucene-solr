@@ -405,9 +405,7 @@ name|createWeight
 argument_list|(
 name|searcher
 argument_list|,
-name|PostingsEnum
-operator|.
-name|FLAG_FREQS
+literal|true
 argument_list|)
 return|;
 block|}

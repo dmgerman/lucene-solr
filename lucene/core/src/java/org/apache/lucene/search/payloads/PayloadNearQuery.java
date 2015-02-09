@@ -442,8 +442,8 @@ parameter_list|(
 name|IndexSearcher
 name|searcher
 parameter_list|,
-name|int
-name|postingsFlags
+name|boolean
+name|needsScores
 parameter_list|)
 throws|throws
 name|IOException

@@ -9566,9 +9566,7 @@ name|createNormalizedWeight
 argument_list|(
 name|q
 argument_list|,
-name|PostingsEnum
-operator|.
-name|FLAG_FREQS
+literal|true
 argument_list|)
 decl_stmt|;
 name|DocIdSetIterator
@@ -9888,9 +9886,7 @@ name|createNormalizedWeight
 argument_list|(
 name|q
 argument_list|,
-name|PostingsEnum
-operator|.
-name|FLAG_FREQS
+literal|true
 argument_list|)
 decl_stmt|;
 name|DocIdSetIterator

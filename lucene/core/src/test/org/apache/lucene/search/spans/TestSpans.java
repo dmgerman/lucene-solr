@@ -2911,9 +2911,7 @@ name|createNormalizedWeight
 argument_list|(
 name|snq
 argument_list|,
-name|PostingsEnum
-operator|.
-name|FLAG_FREQS
+literal|true
 argument_list|)
 operator|.
 name|scorer
