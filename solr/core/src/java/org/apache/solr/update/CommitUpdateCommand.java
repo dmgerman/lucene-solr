@@ -83,7 +83,7 @@ name|prepareCommit
 init|=
 literal|false
 decl_stmt|;
-comment|/**    * During optimize, optimize down to<= this many segments.  Must be>= 1    *    * @see org.apache.lucene.index.IndexWriter#forceMerge(int)    */
+comment|/**    * During optimize, optimize down to&lt;= this many segments.  Must be&gt;= 1    *    * @see org.apache.lucene.index.IndexWriter#forceMerge(int)    */
 DECL|field|maxOptimizeSegments
 specifier|public
 name|int

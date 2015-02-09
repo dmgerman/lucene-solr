@@ -69,7 +69,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  *<p>  * {@link Transformer} instance which creates {@link Date} instances out of {@link String}s.  *</p>  *<p/>  *<p>  * Refer to<a  * href="http://wiki.apache.org/solr/DataImportHandler">http://wiki.apache.org/solr/DataImportHandler</a>  * for more details.  *</p>  *<p/>  *<b>This API is experimental and subject to change</b>  *  * @since solr 1.3  */
+comment|/**  *<p>  * {@link Transformer} instance which creates {@link Date} instances out of {@link String}s.  *</p>  *<p>  * Refer to<a  * href="http://wiki.apache.org/solr/DataImportHandler">http://wiki.apache.org/solr/DataImportHandler</a>  * for more details.  *<p>  *<b>This API is experimental and subject to change</b>  *  * @since solr 1.3  */
 end_comment
 
 begin_class

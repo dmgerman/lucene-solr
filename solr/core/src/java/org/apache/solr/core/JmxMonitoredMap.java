@@ -225,7 +225,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  *<p>  * Responsible for finding (or creating) a MBeanServer from given configuration  * and registering all SolrInfoMBean objects with JMX.  *</p>  *<p/>  *<p>  * Please see http://wiki.apache.org/solr/SolrJmx for instructions on usage and configuration  *</p>  *  *  * @see org.apache.solr.core.SolrConfig.JmxConfiguration  * @since solr 1.3  */
+comment|/**  *<p>  * Responsible for finding (or creating) a MBeanServer from given configuration  * and registering all SolrInfoMBean objects with JMX.  *</p>  *<p>  * Please see http://wiki.apache.org/solr/SolrJmx for instructions on usage and configuration  *</p>  *  *  * @see org.apache.solr.core.SolrConfig.JmxConfiguration  * @since solr 1.3  */
 end_comment
 
 begin_class

@@ -936,13 +936,13 @@ specifier|volatile
 name|String
 name|baseUrl
 decl_stmt|;
-comment|/**    * Default value: null / empty.    *<p/>    * Parameters that are added to every request regardless. This may be a place    * to add something like an authentication token.    */
+comment|/**    * Default value: null / empty.    *<p>    * Parameters that are added to every request regardless. This may be a place    * to add something like an authentication token.    */
 DECL|field|invariantParams
 specifier|protected
 name|ModifiableSolrParams
 name|invariantParams
 decl_stmt|;
-comment|/**    * Default response parser is BinaryResponseParser    *<p/>    * This parser represents the default Response Parser chosen to parse the    * response if the parser were not specified as part of the request.    *     * @see org.apache.solr.client.solrj.impl.BinaryResponseParser    */
+comment|/**    * Default response parser is BinaryResponseParser    *<p>    * This parser represents the default Response Parser chosen to parse the    * response if the parser were not specified as part of the request.    *     * @see org.apache.solr.client.solrj.impl.BinaryResponseParser    */
 DECL|field|parser
 specifier|protected
 specifier|volatile
@@ -3527,7 +3527,7 @@ name|followRedirects
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**    * Allow server->client communication to be compressed. Currently gzip and    * deflate are supported. If the server supports compression the response will    * be compressed. This method is only allowed if the http client is of type    * DefatulHttpClient.    */
+comment|/**    * Allow server-&gt;client communication to be compressed. Currently gzip and    * deflate are supported. If the server supports compression the response will    * be compressed. This method is only allowed if the http client is of type    * DefatulHttpClient.    */
 DECL|method|setAllowCompression
 specifier|public
 name|void

@@ -207,7 +207,7 @@ operator|+
 name|args
 return|;
 block|}
-comment|/**    * Add the {@link org.apache.solr.common.params.EventParams#EVENT} with either the {@link org.apache.solr.common.params.EventParams#NEW_SEARCHER}    * or {@link org.apache.solr.common.params.EventParams#FIRST_SEARCHER} values depending on the value of currentSearcher.    *<p/>    * Makes a copy of NamedList and then adds the parameters.    *    *    * @param currentSearcher If null, add FIRST_SEARCHER, otherwise NEW_SEARCHER    * @param nlst The named list to add the EVENT value to    */
+comment|/**    * Add the {@link org.apache.solr.common.params.EventParams#EVENT} with either the {@link org.apache.solr.common.params.EventParams#NEW_SEARCHER}    * or {@link org.apache.solr.common.params.EventParams#FIRST_SEARCHER} values depending on the value of currentSearcher.    *<p>    * Makes a copy of NamedList and then adds the parameters.    *    *    * @param currentSearcher If null, add FIRST_SEARCHER, otherwise NEW_SEARCHER    * @param nlst The named list to add the EVENT value to    */
 DECL|method|addEventParms
 specifier|protected
 name|NamedList

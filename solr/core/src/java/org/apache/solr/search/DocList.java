@@ -44,7 +44,7 @@ name|int
 name|size
 parameter_list|()
 function_decl|;
-comment|/**    * Returns the total number of matches for the search    * (as opposed to just the number collected according    * to<code>offset()</code> and<code>size()</code>).    * Hence it's always true that matches()>= size()    * @return number of matches for the search(query&amp; any filters)    */
+comment|/**    * Returns the total number of matches for the search    * (as opposed to just the number collected according    * to<code>offset()</code> and<code>size()</code>).    * Hence it's always true that matches()&gt;= size()    * @return number of matches for the search(query&amp; any filters)    */
 DECL|method|matches
 specifier|public
 name|int

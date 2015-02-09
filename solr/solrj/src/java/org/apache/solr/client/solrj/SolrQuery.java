@@ -286,7 +286,7 @@ name|q
 argument_list|)
 expr_stmt|;
 block|}
-comment|/** enable/disable terms.      *     * @param b flag to indicate terms should be enabled.<br /> if b==false, removes all other terms parameters    * @return Current reference (<i>this</i>)    */
+comment|/** enable/disable terms.      *     * @param b flag to indicate terms should be enabled.<br> if b==false, removes all other terms parameters    * @return Current reference (<i>this</i>)    */
 DECL|method|setTerms
 specifier|public
 name|SolrQuery
@@ -1475,7 +1475,7 @@ name|FACET_FIELD
 argument_list|)
 return|;
 block|}
-comment|/** remove a facet field    *     * @param name Name of the facet field to be removed.    *     * @return true, if the item was removed.<br />    *           false, if the facet field was null or did not exist.    */
+comment|/** remove a facet field    *     * @param name Name of the facet field to be removed.    *     * @return true, if the item was removed.<br>    *           false, if the facet field was null or did not exist.    */
 DECL|method|removeFacetField
 specifier|public
 name|boolean
@@ -1536,7 +1536,7 @@ return|return
 name|b
 return|;
 block|}
-comment|/** enable/disable faceting.      *     * @param b flag to indicate faceting should be enabled.<br /> if b==false, removes all other faceting parameters    * @return Current reference (<i>this</i>)    */
+comment|/** enable/disable faceting.      *     * @param b flag to indicate faceting should be enabled.<br> if b==false, removes all other faceting parameters    * @return Current reference (<i>this</i>)    */
 DECL|method|setFacet
 specifier|public
 name|SolrQuery
@@ -2051,7 +2051,7 @@ return|return
 name|this
 return|;
 block|}
-comment|/** remove a field for highlighting    *     * @param f field name to not highlight    * @return<i>true</i>, if removed,<br /><i>false</i>, otherwise    */
+comment|/** remove a field for highlighting    *     * @param f field name to not highlight    * @return<i>true</i>, if removed,<br><i>false</i>, otherwise    */
 DECL|method|removeHighlightField
 specifier|public
 name|boolean

@@ -189,7 +189,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  *  Calculate the Haversine distance between two geo hash codes.  *  *<p/>  * Ex: ghhsin(ValueSource, ValueSource, radius)  *<p/>  *  * @see org.apache.solr.search.function.distance.HaversineFunction for more details on the implementation  *  **/
+comment|/**  *  Calculate the Haversine distance between two geo hash codes.  *  *<p>  * Ex: ghhsin(ValueSource, ValueSource, radius)  *<p>  *  * @see org.apache.solr.search.function.distance.HaversineFunction for more details on the implementation  *  **/
 end_comment
 
 begin_class

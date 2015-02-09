@@ -345,7 +345,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * This class responds to requests at /solr/(corename)/schema/fields  *<p/>  * Two query parameters are supported:  *<ul>  *<li>  * "fl": a comma- and/or space-separated list of fields to send properties  * for in the response, rather than the default: all of them.  *</li>  *<li>  * "includeDynamic": if the "fl" parameter is specified, matching dynamic  * fields are included in the response and identified with the "dynamicBase"  * property.  If the "fl" parameter is not specified, the "includeDynamic"  * query parameter is ignored.  *</li>  *</ul>  */
+comment|/**  * This class responds to requests at /solr/(corename)/schema/fields  *<p>  * Two query parameters are supported:  *<ul>  *<li>  * "fl": a comma- and/or space-separated list of fields to send properties  * for in the response, rather than the default: all of them.  *</li>  *<li>  * "includeDynamic": if the "fl" parameter is specified, matching dynamic  * fields are included in the response and identified with the "dynamicBase"  * property.  If the "fl" parameter is not specified, the "includeDynamic"  * query parameter is ignored.  *</li>  *</ul>  */
 end_comment
 
 begin_class

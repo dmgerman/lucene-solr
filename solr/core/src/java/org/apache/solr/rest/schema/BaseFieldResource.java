@@ -231,7 +231,7 @@ name|super
 argument_list|()
 expr_stmt|;
 block|}
-comment|/**    * Pulls the "fl" param from the request and splits it to get the    * requested list of fields.  The (Dynamic)FieldCollectionResource classes    * will then restrict the fields sent back in the response to those    * on this list.  The (Dynamic)FieldResource classes ignore this list,     * since the (dynamic) field is specified in the URL path, rather than    * in a query parameter.    *<p/>    * Also pulls the "showDefaults" param from the request, for use by all    * subclasses to include default values from the associated field type    * in the response.  By default this param is off.    */
+comment|/**    * Pulls the "fl" param from the request and splits it to get the    * requested list of fields.  The (Dynamic)FieldCollectionResource classes    * will then restrict the fields sent back in the response to those    * on this list.  The (Dynamic)FieldResource classes ignore this list,     * since the (dynamic) field is specified in the URL path, rather than    * in a query parameter.    *<p>    * Also pulls the "showDefaults" param from the request, for use by all    * subclasses to include default values from the associated field type    * in the response.  By default this param is off.    */
 annotation|@
 name|Override
 DECL|method|doInit

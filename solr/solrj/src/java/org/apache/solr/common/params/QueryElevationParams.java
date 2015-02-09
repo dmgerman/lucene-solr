@@ -58,14 +58,14 @@ name|EXCLUDE
 init|=
 literal|"excludeIds"
 decl_stmt|;
-comment|/**    * The name of the field that editorial results will be written out as when using the QueryElevationComponent, which    * automatically configures the EditorialMarkerFactory.  The default name is "elevated"    *<br/>    * See http://wiki.apache.org/solr/DocTransformers    */
+comment|/**    * The name of the field that editorial results will be written out as when using the QueryElevationComponent, which    * automatically configures the EditorialMarkerFactory.  The default name is "elevated"    *<br>    * See http://wiki.apache.org/solr/DocTransformers    */
 DECL|field|EDITORIAL_MARKER_FIELD_NAME
 name|String
 name|EDITORIAL_MARKER_FIELD_NAME
 init|=
 literal|"editorialMarkerFieldName"
 decl_stmt|;
-comment|/**    * The name of the field that excluded editorial results will be written out as when using the QueryElevationComponent, which    * automatically configures the EditorialMarkerFactory.  The default name is "excluded".  This is only used    * when {@link #MARK_EXCLUDES} is set to true at query time.    *<br/>    * See http://wiki.apache.org/solr/DocTransformers    */
+comment|/**    * The name of the field that excluded editorial results will be written out as when using the QueryElevationComponent, which    * automatically configures the EditorialMarkerFactory.  The default name is "excluded".  This is only used    * when {@link #MARK_EXCLUDES} is set to true at query time.    *<br>    * See http://wiki.apache.org/solr/DocTransformers    */
 DECL|field|EXCLUDE_MARKER_FIELD_NAME
 name|String
 name|EXCLUDE_MARKER_FIELD_NAME

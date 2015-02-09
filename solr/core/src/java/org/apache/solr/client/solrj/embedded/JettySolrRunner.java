@@ -958,7 +958,7 @@ literal|null
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**    * Constructor taking an ordered list of additional (servlet holder -> path spec) mappings    * to add to the servlet context    */
+comment|/**    * Constructor taking an ordered list of additional (servlet holder -&gt; path spec) mappings    * to add to the servlet context    */
 DECL|method|JettySolrRunner
 specifier|public
 name|JettySolrRunner
@@ -1068,7 +1068,7 @@ literal|null
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**    * Constructor taking an ordered list of additional (filter holder -> path spec) mappings.    * Filters are placed after the DebugFilter but before the SolrDispatchFilter.    */
+comment|/**    * Constructor taking an ordered list of additional (filter holder -&gt; path spec) mappings.    * Filters are placed after the DebugFilter but before the SolrDispatchFilter.    */
 DECL|method|JettySolrRunner
 specifier|public
 name|JettySolrRunner

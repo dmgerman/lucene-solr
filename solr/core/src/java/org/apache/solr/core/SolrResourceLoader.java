@@ -1042,7 +1042,7 @@ operator|=
 name|coreProperties
 expr_stmt|;
 block|}
-comment|/**    *<p>    * This loader will delegate to the context classloader when possible,    * otherwise it will attempt to resolve resources using any jar files    * found in the "lib/" directory in the specified instance directory.    * If the instance directory is not specified (=null), SolrResourceLoader#locateInstanceDir will provide one.    *<p>    */
+comment|/**    *<p>    * This loader will delegate to the context classloader when possible,    * otherwise it will attempt to resolve resources using any jar files    * found in the "lib/" directory in the specified instance directory.    * If the instance directory is not specified (=null), SolrResourceLoader#locateInstanceDir will provide one.    */
 DECL|method|SolrResourceLoader
 specifier|public
 name|SolrResourceLoader
@@ -1698,7 +1698,7 @@ return|return
 name|coreProperties
 return|;
 block|}
-comment|/**    * EXPERT    *<p/>    * The underlying class loader.  Most applications will not need to use this.    * @return The {@link ClassLoader}    */
+comment|/**    * EXPERT    *<p>    * The underlying class loader.  Most applications will not need to use this.    * @return The {@link ClassLoader}    */
 DECL|method|getClassLoader
 specifier|public
 name|ClassLoader

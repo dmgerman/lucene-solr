@@ -6138,7 +6138,7 @@ name|incrementAndGet
 argument_list|()
 expr_stmt|;
 block|}
-comment|/**    * Close all resources allocated by the core if it is no longer in use...    *<ul>    *<li>searcher</li>    *<li>updateHandler</li>    *<li>all CloseHooks will be notified</li>    *<li>All MBeans will be unregistered from MBeanServer if JMX was enabled    *</li>    *</ul>    *<p>       *<p>    * The behavior of this method is determined by the result of decrementing    * the core's reference count (A core is created with a reference count of 1)...    *</p>    *<ul>    *<li>If reference count is> 0, the usage count is decreased by 1 and no    *       resources are released.    *</li>    *<li>If reference count is == 0, the resources are released.    *<li>If reference count is&lt; 0, and error is logged and no further action    *       is taken.    *</li>    *</ul>    * @see #isClosed()     */
+comment|/**    * Close all resources allocated by the core if it is no longer in use...    *<ul>    *<li>searcher</li>    *<li>updateHandler</li>    *<li>all CloseHooks will be notified</li>    *<li>All MBeans will be unregistered from MBeanServer if JMX was enabled    *</li>    *</ul>     *<p>    * The behavior of this method is determined by the result of decrementing    * the core's reference count (A core is created with a reference count of 1)...    *</p>    *<ul>    *<li>If reference count is&gt; 0, the usage count is decreased by 1 and no    *       resources are released.    *</li>    *<li>If reference count is == 0, the resources are released.    *<li>If reference count is&lt; 0, and error is logged and no further action    *       is taken.    *</li>    *</ul>    * @see #isClosed()     */
 DECL|method|close
 specifier|public
 name|void

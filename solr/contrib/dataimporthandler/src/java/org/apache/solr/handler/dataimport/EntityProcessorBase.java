@@ -81,7 +81,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  *<p> Base class for all implementations of {@link EntityProcessor}</p><p/><p> Most implementations of {@link EntityProcessor}  * extend this base class which provides common functionality.</p>  *<p/>  *<b>This API is experimental and subject to change</b>  *  * @since solr 1.3  */
+comment|/**  *<p> Base class for all implementations of {@link EntityProcessor}</p><p> Most implementations of {@link EntityProcessor}  * extend this base class which provides common functionality.</p>  *<p>  *<b>This API is experimental and subject to change</b>  *  * @since solr 1.3  */
 end_comment
 
 begin_class

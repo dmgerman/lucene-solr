@@ -101,7 +101,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Takes in a latitude and longitude ValueSource and produces a GeoHash.  *<p/>  * Ex: geohash(lat, lon)  *  *<p/>  * Note, there is no reciprocal function for this.  **/
+comment|/**  * Takes in a latitude and longitude ValueSource and produces a GeoHash.  *<p>  * Ex: geohash(lat, lon)  *  *<p>  * Note, there is no reciprocal function for this.  **/
 end_comment
 
 begin_class

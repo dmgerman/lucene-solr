@@ -1517,7 +1517,7 @@ name|name
 argument_list|)
 return|;
 block|}
-comment|/**    * Get a map of property name -> value for this field.  If showDefaults is true,    * include default properties (those inherited from the declared property type and    * not overridden in the field declaration).    */
+comment|/**    * Get a map of property name -&gt; value for this field.  If showDefaults is true,    * include default properties (those inherited from the declared property type and    * not overridden in the field declaration).    */
 DECL|method|getNamedPropertyValues
 specifier|public
 name|SimpleOrderedMap

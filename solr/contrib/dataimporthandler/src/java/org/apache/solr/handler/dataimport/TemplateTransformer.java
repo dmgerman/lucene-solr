@@ -69,7 +69,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  *<p>  * A {@link Transformer} which can put values into a column by resolving an expression  * containing other columns  *</p>  *<p/>  *<p>  * For example:<br />  *&lt;field column="name" template="${e.lastName}, ${e.firstName}  * ${e.middleName}" /&gt; will produce the name by combining values from  * lastName, firstName and middleName fields as given in the template attribute.  *</p>  *<p/>  *<p>  * Refer to<a  * href="http://wiki.apache.org/solr/DataImportHandler">http://wiki.apache.org/solr/DataImportHandler</a>  * for more details.  *</p>  *<p/>  *<b>This API is experimental and may change in the future.</b>  *  *  * @since solr 1.3  */
+comment|/**  *<p>  * A {@link Transformer} which can put values into a column by resolving an expression  * containing other columns  *</p>  *<p>  * For example:<br>  *&lt;field column="name" template="${e.lastName}, ${e.firstName}  * ${e.middleName}" /&gt; will produce the name by combining values from  * lastName, firstName and middleName fields as given in the template attribute.  *</p>  *<p>  * Refer to<a  * href="http://wiki.apache.org/solr/DataImportHandler">http://wiki.apache.org/solr/DataImportHandler</a>  * for more details.  *</p>  *<p>  *<b>This API is experimental and may change in the future.</b>  *  *  * @since solr 1.3  */
 end_comment
 
 begin_class

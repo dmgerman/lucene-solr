@@ -1200,7 +1200,7 @@ name|filepath
 argument_list|)
 return|;
 block|}
-comment|/**    * Is this property a Solr-standard property, or is it an extra property    * defined per-core by the user?    * @param propName the Property name    * @return @{code true} if this property is user-defined    */
+comment|/**    * Is this property a Solr-standard property, or is it an extra property    * defined per-core by the user?    * @param propName the Property name    * @return {@code true} if this property is user-defined    */
 DECL|method|isUserDefinedProperty
 specifier|protected
 specifier|static

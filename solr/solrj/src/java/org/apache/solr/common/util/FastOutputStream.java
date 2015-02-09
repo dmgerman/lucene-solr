@@ -414,7 +414,7 @@ name|space
 expr_stmt|;
 block|}
 block|}
-comment|/** reserve at least len bytes at the end of the buffer.    * Invalid if len> buffer.length    */
+comment|/** reserve at least len bytes at the end of the buffer.    * Invalid if len&gt; buffer.length    */
 DECL|method|reserve
 specifier|public
 name|void

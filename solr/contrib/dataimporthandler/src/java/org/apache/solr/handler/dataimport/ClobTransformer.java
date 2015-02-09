@@ -97,7 +97,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * {@link Transformer} instance which converts a {@link Clob} to a {@link String}.  *<p/>  * Refer to<a href="http://wiki.apache.org/solr/DataImportHandler">http://wiki.apache.org/solr/DataImportHandler</a>  * for more details.  *<p/>  *<b>This API is experimental and subject to change</b>  *  * @since solr 1.4  */
+comment|/**  * {@link Transformer} instance which converts a {@link Clob} to a {@link String}.  *<p>  * Refer to<a href="http://wiki.apache.org/solr/DataImportHandler">http://wiki.apache.org/solr/DataImportHandler</a>  * for more details.  *<p>  *<b>This API is experimental and subject to change</b>  *  * @since solr 1.4  */
 end_comment
 
 begin_class

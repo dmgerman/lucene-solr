@@ -247,7 +247,7 @@ name|configSetZkPath
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**    *<p>    * This loader will first attempt to load resources from ZooKeeper, but if not found    * will delegate to the context classloader when possible,    * otherwise it will attempt to resolve resources using any jar files found in    * the "lib/" directory in the specified instance directory.    *<p>    */
+comment|/**    *<p>    * This loader will first attempt to load resources from ZooKeeper, but if not found    * will delegate to the context classloader when possible,    * otherwise it will attempt to resolve resources using any jar files found in    * the "lib/" directory in the specified instance directory.    */
 DECL|method|ZkSolrResourceLoader
 specifier|public
 name|ZkSolrResourceLoader

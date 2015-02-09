@@ -328,7 +328,7 @@ name|FACET
 operator|+
 literal|".prefix"
 decl_stmt|;
-comment|/**    * When faceting by enumerating the terms in a field,    * only use the filterCache for terms with a df>= to this parameter.    */
+comment|/**    * When faceting by enumerating the terms in a field,    * only use the filterCache for terms with a df&gt;= to this parameter.    */
 DECL|field|FACET_ENUM_CACHE_MINDF
 specifier|public
 specifier|static
@@ -627,7 +627,7 @@ throw|;
 block|}
 block|}
 block|}
-comment|/**    * An enumeration of the legal values for {@link #FACET_DATE_INCLUDE} and {@link #FACET_RANGE_INCLUDE}    *<p>    *<ul>    *<li>lower = all gap based ranges include their lower bound</li>    *<li>upper = all gap based ranges include their upper bound</li>    *<li>edge = the first and last gap ranges include their edge bounds (ie: lower     *     for the first one, upper for the last one) even if the corresponding     *     upper/lower option is not specified    *</li>    *<li>outer = the BEFORE and AFTER ranges     *     should be inclusive of their bounds, even if the first or last ranges     *     already include those boundaries.    *</li>    *<li>all = shorthand for lower, upper, edge, and outer</li>    *</ul>    * @see #FACET_DATE_INCLUDE    * @see #FACET_RANGE_INCLUDE    */
+comment|/**    * An enumeration of the legal values for {@link #FACET_DATE_INCLUDE} and {@link #FACET_RANGE_INCLUDE}    *<br>    *<ul>    *<li>lower = all gap based ranges include their lower bound</li>    *<li>upper = all gap based ranges include their upper bound</li>    *<li>edge = the first and last gap ranges include their edge bounds (ie: lower     *     for the first one, upper for the last one) even if the corresponding     *     upper/lower option is not specified    *</li>    *<li>outer = the BEFORE and AFTER ranges     *     should be inclusive of their bounds, even if the first or last ranges     *     already include those boundaries.    *</li>    *<li>all = shorthand for lower, upper, edge, and outer</li>    *</ul>    * @see #FACET_DATE_INCLUDE    * @see #FACET_RANGE_INCLUDE    */
 DECL|enum|FacetRangeInclude
 specifier|public
 enum|enum

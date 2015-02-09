@@ -133,7 +133,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * A LFU cache implementation based upon ConcurrentHashMap.  *<p/>  * This is not a terribly efficient implementation.  The tricks used in the  * LRU version were not directly usable, perhaps it might be possible to  * rewrite them with LFU in mind.  *<p/>  *<b>This API is experimental and subject to change</b>  *  * @since solr 1.6  */
+comment|/**  * A LFU cache implementation based upon ConcurrentHashMap.  *<p>  * This is not a terribly efficient implementation.  The tricks used in the  * LRU version were not directly usable, perhaps it might be possible to  * rewrite them with LFU in mind.  *<p>  *<b>This API is experimental and subject to change</b>  *  * @since solr 1.6  */
 end_comment
 
 begin_class
@@ -1089,7 +1089,7 @@ name|value
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**    * Returns 'n' number of least used entries present in this cache.    *<p/>    * This uses a TreeSet to collect the 'n' least used items ordered by ascending hitcount    * and returns a LinkedHashMap containing 'n' or less than 'n' entries.    *    * @param n the number of items needed    * @return a LinkedHashMap containing 'n' or less than 'n' entries    */
+comment|/**    * Returns 'n' number of least used entries present in this cache.    *<p>    * This uses a TreeSet to collect the 'n' least used items ordered by ascending hitcount    * and returns a LinkedHashMap containing 'n' or less than 'n' entries.    *    * @param n the number of items needed    * @return a LinkedHashMap containing 'n' or less than 'n' entries    */
 DECL|method|getLeastUsedItems
 specifier|public
 name|Map
@@ -1324,7 +1324,7 @@ return|return
 name|result
 return|;
 block|}
-comment|/**    * Returns 'n' number of most used entries present in this cache.    *<p/>    * This uses a TreeSet to collect the 'n' most used items ordered by descending hitcount    * and returns a LinkedHashMap containing 'n' or less than 'n' entries.    *    * @param n the number of items needed    * @return a LinkedHashMap containing 'n' or less than 'n' entries    */
+comment|/**    * Returns 'n' number of most used entries present in this cache.    *<p>    * This uses a TreeSet to collect the 'n' most used items ordered by descending hitcount    * and returns a LinkedHashMap containing 'n' or less than 'n' entries.    *    * @param n the number of items needed    * @return a LinkedHashMap containing 'n' or less than 'n' entries    */
 DECL|method|getMostUsedItems
 specifier|public
 name|Map

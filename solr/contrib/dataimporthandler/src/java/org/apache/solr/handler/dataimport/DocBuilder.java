@@ -295,7 +295,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  *<p> {@link DocBuilder} is responsible for creating Solr documents out of the given configuration. It also maintains  * statistics information. It depends on the {@link EntityProcessor} implementations to fetch data.</p>  *<p/>  *<b>This API is experimental and subject to change</b>  *  * @since solr 1.3  */
+comment|/**  *<p> {@link DocBuilder} is responsible for creating Solr documents out of the given configuration. It also maintains  * statistics information. It depends on the {@link EntityProcessor} implementations to fetch data.</p>  *<p>  *<b>This API is experimental and subject to change</b>  *  * @since solr 1.3  */
 end_comment
 
 begin_class

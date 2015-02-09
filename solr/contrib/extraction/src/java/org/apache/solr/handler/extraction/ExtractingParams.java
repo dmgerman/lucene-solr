@@ -48,7 +48,7 @@ name|IGNORE_TIKA_EXCEPTION
 init|=
 literal|"ignoreTikaException"
 decl_stmt|;
-comment|/**    * The param prefix for mapping Tika metadata to Solr fields.    *<p/>    * To map a field, add a name like:    *<pre>fmap.title=solr.title</pre>    *    * In this example, the tika "title" metadata value will be added to a Solr field named "solr.title"    *    *    */
+comment|/**    * The param prefix for mapping Tika metadata to Solr fields.    *<p>    * To map a field, add a name like:    *<pre>fmap.title=solr.title</pre>    *    * In this example, the tika "title" metadata value will be added to a Solr field named "solr.title"    *    *    */
 DECL|field|MAP_PREFIX
 specifier|public
 specifier|static
@@ -58,7 +58,7 @@ name|MAP_PREFIX
 init|=
 literal|"fmap."
 decl_stmt|;
-comment|/**    * The boost value for the name of the field.  The boost can be specified by a name mapping.    *<p/>    * For example    *<pre>    * map.title=solr.title    * boost.solr.title=2.5    *</pre>    * will boost the solr.title field for this document by 2.5    *    */
+comment|/**    * The boost value for the name of the field.  The boost can be specified by a name mapping.    *<p>    * For example    *<pre>    * map.title=solr.title    * boost.solr.title=2.5    *</pre>    * will boost the solr.title field for this document by 2.5    *    */
 DECL|field|BOOST_PREFIX
 specifier|public
 specifier|static
@@ -78,7 +78,7 @@ name|LITERALS_PREFIX
 init|=
 literal|"literal."
 decl_stmt|;
-comment|/**    * Restrict the extracted parts of a document to be indexed    *  by passing in an XPath expression.  All content that satisfies the XPath expr.    * will be passed to the {@link SolrContentHandler}.    *<p/>    * See Tika's docs for what the extracted document looks like.    *<p/>    * @see #CAPTURE_ELEMENTS    */
+comment|/**    * Restrict the extracted parts of a document to be indexed    *  by passing in an XPath expression.  All content that satisfies the XPath expr.    * will be passed to the {@link SolrContentHandler}.    *<p>    * See Tika's docs for what the extracted document looks like.    * @see #CAPTURE_ELEMENTS    */
 DECL|field|XPATH_EXPRESSION
 specifier|public
 specifier|static
@@ -128,7 +128,7 @@ name|LITERALS_OVERRIDE
 init|=
 literal|"literalsOverride"
 decl_stmt|;
-comment|/**    * Capture the specified fields (and everything included below it that isn't capture by some other capture field) separately from the default.  This is different    * then the case of passing in an XPath expression.    *<p/>    * The Capture field is based on the localName returned to the {@link SolrContentHandler}    * by Tika, not to be confused by the mapped field.  The field name can then    * be mapped into the index schema.    *<p/>    * For instance, a Tika document may look like:    *<pre>    *&lt;html&gt;    *    ...    *&lt;body&gt;    *&lt;p&gt;some text here.&lt;div&gt;more text&lt;/div&gt;&lt;/p&gt;    *      Some more text    *&lt;/body&gt;    *</pre>    * By passing in the p tag, you could capture all P tags separately from the rest of the t    * Thus, in the example, the capture of the P tag would be: "some text here.  more text"    *    */
+comment|/**    * Capture the specified fields (and everything included below it that isn't capture by some other capture field) separately from the default.  This is different    * then the case of passing in an XPath expression.    *<p>    * The Capture field is based on the localName returned to the {@link SolrContentHandler}    * by Tika, not to be confused by the mapped field.  The field name can then    * be mapped into the index schema.    *<p>    * For instance, a Tika document may look like:    *<pre>    *&lt;html&gt;    *    ...    *&lt;body&gt;    *&lt;p&gt;some text here.&lt;div&gt;more text&lt;/div&gt;&lt;/p&gt;    *      Some more text    *&lt;/body&gt;    *</pre>    * By passing in the p tag, you could capture all P tags separately from the rest of the t    * Thus, in the example, the capture of the P tag would be: "some text here.  more text"    *    */
 DECL|field|CAPTURE_ELEMENTS
 specifier|public
 specifier|static

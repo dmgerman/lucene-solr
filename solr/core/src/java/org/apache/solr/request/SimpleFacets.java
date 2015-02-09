@@ -7434,7 +7434,7 @@ name|docs
 argument_list|)
 return|;
 block|}
-comment|/**    * A simple key=>val pair whose natural order is such that     *<b>higher</b> vals come before lower vals.    * In case of tie vals, then<b>lower</b> keys come before higher keys.    */
+comment|/**    * A simple key=&gt;val pair whose natural order is such that     *<b>higher</b> vals come before lower vals.    * In case of tie vals, then<b>lower</b> keys come before higher keys.    */
 DECL|class|CountPair
 specifier|public
 specifier|static

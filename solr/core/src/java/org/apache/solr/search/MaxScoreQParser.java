@@ -192,7 +192,7 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
-comment|/**    * Parses the query exactly like the Lucene parser does, but    * delegates all SHOULD clauses to DisjunctionMaxQuery with    * meaning only the clause with the max score will contribute    * to the overall score, unless the tie parameter is specified.    *<br/>    * The max() is only calculated from the SHOULD clauses.    * Any MUST clauses will be passed through as separate    * BooleanClauses and thus always contribute to the score.    * @return the resulting Query    * @throws org.apache.solr.search.SyntaxError if parsing fails    */
+comment|/**    * Parses the query exactly like the Lucene parser does, but    * delegates all SHOULD clauses to DisjunctionMaxQuery with    * meaning only the clause with the max score will contribute    * to the overall score, unless the tie parameter is specified.    *<br>    * The max() is only calculated from the SHOULD clauses.    * Any MUST clauses will be passed through as separate    * BooleanClauses and thus always contribute to the score.    * @return the resulting Query    * @throws org.apache.solr.search.SyntaxError if parsing fails    */
 annotation|@
 name|Override
 DECL|method|parse

@@ -1603,7 +1603,7 @@ return|return
 name|queryAnalyzer
 return|;
 block|}
-comment|/**    * Name of the default search field specified in the schema file.    *<br/><b>Note:</b>Avoid calling this, try to use this method so that the 'df' param is consulted as an override:    * {@link org.apache.solr.search.QueryParsing#getDefaultField(IndexSchema, String)}    */
+comment|/**    * Name of the default search field specified in the schema file.    *<br><b>Note:</b>Avoid calling this, try to use this method so that the 'df' param is consulted as an override:    * {@link org.apache.solr.search.QueryParsing#getDefaultField(IndexSchema, String)}    */
 DECL|method|getDefaultSearchFieldName
 specifier|public
 name|String
@@ -7133,7 +7133,7 @@ name|f
 argument_list|)
 return|;
 block|}
-comment|/**    * Get a map of property name -> value for the whole schema.    */
+comment|/**    * Get a map of property name -&gt; value for the whole schema.    */
 DECL|method|getNamedPropertyValues
 specifier|public
 name|SimpleOrderedMap

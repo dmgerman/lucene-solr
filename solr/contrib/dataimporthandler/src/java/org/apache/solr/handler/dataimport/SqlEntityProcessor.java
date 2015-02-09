@@ -83,7 +83,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  *<p>  * An {@link EntityProcessor} instance which provides support for reading from  * databases. It is used in conjunction with {@link JdbcDataSource}. This is the default  * {@link EntityProcessor} if none is specified explicitly in data-config.xml  *</p>  *<p/>  *<p>  * Refer to<a  * href="http://wiki.apache.org/solr/DataImportHandler">http://wiki.apache.org/solr/DataImportHandler</a>  * for more details.  *</p>  *<p/>  *<b>This API is experimental and may change in the future.</b>  *  *  * @since solr 1.3  */
+comment|/**  *<p>  * An {@link EntityProcessor} instance which provides support for reading from  * databases. It is used in conjunction with {@link JdbcDataSource}. This is the default  * {@link EntityProcessor} if none is specified explicitly in data-config.xml  *</p>  *<p>  * Refer to<a  * href="http://wiki.apache.org/solr/DataImportHandler">http://wiki.apache.org/solr/DataImportHandler</a>  * for more details.  *</p>  *<p>  *<b>This API is experimental and may change in the future.</b>  *  *  * @since solr 1.3  */
 end_comment
 
 begin_class

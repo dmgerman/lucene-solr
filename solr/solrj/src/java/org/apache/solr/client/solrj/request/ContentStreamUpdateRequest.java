@@ -103,7 +103,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Basic functionality to upload a File or {@link org.apache.solr.common.util.ContentStream} to a Solr Cell or some  * other handler that takes ContentStreams (CSV)  *<p>  * See http://wiki.apache.org/solr/ExtractingRequestHandler<br/>  * See http://wiki.apache.org/solr/UpdateCSV  *   *  **/
+comment|/**  * Basic functionality to upload a File or {@link org.apache.solr.common.util.ContentStream} to a Solr Cell or some  * other handler that takes ContentStreams (CSV)  *<p>  * See http://wiki.apache.org/solr/ExtractingRequestHandler<br>  * See http://wiki.apache.org/solr/UpdateCSV  *   *  **/
 end_comment
 
 begin_class

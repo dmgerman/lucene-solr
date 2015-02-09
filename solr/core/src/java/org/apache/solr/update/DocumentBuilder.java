@@ -330,7 +330,7 @@ return|return
 name|id
 return|;
 block|}
-comment|/**    * Convert a SolrInputDocument to a lucene Document.    *     * This function should go elsewhere.  This builds the Document without an    * extra Map<> checking for multiple values.  For more discussion, see:    * http://www.nabble.com/Re%3A-svn-commit%3A-r547493---in--lucene-solr-trunk%3A-.--src-java-org-apache-solr-common--src-java-org-apache-solr-schema--src-java-org-apache-solr-update--src-test-org-apache-solr-common--tf3931539.html    *     * TODO: /!\ NOTE /!\ This semantics of this function are still in flux.      * Something somewhere needs to be able to fill up a SolrDocument from    * a lucene document - this is one place that may happen.  It may also be    * moved to an independent function    *     * @since solr 1.3    */
+comment|/**    * Convert a SolrInputDocument to a lucene Document.    *     * This function should go elsewhere.  This builds the Document without an    * extra Map&lt;&gt; checking for multiple values.  For more discussion, see:    * http://www.nabble.com/Re%3A-svn-commit%3A-r547493---in--lucene-solr-trunk%3A-.--src-java-org-apache-solr-common--src-java-org-apache-solr-schema--src-java-org-apache-solr-update--src-test-org-apache-solr-common--tf3931539.html    *     * TODO: /!\ NOTE /!\ This semantics of this function are still in flux.      * Something somewhere needs to be able to fill up a SolrDocument from    * a lucene document - this is one place that may happen.  It may also be    * moved to an independent function    *     * @since solr 1.3    */
 DECL|method|toDocument
 specifier|public
 specifier|static

@@ -238,7 +238,7 @@ operator|=
 name|size
 expr_stmt|;
 block|}
-comment|/*** DocIterator using nextSetBit()   public DocIterator iterator() {     return new DocIterator() {       int pos=bits.nextSetBit(0);       public boolean hasNext() {         return pos>=0;       }        public Integer next() {         return nextDoc();       }        public void remove() {         bits.clear(pos);       }        public int nextDoc() {         int old=pos;         pos=bits.nextSetBit(old+1);         return old;       }        public float score() {         return 0.0f;       }     };   }   ***/
+comment|/* DocIterator using nextSetBit()   public DocIterator iterator() {     return new DocIterator() {       int pos=bits.nextSetBit(0);       public boolean hasNext() {         return pos>=0;       }        public Integer next() {         return nextDoc();       }        public void remove() {         bits.clear(pos);       }        public int nextDoc() {         int old=pos;         pos=bits.nextSetBit(old+1);         return old;       }        public float score() {         return 0.0f;       }     };   }   ***/
 annotation|@
 name|Override
 DECL|method|iterator
@@ -457,7 +457,7 @@ operator|-
 literal|1
 expr_stmt|;
 block|}
-comment|/**    * Returns true of the doc exists in the set. Should only be called when doc<    * {@link FixedBitSet#length()}.    */
+comment|/**    * Returns true of the doc exists in the set. Should only be called when doc&lt;    * {@link FixedBitSet#length()}.    */
 annotation|@
 name|Override
 DECL|method|exists

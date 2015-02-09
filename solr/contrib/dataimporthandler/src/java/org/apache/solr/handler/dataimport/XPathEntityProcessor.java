@@ -317,7 +317,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  *<p> An implementation of {@link EntityProcessor} which uses a streaming xpath parser to extract values out of XML documents.  * It is typically used in conjunction with {@link URLDataSource} or {@link FileDataSource}.</p><p/><p> Refer to<a  * href="http://wiki.apache.org/solr/DataImportHandler">http://wiki.apache.org/solr/DataImportHandler</a> for more  * details.</p>  *<p/>  *<b>This API is experimental and may change in the future.</b>  *  *  * @see XPathRecordReader  * @since solr 1.3  */
+comment|/**  *<p> An implementation of {@link EntityProcessor} which uses a streaming xpath parser to extract values out of XML documents.  * It is typically used in conjunction with {@link URLDataSource} or {@link FileDataSource}.</p><p> Refer to<a  * href="http://wiki.apache.org/solr/DataImportHandler">http://wiki.apache.org/solr/DataImportHandler</a> for more  * details.</p>  *<p>  *<b>This API is experimental and may change in the future.</b>  *  *  * @see XPathRecordReader  * @since solr 1.3  */
 end_comment
 
 begin_class

@@ -213,7 +213,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * The class responsible for handling Tika events and translating them into {@link org.apache.solr.common.SolrInputDocument}s.  *<B>This class is not thread-safe.</B>  *<p/>  *<p/>  * User's may wish to override this class to provide their own functionality.  *  * @see org.apache.solr.handler.extraction.SolrContentHandlerFactory  * @see org.apache.solr.handler.extraction.ExtractingRequestHandler  * @see org.apache.solr.handler.extraction.ExtractingDocumentLoader  */
+comment|/**  * The class responsible for handling Tika events and translating them into {@link org.apache.solr.common.SolrInputDocument}s.  *<B>This class is not thread-safe.</B>  *<p>  * User's may wish to override this class to provide their own functionality.  *  * @see org.apache.solr.handler.extraction.SolrContentHandlerFactory  * @see org.apache.solr.handler.extraction.ExtractingRequestHandler  * @see org.apache.solr.handler.extraction.ExtractingDocumentLoader  */
 end_comment
 
 begin_class
@@ -1579,7 +1579,7 @@ name|length
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**    * Can be used to transform input values based on their {@link org.apache.solr.schema.SchemaField}    *<p/>    * This implementation only formats dates using the {@link org.apache.solr.common.util.DateUtil}.    *    * @param val    The value to transform    * @param schFld The {@link org.apache.solr.schema.SchemaField}    * @return The potentially new value.    */
+comment|/**    * Can be used to transform input values based on their {@link org.apache.solr.schema.SchemaField}    *<p>    * This implementation only formats dates using the {@link org.apache.solr.common.util.DateUtil}.    *    * @param val    The value to transform    * @param schFld The {@link org.apache.solr.schema.SchemaField}    * @return The potentially new value.    */
 DECL|method|transformValue
 specifier|protected
 name|String

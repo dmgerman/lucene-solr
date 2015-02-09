@@ -267,7 +267,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * This class responds to requests at /solr/(corename)/schema/copyfields  *<p/>  *  * To restrict the set of copyFields in the response, specify one or both  * of the following as query parameters, with values as space and/or comma  * separated dynamic or explicit field names:  *  *<ul>  *<li>dest.fl: include copyFields that have one of these as a destination</li>  *<li>source.fl: include copyFields that have one of these as a source</li>  *</ul>  *  * If both dest.fl and source.fl are given as query parameters, the copyfields  * in the response will be restricted to those that match any of the destinations  * in dest.fl and also match any of the sources in source.fl.  */
+comment|/**  * This class responds to requests at /solr/(corename)/schema/copyfields  *<p>  *  * To restrict the set of copyFields in the response, specify one or both  * of the following as query parameters, with values as space and/or comma  * separated dynamic or explicit field names:  *  *<ul>  *<li>dest.fl: include copyFields that have one of these as a destination</li>  *<li>source.fl: include copyFields that have one of these as a source</li>  *</ul>  *  * If both dest.fl and source.fl are given as query parameters, the copyfields  * in the response will be restricted to those that match any of the destinations  * in dest.fl and also match any of the sources in source.fl.  */
 end_comment
 
 begin_class

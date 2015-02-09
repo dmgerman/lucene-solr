@@ -782,7 +782,7 @@ operator|+
 name|_fields
 return|;
 block|}
-comment|/**    * Iterate of String->Object keys    */
+comment|/**    * Iterate of String-&gt;Object keys    */
 annotation|@
 name|Override
 DECL|method|iterator

@@ -2844,7 +2844,7 @@ comment|/**      * Computations should be based on plain documents, so not takin
 DECL|enum constant|ungrouped
 name|ungrouped
 block|}
-comment|/**    * General group command. A group command is responsible for creating the first and second pass collectors.    * A group command is also responsible for creating the response structure.    *<p/>    * Note: Maybe the creating the response structure should be done in something like a ReponseBuilder???    * Warning NOT thread save!    */
+comment|/**    * General group command. A group command is responsible for creating the first and second pass collectors.    * A group command is also responsible for creating the response structure.    *<p>    * Note: Maybe the creating the response structure should be done in something like a ReponseBuilder???    * Warning NOT thread save!    */
 DECL|class|Command
 specifier|public
 specifier|abstract

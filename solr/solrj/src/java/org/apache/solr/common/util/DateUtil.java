@@ -417,7 +417,7 @@ literal|null
 argument_list|)
 return|;
 block|}
-comment|/**    * Slightly modified from org.apache.commons.httpclient.util.DateUtil.parseDate    *<p/>    * Parses the date value using the given date formats.    *    * @param dateValue   the date value to parse    * @param dateFormats the date formats to use    * @param startDate   During parsing, two digit years will be placed in the range    *<code>startDate</code> to<code>startDate + 100 years</code>. This value may    *                    be<code>null</code>. When<code>null</code> is given as a parameter, year    *<code>2000</code> will be used.    * @return the parsed date    * @throws ParseException if none of the dataFormats could parse the dateValue    */
+comment|/**    * Slightly modified from org.apache.commons.httpclient.util.DateUtil.parseDate    *<p>    * Parses the date value using the given date formats.    *    * @param dateValue   the date value to parse    * @param dateFormats the date formats to use    * @param startDate   During parsing, two digit years will be placed in the range    *<code>startDate</code> to<code>startDate + 100 years</code>. This value may    *                    be<code>null</code>. When<code>null</code> is given as a parameter, year    *<code>2000</code> will be used.    * @return the parsed date    * @throws ParseException if none of the dataFormats could parse the dateValue    */
 DECL|method|parseDate
 specifier|public
 specifier|static

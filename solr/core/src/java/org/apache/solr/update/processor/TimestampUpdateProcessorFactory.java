@@ -177,7 +177,7 @@ comment|// javadoc
 end_comment
 
 begin_comment
-comment|/**  *<p>  * An update processor that adds a newly generated<code>Date</code> value   * of "NOW" to any document being added that does not already have a value   * in the specified field.  *</p>  *  *<p>  * In the example configuration below, if a document does not contain a value   * in the<code>timestamp</code> field, a new<code>Date</code> will be   * generated and added as the value of that field.  *<p>  *  *<pre class="prettyprint">  *&lt;processor class="solr.TimestampUpdateProcessorFactory"&gt;  *&lt;str name="fieldName"&gt;timestamp&lt;/str&gt;  *&lt;/processor&gt;  *</pre>  *   * @see Date  * @see CommonParams#NOW  */
+comment|/**  *<p>  * An update processor that adds a newly generated<code>Date</code> value   * of "NOW" to any document being added that does not already have a value   * in the specified field.  *</p>  *  *<p>  * In the example configuration below, if a document does not contain a value   * in the<code>timestamp</code> field, a new<code>Date</code> will be   * generated and added as the value of that field.  *<br>  *  *<pre class="prettyprint">  *&lt;processor class="solr.TimestampUpdateProcessorFactory"&gt;  *&lt;str name="fieldName"&gt;timestamp&lt;/str&gt;  *&lt;/processor&gt;  *</pre>  *   * @see Date  * @see CommonParams#NOW  */
 end_comment
 
 begin_class

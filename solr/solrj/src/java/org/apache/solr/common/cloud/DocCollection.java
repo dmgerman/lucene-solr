@@ -695,7 +695,7 @@ name|values
 argument_list|()
 return|;
 block|}
-comment|/**    * Get the map of all slices (sliceName->Slice) for this collection.    */
+comment|/**    * Get the map of all slices (sliceName-&gt;Slice) for this collection.    */
 DECL|method|getSlicesMap
 specifier|public
 name|Map
@@ -711,7 +711,7 @@ return|return
 name|slices
 return|;
 block|}
-comment|/**    * Get the map of active slices (sliceName->Slice) for this collection.    */
+comment|/**    * Get the map of active slices (sliceName-&gt;Slice) for this collection.    */
 DECL|method|getActiveSlicesMap
 specifier|public
 name|Map

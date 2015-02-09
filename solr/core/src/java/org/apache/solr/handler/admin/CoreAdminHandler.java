@@ -3070,7 +3070,7 @@ expr_stmt|;
 block|}
 block|}
 block|}
-comment|/**    * Handle Custom Action.    *<p/>    * This method could be overridden by derived classes to handle custom actions.<br> By default - this method throws a    * solr exception. Derived classes are free to write their derivation if necessary.    */
+comment|/**    * Handle Custom Action.    *<p>    * This method could be overridden by derived classes to handle custom actions.<br> By default - this method throws a    * solr exception. Derived classes are free to write their derivation if necessary.    */
 DECL|method|handleCustomAction
 specifier|protected
 name|void

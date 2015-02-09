@@ -151,7 +151,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Calculate the p-norm for a Vector.  See http://en.wikipedia.org/wiki/Lp_space  *<p/>  * Common cases:  *<ul>  *<li>0 = Sparseness calculation</li>  *<li>1 = Manhattan distance</li>  *<li>2 = Euclidean distance</li>  *<li>Integer.MAX_VALUE = infinite norm</li>  *</ul>  *  * @see SquaredEuclideanFunction for the special case  */
+comment|/**  * Calculate the p-norm for a Vector.  See http://en.wikipedia.org/wiki/Lp_space  *<p>  * Common cases:  *<ul>  *<li>0 = Sparseness calculation</li>  *<li>1 = Manhattan distance</li>  *<li>2 = Euclidean distance</li>  *<li>Integer.MAX_VALUE = infinite norm</li>  *</ul>  *  * @see SquaredEuclideanFunction for the special case  */
 end_comment
 
 begin_class
@@ -334,7 +334,7 @@ name|oneOverPower
 argument_list|)
 return|;
 block|}
-comment|/**    * Calculate the p-norm (i.e. length) between two vectors.    *<p/>    * See<a href="http://en.wikipedia.org/wiki/Lp_space">Lp space</a>    *    * @param vec1  The first vector    * @param vec2  The second vector    * @param power The power (2 for cartesian distance, 1 for manhattan, etc.)    * @return The length.    *    * @see #vectorDistance(double[], double[], double, double)    *    */
+comment|/**    * Calculate the p-norm (i.e. length) between two vectors.    *<p>    * See<a href="http://en.wikipedia.org/wiki/Lp_space">Lp space</a>    *    * @param vec1  The first vector    * @param vec2  The second vector    * @param power The power (2 for cartesian distance, 1 for manhattan, etc.)    * @return The length.    *    * @see #vectorDistance(double[], double[], double, double)    *    */
 DECL|method|vectorDistance
 specifier|public
 specifier|static

@@ -197,7 +197,7 @@ comment|/*  * Licensed to the Apache Software Foundation (ASF) under one or more
 end_comment
 
 begin_comment
-comment|/**  *<p>Formats values using a given date format.</p>  *<p>Pass three parameters:  *<ul>  *<li>An {@link EntityField} or a date expression to be parsed with   *      the {@link DateMathParser} class  If the value is in a String,   *      then it is assumed to be a datemath expression, otherwise it   *      resolved using a {@link VariableResolver} instance</li>  *<li>A date format see {@link SimpleDateFormat} for the syntax.</li>  *<li>The {@link Locale} to parse.    *      (optional. Defaults to the Root Locale)</li>  *</ul>  *</p>  */
+comment|/**  *<p>Formats values using a given date format.</p>  *<p>Pass three parameters:  *<ul>  *<li>An {@link EntityField} or a date expression to be parsed with   *      the {@link DateMathParser} class  If the value is in a String,   *      then it is assumed to be a datemath expression, otherwise it   *      resolved using a {@link VariableResolver} instance</li>  *<li>A date format see {@link SimpleDateFormat} for the syntax.</li>  *<li>The {@link Locale} to parse.    *      (optional. Defaults to the Root Locale)</li>  *</ul>  */
 end_comment
 
 begin_class

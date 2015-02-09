@@ -3221,7 +3221,7 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
-comment|/**    * Formats a Query for debugging, using the IndexSchema to make    * complex field types readable.    *<p/>    *<p>    * The benefit of using this method instead of calling    *<code>Query.toString</code> directly is that it knows about the data    * types of each field, so any field which is encoded in a particularly    * complex way is still readable. The downside is that it only knows    * about built in Query types, and will not be able to format custom    * Query classes.    *</p>    */
+comment|/**    * Formats a Query for debugging, using the IndexSchema to make    * complex field types readable.    *<p>    * The benefit of using this method instead of calling    *<code>Query.toString</code> directly is that it knows about the data    * types of each field, so any field which is encoded in a particularly    * complex way is still readable. The downside is that it only knows    * about built in Query types, and will not be able to format custom    * Query classes.    *</p>    */
 DECL|method|toString
 specifier|public
 specifier|static

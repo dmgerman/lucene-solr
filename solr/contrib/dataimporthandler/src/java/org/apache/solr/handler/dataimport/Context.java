@@ -53,7 +53,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  *<p>  * This abstract class gives access to all available objects. So any  * component implemented by a user can have the full power of DataImportHandler  *</p>  *<p>  * Refer to<a  * href="http://wiki.apache.org/solr/DataImportHandler">http://wiki.apache.org/solr/DataImportHandler</a>  * for more details.  *</p>  *<p/>  *<b>This API is experimental and subject to change</b>  *  * @since solr 1.3  */
+comment|/**  *<p>  * This abstract class gives access to all available objects. So any  * component implemented by a user can have the full power of DataImportHandler  *</p>  *<p>  * Refer to<a  * href="http://wiki.apache.org/solr/DataImportHandler">http://wiki.apache.org/solr/DataImportHandler</a>  * for more details.  *</p>  *<p>  *<b>This API is experimental and subject to change</b>  *  * @since solr 1.3  */
 end_comment
 
 begin_class

@@ -165,7 +165,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * A wrapper for an IndexDeletionPolicy instance.  *<p/>  * Provides features for looking up IndexCommit given a version. Allows reserving index  * commit points for certain amounts of time to support features such as index replication  * or snapshooting directly out of a live index directory.  *<p/>  *<b>NOTE</b>: The {@link #clone()} method returns<tt>this</tt> in order to make  * this {@link IndexDeletionPolicy} instance trackable across {@link IndexWriter}  * instantiations. This is correct because each core has its own  * {@link IndexDeletionPolicy} and never has more than one open {@link IndexWriter}.  *  * @see org.apache.lucene.index.IndexDeletionPolicy  */
+comment|/**  * A wrapper for an IndexDeletionPolicy instance.  *<p>  * Provides features for looking up IndexCommit given a version. Allows reserving index  * commit points for certain amounts of time to support features such as index replication  * or snapshooting directly out of a live index directory.  *<p>  *<b>NOTE</b>: The {@link #clone()} method returns<tt>this</tt> in order to make  * this {@link IndexDeletionPolicy} instance trackable across {@link IndexWriter}  * instantiations. This is correct because each core has its own  * {@link IndexDeletionPolicy} and never has more than one open {@link IndexWriter}.  *  * @see org.apache.lucene.index.IndexDeletionPolicy  */
 end_comment
 
 begin_class
@@ -271,7 +271,7 @@ operator|=
 name|deletionPolicy
 expr_stmt|;
 block|}
-comment|/**    * Gets the most recent commit point    *<p/>    * It is recommended to reserve a commit point for the duration of usage so that    * it is not deleted by the underlying deletion policy    *    * @return the most recent commit point    */
+comment|/**    * Gets the most recent commit point    *<p>    * It is recommended to reserve a commit point for the duration of usage so that    * it is not deleted by the underlying deletion policy    *    * @return the most recent commit point    */
 DECL|method|getLatestCommit
 specifier|public
 name|IndexCommit

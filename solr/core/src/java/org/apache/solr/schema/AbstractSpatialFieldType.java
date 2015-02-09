@@ -1524,7 +1524,7 @@ argument_list|)
 return|;
 block|}
 block|}
-comment|/**    * Returns a String version of a shape to be used for the stored value. This method in Solr is only called if for some    * reason a Shape object is passed to the field type (perhaps via a custom UpdateRequestProcessor),    * *and* the field is marked as stored.<em>The default implementation throws an exception.</em>    *<p/>    * Spatial4j 0.4 is probably the last release to support SpatialContext.toString(shape) but it's deprecated with no    * planned replacement.  Shapes do have a toString() method but they are generally internal/diagnostic and not    * standard WKT.    * The solution is subclassing and calling ctx.toString(shape) or directly using LegacyShapeReadWriterFormat or    * passing in some sort of custom wrapped shape that holds a reference to a String or can generate it.    */
+comment|/**    * Returns a String version of a shape to be used for the stored value. This method in Solr is only called if for some    * reason a Shape object is passed to the field type (perhaps via a custom UpdateRequestProcessor),    * *and* the field is marked as stored.<em>The default implementation throws an exception.</em>    *<p>    * Spatial4j 0.4 is probably the last release to support SpatialContext.toString(shape) but it's deprecated with no    * planned replacement.  Shapes do have a toString() method but they are generally internal/diagnostic and not    * standard WKT.    * The solution is subclassing and calling ctx.toString(shape) or directly using LegacyShapeReadWriterFormat or    * passing in some sort of custom wrapped shape that holds a reference to a String or can generate it.    */
 DECL|method|shapeToString
 specifier|protected
 name|String
@@ -1576,7 +1576,7 @@ block|}
 comment|//--------------------------------------------------------------
 comment|// Query Support
 comment|//--------------------------------------------------------------
-comment|/**    * Implemented for compatibility with geofilt& bbox query parsers:    * {@link SpatialQueryable}.    */
+comment|/**    * Implemented for compatibility with geofilt&amp; bbox query parsers:    * {@link SpatialQueryable}.    */
 annotation|@
 name|Override
 DECL|method|createSpatialQuery

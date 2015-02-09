@@ -49,7 +49,7 @@ name|SPELLCHECK_PREFIX
 operator|+
 literal|"dictionary"
 decl_stmt|;
-comment|/**    * The count of suggestions to return for each query term not in the index and/or dictionary.    *<p/>    * If this parameter is absent in the request then only one suggestion is    * returned. If it is more than one then a maximum of given suggestions are    * returned for each token in the query.    */
+comment|/**    * The count of suggestions to return for each query term not in the index and/or dictionary.    *<p>    * If this parameter is absent in the request then only one suggestion is    * returned. If it is more than one then a maximum of given suggestions are    * returned for each token in the query.    */
 DECL|field|SPELLCHECK_COUNT
 specifier|public
 specifier|static
@@ -61,7 +61,7 @@ name|SPELLCHECK_PREFIX
 operator|+
 literal|"count"
 decl_stmt|;
-comment|/**    * The count of suggestions to return for each query term existing in the index and/or dictionary.    *<p/>    * If this parameter is absent in the request then no suggestions are generated.  This parameter allows    * for receiving alternative terms to use in context-sensitive spelling corrections.    */
+comment|/**    * The count of suggestions to return for each query term existing in the index and/or dictionary.    *<p>    * If this parameter is absent in the request then no suggestions are generated.  This parameter allows    * for receiving alternative terms to use in context-sensitive spelling corrections.    */
 DECL|field|SPELLCHECK_ALTERNATIVE_TERM_COUNT
 specifier|public
 specifier|static
@@ -85,7 +85,7 @@ name|SPELLCHECK_PREFIX
 operator|+
 literal|"maxResultsForSuggest"
 decl_stmt|;
-comment|/**    * When this parameter is set to true and the misspelled word exists in the    * user field, only words that occur more frequently in the Solr field than    * the one given will be returned. The default value is false.    *<p/>    *<b>This is applicable only for dictionaries built from Solr fields.</b>    */
+comment|/**    * When this parameter is set to true and the misspelled word exists in the    * user field, only words that occur more frequently in the Solr field than    * the one given will be returned. The default value is false.    *<p>    *<b>This is applicable only for dictionaries built from Solr fields.</b>    */
 DECL|field|SPELLCHECK_ONLY_MORE_POPULAR
 specifier|public
 specifier|static
@@ -97,7 +97,7 @@ name|SPELLCHECK_PREFIX
 operator|+
 literal|"onlyMorePopular"
 decl_stmt|;
-comment|/**    * Whether to use the extended response format, which is more complicated but    * richer. Returns the document frequency for each suggestion and returns one    * suggestion block for each term in the query string. Default is false.    *<p/>    *<b>This is applicable only for dictionaries built from Solr fields.</b>    */
+comment|/**    * Whether to use the extended response format, which is more complicated but    * richer. Returns the document frequency for each suggestion and returns one    * suggestion block for each term in the query string. Default is false.    *<p>    *<b>This is applicable only for dictionaries built from Solr fields.</b>    */
 DECL|field|SPELLCHECK_EXTENDED_RESULTS
 specifier|public
 specifier|static
@@ -109,7 +109,7 @@ name|SPELLCHECK_PREFIX
 operator|+
 literal|"extendedResults"
 decl_stmt|;
-comment|/**    * Use the value for this parameter as the query to spell check.    *<p/>    * This parameter is<b>optional</b>. If absent, then the q parameter is    * used.    */
+comment|/**    * Use the value for this parameter as the query to spell check.    *<p>    * This parameter is<b>optional</b>. If absent, then the q parameter is    * used.    */
 DECL|field|SPELLCHECK_Q
 specifier|public
 specifier|static
@@ -205,7 +205,7 @@ name|SPELLCHECK_PREFIX
 operator|+
 literal|"collateMaxCollectDocs"
 decl_stmt|;
-comment|/**    *<p>    * Whether to use the Extended Results Format for collations.     * Includes "before>after" pairs to easily allow clients to generate messages like "no results for PORK.  did you mean POLK?"    * Also indicates the # of hits each collation will return on re-query.  Default=false, which retains 1.4-compatible output.    *</p>    *<p>    * Note: that if {@link SpellingParams#SPELLCHECK_COLLATE_MAX_COLLECT_DOCS} is set to a value greater than 0,     * then the hit counts returned by this will be estimated.    *</p>    */
+comment|/**    *<p>    * Whether to use the Extended Results Format for collations.     * Includes "before&gt;after" pairs to easily allow clients to generate messages like "no results for PORK.  did you mean POLK?"    * Also indicates the # of hits each collation will return on re-query.  Default=false, which retains 1.4-compatible output.    *</p>    *<p>    * Note: that if {@link SpellingParams#SPELLCHECK_COLLATE_MAX_COLLECT_DOCS} is set to a value greater than 0,     * then the hit counts returned by this will be estimated.    *</p>    */
 DECL|field|SPELLCHECK_COLLATE_EXTENDED_RESULTS
 specifier|public
 specifier|static

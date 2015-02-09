@@ -1287,7 +1287,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  *<p/> Provides functionality of downloading changed index files as well as config files and a timer for scheduling fetches from the  * master.</p>  *  *  * @since solr 1.4  */
+comment|/**  *<p> Provides functionality of downloading changed index files as well as config files and a timer for scheduling fetches from the  * master.</p>  *  *  * @since solr 1.4  */
 end_comment
 
 begin_class

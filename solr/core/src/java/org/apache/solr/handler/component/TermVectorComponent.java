@@ -465,7 +465,7 @@ comment|/*  * Licensed to the Apache Software Foundation (ASF) under one or more
 end_comment
 
 begin_comment
-comment|/**  * Return term vectors for the documents in a query result set.  *<p/>  * Info available:  * term, frequency, position, offset, IDF.  *<p/>  *<b>Note</b> Returning IDF can be expensive.  *   *<pre class="prettyprint">  *&lt;searchComponent name="tvComponent" class="solr.TermVectorComponent"/&gt;  *   *&lt;requestHandler name="/terms" class="solr.SearchHandler"&gt;  *&lt;lst name="defaults"&gt;  *&lt;bool name="tv"&gt;true&lt;/bool&gt;  *&lt;/lst&gt;  *&lt;arr name="last-component"&gt;  *&lt;str&gt;tvComponent&lt;/str&gt;  *&lt;/arr&gt;  *&lt;/requestHandler&gt;</pre>  *  *  */
+comment|/**  * Return term vectors for the documents in a query result set.  *<p>  * Info available:  * term, frequency, position, offset, IDF.  *<p>  *<b>Note</b> Returning IDF can be expensive.  *   *<pre class="prettyprint">  *&lt;searchComponent name="tvComponent" class="solr.TermVectorComponent"/&gt;  *   *&lt;requestHandler name="/terms" class="solr.SearchHandler"&gt;  *&lt;lst name="defaults"&gt;  *&lt;bool name="tv"&gt;true&lt;/bool&gt;  *&lt;/lst&gt;  *&lt;arr name="last-component"&gt;  *&lt;str&gt;tvComponent&lt;/str&gt;  *&lt;/arr&gt;  *&lt;/requestHandler&gt;</pre>  *  *  */
 end_comment
 
 begin_class

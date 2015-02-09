@@ -72,7 +72,7 @@ name|boolean
 name|optimize
 parameter_list|)
 function_decl|;
-comment|/**    *<p>    *  Release resources used by this writer.  After calling close, reads& updates will throw exceptions.    *</p>    */
+comment|/**    *<p>    *  Release resources used by this writer.  After calling close, reads&amp; updates will throw exceptions.    *</p>    */
 DECL|method|close
 specifier|public
 name|void

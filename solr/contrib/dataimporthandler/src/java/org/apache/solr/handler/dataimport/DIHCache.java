@@ -58,7 +58,7 @@ name|Object
 argument_list|>
 argument_list|>
 block|{
-comment|/**    *<p>    * Opens the cache using the specified properties. The {@link Context}    * includes any parameters needed by the cache impl. This must be called    * before any read/write operations are permitted.    *<p>    */
+comment|/**    *<p>    * Opens the cache using the specified properties. The {@link Context}    * includes any parameters needed by the cache impl. This must be called    * before any read/write operations are permitted.    */
 DECL|method|open
 specifier|public
 name|void

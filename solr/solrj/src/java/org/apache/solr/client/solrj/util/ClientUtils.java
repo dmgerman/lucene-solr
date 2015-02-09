@@ -1044,7 +1044,8 @@ argument_list|()
 return|;
 block|}
 comment|//---------------------------------------------------------------------------------------
-comment|/**    * See: {@link org.apache.lucene.queryparser.classic queryparser syntax}     * for more information on Escaping Special Characters    */
+comment|/**    * See:<a href="https://www.google.com/?gws_rd=ssl#q=lucene+query+parser+syntax">Lucene query parser syntax</a>    * for more information on Escaping Special Characters    */
+comment|// NOTE: its broken to link to any lucene-queryparser.jar docs, not in classpath!!!!!
 DECL|method|escapeQueryChars
 specifier|public
 specifier|static

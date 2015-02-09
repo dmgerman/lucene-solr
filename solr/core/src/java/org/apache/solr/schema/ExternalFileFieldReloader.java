@@ -145,7 +145,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * An event listener to reload ExternalFileFields for new searchers.  *  * Opening a new IndexSearcher will invalidate the internal caches used by  * {@link ExternalFileField}.  By default, these caches are reloaded lazily  * by the first search that uses them.  For large external files, this can  * slow down searches unacceptably.  *  * To reload the caches when the searcher is first opened, set up event  * listeners in your solrconfig.xml:  *  *<pre>  *&lt;listener event="newSearcher" class="org.apache.solr.schema.ExternalFileFieldReloader"/>  *&lt;listener event="firstSearcher" class="org.apache.solr.schema.ExternalFileFieldReloader"/>  *</pre>  *  * The caches will be reloaded for all ExternalFileFields in your schema after  * each commit.  */
+comment|/**  * An event listener to reload ExternalFileFields for new searchers.  *  * Opening a new IndexSearcher will invalidate the internal caches used by  * {@link ExternalFileField}.  By default, these caches are reloaded lazily  * by the first search that uses them.  For large external files, this can  * slow down searches unacceptably.  *  * To reload the caches when the searcher is first opened, set up event  * listeners in your solrconfig.xml:  *  *<pre>  *&lt;listener event="newSearcher" class="org.apache.solr.schema.ExternalFileFieldReloader"/&gt;  *&lt;listener event="firstSearcher" class="org.apache.solr.schema.ExternalFileFieldReloader"/&gt;  *</pre>  *  * The caches will be reloaded for all ExternalFileFields in your schema after  * each commit.  */
 end_comment
 
 begin_class

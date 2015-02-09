@@ -334,7 +334,7 @@ return|return
 name|lst
 return|;
 block|}
-comment|/** Splits a backslash escaped string on the separator.    *<p>    * Current backslash escaping supported:    *<br> \n \t \r \b \f are escaped the same as a Java String    *<br> Other characters following a backslash are produced verbatim (\c => c)    *    * @param s  the string to split    * @param separator the separator to split on    * @param decode decode backslash escaping    */
+comment|/** Splits a backslash escaped string on the separator.    *<p>    * Current backslash escaping supported:    *<br> \n \t \r \b \f are escaped the same as a Java String    *<br> Other characters following a backslash are produced verbatim (\c =&gt; c)    *    * @param s  the string to split    * @param separator the separator to split on    * @param decode decode backslash escaping    */
 DECL|method|splitSmart
 specifier|public
 specifier|static
@@ -1242,7 +1242,7 @@ return|return
 name|def
 return|;
 block|}
-comment|/**    * URLEncodes a value, replacing only enough chars so that    * the URL may be unambiguously pasted back into a browser.    *<p>    * Characters with a numeric value less than 32 are encoded.    *&amp;,=,%,+,space are encoded.    *<p>    */
+comment|/**    * URLEncodes a value, replacing only enough chars so that    * the URL may be unambiguously pasted back into a browser.    *<p>    * Characters with a numeric value less than 32 are encoded.    *&amp;,=,%,+,space are encoded.    */
 DECL|method|partialURLEncodeVal
 specifier|public
 specifier|static

@@ -161,7 +161,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * The class is designed to optimaly serialize/deserialize any supported types in Solr response. As we know there are only a limited type of  * items this class can do it with very minimal amount of payload and code. There are 15 known types and if there is an  * object in the object tree which does not fall into these types, It must be converted to one of these. Implement an  * ObjectResolver and pass it over It is expected that this class is used on both end of the pipes. The class has one  * read method and one write method for each of the datatypes  *<p/>  * Note -- Never re-use an instance of this class for more than one marshal or unmarshall operation. Always create a new  * instance.  */
+comment|/**  * The class is designed to optimaly serialize/deserialize any supported types in Solr response. As we know there are only a limited type of  * items this class can do it with very minimal amount of payload and code. There are 15 known types and if there is an  * object in the object tree which does not fall into these types, It must be converted to one of these. Implement an  * ObjectResolver and pass it over It is expected that this class is used on both end of the pipes. The class has one  * read method and one write method for each of the datatypes  *<p>  * Note -- Never re-use an instance of this class for more than one marshal or unmarshall operation. Always create a new  * instance.  */
 end_comment
 
 begin_class
@@ -4077,7 +4077,7 @@ return|return
 name|sz
 return|;
 block|}
-comment|/**    * Special method for variable length int (copied from lucene). Usually used for writing the length of a    * collection/array/map In most of the cases the length can be represented in one byte (length< 127) so it saves 3    * bytes/object    *    * @throws IOException If there is a low-level I/O error.    */
+comment|/**    * Special method for variable length int (copied from lucene). Usually used for writing the length of a    * collection/array/map In most of the cases the length can be represented in one byte (length&lt; 127) so it saves 3    * bytes/object    *    * @throws IOException If there is a low-level I/O error.    */
 DECL|method|writeVInt
 specifier|public
 specifier|static

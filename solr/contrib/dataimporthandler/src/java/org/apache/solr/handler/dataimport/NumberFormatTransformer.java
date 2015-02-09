@@ -113,7 +113,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  *<p>  * A {@link Transformer} instance which can extract numbers out of strings. It uses  * {@link NumberFormat} class to parse strings and supports  * Number, Integer, Currency and Percent styles as supported by  * {@link NumberFormat} with configurable locales.  *</p>  *<p/>  *<p>  * Refer to<a  * href="http://wiki.apache.org/solr/DataImportHandler">http://wiki.apache.org/solr/DataImportHandler</a>  * for more details.  *</p>  *<p/>  *<b>This API is experimental and may change in the future.</b>  *  * @since solr 1.3  */
+comment|/**  *<p>  * A {@link Transformer} instance which can extract numbers out of strings. It uses  * {@link NumberFormat} class to parse strings and supports  * Number, Integer, Currency and Percent styles as supported by  * {@link NumberFormat} with configurable locales.  *</p>  *<p>  * Refer to<a  * href="http://wiki.apache.org/solr/DataImportHandler">http://wiki.apache.org/solr/DataImportHandler</a>  * for more details.  *</p>  *<p>  *<b>This API is experimental and may change in the future.</b>  *  * @since solr 1.3  */
 end_comment
 
 begin_class

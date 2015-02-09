@@ -133,7 +133,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  *<p>  * An update processor that adds a constant default value to any document   * being added that does not already have a value in the specified field.  *</p>  *  *<p>  * In the example configuration below, if a document does not contain a value   * in the<code>price</code> and/or<code>type</code> fields, it will be given   * default values of<code>0.0</code> and/or<code>unknown</code>   * (respectively).  *<p>  *  *<pre class="prettyprint">  *&lt;processor class="solr.DefaultValueUpdateProcessorFactory"&gt;  *&lt;str name="fieldName"&gt;price&lt;/str&gt;  *&lt;float name="value"&gt;0.0&lt;/float&gt;  *&lt;/processor&gt;  *&lt;processor class="solr.DefaultValueUpdateProcessorFactory"&gt;  *&lt;str name="fieldName"&gt;type&lt;/str&gt;  *&lt;str name="value"&gt;unknown&lt;/str&gt;  *&lt;/processor&gt;  *</pre>  */
+comment|/**  *<p>  * An update processor that adds a constant default value to any document   * being added that does not already have a value in the specified field.  *</p>  *  *<p>  * In the example configuration below, if a document does not contain a value   * in the<code>price</code> and/or<code>type</code> fields, it will be given   * default values of<code>0.0</code> and/or<code>unknown</code>   * (respectively).  *<br>  *  *<pre class="prettyprint">  *&lt;processor class="solr.DefaultValueUpdateProcessorFactory"&gt;  *&lt;str name="fieldName"&gt;price&lt;/str&gt;  *&lt;float name="value"&gt;0.0&lt;/float&gt;  *&lt;/processor&gt;  *&lt;processor class="solr.DefaultValueUpdateProcessorFactory"&gt;  *&lt;str name="fieldName"&gt;type&lt;/str&gt;  *&lt;str name="value"&gt;unknown&lt;/str&gt;  *&lt;/processor&gt;  *</pre>  */
 end_comment
 
 begin_class

@@ -361,7 +361,7 @@ argument_list|()
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**    * For example:    *     * String json = solr.request( "/select?qt=dismax&wt=json&q=...", null );    * String xml = solr.request( "/update", "&lt;add&gt;&lt;doc&gt;&lt;field ..." );    */
+comment|/**    * For example:    *     * String json = solr.request( "/select?qt=dismax&amp;wt=json&amp;q=...", null );    * String xml = solr.request( "/update", "&lt;add&gt;&lt;doc&gt;&lt;field ..." );    */
 DECL|method|request
 specifier|public
 name|String

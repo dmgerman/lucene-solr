@@ -5910,7 +5910,7 @@ return|return
 name|o
 return|;
 block|}
-comment|/**    * Implementations can pre-test the control data for basic correctness before using it    * as a check for the shard data.  This is useful, for instance, if a test bug is introduced    * causing a spelling index not to get built:  both control& shard data would have no results    * but because they match the test would pass.  This method gives us a chance to ensure something    * exists in the control data.    */
+comment|/**    * Implementations can pre-test the control data for basic correctness before using it    * as a check for the shard data.  This is useful, for instance, if a test bug is introduced    * causing a spelling index not to get built:  both control&amp; shard data would have no results    * but because they match the test would pass.  This method gives us a chance to ensure something    * exists in the control data.    */
 DECL|method|validateControlData
 specifier|public
 name|void

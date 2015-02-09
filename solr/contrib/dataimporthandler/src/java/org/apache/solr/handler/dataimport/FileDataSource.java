@@ -107,7 +107,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  *<p>  * A {@link DataSource} which reads from local files  *</p>  *<p>  * The file is read with the default platform encoding. It can be overriden by  * specifying the encoding in solrconfig.xml  *</p>  *<p/>  *<p>  * Refer to<a  * href="http://wiki.apache.org/solr/DataImportHandler">http://wiki.apache.org/solr/DataImportHandler</a>  * for more details.  *</p>  *<p/>  *<b>This API is experimental and may change in the future.</b>  *  * @since solr 1.3  */
+comment|/**  *<p>  * A {@link DataSource} which reads from local files  *</p>  *<p>  * The file is read with the default platform encoding. It can be overriden by  * specifying the encoding in solrconfig.xml  *</p>  *<p>  * Refer to<a  * href="http://wiki.apache.org/solr/DataImportHandler">http://wiki.apache.org/solr/DataImportHandler</a>  * for more details.  *</p>  *<p>  *<b>This API is experimental and may change in the future.</b>  *  * @since solr 1.3  */
 end_comment
 
 begin_class

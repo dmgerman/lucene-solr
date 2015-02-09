@@ -49,7 +49,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * A {@link Transformer} implementation which logs messages in a given template format.  *<p/>  * Refer to<a href="http://wiki.apache.org/solr/DataImportHandler">http://wiki.apache.org/solr/DataImportHandler</a>  * for more details.  *<p/>  *<b>This API is experimental and may change in the future.</b>  *  * @since solr 1.4  */
+comment|/**  * A {@link Transformer} implementation which logs messages in a given template format.  *<p>  * Refer to<a href="http://wiki.apache.org/solr/DataImportHandler">http://wiki.apache.org/solr/DataImportHandler</a>  * for more details.  *<p>  *<b>This API is experimental and may change in the future.</b>  *  * @since solr 1.4  */
 end_comment
 
 begin_class

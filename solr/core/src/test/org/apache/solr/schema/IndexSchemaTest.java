@@ -169,7 +169,7 @@ literal|"schema.xml"
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**    * This test assumes the schema includes:    *<dynamicField name="dynamic_*" type="string" indexed="true" stored="true"/>    *<dynamicField name="*_dynamic" type="string" indexed="true" stored="true"/>    */
+comment|/**    * This test assumes the schema includes:    *&lt;dynamicField name="dynamic_*" type="string" indexed="true" stored="true"/&gt;    *&lt;dynamicField name="*_dynamic" type="string" indexed="true" stored="true"/&gt;    */
 annotation|@
 name|Test
 DECL|method|testDynamicCopy

@@ -45,7 +45,7 @@ name|SUGGEST_PREFIX
 operator|+
 literal|"dictionary"
 decl_stmt|;
-comment|/**    * The count of suggestions to return for each query term not in the index and/or dictionary.    *<p/>    * If this parameter is absent in the request then only one suggestion is    * returned. If it is more than one then a maximum of given suggestions are    * returned for each token in the query.    */
+comment|/**    * The count of suggestions to return for each query term not in the index and/or dictionary.    *<p>    * If this parameter is absent in the request then only one suggestion is    * returned. If it is more than one then a maximum of given suggestions are    * returned for each token in the query.    */
 DECL|field|SUGGEST_COUNT
 specifier|public
 specifier|static
@@ -57,7 +57,7 @@ name|SUGGEST_PREFIX
 operator|+
 literal|"count"
 decl_stmt|;
-comment|/**    * Use the value for this parameter as the query to spell check.    *<p/>    * This parameter is<b>optional</b>. If absent, then the q parameter is    * used.    */
+comment|/**    * Use the value for this parameter as the query to spell check.    *<p>    * This parameter is<b>optional</b>. If absent, then the q parameter is    * used.    */
 DECL|field|SUGGEST_Q
 specifier|public
 specifier|static

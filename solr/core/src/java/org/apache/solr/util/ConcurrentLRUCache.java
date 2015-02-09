@@ -167,7 +167,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * A LRU cache implementation based upon ConcurrentHashMap and other techniques to reduce  * contention and synchronization overhead to utilize multiple CPU cores more effectively.  *<p/>  * Note that the implementation does not follow a true LRU (least-recently-used) eviction  * strategy. Instead it strives to remove least recently used items but when the initial  * cleanup does not remove enough items to reach the 'acceptableWaterMark' limit, it can  * remove more items forcefully regardless of access order.  *  *  * @since solr 1.4  */
+comment|/**  * A LRU cache implementation based upon ConcurrentHashMap and other techniques to reduce  * contention and synchronization overhead to utilize multiple CPU cores more effectively.  *<p>  * Note that the implementation does not follow a true LRU (least-recently-used) eviction  * strategy. Instead it strives to remove least recently used items but when the initial  * cleanup does not remove enough items to reach the 'acceptableWaterMark' limit, it can  * remove more items forcefully regardless of access order.  *  *  * @since solr 1.4  */
 end_comment
 
 begin_class

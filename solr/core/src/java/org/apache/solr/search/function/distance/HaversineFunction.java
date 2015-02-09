@@ -165,7 +165,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Calculate the Haversine formula (distance) between any two points on a sphere  * Takes in four value sources: (latA, lonA); (latB, lonB).  *<p/>  * Assumes the value sources are in radians unless  *<p/>  * See http://en.wikipedia.org/wiki/Great-circle_distance and  * http://en.wikipedia.org/wiki/Haversine_formula for the actual formula and  * also http://www.movable-type.co.uk/scripts/latlong.html  */
+comment|/**  * Calculate the Haversine formula (distance) between any two points on a sphere  * Takes in four value sources: (latA, lonA); (latB, lonB).  *<p>  * Assumes the value sources are in radians unless  *<p>  * See http://en.wikipedia.org/wiki/Great-circle_distance and  * http://en.wikipedia.org/wiki/Haversine_formula for the actual formula and  * also http://www.movable-type.co.uk/scripts/latlong.html  */
 end_comment
 
 begin_class

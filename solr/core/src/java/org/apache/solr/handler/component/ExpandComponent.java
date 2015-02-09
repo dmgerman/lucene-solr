@@ -963,7 +963,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * The ExpandComponent is designed to work with the CollapsingPostFilter.  * The CollapsingPostFilter collapses a result set on a field.  *<p/>  * The ExpandComponent expands the collapsed groups for a single page.  *<p/>  * http parameters:  *<p/>  * expand=true<br/>  * expand.rows=5<br/>  * expand.sort=field asc|desc<br/>  * expand.q=*:* (optional, overrides the main query)<br/>  * expand.fq=type:child (optional, overrides the main filter queries)<br/>  * expand.field=field (mandatory if the not used with the CollapsingQParserPlugin)<br/>  */
+comment|/**  * The ExpandComponent is designed to work with the CollapsingPostFilter.  * The CollapsingPostFilter collapses a result set on a field.  *<p>  * The ExpandComponent expands the collapsed groups for a single page.  *<p>  * http parameters:  *<p>  * expand=true<br>  * expand.rows=5<br>  * expand.sort=field asc|desc<br>  * expand.q=*:* (optional, overrides the main query)<br>  * expand.fq=type:child (optional, overrides the main filter queries)<br>  * expand.field=field (mandatory if the not used with the CollapsingQParserPlugin)<br>  */
 end_comment
 
 begin_class

@@ -370,7 +370,7 @@ name|STREAM_CONTENTTYPE
 init|=
 literal|"stream.contentType"
 decl_stmt|;
-comment|/**    * Timeout value in milliseconds.  If not set, or the value is<= 0, there is no timeout.    */
+comment|/**    * Timeout value in milliseconds.  If not set, or the value is&gt;= 0, there is no timeout.    */
 DECL|field|TIME_ALLOWED
 specifier|public
 specifier|static
@@ -614,7 +614,7 @@ name|CACHE
 init|=
 literal|"cache"
 decl_stmt|;
-comment|/** Used as a local param on filter queries in conjunction with cache=false.  Filters are checked in order, from    * smallest cost to largest. If cost>=100 and the query implements PostFilter, then that interface will be used to do post query filtering.    */
+comment|/** Used as a local param on filter queries in conjunction with cache=false.  Filters are checked in order, from    * smallest cost to largest. If cost&gt;=100 and the query implements PostFilter, then that interface will be used to do post query filtering.    */
 DECL|field|COST
 specifier|public
 specifier|static

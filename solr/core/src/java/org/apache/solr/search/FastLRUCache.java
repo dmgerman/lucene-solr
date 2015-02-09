@@ -141,7 +141,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * SolrCache based on ConcurrentLRUCache implementation.  *<p/>  * This implementation does not use a separate cleanup thread. Instead it uses the calling thread  * itself to do the cleanup when the size of the cache exceeds certain limits.  *<p/>  * Also see<a href="http://wiki.apache.org/solr/SolrCaching">SolrCaching</a>  *  *  * @see org.apache.solr.util.ConcurrentLRUCache  * @see org.apache.solr.search.SolrCache  * @since solr 1.4  */
+comment|/**  * SolrCache based on ConcurrentLRUCache implementation.  *<p>  * This implementation does not use a separate cleanup thread. Instead it uses the calling thread  * itself to do the cleanup when the size of the cache exceeds certain limits.  *<p>  * Also see<a href="http://wiki.apache.org/solr/SolrCaching">SolrCaching</a>  *  *  * @see org.apache.solr.util.ConcurrentLRUCache  * @see org.apache.solr.search.SolrCache  * @since solr 1.4  */
 end_comment
 
 begin_class

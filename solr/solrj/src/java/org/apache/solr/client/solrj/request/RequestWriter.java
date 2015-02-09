@@ -161,7 +161,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * A RequestWriter is used to write requests to Solr.  *<p/>  * A subclass can override the methods in this class to supply a custom format in which a request can be sent.  *  *  * @since solr 1.4  */
+comment|/**  * A RequestWriter is used to write requests to Solr.  *<p>  * A subclass can override the methods in this class to supply a custom format in which a request can be sent.  *  *  * @since solr 1.4  */
 end_comment
 
 begin_class

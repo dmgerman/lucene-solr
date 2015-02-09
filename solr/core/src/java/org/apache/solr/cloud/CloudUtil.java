@@ -503,7 +503,7 @@ block|}
 block|}
 block|}
 block|}
-comment|/**    * Returns a displayable unified path to the given resource. For non-solrCloud that will be the    * same as getConfigDir, but for Cloud it will be getConfigSetZkPath ending in a /    *<p/>    *<b>Note:</b> Do not use this to generate a valid file path, but for debug printing etc    * @param loader Resource loader instance    * @return a String of path to resource    */
+comment|/**    * Returns a displayable unified path to the given resource. For non-solrCloud that will be the    * same as getConfigDir, but for Cloud it will be getConfigSetZkPath ending in a /    *<p>    *<b>Note:</b> Do not use this to generate a valid file path, but for debug printing etc    * @param loader Resource loader instance    * @return a String of path to resource    */
 DECL|method|unifiedResourcePath
 specifier|public
 specifier|static

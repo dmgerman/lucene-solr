@@ -155,7 +155,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Parse Solr's variant on the Lucene {@link org.apache.lucene.queryparser.complexPhrase.ComplexPhraseQueryParser} syntax.  *<p/>  * Modified from {@link org.apache.solr.search.LuceneQParserPlugin} and {@link org.apache.solr.search.SurroundQParserPlugin}  */
+comment|/**  * Parse Solr's variant on the Lucene {@link org.apache.lucene.queryparser.complexPhrase.ComplexPhraseQueryParser} syntax.  *<p>  * Modified from {@link org.apache.solr.search.LuceneQParserPlugin} and {@link org.apache.solr.search.SurroundQParserPlugin}  */
 end_comment
 
 begin_class

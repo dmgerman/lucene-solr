@@ -465,7 +465,7 @@ literal|1
 index|]
 return|;
 block|}
-comment|/** Removes and returns the least element of the PriorityQueue in log(size)     time.  Only valid if size()> 0.    */
+comment|/** Removes and returns the least element of the PriorityQueue in log(size)     time.  Only valid if size()&gt; 0.    */
 DECL|method|pop
 specifier|public
 name|long

@@ -1365,7 +1365,7 @@ operator|+
 literal|"}"
 return|;
 block|}
-comment|/**    * Used for adding a document when a field needs to be created from a    * type and a string.    *    *<p>    * By default, the indexed value is the same as the stored value    * (taken from toInternal()).   Having a different representation for    * external, internal, and indexed would present quite a few problems    * given the current Lucene architecture.  An analyzer for adding docs    * would need to translate internal->indexed while an analyzer for    * querying would need to translate external-&gt;indexed.    *</p>    *<p>    * The only other alternative to having internal==indexed would be to have    * internal==external.   In this case, toInternal should convert to    * the indexed representation, toExternal() should do nothing, and    * createField() should *not* call toInternal, but use the external    * value and set tokenized=true to get Lucene to convert to the    * internal(indexed) form.    *</p>    *    * :TODO: clean up and clarify this explanation.    *    * @see #toInternal    *    *    */
+comment|/**    * Used for adding a document when a field needs to be created from a    * type and a string.    *    *<p>    * By default, the indexed value is the same as the stored value    * (taken from toInternal()).   Having a different representation for    * external, internal, and indexed would present quite a few problems    * given the current Lucene architecture.  An analyzer for adding docs    * would need to translate internal-&gt;indexed while an analyzer for    * querying would need to translate external-&gt;indexed.    *</p>    *<p>    * The only other alternative to having internal==indexed would be to have    * internal==external.   In this case, toInternal should convert to    * the indexed representation, toExternal() should do nothing, and    * createField() should *not* call toInternal, but use the external    * value and set tokenized=true to get Lucene to convert to the    * internal(indexed) form.    *</p>    *    * :TODO: clean up and clarify this explanation.    *    * @see #toInternal    *    *    */
 DECL|method|createField
 specifier|public
 name|StorableField
@@ -2121,7 +2121,7 @@ name|getName
 argument_list|()
 return|;
 block|}
-comment|/**    * Returns a Query instance for doing prefix searches on this field type.    * Also, other QueryParser implementations may have different semantics.    *<p/>    * Sub-classes should override this method to provide their own range query implementation.    *    * @param parser       the {@link org.apache.solr.search.QParser} calling the method    * @param sf           the schema field    * @param termStr      the term string for prefix query    * @return a Query instance to perform prefix search    *    */
+comment|/**    * Returns a Query instance for doing prefix searches on this field type.    * Also, other QueryParser implementations may have different semantics.    *<p>    * Sub-classes should override this method to provide their own range query implementation.    *    * @param parser       the {@link org.apache.solr.search.QParser} calling the method    * @param sf           the schema field    * @param termStr      the term string for prefix query    * @return a Query instance to perform prefix search    *    */
 DECL|method|getPrefixQuery
 specifier|public
 name|Query
@@ -2730,7 +2730,7 @@ name|name
 argument_list|)
 return|;
 block|}
-comment|/**    * Returns a Query instance for doing range searches on this field type. {@link org.apache.solr.search.SolrQueryParser}    * currently passes part1 and part2 as null if they are '*' respectively. minInclusive and maxInclusive are both true    * currently by SolrQueryParser but that may change in the future. Also, other QueryParser implementations may have    * different semantics.    *<p/>    * Sub-classes should override this method to provide their own range query implementation. They should strive to    * handle nulls in part1 and/or part2 as well as unequal minInclusive and maxInclusive parameters gracefully.    *    * @param parser       the {@link org.apache.solr.search.QParser} calling the method    * @param field        the schema field    * @param part1        the lower boundary of the range, nulls are allowed.    * @param part2        the upper boundary of the range, nulls are allowed    * @param minInclusive whether the minimum of the range is inclusive or not    * @param maxInclusive whether the maximum of the range is inclusive or not    *  @return a Query instance to perform range search according to given parameters    *    */
+comment|/**    * Returns a Query instance for doing range searches on this field type. {@link org.apache.solr.search.SolrQueryParser}    * currently passes part1 and part2 as null if they are '*' respectively. minInclusive and maxInclusive are both true    * currently by SolrQueryParser but that may change in the future. Also, other QueryParser implementations may have    * different semantics.    *<p>    * Sub-classes should override this method to provide their own range query implementation. They should strive to    * handle nulls in part1 and/or part2 as well as unequal minInclusive and maxInclusive parameters gracefully.    *    * @param parser       the {@link org.apache.solr.search.QParser} calling the method    * @param field        the schema field    * @param part1        the lower boundary of the range, nulls are allowed.    * @param part2        the upper boundary of the range, nulls are allowed    * @param minInclusive whether the minimum of the range is inclusive or not    * @param maxInclusive whether the maximum of the range is inclusive or not    *  @return a Query instance to perform range search according to given parameters    *    */
 DECL|method|getRangeQuery
 specifier|public
 name|Query
@@ -3295,7 +3295,7 @@ name|POSITION_INCREMENT_GAP
 init|=
 literal|"positionIncrementGap"
 decl_stmt|;
-comment|/**    * Get a map of property name -> value for this field type.     * @param showDefaults if true, include default properties.    */
+comment|/**    * Get a map of property name -&gt; value for this field type.     * @param showDefaults if true, include default properties.    */
 DECL|method|getNamedPropertyValues
 specifier|public
 name|SimpleOrderedMap

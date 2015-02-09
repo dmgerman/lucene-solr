@@ -53,7 +53,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  *  *  * All of the following options may be configured for this handler  * in the solrconfig as defaults, and may be overriden as request parameters.  * (TODO: complete documentation of request parameters here, rather than only  * on the wiki).  *</p>  *  *<ul>  *<li> highlight - Set to any value not .equal() to "false" to enable highlight  * generation</li>  *<li> highlightFields - Set to a comma- or space-delimited list of fields to  * highlight.  If unspecified, uses the default query field</li>  *<li> maxSnippets - maximum number of snippets to generate per field-highlight.  *</li>  *</ul>  *  */
+comment|/**  *  *  * All of the following options may be configured for this handler  * in the solrconfig as defaults, and may be overriden as request parameters.  * (TODO: complete documentation of request parameters here, rather than only  * on the wiki).  *  *<ul>  *<li> highlight - Set to any value not .equal() to "false" to enable highlight  * generation</li>  *<li> highlightFields - Set to a comma- or space-delimited list of fields to  * highlight.  If unspecified, uses the default query field</li>  *<li> maxSnippets - maximum number of snippets to generate per field-highlight.  *</li>  *</ul>  *  */
 end_comment
 
 begin_class

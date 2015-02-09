@@ -3208,7 +3208,7 @@ return|return
 name|link
 return|;
 block|}
-comment|/**    * A very simple crawler, pulling URLs to fetch from a backlog and then    * recurses N levels deep if recursive>0. Links are parsed from HTML    * through first getting an XHTML version using SolrCell with extractOnly,    * and followed if they are local. The crawler pauses for a default delay    * of 10 seconds between each fetch, this can be configured in the delay    * variable. This is only meant for test purposes, as it does not respect    * robots or anything else fancy :)    * @param level which level to crawl    * @param out output stream to write to    * @return number of pages crawled on this level and below    */
+comment|/**    * A very simple crawler, pulling URLs to fetch from a backlog and then    * recurses N levels deep if recursive&gt;0. Links are parsed from HTML    * through first getting an XHTML version using SolrCell with extractOnly,    * and followed if they are local. The crawler pauses for a default delay    * of 10 seconds between each fetch, this can be configured in the delay    * variable. This is only meant for test purposes, as it does not respect    * robots or anything else fancy :)    * @param level which level to crawl    * @param out output stream to write to    * @return number of pages crawled on this level and below    */
 DECL|method|webCrawl
 specifier|protected
 name|int
@@ -4207,7 +4207,7 @@ argument_list|)
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**    * Appends a URL query parameter to a URL     * @param url the original URL    * @param param the parameter(s) to append, separated by "&"    * @return the string version of the resulting URL    */
+comment|/**    * Appends a URL query parameter to a URL     * @param url the original URL    * @param param the parameter(s) to append, separated by "&amp;"    * @return the string version of the resulting URL    */
 DECL|method|appendParam
 specifier|public
 specifier|static

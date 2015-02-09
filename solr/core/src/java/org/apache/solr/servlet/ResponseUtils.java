@@ -91,7 +91,7 @@ specifier|private
 name|ResponseUtils
 parameter_list|()
 block|{}
-comment|/**    * Adds the given Throwable's message to the given NamedList.    *<p/>    * If the response code is not a regular code, the Throwable's    * stack trace is both logged and added to the given NamedList.    *<p/>    * Status codes less than 100 are adjusted to be 500.    */
+comment|/**    * Adds the given Throwable's message to the given NamedList.    *<p>    * If the response code is not a regular code, the Throwable's    * stack trace is both logged and added to the given NamedList.    *<p>    * Status codes less than 100 are adjusted to be 500.    */
 DECL|method|getErrorInfo
 specifier|public
 specifier|static

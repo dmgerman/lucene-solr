@@ -1053,7 +1053,7 @@ name|UnsupportedOperationException
 argument_list|()
 throw|;
 block|}
-comment|/**    * Get suggestions for the given query.  Tokenizes the query using a field appropriate Analyzer.    * The {@link SpellingResult#getSuggestions()} suggestions must be ordered by best suggestion first.    *<p/>    *    * @param options The {@link SpellingOptions} to use    * @return The {@link SpellingResult} suggestions    * @throws IOException if there is an error producing suggestions    */
+comment|/**    * Get suggestions for the given query.  Tokenizes the query using a field appropriate Analyzer.    * The {@link SpellingResult#getSuggestions()} suggestions must be ordered by best suggestion first.    *    * @param options The {@link SpellingOptions} to use    * @return The {@link SpellingResult} suggestions    * @throws IOException if there is an error producing suggestions    */
 DECL|method|getSuggestions
 specifier|public
 specifier|abstract

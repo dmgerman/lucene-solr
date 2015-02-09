@@ -47,7 +47,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Parses a query like Lucene query parser, but scoring with max score, not sum  *<br>Accepts the "tie" request parameter as with dismax. 0.0=max, 1.0=sum  *<br>All other parameters are as with Lucene parser  *<br>Example:<code>q=foo {!maxscore v=$myq}&myq=A OR B OR C</code>  */
+comment|/**  * Parses a query like Lucene query parser, but scoring with max score, not sum  *<br>Accepts the "tie" request parameter as with dismax. 0.0=max, 1.0=sum  *<br>All other parameters are as with Lucene parser  *<br>Example:<code>q=foo {!maxscore v=$myq}&amp;myq=A OR B OR C</code>  */
 end_comment
 
 begin_class
