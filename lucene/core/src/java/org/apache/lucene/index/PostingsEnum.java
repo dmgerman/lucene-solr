@@ -226,7 +226,7 @@ return|return
 name|atts
 return|;
 block|}
-comment|/**    * Returns the next position.  If there are no more    * positions, or the iterator does not support positions,    * this will return DocsEnum.NO_MORE_POSITIONS */
+comment|/**    * Returns the next position, or -1 if positions are not available.    * Should only be called up to freq() times */
 DECL|method|nextPosition
 specifier|public
 specifier|abstract
@@ -236,7 +236,7 @@ parameter_list|()
 throws|throws
 name|IOException
 function_decl|;
-comment|/** Returns start offset for the current position, or -1    *  if offsets were not indexed. */
+comment|/** Returns start offset for the current position, or -1    *  if offsets are not available. */
 DECL|method|startOffset
 specifier|public
 specifier|abstract
@@ -246,7 +246,7 @@ parameter_list|()
 throws|throws
 name|IOException
 function_decl|;
-comment|/** Returns end offset for the current position, or -1 if    *  offsets were not indexed. */
+comment|/** Returns end offset for the current position, or -1 if    *  offsets are not available. */
 DECL|method|endOffset
 specifier|public
 specifier|abstract

@@ -60,6 +60,20 @@ name|lucene
 operator|.
 name|index
 operator|.
+name|PostingsEnum
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|index
+operator|.
 name|Term
 import|;
 end_import
@@ -138,7 +152,7 @@ literal|""
 argument_list|)
 return|;
 block|}
-comment|/**    * Expert: Constructs an appropriate Weight implementation for this query.    *<p>    * Only implemented by primitive queries, which re-write to themselves.    *    * @param needsScores   True if document scores ({@link Scorer#score}) or match    *                      frequencies ({@link Scorer#freq}) are needed.    */
+comment|/**    * Expert: Constructs an appropriate Weight implementation for this query.    *<p>    * Only implemented by primitive queries, which re-write to themselves.    *    * @param postingsFlags   Bitmask indicating which postings features should be returned    *                        by this query (see {@link PostingsEnum})    */
 DECL|method|createWeight
 specifier|public
 name|Weight
@@ -147,8 +161,8 @@ parameter_list|(
 name|IndexSearcher
 name|searcher
 parameter_list|,
-name|boolean
-name|needsScores
+name|int
+name|postingsFlags
 parameter_list|)
 throws|throws
 name|IOException

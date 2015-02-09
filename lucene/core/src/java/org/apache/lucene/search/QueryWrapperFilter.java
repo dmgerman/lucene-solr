@@ -172,7 +172,9 @@ name|createNormalizedWeight
 argument_list|(
 name|query
 argument_list|,
-literal|false
+name|PostingsEnum
+operator|.
+name|FLAG_NONE
 argument_list|)
 decl_stmt|;
 return|return

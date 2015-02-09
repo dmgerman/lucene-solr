@@ -228,7 +228,9 @@ name|createNormalizedWeight
 argument_list|(
 name|query
 argument_list|,
-literal|true
+name|PostingsEnum
+operator|.
+name|FLAG_FREQS
 argument_list|)
 decl_stmt|;
 comment|// Now merge sort docIDs from hits, with reader's leaves:
