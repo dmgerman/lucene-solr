@@ -1118,11 +1118,11 @@ name|ErrorCode
 operator|.
 name|BAD_REQUEST
 argument_list|,
-literal|"Unknown command: "
+literal|"Unknown command '"
 operator|+
 name|v
 operator|+
-literal|" ["
+literal|"' at ["
 operator|+
 name|parser
 operator|.
@@ -1165,7 +1165,7 @@ name|log
 operator|.
 name|info
 argument_list|(
-literal|"can't have a value here! "
+literal|"Can't have a value here. Unexpected "
 operator|+
 name|JSONParser
 operator|.
@@ -1174,12 +1174,14 @@ argument_list|(
 name|ev
 argument_list|)
 operator|+
-literal|" "
+literal|" at ["
 operator|+
 name|parser
 operator|.
 name|getPosition
 argument_list|()
+operator|+
+literal|"]"
 argument_list|)
 expr_stmt|;
 case|case
@@ -1203,7 +1205,7 @@ name|log
 operator|.
 name|info
 argument_list|(
-literal|"Noggit UNKNOWN_EVENT_ID:"
+literal|"Noggit UNKNOWN_EVENT_ID: "
 operator|+
 name|ev
 argument_list|)
@@ -1569,7 +1571,7 @@ name|ErrorCode
 operator|.
 name|BAD_REQUEST
 argument_list|,
-literal|"error inserting doc"
+literal|"Error inserting document: "
 argument_list|,
 name|e
 argument_list|)
@@ -2308,11 +2310,11 @@ name|ErrorCode
 operator|.
 name|BAD_REQUEST
 argument_list|,
-literal|"Unknown key: "
+literal|"Unknown key '"
 operator|+
 name|key
 operator|+
-literal|" ["
+literal|"' at ["
 operator|+
 name|parser
 operator|.
@@ -2389,7 +2391,7 @@ name|ErrorCode
 operator|.
 name|BAD_REQUEST
 argument_list|,
-literal|"Missing id or query for delete ["
+literal|"Missing id or query for delete at ["
 operator|+
 name|parser
 operator|.
@@ -2726,7 +2728,16 @@ name|ErrorCode
 operator|.
 name|BAD_REQUEST
 argument_list|,
-literal|"multiple docs in same add command"
+literal|"Multiple documents in same"
+operator|+
+literal|" add command at ["
+operator|+
+name|parser
+operator|.
+name|getPosition
+argument_list|()
+operator|+
+literal|"]"
 argument_list|)
 throw|;
 block|}
@@ -2838,11 +2849,11 @@ name|ErrorCode
 operator|.
 name|BAD_REQUEST
 argument_list|,
-literal|"Unknown key: "
+literal|"Unknown key '"
 operator|+
 name|key
 operator|+
-literal|" ["
+literal|"' at ["
 operator|+
 name|parser
 operator|.
@@ -2909,12 +2920,14 @@ name|ErrorCode
 operator|.
 name|BAD_REQUEST
 argument_list|,
-literal|"missing solr document. "
+literal|"Missing solr document at ["
 operator|+
 name|parser
 operator|.
 name|getPosition
 argument_list|()
+operator|+
+literal|"]"
 argument_list|)
 throw|;
 block|}
@@ -3340,6 +3353,11 @@ init|=
 name|parseNormalFieldValue
 argument_list|(
 name|ev
+argument_list|,
+name|sif
+operator|.
+name|getName
+argument_list|()
 argument_list|)
 decl_stmt|;
 name|sif
@@ -3473,7 +3491,9 @@ name|ErrorCode
 operator|.
 name|BAD_REQUEST
 argument_list|,
-literal|"boost should have number! "
+literal|"Boost should have number. "
+operator|+
+literal|"Unexpected "
 operator|+
 name|JSONParser
 operator|.
@@ -3481,6 +3501,20 @@ name|getEventString
 argument_list|(
 name|ev
 argument_list|)
+operator|+
+literal|" at ["
+operator|+
+name|parser
+operator|.
+name|getPosition
+argument_list|()
+operator|+
+literal|"], field="
+operator|+
+name|sif
+operator|.
+name|getName
+argument_list|()
 argument_list|)
 throw|;
 block|}
@@ -3513,6 +3547,11 @@ argument_list|(
 name|parser
 operator|.
 name|nextEvent
+argument_list|()
+argument_list|,
+name|sif
+operator|.
+name|getName
 argument_list|()
 argument_list|)
 expr_stmt|;
@@ -3547,6 +3586,11 @@ argument_list|(
 name|parser
 operator|.
 name|nextEvent
+argument_list|()
+argument_list|,
+name|sif
+operator|.
+name|getName
 argument_list|()
 argument_list|)
 decl_stmt|;
@@ -3624,7 +3668,9 @@ name|ErrorCode
 operator|.
 name|BAD_REQUEST
 argument_list|,
-literal|"Error parsing JSON extended field value. Unexpected "
+literal|"Error parsing JSON extended field value. "
+operator|+
+literal|"Unexpected "
 operator|+
 name|JSONParser
 operator|.
@@ -3632,6 +3678,20 @@ name|getEventString
 argument_list|(
 name|ev
 argument_list|)
+operator|+
+literal|" at ["
+operator|+
+name|parser
+operator|.
+name|getPosition
+argument_list|()
+operator|+
+literal|"], field="
+operator|+
+name|sif
+operator|.
+name|getName
+argument_list|()
 argument_list|)
 throw|;
 block|}
@@ -3644,6 +3704,9 @@ name|parseNormalFieldValue
 parameter_list|(
 name|int
 name|ev
+parameter_list|,
+name|String
+name|fieldName
 parameter_list|)
 throws|throws
 name|IOException
@@ -3666,6 +3729,8 @@ init|=
 name|parseArrayFieldValue
 argument_list|(
 name|ev
+argument_list|,
+name|fieldName
 argument_list|)
 decl_stmt|;
 return|return
@@ -3680,6 +3745,8 @@ init|=
 name|parseSingleFieldValue
 argument_list|(
 name|ev
+argument_list|,
+name|fieldName
 argument_list|)
 decl_stmt|;
 return|return
@@ -3694,6 +3761,9 @@ name|parseSingleFieldValue
 parameter_list|(
 name|int
 name|ev
+parameter_list|,
+name|String
+name|fieldName
 parameter_list|)
 throws|throws
 name|IOException
@@ -3783,6 +3853,8 @@ return|return
 name|parseArrayFieldValue
 argument_list|(
 name|ev
+argument_list|,
+name|fieldName
 argument_list|)
 return|;
 default|default:
@@ -3796,7 +3868,9 @@ name|ErrorCode
 operator|.
 name|BAD_REQUEST
 argument_list|,
-literal|"Error parsing JSON field value. Unexpected "
+literal|"Error parsing JSON field value. "
+operator|+
+literal|"Unexpected "
 operator|+
 name|JSONParser
 operator|.
@@ -3804,6 +3878,17 @@ name|getEventString
 argument_list|(
 name|ev
 argument_list|)
+operator|+
+literal|" at ["
+operator|+
+name|parser
+operator|.
+name|getPosition
+argument_list|()
+operator|+
+literal|"], field="
+operator|+
+name|fieldName
 argument_list|)
 throw|;
 block|}
@@ -3818,6 +3903,9 @@ name|parseArrayFieldValue
 parameter_list|(
 name|int
 name|ev
+parameter_list|,
+name|String
+name|fieldName
 parameter_list|)
 throws|throws
 name|IOException
@@ -3870,6 +3958,8 @@ init|=
 name|parseSingleFieldValue
 argument_list|(
 name|ev
+argument_list|,
+name|fieldName
 argument_list|)
 decl_stmt|;
 name|lst
