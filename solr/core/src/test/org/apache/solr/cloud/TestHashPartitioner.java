@@ -918,6 +918,8 @@ literal|null
 argument_list|,
 literal|null
 argument_list|,
+literal|null
+argument_list|,
 name|coll
 argument_list|)
 decl_stmt|;
@@ -1384,6 +1386,8 @@ literal|null
 argument_list|,
 literal|null
 argument_list|,
+literal|null
+argument_list|,
 name|coll
 argument_list|)
 decl_stmt|;
@@ -1643,6 +1647,8 @@ operator|.
 name|getTargetSlice
 argument_list|(
 name|id
+argument_list|,
+literal|null
 argument_list|,
 literal|null
 argument_list|,

@@ -179,6 +179,9 @@ parameter_list|,
 name|SolrInputDocument
 name|sdoc
 parameter_list|,
+name|String
+name|route
+parameter_list|,
 name|SolrParams
 name|params
 parameter_list|,
@@ -191,6 +194,18 @@ name|shard
 init|=
 literal|null
 decl_stmt|;
+if|if
+condition|(
+name|route
+operator|!=
+literal|null
+condition|)
+comment|// if a route is already passed in, try to use it
+name|shard
+operator|=
+name|route
+expr_stmt|;
+elseif|else
 if|if
 condition|(
 name|sdoc

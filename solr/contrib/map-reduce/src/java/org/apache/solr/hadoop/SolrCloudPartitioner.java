@@ -737,6 +737,8 @@ name|keyStr
 argument_list|,
 name|doc
 argument_list|,
+literal|null
+argument_list|,
 name|emptySolrParams
 argument_list|,
 name|docCollection

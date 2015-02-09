@@ -1110,6 +1110,15 @@ argument_list|(
 name|params
 argument_list|)
 expr_stmt|;
+name|uReq
+operator|.
+name|setCommitWithin
+argument_list|(
+name|cmd
+operator|.
+name|commitWithin
+argument_list|)
+expr_stmt|;
 if|if
 condition|(
 name|cmd
@@ -1125,6 +1134,11 @@ argument_list|(
 name|cmd
 operator|.
 name|getId
+argument_list|()
+argument_list|,
+name|cmd
+operator|.
+name|getRoute
 argument_list|()
 argument_list|,
 name|cmd
