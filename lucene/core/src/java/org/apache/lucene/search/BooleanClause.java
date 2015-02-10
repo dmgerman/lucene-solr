@@ -50,6 +50,23 @@ return|;
 block|}
 block|}
 block|,
+comment|/** Like {@link #MUST} except that these clauses do not participate in scoring. */
+DECL|enum constant|FILTER
+name|FILTER
+block|{
+annotation|@
+name|Override
+specifier|public
+name|String
+name|toString
+parameter_list|()
+block|{
+return|return
+literal|"#"
+return|;
+block|}
+block|}
+block|,
 comment|/** Use this operator for clauses that<i>should</i> appear in the       * matching documents. For a BooleanQuery with no<code>MUST</code>       * clauses one or more<code>SHOULD</code> clauses must match a document       * for the BooleanQuery to match.      * @see BooleanQuery#setMinimumNumberShouldMatch      */
 DECL|enum constant|SHOULD
 name|SHOULD
@@ -67,7 +84,7 @@ return|;
 block|}
 block|}
 block|,
-comment|/** Use this operator for clauses that<i>must not</i> appear in the matching documents.      * Note that it is not possible to search for queries that only consist      * of a<code>MUST_NOT</code> clause. */
+comment|/** Use this operator for clauses that<i>must not</i> appear in the matching documents.      * Note that it is not possible to search for queries that only consist      * of a<code>MUST_NOT</code> clause. These clauses do not contribute to the      * score of documents. */
 DECL|enum constant|MUST_NOT
 name|MUST_NOT
 block|{
@@ -193,11 +210,37 @@ name|isRequired
 parameter_list|()
 block|{
 return|return
+name|occur
+operator|==
 name|Occur
 operator|.
 name|MUST
-operator|==
+operator|||
 name|occur
+operator|==
+name|Occur
+operator|.
+name|FILTER
+return|;
+block|}
+DECL|method|isScoring
+specifier|public
+name|boolean
+name|isScoring
+parameter_list|()
+block|{
+return|return
+name|occur
+operator|==
+name|Occur
+operator|.
+name|MUST
+operator|||
+name|occur
+operator|==
+name|Occur
+operator|.
+name|SHOULD
 return|;
 block|}
 comment|/** Returns true if<code>o</code> is equal to this. */
@@ -267,34 +310,17 @@ name|hashCode
 parameter_list|()
 block|{
 return|return
+literal|31
+operator|*
 name|query
 operator|.
 name|hashCode
 argument_list|()
-operator|^
-operator|(
-name|Occur
-operator|.
-name|MUST
-operator|==
+operator|+
 name|occur
-condition|?
-literal|1
-else|:
-literal|0
-operator|)
-operator|^
-operator|(
-name|Occur
 operator|.
-name|MUST_NOT
-operator|==
-name|occur
-condition|?
-literal|2
-else|:
-literal|0
-operator|)
+name|hashCode
+argument_list|()
 return|;
 block|}
 annotation|@

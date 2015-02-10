@@ -1502,15 +1502,15 @@ name|assertEquals
 argument_list|(
 literal|"CoordinatingConjunctionScorer\n"
 operator|+
+literal|"    MUST MatchAllScorer\n"
+operator|+
 literal|"    MUST MinShouldMatchSumScorer\n"
 operator|+
 literal|"            SHOULD TermScorer body:nutch\n"
 operator|+
 literal|"            SHOULD TermScorer body:web\n"
 operator|+
-literal|"            SHOULD TermScorer body:crawler\n"
-operator|+
-literal|"    MUST MatchAllScorer"
+literal|"            SHOULD TermScorer body:crawler"
 argument_list|,
 name|summary
 argument_list|)
