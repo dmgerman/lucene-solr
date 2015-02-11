@@ -18,20 +18,6 @@ end_comment
 
 begin_import
 import|import
-name|com
-operator|.
-name|carrotsearch
-operator|.
-name|randomizedtesting
-operator|.
-name|annotations
-operator|.
-name|Seed
-import|;
-end_import
-
-begin_import
-import|import
 name|org
 operator|.
 name|apache
@@ -223,11 +209,6 @@ import|;
 end_import
 
 begin_class
-annotation|@
-name|Seed
-argument_list|(
-literal|"229FAA1086FF0F29:DD686BC5E10B2080"
-argument_list|)
 DECL|class|TestSloppyPhraseQuery
 specifier|public
 class|class
