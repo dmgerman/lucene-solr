@@ -924,7 +924,7 @@ argument_list|)
 expr_stmt|;
 break|break;
 block|}
-default|default :
+default|default:
 block|{
 throw|throw
 operator|new
