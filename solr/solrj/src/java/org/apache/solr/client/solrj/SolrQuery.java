@@ -1336,7 +1336,7 @@ return|return
 name|this
 return|;
 block|}
-comment|/**    * Add Interval Faceting on a field. All intervals for the same field should be included    * in the same call to this method.    * For syntax documentation see<a href="https://wiki.apache.org/solr/SimpleFacetParameters#Interval_Faceting">Solr wiki</a>    *     * @param field the field to add facet intervals    * @param intervals Intervals to be used for faceting. It can be an empty array, but it can't     * be<code>null</code>    * @return this    */
+comment|/**    * Add Interval Faceting on a field. All intervals for the same field should be included    * in the same call to this method.    * For syntax documentation see<a href="https://wiki.apache.org/solr/SimpleFacetParameters#Interval_Faceting">Solr wiki</a>.    *<br>    * Key substitution, filter exclusions or other local params on the field are not supported when using this method,     * if this is needed, use the lower level {@link #add} method.<br>     * Key substitution IS supported on intervals when using this method.    *     *     * @param field the field to add facet intervals. Must be an existing field and can't be null    * @param intervals Intervals to be used for faceting. It can be an empty array, but it can't     * be<code>null</code>    * @return this    */
 DECL|method|addIntervalFacets
 specifier|public
 name|SolrQuery
@@ -1362,6 +1362,21 @@ operator|new
 name|IllegalArgumentException
 argument_list|(
 literal|"Can't add null intervals"
+argument_list|)
+throw|;
+block|}
+if|if
+condition|(
+name|field
+operator|==
+literal|null
+condition|)
+block|{
+throw|throw
+operator|new
+name|IllegalArgumentException
+argument_list|(
+literal|"Field can't be null"
 argument_list|)
 throw|;
 block|}

@@ -8724,7 +8724,7 @@ name|required
 operator|.
 name|getFieldParams
 argument_list|(
-name|field
+name|facetValue
 argument_list|,
 name|FacetParams
 operator|.
@@ -8744,7 +8744,7 @@ argument_list|()
 operator|.
 name|getField
 argument_list|(
-name|field
+name|facetValue
 argument_list|)
 decl_stmt|;
 if|if
@@ -8819,7 +8819,7 @@ name|res
 operator|.
 name|add
 argument_list|(
-name|field
+name|key
 argument_list|,
 name|fieldResults
 argument_list|)
