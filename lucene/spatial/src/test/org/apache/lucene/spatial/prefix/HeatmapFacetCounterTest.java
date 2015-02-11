@@ -577,6 +577,29 @@ argument_list|,
 literal|100
 argument_list|)
 expr_stmt|;
+name|validateHeatmapResultLoop
+argument_list|(
+name|ctx
+operator|.
+name|makeRectangle
+argument_list|(
+literal|179
+argument_list|,
+literal|179
+argument_list|,
+operator|-
+literal|89
+argument_list|,
+operator|-
+literal|50
+argument_list|)
+argument_list|,
+literal|1
+argument_list|,
+literal|100
+argument_list|)
+expr_stmt|;
+comment|//line
 comment|// We could test anything and everything at this point... I prefer we leave that to random testing and then
 comment|// add specific tests if we find a bug.
 block|}
@@ -1188,6 +1211,21 @@ parameter_list|)
 throws|throws
 name|IOException
 block|{
+if|if
+condition|(
+operator|!
+name|inputRange
+operator|.
+name|hasArea
+argument_list|()
+condition|)
+block|{
+comment|// Don't test line inputs. It's not that we don't support it but it is more challenging to test if per-chance it
+comment|// coincides with a grid line due due to edge overlap issue for some grid implementations (geo& quad).
+return|return
+literal|false
+return|;
+block|}
 name|Filter
 name|filter
 init|=
