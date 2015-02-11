@@ -71,7 +71,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**A Streaming parser for json to emit one record at a time.  */
+comment|/**  * A Streaming parser for json to emit one record at a time.  */
 end_comment
 
 begin_class
@@ -206,7 +206,7 @@ return|return
 name|jsonRecordReader
 return|;
 block|}
-comment|/**    * A constructor called with a '|' separated list of path expressions    * which define sub sections of the JSON stream that are to be emitted as    * separate records.    *    * @param splitPath The PATH for which a record is emitted. Once the    *                  path tag is encountered, the Node.getInst method starts collecting wanted    *                  fields and at the close of the tag, a record is emitted containing all    *                  fields collected since the tag start. Once    *                  emitted the collected fields are cleared. Any fields collected in the    *                  parent tag or above will also be included in the record, but these are    *                  not cleared after emitting the record.    *<p/>    *                  It uses the ' | ' syntax of PATH to pass in multiple paths.    */
+comment|/**    * A constructor called with a '|' separated list of path expressions    * which define sub sections of the JSON stream that are to be emitted as    * separate records.    *    * @param splitPath The PATH for which a record is emitted. Once the    *                  path tag is encountered, the Node.getInst method starts collecting wanted    *                  fields and at the close of the tag, a record is emitted containing all    *                  fields collected since the tag start. Once    *                  emitted the collected fields are cleared. Any fields collected in the    *                  parent tag or above will also be included in the record, but these are    *                  not cleared after emitting the record.    *<p>    *                  It uses the ' | ' syntax of PATH to pass in multiple paths.    */
 DECL|method|JsonRecordReader
 specifier|private
 name|JsonRecordReader
@@ -283,7 +283,7 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
-comment|/**    * Splits the path into a List of segments and calls build() to    * construct a tree of Nodes representing path segments. The resulting    * tree structure ends up describing all the paths we are interested in.    *    * @param path       The path expression for this field    * @param fieldName        The name for this field in the emitted record    * @param multiValued If 'true' then the emitted record will have values in    *                    a List&lt;String&gt;    * @param isRecord    Flags that this PATH is from a forEach statement    */
+comment|/**    * Splits the path into a List of segments and calls build() to    * construct a tree of Nodes representing path segments. The resulting    * tree structure ends up describing all the paths we are interested in.    *    * @param path        The path expression for this field    * @param fieldName   The name for this field in the emitted record    * @param multiValued If 'true' then the emitted record will have values in    *                    a List&lt;String&gt;    * @param isRecord    Flags that this PATH is from a forEach statement    */
 DECL|method|addField
 specifier|private
 name|void
@@ -1315,7 +1315,7 @@ block|}
 block|}
 block|}
 block|}
-comment|/**      * If a new tag is encountered, check if it is of interest or not by seeing      * if it matches against our node tree. If we have deperted from the node      * tree then walk back though the tree's ancestor nodes checking to see if      * any // expressions exist for the node and compare them against the new      * tag. If matched then "jump" to that node, otherwise ignore the tag.      *<p/>      * Note, the list of // expressions found while walking back up the tree      * is chached in the HashMap decends. Then if the new tag is to be skipped,      * any inner chil tags are compared against the cache and jumped to if      * matched.      */
+comment|/**      * If a new tag is encountered, check if it is of interest or not by seeing      * if it matches against our node tree. If we have deperted from the node      * tree then walk back though the tree's ancestor nodes checking to see if      * any // expressions exist for the node and compare them against the new      * tag. If matched then "jump" to that node, otherwise ignore the tag.      *<p>      * Note, the list of // expressions found while walking back up the tree      * is chached in the HashMap decends. Then if the new tag is to be skipped,      * any inner chil tags are compared against the cache and jumped to if      * matched.      */
 DECL|method|handleObjectStart
 specifier|private
 name|void
@@ -2133,7 +2133,7 @@ return|;
 block|}
 block|}
 comment|// end of class Node
-comment|/**    * The path is split into segments using the '/' as a seperator. However    * this method deals with special cases where there is a slash '/' character    * inside the attribute value e.g. x/@html='text/html'. We split by '/' but    * then reassemble things were the '/' appears within a quoted sub-string.    *<p/>    * We have already enforced that the string must begin with a seperator. This    * method depends heavily on how split behaves if the string starts with the    * seperator or if a sequence of multiple seperator's appear.    */
+comment|/**    * The path is split into segments using the '/' as a seperator. However    * this method deals with special cases where there is a slash '/' character    * inside the attribute value e.g. x/@html='text/html'. We split by '/' but    * then reassemble things were the '/' appears within a quoted sub-string.    *<p>    * We have already enforced that the string must begin with a seperator. This    * method depends heavily on how split behaves if the string starts with the    * seperator or if a sequence of multiple seperator's appear.    */
 DECL|method|splitEscapeQuote
 specifier|private
 specifier|static
@@ -2297,7 +2297,7 @@ specifier|static
 interface|interface
 name|Handler
 block|{
-comment|/**      * @param record The record map. The key is the field name as provided in      *               the addField() methods. The value can be a single String (for single      *               valued fields) or a List&lt;String&gt; (for multiValued).      * @param path  The forEach path for which this record is being emitted      *               If there is any change all parsing will be aborted and the Exception      *               is propagated up      */
+comment|/**      * @param record The record map. The key is the field name as provided in      *               the addField() methods. The value can be a single String (for single      *               valued fields) or a List&lt;String&gt; (for multiValued).      * @param path   The forEach path for which this record is being emitted      *               If there is any change all parsing will be aborted and the Exception      *               is propagated up      */
 DECL|method|handle
 specifier|public
 name|void

@@ -257,7 +257,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**The class encapsulates the request time parameters . This is immutable and any changes performed  * returns a copy of the Object with the changed values  *  */
+comment|/**  * The class encapsulates the request time parameters . This is immutable and any changes performed  * returns a copy of the Object with the changed values  */
 end_comment
 
 begin_class
