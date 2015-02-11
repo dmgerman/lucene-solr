@@ -2423,6 +2423,22 @@ name|isEmpty
 argument_list|()
 condition|)
 block|{
+name|log
+operator|.
+name|info
+argument_list|(
+literal|"Failed to run commands errors are {}"
+argument_list|,
+name|StrUtils
+operator|.
+name|join
+argument_list|(
+name|errs
+argument_list|,
+literal|','
+argument_list|)
+argument_list|)
+expr_stmt|;
 name|resp
 operator|.
 name|add
@@ -2480,6 +2496,15 @@ argument_list|,
 literal|true
 argument_list|)
 expr_stmt|;
+name|log
+operator|.
+name|info
+argument_list|(
+literal|"Executed config commands successfully and persited to ZK {}"
+argument_list|,
+name|ops
+argument_list|)
+expr_stmt|;
 block|}
 else|else
 block|{
@@ -2519,6 +2544,15 @@ argument_list|()
 operator|.
 name|getName
 argument_list|()
+argument_list|)
+expr_stmt|;
+name|log
+operator|.
+name|info
+argument_list|(
+literal|"Executed config commands successfully and persited to File System {}"
+argument_list|,
+name|ops
 argument_list|)
 expr_stmt|;
 block|}

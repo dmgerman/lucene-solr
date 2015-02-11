@@ -12043,6 +12043,15 @@ argument_list|,
 literal|true
 argument_list|)
 expr_stmt|;
+name|log
+operator|.
+name|info
+argument_list|(
+literal|"Persisted config data to node {} "
+argument_list|,
+name|resourceLocation
+argument_list|)
+expr_stmt|;
 name|touchConfDir
 argument_list|(
 name|zkLoader
