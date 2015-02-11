@@ -245,13 +245,6 @@ comment|/**  * Abstract class to do basic tests for a norms format.  * NOTE: Thi
 end_comment
 
 begin_class
-annotation|@
-name|Seed
-argument_list|(
-name|value
-operator|=
-literal|"AD2222476BCB8800"
-argument_list|)
 DECL|class|BaseNormsFormatTestCase
 specifier|public
 specifier|abstract
