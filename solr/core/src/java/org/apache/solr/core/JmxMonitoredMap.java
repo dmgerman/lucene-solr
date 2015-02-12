@@ -592,6 +592,12 @@ name|ObjectName
 argument_list|>
 name|objectNames
 init|=
+literal|null
+decl_stmt|;
+try|try
+block|{
+name|objectNames
+operator|=
 name|server
 operator|.
 name|queryNames
@@ -600,7 +606,24 @@ literal|null
 argument_list|,
 name|exp
 argument_list|)
-decl_stmt|;
+expr_stmt|;
+block|}
+catch|catch
+parameter_list|(
+name|Exception
+name|e
+parameter_list|)
+block|{
+name|LOG
+operator|.
+name|warn
+argument_list|(
+literal|"Exception querying for mbeans"
+argument_list|,
+name|e
+argument_list|)
+expr_stmt|;
+block|}
 if|if
 condition|(
 name|objectNames
@@ -634,7 +657,7 @@ parameter_list|)
 block|{
 name|LOG
 operator|.
-name|error
+name|warn
 argument_list|(
 literal|"Exception un-registering mbean {}"
 argument_list|,
