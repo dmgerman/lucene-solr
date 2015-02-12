@@ -140,7 +140,7 @@ name|PivotFacet
 extends|extends
 name|FacetBase
 block|{
-comment|/**     * Local param used to indicate that refinements are requried on a pivot. Should     * also be used as the prefix for contatenanting with the value to determine the     * name of the multi-valued param that will contain all of the values needed for     * refinement.    */
+comment|/**     * Local param used to indicate that refinements are required on a pivot. Should    * also be used as the prefix for concatenating with the value to determine the    * name of the multi-valued param that will contain all of the values needed for     * refinement.    */
 DECL|field|REFINE_PARAM
 specifier|public
 specifier|static
@@ -311,9 +311,6 @@ block|}
 return|return
 name|Collections
 operator|.
-expr|<
-name|PivotFacetValue
-operator|>
 name|unmodifiableList
 argument_list|(
 name|raw
