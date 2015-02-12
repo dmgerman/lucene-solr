@@ -932,7 +932,7 @@ argument_list|(
 name|facetFieldSort
 argument_list|)
 comment|// if we are doing count order, we need to refine if the limit was hit
-comment|// (if it not, the shard doesn't have the value or it would have returned already)
+comment|// (if not, the shard doesn't have the value or it would have returned already)
 operator|||
 name|numberOfValuesContributedByShardWasLimitedByFacetFieldLimit
 argument_list|(

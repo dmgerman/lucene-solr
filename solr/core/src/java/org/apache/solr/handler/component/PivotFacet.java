@@ -361,10 +361,7 @@ name|Object
 argument_list|>
 argument_list|>
 name|getTrimmedPivotsAsListOfNamedLists
-parameter_list|(
-name|ResponseBuilder
-name|rb
-parameter_list|)
+parameter_list|()
 block|{
 if|if
 condition|(

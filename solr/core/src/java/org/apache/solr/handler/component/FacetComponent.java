@@ -1419,8 +1419,6 @@ expr_stmt|;
 block|}
 name|enqueuePivotFacetShardRequests
 argument_list|(
-literal|null
-argument_list|,
 name|rb
 argument_list|,
 name|shardNum
@@ -1440,17 +1438,6 @@ specifier|private
 name|void
 name|enqueuePivotFacetShardRequests
 parameter_list|(
-name|HashMap
-argument_list|<
-name|String
-argument_list|,
-name|List
-argument_list|<
-name|String
-argument_list|>
-argument_list|>
-name|pivotFacetRefinements
-parameter_list|,
 name|ResponseBuilder
 name|rb
 parameter_list|,
@@ -1875,8 +1862,6 @@ expr_stmt|;
 name|modifyRequestForRangeFacets
 argument_list|(
 name|sreq
-argument_list|,
-name|fi
 argument_list|)
 expr_stmt|;
 name|modifyRequestForPivotFacets
@@ -1951,9 +1936,6 @@ name|modifyRequestForRangeFacets
 parameter_list|(
 name|ShardRequest
 name|sreq
-parameter_list|,
-name|FacetInfo
-name|fi
 parameter_list|)
 block|{
 comment|// Collect all the range fields.
@@ -3481,8 +3463,6 @@ name|dff
 operator|.
 name|maxPossible
 argument_list|(
-name|sfc
-argument_list|,
 name|shardNum
 argument_list|)
 expr_stmt|;
@@ -3569,8 +3549,6 @@ name|dff
 operator|.
 name|maxPossible
 argument_list|(
-name|sfc
-argument_list|,
 name|shardNum
 argument_list|)
 operator|>
@@ -5711,8 +5689,6 @@ condition|)
 block|{
 name|enqueuePivotFacetShardRequests
 argument_list|(
-literal|null
-argument_list|,
 name|rb
 argument_list|,
 name|shardNum
@@ -6367,9 +6343,7 @@ init|=
 name|pivot
 operator|.
 name|getTrimmedPivotsAsListOfNamedLists
-argument_list|(
-name|rb
-argument_list|)
+argument_list|()
 decl_stmt|;
 if|if
 condition|(
@@ -7988,9 +7962,6 @@ DECL|method|maxPossible
 name|long
 name|maxPossible
 parameter_list|(
-name|ShardFacetCount
-name|sfc
-parameter_list|,
 name|int
 name|shardNum
 parameter_list|)
