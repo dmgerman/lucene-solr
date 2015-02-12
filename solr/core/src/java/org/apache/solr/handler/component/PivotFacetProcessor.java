@@ -442,7 +442,7 @@ operator|=
 name|params
 expr_stmt|;
 block|}
-comment|/**    * Processes all of the specified {@link FacetParams#FACET_PIVOT} strings, generating     * a completel response tree for each pivot.  The values in this response will either     * be the complete tree of fields and values for the specified pivot in the local index,     * or the requested refinements if the pivot params include the {@link PivotFacet#REFINE_PARAM}    */
+comment|/**    * Processes all of the specified {@link FacetParams#FACET_PIVOT} strings, generating     * a complete response tree for each pivot.  The values in this response will either    * be the complete tree of fields and values for the specified pivot in the local index,     * or the requested refinements if the pivot params include the {@link PivotFacet#REFINE_PARAM}    */
 DECL|method|process
 specifier|public
 name|SimpleOrderedMap
@@ -647,7 +647,7 @@ throw|;
 block|}
 block|}
 block|}
-comment|// start by assuing no local params...
+comment|// start by assuming no local params...
 name|String
 name|refineKey
 init|=
@@ -803,7 +803,7 @@ return|return
 name|pivotResponse
 return|;
 block|}
-comment|/**    * Process a single branch of refinement values for a specific pivot    * @param pivotFields the ordered list of fields in this pivot    * @param refinements the comma seperate list of refinement values corrisponding to each field in the pivot, or null if there are no refinements    * @param statsFields List of {@link StatsField} instances to compute for each pivot value    */
+comment|/**    * Process a single branch of refinement values for a specific pivot    * @param pivotFields the ordered list of fields in this pivot    * @param refinements the comma separate list of refinement values corresponding to each field in the pivot, or null if there are no refinements    * @param statsFields List of {@link StatsField} instances to compute for each pivot value    */
 DECL|method|processSingle
 specifier|private
 name|SimpleOrderedMap
@@ -1137,7 +1137,7 @@ return|return
 name|pivotResponse
 return|;
 block|}
-comment|/**    * returns the {@link StatsField} instances that should be computed for a pivot    * based on the 'stats' local params used.    *    * @return A list of StatsFields to comput for this pivot, or the empty list if none    */
+comment|/**    * returns the {@link StatsField} instances that should be computed for a pivot    * based on the 'stats' local params used.    *    * @return A list of StatsFields to compute for this pivot, or the empty list if none    */
 DECL|method|getTaggedStatsFields
 specifier|private
 specifier|static
@@ -1201,7 +1201,7 @@ literal|','
 argument_list|)
 decl_stmt|;
 comment|// TODO: for now, we only support a single tag name - we reserve using
-comment|// ',' as a possible delimeter for logic related to only computing stats
+comment|// ',' as a possible delimiter for logic related to only computing stats
 comment|// at certain levels -- see SOLR-6663
 if|if
 condition|(
@@ -1271,7 +1271,7 @@ return|return
 name|fields
 return|;
 block|}
-comment|/**    * Recursive function to compute all the pivot counts for the values under teh specified field    */
+comment|/**    * Recursive function to compute all the pivot counts for the values under the specified field    */
 DECL|method|doPivots
 specifier|protected
 name|List
@@ -1378,7 +1378,7 @@ operator|.
 name|poll
 argument_list|()
 decl_stmt|;
-comment|// re-useable BytesRefBuilder for conversion of term values to Objects
+comment|// re-usable BytesRefBuilder for conversion of term values to Objects
 name|BytesRefBuilder
 name|termval
 init|=
@@ -1750,7 +1750,7 @@ return|return
 name|values
 return|;
 block|}
-comment|/**    * Given a base docset, computes the size of the subset of documents corrisponding to the specified pivotValue    *    * @param base the set of documents to evalute relative to    * @param field the field type used by the pivotValue    * @param pivotValue String representation of the value, may be null (ie: "missing")    */
+comment|/**    * Given a base docset, computes the size of the subset of documents corresponding to the specified pivotValue    *    * @param base the set of documents to evalute relative to    * @param field the field type used by the pivotValue    * @param pivotValue String representation of the value, may be null (ie: "missing")    */
 DECL|method|getSubsetSize
 specifier|private
 name|int
@@ -1850,7 +1850,7 @@ argument_list|)
 return|;
 block|}
 block|}
-comment|/**    * Given a base docset, computes the subset of documents corrisponding to the specified pivotValue    *    * @param base the set of documents to evalute relative to    * @param field the field type used by the pivotValue    * @param pivotValue String representation of the value, may be null (ie: "missing")    */
+comment|/**    * Given a base docset, computes the subset of documents corresponding to the specified pivotValue    *    * @param base the set of documents to evaluate relative to    * @param field the field type used by the pivotValue    * @param pivotValue String representation of the value, may be null (ie: "missing")    */
 DECL|method|getSubset
 specifier|private
 name|DocSet
