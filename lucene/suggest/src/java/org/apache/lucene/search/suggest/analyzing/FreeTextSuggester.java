@@ -2470,6 +2470,21 @@ literal|"this suggester doesn't support contexts"
 argument_list|)
 throw|;
 block|}
+if|if
+condition|(
+name|fst
+operator|==
+literal|null
+condition|)
+block|{
+throw|throw
+operator|new
+name|IllegalStateException
+argument_list|(
+literal|"Lookup not supported at this time"
+argument_list|)
+throw|;
+block|}
 try|try
 init|(
 name|TokenStream
