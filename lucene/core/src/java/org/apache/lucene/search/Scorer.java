@@ -182,6 +182,17 @@ name|relationship
 expr_stmt|;
 block|}
 block|}
+comment|/**    * Optional method: Return a {@link TwoPhaseDocIdSetIterator} view of this    * {@link Scorer}. A return value of {@code null} indicates that    * two-phase iteration is not supported.    *    * Note that the returned {@link TwoPhaseDocIdSetIterator}'s    * {@link TwoPhaseDocIdSetIterator#approximation() approximation} must    * advance synchronously with this iterator: advancing the approximation must    * advance this iterator and vice-versa.    *    * Implementing this method is typically useful on {@link Scorer}s    * that have a high per-document overhead in order to confirm matches.    *    * The default implementation returns {@code null}.    */
+DECL|method|asTwoPhaseIterator
+specifier|public
+name|TwoPhaseDocIdSetIterator
+name|asTwoPhaseIterator
+parameter_list|()
+block|{
+return|return
+literal|null
+return|;
+block|}
 block|}
 end_class
 
