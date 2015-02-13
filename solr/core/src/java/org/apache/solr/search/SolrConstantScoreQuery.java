@@ -286,6 +286,12 @@ name|ConstantScoreQuery
 implements|implements
 name|ExtendedQuery
 block|{
+DECL|field|filter
+specifier|private
+specifier|final
+name|Filter
+name|filter
+decl_stmt|;
 DECL|field|cache
 name|boolean
 name|cache
@@ -310,10 +316,14 @@ argument_list|(
 name|filter
 argument_list|)
 expr_stmt|;
+name|this
+operator|.
+name|filter
+operator|=
+name|filter
+expr_stmt|;
 block|}
 comment|/** Returns the encapsulated filter */
-annotation|@
-name|Override
 DECL|method|getFilter
 specifier|public
 name|Filter
