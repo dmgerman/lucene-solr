@@ -148,7 +148,7 @@ name|lucene
 operator|.
 name|spatial
 operator|.
-name|NumberRangePrefixTreeStrategy
+name|StrategyTestCase
 import|;
 end_import
 
@@ -161,24 +161,12 @@ operator|.
 name|lucene
 operator|.
 name|spatial
+operator|.
+name|prefix
 operator|.
 name|NumberRangePrefixTreeStrategy
 operator|.
 name|Facets
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|spatial
-operator|.
-name|StrategyTestCase
 import|;
 end_import
 
