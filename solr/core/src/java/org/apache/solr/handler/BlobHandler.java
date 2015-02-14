@@ -1178,7 +1178,7 @@ name|MessageFormat
 operator|.
 name|format
 argument_list|(
-literal|"New blob inserting {0} ,size {1}, md5 {2}"
+literal|"inserting new blob {0} ,size {1}, md5 {2}"
 argument_list|,
 name|doc
 operator|.
@@ -1187,10 +1187,15 @@ argument_list|(
 literal|"id"
 argument_list|)
 argument_list|,
+name|String
+operator|.
+name|valueOf
+argument_list|(
 name|payload
 operator|.
 name|limit
 argument_list|()
+argument_list|)
 argument_list|,
 name|md5
 argument_list|)
@@ -1564,7 +1569,12 @@ literal|"Invalid combination of blobName {0} and version {1}"
 argument_list|,
 name|blobName
 argument_list|,
+name|String
+operator|.
+name|valueOf
+argument_list|(
 name|version
+argument_list|)
 argument_list|)
 argument_list|)
 throw|;
