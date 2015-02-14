@@ -644,6 +644,16 @@ name|REQUEST_PURPOSE
 init|=
 literal|"requestPurpose"
 decl_stmt|;
+comment|/**    * When querying a node, prefer local node's cores for distributed queries.    */
+DECL|field|PREFER_LOCAL_SHARDS
+specifier|public
+specifier|static
+specifier|final
+name|String
+name|PREFER_LOCAL_SHARDS
+init|=
+literal|"preferLocalShards"
+decl_stmt|;
 block|}
 end_interface
 

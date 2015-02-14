@@ -236,6 +236,11 @@ specifier|public
 name|ModifiableSolrParams
 name|params
 decl_stmt|;
+DECL|field|rb
+specifier|public
+name|ResponseBuilder
+name|rb
+decl_stmt|;
 comment|/** list of responses... filled out by framework */
 DECL|field|responses
 specifier|public

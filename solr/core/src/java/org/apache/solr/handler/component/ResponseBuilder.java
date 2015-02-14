@@ -834,6 +834,12 @@ argument_list|(
 name|sreq
 argument_list|)
 expr_stmt|;
+name|sreq
+operator|.
+name|rb
+operator|=
+name|this
+expr_stmt|;
 if|if
 condition|(
 operator|(
