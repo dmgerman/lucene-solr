@@ -436,17 +436,6 @@ name|CloudSolrClient
 name|client
 decl_stmt|;
 annotation|@
-name|BeforeClass
-DECL|method|beforeThisClass2
-specifier|public
-specifier|static
-name|void
-name|beforeThisClass2
-parameter_list|()
-throws|throws
-name|Exception
-block|{    }
-annotation|@
 name|Override
 DECL|method|distribSetUp
 specifier|public
@@ -970,7 +959,7 @@ argument_list|)
 expr_stmt|;
 block|}
 DECL|method|removeAndWaitForReplicaGone
-specifier|protected
+specifier|static
 name|void
 name|removeAndWaitForReplicaGone
 parameter_list|(
@@ -1085,8 +1074,7 @@ condition|)
 block|{
 name|testcoll
 operator|=
-name|getCommonCloudSolrClient
-argument_list|()
+name|client
 operator|.
 name|getZkStateReader
 argument_list|()
