@@ -1971,12 +1971,12 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
-comment|// Remove existing format specifier
+comment|// Set format to PNG; it's the only one we parse
 name|sreq
 operator|.
 name|params
 operator|.
-name|remove
+name|set
 argument_list|(
 literal|"f."
 operator|+
@@ -1987,23 +1987,11 @@ operator|+
 name|FacetParams
 operator|.
 name|FACET_HEATMAP_FORMAT
-argument_list|)
-expr_stmt|;
-block|}
-comment|// Set format to PNG (applies to all heatmaps)
-name|sreq
-operator|.
-name|params
-operator|.
-name|set
-argument_list|(
-name|FacetParams
-operator|.
-name|FACET_HEATMAP_FORMAT
 argument_list|,
 name|FORMAT_PNG
 argument_list|)
 expr_stmt|;
+block|}
 block|}
 comment|/** Called by FacetComponent.countFacets which is in turn called by FC's impl of    * {@link org.apache.solr.handler.component.SearchComponent#handleResponses(ResponseBuilder, ShardRequest)}. */
 annotation|@
