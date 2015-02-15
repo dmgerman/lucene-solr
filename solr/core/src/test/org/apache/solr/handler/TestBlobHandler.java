@@ -915,11 +915,11 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
-DECL|method|createSysColl
+DECL|method|createSystemCollection
 specifier|public
 specifier|static
 name|void
-name|createSysColl
+name|createSystemCollection
 parameter_list|(
 name|SolrClient
 name|client
@@ -1094,7 +1094,7 @@ name|i
 operator|++
 control|)
 block|{
-comment|//10secs
+comment|//15 secs
 name|url
 operator|=
 name|baseUrl

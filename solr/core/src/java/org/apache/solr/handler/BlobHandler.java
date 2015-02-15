@@ -1898,7 +1898,7 @@ name|log
 operator|.
 name|info
 argument_list|(
-literal|"Adding doc "
+literal|"Adding doc: "
 operator|+
 name|doc
 argument_list|)
@@ -1914,7 +1914,7 @@ name|log
 operator|.
 name|info
 argument_list|(
-literal|"committing doc"
+literal|"committing doc: "
 operator|+
 name|doc
 argument_list|)
@@ -1931,6 +1931,11 @@ argument_list|,
 literal|false
 argument_list|)
 argument_list|)
+expr_stmt|;
+name|processor
+operator|.
+name|finish
+argument_list|()
 expr_stmt|;
 block|}
 annotation|@
