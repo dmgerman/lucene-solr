@@ -436,6 +436,46 @@ return|return
 name|result
 return|;
 block|}
+annotation|@
+name|Override
+DECL|method|toString
+specifier|public
+name|String
+name|toString
+parameter_list|(
+name|String
+name|field
+parameter_list|)
+block|{
+return|return
+literal|"WithinPrefixTreeFilter("
+operator|+
+comment|// TODO: print something about the shape?
+literal|"fieldName="
+operator|+
+name|fieldName
+operator|+
+literal|","
+operator|+
+literal|"detailLevel="
+operator|+
+name|detailLevel
+operator|+
+literal|","
+operator|+
+literal|"prefixGridScanLevel="
+operator|+
+name|prefixGridScanLevel
+operator|+
+literal|","
+operator|+
+literal|"hasIndexedLeaves="
+operator|+
+name|hasIndexedLeaves
+operator|+
+literal|")"
+return|;
+block|}
 comment|/** Returns a new shape that is larger than shape by at distErr.    */
 comment|//TODO move this generic code elsewhere?  Spatial4j?
 DECL|method|bufferShape

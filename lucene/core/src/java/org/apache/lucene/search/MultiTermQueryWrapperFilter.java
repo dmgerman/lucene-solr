@@ -155,14 +155,19 @@ DECL|method|toString
 specifier|public
 name|String
 name|toString
-parameter_list|()
+parameter_list|(
+name|String
+name|field
+parameter_list|)
 block|{
 comment|// query.toString should be ok for the filter, too, if the query boost is 1.0f
 return|return
 name|query
 operator|.
 name|toString
-argument_list|()
+argument_list|(
+name|field
+argument_list|)
 return|;
 block|}
 annotation|@

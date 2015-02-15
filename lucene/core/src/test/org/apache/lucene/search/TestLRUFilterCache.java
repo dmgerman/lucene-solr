@@ -2648,6 +2648,21 @@ return|return
 literal|null
 return|;
 block|}
+annotation|@
+name|Override
+DECL|method|toString
+specifier|public
+name|String
+name|toString
+parameter_list|(
+name|String
+name|field
+parameter_list|)
+block|{
+return|return
+literal|"DummyFilter"
+return|;
+block|}
 block|}
 comment|// Test what happens when the cache contains only filters and doc id sets
 comment|// that require very little memory. In that case most of the memory is taken
