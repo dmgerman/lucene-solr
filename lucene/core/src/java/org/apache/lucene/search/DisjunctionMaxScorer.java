@@ -28,6 +28,16 @@ end_import
 
 begin_import
 import|import
+name|java
+operator|.
+name|util
+operator|.
+name|List
+import|;
+end_import
+
+begin_import
+import|import
 name|org
 operator|.
 name|apache
@@ -71,9 +81,14 @@ parameter_list|,
 name|float
 name|tieBreakerMultiplier
 parameter_list|,
+name|List
+argument_list|<
 name|Scorer
-index|[]
+argument_list|>
 name|subScorers
+parameter_list|,
+name|boolean
+name|needsScores
 parameter_list|)
 block|{
 name|super
@@ -81,6 +96,8 @@ argument_list|(
 name|weight
 argument_list|,
 name|subScorers
+argument_list|,
+name|needsScores
 argument_list|)
 expr_stmt|;
 name|this
@@ -99,9 +116,6 @@ name|score
 parameter_list|(
 name|ScorerWrapper
 name|topList
-parameter_list|,
-name|int
-name|freq
 parameter_list|)
 throws|throws
 name|IOException

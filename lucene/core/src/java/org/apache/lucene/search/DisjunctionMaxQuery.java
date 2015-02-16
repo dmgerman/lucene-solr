@@ -310,6 +310,7 @@ block|{
 comment|/** The Weights for our subqueries, in 1-1 correspondence with disjuncts */
 DECL|field|weights
 specifier|protected
+specifier|final
 name|ArrayList
 argument_list|<
 name|Weight
@@ -322,6 +323,12 @@ argument_list|<>
 argument_list|()
 decl_stmt|;
 comment|// The Weight's for our subqueries, in 1-1 correspondence with disjuncts
+DECL|field|needsScores
+specifier|private
+specifier|final
+name|boolean
+name|needsScores
+decl_stmt|;
 comment|/** Construct the Weight for this Query searched by searcher.  Recursively construct subquery weights. */
 DECL|method|DisjunctionMaxWeight
 specifier|public
@@ -366,6 +373,12 @@ argument_list|)
 argument_list|)
 expr_stmt|;
 block|}
+name|this
+operator|.
+name|needsScores
+operator|=
+name|needsScores
+expr_stmt|;
 block|}
 comment|/** Compute the sub of squared weights of us applied to our subqueries.  Used for normalization. */
 annotation|@
@@ -597,18 +610,8 @@ argument_list|,
 name|tieBreakerMultiplier
 argument_list|,
 name|scorers
-operator|.
-name|toArray
-argument_list|(
-operator|new
-name|Scorer
-index|[
-name|scorers
-operator|.
-name|size
-argument_list|()
-index|]
-argument_list|)
+argument_list|,
+name|needsScores
 argument_list|)
 return|;
 block|}

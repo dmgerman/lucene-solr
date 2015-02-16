@@ -100,6 +100,20 @@ name|ScorerWrapper
 name|next
 decl_stmt|;
 comment|// reference to a next element, see #topList
+comment|// An approximation of the scorer, or the scorer itself if it does not
+comment|// support two-phase iteration
+DECL|field|approximation
+specifier|final
+name|DocIdSetIterator
+name|approximation
+decl_stmt|;
+comment|// A two-phase view of the scorer, or null if the scorer does not support
+comment|// two-phase iteration
+DECL|field|twoPhaseView
+specifier|final
+name|TwoPhaseDocIdSetIterator
+name|twoPhaseView
+decl_stmt|;
 DECL|method|ScorerWrapper
 name|ScorerWrapper
 parameter_list|(
@@ -129,6 +143,37 @@ operator|=
 operator|-
 literal|1
 expr_stmt|;
+name|this
+operator|.
+name|twoPhaseView
+operator|=
+name|scorer
+operator|.
+name|asTwoPhaseIterator
+argument_list|()
+expr_stmt|;
+if|if
+condition|(
+name|twoPhaseView
+operator|!=
+literal|null
+condition|)
+block|{
+name|approximation
+operator|=
+name|twoPhaseView
+operator|.
+name|approximation
+argument_list|()
+expr_stmt|;
+block|}
+else|else
+block|{
+name|approximation
+operator|=
+name|scorer
+expr_stmt|;
+block|}
 block|}
 block|}
 DECL|method|leftNode
