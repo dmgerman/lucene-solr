@@ -4717,11 +4717,13 @@ name|log
 operator|.
 name|info
 argument_list|(
-literal|"A cluster state change: {}, has occurred - updating... "
+literal|"A cluster state change: {} for collection {} has occurred - updating... (live nodes size: {})"
 argument_list|,
 operator|(
 name|event
 operator|)
+argument_list|,
+name|coll
 argument_list|,
 name|ZkStateReader
 operator|.
