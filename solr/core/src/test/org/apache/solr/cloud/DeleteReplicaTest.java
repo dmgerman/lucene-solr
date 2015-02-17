@@ -797,7 +797,12 @@ argument_list|)
 expr_stmt|;
 name|assertTrue
 argument_list|(
-literal|"Should have had a good message here"
+literal|"Expected DeleteReplica to fail because node state is 'active' but returned message was: "
+operator|+
+name|se
+operator|.
+name|getMessage
+argument_list|()
 argument_list|,
 name|se
 operator|.
