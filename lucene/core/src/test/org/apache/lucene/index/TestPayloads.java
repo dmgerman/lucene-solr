@@ -3255,7 +3255,7 @@ name|tp
 argument_list|,
 name|PostingsEnum
 operator|.
-name|FLAG_PAYLOADS
+name|PAYLOADS
 argument_list|)
 expr_stmt|;
 while|while
@@ -4015,7 +4015,7 @@ name|de
 init|=
 name|sr
 operator|.
-name|termDocsEnum
+name|postings
 argument_list|(
 operator|new
 name|Term
@@ -4027,7 +4027,7 @@ argument_list|)
 argument_list|,
 name|PostingsEnum
 operator|.
-name|FLAG_POSITIONS
+name|POSITIONS
 argument_list|)
 decl_stmt|;
 name|de
@@ -4326,7 +4326,7 @@ name|de
 init|=
 name|sr
 operator|.
-name|termDocsEnum
+name|postings
 argument_list|(
 operator|new
 name|Term
@@ -4338,7 +4338,7 @@ argument_list|)
 argument_list|,
 name|PostingsEnum
 operator|.
-name|FLAG_POSITIONS
+name|POSITIONS
 argument_list|)
 decl_stmt|;
 name|de

@@ -613,7 +613,7 @@ name|PAYLOAD_PARENT_BYTES_REF
 argument_list|,
 name|PostingsEnum
 operator|.
-name|FLAG_PAYLOADS
+name|PAYLOADS
 argument_list|)
 decl_stmt|;
 comment|// shouldn't really happen, if it does, something's wrong

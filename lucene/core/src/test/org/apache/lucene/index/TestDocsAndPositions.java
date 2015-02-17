@@ -670,7 +670,7 @@ literal|null
 argument_list|,
 name|PostingsEnum
 operator|.
-name|FLAG_ALL
+name|ALL
 argument_list|)
 return|;
 block|}
@@ -1602,7 +1602,7 @@ literal|null
 argument_list|,
 name|PostingsEnum
 operator|.
-name|FLAG_FREQS
+name|FREQS
 argument_list|)
 decl_stmt|;
 if|if
@@ -2369,7 +2369,7 @@ literal|null
 argument_list|,
 name|PostingsEnum
 operator|.
-name|FLAG_NONE
+name|NONE
 argument_list|)
 decl_stmt|;
 name|int
@@ -2447,7 +2447,7 @@ name|disi
 argument_list|,
 name|PostingsEnum
 operator|.
-name|FLAG_NONE
+name|NONE
 argument_list|)
 expr_stmt|;
 name|docid
@@ -2572,7 +2572,7 @@ name|disi
 init|=
 name|r
 operator|.
-name|termDocsEnum
+name|postings
 argument_list|(
 operator|new
 name|Term
@@ -2584,7 +2584,7 @@ argument_list|)
 argument_list|,
 name|PostingsEnum
 operator|.
-name|FLAG_ALL
+name|ALL
 argument_list|)
 decl_stmt|;
 name|int
@@ -2657,7 +2657,7 @@ name|disi
 argument_list|,
 name|PostingsEnum
 operator|.
-name|FLAG_ALL
+name|ALL
 argument_list|)
 expr_stmt|;
 name|docid

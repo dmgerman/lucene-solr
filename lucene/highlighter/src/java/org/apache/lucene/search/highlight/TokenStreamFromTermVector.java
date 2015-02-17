@@ -620,7 +620,7 @@ name|dpEnum
 argument_list|,
 name|PostingsEnum
 operator|.
-name|FLAG_POSITIONS
+name|POSITIONS
 argument_list|)
 expr_stmt|;
 assert|assert

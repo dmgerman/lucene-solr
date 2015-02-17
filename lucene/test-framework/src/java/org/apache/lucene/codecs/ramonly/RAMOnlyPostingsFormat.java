@@ -1393,7 +1393,7 @@ name|enumFlags
 operator|=
 name|PostingsEnum
 operator|.
-name|FLAG_FREQS
+name|FREQS
 expr_stmt|;
 block|}
 elseif|else
@@ -1413,7 +1413,7 @@ name|enumFlags
 operator|=
 name|PostingsEnum
 operator|.
-name|FLAG_PAYLOADS
+name|PAYLOADS
 expr_stmt|;
 block|}
 else|else
@@ -1435,11 +1435,11 @@ name|enumFlags
 operator|=
 name|PostingsEnum
 operator|.
-name|FLAG_PAYLOADS
+name|PAYLOADS
 operator||
 name|PostingsEnum
 operator|.
-name|FLAG_OFFSETS
+name|OFFSETS
 expr_stmt|;
 block|}
 else|else
@@ -1448,7 +1448,7 @@ name|enumFlags
 operator|=
 name|PostingsEnum
 operator|.
-name|FLAG_OFFSETS
+name|OFFSETS
 expr_stmt|;
 block|}
 block|}

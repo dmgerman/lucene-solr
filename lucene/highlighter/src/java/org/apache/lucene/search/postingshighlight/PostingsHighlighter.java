@@ -2457,7 +2457,7 @@ literal|null
 argument_list|,
 name|PostingsEnum
 operator|.
-name|FLAG_OFFSETS
+name|OFFSETS
 argument_list|)
 expr_stmt|;
 if|if

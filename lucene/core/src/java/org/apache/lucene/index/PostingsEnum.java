@@ -96,66 +96,66 @@ extends|extends
 name|DocIdSetIterator
 block|{
 comment|/**    * Flag to pass to {@link TermsEnum#postings(Bits, PostingsEnum, int)} if you don't    * require per-document postings in the returned enum.    */
-DECL|field|FLAG_NONE
+DECL|field|NONE
 specifier|public
 specifier|static
 specifier|final
 name|int
-name|FLAG_NONE
+name|NONE
 init|=
 literal|0x0
 decl_stmt|;
 comment|/** Flag to pass to {@link TermsEnum#postings(Bits, PostingsEnum, int)}    *  if you require term frequencies in the returned enum. */
-DECL|field|FLAG_FREQS
+DECL|field|FREQS
 specifier|public
 specifier|static
 specifier|final
 name|int
-name|FLAG_FREQS
+name|FREQS
 init|=
 literal|0x1
 decl_stmt|;
 comment|/** Flag to pass to {@link TermsEnum#postings(Bits, PostingsEnum, int)}    * if you require term positions in the returned enum. */
-DECL|field|FLAG_POSITIONS
+DECL|field|POSITIONS
 specifier|public
 specifier|static
 specifier|final
 name|int
-name|FLAG_POSITIONS
+name|POSITIONS
 init|=
 literal|0x3
 decl_stmt|;
 comment|/** Flag to pass to {@link TermsEnum#postings(Bits, PostingsEnum, int)}    *  if you require offsets in the returned enum. */
-DECL|field|FLAG_OFFSETS
+DECL|field|OFFSETS
 specifier|public
 specifier|static
 specifier|final
 name|int
-name|FLAG_OFFSETS
+name|OFFSETS
 init|=
 literal|0x7
 decl_stmt|;
 comment|/** Flag to pass to  {@link TermsEnum#postings(Bits, PostingsEnum, int)}    *  if you require payloads in the returned enum. */
-DECL|field|FLAG_PAYLOADS
+DECL|field|PAYLOADS
 specifier|public
 specifier|static
 specifier|final
 name|int
-name|FLAG_PAYLOADS
+name|PAYLOADS
 init|=
 literal|0xB
 decl_stmt|;
 comment|/**    * Flag to pass to {@link TermsEnum#postings(Bits, PostingsEnum, int)}    * to get positions, payloads and offsets in the returned enum    */
-DECL|field|FLAG_ALL
+DECL|field|ALL
 specifier|public
 specifier|static
 specifier|final
 name|int
-name|FLAG_ALL
+name|ALL
 init|=
-name|FLAG_POSITIONS
+name|POSITIONS
 operator||
-name|FLAG_PAYLOADS
+name|PAYLOADS
 decl_stmt|;
 comment|/**    * Returns true if the passed in flags require positions to be indexed    * @param flags the postings flags    * @return true if the passed in flags require positions to be indexed    */
 DECL|method|requiresPositions
@@ -173,10 +173,10 @@ operator|(
 operator|(
 name|flags
 operator|&
-name|FLAG_POSITIONS
+name|POSITIONS
 operator|)
 operator|>=
-name|FLAG_POSITIONS
+name|POSITIONS
 operator|)
 return|;
 block|}
@@ -193,7 +193,7 @@ specifier|protected
 name|PostingsEnum
 parameter_list|()
 block|{   }
-comment|/**    * Returns term frequency in the current document, or 1 if the field was    * indexed with {@link IndexOptions#DOCS}. Do not call this before    * {@link #nextDoc} is first called, nor after {@link #nextDoc} returns    * {@link DocIdSetIterator#NO_MORE_DOCS}.    *     *<p>    *<b>NOTE:</b> if the {@link PostingsEnum} was obtain with {@link #FLAG_NONE},    * the result of this method is undefined.    */
+comment|/**    * Returns term frequency in the current document, or 1 if the field was    * indexed with {@link IndexOptions#DOCS}. Do not call this before    * {@link #nextDoc} is first called, nor after {@link #nextDoc} returns    * {@link DocIdSetIterator#NO_MORE_DOCS}.    *     *<p>    *<b>NOTE:</b> if the {@link PostingsEnum} was obtain with {@link #NONE},    * the result of this method is undefined.    */
 DECL|method|freq
 specifier|public
 specifier|abstract

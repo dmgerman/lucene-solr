@@ -601,7 +601,7 @@ name|term
 argument_list|,
 name|PostingsEnum
 operator|.
-name|FLAG_FREQS
+name|FREQS
 argument_list|)
 return|;
 block|}
@@ -732,11 +732,11 @@ name|term
 argument_list|,
 name|PostingsEnum
 operator|.
-name|FLAG_OFFSETS
+name|OFFSETS
 operator||
 name|PostingsEnum
 operator|.
-name|FLAG_PAYLOADS
+name|PAYLOADS
 argument_list|)
 return|;
 block|}

@@ -1095,11 +1095,11 @@ name|docsAndPositionsEnum
 argument_list|,
 name|PostingsEnum
 operator|.
-name|FLAG_OFFSETS
+name|OFFSETS
 operator||
 name|PostingsEnum
 operator|.
-name|FLAG_PAYLOADS
+name|PAYLOADS
 argument_list|)
 expr_stmt|;
 assert|assert

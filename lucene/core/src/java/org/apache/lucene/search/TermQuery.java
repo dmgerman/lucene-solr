@@ -505,11 +505,11 @@ name|needsScores
 condition|?
 name|PostingsEnum
 operator|.
-name|FLAG_FREQS
+name|FREQS
 else|:
 name|PostingsEnum
 operator|.
-name|FLAG_NONE
+name|NONE
 argument_list|)
 decl_stmt|;
 assert|assert

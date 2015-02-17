@@ -3463,7 +3463,7 @@ name|termPostingsEnum
 init|=
 name|reader
 operator|.
-name|termDocsEnum
+name|postings
 argument_list|(
 operator|new
 name|Term
@@ -3634,7 +3634,7 @@ expr_stmt|;
 return|return
 name|reader
 operator|.
-name|termDocsEnum
+name|postings
 argument_list|(
 operator|new
 name|Term
@@ -3939,7 +3939,7 @@ operator|.
 name|reader
 argument_list|()
 operator|.
-name|termDocsEnum
+name|postings
 argument_list|(
 operator|new
 name|Term

@@ -496,7 +496,7 @@ name|flags
 operator|=
 name|PostingsEnum
 operator|.
-name|FLAG_POSITIONS
+name|POSITIONS
 expr_stmt|;
 if|if
 condition|(
@@ -509,7 +509,7 @@ name|flags
 operator||
 name|PostingsEnum
 operator|.
-name|FLAG_PAYLOADS
+name|PAYLOADS
 expr_stmt|;
 block|}
 if|if
@@ -523,7 +523,7 @@ name|flags
 operator||
 name|PostingsEnum
 operator|.
-name|FLAG_OFFSETS
+name|OFFSETS
 expr_stmt|;
 block|}
 block|}
@@ -540,7 +540,7 @@ name|flags
 operator||
 name|PostingsEnum
 operator|.
-name|FLAG_FREQS
+name|FREQS
 expr_stmt|;
 block|}
 block|}

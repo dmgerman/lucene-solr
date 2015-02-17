@@ -350,7 +350,7 @@ literal|null
 argument_list|,
 name|PostingsEnum
 operator|.
-name|FLAG_FREQS
+name|FREQS
 argument_list|)
 decl_stmt|;
 while|while

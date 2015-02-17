@@ -827,7 +827,7 @@ name|flags
 operator|&
 name|PostingsEnum
 operator|.
-name|FLAG_FREQS
+name|FREQS
 operator|)
 operator|!=
 literal|0

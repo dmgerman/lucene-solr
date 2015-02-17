@@ -1257,7 +1257,7 @@ literal|null
 argument_list|,
 name|PostingsEnum
 operator|.
-name|FLAG_OFFSETS
+name|OFFSETS
 argument_list|)
 decl_stmt|;
 name|docPosEnum

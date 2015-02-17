@@ -500,13 +500,13 @@ name|tp
 init|=
 name|reader
 operator|.
-name|termDocsEnum
+name|postings
 argument_list|(
 name|term
 argument_list|,
 name|PostingsEnum
 operator|.
-name|FLAG_ALL
+name|ALL
 argument_list|)
 decl_stmt|;
 name|checkSkipTo

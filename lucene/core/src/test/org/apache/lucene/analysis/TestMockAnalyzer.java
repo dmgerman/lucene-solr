@@ -2224,7 +2224,7 @@ literal|null
 argument_list|,
 name|PostingsEnum
 operator|.
-name|FLAG_ALL
+name|ALL
 argument_list|)
 decl_stmt|;
 name|assertEquals

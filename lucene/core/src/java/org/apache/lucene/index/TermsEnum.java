@@ -302,11 +302,11 @@ name|reuse
 argument_list|,
 name|PostingsEnum
 operator|.
-name|FLAG_FREQS
+name|FREQS
 argument_list|)
 return|;
 block|}
-comment|/** Get {@link PostingsEnum} for the current term, with    *  control over whether freqs, positions, offsets or payloads    *  are required.  Do not call this when the enum is    *  unpositioned.  This method may return null if the postings    *  information required is not available from the index    *      * @param liveDocs unset bits are documents that should not    * be returned    * @param reuse pass a prior PostingsEnum for possible reuse    * @param flags specifies which optional per-document values    *        you require; see {@link PostingsEnum#FLAG_FREQS}    * @see #postings(Bits, PostingsEnum, int) */
+comment|/** Get {@link PostingsEnum} for the current term, with    *  control over whether freqs, positions, offsets or payloads    *  are required.  Do not call this when the enum is    *  unpositioned.  This method may return null if the postings    *  information required is not available from the index    *      * @param liveDocs unset bits are documents that should not    * be returned    * @param reuse pass a prior PostingsEnum for possible reuse    * @param flags specifies which optional per-document values    *        you require; see {@link PostingsEnum#FREQS}    * @see #postings(Bits, PostingsEnum, int) */
 DECL|method|postings
 specifier|public
 specifier|abstract

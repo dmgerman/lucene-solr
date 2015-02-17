@@ -9719,7 +9719,7 @@ name|termPostingsEnum
 init|=
 name|slowR
 operator|.
-name|termDocsEnum
+name|postings
 argument_list|(
 operator|new
 name|Term

@@ -1218,7 +1218,7 @@ literal|null
 argument_list|,
 name|PostingsEnum
 operator|.
-name|FLAG_POSITIONS
+name|POSITIONS
 argument_list|)
 expr_stmt|;
 if|if
@@ -1240,7 +1240,7 @@ literal|null
 argument_list|,
 name|PostingsEnum
 operator|.
-name|FLAG_NONE
+name|NONE
 argument_list|)
 operator|!=
 literal|null
@@ -2731,7 +2731,7 @@ literal|null
 argument_list|,
 name|PostingsEnum
 operator|.
-name|FLAG_POSITIONS
+name|POSITIONS
 argument_list|)
 decl_stmt|;
 if|if
