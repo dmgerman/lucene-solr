@@ -74,6 +74,7 @@ block|{
 comment|/** The scorers passed from the constructor.    * These are set to null as soon as their next() or skipTo() returns false.    */
 DECL|field|reqScorer
 specifier|protected
+specifier|final
 name|Scorer
 name|reqScorer
 decl_stmt|;
@@ -123,6 +124,21 @@ name|optScorer
 operator|=
 name|optScorer
 expr_stmt|;
+block|}
+annotation|@
+name|Override
+DECL|method|asTwoPhaseIterator
+specifier|public
+name|TwoPhaseDocIdSetIterator
+name|asTwoPhaseIterator
+parameter_list|()
+block|{
+return|return
+name|reqScorer
+operator|.
+name|asTwoPhaseIterator
+argument_list|()
+return|;
 block|}
 annotation|@
 name|Override
