@@ -141,7 +141,6 @@ operator|.
 name|StopableThread
 block|{
 DECL|field|t1
-specifier|private
 specifier|static
 name|String
 name|t1
@@ -149,7 +148,6 @@ init|=
 literal|"a_t"
 decl_stmt|;
 DECL|field|i1
-specifier|private
 specifier|static
 name|String
 name|i1

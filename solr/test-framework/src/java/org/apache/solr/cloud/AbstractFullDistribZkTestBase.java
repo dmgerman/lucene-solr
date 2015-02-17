@@ -8931,11 +8931,9 @@ argument_list|()
 expr_stmt|;
 block|}
 block|}
-name|System
+name|log
 operator|.
-name|err
-operator|.
-name|println
+name|info
 argument_list|(
 literal|"num searches done:"
 operator|+
