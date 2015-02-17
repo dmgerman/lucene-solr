@@ -542,8 +542,11 @@ parameter_list|)
 throws|throws
 name|IOException
 block|{
-comment|// TODO: should we give this thing a random to be super-evil,
-comment|// and randomly *not* unwrap?
+comment|// reuse, if the codec reused
+specifier|final
+name|TermsEnum
+name|actualReuse
+decl_stmt|;
 if|if
 condition|(
 name|reuse
@@ -551,7 +554,7 @@ operator|instanceof
 name|AssertingTermsEnum
 condition|)
 block|{
-name|reuse
+name|actualReuse
 operator|=
 operator|(
 operator|(
@@ -563,6 +566,13 @@ operator|.
 name|in
 expr_stmt|;
 block|}
+else|else
+block|{
+name|actualReuse
+operator|=
+literal|null
+expr_stmt|;
+block|}
 name|TermsEnum
 name|termsEnum
 init|=
@@ -570,7 +580,7 @@ name|super
 operator|.
 name|iterator
 argument_list|(
-name|reuse
+name|actualReuse
 argument_list|)
 decl_stmt|;
 assert|assert
@@ -578,6 +588,30 @@ name|termsEnum
 operator|!=
 literal|null
 assert|;
+if|if
+condition|(
+name|termsEnum
+operator|==
+name|actualReuse
+condition|)
+block|{
+comment|// codec reused, reset asserting state
+operator|(
+operator|(
+name|AssertingTermsEnum
+operator|)
+name|reuse
+operator|)
+operator|.
+name|reset
+argument_list|()
+expr_stmt|;
+return|return
+name|reuse
+return|;
+block|}
+else|else
+block|{
 return|return
 operator|new
 name|AssertingTermsEnum
@@ -585,6 +619,7 @@ argument_list|(
 name|termsEnum
 argument_list|)
 return|;
+block|}
 block|}
 block|}
 DECL|field|SEEK_EXACT
@@ -720,8 +755,11 @@ name|POSITIONED
 operator|:
 literal|"docs(...) called on unpositioned TermsEnum"
 assert|;
-comment|// TODO: should we give this thing a random to be super-evil,
-comment|// and randomly *not* unwrap?
+comment|// reuse if the codec reused
+specifier|final
+name|PostingsEnum
+name|actualReuse
+decl_stmt|;
 if|if
 condition|(
 name|reuse
@@ -729,7 +767,7 @@ operator|instanceof
 name|AssertingPostingsEnum
 condition|)
 block|{
-name|reuse
+name|actualReuse
 operator|=
 operator|(
 operator|(
@@ -741,6 +779,13 @@ operator|.
 name|in
 expr_stmt|;
 block|}
+else|else
+block|{
+name|actualReuse
+operator|=
+literal|null
+expr_stmt|;
+block|}
 name|PostingsEnum
 name|docs
 init|=
@@ -750,24 +795,55 @@ name|postings
 argument_list|(
 name|liveDocs
 argument_list|,
-name|reuse
+name|actualReuse
 argument_list|,
 name|flags
 argument_list|)
 decl_stmt|;
-return|return
+if|if
+condition|(
 name|docs
 operator|==
 literal|null
-condition|?
+condition|)
+block|{
+return|return
 literal|null
-else|:
+return|;
+block|}
+elseif|else
+if|if
+condition|(
+name|docs
+operator|==
+name|actualReuse
+condition|)
+block|{
+comment|// codec reused, reset asserting state
+operator|(
+operator|(
+name|AssertingPostingsEnum
+operator|)
+name|reuse
+operator|)
+operator|.
+name|reset
+argument_list|()
+expr_stmt|;
+return|return
+name|reuse
+return|;
+block|}
+else|else
+block|{
+return|return
 operator|new
 name|AssertingPostingsEnum
 argument_list|(
 name|docs
 argument_list|)
 return|;
+block|}
 block|}
 comment|// TODO: we should separately track if we are 'at the end' ?
 comment|// someone should not call next() after it returns null!!!!
@@ -1266,6 +1342,18 @@ name|in
 operator|+
 literal|")"
 return|;
+block|}
+DECL|method|reset
+name|void
+name|reset
+parameter_list|()
+block|{
+name|state
+operator|=
+name|State
+operator|.
+name|INITIAL
+expr_stmt|;
 block|}
 block|}
 DECL|enum|DocsEnumState
@@ -1880,6 +1968,31 @@ assert|;
 return|return
 name|payload
 return|;
+block|}
+DECL|method|reset
+name|void
+name|reset
+parameter_list|()
+block|{
+name|state
+operator|=
+name|DocsEnumState
+operator|.
+name|START
+expr_stmt|;
+name|doc
+operator|=
+name|in
+operator|.
+name|docID
+argument_list|()
+expr_stmt|;
+name|positionCount
+operator|=
+name|positionMax
+operator|=
+literal|0
+expr_stmt|;
 block|}
 block|}
 comment|/** Wraps a NumericDocValues but with additional asserts */
