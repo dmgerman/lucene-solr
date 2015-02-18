@@ -8048,6 +8048,16 @@ argument_list|,
 name|ASYNC
 argument_list|)
 expr_stmt|;
+name|copyPropertiesIfNotNull
+argument_list|(
+name|req
+operator|.
+name|getParams
+argument_list|()
+argument_list|,
+name|props
+argument_list|)
+expr_stmt|;
 name|ZkNodeProps
 name|m
 init|=
