@@ -192,7 +192,7 @@ name|DocIdSetIterator
 name|approximation
 parameter_list|()
 function_decl|;
-comment|/** Return whether the current doc ID that the iterator is on matches. This    *  method should only be called when the iterator is positionned, ie. not    *  when {@link DocIdSetIterator#docID()} is {@code -1} or    *  {@link DocIdSetIterator#NO_MORE_DOCS}. */
+comment|/** Return whether the current doc ID that the iterator is on matches. This    *  method should only be called when the iterator is positionned -- ie. not    *  when {@link DocIdSetIterator#docID()} is {@code -1} or    *  {@link DocIdSetIterator#NO_MORE_DOCS} -- and at most once. */
 DECL|method|matches
 specifier|public
 specifier|abstract
