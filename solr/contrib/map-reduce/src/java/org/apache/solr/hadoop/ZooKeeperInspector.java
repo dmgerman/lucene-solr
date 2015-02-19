@@ -1198,7 +1198,7 @@ argument_list|,
 literal|"solr.xml"
 argument_list|)
 argument_list|,
-literal|"<solr><cores><core name=\"collection1\" instanceDir=\".\" /></cores></solr>"
+literal|"<solr></solr>"
 argument_list|,
 literal|"UTF-8"
 argument_list|)

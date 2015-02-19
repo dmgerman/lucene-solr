@@ -1298,20 +1298,6 @@ argument_list|)
 expr_stmt|;
 name|zos
 operator|.
-name|write
-argument_list|(
-literal|"<cores><core name=\"collection1\" instanceDir=\".\"/></cores>"
-operator|.
-name|getBytes
-argument_list|(
-name|StandardCharsets
-operator|.
-name|UTF_8
-argument_list|)
-argument_list|)
-expr_stmt|;
-name|zos
-operator|.
 name|flush
 argument_list|()
 expr_stmt|;
