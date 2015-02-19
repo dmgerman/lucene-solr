@@ -2139,7 +2139,7 @@ operator|=
 name|parallelUpdates
 expr_stmt|;
 block|}
-comment|/**    * Upload a set of config files to Zookeeper and give it a name    * @param configPath {@link java.nio.file.Path} to the config files    * @param configName the name of the config    * @throws IOException if an IO error occurs    */
+comment|/**    * Upload a set of config files to Zookeeper and give it a name    *    * NOTE: You should only allow trusted users to upload configs.  If you    * are allowing client access to zookeeper, you should protect the    * /configs node against unauthorised write access.    *    * @param configPath {@link java.nio.file.Path} to the config files    * @param configName the name of the config    * @throws IOException if an IO error occurs    */
 DECL|method|uploadConfig
 specifier|public
 name|void
