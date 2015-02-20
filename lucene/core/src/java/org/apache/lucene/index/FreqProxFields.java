@@ -1402,11 +1402,6 @@ parameter_list|()
 throws|throws
 name|IOException
 block|{
-assert|assert
-literal|false
-operator|:
-literal|"Shouldn't be calling nextPositions on DocsEnum"
-assert|;
 return|return
 operator|-
 literal|1

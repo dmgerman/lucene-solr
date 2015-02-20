@@ -1242,7 +1242,8 @@ operator|=
 name|freq
 expr_stmt|;
 return|return
-literal|0
+operator|-
+literal|1
 return|;
 block|}
 assert|assert

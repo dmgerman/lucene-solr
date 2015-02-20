@@ -226,7 +226,7 @@ return|return
 name|atts
 return|;
 block|}
-comment|/**    * Returns the next position.  If there are no more    * positions, or the iterator does not support positions,    * this will return DocsEnum.NO_MORE_POSITIONS */
+comment|/**    * Returns the next position, or -1 if positions were not indexed.    * Calling this more than {@link #freq()} times is undefined.    */
 DECL|method|nextPosition
 specifier|public
 specifier|abstract

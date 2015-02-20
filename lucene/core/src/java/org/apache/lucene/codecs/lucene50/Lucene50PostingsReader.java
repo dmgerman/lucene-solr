@@ -2118,10 +2118,6 @@ parameter_list|()
 throws|throws
 name|IOException
 block|{
-assert|assert
-literal|false
-assert|;
-comment|// shouldn't be calling nextPosition() on this
 return|return
 operator|-
 literal|1
