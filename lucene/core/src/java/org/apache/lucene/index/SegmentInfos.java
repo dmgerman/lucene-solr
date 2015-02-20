@@ -2474,34 +2474,6 @@ name|dir
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**    * Returns all file names referenced by SegmentInfo.    * @deprecated Use {@link #files(boolean)} instead.    */
-annotation|@
-name|Deprecated
-DECL|method|files
-specifier|public
-specifier|final
-name|Collection
-argument_list|<
-name|String
-argument_list|>
-name|files
-parameter_list|(
-name|Directory
-name|dir
-parameter_list|,
-name|boolean
-name|includeSegmentsFile
-parameter_list|)
-throws|throws
-name|IOException
-block|{
-return|return
-name|files
-argument_list|(
-name|includeSegmentsFile
-argument_list|)
-return|;
-block|}
 comment|/** Returns all file names referenced by SegmentInfo.    *  The returned collection is recomputed on each    *  invocation.  */
 DECL|method|files
 specifier|public
@@ -2736,23 +2708,6 @@ argument_list|(
 name|dir
 argument_list|)
 expr_stmt|;
-block|}
-comment|/**     * Returns readable description of this segment.     * @deprecated Use {@link #toString()} instead.    */
-annotation|@
-name|Deprecated
-DECL|method|toString
-specifier|public
-name|String
-name|toString
-parameter_list|(
-name|Directory
-name|dir
-parameter_list|)
-block|{
-return|return
-name|toString
-argument_list|()
-return|;
 block|}
 comment|/** Returns readable description of this segment. */
 annotation|@

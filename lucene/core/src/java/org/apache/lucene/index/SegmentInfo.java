@@ -652,28 +652,6 @@ literal|0
 argument_list|)
 return|;
 block|}
-comment|/**    * Used for debugging.    *     * @deprecated Use {@link #toString(int)} instead.    */
-annotation|@
-name|Deprecated
-DECL|method|toString
-specifier|public
-name|String
-name|toString
-parameter_list|(
-name|Directory
-name|dir
-parameter_list|,
-name|int
-name|delCount
-parameter_list|)
-block|{
-return|return
-name|toString
-argument_list|(
-name|delCount
-argument_list|)
-return|;
-block|}
 comment|/** Used for debugging.  Format may suddenly change.    *    *<p>Current format looks like    *<code>_a(3.1):c45/4</code>, which means the segment's    *  name is<code>_a</code>; it was created with Lucene 3.1 (or    *  '?' if it's unknown); it's using compound file    *  format (would be<code>C</code> if not compound); it    *  has 45 documents; it has 4 deletions (this part is    *  left off when there are no deletions).</p>    */
 DECL|method|toString
 specifier|public

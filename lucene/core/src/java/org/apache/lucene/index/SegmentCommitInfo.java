@@ -993,28 +993,6 @@ operator|=
 name|delCount
 expr_stmt|;
 block|}
-comment|/**     * Returns a description of this segment.     * @deprecated Use {@link #toString(int)} instead.    */
-annotation|@
-name|Deprecated
-DECL|method|toString
-specifier|public
-name|String
-name|toString
-parameter_list|(
-name|Directory
-name|dir
-parameter_list|,
-name|int
-name|pendingDelCount
-parameter_list|)
-block|{
-return|return
-name|toString
-argument_list|(
-name|pendingDelCount
-argument_list|)
-return|;
-block|}
 comment|/** Returns a description of this segment. */
 DECL|method|toString
 specifier|public
