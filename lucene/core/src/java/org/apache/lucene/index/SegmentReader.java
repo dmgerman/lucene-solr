@@ -955,12 +955,6 @@ name|si
 operator|.
 name|info
 operator|.
-name|dir
-argument_list|,
-name|si
-operator|.
-name|info
-operator|.
 name|getDocCount
 argument_list|()
 operator|-

@@ -1969,8 +1969,6 @@ name|infos
 operator|.
 name|files
 argument_list|(
-name|dir
-argument_list|,
 literal|true
 argument_list|)
 argument_list|)

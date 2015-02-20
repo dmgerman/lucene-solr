@@ -4762,8 +4762,6 @@ name|segmentInfos
 operator|.
 name|files
 argument_list|(
-name|directory
-argument_list|,
 literal|true
 argument_list|)
 return|;
@@ -8839,8 +8837,6 @@ name|toCommit
 operator|.
 name|files
 argument_list|(
-name|directory
-argument_list|,
 literal|false
 argument_list|)
 expr_stmt|;
@@ -15718,12 +15714,6 @@ name|info
 operator|.
 name|toString
 argument_list|(
-name|info
-operator|.
-name|info
-operator|.
-name|dir
-argument_list|,
 name|numDeletedDocs
 argument_list|(
 name|info
@@ -15822,8 +15812,6 @@ name|toSync
 operator|.
 name|files
 argument_list|(
-name|directory
-argument_list|,
 literal|false
 argument_list|)
 decl_stmt|;
@@ -16227,8 +16215,6 @@ name|toSync
 operator|.
 name|files
 argument_list|(
-name|directory
-argument_list|,
 literal|false
 argument_list|)
 expr_stmt|;
