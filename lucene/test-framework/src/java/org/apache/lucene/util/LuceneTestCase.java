@@ -1819,6 +1819,37 @@ name|value
 parameter_list|()
 function_decl|;
 block|}
+comment|/**    * Annotation for test classes that should avoid mock filesystem types    * (because they test a bug that only happens on linux, for example).    *<p>    * You can avoid specific names {@link Class#getSimpleName()} or use    * the special value {@code *} to disable all mock filesystems.    */
+annotation|@
+name|Documented
+annotation|@
+name|Inherited
+annotation|@
+name|Retention
+argument_list|(
+name|RetentionPolicy
+operator|.
+name|RUNTIME
+argument_list|)
+annotation|@
+name|Target
+argument_list|(
+name|ElementType
+operator|.
+name|TYPE
+argument_list|)
+DECL|interface|SuppressFileSystems
+specifier|public
+annotation_defn|@interface
+name|SuppressFileSystems
+block|{
+DECL|method|value
+name|String
+index|[]
+name|value
+parameter_list|()
+function_decl|;
+block|}
 comment|/**    * Marks any suites which are known not to close all the temporary    * files. This may prevent temp. files and folders from being cleaned    * up after the suite is completed.    *     * @see LuceneTestCase#createTempDir()    * @see LuceneTestCase#createTempFile(String, String)    */
 annotation|@
 name|Documented
