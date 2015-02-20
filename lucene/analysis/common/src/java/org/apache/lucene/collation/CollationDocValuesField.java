@@ -64,7 +64,7 @@ name|lucene
 operator|.
 name|search
 operator|.
-name|DocValuesRangeFilter
+name|DocValuesRangeQuery
 import|;
 end_import
 
@@ -83,7 +83,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Indexes collation keys as a single-valued {@link SortedDocValuesField}.  *<p>  * This is more efficient that {@link CollationKeyAnalyzer} if the field   * only has one value: no uninversion is necessary to sort on the field,   * locale-sensitive range queries can still work via {@link DocValuesRangeFilter},   * and the underlying data structures built at index-time are likely more efficient   * and use less memory than FieldCache.  */
+comment|/**  * Indexes collation keys as a single-valued {@link SortedDocValuesField}.  *<p>  * This is more efficient that {@link CollationKeyAnalyzer} if the field   * only has one value: no uninversion is necessary to sort on the field,   * locale-sensitive range queries can still work via {@link DocValuesRangeQuery},   * and the underlying data structures built at index-time are likely more efficient   * and use less memory than FieldCache.  */
 end_comment
 
 begin_class

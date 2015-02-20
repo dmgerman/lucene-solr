@@ -1537,9 +1537,9 @@ operator|=
 operator|new
 name|ConstantScoreQuery
 argument_list|(
-name|DocValuesRangeFilter
+name|DocValuesRangeQuery
 operator|.
-name|newIntRange
+name|newLongRange
 argument_list|(
 name|field
 operator|.
@@ -1553,6 +1553,9 @@ condition|?
 literal|null
 else|:
 name|minValue
+operator|.
+name|longValue
+argument_list|()
 argument_list|,
 name|max
 operator|==
@@ -1561,6 +1564,9 @@ condition|?
 literal|null
 else|:
 name|maxValue
+operator|.
+name|longValue
+argument_list|()
 argument_list|,
 name|minInclusive
 argument_list|,

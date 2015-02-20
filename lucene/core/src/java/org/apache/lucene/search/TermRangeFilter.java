@@ -31,7 +31,7 @@ comment|/*  * Licensed to the Apache Software Foundation (ASF) under one or more
 end_comment
 
 begin_comment
-comment|/**  * A Filter that restricts search results to a range of term  * values in a given field.  *  *<p>This filter matches the documents looking for terms that fall into the  * supplied range according to {@link  * Byte#compareTo(Byte)},  It is not intended  * for numerical ranges; use {@link NumericRangeFilter} instead.  *  *<p>If you construct a large number of range filters with different ranges but on the   * same field, {@link DocValuesRangeFilter} may have significantly better performance.   * @since 2.9  */
+comment|/**  * A Filter that restricts search results to a range of term  * values in a given field.  *  *<p>This filter matches the documents looking for terms that fall into the  * supplied range according to {@link  * Byte#compareTo(Byte)},  It is not intended  * for numerical ranges; use {@link NumericRangeFilter} instead.  * @since 2.9  */
 end_comment
 
 begin_class

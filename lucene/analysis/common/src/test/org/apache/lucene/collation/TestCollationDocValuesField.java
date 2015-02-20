@@ -116,6 +116,22 @@ name|lucene
 operator|.
 name|search
 operator|.
+name|BooleanClause
+operator|.
+name|Occur
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|search
+operator|.
 name|BooleanQuery
 import|;
 end_import
@@ -144,7 +160,7 @@ name|lucene
 operator|.
 name|search
 operator|.
-name|DocValuesRangeFilter
+name|DocValuesRangeQuery
 import|;
 end_import
 
@@ -257,22 +273,6 @@ operator|.
 name|search
 operator|.
 name|TopDocs
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|search
-operator|.
-name|BooleanClause
-operator|.
-name|Occur
 import|;
 end_import
 
@@ -846,10 +846,7 @@ decl_stmt|;
 name|Query
 name|query
 init|=
-operator|new
-name|ConstantScoreQuery
-argument_list|(
-name|DocValuesRangeFilter
+name|DocValuesRangeQuery
 operator|.
 name|newBytesRefRange
 argument_list|(
@@ -862,7 +859,6 @@ argument_list|,
 literal|true
 argument_list|,
 literal|true
-argument_list|)
 argument_list|)
 decl_stmt|;
 name|doTestRanges
