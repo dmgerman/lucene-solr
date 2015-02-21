@@ -2196,9 +2196,9 @@ name|homeDir
 init|=
 name|solrHomeDirectory
 decl_stmt|;
-name|Files
+name|IOUtils
 operator|.
-name|delete
+name|rm
 argument_list|(
 name|homeDir
 operator|.

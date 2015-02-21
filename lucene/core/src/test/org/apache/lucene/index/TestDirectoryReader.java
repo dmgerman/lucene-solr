@@ -3455,9 +3455,9 @@ parameter_list|)
 block|{
 comment|// expected
 block|}
-name|Files
+name|IOUtils
 operator|.
-name|delete
+name|rm
 argument_list|(
 name|dirFile
 argument_list|)
@@ -7506,9 +7506,9 @@ argument_list|(
 literal|"testIndexExistsOnNonExistentDirectory"
 argument_list|)
 decl_stmt|;
-name|Files
+name|IOUtils
 operator|.
-name|delete
+name|rm
 argument_list|(
 name|tempDir
 argument_list|)

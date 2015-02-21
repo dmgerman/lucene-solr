@@ -1222,6 +1222,20 @@ operator|.
 name|listAll
 argument_list|()
 control|)
+block|{
+comment|// hack 2: see TODO in ExtrasFS (ideally it would always return 0 byte
+comment|// size for extras it creates, even though the size of non-regular files is not defined)
+if|if
+condition|(
+operator|!
+name|file
+operator|.
+name|startsWith
+argument_list|(
+literal|"extra"
+argument_list|)
+condition|)
+block|{
 name|size
 operator|+=
 name|in
@@ -1231,6 +1245,8 @@ argument_list|(
 name|file
 argument_list|)
 expr_stmt|;
+block|}
+block|}
 return|return
 name|size
 return|;

@@ -1009,6 +1009,16 @@ literal|"testDeleteFile"
 argument_list|)
 argument_list|)
 decl_stmt|;
+name|int
+name|count
+init|=
+name|dir
+operator|.
+name|listAll
+argument_list|()
+operator|.
+name|length
+decl_stmt|;
 name|dir
 operator|.
 name|createOutput
@@ -1023,6 +1033,20 @@ operator|.
 name|close
 argument_list|()
 expr_stmt|;
+name|assertEquals
+argument_list|(
+name|count
+operator|+
+literal|1
+argument_list|,
+name|dir
+operator|.
+name|listAll
+argument_list|()
+operator|.
+name|length
+argument_list|)
+expr_stmt|;
 name|dir
 operator|.
 name|deleteFile
@@ -1032,7 +1056,7 @@ argument_list|)
 expr_stmt|;
 name|assertEquals
 argument_list|(
-literal|0
+name|count
 argument_list|,
 name|dir
 operator|.
@@ -2877,6 +2901,19 @@ range|:
 name|files
 control|)
 block|{
+if|if
+condition|(
+operator|!
+name|file
+operator|.
+name|startsWith
+argument_list|(
+name|name
+argument_list|)
+condition|)
+block|{
+continue|continue;
+block|}
 comment|//System.out.println("file:" + file);
 try|try
 block|{
@@ -4781,19 +4818,16 @@ literal|"afile"
 argument_list|)
 argument_list|)
 expr_stmt|;
-comment|// directory is empty
-name|assertEquals
-argument_list|(
-literal|0
-argument_list|,
+name|int
+name|fileCount
+init|=
 name|fsdir
 operator|.
 name|listAll
 argument_list|()
 operator|.
 name|length
-argument_list|)
-expr_stmt|;
+decl_stmt|;
 comment|// fsync it
 try|try
 block|{
@@ -4835,10 +4869,10 @@ parameter_list|)
 block|{
 comment|// ok
 block|}
-comment|// directory is still empty
+comment|// no new files created
 name|assertEquals
 argument_list|(
-literal|0
+name|fileCount
 argument_list|,
 name|fsdir
 operator|.

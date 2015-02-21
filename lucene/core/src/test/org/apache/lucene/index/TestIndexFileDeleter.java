@@ -1589,8 +1589,6 @@ argument_list|()
 argument_list|)
 expr_stmt|;
 comment|// no inflation
-name|IndexFileDeleter
-operator|.
 name|inflateGens
 argument_list|(
 name|sis
@@ -1705,8 +1703,6 @@ name|close
 argument_list|()
 expr_stmt|;
 comment|// ensure inflation
-name|IndexFileDeleter
-operator|.
 name|inflateGens
 argument_list|(
 name|sis
@@ -1756,8 +1752,6 @@ operator|.
 name|close
 argument_list|()
 expr_stmt|;
-name|IndexFileDeleter
-operator|.
 name|inflateGens
 argument_list|(
 name|sis
@@ -1844,8 +1838,6 @@ name|counter
 argument_list|)
 expr_stmt|;
 comment|// no inflation
-name|IndexFileDeleter
-operator|.
 name|inflateGens
 argument_list|(
 name|sis
@@ -1900,8 +1892,6 @@ name|close
 argument_list|()
 expr_stmt|;
 comment|// ensure inflation
-name|IndexFileDeleter
-operator|.
 name|inflateGens
 argument_list|(
 name|sis
@@ -1955,8 +1945,6 @@ operator|.
 name|close
 argument_list|()
 expr_stmt|;
-name|IndexFileDeleter
-operator|.
 name|inflateGens
 argument_list|(
 name|sis
@@ -2137,8 +2125,6 @@ argument_list|()
 argument_list|)
 expr_stmt|;
 comment|// no inflation
-name|IndexFileDeleter
-operator|.
 name|inflateGens
 argument_list|(
 name|sis
@@ -2199,8 +2185,6 @@ name|close
 argument_list|()
 expr_stmt|;
 comment|// ensure inflation
-name|IndexFileDeleter
-operator|.
 name|inflateGens
 argument_list|(
 name|sis
@@ -2320,8 +2304,6 @@ name|close
 argument_list|()
 expr_stmt|;
 comment|// no inflation
-name|IndexFileDeleter
-operator|.
 name|inflateGens
 argument_list|(
 name|sis
@@ -2449,8 +2431,6 @@ name|close
 argument_list|()
 expr_stmt|;
 comment|// no inflation
-name|IndexFileDeleter
-operator|.
 name|inflateGens
 argument_list|(
 name|sis
@@ -2490,6 +2470,99 @@ name|dir
 operator|.
 name|close
 argument_list|()
+expr_stmt|;
+block|}
+comment|// IFD's inflater is "raw" and expects to only see codec files,
+comment|// and rightfully so, it filters them out.
+DECL|method|inflateGens
+specifier|static
+name|void
+name|inflateGens
+parameter_list|(
+name|SegmentInfos
+name|sis
+parameter_list|,
+name|Collection
+argument_list|<
+name|String
+argument_list|>
+name|files
+parameter_list|,
+name|InfoStream
+name|stream
+parameter_list|)
+block|{
+name|List
+argument_list|<
+name|String
+argument_list|>
+name|filtered
+init|=
+operator|new
+name|ArrayList
+argument_list|<>
+argument_list|()
+decl_stmt|;
+for|for
+control|(
+name|String
+name|file
+range|:
+name|files
+control|)
+block|{
+if|if
+condition|(
+name|IndexFileNames
+operator|.
+name|CODEC_FILE_PATTERN
+operator|.
+name|matcher
+argument_list|(
+name|file
+argument_list|)
+operator|.
+name|matches
+argument_list|()
+operator|||
+name|file
+operator|.
+name|startsWith
+argument_list|(
+name|IndexFileNames
+operator|.
+name|SEGMENTS
+argument_list|)
+operator|||
+name|file
+operator|.
+name|startsWith
+argument_list|(
+name|IndexFileNames
+operator|.
+name|PENDING_SEGMENTS
+argument_list|)
+condition|)
+block|{
+name|filtered
+operator|.
+name|add
+argument_list|(
+name|file
+argument_list|)
+expr_stmt|;
+block|}
+block|}
+name|IndexFileDeleter
+operator|.
+name|inflateGens
+argument_list|(
+name|sis
+argument_list|,
+name|filtered
+argument_list|,
+name|stream
+argument_list|)
 expr_stmt|;
 block|}
 comment|// LUCENE-5919

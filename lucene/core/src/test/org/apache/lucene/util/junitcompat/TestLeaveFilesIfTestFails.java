@@ -280,9 +280,9 @@ name|file
 argument_list|)
 argument_list|)
 expr_stmt|;
-name|Files
+name|IOUtils
 operator|.
-name|delete
+name|rm
 argument_list|(
 name|Nested1
 operator|.
