@@ -19,6 +19,34 @@ comment|/*  * Licensed to the Apache Software Foundation (ASF) under one or more
 end_comment
 
 begin_import
+import|import static
+name|com
+operator|.
+name|carrotsearch
+operator|.
+name|randomizedtesting
+operator|.
+name|RandomizedTest
+operator|.
+name|randomInt
+import|;
+end_import
+
+begin_import
+import|import static
+name|com
+operator|.
+name|carrotsearch
+operator|.
+name|randomizedtesting
+operator|.
+name|RandomizedTest
+operator|.
+name|randomIntBetween
+import|;
+end_import
+
+begin_import
 import|import
 name|java
 operator|.
@@ -70,34 +98,6 @@ end_import
 
 begin_import
 import|import
-name|com
-operator|.
-name|carrotsearch
-operator|.
-name|randomizedtesting
-operator|.
-name|annotations
-operator|.
-name|Repeat
-import|;
-end_import
-
-begin_import
-import|import
-name|com
-operator|.
-name|spatial4j
-operator|.
-name|core
-operator|.
-name|shape
-operator|.
-name|Shape
-import|;
-end_import
-
-begin_import
-import|import
 name|org
 operator|.
 name|apache
@@ -120,7 +120,7 @@ name|lucene
 operator|.
 name|queries
 operator|.
-name|TermsFilter
+name|TermsQuery
 import|;
 end_import
 
@@ -135,6 +135,20 @@ operator|.
 name|search
 operator|.
 name|Filter
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|search
+operator|.
+name|QueryWrapperFilter
 import|;
 end_import
 
@@ -283,30 +297,30 @@ import|;
 end_import
 
 begin_import
-import|import static
+import|import
 name|com
 operator|.
 name|carrotsearch
 operator|.
 name|randomizedtesting
 operator|.
-name|RandomizedTest
+name|annotations
 operator|.
-name|randomInt
+name|Repeat
 import|;
 end_import
 
 begin_import
-import|import static
+import|import
 name|com
 operator|.
-name|carrotsearch
+name|spatial4j
 operator|.
-name|randomizedtesting
+name|core
 operator|.
-name|RandomizedTest
+name|shape
 operator|.
-name|randomIntBetween
+name|Shape
 import|;
 end_import
 
@@ -836,9 +850,13 @@ block|}
 name|filter
 operator|=
 operator|new
-name|TermsFilter
+name|QueryWrapperFilter
+argument_list|(
+operator|new
+name|TermsQuery
 argument_list|(
 name|terms
+argument_list|)
 argument_list|)
 expr_stmt|;
 block|}

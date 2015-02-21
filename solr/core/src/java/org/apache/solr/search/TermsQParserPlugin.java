@@ -18,6 +18,28 @@ end_comment
 
 begin_import
 import|import
+name|java
+operator|.
+name|util
+operator|.
+name|Arrays
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
+name|util
+operator|.
+name|regex
+operator|.
+name|Pattern
+import|;
+end_import
+
+begin_import
+import|import
 name|org
 operator|.
 name|apache
@@ -40,7 +62,7 @@ name|lucene
 operator|.
 name|queries
 operator|.
-name|TermsFilter
+name|TermsQuery
 import|;
 end_import
 
@@ -290,28 +312,6 @@ name|FieldType
 import|;
 end_import
 
-begin_import
-import|import
-name|java
-operator|.
-name|util
-operator|.
-name|Arrays
-import|;
-end_import
-
-begin_import
-import|import
-name|java
-operator|.
-name|util
-operator|.
-name|regex
-operator|.
-name|Pattern
-import|;
-end_import
-
 begin_comment
 comment|/**  * Finds documents whose specified field has any of the specified values. It's like  * {@link TermQParserPlugin} but multi-valued, and supports a variety of internal algorithms.  *<br>Parameters:  *<br><code>f</code>: The field name (mandatory)  *<br><code>separator</code>: the separator delimiting the values in the query string, defaulting to a comma.  * If it's a " " then it splits on any consecutive whitespace.  *<br><code>method</code>: Any of termsFilter (default), booleanQuery, automaton, docValuesTermsFilter.  *<p>  * Note that if no values are specified then the query matches no documents.  */
 end_comment
@@ -388,11 +388,15 @@ parameter_list|)
 block|{
 return|return
 operator|new
-name|TermsFilter
+name|QueryWrapperFilter
+argument_list|(
+operator|new
+name|TermsQuery
 argument_list|(
 name|fname
 argument_list|,
 name|bytesRefs
+argument_list|)
 argument_list|)
 return|;
 block|}

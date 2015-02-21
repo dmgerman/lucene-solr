@@ -20,29 +20,21 @@ end_comment
 
 begin_import
 import|import
-name|com
+name|java
 operator|.
-name|spatial4j
+name|util
 operator|.
-name|core
-operator|.
-name|shape
-operator|.
-name|Point
+name|ArrayList
 import|;
 end_import
 
 begin_import
 import|import
-name|com
+name|java
 operator|.
-name|spatial4j
+name|util
 operator|.
-name|core
-operator|.
-name|shape
-operator|.
-name|Shape
+name|List
 import|;
 end_import
 
@@ -56,7 +48,7 @@ name|lucene
 operator|.
 name|queries
 operator|.
-name|TermsFilter
+name|TermsQuery
 import|;
 end_import
 
@@ -71,6 +63,20 @@ operator|.
 name|search
 operator|.
 name|Filter
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|search
+operator|.
+name|QueryWrapperFilter
 import|;
 end_import
 
@@ -206,26 +212,34 @@ end_import
 
 begin_import
 import|import
-name|java
+name|com
 operator|.
-name|util
+name|spatial4j
 operator|.
-name|ArrayList
+name|core
+operator|.
+name|shape
+operator|.
+name|Point
 import|;
 end_import
 
 begin_import
 import|import
-name|java
+name|com
 operator|.
-name|util
+name|spatial4j
 operator|.
-name|List
+name|core
+operator|.
+name|shape
+operator|.
+name|Shape
 import|;
 end_import
 
 begin_comment
-comment|/**  * A basic implementation of {@link PrefixTreeStrategy} using a large  * {@link TermsFilter} of all the cells from  * {@link SpatialPrefixTree#getTreeCellIterator(com.spatial4j.core.shape.Shape, int)}.  * It only supports the search of indexed Point shapes.  *<p>  * The precision of query shapes (distErrPct) is an important factor in using  * this Strategy. If the precision is too precise then it will result in many  * terms which will amount to a slower query.  *  * @lucene.experimental  */
+comment|/**  * A basic implementation of {@link PrefixTreeStrategy} using a large  * {@link TermsQuery} of all the cells from  * {@link SpatialPrefixTree#getTreeCellIterator(com.spatial4j.core.shape.Shape, int)}.  * It only supports the search of indexed Point shapes.  *<p>  * The precision of query shapes (distErrPct) is an important factor in using  * this Strategy. If the precision is too precise then it will result in many  * terms which will amount to a slower query.  *  * @lucene.experimental  */
 end_comment
 
 begin_class
@@ -486,12 +500,16 @@ block|}
 comment|//unfortunately TermsFilter will needlessly sort& dedupe
 return|return
 operator|new
-name|TermsFilter
+name|QueryWrapperFilter
+argument_list|(
+operator|new
+name|TermsQuery
 argument_list|(
 name|getFieldName
 argument_list|()
 argument_list|,
 name|terms
+argument_list|)
 argument_list|)
 return|;
 block|}
