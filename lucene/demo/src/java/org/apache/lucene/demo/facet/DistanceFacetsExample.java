@@ -364,20 +364,6 @@ name|lucene
 operator|.
 name|queries
 operator|.
-name|BooleanFilter
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|queries
-operator|.
 name|function
 operator|.
 name|ValueSource
@@ -395,6 +381,20 @@ operator|.
 name|search
 operator|.
 name|BooleanClause
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|search
+operator|.
+name|BooleanQuery
 import|;
 end_import
 
@@ -451,6 +451,34 @@ operator|.
 name|search
 operator|.
 name|NumericRangeFilter
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|search
+operator|.
+name|NumericRangeQuery
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|search
+operator|.
+name|QueryWrapperFilter
 import|;
 end_import
 
@@ -1331,11 +1359,11 @@ literal|180
 argument_list|)
 expr_stmt|;
 block|}
-name|BooleanFilter
+name|BooleanQuery
 name|f
 init|=
 operator|new
-name|BooleanFilter
+name|BooleanQuery
 argument_list|()
 decl_stmt|;
 comment|// Add latitude range filter:
@@ -1372,7 +1400,7 @@ name|BooleanClause
 operator|.
 name|Occur
 operator|.
-name|MUST
+name|FILTER
 argument_list|)
 expr_stmt|;
 comment|// Add longitude range filter:
@@ -1385,18 +1413,18 @@ condition|)
 block|{
 comment|// The bounding box crosses the international date
 comment|// line:
-name|BooleanFilter
+name|BooleanQuery
 name|lonF
 init|=
 operator|new
-name|BooleanFilter
+name|BooleanQuery
 argument_list|()
 decl_stmt|;
 name|lonF
 operator|.
 name|add
 argument_list|(
-name|NumericRangeFilter
+name|NumericRangeQuery
 operator|.
 name|newDoubleRange
 argument_list|(
@@ -1427,7 +1455,7 @@ name|lonF
 operator|.
 name|add
 argument_list|(
-name|NumericRangeFilter
+name|NumericRangeQuery
 operator|.
 name|newDoubleRange
 argument_list|(
@@ -1503,12 +1531,16 @@ name|BooleanClause
 operator|.
 name|Occur
 operator|.
-name|MUST
+name|FILTER
 argument_list|)
 expr_stmt|;
 block|}
 return|return
+operator|new
+name|QueryWrapperFilter
+argument_list|(
 name|f
+argument_list|)
 return|;
 block|}
 comment|/** User runs a query and counts facets. */
