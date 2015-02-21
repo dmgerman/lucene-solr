@@ -769,7 +769,12 @@ operator|.
 name|getName
 argument_list|()
 argument_list|,
-literal|null
+name|TermScorer
+operator|.
+name|class
+operator|.
+name|getName
+argument_list|()
 argument_list|)
 expr_stmt|;
 name|checkHits
@@ -792,9 +797,7 @@ operator|.
 name|getName
 argument_list|()
 argument_list|,
-name|ConstantScoreQuery
-operator|.
-name|ConstantScoreScorer
+name|TermScorer
 operator|.
 name|class
 operator|.
