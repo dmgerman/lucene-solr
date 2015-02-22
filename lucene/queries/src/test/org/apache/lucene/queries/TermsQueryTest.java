@@ -618,6 +618,10 @@ expr_stmt|;
 block|}
 if|if
 condition|(
+name|numTerms
+operator|>
+literal|1
+operator|&&
 name|random
 argument_list|()
 operator|.
@@ -670,6 +674,19 @@ operator|.
 name|close
 argument_list|()
 expr_stmt|;
+if|if
+condition|(
+name|reader
+operator|.
+name|numDocs
+argument_list|()
+operator|==
+literal|0
+condition|)
+block|{
+comment|// may occasionally happen if all documents got the same term
+continue|continue;
+block|}
 for|for
 control|(
 name|int
