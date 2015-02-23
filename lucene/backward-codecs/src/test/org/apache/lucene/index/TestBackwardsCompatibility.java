@@ -1571,7 +1571,11 @@ name|String
 index|[]
 name|oldNames
 init|=
-block|{   }
+block|{
+literal|"5.0.0-cfs"
+block|,
+literal|"5.0.0-nocfs"
+block|}
 decl_stmt|;
 DECL|field|unsupportedNames
 specifier|final
