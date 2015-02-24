@@ -2885,9 +2885,13 @@ if|if
 condition|(
 name|PostingsEnum
 operator|.
-name|requiresPositions
+name|featureRequested
 argument_list|(
 name|flags
+argument_list|,
+name|PostingsEnum
+operator|.
+name|POSITIONS
 argument_list|)
 condition|)
 block|{
