@@ -17,7 +17,7 @@ comment|/*  * Licensed to the Apache Software Foundation (ASF) under one or more
 end_comment
 
 begin_comment
-comment|/** Represents hits returned by {@link  * IndexSearcher#search(Query,Filter,int,Sort)}.  */
+comment|/** Represents hits returned by {@link  * IndexSearcher#search(Query,int,Sort)}.  */
 end_comment
 
 begin_class

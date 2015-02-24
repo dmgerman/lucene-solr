@@ -38,7 +38,7 @@ name|FieldDoc
 extends|extends
 name|ScoreDoc
 block|{
-comment|/** Expert: The values which are used to sort the referenced document.    * The order of these will match the original sort criteria given by a    * Sort object.  Each Object will have been returned from    * the<code>value</code> method corresponding    * FieldComparator used to sort this field.    * @see Sort    * @see IndexSearcher#search(Query,Filter,int,Sort)    */
+comment|/** Expert: The values which are used to sort the referenced document.    * The order of these will match the original sort criteria given by a    * Sort object.  Each Object will have been returned from    * the<code>value</code> method corresponding    * FieldComparator used to sort this field.    * @see Sort    * @see IndexSearcher#search(Query,int,Sort)    */
 DECL|field|fields
 specifier|public
 name|Object

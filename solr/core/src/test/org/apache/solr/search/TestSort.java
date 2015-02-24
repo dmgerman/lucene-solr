@@ -304,6 +304,20 @@ name|lucene
 operator|.
 name|search
 operator|.
+name|FilteredQuery
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|search
+operator|.
 name|IndexSearcher
 import|;
 end_import
@@ -474,7 +488,7 @@ name|lucene
 operator|.
 name|util
 operator|.
-name|Bits
+name|BitDocIdSet
 import|;
 end_import
 
@@ -488,7 +502,7 @@ name|lucene
 operator|.
 name|util
 operator|.
-name|BitDocIdSet
+name|Bits
 import|;
 end_import
 
@@ -2214,10 +2228,14 @@ operator|.
 name|search
 argument_list|(
 operator|new
+name|FilteredQuery
+argument_list|(
+operator|new
 name|MatchAllDocsQuery
 argument_list|()
 argument_list|,
 name|filt
+argument_list|)
 argument_list|,
 name|myCollector
 argument_list|)

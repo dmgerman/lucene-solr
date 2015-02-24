@@ -4362,8 +4362,6 @@ name|search
 argument_list|(
 name|q
 argument_list|,
-literal|null
-argument_list|,
 literal|10
 argument_list|,
 operator|new
@@ -4413,8 +4411,6 @@ operator|.
 name|search
 argument_list|(
 name|q
-argument_list|,
-literal|null
 argument_list|,
 literal|10
 argument_list|,

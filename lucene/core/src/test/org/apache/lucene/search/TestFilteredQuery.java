@@ -931,8 +931,6 @@ name|search
 argument_list|(
 name|filteredquery
 argument_list|,
-literal|null
-argument_list|,
 literal|1000
 argument_list|)
 operator|.
@@ -978,8 +976,6 @@ operator|.
 name|search
 argument_list|(
 name|filteredquery
-argument_list|,
-literal|null
 argument_list|,
 literal|1000
 argument_list|,
@@ -1059,8 +1055,6 @@ name|search
 argument_list|(
 name|filteredquery
 argument_list|,
-literal|null
-argument_list|,
 literal|1000
 argument_list|)
 operator|.
@@ -1114,8 +1108,6 @@ operator|.
 name|search
 argument_list|(
 name|filteredquery
-argument_list|,
-literal|null
 argument_list|,
 literal|1000
 argument_list|)
@@ -1178,8 +1170,6 @@ operator|.
 name|search
 argument_list|(
 name|filteredquery
-argument_list|,
-literal|null
 argument_list|,
 literal|1000
 argument_list|)
@@ -1254,8 +1244,6 @@ operator|.
 name|search
 argument_list|(
 name|filteredquery
-argument_list|,
-literal|null
 argument_list|,
 literal|1000
 argument_list|)
@@ -1584,8 +1572,6 @@ name|search
 argument_list|(
 name|q1
 argument_list|,
-literal|null
-argument_list|,
 literal|1000
 argument_list|)
 operator|.
@@ -1600,8 +1586,6 @@ operator|.
 name|search
 argument_list|(
 name|q2
-argument_list|,
-literal|null
 argument_list|,
 literal|1000
 argument_list|)
@@ -1736,8 +1720,6 @@ operator|.
 name|search
 argument_list|(
 name|filteredquery
-argument_list|,
-literal|null
 argument_list|,
 literal|1000
 argument_list|)
@@ -1907,8 +1889,6 @@ name|search
 argument_list|(
 name|bq
 argument_list|,
-literal|null
-argument_list|,
 literal|1000
 argument_list|)
 operator|.
@@ -2076,8 +2056,6 @@ operator|.
 name|search
 argument_list|(
 name|bq
-argument_list|,
-literal|null
 argument_list|,
 literal|1000
 argument_list|)

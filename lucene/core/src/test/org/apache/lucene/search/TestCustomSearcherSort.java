@@ -633,8 +633,6 @@ name|search
 argument_list|(
 name|query
 argument_list|,
-literal|null
-argument_list|,
 name|Integer
 operator|.
 name|MAX_VALUE
@@ -720,8 +718,6 @@ operator|.
 name|search
 argument_list|(
 name|query
-argument_list|,
-literal|null
 argument_list|,
 name|Integer
 operator|.
@@ -1098,9 +1094,6 @@ parameter_list|(
 name|Query
 name|query
 parameter_list|,
-name|Filter
-name|filter
-parameter_list|,
 name|int
 name|nDocs
 parameter_list|,
@@ -1165,8 +1158,6 @@ name|search
 argument_list|(
 name|bq
 argument_list|,
-name|filter
-argument_list|,
 name|nDocs
 argument_list|,
 name|sort
@@ -1182,9 +1173,6 @@ name|search
 parameter_list|(
 name|Query
 name|query
-parameter_list|,
-name|Filter
-name|filter
 parameter_list|,
 name|int
 name|nDocs
@@ -1246,8 +1234,6 @@ operator|.
 name|search
 argument_list|(
 name|bq
-argument_list|,
-name|filter
 argument_list|,
 name|nDocs
 argument_list|)

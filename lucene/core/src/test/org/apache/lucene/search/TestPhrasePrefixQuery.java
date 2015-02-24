@@ -582,8 +582,6 @@ name|search
 argument_list|(
 name|query1
 argument_list|,
-literal|null
-argument_list|,
 literal|1000
 argument_list|)
 operator|.
@@ -605,8 +603,6 @@ operator|.
 name|search
 argument_list|(
 name|query2
-argument_list|,
-literal|null
 argument_list|,
 literal|1000
 argument_list|)

@@ -526,9 +526,13 @@ name|indexSearcher
 operator|.
 name|search
 argument_list|(
+operator|new
+name|FilteredQuery
+argument_list|(
 name|booleanQuery
 argument_list|,
 name|filter
+argument_list|)
 argument_list|,
 literal|1000
 argument_list|)

@@ -322,8 +322,6 @@ name|search
 argument_list|(
 name|q
 argument_list|,
-literal|null
-argument_list|,
 name|maxResults
 argument_list|)
 decl_stmt|;

@@ -4479,8 +4479,6 @@ name|search
 argument_list|(
 name|q
 argument_list|,
-literal|null
-argument_list|,
 name|documents
 operator|.
 name|size

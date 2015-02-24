@@ -617,8 +617,6 @@ name|search
 argument_list|(
 name|newq
 argument_list|,
-literal|null
-argument_list|,
 name|topCollector
 argument_list|)
 expr_stmt|;

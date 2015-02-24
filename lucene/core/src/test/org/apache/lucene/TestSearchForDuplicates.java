@@ -820,8 +820,6 @@ name|search
 argument_list|(
 name|query
 argument_list|,
-literal|null
-argument_list|,
 name|MAX_DOCS
 argument_list|,
 name|sort
@@ -933,8 +931,6 @@ operator|.
 name|search
 argument_list|(
 name|booleanQuery
-argument_list|,
-literal|null
 argument_list|,
 name|MAX_DOCS
 argument_list|,

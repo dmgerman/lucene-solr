@@ -899,8 +899,6 @@ name|search
 argument_list|(
 name|query
 argument_list|,
-literal|null
-argument_list|,
 literal|3
 argument_list|,
 name|sort
@@ -989,8 +987,6 @@ operator|.
 name|search
 argument_list|(
 name|query
-argument_list|,
-literal|null
 argument_list|,
 literal|3
 argument_list|,
@@ -1162,8 +1158,6 @@ operator|.
 name|search
 argument_list|(
 name|query
-argument_list|,
-literal|null
 argument_list|,
 literal|3
 argument_list|,
@@ -1346,8 +1340,6 @@ operator|.
 name|search
 argument_list|(
 name|query
-argument_list|,
-literal|null
 argument_list|,
 literal|3
 argument_list|,
@@ -1532,8 +1524,6 @@ operator|.
 name|search
 argument_list|(
 name|query
-argument_list|,
-literal|null
 argument_list|,
 literal|3
 argument_list|,
@@ -1791,8 +1781,6 @@ name|search
 argument_list|(
 name|query
 argument_list|,
-literal|null
-argument_list|,
 literal|3
 argument_list|,
 name|sort
@@ -1961,8 +1949,6 @@ operator|new
 name|MatchAllDocsQuery
 argument_list|()
 argument_list|,
-literal|null
-argument_list|,
 literal|3
 argument_list|,
 name|sort
@@ -2127,8 +2113,6 @@ argument_list|(
 operator|new
 name|MatchAllDocsQuery
 argument_list|()
-argument_list|,
-literal|null
 argument_list|,
 literal|3
 argument_list|,
@@ -2511,8 +2495,6 @@ argument_list|(
 operator|new
 name|MatchAllDocsQuery
 argument_list|()
-argument_list|,
-literal|null
 argument_list|,
 literal|3
 argument_list|,

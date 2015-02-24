@@ -926,9 +926,6 @@ operator|new
 name|MatchAllDocsQuery
 argument_list|()
 argument_list|,
-literal|null
-comment|/*Filter */
-argument_list|,
 name|fc
 argument_list|)
 expr_stmt|;

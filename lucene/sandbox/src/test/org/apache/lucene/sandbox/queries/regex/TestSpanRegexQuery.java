@@ -448,8 +448,6 @@ name|search
 argument_list|(
 name|sfq
 argument_list|,
-literal|null
-argument_list|,
 literal|1000
 argument_list|)
 operator|.

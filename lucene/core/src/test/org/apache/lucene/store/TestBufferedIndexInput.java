@@ -1388,8 +1388,6 @@ argument_list|(
 name|bbb
 argument_list|)
 argument_list|,
-literal|null
-argument_list|,
 literal|1000
 argument_list|)
 operator|.
@@ -1462,8 +1460,6 @@ argument_list|(
 name|bbb
 argument_list|)
 argument_list|,
-literal|null
-argument_list|,
 literal|1000
 argument_list|)
 operator|.
@@ -1506,8 +1502,6 @@ literal|"33"
 argument_list|)
 argument_list|)
 argument_list|,
-literal|null
-argument_list|,
 literal|1000
 argument_list|)
 operator|.
@@ -1538,8 +1532,6 @@ name|TermQuery
 argument_list|(
 name|aaa
 argument_list|)
-argument_list|,
-literal|null
 argument_list|,
 literal|1000
 argument_list|)

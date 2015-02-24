@@ -256,8 +256,6 @@ operator|new
 name|MatchAllDocsQuery
 argument_list|()
 argument_list|,
-literal|null
-argument_list|,
 name|c
 argument_list|)
 expr_stmt|;

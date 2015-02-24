@@ -949,8 +949,6 @@ argument_list|,
 name|T
 argument_list|)
 argument_list|,
-literal|null
-argument_list|,
 literal|1000
 argument_list|)
 operator|.
@@ -1041,8 +1039,6 @@ operator|.
 name|CONSTANT_SCORE_BOOLEAN_QUERY_REWRITE
 argument_list|)
 argument_list|,
-literal|null
-argument_list|,
 literal|1000
 argument_list|)
 operator|.
@@ -1121,8 +1117,6 @@ name|MultiTermQuery
 operator|.
 name|CONSTANT_SCORE_FILTER_REWRITE
 argument_list|)
-argument_list|,
-literal|null
 argument_list|,
 literal|1000
 argument_list|)
@@ -1274,8 +1268,6 @@ name|search
 argument_list|(
 name|bq
 argument_list|,
-literal|null
-argument_list|,
 literal|1000
 argument_list|)
 operator|.
@@ -1400,8 +1392,6 @@ name|search
 argument_list|(
 name|bq
 argument_list|,
-literal|null
-argument_list|,
 literal|1000
 argument_list|)
 operator|.
@@ -1514,8 +1504,6 @@ operator|.
 name|search
 argument_list|(
 name|bq
-argument_list|,
-literal|null
 argument_list|,
 literal|1000
 argument_list|)
@@ -1632,8 +1620,6 @@ operator|.
 name|search
 argument_list|(
 name|q
-argument_list|,
-literal|null
 argument_list|,
 operator|new
 name|SimpleCollector
@@ -1824,8 +1810,6 @@ name|search
 argument_list|(
 name|bq
 argument_list|,
-literal|null
-argument_list|,
 literal|1000
 argument_list|)
 operator|.
@@ -1965,8 +1949,6 @@ name|search
 argument_list|(
 name|bq
 argument_list|,
-literal|null
-argument_list|,
 literal|1000
 argument_list|)
 operator|.
@@ -2098,8 +2080,6 @@ name|search
 argument_list|(
 name|bq
 argument_list|,
-literal|null
-argument_list|,
 literal|1000
 argument_list|)
 operator|.
@@ -2200,8 +2180,6 @@ name|search
 argument_list|(
 name|rq
 argument_list|,
-literal|null
-argument_list|,
 literal|1000
 argument_list|)
 operator|.
@@ -2271,8 +2249,6 @@ operator|.
 name|search
 argument_list|(
 name|q
-argument_list|,
-literal|null
 argument_list|,
 literal|1000
 argument_list|)
@@ -2451,8 +2427,6 @@ argument_list|,
 name|T
 argument_list|)
 argument_list|,
-literal|null
-argument_list|,
 name|numDocs
 argument_list|)
 operator|.
@@ -2492,8 +2466,6 @@ operator|.
 name|CONSTANT_SCORE_FILTER_REWRITE
 argument_list|)
 argument_list|,
-literal|null
-argument_list|,
 name|numDocs
 argument_list|)
 operator|.
@@ -2528,8 +2500,6 @@ name|T
 argument_list|,
 name|F
 argument_list|)
-argument_list|,
-literal|null
 argument_list|,
 name|numDocs
 argument_list|)
@@ -2572,8 +2542,6 @@ operator|.
 name|CONSTANT_SCORE_FILTER_REWRITE
 argument_list|)
 argument_list|,
-literal|null
-argument_list|,
 name|numDocs
 argument_list|)
 operator|.
@@ -2610,8 +2578,6 @@ name|F
 argument_list|,
 name|T
 argument_list|)
-argument_list|,
-literal|null
 argument_list|,
 name|numDocs
 argument_list|)
@@ -2654,8 +2620,6 @@ operator|.
 name|CONSTANT_SCORE_FILTER_REWRITE
 argument_list|)
 argument_list|,
-literal|null
-argument_list|,
 name|numDocs
 argument_list|)
 operator|.
@@ -2692,8 +2656,6 @@ name|F
 argument_list|,
 name|F
 argument_list|)
-argument_list|,
-literal|null
 argument_list|,
 name|numDocs
 argument_list|)
@@ -2735,8 +2697,6 @@ name|MultiTermQuery
 operator|.
 name|CONSTANT_SCORE_FILTER_REWRITE
 argument_list|)
-argument_list|,
-literal|null
 argument_list|,
 name|numDocs
 argument_list|)
@@ -2774,8 +2734,6 @@ name|T
 argument_list|,
 name|T
 argument_list|)
-argument_list|,
-literal|null
 argument_list|,
 name|numDocs
 argument_list|)
@@ -2820,8 +2778,6 @@ operator|.
 name|CONSTANT_SCORE_FILTER_REWRITE
 argument_list|)
 argument_list|,
-literal|null
-argument_list|,
 name|numDocs
 argument_list|)
 operator|.
@@ -2860,8 +2816,6 @@ name|T
 argument_list|,
 name|T
 argument_list|)
-argument_list|,
-literal|null
 argument_list|,
 name|numDocs
 argument_list|)
@@ -2905,8 +2859,6 @@ name|MultiTermQuery
 operator|.
 name|CONSTANT_SCORE_FILTER_REWRITE
 argument_list|)
-argument_list|,
-literal|null
 argument_list|,
 name|numDocs
 argument_list|)
@@ -2948,8 +2900,6 @@ argument_list|,
 name|F
 argument_list|)
 argument_list|,
-literal|null
-argument_list|,
 name|numDocs
 argument_list|)
 operator|.
@@ -2985,8 +2935,6 @@ argument_list|,
 name|T
 argument_list|)
 argument_list|,
-literal|null
-argument_list|,
 name|numDocs
 argument_list|)
 operator|.
@@ -3021,8 +2969,6 @@ name|F
 argument_list|,
 name|F
 argument_list|)
-argument_list|,
-literal|null
 argument_list|,
 name|numDocs
 argument_list|)
@@ -3061,8 +3007,6 @@ argument_list|,
 name|F
 argument_list|)
 argument_list|,
-literal|null
-argument_list|,
 name|numDocs
 argument_list|)
 operator|.
@@ -3100,8 +3044,6 @@ argument_list|,
 name|F
 argument_list|)
 argument_list|,
-literal|null
-argument_list|,
 name|numDocs
 argument_list|)
 operator|.
@@ -3138,8 +3080,6 @@ name|F
 argument_list|,
 name|T
 argument_list|)
-argument_list|,
-literal|null
 argument_list|,
 name|numDocs
 argument_list|)
@@ -3179,8 +3119,6 @@ argument_list|,
 name|F
 argument_list|)
 argument_list|,
-literal|null
-argument_list|,
 name|numDocs
 argument_list|)
 operator|.
@@ -3220,8 +3158,6 @@ operator|.
 name|CONSTANT_SCORE_FILTER_REWRITE
 argument_list|)
 argument_list|,
-literal|null
-argument_list|,
 name|numDocs
 argument_list|)
 operator|.
@@ -3256,8 +3192,6 @@ name|F
 argument_list|,
 name|F
 argument_list|)
-argument_list|,
-literal|null
 argument_list|,
 name|numDocs
 argument_list|)
@@ -3298,8 +3232,6 @@ operator|.
 name|CONSTANT_SCORE_FILTER_REWRITE
 argument_list|)
 argument_list|,
-literal|null
-argument_list|,
 name|numDocs
 argument_list|)
 operator|.
@@ -3335,8 +3267,6 @@ argument_list|,
 name|F
 argument_list|)
 argument_list|,
-literal|null
-argument_list|,
 name|numDocs
 argument_list|)
 operator|.
@@ -3376,8 +3306,6 @@ operator|.
 name|CONSTANT_SCORE_FILTER_REWRITE
 argument_list|)
 argument_list|,
-literal|null
-argument_list|,
 name|numDocs
 argument_list|)
 operator|.
@@ -3412,8 +3340,6 @@ name|T
 argument_list|,
 name|T
 argument_list|)
-argument_list|,
-literal|null
 argument_list|,
 name|numDocs
 argument_list|)
@@ -3454,8 +3380,6 @@ operator|.
 name|CONSTANT_SCORE_FILTER_REWRITE
 argument_list|)
 argument_list|,
-literal|null
-argument_list|,
 name|numDocs
 argument_list|)
 operator|.
@@ -3491,8 +3415,6 @@ argument_list|,
 name|T
 argument_list|)
 argument_list|,
-literal|null
-argument_list|,
 name|numDocs
 argument_list|)
 operator|.
@@ -3532,8 +3454,6 @@ operator|.
 name|CONSTANT_SCORE_FILTER_REWRITE
 argument_list|)
 argument_list|,
-literal|null
-argument_list|,
 name|numDocs
 argument_list|)
 operator|.
@@ -3569,8 +3489,6 @@ argument_list|,
 name|T
 argument_list|)
 argument_list|,
-literal|null
-argument_list|,
 name|numDocs
 argument_list|)
 operator|.
@@ -3610,8 +3528,6 @@ operator|.
 name|CONSTANT_SCORE_FILTER_REWRITE
 argument_list|)
 argument_list|,
-literal|null
-argument_list|,
 name|numDocs
 argument_list|)
 operator|.
@@ -3646,8 +3562,6 @@ name|T
 argument_list|,
 name|F
 argument_list|)
-argument_list|,
-literal|null
 argument_list|,
 name|numDocs
 argument_list|)
@@ -3688,8 +3602,6 @@ operator|.
 name|CONSTANT_SCORE_FILTER_REWRITE
 argument_list|)
 argument_list|,
-literal|null
-argument_list|,
 name|numDocs
 argument_list|)
 operator|.
@@ -3724,8 +3636,6 @@ name|T
 argument_list|,
 name|T
 argument_list|)
-argument_list|,
-literal|null
 argument_list|,
 name|numDocs
 argument_list|)
@@ -3765,8 +3675,6 @@ name|MultiTermQuery
 operator|.
 name|CONSTANT_SCORE_FILTER_REWRITE
 argument_list|)
-argument_list|,
-literal|null
 argument_list|,
 name|numDocs
 argument_list|)
@@ -3874,8 +3782,6 @@ argument_list|,
 name|T
 argument_list|)
 argument_list|,
-literal|null
-argument_list|,
 name|numDocs
 argument_list|)
 operator|.
@@ -3910,8 +3816,6 @@ name|T
 argument_list|,
 name|F
 argument_list|)
-argument_list|,
-literal|null
 argument_list|,
 name|numDocs
 argument_list|)
@@ -3950,8 +3854,6 @@ argument_list|,
 name|T
 argument_list|)
 argument_list|,
-literal|null
-argument_list|,
 name|numDocs
 argument_list|)
 operator|.
@@ -3988,8 +3890,6 @@ name|F
 argument_list|,
 name|F
 argument_list|)
-argument_list|,
-literal|null
 argument_list|,
 name|numDocs
 argument_list|)
@@ -4029,8 +3929,6 @@ argument_list|,
 name|F
 argument_list|)
 argument_list|,
-literal|null
-argument_list|,
 name|numDocs
 argument_list|)
 operator|.
@@ -4066,8 +3964,6 @@ argument_list|,
 name|T
 argument_list|)
 argument_list|,
-literal|null
-argument_list|,
 name|numDocs
 argument_list|)
 operator|.
@@ -4102,8 +3998,6 @@ name|F
 argument_list|,
 name|F
 argument_list|)
-argument_list|,
-literal|null
 argument_list|,
 name|numDocs
 argument_list|)
@@ -4141,8 +4035,6 @@ name|F
 argument_list|,
 name|F
 argument_list|)
-argument_list|,
-literal|null
 argument_list|,
 name|numDocs
 argument_list|)
@@ -4182,8 +4074,6 @@ argument_list|,
 name|F
 argument_list|)
 argument_list|,
-literal|null
-argument_list|,
 name|numDocs
 argument_list|)
 operator|.
@@ -4218,8 +4108,6 @@ name|F
 argument_list|,
 name|F
 argument_list|)
-argument_list|,
-literal|null
 argument_list|,
 name|numDocs
 argument_list|)
@@ -4256,8 +4144,6 @@ argument_list|,
 name|T
 argument_list|)
 argument_list|,
-literal|null
-argument_list|,
 name|numDocs
 argument_list|)
 operator|.
@@ -4292,8 +4178,6 @@ name|F
 argument_list|,
 name|T
 argument_list|)
-argument_list|,
-literal|null
 argument_list|,
 name|numDocs
 argument_list|)
@@ -4330,8 +4214,6 @@ argument_list|,
 name|T
 argument_list|)
 argument_list|,
-literal|null
-argument_list|,
 name|numDocs
 argument_list|)
 operator|.
@@ -4366,8 +4248,6 @@ name|T
 argument_list|,
 name|F
 argument_list|)
-argument_list|,
-literal|null
 argument_list|,
 name|numDocs
 argument_list|)

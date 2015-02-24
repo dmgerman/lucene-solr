@@ -468,6 +468,20 @@ name|lucene
 operator|.
 name|search
 operator|.
+name|FilteredQuery
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|search
+operator|.
 name|IndexSearcher
 import|;
 end_import
@@ -2197,6 +2211,9 @@ name|s
 operator|.
 name|search
 argument_list|(
+operator|new
+name|FilteredQuery
+argument_list|(
 name|fullChildQuery
 argument_list|,
 operator|new
@@ -2211,6 +2228,7 @@ argument_list|(
 literal|"skill"
 argument_list|,
 literal|"foosball"
+argument_list|)
 argument_list|)
 argument_list|)
 argument_list|)
@@ -2959,9 +2977,13 @@ name|s
 operator|.
 name|search
 argument_list|(
+operator|new
+name|FilteredQuery
+argument_list|(
 name|childJoinQuery
 argument_list|,
 name|parentsFilter
+argument_list|)
 argument_list|,
 literal|10
 argument_list|)
@@ -2979,6 +3001,9 @@ name|s
 operator|.
 name|search
 argument_list|(
+operator|new
+name|FilteredQuery
+argument_list|(
 name|childJoinQuery
 argument_list|,
 operator|new
@@ -2993,6 +3018,7 @@ argument_list|(
 literal|"docType"
 argument_list|,
 literal|"resume"
+argument_list|)
 argument_list|)
 argument_list|)
 argument_list|)
@@ -3013,6 +3039,9 @@ argument_list|,
 name|s
 operator|.
 name|search
+argument_list|(
+operator|new
+name|FilteredQuery
 argument_list|(
 name|childJoinQuery
 argument_list|,
@@ -3035,6 +3064,7 @@ argument_list|)
 argument_list|)
 argument_list|)
 argument_list|)
+argument_list|)
 argument_list|,
 literal|1
 argument_list|)
@@ -3051,6 +3081,9 @@ argument_list|,
 name|s
 operator|.
 name|search
+argument_list|(
+operator|new
+name|FilteredQuery
 argument_list|(
 name|childJoinQuery
 argument_list|,
@@ -3069,6 +3102,7 @@ literal|"Oz"
 argument_list|)
 argument_list|)
 argument_list|)
+argument_list|)
 argument_list|,
 literal|1
 argument_list|)
@@ -3084,12 +3118,16 @@ name|s
 operator|.
 name|search
 argument_list|(
+operator|new
+name|FilteredQuery
+argument_list|(
 name|childJoinQuery
 argument_list|,
 operator|new
 name|QueryWrapperFilter
 argument_list|(
 name|parentQuery
+argument_list|)
 argument_list|)
 argument_list|,
 literal|1
@@ -3138,6 +3176,9 @@ name|s
 operator|.
 name|search
 argument_list|(
+operator|new
+name|FilteredQuery
+argument_list|(
 name|childJoinQuery
 argument_list|,
 operator|new
@@ -3152,6 +3193,7 @@ argument_list|(
 literal|"country"
 argument_list|,
 literal|"United States"
+argument_list|)
 argument_list|)
 argument_list|)
 argument_list|)
@@ -3244,6 +3286,9 @@ operator|.
 name|search
 argument_list|(
 operator|new
+name|FilteredQuery
+argument_list|(
+operator|new
 name|ToChildBlockJoinQuery
 argument_list|(
 name|us
@@ -3254,6 +3299,7 @@ argument_list|,
 name|skill
 argument_list|(
 literal|"java"
+argument_list|)
 argument_list|)
 argument_list|,
 literal|10
@@ -3322,6 +3368,9 @@ operator|.
 name|search
 argument_list|(
 operator|new
+name|FilteredQuery
+argument_list|(
+operator|new
 name|ToChildBlockJoinQuery
 argument_list|(
 name|us
@@ -3333,6 +3382,7 @@ operator|new
 name|QueryWrapperFilter
 argument_list|(
 name|rubyPython
+argument_list|)
 argument_list|)
 argument_list|,
 literal|10
@@ -6492,8 +6542,6 @@ name|search
 argument_list|(
 name|parentQuery
 argument_list|,
-literal|null
-argument_list|,
 name|r
 operator|.
 name|numDocs
@@ -7651,23 +7699,14 @@ name|parentsFilter
 argument_list|)
 decl_stmt|;
 comment|// To run against the block-join index:
-specifier|final
 name|Query
 name|childJoinQuery2
 decl_stmt|;
 comment|// Same query as parentJoinQuery, but to run against
 comment|// the fully denormalized index (so we can compare
 comment|// results):
-specifier|final
 name|Query
 name|childQuery2
-decl_stmt|;
-comment|// apply a filter to children
-specifier|final
-name|Filter
-name|childFilter2
-decl_stmt|,
-name|childJoinFilter2
 decl_stmt|;
 if|if
 condition|(
@@ -7685,14 +7724,6 @@ expr_stmt|;
 name|childJoinQuery2
 operator|=
 name|parentJoinQuery2
-expr_stmt|;
-name|childFilter2
-operator|=
-literal|null
-expr_stmt|;
-name|childJoinFilter2
-operator|=
-literal|null
 expr_stmt|;
 block|}
 else|else
@@ -7737,8 +7768,13 @@ name|childTerm
 argument_list|)
 argument_list|)
 decl_stmt|;
-name|childJoinFilter2
+name|childJoinQuery2
 operator|=
+operator|new
+name|FilteredQuery
+argument_list|(
+name|childJoinQuery2
+argument_list|,
 name|random
 argument_list|()
 operator|.
@@ -7752,14 +7788,11 @@ name|f
 argument_list|)
 else|:
 name|f
+argument_list|)
 expr_stmt|;
 block|}
 else|else
 block|{
-name|childJoinFilter2
-operator|=
-literal|null
-expr_stmt|;
 comment|// AND child field w/ parent query:
 specifier|final
 name|BooleanQuery
@@ -7875,8 +7908,13 @@ name|childTerm
 argument_list|)
 argument_list|)
 decl_stmt|;
-name|childFilter2
+name|childQuery2
 operator|=
+operator|new
+name|FilteredQuery
+argument_list|(
+name|childQuery2
+argument_list|,
 name|random
 argument_list|()
 operator|.
@@ -7890,14 +7928,11 @@ name|f
 argument_list|)
 else|:
 name|f
+argument_list|)
 expr_stmt|;
 block|}
 else|else
 block|{
-name|childFilter2
-operator|=
-literal|null
-expr_stmt|;
 specifier|final
 name|BooleanQuery
 name|bq2
@@ -8014,10 +8049,6 @@ literal|"TEST: run top down query="
 operator|+
 name|childQuery2
 operator|+
-literal|" filter="
-operator|+
-name|childFilter2
-operator|+
 literal|" sort="
 operator|+
 name|childSort2
@@ -8033,8 +8064,6 @@ operator|.
 name|search
 argument_list|(
 name|childQuery2
-argument_list|,
-name|childFilter2
 argument_list|,
 name|r
 operator|.
@@ -8136,10 +8165,6 @@ literal|"TEST: run top down join query="
 operator|+
 name|childJoinQuery2
 operator|+
-literal|" filter="
-operator|+
-name|childJoinFilter2
-operator|+
 literal|" sort="
 operator|+
 name|childSort2
@@ -8154,8 +8179,6 @@ operator|.
 name|search
 argument_list|(
 name|childJoinQuery2
-argument_list|,
-name|childJoinFilter2
 argument_list|,
 name|joinR
 operator|.

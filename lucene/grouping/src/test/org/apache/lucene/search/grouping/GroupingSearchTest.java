@@ -989,8 +989,6 @@ name|search
 argument_list|(
 name|indexSearcher
 argument_list|,
-literal|null
-argument_list|,
 operator|new
 name|TermQuery
 argument_list|(
@@ -1351,8 +1349,6 @@ operator|.
 name|search
 argument_list|(
 name|indexSearcher
-argument_list|,
-literal|null
 argument_list|,
 operator|new
 name|TermQuery
@@ -1878,8 +1874,6 @@ operator|.
 name|search
 argument_list|(
 name|indexSearcher
-argument_list|,
-literal|null
 argument_list|,
 operator|new
 name|TermQuery

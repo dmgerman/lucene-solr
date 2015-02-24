@@ -900,8 +900,6 @@ name|search
 argument_list|(
 name|tq
 argument_list|,
-literal|null
-argument_list|,
 name|noDocs
 argument_list|,
 operator|new

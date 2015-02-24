@@ -403,9 +403,13 @@ name|searcher
 operator|.
 name|search
 argument_list|(
+operator|new
+name|FilteredQuery
+argument_list|(
 name|query
 argument_list|,
 name|filter
+argument_list|)
 argument_list|,
 name|numHits
 argument_list|)

@@ -824,8 +824,6 @@ name|search
 argument_list|(
 name|query
 argument_list|,
-literal|null
-argument_list|,
 name|collector
 argument_list|)
 expr_stmt|;
@@ -854,8 +852,6 @@ operator|.
 name|search
 argument_list|(
 name|query
-argument_list|,
-literal|null
 argument_list|,
 name|collector
 argument_list|)
@@ -2132,8 +2128,6 @@ name|search
 argument_list|(
 name|q1
 argument_list|,
-literal|null
-argument_list|,
 name|collector
 argument_list|)
 expr_stmt|;
@@ -2170,8 +2164,6 @@ operator|.
 name|search
 argument_list|(
 name|q1
-argument_list|,
-literal|null
 argument_list|,
 name|collector
 argument_list|)

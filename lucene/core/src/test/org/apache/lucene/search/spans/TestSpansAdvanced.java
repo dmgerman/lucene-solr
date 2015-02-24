@@ -687,8 +687,6 @@ name|search
 argument_list|(
 name|query
 argument_list|,
-literal|null
-argument_list|,
 literal|10000
 argument_list|)
 decl_stmt|;
