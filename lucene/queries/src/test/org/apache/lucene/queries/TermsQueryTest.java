@@ -334,6 +334,20 @@ name|lucene
 operator|.
 name|util
 operator|.
+name|IOUtils
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|util
+operator|.
 name|LuceneTestCase
 import|;
 end_import
@@ -685,6 +699,15 @@ literal|0
 condition|)
 block|{
 comment|// may occasionally happen if all documents got the same term
+name|IOUtils
+operator|.
+name|close
+argument_list|(
+name|reader
+argument_list|,
+name|dir
+argument_list|)
+expr_stmt|;
 continue|continue;
 block|}
 for|for
