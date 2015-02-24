@@ -4474,17 +4474,16 @@ comment|// TODO: implement reuse
 comment|// it's hairy!
 if|if
 condition|(
-operator|(
+name|PostingsEnum
+operator|.
+name|featureRequested
+argument_list|(
 name|flags
-operator|&
+argument_list|,
 name|PostingsEnum
 operator|.
 name|POSITIONS
-operator|)
-operator|>=
-name|PostingsEnum
-operator|.
-name|POSITIONS
+argument_list|)
 condition|)
 block|{
 if|if
@@ -7078,17 +7077,16 @@ comment|// TODO: implement reuse
 comment|// it's hairy!
 if|if
 condition|(
-operator|(
+name|PostingsEnum
+operator|.
+name|featureRequested
+argument_list|(
 name|flags
-operator|&
+argument_list|,
 name|PostingsEnum
 operator|.
 name|POSITIONS
-operator|)
-operator|>=
-name|PostingsEnum
-operator|.
-name|POSITIONS
+argument_list|)
 condition|)
 block|{
 if|if
