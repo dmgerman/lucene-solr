@@ -102,6 +102,7 @@ operator|*
 literal|1024
 argument_list|)
 expr_stmt|;
+comment|// NOTE: in Java, if you cast a too-large double to long, as we are doing here, then it becomes Long.MAX_VALUE
 name|maxMergeSizeForForcedMerge
 operator|=
 call|(
