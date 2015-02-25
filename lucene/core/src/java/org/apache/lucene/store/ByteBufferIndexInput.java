@@ -2041,6 +2041,8 @@ expr_stmt|;
 block|}
 block|}
 comment|/**    * Pass in an implementation of this interface to cleanup ByteBuffers.    * MMapDirectory implements this to allow unmapping of bytebuffers with private Java APIs.    */
+annotation|@
+name|FunctionalInterface
 DECL|interface|BufferCleaner
 specifier|static
 interface|interface
