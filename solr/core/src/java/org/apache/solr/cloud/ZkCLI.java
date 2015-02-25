@@ -1149,7 +1149,12 @@ literal|"/zoo_data"
 argument_list|,
 name|solrHome
 argument_list|,
+name|Integer
+operator|.
+name|parseInt
+argument_list|(
 name|solrPort
+argument_list|)
 argument_list|)
 expr_stmt|;
 name|zkServer

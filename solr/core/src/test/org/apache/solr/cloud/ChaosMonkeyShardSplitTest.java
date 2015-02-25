@@ -182,6 +182,20 @@ name|apache
 operator|.
 name|solr
 operator|.
+name|core
+operator|.
+name|CloudConfig
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|solr
+operator|.
 name|handler
 operator|.
 name|component
@@ -212,9 +226,9 @@ name|apache
 operator|.
 name|solr
 operator|.
-name|util
+name|update
 operator|.
-name|MockConfigSolr
+name|UpdateShardHandlerConfig
 import|;
 end_import
 
@@ -1254,7 +1268,9 @@ init|=
 operator|new
 name|UpdateShardHandler
 argument_list|(
-literal|null
+name|UpdateShardHandlerConfig
+operator|.
+name|DEFAULT
 argument_list|)
 decl_stmt|;
 comment|// TODO: close Overseer
@@ -1280,7 +1296,18 @@ argument_list|,
 literal|null
 argument_list|,
 operator|new
-name|MockConfigSolr
+name|CloudConfig
+operator|.
+name|CloudConfigBuilder
+argument_list|(
+literal|"127.0.0.1"
+argument_list|,
+literal|8983
+argument_list|,
+literal|"solr"
+argument_list|)
+operator|.
+name|build
 argument_list|()
 argument_list|)
 decl_stmt|;
