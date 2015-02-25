@@ -2076,6 +2076,7 @@ literal|null
 argument_list|)
 argument_list|)
 expr_stmt|;
+comment|// nocommit: check
 name|assertNull
 argument_list|(
 name|termsEnum

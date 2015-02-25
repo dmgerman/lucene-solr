@@ -7585,6 +7585,7 @@ argument_list|,
 name|posFlags
 argument_list|)
 decl_stmt|;
+comment|// nocommit: check
 if|if
 condition|(
 name|docsAndPositions

@@ -736,7 +736,7 @@ name|ALL
 argument_list|)
 return|;
 block|}
-comment|/** Returns {@link PostingsEnum} for the specified    *  field and term, with control over whether offsets and payloads are    *  required.  Some codecs may be able to optimize    *  their implementation when offsets and/or payloads are not    *  required. This will return null if the field or term does not    *  exist or positions were not indexed. See {@link    *  TermsEnum#postings(Bits, PostingsEnum,int)}. */
+comment|/** Returns {@link PostingsEnum} for the specified    *  field and term, with control over whether offsets and payloads are    *  required.  Some codecs may be able to optimize    *  their implementation when offsets and/or payloads are not    *  required. This will return null if the field or term does not    *  exist. See {@link TermsEnum#postings(Bits, PostingsEnum,int)}. */
 DECL|method|getTermPositionsEnum
 specifier|public
 specifier|static

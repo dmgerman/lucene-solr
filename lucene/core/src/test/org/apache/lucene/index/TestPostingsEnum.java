@@ -629,6 +629,7 @@ operator|.
 name|POSITIONS
 argument_list|)
 decl_stmt|;
+comment|// nocommit: check
 name|assertNull
 argument_list|(
 name|docsAndPositionsEnum
@@ -657,6 +658,7 @@ operator|.
 name|PAYLOADS
 argument_list|)
 expr_stmt|;
+comment|// nocommit: check
 name|assertNull
 argument_list|(
 name|docsAndPositionsEnum
@@ -685,6 +687,7 @@ operator|.
 name|OFFSETS
 argument_list|)
 expr_stmt|;
+comment|// nocommit: check
 name|assertNull
 argument_list|(
 name|docsAndPositionsEnum
@@ -713,6 +716,7 @@ operator|.
 name|ALL
 argument_list|)
 expr_stmt|;
+comment|// nocommit: check
 name|assertNull
 argument_list|(
 name|docsAndPositionsEnum

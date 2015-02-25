@@ -684,6 +684,7 @@ return|;
 block|}
 else|else
 block|{
+comment|// nocommit: check
 comment|// term does exist, but has no positions
 throw|throw
 operator|new

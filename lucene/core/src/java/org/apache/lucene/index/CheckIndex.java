@@ -4992,6 +4992,7 @@ argument_list|,
 name|docs
 argument_list|)
 expr_stmt|;
+comment|// nocommit: check null
 name|postings
 operator|=
 name|termsEnum
@@ -7140,6 +7141,7 @@ operator|.
 name|NONE
 argument_list|)
 expr_stmt|;
+comment|// nocommit: null check still needed? how to replace?
 if|if
 condition|(
 name|docs
@@ -7253,6 +7255,7 @@ operator|.
 name|NONE
 argument_list|)
 expr_stmt|;
+comment|// nocommit: null check still needed? how to replace?
 if|if
 condition|(
 name|docs

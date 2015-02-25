@@ -396,6 +396,7 @@ condition|)
 block|{
 continue|continue;
 block|}
+comment|// nocommit: check
 name|dpEnum
 operator|=
 name|termsEnum

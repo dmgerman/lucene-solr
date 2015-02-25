@@ -4834,6 +4834,7 @@ operator|.
 name|NONE
 argument_list|)
 expr_stmt|;
+comment|// nocommit: check, maybe just remove null check?
 if|if
 condition|(
 name|postingsEnum
