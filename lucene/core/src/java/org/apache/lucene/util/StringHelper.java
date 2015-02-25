@@ -20,9 +20,43 @@ begin_import
 import|import
 name|java
 operator|.
+name|io
+operator|.
+name|DataInputStream
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
 name|math
 operator|.
 name|BigInteger
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
+name|nio
+operator|.
+name|file
+operator|.
+name|Files
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
+name|nio
+operator|.
+name|file
+operator|.
+name|Paths
 import|;
 end_import
 
@@ -1053,7 +1087,52 @@ expr_stmt|;
 block|}
 else|else
 block|{
-comment|// Randomess from 3 different sources:
+comment|// seed from /dev/urandom, if its available
+try|try
+init|(
+name|DataInputStream
+name|is
+init|=
+operator|new
+name|DataInputStream
+argument_list|(
+name|Files
+operator|.
+name|newInputStream
+argument_list|(
+name|Paths
+operator|.
+name|get
+argument_list|(
+literal|"/dev/urandom"
+argument_list|)
+argument_list|)
+argument_list|)
+init|)
+block|{
+name|x0
+operator|=
+name|is
+operator|.
+name|readLong
+argument_list|()
+expr_stmt|;
+name|x1
+operator|=
+name|is
+operator|.
+name|readLong
+argument_list|()
+expr_stmt|;
+block|}
+catch|catch
+parameter_list|(
+name|Exception
+name|unavailable
+parameter_list|)
+block|{
+comment|// may not be available on this platform
+comment|// fall back to lower quality randomness from 3 different sources:
 name|x0
 operator|=
 name|System
@@ -1080,6 +1159,8 @@ name|StringBuilder
 argument_list|()
 decl_stmt|;
 comment|// Properties can vary across JVM instances:
+try|try
+block|{
 name|Properties
 name|p
 init|=
@@ -1129,7 +1210,25 @@ operator|.
 name|hashCode
 argument_list|()
 expr_stmt|;
-comment|// TODO: maybe read from /dev/urandom when it's available?
+block|}
+catch|catch
+parameter_list|(
+name|SecurityException
+name|notallowed
+parameter_list|)
+block|{
+comment|// getting Properties requires wildcard read-write: may not be allowed
+name|x1
+operator||=
+name|StringBuffer
+operator|.
+name|class
+operator|.
+name|hashCode
+argument_list|()
+expr_stmt|;
+block|}
+block|}
 block|}
 comment|// Use a few iterations of xorshift128 to scatter the seed
 comment|// in case multiple Lucene instances starting up "near" the same
