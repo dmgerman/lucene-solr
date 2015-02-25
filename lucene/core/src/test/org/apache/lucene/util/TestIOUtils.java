@@ -1190,11 +1190,14 @@ name|delegate
 operator|.
 name|checkAccess
 argument_list|(
+name|maybeChroot
+argument_list|(
 name|FilterPath
 operator|.
 name|unwrap
 argument_list|(
 name|path
+argument_list|)
 argument_list|)
 argument_list|,
 name|modes

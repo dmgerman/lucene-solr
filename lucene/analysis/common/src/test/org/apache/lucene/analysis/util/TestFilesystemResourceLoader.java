@@ -141,7 +141,7 @@ name|rl
 operator|.
 name|openResource
 argument_list|(
-literal|"/this-directory-really-really-really-should-not-exist/foo/bar.txt"
+literal|"this-directory-really-really-really-should-not-exist/foo/bar.txt"
 argument_list|)
 argument_list|)
 expr_stmt|;
