@@ -118,7 +118,7 @@ name|lucene
 operator|.
 name|search
 operator|.
-name|DocValuesTermsFilter
+name|DocValuesTermsQuery
 import|;
 end_import
 
@@ -544,11 +544,15 @@ parameter_list|)
 block|{
 return|return
 operator|new
-name|DocValuesTermsFilter
+name|QueryWrapperFilter
+argument_list|(
+operator|new
+name|DocValuesTermsQuery
 argument_list|(
 name|fname
 argument_list|,
 name|byteRefs
+argument_list|)
 argument_list|)
 return|;
 block|}

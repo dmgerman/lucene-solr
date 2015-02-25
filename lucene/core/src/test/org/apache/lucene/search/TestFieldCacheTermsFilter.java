@@ -149,7 +149,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * A basic unit test for FieldCacheTermsFilter  *  * @see org.apache.lucene.search.DocValuesTermsFilter  */
+comment|/**  * A basic unit test for FieldCacheTermsFilter  *  * @see org.apache.lucene.search.DocValuesTermsQuery  */
 end_comment
 
 begin_class
@@ -301,13 +301,6 @@ name|ScoreDoc
 index|[]
 name|results
 decl_stmt|;
-name|MatchAllDocsQuery
-name|q
-init|=
-operator|new
-name|MatchAllDocsQuery
-argument_list|()
-decl_stmt|;
 name|List
 argument_list|<
 name|String
@@ -333,12 +326,7 @@ operator|.
 name|search
 argument_list|(
 operator|new
-name|FilteredQuery
-argument_list|(
-name|q
-argument_list|,
-operator|new
-name|DocValuesTermsFilter
+name|DocValuesTermsQuery
 argument_list|(
 name|fieldName
 argument_list|,
@@ -351,7 +339,6 @@ name|String
 index|[
 literal|0
 index|]
-argument_list|)
 argument_list|)
 argument_list|)
 argument_list|,
@@ -392,12 +379,7 @@ operator|.
 name|search
 argument_list|(
 operator|new
-name|FilteredQuery
-argument_list|(
-name|q
-argument_list|,
-operator|new
-name|DocValuesTermsFilter
+name|DocValuesTermsQuery
 argument_list|(
 name|fieldName
 argument_list|,
@@ -410,7 +392,6 @@ name|String
 index|[
 literal|0
 index|]
-argument_list|)
 argument_list|)
 argument_list|)
 argument_list|,
@@ -458,12 +439,7 @@ operator|.
 name|search
 argument_list|(
 operator|new
-name|FilteredQuery
-argument_list|(
-name|q
-argument_list|,
-operator|new
-name|DocValuesTermsFilter
+name|DocValuesTermsQuery
 argument_list|(
 name|fieldName
 argument_list|,
@@ -476,7 +452,6 @@ name|String
 index|[
 literal|0
 index|]
-argument_list|)
 argument_list|)
 argument_list|)
 argument_list|,

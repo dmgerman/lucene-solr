@@ -644,13 +644,13 @@ argument_list|)
 expr_stmt|;
 block|}
 comment|/**     * Convenience subclass of FieldCacheTermsFilter    */
-DECL|class|ItemizedFilter
+DECL|class|ItemizedQuery
 specifier|public
 specifier|static
 class|class
-name|ItemizedFilter
+name|ItemizedQuery
 extends|extends
-name|DocValuesTermsFilter
+name|DocValuesTermsQuery
 block|{
 DECL|method|int2str
 specifier|private
@@ -710,9 +710,9 @@ return|return
 name|out
 return|;
 block|}
-DECL|method|ItemizedFilter
+DECL|method|ItemizedQuery
 specifier|public
-name|ItemizedFilter
+name|ItemizedQuery
 parameter_list|(
 name|int
 index|[]
