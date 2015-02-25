@@ -214,31 +214,46 @@ condition|(
 name|query
 operator|==
 literal|null
-operator|||
-name|filter
-operator|==
-literal|null
 condition|)
+block|{
 throw|throw
 operator|new
 name|IllegalArgumentException
 argument_list|(
-literal|"Query and filter cannot be null."
+literal|"Query must not be be null."
 argument_list|)
 throw|;
+block|}
+if|if
+condition|(
+name|filter
+operator|==
+literal|null
+condition|)
+block|{
+throw|throw
+operator|new
+name|IllegalArgumentException
+argument_list|(
+literal|"Filter must not be be null."
+argument_list|)
+throw|;
+block|}
 if|if
 condition|(
 name|strategy
 operator|==
 literal|null
 condition|)
+block|{
 throw|throw
 operator|new
 name|IllegalArgumentException
 argument_list|(
-literal|"FilterStrategy can not be null"
+literal|"FilterStrategy must not be null"
 argument_list|)
 throw|;
+block|}
 name|this
 operator|.
 name|strategy
