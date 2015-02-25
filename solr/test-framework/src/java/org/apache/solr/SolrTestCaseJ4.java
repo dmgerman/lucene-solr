@@ -1497,6 +1497,38 @@ default|default
 literal|"None"
 function_decl|;
 block|}
+comment|/**    * Annotation for test classes that want to disable ObjectReleaseTracker    */
+annotation|@
+name|Documented
+annotation|@
+name|Inherited
+annotation|@
+name|Retention
+argument_list|(
+name|RetentionPolicy
+operator|.
+name|RUNTIME
+argument_list|)
+annotation|@
+name|Target
+argument_list|(
+name|ElementType
+operator|.
+name|TYPE
+argument_list|)
+DECL|interface|SuppressObjectReleaseTracker
+specifier|public
+annotation_defn|@interface
+name|SuppressObjectReleaseTracker
+block|{
+comment|/** Point to JIRA entry. */
+DECL|method|bugUrl
+specifier|public
+name|String
+name|bugUrl
+parameter_list|()
+function_decl|;
+block|}
 comment|// these are meant to be accessed sequentially, but are volatile just to ensure any test
 comment|// thread will read the latest value
 DECL|field|sslConfig
@@ -1718,6 +1750,25 @@ expr_stmt|;
 name|endTrackingSearchers
 argument_list|()
 expr_stmt|;
+if|if
+condition|(
+operator|!
+name|RandomizedContext
+operator|.
+name|current
+argument_list|()
+operator|.
+name|getTargetClass
+argument_list|()
+operator|.
+name|isAnnotationPresent
+argument_list|(
+name|SuppressObjectReleaseTracker
+operator|.
+name|class
+argument_list|)
+condition|)
+block|{
 name|assertTrue
 argument_list|(
 literal|"Some resources were not closed, shutdown, or released."
@@ -1728,6 +1779,27 @@ name|clearObjectTrackerAndCheckEmpty
 argument_list|()
 argument_list|)
 expr_stmt|;
+block|}
+else|else
+block|{
+if|if
+condition|(
+operator|!
+name|ObjectReleaseTracker
+operator|.
+name|clearObjectTrackerAndCheckEmpty
+argument_list|()
+condition|)
+block|{
+name|log
+operator|.
+name|warn
+argument_list|(
+literal|"Some resources were not closed, shutdown, or released. Remove the SuppressObjectReleaseTracker annotation to get more information on the fail."
+argument_list|)
+expr_stmt|;
+block|}
+block|}
 name|resetFactory
 argument_list|()
 expr_stmt|;
