@@ -62,6 +62,11 @@ name|responseList
 init|=
 literal|null
 decl_stmt|;
+DECL|field|elapsedTime
+specifier|private
+name|long
+name|elapsedTime
+decl_stmt|;
 DECL|method|OverseerSolrResponse
 specifier|public
 name|OverseerSolrResponse
@@ -83,9 +88,8 @@ name|long
 name|getElapsedTime
 parameter_list|()
 block|{
-comment|// TODO Auto-generated method stub
 return|return
-literal|0
+name|elapsedTime
 return|;
 block|}
 annotation|@
@@ -107,6 +111,24 @@ operator|.
 name|responseList
 operator|=
 name|rsp
+expr_stmt|;
+block|}
+annotation|@
+name|Override
+DECL|method|setElapsedTime
+specifier|public
+name|void
+name|setElapsedTime
+parameter_list|(
+name|long
+name|elapsedTime
+parameter_list|)
+block|{
+name|this
+operator|.
+name|elapsedTime
+operator|=
+name|elapsedTime
 expr_stmt|;
 block|}
 annotation|@

@@ -776,6 +776,24 @@ operator|=
 name|rsp
 expr_stmt|;
 block|}
+annotation|@
+name|Override
+DECL|method|setElapsedTime
+specifier|public
+name|void
+name|setElapsedTime
+parameter_list|(
+name|long
+name|elapsedTime
+parameter_list|)
+block|{
+name|this
+operator|.
+name|elapsedTime
+operator|=
+name|elapsedTime
+expr_stmt|;
+block|}
 block|}
 comment|// Not thread safe... don't use in Callable.
 comment|// Don't modify the returned URL list.
