@@ -464,19 +464,10 @@ operator|.
 name|getAbsolutePath
 argument_list|()
 argument_list|,
+name|buildJettyConfig
+argument_list|(
 literal|"/solr"
-argument_list|,
-literal|0
-argument_list|,
-literal|null
-argument_list|,
-literal|null
-argument_list|,
-literal|true
-argument_list|,
-literal|null
-argument_list|,
-name|sslConfig
+argument_list|)
 argument_list|)
 expr_stmt|;
 comment|// this sets the property for jetty starting SolrDispatchFilter
