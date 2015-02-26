@@ -1630,10 +1630,10 @@ return|return
 name|aliases
 return|;
 block|}
-DECL|method|checkValid
+DECL|method|compareStateVersions
 specifier|public
-name|Boolean
-name|checkValid
+name|Integer
+name|compareStateVersions
 parameter_list|(
 name|String
 name|coll
@@ -1702,7 +1702,8 @@ operator|==
 literal|null
 condition|)
 return|return
-literal|null
+operator|-
+literal|1
 return|;
 if|if
 condition|(
@@ -1739,9 +1740,7 @@ name|version
 condition|)
 block|{
 return|return
-name|Boolean
-operator|.
-name|TRUE
+literal|null
 return|;
 block|}
 name|log
@@ -1759,9 +1758,10 @@ argument_list|()
 argument_list|)
 expr_stmt|;
 return|return
-name|Boolean
+name|collection
 operator|.
-name|FALSE
+name|getZNodeVersion
+argument_list|()
 return|;
 block|}
 DECL|method|createClusterStateWatchersAndUpdate
