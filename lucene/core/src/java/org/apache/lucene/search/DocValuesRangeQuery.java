@@ -789,7 +789,7 @@ argument_list|()
 argument_list|)
 decl_stmt|;
 specifier|final
-name|TwoPhaseDocIdSetIterator
+name|TwoPhaseIterator
 name|twoPhaseRange
 decl_stmt|;
 if|if
@@ -1162,7 +1162,7 @@ specifier|static
 class|class
 name|TwoPhaseNumericRange
 extends|extends
-name|TwoPhaseDocIdSetIterator
+name|TwoPhaseIterator
 block|{
 DECL|field|approximation
 specifier|private
@@ -1356,7 +1356,7 @@ specifier|static
 class|class
 name|TwoPhaseOrdRange
 extends|extends
-name|TwoPhaseDocIdSetIterator
+name|TwoPhaseIterator
 block|{
 DECL|field|approximation
 specifier|private
@@ -1544,7 +1544,7 @@ block|{
 DECL|field|twoPhaseRange
 specifier|private
 specifier|final
-name|TwoPhaseDocIdSetIterator
+name|TwoPhaseIterator
 name|twoPhaseRange
 decl_stmt|;
 DECL|field|disi
@@ -1565,7 +1565,7 @@ parameter_list|(
 name|Weight
 name|weight
 parameter_list|,
-name|TwoPhaseDocIdSetIterator
+name|TwoPhaseIterator
 name|twoPhaseRange
 parameter_list|,
 name|float
@@ -1587,7 +1587,7 @@ name|this
 operator|.
 name|disi
 operator|=
-name|TwoPhaseDocIdSetIterator
+name|TwoPhaseIterator
 operator|.
 name|asDocIdSetIterator
 argument_list|(
@@ -1605,7 +1605,7 @@ annotation|@
 name|Override
 DECL|method|asTwoPhaseIterator
 specifier|public
-name|TwoPhaseDocIdSetIterator
+name|TwoPhaseIterator
 name|asTwoPhaseIterator
 parameter_list|()
 block|{

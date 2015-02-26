@@ -77,7 +77,7 @@ name|ConjunctionDISI
 extends|extends
 name|DocIdSetIterator
 block|{
-comment|/** Create a conjunction over the provided iterators, taking advantage of    *  {@link TwoPhaseDocIdSetIterator}. */
+comment|/** Create a conjunction over the provided iterators, taking advantage of    *  {@link TwoPhaseIterator}. */
 DECL|method|intersect
 specifier|public
 specifier|static
@@ -108,7 +108,7 @@ decl_stmt|;
 specifier|final
 name|List
 argument_list|<
-name|TwoPhaseDocIdSetIterator
+name|TwoPhaseIterator
 argument_list|>
 name|twoPhaseIterators
 init|=
@@ -133,7 +133,7 @@ name|Scorer
 condition|)
 block|{
 comment|// if we have a scorer, check if it supports two-phase iteration
-name|TwoPhaseDocIdSetIterator
+name|TwoPhaseIterator
 name|twoPhaseIterator
 init|=
 operator|(
@@ -341,7 +341,7 @@ literal|true
 return|;
 block|}
 DECL|method|asTwoPhaseIterator
-name|TwoPhaseDocIdSetIterator
+name|TwoPhaseIterator
 name|asTwoPhaseIterator
 parameter_list|()
 block|{
@@ -543,14 +543,14 @@ name|cost
 argument_list|()
 return|;
 block|}
-comment|/**    * {@link TwoPhaseDocIdSetIterator} view of a {@link TwoPhase} conjunction.    */
+comment|/**    * {@link TwoPhaseIterator} view of a {@link TwoPhase} conjunction.    */
 DECL|class|TwoPhaseConjunctionDISI
 specifier|private
 specifier|static
 class|class
 name|TwoPhaseConjunctionDISI
 extends|extends
-name|TwoPhaseDocIdSetIterator
+name|TwoPhaseIterator
 block|{
 DECL|field|approximation
 specifier|private
@@ -561,7 +561,7 @@ decl_stmt|;
 DECL|field|twoPhaseIterators
 specifier|private
 specifier|final
-name|TwoPhaseDocIdSetIterator
+name|TwoPhaseIterator
 index|[]
 name|twoPhaseIterators
 decl_stmt|;
@@ -579,7 +579,7 @@ name|iterators
 parameter_list|,
 name|List
 argument_list|<
-name|TwoPhaseDocIdSetIterator
+name|TwoPhaseIterator
 argument_list|>
 name|twoPhaseIterators
 parameter_list|)
@@ -609,7 +609,7 @@ operator|.
 name|toArray
 argument_list|(
 operator|new
-name|TwoPhaseDocIdSetIterator
+name|TwoPhaseIterator
 index|[
 literal|0
 index|]
@@ -640,7 +640,7 @@ name|IOException
 block|{
 for|for
 control|(
-name|TwoPhaseDocIdSetIterator
+name|TwoPhaseIterator
 name|twoPhaseIterator
 range|:
 name|twoPhaseIterators
@@ -666,7 +666,7 @@ literal|true
 return|;
 block|}
 block|}
-comment|/**    * A conjunction DISI built on top of approximations. This implementation    * verifies that documents actually match by consulting the provided    * {@link TwoPhaseDocIdSetIterator}s.    *    * Another important difference with {@link ConjunctionDISI} is that this    * implementation supports approximations too: the approximation of this    * impl is the conjunction of the approximations of the wrapped iterators.    * This allows eg. {@code +"A B" +C} to be approximated as    * {@code +(+A +B) +C}.    */
+comment|/**    * A conjunction DISI built on top of approximations. This implementation    * verifies that documents actually match by consulting the provided    * {@link TwoPhaseIterator}s.    *    * Another important difference with {@link ConjunctionDISI} is that this    * implementation supports approximations too: the approximation of this    * impl is the conjunction of the approximations of the wrapped iterators.    * This allows eg. {@code +"A B" +C} to be approximated as    * {@code +(+A +B) +C}.    */
 comment|// NOTE: this is essentially the same as TwoPhaseDocIdSetIterator.asDocIdSetIterator
 comment|// but is its own impl in order to be able to expose a two-phase view
 DECL|class|TwoPhase
@@ -696,7 +696,7 @@ name|iterators
 parameter_list|,
 name|List
 argument_list|<
-name|TwoPhaseDocIdSetIterator
+name|TwoPhaseIterator
 argument_list|>
 name|twoPhaseIterators
 parameter_list|)

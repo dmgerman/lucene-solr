@@ -427,7 +427,7 @@ annotation|@
 name|Override
 DECL|method|asTwoPhaseIterator
 specifier|public
-name|TwoPhaseDocIdSetIterator
+name|TwoPhaseIterator
 name|asTwoPhaseIterator
 parameter_list|()
 block|{
@@ -474,7 +474,7 @@ return|;
 block|}
 return|return
 operator|new
-name|TwoPhaseDocIdSetIterator
+name|TwoPhaseIterator
 argument_list|()
 block|{
 annotation|@

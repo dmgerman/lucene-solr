@@ -80,13 +80,13 @@ comment|// two-phase views of the scorers, or null if they do not support approx
 DECL|field|reqTwoPhaseIterator
 specifier|private
 specifier|final
-name|TwoPhaseDocIdSetIterator
+name|TwoPhaseIterator
 name|reqTwoPhaseIterator
 decl_stmt|;
 DECL|field|exclTwoPhaseIterator
 specifier|private
 specifier|final
-name|TwoPhaseDocIdSetIterator
+name|TwoPhaseIterator
 name|exclTwoPhaseIterator
 decl_stmt|;
 comment|/** Construct a<code>ReqExclScorer</code>.    * @param reqScorer The scorer that must match, except where    * @param exclScorer indicates exclusion.    */
@@ -191,14 +191,14 @@ argument_list|()
 argument_list|)
 return|;
 block|}
-comment|/** Confirms whether or not the given {@link TwoPhaseDocIdSetIterator}    *  matches on the current document. */
+comment|/** Confirms whether or not the given {@link TwoPhaseIterator}    *  matches on the current document. */
 DECL|method|matches
 specifier|private
 specifier|static
 name|boolean
 name|matches
 parameter_list|(
-name|TwoPhaseDocIdSetIterator
+name|TwoPhaseIterator
 name|it
 parameter_list|)
 throws|throws
@@ -228,10 +228,10 @@ parameter_list|,
 name|int
 name|exclDoc
 parameter_list|,
-name|TwoPhaseDocIdSetIterator
+name|TwoPhaseIterator
 name|reqTwoPhaseIterator
 parameter_list|,
-name|TwoPhaseDocIdSetIterator
+name|TwoPhaseIterator
 name|exclTwoPhaseIterator
 parameter_list|)
 throws|throws
@@ -434,7 +434,7 @@ annotation|@
 name|Override
 DECL|method|asTwoPhaseIterator
 specifier|public
-name|TwoPhaseDocIdSetIterator
+name|TwoPhaseIterator
 name|asTwoPhaseIterator
 parameter_list|()
 block|{
@@ -451,7 +451,7 @@ return|;
 block|}
 return|return
 operator|new
-name|TwoPhaseDocIdSetIterator
+name|TwoPhaseIterator
 argument_list|()
 block|{
 annotation|@

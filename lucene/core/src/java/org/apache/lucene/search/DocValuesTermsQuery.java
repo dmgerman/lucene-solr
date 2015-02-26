@@ -672,11 +672,11 @@ argument_list|()
 argument_list|)
 decl_stmt|;
 specifier|final
-name|TwoPhaseDocIdSetIterator
+name|TwoPhaseIterator
 name|twoPhaseIterator
 init|=
 operator|new
-name|TwoPhaseDocIdSetIterator
+name|TwoPhaseIterator
 argument_list|()
 block|{
 annotation|@
@@ -784,7 +784,7 @@ specifier|final
 name|DocIdSetIterator
 name|disi
 init|=
-name|TwoPhaseDocIdSetIterator
+name|TwoPhaseIterator
 operator|.
 name|asDocIdSetIterator
 argument_list|(
@@ -801,7 +801,7 @@ block|{
 annotation|@
 name|Override
 specifier|public
-name|TwoPhaseDocIdSetIterator
+name|TwoPhaseIterator
 name|asTwoPhaseIterator
 parameter_list|()
 block|{
