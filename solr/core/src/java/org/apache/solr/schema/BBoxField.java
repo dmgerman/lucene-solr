@@ -707,12 +707,6 @@ name|fieldType
 operator|.
 name|properties
 decl_stmt|;
-name|props
-operator|&=
-operator|~
-name|MULTIVALUED
-expr_stmt|;
-comment|// must not be multivalued
 if|if
 condition|(
 name|storeSubFields

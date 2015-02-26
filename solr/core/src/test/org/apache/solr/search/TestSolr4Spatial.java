@@ -2407,14 +2407,6 @@ name|stored
 argument_list|()
 argument_list|)
 expr_stmt|;
-name|assertFalse
-argument_list|(
-name|sub
-operator|.
-name|multiValued
-argument_list|()
-argument_list|)
-expr_stmt|;
 block|}
 block|}
 end_class
