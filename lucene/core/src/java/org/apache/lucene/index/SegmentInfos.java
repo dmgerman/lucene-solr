@@ -949,6 +949,11 @@ name|input
 argument_list|)
 throw|;
 block|}
+name|long
+name|totalDocs
+init|=
+literal|0
+decl_stmt|;
 for|for
 control|(
 name|int
@@ -1070,6 +1075,13 @@ name|setCodec
 argument_list|(
 name|codec
 argument_list|)
+expr_stmt|;
+name|totalDocs
+operator|+=
+name|info
+operator|.
+name|getDocCount
+argument_list|()
 expr_stmt|;
 name|long
 name|delGen
@@ -1273,6 +1285,36 @@ argument_list|(
 name|input
 argument_list|)
 expr_stmt|;
+comment|// LUCENE-6299: check we are in bounds
+if|if
+condition|(
+name|totalDocs
+operator|>
+name|IndexWriter
+operator|.
+name|getActualMaxDocs
+argument_list|()
+condition|)
+block|{
+throw|throw
+operator|new
+name|CorruptIndexException
+argument_list|(
+literal|"Too many documents: an index cannot exceed "
+operator|+
+name|IndexWriter
+operator|.
+name|getActualMaxDocs
+argument_list|()
+operator|+
+literal|" but readers have total maxDoc="
+operator|+
+name|totalDocs
+argument_list|,
+name|input
+argument_list|)
+throw|;
+block|}
 return|return
 name|infos
 return|;
@@ -2892,7 +2934,7 @@ name|int
 name|totalDocCount
 parameter_list|()
 block|{
-name|int
+name|long
 name|count
 init|=
 literal|0
@@ -2915,8 +2957,22 @@ name|getDocCount
 argument_list|()
 expr_stmt|;
 block|}
-return|return
+comment|// we should never hit this, checks should happen elsewhere...
+assert|assert
 name|count
+operator|<=
+name|IndexWriter
+operator|.
+name|getActualMaxDocs
+argument_list|()
+assert|;
+return|return
+name|Math
+operator|.
+name|toIntExact
+argument_list|(
+name|count
+argument_list|)
 return|;
 block|}
 comment|/** Call this before committing if changes have been made to the    *  segments. */

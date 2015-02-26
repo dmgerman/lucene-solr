@@ -843,9 +843,10 @@ expr_stmt|;
 block|}
 block|}
 block|}
+comment|/** Returns how many documents were aborted. */
 DECL|method|lockAndAbortAll
 specifier|synchronized
-name|void
+name|long
 name|lockAndAbortAll
 parameter_list|(
 name|IndexWriter
@@ -878,6 +879,11 @@ literal|"lockAndAbortAll"
 argument_list|)
 expr_stmt|;
 block|}
+name|long
+name|abortedDocCount
+init|=
+literal|0
+decl_stmt|;
 name|boolean
 name|success
 init|=
@@ -930,6 +936,8 @@ operator|.
 name|lock
 argument_list|()
 expr_stmt|;
+name|abortedDocCount
+operator|+=
 name|abortThreadState
 argument_list|(
 name|perThread
@@ -955,6 +963,9 @@ name|success
 operator|=
 literal|true
 expr_stmt|;
+return|return
+name|abortedDocCount
+return|;
 block|}
 finally|finally
 block|{
@@ -995,10 +1006,11 @@ expr_stmt|;
 block|}
 block|}
 block|}
+comment|/** Returns how many documents were aborted. */
 DECL|method|abortThreadState
 specifier|private
 specifier|final
-name|void
+name|int
 name|abortThreadState
 parameter_list|(
 specifier|final
@@ -1031,14 +1043,19 @@ condition|)
 block|{
 try|try
 block|{
-name|subtractFlushedNumDocs
-argument_list|(
+name|int
+name|abortedDocCount
+init|=
 name|perThread
 operator|.
 name|dwpt
 operator|.
 name|getNumDocsInRAM
 argument_list|()
+decl_stmt|;
+name|subtractFlushedNumDocs
+argument_list|(
+name|abortedDocCount
 argument_list|)
 expr_stmt|;
 name|perThread
@@ -1048,6 +1065,9 @@ operator|.
 name|abort
 argument_list|()
 expr_stmt|;
+return|return
+name|abortedDocCount
+return|;
 block|}
 finally|finally
 block|{
@@ -1069,6 +1089,10 @@ argument_list|(
 name|perThread
 argument_list|)
 expr_stmt|;
+comment|// This DWPT was never initialized so it has no indexed documents:
+return|return
+literal|0
+return|;
 block|}
 block|}
 else|else
@@ -1076,6 +1100,9 @@ block|{
 assert|assert
 name|closed
 assert|;
+return|return
+literal|0
+return|;
 block|}
 block|}
 DECL|method|unlockAllAfterAbortAll

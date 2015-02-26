@@ -603,6 +603,8 @@ name|LeafReader
 index|[]
 name|segmentReaders
 parameter_list|)
+throws|throws
+name|IOException
 block|{
 name|super
 argument_list|(

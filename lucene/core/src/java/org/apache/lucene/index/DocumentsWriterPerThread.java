@@ -1128,10 +1128,10 @@ expr_stmt|;
 block|}
 block|}
 comment|/** Anything that will add N docs to the index should reserve first to    *  make sure it's allowed. */
-DECL|method|reserveDoc
+DECL|method|reserveOneDoc
 specifier|private
 name|void
-name|reserveDoc
+name|reserveOneDoc
 parameter_list|()
 block|{
 if|if
@@ -1147,7 +1147,7 @@ name|getActualMaxDocs
 argument_list|()
 condition|)
 block|{
-comment|// Reserve failed
+comment|// Reserve failed: put the one doc back and throw exc:
 name|pendingNumDocs
 operator|.
 name|decrementAndGet
@@ -1155,7 +1155,7 @@ argument_list|()
 expr_stmt|;
 throw|throw
 operator|new
-name|IllegalStateException
+name|IllegalArgumentException
 argument_list|(
 literal|"number of documents in the index cannot exceed "
 operator|+
@@ -1196,6 +1196,9 @@ name|deleteQueue
 operator|!=
 literal|null
 assert|;
+name|reserveOneDoc
+argument_list|()
+expr_stmt|;
 name|docState
 operator|.
 name|doc
@@ -1264,9 +1267,6 @@ comment|// Aborting exceptions will actually "lose" more than one
 comment|// document, so the counter will be "wrong" in that case, but
 comment|// it's very hard to fix (we can't easily distinguish aborting
 comment|// vs non-aborting exceptions):
-name|reserveDoc
-argument_list|()
-expr_stmt|;
 name|boolean
 name|success
 init|=
@@ -1432,7 +1432,7 @@ comment|// Aborting exceptions will actually "lose" more than one
 comment|// document, so the counter will be "wrong" in that case, but
 comment|// it's very hard to fix (we can't easily distinguish aborting
 comment|// vs non-aborting exceptions):
-name|reserveDoc
+name|reserveOneDoc
 argument_list|()
 expr_stmt|;
 name|docState

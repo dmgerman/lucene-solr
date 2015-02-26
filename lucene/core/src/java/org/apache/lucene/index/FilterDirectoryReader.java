@@ -193,6 +193,8 @@ parameter_list|,
 name|SubReaderWrapper
 name|wrapper
 parameter_list|)
+throws|throws
+name|IOException
 block|{
 name|super
 argument_list|(
@@ -229,6 +231,8 @@ parameter_list|(
 name|DirectoryReader
 name|in
 parameter_list|)
+throws|throws
+name|IOException
 function_decl|;
 DECL|method|wrapDirectoryReader
 specifier|private
@@ -239,6 +243,8 @@ parameter_list|(
 name|DirectoryReader
 name|in
 parameter_list|)
+throws|throws
+name|IOException
 block|{
 return|return
 name|in
