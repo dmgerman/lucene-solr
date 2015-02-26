@@ -437,7 +437,7 @@ operator|=
 name|flags
 expr_stmt|;
 block|}
-comment|/** Parses the query text and returns parsed query (or null if empty) */
+comment|/** Parses the query text and returns parsed query */
 DECL|method|parse
 specifier|public
 name|Query
@@ -490,11 +490,29 @@ argument_list|(
 name|state
 argument_list|)
 expr_stmt|;
+if|if
+condition|(
+name|state
+operator|.
+name|top
+operator|==
+literal|null
+condition|)
+block|{
+return|return
+operator|new
+name|BooleanQuery
+argument_list|()
+return|;
+block|}
+else|else
+block|{
 return|return
 name|state
 operator|.
 name|top
 return|;
+block|}
 block|}
 DECL|method|parseSubQuery
 specifier|private
