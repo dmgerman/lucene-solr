@@ -757,6 +757,8 @@ name|IndexReader
 modifier|...
 name|readers
 parameter_list|)
+throws|throws
+name|IOException
 block|{
 name|super
 argument_list|(

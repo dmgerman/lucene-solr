@@ -20,6 +20,16 @@ begin_import
 import|import
 name|java
 operator|.
+name|io
+operator|.
+name|IOException
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
 name|util
 operator|.
 name|Random
@@ -96,6 +106,8 @@ parameter_list|,
 name|Random
 name|random
 parameter_list|)
+throws|throws
+name|IOException
 block|{
 name|super
 argument_list|(
@@ -119,6 +131,8 @@ parameter_list|(
 name|DirectoryReader
 name|in
 parameter_list|)
+throws|throws
+name|IOException
 block|{
 return|return
 operator|new
