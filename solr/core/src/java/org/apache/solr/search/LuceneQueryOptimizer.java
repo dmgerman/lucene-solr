@@ -337,10 +337,10 @@ comment|// miss
 name|filter
 operator|=
 operator|new
-name|CachingWrapperFilter
+name|QueryWrapperFilter
 argument_list|(
 operator|new
-name|QueryWrapperFilter
+name|CachingWrapperQuery
 argument_list|(
 name|filterQuery
 argument_list|)

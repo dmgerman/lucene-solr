@@ -219,7 +219,15 @@ import|;
 end_import
 
 begin_comment
-comment|/** Only purpose is to punch through and return a  *  DrillSidewaysScorer */
+comment|/** Only purpose is to punch through and return a  *  DrillSidewaysScorer*/
+end_comment
+
+begin_comment
+comment|// TODO change the way DrillSidewaysScorer is used, this query does not work
+end_comment
+
+begin_comment
+comment|// with filter caching
 end_comment
 
 begin_class

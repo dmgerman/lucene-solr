@@ -143,7 +143,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * A query that applies a filter to the results of another query.  *  *<p>Note: the bits are retrieved from the filter each time this  * query is used in a search - use a CachingWrapperFilter to avoid  * regenerating the bits every time.  * @since   1.4  * @see     CachingWrapperFilter  */
+comment|/**  * A query that applies a filter to the results of another query.  *  *<p>Note: the bits are retrieved from the filter each time this  * query is used in a search - use a CachingWrapperFilter to avoid  * regenerating the bits every time.  * @since   1.4  * @see     CachingWrapperQuery  */
 end_comment
 
 begin_class

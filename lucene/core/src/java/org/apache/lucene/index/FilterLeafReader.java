@@ -46,7 +46,7 @@ name|lucene
 operator|.
 name|search
 operator|.
-name|CachingWrapperFilter
+name|CachingWrapperQuery
 import|;
 end_import
 
@@ -93,7 +93,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  A<code>FilterLeafReader</code> contains another LeafReader, which it  * uses as its basic source of data, possibly transforming the data along the  * way or providing additional functionality. The class  *<code>FilterLeafReader</code> itself simply implements all abstract methods  * of<code>IndexReader</code> with versions that pass all requests to the  * contained index reader. Subclasses of<code>FilterLeafReader</code> may  * further override some of these methods and may also provide additional  * methods and fields.  *<p><b>NOTE</b>: If you override {@link #getLiveDocs()}, you will likely need  * to override {@link #numDocs()} as well and vice-versa.  *<p><b>NOTE</b>: If this {@link FilterLeafReader} does not change the  * content the contained reader, you could consider overriding  * {@link #getCoreCacheKey()} so that  * {@link CachingWrapperFilter} shares the same entries for this atomic reader  * and the wrapped one. {@link #getCombinedCoreAndDeletesKey()} could be  * overridden as well if the {@link #getLiveDocs() live docs} are not changed  * either.  */
+comment|/**  A<code>FilterLeafReader</code> contains another LeafReader, which it  * uses as its basic source of data, possibly transforming the data along the  * way or providing additional functionality. The class  *<code>FilterLeafReader</code> itself simply implements all abstract methods  * of<code>IndexReader</code> with versions that pass all requests to the  * contained index reader. Subclasses of<code>FilterLeafReader</code> may  * further override some of these methods and may also provide additional  * methods and fields.  *<p><b>NOTE</b>: If you override {@link #getLiveDocs()}, you will likely need  * to override {@link #numDocs()} as well and vice-versa.  *<p><b>NOTE</b>: If this {@link FilterLeafReader} does not change the  * content the contained reader, you could consider overriding  * {@link #getCoreCacheKey()} so that  * {@link CachingWrapperQuery} shares the same entries for this atomic reader  * and the wrapped one. {@link #getCombinedCoreAndDeletesKey()} could be  * overridden as well if the {@link #getLiveDocs() live docs} are not changed  * either.  */
 end_comment
 
 begin_class

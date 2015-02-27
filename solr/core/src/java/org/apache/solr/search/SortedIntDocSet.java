@@ -3613,17 +3613,6 @@ block|}
 annotation|@
 name|Override
 specifier|public
-name|boolean
-name|isCacheable
-parameter_list|()
-block|{
-return|return
-literal|true
-return|;
-block|}
-annotation|@
-name|Override
-specifier|public
 name|long
 name|ramBytesUsed
 parameter_list|()

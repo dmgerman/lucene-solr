@@ -17,24 +17,79 @@ comment|/*  * Licensed to the Apache Software Foundation (ASF) under one or more
 end_comment
 
 begin_comment
-comment|/**  * A cache for filters.  *  * @see LRUFilterCache  * @lucene.experimental  */
+comment|/**  * A cache for queries.  *  * @see LRUQueryCache  * @lucene.experimental  */
 end_comment
 
 begin_interface
-DECL|interface|FilterCache
+DECL|interface|QueryCache
 specifier|public
 interface|interface
-name|FilterCache
+name|QueryCache
 block|{
-comment|/**    * Return a wrapper around the provided<code>filter</code> that will cache    * {@link DocIdSet}s per-segment accordingly to the given<code>policy</code>.    */
+comment|/**    * Return a key for the given query that only takes matching documents into    * account. Boosts will be ignored.    * @lucene.internal    */
+DECL|method|cacheKey
+specifier|public
+specifier|static
+name|Query
+name|cacheKey
+parameter_list|(
+name|Query
+name|query
+parameter_list|)
+block|{
+if|if
+condition|(
+name|query
+operator|.
+name|getBoost
+argument_list|()
+operator|==
+literal|1f
+condition|)
+block|{
+return|return
+name|query
+return|;
+block|}
+else|else
+block|{
+name|Query
+name|key
+init|=
+name|query
+operator|.
+name|clone
+argument_list|()
+decl_stmt|;
+name|key
+operator|.
+name|setBoost
+argument_list|(
+literal|1f
+argument_list|)
+expr_stmt|;
+assert|assert
+name|key
+operator|==
+name|cacheKey
+argument_list|(
+name|key
+argument_list|)
+assert|;
+return|return
+name|key
+return|;
+block|}
+block|}
+comment|/**    * Return a wrapper around the provided<code>weight</code> that will cache    * matching docs per-segment accordingly to the given<code>policy</code>.    * NOTE: The returned weight will only be equivalent if scores are not needed.    * @see Collector#needsScores()    */
 DECL|method|doCache
-name|Filter
+name|Weight
 name|doCache
 parameter_list|(
-name|Filter
-name|filter
+name|Weight
+name|weight
 parameter_list|,
-name|FilterCachingPolicy
+name|QueryCachingPolicy
 name|policy
 parameter_list|)
 function_decl|;

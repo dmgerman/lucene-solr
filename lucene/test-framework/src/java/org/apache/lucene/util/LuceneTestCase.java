@@ -962,20 +962,6 @@ name|lucene
 operator|.
 name|search
 operator|.
-name|DocIdSet
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|search
-operator|.
 name|DocIdSetIterator
 import|;
 end_import
@@ -990,7 +976,7 @@ name|lucene
 operator|.
 name|search
 operator|.
-name|Filter
+name|Query
 import|;
 end_import
 
@@ -1004,7 +990,7 @@ name|lucene
 operator|.
 name|search
 operator|.
-name|FilterCachingPolicy
+name|QueryCachingPolicy
 import|;
 end_import
 
@@ -2296,16 +2282,16 @@ literal|"RAMDirectory"
 argument_list|)
 expr_stmt|;
 block|}
-comment|/** A {@link org.apache.lucene.search.FilterCachingPolicy} that randomly caches. */
+comment|/** A {@link org.apache.lucene.search.QueryCachingPolicy} that randomly caches. */
 DECL|field|MAYBE_CACHE_POLICY
 specifier|public
 specifier|static
 specifier|final
-name|FilterCachingPolicy
+name|QueryCachingPolicy
 name|MAYBE_CACHE_POLICY
 init|=
 operator|new
-name|FilterCachingPolicy
+name|QueryCachingPolicy
 argument_list|()
 block|{
 annotation|@
@@ -2314,8 +2300,8 @@ specifier|public
 name|void
 name|onUse
 parameter_list|(
-name|Filter
-name|filter
+name|Query
+name|query
 parameter_list|)
 block|{}
 annotation|@
@@ -2324,14 +2310,11 @@ specifier|public
 name|boolean
 name|shouldCache
 parameter_list|(
-name|Filter
-name|filter
+name|Query
+name|query
 parameter_list|,
 name|LeafReaderContext
 name|context
-parameter_list|,
-name|DocIdSet
-name|set
 parameter_list|)
 throws|throws
 name|IOException
@@ -8546,6 +8529,13 @@ operator|.
 name|similarity
 argument_list|)
 expr_stmt|;
+name|ret
+operator|.
+name|setQueryCachingPolicy
+argument_list|(
+name|MAYBE_CACHE_POLICY
+argument_list|)
+expr_stmt|;
 return|return
 name|ret
 return|;
@@ -8752,6 +8742,13 @@ argument_list|(
 name|classEnvRule
 operator|.
 name|similarity
+argument_list|)
+expr_stmt|;
+name|ret
+operator|.
+name|setQueryCachingPolicy
+argument_list|(
+name|MAYBE_CACHE_POLICY
 argument_list|)
 expr_stmt|;
 return|return

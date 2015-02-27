@@ -1143,11 +1143,11 @@ specifier|final
 name|Weight
 name|innerWeight
 init|=
-name|query
+name|searcher
 operator|.
 name|createWeight
 argument_list|(
-name|searcher
+name|query
 argument_list|,
 literal|false
 argument_list|)
