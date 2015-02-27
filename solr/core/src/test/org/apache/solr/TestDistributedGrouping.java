@@ -138,6 +138,16 @@ name|Test
 import|;
 end_import
 
+begin_import
+import|import
+name|java
+operator|.
+name|io
+operator|.
+name|IOException
+import|;
+end_import
+
 begin_comment
 comment|/**  * TODO? perhaps use:  *  http://docs.codehaus.org/display/JETTY/ServletTester  * rather then open a real connection?  *  * @since solr 4.0  */
 end_comment
@@ -3024,6 +3034,8 @@ name|queryParams
 parameter_list|)
 throws|throws
 name|SolrServerException
+throws|,
+name|IOException
 block|{
 name|ModifiableSolrParams
 name|params

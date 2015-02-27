@@ -371,6 +371,7 @@ function_decl|;
 comment|/**    * Send this request to a {@link SolrClient} and return the response    * @param client the SolrClient to communicate with    * @return the response    * @throws SolrServerException if there is an error on the Solr server    * @throws IOException if there is a communication error    */
 DECL|method|process
 specifier|public
+specifier|final
 name|T
 name|process
 parameter_list|(

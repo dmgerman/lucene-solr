@@ -1184,6 +1184,8 @@ name|params
 parameter_list|)
 throws|throws
 name|SolrServerException
+throws|,
+name|IOException
 block|{
 return|return
 operator|new
@@ -1212,6 +1214,8 @@ name|method
 parameter_list|)
 throws|throws
 name|SolrServerException
+throws|,
+name|IOException
 block|{
 return|return
 operator|new
@@ -1297,6 +1301,8 @@ name|id
 parameter_list|)
 throws|throws
 name|SolrServerException
+throws|,
+name|IOException
 block|{
 return|return
 name|getById
@@ -1321,6 +1327,8 @@ name|params
 parameter_list|)
 throws|throws
 name|SolrServerException
+throws|,
+name|IOException
 block|{
 name|SolrDocumentList
 name|docs
@@ -1373,6 +1381,8 @@ name|ids
 parameter_list|)
 throws|throws
 name|SolrServerException
+throws|,
+name|IOException
 block|{
 return|return
 name|getById
@@ -1400,6 +1410,8 @@ name|params
 parameter_list|)
 throws|throws
 name|SolrServerException
+throws|,
+name|IOException
 block|{
 if|if
 condition|(
