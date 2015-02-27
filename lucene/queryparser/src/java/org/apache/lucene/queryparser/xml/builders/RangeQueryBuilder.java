@@ -20,33 +20,9 @@ name|builders
 package|;
 end_package
 
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|search
-operator|.
-name|Filter
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|search
-operator|.
-name|TermRangeFilter
-import|;
-end_import
+begin_comment
+comment|/*  * Licensed to the Apache Software Foundation (ASF) under one or more  * contributor license agreements.  See the NOTICE file distributed with  * this work for additional information regarding copyright ownership.  * The ASF licenses this file to You under the Apache License, Version 2.0  * (the "License"); you may not use this file except in compliance with  * the License.  You may obtain a copy of the License at  *  *     http://www.apache.org/licenses/LICENSE-2.0  *  * Unless required by applicable law or agreed to in writing, software  * distributed under the License is distributed on an "AS IS" BASIS,  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.  * See the License for the specific language governing permissions and  * limitations under the License.  */
+end_comment
 
 begin_import
 import|import
@@ -76,7 +52,7 @@ name|queryparser
 operator|.
 name|xml
 operator|.
-name|FilterBuilder
+name|ParserException
 import|;
 end_import
 
@@ -92,7 +68,35 @@ name|queryparser
 operator|.
 name|xml
 operator|.
-name|ParserException
+name|QueryBuilder
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|search
+operator|.
+name|Query
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|search
+operator|.
+name|TermRangeQuery
 import|;
 end_import
 
@@ -109,27 +113,23 @@ import|;
 end_import
 
 begin_comment
-comment|/*  * Licensed to the Apache Software Foundation (ASF) under one or more  * contributor license agreements.  See the NOTICE file distributed with  * this work for additional information regarding copyright ownership.  * The ASF licenses this file to You under the Apache License, Version 2.0  * (the "License"); you may not use this file except in compliance with  * the License.  You may obtain a copy of the License at  *  *     http://www.apache.org/licenses/LICENSE-2.0  *  * Unless required by applicable law or agreed to in writing, software  * distributed under the License is distributed on an "AS IS" BASIS,  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.  * See the License for the specific language governing permissions and  * limitations under the License.  */
-end_comment
-
-begin_comment
-comment|/**  * Builder for {@link TermRangeFilter}  */
+comment|/**  * Builder for {@link TermRangeQuery}  */
 end_comment
 
 begin_class
-DECL|class|RangeFilterBuilder
+DECL|class|RangeQueryBuilder
 specifier|public
 class|class
-name|RangeFilterBuilder
+name|RangeQueryBuilder
 implements|implements
-name|FilterBuilder
+name|QueryBuilder
 block|{
 annotation|@
 name|Override
-DECL|method|getFilter
+DECL|method|getQuery
 specifier|public
-name|Filter
-name|getFilter
+name|Query
+name|getQuery
 parameter_list|(
 name|Element
 name|e
@@ -198,7 +198,7 @@ literal|true
 argument_list|)
 decl_stmt|;
 return|return
-name|TermRangeFilter
+name|TermRangeQuery
 operator|.
 name|newStringRange
 argument_list|(

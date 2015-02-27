@@ -199,7 +199,13 @@ comment|// needs to be implemented by query subclasses
 throw|throw
 operator|new
 name|UnsupportedOperationException
+argument_list|(
+name|getClass
 argument_list|()
+operator|.
+name|getName
+argument_list|()
+argument_list|)
 throw|;
 block|}
 comment|/** Returns a clone of this query. */

@@ -104,7 +104,21 @@ name|lucene
 operator|.
 name|search
 operator|.
-name|TermRangeFilter
+name|QueryWrapperFilter
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|search
+operator|.
+name|TermRangeQuery
 import|;
 end_import
 
@@ -369,7 +383,10 @@ argument_list|,
 name|dir2
 argument_list|,
 operator|new
-name|TermRangeFilter
+name|QueryWrapperFilter
+argument_list|(
+operator|new
+name|TermRangeQuery
 argument_list|(
 name|midTerm
 operator|.
@@ -386,6 +403,7 @@ argument_list|,
 literal|true
 argument_list|,
 literal|false
+argument_list|)
 argument_list|)
 argument_list|)
 expr_stmt|;
@@ -422,7 +440,10 @@ argument_list|,
 name|dir2
 argument_list|,
 operator|new
-name|TermRangeFilter
+name|QueryWrapperFilter
+argument_list|(
+operator|new
+name|TermRangeQuery
 argument_list|(
 name|midTerm
 operator|.
@@ -439,6 +460,7 @@ argument_list|,
 literal|true
 argument_list|,
 literal|false
+argument_list|)
 argument_list|)
 argument_list|,
 name|config1

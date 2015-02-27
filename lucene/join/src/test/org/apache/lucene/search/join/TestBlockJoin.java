@@ -2401,7 +2401,7 @@ name|setRewriteMethod
 argument_list|(
 name|MultiTermQuery
 operator|.
-name|CONSTANT_SCORE_BOOLEAN_QUERY_REWRITE
+name|CONSTANT_SCORE_BOOLEAN_REWRITE
 argument_list|)
 expr_stmt|;
 name|BitDocIdSetFilter

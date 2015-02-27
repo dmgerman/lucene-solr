@@ -409,7 +409,7 @@ name|setRewriteMethod
 argument_list|(
 name|MultiTermQuery
 operator|.
-name|SCORING_BOOLEAN_QUERY_REWRITE
+name|SCORING_BOOLEAN_REWRITE
 argument_list|)
 expr_stmt|;
 name|wq
@@ -457,7 +457,7 @@ name|setRewriteMethod
 argument_list|(
 name|MultiTermQuery
 operator|.
-name|CONSTANT_SCORE_FILTER_REWRITE
+name|CONSTANT_SCORE_REWRITE
 argument_list|)
 expr_stmt|;
 name|wq
@@ -480,7 +480,7 @@ name|assertTrue
 argument_list|(
 name|q
 operator|instanceof
-name|ConstantScoreQuery
+name|MultiTermQueryConstantScoreWrapper
 argument_list|)
 expr_stmt|;
 name|assertEquals
@@ -504,7 +504,7 @@ name|setRewriteMethod
 argument_list|(
 name|MultiTermQuery
 operator|.
-name|CONSTANT_SCORE_BOOLEAN_QUERY_REWRITE
+name|CONSTANT_SCORE_BOOLEAN_REWRITE
 argument_list|)
 expr_stmt|;
 name|wq
@@ -621,7 +621,7 @@ name|setRewriteMethod
 argument_list|(
 name|MultiTermQuery
 operator|.
-name|SCORING_BOOLEAN_QUERY_REWRITE
+name|SCORING_BOOLEAN_REWRITE
 argument_list|)
 expr_stmt|;
 name|assertMatches

@@ -164,7 +164,10 @@ operator|.
 name|isCostly
 argument_list|(
 operator|new
-name|PrefixFilter
+name|QueryWrapperFilter
+argument_list|(
+operator|new
+name|PrefixQuery
 argument_list|(
 operator|new
 name|Term
@@ -176,6 +179,7 @@ argument_list|)
 argument_list|)
 argument_list|)
 argument_list|)
+argument_list|)
 expr_stmt|;
 name|assertTrue
 argument_list|(
@@ -183,7 +187,10 @@ name|UsageTrackingFilterCachingPolicy
 operator|.
 name|isCostly
 argument_list|(
-name|NumericRangeFilter
+operator|new
+name|QueryWrapperFilter
+argument_list|(
+name|NumericRangeQuery
 operator|.
 name|newIntRange
 argument_list|(
@@ -198,6 +205,7 @@ argument_list|,
 literal|true
 argument_list|,
 literal|true
+argument_list|)
 argument_list|)
 argument_list|)
 argument_list|)

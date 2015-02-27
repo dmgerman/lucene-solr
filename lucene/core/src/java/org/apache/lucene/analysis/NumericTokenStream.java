@@ -172,24 +172,6 @@ name|lucene
 operator|.
 name|search
 operator|.
-name|NumericRangeFilter
-import|;
-end_import
-
-begin_comment
-comment|// for javadocs
-end_comment
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|search
-operator|.
 name|NumericRangeQuery
 import|;
 end_import
@@ -293,7 +275,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  *<b>Expert:</b> This class provides a {@link TokenStream}  * for indexing numeric values that can be used by {@link  * NumericRangeQuery} or {@link NumericRangeFilter}.  *  *<p>Note that for simple usage, {@link IntField}, {@link  * LongField}, {@link FloatField} or {@link DoubleField} is  * recommended.  These fields disable norms and  * term freqs, as they are not usually needed during  * searching.  If you need to change these settings, you  * should use this class.  *  *<p>Here's an example usage, for an<code>int</code> field:  *  *<pre class="prettyprint">  *  FieldType fieldType = new FieldType(TextField.TYPE_NOT_STORED);  *  fieldType.setOmitNorms(true);  *  fieldType.setIndexOptions(IndexOptions.DOCS_ONLY);  *  Field field = new Field(name, new NumericTokenStream(precisionStep).setIntValue(value), fieldType);  *  document.add(field);  *</pre>  *  *<p>For optimal performance, re-use the TokenStream and Field instance  * for more than one document:  *  *<pre class="prettyprint">  *  NumericTokenStream stream = new NumericTokenStream(precisionStep);  *  FieldType fieldType = new FieldType(TextField.TYPE_NOT_STORED);  *  fieldType.setOmitNorms(true);  *  fieldType.setIndexOptions(IndexOptions.DOCS_ONLY);  *  Field field = new Field(name, stream, fieldType);  *  Document document = new Document();  *  document.add(field);  *  *  for(all documents) {  *    stream.setIntValue(value)  *    writer.addDocument(document);  *  }  *</pre>  *  *<p>This stream is not intended to be used in analyzers;  * it's more for iterating the different precisions during  * indexing a specific numeric value.</p>   *<p><b>NOTE</b>: as token streams are only consumed once  * the document is added to the index, if you index more  * than one numeric field, use a separate<code>NumericTokenStream</code>  * instance for each.</p>  *  *<p>See {@link NumericRangeQuery} for more details on the  *<a  * href="../search/NumericRangeQuery.html#precisionStepDesc"><code>precisionStep</code></a>  * parameter as well as how numeric fields work under the hood.</p>  *  * @since 2.9  */
+comment|/**  *<b>Expert:</b> This class provides a {@link TokenStream}  * for indexing numeric values that can be used by {@link  * NumericRangeQuery}.  *  *<p>Note that for simple usage, {@link IntField}, {@link  * LongField}, {@link FloatField} or {@link DoubleField} is  * recommended.  These fields disable norms and  * term freqs, as they are not usually needed during  * searching.  If you need to change these settings, you  * should use this class.  *  *<p>Here's an example usage, for an<code>int</code> field:  *  *<pre class="prettyprint">  *  FieldType fieldType = new FieldType(TextField.TYPE_NOT_STORED);  *  fieldType.setOmitNorms(true);  *  fieldType.setIndexOptions(IndexOptions.DOCS_ONLY);  *  Field field = new Field(name, new NumericTokenStream(precisionStep).setIntValue(value), fieldType);  *  document.add(field);  *</pre>  *  *<p>For optimal performance, re-use the TokenStream and Field instance  * for more than one document:  *  *<pre class="prettyprint">  *  NumericTokenStream stream = new NumericTokenStream(precisionStep);  *  FieldType fieldType = new FieldType(TextField.TYPE_NOT_STORED);  *  fieldType.setOmitNorms(true);  *  fieldType.setIndexOptions(IndexOptions.DOCS_ONLY);  *  Field field = new Field(name, stream, fieldType);  *  Document document = new Document();  *  document.add(field);  *  *  for(all documents) {  *    stream.setIntValue(value)  *    writer.addDocument(document);  *  }  *</pre>  *  *<p>This stream is not intended to be used in analyzers;  * it's more for iterating the different precisions during  * indexing a specific numeric value.</p>   *<p><b>NOTE</b>: as token streams are only consumed once  * the document is added to the index, if you index more  * than one numeric field, use a separate<code>NumericTokenStream</code>  * instance for each.</p>  *  *<p>See {@link NumericRangeQuery} for more details on the  *<a  * href="../search/NumericRangeQuery.html#precisionStepDesc"><code>precisionStep</code></a>  * parameter as well as how numeric fields work under the hood.</p>  *  * @since 2.9  */
 end_comment
 
 begin_class

@@ -598,7 +598,7 @@ name|multiTermRewriteMethod
 init|=
 name|MultiTermQuery
 operator|.
-name|CONSTANT_SCORE_FILTER_REWRITE
+name|CONSTANT_SCORE_REWRITE
 decl_stmt|;
 DECL|field|allowLeadingWildcard
 name|boolean
@@ -1209,7 +1209,7 @@ return|return
 name|operator
 return|;
 block|}
-comment|/**    * By default QueryParser uses {@link org.apache.lucene.search.MultiTermQuery#CONSTANT_SCORE_FILTER_REWRITE}    * when creating a PrefixQuery, WildcardQuery or RangeQuery. This implementation is generally preferable because it    * a) Runs faster b) Does not have the scarcity of terms unduly influence score    * c) avoids any "TooManyBooleanClauses" exception.    * However, if your application really needs to use the    * old-fashioned BooleanQuery expansion rewriting and the above    * points are not relevant then use this to change    * the rewrite method.    */
+comment|/**    * By default QueryParser uses {@link org.apache.lucene.search.MultiTermQuery#CONSTANT_SCORE_REWRITE}    * when creating a PrefixQuery, WildcardQuery or RangeQuery. This implementation is generally preferable because it    * a) Runs faster b) Does not have the scarcity of terms unduly influence score    * c) avoids any "TooManyBooleanClauses" exception.    * However, if your application really needs to use the    * old-fashioned BooleanQuery expansion rewriting and the above    * points are not relevant then use this to change    * the rewrite method.    */
 DECL|method|setMultiTermRewriteMethod
 specifier|public
 name|void
