@@ -1505,6 +1505,109 @@ argument_list|,
 literal|"true"
 argument_list|)
 expr_stmt|;
+comment|// missing fl with sort
+name|queryWithAsserts
+argument_list|(
+literal|"q"
+argument_list|,
+literal|"*:*"
+argument_list|,
+literal|"sort"
+argument_list|,
+literal|"payload desc"
+argument_list|,
+name|ShardParams
+operator|.
+name|DISTRIB_SINGLE_PASS
+argument_list|,
+literal|"true"
+argument_list|)
+expr_stmt|;
+name|queryWithAsserts
+argument_list|(
+literal|"q"
+argument_list|,
+literal|"*:*"
+argument_list|,
+literal|"sort"
+argument_list|,
+literal|"payload desc"
+argument_list|)
+expr_stmt|;
+comment|// fl=*
+name|queryWithAsserts
+argument_list|(
+literal|"q"
+argument_list|,
+literal|"*:*"
+argument_list|,
+literal|"fl"
+argument_list|,
+literal|"*"
+argument_list|,
+literal|"sort"
+argument_list|,
+literal|"payload desc"
+argument_list|,
+name|ShardParams
+operator|.
+name|DISTRIB_SINGLE_PASS
+argument_list|,
+literal|"true"
+argument_list|)
+expr_stmt|;
+name|queryWithAsserts
+argument_list|(
+literal|"q"
+argument_list|,
+literal|"*:*"
+argument_list|,
+literal|"fl"
+argument_list|,
+literal|"*"
+argument_list|,
+literal|"sort"
+argument_list|,
+literal|"payload desc"
+argument_list|)
+expr_stmt|;
+comment|// fl=*,score
+name|queryWithAsserts
+argument_list|(
+literal|"q"
+argument_list|,
+literal|"*:*"
+argument_list|,
+literal|"fl"
+argument_list|,
+literal|"*,score"
+argument_list|,
+literal|"sort"
+argument_list|,
+literal|"payload desc"
+argument_list|,
+name|ShardParams
+operator|.
+name|DISTRIB_SINGLE_PASS
+argument_list|,
+literal|"true"
+argument_list|)
+expr_stmt|;
+name|queryWithAsserts
+argument_list|(
+literal|"q"
+argument_list|,
+literal|"*:*"
+argument_list|,
+literal|"fl"
+argument_list|,
+literal|"*,score"
+argument_list|,
+literal|"sort"
+argument_list|,
+literal|"payload desc"
+argument_list|)
+expr_stmt|;
 block|}
 comment|/**    * This test now asserts that every distrib.singlePass query:    *<ol>    *<li>Makes exactly 'numSlices' number of shard requests</li>    *<li>Makes no GET_FIELDS requests</li>    *<li>Must request the unique key field from shards</li>    *<li>Must request the score if 'fl' has score or sort by score is requested</li>    *<li>Requests all fields that are present in 'fl' param</li>    *</ol>    *<p>    * It also asserts that every regular two phase distribtued search:    *<ol>    *<li>Makes at most 2 * 'numSlices' number of shard requests</li>    *<li>Must request the unique key field from shards</li>    *<li>Must request the score if 'fl' has score or sort by score is requested</li>    *<li>Requests no fields other than id and score in GET_TOP_IDS request</li>    *<li>Requests exactly the fields that are present in 'fl' param in GET_FIELDS request and no others</li>    *</ol>    *<p>    * and also asserts that each query which requests id or score or both behaves exactly like a single pass query    */
 DECL|method|queryWithAsserts
@@ -1886,6 +1989,12 @@ name|containsAll
 argument_list|(
 name|fls
 argument_list|)
+operator|&&
+operator|!
+name|fls
+operator|.
+name|isEmpty
+argument_list|()
 condition|)
 block|{
 comment|// if id and/or score are the only fields being requested then we implicitly turn on distribSinglePass=true
@@ -2403,6 +2512,13 @@ name|HashSet
 argument_list|<>
 argument_list|()
 decl_stmt|;
+if|if
+condition|(
+name|params
+operator|!=
+literal|null
+condition|)
+block|{
 for|for
 control|(
 name|String
@@ -2411,10 +2527,12 @@ range|:
 name|params
 control|)
 block|{
-name|requestedFields
-operator|.
-name|addAll
-argument_list|(
+name|List
+argument_list|<
+name|String
+argument_list|>
+name|list
+init|=
 name|StrUtils
 operator|.
 name|splitSmart
@@ -2423,9 +2541,51 @@ name|p
 argument_list|,
 literal|','
 argument_list|)
+decl_stmt|;
+for|for
+control|(
+name|String
+name|s
+range|:
+name|list
+control|)
+block|{
+comment|// make sure field names aren't duplicated in the parameters
+name|assertTrue
+argument_list|(
+literal|"Field name "
+operator|+
+name|s
+operator|+
+literal|" was requested multiple times: params = "
+operator|+
+name|requestAndParams
+operator|.
+name|params
+argument_list|,
+name|requestedFields
+operator|.
+name|add
+argument_list|(
+name|s
+argument_list|)
 argument_list|)
 expr_stmt|;
 block|}
+block|}
+block|}
+comment|// if a wildcard ALL field is requested then we don't need to match exact number of params
+if|if
+condition|(
+operator|!
+name|requestedFields
+operator|.
+name|contains
+argument_list|(
+literal|"*"
+argument_list|)
+condition|)
+block|{
 name|assertEquals
 argument_list|(
 literal|"Number of requested fields do not match with expectations"
@@ -2476,6 +2636,7 @@ operator|+
 name|requestedFields
 argument_list|)
 expr_stmt|;
+block|}
 block|}
 block|}
 block|}
