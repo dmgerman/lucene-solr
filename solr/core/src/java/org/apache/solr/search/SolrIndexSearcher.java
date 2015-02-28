@@ -2200,6 +2200,12 @@ name|name
 argument_list|)
 expr_stmt|;
 block|}
+comment|// We already have our own filter cache
+name|setQueryCache
+argument_list|(
+literal|null
+argument_list|)
+expr_stmt|;
 comment|// do this at the end since an exception in the constructor means we won't close
 name|numOpens
 operator|.
