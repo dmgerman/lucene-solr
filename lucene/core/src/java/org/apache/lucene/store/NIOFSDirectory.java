@@ -492,7 +492,10 @@ return|return
 operator|new
 name|NIOFSIndexInput
 argument_list|(
+name|getFullSliceDescription
+argument_list|(
 name|sliceDescription
+argument_list|)
 argument_list|,
 name|channel
 argument_list|,
