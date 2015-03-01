@@ -22,7 +22,7 @@ name|java
 operator|.
 name|util
 operator|.
-name|HashMap
+name|Map
 import|;
 end_import
 
@@ -32,7 +32,7 @@ name|java
 operator|.
 name|util
 operator|.
-name|Map
+name|Objects
 import|;
 end_import
 
@@ -99,6 +99,7 @@ decl_stmt|;
 comment|// whether this field stores payloads together with term positions
 DECL|field|attributes
 specifier|private
+specifier|final
 name|Map
 argument_list|<
 name|String
@@ -150,49 +151,16 @@ argument_list|>
 name|attributes
 parameter_list|)
 block|{
-if|if
-condition|(
-name|docValues
-operator|==
-literal|null
-condition|)
-block|{
-throw|throw
-operator|new
-name|NullPointerException
-argument_list|(
-literal|"DocValuesType cannot be null (field: \""
-operator|+
-name|name
-operator|+
-literal|"\")"
-argument_list|)
-throw|;
-block|}
-if|if
-condition|(
-name|indexOptions
-operator|==
-literal|null
-condition|)
-block|{
-throw|throw
-operator|new
-name|NullPointerException
-argument_list|(
-literal|"IndexOptions cannot be null (field: \""
-operator|+
-name|name
-operator|+
-literal|"\")"
-argument_list|)
-throw|;
-block|}
 name|this
 operator|.
 name|name
 operator|=
+name|Objects
+operator|.
+name|requireNonNull
+argument_list|(
 name|name
+argument_list|)
 expr_stmt|;
 name|this
 operator|.
@@ -204,13 +172,35 @@ name|this
 operator|.
 name|docValuesType
 operator|=
+name|Objects
+operator|.
+name|requireNonNull
+argument_list|(
 name|docValues
+argument_list|,
+literal|"DocValuesType cannot be null (field: \""
+operator|+
+name|name
+operator|+
+literal|"\")"
+argument_list|)
 expr_stmt|;
 name|this
 operator|.
 name|indexOptions
 operator|=
+name|Objects
+operator|.
+name|requireNonNull
+argument_list|(
 name|indexOptions
+argument_list|,
+literal|"IndexOptions cannot be null (field: \""
+operator|+
+name|name
+operator|+
+literal|"\")"
+argument_list|)
 expr_stmt|;
 if|if
 condition|(
@@ -272,7 +262,12 @@ name|this
 operator|.
 name|attributes
 operator|=
+name|Objects
+operator|.
+name|requireNonNull
+argument_list|(
 name|attributes
+argument_list|)
 expr_stmt|;
 assert|assert
 name|checkConsistency
@@ -949,19 +944,6 @@ name|String
 name|key
 parameter_list|)
 block|{
-if|if
-condition|(
-name|attributes
-operator|==
-literal|null
-condition|)
-block|{
-return|return
-literal|null
-return|;
-block|}
-else|else
-block|{
 return|return
 name|attributes
 operator|.
@@ -970,7 +952,6 @@ argument_list|(
 name|key
 argument_list|)
 return|;
-block|}
 block|}
 comment|/**    * Puts a codec attribute value.    *<p>    * This is a key-value mapping for the field that the codec can use    * to store additional metadata, and will be available to the codec    * when reading the segment via {@link #getAttribute(String)}    *<p>    * If a value already exists for the field, it will be replaced with     * the new value.    */
 DECL|method|putAttribute
@@ -985,21 +966,6 @@ name|String
 name|value
 parameter_list|)
 block|{
-if|if
-condition|(
-name|attributes
-operator|==
-literal|null
-condition|)
-block|{
-name|attributes
-operator|=
-operator|new
-name|HashMap
-argument_list|<>
-argument_list|()
-expr_stmt|;
-block|}
 return|return
 name|attributes
 operator|.
@@ -1011,7 +977,7 @@ name|value
 argument_list|)
 return|;
 block|}
-comment|/**    * Returns internal codec attributes map. May be null if no mappings exist.    */
+comment|/**    * Returns internal codec attributes map.    */
 DECL|method|attributes
 specifier|public
 name|Map

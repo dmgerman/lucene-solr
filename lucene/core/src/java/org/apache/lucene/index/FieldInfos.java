@@ -1349,7 +1349,10 @@ argument_list|,
 operator|-
 literal|1
 argument_list|,
-literal|null
+operator|new
+name|HashMap
+argument_list|<>
+argument_list|()
 argument_list|)
 expr_stmt|;
 assert|assert
@@ -1500,7 +1503,10 @@ argument_list|,
 operator|-
 literal|1
 argument_list|,
-literal|null
+operator|new
+name|HashMap
+argument_list|<>
+argument_list|()
 argument_list|)
 expr_stmt|;
 assert|assert

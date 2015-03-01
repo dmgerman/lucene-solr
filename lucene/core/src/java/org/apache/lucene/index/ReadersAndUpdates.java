@@ -2540,16 +2540,6 @@ name|fi
 argument_list|)
 decl_stmt|;
 comment|// copy the stuff FieldInfos.Builder doesn't copy
-if|if
-condition|(
-name|fi
-operator|.
-name|attributes
-argument_list|()
-operator|!=
-literal|null
-condition|)
-block|{
 for|for
 control|(
 name|Entry
@@ -2584,7 +2574,6 @@ name|getValue
 argument_list|()
 argument_list|)
 expr_stmt|;
-block|}
 block|}
 name|clone
 operator|.

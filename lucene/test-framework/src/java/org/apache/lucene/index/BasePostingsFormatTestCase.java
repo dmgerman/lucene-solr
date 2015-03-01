@@ -1914,7 +1914,10 @@ argument_list|,
 operator|-
 literal|1
 argument_list|,
-literal|null
+operator|new
+name|HashMap
+argument_list|<>
+argument_list|()
 argument_list|)
 expr_stmt|;
 name|fieldUpto
@@ -3455,7 +3458,10 @@ literal|false
 argument_list|,
 name|codec
 argument_list|,
-literal|null
+name|Collections
+operator|.
+name|emptyMap
+argument_list|()
 argument_list|,
 name|StringHelper
 operator|.
@@ -3615,7 +3621,10 @@ argument_list|,
 operator|-
 literal|1
 argument_list|,
-literal|null
+operator|new
+name|HashMap
+argument_list|<>
+argument_list|()
 argument_list|)
 expr_stmt|;
 block|}
