@@ -172,6 +172,10 @@ name|RunAutomaton
 import|;
 end_import
 
+begin_comment
+comment|// TODO: add two-phase and needsScores support. maybe use conjunctionDISI internally?
+end_comment
+
 begin_class
 DECL|class|TermAutomatonScorer
 class|class

@@ -100,6 +100,7 @@ name|AssertingScorer
 extends|extends
 name|Scorer
 block|{
+comment|// TODO: add asserts for two-phase intersection
 DECL|enum|IteratorState
 DECL|enum constant|START
 DECL|enum constant|ITERATING

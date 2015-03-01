@@ -130,6 +130,7 @@ annotation|@
 name|Override
 DECL|method|docID
 specifier|public
+specifier|final
 name|int
 name|docID
 parameter_list|()
@@ -145,6 +146,7 @@ annotation|@
 name|Override
 DECL|method|nextDoc
 specifier|public
+specifier|final
 name|int
 name|nextDoc
 parameter_list|()
@@ -162,6 +164,7 @@ annotation|@
 name|Override
 DECL|method|advance
 specifier|public
+specifier|final
 name|int
 name|advance
 parameter_list|(
@@ -192,6 +195,22 @@ return|return
 name|in
 operator|.
 name|cost
+argument_list|()
+return|;
+block|}
+annotation|@
+name|Override
+DECL|method|asTwoPhaseIterator
+specifier|public
+specifier|final
+name|TwoPhaseIterator
+name|asTwoPhaseIterator
+parameter_list|()
+block|{
+return|return
+name|in
+operator|.
+name|asTwoPhaseIterator
 argument_list|()
 return|;
 block|}
