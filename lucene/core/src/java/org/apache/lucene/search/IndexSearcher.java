@@ -398,7 +398,6 @@ comment|// 32MB and at most 10,000 queries
 DECL|field|DEFAULT_QUERY_CACHE
 specifier|private
 specifier|static
-specifier|final
 name|QueryCache
 name|DEFAULT_QUERY_CACHE
 init|=
@@ -415,7 +414,6 @@ decl_stmt|;
 DECL|field|DEFAULT_CACHING_POLICY
 specifier|private
 specifier|static
-specifier|final
 name|QueryCachingPolicy
 name|DEFAULT_CACHING_POLICY
 init|=
@@ -498,6 +496,38 @@ block|{
 return|return
 name|defaultSimilarity
 return|;
+block|}
+comment|/**    * Expert: set the default {@link QueryCache} instance.    * @lucene.internal    */
+DECL|method|setDefaultQueryCache
+specifier|public
+specifier|static
+name|void
+name|setDefaultQueryCache
+parameter_list|(
+name|QueryCache
+name|defaultQueryCache
+parameter_list|)
+block|{
+name|DEFAULT_QUERY_CACHE
+operator|=
+name|defaultQueryCache
+expr_stmt|;
+block|}
+comment|/**    * Expert: set the default {@link QueryCachingPolicy} instance.    * @lucene.internal    */
+DECL|method|setDefaultQueryCachingPolicy
+specifier|public
+specifier|static
+name|void
+name|setDefaultQueryCachingPolicy
+parameter_list|(
+name|QueryCachingPolicy
+name|defaultQueryCachingPolicy
+parameter_list|)
+block|{
+name|DEFAULT_CACHING_POLICY
+operator|=
+name|defaultQueryCachingPolicy
+expr_stmt|;
 block|}
 comment|/** The Similarity implementation used by this searcher. */
 DECL|field|similarity

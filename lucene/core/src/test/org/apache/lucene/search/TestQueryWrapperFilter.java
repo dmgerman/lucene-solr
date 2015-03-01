@@ -1531,6 +1531,14 @@ argument_list|(
 name|reader
 argument_list|)
 decl_stmt|;
+name|searcher
+operator|.
+name|setQueryCache
+argument_list|(
+literal|null
+argument_list|)
+expr_stmt|;
+comment|// to still have approximations
 specifier|final
 name|Query
 name|query
