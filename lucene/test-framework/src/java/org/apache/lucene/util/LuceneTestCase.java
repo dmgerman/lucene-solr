@@ -780,20 +780,6 @@ end_import
 
 begin_import
 import|import
-name|com
-operator|.
-name|carrotsearch
-operator|.
-name|randomizedtesting
-operator|.
-name|rules
-operator|.
-name|SystemPropertiesInvariantRule
-import|;
-end_import
-
-begin_import
-import|import
 name|org
 operator|.
 name|apache
@@ -2229,21 +2215,6 @@ operator|=
 name|defaultValue
 expr_stmt|;
 block|}
-comment|/**    * These property keys will be ignored in verification of altered properties.    * @see SystemPropertiesInvariantRule    * @see #ruleChain    * @see #classRules    */
-DECL|field|IGNORED_INVARIANT_PROPERTIES
-specifier|private
-specifier|static
-specifier|final
-name|String
-index|[]
-name|IGNORED_INVARIANT_PROPERTIES
-init|=
-block|{
-literal|"user.timezone"
-block|,
-literal|"java.rmi.server.randomIDs"
-block|}
-decl_stmt|;
 comment|/** Filesystem-based {@link Directory} implementations. */
 DECL|field|FS_DIRECTORIES
 specifier|private
@@ -2771,20 +2742,32 @@ argument_list|)
 operator|.
 name|around
 argument_list|(
-operator|new
-name|SystemPropertiesInvariantRule
-argument_list|(
-name|IGNORED_INVARIANT_PROPERTIES
-argument_list|)
-argument_list|)
-operator|.
-name|around
-argument_list|(
 name|classNameRule
 operator|=
 operator|new
 name|TestRuleStoreClassName
 argument_list|()
+argument_list|)
+operator|.
+name|around
+argument_list|(
+operator|new
+name|TestRuleRestoreSystemProperties
+argument_list|(
+comment|// Enlist all properties to which we have write access (security manager);
+comment|// these should be restored to previous state, no matter what the outcome of the test.
+comment|// We reset the default locale and timezone; these properties change as a side-effect
+literal|"user.language"
+argument_list|,
+literal|"user.timezone"
+argument_list|,
+comment|// TODO: these should, ideally, be moved to Solr's base class.
+literal|"solr.directoryFactory"
+argument_list|,
+literal|"solr.solr.home"
+argument_list|,
+literal|"solr.data.dir"
+argument_list|)
 argument_list|)
 operator|.
 name|around
@@ -2855,15 +2838,6 @@ operator|.
 name|around
 argument_list|(
 name|threadAndTestNameRule
-argument_list|)
-operator|.
-name|around
-argument_list|(
-operator|new
-name|SystemPropertiesInvariantRule
-argument_list|(
-name|IGNORED_INVARIANT_PROPERTIES
-argument_list|)
 argument_list|)
 operator|.
 name|around
