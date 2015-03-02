@@ -405,6 +405,20 @@ index|[
 name|size
 index|]
 expr_stmt|;
+comment|// previous field's attribute map, we share when possible:
+name|Map
+argument_list|<
+name|String
+argument_list|,
+name|String
+argument_list|>
+name|lastAttributes
+init|=
+name|Collections
+operator|.
+name|emptyMap
+argument_list|()
+decl_stmt|;
 for|for
 control|(
 name|int
@@ -539,7 +553,6 @@ operator|.
 name|readLong
 argument_list|()
 decl_stmt|;
-specifier|final
 name|Map
 argument_list|<
 name|String
@@ -578,6 +591,26 @@ argument_list|()
 argument_list|)
 expr_stmt|;
 block|}
+comment|// just use the last field's map if its the same
+if|if
+condition|(
+name|attributes
+operator|.
+name|equals
+argument_list|(
+name|lastAttributes
+argument_list|)
+condition|)
+block|{
+name|attributes
+operator|=
+name|lastAttributes
+expr_stmt|;
+block|}
+name|lastAttributes
+operator|=
+name|attributes
+expr_stmt|;
 try|try
 block|{
 name|infos
