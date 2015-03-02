@@ -1823,7 +1823,7 @@ literal|"all deletes must be applied in prepareFlush"
 assert|;
 name|segmentInfo
 operator|.
-name|setDocCount
+name|setMaxDoc
 argument_list|(
 name|numDocsInRAM
 argument_list|)
@@ -2326,7 +2326,7 @@ name|flushState
 operator|.
 name|segmentInfo
 operator|.
-name|getDocCount
+name|maxDoc
 argument_list|()
 operator|/
 name|newSegmentSize
@@ -2466,7 +2466,7 @@ name|newSegment
 operator|.
 name|info
 operator|.
-name|getDocCount
+name|maxDoc
 argument_list|()
 argument_list|,
 name|newSegment

@@ -98,20 +98,6 @@ name|Set
 import|;
 end_import
 
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|store
-operator|.
-name|Directory
-import|;
-end_import
-
 begin_comment
 comment|/** Embeds a [read-only] SegmentInfo and adds per-commit  *  fields.  *  *  @lucene.experimental */
 end_comment
@@ -963,7 +949,7 @@ name|delCount
 argument_list|>
 name|info
 operator|.
-name|getDocCount
+name|maxDoc
 argument_list|()
 condition|)
 block|{
@@ -975,11 +961,11 @@ literal|"invalid delCount="
 operator|+
 name|delCount
 operator|+
-literal|" (docCount="
+literal|" (maxDoc="
 operator|+
 name|info
 operator|.
-name|getDocCount
+name|maxDoc
 argument_list|()
 operator|+
 literal|")"

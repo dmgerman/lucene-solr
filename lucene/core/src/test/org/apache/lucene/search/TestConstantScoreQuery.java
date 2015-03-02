@@ -1548,7 +1548,10 @@ name|weight
 operator|.
 name|scorer
 argument_list|(
-name|reader
+name|searcher
+operator|.
+name|getIndexReader
+argument_list|()
 operator|.
 name|leaves
 argument_list|()

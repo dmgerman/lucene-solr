@@ -26,11 +26,11 @@ specifier|public
 class|class
 name|MergeInfo
 block|{
-DECL|field|totalDocCount
+DECL|field|totalMaxDoc
 specifier|public
 specifier|final
 name|int
-name|totalDocCount
+name|totalMaxDoc
 decl_stmt|;
 DECL|field|estimatedMergeBytes
 specifier|public
@@ -56,7 +56,7 @@ specifier|public
 name|MergeInfo
 parameter_list|(
 name|int
-name|totalDocCount
+name|totalMaxDoc
 parameter_list|,
 name|long
 name|estimatedMergeBytes
@@ -70,9 +70,9 @@ parameter_list|)
 block|{
 name|this
 operator|.
-name|totalDocCount
+name|totalMaxDoc
 operator|=
-name|totalDocCount
+name|totalMaxDoc
 expr_stmt|;
 name|this
 operator|.
@@ -159,7 +159,7 @@ name|prime
 operator|*
 name|result
 operator|+
-name|totalDocCount
+name|totalMaxDoc
 expr_stmt|;
 return|return
 name|result
@@ -250,11 +250,11 @@ literal|false
 return|;
 if|if
 condition|(
-name|totalDocCount
+name|totalMaxDoc
 operator|!=
 name|other
 operator|.
-name|totalDocCount
+name|totalMaxDoc
 condition|)
 return|return
 literal|false
@@ -272,9 +272,9 @@ name|toString
 parameter_list|()
 block|{
 return|return
-literal|"MergeInfo [totalDocCount="
+literal|"MergeInfo [totalMaxDoc="
 operator|+
-name|totalDocCount
+name|totalMaxDoc
 operator|+
 literal|", estimatedMergeBytes="
 operator|+

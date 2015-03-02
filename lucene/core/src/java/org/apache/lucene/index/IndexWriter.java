@@ -2800,7 +2800,7 @@ name|set
 argument_list|(
 name|segmentInfos
 operator|.
-name|totalDocCount
+name|totalMaxDoc
 argument_list|()
 argument_list|)
 expr_stmt|;
@@ -3508,7 +3508,7 @@ argument_list|()
 operator|+
 name|segmentInfos
 operator|.
-name|totalDocCount
+name|totalMaxDoc
 argument_list|()
 return|;
 block|}
@@ -3546,7 +3546,7 @@ name|info
 operator|.
 name|info
 operator|.
-name|getDocCount
+name|maxDoc
 argument_list|()
 operator|-
 name|numDeletedDocs
@@ -3997,7 +3997,7 @@ name|info
 operator|.
 name|info
 operator|.
-name|getDocCount
+name|maxDoc
 argument_list|()
 condition|)
 block|{
@@ -4777,11 +4777,11 @@ argument_list|)
 return|;
 block|}
 comment|// for test purpose
-DECL|method|getDocCount
+DECL|method|maxDoc
 specifier|final
 specifier|synchronized
 name|int
-name|getDocCount
+name|maxDoc
 parameter_list|(
 name|int
 name|i
@@ -4811,7 +4811,7 @@ argument_list|)
 operator|.
 name|info
 operator|.
-name|getDocCount
+name|maxDoc
 argument_list|()
 return|;
 block|}
@@ -6504,7 +6504,7 @@ argument_list|(
 operator|-
 name|segmentInfos
 operator|.
-name|totalDocCount
+name|totalMaxDoc
 argument_list|()
 argument_list|)
 expr_stmt|;
@@ -7477,7 +7477,7 @@ argument_list|()
 decl_stmt|;
 comment|// long so we can detect int overflow:
 name|long
-name|totalDocCount
+name|totalMaxDoc
 init|=
 literal|0
 decl_stmt|;
@@ -7537,11 +7537,11 @@ name|dir
 argument_list|)
 decl_stmt|;
 comment|// read infos from dir
-name|totalDocCount
+name|totalMaxDoc
 operator|+=
 name|sis
 operator|.
-name|totalDocCount
+name|totalMaxDoc
 argument_list|()
 expr_stmt|;
 name|commits
@@ -7555,7 +7555,7 @@ block|}
 comment|// Best-effort up front check:
 name|testReserveDocs
 argument_list|(
-name|totalDocCount
+name|totalMaxDoc
 argument_list|)
 expr_stmt|;
 name|boolean
@@ -7659,7 +7659,7 @@ name|info
 operator|.
 name|info
 operator|.
-name|getDocCount
+name|maxDoc
 argument_list|()
 argument_list|,
 name|info
@@ -7782,7 +7782,7 @@ expr_stmt|;
 comment|// Now reserve the docs, just before we update SIS:
 name|reserveDocs
 argument_list|(
-name|totalDocCount
+name|totalMaxDoc
 argument_list|)
 expr_stmt|;
 name|success
@@ -8477,7 +8477,7 @@ name|info
 operator|.
 name|info
 operator|.
-name|getDocCount
+name|maxDoc
 argument_list|()
 argument_list|,
 name|info
@@ -10020,7 +10020,7 @@ argument_list|()
 operator|+
 name|segmentInfos
 operator|.
-name|totalDocCount
+name|totalMaxDoc
 argument_list|()
 operator|)
 argument_list|)
@@ -10131,7 +10131,7 @@ name|info
 operator|.
 name|info
 operator|.
-name|getDocCount
+name|maxDoc
 argument_list|()
 argument_list|)
 expr_stmt|;
@@ -10405,7 +10405,7 @@ name|info
 operator|.
 name|info
 operator|.
-name|getDocCount
+name|maxDoc
 argument_list|()
 argument_list|)
 assert|;
@@ -10757,13 +10757,13 @@ argument_list|)
 expr_stmt|;
 specifier|final
 name|int
-name|docCount
+name|maxDoc
 init|=
 name|info
 operator|.
 name|info
 operator|.
-name|getDocCount
+name|maxDoc
 argument_list|()
 decl_stmt|;
 specifier|final
@@ -10996,7 +10996,7 @@ name|mergeState
 operator|.
 name|segmentInfo
 operator|.
-name|getDocCount
+name|maxDoc
 argument_list|()
 argument_list|)
 expr_stmt|;
@@ -11046,7 +11046,7 @@ operator|.
 name|length
 argument_list|()
 operator|==
-name|docCount
+name|maxDoc
 assert|;
 assert|assert
 name|currentLiveDocs
@@ -11054,7 +11054,7 @@ operator|.
 name|length
 argument_list|()
 operator|==
-name|docCount
+name|maxDoc
 assert|;
 comment|// There were deletes on this segment when the merge
 comment|// started.  The merge has collapsed away those
@@ -11086,7 +11086,7 @@ literal|0
 init|;
 name|j
 operator|<
-name|docCount
+name|maxDoc
 condition|;
 name|j
 operator|++
@@ -11239,7 +11239,7 @@ literal|0
 init|;
 name|j
 operator|<
-name|docCount
+name|maxDoc
 condition|;
 name|j
 operator|++
@@ -11301,7 +11301,7 @@ name|info
 operator|.
 name|info
 operator|.
-name|getDocCount
+name|maxDoc
 argument_list|()
 operator|-
 name|info
@@ -11330,7 +11330,7 @@ operator|.
 name|length
 argument_list|()
 operator|==
-name|docCount
+name|maxDoc
 assert|;
 comment|// This segment had no deletes before but now it
 comment|// does:
@@ -11343,7 +11343,7 @@ literal|0
 init|;
 name|j
 operator|<
-name|docCount
+name|maxDoc
 condition|;
 name|j
 operator|++
@@ -11472,7 +11472,7 @@ literal|0
 init|;
 name|j
 operator|<
-name|docCount
+name|maxDoc
 condition|;
 name|j
 operator|++
@@ -11512,7 +11512,7 @@ name|info
 operator|.
 name|info
 operator|.
-name|getDocCount
+name|maxDoc
 argument_list|()
 expr_stmt|;
 block|}
@@ -11526,7 +11526,7 @@ name|info
 operator|.
 name|info
 operator|.
-name|getDocCount
+name|maxDoc
 argument_list|()
 assert|;
 if|if
@@ -11843,7 +11843,7 @@ name|info
 operator|.
 name|info
 operator|.
-name|getDocCount
+name|maxDoc
 argument_list|()
 operator|==
 literal|0
@@ -11892,7 +11892,7 @@ name|info
 operator|.
 name|info
 operator|.
-name|getDocCount
+name|maxDoc
 argument_list|()
 operator|==
 literal|0
@@ -11913,7 +11913,7 @@ name|info
 operator|.
 name|info
 operator|.
-name|getDocCount
+name|maxDoc
 argument_list|()
 operator|)
 decl_stmt|;
@@ -11987,7 +11987,7 @@ name|info
 operator|.
 name|info
 operator|.
-name|getDocCount
+name|maxDoc
 argument_list|()
 operator|!=
 literal|0
@@ -12083,7 +12083,7 @@ name|delDocCount
 init|=
 name|merge
 operator|.
-name|totalDocCount
+name|totalMaxDoc
 operator|-
 name|merge
 operator|.
@@ -12091,7 +12091,7 @@ name|info
 operator|.
 name|info
 operator|.
-name|getDocCount
+name|maxDoc
 argument_list|()
 decl_stmt|;
 assert|assert
@@ -12693,7 +12693,7 @@ name|info
 operator|.
 name|info
 operator|.
-name|getDocCount
+name|maxDoc
 argument_list|()
 operator|+
 literal|" docs"
@@ -13142,7 +13142,7 @@ name|info
 operator|.
 name|info
 operator|.
-name|getDocCount
+name|maxDoc
 argument_list|()
 operator|>
 literal|0
@@ -13164,7 +13164,7 @@ name|info
 operator|.
 name|info
 operator|.
-name|getDocCount
+name|maxDoc
 argument_list|()
 assert|;
 specifier|final
@@ -13182,7 +13182,7 @@ name|info
 operator|.
 name|info
 operator|.
-name|getDocCount
+name|maxDoc
 argument_list|()
 decl_stmt|;
 name|merge
@@ -13493,7 +13493,7 @@ name|info
 operator|.
 name|info
 operator|.
-name|getDocCount
+name|maxDoc
 argument_list|()
 argument_list|)
 expr_stmt|;
@@ -14528,7 +14528,7 @@ name|info
 operator|.
 name|info
 operator|.
-name|getDocCount
+name|maxDoc
 argument_list|()
 operator|-
 name|delCount
@@ -14590,20 +14590,20 @@ name|info
 operator|.
 name|info
 operator|.
-name|getDocCount
+name|maxDoc
 argument_list|()
 operator|:
 literal|"delCount="
 operator|+
 name|delCount
 operator|+
-literal|" info.docCount="
+literal|" info.maxDoc="
 operator|+
 name|info
 operator|.
 name|info
 operator|.
-name|getDocCount
+name|maxDoc
 argument_list|()
 operator|+
 literal|" rld.pendingDeleteCount="
@@ -14852,7 +14852,7 @@ literal|"merge codec="
 operator|+
 name|codec
 operator|+
-literal|" docCount="
+literal|" maxDoc="
 operator|+
 name|merge
 operator|.
@@ -14860,7 +14860,7 @@ name|info
 operator|.
 name|info
 operator|.
-name|getDocCount
+name|maxDoc
 argument_list|()
 operator|+
 literal|"; merged segment has "
@@ -14996,7 +14996,7 @@ name|info
 operator|.
 name|info
 operator|.
-name|getDocCount
+name|maxDoc
 argument_list|()
 operator|==
 literal|0
@@ -15019,7 +15019,7 @@ name|info
 operator|.
 name|info
 operator|.
-name|getDocCount
+name|maxDoc
 argument_list|()
 operator|>
 literal|0
@@ -15588,7 +15588,7 @@ name|info
 operator|.
 name|info
 operator|.
-name|getDocCount
+name|maxDoc
 argument_list|()
 return|;
 block|}

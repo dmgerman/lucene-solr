@@ -1102,7 +1102,7 @@ name|totalDocs
 operator|+=
 name|info
 operator|.
-name|getDocCount
+name|maxDoc
 argument_list|()
 expr_stmt|;
 name|long
@@ -1131,7 +1131,7 @@ name|delCount
 argument_list|>
 name|info
 operator|.
-name|getDocCount
+name|maxDoc
 argument_list|()
 condition|)
 block|{
@@ -1143,11 +1143,11 @@ literal|"invalid deletion count: "
 operator|+
 name|delCount
 operator|+
-literal|" vs docCount="
+literal|" vs maxDoc="
 operator|+
 name|info
 operator|.
-name|getDocCount
+name|maxDoc
 argument_list|()
 argument_list|,
 name|input
@@ -1762,7 +1762,7 @@ name|delCount
 argument_list|>
 name|si
 operator|.
-name|getDocCount
+name|maxDoc
 argument_list|()
 condition|)
 block|{
@@ -1770,17 +1770,17 @@ throw|throw
 operator|new
 name|IllegalStateException
 argument_list|(
-literal|"cannot write segment: invalid docCount segment="
+literal|"cannot write segment: invalid maxDoc segment="
 operator|+
 name|si
 operator|.
 name|name
 operator|+
-literal|" docCount="
+literal|" maxDoc="
 operator|+
 name|si
 operator|.
-name|getDocCount
+name|maxDoc
 argument_list|()
 operator|+
 literal|" delCount="
@@ -3049,11 +3049,11 @@ operator|.
 name|lastGeneration
 expr_stmt|;
 block|}
-comment|/** Returns sum of all segment's docCounts.  Note that    *  this does not include deletions */
-DECL|method|totalDocCount
+comment|/** Returns sum of all segment's maxDocs.  Note that    *  this does not include deletions */
+DECL|method|totalMaxDoc
 specifier|public
 name|int
-name|totalDocCount
+name|totalMaxDoc
 parameter_list|()
 block|{
 name|long
@@ -3075,7 +3075,7 @@ name|info
 operator|.
 name|info
 operator|.
-name|getDocCount
+name|maxDoc
 argument_list|()
 expr_stmt|;
 block|}

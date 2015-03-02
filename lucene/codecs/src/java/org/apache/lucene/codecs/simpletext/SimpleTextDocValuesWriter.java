@@ -388,7 +388,7 @@ parameter_list|)
 throws|throws
 name|IOException
 block|{
-comment|// System.out.println("WRITE: " + IndexFileNames.segmentFileName(state.segmentInfo.name, state.segmentSuffix, ext) + " " + state.segmentInfo.getDocCount() + " docs");
+comment|// System.out.println("WRITE: " + IndexFileNames.segmentFileName(state.segmentInfo.name, state.segmentSuffix, ext) + " " + state.segmentInfo.maxDoc() + " docs");
 name|data
 operator|=
 name|state
@@ -425,7 +425,7 @@ name|state
 operator|.
 name|segmentInfo
 operator|.
-name|getDocCount
+name|maxDoc
 argument_list|()
 expr_stmt|;
 block|}

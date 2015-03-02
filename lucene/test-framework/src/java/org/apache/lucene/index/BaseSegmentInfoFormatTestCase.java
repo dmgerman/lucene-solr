@@ -1679,12 +1679,12 @@ name|assertEquals
 argument_list|(
 name|expected
 operator|.
-name|getDocCount
+name|maxDoc
 argument_list|()
 argument_list|,
 name|actual
 operator|.
-name|getDocCount
+name|maxDoc
 argument_list|()
 argument_list|)
 expr_stmt|;
