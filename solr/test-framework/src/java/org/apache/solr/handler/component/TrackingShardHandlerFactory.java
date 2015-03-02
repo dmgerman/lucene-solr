@@ -592,6 +592,13 @@ assert|assert
 name|factory
 operator|instanceof
 name|TrackingShardHandlerFactory
+operator|:
+literal|"not a TrackingShardHandlerFactory: "
+operator|+
+name|factory
+operator|.
+name|getClass
+argument_list|()
 assert|;
 name|TrackingShardHandlerFactory
 name|trackingShardHandlerFactory

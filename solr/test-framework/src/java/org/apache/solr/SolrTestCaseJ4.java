@@ -1320,6 +1320,15 @@ name|DEFAULT_TEST_CORENAME
 init|=
 literal|"collection1"
 decl_stmt|;
+DECL|field|CORE_PROPERTIES_FILENAME
+specifier|protected
+specifier|static
+specifier|final
+name|String
+name|CORE_PROPERTIES_FILENAME
+init|=
+literal|"core.properties"
+decl_stmt|;
 DECL|field|coreName
 specifier|private
 specifier|static
@@ -1457,7 +1466,7 @@ name|coreDirectory
 operator|.
 name|resolve
 argument_list|(
-literal|"core.properties"
+name|CORE_PROPERTIES_FILENAME
 argument_list|)
 argument_list|)
 argument_list|,
