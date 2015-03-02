@@ -355,7 +355,10 @@ argument_list|,
 operator|-
 literal|1
 argument_list|,
-literal|null
+name|Collections
+operator|.
+name|emptyMap
+argument_list|()
 argument_list|)
 argument_list|)
 expr_stmt|;

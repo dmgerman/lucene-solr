@@ -603,6 +603,9 @@ expr_stmt|;
 block|}
 if|if
 condition|(
+operator|(
+name|long
+operator|)
 name|runningTotal
 operator|+
 name|X

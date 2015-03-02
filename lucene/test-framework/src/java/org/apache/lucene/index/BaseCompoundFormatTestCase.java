@@ -4141,7 +4141,10 @@ operator|.
 name|getDefault
 argument_list|()
 argument_list|,
-literal|null
+name|Collections
+operator|.
+name|emptyMap
+argument_list|()
 argument_list|,
 name|StringHelper
 operator|.

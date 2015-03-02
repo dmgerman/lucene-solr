@@ -3984,6 +3984,21 @@ operator|==
 literal|1
 condition|)
 block|{
+if|if
+condition|(
+name|VERBOSE
+condition|)
+block|{
+name|System
+operator|.
+name|out
+operator|.
+name|println
+argument_list|(
+literal|"  use random filter"
+argument_list|)
+expr_stmt|;
+block|}
 name|RandomFilter
 name|filter
 init|=

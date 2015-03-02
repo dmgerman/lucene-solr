@@ -8035,7 +8035,10 @@ literal|false
 argument_list|,
 name|codec
 argument_list|,
-literal|null
+name|Collections
+operator|.
+name|emptyMap
+argument_list|()
 argument_list|,
 name|StringHelper
 operator|.
@@ -13566,7 +13569,10 @@ literal|false
 argument_list|,
 name|codec
 argument_list|,
-literal|null
+name|Collections
+operator|.
+name|emptyMap
+argument_list|()
 argument_list|,
 name|StringHelper
 operator|.

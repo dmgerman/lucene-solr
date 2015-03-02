@@ -1161,7 +1161,12 @@ name|isCompoundFile
 argument_list|,
 literal|null
 argument_list|,
+name|Collections
+operator|.
+name|unmodifiableMap
+argument_list|(
 name|diagnostics
+argument_list|)
 argument_list|,
 name|id
 argument_list|,
