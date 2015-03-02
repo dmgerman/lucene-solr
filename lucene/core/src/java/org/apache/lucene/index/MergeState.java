@@ -699,7 +699,7 @@ expr_stmt|;
 block|}
 name|segmentInfo
 operator|.
-name|setDocCount
+name|setMaxDoc
 argument_list|(
 name|docBase
 argument_list|)

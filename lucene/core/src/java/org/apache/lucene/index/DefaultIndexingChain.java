@@ -490,13 +490,13 @@ block|{
 comment|// NOTE: caller (DocumentsWriterPerThread) handles
 comment|// aborting on any exception from this method
 name|int
-name|numDocs
+name|maxDoc
 init|=
 name|state
 operator|.
 name|segmentInfo
 operator|.
-name|getDocCount
+name|maxDoc
 argument_list|()
 decl_stmt|;
 name|writeNorms
@@ -515,7 +515,7 @@ argument_list|()
 expr_stmt|;
 name|fillStoredFields
 argument_list|(
-name|numDocs
+name|maxDoc
 argument_list|)
 expr_stmt|;
 name|storedFieldsWriter
@@ -526,7 +526,7 @@ name|state
 operator|.
 name|fieldInfos
 argument_list|,
-name|numDocs
+name|maxDoc
 argument_list|)
 expr_stmt|;
 name|storedFieldsWriter
@@ -667,13 +667,13 @@ throws|throws
 name|IOException
 block|{
 name|int
-name|docCount
+name|maxDoc
 init|=
 name|state
 operator|.
 name|segmentInfo
 operator|.
-name|getDocCount
+name|maxDoc
 argument_list|()
 decl_stmt|;
 name|DocValuesConsumer
@@ -803,7 +803,7 @@ name|docValuesWriter
 operator|.
 name|finish
 argument_list|(
-name|docCount
+name|maxDoc
 argument_list|)
 expr_stmt|;
 name|perField
@@ -1122,7 +1122,7 @@ name|state
 operator|.
 name|segmentInfo
 operator|.
-name|getDocCount
+name|maxDoc
 argument_list|()
 argument_list|)
 expr_stmt|;
