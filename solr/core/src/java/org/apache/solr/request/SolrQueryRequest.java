@@ -66,6 +66,20 @@ name|apache
 operator|.
 name|solr
 operator|.
+name|util
+operator|.
+name|RTimer
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|solr
+operator|.
 name|common
 operator|.
 name|params
@@ -177,11 +191,18 @@ name|void
 name|close
 parameter_list|()
 function_decl|;
-comment|/** The start time of this request in milliseconds */
+comment|/** The start time of this request in milliseconds.    * Use this only if you need the absolute system time at the start of the request,    * getRequestTimer() provides a more accurate mechanism for timing purposes.    */
 DECL|method|getStartTime
 specifier|public
 name|long
 name|getStartTime
+parameter_list|()
+function_decl|;
+comment|/** The timer for this request, created when the request started being processed */
+DECL|method|getRequestTimer
+specifier|public
+name|RTimer
+name|getRequestTimer
 parameter_list|()
 function_decl|;
 comment|/** The index searcher associated with this request */

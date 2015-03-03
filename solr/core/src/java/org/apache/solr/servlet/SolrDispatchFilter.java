@@ -814,6 +814,20 @@ begin_import
 import|import
 name|org
 operator|.
+name|apache
+operator|.
+name|solr
+operator|.
+name|util
+operator|.
+name|RTimer
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
 name|slf4j
 operator|.
 name|Logger
@@ -1756,6 +1770,20 @@ literal|null
 decl_stmt|;
 try|try
 block|{
+comment|// set a request timer which can be reused by requests if needed
+name|req
+operator|.
+name|setAttribute
+argument_list|(
+name|SolrRequestParsers
+operator|.
+name|REQUEST_TIMER_SERVLET_ATTRIBUTE
+argument_list|,
+operator|new
+name|RTimer
+argument_list|()
+argument_list|)
+expr_stmt|;
 comment|// put the core container in request attribute
 name|req
 operator|.
