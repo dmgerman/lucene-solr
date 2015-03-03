@@ -203,23 +203,6 @@ literal|" is a mandatory parameter"
 argument_list|)
 throw|;
 block|}
-if|if
-condition|(
-name|weightField
-operator|==
-literal|null
-condition|)
-block|{
-throw|throw
-operator|new
-name|IllegalArgumentException
-argument_list|(
-name|WEIGHT_FIELD
-operator|+
-literal|" is a mandatory parameter"
-argument_list|)
-throw|;
-block|}
 return|return
 operator|new
 name|DocumentDictionary
