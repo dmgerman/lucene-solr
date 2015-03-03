@@ -618,6 +618,17 @@ name|w
 expr_stmt|;
 block|}
 block|}
+block|}
+else|else
+block|{
+comment|// since we don't need scores, let's pretend we have a single match
+name|topScorers
+operator|.
+name|next
+operator|=
+literal|null
+expr_stmt|;
+block|}
 comment|// We need to explicitely set the list of top scorers to avoid the
 comment|// laziness of DisjunctionScorer.score() that would take all scorers
 comment|// positioned on the same doc as the top of the pq, including
@@ -630,7 +641,6 @@ name|topScorers
 operator|=
 name|topScorers
 expr_stmt|;
-block|}
 return|return
 literal|true
 return|;
