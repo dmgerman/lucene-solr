@@ -8300,12 +8300,28 @@ block|}
 block|}
 annotation|@
 name|Before
+DECL|method|resetTestDefaultQueryCache
+specifier|public
+name|void
+name|resetTestDefaultQueryCache
+parameter_list|()
+block|{
+comment|// Make sure each test method has its own cache
+name|resetDefaultQueryCache
+argument_list|()
+expr_stmt|;
+block|}
+annotation|@
+name|BeforeClass
 DECL|method|resetDefaultQueryCache
 specifier|public
+specifier|static
 name|void
 name|resetDefaultQueryCache
 parameter_list|()
 block|{
+comment|// we need to reset the query cache in an @BeforeClass so that tests that
+comment|// instantiate an IndexSearcher in an @BeforeClass method use a fresh new cache
 name|IndexSearcher
 operator|.
 name|setDefaultQueryCache
