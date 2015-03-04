@@ -828,6 +828,20 @@ name|solr
 operator|.
 name|handler
 operator|.
+name|IndexFetcher
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|solr
+operator|.
+name|handler
+operator|.
 name|ReplicationHandler
 import|;
 end_import
@@ -843,20 +857,6 @@ operator|.
 name|handler
 operator|.
 name|RequestHandlerBase
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|solr
-operator|.
-name|handler
-operator|.
-name|SnapPuller
 import|;
 end_import
 
@@ -2345,7 +2345,7 @@ name|dir
 operator|.
 name|openInput
 argument_list|(
-name|SnapPuller
+name|IndexFetcher
 operator|.
 name|INDEX_PROPERTIES
 argument_list|,
@@ -2449,7 +2449,7 @@ name|error
 argument_list|(
 literal|"Unable to load "
 operator|+
-name|SnapPuller
+name|IndexFetcher
 operator|.
 name|INDEX_PROPERTIES
 argument_list|,

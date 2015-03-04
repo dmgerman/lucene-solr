@@ -920,7 +920,7 @@ name|Exception
 name|e
 parameter_list|)
 block|{
-name|SnapPuller
+name|IndexFetcher
 operator|.
 name|delTree
 argument_list|(
@@ -1084,7 +1084,7 @@ operator|>
 name|numberToKeep
 condition|)
 block|{
-name|SnapPuller
+name|IndexFetcher
 operator|.
 name|delTree
 argument_list|(
@@ -1143,7 +1143,7 @@ argument_list|)
 decl_stmt|;
 name|isSuccess
 operator|=
-name|SnapPuller
+name|IndexFetcher
 operator|.
 name|delTree
 argument_list|(
