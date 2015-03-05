@@ -416,15 +416,10 @@ name|isNaN
 argument_list|(
 name|score
 argument_list|)
-assert|;
-assert|assert
-operator|!
-name|Float
-operator|.
-name|isNaN
-argument_list|(
-name|score
-argument_list|)
+operator|:
+literal|"NaN score for in="
+operator|+
+name|in
 assert|;
 return|return
 name|score
