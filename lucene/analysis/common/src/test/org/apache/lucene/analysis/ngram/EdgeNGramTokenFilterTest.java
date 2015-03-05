@@ -258,20 +258,6 @@ name|TestUtil
 import|;
 end_import
 
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|util
-operator|.
-name|TestUtil
-import|;
-end_import
-
 begin_comment
 comment|/**  * Tests {@link EdgeNGramTokenFilter} for correctness.  */
 end_comment
@@ -1206,6 +1192,11 @@ operator|*
 name|RANDOM_MULTIPLIER
 argument_list|)
 expr_stmt|;
+name|a
+operator|.
+name|close
+argument_list|()
+expr_stmt|;
 block|}
 block|}
 DECL|method|testEmptyTerm
@@ -1279,6 +1270,11 @@ argument_list|()
 argument_list|,
 literal|""
 argument_list|)
+expr_stmt|;
+name|a
+operator|.
+name|close
+argument_list|()
 expr_stmt|;
 block|}
 DECL|method|testGraphs

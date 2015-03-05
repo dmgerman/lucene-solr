@@ -6233,6 +6233,8 @@ name|i
 operator|++
 control|)
 block|{
+try|try
+init|(
 name|MockRandomAnalyzer
 name|a
 init|=
@@ -6244,7 +6246,8 @@ operator|.
 name|nextLong
 argument_list|()
 argument_list|)
-decl_stmt|;
+init|)
+block|{
 if|if
 condition|(
 name|VERBOSE
@@ -6306,6 +6309,7 @@ throw|;
 block|}
 block|}
 block|}
+block|}
 comment|// we might regret this decision...
 DECL|method|testRandomChainsWithLargeStrings
 specifier|public
@@ -6348,6 +6352,8 @@ name|i
 operator|++
 control|)
 block|{
+try|try
+init|(
 name|MockRandomAnalyzer
 name|a
 init|=
@@ -6359,7 +6365,8 @@ operator|.
 name|nextLong
 argument_list|()
 argument_list|)
-decl_stmt|;
+init|)
+block|{
 if|if
 condition|(
 name|VERBOSE
@@ -6418,6 +6425,7 @@ expr_stmt|;
 throw|throw
 name|e
 throw|;
+block|}
 block|}
 block|}
 block|}

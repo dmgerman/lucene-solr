@@ -106,6 +106,9 @@ block|{
 operator|new
 name|JapaneseAnalyzer
 argument_list|()
+operator|.
+name|close
+argument_list|()
 expr_stmt|;
 block|}
 comment|/**    * An example sentence, test removal of particles, etc by POS,    * lemmatization with the basic form, and that position increments    * and offsets are correct.    */
@@ -117,11 +120,16 @@ parameter_list|()
 throws|throws
 name|IOException
 block|{
-name|assertAnalyzesTo
-argument_list|(
+name|Analyzer
+name|a
+init|=
 operator|new
 name|JapaneseAnalyzer
 argument_list|()
+decl_stmt|;
+name|assertAnalyzesTo
+argument_list|(
+name|a
 argument_list|,
 literal|"å¤ãã®å­¦çãè©¦é¨ã«è½ã¡ãã"
 argument_list|,
@@ -178,6 +186,11 @@ literal|2
 block|}
 argument_list|)
 expr_stmt|;
+name|a
+operator|.
+name|close
+argument_list|()
+expr_stmt|;
 block|}
 comment|/**    * Test that search mode is enabled and working by default    */
 DECL|method|testDecomposition
@@ -188,7 +201,6 @@ parameter_list|()
 throws|throws
 name|IOException
 block|{
-specifier|final
 name|Analyzer
 name|a
 init|=
@@ -448,11 +460,20 @@ block|}
 argument_list|)
 expr_stmt|;
 comment|// Kyoto University Baseball Club
-name|assertAnalyzesToPositions
-argument_list|(
+name|a
+operator|.
+name|close
+argument_list|()
+expr_stmt|;
+name|a
+operator|=
 operator|new
 name|JapaneseAnalyzer
 argument_list|()
+expr_stmt|;
+name|assertAnalyzesToPositions
+argument_list|(
+name|a
 argument_list|,
 literal|"äº¬é½å¤§å­¦ç¡¬å¼éçé¨"
 argument_list|,
@@ -503,6 +524,11 @@ block|}
 argument_list|)
 expr_stmt|;
 comment|// toDotFile(a, "æç°ç©ºæ¸¯", "/mnt/scratch/out.dot");
+name|a
+operator|.
+name|close
+argument_list|()
+expr_stmt|;
 block|}
 comment|/**    * blast random strings against the analyzer    */
 DECL|method|testRandom
@@ -554,6 +580,11 @@ argument_list|(
 literal|1000
 argument_list|)
 argument_list|)
+expr_stmt|;
+name|a
+operator|.
+name|close
+argument_list|()
 expr_stmt|;
 block|}
 comment|/** blast some random large strings through the analyzer */
@@ -607,6 +638,11 @@ name|RANDOM_MULTIPLIER
 argument_list|,
 literal|8192
 argument_list|)
+expr_stmt|;
+name|a
+operator|.
+name|close
+argument_list|()
 expr_stmt|;
 block|}
 comment|// Copied from TestJapaneseTokenizer, to make sure passing
@@ -698,6 +734,11 @@ literal|4
 argument_list|)
 argument_list|)
 expr_stmt|;
+name|a
+operator|.
+name|close
+argument_list|()
+expr_stmt|;
 block|}
 comment|// LUCENE-3897: this string (found by running all jawiki
 comment|// XML through JapaneseAnalyzer) caused AIOOBE
@@ -758,6 +799,11 @@ argument_list|()
 argument_list|,
 name|s
 argument_list|)
+expr_stmt|;
+name|a
+operator|.
+name|close
+argument_list|()
 expr_stmt|;
 block|}
 comment|// LUCENE-3897: this string (found by
@@ -820,6 +866,11 @@ argument_list|,
 name|s
 argument_list|)
 expr_stmt|;
+name|a
+operator|.
+name|close
+argument_list|()
+expr_stmt|;
 block|}
 comment|// LUCENE-3897: this string (found by
 comment|// testHugeRandomStrings) tripped assert
@@ -881,6 +932,11 @@ argument_list|,
 name|s
 argument_list|)
 expr_stmt|;
+name|a
+operator|.
+name|close
+argument_list|()
+expr_stmt|;
 block|}
 DECL|method|test4thCuriousString
 specifier|public
@@ -920,15 +976,10 @@ name|getDefaultStopTags
 argument_list|()
 argument_list|)
 decl_stmt|;
-name|Random
-name|random
-init|=
-name|random
-argument_list|()
-decl_stmt|;
 name|checkAnalysisConsistency
 argument_list|(
 name|random
+argument_list|()
 argument_list|,
 name|a
 argument_list|,
@@ -936,6 +987,11 @@ literal|true
 argument_list|,
 name|s
 argument_list|)
+expr_stmt|;
+name|a
+operator|.
+name|close
+argument_list|()
 expr_stmt|;
 block|}
 DECL|method|test5thCuriousString
@@ -976,15 +1032,10 @@ name|getDefaultStopTags
 argument_list|()
 argument_list|)
 decl_stmt|;
-name|Random
-name|random
-init|=
-name|random
-argument_list|()
-decl_stmt|;
 name|checkAnalysisConsistency
 argument_list|(
 name|random
+argument_list|()
 argument_list|,
 name|a
 argument_list|,
@@ -992,6 +1043,11 @@ literal|false
 argument_list|,
 name|s
 argument_list|)
+expr_stmt|;
+name|a
+operator|.
+name|close
+argument_list|()
 expr_stmt|;
 block|}
 block|}

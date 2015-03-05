@@ -126,10 +126,6 @@ name|Pattern
 import|;
 end_import
 
-begin_comment
-comment|/**  */
-end_comment
-
 begin_class
 DECL|class|TestPatternReplaceFilter
 specifier|public
@@ -486,6 +482,11 @@ operator|*
 name|RANDOM_MULTIPLIER
 argument_list|)
 expr_stmt|;
+name|a
+operator|.
+name|close
+argument_list|()
+expr_stmt|;
 name|Analyzer
 name|b
 init|=
@@ -560,6 +561,11 @@ operator|*
 name|RANDOM_MULTIPLIER
 argument_list|)
 expr_stmt|;
+name|b
+operator|.
+name|close
+argument_list|()
+expr_stmt|;
 block|}
 DECL|method|testEmptyTerm
 specifier|public
@@ -628,6 +634,11 @@ literal|""
 argument_list|,
 literal|""
 argument_list|)
+expr_stmt|;
+name|a
+operator|.
+name|close
+argument_list|()
 expr_stmt|;
 block|}
 block|}

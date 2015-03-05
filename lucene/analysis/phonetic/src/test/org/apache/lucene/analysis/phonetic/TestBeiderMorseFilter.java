@@ -34,16 +34,6 @@ name|java
 operator|.
 name|io
 operator|.
-name|Reader
-import|;
-end_import
-
-begin_import
-import|import
-name|java
-operator|.
-name|io
-operator|.
 name|StringReader
 import|;
 end_import
@@ -262,16 +252,6 @@ name|KeywordAttribute
 import|;
 end_import
 
-begin_import
-import|import
-name|org
-operator|.
-name|junit
-operator|.
-name|Ignore
-import|;
-end_import
-
 begin_comment
 comment|/** Tests {@link BeiderMorseFilter} */
 end_comment
@@ -288,7 +268,24 @@ DECL|field|analyzer
 specifier|private
 name|Analyzer
 name|analyzer
-init|=
+decl_stmt|;
+annotation|@
+name|Override
+DECL|method|setUp
+specifier|public
+name|void
+name|setUp
+parameter_list|()
+throws|throws
+name|Exception
+block|{
+name|super
+operator|.
+name|setUp
+argument_list|()
+expr_stmt|;
+name|analyzer
+operator|=
 operator|new
 name|Analyzer
 argument_list|()
@@ -345,7 +342,29 @@ argument_list|)
 return|;
 block|}
 block|}
-decl_stmt|;
+expr_stmt|;
+block|}
+annotation|@
+name|Override
+DECL|method|tearDown
+specifier|public
+name|void
+name|tearDown
+parameter_list|()
+throws|throws
+name|Exception
+block|{
+name|analyzer
+operator|.
+name|close
+argument_list|()
+expr_stmt|;
+name|super
+operator|.
+name|tearDown
+argument_list|()
+expr_stmt|;
+block|}
 comment|/** generic, "exact" configuration */
 DECL|method|testBasicUsage
 specifier|public
@@ -711,6 +730,11 @@ literal|0
 block|, }
 argument_list|)
 expr_stmt|;
+name|analyzer
+operator|.
+name|close
+argument_list|()
+expr_stmt|;
 block|}
 comment|/** for convenience, if the input yields no output, we pass it thru as-is */
 DECL|method|testNumbers
@@ -848,6 +872,11 @@ literal|""
 argument_list|,
 literal|""
 argument_list|)
+expr_stmt|;
+name|a
+operator|.
+name|close
+argument_list|()
 expr_stmt|;
 block|}
 DECL|method|testCustomAttribute
