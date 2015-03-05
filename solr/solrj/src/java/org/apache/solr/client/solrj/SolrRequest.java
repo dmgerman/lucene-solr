@@ -368,7 +368,7 @@ name|SolrClient
 name|client
 parameter_list|)
 function_decl|;
-comment|/**    * Send this request to a {@link SolrClient} and return the response    * @param client the SolrClient to communicate with    * @return the response    * @throws SolrServerException if there is an error on the Solr server    * @throws IOException if there is a communication error    */
+comment|/**    * Send this request to a {@link SolrClient} and return the response    *    * @param client the SolrClient to communicate with    * @param collection the collection to execute the request against    *    * @return the response    *    * @throws SolrServerException if there is an error on the Solr server    * @throws IOException if there is a communication error    */
 DECL|method|process
 specifier|public
 specifier|final
@@ -377,6 +377,9 @@ name|process
 parameter_list|(
 name|SolrClient
 name|client
+parameter_list|,
+name|String
+name|collection
 parameter_list|)
 throws|throws
 name|SolrServerException
@@ -419,6 +422,8 @@ operator|.
 name|request
 argument_list|(
 name|this
+argument_list|,
+name|collection
 argument_list|)
 argument_list|)
 expr_stmt|;
@@ -452,6 +457,30 @@ argument_list|)
 expr_stmt|;
 return|return
 name|res
+return|;
+block|}
+comment|/**    * Send this request to a {@link SolrClient} and return the response    *    * @param client the SolrClient to communicate with    *    * @return the response    *    * @throws SolrServerException if there is an error on the Solr server    * @throws IOException if there is a communication error    */
+DECL|method|process
+specifier|public
+specifier|final
+name|T
+name|process
+parameter_list|(
+name|SolrClient
+name|client
+parameter_list|)
+throws|throws
+name|SolrServerException
+throws|,
+name|IOException
+block|{
+return|return
+name|process
+argument_list|(
+name|client
+argument_list|,
+literal|null
+argument_list|)
 return|;
 block|}
 block|}

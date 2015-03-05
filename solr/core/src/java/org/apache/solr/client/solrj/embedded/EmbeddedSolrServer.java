@@ -524,6 +524,9 @@ name|request
 parameter_list|(
 name|SolrRequest
 name|request
+parameter_list|,
+name|String
+name|coreName
 parameter_list|)
 throws|throws
 name|SolrServerException
@@ -558,6 +561,18 @@ operator|=
 literal|"/select"
 expr_stmt|;
 block|}
+if|if
+condition|(
+name|coreName
+operator|==
+literal|null
+condition|)
+name|coreName
+operator|=
+name|this
+operator|.
+name|coreName
+expr_stmt|;
 comment|// Check for cores action
 name|SolrCore
 name|core
