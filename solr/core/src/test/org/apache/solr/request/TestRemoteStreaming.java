@@ -410,10 +410,6 @@ name|solrHomeDirectory
 operator|.
 name|getAbsolutePath
 argument_list|()
-argument_list|,
-literal|null
-argument_list|,
-literal|null
 argument_list|)
 expr_stmt|;
 block|}

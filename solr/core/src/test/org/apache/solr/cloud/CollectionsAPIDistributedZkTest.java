@@ -4236,6 +4236,13 @@ argument_list|(
 name|jetty
 argument_list|)
 expr_stmt|;
+name|log
+operator|.
+name|info
+argument_list|(
+literal|"============ Restarting jetty"
+argument_list|)
+expr_stmt|;
 name|ChaosMonkey
 operator|.
 name|start
@@ -4330,6 +4337,13 @@ name|zkServer
 operator|.
 name|shutdown
 argument_list|()
+expr_stmt|;
+name|log
+operator|.
+name|info
+argument_list|(
+literal|"============ Restarting zookeeper"
+argument_list|)
 expr_stmt|;
 name|zkServer
 operator|=

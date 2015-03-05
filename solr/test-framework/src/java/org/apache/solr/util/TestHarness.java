@@ -460,6 +460,16 @@ name|Map
 import|;
 end_import
 
+begin_import
+import|import
+name|java
+operator|.
+name|util
+operator|.
+name|Properties
+import|;
+end_import
+
 begin_comment
 comment|/**  * This class provides a simple harness that may be useful when  * writing testcases.  *  *<p>  * This class lives in the tests-framework source tree (and not in the test source  * tree), so that it will be included with even the most minimal solr  * distribution, in order to encourage plugin writers to create unit   * tests for their plugins.  *  *  */
 end_comment
@@ -871,6 +881,10 @@ operator|new
 name|CoreContainer
 argument_list|(
 name|config
+argument_list|,
+operator|new
+name|Properties
+argument_list|()
 argument_list|,
 name|coresLocator
 argument_list|)
