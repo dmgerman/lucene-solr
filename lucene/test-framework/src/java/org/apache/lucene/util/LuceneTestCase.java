@@ -7113,7 +7113,7 @@ name|newType
 argument_list|)
 return|;
 block|}
-comment|/**     * Return a random Locale from the available locales on the system.    * see "https://issues.apache.org/jira/browse/LUCENE-4020"    */
+comment|/**     * Return a random Locale from the available locales on the system.    * @see<a href="http://issues.apache.org/jira/browse/LUCENE-4020">LUCENE-4020</a>    */
 DECL|method|randomLocale
 specifier|public
 specifier|static
@@ -7147,7 +7147,7 @@ argument_list|)
 index|]
 return|;
 block|}
-comment|/**     * Return a random TimeZone from the available timezones on the system    * see "https://issues.apache.org/jira/browse/LUCENE-4020"    */
+comment|/**     * Return a random TimeZone from the available timezones on the system    * @see<a href="http://issues.apache.org/jira/browse/LUCENE-4020">LUCENE-4020</a>    */
 DECL|method|randomTimeZone
 specifier|public
 specifier|static
