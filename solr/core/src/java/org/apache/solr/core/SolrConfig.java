@@ -140,6 +140,22 @@ name|apache
 operator|.
 name|solr
 operator|.
+name|common
+operator|.
+name|util
+operator|.
+name|NamedList
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|solr
+operator|.
 name|handler
 operator|.
 name|component
@@ -403,32 +419,6 @@ operator|.
 name|util
 operator|.
 name|RegexFileFilter
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|zookeeper
-operator|.
-name|KeeperException
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|zookeeper
-operator|.
-name|data
-operator|.
-name|Stat
 import|;
 end_import
 
@@ -732,6 +722,54 @@ end_import
 
 begin_import
 import|import static
+name|java
+operator|.
+name|util
+operator|.
+name|Collections
+operator|.
+name|unmodifiableMap
+import|;
+end_import
+
+begin_import
+import|import static
+name|org
+operator|.
+name|apache
+operator|.
+name|solr
+operator|.
+name|common
+operator|.
+name|params
+operator|.
+name|CoreAdminParams
+operator|.
+name|NAME
+import|;
+end_import
+
+begin_import
+import|import static
+name|org
+operator|.
+name|apache
+operator|.
+name|solr
+operator|.
+name|core
+operator|.
+name|SolrConfig
+operator|.
+name|PluginOpts
+operator|.
+name|LAZY
+import|;
+end_import
+
+begin_import
+import|import static
 name|org
 operator|.
 name|apache
@@ -802,6 +840,22 @@ name|REQUIRE_NAME
 import|;
 end_import
 
+begin_import
+import|import static
+name|org
+operator|.
+name|apache
+operator|.
+name|solr
+operator|.
+name|schema
+operator|.
+name|FieldType
+operator|.
+name|CLASS_NAME
+import|;
+end_import
+
 begin_comment
 comment|/**  * Provides a static reference to a Config object modeling the main  * configuration data for a a Solr instance -- typically found in  * "solrconfig.xml".  */
 end_comment
@@ -860,6 +914,9 @@ name|REQUIRE_NAME
 block|,
 DECL|enum constant|REQUIRE_CLASS
 name|REQUIRE_CLASS
+block|,
+DECL|enum constant|LAZY
+name|LAZY
 block|,
 comment|// EnumSet.of and/or EnumSet.copyOf(Collection) are anoying
 comment|// because of type determination
@@ -1862,6 +1919,8 @@ argument_list|,
 name|REQUIRE_CLASS
 argument_list|,
 name|MULTI_OK
+argument_list|,
+name|LAZY
 argument_list|)
 argument_list|)
 operator|.
@@ -1900,6 +1959,8 @@ argument_list|,
 name|REQUIRE_CLASS
 argument_list|,
 name|MULTI_OK
+argument_list|,
+name|LAZY
 argument_list|)
 argument_list|)
 operator|.
@@ -1978,6 +2039,25 @@ argument_list|,
 name|REQUIRE_NAME
 argument_list|,
 name|REQUIRE_CLASS
+argument_list|)
+argument_list|)
+operator|.
+name|add
+argument_list|(
+operator|new
+name|SolrPluginInfo
+argument_list|(
+name|PluginRegistry
+operator|.
+name|RuntimeLib
+operator|.
+name|class
+argument_list|,
+literal|"runtimeLib"
+argument_list|,
+name|REQUIRE_NAME
+argument_list|,
+name|MULTI_OK
 argument_list|)
 argument_list|)
 comment|// this is hackish, since it picks up all SolrEventListeners,
@@ -2153,8 +2233,8 @@ operator|.
 name|build
 argument_list|()
 decl_stmt|;
-DECL|field|clsVsInfo
-specifier|private
+DECL|field|classVsSolrPluginInfo
+specifier|public
 specifier|static
 specifier|final
 name|Map
@@ -2163,15 +2243,23 @@ name|String
 argument_list|,
 name|SolrPluginInfo
 argument_list|>
-name|clsVsInfo
+name|classVsSolrPluginInfo
+decl_stmt|;
+static|static
+block|{
+name|Map
+argument_list|<
+name|String
+argument_list|,
+name|SolrPluginInfo
+argument_list|>
+name|map
 init|=
 operator|new
 name|HashMap
 argument_list|<>
 argument_list|()
 decl_stmt|;
-static|static
-block|{
 for|for
 control|(
 name|SolrPluginInfo
@@ -2179,7 +2267,7 @@ name|plugin
 range|:
 name|plugins
 control|)
-name|clsVsInfo
+name|map
 operator|.
 name|put
 argument_list|(
@@ -2191,6 +2279,15 @@ name|getName
 argument_list|()
 argument_list|,
 name|plugin
+argument_list|)
+expr_stmt|;
+name|classVsSolrPluginInfo
+operator|=
+name|Collections
+operator|.
+name|unmodifiableMap
+argument_list|(
+name|map
 argument_list|)
 expr_stmt|;
 block|}
@@ -3802,7 +3899,7 @@ decl_stmt|;
 name|SolrPluginInfo
 name|info
 init|=
-name|clsVsInfo
+name|classVsSolrPluginInfo
 operator|.
 name|get
 argument_list|(

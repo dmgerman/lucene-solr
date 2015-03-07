@@ -361,10 +361,10 @@ import|;
 end_import
 
 begin_class
-DECL|class|PluginsRegistry
+DECL|class|ImplicitPlugins
 specifier|public
 class|class
-name|PluginsRegistry
+name|ImplicitPlugins
 block|{
 DECL|method|getHandlers
 specifier|public
@@ -815,6 +815,15 @@ literal|null
 argument_list|)
 return|;
 block|}
+DECL|field|IMPLICIT
+specifier|public
+specifier|static
+specifier|final
+name|String
+name|IMPLICIT
+init|=
+literal|"implicit"
+decl_stmt|;
 block|}
 end_class
 
