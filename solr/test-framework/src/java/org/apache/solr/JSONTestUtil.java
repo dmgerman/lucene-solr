@@ -1254,7 +1254,21 @@ argument_list|()
 expr_stmt|;
 name|setErr
 argument_list|(
-literal|"List size mismatch"
+literal|"List size mismatch (expected: "
+operator|+
+name|expectedList
+operator|.
+name|size
+argument_list|()
+operator|+
+literal|", got: "
+operator|+
+name|v
+operator|.
+name|size
+argument_list|()
+operator|+
+literal|")"
 argument_list|)
 expr_stmt|;
 return|return
