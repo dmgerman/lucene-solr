@@ -72,22 +72,6 @@ name|apache
 operator|.
 name|solr
 operator|.
-name|common
-operator|.
-name|cloud
-operator|.
-name|ZkStateReader
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|solr
-operator|.
 name|handler
 operator|.
 name|TestBlobHandler
@@ -213,18 +197,6 @@ operator|.
 name|nio
 operator|.
 name|ByteBuffer
-import|;
-end_import
-
-begin_import
-import|import
-name|java
-operator|.
-name|nio
-operator|.
-name|charset
-operator|.
-name|StandardCharsets
 import|;
 end_import
 
@@ -915,13 +887,13 @@ name|jar
 init|=
 literal|null
 decl_stmt|;
-comment|//     jar = persistZip("/tmp/runtimelibs.jar", TestDynamicLoading.class, RuntimeLibReqHandler.class, RuntimeLibResponseWriter.class, RuntimeLibSearchComponent.class);
+comment|//     jar = persistZip("/tmp/runtimelibs.jar.bin", TestDynamicLoading.class, RuntimeLibReqHandler.class, RuntimeLibResponseWriter.class, RuntimeLibSearchComponent.class);
 comment|//    if(true) return;
 name|jar
 operator|=
 name|getFileContent
 argument_list|(
-literal|"runtimecode/runtimelibs.jar"
+literal|"runtimecode/runtimelibs.jar.bin"
 argument_list|)
 expr_stmt|;
 name|TestBlobHandler
@@ -1182,7 +1154,7 @@ name|jar
 operator|=
 name|getFileContent
 argument_list|(
-literal|"runtimecode/runtimelibs_v2.jar"
+literal|"runtimecode/runtimelibs_v2.jar.bin"
 argument_list|)
 expr_stmt|;
 name|TestBlobHandler
