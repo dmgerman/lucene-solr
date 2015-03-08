@@ -140,22 +140,6 @@ name|apache
 operator|.
 name|solr
 operator|.
-name|common
-operator|.
-name|util
-operator|.
-name|NamedList
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|solr
-operator|.
 name|handler
 operator|.
 name|component
@@ -722,36 +706,6 @@ end_import
 
 begin_import
 import|import static
-name|java
-operator|.
-name|util
-operator|.
-name|Collections
-operator|.
-name|unmodifiableMap
-import|;
-end_import
-
-begin_import
-import|import static
-name|org
-operator|.
-name|apache
-operator|.
-name|solr
-operator|.
-name|common
-operator|.
-name|params
-operator|.
-name|CoreAdminParams
-operator|.
-name|NAME
-import|;
-end_import
-
-begin_import
-import|import static
 name|org
 operator|.
 name|apache
@@ -837,22 +791,6 @@ operator|.
 name|PluginOpts
 operator|.
 name|REQUIRE_NAME
-import|;
-end_import
-
-begin_import
-import|import static
-name|org
-operator|.
-name|apache
-operator|.
-name|solr
-operator|.
-name|schema
-operator|.
-name|FieldType
-operator|.
-name|CLASS_NAME
 import|;
 end_import
 
@@ -2047,7 +1985,7 @@ argument_list|(
 operator|new
 name|SolrPluginInfo
 argument_list|(
-name|PluginRegistry
+name|PluginBag
 operator|.
 name|RuntimeLib
 operator|.

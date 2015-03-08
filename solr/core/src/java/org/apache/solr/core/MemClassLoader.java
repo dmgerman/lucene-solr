@@ -146,18 +146,6 @@ name|util
 operator|.
 name|concurrent
 operator|.
-name|ConcurrentHashMap
-import|;
-end_import
-
-begin_import
-import|import
-name|java
-operator|.
-name|util
-operator|.
-name|concurrent
-operator|.
 name|atomic
 operator|.
 name|AtomicReference
@@ -258,7 +246,7 @@ DECL|field|libs
 specifier|private
 name|List
 argument_list|<
-name|PluginRegistry
+name|PluginBag
 operator|.
 name|RuntimeLib
 argument_list|>
@@ -290,7 +278,7 @@ name|MemClassLoader
 parameter_list|(
 name|List
 argument_list|<
-name|PluginRegistry
+name|PluginBag
 operator|.
 name|RuntimeLib
 argument_list|>
@@ -327,7 +315,7 @@ condition|)
 return|return;
 for|for
 control|(
-name|PluginRegistry
+name|PluginBag
 operator|.
 name|RuntimeLib
 name|lib
@@ -685,7 +673,7 @@ literal|null
 decl_stmt|;
 for|for
 control|(
-name|PluginRegistry
+name|PluginBag
 operator|.
 name|RuntimeLib
 name|lib
@@ -758,7 +746,7 @@ name|Exception
 block|{
 for|for
 control|(
-name|PluginRegistry
+name|PluginBag
 operator|.
 name|RuntimeLib
 name|lib

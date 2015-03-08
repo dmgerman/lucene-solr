@@ -212,7 +212,7 @@ operator|.
 name|getCore
 argument_list|()
 decl_stmt|;
-name|PluginRegistry
+name|PluginBag
 operator|.
 name|PluginHolder
 argument_list|<

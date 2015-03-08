@@ -150,7 +150,7 @@ name|core
 decl_stmt|;
 DECL|field|handlers
 specifier|final
-name|PluginRegistry
+name|PluginBag
 argument_list|<
 name|SolrRequestHandler
 argument_list|>
@@ -228,7 +228,7 @@ expr_stmt|;
 name|handlers
 operator|=
 operator|new
-name|PluginRegistry
+name|PluginBag
 argument_list|<>
 argument_list|(
 name|SolrRequestHandler
@@ -313,7 +313,7 @@ block|}
 comment|/**    * Returns an unmodifiable Map containing the registered handlers    */
 DECL|method|getRequestHandlers
 specifier|public
-name|PluginRegistry
+name|PluginBag
 argument_list|<
 name|SolrRequestHandler
 argument_list|>
