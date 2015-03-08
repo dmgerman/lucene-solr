@@ -262,7 +262,24 @@ name|Query
 name|query
 parameter_list|)
 block|{
-comment|// we only track hash codes, which
+comment|// call possible Query clone and hashCode outside of sync block
+comment|// in case it's somewhat expensive:
+name|int
+name|hashCode
+init|=
+name|QueryCache
+operator|.
+name|cacheKey
+argument_list|(
+name|query
+argument_list|)
+operator|.
+name|hashCode
+argument_list|()
+decl_stmt|;
+comment|// we only track hash codes to avoid holding references to possible
+comment|// large queries; this may cause rare false positives, but at worse
+comment|// this just means we cache a query that was not in fact used enough:
 synchronized|synchronized
 init|(
 name|this
@@ -272,21 +289,12 @@ name|recentlyUsedFilters
 operator|.
 name|add
 argument_list|(
-name|QueryCache
-operator|.
-name|cacheKey
-argument_list|(
-name|query
-argument_list|)
-operator|.
 name|hashCode
-argument_list|()
 argument_list|)
 expr_stmt|;
 block|}
 block|}
 DECL|method|frequency
-specifier|synchronized
 name|int
 name|frequency
 parameter_list|(
@@ -294,11 +302,11 @@ name|Query
 name|query
 parameter_list|)
 block|{
-return|return
-name|recentlyUsedFilters
-operator|.
-name|frequency
-argument_list|(
+comment|// call possible Query clone and hashCode outside of sync block
+comment|// in case it's somewhat expensive:
+name|int
+name|hashCode
+init|=
 name|QueryCache
 operator|.
 name|cacheKey
@@ -308,8 +316,21 @@ argument_list|)
 operator|.
 name|hashCode
 argument_list|()
+decl_stmt|;
+synchronized|synchronized
+init|(
+name|this
+init|)
+block|{
+return|return
+name|recentlyUsedFilters
+operator|.
+name|frequency
+argument_list|(
+name|hashCode
 argument_list|)
 return|;
+block|}
 block|}
 annotation|@
 name|Override
