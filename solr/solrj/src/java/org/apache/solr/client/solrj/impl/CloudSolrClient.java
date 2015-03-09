@@ -2275,6 +2275,9 @@ parameter_list|)
 throws|throws
 name|IOException
 block|{
+name|connect
+argument_list|()
+expr_stmt|;
 name|zkStateReader
 operator|.
 name|getConfigManager
@@ -2303,6 +2306,9 @@ parameter_list|)
 throws|throws
 name|IOException
 block|{
+name|connect
+argument_list|()
+expr_stmt|;
 name|zkStateReader
 operator|.
 name|getConfigManager
