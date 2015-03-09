@@ -3727,6 +3727,17 @@ return|return
 name|e
 return|;
 block|}
+comment|/**    * @return the address of the zookeeper cluster    */
+DECL|method|getZkServerAddress
+specifier|public
+name|String
+name|getZkServerAddress
+parameter_list|()
+block|{
+return|return
+name|zkServerAddress
+return|;
+block|}
 block|}
 end_class
 
