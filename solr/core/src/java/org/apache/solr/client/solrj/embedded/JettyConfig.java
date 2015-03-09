@@ -71,6 +71,7 @@ class|class
 name|JettyConfig
 block|{
 DECL|field|port
+specifier|public
 specifier|final
 name|int
 name|port
@@ -82,11 +83,13 @@ name|String
 name|context
 decl_stmt|;
 DECL|field|stopAtShutdown
+specifier|public
 specifier|final
 name|boolean
 name|stopAtShutdown
 decl_stmt|;
 DECL|field|extraServlets
+specifier|public
 specifier|final
 name|Map
 argument_list|<
@@ -97,6 +100,7 @@ argument_list|>
 name|extraServlets
 decl_stmt|;
 DECL|field|extraFilters
+specifier|public
 specifier|final
 name|Map
 argument_list|<
@@ -112,6 +116,7 @@ argument_list|>
 name|extraFilters
 decl_stmt|;
 DECL|field|sslConfig
+specifier|public
 specifier|final
 name|SSLConfig
 name|sslConfig
