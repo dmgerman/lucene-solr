@@ -192,6 +192,11 @@ name|PublicKey
 argument_list|>
 name|keys
 decl_stmt|;
+DECL|field|exception
+specifier|private
+name|Exception
+name|exception
+decl_stmt|;
 DECL|method|CryptoKeys
 specifier|public
 name|CryptoKeys
@@ -275,11 +280,14 @@ parameter_list|(
 name|String
 name|sig
 parameter_list|,
-name|byte
-index|[]
+name|ByteBuffer
 name|data
 parameter_list|)
 block|{
+name|exception
+operator|=
+literal|null
+expr_stmt|;
 for|for
 control|(
 name|Map
@@ -321,12 +329,7 @@ argument_list|(
 name|sig
 argument_list|)
 argument_list|,
-name|ByteBuffer
-operator|.
-name|wrap
-argument_list|(
 name|data
-argument_list|)
 argument_list|)
 expr_stmt|;
 name|log
@@ -355,6 +358,10 @@ name|Exception
 name|e
 parameter_list|)
 block|{
+name|exception
+operator|=
+name|e
+expr_stmt|;
 name|log
 operator|.
 name|info
@@ -432,6 +439,14 @@ name|InvalidKeyException
 throws|,
 name|SignatureException
 block|{
+name|int
+name|oldPos
+init|=
+name|data
+operator|.
+name|position
+argument_list|()
+decl_stmt|;
 name|Signature
 name|signature
 init|=
@@ -483,6 +498,17 @@ name|e
 parameter_list|)
 block|{
 comment|//will not happen
+block|}
+finally|finally
+block|{
+comment|//Signature.update resets the position. set it back to old
+name|data
+operator|.
+name|position
+argument_list|(
+name|oldPos
+argument_list|)
+expr_stmt|;
 block|}
 return|return
 literal|false

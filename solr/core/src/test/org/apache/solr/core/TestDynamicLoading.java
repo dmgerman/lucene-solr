@@ -1399,7 +1399,8 @@ argument_list|)
 expr_stmt|;
 block|}
 DECL|method|getFileContent
-specifier|private
+specifier|public
+specifier|static
 name|ByteBuffer
 name|getFileContent
 parameter_list|(
