@@ -619,7 +619,7 @@ name|add
 argument_list|(
 literal|"stats.field"
 argument_list|,
-literal|"{!key=avg_price tag=s1 mean=true}price_ti"
+literal|"{!key=avg_price tag=s1}price_ti"
 argument_list|)
 expr_stmt|;
 name|SolrQueryRequest
@@ -693,6 +693,13 @@ name|dublinMicrosoftStats
 operator|+
 literal|"/double[@name='stddev'][.=7.211102550927978]"
 argument_list|,
+comment|// if new stats are supported, this will break - update test to assert values for each
+literal|"count("
+operator|+
+name|dublinMicrosoftStats
+operator|+
+literal|"/*)=8"
+argument_list|,
 name|cardiffPolecatStats
 operator|+
 literal|"/double[@name='min'][.=15.0]"
@@ -725,6 +732,13 @@ name|cardiffPolecatStats
 operator|+
 literal|"/double[@name='stddev'][.=16.97056274847714]"
 argument_list|,
+comment|// if new stats are supported, this will break - update test to assert values for each
+literal|"count("
+operator|+
+name|cardiffPolecatStats
+operator|+
+literal|"/*)=8"
+argument_list|,
 name|krakowFujitsuStats
 operator|+
 literal|"/null[@name='min']"
@@ -756,6 +770,13 @@ argument_list|,
 name|krakowFujitsuStats
 operator|+
 literal|"/double[@name='stddev'][.=0.0]"
+argument_list|,
+comment|// if new stats are supported, this will break - update test to assert values for each
+literal|"count("
+operator|+
+name|krakowFujitsuStats
+operator|+
+literal|"/*)=8"
 argument_list|)
 expr_stmt|;
 block|}

@@ -773,13 +773,10 @@ operator|.
 name|getName
 argument_list|()
 argument_list|,
-comment|// for pivots, we *always* include requested stats - even if 'empty'
 name|StatsComponent
 operator|.
 name|convertToResponse
 argument_list|(
-literal|true
-argument_list|,
 name|statsValues
 argument_list|)
 argument_list|)

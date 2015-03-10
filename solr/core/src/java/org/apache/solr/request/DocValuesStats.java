@@ -400,15 +400,6 @@ operator|.
 name|getSchemaField
 argument_list|()
 decl_stmt|;
-specifier|final
-name|boolean
-name|calcDistinct
-init|=
-name|statsField
-operator|.
-name|getCalcDistinct
-argument_list|()
-decl_stmt|;
 assert|assert
 literal|null
 operator|!=
