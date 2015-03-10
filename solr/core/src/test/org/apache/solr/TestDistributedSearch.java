@@ -6516,6 +6516,16 @@ expr_stmt|;
 name|commit
 argument_list|()
 expr_stmt|;
+name|handle
+operator|.
+name|put
+argument_list|(
+literal|"stats_fields"
+argument_list|,
+name|UNORDERED
+argument_list|)
+expr_stmt|;
+comment|// this is stupid, but stats.facet doesn't garuntee order
 name|rsp
 operator|=
 name|query
