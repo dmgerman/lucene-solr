@@ -22,6 +22,16 @@ end_comment
 
 begin_import
 import|import
+name|java
+operator|.
+name|util
+operator|.
+name|Arrays
+import|;
+end_import
+
+begin_import
+import|import
 name|com
 operator|.
 name|spatial4j
@@ -87,16 +97,6 @@ operator|.
 name|util
 operator|.
 name|BytesRef
-import|;
-end_import
-
-begin_import
-import|import
-name|java
-operator|.
-name|util
-operator|.
-name|Arrays
 import|;
 end_import
 
@@ -330,12 +330,6 @@ name|detailLevel
 argument_list|)
 decl_stmt|;
 assert|assert
-operator|!
-name|cell
-operator|.
-name|isLeaf
-argument_list|()
-operator|&&
 name|cell
 operator|instanceof
 name|LegacyCell

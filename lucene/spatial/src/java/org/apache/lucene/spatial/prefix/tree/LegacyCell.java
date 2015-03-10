@@ -22,6 +22,16 @@ end_comment
 
 begin_import
 import|import
+name|java
+operator|.
+name|util
+operator|.
+name|Collection
+import|;
+end_import
+
+begin_import
+import|import
 name|com
 operator|.
 name|spatial4j
@@ -87,16 +97,6 @@ operator|.
 name|util
 operator|.
 name|StringHelper
-import|;
-end_import
-
-begin_import
-import|import
-name|java
-operator|.
-name|util
-operator|.
-name|Collection
 import|;
 end_import
 
@@ -240,6 +240,9 @@ name|this
 operator|.
 name|b_len
 operator|=
+operator|(
+name|short
+operator|)
 name|bytes
 operator|.
 name|length
@@ -280,6 +283,18 @@ condition|)
 name|b_len
 operator|--
 expr_stmt|;
+if|if
+condition|(
+name|getLevel
+argument_list|()
+operator|==
+name|getMaxLevels
+argument_list|()
+condition|)
+name|isLeaf
+operator|=
+literal|true
+expr_stmt|;
 block|}
 comment|//  @Override
 comment|//  public void copyFrom(Cell source) {
@@ -297,6 +312,13 @@ specifier|protected
 specifier|abstract
 name|SpatialPrefixTree
 name|getGrid
+parameter_list|()
+function_decl|;
+DECL|method|getMaxLevels
+specifier|protected
+specifier|abstract
+name|int
+name|getMaxLevels
 parameter_list|()
 function_decl|;
 annotation|@
@@ -376,6 +398,12 @@ if|if
 condition|(
 operator|!
 name|isLeaf
+operator|||
+name|getLevel
+argument_list|()
+operator|==
+name|getMaxLevels
+argument_list|()
 condition|)
 return|return
 name|result

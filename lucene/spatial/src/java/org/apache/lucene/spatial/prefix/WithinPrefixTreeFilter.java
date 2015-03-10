@@ -274,7 +274,7 @@ name|Shape
 name|bufferedQueryShape
 decl_stmt|;
 comment|//if null then the whole world
-comment|/**    * See {@link AbstractVisitingPrefixTreeFilter#AbstractVisitingPrefixTreeFilter(com.spatial4j.core.shape.Shape, String, org.apache.lucene.spatial.prefix.tree.SpatialPrefixTree, int, int, boolean)}.    * {@code queryBuffer} is the (minimum) distance beyond the query shape edge    * where non-matching documents are looked for so they can be excluded. If    * -1 is used then the whole world is examined (a good default for correctness).    */
+comment|/**    * See {@link AbstractVisitingPrefixTreeFilter#AbstractVisitingPrefixTreeFilter(com.spatial4j.core.shape.Shape, String, org.apache.lucene.spatial.prefix.tree.SpatialPrefixTree, int, int)}.    * {@code queryBuffer} is the (minimum) distance beyond the query shape edge    * where non-matching documents are looked for so they can be excluded. If    * -1 is used then the whole world is examined (a good default for correctness).    */
 DECL|method|WithinPrefixTreeFilter
 specifier|public
 name|WithinPrefixTreeFilter
@@ -294,9 +294,6 @@ parameter_list|,
 name|int
 name|prefixGridScanLevel
 parameter_list|,
-name|boolean
-name|hasIndexedLeaves
-parameter_list|,
 name|double
 name|queryBuffer
 parameter_list|)
@@ -312,8 +309,6 @@ argument_list|,
 name|detailLevel
 argument_list|,
 name|prefixGridScanLevel
-argument_list|,
-name|hasIndexedLeaves
 argument_list|)
 expr_stmt|;
 name|this
@@ -450,10 +445,15 @@ block|{
 return|return
 literal|"WithinPrefixTreeFilter("
 operator|+
-comment|// TODO: print something about the shape?
 literal|"fieldName="
 operator|+
 name|fieldName
+operator|+
+literal|","
+operator|+
+literal|"queryShape="
+operator|+
+name|queryShape
 operator|+
 literal|","
 operator|+
@@ -466,12 +466,6 @@ operator|+
 literal|"prefixGridScanLevel="
 operator|+
 name|prefixGridScanLevel
-operator|+
-literal|","
-operator|+
-literal|"hasIndexedLeaves="
-operator|+
-name|hasIndexedLeaves
 operator|+
 literal|")"
 return|;
@@ -843,10 +837,6 @@ specifier|private
 name|FixedBitSet
 name|outside
 decl_stmt|;
-specifier|private
-name|SpatialRelation
-name|visitRelation
-decl_stmt|;
 annotation|@
 name|Override
 specifier|protected
@@ -917,7 +907,7 @@ annotation|@
 name|Override
 specifier|protected
 name|boolean
-name|visit
+name|visitPrefix
 parameter_list|(
 name|Cell
 name|cell
@@ -927,8 +917,9 @@ name|IOException
 block|{
 comment|//cell.relate is based on the bufferedQueryShape; we need to examine what
 comment|// the relation is against the queryShape
+name|SpatialRelation
 name|visitRelation
-operator|=
+init|=
 name|cell
 operator|.
 name|getShape
@@ -938,7 +929,34 @@ name|relate
 argument_list|(
 name|queryShape
 argument_list|)
+decl_stmt|;
+if|if
+condition|(
+name|cell
+operator|.
+name|getLevel
+argument_list|()
+operator|==
+name|detailLevel
+condition|)
+block|{
+name|collectDocs
+argument_list|(
+name|visitRelation
+operator|.
+name|intersects
+argument_list|()
+condition|?
+name|inside
+else|:
+name|outside
+argument_list|)
 expr_stmt|;
+return|return
+literal|false
+return|;
+block|}
+elseif|else
 if|if
 condition|(
 name|visitRelation
@@ -976,26 +994,6 @@ return|return
 literal|false
 return|;
 block|}
-elseif|else
-if|if
-condition|(
-name|cell
-operator|.
-name|getLevel
-argument_list|()
-operator|==
-name|detailLevel
-condition|)
-block|{
-name|collectDocs
-argument_list|(
-name|inside
-argument_list|)
-expr_stmt|;
-return|return
-literal|false
-return|;
-block|}
 return|return
 literal|true
 return|;
@@ -1012,38 +1010,11 @@ parameter_list|)
 throws|throws
 name|IOException
 block|{
-comment|//visitRelation is declared as a field, populated by visit() so we don't recompute it.
-comment|// We have a specialized visitScanned() which doesn't call this. If we didn't, we would
-comment|// not be able to assume visitRelation is from a prior visit() call since in scanning,
-comment|// parent cells aren't visited.
-assert|assert
-name|detailLevel
-operator|!=
-name|cell
-operator|.
-name|getLevel
-argument_list|()
-assert|;
-assert|assert
-name|visitRelation
-operator|==
-name|cell
-operator|.
-name|getShape
-argument_list|()
-operator|.
-name|relate
-argument_list|(
-name|queryShape
-argument_list|)
-assert|;
 if|if
 condition|(
 name|allCellsIntersectQuery
 argument_list|(
 name|cell
-argument_list|,
-name|visitRelation
 argument_list|)
 condition|)
 name|collectDocs
@@ -1065,20 +1036,11 @@ name|allCellsIntersectQuery
 parameter_list|(
 name|Cell
 name|cell
-parameter_list|,
-name|SpatialRelation
-name|relate
-comment|/*cell to query*/
 parameter_list|)
 block|{
-if|if
-condition|(
+name|SpatialRelation
 name|relate
-operator|==
-literal|null
-condition|)
-name|relate
-operator|=
+init|=
 name|cell
 operator|.
 name|getShape
@@ -1088,7 +1050,7 @@ name|relate
 argument_list|(
 name|queryShape
 argument_list|)
-expr_stmt|;
+decl_stmt|;
 if|if
 condition|(
 name|cell
@@ -1160,8 +1122,6 @@ operator|!
 name|allCellsIntersectQuery
 argument_list|(
 name|subCell
-argument_list|,
-literal|null
 argument_list|)
 condition|)
 comment|//recursion
@@ -1185,31 +1145,17 @@ parameter_list|)
 throws|throws
 name|IOException
 block|{
-comment|//slightly optimize over default impl; required for our 'visitRelation' field re-use above
-if|if
-condition|(
-name|allCellsIntersectQuery
+name|visitLeaf
 argument_list|(
 name|cell
-argument_list|,
-literal|null
-argument_list|)
-condition|)
-block|{
-name|collectDocs
-argument_list|(
-name|inside
 argument_list|)
 expr_stmt|;
-block|}
-else|else
-block|{
-name|collectDocs
-argument_list|(
-name|outside
-argument_list|)
-expr_stmt|;
-block|}
+comment|//collects as we want, even if not a leaf
+comment|//        if (cell.isLeaf()) {
+comment|//          visitLeaf(cell);
+comment|//        } else {
+comment|//          visitPrefix(cell);
+comment|//        }
 block|}
 block|}
 operator|.
