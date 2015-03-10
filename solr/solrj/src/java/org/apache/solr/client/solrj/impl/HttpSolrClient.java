@@ -2818,6 +2818,10 @@ condition|(
 name|processor
 operator|==
 literal|null
+operator|||
+name|processor
+operator|instanceof
+name|InputStreamResponseParser
 condition|)
 block|{
 comment|// no processor specified, return raw stream
