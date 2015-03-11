@@ -360,16 +360,14 @@ name|BRTermToBytesRefAttributeImpl
 name|clone
 parameter_list|()
 block|{
+comment|// super.clone won't work since we need a new BytesRef reference and it's nice to have it final. The superclass
+comment|// has no state to copy anyway.
 specifier|final
 name|BRTermToBytesRefAttributeImpl
 name|clone
 init|=
-operator|(
+operator|new
 name|BRTermToBytesRefAttributeImpl
-operator|)
-name|super
-operator|.
-name|clone
 argument_list|()
 decl_stmt|;
 name|clone
