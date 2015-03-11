@@ -4988,7 +4988,7 @@ name|request
 operator|.
 name|setFieldValue
 argument_list|(
-literal|"<html><body>whátëvêr</body></html>"
+literal|"<html><body>whÃ¡tÃ«vÃªr</body></html>"
 argument_list|)
 expr_stmt|;
 name|request
@@ -5087,7 +5087,7 @@ argument_list|)
 expr_stmt|;
 name|assertEquals
 argument_list|(
-literal|"\n\nwhátëvêr\n\n"
+literal|"\n\nwhÃ¡tÃ«vÃªr\n\n"
 argument_list|,
 name|indexPart
 operator|.
