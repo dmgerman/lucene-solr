@@ -1364,7 +1364,6 @@ argument_list|()
 return|;
 block|}
 block|}
-comment|/** Rewrites the query. If the wrapped is an instance of    * {@link MatchAllDocsQuery} it returns a {@link ConstantScoreQuery}. Otherwise    * it returns a new {@code FilteredQuery} wrapping the rewritten query. */
 annotation|@
 name|Override
 DECL|method|rewrite
