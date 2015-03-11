@@ -4988,7 +4988,7 @@ name|request
 operator|.
 name|setFieldValue
 argument_list|(
-literal|"<html><body>whÃ¡tÃ«vÃªr</body></html>"
+literal|"<html><body>whátëvêr</body></html>"
 argument_list|)
 expr_stmt|;
 name|request
@@ -5087,7 +5087,7 @@ argument_list|)
 expr_stmt|;
 name|assertEquals
 argument_list|(
-literal|"\n\nwhÃ¡tÃ«vÃªr\n\n"
+literal|"\n\nwhátëvêr\n\n"
 argument_list|,
 name|indexPart
 operator|.
@@ -6140,10 +6140,8 @@ argument_list|(
 literal|"org.apache.lucene.spatial.prefix.BytesRefIteratorTokenStream"
 argument_list|)
 decl_stmt|;
-name|assertEquals
+name|assertTrue
 argument_list|(
-literal|"s"
-argument_list|,
 name|tokenList
 operator|.
 name|get
@@ -6154,6 +6152,14 @@ operator|.
 name|get
 argument_list|(
 literal|"text"
+argument_list|)
+operator|.
+name|toString
+argument_list|()
+operator|.
+name|startsWith
+argument_list|(
+literal|"s"
 argument_list|)
 argument_list|)
 expr_stmt|;
