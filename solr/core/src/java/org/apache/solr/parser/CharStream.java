@@ -42,6 +42,22 @@ name|io
 operator|.
 name|IOException
 function_decl|;
+annotation|@
+name|Deprecated
+comment|/**    * Returns the column position of the character last read.    * @deprecated    * @see #getEndColumn    */
+DECL|method|getColumn
+name|int
+name|getColumn
+parameter_list|()
+function_decl|;
+annotation|@
+name|Deprecated
+comment|/**    * Returns the line number of the character last read.    * @deprecated    * @see #getEndLine    */
+DECL|method|getLine
+name|int
+name|getLine
+parameter_list|()
+function_decl|;
 comment|/**    * Returns the column number of the last character for current token (being    * matched after the last call to BeginTOken).    */
 DECL|method|getEndColumn
 name|int
@@ -113,7 +129,7 @@ block|}
 end_interface
 
 begin_comment
-comment|/* JavaCC - OriginalChecksum=a81c9280a3ec4578458c607a9d95acb4 (do not edit this line) */
+comment|/* JavaCC - OriginalChecksum=48b70e7c01825c8f301c7362bf1028d8 (do not edit this line) */
 end_comment
 
 end_unit
