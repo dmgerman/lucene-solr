@@ -4658,7 +4658,7 @@ name|tests
 argument_list|)
 return|;
 block|}
-comment|/**    * Validates a query matches some JSON test expressions and closes the    * query. The text expression is of the form path:JSON.  To facilitate    * easy embedding in Java strings, the JSON tests can have double quotes    * replaced with single quotes.    *<p>    * Please use this with care: this makes it easy to match complete    * structures, but doing so can result in fragile tests if you are    * matching more than what you want to test.    *</p>    * @param req Solr request to execute    * @param delta tolerance allowed in comparing float/double values    * @param tests JSON path expression + '==' + expected value    * @return The request response as a JSON String if all test patterns pass    */
+comment|/**    * Validates a query matches some JSON test expressions and closes the    * query. The text expression is of the form path:JSON.  The Noggit JSON    * parser used accepts single quoted strings and bare strings to allow    * easy embedding in Java Strings.    *<p>    * Please use this with care: this makes it easy to match complete    * structures, but doing so can result in fragile tests if you are    * matching more than what you want to test.    *</p>    * @param req Solr request to execute    * @param delta tolerance allowed in comparing float/double values    * @param tests JSON path expression + '==' + expected value    * @return The request response as a JSON String if all test patterns pass    */
 DECL|method|assertJQ
 specifier|public
 specifier|static
@@ -6156,7 +6156,7 @@ name|docs
 argument_list|)
 return|;
 block|}
-comment|/** Converts "test JSON" and returns standard JSON.    *  Currently this only consists of changing unescaped single quotes to double quotes,    *  and escaped single quotes to single quotes.    *    * The primary purpose is to be able to easily embed JSON strings in a JAVA string    * with the best readability.    *    * This transformation is automatically applied to JSON test srings (like assertJQ).    */
+comment|/** Converts "test JSON" strings into JSON parseable by our JSON parser.    *  For example, this method changed single quoted strings into double quoted strings before    *  the parser could natively handle them.    *    * This transformation is automatically applied to JSON test srings (like assertJQ).    */
 DECL|method|json
 specifier|public
 specifier|static
@@ -6167,64 +6167,10 @@ name|String
 name|testJSON
 parameter_list|)
 block|{
-name|testJSON
-operator|=
-name|nonEscapedSingleQuotePattern
-operator|.
-name|matcher
-argument_list|(
-name|testJSON
-argument_list|)
-operator|.
-name|replaceAll
-argument_list|(
-literal|"\""
-argument_list|)
-expr_stmt|;
-name|testJSON
-operator|=
-name|escapedSingleQuotePattern
-operator|.
-name|matcher
-argument_list|(
-name|testJSON
-argument_list|)
-operator|.
-name|replaceAll
-argument_list|(
-literal|"'"
-argument_list|)
-expr_stmt|;
 return|return
 name|testJSON
 return|;
 block|}
-DECL|field|nonEscapedSingleQuotePattern
-specifier|private
-specifier|static
-name|Pattern
-name|nonEscapedSingleQuotePattern
-init|=
-name|Pattern
-operator|.
-name|compile
-argument_list|(
-literal|"(?<!\\\\)\'"
-argument_list|)
-decl_stmt|;
-DECL|field|escapedSingleQuotePattern
-specifier|private
-specifier|static
-name|Pattern
-name|escapedSingleQuotePattern
-init|=
-name|Pattern
-operator|.
-name|compile
-argument_list|(
-literal|"\\\\\'"
-argument_list|)
-decl_stmt|;
 comment|/** Creates JSON from a SolrInputDocument.  Doesn't currently handle boosts.    *  @see #json(SolrInputDocument,CharArr)    */
 DECL|method|json
 specifier|public
