@@ -1790,6 +1790,25 @@ name|IOException
 block|{
 if|if
 condition|(
+name|statsToCalculate
+operator|.
+name|isEmpty
+argument_list|()
+condition|)
+block|{
+comment|// perf optimization for the case where we compute nothing
+comment|// ie: stats.field={!min=$domin}myfield&domin=false
+return|return
+name|StatsValuesFactory
+operator|.
+name|createStatsValues
+argument_list|(
+name|this
+argument_list|)
+return|;
+block|}
+if|if
+condition|(
 literal|null
 operator|!=
 name|schemaField

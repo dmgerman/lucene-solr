@@ -4063,6 +4063,154 @@ argument_list|()
 argument_list|)
 expr_stmt|;
 block|}
+comment|// request stats, but disable them all via param refs
+name|rsp
+operator|=
+name|query
+argument_list|(
+literal|"q"
+argument_list|,
+literal|"*:*"
+argument_list|,
+literal|"sort"
+argument_list|,
+name|i1
+operator|+
+literal|" desc"
+argument_list|,
+literal|"stats"
+argument_list|,
+literal|"true"
+argument_list|,
+literal|"doMin"
+argument_list|,
+literal|"false"
+argument_list|,
+literal|"stats.field"
+argument_list|,
+literal|"{!min=$doMin}"
+operator|+
+name|i1
+argument_list|)
+expr_stmt|;
+block|{
+comment|// don't leak variables
+name|FieldStatsInfo
+name|s
+init|=
+name|rsp
+operator|.
+name|getFieldStatsInfo
+argument_list|()
+operator|.
+name|get
+argument_list|(
+name|i1
+argument_list|)
+decl_stmt|;
+comment|// stats section should exist, even though stats should be null
+name|assertNotNull
+argument_list|(
+literal|"no stats for "
+operator|+
+name|i1
+argument_list|,
+name|s
+argument_list|)
+expr_stmt|;
+comment|//
+name|assertNull
+argument_list|(
+literal|"expected null for min"
+argument_list|,
+name|s
+operator|.
+name|getMin
+argument_list|()
+argument_list|)
+expr_stmt|;
+name|assertNull
+argument_list|(
+literal|"expected null for mean"
+argument_list|,
+name|s
+operator|.
+name|getMean
+argument_list|()
+argument_list|)
+expr_stmt|;
+name|assertNull
+argument_list|(
+literal|"expected null for stddev"
+argument_list|,
+name|s
+operator|.
+name|getStddev
+argument_list|()
+argument_list|)
+expr_stmt|;
+comment|//
+name|assertNull
+argument_list|(
+literal|"expected null for count"
+argument_list|,
+name|s
+operator|.
+name|getCount
+argument_list|()
+argument_list|)
+expr_stmt|;
+name|assertNull
+argument_list|(
+literal|"expected null for calcDistinct"
+argument_list|,
+name|s
+operator|.
+name|getCountDistinct
+argument_list|()
+argument_list|)
+expr_stmt|;
+name|assertNull
+argument_list|(
+literal|"expected null for distinct vals"
+argument_list|,
+name|s
+operator|.
+name|getDistinctValues
+argument_list|()
+argument_list|)
+expr_stmt|;
+name|assertNull
+argument_list|(
+literal|"expected null for max"
+argument_list|,
+name|s
+operator|.
+name|getMax
+argument_list|()
+argument_list|)
+expr_stmt|;
+name|assertNull
+argument_list|(
+literal|"expected null for missing"
+argument_list|,
+name|s
+operator|.
+name|getMissing
+argument_list|()
+argument_list|)
+expr_stmt|;
+name|assertNull
+argument_list|(
+literal|"expected null for sum"
+argument_list|,
+name|s
+operator|.
+name|getSum
+argument_list|()
+argument_list|)
+expr_stmt|;
+block|}
 specifier|final
 name|String
 index|[]
