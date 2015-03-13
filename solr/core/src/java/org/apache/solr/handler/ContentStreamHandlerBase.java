@@ -312,16 +312,9 @@ operator|.
 name|getCore
 argument_list|()
 operator|.
-name|getUpdateProcessingChain
+name|getUpdateProcessorChain
 argument_list|(
 name|params
-operator|.
-name|get
-argument_list|(
-name|UpdateParams
-operator|.
-name|UPDATE_CHAIN
-argument_list|)
 argument_list|)
 decl_stmt|;
 name|UpdateRequestProcessor
