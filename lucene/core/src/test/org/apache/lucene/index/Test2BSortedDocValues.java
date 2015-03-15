@@ -176,6 +176,22 @@ end_import
 
 begin_import
 import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|util
+operator|.
+name|LuceneTestCase
+operator|.
+name|SuppressSysoutChecks
+import|;
+end_import
+
+begin_import
+import|import
 name|com
 operator|.
 name|carrotsearch
@@ -218,6 +234,13 @@ annotation|@
 name|Monster
 argument_list|(
 literal|"Takes ~ 6 hours if the heap is 5gb"
+argument_list|)
+annotation|@
+name|SuppressSysoutChecks
+argument_list|(
+name|bugUrl
+operator|=
+literal|"Stuff gets printed"
 argument_list|)
 DECL|class|Test2BSortedDocValues
 specifier|public
