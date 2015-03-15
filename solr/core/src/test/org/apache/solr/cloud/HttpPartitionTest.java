@@ -873,11 +873,14 @@ name|testCollectionName
 argument_list|,
 name|shardId
 argument_list|,
-name|replicaUrl
-argument_list|,
 name|replicaCoreNodeProps
 argument_list|,
 literal|false
+argument_list|,
+name|leader
+operator|.
+name|getName
+argument_list|()
 argument_list|)
 argument_list|)
 expr_stmt|;

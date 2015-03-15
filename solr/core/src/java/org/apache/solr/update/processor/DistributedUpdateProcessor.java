@@ -5843,14 +5843,14 @@ name|collection
 argument_list|,
 name|shardId
 argument_list|,
-name|replicaUrl
-argument_list|,
 name|stdNode
 operator|.
 name|getNodeProps
 argument_list|()
 argument_list|,
 literal|false
+argument_list|,
+name|leaderCoreNodeName
 argument_list|)
 expr_stmt|;
 comment|// we want to try more than once, ~10 minutes

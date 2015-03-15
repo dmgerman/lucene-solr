@@ -2262,13 +2262,10 @@ argument_list|,
 name|shardId
 argument_list|,
 name|coreNodeProps
-operator|.
-name|getCoreUrl
-argument_list|()
-argument_list|,
-name|coreNodeProps
 argument_list|,
 literal|false
+argument_list|,
+name|coreNodeName
 argument_list|)
 expr_stmt|;
 name|ExecutorService
