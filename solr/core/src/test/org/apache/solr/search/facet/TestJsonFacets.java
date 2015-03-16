@@ -310,6 +310,10 @@ operator|.
 name|stop
 argument_list|()
 expr_stmt|;
+name|servers
+operator|=
+literal|null
+expr_stmt|;
 block|}
 block|}
 comment|// attempt to reproduce https://github.com/Heliosearch/heliosearch/issues/33
