@@ -3285,14 +3285,17 @@ class|class
 name|StrParser
 block|{
 DECL|field|val
+specifier|public
 name|String
 name|val
 decl_stmt|;
 DECL|field|pos
+specifier|public
 name|int
 name|pos
 decl_stmt|;
 DECL|field|end
+specifier|public
 name|int
 name|end
 decl_stmt|;
@@ -3351,6 +3354,7 @@ name|end
 expr_stmt|;
 block|}
 DECL|method|eatws
+specifier|public
 name|void
 name|eatws
 parameter_list|()
@@ -3378,6 +3382,7 @@ operator|++
 expr_stmt|;
 block|}
 DECL|method|ch
+specifier|public
 name|char
 name|ch
 parameter_list|()
@@ -3398,6 +3403,7 @@ literal|0
 return|;
 block|}
 DECL|method|skip
+specifier|public
 name|void
 name|skip
 parameter_list|(
@@ -3420,6 +3426,7 @@ argument_list|)
 expr_stmt|;
 block|}
 DECL|method|opt
+specifier|public
 name|boolean
 name|opt
 parameter_list|(
@@ -3467,6 +3474,7 @@ literal|false
 return|;
 block|}
 DECL|method|opt
+specifier|public
 name|boolean
 name|opt
 parameter_list|(
@@ -3505,6 +3513,7 @@ literal|false
 return|;
 block|}
 DECL|method|expect
+specifier|public
 name|void
 name|expect
 parameter_list|(
@@ -3570,6 +3579,7 @@ throw|;
 block|}
 block|}
 DECL|method|getFloat
+specifier|public
 name|float
 name|getFloat
 parameter_list|()
@@ -3685,6 +3695,7 @@ argument_list|)
 return|;
 block|}
 DECL|method|getNumber
+specifier|public
 name|Number
 name|getNumber
 parameter_list|()
@@ -3812,6 +3823,7 @@ return|;
 block|}
 block|}
 DECL|method|getDouble
+specifier|public
 name|double
 name|getDouble
 parameter_list|()
@@ -3927,6 +3939,7 @@ argument_list|)
 return|;
 block|}
 DECL|method|getInt
+specifier|public
 name|int
 name|getInt
 parameter_list|()
@@ -4030,6 +4043,7 @@ argument_list|)
 return|;
 block|}
 DECL|method|getId
+specifier|public
 name|String
 name|getId
 parameter_list|()
@@ -4044,6 +4058,7 @@ argument_list|)
 return|;
 block|}
 DECL|method|getId
+specifier|public
 name|String
 name|getId
 parameter_list|(
@@ -4323,6 +4338,7 @@ return|;
 block|}
 comment|/**      * Skips leading whitespace and returns whatever sequence of non       * whitespace it can find (or hte empty string)      */
 DECL|method|getSimpleString
+specifier|public
 name|String
 name|getSimpleString
 parameter_list|()
@@ -4381,6 +4397,7 @@ return|;
 block|}
 comment|/**      * Sort direction or null if current position does not indicate a       * sort direction. (True is desc, False is asc).        * Position is advanced to after the comma (or end) when result is non null       */
 DECL|method|getSortDirection
+specifier|public
 name|Boolean
 name|getSortDirection
 parameter_list|()
@@ -4529,6 +4546,7 @@ return|;
 block|}
 comment|// return null if not a string
 DECL|method|getQuotedString
+specifier|public
 name|String
 name|getQuotedString
 parameter_list|()
@@ -4788,6 +4806,7 @@ return|;
 block|}
 comment|// next non-whitespace char
 DECL|method|peek
+specifier|public
 name|char
 name|peek
 parameter_list|()
@@ -4812,6 +4831,7 @@ return|;
 block|}
 comment|// next char
 DECL|method|peekChar
+specifier|public
 name|char
 name|peekChar
 parameter_list|()

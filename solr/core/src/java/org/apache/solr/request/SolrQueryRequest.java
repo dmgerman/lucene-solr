@@ -256,6 +256,32 @@ name|SolrQueryResponse
 name|rsp
 parameter_list|)
 function_decl|;
+comment|/** Returns any associated JSON (or null if none) in deserialized generic form.    * Java classes used to represent the JSON are as follows: Map, List, String, Long, Double, Boolean    */
+DECL|method|getJSON
+specifier|public
+name|Map
+argument_list|<
+name|String
+argument_list|,
+name|Object
+argument_list|>
+name|getJSON
+parameter_list|()
+function_decl|;
+DECL|method|setJSON
+specifier|public
+name|void
+name|setJSON
+parameter_list|(
+name|Map
+argument_list|<
+name|String
+argument_list|,
+name|Object
+argument_list|>
+name|json
+parameter_list|)
+function_decl|;
 block|}
 end_interface
 

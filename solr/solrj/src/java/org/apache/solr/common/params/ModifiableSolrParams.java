@@ -167,6 +167,22 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
+DECL|method|getMap
+specifier|public
+name|Map
+argument_list|<
+name|String
+argument_list|,
+name|String
+index|[]
+argument_list|>
+name|getMap
+parameter_list|()
+block|{
+return|return
+name|vals
+return|;
+block|}
 comment|//----------------------------------------------------------------
 comment|//----------------------------------------------------------------
 comment|/**    * Replace any existing parameter with the given name.  if val==null remove key from params completely.    */

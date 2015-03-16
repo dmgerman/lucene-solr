@@ -844,7 +844,9 @@ name|apache
 operator|.
 name|solr
 operator|.
-name|request
+name|search
+operator|.
+name|facet
 operator|.
 name|UnInvertedField
 import|;
@@ -4423,6 +4425,16 @@ name|SolrCache
 argument_list|<
 name|String
 argument_list|,
+name|org
+operator|.
+name|apache
+operator|.
+name|solr
+operator|.
+name|search
+operator|.
+name|facet
+operator|.
 name|UnInvertedField
 argument_list|>
 name|getFieldValueCache
