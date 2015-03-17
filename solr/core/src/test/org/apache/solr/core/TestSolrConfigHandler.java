@@ -2307,9 +2307,9 @@ expr_stmt|;
 block|}
 name|assertTrue
 argument_list|(
-name|MessageFormat
+name|StrUtils
 operator|.
-name|format
+name|formatString
 argument_list|(
 literal|"Could not get expected value  ''{0}'' for path ''{1}'' full output: {2}"
 argument_list|,

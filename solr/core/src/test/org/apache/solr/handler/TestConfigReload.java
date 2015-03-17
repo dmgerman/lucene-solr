@@ -322,6 +322,22 @@ name|apache
 operator|.
 name|solr
 operator|.
+name|common
+operator|.
+name|util
+operator|.
+name|StrUtils
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|solr
+operator|.
 name|core
 operator|.
 name|SolrConfig
@@ -1036,9 +1052,9 @@ expr_stmt|;
 block|}
 name|assertEquals
 argument_list|(
-name|MessageFormat
+name|StrUtils
 operator|.
-name|format
+name|formatString
 argument_list|(
 literal|"tried these servers {0} succeeded only in {1} "
 argument_list|,

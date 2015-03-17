@@ -977,9 +977,9 @@ name|ErrorCode
 operator|.
 name|BAD_REQUEST
 argument_list|,
-name|MessageFormat
+name|StrUtils
 operator|.
-name|format
+name|formatString
 argument_list|(
 name|NOT_EDITABLE
 argument_list|,

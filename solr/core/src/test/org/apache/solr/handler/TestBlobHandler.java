@@ -288,6 +288,22 @@ name|apache
 operator|.
 name|solr
 operator|.
+name|common
+operator|.
+name|util
+operator|.
+name|StrUtils
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|solr
+operator|.
 name|core
 operator|.
 name|ConfigOverlay
@@ -411,16 +427,6 @@ operator|.
 name|charset
 operator|.
 name|StandardCharsets
-import|;
-end_import
-
-begin_import
-import|import
-name|java
-operator|.
-name|text
-operator|.
-name|MessageFormat
 import|;
 end_import
 
@@ -1244,9 +1250,9 @@ return|return;
 block|}
 name|fail
 argument_list|(
-name|MessageFormat
+name|StrUtils
 operator|.
-name|format
+name|formatString
 argument_list|(
 literal|"Could not successfully add blob after {0} attempts. Expecting {1} items. time elapsed {2}  output  for url is {3}"
 argument_list|,

@@ -342,6 +342,22 @@ name|apache
 operator|.
 name|solr
 operator|.
+name|common
+operator|.
+name|util
+operator|.
+name|StrUtils
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|solr
+operator|.
 name|core
 operator|.
 name|ConfigOverlay
@@ -1242,9 +1258,9 @@ name|errmessages
 operator|.
 name|add
 argument_list|(
-name|MessageFormat
+name|StrUtils
 operator|.
-name|format
+name|formatString
 argument_list|(
 literal|"overlay does not exist for cache: {0} , iteration: {1} response {2} "
 argument_list|,
@@ -1294,9 +1310,9 @@ name|errmessages
 operator|.
 name|add
 argument_list|(
-name|MessageFormat
+name|StrUtils
 operator|.
-name|format
+name|formatString
 argument_list|(
 literal|"'size' property not set, expected = {0}, actual {1}"
 argument_list|,
@@ -1338,9 +1354,9 @@ name|errmessages
 operator|.
 name|add
 argument_list|(
-name|MessageFormat
+name|StrUtils
 operator|.
-name|format
+name|formatString
 argument_list|(
 literal|"'initialSize' property not set, expected = {0}, actual {1}"
 argument_list|,
@@ -1382,9 +1398,9 @@ name|errmessages
 operator|.
 name|add
 argument_list|(
-name|MessageFormat
+name|StrUtils
 operator|.
-name|format
+name|formatString
 argument_list|(
 literal|"'autowarmCount' property not set, expected = {0}, actual {1}"
 argument_list|,
