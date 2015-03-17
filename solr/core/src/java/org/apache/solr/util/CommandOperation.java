@@ -346,9 +346,15 @@ operator|instanceof
 name|Map
 condition|)
 block|{
+comment|//noinspection unchecked
 return|return
 operator|(
 name|Map
+argument_list|<
+name|String
+argument_list|,
+name|Object
+argument_list|>
 operator|)
 name|commandData
 return|;
@@ -368,7 +374,8 @@ expr_stmt|;
 return|return
 name|Collections
 operator|.
-name|EMPTY_MAP
+name|emptyMap
+argument_list|()
 return|;
 block|}
 DECL|method|getRootPrimitive
@@ -841,6 +848,11 @@ comment|/**    * Get all the values from the metadata for the command    * witho
 DECL|method|getValuesExcluding
 specifier|public
 name|Map
+argument_list|<
+name|String
+argument_list|,
+name|Object
+argument_list|>
 name|getValuesExcluding
 parameter_list|(
 name|String
@@ -863,6 +875,11 @@ name|emptyMap
 argument_list|()
 return|;
 comment|//just to verify the type is Map
+annotation|@
+name|SuppressWarnings
+argument_list|(
+literal|"unchecked"
+argument_list|)
 name|LinkedHashMap
 argument_list|<
 name|String

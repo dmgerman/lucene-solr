@@ -605,6 +605,26 @@ return|return
 name|required
 return|;
 block|}
+DECL|method|getArgs
+specifier|public
+name|Map
+argument_list|<
+name|String
+argument_list|,
+name|?
+argument_list|>
+name|getArgs
+parameter_list|()
+block|{
+return|return
+name|Collections
+operator|.
+name|unmodifiableMap
+argument_list|(
+name|args
+argument_list|)
+return|;
+block|}
 comment|// things that should be determined by field type, not set as options
 DECL|method|isTokenized
 name|boolean

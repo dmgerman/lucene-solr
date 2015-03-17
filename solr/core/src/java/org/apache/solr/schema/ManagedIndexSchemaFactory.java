@@ -2072,6 +2072,26 @@ name|schema
 argument_list|)
 expr_stmt|;
 block|}
+DECL|method|isMutable
+specifier|public
+name|boolean
+name|isMutable
+parameter_list|()
+block|{
+return|return
+name|isMutable
+return|;
+block|}
+DECL|method|getConfig
+specifier|public
+name|SolrConfig
+name|getConfig
+parameter_list|()
+block|{
+return|return
+name|config
+return|;
+block|}
 block|}
 end_class
 
