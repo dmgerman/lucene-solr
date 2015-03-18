@@ -2858,8 +2858,12 @@ argument_list|()
 argument_list|,
 name|version
 argument_list|,
-operator|new
-name|Object
+name|req
+operator|.
+name|getSchema
+argument_list|()
+operator|.
+name|getSchemaUpdateLock
 argument_list|()
 argument_list|)
 return|;

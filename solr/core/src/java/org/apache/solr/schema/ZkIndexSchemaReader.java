@@ -731,8 +731,9 @@ operator|.
 name|getVersion
 argument_list|()
 argument_list|,
-operator|new
-name|Object
+name|oldSchema
+operator|.
+name|getSchemaUpdateLock
 argument_list|()
 argument_list|)
 decl_stmt|;
