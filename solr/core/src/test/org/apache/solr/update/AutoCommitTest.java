@@ -739,6 +739,12 @@ argument_list|(
 name|str
 argument_list|)
 decl_stmt|;
+if|if
+condition|(
+name|contentType
+operator|!=
+literal|null
+condition|)
 name|stream
 operator|.
 name|setContentType

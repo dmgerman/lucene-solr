@@ -390,6 +390,40 @@ operator|-
 name|pos
 return|;
 block|}
+comment|/** Returns the internal buffer used for caching */
+DECL|method|getBuffer
+specifier|public
+name|byte
+index|[]
+name|getBuffer
+parameter_list|()
+block|{
+return|return
+name|buf
+return|;
+block|}
+comment|/** Current position within the internal buffer */
+DECL|method|getPositionInBuffer
+specifier|public
+name|int
+name|getPositionInBuffer
+parameter_list|()
+block|{
+return|return
+name|pos
+return|;
+block|}
+comment|/** Current end-of-data position within the internal buffer.  This is one past the last valid byte. */
+DECL|method|getEndInBuffer
+specifier|public
+name|int
+name|getEndInBuffer
+parameter_list|()
+block|{
+return|return
+name|end
+return|;
+block|}
 annotation|@
 name|Override
 DECL|method|read
