@@ -971,11 +971,11 @@ operator|=
 literal|null
 expr_stmt|;
 block|}
-name|System
+name|SolrCore
 operator|.
-name|out
+name|log
 operator|.
-name|println
+name|info
 argument_list|(
 literal|"CORE DESCRIPTOR: "
 operator|+
