@@ -1040,41 +1040,6 @@ parameter_list|)
 throws|throws
 name|Exception
 block|{
-comment|// int sleep = req.getParams().getInt("sleep",0);
-comment|// if (sleep> 0) {log.error("SLEEPING for " + sleep);  Thread.sleep(sleep);}
-if|if
-condition|(
-name|req
-operator|.
-name|getContentStreams
-argument_list|()
-operator|!=
-literal|null
-operator|&&
-name|req
-operator|.
-name|getContentStreams
-argument_list|()
-operator|.
-name|iterator
-argument_list|()
-operator|.
-name|hasNext
-argument_list|()
-condition|)
-block|{
-throw|throw
-operator|new
-name|SolrException
-argument_list|(
-name|ErrorCode
-operator|.
-name|BAD_REQUEST
-argument_list|,
-literal|"Search requests cannot accept content streams"
-argument_list|)
-throw|;
-block|}
 name|ResponseBuilder
 name|rb
 init|=
