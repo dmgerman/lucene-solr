@@ -1588,9 +1588,11 @@ argument_list|(
 name|replica
 argument_list|)
 argument_list|,
+literal|"non_existent_leader"
+argument_list|,
 literal|false
 argument_list|,
-literal|"non_existent_leader"
+literal|false
 argument_list|)
 expr_stmt|;
 name|fail

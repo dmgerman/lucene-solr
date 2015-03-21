@@ -6228,6 +6228,8 @@ operator|.
 name|ACTIVE
 argument_list|,
 literal|null
+argument_list|,
+literal|true
 argument_list|)
 expr_stmt|;
 block|}
@@ -6303,6 +6305,8 @@ operator|.
 name|RECOVERING
 argument_list|,
 literal|null
+argument_list|,
+literal|true
 argument_list|)
 expr_stmt|;
 block|}
@@ -10440,11 +10444,14 @@ specifier|final
 name|ZkCoreNodeProps
 name|replicaCoreProps
 parameter_list|,
+name|String
+name|leaderCoreNodeName
+parameter_list|,
 name|boolean
 name|forcePublishState
 parameter_list|,
-name|String
-name|leaderCoreNodeName
+name|boolean
+name|retryOnConnLoss
 parameter_list|)
 throws|throws
 name|KeeperException
@@ -10616,6 +10623,8 @@ operator|.
 name|DOWN
 argument_list|,
 name|leaderCoreNodeName
+argument_list|,
+name|retryOnConnLoss
 argument_list|)
 expr_stmt|;
 name|replicasInLeaderInitiatedRecovery
@@ -11196,6 +11205,9 @@ name|state
 parameter_list|,
 name|String
 name|leaderCoreNodeName
+parameter_list|,
+name|boolean
+name|retryOnConnLoss
 parameter_list|)
 block|{
 if|if
