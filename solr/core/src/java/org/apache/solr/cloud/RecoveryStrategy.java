@@ -688,6 +688,22 @@ name|Thread
 implements|implements
 name|ClosableThread
 block|{
+DECL|field|WAIT_FOR_UPDATES_WITH_STALE_STATE_PAUSE
+specifier|private
+specifier|static
+specifier|final
+name|int
+name|WAIT_FOR_UPDATES_WITH_STALE_STATE_PAUSE
+init|=
+name|Integer
+operator|.
+name|getInteger
+argument_list|(
+literal|"solr.cloud.wait-for-updates-with-stale-state-pause"
+argument_list|,
+literal|7000
+argument_list|)
+decl_stmt|;
 DECL|field|MAX_RETRIES
 specifier|private
 specifier|static
@@ -2279,14 +2295,15 @@ break|break;
 block|}
 comment|// we wait a bit so that any updates on the leader
 comment|// that started before they saw recovering state
-comment|// are sure to have finished
+comment|// are sure to have finished (see SOLR-7141 for
+comment|// discussion around current value)
 try|try
 block|{
 name|Thread
 operator|.
 name|sleep
 argument_list|(
-literal|2000
+name|WAIT_FOR_UPDATES_WITH_STALE_STATE_PAUSE
 argument_list|)
 expr_stmt|;
 block|}
