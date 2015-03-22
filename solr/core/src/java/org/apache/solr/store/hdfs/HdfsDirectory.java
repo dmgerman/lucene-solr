@@ -399,7 +399,7 @@ name|fileSystem
 operator|=
 name|FileSystem
 operator|.
-name|newInstance
+name|get
 argument_list|(
 name|hdfsDirPath
 operator|.

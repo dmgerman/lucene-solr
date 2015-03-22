@@ -557,6 +557,15 @@ name|confDir
 argument_list|)
 expr_stmt|;
 block|}
+name|conf
+operator|.
+name|setBoolean
+argument_list|(
+literal|"fs.hdfs.impl.disable.cache"
+argument_list|,
+literal|true
+argument_list|)
+expr_stmt|;
 return|return
 name|conf
 return|;
