@@ -2806,11 +2806,15 @@ init|(
 name|OutputStream
 name|os
 init|=
+operator|new
+name|BufferedOutputStream
+argument_list|(
 name|Files
 operator|.
 name|newOutputStream
 argument_list|(
 name|path
+argument_list|)
 argument_list|)
 init|)
 block|{
@@ -2819,11 +2823,7 @@ argument_list|(
 operator|new
 name|OutputStreamDataOutput
 argument_list|(
-operator|new
-name|BufferedOutputStream
-argument_list|(
 name|os
-argument_list|)
 argument_list|)
 argument_list|)
 expr_stmt|;
