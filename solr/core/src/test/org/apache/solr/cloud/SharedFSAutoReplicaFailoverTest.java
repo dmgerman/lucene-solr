@@ -138,23 +138,7 @@ name|randomizedtesting
 operator|.
 name|annotations
 operator|.
-name|ThreadLeakScope
-import|;
-end_import
-
-begin_import
-import|import
-name|com
-operator|.
-name|carrotsearch
-operator|.
-name|randomizedtesting
-operator|.
-name|annotations
-operator|.
-name|ThreadLeakScope
-operator|.
-name|Scope
+name|ThreadLeakFilters
 import|;
 end_import
 
@@ -420,9 +404,13 @@ begin_import
 import|import
 name|org
 operator|.
-name|junit
+name|apache
 operator|.
-name|AfterClass
+name|solr
+operator|.
+name|util
+operator|.
+name|BadHdfsThreadsFilter
 import|;
 end_import
 
@@ -432,7 +420,7 @@ name|org
 operator|.
 name|junit
 operator|.
-name|Before
+name|AfterClass
 import|;
 end_import
 
@@ -482,13 +470,21 @@ name|Slow
 annotation|@
 name|SuppressSSL
 annotation|@
-name|ThreadLeakScope
+name|ThreadLeakFilters
 argument_list|(
-name|Scope
+name|defaultFilters
+operator|=
+literal|true
+argument_list|,
+name|filters
+operator|=
+block|{
+name|BadHdfsThreadsFilter
 operator|.
-name|NONE
+name|class
+comment|// hdfs currently leaks thread(s)
+block|}
 argument_list|)
-comment|// hdfs client currently leaks thread(s)
 DECL|class|SharedFSAutoReplicaFailoverTest
 specifier|public
 class|class
