@@ -1985,13 +1985,32 @@ operator|.
 name|TIMES_FAILED
 argument_list|)
 decl_stmt|;
-name|assertEquals
+comment|// SOLR-7134: we can have a fail because some mock index files have no checksum, will
+comment|// always be downloaded, and may not be able to be moved into the existing index
+name|assertTrue
 argument_list|(
-literal|"slave has fetch error count"
-argument_list|,
-literal|null
+literal|"slave has fetch error count: "
+operator|+
+operator|(
+name|String
+operator|)
+name|timesFailed
 argument_list|,
 name|timesFailed
+operator|==
+literal|null
+operator|||
+operator|(
+operator|(
+name|String
+operator|)
+name|timesFailed
+operator|)
+operator|.
+name|equals
+argument_list|(
+literal|"1"
+argument_list|)
 argument_list|)
 expr_stmt|;
 if|if

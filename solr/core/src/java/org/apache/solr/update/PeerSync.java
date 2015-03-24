@@ -2971,6 +2971,15 @@ operator|+
 literal|"add "
 operator|+
 name|cmd
+operator|+
+literal|" id "
+operator|+
+name|sdoc
+operator|.
+name|getField
+argument_list|(
+literal|"id"
+argument_list|)
 argument_list|)
 expr_stmt|;
 block|}
@@ -3059,6 +3068,17 @@ operator|+
 literal|"delete "
 operator|+
 name|cmd
+operator|+
+literal|" "
+operator|+
+operator|new
+name|BytesRef
+argument_list|(
+name|idBytes
+argument_list|)
+operator|.
+name|utf8ToString
+argument_list|()
 argument_list|)
 expr_stmt|;
 block|}

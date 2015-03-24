@@ -781,6 +781,10 @@ argument_list|,
 literal|true
 argument_list|,
 name|docCount
+argument_list|,
+literal|1
+argument_list|,
+literal|true
 argument_list|)
 decl_stmt|;
 name|threads

@@ -1759,19 +1759,15 @@ name|Exception
 name|e
 parameter_list|)
 block|{
-throw|throw
-operator|new
-name|SolrException
-argument_list|(
-name|ErrorCode
+name|log
 operator|.
-name|SERVER_ERROR
-argument_list|,
-literal|null
+name|error
+argument_list|(
+literal|"Error in solrcloud_debug block"
 argument_list|,
 name|e
 argument_list|)
-throw|;
+expr_stmt|;
 block|}
 block|}
 if|if

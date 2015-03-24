@@ -6872,6 +6872,18 @@ name|versionOnUpdate
 condition|)
 block|{
 comment|// This update is a repeat, or was reordered.  We need to drop this update.
+name|log
+operator|.
+name|debug
+argument_list|(
+literal|"Dropping add update due to version {}"
+argument_list|,
+name|idBytes
+operator|.
+name|utf8ToString
+argument_list|()
+argument_list|)
+expr_stmt|;
 return|return
 literal|true
 return|;
@@ -9683,6 +9695,18 @@ name|versionOnUpdate
 condition|)
 block|{
 comment|// This update is a repeat, or was reordered.  We need to drop this update.
+name|log
+operator|.
+name|debug
+argument_list|(
+literal|"Dropping delete update due to version {}"
+argument_list|,
+name|idBytes
+operator|.
+name|utf8ToString
+argument_list|()
+argument_list|)
+expr_stmt|;
 return|return
 literal|true
 return|;
