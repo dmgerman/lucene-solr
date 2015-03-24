@@ -64,7 +64,9 @@ name|lucene
 operator|.
 name|util
 operator|.
-name|TestUtil
+name|LuceneTestCase
+operator|.
+name|AwaitsFix
 import|;
 end_import
 
@@ -73,6 +75,13 @@ comment|/**  * random sloppy phrase query tests  */
 end_comment
 
 begin_class
+annotation|@
+name|AwaitsFix
+argument_list|(
+name|bugUrl
+operator|=
+literal|"https://issues.apache.org/jira/browse/LUCENE-6369"
+argument_list|)
 DECL|class|TestSloppyPhraseQuery2
 specifier|public
 class|class
