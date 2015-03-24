@@ -40,6 +40,16 @@ end_import
 
 begin_import
 import|import
+name|java
+operator|.
+name|nio
+operator|.
+name|ByteBuffer
+import|;
+end_import
+
+begin_import
+import|import
 name|org
 operator|.
 name|apache
@@ -190,8 +200,22 @@ name|*
 import|;
 end_import
 
+begin_import
+import|import
+name|com
+operator|.
+name|tdunning
+operator|.
+name|math
+operator|.
+name|stats
+operator|.
+name|AVLTreeDigest
+import|;
+end_import
+
 begin_comment
-comment|/**  * Factory class for creating instance of {@link org.apache.solr.handler.component.StatsValues}  */
+comment|/**  * Factory class for creating instance of   * {@link org.apache.solr.handler.component.StatsValues}  */
 end_comment
 
 begin_class
@@ -200,7 +224,7 @@ specifier|public
 class|class
 name|StatsValuesFactory
 block|{
-comment|/**    * Creates an instance of StatsValues which supports values from the specified {@link StatsField}    *    * @param statsField {@link StatsField} whose statistics will be created by the resulting {@link StatsValues}    * @return Instance of {@link StatsValues} that will create statistics from values from the specified {@link StatsField}    */
+comment|/**    * Creates an instance of StatsValues which supports values from the specified     * {@link StatsField}    *    * @param statsField    *          {@link StatsField} whose statistics will be created by the    *          resulting {@link StatsValues}    * @return Instance of {@link StatsValues} that will create statistics from    *         values from the specified {@link StatsField}    */
 DECL|method|createStatsValues
 specifier|public
 specifier|static
@@ -360,7 +384,7 @@ block|}
 end_class
 
 begin_comment
-comment|/**  * Abstract implementation of {@link org.apache.solr.handler.component.StatsValues}   * that provides the default behavior for most StatsValues implementations.  *  * There are very few requirements placed on what statistics concrete implementations   * should collect, with the only required statistics being the minimum and maximum values.  */
+comment|/**  * Abstract implementation of  * {@link org.apache.solr.handler.component.StatsValues} that provides the  * default behavior for most StatsValues implementations.  *  * There are very few requirements placed on what statistics concrete  * implementations should collect, with the only required statistics being the  * minimum and maximum values.  */
 end_comment
 
 begin_class
@@ -397,7 +421,7 @@ specifier|protected
 name|SchemaField
 name|sf
 decl_stmt|;
-comment|/** may be null if we are collecting stats directly from a function ValueSource */
+comment|/**    * may be null if we are collecting stats directly from a function ValueSource    */
 DECL|field|ft
 specifier|final
 specifier|protected
@@ -447,13 +471,13 @@ specifier|private
 name|ValueSource
 name|valueSource
 decl_stmt|;
-comment|/**     * Context to use when retrieving FunctionValues, will be null until/unless     * {@link #setNextReader} is called at least once    */
+comment|/**    * Context to use when retrieving FunctionValues, will be null until/unless    * {@link #setNextReader} is called at least once    */
 DECL|field|vsContext
 specifier|private
 name|Map
 name|vsContext
 decl_stmt|;
-comment|/**     * Values to collect, will be null until/unless {@link #setNextReader} is called     * at least once     */
+comment|/**    * Values to collect, will be null until/unless {@link #setNextReader} is    * called at least once    */
 DECL|field|values
 specifier|protected
 name|FunctionValues
@@ -493,7 +517,7 @@ name|T
 argument_list|>
 name|distinctValues
 decl_stmt|;
-comment|// facetField   facetValue
+comment|// facetField facetValue
 DECL|field|facets
 specifier|protected
 name|Map
@@ -621,7 +645,8 @@ comment|// "NumericValueSourceStatsValues" which would have diff parent classes
 comment|//
 comment|// part of the complexity here being that the StatsValues API serves two
 comment|// masters: collecting concrete Values from things like DocValuesStats and
-comment|// the distributed aggregation logic, but also collecting docIds which it then
+comment|// the distributed aggregation logic, but also collecting docIds which it
+comment|// then
 comment|// uses to go out and pull concreate values from the ValueSource
 comment|// (from a func, or single valued field)
 if|if
@@ -1518,7 +1543,7 @@ name|ctx
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**    * Updates the minimum and maximum statistics based on the given values    *    * @param min Value that the current minimum should be updated against    * @param max Value that the current maximum should be updated against    */
+comment|/**    * Updates the minimum and maximum statistics based on the given values    *    * @param min    *          Value that the current minimum should be updated against    * @param max    *          Value that the current maximum should be updated against    */
 DECL|method|updateMinMax
 specifier|protected
 specifier|abstract
@@ -1532,7 +1557,7 @@ name|T
 name|max
 parameter_list|)
 function_decl|;
-comment|/**    * Updates the type specific statistics based on the given value    *    * @param value Value the statistics should be updated against    * @param count Number of times the value is being accumulated    */
+comment|/**    * Updates the type specific statistics based on the given value    *    * @param value    *          Value the statistics should be updated against    * @param count    *          Number of times the value is being accumulated    */
 DECL|method|updateTypeSpecificStats
 specifier|protected
 specifier|abstract
@@ -1546,7 +1571,7 @@ name|int
 name|count
 parameter_list|)
 function_decl|;
-comment|/**    * Updates the type specific statistics based on the values in the given list    *    * @param stv List containing values the current statistics should be updated against    */
+comment|/**    * Updates the type specific statistics based on the values in the given list    *    * @param stv    *          List containing values the current statistics should be updated    *          against    */
 DECL|method|updateTypeSpecificStats
 specifier|protected
 specifier|abstract
@@ -1557,7 +1582,7 @@ name|NamedList
 name|stv
 parameter_list|)
 function_decl|;
-comment|/**    * Add any type specific statistics to the given NamedList    *    * @param res NamedList to add the type specific statistics too    */
+comment|/**    * Add any type specific statistics to the given NamedList    *    * @param res    *          NamedList to add the type specific statistics too    */
 DECL|method|addTypeSpecificStats
 specifier|protected
 specifier|abstract
@@ -1596,6 +1621,10 @@ DECL|field|sumOfSquares
 name|double
 name|sumOfSquares
 decl_stmt|;
+DECL|field|tdigest
+name|AVLTreeDigest
+name|tdigest
+decl_stmt|;
 DECL|field|minD
 name|double
 name|minD
@@ -1617,6 +1646,12 @@ specifier|final
 specifier|protected
 name|boolean
 name|computeSumOfSquares
+decl_stmt|;
+DECL|field|computePercentiles
+specifier|final
+specifier|protected
+name|boolean
+name|computePercentiles
 decl_stmt|;
 DECL|method|NumericStatsValues
 specifier|public
@@ -1657,6 +1692,36 @@ operator|.
 name|sumOfSquares
 argument_list|)
 expr_stmt|;
+name|this
+operator|.
+name|computePercentiles
+operator|=
+name|statsField
+operator|.
+name|calculateStats
+argument_list|(
+name|Stat
+operator|.
+name|percentiles
+argument_list|)
+expr_stmt|;
+if|if
+condition|(
+name|computePercentiles
+condition|)
+block|{
+name|tdigest
+operator|=
+operator|new
+name|AVLTreeDigest
+argument_list|(
+name|statsField
+operator|.
+name|getTdigestCompression
+argument_list|()
+argument_list|)
+expr_stmt|;
+block|}
 block|}
 annotation|@
 name|Override
@@ -1679,8 +1744,9 @@ name|docID
 argument_list|)
 condition|)
 block|{
-name|accumulate
-argument_list|(
+name|Number
+name|value
+init|=
 operator|(
 name|Number
 operator|)
@@ -1690,6 +1756,10 @@ name|objectVal
 argument_list|(
 name|docID
 argument_list|)
+decl_stmt|;
+name|accumulate
+argument_list|(
+name|value
 argument_list|,
 literal|1
 argument_list|)
@@ -1760,6 +1830,49 @@ name|doubleValue
 argument_list|()
 expr_stmt|;
 block|}
+if|if
+condition|(
+name|computePercentiles
+condition|)
+block|{
+name|byte
+index|[]
+name|data
+init|=
+operator|(
+name|byte
+index|[]
+operator|)
+name|stv
+operator|.
+name|get
+argument_list|(
+literal|"percentiles"
+argument_list|)
+decl_stmt|;
+name|ByteBuffer
+name|buf
+init|=
+name|ByteBuffer
+operator|.
+name|wrap
+argument_list|(
+name|data
+argument_list|)
+decl_stmt|;
+name|tdigest
+operator|.
+name|add
+argument_list|(
+name|AVLTreeDigest
+operator|.
+name|fromBytes
+argument_list|(
+name|buf
+argument_list|)
+argument_list|)
+expr_stmt|;
+block|}
 block|}
 comment|/**    * {@inheritDoc}    */
 annotation|@
@@ -1811,6 +1924,21 @@ operator|+=
 name|value
 operator|*
 name|count
+expr_stmt|;
+block|}
+if|if
+condition|(
+name|computePercentiles
+condition|)
+block|{
+name|tdigest
+operator|.
+name|add
+argument_list|(
+name|value
+argument_list|,
+name|count
+argument_list|)
 expr_stmt|;
 block|}
 block|}
@@ -1934,7 +2062,7 @@ block|}
 block|}
 block|}
 block|}
-comment|/**    * Adds sum, sumOfSquares, mean and standard deviation statistics to the given NamedList    *    * @param res NamedList to add the type specific statistics too    */
+comment|/**    * Adds sum, sumOfSquares, mean, stddev, and percentiles to the given    * NamedList    *    * @param res    *          NamedList to add the type specific statistics too    */
 annotation|@
 name|Override
 DECL|method|addTypeSpecificStats
@@ -2039,6 +2167,163 @@ name|getStandardDeviation
 argument_list|()
 argument_list|)
 expr_stmt|;
+block|}
+if|if
+condition|(
+name|statsField
+operator|.
+name|includeInResponse
+argument_list|(
+name|Stat
+operator|.
+name|percentiles
+argument_list|)
+condition|)
+block|{
+if|if
+condition|(
+name|statsField
+operator|.
+name|getIsShard
+argument_list|()
+condition|)
+block|{
+comment|// as of current t-digest version, smallByteSize() internally does a full conversion in
+comment|// order to determine what the size is (can't be precomputed?) .. so rather then
+comment|// serialize to a ByteBuffer twice, allocate the max possible size buffer,
+comment|// serialize once, and then copy only the byte[] subset that we need, and free up the buffer
+name|ByteBuffer
+name|buf
+init|=
+name|ByteBuffer
+operator|.
+name|allocate
+argument_list|(
+name|tdigest
+operator|.
+name|byteSize
+argument_list|()
+argument_list|)
+decl_stmt|;
+comment|// upper bound
+name|tdigest
+operator|.
+name|asSmallBytes
+argument_list|(
+name|buf
+argument_list|)
+expr_stmt|;
+name|res
+operator|.
+name|add
+argument_list|(
+literal|"percentiles"
+argument_list|,
+name|Arrays
+operator|.
+name|copyOf
+argument_list|(
+name|buf
+operator|.
+name|array
+argument_list|()
+argument_list|,
+name|buf
+operator|.
+name|position
+argument_list|()
+argument_list|)
+argument_list|)
+expr_stmt|;
+block|}
+else|else
+block|{
+name|NamedList
+argument_list|<
+name|Object
+argument_list|>
+name|percentileNameList
+init|=
+operator|new
+name|NamedList
+argument_list|<
+name|Object
+argument_list|>
+argument_list|()
+decl_stmt|;
+for|for
+control|(
+name|Double
+name|percentile
+range|:
+name|statsField
+operator|.
+name|getPercentilesList
+argument_list|()
+control|)
+block|{
+comment|// Empty document set case
+if|if
+condition|(
+name|tdigest
+operator|.
+name|size
+argument_list|()
+operator|==
+literal|0
+condition|)
+block|{
+name|percentileNameList
+operator|.
+name|add
+argument_list|(
+name|percentile
+operator|.
+name|toString
+argument_list|()
+argument_list|,
+literal|null
+argument_list|)
+expr_stmt|;
+block|}
+else|else
+block|{
+name|Double
+name|cutoff
+init|=
+name|tdigest
+operator|.
+name|quantile
+argument_list|(
+name|percentile
+operator|/
+literal|100
+argument_list|)
+decl_stmt|;
+name|percentileNameList
+operator|.
+name|add
+argument_list|(
+name|percentile
+operator|.
+name|toString
+argument_list|()
+argument_list|,
+name|cutoff
+argument_list|)
+expr_stmt|;
+block|}
+block|}
+name|res
+operator|.
+name|add
+argument_list|(
+literal|"percentiles"
+argument_list|,
+name|percentileNameList
+argument_list|)
+expr_stmt|;
+block|}
 block|}
 block|}
 comment|/**    * Calculates the standard deviation statistic    *    * @return Standard deviation statistic    */
@@ -2346,7 +2631,7 @@ block|}
 end_class
 
 begin_comment
-comment|/**  * /**  * Implementation of StatsValues that supports Date values  */
+comment|/**  * /** Implementation of StatsValues that supports Date values  */
 end_comment
 
 begin_class
@@ -2672,7 +2957,7 @@ expr_stmt|;
 block|}
 block|}
 block|}
-comment|/**    * Adds sum and mean statistics to the given NamedList    *    * @param res NamedList to add the type specific statistics too    */
+comment|/**    * Adds sum and mean statistics to the given NamedList    *    * @param res    *          NamedList to add the type specific statistics too    */
 annotation|@
 name|Override
 DECL|method|addTypeSpecificStats
@@ -2795,7 +3080,7 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
-comment|/**    * Calculates the standard deviation.  For dates, this is really the MS deviation    *    * @return Standard deviation statistic    */
+comment|/**    * Calculates the standard deviation. For dates, this is really the MS    * deviation    *    * @return Standard deviation statistic    */
 DECL|method|getStandardDeviation
 specifier|private
 name|double
@@ -2912,6 +3197,7 @@ name|value
 operator|!=
 literal|null
 condition|)
+block|{
 name|accumulate
 argument_list|(
 name|value
@@ -2919,10 +3205,13 @@ argument_list|,
 literal|1
 argument_list|)
 expr_stmt|;
+block|}
 else|else
+block|{
 name|missing
 argument_list|()
 expr_stmt|;
+block|}
 block|}
 else|else
 block|{
@@ -3035,7 +3324,7 @@ parameter_list|)
 block|{
 comment|// Add no statistics
 block|}
-comment|/**     * Determines which of the given Strings is the maximum, as computed by {@link String#compareTo(String)}    *    * @param str1 String to compare against b    * @param str2 String compared against a    * @return str1 if it is considered greater by {@link String#compareTo(String)}, str2 otherwise    */
+comment|/**    * Determines which of the given Strings is the maximum, as computed by    * {@link String#compareTo(String)}    *    * @param str1    *          String to compare against b    * @param str2    *          String compared against a    * @return str1 if it is considered greater by    *         {@link String#compareTo(String)}, str2 otherwise    */
 DECL|method|max
 specifier|private
 specifier|static
@@ -3089,7 +3378,7 @@ else|:
 name|str2
 return|;
 block|}
-comment|/**    * Determines which of the given Strings is the minimum, as computed by {@link String#compareTo(String)}    *    * @param str1 String to compare against b    * @param str2 String compared against a    * @return str1 if it is considered less by {@link String#compareTo(String)}, str2 otherwise    */
+comment|/**    * Determines which of the given Strings is the minimum, as computed by    * {@link String#compareTo(String)}    *    * @param str1    *          String to compare against b    * @param str2    *          String compared against a    * @return str1 if it is considered less by {@link String#compareTo(String)},    *         str2 otherwise    */
 DECL|method|min
 specifier|private
 specifier|static
