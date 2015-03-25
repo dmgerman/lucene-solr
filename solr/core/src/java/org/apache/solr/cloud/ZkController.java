@@ -1161,7 +1161,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Handle ZooKeeper interactions.  *   * notes: loads everything on init, creates what's not there - further updates  * are prompted with Watches.  *   * TODO: exceptions during close on attempts to update cloud state  *   */
+comment|/**  * Handle ZooKeeper interactions.  *<p>  * notes: loads everything on init, creates what's not there - further updates  * are prompted with Watches.  *<p>  * TODO: exceptions during close on attempts to update cloud state  */
 end_comment
 
 begin_class
@@ -3372,7 +3372,7 @@ return|return
 name|zkServerAddress
 return|;
 block|}
-comment|/**    * Create the zknodes necessary for a cluster to operate    * @param zkClient a SolrZkClient    * @throws KeeperException if there is a Zookeeper error    * @throws InterruptedException on interrupt    */
+comment|/**    * Create the zknodes necessary for a cluster to operate    *    * @param zkClient a SolrZkClient    * @throws KeeperException      if there is a Zookeeper error    * @throws InterruptedException on interrupt    */
 DECL|method|createClusterZkNodes
 specifier|public
 specifier|static
@@ -4160,7 +4160,7 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
-comment|/**    * Validates if the chroot exists in zk (or if it is successfully created).    * Optionally, if create is set to true this method will create the path in    * case it doesn't exist    *     * @return true if the path exists or is created false if the path doesn't    *         exist and 'create' = false    */
+comment|/**    * Validates if the chroot exists in zk (or if it is successfully created).    * Optionally, if create is set to true this method will create the path in    * case it doesn't exist    *    * @return true if the path exists or is created false if the path doesn't    * exist and 'create' = false    */
 DECL|method|checkChrootPath
 specifier|public
 specifier|static
@@ -4487,7 +4487,7 @@ literal|true
 argument_list|)
 return|;
 block|}
-comment|/**    * Register shard with ZooKeeper.    *     * @return the shardId for the SolrCore    */
+comment|/**    * Register shard with ZooKeeper.    *    * @return the shardId for the SolrCore    */
 DECL|method|register
 specifier|public
 name|String
@@ -4516,7 +4516,7 @@ literal|false
 argument_list|)
 return|;
 block|}
-comment|/**    * Register shard with ZooKeeper.    *     * @return the shardId for the SolrCore    */
+comment|/**    * Register shard with ZooKeeper.    *    * @return the shardId for the SolrCore    */
 DECL|method|register
 specifier|public
 name|String
@@ -5386,7 +5386,7 @@ literal|false
 argument_list|)
 return|;
 block|}
-comment|/**    * Get leader props directly from zk nodes.    *     * @return leader props    */
+comment|/**    * Get leader props directly from zk nodes.    *    * @return leader props    */
 DECL|method|getLeaderProps
 specifier|public
 name|ZkCoreNodeProps
@@ -9888,7 +9888,7 @@ return|return
 name|overseerElector
 return|;
 block|}
-comment|/**    * Returns the nodeName that should be used based on the specified properties.    *    * @param hostName - must not be null or the empty string    * @param hostPort - must consist only of digits, must not be null or the empty string    * @param hostContext - should not begin or end with a slash (leading/trailin slashes will be ignored), must not be null, may be the empty string to denote the root context    * @lucene.experimental    * @see ZkStateReader#getBaseUrlForNodeName    */
+comment|/**    * Returns the nodeName that should be used based on the specified properties.    *    * @param hostName    - must not be null or the empty string    * @param hostPort    - must consist only of digits, must not be null or the empty string    * @param hostContext - should not begin or end with a slash (leading/trailin slashes will be ignored), must not be null, may be the empty string to denote the root context    * @lucene.experimental    * @see ZkStateReader#getBaseUrlForNodeName    */
 DECL|method|generateNodeName
 specifier|static
 name|String
@@ -9948,7 +9948,7 @@ argument_list|)
 throw|;
 block|}
 block|}
-comment|/**    * Utility method for trimming and leading and/or trailing slashes from     * its input.  May return the empty string.  May return null if and only     * if the input is null.    */
+comment|/**    * Utility method for trimming and leading and/or trailing slashes from    * its input.  May return the empty string.  May return null if and only    * if the input is null.    */
 DECL|method|trimLeadingAndTrailingSlashes
 specifier|public
 specifier|static
@@ -10609,7 +10609,7 @@ return|return
 name|cc
 return|;
 block|}
-comment|/**    * When a leader receives a communication error when trying to send a request to a replica,    * it calls this method to ensure the replica enters recovery when connectivity is restored.    *     * returns true if the node hosting the replica is still considered "live" by ZooKeeper;    * false means the node is not live either, so no point in trying to send recovery commands    * to it.    */
+comment|/**    * When a leader receives a communication error when trying to send a request to a replica,    * it calls this method to ensure the replica enters recovery when connectivity is restored.    *<p>    * returns true if the node hosting the replica is still considered "live" by ZooKeeper;    * false means the node is not live either, so no point in trying to send recovery commands    * to it.    */
 DECL|method|ensureReplicaInLeaderInitiatedRecovery
 specifier|public
 name|boolean
@@ -12701,7 +12701,7 @@ block|}
 block|}
 block|}
 block|}
-comment|/**This will give a callback to the listener whenever a child is modified in the    * conf directory. It is the responsibility of the listener to check if the individual    * item of interest has been modified.  When the last core which was interested in    * this conf directory is gone the listeners will be removed automatically.    */
+comment|/**    * This will give a callback to the listener whenever a child is modified in the    * conf directory. It is the responsibility of the listener to check if the individual    * item of interest has been modified.  When the last core which was interested in    * this conf directory is gone the listeners will be removed automatically.    */
 DECL|method|registerConfListenerForCore
 specifier|public
 name|void
@@ -12791,7 +12791,7 @@ parameter_list|(
 name|SolrCore
 name|core
 parameter_list|)
-block|{ }
+block|{           }
 block|}
 argument_list|)
 expr_stmt|;
