@@ -196,7 +196,7 @@ name|solr
 operator|.
 name|cloud
 operator|.
-name|StopableIndexingThread
+name|StoppableIndexingThread
 import|;
 end_import
 
@@ -714,7 +714,7 @@ argument_list|()
 decl_stmt|;
 name|List
 argument_list|<
-name|StopableIndexingThread
+name|StoppableIndexingThread
 argument_list|>
 name|threads
 init|=
@@ -766,11 +766,11 @@ argument_list|(
 name|client
 argument_list|)
 expr_stmt|;
-name|StopableIndexingThread
+name|StoppableIndexingThread
 name|indexThread
 init|=
 operator|new
-name|StopableIndexingThread
+name|StoppableIndexingThread
 argument_list|(
 literal|null
 argument_list|,
@@ -807,7 +807,7 @@ literal|0
 decl_stmt|;
 for|for
 control|(
-name|StopableIndexingThread
+name|StoppableIndexingThread
 name|thread
 range|:
 name|threads

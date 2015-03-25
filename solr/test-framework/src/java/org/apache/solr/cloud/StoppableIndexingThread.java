@@ -131,14 +131,14 @@ comment|/*  * Licensed to the Apache Software Foundation (ASF) under one or more
 end_comment
 
 begin_class
-DECL|class|StopableIndexingThread
+DECL|class|StoppableIndexingThread
 specifier|public
 class|class
-name|StopableIndexingThread
+name|StoppableIndexingThread
 extends|extends
 name|AbstractFullDistribZkTestBase
 operator|.
-name|StopableThread
+name|StoppableThread
 block|{
 DECL|field|t1
 specifier|static
@@ -263,9 +263,9 @@ specifier|private
 name|boolean
 name|pauseBetweenUpdates
 decl_stmt|;
-DECL|method|StopableIndexingThread
+DECL|method|StoppableIndexingThread
 specifier|public
-name|StopableIndexingThread
+name|StoppableIndexingThread
 parameter_list|(
 name|SolrClient
 name|controlClient
@@ -299,9 +299,9 @@ literal|true
 argument_list|)
 expr_stmt|;
 block|}
-DECL|method|StopableIndexingThread
+DECL|method|StoppableIndexingThread
 specifier|public
-name|StopableIndexingThread
+name|StoppableIndexingThread
 parameter_list|(
 name|SolrClient
 name|controlClient
@@ -327,7 +327,7 @@ parameter_list|)
 block|{
 name|super
 argument_list|(
-literal|"StopableIndexingThread"
+literal|"StoppableIndexingThread"
 argument_list|)
 expr_stmt|;
 name|this
