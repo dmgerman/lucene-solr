@@ -472,29 +472,20 @@ return|return
 literal|null
 return|;
 block|}
-return|return
-operator|new
-name|TwoPhaseIterator
-argument_list|()
-block|{
-annotation|@
-name|Override
-specifier|public
-name|DocIdSetIterator
-name|approximation
-parameter_list|()
-block|{
 comment|// note it is important to share the same pq as this scorer so that
 comment|// rebalancing the pq through the approximation will also rebalance
 comment|// the pq in this scorer.
 return|return
 operator|new
+name|TwoPhaseIterator
+argument_list|(
+operator|new
 name|DisjunctionDISIApproximation
 argument_list|(
 name|subScorers
 argument_list|)
-return|;
-block|}
+argument_list|)
+block|{
 annotation|@
 name|Override
 specifier|public

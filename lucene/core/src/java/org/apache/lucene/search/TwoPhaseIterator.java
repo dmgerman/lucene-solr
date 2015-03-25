@@ -26,8 +26,18 @@ name|IOException
 import|;
 end_import
 
+begin_import
+import|import
+name|java
+operator|.
+name|util
+operator|.
+name|Objects
+import|;
+end_import
+
 begin_comment
-comment|/**  * An approximation of a {@link DocIdSetIterator}. When the {@link #approximation()}'s  * {@link DocIdSetIterator#nextDoc()} or {@link DocIdSetIterator#advance(int)}  * return, {@link #matches()} needs to be checked in order to know whether the  * returned doc ID actually matches.  * @lucene.experimental  */
+comment|/**  * Returned by {@link Scorer#asTwoPhaseIterator()} to expose an approximation of  * a {@link DocIdSetIterator}. When the {@link #approximation()}'s  * {@link DocIdSetIterator#nextDoc()} or {@link DocIdSetIterator#advance(int)}  * return, {@link #matches()} needs to be checked in order to know whether the  * returned doc ID actually matches.  * @lucene.experimental  */
 end_comment
 
 begin_class
@@ -37,6 +47,33 @@ specifier|abstract
 class|class
 name|TwoPhaseIterator
 block|{
+DECL|field|approximation
+specifier|protected
+specifier|final
+name|DocIdSetIterator
+name|approximation
+decl_stmt|;
+comment|/** Takes the approximation to be returned by {@link #approximation}. Not null. */
+DECL|method|TwoPhaseIterator
+specifier|protected
+name|TwoPhaseIterator
+parameter_list|(
+name|DocIdSetIterator
+name|approximation
+parameter_list|)
+block|{
+name|this
+operator|.
+name|approximation
+operator|=
+name|Objects
+operator|.
+name|requireNonNull
+argument_list|(
+name|approximation
+argument_list|)
+expr_stmt|;
+block|}
 comment|/** Return a {@link DocIdSetIterator} view of the provided    *  {@link TwoPhaseIterator}. */
 DECL|method|asDocIdSetIterator
 specifier|public
@@ -187,11 +224,14 @@ block|}
 comment|/** Return an approximation. The returned {@link DocIdSetIterator} is a    *  superset of the matching documents, and each match needs to be confirmed    *  with {@link #matches()} in order to know whether it matches or not. */
 DECL|method|approximation
 specifier|public
-specifier|abstract
 name|DocIdSetIterator
 name|approximation
 parameter_list|()
-function_decl|;
+block|{
+return|return
+name|approximation
+return|;
+block|}
 comment|/** Return whether the current doc ID that the iterator is on matches. This    *  method should only be called when the iterator is positionned -- ie. not    *  when {@link DocIdSetIterator#docID()} is {@code -1} or    *  {@link DocIdSetIterator#NO_MORE_DOCS} -- and at most once. */
 DECL|method|matches
 specifier|public
