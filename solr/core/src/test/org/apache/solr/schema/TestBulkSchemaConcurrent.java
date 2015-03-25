@@ -1644,10 +1644,6 @@ name|payload
 init|=
 literal|"{\n"
 operator|+
-literal|"          'delete-field' : {'name':'replaceFieldA'},\n"
-operator|+
-literal|"          'delete-dynamic-field' : {'name' :'replaceDynamicField'},\n"
-operator|+
 literal|"          'delete-copy-field' : {\n"
 operator|+
 literal|"                       'source' :'replaceFieldA',\n"
@@ -1655,6 +1651,10 @@ operator|+
 literal|"                       'dest':['replaceDynamicCopyFieldDest']\n"
 operator|+
 literal|"                       },\n"
+operator|+
+literal|"          'delete-field' : {'name':'replaceFieldA'},\n"
+operator|+
+literal|"          'delete-dynamic-field' : {'name' :'replaceDynamicField'},\n"
 operator|+
 literal|"          'delete-field-type' : {'name' :'myNewFieldTypeName'}\n"
 operator|+
