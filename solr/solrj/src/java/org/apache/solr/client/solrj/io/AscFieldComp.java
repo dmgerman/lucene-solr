@@ -40,6 +40,10 @@ name|Comparator
 import|;
 end_import
 
+begin_comment
+comment|/**  *  An ascending field Comparator which compares a field of two Tuples and determines sort order.  **/
+end_comment
+
 begin_class
 DECL|class|AscFieldComp
 specifier|public

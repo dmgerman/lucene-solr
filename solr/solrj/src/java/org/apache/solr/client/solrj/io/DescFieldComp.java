@@ -40,6 +40,10 @@ name|Comparator
 import|;
 end_import
 
+begin_comment
+comment|/**  *  An descending field Comparator which compares a field of two Tuples and determines sort order.  **/
+end_comment
+
 begin_class
 DECL|class|DescFieldComp
 specifier|public
@@ -121,7 +125,7 @@ name|field
 argument_list|)
 decl_stmt|;
 name|int
-name|i
+name|c
 init|=
 name|o1
 operator|.
@@ -132,20 +136,20 @@ argument_list|)
 decl_stmt|;
 if|if
 condition|(
-name|i
+name|c
 operator|==
 literal|0
 condition|)
 block|{
 return|return
-name|i
+literal|0
 return|;
 block|}
 else|else
 block|{
 return|return
 operator|-
-name|i
+name|c
 return|;
 block|}
 block|}

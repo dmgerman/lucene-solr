@@ -434,9 +434,10 @@ name|numWorkers
 expr_stmt|;
 name|context
 operator|.
+name|setSolrClientCache
+argument_list|(
 name|clientCache
-operator|=
-name|clientCache
+argument_list|)
 expr_stmt|;
 name|tupleStream
 operator|.

@@ -87,7 +87,7 @@ specifier|private
 name|Tuple
 name|tuple
 decl_stmt|;
-comment|/*   * A TupleStream that allows a single Tuple to be pushed back into Stream after it's been read.   *   **/
+comment|/**    * A TupleStream that allows a single Tuple to be pushed back into Stream after it's been read.    * This is a useful class when building streams that maintain the order of the tuples from two or    * more substreams.    **/
 DECL|method|PushBackStream
 specifier|public
 name|PushBackStream

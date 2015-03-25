@@ -61,7 +61,7 @@ import|;
 end_import
 
 begin_comment
-comment|/** * Unions streamA with streamB based on a Comparator. * Both streams must be sorted by the fields being compared. **/
+comment|/** * Unions streamA with streamB ordering the Tuples based on a Comparator. * Both streams must be sorted by the fields being compared. **/
 end_comment
 
 begin_class

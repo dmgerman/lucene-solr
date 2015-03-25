@@ -60,6 +60,10 @@ name|ArrayList
 import|;
 end_import
 
+begin_comment
+comment|/**  * The UniqueStream emits a unique stream of Tuples based on a Comparator.  *  * Note: The sort order of the underlying stream must match the Comparator.  **/
+end_comment
+
 begin_class
 DECL|class|UniqueStream
 specifier|public
