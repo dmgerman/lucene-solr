@@ -22,6 +22,16 @@ begin_import
 import|import
 name|java
 operator|.
+name|nio
+operator|.
+name|ByteBuffer
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
 name|util
 operator|.
 name|ArrayList
@@ -75,6 +85,20 @@ operator|.
 name|util
 operator|.
 name|Random
+import|;
+end_import
+
+begin_import
+import|import
+name|com
+operator|.
+name|tdunning
+operator|.
+name|math
+operator|.
+name|stats
+operator|.
+name|AVLTreeDigest
 import|;
 end_import
 
@@ -2093,6 +2117,64 @@ operator|+
 literal|", f2:{  'buckets':[{ val:'B', count:3, n1:-3.0}, { val:'A', count:2, n1:6.0 }]} }"
 argument_list|)
 expr_stmt|;
+comment|// percentiles 0,10,50,90,100
+comment|// catA: 2.0 2.2 3.0 3.8 4.0
+comment|// catB: -9.0 -8.2 -5.0 7.800000000000001 11.0
+comment|// all: -9.0 -7.3999999999999995 2.0 8.200000000000001 11.0
+comment|// test sorting by single percentile
+name|client
+operator|.
+name|testJQ
+argument_list|(
+name|params
+argument_list|(
+name|p
+argument_list|,
+literal|"q"
+argument_list|,
+literal|"*:*"
+argument_list|,
+literal|"json.facet"
+argument_list|,
+literal|"{f1:{terms:{field:'${cat_s}', sort:'n1 desc', facet:{n1:'percentile(${num_d},50)'}  }}"
+operator|+
+literal|" , f2:{terms:{field:'${cat_s}', sort:'n1 asc', facet:{n1:'percentile(${num_d},50)'}  }} }"
+argument_list|)
+argument_list|,
+literal|"facets=={ 'count':6, "
+operator|+
+literal|"  f1:{  'buckets':[{ val:'A', count:2, n1:3.0 }, { val:'B', count:3, n1:-5.0}]}"
+operator|+
+literal|", f2:{  'buckets':[{ val:'B', count:3, n1:-5.0}, { val:'A', count:2, n1:3.0 }]} }"
+argument_list|)
+expr_stmt|;
+comment|// test sorting by multiple percentiles (sort is by first)
+name|client
+operator|.
+name|testJQ
+argument_list|(
+name|params
+argument_list|(
+name|p
+argument_list|,
+literal|"q"
+argument_list|,
+literal|"*:*"
+argument_list|,
+literal|"json.facet"
+argument_list|,
+literal|"{f1:{terms:{field:'${cat_s}', sort:'n1 desc', facet:{n1:'percentile(${num_d},50,0,100)'}  }}"
+operator|+
+literal|" , f2:{terms:{field:'${cat_s}', sort:'n1 asc', facet:{n1:'percentile(${num_d},50,0,100)'}  }} }"
+argument_list|)
+argument_list|,
+literal|"facets=={ 'count':6, "
+operator|+
+literal|"  f1:{  'buckets':[{ val:'A', count:2, n1:[3.0,2.0,4.0] }, { val:'B', count:3, n1:[-5.0,-9.0,11.0] }]}"
+operator|+
+literal|", f2:{  'buckets':[{ val:'B', count:3, n1:[-5.0,-9.0,11.0]}, { val:'A', count:2, n1:[3.0,2.0,4.0] }]} }"
+argument_list|)
+expr_stmt|;
 comment|// test sorting by count/index order
 name|client
 operator|.
@@ -2650,12 +2732,12 @@ literal|"*:*"
 argument_list|,
 literal|"json.facet"
 argument_list|,
-literal|"{ sum1:'sum(${num_d})', sumsq1:'sumsq(${num_d})', avg1:'avg(${num_d})', min1:'min(${num_d})', max1:'max(${num_d})', numwhere:'unique(${where_s})' }"
+literal|"{ sum1:'sum(${num_d})', sumsq1:'sumsq(${num_d})', avg1:'avg(${num_d})', min1:'min(${num_d})', max1:'max(${num_d})', numwhere:'unique(${where_s})', med:'percentile(${num_d},50)', perc:'percentile(${num_d},0,50.0,100)' }"
 argument_list|)
 argument_list|,
 literal|"facets=={ 'count':6, "
 operator|+
-literal|"sum1:3.0, sumsq1:247.0, avg1:0.5, min1:-9.0, max1:11.0, numwhere:2  }"
+literal|"sum1:3.0, sumsq1:247.0, avg1:0.5, min1:-9.0, max1:11.0, numwhere:2, med:2.0, perc:[-9.0,2.0,11.0]  }"
 argument_list|)
 expr_stmt|;
 comment|// stats at top level, no matches
@@ -2673,7 +2755,7 @@ literal|"id:DOESNOTEXIST"
 argument_list|,
 literal|"json.facet"
 argument_list|,
-literal|"{ sum1:'sum(${num_d})', sumsq1:'sumsq(${num_d})', avg1:'avg(${num_d})', min1:'min(${num_d})', max1:'max(${num_d})', numwhere:'unique(${where_s})' }"
+literal|"{ sum1:'sum(${num_d})', sumsq1:'sumsq(${num_d})', avg1:'avg(${num_d})', min1:'min(${num_d})', max1:'max(${num_d})', numwhere:'unique(${where_s})', med:'percentile(${num_d},50)', perc:'percentile(${num_d},0,50.0,100)' }"
 argument_list|)
 argument_list|,
 literal|"facets=={count:0 "
@@ -3035,6 +3117,8 @@ argument_list|()
 argument_list|)
 expr_stmt|;
 block|}
+comment|/***   public void testPercentiles() {     AVLTreeDigest catA = new AVLTreeDigest(100);     catA.add(4);     catA.add(2);      AVLTreeDigest catB = new AVLTreeDigest(100);     catB.add(-9);     catB.add(11);     catB.add(-5);      AVLTreeDigest all = new AVLTreeDigest(100);     all.add(catA);     all.add(catB);      System.out.println(str(catA));     System.out.println(str(catB));     System.out.println(str(all));      // 2.0 2.2 3.0 3.8 4.0     // -9.0 -8.2 -5.0 7.800000000000001 11.0     // -9.0 -7.3999999999999995 2.0 8.200000000000001 11.0   }    private static String str(AVLTreeDigest digest) {     StringBuilder sb = new StringBuilder();     for (double d : new double[] {0,.1,.5,.9,1}) {       sb.append(" ").append(digest.quantile(d));     }     return sb.toString();   }    ***/
+comment|/*** test code to ensure TDigest is working as we expect.   @Test   public void testTDigest() throws Exception {     AVLTreeDigest t1 = new AVLTreeDigest(100);     t1.add(10, 1);     t1.add(90, 1);     t1.add(50, 1);      System.out.println(t1.quantile(0.1));     System.out.println(t1.quantile(0.5));     System.out.println(t1.quantile(0.9));      assertEquals(t1.quantile(0.5), 50.0, 0.01);      AVLTreeDigest t2 = new AVLTreeDigest(100);     t2.add(130, 1);     t2.add(170, 1);     t2.add(90, 1);      System.out.println(t2.quantile(0.1));     System.out.println(t2.quantile(0.5));     System.out.println(t2.quantile(0.9));      AVLTreeDigest top = new AVLTreeDigest(100);      t1.compress();     ByteBuffer buf = ByteBuffer.allocate(t1.byteSize()); // upper bound     t1.asSmallBytes(buf);     byte[] arr1 = Arrays.copyOf(buf.array(), buf.position());      ByteBuffer rbuf = ByteBuffer.wrap(arr1);     top.add(AVLTreeDigest.fromBytes(rbuf));      System.out.println(top.quantile(0.1));     System.out.println(top.quantile(0.5));     System.out.println(top.quantile(0.9));      t2.compress();     ByteBuffer buf2 = ByteBuffer.allocate(t2.byteSize()); // upper bound     t2.asSmallBytes(buf2);     byte[] arr2 = Arrays.copyOf(buf2.array(), buf2.position());      ByteBuffer rbuf2 = ByteBuffer.wrap(arr2);     top.add(AVLTreeDigest.fromBytes(rbuf2));      System.out.println(top.quantile(0.1));     System.out.println(top.quantile(0.5));     System.out.println(top.quantile(0.9));   }   ******/
 block|}
 end_class
 
