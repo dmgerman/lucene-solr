@@ -2283,7 +2283,7 @@ argument_list|()
 operator|.
 name|contains
 argument_list|(
-literal|"Can't delete 'NewField1' because it's referred to by at least one copy field directive"
+literal|"Can't delete field 'NewField1' because it's referred to by at least one copy field directive"
 argument_list|)
 argument_list|)
 expr_stmt|;
@@ -2348,7 +2348,7 @@ argument_list|()
 operator|.
 name|contains
 argument_list|(
-literal|"Can't delete 'NewField2' because it's referred to by at least one copy field directive"
+literal|"Can't delete field 'NewField2' because it's referred to by at least one copy field directive"
 argument_list|)
 argument_list|)
 expr_stmt|;
