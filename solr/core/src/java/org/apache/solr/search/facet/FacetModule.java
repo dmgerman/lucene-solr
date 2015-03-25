@@ -1181,7 +1181,7 @@ name|getDescription
 parameter_list|()
 block|{
 return|return
-literal|"Heliosearch Faceting"
+literal|"Facet Module"
 return|;
 block|}
 annotation|@
