@@ -199,6 +199,16 @@ name|COLLECTION
 init|=
 literal|"collection"
 decl_stmt|;
+comment|/** The replica name in solr cloud */
+DECL|field|REPLICA
+specifier|public
+specifier|final
+specifier|static
+name|String
+name|REPLICA
+init|=
+literal|"replica"
+decl_stmt|;
 comment|/** The shard id in solr cloud */
 DECL|field|SHARD
 specifier|public
