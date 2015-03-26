@@ -1528,6 +1528,7 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
+comment|/**Format using MesssageFormat but with the ROOT locale    */
 DECL|method|formatString
 specifier|public
 specifier|static

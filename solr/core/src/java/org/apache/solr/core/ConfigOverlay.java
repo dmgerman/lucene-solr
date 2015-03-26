@@ -40,16 +40,6 @@ begin_import
 import|import
 name|java
 operator|.
-name|text
-operator|.
-name|MessageFormat
-import|;
-end_import
-
-begin_import
-import|import
-name|java
-operator|.
 name|util
 operator|.
 name|Collections
@@ -162,20 +152,6 @@ begin_import
 import|import
 name|org
 operator|.
-name|apache
-operator|.
-name|solr
-operator|.
-name|request
-operator|.
-name|SolrRequestHandler
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
 name|noggit
 operator|.
 name|CharArr
@@ -213,7 +189,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**This class encapsulates the config overlay json file. It is immutable  * and any edit operations performed on tbhis gives a new copy of the object  * with the changed value  *  */
+comment|/**  * This class encapsulates the config overlay json file. It is immutable  * and any edit operations performed on tbhis gives a new copy of the object  * with the changed value  */
 end_comment
 
 begin_class
@@ -1250,23 +1226,77 @@ name|RESOURCE_NAME
 init|=
 literal|"configoverlay.json"
 decl_stmt|;
-DECL|field|XML_ATTR
+DECL|field|STR_ATTR
 specifier|private
 specifier|static
 specifier|final
 name|Long
-name|XML_ATTR
+name|STR_ATTR
 init|=
 literal|0L
 decl_stmt|;
-DECL|field|XML_NODE
+DECL|field|STR_NODE
 specifier|private
 specifier|static
 specifier|final
 name|Long
-name|XML_NODE
+name|STR_NODE
 init|=
 literal|1L
+decl_stmt|;
+DECL|field|BOOL_ATTR
+specifier|private
+specifier|static
+specifier|final
+name|Long
+name|BOOL_ATTR
+init|=
+literal|10L
+decl_stmt|;
+DECL|field|BOOL_NODE
+specifier|private
+specifier|static
+specifier|final
+name|Long
+name|BOOL_NODE
+init|=
+literal|11L
+decl_stmt|;
+DECL|field|INT_ATTR
+specifier|private
+specifier|static
+specifier|final
+name|Long
+name|INT_ATTR
+init|=
+literal|20L
+decl_stmt|;
+DECL|field|INT_NODE
+specifier|private
+specifier|static
+specifier|final
+name|Long
+name|INT_NODE
+init|=
+literal|21L
+decl_stmt|;
+DECL|field|FLOAT_ATTR
+specifier|private
+specifier|static
+specifier|final
+name|Long
+name|FLOAT_ATTR
+init|=
+literal|30L
+decl_stmt|;
+DECL|field|FLOAT_NODE
+specifier|private
+specifier|static
+specifier|final
+name|Long
+name|FLOAT_NODE
+init|=
+literal|31L
 decl_stmt|;
 DECL|field|editable_prop_map
 specifier|private
@@ -1274,6 +1304,8 @@ specifier|static
 name|Map
 name|editable_prop_map
 decl_stmt|;
+comment|//The path maps to the xml xpath and value of 1 means it is a tag with a string value and value
+comment|// of 0 means it is an attribute with string value
 DECL|field|MAPPING
 specifier|public
 specifier|static
@@ -1281,31 +1313,113 @@ specifier|final
 name|String
 name|MAPPING
 init|=
-literal|"{ updateHandler : {"
+literal|"{"
 operator|+
-literal|"                 autoCommit : { maxDocs:1, maxTime:1, openSearcher:1 },"
+literal|"  updateHandler:{"
 operator|+
-literal|"                 autoSoftCommit : { maxDocs:1, maxTime :1},"
+literal|"    autoCommit:{"
 operator|+
-literal|"                 commitWithin : {softCommit:1},"
+literal|"      maxDocs:20,"
 operator|+
-literal|"                 commitIntervalLowerBound:1,"
+literal|"      maxTime:20,"
 operator|+
-literal|"                 indexWriter : {closeWaitsForMerges:1}"
+literal|"      openSearcher:11},"
 operator|+
-literal|"                 },"
+literal|"    autoSoftCommit:{"
 operator|+
-literal|" query : {"
+literal|"      maxDocs:20,"
 operator|+
-literal|"          filterCache : {class:0, size:0, initialSize:0 , autowarmCount:0 , regenerator:0},"
+literal|"      maxTime:20},"
 operator|+
-literal|"          queryResultCache :{class:0, size:0, initialSize:0,autowarmCount:0,regenerator:0},"
+literal|"    commitWithin:{softCommit:11},"
 operator|+
-literal|"          documentCache :{class:0, size:0, initialSize:0 ,autowarmCount:0,regenerator:0},"
+literal|"    commitIntervalLowerBound:21,"
 operator|+
-literal|"          fieldValueCache :{class:0, size:0, initialSize:0 ,autowarmCount:0,regenerator:0}"
+literal|"    indexWriter:{closeWaitsForMerges:11}},"
 operator|+
-literal|"}}"
+literal|"  query:{"
+operator|+
+literal|"    filterCache:{"
+operator|+
+literal|"      class:0,"
+operator|+
+literal|"      size:0,"
+operator|+
+literal|"      initialSize:20,"
+operator|+
+literal|"      autowarmCount:20,"
+operator|+
+literal|"      regenerator:0},"
+operator|+
+literal|"    queryResultCache:{"
+operator|+
+literal|"      class:0,"
+operator|+
+literal|"      size:20,"
+operator|+
+literal|"      initialSize:20,"
+operator|+
+literal|"      autowarmCount:20,"
+operator|+
+literal|"      regenerator:0},"
+operator|+
+literal|"    documentCache:{"
+operator|+
+literal|"      class:0,"
+operator|+
+literal|"      size:20,"
+operator|+
+literal|"      initialSize:20,"
+operator|+
+literal|"      autowarmCount:20,"
+operator|+
+literal|"      regenerator:0},"
+operator|+
+literal|"    fieldValueCache:{"
+operator|+
+literal|"      class:0,"
+operator|+
+literal|"      size:20,"
+operator|+
+literal|"      initialSize:20,"
+operator|+
+literal|"      autowarmCount:20,"
+operator|+
+literal|"      regenerator:0},"
+operator|+
+literal|"    useFilterForSortedQuery:1,"
+operator|+
+literal|"    queryResultWindowSize:1,"
+operator|+
+literal|"    queryResultMaxDocsCached:1,"
+operator|+
+literal|"    enableLazyFieldLoading:1,"
+operator|+
+literal|"    boolTofilterOptimizer:1,"
+operator|+
+literal|"    maxBooleanClauses:1},"
+operator|+
+literal|"  jmx:{"
+operator|+
+literal|"    agentId:0,"
+operator|+
+literal|"    serviceUrl:0,"
+operator|+
+literal|"    rootName:0},"
+operator|+
+literal|"  requestDispatcher:{"
+operator|+
+literal|"    handleSelect:0,"
+operator|+
+literal|"    requestParsers:{"
+operator|+
+literal|"      multipartUploadLimitInKB:0,"
+operator|+
+literal|"      formdataUploadLimitInKB:0,"
+operator|+
+literal|"      enableRemoteStreaming:0,"
+operator|+
+literal|"      addHttpRequestToContext:0}}}"
 decl_stmt|;
 static|static
 block|{
@@ -1362,6 +1476,41 @@ specifier|public
 specifier|static
 name|boolean
 name|isEditableProp
+parameter_list|(
+name|String
+name|path
+parameter_list|,
+name|boolean
+name|isXpath
+parameter_list|,
+name|List
+argument_list|<
+name|String
+argument_list|>
+name|hierarchy
+parameter_list|)
+block|{
+return|return
+operator|!
+operator|(
+name|checkEditable
+argument_list|(
+name|path
+argument_list|,
+name|isXpath
+argument_list|,
+name|hierarchy
+argument_list|)
+operator|==
+literal|null
+operator|)
+return|;
+block|}
+DECL|method|checkEditable
+specifier|public
+specifier|static
+name|Class
+name|checkEditable
 parameter_list|(
 name|String
 name|path
@@ -1475,7 +1624,7 @@ operator|==
 literal|null
 condition|)
 return|return
-literal|false
+literal|null
 return|;
 if|if
 condition|(
@@ -1504,58 +1653,29 @@ name|Map
 operator|)
 name|obj
 decl_stmt|;
-if|if
-condition|(
+name|Object
+name|o
+init|=
+name|map
+operator|.
+name|get
+argument_list|(
+name|part
+argument_list|)
+decl_stmt|;
+return|return
+name|checkType
+argument_list|(
+name|o
+argument_list|,
 name|isXpath
-operator|&&
+argument_list|,
 name|isAttr
-condition|)
-block|{
-return|return
-name|XML_ATTR
-operator|.
-name|equals
-argument_list|(
-name|map
-operator|.
-name|get
-argument_list|(
-name|part
-argument_list|)
 argument_list|)
 return|;
 block|}
-else|else
-block|{
 return|return
-name|XML_ATTR
-operator|.
-name|equals
-argument_list|(
-name|map
-operator|.
-name|get
-argument_list|(
-name|part
-argument_list|)
-argument_list|)
-operator|||
-name|XML_NODE
-operator|.
-name|equals
-argument_list|(
-name|map
-operator|.
-name|get
-argument_list|(
-name|part
-argument_list|)
-argument_list|)
-return|;
-block|}
-block|}
-return|return
-literal|false
+literal|null
 return|;
 block|}
 name|obj
@@ -1574,8 +1694,113 @@ argument_list|)
 expr_stmt|;
 block|}
 return|return
-literal|false
+literal|null
 return|;
+block|}
+DECL|field|types
+specifier|static
+name|Class
+index|[]
+name|types
+init|=
+operator|new
+name|Class
+index|[]
+block|{
+name|String
+operator|.
+name|class
+block|,
+name|Boolean
+operator|.
+name|class
+block|,
+name|Integer
+operator|.
+name|class
+block|,
+name|Float
+operator|.
+name|class
+block|}
+decl_stmt|;
+DECL|method|checkType
+specifier|private
+specifier|static
+name|Class
+name|checkType
+parameter_list|(
+name|Object
+name|o
+parameter_list|,
+name|boolean
+name|isXpath
+parameter_list|,
+name|boolean
+name|isAttr
+parameter_list|)
+block|{
+if|if
+condition|(
+name|o
+operator|instanceof
+name|Long
+condition|)
+block|{
+name|Long
+name|aLong
+init|=
+operator|(
+name|Long
+operator|)
+name|o
+decl_stmt|;
+name|int
+name|ten
+init|=
+name|aLong
+operator|.
+name|intValue
+argument_list|()
+operator|/
+literal|10
+decl_stmt|;
+name|int
+name|one
+init|=
+name|aLong
+operator|.
+name|intValue
+argument_list|()
+operator|%
+literal|10
+decl_stmt|;
+if|if
+condition|(
+name|isXpath
+operator|&&
+name|isAttr
+operator|&&
+name|one
+operator|!=
+literal|0
+condition|)
+return|return
+literal|null
+return|;
+return|return
+name|types
+index|[
+name|ten
+index|]
+return|;
+block|}
+else|else
+block|{
+return|return
+literal|null
+return|;
+block|}
 block|}
 DECL|method|getEditableSubProperties
 specifier|public
@@ -1915,6 +2140,17 @@ name|NAME
 init|=
 literal|"overlay"
 decl_stmt|;
+DECL|method|main
+specifier|public
+specifier|static
+name|void
+name|main
+parameter_list|(
+name|String
+index|[]
+name|args
+parameter_list|)
+block|{   }
 block|}
 end_class
 
