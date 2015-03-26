@@ -12844,8 +12844,8 @@ name|log
 operator|.
 name|info
 argument_list|(
-literal|"watch zkdir "
-operator|+
+literal|"watch zkdir {}"
+argument_list|,
 name|zkDir
 argument_list|)
 expr_stmt|;
@@ -12868,9 +12868,7 @@ name|zkDir
 argument_list|,
 operator|new
 name|HashSet
-argument_list|<
-name|Runnable
-argument_list|>
+argument_list|<>
 argument_list|()
 argument_list|)
 expr_stmt|;
@@ -13134,6 +13132,15 @@ name|void
 name|run
 parameter_list|()
 block|{
+name|log
+operator|.
+name|info
+argument_list|(
+literal|"Running listeners for {}"
+argument_list|,
+name|zkDir
+argument_list|)
+expr_stmt|;
 for|for
 control|(
 specifier|final
@@ -13236,17 +13243,6 @@ name|zkDir
 argument_list|)
 expr_stmt|;
 block|}
-name|zkClient
-operator|.
-name|exists
-argument_list|(
-name|zkDir
-argument_list|,
-name|watcher
-argument_list|,
-literal|true
-argument_list|)
-expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
