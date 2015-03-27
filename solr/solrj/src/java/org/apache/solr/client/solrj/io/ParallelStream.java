@@ -257,7 +257,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * The ParallelStream decorates a TupleStream implementation and pushes it N workers for parallel execution.  * Workers are chosen from a SolrCloud collection.  * Tuples that are streamed back from the workers are ordered by a Comparator.  **/
+comment|/**  * The ParallelStream decorates a TupleStream implementation and pushes it to N workers for parallel execution.  * Workers are chosen from a SolrCloud collection.  * Tuples that are streamed back from the workers are ordered by a Comparator.  **/
 end_comment
 
 begin_class

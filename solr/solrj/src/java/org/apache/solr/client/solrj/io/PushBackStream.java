@@ -60,6 +60,10 @@ name|ArrayList
 import|;
 end_import
 
+begin_comment
+comment|/**  * A TupleStream that allows a single Tuple to be pushed back onto the stream after it's been read.  * This is a useful class when building streams that maintain the order of Tuples between multiple  * substreams.  **/
+end_comment
+
 begin_class
 DECL|class|PushBackStream
 specifier|public
@@ -87,7 +91,6 @@ specifier|private
 name|Tuple
 name|tuple
 decl_stmt|;
-comment|/**    * A TupleStream that allows a single Tuple to be pushed back into Stream after it's been read.    * This is a useful class when building streams that maintain the order of the tuples from two or    * more substreams.    **/
 DECL|method|PushBackStream
 specifier|public
 name|PushBackStream

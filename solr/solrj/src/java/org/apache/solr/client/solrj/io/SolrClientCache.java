@@ -143,7 +143,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  *  The SolrClientCache caches SolrClients that they can be reused by different TupleStreams.  **/
+comment|/**  *  The SolrClientCache caches SolrClients so they can be reused by different TupleStreams.  **/
 end_comment
 
 begin_class

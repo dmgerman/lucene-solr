@@ -293,7 +293,7 @@ import|;
 end_import
 
 begin_comment
-comment|/** * Connects to Zookeeper to pick replicas from a specific collection to send the query to. * Under the covers SolrStream instances are used to send the query to the replicas. * SolrStreams are opened using a Thread pool, but a single thread is used to iterate through each stream's tuples. **/
+comment|/**  * Connects to Zookeeper to pick replicas from a specific collection to send the query to.  * Under the covers the SolrStream instances send the query to the replicas.  * SolrStreams are opened using a thread pool, but a single thread is used  * to iterate and merge Tuples from each SolrStream.  **/
 end_comment
 
 begin_class
@@ -584,6 +584,7 @@ operator|=
 name|context
 expr_stmt|;
 block|}
+comment|/**   * Opens the CloudSolrStream   *   ***/
 DECL|method|open
 specifier|public
 name|void
@@ -1271,6 +1272,7 @@ argument_list|()
 expr_stmt|;
 block|}
 block|}
+comment|/**    *  Closes the CloudSolrStream    **/
 DECL|method|close
 specifier|public
 name|void

@@ -72,6 +72,7 @@ name|Tuple
 implements|implements
 name|Cloneable
 block|{
+comment|/**    *  When EOF field is true the Tuple marks the end of the stream.    *  The EOF Tuple will not contain a record from the stream, but it may contain    *  metrics/aggregates gathered by underlying streams.    * */
 DECL|field|EOF
 specifier|public
 name|boolean

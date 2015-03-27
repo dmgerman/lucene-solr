@@ -63,7 +63,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  *  The StreamContext is passed to TupleStreams using the TupleStream.setStreamContext() method.  *  The StreamContext is used pass shared context info from to concentrically wrapped TupleStreams.  *  *  Note: The StreamContext contains the SolrClientCache which is used to cache SolrClients for reuse  *  across multiple TupleStreams.  **/
+comment|/**  *  The StreamContext is passed to TupleStreams using the TupleStream.setStreamContext() method.  *  The StreamContext is used to pass shared context to concentrically wrapped TupleStreams.  *  *  Note: The StreamContext contains the SolrClientCache which is used to cache SolrClients for reuse  *  across multiple TupleStreams.  **/
 end_comment
 
 begin_class
