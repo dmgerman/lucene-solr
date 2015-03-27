@@ -193,6 +193,8 @@ name|fstNode
 decl_stmt|;
 comment|/** Output of the path so far: */
 DECL|field|output
+specifier|public
+specifier|final
 name|T
 name|output
 decl_stmt|;
