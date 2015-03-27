@@ -5637,7 +5637,7 @@ return|return
 literal|true
 return|;
 block|}
-comment|/**    * Returns the longest string that is a prefix of all accepted strings and    * visits each state at most once.  The automaton must be deterministic.    *     * @return common prefix    */
+comment|/**    * Returns the longest string that is a prefix of all accepted strings and    * visits each state at most once.  The automaton must be deterministic.    *     * @return common prefix, which can be an empty (length 0) String (never null)    */
 DECL|method|getCommonPrefix
 specifier|public
 specifier|static
@@ -5803,7 +5803,7 @@ block|}
 comment|// TODO: this currently requites a determinized machine,
 comment|// but it need not -- we can speed it up by walking the
 comment|// NFA instead.  it'd still be fail fast.
-comment|/**    * Returns the longest BytesRef that is a prefix of all accepted strings and    * visits each state at most once.  The automaton must be deterministic.    *     * @return common prefix    */
+comment|/**    * Returns the longest BytesRef that is a prefix of all accepted strings and    * visits each state at most once.  The automaton must be deterministic.    *     * @return common prefix, which can be an empty (length 0) BytesRef (never null)    */
 DECL|method|getCommonPrefixBytesRef
 specifier|public
 specifier|static
@@ -6126,7 +6126,7 @@ literal|null
 return|;
 block|}
 block|}
-comment|/**    * Returns the longest BytesRef that is a suffix of all accepted strings.    * Worst case complexity: exponential in number of states (this calls    * determinize).    * @param maxDeterminizedStates maximum number of states determinizing the    *  automaton can result in.  Set higher to allow more complex queries and    *  lower to prevent memory exhaustion.    * @return common suffix    */
+comment|/**    * Returns the longest BytesRef that is a suffix of all accepted strings.    * Worst case complexity: exponential in number of states (this calls    * determinize).    * @param maxDeterminizedStates maximum number of states determinizing the    *  automaton can result in.  Set higher to allow more complex queries and    *  lower to prevent memory exhaustion.    * @return common suffix, which can be an empty (length 0) BytesRef (never null)    */
 DECL|method|getCommonSuffixBytesRef
 specifier|public
 specifier|static

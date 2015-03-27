@@ -221,7 +221,7 @@ specifier|final
 name|Automaton
 name|automaton
 decl_stmt|;
-comment|/**    * Shared common suffix accepted by the automaton. Only valid    * for {@link AUTOMATON_TYPE#NORMAL}, and only when the    * automaton accepts an infinite language.    */
+comment|/**    * Shared common suffix accepted by the automaton. Only valid    * for {@link AUTOMATON_TYPE#NORMAL}, and only when the    * automaton accepts an infinite language.  This will be null    * if the common prefix is length 0.    */
 DECL|field|commonSuffixRef
 specifier|public
 specifier|final
@@ -635,8 +635,9 @@ block|}
 else|else
 block|{
 comment|// NOTE: this is a very costly operation!  We should test if it's really warranted in practice...
-name|commonSuffixRef
-operator|=
+name|BytesRef
+name|suffix
+init|=
 name|Operations
 operator|.
 name|getCommonSuffixBytesRef
@@ -645,7 +646,28 @@ name|binary
 argument_list|,
 name|maxDeterminizedStates
 argument_list|)
+decl_stmt|;
+if|if
+condition|(
+name|suffix
+operator|.
+name|length
+operator|==
+literal|0
+condition|)
+block|{
+name|commonSuffixRef
+operator|=
+literal|null
 expr_stmt|;
+block|}
+else|else
+block|{
+name|commonSuffixRef
+operator|=
+name|suffix
+expr_stmt|;
+block|}
 block|}
 comment|// This will determinize the binary automaton for us:
 name|runAutomaton
