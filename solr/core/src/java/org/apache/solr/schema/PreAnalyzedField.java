@@ -150,7 +150,7 @@ name|lucene
 operator|.
 name|index
 operator|.
-name|StorableField
+name|IndexOptions
 import|;
 end_import
 
@@ -164,7 +164,7 @@ name|lucene
 operator|.
 name|index
 operator|.
-name|IndexOptions
+name|StorableField
 import|;
 end_import
 
@@ -213,20 +213,6 @@ operator|.
 name|search
 operator|.
 name|SortField
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|search
-operator|.
-name|SortedSetSortField
 import|;
 end_import
 
@@ -1081,6 +1067,16 @@ argument_list|(
 name|field
 operator|.
 name|storeTermPositions
+argument_list|()
+argument_list|)
+expr_stmt|;
+name|newType
+operator|.
+name|setStoreTermVectorPayloads
+argument_list|(
+name|field
+operator|.
+name|storeTermPayloads
 argument_list|()
 argument_list|)
 expr_stmt|;

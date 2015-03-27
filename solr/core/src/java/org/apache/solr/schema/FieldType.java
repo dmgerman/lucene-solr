@@ -17,24 +17,6 @@ package|;
 end_package
 
 begin_import
-import|import static
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|analysis
-operator|.
-name|util
-operator|.
-name|AbstractAnalysisFactory
-operator|.
-name|LUCENE_MATCH_VERSION_PARAM
-import|;
-end_import
-
-begin_import
 import|import
 name|java
 operator|.
@@ -657,6 +639,24 @@ operator|.
 name|slf4j
 operator|.
 name|LoggerFactory
+import|;
+end_import
+
+begin_import
+import|import static
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|analysis
+operator|.
+name|util
+operator|.
+name|AbstractAnalysisFactory
+operator|.
+name|LUCENE_MATCH_VERSION_PARAM
 import|;
 end_import
 
@@ -1516,6 +1516,16 @@ argument_list|(
 name|field
 operator|.
 name|storeTermPositions
+argument_list|()
+argument_list|)
+expr_stmt|;
+name|newType
+operator|.
+name|setStoreTermVectorPayloads
+argument_list|(
+name|field
+operator|.
+name|storeTermPayloads
 argument_list|()
 argument_list|)
 expr_stmt|;

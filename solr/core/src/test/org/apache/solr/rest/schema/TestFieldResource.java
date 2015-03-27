@@ -66,7 +66,7 @@ literal|"/schema/fields/test_postv?indent=on&wt=xml&showDefaults=true"
 argument_list|,
 literal|"count(/response/lst[@name='field']) = 1"
 argument_list|,
-literal|"count(/response/lst[@name='field']/*) = 15"
+literal|"count(/response/lst[@name='field']/*) = 16"
 argument_list|,
 literal|"/response/lst[@name='field']/str[@name='name'] = 'test_postv'"
 argument_list|,
@@ -81,6 +81,8 @@ argument_list|,
 literal|"/response/lst[@name='field']/bool[@name='termVectors'] = 'true'"
 argument_list|,
 literal|"/response/lst[@name='field']/bool[@name='termPositions'] = 'true'"
+argument_list|,
+literal|"/response/lst[@name='field']/bool[@name='termPayloads'] = 'false'"
 argument_list|,
 literal|"/response/lst[@name='field']/bool[@name='termOffsets'] = 'false'"
 argument_list|,
@@ -151,6 +153,8 @@ argument_list|,
 literal|"/field/termPositions==true"
 argument_list|,
 literal|"/field/termOffsets==false"
+argument_list|,
+literal|"/field/termPayloads==false"
 argument_list|,
 literal|"/field/omitNorms==false"
 argument_list|,
