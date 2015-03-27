@@ -798,11 +798,24 @@ argument_list|,
 literal|" solrconfig editing is not enabled"
 argument_list|)
 throw|;
+try|try
+block|{
 name|command
 operator|.
 name|handlePOST
 argument_list|()
 expr_stmt|;
+block|}
+finally|finally
+block|{
+name|RequestHandlerUtils
+operator|.
+name|addExperimentalFormatWarning
+argument_list|(
+name|rsp
+argument_list|)
+expr_stmt|;
+block|}
 block|}
 else|else
 block|{
