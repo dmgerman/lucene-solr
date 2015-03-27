@@ -6931,6 +6931,8 @@ argument_list|,
 name|Integer
 operator|.
 name|MAX_VALUE
+argument_list|,
+literal|false
 argument_list|)
 decl_stmt|;
 if|if
