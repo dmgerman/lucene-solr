@@ -2515,7 +2515,12 @@ name|Term
 argument_list|(
 literal|"body"
 argument_list|,
+name|BytesRef
+operator|.
+name|deepCopyOf
+argument_list|(
 name|term
+argument_list|)
 argument_list|)
 argument_list|)
 argument_list|)
