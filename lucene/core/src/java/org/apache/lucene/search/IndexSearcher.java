@@ -394,22 +394,14 @@ specifier|public
 class|class
 name|IndexSearcher
 block|{
-comment|// 32MB and at most 10,000 queries
+comment|// disabled by default
 DECL|field|DEFAULT_QUERY_CACHE
 specifier|private
 specifier|static
 name|QueryCache
 name|DEFAULT_QUERY_CACHE
 init|=
-operator|new
-name|LRUQueryCache
-argument_list|(
-literal|10000
-argument_list|,
-literal|1
-operator|<<
-literal|25
-argument_list|)
+literal|null
 decl_stmt|;
 DECL|field|DEFAULT_CACHING_POLICY
 specifier|private
@@ -660,7 +652,7 @@ literal|null
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**    * Set the {@link QueryCache} to use when scores are not needed.    * A value of {@code null} indicates that query matches should never be    * cached. This method should be called<b>before</b> starting using this    * {@link IndexSearcher}.    * @see QueryCache    */
+comment|/**    * Set the {@link QueryCache} to use when scores are not needed.    * A value of {@code null} indicates that query matches should never be    * cached. This method should be called<b>before</b> starting using this    * {@link IndexSearcher}.    *<p>NOTE: When using a query cache, queries should not be modified after    * they have been passed to IndexSearcher.    * @see QueryCache    * @lucene.experimental    */
 DECL|method|setQueryCache
 specifier|public
 name|void
@@ -677,7 +669,7 @@ operator|=
 name|queryCache
 expr_stmt|;
 block|}
-comment|/**    * Set the {@link QueryCachingPolicy} to use for query caching.    * This method should be called<b>before</b> starting using this    * {@link IndexSearcher}.    * @see QueryCachingPolicy    */
+comment|/**    * Set the {@link QueryCachingPolicy} to use for query caching.    * This method should be called<b>before</b> starting using this    * {@link IndexSearcher}.    * @see QueryCachingPolicy    * @lucene.experimental    */
 DECL|method|setQueryCachingPolicy
 specifier|public
 name|void

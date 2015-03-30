@@ -62,6 +62,16 @@ name|java
 operator|.
 name|util
 operator|.
+name|ConcurrentModificationException
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
+name|util
+operator|.
 name|IdentityHashMap
 import|;
 end_import
@@ -969,11 +979,55 @@ operator|.
 name|next
 argument_list|()
 decl_stmt|;
+specifier|final
+name|int
+name|size
+init|=
+name|mostRecentlyUsedQueries
+operator|.
+name|size
+argument_list|()
+decl_stmt|;
 name|iterator
 operator|.
 name|remove
 argument_list|()
 expr_stmt|;
+if|if
+condition|(
+name|size
+operator|==
+name|mostRecentlyUsedQueries
+operator|.
+name|size
+argument_list|()
+condition|)
+block|{
+comment|// size did not decrease, because the hash of the query changed since it has been
+comment|// put into the cache
+throw|throw
+operator|new
+name|ConcurrentModificationException
+argument_list|(
+literal|"Removal from the cache failed! This "
+operator|+
+literal|"is probably due to a query which has been modified after having been put into "
+operator|+
+literal|" the cache or a badly implemented clone(). Query class: ["
+operator|+
+name|query
+operator|.
+name|getClass
+argument_list|()
+operator|+
+literal|"], query: ["
+operator|+
+name|query
+operator|+
+literal|"]"
+argument_list|)
+throw|;
+block|}
 name|onEviction
 argument_list|(
 name|query
