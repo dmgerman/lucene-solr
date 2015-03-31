@@ -601,7 +601,7 @@ specifier|protected
 name|SolrCore
 name|putTransientCore
 parameter_list|(
-name|ConfigSolr
+name|NodeConfig
 name|cfg
 parameter_list|,
 name|String

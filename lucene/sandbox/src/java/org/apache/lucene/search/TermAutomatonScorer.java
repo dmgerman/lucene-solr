@@ -172,6 +172,10 @@ name|RunAutomaton
 import|;
 end_import
 
+begin_comment
+comment|// TODO: add two-phase and needsScores support. maybe use conjunctionDISI internally?
+end_comment
+
 begin_class
 DECL|class|TermAutomatonScorer
 class|class
@@ -834,6 +838,30 @@ parameter_list|)
 throws|throws
 name|IOException
 block|{
+if|if
+condition|(
+name|docID
+operator|==
+operator|-
+literal|1
+condition|)
+block|{
+name|popCurrentDoc
+argument_list|()
+expr_stmt|;
+if|if
+condition|(
+name|docID
+operator|>=
+name|target
+condition|)
+block|{
+return|return
+name|doNext
+argument_list|()
+return|;
+block|}
+block|}
 for|for
 control|(
 name|int

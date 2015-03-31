@@ -949,6 +949,8 @@ throws|throws
 name|SolrServerException
 throws|,
 name|InterruptedException
+throws|,
+name|IOException
 block|{
 specifier|final
 name|long

@@ -479,15 +479,9 @@ block|,
 name|BYTE4
 block|}
 empty_stmt|;
-DECL|field|inputType
-specifier|public
-specifier|final
-name|INPUT_TYPE
-name|inputType
-decl_stmt|;
 DECL|field|BIT_FINAL_ARC
-specifier|final
 specifier|static
+specifier|final
 name|int
 name|BIT_FINAL_ARC
 init|=
@@ -496,8 +490,8 @@ operator|<<
 literal|0
 decl_stmt|;
 DECL|field|BIT_LAST_ARC
-specifier|final
 specifier|static
+specifier|final
 name|int
 name|BIT_LAST_ARC
 init|=
@@ -506,8 +500,8 @@ operator|<<
 literal|1
 decl_stmt|;
 DECL|field|BIT_TARGET_NEXT
-specifier|final
 specifier|static
+specifier|final
 name|int
 name|BIT_TARGET_NEXT
 init|=
@@ -517,8 +511,8 @@ literal|2
 decl_stmt|;
 comment|// TODO: we can free up a bit if we can nuke this:
 DECL|field|BIT_STOP_NODE
-specifier|final
 specifier|static
+specifier|final
 name|int
 name|BIT_STOP_NODE
 init|=
@@ -529,8 +523,8 @@ decl_stmt|;
 comment|/** This flag is set if the arc has an output. */
 DECL|field|BIT_ARC_HAS_OUTPUT
 specifier|public
-specifier|final
 specifier|static
+specifier|final
 name|int
 name|BIT_ARC_HAS_OUTPUT
 init|=
@@ -539,8 +533,8 @@ operator|<<
 literal|4
 decl_stmt|;
 DECL|field|BIT_ARC_HAS_FINAL_OUTPUT
-specifier|final
 specifier|static
+specifier|final
 name|int
 name|BIT_ARC_HAS_FINAL_OUTPUT
 init|=
@@ -555,8 +549,8 @@ comment|// If set, the target node is delta coded vs current
 comment|// position:
 DECL|field|BIT_TARGET_DELTA
 specifier|private
-specifier|final
 specifier|static
+specifier|final
 name|int
 name|BIT_TARGET_DELTA
 init|=
@@ -568,8 +562,8 @@ comment|// We use this as a marker (because this one flag is
 comment|// illegal by itself ...):
 DECL|field|ARCS_AS_FIXED_ARRAY
 specifier|private
-specifier|final
 specifier|static
+specifier|final
 name|byte
 name|ARCS_AS_FIXED_ARRAY
 init|=
@@ -577,8 +571,8 @@ name|BIT_ARC_HAS_FINAL_OUTPUT
 decl_stmt|;
 comment|/**    * @see #shouldExpand(UnCompiledNode)    */
 DECL|field|FIXED_ARRAY_SHALLOW_DISTANCE
-specifier|final
 specifier|static
+specifier|final
 name|int
 name|FIXED_ARRAY_SHALLOW_DISTANCE
 init|=
@@ -587,8 +581,8 @@ decl_stmt|;
 comment|// 0 => only root node.
 comment|/**    * @see #shouldExpand(UnCompiledNode)    */
 DECL|field|FIXED_ARRAY_NUM_ARCS_SHALLOW
-specifier|final
 specifier|static
+specifier|final
 name|int
 name|FIXED_ARRAY_NUM_ARCS_SHALLOW
 init|=
@@ -596,8 +590,8 @@ literal|5
 decl_stmt|;
 comment|/**    * @see #shouldExpand(UnCompiledNode)    */
 DECL|field|FIXED_ARRAY_NUM_ARCS_DEEP
-specifier|final
 specifier|static
+specifier|final
 name|int
 name|FIXED_ARRAY_NUM_ARCS_DEEP
 init|=
@@ -619,8 +613,8 @@ decl_stmt|;
 comment|// Increment version to change it
 DECL|field|FILE_FORMAT_NAME
 specifier|private
-specifier|final
 specifier|static
+specifier|final
 name|String
 name|FILE_FORMAT_NAME
 init|=
@@ -628,8 +622,8 @@ literal|"FST"
 decl_stmt|;
 DECL|field|VERSION_START
 specifier|private
-specifier|final
 specifier|static
+specifier|final
 name|int
 name|VERSION_START
 init|=
@@ -638,8 +632,8 @@ decl_stmt|;
 comment|/** Changed numBytesPerArc for array'd case from byte to int. */
 DECL|field|VERSION_INT_NUM_BYTES_PER_ARC
 specifier|private
-specifier|final
 specifier|static
+specifier|final
 name|int
 name|VERSION_INT_NUM_BYTES_PER_ARC
 init|=
@@ -648,8 +642,8 @@ decl_stmt|;
 comment|/** Write BYTE2 labels as 2-byte short, not vInt. */
 DECL|field|VERSION_SHORT_BYTE2_LABELS
 specifier|private
-specifier|final
 specifier|static
+specifier|final
 name|int
 name|VERSION_SHORT_BYTE2_LABELS
 init|=
@@ -658,8 +652,8 @@ decl_stmt|;
 comment|/** Added optional packed format. */
 DECL|field|VERSION_PACKED
 specifier|private
-specifier|final
 specifier|static
+specifier|final
 name|int
 name|VERSION_PACKED
 init|=
@@ -668,8 +662,8 @@ decl_stmt|;
 comment|/** Changed from int to vInt for encoding arc targets.     *  Also changed maxBytesPerArc from int to vInt in the array case. */
 DECL|field|VERSION_VINT_TARGET
 specifier|private
-specifier|final
 specifier|static
+specifier|final
 name|int
 name|VERSION_VINT_TARGET
 init|=
@@ -677,8 +671,8 @@ literal|4
 decl_stmt|;
 DECL|field|VERSION_CURRENT
 specifier|private
-specifier|final
 specifier|static
+specifier|final
 name|int
 name|VERSION_CURRENT
 init|=
@@ -688,8 +682,8 @@ comment|// Never serialized; just used to represent the virtual
 comment|// final node w/ no arcs:
 DECL|field|FINAL_END_NODE
 specifier|private
-specifier|final
 specifier|static
+specifier|final
 name|long
 name|FINAL_END_NODE
 init|=
@@ -700,12 +694,29 @@ comment|// Never serialized; just used to represent the virtual
 comment|// non-final node w/ no arcs:
 DECL|field|NON_FINAL_END_NODE
 specifier|private
-specifier|final
 specifier|static
+specifier|final
 name|long
 name|NON_FINAL_END_NODE
 init|=
 literal|0
+decl_stmt|;
+comment|/** If arc has this label then that arc is final/accepted */
+DECL|field|END_LABEL
+specifier|public
+specifier|static
+specifier|final
+name|int
+name|END_LABEL
+init|=
+operator|-
+literal|1
+decl_stmt|;
+DECL|field|inputType
+specifier|public
+specifier|final
+name|INPUT_TYPE
+name|inputType
 decl_stmt|;
 comment|// if non-null, this FST accepts the empty string and
 comment|// produces this output
@@ -778,17 +789,6 @@ operator|.
 name|Reader
 name|nodeRefToAddress
 decl_stmt|;
-comment|/** If arc has this label then that arc is final/accepted */
-DECL|field|END_LABEL
-specifier|public
-specifier|static
-specifier|final
-name|int
-name|END_LABEL
-init|=
-operator|-
-literal|1
-decl_stmt|;
 DECL|field|allowArrayArcs
 specifier|private
 specifier|final
@@ -807,8 +807,8 @@ decl_stmt|;
 comment|/** Represents a single arc. */
 DECL|class|Arc
 specifier|public
-specifier|final
 specifier|static
+specifier|final
 class|class
 name|Arc
 parameter_list|<
@@ -2806,11 +2806,15 @@ init|(
 name|OutputStream
 name|os
 init|=
+operator|new
+name|BufferedOutputStream
+argument_list|(
 name|Files
 operator|.
 name|newOutputStream
 argument_list|(
 name|path
+argument_list|)
 argument_list|)
 init|)
 block|{
@@ -2819,11 +2823,7 @@ argument_list|(
 operator|new
 name|OutputStreamDataOutput
 argument_list|(
-operator|new
-name|BufferedOutputStream
-argument_list|(
 name|os
-argument_list|)
 argument_list|)
 argument_list|)
 expr_stmt|;

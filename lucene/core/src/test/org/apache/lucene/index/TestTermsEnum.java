@@ -1781,6 +1781,8 @@ argument_list|,
 literal|false
 argument_list|,
 literal|1000000
+argument_list|,
+literal|false
 argument_list|)
 decl_stmt|;
 specifier|final

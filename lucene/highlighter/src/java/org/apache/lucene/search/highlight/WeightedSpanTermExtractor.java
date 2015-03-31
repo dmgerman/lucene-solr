@@ -1734,7 +1734,7 @@ name|setRewriteMethod
 argument_list|(
 name|MultiTermQuery
 operator|.
-name|SCORING_BOOLEAN_QUERY_REWRITE
+name|SCORING_BOOLEAN_REWRITE
 argument_list|)
 expr_stmt|;
 name|origQuery

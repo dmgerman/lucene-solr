@@ -1030,7 +1030,7 @@ name|getDescription
 parameter_list|()
 block|{
 return|return
-literal|"Edit schema.xml"
+literal|"CRUD operations over the Solr schema"
 return|;
 block|}
 block|}

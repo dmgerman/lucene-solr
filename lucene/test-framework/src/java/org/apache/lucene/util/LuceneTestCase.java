@@ -780,20 +780,6 @@ end_import
 
 begin_import
 import|import
-name|com
-operator|.
-name|carrotsearch
-operator|.
-name|randomizedtesting
-operator|.
-name|rules
-operator|.
-name|SystemPropertiesInvariantRule
-import|;
-end_import
-
-begin_import
-import|import
 name|org
 operator|.
 name|apache
@@ -962,20 +948,6 @@ name|lucene
 operator|.
 name|search
 operator|.
-name|DocIdSet
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|search
-operator|.
 name|DocIdSetIterator
 import|;
 end_import
@@ -990,7 +962,7 @@ name|lucene
 operator|.
 name|search
 operator|.
-name|Filter
+name|LRUQueryCache
 import|;
 end_import
 
@@ -1004,7 +976,21 @@ name|lucene
 operator|.
 name|search
 operator|.
-name|FilterCachingPolicy
+name|Query
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|search
+operator|.
+name|QueryCachingPolicy
 import|;
 end_import
 
@@ -1191,6 +1177,20 @@ operator|.
 name|store
 operator|.
 name|NRTCachingDirectory
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|store
+operator|.
+name|RawDirectoryWrapper
 import|;
 end_import
 
@@ -2215,21 +2215,6 @@ operator|=
 name|defaultValue
 expr_stmt|;
 block|}
-comment|/**    * These property keys will be ignored in verification of altered properties.    * @see SystemPropertiesInvariantRule    * @see #ruleChain    * @see #classRules    */
-DECL|field|IGNORED_INVARIANT_PROPERTIES
-specifier|private
-specifier|static
-specifier|final
-name|String
-index|[]
-name|IGNORED_INVARIANT_PROPERTIES
-init|=
-block|{
-literal|"user.timezone"
-block|,
-literal|"java.rmi.server.randomIDs"
-block|}
-decl_stmt|;
 comment|/** Filesystem-based {@link Directory} implementations. */
 DECL|field|FS_DIRECTORIES
 specifier|private
@@ -2282,16 +2267,16 @@ literal|"RAMDirectory"
 argument_list|)
 expr_stmt|;
 block|}
-comment|/** A {@link org.apache.lucene.search.FilterCachingPolicy} that randomly caches. */
+comment|/** A {@link org.apache.lucene.search.QueryCachingPolicy} that randomly caches. */
 DECL|field|MAYBE_CACHE_POLICY
 specifier|public
 specifier|static
 specifier|final
-name|FilterCachingPolicy
+name|QueryCachingPolicy
 name|MAYBE_CACHE_POLICY
 init|=
 operator|new
-name|FilterCachingPolicy
+name|QueryCachingPolicy
 argument_list|()
 block|{
 annotation|@
@@ -2300,8 +2285,8 @@ specifier|public
 name|void
 name|onUse
 parameter_list|(
-name|Filter
-name|filter
+name|Query
+name|query
 parameter_list|)
 block|{}
 annotation|@
@@ -2310,14 +2295,11 @@ specifier|public
 name|boolean
 name|shouldCache
 parameter_list|(
-name|Filter
-name|filter
+name|Query
+name|query
 parameter_list|,
 name|LeafReaderContext
 name|context
-parameter_list|,
-name|DocIdSet
-name|set
 parameter_list|)
 throws|throws
 name|IOException
@@ -2760,20 +2742,32 @@ argument_list|)
 operator|.
 name|around
 argument_list|(
-operator|new
-name|SystemPropertiesInvariantRule
-argument_list|(
-name|IGNORED_INVARIANT_PROPERTIES
-argument_list|)
-argument_list|)
-operator|.
-name|around
-argument_list|(
 name|classNameRule
 operator|=
 operator|new
 name|TestRuleStoreClassName
 argument_list|()
+argument_list|)
+operator|.
+name|around
+argument_list|(
+operator|new
+name|TestRuleRestoreSystemProperties
+argument_list|(
+comment|// Enlist all properties to which we have write access (security manager);
+comment|// these should be restored to previous state, no matter what the outcome of the test.
+comment|// We reset the default locale and timezone; these properties change as a side-effect
+literal|"user.language"
+argument_list|,
+literal|"user.timezone"
+argument_list|,
+comment|// TODO: these should, ideally, be moved to Solr's base class.
+literal|"solr.directoryFactory"
+argument_list|,
+literal|"solr.solr.home"
+argument_list|,
+literal|"solr.data.dir"
+argument_list|)
 argument_list|)
 operator|.
 name|around
@@ -2844,15 +2838,6 @@ operator|.
 name|around
 argument_list|(
 name|threadAndTestNameRule
-argument_list|)
-operator|.
-name|around
-argument_list|(
-operator|new
-name|SystemPropertiesInvariantRule
-argument_list|(
-name|IGNORED_INVARIANT_PROPERTIES
-argument_list|)
 argument_list|)
 operator|.
 name|around
@@ -6481,7 +6466,7 @@ name|BaseDirectoryWrapper
 name|base
 init|=
 operator|new
-name|BaseDirectoryWrapper
+name|RawDirectoryWrapper
 argument_list|(
 name|directory
 argument_list|)
@@ -7128,7 +7113,7 @@ name|newType
 argument_list|)
 return|;
 block|}
-comment|/**     * Return a random Locale from the available locales on the system.    * see "https://issues.apache.org/jira/browse/LUCENE-4020"    */
+comment|/**     * Return a random Locale from the available locales on the system.    * @see<a href="http://issues.apache.org/jira/browse/LUCENE-4020">LUCENE-4020</a>    */
 DECL|method|randomLocale
 specifier|public
 specifier|static
@@ -7162,7 +7147,7 @@ argument_list|)
 index|]
 return|;
 block|}
-comment|/**     * Return a random TimeZone from the available timezones on the system    * see "https://issues.apache.org/jira/browse/LUCENE-4020"    */
+comment|/**     * Return a random TimeZone from the available timezones on the system    * @see<a href="http://issues.apache.org/jira/browse/LUCENE-4020">LUCENE-4020</a>    */
 DECL|method|randomTimeZone
 specifier|public
 specifier|static
@@ -8313,6 +8298,53 @@ name|context
 return|;
 block|}
 block|}
+annotation|@
+name|Before
+DECL|method|resetTestDefaultQueryCache
+specifier|public
+name|void
+name|resetTestDefaultQueryCache
+parameter_list|()
+block|{
+comment|// Make sure each test method has its own cache
+name|resetDefaultQueryCache
+argument_list|()
+expr_stmt|;
+block|}
+annotation|@
+name|BeforeClass
+DECL|method|resetDefaultQueryCache
+specifier|public
+specifier|static
+name|void
+name|resetDefaultQueryCache
+parameter_list|()
+block|{
+comment|// we need to reset the query cache in an @BeforeClass so that tests that
+comment|// instantiate an IndexSearcher in an @BeforeClass method use a fresh new cache
+name|IndexSearcher
+operator|.
+name|setDefaultQueryCache
+argument_list|(
+operator|new
+name|LRUQueryCache
+argument_list|(
+literal|10000
+argument_list|,
+literal|1
+operator|<<
+literal|25
+argument_list|)
+argument_list|)
+expr_stmt|;
+name|IndexSearcher
+operator|.
+name|setDefaultQueryCachingPolicy
+argument_list|(
+name|MAYBE_CACHE_POLICY
+argument_list|)
+expr_stmt|;
+block|}
 comment|/**    * Create a new searcher over the reader. This searcher might randomly use    * threads.    */
 DECL|method|newSearcher
 specifier|public
@@ -8738,6 +8770,13 @@ argument_list|(
 name|classEnvRule
 operator|.
 name|similarity
+argument_list|)
+expr_stmt|;
+name|ret
+operator|.
+name|setQueryCachingPolicy
+argument_list|(
+name|MAYBE_CACHE_POLICY
 argument_list|)
 expr_stmt|;
 return|return

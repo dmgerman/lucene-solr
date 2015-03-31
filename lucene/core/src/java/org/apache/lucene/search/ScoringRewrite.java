@@ -219,8 +219,8 @@ argument_list|<
 name|Q
 argument_list|>
 block|{
-comment|/** A rewrite method that first translates each term into    *  {@link BooleanClause.Occur#SHOULD} clause in a    *  BooleanQuery, and keeps the scores as computed by the    *  query.  Note that typically such scores are    *  meaningless to the user, and require non-trivial CPU    *  to compute, so it's almost always better to use {@link    *  MultiTermQuery#CONSTANT_SCORE_FILTER_REWRITE} instead.    *    *<p><b>NOTE</b>: This rewrite method will hit {@link    *  BooleanQuery.TooManyClauses} if the number of terms    *  exceeds {@link BooleanQuery#getMaxClauseCount}.    *    *  @see MultiTermQuery#setRewriteMethod */
-DECL|field|SCORING_BOOLEAN_QUERY_REWRITE
+comment|/** A rewrite method that first translates each term into    *  {@link BooleanClause.Occur#SHOULD} clause in a    *  BooleanQuery, and keeps the scores as computed by the    *  query.  Note that typically such scores are    *  meaningless to the user, and require non-trivial CPU    *  to compute, so it's almost always better to use {@link    *  MultiTermQuery#CONSTANT_SCORE_REWRITE} instead.    *    *<p><b>NOTE</b>: This rewrite method will hit {@link    *  BooleanQuery.TooManyClauses} if the number of terms    *  exceeds {@link BooleanQuery#getMaxClauseCount}.    *    *  @see MultiTermQuery#setRewriteMethod */
+DECL|field|SCORING_BOOLEAN_REWRITE
 specifier|public
 specifier|final
 specifier|static
@@ -228,7 +228,7 @@ name|ScoringRewrite
 argument_list|<
 name|BooleanQuery
 argument_list|>
-name|SCORING_BOOLEAN_QUERY_REWRITE
+name|SCORING_BOOLEAN_REWRITE
 init|=
 operator|new
 name|ScoringRewrite
@@ -336,13 +336,13 @@ throw|;
 block|}
 block|}
 decl_stmt|;
-comment|/** Like {@link #SCORING_BOOLEAN_QUERY_REWRITE} except    *  scores are not computed.  Instead, each matching    *  document receives a constant score equal to the    *  query's boost.    *     *<p><b>NOTE</b>: This rewrite method will hit {@link    *  BooleanQuery.TooManyClauses} if the number of terms    *  exceeds {@link BooleanQuery#getMaxClauseCount}.    *    *  @see MultiTermQuery#setRewriteMethod */
-DECL|field|CONSTANT_SCORE_BOOLEAN_QUERY_REWRITE
+comment|/** Like {@link #SCORING_BOOLEAN_REWRITE} except    *  scores are not computed.  Instead, each matching    *  document receives a constant score equal to the    *  query's boost.    *     *<p><b>NOTE</b>: This rewrite method will hit {@link    *  BooleanQuery.TooManyClauses} if the number of terms    *  exceeds {@link BooleanQuery#getMaxClauseCount}.    *    *  @see MultiTermQuery#setRewriteMethod */
+DECL|field|CONSTANT_SCORE_BOOLEAN_REWRITE
 specifier|public
 specifier|final
 specifier|static
 name|RewriteMethod
-name|CONSTANT_SCORE_BOOLEAN_QUERY_REWRITE
+name|CONSTANT_SCORE_BOOLEAN_REWRITE
 init|=
 operator|new
 name|RewriteMethod
@@ -367,7 +367,7 @@ specifier|final
 name|BooleanQuery
 name|bq
 init|=
-name|SCORING_BOOLEAN_QUERY_REWRITE
+name|SCORING_BOOLEAN_REWRITE
 operator|.
 name|rewrite
 argument_list|(

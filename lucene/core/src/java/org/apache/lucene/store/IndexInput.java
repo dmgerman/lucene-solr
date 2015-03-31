@@ -181,6 +181,43 @@ parameter_list|)
 throws|throws
 name|IOException
 function_decl|;
+comment|/** Subclasses call this to get the String for resourceDescription of a slice of this {@code IndexInput}. */
+DECL|method|getFullSliceDescription
+specifier|protected
+name|String
+name|getFullSliceDescription
+parameter_list|(
+name|String
+name|sliceDescription
+parameter_list|)
+block|{
+if|if
+condition|(
+name|sliceDescription
+operator|==
+literal|null
+condition|)
+block|{
+comment|// Clones pass null sliceDescription:
+return|return
+name|toString
+argument_list|()
+return|;
+block|}
+else|else
+block|{
+return|return
+name|toString
+argument_list|()
+operator|+
+literal|" [slice="
+operator|+
+name|sliceDescription
+operator|+
+literal|"]"
+return|;
+block|}
+block|}
 comment|/**    * Creates a random-access slice of this index input, with the given offset and length.     *<p>    * The default implementation calls {@link #slice}, and it doesn't support random access,    * it implements absolute reads as seek+read.    */
 DECL|method|randomAccessSlice
 specifier|public

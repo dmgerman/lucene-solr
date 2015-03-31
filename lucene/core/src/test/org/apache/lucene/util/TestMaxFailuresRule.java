@@ -70,16 +70,6 @@ name|org
 operator|.
 name|junit
 operator|.
-name|Rule
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|junit
-operator|.
 name|Test
 import|;
 end_import
@@ -250,36 +240,8 @@ name|Consequence
 import|;
 end_import
 
-begin_import
-import|import
-name|com
-operator|.
-name|carrotsearch
-operator|.
-name|randomizedtesting
-operator|.
-name|rules
-operator|.
-name|SystemPropertiesInvariantRule
-import|;
-end_import
-
-begin_import
-import|import
-name|com
-operator|.
-name|carrotsearch
-operator|.
-name|randomizedtesting
-operator|.
-name|rules
-operator|.
-name|SystemPropertiesRestoreRule
-import|;
-end_import
-
 begin_comment
-comment|/**  * @see TestRuleIgnoreAfterMaxFailures  * @see SystemPropertiesInvariantRule  */
+comment|/**  * @see TestRuleIgnoreAfterMaxFailures  */
 end_comment
 
 begin_class
@@ -290,17 +252,6 @@ name|TestMaxFailuresRule
 extends|extends
 name|WithNestedTests
 block|{
-annotation|@
-name|Rule
-DECL|field|restoreSysProps
-specifier|public
-name|SystemPropertiesRestoreRule
-name|restoreSysProps
-init|=
-operator|new
-name|SystemPropertiesRestoreRule
-argument_list|()
-decl_stmt|;
 DECL|method|TestMaxFailuresRule
 specifier|public
 name|TestMaxFailuresRule

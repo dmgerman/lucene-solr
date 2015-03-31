@@ -61,7 +61,7 @@ specifier|final
 name|int
 name|STACKSIZE
 init|=
-literal|40
+literal|49
 decl_stmt|;
 comment|// depends on MINRUN
 DECL|field|MIN_GALLOP

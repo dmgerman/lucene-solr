@@ -1531,30 +1531,6 @@ name|length
 argument_list|)
 decl_stmt|;
 specifier|final
-name|String
-name|newResourceDescription
-init|=
-operator|(
-name|sliceDescription
-operator|==
-literal|null
-operator|)
-condition|?
-name|toString
-argument_list|()
-else|:
-operator|(
-name|toString
-argument_list|()
-operator|+
-literal|" [slice="
-operator|+
-name|sliceDescription
-operator|+
-literal|"]"
-operator|)
-decl_stmt|;
-specifier|final
 name|int
 name|ofs
 init|=
@@ -1573,7 +1549,10 @@ name|clone
 init|=
 name|newCloneInstance
 argument_list|(
-name|newResourceDescription
+name|getFullSliceDescription
+argument_list|(
+name|sliceDescription
+argument_list|)
 argument_list|,
 name|newBuffers
 argument_list|,
@@ -2041,6 +2020,8 @@ expr_stmt|;
 block|}
 block|}
 comment|/**    * Pass in an implementation of this interface to cleanup ByteBuffers.    * MMapDirectory implements this to allow unmapping of bytebuffers with private Java APIs.    */
+annotation|@
+name|FunctionalInterface
 DECL|interface|BufferCleaner
 specifier|static
 interface|interface

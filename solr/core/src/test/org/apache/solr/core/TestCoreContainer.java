@@ -238,6 +238,16 @@ name|java
 operator|.
 name|util
 operator|.
+name|Properties
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
+name|util
+operator|.
 name|jar
 operator|.
 name|JarEntry
@@ -488,7 +498,7 @@ init|=
 operator|new
 name|CoreContainer
 argument_list|(
-name|ConfigSolr
+name|SolrXmlConfig
 operator|.
 name|fromString
 argument_list|(
@@ -1083,7 +1093,7 @@ init|=
 operator|new
 name|CoreContainer
 argument_list|(
-name|ConfigSolr
+name|SolrXmlConfig
 operator|.
 name|fromString
 argument_list|(
@@ -1091,6 +1101,10 @@ name|resourceLoader
 argument_list|,
 name|CONFIGSETS_SOLR_XML
 argument_list|)
+argument_list|,
+operator|new
+name|Properties
+argument_list|()
 argument_list|,
 name|cl
 argument_list|)
@@ -2390,7 +2404,7 @@ init|=
 operator|new
 name|CoreContainer
 argument_list|(
-name|ConfigSolr
+name|SolrXmlConfig
 operator|.
 name|fromString
 argument_list|(
@@ -2398,6 +2412,10 @@ name|resourceLoader
 argument_list|,
 name|CONFIGSETS_SOLR_XML
 argument_list|)
+argument_list|,
+operator|new
+name|Properties
+argument_list|()
 argument_list|,
 name|cl
 argument_list|)

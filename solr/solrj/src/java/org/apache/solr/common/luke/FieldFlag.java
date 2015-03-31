@@ -92,6 +92,14 @@ argument_list|,
 literal|"Store Position With TermVector"
 argument_list|)
 block|,
+DECL|enum constant|TERM_VECTOR_PAYLOADS
+name|TERM_VECTOR_PAYLOADS
+argument_list|(
+literal|'y'
+argument_list|,
+literal|"Store Payloads With TermVector"
+argument_list|)
+block|,
 DECL|enum constant|OMIT_NORMS
 name|OMIT_NORMS
 argument_list|(

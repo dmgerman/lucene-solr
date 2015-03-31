@@ -1572,6 +1572,11 @@ name|req
 operator|.
 name|getRequest
 argument_list|()
+argument_list|,
+operator|(
+name|String
+operator|)
+literal|null
 argument_list|)
 expr_stmt|;
 if|if
@@ -2123,6 +2128,9 @@ parameter_list|(
 specifier|final
 name|SolrRequest
 name|request
+parameter_list|,
+name|String
+name|collection
 parameter_list|)
 throws|throws
 name|SolrServerException
@@ -2245,6 +2253,8 @@ operator|.
 name|request
 argument_list|(
 name|request
+argument_list|,
+name|collection
 argument_list|)
 return|;
 block|}
@@ -2394,6 +2404,8 @@ operator|.
 name|request
 argument_list|(
 name|request
+argument_list|,
+name|collection
 argument_list|)
 decl_stmt|;
 comment|// remove from zombie list *before* adding to alive to avoid a race that could lose a server

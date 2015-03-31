@@ -103,7 +103,7 @@ block|{
 DECL|method|approximation
 specifier|private
 specifier|static
-name|TwoPhaseDocIdSetIterator
+name|TwoPhaseIterator
 name|approximation
 parameter_list|(
 specifier|final
@@ -117,20 +117,11 @@ parameter_list|)
 block|{
 return|return
 operator|new
-name|TwoPhaseDocIdSetIterator
-argument_list|()
-block|{
-annotation|@
-name|Override
-specifier|public
-name|DocIdSetIterator
-name|approximation
-parameter_list|()
-block|{
-return|return
+name|TwoPhaseIterator
+argument_list|(
 name|iterator
-return|;
-block|}
+argument_list|)
+block|{
 annotation|@
 name|Override
 specifier|public
@@ -161,14 +152,14 @@ specifier|static
 name|Scorer
 name|scorer
 parameter_list|(
-name|TwoPhaseDocIdSetIterator
+name|TwoPhaseIterator
 name|twoPhaseIterator
 parameter_list|)
 block|{
 return|return
 name|scorer
 argument_list|(
-name|TwoPhaseDocIdSetIterator
+name|TwoPhaseIterator
 operator|.
 name|asDocIdSetIterator
 argument_list|(
@@ -179,7 +170,7 @@ name|twoPhaseIterator
 argument_list|)
 return|;
 block|}
-comment|/**    * Create a {@link Scorer} that wraps the given {@link DocIdSetIterator}. It    * also accepts a {@link TwoPhaseDocIdSetIterator} view, which is exposed in    * {@link Scorer#asTwoPhaseIterator()}. When the two-phase view is not null,    * then {@link Scorer#nextDoc()} and {@link Scorer#advance(int)} will raise    * an exception in order to make sure that {@link ConjunctionDISI} takes    * advantage of the {@link TwoPhaseDocIdSetIterator} view.    */
+comment|/**    * Create a {@link Scorer} that wraps the given {@link DocIdSetIterator}. It    * also accepts a {@link TwoPhaseIterator} view, which is exposed in    * {@link Scorer#asTwoPhaseIterator()}. When the two-phase view is not null,    * then {@link Scorer#nextDoc()} and {@link Scorer#advance(int)} will raise    * an exception in order to make sure that {@link ConjunctionDISI} takes    * advantage of the {@link TwoPhaseIterator} view.    */
 DECL|method|scorer
 specifier|private
 specifier|static
@@ -189,7 +180,7 @@ parameter_list|(
 name|DocIdSetIterator
 name|it
 parameter_list|,
-name|TwoPhaseDocIdSetIterator
+name|TwoPhaseIterator
 name|twoPhaseIterator
 parameter_list|)
 block|{
@@ -203,7 +194,7 @@ block|{
 annotation|@
 name|Override
 specifier|public
-name|TwoPhaseDocIdSetIterator
+name|TwoPhaseIterator
 name|asTwoPhaseIterator
 parameter_list|()
 block|{
@@ -809,7 +800,7 @@ operator|=
 name|confirmed
 expr_stmt|;
 specifier|final
-name|TwoPhaseDocIdSetIterator
+name|TwoPhaseIterator
 name|approximation
 init|=
 name|approximation
@@ -1041,7 +1032,7 @@ operator|=
 name|confirmed
 expr_stmt|;
 specifier|final
-name|TwoPhaseDocIdSetIterator
+name|TwoPhaseIterator
 name|approximation
 init|=
 name|approximation
@@ -1090,7 +1081,7 @@ name|iterators
 argument_list|)
 argument_list|)
 decl_stmt|;
-name|TwoPhaseDocIdSetIterator
+name|TwoPhaseIterator
 name|twoPhaseIterator
 init|=
 name|conjunction
@@ -1123,7 +1114,7 @@ name|toBitSet
 argument_list|(
 name|maxDoc
 argument_list|,
-name|TwoPhaseDocIdSetIterator
+name|TwoPhaseIterator
 operator|.
 name|asDocIdSetIterator
 argument_list|(
@@ -1298,7 +1289,7 @@ operator|=
 name|confirmed
 expr_stmt|;
 specifier|final
-name|TwoPhaseDocIdSetIterator
+name|TwoPhaseIterator
 name|approximation
 init|=
 name|approximation
@@ -1373,7 +1364,7 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
-name|TwoPhaseDocIdSetIterator
+name|TwoPhaseIterator
 name|twoPhaseIterator
 init|=
 operator|(
@@ -1411,7 +1402,7 @@ name|toBitSet
 argument_list|(
 name|maxDoc
 argument_list|,
-name|TwoPhaseDocIdSetIterator
+name|TwoPhaseIterator
 operator|.
 name|asDocIdSetIterator
 argument_list|(

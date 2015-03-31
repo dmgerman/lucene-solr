@@ -665,7 +665,7 @@ name|state
 operator|.
 name|segmentInfo
 operator|.
-name|getDocCount
+name|maxDoc
 argument_list|()
 operator|>
 literal|1000000

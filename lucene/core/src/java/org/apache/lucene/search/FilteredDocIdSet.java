@@ -122,22 +122,6 @@ return|return
 name|_innerSet
 return|;
 block|}
-comment|/** This DocIdSet implementation is cacheable if the inner set is cacheable. */
-annotation|@
-name|Override
-DECL|method|isCacheable
-specifier|public
-name|boolean
-name|isCacheable
-parameter_list|()
-block|{
-return|return
-name|_innerSet
-operator|.
-name|isCacheable
-argument_list|()
-return|;
-block|}
 annotation|@
 name|Override
 DECL|method|ramBytesUsed

@@ -939,6 +939,11 @@ argument_list|,
 literal|1027
 argument_list|)
 expr_stmt|;
+name|a
+operator|.
+name|close
+argument_list|()
+expr_stmt|;
 block|}
 block|}
 DECL|method|testNGrams

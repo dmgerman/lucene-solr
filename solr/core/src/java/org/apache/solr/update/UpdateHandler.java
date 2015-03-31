@@ -730,6 +730,21 @@ name|ulogPluginInfo
 argument_list|)
 expr_stmt|;
 block|}
+name|log
+operator|.
+name|info
+argument_list|(
+literal|"Using UpdateLog implementation: "
+operator|+
+name|ulog
+operator|.
+name|getClass
+argument_list|()
+operator|.
+name|getName
+argument_list|()
+argument_list|)
+expr_stmt|;
 name|ulog
 operator|.
 name|init

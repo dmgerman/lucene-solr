@@ -2338,6 +2338,14 @@ operator|.
 name|getReader
 argument_list|()
 decl_stmt|;
+name|assertFalse
+argument_list|(
+name|r
+operator|.
+name|hasDeletions
+argument_list|()
+argument_list|)
+expr_stmt|;
 comment|// Confusingly, norms should exist, and should all be 0, even though we deleted all docs that had the field "content".  They should not
 comment|// be undead:
 name|NumericDocValues

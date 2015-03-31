@@ -729,6 +729,11 @@ argument_list|,
 literal|8192
 argument_list|)
 expr_stmt|;
+name|a
+operator|.
+name|close
+argument_list|()
+expr_stmt|;
 block|}
 block|}
 DECL|method|testTokenizerPositions

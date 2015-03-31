@@ -1277,14 +1277,17 @@ name|collection
 argument_list|,
 name|shardId
 argument_list|,
-name|replicaUrl
-argument_list|,
 name|nodeProps
 argument_list|,
+name|leaderCoreNodeName
+argument_list|,
 literal|true
+comment|/* forcePublishState */
+argument_list|,
+literal|true
+comment|/* retryOnConnLoss */
 argument_list|)
 expr_stmt|;
-comment|// force republish state to "down"
 block|}
 block|}
 break|break;

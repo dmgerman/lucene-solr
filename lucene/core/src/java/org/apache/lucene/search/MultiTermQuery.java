@@ -147,7 +147,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * An abstract {@link Query} that matches documents  * containing a subset of terms provided by a {@link  * FilteredTermsEnum} enumeration.  *  *<p>This query cannot be used directly; you must subclass  * it and define {@link #getTermsEnum(Terms,AttributeSource)} to provide a {@link  * FilteredTermsEnum} that iterates through the terms to be  * matched.  *  *<p><b>NOTE</b>: if {@link #setRewriteMethod} is either  * {@link #CONSTANT_SCORE_BOOLEAN_QUERY_REWRITE} or {@link  * #SCORING_BOOLEAN_QUERY_REWRITE}, you may encounter a  * {@link BooleanQuery.TooManyClauses} exception during  * searching, which happens when the number of terms to be  * searched exceeds {@link  * BooleanQuery#getMaxClauseCount()}.  Setting {@link  * #setRewriteMethod} to {@link #CONSTANT_SCORE_FILTER_REWRITE}  * prevents this.  *  *<p>The recommended rewrite method is {@link  * #CONSTANT_SCORE_FILTER_REWRITE}: it doesn't spend CPU  * computing unhelpful scores, and is the most  * performant rewrite method given the query. If you  * need scoring (like {@link FuzzyQuery}, use  * {@link TopTermsScoringBooleanQueryRewrite} which uses  * a priority queue to only collect competitive terms  * and not hit this limitation.  *  * Note that org.apache.lucene.queryparser.classic.QueryParser produces  * MultiTermQueries using {@link #CONSTANT_SCORE_FILTER_REWRITE}  * by default.  */
+comment|/**  * An abstract {@link Query} that matches documents  * containing a subset of terms provided by a {@link  * FilteredTermsEnum} enumeration.  *  *<p>This query cannot be used directly; you must subclass  * it and define {@link #getTermsEnum(Terms,AttributeSource)} to provide a {@link  * FilteredTermsEnum} that iterates through the terms to be  * matched.  *  *<p><b>NOTE</b>: if {@link #setRewriteMethod} is either  * {@link #CONSTANT_SCORE_BOOLEAN_REWRITE} or {@link  * #SCORING_BOOLEAN_REWRITE}, you may encounter a  * {@link BooleanQuery.TooManyClauses} exception during  * searching, which happens when the number of terms to be  * searched exceeds {@link  * BooleanQuery#getMaxClauseCount()}.  Setting {@link  * #setRewriteMethod} to {@link #CONSTANT_SCORE_REWRITE}  * prevents this.  *  *<p>The recommended rewrite method is {@link  * #CONSTANT_SCORE_REWRITE}: it doesn't spend CPU  * computing unhelpful scores, and is the most  * performant rewrite method given the query. If you  * need scoring (like {@link FuzzyQuery}, use  * {@link TopTermsScoringBooleanQueryRewrite} which uses  * a priority queue to only collect competitive terms  * and not hit this limitation.  *  * Note that org.apache.lucene.queryparser.classic.QueryParser produces  * MultiTermQueries using {@link #CONSTANT_SCORE_REWRITE}  * by default.  */
 end_comment
 
 begin_class
@@ -170,7 +170,7 @@ specifier|protected
 name|RewriteMethod
 name|rewriteMethod
 init|=
-name|CONSTANT_SCORE_FILTER_REWRITE
+name|CONSTANT_SCORE_REWRITE
 decl_stmt|;
 comment|/** Abstract class that defines how the query is rewritten. */
 DECL|class|RewriteMethod
@@ -227,12 +227,12 @@ comment|// allow RewriteMethod subclasses to pull a TermsEnum from the MTQ
 block|}
 block|}
 comment|/** A rewrite method that first creates a private Filter,    *  by visiting each term in sequence and marking all docs    *  for that term.  Matching documents are assigned a    *  constant score equal to the query's boost.    *     *<p> This method is faster than the BooleanQuery    *  rewrite methods when the number of matched terms or    *  matched documents is non-trivial. Also, it will never    *  hit an errant {@link BooleanQuery.TooManyClauses}    *  exception.    *    *  @see #setRewriteMethod */
-DECL|field|CONSTANT_SCORE_FILTER_REWRITE
+DECL|field|CONSTANT_SCORE_REWRITE
 specifier|public
 specifier|static
 specifier|final
 name|RewriteMethod
-name|CONSTANT_SCORE_FILTER_REWRITE
+name|CONSTANT_SCORE_REWRITE
 init|=
 operator|new
 name|RewriteMethod
@@ -255,14 +255,10 @@ name|Query
 name|result
 init|=
 operator|new
-name|ConstantScoreQuery
-argument_list|(
-operator|new
-name|MultiTermQueryWrapperFilter
+name|MultiTermQueryConstantScoreWrapper
 argument_list|<>
 argument_list|(
 name|query
-argument_list|)
 argument_list|)
 decl_stmt|;
 name|result
@@ -281,29 +277,29 @@ return|;
 block|}
 block|}
 decl_stmt|;
-comment|/** A rewrite method that first translates each term into    *  {@link BooleanClause.Occur#SHOULD} clause in a    *  BooleanQuery, and keeps the scores as computed by the    *  query.  Note that typically such scores are    *  meaningless to the user, and require non-trivial CPU    *  to compute, so it's almost always better to use {@link    *  #CONSTANT_SCORE_FILTER_REWRITE} instead.    *    *<p><b>NOTE</b>: This rewrite method will hit {@link    *  BooleanQuery.TooManyClauses} if the number of terms    *  exceeds {@link BooleanQuery#getMaxClauseCount}.    *    *  @see #setRewriteMethod */
-DECL|field|SCORING_BOOLEAN_QUERY_REWRITE
+comment|/** A rewrite method that first translates each term into    *  {@link BooleanClause.Occur#SHOULD} clause in a    *  BooleanQuery, and keeps the scores as computed by the    *  query.  Note that typically such scores are    *  meaningless to the user, and require non-trivial CPU    *  to compute, so it's almost always better to use {@link    *  #CONSTANT_SCORE_REWRITE} instead.    *    *<p><b>NOTE</b>: This rewrite method will hit {@link    *  BooleanQuery.TooManyClauses} if the number of terms    *  exceeds {@link BooleanQuery#getMaxClauseCount}.    *    *  @see #setRewriteMethod */
+DECL|field|SCORING_BOOLEAN_REWRITE
 specifier|public
 specifier|final
 specifier|static
 name|RewriteMethod
-name|SCORING_BOOLEAN_QUERY_REWRITE
+name|SCORING_BOOLEAN_REWRITE
 init|=
 name|ScoringRewrite
 operator|.
-name|SCORING_BOOLEAN_QUERY_REWRITE
+name|SCORING_BOOLEAN_REWRITE
 decl_stmt|;
-comment|/** Like {@link #SCORING_BOOLEAN_QUERY_REWRITE} except    *  scores are not computed.  Instead, each matching    *  document receives a constant score equal to the    *  query's boost.    *     *<p><b>NOTE</b>: This rewrite method will hit {@link    *  BooleanQuery.TooManyClauses} if the number of terms    *  exceeds {@link BooleanQuery#getMaxClauseCount}.    *    *  @see #setRewriteMethod */
-DECL|field|CONSTANT_SCORE_BOOLEAN_QUERY_REWRITE
+comment|/** Like {@link #SCORING_BOOLEAN_REWRITE} except    *  scores are not computed.  Instead, each matching    *  document receives a constant score equal to the    *  query's boost.    *     *<p><b>NOTE</b>: This rewrite method will hit {@link    *  BooleanQuery.TooManyClauses} if the number of terms    *  exceeds {@link BooleanQuery#getMaxClauseCount}.    *    *  @see #setRewriteMethod */
+DECL|field|CONSTANT_SCORE_BOOLEAN_REWRITE
 specifier|public
 specifier|final
 specifier|static
 name|RewriteMethod
-name|CONSTANT_SCORE_BOOLEAN_QUERY_REWRITE
+name|CONSTANT_SCORE_BOOLEAN_REWRITE
 init|=
 name|ScoringRewrite
 operator|.
-name|CONSTANT_SCORE_BOOLEAN_QUERY_REWRITE
+name|CONSTANT_SCORE_BOOLEAN_REWRITE
 decl_stmt|;
 comment|/**    * A rewrite method that first translates each term into    * {@link BooleanClause.Occur#SHOULD} clause in a BooleanQuery, and keeps the    * scores as computed by the query.    *     *<p>    * This rewrite method only uses the top scoring terms so it will not overflow    * the boolean max clause count. It is the default rewrite method for    * {@link FuzzyQuery}.    *     * @see #setRewriteMethod    */
 DECL|class|TopTermsScoringBooleanQueryRewrite
@@ -794,22 +790,12 @@ name|obj
 decl_stmt|;
 if|if
 condition|(
-name|Float
+operator|!
+name|super
 operator|.
-name|floatToIntBits
+name|equals
 argument_list|(
-name|getBoost
-argument_list|()
-argument_list|)
-operator|!=
-name|Float
-operator|.
-name|floatToIntBits
-argument_list|(
-name|other
-operator|.
-name|getBoost
-argument_list|()
+name|obj
 argument_list|)
 condition|)
 return|return

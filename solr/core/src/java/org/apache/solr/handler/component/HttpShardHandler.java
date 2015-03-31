@@ -20,6 +20,20 @@ end_comment
 
 begin_import
 import|import
+name|com
+operator|.
+name|google
+operator|.
+name|common
+operator|.
+name|base
+operator|.
+name|Strings
+import|;
+end_import
+
+begin_import
+import|import
 name|org
 operator|.
 name|apache
@@ -776,6 +790,24 @@ operator|=
 name|rsp
 expr_stmt|;
 block|}
+annotation|@
+name|Override
+DECL|method|setElapsedTime
+specifier|public
+name|void
+name|setElapsedTime
+parameter_list|(
+name|long
+name|elapsedTime
+parameter_list|)
+block|{
+name|this
+operator|.
+name|elapsedTime
+operator|=
+name|elapsedTime
+expr_stmt|;
+block|}
 block|}
 comment|// Not thread safe... don't use in Callable.
 comment|// Don't modify the returned URL list.
@@ -1146,6 +1178,24 @@ argument_list|,
 name|shard
 argument_list|)
 decl_stmt|;
+if|if
+condition|(
+name|Strings
+operator|.
+name|isNullOrEmpty
+argument_list|(
+name|shard
+argument_list|)
+condition|)
+name|System
+operator|.
+name|out
+operator|.
+name|println
+argument_list|(
+literal|"Empty shard!"
+argument_list|)
+expr_stmt|;
 name|Callable
 argument_list|<
 name|ShardResponse

@@ -752,6 +752,11 @@ operator|*
 name|RANDOM_MULTIPLIER
 argument_list|)
 expr_stmt|;
+name|a
+operator|.
+name|close
+argument_list|()
+expr_stmt|;
 name|Analyzer
 name|b
 init|=
@@ -813,6 +818,11 @@ literal|1000
 operator|*
 name|RANDOM_MULTIPLIER
 argument_list|)
+expr_stmt|;
+name|b
+operator|.
+name|close
+argument_list|()
 expr_stmt|;
 block|}
 block|}
@@ -918,6 +928,11 @@ literal|""
 argument_list|,
 literal|""
 argument_list|)
+expr_stmt|;
+name|a
+operator|.
+name|close
+argument_list|()
 expr_stmt|;
 block|}
 block|}

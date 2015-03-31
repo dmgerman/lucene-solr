@@ -28,23 +28,7 @@ name|randomizedtesting
 operator|.
 name|annotations
 operator|.
-name|ThreadLeakScope
-import|;
-end_import
-
-begin_import
-import|import
-name|com
-operator|.
-name|carrotsearch
-operator|.
-name|randomizedtesting
-operator|.
-name|annotations
-operator|.
-name|ThreadLeakScope
-operator|.
-name|Scope
+name|ThreadLeakFilters
 import|;
 end_import
 
@@ -212,7 +196,7 @@ name|solr
 operator|.
 name|cloud
 operator|.
-name|StopableIndexingThread
+name|StoppableIndexingThread
 import|;
 end_import
 
@@ -346,6 +330,20 @@ name|solr
 operator|.
 name|util
 operator|.
+name|BadHdfsThreadsFilter
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|solr
+operator|.
+name|util
+operator|.
 name|RefCounted
 import|;
 end_import
@@ -426,13 +424,21 @@ name|Slow
 annotation|@
 name|Nightly
 annotation|@
-name|ThreadLeakScope
+name|ThreadLeakFilters
 argument_list|(
-name|Scope
+name|defaultFilters
+operator|=
+literal|true
+argument_list|,
+name|filters
+operator|=
+block|{
+name|BadHdfsThreadsFilter
 operator|.
-name|NONE
+name|class
+comment|// hdfs currently leaks thread(s)
+block|}
 argument_list|)
-comment|// hdfs client currently leaks thread(s)
 DECL|class|HdfsWriteToMultipleCollectionsTest
 specifier|public
 class|class
@@ -708,7 +714,7 @@ argument_list|()
 decl_stmt|;
 name|List
 argument_list|<
-name|StopableIndexingThread
+name|StoppableIndexingThread
 argument_list|>
 name|threads
 init|=
@@ -760,11 +766,11 @@ argument_list|(
 name|client
 argument_list|)
 expr_stmt|;
-name|StopableIndexingThread
+name|StoppableIndexingThread
 name|indexThread
 init|=
 operator|new
-name|StopableIndexingThread
+name|StoppableIndexingThread
 argument_list|(
 literal|null
 argument_list|,
@@ -775,6 +781,10 @@ argument_list|,
 literal|true
 argument_list|,
 name|docCount
+argument_list|,
+literal|1
+argument_list|,
+literal|true
 argument_list|)
 decl_stmt|;
 name|threads
@@ -797,7 +807,7 @@ literal|0
 decl_stmt|;
 for|for
 control|(
-name|StopableIndexingThread
+name|StoppableIndexingThread
 name|thread
 range|:
 name|threads

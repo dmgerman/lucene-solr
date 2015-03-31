@@ -223,11 +223,11 @@ block|}
 control|)
 block|{
 specifier|final
-name|FilterCachingPolicy
+name|QueryCachingPolicy
 name|policy
 init|=
 operator|new
-name|FilterCachingPolicy
+name|QueryCachingPolicy
 operator|.
 name|CacheOnLargeSegments
 argument_list|(
@@ -282,8 +282,6 @@ argument_list|(
 name|filter
 argument_list|,
 name|ctx
-argument_list|,
-name|set
 argument_list|)
 decl_stmt|;
 specifier|final

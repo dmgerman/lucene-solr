@@ -1162,7 +1162,7 @@ name|docCount
 argument_list|>
 name|info
 operator|.
-name|getDocCount
+name|maxDoc
 argument_list|()
 condition|)
 block|{
@@ -1180,7 +1180,7 @@ literal|" maxDoc: "
 operator|+
 name|info
 operator|.
-name|getDocCount
+name|maxDoc
 argument_list|()
 operator|+
 literal|" (blockIn="

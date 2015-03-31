@@ -180,12 +180,12 @@ argument_list|)
 decl_stmt|;
 DECL|field|indexThread
 specifier|private
-name|StopableIndexingThread
+name|StoppableIndexingThread
 name|indexThread
 decl_stmt|;
 DECL|field|indexThread2
 specifier|private
-name|StopableIndexingThread
+name|StoppableIndexingThread
 name|indexThread2
 decl_stmt|;
 DECL|method|RecoveryZkTest
@@ -392,7 +392,7 @@ block|}
 name|indexThread
 operator|=
 operator|new
-name|StopableIndexingThread
+name|StoppableIndexingThread
 argument_list|(
 name|controlClient
 argument_list|,
@@ -403,6 +403,10 @@ argument_list|,
 literal|true
 argument_list|,
 name|maxDoc
+argument_list|,
+literal|1
+argument_list|,
+literal|true
 argument_list|)
 expr_stmt|;
 name|indexThread
@@ -413,7 +417,7 @@ expr_stmt|;
 name|indexThread2
 operator|=
 operator|new
-name|StopableIndexingThread
+name|StoppableIndexingThread
 argument_list|(
 name|controlClient
 argument_list|,
@@ -424,6 +428,10 @@ argument_list|,
 literal|true
 argument_list|,
 name|maxDoc
+argument_list|,
+literal|1
+argument_list|,
+literal|true
 argument_list|)
 expr_stmt|;
 name|indexThread2

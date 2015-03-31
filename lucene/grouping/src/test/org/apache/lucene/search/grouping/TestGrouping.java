@@ -452,7 +452,7 @@ name|lucene
 operator|.
 name|search
 operator|.
-name|CachingWrapperFilter
+name|CachingWrapperQuery
 import|;
 end_import
 
@@ -6240,9 +6240,6 @@ name|Filter
 name|lastDocInBlock
 init|=
 operator|new
-name|CachingWrapperFilter
-argument_list|(
-operator|new
 name|QueryWrapperFilter
 argument_list|(
 operator|new
@@ -6254,7 +6251,6 @@ argument_list|(
 literal|"groupend"
 argument_list|,
 literal|"x"
-argument_list|)
 argument_list|)
 argument_list|)
 argument_list|)

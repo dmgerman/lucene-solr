@@ -97,7 +97,7 @@ name|Object
 name|that
 parameter_list|)
 block|{
-comment|// Query's default impl only compares boots but they do not matter in the
+comment|// Query's default impl only compares boost but they do not matter in the
 comment|// case of filters since it does not influence scores
 return|return
 name|this

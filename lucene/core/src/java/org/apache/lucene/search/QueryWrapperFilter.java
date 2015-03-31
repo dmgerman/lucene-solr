@@ -18,6 +18,16 @@ end_comment
 
 begin_import
 import|import
+name|java
+operator|.
+name|io
+operator|.
+name|IOException
+import|;
+end_import
+
+begin_import
+import|import
 name|org
 operator|.
 name|apache
@@ -26,7 +36,7 @@ name|lucene
 operator|.
 name|index
 operator|.
-name|PostingsEnum
+name|IndexReader
 import|;
 end_import
 
@@ -55,16 +65,6 @@ operator|.
 name|util
 operator|.
 name|Bits
-import|;
-end_import
-
-begin_import
-import|import
-name|java
-operator|.
-name|io
-operator|.
-name|IOException
 import|;
 end_import
 
@@ -114,6 +114,39 @@ name|query
 operator|=
 name|query
 expr_stmt|;
+block|}
+annotation|@
+name|Override
+DECL|method|rewrite
+specifier|public
+name|Query
+name|rewrite
+parameter_list|(
+name|IndexReader
+name|reader
+parameter_list|)
+throws|throws
+name|IOException
+block|{
+name|ConstantScoreQuery
+name|rewritten
+init|=
+operator|new
+name|ConstantScoreQuery
+argument_list|(
+name|query
+argument_list|)
+decl_stmt|;
+name|rewritten
+operator|.
+name|setBoost
+argument_list|(
+literal|0
+argument_list|)
+expr_stmt|;
+return|return
+name|rewritten
+return|;
 block|}
 comment|/** returns the inner Query */
 DECL|method|getQuery

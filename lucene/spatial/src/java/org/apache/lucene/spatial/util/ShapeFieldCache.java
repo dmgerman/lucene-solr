@@ -69,6 +69,7 @@ parameter_list|>
 block|{
 DECL|field|cache
 specifier|private
+specifier|final
 name|List
 argument_list|<
 name|T
@@ -78,6 +79,7 @@ name|cache
 decl_stmt|;
 DECL|field|defaultLength
 specifier|public
+specifier|final
 name|int
 name|defaultLength
 decl_stmt|;
@@ -86,6 +88,8 @@ name|SuppressWarnings
 argument_list|(
 block|{
 literal|"unchecked"
+block|,
+literal|"rawtypes"
 block|}
 argument_list|)
 DECL|method|ShapeFieldCache

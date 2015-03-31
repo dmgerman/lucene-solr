@@ -183,6 +183,26 @@ argument_list|<>
 argument_list|()
 expr_stmt|;
 block|}
+DECL|method|NamedList
+specifier|public
+name|NamedList
+parameter_list|(
+name|int
+name|sz
+parameter_list|)
+block|{
+name|nvPairs
+operator|=
+operator|new
+name|ArrayList
+argument_list|<>
+argument_list|(
+name|sz
+operator|<<
+literal|1
+argument_list|)
+expr_stmt|;
+block|}
 comment|/**    * Creates a NamedList instance containing the "name,value" pairs contained in the    * Entry[].    *    *<p>    * Modifying the contents of the Entry[] after calling this constructor may change    * the NamedList (in future versions of Solr), but this is not guaranteed and should    * not be relied upon.  To modify the NamedList, refer to {@link #add(String, Object)}    * or {@link #remove(String)}.    *</p>    *    * @param nameValuePairs the name value pairs    */
 DECL|method|NamedList
 specifier|public

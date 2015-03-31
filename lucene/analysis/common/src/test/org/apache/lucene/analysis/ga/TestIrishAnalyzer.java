@@ -90,6 +90,9 @@ block|{
 operator|new
 name|IrishAnalyzer
 argument_list|()
+operator|.
+name|close
+argument_list|()
 expr_stmt|;
 block|}
 comment|/** test stopwords and stemming */
@@ -140,6 +143,11 @@ index|[]
 block|{ }
 argument_list|)
 expr_stmt|;
+name|a
+operator|.
+name|close
+argument_list|()
+expr_stmt|;
 block|}
 comment|/** test use of elisionfilter */
 DECL|method|testContractions
@@ -172,6 +180,11 @@ block|,
 literal|"athair"
 block|}
 argument_list|)
+expr_stmt|;
+name|a
+operator|.
+name|close
+argument_list|()
 expr_stmt|;
 block|}
 comment|/** test use of exclusion set */
@@ -229,6 +242,11 @@ argument_list|,
 literal|"siopadÃ³ir"
 argument_list|)
 expr_stmt|;
+name|a
+operator|.
+name|close
+argument_list|()
+expr_stmt|;
 block|}
 comment|/** test special hyphen handling */
 DECL|method|testHyphens
@@ -267,6 +285,11 @@ literal|2
 block|}
 argument_list|)
 expr_stmt|;
+name|a
+operator|.
+name|close
+argument_list|()
+expr_stmt|;
 block|}
 comment|/** blast some random strings through the analyzer */
 DECL|method|testRandomStrings
@@ -277,19 +300,29 @@ parameter_list|()
 throws|throws
 name|Exception
 block|{
+name|Analyzer
+name|a
+init|=
+operator|new
+name|IrishAnalyzer
+argument_list|()
+decl_stmt|;
 name|checkRandomData
 argument_list|(
 name|random
 argument_list|()
 argument_list|,
-operator|new
-name|IrishAnalyzer
-argument_list|()
+name|a
 argument_list|,
 literal|1000
 operator|*
 name|RANDOM_MULTIPLIER
 argument_list|)
+expr_stmt|;
+name|a
+operator|.
+name|close
+argument_list|()
 expr_stmt|;
 block|}
 block|}

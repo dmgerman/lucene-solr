@@ -134,27 +134,27 @@ name|x
 init|=
 literal|"{\n"
 operator|+
-literal|" \"add-field\" : {\n"
+literal|" 'add-field' : {\n"
 operator|+
-literal|"              \"name\":\"a\",\n"
+literal|"              'name':'a',\n"
 operator|+
-literal|"              \"type\": \"string\",\n"
+literal|"              'type': 'string',\n"
 operator|+
-literal|"              \"stored\":true,\n"
+literal|"              'stored':true,\n"
 operator|+
-literal|"              \"indexed\":false\n"
+literal|"              'indexed':false\n"
 operator|+
 literal|"              },\n"
 operator|+
-literal|" \"add-field\" : {\n"
+literal|" 'add-field' : {\n"
 operator|+
-literal|"              \"name\":\"b\",\n"
+literal|"              'name':'b',\n"
 operator|+
-literal|"              \"type\": \"string\",\n"
+literal|"              'type': 'string',\n"
 operator|+
-literal|"              \"stored\":true,\n"
+literal|"              'stored':true,\n"
 operator|+
-literal|"              \"indexed\":false\n"
+literal|"              'indexed':false\n"
 operator|+
 literal|"              }\n"
 operator|+
@@ -175,7 +175,10 @@ argument_list|(
 operator|new
 name|StringReader
 argument_list|(
+name|json
+argument_list|(
 name|x
+argument_list|)
 argument_list|)
 argument_list|)
 decl_stmt|;
@@ -204,31 +207,31 @@ argument_list|)
 expr_stmt|;
 name|x
 operator|=
-literal|" {\"add-field\" : [{\n"
+literal|" {'add-field' : [{\n"
 operator|+
-literal|"                                 \"name\":\"a1\",\n"
+literal|"                       'name':'a1',\n"
 operator|+
-literal|"                                 \"type\": \"string\",\n"
+literal|"                       'type': 'string',\n"
 operator|+
-literal|"                                 \"stored\":true,\n"
+literal|"                       'stored':true,\n"
 operator|+
-literal|"                                 \"indexed\":false\n"
+literal|"                       'indexed':false\n"
 operator|+
-literal|"                                 },\n"
+literal|"                      },\n"
 operator|+
-literal|"                            {\n"
+literal|"                      {\n"
 operator|+
-literal|"                            \"name\":\"a2\",\n"
+literal|"                       'name':'a2',\n"
 operator|+
-literal|"                             \"type\": \"string\",\n"
+literal|"                       'type': 'string',\n"
 operator|+
-literal|"                             \"stored\":true,\n"
+literal|"                       'stored':true,\n"
 operator|+
-literal|"                             \"indexed\":true\n"
+literal|"                       'indexed':true\n"
 operator|+
-literal|"                             }]\n"
+literal|"                      }]\n"
 operator|+
-literal|"           }"
+literal|"      }"
 expr_stmt|;
 name|ops
 operator|=
@@ -239,7 +242,10 @@ argument_list|(
 operator|new
 name|StringReader
 argument_list|(
+name|json
+argument_list|(
 name|x
+argument_list|)
 argument_list|)
 argument_list|)
 expr_stmt|;

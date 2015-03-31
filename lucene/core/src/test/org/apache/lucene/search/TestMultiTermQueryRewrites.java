@@ -935,14 +935,14 @@ name|checkDuplicateTerms
 argument_list|(
 name|MultiTermQuery
 operator|.
-name|SCORING_BOOLEAN_QUERY_REWRITE
+name|SCORING_BOOLEAN_REWRITE
 argument_list|)
 expr_stmt|;
 name|checkDuplicateTerms
 argument_list|(
 name|MultiTermQuery
 operator|.
-name|CONSTANT_SCORE_BOOLEAN_QUERY_REWRITE
+name|CONSTANT_SCORE_BOOLEAN_REWRITE
 argument_list|)
 expr_stmt|;
 comment|// use a large PQ here to only test duplicate terms and dont mix up when all scores are equal
@@ -1302,7 +1302,7 @@ name|checkBoosts
 argument_list|(
 name|MultiTermQuery
 operator|.
-name|SCORING_BOOLEAN_QUERY_REWRITE
+name|SCORING_BOOLEAN_REWRITE
 argument_list|)
 expr_stmt|;
 comment|// use a large PQ here to only test boosts and dont mix up when all scores are equal
@@ -1513,21 +1513,21 @@ name|checkMaxClauseLimitation
 argument_list|(
 name|MultiTermQuery
 operator|.
-name|SCORING_BOOLEAN_QUERY_REWRITE
+name|SCORING_BOOLEAN_REWRITE
 argument_list|)
 expr_stmt|;
 name|checkMaxClauseLimitation
 argument_list|(
 name|MultiTermQuery
 operator|.
-name|CONSTANT_SCORE_BOOLEAN_QUERY_REWRITE
+name|CONSTANT_SCORE_BOOLEAN_REWRITE
 argument_list|)
 expr_stmt|;
 name|checkNoMaxClauseLimitation
 argument_list|(
 name|MultiTermQuery
 operator|.
-name|CONSTANT_SCORE_FILTER_REWRITE
+name|CONSTANT_SCORE_REWRITE
 argument_list|)
 expr_stmt|;
 name|checkNoMaxClauseLimitation

@@ -478,6 +478,23 @@ name|ActionThrottle
 name|getLeaderThrottle
 parameter_list|()
 function_decl|;
+DECL|method|getLastReplicateIndexSuccess
+specifier|public
+specifier|abstract
+name|boolean
+name|getLastReplicateIndexSuccess
+parameter_list|()
+function_decl|;
+DECL|method|setLastReplicateIndexSuccess
+specifier|public
+specifier|abstract
+name|void
+name|setLastReplicateIndexSuccess
+parameter_list|(
+name|boolean
+name|success
+parameter_list|)
+function_decl|;
 block|}
 end_class
 

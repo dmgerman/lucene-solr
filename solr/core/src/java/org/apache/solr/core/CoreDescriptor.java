@@ -971,6 +971,17 @@ operator|=
 literal|null
 expr_stmt|;
 block|}
+name|SolrCore
+operator|.
+name|log
+operator|.
+name|info
+argument_list|(
+literal|"CORE DESCRIPTOR: "
+operator|+
+name|coreProperties
+argument_list|)
+expr_stmt|;
 block|}
 comment|/**    * Load properties specified in an external properties file.    *    * The file to load can be specified in a {@code properties} property on    * the original Properties object used to create this CoreDescriptor.  If    * this has not been set, then we look for {@code conf/solrcore.properties}    * underneath the instance dir.    *    * File paths are taken as read from the core's instance directory    * if they are not absolute.    */
 DECL|method|loadExtraProperties

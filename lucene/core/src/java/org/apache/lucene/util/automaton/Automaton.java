@@ -1563,6 +1563,11 @@ name|int
 name|state
 parameter_list|)
 block|{
+assert|assert
+name|state
+operator|>=
+literal|0
+assert|;
 name|int
 name|count
 init|=

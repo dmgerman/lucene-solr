@@ -588,6 +588,11 @@ operator|*
 name|RANDOM_MULTIPLIER
 argument_list|)
 expr_stmt|;
+name|analyzer
+operator|.
+name|close
+argument_list|()
+expr_stmt|;
 block|}
 DECL|method|testEmptyTerm
 specifier|public
@@ -647,6 +652,11 @@ literal|""
 argument_list|,
 literal|""
 argument_list|)
+expr_stmt|;
+name|a
+operator|.
+name|close
+argument_list|()
 expr_stmt|;
 block|}
 DECL|method|testIgnoreCaseNoSideEffects
@@ -768,6 +778,11 @@ literal|"NoChAnGy"
 argument_list|,
 literal|"NoChAnGy"
 argument_list|)
+expr_stmt|;
+name|a
+operator|.
+name|close
+argument_list|()
 expr_stmt|;
 block|}
 block|}

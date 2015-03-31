@@ -202,7 +202,7 @@ name|solr
 operator|.
 name|core
 operator|.
-name|ConfigSolr
+name|CloudConfig
 import|;
 end_import
 
@@ -502,7 +502,7 @@ DECL|method|OverseerAutoReplicaFailoverThread
 specifier|public
 name|OverseerAutoReplicaFailoverThread
 parameter_list|(
-name|ConfigSolr
+name|CloudConfig
 name|config
 parameter_list|,
 name|ZkStateReader
@@ -764,12 +764,22 @@ condition|)
 block|{
 if|if
 condition|(
-name|lastClusterStateVersion
-operator|==
 name|clusterState
 operator|.
 name|getZkClusterStateVersion
 argument_list|()
+operator|!=
+literal|null
+operator|&&
+name|clusterState
+operator|.
+name|getZkClusterStateVersion
+argument_list|()
+operator|.
+name|equals
+argument_list|(
+name|lastClusterStateVersion
+argument_list|)
 operator|&&
 name|baseUrlForBadNodes
 operator|.

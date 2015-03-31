@@ -308,7 +308,6 @@ name|softCommit
 decl_stmt|;
 DECL|field|openSearcher
 specifier|private
-specifier|final
 name|boolean
 name|openSearcher
 decl_stmt|;
@@ -990,6 +989,23 @@ operator|.
 name|timeUpperBound
 operator|=
 name|timeUpperBound
+expr_stmt|;
+block|}
+comment|// only for testing - not thread safe
+DECL|method|setOpenSearcher
+specifier|public
+name|void
+name|setOpenSearcher
+parameter_list|(
+name|boolean
+name|openSearcher
+parameter_list|)
+block|{
+name|this
+operator|.
+name|openSearcher
+operator|=
+name|openSearcher
 expr_stmt|;
 block|}
 block|}

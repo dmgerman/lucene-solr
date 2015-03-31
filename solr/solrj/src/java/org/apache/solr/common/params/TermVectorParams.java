@@ -61,6 +61,18 @@ name|TV_PREFIX
 operator|+
 literal|"positions"
 decl_stmt|;
+comment|/**   * Return Term Vector payloads information   *   * */
+DECL|field|PAYLOADS
+specifier|public
+specifier|static
+specifier|final
+name|String
+name|PAYLOADS
+init|=
+name|TV_PREFIX
+operator|+
+literal|"payloads"
+decl_stmt|;
 comment|/**   * Return offset information, if available   * */
 DECL|field|OFFSETS
 specifier|public

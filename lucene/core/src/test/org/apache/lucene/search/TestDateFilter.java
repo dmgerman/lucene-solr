@@ -273,10 +273,13 @@ argument_list|)
 decl_stmt|;
 comment|// filter that should preserve matches
 comment|// DateFilter df1 = DateFilter.Before("datefield", now);
-name|TermRangeFilter
+name|Filter
 name|df1
 init|=
-name|TermRangeFilter
+operator|new
+name|QueryWrapperFilter
+argument_list|(
+name|TermRangeQuery
 operator|.
 name|newStringRange
 argument_list|(
@@ -314,13 +317,17 @@ literal|false
 argument_list|,
 literal|true
 argument_list|)
+argument_list|)
 decl_stmt|;
 comment|// filter that should discard matches
 comment|// DateFilter df2 = DateFilter.Before("datefield", now - 999999);
-name|TermRangeFilter
+name|Filter
 name|df2
 init|=
-name|TermRangeFilter
+operator|new
+name|QueryWrapperFilter
+argument_list|(
+name|TermRangeQuery
 operator|.
 name|newStringRange
 argument_list|(
@@ -357,6 +364,7 @@ argument_list|,
 literal|true
 argument_list|,
 literal|false
+argument_list|)
 argument_list|)
 decl_stmt|;
 comment|// search something that doesn't exist with DateFilter
@@ -687,10 +695,13 @@ argument_list|)
 decl_stmt|;
 comment|// filter that should preserve matches
 comment|// DateFilter df1 = DateFilter.After("datefield", now);
-name|TermRangeFilter
+name|Filter
 name|df1
 init|=
-name|TermRangeFilter
+operator|new
+name|QueryWrapperFilter
+argument_list|(
+name|TermRangeQuery
 operator|.
 name|newStringRange
 argument_list|(
@@ -728,13 +739,17 @@ literal|true
 argument_list|,
 literal|false
 argument_list|)
+argument_list|)
 decl_stmt|;
 comment|// filter that should discard matches
 comment|// DateFilter df2 = DateFilter.After("datefield", now + 999999);
-name|TermRangeFilter
+name|Filter
 name|df2
 init|=
-name|TermRangeFilter
+operator|new
+name|QueryWrapperFilter
+argument_list|(
+name|TermRangeQuery
 operator|.
 name|newStringRange
 argument_list|(
@@ -773,6 +788,7 @@ argument_list|,
 literal|false
 argument_list|,
 literal|true
+argument_list|)
 argument_list|)
 decl_stmt|;
 comment|// search something that doesn't exist with DateFilter

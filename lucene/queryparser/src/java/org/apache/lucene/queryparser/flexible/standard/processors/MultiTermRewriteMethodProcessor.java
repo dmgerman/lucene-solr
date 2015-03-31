@@ -169,7 +169,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * This processor instates the default  * {@link org.apache.lucene.search.MultiTermQuery.RewriteMethod},  * {@link MultiTermQuery#CONSTANT_SCORE_FILTER_REWRITE}, for multi-term  * query nodes.  */
+comment|/**  * This processor instates the default  * {@link org.apache.lucene.search.MultiTermQuery.RewriteMethod},  * {@link MultiTermQuery#CONSTANT_SCORE_REWRITE}, for multi-term  * query nodes.  */
 end_comment
 
 begin_class

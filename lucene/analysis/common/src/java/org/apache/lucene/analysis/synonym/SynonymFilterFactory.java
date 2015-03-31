@@ -713,6 +713,12 @@ block|}
 expr_stmt|;
 block|}
 try|try
+init|(
+name|Analyzer
+name|a
+init|=
+name|analyzer
+init|)
 block|{
 name|String
 name|formatClass
@@ -775,7 +781,7 @@ name|formatClass
 argument_list|,
 literal|true
 argument_list|,
-name|analyzer
+name|a
 argument_list|)
 expr_stmt|;
 block|}

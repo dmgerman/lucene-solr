@@ -73,11 +73,18 @@ block|{
 DECL|field|FIELD_NAME
 specifier|private
 specifier|final
-specifier|static
 name|String
 name|FIELD_NAME
 init|=
+name|random
+argument_list|()
+operator|.
+name|nextBoolean
+argument_list|()
+condition|?
 literal|"severity"
+else|:
+literal|"severity_dv"
 decl_stmt|;
 annotation|@
 name|BeforeClass
@@ -984,7 +991,11 @@ argument_list|,
 literal|"*:*"
 argument_list|)
 argument_list|,
-literal|"//doc[1]/str[@name='severity']/text()='Low'"
+literal|"//doc[1]/str[@name='"
+operator|+
+name|FIELD_NAME
+operator|+
+literal|"']/text()='Low'"
 argument_list|)
 expr_stmt|;
 block|}
@@ -1127,15 +1138,35 @@ operator|+
 literal|" desc"
 argument_list|)
 argument_list|,
-literal|"//doc[1]/str[@name='severity']/text()='Critical'"
+literal|"//doc[1]/str[@name='"
+operator|+
+name|FIELD_NAME
+operator|+
+literal|"']/text()='Critical'"
 argument_list|,
-literal|"//doc[2]/str[@name='severity']/text()='High'"
+literal|"//doc[2]/str[@name='"
+operator|+
+name|FIELD_NAME
+operator|+
+literal|"']/text()='High'"
 argument_list|,
-literal|"//doc[3]/str[@name='severity']/text()='Medium'"
+literal|"//doc[3]/str[@name='"
+operator|+
+name|FIELD_NAME
+operator|+
+literal|"']/text()='Medium'"
 argument_list|,
-literal|"//doc[4]/str[@name='severity']/text()='Low'"
+literal|"//doc[4]/str[@name='"
+operator|+
+name|FIELD_NAME
+operator|+
+literal|"']/text()='Low'"
 argument_list|,
-literal|"//doc[5]/str[@name='severity']/text()='Not Available'"
+literal|"//doc[5]/str[@name='"
+operator|+
+name|FIELD_NAME
+operator|+
+literal|"']/text()='Not Available'"
 argument_list|)
 expr_stmt|;
 comment|//sort ascending - empty values will be first
@@ -1160,7 +1191,11 @@ operator|+
 literal|" asc"
 argument_list|)
 argument_list|,
-literal|"//doc[3]/str[@name='severity']/text()='Not Available'"
+literal|"//doc[3]/str[@name='"
+operator|+
+name|FIELD_NAME
+operator|+
+literal|"']/text()='Not Available'"
 argument_list|)
 expr_stmt|;
 comment|//q for not empty docs
@@ -1187,15 +1222,35 @@ operator|+
 literal|" asc"
 argument_list|)
 argument_list|,
-literal|"//doc[1]/str[@name='severity']/text()='Not Available'"
+literal|"//doc[1]/str[@name='"
+operator|+
+name|FIELD_NAME
+operator|+
+literal|"']/text()='Not Available'"
 argument_list|,
-literal|"//doc[2]/str[@name='severity']/text()='Low'"
+literal|"//doc[2]/str[@name='"
+operator|+
+name|FIELD_NAME
+operator|+
+literal|"']/text()='Low'"
 argument_list|,
-literal|"//doc[3]/str[@name='severity']/text()='Medium'"
+literal|"//doc[3]/str[@name='"
+operator|+
+name|FIELD_NAME
+operator|+
+literal|"']/text()='Medium'"
 argument_list|,
-literal|"//doc[4]/str[@name='severity']/text()='High'"
+literal|"//doc[4]/str[@name='"
+operator|+
+name|FIELD_NAME
+operator|+
+literal|"']/text()='High'"
 argument_list|,
-literal|"//doc[5]/str[@name='severity']/text()='Critical'"
+literal|"//doc[5]/str[@name='"
+operator|+
+name|FIELD_NAME
+operator|+
+literal|"']/text()='Critical'"
 argument_list|)
 expr_stmt|;
 block|}

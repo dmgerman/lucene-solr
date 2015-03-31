@@ -56,6 +56,20 @@ name|super
 argument_list|()
 expr_stmt|;
 block|}
+DECL|method|SimpleOrderedMap
+specifier|public
+name|SimpleOrderedMap
+parameter_list|(
+name|int
+name|sz
+parameter_list|)
+block|{
+name|super
+argument_list|(
+name|sz
+argument_list|)
+expr_stmt|;
+block|}
 comment|/**    * Creates an instance backed by an explicitly specified list of    * pairwise names/values.    *    * @param nameValuePairs underlying List which should be used to implement a SimpleOrderedMap; modifying this List will affect the SimpleOrderedMap.    */
 annotation|@
 name|Deprecated

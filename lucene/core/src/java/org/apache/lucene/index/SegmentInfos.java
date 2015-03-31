@@ -317,7 +317,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * A collection of segmentInfo objects with methods for operating on those  * segments in relation to the file system.  *<p>  * The active segments in the index are stored in the segment info file,  *<tt>segments_N</tt>. There may be one or more<tt>segments_N</tt> files in  * the index; however, the one with the largest generation is the active one  * (when older segments_N files are present it's because they temporarily cannot  * be deleted, or a custom {@link IndexDeletionPolicy} is in  * use). This file lists each segment by name and has details about the codec  * and generation of deletes.  *</p>  *<p>  * Files:  *<ul>  *<li><tt>segments_N</tt>: Header, Version, NameCounter, SegCount,&lt;SegName,  * HasSegID, SegID, SegCodec, DelGen, DeletionCount, FieldInfosGen, DocValuesGen,  * UpdatesFiles&gt;<sup>SegCount</sup>, CommitUserData, Footer  *</ul>  * Data types:  *<ul>  *<li>Header --&gt; {@link CodecUtil#writeIndexHeader IndexHeader}</li>  *<li>NameCounter, SegCount, DeletionCount --&gt;  * {@link DataOutput#writeInt Int32}</li>  *<li>Generation, Version, DelGen, Checksum, FieldInfosGen, DocValuesGen --&gt;  * {@link DataOutput#writeLong Int64}</li>  *<li>HasSegID --&gt; {@link DataOutput#writeByte Int8}</li>  *<li>SegID --&gt; {@link DataOutput#writeByte Int8<sup>ID_LENGTH</sup>}</li>  *<li>SegName, SegCodec --&gt; {@link DataOutput#writeString String}</li>  *<li>CommitUserData --&gt; {@link DataOutput#writeStringStringMap  * Map&lt;String,String&gt;}</li>  *<li>UpdatesFiles --&gt; Map&lt;{@link DataOutput#writeInt Int32},  * {@link DataOutput#writeStringSet(Set) Set&lt;String&gt;}&gt;</li>  *<li>Footer --&gt; {@link CodecUtil#writeFooter CodecFooter}</li>  *</ul>  * Field Descriptions:  *<ul>  *<li>Version counts how often the index has been changed by adding or deleting  * documents.</li>  *<li>NameCounter is used to generate names for new segment files.</li>  *<li>SegName is the name of the segment, and is used as the file name prefix  * for all of the files that compose the segment's index.</li>  *<li>DelGen is the generation count of the deletes file. If this is -1, there  * are no deletes. Anything above zero means there are deletes stored by  * {@link LiveDocsFormat}.</li>  *<li>DeletionCount records the number of deleted documents in this segment.</li>  *<li>SegCodec is the {@link Codec#getName() name} of the Codec that encoded  * this segment.</li>  *<li>HasSegID is nonzero if the segment has an identifier. Otherwise, when it is 0  * the identifier is {@code null} and no SegID is written. Null only happens for Lucene  * 4.x segments referenced in commits.</li>  *<li>SegID is the identifier of the Codec that encoded this segment.</li>  *<li>CommitUserData stores an optional user-supplied opaque  * Map&lt;String,String&gt; that was passed to  * {@link IndexWriter#setCommitData(java.util.Map)}.</li>  *<li>FieldInfosGen is the generation count of the fieldInfos file. If this is  * -1, there are no updates to the fieldInfos in that segment. Anything above  * zero means there are updates to fieldInfos stored by {@link FieldInfosFormat}  * .</li>  *<li>DocValuesGen is the generation count of the updatable DocValues. If this  * is -1, there are no updates to DocValues in that segment. Anything above zero  * means there are updates to DocValues stored by {@link DocValuesFormat}.</li>  *<li>UpdatesFiles stores the set of files that were updated in that segment  * per field.</li>  *</ul>  *   * @lucene.experimental  */
+comment|/**  * A collection of segmentInfo objects with methods for operating on those  * segments in relation to the file system.  *<p>  * The active segments in the index are stored in the segment info file,  *<tt>segments_N</tt>. There may be one or more<tt>segments_N</tt> files in  * the index; however, the one with the largest generation is the active one  * (when older segments_N files are present it's because they temporarily cannot  * be deleted, or a custom {@link IndexDeletionPolicy} is in  * use). This file lists each segment by name and has details about the codec  * and generation of deletes.  *</p>  *<p>  * Files:  *<ul>  *<li><tt>segments_N</tt>: Header, Version, NameCounter, SegCount,&lt;SegName,  * HasSegID, SegID, SegCodec, DelGen, DeletionCount, FieldInfosGen, DocValuesGen,  * UpdatesFiles&gt;<sup>SegCount</sup>, CommitUserData, Footer  *</ul>  * Data types:  *<ul>  *<li>Header --&gt; {@link CodecUtil#writeIndexHeader IndexHeader}</li>  *<li>NameCounter, SegCount, DeletionCount --&gt;  * {@link DataOutput#writeInt Int32}</li>  *<li>Generation, Version, DelGen, Checksum, FieldInfosGen, DocValuesGen --&gt;  * {@link DataOutput#writeLong Int64}</li>  *<li>HasSegID --&gt; {@link DataOutput#writeByte Int8}</li>  *<li>SegID --&gt; {@link DataOutput#writeByte Int8<sup>ID_LENGTH</sup>}</li>  *<li>SegName, SegCodec --&gt; {@link DataOutput#writeString String}</li>  *<li>CommitUserData --&gt; {@link DataOutput#writeMapOfStrings  * Map&lt;String,String&gt;}</li>  *<li>UpdatesFiles --&gt; Map&lt;{@link DataOutput#writeInt Int32},  * {@link DataOutput#writeSetOfStrings(Set) Set&lt;String&gt;}&gt;</li>  *<li>Footer --&gt; {@link CodecUtil#writeFooter CodecFooter}</li>  *</ul>  * Field Descriptions:  *<ul>  *<li>Version counts how often the index has been changed by adding or deleting  * documents.</li>  *<li>NameCounter is used to generate names for new segment files.</li>  *<li>SegName is the name of the segment, and is used as the file name prefix  * for all of the files that compose the segment's index.</li>  *<li>DelGen is the generation count of the deletes file. If this is -1, there  * are no deletes. Anything above zero means there are deletes stored by  * {@link LiveDocsFormat}.</li>  *<li>DeletionCount records the number of deleted documents in this segment.</li>  *<li>SegCodec is the {@link Codec#getName() name} of the Codec that encoded  * this segment.</li>  *<li>HasSegID is nonzero if the segment has an identifier. Otherwise, when it is 0  * the identifier is {@code null} and no SegID is written. Null only happens for Lucene  * 4.x segments referenced in commits.</li>  *<li>SegID is the identifier of the Codec that encoded this segment.</li>  *<li>CommitUserData stores an optional user-supplied opaque  * Map&lt;String,String&gt; that was passed to  * {@link IndexWriter#setCommitData(java.util.Map)}.</li>  *<li>FieldInfosGen is the generation count of the fieldInfos file. If this is  * -1, there are no updates to the fieldInfos in that segment. Anything above  * zero means there are updates to fieldInfos stored by {@link FieldInfosFormat}  * .</li>  *<li>DocValuesGen is the generation count of the updatable DocValues. If this  * is -1, there are no updates to DocValues in that segment. Anything above zero  * means there are updates to DocValues stored by {@link DocValuesFormat}.</li>  *<li>UpdatesFiles stores the set of files that were updated in that segment  * per field.</li>  *</ul>  *   * @lucene.experimental  */
 end_comment
 
 begin_class
@@ -343,6 +343,25 @@ name|int
 name|VERSION_50
 init|=
 literal|4
+decl_stmt|;
+comment|/** The file format version for the segments_N codec header, since 5.1+ */
+DECL|field|VERSION_51
+specifier|public
+specifier|static
+specifier|final
+name|int
+name|VERSION_51
+init|=
+literal|5
+decl_stmt|;
+comment|// use safe maps
+DECL|field|VERSION_CURRENT
+specifier|static
+specifier|final
+name|int
+name|VERSION_CURRENT
+init|=
+name|VERSION_51
 decl_stmt|;
 comment|/** Used to name new segments. */
 comment|// TODO: should this be a long ...?
@@ -823,6 +842,9 @@ name|CODEC_MAGIC
 argument_list|)
 throw|;
 block|}
+name|int
+name|format
+init|=
 name|CodecUtil
 operator|.
 name|checkHeaderNoMagic
@@ -833,9 +855,9 @@ literal|"segments"
 argument_list|,
 name|VERSION_50
 argument_list|,
-name|VERSION_50
+name|VERSION_CURRENT
 argument_list|)
-expr_stmt|;
+decl_stmt|;
 name|byte
 name|id
 index|[]
@@ -949,6 +971,11 @@ name|input
 argument_list|)
 throw|;
 block|}
+name|long
+name|totalDocs
+init|=
+literal|0
+decl_stmt|;
 for|for
 control|(
 name|int
@@ -1071,6 +1098,13 @@ argument_list|(
 name|codec
 argument_list|)
 expr_stmt|;
+name|totalDocs
+operator|+=
+name|info
+operator|.
+name|maxDoc
+argument_list|()
+expr_stmt|;
 name|long
 name|delGen
 init|=
@@ -1097,7 +1131,7 @@ name|delCount
 argument_list|>
 name|info
 operator|.
-name|getDocCount
+name|maxDoc
 argument_list|()
 condition|)
 block|{
@@ -1109,11 +1143,11 @@ literal|"invalid deletion count: "
 operator|+
 name|delCount
 operator|+
-literal|" vs docCount="
+literal|" vs maxDoc="
 operator|+
 name|info
 operator|.
-name|getDocCount
+name|maxDoc
 argument_list|()
 argument_list|,
 name|input
@@ -1153,16 +1187,42 @@ argument_list|,
 name|dvGen
 argument_list|)
 decl_stmt|;
+if|if
+condition|(
+name|format
+operator|>=
+name|VERSION_51
+condition|)
+block|{
 name|siPerCommit
 operator|.
 name|setFieldInfosFiles
 argument_list|(
 name|input
 operator|.
-name|readStringSet
+name|readSetOfStrings
 argument_list|()
 argument_list|)
 expr_stmt|;
+block|}
+else|else
+block|{
+name|siPerCommit
+operator|.
+name|setFieldInfosFiles
+argument_list|(
+name|Collections
+operator|.
+name|unmodifiableSet
+argument_list|(
+name|input
+operator|.
+name|readStringSet
+argument_list|()
+argument_list|)
+argument_list|)
+expr_stmt|;
+block|}
 specifier|final
 name|Map
 argument_list|<
@@ -1201,15 +1261,24 @@ expr_stmt|;
 block|}
 else|else
 block|{
-name|dvUpdateFiles
-operator|=
+name|Map
+argument_list|<
+name|Integer
+argument_list|,
+name|Set
+argument_list|<
+name|String
+argument_list|>
+argument_list|>
+name|map
+init|=
 operator|new
 name|HashMap
 argument_list|<>
 argument_list|(
 name|numDVFields
 argument_list|)
-expr_stmt|;
+decl_stmt|;
 for|for
 control|(
 name|int
@@ -1225,7 +1294,14 @@ name|i
 operator|++
 control|)
 block|{
-name|dvUpdateFiles
+if|if
+condition|(
+name|format
+operator|>=
+name|VERSION_51
+condition|)
+block|{
+name|map
 operator|.
 name|put
 argument_list|(
@@ -1236,11 +1312,44 @@ argument_list|()
 argument_list|,
 name|input
 operator|.
-name|readStringSet
+name|readSetOfStrings
 argument_list|()
 argument_list|)
 expr_stmt|;
 block|}
+else|else
+block|{
+name|map
+operator|.
+name|put
+argument_list|(
+name|input
+operator|.
+name|readInt
+argument_list|()
+argument_list|,
+name|Collections
+operator|.
+name|unmodifiableSet
+argument_list|(
+name|input
+operator|.
+name|readStringSet
+argument_list|()
+argument_list|)
+argument_list|)
+expr_stmt|;
+block|}
+block|}
+name|dvUpdateFiles
+operator|=
+name|Collections
+operator|.
+name|unmodifiableMap
+argument_list|(
+name|map
+argument_list|)
+expr_stmt|;
 block|}
 name|siPerCommit
 operator|.
@@ -1257,15 +1366,40 @@ name|siPerCommit
 argument_list|)
 expr_stmt|;
 block|}
+if|if
+condition|(
+name|format
+operator|>=
+name|VERSION_51
+condition|)
+block|{
 name|infos
 operator|.
 name|userData
 operator|=
 name|input
 operator|.
-name|readStringStringMap
+name|readMapOfStrings
 argument_list|()
 expr_stmt|;
+block|}
+else|else
+block|{
+name|infos
+operator|.
+name|userData
+operator|=
+name|Collections
+operator|.
+name|unmodifiableMap
+argument_list|(
+name|input
+operator|.
+name|readStringStringMap
+argument_list|()
+argument_list|)
+expr_stmt|;
+block|}
 name|CodecUtil
 operator|.
 name|checkFooter
@@ -1273,6 +1407,36 @@ argument_list|(
 name|input
 argument_list|)
 expr_stmt|;
+comment|// LUCENE-6299: check we are in bounds
+if|if
+condition|(
+name|totalDocs
+operator|>
+name|IndexWriter
+operator|.
+name|getActualMaxDocs
+argument_list|()
+condition|)
+block|{
+throw|throw
+operator|new
+name|CorruptIndexException
+argument_list|(
+literal|"Too many documents: an index cannot exceed "
+operator|+
+name|IndexWriter
+operator|.
+name|getActualMaxDocs
+argument_list|()
+operator|+
+literal|" but readers have total maxDoc="
+operator|+
+name|totalDocs
+argument_list|,
+name|input
+argument_list|)
+throw|;
+block|}
 return|return
 name|infos
 return|;
@@ -1406,7 +1570,7 @@ name|segnOutput
 argument_list|,
 literal|"segments"
 argument_list|,
-name|VERSION_50
+name|VERSION_CURRENT
 argument_list|,
 name|StringHelper
 operator|.
@@ -1598,7 +1762,7 @@ name|delCount
 argument_list|>
 name|si
 operator|.
-name|getDocCount
+name|maxDoc
 argument_list|()
 condition|)
 block|{
@@ -1606,17 +1770,17 @@ throw|throw
 operator|new
 name|IllegalStateException
 argument_list|(
-literal|"cannot write segment: invalid docCount segment="
+literal|"cannot write segment: invalid maxDoc segment="
 operator|+
 name|si
 operator|.
 name|name
 operator|+
-literal|" docCount="
+literal|" maxDoc="
 operator|+
 name|si
 operator|.
-name|getDocCount
+name|maxDoc
 argument_list|()
 operator|+
 literal|" delCount="
@@ -1654,7 +1818,7 @@ argument_list|)
 expr_stmt|;
 name|segnOutput
 operator|.
-name|writeStringSet
+name|writeSetOfStrings
 argument_list|(
 name|siPerCommit
 operator|.
@@ -1720,7 +1884,7 @@ argument_list|)
 expr_stmt|;
 name|segnOutput
 operator|.
-name|writeStringSet
+name|writeSetOfStrings
 argument_list|(
 name|e
 operator|.
@@ -1739,7 +1903,7 @@ assert|;
 block|}
 name|segnOutput
 operator|.
-name|writeStringStringMap
+name|writeMapOfStrings
 argument_list|(
 name|userData
 argument_list|)
@@ -2885,14 +3049,14 @@ operator|.
 name|lastGeneration
 expr_stmt|;
 block|}
-comment|/** Returns sum of all segment's docCounts.  Note that    *  this does not include deletions */
-DECL|method|totalDocCount
+comment|/** Returns sum of all segment's maxDocs.  Note that    *  this does not include deletions */
+DECL|method|totalMaxDoc
 specifier|public
 name|int
-name|totalDocCount
+name|totalMaxDoc
 parameter_list|()
 block|{
-name|int
+name|long
 name|count
 init|=
 literal|0
@@ -2911,12 +3075,26 @@ name|info
 operator|.
 name|info
 operator|.
-name|getDocCount
+name|maxDoc
 argument_list|()
 expr_stmt|;
 block|}
-return|return
+comment|// we should never hit this, checks should happen elsewhere...
+assert|assert
 name|count
+operator|<=
+name|IndexWriter
+operator|.
+name|getActualMaxDocs
+argument_list|()
+assert|;
+return|return
+name|Math
+operator|.
+name|toIntExact
+argument_list|(
+name|count
+argument_list|)
 return|;
 block|}
 comment|/** Call this before committing if changes have been made to the    *  segments. */

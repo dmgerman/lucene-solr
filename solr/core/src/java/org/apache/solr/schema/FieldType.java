@@ -17,24 +17,6 @@ package|;
 end_package
 
 begin_import
-import|import static
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|analysis
-operator|.
-name|util
-operator|.
-name|AbstractAnalysisFactory
-operator|.
-name|LUCENE_MATCH_VERSION_PARAM
-import|;
-end_import
-
-begin_import
 import|import
 name|java
 operator|.
@@ -291,20 +273,6 @@ operator|.
 name|function
 operator|.
 name|ValueSource
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|search
-operator|.
-name|DocTermOrdsRewriteMethod
 import|;
 end_import
 
@@ -671,6 +639,24 @@ operator|.
 name|slf4j
 operator|.
 name|LoggerFactory
+import|;
+end_import
+
+begin_import
+import|import static
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|analysis
+operator|.
+name|util
+operator|.
+name|AbstractAnalysisFactory
+operator|.
+name|LUCENE_MATCH_VERSION_PARAM
 import|;
 end_import
 
@@ -1530,6 +1516,16 @@ argument_list|(
 name|field
 operator|.
 name|storeTermPositions
+argument_list|()
+argument_list|)
+expr_stmt|;
+name|newType
+operator|.
+name|setStoreTermVectorPayloads
+argument_list|(
+name|field
+operator|.
+name|storeTermPayloads
 argument_list|()
 argument_list|)
 expr_stmt|;
@@ -2947,15 +2943,6 @@ argument_list|()
 condition|)
 block|{
 return|return
-name|field
-operator|.
-name|multiValued
-argument_list|()
-condition|?
-operator|new
-name|DocTermOrdsRewriteMethod
-argument_list|()
-else|:
 operator|new
 name|DocValuesRewriteMethod
 argument_list|()
@@ -2966,7 +2953,7 @@ block|{
 return|return
 name|MultiTermQuery
 operator|.
-name|CONSTANT_SCORE_FILTER_REWRITE
+name|CONSTANT_SCORE_REWRITE
 return|;
 block|}
 block|}

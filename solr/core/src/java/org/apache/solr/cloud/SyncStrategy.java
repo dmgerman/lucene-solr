@@ -1007,7 +1007,8 @@ operator|.
 name|getUpdateLog
 argument_list|()
 operator|.
-name|numRecordsToKeep
+name|getNumRecordsToKeep
+argument_list|()
 argument_list|,
 literal|true
 argument_list|,

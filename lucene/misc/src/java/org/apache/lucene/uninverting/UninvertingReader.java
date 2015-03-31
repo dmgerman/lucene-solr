@@ -42,6 +42,16 @@ name|java
 operator|.
 name|util
 operator|.
+name|Collections
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
+name|util
+operator|.
 name|Map
 import|;
 end_import
@@ -488,6 +498,8 @@ name|Type
 argument_list|>
 name|mapping
 parameter_list|)
+throws|throws
+name|IOException
 block|{
 return|return
 operator|new
@@ -532,6 +544,8 @@ name|Type
 argument_list|>
 name|mapping
 parameter_list|)
+throws|throws
+name|IOException
 block|{
 name|super
 argument_list|(
@@ -583,6 +597,8 @@ parameter_list|(
 name|DirectoryReader
 name|in
 parameter_list|)
+throws|throws
+name|IOException
 block|{
 return|return
 operator|new
@@ -823,7 +839,10 @@ argument_list|,
 operator|-
 literal|1
 argument_list|,
-literal|null
+name|Collections
+operator|.
+name|emptyMap
+argument_list|()
 argument_list|)
 argument_list|)
 expr_stmt|;

@@ -1476,6 +1476,11 @@ argument_list|,
 name|numRounds
 argument_list|)
 expr_stmt|;
+name|analyzer
+operator|.
+name|close
+argument_list|()
+expr_stmt|;
 block|}
 comment|//@Ignore("wrong finalOffset: https://issues.apache.org/jira/browse/LUCENE-3971")
 DECL|method|testFinalOffsetSpecialCase
@@ -1608,6 +1613,11 @@ argument_list|,
 name|text
 argument_list|)
 expr_stmt|;
+name|analyzer
+operator|.
+name|close
+argument_list|()
+expr_stmt|;
 block|}
 comment|//@Ignore("wrong finalOffset: https://issues.apache.org/jira/browse/LUCENE-3971")
 DECL|method|testRandomMaps
@@ -1727,6 +1737,11 @@ name|analyzer
 argument_list|,
 name|numRounds
 argument_list|)
+expr_stmt|;
+name|analyzer
+operator|.
+name|close
+argument_list|()
 expr_stmt|;
 block|}
 block|}

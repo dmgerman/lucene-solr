@@ -562,20 +562,6 @@ name|apache
 operator|.
 name|solr
 operator|.
-name|request
-operator|.
-name|SolrRequestInfo
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|solr
-operator|.
 name|response
 operator|.
 name|SolrQueryResponse
@@ -1946,18 +1932,7 @@ literal|false
 argument_list|)
 expr_stmt|;
 comment|// TODO: better way to get the response, or pass back info to it?
-name|SolrRequestInfo
-name|reqInfo
-init|=
-name|returnVersions
-condition|?
-name|SolrRequestInfo
-operator|.
-name|getRequestInfo
-argument_list|()
-else|:
-literal|null
-decl_stmt|;
+comment|// SolrRequestInfo reqInfo = returnVersions ? SolrRequestInfo.getRequestInfo() : null;
 name|this
 operator|.
 name|req
@@ -5671,25 +5646,43 @@ name|leaderCoreNodeName
 init|=
 literal|null
 decl_stmt|;
+name|Exception
+name|getLeaderExc
+init|=
+literal|null
+decl_stmt|;
 try|try
 block|{
-name|leaderCoreNodeName
-operator|=
+name|Replica
+name|leader
+init|=
 name|zkController
 operator|.
 name|getZkStateReader
 argument_list|()
 operator|.
-name|getLeaderRetry
+name|getLeader
 argument_list|(
 name|collection
 argument_list|,
 name|shardId
 argument_list|)
+decl_stmt|;
+if|if
+condition|(
+name|leader
+operator|!=
+literal|null
+condition|)
+block|{
+name|leaderCoreNodeName
+operator|=
+name|leader
 operator|.
 name|getName
 argument_list|()
 expr_stmt|;
+block|}
 block|}
 catch|catch
 parameter_list|(
@@ -5697,32 +5690,38 @@ name|Exception
 name|exc
 parameter_list|)
 block|{
+name|getLeaderExc
+operator|=
+name|exc
+expr_stmt|;
+block|}
+if|if
+condition|(
+name|leaderCoreNodeName
+operator|==
+literal|null
+condition|)
+block|{
 name|log
 operator|.
-name|error
+name|warn
 argument_list|(
-literal|"Failed to determine if "
+literal|"Failed to determine if {} is still the leader for collection={} shardId={} "
 operator|+
+literal|"before putting {} into leader-initiated recovery"
+argument_list|,
 name|cloudDesc
 operator|.
 name|getCoreNodeName
 argument_list|()
-operator|+
-literal|" is still the leader for "
-operator|+
+argument_list|,
 name|collection
-operator|+
-literal|" "
-operator|+
+argument_list|,
 name|shardId
-operator|+
-literal|" before putting "
-operator|+
+argument_list|,
 name|replicaUrl
-operator|+
-literal|" into leader-initiated recovery due to: "
-operator|+
-name|exc
+argument_list|,
+name|getLeaderExc
 argument_list|)
 expr_stmt|;
 block|}
@@ -5843,14 +5842,18 @@ name|collection
 argument_list|,
 name|shardId
 argument_list|,
-name|replicaUrl
-argument_list|,
 name|stdNode
 operator|.
 name|getNodeProps
 argument_list|()
 argument_list|,
+name|leaderCoreNodeName
+argument_list|,
 literal|false
+comment|/* forcePublishState */
+argument_list|,
+literal|false
+comment|/* retryOnConnLoss */
 argument_list|)
 expr_stmt|;
 comment|// we want to try more than once, ~10 minutes
@@ -6028,12 +6031,10 @@ name|log
 operator|.
 name|error
 argument_list|(
-literal|"Setting up to try to start recovery on replica "
-operator|+
+literal|"Setting up to try to start recovery on replica {}"
+argument_list|,
 name|replicaUrl
-operator|+
-literal|" after: "
-operator|+
+argument_list|,
 name|rootCause
 argument_list|)
 expr_stmt|;
@@ -6871,6 +6872,18 @@ name|versionOnUpdate
 condition|)
 block|{
 comment|// This update is a repeat, or was reordered.  We need to drop this update.
+name|log
+operator|.
+name|debug
+argument_list|(
+literal|"Dropping add update due to version {}"
+argument_list|,
+name|idBytes
+operator|.
+name|utf8ToString
+argument_list|()
+argument_list|)
+expr_stmt|;
 return|return
 literal|true
 return|;
@@ -9682,6 +9695,18 @@ name|versionOnUpdate
 condition|)
 block|{
 comment|// This update is a repeat, or was reordered.  We need to drop this update.
+name|log
+operator|.
+name|debug
+argument_list|(
+literal|"Dropping delete update due to version {}"
+argument_list|,
+name|idBytes
+operator|.
+name|utf8ToString
+argument_list|()
+argument_list|)
+expr_stmt|;
 return|return
 literal|true
 return|;
@@ -9812,11 +9837,7 @@ name|cmd
 argument_list|)
 expr_stmt|;
 block|}
-elseif|else
-if|if
-condition|(
-name|zkEnabled
-condition|)
+else|else
 block|{
 name|ModifiableSolrParams
 name|params

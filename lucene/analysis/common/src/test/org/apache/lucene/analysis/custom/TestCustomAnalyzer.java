@@ -486,6 +486,11 @@ literal|1
 block|}
 argument_list|)
 expr_stmt|;
+name|a
+operator|.
+name|close
+argument_list|()
+expr_stmt|;
 block|}
 DECL|method|testHtmlStripClassicFolding
 specifier|public
@@ -769,6 +774,11 @@ literal|1
 block|}
 argument_list|)
 expr_stmt|;
+name|a
+operator|.
+name|close
+argument_list|()
+expr_stmt|;
 block|}
 DECL|method|testStopWordsFromClasspath
 specifier|public
@@ -926,6 +936,11 @@ literal|0
 index|]
 argument_list|)
 expr_stmt|;
+name|a
+operator|.
+name|close
+argument_list|()
+expr_stmt|;
 block|}
 DECL|method|testStopWordsFromClasspathWithMap
 specifier|public
@@ -1076,6 +1091,11 @@ parameter_list|)
 block|{
 comment|// pass
 block|}
+name|a
+operator|.
+name|close
+argument_list|()
+expr_stmt|;
 block|}
 DECL|method|testStopWordsFromFile
 specifier|public
@@ -1137,6 +1157,11 @@ index|[
 literal|0
 index|]
 argument_list|)
+expr_stmt|;
+name|a
+operator|.
+name|close
+argument_list|()
 expr_stmt|;
 block|}
 DECL|method|testStopWordsFromFileAbsolute
@@ -1207,6 +1232,11 @@ index|[
 literal|0
 index|]
 argument_list|)
+expr_stmt|;
+name|a
+operator|.
+name|close
+argument_list|()
 expr_stmt|;
 block|}
 comment|// Now test misconfigurations:

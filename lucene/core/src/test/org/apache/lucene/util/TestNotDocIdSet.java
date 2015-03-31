@@ -176,15 +176,6 @@ operator|.
 name|bits
 argument_list|()
 decl_stmt|;
-name|assertTrue
-argument_list|(
-name|ds2
-operator|.
-name|isCacheable
-argument_list|()
-argument_list|)
-expr_stmt|;
-comment|// since we wrapped a FixedBitSet
 name|assertNotNull
 argument_list|(
 name|bits2

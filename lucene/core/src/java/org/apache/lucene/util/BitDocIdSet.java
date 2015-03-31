@@ -169,19 +169,6 @@ return|return
 name|set
 return|;
 block|}
-comment|/** This DocIdSet implementation is cacheable. */
-annotation|@
-name|Override
-DECL|method|isCacheable
-specifier|public
-name|boolean
-name|isCacheable
-parameter_list|()
-block|{
-return|return
-literal|true
-return|;
-block|}
 annotation|@
 name|Override
 DECL|method|ramBytesUsed

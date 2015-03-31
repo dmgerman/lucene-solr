@@ -2336,15 +2336,10 @@ name|boolean
 name|needsScores
 parameter_list|()
 block|{
+comment|// needed so that eg. BooleanQuery does not rewrite its MUST clauses to
+comment|// FILTER since the filter scorers are hidden in Scorer.getChildren().
 return|return
-name|trackScores
-operator|||
-name|trackMaxScore
-operator|||
-name|sort
-operator|.
-name|needsScores
-argument_list|()
+literal|true
 return|;
 block|}
 block|}

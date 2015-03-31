@@ -52,16 +52,6 @@ name|java
 operator|.
 name|util
 operator|.
-name|HashMap
-import|;
-end_import
-
-begin_import
-import|import
-name|java
-operator|.
-name|util
-operator|.
 name|HashSet
 import|;
 end_import
@@ -220,10 +210,10 @@ specifier|final
 name|String
 name|name
 decl_stmt|;
-DECL|field|docCount
+DECL|field|maxDoc
 specifier|private
 name|int
-name|docCount
+name|maxDoc
 decl_stmt|;
 comment|// number of docs in seg
 comment|/** Where this segment resides. */
@@ -263,6 +253,7 @@ name|diagnostics
 decl_stmt|;
 DECL|field|attributes
 specifier|private
+specifier|final
 name|Map
 argument_list|<
 name|String
@@ -298,10 +289,15 @@ name|this
 operator|.
 name|diagnostics
 operator|=
+name|Objects
+operator|.
+name|requireNonNull
+argument_list|(
 name|diagnostics
+argument_list|)
 expr_stmt|;
 block|}
-comment|/** Returns diagnostics saved into the segment when it was    *  written. */
+comment|/** Returns diagnostics saved into the segment when it was    *  written. The map is immutable. */
 DECL|method|getDiagnostics
 specifier|public
 name|Map
@@ -332,7 +328,7 @@ name|String
 name|name
 parameter_list|,
 name|int
-name|docCount
+name|maxDoc
 parameter_list|,
 name|boolean
 name|isCompoundFile
@@ -373,25 +369,40 @@ name|this
 operator|.
 name|dir
 operator|=
+name|Objects
+operator|.
+name|requireNonNull
+argument_list|(
 name|dir
+argument_list|)
 expr_stmt|;
 name|this
 operator|.
 name|version
 operator|=
+name|Objects
+operator|.
+name|requireNonNull
+argument_list|(
 name|version
+argument_list|)
 expr_stmt|;
 name|this
 operator|.
 name|name
 operator|=
+name|Objects
+operator|.
+name|requireNonNull
+argument_list|(
 name|name
+argument_list|)
 expr_stmt|;
 name|this
 operator|.
-name|docCount
+name|maxDoc
 operator|=
-name|docCount
+name|maxDoc
 expr_stmt|;
 name|this
 operator|.
@@ -409,7 +420,12 @@ name|this
 operator|.
 name|diagnostics
 operator|=
+name|Objects
+operator|.
+name|requireNonNull
+argument_list|(
 name|diagnostics
+argument_list|)
 expr_stmt|;
 name|this
 operator|.
@@ -533,17 +549,17 @@ name|codec
 return|;
 block|}
 comment|/** Returns number of documents in this segment (deletions    *  are not taken into account). */
-DECL|method|getDocCount
+DECL|method|maxDoc
 specifier|public
 name|int
-name|getDocCount
+name|maxDoc
 parameter_list|()
 block|{
 if|if
 condition|(
 name|this
 operator|.
-name|docCount
+name|maxDoc
 operator|==
 operator|-
 literal|1
@@ -553,28 +569,28 @@ throw|throw
 operator|new
 name|IllegalStateException
 argument_list|(
-literal|"docCount isn't set yet"
+literal|"maxDoc isn't set yet"
 argument_list|)
 throw|;
 block|}
 return|return
-name|docCount
+name|maxDoc
 return|;
 block|}
 comment|// NOTE: leave package private
-DECL|method|setDocCount
+DECL|method|setMaxDoc
 name|void
-name|setDocCount
+name|setMaxDoc
 parameter_list|(
 name|int
-name|docCount
+name|maxDoc
 parameter_list|)
 block|{
 if|if
 condition|(
 name|this
 operator|.
-name|docCount
+name|maxDoc
 operator|!=
 operator|-
 literal|1
@@ -584,23 +600,23 @@ throw|throw
 operator|new
 name|IllegalStateException
 argument_list|(
-literal|"docCount was already set: this.docCount="
+literal|"maxDoc was already set: this.maxDoc="
 operator|+
 name|this
 operator|.
-name|docCount
+name|maxDoc
 operator|+
-literal|" vs docCount="
+literal|" vs maxDoc="
 operator|+
-name|docCount
+name|maxDoc
 argument_list|)
 throw|;
 block|}
 name|this
 operator|.
-name|docCount
+name|maxDoc
 operator|=
-name|docCount
+name|maxDoc
 expr_stmt|;
 block|}
 comment|/** Return all files referenced by this SegmentInfo. */
@@ -723,7 +739,7 @@ name|s
 operator|.
 name|append
 argument_list|(
-name|docCount
+name|maxDoc
 argument_list|)
 expr_stmt|;
 if|if

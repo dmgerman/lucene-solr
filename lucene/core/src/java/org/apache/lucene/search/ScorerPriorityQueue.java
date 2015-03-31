@@ -111,7 +111,7 @@ comment|// A two-phase view of the scorer, or null if the scorer does not suppor
 comment|// two-phase iteration
 DECL|field|twoPhaseView
 specifier|final
-name|TwoPhaseDocIdSetIterator
+name|TwoPhaseIterator
 name|twoPhaseView
 decl_stmt|;
 DECL|method|ScorerWrapper

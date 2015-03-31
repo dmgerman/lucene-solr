@@ -889,6 +889,9 @@ parameter_list|()
 throws|throws
 name|Exception
 block|{
+name|deleteCore
+argument_list|()
+expr_stmt|;
 name|System
 operator|.
 name|clearProperty

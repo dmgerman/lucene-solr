@@ -18,6 +18,16 @@ end_package
 
 begin_import
 import|import
+name|java
+operator|.
+name|io
+operator|.
+name|IOException
+import|;
+end_import
+
+begin_import
+import|import
 name|org
 operator|.
 name|apache
@@ -1044,17 +1054,6 @@ block|}
 annotation|@
 name|Override
 specifier|public
-name|boolean
-name|isCacheable
-parameter_list|()
-block|{
-return|return
-literal|true
-return|;
-block|}
-annotation|@
-name|Override
-specifier|public
 name|long
 name|ramBytesUsed
 parameter_list|()
@@ -1138,6 +1137,17 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
+comment|/** FUTURE: for off-heap */
+annotation|@
+name|Override
+DECL|method|close
+specifier|public
+name|void
+name|close
+parameter_list|()
+throws|throws
+name|IOException
+block|{   }
 block|}
 end_class
 

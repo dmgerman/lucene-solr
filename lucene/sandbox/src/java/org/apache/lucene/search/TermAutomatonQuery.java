@@ -1350,17 +1350,12 @@ block|}
 comment|// NOTE: not quite correct, because if terms were added in different
 comment|// order in each query but the language is the same, we return false:
 return|return
-operator|(
-name|this
+name|super
 operator|.
-name|getBoost
-argument_list|()
-operator|==
-name|other
-operator|.
-name|getBoost
-argument_list|()
-operator|)
+name|equals
+argument_list|(
+name|o
+argument_list|)
 operator|&&
 name|this
 operator|.
@@ -1410,13 +1405,10 @@ argument_list|)
 throw|;
 block|}
 return|return
-name|Float
+name|super
 operator|.
-name|floatToIntBits
-argument_list|(
-name|getBoost
+name|hashCode
 argument_list|()
-argument_list|)
 operator|^
 name|termToID
 operator|.

@@ -212,6 +212,22 @@ name|apache
 operator|.
 name|solr
 operator|.
+name|common
+operator|.
+name|util
+operator|.
+name|StrUtils
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|solr
+operator|.
 name|core
 operator|.
 name|ConfigOverlay
@@ -1529,9 +1545,9 @@ parameter_list|)
 block|{
 name|assertTrue
 argument_list|(
-name|MessageFormat
+name|StrUtils
 operator|.
-name|format
+name|formatString
 argument_list|(
 literal|"Could not get expected value  {0} for path {1} full output {2}"
 argument_list|,

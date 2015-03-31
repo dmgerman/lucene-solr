@@ -99,7 +99,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Implementation of {@link ShapeFieldCacheProvider} designed for {@link PrefixTreeStrategy}s that index points.  *  * @lucene.internal  */
+comment|/**  * Implementation of {@link ShapeFieldCacheProvider} designed for {@link PrefixTreeStrategy}s that index points  * (AND ONLY POINTS!).  *  * @lucene.internal  */
 end_comment
 
 begin_class
@@ -175,7 +175,6 @@ argument_list|,
 name|scanCell
 argument_list|)
 expr_stmt|;
-empty_stmt|;
 if|if
 condition|(
 name|scanCell
@@ -187,14 +186,7 @@ name|grid
 operator|.
 name|getMaxLevels
 argument_list|()
-operator|&&
-operator|!
-name|scanCell
-operator|.
-name|isLeaf
-argument_list|()
 condition|)
-comment|//points are never flagged as leaf
 return|return
 name|scanCell
 operator|.

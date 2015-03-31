@@ -1618,12 +1618,6 @@ name|grid
 operator|.
 name|getMaxLevels
 argument_list|()
-argument_list|,
-operator|!
-name|strategy
-operator|.
-name|isPointsOnly
-argument_list|()
 argument_list|)
 decl_stmt|;
 specifier|final

@@ -1035,6 +1035,8 @@ block|}
 catch|catch
 parameter_list|(
 name|SolrServerException
+decl||
+name|IOException
 name|e
 parameter_list|)
 block|{

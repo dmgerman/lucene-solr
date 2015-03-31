@@ -150,6 +150,20 @@ name|CharArraySet
 import|;
 end_import
 
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|util
+operator|.
+name|IOUtils
+import|;
+end_import
+
 begin_comment
 comment|/**  * Tests ICUTokenizer's ability to work with CJKBigramFilter.  * Most tests adopted from TestCJKTokenizer  */
 end_comment
@@ -162,12 +176,31 @@ name|TestWithCJKBigramFilter
 extends|extends
 name|BaseTokenStreamTestCase
 block|{
-comment|/**    * ICUTokenizer+CJKBigramFilter    */
 DECL|field|analyzer
-specifier|private
+DECL|field|analyzer2
 name|Analyzer
 name|analyzer
-init|=
+decl_stmt|,
+name|analyzer2
+decl_stmt|;
+annotation|@
+name|Override
+DECL|method|setUp
+specifier|public
+name|void
+name|setUp
+parameter_list|()
+throws|throws
+name|Exception
+block|{
+name|super
+operator|.
+name|setUp
+argument_list|()
+expr_stmt|;
+comment|/*      * ICUTokenizer+CJKBigramFilter      */
+name|analyzer
+operator|=
 operator|new
 name|Analyzer
 argument_list|()
@@ -226,13 +259,10 @@ argument_list|)
 return|;
 block|}
 block|}
-decl_stmt|;
-comment|/**    * ICUTokenizer+ICUNormalizer2Filter+CJKBigramFilter.    *     * ICUNormalizer2Filter uses nfkc_casefold by default, so this is a language-independent    * superset of CJKWidthFilter's foldings.    */
-DECL|field|analyzer2
-specifier|private
-name|Analyzer
+expr_stmt|;
+comment|/*      * ICUTokenizer+ICUNormalizer2Filter+CJKBigramFilter.      *       * ICUNormalizer2Filter uses nfkc_casefold by default, so this is a language-independent      * superset of CJKWidthFilter's foldings.      */
 name|analyzer2
-init|=
+operator|=
 operator|new
 name|Analyzer
 argument_list|()
@@ -279,7 +309,7 @@ operator|=
 operator|new
 name|CJKBigramFilter
 argument_list|(
-name|source
+name|result
 argument_list|)
 expr_stmt|;
 return|return
@@ -301,7 +331,33 @@ argument_list|)
 return|;
 block|}
 block|}
-decl_stmt|;
+expr_stmt|;
+block|}
+annotation|@
+name|Override
+DECL|method|tearDown
+specifier|public
+name|void
+name|tearDown
+parameter_list|()
+throws|throws
+name|Exception
+block|{
+name|IOUtils
+operator|.
+name|close
+argument_list|(
+name|analyzer
+argument_list|,
+name|analyzer2
+argument_list|)
+expr_stmt|;
+name|super
+operator|.
+name|tearDown
+argument_list|()
+expr_stmt|;
+block|}
 DECL|method|testJa1
 specifier|public
 name|void

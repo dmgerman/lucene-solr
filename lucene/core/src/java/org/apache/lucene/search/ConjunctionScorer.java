@@ -197,7 +197,7 @@ annotation|@
 name|Override
 DECL|method|asTwoPhaseIterator
 specifier|public
-name|TwoPhaseDocIdSetIterator
+name|TwoPhaseIterator
 name|asTwoPhaseIterator
 parameter_list|()
 block|{

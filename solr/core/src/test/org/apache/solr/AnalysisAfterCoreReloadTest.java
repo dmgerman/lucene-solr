@@ -16,26 +16,6 @@ end_comment
 
 begin_import
 import|import
-name|java
-operator|.
-name|io
-operator|.
-name|File
-import|;
-end_import
-
-begin_import
-import|import
-name|java
-operator|.
-name|io
-operator|.
-name|IOException
-import|;
-end_import
-
-begin_import
-import|import
 name|org
 operator|.
 name|apache
@@ -60,7 +40,7 @@ name|client
 operator|.
 name|solrj
 operator|.
-name|SolrQuery
+name|SolrClient
 import|;
 end_import
 
@@ -76,7 +56,7 @@ name|client
 operator|.
 name|solrj
 operator|.
-name|SolrClient
+name|SolrQuery
 import|;
 end_import
 
@@ -199,6 +179,26 @@ operator|.
 name|junit
 operator|.
 name|BeforeClass
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
+name|io
+operator|.
+name|File
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
+name|io
+operator|.
+name|IOException
 import|;
 end_import
 
@@ -918,8 +918,10 @@ name|EmbeddedSolrServer
 argument_list|(
 name|h
 operator|.
-name|getCore
+name|getCoreContainer
 argument_list|()
+argument_list|,
+name|collection
 argument_list|)
 return|;
 block|}
