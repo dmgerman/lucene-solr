@@ -3558,7 +3558,6 @@ operator|.
 name|omitTF
 condition|)
 block|{
-comment|// nocommit: asking for freq() here, but above when field.omitTF == false, PostingsEnum.NONE flag is passed?
 name|assertEquals
 argument_list|(
 name|term
