@@ -993,11 +993,12 @@ block|}
 comment|// TODO: move this check to createWeight to happen earlier to the user?
 if|if
 condition|(
-operator|!
 name|fieldTerms
 operator|.
 name|hasPositions
 argument_list|()
+operator|==
+literal|false
 condition|)
 block|{
 throw|throw
@@ -2705,37 +2706,6 @@ operator|.
 name|POSITIONS
 argument_list|)
 decl_stmt|;
-comment|// nocommit: check
-if|if
-condition|(
-name|postings
-operator|==
-literal|null
-condition|)
-block|{
-comment|// term does exist, but has no positions
-throw|throw
-operator|new
-name|IllegalStateException
-argument_list|(
-literal|"field \""
-operator|+
-name|term
-operator|.
-name|field
-argument_list|()
-operator|+
-literal|"\" was indexed without position data; cannot run PhraseQuery (term="
-operator|+
-name|term
-operator|.
-name|text
-argument_list|()
-operator|+
-literal|")"
-argument_list|)
-throw|;
-block|}
 name|cost
 operator|+=
 name|postings

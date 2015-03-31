@@ -1646,6 +1646,33 @@ return|return
 literal|null
 return|;
 block|}
+if|if
+condition|(
+name|fieldTerms
+operator|.
+name|hasPositions
+argument_list|()
+operator|==
+literal|false
+condition|)
+block|{
+throw|throw
+operator|new
+name|IllegalStateException
+argument_list|(
+literal|"field \""
+operator|+
+name|field
+operator|+
+literal|"\" was indexed without position data; cannot run PhraseQuery (phrase="
+operator|+
+name|getQuery
+argument_list|()
+operator|+
+literal|")"
+argument_list|)
+throw|;
+block|}
 comment|// Reuse single TermsEnum below:
 specifier|final
 name|TermsEnum
@@ -1753,52 +1780,6 @@ operator|.
 name|POSITIONS
 argument_list|)
 decl_stmt|;
-comment|// PhraseQuery on a field that did not index
-comment|// positions.
-comment|// nocommit: check
-if|if
-condition|(
-name|postingsEnum
-operator|==
-literal|null
-condition|)
-block|{
-assert|assert
-name|te
-operator|.
-name|seekExact
-argument_list|(
-name|t
-operator|.
-name|bytes
-argument_list|()
-argument_list|)
-operator|:
-literal|"termstate found but no term exists in reader"
-assert|;
-comment|// term does exist, but has no positions
-throw|throw
-operator|new
-name|IllegalStateException
-argument_list|(
-literal|"field \""
-operator|+
-name|t
-operator|.
-name|field
-argument_list|()
-operator|+
-literal|"\" was indexed without position data; cannot run PhraseQuery (term="
-operator|+
-name|t
-operator|.
-name|text
-argument_list|()
-operator|+
-literal|")"
-argument_list|)
-throw|;
-block|}
 name|postingsFreqs
 index|[
 name|i

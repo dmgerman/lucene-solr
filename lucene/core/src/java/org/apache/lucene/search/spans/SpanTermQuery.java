@@ -538,6 +538,38 @@ operator|!=
 literal|null
 condition|)
 block|{
+if|if
+condition|(
+name|terms
+operator|.
+name|hasPositions
+argument_list|()
+operator|==
+literal|false
+condition|)
+block|{
+throw|throw
+operator|new
+name|IllegalStateException
+argument_list|(
+literal|"field \""
+operator|+
+name|term
+operator|.
+name|field
+argument_list|()
+operator|+
+literal|"\" was indexed without position data; cannot run SpanTermQuery (term="
+operator|+
+name|term
+operator|.
+name|text
+argument_list|()
+operator|+
+literal|")"
+argument_list|)
+throw|;
+block|}
 specifier|final
 name|TermsEnum
 name|termsEnum
@@ -665,13 +697,6 @@ operator|.
 name|PAYLOADS
 argument_list|)
 decl_stmt|;
-if|if
-condition|(
-name|postings
-operator|!=
-literal|null
-condition|)
-block|{
 return|return
 operator|new
 name|TermSpans
@@ -681,33 +706,6 @@ argument_list|,
 name|term
 argument_list|)
 return|;
-block|}
-else|else
-block|{
-comment|// nocommit: check
-comment|// term does exist, but has no positions
-throw|throw
-operator|new
-name|IllegalStateException
-argument_list|(
-literal|"field \""
-operator|+
-name|term
-operator|.
-name|field
-argument_list|()
-operator|+
-literal|"\" was indexed without position data; cannot run SpanTermQuery (term="
-operator|+
-name|term
-operator|.
-name|text
-argument_list|()
-operator|+
-literal|")"
-argument_list|)
-throw|;
-block|}
 block|}
 block|}
 end_class
