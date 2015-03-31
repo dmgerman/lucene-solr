@@ -1008,7 +1008,7 @@ literal|"field \""
 operator|+
 name|field
 operator|+
-literal|"\" was indexed without position data; cannot run PhraseQuery (phrase="
+literal|"\" was indexed without position data; cannot run MultiPhraseQuery (phrase="
 operator|+
 name|getQuery
 argument_list|()
