@@ -1512,7 +1512,7 @@ specifier|static
 class|class
 name|SortingDocsEnum
 extends|extends
-name|FilterDocsEnum
+name|FilterPostingsEnum
 block|{
 DECL|class|DocFreqSorter
 specifier|private
@@ -2416,7 +2416,7 @@ specifier|static
 class|class
 name|SortingPostingsEnum
 extends|extends
-name|FilterDocsEnum
+name|FilterPostingsEnum
 block|{
 comment|/**      * A {@link TimSorter} which sorts two parallel arrays of doc IDs and      * offsets in one go. Everytime a doc ID is 'swapped', its corresponding offset      * is swapped too.      */
 DECL|class|DocOffsetSorter
