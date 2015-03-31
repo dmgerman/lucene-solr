@@ -2468,6 +2468,10 @@ argument_list|(
 literal|"no second doc"
 argument_list|,
 name|spanScorer
+operator|==
+literal|null
+operator|||
+name|spanScorer
 operator|.
 name|nextDoc
 argument_list|()
