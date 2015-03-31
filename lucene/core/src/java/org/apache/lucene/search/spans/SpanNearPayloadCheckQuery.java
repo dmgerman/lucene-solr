@@ -476,6 +476,12 @@ name|match
 operator|.
 name|hashCode
 argument_list|()
+operator|^
+name|getClass
+argument_list|()
+operator|.
+name|hashCode
+argument_list|()
 decl_stmt|;
 name|h
 operator|^=

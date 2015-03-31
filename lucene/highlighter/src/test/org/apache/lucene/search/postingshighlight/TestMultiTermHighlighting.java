@@ -5276,11 +5276,13 @@ name|SpanQuery
 index|[]
 block|{
 name|childQuery
+block|,
+name|childQuery
 block|}
 argument_list|,
 literal|0
 argument_list|,
-literal|true
+literal|false
 argument_list|)
 decl_stmt|;
 name|TopDocs
