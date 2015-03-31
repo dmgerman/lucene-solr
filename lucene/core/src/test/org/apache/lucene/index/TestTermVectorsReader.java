@@ -2076,8 +2076,7 @@ literal|null
 argument_list|)
 argument_list|)
 expr_stmt|;
-comment|// nocommit: check
-name|assertNull
+name|assertNotNull
 argument_list|(
 name|termsEnum
 operator|.
@@ -2093,7 +2092,6 @@ name|ALL
 argument_list|)
 argument_list|)
 expr_stmt|;
-comment|// no pos
 block|}
 name|reader
 operator|.
