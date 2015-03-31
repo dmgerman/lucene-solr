@@ -654,6 +654,24 @@ name|PREFER_LOCAL_SHARDS
 init|=
 literal|"preferLocalShards"
 decl_stmt|;
+DECL|field|JAVABIN
+specifier|public
+specifier|static
+specifier|final
+name|String
+name|JAVABIN
+init|=
+literal|"javabin"
+decl_stmt|;
+DECL|field|JSON
+specifier|public
+specifier|static
+specifier|final
+name|String
+name|JSON
+init|=
+literal|"json"
+decl_stmt|;
 block|}
 end_interface
 

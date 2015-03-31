@@ -740,6 +740,22 @@ name|solr
 operator|.
 name|core
 operator|.
+name|ConfigOverlay
+operator|.
+name|ZNODEVER
+import|;
+end_import
+
+begin_import
+import|import static
+name|org
+operator|.
+name|apache
+operator|.
+name|solr
+operator|.
+name|core
+operator|.
 name|SolrConfig
 operator|.
 name|PluginOpts
@@ -4745,7 +4761,7 @@ name|result
 operator|.
 name|put
 argument_list|(
-literal|"znodeVersion"
+name|ZNODEVER
 argument_list|,
 name|getZnodeVersion
 argument_list|()
