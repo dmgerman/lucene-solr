@@ -1761,7 +1761,6 @@ name|termID
 operator|=
 name|termID
 expr_stmt|;
-comment|// nocommit: check uses
 name|this
 operator|.
 name|posEnum
