@@ -2681,8 +2681,13 @@ argument_list|)
 expr_stmt|;
 try|try
 block|{
+comment|//We will compare all the index files from the master vs the index files on disk to see if there is a mismatch
+comment|//in the metadata. If there is a mismatch for the same index file then we download the entire index again.
 if|if
 condition|(
+operator|!
+name|isFullCopyNeeded
+operator|&&
 name|isIndexStale
 argument_list|(
 name|indexDir
