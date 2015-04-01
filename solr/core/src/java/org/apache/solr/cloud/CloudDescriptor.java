@@ -172,10 +172,14 @@ literal|null
 decl_stmt|;
 DECL|field|shardState
 specifier|volatile
-name|String
+name|Slice
+operator|.
+name|State
 name|shardState
 init|=
 name|Slice
+operator|.
+name|State
 operator|.
 name|ACTIVE
 decl_stmt|;

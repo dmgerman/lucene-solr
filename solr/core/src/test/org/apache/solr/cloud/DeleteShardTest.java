@@ -158,6 +158,24 @@ name|common
 operator|.
 name|cloud
 operator|.
+name|Slice
+operator|.
+name|State
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|solr
+operator|.
+name|common
+operator|.
+name|cloud
+operator|.
 name|ZkNodeProps
 import|;
 end_import
@@ -418,11 +436,13 @@ argument_list|,
 name|slice2
 argument_list|)
 expr_stmt|;
-name|assertEquals
+name|assertSame
 argument_list|(
 literal|"Shard1 is not active"
 argument_list|,
 name|Slice
+operator|.
+name|State
 operator|.
 name|ACTIVE
 argument_list|,
@@ -432,11 +452,13 @@ name|getState
 argument_list|()
 argument_list|)
 expr_stmt|;
-name|assertEquals
+name|assertSame
 argument_list|(
 literal|"Shard2 is not active"
 argument_list|,
 name|Slice
+operator|.
+name|State
 operator|.
 name|ACTIVE
 argument_list|,
@@ -475,6 +497,8 @@ name|SHARD1
 argument_list|,
 name|Slice
 operator|.
+name|State
+operator|.
 name|INACTIVE
 argument_list|)
 expr_stmt|;
@@ -501,11 +525,13 @@ argument_list|,
 name|SHARD1
 argument_list|)
 expr_stmt|;
-name|assertEquals
+name|assertSame
 argument_list|(
 literal|"Shard1 is not inactive yet."
 argument_list|,
 name|Slice
+operator|.
+name|State
 operator|.
 name|INACTIVE
 argument_list|,
@@ -530,6 +556,8 @@ argument_list|(
 name|SHARD2
 argument_list|,
 name|Slice
+operator|.
+name|State
 operator|.
 name|CONSTRUCTION
 argument_list|)
@@ -809,7 +837,7 @@ parameter_list|(
 name|String
 name|slice
 parameter_list|,
-name|String
+name|State
 name|state
 parameter_list|)
 throws|throws
@@ -873,6 +901,9 @@ argument_list|(
 name|slice
 argument_list|,
 name|state
+operator|.
+name|toString
+argument_list|()
 argument_list|)
 expr_stmt|;
 name|propMap
@@ -950,7 +981,7 @@ operator|.
 name|getClusterState
 argument_list|()
 decl_stmt|;
-name|String
+name|State
 name|sliceState
 init|=
 name|clusterState
@@ -968,11 +999,8 @@ decl_stmt|;
 if|if
 condition|(
 name|sliceState
-operator|.
-name|equals
-argument_list|(
+operator|==
 name|state
-argument_list|)
 condition|)
 block|{
 name|transition

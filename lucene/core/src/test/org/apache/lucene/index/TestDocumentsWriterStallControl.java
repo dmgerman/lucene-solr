@@ -220,7 +220,7 @@ name|Thread
 operator|.
 name|State
 operator|.
-name|WAITING
+name|TIMED_WAITING
 argument_list|,
 name|waitThreads
 argument_list|)

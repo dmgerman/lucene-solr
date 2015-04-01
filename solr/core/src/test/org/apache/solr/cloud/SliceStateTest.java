@@ -189,8 +189,6 @@ specifier|public
 name|void
 name|testDefaultSliceState
 parameter_list|()
-throws|throws
-name|Exception
 block|{
 name|Map
 argument_list|<
@@ -295,11 +293,13 @@ argument_list|,
 literal|null
 argument_list|)
 decl_stmt|;
-name|assertEquals
+name|assertSame
 argument_list|(
 literal|"Default state not set to active"
 argument_list|,
 name|Slice
+operator|.
+name|State
 operator|.
 name|ACTIVE
 argument_list|,
@@ -339,19 +339,6 @@ name|DEFAULT
 argument_list|)
 argument_list|)
 expr_stmt|;
-name|ZkStateReader
-name|mockZkStateReader
-init|=
-name|ClusterStateTest
-operator|.
-name|getMockZkStateReader
-argument_list|(
-name|collectionStates
-operator|.
-name|keySet
-argument_list|()
-argument_list|)
-decl_stmt|;
 name|ClusterState
 name|clusterState
 init|=
@@ -392,11 +379,15 @@ argument_list|,
 name|liveNodes
 argument_list|)
 decl_stmt|;
-name|assertEquals
+name|assertSame
 argument_list|(
 literal|"Default state not set to active"
 argument_list|,
-literal|"active"
+name|Slice
+operator|.
+name|State
+operator|.
+name|ACTIVE
 argument_list|,
 name|loadedClusterState
 operator|.

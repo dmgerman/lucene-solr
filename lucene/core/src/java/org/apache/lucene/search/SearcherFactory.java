@@ -122,7 +122,7 @@ specifier|public
 class|class
 name|SearcherFactory
 block|{
-comment|/**     * Returns a new IndexSearcher over the given reader.     */
+comment|/**     * Returns a new IndexSearcher over the given reader.    * @param reader the reader to create a new searcher for    * @param previousReader the reader previously used to create a new searcher.    *                       This can be<code>null</code> if unknown or if the given reader is the initially opened reader.    *                       If this reader is non-null it can be used to find newly opened segments compared to the new reader to warm    *                       the searcher up before returning.    */
 DECL|method|newSearcher
 specifier|public
 name|IndexSearcher
@@ -130,6 +130,9 @@ name|newSearcher
 parameter_list|(
 name|IndexReader
 name|reader
+parameter_list|,
+name|IndexReader
+name|previousReader
 parameter_list|)
 throws|throws
 name|IOException

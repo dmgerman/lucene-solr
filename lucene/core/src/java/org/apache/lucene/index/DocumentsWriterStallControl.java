@@ -204,8 +204,12 @@ block|{
 name|incWaiters
 argument_list|()
 expr_stmt|;
+comment|// Defensive, in case we have a concurrency bug that fails to .notify/All our thread:
+comment|// just wait for up to 1 second here, and let caller re-stall if it's still needed:
 name|wait
-argument_list|()
+argument_list|(
+literal|1000
+argument_list|)
 expr_stmt|;
 name|decrWaiters
 argument_list|()

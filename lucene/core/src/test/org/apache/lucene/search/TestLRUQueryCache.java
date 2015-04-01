@@ -628,6 +628,9 @@ name|newSearcher
 parameter_list|(
 name|IndexReader
 name|reader
+parameter_list|,
+name|IndexReader
+name|previous
 parameter_list|)
 throws|throws
 name|IOException

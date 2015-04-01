@@ -377,9 +377,9 @@ name|sliceProps
 operator|.
 name|put
 argument_list|(
-name|Slice
+name|ZkStateReader
 operator|.
-name|STATE
+name|STATE_PROP
 argument_list|,
 name|shardState
 argument_list|)

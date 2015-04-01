@@ -1456,6 +1456,9 @@ name|newSearcher
 parameter_list|(
 name|IndexReader
 name|r
+parameter_list|,
+name|IndexReader
+name|previous
 parameter_list|)
 throws|throws
 name|IOException
@@ -2485,6 +2488,9 @@ name|newSearcher
 parameter_list|(
 name|IndexReader
 name|ignored
+parameter_list|,
+name|IndexReader
+name|previous
 parameter_list|)
 block|{
 return|return

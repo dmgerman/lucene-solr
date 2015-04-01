@@ -346,6 +346,8 @@ name|writer
 argument_list|,
 name|applyAllDeletes
 argument_list|)
+argument_list|,
+literal|null
 argument_list|)
 argument_list|,
 name|taxoReader
@@ -424,6 +426,8 @@ name|open
 argument_list|(
 name|indexDir
 argument_list|)
+argument_list|,
+literal|null
 argument_list|)
 argument_list|,
 name|taxoReader
@@ -667,6 +671,8 @@ argument_list|(
 name|searcherFactory
 argument_list|,
 name|newReader
+argument_list|,
+name|r
 argument_list|)
 argument_list|,
 name|tr
