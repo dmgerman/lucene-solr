@@ -113,6 +113,7 @@ end_comment
 begin_class
 DECL|class|MatchAllDocsQuery
 specifier|public
+specifier|final
 class|class
 name|MatchAllDocsQuery
 extends|extends
@@ -337,10 +338,7 @@ decl_stmt|;
 DECL|method|MatchAllDocsWeight
 specifier|public
 name|MatchAllDocsWeight
-parameter_list|(
-name|IndexSearcher
-name|searcher
-parameter_list|)
+parameter_list|()
 block|{
 name|super
 argument_list|(
@@ -535,9 +533,7 @@ block|{
 return|return
 operator|new
 name|MatchAllDocsWeight
-argument_list|(
-name|searcher
-argument_list|)
+argument_list|()
 return|;
 block|}
 annotation|@

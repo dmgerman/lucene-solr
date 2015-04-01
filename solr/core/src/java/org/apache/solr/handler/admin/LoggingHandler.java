@@ -725,6 +725,9 @@ argument_list|(
 literal|"found"
 argument_list|,
 name|found
+operator|.
+name|get
+argument_list|()
 argument_list|)
 expr_stmt|;
 block|}

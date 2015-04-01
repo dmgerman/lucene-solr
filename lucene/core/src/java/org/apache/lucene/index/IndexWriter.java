@@ -175,6 +175,8 @@ operator|.
 name|util
 operator|.
 name|Map
+operator|.
+name|Entry
 import|;
 end_import
 
@@ -185,8 +187,6 @@ operator|.
 name|util
 operator|.
 name|Map
-operator|.
-name|Entry
 import|;
 end_import
 
@@ -355,6 +355,20 @@ operator|.
 name|IndexWriterConfig
 operator|.
 name|OpenMode
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|search
+operator|.
+name|MatchAllDocsQuery
 import|;
 end_import
 
@@ -4134,6 +4148,33 @@ block|{
 name|ensureOpen
 argument_list|()
 expr_stmt|;
+comment|// LUCENE-6379: Specialize MatchAllDocsQuery
+for|for
+control|(
+name|Query
+name|query
+range|:
+name|queries
+control|)
+block|{
+if|if
+condition|(
+name|query
+operator|.
+name|getClass
+argument_list|()
+operator|==
+name|MatchAllDocsQuery
+operator|.
+name|class
+condition|)
+block|{
+name|deleteAll
+argument_list|()
+expr_stmt|;
+return|return;
+block|}
+block|}
 try|try
 block|{
 if|if

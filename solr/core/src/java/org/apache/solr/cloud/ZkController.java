@@ -12125,7 +12125,7 @@ comment|/**    * Persists a config file to ZooKeeper using optimistic concurrenc
 DECL|method|persistConfigResourceToZooKeeper
 specifier|public
 specifier|static
-name|boolean
+name|int
 name|persistConfigResourceToZooKeeper
 parameter_list|(
 name|ZkSolrResourceLoader
@@ -12145,6 +12145,11 @@ name|boolean
 name|createIfNotExists
 parameter_list|)
 block|{
+name|int
+name|latestVersion
+init|=
+name|znodeVersion
+decl_stmt|;
 specifier|final
 name|ZkController
 name|zkController
@@ -12198,6 +12203,13 @@ argument_list|,
 literal|true
 argument_list|)
 expr_stmt|;
+name|latestVersion
+operator|=
+name|znodeVersion
+operator|+
+literal|1
+expr_stmt|;
+comment|// if the set succeeded , it should have incremented the version by one always
 name|log
 operator|.
 name|info
@@ -12241,6 +12253,11 @@ argument_list|,
 literal|true
 argument_list|)
 expr_stmt|;
+name|latestVersion
+operator|=
+literal|0
+expr_stmt|;
+comment|//just created so version must be zero
 name|touchConfDir
 argument_list|(
 name|zkLoader
@@ -12275,7 +12292,7 @@ name|log
 operator|.
 name|info
 argument_list|(
-literal|"failed to set data version in zk is {0} and expected version is {1} "
+literal|"failed to set data version in zk is {} and expected version is {} "
 argument_list|,
 name|stat
 operator|.
@@ -12505,7 +12522,7 @@ argument_list|)
 throw|;
 block|}
 return|return
-literal|true
+name|latestVersion
 return|;
 block|}
 DECL|method|touchConfDir

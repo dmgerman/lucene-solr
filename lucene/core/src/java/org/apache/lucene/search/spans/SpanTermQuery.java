@@ -50,6 +50,16 @@ end_import
 
 begin_import
 import|import
+name|java
+operator|.
+name|util
+operator|.
+name|Objects
+import|;
+end_import
+
+begin_import
+import|import
 name|org
 operator|.
 name|apache
@@ -175,7 +185,7 @@ import|;
 end_import
 
 begin_comment
-comment|/** Matches spans containing a term. */
+comment|/** Matches spans containing a term.  * This should not be used for terms that are indexed at position Integer.MAX_VALUE.  */
 end_comment
 
 begin_class
@@ -204,7 +214,12 @@ name|this
 operator|.
 name|term
 operator|=
+name|Objects
+operator|.
+name|requireNonNull
+argument_list|(
 name|term
+argument_list|)
 expr_stmt|;
 block|}
 comment|/** Return the term whose spans are matched. */
@@ -354,20 +369,10 @@ name|prime
 operator|*
 name|result
 operator|+
-operator|(
-operator|(
-name|term
-operator|==
-literal|null
-operator|)
-condition|?
-literal|0
-else|:
 name|term
 operator|.
 name|hashCode
 argument_list|()
-operator|)
 expr_stmt|;
 return|return
 name|result
@@ -427,29 +432,7 @@ name|SpanTermQuery
 operator|)
 name|obj
 decl_stmt|;
-if|if
-condition|(
-name|term
-operator|==
-literal|null
-condition|)
-block|{
-if|if
-condition|(
-name|other
-operator|.
-name|term
-operator|!=
-literal|null
-condition|)
 return|return
-literal|false
-return|;
-block|}
-elseif|else
-if|if
-condition|(
-operator|!
 name|term
 operator|.
 name|equals
@@ -458,12 +441,6 @@ name|other
 operator|.
 name|term
 argument_list|)
-condition|)
-return|return
-literal|false
-return|;
-return|return
-literal|true
 return|;
 block|}
 annotation|@
@@ -641,9 +618,7 @@ condition|)
 block|{
 comment|// term is not present in that reader
 return|return
-name|TermSpans
-operator|.
-name|EMPTY_TERM_SPANS
+literal|null
 return|;
 block|}
 specifier|final

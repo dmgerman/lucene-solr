@@ -38,8 +38,36 @@ name|Collection
 import|;
 end_import
 
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|search
+operator|.
+name|DocIdSetIterator
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|search
+operator|.
+name|TwoPhaseIterator
+import|;
+end_import
+
 begin_comment
-comment|/** Expert: an enumeration of span matches.  Used to implement span searching.  * Each span represents a range of term positions within a document.  Matches  * are enumerated in order, by increasing document number, within that by  * increasing start position and finally by increasing end position. */
+comment|/** Iterates through combinations of start/end positions per-doc.  *  Each start/end position represents a range of term positions within the current document.  *  These are enumerated in order, by increasing document number, within that by  *  increasing start position and finally by increasing end position.  */
 end_comment
 
 begin_class
@@ -48,56 +76,47 @@ specifier|public
 specifier|abstract
 class|class
 name|Spans
+extends|extends
+name|DocIdSetIterator
 block|{
-comment|/** Move to the next match, returning true iff any such exists. */
-DECL|method|next
+DECL|field|NO_MORE_POSITIONS
+specifier|public
+specifier|static
+specifier|final
+name|int
+name|NO_MORE_POSITIONS
+init|=
+name|Integer
+operator|.
+name|MAX_VALUE
+decl_stmt|;
+comment|/**    * Returns the next start position for the current doc.    * There is always at least one start/end position per doc.    * After the last start/end position at the current doc this returns {@link #NO_MORE_POSITIONS}.    */
+DECL|method|nextStartPosition
 specifier|public
 specifier|abstract
-name|boolean
-name|next
+name|int
+name|nextStartPosition
 parameter_list|()
 throws|throws
 name|IOException
 function_decl|;
-comment|/** Skips to the first match beyond the current, whose document number is    * greater than or equal to<i>target</i>.    *<p>The behavior of this method is<b>undefined</b> when called with    *<code> target&le; current</code>, or after the iterator has exhausted.    * Both cases may result in unpredicted behavior.    *<p>Returns true iff there is such    * a match.<p>Behaves as if written:     *<pre class="prettyprint">    *   boolean skipTo(int target) {    *     do {    *       if (!next())    *         return false;    *     } while (target&gt; doc());    *     return true;    *   }    *</pre>    * Most implementations are considerably more efficient than that.    */
-DECL|method|skipTo
-specifier|public
-specifier|abstract
-name|boolean
-name|skipTo
-parameter_list|(
-name|int
-name|target
-parameter_list|)
-throws|throws
-name|IOException
-function_decl|;
-comment|/** Returns the document number of the current match.  Initially invalid. */
-DECL|method|doc
+comment|/**    * Returns the start position in the current doc, or -1 when {@link #nextStartPosition} was not yet called on the current doc.    * After the last start/end position at the current doc this returns {@link #NO_MORE_POSITIONS}.    */
+DECL|method|startPosition
 specifier|public
 specifier|abstract
 name|int
-name|doc
+name|startPosition
 parameter_list|()
 function_decl|;
-comment|/** Returns the start position of the current match.  Initially invalid. */
-DECL|method|start
+comment|/**    * Returns the end position for the current start position, or -1 when {@link #nextStartPosition} was not yet called on the current doc.    * After the last start/end position at the current doc this returns {@link #NO_MORE_POSITIONS}.    */
+DECL|method|endPosition
 specifier|public
 specifier|abstract
 name|int
-name|start
+name|endPosition
 parameter_list|()
 function_decl|;
-comment|/** Returns the end position of the current match.  Initially invalid. */
-DECL|method|end
-specifier|public
-specifier|abstract
-name|int
-name|end
-parameter_list|()
-function_decl|;
-comment|/**    * Returns the payload data for the current span.    * This is invalid until {@link #next()} is called for    * the first time.    * This method must not be called more than once after each call    * of {@link #next()}. However, most payloads are loaded lazily,    * so if the payload data for the current position is not needed,    * this method may not be called at all for performance reasons. An ordered    * SpanQuery does not lazy load, so if you have payloads in your index and    * you do not want ordered SpanNearQuerys to collect payloads, you can    * disable collection with a constructor option.<br>    *<br>    * Note that the return type is a collection, thus the ordering should not be relied upon.    *<br>    * @lucene.experimental    *    * @return a List of byte arrays containing the data of this payload, otherwise null if isPayloadAvailable is false    * @throws IOException if there is a low-level I/O error    */
-comment|// TODO: Remove warning after API has been finalized
+comment|/**    * Returns the payload data for the current start/end position.    * This is only valid after {@link #nextStartPosition()}    * returned an available start position.    * This method must not be called more than once after each call    * of {@link #nextStartPosition()}. However, most payloads are loaded lazily,    * so if the payload data for the current position is not needed,    * this method may not be called at all for performance reasons.    *<br>    * Note that the return type is a collection, thus the ordering should not be relied upon.    *<br>    * @lucene.experimental    *    * @return a List of byte arrays containing the data of this payload, otherwise null if isPayloadAvailable is false    * @throws IOException if there is a low-level I/O error    */
 DECL|method|getPayload
 specifier|public
 specifier|abstract
@@ -111,7 +130,7 @@ parameter_list|()
 throws|throws
 name|IOException
 function_decl|;
-comment|/**    * Checks if a payload can be loaded at this position.    *<p>    * Payloads can only be loaded once per call to    * {@link #next()}.    *    * @return true if there is a payload available at this position that can be loaded    */
+comment|/**    * Checks if a payload can be loaded at the current start/end position.    *<p>    * Payloads can only be loaded once per call to    * {@link #nextStartPosition()}.    *    * @return true if there is a payload available at this start/end position    *              that can be loaded    */
 DECL|method|isPayloadAvailable
 specifier|public
 specifier|abstract
@@ -121,14 +140,17 @@ parameter_list|()
 throws|throws
 name|IOException
 function_decl|;
-comment|/**    * Returns the estimated cost of this spans.    *<p>    * This is generally an upper bound of the number of documents this iterator    * might match, but may be a rough heuristic, hardcoded value, or otherwise    * completely inaccurate.    */
-DECL|method|cost
+comment|/**    * Optional method: Return a {@link TwoPhaseIterator} view of this    * {@link Spans}. A return value of {@code null} indicates that    * two-phase iteration is not supported.    *    * Note that the returned {@link TwoPhaseIterator}'s    * {@link TwoPhaseIterator#approximation() approximation} must    * advance synchronously with this iterator: advancing the approximation must    * advance this iterator and vice-versa.    *    * Implementing this method is typically useful on {@link Spans}s    * that have a high per-document overhead in order to confirm matches.    *    * The default implementation returns {@code null}.    */
+DECL|method|asTwoPhaseIterator
 specifier|public
-specifier|abstract
-name|long
-name|cost
+name|TwoPhaseIterator
+name|asTwoPhaseIterator
 parameter_list|()
-function_decl|;
+block|{
+return|return
+literal|null
+return|;
+block|}
 block|}
 end_class
 
