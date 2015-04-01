@@ -652,6 +652,15 @@ argument_list|,
 name|SKIP
 argument_list|)
 expr_stmt|;
+name|handle
+operator|.
+name|put
+argument_list|(
+literal|"expanded"
+argument_list|,
+name|UNORDERED
+argument_list|)
+expr_stmt|;
 name|query
 argument_list|(
 literal|"q"
