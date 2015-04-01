@@ -1301,15 +1301,16 @@ operator|.
 name|VERSION
 argument_list|)
 expr_stmt|;
-comment|// SolrRequest req = new QueryRequest(SolrRequest.METHOD.POST, "/select");
-comment|// use generic request to avoid extra processing of queries
 name|QueryRequest
 name|req
 init|=
-operator|new
-name|QueryRequest
+name|makeQueryRequest
 argument_list|(
+name|sreq
+argument_list|,
 name|params
+argument_list|,
+name|shard
 argument_list|)
 decl_stmt|;
 name|req
@@ -1531,7 +1532,14 @@ name|NANOSECONDS
 argument_list|)
 expr_stmt|;
 return|return
+name|transfomResponse
+argument_list|(
+name|sreq
+argument_list|,
 name|srsp
+argument_list|,
+name|shard
+argument_list|)
 return|;
 block|}
 block|}
@@ -1548,6 +1556,53 @@ name|task
 argument_list|)
 argument_list|)
 expr_stmt|;
+block|}
+comment|/**    * Subclasses could modify the request based on the shard    */
+DECL|method|makeQueryRequest
+specifier|protected
+name|QueryRequest
+name|makeQueryRequest
+parameter_list|(
+specifier|final
+name|ShardRequest
+name|sreq
+parameter_list|,
+name|ModifiableSolrParams
+name|params
+parameter_list|,
+name|String
+name|shard
+parameter_list|)
+block|{
+comment|// use generic request to avoid extra processing of queries
+return|return
+operator|new
+name|QueryRequest
+argument_list|(
+name|params
+argument_list|)
+return|;
+block|}
+comment|/**    * Subclasses could modify the Response based on the the shard    */
+DECL|method|transfomResponse
+specifier|protected
+name|ShardResponse
+name|transfomResponse
+parameter_list|(
+specifier|final
+name|ShardRequest
+name|sreq
+parameter_list|,
+name|ShardResponse
+name|rsp
+parameter_list|,
+name|String
+name|shard
+parameter_list|)
+block|{
+return|return
+name|rsp
+return|;
 block|}
 comment|/** returns a ShardResponse of the last response correlated with a ShardRequest.  This won't     * return early if it runs into an error.      **/
 annotation|@
