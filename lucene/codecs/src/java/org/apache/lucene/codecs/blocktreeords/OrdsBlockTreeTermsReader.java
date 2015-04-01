@@ -315,7 +315,7 @@ name|OrdsBlockTreeTermsReader
 extends|extends
 name|FieldsProducer
 block|{
-comment|// Open input to the main terms dict file (_X.tiv)
+comment|// Open input to the main terms dict file (_X.tio)
 DECL|field|in
 specifier|final
 name|IndexInput
