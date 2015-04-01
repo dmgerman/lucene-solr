@@ -5500,17 +5500,16 @@ argument_list|)
 decl_stmt|;
 if|if
 condition|(
-name|Slice
-operator|.
-name|CONSTRUCTION
-operator|.
-name|equals
-argument_list|(
 name|slice
 operator|.
 name|getState
 argument_list|()
-argument_list|)
+operator|==
+name|Slice
+operator|.
+name|State
+operator|.
+name|CONSTRUCTION
 condition|)
 block|{
 comment|// set update log to buffer before publishing the core

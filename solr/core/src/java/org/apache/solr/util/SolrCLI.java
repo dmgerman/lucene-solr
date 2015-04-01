@@ -5201,7 +5201,9 @@ expr_stmt|;
 if|if
 condition|(
 operator|!
-literal|"active"
+name|ZkStateReader
+operator|.
+name|ACTIVE
 operator|.
 name|equals
 argument_list|(

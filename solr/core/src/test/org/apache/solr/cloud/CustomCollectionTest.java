@@ -2034,7 +2034,9 @@ control|)
 block|{
 if|if
 condition|(
-literal|"active"
+name|ZkStateReader
+operator|.
+name|ACTIVE
 operator|.
 name|equals
 argument_list|(
@@ -2042,7 +2044,9 @@ name|x
 operator|.
 name|getStr
 argument_list|(
-literal|"state"
+name|ZkStateReader
+operator|.
+name|STATE_PROP
 argument_list|)
 argument_list|)
 condition|)
