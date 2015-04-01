@@ -208,9 +208,7 @@ name|lucene
 operator|.
 name|util
 operator|.
-name|LuceneTestCase
-operator|.
-name|SuppressCodecs
+name|TestUtil
 import|;
 end_import
 
@@ -315,12 +313,6 @@ comment|/**   * Test basic postingsenum behavior, flags, reuse, etc.  */
 end_comment
 
 begin_class
-annotation|@
-name|SuppressCodecs
-argument_list|(
-literal|"Direct"
-argument_list|)
-comment|// Direct does not support reuse, but we test that it works...
 DECL|class|TestPostingsEnum
 specifier|public
 class|class
@@ -328,6 +320,48 @@ name|TestPostingsEnum
 extends|extends
 name|LuceneTestCase
 block|{
+DECL|method|assertReused
+specifier|private
+specifier|static
+name|void
+name|assertReused
+parameter_list|(
+name|String
+name|field
+parameter_list|,
+name|PostingsEnum
+name|p1
+parameter_list|,
+name|PostingsEnum
+name|p2
+parameter_list|)
+block|{
+comment|// if its not DirectPF, we should always reuse. This one has trouble.
+if|if
+condition|(
+operator|!
+literal|"Direct"
+operator|.
+name|equals
+argument_list|(
+name|TestUtil
+operator|.
+name|getPostingsFormat
+argument_list|(
+literal|"foo"
+argument_list|)
+argument_list|)
+condition|)
+block|{
+name|assertSame
+argument_list|(
+name|p1
+argument_list|,
+name|p2
+argument_list|)
+expr_stmt|;
+block|}
+block|}
 DECL|method|testDocsOnly
 specifier|public
 name|void
@@ -517,8 +551,10 @@ argument_list|(
 name|postings2
 argument_list|)
 expr_stmt|;
-name|assertSame
+name|assertReused
 argument_list|(
+literal|"foo"
+argument_list|,
 name|postings
 argument_list|,
 name|postings2
@@ -667,8 +703,10 @@ argument_list|(
 name|postings2
 argument_list|)
 expr_stmt|;
-name|assertSame
+name|assertReused
 argument_list|(
+literal|"foo"
+argument_list|,
 name|postings
 argument_list|,
 name|postings2
@@ -964,8 +1002,10 @@ argument_list|(
 name|postings2
 argument_list|)
 expr_stmt|;
-name|assertSame
+name|assertReused
 argument_list|(
+literal|"foo"
+argument_list|,
 name|postings
 argument_list|,
 name|postings2
@@ -977,7 +1017,7 @@ argument_list|(
 operator|-
 literal|1
 argument_list|,
-name|postings
+name|postings2
 operator|.
 name|docID
 argument_list|()
@@ -987,7 +1027,7 @@ name|assertEquals
 argument_list|(
 literal|0
 argument_list|,
-name|postings
+name|postings2
 operator|.
 name|nextDoc
 argument_list|()
@@ -997,7 +1037,7 @@ name|assertEquals
 argument_list|(
 literal|2
 argument_list|,
-name|postings
+name|postings2
 operator|.
 name|freq
 argument_list|()
@@ -1009,7 +1049,7 @@ name|DocIdSetIterator
 operator|.
 name|NO_MORE_DOCS
 argument_list|,
-name|postings
+name|postings2
 operator|.
 name|nextDoc
 argument_list|()
@@ -1105,8 +1145,10 @@ argument_list|(
 name|docsOnly2
 argument_list|)
 expr_stmt|;
-name|assertSame
+name|assertReused
 argument_list|(
+literal|"foo"
+argument_list|,
 name|docsOnly
 argument_list|,
 name|docsOnly2
@@ -1271,8 +1313,10 @@ argument_list|(
 name|postings2
 argument_list|)
 expr_stmt|;
-name|assertSame
+name|assertReused
 argument_list|(
+literal|"foo"
+argument_list|,
 name|postings
 argument_list|,
 name|postings2
@@ -1560,8 +1604,10 @@ argument_list|(
 name|postings2
 argument_list|)
 expr_stmt|;
-name|assertSame
+name|assertReused
 argument_list|(
+literal|"foo"
+argument_list|,
 name|postings
 argument_list|,
 name|postings2
@@ -1573,7 +1619,7 @@ argument_list|(
 operator|-
 literal|1
 argument_list|,
-name|postings
+name|postings2
 operator|.
 name|docID
 argument_list|()
@@ -1583,7 +1629,7 @@ name|assertEquals
 argument_list|(
 literal|0
 argument_list|,
-name|postings
+name|postings2
 operator|.
 name|nextDoc
 argument_list|()
@@ -1593,7 +1639,7 @@ name|assertEquals
 argument_list|(
 literal|2
 argument_list|,
-name|postings
+name|postings2
 operator|.
 name|freq
 argument_list|()
@@ -1605,7 +1651,7 @@ name|DocIdSetIterator
 operator|.
 name|NO_MORE_DOCS
 argument_list|,
-name|postings
+name|postings2
 operator|.
 name|nextDoc
 argument_list|()
@@ -1701,8 +1747,10 @@ argument_list|(
 name|docsOnly2
 argument_list|)
 expr_stmt|;
-name|assertSame
+name|assertReused
 argument_list|(
+literal|"foo"
+argument_list|,
 name|docsOnly
 argument_list|,
 name|docsOnly2
@@ -1733,14 +1781,14 @@ expr_stmt|;
 comment|// we don't define what it is, but if its something else, we should look into it?
 name|assertTrue
 argument_list|(
-name|docsOnly
+name|docsOnly2
 operator|.
 name|freq
 argument_list|()
 operator|==
 literal|1
 operator|||
-name|docsOnly
+name|docsOnly2
 operator|.
 name|freq
 argument_list|()
@@ -1924,8 +1972,10 @@ operator|.
 name|POSITIONS
 argument_list|)
 decl_stmt|;
-name|assertSame
+name|assertReused
 argument_list|(
+literal|"foo"
+argument_list|,
 name|docsAndPositionsEnum
 argument_list|,
 name|docsAndPositionsEnum2
@@ -1936,7 +1986,7 @@ argument_list|(
 operator|-
 literal|1
 argument_list|,
-name|docsAndPositionsEnum
+name|docsAndPositionsEnum2
 operator|.
 name|docID
 argument_list|()
@@ -1946,7 +1996,7 @@ name|assertEquals
 argument_list|(
 literal|0
 argument_list|,
-name|docsAndPositionsEnum
+name|docsAndPositionsEnum2
 operator|.
 name|nextDoc
 argument_list|()
@@ -1956,7 +2006,7 @@ name|assertEquals
 argument_list|(
 literal|2
 argument_list|,
-name|docsAndPositionsEnum
+name|docsAndPositionsEnum2
 operator|.
 name|freq
 argument_list|()
@@ -1966,7 +2016,7 @@ name|assertEquals
 argument_list|(
 literal|0
 argument_list|,
-name|docsAndPositionsEnum
+name|docsAndPositionsEnum2
 operator|.
 name|nextPosition
 argument_list|()
@@ -1977,7 +2027,7 @@ argument_list|(
 operator|-
 literal|1
 argument_list|,
-name|docsAndPositionsEnum
+name|docsAndPositionsEnum2
 operator|.
 name|startOffset
 argument_list|()
@@ -1988,7 +2038,7 @@ argument_list|(
 operator|-
 literal|1
 argument_list|,
-name|docsAndPositionsEnum
+name|docsAndPositionsEnum2
 operator|.
 name|endOffset
 argument_list|()
@@ -1996,7 +2046,7 @@ argument_list|)
 expr_stmt|;
 name|assertNull
 argument_list|(
-name|docsAndPositionsEnum
+name|docsAndPositionsEnum2
 operator|.
 name|getPayload
 argument_list|()
@@ -2006,7 +2056,7 @@ name|assertEquals
 argument_list|(
 literal|1
 argument_list|,
-name|docsAndPositionsEnum
+name|docsAndPositionsEnum2
 operator|.
 name|nextPosition
 argument_list|()
@@ -2017,7 +2067,7 @@ argument_list|(
 operator|-
 literal|1
 argument_list|,
-name|docsAndPositionsEnum
+name|docsAndPositionsEnum2
 operator|.
 name|startOffset
 argument_list|()
@@ -2028,7 +2078,7 @@ argument_list|(
 operator|-
 literal|1
 argument_list|,
-name|docsAndPositionsEnum
+name|docsAndPositionsEnum2
 operator|.
 name|endOffset
 argument_list|()
@@ -2036,7 +2086,7 @@ argument_list|)
 expr_stmt|;
 name|assertNull
 argument_list|(
-name|docsAndPositionsEnum
+name|docsAndPositionsEnum2
 operator|.
 name|getPayload
 argument_list|()
@@ -2048,7 +2098,7 @@ name|DocIdSetIterator
 operator|.
 name|NO_MORE_DOCS
 argument_list|,
-name|docsAndPositionsEnum
+name|docsAndPositionsEnum2
 operator|.
 name|nextDoc
 argument_list|()
@@ -2222,8 +2272,10 @@ operator|.
 name|PAYLOADS
 argument_list|)
 expr_stmt|;
-name|assertSame
+name|assertReused
 argument_list|(
+literal|"foo"
+argument_list|,
 name|docsAndPositionsEnum
 argument_list|,
 name|docsAndPositionsEnum2
@@ -2234,7 +2286,7 @@ argument_list|(
 operator|-
 literal|1
 argument_list|,
-name|docsAndPositionsEnum
+name|docsAndPositionsEnum2
 operator|.
 name|docID
 argument_list|()
@@ -2244,7 +2296,7 @@ name|assertEquals
 argument_list|(
 literal|0
 argument_list|,
-name|docsAndPositionsEnum
+name|docsAndPositionsEnum2
 operator|.
 name|nextDoc
 argument_list|()
@@ -2254,7 +2306,7 @@ name|assertEquals
 argument_list|(
 literal|2
 argument_list|,
-name|docsAndPositionsEnum
+name|docsAndPositionsEnum2
 operator|.
 name|freq
 argument_list|()
@@ -2264,7 +2316,7 @@ name|assertEquals
 argument_list|(
 literal|0
 argument_list|,
-name|docsAndPositionsEnum
+name|docsAndPositionsEnum2
 operator|.
 name|nextPosition
 argument_list|()
@@ -2275,7 +2327,7 @@ argument_list|(
 operator|-
 literal|1
 argument_list|,
-name|docsAndPositionsEnum
+name|docsAndPositionsEnum2
 operator|.
 name|startOffset
 argument_list|()
@@ -2286,7 +2338,7 @@ argument_list|(
 operator|-
 literal|1
 argument_list|,
-name|docsAndPositionsEnum
+name|docsAndPositionsEnum2
 operator|.
 name|endOffset
 argument_list|()
@@ -2294,7 +2346,7 @@ argument_list|)
 expr_stmt|;
 name|assertNull
 argument_list|(
-name|docsAndPositionsEnum
+name|docsAndPositionsEnum2
 operator|.
 name|getPayload
 argument_list|()
@@ -2304,7 +2356,7 @@ name|assertEquals
 argument_list|(
 literal|1
 argument_list|,
-name|docsAndPositionsEnum
+name|docsAndPositionsEnum2
 operator|.
 name|nextPosition
 argument_list|()
@@ -2315,7 +2367,7 @@ argument_list|(
 operator|-
 literal|1
 argument_list|,
-name|docsAndPositionsEnum
+name|docsAndPositionsEnum2
 operator|.
 name|startOffset
 argument_list|()
@@ -2326,7 +2378,7 @@ argument_list|(
 operator|-
 literal|1
 argument_list|,
-name|docsAndPositionsEnum
+name|docsAndPositionsEnum2
 operator|.
 name|endOffset
 argument_list|()
@@ -2334,7 +2386,7 @@ argument_list|)
 expr_stmt|;
 name|assertNull
 argument_list|(
-name|docsAndPositionsEnum
+name|docsAndPositionsEnum2
 operator|.
 name|getPayload
 argument_list|()
@@ -2346,7 +2398,7 @@ name|DocIdSetIterator
 operator|.
 name|NO_MORE_DOCS
 argument_list|,
-name|docsAndPositionsEnum
+name|docsAndPositionsEnum2
 operator|.
 name|nextDoc
 argument_list|()
@@ -2518,8 +2570,10 @@ operator|.
 name|OFFSETS
 argument_list|)
 expr_stmt|;
-name|assertSame
+name|assertReused
 argument_list|(
+literal|"foo"
+argument_list|,
 name|docsAndPositionsEnum
 argument_list|,
 name|docsAndPositionsEnum2
@@ -2530,7 +2584,7 @@ argument_list|(
 operator|-
 literal|1
 argument_list|,
-name|docsAndPositionsEnum
+name|docsAndPositionsEnum2
 operator|.
 name|docID
 argument_list|()
@@ -2540,7 +2594,7 @@ name|assertEquals
 argument_list|(
 literal|0
 argument_list|,
-name|docsAndPositionsEnum
+name|docsAndPositionsEnum2
 operator|.
 name|nextDoc
 argument_list|()
@@ -2550,7 +2604,7 @@ name|assertEquals
 argument_list|(
 literal|2
 argument_list|,
-name|docsAndPositionsEnum
+name|docsAndPositionsEnum2
 operator|.
 name|freq
 argument_list|()
@@ -2560,7 +2614,7 @@ name|assertEquals
 argument_list|(
 literal|0
 argument_list|,
-name|docsAndPositionsEnum
+name|docsAndPositionsEnum2
 operator|.
 name|nextPosition
 argument_list|()
@@ -2571,7 +2625,7 @@ argument_list|(
 operator|-
 literal|1
 argument_list|,
-name|docsAndPositionsEnum
+name|docsAndPositionsEnum2
 operator|.
 name|startOffset
 argument_list|()
@@ -2582,7 +2636,7 @@ argument_list|(
 operator|-
 literal|1
 argument_list|,
-name|docsAndPositionsEnum
+name|docsAndPositionsEnum2
 operator|.
 name|endOffset
 argument_list|()
@@ -2590,7 +2644,7 @@ argument_list|)
 expr_stmt|;
 name|assertNull
 argument_list|(
-name|docsAndPositionsEnum
+name|docsAndPositionsEnum2
 operator|.
 name|getPayload
 argument_list|()
@@ -2600,7 +2654,7 @@ name|assertEquals
 argument_list|(
 literal|1
 argument_list|,
-name|docsAndPositionsEnum
+name|docsAndPositionsEnum2
 operator|.
 name|nextPosition
 argument_list|()
@@ -2611,7 +2665,7 @@ argument_list|(
 operator|-
 literal|1
 argument_list|,
-name|docsAndPositionsEnum
+name|docsAndPositionsEnum2
 operator|.
 name|startOffset
 argument_list|()
@@ -2622,7 +2676,7 @@ argument_list|(
 operator|-
 literal|1
 argument_list|,
-name|docsAndPositionsEnum
+name|docsAndPositionsEnum2
 operator|.
 name|endOffset
 argument_list|()
@@ -2630,7 +2684,7 @@ argument_list|)
 expr_stmt|;
 name|assertNull
 argument_list|(
-name|docsAndPositionsEnum
+name|docsAndPositionsEnum2
 operator|.
 name|getPayload
 argument_list|()
@@ -2642,7 +2696,7 @@ name|DocIdSetIterator
 operator|.
 name|NO_MORE_DOCS
 argument_list|,
-name|docsAndPositionsEnum
+name|docsAndPositionsEnum2
 operator|.
 name|nextDoc
 argument_list|()
@@ -2813,8 +2867,10 @@ operator|.
 name|ALL
 argument_list|)
 expr_stmt|;
-name|assertSame
+name|assertReused
 argument_list|(
+literal|"foo"
+argument_list|,
 name|docsAndPositionsEnum
 argument_list|,
 name|docsAndPositionsEnum2
@@ -2825,7 +2881,7 @@ argument_list|(
 operator|-
 literal|1
 argument_list|,
-name|docsAndPositionsEnum
+name|docsAndPositionsEnum2
 operator|.
 name|docID
 argument_list|()
@@ -2835,7 +2891,7 @@ name|assertEquals
 argument_list|(
 literal|0
 argument_list|,
-name|docsAndPositionsEnum
+name|docsAndPositionsEnum2
 operator|.
 name|nextDoc
 argument_list|()
@@ -2845,7 +2901,7 @@ name|assertEquals
 argument_list|(
 literal|2
 argument_list|,
-name|docsAndPositionsEnum
+name|docsAndPositionsEnum2
 operator|.
 name|freq
 argument_list|()
@@ -2855,7 +2911,7 @@ name|assertEquals
 argument_list|(
 literal|0
 argument_list|,
-name|docsAndPositionsEnum
+name|docsAndPositionsEnum2
 operator|.
 name|nextPosition
 argument_list|()
@@ -2866,7 +2922,7 @@ argument_list|(
 operator|-
 literal|1
 argument_list|,
-name|docsAndPositionsEnum
+name|docsAndPositionsEnum2
 operator|.
 name|startOffset
 argument_list|()
@@ -2877,7 +2933,7 @@ argument_list|(
 operator|-
 literal|1
 argument_list|,
-name|docsAndPositionsEnum
+name|docsAndPositionsEnum2
 operator|.
 name|endOffset
 argument_list|()
@@ -2885,7 +2941,7 @@ argument_list|)
 expr_stmt|;
 name|assertNull
 argument_list|(
-name|docsAndPositionsEnum
+name|docsAndPositionsEnum2
 operator|.
 name|getPayload
 argument_list|()
@@ -2895,7 +2951,7 @@ name|assertEquals
 argument_list|(
 literal|1
 argument_list|,
-name|docsAndPositionsEnum
+name|docsAndPositionsEnum2
 operator|.
 name|nextPosition
 argument_list|()
@@ -2906,7 +2962,7 @@ argument_list|(
 operator|-
 literal|1
 argument_list|,
-name|docsAndPositionsEnum
+name|docsAndPositionsEnum2
 operator|.
 name|startOffset
 argument_list|()
@@ -2917,7 +2973,7 @@ argument_list|(
 operator|-
 literal|1
 argument_list|,
-name|docsAndPositionsEnum
+name|docsAndPositionsEnum2
 operator|.
 name|endOffset
 argument_list|()
@@ -2925,7 +2981,7 @@ argument_list|)
 expr_stmt|;
 name|assertNull
 argument_list|(
-name|docsAndPositionsEnum
+name|docsAndPositionsEnum2
 operator|.
 name|getPayload
 argument_list|()
@@ -2937,7 +2993,7 @@ name|DocIdSetIterator
 operator|.
 name|NO_MORE_DOCS
 argument_list|,
-name|docsAndPositionsEnum
+name|docsAndPositionsEnum2
 operator|.
 name|nextDoc
 argument_list|()
@@ -3188,8 +3244,10 @@ argument_list|(
 name|postings2
 argument_list|)
 expr_stmt|;
-name|assertSame
+name|assertReused
 argument_list|(
+literal|"foo"
+argument_list|,
 name|postings
 argument_list|,
 name|postings2
@@ -3201,7 +3259,7 @@ argument_list|(
 operator|-
 literal|1
 argument_list|,
-name|postings
+name|postings2
 operator|.
 name|docID
 argument_list|()
@@ -3211,7 +3269,7 @@ name|assertEquals
 argument_list|(
 literal|0
 argument_list|,
-name|postings
+name|postings2
 operator|.
 name|nextDoc
 argument_list|()
@@ -3221,7 +3279,7 @@ name|assertEquals
 argument_list|(
 literal|2
 argument_list|,
-name|postings
+name|postings2
 operator|.
 name|freq
 argument_list|()
@@ -3233,7 +3291,7 @@ name|DocIdSetIterator
 operator|.
 name|NO_MORE_DOCS
 argument_list|,
-name|postings
+name|postings2
 operator|.
 name|nextDoc
 argument_list|()
@@ -3329,8 +3387,10 @@ argument_list|(
 name|docsOnly2
 argument_list|)
 expr_stmt|;
-name|assertSame
+name|assertReused
 argument_list|(
+literal|"foo"
+argument_list|,
 name|docsOnly
 argument_list|,
 name|docsOnly2
@@ -3361,14 +3421,14 @@ expr_stmt|;
 comment|// we don't define what it is, but if its something else, we should look into it?
 name|assertTrue
 argument_list|(
-name|docsOnly
+name|docsOnly2
 operator|.
 name|freq
 argument_list|()
 operator|==
 literal|1
 operator|||
-name|docsOnly
+name|docsOnly2
 operator|.
 name|freq
 argument_list|()
@@ -3582,8 +3642,10 @@ operator|.
 name|POSITIONS
 argument_list|)
 decl_stmt|;
-name|assertSame
+name|assertReused
 argument_list|(
+literal|"foo"
+argument_list|,
 name|docsAndPositionsEnum
 argument_list|,
 name|docsAndPositionsEnum2
@@ -3594,7 +3656,7 @@ argument_list|(
 operator|-
 literal|1
 argument_list|,
-name|docsAndPositionsEnum
+name|docsAndPositionsEnum2
 operator|.
 name|docID
 argument_list|()
@@ -3604,7 +3666,7 @@ name|assertEquals
 argument_list|(
 literal|0
 argument_list|,
-name|docsAndPositionsEnum
+name|docsAndPositionsEnum2
 operator|.
 name|nextDoc
 argument_list|()
@@ -3614,7 +3676,7 @@ name|assertEquals
 argument_list|(
 literal|2
 argument_list|,
-name|docsAndPositionsEnum
+name|docsAndPositionsEnum2
 operator|.
 name|freq
 argument_list|()
@@ -3624,7 +3686,7 @@ name|assertEquals
 argument_list|(
 literal|0
 argument_list|,
-name|docsAndPositionsEnum
+name|docsAndPositionsEnum2
 operator|.
 name|nextPosition
 argument_list|()
@@ -3633,7 +3695,7 @@ expr_stmt|;
 comment|// we don't define what it is, but if its something else, we should look into it?
 name|assertTrue
 argument_list|(
-name|docsAndPositionsEnum
+name|docsAndPositionsEnum2
 operator|.
 name|startOffset
 argument_list|()
@@ -3641,7 +3703,7 @@ operator|==
 operator|-
 literal|1
 operator|||
-name|docsAndPositionsEnum
+name|docsAndPositionsEnum2
 operator|.
 name|startOffset
 argument_list|()
@@ -3651,7 +3713,7 @@ argument_list|)
 expr_stmt|;
 name|assertTrue
 argument_list|(
-name|docsAndPositionsEnum
+name|docsAndPositionsEnum2
 operator|.
 name|endOffset
 argument_list|()
@@ -3659,7 +3721,7 @@ operator|==
 operator|-
 literal|1
 operator|||
-name|docsAndPositionsEnum
+name|docsAndPositionsEnum2
 operator|.
 name|endOffset
 argument_list|()
@@ -3669,7 +3731,7 @@ argument_list|)
 expr_stmt|;
 name|assertNull
 argument_list|(
-name|docsAndPositionsEnum
+name|docsAndPositionsEnum2
 operator|.
 name|getPayload
 argument_list|()
@@ -3679,7 +3741,7 @@ name|assertEquals
 argument_list|(
 literal|1
 argument_list|,
-name|docsAndPositionsEnum
+name|docsAndPositionsEnum2
 operator|.
 name|nextPosition
 argument_list|()
@@ -3688,7 +3750,7 @@ expr_stmt|;
 comment|// we don't define what it is, but if its something else, we should look into it?
 name|assertTrue
 argument_list|(
-name|docsAndPositionsEnum
+name|docsAndPositionsEnum2
 operator|.
 name|startOffset
 argument_list|()
@@ -3696,7 +3758,7 @@ operator|==
 operator|-
 literal|1
 operator|||
-name|docsAndPositionsEnum
+name|docsAndPositionsEnum2
 operator|.
 name|startOffset
 argument_list|()
@@ -3706,7 +3768,7 @@ argument_list|)
 expr_stmt|;
 name|assertTrue
 argument_list|(
-name|docsAndPositionsEnum
+name|docsAndPositionsEnum2
 operator|.
 name|endOffset
 argument_list|()
@@ -3714,7 +3776,7 @@ operator|==
 operator|-
 literal|1
 operator|||
-name|docsAndPositionsEnum
+name|docsAndPositionsEnum2
 operator|.
 name|endOffset
 argument_list|()
@@ -3724,7 +3786,7 @@ argument_list|)
 expr_stmt|;
 name|assertNull
 argument_list|(
-name|docsAndPositionsEnum
+name|docsAndPositionsEnum2
 operator|.
 name|getPayload
 argument_list|()
@@ -3736,7 +3798,7 @@ name|DocIdSetIterator
 operator|.
 name|NO_MORE_DOCS
 argument_list|,
-name|docsAndPositionsEnum
+name|docsAndPositionsEnum2
 operator|.
 name|nextDoc
 argument_list|()
@@ -3940,8 +4002,10 @@ operator|.
 name|PAYLOADS
 argument_list|)
 expr_stmt|;
-name|assertSame
+name|assertReused
 argument_list|(
+literal|"foo"
+argument_list|,
 name|docsAndPositionsEnum
 argument_list|,
 name|docsAndPositionsEnum2
@@ -3952,7 +4016,7 @@ argument_list|(
 operator|-
 literal|1
 argument_list|,
-name|docsAndPositionsEnum
+name|docsAndPositionsEnum2
 operator|.
 name|docID
 argument_list|()
@@ -3962,7 +4026,7 @@ name|assertEquals
 argument_list|(
 literal|0
 argument_list|,
-name|docsAndPositionsEnum
+name|docsAndPositionsEnum2
 operator|.
 name|nextDoc
 argument_list|()
@@ -3972,7 +4036,7 @@ name|assertEquals
 argument_list|(
 literal|2
 argument_list|,
-name|docsAndPositionsEnum
+name|docsAndPositionsEnum2
 operator|.
 name|freq
 argument_list|()
@@ -3982,7 +4046,7 @@ name|assertEquals
 argument_list|(
 literal|0
 argument_list|,
-name|docsAndPositionsEnum
+name|docsAndPositionsEnum2
 operator|.
 name|nextPosition
 argument_list|()
@@ -3991,7 +4055,7 @@ expr_stmt|;
 comment|// we don't define what it is, but if its something else, we should look into it?
 name|assertTrue
 argument_list|(
-name|docsAndPositionsEnum
+name|docsAndPositionsEnum2
 operator|.
 name|startOffset
 argument_list|()
@@ -3999,7 +4063,7 @@ operator|==
 operator|-
 literal|1
 operator|||
-name|docsAndPositionsEnum
+name|docsAndPositionsEnum2
 operator|.
 name|startOffset
 argument_list|()
@@ -4009,7 +4073,7 @@ argument_list|)
 expr_stmt|;
 name|assertTrue
 argument_list|(
-name|docsAndPositionsEnum
+name|docsAndPositionsEnum2
 operator|.
 name|endOffset
 argument_list|()
@@ -4017,7 +4081,7 @@ operator|==
 operator|-
 literal|1
 operator|||
-name|docsAndPositionsEnum
+name|docsAndPositionsEnum2
 operator|.
 name|endOffset
 argument_list|()
@@ -4027,7 +4091,7 @@ argument_list|)
 expr_stmt|;
 name|assertNull
 argument_list|(
-name|docsAndPositionsEnum
+name|docsAndPositionsEnum2
 operator|.
 name|getPayload
 argument_list|()
@@ -4037,7 +4101,7 @@ name|assertEquals
 argument_list|(
 literal|1
 argument_list|,
-name|docsAndPositionsEnum
+name|docsAndPositionsEnum2
 operator|.
 name|nextPosition
 argument_list|()
@@ -4046,7 +4110,7 @@ expr_stmt|;
 comment|// we don't define what it is, but if its something else, we should look into it?
 name|assertTrue
 argument_list|(
-name|docsAndPositionsEnum
+name|docsAndPositionsEnum2
 operator|.
 name|startOffset
 argument_list|()
@@ -4054,7 +4118,7 @@ operator|==
 operator|-
 literal|1
 operator|||
-name|docsAndPositionsEnum
+name|docsAndPositionsEnum2
 operator|.
 name|startOffset
 argument_list|()
@@ -4064,7 +4128,7 @@ argument_list|)
 expr_stmt|;
 name|assertTrue
 argument_list|(
-name|docsAndPositionsEnum
+name|docsAndPositionsEnum2
 operator|.
 name|endOffset
 argument_list|()
@@ -4072,7 +4136,7 @@ operator|==
 operator|-
 literal|1
 operator|||
-name|docsAndPositionsEnum
+name|docsAndPositionsEnum2
 operator|.
 name|endOffset
 argument_list|()
@@ -4082,7 +4146,7 @@ argument_list|)
 expr_stmt|;
 name|assertNull
 argument_list|(
-name|docsAndPositionsEnum
+name|docsAndPositionsEnum2
 operator|.
 name|getPayload
 argument_list|()
@@ -4094,7 +4158,7 @@ name|DocIdSetIterator
 operator|.
 name|NO_MORE_DOCS
 argument_list|,
-name|docsAndPositionsEnum
+name|docsAndPositionsEnum2
 operator|.
 name|nextDoc
 argument_list|()
@@ -4262,8 +4326,10 @@ operator|.
 name|OFFSETS
 argument_list|)
 expr_stmt|;
-name|assertSame
+name|assertReused
 argument_list|(
+literal|"foo"
+argument_list|,
 name|docsAndPositionsEnum
 argument_list|,
 name|docsAndPositionsEnum2
@@ -4274,7 +4340,7 @@ argument_list|(
 operator|-
 literal|1
 argument_list|,
-name|docsAndPositionsEnum
+name|docsAndPositionsEnum2
 operator|.
 name|docID
 argument_list|()
@@ -4284,7 +4350,7 @@ name|assertEquals
 argument_list|(
 literal|0
 argument_list|,
-name|docsAndPositionsEnum
+name|docsAndPositionsEnum2
 operator|.
 name|nextDoc
 argument_list|()
@@ -4294,7 +4360,7 @@ name|assertEquals
 argument_list|(
 literal|2
 argument_list|,
-name|docsAndPositionsEnum
+name|docsAndPositionsEnum2
 operator|.
 name|freq
 argument_list|()
@@ -4304,7 +4370,7 @@ name|assertEquals
 argument_list|(
 literal|0
 argument_list|,
-name|docsAndPositionsEnum
+name|docsAndPositionsEnum2
 operator|.
 name|nextPosition
 argument_list|()
@@ -4314,7 +4380,7 @@ name|assertEquals
 argument_list|(
 literal|0
 argument_list|,
-name|docsAndPositionsEnum
+name|docsAndPositionsEnum2
 operator|.
 name|startOffset
 argument_list|()
@@ -4324,7 +4390,7 @@ name|assertEquals
 argument_list|(
 literal|3
 argument_list|,
-name|docsAndPositionsEnum
+name|docsAndPositionsEnum2
 operator|.
 name|endOffset
 argument_list|()
@@ -4332,7 +4398,7 @@ argument_list|)
 expr_stmt|;
 name|assertNull
 argument_list|(
-name|docsAndPositionsEnum
+name|docsAndPositionsEnum2
 operator|.
 name|getPayload
 argument_list|()
@@ -4342,7 +4408,7 @@ name|assertEquals
 argument_list|(
 literal|1
 argument_list|,
-name|docsAndPositionsEnum
+name|docsAndPositionsEnum2
 operator|.
 name|nextPosition
 argument_list|()
@@ -4352,7 +4418,7 @@ name|assertEquals
 argument_list|(
 literal|4
 argument_list|,
-name|docsAndPositionsEnum
+name|docsAndPositionsEnum2
 operator|.
 name|startOffset
 argument_list|()
@@ -4362,7 +4428,7 @@ name|assertEquals
 argument_list|(
 literal|7
 argument_list|,
-name|docsAndPositionsEnum
+name|docsAndPositionsEnum2
 operator|.
 name|endOffset
 argument_list|()
@@ -4370,7 +4436,7 @@ argument_list|)
 expr_stmt|;
 name|assertNull
 argument_list|(
-name|docsAndPositionsEnum
+name|docsAndPositionsEnum2
 operator|.
 name|getPayload
 argument_list|()
@@ -4382,7 +4448,7 @@ name|DocIdSetIterator
 operator|.
 name|NO_MORE_DOCS
 argument_list|,
-name|docsAndPositionsEnum
+name|docsAndPositionsEnum2
 operator|.
 name|nextDoc
 argument_list|()
@@ -4549,8 +4615,10 @@ operator|.
 name|ALL
 argument_list|)
 expr_stmt|;
-name|assertSame
+name|assertReused
 argument_list|(
+literal|"foo"
+argument_list|,
 name|docsAndPositionsEnum
 argument_list|,
 name|docsAndPositionsEnum2
@@ -4561,7 +4629,7 @@ argument_list|(
 operator|-
 literal|1
 argument_list|,
-name|docsAndPositionsEnum
+name|docsAndPositionsEnum2
 operator|.
 name|docID
 argument_list|()
@@ -4571,7 +4639,7 @@ name|assertEquals
 argument_list|(
 literal|0
 argument_list|,
-name|docsAndPositionsEnum
+name|docsAndPositionsEnum2
 operator|.
 name|nextDoc
 argument_list|()
@@ -4581,7 +4649,7 @@ name|assertEquals
 argument_list|(
 literal|2
 argument_list|,
-name|docsAndPositionsEnum
+name|docsAndPositionsEnum2
 operator|.
 name|freq
 argument_list|()
@@ -4591,7 +4659,7 @@ name|assertEquals
 argument_list|(
 literal|0
 argument_list|,
-name|docsAndPositionsEnum
+name|docsAndPositionsEnum2
 operator|.
 name|nextPosition
 argument_list|()
@@ -4601,7 +4669,7 @@ name|assertEquals
 argument_list|(
 literal|0
 argument_list|,
-name|docsAndPositionsEnum
+name|docsAndPositionsEnum2
 operator|.
 name|startOffset
 argument_list|()
@@ -4611,7 +4679,7 @@ name|assertEquals
 argument_list|(
 literal|3
 argument_list|,
-name|docsAndPositionsEnum
+name|docsAndPositionsEnum2
 operator|.
 name|endOffset
 argument_list|()
@@ -4619,7 +4687,7 @@ argument_list|)
 expr_stmt|;
 name|assertNull
 argument_list|(
-name|docsAndPositionsEnum
+name|docsAndPositionsEnum2
 operator|.
 name|getPayload
 argument_list|()
@@ -4629,7 +4697,7 @@ name|assertEquals
 argument_list|(
 literal|1
 argument_list|,
-name|docsAndPositionsEnum
+name|docsAndPositionsEnum2
 operator|.
 name|nextPosition
 argument_list|()
@@ -4639,7 +4707,7 @@ name|assertEquals
 argument_list|(
 literal|4
 argument_list|,
-name|docsAndPositionsEnum
+name|docsAndPositionsEnum2
 operator|.
 name|startOffset
 argument_list|()
@@ -4649,7 +4717,7 @@ name|assertEquals
 argument_list|(
 literal|7
 argument_list|,
-name|docsAndPositionsEnum
+name|docsAndPositionsEnum2
 operator|.
 name|endOffset
 argument_list|()
@@ -4657,7 +4725,7 @@ argument_list|)
 expr_stmt|;
 name|assertNull
 argument_list|(
-name|docsAndPositionsEnum
+name|docsAndPositionsEnum2
 operator|.
 name|getPayload
 argument_list|()
@@ -4669,7 +4737,7 @@ name|DocIdSetIterator
 operator|.
 name|NO_MORE_DOCS
 argument_list|,
-name|docsAndPositionsEnum
+name|docsAndPositionsEnum2
 operator|.
 name|nextDoc
 argument_list|()
@@ -4928,8 +4996,10 @@ argument_list|(
 name|postings2
 argument_list|)
 expr_stmt|;
-name|assertSame
+name|assertReused
 argument_list|(
+literal|"foo"
+argument_list|,
 name|postings
 argument_list|,
 name|postings2
@@ -4941,7 +5011,7 @@ argument_list|(
 operator|-
 literal|1
 argument_list|,
-name|postings
+name|postings2
 operator|.
 name|docID
 argument_list|()
@@ -4951,7 +5021,7 @@ name|assertEquals
 argument_list|(
 literal|0
 argument_list|,
-name|postings
+name|postings2
 operator|.
 name|nextDoc
 argument_list|()
@@ -4961,7 +5031,7 @@ name|assertEquals
 argument_list|(
 literal|2
 argument_list|,
-name|postings
+name|postings2
 operator|.
 name|freq
 argument_list|()
@@ -4973,7 +5043,7 @@ name|DocIdSetIterator
 operator|.
 name|NO_MORE_DOCS
 argument_list|,
-name|postings
+name|postings2
 operator|.
 name|nextDoc
 argument_list|()
@@ -5069,8 +5139,10 @@ argument_list|(
 name|docsOnly2
 argument_list|)
 expr_stmt|;
-name|assertSame
+name|assertReused
 argument_list|(
+literal|"foo"
+argument_list|,
 name|docsOnly
 argument_list|,
 name|docsOnly2
@@ -5101,14 +5173,14 @@ expr_stmt|;
 comment|// we don't define what it is, but if its something else, we should look into it?
 name|assertTrue
 argument_list|(
-name|docsOnly
+name|docsOnly2
 operator|.
 name|freq
 argument_list|()
 operator|==
 literal|1
 operator|||
-name|docsOnly
+name|docsOnly2
 operator|.
 name|freq
 argument_list|()
@@ -5326,8 +5398,10 @@ operator|.
 name|POSITIONS
 argument_list|)
 decl_stmt|;
-name|assertSame
+name|assertReused
 argument_list|(
+literal|"foo"
+argument_list|,
 name|docsAndPositionsEnum
 argument_list|,
 name|docsAndPositionsEnum2
@@ -5338,7 +5412,7 @@ argument_list|(
 operator|-
 literal|1
 argument_list|,
-name|docsAndPositionsEnum
+name|docsAndPositionsEnum2
 operator|.
 name|docID
 argument_list|()
@@ -5348,7 +5422,7 @@ name|assertEquals
 argument_list|(
 literal|0
 argument_list|,
-name|docsAndPositionsEnum
+name|docsAndPositionsEnum2
 operator|.
 name|nextDoc
 argument_list|()
@@ -5358,7 +5432,7 @@ name|assertEquals
 argument_list|(
 literal|2
 argument_list|,
-name|docsAndPositionsEnum
+name|docsAndPositionsEnum2
 operator|.
 name|freq
 argument_list|()
@@ -5368,7 +5442,7 @@ name|assertEquals
 argument_list|(
 literal|0
 argument_list|,
-name|docsAndPositionsEnum
+name|docsAndPositionsEnum2
 operator|.
 name|nextPosition
 argument_list|()
@@ -5379,7 +5453,7 @@ argument_list|(
 operator|-
 literal|1
 argument_list|,
-name|docsAndPositionsEnum
+name|docsAndPositionsEnum2
 operator|.
 name|startOffset
 argument_list|()
@@ -5390,7 +5464,7 @@ argument_list|(
 operator|-
 literal|1
 argument_list|,
-name|docsAndPositionsEnum
+name|docsAndPositionsEnum2
 operator|.
 name|endOffset
 argument_list|()
@@ -5399,7 +5473,7 @@ expr_stmt|;
 comment|// we don't define what it is, but if its something else, we should look into it?
 name|assertTrue
 argument_list|(
-name|docsAndPositionsEnum
+name|docsAndPositionsEnum2
 operator|.
 name|getPayload
 argument_list|()
@@ -5414,7 +5488,7 @@ argument_list|)
 operator|.
 name|equals
 argument_list|(
-name|docsAndPositionsEnum
+name|docsAndPositionsEnum2
 operator|.
 name|getPayload
 argument_list|()
@@ -5425,7 +5499,7 @@ name|assertEquals
 argument_list|(
 literal|1
 argument_list|,
-name|docsAndPositionsEnum
+name|docsAndPositionsEnum2
 operator|.
 name|nextPosition
 argument_list|()
@@ -5436,7 +5510,7 @@ argument_list|(
 operator|-
 literal|1
 argument_list|,
-name|docsAndPositionsEnum
+name|docsAndPositionsEnum2
 operator|.
 name|startOffset
 argument_list|()
@@ -5447,7 +5521,7 @@ argument_list|(
 operator|-
 literal|1
 argument_list|,
-name|docsAndPositionsEnum
+name|docsAndPositionsEnum2
 operator|.
 name|endOffset
 argument_list|()
@@ -5456,7 +5530,7 @@ expr_stmt|;
 comment|// we don't define what it is, but if its something else, we should look into it?
 name|assertTrue
 argument_list|(
-name|docsAndPositionsEnum
+name|docsAndPositionsEnum2
 operator|.
 name|getPayload
 argument_list|()
@@ -5471,7 +5545,7 @@ argument_list|)
 operator|.
 name|equals
 argument_list|(
-name|docsAndPositionsEnum
+name|docsAndPositionsEnum2
 operator|.
 name|getPayload
 argument_list|()
@@ -5484,7 +5558,7 @@ name|DocIdSetIterator
 operator|.
 name|NO_MORE_DOCS
 argument_list|,
-name|docsAndPositionsEnum
+name|docsAndPositionsEnum2
 operator|.
 name|nextDoc
 argument_list|()
@@ -5669,8 +5743,10 @@ operator|.
 name|PAYLOADS
 argument_list|)
 expr_stmt|;
-name|assertSame
+name|assertReused
 argument_list|(
+literal|"foo"
+argument_list|,
 name|docsAndPositionsEnum
 argument_list|,
 name|docsAndPositionsEnum2
@@ -5681,7 +5757,7 @@ argument_list|(
 operator|-
 literal|1
 argument_list|,
-name|docsAndPositionsEnum
+name|docsAndPositionsEnum2
 operator|.
 name|docID
 argument_list|()
@@ -5691,7 +5767,7 @@ name|assertEquals
 argument_list|(
 literal|0
 argument_list|,
-name|docsAndPositionsEnum
+name|docsAndPositionsEnum2
 operator|.
 name|nextDoc
 argument_list|()
@@ -5701,7 +5777,7 @@ name|assertEquals
 argument_list|(
 literal|2
 argument_list|,
-name|docsAndPositionsEnum
+name|docsAndPositionsEnum2
 operator|.
 name|freq
 argument_list|()
@@ -5711,7 +5787,7 @@ name|assertEquals
 argument_list|(
 literal|0
 argument_list|,
-name|docsAndPositionsEnum
+name|docsAndPositionsEnum2
 operator|.
 name|nextPosition
 argument_list|()
@@ -5722,7 +5798,7 @@ argument_list|(
 operator|-
 literal|1
 argument_list|,
-name|docsAndPositionsEnum
+name|docsAndPositionsEnum2
 operator|.
 name|startOffset
 argument_list|()
@@ -5733,7 +5809,7 @@ argument_list|(
 operator|-
 literal|1
 argument_list|,
-name|docsAndPositionsEnum
+name|docsAndPositionsEnum2
 operator|.
 name|endOffset
 argument_list|()
@@ -5747,7 +5823,7 @@ argument_list|(
 literal|"pay1"
 argument_list|)
 argument_list|,
-name|docsAndPositionsEnum
+name|docsAndPositionsEnum2
 operator|.
 name|getPayload
 argument_list|()
@@ -5757,7 +5833,7 @@ name|assertEquals
 argument_list|(
 literal|1
 argument_list|,
-name|docsAndPositionsEnum
+name|docsAndPositionsEnum2
 operator|.
 name|nextPosition
 argument_list|()
@@ -5768,7 +5844,7 @@ argument_list|(
 operator|-
 literal|1
 argument_list|,
-name|docsAndPositionsEnum
+name|docsAndPositionsEnum2
 operator|.
 name|startOffset
 argument_list|()
@@ -5779,7 +5855,7 @@ argument_list|(
 operator|-
 literal|1
 argument_list|,
-name|docsAndPositionsEnum
+name|docsAndPositionsEnum2
 operator|.
 name|endOffset
 argument_list|()
@@ -5793,7 +5869,7 @@ argument_list|(
 literal|"pay2"
 argument_list|)
 argument_list|,
-name|docsAndPositionsEnum
+name|docsAndPositionsEnum2
 operator|.
 name|getPayload
 argument_list|()
@@ -5805,7 +5881,7 @@ name|DocIdSetIterator
 operator|.
 name|NO_MORE_DOCS
 argument_list|,
-name|docsAndPositionsEnum
+name|docsAndPositionsEnum2
 operator|.
 name|nextDoc
 argument_list|()
@@ -6011,8 +6087,10 @@ operator|.
 name|OFFSETS
 argument_list|)
 expr_stmt|;
-name|assertSame
+name|assertReused
 argument_list|(
+literal|"foo"
+argument_list|,
 name|docsAndPositionsEnum
 argument_list|,
 name|docsAndPositionsEnum2
@@ -6023,7 +6101,7 @@ argument_list|(
 operator|-
 literal|1
 argument_list|,
-name|docsAndPositionsEnum
+name|docsAndPositionsEnum2
 operator|.
 name|docID
 argument_list|()
@@ -6033,7 +6111,7 @@ name|assertEquals
 argument_list|(
 literal|0
 argument_list|,
-name|docsAndPositionsEnum
+name|docsAndPositionsEnum2
 operator|.
 name|nextDoc
 argument_list|()
@@ -6043,7 +6121,7 @@ name|assertEquals
 argument_list|(
 literal|2
 argument_list|,
-name|docsAndPositionsEnum
+name|docsAndPositionsEnum2
 operator|.
 name|freq
 argument_list|()
@@ -6053,7 +6131,7 @@ name|assertEquals
 argument_list|(
 literal|0
 argument_list|,
-name|docsAndPositionsEnum
+name|docsAndPositionsEnum2
 operator|.
 name|nextPosition
 argument_list|()
@@ -6064,7 +6142,7 @@ argument_list|(
 operator|-
 literal|1
 argument_list|,
-name|docsAndPositionsEnum
+name|docsAndPositionsEnum2
 operator|.
 name|startOffset
 argument_list|()
@@ -6075,7 +6153,7 @@ argument_list|(
 operator|-
 literal|1
 argument_list|,
-name|docsAndPositionsEnum
+name|docsAndPositionsEnum2
 operator|.
 name|endOffset
 argument_list|()
@@ -6084,7 +6162,7 @@ expr_stmt|;
 comment|// we don't define what it is, but if its something else, we should look into it?
 name|assertTrue
 argument_list|(
-name|docsAndPositionsEnum
+name|docsAndPositionsEnum2
 operator|.
 name|getPayload
 argument_list|()
@@ -6099,7 +6177,7 @@ argument_list|)
 operator|.
 name|equals
 argument_list|(
-name|docsAndPositionsEnum
+name|docsAndPositionsEnum2
 operator|.
 name|getPayload
 argument_list|()
@@ -6110,7 +6188,7 @@ name|assertEquals
 argument_list|(
 literal|1
 argument_list|,
-name|docsAndPositionsEnum
+name|docsAndPositionsEnum2
 operator|.
 name|nextPosition
 argument_list|()
@@ -6121,7 +6199,7 @@ argument_list|(
 operator|-
 literal|1
 argument_list|,
-name|docsAndPositionsEnum
+name|docsAndPositionsEnum2
 operator|.
 name|startOffset
 argument_list|()
@@ -6132,7 +6210,7 @@ argument_list|(
 operator|-
 literal|1
 argument_list|,
-name|docsAndPositionsEnum
+name|docsAndPositionsEnum2
 operator|.
 name|endOffset
 argument_list|()
@@ -6141,7 +6219,7 @@ expr_stmt|;
 comment|// we don't define what it is, but if its something else, we should look into it?
 name|assertTrue
 argument_list|(
-name|docsAndPositionsEnum
+name|docsAndPositionsEnum2
 operator|.
 name|getPayload
 argument_list|()
@@ -6156,7 +6234,7 @@ argument_list|)
 operator|.
 name|equals
 argument_list|(
-name|docsAndPositionsEnum
+name|docsAndPositionsEnum2
 operator|.
 name|getPayload
 argument_list|()
@@ -6169,7 +6247,7 @@ name|DocIdSetIterator
 operator|.
 name|NO_MORE_DOCS
 argument_list|,
-name|docsAndPositionsEnum
+name|docsAndPositionsEnum2
 operator|.
 name|nextDoc
 argument_list|()
@@ -6352,8 +6430,10 @@ operator|.
 name|ALL
 argument_list|)
 expr_stmt|;
-name|assertSame
+name|assertReused
 argument_list|(
+literal|"foo"
+argument_list|,
 name|docsAndPositionsEnum
 argument_list|,
 name|docsAndPositionsEnum2
@@ -6364,7 +6444,7 @@ argument_list|(
 operator|-
 literal|1
 argument_list|,
-name|docsAndPositionsEnum
+name|docsAndPositionsEnum2
 operator|.
 name|docID
 argument_list|()
@@ -6374,7 +6454,7 @@ name|assertEquals
 argument_list|(
 literal|0
 argument_list|,
-name|docsAndPositionsEnum
+name|docsAndPositionsEnum2
 operator|.
 name|nextDoc
 argument_list|()
@@ -6384,7 +6464,7 @@ name|assertEquals
 argument_list|(
 literal|2
 argument_list|,
-name|docsAndPositionsEnum
+name|docsAndPositionsEnum2
 operator|.
 name|freq
 argument_list|()
@@ -6394,7 +6474,7 @@ name|assertEquals
 argument_list|(
 literal|0
 argument_list|,
-name|docsAndPositionsEnum
+name|docsAndPositionsEnum2
 operator|.
 name|nextPosition
 argument_list|()
@@ -6405,7 +6485,7 @@ argument_list|(
 operator|-
 literal|1
 argument_list|,
-name|docsAndPositionsEnum
+name|docsAndPositionsEnum2
 operator|.
 name|startOffset
 argument_list|()
@@ -6416,7 +6496,7 @@ argument_list|(
 operator|-
 literal|1
 argument_list|,
-name|docsAndPositionsEnum
+name|docsAndPositionsEnum2
 operator|.
 name|endOffset
 argument_list|()
@@ -6430,7 +6510,7 @@ argument_list|(
 literal|"pay1"
 argument_list|)
 argument_list|,
-name|docsAndPositionsEnum
+name|docsAndPositionsEnum2
 operator|.
 name|getPayload
 argument_list|()
@@ -6440,7 +6520,7 @@ name|assertEquals
 argument_list|(
 literal|1
 argument_list|,
-name|docsAndPositionsEnum
+name|docsAndPositionsEnum2
 operator|.
 name|nextPosition
 argument_list|()
@@ -6451,7 +6531,7 @@ argument_list|(
 operator|-
 literal|1
 argument_list|,
-name|docsAndPositionsEnum
+name|docsAndPositionsEnum2
 operator|.
 name|startOffset
 argument_list|()
@@ -6462,7 +6542,7 @@ argument_list|(
 operator|-
 literal|1
 argument_list|,
-name|docsAndPositionsEnum
+name|docsAndPositionsEnum2
 operator|.
 name|endOffset
 argument_list|()
@@ -6476,7 +6556,7 @@ argument_list|(
 literal|"pay2"
 argument_list|)
 argument_list|,
-name|docsAndPositionsEnum
+name|docsAndPositionsEnum2
 operator|.
 name|getPayload
 argument_list|()
@@ -6488,7 +6568,7 @@ name|DocIdSetIterator
 operator|.
 name|NO_MORE_DOCS
 argument_list|,
-name|docsAndPositionsEnum
+name|docsAndPositionsEnum2
 operator|.
 name|nextDoc
 argument_list|()
@@ -6769,8 +6849,10 @@ argument_list|(
 name|postings2
 argument_list|)
 expr_stmt|;
-name|assertSame
+name|assertReused
 argument_list|(
+literal|"foo"
+argument_list|,
 name|postings
 argument_list|,
 name|postings2
@@ -6782,7 +6864,7 @@ argument_list|(
 operator|-
 literal|1
 argument_list|,
-name|postings
+name|postings2
 operator|.
 name|docID
 argument_list|()
@@ -6792,7 +6874,7 @@ name|assertEquals
 argument_list|(
 literal|0
 argument_list|,
-name|postings
+name|postings2
 operator|.
 name|nextDoc
 argument_list|()
@@ -6802,7 +6884,7 @@ name|assertEquals
 argument_list|(
 literal|2
 argument_list|,
-name|postings
+name|postings2
 operator|.
 name|freq
 argument_list|()
@@ -6814,7 +6896,7 @@ name|DocIdSetIterator
 operator|.
 name|NO_MORE_DOCS
 argument_list|,
-name|postings
+name|postings2
 operator|.
 name|nextDoc
 argument_list|()
@@ -6910,8 +6992,10 @@ argument_list|(
 name|docsOnly2
 argument_list|)
 expr_stmt|;
-name|assertSame
+name|assertReused
 argument_list|(
+literal|"foo"
+argument_list|,
 name|docsOnly
 argument_list|,
 name|docsOnly2
@@ -6942,14 +7026,14 @@ expr_stmt|;
 comment|// we don't define what it is, but if its something else, we should look into it?
 name|assertTrue
 argument_list|(
-name|docsOnly
+name|docsOnly2
 operator|.
 name|freq
 argument_list|()
 operator|==
 literal|1
 operator|||
-name|docsOnly
+name|docsOnly2
 operator|.
 name|freq
 argument_list|()
@@ -7197,8 +7281,10 @@ operator|.
 name|POSITIONS
 argument_list|)
 decl_stmt|;
-name|assertSame
+name|assertReused
 argument_list|(
+literal|"foo"
+argument_list|,
 name|docsAndPositionsEnum
 argument_list|,
 name|docsAndPositionsEnum2
@@ -7209,7 +7295,7 @@ argument_list|(
 operator|-
 literal|1
 argument_list|,
-name|docsAndPositionsEnum
+name|docsAndPositionsEnum2
 operator|.
 name|docID
 argument_list|()
@@ -7219,7 +7305,7 @@ name|assertEquals
 argument_list|(
 literal|0
 argument_list|,
-name|docsAndPositionsEnum
+name|docsAndPositionsEnum2
 operator|.
 name|nextDoc
 argument_list|()
@@ -7229,7 +7315,7 @@ name|assertEquals
 argument_list|(
 literal|2
 argument_list|,
-name|docsAndPositionsEnum
+name|docsAndPositionsEnum2
 operator|.
 name|freq
 argument_list|()
@@ -7239,7 +7325,7 @@ name|assertEquals
 argument_list|(
 literal|0
 argument_list|,
-name|docsAndPositionsEnum
+name|docsAndPositionsEnum2
 operator|.
 name|nextPosition
 argument_list|()
@@ -7248,7 +7334,7 @@ expr_stmt|;
 comment|// we don't define what it is, but if its something else, we should look into it?
 name|assertTrue
 argument_list|(
-name|docsAndPositionsEnum
+name|docsAndPositionsEnum2
 operator|.
 name|startOffset
 argument_list|()
@@ -7256,7 +7342,7 @@ operator|==
 operator|-
 literal|1
 operator|||
-name|docsAndPositionsEnum
+name|docsAndPositionsEnum2
 operator|.
 name|startOffset
 argument_list|()
@@ -7266,7 +7352,7 @@ argument_list|)
 expr_stmt|;
 name|assertTrue
 argument_list|(
-name|docsAndPositionsEnum
+name|docsAndPositionsEnum2
 operator|.
 name|endOffset
 argument_list|()
@@ -7274,7 +7360,7 @@ operator|==
 operator|-
 literal|1
 operator|||
-name|docsAndPositionsEnum
+name|docsAndPositionsEnum2
 operator|.
 name|endOffset
 argument_list|()
@@ -7285,7 +7371,7 @@ expr_stmt|;
 comment|// we don't define what it is, but if its something else, we should look into it?
 name|assertTrue
 argument_list|(
-name|docsAndPositionsEnum
+name|docsAndPositionsEnum2
 operator|.
 name|getPayload
 argument_list|()
@@ -7300,7 +7386,7 @@ argument_list|)
 operator|.
 name|equals
 argument_list|(
-name|docsAndPositionsEnum
+name|docsAndPositionsEnum2
 operator|.
 name|getPayload
 argument_list|()
@@ -7311,7 +7397,7 @@ name|assertEquals
 argument_list|(
 literal|1
 argument_list|,
-name|docsAndPositionsEnum
+name|docsAndPositionsEnum2
 operator|.
 name|nextPosition
 argument_list|()
@@ -7320,7 +7406,7 @@ expr_stmt|;
 comment|// we don't define what it is, but if its something else, we should look into it?
 name|assertTrue
 argument_list|(
-name|docsAndPositionsEnum
+name|docsAndPositionsEnum2
 operator|.
 name|startOffset
 argument_list|()
@@ -7328,7 +7414,7 @@ operator|==
 operator|-
 literal|1
 operator|||
-name|docsAndPositionsEnum
+name|docsAndPositionsEnum2
 operator|.
 name|startOffset
 argument_list|()
@@ -7338,7 +7424,7 @@ argument_list|)
 expr_stmt|;
 name|assertTrue
 argument_list|(
-name|docsAndPositionsEnum
+name|docsAndPositionsEnum2
 operator|.
 name|endOffset
 argument_list|()
@@ -7346,7 +7432,7 @@ operator|==
 operator|-
 literal|1
 operator|||
-name|docsAndPositionsEnum
+name|docsAndPositionsEnum2
 operator|.
 name|endOffset
 argument_list|()
@@ -7357,7 +7443,7 @@ expr_stmt|;
 comment|// we don't define what it is, but if its something else, we should look into it?
 name|assertTrue
 argument_list|(
-name|docsAndPositionsEnum
+name|docsAndPositionsEnum2
 operator|.
 name|getPayload
 argument_list|()
@@ -7372,7 +7458,7 @@ argument_list|)
 operator|.
 name|equals
 argument_list|(
-name|docsAndPositionsEnum
+name|docsAndPositionsEnum2
 operator|.
 name|getPayload
 argument_list|()
@@ -7385,7 +7471,7 @@ name|DocIdSetIterator
 operator|.
 name|NO_MORE_DOCS
 argument_list|,
-name|docsAndPositionsEnum
+name|docsAndPositionsEnum2
 operator|.
 name|nextDoc
 argument_list|()
@@ -7600,8 +7686,10 @@ operator|.
 name|PAYLOADS
 argument_list|)
 expr_stmt|;
-name|assertSame
+name|assertReused
 argument_list|(
+literal|"foo"
+argument_list|,
 name|docsAndPositionsEnum
 argument_list|,
 name|docsAndPositionsEnum2
@@ -7612,7 +7700,7 @@ argument_list|(
 operator|-
 literal|1
 argument_list|,
-name|docsAndPositionsEnum
+name|docsAndPositionsEnum2
 operator|.
 name|docID
 argument_list|()
@@ -7622,7 +7710,7 @@ name|assertEquals
 argument_list|(
 literal|0
 argument_list|,
-name|docsAndPositionsEnum
+name|docsAndPositionsEnum2
 operator|.
 name|nextDoc
 argument_list|()
@@ -7632,7 +7720,7 @@ name|assertEquals
 argument_list|(
 literal|2
 argument_list|,
-name|docsAndPositionsEnum
+name|docsAndPositionsEnum2
 operator|.
 name|freq
 argument_list|()
@@ -7642,7 +7730,7 @@ name|assertEquals
 argument_list|(
 literal|0
 argument_list|,
-name|docsAndPositionsEnum
+name|docsAndPositionsEnum2
 operator|.
 name|nextPosition
 argument_list|()
@@ -7651,7 +7739,7 @@ expr_stmt|;
 comment|// we don't define what it is, but if its something else, we should look into it?
 name|assertTrue
 argument_list|(
-name|docsAndPositionsEnum
+name|docsAndPositionsEnum2
 operator|.
 name|startOffset
 argument_list|()
@@ -7659,7 +7747,7 @@ operator|==
 operator|-
 literal|1
 operator|||
-name|docsAndPositionsEnum
+name|docsAndPositionsEnum2
 operator|.
 name|startOffset
 argument_list|()
@@ -7669,7 +7757,7 @@ argument_list|)
 expr_stmt|;
 name|assertTrue
 argument_list|(
-name|docsAndPositionsEnum
+name|docsAndPositionsEnum2
 operator|.
 name|endOffset
 argument_list|()
@@ -7677,7 +7765,7 @@ operator|==
 operator|-
 literal|1
 operator|||
-name|docsAndPositionsEnum
+name|docsAndPositionsEnum2
 operator|.
 name|endOffset
 argument_list|()
@@ -7693,7 +7781,7 @@ argument_list|(
 literal|"pay1"
 argument_list|)
 argument_list|,
-name|docsAndPositionsEnum
+name|docsAndPositionsEnum2
 operator|.
 name|getPayload
 argument_list|()
@@ -7703,7 +7791,7 @@ name|assertEquals
 argument_list|(
 literal|1
 argument_list|,
-name|docsAndPositionsEnum
+name|docsAndPositionsEnum2
 operator|.
 name|nextPosition
 argument_list|()
@@ -7712,7 +7800,7 @@ expr_stmt|;
 comment|// we don't define what it is, but if its something else, we should look into it?
 name|assertTrue
 argument_list|(
-name|docsAndPositionsEnum
+name|docsAndPositionsEnum2
 operator|.
 name|startOffset
 argument_list|()
@@ -7720,7 +7808,7 @@ operator|==
 operator|-
 literal|1
 operator|||
-name|docsAndPositionsEnum
+name|docsAndPositionsEnum2
 operator|.
 name|startOffset
 argument_list|()
@@ -7730,7 +7818,7 @@ argument_list|)
 expr_stmt|;
 name|assertTrue
 argument_list|(
-name|docsAndPositionsEnum
+name|docsAndPositionsEnum2
 operator|.
 name|endOffset
 argument_list|()
@@ -7738,7 +7826,7 @@ operator|==
 operator|-
 literal|1
 operator|||
-name|docsAndPositionsEnum
+name|docsAndPositionsEnum2
 operator|.
 name|endOffset
 argument_list|()
@@ -7754,7 +7842,7 @@ argument_list|(
 literal|"pay2"
 argument_list|)
 argument_list|,
-name|docsAndPositionsEnum
+name|docsAndPositionsEnum2
 operator|.
 name|getPayload
 argument_list|()
@@ -7766,7 +7854,7 @@ name|DocIdSetIterator
 operator|.
 name|NO_MORE_DOCS
 argument_list|,
-name|docsAndPositionsEnum
+name|docsAndPositionsEnum2
 operator|.
 name|nextDoc
 argument_list|()
@@ -7968,8 +8056,10 @@ operator|.
 name|OFFSETS
 argument_list|)
 expr_stmt|;
-name|assertSame
+name|assertReused
 argument_list|(
+literal|"foo"
+argument_list|,
 name|docsAndPositionsEnum
 argument_list|,
 name|docsAndPositionsEnum2
@@ -7980,7 +8070,7 @@ argument_list|(
 operator|-
 literal|1
 argument_list|,
-name|docsAndPositionsEnum
+name|docsAndPositionsEnum2
 operator|.
 name|docID
 argument_list|()
@@ -7990,7 +8080,7 @@ name|assertEquals
 argument_list|(
 literal|0
 argument_list|,
-name|docsAndPositionsEnum
+name|docsAndPositionsEnum2
 operator|.
 name|nextDoc
 argument_list|()
@@ -8000,7 +8090,7 @@ name|assertEquals
 argument_list|(
 literal|2
 argument_list|,
-name|docsAndPositionsEnum
+name|docsAndPositionsEnum2
 operator|.
 name|freq
 argument_list|()
@@ -8010,7 +8100,7 @@ name|assertEquals
 argument_list|(
 literal|0
 argument_list|,
-name|docsAndPositionsEnum
+name|docsAndPositionsEnum2
 operator|.
 name|nextPosition
 argument_list|()
@@ -8020,7 +8110,7 @@ name|assertEquals
 argument_list|(
 literal|0
 argument_list|,
-name|docsAndPositionsEnum
+name|docsAndPositionsEnum2
 operator|.
 name|startOffset
 argument_list|()
@@ -8030,7 +8120,7 @@ name|assertEquals
 argument_list|(
 literal|3
 argument_list|,
-name|docsAndPositionsEnum
+name|docsAndPositionsEnum2
 operator|.
 name|endOffset
 argument_list|()
@@ -8039,7 +8129,7 @@ expr_stmt|;
 comment|// we don't define what it is, but if its something else, we should look into it?
 name|assertTrue
 argument_list|(
-name|docsAndPositionsEnum
+name|docsAndPositionsEnum2
 operator|.
 name|getPayload
 argument_list|()
@@ -8054,7 +8144,7 @@ argument_list|)
 operator|.
 name|equals
 argument_list|(
-name|docsAndPositionsEnum
+name|docsAndPositionsEnum2
 operator|.
 name|getPayload
 argument_list|()
@@ -8065,7 +8155,7 @@ name|assertEquals
 argument_list|(
 literal|1
 argument_list|,
-name|docsAndPositionsEnum
+name|docsAndPositionsEnum2
 operator|.
 name|nextPosition
 argument_list|()
@@ -8075,7 +8165,7 @@ name|assertEquals
 argument_list|(
 literal|4
 argument_list|,
-name|docsAndPositionsEnum
+name|docsAndPositionsEnum2
 operator|.
 name|startOffset
 argument_list|()
@@ -8085,7 +8175,7 @@ name|assertEquals
 argument_list|(
 literal|7
 argument_list|,
-name|docsAndPositionsEnum
+name|docsAndPositionsEnum2
 operator|.
 name|endOffset
 argument_list|()
@@ -8094,7 +8184,7 @@ expr_stmt|;
 comment|// we don't define what it is, but if its something else, we should look into it?
 name|assertTrue
 argument_list|(
-name|docsAndPositionsEnum
+name|docsAndPositionsEnum2
 operator|.
 name|getPayload
 argument_list|()
@@ -8109,7 +8199,7 @@ argument_list|)
 operator|.
 name|equals
 argument_list|(
-name|docsAndPositionsEnum
+name|docsAndPositionsEnum2
 operator|.
 name|getPayload
 argument_list|()
@@ -8122,7 +8212,7 @@ name|DocIdSetIterator
 operator|.
 name|NO_MORE_DOCS
 argument_list|,
-name|docsAndPositionsEnum
+name|docsAndPositionsEnum2
 operator|.
 name|nextDoc
 argument_list|()
@@ -8301,8 +8391,10 @@ operator|.
 name|ALL
 argument_list|)
 expr_stmt|;
-name|assertSame
+name|assertReused
 argument_list|(
+literal|"foo"
+argument_list|,
 name|docsAndPositionsEnum
 argument_list|,
 name|docsAndPositionsEnum2
@@ -8313,7 +8405,7 @@ argument_list|(
 operator|-
 literal|1
 argument_list|,
-name|docsAndPositionsEnum
+name|docsAndPositionsEnum2
 operator|.
 name|docID
 argument_list|()
@@ -8323,7 +8415,7 @@ name|assertEquals
 argument_list|(
 literal|0
 argument_list|,
-name|docsAndPositionsEnum
+name|docsAndPositionsEnum2
 operator|.
 name|nextDoc
 argument_list|()
@@ -8333,7 +8425,7 @@ name|assertEquals
 argument_list|(
 literal|2
 argument_list|,
-name|docsAndPositionsEnum
+name|docsAndPositionsEnum2
 operator|.
 name|freq
 argument_list|()
@@ -8343,7 +8435,7 @@ name|assertEquals
 argument_list|(
 literal|0
 argument_list|,
-name|docsAndPositionsEnum
+name|docsAndPositionsEnum2
 operator|.
 name|nextPosition
 argument_list|()
@@ -8353,7 +8445,7 @@ name|assertEquals
 argument_list|(
 literal|0
 argument_list|,
-name|docsAndPositionsEnum
+name|docsAndPositionsEnum2
 operator|.
 name|startOffset
 argument_list|()
@@ -8363,7 +8455,7 @@ name|assertEquals
 argument_list|(
 literal|3
 argument_list|,
-name|docsAndPositionsEnum
+name|docsAndPositionsEnum2
 operator|.
 name|endOffset
 argument_list|()
@@ -8377,7 +8469,7 @@ argument_list|(
 literal|"pay1"
 argument_list|)
 argument_list|,
-name|docsAndPositionsEnum
+name|docsAndPositionsEnum2
 operator|.
 name|getPayload
 argument_list|()
@@ -8387,7 +8479,7 @@ name|assertEquals
 argument_list|(
 literal|1
 argument_list|,
-name|docsAndPositionsEnum
+name|docsAndPositionsEnum2
 operator|.
 name|nextPosition
 argument_list|()
@@ -8397,7 +8489,7 @@ name|assertEquals
 argument_list|(
 literal|4
 argument_list|,
-name|docsAndPositionsEnum
+name|docsAndPositionsEnum2
 operator|.
 name|startOffset
 argument_list|()
@@ -8407,7 +8499,7 @@ name|assertEquals
 argument_list|(
 literal|7
 argument_list|,
-name|docsAndPositionsEnum
+name|docsAndPositionsEnum2
 operator|.
 name|endOffset
 argument_list|()
@@ -8421,7 +8513,7 @@ argument_list|(
 literal|"pay2"
 argument_list|)
 argument_list|,
-name|docsAndPositionsEnum
+name|docsAndPositionsEnum2
 operator|.
 name|getPayload
 argument_list|()
@@ -8433,7 +8525,7 @@ name|DocIdSetIterator
 operator|.
 name|NO_MORE_DOCS
 argument_list|,
-name|docsAndPositionsEnum
+name|docsAndPositionsEnum2
 operator|.
 name|nextDoc
 argument_list|()
