@@ -291,7 +291,7 @@ parameter_list|()
 throws|throws
 name|Exception
 block|{
-comment|// create a collection that has 1 shard and 3 replicas
+comment|// create a collection that has 2 shard and 2 replicas
 name|String
 name|testCollectionName
 init|=
