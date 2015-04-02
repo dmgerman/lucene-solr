@@ -352,6 +352,24 @@ name|LoggerFactory
 import|;
 end_import
 
+begin_import
+import|import static
+name|org
+operator|.
+name|apache
+operator|.
+name|solr
+operator|.
+name|common
+operator|.
+name|params
+operator|.
+name|CommonParams
+operator|.
+name|JSON
+import|;
+end_import
+
 begin_comment
 comment|/**  * Pre-analyzed field type provides a way to index a serialized token stream,  * optionally with an independent stored value of a field.  */
 end_comment
@@ -471,7 +489,7 @@ block|{
 comment|// short name
 if|if
 condition|(
-literal|"json"
+name|JSON
 operator|.
 name|equalsIgnoreCase
 argument_list|(

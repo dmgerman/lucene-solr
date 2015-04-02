@@ -244,6 +244,24 @@ name|LoggerFactory
 import|;
 end_import
 
+begin_import
+import|import static
+name|org
+operator|.
+name|apache
+operator|.
+name|solr
+operator|.
+name|common
+operator|.
+name|params
+operator|.
+name|CommonParams
+operator|.
+name|NAME
+import|;
+end_import
+
 begin_comment
 comment|/**   * Responsible for loading the lookup and dictionary Implementations specified by   * the SolrConfig.   * Interacts (query/build/reload) with Lucene Suggesters through {@link Lookup} and  * {@link Dictionary}  * */
 end_comment
@@ -281,16 +299,6 @@ name|String
 name|DEFAULT_DICT_NAME
 init|=
 literal|"default"
-decl_stmt|;
-comment|/** Label to identify the name of the suggester */
-DECL|field|NAME
-specifier|public
-specifier|static
-specifier|final
-name|String
-name|NAME
-init|=
-literal|"name"
 decl_stmt|;
 comment|/** Location of the source data - either a path to a file, or null for the    * current IndexReader.    * */
 DECL|field|LOCATION

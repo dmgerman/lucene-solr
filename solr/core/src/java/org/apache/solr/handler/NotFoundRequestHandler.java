@@ -58,6 +58,24 @@ name|SolrQueryResponse
 import|;
 end_import
 
+begin_import
+import|import static
+name|org
+operator|.
+name|apache
+operator|.
+name|solr
+operator|.
+name|common
+operator|.
+name|params
+operator|.
+name|CommonParams
+operator|.
+name|PATH
+import|;
+end_import
+
 begin_comment
 comment|/**  * Does nothing other than showing a 404 message  */
 end_comment
@@ -105,7 +123,7 @@ argument_list|()
 operator|.
 name|get
 argument_list|(
-literal|"path"
+name|PATH
 argument_list|)
 operator|+
 literal|" is not found"

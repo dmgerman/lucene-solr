@@ -154,6 +154,24 @@ name|LoggerFactory
 import|;
 end_import
 
+begin_import
+import|import static
+name|org
+operator|.
+name|apache
+operator|.
+name|solr
+operator|.
+name|common
+operator|.
+name|params
+operator|.
+name|CommonParams
+operator|.
+name|PATH
+import|;
+end_import
+
 begin_class
 DECL|class|InfoHandler
 specifier|public
@@ -326,7 +344,7 @@ argument_list|()
 operator|.
 name|get
 argument_list|(
-literal|"path"
+name|PATH
 argument_list|)
 decl_stmt|;
 name|int

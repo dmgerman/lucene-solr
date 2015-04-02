@@ -22,16 +22,6 @@ name|java
 operator|.
 name|util
 operator|.
-name|ArrayList
-import|;
-end_import
-
-begin_import
-import|import
-name|java
-operator|.
-name|util
-operator|.
 name|Collections
 import|;
 end_import
@@ -43,16 +33,6 @@ operator|.
 name|util
 operator|.
 name|HashMap
-import|;
-end_import
-
-begin_import
-import|import
-name|java
-operator|.
-name|util
-operator|.
-name|List
 import|;
 end_import
 
@@ -93,22 +73,6 @@ operator|.
 name|SolrException
 operator|.
 name|ErrorCode
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|solr
-operator|.
-name|common
-operator|.
-name|cloud
-operator|.
-name|ZkNodeProps
 import|;
 end_import
 
@@ -221,20 +185,6 @@ operator|.
 name|util
 operator|.
 name|NamedList
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|solr
-operator|.
-name|core
-operator|.
-name|PluginInfo
 import|;
 end_import
 
@@ -384,18 +334,6 @@ end_import
 
 begin_import
 import|import static
-name|java
-operator|.
-name|util
-operator|.
-name|Collections
-operator|.
-name|singletonMap
-import|;
-end_import
-
-begin_import
-import|import static
 name|org
 operator|.
 name|apache
@@ -404,11 +342,11 @@ name|solr
 operator|.
 name|common
 operator|.
-name|cloud
+name|params
 operator|.
-name|ZkNodeProps
+name|CommonParams
 operator|.
-name|makeMap
+name|PATH
 import|;
 end_import
 
@@ -585,7 +523,7 @@ argument_list|()
 operator|.
 name|get
 argument_list|(
-literal|"path"
+name|PATH
 argument_list|)
 argument_list|)
 decl_stmt|;

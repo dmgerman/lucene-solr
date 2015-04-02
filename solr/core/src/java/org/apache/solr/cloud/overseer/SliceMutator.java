@@ -300,6 +300,24 @@ name|makeMap
 import|;
 end_import
 
+begin_import
+import|import static
+name|org
+operator|.
+name|apache
+operator|.
+name|solr
+operator|.
+name|common
+operator|.
+name|params
+operator|.
+name|CommonParams
+operator|.
+name|NAME
+import|;
+end_import
+
 begin_class
 DECL|class|SliceMutator
 specifier|public
@@ -839,7 +857,7 @@ name|ZkNodeProps
 operator|.
 name|makeMap
 argument_list|(
-literal|"name"
+name|NAME
 argument_list|,
 name|collection
 argument_list|)

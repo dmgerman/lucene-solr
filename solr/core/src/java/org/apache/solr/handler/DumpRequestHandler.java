@@ -128,20 +128,6 @@ name|solr
 operator|.
 name|core
 operator|.
-name|InitParams
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|solr
-operator|.
-name|core
-operator|.
 name|PluginInfo
 import|;
 end_import
@@ -189,18 +175,20 @@ import|;
 end_import
 
 begin_import
-import|import
+import|import static
 name|org
 operator|.
 name|apache
 operator|.
 name|solr
 operator|.
-name|util
+name|common
 operator|.
-name|plugin
+name|params
 operator|.
-name|PluginInfoInitialized
+name|CommonParams
+operator|.
+name|NAME
 import|;
 end_import
 
@@ -456,7 +444,7 @@ name|stream
 operator|.
 name|add
 argument_list|(
-literal|"name"
+name|NAME
 argument_list|,
 name|content
 operator|.
