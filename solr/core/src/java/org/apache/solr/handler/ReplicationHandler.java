@@ -3058,7 +3058,9 @@ name|LOG
 operator|.
 name|warn
 argument_list|(
-literal|"Could not read checksum from index file."
+literal|"Could not read checksum from index file: "
+operator|+
+name|file
 argument_list|,
 name|e
 argument_list|)
@@ -3175,7 +3177,12 @@ name|LOG
 operator|.
 name|warn
 argument_list|(
-literal|"Could not read checksum from index file."
+literal|"Could not read checksum from index file: "
+operator|+
+name|infos
+operator|.
+name|getSegmentsFileName
+argument_list|()
 argument_list|,
 name|e
 argument_list|)
