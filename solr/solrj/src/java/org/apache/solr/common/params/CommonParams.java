@@ -672,6 +672,24 @@ name|JSON
 init|=
 literal|"json"
 decl_stmt|;
+DECL|field|PATH
+specifier|public
+specifier|static
+specifier|final
+name|String
+name|PATH
+init|=
+literal|"path"
+decl_stmt|;
+DECL|field|NAME
+specifier|public
+specifier|static
+specifier|final
+name|String
+name|NAME
+init|=
+literal|"name"
+decl_stmt|;
 block|}
 end_interface
 

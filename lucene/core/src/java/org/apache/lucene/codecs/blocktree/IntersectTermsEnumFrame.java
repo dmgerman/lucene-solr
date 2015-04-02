@@ -161,10 +161,16 @@ DECL|field|lastSubFP
 name|long
 name|lastSubFP
 decl_stmt|;
+comment|// private static boolean DEBUG = IntersectTermsEnum.DEBUG;
 comment|// State in automaton
 DECL|field|state
 name|int
 name|state
+decl_stmt|;
+comment|// State just before the last label
+DECL|field|lastState
+name|int
+name|lastState
 decl_stmt|;
 DECL|field|metaDataUpto
 name|int
@@ -284,6 +290,11 @@ DECL|field|transitionCount
 name|int
 name|transitionCount
 decl_stmt|;
+DECL|field|versionAutoPrefix
+specifier|final
+name|boolean
+name|versionAutoPrefix
+decl_stmt|;
 DECL|field|arc
 name|FST
 operator|.
@@ -328,6 +339,23 @@ decl_stmt|;
 DECL|field|suffix
 name|int
 name|suffix
+decl_stmt|;
+comment|// When we are on an auto-prefix term this is the starting lead byte
+comment|// of the suffix (e.g. 'a' for the foo[a-m]* case):
+DECL|field|floorSuffixLeadStart
+name|int
+name|floorSuffixLeadStart
+decl_stmt|;
+comment|// When we are on an auto-prefix term this is the ending lead byte
+comment|// of the suffix (e.g. 'm' for the foo[a-m]* case):
+DECL|field|floorSuffixLeadEnd
+name|int
+name|floorSuffixLeadEnd
+decl_stmt|;
+comment|// True if the term we are currently on is an auto-prefix term:
+DECL|field|isAutoPrefixTerm
+name|boolean
+name|isAutoPrefixTerm
 decl_stmt|;
 DECL|field|ite
 specifier|private
@@ -398,6 +426,22 @@ operator|.
 name|longsSize
 index|]
 expr_stmt|;
+name|this
+operator|.
+name|versionAutoPrefix
+operator|=
+name|ite
+operator|.
+name|fr
+operator|.
+name|parent
+operator|.
+name|version
+operator|>=
+name|BlockTreeTermsReader
+operator|.
+name|VERSION_AUTO_PREFIX_TERMS
+expr_stmt|;
 block|}
 DECL|method|loadNextFloorBlock
 name|void
@@ -411,7 +455,7 @@ name|numFollowFloorBlocks
 operator|>
 literal|0
 assert|;
-comment|//if (DEBUG) System.out.println("    loadNextFoorBlock trans=" + transitions[transitionIndex]);
+comment|//if (DEBUG) System.out.println("    loadNextFloorBlock transition.min=" + transition.min);
 do|do
 block|{
 name|fp
@@ -430,7 +474,7 @@ expr_stmt|;
 name|numFollowFloorBlocks
 operator|--
 expr_stmt|;
-comment|// if (DEBUG) System.out.println("    skip floor block2!  nextFloorLabel=" + (char) nextFloorLabel + " vs target=" + (char) transitions[transitionIndex].getMin() + " newFP=" + fp + " numFollowFloorBlocks=" + numFollowFloorBlocks);
+comment|//if (DEBUG) System.out.println("    skip floor block2!  nextFloorLabel=" + (char) nextFloorLabel + " newFP=" + fp + " numFollowFloorBlocks=" + numFollowFloorBlocks);
 if|if
 condition|(
 name|numFollowFloorBlocks
@@ -455,7 +499,7 @@ operator|=
 literal|256
 expr_stmt|;
 block|}
-comment|// if (DEBUG) System.out.println("    nextFloorLabel=" + (char) nextFloorLabel);
+comment|//if (DEBUG) System.out.println("    nextFloorLabel=" + (char) nextFloorLabel);
 block|}
 do|while
 condition|(
@@ -470,6 +514,7 @@ operator|.
 name|min
 condition|)
 do|;
+comment|//if (DEBUG) System.out.println("      done loadNextFloorBlock");
 name|load
 argument_list|(
 literal|null
@@ -499,8 +544,6 @@ name|transitionCount
 operator|=
 name|ite
 operator|.
-name|compiledAutomaton
-operator|.
 name|automaton
 operator|.
 name|getNumTransitions
@@ -517,8 +560,6 @@ condition|)
 block|{
 name|ite
 operator|.
-name|compiledAutomaton
-operator|.
 name|automaton
 operator|.
 name|initTransition
@@ -529,8 +570,6 @@ name|transition
 argument_list|)
 expr_stmt|;
 name|ite
-operator|.
-name|compiledAutomaton
 operator|.
 name|automaton
 operator|.
@@ -545,6 +584,7 @@ name|transition
 operator|.
 name|max
 expr_stmt|;
+comment|//if (DEBUG) System.out.println("    after setState state=" + state + " trans: " + transition + " transCount=" + transitionCount);
 block|}
 else|else
 block|{
@@ -565,7 +605,7 @@ parameter_list|)
 throws|throws
 name|IOException
 block|{
-comment|// if (DEBUG) System.out.println("    load fp=" + fp + " fpOrig=" + fpOrig + " frameIndexData=" + frameIndexData + " trans=" + (transitions.length != 0 ? transitions[0] : "n/a" + " state=" + state));
+comment|//xif (DEBUG) System.out.println("    load fp=" + fp + " fpOrig=" + fpOrig + " frameIndexData=" + frameIndexData + " trans=" + (transitions.length != 0 ? transitions[0] : "n/a" + " state=" + state));
 if|if
 condition|(
 name|frameIndexData
@@ -683,7 +723,7 @@ argument_list|()
 operator|&
 literal|0xff
 expr_stmt|;
-comment|// if (DEBUG) System.out.println("    numFollowFloorBlocks=" + numFollowFloorBlocks + " nextFloorLabel=" + nextFloorLabel);
+comment|//if (DEBUG) System.out.println("    numFollowFloorBlocks=" + numFollowFloorBlocks + " nextFloorLabel=" + nextFloorLabel);
 comment|// If current state is accept, we must process
 comment|// first block in case it has empty suffix:
 if|if
@@ -738,7 +778,7 @@ expr_stmt|;
 name|numFollowFloorBlocks
 operator|--
 expr_stmt|;
-comment|// if (DEBUG) System.out.println("    skip floor block!  nextFloorLabel=" + (char) nextFloorLabel + " vs target=" + (char) transitions[0].getMin() + " newFP=" + fp + " numFollowFloorBlocks=" + numFollowFloorBlocks);
+comment|//xif (DEBUG) System.out.println("    skip floor block!  nextFloorLabel=" + (char) nextFloorLabel + " vs target=" + (char) transitions[0].getMin() + " newFP=" + fp + " numFollowFloorBlocks=" + numFollowFloorBlocks);
 if|if
 condition|(
 name|numFollowFloorBlocks
@@ -834,7 +874,7 @@ name|code
 operator|>>>
 literal|1
 decl_stmt|;
-comment|// if (DEBUG) System.out.println("      entCount=" + entCount + " lastInFloor?=" + isLastInFloor + " leafBlock?=" + isLeafBlock + " numSuffixBytes=" + numBytes);
+comment|//if (DEBUG) System.out.println("      entCount=" + entCount + " lastInFloor?=" + isLastInFloor + " leafBlock?=" + isLeafBlock + " numSuffixBytes=" + numBytes);
 if|if
 condition|(
 name|suffixBytes
@@ -1064,32 +1104,50 @@ name|getFilePointer
 argument_list|()
 expr_stmt|;
 block|}
+comment|// Necessary in case this ord previously was an auto-prefix
+comment|// term but now we recurse to a new leaf block
+name|isAutoPrefixTerm
+operator|=
+literal|false
+expr_stmt|;
 block|}
 comment|// TODO: maybe add scanToLabel; should give perf boost
+comment|// Decodes next entry; returns true if it's a sub-block
 DECL|method|next
 specifier|public
 name|boolean
 name|next
 parameter_list|()
 block|{
-return|return
+if|if
+condition|(
 name|isLeafBlock
-condition|?
+condition|)
+block|{
 name|nextLeaf
 argument_list|()
-else|:
+expr_stmt|;
+return|return
+literal|false
+return|;
+block|}
+else|else
+block|{
+return|return
 name|nextNonLeaf
 argument_list|()
 return|;
 block|}
-comment|// Decodes next entry; returns true if it's a sub-block
+block|}
 DECL|method|nextLeaf
 specifier|public
-name|boolean
+name|void
 name|nextLeaf
 parameter_list|()
 block|{
-comment|//if (DEBUG) System.out.println("  frame.next ord=" + ord + " nextEnt=" + nextEnt + " entCount=" + entCount);
+comment|//if (DEBUG) {
+comment|//  System.out.println("  frame.nextLeaf ord=" + ord + " nextEnt=" + nextEnt + " entCount=" + entCount);
+comment|//}
 assert|assert
 name|nextEnt
 operator|!=
@@ -1136,9 +1194,6 @@ argument_list|(
 name|suffix
 argument_list|)
 expr_stmt|;
-return|return
-literal|false
-return|;
 block|}
 DECL|method|nextNonLeaf
 specifier|public
@@ -1146,7 +1201,9 @@ name|boolean
 name|nextNonLeaf
 parameter_list|()
 block|{
-comment|//if (DEBUG) System.out.println("  frame.next ord=" + ord + " nextEnt=" + nextEnt + " entCount=" + entCount);
+comment|//if (DEBUG) {
+comment|//  System.out.println("  frame.nextNonLeaf ord=" + ord + " nextEnt=" + nextEnt + " entCount=" + entCount + " versionAutoPrefix=" + versionAutoPrefix + " fp=" + suffixesReader.getPosition());
+comment|// }
 assert|assert
 name|nextEnt
 operator|!=
@@ -1181,6 +1238,13 @@ operator|.
 name|readVInt
 argument_list|()
 decl_stmt|;
+if|if
+condition|(
+name|versionAutoPrefix
+operator|==
+literal|false
+condition|)
+block|{
 name|suffix
 operator|=
 name|code
@@ -1237,6 +1301,218 @@ expr_stmt|;
 return|return
 literal|true
 return|;
+block|}
+block|}
+else|else
+block|{
+name|suffix
+operator|=
+name|code
+operator|>>>
+literal|2
+expr_stmt|;
+name|startBytePos
+operator|=
+name|suffixesReader
+operator|.
+name|getPosition
+argument_list|()
+expr_stmt|;
+name|suffixesReader
+operator|.
+name|skipBytes
+argument_list|(
+name|suffix
+argument_list|)
+expr_stmt|;
+switch|switch
+condition|(
+name|code
+operator|&
+literal|3
+condition|)
+block|{
+case|case
+literal|0
+case|:
+comment|// A normal term
+comment|//if (DEBUG) System.out.println("    ret: term");
+name|isAutoPrefixTerm
+operator|=
+literal|false
+expr_stmt|;
+name|termState
+operator|.
+name|termBlockOrd
+operator|++
+expr_stmt|;
+return|return
+literal|false
+return|;
+case|case
+literal|1
+case|:
+comment|// A sub-block; make sub-FP absolute:
+name|isAutoPrefixTerm
+operator|=
+literal|false
+expr_stmt|;
+name|lastSubFP
+operator|=
+name|fp
+operator|-
+name|suffixesReader
+operator|.
+name|readVLong
+argument_list|()
+expr_stmt|;
+comment|//if (DEBUG) System.out.println("    ret: sub-block");
+return|return
+literal|true
+return|;
+case|case
+literal|2
+case|:
+comment|// A normal prefix term, suffix leads with empty string
+name|floorSuffixLeadStart
+operator|=
+operator|-
+literal|1
+expr_stmt|;
+name|termState
+operator|.
+name|termBlockOrd
+operator|++
+expr_stmt|;
+name|floorSuffixLeadEnd
+operator|=
+name|suffixesReader
+operator|.
+name|readByte
+argument_list|()
+operator|&
+literal|0xff
+expr_stmt|;
+if|if
+condition|(
+name|floorSuffixLeadEnd
+operator|==
+literal|0xff
+condition|)
+block|{
+name|floorSuffixLeadEnd
+operator|=
+operator|-
+literal|1
+expr_stmt|;
+comment|//System.out.println("  fill in -1");
+block|}
+comment|//if (DEBUG) System.out.println("    ret: floor prefix term: start=-1 end=" + floorSuffixLeadEnd);
+name|isAutoPrefixTerm
+operator|=
+literal|true
+expr_stmt|;
+return|return
+literal|false
+return|;
+case|case
+literal|3
+case|:
+comment|// A floor'd prefix term, suffix leads with real byte
+if|if
+condition|(
+name|suffix
+operator|==
+literal|0
+condition|)
+block|{
+comment|// TODO: this is messy, but necessary because we are an auto-prefix term, but our suffix is the empty string here, so we have to
+comment|// look at the parent block to get the lead suffix byte:
+assert|assert
+name|ord
+operator|>
+literal|0
+assert|;
+name|IntersectTermsEnumFrame
+name|parent
+init|=
+name|ite
+operator|.
+name|stack
+index|[
+name|ord
+operator|-
+literal|1
+index|]
+decl_stmt|;
+name|floorSuffixLeadStart
+operator|=
+name|parent
+operator|.
+name|suffixBytes
+index|[
+name|parent
+operator|.
+name|startBytePos
+operator|+
+name|parent
+operator|.
+name|suffix
+operator|-
+literal|1
+index|]
+operator|&
+literal|0xff
+expr_stmt|;
+comment|//if (DEBUG) System.out.println("    peek-parent: suffix=" + floorSuffixLeadStart);
+block|}
+else|else
+block|{
+name|floorSuffixLeadStart
+operator|=
+name|suffixBytes
+index|[
+name|startBytePos
+operator|+
+name|suffix
+operator|-
+literal|1
+index|]
+operator|&
+literal|0xff
+expr_stmt|;
+block|}
+name|termState
+operator|.
+name|termBlockOrd
+operator|++
+expr_stmt|;
+name|isAutoPrefixTerm
+operator|=
+literal|true
+expr_stmt|;
+name|floorSuffixLeadEnd
+operator|=
+name|suffixesReader
+operator|.
+name|readByte
+argument_list|()
+operator|&
+literal|0xff
+expr_stmt|;
+comment|//if (DEBUG) System.out.println("    ret: floor prefix term start=" + floorSuffixLeadStart + " end=" + floorSuffixLeadEnd);
+return|return
+literal|false
+return|;
+default|default:
+comment|// Silly javac:
+assert|assert
+literal|false
+assert|;
+return|return
+literal|false
+return|;
+block|}
 block|}
 block|}
 DECL|method|getTermBlockOrd

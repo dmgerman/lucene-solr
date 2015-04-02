@@ -1143,7 +1143,7 @@ name|a
 operator|=
 name|Automata
 operator|.
-name|makeInterval
+name|makeDecimalInterval
 argument_list|(
 name|min
 argument_list|,

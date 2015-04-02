@@ -147,11 +147,12 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * A FilteredTermsEnum that enumerates terms based upon what is accepted by a  * DFA.  *<p>  * The algorithm is such:  *<ol>  *<li>As long as matches are successful, keep reading sequentially.  *<li>When a match fails, skip to the next string in lexicographic order that  * does not enter a reject state.  *</ol>  *<p>  * The algorithm does not attempt to actually skip to the next string that is  * completely accepted. This is not possible when the language accepted by the  * FSM is not finite (i.e. * operator).  *</p>  * @lucene.experimental  */
+comment|/**  * A FilteredTermsEnum that enumerates terms based upon what is accepted by a  * DFA.  *<p>  * The algorithm is such:  *<ol>  *<li>As long as matches are successful, keep reading sequentially.  *<li>When a match fails, skip to the next string in lexicographic order that  * does not enter a reject state.  *</ol>  *<p>  * The algorithm does not attempt to actually skip to the next string that is  * completely accepted. This is not possible when the language accepted by the  * FSM is not finite (i.e. * operator).  *</p>  * @lucene.internal  */
 end_comment
 
 begin_class
 DECL|class|AutomatonTermsEnum
+specifier|public
 class|class
 name|AutomatonTermsEnum
 extends|extends
@@ -233,7 +234,7 @@ argument_list|(
 literal|10
 argument_list|)
 decl_stmt|;
-comment|/**    * Construct an enumerator based upon an automaton, enumerating the specified    * field, working on a supplied TermsEnum    *<p>    * @lucene.experimental     *<p>    * @param compiled CompiledAutomaton    */
+comment|/**    * Construct an enumerator based upon an automaton, enumerating the specified    * field, working on a supplied TermsEnum    *    * @lucene.experimental     * @param compiled CompiledAutomaton    */
 DECL|method|AutomatonTermsEnum
 specifier|public
 name|AutomatonTermsEnum

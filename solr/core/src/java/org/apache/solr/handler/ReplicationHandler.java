@@ -920,6 +920,24 @@ name|LoggerFactory
 import|;
 end_import
 
+begin_import
+import|import static
+name|org
+operator|.
+name|apache
+operator|.
+name|solr
+operator|.
+name|common
+operator|.
+name|params
+operator|.
+name|CommonParams
+operator|.
+name|NAME
+import|;
+end_import
+
 begin_comment
 comment|/**  *<p> A Handler which provides a REST API for replication and serves replication requests from Slaves.</p>  *<p>When running on the master, it provides the following commands<ol><li>Get the current replicable index version  * (command=indexversion)</li><li>Get the list of files for a given index version  * (command=filelist&amp;indexversion=&lt;VERSION&gt;)</li><li>Get full or a part (chunk) of a given index or a config  * file (command=filecontent&amp;file=&lt;FILE_NAME&gt;) You can optionally specify an offset and length to get that  * chunk of the file. You can request a configuration file by using "cf" parameter instead of the "file" parameter.</li>  *<li>Get status/statistics (command=details)</li></ol><p>When running on the slave, it provides the following  * commands<ol><li>Perform an index fetch now (command=snappull)</li><li>Get status/statistics (command=details)</li>  *<li>Abort an index fetch (command=abort)</li><li>Enable/Disable polling the master for new versions (command=enablepoll  * or command=disablepoll)</li></ol>  *  *  * @since solr 1.4  */
 end_comment
@@ -2002,7 +2020,7 @@ name|params
 operator|.
 name|get
 argument_list|(
-literal|"name"
+name|NAME
 argument_list|)
 decl_stmt|;
 if|if
@@ -2043,7 +2061,7 @@ name|params
 operator|.
 name|get
 argument_list|(
-literal|"name"
+name|NAME
 argument_list|)
 argument_list|)
 decl_stmt|;
@@ -2641,7 +2659,7 @@ name|params
 operator|.
 name|get
 argument_list|(
-literal|"name"
+name|NAME
 argument_list|)
 argument_list|)
 decl_stmt|;
@@ -3040,7 +3058,9 @@ name|LOG
 operator|.
 name|warn
 argument_list|(
-literal|"Could not read checksum from index file."
+literal|"Could not read checksum from index file: "
+operator|+
+name|file
 argument_list|,
 name|e
 argument_list|)
@@ -3157,7 +3177,12 @@ name|LOG
 operator|.
 name|warn
 argument_list|(
-literal|"Could not read checksum from index file."
+literal|"Could not read checksum from index file: "
+operator|+
+name|infos
+operator|.
+name|getSegmentsFileName
+argument_list|()
 argument_list|,
 name|e
 argument_list|)
@@ -8843,15 +8868,6 @@ name|String
 name|FILE
 init|=
 literal|"file"
-decl_stmt|;
-DECL|field|NAME
-specifier|public
-specifier|static
-specifier|final
-name|String
-name|NAME
-init|=
-literal|"name"
 decl_stmt|;
 DECL|field|SIZE
 specifier|public

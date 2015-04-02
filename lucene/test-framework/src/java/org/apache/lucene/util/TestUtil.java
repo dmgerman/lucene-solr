@@ -6548,6 +6548,55 @@ name|i
 argument_list|)
 return|;
 block|}
+comment|/** Returns a random binary term. */
+DECL|method|randomBinaryTerm
+specifier|public
+specifier|static
+name|BytesRef
+name|randomBinaryTerm
+parameter_list|(
+name|Random
+name|r
+parameter_list|)
+block|{
+name|int
+name|length
+init|=
+name|r
+operator|.
+name|nextInt
+argument_list|(
+literal|15
+argument_list|)
+decl_stmt|;
+name|BytesRef
+name|b
+init|=
+operator|new
+name|BytesRef
+argument_list|(
+name|length
+argument_list|)
+decl_stmt|;
+name|r
+operator|.
+name|nextBytes
+argument_list|(
+name|b
+operator|.
+name|bytes
+argument_list|)
+expr_stmt|;
+name|b
+operator|.
+name|length
+operator|=
+name|length
+expr_stmt|;
+return|return
+name|b
+return|;
+block|}
 comment|/** Return a Codec that can read any of the    *  default codecs and formats, but always writes in the specified    *  format. */
 DECL|method|alwaysPostingsFormat
 specifier|public
@@ -6632,7 +6681,7 @@ name|out
 operator|.
 name|println
 argument_list|(
-literal|"forcing docvalues format to:"
+literal|"TestUtil: forcing docvalues format to:"
 operator|+
 name|format
 argument_list|)
@@ -9145,6 +9194,64 @@ operator|.
 name|toString
 argument_list|()
 return|;
+block|}
+block|}
+comment|/** For debugging: tries to include br.utf8ToString(), but if that    *  fails (because it's not valid utf8, which is fine!), just    *  use ordinary toString. */
+DECL|method|bytesRefToString
+specifier|public
+specifier|static
+name|String
+name|bytesRefToString
+parameter_list|(
+name|BytesRef
+name|br
+parameter_list|)
+block|{
+if|if
+condition|(
+name|br
+operator|==
+literal|null
+condition|)
+block|{
+return|return
+literal|"(null)"
+return|;
+block|}
+else|else
+block|{
+try|try
+block|{
+return|return
+name|br
+operator|.
+name|utf8ToString
+argument_list|()
+operator|+
+literal|" "
+operator|+
+name|br
+operator|.
+name|toString
+argument_list|()
+return|;
+block|}
+catch|catch
+parameter_list|(
+name|IllegalArgumentException
+name|t
+parameter_list|)
+block|{
+comment|// If BytesRef isn't actually UTF8, or it's eg a
+comment|// prefix of UTF8 that ends mid-unicode-char, we
+comment|// fallback to hex:
+return|return
+name|br
+operator|.
+name|toString
+argument_list|()
+return|;
+block|}
 block|}
 block|}
 comment|/** Returns a copy of directory, entirely in RAM */

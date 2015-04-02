@@ -154,6 +154,7 @@ specifier|public
 name|long
 name|totalTermBytes
 decl_stmt|;
+comment|// TODO: add total auto-prefix term count
 comment|/** The number of normal (non-floor) blocks in the terms file. */
 DECL|field|nonFloorBlockCount
 specifier|public

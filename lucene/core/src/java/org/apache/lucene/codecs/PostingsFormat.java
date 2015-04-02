@@ -173,6 +173,7 @@ name|String
 name|name
 parameter_list|)
 block|{
+comment|// TODO: can we somehow detect name conflicts here?  Two different classes trying to claim the same name?  Otherwise you see confusing errors...
 name|NamedSPILoader
 operator|.
 name|checkServiceName
