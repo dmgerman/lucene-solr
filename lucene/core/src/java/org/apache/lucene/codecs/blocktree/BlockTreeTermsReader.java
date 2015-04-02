@@ -222,6 +222,42 @@ name|apache
 operator|.
 name|lucene
 operator|.
+name|search
+operator|.
+name|PrefixQuery
+import|;
+end_import
+
+begin_comment
+comment|// javadocs
+end_comment
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|search
+operator|.
+name|TermRangeQuery
+import|;
+end_import
+
+begin_comment
+comment|// javadocs
+end_comment
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
 name|store
 operator|.
 name|IndexInput
@@ -317,7 +353,7 @@ import|;
 end_import
 
 begin_comment
-comment|/** A block-based terms index and dictionary that assigns  *  terms to variable length blocks according to how they  *  share prefixes.  The terms index is a prefix trie  *  whose leaves are term blocks.  The advantage of this  *  approach is that seekExact is often able to  *  determine a term cannot exist without doing any IO, and  *  intersection with Automata is very fast.  Note that this  *  terms dictionary has its own fixed terms index (ie, it  *  does not support a pluggable terms index  *  implementation).  *  *<p><b>NOTE</b>: this terms dictionary supports  *  min/maxItemsPerBlock during indexing to control how  *  much memory the terms index uses.</p>  *  *<p>The data structure used by this implementation is very  *  similar to a burst trie  *  (http://citeseer.ist.psu.edu/viewdoc/summary?doi=10.1.1.18.3499),  *  but with added logic to break up too-large blocks of all  *  terms sharing a given prefix into smaller ones.</p>  *  *<p>Use {@link org.apache.lucene.index.CheckIndex} with the<code>-verbose</code>  *  option to see summary statistics on the blocks in the  *  dictionary.  *  *  See {@link BlockTreeTermsWriter}.  *  * @lucene.experimental  */
+comment|/** A block-based terms index and dictionary that assigns  *  terms to variable length blocks according to how they  *  share prefixes.  The terms index is a prefix trie  *  whose leaves are term blocks.  The advantage of this  *  approach is that seekExact is often able to  *  determine a term cannot exist without doing any IO, and  *  intersection with Automata is very fast.  Note that this  *  terms dictionary has its own fixed terms index (ie, it  *  does not support a pluggable terms index  *  implementation).  *  *<p><b>NOTE</b>: this terms dictionary supports  *  min/maxItemsPerBlock during indexing to control how  *  much memory the terms index uses.</p>  *  *<p>If auto-prefix terms were indexed (see  *  {@link BlockTreeTermsWriter}), then the {@link Terms#intersect}  *  implementation here will make use of these terms only if the  *  automaton has a binary sink state, i.e. an accept state  *  which has a transition to itself accepting all byte values.  *  For example, both {@link PrefixQuery} and {@link TermRangeQuery}  *  pass such automata to {@link Terms#intersect}.</p>  *  *<p>The data structure used by this implementation is very  *  similar to a burst trie  *  (http://citeseer.ist.psu.edu/viewdoc/summary?doi=10.1.1.18.3499),  *  but with added logic to break up too-large blocks of all  *  terms sharing a given prefix into smaller ones.</p>  *  *<p>Use {@link org.apache.lucene.index.CheckIndex} with the<code>-verbose</code>  *  option to see summary statistics on the blocks in the  *  dictionary.  *  *  See {@link BlockTreeTermsWriter}.  *  * @lucene.experimental  */
 end_comment
 
 begin_class
@@ -413,6 +449,16 @@ name|VERSION_START
 init|=
 literal|0
 decl_stmt|;
+comment|/** Auto-prefix terms. */
+DECL|field|VERSION_AUTO_PREFIX_TERMS
+specifier|public
+specifier|static
+specifier|final
+name|int
+name|VERSION_AUTO_PREFIX_TERMS
+init|=
+literal|1
+decl_stmt|;
 comment|/** Current terms format. */
 DECL|field|VERSION_CURRENT
 specifier|public
@@ -421,7 +467,7 @@ specifier|final
 name|int
 name|VERSION_CURRENT
 init|=
-name|VERSION_START
+name|VERSION_AUTO_PREFIX_TERMS
 decl_stmt|;
 comment|/** Extension of terms index file */
 DECL|field|TERMS_INDEX_EXTENSION
@@ -488,7 +534,6 @@ name|String
 name|segment
 decl_stmt|;
 DECL|field|version
-specifier|private
 specifier|final
 name|int
 name|version

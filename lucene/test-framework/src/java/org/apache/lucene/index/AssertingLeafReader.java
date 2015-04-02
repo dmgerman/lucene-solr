@@ -1274,7 +1274,7 @@ operator|:
 literal|"termState() called on unpositioned TermsEnum"
 assert|;
 return|return
-name|super
+name|in
 operator|.
 name|termState
 argument_list|()
@@ -1309,7 +1309,7 @@ operator|.
 name|isValid
 argument_list|()
 assert|;
-name|super
+name|in
 operator|.
 name|seekExact
 argument_list|(

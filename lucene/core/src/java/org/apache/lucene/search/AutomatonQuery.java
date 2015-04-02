@@ -268,6 +268,7 @@ name|automaton
 operator|=
 name|automaton
 expr_stmt|;
+comment|// TODO: we could take isFinite too, to save a bit of CPU in CompiledAutomaton ctor?:
 name|this
 operator|.
 name|compiled

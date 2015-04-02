@@ -34,6 +34,22 @@ name|apache
 operator|.
 name|lucene
 operator|.
+name|codecs
+operator|.
+name|blocktree
+operator|.
+name|BlockTreeTermsWriter
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
 name|util
 operator|.
 name|BytesRef
@@ -100,7 +116,7 @@ parameter_list|)
 throws|throws
 name|IOException
 function_decl|;
-comment|/** Returns a TermsEnum that iterates over all terms that    *  are accepted by the provided {@link    *  CompiledAutomaton}.  If the<code>startTerm</code> is    *  provided then the returned enum will only accept terms    *  {@code> startTerm}, but you still must call    *  next() first to get to the first term.  Note that the    *  provided<code>startTerm</code> must be accepted by    *  the automaton.    *    *<p><b>NOTE</b>: the returned TermsEnum cannot    * seek</p>. */
+comment|/** Returns a TermsEnum that iterates over all terms and    *  documents that are accepted by the provided {@link    *  CompiledAutomaton}.  If the<code>startTerm</code> is    *  provided then the returned enum will only return terms    *  {@code> startTerm}, but you still must call    *  next() first to get to the first term.  Note that the    *  provided<code>startTerm</code> must be accepted by    *  the automaton.    *    *<p><b>NOTE</b>: the returned TermsEnum cannot    * seek</p>.    *    *<p><b>NOTE</b>: the terms dictionary is free to    *  return arbitrary terms as long as the resulted visited    *  docs is the same.  E.g., {@link BlockTreeTermsWriter}    *  creates auto-prefix terms during indexing to reduce the    *  number of terms visited. */
 DECL|method|intersect
 specifier|public
 name|TermsEnum
@@ -124,6 +140,14 @@ comment|// detection
 comment|// TODO: eventually we could support seekCeil/Exact on
 comment|// the returned enum, instead of only being able to seek
 comment|// at the start
+name|TermsEnum
+name|termsEnum
+init|=
+name|iterator
+argument_list|(
+literal|null
+argument_list|)
+decl_stmt|;
 if|if
 condition|(
 name|compiled
@@ -156,10 +180,7 @@ return|return
 operator|new
 name|AutomatonTermsEnum
 argument_list|(
-name|iterator
-argument_list|(
-literal|null
-argument_list|)
+name|termsEnum
 argument_list|,
 name|compiled
 argument_list|)
@@ -171,10 +192,7 @@ return|return
 operator|new
 name|AutomatonTermsEnum
 argument_list|(
-name|iterator
-argument_list|(
-literal|null
-argument_list|)
+name|termsEnum
 argument_list|,
 name|compiled
 argument_list|)

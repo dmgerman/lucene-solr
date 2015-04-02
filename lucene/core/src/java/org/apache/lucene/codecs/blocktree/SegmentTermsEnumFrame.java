@@ -163,6 +163,12 @@ name|BytesRef
 argument_list|>
 name|arc
 decl_stmt|;
+DECL|field|versionAutoPrefix
+specifier|final
+name|boolean
+name|versionAutoPrefix
+decl_stmt|;
+comment|//static boolean DEBUG = BlockTreeTermsWriter.DEBUG;
 comment|// File pointer where this block was loaded from
 DECL|field|fp
 name|long
@@ -375,6 +381,22 @@ name|fr
 operator|.
 name|longsSize
 index|]
+expr_stmt|;
+name|this
+operator|.
+name|versionAutoPrefix
+operator|=
+name|ste
+operator|.
+name|fr
+operator|.
+name|parent
+operator|.
+name|version
+operator|>=
+name|BlockTreeTermsReader
+operator|.
+name|VERSION_AUTO_PREFIX_TERMS
 expr_stmt|;
 block|}
 DECL|method|setFloorData
@@ -955,26 +977,38 @@ expr_stmt|;
 block|}
 comment|/*     //System.out.println("rewind");     // Keeps the block loaded, but rewinds its state:     if (nextEnt> 0 || fp != fpOrig) {     if (DEBUG) {     System.out.println("      rewind frame ord=" + ord + " fpOrig=" + fpOrig + " fp=" + fp + " hasTerms?=" + hasTerms + " isFloor?=" + isFloor + " nextEnt=" + nextEnt + " prefixLen=" + prefix);     }     if (fp != fpOrig) {     fp = fpOrig;     nextEnt = -1;     } else {     nextEnt = 0;     }     hasTerms = hasTermsOrig;     if (isFloor) {     floorDataReader.rewind();     numFollowFloorBlocks = floorDataReader.readVInt();     nextFloorLabel = floorDataReader.readByte()& 0xff;     }     assert suffixBytes != null;     suffixesReader.rewind();     assert statBytes != null;     statsReader.rewind();     metaDataUpto = 0;     state.termBlockOrd = 0;     // TODO: skip this if !hasTerms?  Then postings     // impl wouldn't have to write useless 0 byte     postingsReader.resetTermsBlock(fieldInfo, state);     lastSubFP = -1;     } else if (DEBUG) {     System.out.println("      skip rewind fp=" + fp + " fpOrig=" + fpOrig + " nextEnt=" + nextEnt + " ord=" + ord);     }     */
 block|}
+comment|// Decodes next entry; returns true if it's a sub-block
 DECL|method|next
 specifier|public
 name|boolean
 name|next
 parameter_list|()
+throws|throws
+name|IOException
 block|{
-return|return
+if|if
+condition|(
 name|isLeafBlock
-condition|?
+condition|)
+block|{
 name|nextLeaf
 argument_list|()
-else|:
+expr_stmt|;
+return|return
+literal|false
+return|;
+block|}
+else|else
+block|{
+return|return
 name|nextNonLeaf
 argument_list|()
 return|;
 block|}
-comment|// Decodes next entry; returns true if it's a sub-block
+block|}
 DECL|method|nextLeaf
 specifier|public
-name|boolean
+name|void
 name|nextLeaf
 parameter_list|()
 block|{
@@ -1059,24 +1093,75 @@ argument_list|,
 name|suffix
 argument_list|)
 expr_stmt|;
-comment|// A normal term
 name|ste
 operator|.
 name|termExists
 operator|=
 literal|true
 expr_stmt|;
-return|return
-literal|false
-return|;
 block|}
 DECL|method|nextNonLeaf
 specifier|public
 name|boolean
 name|nextNonLeaf
 parameter_list|()
+throws|throws
+name|IOException
 block|{
-comment|//if (DEBUG) System.out.println("  frame.next ord=" + ord + " nextEnt=" + nextEnt + " entCount=" + entCount);
+comment|//if (DEBUG) System.out.println("  stef.next ord=" + ord + " nextEnt=" + nextEnt + " entCount=" + entCount + " fp=" + suffixesReader.getPosition());
+while|while
+condition|(
+literal|true
+condition|)
+block|{
+if|if
+condition|(
+name|nextEnt
+operator|==
+name|entCount
+condition|)
+block|{
+assert|assert
+name|arc
+operator|==
+literal|null
+operator|||
+operator|(
+name|isFloor
+operator|&&
+name|isLastInFloor
+operator|==
+literal|false
+operator|)
+operator|:
+literal|"isFloor="
+operator|+
+name|isFloor
+operator|+
+literal|" isLastInFloor="
+operator|+
+name|isLastInFloor
+assert|;
+name|loadNextFloorBlock
+argument_list|()
+expr_stmt|;
+if|if
+condition|(
+name|isLeafBlock
+condition|)
+block|{
+name|nextLeaf
+argument_list|()
+expr_stmt|;
+return|return
+literal|false
+return|;
+block|}
+else|else
+block|{
+continue|continue;
+block|}
+block|}
 assert|assert
 name|nextEnt
 operator|!=
@@ -1111,12 +1196,29 @@ operator|.
 name|readVInt
 argument_list|()
 decl_stmt|;
+if|if
+condition|(
+name|versionAutoPrefix
+operator|==
+literal|false
+condition|)
+block|{
 name|suffix
 operator|=
 name|code
 operator|>>>
 literal|1
 expr_stmt|;
+block|}
+else|else
+block|{
+name|suffix
+operator|=
+name|code
+operator|>>>
+literal|2
+expr_stmt|;
+block|}
 name|startBytePos
 operator|=
 name|suffixesReader
@@ -1165,6 +1267,13 @@ argument_list|,
 name|suffix
 argument_list|)
 expr_stmt|;
+if|if
+condition|(
+name|versionAutoPrefix
+operator|==
+literal|false
+condition|)
+block|{
 if|if
 condition|(
 operator|(
@@ -1224,6 +1333,88 @@ comment|//}
 return|return
 literal|true
 return|;
+block|}
+block|}
+else|else
+block|{
+switch|switch
+condition|(
+name|code
+operator|&
+literal|3
+condition|)
+block|{
+case|case
+literal|0
+case|:
+comment|// A normal term
+name|ste
+operator|.
+name|termExists
+operator|=
+literal|true
+expr_stmt|;
+name|subCode
+operator|=
+literal|0
+expr_stmt|;
+name|state
+operator|.
+name|termBlockOrd
+operator|++
+expr_stmt|;
+return|return
+literal|false
+return|;
+case|case
+literal|1
+case|:
+comment|// A sub-block; make sub-FP absolute:
+name|ste
+operator|.
+name|termExists
+operator|=
+literal|false
+expr_stmt|;
+name|subCode
+operator|=
+name|suffixesReader
+operator|.
+name|readVLong
+argument_list|()
+expr_stmt|;
+name|lastSubFP
+operator|=
+name|fp
+operator|-
+name|subCode
+expr_stmt|;
+comment|//if (DEBUG) {
+comment|//System.out.println("    lastSubFP=" + lastSubFP);
+comment|//}
+return|return
+literal|true
+return|;
+case|case
+literal|2
+case|:
+case|case
+literal|3
+case|:
+comment|// A prefix term: skip it
+name|state
+operator|.
+name|termBlockOrd
+operator|++
+expr_stmt|;
+name|suffixesReader
+operator|.
+name|readByte
+argument_list|()
+expr_stmt|;
+continue|continue;
+block|}
+block|}
 block|}
 block|}
 comment|// TODO: make this array'd so we can do bin search?
@@ -1696,20 +1887,22 @@ operator|.
 name|readVInt
 argument_list|()
 decl_stmt|;
+if|if
+condition|(
+name|versionAutoPrefix
+operator|==
+literal|false
+condition|)
+block|{
 name|suffixesReader
 operator|.
 name|skipBytes
 argument_list|(
-name|isLeafBlock
-condition|?
-name|code
-else|:
 name|code
 operator|>>>
 literal|1
 argument_list|)
 expr_stmt|;
-comment|//if (DEBUG) System.out.println("    " + nextEnt + " (of " + entCount + ") ent isSubBlock=" + ((code&1)==1));
 if|if
 condition|(
 operator|(
@@ -1721,6 +1914,66 @@ operator|!=
 literal|0
 condition|)
 block|{
+specifier|final
+name|long
+name|subCode
+init|=
+name|suffixesReader
+operator|.
+name|readVLong
+argument_list|()
+decl_stmt|;
+if|if
+condition|(
+name|targetSubCode
+operator|==
+name|subCode
+condition|)
+block|{
+comment|//if (DEBUG) System.out.println("        match!");
+name|lastSubFP
+operator|=
+name|subFP
+expr_stmt|;
+return|return;
+block|}
+block|}
+else|else
+block|{
+name|state
+operator|.
+name|termBlockOrd
+operator|++
+expr_stmt|;
+block|}
+block|}
+else|else
+block|{
+name|int
+name|flag
+init|=
+name|code
+operator|&
+literal|3
+decl_stmt|;
+name|suffixesReader
+operator|.
+name|skipBytes
+argument_list|(
+name|code
+operator|>>>
+literal|2
+argument_list|)
+expr_stmt|;
+comment|//if (DEBUG) System.out.println("    " + nextEnt + " (of " + entCount + ") ent isSubBlock=" + ((code&1)==1));
+if|if
+condition|(
+name|flag
+operator|==
+literal|1
+condition|)
+block|{
+comment|// Sub-block
 specifier|final
 name|long
 name|subCode
@@ -1753,6 +2006,25 @@ operator|.
 name|termBlockOrd
 operator|++
 expr_stmt|;
+if|if
+condition|(
+name|flag
+operator|==
+literal|2
+operator|||
+name|flag
+operator|==
+literal|3
+condition|)
+block|{
+comment|// Floor'd prefix term
+name|suffixesReader
+operator|.
+name|readByte
+argument_list|()
+expr_stmt|;
+block|}
+block|}
 block|}
 block|}
 block|}
@@ -1804,6 +2076,8 @@ specifier|private
 name|long
 name|subCode
 decl_stmt|;
+comment|// for debugging
+comment|/*   @SuppressWarnings("unused")   static String brToString(BytesRef b) {     try {       return b.utf8ToString() + " " + b;     } catch (Throwable t) {       // If BytesRef isn't actually UTF8, or it's eg a       // prefix of UTF8 that ends mid-unicode-char, we       // fallback to hex:       return b.toString();     }   }   */
 comment|// Target's prefix matches this block's prefix; we
 comment|// scan the entries check if the suffix matches.
 DECL|method|scanToTermLeaf
@@ -2036,15 +2310,6 @@ operator|==
 name|entCount
 condition|)
 block|{
-if|if
-condition|(
-name|exactOnly
-condition|)
-block|{
-name|fillTerm
-argument_list|()
-expr_stmt|;
-block|}
 comment|// We are done scanning this block
 break|break
 name|nextTerm
@@ -2148,7 +2413,7 @@ parameter_list|)
 throws|throws
 name|IOException
 block|{
-comment|//if (DEBUG) System.out.println("    scanToTermNonLeaf: block fp=" + fp + " prefix=" + prefix + " nextEnt=" + nextEnt + " (of " + entCount + ") target=" + brToString(target) + " term=" + brToString(term));
+comment|//if (DEBUG) System.out.println("    scanToTermNonLeaf: block fp=" + fp + " prefix=" + prefix + " nextEnt=" + nextEnt + " (of " + entCount + ") target=" + brToString(target) + " term=" + brToString(target));
 assert|assert
 name|nextEnt
 operator|!=
@@ -2192,12 +2457,13 @@ name|target
 argument_list|)
 assert|;
 comment|// Loop over each entry (term or sub-block) in this block:
-comment|//nextTerm: while(nextEnt< entCount) {
 name|nextTerm
 label|:
 while|while
 condition|(
-literal|true
+name|nextEnt
+operator|<
+name|entCount
 condition|)
 block|{
 name|nextEnt
@@ -2212,31 +2478,36 @@ operator|.
 name|readVInt
 argument_list|()
 decl_stmt|;
+if|if
+condition|(
+name|versionAutoPrefix
+operator|==
+literal|false
+condition|)
+block|{
 name|suffix
 operator|=
 name|code
 operator|>>>
 literal|1
 expr_stmt|;
-comment|// if (DEBUG) {
-comment|//   BytesRef suffixBytesRef = new BytesRef();
-comment|//   suffixBytesRef.bytes = suffixBytes;
-comment|//   suffixBytesRef.offset = suffixesReader.getPosition();
-comment|//   suffixBytesRef.length = suffix;
-comment|//   System.out.println("      cycle: " + ((code&1)==1 ? "sub-block" : "term") + " " + (nextEnt-1) + " (of " + entCount + ") suffix=" + brToString(suffixBytesRef));
-comment|// }
-name|ste
-operator|.
-name|termExists
+block|}
+else|else
+block|{
+name|suffix
 operator|=
-operator|(
 name|code
-operator|&
-literal|1
-operator|)
-operator|==
-literal|0
+operator|>>>
+literal|2
 expr_stmt|;
+block|}
+comment|//if (DEBUG) {
+comment|//  BytesRef suffixBytesRef = new BytesRef();
+comment|//  suffixBytesRef.bytes = suffixBytes;
+comment|//  suffixBytesRef.offset = suffixesReader.getPosition();
+comment|//  suffixBytesRef.length = suffix;
+comment|//  System.out.println("      cycle: " + ((code&1)==1 ? "sub-block" : "term") + " " + (nextEnt-1) + " (of " + entCount + ") suffix=" + brToString(suffixBytesRef));
+comment|//}
 specifier|final
 name|int
 name|termLen
@@ -2258,6 +2529,25 @@ name|skipBytes
 argument_list|(
 name|suffix
 argument_list|)
+expr_stmt|;
+if|if
+condition|(
+name|versionAutoPrefix
+operator|==
+literal|false
+condition|)
+block|{
+name|ste
+operator|.
+name|termExists
+operator|=
+operator|(
+name|code
+operator|&
+literal|1
+operator|)
+operator|==
+literal|0
 expr_stmt|;
 if|if
 condition|(
@@ -2291,6 +2581,87 @@ name|fp
 operator|-
 name|subCode
 expr_stmt|;
+block|}
+block|}
+else|else
+block|{
+switch|switch
+condition|(
+name|code
+operator|&
+literal|3
+condition|)
+block|{
+case|case
+literal|0
+case|:
+comment|// Normal term
+name|ste
+operator|.
+name|termExists
+operator|=
+literal|true
+expr_stmt|;
+name|state
+operator|.
+name|termBlockOrd
+operator|++
+expr_stmt|;
+name|subCode
+operator|=
+literal|0
+expr_stmt|;
+break|break;
+case|case
+literal|1
+case|:
+comment|// Sub-block
+name|ste
+operator|.
+name|termExists
+operator|=
+literal|false
+expr_stmt|;
+name|subCode
+operator|=
+name|suffixesReader
+operator|.
+name|readVLong
+argument_list|()
+expr_stmt|;
+name|lastSubFP
+operator|=
+name|fp
+operator|-
+name|subCode
+expr_stmt|;
+break|break;
+case|case
+literal|2
+case|:
+case|case
+literal|3
+case|:
+comment|// Floor prefix term: skip it
+comment|//if (DEBUG) System.out.println("        skip floor prefix term");
+name|suffixesReader
+operator|.
+name|readByte
+argument_list|()
+expr_stmt|;
+name|ste
+operator|.
+name|termExists
+operator|=
+literal|false
+expr_stmt|;
+name|state
+operator|.
+name|termBlockOrd
+operator|++
+expr_stmt|;
+continue|continue;
+block|}
 block|}
 specifier|final
 name|int
@@ -2408,34 +2779,9 @@ condition|)
 block|{
 comment|// Current entry is still before the target;
 comment|// keep scanning
-if|if
-condition|(
-name|nextEnt
-operator|==
-name|entCount
-condition|)
-block|{
-if|if
-condition|(
-name|exactOnly
-condition|)
-block|{
-name|fillTerm
-argument_list|()
-expr_stmt|;
-comment|//termExists = true;
-block|}
-comment|// We are done scanning this block
-break|break
-name|nextTerm
-break|;
-block|}
-else|else
-block|{
 continue|continue
 name|nextTerm
 continue|;
-block|}
 block|}
 elseif|else
 if|if
@@ -2450,6 +2796,7 @@ comment|// return NOT_FOUND:
 name|fillTerm
 argument_list|()
 expr_stmt|;
+comment|//if (DEBUG) System.out.println("        maybe done exactOnly=" + exactOnly + " ste.termExists=" + ste.termExists);
 if|if
 condition|(
 operator|!
@@ -2461,6 +2808,8 @@ operator|.
 name|termExists
 condition|)
 block|{
+comment|//System.out.println("  now pushFrame");
+comment|// TODO this
 comment|// We are on a sub-block, and caller wants
 comment|// us to position to the next term after
 comment|// the target, so we must recurse into the
