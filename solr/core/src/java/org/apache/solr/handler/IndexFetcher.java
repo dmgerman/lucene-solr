@@ -158,6 +158,18 @@ begin_import
 import|import
 name|java
 operator|.
+name|nio
+operator|.
+name|file
+operator|.
+name|Paths
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
 name|text
 operator|.
 name|SimpleDateFormat
@@ -2106,10 +2118,6 @@ DECL|method|fetchLatestIndex
 name|boolean
 name|fetchLatestIndex
 parameter_list|(
-specifier|final
-name|SolrCore
-name|core
-parameter_list|,
 name|boolean
 name|forceReplication
 parameter_list|)
@@ -2121,23 +2129,17 @@ block|{
 return|return
 name|fetchLatestIndex
 argument_list|(
-name|core
-argument_list|,
 name|forceReplication
 argument_list|,
 literal|false
 argument_list|)
 return|;
 block|}
-comment|/**    * This command downloads all the necessary files from master to install a index commit point. Only changed files are    * downloaded. It also downloads the conf files (if they are modified).    *    * @param core the SolrCore    * @param forceReplication force a replication in all cases     * @param forceCoreReload force a core reload in all cases    * @return true on success, false if slave is already in sync    * @throws IOException if an exception occurs    */
+comment|/**    * This command downloads all the necessary files from master to install a index commit point. Only changed files are    * downloaded. It also downloads the conf files (if they are modified).    *    * @param forceReplication force a replication in all cases     * @param forceCoreReload force a core reload in all cases    * @return true on success, false if slave is already in sync    * @throws IOException if an exception occurs    */
 DECL|method|fetchLatestIndex
 name|boolean
 name|fetchLatestIndex
 parameter_list|(
-specifier|final
-name|SolrCore
-name|core
-parameter_list|,
 name|boolean
 name|forceReplication
 parameter_list|,
@@ -2173,8 +2175,6 @@ literal|null
 decl_stmt|;
 name|String
 name|tmpIndex
-init|=
-literal|null
 decl_stmt|;
 name|Directory
 name|indexDir
@@ -2183,8 +2183,6 @@ literal|null
 decl_stmt|;
 name|String
 name|indexDirPath
-init|=
-literal|null
 decl_stmt|;
 name|boolean
 name|deleteTmpIdxDir
@@ -2194,7 +2192,7 @@ decl_stmt|;
 if|if
 condition|(
 operator|!
-name|core
+name|solrCore
 operator|.
 name|getSolrCoreState
 argument_list|()
@@ -2216,8 +2214,6 @@ block|{
 comment|//get the current 'replicateable' index version in the master
 name|NamedList
 name|response
-init|=
-literal|null
 decl_stmt|;
 try|try
 block|{
@@ -2283,7 +2279,7 @@ comment|// TODO: make sure that getLatestCommit only returns commit points for t
 name|IndexCommit
 name|commit
 init|=
-name|core
+name|solrCore
 operator|.
 name|getDeletionPolicy
 argument_list|()
@@ -2311,7 +2307,7 @@ try|try
 block|{
 name|searcherRefCounted
 operator|=
-name|core
+name|solrCore
 operator|.
 name|getNewestSearcher
 argument_list|(
@@ -2392,7 +2388,7 @@ name|IndexWriter
 argument_list|>
 name|iw
 init|=
-name|core
+name|solrCore
 operator|.
 name|getUpdateHandler
 argument_list|()
@@ -2402,7 +2398,7 @@ argument_list|()
 operator|.
 name|getIndexWriter
 argument_list|(
-name|core
+name|solrCore
 argument_list|)
 decl_stmt|;
 try|try
@@ -2430,14 +2426,14 @@ init|=
 operator|new
 name|LocalSolrQueryRequest
 argument_list|(
-name|core
+name|solrCore
 argument_list|,
 operator|new
 name|ModifiableSolrParams
 argument_list|()
 argument_list|)
 decl_stmt|;
-name|core
+name|solrCore
 operator|.
 name|getUpdateHandler
 argument_list|()
@@ -2536,9 +2532,11 @@ operator|.
 name|isEmpty
 argument_list|()
 condition|)
+block|{
 return|return
 literal|false
 return|;
+block|}
 name|LOG
 operator|.
 name|info
@@ -2634,16 +2632,24 @@ argument_list|)
 decl_stmt|;
 name|tmpIndex
 operator|=
-name|createTempindexDir
+name|Paths
+operator|.
+name|get
 argument_list|(
-name|core
+name|solrCore
+operator|.
+name|getDataDir
+argument_list|()
 argument_list|,
 name|tmpIdxDirName
 argument_list|)
+operator|.
+name|toString
+argument_list|()
 expr_stmt|;
 name|tmpIndexDir
 operator|=
-name|core
+name|solrCore
 operator|.
 name|getDirectoryFactory
 argument_list|()
@@ -2656,7 +2662,7 @@ name|DirContext
 operator|.
 name|DEFAULT
 argument_list|,
-name|core
+name|solrCore
 operator|.
 name|getSolrConfig
 argument_list|()
@@ -2669,14 +2675,14 @@ expr_stmt|;
 comment|// cindex dir...
 name|indexDirPath
 operator|=
-name|core
+name|solrCore
 operator|.
 name|getIndexDir
 argument_list|()
 expr_stmt|;
 name|indexDir
 operator|=
-name|core
+name|solrCore
 operator|.
 name|getDirectoryFactory
 argument_list|()
@@ -2689,7 +2695,7 @@ name|DirContext
 operator|.
 name|DEFAULT
 argument_list|,
-name|core
+name|solrCore
 operator|.
 name|getSolrConfig
 argument_list|()
@@ -2895,7 +2901,7 @@ argument_list|()
 operator|.
 name|closeIndexWriter
 argument_list|(
-name|core
+name|solrCore
 argument_list|,
 literal|true
 argument_list|)
@@ -3001,8 +3007,12 @@ condition|)
 block|{
 name|successfulInstall
 operator|=
+name|IndexFetcher
+operator|.
 name|modifyIndexProps
 argument_list|(
+name|solrCore
+argument_list|,
 name|tmpIdxDirName
 argument_list|)
 expr_stmt|;
@@ -3051,7 +3061,7 @@ operator|+
 name|indexDir
 argument_list|)
 expr_stmt|;
-name|core
+name|solrCore
 operator|.
 name|getDirectoryFactory
 argument_list|()
@@ -3061,7 +3071,7 @@ argument_list|(
 name|indexDir
 argument_list|)
 expr_stmt|;
-name|core
+name|solrCore
 operator|.
 name|getDirectoryFactory
 argument_list|()
@@ -3103,8 +3113,12 @@ condition|)
 block|{
 name|successfulInstall
 operator|=
+name|IndexFetcher
+operator|.
 name|modifyIndexProps
 argument_list|(
+name|solrCore
+argument_list|,
 name|tmpIdxDirName
 argument_list|)
 expr_stmt|;
@@ -3158,7 +3172,7 @@ argument_list|()
 operator|.
 name|openIndexWriter
 argument_list|(
-name|core
+name|solrCore
 argument_list|)
 expr_stmt|;
 block|}
@@ -3181,7 +3195,7 @@ name|info
 argument_list|(
 literal|"Reloading SolrCore {}"
 argument_list|,
-name|core
+name|solrCore
 operator|.
 name|getName
 argument_list|()
@@ -3219,7 +3233,7 @@ operator|+
 name|indexDir
 argument_list|)
 expr_stmt|;
-name|core
+name|solrCore
 operator|.
 name|getDirectoryFactory
 argument_list|()
@@ -3229,7 +3243,7 @@ argument_list|(
 name|indexDir
 argument_list|)
 expr_stmt|;
-name|core
+name|solrCore
 operator|.
 name|getDirectoryFactory
 argument_list|()
@@ -3275,7 +3289,7 @@ condition|)
 block|{
 name|cleanup
 argument_list|(
-name|core
+name|solrCore
 argument_list|,
 name|tmpIndexDir
 argument_list|,
@@ -3304,8 +3318,6 @@ name|successfulInstall
 operator|=
 name|fetchLatestIndex
 argument_list|(
-name|core
-argument_list|,
 literal|true
 argument_list|,
 name|reloadCore
@@ -3371,8 +3383,6 @@ throw|throw
 operator|new
 name|SolrException
 argument_list|(
-name|SolrException
-operator|.
 name|ErrorCode
 operator|.
 name|SERVER_ERROR
@@ -3394,7 +3404,7 @@ condition|)
 block|{
 name|cleanup
 argument_list|(
-name|core
+name|solrCore
 argument_list|,
 name|tmpIndexDir
 argument_list|,
@@ -4730,30 +4740,6 @@ operator|=
 name|commitPoint
 expr_stmt|;
 block|}
-comment|/**    * All the files are copied to a temp dir first    */
-DECL|method|createTempindexDir
-specifier|private
-name|String
-name|createTempindexDir
-parameter_list|(
-name|SolrCore
-name|core
-parameter_list|,
-name|String
-name|tmpIdxDirName
-parameter_list|)
-block|{
-comment|// TODO: there should probably be a DirectoryFactory#concatPath(parent, name)
-comment|// or something
-return|return
-name|core
-operator|.
-name|getDataDir
-argument_list|()
-operator|+
-name|tmpIdxDirName
-return|;
-block|}
 DECL|method|reloadCore
 specifier|private
 name|void
@@ -5313,6 +5299,7 @@ operator|)
 return|;
 block|}
 DECL|class|CompareResult
+specifier|protected
 specifier|static
 class|class
 name|CompareResult
@@ -5331,7 +5318,8 @@ literal|false
 decl_stmt|;
 block|}
 DECL|method|compareFile
-specifier|private
+specifier|protected
+specifier|static
 name|CompareResult
 name|compareFile
 parameter_list|(
@@ -5634,7 +5622,7 @@ literal|false
 return|;
 block|}
 block|}
-comment|/**    * All the files which are common between master and slave must have same size else we assume they are    * not compatible (stale).    *    * @return true if the index stale and we need to download a fresh copy, false otherwise.    * @throws IOException  if low level io error    */
+comment|/**    * All the files which are common between master and slave must have same size and same checksum else we assume    * they are not compatible (stale).    *    * @return true if the index stale and we need to download a fresh copy, false otherwise.    * @throws IOException  if low level io error    */
 DECL|method|isIndexStale
 specifier|private
 name|boolean
@@ -6458,10 +6446,14 @@ return|;
 block|}
 comment|/**    * If the index is stale by any chance, load index from a different dir in the data dir.    */
 DECL|method|modifyIndexProps
-specifier|private
+specifier|protected
+specifier|static
 name|boolean
 name|modifyIndexProps
 parameter_list|(
+name|SolrCore
+name|solrCore
+parameter_list|,
 name|String
 name|tmpIdxDirName
 parameter_list|)
