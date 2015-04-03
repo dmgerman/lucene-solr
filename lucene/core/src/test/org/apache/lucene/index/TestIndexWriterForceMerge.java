@@ -1160,15 +1160,15 @@ literal|" bytes; max temp usage was "
 operator|+
 name|maxDiskUsage
 operator|+
-literal|" but should have been "
+literal|" but should have been at most "
 operator|+
 operator|(
-literal|3
+literal|4
 operator|*
 name|maxStartFinalDiskUsage
 operator|)
 operator|+
-literal|" (= 3X starting usage), BEFORE="
+literal|" (= 4X starting usage), BEFORE="
 operator|+
 name|startListing
 operator|+
@@ -1181,7 +1181,7 @@ argument_list|)
 argument_list|,
 name|maxDiskUsage
 operator|<=
-literal|3
+literal|4
 operator|*
 name|maxStartFinalDiskUsage
 argument_list|)
