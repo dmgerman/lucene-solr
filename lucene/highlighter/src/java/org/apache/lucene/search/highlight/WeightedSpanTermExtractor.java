@@ -2119,6 +2119,15 @@ argument_list|,
 name|termContexts
 argument_list|)
 decl_stmt|;
+if|if
+condition|(
+name|spans
+operator|==
+literal|null
+condition|)
+block|{
+return|return;
+block|}
 comment|// collect span positions
 while|while
 condition|(
