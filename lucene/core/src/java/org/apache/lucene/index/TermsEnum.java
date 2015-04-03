@@ -277,7 +277,7 @@ parameter_list|()
 throws|throws
 name|IOException
 function_decl|;
-comment|/** Get {@link PostingsEnum} for the current term.  Do not    *  call this when the enum is unpositioned.  This method    *  will not return null.    *      * @param liveDocs unset bits are documents that should not    * be returned    * @param reuse pass a prior PostingsEnum for possible reuse */
+comment|/** Get {@link PostingsEnum} for the current term.  Do not    *  call this when the enum is unpositioned.  This method    *  will not return null.    *<p>    *  Use this method if you only require documents and frequencies,    *  and do not need any proximity data.    *  This method is equivalent to     *  {@link #postings(Bits, PostingsEnum, int) postings(liveDocs, reuse, PostingsEnum.FREQS)}    *      * @param liveDocs unset bits are documents that should not    * be returned    * @param reuse pass a prior PostingsEnum for possible reuse     * @see #postings(Bits, PostingsEnum, int)    */
 DECL|method|postings
 specifier|public
 specifier|final
@@ -306,7 +306,7 @@ name|FREQS
 argument_list|)
 return|;
 block|}
-comment|/** Get {@link PostingsEnum} for the current term, with    *  control over whether freqs, positions, offsets or payloads    *  are required.  Do not call this when the enum is    *  unpositioned.  This method may return null if the postings    *  information required is not available from the index    *      * @param liveDocs unset bits are documents that should not    * be returned    * @param reuse pass a prior PostingsEnum for possible reuse    * @param flags specifies which optional per-document values    *        you require; see {@link PostingsEnum#FREQS}    * @see #postings(Bits, PostingsEnum, int) */
+comment|/** Get {@link PostingsEnum} for the current term, with    *  control over whether freqs, positions, offsets or payloads    *  are required.  Do not call this when the enum is    *  unpositioned.  This method may return null if the postings    *  information required is not available from the index    *      * @param liveDocs unset bits are documents that should not    * be returned    * @param reuse pass a prior PostingsEnum for possible reuse    * @param flags specifies which optional per-document values    *        you require; see {@link PostingsEnum#FREQS}    */
 DECL|method|postings
 specifier|public
 specifier|abstract

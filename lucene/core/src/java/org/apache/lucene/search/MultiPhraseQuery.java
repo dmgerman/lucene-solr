@@ -990,6 +990,34 @@ return|return
 literal|null
 return|;
 block|}
+comment|// TODO: move this check to createWeight to happen earlier to the user?
+if|if
+condition|(
+name|fieldTerms
+operator|.
+name|hasPositions
+argument_list|()
+operator|==
+literal|false
+condition|)
+block|{
+throw|throw
+operator|new
+name|IllegalStateException
+argument_list|(
+literal|"field \""
+operator|+
+name|field
+operator|+
+literal|"\" was indexed without position data; cannot run MultiPhraseQuery (phrase="
+operator|+
+name|getQuery
+argument_list|()
+operator|+
+literal|")"
+argument_list|)
+throw|;
+block|}
 comment|// Reuse single TermsEnum below:
 specifier|final
 name|TermsEnum
@@ -1221,54 +1249,6 @@ operator|.
 name|POSITIONS
 argument_list|)
 expr_stmt|;
-if|if
-condition|(
-name|postingsEnum
-operator|==
-literal|null
-condition|)
-block|{
-comment|// term does exist, but has no positions
-assert|assert
-name|termsEnum
-operator|.
-name|postings
-argument_list|(
-name|liveDocs
-argument_list|,
-literal|null
-argument_list|,
-name|PostingsEnum
-operator|.
-name|NONE
-argument_list|)
-operator|!=
-literal|null
-operator|:
-literal|"termstate found but no term exists in reader"
-assert|;
-throw|throw
-operator|new
-name|IllegalStateException
-argument_list|(
-literal|"field \""
-operator|+
-name|term
-operator|.
-name|field
-argument_list|()
-operator|+
-literal|"\" was indexed without position data; cannot run PhraseQuery (term="
-operator|+
-name|term
-operator|.
-name|text
-argument_list|()
-operator|+
-literal|")"
-argument_list|)
-throw|;
-block|}
 name|docFreq
 operator|=
 name|termsEnum
@@ -2726,36 +2706,6 @@ operator|.
 name|POSITIONS
 argument_list|)
 decl_stmt|;
-if|if
-condition|(
-name|postings
-operator|==
-literal|null
-condition|)
-block|{
-comment|// term does exist, but has no positions
-throw|throw
-operator|new
-name|IllegalStateException
-argument_list|(
-literal|"field \""
-operator|+
-name|term
-operator|.
-name|field
-argument_list|()
-operator|+
-literal|"\" was indexed without position data; cannot run PhraseQuery (term="
-operator|+
-name|term
-operator|.
-name|text
-argument_list|()
-operator|+
-literal|")"
-argument_list|)
-throw|;
-block|}
 name|cost
 operator|+=
 name|postings

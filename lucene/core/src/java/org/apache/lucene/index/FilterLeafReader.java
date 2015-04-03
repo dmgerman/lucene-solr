@@ -680,25 +680,25 @@ return|;
 block|}
 block|}
 comment|/** Base class for filtering {@link PostingsEnum} implementations. */
-DECL|class|FilterDocsEnum
+DECL|class|FilterPostingsEnum
 specifier|public
 specifier|static
 class|class
-name|FilterDocsEnum
+name|FilterPostingsEnum
 extends|extends
 name|PostingsEnum
 block|{
-comment|/** The underlying DocsEnum instance. */
+comment|/** The underlying PostingsEnum instance. */
 DECL|field|in
 specifier|protected
 specifier|final
 name|PostingsEnum
 name|in
 decl_stmt|;
-comment|/**      * Create a new FilterDocsEnum      * @param in the underlying DocsEnum instance.      */
-DECL|method|FilterDocsEnum
+comment|/**      * Create a new FilterPostingsEnum      * @param in the underlying PostingsEnum instance.      */
+DECL|method|FilterPostingsEnum
 specifier|public
-name|FilterDocsEnum
+name|FilterPostingsEnum
 parameter_list|(
 name|PostingsEnum
 name|in
@@ -715,7 +715,7 @@ throw|throw
 operator|new
 name|NullPointerException
 argument_list|(
-literal|"incoming DocsEnum cannot be null"
+literal|"incoming PostingsEnum cannot be null"
 argument_list|)
 throw|;
 block|}

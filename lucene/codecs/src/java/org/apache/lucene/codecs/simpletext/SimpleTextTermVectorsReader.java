@@ -2245,20 +2245,16 @@ condition|(
 name|postings
 operator|.
 name|positions
-operator|==
+operator|!=
 literal|null
-operator|&&
+operator|||
 name|postings
 operator|.
 name|startOffsets
-operator|==
+operator|!=
 literal|null
 condition|)
 block|{
-return|return
-literal|null
-return|;
-block|}
 comment|// TODO: reuse
 name|SimpleTVPostingsEnum
 name|e
@@ -2293,6 +2289,7 @@ expr_stmt|;
 return|return
 name|e
 return|;
+block|}
 block|}
 comment|// TODO: reuse
 name|SimpleTVDocsEnum

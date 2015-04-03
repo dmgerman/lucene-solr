@@ -711,7 +711,7 @@ return|return
 literal|null
 return|;
 block|}
-comment|/** Returns {@link PostingsEnum} for the specified term    *  with {@link PostingsEnum#FREQS}. */
+comment|/** Returns {@link PostingsEnum} for the specified term    *  with {@link PostingsEnum#FREQS}.    *<p>    *  Use this method if you only require documents and frequencies,    *  and do not need any proximity data.    *  This method is equivalent to     *  {@link #postings(Term, int) postings(term, PostingsEnum.FREQS)}    *  @see #postings(Term, int)    */
 DECL|method|postings
 specifier|public
 specifier|final

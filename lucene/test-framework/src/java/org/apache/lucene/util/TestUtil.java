@@ -8050,8 +8050,7 @@ name|flags
 argument_list|)
 return|;
 block|}
-comment|// Returns a DocsEnum from a positioned TermsEnum, but
-comment|// randomly sometimes uses a DocsAndFreqsEnum, DocsAndPositionsEnum.
+comment|// Returns a PostingsEnum with random features available
 DECL|method|docs
 specifier|public
 specifier|static
@@ -8076,6 +8075,8 @@ parameter_list|)
 throws|throws
 name|IOException
 block|{
+comment|// TODO: simplify this method? it would be easier to randomly either use the flags passed, or do the random selection,
+comment|// FREQS should be part fo the random selection instead of outside on its own?
 if|if
 condition|(
 name|random
@@ -8145,9 +8146,7 @@ name|ALL
 expr_stmt|;
 break|break;
 block|}
-name|PostingsEnum
-name|docsAndPositions
-init|=
+return|return
 name|termsEnum
 operator|.
 name|postings
@@ -8158,18 +8157,7 @@ literal|null
 argument_list|,
 name|posFlags
 argument_list|)
-decl_stmt|;
-if|if
-condition|(
-name|docsAndPositions
-operator|!=
-literal|null
-condition|)
-block|{
-return|return
-name|docsAndPositions
 return|;
-block|}
 block|}
 name|flags
 operator||=

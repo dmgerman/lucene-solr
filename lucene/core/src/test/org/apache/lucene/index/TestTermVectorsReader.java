@@ -2076,7 +2076,7 @@ literal|null
 argument_list|)
 argument_list|)
 expr_stmt|;
-name|assertNull
+name|assertNotNull
 argument_list|(
 name|termsEnum
 operator|.
@@ -2092,7 +2092,6 @@ name|ALL
 argument_list|)
 argument_list|)
 expr_stmt|;
-comment|// no pos
 block|}
 name|reader
 operator|.
