@@ -1095,9 +1095,14 @@ name|ZkStateReader
 operator|.
 name|STATE_PROP
 argument_list|,
-name|ZkStateReader
+name|Replica
+operator|.
+name|State
 operator|.
 name|ACTIVE
+operator|.
+name|toString
+argument_list|()
 argument_list|)
 decl_stmt|;
 name|Overseer
@@ -2166,7 +2171,10 @@ argument_list|)
 condition|)
 continue|continue;
 comment|// added safe-guard so we don't mark this core as down
-name|String
+specifier|final
+name|Replica
+operator|.
+name|State
 name|lirState
 init|=
 name|zkController
@@ -2182,23 +2190,21 @@ argument_list|)
 decl_stmt|;
 if|if
 condition|(
-name|ZkStateReader
+name|lirState
+operator|==
+name|Replica
+operator|.
+name|State
 operator|.
 name|DOWN
-operator|.
-name|equals
-argument_list|(
-name|lirState
-argument_list|)
 operator|||
-name|ZkStateReader
+name|lirState
+operator|==
+name|Replica
+operator|.
+name|State
 operator|.
 name|RECOVERY_FAILED
-operator|.
-name|equals
-argument_list|(
-name|lirState
-argument_list|)
 condition|)
 block|{
 name|log
@@ -2208,6 +2214,9 @@ argument_list|(
 literal|"After core={} coreNodeName={} was elected leader, a replica coreNodeName={} was found in state: "
 operator|+
 name|lirState
+operator|.
+name|toString
+argument_list|()
 operator|+
 literal|" and needing recovery."
 argument_list|,
@@ -2800,18 +2809,20 @@ argument_list|()
 operator|.
 name|getLastPublished
 argument_list|()
+operator|==
+name|Replica
 operator|.
-name|equals
-argument_list|(
-name|ZkStateReader
+name|State
 operator|.
 name|ACTIVE
-argument_list|)
 condition|)
 block|{
 comment|// maybe active but if the previous leader marked us as down and
 comment|// we haven't recovered, then can't be leader
-name|String
+specifier|final
+name|Replica
+operator|.
+name|State
 name|lirState
 init|=
 name|zkController
@@ -2836,23 +2847,21 @@ argument_list|)
 decl_stmt|;
 if|if
 condition|(
-name|ZkStateReader
+name|lirState
+operator|==
+name|Replica
+operator|.
+name|State
 operator|.
 name|DOWN
-operator|.
-name|equals
-argument_list|(
-name|lirState
-argument_list|)
 operator|||
-name|ZkStateReader
+name|lirState
+operator|==
+name|Replica
+operator|.
+name|State
 operator|.
 name|RECOVERING
-operator|.
-name|equals
-argument_list|(
-name|lirState
-argument_list|)
 condition|)
 block|{
 name|log
@@ -2869,6 +2878,9 @@ operator|+
 literal|" as "
 operator|+
 name|lirState
+operator|.
+name|toString
+argument_list|()
 operator|+
 literal|" and I haven't recovered yet, so I shouldn't be the leader."
 argument_list|)

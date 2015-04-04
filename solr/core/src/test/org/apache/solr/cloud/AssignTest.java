@@ -375,7 +375,14 @@ name|ZkStateReader
 operator|.
 name|STATE_PROP
 argument_list|,
-literal|"ACTIVE"
+name|Replica
+operator|.
+name|State
+operator|.
+name|ACTIVE
+operator|.
+name|toString
+argument_list|()
 argument_list|,
 name|ZkStateReader
 operator|.

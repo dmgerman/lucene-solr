@@ -342,6 +342,7 @@ name|replicas
 control|)
 block|{
 comment|// on a live node?
+specifier|final
 name|boolean
 name|live
 init|=
@@ -355,17 +356,20 @@ name|getNodeName
 argument_list|()
 argument_list|)
 decl_stmt|;
-name|String
-name|state
+specifier|final
+name|boolean
+name|isActive
 init|=
 name|replica
 operator|.
-name|getStr
-argument_list|(
-name|ZkStateReader
+name|getState
+argument_list|()
+operator|==
+name|Replica
 operator|.
-name|STATE_PROP
-argument_list|)
+name|State
+operator|.
+name|ACTIVE
 decl_stmt|;
 if|if
 condition|(
@@ -373,14 +377,7 @@ operator|!
 name|live
 operator|||
 operator|!
-name|state
-operator|.
-name|equals
-argument_list|(
-name|ZkStateReader
-operator|.
-name|ACTIVE
-argument_list|)
+name|isActive
 condition|)
 block|{
 comment|// fail

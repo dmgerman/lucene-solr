@@ -18,15 +18,27 @@ end_comment
 
 begin_import
 import|import
-name|com
+name|java
 operator|.
-name|google
+name|util
+operator|.
+name|Properties
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|solr
 operator|.
 name|common
 operator|.
-name|base
+name|cloud
 operator|.
-name|Strings
+name|Replica
 import|;
 end_import
 
@@ -43,22 +55,6 @@ operator|.
 name|cloud
 operator|.
 name|Slice
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|solr
-operator|.
-name|common
-operator|.
-name|cloud
-operator|.
-name|ZkStateReader
 import|;
 end_import
 
@@ -108,11 +104,15 @@ end_import
 
 begin_import
 import|import
-name|java
+name|com
 operator|.
-name|util
+name|google
 operator|.
-name|Properties
+name|common
+operator|.
+name|base
+operator|.
+name|Strings
 import|;
 end_import
 
@@ -199,10 +199,14 @@ literal|false
 decl_stmt|;
 DECL|field|lastPublished
 specifier|volatile
-name|String
+name|Replica
+operator|.
+name|State
 name|lastPublished
 init|=
-name|ZkStateReader
+name|Replica
+operator|.
+name|State
 operator|.
 name|ACTIVE
 decl_stmt|;
@@ -347,7 +351,9 @@ expr_stmt|;
 block|}
 DECL|method|getLastPublished
 specifier|public
-name|String
+name|Replica
+operator|.
+name|State
 name|getLastPublished
 parameter_list|()
 block|{
