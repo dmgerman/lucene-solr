@@ -446,6 +446,21 @@ block|}
 block|}
 annotation|@
 name|Override
+DECL|method|twoPhaseCurrentDocMatches
+specifier|public
+name|boolean
+name|twoPhaseCurrentDocMatches
+parameter_list|()
+throws|throws
+name|IOException
+block|{
+return|return
+literal|true
+return|;
+comment|// we don't modify the spans, we just capture information from it.
+block|}
+annotation|@
+name|Override
 DECL|method|toString
 specifier|public
 name|String
