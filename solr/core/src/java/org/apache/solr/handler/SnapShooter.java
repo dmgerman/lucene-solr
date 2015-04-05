@@ -771,6 +771,10 @@ literal|"<not named>"
 else|:
 name|snapshotName
 operator|)
+operator|+
+literal|" at "
+operator|+
+name|snapDir
 argument_list|)
 expr_stmt|;
 name|NamedList
@@ -924,6 +928,10 @@ literal|"<not named>"
 else|:
 name|snapshotName
 operator|)
+operator|+
+literal|" at "
+operator|+
+name|snapDir
 argument_list|)
 expr_stmt|;
 block|}
