@@ -604,7 +604,7 @@ name|Repeat
 argument_list|(
 name|iterations
 operator|=
-literal|20
+literal|15
 argument_list|)
 DECL|method|testOperations
 specifier|public

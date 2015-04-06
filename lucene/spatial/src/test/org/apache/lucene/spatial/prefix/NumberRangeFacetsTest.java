@@ -19,34 +19,6 @@ comment|/*  * Licensed to the Apache Software Foundation (ASF) under one or more
 end_comment
 
 begin_import
-import|import static
-name|com
-operator|.
-name|carrotsearch
-operator|.
-name|randomizedtesting
-operator|.
-name|RandomizedTest
-operator|.
-name|randomInt
-import|;
-end_import
-
-begin_import
-import|import static
-name|com
-operator|.
-name|carrotsearch
-operator|.
-name|randomizedtesting
-operator|.
-name|RandomizedTest
-operator|.
-name|randomIntBetween
-import|;
-end_import
-
-begin_import
 import|import
 name|java
 operator|.
@@ -93,6 +65,34 @@ operator|.
 name|util
 operator|.
 name|List
+import|;
+end_import
+
+begin_import
+import|import
+name|com
+operator|.
+name|carrotsearch
+operator|.
+name|randomizedtesting
+operator|.
+name|annotations
+operator|.
+name|Repeat
+import|;
+end_import
+
+begin_import
+import|import
+name|com
+operator|.
+name|spatial4j
+operator|.
+name|core
+operator|.
+name|shape
+operator|.
+name|Shape
 import|;
 end_import
 
@@ -297,30 +297,30 @@ import|;
 end_import
 
 begin_import
-import|import
+import|import static
 name|com
 operator|.
 name|carrotsearch
 operator|.
 name|randomizedtesting
 operator|.
-name|annotations
+name|RandomizedTest
 operator|.
-name|Repeat
+name|randomInt
 import|;
 end_import
 
 begin_import
-import|import
+import|import static
 name|com
 operator|.
-name|spatial4j
+name|carrotsearch
 operator|.
-name|core
+name|randomizedtesting
 operator|.
-name|shape
+name|RandomizedTest
 operator|.
-name|Shape
+name|randomIntBetween
 import|;
 end_import
 
@@ -426,7 +426,7 @@ name|Repeat
 argument_list|(
 name|iterations
 operator|=
-literal|100
+literal|20
 argument_list|)
 annotation|@
 name|Test
