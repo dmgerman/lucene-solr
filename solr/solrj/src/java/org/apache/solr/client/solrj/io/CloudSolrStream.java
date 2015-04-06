@@ -613,9 +613,14 @@ name|this
 operator|.
 name|eofTuples
 operator|=
+name|Collections
+operator|.
+name|synchronizedMap
+argument_list|(
 operator|new
 name|HashMap
 argument_list|()
+argument_list|)
 expr_stmt|;
 if|if
 condition|(
