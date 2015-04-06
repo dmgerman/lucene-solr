@@ -4781,8 +4781,12 @@ operator|.
 name|getUpdateLog
 argument_list|()
 decl_stmt|;
+comment|// we will call register again after zk expiration and on reload
 if|if
 condition|(
+operator|!
+name|afterExpiration
+operator|&&
 operator|!
 name|core
 operator|.
@@ -4892,6 +4896,7 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
+block|}
 name|boolean
 name|didRecovery
 init|=
@@ -4918,6 +4923,8 @@ argument_list|,
 name|core
 argument_list|,
 name|cc
+argument_list|,
+name|afterExpiration
 argument_list|)
 decl_stmt|;
 if|if
@@ -4937,7 +4944,6 @@ operator|.
 name|ACTIVE
 argument_list|)
 expr_stmt|;
-block|}
 block|}
 block|}
 comment|// make sure we have an update cluster state right away
@@ -5691,6 +5697,9 @@ name|core
 parameter_list|,
 name|CoreContainer
 name|cc
+parameter_list|,
+name|boolean
+name|afterExpiration
 parameter_list|)
 block|{
 if|if
@@ -5722,6 +5731,9 @@ condition|)
 block|{
 if|if
 condition|(
+operator|!
+name|afterExpiration
+operator|&&
 name|core
 operator|.
 name|isReloaded
