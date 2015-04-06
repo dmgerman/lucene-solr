@@ -7667,6 +7667,36 @@ name|toDot
 argument_list|()
 argument_list|)
 expr_stmt|;
+name|System
+operator|.
+name|out
+operator|.
+name|println
+argument_list|(
+literal|"minTerm="
+operator|+
+name|minTerm
+operator|+
+literal|" minInclusive="
+operator|+
+name|minInclusive
+argument_list|)
+expr_stmt|;
+name|System
+operator|.
+name|out
+operator|.
+name|println
+argument_list|(
+literal|"maxTerm="
+operator|+
+name|maxTerm
+operator|+
+literal|" maxInclusive="
+operator|+
+name|maxInclusive
+argument_list|)
+expr_stmt|;
 name|fail
 argument_list|(
 literal|"auotmaton was not minimal"
@@ -8722,20 +8752,6 @@ argument_list|,
 literal|true
 argument_list|)
 decl_stmt|;
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"HERE: "
-operator|+
-name|a
-operator|.
-name|toDot
-argument_list|()
-argument_list|)
-expr_stmt|;
 name|assertTrue
 argument_list|(
 name|Operations
