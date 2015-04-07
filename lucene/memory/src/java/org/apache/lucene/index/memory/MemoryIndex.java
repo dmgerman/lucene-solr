@@ -1647,7 +1647,7 @@ operator|.
 name|size
 argument_list|()
 argument_list|,
-literal|false
+literal|true
 argument_list|,
 literal|false
 argument_list|,
