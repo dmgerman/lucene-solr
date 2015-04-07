@@ -892,7 +892,7 @@ argument_list|)
 operator|/
 name|occurrences
 operator|.
-name|getOccurence
+name|getOccurrence
 argument_list|(
 name|globalOrdinal
 argument_list|)
@@ -1196,10 +1196,10 @@ index|]
 operator|++
 expr_stmt|;
 block|}
-DECL|method|getOccurence
+DECL|method|getOccurrence
 specifier|public
 name|int
-name|getOccurence
+name|getOccurrence
 parameter_list|(
 name|int
 name|globalOrdinal
