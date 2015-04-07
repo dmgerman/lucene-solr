@@ -254,6 +254,18 @@ name|ACCEPT_TIMEOUT_MILLIS
 init|=
 literal|100
 decl_stmt|;
+comment|// should be as large as the HttpShardHandlerFactory socket timeout ... or larger?
+DECL|field|PUMP_SOCKET_TIMEOUT_MS
+specifier|public
+specifier|static
+specifier|final
+name|int
+name|PUMP_SOCKET_TIMEOUT_MS
+init|=
+literal|100
+operator|*
+literal|1000
+decl_stmt|;
 DECL|field|proxyUrl
 specifier|private
 name|URI
@@ -705,6 +717,10 @@ literal|" connections to: "
 operator|+
 name|getUrl
 argument_list|()
+operator|+
+literal|", target: "
+operator|+
+name|target
 argument_list|)
 expr_stmt|;
 for|for
@@ -1568,9 +1584,7 @@ name|src
 operator|.
 name|setSoTimeout
 argument_list|(
-literal|10
-operator|*
-literal|1000
+name|PUMP_SOCKET_TIMEOUT_MS
 argument_list|)
 expr_stmt|;
 block|}
