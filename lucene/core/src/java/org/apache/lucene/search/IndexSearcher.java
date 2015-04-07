@@ -489,6 +489,18 @@ return|return
 name|defaultSimilarity
 return|;
 block|}
+comment|/**    * Expert: Get the default {@link QueryCache} or {@code null} if the cache is disabled.    * @lucene.internal    */
+DECL|method|getDefaultQueryCache
+specifier|public
+specifier|static
+name|QueryCache
+name|getDefaultQueryCache
+parameter_list|()
+block|{
+return|return
+name|DEFAULT_QUERY_CACHE
+return|;
+block|}
 comment|/**    * Expert: set the default {@link QueryCache} instance.    * @lucene.internal    */
 DECL|method|setDefaultQueryCache
 specifier|public
@@ -504,6 +516,18 @@ name|DEFAULT_QUERY_CACHE
 operator|=
 name|defaultQueryCache
 expr_stmt|;
+block|}
+comment|/**    * Expert: Get the default {@link QueryCachingPolicy}.    * @lucene.internal    */
+DECL|method|getDefaultQueryCachingPolicy
+specifier|public
+specifier|static
+name|QueryCachingPolicy
+name|getDefaultQueryCachingPolicy
+parameter_list|()
+block|{
+return|return
+name|DEFAULT_CACHING_POLICY
+return|;
 block|}
 comment|/**    * Expert: set the default {@link QueryCachingPolicy} instance.    * @lucene.internal    */
 DECL|method|setDefaultQueryCachingPolicy
