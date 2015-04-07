@@ -682,7 +682,7 @@ block|{
 comment|//Rollback to the old index directory. Delete the restore index directory and mark the restore as failed.
 name|log
 operator|.
-name|info
+name|warn
 argument_list|(
 literal|"Could not switch to restored index. Rolling back to the current index"
 argument_list|)
