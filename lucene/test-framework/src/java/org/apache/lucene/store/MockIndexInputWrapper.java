@@ -150,9 +150,6 @@ parameter_list|()
 throws|throws
 name|IOException
 block|{
-comment|// TODO turn on the following to look for leaks closing inputs,
-comment|// after fixing TestTransactions
-comment|// dir.maybeThrowDeterministicException();
 if|if
 condition|(
 name|closed
@@ -204,6 +201,11 @@ name|name
 argument_list|)
 expr_stmt|;
 block|}
+name|dir
+operator|.
+name|maybeThrowDeterministicException
+argument_list|()
+expr_stmt|;
 block|}
 block|}
 DECL|method|ensureOpen
