@@ -805,10 +805,7 @@ DECL|method|iterator
 specifier|public
 name|TermsEnum
 name|iterator
-parameter_list|(
-name|TermsEnum
-name|reuse
-parameter_list|)
+parameter_list|()
 block|{
 return|return
 operator|new
@@ -1209,9 +1206,7 @@ init|=
 name|terms
 operator|.
 name|iterator
-argument_list|(
-literal|null
-argument_list|)
+argument_list|()
 decl_stmt|;
 name|FieldInfo
 name|fieldInfo

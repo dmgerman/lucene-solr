@@ -450,10 +450,7 @@ name|Override
 specifier|public
 name|TermsEnum
 name|iterator
-parameter_list|(
-name|TermsEnum
-name|reuse
-parameter_list|)
+parameter_list|()
 block|{
 return|return
 name|fcsi

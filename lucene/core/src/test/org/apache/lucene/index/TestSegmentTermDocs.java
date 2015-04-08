@@ -289,9 +289,7 @@ name|TEXT_FIELD_2_KEY
 argument_list|)
 operator|.
 name|iterator
-argument_list|(
-literal|null
-argument_list|)
+argument_list|()
 decl_stmt|;
 name|terms
 operator|.

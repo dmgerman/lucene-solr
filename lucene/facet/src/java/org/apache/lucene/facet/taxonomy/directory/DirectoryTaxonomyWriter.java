@@ -1462,12 +1462,6 @@ name|length
 argument_list|)
 argument_list|)
 decl_stmt|;
-name|TermsEnum
-name|termsEnum
-init|=
-literal|null
-decl_stmt|;
-comment|// reuse
 name|PostingsEnum
 name|docs
 init|=
@@ -1507,15 +1501,15 @@ operator|!=
 literal|null
 condition|)
 block|{
+comment|// TODO: share per-segment TermsEnum here!
+name|TermsEnum
 name|termsEnum
-operator|=
+init|=
 name|terms
 operator|.
 name|iterator
-argument_list|(
-name|termsEnum
-argument_list|)
-expr_stmt|;
+argument_list|()
+decl_stmt|;
 if|if
 condition|(
 name|termsEnum
@@ -2470,11 +2464,6 @@ argument_list|()
 decl_stmt|;
 try|try
 block|{
-name|TermsEnum
-name|termsEnum
-init|=
-literal|null
-decl_stmt|;
 name|PostingsEnum
 name|postingsEnum
 init|=
@@ -2514,15 +2503,15 @@ literal|null
 condition|)
 block|{
 comment|// cannot really happen, but be on the safe side
+comment|// TODO: share per-segment TermsEnum here!
+name|TermsEnum
 name|termsEnum
-operator|=
+init|=
 name|terms
 operator|.
 name|iterator
-argument_list|(
-name|termsEnum
-argument_list|)
-expr_stmt|;
+argument_list|()
+decl_stmt|;
 while|while
 condition|(
 name|termsEnum
@@ -2878,11 +2867,6 @@ name|base
 init|=
 literal|0
 decl_stmt|;
-name|TermsEnum
-name|te
-init|=
-literal|null
-decl_stmt|;
 name|PostingsEnum
 name|docs
 init|=
@@ -2922,15 +2906,15 @@ operator|.
 name|FULL
 argument_list|)
 decl_stmt|;
+comment|// TODO: share per-segment TermsEnum here!
+name|TermsEnum
 name|te
-operator|=
+init|=
 name|terms
 operator|.
 name|iterator
-argument_list|(
-name|te
-argument_list|)
-expr_stmt|;
+argument_list|()
+decl_stmt|;
 while|while
 condition|(
 name|te

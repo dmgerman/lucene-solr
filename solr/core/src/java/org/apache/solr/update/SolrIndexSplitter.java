@@ -1183,9 +1183,7 @@ else|:
 name|terms
 operator|.
 name|iterator
-argument_list|(
-literal|null
-argument_list|)
+argument_list|()
 decl_stmt|;
 if|if
 condition|(

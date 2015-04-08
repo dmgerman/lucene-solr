@@ -772,9 +772,7 @@ literal|"body"
 argument_list|)
 operator|.
 name|iterator
-argument_list|(
-literal|null
-argument_list|)
+argument_list|()
 decl_stmt|;
 name|te2
 operator|.
@@ -831,9 +829,7 @@ literal|"body"
 argument_list|)
 operator|.
 name|iterator
-argument_list|(
-literal|null
-argument_list|)
+argument_list|()
 decl_stmt|;
 name|te3
 operator|.
@@ -4613,9 +4609,7 @@ init|=
 name|terms1
 operator|.
 name|iterator
-argument_list|(
-literal|null
-argument_list|)
+argument_list|()
 decl_stmt|;
 name|Terms
 name|terms2
@@ -4638,9 +4632,7 @@ init|=
 name|terms2
 operator|.
 name|iterator
-argument_list|(
-literal|null
-argument_list|)
+argument_list|()
 decl_stmt|;
 while|while
 condition|(

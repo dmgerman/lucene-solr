@@ -110,9 +110,7 @@ init|=
 name|fieldTerms
 operator|.
 name|iterator
-argument_list|(
-literal|null
-argument_list|)
+argument_list|()
 decl_stmt|;
 name|Double
 index|[]
@@ -160,9 +158,7 @@ init|=
 name|docTerms
 operator|.
 name|iterator
-argument_list|(
-literal|null
-argument_list|)
+argument_list|()
 decl_stmt|;
 name|BytesRef
 name|term
@@ -212,9 +208,7 @@ operator|=
 name|docTerms
 operator|.
 name|iterator
-argument_list|(
-literal|null
-argument_list|)
+argument_list|()
 expr_stmt|;
 block|}
 if|if
@@ -327,9 +321,7 @@ init|=
 name|docTerms
 operator|.
 name|iterator
-argument_list|(
-literal|null
-argument_list|)
+argument_list|()
 decl_stmt|;
 while|while
 condition|(

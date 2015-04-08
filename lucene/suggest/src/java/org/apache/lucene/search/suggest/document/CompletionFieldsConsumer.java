@@ -583,9 +583,7 @@ init|=
 name|terms
 operator|.
 name|iterator
-argument_list|(
-literal|null
-argument_list|)
+argument_list|()
 decl_stmt|;
 comment|// write terms
 name|BytesRef

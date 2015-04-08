@@ -1695,9 +1695,7 @@ name|DOC_POSITIONS_FIELD
 argument_list|)
 operator|.
 name|iterator
-argument_list|(
-literal|null
-argument_list|)
+argument_list|()
 decl_stmt|;
 name|assertEquals
 argument_list|(
@@ -2216,9 +2214,7 @@ name|DOCS_ENUM_FIELD
 argument_list|)
 operator|.
 name|iterator
-argument_list|(
-literal|null
-argument_list|)
+argument_list|()
 decl_stmt|;
 name|assertEquals
 argument_list|(
@@ -3114,9 +3110,7 @@ argument_list|,
 name|terms
 operator|.
 name|iterator
-argument_list|(
-literal|null
-argument_list|)
+argument_list|()
 operator|.
 name|next
 argument_list|()

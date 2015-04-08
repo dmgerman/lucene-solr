@@ -1769,10 +1769,7 @@ DECL|method|iterator
 specifier|public
 name|TermsEnum
 name|iterator
-parameter_list|(
-name|TermsEnum
-name|reuse
-parameter_list|)
+parameter_list|()
 throws|throws
 name|IOException
 block|{

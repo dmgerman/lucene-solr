@@ -9431,9 +9431,7 @@ init|=
 name|leftTerms
 operator|.
 name|iterator
-argument_list|(
-literal|null
-argument_list|)
+argument_list|()
 decl_stmt|;
 name|TermsEnum
 name|rightTermsEnum
@@ -9441,9 +9439,7 @@ init|=
 name|rightTerms
 operator|.
 name|iterator
-argument_list|(
-literal|null
-argument_list|)
+argument_list|()
 decl_stmt|;
 name|assertTermsEnumEquals
 argument_list|(
@@ -11190,16 +11186,6 @@ parameter_list|)
 throws|throws
 name|IOException
 block|{
-name|TermsEnum
-name|leftEnum
-init|=
-literal|null
-decl_stmt|;
-name|TermsEnum
-name|rightEnum
-init|=
-literal|null
-decl_stmt|;
 comment|// just an upper bound
 name|int
 name|numTests
@@ -11214,6 +11200,11 @@ name|random
 init|=
 name|random
 argument_list|()
+decl_stmt|;
+name|TermsEnum
+name|leftEnum
+init|=
+literal|null
 decl_stmt|;
 comment|// collect this number of terms from the left side
 name|HashSet
@@ -11251,9 +11242,7 @@ operator|=
 name|leftTerms
 operator|.
 name|iterator
-argument_list|(
-name|leftEnum
-argument_list|)
+argument_list|()
 expr_stmt|;
 name|BytesRef
 name|term
@@ -11507,15 +11496,14 @@ name|numPasses
 operator|++
 expr_stmt|;
 block|}
+name|TermsEnum
 name|rightEnum
-operator|=
+init|=
 name|rightTerms
 operator|.
 name|iterator
-argument_list|(
-name|rightEnum
-argument_list|)
-expr_stmt|;
+argument_list|()
+decl_stmt|;
 name|ArrayList
 argument_list|<
 name|BytesRef
@@ -11552,24 +11540,20 @@ name|rarely
 argument_list|()
 condition|)
 block|{
-comment|// reuse the enums
+comment|// make new enums
 name|leftEnum
 operator|=
 name|leftTerms
 operator|.
 name|iterator
-argument_list|(
-name|leftEnum
-argument_list|)
+argument_list|()
 expr_stmt|;
 name|rightEnum
 operator|=
 name|rightTerms
 operator|.
 name|iterator
-argument_list|(
-name|rightEnum
-argument_list|)
+argument_list|()
 expr_stmt|;
 block|}
 specifier|final

@@ -1518,9 +1518,7 @@ init|=
 name|terms
 operator|.
 name|iterator
-argument_list|(
-literal|null
-argument_list|)
+argument_list|()
 decl_stmt|;
 name|TermsWriter
 name|termsWriter
@@ -1710,9 +1708,7 @@ argument_list|(
 name|terms
 operator|.
 name|iterator
-argument_list|(
-name|prefixTermsEnum
-argument_list|)
+argument_list|()
 argument_list|)
 expr_stmt|;
 comment|//System.out.println("BTTW.getAutoPrefixTE: prefix=" + prefix);

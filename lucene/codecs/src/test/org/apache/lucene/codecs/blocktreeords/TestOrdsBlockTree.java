@@ -382,9 +382,7 @@ literal|"field"
 argument_list|)
 operator|.
 name|iterator
-argument_list|(
-literal|null
-argument_list|)
+argument_list|()
 decl_stmt|;
 comment|// Test next()
 name|assertEquals
@@ -880,9 +878,7 @@ literal|"field"
 argument_list|)
 operator|.
 name|iterator
-argument_list|(
-literal|null
-argument_list|)
+argument_list|()
 decl_stmt|;
 name|assertTrue
 argument_list|(
@@ -1507,9 +1503,7 @@ literal|"field"
 argument_list|)
 operator|.
 name|iterator
-argument_list|(
-literal|null
-argument_list|)
+argument_list|()
 decl_stmt|;
 if|if
 condition|(
@@ -1978,9 +1972,7 @@ literal|"field"
 argument_list|)
 operator|.
 name|iterator
-argument_list|(
-literal|null
-argument_list|)
+argument_list|()
 decl_stmt|;
 if|if
 condition|(
@@ -2378,9 +2370,7 @@ literal|"field"
 argument_list|)
 operator|.
 name|iterator
-argument_list|(
-literal|null
-argument_list|)
+argument_list|()
 decl_stmt|;
 name|BytesRef
 name|term
@@ -2661,9 +2651,7 @@ literal|"body"
 argument_list|)
 operator|.
 name|iterator
-argument_list|(
-literal|null
-argument_list|)
+argument_list|()
 decl_stmt|;
 for|for
 control|(
@@ -2973,9 +2961,7 @@ literal|"field"
 argument_list|)
 operator|.
 name|iterator
-argument_list|(
-literal|null
-argument_list|)
+argument_list|()
 decl_stmt|;
 name|assertEquals
 argument_list|(

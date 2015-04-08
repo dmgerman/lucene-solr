@@ -1532,9 +1532,7 @@ init|=
 name|iwTerms
 operator|.
 name|iterator
-argument_list|(
-literal|null
-argument_list|)
+argument_list|()
 decl_stmt|;
 name|TermsEnum
 name|memTermsIter
@@ -1542,9 +1540,7 @@ init|=
 name|memTerms
 operator|.
 name|iterator
-argument_list|(
-literal|null
-argument_list|)
+argument_list|()
 decl_stmt|;
 if|if
 condition|(
@@ -2434,9 +2430,7 @@ literal|"foo"
 argument_list|)
 operator|.
 name|iterator
-argument_list|(
-literal|null
-argument_list|)
+argument_list|()
 decl_stmt|;
 name|assertTrue
 argument_list|(
@@ -2770,9 +2764,7 @@ literal|"foo"
 argument_list|)
 operator|.
 name|iterator
-argument_list|(
-literal|null
-argument_list|)
+argument_list|()
 decl_stmt|;
 name|assertTrue
 argument_list|(
@@ -4048,9 +4040,7 @@ init|=
 name|terms
 operator|.
 name|iterator
-argument_list|(
-literal|null
-argument_list|)
+argument_list|()
 decl_stmt|;
 name|TermsEnum
 name|memTermEnum
@@ -4058,9 +4048,7 @@ init|=
 name|memTerms
 operator|.
 name|iterator
-argument_list|(
-literal|null
-argument_list|)
+argument_list|()
 decl_stmt|;
 while|while
 condition|(

@@ -4911,9 +4911,7 @@ literal|""
 argument_list|)
 operator|.
 name|iterator
-argument_list|(
-literal|null
-argument_list|)
+argument_list|()
 decl_stmt|;
 name|assertEquals
 argument_list|(
@@ -5132,9 +5130,7 @@ literal|""
 argument_list|)
 operator|.
 name|iterator
-argument_list|(
-literal|null
-argument_list|)
+argument_list|()
 decl_stmt|;
 name|assertEquals
 argument_list|(
@@ -5803,9 +5799,7 @@ init|=
 name|tpv
 operator|.
 name|iterator
-argument_list|(
-literal|null
-argument_list|)
+argument_list|()
 decl_stmt|;
 name|assertNotNull
 argument_list|(

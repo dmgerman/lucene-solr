@@ -109,10 +109,7 @@ specifier|public
 specifier|abstract
 name|TermsEnum
 name|iterator
-parameter_list|(
-name|TermsEnum
-name|reuse
-parameter_list|)
+parameter_list|()
 throws|throws
 name|IOException
 function_decl|;
@@ -144,9 +141,7 @@ name|TermsEnum
 name|termsEnum
 init|=
 name|iterator
-argument_list|(
-literal|null
-argument_list|)
+argument_list|()
 decl_stmt|;
 if|if
 condition|(
@@ -332,9 +327,7 @@ name|IOException
 block|{
 return|return
 name|iterator
-argument_list|(
-literal|null
-argument_list|)
+argument_list|()
 operator|.
 name|next
 argument_list|()
@@ -387,9 +380,7 @@ name|TermsEnum
 name|iterator
 init|=
 name|iterator
-argument_list|(
-literal|null
-argument_list|)
+argument_list|()
 decl_stmt|;
 name|iterator
 operator|.
@@ -421,9 +412,7 @@ name|TermsEnum
 name|iterator
 init|=
 name|iterator
-argument_list|(
-literal|null
-argument_list|)
+argument_list|()
 decl_stmt|;
 name|BytesRef
 name|v
