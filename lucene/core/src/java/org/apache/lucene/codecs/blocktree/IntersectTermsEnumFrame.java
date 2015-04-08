@@ -454,6 +454,10 @@ assert|assert
 name|numFollowFloorBlocks
 operator|>
 literal|0
+operator|:
+literal|"nextFloorLabel="
+operator|+
+name|nextFloorLabel
 assert|;
 comment|//if (DEBUG) System.out.println("    loadNextFloorBlock transition.min=" + transition.min);
 do|do
@@ -611,10 +615,6 @@ condition|(
 name|frameIndexData
 operator|!=
 literal|null
-operator|&&
-name|transitionCount
-operator|!=
-literal|0
 condition|)
 block|{
 comment|// Floor frame
@@ -724,11 +724,10 @@ operator|&
 literal|0xff
 expr_stmt|;
 comment|//if (DEBUG) System.out.println("    numFollowFloorBlocks=" + numFollowFloorBlocks + " nextFloorLabel=" + nextFloorLabel);
-comment|// If current state is accept, we must process
+comment|// If current state is not accept, and has transitions, we must process
 comment|// first block in case it has empty suffix:
 if|if
 condition|(
-operator|!
 name|ite
 operator|.
 name|runAutomaton
@@ -737,6 +736,12 @@ name|isAccept
 argument_list|(
 name|state
 argument_list|)
+operator|==
+literal|false
+operator|&&
+name|transitionCount
+operator|!=
+literal|0
 condition|)
 block|{
 comment|// Maybe skip floor blocks:

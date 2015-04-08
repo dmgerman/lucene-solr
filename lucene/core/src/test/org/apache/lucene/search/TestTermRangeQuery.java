@@ -2830,9 +2830,53 @@ block|{
 break|break;
 block|}
 block|}
-comment|//System.out.println("start " + startTerm + " inclusive? " + startInclusive);
-comment|//System.out.println("end " + endTerm + " inclusive? " + endInclusive);
-comment|//System.out.println("actual count " + actualCount);
+if|if
+condition|(
+name|VERBOSE
+condition|)
+block|{
+name|System
+operator|.
+name|out
+operator|.
+name|println
+argument_list|(
+literal|"start "
+operator|+
+name|startTerm
+operator|+
+literal|" inclusive? "
+operator|+
+name|startInclusive
+argument_list|)
+expr_stmt|;
+name|System
+operator|.
+name|out
+operator|.
+name|println
+argument_list|(
+literal|"end "
+operator|+
+name|endTerm
+operator|+
+literal|" inclusive? "
+operator|+
+name|endInclusive
+argument_list|)
+expr_stmt|;
+name|System
+operator|.
+name|out
+operator|.
+name|println
+argument_list|(
+literal|"actual count "
+operator|+
+name|actualCount
+argument_list|)
+expr_stmt|;
+block|}
 name|Directory
 name|dir
 init|=
@@ -2944,8 +2988,34 @@ name|Integer
 operator|.
 name|MAX_VALUE
 decl_stmt|;
-comment|//System.out.println("minTermsAutoPrefix " + minTermsAutoPrefix);
-comment|//System.out.println("maxTermsAutoPrefix " + maxTermsAutoPrefix);
+if|if
+condition|(
+name|VERBOSE
+condition|)
+block|{
+name|System
+operator|.
+name|out
+operator|.
+name|println
+argument_list|(
+literal|"minTermsAutoPrefix "
+operator|+
+name|minTermsAutoPrefix
+argument_list|)
+expr_stmt|;
+name|System
+operator|.
+name|out
+operator|.
+name|println
+argument_list|(
+literal|"maxTermsAutoPrefix "
+operator|+
+name|maxTermsAutoPrefix
+argument_list|)
+expr_stmt|;
+block|}
 name|iwc
 operator|.
 name|setCodec
@@ -2982,7 +3052,21 @@ argument_list|,
 name|iwc
 argument_list|)
 decl_stmt|;
-comment|//System.out.println("TEST: index terms");
+if|if
+condition|(
+name|VERBOSE
+condition|)
+block|{
+name|System
+operator|.
+name|out
+operator|.
+name|println
+argument_list|(
+literal|"TEST: index terms"
+argument_list|)
+expr_stmt|;
+block|}
 for|for
 control|(
 name|String
@@ -3024,9 +3108,39 @@ argument_list|(
 name|doc
 argument_list|)
 expr_stmt|;
-comment|//System.out.println("  " + term);
+if|if
+condition|(
+name|VERBOSE
+condition|)
+block|{
+name|System
+operator|.
+name|out
+operator|.
+name|println
+argument_list|(
+literal|"  "
+operator|+
+name|term
+argument_list|)
+expr_stmt|;
 block|}
-comment|//System.out.println("TEST: now force merge");
+block|}
+if|if
+condition|(
+name|VERBOSE
+condition|)
+block|{
+name|System
+operator|.
+name|out
+operator|.
+name|println
+argument_list|(
+literal|"TEST: now force merge"
+argument_list|)
+expr_stmt|;
+block|}
 name|w
 operator|.
 name|forceMerge
@@ -3070,7 +3184,35 @@ name|finalActualCount
 init|=
 name|actualCount
 decl_stmt|;
-comment|//System.out.println("start=" + startTerm + " end=" + endTerm + " startIncl=" + startInclusive + " endIncl=" + endInclusive);
+if|if
+condition|(
+name|VERBOSE
+condition|)
+block|{
+name|System
+operator|.
+name|out
+operator|.
+name|println
+argument_list|(
+literal|"start="
+operator|+
+name|startTerm
+operator|+
+literal|" end="
+operator|+
+name|endTerm
+operator|+
+literal|" startIncl="
+operator|+
+name|startInclusive
+operator|+
+literal|" endIncl="
+operator|+
+name|endInclusive
+argument_list|)
+expr_stmt|;
+block|}
 name|TermRangeQuery
 name|q
 init|=
@@ -3130,12 +3272,54 @@ operator|!=
 literal|null
 condition|)
 block|{
-comment|//System.out.println("got term: " + termsEnum.term().utf8ToString());
+if|if
+condition|(
+name|VERBOSE
+condition|)
+block|{
+name|System
+operator|.
+name|out
+operator|.
+name|println
+argument_list|(
+literal|"got term: "
+operator|+
+name|termsEnum
+operator|.
+name|term
+argument_list|()
+operator|.
+name|utf8ToString
+argument_list|()
+argument_list|)
+expr_stmt|;
+block|}
 name|count
 operator|++
 expr_stmt|;
 block|}
-comment|//System.out.println("count " + count + " vs finalActualCount=" + finalActualCount);
+if|if
+condition|(
+name|VERBOSE
+condition|)
+block|{
+name|System
+operator|.
+name|out
+operator|.
+name|println
+argument_list|(
+literal|"count "
+operator|+
+name|count
+operator|+
+literal|" vs finalActualCount="
+operator|+
+name|finalActualCount
+argument_list|)
+expr_stmt|;
+block|}
 comment|// Auto-prefix term(s) should have kicked in, so we should have visited fewer than the total number of aa* terms:
 name|assertTrue
 argument_list|(
@@ -3189,6 +3373,26 @@ argument_list|(
 name|MultiTermQuery
 operator|.
 name|CONSTANT_SCORE_BOOLEAN_REWRITE
+argument_list|)
+expr_stmt|;
+block|}
+if|if
+condition|(
+name|VERBOSE
+condition|)
+block|{
+name|System
+operator|.
+name|out
+operator|.
+name|println
+argument_list|(
+literal|"TEST: use rewrite method "
+operator|+
+name|q
+operator|.
+name|getRewriteMethod
+argument_list|()
 argument_list|)
 expr_stmt|;
 block|}
