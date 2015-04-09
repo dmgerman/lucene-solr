@@ -3187,23 +3187,9 @@ argument_list|,
 name|xpath
 argument_list|)
 expr_stmt|;
-comment|//Run the callbacks on SchemaAware now that everything else is done
-for|for
-control|(
-name|SchemaAware
-name|aware
-range|:
-name|schemaAware
-control|)
-block|{
-name|aware
-operator|.
-name|inform
-argument_list|(
-name|this
-argument_list|)
+name|postReadInform
+argument_list|()
 expr_stmt|;
-block|}
 block|}
 catch|catch
 parameter_list|(
@@ -3272,6 +3258,30 @@ comment|// create the field analyzers
 name|refreshAnalyzers
 argument_list|()
 expr_stmt|;
+block|}
+DECL|method|postReadInform
+specifier|protected
+name|void
+name|postReadInform
+parameter_list|()
+block|{
+comment|//Run the callbacks on SchemaAware now that everything else is done
+for|for
+control|(
+name|SchemaAware
+name|aware
+range|:
+name|schemaAware
+control|)
+block|{
+name|aware
+operator|.
+name|inform
+argument_list|(
+name|this
+argument_list|)
+expr_stmt|;
+block|}
 block|}
 comment|/**     * Loads fields and dynamic fields.    *     * @return a map from field name to explicit required value      */
 DECL|method|loadFields
