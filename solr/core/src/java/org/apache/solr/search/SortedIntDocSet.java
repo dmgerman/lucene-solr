@@ -203,6 +203,10 @@ name|SortedIntDocSet
 operator|.
 name|class
 argument_list|)
+operator|+
+name|RamUsageEstimator
+operator|.
+name|NUM_BYTES_ARRAY_HEADER
 decl_stmt|;
 DECL|field|docs
 specifier|protected
@@ -210,12 +214,6 @@ specifier|final
 name|int
 index|[]
 name|docs
-decl_stmt|;
-DECL|field|ramBytesUsed
-specifier|protected
-specifier|final
-name|long
-name|ramBytesUsed
 decl_stmt|;
 comment|/**    * @param docs  Sorted list of ids    */
 DECL|method|SortedIntDocSet
@@ -233,20 +231,6 @@ name|docs
 operator|=
 name|docs
 expr_stmt|;
-name|this
-operator|.
-name|ramBytesUsed
-operator|=
-name|BASE_RAM_BYTES_USED
-operator|+
-name|RamUsageEstimator
-operator|.
-name|sizeOf
-argument_list|(
-name|docs
-argument_list|)
-expr_stmt|;
-comment|// if (firstNonSorted(docs,0,docs.length)>=0) throw new RuntimeException("NON SORTED DOCS!!!");
 block|}
 comment|/**    * @param docs Sorted list of ids    * @param len  Number of ids in the list    */
 DECL|method|SortedIntDocSet
@@ -3738,7 +3722,15 @@ name|ramBytesUsed
 parameter_list|()
 block|{
 return|return
-name|ramBytesUsed
+name|BASE_RAM_BYTES_USED
+operator|+
+operator|(
+name|docs
+operator|.
+name|length
+operator|<<
+literal|2
+operator|)
 return|;
 block|}
 annotation|@
