@@ -7699,7 +7699,7 @@ argument_list|)
 expr_stmt|;
 name|fail
 argument_list|(
-literal|"auotmaton was not minimal"
+literal|"automaton was not minimal"
 argument_list|)
 expr_stmt|;
 block|}
