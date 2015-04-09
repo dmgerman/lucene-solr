@@ -46,6 +46,20 @@ name|org
 operator|.
 name|apache
 operator|.
+name|lucene
+operator|.
+name|util
+operator|.
+name|Accountable
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
 name|solr
 operator|.
 name|common
@@ -65,6 +79,8 @@ interface|interface
 name|DocSet
 extends|extends
 name|Closeable
+extends|,
+name|Accountable
 comment|/* extends Collection<Integer> */
 block|{
 comment|/**    * Adds the specified document if it is not currently in the DocSet    * (optional operation).    *    * @see #addUnique    * @throws SolrException if the implementation does not allow modifications    */
@@ -109,13 +125,6 @@ DECL|method|iterator
 specifier|public
 name|DocIterator
 name|iterator
-parameter_list|()
-function_decl|;
-comment|/**    * Returns the approximate amount of memory taken by this DocSet.    * This is only an approximation and doesn't take into account java object overhead.    *    * @return    * the approximate memory consumption in bytes    */
-DECL|method|memSize
-specifier|public
-name|long
-name|memSize
 parameter_list|()
 function_decl|;
 comment|/**    * Returns the intersection of this set with another set.  Neither set is modified - a new DocSet is    * created and returned.    * @return a DocSet representing the intersection    */
