@@ -240,22 +240,6 @@ name|String
 name|getParamString
 parameter_list|()
 function_decl|;
-comment|/** Forward the request to another handler. DO a return after this call if    * no other operations need to be performed    * @param handler the name of the handler    * @param params The new set of parameter    */
-DECL|method|forward
-specifier|public
-name|void
-name|forward
-parameter_list|(
-name|String
-name|handler
-parameter_list|,
-name|SolrParams
-name|params
-parameter_list|,
-name|SolrQueryResponse
-name|rsp
-parameter_list|)
-function_decl|;
 comment|/** Returns any associated JSON (or null if none) in deserialized generic form.    * Java classes used to represent the JSON are as follows: Map, List, String, Long, Double, Boolean    */
 DECL|method|getJSON
 specifier|public
