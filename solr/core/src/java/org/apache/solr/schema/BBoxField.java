@@ -869,6 +869,13 @@ operator|.
 name|fieldType
 argument_list|()
 decl_stmt|;
+name|luceneType
+operator|.
+name|setStored
+argument_list|(
+name|storeSubFields
+argument_list|)
+expr_stmt|;
 comment|//and annoyingly this Field isn't going to have a docValues format because Solr uses a separate Field for that
 if|if
 condition|(
