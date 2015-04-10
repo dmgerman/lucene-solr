@@ -28,9 +28,13 @@ name|apache
 operator|.
 name|lucene
 operator|.
-name|search
+name|benchmark
 operator|.
-name|Query
+name|byTask
+operator|.
+name|utils
+operator|.
+name|Config
 import|;
 end_import
 
@@ -42,13 +46,9 @@ name|apache
 operator|.
 name|lucene
 operator|.
-name|benchmark
+name|search
 operator|.
-name|byTask
-operator|.
-name|utils
-operator|.
-name|Config
+name|Query
 import|;
 end_import
 
@@ -101,6 +101,8 @@ specifier|public
 name|void
 name|resetInputs
 parameter_list|()
+throws|throws
+name|Exception
 function_decl|;
 comment|/** Print the queries */
 DECL|method|printQueries
