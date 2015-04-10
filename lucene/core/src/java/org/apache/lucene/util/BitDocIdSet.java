@@ -326,6 +326,23 @@ operator|!=
 literal|null
 return|;
 block|}
+comment|/**      * Is this builder definitely empty?  If so, {@link #build()} will return null.  This is usually the same as      * simply being empty but if this builder was constructed with the {@code full} option or if an iterator was passed      * that iterated over no documents, then we're not sure.      */
+DECL|method|isDefinitelyEmpty
+specifier|public
+name|boolean
+name|isDefinitelyEmpty
+parameter_list|()
+block|{
+return|return
+name|sparseSet
+operator|==
+literal|null
+operator|&&
+name|denseSet
+operator|==
+literal|null
+return|;
+block|}
 comment|/**      * Add the content of the provided {@link DocIdSetIterator} to this builder.      */
 DECL|method|or
 specifier|public
