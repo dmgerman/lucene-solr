@@ -26,7 +26,7 @@ name|lucene
 operator|.
 name|util
 operator|.
-name|BytesRef
+name|BytesRefIterator
 import|;
 end_import
 
@@ -35,41 +35,34 @@ comment|// TODO: maybe TermsFilter could use this?
 end_comment
 
 begin_comment
-comment|/** Iterates over terms in multiple fields, notifying the caller when a new field is started. */
+comment|/** Iterates over terms in across multiple fields.  The caller must  *  check {@link #field} after each {@link #next} to see if the field  *  changed, but {@code ==} can be used since the iterator  *  implementation ensures it will use the same String instance for  *  a given field. */
 end_comment
 
-begin_interface
-DECL|interface|FieldTermIterator
-interface|interface
+begin_class
+DECL|class|FieldTermIterator
+specifier|abstract
+class|class
 name|FieldTermIterator
+implements|implements
+name|BytesRefIterator
 block|{
-comment|/** Advances to the next term, returning true if it's in a new field or there are no more terms.  Call {@link #field} to see which    *  field; if that returns null then the iteration ended. */
-DECL|method|next
-name|boolean
-name|next
-parameter_list|()
-function_decl|;
-comment|/** Returns current field, or null if the iteration ended. */
+comment|/** Returns current field.  This method should not be called    *  after iteration is done.  Note that you may use == to    *  detect a change in field. */
 DECL|method|field
+specifier|abstract
 name|String
 name|field
-parameter_list|()
-function_decl|;
-comment|/** Returns current term. */
-DECL|method|term
-name|BytesRef
-name|term
 parameter_list|()
 function_decl|;
 comment|/** Del gen of the current term. */
 comment|// TODO: this is really per-iterator not per term, but when we use MergedPrefixCodedTermsIterator we need to know which iterator we are on
 DECL|method|delGen
+specifier|abstract
 name|long
 name|delGen
 parameter_list|()
 function_decl|;
 block|}
-end_interface
+end_class
 
 end_unit
 

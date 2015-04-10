@@ -546,7 +546,7 @@ specifier|public
 specifier|static
 class|class
 name|TermIterator
-implements|implements
+extends|extends
 name|FieldTermIterator
 block|{
 DECL|field|input
@@ -645,7 +645,7 @@ annotation|@
 name|Override
 DECL|method|next
 specifier|public
-name|boolean
+name|BytesRef
 name|next
 parameter_list|()
 block|{
@@ -716,7 +716,7 @@ name|suffix
 argument_list|)
 expr_stmt|;
 return|return
-name|newField
+name|bytes
 return|;
 block|}
 catch|catch
@@ -741,7 +741,7 @@ operator|=
 literal|null
 expr_stmt|;
 return|return
-literal|true
+literal|null
 return|;
 block|}
 block|}
@@ -792,18 +792,6 @@ operator|+
 name|suffix
 argument_list|)
 expr_stmt|;
-block|}
-annotation|@
-name|Override
-DECL|method|term
-specifier|public
-name|BytesRef
-name|term
-parameter_list|()
-block|{
-return|return
-name|bytes
-return|;
 block|}
 annotation|@
 name|Override

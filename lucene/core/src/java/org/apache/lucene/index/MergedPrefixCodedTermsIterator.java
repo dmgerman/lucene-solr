@@ -78,7 +78,7 @@ begin_class
 DECL|class|MergedPrefixCodedTermsIterator
 class|class
 name|MergedPrefixCodedTermsIterator
-implements|implements
+extends|extends
 name|FieldTermIterator
 block|{
 DECL|class|TermMergeQueue
@@ -317,7 +317,7 @@ annotation|@
 name|Override
 DECL|method|next
 specifier|public
-name|boolean
+name|BytesRef
 name|next
 parameter_list|()
 block|{
@@ -331,7 +331,7 @@ operator|==
 literal|0
 condition|)
 block|{
-comment|// Current field is done:
+comment|// No more terms in current field:
 if|if
 condition|(
 name|fieldQueue
@@ -348,7 +348,7 @@ operator|=
 literal|null
 expr_stmt|;
 return|return
-literal|true
+literal|null
 return|;
 block|}
 comment|// Transfer all iterators on the next field into the term queue:
@@ -367,11 +367,14 @@ argument_list|(
 name|top
 argument_list|)
 expr_stmt|;
-assert|assert
+name|field
+operator|=
 name|top
 operator|.
 name|field
-argument_list|()
+expr_stmt|;
+assert|assert
+name|field
 operator|!=
 literal|null
 assert|;
@@ -399,25 +402,46 @@ name|field
 argument_list|)
 condition|)
 block|{
-name|termQueue
-operator|.
-name|add
-argument_list|(
+name|TermIterator
+name|iter
+init|=
 name|fieldQueue
 operator|.
 name|pop
 argument_list|()
+decl_stmt|;
+assert|assert
+name|iter
+operator|.
+name|field
+operator|.
+name|equals
+argument_list|(
+name|field
+argument_list|)
+assert|;
+comment|// TODO: a little bit evil; we do this so we can == on field down below:
+name|iter
+operator|.
+name|field
+operator|=
+name|field
+expr_stmt|;
+name|termQueue
+operator|.
+name|add
+argument_list|(
+name|iter
 argument_list|)
 expr_stmt|;
 block|}
-name|field
-operator|=
-name|top
-operator|.
-name|field
-expr_stmt|;
 return|return
-literal|true
+name|termQueue
+operator|.
+name|top
+argument_list|()
+operator|.
+name|bytes
 return|;
 block|}
 else|else
@@ -436,14 +460,17 @@ name|top
 operator|.
 name|next
 argument_list|()
+operator|==
+literal|null
 condition|)
 block|{
-comment|// New field
 name|termQueue
 operator|.
 name|pop
 argument_list|()
 expr_stmt|;
+block|}
+elseif|else
 if|if
 condition|(
 name|top
@@ -451,9 +478,15 @@ operator|.
 name|field
 argument_list|()
 operator|!=
-literal|null
+name|field
 condition|)
 block|{
+comment|// Field changed
+name|termQueue
+operator|.
+name|pop
+argument_list|()
+expr_stmt|;
 name|fieldQueue
 operator|.
 name|add
@@ -461,7 +494,6 @@ argument_list|(
 name|top
 argument_list|)
 expr_stmt|;
-block|}
 block|}
 else|else
 block|{
@@ -477,16 +509,9 @@ name|termQueue
 operator|.
 name|size
 argument_list|()
-operator|!=
+operator|==
 literal|0
 condition|)
-block|{
-comment|// Still terms left in this field
-return|return
-literal|false
-return|;
-block|}
-else|else
 block|{
 comment|// Recurse (just once) to go to next field:
 return|return
@@ -494,16 +519,9 @@ name|next
 argument_list|()
 return|;
 block|}
-block|}
-block|}
-annotation|@
-name|Override
-DECL|method|term
-specifier|public
-name|BytesRef
-name|term
-parameter_list|()
+else|else
 block|{
+comment|// Still terms left in this field
 return|return
 name|termQueue
 operator|.
@@ -512,6 +530,8 @@ argument_list|()
 operator|.
 name|bytes
 return|;
+block|}
+block|}
 block|}
 annotation|@
 name|Override
