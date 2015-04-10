@@ -2007,6 +2007,7 @@ block|}
 annotation|@
 name|Override
 DECL|method|scorer
+specifier|protected
 name|Scorer
 name|scorer
 parameter_list|(

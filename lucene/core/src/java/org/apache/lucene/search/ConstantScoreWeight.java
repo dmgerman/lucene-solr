@@ -54,8 +54,13 @@ name|Bits
 import|;
 end_import
 
+begin_comment
+comment|/**  * A Weight that has a constant score equal to the boost of the wrapped query.  *  * @lucene.internal  */
+end_comment
+
 begin_class
 DECL|class|ConstantScoreWeight
+specifier|public
 specifier|abstract
 class|class
 name|ConstantScoreWeight
@@ -330,6 +335,7 @@ argument_list|)
 return|;
 block|}
 DECL|method|scorer
+specifier|protected
 specifier|abstract
 name|Scorer
 name|scorer

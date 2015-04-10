@@ -184,6 +184,20 @@ end_import
 
 begin_import
 import|import
+name|com
+operator|.
+name|carrotsearch
+operator|.
+name|randomizedtesting
+operator|.
+name|generators
+operator|.
+name|RandomPicks
+import|;
+end_import
+
+begin_import
+import|import
 name|org
 operator|.
 name|apache
@@ -435,20 +449,6 @@ operator|.
 name|util
 operator|.
 name|TestUtil
-import|;
-end_import
-
-begin_import
-import|import
-name|com
-operator|.
-name|carrotsearch
-operator|.
-name|randomizedtesting
-operator|.
-name|generators
-operator|.
-name|RandomPicks
 import|;
 end_import
 
@@ -2523,6 +2523,7 @@ argument_list|)
 block|{
 annotation|@
 name|Override
+specifier|protected
 name|Scorer
 name|scorer
 parameter_list|(
@@ -6588,6 +6589,7 @@ argument_list|)
 block|{
 annotation|@
 name|Override
+specifier|protected
 name|Scorer
 name|scorer
 parameter_list|(

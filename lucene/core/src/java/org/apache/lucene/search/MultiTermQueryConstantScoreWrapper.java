@@ -374,6 +374,7 @@ argument_list|)
 block|{
 annotation|@
 name|Override
+specifier|protected
 name|Scorer
 name|scorer
 parameter_list|(
