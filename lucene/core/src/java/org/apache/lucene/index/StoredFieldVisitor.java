@@ -87,7 +87,7 @@ parameter_list|)
 throws|throws
 name|IOException
 block|{   }
-comment|/** Process a string field */
+comment|/** Process a string field; the provided byte[] value is a UTF-8 encoded string value. */
 DECL|method|stringField
 specifier|public
 name|void
@@ -96,7 +96,8 @@ parameter_list|(
 name|FieldInfo
 name|fieldInfo
 parameter_list|,
-name|String
+name|byte
+index|[]
 name|value
 parameter_list|)
 throws|throws

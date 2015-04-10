@@ -48,6 +48,18 @@ end_import
 
 begin_import
 import|import
+name|java
+operator|.
+name|nio
+operator|.
+name|charset
+operator|.
+name|StandardCharsets
+import|;
+end_import
+
+begin_import
+import|import
 name|org
 operator|.
 name|apache
@@ -513,6 +525,7 @@ argument_list|(
 name|fieldInfo
 argument_list|)
 expr_stmt|;
+comment|// TODO: can we avoid new BR here?
 name|binaryValue
 operator|=
 operator|new
@@ -535,7 +548,8 @@ parameter_list|(
 name|FieldInfo
 name|fieldInfo
 parameter_list|,
-name|String
+name|byte
+index|[]
 name|value
 parameter_list|)
 throws|throws
@@ -546,9 +560,18 @@ argument_list|(
 name|fieldInfo
 argument_list|)
 expr_stmt|;
+comment|// TODO: can we avoid new String here?
 name|stringValue
 operator|=
+operator|new
+name|String
+argument_list|(
 name|value
+argument_list|,
+name|StandardCharsets
+operator|.
+name|UTF_8
+argument_list|)
 expr_stmt|;
 name|write
 argument_list|()

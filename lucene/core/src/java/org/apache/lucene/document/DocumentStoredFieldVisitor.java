@@ -30,9 +30,11 @@ begin_import
 import|import
 name|java
 operator|.
-name|util
+name|nio
 operator|.
-name|Set
+name|charset
+operator|.
+name|StandardCharsets
 import|;
 end_import
 
@@ -43,6 +45,16 @@ operator|.
 name|util
 operator|.
 name|HashSet
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
+name|util
+operator|.
+name|Set
 import|;
 end_import
 
@@ -246,7 +258,8 @@ parameter_list|(
 name|FieldInfo
 name|fieldInfo
 parameter_list|,
-name|String
+name|byte
+index|[]
 name|value
 parameter_list|)
 throws|throws
@@ -305,7 +318,15 @@ name|fieldInfo
 operator|.
 name|name
 argument_list|,
+operator|new
+name|String
+argument_list|(
 name|value
+argument_list|,
+name|StandardCharsets
+operator|.
+name|UTF_8
+argument_list|)
 argument_list|,
 name|ft
 argument_list|)

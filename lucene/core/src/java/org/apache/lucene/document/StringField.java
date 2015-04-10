@@ -30,6 +30,20 @@ name|IndexOptions
 import|;
 end_import
 
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|util
+operator|.
+name|BytesRef
+import|;
+end_import
+
 begin_comment
 comment|/** A field that is indexed but not tokenized: the entire  *  String value is indexed as a single token.  For example  *  this might be used for a 'country' field or an 'id'  *  field, or any field that you intend to use for sorting  *  or access through the field cache. */
 end_comment
@@ -133,7 +147,7 @@ name|freeze
 argument_list|()
 expr_stmt|;
 block|}
-comment|/** Creates a new StringField.     *  @param name field name    *  @param value String value    *  @param stored Store.YES if the content should also be stored    *  @throws IllegalArgumentException if the field name or value is null.    */
+comment|/** Creates a new textual StringField, indexing the provided String value    *  as a single token.    *    *  @param name field name    *  @param value String value    *  @param stored Store.YES if the content should also be stored    *  @throws IllegalArgumentException if the field name or value is null.    */
 DECL|method|StringField
 specifier|public
 name|StringField
@@ -142,6 +156,39 @@ name|String
 name|name
 parameter_list|,
 name|String
+name|value
+parameter_list|,
+name|Store
+name|stored
+parameter_list|)
+block|{
+name|super
+argument_list|(
+name|name
+argument_list|,
+name|value
+argument_list|,
+name|stored
+operator|==
+name|Store
+operator|.
+name|YES
+condition|?
+name|TYPE_STORED
+else|:
+name|TYPE_NOT_STORED
+argument_list|)
+expr_stmt|;
+block|}
+comment|/** Creates a new binary StringField, indexing the provided binary (BytesRef)    *  value as a single token.    *    *  @param name field name    *  @param value BytesRef value.  The provided value is not cloned so    *         you must not change it until the document(s) holding it    *         have been indexed.    *  @param stored Store.YES if the content should also be stored    *  @throws IllegalArgumentException if the field name or value is null.    */
+DECL|method|StringField
+specifier|public
+name|StringField
+parameter_list|(
+name|String
+name|name
+parameter_list|,
+name|BytesRef
 name|value
 parameter_list|,
 name|Store

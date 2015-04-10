@@ -1228,6 +1228,15 @@ name|Document
 argument_list|()
 decl_stmt|;
 comment|// docs.nextDoc();
+name|BytesRef
+name|br
+init|=
+operator|new
+name|BytesRef
+argument_list|(
+literal|"test"
+argument_list|)
+decl_stmt|;
 name|doc
 operator|.
 name|add
@@ -1236,7 +1245,7 @@ name|newStringField
 argument_list|(
 literal|"id"
 argument_list|,
-literal|"test"
+name|br
 argument_list|,
 name|Field
 operator|.
@@ -1255,7 +1264,7 @@ name|Term
 argument_list|(
 literal|"id"
 argument_list|,
-literal|"test"
+name|br
 argument_list|)
 argument_list|,
 name|doc
