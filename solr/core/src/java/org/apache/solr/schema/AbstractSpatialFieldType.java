@@ -844,6 +844,14 @@ argument_list|,
 name|args
 argument_list|)
 expr_stmt|;
+if|if
+condition|(
+name|ctx
+operator|==
+literal|null
+condition|)
+block|{
+comment|// subclass can set this directly
 comment|//Solr expects us to remove the parameters we've used.
 name|MapListener
 argument_list|<
@@ -890,6 +898,7 @@ name|getSeenKeys
 argument_list|()
 argument_list|)
 expr_stmt|;
+block|}
 specifier|final
 name|String
 name|unitsErrMsg
