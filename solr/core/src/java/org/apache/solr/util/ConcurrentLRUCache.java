@@ -711,11 +711,11 @@ expr_stmt|;
 block|}
 comment|// Check if we need to clear out old entries from the cache.
 comment|// isCleaning variable is checked instead of markAndSweepLock.isLocked()
-comment|// for performance because every put invokation will check until
+comment|// for performance because every put invocation will check until
 comment|// the size is back to an acceptable level.
 comment|//
 comment|// There is a race between the check and the call to markAndSweep, but
-comment|// it's unimportant because markAndSweep actually aquires the lock or returns if it can't.
+comment|// it's unimportant because markAndSweep actually acquires the lock or returns if it can't.
 comment|//
 comment|// Thread safety note: isCleaning read is piggybacked (comes after) other volatile reads
 comment|// in this method.
@@ -797,7 +797,7 @@ parameter_list|()
 block|{
 comment|// if we want to keep at least 1000 entries, then timestamps of
 comment|// current through current-1000 are guaranteed not to be the oldest (but that does
-comment|// not mean there are 1000 entries in that group... it's acutally anywhere between
+comment|// not mean there are 1000 entries in that group... it's actually anywhere between
 comment|// 1 and 1000).
 comment|// Also, if we want to remove 500 entries, then
 comment|// oldestEntry through oldestEntry+500 are guaranteed to be
@@ -896,7 +896,7 @@ name|SuppressWarnings
 argument_list|(
 literal|"unchecked"
 argument_list|)
-comment|// generic array's are anoying
+comment|// generic array's are annoying
 name|CacheEntry
 argument_list|<
 name|K
