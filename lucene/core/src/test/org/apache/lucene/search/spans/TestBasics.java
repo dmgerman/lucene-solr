@@ -3220,13 +3220,6 @@ expr_stmt|;
 block|}
 annotation|@
 name|Test
-annotation|@
-name|AwaitsFix
-argument_list|(
-name|bugUrl
-operator|=
-literal|"https://issues.apache.org/jira/browse/LUCENE-6418"
-argument_list|)
 DECL|method|testNpeInSpanNearInSpanFirstInSpanNot
 specifier|public
 name|void
