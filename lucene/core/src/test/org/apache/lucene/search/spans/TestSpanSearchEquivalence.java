@@ -118,6 +118,24 @@ name|TermQuery
 import|;
 end_import
 
+begin_import
+import|import static
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|search
+operator|.
+name|spans
+operator|.
+name|SpanTestUtil
+operator|.
+name|*
+import|;
+end_import
+
 begin_comment
 comment|/**  * Basic equivalence tests for span queries  */
 end_comment
@@ -133,44 +151,6 @@ block|{
 comment|// TODO: we could go a little crazy for a lot of these,
 comment|// but these are just simple minimal cases in case something
 comment|// goes horribly wrong. Put more intense tests elsewhere.
-comment|/** generally wrap with asserting. but not always, so we don't hide bugs */
-DECL|method|span
-specifier|private
-name|SpanQuery
-name|span
-parameter_list|(
-name|SpanQuery
-name|query
-parameter_list|)
-block|{
-if|if
-condition|(
-name|random
-argument_list|()
-operator|.
-name|nextInt
-argument_list|(
-literal|100
-argument_list|)
-operator|<=
-literal|95
-condition|)
-block|{
-return|return
-operator|new
-name|AssertingSpanQuery
-argument_list|(
-name|query
-argument_list|)
-return|;
-block|}
-else|else
-block|{
-return|return
-name|query
-return|;
-block|}
-block|}
 comment|/** SpanTermQuery(A) = TermQuery(A) */
 DECL|method|testSpanTermVersusTerm
 specifier|public
@@ -194,7 +174,7 @@ argument_list|(
 name|t1
 argument_list|)
 argument_list|,
-name|span
+name|spanQuery
 argument_list|(
 operator|new
 name|SpanTermQuery
@@ -266,12 +246,12 @@ expr_stmt|;
 name|SpanQuery
 name|q2
 init|=
-name|span
+name|spanQuery
 argument_list|(
 operator|new
 name|SpanOrQuery
 argument_list|(
-name|span
+name|spanQuery
 argument_list|(
 operator|new
 name|SpanTermQuery
@@ -280,7 +260,7 @@ name|t1
 argument_list|)
 argument_list|)
 argument_list|,
-name|span
+name|spanQuery
 argument_list|(
 operator|new
 name|SpanTermQuery
@@ -322,12 +302,12 @@ argument_list|()
 decl_stmt|;
 name|assertSubsetOf
 argument_list|(
-name|span
+name|spanQuery
 argument_list|(
 operator|new
 name|SpanNotQuery
 argument_list|(
-name|span
+name|spanQuery
 argument_list|(
 operator|new
 name|SpanTermQuery
@@ -336,7 +316,7 @@ name|t1
 argument_list|)
 argument_list|)
 argument_list|,
-name|span
+name|spanQuery
 argument_list|(
 operator|new
 name|SpanTermQuery
@@ -347,7 +327,7 @@ argument_list|)
 argument_list|)
 argument_list|)
 argument_list|,
-name|span
+name|spanQuery
 argument_list|(
 operator|new
 name|SpanTermQuery
@@ -388,7 +368,7 @@ decl_stmt|;
 name|SpanQuery
 name|near
 init|=
-name|span
+name|spanQuery
 argument_list|(
 operator|new
 name|SpanNearQuery
@@ -397,7 +377,7 @@ operator|new
 name|SpanQuery
 index|[]
 block|{
-name|span
+name|spanQuery
 argument_list|(
 operator|new
 name|SpanTermQuery
@@ -406,7 +386,7 @@ name|t2
 argument_list|)
 argument_list|)
 block|,
-name|span
+name|spanQuery
 argument_list|(
 operator|new
 name|SpanTermQuery
@@ -428,12 +408,12 @@ argument_list|)
 decl_stmt|;
 name|assertSubsetOf
 argument_list|(
-name|span
+name|spanQuery
 argument_list|(
 operator|new
 name|SpanNotQuery
 argument_list|(
-name|span
+name|spanQuery
 argument_list|(
 operator|new
 name|SpanTermQuery
@@ -446,7 +426,7 @@ name|near
 argument_list|)
 argument_list|)
 argument_list|,
-name|span
+name|spanQuery
 argument_list|(
 operator|new
 name|SpanTermQuery
@@ -487,7 +467,7 @@ decl_stmt|;
 name|SpanQuery
 name|near
 init|=
-name|span
+name|spanQuery
 argument_list|(
 operator|new
 name|SpanNearQuery
@@ -496,7 +476,7 @@ operator|new
 name|SpanQuery
 index|[]
 block|{
-name|span
+name|spanQuery
 argument_list|(
 operator|new
 name|SpanTermQuery
@@ -505,7 +485,7 @@ name|t1
 argument_list|)
 argument_list|)
 block|,
-name|span
+name|spanQuery
 argument_list|(
 operator|new
 name|SpanTermQuery
@@ -527,14 +507,14 @@ argument_list|)
 decl_stmt|;
 name|assertSubsetOf
 argument_list|(
-name|span
+name|spanQuery
 argument_list|(
 operator|new
 name|SpanNotQuery
 argument_list|(
 name|near
 argument_list|,
-name|span
+name|spanQuery
 argument_list|(
 operator|new
 name|SpanTermQuery
@@ -585,7 +565,7 @@ decl_stmt|;
 name|SpanQuery
 name|near1
 init|=
-name|span
+name|spanQuery
 argument_list|(
 operator|new
 name|SpanNearQuery
@@ -594,7 +574,7 @@ operator|new
 name|SpanQuery
 index|[]
 block|{
-name|span
+name|spanQuery
 argument_list|(
 operator|new
 name|SpanTermQuery
@@ -603,7 +583,7 @@ name|t1
 argument_list|)
 argument_list|)
 block|,
-name|span
+name|spanQuery
 argument_list|(
 operator|new
 name|SpanTermQuery
@@ -626,7 +606,7 @@ decl_stmt|;
 name|SpanQuery
 name|near2
 init|=
-name|span
+name|spanQuery
 argument_list|(
 operator|new
 name|SpanNearQuery
@@ -635,7 +615,7 @@ operator|new
 name|SpanQuery
 index|[]
 block|{
-name|span
+name|spanQuery
 argument_list|(
 operator|new
 name|SpanTermQuery
@@ -644,7 +624,7 @@ name|t3
 argument_list|)
 argument_list|)
 block|,
-name|span
+name|spanQuery
 argument_list|(
 operator|new
 name|SpanTermQuery
@@ -666,7 +646,7 @@ argument_list|)
 decl_stmt|;
 name|assertSubsetOf
 argument_list|(
-name|span
+name|spanQuery
 argument_list|(
 operator|new
 name|SpanNotQuery
@@ -698,12 +678,12 @@ argument_list|()
 decl_stmt|;
 name|assertSubsetOf
 argument_list|(
-name|span
+name|spanQuery
 argument_list|(
 operator|new
 name|SpanFirstQuery
 argument_list|(
-name|span
+name|spanQuery
 argument_list|(
 operator|new
 name|SpanTermQuery
@@ -716,7 +696,7 @@ literal|10
 argument_list|)
 argument_list|)
 argument_list|,
-name|span
+name|spanQuery
 argument_list|(
 operator|new
 name|SpanTermQuery
@@ -756,7 +736,7 @@ operator|new
 name|SpanQuery
 index|[]
 block|{
-name|span
+name|spanQuery
 argument_list|(
 operator|new
 name|SpanTermQuery
@@ -765,7 +745,7 @@ name|t1
 argument_list|)
 argument_list|)
 block|,
-name|span
+name|spanQuery
 argument_list|(
 operator|new
 name|SpanTermQuery
@@ -778,7 +758,7 @@ decl_stmt|;
 name|SpanQuery
 name|q1
 init|=
-name|span
+name|spanQuery
 argument_list|(
 operator|new
 name|SpanNearQuery
@@ -849,7 +829,7 @@ operator|new
 name|SpanQuery
 index|[]
 block|{
-name|span
+name|spanQuery
 argument_list|(
 operator|new
 name|SpanTermQuery
@@ -858,7 +838,7 @@ name|t1
 argument_list|)
 argument_list|)
 block|,
-name|span
+name|spanQuery
 argument_list|(
 operator|new
 name|SpanTermQuery
@@ -871,7 +851,7 @@ decl_stmt|;
 name|SpanQuery
 name|q1
 init|=
-name|span
+name|spanQuery
 argument_list|(
 operator|new
 name|SpanNearQuery
@@ -960,7 +940,7 @@ operator|new
 name|SpanQuery
 index|[]
 block|{
-name|span
+name|spanQuery
 argument_list|(
 operator|new
 name|SpanTermQuery
@@ -969,7 +949,7 @@ name|t1
 argument_list|)
 argument_list|)
 block|,
-name|span
+name|spanQuery
 argument_list|(
 operator|new
 name|SpanTermQuery
@@ -982,7 +962,7 @@ decl_stmt|;
 name|SpanQuery
 name|q1
 init|=
-name|span
+name|spanQuery
 argument_list|(
 operator|new
 name|SpanNearQuery
@@ -998,7 +978,7 @@ decl_stmt|;
 name|SpanQuery
 name|q2
 init|=
-name|span
+name|spanQuery
 argument_list|(
 operator|new
 name|SpanNearQuery
@@ -1048,7 +1028,7 @@ operator|new
 name|SpanQuery
 index|[]
 block|{
-name|span
+name|spanQuery
 argument_list|(
 operator|new
 name|SpanTermQuery
@@ -1057,7 +1037,7 @@ name|t1
 argument_list|)
 argument_list|)
 block|,
-name|span
+name|spanQuery
 argument_list|(
 operator|new
 name|SpanTermQuery
@@ -1070,7 +1050,7 @@ decl_stmt|;
 name|SpanQuery
 name|q1
 init|=
-name|span
+name|spanQuery
 argument_list|(
 operator|new
 name|SpanNearQuery
@@ -1086,7 +1066,7 @@ decl_stmt|;
 name|SpanQuery
 name|q2
 init|=
-name|span
+name|spanQuery
 argument_list|(
 operator|new
 name|SpanNearQuery
@@ -1136,7 +1116,7 @@ operator|new
 name|SpanQuery
 index|[]
 block|{
-name|span
+name|spanQuery
 argument_list|(
 operator|new
 name|SpanTermQuery
@@ -1145,7 +1125,7 @@ name|t1
 argument_list|)
 argument_list|)
 block|,
-name|span
+name|spanQuery
 argument_list|(
 operator|new
 name|SpanTermQuery
@@ -1173,7 +1153,7 @@ block|{
 name|SpanQuery
 name|q1
 init|=
-name|span
+name|spanQuery
 argument_list|(
 operator|new
 name|SpanNearQuery
@@ -1189,7 +1169,7 @@ decl_stmt|;
 name|SpanQuery
 name|q2
 init|=
-name|span
+name|spanQuery
 argument_list|(
 operator|new
 name|SpanNearQuery
@@ -1248,7 +1228,7 @@ operator|new
 name|SpanQuery
 index|[]
 block|{
-name|span
+name|spanQuery
 argument_list|(
 operator|new
 name|SpanTermQuery
@@ -1257,7 +1237,7 @@ name|t1
 argument_list|)
 argument_list|)
 block|,
-name|span
+name|spanQuery
 argument_list|(
 operator|new
 name|SpanTermQuery
@@ -1266,7 +1246,7 @@ name|t2
 argument_list|)
 argument_list|)
 block|,
-name|span
+name|spanQuery
 argument_list|(
 operator|new
 name|SpanTermQuery
@@ -1294,7 +1274,7 @@ block|{
 name|SpanQuery
 name|q1
 init|=
-name|span
+name|spanQuery
 argument_list|(
 operator|new
 name|SpanNearQuery
@@ -1310,7 +1290,7 @@ decl_stmt|;
 name|SpanQuery
 name|q2
 init|=
-name|span
+name|spanQuery
 argument_list|(
 operator|new
 name|SpanNearQuery
@@ -1363,7 +1343,7 @@ operator|new
 name|SpanQuery
 index|[]
 block|{
-name|span
+name|spanQuery
 argument_list|(
 operator|new
 name|SpanTermQuery
@@ -1372,7 +1352,7 @@ name|t1
 argument_list|)
 argument_list|)
 block|,
-name|span
+name|spanQuery
 argument_list|(
 operator|new
 name|SpanTermQuery
@@ -1400,7 +1380,7 @@ block|{
 name|SpanQuery
 name|q1
 init|=
-name|span
+name|spanQuery
 argument_list|(
 operator|new
 name|SpanNearQuery
@@ -1416,7 +1396,7 @@ decl_stmt|;
 name|SpanQuery
 name|q2
 init|=
-name|span
+name|spanQuery
 argument_list|(
 operator|new
 name|SpanNearQuery
@@ -1475,7 +1455,7 @@ operator|new
 name|SpanQuery
 index|[]
 block|{
-name|span
+name|spanQuery
 argument_list|(
 operator|new
 name|SpanTermQuery
@@ -1484,7 +1464,7 @@ name|t1
 argument_list|)
 argument_list|)
 block|,
-name|span
+name|spanQuery
 argument_list|(
 operator|new
 name|SpanTermQuery
@@ -1493,7 +1473,7 @@ name|t2
 argument_list|)
 argument_list|)
 block|,
-name|span
+name|spanQuery
 argument_list|(
 operator|new
 name|SpanTermQuery
@@ -1521,7 +1501,7 @@ block|{
 name|SpanQuery
 name|q1
 init|=
-name|span
+name|spanQuery
 argument_list|(
 operator|new
 name|SpanNearQuery
@@ -1537,7 +1517,7 @@ decl_stmt|;
 name|SpanQuery
 name|q2
 init|=
-name|span
+name|spanQuery
 argument_list|(
 operator|new
 name|SpanNearQuery
@@ -1609,12 +1589,12 @@ block|{
 name|Query
 name|q1
 init|=
-name|span
+name|spanQuery
 argument_list|(
 operator|new
 name|SpanPositionRangeQuery
 argument_list|(
-name|span
+name|spanQuery
 argument_list|(
 operator|new
 name|SpanTermQuery
@@ -1698,12 +1678,12 @@ block|{
 name|Query
 name|q1
 init|=
-name|span
+name|spanQuery
 argument_list|(
 operator|new
 name|SpanPositionRangeQuery
 argument_list|(
-name|span
+name|spanQuery
 argument_list|(
 operator|new
 name|SpanTermQuery
@@ -1723,12 +1703,12 @@ decl_stmt|;
 name|Query
 name|q2
 init|=
-name|span
+name|spanQuery
 argument_list|(
 operator|new
 name|SpanPositionRangeQuery
 argument_list|(
-name|span
+name|spanQuery
 argument_list|(
 operator|new
 name|SpanTermQuery
@@ -1775,12 +1755,12 @@ decl_stmt|;
 name|Query
 name|q1
 init|=
-name|span
+name|spanQuery
 argument_list|(
 operator|new
 name|SpanPositionRangeQuery
 argument_list|(
-name|span
+name|spanQuery
 argument_list|(
 operator|new
 name|SpanTermQuery
@@ -1843,7 +1823,7 @@ operator|new
 name|SpanQuery
 index|[]
 block|{
-name|span
+name|spanQuery
 argument_list|(
 operator|new
 name|SpanTermQuery
@@ -1852,7 +1832,7 @@ name|t1
 argument_list|)
 argument_list|)
 block|,
-name|span
+name|spanQuery
 argument_list|(
 operator|new
 name|SpanTermQuery
@@ -1865,7 +1845,7 @@ decl_stmt|;
 name|SpanQuery
 name|nearQuery
 init|=
-name|span
+name|spanQuery
 argument_list|(
 operator|new
 name|SpanNearQuery
@@ -1911,7 +1891,7 @@ block|{
 name|Query
 name|q1
 init|=
-name|span
+name|spanQuery
 argument_list|(
 operator|new
 name|SpanPositionRangeQuery
@@ -1970,7 +1950,7 @@ operator|new
 name|SpanQuery
 index|[]
 block|{
-name|span
+name|spanQuery
 argument_list|(
 operator|new
 name|SpanTermQuery
@@ -1979,7 +1959,7 @@ name|t1
 argument_list|)
 argument_list|)
 block|,
-name|span
+name|spanQuery
 argument_list|(
 operator|new
 name|SpanTermQuery
@@ -1992,7 +1972,7 @@ decl_stmt|;
 name|SpanQuery
 name|nearQuery
 init|=
-name|span
+name|spanQuery
 argument_list|(
 operator|new
 name|SpanNearQuery
@@ -2038,7 +2018,7 @@ block|{
 name|Query
 name|q1
 init|=
-name|span
+name|spanQuery
 argument_list|(
 operator|new
 name|SpanPositionRangeQuery
@@ -2056,7 +2036,7 @@ decl_stmt|;
 name|Query
 name|q2
 init|=
-name|span
+name|spanQuery
 argument_list|(
 operator|new
 name|SpanPositionRangeQuery
@@ -2112,7 +2092,7 @@ operator|new
 name|SpanQuery
 index|[]
 block|{
-name|span
+name|spanQuery
 argument_list|(
 operator|new
 name|SpanTermQuery
@@ -2121,7 +2101,7 @@ name|t1
 argument_list|)
 argument_list|)
 block|,
-name|span
+name|spanQuery
 argument_list|(
 operator|new
 name|SpanTermQuery
@@ -2134,7 +2114,7 @@ decl_stmt|;
 name|SpanQuery
 name|nearQuery
 init|=
-name|span
+name|spanQuery
 argument_list|(
 operator|new
 name|SpanNearQuery
@@ -2150,7 +2130,7 @@ decl_stmt|;
 name|Query
 name|q1
 init|=
-name|span
+name|spanQuery
 argument_list|(
 operator|new
 name|SpanPositionRangeQuery
@@ -2211,12 +2191,12 @@ block|{
 name|Query
 name|q1
 init|=
-name|span
+name|spanQuery
 argument_list|(
 operator|new
 name|SpanFirstQuery
 argument_list|(
-name|span
+name|spanQuery
 argument_list|(
 operator|new
 name|SpanTermQuery
@@ -2280,12 +2260,12 @@ block|{
 name|Query
 name|q1
 init|=
-name|span
+name|spanQuery
 argument_list|(
 operator|new
 name|SpanFirstQuery
 argument_list|(
-name|span
+name|spanQuery
 argument_list|(
 operator|new
 name|SpanTermQuery
@@ -2301,12 +2281,12 @@ decl_stmt|;
 name|Query
 name|q2
 init|=
-name|span
+name|spanQuery
 argument_list|(
 operator|new
 name|SpanFirstQuery
 argument_list|(
-name|span
+name|spanQuery
 argument_list|(
 operator|new
 name|SpanTermQuery
@@ -2348,12 +2328,12 @@ decl_stmt|;
 name|Query
 name|q1
 init|=
-name|span
+name|spanQuery
 argument_list|(
 operator|new
 name|SpanFirstQuery
 argument_list|(
-name|span
+name|spanQuery
 argument_list|(
 operator|new
 name|SpanTermQuery
@@ -2414,7 +2394,7 @@ operator|new
 name|SpanQuery
 index|[]
 block|{
-name|span
+name|spanQuery
 argument_list|(
 operator|new
 name|SpanTermQuery
@@ -2423,7 +2403,7 @@ name|t1
 argument_list|)
 argument_list|)
 block|,
-name|span
+name|spanQuery
 argument_list|(
 operator|new
 name|SpanTermQuery
@@ -2436,7 +2416,7 @@ decl_stmt|;
 name|SpanQuery
 name|nearQuery
 init|=
-name|span
+name|spanQuery
 argument_list|(
 operator|new
 name|SpanNearQuery
@@ -2467,7 +2447,7 @@ block|{
 name|Query
 name|q1
 init|=
-name|span
+name|spanQuery
 argument_list|(
 operator|new
 name|SpanFirstQuery
@@ -2521,7 +2501,7 @@ operator|new
 name|SpanQuery
 index|[]
 block|{
-name|span
+name|spanQuery
 argument_list|(
 operator|new
 name|SpanTermQuery
@@ -2530,7 +2510,7 @@ name|t1
 argument_list|)
 argument_list|)
 block|,
-name|span
+name|spanQuery
 argument_list|(
 operator|new
 name|SpanTermQuery
@@ -2543,7 +2523,7 @@ decl_stmt|;
 name|SpanQuery
 name|nearQuery
 init|=
-name|span
+name|spanQuery
 argument_list|(
 operator|new
 name|SpanNearQuery
@@ -2574,7 +2554,7 @@ block|{
 name|Query
 name|q1
 init|=
-name|span
+name|spanQuery
 argument_list|(
 operator|new
 name|SpanFirstQuery
@@ -2588,7 +2568,7 @@ decl_stmt|;
 name|Query
 name|q2
 init|=
-name|span
+name|spanQuery
 argument_list|(
 operator|new
 name|SpanFirstQuery
@@ -2639,7 +2619,7 @@ operator|new
 name|SpanQuery
 index|[]
 block|{
-name|span
+name|spanQuery
 argument_list|(
 operator|new
 name|SpanTermQuery
@@ -2648,7 +2628,7 @@ name|t1
 argument_list|)
 argument_list|)
 block|,
-name|span
+name|spanQuery
 argument_list|(
 operator|new
 name|SpanTermQuery
@@ -2661,7 +2641,7 @@ decl_stmt|;
 name|SpanQuery
 name|nearQuery
 init|=
-name|span
+name|spanQuery
 argument_list|(
 operator|new
 name|SpanNearQuery
@@ -2677,7 +2657,7 @@ decl_stmt|;
 name|Query
 name|q1
 init|=
-name|span
+name|spanQuery
 argument_list|(
 operator|new
 name|SpanFirstQuery
