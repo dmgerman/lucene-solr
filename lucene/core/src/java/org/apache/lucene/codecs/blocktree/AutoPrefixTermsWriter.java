@@ -917,6 +917,10 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
+comment|// Even though we visited terms in already-sorted order, the prefixes
+comment|// can be slightly unsorted, e.g. aaaaa will be before aaa, so we
+comment|// must sort here so our caller can do merge sort into actual terms
+comment|// when writing.  Probably we should use CollectionUtil.timSort here?
 name|Collections
 operator|.
 name|sort
@@ -954,6 +958,7 @@ operator|.
 name|length
 argument_list|)
 decl_stmt|;
+comment|//if (DEBUG) System.out.println("\nterm: " + text.utf8ToString());
 comment|// Find common prefix between last term and current term:
 name|int
 name|pos
@@ -1033,7 +1038,7 @@ operator|>=
 name|minItemsInPrefix
 condition|)
 block|{
-comment|//if (DEBUG) System.out.println("pushTerm i=" + i + " prefixTopSize=" + prefixTopSize + " minItemsInBlock=" + minItemsInPrefix);
+comment|//if (DEBUG) System.out.println("  pop: i=" + i + " prefixTopSize=" + prefixTopSize + " minItemsInBlock=" + minItemsInPrefix);
 name|savePrefixes
 argument_list|(
 name|i
@@ -1044,7 +1049,7 @@ name|prefixTopSize
 argument_list|)
 expr_stmt|;
 comment|//prefixStarts[i] -= prefixTopSize;
-comment|//System.out.println("    after savePrefixes: " + (pending.size() - prefixStarts[i]) + " pending.size()=" + pending.size() + " start=" + prefixStarts[i]);
+comment|//if (DEBUG) System.out.println("    after savePrefixes: " + (pending.size() - prefixStarts[i]) + " pending.size()=" + pending.size() + " start=" + prefixStarts[i]);
 comment|// For large floor blocks, it's possible we should now re-run on the new prefix terms we just created:
 name|prefixTopSize
 operator|=
@@ -1196,11 +1201,7 @@ name|count
 operator|>
 literal|0
 assert|;
-comment|//if (DEBUG2) {
-comment|//  BytesRef br = new BytesRef(lastTerm.bytes());
-comment|//  br.length = prefixLength;
-comment|//  System.out.println("  savePrefixes: seg=" + segment + " " + brToString(br) + " count=" + count + " pending.size()=" + pending.size());
-comment|//}
+comment|/*     if (DEBUG2) {       BytesRef br = new BytesRef(lastTerm.bytes());       br.length = prefixLength;       //System.out.println("  savePrefixes: seg=" + segment + " " + brToString(br) + " count=" + count + " pending.size()=" + pending.size());       System.out.println("  savePrefixes: " + brToString(br) + " count=" + count + " pending.size()=" + pending.size());     }     */
 name|int
 name|lastSuffixLeadLabel
 init|=
@@ -1222,6 +1223,95 @@ name|start
 operator|>=
 literal|0
 assert|;
+comment|// Special case empty-string suffix case: we are being asked to build prefix terms for all aaa* terms, but
+comment|// the exact term aaa is here, and we must skip it (it is handled "higher", under the aa* terms):
+name|Object
+name|o
+init|=
+name|pending
+operator|.
+name|get
+argument_list|(
+name|start
+argument_list|)
+decl_stmt|;
+name|boolean
+name|skippedEmptyStringSuffix
+init|=
+literal|false
+decl_stmt|;
+if|if
+condition|(
+name|o
+operator|instanceof
+name|byte
+index|[]
+condition|)
+block|{
+if|if
+condition|(
+operator|(
+operator|(
+name|byte
+index|[]
+operator|)
+name|o
+operator|)
+operator|.
+name|length
+operator|==
+name|prefixLength
+condition|)
+block|{
+name|start
+operator|++
+expr_stmt|;
+name|count
+operator|--
+expr_stmt|;
+comment|//if (DEBUG) System.out.println("  skip empty-string term suffix");
+name|skippedEmptyStringSuffix
+operator|=
+literal|true
+expr_stmt|;
+block|}
+block|}
+else|else
+block|{
+name|PrefixTerm
+name|prefix
+init|=
+operator|(
+name|PrefixTerm
+operator|)
+name|o
+decl_stmt|;
+if|if
+condition|(
+name|prefix
+operator|.
+name|term
+operator|.
+name|bytes
+operator|.
+name|length
+operator|==
+name|prefixLength
+condition|)
+block|{
+name|start
+operator|++
+expr_stmt|;
+name|count
+operator|--
+expr_stmt|;
+comment|//if (DEBUG) System.out.println("  skip empty-string PT suffix");
+name|skippedEmptyStringSuffix
+operator|=
+literal|true
+expr_stmt|;
+block|}
+block|}
 name|int
 name|end
 init|=
@@ -1243,11 +1333,6 @@ literal|1
 decl_stmt|;
 name|int
 name|prefixCount
-init|=
-literal|0
-decl_stmt|;
-name|int
-name|pendingCount
 init|=
 literal|0
 decl_stmt|;
@@ -1275,16 +1360,15 @@ name|byte
 index|[]
 name|termBytes
 decl_stmt|;
-name|Object
 name|o
-init|=
+operator|=
 name|pending
 operator|.
 name|get
 argument_list|(
 name|i
 argument_list|)
-decl_stmt|;
+expr_stmt|;
 name|PrefixTerm
 name|ptEntry
 decl_stmt|;
@@ -1352,50 +1436,26 @@ literal|null
 expr_stmt|;
 block|}
 block|}
-name|pendingCount
-operator|++
-expr_stmt|;
-comment|//if (DEBUG) System.out.println("    check term=" + brToString(new BytesRef(termBytes)));
-name|int
-name|suffixLeadLabel
-decl_stmt|;
-if|if
-condition|(
+comment|//if (DEBUG) System.out.println("    check term=" + brToString(new BytesRef(termBytes)) + " o=" + o);
+comment|// We handled the empty-string suffix case up front:
+assert|assert
 name|termBytes
 operator|.
 name|length
-operator|==
+operator|>
 name|prefixLength
-condition|)
-block|{
-comment|// Suffix is 0, i.e. prefix 'foo' and term is
-comment|// 'foo' so the term has empty string suffix
-comment|// in this block
-assert|assert
-name|lastSuffixLeadLabel
-operator|==
-operator|-
-literal|2
 assert|;
+name|int
 name|suffixLeadLabel
-operator|=
-operator|-
-literal|2
-expr_stmt|;
-block|}
-else|else
-block|{
-name|suffixLeadLabel
-operator|=
+init|=
 name|termBytes
 index|[
 name|prefixLength
 index|]
 operator|&
 literal|0xff
-expr_stmt|;
-block|}
-comment|// if (DEBUG) System.out.println("  i=" + i + " ent=" + ent + " suffixLeadLabel=" + suffixLeadLabel);
+decl_stmt|;
+comment|//if (DEBUG) System.out.println("  i=" + i + " o=" + o + " suffixLeadLabel=" + Integer.toHexString(suffixLeadLabel) + " pendingCount=" + (i - nextBlockStart) + " min=" + minItemsInPrefix);
 if|if
 condition|(
 name|suffixLeadLabel
@@ -1421,10 +1481,16 @@ literal|" vs lastSuffixLeadLabel="
 operator|+
 name|lastSuffixLeadLabel
 assert|;
-comment|// NOTE: must check nextFloorLeadLabel in case minItemsInPrefix is 2 and prefix is 'a' and we've seen 'a' and then 'aa'
+name|int
+name|itemsInBlock
+init|=
+name|i
+operator|-
+name|nextBlockStart
+decl_stmt|;
 if|if
 condition|(
-name|pendingCount
+name|itemsInBlock
 operator|>=
 name|minItemsInPrefix
 operator|&&
@@ -1433,11 +1499,6 @@ operator|-
 name|nextBlockStart
 operator|>
 name|maxItemsInPrefix
-operator|&&
-name|nextFloorLeadLabel
-operator|!=
-operator|-
-literal|1
 condition|)
 block|{
 comment|// The count is too large for one block, so we must break it into "floor" blocks, where we record
@@ -1454,6 +1515,7 @@ operator|!=
 literal|null
 condition|)
 block|{
+comment|//if (DEBUG) System.out.println("  use last");
 name|lastSuffixLeadLabel
 operator|=
 name|lastPTEntry
@@ -1469,10 +1531,6 @@ name|nextFloorLeadLabel
 argument_list|,
 name|lastSuffixLeadLabel
 argument_list|)
-expr_stmt|;
-name|pendingCount
-operator|=
-literal|0
 expr_stmt|;
 name|prefixCount
 operator|++
@@ -1573,6 +1631,17 @@ expr_stmt|;
 name|prefixCount
 operator|++
 expr_stmt|;
+comment|// If we skipped empty string suffix, e.g. term aaa for prefix aaa*, since we
+comment|// are now writing the full aaa* prefix term, we include it here:
+if|if
+condition|(
+name|skippedEmptyStringSuffix
+condition|)
+block|{
+name|count
+operator|++
+expr_stmt|;
+block|}
 block|}
 else|else
 block|{
@@ -1610,60 +1679,6 @@ expr_stmt|;
 block|}
 block|}
 comment|// Remove slice from the top of the pending stack, that we just wrote:
-name|int
-name|sizeToClear
-init|=
-name|count
-decl_stmt|;
-if|if
-condition|(
-name|prefixCount
-operator|>
-literal|1
-condition|)
-block|{
-name|Object
-name|o
-init|=
-name|pending
-operator|.
-name|get
-argument_list|(
-name|pending
-operator|.
-name|size
-argument_list|()
-operator|-
-name|count
-argument_list|)
-decl_stmt|;
-if|if
-condition|(
-name|o
-operator|instanceof
-name|byte
-index|[]
-operator|&&
-operator|(
-operator|(
-name|byte
-index|[]
-operator|)
-name|o
-operator|)
-operator|.
-name|length
-operator|==
-name|prefixLength
-condition|)
-block|{
-comment|// If we were just asked to write all f* terms, but there were too many and so we made floor blocks, the exact term 'f' will remain
-comment|// as its own item, followed by floor block terms like f[a-m]*, f[n-z]*, so in this case we leave 3 (not 2) items on the pending stack:
-name|sizeToClear
-operator|--
-expr_stmt|;
-block|}
-block|}
 name|pending
 operator|.
 name|subList
@@ -1673,7 +1688,7 @@ operator|.
 name|size
 argument_list|()
 operator|-
-name|sizeToClear
+name|count
 argument_list|,
 name|pending
 operator|.
@@ -1797,6 +1812,7 @@ name|floorLeadEnd
 argument_list|)
 decl_stmt|;
 comment|//if (DEBUG2) System.out.println("    savePrefix: seg=" + segment + " " + pt + " count=" + count);
+comment|//if (DEBUG) System.out.println("    savePrefix: " + pt);
 name|prefixes
 operator|.
 name|add
