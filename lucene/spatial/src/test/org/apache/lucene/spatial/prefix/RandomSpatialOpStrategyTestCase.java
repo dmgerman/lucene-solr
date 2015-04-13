@@ -671,7 +671,11 @@ condition|)
 block|{
 name|fail
 argument_list|(
-literal|"Shouldn't match"
+literal|"qIdx:"
+operator|+
+name|queryIdx
+operator|+
+literal|" Shouldn't match"
 argument_list|,
 name|id
 argument_list|,
@@ -706,7 +710,11 @@ argument_list|()
 decl_stmt|;
 name|fail
 argument_list|(
-literal|"Should have matched"
+literal|"qIdx:"
+operator|+
+name|queryIdx
+operator|+
+literal|" Should have matched"
 argument_list|,
 name|id
 argument_list|,
