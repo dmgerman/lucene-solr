@@ -1112,6 +1112,13 @@ literal|0
 argument_list|)
 expr_stmt|;
 block|}
+name|waitForRecoveriesToFinish
+argument_list|(
+literal|"implicit_collection_without_routerfield"
+argument_list|,
+literal|true
+argument_list|)
+expr_stmt|;
 name|SolrClient
 name|shard1
 init|=
@@ -1944,6 +1951,13 @@ literal|0
 argument_list|)
 expr_stmt|;
 block|}
+name|waitForRecoveriesToFinish
+argument_list|(
+literal|"compositeid_collection_with_routerfield"
+argument_list|,
+literal|true
+argument_list|)
+expr_stmt|;
 name|SolrClient
 name|shard1
 init|=
