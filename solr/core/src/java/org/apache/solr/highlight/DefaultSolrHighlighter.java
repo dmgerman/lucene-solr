@@ -741,7 +741,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  *   * @since solr 1.3  */
+comment|/**  *  * @since solr 1.3  */
 end_comment
 
 begin_class
@@ -775,7 +775,7 @@ specifier|final
 name|SolrCore
 name|solrCore
 decl_stmt|;
-comment|/** Will be invoked via reflection */
+comment|//Will be invoked via reflection
 DECL|method|DefaultSolrHighlighter
 specifier|public
 name|DefaultSolrHighlighter
@@ -1640,7 +1640,7 @@ literal|false
 argument_list|)
 return|;
 block|}
-comment|/**    * Return a {@link org.apache.lucene.search.highlight.Formatter} appropriate for this field. If a formatter    * has not been configured for this field, fall back to the configured    * default or the solr default ({@link org.apache.lucene.search.highlight.SimpleHTMLFormatter}).    *     * @param fieldName The name of the field    * @param params The params controlling Highlighting    * @return An appropriate {@link org.apache.lucene.search.highlight.Formatter}.    */
+comment|/**    * Return a {@link org.apache.lucene.search.highlight.Formatter} appropriate for this field. If a formatter    * has not been configured for this field, fall back to the configured    * default or the solr default ({@link org.apache.lucene.search.highlight.SimpleHTMLFormatter}).    *    * @param fieldName The name of the field    * @param params The params controlling Highlighting    * @return An appropriate {@link org.apache.lucene.search.highlight.Formatter}.    */
 DECL|method|getFormatter
 specifier|protected
 name|Formatter
@@ -1711,7 +1711,7 @@ name|params
 argument_list|)
 return|;
 block|}
-comment|/**    * Return an {@link org.apache.lucene.search.highlight.Encoder} appropriate for this field. If an encoder    * has not been configured for this field, fall back to the configured    * default or the solr default ({@link org.apache.lucene.search.highlight.DefaultEncoder}).    *     * @param fieldName The name of the field    * @param params The params controlling Highlighting    * @return An appropriate {@link org.apache.lucene.search.highlight.Encoder}.    */
+comment|/**    * Return an {@link org.apache.lucene.search.highlight.Encoder} appropriate for this field. If an encoder    * has not been configured for this field, fall back to the configured    * default or the solr default ({@link org.apache.lucene.search.highlight.DefaultEncoder}).    *    * @param fieldName The name of the field    * @param params The params controlling Highlighting    * @return An appropriate {@link org.apache.lucene.search.highlight.Encoder}.    */
 DECL|method|getEncoder
 specifier|protected
 name|Encoder
@@ -1782,7 +1782,7 @@ name|params
 argument_list|)
 return|;
 block|}
-comment|/**    * Return a {@link org.apache.lucene.search.highlight.Fragmenter} appropriate for this field. If a fragmenter    * has not been configured for this field, fall back to the configured    * default or the solr default ({@link GapFragmenter}).    *     * @param fieldName The name of the field    * @param params The params controlling Highlighting    * @return An appropriate {@link org.apache.lucene.search.highlight.Fragmenter}.    */
+comment|/**    * Return a {@link org.apache.lucene.search.highlight.Fragmenter} appropriate for this field. If a fragmenter    * has not been configured for this field, fall back to the configured    * default or the solr default ({@link GapFragmenter}).    *    * @param fieldName The name of the field    * @param params The params controlling Highlighting    * @return An appropriate {@link org.apache.lucene.search.highlight.Fragmenter}.    */
 DECL|method|getFragmenter
 specifier|protected
 name|Fragmenter
@@ -3247,6 +3247,13 @@ argument_list|(
 name|maxCharsToAnalyze
 argument_list|)
 expr_stmt|;
+name|maxCharsToAnalyze
+operator|-=
+name|thisText
+operator|.
+name|length
+argument_list|()
+expr_stmt|;
 comment|// Highlight!
 try|try
 block|{
@@ -3534,6 +3541,14 @@ argument_list|(
 name|value
 argument_list|)
 expr_stmt|;
+name|maxCharsToAnalyze
+operator|-=
+name|value
+operator|.
+name|length
+argument_list|()
+expr_stmt|;
+comment|//we exit early if we'll never get to analyze the value
 name|maxValues
 operator|--
 expr_stmt|;
