@@ -2471,6 +2471,11 @@ parameter_list|()
 throws|throws
 name|IOException
 block|{
+if|if
+condition|(
+name|TEST_NIGHTLY
+condition|)
+block|{
 name|testRandomWords
 argument_list|(
 literal|1000
@@ -2481,7 +2486,17 @@ literal|2
 argument_list|)
 argument_list|)
 expr_stmt|;
-comment|//testRandomWords(100, 1);
+block|}
+else|else
+block|{
+name|testRandomWords
+argument_list|(
+literal|100
+argument_list|,
+literal|1
+argument_list|)
+expr_stmt|;
+block|}
 block|}
 DECL|method|inputModeToString
 name|String
@@ -2700,7 +2715,7 @@ argument_list|)
 expr_stmt|;
 block|}
 comment|// Build FST for all unique terms in the test line docs
-comment|// file, up until a time limit
+comment|// file, up until a doc limit
 DECL|method|testRealTerms
 specifier|public
 name|void
@@ -2724,11 +2739,18 @@ argument_list|)
 decl_stmt|;
 specifier|final
 name|int
-name|RUN_TIME_MSEC
+name|numDocs
 init|=
+name|TEST_NIGHTLY
+condition|?
 name|atLeast
 argument_list|(
-literal|500
+literal|1000
+argument_list|)
+else|:
+name|atLeast
+argument_list|(
+literal|100
 argument_list|)
 decl_stmt|;
 name|MockAnalyzer
@@ -2810,17 +2832,6 @@ argument_list|,
 name|conf
 argument_list|)
 decl_stmt|;
-specifier|final
-name|long
-name|stopTime
-init|=
-name|System
-operator|.
-name|currentTimeMillis
-argument_list|()
-operator|+
-name|RUN_TIME_MSEC
-decl_stmt|;
 name|Document
 name|doc
 decl_stmt|;
@@ -2842,12 +2853,9 @@ operator|)
 operator|!=
 literal|null
 operator|&&
-name|System
-operator|.
-name|currentTimeMillis
-argument_list|()
+name|docCount
 operator|<
-name|stopTime
+name|numDocs
 condition|)
 block|{
 name|writer
