@@ -193,31 +193,20 @@ name|int
 name|numBits
 parameter_list|)
 block|{
-name|int
-name|numLong
-init|=
-name|numBits
-operator|>>>
-literal|6
-decl_stmt|;
-if|if
-condition|(
+return|return
+operator|(
 operator|(
 name|numBits
-operator|&
-literal|63
+operator|-
+literal|1
 operator|)
-operator|!=
-literal|0
-condition|)
-block|{
-name|numLong
-operator|++
-expr_stmt|;
-block|}
-return|return
-name|numLong
+operator|>>
+literal|6
+operator|)
+operator|+
+literal|1
 return|;
+comment|// I.e.: get the word-offset of the last bit and add one (make sure to use>> so 0 returns 0!)
 block|}
 comment|/**    * Returns the popcount or cardinality of the intersection of the two sets.    * Neither set is modified.    */
 DECL|method|intersectionCount
@@ -1763,7 +1752,7 @@ operator|)
 operator|>>
 literal|6
 decl_stmt|;
-comment|/*** Grrr, java shifting wraps around so -1L>>>64 == -1      * for that reason, make sure not to use endmask if the bits to flip will      * be zero in the last word (redefine endWord to be the last changed...)     long startmask = -1L<< (startIndex& 0x3f);     // example: 11111...111000     long endmask = -1L>>> (64-(endIndex& 0x3f));   // example: 00111...111111     ***/
+comment|/*** Grrr, java shifting uses only the lower 6 bits of the count so -1L>>>64 == -1      * for that reason, make sure not to use endmask if the bits to flip will      * be zero in the last word (redefine endWord to be the last changed...)     long startmask = -1L<< (startIndex& 0x3f);     // example: 11111...111000     long endmask = -1L>>> (64-(endIndex& 0x3f));   // example: 00111...111111     ***/
 name|long
 name|startmask
 init|=
@@ -1781,7 +1770,7 @@ operator|>>>
 operator|-
 name|endIndex
 decl_stmt|;
-comment|// 64-(endIndex&0x3f) is the same as -endIndex due to wrap
+comment|// 64-(endIndex&0x3f) is the same as -endIndex since only the lowest 6 bits are used
 if|if
 condition|(
 name|startWord
@@ -1979,7 +1968,7 @@ operator|>>>
 operator|-
 name|endIndex
 decl_stmt|;
-comment|// 64-(endIndex&0x3f) is the same as -endIndex due to wrap
+comment|// 64-(endIndex&0x3f) is the same as -endIndex since only the lowest 6 bits are used
 if|if
 condition|(
 name|startWord
@@ -2123,7 +2112,7 @@ operator|>>>
 operator|-
 name|endIndex
 decl_stmt|;
-comment|// 64-(endIndex&0x3f) is the same as -endIndex due to wrap
+comment|// 64-(endIndex&0x3f) is the same as -endIndex since only the lowest 6 bits are used
 comment|// invert masks since we are clearing
 name|startmask
 operator|=
