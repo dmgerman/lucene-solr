@@ -2820,10 +2820,16 @@ name|HighlightParams
 operator|.
 name|MAX_MULTIVALUED_TO_EXAMINE
 argument_list|,
+operator|(
+name|schemaField
+operator|!=
+literal|null
+operator|&&
 name|schemaField
 operator|.
 name|multiValued
 argument_list|()
+operator|)
 condition|?
 name|Integer
 operator|.
