@@ -4819,12 +4819,12 @@ name|byte
 index|[]
 name|bytes
 decl_stmt|;
-comment|/** Offset of first valid byte. */
+comment|/**      * Offset of first valid byte.      */
 DECL|field|offset
 name|int
 name|offset
 decl_stmt|;
-comment|/** Length of used bytes. */
+comment|/**      * Length of used bytes.      */
 DECL|field|length
 specifier|private
 name|int
