@@ -34,6 +34,22 @@ begin_import
 import|import
 name|org
 operator|.
+name|apache
+operator|.
+name|solr
+operator|.
+name|common
+operator|.
+name|util
+operator|.
+name|Cache
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
 name|slf4j
 operator|.
 name|Logger
@@ -180,6 +196,13 @@ name|K
 parameter_list|,
 name|V
 parameter_list|>
+implements|implements
+name|Cache
+argument_list|<
+name|K
+argument_list|,
+name|V
+argument_list|>
 block|{
 DECL|field|log
 specifier|private
@@ -477,6 +500,8 @@ operator|=
 name|live
 expr_stmt|;
 block|}
+annotation|@
+name|Override
 DECL|method|get
 specifier|public
 name|V
@@ -544,6 +569,8 @@ operator|.
 name|value
 return|;
 block|}
+annotation|@
+name|Override
 DECL|method|remove
 specifier|public
 name|V
@@ -592,6 +619,8 @@ return|return
 literal|null
 return|;
 block|}
+annotation|@
+name|Override
 DECL|method|put
 specifier|public
 name|V
@@ -2307,6 +2336,8 @@ name|get
 argument_list|()
 return|;
 block|}
+annotation|@
+name|Override
 DECL|method|clear
 specifier|public
 name|void
@@ -3037,13 +3068,19 @@ if|if
 condition|(
 operator|!
 name|isDestroyed
+operator|&&
+operator|(
+name|cleanupThread
+operator|!=
+literal|null
+operator|)
 condition|)
 block|{
 name|log
 operator|.
 name|error
 argument_list|(
-literal|"ConcurrentLRUCache was not destroyed prior to finalize(), indicates a bug -- POSSIBLE RESOURCE LEAK!!!"
+literal|"ConcurrentLRUCache created with a thread and was not destroyed prior to finalize(), indicates a bug -- POSSIBLE RESOURCE LEAK!!!"
 argument_list|)
 expr_stmt|;
 name|destroy
