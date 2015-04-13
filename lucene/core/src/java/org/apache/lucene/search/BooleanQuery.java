@@ -870,10 +870,8 @@ if|if
 condition|(
 name|clause
 operator|.
-name|isProhibited
+name|isScoring
 argument_list|()
-operator|==
-literal|false
 condition|)
 block|{
 name|clause
