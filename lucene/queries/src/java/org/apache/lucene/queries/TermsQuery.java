@@ -88,6 +88,16 @@ end_import
 
 begin_import
 import|import
+name|java
+operator|.
+name|util
+operator|.
+name|Set
+import|;
+end_import
+
+begin_import
+import|import
 name|org
 operator|.
 name|apache
@@ -409,7 +419,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Specialization for a disjunction over many terms that behaves like a  * {@link ConstantScoreQuery} over a {@link BooleanQuery} containing only  * {@link org.apache.lucene.search.BooleanClause.Occur#SHOULD} clauses.  * This query creates a bit set and sets bits that matches any of the wrapped  * terms. While this might help performance when there are many terms, it would  * be slower than a {@link BooleanQuery} when there are few terms to match.  */
+comment|/**  * Specialization for a disjunction over many terms that behaves like a  * {@link ConstantScoreQuery} over a {@link BooleanQuery} containing only  * {@link org.apache.lucene.search.BooleanClause.Occur#SHOULD} clauses.  *<p>For instance in the following example, both @{code q1} and {@code q2}  * would yield the same scores:  *<pre class="prettyprint">  * Query q1 = new TermsQuery(new Term("field", "foo"), new Term("field", "bar"));  *   * BooleanQuery bq = new BooleanQuery();  * bq.add(new TermQuery(new Term("field", "foo")), Occur.SHOULD);  * bq.add(new TermQuery(new Term("field", "bar")), Occur.SHOULD);  * Query q2 = new ConstantScoreQuery(bq);  *</pre>  *<p>This query creates a bit set and sets bits that match any of the  * wrapped terms. While this might help performance when there are many terms,  * it would be slower than a {@link BooleanQuery} when there are few terms to  * match.  *<p>NOTE: This query produces scores that are equal to its boost  */
 end_comment
 
 begin_class
@@ -1407,6 +1417,25 @@ operator|.
 name|emptyList
 argument_list|()
 return|;
+block|}
+annotation|@
+name|Override
+DECL|method|extractTerms
+specifier|public
+name|void
+name|extractTerms
+parameter_list|(
+name|Set
+argument_list|<
+name|Term
+argument_list|>
+name|terms
+parameter_list|)
+block|{
+comment|// no-op
+comment|// This query is for abuse cases when the number of terms is too high to
+comment|// run efficiently as a BooleanQuery. So likewise we hide its terms in
+comment|// order to protect highlighters
 block|}
 DECL|class|TermsAndField
 specifier|private
