@@ -877,12 +877,10 @@ comment|// TODO: testOptimisticUpdate(results);
 name|testDeleteByQueryDistrib
 argument_list|()
 expr_stmt|;
-name|testDeleteByIdImplicitRouter
-argument_list|()
-expr_stmt|;
-name|testDeleteByIdCompositeRouterWithRouterField
-argument_list|()
-expr_stmt|;
+comment|// See SOLR-7384
+comment|//    testDeleteByIdImplicitRouter();
+comment|//
+comment|//    testDeleteByIdCompositeRouterWithRouterField();
 name|docId
 operator|=
 name|testThatCantForwardToLeaderFails
