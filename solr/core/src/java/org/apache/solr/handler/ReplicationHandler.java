@@ -1177,9 +1177,9 @@ specifier|private
 name|ExecutorService
 name|restoreExecutor
 init|=
-name|Executors
+name|ExecutorUtil
 operator|.
-name|newSingleThreadExecutor
+name|newMDCAwareSingleThreadExecutor
 argument_list|(
 operator|new
 name|DefaultSolrThreadFactory

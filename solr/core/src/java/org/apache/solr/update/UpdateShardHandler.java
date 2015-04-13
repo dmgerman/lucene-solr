@@ -272,9 +272,9 @@ specifier|private
 name|ExecutorService
 name|updateExecutor
 init|=
-name|Executors
+name|ExecutorUtil
 operator|.
-name|newCachedThreadPool
+name|newMDCAwareCachedThreadPool
 argument_list|(
 operator|new
 name|SolrjNamedThreadFactory

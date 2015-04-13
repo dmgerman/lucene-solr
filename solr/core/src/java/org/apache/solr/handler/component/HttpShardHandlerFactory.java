@@ -470,7 +470,9 @@ name|ThreadPoolExecutor
 name|commExecutor
 init|=
 operator|new
-name|ThreadPoolExecutor
+name|ExecutorUtil
+operator|.
+name|MDCAwareThreadPoolExecutor
 argument_list|(
 literal|0
 argument_list|,
@@ -972,7 +974,9 @@ operator|.
 name|commExecutor
 operator|=
 operator|new
-name|ThreadPoolExecutor
+name|ExecutorUtil
+operator|.
+name|MDCAwareThreadPoolExecutor
 argument_list|(
 name|this
 operator|.

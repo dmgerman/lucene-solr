@@ -6944,7 +6944,9 @@ name|ThreadPoolExecutor
 name|recoveryExecutor
 init|=
 operator|new
-name|ThreadPoolExecutor
+name|ExecutorUtil
+operator|.
+name|MDCAwareThreadPoolExecutor
 argument_list|(
 literal|0
 argument_list|,

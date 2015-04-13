@@ -330,14 +330,10 @@ specifier|private
 name|ExecutorService
 name|coreZkRegister
 init|=
-name|Executors
+name|ExecutorUtil
 operator|.
-name|newFixedThreadPool
+name|newMDCAwareCachedThreadPool
 argument_list|(
-name|Integer
-operator|.
-name|MAX_VALUE
-argument_list|,
 operator|new
 name|DefaultSolrThreadFactory
 argument_list|(

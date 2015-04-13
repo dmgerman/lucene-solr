@@ -300,6 +300,16 @@ end_import
 
 begin_import
 import|import
+name|org
+operator|.
+name|slf4j
+operator|.
+name|MDC
+import|;
+end_import
+
+begin_import
+import|import
 name|java
 operator|.
 name|io
@@ -405,18 +415,6 @@ import|;
 end_import
 
 begin_import
-import|import
-name|java
-operator|.
-name|util
-operator|.
-name|concurrent
-operator|.
-name|Executors
-import|;
-end_import
-
-begin_import
 import|import static
 name|com
 operator|.
@@ -429,6 +427,24 @@ operator|.
 name|Preconditions
 operator|.
 name|checkNotNull
+import|;
+end_import
+
+begin_import
+import|import static
+name|org
+operator|.
+name|apache
+operator|.
+name|solr
+operator|.
+name|common
+operator|.
+name|cloud
+operator|.
+name|ZkStateReader
+operator|.
+name|NODE_NAME_PROP
 import|;
 end_import
 
@@ -1167,6 +1183,26 @@ name|getCloudConfig
 argument_list|()
 argument_list|)
 expr_stmt|;
+if|if
+condition|(
+name|isZooKeeperAware
+argument_list|()
+condition|)
+block|{
+name|MDC
+operator|.
+name|put
+argument_list|(
+name|NODE_NAME_PROP
+argument_list|,
+name|getZkController
+argument_list|()
+operator|.
+name|getNodeName
+argument_list|()
+argument_list|)
+expr_stmt|;
+block|}
 name|collectionsHandler
 operator|=
 name|createHandler
@@ -1266,9 +1302,9 @@ comment|// do not limit the size of the executor in zk mode since cores may try 
 name|ExecutorService
 name|coreLoadExecutor
 init|=
-name|Executors
+name|ExecutorUtil
 operator|.
-name|newFixedThreadPool
+name|newMDCAwareFixedThreadPool
 argument_list|(
 operator|(
 name|zkSys
