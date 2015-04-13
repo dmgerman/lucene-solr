@@ -3310,6 +3310,15 @@ argument_list|(
 name|bestTextFragment
 argument_list|)
 expr_stmt|;
+if|if
+condition|(
+name|bestTextFragment
+operator|.
+name|getScore
+argument_list|()
+operator|>
+literal|0
+condition|)
 operator|--
 name|mvToMatch
 expr_stmt|;

@@ -4938,7 +4938,7 @@ name|commit
 argument_list|()
 argument_list|)
 expr_stmt|;
-comment|// First insure we can count all six
+comment|// First ensure we can count all six
 name|assertQ
 argument_list|(
 literal|"Counting all MV pairs failed"
@@ -5201,6 +5201,57 @@ literal|"4"
 argument_list|)
 argument_list|,
 literal|"//lst[@name='highlighting']/lst[@name='1000']/arr[@name='lower' and count(*)=4]"
+argument_list|)
+expr_stmt|;
+comment|// But if hl.preserveMulti=true then we should see 6 snippets even though 2 didn't match
+name|assertQ
+argument_list|(
+literal|"hl.preserveMulti"
+argument_list|,
+name|req
+argument_list|(
+literal|"q"
+argument_list|,
+literal|"id:1000"
+argument_list|,
+name|HighlightParams
+operator|.
+name|HIGHLIGHT
+argument_list|,
+literal|"true"
+argument_list|,
+name|HighlightParams
+operator|.
+name|FIELDS
+argument_list|,
+literal|"lower"
+argument_list|,
+name|HighlightParams
+operator|.
+name|Q
+argument_list|,
+literal|"target"
+argument_list|,
+name|HighlightParams
+operator|.
+name|SNIPPETS
+argument_list|,
+literal|"100"
+argument_list|,
+name|HighlightParams
+operator|.
+name|MAX_MULTIVALUED_TO_MATCH
+argument_list|,
+literal|"4"
+argument_list|,
+name|HighlightParams
+operator|.
+name|PRESERVE_MULTI
+argument_list|,
+literal|"true"
+argument_list|)
+argument_list|,
+literal|"//lst[@name='highlighting']/lst[@name='1000']/arr[@name='lower' and count(*)=6]"
 argument_list|)
 expr_stmt|;
 comment|// Now we should see exactly 2 by limiting the number of values found to 2
