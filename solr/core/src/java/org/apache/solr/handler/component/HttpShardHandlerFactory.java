@@ -709,6 +709,13 @@ name|PluginInfo
 name|info
 parameter_list|)
 block|{
+name|StringBuilder
+name|sb
+init|=
+operator|new
+name|StringBuilder
+argument_list|()
+decl_stmt|;
 name|NamedList
 name|args
 init|=
@@ -729,6 +736,8 @@ operator|.
 name|PROP_SO_TIMEOUT
 argument_list|,
 name|soTimeout
+argument_list|,
+name|sb
 argument_list|)
 expr_stmt|;
 name|this
@@ -742,6 +751,8 @@ argument_list|,
 name|INIT_URL_SCHEME
 argument_list|,
 literal|null
+argument_list|,
+name|sb
 argument_list|)
 expr_stmt|;
 if|if
@@ -787,6 +798,8 @@ operator|.
 name|PROP_CONNECTION_TIMEOUT
 argument_list|,
 name|connectionTimeout
+argument_list|,
+name|sb
 argument_list|)
 expr_stmt|;
 name|this
@@ -802,6 +815,8 @@ operator|.
 name|PROP_MAX_CONNECTIONS_PER_HOST
 argument_list|,
 name|maxConnectionsPerHost
+argument_list|,
+name|sb
 argument_list|)
 expr_stmt|;
 name|this
@@ -817,6 +832,8 @@ operator|.
 name|PROP_MAX_CONNECTIONS
 argument_list|,
 name|maxConnections
+argument_list|,
+name|sb
 argument_list|)
 expr_stmt|;
 name|this
@@ -830,6 +847,8 @@ argument_list|,
 name|INIT_CORE_POOL_SIZE
 argument_list|,
 name|corePoolSize
+argument_list|,
+name|sb
 argument_list|)
 expr_stmt|;
 name|this
@@ -843,6 +862,8 @@ argument_list|,
 name|INIT_MAX_POOL_SIZE
 argument_list|,
 name|maximumPoolSize
+argument_list|,
+name|sb
 argument_list|)
 expr_stmt|;
 name|this
@@ -856,6 +877,8 @@ argument_list|,
 name|MAX_THREAD_IDLE_TIME
 argument_list|,
 name|keepAliveTime
+argument_list|,
+name|sb
 argument_list|)
 expr_stmt|;
 name|this
@@ -869,6 +892,8 @@ argument_list|,
 name|INIT_SIZE_OF_QUEUE
 argument_list|,
 name|queueSize
+argument_list|,
+name|sb
 argument_list|)
 expr_stmt|;
 name|this
@@ -882,6 +907,8 @@ argument_list|,
 name|INIT_FAIRNESS_POLICY
 argument_list|,
 name|accessPolicy
+argument_list|,
+name|sb
 argument_list|)
 expr_stmt|;
 name|this
@@ -895,6 +922,17 @@ argument_list|,
 name|USE_RETRIES
 argument_list|,
 name|useRetries
+argument_list|,
+name|sb
+argument_list|)
+expr_stmt|;
+name|log
+operator|.
+name|info
+argument_list|(
+literal|"created with {}"
+argument_list|,
+name|sb
 argument_list|)
 expr_stmt|;
 comment|// magic sysprop to make tests reproducible: set by SolrTestCaseJ4.
@@ -1163,6 +1201,9 @@ name|configKey
 parameter_list|,
 name|T
 name|defaultValue
+parameter_list|,
+name|StringBuilder
+name|sb
 parameter_list|)
 block|{
 name|T
@@ -1203,15 +1244,36 @@ else|:
 name|defaultValue
 expr_stmt|;
 block|}
-name|log
-operator|.
-name|info
-argument_list|(
-literal|"Setting {} to: {}"
-argument_list|,
-name|configKey
-argument_list|,
+if|if
+condition|(
+name|sb
+operator|!=
+literal|null
+operator|&&
 name|toReturn
+operator|!=
+literal|null
+condition|)
+name|sb
+operator|.
+name|append
+argument_list|(
+name|configKey
+argument_list|)
+operator|.
+name|append
+argument_list|(
+literal|" : "
+argument_list|)
+operator|.
+name|append
+argument_list|(
+name|toReturn
+argument_list|)
+operator|.
+name|append
+argument_list|(
+literal|","
 argument_list|)
 expr_stmt|;
 return|return
