@@ -598,6 +598,16 @@ end_import
 
 begin_import
 import|import
+name|org
+operator|.
+name|slf4j
+operator|.
+name|MDC
+import|;
+end_import
+
+begin_import
+import|import
 name|java
 operator|.
 name|io
@@ -965,7 +975,7 @@ argument_list|(
 operator|new
 name|SolrjNamedThreadFactory
 argument_list|(
-literal|"CloudSolrServer ThreadPool"
+literal|"CloudSolrClient ThreadPool"
 argument_list|)
 argument_list|)
 decl_stmt|;
@@ -2700,6 +2710,17 @@ operator|.
 name|getValue
 argument_list|()
 decl_stmt|;
+try|try
+block|{
+name|MDC
+operator|.
+name|put
+argument_list|(
+literal|"CloudSolrClient.url"
+argument_list|,
+name|url
+argument_list|)
+expr_stmt|;
 name|responseFutures
 operator|.
 name|put
@@ -2748,6 +2769,17 @@ block|}
 block|)
 block|)
 empty_stmt|;
+block|}
+finally|finally
+block|{
+name|MDC
+operator|.
+name|remove
+argument_list|(
+literal|"CloudSolrClient.url"
+argument_list|)
+expr_stmt|;
+block|}
 block|}
 for|for
 control|(

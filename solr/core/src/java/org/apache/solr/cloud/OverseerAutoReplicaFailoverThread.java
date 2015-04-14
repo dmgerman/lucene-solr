@@ -242,6 +242,16 @@ end_import
 
 begin_import
 import|import
+name|org
+operator|.
+name|slf4j
+operator|.
+name|MDC
+import|;
+end_import
+
+begin_import
+import|import
 name|java
 operator|.
 name|io
@@ -1339,6 +1349,17 @@ argument_list|,
 name|createUrl
 argument_list|)
 expr_stmt|;
+name|MDC
+operator|.
+name|put
+argument_list|(
+literal|"OverseerAutoReplicaFailoverThread.createUrl"
+argument_list|,
+name|createUrl
+argument_list|)
+expr_stmt|;
+try|try
+block|{
 name|updateExecutor
 operator|.
 name|submit
@@ -1377,6 +1398,17 @@ block|}
 block|}
 argument_list|)
 expr_stmt|;
+block|}
+finally|finally
+block|{
+name|MDC
+operator|.
+name|remove
+argument_list|(
+literal|"OverseerAutoReplicaFailoverThread.createUrl"
+argument_list|)
+expr_stmt|;
+block|}
 comment|// wait to see state for core we just created
 name|boolean
 name|success

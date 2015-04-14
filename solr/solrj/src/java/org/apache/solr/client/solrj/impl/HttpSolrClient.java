@@ -640,6 +640,16 @@ end_import
 
 begin_import
 import|import
+name|org
+operator|.
+name|slf4j
+operator|.
+name|MDC
+import|;
+end_import
+
+begin_import
+import|import
 name|java
 operator|.
 name|io
@@ -1430,6 +1440,15 @@ argument_list|)
 decl_stmt|;
 try|try
 block|{
+name|MDC
+operator|.
+name|put
+argument_list|(
+literal|"HttpSolrClient.url"
+argument_list|,
+name|baseUrl
+argument_list|)
+expr_stmt|;
 name|mrr
 operator|.
 name|future
@@ -1479,6 +1498,13 @@ name|pool
 operator|.
 name|shutdown
 argument_list|()
+expr_stmt|;
+name|MDC
+operator|.
+name|remove
+argument_list|(
+literal|"HttpSolrClient.url"
+argument_list|)
 expr_stmt|;
 block|}
 assert|assert

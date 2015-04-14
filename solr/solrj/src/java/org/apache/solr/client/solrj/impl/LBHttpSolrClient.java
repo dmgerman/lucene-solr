@@ -200,6 +200,16 @@ end_import
 
 begin_import
 import|import
+name|org
+operator|.
+name|slf4j
+operator|.
+name|MDC
+import|;
+end_import
+
+begin_import
+import|import
 name|java
 operator|.
 name|io
@@ -1333,6 +1343,17 @@ name|server
 operator|=
 name|serverStr
 expr_stmt|;
+try|try
+block|{
+name|MDC
+operator|.
+name|put
+argument_list|(
+literal|"LBHttpSolrClient.url"
+argument_list|,
+name|serverStr
+argument_list|)
+expr_stmt|;
 name|HttpSolrClient
 name|client
 init|=
@@ -1369,6 +1390,17 @@ return|return
 name|rsp
 return|;
 comment|// SUCCESS
+block|}
+block|}
+finally|finally
+block|{
+name|MDC
+operator|.
+name|remove
+argument_list|(
+literal|"LBHttpSolrClient.url"
+argument_list|)
+expr_stmt|;
 block|}
 block|}
 comment|// try the servers we previously skipped
