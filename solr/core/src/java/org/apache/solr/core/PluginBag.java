@@ -2087,9 +2087,23 @@ name|solrException
 operator|!=
 literal|null
 condition|)
+block|{
 throw|throw
+operator|new
+name|SolrException
+argument_list|(
+name|SolrException
+operator|.
+name|ErrorCode
+operator|.
+name|SERVER_ERROR
+argument_list|,
+literal|"Unrecoverable error"
+argument_list|,
 name|solrException
+argument_list|)
 throw|;
+block|}
 if|if
 condition|(
 name|createInst
