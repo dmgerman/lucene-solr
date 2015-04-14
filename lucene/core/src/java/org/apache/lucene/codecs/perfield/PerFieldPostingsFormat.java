@@ -1120,6 +1120,12 @@ name|HashMap
 argument_list|<>
 argument_list|()
 decl_stmt|;
+DECL|field|segment
+specifier|private
+specifier|final
+name|String
+name|segment
+decl_stmt|;
 comment|// clone for merge
 DECL|method|FieldsReader
 name|FieldsReader
@@ -1252,6 +1258,12 @@ name|producer
 argument_list|)
 expr_stmt|;
 block|}
+name|segment
+operator|=
+name|other
+operator|.
+name|segment
+expr_stmt|;
 block|}
 DECL|method|FieldsReader
 specifier|public
@@ -1448,6 +1460,16 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
+name|this
+operator|.
+name|segment
+operator|=
+name|readState
+operator|.
+name|segmentInfo
+operator|.
+name|name
+expr_stmt|;
 block|}
 annotation|@
 name|Override
@@ -1698,7 +1720,11 @@ name|toString
 parameter_list|()
 block|{
 return|return
-literal|"PerFieldPostings(formats="
+literal|"PerFieldPostings(segment="
+operator|+
+name|segment
+operator|+
+literal|" formats="
 operator|+
 name|formats
 operator|.

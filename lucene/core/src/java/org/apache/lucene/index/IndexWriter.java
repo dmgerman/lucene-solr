@@ -717,6 +717,20 @@ name|MAX_VALUE
 operator|-
 literal|128
 decl_stmt|;
+comment|/** Maximum value of the token position in an indexed field. */
+DECL|field|MAX_POSITION
+specifier|public
+specifier|static
+specifier|final
+name|int
+name|MAX_POSITION
+init|=
+name|Integer
+operator|.
+name|MAX_VALUE
+operator|-
+literal|128
+decl_stmt|;
 comment|// Use package-private instance var to enforce the limit so testing
 comment|// can use less electricity:
 DECL|field|actualMaxDocs

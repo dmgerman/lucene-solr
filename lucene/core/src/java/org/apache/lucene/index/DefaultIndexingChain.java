@@ -2971,6 +2971,8 @@ literal|"'"
 argument_list|)
 throw|;
 block|}
+else|else
+block|{
 throw|throw
 operator|new
 name|IllegalArgumentException
@@ -2987,6 +2989,44 @@ name|name
 argument_list|()
 operator|+
 literal|"'"
+argument_list|)
+throw|;
+block|}
+block|}
+elseif|else
+if|if
+condition|(
+name|invertState
+operator|.
+name|position
+operator|>
+name|IndexWriter
+operator|.
+name|MAX_POSITION
+condition|)
+block|{
+throw|throw
+operator|new
+name|IllegalArgumentException
+argument_list|(
+literal|"position "
+operator|+
+name|invertState
+operator|.
+name|position
+operator|+
+literal|" is too large for field '"
+operator|+
+name|field
+operator|.
+name|name
+argument_list|()
+operator|+
+literal|"': max allowed position is "
+operator|+
+name|IndexWriter
+operator|.
+name|MAX_POSITION
 argument_list|)
 throw|;
 block|}

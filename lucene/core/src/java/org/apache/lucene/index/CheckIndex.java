@@ -6469,6 +6469,39 @@ block|}
 if|if
 condition|(
 name|pos
+operator|>
+name|IndexWriter
+operator|.
+name|MAX_POSITION
+condition|)
+block|{
+throw|throw
+operator|new
+name|RuntimeException
+argument_list|(
+literal|"term "
+operator|+
+name|term
+operator|+
+literal|": doc "
+operator|+
+name|doc
+operator|+
+literal|": pos "
+operator|+
+name|pos
+operator|+
+literal|"> IndexWriter.MAX_POSITION="
+operator|+
+name|IndexWriter
+operator|.
+name|MAX_POSITION
+argument_list|)
+throw|;
+block|}
+if|if
+condition|(
+name|pos
 operator|<
 name|lastPos
 condition|)

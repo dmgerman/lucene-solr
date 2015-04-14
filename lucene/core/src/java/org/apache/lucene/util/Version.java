@@ -700,7 +700,6 @@ comment|/** Returns a new version based on raw numbers    *    *  @lucene.intern
 DECL|method|fromBits
 specifier|public
 specifier|static
-specifier|final
 name|Version
 name|fromBits
 parameter_list|(
