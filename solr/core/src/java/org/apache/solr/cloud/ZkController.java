@@ -1669,6 +1669,15 @@ argument_list|,
 name|localHostContext
 argument_list|)
 expr_stmt|;
+name|MDC
+operator|.
+name|put
+argument_list|(
+name|NODE_NAME_PROP
+argument_list|,
+name|nodeName
+argument_list|)
+expr_stmt|;
 name|this
 operator|.
 name|leaderVoteWait
