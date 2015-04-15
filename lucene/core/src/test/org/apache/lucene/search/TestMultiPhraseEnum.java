@@ -562,6 +562,13 @@ argument_list|(
 name|doc
 argument_list|)
 expr_stmt|;
+name|writer
+operator|.
+name|forceMerge
+argument_list|(
+literal|1
+argument_list|)
+expr_stmt|;
 name|DirectoryReader
 name|ir
 init|=
