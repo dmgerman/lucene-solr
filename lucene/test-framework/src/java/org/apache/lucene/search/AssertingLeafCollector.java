@@ -143,7 +143,7 @@ name|setScorer
 argument_list|(
 name|AssertingScorer
 operator|.
-name|getAssertingScorer
+name|wrap
 argument_list|(
 name|random
 argument_list|,

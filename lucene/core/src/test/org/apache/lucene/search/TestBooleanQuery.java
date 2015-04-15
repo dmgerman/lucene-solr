@@ -4454,11 +4454,14 @@ operator|.
 name|getReader
 argument_list|()
 decl_stmt|;
+comment|// not LuceneTestCase.newSearcher to not have the asserting wrappers
+comment|// and do instanceof checks
 specifier|final
 name|IndexSearcher
 name|searcher
 init|=
-name|newSearcher
+operator|new
+name|IndexSearcher
 argument_list|(
 name|reader
 argument_list|)
@@ -4926,11 +4929,14 @@ operator|.
 name|getReader
 argument_list|()
 decl_stmt|;
+comment|// not LuceneTestCase.newSearcher to not have the asserting wrappers
+comment|// and do instanceof checks
 specifier|final
 name|IndexSearcher
 name|searcher
 init|=
-name|newSearcher
+operator|new
+name|IndexSearcher
 argument_list|(
 name|reader
 argument_list|)
