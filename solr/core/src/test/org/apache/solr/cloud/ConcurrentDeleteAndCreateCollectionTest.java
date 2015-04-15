@@ -244,7 +244,7 @@ name|solrXml
 init|=
 name|getFile
 argument_list|(
-literal|"solrj"
+literal|"solr"
 argument_list|)
 operator|.
 name|toPath
@@ -252,7 +252,7 @@ argument_list|()
 operator|.
 name|resolve
 argument_list|(
-literal|"solr/solr.xml"
+literal|"solr.xml"
 argument_list|)
 operator|.
 name|toFile
@@ -315,7 +315,7 @@ name|configDir
 init|=
 name|getFile
 argument_list|(
-literal|"solrj"
+literal|"solr"
 argument_list|)
 operator|.
 name|toPath
@@ -323,7 +323,7 @@ argument_list|()
 operator|.
 name|resolve
 argument_list|(
-literal|"solr/configsets/configset-2/conf"
+literal|"configsets/configset-2/conf"
 argument_list|)
 operator|.
 name|toFile
