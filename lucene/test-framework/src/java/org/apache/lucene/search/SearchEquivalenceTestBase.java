@@ -1545,6 +1545,18 @@ argument_list|)
 decl_stmt|;
 name|assertTrue
 argument_list|(
+literal|"too many hits: "
+operator|+
+name|td1
+operator|.
+name|totalHits
+operator|+
+literal|"> "
+operator|+
+name|td2
+operator|.
+name|totalHits
+argument_list|,
 name|td1
 operator|.
 name|totalHits
