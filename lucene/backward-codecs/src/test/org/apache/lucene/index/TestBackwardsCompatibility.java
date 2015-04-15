@@ -1565,6 +1565,10 @@ block|{
 literal|"5.0.0-cfs"
 block|,
 literal|"5.0.0-nocfs"
+block|,
+literal|"5.1.0-cfs"
+block|,
+literal|"5.1.0-nocfs"
 block|}
 decl_stmt|;
 DECL|field|unsupportedNames
