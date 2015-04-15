@@ -753,7 +753,7 @@ import|;
 end_import
 
 begin_comment
-comment|/*   Verify we can read the pre-5.0 file format, do searches   against it, and add documents to it. */
+comment|/*   Verify we can read previous versions' indexes, do searches   against them, and add documents to them. */
 end_comment
 
 begin_class
@@ -764,6 +764,16 @@ name|TestBackwardsCompatibility
 extends|extends
 name|LuceneTestCase
 block|{
+comment|// Backcompat index generation, described below, is mostly automated in:
+comment|//
+comment|//    dev-tools/scripts/addBackCompatIndexes.py
+comment|//
+comment|// For usage information, see:
+comment|//
+comment|//    http://wiki.apache.org/lucene-java/ReleaseTodo#Generate_Backcompat_Indexes
+comment|//
+comment|// -----
+comment|//
 comment|// To generate backcompat indexes with the current default codec, run the following ant command:
 comment|//  ant test -Dtestcase=TestBackwardsCompatibility -Dtests.bwcdir=/path/to/store/indexes
 comment|//           -Dtests.codec=default -Dtests.useSecurityManager=false
