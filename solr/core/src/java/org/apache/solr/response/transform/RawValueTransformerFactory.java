@@ -689,42 +689,13 @@ parameter_list|)
 throws|throws
 name|IOException
 block|{
-name|String
-name|str
-init|=
-literal|null
-decl_stmt|;
-if|if
-condition|(
-name|val
-operator|instanceof
-name|IndexableField
-condition|)
-block|{
-comment|// delays holding it in memory
-name|str
-operator|=
-operator|(
-operator|(
-name|IndexableField
-operator|)
-name|val
-operator|)
-operator|.
-name|stringValue
-argument_list|()
-expr_stmt|;
-block|}
-else|else
-block|{
-name|str
-operator|=
-name|val
-operator|.
-name|toString
-argument_list|()
-expr_stmt|;
-block|}
+comment|//      String str = null;
+comment|//      if(val instanceof IndexableField) { // delays holding it in memory
+comment|//        str = ((IndexableField)val).stringValue();
+comment|//      }
+comment|//      else {
+comment|//        str = val.toString();
+comment|//      }
 name|writer
 operator|.
 name|getWriter
@@ -732,7 +703,10 @@ argument_list|()
 operator|.
 name|write
 argument_list|(
-name|str
+name|val
+operator|.
+name|toString
+argument_list|()
 argument_list|)
 expr_stmt|;
 block|}
