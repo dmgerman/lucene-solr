@@ -68,6 +68,20 @@ name|org
 operator|.
 name|apache
 operator|.
+name|lucene
+operator|.
+name|index
+operator|.
+name|StorableField
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
 name|solr
 operator|.
 name|common
@@ -689,13 +703,42 @@ parameter_list|)
 throws|throws
 name|IOException
 block|{
-comment|//      String str = null;
-comment|//      if(val instanceof IndexableField) { // delays holding it in memory
-comment|//        str = ((IndexableField)val).stringValue();
-comment|//      }
-comment|//      else {
-comment|//        str = val.toString();
-comment|//      }
+name|String
+name|str
+init|=
+literal|null
+decl_stmt|;
+if|if
+condition|(
+name|val
+operator|instanceof
+name|StorableField
+condition|)
+block|{
+comment|// delays holding it in memory
+name|str
+operator|=
+operator|(
+operator|(
+name|StorableField
+operator|)
+name|val
+operator|)
+operator|.
+name|stringValue
+argument_list|()
+expr_stmt|;
+block|}
+else|else
+block|{
+name|str
+operator|=
+name|val
+operator|.
+name|toString
+argument_list|()
+expr_stmt|;
+block|}
 name|writer
 operator|.
 name|getWriter
@@ -703,10 +746,7 @@ argument_list|()
 operator|.
 name|write
 argument_list|(
-name|val
-operator|.
-name|toString
-argument_list|()
+name|str
 argument_list|)
 expr_stmt|;
 block|}
