@@ -702,6 +702,50 @@ name|Integer
 operator|.
 name|MAX_VALUE
 decl_stmt|;
+DECL|method|TestAutoPrefixTerms
+specifier|public
+name|TestAutoPrefixTerms
+parameter_list|()
+block|{
+if|if
+condition|(
+name|LuceneTestCase
+operator|.
+name|VERBOSE
+condition|)
+block|{
+name|System
+operator|.
+name|out
+operator|.
+name|println
+argument_list|(
+literal|"TEST: using minItemsPerBlock="
+operator|+
+name|minItemsPerBlock
+operator|+
+literal|" maxItemsPerBlock="
+operator|+
+name|maxItemsPerBlock
+argument_list|)
+expr_stmt|;
+name|System
+operator|.
+name|out
+operator|.
+name|println
+argument_list|(
+literal|"TEST: using minTermsAutoPrefix="
+operator|+
+name|minTermsAutoPrefix
+operator|+
+literal|" maxTermsAutoPrefix="
+operator|+
+name|maxTermsAutoPrefix
+argument_list|)
+expr_stmt|;
+block|}
+block|}
 DECL|field|codec
 specifier|private
 specifier|final
@@ -4248,11 +4292,33 @@ operator|==
 literal|1
 condition|)
 block|{
-comment|// Simple prefix query: we should never see more than maxPrefixCount terms:
+comment|// Simple prefix query: we should never see more than maxPrefixCount terms, except for the empty string:
+if|if
+condition|(
+name|bounds
+index|[
+literal|0
+index|]
+operator|.
+name|length
+operator|==
+literal|0
+condition|)
+block|{
+name|allowedMaxTerms
+operator|=
+name|Integer
+operator|.
+name|MAX_VALUE
+expr_stmt|;
+block|}
+else|else
+block|{
 name|allowedMaxTerms
 operator|=
 name|maxPrefixCount
 expr_stmt|;
+block|}
 block|}
 else|else
 block|{
