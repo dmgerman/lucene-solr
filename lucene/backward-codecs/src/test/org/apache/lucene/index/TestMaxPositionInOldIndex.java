@@ -207,6 +207,29 @@ argument_list|)
 expr_stmt|;
 block|}
 comment|// Also confirm merging detects this:
+name|IndexWriterConfig
+name|iwc
+init|=
+name|newIndexWriterConfig
+argument_list|()
+decl_stmt|;
+name|iwc
+operator|.
+name|setMergeScheduler
+argument_list|(
+operator|new
+name|SerialMergeScheduler
+argument_list|()
+argument_list|)
+expr_stmt|;
+name|iwc
+operator|.
+name|setMergePolicy
+argument_list|(
+name|newLogMergePolicy
+argument_list|()
+argument_list|)
+expr_stmt|;
 name|IndexWriter
 name|w
 init|=
@@ -215,15 +238,7 @@ name|IndexWriter
 argument_list|(
 name|dir
 argument_list|,
-name|newIndexWriterConfig
-argument_list|()
-operator|.
-name|setMergeScheduler
-argument_list|(
-operator|new
-name|SerialMergeScheduler
-argument_list|()
-argument_list|)
+name|iwc
 argument_list|)
 decl_stmt|;
 name|w
@@ -254,6 +269,13 @@ block|{
 comment|// SerialMergeScheduler
 name|assertTrue
 argument_list|(
+literal|"got message "
+operator|+
+name|cie
+operator|.
+name|getMessage
+argument_list|()
+argument_list|,
 name|cie
 operator|.
 name|getMessage
