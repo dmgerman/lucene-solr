@@ -38,6 +38,16 @@ end_import
 
 begin_import
 import|import
+name|java
+operator|.
+name|util
+operator|.
+name|Objects
+import|;
+end_import
+
+begin_import
+import|import
 name|org
 operator|.
 name|apache
@@ -335,7 +345,14 @@ name|this
 operator|.
 name|dataType
 operator|=
+name|Objects
+operator|.
+name|requireNonNull
+argument_list|(
 name|dataType
+argument_list|,
+literal|"NumericType must not be null"
+argument_list|)
 expr_stmt|;
 name|this
 operator|.

@@ -18,6 +18,16 @@ end_comment
 
 begin_import
 import|import
+name|java
+operator|.
+name|util
+operator|.
+name|Objects
+import|;
+end_import
+
+begin_import
+import|import
 name|org
 operator|.
 name|apache
@@ -102,24 +112,18 @@ argument_list|(
 name|innerSet
 argument_list|)
 expr_stmt|;
-if|if
-condition|(
-name|acceptDocs
-operator|==
-literal|null
-condition|)
-throw|throw
-operator|new
-name|NullPointerException
-argument_list|(
-literal|"acceptDocs is null"
-argument_list|)
-throw|;
 name|this
 operator|.
 name|acceptDocs
 operator|=
+name|Objects
+operator|.
+name|requireNonNull
+argument_list|(
 name|acceptDocs
+argument_list|,
+literal|"Bits must not be null"
+argument_list|)
 expr_stmt|;
 block|}
 annotation|@

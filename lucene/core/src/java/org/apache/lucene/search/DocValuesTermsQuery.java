@@ -242,6 +242,15 @@ argument_list|(
 name|field
 argument_list|)
 expr_stmt|;
+name|Objects
+operator|.
+name|requireNonNull
+argument_list|(
+name|terms
+argument_list|,
+literal|"Collection of terms must not be null"
+argument_list|)
+expr_stmt|;
 name|this
 operator|.
 name|terms

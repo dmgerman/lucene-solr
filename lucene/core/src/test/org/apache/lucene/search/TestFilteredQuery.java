@@ -2860,14 +2860,14 @@ argument_list|)
 expr_stmt|;
 name|fail
 argument_list|(
-literal|"Should throw IllegalArgumentException"
+literal|"Should throw NullPointerException"
 argument_list|)
 expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
-name|IllegalArgumentException
-name|iae
+name|NullPointerException
+name|npe
 parameter_list|)
 block|{
 comment|// pass
@@ -2894,14 +2894,14 @@ argument_list|)
 expr_stmt|;
 name|fail
 argument_list|(
-literal|"Should throw IllegalArgumentException"
+literal|"Should throw NullPointerException"
 argument_list|)
 expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
-name|IllegalArgumentException
-name|iae
+name|NullPointerException
+name|npe
 parameter_list|)
 block|{
 comment|// pass
@@ -2932,14 +2932,14 @@ argument_list|)
 expr_stmt|;
 name|fail
 argument_list|(
-literal|"Should throw IllegalArgumentException"
+literal|"Should throw NullPointerException"
 argument_list|)
 expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
-name|IllegalArgumentException
-name|iae
+name|NullPointerException
+name|npe
 parameter_list|)
 block|{
 comment|// pass

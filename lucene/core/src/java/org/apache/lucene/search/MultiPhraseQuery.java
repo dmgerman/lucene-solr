@@ -459,6 +459,15 @@ name|int
 name|position
 parameter_list|)
 block|{
+name|Objects
+operator|.
+name|requireNonNull
+argument_list|(
+name|terms
+argument_list|,
+literal|"Term array must not be null"
+argument_list|)
+expr_stmt|;
 if|if
 condition|(
 name|termArrays

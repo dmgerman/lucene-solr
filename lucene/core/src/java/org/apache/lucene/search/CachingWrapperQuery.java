@@ -82,6 +82,16 @@ name|java
 operator|.
 name|util
 operator|.
+name|Objects
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
+name|util
+operator|.
 name|Set
 import|;
 end_import
@@ -275,13 +285,27 @@ name|this
 operator|.
 name|query
 operator|=
+name|Objects
+operator|.
+name|requireNonNull
+argument_list|(
 name|query
+argument_list|,
+literal|"Query must not be null"
+argument_list|)
 expr_stmt|;
 name|this
 operator|.
 name|policy
 operator|=
+name|Objects
+operator|.
+name|requireNonNull
+argument_list|(
 name|policy
+argument_list|,
+literal|"QueryCachingPolicy must not be null"
+argument_list|)
 expr_stmt|;
 block|}
 comment|/** Same as {@link CachingWrapperQuery#CachingWrapperQuery(Query, QueryCachingPolicy)}    *  but enforces the use of the    *  {@link QueryCachingPolicy.CacheOnLargeSegments#DEFAULT} policy. */
