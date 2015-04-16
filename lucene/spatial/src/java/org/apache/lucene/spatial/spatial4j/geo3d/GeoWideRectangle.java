@@ -487,6 +487,23 @@ argument_list|(
 name|middleLat
 argument_list|)
 expr_stmt|;
+comment|// Normalize
+while|while
+condition|(
+name|leftLon
+operator|>
+name|rightLon
+condition|)
+block|{
+name|rightLon
+operator|+=
+name|Math
+operator|.
+name|PI
+operator|*
+literal|2.0
+expr_stmt|;
+block|}
 name|double
 name|middleLon
 init|=
@@ -1013,85 +1030,6 @@ name|GeoShape
 name|path
 parameter_list|)
 block|{
-comment|// There are many cases here.  I'll go through them in order
-name|boolean
-name|ulhcWithin
-init|=
-name|path
-operator|.
-name|isWithin
-argument_list|(
-name|ULHC
-argument_list|)
-decl_stmt|;
-name|boolean
-name|urhcWithin
-init|=
-name|path
-operator|.
-name|isWithin
-argument_list|(
-name|URHC
-argument_list|)
-decl_stmt|;
-name|boolean
-name|lrhcWithin
-init|=
-name|path
-operator|.
-name|isWithin
-argument_list|(
-name|LRHC
-argument_list|)
-decl_stmt|;
-name|boolean
-name|llhcWithin
-init|=
-name|path
-operator|.
-name|isWithin
-argument_list|(
-name|LLHC
-argument_list|)
-decl_stmt|;
-comment|// If there are some that are in, and some that are out, we've got overlap.  Otherwise, things are different.
-if|if
-condition|(
-name|ulhcWithin
-operator|&&
-name|urhcWithin
-operator|&&
-name|lrhcWithin
-operator|&&
-name|llhcWithin
-condition|)
-block|{
-comment|// It's not precisely correct, but at this point we CHOOSE to claim that the entire rectangle is within the path.
-comment|// This in practice will mean that we generate more geotokens than are strictly needed, but otherwise this case
-comment|// would be expensive to disentangle.
-return|return
-name|CONTAINS
-return|;
-block|}
-if|if
-condition|(
-name|ulhcWithin
-operator|||
-name|urhcWithin
-operator|||
-name|lrhcWithin
-operator|||
-name|llhcWithin
-condition|)
-block|{
-comment|// Some are in, some are out: definite overlap
-return|return
-name|OVERLAPS
-return|;
-block|}
-comment|// All rectangle endpoints are outside the path.  The three possible cases are WITHIN, OVERLAPS, and DISJOINT.
-comment|// The only way to distinguish between them is to look at whether any of the four rectangle sides intersect
-comment|// the path edges.  If there is no intersection, AND any path point is within the rectangle, THEN return WITHIN.
 if|if
 condition|(
 name|path
@@ -1153,6 +1091,18 @@ argument_list|)
 condition|)
 return|return
 name|WITHIN
+return|;
+if|if
+condition|(
+name|path
+operator|.
+name|isWithin
+argument_list|(
+name|centerPoint
+argument_list|)
+condition|)
+return|return
+name|CONTAINS
 return|;
 return|return
 name|DISJOINT

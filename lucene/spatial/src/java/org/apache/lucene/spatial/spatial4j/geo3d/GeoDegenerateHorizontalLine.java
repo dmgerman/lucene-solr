@@ -331,6 +331,23 @@ argument_list|(
 name|sinLatitude
 argument_list|)
 expr_stmt|;
+comment|// Normalize
+while|while
+condition|(
+name|leftLon
+operator|>
+name|rightLon
+condition|)
+block|{
+name|rightLon
+operator|+=
+name|Math
+operator|.
+name|PI
+operator|*
+literal|2.0
+expr_stmt|;
+block|}
 name|double
 name|middleLon
 init|=

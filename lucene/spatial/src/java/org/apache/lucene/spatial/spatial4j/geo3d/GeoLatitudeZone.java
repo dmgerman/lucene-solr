@@ -162,33 +162,9 @@ argument_list|,
 name|sinBottomLat
 argument_list|)
 decl_stmt|;
-name|this
-operator|.
-name|topPlane
-operator|=
-operator|new
-name|SidedPlane
-argument_list|(
-name|bottomPoint
-argument_list|,
-name|sinTopLat
-argument_list|)
-expr_stmt|;
-name|this
-operator|.
-name|bottomPlane
-operator|=
-operator|new
-name|SidedPlane
-argument_list|(
-name|topPoint
-argument_list|,
-name|sinBottomLat
-argument_list|)
-expr_stmt|;
 comment|// Compute an interior point.  Pick one whose lat is between top and bottom.
 name|double
-name|sinMiddleLat
+name|middleLat
 init|=
 operator|(
 name|topLat
@@ -197,6 +173,16 @@ name|bottomLat
 operator|)
 operator|*
 literal|0.5
+decl_stmt|;
+name|double
+name|sinMiddleLat
+init|=
+name|Math
+operator|.
+name|sin
+argument_list|(
+name|middleLat
+argument_list|)
 decl_stmt|;
 name|interiorPoint
 operator|=
@@ -217,6 +203,30 @@ argument_list|,
 literal|0.0
 argument_list|,
 name|sinMiddleLat
+argument_list|)
+expr_stmt|;
+name|this
+operator|.
+name|topPlane
+operator|=
+operator|new
+name|SidedPlane
+argument_list|(
+name|interiorPoint
+argument_list|,
+name|sinTopLat
+argument_list|)
+expr_stmt|;
+name|this
+operator|.
+name|bottomPlane
+operator|=
+operator|new
+name|SidedPlane
+argument_list|(
+name|interiorPoint
+argument_list|,
+name|sinBottomLat
 argument_list|)
 expr_stmt|;
 block|}
@@ -486,9 +496,6 @@ name|GeoShape
 name|path
 parameter_list|)
 block|{
-comment|// First observation: The only way you can draw a path that
-comment|// contains this area is to have an unbounded path that circles the globe.
-comment|// So we will never return CONTAINS.
 comment|// Second, the shortcut of seeing whether endpoints are in/out is not going to
 comment|// work with no area endpoints.  So we rely entirely on intersections.
 if|if
@@ -513,6 +520,18 @@ argument_list|)
 condition|)
 return|return
 name|OVERLAPS
+return|;
+if|if
+condition|(
+name|path
+operator|.
+name|isWithin
+argument_list|(
+name|interiorPoint
+argument_list|)
+condition|)
+return|return
+name|CONTAINS
 return|;
 if|if
 condition|(

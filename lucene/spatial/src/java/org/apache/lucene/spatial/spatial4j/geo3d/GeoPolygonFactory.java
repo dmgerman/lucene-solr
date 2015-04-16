@@ -535,6 +535,29 @@ literal|1
 argument_list|)
 argument_list|)
 expr_stmt|;
+if|if
+condition|(
+name|recursionList
+operator|.
+name|size
+argument_list|()
+operator|==
+name|pointsList
+operator|.
+name|size
+argument_list|()
+condition|)
+block|{
+comment|// We are trying to recurse with a list the same size as the one we started with.
+comment|// Clearly, the polygon cannot be constructed
+throw|throw
+operator|new
+name|IllegalArgumentException
+argument_list|(
+literal|"Polygon is illegal; cannot be decomposed into convex parts"
+argument_list|)
+throw|;
+block|}
 comment|// We want the other side for the recursion
 name|SidedPlane
 name|otherSideNewBoundary
@@ -654,6 +677,29 @@ literal|1
 argument_list|)
 argument_list|)
 expr_stmt|;
+if|if
+condition|(
+name|recursionList
+operator|.
+name|size
+argument_list|()
+operator|==
+name|pointsList
+operator|.
+name|size
+argument_list|()
+condition|)
+block|{
+comment|// We are trying to recurse with a list the same size as the one we started with.
+comment|// Clearly, the polygon cannot be constructed
+throw|throw
+operator|new
+name|IllegalArgumentException
+argument_list|(
+literal|"Polygon is illegal; cannot be decomposed into convex parts"
+argument_list|)
+throw|;
+block|}
 comment|// Construct a sided plane based on these two points, and the previous point
 name|SidedPlane
 name|newBoundary

@@ -209,6 +209,23 @@ argument_list|(
 name|rightLon
 argument_list|)
 decl_stmt|;
+comment|// Normalize
+while|while
+condition|(
+name|leftLon
+operator|>
+name|rightLon
+condition|)
+block|{
+name|rightLon
+operator|+=
+name|Math
+operator|.
+name|PI
+operator|*
+literal|2.0
+expr_stmt|;
+block|}
 name|double
 name|middleLon
 init|=
@@ -579,47 +596,6 @@ name|GeoShape
 name|path
 parameter_list|)
 block|{
-comment|// It's possible to contain this area.  The way we do this is to
-comment|// see whether the shape contains both the north and south poles.  If it does,
-comment|// we make the assumption that it contains the entire shape (which is
-comment|// a convenient approximation that, at worst, increases our computation).
-if|if
-condition|(
-name|path
-operator|.
-name|isWithin
-argument_list|(
-literal|0.0
-argument_list|,
-literal|0.0
-argument_list|,
-name|Math
-operator|.
-name|PI
-operator|*
-literal|0.5
-argument_list|)
-operator|&&
-name|path
-operator|.
-name|isWithin
-argument_list|(
-literal|0.0
-argument_list|,
-literal|0.0
-argument_list|,
-operator|-
-name|Math
-operator|.
-name|PI
-operator|*
-literal|0.5
-argument_list|)
-condition|)
-return|return
-name|CONTAINS
-return|;
-comment|// Next, look for intersections.  No bounds because it is a wide variant.
 if|if
 condition|(
 name|path
@@ -651,6 +627,18 @@ argument_list|)
 condition|)
 return|return
 name|WITHIN
+return|;
+if|if
+condition|(
+name|path
+operator|.
+name|isWithin
+argument_list|(
+name|centerPoint
+argument_list|)
+condition|)
+return|return
+name|CONTAINS
 return|;
 return|return
 name|DISJOINT

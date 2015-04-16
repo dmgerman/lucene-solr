@@ -354,6 +354,29 @@ name|se
 argument_list|)
 expr_stmt|;
 block|}
+DECL|method|done
+specifier|public
+name|void
+name|done
+parameter_list|()
+block|{
+if|if
+condition|(
+name|points
+operator|.
+name|size
+argument_list|()
+operator|==
+literal|0
+condition|)
+throw|throw
+operator|new
+name|IllegalArgumentException
+argument_list|(
+literal|"Path must have at least one point"
+argument_list|)
+throw|;
+block|}
 comment|/** Compute an estimate of "distance" to the GeoPoint.     * A return value of Double.MAX_VALUE should be returned for     * points outside of the shape.     */
 annotation|@
 name|Override
