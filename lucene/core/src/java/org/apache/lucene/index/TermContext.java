@@ -126,6 +126,10 @@ name|docFreq
 operator|=
 literal|0
 expr_stmt|;
+name|totalTermFreq
+operator|=
+literal|0
+expr_stmt|;
 specifier|final
 name|int
 name|len
@@ -361,6 +365,10 @@ name|docFreq
 operator|=
 literal|0
 expr_stmt|;
+name|totalTermFreq
+operator|=
+literal|0
+expr_stmt|;
 name|Arrays
 operator|.
 name|fill
@@ -514,23 +522,6 @@ block|{
 return|return
 name|totalTermFreq
 return|;
-block|}
-comment|/** expert: only available for queries that want to lie about docfreq    * @lucene.internal */
-DECL|method|setDocFreq
-specifier|public
-name|void
-name|setDocFreq
-parameter_list|(
-name|int
-name|docFreq
-parameter_list|)
-block|{
-name|this
-operator|.
-name|docFreq
-operator|=
-name|docFreq
-expr_stmt|;
 block|}
 comment|/** Returns true if all terms stored here are real (e.g., not auto-prefix terms).    *    *  @lucene.internal */
 DECL|method|hasOnlyRealTerms
