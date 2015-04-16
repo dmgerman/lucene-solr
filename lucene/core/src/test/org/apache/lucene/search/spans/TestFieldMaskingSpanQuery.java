@@ -1131,6 +1131,13 @@ argument_list|()
 decl_stmt|;
 name|qr
 operator|.
+name|createWeight
+argument_list|(
+name|searcher
+argument_list|,
+literal|true
+argument_list|)
+operator|.
 name|extractTerms
 argument_list|(
 name|set

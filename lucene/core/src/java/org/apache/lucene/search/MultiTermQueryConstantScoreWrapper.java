@@ -318,22 +318,6 @@ argument_list|()
 argument_list|)
 return|;
 block|}
-annotation|@
-name|Override
-DECL|method|extractTerms
-specifier|public
-name|void
-name|extractTerms
-parameter_list|(
-name|Set
-argument_list|<
-name|Term
-argument_list|>
-name|terms
-parameter_list|)
-block|{
-comment|// no-op
-block|}
 comment|/** Returns the field name for this query */
 DECL|method|getField
 specifier|public

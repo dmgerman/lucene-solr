@@ -420,20 +420,6 @@ return|return
 name|this
 return|;
 block|}
-annotation|@
-name|Override
-DECL|method|extractTerms
-specifier|public
-name|void
-name|extractTerms
-parameter_list|(
-name|Set
-name|terms
-parameter_list|)
-block|{
-comment|// OK to not add any terms when used for MultiSearcher,
-comment|// but may not be OK for highlighting
-block|}
 DECL|class|ConstantWeight
 specifier|protected
 class|class
@@ -504,6 +490,31 @@ argument_list|,
 name|searcher
 argument_list|)
 expr_stmt|;
+block|}
+annotation|@
+name|Override
+DECL|method|extractTerms
+specifier|public
+name|void
+name|extractTerms
+parameter_list|(
+name|Set
+argument_list|<
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|index
+operator|.
+name|Term
+argument_list|>
+name|terms
+parameter_list|)
+block|{
+comment|// OK to not add any terms when used for MultiSearcher,
+comment|// but may not be OK for highlighting
 block|}
 annotation|@
 name|Override

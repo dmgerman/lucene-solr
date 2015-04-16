@@ -28,16 +28,6 @@ end_import
 
 begin_import
 import|import
-name|java
-operator|.
-name|util
-operator|.
-name|Set
-import|;
-end_import
-
-begin_import
-import|import
 name|org
 operator|.
 name|apache
@@ -47,20 +37,6 @@ operator|.
 name|index
 operator|.
 name|IndexReader
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|index
-operator|.
-name|Term
 import|;
 end_import
 
@@ -181,32 +157,6 @@ block|{
 return|return
 name|this
 return|;
-block|}
-comment|/**    * Expert: adds all terms occurring in this query to the terms set. Only    * works if this query is in its {@link #rewrite rewritten} form.    *     * @throws UnsupportedOperationException if this query is not yet rewritten    */
-DECL|method|extractTerms
-specifier|public
-name|void
-name|extractTerms
-parameter_list|(
-name|Set
-argument_list|<
-name|Term
-argument_list|>
-name|terms
-parameter_list|)
-block|{
-comment|// needs to be implemented by query subclasses
-throw|throw
-operator|new
-name|UnsupportedOperationException
-argument_list|(
-name|getClass
-argument_list|()
-operator|.
-name|getName
-argument_list|()
-argument_list|)
-throw|;
 block|}
 comment|/** Returns a clone of this query. */
 annotation|@

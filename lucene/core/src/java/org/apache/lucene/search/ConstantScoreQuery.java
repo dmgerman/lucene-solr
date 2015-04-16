@@ -252,41 +252,6 @@ return|return
 name|this
 return|;
 block|}
-annotation|@
-name|Override
-DECL|method|extractTerms
-specifier|public
-name|void
-name|extractTerms
-parameter_list|(
-name|Set
-argument_list|<
-name|Term
-argument_list|>
-name|terms
-parameter_list|)
-block|{
-comment|// NOTE: ConstantScoreQuery used to wrap either a query or a filter. Now
-comment|// that filter extends Query, we need to only extract terms when the query
-comment|// is not a filter if we do not want to hit an UnsupportedOperationException
-if|if
-condition|(
-name|query
-operator|instanceof
-name|Filter
-operator|==
-literal|false
-condition|)
-block|{
-name|query
-operator|.
-name|extractTerms
-argument_list|(
-name|terms
-argument_list|)
-expr_stmt|;
-block|}
-block|}
 DECL|class|ConstantWeight
 specifier|protected
 class|class
@@ -333,6 +298,22 @@ name|innerWeight
 operator|=
 name|innerWeight
 expr_stmt|;
+block|}
+annotation|@
+name|Override
+DECL|method|extractTerms
+specifier|public
+name|void
+name|extractTerms
+parameter_list|(
+name|Set
+argument_list|<
+name|Term
+argument_list|>
+name|terms
+parameter_list|)
+block|{
+comment|// no-op
 block|}
 annotation|@
 name|Override

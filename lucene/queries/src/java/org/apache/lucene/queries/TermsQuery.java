@@ -1418,25 +1418,6 @@ name|emptyList
 argument_list|()
 return|;
 block|}
-annotation|@
-name|Override
-DECL|method|extractTerms
-specifier|public
-name|void
-name|extractTerms
-parameter_list|(
-name|Set
-argument_list|<
-name|Term
-argument_list|>
-name|terms
-parameter_list|)
-block|{
-comment|// no-op
-comment|// This query is for abuse cases when the number of terms is too high to
-comment|// run efficiently as a BooleanQuery. So likewise we hide its terms in
-comment|// order to protect highlighters
-block|}
 DECL|class|TermsAndField
 specifier|private
 specifier|static
@@ -1874,6 +1855,24 @@ specifier|private
 name|float
 name|queryWeight
 decl_stmt|;
+annotation|@
+name|Override
+specifier|public
+name|void
+name|extractTerms
+parameter_list|(
+name|Set
+argument_list|<
+name|Term
+argument_list|>
+name|terms
+parameter_list|)
+block|{
+comment|// no-op
+comment|// This query is for abuse cases when the number of terms is too high to
+comment|// run efficiently as a BooleanQuery. So likewise we hide its terms in
+comment|// order to protect highlighters
+block|}
 annotation|@
 name|Override
 specifier|public

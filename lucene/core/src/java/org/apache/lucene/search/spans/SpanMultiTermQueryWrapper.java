@@ -40,6 +40,16 @@ end_import
 
 begin_import
 import|import
+name|java
+operator|.
+name|util
+operator|.
+name|Set
+import|;
+end_import
+
+begin_import
+import|import
 name|org
 operator|.
 name|apache
@@ -280,6 +290,28 @@ name|SCORING_SPAN_QUERY_REWRITE
 argument_list|)
 expr_stmt|;
 block|}
+block|}
+annotation|@
+name|Override
+DECL|method|extractTerms
+specifier|protected
+name|void
+name|extractTerms
+parameter_list|(
+name|Set
+argument_list|<
+name|Term
+argument_list|>
+name|terms
+parameter_list|)
+block|{
+throw|throw
+operator|new
+name|IllegalStateException
+argument_list|(
+literal|"Rewrite first"
+argument_list|)
+throw|;
 block|}
 comment|/**    * Expert: returns the rewriteMethod    */
 DECL|method|getRewriteMethod

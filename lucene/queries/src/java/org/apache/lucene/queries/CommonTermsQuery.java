@@ -246,16 +246,6 @@ name|List
 import|;
 end_import
 
-begin_import
-import|import
-name|java
-operator|.
-name|util
-operator|.
-name|Set
-import|;
-end_import
-
 begin_comment
 comment|/**  * A query that executes high-frequency terms in a optional sub-query to prevent  * slow queries due to "common" terms like stopwords. This query  * builds 2 queries off the {@link #add(Term) added} terms: low-frequency  * terms are added to a required boolean clause and high-frequency terms are  * added to an optional boolean clause. The optional clause is only executed if  * the required "low-frequency" clause matches. Scores produced by this query  * will be slightly different than plain {@link BooleanQuery} scorer mainly due to  * differences in the {@link Similarity#coord(int,int) number of leaf queries}  * in the required boolean clause. In most cases, high-frequency terms are  * unlikely to significantly contribute to the document score unless at least  * one of the low-frequency terms are matched.  This query can improve  * query execution times significantly if applicable.  *<p>  * {@link CommonTermsQuery} has several advantages over stopword filtering at  * index or query time since a term can be "classified" based on the actual  * document frequency in the index and can prevent slow queries even across  * domains without specialized stopword files.  *</p>  *<p>  *<b>Note:</b> if the query only contains high-frequency terms the query is  * rewritten into a plain conjunction query ie. all high-frequency terms need to  * match in order to match a document.  *</p>  */
 end_comment
@@ -1372,30 +1362,6 @@ block|{
 return|return
 name|highFreqMinNrShouldMatch
 return|;
-block|}
-annotation|@
-name|Override
-DECL|method|extractTerms
-specifier|public
-name|void
-name|extractTerms
-parameter_list|(
-name|Set
-argument_list|<
-name|Term
-argument_list|>
-name|terms
-parameter_list|)
-block|{
-name|terms
-operator|.
-name|addAll
-argument_list|(
-name|this
-operator|.
-name|terms
-argument_list|)
-expr_stmt|;
 block|}
 annotation|@
 name|Override
