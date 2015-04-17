@@ -127,7 +127,7 @@ name|List
 argument_list|<
 name|ClassificationResult
 argument_list|<
-name|BytesRef
+name|T
 argument_list|>
 argument_list|>
 name|getClasses
@@ -145,7 +145,7 @@ name|List
 argument_list|<
 name|ClassificationResult
 argument_list|<
-name|BytesRef
+name|T
 argument_list|>
 argument_list|>
 name|getClasses
