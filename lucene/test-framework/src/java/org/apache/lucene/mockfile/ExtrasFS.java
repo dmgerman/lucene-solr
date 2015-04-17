@@ -100,8 +100,20 @@ name|AtomicLong
 import|;
 end_import
 
+begin_import
+import|import
+name|com
+operator|.
+name|carrotsearch
+operator|.
+name|randomizedtesting
+operator|.
+name|RandomizedContext
+import|;
+end_import
+
 begin_comment
-comment|/**   * Adds extra files/subdirectories when directories are created.  *<p>  * Lucene shouldn't care about these, but sometimes operating systems  * create special files themselves (.DS_Store, thumbs.db, .nfsXXX, ...),  * so we add them and see what breaks.   *<p>  * When a directory is created, sometimes a file or directory named   * "extraNNNN" will be included with it.  * All other filesystem operations are passed thru as normal.  */
+comment|/**   * Adds extra files/subdirectories when directories are created.  *<p>  * Lucene shouldn't care about these, but sometimes operating systems  * create special files themselves (.DS_Store, thumbs.db, .nfsXXX, ...),  * so we add them and see what breaks.   *<p>  * When a directory is created, sometimes a file or directory named   * "extra0" will be included with it.  * All other filesystem operations are passed thru as normal.  */
 end_comment
 
 begin_class
@@ -112,19 +124,10 @@ name|ExtrasFS
 extends|extends
 name|FilterFileSystemProvider
 block|{
-DECL|field|counter
+DECL|field|seed
 specifier|final
-name|AtomicLong
-name|counter
-init|=
-operator|new
-name|AtomicLong
-argument_list|()
-decl_stmt|;
-DECL|field|random
-specifier|final
-name|Random
-name|random
+name|int
+name|seed
 decl_stmt|;
 comment|/**     * Create a new instance, wrapping {@code delegate}.    */
 DECL|method|ExtrasFS
@@ -147,9 +150,12 @@ argument_list|)
 expr_stmt|;
 name|this
 operator|.
-name|random
+name|seed
 operator|=
 name|random
+operator|.
+name|nextInt
+argument_list|()
 expr_stmt|;
 block|}
 annotation|@
@@ -182,14 +188,37 @@ name|attrs
 argument_list|)
 expr_stmt|;
 comment|// ok, we created the directory successfully.
+comment|// a little funky: we only look at hashcode (well-defined) of the target class name.
+comment|// using a generator won't reproduce, because we are a per-class resource.
+comment|// using hashing on filenames won't reproduce, because many of the names rely on other things
+comment|// the test class did.
+comment|// so a test gets terrorized with extras or gets none at all depending on the initial seed.
+name|int
+name|hash
+init|=
+name|RandomizedContext
+operator|.
+name|current
+argument_list|()
+operator|.
+name|getTargetClass
+argument_list|()
+operator|.
+name|toString
+argument_list|()
+operator|.
+name|hashCode
+argument_list|()
+operator|^
+name|seed
+decl_stmt|;
 if|if
 condition|(
-name|random
-operator|.
-name|nextInt
-argument_list|(
-literal|4
-argument_list|)
+operator|(
+name|hash
+operator|&
+literal|3
+operator|)
 operator|==
 literal|0
 condition|)
@@ -204,20 +233,14 @@ name|dir
 operator|.
 name|resolve
 argument_list|(
-literal|"extra"
-operator|+
-name|counter
-operator|.
-name|incrementAndGet
-argument_list|()
+literal|"extra0"
 argument_list|)
 decl_stmt|;
 if|if
 condition|(
-name|random
-operator|.
-name|nextBoolean
-argument_list|()
+name|hash
+operator|<
+literal|0
 condition|)
 block|{
 name|super
