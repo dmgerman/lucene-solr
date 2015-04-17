@@ -202,6 +202,12 @@ specifier|private
 name|boolean
 name|printDiagnosticsAfterClass
 decl_stmt|;
+comment|/** true if we should skip the reproduce string (diagnostics are independent) */
+DECL|field|suppressReproduceLine
+specifier|private
+name|boolean
+name|suppressReproduceLine
+decl_stmt|;
 annotation|@
 name|Override
 DECL|method|testRunStarted
@@ -243,6 +249,19 @@ operator|.
 name|getTargetClass
 argument_list|()
 decl_stmt|;
+name|suppressReproduceLine
+operator|=
+name|targetClass
+operator|.
+name|isAnnotationPresent
+argument_list|(
+name|LuceneTestCase
+operator|.
+name|SuppressReproduceLine
+operator|.
+name|class
+argument_list|)
+expr_stmt|;
 name|testClassesRun
 operator|.
 name|add
@@ -634,6 +653,13 @@ name|String
 name|testName
 parameter_list|)
 block|{
+if|if
+condition|(
+name|suppressReproduceLine
+condition|)
+block|{
+return|return;
+block|}
 if|if
 condition|(
 name|TEST_LINE_DOCS_FILE

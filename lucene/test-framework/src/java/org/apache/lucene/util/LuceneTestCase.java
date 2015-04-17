@@ -1944,6 +1944,30 @@ name|bugUrl
 parameter_list|()
 function_decl|;
 block|}
+comment|/**    * Suppress the default {@code reproduce with: ant test...}    * Your own listener can be added as needed for your build.    */
+annotation|@
+name|Documented
+annotation|@
+name|Inherited
+annotation|@
+name|Retention
+argument_list|(
+name|RetentionPolicy
+operator|.
+name|RUNTIME
+argument_list|)
+annotation|@
+name|Target
+argument_list|(
+name|ElementType
+operator|.
+name|TYPE
+argument_list|)
+DECL|interface|SuppressReproduceLine
+specifier|public
+annotation_defn|@interface
+name|SuppressReproduceLine
+block|{}
 comment|// -----------------------------------------------------------------
 comment|// Truly immutable fields and constants, initialized once and valid
 comment|// for all suites ever since.
