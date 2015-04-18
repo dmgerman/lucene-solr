@@ -2544,6 +2544,7 @@ argument_list|,
 name|secondPhaseCollectors
 argument_list|)
 expr_stmt|;
+block|}
 if|if
 condition|(
 name|secondPhaseCollectors
@@ -2561,7 +2562,6 @@ operator|.
 name|finish
 argument_list|()
 expr_stmt|;
-block|}
 block|}
 block|}
 block|}
