@@ -1878,6 +1878,30 @@ name|value
 parameter_list|()
 function_decl|;
 block|}
+comment|/**    * Annotation for test classes that should avoid always omit    * actual fsync calls from reaching the filesystem.    *<p>    * This can be useful, e.g. if they make many lucene commits.    */
+annotation|@
+name|Documented
+annotation|@
+name|Inherited
+annotation|@
+name|Retention
+argument_list|(
+name|RetentionPolicy
+operator|.
+name|RUNTIME
+argument_list|)
+annotation|@
+name|Target
+argument_list|(
+name|ElementType
+operator|.
+name|TYPE
+argument_list|)
+DECL|interface|SuppressFsync
+specifier|public
+annotation_defn|@interface
+name|SuppressFsync
+block|{}
 comment|/**    * Marks any suites which are known not to close all the temporary    * files. This may prevent temp. files and folders from being cleaned    * up after the suite is completed.    *     * @see LuceneTestCase#createTempDir()    * @see LuceneTestCase#createTempFile(String, String)    */
 annotation|@
 name|Documented
