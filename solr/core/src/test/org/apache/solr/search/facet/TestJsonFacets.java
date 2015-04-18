@@ -2121,7 +2121,7 @@ literal|"*:*"
 argument_list|,
 literal|"json.facet"
 argument_list|,
-literal|"{ catB:{query:{q:'${cat_s}:B', facet:{nj:{query:'${where_s}:NJ'}, ny:{query:'${where_s}:NY'}} }}}"
+literal|"{ catB:{type:query, q:'${cat_s}:B', facet:{nj:{query:'${where_s}:NJ'}, ny:{query:'${where_s}:NY'}} }}"
 argument_list|)
 argument_list|,
 literal|"facets=={ 'count':6, 'catB':{'count':3, 'nj':{'count':2}, 'ny':{'count':1}}}"
@@ -2184,16 +2184,16 @@ literal|"*:*"
 argument_list|,
 literal|"json.facet"
 argument_list|,
-literal|"{c1:{field:'${cat_s}'}, c2:{field:{field:'${cat_s}'}}, c3:{terms:{field:'${cat_s}'}}  }"
+literal|"{c1:{field:'${cat_s}'}, c2:{field:{field:'${cat_s}'}}, c3:{type:terms, field:'${cat_s}'}  }"
 argument_list|)
 argument_list|,
 literal|"facets=={ 'count':6, "
 operator|+
 literal|"'c1':{ 'buckets':[{ 'val':'B', 'count':3}, { 'val':'A', 'count':2}]}, "
 operator|+
-literal|"'c2':{  'buckets':[{ 'val':'B', 'count':3}, { 'val':'A', 'count':2}]}, "
+literal|"'c2':{ 'buckets':[{ 'val':'B', 'count':3}, { 'val':'A', 'count':2}]}, "
 operator|+
-literal|"'c3':{  'buckets':[{ 'val':'B', 'count':3}, { 'val':'A', 'count':2}]}} "
+literal|"'c3':{ 'buckets':[{ 'val':'B', 'count':3}, { 'val':'A', 'count':2}]}} "
 argument_list|)
 expr_stmt|;
 comment|// test mincount
@@ -2809,7 +2809,7 @@ literal|"*:*"
 argument_list|,
 literal|"json.facet"
 argument_list|,
-literal|"{f:{range:{field:${num_d}, start:-5, end:10, gap:5}}}"
+literal|"{f:{type:range, field:${num_d}, start:-5, end:10, gap:5}}"
 argument_list|)
 argument_list|,
 literal|"facets=={count:6, f:{buckets:[ {val:-5.0,count:1}, {val:0.0,count:2}, {val:5.0,count:0} ] } }"

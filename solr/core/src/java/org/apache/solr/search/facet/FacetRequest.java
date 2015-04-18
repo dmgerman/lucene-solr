@@ -2010,7 +2010,10 @@ name|o
 argument_list|)
 throw|;
 block|}
-comment|// { "range" : { "field":...
+comment|// The type can be in a one element map, or inside the args as the "type" field
+comment|// { "query" : "foo:bar" }
+comment|// { "range" : { "field":... } }
+comment|// { "type"  : range, field : myfield, ... }
 name|Map
 argument_list|<
 name|String
@@ -2029,26 +2032,22 @@ argument_list|>
 operator|)
 name|o
 decl_stmt|;
+name|String
+name|type
+decl_stmt|;
+name|Object
+name|args
+decl_stmt|;
 if|if
 condition|(
 name|m
 operator|.
 name|size
 argument_list|()
-operator|!=
+operator|==
 literal|1
 condition|)
 block|{
-throw|throw
-name|err
-argument_list|(
-literal|"expected facet/stat type name, like {range:{... but got "
-operator|+
-name|m
-argument_list|)
-throw|;
-block|}
-comment|// Is this most efficient way?
 name|Map
 operator|.
 name|Entry
@@ -2070,22 +2069,66 @@ operator|.
 name|next
 argument_list|()
 decl_stmt|;
-name|String
 name|type
-init|=
+operator|=
 name|entry
 operator|.
 name|getKey
 argument_list|()
-decl_stmt|;
-name|Object
+expr_stmt|;
 name|args
-init|=
+operator|=
 name|entry
 operator|.
 name|getValue
 argument_list|()
+expr_stmt|;
+comment|// throw err("expected facet/stat type name, like {range:{... but got " + m);
+block|}
+else|else
+block|{
+comment|// type should be inside the map as a parameter
+name|Object
+name|typeObj
+init|=
+name|m
+operator|.
+name|get
+argument_list|(
+literal|"type"
+argument_list|)
 decl_stmt|;
+if|if
+condition|(
+operator|!
+operator|(
+name|typeObj
+operator|instanceof
+name|String
+operator|)
+condition|)
+block|{
+throw|throw
+name|err
+argument_list|(
+literal|"expected facet/stat type name, like {type:range, field:price, ...} but got "
+operator|+
+name|typeObj
+argument_list|)
+throw|;
+block|}
+name|type
+operator|=
+operator|(
+name|String
+operator|)
+name|typeObj
+expr_stmt|;
+name|args
+operator|=
+name|m
+expr_stmt|;
+block|}
 return|return
 name|parseFacetOrStat
 argument_list|(
