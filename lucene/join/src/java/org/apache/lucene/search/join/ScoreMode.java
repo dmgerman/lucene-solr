@@ -43,6 +43,10 @@ block|,
 comment|/**    * Parent hit's score is the sum of all child scores.    */
 DECL|enum constant|Total
 name|Total
+block|,
+comment|/**    * Parent hit's score is the min of all child scores.    */
+DECL|enum constant|Min
+name|Min
 block|}
 end_enum
 
