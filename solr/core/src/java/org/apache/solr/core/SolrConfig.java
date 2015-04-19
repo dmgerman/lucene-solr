@@ -360,6 +360,22 @@ name|apache
 operator|.
 name|solr
 operator|.
+name|common
+operator|.
+name|util
+operator|.
+name|IOUtils
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|solr
+operator|.
 name|handler
 operator|.
 name|component
@@ -2476,6 +2492,13 @@ name|in
 init|=
 literal|null
 decl_stmt|;
+name|InputStreamReader
+name|isr
+init|=
+literal|null
+decl_stmt|;
+try|try
+block|{
 try|try
 block|{
 name|in
@@ -2496,7 +2519,9 @@ name|IOException
 name|e
 parameter_list|)
 block|{
-comment|//no problem no overlay.json file
+comment|// TODO: we should be explicitly looking for file not found exceptions
+comment|// and logging if it's not the expected IOException
+comment|// hopefully no problem, assume no overlay.json file
 return|return
 operator|new
 name|ConfigOverlay
@@ -2510,14 +2535,12 @@ literal|1
 argument_list|)
 return|;
 block|}
-try|try
-block|{
 name|int
 name|version
 init|=
 literal|0
 decl_stmt|;
-comment|//will be always 0 for file based resourceloader
+comment|// will be always 0 for file based resourceLoader
 if|if
 condition|(
 name|in
@@ -2554,6 +2577,18 @@ name|version
 argument_list|)
 expr_stmt|;
 block|}
+name|isr
+operator|=
+operator|new
+name|InputStreamReader
+argument_list|(
+name|in
+argument_list|,
+name|StandardCharsets
+operator|.
+name|UTF_8
+argument_list|)
+expr_stmt|;
 name|Map
 name|m
 init|=
@@ -2567,15 +2602,7 @@ argument_list|(
 operator|new
 name|JSONParser
 argument_list|(
-operator|new
-name|InputStreamReader
-argument_list|(
-name|in
-argument_list|,
-name|StandardCharsets
-operator|.
-name|UTF_8
-argument_list|)
+name|isr
 argument_list|)
 argument_list|)
 decl_stmt|;
@@ -2608,6 +2635,23 @@ argument_list|,
 name|e
 argument_list|)
 throw|;
+block|}
+finally|finally
+block|{
+name|IOUtils
+operator|.
+name|closeQuietly
+argument_list|(
+name|isr
+argument_list|)
+expr_stmt|;
+name|IOUtils
+operator|.
+name|closeQuietly
+argument_list|(
+name|in
+argument_list|)
+expr_stmt|;
 block|}
 block|}
 DECL|field|initParams
