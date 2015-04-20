@@ -470,6 +470,13 @@ name|threadFactory
 argument_list|)
 return|;
 block|}
+annotation|@
+name|SuppressForbidden
+argument_list|(
+name|reason
+operator|=
+literal|"class customizes ThreadPoolExecutor so it can be used instead"
+argument_list|)
 DECL|class|MDCAwareThreadPoolExecutor
 specifier|public
 specifier|static

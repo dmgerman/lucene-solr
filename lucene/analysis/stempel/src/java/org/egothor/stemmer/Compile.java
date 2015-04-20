@@ -100,6 +100,20 @@ name|StringTokenizer
 import|;
 end_import
 
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|util
+operator|.
+name|SuppressForbidden
+import|;
+end_import
+
 begin_comment
 comment|/**  * The Compile class is used to compile a stemmer table.  */
 end_comment
@@ -132,6 +146,13 @@ name|Compile
 parameter_list|()
 block|{}
 comment|/**    * Entry point to the Compile application.    *<p>    * This program takes any number of arguments: the first is the name of the    * desired stemming algorithm to use (a list is available in the package    * description) , all of the rest should be the path or paths to a file or    * files containing a stemmer table to compile.    *     * @param args the command line arguments    */
+annotation|@
+name|SuppressForbidden
+argument_list|(
+name|reason
+operator|=
+literal|"System.out required: command line tool"
+argument_list|)
 DECL|method|main
 specifier|public
 specifier|static

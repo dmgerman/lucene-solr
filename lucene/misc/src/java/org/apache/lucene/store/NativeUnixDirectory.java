@@ -134,6 +134,20 @@ name|Context
 import|;
 end_import
 
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|util
+operator|.
+name|SuppressForbidden
+import|;
+end_import
+
 begin_comment
 comment|// TODO
 end_comment
@@ -522,6 +536,13 @@ argument_list|)
 return|;
 block|}
 block|}
+annotation|@
+name|SuppressForbidden
+argument_list|(
+name|reason
+operator|=
+literal|"java.io.File: native API requires old-style FileDescriptor"
+argument_list|)
 DECL|class|NativeUnixIndexOutput
 specifier|private
 specifier|final
@@ -1035,6 +1056,13 @@ block|}
 block|}
 block|}
 block|}
+annotation|@
+name|SuppressForbidden
+argument_list|(
+name|reason
+operator|=
+literal|"java.io.File: native API requires old-style FileDescriptor"
+argument_list|)
 DECL|class|NativeUnixIndexInput
 specifier|private
 specifier|final

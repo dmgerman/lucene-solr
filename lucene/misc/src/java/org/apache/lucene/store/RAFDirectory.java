@@ -68,11 +68,32 @@ name|Path
 import|;
 end_import
 
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|util
+operator|.
+name|SuppressForbidden
+import|;
+end_import
+
 begin_comment
 comment|/** A straightforward implementation of {@link FSDirectory}  *  using java.io.RandomAccessFile.  However, this class has  *  poor concurrent performance (multiple threads will  *  bottleneck) as it synchronizes when multiple threads  *  read from the same file.  It's usually better to use  *  {@link NIOFSDirectory} or {@link MMapDirectory} instead.   *<p>  *  NOTE: Because this uses RandomAccessFile, it will generally  *  not work with non-default filesystem providers. It is only  *  provided for applications that relied on the fact that   *  RandomAccessFile's IO was not interruptible.  */
 end_comment
 
 begin_class
+annotation|@
+name|SuppressForbidden
+argument_list|(
+name|reason
+operator|=
+literal|"java.io.File: RAFDirectory is legacy API"
+argument_list|)
 DECL|class|RAFDirectory
 specifier|public
 class|class
@@ -195,6 +216,13 @@ argument_list|)
 return|;
 block|}
 comment|/**    * Reads bytes with {@link RandomAccessFile#seek(long)} followed by    * {@link RandomAccessFile#read(byte[], int, int)}.      */
+annotation|@
+name|SuppressForbidden
+argument_list|(
+name|reason
+operator|=
+literal|"java.io.File: RAFDirectory is legacy API"
+argument_list|)
 DECL|class|RAFIndexInput
 specifier|static
 specifier|final

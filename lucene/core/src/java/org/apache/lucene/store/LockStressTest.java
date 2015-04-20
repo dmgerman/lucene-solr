@@ -100,6 +100,20 @@ name|Random
 import|;
 end_import
 
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|util
+operator|.
+name|SuppressForbidden
+import|;
+end_import
+
 begin_comment
 comment|/**  * Simple standalone tool that forever acquires and releases a  * lock using a specific LockFactory.  Run without any args  * to see usage.  *  * @see VerifyingLockFactory  * @see LockVerifyServer  */
 end_comment
@@ -110,6 +124,13 @@ specifier|public
 class|class
 name|LockStressTest
 block|{
+annotation|@
+name|SuppressForbidden
+argument_list|(
+name|reason
+operator|=
+literal|"System.out required: command line tool"
+argument_list|)
 DECL|method|main
 specifier|public
 specifier|static

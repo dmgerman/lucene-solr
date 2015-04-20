@@ -114,6 +114,20 @@ name|FSDirectory
 import|;
 end_import
 
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|util
+operator|.
+name|SuppressForbidden
+import|;
+end_import
+
 begin_comment
 comment|/** Prints how many ords are under each dimension. */
 end_comment
@@ -135,6 +149,13 @@ name|PrintTaxonomyStats
 parameter_list|()
 block|{   }
 comment|/** Command-line tool. */
+annotation|@
+name|SuppressForbidden
+argument_list|(
+name|reason
+operator|=
+literal|"System.out required: command line tool"
+argument_list|)
 DECL|method|main
 specifier|public
 specifier|static

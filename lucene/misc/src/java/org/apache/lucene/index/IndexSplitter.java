@@ -146,6 +146,20 @@ name|FSDirectory
 import|;
 end_import
 
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|util
+operator|.
+name|SuppressForbidden
+import|;
+end_import
+
 begin_comment
 comment|/**  * Command-line tool that enables listing segments in an  * index, copying specific segments to another index, and  * deleting segments from an index.  *  *<p>This tool does file-level copying of segments files.  * This means it's unable to split apart a single segment  * into multiple segments.  For example if your index is a  * single segment, this tool won't help.  Also, it does basic  * file-level copying (using simple  * File{In,Out}putStream) so it will not work with non  * FSDirectory Directory impls.</p>  *  * @lucene.experimental You can easily  * accidentally remove segments from your index so be  * careful!  */
 end_comment
@@ -169,6 +183,13 @@ DECL|field|dir
 name|Path
 name|dir
 decl_stmt|;
+annotation|@
+name|SuppressForbidden
+argument_list|(
+name|reason
+operator|=
+literal|"System.out required: command line tool"
+argument_list|)
 DECL|method|main
 specifier|public
 specifier|static
@@ -466,6 +487,13 @@ name|fsDir
 argument_list|)
 expr_stmt|;
 block|}
+annotation|@
+name|SuppressForbidden
+argument_list|(
+name|reason
+operator|=
+literal|"System.out required: command line tool"
+argument_list|)
 DECL|method|listSegments
 specifier|public
 name|void

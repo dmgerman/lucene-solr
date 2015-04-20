@@ -142,20 +142,6 @@ name|TermQuery
 import|;
 end_import
 
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|util
-operator|.
-name|Version
-import|;
-end_import
-
 begin_comment
 comment|/** Token Manager. */
 end_comment
@@ -168,39 +154,6 @@ name|QueryParserTokenManager
 implements|implements
 name|QueryParserConstants
 block|{
-comment|/** Debug output. */
-DECL|field|debugStream
-specifier|public
-name|java
-operator|.
-name|io
-operator|.
-name|PrintStream
-name|debugStream
-init|=
-name|System
-operator|.
-name|out
-decl_stmt|;
-comment|/** Set debug output. */
-DECL|method|setDebugStream
-specifier|public
-name|void
-name|setDebugStream
-parameter_list|(
-name|java
-operator|.
-name|io
-operator|.
-name|PrintStream
-name|ds
-parameter_list|)
-block|{
-name|debugStream
-operator|=
-name|ds
-expr_stmt|;
-block|}
 DECL|method|jjStopStringLiteralDfa_2
 specifier|private
 specifier|final

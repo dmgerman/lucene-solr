@@ -276,6 +276,13 @@ argument_list|()
 expr_stmt|;
 block|}
 block|}
+annotation|@
+name|SuppressForbidden
+argument_list|(
+name|reason
+operator|=
+literal|"System.out/err detection"
+argument_list|)
 DECL|method|isSystemStream
 specifier|public
 name|boolean

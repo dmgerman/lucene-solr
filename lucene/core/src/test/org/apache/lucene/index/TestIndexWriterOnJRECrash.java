@@ -210,6 +210,20 @@ name|lucene
 operator|.
 name|util
 operator|.
+name|SuppressForbidden
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|util
+operator|.
 name|TestUtil
 import|;
 end_import
@@ -445,6 +459,13 @@ block|}
 block|}
 block|}
 comment|/** fork ourselves in a new jvm. sets -Dtests.crashmode=true */
+annotation|@
+name|SuppressForbidden
+argument_list|(
+name|reason
+operator|=
+literal|"ProcessBuilder requires java.io.File for CWD"
+argument_list|)
 DECL|method|forkTest
 specifier|public
 name|void
