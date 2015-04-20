@@ -21,6 +21,16 @@ comment|/*  * Licensed to the Apache Software Foundation (ASF) under one or more
 end_comment
 
 begin_import
+import|import
+name|org
+operator|.
+name|junit
+operator|.
+name|Test
+import|;
+end_import
+
+begin_import
 import|import static
 name|org
 operator|.
@@ -28,17 +38,31 @@ name|junit
 operator|.
 name|Assert
 operator|.
-name|*
+name|assertEquals
 import|;
 end_import
 
 begin_import
-import|import
+import|import static
 name|org
 operator|.
 name|junit
 operator|.
-name|Test
+name|Assert
+operator|.
+name|assertFalse
+import|;
+end_import
+
+begin_import
+import|import static
+name|org
+operator|.
+name|junit
+operator|.
+name|Assert
+operator|.
+name|assertTrue
 import|;
 end_import
 
@@ -97,6 +121,11 @@ literal|0.0
 argument_list|,
 literal|0.2
 argument_list|)
+expr_stmt|;
+name|p
+operator|.
+name|done
+argument_list|()
 expr_stmt|;
 name|gp
 operator|=
@@ -296,6 +325,11 @@ argument_list|,
 literal|0.2
 argument_list|)
 expr_stmt|;
+name|p
+operator|.
+name|done
+argument_list|()
+expr_stmt|;
 name|gp
 operator|=
 operator|new
@@ -383,6 +417,11 @@ argument_list|,
 operator|-
 literal|0.5
 argument_list|)
+expr_stmt|;
+name|p
+operator|.
+name|done
+argument_list|()
 expr_stmt|;
 name|gp
 operator|=
@@ -553,6 +592,11 @@ literal|0.2
 argument_list|,
 literal|0.2
 argument_list|)
+expr_stmt|;
+name|p
+operator|.
+name|done
+argument_list|()
 expr_stmt|;
 comment|// Test points on the path
 name|gp
@@ -958,6 +1002,11 @@ argument_list|,
 literal|0.3
 argument_list|)
 expr_stmt|;
+name|p
+operator|.
+name|done
+argument_list|()
+expr_stmt|;
 comment|// Easiest: The path is wholly contains the georect
 name|rect
 operator|=
@@ -1247,6 +1296,11 @@ literal|0.3
 argument_list|,
 literal|0.3
 argument_list|)
+expr_stmt|;
+name|c
+operator|.
+name|done
+argument_list|()
 expr_stmt|;
 name|b
 operator|=

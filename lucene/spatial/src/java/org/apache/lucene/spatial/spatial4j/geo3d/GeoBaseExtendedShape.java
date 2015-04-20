@@ -82,6 +82,7 @@ specifier|abstract
 name|boolean
 name|isWithin
 parameter_list|(
+specifier|final
 name|Vector
 name|point
 parameter_list|)
@@ -95,24 +96,28 @@ specifier|abstract
 name|boolean
 name|isWithin
 parameter_list|(
+specifier|final
 name|double
 name|x
 parameter_list|,
+specifier|final
 name|double
 name|y
 parameter_list|,
+specifier|final
 name|double
 name|z
 parameter_list|)
 function_decl|;
-comment|/** Return a sample point that is inside the shape.      *@return an interior point.      */
+comment|/** Return a sample point that is on the edge of the shape.      *@return a number of edge points, one for each disconnected edge.      */
 annotation|@
 name|Override
-DECL|method|getInteriorPoint
+DECL|method|getEdgePoints
 specifier|public
 specifier|abstract
 name|GeoPoint
-name|getInteriorPoint
+index|[]
+name|getEdgePoints
 parameter_list|()
 function_decl|;
 comment|/** Assess whether a plane, within the provided bounds, intersects      * with the shape.      *@param plane is the plane to assess for intersection with the shape's edges or      *  bounding curves.      *@param bounds are a set of bounds that define an area that an      *  intersection must be within in order to qualify (provided by a GeoArea).      *@return true if there's such an intersection, false if not.      */
@@ -124,9 +129,11 @@ specifier|abstract
 name|boolean
 name|intersects
 parameter_list|(
+specifier|final
 name|Plane
 name|plane
 parameter_list|,
+specifier|final
 name|Membership
 modifier|...
 name|bounds

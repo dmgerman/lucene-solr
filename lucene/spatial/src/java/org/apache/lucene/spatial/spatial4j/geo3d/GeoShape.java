@@ -32,22 +32,25 @@ name|GeoShape
 extends|extends
 name|Membership
 block|{
-comment|/** Return a sample point that is inside the shape.      *@return an interior point.      */
-DECL|method|getInteriorPoint
+comment|/** Return a sample point that is on the outside edge/boundary of the shape.      *@return samples of all edge points from distinct edge sections.  Typically one point      * is returned, but zero or two are also possible.      */
+DECL|method|getEdgePoints
 specifier|public
 name|GeoPoint
-name|getInteriorPoint
+index|[]
+name|getEdgePoints
 parameter_list|()
 function_decl|;
-comment|/** Assess whether a plane, within the provided bounds, intersects      * with the shape.      *@param plane is the plane to assess for intersection with the shape's edges or      *  bounding curves.      *@param bounds are a set of bounds that define an area that an      *  intersection must be within in order to qualify (provided by a GeoArea).      *@return true if there's such an intersection, false if not.      */
+comment|/** Assess whether a plane, within the provided bounds, intersects      * with the shape.  Note well that this method is allowed to return "true"      * if there are internal edges of a composite shape which intersect the plane.        * Doing this can cause getRelationship() for most GeoBBox shapes to return      * OVERLAPS rather than the more correct CONTAINS, but that cannot be      * helped for some complex shapes that are built out of overlapping parts.      *@param plane is the plane to assess for intersection with the shape's edges or      *  bounding curves.      *@param bounds are a set of bounds that define an area that an      *  intersection must be within in order to qualify (provided by a GeoArea).      *@return true if there's such an intersection, false if not.      */
 DECL|method|intersects
 specifier|public
 name|boolean
 name|intersects
 parameter_list|(
+specifier|final
 name|Plane
 name|plane
 parameter_list|,
+specifier|final
 name|Membership
 modifier|...
 name|bounds
@@ -59,6 +62,7 @@ specifier|public
 name|Bounds
 name|getBounds
 parameter_list|(
+specifier|final
 name|Bounds
 name|bounds
 parameter_list|)
