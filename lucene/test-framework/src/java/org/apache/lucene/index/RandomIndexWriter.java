@@ -615,27 +615,6 @@ argument_list|(
 literal|"RIW dir="
 operator|+
 name|dir
-operator|+
-literal|" config="
-operator|+
-name|w
-operator|.
-name|getConfig
-argument_list|()
-argument_list|)
-expr_stmt|;
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"codec default="
-operator|+
-name|codec
-operator|.
-name|getName
-argument_list|()
 argument_list|)
 expr_stmt|;
 block|}
