@@ -31,10 +31,10 @@ comment|/**  * Check large and special graphs.   */
 end_comment
 
 begin_class
-DECL|class|TestRamUsageEstimatorOnWildAnimals
+DECL|class|TestRamUsageTesterOnWildAnimals
 specifier|public
 class|class
-name|TestRamUsageEstimatorOnWildAnimals
+name|TestRamUsageTesterOnWildAnimals
 extends|extends
 name|LuceneTestCase
 block|{

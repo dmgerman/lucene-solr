@@ -38,8 +38,6 @@ name|lucene
 operator|.
 name|util
 operator|.
-name|junitcompat
-operator|.
 name|WithNestedTests
 import|;
 end_import

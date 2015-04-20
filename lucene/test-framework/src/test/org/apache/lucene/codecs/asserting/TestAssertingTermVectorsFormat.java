@@ -42,21 +42,21 @@ name|lucene
 operator|.
 name|index
 operator|.
-name|BasePostingsFormatTestCase
+name|BaseTermVectorsFormatTestCase
 import|;
 end_import
 
 begin_comment
-comment|/** Test AssertingPostingsFormat directly */
+comment|/** Test AssertingTermVectorsFormat directly */
 end_comment
 
 begin_class
-DECL|class|TestAssertingDocValuesFormat
+DECL|class|TestAssertingTermVectorsFormat
 specifier|public
 class|class
-name|TestAssertingDocValuesFormat
+name|TestAssertingTermVectorsFormat
 extends|extends
-name|BasePostingsFormatTestCase
+name|BaseTermVectorsFormatTestCase
 block|{
 DECL|field|codec
 specifier|private
@@ -78,18 +78,6 @@ parameter_list|()
 block|{
 return|return
 name|codec
-return|;
-block|}
-annotation|@
-name|Override
-DECL|method|isPostingsEnumReuseImplemented
-specifier|protected
-name|boolean
-name|isPostingsEnumReuseImplemented
-parameter_list|()
-block|{
-return|return
-literal|false
 return|;
 block|}
 block|}
