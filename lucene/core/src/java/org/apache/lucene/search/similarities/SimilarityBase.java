@@ -30,15 +30,21 @@ end_import
 
 begin_import
 import|import
-name|org
+name|java
 operator|.
-name|apache
+name|util
 operator|.
-name|lucene
+name|ArrayList
+import|;
+end_import
+
+begin_import
+import|import
+name|java
 operator|.
-name|index
+name|util
 operator|.
-name|LeafReaderContext
+name|List
 import|;
 end_import
 
@@ -53,6 +59,20 @@ operator|.
 name|index
 operator|.
 name|FieldInvertState
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|index
+operator|.
+name|LeafReaderContext
 import|;
 end_import
 
@@ -141,7 +161,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * A subclass of {@code Similarity} that provides a simplified API for its  * descendants. Subclasses are only required to implement the {@link #score}  * and {@link #toString()} methods. Implementing  * {@link #explain(Explanation, BasicStats, int, float, float)} is optional,  * inasmuch as SimilarityBase already provides a basic explanation of the score  * and the term frequency. However, implementers of a subclass are encouraged to  * include as much detail about the scoring method as possible.  *<p>  * Note: multi-word queries such as phrase queries are scored in a different way  * than Lucene's default ranking algorithm: whereas it "fakes" an IDF value for  * the phrase as a whole (since it does not know it), this class instead scores  * phrases as a summation of the individual term scores.  * @lucene.experimental  */
+comment|/**  * A subclass of {@code Similarity} that provides a simplified API for its  * descendants. Subclasses are only required to implement the {@link #score}  * and {@link #toString()} methods. Implementing  * {@link #explain(List, BasicStats, int, float, float)} is optional,  * inasmuch as SimilarityBase already provides a basic explanation of the score  * and the term frequency. However, implementers of a subclass are encouraged to  * include as much detail about the scoring method as possible.  *<p>  * Note: multi-word queries such as phrase queries are scored in a different way  * than Lucene's default ranking algorithm: whereas it "fakes" an IDF value for  * the phrase as a whole (since it does not know it), this class instead scores  * phrases as a summation of the individual term scores.  * @lucene.experimental  */
 end_comment
 
 begin_class
@@ -511,14 +531,17 @@ name|float
 name|docLen
 parameter_list|)
 function_decl|;
-comment|/**    * Subclasses should implement this method to explain the score. {@code expl}    * already contains the score, the name of the class and the doc id, as well    * as the term frequency and its explanation; subclasses can add additional    * clauses to explain details of their scoring formulae.    *<p>The default implementation does nothing.</p>    *     * @param expl the explanation to extend with details.    * @param stats the corpus level statistics.    * @param doc the document id.    * @param freq the term frequency.    * @param docLen the document length.    */
+comment|/**    * Subclasses should implement this method to explain the score. {@code expl}    * already contains the score, the name of the class and the doc id, as well    * as the term frequency and its explanation; subclasses can add additional    * clauses to explain details of their scoring formulae.    *<p>The default implementation does nothing.</p>    *     * @param subExpls the list of details of the explanation to extend    * @param stats the corpus level statistics.    * @param doc the document id.    * @param freq the term frequency.    * @param docLen the document length.    */
 DECL|method|explain
 specifier|protected
 name|void
 name|explain
 parameter_list|(
+name|List
+argument_list|<
 name|Explanation
-name|expl
+argument_list|>
+name|subExpls
 parameter_list|,
 name|BasicStats
 name|stats
@@ -533,7 +556,7 @@ name|float
 name|docLen
 parameter_list|)
 block|{}
-comment|/**    * Explains the score. The implementation here provides a basic explanation    * in the format<em>score(name-of-similarity, doc=doc-id,    * freq=term-frequency), computed from:</em>, and    * attaches the score (computed via the {@link #score(BasicStats, float, float)}    * method) and the explanation for the term frequency. Subclasses content with    * this format may add additional details in    * {@link #explain(Explanation, BasicStats, int, float, float)}.    *      * @param stats the corpus level statistics.    * @param doc the document id.    * @param freq the term frequency and its explanation.    * @param docLen the document length.    * @return the explanation.    */
+comment|/**    * Explains the score. The implementation here provides a basic explanation    * in the format<em>score(name-of-similarity, doc=doc-id,    * freq=term-frequency), computed from:</em>, and    * attaches the score (computed via the {@link #score(BasicStats, float, float)}    * method) and the explanation for the term frequency. Subclasses content with    * this format may add additional details in    * {@link #explain(List, BasicStats, int, float, float)}.    *      * @param stats the corpus level statistics.    * @param doc the document id.    * @param freq the term frequency and its explanation.    * @param docLen the document length.    * @return the explanation.    */
 DECL|method|explain
 specifier|protected
 name|Explanation
@@ -552,16 +575,37 @@ name|float
 name|docLen
 parameter_list|)
 block|{
+name|List
+argument_list|<
 name|Explanation
-name|result
+argument_list|>
+name|subs
 init|=
 operator|new
-name|Explanation
+name|ArrayList
+argument_list|<>
 argument_list|()
 decl_stmt|;
-name|result
+name|explain
+argument_list|(
+name|subs
+argument_list|,
+name|stats
+argument_list|,
+name|doc
+argument_list|,
+name|freq
 operator|.
-name|setValue
+name|getValue
+argument_list|()
+argument_list|,
+name|docLen
+argument_list|)
+expr_stmt|;
+return|return
+name|Explanation
+operator|.
+name|match
 argument_list|(
 name|score
 argument_list|(
@@ -574,12 +618,7 @@ argument_list|()
 argument_list|,
 name|docLen
 argument_list|)
-argument_list|)
-expr_stmt|;
-name|result
-operator|.
-name|setDescription
-argument_list|(
+argument_list|,
 literal|"score("
 operator|+
 name|getClass
@@ -600,33 +639,9 @@ name|getValue
 argument_list|()
 operator|+
 literal|"), computed from:"
+argument_list|,
+name|subs
 argument_list|)
-expr_stmt|;
-name|result
-operator|.
-name|addDetail
-argument_list|(
-name|freq
-argument_list|)
-expr_stmt|;
-name|explain
-argument_list|(
-name|result
-argument_list|,
-name|stats
-argument_list|,
-name|doc
-argument_list|,
-name|freq
-operator|.
-name|getValue
-argument_list|()
-argument_list|,
-name|docLen
-argument_list|)
-expr_stmt|;
-return|return
-name|result
 return|;
 block|}
 annotation|@

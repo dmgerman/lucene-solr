@@ -2232,16 +2232,6 @@ literal|"= second pass score"
 argument_list|)
 argument_list|)
 expr_stmt|;
-name|assertTrue
-argument_list|(
-name|s
-operator|.
-name|contains
-argument_list|(
-literal|"NON-MATCH"
-argument_list|)
-argument_list|)
-expr_stmt|;
 name|assertEquals
 argument_list|(
 name|hits2

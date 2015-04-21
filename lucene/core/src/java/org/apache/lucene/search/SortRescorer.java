@@ -32,6 +32,16 @@ name|java
 operator|.
 name|util
 operator|.
+name|ArrayList
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
+name|util
+operator|.
 name|Arrays
 import|;
 end_import
@@ -433,30 +443,24 @@ name|totalHits
 operator|==
 literal|1
 assert|;
-comment|// TODO: if we could ask the Sort to explain itself then
-comment|// we wouldn't need the separate ExpressionRescorer...
+name|List
+argument_list|<
 name|Explanation
-name|result
+argument_list|>
+name|subs
 init|=
 operator|new
-name|Explanation
-argument_list|(
-literal|0.0f
-argument_list|,
-literal|"sort field values for sort="
-operator|+
-name|sort
-operator|.
-name|toString
+name|ArrayList
+argument_list|<>
 argument_list|()
-argument_list|)
 decl_stmt|;
 comment|// Add first pass:
 name|Explanation
 name|first
 init|=
-operator|new
 name|Explanation
+operator|.
+name|match
 argument_list|(
 name|firstPassExplanation
 operator|.
@@ -464,18 +468,13 @@ name|getValue
 argument_list|()
 argument_list|,
 literal|"first pass score"
-argument_list|)
-decl_stmt|;
-name|first
-operator|.
-name|addDetail
-argument_list|(
+argument_list|,
 name|firstPassExplanation
 argument_list|)
-expr_stmt|;
-name|result
+decl_stmt|;
+name|subs
 operator|.
-name|addDetail
+name|add
 argument_list|(
 name|first
 argument_list|)
@@ -520,12 +519,13 @@ name|i
 operator|++
 control|)
 block|{
-name|result
+name|subs
 operator|.
-name|addDetail
+name|add
 argument_list|(
-operator|new
 name|Explanation
+operator|.
+name|match
 argument_list|(
 literal|0.0f
 argument_list|,
@@ -551,8 +551,24 @@ argument_list|)
 argument_list|)
 expr_stmt|;
 block|}
+comment|// TODO: if we could ask the Sort to explain itself then
+comment|// we wouldn't need the separate ExpressionRescorer...
 return|return
-name|result
+name|Explanation
+operator|.
+name|match
+argument_list|(
+literal|0.0f
+argument_list|,
+literal|"sort field values for sort="
+operator|+
+name|sort
+operator|.
+name|toString
+argument_list|()
+argument_list|,
+name|subs
+argument_list|)
 return|;
 block|}
 block|}

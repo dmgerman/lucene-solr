@@ -2329,8 +2329,9 @@ name|freq
 parameter_list|)
 block|{
 return|return
-operator|new
 name|Explanation
+operator|.
+name|match
 argument_list|(
 name|Float
 operator|.

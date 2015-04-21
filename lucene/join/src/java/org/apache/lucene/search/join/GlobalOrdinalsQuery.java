@@ -20,6 +20,26 @@ end_comment
 
 begin_import
 import|import
+name|java
+operator|.
+name|io
+operator|.
+name|IOException
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
+name|util
+operator|.
+name|Set
+import|;
+end_import
+
+begin_import
+import|import
 name|org
 operator|.
 name|apache
@@ -99,20 +119,6 @@ operator|.
 name|index
 operator|.
 name|Term
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|search
-operator|.
-name|ComplexExplanation
 import|;
 end_import
 
@@ -267,26 +273,6 @@ operator|.
 name|util
 operator|.
 name|LongValues
-import|;
-end_import
-
-begin_import
-import|import
-name|java
-operator|.
-name|io
-operator|.
-name|IOException
-import|;
-end_import
-
-begin_import
-import|import
-name|java
-operator|.
-name|util
-operator|.
-name|Set
 import|;
 end_import
 
@@ -766,11 +752,10 @@ name|segmentOrd
 argument_list|)
 decl_stmt|;
 return|return
-operator|new
-name|ComplexExplanation
+name|Explanation
+operator|.
+name|match
 argument_list|(
-literal|true
-argument_list|,
 name|queryNorm
 argument_list|,
 literal|"Score based on join value "
@@ -784,13 +769,10 @@ return|;
 block|}
 block|}
 return|return
-operator|new
-name|ComplexExplanation
+name|Explanation
+operator|.
+name|noMatch
 argument_list|(
-literal|false
-argument_list|,
-literal|0.0f
-argument_list|,
 literal|"Not a match"
 argument_list|)
 return|;

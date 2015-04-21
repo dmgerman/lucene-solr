@@ -1028,8 +1028,9 @@ name|realStats
 argument_list|,
 literal|1
 argument_list|,
-operator|new
 name|Explanation
+operator|.
+name|match
 argument_list|(
 name|freq
 argument_list|,

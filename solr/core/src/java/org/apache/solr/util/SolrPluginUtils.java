@@ -2154,10 +2154,6 @@ decl_stmt|;
 comment|// short circut out
 if|if
 condition|(
-literal|null
-operator|==
-name|details
-operator|||
 literal|0
 operator|==
 name|details

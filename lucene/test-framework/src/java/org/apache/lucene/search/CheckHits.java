@@ -1774,8 +1774,10 @@ block|}
 if|if
 condition|(
 name|detail
-operator|!=
-literal|null
+operator|.
+name|length
+operator|>
+literal|0
 condition|)
 block|{
 if|if
