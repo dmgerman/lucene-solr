@@ -98,6 +98,22 @@ name|lucene
 operator|.
 name|document
 operator|.
+name|Field
+operator|.
+name|Store
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|document
+operator|.
 name|SortedDocValuesField
 import|;
 end_import
@@ -124,11 +140,9 @@ name|apache
 operator|.
 name|lucene
 operator|.
-name|document
+name|index
 operator|.
-name|Field
-operator|.
-name|Store
+name|IndexReader
 import|;
 end_import
 
@@ -171,20 +185,6 @@ operator|.
 name|index
 operator|.
 name|PostingsEnum
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|index
-operator|.
-name|IndexReader
 import|;
 end_import
 
@@ -272,7 +272,7 @@ name|lucene
 operator|.
 name|util
 operator|.
-name|Bits
+name|BitDocIdSet
 import|;
 end_import
 
@@ -286,7 +286,7 @@ name|lucene
 operator|.
 name|util
 operator|.
-name|BitDocIdSet
+name|Bits
 import|;
 end_import
 

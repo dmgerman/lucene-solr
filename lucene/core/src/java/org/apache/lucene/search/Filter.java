@@ -112,43 +112,6 @@ comment|// Query compatibility
 comment|//
 annotation|@
 name|Override
-DECL|method|equals
-specifier|public
-name|boolean
-name|equals
-parameter_list|(
-name|Object
-name|that
-parameter_list|)
-block|{
-comment|// Query's default impl only compares boost but they do not matter in the
-comment|// case of filters since it does not influence scores
-return|return
-name|this
-operator|==
-name|that
-return|;
-block|}
-annotation|@
-name|Override
-DECL|method|hashCode
-specifier|public
-name|int
-name|hashCode
-parameter_list|()
-block|{
-comment|// Query's default impl returns a hash of the boost but this is irrelevant to filters
-return|return
-name|System
-operator|.
-name|identityHashCode
-argument_list|(
-name|this
-argument_list|)
-return|;
-block|}
-annotation|@
-name|Override
 DECL|method|createWeight
 specifier|public
 name|Weight
