@@ -314,6 +314,22 @@ name|details
 argument_list|)
 argument_list|)
 expr_stmt|;
+for|for
+control|(
+name|Explanation
+name|detail
+range|:
+name|details
+control|)
+block|{
+name|Objects
+operator|.
+name|requireNonNull
+argument_list|(
+name|detail
+argument_list|)
+expr_stmt|;
+block|}
 block|}
 comment|/**    * Indicates whether or not this Explanation models a match.    */
 DECL|method|isMatch

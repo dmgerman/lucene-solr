@@ -500,10 +500,32 @@ name|height
 operator|<
 literal|0
 condition|)
+block|{
+if|if
+condition|(
+name|exp
+operator|!=
+literal|null
+condition|)
+block|{
+name|exp
+operator|.
+name|set
+argument_list|(
+name|Explanation
+operator|.
+name|noMatch
+argument_list|(
+literal|"No intersection"
+argument_list|)
+argument_list|)
+expr_stmt|;
+block|}
 return|return
 literal|0
 return|;
 comment|//no intersection
+block|}
 comment|// calculate "width": the intersection width between two boxes.
 name|double
 name|width
@@ -661,6 +683,26 @@ comment|//both adjacent to dateline
 block|}
 else|else
 block|{
+if|if
+condition|(
+name|exp
+operator|!=
+literal|null
+condition|)
+block|{
+name|exp
+operator|.
+name|set
+argument_list|(
+name|Explanation
+operator|.
+name|noMatch
+argument_list|(
+literal|"No intersection"
+argument_list|)
+argument_list|)
+expr_stmt|;
+block|}
 return|return
 literal|0
 return|;
@@ -788,10 +830,32 @@ name|qryEastLeft
 operator|>
 name|qryEastRight
 condition|)
+block|{
+if|if
+condition|(
+name|exp
+operator|!=
+literal|null
+condition|)
+block|{
+name|exp
+operator|.
+name|set
+argument_list|(
+name|Explanation
+operator|.
+name|noMatch
+argument_list|(
+literal|"No intersection"
+argument_list|)
+argument_list|)
+expr_stmt|;
+block|}
 return|return
 literal|0
 return|;
 comment|//no intersection
+block|}
 block|}
 block|}
 comment|// calculate queryRatio and targetRatio
