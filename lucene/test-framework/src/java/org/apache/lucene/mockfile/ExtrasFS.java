@@ -76,42 +76,6 @@ name|FileAttribute
 import|;
 end_import
 
-begin_import
-import|import
-name|java
-operator|.
-name|util
-operator|.
-name|Random
-import|;
-end_import
-
-begin_import
-import|import
-name|java
-operator|.
-name|util
-operator|.
-name|concurrent
-operator|.
-name|atomic
-operator|.
-name|AtomicLong
-import|;
-end_import
-
-begin_import
-import|import
-name|com
-operator|.
-name|carrotsearch
-operator|.
-name|randomizedtesting
-operator|.
-name|RandomizedContext
-import|;
-end_import
-
 begin_comment
 comment|/**   * Adds extra files/subdirectories when directories are created.  *<p>  * Lucene shouldn't care about these, but sometimes operating systems  * create special files themselves (.DS_Store, thumbs.db, .nfsXXX, ...),  * so we add them and see what breaks.   *<p>  * When a directory is created, sometimes a file or directory named   * "extra0" will be included with it.  * All other filesystem operations are passed thru as normal.  */
 end_comment
@@ -124,12 +88,17 @@ name|ExtrasFS
 extends|extends
 name|FilterFileSystemProvider
 block|{
-DECL|field|seed
+DECL|field|active
 specifier|final
-name|int
-name|seed
+name|boolean
+name|active
 decl_stmt|;
-comment|/**     * Create a new instance, wrapping {@code delegate}.    */
+DECL|field|createDirectory
+specifier|final
+name|boolean
+name|createDirectory
+decl_stmt|;
+comment|/**     * Create a new instance, wrapping {@code delegate}.    * @param active {@code true} if we should create extra files    * @param createDirectory {@code true} if we should create directories instead of files.    *        Ignored if {@code active} is {@code false}.    */
 DECL|method|ExtrasFS
 specifier|public
 name|ExtrasFS
@@ -137,8 +106,11 @@ parameter_list|(
 name|FileSystem
 name|delegate
 parameter_list|,
-name|Random
-name|random
+name|boolean
+name|active
+parameter_list|,
+name|boolean
+name|createDirectory
 parameter_list|)
 block|{
 name|super
@@ -150,12 +122,15 @@ argument_list|)
 expr_stmt|;
 name|this
 operator|.
-name|seed
+name|active
 operator|=
-name|random
+name|active
+expr_stmt|;
+name|this
 operator|.
-name|nextInt
-argument_list|()
+name|createDirectory
+operator|=
+name|createDirectory
 expr_stmt|;
 block|}
 annotation|@
@@ -188,39 +163,9 @@ name|attrs
 argument_list|)
 expr_stmt|;
 comment|// ok, we created the directory successfully.
-comment|// a little funky: we only look at hashcode (well-defined) of the target class name.
-comment|// using a generator won't reproduce, because we are a per-class resource.
-comment|// using hashing on filenames won't reproduce, because many of the names rely on other things
-comment|// the test class did.
-comment|// so a test gets terrorized with extras or gets none at all depending on the initial seed.
-name|int
-name|hash
-init|=
-name|RandomizedContext
-operator|.
-name|current
-argument_list|()
-operator|.
-name|getTargetClass
-argument_list|()
-operator|.
-name|toString
-argument_list|()
-operator|.
-name|hashCode
-argument_list|()
-operator|^
-name|seed
-decl_stmt|;
 if|if
 condition|(
-operator|(
-name|hash
-operator|&
-literal|3
-operator|)
-operator|==
-literal|0
+name|active
 condition|)
 block|{
 comment|// lets add a bogus file... if this fails, we don't care, its best effort.
@@ -238,9 +183,7 @@ argument_list|)
 decl_stmt|;
 if|if
 condition|(
-name|hash
-operator|<
-literal|0
+name|createDirectory
 condition|)
 block|{
 name|super
