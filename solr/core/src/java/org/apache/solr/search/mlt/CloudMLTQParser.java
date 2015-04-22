@@ -371,6 +371,32 @@ argument_list|(
 name|id
 argument_list|)
 decl_stmt|;
+if|if
+condition|(
+name|doc
+operator|==
+literal|null
+condition|)
+block|{
+operator|new
+name|SolrException
+argument_list|(
+name|SolrException
+operator|.
+name|ErrorCode
+operator|.
+name|BAD_REQUEST
+argument_list|,
+literal|"Error completing MLT request. Could not fetch "
+operator|+
+literal|"document with id ["
+operator|+
+name|id
+operator|+
+literal|"]"
+argument_list|)
+expr_stmt|;
+block|}
 name|MoreLikeThis
 name|mlt
 init|=
