@@ -1498,6 +1498,10 @@ literal|"val_b"
 argument_list|,
 literal|"val_b"
 argument_list|,
+literal|"date"
+argument_list|,
+literal|"date_dt"
+argument_list|,
 literal|"sparse_s"
 argument_list|,
 literal|"sparse_s"
@@ -1553,6 +1557,10 @@ literal|"val_b"
 argument_list|,
 literal|"val_b"
 argument_list|,
+literal|"date"
+argument_list|,
+literal|"date_dt"
+argument_list|,
 literal|"sparse_s"
 argument_list|,
 literal|"sparse_ss"
@@ -1603,6 +1611,10 @@ argument_list|,
 literal|"val_b"
 argument_list|,
 literal|"val_b"
+argument_list|,
+literal|"date"
+argument_list|,
+literal|"date_dt"
 argument_list|,
 literal|"sparse_s"
 argument_list|,
@@ -1662,6 +1674,10 @@ literal|"val_b"
 argument_list|,
 literal|"val_b"
 argument_list|,
+literal|"date"
+argument_list|,
+literal|"date_dt"
+argument_list|,
 literal|"sparse_s"
 argument_list|,
 literal|"sparse_sds"
@@ -1718,6 +1734,10 @@ argument_list|,
 literal|"val_b"
 argument_list|,
 literal|"val_b"
+argument_list|,
+literal|"date"
+argument_list|,
+literal|"date_dt"
 argument_list|,
 literal|"sparse_s"
 argument_list|,
@@ -1808,6 +1828,16 @@ literal|"${val_b}"
 argument_list|)
 decl_stmt|;
 name|String
+name|date
+init|=
+name|m
+operator|.
+name|expand
+argument_list|(
+literal|"${date}"
+argument_list|)
+decl_stmt|;
+name|String
 name|super_s
 init|=
 name|m
@@ -1876,6 +1906,10 @@ name|super_s
 argument_list|,
 literal|"zodiac"
 argument_list|,
+name|date
+argument_list|,
+literal|"2001-01-01T01:01:01Z"
+argument_list|,
 name|val_b
 argument_list|,
 literal|"true"
@@ -1917,6 +1951,10 @@ argument_list|,
 name|super_s
 argument_list|,
 literal|"superman"
+argument_list|,
+name|date
+argument_list|,
+literal|"2002-02-02T02:02:02Z"
 argument_list|,
 name|val_b
 argument_list|,
@@ -1983,6 +2021,10 @@ name|super_s
 argument_list|,
 literal|"spiderman"
 argument_list|,
+name|date
+argument_list|,
+literal|"2003-03-03T03:03:03Z"
+argument_list|,
 name|multi_ss
 argument_list|,
 literal|"b"
@@ -2020,6 +2062,10 @@ argument_list|,
 name|super_s
 argument_list|,
 literal|"batman"
+argument_list|,
+name|date
+argument_list|,
+literal|"2001-02-03T01:02:03Z"
 argument_list|,
 name|sparse_s
 argument_list|,
@@ -2067,6 +2113,10 @@ argument_list|,
 name|super_s
 argument_list|,
 literal|"hulk"
+argument_list|,
+name|date
+argument_list|,
+literal|"2002-03-01T03:02:01Z"
 argument_list|,
 name|multi_ss
 argument_list|,
@@ -2813,6 +2863,48 @@ literal|"{f:{type:range, field:${num_d}, start:-5, end:10, gap:5}}"
 argument_list|)
 argument_list|,
 literal|"facets=={count:6, f:{buckets:[ {val:-5.0,count:1}, {val:0.0,count:2}, {val:5.0,count:0} ] } }"
+argument_list|)
+expr_stmt|;
+comment|// basic range facet on dates
+name|client
+operator|.
+name|testJQ
+argument_list|(
+name|params
+argument_list|(
+name|p
+argument_list|,
+literal|"q"
+argument_list|,
+literal|"*:*"
+argument_list|,
+literal|"json.facet"
+argument_list|,
+literal|"{f:{type:range, field:${date}, start:'2001-01-01T00:00:00Z', end:'2003-01-01T00:00:00Z', gap:'+1YEAR'}}"
+argument_list|)
+argument_list|,
+literal|"facets=={count:6, f:{buckets:[ {val:'2001-01-01T00:00:00Z',count:2}, {val:'2002-01-01T00:00:00Z',count:2}] } }"
+argument_list|)
+expr_stmt|;
+comment|// range facet on dates w/ stats
+name|client
+operator|.
+name|testJQ
+argument_list|(
+name|params
+argument_list|(
+name|p
+argument_list|,
+literal|"q"
+argument_list|,
+literal|"*:*"
+argument_list|,
+literal|"json.facet"
+argument_list|,
+literal|"{f:{type:range, field:${date}, start:'2002-01-01T00:00:00Z', end:'2005-01-01T00:00:00Z', gap:'+1YEAR',   other:all, facet:{ x:'avg(${num_d})' } } }"
+argument_list|)
+argument_list|,
+literal|"facets=={count:6, f:{buckets:[ {val:'2002-01-01T00:00:00Z',count:2,x:-7.0}, {val:'2003-01-01T00:00:00Z',count:1,x:2.0}, {val:'2004-01-01T00:00:00Z',count:0}], before:{count:2,x:7.5}, after:{count:0}, between:{count:3,x:-4.0}  } }"
 argument_list|)
 expr_stmt|;
 comment|// basic range facet with "include" params
