@@ -211,6 +211,11 @@ name|Plane
 name|p
 parameter_list|,
 specifier|final
+name|GeoPoint
+index|[]
+name|notablePoints
+parameter_list|,
+specifier|final
 name|Membership
 modifier|...
 name|bounds
@@ -231,6 +236,8 @@ operator|.
 name|intersects
 argument_list|(
 name|p
+argument_list|,
+name|notablePoints
 argument_list|,
 name|bounds
 argument_list|)

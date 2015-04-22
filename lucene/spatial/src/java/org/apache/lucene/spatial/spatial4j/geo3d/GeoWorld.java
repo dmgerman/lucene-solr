@@ -163,6 +163,11 @@ name|Plane
 name|p
 parameter_list|,
 specifier|final
+name|GeoPoint
+index|[]
+name|notablePoints
+parameter_list|,
+specifier|final
 name|Membership
 modifier|...
 name|bounds

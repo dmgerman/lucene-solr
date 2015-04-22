@@ -40,7 +40,7 @@ index|[]
 name|getEdgePoints
 parameter_list|()
 function_decl|;
-comment|/** Assess whether a plane, within the provided bounds, intersects      * with the shape.  Note well that this method is allowed to return "true"      * if there are internal edges of a composite shape which intersect the plane.        * Doing this can cause getRelationship() for most GeoBBox shapes to return      * OVERLAPS rather than the more correct CONTAINS, but that cannot be      * helped for some complex shapes that are built out of overlapping parts.      *@param plane is the plane to assess for intersection with the shape's edges or      *  bounding curves.      *@param bounds are a set of bounds that define an area that an      *  intersection must be within in order to qualify (provided by a GeoArea).      *@return true if there's such an intersection, false if not.      */
+comment|/** Assess whether a plane, within the provided bounds, intersects      * with the shape.  Note well that this method is allowed to return "true"      * if there are internal edges of a composite shape which intersect the plane.        * Doing this can cause getRelationship() for most GeoBBox shapes to return      * OVERLAPS rather than the more correct CONTAINS, but that cannot be      * helped for some complex shapes that are built out of overlapping parts.      *@param plane is the plane to assess for intersection with the shape's edges or      *  bounding curves.      *@param notablePoints represents the intersections of the plane with the supplied      *  bounds.  These are used to disambiguate when two planes are identical and it needs      *  to be determined whether any points exist that fulfill all the bounds.      *@param bounds are a set of bounds that define an area that an      *  intersection must be within in order to qualify (provided by a GeoArea).      *@return true if there's such an intersection, false if not.      */
 DECL|method|intersects
 specifier|public
 name|boolean
@@ -49,6 +49,11 @@ parameter_list|(
 specifier|final
 name|Plane
 name|plane
+parameter_list|,
+specifier|final
+name|GeoPoint
+index|[]
+name|notablePoints
 parameter_list|,
 specifier|final
 name|Membership

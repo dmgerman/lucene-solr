@@ -74,6 +74,20 @@ specifier|final
 name|GeoPoint
 name|interiorPoint
 decl_stmt|;
+DECL|field|planePoints
+specifier|public
+specifier|final
+specifier|static
+name|GeoPoint
+index|[]
+name|planePoints
+init|=
+operator|new
+name|GeoPoint
+index|[
+literal|0
+index|]
+decl_stmt|;
 comment|// We need two additional points because a latitude zone's boundaries don't intersect.  This is a very
 comment|// special case that most GeoBBox's do not have.
 DECL|field|topBoundaryPoint
@@ -518,6 +532,11 @@ name|Plane
 name|p
 parameter_list|,
 specifier|final
+name|GeoPoint
+index|[]
+name|notablePoints
+parameter_list|,
+specifier|final
 name|Membership
 modifier|...
 name|bounds
@@ -530,6 +549,10 @@ name|intersects
 argument_list|(
 name|topPlane
 argument_list|,
+name|notablePoints
+argument_list|,
+name|planePoints
+argument_list|,
 name|bounds
 argument_list|,
 name|bottomPlane
@@ -540,6 +563,10 @@ operator|.
 name|intersects
 argument_list|(
 name|bottomPlane
+argument_list|,
+name|notablePoints
+argument_list|,
+name|planePoints
 argument_list|,
 name|bounds
 argument_list|,
@@ -686,6 +713,8 @@ name|intersects
 argument_list|(
 name|topPlane
 argument_list|,
+name|planePoints
+argument_list|,
 name|bottomPlane
 argument_list|)
 operator|||
@@ -694,6 +723,8 @@ operator|.
 name|intersects
 argument_list|(
 name|bottomPlane
+argument_list|,
+name|planePoints
 argument_list|,
 name|topPlane
 argument_list|)
