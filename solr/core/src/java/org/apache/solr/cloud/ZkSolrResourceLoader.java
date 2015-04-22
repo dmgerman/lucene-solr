@@ -255,13 +255,6 @@ literal|"/"
 operator|+
 name|configSet
 expr_stmt|;
-name|zkController
-operator|.
-name|watchZKConfDir
-argument_list|(
-name|configSetZkPath
-argument_list|)
-expr_stmt|;
 block|}
 comment|/**    *<p>    * This loader will first attempt to load resources from ZooKeeper, but if not found    * will delegate to the context classloader when possible,    * otherwise it will attempt to resolve resources using any jar files found in    * the "lib/" directory in the specified instance directory.    */
 DECL|method|ZkSolrResourceLoader
@@ -308,13 +301,6 @@ operator|+
 literal|"/"
 operator|+
 name|configSet
-expr_stmt|;
-name|zkController
-operator|.
-name|watchZKConfDir
-argument_list|(
-name|configSetZkPath
-argument_list|)
 expr_stmt|;
 block|}
 comment|/**    * Opens any resource by its name. By default, this will look in multiple    * locations to load the resource: $configDir/$resource from ZooKeeper.    * It will look for it in any jar    * accessible through the class loader if it cannot be found in ZooKeeper.     * Override this method to customize loading resources.    *     * @return the stream for the named resource    */
