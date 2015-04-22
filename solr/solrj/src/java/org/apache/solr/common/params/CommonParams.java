@@ -690,6 +690,15 @@ name|NAME
 init|=
 literal|"name"
 decl_stmt|;
+DECL|field|VALUE_LONG
+specifier|public
+specifier|static
+specifier|final
+name|String
+name|VALUE_LONG
+init|=
+literal|"val"
+decl_stmt|;
 block|}
 end_interface
 
