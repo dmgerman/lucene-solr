@@ -1614,7 +1614,7 @@ literal|"val_b"
 argument_list|,
 literal|"date"
 argument_list|,
-literal|"date_dt"
+literal|"date_dtd"
 argument_list|,
 literal|"sparse_s"
 argument_list|,
@@ -1676,7 +1676,7 @@ literal|"val_b"
 argument_list|,
 literal|"date"
 argument_list|,
-literal|"date_dt"
+literal|"date_dtds"
 argument_list|,
 literal|"sparse_s"
 argument_list|,
@@ -1737,7 +1737,7 @@ literal|"val_b"
 argument_list|,
 literal|"date"
 argument_list|,
-literal|"date_dt"
+literal|"date_dtds"
 argument_list|,
 literal|"sparse_s"
 argument_list|,
