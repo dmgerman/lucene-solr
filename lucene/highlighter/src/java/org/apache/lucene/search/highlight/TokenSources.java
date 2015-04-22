@@ -382,8 +382,12 @@ operator|new
 name|TokenStreamFromTermVector
 argument_list|(
 name|tpv
+argument_list|,
+operator|-
+literal|1
 argument_list|)
 return|;
+comment|// TODO propagate maxStartOffset; see LUCENE-6445
 block|}
 comment|/**    * Returns a {@link TokenStream} with positions and offsets constructed from    * field termvectors.  If the field has no termvectors or offsets    * are not included in the termvector, return null.  See {@link #getTokenStream(org.apache.lucene.index.Terms)}    * for an explanation of what happens when positions aren't present.    *    * @param reader the {@link IndexReader} to retrieve term vectors from    * @param docId the document to retrieve termvectors for    * @param field the field to retrieve termvectors for    * @return a {@link TokenStream}, or null if offsets are not available    * @throws IOException If there is a low-level I/O error    *    * @see #getTokenStream(org.apache.lucene.index.Terms)    */
 DECL|method|getTokenStreamWithOffsets
