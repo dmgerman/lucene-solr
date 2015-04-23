@@ -123,17 +123,29 @@ parameter_list|)
 block|{
 return|return
 operator|new
-name|FacetMerger
+name|Merger
 argument_list|()
+return|;
+block|}
+DECL|class|Merger
+specifier|private
+specifier|static
+class|class
+name|Merger
+extends|extends
+name|FacetDoubleMerger
 block|{
+DECL|field|num
 name|long
 name|num
 decl_stmt|;
+DECL|field|sum
 name|double
 name|sum
 decl_stmt|;
 annotation|@
 name|Override
+DECL|method|merge
 specifier|public
 name|void
 name|merge
@@ -183,11 +195,13 @@ expr_stmt|;
 block|}
 annotation|@
 name|Override
-specifier|public
-name|Object
-name|getMergedResult
+DECL|method|getDouble
+specifier|protected
+name|double
+name|getDouble
 parameter_list|()
 block|{
+comment|// TODO: is it worth to try and cache?
 return|return
 name|num
 operator|==
@@ -201,8 +215,7 @@ name|num
 return|;
 block|}
 block|}
-return|;
-block|}
+empty_stmt|;
 block|}
 end_class
 

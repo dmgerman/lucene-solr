@@ -113,7 +113,9 @@ parameter_list|)
 block|{
 return|return
 operator|new
-name|FacetDoubleMerger
+name|SumAgg
+operator|.
+name|Merger
 argument_list|()
 return|;
 block|}
