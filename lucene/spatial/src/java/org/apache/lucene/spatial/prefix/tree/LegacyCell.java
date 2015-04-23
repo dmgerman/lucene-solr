@@ -131,19 +131,19 @@ decl_stmt|;
 comment|//NOTE: must sort before letters& numbers
 comment|//Arguably we could simply use a BytesRef, using an extra Object.
 DECL|field|bytes
-specifier|private
+specifier|protected
 name|byte
 index|[]
 name|bytes
 decl_stmt|;
 comment|//generally bigger to potentially hold a leaf
 DECL|field|b_off
-specifier|private
+specifier|protected
 name|int
 name|b_off
 decl_stmt|;
 DECL|field|b_len
-specifier|private
+specifier|protected
 name|int
 name|b_len
 decl_stmt|;
@@ -252,7 +252,7 @@ argument_list|()
 expr_stmt|;
 block|}
 DECL|method|readLeafAdjust
-specifier|private
+specifier|protected
 name|void
 name|readLeafAdjust
 parameter_list|()
@@ -296,17 +296,6 @@ operator|=
 literal|true
 expr_stmt|;
 block|}
-comment|//  @Override
-comment|//  public void copyFrom(Cell source) {
-comment|//    LegacyCell src = (LegacyCell) source;
-comment|//    shapeRel = src.shapeRel;
-comment|//    shape = src.shape;
-comment|//    isLeaf = src.isLeaf;
-comment|//    //we don't actually copy the bytes because in LegacyCell the bytes aren't modified. (leaf byte doesn't count)
-comment|//    bytes = src.bytes;
-comment|//    b_off = src.b_off;
-comment|//    b_len = src.b_len;
-comment|//  }
 DECL|method|getGrid
 specifier|protected
 specifier|abstract
@@ -866,7 +855,7 @@ return|;
 block|}
 comment|/** Copied from {@link BytesRef#compareTo(BytesRef)}.    * This is to avoid creating a BytesRef. */
 DECL|method|compare
-specifier|private
+specifier|protected
 specifier|static
 name|int
 name|compare

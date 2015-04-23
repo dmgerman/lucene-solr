@@ -408,6 +408,24 @@ name|prefix
 operator|.
 name|tree
 operator|.
+name|PackedQuadPrefixTree
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|spatial
+operator|.
+name|prefix
+operator|.
+name|tree
+operator|.
 name|QuadPrefixTree
 import|;
 end_import
@@ -627,6 +645,9 @@ condition|)
 name|setupQuadGrid
 argument_list|(
 name|maxLevels
+argument_list|,
+name|randomBoolean
+argument_list|()
 argument_list|)
 expr_stmt|;
 else|else
@@ -640,7 +661,7 @@ argument_list|(
 name|ctx
 argument_list|)
 expr_stmt|;
-comment|//((PrefixTreeStrategy) strategy).setDistErrPct(0);//fully precise to grid
+comment|// set prune independently on strategy& grid randomly; should work
 operator|(
 operator|(
 name|RecursivePrefixTreeStrategy
@@ -654,6 +675,31 @@ name|randomBoolean
 argument_list|()
 argument_list|)
 expr_stmt|;
+if|if
+condition|(
+name|this
+operator|.
+name|grid
+operator|instanceof
+name|PackedQuadPrefixTree
+condition|)
+block|{
+operator|(
+operator|(
+name|PackedQuadPrefixTree
+operator|)
+name|this
+operator|.
+name|grid
+operator|)
+operator|.
+name|setPruneLeafyBranches
+argument_list|(
+name|randomBoolean
+argument_list|()
+argument_list|)
+expr_stmt|;
+block|}
 if|if
 condition|(
 name|maxLevels
@@ -750,6 +796,9 @@ name|setupQuadGrid
 parameter_list|(
 name|int
 name|maxLevels
+parameter_list|,
+name|boolean
+name|packedQuadPrefixTree
 parameter_list|)
 block|{
 comment|//non-geospatial makes this test a little easier (in gridSnap), and using boundary values 2^X raises
@@ -813,6 +862,26 @@ literal|8
 argument_list|)
 expr_stmt|;
 comment|//max 64k cells (4^8), also 256*256
+if|if
+condition|(
+name|packedQuadPrefixTree
+condition|)
+block|{
+name|this
+operator|.
+name|grid
+operator|=
+operator|new
+name|PackedQuadPrefixTree
+argument_list|(
+name|ctx
+argument_list|,
+name|maxLevels
+argument_list|)
+expr_stmt|;
+block|}
+else|else
+block|{
 name|this
 operator|.
 name|grid
@@ -825,6 +894,7 @@ argument_list|,
 name|maxLevels
 argument_list|)
 expr_stmt|;
+block|}
 name|this
 operator|.
 name|strategy
@@ -1017,6 +1087,9 @@ block|{
 name|setupQuadGrid
 argument_list|(
 literal|3
+argument_list|,
+name|randomBoolean
+argument_list|()
 argument_list|)
 expr_stmt|;
 name|adoc
@@ -1124,6 +1197,9 @@ block|{
 name|setupQuadGrid
 argument_list|(
 literal|7
+argument_list|,
+name|randomBoolean
+argument_list|()
 argument_list|)
 expr_stmt|;
 comment|//one shape comprised of two parts, quite separated apart
@@ -1234,6 +1310,9 @@ block|{
 name|setupQuadGrid
 argument_list|(
 literal|2
+argument_list|,
+name|randomBoolean
+argument_list|()
 argument_list|)
 expr_stmt|;
 comment|//4x4 grid

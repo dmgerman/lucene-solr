@@ -18,6 +18,16 @@ end_comment
 
 begin_import
 import|import
+name|java
+operator|.
+name|util
+operator|.
+name|Map
+import|;
+end_import
+
+begin_import
+import|import
 name|org
 operator|.
 name|apache
@@ -34,11 +44,19 @@ end_import
 
 begin_import
 import|import
-name|java
+name|org
 operator|.
-name|util
+name|apache
 operator|.
-name|Map
+name|lucene
+operator|.
+name|spatial
+operator|.
+name|prefix
+operator|.
+name|tree
+operator|.
+name|PackedQuadPrefixTree
 import|;
 end_import
 
@@ -161,6 +179,34 @@ argument_list|(
 name|prefixGridScanLevel
 argument_list|)
 expr_stmt|;
+if|if
+condition|(
+name|grid
+operator|instanceof
+name|PackedQuadPrefixTree
+condition|)
+block|{
+comment|// This grid has a (usually) better prune leafy branch implementation
+operator|(
+operator|(
+name|PackedQuadPrefixTree
+operator|)
+name|grid
+operator|)
+operator|.
+name|setPruneLeafyBranches
+argument_list|(
+literal|true
+argument_list|)
+expr_stmt|;
+name|strategy
+operator|.
+name|setPruneLeafyBranches
+argument_list|(
+literal|false
+argument_list|)
+expr_stmt|;
+block|}
 return|return
 name|strategy
 return|;
