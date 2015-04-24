@@ -90,6 +90,15 @@ specifier|public
 class|class
 name|HdfsUtil
 block|{
+comment|// Allows tests to easily add additional conf
+DECL|field|TEST_CONF
+specifier|public
+specifier|static
+name|Configuration
+name|TEST_CONF
+init|=
+literal|null
+decl_stmt|;
 DECL|field|HADOOP_CONF_FILES
 specifier|private
 specifier|static
@@ -261,6 +270,21 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
+block|}
+if|if
+condition|(
+name|TEST_CONF
+operator|!=
+literal|null
+condition|)
+block|{
+name|conf
+operator|.
+name|addResource
+argument_list|(
+name|TEST_CONF
+argument_list|)
+expr_stmt|;
 block|}
 block|}
 block|}
