@@ -356,6 +356,47 @@ operator|.
 name|clear
 argument_list|()
 expr_stmt|;
+if|if
+condition|(
+name|laps
+operator|>
+name|MINLAPSPERCASE
+operator|*
+literal|1000
+condition|)
+block|{
+name|fail
+argument_list|(
+literal|"Did not find enough intersection cases in a reasonable number"
+operator|+
+literal|" of random attempts. CWIDbD: "
+operator|+
+name|i_C
+operator|+
+literal|","
+operator|+
+name|i_W
+operator|+
+literal|","
+operator|+
+name|i_I
+operator|+
+literal|","
+operator|+
+name|i_D
+operator|+
+literal|","
+operator|+
+name|i_bboxD
+operator|+
+literal|"  Laps exceeded "
+operator|+
+name|MINLAPSPERCASE
+operator|*
+literal|1000
+argument_list|)
+expr_stmt|;
+block|}
 name|Point
 name|nearP
 init|=
@@ -790,6 +831,7 @@ name|ic
 argument_list|)
 expr_stmt|;
 block|}
+comment|// switch
 block|}
 catch|catch
 parameter_list|(
@@ -809,46 +851,8 @@ name|ic
 argument_list|)
 expr_stmt|;
 block|}
-if|if
-condition|(
-name|laps
-operator|>
-name|MINLAPSPERCASE
-operator|*
-literal|1000
-condition|)
-name|fail
-argument_list|(
-literal|"Did not find enough intersection cases in a reasonable number"
-operator|+
-literal|" of random attempts. CWIDbD: "
-operator|+
-name|i_C
-operator|+
-literal|","
-operator|+
-name|i_W
-operator|+
-literal|","
-operator|+
-name|i_I
-operator|+
-literal|","
-operator|+
-name|i_D
-operator|+
-literal|","
-operator|+
-name|i_bboxD
-operator|+
-literal|"  Laps exceeded "
-operator|+
-name|MINLAPSPERCASE
-operator|*
-literal|1000
-argument_list|)
-expr_stmt|;
 block|}
+comment|// while loop
 name|System
 operator|.
 name|out
