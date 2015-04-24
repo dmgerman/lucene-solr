@@ -37,6 +37,13 @@ name|double
 name|getRadius
 parameter_list|()
 function_decl|;
+comment|/** Returns the center of a circle into which the area will be inscribed.     *@return the center.     */
+DECL|method|getCenter
+specifier|public
+name|GeoPoint
+name|getCenter
+parameter_list|()
+function_decl|;
 block|}
 end_interface
 

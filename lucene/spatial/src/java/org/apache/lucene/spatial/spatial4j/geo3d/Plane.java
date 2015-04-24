@@ -183,6 +183,8 @@ name|D
 expr_stmt|;
 block|}
 comment|/** Evaluate the plane equation for a given point, as represented      * by a vector.      *@param v is the vector.      *@return the result of the evaluation.      */
+annotation|@
+name|Override
 DECL|method|evaluate
 specifier|public
 name|double
@@ -202,6 +204,108 @@ name|v
 argument_list|)
 operator|+
 name|D
+return|;
+block|}
+comment|/** Evaluate the plane equation for a given point, as represented      * by a vector.      *@param x,y,z is the vector.      *@return the result of the evaluation.      */
+annotation|@
+name|Override
+DECL|method|evaluate
+specifier|public
+name|double
+name|evaluate
+parameter_list|(
+specifier|final
+name|double
+name|x
+parameter_list|,
+specifier|final
+name|double
+name|y
+parameter_list|,
+specifier|final
+name|double
+name|z
+parameter_list|)
+block|{
+return|return
+name|super
+operator|.
+name|evaluate
+argument_list|(
+name|x
+argument_list|,
+name|y
+argument_list|,
+name|z
+argument_list|)
+operator|+
+name|D
+return|;
+block|}
+comment|/** Evaluate the plane equation for a given point, as represented      * by a vector.      *@param v is the vector.      *@return true if the result is on the plane.      */
+annotation|@
+name|Override
+DECL|method|evaluateIsZero
+specifier|public
+name|boolean
+name|evaluateIsZero
+parameter_list|(
+specifier|final
+name|Vector
+name|v
+parameter_list|)
+block|{
+return|return
+name|Math
+operator|.
+name|abs
+argument_list|(
+name|evaluate
+argument_list|(
+name|v
+argument_list|)
+argument_list|)
+operator|<
+name|MINIMUM_RESOLUTION
+return|;
+block|}
+comment|/** Evaluate the plane equation for a given point, as represented      * by a vector.      *@param x,y,z is the vector.      *@return true if the result is on the plane.      */
+annotation|@
+name|Override
+DECL|method|evaluateIsZero
+specifier|public
+name|boolean
+name|evaluateIsZero
+parameter_list|(
+specifier|final
+name|double
+name|x
+parameter_list|,
+specifier|final
+name|double
+name|y
+parameter_list|,
+specifier|final
+name|double
+name|z
+parameter_list|)
+block|{
+return|return
+name|Math
+operator|.
+name|abs
+argument_list|(
+name|evaluate
+argument_list|(
+name|x
+argument_list|,
+name|y
+argument_list|,
+name|z
+argument_list|)
+argument_list|)
+operator|<
+name|MINIMUM_RESOLUTION
 return|;
 block|}
 comment|/** Build a normalized plane, so that the vector is normalized.      *@return the normalized plane object, or null if the plane is indeterminate.      */
@@ -276,26 +380,42 @@ argument_list|)
 decl_stmt|;
 if|if
 condition|(
+name|Math
+operator|.
+name|abs
+argument_list|(
 name|lineVector
 operator|.
 name|x
-operator|==
-literal|0.0
+argument_list|)
+operator|<
+name|MINIMUM_RESOLUTION
 operator|&&
+name|Math
+operator|.
+name|abs
+argument_list|(
 name|lineVector
 operator|.
 name|y
-operator|==
-literal|0.0
+argument_list|)
+operator|<
+name|MINIMUM_RESOLUTION
 operator|&&
+name|Math
+operator|.
+name|abs
+argument_list|(
 name|lineVector
 operator|.
 name|z
-operator|==
-literal|0.0
+argument_list|)
+operator|<
+name|MINIMUM_RESOLUTION
 condition|)
 block|{
 comment|// Degenerate case: parallel planes
+comment|//System.err.println(" planes are parallel - no intersection");
 return|return
 name|NO_POINTS
 return|;
@@ -430,11 +550,14 @@ argument_list|(
 name|denomYZ
 argument_list|)
 operator|<
-literal|1.0e-35
+name|MINIMUM_RESOLUTION_SQUARED
 condition|)
+block|{
+comment|//System.err.println(" Denominator is zero: no intersection");
 return|return
 name|NO_POINTS
 return|;
+block|}
 specifier|final
 name|double
 name|denom
@@ -537,11 +660,14 @@ argument_list|(
 name|denomXZ
 argument_list|)
 operator|<
-literal|1.0e-35
+name|MINIMUM_RESOLUTION_SQUARED
 condition|)
+block|{
+comment|//System.err.println(" Denominator is zero: no intersection");
 return|return
 name|NO_POINTS
 return|;
+block|}
 specifier|final
 name|double
 name|denom
@@ -614,11 +740,14 @@ argument_list|(
 name|denomXY
 argument_list|)
 operator|<
-literal|1.0e-35
+name|MINIMUM_RESOLUTION_SQUARED
 condition|)
+block|{
+comment|//System.err.println(" Denominator is zero: no intersection");
 return|return
 name|NO_POINTS
 return|;
+block|}
 specifier|final
 name|double
 name|denom
@@ -774,13 +903,17 @@ name|C
 decl_stmt|;
 if|if
 condition|(
+name|Math
+operator|.
+name|abs
+argument_list|(
 name|BsquaredMinus
+argument_list|)
 operator|<
-literal|0.0
+name|MINIMUM_RESOLUTION_SQUARED
 condition|)
-return|return
-name|NO_POINTS
-return|;
+block|{
+comment|//System.err.println(" One point of intersection");
 specifier|final
 name|double
 name|inverse2A
@@ -793,13 +926,6 @@ operator|*
 name|A
 operator|)
 decl_stmt|;
-if|if
-condition|(
-name|BsquaredMinus
-operator|==
-literal|0.0
-condition|)
-block|{
 comment|// One solution only
 specifier|final
 name|double
@@ -864,8 +990,27 @@ return|return
 name|NO_POINTS
 return|;
 block|}
-else|else
+elseif|else
+if|if
+condition|(
+name|BsquaredMinus
+operator|>
+literal|0.0
+condition|)
 block|{
+comment|//System.err.println(" Two points of intersection");
+specifier|final
+name|double
+name|inverse2A
+init|=
+literal|1.0
+operator|/
+operator|(
+literal|2.0
+operator|*
+name|A
+operator|)
+decl_stmt|;
 comment|// Two solutions
 specifier|final
 name|double
@@ -966,6 +1111,7 @@ operator|+
 name|z0
 argument_list|)
 decl_stmt|;
+comment|//System.err.println("  "+point1+" and "+point2);
 if|if
 condition|(
 name|point1
@@ -1027,6 +1173,13 @@ block|{
 name|point2
 block|}
 return|;
+return|return
+name|NO_POINTS
+return|;
+block|}
+else|else
+block|{
+comment|//System.err.println(" no solutions - no intersection");
 return|return
 name|NO_POINTS
 return|;
@@ -1100,6 +1253,7 @@ name|bounds
 parameter_list|)
 block|{
 comment|// For clarity, load local variables with good names
+specifier|final
 name|double
 name|A
 init|=
@@ -1107,6 +1261,7 @@ name|this
 operator|.
 name|x
 decl_stmt|;
+specifier|final
 name|double
 name|B
 init|=
@@ -1114,6 +1269,7 @@ name|this
 operator|.
 name|y
 decl_stmt|;
+specifier|final
 name|double
 name|C
 init|=
@@ -1137,6 +1293,7 @@ name|checkNoBottomLatitudeBound
 argument_list|()
 condition|)
 block|{
+comment|//System.err.println("Looking at latitude for plane "+this);
 if|if
 condition|(
 operator|(
@@ -1176,11 +1333,11 @@ argument_list|(
 name|C
 argument_list|)
 operator|<
-literal|1.0e-10
+name|MINIMUM_RESOLUTION
 condition|)
 block|{
 comment|// Special case: circle is vertical.
-comment|//System.out.println("Degenerate case; it's vertical circle");
+comment|//System.err.println(" Degenerate case; it's vertical circle");
 comment|// cos(phi) = D, and we want sin(phi) = z
 comment|// There are two solutions for phi given cos(phi) = D: a positive solution and a negative solution.
 comment|// So, when we compute z = sqrt(1-D^2), it's really z = +/- sqrt(1-D^2) .
@@ -1193,6 +1350,7 @@ decl_stmt|;
 name|double
 name|y
 decl_stmt|;
+specifier|final
 name|double
 name|denom
 init|=
@@ -1271,8 +1429,171 @@ name|z
 argument_list|)
 expr_stmt|;
 block|}
+elseif|else
+if|if
+condition|(
+name|Math
+operator|.
+name|abs
+argument_list|(
+name|D
+argument_list|)
+operator|<
+name|MINIMUM_RESOLUTION
+condition|)
+block|{
+comment|//System.err.println(" Plane through origin case");
+comment|// The general case is degenerate when the plane goes through the origin.
+comment|// Luckily there's a pretty good way to figure out the max and min for that case though.
+comment|// We find the two z values by computing the angle of the plane's inclination with the normal.
+comment|// E.g., if this.z == 1, then our z value is 0, and if this.z == 0, our z value is 1.
+comment|// Also if this.z == -1, then z value is 0 again.
+comment|// Another way of putting this is that our z = sqrt(this.x^2 + this.y^2).
+comment|//
+comment|// The only tricky part is computing x and y.
+name|double
+name|z
+decl_stmt|;
+name|double
+name|x
+decl_stmt|;
+name|double
+name|y
+decl_stmt|;
+specifier|final
+name|double
+name|denom
+init|=
+literal|1.0
+operator|/
+operator|(
+name|A
+operator|*
+name|A
+operator|+
+name|B
+operator|*
+name|B
+operator|)
+decl_stmt|;
+name|z
+operator|=
+name|Math
+operator|.
+name|sqrt
+argument_list|(
+operator|(
+name|A
+operator|*
+name|A
+operator|+
+name|B
+operator|*
+name|B
+operator|)
+operator|/
+operator|(
+name|A
+operator|*
+name|A
+operator|+
+name|B
+operator|*
+name|B
+operator|+
+name|C
+operator|*
+name|C
+operator|)
+argument_list|)
+expr_stmt|;
+name|y
+operator|=
+operator|-
+name|B
+operator|*
+operator|(
+name|C
+operator|*
+name|z
+operator|)
+operator|*
+name|denom
+expr_stmt|;
+name|x
+operator|=
+operator|-
+name|A
+operator|*
+operator|(
+name|C
+operator|*
+name|z
+operator|)
+operator|*
+name|denom
+expr_stmt|;
+name|addPoint
+argument_list|(
+name|boundsInfo
+argument_list|,
+name|bounds
+argument_list|,
+name|x
+argument_list|,
+name|y
+argument_list|,
+name|z
+argument_list|)
+expr_stmt|;
+name|z
+operator|=
+operator|-
+name|z
+expr_stmt|;
+name|y
+operator|=
+operator|-
+name|B
+operator|*
+operator|(
+name|C
+operator|*
+name|z
+operator|)
+operator|*
+name|denom
+expr_stmt|;
+name|x
+operator|=
+operator|-
+name|A
+operator|*
+operator|(
+name|C
+operator|*
+name|z
+operator|)
+operator|*
+name|denom
+expr_stmt|;
+name|addPoint
+argument_list|(
+name|boundsInfo
+argument_list|,
+name|bounds
+argument_list|,
+name|x
+argument_list|,
+name|y
+argument_list|,
+name|z
+argument_list|)
+expr_stmt|;
+block|}
 else|else
 block|{
+comment|//System.err.println(" General latitude case");
 comment|// We might be able to identify a specific new latitude maximum or minimum.
 comment|//
 comment|// cos (theta-phi) = cos(theta)cos(phi) + sin(theta)sin(phi) = D
@@ -1288,18 +1609,67 @@ comment|// cos (theta) = +/- sqrt(1-sin(theta)^2) = +/- sqrt(1-C^2)
 comment|//
 comment|// D = cos(theta)cos(phi) + sin(theta)sin(phi)
 comment|// Substitute:
-comment|// D = sqrt(1-C^2) * sqrt(1-z^2) + C * z
+comment|// D = sqrt(1-C^2) * sqrt(1-z^2) -/+ C * z
 comment|// Solve for z...
-comment|// D-Cz = sqrt(1-C^2)*sqrt(1-z^2) = sqrt(1 - z^2 - C^2 + z^2*C^2)
+comment|// D +/- Cz = sqrt(1-C^2)*sqrt(1-z^2) = sqrt(1 - z^2 - C^2 + z^2*C^2)
 comment|// Square both sides.
-comment|// (D-Cz)^2 = 1 - z^2 - C^2 + z^2*C^2
-comment|// D^2 - 2DCz + C^2*z^2 = 1 - z^2 - C^2 + z^2*C^2
-comment|// D^2 - 2DCz  = 1 - C^2 - z^2
-comment|// 0 = z^2 - 2DCz + (C^2 +D^2-1) = 0
+comment|// (D +/- Cz)^2 = 1 - z^2 - C^2 + z^2*C^2
+comment|// D^2 +/- 2DCz + C^2*z^2 = 1 - z^2 - C^2 + z^2*C^2
+comment|// D^2 +/- 2DCz  = 1 - C^2 - z^2
+comment|// 0 = z^2 +/- 2DCz + (C^2 +D^2-1) = 0
 comment|//
-comment|// z = (2DC +/- sqrt(4*D^2*C^2 - 4*(C^2+D^2-1))) / (2)
-comment|// z  = DC +/- sqrt(D^2*C^2 + 1 - C^2 - D^2 )
-comment|//    = DC +/- sqrt(D^2*C^2 + 1 - C^2 - D^2)
+comment|// z = (+/- 2DC +/- sqrt(4*D^2*C^2 - 4*(C^2+D^2-1))) / (2)
+comment|// z  = +/- DC +/- sqrt(D^2*C^2 + 1 - C^2 - D^2 )
+comment|//    = +/- DC +/- sqrt(D^2*C^2 + 1 - C^2 - D^2)
+comment|//
+comment|// NOTE WELL: The above is clearly degenerate when D = 0.  So we'll have to
+comment|// code a different solution for that case!
+comment|// To get x and y, we need to plug z into the equations, as follows:
+comment|//
+comment|// Ax + By = -Cz - D
+comment|// x^2 + y^2 = 1 - z^2
+comment|//
+comment|// x = (-Cz -D -By) /A
+comment|// y = (-Cz -D -Ax) /B
+comment|//
+comment|// [(-Cz -D -By) /A]^2 + y^2 = 1 - z^2
+comment|// [-Cz -D -By]^2 + A^2*y^2 = A^2 - A^2*z^2
+comment|// C^2*z^2 + D^2 + B^2*y^2 + 2CDz + 2CBzy + 2DBy + A^2*y^2 - A^2 + A^2*z^2 = 0
+comment|// y^2 [A^2 + B^2]  + y [2DB + 2CBz] + [C^2*z^2 + D^2 + 2CDz - A^2 + A^2*z^2] = 0
+comment|//
+comment|//
+comment|// Use quadratic formula, where:
+comment|// a = [A^2 + B^2]
+comment|// b = [2BD + 2CBz]
+comment|// c = [C^2*z^2 + D^2 + 2CDz - A^2 + A^2*z^2]
+comment|//
+comment|// y = (-[2BD + 2CBz] +/- sqrt([2BD + 2CBz]^2 - 4 * [A^2 + B^2] * [C^2*z^2 + D^2 + 2CDz - A^2 + A^2*z^2]) ) / (2 * [A^2 + B^2])
+comment|// Take out a 2:
+comment|// y = (-[DB +CBz] +/- sqrt([DB + CBz]^2 - [A^2 + B^2] * [C^2*z^2 + D^2 + 2CDz - A^2 + A^2*z^2]) ) / [A^2 + B^2]
+comment|//
+comment|// The sqrt term simplifies:
+comment|//
+comment|// B^2*D^2 + C^2*B^2*z^2 + 2C*D*B^2*z - [A^2 + B^2] * [C^2*z^2 + D^2 + 2CDz - A^2 + A^2*z^2] = ?
+comment|// B^2*D^2 + C^2*B^2*z^2 + 2C*D*B^2*z - [A^2 * C^2 * z^2 + A^2 * D^2 + 2 * A^2 * CDz - A^4 + A^4*z^2
+comment|//                  + B^2 * C^2 * z^2 + B^2 * D^2 + 2 * B^2 * CDz - A^2 * B^2 + B^2 * A^2 * z^2] =?
+comment|// C^2*B^2*z^2 + 2C*D*B^2*z - [A^2 * C^2 * z^2 + A^2 * D^2 + 2 * A^2 * CDz - A^4 + A^4*z^2
+comment|//                  + B^2 * C^2 * z^2 + 2 * B^2 * CDz - A^2 * B^2 + B^2 * A^2 * z^2] =?
+comment|// 2C*D*B^2*z - [A^2 * C^2 * z^2 + A^2 * D^2 + 2 * A^2 * CDz - A^4 + A^4*z^2
+comment|//                  + 2 * B^2 * CDz - A^2 * B^2 + B^2 * A^2 * z^2] =?
+comment|// - [A^2 * C^2 * z^2 + A^2 * D^2 + 2 * A^2 * CDz - A^4 + A^4*z^2
+comment|//                  - A^2 * B^2 + B^2 * A^2 * z^2] =?
+comment|// - A^2 * [C^2 * z^2 + D^2 + 2 * CDz - A^2 + A^2*z^2
+comment|//                  - B^2 + B^2 * z^2] =?
+comment|// - A^2 * [z^2[A^2 + B^2 + C^2] - [A^2 + B^2 - D^2] + 2CDz] =?
+comment|// - A^2 * [z^2 - [A^2 + B^2 - D^2] + 2CDz] =?
+comment|//
+comment|// y = (-[DB +CBz] +/- A*sqrt([A^2 + B^2 - D^2] - z^2 - 2CDz) ) / [A^2 + B^2]
+comment|//
+comment|// correspondingly:
+comment|// x = (-[DA +CAz] +/- B*sqrt([A^2 + B^2 - D^2] - z^2 - 2CDz) ) / [A^2 + B^2]
+comment|//
+comment|// However, for the maximum or minimum we seek, the clause inside the sqrt should be zero.  If
+comment|// it is NOT zero, then we aren't looking at the right z value.
 name|double
 name|z
 decl_stmt|;
@@ -1330,15 +1700,6 @@ name|D
 operator|*
 name|D
 decl_stmt|;
-if|if
-condition|(
-name|sqrtValue
-operator|>=
-literal|0.0
-condition|)
-block|{
-comment|// y = -B[D+Cz] / [A^2 + B^2]
-comment|// x = -A[D+Cz] / [A^2 + B^2]
 name|double
 name|denom
 init|=
@@ -1356,196 +1717,237 @@ operator|)
 decl_stmt|;
 if|if
 condition|(
+name|Math
+operator|.
+name|abs
+argument_list|(
 name|sqrtValue
-operator|==
+argument_list|)
+operator|<
+name|MINIMUM_RESOLUTION_SQUARED
+condition|)
+block|{
+comment|//System.err.println(" One latitude solution");
+name|double
+name|insideValue
+decl_stmt|;
+name|double
+name|sqrtTerm
+decl_stmt|;
+name|z
+operator|=
+name|D
+operator|*
+name|C
+expr_stmt|;
+comment|// Since we squared both sides of the equation, we may have introduced spurious solutions, so we have to check.
+comment|// But the same check applies to BOTH solutions -- the +z one as well as the -z one.
+name|insideValue
+operator|=
+name|A
+operator|*
+name|A
+operator|+
+name|B
+operator|*
+name|B
+operator|-
+name|D
+operator|*
+name|D
+operator|-
+name|z
+operator|*
+name|z
+operator|-
+literal|2.0
+operator|*
+name|C
+operator|*
+name|D
+operator|*
+name|z
+expr_stmt|;
+if|if
+condition|(
+name|Math
+operator|.
+name|abs
+argument_list|(
+name|insideValue
+argument_list|)
+operator|<
+name|MINIMUM_RESOLUTION
+condition|)
+block|{
+name|y
+operator|=
+operator|-
+name|B
+operator|*
+operator|(
+name|D
+operator|+
+name|C
+operator|*
+name|z
+operator|)
+operator|*
+name|denom
+expr_stmt|;
+name|x
+operator|=
+operator|-
+name|A
+operator|*
+operator|(
+name|D
+operator|+
+name|C
+operator|*
+name|z
+operator|)
+operator|*
+name|denom
+expr_stmt|;
+if|if
+condition|(
+name|evaluateIsZero
+argument_list|(
+name|x
+argument_list|,
+name|y
+argument_list|,
+name|z
+argument_list|)
+condition|)
+block|{
+name|addPoint
+argument_list|(
+name|boundsInfo
+argument_list|,
+name|bounds
+argument_list|,
+name|x
+argument_list|,
+name|y
+argument_list|,
+name|z
+argument_list|)
+expr_stmt|;
+block|}
+block|}
+comment|// Check the solution on the other side of the x-y plane
+name|z
+operator|=
+operator|-
+name|z
+expr_stmt|;
+name|insideValue
+operator|=
+name|A
+operator|*
+name|A
+operator|+
+name|B
+operator|*
+name|B
+operator|-
+name|D
+operator|*
+name|D
+operator|-
+name|z
+operator|*
+name|z
+operator|-
+literal|2.0
+operator|*
+name|C
+operator|*
+name|D
+operator|*
+name|z
+expr_stmt|;
+if|if
+condition|(
+name|Math
+operator|.
+name|abs
+argument_list|(
+name|insideValue
+argument_list|)
+operator|<
+name|MINIMUM_RESOLUTION
+condition|)
+block|{
+name|y
+operator|=
+operator|-
+name|B
+operator|*
+operator|(
+name|D
+operator|+
+name|C
+operator|*
+name|z
+operator|)
+operator|*
+name|denom
+expr_stmt|;
+name|x
+operator|=
+operator|-
+name|A
+operator|*
+operator|(
+name|D
+operator|+
+name|C
+operator|*
+name|z
+operator|)
+operator|*
+name|denom
+expr_stmt|;
+if|if
+condition|(
+name|evaluateIsZero
+argument_list|(
+name|x
+argument_list|,
+name|y
+argument_list|,
+name|z
+argument_list|)
+condition|)
+block|{
+name|addPoint
+argument_list|(
+name|boundsInfo
+argument_list|,
+name|bounds
+argument_list|,
+name|x
+argument_list|,
+name|y
+argument_list|,
+name|z
+argument_list|)
+expr_stmt|;
+block|}
+block|}
+block|}
+elseif|else
+if|if
+condition|(
+name|sqrtValue
+operator|>
 literal|0.0
 condition|)
 block|{
-comment|//System.out.println("Zero sqrt term");
-name|z
-operator|=
-name|D
-operator|*
-name|C
-expr_stmt|;
-comment|// Since we squared both sides of the equation, we may have introduced spurious solutions, so we have to check.
-if|if
-condition|(
-name|Math
-operator|.
-name|abs
-argument_list|(
-name|D
-operator|-
-name|C
-operator|*
-name|z
-operator|-
-name|Math
-operator|.
-name|sqrt
-argument_list|(
-literal|1.0
-operator|-
-name|z
-operator|*
-name|z
-operator|-
-name|C
-operator|*
-name|C
-operator|+
-name|z
-operator|*
-name|z
-operator|*
-name|C
-operator|*
-name|C
-argument_list|)
-argument_list|)
-operator|<
-literal|1.0e-10
-condition|)
-block|{
-name|y
-operator|=
-operator|-
-name|B
-operator|*
-operator|(
-name|D
-operator|+
-name|C
-operator|*
-name|z
-operator|)
-operator|*
-name|denom
-expr_stmt|;
-name|x
-operator|=
-operator|-
-name|A
-operator|*
-operator|(
-name|D
-operator|+
-name|C
-operator|*
-name|z
-operator|)
-operator|*
-name|denom
-expr_stmt|;
-name|addPoint
-argument_list|(
-name|boundsInfo
-argument_list|,
-name|bounds
-argument_list|,
-name|x
-argument_list|,
-name|y
-argument_list|,
-name|z
-argument_list|)
-expr_stmt|;
-block|}
-name|z
-operator|=
-operator|-
-name|D
-operator|*
-name|C
-expr_stmt|;
-comment|// Since we squared both sides of the equation, we may have introduced spurious solutions, so we have to check.
-if|if
-condition|(
-name|Math
-operator|.
-name|abs
-argument_list|(
-name|D
-operator|+
-name|C
-operator|*
-name|z
-operator|+
-name|Math
-operator|.
-name|sqrt
-argument_list|(
-literal|1.0
-operator|-
-name|z
-operator|*
-name|z
-operator|-
-name|C
-operator|*
-name|C
-operator|+
-name|z
-operator|*
-name|z
-operator|*
-name|C
-operator|*
-name|C
-argument_list|)
-argument_list|)
-operator|<
-literal|1.0e-10
-condition|)
-block|{
-name|y
-operator|=
-operator|-
-name|B
-operator|*
-operator|(
-name|D
-operator|+
-name|C
-operator|*
-name|z
-operator|)
-operator|*
-name|denom
-expr_stmt|;
-name|x
-operator|=
-operator|-
-name|A
-operator|*
-operator|(
-name|D
-operator|+
-name|C
-operator|*
-name|z
-operator|)
-operator|*
-name|denom
-expr_stmt|;
-name|addPoint
-argument_list|(
-name|boundsInfo
-argument_list|,
-name|bounds
-argument_list|,
-name|x
-argument_list|,
-name|y
-argument_list|,
-name|z
-argument_list|)
-expr_stmt|;
-block|}
-block|}
-else|else
-block|{
+comment|//System.err.println(" Two latitude solutions");
 name|double
 name|sqrtResult
 init|=
@@ -1555,6 +1957,12 @@ name|sqrt
 argument_list|(
 name|sqrtValue
 argument_list|)
+decl_stmt|;
+name|double
+name|insideValue
+decl_stmt|;
+name|double
+name|sqrtTerm
 decl_stmt|;
 name|z
 operator|=
@@ -1566,46 +1974,46 @@ name|sqrtResult
 expr_stmt|;
 comment|//System.out.println("z= "+z+" D-C*z = " + (D-C*z) + " Math.sqrt(1.0 - z*z - C*C + z*z*C*C) = "+(Math.sqrt(1.0 - z*z - C*C + z*z*C*C)));
 comment|// Since we squared both sides of the equation, we may have introduced spurios solutions, so we have to check.
+comment|// But the same check applies to BOTH solutions -- the +z one as well as the -z one.
+name|insideValue
+operator|=
+name|A
+operator|*
+name|A
+operator|+
+name|B
+operator|*
+name|B
+operator|-
+name|D
+operator|*
+name|D
+operator|-
+name|z
+operator|*
+name|z
+operator|-
+literal|2.0
+operator|*
+name|C
+operator|*
+name|D
+operator|*
+name|z
+expr_stmt|;
+comment|//System.err.println(" z="+z+" C="+C+" D="+D+" inside value "+insideValue);
 if|if
 condition|(
 name|Math
 operator|.
 name|abs
 argument_list|(
-name|D
-operator|-
-name|C
-operator|*
-name|z
-operator|-
-name|Math
-operator|.
-name|sqrt
-argument_list|(
-literal|1.0
-operator|-
-name|z
-operator|*
-name|z
-operator|-
-name|C
-operator|*
-name|C
-operator|+
-name|z
-operator|*
-name|z
-operator|*
-name|C
-operator|*
-name|C
-argument_list|)
+name|insideValue
 argument_list|)
 operator|<
-literal|1.0e-10
+name|MINIMUM_RESOLUTION
 condition|)
 block|{
-comment|//System.out.println("found a point; z = "+z);
 name|y
 operator|=
 operator|-
@@ -1636,6 +2044,18 @@ operator|)
 operator|*
 name|denom
 expr_stmt|;
+if|if
+condition|(
+name|evaluateIsZero
+argument_list|(
+name|x
+argument_list|,
+name|y
+argument_list|,
+name|z
+argument_list|)
+condition|)
+block|{
 name|addPoint
 argument_list|(
 name|boundsInfo
@@ -1649,6 +2069,109 @@ argument_list|,
 name|z
 argument_list|)
 expr_stmt|;
+block|}
+block|}
+comment|// Check the solution on the other side of the x-y plane
+name|z
+operator|=
+operator|-
+name|z
+expr_stmt|;
+name|insideValue
+operator|=
+name|A
+operator|*
+name|A
+operator|+
+name|B
+operator|*
+name|B
+operator|-
+name|D
+operator|*
+name|D
+operator|-
+name|z
+operator|*
+name|z
+operator|-
+literal|2.0
+operator|*
+name|C
+operator|*
+name|D
+operator|*
+name|z
+expr_stmt|;
+comment|//System.err.println(" z="+z+" C="+C+" D="+D+" inside value "+insideValue);
+if|if
+condition|(
+name|Math
+operator|.
+name|abs
+argument_list|(
+name|insideValue
+argument_list|)
+operator|<
+name|MINIMUM_RESOLUTION
+condition|)
+block|{
+name|y
+operator|=
+operator|-
+name|B
+operator|*
+operator|(
+name|D
+operator|+
+name|C
+operator|*
+name|z
+operator|)
+operator|*
+name|denom
+expr_stmt|;
+name|x
+operator|=
+operator|-
+name|A
+operator|*
+operator|(
+name|D
+operator|+
+name|C
+operator|*
+name|z
+operator|)
+operator|*
+name|denom
+expr_stmt|;
+if|if
+condition|(
+name|evaluateIsZero
+argument_list|(
+name|x
+argument_list|,
+name|y
+argument_list|,
+name|z
+argument_list|)
+condition|)
+block|{
+name|addPoint
+argument_list|(
+name|boundsInfo
+argument_list|,
+name|bounds
+argument_list|,
+name|x
+argument_list|,
+name|y
+argument_list|,
+name|z
+argument_list|)
+expr_stmt|;
+block|}
 block|}
 name|z
 operator|=
@@ -1660,46 +2183,46 @@ name|sqrtResult
 expr_stmt|;
 comment|//System.out.println("z= "+z+" D-C*z = " + (D-C*z) + " Math.sqrt(1.0 - z*z - C*C + z*z*C*C) = "+(Math.sqrt(1.0 - z*z - C*C + z*z*C*C)));
 comment|// Since we squared both sides of the equation, we may have introduced spurios solutions, so we have to check.
+comment|// But the same check applies to BOTH solutions -- the +z one as well as the -z one.
+name|insideValue
+operator|=
+name|A
+operator|*
+name|A
+operator|+
+name|B
+operator|*
+name|B
+operator|-
+name|D
+operator|*
+name|D
+operator|-
+name|z
+operator|*
+name|z
+operator|-
+literal|2.0
+operator|*
+name|C
+operator|*
+name|D
+operator|*
+name|z
+expr_stmt|;
+comment|//System.err.println(" z="+z+" C="+C+" D="+D+" inside value "+insideValue);
 if|if
 condition|(
 name|Math
 operator|.
 name|abs
 argument_list|(
-name|D
-operator|-
-name|C
-operator|*
-name|z
-operator|-
-name|Math
-operator|.
-name|sqrt
-argument_list|(
-literal|1.0
-operator|-
-name|z
-operator|*
-name|z
-operator|-
-name|C
-operator|*
-name|C
-operator|+
-name|z
-operator|*
-name|z
-operator|*
-name|C
-operator|*
-name|C
-argument_list|)
+name|insideValue
 argument_list|)
 operator|<
-literal|1.0e-10
+name|MINIMUM_RESOLUTION
 condition|)
 block|{
-comment|//System.out.println("found a point; z="+z);
 name|y
 operator|=
 operator|-
@@ -1730,6 +2253,18 @@ operator|)
 operator|*
 name|denom
 expr_stmt|;
+if|if
+condition|(
+name|evaluateIsZero
+argument_list|(
+name|x
+argument_list|,
+name|y
+argument_list|,
+name|z
+argument_list|)
+condition|)
+block|{
 name|addPoint
 argument_list|(
 name|boundsInfo
@@ -1744,156 +2279,52 @@ name|z
 argument_list|)
 expr_stmt|;
 block|}
-name|z
-operator|=
-operator|-
-operator|(
-name|D
-operator|*
-name|C
-operator|+
-name|sqrtResult
-operator|)
-expr_stmt|;
-comment|//System.out.println("z= "+z+" D+C*z = " + (D+C*z) + " -Math.sqrt(1.0 - z*z - C*C + z*z*C*C) = "+(-Math.sqrt(1.0 - z*z - C*C + z*z*C*C)));
-comment|// Since we squared both sides of the equation, we may have introduced spurios solutions, so we have to check.
-if|if
-condition|(
-name|Math
-operator|.
-name|abs
-argument_list|(
-name|D
-operator|+
-name|C
-operator|*
-name|z
-operator|+
-name|Math
-operator|.
-name|sqrt
-argument_list|(
-literal|1.0
-operator|-
-name|z
-operator|*
-name|z
-operator|-
-name|C
-operator|*
-name|C
-operator|+
-name|z
-operator|*
-name|z
-operator|*
-name|C
-operator|*
-name|C
-argument_list|)
-argument_list|)
-operator|<
-literal|1.0e-10
-condition|)
-block|{
-comment|//System.out.println("found a point; z = "+z);
-name|y
-operator|=
-operator|-
-name|B
-operator|*
-operator|(
-name|D
-operator|+
-name|C
-operator|*
-name|z
-operator|)
-operator|*
-name|denom
-expr_stmt|;
-name|x
-operator|=
-operator|-
-name|A
-operator|*
-operator|(
-name|D
-operator|+
-name|C
-operator|*
-name|z
-operator|)
-operator|*
-name|denom
-expr_stmt|;
-name|addPoint
-argument_list|(
-name|boundsInfo
-argument_list|,
-name|bounds
-argument_list|,
-name|x
-argument_list|,
-name|y
-argument_list|,
-name|z
-argument_list|)
-expr_stmt|;
 block|}
+comment|// Check the solution on the other side of the x-y plane
 name|z
 operator|=
 operator|-
-operator|(
+name|z
+expr_stmt|;
+name|insideValue
+operator|=
+name|A
+operator|*
+name|A
+operator|+
+name|B
+operator|*
+name|B
+operator|-
 name|D
 operator|*
-name|C
+name|D
 operator|-
-name|sqrtResult
-operator|)
+name|z
+operator|*
+name|z
+operator|-
+literal|2.0
+operator|*
+name|C
+operator|*
+name|D
+operator|*
+name|z
 expr_stmt|;
-comment|//System.out.println("z= "+z+" D+C*z = " + (D+C*z) + " -Math.sqrt(1.0 - z*z - C*C + z*z*C*C) = "+(-Math.sqrt(1.0 - z*z - C*C + z*z*C*C)));
-comment|// Since we squared both sides of the equation, we may have introduced spurios solutions, so we have to check.
+comment|//System.err.println(" z="+z+" C="+C+" D="+D+" inside value "+insideValue);
 if|if
 condition|(
 name|Math
 operator|.
 name|abs
 argument_list|(
-name|D
-operator|+
-name|C
-operator|*
-name|z
-operator|+
-name|Math
-operator|.
-name|sqrt
-argument_list|(
-literal|1
-operator|-
-name|z
-operator|*
-name|z
-operator|-
-name|C
-operator|*
-name|C
-operator|+
-name|z
-operator|*
-name|z
-operator|*
-name|C
-operator|*
-name|C
-argument_list|)
+name|insideValue
 argument_list|)
 operator|<
-literal|1.0e-10
+name|MINIMUM_RESOLUTION
 condition|)
 block|{
-comment|//System.out.println("found a point; z="+z);
 name|y
 operator|=
 operator|-
@@ -1924,6 +2355,18 @@ operator|)
 operator|*
 name|denom
 expr_stmt|;
+if|if
+condition|(
+name|evaluateIsZero
+argument_list|(
+name|x
+argument_list|,
+name|y
+argument_list|,
+name|z
+argument_list|)
+condition|)
+block|{
 name|addPoint
 argument_list|(
 name|boundsInfo
@@ -1959,6 +2402,7 @@ name|C
 argument_list|)
 expr_stmt|;
 block|}
+comment|//System.err.println("Done latitude bounds");
 block|}
 comment|// First, figure out our longitude bounds, unless we no longer need to consider that
 if|if
@@ -1970,6 +2414,7 @@ name|checkNoLongitudeBound
 argument_list|()
 condition|)
 block|{
+comment|//System.err.println("Computing longitude bounds for "+this);
 comment|//System.out.println("A = "+A+" B = "+B+" C = "+C+" D = "+D);
 comment|// Compute longitude bounds
 name|double
@@ -2092,16 +2537,14 @@ name|c
 decl_stmt|;
 if|if
 condition|(
+name|Math
+operator|.
+name|abs
+argument_list|(
 name|sqrtClause
-operator|>=
-literal|0.0
-condition|)
-block|{
-if|if
-condition|(
-name|sqrtClause
-operator|==
-literal|0.0
+argument_list|)
+operator|<
+name|MINIMUM_RESOLUTION_SQUARED
 condition|)
 block|{
 name|double
@@ -2149,7 +2592,13 @@ name|z0
 argument_list|)
 expr_stmt|;
 block|}
-else|else
+elseif|else
+if|if
+condition|(
+name|sqrtClause
+operator|>
+literal|0.0
+condition|)
 block|{
 name|double
 name|sqrtResult
@@ -2267,7 +2716,6 @@ argument_list|,
 name|z0b
 argument_list|)
 expr_stmt|;
-block|}
 block|}
 block|}
 else|else
@@ -2318,16 +2766,14 @@ name|c
 decl_stmt|;
 if|if
 condition|(
+name|Math
+operator|.
+name|abs
+argument_list|(
 name|sqrtClause
-operator|>=
-literal|0.0
-condition|)
-block|{
-if|if
-condition|(
-name|sqrtClause
-operator|==
-literal|0.0
+argument_list|)
+operator|<
+name|MINIMUM_RESOLUTION_SQUARED
 condition|)
 block|{
 name|double
@@ -2375,7 +2821,13 @@ name|z0
 argument_list|)
 expr_stmt|;
 block|}
-else|else
+elseif|else
+if|if
+condition|(
+name|sqrtClause
+operator|>
+literal|0.0
+condition|)
 block|{
 name|double
 name|sqrtResult
@@ -2497,9 +2949,12 @@ block|}
 block|}
 block|}
 block|}
-block|}
 else|else
 block|{
+comment|//System.err.println("General longitude bounds...");
+comment|// NOTE WELL: The x,y,z values generated here are NOT on the unit sphere.
+comment|// They are for lat/lon calculation purposes only.  x-y is meant to be used for longitude determination,
+comment|// and z for latitude, and that's all the values are good for.
 comment|// (1) Intersect the plane and the unit sphere, and project the results into the x-y plane:
 comment|// From plane:
 comment|// z = (-Ax - By - D) / C
@@ -2573,10 +3028,30 @@ name|C
 operator|*
 name|C
 decl_stmt|;
-comment|//System.out.println("E = " + E + " F = " + F + " G = " + G + " H = "+ H + " I = " + I + " J = " + J);
+comment|//System.err.println("E = " + E + " F = " + F + " G = " + G + " H = "+ H + " I = " + I + " J = " + J);
+name|double
+name|trialX
+init|=
+literal|2.0
+decl_stmt|;
+name|double
+name|trialY
+init|=
+literal|2.0
+decl_stmt|;
+comment|//System.err.println("Trial point evaluates to: "+(E*trialX*trialX + F*trialY*trialY + G*trialX*trialY + H*trialX + I*trialY + J));
 comment|// Check if the origin is within, by substituting x = 0, y = 0 and seeing if less than zero
 if|if
 condition|(
+name|Math
+operator|.
+name|abs
+argument_list|(
+name|J
+argument_list|)
+operator|>=
+name|MINIMUM_RESOLUTION
+operator|&&
 name|J
 operator|>
 literal|0.0
@@ -2618,7 +3093,7 @@ name|I
 argument_list|)
 condition|)
 block|{
-comment|//System.out.println("Using the y quadratic");
+comment|//System.err.println(" Using the y quadratic");
 comment|// x = (-2J - Iy)/H
 comment|// Plug into the original equation:
 comment|// E [(-2J - Iy)/H]^2 + F y^2 + G [(-2J - Iy)/H]y + H [(-2J - Iy)/H] + I y + J = 0
@@ -2707,19 +3182,17 @@ decl_stmt|;
 comment|//System.out.println("sqrtClause="+sqrtClause);
 if|if
 condition|(
+name|Math
+operator|.
+name|abs
+argument_list|(
 name|sqrtClause
-operator|>=
-literal|0.0
+argument_list|)
+operator|<
+name|MINIMUM_RESOLUTION_SQUARED
 condition|)
 block|{
-if|if
-condition|(
-name|sqrtClause
-operator|==
-literal|0.0
-condition|)
-block|{
-comment|//System.out.println("One solution");
+comment|//System.err.println(" One solution");
 name|double
 name|y0
 init|=
@@ -2780,9 +3253,15 @@ name|z0
 argument_list|)
 expr_stmt|;
 block|}
-else|else
+elseif|else
+if|if
+condition|(
+name|sqrtClause
+operator|>
+literal|0.0
+condition|)
 block|{
-comment|//System.out.println("Two solutions");
+comment|//System.err.println(" Two solutions");
 name|double
 name|sqrtResult
 init|=
@@ -2938,10 +3417,9 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
-block|}
 else|else
 block|{
-comment|//System.out.println("Using the x quadratic");
+comment|//System.err.println(" Using the x quadratic");
 comment|// y = (-2J - Hx)/I
 comment|// Plug into the original equation:
 comment|// E x^2 + F [(-2J - Hx)/I]^2 + G x[(-2J - Hx)/I] - J = 0
@@ -2953,6 +3431,7 @@ comment|// Multiply it out
 comment|// E * I^2 * x^2 + 4FJ^2 + 4FJHx + F*H^2*x^2 - 2GIJx - HGI*x^2 - J * I^2 = 0
 comment|// Group:
 comment|// x^2 [E*I^2 - GHI + F*H^2] + x [4FJH - 2GIJ] + [4FJ^2 - J*I^2] = 0
+comment|// E x^2 + F y^2 + G xy + H x + I y + J = 0
 name|a
 operator|=
 name|E
@@ -3024,19 +3503,17 @@ decl_stmt|;
 comment|//System.out.println("sqrtClause="+sqrtClause);
 if|if
 condition|(
+name|Math
+operator|.
+name|abs
+argument_list|(
 name|sqrtClause
-operator|>=
-literal|0.0
+argument_list|)
+operator|<
+name|MINIMUM_RESOLUTION_SQUARED
 condition|)
 block|{
-if|if
-condition|(
-name|sqrtClause
-operator|==
-literal|0.0
-condition|)
-block|{
-comment|//System.out.println("One solution");
+comment|//System.err.println(" One solution; sqrt clause was "+sqrtClause);
 name|double
 name|x0
 init|=
@@ -3083,6 +3560,8 @@ operator|)
 operator|/
 name|C
 decl_stmt|;
+comment|// Verify that x&y fulfill the equation
+comment|// 2Ex^2 + 2Fy^2 + 2Gxy + Hx + Iy = 0
 name|addPoint
 argument_list|(
 name|boundsInfo
@@ -3097,9 +3576,15 @@ name|z0
 argument_list|)
 expr_stmt|;
 block|}
-else|else
+elseif|else
+if|if
+condition|(
+name|sqrtClause
+operator|>
+literal|0.0
+condition|)
 block|{
-comment|//System.out.println("Two solutions");
+comment|//System.err.println(" Two solutions");
 name|double
 name|sqrtResult
 init|=
@@ -3259,7 +3744,6 @@ block|}
 block|}
 block|}
 block|}
-block|}
 DECL|method|addPoint
 specifier|protected
 specifier|static
@@ -3288,6 +3772,7 @@ name|double
 name|z
 parameter_list|)
 block|{
+comment|//System.err.println(" Want to add point x="+x+" y="+y+" z="+z);
 comment|// Make sure the discovered point is within the bounds
 for|for
 control|(
@@ -3314,6 +3799,7 @@ condition|)
 return|return;
 block|}
 comment|// Add the point
+comment|//System.err.println("  point added");
 comment|//System.out.println("Adding point x="+x+" y="+y+" z="+z);
 name|boundsInfo
 operator|.
@@ -3358,18 +3844,20 @@ modifier|...
 name|moreBounds
 parameter_list|)
 block|{
+comment|//System.err.println("Does plane "+this+" intersect with plane "+q);
 comment|// If the two planes are identical, then the math will find no points of intersection.
 comment|// So a special case of this is to check for plane equality.  But that is not enough, because
 comment|// what we really need at that point is to determine whether overlap occurs between the two parts of the intersection
 comment|// of plane and circle.  That is, are there *any* points on the plane that are within the bounds described?
 if|if
 condition|(
-name|equals
+name|isNumericallyIdentical
 argument_list|(
 name|q
 argument_list|)
 condition|)
 block|{
+comment|//System.err.println(" Identical plane");
 comment|// The only way to efficiently figure this out will be to have a list of trial points available to evaluate.
 comment|// We look for any point that fulfills all the bounds.
 for|for
@@ -3391,9 +3879,12 @@ argument_list|,
 name|moreBounds
 argument_list|)
 condition|)
+block|{
+comment|//System.err.println("  found a notable point in bounds, so intersects");
 return|return
 literal|true
 return|;
+block|}
 block|}
 for|for
 control|(
@@ -3414,10 +3905,14 @@ argument_list|,
 name|moreBounds
 argument_list|)
 condition|)
+block|{
+comment|//System.err.println("  found a notable point in bounds, so intersects");
 return|return
 literal|true
 return|;
 block|}
+block|}
+comment|//System.err.println("  no notable points inside found; no intersection");
 return|return
 literal|false
 return|;
@@ -3435,6 +3930,174 @@ operator|.
 name|length
 operator|>
 literal|0
+return|;
+block|}
+comment|/** Returns true if this plane and the other plane are identical within the margin of error.     */
+DECL|method|isNumericallyIdentical
+specifier|protected
+name|boolean
+name|isNumericallyIdentical
+parameter_list|(
+specifier|final
+name|Plane
+name|p
+parameter_list|)
+block|{
+comment|// We can get the correlation by just doing a parallel plane check.  If that passes, then compute a point on the plane
+comment|// (using D) and see if it also on the other plane.
+if|if
+condition|(
+name|Math
+operator|.
+name|abs
+argument_list|(
+name|this
+operator|.
+name|y
+operator|*
+name|p
+operator|.
+name|z
+operator|-
+name|this
+operator|.
+name|z
+operator|*
+name|p
+operator|.
+name|y
+argument_list|)
+operator|>=
+name|MINIMUM_RESOLUTION_SQUARED
+condition|)
+return|return
+literal|false
+return|;
+if|if
+condition|(
+name|Math
+operator|.
+name|abs
+argument_list|(
+name|this
+operator|.
+name|z
+operator|*
+name|p
+operator|.
+name|x
+operator|-
+name|this
+operator|.
+name|x
+operator|*
+name|p
+operator|.
+name|z
+argument_list|)
+operator|>=
+name|MINIMUM_RESOLUTION_SQUARED
+condition|)
+return|return
+literal|false
+return|;
+if|if
+condition|(
+name|Math
+operator|.
+name|abs
+argument_list|(
+name|this
+operator|.
+name|x
+operator|*
+name|p
+operator|.
+name|y
+operator|-
+name|this
+operator|.
+name|y
+operator|*
+name|p
+operator|.
+name|x
+argument_list|)
+operator|>=
+name|MINIMUM_RESOLUTION_SQUARED
+condition|)
+return|return
+literal|false
+return|;
+comment|// Now, see whether the parallel planes are in fact on top of one another.
+specifier|final
+name|double
+name|denom
+init|=
+literal|1.0
+operator|/
+operator|(
+name|p
+operator|.
+name|x
+operator|*
+name|p
+operator|.
+name|x
+operator|+
+name|p
+operator|.
+name|y
+operator|*
+name|p
+operator|.
+name|y
+operator|+
+name|p
+operator|.
+name|z
+operator|*
+name|p
+operator|.
+name|z
+operator|)
+decl_stmt|;
+return|return
+name|evaluateIsZero
+argument_list|(
+operator|-
+name|p
+operator|.
+name|x
+operator|*
+name|p
+operator|.
+name|D
+operator|*
+name|denom
+argument_list|,
+operator|-
+name|p
+operator|.
+name|y
+operator|*
+name|p
+operator|.
+name|D
+operator|*
+name|denom
+argument_list|,
+operator|-
+name|p
+operator|.
+name|z
+operator|*
+name|p
+operator|.
+name|D
+operator|*
+name|denom
+argument_list|)
 return|;
 block|}
 DECL|method|meetsAllBounds

@@ -378,6 +378,19 @@ return|return
 name|cutoffAngle
 return|;
 block|}
+comment|/** Returns the center of a circle into which the area will be inscribed.     *@return the center.     */
+annotation|@
+name|Override
+DECL|method|getCenter
+specifier|public
+name|GeoPoint
+name|getCenter
+parameter_list|()
+block|{
+return|return
+name|center
+return|;
+block|}
 comment|/** Compute an estimate of "distance" to the GeoPoint.     * A return value of Double.MAX_VALUE should be returned for     * points outside of the shape.     */
 annotation|@
 name|Override
@@ -919,6 +932,13 @@ operator|.
 name|getBounds
 argument_list|(
 name|bounds
+argument_list|)
+expr_stmt|;
+name|bounds
+operator|.
+name|addPoint
+argument_list|(
+name|center
 argument_list|)
 expr_stmt|;
 name|circlePlane

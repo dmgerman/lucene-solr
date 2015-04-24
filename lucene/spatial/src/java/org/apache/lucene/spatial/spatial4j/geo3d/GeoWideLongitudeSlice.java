@@ -536,6 +536,19 @@ literal|0.5
 argument_list|)
 return|;
 block|}
+comment|/** Returns the center of a circle into which the area will be inscribed.     *@return the center.     */
+annotation|@
+name|Override
+DECL|method|getCenter
+specifier|public
+name|GeoPoint
+name|getCenter
+parameter_list|()
+block|{
+return|return
+name|centerPoint
+return|;
+block|}
 annotation|@
 name|Override
 DECL|method|getEdgePoints

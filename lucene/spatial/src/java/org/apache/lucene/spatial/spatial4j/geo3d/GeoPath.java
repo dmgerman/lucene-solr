@@ -1514,22 +1514,9 @@ argument_list|(
 name|bounds
 argument_list|)
 expr_stmt|;
-for|for
-control|(
-name|SegmentEndpoint
-name|pathPoint
-range|:
-name|points
-control|)
-block|{
-name|pathPoint
-operator|.
-name|getBounds
-argument_list|(
-name|bounds
-argument_list|)
-expr_stmt|;
-block|}
+comment|// For building bounds, order matters.  We want to traverse
+comment|// never more than 180 degrees longitude at a pop or we risk having the
+comment|// bounds object get itself inverted.  So do the edges first.
 for|for
 control|(
 name|PathSegment
@@ -1539,6 +1526,22 @@ name|segments
 control|)
 block|{
 name|pathSegment
+operator|.
+name|getBounds
+argument_list|(
+name|bounds
+argument_list|)
+expr_stmt|;
+block|}
+for|for
+control|(
+name|SegmentEndpoint
+name|pathPoint
+range|:
+name|points
+control|)
+block|{
+name|pathPoint
 operator|.
 name|getBounds
 argument_list|(
@@ -2265,6 +2268,13 @@ name|Bounds
 name|bounds
 parameter_list|)
 block|{
+name|bounds
+operator|.
+name|addPoint
+argument_list|(
+name|point
+argument_list|)
+expr_stmt|;
 name|circlePlane
 operator|.
 name|recordBounds
@@ -3631,6 +3641,18 @@ name|bounds
 parameter_list|)
 block|{
 comment|// We need to do all bounding planes as well as corner points
+name|bounds
+operator|.
+name|addPoint
+argument_list|(
+name|start
+argument_list|)
+operator|.
+name|addPoint
+argument_list|(
+name|end
+argument_list|)
+expr_stmt|;
 name|upperConnectingPlane
 operator|.
 name|recordBounds
@@ -3735,6 +3757,26 @@ argument_list|,
 name|lowerConnectingPlane
 argument_list|)
 expr_stmt|;
+if|if
+condition|(
+name|fullDistance
+operator|>=
+name|Math
+operator|.
+name|PI
+operator|*
+literal|0.5
+condition|)
+block|{
+comment|// Too large a segment basically means that we can confuse the Bounds object.  Specifically, if our span exceeds 180 degrees
+comment|// in longitude (which even a segment whose actual length is less than that might if it goes close to a pole).
+comment|// Unfortunately, we can get arbitrarily close to the pole, so this may still not work in all cases.
+name|bounds
+operator|.
+name|noLongitudeBound
+argument_list|()
+expr_stmt|;
+block|}
 block|}
 block|}
 block|}

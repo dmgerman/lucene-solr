@@ -872,6 +872,7 @@ argument_list|,
 name|x
 argument_list|)
 decl_stmt|;
+comment|//System.err.println(" add longitude bound at "+longitude * 180.0/Math.PI);
 name|addLongitudeBound
 argument_list|(
 name|longitude

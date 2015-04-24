@@ -104,6 +104,7 @@ name|Vector
 name|point
 parameter_list|)
 block|{
+comment|//System.err.println("Checking whether point "+point+" is within Composite");
 for|for
 control|(
 name|GeoMembershipShape
@@ -121,9 +122,12 @@ argument_list|(
 name|point
 argument_list|)
 condition|)
+block|{
+comment|//System.err.println(" Point is within "+shape);
 return|return
 literal|true
 return|;
+block|}
 block|}
 return|return
 literal|false

@@ -511,6 +511,19 @@ return|return
 literal|0.0
 return|;
 block|}
+comment|/** Returns the center of a circle into which the area will be inscribed.     *@return the center.     */
+annotation|@
+name|Override
+DECL|method|getCenter
+specifier|public
+name|GeoPoint
+name|getCenter
+parameter_list|()
+block|{
+return|return
+name|this
+return|;
+block|}
 comment|/** Find the spatial relationship between a shape and the current geo area.      * Note: return value is how the GeoShape relates to the GeoArea, not the      * other way around. For example, if this GeoArea is entirely within the      * shape, then CONTAINS should be returned.  If the shape is entirely enclosed      * by this GeoArea, then WITHIN should be returned.      *@param shape is the shape to consider.      *@return the relationship, from the perspective of the shape.      */
 annotation|@
 name|Override
