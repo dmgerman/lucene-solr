@@ -1198,13 +1198,27 @@ condition|(
 name|method
 operator|==
 literal|null
+operator|&&
+operator|(
+name|arguments
+operator|>
+literal|0
+operator|||
+operator|!
+name|call
+operator|.
+name|contains
+argument_list|(
+literal|"."
+argument_list|)
+operator|)
 condition|)
 block|{
 throw|throw
 operator|new
 name|IllegalArgumentException
 argument_list|(
-literal|"Unrecognized method call ("
+literal|"Unrecognized function call ("
 operator|+
 name|call
 operator|+
@@ -1212,6 +1226,14 @@ literal|")."
 argument_list|)
 throw|;
 block|}
+elseif|else
+if|if
+condition|(
+name|method
+operator|!=
+literal|null
+condition|)
+block|{
 name|int
 name|arity
 init|=
@@ -1237,7 +1259,7 @@ literal|"Expected ("
 operator|+
 name|arity
 operator|+
-literal|") arguments for method call ("
+literal|") arguments for function call ("
 operator|+
 name|call
 operator|+
@@ -1321,6 +1343,18 @@ name|expected
 argument_list|)
 expr_stmt|;
 break|break;
+block|}
+else|else
+block|{
+name|text
+operator|=
+name|call
+operator|+
+literal|"()"
+expr_stmt|;
+comment|// intentionally fall through to the variable case to allow this non-static
+comment|// method to be forwarded to the bindings for processing
+block|}
 case|case
 name|JavascriptParser
 operator|.
@@ -1329,7 +1363,6 @@ case|:
 name|int
 name|index
 decl_stmt|;
-comment|// normalize quotes
 name|text
 operator|=
 name|normalizeQuotes
