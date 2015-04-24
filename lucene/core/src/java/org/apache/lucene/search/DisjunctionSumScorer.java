@@ -36,22 +36,6 @@ name|List
 import|;
 end_import
 
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|search
-operator|.
-name|ScorerPriorityQueue
-operator|.
-name|ScorerWrapper
-import|;
-end_import
-
 begin_comment
 comment|/** A Scorer for OR like queries, counterpart of<code>ConjunctionScorer</code>.  * This Scorer implements {@link Scorer#advance(int)} and uses advance() on the given Scorers.   */
 end_comment
@@ -115,7 +99,10 @@ specifier|protected
 name|float
 name|score
 parameter_list|(
-name|ScorerWrapper
+name|DisiWrapper
+argument_list|<
+name|Scorer
+argument_list|>
 name|topList
 parameter_list|)
 throws|throws
@@ -133,7 +120,10 @@ literal|0
 decl_stmt|;
 for|for
 control|(
-name|ScorerWrapper
+name|DisiWrapper
+argument_list|<
+name|Scorer
+argument_list|>
 name|w
 init|=
 name|topList
@@ -153,7 +143,7 @@ name|score
 operator|+=
 name|w
 operator|.
-name|scorer
+name|iterator
 operator|.
 name|score
 argument_list|()

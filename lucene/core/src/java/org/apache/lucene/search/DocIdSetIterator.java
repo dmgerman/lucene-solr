@@ -26,6 +26,22 @@ name|IOException
 import|;
 end_import
 
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|search
+operator|.
+name|spans
+operator|.
+name|Spans
+import|;
+end_import
+
 begin_comment
 comment|/**  * This abstract class defines methods to iterate over a set of non-decreasing  * doc ids. Note that this class assumes it iterates on doc Ids, and therefore  * {@link #NO_MORE_DOCS} is set to {@value #NO_MORE_DOCS} in order to be used as  * a sentinel object. Implementations of this class are expected to consider  * {@link Integer#MAX_VALUE} as an invalid value.  */
 end_comment

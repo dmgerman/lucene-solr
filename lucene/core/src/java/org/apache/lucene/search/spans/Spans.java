@@ -140,7 +140,7 @@ parameter_list|()
 throws|throws
 name|IOException
 function_decl|;
-comment|/**    * Optional method: Return a {@link TwoPhaseIterator} view of this    * {@link Spans}. A return value of {@code null} indicates that    * two-phase iteration is not supported.    *    * Note that the returned {@link TwoPhaseIterator}'s    * {@link TwoPhaseIterator#approximation() approximation} must    * advance synchronously with this iterator: advancing the approximation must    * advance this iterator and vice-versa.    *    * Implementing this method is typically useful on {@link Spans}s    * that have a high per-document overhead in order to confirm matches.    *    * The default implementation returns {@code null}.    */
+comment|/**    * Optional method: Return a {@link TwoPhaseIterator} view of this    * {@link Spans}. A return value of {@code null} indicates that    * two-phase iteration is not supported.    *    * Note that the returned {@link TwoPhaseIterator}'s    * {@link TwoPhaseIterator#approximation() approximation} must    * advance documents synchronously with this iterator:    * advancing the approximation must    * advance this iterator and vice-versa.    *    * Implementing this method is typically useful on a {@link Spans}    * that has a high per-document overhead for confirming matches.    *    * The default implementation returns {@code null}.    */
 DECL|method|asTwoPhaseIterator
 specifier|public
 name|TwoPhaseIterator
