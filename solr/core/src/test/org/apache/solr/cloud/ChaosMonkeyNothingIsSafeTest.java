@@ -399,7 +399,7 @@ specifier|final
 name|int
 name|FAIL_TOLERANCE
 init|=
-literal|20
+literal|40
 decl_stmt|;
 DECL|field|log
 specifier|public
