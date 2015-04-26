@@ -1985,7 +1985,7 @@ name|sb
 operator|.
 name|append
 argument_list|(
-literal|" N:"
+literal|" n:"
 argument_list|)
 operator|.
 name|append
@@ -2019,7 +2019,7 @@ name|sb
 operator|.
 name|append
 argument_list|(
-literal|" C:"
+literal|" c:"
 argument_list|)
 operator|.
 name|append
@@ -2053,7 +2053,7 @@ name|sb
 operator|.
 name|append
 argument_list|(
-literal|" S:"
+literal|" s:"
 argument_list|)
 operator|.
 name|append
@@ -2087,7 +2087,7 @@ name|sb
 operator|.
 name|append
 argument_list|(
-literal|" R:"
+literal|" r:"
 argument_list|)
 operator|.
 name|append
@@ -2121,7 +2121,7 @@ name|sb
 operator|.
 name|append
 argument_list|(
-literal|" c:"
+literal|" x:"
 argument_list|)
 operator|.
 name|append
