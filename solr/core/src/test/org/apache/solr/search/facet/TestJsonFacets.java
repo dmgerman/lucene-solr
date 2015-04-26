@@ -3722,6 +3722,35 @@ operator|+
 literal|" } }"
 argument_list|)
 expr_stmt|;
+comment|// range facet with mincount
+name|client
+operator|.
+name|testJQ
+argument_list|(
+name|params
+argument_list|(
+name|p
+argument_list|,
+literal|"q"
+argument_list|,
+literal|"*:*"
+argument_list|,
+literal|"json.facet"
+argument_list|,
+literal|"{f:{type:range, field:${num_d}, start:-5, end:10, gap:5, other:all, mincount:2,    facet:{ x:'sum(${num_i})', ny:{query:'${where_s}:NY'}}   }}"
+argument_list|)
+argument_list|,
+literal|"facets=={count:6, f:{buckets:[  {val:0.0,count:2,x:5.0,ny:{count:1}} ]"
+operator|+
+literal|",before: {count:1,x:-5.0,ny:{count:0}}"
+operator|+
+literal|",after:  {count:1,x:7.0, ny:{count:0}}"
+operator|+
+literal|",between:{count:3,x:0.0, ny:{count:2}}"
+operator|+
+literal|" } }"
+argument_list|)
+expr_stmt|;
 comment|// range facet with sub facets and stats, with "other:all", on subset
 name|client
 operator|.

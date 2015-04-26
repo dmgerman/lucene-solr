@@ -3860,6 +3860,19 @@ operator|.
 name|hardend
 argument_list|)
 expr_stmt|;
+name|facet
+operator|.
+name|mincount
+operator|=
+name|getLong
+argument_list|(
+name|m
+argument_list|,
+literal|"mincount"
+argument_list|,
+literal|0
+argument_list|)
+expr_stmt|;
 comment|// TODO: refactor list-of-options code
 name|Object
 name|o
