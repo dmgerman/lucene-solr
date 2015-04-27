@@ -2994,9 +2994,6 @@ expr_stmt|;
 name|TopFieldDocs
 name|hits
 init|=
-operator|(
-name|TopFieldDocs
-operator|)
 name|c
 operator|.
 name|topDocs
