@@ -272,11 +272,10 @@ parameter_list|()
 throws|throws
 name|IOException
 block|{
-comment|// TODO: sum into a double and cast to float if we ever send required clauses to BS1
-name|float
+name|double
 name|sum
 init|=
-literal|0.0f
+literal|0.0d
 decl_stmt|;
 for|for
 control|(
@@ -295,9 +294,12 @@ argument_list|()
 expr_stmt|;
 block|}
 return|return
-name|sum
-operator|*
 name|coord
+operator|*
+operator|(
+name|float
+operator|)
+name|sum
 return|;
 block|}
 annotation|@
