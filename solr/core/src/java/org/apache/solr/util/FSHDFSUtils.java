@@ -72,6 +72,20 @@ end_import
 
 begin_import
 import|import
+name|java
+operator|.
+name|util
+operator|.
+name|concurrent
+operator|.
+name|atomic
+operator|.
+name|AtomicLong
+import|;
+end_import
+
+begin_import
+import|import
 name|org
 operator|.
 name|apache
@@ -188,6 +202,17 @@ name|FSHDFSUtils
 operator|.
 name|class
 argument_list|)
+decl_stmt|;
+comment|// internal, for tests
+DECL|field|RECOVER_LEASE_SUCCESS_COUNT
+specifier|public
+specifier|static
+name|AtomicLong
+name|RECOVER_LEASE_SUCCESS_COUNT
+init|=
+operator|new
+name|AtomicLong
+argument_list|()
 decl_stmt|;
 DECL|interface|CallerInfo
 specifier|public
@@ -596,6 +621,17 @@ throw|throw
 name|iioe
 throw|;
 block|}
+block|}
+if|if
+condition|(
+name|recovered
+condition|)
+block|{
+name|RECOVER_LEASE_SUCCESS_COUNT
+operator|.
+name|incrementAndGet
+argument_list|()
+expr_stmt|;
 block|}
 return|return
 name|recovered
