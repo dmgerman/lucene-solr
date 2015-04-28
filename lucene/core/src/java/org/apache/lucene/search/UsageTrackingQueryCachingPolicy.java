@@ -132,11 +132,14 @@ specifier|final
 name|FrequencyTrackingRingBuffer
 name|recentlyUsedFilters
 decl_stmt|;
-comment|/**    * Create a new instance.    *    * @param minSizeRatio              the minimum size ratio for segments to be cached, see {@link QueryCachingPolicy.CacheOnLargeSegments}    * @param historySize               the number of recently used filters to track    */
+comment|/**    * Create a new instance.    *    * @param minIndexSize              the minimum size of the top-level index    * @param minSizeRatio              the minimum size ratio for segments to be cached, see {@link QueryCachingPolicy.CacheOnLargeSegments}    * @param historySize               the number of recently used filters to track    */
 DECL|method|UsageTrackingQueryCachingPolicy
 specifier|public
 name|UsageTrackingQueryCachingPolicy
 parameter_list|(
+name|int
+name|minIndexSize
+parameter_list|,
 name|float
 name|minSizeRatio
 parameter_list|,
@@ -151,6 +154,8 @@ name|QueryCachingPolicy
 operator|.
 name|CacheOnLargeSegments
 argument_list|(
+name|minIndexSize
+argument_list|,
 name|minSizeRatio
 argument_list|)
 argument_list|,
