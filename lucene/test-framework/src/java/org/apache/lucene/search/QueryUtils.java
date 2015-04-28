@@ -3059,6 +3059,27 @@ condition|)
 block|{
 continue|continue;
 block|}
+elseif|else
+if|if
+condition|(
+name|bulkScorer
+operator|==
+literal|null
+condition|)
+block|{
+comment|// ensure scorer is exhausted (it just didnt return null)
+assert|assert
+name|scorer
+operator|.
+name|nextDoc
+argument_list|()
+operator|==
+name|DocIdSetIterator
+operator|.
+name|NO_MORE_DOCS
+assert|;
+continue|continue;
+block|}
 name|int
 name|upTo
 init|=
