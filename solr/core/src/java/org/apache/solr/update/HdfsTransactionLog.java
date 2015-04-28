@@ -343,6 +343,9 @@ argument_list|<
 name|String
 argument_list|>
 name|globalStrings
+parameter_list|,
+name|Integer
+name|tlogDfsReplication
 parameter_list|)
 block|{
 name|this
@@ -354,6 +357,8 @@ argument_list|,
 name|globalStrings
 argument_list|,
 literal|false
+argument_list|,
+name|tlogDfsReplication
 argument_list|)
 expr_stmt|;
 block|}
@@ -374,6 +379,9 @@ name|globalStrings
 parameter_list|,
 name|boolean
 name|openExisting
+parameter_list|,
+name|Integer
+name|tlogDfsReplication
 parameter_list|)
 block|{
 name|super
@@ -480,7 +488,10 @@ argument_list|,
 operator|(
 name|short
 operator|)
-literal|1
+name|tlogDfsReplication
+operator|.
+name|intValue
+argument_list|()
 argument_list|)
 expr_stmt|;
 name|tlogOutStream
