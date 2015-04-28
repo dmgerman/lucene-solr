@@ -1251,6 +1251,13 @@ literal|16
 argument_list|)
 expr_stmt|;
 block|}
+annotation|@
+name|AwaitsFix
+argument_list|(
+name|bugUrl
+operator|=
+literal|"https://issues.apache.org/jira/browse/LUCENE-5595"
+argument_list|)
 DECL|method|testRandomStrings
 specifier|public
 name|void
