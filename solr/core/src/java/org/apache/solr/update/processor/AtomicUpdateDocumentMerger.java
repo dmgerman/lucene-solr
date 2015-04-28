@@ -633,7 +633,7 @@ argument_list|)
 expr_stmt|;
 block|}
 DECL|method|doAdd
-specifier|private
+specifier|protected
 name|void
 name|doAdd
 parameter_list|(
