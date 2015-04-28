@@ -150,6 +150,15 @@ specifier|private
 name|int
 name|size
 decl_stmt|;
+annotation|@
+name|SuppressWarnings
+argument_list|(
+block|{
+literal|"unchecked"
+block|,
+literal|"rawtypes"
+block|}
+argument_list|)
 DECL|method|DisiPriorityQueue
 specifier|public
 name|DisiPriorityQueue

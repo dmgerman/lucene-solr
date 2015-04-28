@@ -341,6 +341,15 @@ specifier|final
 name|long
 name|cost
 decl_stmt|;
+annotation|@
+name|SuppressWarnings
+argument_list|(
+block|{
+literal|"unchecked"
+block|,
+literal|"rawtypes"
+block|}
+argument_list|)
 DECL|method|MinShouldMatchSumScorer
 name|MinShouldMatchSumScorer
 parameter_list|(
