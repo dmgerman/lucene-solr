@@ -150,6 +150,20 @@ name|lucene
 operator|.
 name|index
 operator|.
+name|ReaderUtil
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|index
+operator|.
 name|Term
 import|;
 end_import
@@ -2040,6 +2054,43 @@ name|terms
 argument_list|)
 expr_stmt|;
 block|}
+DECL|method|cacheEntryHasReasonableWorstCaseSize
+specifier|private
+name|boolean
+name|cacheEntryHasReasonableWorstCaseSize
+parameter_list|(
+name|int
+name|maxDoc
+parameter_list|)
+block|{
+comment|// The worst-case (dense) is a bit set which needs one bit per document
+specifier|final
+name|long
+name|worstCaseRamUsage
+init|=
+name|maxDoc
+operator|/
+literal|8
+decl_stmt|;
+specifier|final
+name|long
+name|totalRamAvailable
+init|=
+name|maxRamBytesUsed
+decl_stmt|;
+comment|// Imagine the worst-case that a cache entry is large than the size of
+comment|// the cache: not only will this entry be trashed immediately but it
+comment|// will also evict all current entries from the cache. For this reason
+comment|// we only cache on an IndexReader if we have available room for
+comment|// 5 different filters on this reader to avoid excessive trashing
+return|return
+name|worstCaseRamUsage
+operator|*
+literal|5
+operator|<
+name|totalRamAvailable
+return|;
+block|}
 annotation|@
 name|Override
 DECL|method|scorer
@@ -2099,6 +2150,22 @@ condition|)
 block|{
 if|if
 condition|(
+name|cacheEntryHasReasonableWorstCaseSize
+argument_list|(
+name|ReaderUtil
+operator|.
+name|getTopLevelContext
+argument_list|(
+name|context
+argument_list|)
+operator|.
+name|reader
+argument_list|()
+operator|.
+name|maxDoc
+argument_list|()
+argument_list|)
+operator|&&
 name|policy
 operator|.
 name|shouldCache
