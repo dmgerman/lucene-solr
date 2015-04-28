@@ -282,7 +282,7 @@ throw|throw
 operator|new
 name|IllegalArgumentException
 argument_list|(
-literal|"maxLen must be [1-"
+literal|"maxLevels must be [1-"
 operator|+
 name|MAXP
 operator|+
