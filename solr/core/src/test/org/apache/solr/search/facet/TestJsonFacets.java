@@ -4166,7 +4166,7 @@ literal|"{!tag=abc}id:(2 3)"
 argument_list|,
 literal|"json.facet"
 argument_list|,
-literal|"{ "
+literal|"{ processEmpty:true,"
 operator|+
 literal|" f1:{query:{q:'${cat_s}:B', facet:{nj:{query:'${where_s}:NJ'}, ny:{query:'${where_s}:NY'}} , excludeTags:[xyz,qaz]}}"
 operator|+
