@@ -1434,6 +1434,36 @@ argument_list|(
 name|input
 argument_list|)
 expr_stmt|;
+comment|// LUCENE-6299: check we are in bounds
+if|if
+condition|(
+name|totalDocs
+operator|>
+name|IndexWriter
+operator|.
+name|getActualMaxDocs
+argument_list|()
+condition|)
+block|{
+throw|throw
+operator|new
+name|CorruptIndexException
+argument_list|(
+literal|"Too many documents: an index cannot exceed "
+operator|+
+name|IndexWriter
+operator|.
+name|getActualMaxDocs
+argument_list|()
+operator|+
+literal|" but readers have total maxDoc="
+operator|+
+name|totalDocs
+argument_list|,
+name|input
+argument_list|)
+throw|;
+block|}
 return|return
 name|infos
 return|;
