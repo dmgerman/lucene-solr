@@ -4144,13 +4144,59 @@ operator|+
 literal|" } }"
 argument_list|)
 expr_stmt|;
-comment|// TODO:
-comment|// numdocs('query') stat (don't make a bucket... just a count)
-comment|// missing(field)
-comment|// make missing configurable in min, max, etc
-comment|// exclusions
-comment|// zeroes
-comment|// instead of json.facet make it facet?
+comment|////////////////////////////////////////////////////////////////////////////////////////////
+comment|// multi-select / exclude tagged filters via excludeTags
+comment|////////////////////////////////////////////////////////////////////////////////////////////
+comment|// nested query facets on subset
+name|client
+operator|.
+name|testJQ
+argument_list|(
+name|params
+argument_list|(
+name|p
+argument_list|,
+literal|"q"
+argument_list|,
+literal|"*:*"
+argument_list|,
+literal|"fq"
+argument_list|,
+literal|"{!tag=abc}id:(2 3)"
+argument_list|,
+literal|"json.facet"
+argument_list|,
+literal|"{ "
+operator|+
+literal|" f1:{query:{q:'${cat_s}:B', facet:{nj:{query:'${where_s}:NJ'}, ny:{query:'${where_s}:NY'}} , excludeTags:[xyz,qaz]}}"
+operator|+
+literal|",f2:{query:{q:'${cat_s}:B', facet:{nj:{query:'${where_s}:NJ'}, ny:{query:'${where_s}:NY'}} , excludeTags:abc }}"
+operator|+
+literal|",f3:{query:{q:'${cat_s}:B', facet:{nj:{query:'${where_s}:NJ'}, ny:{query:'${where_s}:NY'}} , excludeTags:'xyz,abc,qaz' }}"
+operator|+
+literal|",f4:{query:{q:'${cat_s}:B', facet:{nj:{query:'${where_s}:NJ'}, ny:{query:'${where_s}:NY'}} , excludeTags:[xyz , abc , qaz] }}"
+operator|+
+literal|",f5:{query:{q:'${cat_s}:B', facet:{nj:{query:'${where_s}:NJ'}, ny:{query:'${where_s}:NY'}} , excludeTags:[xyz,qaz]}}"
+operator|+
+comment|// this is repeated, but it did fail when a single context was shared among sub-facets
+literal|"}"
+argument_list|)
+argument_list|,
+literal|"facets=={ 'count':2, "
+operator|+
+literal|" 'f1':{'count':1, 'nj':{'count':1}, 'ny':{'count':0}}"
+operator|+
+literal|",'f2':{'count':3, 'nj':{'count':2}, 'ny':{'count':1}}"
+operator|+
+literal|",'f3':{'count':3, 'nj':{'count':2}, 'ny':{'count':1}}"
+operator|+
+literal|",'f4':{'count':3, 'nj':{'count':2}, 'ny':{'count':1}}"
+operator|+
+literal|",'f5':{'count':1, 'nj':{'count':1}, 'ny':{'count':0}}"
+operator|+
+literal|"}"
+argument_list|)
+expr_stmt|;
 block|}
 annotation|@
 name|Test

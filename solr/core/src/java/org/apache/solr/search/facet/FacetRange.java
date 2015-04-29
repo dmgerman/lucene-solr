@@ -373,6 +373,11 @@ parameter_list|()
 throws|throws
 name|IOException
 block|{
+name|super
+operator|.
+name|process
+argument_list|()
+expr_stmt|;
 comment|// Under the normal mincount=0, each shard will need to return 0 counts since we don't calculate buckets at the top level.
 comment|// But if mincount>0 then our sub mincount can be set to 1.
 name|effectiveMincount
@@ -1309,6 +1314,14 @@ index|[
 name|slotCount
 index|]
 expr_stmt|;
+name|filters
+operator|=
+operator|new
+name|Query
+index|[
+name|slotCount
+index|]
+expr_stmt|;
 name|createAccs
 argument_list|(
 name|fcontext
@@ -1583,6 +1596,12 @@ return|return
 name|res
 return|;
 block|}
+DECL|field|filters
+specifier|private
+name|Query
+index|[]
+name|filters
+decl_stmt|;
 DECL|field|intersections
 specifier|private
 name|DocSet
@@ -1677,6 +1696,13 @@ operator|.
 name|base
 argument_list|)
 decl_stmt|;
+name|filters
+index|[
+name|slot
+index|]
+operator|=
+name|rangeQ
+expr_stmt|;
 name|intersections
 index|[
 name|slot
@@ -1684,7 +1710,7 @@ index|]
 operator|=
 name|intersection
 expr_stmt|;
-comment|// save for later
+comment|// save for later  // TODO: only save if number of slots is small enough?
 name|int
 name|num
 init|=
@@ -1742,37 +1768,18 @@ index|[
 name|slot
 index|]
 decl_stmt|;
-if|if
-condition|(
-name|subBase
-operator|.
-name|size
-argument_list|()
-operator|==
-literal|0
-condition|)
-return|return;
-name|FacetContext
-name|subContext
-init|=
-name|fcontext
-operator|.
-name|sub
-argument_list|()
-decl_stmt|;
-name|subContext
-operator|.
-name|base
-operator|=
-name|subBase
-expr_stmt|;
 try|try
 block|{
-name|fillBucketSubs
+name|processSubs
 argument_list|(
 name|bucket
 argument_list|,
-name|subContext
+name|filters
+index|[
+name|slot
+index|]
+argument_list|,
+name|subBase
 argument_list|)
 expr_stmt|;
 block|}
