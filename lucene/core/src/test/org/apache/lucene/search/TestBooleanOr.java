@@ -1682,6 +1682,12 @@ argument_list|,
 name|optionalScorers
 argument_list|,
 literal|1
+argument_list|,
+name|random
+argument_list|()
+operator|.
+name|nextBoolean
+argument_list|()
 argument_list|)
 decl_stmt|;
 specifier|final
