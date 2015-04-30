@@ -4279,7 +4279,7 @@ literal|"{!tag=doc3,allfilt}-id:3"
 argument_list|,
 literal|"json.facet"
 argument_list|,
-literal|"{processEmpty:false "
+literal|"{processEmpty:true "
 operator|+
 literal|", f1:{type:range, field:${num_d}, start:-5, end:10, gap:5, other:all,   facet:{ x:'sum(${num_i})', ny:{query:'${where_s}:NY'}} , excludeTags:allfilt }"
 operator|+
