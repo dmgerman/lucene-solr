@@ -7562,28 +7562,26 @@ name|NANOSECONDS
 argument_list|)
 decl_stmt|;
 comment|//Let's make sure it took more than approximateTimeInSeconds to make sure that it was throttled
-name|boolean
-name|isElapsed
-init|=
-literal|false
-decl_stmt|;
-if|if
-condition|(
+name|log
+operator|.
+name|info
+argument_list|(
+literal|"approximateTimeInSeconds = "
+operator|+
+name|approximateTimeInSeconds
+operator|+
+literal|" timeTakenInSeconds = "
+operator|+
+name|timeTakenInSeconds
+argument_list|)
+expr_stmt|;
+name|assertTrue
+argument_list|(
 name|timeTakenInSeconds
 operator|-
 name|approximateTimeInSeconds
 operator|>
 literal|0
-condition|)
-block|{
-name|isElapsed
-operator|=
-literal|true
-expr_stmt|;
-block|}
-name|assertTrue
-argument_list|(
-name|isElapsed
 argument_list|)
 expr_stmt|;
 block|}
