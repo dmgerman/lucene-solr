@@ -4147,7 +4147,7 @@ expr_stmt|;
 comment|////////////////////////////////////////////////////////////////////////////////////////////
 comment|// multi-select / exclude tagged filters via excludeTags
 comment|////////////////////////////////////////////////////////////////////////////////////////////
-comment|// nested query facets on subset
+comment|// nested query facets on subset (with excludeTags)
 name|client
 operator|.
 name|testJQ
@@ -4179,6 +4179,12 @@ operator|+
 literal|",f5:{query:{q:'${cat_s}:B', facet:{nj:{query:'${where_s}:NJ'}, ny:{query:'${where_s}:NY'}} , excludeTags:[xyz,qaz]}}"
 operator|+
 comment|// this is repeated, but it did fail when a single context was shared among sub-facets
+literal|",f6:{query:{q:'${cat_s}:B', facet:{processEmpty:true, nj:{query:'${where_s}:NJ'}, ny:{ type:query, q:'${where_s}:NY', excludeTags:abc}}  }}"
+operator|+
+comment|// exclude in a sub-facet
+literal|",f7:{query:{q:'${cat_s}:B', facet:{processEmpty:true, nj:{query:'${where_s}:NJ'}, ny:{ type:query, q:'${where_s}:NY', excludeTags:xyz}}  }}"
+operator|+
+comment|// exclude in a sub-facet that doesn't match
 literal|"}"
 argument_list|)
 argument_list|,
@@ -4193,6 +4199,112 @@ operator|+
 literal|",'f4':{'count':3, 'nj':{'count':2}, 'ny':{'count':1}}"
 operator|+
 literal|",'f5':{'count':1, 'nj':{'count':1}, 'ny':{'count':0}}"
+operator|+
+literal|",'f6':{'count':1, 'nj':{'count':1}, 'ny':{'count':1}}"
+operator|+
+literal|",'f7':{'count':1, 'nj':{'count':1}, 'ny':{'count':0}}"
+operator|+
+literal|"}"
+argument_list|)
+expr_stmt|;
+comment|// terms facet with nested query facet (with excludeTags)
+name|client
+operator|.
+name|testJQ
+argument_list|(
+name|params
+argument_list|(
+name|p
+argument_list|,
+literal|"q"
+argument_list|,
+literal|"*:*"
+argument_list|,
+literal|"fq"
+argument_list|,
+literal|"{!tag=doc6,allfilt}-id:6"
+argument_list|,
+literal|"fq"
+argument_list|,
+literal|"{!tag=doc3,allfilt}-id:3"
+argument_list|,
+literal|"json.facet"
+argument_list|,
+literal|"{processEmpty:true, "
+operator|+
+literal|" f0:{type:terms, field:${cat_s},                                    facet:{nj:{query:'${where_s}:NJ'}} }  "
+operator|+
+literal|",f1:{type:terms, field:${cat_s}, excludeTags:doc3,   missing:true,  facet:{nj:{query:'${where_s}:NJ'}} }  "
+operator|+
+literal|",f2:{type:terms, field:${cat_s}, excludeTags:allfilt,missing:true,  facet:{nj:{query:'${where_s}:NJ'}} }  "
+operator|+
+literal|",f3:{type:terms, field:${cat_s}, excludeTags:doc6,   missing:true,  facet:{nj:{query:'${where_s}:NJ'}} }  "
+operator|+
+literal|"}"
+argument_list|)
+argument_list|,
+literal|"facets=={ count:4, "
+operator|+
+literal|" f0:{ buckets:[ {val:A, count:2, nj:{ count:1}}, {val:B, count:2, nj:{count:2}} ] }"
+operator|+
+literal|",f1:{ buckets:[ {val:A, count:2, nj:{ count:1}}, {val:B, count:2, nj:{count:2}} ] , missing:{count:1,nj:{count:0}} }"
+operator|+
+literal|",f2:{ buckets:[ {val:B, count:3, nj:{ count:2}}, {val:A, count:2, nj:{count:1}} ] , missing:{count:1,nj:{count:0}} }"
+operator|+
+literal|",f3:{ buckets:[ {val:B, count:3, nj:{ count:2}}, {val:A, count:2, nj:{count:1}} ] , missing:{count:0} }"
+operator|+
+literal|"}"
+argument_list|)
+expr_stmt|;
+comment|// range facet with sub facets and stats, with "other:all" (with excludeTags)
+name|client
+operator|.
+name|testJQ
+argument_list|(
+name|params
+argument_list|(
+name|p
+argument_list|,
+literal|"q"
+argument_list|,
+literal|"*:*"
+argument_list|,
+literal|"fq"
+argument_list|,
+literal|"{!tag=doc6,allfilt}-id:6"
+argument_list|,
+literal|"fq"
+argument_list|,
+literal|"{!tag=doc3,allfilt}-id:3"
+argument_list|,
+literal|"json.facet"
+argument_list|,
+literal|"{processEmpty:false "
+operator|+
+literal|", f1:{type:range, field:${num_d}, start:-5, end:10, gap:5, other:all,   facet:{ x:'sum(${num_i})', ny:{query:'${where_s}:NY'}} , excludeTags:allfilt }"
+operator|+
+literal|", f2:{type:range, field:${num_d}, start:-5, end:10, gap:5, other:all,   facet:{ x:'sum(${num_i})', ny:{query:'${where_s}:NY'}}  }"
+operator|+
+literal|"}"
+argument_list|)
+argument_list|,
+literal|"facets=={count:4"
+operator|+
+literal|",f1:{buckets:[ {val:-5.0,count:1,x:-5.0,ny:{count:1}}, {val:0.0,count:2,x:5.0,ny:{count:1}}, {val:5.0,count:0} ]"
+operator|+
+literal|",before: {count:1,x:-5.0,ny:{count:0}}"
+operator|+
+literal|",after:  {count:1,x:7.0, ny:{count:0}}"
+operator|+
+literal|",between:{count:3,x:0.0, ny:{count:2}} }"
+operator|+
+literal|",f2:{buckets:[ {val:-5.0,count:0}, {val:0.0,count:2,x:5.0,ny:{count:1}}, {val:5.0,count:0} ]"
+operator|+
+literal|",before: {count:1,x:-5.0,ny:{count:0}}"
+operator|+
+literal|",after:  {count:1,x:7.0, ny:{count:0}}"
+operator|+
+literal|",between:{count:2,x:5.0, ny:{count:1}} }"
 operator|+
 literal|"}"
 argument_list|)
