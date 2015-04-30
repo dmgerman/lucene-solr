@@ -63,9 +63,13 @@ comment|/**      * Brackets containing a string as the "index".      */
 DECL|enum constant|STR_INDEX
 name|STR_INDEX
 block|,
-comment|/**      * Brackets containg an integer index (ie an array).      */
+comment|/**      * Brackets containing an integer index (ie an array).      */
 DECL|enum constant|INT_INDEX
 name|INT_INDEX
+block|,
+comment|/**      * Parenthesis represent a member method to be called.      */
+DECL|enum constant|METHOD
+name|METHOD
 block|}
 comment|/**    * The type of this piece of a variable.    */
 DECL|field|type
@@ -306,11 +310,81 @@ name|j
 index|]
 operator|!=
 literal|'.'
+operator|&&
+name|text
+index|[
+name|j
+index|]
+operator|!=
+literal|'('
 condition|)
 operator|++
 name|j
 expr_stmt|;
-comment|// find first array or member access
+comment|// find first array, member access, or method call
+if|if
+condition|(
+name|j
+operator|+
+literal|1
+operator|<
+name|text
+operator|.
+name|length
+operator|&&
+name|text
+index|[
+name|j
+index|]
+operator|==
+literal|'('
+operator|&&
+name|text
+index|[
+name|j
+operator|+
+literal|1
+index|]
+operator|==
+literal|')'
+condition|)
+block|{
+name|contexts
+operator|.
+name|add
+argument_list|(
+operator|new
+name|VariableContext
+argument_list|(
+name|Type
+operator|.
+name|METHOD
+argument_list|,
+operator|new
+name|String
+argument_list|(
+name|text
+argument_list|,
+name|i
+argument_list|,
+name|j
+operator|-
+name|i
+argument_list|)
+argument_list|,
+operator|-
+literal|1
+argument_list|)
+argument_list|)
+expr_stmt|;
+name|j
+operator|+=
+literal|2
+expr_stmt|;
+comment|//move past the parenthesis
+block|}
+else|else
+block|{
 name|contexts
 operator|.
 name|add
@@ -339,6 +413,7 @@ literal|1
 argument_list|)
 argument_list|)
 expr_stmt|;
+block|}
 return|return
 name|j
 return|;
