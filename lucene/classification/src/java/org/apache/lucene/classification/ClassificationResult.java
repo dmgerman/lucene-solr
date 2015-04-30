@@ -17,7 +17,7 @@ package|;
 end_package
 
 begin_comment
-comment|/**  * The result of a call to {@link Classifier#assignClass(String)} holding an assigned class of type<code>T</code> and a score.  * @lucene.experimental  */
+comment|/**  * The result of a call to {@link Classifier#assignClass(String)} holding an assigned class of type<code>T</code> and a score.  *  * @lucene.experimental  */
 end_comment
 
 begin_class
@@ -48,7 +48,7 @@ specifier|private
 name|double
 name|score
 decl_stmt|;
-comment|/**    * Constructor    * @param assignedClass the class<code>T</code> assigned by a {@link Classifier}    * @param score the score for the assignedClass as a<code>double</code>    */
+comment|/**    * Constructor    *    * @param assignedClass the class<code>T</code> assigned by a {@link Classifier}    * @param score         the score for the assignedClass as a<code>double</code>    */
 DECL|method|ClassificationResult
 specifier|public
 name|ClassificationResult
@@ -73,7 +73,7 @@ operator|=
 name|score
 expr_stmt|;
 block|}
-comment|/**    * retrieve the result class    * @return a<code>T</code> representing an assigned class    */
+comment|/**    * retrieve the result class    *    * @return a<code>T</code> representing an assigned class    */
 DECL|method|getAssignedClass
 specifier|public
 name|T
@@ -84,7 +84,7 @@ return|return
 name|assignedClass
 return|;
 block|}
-comment|/**    * retrieve the result score    * @return a<code>double</code> representing a result score    */
+comment|/**    * retrieve the result score    *    * @return a<code>double</code> representing a result score    */
 DECL|method|getScore
 specifier|public
 name|double
@@ -95,7 +95,7 @@ return|return
 name|score
 return|;
 block|}
-comment|/**    * set the score value    * @param score the score for the assignedClass as a<code>double</code>    */
+comment|/**    * set the score value    *    * @param score the score for the assignedClass as a<code>double</code>    */
 DECL|method|setScore
 specifier|public
 name|void

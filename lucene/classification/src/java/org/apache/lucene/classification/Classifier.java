@@ -78,20 +78,6 @@ name|Query
 import|;
 end_import
 
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|util
-operator|.
-name|BytesRef
-import|;
-end_import
-
 begin_comment
 comment|/**  * A classifier, see<code>http://en.wikipedia.org/wiki/Classifier_(mathematics)</code>, which assign classes of type  *<code>T</code>  *  * @lucene.experimental  */
 end_comment
@@ -107,7 +93,6 @@ parameter_list|>
 block|{
 comment|/**    * Assign a class (with score) to the given text String    *    * @param text a String containing text to be classified    * @return a {@link ClassificationResult} holding assigned class of type<code>T</code> and score    * @throws IOException If there is a low-level I/O error.    */
 DECL|method|assignClass
-specifier|public
 name|ClassificationResult
 argument_list|<
 name|T
@@ -122,7 +107,6 @@ name|IOException
 function_decl|;
 comment|/**    * Get all the classes (sorted by score, descending) assigned to the given text String.    *    * @param text a String containing text to be classified    * @return the whole list of {@link ClassificationResult}, the classes and scores. Returns<code>null</code> if the classifier can't make lists.    * @throws IOException If there is a low-level I/O error.    */
 DECL|method|getClasses
-specifier|public
 name|List
 argument_list|<
 name|ClassificationResult
@@ -140,7 +124,6 @@ name|IOException
 function_decl|;
 comment|/**    * Get the first<code>max</code> classes (sorted by score, descending) assigned to the given text String.    *    * @param text a String containing text to be classified    * @param max  the number of return list elements    * @return the whole list of {@link ClassificationResult}, the classes and scores. Cut for "max" number of elements. Returns<code>null</code> if the classifier can't make lists.    * @throws IOException If there is a low-level I/O error.    */
 DECL|method|getClasses
-specifier|public
 name|List
 argument_list|<
 name|ClassificationResult
@@ -155,76 +138,6 @@ name|text
 parameter_list|,
 name|int
 name|max
-parameter_list|)
-throws|throws
-name|IOException
-function_decl|;
-comment|/**    * Train the classifier using the underlying Lucene index    *    * @param leafReader   the reader to use to access the Lucene index    * @param textFieldName  the name of the field used to compare documents    * @param classFieldName the name of the field containing the class assigned to documents    * @param analyzer       the analyzer used to tokenize / filter the unseen text    * @throws IOException If there is a low-level I/O error.    */
-DECL|method|train
-specifier|public
-name|void
-name|train
-parameter_list|(
-name|LeafReader
-name|leafReader
-parameter_list|,
-name|String
-name|textFieldName
-parameter_list|,
-name|String
-name|classFieldName
-parameter_list|,
-name|Analyzer
-name|analyzer
-parameter_list|)
-throws|throws
-name|IOException
-function_decl|;
-comment|/**    * Train the classifier using the underlying Lucene index    *    * @param leafReader   the reader to use to access the Lucene index    * @param textFieldName  the name of the field used to compare documents    * @param classFieldName the name of the field containing the class assigned to documents    * @param analyzer       the analyzer used to tokenize / filter the unseen text    * @param query          the query to filter which documents use for training    * @throws IOException If there is a low-level I/O error.    */
-DECL|method|train
-specifier|public
-name|void
-name|train
-parameter_list|(
-name|LeafReader
-name|leafReader
-parameter_list|,
-name|String
-name|textFieldName
-parameter_list|,
-name|String
-name|classFieldName
-parameter_list|,
-name|Analyzer
-name|analyzer
-parameter_list|,
-name|Query
-name|query
-parameter_list|)
-throws|throws
-name|IOException
-function_decl|;
-comment|/**    * Train the classifier using the underlying Lucene index    *    * @param leafReader   the reader to use to access the Lucene index    * @param textFieldNames the names of the fields to be used to compare documents    * @param classFieldName the name of the field containing the class assigned to documents    * @param analyzer       the analyzer used to tokenize / filter the unseen text    * @param query          the query to filter which documents use for training    * @throws IOException If there is a low-level I/O error.    */
-DECL|method|train
-specifier|public
-name|void
-name|train
-parameter_list|(
-name|LeafReader
-name|leafReader
-parameter_list|,
-name|String
-index|[]
-name|textFieldNames
-parameter_list|,
-name|String
-name|classFieldName
-parameter_list|,
-name|Analyzer
-name|analyzer
-parameter_list|,
-name|Query
-name|query
 parameter_list|)
 throws|throws
 name|IOException
