@@ -627,21 +627,6 @@ parameter_list|)
 throws|throws
 name|IOException
 block|{
-if|if
-condition|(
-name|leafReader
-operator|==
-literal|null
-condition|)
-block|{
-throw|throw
-operator|new
-name|IOException
-argument_list|(
-literal|"You must first call Classifier#train"
-argument_list|)
-throw|;
-block|}
 name|List
 argument_list|<
 name|ClassificationResult
