@@ -465,14 +465,6 @@ name|directory
 expr_stmt|;
 comment|// First pass: walk the files and initialize our ref
 comment|// counts:
-name|long
-name|currentGen
-init|=
-name|segmentInfos
-operator|.
-name|getGeneration
-argument_list|()
-decl_stmt|;
 name|CommitPoint
 name|currentCommitPoint
 init|=
@@ -669,44 +661,6 @@ operator|+
 literal|"\"; skipping this commit point"
 argument_list|)
 expr_stmt|;
-block|}
-block|}
-catch|catch
-parameter_list|(
-name|IOException
-name|e
-parameter_list|)
-block|{
-if|if
-condition|(
-name|SegmentInfos
-operator|.
-name|generationFromSegmentsFileName
-argument_list|(
-name|fileName
-argument_list|)
-operator|<=
-name|currentGen
-operator|&&
-name|directory
-operator|.
-name|fileLength
-argument_list|(
-name|fileName
-argument_list|)
-operator|>
-literal|0
-condition|)
-block|{
-throw|throw
-name|e
-throw|;
-block|}
-else|else
-block|{
-comment|// Most likely we are opening an index that
-comment|// has an aborted "future" commit, so suppress
-comment|// exc in this case
 block|}
 block|}
 if|if
