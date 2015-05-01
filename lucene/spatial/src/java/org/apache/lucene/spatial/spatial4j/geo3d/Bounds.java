@@ -518,6 +518,7 @@ name|PI
 operator|*
 literal|2.0
 expr_stmt|;
+comment|// If the bound exceeds 180 degrees, we know we could have screwed up.
 if|if
 condition|(
 name|testRightLongitude
@@ -527,8 +528,6 @@ operator|>=
 name|Math
 operator|.
 name|PI
-operator|*
-literal|2.0
 condition|)
 block|{
 name|noLongitudeBound
@@ -794,8 +793,6 @@ operator|>=
 name|Math
 operator|.
 name|PI
-operator|*
-literal|2.0
 condition|)
 block|{
 name|noLongitudeBound

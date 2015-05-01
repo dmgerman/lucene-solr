@@ -1165,8 +1165,6 @@ operator|>=
 name|Math
 operator|.
 name|PI
-operator|*
-literal|0.5
 condition|)
 block|{
 comment|// We can't reliably assume that bounds did its longitude calculation right, so we force it to be unbounded.

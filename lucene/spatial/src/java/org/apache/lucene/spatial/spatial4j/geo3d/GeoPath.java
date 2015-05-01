@@ -3764,8 +3764,6 @@ operator|>=
 name|Math
 operator|.
 name|PI
-operator|*
-literal|0.5
 condition|)
 block|{
 comment|// Too large a segment basically means that we can confuse the Bounds object.  Specifically, if our span exceeds 180 degrees
