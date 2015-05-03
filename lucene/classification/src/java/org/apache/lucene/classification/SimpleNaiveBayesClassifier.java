@@ -360,7 +360,7 @@ specifier|final
 name|Query
 name|query
 decl_stmt|;
-comment|/**    * Creates a new NaiveBayes classifier.    * classify any documents.    */
+comment|/**    * Creates a new NaiveBayes classifier.    *    * @param leafReader     the reader on the index to be used for classification    * @param analyzer       an {@link Analyzer} used to analyze unseen text    * @param query          a {@link Query} to eventually filter the docs used for training the classifier, or {@code null}    *                       if all the indexed docs should be used    * @param classFieldName the name of the field used as the output for the classifier    * @param textFieldNames the name of the fields used as the inputs for the classifier    */
 DECL|method|SimpleNaiveBayesClassifier
 specifier|public
 name|SimpleNaiveBayesClassifier
