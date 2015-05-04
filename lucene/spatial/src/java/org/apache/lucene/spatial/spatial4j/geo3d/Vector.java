@@ -21,7 +21,7 @@ comment|/*  * Licensed to the Apache Software Foundation (ASF) under one or more
 end_comment
 
 begin_comment
-comment|/** A 3d vector in space, not necessarily  * going through the origin. */
+comment|/**  * A 3d vector in space, not necessarily  * going through the origin.  */
 end_comment
 
 begin_class
@@ -30,7 +30,7 @@ specifier|public
 class|class
 name|Vector
 block|{
-comment|/** Values that are all considered to be essentially zero have a magnitude     * less than this. */
+comment|/**    * Values that are all considered to be essentially zero have a magnitude    * less than this.    */
 DECL|field|MINIMUM_RESOLUTION
 specifier|public
 specifier|static
@@ -40,7 +40,7 @@ name|MINIMUM_RESOLUTION
 init|=
 literal|1e-12
 decl_stmt|;
-comment|/** For squared quantities, the bound is squared too.     */
+comment|/**    * For squared quantities, the bound is squared too.    */
 DECL|field|MINIMUM_RESOLUTION_SQUARED
 specifier|public
 specifier|static
@@ -70,7 +70,7 @@ specifier|final
 name|double
 name|z
 decl_stmt|;
-comment|/** Construct from (U.S.) x,y,z coordinates.      */
+comment|/**    * Construct from (U.S.) x,y,z coordinates.    */
 DECL|method|Vector
 specifier|public
 name|Vector
@@ -104,7 +104,7 @@ operator|=
 name|z
 expr_stmt|;
 block|}
-comment|/** Construct a vector that is perpendicular to      * two other (non-zero) vectors.  If the vectors are parallel,      * the result vector will have magnitude 0.      *@param A is the first vector      *@param B is the second      */
+comment|/**    * Construct a vector that is perpendicular to    * two other (non-zero) vectors.  If the vectors are parallel,    * the result vector will have magnitude 0.    *    * @param A is the first vector    * @param B is the second    */
 DECL|method|Vector
 specifier|public
 name|Vector
@@ -173,7 +173,7 @@ name|x
 argument_list|)
 expr_stmt|;
 block|}
-comment|/** Compute a normalized unit vector based on the current vector.      *@return the normalized vector, or null if the current vector has      * a magnitude of zero.      */
+comment|/**    * Compute a normalized unit vector based on the current vector.    *    * @return the normalized vector, or null if the current vector has    * a magnitude of zero.    */
 DECL|method|normalize
 specifier|public
 name|Vector
@@ -221,7 +221,7 @@ name|normFactor
 argument_list|)
 return|;
 block|}
-comment|/** Do a dot product.      *@param v is the vector to multiply.      *@return the result.      */
+comment|/**    * Do a dot product.    *    * @param v is the vector to multiply.    * @return the result.    */
 DECL|method|dotProduct
 specifier|public
 name|double
@@ -258,7 +258,7 @@ operator|.
 name|z
 return|;
 block|}
-comment|/** Do a dot product.      *@param x is the x value of the vector to multiply.      *@param y is the y value of the vector to multiply.      *@param z is the z value of the vector to multiply.      *@return the result.      */
+comment|/**    * Do a dot product.    *    * @param x is the x value of the vector to multiply.    * @param y is the y value of the vector to multiply.    * @param z is the z value of the vector to multiply.    * @return the result.    */
 DECL|method|dotProduct
 specifier|public
 name|double
@@ -297,7 +297,7 @@ operator|*
 name|z
 return|;
 block|}
-comment|/** Determine if this vector, taken from the origin,      * describes a point within a set of planes.      *@param bounds is the first part of the set of planes.      *@param moreBounds is the second part of the set of planes.      *@return true if the point is within the bounds.      */
+comment|/**    * Determine if this vector, taken from the origin,    * describes a point within a set of planes.    *    * @param bounds     is the first part of the set of planes.    * @param moreBounds is the second part of the set of planes.    * @return true if the point is within the bounds.    */
 DECL|method|isWithin
 specifier|public
 name|boolean
@@ -371,7 +371,7 @@ return|return
 literal|true
 return|;
 block|}
-comment|/** Translate vector.     */
+comment|/**    * Translate vector.    */
 DECL|method|translate
 specifier|public
 name|Vector
@@ -408,7 +408,7 @@ name|zOffset
 argument_list|)
 return|;
 block|}
-comment|/** Rotate vector counter-clockwise in x-y by an angle.     */
+comment|/**    * Rotate vector counter-clockwise in x-y by an angle.    */
 DECL|method|rotateXY
 specifier|public
 name|Vector
@@ -438,7 +438,7 @@ argument_list|)
 argument_list|)
 return|;
 block|}
-comment|/** Rotate vector counter-clockwise in x-y by an angle, expressed as sin and cos.     */
+comment|/**    * Rotate vector counter-clockwise in x-y by an angle, expressed as sin and cos.    */
 DECL|method|rotateXY
 specifier|public
 name|Vector
@@ -477,7 +477,7 @@ name|z
 argument_list|)
 return|;
 block|}
-comment|/** Rotate vector counter-clockwise in x-z by an angle.     */
+comment|/**    * Rotate vector counter-clockwise in x-z by an angle.    */
 DECL|method|rotateXZ
 specifier|public
 name|Vector
@@ -507,7 +507,7 @@ argument_list|)
 argument_list|)
 return|;
 block|}
-comment|/** Rotate vector counter-clockwise in x-z by an angle, expressed as sin and cos.     */
+comment|/**    * Rotate vector counter-clockwise in x-z by an angle, expressed as sin and cos.    */
 DECL|method|rotateXZ
 specifier|public
 name|Vector
@@ -546,7 +546,7 @@ name|cosAngle
 argument_list|)
 return|;
 block|}
-comment|/** Rotate vector counter-clockwise in z-y by an angle.     */
+comment|/**    * Rotate vector counter-clockwise in z-y by an angle.    */
 DECL|method|rotateZY
 specifier|public
 name|Vector
@@ -576,7 +576,7 @@ argument_list|)
 argument_list|)
 return|;
 block|}
-comment|/** Rotate vector counter-clockwise in z-y by an angle, expressed as sin and cos.     */
+comment|/**    * Rotate vector counter-clockwise in z-y by an angle, expressed as sin and cos.    */
 DECL|method|rotateZY
 specifier|public
 name|Vector
@@ -615,7 +615,7 @@ name|sinAngle
 argument_list|)
 return|;
 block|}
-comment|/** Compute the square of a straight-line distance to a point described by the      * vector taken from the origin.      * Monotonically increasing for arc distances up to PI.      *@param v is the vector to compute a distance to.      *@return the square of the linear distance.      */
+comment|/**    * Compute the square of a straight-line distance to a point described by the    * vector taken from the origin.    * Monotonically increasing for arc distances up to PI.    *    * @param v is the vector to compute a distance to.    * @return the square of the linear distance.    */
 DECL|method|linearDistanceSquared
 specifier|public
 name|double
@@ -673,7 +673,7 @@ operator|*
 name|deltaZ
 return|;
 block|}
-comment|/** Compute the square of a straight-line distance to a point described by the      * vector taken from the origin.      * Monotonically increasing for arc distances up to PI.      *@param x is the x part of the vector to compute a distance to.      *@param y is the y part of the vector to compute a distance to.      *@param z is the z part of the vector to compute a distance to.      *@return the square of the linear distance.      */
+comment|/**    * Compute the square of a straight-line distance to a point described by the    * vector taken from the origin.    * Monotonically increasing for arc distances up to PI.    *    * @param x is the x part of the vector to compute a distance to.    * @param y is the y part of the vector to compute a distance to.    * @param z is the z part of the vector to compute a distance to.    * @return the square of the linear distance.    */
 DECL|method|linearDistanceSquared
 specifier|public
 name|double
@@ -733,7 +733,7 @@ operator|*
 name|deltaZ
 return|;
 block|}
-comment|/** Compute the straight-line distance to a point described by the      * vector taken from the origin.      * Monotonically increasing for arc distances up to PI.      *@param v is the vector to compute a distance to.      *@return the linear distance.      */
+comment|/**    * Compute the straight-line distance to a point described by the    * vector taken from the origin.    * Monotonically increasing for arc distances up to PI.    *    * @param v is the vector to compute a distance to.    * @return the linear distance.    */
 DECL|method|linearDistance
 specifier|public
 name|double
@@ -756,7 +756,7 @@ argument_list|)
 argument_list|)
 return|;
 block|}
-comment|/** Compute the straight-line distance to a point described by the      * vector taken from the origin.      * Monotonically increasing for arc distances up to PI.      *@param x is the x part of the vector to compute a distance to.      *@param y is the y part of the vector to compute a distance to.      *@param z is the z part of the vector to compute a distance to.      *@return the linear distance.      */
+comment|/**    * Compute the straight-line distance to a point described by the    * vector taken from the origin.    * Monotonically increasing for arc distances up to PI.    *    * @param x is the x part of the vector to compute a distance to.    * @param y is the y part of the vector to compute a distance to.    * @param z is the z part of the vector to compute a distance to.    * @return the linear distance.    */
 DECL|method|linearDistance
 specifier|public
 name|double
@@ -791,7 +791,7 @@ argument_list|)
 argument_list|)
 return|;
 block|}
-comment|/** Compute the square of the normal distance to a vector described by a      * vector taken from the origin.      * Monotonically increasing for arc distances up to PI/2.      *@param v is the vector to compute a distance to.      *@return the square of the normal distance.      */
+comment|/**    * Compute the square of the normal distance to a vector described by a    * vector taken from the origin.    * Monotonically increasing for arc distances up to PI/2.    *    * @param v is the vector to compute a distance to.    * @return the square of the normal distance.    */
 DECL|method|normalDistanceSquared
 specifier|public
 name|double
@@ -863,7 +863,7 @@ operator|*
 name|deltaZ
 return|;
 block|}
-comment|/** Compute the square of the normal distance to a vector described by a      * vector taken from the origin.      * Monotonically increasing for arc distances up to PI/2.      *@param x is the x part of the vector to compute a distance to.      *@param y is the y part of the vector to compute a distance to.      *@param z is the z part of the vector to compute a distance to.      *@return the square of the normal distance.      */
+comment|/**    * Compute the square of the normal distance to a vector described by a    * vector taken from the origin.    * Monotonically increasing for arc distances up to PI/2.    *    * @param x is the x part of the vector to compute a distance to.    * @param y is the y part of the vector to compute a distance to.    * @param z is the z part of the vector to compute a distance to.    * @return the square of the normal distance.    */
 DECL|method|normalDistanceSquared
 specifier|public
 name|double
@@ -941,7 +941,7 @@ operator|*
 name|deltaZ
 return|;
 block|}
-comment|/** Compute the normal (perpendicular) distance to a vector described by a      * vector taken from the origin.      * Monotonically increasing for arc distances up to PI/2.      *@param v is the vector to compute a distance to.      *@return the normal distance.      */
+comment|/**    * Compute the normal (perpendicular) distance to a vector described by a    * vector taken from the origin.    * Monotonically increasing for arc distances up to PI/2.    *    * @param v is the vector to compute a distance to.    * @return the normal distance.    */
 DECL|method|normalDistance
 specifier|public
 name|double
@@ -964,7 +964,7 @@ argument_list|)
 argument_list|)
 return|;
 block|}
-comment|/** Compute the normal (perpendicular) distance to a vector described by a      * vector taken from the origin.      * Monotonically increasing for arc distances up to PI/2.      *@param x is the x part of the vector to compute a distance to.      *@param y is the y part of the vector to compute a distance to.      *@param z is the z part of the vector to compute a distance to.      *@return the normal distance.      */
+comment|/**    * Compute the normal (perpendicular) distance to a vector described by a    * vector taken from the origin.    * Monotonically increasing for arc distances up to PI/2.    *    * @param x is the x part of the vector to compute a distance to.    * @param y is the y part of the vector to compute a distance to.    * @param z is the z part of the vector to compute a distance to.    * @return the normal distance.    */
 DECL|method|normalDistance
 specifier|public
 name|double
@@ -999,7 +999,7 @@ argument_list|)
 argument_list|)
 return|;
 block|}
-comment|/** Compute the magnitude of this vector.      *@return the magnitude.      */
+comment|/**    * Compute the magnitude of this vector.    *    * @return the magnitude.    */
 DECL|method|magnitude
 specifier|public
 name|double

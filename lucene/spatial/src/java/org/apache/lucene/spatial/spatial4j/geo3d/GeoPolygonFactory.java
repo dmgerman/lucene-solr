@@ -51,7 +51,7 @@ import|;
 end_import
 
 begin_comment
-comment|/** Class which constructs a GeoMembershipShape representing an arbitrary polygon. */
+comment|/**  * Class which constructs a GeoMembershipShape representing an arbitrary polygon.  */
 end_comment
 
 begin_class
@@ -64,8 +64,8 @@ DECL|method|GeoPolygonFactory
 specifier|private
 name|GeoPolygonFactory
 parameter_list|()
-block|{     }
-comment|/** Create a GeoMembershipShape of the right kind given the specified bounds.      *@param pointList is a list of the GeoPoints to build an arbitrary polygon out of.      *@param convexPointIndex is the index of a single convex point whose conformation with      * its neighbors determines inside/outside for the entire polygon.      *@return a GeoMembershipShape corresponding to what was specified.      */
+block|{   }
+comment|/**    * Create a GeoMembershipShape of the right kind given the specified bounds.    *    * @param pointList        is a list of the GeoPoints to build an arbitrary polygon out of.    * @param convexPointIndex is the index of a single convex point whose conformation with    *                         its neighbors determines inside/outside for the entire polygon.    * @return a GeoMembershipShape corresponding to what was specified.    */
 DECL|method|makeGeoPolygon
 specifier|public
 specifier|static

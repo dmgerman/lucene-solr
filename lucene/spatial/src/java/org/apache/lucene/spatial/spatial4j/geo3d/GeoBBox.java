@@ -21,7 +21,7 @@ comment|/*  * Licensed to the Apache Software Foundation (ASF) under one or more
 end_comment
 
 begin_comment
-comment|/** All bounding box shapes have this interface in common. * This describes methods that bounding boxes have above and beyond * GeoMembershipShape's. */
+comment|/**  * All bounding box shapes have this interface in common.  * This describes methods that bounding boxes have above and beyond  * GeoMembershipShape's.  */
 end_comment
 
 begin_interface
@@ -36,7 +36,7 @@ name|GeoSizeable
 extends|,
 name|GeoArea
 block|{
-comment|/** Expand box by specified angle.      *@param angle is the angle amount to expand the GeoBBox by.      *@return a new GeoBBox.      */
+comment|/**    * Expand box by specified angle.    *    * @param angle is the angle amount to expand the GeoBBox by.    * @return a new GeoBBox.    */
 DECL|method|expand
 specifier|public
 name|GeoBBox

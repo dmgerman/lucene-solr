@@ -524,10 +524,10 @@ expr_stmt|;
 block|}
 annotation|@
 name|Test
-DECL|method|testFailure
+DECL|method|testFailure1
 specifier|public
 name|void
-name|testFailure
+name|testFailure1
 parameter_list|()
 throws|throws
 name|IOException
@@ -535,22 +535,6 @@ block|{
 name|setupStrategy
 argument_list|()
 expr_stmt|;
-comment|// [junit4]> Throwable #1: java.lang.AssertionError: [Intersects] qIdx:25 Shouldn't match I#1:Rect(minX=-49.0,maxX=-45.0,minY=73.0,maxY=86.0)
-comment|// Q:Geo3dShape{GeoCompositeMembershipShape: {[GeoCompositeMembershipShape: {[GeoConvexPolygon: {[
-comment|// [X=-0.8606462131055999, Y=0.4385211485883089, Z=-0.25881904510252074],
-comment|//  [X=-0.4668467715008339, Y=0.28050984011500923, Z=-0.838670567945424],
-comment|// [X=-0.9702957262759965, Y=1.1882695554102554E-16, Z=0.24192189559966773]]}]},
-comment|// GeoConvexPolygon: {[[X=0.8473975608908426, Y=-0.43177062311338915, Z=0.3090169943749474],
-comment|//[X=-0.4668467715008339, Y=0.28050984011500923, Z=-0.838670567945424],
-comment|// [X=-0.8606462131055999, Y=0.4385211485883089, Z=-0.25881904510252074]]}]}}
-comment|//
-comment|// Points in order (I think):
-comment|//
-comment|// [X=0.8473975608908426, Y=-0.43177062311338915, Z=0.3090169943749474],
-comment|//[X=-0.4668467715008339, Y=0.28050984011500923, Z=-0.838670567945424],
-comment|// [X=-0.9702957262759965, Y=1.1882695554102554E-16, Z=0.24192189559966773],
-comment|// [X=-0.8606462131055999, Y=0.4385211485883089, Z=-0.25881904510252074],
-comment|// Index: 0
 specifier|final
 name|List
 argument_list|<
@@ -696,9 +680,8 @@ name|Repeat
 argument_list|(
 name|iterations
 operator|=
-literal|2000
+literal|10
 argument_list|)
-comment|//@Seed("B808B88D6F8E285C")
 DECL|method|testOperations
 specifier|public
 name|void

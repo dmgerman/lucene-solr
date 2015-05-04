@@ -21,7 +21,7 @@ comment|/*  * Licensed to the Apache Software Foundation (ASF) under one or more
 end_comment
 
 begin_comment
-comment|/** Bounding box wider than PI but limited on three sides ( * bottom lat, left lon, right lon). */
+comment|/**  * Bounding box wider than PI but limited on three sides (  * bottom lat, left lon, right lon).  */
 end_comment
 
 begin_class
@@ -133,7 +133,7 @@ block|{
 name|NORTH_POLE
 block|}
 decl_stmt|;
-comment|/** Accepts only values in the following ranges: lat: {@code -PI/2 -> PI/2}, lon: {@code -PI -> PI}.      * Horizontal angle must be greater than or equal to PI.      */
+comment|/**    * Accepts only values in the following ranges: lat: {@code -PI/2 -> PI/2}, lon: {@code -PI -> PI}.    * Horizontal angle must be greater than or equal to PI.    */
 DECL|method|GeoWideNorthRectangle
 specifier|public
 name|GeoWideNorthRectangle
@@ -824,7 +824,7 @@ name|bottomAngle
 argument_list|)
 return|;
 block|}
-comment|/** Returns the center of a circle into which the area will be inscribed.     *@return the center.     */
+comment|/**    * Returns the center of a circle into which the area will be inscribed.    *    * @return the center.    */
 annotation|@
 name|Override
 DECL|method|getCenter
@@ -921,7 +921,7 @@ name|bottomPlane
 argument_list|)
 return|;
 block|}
-comment|/** Compute longitude/latitude bounds for the shape.     *@param bounds is the optional input bounds object.  If this is null,     * a bounds object will be created.  Otherwise, the input object will be modified.     *@return a Bounds object describing the shape's bounds.  If the bounds cannot     * be computed, then return a Bounds object with noLongitudeBound,     * noTopLatitudeBound, and noBottomLatitudeBound.     */
+comment|/**    * Compute longitude/latitude bounds for the shape.    *    * @param bounds is the optional input bounds object.  If this is null,    *               a bounds object will be created.  Otherwise, the input object will be modified.    * @return a Bounds object describing the shape's bounds.  If the bounds cannot    * be computed, then return a Bounds object with noLongitudeBound,    * noTopLatitudeBound, and noBottomLatitudeBound.    */
 annotation|@
 name|Override
 DECL|method|getBounds
@@ -1240,7 +1240,7 @@ DECL|method|EitherBound
 specifier|public
 name|EitherBound
 parameter_list|()
-block|{         }
+block|{     }
 annotation|@
 name|Override
 DECL|method|isWithin

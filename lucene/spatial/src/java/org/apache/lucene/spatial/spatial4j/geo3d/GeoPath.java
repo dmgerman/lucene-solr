@@ -41,7 +41,7 @@ import|;
 end_import
 
 begin_comment
-comment|/** GeoSearchableShape representing a path across the surface of the globe, * with a specified half-width.  Path is described by a series of points. * Distances are measured from the starting point along the path, and then at right * angles to the path. */
+comment|/**  * GeoSearchableShape representing a path across the surface of the globe,  * with a specified half-width.  Path is described by a series of points.  * Distances are measured from the starting point along the path, and then at right  * angles to the path.  */
 end_comment
 
 begin_class
@@ -657,7 +657,7 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
-comment|/** Compute an estimate of "distance" to the GeoPoint.     * A return value of Double.MAX_VALUE should be returned for     * points outside of the shape.     */
+comment|/**    * Compute an estimate of "distance" to the GeoPoint.    * A return value of Double.MAX_VALUE should be returned for    * points outside of the shape.    */
 annotation|@
 name|Override
 DECL|method|computeNormalDistance
@@ -784,7 +784,7 @@ operator|.
 name|MAX_VALUE
 return|;
 block|}
-comment|/** Compute an estimate of "distance" to the GeoPoint.     * A return value of Double.MAX_VALUE should be returned for     * points outside of the shape.     */
+comment|/**    * Compute an estimate of "distance" to the GeoPoint.    * A return value of Double.MAX_VALUE should be returned for    * points outside of the shape.    */
 annotation|@
 name|Override
 DECL|method|computeNormalDistance
@@ -820,7 +820,7 @@ argument_list|)
 argument_list|)
 return|;
 block|}
-comment|/** Compute a squared estimate of the "distance" to the     * GeoPoint.  Double.MAX_VALUE indicates a point outside of the     * shape.     */
+comment|/**    * Compute a squared estimate of the "distance" to the    * GeoPoint.  Double.MAX_VALUE indicates a point outside of the    * shape.    */
 annotation|@
 name|Override
 DECL|method|computeSquaredNormalDistance
@@ -858,7 +858,7 @@ operator|*
 name|pd
 return|;
 block|}
-comment|/** Compute a squared estimate of the "distance" to the     * GeoPoint.  Double.MAX_VALUE indicates a point outside of the     * shape.     */
+comment|/**    * Compute a squared estimate of the "distance" to the    * GeoPoint.  Double.MAX_VALUE indicates a point outside of the    * shape.    */
 annotation|@
 name|Override
 DECL|method|computeSquaredNormalDistance
@@ -894,7 +894,7 @@ argument_list|)
 argument_list|)
 return|;
 block|}
-comment|/** Compute a linear distance to the point.     */
+comment|/**    * Compute a linear distance to the point.    */
 annotation|@
 name|Override
 DECL|method|computeLinearDistance
@@ -1021,7 +1021,7 @@ operator|.
 name|MAX_VALUE
 return|;
 block|}
-comment|/** Compute a linear distance to the point.     */
+comment|/**    * Compute a linear distance to the point.    */
 annotation|@
 name|Override
 DECL|method|computeLinearDistance
@@ -1057,7 +1057,7 @@ argument_list|)
 argument_list|)
 return|;
 block|}
-comment|/** Compute a squared linear distance to the vector.     */
+comment|/**    * Compute a squared linear distance to the vector.    */
 annotation|@
 name|Override
 DECL|method|computeSquaredLinearDistance
@@ -1095,7 +1095,7 @@ operator|*
 name|pd
 return|;
 block|}
-comment|/** Compute a squared linear distance to the vector.     */
+comment|/**    * Compute a squared linear distance to the vector.    */
 annotation|@
 name|Override
 DECL|method|computeSquaredLinearDistance
@@ -1131,7 +1131,7 @@ argument_list|)
 argument_list|)
 return|;
 block|}
-comment|/** Compute a true, accurate, great-circle distance.     * Double.MAX_VALUE indicates a point is outside of the shape.     */
+comment|/**    * Compute a true, accurate, great-circle distance.    * Double.MAX_VALUE indicates a point is outside of the shape.    */
 annotation|@
 name|Override
 DECL|method|computeArcDistance
@@ -1493,7 +1493,7 @@ return|return
 literal|false
 return|;
 block|}
-comment|/** Compute longitude/latitude bounds for the shape.     *@param bounds is the optional input bounds object.  If this is null,     * a bounds object will be created.  Otherwise, the input object will be modified.     *@return a Bounds object describing the shape's bounds.  If the bounds cannot     * be computed, then return a Bounds object with noLongitudeBound,     * noTopLatitudeBound, and noBottomLatitudeBound.     */
+comment|/**    * Compute longitude/latitude bounds for the shape.    *    * @param bounds is the optional input bounds object.  If this is null,    *               a bounds object will be created.  Otherwise, the input object will be modified.    * @return a Bounds object describing the shape's bounds.  If the bounds cannot    * be computed, then return a Bounds object with noLongitudeBound,    * noTopLatitudeBound, and noBottomLatitudeBound.    */
 annotation|@
 name|Override
 DECL|method|getBounds
@@ -1753,7 +1753,7 @@ operator|+
 literal|"}}"
 return|;
 block|}
-comment|/** This is precalculated data for segment endpoint.      */
+comment|/**    * This is precalculated data for segment endpoint.    */
 DECL|class|SegmentEndpoint
 specifier|public
 specifier|static
@@ -2356,7 +2356,7 @@ argument_list|()
 return|;
 block|}
 block|}
-comment|/** This is the precalculated data for a path segment.      */
+comment|/**    * This is the precalculated data for a path segment.    */
 DECL|class|PathSegment
 specifier|public
 specifier|static

@@ -21,7 +21,7 @@ comment|/*  * Licensed to the Apache Software Foundation (ASF) under one or more
 end_comment
 
 begin_comment
-comment|/** All bounding box shapes can derive from this base class, which furnishes * some common code */
+comment|/**  * All bounding box shapes can derive from this base class, which furnishes  * some common code  */
 end_comment
 
 begin_class

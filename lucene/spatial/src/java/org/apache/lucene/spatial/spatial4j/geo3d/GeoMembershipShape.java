@@ -21,7 +21,7 @@ comment|/*  * Licensed to the Apache Software Foundation (ASF) under one or more
 end_comment
 
 begin_comment
-comment|/** Membership shapes have capabilities of both geohashing and membership  * determination.  */
+comment|/**  * Membership shapes have capabilities of both geohashing and membership  * determination.  */
 end_comment
 
 begin_interface

@@ -41,7 +41,7 @@ import|;
 end_import
 
 begin_comment
-comment|/** GeoComposite is a set of GeoMembershipShape's, treated as a unit. */
+comment|/**  * GeoComposite is a set of GeoMembershipShape's, treated as a unit.  */
 end_comment
 
 begin_class
@@ -72,8 +72,8 @@ DECL|method|GeoCompositeMembershipShape
 specifier|public
 name|GeoCompositeMembershipShape
 parameter_list|()
-block|{     }
-comment|/** Add a shape to the composite.     */
+block|{   }
+comment|/**    * Add a shape to the composite.    */
 DECL|method|addShape
 specifier|public
 name|void
@@ -254,7 +254,7 @@ return|return
 literal|false
 return|;
 block|}
-comment|/** Compute longitude/latitude bounds for the shape.     *@param bounds is the optional input bounds object.  If this is null,     * a bounds object will be created.  Otherwise, the input object will be modified.     *@return a Bounds object describing the shape's bounds.  If the bounds cannot     * be computed, then return a Bounds object with noLongitudeBound,     * noTopLatitudeBound, and noBottomLatitudeBound.     */
+comment|/**    * Compute longitude/latitude bounds for the shape.    *    * @param bounds is the optional input bounds object.  If this is null,    *               a bounds object will be created.  Otherwise, the input object will be modified.    * @return a Bounds object describing the shape's bounds.  If the bounds cannot    * be computed, then return a Bounds object with noLongitudeBound,    * noTopLatitudeBound, and noBottomLatitudeBound.    */
 annotation|@
 name|Override
 DECL|method|getBounds

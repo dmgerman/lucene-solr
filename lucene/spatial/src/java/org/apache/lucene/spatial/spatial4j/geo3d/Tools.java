@@ -21,7 +21,7 @@ comment|/*  * Licensed to the Apache Software Foundation (ASF) under one or more
 end_comment
 
 begin_comment
-comment|/** Static methods globally useful for 3d geometric work.  */
+comment|/**  * Static methods globally useful for 3d geometric work.  */
 end_comment
 
 begin_class
@@ -34,8 +34,8 @@ DECL|method|Tools
 specifier|private
 name|Tools
 parameter_list|()
-block|{     }
-comment|/** Java acos yields a NAN if you take an arc-cos of an      * angle that's just a tiny bit greater than 1.0, so      * here's a more resilient version.      */
+block|{   }
+comment|/**    * Java acos yields a NAN if you take an arc-cos of an    * angle that's just a tiny bit greater than 1.0, so    * here's a more resilient version.    */
 DECL|method|safeAcos
 specifier|public
 specifier|static

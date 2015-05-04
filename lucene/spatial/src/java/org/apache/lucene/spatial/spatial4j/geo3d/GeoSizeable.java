@@ -21,7 +21,7 @@ comment|/*  * Licensed to the Apache Software Foundation (ASF) under one or more
 end_comment
 
 begin_comment
-comment|/** Some shapes can compute radii of a geocircle in which they are inscribed. */
+comment|/**  * Some shapes can compute radii of a geocircle in which they are inscribed.  */
 end_comment
 
 begin_interface
@@ -30,14 +30,14 @@ specifier|public
 interface|interface
 name|GeoSizeable
 block|{
-comment|/** Returns the radius of a circle into which the GeoSizeable area can      * be inscribed.      *@return the radius.      */
+comment|/**    * Returns the radius of a circle into which the GeoSizeable area can    * be inscribed.    *    * @return the radius.    */
 DECL|method|getRadius
 specifier|public
 name|double
 name|getRadius
 parameter_list|()
 function_decl|;
-comment|/** Returns the center of a circle into which the area will be inscribed.     *@return the center.     */
+comment|/**    * Returns the center of a circle into which the area will be inscribed.    *    * @return the center.    */
 DECL|method|getCenter
 specifier|public
 name|GeoPoint

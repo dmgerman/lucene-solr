@@ -30,8 +30,8 @@ DECL|method|GeoAreaFactory
 specifier|private
 name|GeoAreaFactory
 parameter_list|()
-block|{     }
-comment|/** Create a GeoArea of the right kind given the specified bounds.      *@param topLat is the top latitude      *@param bottomLat is the bottom latitude      *@param leftLon is the left longitude      *@param rightLon is the right longitude      *@return a GeoArea corresponding to what was specified.      */
+block|{   }
+comment|/**    * Create a GeoArea of the right kind given the specified bounds.    *    * @param topLat    is the top latitude    * @param bottomLat is the bottom latitude    * @param leftLon   is the left longitude    * @param rightLon  is the right longitude    * @return a GeoArea corresponding to what was specified.    */
 DECL|method|makeGeoArea
 specifier|public
 specifier|static

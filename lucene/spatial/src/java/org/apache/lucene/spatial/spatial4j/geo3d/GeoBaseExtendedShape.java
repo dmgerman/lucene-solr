@@ -21,7 +21,7 @@ comment|/*  * Licensed to the Apache Software Foundation (ASF) under one or more
 end_comment
 
 begin_comment
-comment|/** Base extended shape object. */
+comment|/**  * Base extended shape object.  */
 end_comment
 
 begin_class
@@ -72,8 +72,8 @@ DECL|method|GeoBaseExtendedShape
 specifier|public
 name|GeoBaseExtendedShape
 parameter_list|()
-block|{     }
-comment|/** Check if a point is within this shape.      *@param point is the point to check.      *@return true if the point is within this shape      */
+block|{   }
+comment|/**    * Check if a point is within this shape.    *    * @param point is the point to check.    * @return true if the point is within this shape    */
 annotation|@
 name|Override
 DECL|method|isWithin
@@ -87,7 +87,7 @@ name|Vector
 name|point
 parameter_list|)
 function_decl|;
-comment|/** Check if a point is within this shape.      *@param x is x coordinate of point to check.      *@param y is y coordinate of point to check.      *@param z is z coordinate of point to check.      *@return true if the point is within this shape      */
+comment|/**    * Check if a point is within this shape.    *    * @param x is x coordinate of point to check.    * @param y is y coordinate of point to check.    * @param z is z coordinate of point to check.    * @return true if the point is within this shape    */
 annotation|@
 name|Override
 DECL|method|isWithin
@@ -109,7 +109,7 @@ name|double
 name|z
 parameter_list|)
 function_decl|;
-comment|/** Return a sample point that is on the edge of the shape.      *@return a number of edge points, one for each disconnected edge.      */
+comment|/**    * Return a sample point that is on the edge of the shape.    *    * @return a number of edge points, one for each disconnected edge.    */
 annotation|@
 name|Override
 DECL|method|getEdgePoints
@@ -120,7 +120,7 @@ index|[]
 name|getEdgePoints
 parameter_list|()
 function_decl|;
-comment|/** Assess whether a plane, within the provided bounds, intersects      * with the shape.      *@param plane is the plane to assess for intersection with the shape's edges or      *  bounding curves.      *@param bounds are a set of bounds that define an area that an      *  intersection must be within in order to qualify (provided by a GeoArea).      *@return true if there's such an intersection, false if not.      */
+comment|/**    * Assess whether a plane, within the provided bounds, intersects    * with the shape.    *    * @param plane  is the plane to assess for intersection with the shape's edges or    *               bounding curves.    * @param bounds are a set of bounds that define an area that an    *               intersection must be within in order to qualify (provided by a GeoArea).    * @return true if there's such an intersection, false if not.    */
 annotation|@
 name|Override
 DECL|method|intersects
@@ -144,7 +144,7 @@ modifier|...
 name|bounds
 parameter_list|)
 function_decl|;
-comment|/** Compute longitude/latitude bounds for the shape.     *@param bounds is the optional input bounds object.  If this is null,     * a bounds object will be created.  Otherwise, the input object will be modified.     *@return a Bounds object describing the shape's bounds.  If the bounds cannot     * be computed, then return a Bounds object with noLongitudeBound,     * noTopLatitudeBound, and noBottomLatitudeBound.     */
+comment|/**    * Compute longitude/latitude bounds for the shape.    *    * @param bounds is the optional input bounds object.  If this is null,    *               a bounds object will be created.  Otherwise, the input object will be modified.    * @return a Bounds object describing the shape's bounds.  If the bounds cannot    * be computed, then return a Bounds object with noLongitudeBound,    * noTopLatitudeBound, and noBottomLatitudeBound.    */
 annotation|@
 name|Override
 DECL|method|getBounds

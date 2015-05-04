@@ -21,7 +21,7 @@ comment|/*  * Licensed to the Apache Software Foundation (ASF) under one or more
 end_comment
 
 begin_comment
-comment|/** We know about three kinds of planes.  First kind: general plain through two points and origin * Second kind: horizontal plane at specified height.  Third kind: vertical plane with specified x and y value, through origin. */
+comment|/**  * We know about three kinds of planes.  First kind: general plain through two points and origin  * Second kind: horizontal plane at specified height.  Third kind: vertical plane with specified x and y value, through origin.  */
 end_comment
 
 begin_class
@@ -66,7 +66,7 @@ specifier|final
 name|double
 name|D
 decl_stmt|;
-comment|/** Construct a plane with all four coefficients defined.     */
+comment|/**    * Construct a plane with all four coefficients defined.    */
 DECL|method|Plane
 specifier|public
 name|Plane
@@ -104,7 +104,7 @@ operator|=
 name|D
 expr_stmt|;
 block|}
-comment|/** Construct a plane through two points and origin.      *@param A is the first point (origin based).      *@param B is the second point (origin based).      */
+comment|/**    * Construct a plane through two points and origin.    *    * @param A is the first point (origin based).    * @param B is the second point (origin based).    */
 DECL|method|Plane
 specifier|public
 name|Plane
@@ -130,7 +130,7 @@ operator|=
 literal|0.0
 expr_stmt|;
 block|}
-comment|/** Construct a horizontal plane at a specified Z.      *@param height is the specified Z coordinate.      */
+comment|/**    * Construct a horizontal plane at a specified Z.    *    * @param height is the specified Z coordinate.    */
 DECL|method|Plane
 specifier|public
 name|Plane
@@ -155,7 +155,7 @@ operator|-
 name|height
 expr_stmt|;
 block|}
-comment|/** Construct a vertical plane through a specified      * x, y and origin.      *@param x is the specified x value.      *@param y is the specified y value.      */
+comment|/**    * Construct a vertical plane through a specified    * x, y and origin.    *    * @param x is the specified x value.    * @param y is the specified y value.    */
 DECL|method|Plane
 specifier|public
 name|Plane
@@ -184,7 +184,7 @@ operator|=
 literal|0.0
 expr_stmt|;
 block|}
-comment|/** Construct a plane with a specific vector, and D offset      * from origin.      *@param D is the D offset from the origin.      */
+comment|/**    * Construct a plane with a specific vector, and D offset    * from origin.    *    * @param D is the D offset from the origin.    */
 DECL|method|Plane
 specifier|public
 name|Plane
@@ -220,7 +220,7 @@ operator|=
 name|D
 expr_stmt|;
 block|}
-comment|/** Evaluate the plane equation for a given point, as represented      * by a vector.      *@param v is the vector.      *@return the result of the evaluation.      */
+comment|/**    * Evaluate the plane equation for a given point, as represented    * by a vector.    *    * @param v is the vector.    * @return the result of the evaluation.    */
 DECL|method|evaluate
 specifier|public
 name|double
@@ -240,7 +240,7 @@ operator|+
 name|D
 return|;
 block|}
-comment|/** Evaluate the plane equation for a given point, as represented      * by a vector.      *@param x,y,z is the vector.      *@return the result of the evaluation.      */
+comment|/**    * Evaluate the plane equation for a given point, as represented    * by a vector.    *    * @param x,y,z is the vector.    * @return the result of the evaluation.    */
 DECL|method|evaluate
 specifier|public
 name|double
@@ -272,7 +272,7 @@ operator|+
 name|D
 return|;
 block|}
-comment|/** Evaluate the plane equation for a given point, as represented      * by a vector.      *@param v is the vector.      *@return true if the result is on the plane.      */
+comment|/**    * Evaluate the plane equation for a given point, as represented    * by a vector.    *    * @param v is the vector.    * @return true if the result is on the plane.    */
 DECL|method|evaluateIsZero
 specifier|public
 name|boolean
@@ -297,7 +297,7 @@ operator|<
 name|MINIMUM_RESOLUTION
 return|;
 block|}
-comment|/** Evaluate the plane equation for a given point, as represented      * by a vector.      *@param x,y,z is the vector.      *@return true if the result is on the plane.      */
+comment|/**    * Evaluate the plane equation for a given point, as represented    * by a vector.    *    * @param x,y,z is the vector.    * @return true if the result is on the plane.    */
 DECL|method|evaluateIsZero
 specifier|public
 name|boolean
@@ -334,7 +334,7 @@ operator|<
 name|MINIMUM_RESOLUTION
 return|;
 block|}
-comment|/** Build a normalized plane, so that the vector is normalized.      *@return the normalized plane object, or null if the plane is indeterminate.      */
+comment|/**    * Build a normalized plane, so that the vector is normalized.    *    * @return the normalized plane object, or null if the plane is indeterminate.    */
 DECL|method|normalize
 specifier|public
 name|Plane
@@ -370,7 +370,7 @@ name|D
 argument_list|)
 return|;
 block|}
-comment|/** Find points on the boundary of the intersection of a plane and the unit sphere,      * given a starting point, and ending point, and a list of proportions of the arc (e.g. 0.25, 0.5, 0.75).     * The angle between the starting point and ending point is assumed to be less than pi.     */
+comment|/**    * Find points on the boundary of the intersection of a plane and the unit sphere,    * given a starting point, and ending point, and a list of proportions of the arc (e.g. 0.25, 0.5, 0.75).    * The angle between the starting point and ending point is assumed to be less than pi.    */
 DECL|method|interpolate
 specifier|public
 name|GeoPoint
@@ -961,7 +961,7 @@ return|return
 name|returnValues
 return|;
 block|}
-comment|/** Modify a point to produce a vector in translated/rotated space.     */
+comment|/**    * Modify a point to produce a vector in translated/rotated space.    */
 DECL|method|modify
 specifier|protected
 specifier|static
@@ -1028,7 +1028,7 @@ name|cosHA
 argument_list|)
 return|;
 block|}
-comment|/** Reverse modify a point to produce a GeoPoint in normal space.     */
+comment|/**    * Reverse modify a point to produce a GeoPoint in normal space.    */
 DECL|method|reverseModify
 specifier|protected
 specifier|static
@@ -1120,7 +1120,7 @@ name|z
 argument_list|)
 return|;
 block|}
-comment|/** Find the intersection points between two planes, given a set of bounds.     *@param q is the plane to intersect with.     *@param bounds is the set of bounds.     *@param moreBounds is another set of bounds.     *@return the intersection point(s) on the unit sphere, if there are any.     */
+comment|/**    * Find the intersection points between two planes, given a set of bounds.    *    * @param q          is the plane to intersect with.    * @param bounds     is the set of bounds.    * @param moreBounds is another set of bounds.    * @return the intersection point(s) on the unit sphere, if there are any.    */
 DECL|method|findIntersections
 specifier|protected
 name|GeoPoint
@@ -1961,7 +1961,7 @@ name|NO_POINTS
 return|;
 block|}
 block|}
-comment|/** Accumulate bounds information for this plane, intersected with another plane     * and with the unit sphere.     * Updates both latitude and longitude information, using max/min points found     * within the specified bounds.     *@param q is the plane to intersect with.     *@param boundsInfo is the info to update with additional bounding information.     *@param bounds are the surfaces delineating what's inside the shape.     */
+comment|/**    * Accumulate bounds information for this plane, intersected with another plane    * and with the unit sphere.    * Updates both latitude and longitude information, using max/min points found    * within the specified bounds.    *    * @param q          is the plane to intersect with.    * @param boundsInfo is the info to update with additional bounding information.    * @param bounds     are the surfaces delineating what's inside the shape.    */
 DECL|method|recordBounds
 specifier|public
 name|void
@@ -2012,7 +2012,7 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
-comment|/** Accumulate bounds information for this plane, intersected with the unit sphere.     * Updates both latitude and longitude information, using max/min points found     * within the specified bounds.     *@param boundsInfo is the info to update with additional bounding information.     *@param bounds are the surfaces delineating what's inside the shape.     */
+comment|/**    * Accumulate bounds information for this plane, intersected with the unit sphere.    * Updates both latitude and longitude information, using max/min points found    * within the specified bounds.    *    * @param boundsInfo is the info to update with additional bounding information.    * @param bounds     are the surfaces delineating what's inside the shape.    */
 DECL|method|recordBounds
 specifier|public
 name|void
@@ -4589,7 +4589,7 @@ name|z
 argument_list|)
 expr_stmt|;
 block|}
-comment|/** Determine whether the plane intersects another plane within the      * bounds provided.      *@param q is the other plane.      *@param notablePoints are points to look at to disambiguate cases when the two planes are identical.      *@param moreNotablePoints are additional points to look at to disambiguate cases when the two planes are identical.      *@param bounds is one part of the bounds.      *@param moreBounds are more bounds.      *@return true if there's an intersection.      */
+comment|/**    * Determine whether the plane intersects another plane within the    * bounds provided.    *    * @param q                 is the other plane.    * @param notablePoints     are points to look at to disambiguate cases when the two planes are identical.    * @param moreNotablePoints are additional points to look at to disambiguate cases when the two planes are identical.    * @param bounds            is one part of the bounds.    * @param moreBounds        are more bounds.    * @return true if there's an intersection.    */
 DECL|method|intersects
 specifier|public
 name|boolean
@@ -4708,7 +4708,7 @@ operator|>
 literal|0
 return|;
 block|}
-comment|/** Returns true if this plane and the other plane are identical within the margin of error.     */
+comment|/**    * Returns true if this plane and the other plane are identical within the margin of error.    */
 DECL|method|isNumericallyIdentical
 specifier|protected
 name|boolean
@@ -4959,7 +4959,7 @@ return|return
 literal|true
 return|;
 block|}
-comment|/** Find a sample point on the intersection between two planes and the unit sphere.     */
+comment|/**    * Find a sample point on the intersection between two planes and the unit sphere.    */
 DECL|method|getSampleIntersectionPoint
 specifier|public
 name|GeoPoint

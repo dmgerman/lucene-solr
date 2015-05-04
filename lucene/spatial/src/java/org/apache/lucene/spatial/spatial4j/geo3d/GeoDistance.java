@@ -21,7 +21,7 @@ comment|/*  * Licensed to the Apache Software Foundation (ASF) under one or more
 end_comment
 
 begin_comment
-comment|/** Generic geo-distance-capable shape class description.  An implementer * of this interface is capable of computing the described "distance" values, * which are meant to provide both actual distance values, as well as * distance estimates that can be computed more cheaply. */
+comment|/**  * Generic geo-distance-capable shape class description.  An implementer  * of this interface is capable of computing the described "distance" values,  * which are meant to provide both actual distance values, as well as  * distance estimates that can be computed more cheaply.  */
 end_comment
 
 begin_interface
@@ -32,7 +32,7 @@ name|GeoDistance
 extends|extends
 name|Membership
 block|{
-comment|/** Compute this shape's normal "distance" to the GeoPoint.      * A return value of Double.MAX_VALUE should be returned for      * points outside of the shape.      *@param point is the point to compute the distance to.      *@return the normal distance, defined as the perpendicular distance from      * from the point to one of the shape's bounding plane.  Normal      * distances can therefore typically only go up to PI/2, except      * when they represent the sum of a sequence of normal distances.       */
+comment|/**    * Compute this shape's normal "distance" to the GeoPoint.    * A return value of Double.MAX_VALUE should be returned for    * points outside of the shape.    *    * @param point is the point to compute the distance to.    * @return the normal distance, defined as the perpendicular distance from    * from the point to one of the shape's bounding plane.  Normal    * distances can therefore typically only go up to PI/2, except    * when they represent the sum of a sequence of normal distances.    */
 DECL|method|computeNormalDistance
 specifier|public
 name|double
@@ -42,7 +42,7 @@ name|GeoPoint
 name|point
 parameter_list|)
 function_decl|;
-comment|/** Compute this shape's normal "distance" to the GeoPoint.      * A return value of Double.MAX_VALUE should be returned for      * points outside of the shape.      *@param x is the point's unit x coordinate (using U.S. convention).      *@param y is the point's unit y coordinate (using U.S. convention).      *@param z is the point's unit z coordinate (using U.S. convention).      *@return the normal distance, defined as the perpendicular distance from      * from the point to one of the shape's bounding plane.  Normal      * distances can therefore typically only go up to PI/2, except      * when they represent the sum of a sequence of normal distances.      */
+comment|/**    * Compute this shape's normal "distance" to the GeoPoint.    * A return value of Double.MAX_VALUE should be returned for    * points outside of the shape.    *    * @param x is the point's unit x coordinate (using U.S. convention).    * @param y is the point's unit y coordinate (using U.S. convention).    * @param z is the point's unit z coordinate (using U.S. convention).    * @return the normal distance, defined as the perpendicular distance from    * from the point to one of the shape's bounding plane.  Normal    * distances can therefore typically only go up to PI/2, except    * when they represent the sum of a sequence of normal distances.    */
 DECL|method|computeNormalDistance
 specifier|public
 name|double
@@ -58,7 +58,7 @@ name|double
 name|z
 parameter_list|)
 function_decl|;
-comment|/** Compute the square of this shape's normal "distance" to the GeoPoint.      * A return value of Double.MAX_VALUE should be returned for      * points outside of the shape.      *@param point is the point to compute the distance to.      *@return the square of the normal distance, defined as the perpendicular      * distance from      * from the point to one of the shape's bounding plane.  Normal      * distances can therefore typically only go up to PI/2, except      * when they represent the sum of a sequence of normal distances.      */
+comment|/**    * Compute the square of this shape's normal "distance" to the GeoPoint.    * A return value of Double.MAX_VALUE should be returned for    * points outside of the shape.    *    * @param point is the point to compute the distance to.    * @return the square of the normal distance, defined as the perpendicular    * distance from    * from the point to one of the shape's bounding plane.  Normal    * distances can therefore typically only go up to PI/2, except    * when they represent the sum of a sequence of normal distances.    */
 DECL|method|computeSquaredNormalDistance
 specifier|public
 name|double
@@ -68,7 +68,7 @@ name|GeoPoint
 name|point
 parameter_list|)
 function_decl|;
-comment|/** Compute the square of this shape's normal "distance" to the GeoPoint.      * A return value of Double.MAX_VALUE should be returned for      * points outside of the shape.      *@param x is the point's unit x coordinate (using U.S. convention).      *@param y is the point's unit y coordinate (using U.S. convention).      *@param z is the point's unit z coordinate (using U.S. convention).      *@return the square of the  normal distance, defined as the perpendicular      * distance from      * from the point to one of the shape's bounding plane.  Normal      * distances can therefore typically only go up to PI/2, except      * when they represent the sum of a sequence of normal distances.      */
+comment|/**    * Compute the square of this shape's normal "distance" to the GeoPoint.    * A return value of Double.MAX_VALUE should be returned for    * points outside of the shape.    *    * @param x is the point's unit x coordinate (using U.S. convention).    * @param y is the point's unit y coordinate (using U.S. convention).    * @param z is the point's unit z coordinate (using U.S. convention).    * @return the square of the  normal distance, defined as the perpendicular    * distance from    * from the point to one of the shape's bounding plane.  Normal    * distances can therefore typically only go up to PI/2, except    * when they represent the sum of a sequence of normal distances.    */
 DECL|method|computeSquaredNormalDistance
 specifier|public
 name|double
@@ -84,7 +84,7 @@ name|double
 name|z
 parameter_list|)
 function_decl|;
-comment|/** Compute this shape's linear "distance" to the GeoPoint.      * A return value of Double.MAX_VALUE should be returned for      * points outside of the shape.      *@param point is the point to compute the distance to.      *@return the linear (or chord) distance, defined as the distance from      * from the point to the nearest point on the unit sphere and on one of the shape's      * bounding planes.  Linear distances can therefore typically go up to PI,      * except when they represent the sum of a sequence of linear distances.      */
+comment|/**    * Compute this shape's linear "distance" to the GeoPoint.    * A return value of Double.MAX_VALUE should be returned for    * points outside of the shape.    *    * @param point is the point to compute the distance to.    * @return the linear (or chord) distance, defined as the distance from    * from the point to the nearest point on the unit sphere and on one of the shape's    * bounding planes.  Linear distances can therefore typically go up to PI,    * except when they represent the sum of a sequence of linear distances.    */
 DECL|method|computeLinearDistance
 specifier|public
 name|double
@@ -94,7 +94,7 @@ name|GeoPoint
 name|point
 parameter_list|)
 function_decl|;
-comment|/** Compute this shape's linear "distance" to the GeoPoint.      * A return value of Double.MAX_VALUE should be returned for      * points outside of the shape.      *@param x is the point's unit x coordinate (using U.S. convention).      *@param y is the point's unit y coordinate (using U.S. convention).      *@param z is the point's unit z coordinate (using U.S. convention).      *@return the linear (or chord) distance, defined as the distance from      * from the point to the nearest point on the unit sphere and on one of the shape's      * bounding planes.  Linear distances can therefore typically go up to PI,      * except when they represent the sum of a sequence of linear distances.      */
+comment|/**    * Compute this shape's linear "distance" to the GeoPoint.    * A return value of Double.MAX_VALUE should be returned for    * points outside of the shape.    *    * @param x is the point's unit x coordinate (using U.S. convention).    * @param y is the point's unit y coordinate (using U.S. convention).    * @param z is the point's unit z coordinate (using U.S. convention).    * @return the linear (or chord) distance, defined as the distance from    * from the point to the nearest point on the unit sphere and on one of the shape's    * bounding planes.  Linear distances can therefore typically go up to PI,    * except when they represent the sum of a sequence of linear distances.    */
 DECL|method|computeLinearDistance
 specifier|public
 name|double
@@ -110,7 +110,7 @@ name|double
 name|z
 parameter_list|)
 function_decl|;
-comment|/** Compute the square of this shape's linear "distance" to the GeoPoint.      * A return value of Double.MAX_VALUE should be returned for      * points outside of the shape.      *@param point is the point to compute the distance to.      *@return the square of the linear (or chord) distance, defined as the      * distance from      * from the point to the nearest point on the unit sphere and on one of the shape's      * bounding planes.  Linear distances can therefore typically go up to PI,      * except when they represent the sum of a sequence of linear distances.      */
+comment|/**    * Compute the square of this shape's linear "distance" to the GeoPoint.    * A return value of Double.MAX_VALUE should be returned for    * points outside of the shape.    *    * @param point is the point to compute the distance to.    * @return the square of the linear (or chord) distance, defined as the    * distance from    * from the point to the nearest point on the unit sphere and on one of the shape's    * bounding planes.  Linear distances can therefore typically go up to PI,    * except when they represent the sum of a sequence of linear distances.    */
 DECL|method|computeSquaredLinearDistance
 specifier|public
 name|double
@@ -120,7 +120,7 @@ name|GeoPoint
 name|point
 parameter_list|)
 function_decl|;
-comment|/** Compute the square of this shape's linear "distance" to the GeoPoint.      * A return value of Double.MAX_VALUE should be returned for      * points outside of the shape.      *@param x is the point's unit x coordinate (using U.S. convention).      *@param y is the point's unit y coordinate (using U.S. convention).      *@param z is the point's unit z coordinate (using U.S. convention).      *@return the square of the linear (or chord) distance, defined as the distance from      * from the point to the nearest point on the unit sphere and on one of the shape's      * bounding planes.  Linear distances can therefore typically go up to PI,      * except when they represent the sum of a sequence of linear distances.      */
+comment|/**    * Compute the square of this shape's linear "distance" to the GeoPoint.    * A return value of Double.MAX_VALUE should be returned for    * points outside of the shape.    *    * @param x is the point's unit x coordinate (using U.S. convention).    * @param y is the point's unit y coordinate (using U.S. convention).    * @param z is the point's unit z coordinate (using U.S. convention).    * @return the square of the linear (or chord) distance, defined as the distance from    * from the point to the nearest point on the unit sphere and on one of the shape's    * bounding planes.  Linear distances can therefore typically go up to PI,    * except when they represent the sum of a sequence of linear distances.    */
 DECL|method|computeSquaredLinearDistance
 specifier|public
 name|double
@@ -136,7 +136,7 @@ name|double
 name|z
 parameter_list|)
 function_decl|;
-comment|/** Compute a true, accurate, great-circle distance to a point.      * Double.MAX_VALUE indicates a point is outside of the shape.      *@param point is the point.      *@return the distance.      */
+comment|/**    * Compute a true, accurate, great-circle distance to a point.    * Double.MAX_VALUE indicates a point is outside of the shape.    *    * @param point is the point.    * @return the distance.    */
 DECL|method|computeArcDistance
 specifier|public
 name|double

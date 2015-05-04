@@ -21,7 +21,7 @@ comment|/*  * Licensed to the Apache Software Foundation (ASF) under one or more
 end_comment
 
 begin_comment
-comment|/** An object for accumulating bounds information. * The bounds object is initially empty.  Bounding points * are then applied by supplying (x,y,z) tuples.  It is also * possible to indicate the following edge cases: * (1) No longitude bound possible * (2) No upper latitude bound possible * (3) No lower latitude bound possible * When any of these have been applied, further application of * points cannot override that decision.  */
+comment|/**  * An object for accumulating bounds information.  * The bounds object is initially empty.  Bounding points  * are then applied by supplying (x,y,z) tuples.  It is also  * possible to indicate the following edge cases:  * (1) No longitude bound possible  * (2) No upper latitude bound possible  * (3) No lower latitude bound possible  * When any of these have been applied, further application of  * points cannot override that decision.  */
 end_comment
 
 begin_class
@@ -134,7 +134,7 @@ DECL|method|Bounds
 specifier|public
 name|Bounds
 parameter_list|()
-block|{     }
+block|{   }
 DECL|method|getMaxLatitude
 specifier|public
 name|Double

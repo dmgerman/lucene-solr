@@ -21,7 +21,7 @@ comment|/*  * Licensed to the Apache Software Foundation (ASF) under one or more
 end_comment
 
 begin_comment
-comment|/** Combination of a plane, and a sign value indicating what evaluation values are on the correct * side of the plane. */
+comment|/**  * Combination of a plane, and a sign value indicating what evaluation values are on the correct  * side of the plane.  */
 end_comment
 
 begin_class
@@ -40,7 +40,7 @@ specifier|final
 name|double
 name|sigNum
 decl_stmt|;
-comment|/** Construct a SidedPlane identical to an existing one, but reversed.     *@param sidedPlane is the existing plane.     */
+comment|/**    * Construct a SidedPlane identical to an existing one, but reversed.    *    * @param sidedPlane is the existing plane.    */
 DECL|method|SidedPlane
 specifier|public
 name|SidedPlane
@@ -68,7 +68,7 @@ operator|.
 name|sigNum
 expr_stmt|;
 block|}
-comment|/** Construct a sided plane from a pair of vectors describing points, and including      * origin, plus a point p which describes the side.      *@param p point to evaluate      *@param A is the first in-plane point      *@param B is the second in-plane point      */
+comment|/**    * Construct a sided plane from a pair of vectors describing points, and including    * origin, plus a point p which describes the side.    *    * @param p point to evaluate    * @param A is the first in-plane point    * @param B is the second in-plane point    */
 DECL|method|SidedPlane
 specifier|public
 name|SidedPlane
@@ -103,7 +103,7 @@ argument_list|)
 argument_list|)
 expr_stmt|;
 block|}
-comment|/** Construct a sided plane from a point and a Z coordinate.      *@param p point to evaluate.      *@param height is the Z coordinate of the plane.      */
+comment|/**    * Construct a sided plane from a point and a Z coordinate.    *    * @param p      point to evaluate.    * @param height is the Z coordinate of the plane.    */
 DECL|method|SidedPlane
 specifier|public
 name|SidedPlane
@@ -133,7 +133,7 @@ argument_list|)
 argument_list|)
 expr_stmt|;
 block|}
-comment|/** Construct a sided vertical plane from a point and specified x and y coordinates.      *@param p point to evaluate.      *@param x is the specified x.      *@param y is the specified y.      */
+comment|/**    * Construct a sided vertical plane from a point and specified x and y coordinates.    *    * @param p point to evaluate.    * @param x is the specified x.    * @param y is the specified y.    */
 DECL|method|SidedPlane
 specifier|public
 name|SidedPlane
@@ -168,7 +168,7 @@ argument_list|)
 argument_list|)
 expr_stmt|;
 block|}
-comment|/** Construct a sided plane with a normal vector and offset.      *@param p point to evaluate.      *@param v is the normal vector.      *@param D is the origin offset for the plan.      */
+comment|/**    * Construct a sided plane with a normal vector and offset.    *    * @param p point to evaluate.    * @param v is the normal vector.    * @param D is the origin offset for the plan.    */
 DECL|method|SidedPlane
 specifier|public
 name|SidedPlane
@@ -203,7 +203,7 @@ argument_list|)
 argument_list|)
 expr_stmt|;
 block|}
-comment|/** Check if a point is within this shape.      *@param point is the point to check.      *@return true if the point is within this shape      */
+comment|/**    * Check if a point is within this shape.    *    * @param point is the point to check.    * @return true if the point is within this shape    */
 annotation|@
 name|Override
 DECL|method|isWithin
@@ -255,7 +255,7 @@ operator|.
 name|sigNum
 return|;
 block|}
-comment|/** Check if a point is within this shape.      *@param x is x coordinate of point to check.      *@param y is y coordinate of point to check.      *@param z is z coordinate of point to check.      *@return true if the point is within this shape      */
+comment|/**    * Check if a point is within this shape.    *    * @param x is x coordinate of point to check.    * @param y is y coordinate of point to check.    * @param z is z coordinate of point to check.    * @return true if the point is within this shape    */
 annotation|@
 name|Override
 DECL|method|isWithin

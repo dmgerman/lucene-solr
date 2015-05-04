@@ -30,8 +30,8 @@ DECL|method|GeoBBoxFactory
 specifier|private
 name|GeoBBoxFactory
 parameter_list|()
-block|{     }
-comment|/** Create a geobbox of the right kind given the specified bounds.      *@param topLat is the top latitude      *@param bottomLat is the bottom latitude      *@param leftLon is the left longitude      *@param rightLon is the right longitude      *@return a GeoBBox corresponding to what was specified.      */
+block|{   }
+comment|/**    * Create a geobbox of the right kind given the specified bounds.    *    * @param topLat    is the top latitude    * @param bottomLat is the bottom latitude    * @param leftLon   is the left longitude    * @param rightLon  is the right longitude    * @return a GeoBBox corresponding to what was specified.    */
 DECL|method|makeGeoBBox
 specifier|public
 specifier|static

@@ -55,7 +55,7 @@ import|;
 end_import
 
 begin_comment
-comment|/** Test basic plane functionality. */
+comment|/**  * Test basic plane functionality.  */
 end_comment
 
 begin_class

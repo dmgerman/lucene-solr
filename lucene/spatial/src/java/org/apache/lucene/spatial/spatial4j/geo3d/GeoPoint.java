@@ -21,7 +21,7 @@ comment|/*  * Licensed to the Apache Software Foundation (ASF) under one or more
 end_comment
 
 begin_comment
-comment|/** This class represents a point on the surface of a unit sphere. */
+comment|/**  * This class represents a point on the surface of a unit sphere.  */
 end_comment
 
 begin_class

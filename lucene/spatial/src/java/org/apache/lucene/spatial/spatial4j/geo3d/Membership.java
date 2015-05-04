@@ -21,7 +21,7 @@ comment|/*  * Licensed to the Apache Software Foundation (ASF) under one or more
 end_comment
 
 begin_comment
-comment|/** Interface describing 3d shape membership methods. */
+comment|/**  * Interface describing 3d shape membership methods.  */
 end_comment
 
 begin_interface
@@ -30,7 +30,7 @@ specifier|public
 interface|interface
 name|Membership
 block|{
-comment|/** Check if a point is within this shape.      *@param point is the point to check.      *@return true if the point is within this shape      */
+comment|/**    * Check if a point is within this shape.    *    * @param point is the point to check.    * @return true if the point is within this shape    */
 DECL|method|isWithin
 specifier|public
 name|boolean
@@ -41,7 +41,7 @@ name|Vector
 name|point
 parameter_list|)
 function_decl|;
-comment|/** Check if a point is within this shape.      *@param x is x coordinate of point to check.      *@param y is y coordinate of point to check.      *@param z is z coordinate of point to check.      *@return true if the point is within this shape      */
+comment|/**    * Check if a point is within this shape.    *    * @param x is x coordinate of point to check.    * @param y is y coordinate of point to check.    * @param z is z coordinate of point to check.    * @return true if the point is within this shape    */
 DECL|method|isWithin
 specifier|public
 name|boolean

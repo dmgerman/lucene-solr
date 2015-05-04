@@ -234,6 +234,11 @@ operator|=
 name|ctx
 expr_stmt|;
 block|}
+annotation|@
+name|SuppressWarnings
+argument_list|(
+literal|"unchecked"
+argument_list|)
 DECL|method|checkShapesImplementEquals
 specifier|public
 specifier|static
@@ -241,6 +246,9 @@ name|void
 name|checkShapesImplementEquals
 parameter_list|(
 name|Class
+argument_list|<
+name|?
+argument_list|>
 index|[]
 name|classes
 parameter_list|)
@@ -248,6 +256,9 @@ block|{
 for|for
 control|(
 name|Class
+argument_list|<
+name|?
+argument_list|>
 name|clazz
 range|:
 name|classes

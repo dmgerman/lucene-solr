@@ -21,7 +21,7 @@ comment|/*  * Licensed to the Apache Software Foundation (ASF) under one or more
 end_comment
 
 begin_comment
-comment|/** Distance shapes have capabilities of both geohashing and distance  * computation (which also includes point membership determination).  */
+comment|/**  * Distance shapes have capabilities of both geohashing and distance  * computation (which also includes point membership determination).  */
 end_comment
 
 begin_interface
