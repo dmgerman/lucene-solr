@@ -21,7 +21,7 @@ comment|/*  * Licensed to the Apache Software Foundation (ASF) under one or more
 end_comment
 
 begin_comment
-comment|/**  * Base extended shape object.  *  * @lucene.experimental  */
+comment|/**  * Base extended shape object.  *  * @lucene.internal  */
 end_comment
 
 begin_class
