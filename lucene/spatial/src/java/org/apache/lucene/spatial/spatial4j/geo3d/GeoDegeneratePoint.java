@@ -194,16 +194,16 @@ modifier|...
 name|bounds
 parameter_list|)
 block|{
+comment|// If not on the plane, no intersection
 if|if
 condition|(
+operator|!
 name|plane
 operator|.
-name|evaluate
+name|evaluateIsZero
 argument_list|(
 name|this
 argument_list|)
-operator|==
-literal|0.0
 condition|)
 return|return
 literal|false
@@ -546,9 +546,13 @@ argument_list|(
 name|this
 argument_list|)
 condition|)
+block|{
+comment|//System.err.println("Degenerate point "+this+" is WITHIN shape "+shape);
 return|return
 name|CONTAINS
 return|;
+block|}
+comment|//System.err.println("Degenerate point "+this+" is NOT within shape "+shape);
 return|return
 name|DISJOINT
 return|;
