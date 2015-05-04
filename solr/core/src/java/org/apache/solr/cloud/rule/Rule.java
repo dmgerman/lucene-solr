@@ -878,7 +878,7 @@ name|map
 argument_list|)
 return|;
 block|}
-comment|/**    * Check if it is possible to assign this node as a replica of the given shard    * without violating this rule    *    * @param testNode       The node in question    * @param shardVsNodeSet    * @param nodeVsTags     The pre-fetched tags for all the nodes    * @param shardName      The shard to which this node should be attempted    * @return    */
+comment|/**    * Check if it is possible to assign this node as a replica of the given shard    * without violating this rule    *    * @param testNode       The node in question    * @param shardVsNodeSet Set of nodes for every shard     * @param nodeVsTags     The pre-fetched tags for all the nodes    * @param shardName      The shard to which this node should be attempted    * @return MatchStatus    */
 DECL|method|tryAssignNodeToShard
 name|MatchStatus
 name|tryAssignNodeToShard
