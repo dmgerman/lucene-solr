@@ -4871,6 +4871,10 @@ argument_list|,
 name|adminPath
 argument_list|,
 name|stats
+argument_list|,
+name|Overseer
+operator|.
+name|this
 argument_list|)
 expr_stmt|;
 name|ccThread
@@ -4961,6 +4965,15 @@ parameter_list|()
 block|{
 return|return
 name|stats
+return|;
+block|}
+DECL|method|getZkController
+name|ZkController
+name|getZkController
+parameter_list|()
+block|{
+return|return
+name|zkController
 return|;
 block|}
 comment|/**    * For tests.    *     * @lucene.internal    * @return state updater thread    */
