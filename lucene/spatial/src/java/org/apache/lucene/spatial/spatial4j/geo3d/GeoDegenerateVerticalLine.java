@@ -21,7 +21,7 @@ comment|/*  * Licensed to the Apache Software Foundation (ASF) under one or more
 end_comment
 
 begin_comment
-comment|/**  * Degenerate bounding box limited on two sides (top lat, bottom lat).  */
+comment|/**  * Degenerate bounding box limited on two sides (top lat, bottom lat).  *  * @lucene.internal  */
 end_comment
 
 begin_class

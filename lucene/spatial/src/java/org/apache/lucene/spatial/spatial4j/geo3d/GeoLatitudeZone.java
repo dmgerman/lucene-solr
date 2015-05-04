@@ -21,7 +21,7 @@ comment|/*  * Licensed to the Apache Software Foundation (ASF) under one or more
 end_comment
 
 begin_comment
-comment|/**  * This GeoBBox represents an area rectangle limited only in latitude.  */
+comment|/**  * This GeoBBox represents an area rectangle limited only in latitude.  *  * @lucene.internal  */
 end_comment
 
 begin_class

@@ -21,7 +21,7 @@ comment|/*  * Licensed to the Apache Software Foundation (ASF) under one or more
 end_comment
 
 begin_comment
-comment|/**  * This class represents a degenerate point bounding box.  * It is not a simple GeoPoint because we must have the latitude and longitude.  */
+comment|/**  * This class represents a degenerate point bounding box.  * It is not a simple GeoPoint because we must have the latitude and longitude.  *  * @lucene.internal  */
 end_comment
 
 begin_class

@@ -21,7 +21,7 @@ comment|/*  * Licensed to the Apache Software Foundation (ASF) under one or more
 end_comment
 
 begin_comment
-comment|/**  * Interface describing 3d shape membership methods.  */
+comment|/**  * Interface describing 3d shape membership methods.  *  * @lucene.experimental  */
 end_comment
 
 begin_interface

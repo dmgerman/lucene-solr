@@ -21,7 +21,7 @@ comment|/*  * Licensed to the Apache Software Foundation (ASF) under one or more
 end_comment
 
 begin_comment
-comment|/**  * A GeoArea represents a standard 2-D breakdown of a part of sphere.  It can  * be bounded in latitude, or bounded in both latitude and longitude, or not  * bounded at all.  The purpose of the interface is to describe bounding shapes used for  * computation of geo hashes.  */
+comment|/**  * A GeoArea represents a standard 2-D breakdown of a part of sphere.  It can  * be bounded in latitude, or bounded in both latitude and longitude, or not  * bounded at all.  The purpose of the interface is to describe bounding shapes used for  * computation of geo hashes.  *  * @lucene.experimental  */
 end_comment
 
 begin_interface

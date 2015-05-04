@@ -21,7 +21,7 @@ comment|/*  * Licensed to the Apache Software Foundation (ASF) under one or more
 end_comment
 
 begin_comment
-comment|/**  * Static methods globally useful for 3d geometric work.  */
+comment|/**  * Static methods globally useful for 3d geometric work.  *  * @lucene.experimental  */
 end_comment
 
 begin_class

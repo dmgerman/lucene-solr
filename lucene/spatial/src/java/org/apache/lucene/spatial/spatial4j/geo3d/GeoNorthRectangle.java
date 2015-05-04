@@ -21,7 +21,7 @@ comment|/*  * Licensed to the Apache Software Foundation (ASF) under one or more
 end_comment
 
 begin_comment
-comment|/**  * Bounding box limited on three sides (bottom lat, left lon, right lon), including  * the north pole.  * The left-right maximum extent for this shape is PI; for anything larger, use  * GeoWideNorthRectangle.  */
+comment|/**  * Bounding box limited on three sides (bottom lat, left lon, right lon), including  * the north pole.  * The left-right maximum extent for this shape is PI; for anything larger, use  * GeoWideNorthRectangle.  *  * @lucene.internal  */
 end_comment
 
 begin_class

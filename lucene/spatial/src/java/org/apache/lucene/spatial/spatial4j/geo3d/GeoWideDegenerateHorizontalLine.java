@@ -21,7 +21,7 @@ comment|/*  * Licensed to the Apache Software Foundation (ASF) under one or more
 end_comment
 
 begin_comment
-comment|/**  * Degenerate bounding box wider than PI and limited on two sides (left lon, right lon).  */
+comment|/**  * Degenerate bounding box wider than PI and limited on two sides (left lon, right lon).  *  * @lucene.internal  */
 end_comment
 
 begin_class

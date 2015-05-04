@@ -21,7 +21,7 @@ comment|/*  * Licensed to the Apache Software Foundation (ASF) under one or more
 end_comment
 
 begin_comment
-comment|/**  * Bounding box wider than PI but limited on three sides (  * bottom lat, left lon, right lon).  */
+comment|/**  * Bounding box wider than PI but limited on three sides (  * bottom lat, left lon, right lon).  *  * @lucene.internal  */
 end_comment
 
 begin_class

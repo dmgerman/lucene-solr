@@ -21,7 +21,7 @@ comment|/*  * Licensed to the Apache Software Foundation (ASF) under one or more
 end_comment
 
 begin_comment
-comment|/**  * Combination of a plane, and a sign value indicating what evaluation values are on the correct  * side of the plane.  */
+comment|/**  * Combination of a plane, and a sign value indicating what evaluation values are on the correct  * side of the plane.  *  * @lucene.experimental  */
 end_comment
 
 begin_class

@@ -21,7 +21,7 @@ comment|/*  * Licensed to the Apache Software Foundation (ASF) under one or more
 end_comment
 
 begin_comment
-comment|/**  * Some shapes can compute radii of a geocircle in which they are inscribed.  */
+comment|/**  * Some shapes can compute radii of a geocircle in which they are inscribed.  *  * @lucene.experimental  */
 end_comment
 
 begin_interface

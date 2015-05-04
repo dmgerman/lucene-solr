@@ -41,7 +41,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * GeoComposite is a set of GeoMembershipShape's, treated as a unit.  */
+comment|/**  * GeoComposite is a set of GeoMembershipShape's, treated as a unit.  *  * @lucene.experimental  */
 end_comment
 
 begin_class

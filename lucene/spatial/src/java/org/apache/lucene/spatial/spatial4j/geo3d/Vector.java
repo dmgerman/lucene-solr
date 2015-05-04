@@ -21,7 +21,7 @@ comment|/*  * Licensed to the Apache Software Foundation (ASF) under one or more
 end_comment
 
 begin_comment
-comment|/**  * A 3d vector in space, not necessarily  * going through the origin.  */
+comment|/**  * A 3d vector in space, not necessarily  * going through the origin.  *  * @lucene.experimental  */
 end_comment
 
 begin_class

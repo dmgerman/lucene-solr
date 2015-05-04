@@ -195,7 +195,7 @@ import|;
 end_import
 
 begin_comment
-comment|/** A 3D planar geometry based Spatial4j Shape implementation. */
+comment|/**  * A 3D planar geometry based Spatial4j Shape implementation.  *  * @lucene.experimental  */
 end_comment
 
 begin_class

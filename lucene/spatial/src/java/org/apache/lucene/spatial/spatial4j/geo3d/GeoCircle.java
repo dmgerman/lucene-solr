@@ -21,7 +21,7 @@ comment|/*  * Licensed to the Apache Software Foundation (ASF) under one or more
 end_comment
 
 begin_comment
-comment|/**  * Circular area with a center and radius.  */
+comment|/**  * Circular area with a center and radius.  *  * @lucene.experimental  */
 end_comment
 
 begin_class

@@ -21,7 +21,7 @@ comment|/*  * Licensed to the Apache Software Foundation (ASF) under one or more
 end_comment
 
 begin_comment
-comment|/**  * Generic shape.  This describes methods that help GeoAreas figure out  * how they interact with a shape, for the purposes of coming up with a  * set of geo hash values.  */
+comment|/**  * Generic shape.  This describes methods that help GeoAreas figure out  * how they interact with a shape, for the purposes of coming up with a  * set of geo hash values.  *  * @lucene.experimental  */
 end_comment
 
 begin_interface

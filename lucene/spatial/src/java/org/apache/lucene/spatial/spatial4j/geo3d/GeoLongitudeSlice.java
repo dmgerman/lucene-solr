@@ -21,7 +21,7 @@ comment|/*  * Licensed to the Apache Software Foundation (ASF) under one or more
 end_comment
 
 begin_comment
-comment|/**  * Bounding box limited on left and right.  * The left-right maximum extent for this shape is PI; for anything larger, use  * GeoWideLongitudeSlice.  */
+comment|/**  * Bounding box limited on left and right.  * The left-right maximum extent for this shape is PI; for anything larger, use  * GeoWideLongitudeSlice.  *  * @lucene.internal  */
 end_comment
 
 begin_class

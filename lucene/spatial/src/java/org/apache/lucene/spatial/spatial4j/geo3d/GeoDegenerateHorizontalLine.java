@@ -21,7 +21,7 @@ comment|/*  * Licensed to the Apache Software Foundation (ASF) under one or more
 end_comment
 
 begin_comment
-comment|/**  * Degenerate bounding box limited on two sides (left lon, right lon).  * The left-right maximum extent for this shape is PI; for anything larger, use  * GeoWideDegenerateHorizontalLine.  */
+comment|/**  * Degenerate bounding box limited on two sides (left lon, right lon).  * The left-right maximum extent for this shape is PI; for anything larger, use  * GeoWideDegenerateHorizontalLine.  *  * @lucene.internal  */
 end_comment
 
 begin_class

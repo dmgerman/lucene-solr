@@ -21,7 +21,7 @@ comment|/*  * Licensed to the Apache Software Foundation (ASF) under one or more
 end_comment
 
 begin_comment
-comment|/**  * All bounding box shapes have this interface in common.  * This describes methods that bounding boxes have above and beyond  * GeoMembershipShape's.  */
+comment|/**  * All bounding box shapes have this interface in common.  * This describes methods that bounding boxes have above and beyond  * GeoMembershipShape's.  *  * @lucene.experimental  */
 end_comment
 
 begin_interface

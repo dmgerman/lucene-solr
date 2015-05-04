@@ -21,7 +21,7 @@ comment|/*  * Licensed to the Apache Software Foundation (ASF) under one or more
 end_comment
 
 begin_comment
-comment|/**  * We know about three kinds of planes.  First kind: general plain through two points and origin  * Second kind: horizontal plane at specified height.  Third kind: vertical plane with specified x and y value, through origin.  */
+comment|/**  * We know about three kinds of planes.  First kind: general plain through two points and origin  * Second kind: horizontal plane at specified height.  Third kind: vertical plane with specified x and y value, through origin.  *  * @lucene.experimental  */
 end_comment
 
 begin_class
@@ -297,7 +297,7 @@ operator|<
 name|MINIMUM_RESOLUTION
 return|;
 block|}
-comment|/**    * Evaluate the plane equation for a given point, as represented    * by a vector.    *     * @return true if the result is on the plane.    */
+comment|/**    * Evaluate the plane equation for a given point, as represented    * by a vector.    *    * @return true if the result is on the plane.    */
 DECL|method|evaluateIsZero
 specifier|public
 name|boolean

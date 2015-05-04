@@ -21,7 +21,7 @@ comment|/*  * Licensed to the Apache Software Foundation (ASF) under one or more
 end_comment
 
 begin_comment
-comment|/** Factory for {@link org.apache.lucene.spatial.spatial4j.geo3d.GeoArea}. */
+comment|/**  * Factory for {@link org.apache.lucene.spatial.spatial4j.geo3d.GeoArea}.  *  * @lucene.experimental  */
 end_comment
 
 begin_class

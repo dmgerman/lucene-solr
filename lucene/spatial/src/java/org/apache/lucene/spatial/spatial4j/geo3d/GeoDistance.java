@@ -21,7 +21,7 @@ comment|/*  * Licensed to the Apache Software Foundation (ASF) under one or more
 end_comment
 
 begin_comment
-comment|/**  * Generic geo-distance-capable shape class description.  An implementer  * of this interface is capable of computing the described "distance" values,  * which are meant to provide both actual distance values, as well as  * distance estimates that can be computed more cheaply.  */
+comment|/**  * Generic geo-distance-capable shape class description.  An implementer  * of this interface is capable of computing the described "distance" values,  * which are meant to provide both actual distance values, as well as  * distance estimates that can be computed more cheaply.  *  * @lucene.experimental  */
 end_comment
 
 begin_interface
