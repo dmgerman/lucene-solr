@@ -4,11 +4,11 @@ comment|/*  * Licensed to the Apache Software Foundation (ASF) under one or more
 end_comment
 
 begin_comment
-comment|/**  * Shapes implemented using 3D planar geometry.  */
+comment|/** Spatial4j stuff that ideally belongs in Spatial4j (isn't related to Lucene). */
 end_comment
 
 begin_package
-DECL|package|org.apache.lucene.spatial.spatial4j.geo3d
+DECL|package|org.apache.lucene.spatial.spatial4j
 package|package
 name|org
 operator|.
@@ -19,8 +19,6 @@ operator|.
 name|spatial
 operator|.
 name|spatial4j
-operator|.
-name|geo3d
 package|;
 end_package
 

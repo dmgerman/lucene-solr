@@ -240,7 +240,7 @@ operator|+
 name|D
 return|;
 block|}
-comment|/**    * Evaluate the plane equation for a given point, as represented    * by a vector.    *    * @param x,y,z is the vector.    * @return the result of the evaluation.    */
+comment|/**    * Evaluate the plane equation for a given point, as represented    * by a vector.    */
 DECL|method|evaluate
 specifier|public
 name|double
@@ -297,7 +297,7 @@ operator|<
 name|MINIMUM_RESOLUTION
 return|;
 block|}
-comment|/**    * Evaluate the plane equation for a given point, as represented    * by a vector.    *    * @param x,y,z is the vector.    * @return true if the result is on the plane.    */
+comment|/**    * Evaluate the plane equation for a given point, as represented    * by a vector.    *     * @return true if the result is on the plane.    */
 DECL|method|evaluateIsZero
 specifier|public
 name|boolean
