@@ -226,7 +226,7 @@ throws|throws
 name|IOException
 block|{
 return|return
-literal|null
+name|contentStreams
 return|;
 block|}
 annotation|@
